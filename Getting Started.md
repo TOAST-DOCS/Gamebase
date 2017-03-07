@@ -17,7 +17,7 @@ Gamebase 서비스 사용을 위한 아주 간단하지만 꼭 필요한 기본�
 ### 게임 및 클라이언트 정보 등록 [Console]
 
 Gamebase의 Console의 [앱] 메뉴를 이용하여 게임 및 클라이언트의 기본 정보를 등록합니다.
-각 항목의 자세한 설명은 [Operators Guide > App](./Developer Guide/) 과 [Operators Guide > Client] 부분을 참고하시기 바랍니다.
+각 항목의 자세한 설명은 [[Operators Guide > App](./Operator`s Guide/#_3)] 과 [[Operators Guide > Client](./Operator`s Guide/#_4)] 부분을 참고하시기 바랍니다.
 
 
 ![게임 정보 등록 화면](http://static.toastoven.net/prod_gamebase/GettingStarted/img_console_app_1.0.png)
@@ -33,9 +33,9 @@ Gamebase의 Console의 [앱] 메뉴를 이용하여 게임 및 클라이언트�
 Gamebase SDK는 [SDK 다운로드 페이지](http://docs.cloud.toast.com/ko/Download/)에서 내려받을 수 있습니다.
 SDK 다운로드 후 플랫폼별 자세한 설정 방법은 각 플랫폼별 [Developers Guide]를 참고하시기 바랍니다.
 
-[iOS 개발프로젝트 설정하기](./Developer's Guide/iOS Developer's Guide)
-[Android 개발프로젝트 설정하기](./Developer's Guide/Android Developer's Guide)
-[Unity Plug-in 개발프로젝트 설정하기](./Developer's Guide/Unity Developer's Guide)
+* [iOS 개발프로젝트 설정하기](./Developer`s Guide/iOS Developer`s Guide/#getting-started)
+* [Android 개발프로젝트 설정하기](./Developer`s Guide/Android Developer`s Guide/#getting-started)
+* [Unity Plug-in 개발프로젝트 설정하기](./Developer`s Guide/Unity Developer`s Guide/#getting-started)
 
 > 드디어 Gamebase 서비스를 사용할 준비가 끝났습니다. :-)
 > 보다 자세한 가이드는 아래를 참고해 주세요.
@@ -43,27 +43,27 @@ SDK 다운로드 후 플랫폼별 자세한 설정 방법은 각 플랫폼별 [D
 
 ## 플랫폼별 가이드 링크
 ### Client Developer's Guide
-* [iOS Developer's Guide](./iOS Developer's Guide)
-* [Android Developer's Guide](./Android Developer's Guide)
-* [Unity Developer's Guide](./Unity Developer's Guide)
+* [iOS Developer's Guide](./Developer`s Guide/iOS Developer`s Guide)
+* [Android Developer's Guide](./Developer`s Guide/Android Developer`s Guide)
+* [Unity Developer's Guide](./Developer`s Guide/Unity Developer`s Guide)
 
 ### Server Developer's Guide
-* [Server Developer's Guide](./Server Developer's Guide)
+* [Server Developer's Guide](./Developer`s Guide/Server Developer`s Guide)
 
 ### Operator's Guide
-* [Operator's Guide](./Operator's Guide)
+* [Operator's Guide](./Operator`s Guide)
 
 
 ## 기능별 가이드 링크
 
 | Feature | Description | client | server  | console |
 |--------|--------|--------|--------|--------|
-| Login        | Guest , 3rd Party 인증지원  <br> - 지원되는 IDP : facebook, google+, iosgamecenter, payco      | [[iOS]()] [[Android]()] [[Unity]()] | | [[App]메뉴의 인증정보설정]() |
-| Logout       |  Logout      | [[iOS]()] [[Android]()] [[Unity]()]| | |
-| Withdraw       | 게임 탈퇴 <br> - User의 매핑정보 등 모든 정보 삭제     | [[iOS]()] [[Android]()] [[Unity]()]| | |
-| Mapping       | User ID하나의 여러개의 IDP를 연동하는 기능      | [[iOS]()] [[Android]()] [[Unity]()]| | |
-| Purchase(IAP)       |  (TOAST Cloud 상품연동) <br> 인앱결제 <br> - 지원되는 스토어 : google, app store      | [[iOS]()] [[Android]()] [[Unity]()]| | |
-| Push       | (TOAST Cloud 상품연동) <br> Push 메시지 전송 및 결과 확인      | [[iOS]()] [[Android]()] [[Unity]()]| | |
-| Webview      |        | [[iOS]()] [[Android]()] [[Unity]()] | | |
-| [Operator]Maintenance      | (운영) 점검기능       | [[iOS]()] [[Android]()] [[Unity]()] | |  |
-| [Operator]Notice      | (운영) 긴급 공지 기능 <br> - 게임 유저가 앱 실행시 사용자는 팝업형태로 공지 확인이 가능      | [[iOS]()] [[Android]()] [[Unity]()] | |  |
+| Login        | Guest , 3rd Party 인증지원  <br> - 지원되는 IDP : facebook, google+, iosgamecenter, payco      | [[iOS](./Developer's Guide/iOS Developer's Guide/#login)] [[Android](./Developer's Guide/Android Developer's Guide/#login)] [[Unity](./Developer's Guide/Unity Developer's Guide/#login)] | | [[App]메뉴의 인증정보설정](./Operator's Guide/#_3) <br> [[Member]메뉴](./Operator's Guide/#_11) <br> - 회원조회(기본정보, 로그인이력, 플레이타임 등) |
+| Logout       |  Logout      | [[iOS](./Developer's Guide/iOS Developer's Guide/#logout)] [[Android](./Developer's Guide/Android Developer's Guide/#logout)] [[Unity](./Developer's Guide/Unity Developer's Guide/#logout)]| | |
+| Withdraw       | 게임 탈퇴 <br> - User의 매핑정보 등 모든 정보 삭제     | [[iOS](./Developer's Guide/iOS Developer's Guide/#withdraw)] [[Android](./Developer's Guide/Android Developer's Guide/#withdraw)] [[Unity](./Developer's Guide/Unity Developer's Guide/#withdraw)]| | |
+| Mapping       | User ID하나의 여러개의 IDP를 연동하는 기능      | [[iOS](./Developer's Guide/iOS Developer's Guide/#mapping)] [[Android](./Developer's Guide/Android Developer's Guide/#mapping)] [[Unity](./Developer's Guide/Unity Developer's Guide/#mapping)]| | |
+| Purchase(IAP)       |  (TOAST Cloud 상품연동) <br> 인앱결제 <br> - 지원되는 스토어 : google, app store      | [[iOS](./Developer's Guide/iOS Developer's Guide/#purchase)] [[Android](./Developer's Guide/Android Developer's Guide/#purchase)] [[Unity](./Developer's Guide/Unity Developer's Guide/#purchase)]| | [[IAP]메뉴](./Operator's Guide/#_13)<br> [- 아이템 등록](./Operator's Guide/#_15) <br> [- 결제정보 조회](./Operator's Guide/#_16) |
+| Push       | (TOAST Cloud 상품연동) <br> Push 메시지 전송 및 결과 확인      | [[iOS](./Developer's Guide/iOS Developer's Guide/#push)] [[Android](./Developer's Guide/Android Developer's Guide/#push)] [[Unity](./Developer's Guide/Unity Developer's Guide/#push)]| |[[Push]메뉴](./Operator's Guide/#_9) |
+| Webview      | 추후 지원       |  | | |
+| [Operator]Maintenance      | (운영) 점검기능       |  | |  [[Maintenance]메뉴](./Operator's Guide/#_5) |
+| [Operator]Notice      | (운영) 긴급 공지 기능 <br> - 게임 유저가 앱 실행시 사용자는 팝업형태로 공지 확인이 가능      | | | [[Notice]메뉴](./Operator's Guide/#_7) |
