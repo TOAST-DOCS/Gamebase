@@ -1,4 +1,4 @@
-# Upcoming Products > Gamebase > iOS Developer's Guide
+## Upcoming Products > Gamebase > iOS Developer's Guide
 
 ## Configuration
 
@@ -6,81 +6,70 @@
 
 #### Environments
 
-> [ 최소사양 ]
+> **[ 최소사양 ]**
 > iOS8 이상
 > arm7, arm7s, arm64, i386, x86_64 지원
 > Xcode7 이상
 
 
-#### Installation
-- 카카오 참조 : https://developers.kakao.com/docs/ios#시작하기-kakao-sdk-설치
-- 페북 참조 : https://developers.facebook.com/docs/ios/getting-started/#settings
-- Payco 참조 : https://developers.payco.com/guide/sdk/download
-
-CocoaPods를 사용하거나, 직접 SDK를 다운로드하여 설정할 수 있습니다.
-
-##### SDK 다운로드
-1. 다운로드
-Gamebase 다운로드 링크는 다음과 같습니다 [링크: Gamebase 다운로드 링크]
-Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.
-
-2. 압축풀기
-압축을 풀면, 다음과 같이 Gamebase.framework 등의 SDK를 볼 수 있습니다.
-![unzip gamebase](/image/iOS Developers Guide/ios-developers-guide-installation-002.png)
 
 
 #### Setting Xcode Project to use Gamebase
-Gamebase를 설정하기 위한 방법은 2가지가 있으며, 각각 **'수동 설정'**과 **'CocoaPods'**를 이용한 방법입니다.
+Gamebase는 아래와 같은 방법으로 설정이 가능합니다.
 
-##### 수동 설정
-위의 다운로드 링크에서 SDK관련 framework 파일을 다운로드합니다.
+##### 1. 수동 설정
+1. 다운로드
+Gamebase는 [http://docs.cloud.toast.com/ko/Download/](http://docs.cloud.toast.com/ko/Download/)에서 다운로드 받습니다.
+Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.
+또한 각 IDP의 인증을 하기위한 SDK파일들을 다운로드 받아야합니다. 해당 IDP의 로그인을 사용할 때만 포함하면 됩니다.
+다운로드 받은 뒤, 해당 SDK파일을 프로젝트의 target에 포함시켜야 합니다.
 
-1. framework파일을 Project의 Project Navigator로 끌어와서 import를 합니다. 이 때 추가된 framework 파일들은 프로젝트 target에 추가되어야 합니다.
-2. 패키지에 포함된 `SocketRocket.framework`파일은 Gamebase에서 사용하는 WebSocket 모듈로 `Target > General > Embedded Binaries`에 추가되어야 합니다.
-3. Gamebase를 사용하기 위해서는 Gamebase의 framework외에, Gamebase에서 사용하고 있는 외부 SDK들의 기능을 포함하기 위하여, 여러 framework와 library 파일을 linker에서 참조할 수 있도록 추가해야합니다. 아래 항목들을 추가해야합니다.
-  1. libz.tbd
-  2. libsqlite3.tbd
-  3. libstdc++.tbd
-  4. AdSupport.framework
-  5. ImageIO.framework
-  6. GameKit.framework
-  7. StoreKit.framework
-4. `Target > Build Settings > Linking > Other Linker Flags`에 `-ObjC`를 추가해야 합니다.
+###### 외부 SDK 다운로드
+| Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | External SDK Download Link |
+| --- | --- | --- | --- | --- |
+| Gamebase | Gamebase.framework, Gamebase.bundle, SocketRocket.framework |  |  |
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v4.17.0 | [Go to Download](https://developers.facebook.com/docs/ios/downloads) |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.1.6 | [Go to Download](https://developers.payco.com/guide/sdk/download) |
+|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework |
+| Gamebase Push | GamebasePushAdapter.framework |  |
 
-> Information
+###### 
+
+>`주의`
+>
+>Gamebase Framework 파일 중 이름에 `Adapter`가 포함되어 있는 파일들은 선택적으로 프로젝트 내에서 사용여부를 결정할 수 있으며, 해당 Adapter Framework를 사용하기 위해서는 위의 표에 명시된 External SDK들이 필요할 수 있습니다.
+
+2. 압축풀기
+압축을 풀면, 다음과 같이 Gamebase.framework 등의 SDK를 볼 수 있습니다.
+![unzip gamebase](http://static.toastoven.net/prod_gamebase/iOS Developers Guide/ios-developers-guide-installation-002_0.9.0.png)
+
+
+3. 프로젝트 설정
+- 1) Framework 파일을 Project의 Project Navigator로 끌어와서 import 합니다. 이 때 추가된 Framework 파일들은 프로젝트 target에 추가되어야 합니다. 
+- 2) `Gamebase.bundle` 파일도 `Copy Bundle Resources` 에 추가하도록 합니다.
+![Gamebase.bundle Bundle Resources](http://static.toastoven.net/prod_gamebase/iOS Developers Guide/ios-developers-guide-installation-003_0.9.0.png)
+- 3) 패키지에 포함된 `SocketRocket.framework`파일은 Gamebase에서 사용하는 WebSocket 모듈로 `Target > General > Embedded Binaries`에 추가되어야 합니다.
+![SocketRocket Embeded Binaries](http://static.toastoven.net/prod_gamebase/iOS Developers Guide/ios-developers-guide-installation-004_0.9.0.png)
+- 4) Gamebase를 사용하기 위해서는 Gamebase의 framework외에, Gamebase에서 사용하고 있는 외부 SDK들의 기능을 포함하기 위하여, 여러 framework와 library 파일을 linker에서 참조할 수 있도록 추가해야합니다. 아래 항목들을 추가해야합니다.
+    - libz.tbd
+    - libsqlite3.tbd
+    - libstdc++.tbd
+    - AdSupport.framework
+    - ImageIO.framework
+    - GameKit.framework
+    - StoreKit.framework
+![Link Binary With Libraries](http://static.toastoven.net/prod_gamebase/iOS Developers Guide/ios-developers-guide-installation-005_0.9.0.png)
+- 5) `Target > Build Settings > Linking > Other Linker Flags`에 `-ObjC`를 추가해야 합니다.
+![Other Linker Flags](http://static.toastoven.net/prod_gamebase/iOS Developers Guide/ios-developers-guide-installation-006_0.9.0.png)
+
+> **Information**
 >
 > Linker에 `-ObjC`옵션 설정은 Static Library에 있는 모든 Objective-C class와 category를 로드하도록 합니다.
 > 따라서 이 옵션을 설정하지 않았을 때에 `selector not recognized`와 같은 오류가 발생할 수 있습니다.
 
-##### CocoaPods를 사용한 설정
-사용하고자 하는 기능에 맞게, Pods를 추가하여줍니다.
 
-1. Podfile 생성
-Podfile이 없다면 다음을 이용해 Podfile을 생성합니다.
-```
-$ cd my-game-project
-$ pod init
-```
 
-2. Pod 추가
-사용하고자하는 기능에 맞게 Pod를 추가합니다. Core는 기본적으로 포함합니다.
-인증을 시도하고자 하는 IDP의 Adapter를 포함하거나, Push, Purchase 등 기능 사용유무에 따라서,
-Pod 를 추가해줍니다.
-```
-pod 'Gamebase/Gamebase'
-pod 'Gamebase/GamebaseAuthPaycoAdapter'
-pod 'Gamebase/GamebaseAuthFacebookAdapter'
-pod 'Gamebase/GamebaseAuthGamecenterAdapter'
-pod 'Gamebase/GamebasePurchaseIAPAdapter'
-pod 'Gamebase/GamebasePushAdapter'
-```
-
-3. Pod 설치
-다음을 이용해, Pod를 설치하고, 프로젝트 파일을 엽니다.
-```
-$ pod install
-$ open your-project.xcworkspace
-```
 
 ### Initialization
 
@@ -156,6 +145,12 @@ iOS의 App Event를 관리하기 위하여 아래에 명기된 `UIApplicationDel
 }
 ```
 
+
+
+
+
+
+
 ### Login
 Gamebase 에서는 기본적으로 guest 로그인을 지원합니다.
 guest 이외의 Provider에 로그인을 하기 위해서는 해당 Provider AuthAdapter가 필요합니다.
@@ -209,24 +204,58 @@ IDP별로 로그인을 설명하는 문서는 다음의 링크를 참고해주�
 ```
 
 #### 3. 특정 IDP 로그인 API 호출
-특정 IDP 로그인 호출을 위해서 `[TCGamebase loginWithType:viewController:completion:]` 메소드를 호출해줍니다. 로그인 결과로 `(TCGBError *)error` 객체를 이용해 성공여부를 판단할 수 있습니다. 또한 `(TCGBAuthToken *)credential` 객체를 이용하여 userId 등의 사용자 정보 및 토큰 정보를 얻을 수 있습니다.
+특정 IDP 로그인 호출을 위해서 `[TCGamebase loginWithType:viewController:completion:]` 메소드를 호출해줍니다. 로그인 결과로 `(TCGBError *)error` 객체를 이용해 성공 여부를 판단할 수 있습니다. 또한 `(TCGBAuthToken *)credential` 객체를 이용하여 userId 등의 사용자 정보 및 토큰 정보를 얻을 수 있습니다.
 
 몇몇 IDP의 로그인시에는 필수적으로 들어가야하는 정보가 있습니다. 예를 들어, facebook 로그인을 구현하기 위해서는 scope 등을 설정해주어야합니다. 이러한 필수 정보들을 설정해주기 위해서, `[TCGamebase loginWithType:additionalInfo:viewController:completion:]` API를 제공합니다.
 파라미터 additionalInfo에 필수 정보들을 Dictionary 형태로 입력하시면 됩니다.
 (파라미터 값이 nil일 때는, TOAST Cloud Console에 등록한 additionalInfo 값으로 채워집니다. 파라미터 값이 있을 때는 Console에 등록해놓은 값보다 우선시하여 값을 덮어쓰게 됩니다.)
 
+> **Information**
+> iOS에서 지원하는 IDP는 `TCGBConstants.h`의 TCGBAuthIDPs 영역의 `kTCGBAuthXXXXXX`로 정의되어 있습니다.
+
 ```objectivec
 - (void)loginFacebookButtonClick {
-    [TCGamebase loginWithType:@"facebook" viewController:self completion:^(id credential, TCGBError *error) {
+    [TCGamebase loginWithType:kTCGBAuthPayco viewController:self completion:^(id credential, TCGBError *error) {
         if ([TCGamebase isSuccessWithError:error] == YES) {
             // To Login Succeeded
-            NSString *userId = credential 
+            NSString *userId = credential.tcgbMember.userId;
         } else {
             // To Login Failed
         }
     }];
 }
 ```
+
+##### Gamebase에서 지원 중인 IDP
+###### 1. Guest
+###### 2. Facebook
+1. AdditionalInfo의 설정이 필요합니다.
+	* `TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL`의 `추가 정보` 항목에 JSON String 형태의 정보를 설정해야합니다.
+	* Facebook의 경우, OAuth 인증 시도 시, Facebook으로 부터 요청할 정보의 종류를 설정해야 합니다. 
+	* 예제
+	```json
+	{ "facebook_permission": [ "public_profile", "email", "user_friends"]}
+	```
+2. Facebook SDK를 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다.
+[](http://)
+
+###### 3. Payco
+1. AdditionalInfo의 설정이 필요합니다.
+	* `TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL`의 `추가 정보` 항목에 JSON String 형태의 정보를 설정해야합니다.
+	* Payco의 경우, PaycoSDK에서 요구하는 `service_code`와 `service_name`의 설정이 필요합니다.
+	* 예제
+	```json
+    { "service_code": "HANGAME", "service_code": "Your Service Name" }
+    ```
+
+###### 4. GameCenter
+
+
+
+
+
+
+
 
 
 ### Logout
@@ -250,6 +279,13 @@ IDP별로 로그인을 설명하는 문서는 다음의 링크를 참고해주�
     }
 }];
 ```
+
+
+
+
+
+
+
 
 
 ### Withdraw
@@ -313,7 +349,6 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 }];
 ```
 
-
 #### 3. Mapping 해제 API 호출
 특정 IDP에 대한 연동을 해제합니다. 만약, 해제하고자 하는 IDP가 유일한 IDP라면, 실패를 리턴하게 됩니다. 연동 해제후에는 Gamebase 내부에서, 해당 IDP에 대한 로그아웃처리를 해줍니다.
 
@@ -327,6 +362,13 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 }
 }];
 ```
+
+
+
+
+
+
+
 
 
 ### Purchase
@@ -412,6 +454,11 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 ```
 
 
+
+
+
+
+
 ### Push
 
 #### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
@@ -465,7 +512,16 @@ Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야�
 }
 ```
 
-### UI
+
+
+
+
+
+### UI (향후 지원 예정)
+
+
+
+
 
 
 ## Error code
@@ -484,7 +540,7 @@ Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야�
 |         | | TCGB_ERROR_SOCKET_ERROR | 110 | |
 |         | | TCGB_ERROR_UNKNOWN_ERROR | 999 | |
 | Launching | | TCGB_ERROR_LAUNCHING_SERVER_ERROR | 2001 | |
-| Auth | Common | TCGB_ERROR_AUTH_USER_CANCEL | 3001 | |
+| Auth | Common | TCGB_ERROR_AUTH_USER_CANCELED | 3001 | |
 |      |        | TCGB_ERROR_AUTH_NOT_SUPPORTED_PROVIDER | 3002 | |
 |      |        | TCGB_ERROR_AUTH_NOT_EXIST_MEMBER | 3003 | |
 |      |        | TCGB_ERROR_AUTH_INVALID_MEMBER | 3004 | |
@@ -528,3 +584,4 @@ Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야�
 
 
 ## API Reference
+SDK 내에 포함되어 있습니다.
