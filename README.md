@@ -12,14 +12,12 @@
 ## 문서 구조
 * root
 	* Overview
-	* Getting Started
-	* Operator's Guide
-	* Android Developer's Guide/Android Developer's Guide
-	* iOS Developer's Guide/iOS Developer's Guide
-	* Unity Developer's Guide/Unity Developer's Guide
-	* unity-developer-guide
-	* Server Developer's Guide
-	* operator-guide
+	* Getting Started	
+	* Developer's Guide/Android Developer's Guide
+	* Developer's Guide/iOS Developer's Guide
+	* Developer's Guide/Unity Developer's Guide
+	* Developer's Guide/Server Developer's Guide
+	* Operator's Guide	
 
 
 ---
@@ -58,28 +56,17 @@ Python-Markdown 링크 : [https://pythonhosted.org/Markdown](https://pythonhoste
 
 ### 이미지 등 미디어 삽입 경로
 
-원칙적으로, 해당 도큐먼트가 위치한 폴더내의 `assets/` 이라는 폴더에 해당 이미지를 업로드하고, 상대경로를 이용하여 이미지 등의 미디어를 로드합니다. 추후 replace를 통하여 원격 FTP 경로의 이미지로 교체하여 토스트클라우드 문서에 업로드 합니다.
+원칙적으로, 해당 도큐먼트가 위치한 폴더내의 `image/` 이라는 폴더에 해당 이미지를 업로드하고, 상대경로를 이용하여 이미지 등의 미디어를 로드합니다. 추후 replace를 통하여 원격 FTP 경로(http://static.toastoven.net/prod_gamebase)의 이미지로 교체하여 토스트클라우드 문서에 업로드 합니다.
 
-(다만, 공통적으로 사용될 수 있는 미디어의 경우는 루트경로에 있는 assets 폴더에 미디어를 업로드하고, 사용합니다)
+(다만, 공통적으로 사용될 수 있는 미디어의 경우는 루트경로에 있는 image 폴더에 미디어를 업로드하고, 사용합니다)
 
 
 
 1. 이미지 파일을 준비합니다.
-
-2. 올릴 이미지를 해당 문서가 있는 폴더의 assets 폴더 내부로 이동/복사를 합니다.
-
-
-
-
-
+2. 올릴 이미지를 해당 문서가 있는 폴더의 image 폴더 내부로 이동/복사를 합니다.
 3. 다음과 같은 마크다운을 이용하여, 이미지를 렌더링합니다.
 
-
-
-`![image alt](assets/example_img3.png)`
-
-
-
+`![image alt](./image/example_img3.png)`
 
 
 ### 문서 예제
