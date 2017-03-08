@@ -58,12 +58,12 @@ SDK 다운로드 후 플랫폼별 자세한 설정 방법은 각 플랫폼별 [D
 
 | Feature | Description | client | server  | console |
 |--------|--------|--------|--------|--------|
-| Login        | Guest , 3rd Party 인증지원  <br> - 지원되는 IDP : facebook, google+, iosgamecenter, payco      | [[iOS](./Developer's Guide/iOS Developer's Guide/#login)] [[Android](./Developer's Guide/Android Developer's Guide/#login)] [[Unity](./Developer's Guide/Unity Developer's Guide/#login)] | | [[App]메뉴의 인증정보설정](./Operator's Guide/#_3) <br> [[Member]메뉴](./Operator's Guide/#_11) <br> - 회원조회(기본정보, 로그인이력, 플레이타임 등) |
-| Logout       |  Logout      | [[iOS](./Developer's Guide/iOS Developer's Guide/#logout)] [[Android](./Developer's Guide/Android Developer's Guide/#logout)] [[Unity](./Developer's Guide/Unity Developer's Guide/#logout)]| | |
-| Withdraw       | 게임 탈퇴 <br> - User의 매핑정보 등 모든 정보 삭제     | [[iOS](./Developer's Guide/iOS Developer's Guide/#withdraw)] [[Android](./Developer's Guide/Android Developer's Guide/#withdraw)] [[Unity](./Developer's Guide/Unity Developer's Guide/#withdraw)]| | |
-| Mapping       | User ID하나의 여러개의 IDP를 연동하는 기능      | [[iOS](./Developer's Guide/iOS Developer's Guide/#mapping)] [[Android](./Developer's Guide/Android Developer's Guide/#mapping)] [[Unity](./Developer's Guide/Unity Developer's Guide/#mapping)]| | |
-| Purchase(IAP)       |  (TOAST Cloud 상품연동) <br> 인앱결제 <br> - 지원되는 스토어 : google, app store      | [[iOS](./Developer's Guide/iOS Developer's Guide/#purchase)] [[Android](./Developer's Guide/Android Developer's Guide/#purchase)] [[Unity](./Developer's Guide/Unity Developer's Guide/#purchase)]| | [[IAP]메뉴](./Operator's Guide/#_13)<br> [- 아이템 등록](./Operator's Guide/#_15) <br> [- 결제정보 조회](./Operator's Guide/#_16) |
-| Push       | (TOAST Cloud 상품연동) <br> Push 메시지 전송 및 결과 확인      | [[iOS](./Developer's Guide/iOS Developer's Guide/#push)] [[Android](./Developer's Guide/Android Developer's Guide/#push)] [[Unity](./Developer's Guide/Unity Developer's Guide/#push)]| |[[Push]메뉴](./Operator's Guide/#_9) |
+| Login        | Guest , 3rd Party 인증지원  <br> - 지원되는 IDP : facebook, google+, iosgamecenter, payco      | [[iOS](./iOS Developer`s Guide/#login)] [[Android](./Android Developer`s Guide/#login)] [[Unity](./Unity Developer`s Guide/#login)] | | [[App]메뉴의 인증정보설정](./Operator`s Guide/#_3) <br> [[Member]메뉴](./Operator`s Guide/#_11) <br> - 회원조회(기본정보, 로그인이력, 플레이타임 등) |
+| Logout       |  Logout      | [[iOS](./iOS Developer`s Guide/#logout)] [[Android](./Android Developer`s Guide/#logout)] [[Unity](./Unity Developer`s Guide/#logout)]| | |
+| Withdraw       | 게임 탈퇴 <br> - User의 매핑정보 등 모든 정보 삭제     | [[iOS](./iOS Developer`s Guide/#withdraw)] [[Android](./Android Developer`s Guide/#withdraw)] [[Unity](./Unity Developer`s Guide/#withdraw)]| | |
+| Mapping       | User ID하나의 여러개의 IDP를 연동하는 기능      | [[iOS](./iOS Developer`s Guide/#mapping)] [[Android](./Android Developer`s Guide/#mapping)] [[Unity](./Unity Developer`s Guide/#mapping)]| | |
+| Purchase(IAP)       |  (TOAST Cloud 상품연동) <br> 인앱결제 <br> - 지원되는 스토어 : google, app store      | [[iOS](./iOS Developer`s Guide/#purchase)] [[Android](./Android Developer`s Guide/#purchase)] [[Unity](./Unity Developer`s Guide/#purchase)]| | [[IAP]메뉴](./Operator`s Guide/#_13)<br> [- 아이템 등록](./Operator`s Guide/#_15) <br> [- 결제정보 조회](./Operator`s Guide/#_16) |
+| Push       | (TOAST Cloud 상품연동) <br> Push 메시지 전송 및 결과 확인      | [[iOS](./iOS Developer`s Guide/#push)] [[Android](./Android Developer`s Guide/#push)] [[Unity](./Unity Developer`s Guide/#push)]| |[[Push]메뉴](./Operator`s Guide/#_9) |
 | Webview      | 추후 지원       |  | | |
-| [Operator]Maintenance      | (운영) 점검기능       |  | |  [[Maintenance]메뉴](./Operator's Guide/#_5) |
-| [Operator]Notice      | (운영) 긴급 공지 기능 <br> - 게임 유저가 앱 실행시 사용자는 팝업형태로 공지 확인이 가능      | | | [[Notice]메뉴](./Operator's Guide/#_7) |
+| [Operator]Maintenance      | (운영) 점검기능       |  | |  [[Maintenance]메뉴](./Operator`s Guide/#_5) |
+| [Operator]Notice      | (운영) 긴급 공지 기능 <br> - 게임 유저가 앱 실행시 사용자는 팝업형태로 공지 확인이 가능      | | | [[Notice]메뉴](./Operator`s Guide/#_7) |

@@ -1,4 +1,4 @@
-<link href="./css/gamebase.css" rel="stylesheet">
+﻿<link href="./css/gamebase.css" rel="stylesheet">
 
 ## Upcoming Products > Gamebase > iOS Developer's Guide
 
@@ -38,22 +38,22 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.
 
 ###### 
 
-> `주의`
+> **주의**
 >
-> Gamebase Framework 파일 중 이름에 `Adapter`가 포함되어 있는 파일들은 선택적으로 프로젝트 내에서 사용여부를 결정할 수 있으며, 해당 Adapter Framework를 사용하기 위해서는 위의 표에 명시된 External SDK들이 필요할 수 있습니다.
+> Gamebase Framework 파일 중 이름에 **Adapter**가 포함되어 있는 파일들은 선택적으로 프로젝트 내에서 사용여부를 결정할 수 있으며, 해당 Adapter Framework를 사용하기 위해서는 위의 표에 명시된 External SDK들이 필요할 수 있습니다.
 
 2. 압축풀기
 압축을 풀면, 다음과 같이 Gamebase.framework 등의 SDK를 볼 수 있습니다.
 
-![unzip gamebase](./image/iOS_Developers_Guide/ios-developers-guide-installation-002_0.9.0.png)
+![unzip gamebase](http://static.toastoven.net/prod_gamebase/iOS_Developers_Guide/ios-developers-guide-installation-002_0.9.0.png)
 
 
 3. 프로젝트 설정
 - 1) Framework 파일을 Project의 Project Navigator로 끌어와서 import 합니다. 이 때 추가된 Framework 파일들은 프로젝트 target에 추가되어야 합니다. 
-- 2) `Gamebase.bundle` 파일도 `Copy Bundle Resources` 에 추가하도록 합니다.
-![Gamebase.bundle Bundle Resources](./image/iOS_Developers_Guide/ios-developers-guide-installation-003_0.9.0.png)
-- 3) 패키지에 포함된 `SocketRocket.framework`파일은 Gamebase에서 사용하는 WebSocket 모듈로 `Target > General > Embedded Binaries`에 추가되어야 합니다.
-![SocketRocket Embeded Binaries](./image/iOS_Developers_Guide/ios-developers-guide-installation-004_0.9.0.png)
+- 2) **Gamebase.bundle** 파일도 **Copy Bundle Resources** 에 추가하도록 합니다.
+![Gamebase.bundle Bundle Resources](http://static.toastoven.net/prod_gamebase/iOS_Developers_Guide/ios-developers-guide-installation-003_0.9.0.png)
+- 3) 패키지에 포함된 **SocketRocket.framework**파일은 Gamebase에서 사용하는 WebSocket 모듈로 **Target > General > Embedded Binaries**에 추가되어야 합니다.
+![SocketRocket Embeded Binaries](http://static.toastoven.net/prod_gamebase/iOS_Developers_Guide/ios-developers-guide-installation-004_0.9.0.png)
 - 4) Gamebase를 사용하기 위해서는 Gamebase의 framework외에, Gamebase에서 사용하고 있는 외부 SDK들의 기능을 포함하기 위하여, 여러 framework와 library 파일을 linker에서 참조할 수 있도록 추가해야합니다. 아래 항목들을 추가해야합니다.
     - libz.tbd
     - libsqlite3.tbd
@@ -62,14 +62,14 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.
     - ImageIO.framework
     - GameKit.framework
     - StoreKit.framework
-![Link Binary With Libraries](./image/iOS_Developers_Guide/ios-developers-guide-installation-005_0.9.0.png)
-- 5) `Target > Build Settings > Linking > Other Linker Flags`에 `-ObjC`를 추가해야 합니다.
-![Other Linker Flags](./image/iOS_Developers_Guide/ios-developers-guide-installation-006_0.9.0.png)
+![Link Binary With Libraries](http://static.toastoven.net/prod_gamebase/iOS_Developers_Guide/ios-developers-guide-installation-005_0.9.0.png)
+- 5) **Target > Build Settings > Linking > Other Linker Flags**에 **-ObjC**를 추가해야 합니다.
+![Other Linker Flags](http://static.toastoven.net/prod_gamebase/iOS_Developers_Guide/ios-developers-guide-installation-006_0.9.0.png)
 
 > **Information**
 >
-> Linker에 `-ObjC`옵션 설정은 Static Library에 있는 모든 Objective-C class와 category를 로드하도록 합니다.
-> 따라서 이 옵션을 설정하지 않았을 때에 `selector not recognized`와 같은 오류가 발생할 수 있습니다.
+> Linker에 **-ObjC**옵션 설정은 Static Library에 있는 모든 Objective-C class와 category를 로드하도록 합니다.
+> 따라서 이 옵션을 설정하지 않았을 때에 **selector not recognized**와 같은 오류가 발생할 수 있습니다.
 
 
 
@@ -86,7 +86,7 @@ AppDelegate.h 에서 다음의 헤더 파일을 가져옵니다.
 
 
 #### 2. 초기화 메소드 호출
-`application:didFinishLaunchingWithOptions:` 메소드에서, 다음과 같이 초기화를 진행합니다.
+**application:didFinishLaunchingWithOptions:** 메소드에서, 다음과 같이 초기화를 진행합니다.
 
 ```objectivec
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -105,14 +105,14 @@ AppDelegate.h 에서 다음의 헤더 파일을 가져옵니다.
 ```
 
 ### Lifecycle 관리를 위한 이벤트 처리
-iOS의 App Event를 관리하기 위하여 아래에 명기된 `UIApplicationDelegate` protocol을 구현해야합니다.
+iOS의 App Event를 관리하기 위하여 아래에 명기된 **UIApplicationDelegate** protocol을 구현해야합니다.
 
 #### 1. URL Resource를 받기 위한 Event
-`application:openURL:sourceApplication:annotation:` 메소드를 호출하여, Switching App을 사용한 인증 시, 각 IDP들의 인증용 SDK에서 필요한 동작을 하도록 알려줍니다.
+**application:openURL:sourceApplication:annotation:** 메소드를 호출하여, Switching App을 사용한 인증 시, 각 IDP들의 인증용 SDK에서 필요한 동작을 하도록 알려줍니다.
 
 >**주의**
 >
->UIApplicationDelegate의 `application:openURL:options:`를 이미 Overriding 했다면, `application:openURL:sourceApplication:annotation:`이 호출되지 않을 수 있습니다.
+>UIApplicationDelegate의 **application:openURL:options:**를 이미 Overriding 했다면, **application:openURL:sourceApplication:annotation:**이 호출되지 않을 수 있습니다.
 
 ```objectivec
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -122,7 +122,7 @@ iOS의 App Event를 관리하기 위하여 아래에 명기된 `UIApplicationDel
 ```
 
 #### 2. 앱 활성화 Event
-`applicationDidBecomeActive:` 메소드를 호출하여, App이 활성화 되었는지 여부를 각 IDP의 인증용 SDK에서 필요한 동작을 하도록 알려줍니다.
+**applicationDidBecomeActive:** 메소드를 호출하여, App이 활성화 되었는지 여부를 각 IDP의 인증용 SDK에서 필요한 동작을 하도록 알려줍니다.
 
 ```objectivec
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -131,7 +131,7 @@ iOS의 App Event를 관리하기 위하여 아래에 명기된 `UIApplicationDel
 ```
 
 #### 3. 앱의 Background로 전환 Event
-`applicationDidEnterBackground` 메소드를 호출하여, App이 Background로 전환되었는지 알려주어야 합니다.
+**applicationDidEnterBackground** 메소드를 호출하여, App이 Background로 전환되었는지 알려주어야 합니다.
 
 ```objectivec
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -140,7 +140,7 @@ iOS의 App Event를 관리하기 위하여 아래에 명기된 `UIApplicationDel
 ```
 
 #### 4. 앱의 Foreground로 전환 Event
-`applicationWillEnterForeground` 메소드를 호출하여, App이 Foreground로 전환된다는 것을 알려주어야 합니다.
+**applicationWillEnterForeground** 메소드를 호출하여, App이 Foreground로 전환된다는 것을 알려주어야 합니다.
 
 ```objectivec
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -207,14 +207,14 @@ IDP별로 로그인을 설명하는 문서는 다음의 링크를 참고해주�
 ```
 
 #### 3. 특정 IDP 로그인 API 호출
-특정 IDP 로그인 호출을 위해서 `[TCGamebase loginWithType:viewController:completion:]` 메소드를 호출해줍니다. 로그인 결과로 `(TCGBError *)error` 객체를 이용해 성공 여부를 판단할 수 있습니다. 또한 `(TCGBAuthToken *)credential` 객체를 이용하여 userId 등의 사용자 정보 및 토큰 정보를 얻을 수 있습니다.
+특정 IDP 로그인 호출을 위해서 **[TCGamebase loginWithType:viewController:completion:]** 메소드를 호출해줍니다. 로그인 결과로 **(TCGBError *)error** 객체를 이용해 성공 여부를 판단할 수 있습니다. 또한 **(TCGBAuthToken *)credential** 객체를 이용하여 userId 등의 사용자 정보 및 토큰 정보를 얻을 수 있습니다.
 
-몇몇 IDP의 로그인시에는 필수적으로 들어가야하는 정보가 있습니다. 예를 들어, facebook 로그인을 구현하기 위해서는 scope 등을 설정해주어야합니다. 이러한 필수 정보들을 설정해주기 위해서, `[TCGamebase loginWithType:additionalInfo:viewController:completion:]` API를 제공합니다.
+몇몇 IDP의 로그인시에는 필수적으로 들어가야하는 정보가 있습니다. 예를 들어, facebook 로그인을 구현하기 위해서는 scope 등을 설정해주어야합니다. 이러한 필수 정보들을 설정해주기 위해서, **[TCGamebase loginWithType:additionalInfo:viewController:completion:]** API를 제공합니다.
 파라미터 additionalInfo에 필수 정보들을 Dictionary 형태로 입력하시면 됩니다.
 (파라미터 값이 nil일 때는, TOAST Cloud Console에 등록한 additionalInfo 값으로 채워집니다. 파라미터 값이 있을 때는 Console에 등록해놓은 값보다 우선시하여 값을 덮어쓰게 됩니다.)
 
 > **Information**
-> iOS에서 지원하는 IDP는 `TCGBConstants.h`의 TCGBAuthIDPs 영역의 `kTCGBAuthXXXXXX`로 정의되어 있습니다.
+> iOS에서 지원하는 IDP는 **TCGBConstants.h**의 TCGBAuthIDPs 영역의 **kTCGBAuthXXXXXX**로 정의되어 있습니다.
 
 ```objectivec
 - (void)loginFacebookButtonClick {
@@ -233,7 +233,7 @@ IDP별로 로그인을 설명하는 문서는 다음의 링크를 참고해주�
 ###### 1. Guest
 ###### 2. Facebook
 1. AdditionalInfo의 설정이 필요합니다.
-	* `TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL`의 `추가 정보` 항목에 JSON String 형태의 정보를 설정해야합니다.
+	* **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
 	* Facebook의 경우, OAuth 인증 시도 시, Facebook으로 부터 요청할 정보의 종류를 설정해야 합니다. 
 	* 예제
 	```json
@@ -244,8 +244,8 @@ IDP별로 로그인을 설명하는 문서는 다음의 링크를 참고해주�
 
 ###### 3. Payco
 1. AdditionalInfo의 설정이 필요합니다.
-	* `TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL`의 `추가 정보` 항목에 JSON String 형태의 정보를 설정해야합니다.
-	* Payco의 경우, PaycoSDK에서 요구하는 `service_code`와 `service_name`의 설정이 필요합니다.
+	* **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+	* Payco의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**의 설정이 필요합니다.
 	* 예제
 	```json
     { "service_code": "HANGAME", "service_code": "Your Service Name" }
@@ -333,7 +333,7 @@ Mapping을 구현하고자 하는 ViewController에 다음의 헤더 파일을 �
 #### 2 Mapping 추가 API 호출
 특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다.
 Mapping을 하려는 IDP의 계정이 이미 다른 계정이 연동이 되어있다면,
-`TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER` 에러를 리턴합니
+**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER** 에러를 리턴합니
 
 Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 아니라, 기존에 로그인했던 IDP가 됩니다. 즉, Mapping은 단순히 IDP를 연동만 해줍니다.
 
@@ -423,7 +423,7 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 
 
 #### 4. 미소비 결제내역 조회 API 호출
-아이템을 구매는 하였지만, 정상적으로 아이템이 소비(배송, 지급)되었지 않은 `미소비 결제내역`을 요청합니다. 해당 내역을 받은 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.
+아이템을 구매는 하였지만, 정상적으로 아이템이 소비(배송, 지급)되었지 않은 **미소비 결제내역**을 요청합니다. 해당 내역을 받은 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.
 
 ```objectivec
 - (void)viewDidLoad {

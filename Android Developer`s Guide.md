@@ -18,12 +18,12 @@ Gamebase Android SDK를 사용하기 전에 TOAST Cloud Console에서 App ID를 
 
 * [DOWNLOAD Gamebase Android SDK](http://docs.cloud.toast.com/ko/Download/)
 * 다운로드 받은 SDK에서 다음 폴더 및 aar 파일을 프로젝트에 추가합니다.
-	* `gamebase-sdk/`
-	* `gamebase-sdk-VERSION-release.aar`
-	* `gamebase-sdk-base-VERSION-release.aar`
-	* `gamebase-sdk-websocket-VERSION-release.aar`
+	* **gamebase-sdk/**
+	* **gamebase-sdk-VERSION-release.aar**
+	* **gamebase-sdk-base-VERSION-release.aar**
+	* **gamebase-sdk-websocket-VERSION-release.aar**
 * 인증 모듈 추가
-	* 다운로드 받은 SDK의 `gamebase-adapter-auth-IDP_NAME` 폴더를 프로젝트에 추가합니다.
+	* 다운로드 받은 SDK의 **gamebase-adapter-auth-IDP_NAME** 폴더를 프로젝트에 추가합니다.
 	* google, facebook, payco 중에서 사용할 인증 모듈을 모두 추가합니다.
 
 * 외부 SDK 다운로드
@@ -156,7 +156,7 @@ Gamebase 인증에서 사용하는 액티비티를 추가합니다.
 
 #### 2. Activate the application
 앱의 Lifecycle 관리를 위해 앱이 활성화 되었음을 Gamebase SDK에 알립니다.
-`Application#onCreate()`에서 `Gamebase#activeApp(Context)`을 호출합니다.
+**Application#onCreate()**에서 **Gamebase#activeApp(Context)**을 호출합니다.
 
 ```java
 public class GamebaseApplication extends Application {
@@ -170,7 +170,7 @@ public class GamebaseApplication extends Application {
 ```
 
 #### 3. Initialization
-`Activity#onCreate(Bundle)`에서 `Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallbac<LaunchingInfo>)`을 호출하여 Gamebase SDK 초기화를 진행합니다.
+**Activity#onCreate(Bundle)**에서 **Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallbac<LaunchingInfo>)**을 호출하여 Gamebase SDK 초기화를 진행합니다.
 
 ```java
 public class MainActivity extends AppCompatActivity {
@@ -314,7 +314,7 @@ Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해�
 #### 1. Add mapping
 특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다.
 Mapping을 하려는 IDP의 계정이 이미 다른 계정이 연동이 되어있다면,
-`AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)` 에러를 리턴합니
+**AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 에러를 리턴합니
 
 Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 아니라, 기존에 로그인했던 IDP가 됩니다. 즉, Mapping은 단순히 IDP를 연동만 해줍니다.
 
@@ -360,14 +360,14 @@ private static void removeMappingForFacebook() {
 
 ##### 1-1. Download
 
-* 다운로드 받은 SDK의 `gamebase-adapter-purchase-iap` 폴더를 프로젝트에 추가합니다.
+* 다운로드 받은 SDK의 **gamebase-adapter-purchase-iap** 폴더를 프로젝트에 추가합니다.
 
 ##### 1-2. Initialization
 
-* Gamebase 초기화시 configuration의 `setStoreCode()`를 호출합니다.
+* Gamebase 초기화시 configuration의 **setStoreCode()**를 호출합니다.
 * 사용 가능한 마켓 리스트는 다음 가이드에 나와 있습니다.
 	* [IAP-AndroidManifest 설정 방법](http://docs.cloud.toast.com/ko/Common/IAP/Android%20Developer%60s%20Guide/#androidmanifestxml_1)
-	* `com.toast.iap.config.market` 항목을 참고합니다.
+	* **com.toast.iap.config.market** 항목을 참고합니다.
 
 ```java
 String STORE_CODE = PurchaseProvider.StoreCode.GOOGLE;
@@ -424,7 +424,7 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 
 #### 4. Get a list of items not consumed
 
-아이템을 구매는 하였지만, 정상적으로 아이템이 소비(배송, 지급)되었지 않은 `미소비 결제내역`을 요청합니다. 해당 내역을 받은 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.
+아이템을 구매는 하였지만, 정상적으로 아이템이 소비(배송, 지급)되었지 않은 **미소비 결제내역**을 요청합니다. 해당 내역을 받은 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.
 
 ```java
 Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallback<List<PurchasableReceipt>>() {
@@ -464,14 +464,14 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 ##### 1-1. Download
 
 * Firebase 푸쉬를 사용하는 경우
-	* 다운로드 받은 SDK의 `gamebase-adapter-push-fcm` 폴더를 프로젝트에 추가합니다.
+	* 다운로드 받은 SDK의 **gamebase-adapter-push-fcm** 폴더를 프로젝트에 추가합니다.
 * Tencent 푸쉬를 사용하는 경우
-	* 다운로드 받은 SDK의 `gamebase-adapter-push-tencent` 폴더를 프로젝트에 추가합니다.
+	* 다운로드 받은 SDK의 **gamebase-adapter-push-tencent** 폴더를 프로젝트에 추가합니다.
 
 ##### 1-2. AndroidManifest.xml (Firebase only)
 
 * Gamebase 푸시에 필요한 설정을 추가합니다.
->`${applicationId}`을 `패키지 네임`으로 변경하여야 합니다.
+>**${applicationId}**을 **패키지 네임**으로 변경하여야 합니다.
 
 ```xml
 <manifest>
@@ -506,11 +506,11 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 
 ##### 1-3. Initialization
 
-* Gamebase 초기화시 configuration의 `setPushType()`을 호출합니다.
+* Gamebase 초기화시 configuration의 **setPushType()**을 호출합니다.
 * Firebase 푸쉬를 사용하는 경우
-	* 추가로 `setFCMSenderId()`를 호출합니다.
+	* 추가로 **setFCMSenderId()**를 호출합니다.
 * Tencent 푸쉬를 사용하는 경우
-	* 추가로 `setTencentAccessId()`와 `setTencentAccessKey`를 호출합니다.
+	* 추가로 **setTencentAccessId()**와 **setTencentAccessKey**를 호출합니다.
 
 ```java
 private static final String PUSH_FCM_SENDER_ID = "...";

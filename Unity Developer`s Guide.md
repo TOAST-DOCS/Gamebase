@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Unity Developer's Guide
+﻿## Upcoming Products > Gamebase > Unity Developer's Guide
 
 
 
@@ -38,7 +38,7 @@ Android ADK 추가 설정은 아래 링크를 참조 하시기 바랍니다
 
 * [Android SDK 추가 설정 링크](./Android Developer`s Guide#initialization)
 
-![unity inspector](./image/UnityDevelopersGuide/unity-developers-guide-AndroidSetting_0.9.0.png)
+![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-AndroidSetting_0.9.0.png)
 **그림. Android SDK 추가하기**
 
 ##### Add IOS SDK
@@ -69,7 +69,7 @@ IOS SDK 추가 설정은 아래 링크를 참조 하시기 바랍니다
 
 * [IOS SDK 추가 설정 링크](./iOS Developer`s Guide#setting-xcode-project-to-use-gamebase)
 
-![unity inspector](./image/UnityDevelopersGuide/unity-developers-guide-iOSSetting_0.9.0.png)
+![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-iOSSetting_0.9.0.png)
 **그림. IOS SDK 추가하기**
 
 ### Initialization
@@ -82,7 +82,7 @@ Gamebase Unity SDK 를 사용하기 전에 초기화를 수행해야 하며, App
 * appVersion : TOAST Cloud에 등록한 클라이언트 버전
 * zoneType : "REAL" 또는 " "
 
-> `!주의`
+> **!주의**
 > zoneType은 "REAL" 또는 " " 으로 설정하십시오. (" " 설정 시 자동으로 "REAL"로 설정됩니다.)
 > 그외 다른 값을 입력할 경우 정상 작동하지 않습니다.
 
@@ -93,11 +93,11 @@ Gamebase Unity SDK 를 사용하기 전에 초기화를 수행해야 하며, App
 3. 추가 된 Component에서 appID, appVersion, zoneType을 입력합니다.
 4. Gamebase.Initialize(callback) API를 호출합니다.
 
-> `!주의`
+> **!주의**
 > 생성한 게임 오브젝트를 삭제하면 Android, iOS API 호출 후 콜백을 받을 수 없으므로 주의하시기 바랍니다.
 > 실수로 삭제된 경우 "Do not destroy this gameObject in order to receive callback." 에러 메시지가 노출됩니다.
 
-![unity inspector](./image/UnityDevelopersGuide/unity-developers-guide-Initialization_0.9.0.png)
+![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-Initialization_0.9.0.png)
 **그림. Inspector를 이용한 초기화**
 
 ##### API
