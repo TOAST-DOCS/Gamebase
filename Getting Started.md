@@ -33,9 +33,9 @@ Gamebase의 Console의 [앱] 메뉴를 이용하여 게임 및 클라이언트�
 Gamebase SDK는 [SDK 다운로드 페이지](http://docs.cloud.toast.com/ko/Download/)에서 내려받을 수 있습니다.
 SDK 다운로드 후 플랫폼별 자세한 설정 방법은 각 플랫폼별 [Developers Guide]를 참고하시기 바랍니다.
 
-* [iOS 개발프로젝트 설정하기](./Developer`s Guide/iOS Developer`s Guide/#getting-started)
-* [Android 개발프로젝트 설정하기](./Developer`s Guide/Android Developer`s Guide/#getting-started)
-* [Unity Plug-in 개발프로젝트 설정하기](./Developer`s Guide/Unity Developer`s Guide/#getting-started)
+* [iOS 개발프로젝트 설정하기](./iOS Developer`s Guide/#getting-started)
+* [Android 개발프로젝트 설정하기](./Android Developer`s Guide/#getting-started)
+* [Unity Plug-in 개발프로젝트 설정하기](./Unity Developer`s Guide/#getting-started)
 
 > 드디어 Gamebase 서비스를 사용할 준비가 끝났습니다. :-)
 > 보다 자세한 가이드는 아래를 참고해 주세요.
@@ -43,22 +43,24 @@ SDK 다운로드 후 플랫폼별 자세한 설정 방법은 각 플랫폼별 [D
 
 ## 플랫폼별 가이드 링크
 ### Client Developer's Guide
-* [iOS Developer's Guide](./Developer`s Guide/iOS Developer`s Guide)
-* [Android Developer's Guide](./Developer`s Guide/Android Developer`s Guide)
-* [Unity Developer's Guide](./Developer`s Guide/Unity Developer`s Guide)
+* [iOS Developer's Guide](./iOS Developer`s Guide)
+* [Android Developer's Guide](./Android Developer`s Guide)
+* [Unity Developer's Guide](./Unity Developer`s Guide)
 
 ### Server Developer's Guide
-* [Server Developer's Guide](./Developer`s Guide/Server Developer`s Guide)
+* [Server Developer's Guide](./Server Developer`s Guide)
 
 ### Operator's Guide
 * [Operator's Guide](./Operator`s Guide)
 
 
 ## 기능별 가이드 링크
+[[iOS](./iOS Developer`s Guide/#login)] [[Android](./Android Developer`s Guide/#login)] [[Unity](./Unity Developer`s Guide/#login)]
+
 
 | Feature | Description | client | server  | console |
 |--------|--------|--------|--------|--------|
-| Login        | Guest , 3rd Party 인증지원  <br> - 지원되는 IDP : facebook, google+, iosgamecenter, payco      | [[iOS](./iOS Developer`s Guide/#login)] [[Android](./Android Developer`s Guide/#login)] [[Unity](./Unity Developer`s Guide/#login)] | | [[App]메뉴의 인증정보설정](./Operator`s Guide/#_3) <br> [[Member]메뉴](./Operator`s Guide/#_11) <br> - 회원조회(기본정보, 로그인이력, 플레이타임 등) |
+| Login        | Guest , 3rd Party 인증지원  <br> - 지원되는 IDP : facebook, google+, iosgamecenter, payco      | [[iOS](./iOS Developer`s Guide/#login)] [[Android](./Android Developer`s Guide/#login)] [[Unity](./Unity Developer`s Guide/#login)]  |  |  [[App]메뉴의 인증정보설정](./Operator`s Guide/#_3) <br> [[Member]메뉴](./Operator`s Guide/#_11) <br> - 회원조회(기본정보, 로그인이력, 플레이타임 등) |
 | Logout       |  Logout      | [[iOS](./iOS Developer`s Guide/#logout)] [[Android](./Android Developer`s Guide/#logout)] [[Unity](./Unity Developer`s Guide/#logout)]| | |
 | Withdraw       | 게임 탈퇴 <br> - User의 매핑정보 등 모든 정보 삭제     | [[iOS](./iOS Developer`s Guide/#withdraw)] [[Android](./Android Developer`s Guide/#withdraw)] [[Unity](./Unity Developer`s Guide/#withdraw)]| | |
 | Mapping       | User ID하나의 여러개의 IDP를 연동하는 기능      | [[iOS](./iOS Developer`s Guide/#mapping)] [[Android](./Android Developer`s Guide/#mapping)] [[Unity](./Unity Developer`s Guide/#mapping)]| | |
