@@ -31,8 +31,7 @@ Gamebase의 Console의 [앱] 메뉴를 이용하여 게임 및 클라이언트�
 
 ### Gamebase SDK 다운로드
 
-Gamebase SDK는 [SDK 다운로드 페이지](http://docs.cloud.toast.com/ko/Download/)에서 내려받을 수 있습니다.
-SDK 다운로드 후 플랫폼별 자세한 설정 방법은 각 플랫폼별 [Developers Guide]를 참고하시기 바랍니다.
+Gamebase SDK는 [SDK 다운로드 페이지](http://docs.cloud.toast.com/ko/Download/)에서 내려받을 수 있습니다.<br>SDK 다운로드 후 플랫폼별 자세한 설정 방법은 각 플랫폼별 [Developers Guide]를 참고하시기 바랍니다.
 
 * [iOS 개발프로젝트 설정하기](./iOS Developer`s Guide/#getting-started)
 * [Android 개발프로젝트 설정하기](./Android Developer`s Guide/#getting-started)
