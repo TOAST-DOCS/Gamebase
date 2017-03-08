@@ -1,4 +1,4 @@
-﻿# Upcoming Products > Game Base > Operators Guide
+## Upcoming Products > Game Base > Operators Guide
 
 Toast Cloud Game Base Admin Guide입니다.
 ## 모니터링(Monitoring)

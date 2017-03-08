@@ -1,4 +1,4 @@
-﻿## Upcoming Products > Gamebase > Server Developer's Guide
+## Upcoming Products > Gamebase > Server Developer's Guide
 
 Gamebase Server API는 RESTful 형식으로 다음과 같은 API들을 제공합니다.
 

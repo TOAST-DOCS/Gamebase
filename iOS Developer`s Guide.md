@@ -1,5 +1,3 @@
-﻿<link href="./css/gamebase.css" rel="stylesheet">
-
 ## Upcoming Products > Gamebase > iOS Developer's Guide
 
 ## Configuration

@@ -1,4 +1,4 @@
-﻿## Upcoming Products > Gamebase > Unity Developer's Guide
+## Upcoming Products > Gamebase > Unity Developer's Guide
 
 
 
