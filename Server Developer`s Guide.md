@@ -1,27 +1,29 @@
-## Upcoming Products > Gamebase > Server Developer's Guide
+﻿## Upcoming Products > Gamebase > Server Developer's Guide
 
 Gamebase Server API는 RESTful 형식으로 다음과 같은 API들을 제공합니다.
 
 ## 사전 확인 사항
 API를 사용하기 위해서는 다음과 같은 정보를 알고 있어야 합니다.
 
-##### 서버 주소
+#### 서버 주소
 API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주소는 Gamebase 콘솔 화면에서도 확인 가능합니다.
 ```
 https://api-gamebase.cloud.toast.com
 ```
 
-##### appId
+#### appId
 appId는 TOAST Cloud의 프로젝트ID로 콘솔 화면 Project list 화면에서 확인 가능합니다. 
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.0.png)
 
-##### secretKey
+
+#### secretKey
 secretKey는 API에 대한 접근 제어 방안으로 Gamebase 콘솔에서 확인 가능합니다. 해당 값은 API 호출시 HTTP Header에 설정되어야 합니다.
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.0.png)
 
-##### transactionId
+
+#### transactionId
 호출하는 서버 내부적으로 API 요청을 관리 할 수 있도록 transactionId 기능을 제공합니다. 호출하는 서버에서 HTTP Header에 transactionId를 설정하여 API를 호출하면, 응답 HTTP 헤더 및 응답 결과의 Response Body 의 header 항목에 해당 transactionId를 설정하여 결과를 전달합니다.
 
 
@@ -29,7 +31,7 @@ secretKey는 API에 대한 접근 제어 방안으로 Gamebase 콘솔에서 확�
 
 ## 공통
 
-##### HTTP Header
+#### HTTP Header
 
 API 호출 시 HTTP Header에 다음 항목들을 설정해야 합니다.
 
@@ -78,25 +80,31 @@ X-TCGB-Transaction-Id: String
 
 로그인 사용자에게 발급된 Accss Token 이 유효한지를 검사합니다. Access Token이 정상이면 해당 사용자의 정보를 리턴합니다.
 
-###### Method, URI
+**[Method, URI]**
+
 | Method | URI |
 | --- | --- |
 | GET | /tcgb-gateway/v1.0/apps/{appId}/members/{userId}/tokens/{accessToken} |
 
-###### Request Header
+
+**[Request Header]**
+
 공통 사항 확인
 
-###### Path Variable
+
+**[Path Variable]**
+
 | Name | Value |
 | --- | --- |
 | appId | TOAST Cloud 프로젝트 ID |
 | userId | 로그인한 사용자 아이디 |
 | accessToken | 로그인한 사용자에게 발급된 Access Token |
 
-###### Request Parameter
+**[Request Parameter]**
+
 없음
 
-###### Response Body
+**[Response Body]**
 ```json
 {
   "header": {
@@ -132,7 +140,7 @@ X-TCGB-Transaction-Id: String
 | member.valid | String | 로그인에 성공한 사용자의 값은 "Y" <br>(다른 값에 대한 설명은 멤버 API 참고) |
 | member.regDate | long | 사용자가 계정을 생성한 시간 |
 | authList | Array[Object] | 사용자 인증 IdP 관련 정보 |
-| authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 이름 <br>추후 사용자가 개발한 인증 시스템 지원 예정 |
+| authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템<br>추후 사용자 인증 시스템 지원 예정 |
 | authList[].idPCode | String | 사용자 인증 IdP 정보 <br>guest / payco / facebook 등 |
 | authList[].authKey | String | authSystem 에서 발급된 사용자 구분 값 |
 
@@ -142,24 +150,32 @@ X-TCGB-Transaction-Id: String
 #### 회원 조회
 하나의 회원에 대해 상세 정보를 조회합니다.
 
-###### Method, URI
+**[Method, URI]**
+
 | Method | URI |
 | --- | --- |
 | GET | /tcgb-member/v1.0/apps/{appId}/members/{userId} |
 
-###### Request Header
+
+**[Request Header]**
+
 공통 사항 확인
 
-###### Path Variable
+
+**[Path Variable]**
+
 | Name | Value |
 | --- | --- |
 | appId | TOAST Cloud 프로젝트 ID |
 | userId | 조회 대상 사용자 ID |
 
-###### Request Parameter
+
+**[Request Parameter]**
+
 없음
 
-###### Response Body
+
+**[Response Body]**
 ```json
 {
   "header": {
@@ -209,7 +225,7 @@ X-TCGB-Transaction-Id: String
 | member.lastLoginDate | long | 마지막으로 로그인한 시간<br>처음 로그인한 사용자는 해당 값이 없음 |
 | member.authList | Array[Object] | 사용자 인증 IdP 관련 정보 |
 | member.authList[].userId | String | 사용자 ID |
-| member.authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 이름 <br>추후 사용자가 개발한 인증 시스템 지원 예정 |
+| member.authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템<br>추후 사용자 인증 시스템 지원 예정 |
 | member.authList[].idPCode | String | 사용자 인증 IdP 정보 <br>guest / payco / facebook 등 |
 | member.authList[].authKey | String | authSystem 에서 발급된 사용자 구분 값 |
 | member.authList[].regDate | long | IdP정보가 사용자 계정과 매핑된 시간 |
@@ -229,20 +245,27 @@ X-TCGB-Transaction-Id: String
 #### 다수의 회원 조회
 여러 회원 정보를 간략히 조회합니다.
 
-###### Method, URI
+**[Method, URI]**
+
 | Method | URI |
 | --- | --- |
 | POST | /tcgb-member/v1.0/apps/{appId}/members/{userId} |
 
-###### Request Header
+
+**[Request Header]**
+
 공통 사항 확인
 
-###### Path Variable
+
+**[Path Variable]**
+
 | Name | Value |
 | --- | --- |
 | appId | TOAST Cloud 프로젝트 ID |
 
-###### Request Parameter
+
+**[Request Parameter]**
+
 | Name | Mandatory | Type | Value |
 | --- | --- | --- | --- |
 | userIdList | true | Array[String] | 조회 대상 사용자 ID |
@@ -276,25 +299,33 @@ X-TCGB-Transaction-Id: String
 #### 사용자 ID로 매핑된 IdP 정보 조회
 사용자 ID로 여러 사용자의 IdP정보를 조회합니다.
 
-###### Method, URI
+**[Method, URI]**
+
 | Method | URI |
 | --- | --- |
 | POST | /tcgb-member/v1.0/apps/{appId}/auth/authKeys |
 
-###### Request Header
+
+**[Request Header]**
+
 공통 사항 확인
 
-###### Path Variable
+
+**[Path Variable]**
+
 | Name | Value |
 | --- | --- |
 | appId | TOAST Cloud 프로젝트 ID |
 
-###### Request Parameter
+
+**[Request Parameter]**
+
 | Name | Mandatory | Type | Value |
 | --- | --- | --- | --- |
 | userIdList | true | Array[String] | 사용자 ID |
 
-###### Response Body
+
+**[Response Body]**
 ```json
 {
   "header": {
@@ -318,31 +349,39 @@ X-TCGB-Transaction-Id: String
 | result | Array[Object] | 조회된 사용자에 대한 기본 정보 <br>userId가 key, IdP정보가 value인 object|
 | authkey | String | authSystem 에서 발급된 사용자 구분 값 |
 | IdPCode | String | 사용자 인증 IdP 정보 <br>guest / payco / facebook 등 |
-| authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 이름 <br>추후 사용자가 개발한 인증 시스템 지원 예정 |
+| authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템<br>추후 사용자 인증 시스템 지원 예정 |
 
 #### 사용자 인증키로 매핑된 ID 정보 조회
 authSystem의 authKey로 여러 사용자의 사용자 ID를 조회합니다.
 
-###### Method, URI
+**[Method, URI]**
+
 | Method | URI |
 | --- | --- |
 | POST | /tcgb-member/v1.0/apps/{appId}/members/userIds/authKeys |
 
-###### Request Header
+
+**[Request Header]**
+
 공통 사항 확인
 
-###### Path Variable
+
+**[Path Variable]**
+
 | Name | Value |
 | --- | --- |
 | appId | TOAST Cloud 프로젝트 ID |
 
-###### Request Parameter
+
+**[Request Parameter]**
+
 | Name | Mandatory | Type | Value |
 | --- | --- | --- | --- |
-| authSystem | true | String | Gamebase 내부적으로 사용되는 인증 시스템 이름 <br>추후 사용자가 개발한 인증 시스템 지원 예정 |
+| authSystem | true | String | Gamebase 내부적으로 사용되는 인증 시스템<br>추후 사용자 인증 시스템 지원 예정 |
 | authKeyList | true | Array[String] | authSystem에서 발급된 authKey |
 
-###### Response Body
+
+**[Response Body]**
 ```json
 {
   "header": {
@@ -366,23 +405,27 @@ authSystem의 authKey로 여러 사용자의 사용자 ID를 조회합니다.
 
 현재 점검이 설정되어 있는지 여부를 확인합니다.
 
-###### Method, URI
+**[Method, URI]**
+
 | Method | URI |
 | --- | --- |
 | GET | /tcgb-launching/v1.0/apps/{appId}/maintenances/under-maintenance |
 
-###### Request Header
+**[Request Header]**
+
 공통 사항 확인
 
-###### Path Variable
+**[Path Variable]**
+
 | Name | Value |
 | --- | --- |
 | appId | TOAST Cloud 프로젝트 ID |
 
-###### Request Parameter
+**[Request Parameter]**
+
 없음
 
-###### Response Body
+**[Response Body]**
 ```json
 {
   "header": {
@@ -421,14 +464,14 @@ authSystem의 authKey로 여러 사용자의 사용자 ID를 조회합니다.
 ## 기타
 
 ### API 응답 실패 지원 방안
-API 호출 실패 원인에 대한 문의 사항이 있을 경우, API **호출 URL** (HTTP Body가 있는 경우는 body와 함께)과 그에 대한 **응답 결과**를 함께 전달해 주시면 보다 빠른 지원이 가능합니다.
+API 호출 실패 원인에 대한 문의 사항이 있을 경우, **API 호출 URL(HTTP Body가 있는 경우는 body와 함께)과 그에 대한 응답 결과**를 함께 전달해 주시면 빠른 지원이 가능합니다.
 
-###### API 호출 예시
+##### API 호출 예시
 ```
 GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.0/apps/C3JmSctU/maintenances/under-maintenance
 ```
 
-###### API 실패 응답 결과
+##### API 실패 응답 결과
 ```json
 {
   "header": {

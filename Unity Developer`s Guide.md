@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Unity Developer's Guide
+﻿## Upcoming Products > Gamebase > Unity Developer's Guide
 
 
 
@@ -13,7 +13,9 @@
 
 #### Installation
 
-Gamebase Unity SDK는 유니티 패키지 형태(.unitypackage)로 배포됩니다.
+Gamebase Unity SDK는 유니티 패키지 형태(.unitypackage)로 배포되며 아래 링크에서 다운로드 가능합니다.
+* [Download Gamebase Unity SDK](http://docs.cloud.toast.com/ko/Download/)
+
 
 Gamebase Unity SDK를 게임 프로젝트에 추가하는 방법은 다음과 같습니다.
 
@@ -115,11 +117,11 @@ public void Initialize()
     {
         if (error == null)
         {
-        	GamebaseLog.Debug("Initialize is succeeded.");
+        	Debug.Log("Initialize is succeeded.");
         }
         else
         {
-        	GamebaseLog.Debug(string.format("Initialize is failed. error is {0}", error.ToString()));
+        	Debug.Log(string.format("Initialize is failed. error is {0}", error));
         }
     }
 }
