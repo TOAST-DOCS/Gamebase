@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Unity Developer's Guide
+﻿## Upcoming Products > Gamebase > Unity Developer's Guide
 
 
 
@@ -33,8 +33,8 @@ Gamebase Unity SDK를 게임 프로젝트에 추가하는 방법은 다음과 �
 
 인증 모듈 추가
 
-* 다운로드 받은 SDK의 gamebase-adapter-auth-IDP_NAME 폴더를 프로젝트의 Assets/Plugins/Android폴더에 추가합니다.
-* google, facebook, payco 중에서 사용할 인증 모듈을 모두 프로젝트의 Assets/Plugins/Android폴더에 추가합니다.
+1. 다운로드 받은 SDK의 gamebase-adapter-auth-IDP_NAME 폴더를 프로젝트의 Assets/Plugins/Android폴더에 추가합니다.
+2. google, facebook, payco 중에서 사용할 인증 모듈을 모두 프로젝트의 Assets/Plugins/Android폴더에 추가합니다.
 
 Android ADK 추가 설정은 아래 링크를 참조 하시기 바랍니다
 
@@ -161,7 +161,7 @@ public void Initialize()
         }
         else
         {
-        	GamebaseLog.Debug(string.format("Initialize is failed. error is {0}", error.ToString()));
+        	Debug.Log(string.format("Initialize is failed. error is {0}", error));
         }
     }
 }
@@ -193,11 +193,11 @@ public void Login(string providerName, Dictionary<string, object> additionalInfo
     {
     	if (error == null)
         {
-        	GamebaseLog.Debug("Login is succeeded.");
+        	Debug.Log("Login is succeeded.");
         }
         else
         {
-        	GamebaseLog.Debug(string.format("Login is failed. error is {0}", error.ToString()));
+        	Debug.Log(string.format("Login is failed. error is {0}", error));
         }
     });
 }
@@ -223,11 +223,11 @@ public void LoginForLastLoggedInProvider()
     {
     	if (error == null)
         {
-        	GamebaseLog.Debug("Login is succeeded.");
+        	Debug.Log("Login is succeeded.");
         }
         else
         {
-        	GamebaseLog.Debug(string.format("Login is failed. error is {0}", error.ToString()));
+        	Debug.Log(string.format("Login is failed. error is {0}", error));
         }
     });
 }
@@ -251,11 +251,11 @@ public void Logout()
     {
         if (error == null)
         {
-        	GamebaseLog.Debug("Logout is succeeded.");
+        	Debug.Log("Logout is succeeded.");
         }
         else
         {
-        	GamebaseLog.Debug(string.format("Logout is failed. error is {0}", error.ToString()));
+        	Debug.Log(string.format("Logout is failed. error is {0}", error));
         }
     });
 }
@@ -279,11 +279,11 @@ public void Withdraw()
     {
         if (error == null)
         {
-            GamebaseLog.Debug("Withdraw is succeeded.");
+            Debug.Log("Withdraw is succeeded.");
         }
         else
         {
-            GamebaseLog.Debug(string.format("Withdraw is failed. error is {0}", error.ToString()));
+            Debug.Log(string.format("Withdraw is failed. error is {0}", error));
         }
 
     });
@@ -314,11 +314,11 @@ public void AddMapping(string providerName)
     {
         if (error == null)
         {
-            GamebaseLog.Debug("AddMapping is succeeded.");
+            Debug.Log("AddMapping is succeeded.");
         }
         else
         {
-            GamebaseLog.Debug(string.format("AddMapping is failed. error is {0}", error.ToString()));
+            Debug.Log(string.format("AddMapping is failed. error is {0}", error));
         }
     });
 }
@@ -342,11 +342,11 @@ public void RemoveMapping(string providerName)
     {
         if (error == null)
         {
-            GamebaseLog.Debug("RemoveMapping is succeeded.");
+            Debug.Log("RemoveMapping is succeeded.");
         }
         else
         {
-            GamebaseLog.Debug(string.format("RemoveMapping is failed. error is {0}", error.ToString()));
+            Debug.Log(string.format("RemoveMapping is failed. error is {0}", error));
         }
     });
 }
@@ -373,11 +373,11 @@ public void RequestPurchase(long itemSeq)
     {
         if (error == null)
         {
-            GamebaseLog.Debug("RequestPurchase is succeeded.");
+            Debug.Log("RequestPurchase is succeeded.");
         }
         else
         {
-            GamebaseLog.Debug(string.format("RequestPurchase is failed. error is {0}", error.ToString()));
+            Debug.Log(string.format("RequestPurchase is failed. error is {0}", error));
         }
     });
 }
@@ -402,11 +402,11 @@ public void RequestItemListPurchasable()
     {
         if (error == null)
         {
-            GamebaseLog.Debug("RequestItemListPurchasable is succeeded.");
+            Debug.Log("RequestItemListPurchasable is succeeded.");
         }
         else
         {
-            GamebaseLog.Debug(string.format("RequestItemListPurchasable is failed. error is {0}", error.ToString()));
+            Debug.Log(string.format("RequestItemListPurchasable is failed. error is {0}", error));
         }
     });
 }
@@ -431,11 +431,11 @@ public void RequestItemListOfNotConsumed()
     {
         if (error == null)
         {
-            GamebaseLog.Debug("RequestItemListOfNotConsumed is succeeded.");
+            Debug.Log("RequestItemListOfNotConsumed is succeeded.");
         }
         else
         {
-            GamebaseLog.Debug(string.format("RequestItemListOfNotConsumed is failed. error is {0}", error.ToString()));
+            Debug.Log(string.format("RequestItemListOfNotConsumed is failed. error is {0}", error));
         }
     });
 }
@@ -460,11 +460,11 @@ public void RequestRetryTransaction()
     {
         if (error == null)
         {
-            GamebaseLog.Debug("RequestRetryTransaction is succeeded.");
+            Debug.Log("RequestRetryTransaction is succeeded.");
         }
         else
         {
-            GamebaseLog.Debug(string.format("RequestRetryTransaction is failed. error is {0}", error.ToString()));
+            Debug.Log(string.format("RequestRetryTransaction is failed. error is {0}", error));
         }
     });
 }
@@ -496,11 +496,11 @@ public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNig
     {
         if (error == null)
         {
-            GamebaseLog.Debug("RegisterPush is succeeded.");
+            Debug.Log("RegisterPush is succeeded.");
         }
         else
         {
-            GamebaseLog.Debug(string.format("RegisterPush is failed. error is {0}", error.ToString()));
+            Debug.Log(string.format("RegisterPush is failed. error is {0}", error));
         }
     });
 }
@@ -525,11 +525,11 @@ public void QueryPush()
     {
         if (error == null)
         {
-            GamebaseLog.Debug("QueryPush is succeeded.");
+            Debug.Log("QueryPush is succeeded.");
         }
         else
         {
-            GamebaseLog.Debug(string.format("QueryPush is failed. error is {0}", error.ToString()));
+            Debug.Log(string.format("QueryPush is failed. error is {0}", error));
         }
     });
 }

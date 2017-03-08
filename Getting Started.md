@@ -37,8 +37,7 @@ Gamebase SDK는 [SDK 다운로드 페이지](http://docs.cloud.toast.com/ko/Down
 * [Android 개발프로젝트 설정하기](./Android Developer`s Guide/#getting-started)
 * [Unity Plug-in 개발프로젝트 설정하기](./Unity Developer`s Guide/#getting-started)
 
-> 드디어 Gamebase 서비스를 사용할 준비가 끝났습니다. :-)
-> 보다 자세한 가이드는 아래를 참고해 주세요.
+> 드디어 Gamebase 서비스를 사용할 준비가 끝났습니다. :-) <br> 보다 자세한 가이드는 아래를 참고해 주세요.
 
 
 ## 플랫폼별 가이드 링크
