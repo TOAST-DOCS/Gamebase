@@ -17,7 +17,7 @@ Gamebase 서비스 사용을 위한 아주 간단하지만 꼭 필요한 기본�
 ### 게임 및 클라이언트 정보 등록 [Console]
 
 Gamebase의 Console의 [앱] 메뉴를 이용하여 게임 및 클라이언트의 기본 정보를 등록합니다.
-각 항목의 자세한 설명은 [Operators Guide > App](./Operator`s Guide/#_3)] 과 [[Operators Guide > Client](./Operator`s Guide/#_4) 부분을 참고하시기 바랍니다.
+각 항목의 자세한 설명은 [Operators Guide > App](/Upcoming%20Products/Gamebase/Operator%60s%20Guide/#_3)] 과 [[Operators Guide > Client](/Upcoming%20Products/Gamebase/Operator%60s%20Guide/#_4) 부분을 참고하시기 바랍니다.
 
 
 ![게임 정보 등록 화면](http://static.toastoven.net/prod_gamebase/GettingStarted/img_console_app_1.0.png)
