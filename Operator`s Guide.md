@@ -1,4 +1,4 @@
-﻿## Upcoming Products > Game Base > Operator's Guide
+# Upcoming Products > Game Base > Operators Guide
 
 Toast Cloud Game Base Admin Guide입니다.
 ## 모니터링(Monitoring)
@@ -6,30 +6,31 @@ Toast Cloud Game Base Admin Guide입니다.
 모니터링 / 그룹동접 / 설치 URL 통계 메뉴로 구성되어 있습니다.
 각각의 메뉴는 다음과 같은 지표 및 그래프를 제공합니다.
 ### 모니터링
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Mornitoring_Mornitoring1.PNG)
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Mornitoring_Mornitoring2.PNG)
-//모니터링에서 제공하는 정보에 대한 설명 추가하기
+![image alt](./image/Operators_Guide/Console_Monitoring_Monitoring1_1.0.png)
+현재 게임을 이용하는 유저의 전체 통계를 제공합니다.
 
 ### 그룹동접
-// 완성된 이후 이미지 및 설명 추가하기
+![image alt](./image/Operators_Guide/Console_Monitoring_ConcurrentUser1_1.0.png)
+자신이 속한 프로젝트의 그룹동접 통계를 제공합니다.
 
 ### 설치 URL 통계
-// 완성된 이후 이미지 및 설명 추가하기
+![image alt](./image/Operators_Guide/Console_Monitoring_InstallUrl1_1.0.png)
+설치 URL을 통해 게임을 설치한 유저의 통계를 제공합니다.
 
 ## 앱(App)
 게임 앱에 관련된 기본적인 설정 및 클라이언트, 설치URL에 관련된 설정을 조회/등록/수정할 수 있습니다.
 ### 앱
 ##### 1) 조회
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/App_App1.PNG)
+![image alt](./image/Operators_Guide/Console_App_App1_1.0.png)
 - 게임에 대한 전반적인 설정을 조회할 수 있습니다.
 - 앱 메뉴는 최초 Gamebase 활성화시 생성되는 정보로써, 수정만 가능하며 등록/삭제는 불가합니다.
 - 각 항목별 상세 설명은 아래 수정화면을 참고 바랍니다.
 
 ##### 2) 수정
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/App_App2.PNG)
+![image alt](./image/Operators_Guide/Console_App_App2_1.0.png)
 - **(1) 서버 주소**
   게임서버의 URL을 설정할 수 있습니다.
-- **(2) 설치URL** 
+- **(2) 설치URL**
   게임 설치 및 홍보에 이용할 수 있는 단축URL 정보입니다. Gamebase 활성화 시 자동으로 생성되므로 변경은 불가능합니다.
 - **(3) 인앱URL**
   각 게임 내에서 필요한 이용약관/개인 정보동의/처벌규정/고객센터의 URL을 설정할 수 있습니다.
@@ -45,30 +46,30 @@ Toast Cloud Game Base Admin Guide입니다.
 게임에 대한 설정을 사용하는 클라이언트에 대한 등록/수정/삭제를 진행할 수 있습니다.
 OS별로 등록이 가능하며, 각 스토어에 맞는 클라이언트를 선택하여 등록할 수 있습니다.
 ##### 1) 리스트 조회
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/App_Client1.PNG)
-- 등록한 클라이언트들에 대한 리스트를 조회할 수 있습니다. 
+![image alt](./image/Operators_Guide/Console_App_Client1_1.0.png)
+- 등록한 클라이언트들에 대한 리스트를 조회할 수 있습니다.
 - 숫자들은 클라이언트의 버전을 의미하며, 아이콘 리스트의 경우 현재 클라이언트의 서비스 상태가 `테스트/심사중/서비스중/서비스중(업데이트 권장)`인 목록만 조회됩니다.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/App_Client2.PNG)
+![image alt](./image/Operators_Guide/Console_App_Client2_1.0.png)
 - `업데이트 권장/종료`상태의 목록을 조회하려면 오른쪽의 화살표를 클릭하시면 위와 같이 조회가능합니다.
 
 ##### 2) 상세 조회
 - **(1) 테스트/서비스**
   클라이언트 등록시 선택한 스토어/게임버전/상태/서버주소에 대한 정보를 보여줍니다.
   가장 기본적인 클라이언트 조회 화면입니다.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/App_Client3.PNG)
+![image alt](./image/Operators_Guide/Console_App_Client3_1.0.png)
 
 - **(2) 심사중**
   안정화 지표에 대한 설정을 추가로 할 수 있습니다.
   안정화 지표를 추가하게 되면, 해당 게임에서 Gamebase를 사용하여 처리되는 부분에 대한 로그를 모두 확인하실 수 있습니다.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/App_Client4.PNG)
+![image alt](./image/Operators_Guide/Console_App_Client4_1.0.png)
 
 - **(3) 업데이트 권장(서비스중)/업데이트 필수/종료**
   각 클라이언트 상태별 국가별 메시지를 설정하여 유저가 사용하는 클라이언트에 대한 안내문을 제공할 수 있습니다.
   서비스 상태를 설정하면, 각 상태에 맞는 기본 메시지를 지원합니다.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/App_Client5.PNG)
+![image alt](./image/Operators_Guide/Console_App_Client5_1.0.png)
 
 ##### 3) 등록/수정
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/App_Client6.PNG)
+![image alt](./image/Operators_Guide/Console_App_Client6_1.0.png)
 - **(1) 스토어**
   각 OS별 제공하는 스토어를 선택합니다.
 - **(2) 게임 버전**
@@ -83,12 +84,12 @@ OS별로 등록이 가능하며, 각 스토어에 맞는 클라이언트를 선�
 
 ### 설치 URL
 ##### 1) 조회
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/App_installUrl1.PNG)
+![image alt](./image/Operators_Guide/Console_App_InstallUrl1_1.0.png)
 - Gamebase 최초 활성화시 발급된 설치URL에 연결될 각 스토어 별 설치 주소를 설정할 수 있습니다.
 - COMMON, iOS, Android 카테고리가 존재하며, Common으로 설정한 값의 경우 iOS, Android에도 속하지 않은 OS의 요청일 경우 연결되는 주소입니다.
 
 ##### 2) 수정
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/App_installUrl2.PNG)
+![image alt](./image/Operators_Guide/Console_App_InstallUrl2_1.0.png)
 - 각 항목은 PC, Mobile별로 따로 설정이 가능합니다.
 - **(1) Common**
   iOS, Android에도 속하지 않을 경우의 요청일 때 연결될 주소를 설정합니다.
@@ -102,19 +103,19 @@ OS별로 등록이 가능하며, 각 스토어에 맞는 클라이언트를 선�
 게임이 업데이트를 진행하거나 긴급 수정사항이 필요할 경우, 점검을 걸어 유저들의 진입을 제한할 수 있습니다.
 ### 점검
 ##### 1) 점검 리스트 조회
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Maintenance1.PNG)
+![image alt](./image/Operators_Guide/Console_Maintenance1_1.0.png)
 - 게임에서 등록한 점검 내역을 조회할 수 있습니다.
 - 수행한 점검내역에 대한 검색 및 현재 점검의 진행상태 등을 확인할 수 있습니다.
 - 진행상태는 `예약 중/점검 중/점검 해제/종료/점검 해제(기한 만료)`로 구분되어 있습니다.
 - 현재 진행중인 점검을 해제하게 되면 상태는 `점검 해제`상태로 변경되며, 다시 점검을 활성화하지 않은 상태로 기한이 만료되면 `점검 해제(기한 만료)`상태로 변경됩니다.
 
 ##### 2) 점검 등록
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Maintenance2.PNG)
+![image alt](./image/Operators_Guide/Console_Maintenance2_1.0.png)
 - 점검 등록을 수행하는 화면입니다.
 - **(1) 대상**
   점검 대상에 대한 선택을 하는 항목입니다.
   `전체 게임/일부 클라이언트`가 선택이 가능하며, 클라이언트의 경우 앱-클라이언트 메뉴에서 등록한 클라이언트 버전리스트가 출력됩니다.
-  ![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Maintenance4.PNG)
+  ![image alt](./image/Operators_Guide/Console_Maintenance4_1.0.png)
   클라이언트 버전을 선택 시, 클라이언트 상태별 및 스토어별 전체 선택이 가능하며, 개별로 점검을 거실 경우 원하시는 클라이언트 버전을 선택 후 확인 버튼을 누르시면 됩니다.
 - **(2) 점검 시간**
   점검이 수행될 시간을 설정할 수 있습니다.
@@ -125,7 +126,7 @@ OS별로 등록이 가능하며, 각 스토어에 맞는 클라이언트를 선�
 
 
 ##### 3) 점검 상세내용 조회/수정/삭제
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Maintenance3.PNG)
+![image alt](./image/Operators_Guide/Console_Maintenance3_1.0.png)
 - 등록한 점검에 대한 상세내용을 확인 및 수정/삭제를 진행할 수 있습니다.
 - 기본적으로 입력이 가능한 항목은 등록 화면과 동일하며, 점검을 잘못 등록했을 시 삭제버튼을 통하여 점검 삭제도 가능합니다.
 
@@ -134,18 +135,19 @@ OS별로 등록이 가능하며, 각 스토어에 맞는 클라이언트를 선�
 ### 공지
 
 ##### 1) 공지 리스트 조회
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Notice1.PNG)
+
+![image alt](./image/Operators_Guide/Console_Notice1_1.0.png)
 - 게임에서 등록한 공지사항에 대한 내역을 조회할 수 있습니다.
 - 수행한 공지사항에 대하여 검색 및 현재 공지사항의 진행상태 등을 확인할 수 있습니다.
 - 진행상태는 `예정/노출 중/완료`로 구분되어 있습니다.
 
 ##### 2) 공지 등록
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Notice2.PNG)
+![image alt](./image/Operators_Guide/Console_Notice2_1.0.png)
 - 공지 등록을 수행하는 화면입니다.
 - **(1) 대상**
   공지를 노출할 대상에 대한 선택을 하는 항목입니다.
   `전체 게임/일부 클라이언트`가 선택이 가능하며, 클라이언트의 경우 앱-클라이언트 메뉴에서 등록한 클라이언트 버전리스트가 출력됩니다.
-  ![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Maintenance4.PNG)
+  ![image alt](./image/Operators_Guide/Console_Maintenance4_1.0.png)
   클라이언트 버전을 선택 시, 클라이언트 상태별 및 스토어별 전체 선택이 가능하며, 개별로 점검을 거실 경우 원하시는 클라이언트 버전을 선택 후 확인 버튼을 누르시면 됩니다.
 - **(2) 대상 국가**
   공지를 노출할 국가를 선택할 수 있습니다.
@@ -164,7 +166,7 @@ OS별로 등록이 가능하며, 각 스토어에 맞는 클라이언트를 선�
   `닫기`를 선택하게 되면 공지사항의 닫기버튼을 누를 경우 해당 팝업이 사라지게 되고, `닫기+자세히 보기`를 선택하게 되면 해당 공지사항에 연결된 링크를 Gamebase 클라이언트에 제공하는 웹뷰 또는 자체적으로 구현하신 웹뷰에 띄울 수 있도록 링크를 전달해 드립니다.
 
 ##### 3) 공지 상세내용 조회/수정/삭제
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Notice3.PNG)
+![image alt](./image/Operators_Guide/Console_Notice3_1.0.png)
 - 등록한 공지에 대한 상세내용을 확인 및 수정/삭제를 진행할 수 있습니다.
 - 기본적으로 입력이 가능한 항목은 등록 화면과 동일하며, 공지를 잘못 등록했을 시 삭제버튼을 통하여 삭제도 가능합니다.
 
@@ -172,17 +174,17 @@ OS별로 등록이 가능하며, 각 스토어에 맞는 클라이언트를 선�
 유저의 인입/게임의 새로운 정보 알림을 돕기 위한 푸쉬 기능을 제공합니다.
 ### 푸쉬
 ##### 1) 푸쉬 리스트 조회
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Push1.PNG)
+![image alt](./image/Operators_Guide/Console_Push1_1.0.png)
 - 게임에서 발송한 푸쉬 내역 및 발송 예정 내역을 조회할 수 있습니다.
 - 발송 예정 내역에 있는 리스트들은 상세조회를 통해 예약 전송을 취소할 수 있습니다.
 
 ##### 2) 푸쉬 상세 조회
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Push2.PNG)
+![image alt](./image/Operators_Guide/Console_Push2_1.0.png)
 - 푸쉬 리스트에서 선택한 푸쉬의 상세 발송 내역을 조회할 수 있습니다.
 - 예약발송을 잘못 발송했을 경우, 현재는 발송 취소만 가능하며 수정 기능은 추후 제공될 예정입니다.
 
 ##### 3) 푸쉬 등록
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Push3.PNG)
+![image alt](./image/Operators_Guide/Console_Push3_1.0.png)
 - **(1) 메시지 타입**
   메시지 타입은 `홍보성/정보성`을 지원하며, `홍보성`의 경우 연락처와 수신철회방법을 함께 입력해주어야 전송이 가능합니다.
   `정보성`의 경우 연락처와 수신철회방법 입력 없이 전송이 가능합니다.
@@ -207,19 +209,19 @@ OS별로 등록이 가능하며, 각 스토어에 맞는 클라이언트를 선�
 게임을 이용하는 회원에 대한 조회 기능을 제공합니다.
 
 ##### 1) 회원 기본정보 조회
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Member_Member1.PNG)
+![image alt](./image/Operators_Guide/Console_Member_Member1_1.0.png)
 - 회원에 대한 기본정보를 조회할 수 있습니다.
 - 유저 ID를 통해 회원정보를 조회할 수 있으며, 최초 조회시 기본정보 및 Login History를 함께 조회합니다.
 - 하위 탭으로 `Login History/Mapping History/Widthdraw History/Playtime`이 존재하며, 각각의 탭은 기본 회원정보를 조회한 뒤에 조회가 가능합니다.
 
 ##### 2) Login History
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Member_LoginHistory1.PNG)
+![image alt](./image/Operators_Guide/Console_Member_LoginHistory1_1.0.png)
 - 유저의 로그인 내역을 조회할 수 있습니다.
 - 원하시는 날짜를 입력하여 조회가 가능합니다.
 - 조회가 가능한 최대 날짜는 3개월(90일)입니다.
 
 ##### 3) Mapping History
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Member_LoginHistory1.PNG)
+![image alt](./image/Operators_Guide/Console_Member_MappingHistory1_1.0.png)
 - 유저 계정의 매핑 이력을 조회할 수 있습니다.
 - `유저ID/IDP`기준으로 조회가 가능합니다.
 - 조회 결과는 최근 3개월(90일)이내의 이력만 조회됩니다.
@@ -228,7 +230,7 @@ OS별로 등록이 가능하며, 각 스토어에 맞는 클라이언트를 선�
 - 준비중입니다.
 
 ##### 5) Playtime
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Member_Playtime1.PNG)
+![image alt](./image/Operators_Guide/Console_Member_Playtime1_1.0.png)
 - 유저가 게임을 플레이한 시간을 조회할 수 있습니다.
 - 원하시는 날짜를 입력하여 조회가 가능합니다.
 - 조회가 가능한 최대 날짜는 1개월(30일)입니다.
@@ -238,11 +240,11 @@ OS별로 등록이 가능하며, 각 스토어에 맞는 클라이언트를 선�
 게임 내에서 상품을 팔기 위한 스토어에 대한 등록을 제공합니다.
 
 ##### 1) 조회
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/IAP_App1.PNG)
+![image alt](./image/Operators_Guide/Console_IAP_App1_1.0.png)
 - 게임에서 사용하기 위해 등록한 스토어들에 대한 정보를 조회할 수 있습니다.
-- 
+
 ##### 2) 등록
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/IAP_App2.PNG)
+![image alt](./image/Operators_Guide/Console_IAP_App2_1.0.png)
 - 상품을 등록하기 위한 스토어를 등록할 수 있습니다.
 - **(1) 스토어**
   등록하고자 하는 외부 스토어를 선택합니다.
@@ -255,7 +257,7 @@ OS별로 등록이 가능하며, 각 스토어에 맞는 클라이언트를 선�
   해당 스토어를 사용할 지 말지에 대한 여부를 선택합니다.
 
 ##### 3) 조회/수정/삭제
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/IAP_App3.PNG)
+![image alt](./image/Operators_Guide/Console_IAP_App3_1.0.png)
 - 조회 리스트에서 각 스토어를 선택하면 등록된 상세정보를 조회하실 수 있습니다.
 - 수정버튼을 누르면 스토어 입력정보를 제외한 나머지 정보를 변경하실 수 있습니다.
 - 삭제 버튼을 통해 미사용 스토어의 정보는 삭제하실 수 있습니다.
@@ -264,12 +266,12 @@ OS별로 등록이 가능하며, 각 스토어에 맞는 클라이언트를 선�
 각 스토어에서 판매할 아이템을 등록할 수 있습니다.
 
 ##### 1) 조회
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/IAP_Item1.PNG)
+![image alt](./image/Operators_Guide/Console_IAP_Item1_1.0.png)
 - 현재 스토어에 등록된 아이템 리스트를 조회할 수 있습니다.
 - 기본적으로는 모든 스토어에 대한 아이템을 노출하며, 각 스토어별 필터링 기능도 제공합니다.
 - 
 ##### 2) 등록
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/IAP_Item2.PNG)
+![image alt](./image/Operators_Guide/Console_IAP_Item2_1.0.png)
 - 상품을 등록하기 위한 스토어를 등록할 수 있습니다.
 - **(1) 스토어**
   등록하고자 하는 외부 스토어를 선택합니다.
@@ -282,13 +284,13 @@ OS별로 등록이 가능하며, 각 스토어에 맞는 클라이언트를 선�
   해당 아이템의 판매 여부를 선택합니다.
 
 ##### 3) 조회/수정/삭제
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/IAP_Item3.PNG)
+![image alt](./image/Operators_Guide/Console_IAP_Item3_1.0.png)
 - 조회 리스트에서 각 아이템을 선택하면 등록된 아이템의 상세정보를 조회하실 수 있습니다.
 - 수정버튼을 누르면 스토어 정보 및 아이템 Seq를 제외한 나머지 정보를 변경하실 수 있습니다.
 - 삭제 버튼을 통해 판매하지 않을 아이템의 정보는 삭제하실 수 있습니다.
 
 ### 결제 정보
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/IAP_Transaction1.PNG)
+![image alt](./image/Operators_Guide/Console_IAP_Transaction1_1.0.png)
 - 유료에서 등록한 아이템들의 판매 정보를 조회할 수 있습니다.
 - `Store ID/날짜/Payment seq/Item No/User ID`별로 원하시는 정보를 입력하여 조회가 가능합니다.
 - 아이템 미지급으로 인한 강제진행 기능은 추후 제공될 예정입니다.
@@ -297,19 +299,19 @@ OS별로 등록이 가능하며, 각 스토어에 맞는 클라이언트를 선�
 Gamebase를 사용하는 게임에 대한 조회권한 관리/알람 발송 설정/알람에 대한 내역조회 등의 기능을 제공합니다.
 
 ### 권한
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Management_Authorization1.PNG)
+![image alt](./image/Operators_Guide/Console_Management_Authorization1_1.0.png)
 - Gamebase Console을 사용할 수 있는 권한을 관리하는 메뉴입니다.
 - `판매현황 접근 권한`은 `유료`메뉴에 대한 접근권한을 부여하며, `관리메뉴 접근 권한`은 그 외 나머지 메뉴에 대한 접근권한을 부여합니다.
 - 새로운 멤버의 등록은 Toast Cloud의 프로젝트 멤버에서 추가해주셔야 합니다.
 - 자기 자신에 대한 권한은 수정할 수 없습니다.
 
 ### 알람
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Management_Alarm1.PNG)
+![image alt](./image/Operators_Guide/Console_Management_Alarm1_1.0.png)
 - Gamebase는 게임 유저의 증가/감소율, 최소 동접자 수 도달에 따른 알람기능을 제공합니다.
 - 알람 메뉴를 통해 증가/감소율, 최소 동접자 수를 설정할 수 있으며 점검시 해당 기능을 끌 수 있는 기능도 제공합니다.
 - 알람을 수신할 유저에 대한 설정을 진행할 수 있으며, 새로운 멤버의 등록은 Toast Cloud의 프로젝트 멤버에서 추가해주셔야 합니다.
 
 ### 알람 로그
-![image alt](http://static.toastoven.net/prod_gamebase/Operators Guide/Management_AlarmLog1.PNG)
+![image alt](./image/Operators_Guide/Console_Management_AlarmLog1_1.0.png)
 - 알람이 발생한 이력을 조회할 수 있습니다.
 - 조회이력은 최대 30일까지 가능하며, 조회 후 Search칸을 통해 실시간 필터링을 해보실 수도 있습니다.

@@ -1,4 +1,4 @@
-﻿## Upcoming Products > Gamebase > Server Developer's Guide
+## Upcoming Products > Gamebase > Server Developer's Guide
 
 Gamebase Server API는 RESTful 형식으로 다음과 같은 API들을 제공합니다.
 
@@ -14,12 +14,12 @@ https://api-gamebase.cloud.toast.com
 ##### appId
 appId는 TOAST Cloud의 프로젝트ID로 콘솔 화면 Project list 화면에서 확인 가능합니다. 
 
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.0.png)
+![image alt](./image/Server_Developers_Guide/pre_appId_v1.0.png)
 
 ##### secretKey
 secretKey는 API에 대한 접근 제어 방안으로 Gamebase 콘솔에서 확인 가능합니다. 해당 값은 API 호출시 HTTP Header에 설정되어야 합니다.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.0.png)
+![image alt](./image/Server_Developers_Guide/pre_secret_key_v1.0.png)
 
 ##### transactionId
 호출하는 서버 내부적으로 API 요청을 관리 할 수 있도록 transactionId 기능을 제공합니다. 호출하는 서버에서 HTTP Header에 transactionId를 설정하여 API를 호출하면, 응답 HTTP 헤더 및 응답 결과의 Response Body 의 header 항목에 해당 transactionId를 설정하여 결과를 전달합니다.

@@ -1,4 +1,4 @@
-﻿## Upcoming Products > Gamebase > Unity Developer's Guide
+## Upcoming Products > Gamebase > Unity Developer's Guide
 
 
 
@@ -38,7 +38,7 @@ Android ADK 추가 설정은 아래 링크를 참조 하시기 바랍니다
 
 * [Android SDK 추가 설정 링크](./Android Developer`s Guide#initialization)
 
-![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-AndroidSetting_0.9.0.png)
+![unity inspector](./image/UnityDevelopersGuide/unity-developers-guide-AndroidSetting_0.9.0.png)
 **그림. Android SDK 추가하기**
 
 ##### Add IOS SDK
@@ -69,7 +69,7 @@ IOS SDK 추가 설정은 아래 링크를 참조 하시기 바랍니다
 
 * [IOS SDK 추가 설정 링크](./iOS Developer`s Guide#setting-xcode-project-to-use-gamebase)
 
-![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-iOSSetting_0.9.0.png)
+![unity inspector](./image/UnityDevelopersGuide/unity-developers-guide-iOSSetting_0.9.0.png)
 **그림. IOS SDK 추가하기**
 
 ### Initialization
@@ -97,7 +97,7 @@ Gamebase Unity SDK 를 사용하기 전에 초기화를 수행해야 하며, App
 > 생성한 게임 오브젝트를 삭제하면 Android, iOS API 호출 후 콜백을 받을 수 없으므로 주의하시기 바랍니다.
 > 실수로 삭제된 경우 "Do not destroy this gameObject in order to receive callback." 에러 메시지가 노출됩니다.
 
-![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-Initialization_0.9.0.png)
+![unity inspector](./image/UnityDevelopersGuide/unity-developers-guide-Initialization_0.9.0.png)
 **그림. Inspector를 이용한 초기화**
 
 ##### API
