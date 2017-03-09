@@ -649,8 +649,6 @@ public void QueryPush()
 |        | | NOT_CALLABLE_STATE | 11002 | |
 
 
-## Sample Application
-
-
 ## API Reference
+SDK 내에 포함되어 있습니다.
  

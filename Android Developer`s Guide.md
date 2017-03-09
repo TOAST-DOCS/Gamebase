@@ -14,6 +14,8 @@
 #### Installation
 Gamebase Android SDK를 사용하기 전에 TOAST Cloud Console에서 App ID를 발급 받아야 합니다.
 
+* [App ID 확인 방법](/Upcoming%20Products/Gamebase/Getting%20Started/#id-secret-key-console)
+
 ##### Download Link
 
 * [DOWNLOAD Gamebase Android SDK](http://docs.cloud.toast.com/ko/Download/)
@@ -610,6 +612,5 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 |        | | SERVER_REMOTE_SYSTEM_ERROR | 8002 | |
 |        | | SERVER_UNKNOWN_ERROR | 8999 | |
 
-## Sample Application
-
 ## API Reference
+SDK 내에 포함되어 있습니다.
