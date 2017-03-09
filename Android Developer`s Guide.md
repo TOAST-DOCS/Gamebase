@@ -105,20 +105,20 @@ dependencies {
     // Compile Purchase Modules
     if (usePurchaseIAP) {
         compile(name: "gamebase-adapter-purchase-iap-${gamebaseSdkVersion}", ext: 'aar')
-        compile(name: 'iap-release-1.3.1', ext: 'aar')
-        compile(name: 'mobill-core-release-1.3.1', ext: 'jar')
+        compile(name: 'iap-1.3.2', ext: 'aar')
+        compile(name: 'mobill-core-1.3.2', ext: 'jar')
         compile 'com.squareup.okhttp:okhttp:1.5.4'
     }
 
     // Compile Push Modules
     if (usePushFCM) {
         compile(name: "gamebase-adapter-push-fcm-${gamebaseSdkVersion}", ext: 'aar')
-        compile(name: 'pushsdk-release-v1.3', ext: 'aar')
+        compile(name: 'pushsdk-release-v1.32', ext: 'aar')
         compile 'com.google.android.gms:play-services-gcm:10.0.1'
         compile 'com.google.firebase:firebase-messaging:10.0.1'
     } else if (usePushTencent) {
         compile(name: "gamebase-adapter-push-tencent-${gamebaseSdkVersion}", ext: 'aar')
-        compile(name: 'pushsdk-release-v1.3', ext: 'aar')
+        compile(name: 'pushsdk-release-v1.32', ext: 'aar')
     }
 }
 ```
@@ -131,9 +131,9 @@ dependencies {
 | **Authentication<br>(Optional)** | Google | gamebase-adapter-auth-google-{version}.aar | play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-tasks-10.0.1.aar<br>play-services-auth-10.0.1.aar<br>play-services-auth-base-10.0.1.aar |  |
 |  | Facebook | gamebase-adapter-auth-facebook-{version}.aar | facebook-android-sdk-4.17.0.aar<br>appcompat-v7-24.0.0.aar<br>support-vector-drawable-24.0.0.aar<br>animated-vector-drawable-24.0.0.aar<br>cardview-v7-24.0.0.aar<br>customtabs-24.0.0.aar<br>bolts-android-1.4.0.jar<br>bolts-applinks-1.4.0.jar<br>bolts-tasks-1.4.0.jar |  |
 |  | Payco | gamebase-adapter-auth-payco-{version}.aar | paycologin-1.2.6.aar<br>play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-tasks-10.0.1.aar |  |
-| **Purchase<br>(Optional)** | IAP | gamebase-adapter-purchase-iap-{version}.aar | iap-release-1.3.1.aar<br>iap-tstore-release-1.3.1.aar<br>mobill-core-release-1.3.1.jar<br>gson-2.2.4.jar<br>okhttp-1.5.4.jar |  |
-| **Push<br>(Optional)** | FCM | gamebase-adapter-push-fcm-{version}.aar | pushsdk-release-v1.3.aar<br>firebase-common-10.0.1.jar<br>firebase-iid-10.0.1.jar<br>firebase-messaging-10.0.1.aar<br>play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-gcm-10.0.1.aar<br>play-services-iid-10.0.1.aar<br>play-services-tasks-10.0.1.aar |  |
-|  | Tencent | gamebase-adapter-push-tencent-{version}.aar | pushsdk-release-v1.3.aar | 현재 지원되지 않습니다. |
+| **Purchase<br>(Optional)** | IAP | gamebase-adapter-purchase-iap-{version}.aar | iap-1.3.2.aar<br>mobill-core-1.3.2.jar<br>gson-2.2.4.jar<br>okhttp-1.5.4.jar |  |
+| **Push<br>(Optional)** | FCM | gamebase-adapter-push-fcm-{version}.aar | pushsdk-release-v1.32.aar<br>firebase-common-10.0.1.jar<br>firebase-iid-10.0.1.jar<br>firebase-messaging-10.0.1.aar<br>play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-gcm-10.0.1.aar<br>play-services-iid-10.0.1.aar<br>play-services-tasks-10.0.1.aar |  |
+|  | Tencent | gamebase-adapter-push-tencent-{version}.aar | pushsdk-release-v1.32.aar | 현재 지원되지 않습니다. |
 
 * Required 항목은 필수로 포함되어야 하는 모듈입니다.
 * Optional 항목은 해당 기능이 필요할 경우 포함되어야 하는 모듈입니다.
