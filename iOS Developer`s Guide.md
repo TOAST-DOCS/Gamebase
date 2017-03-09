@@ -232,8 +232,8 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 
 #### Gamebase에서 지원 중인 IDP
 
-**1. Guest**
-**2. Facebook**
+**1. Guest**<br>
+**2. Facebook**<br>
 1. AdditionalInfo의 설정이 필요합니다.
 	* **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
 	* Facebook의 경우, OAuth 인증 시도 시, Facebook으로 부터 요청할 정보의 종류를 설정해야 합니다. 
@@ -244,8 +244,8 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 2. Facebook SDK를 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다.
 [](http://)
 
-**3. Payco**
-1. AdditionalInfo의 설정이 필요합니다.
+**3. Payco**<br>
+1. AdditionalInfo의 설정이 필요합니다.<br>
 	* **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
 	* Payco의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**의 설정이 필요합니다.
 	* 예제
@@ -253,7 +253,7 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
     { "service_code": "HANGAME", "service_code": "Your Service Name" }
     ```
 
-**4. GameCenter**
+**4. GameCenter**<br>
 
 
 
