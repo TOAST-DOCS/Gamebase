@@ -19,21 +19,17 @@ Gamebase Android SDK를 사용하기 전에 TOAST Cloud Console에서 App ID를 
 * [DOWNLOAD Gamebase Android SDK](http://docs.cloud.toast.com/ko/Download/)
 * 다운로드 받은 SDK에서 다음 폴더 및 aar 파일을 프로젝트에 추가합니다.
 	* **gamebase-sdk/**
-	* **gamebase-sdk-VERSION-release.aar**
-	* **gamebase-sdk-base-VERSION-release.aar**
-	* **gamebase-sdk-websocket-VERSION-release.aar**
-* 인증 모듈 추가
-	* 다운로드 받은 SDK의 **gamebase-adapter-auth-IDP_NAME** 폴더를 프로젝트에 추가합니다.
-	* google, facebook, payco 중에서 사용할 인증 모듈을 모두 추가합니다.
+	* **gamebase-sdk-{version}.aar**
+	* **gamebase-sdk-base-{version}.aar**
 
-* 외부 SDK 다운로드
-    * Facebook SDK : [Download](https://developers.facebook.com/docs/android/downloads)
-    * Payco SDK : [Download](https://developers.payco.com/guide/sdk/download)
+* 인증 모듈 추가
+	* 다운로드 받은 SDK의 **gamebase-adapter-auth-{provider}** 폴더를 프로젝트에 추가합니다.
+	* google, facebook, payco 중에서 사용할 인증 모듈을 모두 추가합니다.
 
 #### build.gradle Settings
 
-1. 다운로드 받은 Gamebase SDK를 Application의 Root 경로에 복사합니다.
-2. Gamebase 경로 및 버전, 사용할 인증, 결제, 푸시 모듈을 설정합니다.
+* 1) 다운로드 받은 Gamebase SDK를 Application의 Root 경로에 복사합니다.
+* 2) Gamebase 경로 및 버전, 사용할 인증, 결제, 푸시 모듈을 설정합니다.
     * 사용하고자 하는 모듈을 true로 설정하면 해당 모듈이 dependency에 추가됩니다.
 
 ```
@@ -41,7 +37,7 @@ Gamebase Android SDK를 사용하기 전에 TOAST Cloud Console에서 App ID를 
 def gamebaseDir = '../Gamebase'
 
 /* Set the Gamebase version. */
-def gamebaseSdkVersion = '0.3.1'
+def gamebaseSdkVersion = '1.0.0'
 
 /* Set the Gamebase authentication modules. */
 def useAuthFacebook = true;
@@ -53,10 +49,10 @@ def usePurchaseIAP = true;
 
 /* Set the Gamebase push modules. */
 def usePushFCM = true;
-def usePushTencent = false;
+def usePushTencent = false; // Not supported yet.
 ```
 
-3. Repositories Settings
+* 3) Repositories Settings
     * 아래 내용을 repositories에 추가합니다.
 
 ```
@@ -73,8 +69,10 @@ repositories {
     }
 }
 ```
-4. Dependencies Settings
+
+* 4) Dependencies Settings
     * 아래 내용을 dependencies에 추가합니다.
+
 ```
 dependencies {
     ...
@@ -82,7 +80,6 @@ dependencies {
     // Compile Gamebase SDKs
     compile(name: "gamebase-sdk-${gamebaseSdkVersion}", ext: 'aar')
     compile(name: "gamebase-sdk-base-${gamebaseSdkVersion}", ext: 'aar')
-    compile(name: "gamebase-sdk-websocket-${gamebaseSdkVersion}", ext: 'aar')
 
     // Compile Gamebase External Libraries
     compile 'com.google.code.gson:gson:2.2.4'
@@ -128,33 +125,27 @@ dependencies {
 
 #### Dependency
 
-| Category | Module | Dependency | External Dependency |
-| -------- | ------ | ---------- | ------------------- |
-| **Gamebase SDK** | gamebase-sdk | gamebase-sdk-base.aar<br>gamebase-sdk-websocket.aar |  |
-|  | gamebase-sdk-base |  | appcompat-v7-24.0.0.aar<br>support-v4-24.0.0.aar<br>support-annotations-24.0.0.jar<br>gson-2.2.4.jar<br>okhttp-3.6.0.jar<br>okio-1.11.0.jar |
-|  | gamebase-sdk-websocket | gamebase-sdk-base.aar |  |
-| **Gamebase Auth Adapter** | gamebase-adapter-auth-google | gamebase-sdk-base.aar | play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-tasks-10.0.1.aar<br>play-services-auth-10.0.1.aar<br>play-services-auth-base-10.0.1.aar |
-|  | gamebase-adapter-auth-facebook | gamebase-sdk-base.aar | facebook-android-sdk-4.17.0.aar<br>appcompat-v7-24.0.0.aar<br>support-vector-drawable-24.0.0.aar<br>animated-vector-drawable-24.0.0.aar<br>cardview-v7-24.0.0.aar<br>customtabs-24.0.0.aar<br>bolts-android-1.4.0.jar<br>bolts-applinks-1.4.0.jar<br>bolts-tasks-1.4.0.jar |
-|  | gamebase-adapter-auth-payco | gamebase-sdk-base.aar | paycologin-1.2.6.aar<br>play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-tasks-10.0.1.aar |
-| **Gamebase Purchase Adapter** | gamebase-adapter-purchase-iap | gamebase-sdk-base.aar | iap-release-1.3.1.aar<br>iap-tstore-release-1.3.1.aar<br>mobill-core-release-1.3.1.jar<br>gson-2.2.4.jar<br>okhttp-1.5.4.jar |
-| **Gamebase Push Adapter** | gamebase-adapter-push-fcm | gamebase-sdk-base.aar | pushsdk-release-v1.3.aar<br>firebase-common-10.0.1.jar<br>firebase-iid-10.0.1.jar<br>firebase-messaging-10.0.1.aar<br>play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-gcm-10.0.1.aar<br>play-services-iid-10.0.1.aar<br>play-services-tasks-10.0.1.aar |
-|  | gamebase-adapter-push-tencent | gamebase-sdk-base.aar | gamebase-adapter-push-tencent-0.3.0.aar<br>pushsdk-release-v1.3.aar |
+| Category | Provider | Modules | Dependency | Description |
+| -------- | -------- | ------- | ---------- | ----------- |
+| **Gamebase<br>(Required)** | Gamebase | gamebase-sdk-{version}.aar<br>gamebase-sdk-base-{version}.aar | appcompat-v7-24.0.0.aar<br>support-v4-24.0.0.aar<br>support-annotations-24.0.0.jar<br>gson-2.2.4.jar<br>okhttp-3.6.0.jar<br>okio-1.11.0.jar |  |
+| **Authentication<br>(Optional)** | Google | gamebase-adapter-auth-google-{version}.aar | play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-tasks-10.0.1.aar<br>play-services-auth-10.0.1.aar<br>play-services-auth-base-10.0.1.aar |  |
+|  | Facebook | gamebase-adapter-auth-facebook-{version}.aar | facebook-android-sdk-4.17.0.aar<br>appcompat-v7-24.0.0.aar<br>support-vector-drawable-24.0.0.aar<br>animated-vector-drawable-24.0.0.aar<br>cardview-v7-24.0.0.aar<br>customtabs-24.0.0.aar<br>bolts-android-1.4.0.jar<br>bolts-applinks-1.4.0.jar<br>bolts-tasks-1.4.0.jar |  |
+|  | Payco | gamebase-adapter-auth-payco-{version}.aar | paycologin-1.2.6.aar<br>play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-tasks-10.0.1.aar |  |
+| **Purchase<br>(Optional)** | IAP | gamebase-adapter-purchase-iap-{version}.aar | iap-release-1.3.1.aar<br>iap-tstore-release-1.3.1.aar<br>mobill-core-release-1.3.1.jar<br>gson-2.2.4.jar<br>okhttp-1.5.4.jar |  |
+| **Push<br>(Optional)** | FCM | gamebase-adapter-push-fcm-{version}.aar | pushsdk-release-v1.3.aar<br>firebase-common-10.0.1.jar<br>firebase-iid-10.0.1.jar<br>firebase-messaging-10.0.1.aar<br>play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-gcm-10.0.1.aar<br>play-services-iid-10.0.1.aar<br>play-services-tasks-10.0.1.aar |  |
+|  | Tencent | gamebase-adapter-push-tencent-{version}.aar | pushsdk-release-v1.3.aar | 현재 지원되지 않습니다. |
+
+* Required 항목은 필수로 포함되어야 하는 모듈입니다.
+* Optional 항목은 해당 기능이 필요할 경우 포함되어야 하는 모듈입니다.
+* 중복되는 Dependency 모듈은 하나만 포함하도록 해야합니다.
+<br>
+* 외부 SDK 가이드
+    * Facebook Developers Guide : [Facebook for developers](https://developers.facebook.com/docs/android)
+    * Google Developers Guide [Google APIs for Android](https://developers.google.com/android/guides/overview)
 
 ### Initialization
-#### 1. AndroidManifest.xml
-##### 1) Add permissions
-Gamebase 인증에 필요한 접근 권한을 추가합니다.
-```xml
-...
-```
 
-##### 2) Add activities
-Gamebase 인증에서 사용하는 액티비티를 추가합니다.
-```xml
-...
-```
-
-#### 2. Activate the application
+#### 1. Activate the application
 앱의 Lifecycle 관리를 위해 앱이 활성화 되었음을 Gamebase SDK에 알립니다.
 **Application#onCreate()**에서 **Gamebase#activeApp(Context)**을 호출합니다.
 
@@ -169,8 +160,8 @@ public class GamebaseApplication extends Application {
 }
 ```
 
-#### 3. Initialization
-**Activity#onCreate(Bundle)**에서 **Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallbac<LaunchingInfo>)**을 호출하여 Gamebase SDK 초기화를 진행합니다.
+#### 2. Initialization
+**Activity#onCreate(Bundle)**에서 **Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback\<LaunchingInfo\>)**을 호출하여 Gamebase SDK 초기화를 진행합니다.
 
 ```java
 public class MainActivity extends AppCompatActivity {
@@ -465,8 +456,6 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 
 * Firebase 푸쉬를 사용하는 경우
 	* 다운로드 받은 SDK의 **gamebase-adapter-push-fcm** 폴더를 프로젝트에 추가합니다.
-* Tencent 푸쉬를 사용하는 경우
-	* 다운로드 받은 SDK의 **gamebase-adapter-push-tencent** 폴더를 프로젝트에 추가합니다.
 
 ##### 1-2. AndroidManifest.xml (Firebase only)
 
@@ -509,26 +498,15 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 * Gamebase 초기화시 configuration의 **setPushType()**을 호출합니다.
 * Firebase 푸쉬를 사용하는 경우
 	* 추가로 **setFCMSenderId()**를 호출합니다.
-* Tencent 푸쉬를 사용하는 경우
-	* 추가로 **setTencentAccessId()**와 **setTencentAccessKey**를 호출합니다.
 
 ```java
 private static final String PUSH_FCM_SENDER_ID = "...";
-private static final String PUSH_TENCENT_ACCESS_ID = "...";
-private static final String PUSH_TENCENT_ACCESS_KEY = "...";
 
 TAPConfiguration configuration = new TAPConfiguration.Builder()
         .setAppId(APP_ID)
-        .setAppVersion(APP_VERSION);
-
-if (isFCM) {
-    configuration.setFCMSenderId(SENDER_ID);					// Firebase는 SenderId가 필요합니다.
-} else if (isTencent) {
-    configuration.setTencentAccessId(PUSH_TENCENT_ACCESS_ID);	// Tencent는 AccessId와 AccessKey가 필요합니다.
-    configuration.setTencentAccessKey(PUSH_TENCENT_ACCESS_KEY);
-}
-
-configuration.build();
+        .setAppVersion(APP_VERSION)
+        .setFCMSenderId(PUSH_FCM_SENDER_ID)	// Firebase는 SenderId가 필요합니다.
+        .build();
 
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
     @Override
