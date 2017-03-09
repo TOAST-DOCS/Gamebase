@@ -3,9 +3,10 @@
 ## 사용 준비
 Gamebase 서비스 사용을 위한 아주 간단하지만 꼭 필요한 기본적인 절차에 대해 설명합니다.
 
-1. 서비스 활성화 [Console]]
-2. 게임 및 클라이언트 정보 등록[Console]]
-3. Gamebase SDK 다운로드
+1. 서비스 활성화 [Console]
+2. 프로젝트 ID 및 Secret Key 확인[Console]
+3. 게임 및 클라이언트 정보 등록[Console]
+4. Gamebase SDK 다운로드
 
 ### 서비스 활성화 [Console]
 
@@ -14,10 +15,27 @@ Gamebase 서비스 사용을 위한 아주 간단하지만 꼭 필요한 기본�
 ![상품활성화](http://static.toastoven.net/prod_gamebase/GettingStarted/img_console_active_1.0.png)
 <center>[그림1] Gamebase 상품 활성화</center>
 
+### 프로젝트 ID 및 Secret Key 확인[Console]
+
+#### appId
+appId는 TOAST Cloud의 프로젝트ID로 Console의 Project list 화면에서 확인 가능합니다.<br>
+해당 값은 Server API 호출시나 SDK 설정시에 꼭 필요한 값입니다.
+
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.0.png)
+
+
+#### secretKey
+secretKey는 API에 대한 접근 제어 방안으로 Gamebase 콘솔에서 확인 가능합니다. <br>
+해당 값은 Server API 호출시 HTTP Header에 설정되어야 합니다.
+
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.0.png)
+
+
 ### 게임 및 클라이언트 정보 등록 [Console]
 
 Gamebase의 Console의 [앱] 메뉴를 이용하여 게임 및 클라이언트의 기본 정보를 등록합니다.<br>
-각 항목의 자세한 설명은 [[Operators Guide > App](/Upcoming%20Products/Gamebase/Operator%60s%20Guide/#_3)] 과 [[Operators Guide > Client](/Upcoming%20Products/Gamebase/Operator%60s%20Guide/#_4)] 부분을 참고하시기 바랍니다.
+각 항목의 자세한 설명은 [[Operators Guide > App](/Upcoming%20Products/Gamebase/Operator%60s%20Guide/#_3)] 과 [[Operators Guide > Client](/Upcoming%20Products/Gamebase/Operator%60s%20Guide/#_4)] 부분을 참고하시기 바랍니다. <br>
+SDK 설정시에 Client 버전 정보가 필요하므로 해당 화면에서 꼭 확인하세요!
 
 
 

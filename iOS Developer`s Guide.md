@@ -1,3 +1,5 @@
+<link href="./css/gamebase.css" rel="stylesheet">
+
 ## Upcoming Products > Gamebase > iOS Developer's Guide
 
 ## Configuration
@@ -38,20 +40,24 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.
 
 > **주의**
 >
-> Gamebase Framework 파일 중 이름에 **Adapter**가 포함되어 있는 파일들은 선택적으로 프로젝트 내에서 사용여부를 결정할 수 있으며, 해당 Adapter Framework를 사용하기 위해서는 위의 표에 명시된 External SDK들이 필요할 수 있습니다.
+> Gamebase Framework 파일 중 이름에 **Adapter**가 포함되어 있는 파일들은 선택적으로 프로젝트 내에서 사용여부를 결정할 수 있으며, 해당 Adapter Framework를 사용하기 위해서는 위의 표에 명시된 외부 SDK들이 필요할 수 있습니다.
+
+> **주의**
+> 
+>각 IDP에서 제공하는 외부 SDK에 대한 설정은 각 IDP의 가이드 문서를 참고하시길 바랍니다.
 
 2. 압축풀기
 압축을 풀면, 다음과 같이 Gamebase.framework 등의 SDK를 볼 수 있습니다.
 
-![unzip gamebase](http://static.toastoven.net/prod_gamebase/iOS_Developers_Guide/ios-developers-guide-installation-002_0.9.0.png)
+![unzip gamebase](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-002_1.0.0.png)
 
 
 3. 프로젝트 설정
 - 1) Framework 파일을 Project의 Project Navigator로 끌어와서 import 합니다. 이 때 추가된 Framework 파일들은 프로젝트 target에 추가되어야 합니다. 
 - 2) **Gamebase.bundle** 파일도 **Copy Bundle Resources** 에 추가하도록 합니다.
-![Gamebase.bundle Bundle Resources](http://static.toastoven.net/prod_gamebase/iOS_Developers_Guide/ios-developers-guide-installation-003_0.9.0.png)
+![Gamebase.bundle Bundle Resources](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-003_1.0.0.png)
 - 3) 패키지에 포함된 **SocketRocket.framework**파일은 Gamebase에서 사용하는 WebSocket 모듈로 **Target > General > Embedded Binaries**에 추가되어야 합니다.
-![SocketRocket Embeded Binaries](http://static.toastoven.net/prod_gamebase/iOS_Developers_Guide/ios-developers-guide-installation-004_0.9.0.png)
+![SocketRocket Embeded Binaries](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-004_1.0.0.png)
 - 4) Gamebase를 사용하기 위해서는 Gamebase의 framework외에, Gamebase에서 사용하고 있는 외부 SDK들의 기능을 포함하기 위하여, 여러 framework와 library 파일을 linker에서 참조할 수 있도록 추가해야합니다. 아래 항목들을 추가해야합니다.
     - libz.tbd
     - libsqlite3.tbd
@@ -60,9 +66,9 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.
     - ImageIO.framework
     - GameKit.framework
     - StoreKit.framework
-![Link Binary With Libraries](http://static.toastoven.net/prod_gamebase/iOS_Developers_Guide/ios-developers-guide-installation-005_0.9.0.png)
+![Link Binary With Libraries](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
 - 5) **Target > Build Settings > Linking > Other Linker Flags**에 **-ObjC**를 추가해야 합니다.
-![Other Linker Flags](http://static.toastoven.net/prod_gamebase/iOS_Developers_Guide/ios-developers-guide-installation-006_0.9.0.png)
+![Other Linker Flags](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
 
 > **Information**
 >
@@ -155,12 +161,11 @@ iOS의 App Event를 관리하기 위하여 아래에 명기된 **UIApplicationDe
 ### Login
 Gamebase 에서는 기본적으로 guest 로그인을 지원합니다.
 guest 이외의 Provider에 로그인을 하기 위해서는 해당 Provider AuthAdapter가 필요합니다.
-AuthAdapter 및 3rd-Party SDK에 대한 설정은 다음의 링크를 참고하시길 바랍니다.
-[링크:AuthAdapter 맟 3rd-Party SDK 설정 가이드]
+AuthAdapter 및 3rd-Party SDK에 대한 설정은 위에 있는 '외부 SDK 다운로드' 링크를 참고하시길 바랍니다.
 
 
 로그인을 시도하려는 IDP별로, additionalInfo 파라미터를 입력해주어야 하는 경우가 있습니다.
-IDP별로 로그인을 설명하는 문서는 다음의 링크를 참고해주세요. [링크:IDP별 로그인 가이드]
+AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 항목을 참고합니다.
 
 #### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
 로그인을 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
@@ -205,7 +210,7 @@ IDP별로 로그인을 설명하는 문서는 다음의 링크를 참고해주�
 ```
 
 #### 3. 특정 IDP 로그인 API 호출
-특정 IDP 로그인 호출을 위해서 **[TCGamebase loginWithType:viewController:completion:]** 메소드를 호출해줍니다. 로그인 결과로 **(TCGBError *)error** 객체를 이용해 성공 여부를 판단할 수 있습니다. 또한 **(TCGBAuthToken *)credential** 객체를 이용하여 userId 등의 사용자 정보 및 토큰 정보를 얻을 수 있습니다.
+특정 IDP 로그인 호출을 위해서 **[TCGamebase loginWithType:viewController:completion:]** 메소드를 호출해줍니다. 로그인 결과로 **(TCGBError *)error** 객체를 이용해 성공 여부를 판단할 수 있습니다. 또한 **TCGBAuthToken** 객체를 이용하여 userId 등의 사용자 정보 및 토큰 정보를 얻을 수 있습니다.
 
 몇몇 IDP의 로그인시에는 필수적으로 들어가야하는 정보가 있습니다. 예를 들어, facebook 로그인을 구현하기 위해서는 scope 등을 설정해주어야합니다. 이러한 필수 정보들을 설정해주기 위해서, **[TCGamebase loginWithType:additionalInfo:viewController:completion:]** API를 제공합니다.
 파라미터 additionalInfo에 필수 정보들을 Dictionary 형태로 입력하시면 됩니다.
@@ -216,10 +221,10 @@ IDP별로 로그인을 설명하는 문서는 다음의 링크를 참고해주�
 
 ```objectivec
 - (void)loginFacebookButtonClick {
-    [TCGamebase loginWithType:kTCGBAuthPayco viewController:self completion:^(id credential, TCGBError *error) {
+    [TCGamebase loginWithType:kTCGBAuthPayco viewController:self completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGamebase isSuccessWithError:error] == YES) {
             // To Login Succeeded
-            NSString *userId = credential.tcgbMember.userId;
+            NSString *userId = [authToken.tcgbMember.userId];
         } else {
             // To Login Failed
         }
@@ -228,6 +233,7 @@ IDP별로 로그인을 설명하는 문서는 다음의 링크를 참고해주�
 ```
 
 ##### Gamebase에서 지원 중인 IDP
+
 ###### 1. Guest
 ###### 2. Facebook
 1. AdditionalInfo의 설정이 필요합니다.
@@ -338,7 +344,7 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 아래의 예시에서는 facebook에 대해서 Mapping을 시도하고 있습니다.
 
 ```objectivec
-[TCGamebase addMappingWithType:@"facebook" viewController:parentViewController completion:^(id authToken, TCGBError *error) {
+[TCGamebase addMappingWithType:@"facebook" viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
     if ([TCGamebase isSuccessWithError:error] == YES) {
         // To Add Mapping Succeeded
     } else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
@@ -550,7 +556,7 @@ Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야�
 |      |          | TCGB_ERROR_AUTH_TAP_LOGIN_INVALID_TOKEN_INFO | 3102 | |
 |      |          | TCGB_ERROR_AUTH_TAP_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | |
 |      | IDP Login | TCGB_ERROR_AUTH_IDP_LOGIN_FAILED | 3201 | |
-|      |           | TCGB_ERROR_AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3201 | |
+|      |           | TCGB_ERROR_AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3202 | |
 |      | Add Mapping | TCGB_ERROR_AUTH_ADD_MAPPING_FAILED | 3301 | |
 |      |            | TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | |
 |      |            | TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | |
