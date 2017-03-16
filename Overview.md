@@ -1,6 +1,6 @@
 ## Upcomming Products > Gamebase > Overview
 
-게임에서 공통적으로 필요한 기능들을 통합SDK로 제공하여 손쉽고 효율적으로 게임 개발이 가능하도록 돕는 서비스입니다.<br>게임개발자는 게임컨텐츠만 만드시면 나머지는 GameBase가 해결해드립니다.
+게임에서 공통적으로 필요한 기능들을 통합SDK로 제공하여 손쉽고 효율적으로 게임 개발이 가능하도록 돕는 서비스입니다.<br>게임개발자는 게임컨텐츠만 만드시면 나머지는 Gamebase가 해결해드립니다.
 
 ## 주요 기능
 
@@ -13,7 +13,7 @@ Gamebase는 다음과 같은 기능을 제공합니다.
 |--------|--------|
 | facebook       | iOS, Android        |
 | iosgamecenter | iOS        |
-| google+       | Android        |
+| google      | Android        |
 | payco       | iOS, Android        |
 
 [표1] Gamebase에서 지원하는 외부 인증 리스트

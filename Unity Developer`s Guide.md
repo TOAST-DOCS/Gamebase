@@ -5,11 +5,41 @@
 ## Configuration
 
 ### Getting Started
+Gamebase Unity SDK 사용에 대해 설명합니다.
 
 #### Environments
 
 > [ 최소사양 ]
 > Unity5
+
+#### Supported Unity Platforms
+
+Gamebase Unity SDK는 현재 아래 플랫폼에 대해서만 지원하고 있습니다.
+
+* UNITY_ANDROID
+* UNITY_IOS
+* UNITY_EDITOR (일부 기능)
+
+추후 아래 플랫폼을 지원할 예정입니다.
+
+* UNITY_STANDALONE
+* UNITY_WEBGL
+
+Gamebase Unity SDK 에서 지원하는 플랫폼 선택 후, 선택한 플랫폼에서 지원하지 않는 API 호출 시에는 아래와 같은 에러가 콜백으로 리턴되며 콜백이 없는 API의 경우에는 Data type의 초기값이 전달됩니다.
+
+* GamebaseErrorCode.NOT_SUPPORTED
+* GamebaseErrorCode.NOT_SUPPORTED_ANDROID
+* GamebaseErrorCode.NOT_SUPPORTED_IOS
+* GamebaseErrorCode.NOT_SUPPORTED_UNITY_EDITOR
+* GamebaseErrorCode.NOT_SUPPORTED_UNITY_STANDALONE
+* GamebaseErrorCode.NOT_SUPPORTED_UNITY_WEBGL
+
+API 별 지원하는 플랫폼은 아래와 같은 icon 으로 구분합니다.<br>
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor-plugin_1.0.0.png)
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone-plugin_1.0.0.png)
+![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-webgl_1.0.0.png)
 
 #### Installation
 
@@ -55,7 +85,7 @@ Lifecycle 관리를 위해 "com.toast.gamebase.activity.GamebaseMainActivity"를
 </activity>
 ```
 
-Android ADK 추가 설정은 아래 링크를 참조 하시기 바랍니다
+Android SDK 추가 설정은 아래 링크를 참조 하시기 바랍니다
 
 * [Android SDK 추가 설정 링크](./Android Developer`s Guide#initialization)
 
@@ -139,13 +169,13 @@ public void Initialize()
 {
     Gamebase.Initialize((launchingInfo, error) =>
     {
-        if (error == null)
+        if (Gamebase.IsSuccess(error))
         {
-        	Debug.Log("Initialize is succeeded.");
+        	Debug.Log("Gamebase initialization is succeeded.");
         }
         else
         {
-        	Debug.Log(string.format("Initialize is failed. error is {0}", error));
+        	Debug.Log(string.Format("Gamebase initialization is failed. error is {0}", error));
         }
     }
 }
@@ -182,13 +212,13 @@ public void Initialize()
 
     Gamebase.Initialize(configuration, (launchingInfo, error) =>
     {
-        if (error == null)
+        if (Gamebase.IsSuccess(error))
         {
-            Debug.Log("Initialize to succeeded");
+            Debug.Log("Gamebase initialization is succeeded");
         }
         else
         {
-        	Debug.Log(string.format("Initialize is failed. error is {0}", error));
+        	Debug.Log(string.Format("Gamebase initialization is failed. error is {0}", error));
         }
     }
 }
@@ -201,7 +231,7 @@ Gamebase 에서는 guest 로그인을 기본으로 지원합니다. guest 이외
 * Android : [설정 링크](./Android Developer`s Guide#dependency)
 * iOS : [설정 링크](./iOS Developer`s Guide#setting-xcode-project-to-use-gamebase)
 
-#### 1. Log in using a specific IDP
+#### 1. Login using a specific IDP
 
 특정 IDP에 대한 로그인 버튼을 클릭하였을 때, 다음 로그인 API를 구현합니다.
 
@@ -213,29 +243,33 @@ Gamebase 에서는 guest 로그인을 기본으로 지원합니다. guest 이외
 UnityEditor에서는 Guest로그인만 지원합니다.
 
 ```cs
-static void Login(string providerName, Dictionary<string, object>additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+static void Login(string providerName, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+static void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) // Only IOS
 ```
+
+> 몇몇 IDP의 로그인시에는 필수적으로 들어가야하는 정보가 있습니다. 예를 들어, facebook 로그인을 구현하기 위해서는 scope 등을 설정해주어야합니다. 이러한 필수 정보들을 설정해주기 위해서, static void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) API를 제공합니다. 파라미터 additionalInfo에 필수 정보들을 Dictionary 형태로 입력하시면 됩니다. (파라미터 값이 null일 때는, TOAST Cloud Console에 등록한 additionalInfo 값으로 채워집니다. 파라미터 값이 있을 때는 Console에 등록해놓은 값보다 우선시하여 값을 덮어쓰게 됩니다.)
 
 **Example**
 
 ``` cs
-public void Login(string providerName, Dictionary<string, object> additionalInfo)
+public void Login(string providerName)
 {
-	Gamebase.Login(providerName, additionalInfo, (authToken, error) =>
+	Gamebase.Login(providerName, (authToken, error) =>
     {
-    	if (error == null)
+    	if (Gamebase.IsSuccess(error))
         {
-        	Debug.Log("Login is succeeded.");
+        	string userId = authToken.member.userId;
+        	Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
         }
         else
         {
-        	Debug.Log(string.format("Login is failed. error is {0}", error));
+        	Debug.Log(string.Format("Login failed. error is {0}", error));
         }
     });
 }
 ```
 
-#### 2.  Log in as the latest login IDP
+#### 2.  Login as the latest login IDP
 
 가장 최근에 로그인한 IDP로의 로그인을 시도합니다.
 해당 로그인에 대한 토큰이 만료되었거나, 토큰에 대한 검증 등이 실패하였을 때, 실패를 리턴합니다. 이 때는 [해당 IDP에 대한 로그인](#1-log-in-using-a-specific-idp)을 구현해야합니다.
@@ -255,13 +289,37 @@ public void LoginForLastLoggedInProvider()
 {
 	Gamebase.LoginForLastLoggedInProvider((authToken, error) =>
     {
-    	if (error == null)
+    	if (Gamebase.IsSuccess(error))
         {
-        	Debug.Log("Login is succeeded.");
+        	Debug.Log("Login succeeded.");
         }
         else
         {
-        	Debug.Log(string.format("Login is failed. error is {0}", error));
+        	if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+            {
+            	Debug.Log(string.Format("Retry LoginForLastLoggedInProvider or notify an error message to the user. : {0}", error.message));
+            }
+            else
+            {
+                Debug.Log("Try to login using a specifec IDP");
+                Login("LastLoggedInProvider");
+            }
+        }
+    });
+}
+
+public void Login(string providerName)
+{
+    Gamebase.Login(providerName, (authToken, error) =>
+    {
+        if (Gamebase.IsSuccess(error))
+        {
+            string userId = authToken.member.userId;
+            Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
+        }
+        else
+        {
+            Debug.Log(string.Format("Login failed. error is {0}", error));
         }
     });
 }
@@ -286,13 +344,13 @@ public void Logout()
 {
     Gamebase.Logout((error) =>
     {
-        if (error == null)
+        if (Gamebase.IsSuccess(error))
         {
-        	Debug.Log("Logout is succeeded.");
+        	Debug.Log("Logout succeeded.");
         }
         else
         {
-        	Debug.Log(string.format("Logout is failed. error is {0}", error));
+        	Debug.Log(string.Format("Logout failed. error is {0}", error));
         }
     });
 }
@@ -300,7 +358,7 @@ public void Logout()
 
 ### Withdraw
 
-탈퇴 버튼을 클릭했을 때, 다음과 같이 로그아웃 API를 구현합니다.
+탈퇴 버튼을 클릭했을 때, 다음과 같이 탈퇴 API를 구현합니다.
 
 **API**<br>
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
@@ -316,13 +374,13 @@ public void Withdraw()
 {
     Gamebase.Withdraw((error) =>
     {
-        if (error == null)
+        if (Gamebase.IsSuccess(error))
         {
-            Debug.Log("Withdraw is succeeded.");
+            Debug.Log("Withdraw succeeded.");
         }
         else
         {
-            Debug.Log(string.format("Withdraw is failed. error is {0}", error));
+            Debug.Log(string.Format("Withdraw failed. error is {0}", error));
         }
 
     });
@@ -335,7 +393,7 @@ Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해�
 
 #### 1. Add Mapping
 
-특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다. Mapping을 하려는 IDP의 계정이 이미 다른 계정이 연동이 되어있다면, AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302) 에러를 리턴합니
+특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다. Mapping을 하려는 IDP의 계정이 이미 다른 계정이 연동이 되어있다면, AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302) 에러를 리턴합니다.
 
 Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 아니라, 기존에 로그인했던 IDP가 됩니다. 즉, Mapping은 단순히 IDP를 연동만 해줍니다.
 
@@ -353,13 +411,13 @@ public void AddMapping(string providerName)
 {
     Gamebase.AddMapping(providerName, (authToken, error) =>
     {
-        if (error == null)
+        if (Gamebase.IsSuccess(error))
         {
-            Debug.Log("AddMapping is succeeded.");
+            Debug.Log("AddMapping succeeded.");
         }
         else
         {
-            Debug.Log(string.format("AddMapping is failed. error is {0}", error));
+            Debug.Log(string.Format("AddMapping failed. error is {0}", error));
         }
     });
 }
@@ -383,13 +441,13 @@ public void RemoveMapping(string providerName)
 {
     Gamebase.RemoveMapping(providerName, (error) =>
     {
-        if (error == null)
+        if (Gamebase.IsSuccess(error))
         {
-            Debug.Log("RemoveMapping is succeeded.");
+            Debug.Log("RemoveMapping succeeded.");
         }
         else
         {
-            Debug.Log(string.format("RemoveMapping is failed. error is {0}", error));
+            Debug.Log(string.Format("RemoveMapping failed. error is {0}", error));
         }
     });
 }
@@ -416,13 +474,20 @@ public void RequestPurchase(long itemSeq)
 {
     Gamebase.Purchase.RequestPurchase(itemSeq, (purchasableReceipt, error) =>
     {
-        if (error == null)
+        if (Gamebase.IsSuccess(error))
         {
-            Debug.Log("RequestPurchase is succeeded.");
+            Debug.Log("Purchase succeeded.");
         }
         else
         {
-            Debug.Log(string.format("RequestPurchase is failed. error is {0}", error));
+        	if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
+            {
+                Debug.Log("User canceled purchase.");
+            }
+            else
+            {
+            	Debug.Log(string.Format("Purchase failed. error is {0}", error));
+            }
         }
     });
 }
@@ -447,19 +512,19 @@ public void RequestItemListPurchasable()
 {
     Gamebase.Purchase.RequestItemListPurchasable((purchasableItemList, error) =>
     {
-        if (error == null)
+        if (Gamebase.IsSuccess(error))
         {
-            Debug.Log("RequestItemListPurchasable is succeeded.");
+            Debug.Log("Get list succeeded.");
         }
         else
         {
-            Debug.Log(string.format("RequestItemListPurchasable is failed. error is {0}", error));
+            Debug.Log(string.Format("Get list failed. error is {0}", error));
         }
     });
 }
 ```
 
-#### 3. Get a list of items not consumed
+#### 3. Get a list of items non-consumed
 
 아이템을 구매는 하였지만, 정상적으로 아이템이 소비(배송, 지급)되었지 않은 미소비 결제내역을 요청합니다. 해당 내역을 받은 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.
 
@@ -478,13 +543,16 @@ public void RequestItemListOfNotConsumed()
 {
     Gamebase.Purchase.RequestItemListOfNotConsumed((purchasableReceiptList, error) =>
     {
-        if (error == null)
+        if (Gamebase.IsSuccess(error))
         {
-            Debug.Log("RequestItemListOfNotConsumed is succeeded.");
+            Debug.Log("Get list succeeded.");
+            
+            // Should Deal With This non-consumed Items.
+            // Send this item list to the game(item) server for consuming item.
         }
         else
         {
-            Debug.Log(string.format("RequestItemListOfNotConsumed is failed. error is {0}", error));
+            Debug.Log(string.Format("Get list failed. error is {0}", error));
         }
     });
 }
@@ -509,13 +577,16 @@ public void RequestRetryTransaction()
 {
     Gamebase.Purchase.RequestRetryTransaction((purchasableRetryTransactionResult, error) =>
     {
-        if (error == null)
+        if (Gamebase.IsSuccess(error))
         {
-            Debug.Log("RequestRetryTransaction is succeeded.");
+            Debug.Log("RequestRetryTransaction succeeded.");
+            
+            // Should Deal With This Retry Transaction Result.
+            // You may send result to your gameserver and add item to user.
         }
         else
         {
-            Debug.Log(string.format("RequestRetryTransaction is failed. error is {0}", error));
+            Debug.Log(string.Format("RequestRetryTransaction failed. error is {0}", error));
         }
     });
 }
@@ -544,16 +615,18 @@ public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNig
     pushConfiguration.pushEnabled = pushEnabled;
     pushConfiguration.adAgreement = adAgreement;
     pushConfiguration.adAgreementNight = adAgreementNight;
-
+    
+    // You should receive the above values to the logged-in user.
+    
     Gamebase.Push.RegisterPush(pushConfiguration, (error) =>
     {
-        if (error == null)
+        if (Gamebase.IsSuccess(error))
         {
-            Debug.Log("RegisterPush is succeeded.");
+            Debug.Log("RegisterPush succeeded.");
         }
         else
         {
-            Debug.Log(string.format("RegisterPush is failed. error is {0}", error));
+            Debug.Log(string.Format("RegisterPush failed. error is {0}", error));
         }
     });
 }
@@ -578,13 +651,19 @@ public void QueryPush()
 {
     Gamebase.Push.QueryPush((pushAdvertisements, error) =>
     {
-        if (error == null)
+        if (Gamebase.IsSuccess(error))
         {
-            Debug.Log("QueryPush is succeeded.");
+            Debug.Log("QueryPush succeeded.");
+            
+            bool pushEnabled = pushAdvertisements.pushEnabled;
+            bool adAgreement = pushAdvertisements.adAgreement;
+            bool adAgreementNight = pushAdvertisements.adAgreementNight;
+            
+            // You can handle these variables.
         }
         else
         {
-            Debug.Log(string.format("QueryPush is failed. error is {0}", error));
+            Debug.Log(string.Format("QueryPush failed. error is {0}", error));
         }
     });
 }
@@ -596,6 +675,7 @@ public void QueryPush()
 
 | Category | Sub Category | Error | Error Code | Notes |
 | --- | --- | --- | --- | --- |
+|Success| | SUCCESS | 0 | |
 |Common| | NOT_INITIALIZED | 1 | |
 |      | | NOT_LOGGED_IN | 2 | |
 |      | | INVALID_PARAMETER | 3 | |

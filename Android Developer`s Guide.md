@@ -16,12 +16,11 @@ Gamebase Android SDK를 사용하기 전에 TOAST Cloud Console에서 App ID를 
 
 ##### Download Link
 
-* [DOWNLOAD Gamebase Android SDK](http://docs.cloud.toast.com/ko/Download/)
+* [DOWNLOAD Gamebase Android SDK](http://docs.cloud.toast.com/ko/Download/#upcoming-products-gamebase)
 * 다운로드 받은 SDK에서 다음 폴더 및 aar 파일을 프로젝트에 추가합니다.
 	* **gamebase-sdk/**
 	* **gamebase-sdk-{version}.aar**
 	* **gamebase-sdk-base-{version}.aar**
-
 * 인증 모듈 추가
 	* 다운로드 받은 SDK의 **gamebase-adapter-auth-{provider}** 폴더를 프로젝트에 추가합니다.
 	* google, facebook, payco 중에서 사용할 인증 모듈을 모두 추가합니다.
@@ -123,26 +122,6 @@ dependencies {
 }
 ```
 
-#### Dependency
-
-| Category | Provider | Modules | Dependency | Description |
-| -------- | -------- | ------- | ---------- | ----------- |
-| **Gamebase<br>(Required)** | Gamebase | gamebase-sdk-{version}.aar<br>gamebase-sdk-base-{version}.aar | appcompat-v7-24.0.0.aar<br>support-v4-24.0.0.aar<br>support-annotations-24.0.0.jar<br>gson-2.2.4.jar<br>okhttp-3.6.0.jar<br>okio-1.11.0.jar |  |
-| **Authentication<br>(Optional)** | Google | gamebase-adapter-auth-google-{version}.aar | play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-tasks-10.0.1.aar<br>play-services-auth-10.0.1.aar<br>play-services-auth-base-10.0.1.aar |  |
-|  | Facebook | gamebase-adapter-auth-facebook-{version}.aar | facebook-android-sdk-4.17.0.aar<br>appcompat-v7-24.0.0.aar<br>support-vector-drawable-24.0.0.aar<br>animated-vector-drawable-24.0.0.aar<br>cardview-v7-24.0.0.aar<br>customtabs-24.0.0.aar<br>bolts-android-1.4.0.jar<br>bolts-applinks-1.4.0.jar<br>bolts-tasks-1.4.0.jar |  |
-|  | Payco | gamebase-adapter-auth-payco-{version}.aar | paycologin-1.2.6.aar<br>play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-tasks-10.0.1.aar |  |
-| **Purchase<br>(Optional)** | IAP | gamebase-adapter-purchase-iap-{version}.aar | iap-1.3.2.aar<br>mobill-core-1.3.2.jar<br>gson-2.2.4.jar<br>okhttp-1.5.4.jar |  |
-| **Push<br>(Optional)** | FCM | gamebase-adapter-push-fcm-{version}.aar | pushsdk-release-v1.32.aar<br>firebase-common-10.0.1.jar<br>firebase-iid-10.0.1.jar<br>firebase-messaging-10.0.1.aar<br>play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-gcm-10.0.1.aar<br>play-services-iid-10.0.1.aar<br>play-services-tasks-10.0.1.aar |  |
-|  | Tencent | gamebase-adapter-push-tencent-{version}.aar | pushsdk-release-v1.32.aar | 현재 지원되지 않습니다. |
-
-* Required 항목은 필수로 포함되어야 하는 모듈입니다.
-* Optional 항목은 해당 기능이 필요할 경우 포함되어야 하는 모듈입니다.
-* 중복되는 Dependency 모듈은 하나만 포함하도록 해야합니다.
-<br>
-* 외부 SDK 가이드
-    * Facebook Developers Guide : [Facebook for developers](https://developers.facebook.com/docs/android)
-    * Google Developers Guide [Google APIs for Android](https://developers.google.com/android/guides/overview)
-
 ### Initialization
 
 #### 1. Activate the application
@@ -161,7 +140,7 @@ public class GamebaseApplication extends Application {
 ```
 
 #### 2. Initialization
-**Activity#onCreate(Bundle)**에서 **Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback\<LaunchingInfo\>)**을 호출하여 Gamebase SDK 초기화를 진행합니다.
+**Activity#onCreate(Bundle)**에서 **Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback)**을 호출하여 Gamebase SDK 초기화를 진행합니다.
 
 ```java
 public class MainActivity extends AppCompatActivity {
@@ -195,6 +174,9 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     // 초기화에 실패하면 Gamebase SDK를 이용할 수 없습니다.
                     // 에러를 노출 후 게임을 재시작 또는 종료해야합니다.
+                    Log.e(TAG, "Initialize failed- "
+                            + "errorCode: " + exception.getCode()
+                            + "errorMessage: " + exception.getMessage());
                 }
             }
         });
@@ -208,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
 Gamebase 에서는 기본적으로 guest 로그인을 지원합니다.
 guest 이외의 Provider에 로그인을 하기 위해서는 해당 Provider AuthAdapter가 필요합니다.
 AuthAdapter 및 3rd-Party Provider SDK에 대한 설정은 다음의 링크를 참고하시길 바랍니다.
-{링크}
+[3rd-Party Provider SDK Guide](Android Developer`s Guide#3rd-party-provider-sdk-guide)
 
 #### 1. Log in as the latest login IDP
 가장 최근에 로그인한 IDP로의 로그인을 시도합니다. 해당 로그인에 대한 토큰이 만료되었거나,
@@ -219,11 +201,19 @@ private static void onLoginLastLoggedIn() {
         @Override
         public void onCallback(AuthToken data, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
+				// 로그인 성공
                 Log.d(TAG, "Login successful");
-                // 로그인 성공
             } else {
-                Log.e(TAG, "Login failed.");
-                // 로그인 실패
+	            // 로그인 실패
+	            Log.e(TAG, "Login failed- "
+                        + "errorCode: " + exception.getCode()
+                        + "errorMessage: " + exception.getMessage());
+
+	            if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
+                    exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
+	                    // Socket error 입니다.
+	                    // 네트워크 상태를 확인 후 loginForLastLoggedInPovider 메소드 호출을 재시도 할 수 있습니다.
+                    }
             }
         }
     });
@@ -241,7 +231,9 @@ private static void onLoginForGoogle(final Activity activity) {
                 Log.d(TAG, "Login successful");
                 // 로그인 성공
             } else {
-                Log.e(TAG, "Login failed.");
+                Log.e(TAG, "Login failed- "
+                        + "errorCode: " + exception.getCode()
+                        + "errorMessage: " + exception.getMessage());
                 // 로그인 실패
             }
         }
@@ -270,7 +262,9 @@ private static void onLogout(final Activity activity) {
                 Log.d(TAG, "Logout successful");
                 // 로그아웃 성공
             } else {
-                Log.e(TAG, "Logout failed.");
+                Log.e(TAG, "Logout failed- "
+                        + "errorCode: " + exception.getCode()
+                        + "errorMessage: " + exception.getMessage());
                 // 로그아웃 실패
             }
         }
@@ -289,7 +283,9 @@ private static void onWithdraw(final Activity activity) {
                 Log.d(TAG, "Withdraw successful");
                 // 탈퇴 성공
             } else {
-                Log.e(TAG, "Withdraw failed.");
+                Log.e(TAG, "Withdraw failed- "
+                        + "errorCode: " + exception.getCode()
+                        + "errorMessage: " + exception.getMessage());
                 // 로그아웃 실패
             }
         }
@@ -305,7 +301,7 @@ Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해�
 #### 1. Add mapping
 특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다.
 Mapping을 하려는 IDP의 계정이 이미 다른 계정이 연동이 되어있다면,
-**AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 에러를 리턴합니
+**AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 에러를 리턴합니다.
 
 Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 아니라, 기존에 로그인했던 IDP가 됩니다. 즉, Mapping은 단순히 IDP를 연동만 해줍니다.
 
@@ -319,7 +315,9 @@ public static void addMappingForFacebook(final Activity activity) {
                     Log.d(TAG, "Add Mapping successful");
                     // 맵핑 추가 성공
                 } else {
-                    Log.d(TAG, "Add Mapping failed");
+                    Log.e(TAG, "Add mapping failed- "
+                        + "errorCode: " + exception.getCode()
+                        + "errorMessage: " + exception.getMessage());
                     // 맵핑 추가 성공
                 }
             }
@@ -337,7 +335,9 @@ private static void removeMappingForFacebook() {
                     Log.d(TAG, "Remove mapping successful");
                     // 맵핑 해제 성공
                 } else {
-                    Log.d(TAG, "Remove mapping failed");
+                    Log.e(TAG, "Remove mapping failed- "
+                        + "errorCode: " + exception.getCode()
+                        + "errorMessage: " + exception.getMessage());
                     // 맵핑 해제 실패
                 }
             }
@@ -349,11 +349,16 @@ private static void removeMappingForFacebook() {
 
 #### 1. Settings
 
-##### 1-1. Download
+##### 1-1. TOAST Cloud Console
+
+* IAP 가이드를 참고하여 IAP 설정 및 상품등록을 합니다.
+	* [IAP > Getting Started](http://docs.cloud.toast.com/ko/Common/IAP/Web%20Console/)
+
+##### 1-2. Download
 
 * 다운로드 받은 SDK의 **gamebase-adapter-purchase-iap** 폴더를 프로젝트에 추가합니다.
 
-##### 1-2. Initialization
+##### 1-3. Initialization
 
 * Gamebase 초기화시 configuration의 **setStoreCode()**를 호출합니다.
 * 사용 가능한 마켓 리스트는 다음 가이드에 나와 있습니다.
@@ -391,6 +396,9 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
         	// User canceled.
         } else {
             // Failed.
+            Log.e(TAG, "Request item list failed- "
+                    + "errorCode: " + exception.getCode()
+                    + "errorMessage: " + exception.getMessage());
         }
     }
 });
@@ -408,6 +416,9 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
             // Succeeded.
         } else {
             // Failed.
+            Log.e(TAG, "Request item list failed- "
+                    + "errorCode: " + exception.getCode()
+                    + "errorMessage: " + exception.getMessage());
         }
     }
 });
@@ -415,7 +426,14 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 
 #### 4. Get a list of items not consumed
 
-아이템을 구매는 하였지만, 정상적으로 아이템이 소비(배송, 지급)되었지 않은 **미소비 결제내역**을 요청합니다. 해당 내역을 받은 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.
+아이템을 구매는 하였지만, 정상적으로 아이템이 소비(배송, 지급)되었지 않은 **미소비 결제내역**을 요청합니다. 해당 내역을 받은 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.<br><br>
+RequestItemListOfNotConsumed API는 구매 목록이 있는지 확인하는 용도입니다.
+
+* 미소비 결제 처리 순서
+	1. 결제 성공시 RequestItemListOfNotConsumed 호출
+	2. API의 리턴값이 존재할 경우 게임 클라이언트가 게임 서버에 컨슘 요청
+	3. 게임 서버가 IAP서버에 컨슘 요청
+	4. 게임 서버가 게임 클라이언트에 아이템 지급
 
 ```java
 Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallback<List<PurchasableReceipt>>() {
@@ -425,6 +443,9 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
             // Succeeded.
         } else {
             // Failed.
+            Log.e(TAG, "Request item list failed- "
+                    + "errorCode: " + exception.getCode()
+                    + "errorMessage: " + exception.getMessage());
         }
     }
 });
@@ -433,7 +454,9 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 #### 5. Reprocess purchase transaction
 
 스토어 결제는 정상적으로 이루어졌지만, ToastCloud IAP 서버 검증 실패 등으로 인해 정상적으로 결제가 이뤄지지 않은 경우에,
-해당 API를 이용하여 재처리를 시도합니다. 최종적으로 결제가 성공한 내역을 바탕으로, 아이템 배송(지급)등의 API를 호출하여 처리를 해주어야합니다.
+해당 API를 이용하여 재처리를 시도합니다. 최종적으로 결제가 성공한 내역을 바탕으로, 아이템 배송(지급)등의 API를 호출하여 처리를 해주어야합니다.<br><br>
+RequestRetryTransaction API는 클라이언트에 결제 실패 로직이 남아있는 경우 재처리를 실행하고, 성공/실패 결과를 콜백함수로 리턴합니다. 그래서 결과를 어떻게 핸들링 할 것인지는 게임쪽에서 결정하여 활용할 수 있는 부분이므로 Gamebase SDK가 자동호출 해주지 않습니다.<br><br>
+로그인 성공 후 매번 호출해야 합니다.
 
 ```java
 Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<PurchasableRetryTransactionResult>() {
@@ -443,6 +466,9 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
             // Succeeded.
         } else {
             // Failed.
+            Log.e(TAG, "Request retry transaction failed- "
+                    + "errorCode: " + exception.getCode()
+                    + "errorMessage: " + exception.getMessage());
         }
     }
 });
@@ -452,12 +478,17 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 
 #### 1. Settings
 
-##### 1-1. Download
+##### 1-1. TOAST Cloud Console
+
+* TCPush 가이드를 참고하여 Console 설정을 합니다.
+	* [Push > Developer's Guide](http://docs.cloud.toast.com/ko/Notification/Push/Developer%60s%20Guide/)
+
+##### 1-2. Download
 
 * Firebase 푸쉬를 사용하는 경우
 	* 다운로드 받은 SDK의 **gamebase-adapter-push-fcm** 폴더를 프로젝트에 추가합니다.
 
-##### 1-2. AndroidManifest.xml (Firebase only)
+##### 1-3. AndroidManifest.xml (Firebase only)
 
 * Gamebase 푸시에 필요한 설정을 추가합니다.
 >**${applicationId}**을 **패키지 네임**으로 변경하여야 합니다.
@@ -534,6 +565,9 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
             // Succeeded.
         } else {
             // Failed.
+            Log.e(TAG, "Register push failed- "
+                    + "errorCode: " + exception.getCode()
+                    + "errorMessage: " + exception.getMessage());
         }
     }
 });
@@ -554,6 +588,9 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
             boolean enableAdNightPush = data.adAgreementNight;
         } else {
             // Failed.
+            Log.e(TAG, "Query push failed- "
+                    + "errorCode: " + exception.getCode()
+                    + "errorMessage: " + exception.getMessage());
         }
     }
 });
@@ -610,6 +647,25 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 |        | | SERVER_REMOTE_SYSTEM_ERROR | 8002 | |
 |        | | SERVER_UNKNOWN_ERROR | 8999 | |
 
+## Dependency
+
+| Category | Provider | Modules | Dependencies | Description |
+| -------- | -------- | ------- | ---------- | ----------- |
+| **Gamebase<br>(Required)** | Gamebase | gamebase-sdk-{version}.aar<br>gamebase-sdk-base-{version}.aar | appcompat-v7-24.0.0.aar<br>support-v4-24.0.0.aar<br>support-annotations-24.0.0.jar<br>gson-2.2.4.jar<br>okhttp-3.6.0.jar<br>okio-1.11.0.jar |  |
+| **Authentication<br>(Optional)** | Google | gamebase-adapter-auth-google-{version}.aar | play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-tasks-10.0.1.aar<br>play-services-auth-10.0.1.aar<br>play-services-auth-base-10.0.1.aar |  |
+|  | Facebook | gamebase-adapter-auth-facebook-{version}.aar | facebook-android-sdk-4.17.0.aar<br>appcompat-v7-24.0.0.aar<br>support-vector-drawable-24.0.0.aar<br>animated-vector-drawable-24.0.0.aar<br>cardview-v7-24.0.0.aar<br>customtabs-24.0.0.aar<br>bolts-android-1.4.0.jar<br>bolts-applinks-1.4.0.jar<br>bolts-tasks-1.4.0.jar |  |
+|  | Payco | gamebase-adapter-auth-payco-{version}.aar | paycologin-1.2.6.aar<br>play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-tasks-10.0.1.aar |  |
+| **Purchase<br>(Optional)** | IAP | gamebase-adapter-purchase-iap-{version}.aar | iap-1.3.2.aar<br>mobill-core-1.3.2.jar<br>gson-2.2.4.jar<br>okhttp-1.5.4.jar |  |
+| **Push<br>(Optional)** | FCM | gamebase-adapter-push-fcm-{version}.aar | pushsdk-release-v1.32.aar<br>firebase-common-10.0.1.jar<br>firebase-iid-10.0.1.jar<br>firebase-messaging-10.0.1.aar<br>play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-gcm-10.0.1.aar<br>play-services-iid-10.0.1.aar<br>play-services-tasks-10.0.1.aar |  |
+|  | Tencent | gamebase-adapter-push-tencent-{version}.aar | pushsdk-release-v1.32.aar | 현재 지원되지 않습니다. |
+
+* Required 항목은 필수로 포함되어야 하는 모듈입니다.
+* Optional 항목은 해당 기능이 필요할 경우 포함되어야 하는 모듈입니다.
+* 중복되는 Dependency 모듈은 하나만 포함하도록 해야합니다.
+
+### 3rd-Party Provider SDK Guide
+* Facebook Developers Guide : [Facebook for developers](https://developers.facebook.com/docs/android)
+* Google Developers Guide [Google APIs for Android](https://developers.google.com/android/guides/overview)
 
 ## API Reference
 SDK 내에 포함되어 있습니다.
