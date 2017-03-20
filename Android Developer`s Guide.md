@@ -122,9 +122,9 @@ dependencies {
 }
 ```
 
-### Initialization
+## Initialization
 
-#### 1. Activate the application
+### 1. Activate the application
 앱의 Lifecycle 관리를 위해 앱이 활성화 되었음을 Gamebase SDK에 알립니다.
 **Application#onCreate()**에서 **Gamebase#activeApp(Context)**을 호출합니다.
 
@@ -139,7 +139,7 @@ public class GamebaseApplication extends Application {
 }
 ```
 
-#### 2. Initialization
+### 2. Initialization
 **Activity#onCreate(Bundle)**에서 **Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback)**을 호출하여 Gamebase SDK 초기화를 진행합니다.
 
 ```java
@@ -186,13 +186,50 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-### Login
+#### Launching 상태
+Gamebase#initialize 호출 결과로 런칭 상태를 확인 할 수 있습니다.
+```java
+Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
+    @Override
+    public void onCallback(final LaunchingInfo data, GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            // 런칭 상태를 확인합니다.
+            LaunchingStatus status = data.getStatus();
+            int statusCode = status.getCode();
+            switch (statusCode) {
+                case LaunchingStatus.INSPECTING_SERVICE:
+                    // 점검중...
+                    break;
+                ...
+            }
+            ...
+        }
+        ...
+    }
+});
+```
+
+런칭 상태 코드
+
+| Status | Code | Description |
+| --- | --- | --- |
+| IN_SERVICE | 200 | 정상 서비스 중 |
+| RECOMMEND_UPDATE | 201 | 업데이트 권장 |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202 | 점검 중이지만 QA 유저 서비스 가능 |
+| REQUIRE_UPDATE | 300 | 업데이트 필수 |
+| BLOCKED_USER | 301 | 접속 차단 유저 |
+| TERMINATED_SERVICE | 302 | 서비스 종료 |
+| INSPECTING_SERVICE | 303 | 서비스 점검 중 |
+| INSPECTING_ALL_SERVICES | 304 | 전체 서비스 점검 중 |
+| INTERNAL_SERVER_ERROR | 500 | 내부 서버 에러 |
+
+## Login
 Gamebase 에서는 기본적으로 guest 로그인을 지원합니다.
 guest 이외의 Provider에 로그인을 하기 위해서는 해당 Provider AuthAdapter가 필요합니다.
 AuthAdapter 및 3rd-Party Provider SDK에 대한 설정은 다음의 링크를 참고하시길 바랍니다.
 [3rd-Party Provider SDK Guide](Android Developer`s Guide#3rd-party-provider-sdk-guide)
 
-#### 1. Log in as the latest login IDP
+### 1. Login as the latest login IDP
 가장 최근에 로그인한 IDP로의 로그인을 시도합니다. 해당 로그인에 대한 토큰이 만료되었거나,
 토큰에 대한 검증 등이 실패하였을 때, 실패를 리턴합니다. 이 때는 해당 IDP에 대한 로그인을 구현해주어야합니다.
 ```java
@@ -219,12 +256,35 @@ private static void onLoginLastLoggedIn() {
     });
 }
 ```
+### 2. Login with GUEST
+Gamebase는 Guest 로그인을 지원합니다.
+디바이스의 유일한 키를 생성하여 Gamebase에 로그인을 시도합니다.
+Guest 로그인은 앱 삭제 또는 디바이스 초기화 시에 계정이 삭제될 수 있으므로 IDP를 활용한 로그인 방식을 권장합니다.
+```java
+private static void onLoginForGuest(final Activity activity) {
+    Gamebase.login(activity, AuthProvider.GUEST, new GamebaseDataCallback<AuthToken>() {
+        @Override
+        public void onCallback(AuthToken data, GamebaseException exception) {
+            if (Gamebase.isSuccess(exception)) {
+                Log.d(TAG, "Login successful");
+                // 로그인 성공
+            } else {
+                Log.e(TAG, "Login failed- "
+                        + "errorCode: " + exception.getCode()
+                        + "errorMessage: " + exception.getMessage());
+                // 로그인 실패
+            }
+        }
+    });
+}
+```
 
-#### 2. Log in using a specific IDP
+
+### 3. Login using a specific IDP
 특정 IDP에 대한 로그인 버튼을 클릭하였을 때, 다음 로그인 API를 구현합니다.
 ```java
 private static void onLoginForGoogle(final Activity activity) {
-    Gamebase.login(activity, AuthProvider.GOOGLE, null, new GamebaseDataCallback<AuthToken>() {
+    Gamebase.login(activity, AuthProvider.GOOGLE, new GamebaseDataCallback<AuthToken>() {
         @Override
         public void onCallback(AuthToken data, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
@@ -250,8 +310,40 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     Gamebase.onActivityResult(requestCode, resultCode, data);
 }
 ```
+### 4. Gets Authentication Information for external IDP.
 
-### Logout
+외부 인증 SDK에서 AccessToken, UserId, Profile 등의 정보를 가져올 수 있습니다.
+
+```java
+// 유저 ID를 가져옵니다.
+String userId = getAuthProviderUserID(AuthProvider.FACEBOOK);
+// AccessToken을 가져옵니다.
+String accessToken = getAuthProviderAccessToken(AuthProvider.FACEBOOK);
+// User Profile 정보를 가져옵니다.
+AuthFacebookProfile profile = (AuthFacebookProfile) getAuthProviderProfile(AuthProvider.FACEBOOK);
+String name = profile.getName();    // or profile.information.get("name")
+String email = profile.getEmail();  // or profile.information.get("email")
+```
+
+### 5. Authentication Additional Information Settings.
+
+#### Facebook
+* **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+	* Facebook의 경우, OAuth 인증 시도 시, Facebook으로 부터 요청할 정보의 종류를 설정해야 합니다.
+	* 예제
+	```json
+	{ "facebook_permission": [ "public_profile", "email", "user_friends"]}
+	```
+
+#### Payco
+* **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+	* Payco의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**의 설정이 필요합니다.
+    * 예제
+    ```json
+    { "service_code": "HANGAME", "service_code": "Your Service Name" }
+    ```
+
+## Logout
 로그아웃 버튼을 클릭했을 때, 다음과 같이 로그아웃 API를 구현합니다.
 ```java
 private static void onLogout(final Activity activity) {
@@ -272,7 +364,7 @@ private static void onLogout(final Activity activity) {
 }
 ```
 
-### Withdraw
+## Withdraw
 탈퇴 버튼을 클릭했을 때, 다음과 같이 로그아웃 API를 구현합니다.
 ```java
 private static void onWithdraw(final Activity activity) {
@@ -293,12 +385,12 @@ private static void onWithdraw(final Activity activity) {
 }
 ```
 
-### Mapping
+## Mapping
 Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시키는 기능입니다.
 특정 IDP에 연동된(guest 포함) 계정에 다른 IDP의 계정을 연동하였을 때,
 각각의 계정들에 대해서 UserID는 동일하게 주어집니다.
 
-#### 1. Add mapping
+### 1. Add mapping
 특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다.
 Mapping을 하려는 IDP의 계정이 이미 다른 계정이 연동이 되어있다면,
 **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 에러를 리턴합니다.
@@ -324,7 +416,7 @@ public static void addMappingForFacebook(final Activity activity) {
         });
     }
 ```
-#### 2. Remove mapping
+### 2. Remove mapping
 특정 IDP에 대한 연동을 해제합니다. 만약, 해제하고자 하는 IDP가 유일한 IDP라면, 실패를 리턴하게 됩니다. 연동 해제후에는 Gamebase 내부에서, 해당 IDP에 대한 로그아웃처리를 해줍니다.
 ```java
 private static void removeMappingForFacebook() {
@@ -345,20 +437,20 @@ private static void removeMappingForFacebook() {
     }
 ```
 
-### Purchase
+## Purchase
 
-#### 1. Settings
+### 1. Settings
 
-##### 1-1. TOAST Cloud Console
+#### 1-1. TOAST Cloud Console
 
 * IAP 가이드를 참고하여 IAP 설정 및 상품등록을 합니다.
 	* [IAP > Getting Started](http://docs.cloud.toast.com/ko/Common/IAP/Web%20Console/)
 
-##### 1-2. Download
+#### 1-2. Download
 
 * 다운로드 받은 SDK의 **gamebase-adapter-purchase-iap** 폴더를 프로젝트에 추가합니다.
 
-##### 1-3. Initialization
+#### 1-3. Initialization
 
 * Gamebase 초기화시 configuration의 **setStoreCode()**를 호출합니다.
 * 사용 가능한 마켓 리스트는 다음 가이드에 나와 있습니다.
@@ -382,7 +474,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 });
 ```
 
-#### 2. Purchase item
+### 2. Purchase item
 
 구매하고자 하는 아이템의 itemSeq를 이용해 다음의 API를 호출하여 구매요청을 합니다.
 
@@ -404,7 +496,7 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 });
 ```
 
-#### 3. Get a list of items purchasable
+### 3. Get a list of items purchasable
 
 아이템 목록을 조회하기 위하여 다음의 API를 호출합니다. 콜백으로 리턴되는 Array 안에는 각 아이템들에 대한 정보가 담겨 있습니다.
 
@@ -424,7 +516,7 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 });
 ```
 
-#### 4. Get a list of items not consumed
+### 4. Get a list of items not consumed
 
 아이템을 구매는 하였지만, 정상적으로 아이템이 소비(배송, 지급)되었지 않은 **미소비 결제내역**을 요청합니다. 해당 내역을 받은 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.<br><br>
 RequestItemListOfNotConsumed API는 구매 목록이 있는지 확인하는 용도입니다.
@@ -451,7 +543,7 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 });
 ```
 
-#### 5. Reprocess purchase transaction
+### 5. Reprocess purchase transaction
 
 스토어 결제는 정상적으로 이루어졌지만, ToastCloud IAP 서버 검증 실패 등으로 인해 정상적으로 결제가 이뤄지지 않은 경우에,
 해당 API를 이용하여 재처리를 시도합니다. 최종적으로 결제가 성공한 내역을 바탕으로, 아이템 배송(지급)등의 API를 호출하여 처리를 해주어야합니다.<br><br>
@@ -474,21 +566,21 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 });
 ```
 
-### Push
+## Push
 
-#### 1. Settings
+### 1. Settings
 
-##### 1-1. TOAST Cloud Console
+#### 1-1. TOAST Cloud Console
 
 * TCPush 가이드를 참고하여 Console 설정을 합니다.
 	* [Push > Developer's Guide](http://docs.cloud.toast.com/ko/Notification/Push/Developer%60s%20Guide/)
 
-##### 1-2. Download
+#### 1-2. Download
 
 * Firebase 푸쉬를 사용하는 경우
 	* 다운로드 받은 SDK의 **gamebase-adapter-push-fcm** 폴더를 프로젝트에 추가합니다.
 
-##### 1-3. AndroidManifest.xml (Firebase only)
+#### 1-3. AndroidManifest.xml (Firebase only)
 
 * Gamebase 푸시에 필요한 설정을 추가합니다.
 >**${applicationId}**을 **패키지 네임**으로 변경하여야 합니다.
@@ -524,7 +616,7 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 </manifest>
 ```
 
-##### 1-3. Initialization
+#### 1-3. Initialization
 
 * Gamebase 초기화시 configuration의 **setPushType()**을 호출합니다.
 * Firebase 푸쉬를 사용하는 경우
@@ -547,7 +639,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 });
 ```
 
-#### 2. Register push
+### 2. Register push
 다음의 API를 호출하여, ToastCloud Push에 해당 사용자를 등록합니다.
 Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야간 광고성 Push 동의 여부(enableAdNightPush)값을 사용자로부터 받아온 후, 다음의 API 호출을 통해 등록을 완료합니다.
 
@@ -573,7 +665,7 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 });
 ```
 
-#### 3. Get push settings
+### 3. Get push settings
 사용자의 Push 설정을 조회하기 위해서, 다음의 API를 이용합니다.
 콜백으로 오는 PushConfiguration 값을 바탕으로, 사용자 설정값을 얻을 수 있습니다.
 
@@ -596,7 +688,85 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 });
 ```
 
-### UI
+## UI
+### WebView
+
+#### 1. Browser Style WebView
+기본으로 설정된 브라우저 스타일의 WebView를 노출합니다.
+```java
+Gamebase.WebView.showWebBrowser(activity, "http://cloud.toast.com");
+```
+
+#### 2. Popup Style WebView (지원예정)
+기본으로 설정된 팝업 스타일의 WebView를 노출합니다.
+```java
+Gamebase.WebView.showWebPopup(activity, "http://cloud.toast.com");
+```
+
+#### 3. Custom WebView
+Custom WebView를 노출합니다.
+GamebaseWebViewConfiguration 설정으로 WebView를 Customizing 할 수 있습니다.
+```java
+GamebaseWebViewConfiguration configuration
+        = new GamebaseWebViewConfiguration.Builder()
+            .setStyle(GamebaseWebViewStyle.BROWSER)
+            .setTitleText("title")                              // 웹뷰 타이틀 설정
+            .setScreenOrientation(ScreenOrientation.PORTRAIT)   // 웹뷰 스크린 방향 설정
+            .setNavigationBarColor(Color.RED)                   // 네비게이션바 색상 설정
+            .setNavigationBarHeight(40)                         // 네비게이션바 높이 설정
+            .setBackButtonVisible(true)                         // 백 버튼 활성화 여부 설정
+            .setBackButtonImageResource(R.id.back_button)       // 백 버튼 이미지 설정
+            .setCloseButtonImageResource(R.id.close_button)     // 닫기 버튼 이미지 설정
+            .build();
+GamebaseWebView.showWebView(MainActivity.this, "http://cloud.toast.com", configuration);
+```
+| Method | Values | Description |
+| --- | --- | --- |
+| setStyle(int style) | GamebaseWebViewStyle.BROWSER | 브라우저 스타일의 웹뷰 |
+| | GamebaseWebViewStyle.POPUP | 팝업 스타일의 웹뷰 |
+| setTitleText(String title) | title | 웹뷰의 타이틀 |
+| setScreenOrientation(int orientation) | ScreenOrientation.PORTRAIT | 세로모드 |
+| | ScreenOrientation.LANDSCAPE | 가로모드 |
+| | ScreenOrientation.LANDSCAPE_REVERSE | 가로모드를 180도 회전 |
+| setNavigationBarColor(int color) | Color.argb(a, r, b, b) | 네비게이션바 색상 |
+| setBackButtonVisible(boolean visible) | true or false | 백 버튼 활성 or 비활성 |
+| setNavigationBarHeight(int height) | height | 네비게이션바 높이 |
+| setBackButtonImageResource(int resourceId) | ID of resource | 백 버튼 이미지 |
+| setCloseButtonImageResource(int resourceId) | ID of resource | 닫기 버튼 이미지 |
+
+### Alert
+Android System Alert Dialog를 간단하게 노출 할 수 있는 API를 제공합니다.
+
+#### 1. Simple Alert Dialog
+타이틀과 메시지 입력만으로 간단하게 Alert Dialog를 노출할 수 있습니다.
+
+```java
+Gamebase.Util.showAlertDialog(activity, "title", "message");
+```
+
+#### 2. Alert Dialog with Listener
+Alert Dialog 노출 후 처리 결과를 콜백 받고 싶을 경우 다음 API를 사용합니다.
+
+```java
+Gamebase.Util.showAlertDialog(activity,
+                            "title",                        // 타이틀 텍스트.
+                            "messsage",                     // 메시지 텍스트.
+                            "OK",                           // 긍정 버튼 텍스트.
+                            positiveButtonEventListener,    // 긍정 버튼이 눌러졌을 때 호출되는 Listener.
+                            "Cancel",                       // 부정 버튼 텍스트.
+                            negativeButtonEventListener,    // 부정 버튼이 눌러졌을 때 호출되는 Listener.
+                            backKeyEventListener,           // Alert Dialog가 취소되면 호출되는 Listener.
+                            true);                          // Alert Dialog를 취소할 수 있는지 여부를 설정.
+```
+
+### Toast
+Android의 Toast를 간단하게 노출 할 수 있는 API를 제공합니다.
+
+```java
+Gamebase.Util.showToast(activity,
+                        "message",              // 노출 할 메시지 텍스트
+                        Toast.LENGTH_SHORT);    // 메시지를 표시하는 시간 (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
+```
 
 ## Error codes
 
@@ -663,7 +833,7 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 * Optional 항목은 해당 기능이 필요할 경우 포함되어야 하는 모듈입니다.
 * 중복되는 Dependency 모듈은 하나만 포함하도록 해야합니다.
 
-### 3rd-Party Provider SDK Guide
+## 3rd-Party Provider SDK Guide
 * Facebook Developers Guide : [Facebook for developers](https://developers.facebook.com/docs/android)
 * Google Developers Guide [Google APIs for Android](https://developers.google.com/android/guides/overview)
 
