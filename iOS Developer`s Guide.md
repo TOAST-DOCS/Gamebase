@@ -96,7 +96,7 @@ AppDelegate.h 에서 다음의 헤더 파일을 가져옵니다.
     NSString *gameAppVersion = @"1.2";
 
     TCGBConfiguration *configuration = [TCGBConfiguration configurationWithAppID:projectID appVersion:gameAppVersion];
-    [configuration setShowBlockingPopup:YES];
+    [configuration enableLaunchingStatusPopup:YES];
 
     [TCGBGamebase initializeWithConfiguration:configuration launchOptions:launchOptions completion:^(id launchingData, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
@@ -214,7 +214,8 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 파라미터 additionalInfo에 필수 정보들을 Dictionary 형태로 입력하시면 됩니다.
 (파라미터 값이 nil일 때는, TOAST Cloud Console에 등록한 additionalInfo 값으로 채워집니다. 파라미터 값이 있을 때는 Console에 등록해놓은 값보다 우선시하여 값을 덮어쓰게 됩니다.)
 
-> **Information**
+> **Information!**
+> 
 > iOS에서 지원하는 IDP는 **TCGBConstants.h**의 TCGBAuthIDPs 영역의 **kTCGBAuthXXXXXX**로 정의되어 있습니다.
 
 ```objectivec
@@ -235,37 +236,47 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 ##### 1. Guest
 ##### 2. Facebook
 1. AdditionalInfo의 설정이 필요합니다.
-	* **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-	* Facebook의 경우, OAuth 인증 시도 시, Facebook으로 부터 요청할 정보의 종류를 설정해야 합니다. 
-	* 예제
-	```json
-	{ "facebook_permission": [ "public_profile", "email", "user_friends"]}
-	```
+    * **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+    * Facebook의 경우, OAuth 인증 시도 시, Facebook으로 부터 요청할 정보의 종류를 설정해야 합니다. 
+    * 예제
+
+```json
+{ "facebook_permission": [ "public_profile", "email", "user_friends"]}
+```
 2. Facebook SDK를 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다.
-[](http://)
+[Facebook Developer Guide](https://developers.facebook.com/docs/ios/getting-started)
 
 ##### 3. Payco
 1. AdditionalInfo의 설정이 필요합니다.
-	* **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-	* Payco의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**의 설정이 필요합니다.
-	* 예제
-	```json
-    { "service_code": "HANGAME", "service_code": "Your Service Name" }
-    ```
+    * **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+    * Payco의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**의 설정이 필요합니다.
+    * 예제
+
+```json
+{ "service_code": "HANGAME", "service_code": "Your Service Name" }
+```
 
 ##### 4. GameCenter
+TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
+
+
+
+<br/>
 
 #### 4. ID Provider의 AccessToken으로 로그인 API 호출
 게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증을 하고 발급받은 AccessToken등을 이용하여, Gamebase 로그인을 할 수 있는 인터페이스 입니다.
 
 * Credential 파라미터의 설정방법
-	* NSDictionary 타입으로 설정합니다.
-	* **kTCGBAuthLoginWithCredentialProviderNameKeyname** 키에는 idp종류를 설정합니다. (faceboo, payco, iosgamecenter)
-	* **kTCGBAuthLoginWithCredentialAccessTokenKeyname** 키에는 외부 SDK로부터 받은 인증정보(AccessToken)를 입력합니다.
+    * NSDictionary 타입으로 설정합니다.
+    * **kTCGBAuthLoginWithCredentialProviderNameKeyname** 키에는 idp종류를 설정합니다. (faceboo, payco, iosgamecenter)
+    * **kTCGBAuthLoginWithCredentialAccessTokenKeyname** 키에는 외부 SDK로부터 받은 인증정보(AccessToken)를 입력합니다.
+
 > **Tip!** 
+> 
 > 게임 내에서 외부 서비스(Facebook 등)의 고유기능의 사용이 필요할 때 사용될 수 있습니다.
 
-> **주의**
+> **주의!**
+> 
 > 외부 SDK에서 요구하는 개발사항은 Gamebase에서는 지원이 불가능합니다.
 
 ```objectivec
@@ -627,6 +638,9 @@ iOS8 이상에서 동작하는 UIAlertController와, iOS8 미만에서의 UIAler
 |         | | TCGB_ERROR_SOCKET_ERROR | 110 | |
 |         | | TCGB_ERROR_UNKNOWN_ERROR | 999 | |
 | Launching | | TCGB_ERROR_LAUNCHING_SERVER_ERROR | 2001 | |
+|           | | TCGB_ERROR_LAUNCHING_NOT_EXIST_CLIENT_ID | 2002 | |
+|           | | TCGB_ERROR_LAUNCHING_UNREGISTERED_APP    | 2003 | |
+|           | | TCGB_ERROR_LAUNCHING_UNREGISTERED_CLIENT | 2004 | |
 | Auth | Common | TCGB_ERROR_AUTH_USER_CANCELED | 3001 | |
 |      |        | TCGB_ERROR_AUTH_NOT_SUPPORTED_PROVIDER | 3002 | |
 |      |        | TCGB_ERROR_AUTH_NOT_EXIST_MEMBER | 3003 | |

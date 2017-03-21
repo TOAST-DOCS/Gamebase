@@ -121,6 +121,15 @@ dependencies {
     }
 }
 ```
+* 5) 점검 관리
+
+점검 시 노출될 점검 페이지를 수정하여 /assets 경로에 아래와 같이 추가합니다.
+```
+/assets/html/maintenance.html
+/assets/images/maintenance.png
+```
+
+
 
 ## Initialization
 
@@ -156,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
                         new GamebaseConfiguration.Builder()
                                 .setAppId("T0aStC1d")
                                 .setAppVersion("1.0.0")
+                                .enableLaunchingStatusPopup(true)
                                 .build();
         /**
          * Gamebase Initialize.
@@ -310,7 +320,30 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     Gamebase.onActivityResult(requestCode, resultCode, data);
 }
 ```
-### 4. Gets Authentication Information for external IDP.
+
+### 4. Login with access token of external IDP.
+외부 인증 라이브러리에서 발급한 access token을 이용하여 Gamebase에 로그인 합니다.
+
+```java
+Map<String, Object> credentialInfo = new HashMap<>();
+credentialInfo.put(AuthProviderCredentialConstants.PROVIDER_NAME, AuthProvider.FACEBOOK);
+credentialInfo.put(AuthProviderCredentialConstants.ACCESS_TOKEN, facebookAccessToken);
+
+Gamebase.login(activity, credentialInfo, new GamebaseDataCallback<AuthToken>() {
+            @Override
+            public void onCallback(AuthToken data, GamebaseException exception) {
+                if (Gamebase.isSuccess(exception)) {
+                    Log.d(TAG, "Login successful");
+                } else {
+                    Log.e(TAG, "Gamebase Login failed- "
+                            + "errorCode: " + exception.getCode()
+                            + "errorMessage: " + exception.getMessage());
+                }
+            }
+        });
+```
+
+### 5. Gets Authentication Information for external IDP.
 
 외부 인증 SDK에서 AccessToken, UserId, Profile 등의 정보를 가져올 수 있습니다.
 
@@ -325,23 +358,27 @@ String name = profile.getName();    // or profile.information.get("name")
 String email = profile.getEmail();  // or profile.information.get("email")
 ```
 
-### 5. Authentication Additional Information Settings.
+### 6. Authentication Additional Information Settings.
 
 #### Facebook
 * **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
 	* Facebook의 경우, OAuth 인증 시도 시, Facebook으로 부터 요청할 정보의 종류를 설정해야 합니다.
-	* 예제
-	```json
-	{ "facebook_permission": [ "public_profile", "email", "user_friends"]}
-	```
+
+Facebook 인증 추가 정보 입력 예제
+
+```json
+{ "facebook_permission": [ "public_profile", "email", "user_friends"]}
+```
 
 #### Payco
 * **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
 	* Payco의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**의 설정이 필요합니다.
-    * 예제
-    ```json
-    { "service_code": "HANGAME", "service_code": "Your Service Name" }
-    ```
+
+Payco 추가 인증 정보 입력 예제
+
+```json
+{ "service_code": "HANGAME", "service_code": "Your Service Name" }
+```
 
 ## Logout
 로그아웃 버튼을 클릭했을 때, 다음과 같이 로그아웃 API를 구현합니다.
@@ -782,6 +819,9 @@ Gamebase.Util.showToast(activity,
 |         | | SOCKET_ERROR | 110 | |
 |         | | SOCKET_UNKNOWN_ERROR | 999 | |
 | Launching | | LAUNCHING_SERVER_ERROR | 2001 | |
+|           | | LAUNCHING_NOT_EXIST_CLIENT_ID | 2002 | |
+|           | | LAUNCHING_UNREGISTERED_APP    | 2003 | |
+|           | | LAUNCHING_UNREGISTERED_CLIENT | 2004 | |
 | Auth | Common | AUTH_USER_CANCELED | 3001 | |
 |      |        | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | |
 |      |        | AUTH_NOT_EXIST_MEMBER | 3003 | |
