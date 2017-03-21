@@ -11,14 +11,17 @@ API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주�
 https://api-gamebase.cloud.toast.com
 ```
 
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.0.png)
+
+
 #### appId
-appId는 TOAST Cloud의 프로젝트ID로 콘솔 화면 Project list 화면에서 확인 가능합니다. 
+appId는 **TOAST Cloud의 프로젝트ID**로 콘솔 화면 Project list 화면에서 확인 가능합니다. 
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.0.png)
 
 
 #### secretKey
-secretKey는 API에 대한 접근 제어 방안으로 Gamebase 콘솔에서 확인 가능합니다. 해당 값은 API 호출시 HTTP Header에 설정되어야 합니다.
+secretKey는 API에 대한 접근 제어 방안으로 Gamebase 콘솔에서 확인 가능합니다. 해당 값은 **API 호출시 HTTP Header에 필수적**으로 설정되어야 합니다.
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.0.png)
 
@@ -28,7 +31,7 @@ secretKey는 API에 대한 접근 제어 방안으로 Gamebase 콘솔에서 확�
 
 
 
-
+<br>
 ## 공통
 
 #### HTTP Header
@@ -50,7 +53,7 @@ API 호출 시 HTTP Header에 다음 항목들을 설정해야 합니다.
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-X-TCGB-Transaction-Id: String
+X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 ```
 ```json
 {
@@ -74,8 +77,9 @@ X-TCGB-Transaction-Id: String
 
 
 
-
+<br>
 ## 인증
+
 #### 토큰 검증
 
 로그인 사용자에게 발급된 Accss Token 이 유효한지를 검사합니다. Access Token이 정상이면 해당 사용자의 정보를 리턴합니다.
@@ -90,7 +94,7 @@ X-TCGB-Transaction-Id: String
 **[Request Header]**
 
 공통 사항 확인
-
+<br>
 
 **[Path Variable]**
 
@@ -103,6 +107,7 @@ X-TCGB-Transaction-Id: String
 **[Request Parameter]**
 
 없음
+<br>
 
 **[Response Body]**
 ```json
@@ -144,7 +149,7 @@ X-TCGB-Transaction-Id: String
 | authList[].idPCode | String | 사용자 인증 IdP 정보 <br>guest / payco / facebook 등 |
 | authList[].authKey | String | authSystem 에서 발급된 사용자 구분 값 |
 
-
+<br>
 ## 멤버
 
 #### 회원 조회
@@ -160,7 +165,7 @@ X-TCGB-Transaction-Id: String
 **[Request Header]**
 
 공통 사항 확인
-
+<br>
 
 **[Path Variable]**
 
@@ -173,7 +178,7 @@ X-TCGB-Transaction-Id: String
 **[Request Parameter]**
 
 없음
-
+<br>
 
 **[Response Body]**
 ```json
@@ -255,7 +260,7 @@ X-TCGB-Transaction-Id: String
 **[Request Header]**
 
 공통 사항 확인
-
+<br>
 
 **[Path Variable]**
 
@@ -270,7 +275,7 @@ X-TCGB-Transaction-Id: String
 | --- | --- | --- | --- |
 | userIdList | true | Array[String] | 조회 대상 사용자 ID |
 
-###### Response Body
+**[Response Body]**
 ```json
 {
   "header": {
@@ -309,7 +314,7 @@ X-TCGB-Transaction-Id: String
 **[Request Header]**
 
 공통 사항 확인
-
+<br>
 
 **[Path Variable]**
 
@@ -364,7 +369,7 @@ authSystem의 authKey로 여러 사용자의 사용자 ID를 조회합니다.
 **[Request Header]**
 
 공통 사항 확인
-
+<br>
 
 **[Path Variable]**
 
@@ -399,6 +404,7 @@ authSystem의 authKey로 여러 사용자의 사용자 ID를 조회합니다.
 | result | Array[Object] | 조회된 사용자에 대한 기본 정보 <br>authKey가 key, userId가 value인 object|
 
 
+<br>
 ## 점검
 
 #### 점검 조회
@@ -414,6 +420,7 @@ authSystem의 authKey로 여러 사용자의 사용자 ID를 조회합니다.
 **[Request Header]**
 
 공통 사항 확인
+<br>
 
 **[Path Variable]**
 
@@ -424,6 +431,7 @@ authSystem의 authKey로 여러 사용자의 사용자 ID를 조회합니다.
 **[Request Parameter]**
 
 없음
+<br>
 
 **[Response Body]**
 ```json
@@ -452,20 +460,64 @@ authSystem의 authKey로 여러 사용자의 사용자 ID를 조회합니다.
 | --- | --- | --- |
 | underMaintenance | boolean | 현재 점검 설정 여부 |
 | maintenances | Object | 점검이 설정되어 있다면 점검에 대한 기본 정보 |
-| maintenances.typeCode | Enum | APP: 게임에서 설정한 점검 <br>SYSTEM: Gamebase 시스템에서 설정한 점검<br>(SYSTEM 점검은 사전에 공지됩니다) |
+| maintenances.typeCode | Enum | APP: 게임에서 설정한 점검 <br>SYSTEM: Gamebase 시스템에서 설정한 점검 |
 | maintenances.beginDate | String | 점검 시작 시간. ISO 8601 |
 | maintenances.endDate | String | 점검 종료 시간. ISO 8601 |
 | maintenances.url | String | 상세 점검 URL |
 | maintenances.message | String | 점검 메시지 |
 
 
+<br>
+## Purchase(IAP)
+Gamebase는 TOASTCloud IAP 상품의 서버 API에 대해 **Wrapping** 기능을 제공합니다. 해당 기능을 통해 사용자 서버는 일관된 인터페이스로 TOASTCloud의 상품들을 사용할 수 있습니다.
+
+#### Wrapping API
+| API | Method | Wrapping URI | IAP URI |
+| --- | --- | --- | --- |
+| Comsume | POST | /tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq} | /inapp/v3/consume/{paymentSeq}/items/{itemSeq} |
+
+**해당 API에 대한 상세 설명은 [IAP 가이드](http://docs.cloud.toast.com/ko/Common/IAP/Server%20Developer%60s%20Guide/)를 참고 하시기 바랍니다.**
+
+<br>
+##### API 호출 예시
+```
+POST https://api-gamebase.cloud.toast.com/tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq}
+```
 
 
+<br>
+## Leaderboard
+Gamebase는 TOASTCloud Leaderboard 상품의 서버 API에 대해 **Wrapping** 기능을 제공합니다. 해당 기능을 통해 사용자 서버는 일관된 인터페이스로 TOASTCloud의 상품들을 사용할 수 있습니다.
+
+#### Wrapping API
+| API | Method | Wrapping URI | Leaderboard URI |
+| --- | --- | --- | --- |
+| Factor 에 등록된 사용자 수 조회 | GET | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
+| 단일 사용자 점수/순위 조회 | GET | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
+| 다수 사용자 점수/순위 조회 | POST | /tcgb-leaderboard/v1.0/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
+| 일정 범위의 전체 점수/순위 조회 | GET | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
+| 단일 사용자 점수 등록 | POST | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
+| 단일 사용자 점수/ExtraData 등록 | POST | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
+| 다수 사용자 점수 등록 | POST | /tcgb-leaderboard/v1.0/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
+| 다수 사용자 점수/ExtraData 등록 | POST | /tcgb-leaderboard/v1.0/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
+| 단일 사용자 Leaderboard정보 삭제 | DELETE | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+
+
+**해당 API에 대한 상세 설명은 [Leaderboard 가이드](http://docs.cloud.toast.com/ko/Game/Leaderboard/Developer%60s%20Guide/)를 참고 하시기 바랍니다.**
+
+<br>
+##### API 호출 예시
+```
+GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/user-count
+```
+
+
+<br>
 ## 기타
 
 ### API 응답 실패 지원 방안
 API 호출 실패 원인에 대한 문의 사항이 있을 경우, **API 호출 URL(HTTP Body가 있는 경우는 body와 함께)과 그에 대한 응답 결과**를 함께 전달해 주시면 빠른 지원이 가능합니다.
-
+<br>
 ##### API 호출 예시
 ```
 GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.0/apps/C3JmSctU/maintenances/under-maintenance
@@ -475,10 +527,10 @@ GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.0/apps/C3JmSctU/maint
 ```json
 {
   "header": {
-    "resultCode": -4010004,
-    "resultMessage": "Product secretKey is empty or invald, appId:C3JmSctU, secretKey:null",
+    "resultCode": -4010002,
+    "resultMessage": "Gamebase product appKey is invalid, appId:C3JmSctU",
     "traceError": {
-      "trackingTime": 1488698172426,
+      "trackingTime": 1489726350287,
       "throwPoint": "gateway",
       "uri": "/tcgb-launching/v1.0/apps/C3JmSctU/maintenances/under-maintenance"
     },
@@ -508,6 +560,13 @@ API 호출 실패 시 Response Body의 Header 항목 중 **resultCode** 에 대�
 | -4000402 | UserId를 잘못 입력 했을 때 |
 | -4000403 | 잘못된 회원에 대한 요청일 때 |
 | -4000404 | 잘못된 Auth에 대한 요청일 때 |
+
+| Code | Description |
+| --- | --- |
+| -4040201 | 호출한 상품이 활성화 되어 있지 않을 때 <br>(Leaderboard 상품을 사용 안 하는 상태에서 Gamebase 를 통해 Leaderboard API를 호출할 때() |
+
+| Code | Description |
+| --- | --- |
 | -4040401 | 존재하지 않거나 탈퇴된 회원에 대한 요청일 때 |
 | -4100401 | 이미 탈퇴된 회원에 대한 요청일 때 |
 | -4220401 | 사용자 auth 데이터가 정상적이지 않을 때 |

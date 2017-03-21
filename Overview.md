@@ -1,6 +1,6 @@
 ## Upcomming Products > Gamebase > Overview
 
-게임에서 공통적으로 필요한 기능들을 통합SDK로 제공하여 손쉽고 효율적으로 게임 개발이 가능하도록 돕는 서비스입니다.<br>게임개발자는 게임컨텐츠만 만드시면 나머지는 GameBase가 해결해드립니다.
+게임에서 공통적으로 필요한 기능들을 통합SDK로 제공하여 손쉽고 효율적으로 게임 개발이 가능하도록 돕는 서비스입니다.<br>게임개발자는 게임컨텐츠만 만드시면 나머지는 Gamebase가 해결해드립니다.
 
 ## 주요 기능
 
@@ -13,7 +13,7 @@ Gamebase는 다음과 같은 기능을 제공합니다.
 |--------|--------|
 | facebook       | iOS, Android        |
 | iosgamecenter | iOS        |
-| google+       | Android        |
+| google      | Android        |
 | payco       | iOS, Android        |
 
 [표1] Gamebase에서 지원하는 외부 인증 리스트
@@ -25,8 +25,7 @@ Gamebase는 다음과 같은 기능을 제공합니다.
 	* User에게 노출되는 메시지는 모두 다국어 처리가 가능
 * 웹콘솔에서 운영지표를 실시간으로 손쉽게 확인할 수 있습니다.
 * 게임에서 필요한 TOAST Cloud상품을 보다 쉽게 연동할 수 있도록 돕습니다.
-	* 연동이 완료된 상품 :  [Notification > PUSH](http://cloud.toast.com/service/notification), [Common > IAP](http://cloud.toast.com/service/iap) 
-	* 연동예정인 상품 : [Game > Leaderboard](http://cloud.toast.com/service/leaderboard)
+	* 연동이 완료된 상품 :  [Notification > PUSH](http://cloud.toast.com/service/notification), [Common > IAP](http://cloud.toast.com/service/iap), [Game > Leaderboard](http://cloud.toast.com/service/leaderboard)
 
 
 

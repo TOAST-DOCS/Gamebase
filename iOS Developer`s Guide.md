@@ -34,8 +34,8 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v4.17.0 | [Go to Download](https://developers.facebook.com/docs/ios/downloads) |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.1.6 | [Go to Download](https://developers.payco.com/guide/sdk/download) |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework |
-| Gamebase Push | GamebasePushAdapter.framework |  |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework | Gamebase내에 포함 |
+| Gamebase Push | GamebasePushAdapter.framework |  | Gamebase내에 포함 |
 
 > **주의**
 >
@@ -76,9 +76,9 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.
 
 
 
-### Initialization
+## Initialization
 
-#### 1. 앱델리게이트에 필수 헤더파일 불러오기
+### 1. 앱델리게이트에 필수 헤더파일 불러오기
 먼저 Gamebase 헤더 파일을 앱으로 가져와야 합니다.
 AppDelegate.h 에서 다음의 헤더 파일을 가져옵니다.
 
@@ -87,7 +87,7 @@ AppDelegate.h 에서 다음의 헤더 파일을 가져옵니다.
 ```
 
 
-#### 2. 초기화 메소드 호출
+### 2. 초기화 메소드 호출
 **application:didFinishLaunchingWithOptions:** 메소드에서, 다음과 같이 초기화를 진행합니다.
 
 ```objectivec
@@ -96,20 +96,20 @@ AppDelegate.h 에서 다음의 헤더 파일을 가져옵니다.
     NSString *gameAppVersion = @"1.2";
 
     TCGBConfiguration *configuration = [TCGBConfiguration configurationWithAppID:projectID appVersion:gameAppVersion];
-    [configuration setShowBlockingPopup:YES];
+    [configuration enableLaunchingStatusPopup:YES];
 
-    [TCGamebase initializeWithConfiguration:configuration launchOptions:launchOptions completion:^(id launchingData, TCGBError *error) {
-        if ([TCGamebase isSuccessWithError:error] == YES) {
+    [TCGBGamebase initializeWithConfiguration:configuration launchOptions:launchOptions completion:^(id launchingData, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // Gamebase Initialization is Succeeded
         }
     }];
 }
 ```
 
-### Lifecycle 관리를 위한 이벤트 처리
+## Lifecycle 관리를 위한 이벤트 처리
 iOS의 App Event를 관리하기 위하여 아래에 명기된 **UIApplicationDelegate** protocol을 구현해야합니다.
 
-#### 1. URL Resource를 받기 위한 Event
+### 1. URL Resource를 받기 위한 Event
 **application:openURL:sourceApplication:annotation:** 메소드를 호출하여, Switching App을 사용한 인증 시, 각 IDP들의 인증용 SDK에서 필요한 동작을 하도록 알려줍니다.
 
 >**주의**
@@ -123,7 +123,7 @@ iOS의 App Event를 관리하기 위하여 아래에 명기된 **UIApplicationDe
 }
 ```
 
-#### 2. 앱 활성화 Event
+### 2. 앱 활성화 Event
 **applicationDidBecomeActive:** 메소드를 호출하여, App이 활성화 되었는지 여부를 각 IDP의 인증용 SDK에서 필요한 동작을 하도록 알려줍니다.
 
 ```objectivec
@@ -132,7 +132,7 @@ iOS의 App Event를 관리하기 위하여 아래에 명기된 **UIApplicationDe
 }
 ```
 
-#### 3. 앱의 Background로 전환 Event
+### 3. 앱의 Background로 전환 Event
 **applicationDidEnterBackground** 메소드를 호출하여, App이 Background로 전환되었는지 알려주어야 합니다.
 
 ```objectivec
@@ -141,7 +141,7 @@ iOS의 App Event를 관리하기 위하여 아래에 명기된 **UIApplicationDe
 }
 ```
 
-#### 4. 앱의 Foreground로 전환 Event
+### 4. 앱의 Foreground로 전환 Event
 **applicationWillEnterForeground** 메소드를 호출하여, App이 Foreground로 전환된다는 것을 알려주어야 합니다.
 
 ```objectivec
@@ -156,7 +156,7 @@ iOS의 App Event를 관리하기 위하여 아래에 명기된 **UIApplicationDe
 
 
 
-### Login
+## Login
 Gamebase 에서는 기본적으로 guest 로그인을 지원합니다.
 guest 이외의 Provider에 로그인을 하기 위해서는 해당 Provider AuthAdapter가 필요합니다.
 AuthAdapter 및 3rd-Party SDK에 대한 설정은 위에 있는 '외부 SDK 다운로드' 링크를 참고하시길 바랍니다.
@@ -165,14 +165,14 @@ AuthAdapter 및 3rd-Party SDK에 대한 설정은 위에 있는 '외부 SDK 다�
 로그인을 시도하려는 IDP별로, additionalInfo 파라미터를 입력해주어야 하는 경우가 있습니다.
 AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 항목을 참고합니다.
 
-#### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
+### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
 로그인을 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
 ```
 
-#### 2. 최종 로그인 API 호출
+### 2. 최종 로그인 API 호출
 특정 IDP에 대한 로그인 버튼을 클릭하였을 때, 다음 로그인 API를 구현합니다.
 가장 최근에 로그인한 IDP로의 로그인을 시도합니다. 해당 로그인에 대한 토큰이 만료되었거나,
 토큰에 대한 검증 등이 실패하였을 때, 실패를 리턴합니다. 이 때는 해당 IDP에 대한 로그인을 구현해주어야합니다.
@@ -180,10 +180,10 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 ```objectivec
 - (void)automaticLogin {
     // Last Logged In Provider Name
-    NSString *lastLoggedInProvider = [TCGamebase lastLoggedInProvider];
+    NSString *lastLoggedInProvider = [TCGBGamebase lastLoggedInProvider];
 
-    [TCGamebase loginForLastLoggedInProviderWithCompletion:^(TCGBAuthToken *authToken, TCGBError *error){
-        if ([TCGamebase isSuccessWithError:error] == YES) {
+    [TCGBGamebase loginForLastLoggedInProviderWithCompletion:^(TCGBAuthToken *authToken, TCGBError *error){
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
             NSLog(@"Login is succeeded.");
         }
         else {
@@ -193,8 +193,8 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
             else {
                 NSLog(@"Try to login with loginWithType:viewController:completion:");
 
-                [TCGamebase loginWithType:lastLoggedInProvider viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
-                    if ([TCGamebase isSuccessWithError:error] == YES) {
+                [TCGBGamebase loginWithType:lastLoggedInProvider viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+                    if ([TCGBGamebase isSuccessWithError:error] == YES) {
                         NSLog(@"Login is succeeded.");
                     }
                     else {
@@ -207,20 +207,21 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 }
 ```
 
-#### 3. 특정 IDP 로그인 API 호출
-특정 IDP 로그인 호출을 위해서 **[TCGamebase loginWithType:viewController:completion:]** 메소드를 호출해줍니다. 로그인 결과로 **(TCGBError *)error** 객체를 이용해 성공 여부를 판단할 수 있습니다. 또한 **TCGBAuthToken** 객체를 이용하여 userId 등의 사용자 정보 및 토큰 정보를 얻을 수 있습니다.
+### 3. 특정 IDP 로그인 API 호출
+특정 IDP 로그인 호출을 위해서 **[TCGBGamebase loginWithType:viewController:completion:]** 메소드를 호출해줍니다. 로그인 결과로 **(TCGBError *)error** 객체를 이용해 성공 여부를 판단할 수 있습니다. 또한 **TCGBAuthToken** 객체를 이용하여 userId 등의 사용자 정보 및 토큰 정보를 얻을 수 있습니다.
 
-몇몇 IDP의 로그인시에는 필수적으로 들어가야하는 정보가 있습니다. 예를 들어, facebook 로그인을 구현하기 위해서는 scope 등을 설정해주어야합니다. 이러한 필수 정보들을 설정해주기 위해서, **[TCGamebase loginWithType:additionalInfo:viewController:completion:]** API를 제공합니다.
+몇몇 IDP의 로그인시에는 필수적으로 들어가야하는 정보가 있습니다. 예를 들어, facebook 로그인을 구현하기 위해서는 scope 등을 설정해주어야합니다. 이러한 필수 정보들을 설정해주기 위해서, **[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API를 제공합니다.
 파라미터 additionalInfo에 필수 정보들을 Dictionary 형태로 입력하시면 됩니다.
 (파라미터 값이 nil일 때는, TOAST Cloud Console에 등록한 additionalInfo 값으로 채워집니다. 파라미터 값이 있을 때는 Console에 등록해놓은 값보다 우선시하여 값을 덮어쓰게 됩니다.)
 
-> **Information**
+> **Information!**
+> 
 > iOS에서 지원하는 IDP는 **TCGBConstants.h**의 TCGBAuthIDPs 영역의 **kTCGBAuthXXXXXX**로 정의되어 있습니다.
 
 ```objectivec
 - (void)loginFacebookButtonClick {
-    [TCGamebase loginWithType:kTCGBAuthPayco viewController:self completion:^(TCGBAuthToken *authToken, TCGBError *error) {
-        if ([TCGamebase isSuccessWithError:error] == YES) {
+    [TCGBGamebase loginWithType:kTCGBAuthPayco viewController:self completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Login Succeeded
             NSString *userId = [authToken.tcgbMember.userId];
         } else {
@@ -230,54 +231,85 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 }
 ```
 
-##### Gamebase에서 지원 중인 IDP
+#### Gamebase에서 지원 중인 IDP
 
-###### 1. Guest
-###### 2. Facebook
+##### 1. Guest
+##### 2. Facebook
 1. AdditionalInfo의 설정이 필요합니다.
-	* **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-	* Facebook의 경우, OAuth 인증 시도 시, Facebook으로 부터 요청할 정보의 종류를 설정해야 합니다. 
-	* 예제
-	```json
-	{ "facebook_permission": [ "public_profile", "email", "user_friends"]}
-	```
+    * **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+    * Facebook의 경우, OAuth 인증 시도 시, Facebook으로 부터 요청할 정보의 종류를 설정해야 합니다. 
+    * 예제
+
+```json
+{ "facebook_permission": [ "public_profile", "email", "user_friends"]}
+```
 2. Facebook SDK를 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다.
-[](http://)
+[Facebook Developer Guide](https://developers.facebook.com/docs/ios/getting-started)
 
-###### 3. Payco
+##### 3. Payco
 1. AdditionalInfo의 설정이 필요합니다.
-	* **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-	* Payco의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**의 설정이 필요합니다.
-	* 예제
-	```json
-    { "service_code": "HANGAME", "service_code": "Your Service Name" }
-    ```
+    * **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+    * Payco의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**의 설정이 필요합니다.
+    * 예제
 
-###### 4. GameCenter
+```json
+{ "service_code": "HANGAME", "service_code": "Your Service Name" }
+```
 
-
-
-
+##### 4. GameCenter
+TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 
 
+<br/>
+
+#### 4. ID Provider의 AccessToken으로 로그인 API 호출
+게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증을 하고 발급받은 AccessToken등을 이용하여, Gamebase 로그인을 할 수 있는 인터페이스 입니다.
+
+* Credential 파라미터의 설정방법
+    * NSDictionary 타입으로 설정합니다.
+    * **kTCGBAuthLoginWithCredentialProviderNameKeyname** 키에는 idp종류를 설정합니다. (faceboo, payco, iosgamecenter)
+    * **kTCGBAuthLoginWithCredentialAccessTokenKeyname** 키에는 외부 SDK로부터 받은 인증정보(AccessToken)를 입력합니다.
+
+> **Tip!** 
+> 
+> 게임 내에서 외부 서비스(Facebook 등)의 고유기능의 사용이 필요할 때 사용될 수 있습니다.
+
+> **주의!**
+> 
+> 외부 SDK에서 요구하는 개발사항은 Gamebase에서는 지원이 불가능합니다.
+
+```objectivec
+#import "TCGBConstants.h"
+
+- (void)auth_login_with_credential {
+    [TCGBGamebase loginWithCredential:@{ kTCGBAuthLoginWithCredentialProviderNameKeyname: @"facebook", kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"여기에 facebook SDK에서 발급받은 Access Token을 입력하세요" } viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        NSLog([authToken description]);
+    }];
+}
+```
 
 
-### Logout
 
-#### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
+
+
+
+
+## Logout
+
+### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
 로그아웃을 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
 ```
 
-#### 2. 로그아웃 API 호출
+### 2. 로그아웃 API 호출
 로그아웃 버튼을 클릭하였을 때, 다음의 로그아웃 API를 구현합니다.
 
 ```objectivec
-[TCGamebase logoutWithCompletion:^(TCGBError *error) {
-    if ([TCGamebase isSuccessWithError:error] == YES) {
+[TCGBGamebase logoutWithCompletion:^(TCGBError *error) {
+    if ([TCGBGamebase isSuccessWithError:error] == YES) {
         // To Logout Succeeded
     } else {
         // To Logout Failed
@@ -293,21 +325,21 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 
 
 
-### Withdraw
+## Withdraw
 
-#### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
+### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
 탈퇴를 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
 ```
 
-#### 2. 탈퇴 API 호출
+### 2. 탈퇴 API 호출
 탈퇴 버튼을 클릭하였을 때, 다음의 탈퇴 API를 구현합니다.
 
 ```objectivec
-[TCGamebase withdrawWithCompletion:^(TCGBError *error) {
-    if ([TCGamebase isSuccessWithError:error] == YES) {
+[TCGBGamebase withdrawWithCompletion:^(TCGBError *error) {
+    if ([TCGBGamebase isSuccessWithError:error] == YES) {
         // To Withdrawal Succeeded
     } else {
         // To Withdrawal Failed
@@ -315,7 +347,7 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 }];
 ```
 
-### Mapping
+## Mapping
 Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시키는 기능입니다.
 특정 IDP에 연동된(guest 포함) 계정에 다른 IDP의 계정을 연동하였을 때,
 각각의 계정들에 대해서 UserID는 동일하게 주어집니다.
@@ -323,7 +355,7 @@ Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해�
 Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
 
 
-#### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
+### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
 Mapping을 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
 ```objectivec
@@ -332,18 +364,18 @@ Mapping을 구현하고자 하는 ViewController에 다음의 헤더 파일을 �
 
 
 
-#### 2 Mapping 추가 API 호출
+### 2 Mapping 추가 API 호출
 특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다.
 Mapping을 하려는 IDP의 계정이 이미 다른 계정이 연동이 되어있다면,
-**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER** 에러를 리턴합니
+**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER** 에러를 리턴합니다.
 
 Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 아니라, 기존에 로그인했던 IDP가 됩니다. 즉, Mapping은 단순히 IDP를 연동만 해줍니다.
 
 아래의 예시에서는 facebook에 대해서 Mapping을 시도하고 있습니다.
 
 ```objectivec
-[TCGamebase addMappingWithType:@"facebook" viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
-    if ([TCGamebase isSuccessWithError:error] == YES) {
+[TCGBGamebase addMappingWithType:@"facebook" viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+    if ([TCGBGamebase isSuccessWithError:error] == YES) {
         // To Add Mapping Succeeded
     } else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
         // User Already Mapped Facebook to other account.
@@ -354,12 +386,12 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 }];
 ```
 
-#### 3. Mapping 해제 API 호출
+### 3. Mapping 해제 API 호출
 특정 IDP에 대한 연동을 해제합니다. 만약, 해제하고자 하는 IDP가 유일한 IDP라면, 실패를 리턴하게 됩니다. 연동 해제후에는 Gamebase 내부에서, 해당 IDP에 대한 로그아웃처리를 해줍니다.
 
 ```objectivec
-[TCGamebase removeMappingWithType:@"facebook" completion:^(TCGBError *error) {
-    if ([TCGamebase isSuccessWithError:error] == YES) {
+[TCGBGamebase removeMappingWithType:@"facebook" completion:^(TCGBError *error) {
+    if ([TCGBGamebase isSuccessWithError:error] == YES) {
         // To Remove Mapping Succeeded
     } else {
         // To Remove Mapping Failed cause of the error
@@ -376,22 +408,22 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 
 
 
-### Purchase
+## Purchase
 
-#### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
+### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
 구매 API를 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
 ```
 
-#### 2. 아이템 구매 API 호출
+### 2. 아이템 구매 API 호출
 구매하고자 하는 아이템의 itemSeq를 이용해 다음의 API를 호출하여 구매요청을 합니다.
 
 ```objectivec
 - (void)purchasingItem:(long)itemSeq {
     [TCGBPurchase requestPurchaseWithItemSeq:itemSeq viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
-        if ([TCGamebase isSuccessWithError:error] == YES) {
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Purchase Item Succeeded
         } else if (error.code == TCGB_ERROR_PURCHASE_USER_CANCELED) {
             // User Canceled Purchasing Item
@@ -402,7 +434,7 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 }
 ```
 
-#### 3. 아이템 목록 조회 API 호출
+### 3. 아이템 목록 조회 API 호출
 아이템 목록을 조회하기 위하여 다음의 API를 호출합니다. 콜백으로 리턴되는 Array 안에는 각 아이템들에 대한 정보가 담겨 있습니다.
 
 ```objectivec
@@ -424,7 +456,7 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 ```
 
 
-#### 4. 미소비 결제내역 조회 API 호출
+### 4. 미소비 결제내역 조회 API 호출
 아이템을 구매는 하였지만, 정상적으로 아이템이 소비(배송, 지급)되었지 않은 **미소비 결제내역**을 요청합니다. 해당 내역을 받은 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.
 
 ```objectivec
@@ -441,7 +473,7 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 }
 ```
 
-#### 5. 결제 실패건 재처리 API 호출
+### 5. 결제 실패건 재처리 API 호출
 스토어 결제는 정상적으로 이루어졌지만, ToastCloud IAP 서버 검증 실패 등으로 인해 정상적으로 결제가 이뤄지지 않은 경우에,
 해당 API를 이용하여 재처리를 시도합니다. 최종적으로 결제가 성공한 내역을 바탕으로, 아이템 배송(지급)등의 API를 호출하여 처리를 해주어야합니다.
 ```objectivec
@@ -464,16 +496,16 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 
 
 
-### Push
+## Push
 
-#### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
+### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
 구매 API를 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
 ```
 
-#### 2. Push 등록 API 호출
+### 2. Push 등록 API 호출
 다음의 API를 호출하여, ToastCloud Push에 해당 사용자를 등록합니다.
 Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야간 광고성 Push 동의 여부(enableAdNightPush)값을 사용자로부터
 받아온 후, 다음의 API 호출을 통해 등록을 완료합니다.
@@ -497,14 +529,14 @@ Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야�
 }
 ```
 
-#### 3. Push 설정 조회
+### 3. Push 설정 조회
 사용자의 Push 설정을 조회하기 위해서, 다음의 API를 이용합니다.
 콜백으로 오는 TCGBPushConfiguration 값을 바탕으로, 사용자 설정값을 얻을 수 있습니다.
 
 ```objectivec
 - (void)didLoginSucceeded {
     [TCGBPush queryPushWithCompletion:^(TCGBPushConfiguration *configuration, TCGBError *error) {
-        if ([TCGamebase isSuccessWithError:error] == NO) {
+        if ([TCGBGamebase isSuccessWithError:error] == NO) {
             // To Request Push Configuration Failed.
         }
 
@@ -522,7 +554,68 @@ Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야�
 
 
 
-### UI (향후 지원 예정)
+## UI
+
+### 1. WebView
+Gamebase에서는 기본적인 웹뷰를 지원합니다. 웹뷰의 스타일은 Fullscreen과 Popup 스타일을 지원하며, Customizing이 가능합니다.
+Fullscreen 스타일(Browser)은 네비게이션바를 가지며, Close/GoBack 버튼을 가집니다. 네비게이션바에 타이틀을 지정할 수 있습니다.
+Popup 스타일은 기존화면 위에 모달뷰 형식으로 나타나게 되며, 뒷 배경은 투명한 mask view로 덮어씌워집니다.
+
+웹뷰와 관련된 리소스(이미지 및 html, 기타 리소스)는 Gamebase.bundle 에 포함되어있습니다.
+
+```objectivec
+// Show Fullscreen Style WebView
+- (void)showFullScreenWebView:(id)sender {
+    [TCGBWebView showWebBrowserWithURL:@"http://cloud.toast.com" viewController:self];
+}
+
+// Show Popup Style WebView
+- (void)showPopupWebView:(id)sender {
+    [TCGBWebView showPopupWithURL:@"http://cloud.toast.com" viewController:self];
+}
+
+// Show Customized WebView
+- (void)showCustomizedWebView:(id)sender {
+    TCGBWebViewConfiguration *configuration = [[TCGBWebViewConfiguration alloc] init];
+    [configuration setStyle:TCGBWebViewLaunchFullScreen];    //or TCGBWebViewLaunchPopUp
+    [configuration setNavigationBarColor:[UIColor blueColor]];
+    [configuration setNavigationBarHeight:50.0];
+
+    [TCGBWebView showWebViewWithURL:@"http://cloud.toast.com" viewController:self configuration:configuration];
+}
+
+// Configure Custom Style Configuration to All TCGBWebView Objects
+- (void)configureWebViewStyle {
+    // After this method is called, every webview(TCGBWebView) is shown with popup style.
+
+    TCGBWebViewConfiguration *configuration = [[TCGBWebViewConfiguration alloc] init];
+    [configuration setStyle:TCGBWebViewLaunchPopUp];    //or TCGBWebViewLaunchFullScreen
+
+    [TCGBWebView sharedTCGBWebView].defaultWebConfiguration = configuration;
+}
+```
+
+
+### 2. Alert
+System Alert 를 위한 API를 제공합니다.
+iOS8 이상에서 동작하는 UIAlertController와, iOS8 미만에서의 UIAlertView 처리를 내부적으로 해줍니다.
+다음의 API를 통해서, 사용자는 Alert에 버튼 및 콜백을 등록할 수 있습니다.
+
+```objectivec
+- (void)showAlert:(id)sender {
+    void (^positiveBlock)(id) = ^(id title) {
+        NSLog(@"Positive Block Clicked");
+    };
+
+    void (^negativeBlock)(id) = ^(id title) {
+        NSLog(@"Negative Block Clicked");
+    };
+
+    [TCGBUtil showAlertWithTitle:@"alert title" message:@"alert message"
+            positiveTitle:@"positive" positiveBlock:positiveBlock
+            negativeTitle:@"negative" negativeBlock:negativeBlock];
+}
+```
 
 
 
@@ -545,6 +638,9 @@ Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야�
 |         | | TCGB_ERROR_SOCKET_ERROR | 110 | |
 |         | | TCGB_ERROR_UNKNOWN_ERROR | 999 | |
 | Launching | | TCGB_ERROR_LAUNCHING_SERVER_ERROR | 2001 | |
+|           | | TCGB_ERROR_LAUNCHING_NOT_EXIST_CLIENT_ID | 2002 | |
+|           | | TCGB_ERROR_LAUNCHING_UNREGISTERED_APP    | 2003 | |
+|           | | TCGB_ERROR_LAUNCHING_UNREGISTERED_CLIENT | 2004 | |
 | Auth | Common | TCGB_ERROR_AUTH_USER_CANCELED | 3001 | |
 |      |        | TCGB_ERROR_AUTH_NOT_SUPPORTED_PROVIDER | 3002 | |
 |      |        | TCGB_ERROR_AUTH_NOT_EXIST_MEMBER | 3003 | |
@@ -581,6 +677,11 @@ Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야�
 |        | | TCGB_ERROR_SERVER_UNKNOWN_ERROR | 8999 | |
 | Platform Reserved | | TCGB_ERROR_INVALID_INTERNAL_STATE | 11001 | |
 |                   | | TCGB_ERROR_NOT_CALLABLE_STATE | 11002 | |
+
+
+
+## Sample Application
+
 
 
 ## API Reference
