@@ -7,9 +7,9 @@ API를 사용하기 위해서는 다음과 같은 정보를 알고 있어야 합
 
 #### 서버 주소
 API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주소는 Gamebase 콘솔 화면에서도 확인 가능합니다.
-```
-https://api-gamebase.cloud.toast.com
-```
+
+> https://api-gamebase.cloud.toast.com
+
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.0.png)
 
@@ -50,6 +50,16 @@ API 호출 시 HTTP Header에 다음 항목들을 설정해야 합니다.
 #### 응답
 모든 API 요청에 대한 응답으로 HTTP 200 OK 로 전달합니다. 응답 결과는 Response Body 의 header 항목을 참고하여 성공 유무를 판단할 수 있습니다.
 
+###### 요청
+```
+GET https://api-gamebase.cloud.toast.com
+
+Content-Type: application/json
+X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
+X-Secret-Key: IgsaAP
+```
+
+###### 응답
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
@@ -106,17 +116,22 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Parameter]**
 
-없음
-<br>
+| Name | Required |  Value |
+| --- | --- | --- |
+| linkedIdP | optional | true or false (기본값은 false) <br>Access Token 을 발급 받을 때 사용된 IdP 정보 포함 여부 |
 
 **[Response Body]**
 ```json
 {
   "header": {
+    "transactionId": "String",
     "resultCode": 0,
     "resultMessage": "String",
-    "transactionId": "String",
     "isSuccessful": true
+  },
+  "linkedIdP": {
+    "idPCode": "String",
+    "idPId": "String"
   },
   "member": {
     "userId": "String",
@@ -131,6 +146,13 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
         "idPCode": "String",
         "authKey": "String",
         "regDate": 1488257745000
+      },
+      {
+        "userId": "String",
+        "authSystem": "String",
+        "idPCode": "String",
+        "authKey": "String",
+        "regDate": 1490922916000
       }
     ]
   }
@@ -139,6 +161,9 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
+| linkedIdP | Object | 로그인한 사용자가 사용한 IdP 정보 |
+| linkedIdP.idPCode | String | IdP 정보 <br>guest / payco / facebook 등 |
+| linkedIdP.idPId | String | IdP ID |
 | member.userId | String | 사용자 ID |
 | member.lastLoginDate | long | 마지막으로 로그인한 시간<br>처음 로그인한 사용자는 해당 값이 없음 |
 | member.appId | String | appId |
@@ -184,6 +209,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 ```json
 {
   "header": {
+    "transactionId": "String",
     "resultCode": 0,
     "resultMessage": "SUCCESS",
     "isSuccessful": true
@@ -198,7 +224,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 		  {
 			"userId": "String",
 			"authSystem": "String",
-			"idPCode": "gbid",
+			"idPCode": "String",
 			"authKey": "String",
 			"regDate": 1488185201000
 		  }
@@ -269,16 +295,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | appId | TOAST Cloud 프로젝트 ID |
 
 
-**[Request Parameter]**
+**[Request Body]**
 
 | Name | Mandatory | Type | Value |
 | --- | --- | --- | --- |
-| userIdList | true | Array[String] | 조회 대상 사용자 ID |
+| userIdList | true | Array[String] | 조회 대상 사용자 ID<br>  ["userId", "userId", "userId",...]|
 
 **[Response Body]**
 ```json
 {
   "header": {
+    "transactionId": "String",
     "resultCode": 0,
     "resultMessage": "SUCCESS",
     "isSuccessful": true
@@ -323,17 +350,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | appId | TOAST Cloud 프로젝트 ID |
 
 
-**[Request Parameter]**
+**[Request Body]**
 
 | Name | Mandatory | Type | Value |
 | --- | --- | --- | --- |
-| userIdList | true | Array[String] | 사용자 ID |
-
+| userIdList | true | Array[String] | 조회 대상 사용자 ID<br>  ["userId", "userId", "userId",...]|
 
 **[Response Body]**
 ```json
 {
   "header": {
+    "transactionId": "String",
     "resultCode": 0,
     "resultMessage": "SUCCESS",
     "isSuccessful": true
@@ -383,13 +410,19 @@ authSystem의 authKey로 여러 사용자의 사용자 ID를 조회합니다.
 | Name | Mandatory | Type | Value |
 | --- | --- | --- | --- |
 | authSystem | true | String | Gamebase 내부적으로 사용되는 인증 시스템<br>추후 사용자 인증 시스템 지원 예정 |
-| authKeyList | true | Array[String] | authSystem에서 발급된 authKey |
+
+**[Request Body]**
+
+| Name | Mandatory | Type | Value |
+| --- | --- | --- | --- |
+| authKeyList | true | Array[String] | authSystem에서 발급된 authKey<br> ["authKey", "authKey", "authKey",...]|
 
 
 **[Response Body]**
 ```json
 {
   "header": {
+    "transactionId": "String",
     "resultCode": 0,
     "resultMessage": "SUCCESS",
     "isSuccessful": true
@@ -437,9 +470,9 @@ authSystem의 authKey로 여러 사용자의 사용자 ID를 조회합니다.
 ```json
 {
   "header": {
+    "transactionId": "String",
     "resultCode": 0,
     "resultMessage": "String",
-    "transactionId": "String",
     "isSuccessful": true
   },
   "appId": "",
@@ -527,6 +560,7 @@ GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.0/apps/C3JmSctU/maint
 ```json
 {
   "header": {
+    "transactionId": "18a1ae42-6b1d-54c8-894e-54e97bca07fq",
     "resultCode": -4010002,
     "resultMessage": "Gamebase product appKey is invalid, appId:C3JmSctU",
     "traceError": {
@@ -570,4 +604,3 @@ API 호출 실패 시 Response Body의 Header 항목 중 **resultCode** 에 대�
 | -4040401 | 존재하지 않거나 탈퇴된 회원에 대한 요청일 때 |
 | -4100401 | 이미 탈퇴된 회원에 대한 요청일 때 |
 | -4220401 | 사용자 auth 데이터가 정상적이지 않을 때 |
-
