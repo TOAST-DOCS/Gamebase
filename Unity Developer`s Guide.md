@@ -59,9 +59,9 @@ Unity Android 빌드 시 필요한 설정입니다.
 
 다운로드 받은 Android SDK에서 아래 폴더 및 aar 파일을 프로젝트의 Assets/Plugins/Android 폴더에 추가 합니다.
 
-* gamebase-sdk/
-* gamebase-sdk-VERSION-release.aar
-* gamebase-sdk-base-VERSION-release.aar
+* libs/
+* gamebase-sdk-VERSION.aar
+* gamebase-sdk-base-VERSION.aar
 
 인증 모듈 추가
 

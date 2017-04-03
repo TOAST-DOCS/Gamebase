@@ -1,5 +1,15 @@
 ## Upcoming Products > Gamebase > Release Notes
 
+### 2017.04.04
+
+#### 기능 개선/변경
+* [API] [IAP](/Upcoming%20Products/Gamebase/Server%20Developer%60s%20Guide/#purchaseiap) API 연동 : 아이템 조회, 미소비내역 조회
+* [API] checkAccessToken API 응답 결과에, 로그인 시 사용된 IdP 관련 정보 포함하는 스펙 추가
+* [Console] 점검, 긴급공지 : 클라이언트 버전 선택 시 게임에서 사용하지 않는 스토어는 노출되지 않도록 변경
+
+#### 버그 수정
+* [Console] iOS 클라이언트 등록 시 마켓 비정상 노출 수정
+
 ### 2017.03.21
 
 #### 기능 개선/변경

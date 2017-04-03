@@ -41,22 +41,22 @@ API 호출 시 HTTP Header에 다음 항목들을 설정해야 합니다.
 | Name | Required | Value |
 | --- | --- | --- |
 | Content-Type | mandatory | application/json; charset=UTF-8 |
-| X-Secret-Key | mandatory |secretKey 설명 확인 |
-| X-TCGB-Transaction-Id | optional | transactionId 설명 확인 |
+| X-Secret-Key | mandatory |secretKey 설명 참고 |
+| X-TCGB-Transaction-Id | optional | transactionId 설명 참고 |
 
 
 
 
 #### 응답
-모든 API 요청에 대한 응답으로 HTTP 200 OK 로 전달합니다. 응답 결과는 Response Body 의 header 항목을 참고하여 성공 유무를 판단할 수 있습니다.
+모든 API 요청에 대한 응답으로 **HTTP 200 OK** 로 전달합니다. 응답 결과는 Response Body 의 header 항목을 참고하여 성공 유무를 판단할 수 있습니다.
 
 ###### 요청
 ```
-GET https://api-gamebase.cloud.toast.com
-
 Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 X-Secret-Key: IgsaAP
+
+GET https://api-gamebase.cloud.toast.com
 ```
 
 ###### 응답
@@ -81,7 +81,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | transactionId | String | API 요청시 HTTP Header에 설정한 값<br>해당 값을 전달하지 않으면 Gamebase 내부적으로 생성된 값을 반환 |
 | isSuccessful | boolean | 성공 여부 |
-| resultCode | int | 응답 코드 <br>성공시 0 실패시 에러코드 반환 |
+| resultCode | int | 응답 코드 <br>성공시 0, 실패시 에러코드 반환 |
 | resultMessage | String | 응답 메시지 |
 
 
@@ -108,17 +108,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Path Variable]**
 
-| Name | Value |
-| --- | --- |
-| appId | TOAST Cloud 프로젝트 ID |
-| userId | 로그인한 사용자 아이디 |
-| accessToken | 로그인한 사용자에게 발급된 Access Token |
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST Cloud 프로젝트 ID |
+| userId | String | 로그인한 사용자 아이디 |
+| accessToken | String | 로그인한 사용자에게 발급된 Access Token |
 
 **[Request Parameter]**
 
-| Name | Required |  Value |
-| --- | --- | --- |
-| linkedIdP | optional | true or false (기본값은 false) <br>Access Token 을 발급 받을 때 사용된 IdP 정보 포함 여부 |
+| Name | Type | Required |  Value |
+| --- | --- | --- | --- |
+| linkedIdP | boolean | optional | true or false (기본값은 false) <br>Access Token 을 발급 받을 때 사용된 IdP 정보 포함 여부 |
 
 **[Response Body]**
 ```json
@@ -194,10 +194,10 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Path Variable]**
 
-| Name | Value |
-| --- | --- |
-| appId | TOAST Cloud 프로젝트 ID |
-| userId | 조회 대상 사용자 ID |
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST Cloud 프로젝트 ID |
+| userId | String | 조회 대상 사용자 ID |
 
 
 **[Request Parameter]**
@@ -290,16 +290,16 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Path Variable]**
 
-| Name | Value |
-| --- | --- |
-| appId | TOAST Cloud 프로젝트 ID |
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST Cloud 프로젝트 ID |
 
 
 **[Request Body]**
 
-| Name | Mandatory | Type | Value |
+| Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| userIdList | true | Array[String] | 조회 대상 사용자 ID<br>  ["userId", "userId", "userId",...]|
+| userIdList | Array[String] | mandatory | 조회 대상 사용자 ID<br>  ["userId", "userId", "userId",...]|
 
 **[Response Body]**
 ```json
@@ -333,9 +333,9 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Method, URI]**
 
-| Method | URI |
-| --- | --- |
-| POST | /tcgb-member/v1.0/apps/{appId}/auth/authKeys |
+| Method | Type | URI |
+| --- | --- | --- |
+| POST | String | /tcgb-member/v1.0/apps/{appId}/auth/authKeys |
 
 
 **[Request Header]**
@@ -345,16 +345,16 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Path Variable]**
 
-| Name | Value |
-| --- | --- |
-| appId | TOAST Cloud 프로젝트 ID |
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST Cloud 프로젝트 ID |
 
 
 **[Request Body]**
 
-| Name | Mandatory | Type | Value |
+| Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| userIdList | true | Array[String] | 조회 대상 사용자 ID<br>  ["userId", "userId", "userId",...]|
+| userIdList | Array[String] | mandatory | 조회 대상 사용자 ID<br>  ["userId", "userId", "userId",...]|
 
 **[Response Body]**
 ```json
@@ -400,22 +400,22 @@ authSystem의 authKey로 여러 사용자의 사용자 ID를 조회합니다.
 
 **[Path Variable]**
 
-| Name | Value |
-| --- | --- |
-| appId | TOAST Cloud 프로젝트 ID |
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST Cloud 프로젝트 ID |
 
 
 **[Request Parameter]**
 
-| Name | Mandatory | Type | Value |
+| Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| authSystem | true | String | Gamebase 내부적으로 사용되는 인증 시스템<br>추후 사용자 인증 시스템 지원 예정 |
+| authSystem | String | mandatory | Gamebase 내부적으로 사용되는 인증 시스템<br>추후 사용자 인증 시스템 지원 예정 |
 
 **[Request Body]**
 
-| Name | Mandatory | Type | Value |
+| Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| authKeyList | true | Array[String] | authSystem에서 발급된 authKey<br> ["authKey", "authKey", "authKey",...]|
+| authKeyList | Array[String] | mandatory | authSystem에서 발급된 authKey<br> ["authKey", "authKey", "authKey",...]|
 
 
 **[Response Body]**
@@ -457,9 +457,9 @@ authSystem의 authKey로 여러 사용자의 사용자 ID를 조회합니다.
 
 **[Path Variable]**
 
-| Name | Value |
-| --- | --- |
-| appId | TOAST Cloud 프로젝트 ID |
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST Cloud 프로젝트 ID |
 
 **[Request Parameter]**
 
@@ -507,13 +507,19 @@ Gamebase는 TOASTCloud IAP 상품의 서버 API에 대해 **Wrapping** 기능을
 #### Wrapping API
 | API | Method | Wrapping URI | IAP URI |
 | --- | --- | --- | --- |
-| Comsume | POST | /tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq} | /inapp/v3/consume/{paymentSeq}/items/{itemSeq} |
+| 아이템 소비 | POST | /tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq} | /inapp/v3/consume/{paymentSeq}/items/{itemSeq} |
+| 아이템 조회 | GET | /tcgb-inapp/v1.0/apps/{appId}/item/list/{appSeq} | /standard/item/list/{appSeq} |
+| 미소비 결제 내역 조회| POST | /tcgb-inapp/v1.0/apps/{appId}/consumable/list | /standard/inapp/v1/consumable/list |
 
 **해당 API에 대한 상세 설명은 [IAP 가이드](http://docs.cloud.toast.com/ko/Common/IAP/Server%20Developer%60s%20Guide/)를 참고 하시기 바랍니다.**
 
 <br>
 ##### API 호출 예시
 ```
+Content-Type: application/json
+X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
+X-Secret-Key: IgsaAP
+
 POST https://api-gamebase.cloud.toast.com/tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq}
 ```
 
@@ -541,6 +547,10 @@ Gamebase는 TOASTCloud Leaderboard 상품의 서버 API에 대해 **Wrapping** �
 <br>
 ##### API 호출 예시
 ```
+Content-Type: application/json
+X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
+X-Secret-Key: IgsaAP
+
 GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/user-count
 ```
 
