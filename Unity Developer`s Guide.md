@@ -59,9 +59,9 @@ Unity Android 빌드 시 필요한 설정입니다.
 
 다운로드 받은 Android SDK에서 아래 폴더 및 aar 파일을 프로젝트의 Assets/Plugins/Android 폴더에 추가 합니다.
 
-* gamebase-sdk/
-* gamebase-sdk-VERSION-release.aar
-* gamebase-sdk-base-VERSION-release.aar
+* libs/
+* gamebase-sdk-VERSION.aar
+* gamebase-sdk-base-VERSION.aar
 
 인증 모듈 추가
 
@@ -146,7 +146,7 @@ Gamebase Unity SDK 를 사용하기 전에 초기화를 수행해야 하며, App
 > zoneType은 "REAL" 또는 " " 으로 설정하십시오. (" " 설정 시 자동으로 "REAL"로 설정됩니다.)
 > 그외 다른 값을 입력할 경우 정상 작동하지 않습니다.
 
-### Initialize UnitySDK using Inspector settings
+### 1. Initialize UnitySDK using Inspector settings
 
 1. 빈 게임 오브젝트를 생성합니다. (아래 그림의 GamebaseUnitySDK)
 2. 생성한 게임 오브젝트에 GamebaseUnitySDKSettings.cs 파일을 Add Component 하여 게임 오브젝트의 컴포넌트로 추가합니다.
@@ -200,7 +200,7 @@ public void Initialize()
 }
 ```
 
-### Initialize UnitySDK with parameters
+### 2. Initialize UnitySDK with parameters
 
 인자를 이용한 초기화를 하기 위해서는 GamebaseRequest.GamebaseConfiguration 인스턴스에 값을 설정하여 Initialize API를 호출해야 합니다.
 Android, iOS 플랫폼을 사용하는 경우에는 Native에서 Callback을 받기 위해 PluginCallbackManager를 GameObject에 Add Component 하여 게임 오브젝트의 컴포넌트로 추가합니다.
@@ -398,7 +398,7 @@ public void Login(string providerName)
 }
 ```
 
-#### 3. Login using a credential info
+### 3. Login using a credential info
 
 특정 IDP에 대한 로그인을 직접 구현하고 로그인 후 받아온 AccessToken을 사용하여, 다음 로그인 API를 구현합니다.
 
@@ -433,7 +433,63 @@ public void Login(Dictionary<string, object> credentialInfo)
 }
 ```
 
-### Logout
+### 4. Get authentication information for external IDP
+
+외부 IDP SDK 에서 아래와 같은 정보를 가져올 수 있습니다.
+
+* AccessToken
+* UserID
+* Profile
+
+**API**<br>
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+
+```cs
+static string GetAuthProviderUserID(string providerName)
+static string GetAuthProviderAccessToken(string providerName)
+static GamebaseRequest.AuthProviderProfile GetAuthProviderProfile(string providerName)
+```
+
+**Example**
+```cs
+public void GetAuthProviderUserID(string providerName)
+{
+	string userID = Gamebase.GetAuthProviderUserID(providerName);
+    Debug.Log(string.Format("{0} UserID is {1}", providerName, userID));
+}
+
+public void GetAuthProviderAccessToken(string providerName)
+{
+	string accessToken = Gamebase.GetAuthProviderAccessToken(providerName);
+    Debug.Log(string.Format("{0} AccessToken is {1}", providerName, accessToken));
+}
+
+public void GetAuthProviderProfile(string providerName)
+{
+	GamebaseRequest.AuthProviderProfile profile = Gamebase.GetAuthProviderProfile(providerName);
+
+    if (profile == null || profile.information == null)
+    {
+        Debug.Log("Failed to get authentication information for external IDP..");
+        return;
+    }
+
+    if (profile.information.ContainsKey("name"))
+    {
+        string name = profile.information["name"];
+        Debug.Log(string.Format("{0} name is {1}", providerName, name));
+    }
+
+    if (profile.information.ContainsKey("email"))
+    {
+        Debug.Log(string.Format("{0} email is {1}", providerName, name));
+    }
+}
+```
+
+
+## Logout
 
 로그아웃 버튼을 클릭했을 때, 다음과 같이 로그아웃 API를 구현합니다.
 
@@ -778,8 +834,8 @@ public void QueryPush()
 }
 ```
 
-### Webview
-#### 1. Show WebBrowser
+## Webview
+### 1. Show WebBrowser
 Fullscreen 웹뷰를 지원합니다.
 Fullscreen 스타일은 네비게이션바를 가지며, Close/GoBack 버튼을 가집니다. 네비게이션바에 타이틀을 지정할 수 있습니다.
 
@@ -798,7 +854,7 @@ public void ShowWebBrowser(string url)
     Gamebase.Webview.ShowWebBrowser(url);
 }
 ```
-#### 2. Show WebPopup
+### 2. Show WebPopup
 Popup 웹뷰를 지원합니다.
 Popup 스타일은 기존화면 위에 모달뷰 형식으로 나타나게 되며, 뒷 배경은 투명한 mask view로 덮어씌워집니다.
 
@@ -816,7 +872,7 @@ public void ShowWebPopup(string url)
     Gamebase.Webview.ShowWebPopup(url);
 }
 ```
-#### 3. Show WebView
+### 3. Show WebView
 Gamebase에서는 기본적인 웹뷰를 지원하고 Customizing이 가능합니다.
 
 **API**<br>
@@ -844,7 +900,7 @@ public void ShowWebView()
      Gamebase.Webview.ShowWebView(configuration);
  }
 ```
-#### 4. Show WebView File
+### 4. Show WebView File
 Gamebase에서는 기본적인 웹뷰를 지원하고 Customizing이 가능합니다.
 Local HTML 파일을 웹뷰에서 로딩이 가능합니다.
 
@@ -874,8 +930,8 @@ public void ShowWebViewFile()
  }
 ```
 
-### Util
-#### 1. Show AlertDialog
+## Util
+### 1. Show AlertDialog
 System Alert 를 위한 API를 제공합니다.
 다음의 API를 통해서, 사용자는 Alert에 버튼 및 콜백을 등록할 수 있습니다.
 

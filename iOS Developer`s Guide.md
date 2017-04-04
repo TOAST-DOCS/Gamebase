@@ -290,8 +290,20 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 ```
 
 
+#### 5. ID Provider의 인증정보 가져오기
+외부 인증 SDK에서 AccessToken, UserId, Profile 등의 인증 정보를 가져올 수 있습니다.
+```objectivec
+// Example for obtaining ID Provider's Authentication Information
 
+// Obtaining Facebook UserID
+NSString *userID = [TCGBGamebase authProviderUserIDWithIDPCode:@"facebook"];
 
+// Obtaining Facebook AccessToken
+NSString *accessTokenOfIDP = [TCGBGamebase authProviderAccessTokenWithIDPCode:@"facebook"];
+
+// Obtaining Facebook Profile
+TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWithIDPCode:@"facebook"];
+```
 
 
 
