@@ -121,14 +121,6 @@ dependencies {
     }
 }
 ```
-* 5) 점검 관리
-
-점검 시 노출될 점검 페이지를 수정하여 /assets 경로에 아래와 같이 추가합니다.
-```
-/assets/html/maintenance.html
-/assets/images/maintenance.png
-```
-
 
 
 ## Initialization
@@ -803,6 +795,19 @@ Android의 Toast를 간단하게 노출 할 수 있는 API를 제공합니다.
 Gamebase.Util.showToast(activity,
                         "message",              // 노출 할 메시지 텍스트
                         Toast.LENGTH_SHORT);    // 메시지를 표시하는 시간 (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
+```
+
+### Maintenance Page
+점검 상태에서 `"자세히 보기"` 클릭 시 노출되는 점검 페이지를 변경할 수 있습니다.
+
+* AndroidManifest.xml 에 점검 페이지 등록
+AndroidManifest.xml에 `"com.gamebase.maintenance.detail.url"`를 키 값으로 하는 meta-data를 설정합니다.
+android:value의 값으로 .html 파일 또는 URL을 입력할 수 있습니다.
+
+```xml
+<meta-data
+	android:name="com.gamebase.maintenance.detail.url"
+	android:value="file:///android_asset/html/gamebase-maintenance.html"/>
 ```
 
 ## Error codes
