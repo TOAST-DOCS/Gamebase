@@ -1,8 +1,24 @@
 ## Upcoming Products > Gamebase > Release Notes
 
+### 2017.04.20
+
+#### 기능 개선/변경
+
+* [SDK] 1.1.3 업데이트
+	* (Android)런칭 구조 및 팝업/점검 페이지 개선 :커스텀 점검 페이지 설정 기능 추가
+	* (Android)인증 구조 개선 및 로그 추가 : 인증 Adapter 및 SDK 버전 로그 출력
+
+#### 버그 수정
+* [SDK] 1.1.3 업데이트
+	* (Android)Facebook SDK v4.19.0 이상에서 초기화시 크래시 오류 수정
+
+
 ### 2017.04.04
 
 #### 기능 개선/변경
+* [SDK] 1.1.2 업데이트
+    * 게임런칭시 점검, 긴급공지 팝업 개선
+    * Unity Plugin 디버그로그 추가 및 익셉션 상세처리
 * [API] [IAP](/Upcoming%20Products/Gamebase/Server%20Developer%60s%20Guide/#purchaseiap) API 연동 : 아이템 조회, 미소비내역 조회
 * [API] checkAccessToken API 응답 결과에, 로그인 시 사용된 IdP 관련 정보 포함하는 스펙 추가
 * [Console] 점검, 긴급공지 : 클라이언트 버전 선택 시 게임에서 사용하지 않는 스토어는 노출되지 않도록 변경
