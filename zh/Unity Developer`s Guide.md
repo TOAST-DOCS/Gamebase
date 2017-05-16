@@ -45,7 +45,7 @@ API 별 지원하는 플랫폼은 아래와 같은 icon 으로 구분합니다.<
 
 Gamebase Unity SDK는 유니티 패키지 형태(.unitypackage)로 배포되며 아래 링크에서 다운로드 가능합니다.
 
-* [Download Gamebase Unity SDK](http://docs.cloud.toast.com/ko/Download/)
+* [Download Gamebase Unity SDK](http://docs.cloud.toast.com/zh/Download/)
 
 
 Gamebase Unity SDK를 게임 프로젝트에 추가하는 방법은 다음과 같습니다.

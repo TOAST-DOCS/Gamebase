@@ -16,7 +16,7 @@ Gamebase Android SDK를 사용하기 전에 TOAST Cloud Console에서 App ID를 
 
 ##### Download Link
 
-* [DOWNLOAD Gamebase Android SDK](http://docs.cloud.toast.com/ko/Download/#upcoming-products-gamebase)
+* [DOWNLOAD Gamebase Android SDK](http://docs.cloud.toast.com/en/Download/#upcoming-products-gamebase)
 * 다운로드 받은 SDK에서 다음 폴더 및 aar 파일을 프로젝트에 추가합니다.
 	* **gamebase-sdk/**
 	* **gamebase-sdk-{version}.aar**
@@ -473,7 +473,7 @@ private static void removeMappingForFacebook() {
 #### 1-1. Store Console
 
 * 다음 IAP 가이드를 참고하여 각 스토어에 앱을 등록 하고 어플리케이션 키를 발급받도록 합니다.
-	* [IAP > Marker interlocking information](http://docs.cloud.toast.com/ko/Common/IAP/Market%20interlocking%20information/)
+	* [IAP > Store interlocking information](http://docs.cloud.toast.com/en/Common/IAP/en/Store%20interlocking%20information/)
 
 #### 1-2. Register as Store's Tester
 
@@ -489,7 +489,7 @@ private static void removeMappingForFacebook() {
 #### 1-3. TOAST Cloud Console
 
 * IAP 가이드를 참고하여 IAP 설정 및 상품등록을 합니다.
-	* [IAP > Getting Started](http://docs.cloud.toast.com/ko/Common/IAP/Web%20Console/)
+	* [IAP > Getting Started](http://docs.cloud.toast.com/en/Common/IAP/Web%20Console/)
 
 #### 1-4. Download
 
@@ -636,7 +636,7 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 #### 1-1. TOAST Cloud Console
 
 * TCPush 가이드를 참고하여 Console 설정을 합니다.
-	* [Push > Developer's Guide](http://docs.cloud.toast.com/ko/Notification/Push/Developer%60s%20Guide/)
+	* [Push > Developer's Guide](http://docs.cloud.toast.com/en/Notification/Push/en/Developer%60s%20Guide/)
 
 #### 1-2. Download
 
@@ -892,7 +892,7 @@ Gamebase.Util.showToast(activity,
 ```
 
 ### Custom Maintenance Page
-점검 상태에서 `"자세히 보기"` 클릭 시 노출되는 점검 페이지를 변경할 수 있습니다.
+점검 상태에서 "자세히 보기" 클릭 시 노출되는 점검 페이지를 변경할 수 있습니다.
 
 * AndroidManifest.xml 에 점검 페이지 등록
 AndroidManifest.xml에 `"com.gamebase.maintenance.detail.url"`를 키 값으로 하는 meta-data를 설정합니다.
