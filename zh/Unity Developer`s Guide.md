@@ -45,7 +45,7 @@ API 별 지원하는 플랫폼은 아래와 같은 icon 으로 구분합니다.<
 
 Gamebase Unity SDK는 유니티 패키지 형태(.unitypackage)로 배포되며 아래 링크에서 다운로드 가능합니다.
 
-* [Download Gamebase Unity SDK](http://docs.cloud.toast.com/ko/Download/)
+* [Download Gamebase Unity SDK](http://docs.cloud.toast.com/zh/Download/)
 
 
 Gamebase Unity SDK를 게임 프로젝트에 추가하는 방법은 다음과 같습니다.
@@ -53,7 +53,7 @@ Gamebase Unity SDK를 게임 프로젝트에 추가하는 방법은 다음과 �
 1. Unity에서 이미 생성된 게임 프로젝트나 새로 생성한 프로젝트 열기.
 2. Unity Menu에서 Assets > Import Package > Custome Package를 선택하여 배포된 GamebaseUnitySDK.unitypackage Import.
 
-##### Add Android SDK
+##### Android SDK settings
 
 Unity Android 빌드 시 필요한 설정입니다.
 
@@ -92,38 +92,14 @@ Android SDK 추가 설정은 아래 링크를 참조 하시기 바랍니다
 ![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-AndroidSetting_1.0.0.png)<br>
 **그림. Android SDK 추가하기**
 
-#### Add IOS SDK
+#### IOS SDK settings
 
-Unity IOS 빌드 시 필요한 설정입니다.
+1. Unity에서 IOS 빌드를 통해 XCode 프로젝트를 생성 합니다.
+2. XCode에서 IOS SDK 설정을 추가 합니다.
 
-다운로드 받은 IOS SDK에서 다음 폴더 및 framework 파일을 프로젝트의 Assets/Plugins/IOS 폴더에 추가 합니다.
+IOS SDK에 대한 설정은 아래 가이드를 참조하시기 바랍니다.
 
-* externals/
-* Gamebase.bundle
-* Gamebase.framework
-
-인증 모듈 추가(아래 폴더 및 framework 파일 중에서 사용할 기능을 모두 프로젝트의 Assets/Plugins/IOS 폴더에 추가 합니다.)
-
-* FacebookSDK/
-* GamebaseAuthFacebookAdapter.framework
-* GamebaseAuthGamecenterAdapter.framework
-* GamebaseAuthPaycoAdapter.framework
-* PIDThirdPartyAuth.framework
-
-Purchase 모듈과 추가(아래 framework을 프로젝트의 Assets/Plugins/IOS 폴더에 추가 합니다.)
-
-* GamebasePurchaseIAPAdapter.framework
-
-Push 모듈과 추가(아래 framework 을 프로젝트의 Assets/Plugins/IOS 폴더에 추가 합니다.)
-
-* GamebasePushAdapter.framework
-
-IOS SDK 추가 설정은 아래 링크를 참조 하시기 바랍니다.
-
-* [IOS SDK 추가 설정 링크](./iOS Developer`s Guide#setting-xcode-project-to-use-gamebase)
-
-![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-iOSSetting_1.0.0.png)<br>
-**그림. IOS SDK 추가하기**
+* [IOS SDK 설정 링크](./iOS Developer`s Guide#setting-xcode-project-to-use-gamebase)
 
 
 
@@ -139,7 +115,7 @@ Gamebase Unity SDK 를 사용하기 전에 초기화를 수행해야 하며, App
 * zoneType : "REAL" 또는 "" 만 사용하시길 바랍니다.
 * idDebugMode : true일 경우 Gamebase의 모든 로그가 출력되고, false일 경우 Error 로그만 출력됩니다.
 * enableLaunchingStatusPopup : true일 경우 LaunchingStatus에서 받은 서버 상태가 Gamebase에서 제공하는 기본팝업으로 노출됩니다.
-* storeCode : 마켓 코드 입니다.
+* storeCode : 스토어 코드 입니다.
 * fcmSenderId : Firebase Cloud Messaging (FCM) 사용을 위한 Sender ID 입니다.(Only Android.)
 
 > **!주의**

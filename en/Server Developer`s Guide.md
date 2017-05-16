@@ -15,7 +15,7 @@ API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주�
 
 
 #### appId
-appId는 **TOAST Cloud의 프로젝트ID**로 콘솔 화면 Project list 화면에서 확인 가능합니다. 
+appId는 **TOAST Cloud의 프로젝트ID**로 콘솔 화면 Project list 화면에서 확인 가능합니다.
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.0.png)
 
@@ -511,7 +511,7 @@ Gamebase는 TOASTCloud IAP 상품의 서버 API에 대해 **Wrapping** 기능을
 | 아이템 조회 | GET | /tcgb-inapp/v1.0/apps/{appId}/item/list/{appSeq} | /standard/item/list/{appSeq} |
 | 미소비 결제 내역 조회| POST | /tcgb-inapp/v1.0/apps/{appId}/consumable/list | /standard/inapp/v1/consumable/list |
 
-**해당 API에 대한 상세 설명은 [IAP 가이드](http://docs.cloud.toast.com/ko/Common/IAP/Server%20Developer%60s%20Guide/)를 참고 하시기 바랍니다.**
+**해당 API에 대한 상세 설명은 [IAP 가이드](http://docs.cloud.toast.com/en/Common/IAP/en/Server%20Developer%60s%20Guide/)를 참고 하시기 바랍니다.**
 
 <br>
 ##### API 호출 예시
@@ -542,7 +542,7 @@ Gamebase는 TOASTCloud Leaderboard 상품의 서버 API에 대해 **Wrapping** �
 | 단일 사용자 Leaderboard정보 삭제 | DELETE | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
 
 
-**해당 API에 대한 상세 설명은 [Leaderboard 가이드](http://docs.cloud.toast.com/ko/Game/Leaderboard/Developer%60s%20Guide/)를 참고 하시기 바랍니다.**
+**해당 API에 대한 상세 설명은 [Leaderboard 가이드](http://docs.cloud.toast.com/en/Game/Leaderboard/en/Developer%60s%20Guide/)를 참고 하시기 바랍니다.**
 
 <br>
 ##### API 호출 예시

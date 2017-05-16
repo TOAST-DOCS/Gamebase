@@ -34,7 +34,7 @@ Gamebase는 다음과 같은 기능을 제공합니다.
 | 용어 | 설명 |
 |--------|--------|
 | UserID      | Gamebase 내부의 유저식별자       |
-| DeviceKey      | 단말 식별자.(iOS:IDFA/Android:Android ID)       |
+| DeviceKey      | 단말 식별자.(iOS:IDFV/Android:Android ID)       |
 | UUID      | Guest 생성시 사용되는 단말 식별자로 앱삭제전까지 유지      |
 | IDP       | Identify Provider로 인증제공자. 외부 페이스북, 구글, 애플게임센터, payco 등       |
 | IDP Token      | IDP SDK로부터 인증 후 받은 access token       |

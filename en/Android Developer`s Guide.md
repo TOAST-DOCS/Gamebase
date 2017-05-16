@@ -16,7 +16,7 @@ Gamebase Android SDK를 사용하기 전에 TOAST Cloud Console에서 App ID를 
 
 ##### Download Link
 
-* [DOWNLOAD Gamebase Android SDK](http://docs.cloud.toast.com/ko/Download/#upcoming-products-gamebase)
+* [DOWNLOAD Gamebase Android SDK](http://docs.cloud.toast.com/en/Download/#upcoming-products-gamebase)
 * 다운로드 받은 SDK에서 다음 폴더 및 aar 파일을 프로젝트에 추가합니다.
 	* **gamebase-sdk/**
 	* **gamebase-sdk-{version}.aar**
@@ -470,24 +470,58 @@ private static void removeMappingForFacebook() {
 
 ### 1. Settings
 
-#### 1-1. TOAST Cloud Console
+#### 1-1. Store Console
+
+* 다음 IAP 가이드를 참고하여 각 스토어에 앱을 등록 하고 어플리케이션 키를 발급받도록 합니다.
+	* [IAP > Store interlocking information](http://docs.cloud.toast.com/en/Common/IAP/en/Store%20interlocking%20information/)
+
+#### 1-2. Register as Store's Tester
+
+* 결제 테스트를 위하여 스토어별로 다음과 같이 테스터로 등록합니다.
+	* Google
+		* [Android > 테스트 구매 설정](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
+	* ONE store
+		* [ONE store > 인앱결제 테스트](https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#%EC%9D%B8%EC%95%B1%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8)
+		* 반드시 In-App 정보 - 테스트 버튼으로 샌드박스를 원하는 단말기 전화번호를 등록해서 테스트 해야 합니다.
+		* 테스트용 단말기는 USIM이 있어야 하고, 전화번호를 등록해야 합니다.(MDN)
+		* `ONE store` 어플리케이션이 설치되어 있어야 합니다.
+
+#### 1-3. TOAST Cloud Console
 
 * IAP 가이드를 참고하여 IAP 설정 및 상품등록을 합니다.
-	* [IAP > Getting Started](http://docs.cloud.toast.com/ko/Common/IAP/Web%20Console/)
+	* [IAP > Getting Started](http://docs.cloud.toast.com/en/Common/IAP/Web%20Console/)
 
-#### 1-2. Download
+#### 1-4. Download
 
 * 다운로드 받은 SDK의 **gamebase-adapter-purchase-iap** 폴더를 프로젝트에 추가합니다.
 
-#### 1-3. Initialization
+#### 1-5. AndroidManifest.xml(ONE store only)
+* ONE store 사용을 위해서는 다음 설정을 추가하여야 합니다.
+
+```xml
+<manifest>
+    ...
+    <application>
+    ...
+        <!-- [ONE store] Configurations begin -->
+        <meta-data android:name="iap:api_version" android:value="4" /> <!-- 버전 16.XX.XX의 경우, 4를 입력합니다. https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#iapapi_version-%EC%84%A4%EC%A0%95 -->
+        <meta-data android:name="iap:plugin_mode" android:value="development" /> <!-- development:개발모드 / release:운영 -->
+        <!-- [ONE store] Configurations end -->
+    ...
+    </application>
+</manifest>
+```
+
+#### 1-6. Initialization
 
 * Gamebase 초기화시 configuration의 **setStoreCode()**를 호출합니다.
-* 사용 가능한 마켓 리스트는 다음 가이드에 나와 있습니다.
-	* [IAP-AndroidManifest 설정 방법](http://docs.cloud.toast.com/ko/Common/IAP/Android%20Developer%60s%20Guide/#androidmanifestxml_1)
-	* **com.toast.iap.config.market** 항목을 참고합니다.
+* **STORE_CODE**는 다음 값 중에서 선택합니다.
+	* GG : Google
+	* TS : ONE store
+	* TEST : IAP 테스트용
 
 ```java
-String STORE_CODE = PurchaseProvider.StoreCode.GOOGLE;
+String STORE_CODE = "GG";	// Google
 
 TAPConfiguration configuration = new TAPConfiguration.Builder()
         .setAppId(APP_ID)
@@ -602,17 +636,21 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 #### 1-1. TOAST Cloud Console
 
 * TCPush 가이드를 참고하여 Console 설정을 합니다.
-	* [Push > Developer's Guide](http://docs.cloud.toast.com/ko/Notification/Push/Developer%60s%20Guide/)
+	* [Push > Developer's Guide](http://docs.cloud.toast.com/en/Notification/Push/en/Developer%60s%20Guide/)
 
 #### 1-2. Download
 
 * Firebase 푸쉬를 사용하는 경우
 	* 다운로드 받은 SDK의 **gamebase-adapter-push-fcm** 폴더를 프로젝트에 추가합니다.
+* Tencent 푸쉬를 사용하는 경우
+	* 다운로드 받은 SDK의 **gamebase-adapter-push-tencent** 폴더를 프로젝트에 추가합니다.
 
-#### 1-3. AndroidManifest.xml (Firebase only)
+#### 1-3. AndroidManifest.xml
 
-* Gamebase 푸시에 필요한 설정을 추가합니다.
+* Gamebase 푸쉬에 필요한 설정을 추가합니다.
 >**${applicationId}**을 **패키지 네임**으로 변경하여야 합니다.
+
+##### Firebase
 
 ```xml
 <manifest>
@@ -645,19 +683,75 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 </manifest>
 ```
 
-#### 1-3. Initialization
+##### Tencent
+
+```xml
+<manifest>
+    ...
+    <application>
+    ...
+        <provider
+            android:name="com.tencent.android.tpush.XGPushProvider"
+            android:authorities="${applicationId}.AUTH_XGPUSH"
+            android:exported="true" />
+        <provider
+            android:name="com.tencent.android.tpush.SettingsContentProvider"
+            android:authorities="${applicationId}.TPUSH_PROVIDER"
+            android:exported="false" />
+        <provider
+            android:name="com.tencent.mid.api.MidProvider"
+            android:authorities="${applicationId}.TENCENT.MID.V3"
+            android:exported="true" />
+    ...
+    </application>
+</manifest>
+```
+
+#### 1-4. Google Services Settings (Firebase only)
+* Gradle 빌드를 사용하는 경우
+    * Firebase 푸쉬를 사용하기 위해서는 google-services.json 설정파일이 필요합니다.
+        * [https://firebase.google.com/docs/notifications/android/console-audience#add_firebase_to_your_app](https://firebase.google.com/docs/notifications/android/console-audience#add_firebase_to_your_app)
+        * 위 링크를 참조하여 설정파일을 프로젝트에 포함시킵니다.
+    * gradle 설정에 `apply plugin: 'com.google.gms.google-services'` 를 추가합니다.
+    * 위 설정으로 Google Services Gradle Plugin이 적용되어 google-services.json 파일을 res/google-services/{build_type}/values/values.xml 라는 이름의 string resource로 변경하여 사용하게 됩니다.
+* Unity 빌드인 경우
+	* Google Services Gradle Plugin을 사용할 수 없으므로 다음 링크의 설명에 따라 직접 string resource를 만들어 프로젝트에 포함하도록 합니다.
+	* [https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
+	* 다음은 string resource 파일의 예시입니다.
+
+```xml
+<!-- res/values/google-services-json.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="default_web_client_id" translatable="false">000000000000-abcdabcdabcdabcdabcdabcdabcd.apps.googleusercontent.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">000000000000</string>
+  <string name="firebase_database_url" translatable="false">https://tap-development-00000000.firebaseio.com</string>
+  <string name="google_app_id" translatable="false">1:000000000000:android:749cbe01c8ada279</string>
+  <string name="google_api_key" translatable="false">AbCd_AbCd_AbCd_AbCd_AbCd_AbCd_AbCd</string>
+  <string name="google_storage_bucket" translatable="false">tap-development-00000000.appspot.com</string>
+</resources>
+```
+
+#### 1-5. Initialization
 
 * Gamebase 초기화시 configuration의 **setPushType()**을 호출합니다.
 * Firebase 푸쉬를 사용하는 경우
 	* 추가로 **setFCMSenderId()**를 호출합니다.
+* Tencent 푸쉬를 사용하는 경우
+	* 추가로 **setTencentAccessId()**를 호출합니다.
+	* 추가로 **setTencentAccessKey()**를 호출합니다.
 
 ```java
 private static final String PUSH_FCM_SENDER_ID = "...";
+private static final String PUSH_TENCENT_ACCESS_ID = "...";
+private static final String PUSH_TENCENT_ACCESS_KEY = "...";
 
 TAPConfiguration configuration = new TAPConfiguration.Builder()
         .setAppId(APP_ID)
         .setAppVersion(APP_VERSION)
-        .setFCMSenderId(PUSH_FCM_SENDER_ID)	// Firebase는 SenderId가 필요합니다.
+        .setFCMSenderId(PUSH_FCM_SENDER_ID)				// Firebase는 SenderId가 필요합니다.
+        .setTencentAccessId(PUSH_TENCENT_ACCESS_ID)		// Tencent AccessId가 필요합니다.
+        .setTencentAccessKey(PUSH_TENCENT_ACCESS_KEY)	// Tencent AccessKey가 필요합니다.
         .build();
 
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
@@ -797,8 +891,8 @@ Gamebase.Util.showToast(activity,
                         Toast.LENGTH_SHORT);    // 메시지를 표시하는 시간 (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
 ```
 
-### Maintenance Page
-점검 상태에서 `"자세히 보기"` 클릭 시 노출되는 점검 페이지를 변경할 수 있습니다.
+### Custom Maintenance Page
+점검 상태에서 "자세히 보기" 클릭 시 노출되는 점검 페이지를 변경할 수 있습니다.
 
 * AndroidManifest.xml 에 점검 페이지 등록
 AndroidManifest.xml에 `"com.gamebase.maintenance.detail.url"`를 키 값으로 하는 meta-data를 설정합니다.
@@ -813,54 +907,55 @@ android:value의 값으로 .html 파일 또는 URL을 입력할 수 있습니다
 ## Error codes
 
 | Category | Sub Category | Error | Error Code | Notes |
-| --- | --- | --- | --- | --- |
-|Common| | NOT_INITIALIZED | 1 | |
-|      | | NOT_LOGGED_IN | 2 | |
-|      | | INVALID_PARAMETER | 3 | |
-|      | | INVALID_JSON_FORMAT | 4 | |
-|      | | USER_PERMISSION | 5 | |
-|      | | NOT_SUPPORTED | 10 | |
-| Network | Socket | SOCKET_RESPONSE_TIMEOUT | 101 | |
-|         | | SOCKET_ERROR | 110 | |
-|         | | SOCKET_UNKNOWN_ERROR | 999 | |
-| Launching | | LAUNCHING_SERVER_ERROR | 2001 | |
-|           | | LAUNCHING_NOT_EXIST_CLIENT_ID | 2002 | |
-|           | | LAUNCHING_UNREGISTERED_APP    | 2003 | |
-|           | | LAUNCHING_UNREGISTERED_CLIENT | 2004 | |
-| Auth | Common | AUTH_USER_CANCELED | 3001 | |
-|      |        | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | |
-|      |        | AUTH_NOT_EXIST_MEMBER | 3003 | |
-|      |        | AUTH_INVALID_MEMBER | 3004 | |
-|      |        | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | |
-|      | Gamebase Login | AUTH_TAP_LOGIN_FAILED | 3101 | |
-|      |          | AUTH_TAP_LOGIN_INVALID_TOKEN_INFO | 3102 | |
-|      |          | AUTH_TAP_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | |
-|      | IDP Login | AUTH_IDP_LOGIN_FAILED | 3201 | |
-|      |           | AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3201 | |
-|      | Add Mapping | AUTH_ADD_MAPPING_FAILED | 3301 | |
-|      |            | AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | |
-|      |            | AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | |
-|      |            | AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | |
-|      | Remove Mapping | AUTH_REMOVE_MAPPING_FAILED | 3401 | |
-|      |               | AUTH_REMOVE_MAPPING_LAST_MAPPED_IDP | 3402 | |
-|      |               | AUTH_REMOVE_MAPPING_LOGGED_IN_IDP | 3403 | |
-|      | Logout | AUTH_LOGOUT_FAILED | 3501 | |
-|      | Withdrawal | AUTH_WITHDRAW_FAILED | 3601 | |
-|      | Not Playable | AUTH_NOT_PLAYABLE | 3701 | |
-|      | Unknown | AUTH_UNKNOWN_ERROR | 3999 | |
-| Purchase | | PURCHASE_NOT_INITIALIZED | 4001 | |
-|          | | PURCHASE_USER_CANCELED | 4002 | |
-|          | | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003 | |
-|          | | PURCHASE_NOT_SUPPORTED_MARKET | 4010 | |
-|          | | PURCHASE_EXTERNAL_LIBRARY_ERROR | 4201 | |
-|          | | PURCHASE_UNKNOWN_ERROR | 4999 | |
-| Push | | PUSH_NOT_REGISTERED | 5001 | |
-|      | | PUSH_EXTERNAL_LIBRARY_ERROR | 5101 | |
-|      | | PUSH_UNKNOWN_ERROR | 5999 | |
-| UI | | UI_UNKNOWN_ERROR | 6999 | |
-| Server | | SERVER_INTERNAL_ERROR | 8001 | |
-|        | | SERVER_REMOTE_SYSTEM_ERROR | 8002 | |
-|        | | SERVER_UNKNOWN_ERROR | 8999 | |
+| -------- | ------------ | ----- | ---------- | ----- |
+| Common |  | NOT_INITIALIZED | 1 | Gamebase 초기화가 되어있지 않습니다. |
+|  |  | NOT_LOGGED_IN | 2 | 로그인이 필요합니다. |
+|  |  | INVALID_PARAMETER | 3 | 잘못된 파라미터입니다. |
+|  |  | INVALID_JSON_FORMAT | 4 | JSON 포맷 에러입니다. |
+|  |  | USER_PERMISSION | 5 | 권한이 없습니다. |
+|  |  | NOT_SUPPORTED | 10 | 지원하지 않는 기능입니다. |
+| Network | Socket | SOCKET_RESPONSE_TIMEOUT | 101 | 네트워크 상태가 불안정하여 응답이 없습니다. |
+|  |  | SOCKET_ERROR | 110 | 소켓 에러 |
+|  |  | SOCKET_UNKNOWN_ERROR | 999 | 소켓 알 수 없는 에러 |
+| Launching |  | LAUNCHING_SERVER_ERROR | 2001 | 런칭 서버 에러입니다. |
+|  |  | LAUNCHING_NOT_EXIST_CLIENT_ID | 2002 | Client ID가 존재하지 않습니다. |
+|  |  | LAUNCHING_UNREGISTERED_APP | 2003 | 등록되지 않은 App 입니다. |
+|  |  | LAUNCHING_UNREGISTERED_CLIENT | 2004 | 등록되지 않은 Client (version) 입니다. |
+| Auth | Common | AUTH_USER_CANCELED | 3001 | 로그인이 취소되었습니다. |
+|  |  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
+|  |  | AUTH_NOT_EXIST_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
+|  |  | AUTH_INVALID_MEMBER | 3004 | 잘못된 회원에 대한 요청입니다. |
+|  |  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 외부 인증 라이브러리 에러입니다. |
+|  | Gamebase Login | AUTH_TOKEN_LOGIN_FAILED | 3101 | 토큰 로그인에 실패하였습니다. |
+|  |  | AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
+|  |  | AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | 최근에 로그인한 IDP 정보가 없습니다. |
+|  | IDP Login | AUTH_IDP_LOGIN_FAILED | 3201 | IDP 로그인에 실패하였습니다. |
+|  |  | AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3201 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
+|  | Add Mapping | AUTH_ADD_MAPPING_FAILED | 3301 | 맵핑 추가에 실패하였습니다. |
+|  |  | AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | 이미 다른 멤버에 맵핑되어있습니다. |
+|  |  | AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | 이미 같은 IDP에 맵핑되어있습니다. |
+|  |  | AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
+|  | Remove Mapping | AUTH_REMOVE_MAPPING_FAILED | 3401 | 맵핑 삭제에 실패하였습니다. |
+|  |  | AUTH_REMOVE_MAPPING_LAST_MAPPED_IDP | 3402 | 마지막에 맵핑된 IDP는 삭제할 수 없습니다. |
+|  |  | AUTH_REMOVE_MAPPING_LOGGED_IN_IDP | 3403 | 현재 로그인되어있는 IDP 입니다. |
+|  | Logout | AUTH_LOGOUT_FAILED | 3501 | 로그아웃에 실패하였습니다. |
+|  | Withdrawal | AUTH_WITHDRAW_FAILED | 3601 | 탈퇴에 실패하였습니다. |
+|  | Not Playable | AUTH_NOT_PLAYABLE | 3701 | 플레이할 수 없는 상태입니다. (점검 또는 서비스 종료 등) |
+|  | Unknown | AUTH_UNKNOWN_ERROR | 3999 | 알수 없는 에러입니다. (정의 되지 않은 에러입니다.) |
+| Purchase |  | PURCHASE_NOT_INITIALIZED | 4001 | Gamebase PurchaseAdapter가 초기화되지 않았습니다. |
+|  |  | PURCHASE_USER_CANCELED | 4002 | 구매가 취소되었습니다. |
+|  |  | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003 | 이전 구매가 완료되지 않았습니다. |
+|  |  | PURCHASE_NOT_ENOUGH_CASH | 4004 | 해당 스토어의 캐쉬가 부족하여 결제할 수 없습니다. |
+|  |  | PURCHASE_NOT_SUPPORTED_MARKET | 4010 | 지원하지 않는 스토어입니다. |
+|  |  | PURCHASE_EXTERNAL_LIBRARY_ERROR | 4201 | 외부 IAP 라이브러리 에러입니다. |
+|  |  | PURCHASE_UNKNOWN_ERROR | 4999 | 알수없는 구매 에러입니다. |
+| Push |  | PUSH_NOT_REGISTERED | 5001 | 단말기가 푸쉬 서버에 등록되지 않았습니다. |
+|  |  | PUSH_EXTERNAL_LIBRARY_ERROR | 5101 | 외부 라이브러리 에러입니다. |
+|  |  | PUSH_UNKNOWN_ERROR | 5999 | 알수 없는 푸시 에러입니다. (정의되지 않은 푸시 에러입니다.) |
+| UI |  | UI_UNKNOWN_ERROR | 6999 | 알수 없는 에러입니다. (정의되지 않은 에러입니다.) |
+| Server |  | SERVER_INTERNAL_ERROR | 8001 |  |
+|  |  | SERVER_REMOTE_SYSTEM_ERROR | 8002 |  |
+|  |  | SERVER_UNKNOWN_ERROR | 8999 |  |
 
 ## Dependency
 
@@ -869,10 +964,11 @@ android:value의 값으로 .html 파일 또는 URL을 입력할 수 있습니다
 | **Gamebase<br>(Required)** | Gamebase | gamebase-sdk-{version}.aar<br>gamebase-sdk-base-{version}.aar | appcompat-v7-24.0.0.aar<br>support-v4-24.0.0.aar<br>support-annotations-24.0.0.jar<br>gson-2.2.4.jar<br>okhttp-3.6.0.jar<br>okio-1.11.0.jar |  |
 | **Authentication<br>(Optional)** | Google | gamebase-adapter-auth-google-{version}.aar | play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-tasks-10.0.1.aar<br>play-services-auth-10.0.1.aar<br>play-services-auth-base-10.0.1.aar |  |
 |  | Facebook | gamebase-adapter-auth-facebook-{version}.aar | facebook-android-sdk-4.17.0.aar<br>appcompat-v7-24.0.0.aar<br>support-vector-drawable-24.0.0.aar<br>animated-vector-drawable-24.0.0.aar<br>cardview-v7-24.0.0.aar<br>customtabs-24.0.0.aar<br>bolts-android-1.4.0.jar<br>bolts-applinks-1.4.0.jar<br>bolts-tasks-1.4.0.jar |  |
-|  | Payco | gamebase-adapter-auth-payco-{version}.aar | paycologin-1.2.6.aar<br>play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-tasks-10.0.1.aar |  |
-| **Purchase<br>(Optional)** | IAP | gamebase-adapter-purchase-iap-{version}.aar | iap-1.3.2.aar<br>mobill-core-1.3.2.jar<br>gson-2.2.4.jar<br>okhttp-1.5.4.jar |  |
-| **Push<br>(Optional)** | FCM | gamebase-adapter-push-fcm-{version}.aar | pushsdk-release-v1.32.aar<br>firebase-common-10.0.1.jar<br>firebase-iid-10.0.1.jar<br>firebase-messaging-10.0.1.aar<br>play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-gcm-10.0.1.aar<br>play-services-iid-10.0.1.aar<br>play-services-tasks-10.0.1.aar |  |
-|  | Tencent | gamebase-adapter-push-tencent-{version}.aar | pushsdk-release-v1.32.aar | 현재 지원되지 않습니다. |
+|  | Payco | gamebase-adapter-auth-payco-{version}.aar | paycologin-1.2.9.aar<br>play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-tasks-10.0.1.aar<br>gson-2.2.4.jar |  |
+| **Purchase<br>(Optional)** | IAP | gamebase-adapter-purchase-iap-{version}.aar | iap-1.3.2.20170424.aar<br>mobill-core-1.3.2.20170424.jar<br>gson-2.2.4.jar<br>okhttp-1.5.4.jar |  |
+|  | IAP - ONE store |  | iap-tstore-1.3.2.20170424.aar<br>iap_tstore_plugin_v16.03.00_20161123.jar | ONE store 사용시 추가해야 합니다. |
+| **Push<br>(Optional)** | FCM | gamebase-adapter-push-fcm-{version}.aar | pushsdk-release-v1.4.0.aar<br>firebase-common-10.0.1.jar<br>firebase-iid-10.0.1.jar<br>firebase-messaging-10.0.1.aar<br>play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-gcm-10.0.1.aar<br>play-services-iid-10.0.1.aar<br>play-services-tasks-10.0.1.aar |  |
+|  | Tencent | gamebase-adapter-push-tencent-{version}.aar | pushsdk-release-v1.4.0.aar<br>Xg_sdk_v3.1_20170417_0946.jar<br>jg_filter_sdk_1.1.jar<br>mid-core-sdk-3.7.2.jar<br>wup-1.0.0.E-SNAPSHOT.jar |  |
 
 * Required 항목은 필수로 포함되어야 하는 모듈입니다.
 * Optional 항목은 해당 기능이 필요할 경우 포함되어야 하는 모듈입니다.
