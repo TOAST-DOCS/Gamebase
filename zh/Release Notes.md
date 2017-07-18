@@ -1,5 +1,18 @@
 ## Upcoming Products > Gamebase > Release Notes
 
+### 2017.07.20
+
+#### 기능 개선/변경
+
+* Gamebase 상품 이용 중지시 관련 데이터 삭제를 위한 일 배치 기능 추가
+* [SDK] 1.1.5 업데이트
+	* 시스템 팝업 API 추가 (showAlertWithTitle)
+	* 국가코드를 대문자로 반환하도록 변경 (Android)
+	* TCPush SDK 1.4.1 로 업데이트
+	* IAP SDK 1.3.3.20170627 로 업데이트
+* [Console]
+	* 외부 연동 모듈에서 오류 발생시, 추적을 위한 TrackingTime 추가 노출
+
 ### 2017.05.25
 
 #### 기능 개선/변경
@@ -31,7 +44,7 @@
 * [SDK] 1.1.2 업데이트
     * 게임런칭시 점검, 긴급공지 팝업 개선
     * Unity Plugin 디버그로그 추가 및 익셉션 상세처리
-* [API] [IAP](/Upcoming%20Products/Gamebase/zh/Server%20Developer%60s%20Guide/#purchaseiap) API 연동 : 아이템 조회, 미소비내역 조회
+* [API] [IAP](/Upcoming%20Products/Gamebase/ko/Server%20Developer%60s%20Guide/#purchaseiap) API 연동 : 아이템 조회, 미소비내역 조회
 * [API] checkAccessToken API 응답 결과에, 로그인 시 사용된 IdP 관련 정보 포함하는 스펙 추가
 * [Console] 점검, 긴급공지 : 클라이언트 버전 선택 시 게임에서 사용하지 않는 스토어는 노출되지 않도록 변경
 
@@ -43,8 +56,8 @@
 #### 기능 개선/변경
 * [SDK] 1.1.0 업데이트
     * 외부 AccessToken을 받아서 idPLogin을 해주는 인터페이스를 추가
-    * [UI 기능 추가](/Upcoming%20Products/Gamebase/zh/Android%20Developer%60s%20Guide/#ui) : Custom Webview, AlertDialog
-* [API] [Leaderboard](/Upcoming%20Products/Gamebase/zh/Server%20Developer%60s%20Guide/#leaderboard), [IAP](/Upcoming%20Products/Gamebase/zh/Server%20Developer%60s%20Guide/#purchaseiap) API 연동
+    * [UI 기능 추가](/Upcoming%20Products/Gamebase/ko/Android%20Developer%60s%20Guide/#ui) : Custom Webview, AlertDialog
+* [API] [Leaderboard](/Upcoming%20Products/Gamebase/ko/Server%20Developer%60s%20Guide/#leaderboard), [IAP](/Upcoming%20Products/Gamebase/ko/Server%20Developer%60s%20Guide/#purchaseiap) API 연동
 
 ### 2017.03.09
 
