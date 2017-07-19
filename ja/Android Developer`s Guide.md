@@ -16,7 +16,7 @@ Gamebase Android SDK를 사용하기 전에 TOAST Cloud Console에서 App ID를 
 
 ##### Download Link
 
-* [DOWNLOAD Gamebase Android SDK](http://docs.cloud.toast.com/ja/Download/#upcoming-products-gamebase)
+* [DOWNLOAD Gamebase Android SDK](http://docs.cloud.toast.com/ko/Download/#upcoming-products-gamebase)
 * 다운로드 받은 SDK에서 다음 폴더 및 aar 파일을 프로젝트에 추가합니다.
 	* **gamebase-sdk/**
 	* **gamebase-sdk-{version}.aar**
@@ -473,7 +473,7 @@ private static void removeMappingForFacebook() {
 #### 1-1. Store Console
 
 * 다음 IAP 가이드를 참고하여 각 스토어에 앱을 등록 하고 어플리케이션 키를 발급받도록 합니다.
-	* [IAP > Store interlocking information](http://docs.cloud.toast.com/ja/Common/IAP/ja/Store%20interlocking%20information/)
+	* [IAP > Store interlocking information](http://docs.cloud.toast.com/ko/Common/IAP/ko/Store%20interlocking%20information/)
 
 #### 1-2. Register as Store's Tester
 
@@ -484,12 +484,12 @@ private static void removeMappingForFacebook() {
 		* [ONE store > 인앱결제 테스트](https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#%EC%9D%B8%EC%95%B1%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8)
 		* 반드시 In-App 정보 - 테스트 버튼으로 샌드박스를 원하는 단말기 전화번호를 등록해서 테스트 해야 합니다.
 		* 테스트용 단말기는 USIM이 있어야 하고, 전화번호를 등록해야 합니다.(MDN)
-		* `ONE store` 어플리케이션이 설치되어 있어야 합니다.
+		* **ONE store** 어플리케이션이 설치되어 있어야 합니다.
 
 #### 1-3. TOAST Cloud Console
 
 * IAP 가이드를 참고하여 IAP 설정 및 상품등록을 합니다.
-	* [IAP > Getting Started](http://docs.cloud.toast.com/ja/Common/IAP/ja/Web%20Console/)
+	* [IAP > Getting Started](http://docs.cloud.toast.com/ko/Common/IAP/ko/Web%20Console/)
 
 #### 1-4. Download
 
@@ -542,18 +542,17 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 구매하고자 하는 아이템의 itemSeq를 이용해 다음의 API를 호출하여 구매요청을 합니다.
 
 ```java
-Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<List<PurchasableItem>>() {
+long itemSeq; // The itemSeq value can be got through the requestItemListPurchasable API.
+
+Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<PurchasableReceipt>() {
     @Override
-    public void onCallback(List<PurchasableItem> data, GamebaseException exception) {
+    public void onCallback(PurchasableReceipt data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
-        	// Succeeded.
+            // Succeeded.
         } else if(exception.getCode() == GamebaseError.PURCHASE_USER_CANCELED) {
-        	// User canceled.
+            // User canceled.
         } else {
-            // Failed.
-            Log.e(TAG, "Request item list failed- "
-                    + "errorCode: " + exception.getCode()
-                    + "errorMessage: " + exception.getMessage());
+            // To Purchase Item Failed cause of the error
         }
     }
 });
@@ -581,14 +580,13 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 
 ### 4. Get a list of items not consumed
 
-아이템을 구매는 하였지만, 정상적으로 아이템이 소비(배송, 지급)되었지 않은 **미소비 결제내역**을 요청합니다. 해당 내역을 받은 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.<br><br>
-RequestItemListOfNotConsumed API는 구매 목록이 있는지 확인하는 용도입니다.
+아이템을 구매는 하였지만, 아직 아이템 배송을 실시하지 않은 **미소비 결제내역**리스트를 요청합니다. 리턴받은 리스트가 존재하는 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.<br>
 
 * 미소비 결제 처리 순서
-	1. 결제 성공시 RequestItemListOfNotConsumed 호출
-	2. API의 리턴값이 존재할 경우 게임 클라이언트가 게임 서버에 컨슘 요청
-	3. 게임 서버가 IAP서버에 컨슘 요청
-	4. 게임 서버가 게임 클라이언트에 아이템 지급
+	1. 결제 성공시 requestItemListOfNotConsumed 호출
+	2. API의 리턴값이 존재할 경우 게임 클라이언트가 게임 서버에 Consume 요청
+	3. 게임 서버가 IAP서버에 Consume 요청
+	4. IAP서버에서 성공값이 리턴될 경우 게임 서버가 게임 클라이언트에 아이템 지급
 
 ```java
 Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallback<List<PurchasableReceipt>>() {
@@ -608,10 +606,10 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 
 ### 5. Reprocess purchase transaction
 
-스토어 결제는 정상적으로 이루어졌지만, ToastCloud IAP 서버 검증 실패 등으로 인해 정상적으로 결제가 이뤄지지 않은 경우에,
-해당 API를 이용하여 재처리를 시도합니다. 최종적으로 결제가 성공한 내역을 바탕으로, 아이템 배송(지급)등의 API를 호출하여 처리를 해주어야합니다.<br><br>
-RequestRetryTransaction API는 클라이언트에 결제 실패 로직이 남아있는 경우 재처리를 실행하고, 성공/실패 결과를 콜백함수로 리턴합니다. 그래서 결과를 어떻게 핸들링 할 것인지는 게임쪽에서 결정하여 활용할 수 있는 부분이므로 Gamebase SDK가 자동호출 해주지 않습니다.<br><br>
-로그인 성공 후 매번 호출해야 합니다.
+로그인 성공 후 매번 호출해야 하는 API입니다.<br><br>
+스토어 결제는 정상적으로 이루어졌지만, ToastCloud IAP 서버 검증 실패 등으로 인해 정상적으로 결제가 이루어지지 않은 경우,
+requestRetryTransaction API를 이용하여 재처리를 시도합니다. 최종적으로 결제가 성공한 내역을 바탕으로, 아이템 배송(지급)등의 API를 호출하여 처리를 해주어야합니다.<br><br>
+RequestRetryTransaction API는 클라이언트에 결제 실패 로직이 남아있는 경우 재처리를 실행하고, 성공/실패 결과를 콜백함수로 리턴합니다. 그래서 성공/실패 여부에 따라 이후 처리를 어떻게 진행할 것인지는 게임쪽에서 결정하여 활용할 수 있는 부분이므로 Gamebase SDK가 자동호출해주지 않습니다.
 
 ```java
 Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<PurchasableRetryTransactionResult>() {
@@ -636,7 +634,7 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 #### 1-1. TOAST Cloud Console
 
 * TCPush 가이드를 참고하여 Console 설정을 합니다.
-	* [Push > Developer's Guide](http://docs.cloud.toast.com/ja/Notification/Push/ja/Developer%60s%20Guide/)
+	* [Push > Developer's Guide](http://docs.cloud.toast.com/ko/Notification/Push/ko/Developer%60s%20Guide/)
 
 #### 1-2. Download
 
@@ -644,6 +642,8 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 	* 다운로드 받은 SDK의 **gamebase-adapter-push-fcm** 폴더를 프로젝트에 추가합니다.
 * Tencent 푸쉬를 사용하는 경우
 	* 다운로드 받은 SDK의 **gamebase-adapter-push-tencent** 폴더를 프로젝트에 추가합니다.
+> 푸쉬 모듈은 하나만 존재하여야 합니다.
+> Firebase 푸쉬와 Tencent 푸쉬를 둘 다 동시에 프로젝트에 추가하지 마십시오.
 
 #### 1-3. AndroidManifest.xml
 
@@ -712,7 +712,7 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
     * Firebase 푸쉬를 사용하기 위해서는 google-services.json 설정파일이 필요합니다.
         * [https://firebase.google.com/docs/notifications/android/console-audience#add_firebase_to_your_app](https://firebase.google.com/docs/notifications/android/console-audience#add_firebase_to_your_app)
         * 위 링크를 참조하여 설정파일을 프로젝트에 포함시킵니다.
-    * gradle 설정에 `apply plugin: 'com.google.gms.google-services'` 를 추가합니다.
+    * gradle 설정에 **apply plugin: 'com.google.gms.google-services'** 를 추가합니다.
     * 위 설정으로 Google Services Gradle Plugin이 적용되어 google-services.json 파일을 res/google-services/{build_type}/values/values.xml 라는 이름의 string resource로 변경하여 사용하게 됩니다.
 * Unity 빌드인 경우
 	* Google Services Gradle Plugin을 사용할 수 없으므로 다음 링크의 설명에 따라 직접 string resource를 만들어 프로젝트에 포함하도록 합니다.

@@ -19,14 +19,14 @@
 #### Setting Xcode Project to use Gamebase
 Gamebase는 아래와 같은 방법으로 설정이 가능합니다.
 
-##### 1. 수동 설정
-###### **1. 다운로드**
-Gamebase는 [http://docs.cloud.toast.com/ja/Download/](http://docs.cloud.toast.com/ja/Download/)에서 다운로드 받습니다.
+##### 1. Configuration
+###### **1. Download**
+Gamebase는 [http://docs.cloud.toast.com/ko/Download/](http://docs.cloud.toast.com/ko/Download/)에서 다운로드 받습니다.
 Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.
 또한 각 IDP의 인증을 하기위한 SDK파일들을 다운로드 받아야합니다. 해당 IDP의 로그인을 사용할 때만 포함하면 됩니다.
 다운로드 받은 뒤, 해당 SDK파일을 프로젝트의 target에 포함시켜야 합니다.
 
-[외부 SDK 다운로드]
+[3rd Party SDK Download]
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | External SDK Download Link |
 | --- | --- | --- | --- | --- |
@@ -42,31 +42,33 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.
 > Gamebase Framework 파일 중 이름에 **Adapter**가 포함되어 있는 파일들은 선택적으로 프로젝트 내에서 사용여부를 결정할 수 있으며, 해당 Adapter Framework를 사용하기 위해서는 위의 표에 명시된 외부 SDK들이 필요할 수 있습니다.
 
 > **주의**
->
+> 
 >각 IDP에서 제공하는 외부 SDK에 대한 설정은 각 IDP의 가이드 문서를 참고하시길 바랍니다.
 
-###### **2. 압축풀기**
+###### **2. Uncompress **
 압축을 풀면, 다음과 같이 Gamebase.framework 등의 SDK를 볼 수 있습니다.
 
 ![unzip gamebase](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-002_1.0.0.png)
 
-###### 3. 프로젝트 설정
-   1. Framework 파일을 Project의 Project Navigator로 끌어와서 import 합니다. 이 때 추가된 Framework 파일들은 프로젝트 target에 추가되어야 합니다.
-   2. **Gamebase.bundle** 파일도 **Copy Bundle Resources** 에 추가하도록 합니다.
+###### 3. Project Configuration
+1. Framework 파일을 Project의 Project Navigator로 끌어와서 import 합니다. 이 때 추가된 Framework 파일들은 프로젝트 target에 추가되어야 합니다. 
+2. **Gamebase.bundle** 파일도 **Copy Bundle Resources** 에 추가하도록 합니다.
 ![Gamebase.bundle Bundle Resources](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-003_1.0.0.png)
-   3. 패키지에 포함된 **SocketRocket.framework**파일은 Gamebase에서 사용하는 WebSocket 모듈로 **Target > General > Embedded Binaries**에 추가되어야 합니다.
+3. 패키지에 포함된 **SocketRocket.framework**파일은 Gamebase에서 사용하는 WebSocket 모듈로 **Target > General > Embedded Binaries**에 추가되어야 합니다.
 ![SocketRocket Embeded Binaries](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-004_1.0.0.png)
-   4. Gamebase를 사용하기 위해서는 Gamebase의 framework외에, Gamebase에서 사용하고 있는 외부 SDK들의 기능을 포함하기 위하여, 여러 framework와 library 파일을 linker에서 참조할 수 있도록 추가해야합니다. 아래 항목들을 추가해야합니다.
-      * libz.tbd
-      * libsqlite3.tbd
-      * libstdc++.tbd
-      * AdSupport.framework
-      * ImageIO.framework
-      * GameKit.framework
-      * StoreKit.framework
+4. Gamebase를 사용하기 위해서는 Gamebase의 framework외에, Gamebase에서 사용하고 있는 외부 SDK들의 기능을 포함하기 위하여, 여러 framework와 library 파일을 linker에서 참조할 수 있도록 추가해야합니다. 아래 항목들을 추가해야합니다.
+    * libz.tbd
+    * libsqlite3.tbd
+    * libstdc++.tbd
+    * AdSupport.framework
+    * ImageIO.framework
+    * GameKit.framework
+    * StoreKit.framework
 ![Link Binary With Libraries](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
-   5. **Target > Build Settings > Linking > Other Linker Flags**에 **-ObjC**를 추가해야 합니다.
+5. **Target > Build Settings > Linking > Other Linker Flags**에 **-ObjC**를 추가해야 합니다.
 ![Other Linker Flags](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
+6. **Target > Build Settings > Enable Bitcode**를 **No**로 설정합니다.
+![Enable Bitcode](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-007_1.0.0.png)
 
 > **Information**
 >
@@ -78,7 +80,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.
 
 ## Initialization
 
-### 1. 앱델리게이트에 필수 헤더파일 불러오기
+### 1. Import Header file into AppDelegate
 먼저 Gamebase 헤더 파일을 앱으로 가져와야 합니다.
 AppDelegate.h 에서 다음의 헤더 파일을 가져옵니다.
 
@@ -87,8 +89,15 @@ AppDelegate.h 에서 다음의 헤더 파일을 가져옵니다.
 ```
 
 
-### 2. 초기화 메소드 호출
+
+### 2. Initializing Method
 **application:didFinishLaunchingWithOptions:** 메소드에서, 다음과 같이 초기화를 진행합니다.
+
+>**주의**
+>**initializeWithConfiguration:launchOptions:completion:** 메서드는 초기화가 **application:didFinishLaunchingWithOptions:** 외에서도 호출이 가능합니다.
+
+>**주의**
+>**initializeWithConfiguration:launchOptions:completion:** 메서드는 호출되지 않은 상태에서의 다른 Gamebase API 호출에 대해서는 정상작동을 보장하지 않습니다.
 
 ```objectivec
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -106,10 +115,10 @@ AppDelegate.h 에서 다음의 헤더 파일을 가져옵니다.
 }
 ```
 
-## Lifecycle 관리를 위한 이벤트 처리
+## Lifecycle Event
 iOS의 App Event를 관리하기 위하여 아래에 명기된 **UIApplicationDelegate** protocol을 구현해야합니다.
 
-### 1. URL Resource를 받기 위한 Event
+### 1. OpenURL Event
 **application:openURL:sourceApplication:annotation:** 메소드를 호출하여, Switching App을 사용한 인증 시, 각 IDP들의 인증용 SDK에서 필요한 동작을 하도록 알려줍니다.
 
 >**주의**
@@ -123,7 +132,7 @@ iOS의 App Event를 관리하기 위하여 아래에 명기된 **UIApplicationDe
 }
 ```
 
-### 2. 앱 활성화 Event
+### 2. DidBecomeActive Event
 **applicationDidBecomeActive:** 메소드를 호출하여, App이 활성화 되었는지 여부를 각 IDP의 인증용 SDK에서 필요한 동작을 하도록 알려줍니다.
 
 ```objectivec
@@ -132,7 +141,7 @@ iOS의 App Event를 관리하기 위하여 아래에 명기된 **UIApplicationDe
 }
 ```
 
-### 3. 앱의 Background로 전환 Event
+### 3. DidEnterBackground Event
 **applicationDidEnterBackground** 메소드를 호출하여, App이 Background로 전환되었는지 알려주어야 합니다.
 
 ```objectivec
@@ -141,7 +150,7 @@ iOS의 App Event를 관리하기 위하여 아래에 명기된 **UIApplicationDe
 }
 ```
 
-### 4. 앱의 Foreground로 전환 Event
+### 4. WillEnterForeground Event
 **applicationWillEnterForeground** 메소드를 호출하여, App이 Foreground로 전환된다는 것을 알려주어야 합니다.
 
 ```objectivec
@@ -165,14 +174,14 @@ AuthAdapter 및 3rd-Party SDK에 대한 설정은 위에 있는 '외부 SDK 다�
 로그인을 시도하려는 IDP별로, additionalInfo 파라미터를 입력해주어야 하는 경우가 있습니다.
 AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 항목을 참고합니다.
 
-### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
+### 1. Import Header file into View Controller
 로그인을 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
 ```
 
-### 2. 최종 로그인 API 호출
+### 2. Latest Login API
 특정 IDP에 대한 로그인 버튼을 클릭하였을 때, 다음 로그인 API를 구현합니다.
 가장 최근에 로그인한 IDP로의 로그인을 시도합니다. 해당 로그인에 대한 토큰이 만료되었거나,
 토큰에 대한 검증 등이 실패하였을 때, 실패를 리턴합니다. 이 때는 해당 IDP에 대한 로그인을 구현해주어야합니다.
@@ -207,7 +216,7 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 }
 ```
 
-### 3. 특정 IDP 로그인 API 호출
+### 3. IDP Login API
 특정 IDP 로그인 호출을 위해서 **[TCGBGamebase loginWithType:viewController:completion:]** 메소드를 호출해줍니다. 로그인 결과로 **(TCGBError *)error** 객체를 이용해 성공 여부를 판단할 수 있습니다. 또한 **TCGBAuthToken** 객체를 이용하여 userId 등의 사용자 정보 및 토큰 정보를 얻을 수 있습니다.
 
 몇몇 IDP의 로그인시에는 필수적으로 들어가야하는 정보가 있습니다. 예를 들어, facebook 로그인을 구현하기 위해서는 scope 등을 설정해주어야합니다. 이러한 필수 정보들을 설정해주기 위해서, **[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API를 제공합니다.
@@ -215,7 +224,7 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 (파라미터 값이 nil일 때는, TOAST Cloud Console에 등록한 additionalInfo 값으로 채워집니다. 파라미터 값이 있을 때는 Console에 등록해놓은 값보다 우선시하여 값을 덮어쓰게 됩니다.)
 
 > **Information!**
->
+> 
 > iOS에서 지원하는 IDP는 **TCGBConstants.h**의 TCGBAuthIDPs 영역의 **kTCGBAuthXXXXXX**로 정의되어 있습니다.
 
 ```objectivec
@@ -237,7 +246,7 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 ##### 2. Facebook
 1. AdditionalInfo의 설정이 필요합니다.
     * **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-    * Facebook의 경우, OAuth 인증 시도 시, Facebook으로 부터 요청할 정보의 종류를 설정해야 합니다.
+    * Facebook의 경우, OAuth 인증 시도 시, Facebook으로 부터 요청할 정보의 종류를 설정해야 합니다. 
     * 예제
 
 ```json
@@ -271,12 +280,12 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
     * **kTCGBAuthLoginWithCredentialProviderNameKeyname** 키에는 idp종류를 설정합니다. (faceboo, payco, iosgamecenter)
     * **kTCGBAuthLoginWithCredentialAccessTokenKeyname** 키에는 외부 SDK로부터 받은 인증정보(AccessToken)를 입력합니다.
 
-> **Tip!**
->
+> **Tip!** 
+> 
 > 게임 내에서 외부 서비스(Facebook 등)의 고유기능의 사용이 필요할 때 사용될 수 있습니다.
 
 > **주의!**
->
+> 
 > 외부 SDK에서 요구하는 개발사항은 Gamebase에서는 지원이 불가능합니다.
 
 ```objectivec
@@ -309,14 +318,14 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 
 ## Logout
 
-### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
+### 1. Import Header file into View Controller
 로그아웃을 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
 ```
 
-### 2. 로그아웃 API 호출
+### 2. Logout API
 로그아웃 버튼을 클릭하였을 때, 다음의 로그아웃 API를 구현합니다.
 
 ```objectivec
@@ -339,14 +348,14 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 
 ## Withdraw
 
-### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
+### 1. Import Header file into View Controller
 탈퇴를 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
 ```
 
-### 2. 탈퇴 API 호출
+### 2. Widthdraw API
 탈퇴 버튼을 클릭하였을 때, 다음의 탈퇴 API를 구현합니다.
 
 ```objectivec
@@ -367,7 +376,7 @@ Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해�
 Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
 
 
-### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
+### 1. Import Header file into View Controller
 Mapping을 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
 ```objectivec
@@ -376,7 +385,7 @@ Mapping을 구현하고자 하는 ViewController에 다음의 헤더 파일을 �
 
 
 
-### 2 Mapping 추가 API 호출
+### 2. Add Mapping API
 특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다.
 Mapping을 하려는 IDP의 계정이 이미 다른 계정이 연동이 되어있다면,
 **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER** 에러를 리턴합니다.
@@ -398,7 +407,7 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 }];
 ```
 
-### 3. Mapping 해제 API 호출
+### 3. Remove Mapping API
 특정 IDP에 대한 연동을 해제합니다. 만약, 해제하고자 하는 IDP가 유일한 IDP라면, 실패를 리턴하게 됩니다. 연동 해제후에는 Gamebase 내부에서, 해당 IDP에 대한 로그아웃처리를 해줍니다.
 
 ```objectivec
@@ -422,14 +431,14 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 
 ## Purchase
 
-### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
+### 1. Import Header file into View Controller
 구매 API를 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
 ```
 
-### 2. 아이템 구매 API 호출
+### 2. Purchase Item
 구매하고자 하는 아이템의 itemSeq를 이용해 다음의 API를 호출하여 구매요청을 합니다.
 
 ```objectivec
@@ -446,7 +455,7 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 }
 ```
 
-### 3. 아이템 목록 조회 API 호출
+### 3. Get a list of Purchasable Items
 아이템 목록을 조회하기 위하여 다음의 API를 호출합니다. 콜백으로 리턴되는 Array 안에는 각 아이템들에 대한 정보가 담겨 있습니다.
 
 ```objectivec
@@ -468,7 +477,7 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 ```
 
 
-### 4. 미소비 결제내역 조회 API 호출
+### 4. Get a list of Not Consumed Items
 아이템을 구매는 하였지만, 정상적으로 아이템이 소비(배송, 지급)되었지 않은 **미소비 결제내역**을 요청합니다. 해당 내역을 받은 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.
 
 ```objectivec
@@ -485,7 +494,7 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 }
 ```
 
-### 5. 결제 실패건 재처리 API 호출
+### 5. Reprocess Failed Purchase Transaction
 스토어 결제는 정상적으로 이루어졌지만, ToastCloud IAP 서버 검증 실패 등으로 인해 정상적으로 결제가 이뤄지지 않은 경우에,
 해당 API를 이용하여 재처리를 시도합니다. 최종적으로 결제가 성공한 내역을 바탕으로, 아이템 배송(지급)등의 API를 호출하여 처리를 해주어야합니다.
 ```objectivec
@@ -510,14 +519,14 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 
 ## Push
 
-### 1. 뷰컨트롤러에 필수 헤더파일 불러오기
+### 1. Import Header file into View Controller
 구매 API를 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
 ```
 
-### 2. Push 등록 API 호출
+### 2. Register Push
 다음의 API를 호출하여, ToastCloud Push에 해당 사용자를 등록합니다.
 Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야간 광고성 Push 동의 여부(enableAdNightPush)값을 사용자로부터
 받아온 후, 다음의 API 호출을 통해 등록을 완료합니다.
@@ -541,7 +550,7 @@ Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야�
 }
 ```
 
-### 3. Push 설정 조회
+### 3. Get a Push Setting
 사용자의 Push 설정을 조회하기 위해서, 다음의 API를 이용합니다.
 콜백으로 오는 TCGBPushConfiguration 값을 바탕으로, 사용자 설정값을 얻을 수 있습니다.
 
