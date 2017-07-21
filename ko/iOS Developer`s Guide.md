@@ -55,14 +55,14 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.
 2. **Gamebase.bundle** 파일도 **Copy Bundle Resources** 에 추가하도록 합니다.
 ![Gamebase.bundle Bundle Resources](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-003_1.0.0.png)
 3. Gamebase를 사용하기 위해서는 Gamebase의 framework외에, Gamebase에서 사용하고 있는 외부 SDK들의 기능을 포함하기 위하여, 여러 framework와 library 파일을 linker에서 참조할 수 있도록 추가해야합니다. 아래 항목들을 추가해야합니다.
-  * libicucore.tbd (Gamebase SDK v1.1.5 이상에서 추가)
-  * libz.tbd
-  * libsqlite3.tbd
-  * libstdc++.tbd
-  * AdSupport.framework
-  * ImageIO.framework
-  * GameKit.framework
-  * StoreKit.framework
+    * libicucore.tbd (Gamebase SDK v1.1.5 이상에서 추가)
+    * libz.tbd
+    * libsqlite3.tbd
+    * libstdc++.tbd
+    * AdSupport.framework
+    * ImageIO.framework
+    * GameKit.framework
+    * StoreKit.framework
 ![Link Binary With Libraries](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
 4. **Target > Build Settings > Linking > Other Linker Flags**에 **-ObjC**를 추가해야 합니다.
 ![Other Linker Flags](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
@@ -310,7 +310,7 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 <br/>
 
-#### 4. ID Provider의 AccessToken으로 로그인 API 호출
+### 4. Login with access token of external IDP
 게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증을 하고 발급받은 AccessToken등을 이용하여, Gamebase 로그인을 할 수 있는 인터페이스 입니다.
 
 * Credential 파라미터의 설정방법
@@ -337,7 +337,7 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 ```
 
 
-#### 5. ID Provider의 인증정보 가져오기
+### 5. Gets Authentication Information for external IDP
 외부 인증 SDK에서 AccessToken, UserId, Profile 등의 인증 정보를 가져올 수 있습니다.
 ```objectivec
 // Example for obtaining ID Provider's Authentication Information

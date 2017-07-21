@@ -30,7 +30,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | External SDK Download Link |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework, Gamebase.bundle, SocketRocket.framework |  |  |
+| Gamebase | Gamebase.framework, Gamebase.bundle, ~~SocketRocket.framework~~ |  |  |
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v4.17.0 | [Go to Download](https://developers.facebook.com/docs/ios/downloads) |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.1.6 | [Go to Download](https://developers.payco.com/guide/sdk/download) |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework |
@@ -45,7 +45,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.
 > 
 >각 IDP에서 제공하는 외부 SDK에 대한 설정은 각 IDP의 가이드 문서를 참고하시길 바랍니다.
 
-###### **2. Uncompress **
+###### **2. Decompression **
 압축을 풀면, 다음과 같이 Gamebase.framework 등의 SDK를 볼 수 있습니다.
 
 ![unzip gamebase](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-002_1.0.0.png)
@@ -54,9 +54,8 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.
 1. Framework 파일을 Project의 Project Navigator로 끌어와서 import 합니다. 이 때 추가된 Framework 파일들은 프로젝트 target에 추가되어야 합니다. 
 2. **Gamebase.bundle** 파일도 **Copy Bundle Resources** 에 추가하도록 합니다.
 ![Gamebase.bundle Bundle Resources](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-003_1.0.0.png)
-3. 패키지에 포함된 **SocketRocket.framework**파일은 Gamebase에서 사용하는 WebSocket 모듈로 **Target > General > Embedded Binaries**에 추가되어야 합니다.
-![SocketRocket Embeded Binaries](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-004_1.0.0.png)
-4. Gamebase를 사용하기 위해서는 Gamebase의 framework외에, Gamebase에서 사용하고 있는 외부 SDK들의 기능을 포함하기 위하여, 여러 framework와 library 파일을 linker에서 참조할 수 있도록 추가해야합니다. 아래 항목들을 추가해야합니다.
+3. Gamebase를 사용하기 위해서는 Gamebase의 framework외에, Gamebase에서 사용하고 있는 외부 SDK들의 기능을 포함하기 위하여, 여러 framework와 library 파일을 linker에서 참조할 수 있도록 추가해야합니다. 아래 항목들을 추가해야합니다.
+    * libicucore.tbd (Gamebase SDK v1.1.5 이상에서 추가)
     * libz.tbd
     * libsqlite3.tbd
     * libstdc++.tbd
@@ -65,9 +64,9 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.
     * GameKit.framework
     * StoreKit.framework
 ![Link Binary With Libraries](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
-5. **Target > Build Settings > Linking > Other Linker Flags**에 **-ObjC**를 추가해야 합니다.
+4. **Target > Build Settings > Linking > Other Linker Flags**에 **-ObjC**를 추가해야 합니다.
 ![Other Linker Flags](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
-6. **Target > Build Settings > Enable Bitcode**를 **No**로 설정합니다.
+5. **Target > Build Settings > Enable Bitcode**를 **No**로 설정합니다.
 ![Enable Bitcode](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-007_1.0.0.png)
 
 > **Information**
@@ -114,6 +113,45 @@ AppDelegate.h 에서 다음의 헤더 파일을 가져옵니다.
     }];
 }
 ```
+
+### 3. Launching Status
+Gamebase initialize 호출 결과로 런칭 상태를 확인 할 수 있습니다.
+런칭 상태는 Gamebase 초기화 이후에 호출되어야합니다.
+
+```objectivec
+- (void)myMethodAfterGamebaseInitialized {
+    TCGBLaunchingStatus launchingStatus = [TCGBLaunching launchingStatus];
+
+    // You can check whether if Gamebase was initialized or not using this launchingStatus
+    if (launchingStatus == 0) {
+        NSLog(@"Service is not initialized.");
+    }
+
+    // After Initialize Complete
+    if (launchingStatus == INSPECTING_SERVICE) {
+        NSLog(@"Service in Maintenance");
+    } else if (launchingStatus == IN_SERVICE) {
+        NSLog(@"Service in Service");
+    } else {
+        ...
+    }
+}
+
+```
+
+#### Launching Status Code
+| Status | Code | Description |
+| --- | --- | --- |
+| IN_SERVICE | 200 | 정상 서비스 중 |
+| RECOMMEND_UPDATE | 201 | 업데이트 권장 |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202 | 점검 중이지만 QA 유저 서비스 가능 |
+| REQUIRE_UPDATE | 300 | 업데이트 필수 |
+| BLOCKED_USER | 301 | 접속 차단 유저 |
+| TERMINATED_SERVICE | 302 | 서비스 종료 |
+| INSPECTING_SERVICE | 303 | 서비스 점검 중 |
+| INSPECTING_ALL_SERVICES | 304 | 전체 서비스 점검 중 |
+| INTERNAL_SERVER_ERROR | 500 | 내부 서버 에러 |
+
 
 ## Lifecycle Event
 iOS의 App Event를 관리하기 위하여 아래에 명기된 **UIApplicationDelegate** protocol을 구현해야합니다.
@@ -272,7 +310,7 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 <br/>
 
-#### 4. ID Provider의 AccessToken으로 로그인 API 호출
+### 4. Login with access token of external IDP
 게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증을 하고 발급받은 AccessToken등을 이용하여, Gamebase 로그인을 할 수 있는 인터페이스 입니다.
 
 * Credential 파라미터의 설정방법
@@ -299,7 +337,7 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 ```
 
 
-#### 5. ID Provider의 인증정보 가져오기
+### 5. Gets Authentication Information for external IDP
 외부 인증 SDK에서 AccessToken, UserId, Profile 등의 인증 정보를 가져올 수 있습니다.
 ```objectivec
 // Example for obtaining ID Provider's Authentication Information
@@ -646,59 +684,58 @@ iOS8 이상에서 동작하는 UIAlertController와, iOS8 미만에서의 UIAler
 ## Error code
 
 | Category | Sub Category | Error | Error Code | Notes |
-| --- | --- | --- | --- | --- |
-|Common| | TCGB_ERROR_NOT_INITIALIZED | 1 | |
-|      | | TCGB_ERROR_NOT_LOGGED_IN | 2 | |
-|      | | TCGB_ERROR_INVALID_PARAMETER | 3 | |
-|      | | TCGB_ERROR_INVALID_JSON_FORMAT | 4 | |
-|      | | TCGB_ERROR_USER_PERMISSION | 5 | |
-|      | | TCGB_ERROR_NOT_SUPPORTED | 10 | |
-|      | | TCGB_ERROR_NOT_SUPPORTED_ANDROID | 11 | |
-|      | | TCGB_ERROR_NOT_SUPPORTED_IOS | 12 | |
-| Network | Socket | TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT | 101 | |
-|         | | TCGB_ERROR_SOCKET_ERROR | 110 | |
-|         | | TCGB_ERROR_UNKNOWN_ERROR | 999 | |
-| Launching | | TCGB_ERROR_LAUNCHING_SERVER_ERROR | 2001 | |
-|           | | TCGB_ERROR_LAUNCHING_NOT_EXIST_CLIENT_ID | 2002 | |
-|           | | TCGB_ERROR_LAUNCHING_UNREGISTERED_APP    | 2003 | |
-|           | | TCGB_ERROR_LAUNCHING_UNREGISTERED_CLIENT | 2004 | |
-| Auth | Common | TCGB_ERROR_AUTH_USER_CANCELED | 3001 | |
-|      |        | TCGB_ERROR_AUTH_NOT_SUPPORTED_PROVIDER | 3002 | |
-|      |        | TCGB_ERROR_AUTH_NOT_EXIST_MEMBER | 3003 | |
-|      |        | TCGB_ERROR_AUTH_INVALID_MEMBER | 3004 | |
-|      |        | TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | |
-|      | Gamebase Login | TCGB_ERROR_AUTH_TAP_LOGIN_FAILED | 3101 | |
-|      |          | TCGB_ERROR_AUTH_TAP_LOGIN_INVALID_TOKEN_INFO | 3102 | |
-|      |          | TCGB_ERROR_AUTH_TAP_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | |
-|      | IDP Login | TCGB_ERROR_AUTH_IDP_LOGIN_FAILED | 3201 | |
-|      |           | TCGB_ERROR_AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3202 | |
-|      | Add Mapping | TCGB_ERROR_AUTH_ADD_MAPPING_FAILED | 3301 | |
-|      |            | TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | |
-|      |            | TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | |
-|      |            | TCGB_ERROR_AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | |
-|      | Remove Mapping | TCGB_ERROR_AUTH_REMOVE_MAPPING_FAILED | 3401 | |
-|      |               | TCGB_ERROR_AUTH_REMOVE_MAPPING_LAST_MAPPED_IDP | 3402 | |
-|      |               | TCGB_ERROR_AUTH_REMOVE_MAPPING_LOGGED_IN_IDP | 3403 | |
-|      | Logout | TCGB_ERROR_AUTH_LOGOUT_FAILED | 3501 | |
-|      | Withdrawal | TCGB_ERROR_AUTH_WITHDRAW_FAILED | 3601 | |
-|      | Not Playable | TCGB_ERROR_AUTH_NOT_PLAYABLE | 3701 | |
-|      | Unknown | TCGB_ERROR_AUTH_UNKNOWN_ERROR | 3999 | |
-| Purchase | | TCGB_ERROR_PURCHASE_NOT_INITIALIZED | 4001 | |
-|          | | TCGB_ERROR_PURCHASE_USER_CANCELED | 4002 | |
-|          | | TCGB_ERROR_PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003 | |
-|          | | TCGB_ERROR_PURCHASE_NOT_ENOUGH_CASH | 4004 | |
-|          | | TCGB_ERROR_PURCHASE_NOT_SUPPORTED_MARKET | 4010 | |
-|          | | TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR | 4201 | |
-|          | | TCGB_ERROR_PURCHASE_UNKNOWN_ERROR | 4999 | |
-| Push | | TCGB_ERROR_PUSH_NOT_REGISTERED | 5001 | |
-|      | | TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR | 5101 | |
-|      | | TCGB_ERROR_PUSH_UNKNOWN_ERROR | 5999 | |
-| UI | | TCGB_ERROR_UI_UNKNOWN_ERROR | 6999 | |
-| Server | | TCGB_ERROR_SERVER_INTERNAL_ERROR | 8001 | |
-|        | | TCGB_ERROR_SERVER_REMOTE_SYSTEM_ERROR | 8002 | |
-|        | | TCGB_ERROR_SERVER_UNKNOWN_ERROR | 8999 | |
-| Platform Reserved | | TCGB_ERROR_INVALID_INTERNAL_STATE | 11001 | |
-|                   | | TCGB_ERROR_NOT_CALLABLE_STATE | 11002 | |
+| -------- | ------------ | ----- | ---------- | ----- |
+| Common |  | TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebase 초기화가 되어있지 않습니다. |
+|  |  | TCGB\_ERROR\_NOT\_LOGGED\_IN | 2 | 로그인이 필요합니다. |
+|  |  | TCGB\_ERROR\_INVALID\_PARAMETER | 3 | 잘못된 파라미터입니다. |
+|  |  | TCGB\_ERROR\_INVALID\_JSON\_FORMAT | 4 | JSON 포맷 에러입니다. |
+|  |  | TCGB\_ERROR\_USER\_PERMISSION | 5 | 권한이 없습니다. |
+|  |  | TCGB\_ERROR\_NOT\_SUPPORTED | 10 | 지원하지 않는 기능입니다. |
+|  |  | TCGB\_ERROR\_NOT\_SUPPORTED\_ANDROID | 11 | Android에서 지원하지 않는 기능입니다. |
+|  |  | TCGB\_ERROR\_NOT\_SUPPORTED\_IOS | 12 | iOS에서 지원하지 않는 기능입니다. |
+| Network | Socket | TCGB\_ERROR\_SOCKET\_RESPONSE\_TIMEOUT | 101 | 네트워크 상태가 불안정하여 응답이 없습니다. |
+|  |  | TCGB\_ERROR\_SOCKET\_ERROR | 110 | 소켓 에러 |
+|  |  | TCGB\_ERROR\_UNKNOWN\_ERROR | 999 | 소켓 알 수 없는 에러 |
+| Launching |  | TCGB\_ERROR\_LAUNCHING\_SERVER\_ERROR | 2001 | 런칭 서버 에러입니다. |
+|  |  | TCGB\_ERROR\_LAUNCHING\_NOT\_EXIST\_CLIENT\_ID | 2002 | Client ID가 존재하지 않습니다. |
+|  |  | TCGB\_ERROR\_LAUNCHING\_UNREGISTERED\_APP | 2003 | 등록되지 않은 App 입니다. |
+|  |  | TCGB\_ERROR\_LAUNCHING\_UNREGISTERED\_CLIENT | 2004 | 등록되지 않은 Client (version) 입니다. |
+| Auth | Common | TCGB\_ERROR\_AUTH\_USER\_CANCELED | 3001 | 로그인이 취소되었습니다. |
+|  |  | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
+|  |  | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
+|  |  | TCGB\_ERROR\_AUTH\_INVALID\_MEMBER | 3004 | 잘못된 회원에 대한 요청입니다. |
+|  |  | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009 | 외부 인증 라이브러리 에러입니다. |
+|  | Gamebase Login | TCGB\_ERROR\_AUTH\_TAP\_LOGIN\_FAILED | 3101 | 토큰 로그인에 실패하였습니다. |
+|  |  | TCGB\_ERROR\_AUTH\_TAP\_LOGIN\_INVALID\_TOKEN\_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
+|  |  | TCGB\_ERROR\_AUTH\_TAP\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103 | 최근에 로그인한 IDP 정보가 없습니다. |
+|  | IDP Login | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED | 3201 | IDP 로그인에 실패하였습니다. |
+|  |  | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO | 3201 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
+|  | Add Mapping | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FAILED | 3301 | 맵핑 추가에 실패하였습니다. |
+|  |  | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302 | 이미 다른 멤버에 맵핑되어있습니다. |
+|  |  | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303 | 이미 같은 IDP에 맵핑되어있습니다. |
+|  |  | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO | 3304 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
+|  | Remove Mapping | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_FAILED | 3401 | 맵핑 삭제에 실패하였습니다. |
+|  |  | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402 | 마지막에 맵핑된 IDP는 삭제할 수 없습니다. |
+|  |  | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403 | 현재 로그인되어있는 IDP 입니다. |
+|  | Logout | TCGB\_ERROR\_AUTH\_LOGOUT\_FAILED | 3501 | 로그아웃에 실패하였습니다. |
+|  | Withdrawal | TCGB\_ERROR\_AUTH\_WITHDRAW\_FAILED | 3601 | 탈퇴에 실패하였습니다. |
+|  | Not Playable | TCGB\_ERROR\_AUTH\_NOT\_PLAYABLE | 3701 | 플레이할 수 없는 상태입니다. (점검 또는 서비스 종료 등) |
+|  | Unknown | TCGB\_ERROR\_AUTH\_UNKNOWN\_ERROR | 3999 | 알수 없는 에러입니다. (정의 되지 않은 에러입니다.) |
+| Purchase |  | TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED | 4001 | Gamebase PurchaseAdapter가 초기화되지 않았습니다. |
+|  |  | TCGB\_ERROR\_PURCHASE\_USER\_CANCELED | 4002 | 구매가 취소되었습니다. |
+|  |  | TCGB\_ERROR\_PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003 | 이전 구매가 완료되지 않았습니다. |
+|  |  | TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH | 4004 | 해당 스토어의 캐쉬가 부족하여 결제할 수 없습니다. |
+|  |  | TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010 | 지원하지 않는 스토어입니다. |
+|  |  | TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201 | 외부 IAP 라이브러리 에러입니다. |
+|  |  | TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR | 4999 | 알수없는 구매 에러입니다. |
+| Push |  | TCGB\_ERROR\_PUSH\_NOT\_REGISTERED | 5001 | 단말기가 푸쉬 서버에 등록되지 않았습니다. |
+|  |  | TCGB\_ERROR\_PUSH\_EXTERNAL\_LIBRARY\_ERROR | 5101 | 외부 라이브러리 에러입니다. |
+|  |  | TCGB\_ERROR\_PUSH\_UNKNOWN\_ERROR | 5999 | 알수 없는 푸시 에러입니다. (정의되지 않은 푸시 에러입니다.) |
+| UI |  | TCGB\_ERROR\_UI\_UNKNOWN\_ERROR | 6999 | 알수 없는 에러입니다. (정의되지 않은 에러입니다.) |
+| Server |  | TCGB\_ERROR\_SERVER\_INTERNAL\_ERROR | 8001 | 서버 내부 에러 |
+|  |  | TCGB\_ERROR\_SERVER\_REMOTE\_SYSTEM\_ERROR | 8002 | 서버에서 외부 연동중 에러 발생 |
+|  |  | TCGB\_ERROR\_SERVER\_UNKNOWN\_ERROR | 8999 | 서버에서 알 수 없는 에러 |
+
 
 
 
