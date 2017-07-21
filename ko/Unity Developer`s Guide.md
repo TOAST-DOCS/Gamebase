@@ -941,58 +941,57 @@ public void ShowWebViewFile()
 
 | Category | Sub Category | Error | Error Code | Notes |
 | --- | --- | --- | --- | --- |
-|Success| | SUCCESS | 0 | |
-|Common| | NOT_INITIALIZED | 1 | |
-|      | | NOT_LOGGED_IN | 2 | |
-|      | | INVALID_PARAMETER | 3 | |
-|      | | INVALID_JSON_FORMAT | 4 | |
-|      | | USER_PERMISSION | 5 | |
-|      | | NOT_SUPPORTED | 10 | |
-|      | | NOT_SUPPORTED_ANDROID | 11 | |
-|      | | NOT_SUPPORTED_IOS | 12 | |
-|      | | NOT_SUPPORTED_UNITY_EDITOR | 13 | |
-|      | | NOT_SUPPORTED_UNITY_STANDALONE | 14 | |
-|      | | NOT_SUPPORTED_UNITY_WEBGL | 15 | |
-| Network | Socket | SOCKET_RESPONSE_TIMEOUT | 101 | |
-|         | | SOCKET_ERROR | 110 | |
-|         | | UNKNOWN_ERROR | 999 | |
-| Launching | | LAUNCHING_SERVER_ERROR | 2001 | |
-| Auth | Common | AUTH_USER_CANCELED | 3001 | |
-|      |        | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | |
-|      |        | AUTH_NOT_EXIST_MEMBER | 3003 | |
-|      |        | AUTH_INVALID_MEMBER | 3004 | |
-|      |        | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | |
-|      | Gamebase Login | AUTH_TOKEN_LOGIN_FAILED | 3101 | |
-|      |          | AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | |
-|      |          | AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | |
-|      | IDP Login | AUTH_IDP_LOGIN_FAILED | 3201 | |
-|      |           | AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3201 | |
-|      | Add Mapping | AUTH_ADD_MAPPING_FAILED | 3301 | |
-|      |            | AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | |
-|      |            | AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | |
-|      |            | AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | |
-|      | Remove Mapping | AUTH_REMOVE_MAPPING_FAILED | 3401 | |
-|      |               | AUTH_REMOVE_MAPPING_LAST_MAPPED_IDP | 3402 | |
-|      |               | AUTH_REMOVE_MAPPING_LOGGED_IN_IDP | 3403 | |
-|      | Logout | AUTH_LOGOUT_FAILED | 3501 | |
-|      | Withdrawal | AUTH_WITHDRAW_FAILED | 3601 | |
-|      | Not Playable | AUTH_NOT_PLAYABLE | 3701 | |
-|      | Unknown | AUTH_UNKNOWN_ERROR | 3999 | |
-| Purchase | | PURCHASE_NOT_INITIALIZED | 4001 | |
-|          | | PURCHASE_USER_CANCELED | 4002 | |
-|          | | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003 | |
-|          | | PURCHASE_NOT_SUPPORTED_MARKET | 4010 | |
-|          | | PURCHASE_EXTERNAL_LIBRARY_ERROR | 4201 | |
-|          | | PURCHASE_UNKNOWN_ERROR | 4999 | |
-| Push | | PUSH_NOT_REGISTERED | 5001 | |
-|      | | PUSH_EXTERNAL_LIBRARY_ERROR | 5101 | |
-|      | | PUSH_UNKNOWN_ERROR | 5999 | |
-| UI | | UI_UNKNOWN_ERROR | 6999 | |
-| Server | | SERVER_INTERNAL_ERROR | 8001 | |
-|        | | SERVER_REMOTE_SYSTEM_ERROR | 8002 | |
-|        | | SERVER_UNKNOWN_ERROR | 8999 | |
-| Platform Reserved | | INVALID_INTERNAL_STATE | 11001 | |
-|        | | NOT_CALLABLE_STATE | 11002 | |
+| Common |  | NOT_INITIALIZED | 1 | Gamebase 초기화가 되어있지 않습니다. |
+|  |  | NOT_LOGGED_IN | 2 | 로그인이 필요합니다. |
+|  |  | INVALID_PARAMETER | 3 | 잘못된 파라미터입니다. |
+|  |  | INVALID_JSON_FORMAT | 4 | JSON 포맷 에러입니다. |
+|  |  | USER_PERMISSION | 5 | 권한이 없습니다. |
+|  |  | NOT_SUPPORTED | 10 | 지원하지 않는 기능입니다. |
+|  |  | NOT_SUPPORTED_ANDROID | 11 | Android에서 지원하지 않는 기능입니다. |
+|  |  | NOT_SUPPORTED_IOS | 12 | iOS에서 지원하지 않는 기능입니다. |
+|  |  | NOT_SUPPORTED_UNITY_EDITOR | 13 | Editor에서 지원하지 않는 기능입니다. |
+|  |  | NOT_SUPPORTED_UNITY_STANDALONE | 14 | Standalone에서 지원하지 않는 기능입니다. |
+|  |  | NOT_SUPPORTED_UNITY_WEBGL | 15 | WebGL에서 지원하지 않는 기능입니다. |
+| Network | Socket | SOCKET_RESPONSE_TIMEOUT | 101 | 네트워크 상태가 불안정하여 응답이 없습니다. |
+|  |  | SOCKET_ERROR | 110 | 소켓 에러 |
+|  |  | UNKNOWN_ERROR | 999 | 소켓 알 수 없는 에러 |
+| Launching |  | LAUNCHING_SERVER_ERROR | 2001 | 런칭 서버 에러입니다. |
+| Auth | Common | AUTH_USER_CANCELED | 3001 | 로그인이 취소되었습니다. |
+|  |  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
+|  |  | AUTH_NOT_EXIST_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
+|  |  | AUTH_INVALID_MEMBER | 3004 | 잘못된 회원에 대한 요청입니다. |
+|  |  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 외부 인증 라이브러리 에러입니다. |
+|  | Gamebase Login | AUTH_TOKEN_LOGIN_FAILED | 3101 | 토큰 로그인에 실패하였습니다. |
+|  |  | AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
+|  |  | AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | 최근에 로그인한 IDP 정보가 없습니다. |
+|  | IDP Login | AUTH_IDP_LOGIN_FAILED | 3201 | IDP 로그인에 실패하였습니다. |
+|  |  | AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3201 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
+|  | Add Mapping | AUTH_ADD_MAPPING_FAILED | 3301 | 맵핑 추가에 실패하였습니다. |
+|  |  | AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | 이미 다른 멤버에 맵핑되어있습니다. |
+|  |  | AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | 이미 같은 IDP에 맵핑되어있습니다. |
+|  |  | AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
+|  | Remove Mapping | AUTH_REMOVE_MAPPING_FAILED | 3401 | 맵핑 삭제에 실패하였습니다. |
+|  |  | AUTH_REMOVE_MAPPING_LAST_MAPPED_IDP | 3402 | 마지막에 맵핑된 IDP는 삭제할 수 없습니다. |
+|  |  | AUTH_REMOVE_MAPPING_LOGGED_IN_IDP | 3403 | 현재 로그인되어있는 IDP 입니다. |
+|  | Logout | AUTH_LOGOUT_FAILED | 3501 | 로그아웃에 실패하였습니다. |
+|  | Withdrawal | AUTH_WITHDRAW_FAILED | 3601 | 탈퇴에 실패하였습니다. |
+|  | Not Playable | AUTH_NOT_PLAYABLE | 3701 | 플레이할 수 없는 상태입니다. (점검 또는 서비스 종료 등) |
+|  | Unknown | AUTH_UNKNOWN_ERROR | 3999 | 알수 없는 에러입니다. (정의 되지 않은 에러입니다.) |
+| Purchase |  | PURCHASE_NOT_INITIALIZED | 4001 | Gamebase PurchaseAdapter가 초기화되지 않았습니다. |
+|  |  | PURCHASE_USER_CANCELED | 4002 | 구매가 취소되었습니다. |
+|  |  | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003 | 이전 구매가 완료되지 않았습니다. |
+|  |  | PURCHASE_NOT_SUPPORTED_MARKET | 4010 | 지원하지 않는 스토어입니다. |
+|  |  | PURCHASE_EXTERNAL_LIBRARY_ERROR | 4201 | 외부 IAP 라이브러리 에러입니다. |
+|  |  | PURCHASE_UNKNOWN_ERROR | 4999 | 알수없는 구매 에러입니다. |
+| Push |  | PUSH_NOT_REGISTERED | 5001 | 단말기가 푸쉬 서버에 등록되지 않았습니다. |
+|  |  | PUSH_EXTERNAL_LIBRARY_ERROR | 5101 | 외부 라이브러리 에러입니다. |
+|  |  | PUSH_UNKNOWN_ERROR | 5999 | 알수 없는 푸시 에러입니다. (정의되지 않은 푸시 에러입니다.) |
+| UI |  | UI_UNKNOWN_ERROR | 6999 | 알수 없는 에러입니다. (정의되지 않은 에러입니다.) |
+| Server |  | SERVER_INTERNAL_ERROR | 8001 | 서버 내부 에러 |
+|  |  | SERVER_REMOTE_SYSTEM_ERROR | 8002 | 서버에서 외부 연동중 에러 발생 |
+|  |  | SERVER_UNKNOWN_ERROR | 8999 | 서버에서 알 수 없는 에러 |
+| Platform Reserved |  | INVALID_INTERNAL_STATE | 11001 |  |
+|  |  | NOT_CALLABLE_STATE | 11002 |  |
 
 
 
