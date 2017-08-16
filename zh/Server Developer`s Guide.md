@@ -118,7 +118,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| linkedIdP | boolean | optional | true or false (기본값은 false) <br>Access Token 을 발급 받을 때 사용된 IdP 정보 포함 여부 |
+| linkedIdP | boolean | optional | true or false (기본값은 false) <br>Access Token 을 발급 받을 때 사용된, IdP 관련 정보 포함 여부 |
 
 **[Response Body]**
 ```json
@@ -390,7 +390,7 @@ authSystem의 authKey로 여러 사용자의 사용자 ID를 조회합니다.
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-member/v1.0/apps/{appId}/members/userIds/authKeys |
+| POST | /tcgb-member/v1.0/apps/{appId}/members/userIds/authKeys?authSystem={authSystem} |
 
 
 **[Request Header]**
@@ -409,7 +409,7 @@ authSystem의 authKey로 여러 사용자의 사용자 ID를 조회합니다.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| authSystem | String | mandatory | Gamebase 내부적으로 사용되는 인증 시스템<br>추후 사용자 인증 시스템 지원 예정 |
+| authSystem | String | mandatory | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 사용자 인증 시스템 지원 예정 <br>현재는 gbid |
 
 **[Request Body]**
 
@@ -589,7 +589,7 @@ API 호출 실패 시 Response Body의 Header 항목 중 **resultCode** 에 대�
 
 | Code | Description |
 | --- | --- |
-| -4000001<br>-4000006 | 잘못된 파라미터 타입으로 전달 <br>parameter 는 int 형으로 선언되어 있는데, String 형 데이터가 전달됨 |
+| -4000001<br>-4000006 | 잘못된 파라미터 타입으로 전달 <br>EX) parameter 는 int 형으로 선언되어 있는데, String 형 데이터가 전달됨 |
 | -4000002<br>-4000004 | 필수 parameter 가 생략되었거나 값이 없을때 |
 | -4000003 | Request body에 정의되지 않은 값이 전달된 경우 |
 | -4000005 | 필수 파라미터가 생략되었거나, 부적절한 값으로 호출될 때 |
@@ -607,7 +607,7 @@ API 호출 실패 시 Response Body의 Header 항목 중 **resultCode** 에 대�
 
 | Code | Description |
 | --- | --- |
-| -4040201 | 호출한 상품이 활성화 되어 있지 않을 때 <br>(Leaderboard 상품을 사용 안 하는 상태에서 Gamebase 를 통해 Leaderboard API를 호출할 때() |
+| -4040201 | 호출한 상품이 활성화 되어 있지 않을 때 <br>EX) Leaderboard 상품을 사용 안 하는 상태에서 Gamebase 를 통해 Leaderboard API를 호출할 때 |
 
 | Code | Description |
 | --- | --- |

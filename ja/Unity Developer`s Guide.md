@@ -57,16 +57,30 @@ Gamebase Unity SDK를 게임 프로젝트에 추가하는 방법은 다음과 �
 
 Unity Android 빌드 시 필요한 설정입니다.
 
-다운로드 받은 Android SDK에서 아래 폴더 및 aar 파일을 프로젝트의 Assets/Plugins/Android 폴더에 추가 합니다.
+다운로드 받은 Android SDK에서 아래 폴더 내 파일들 및 aar 파일들을 프로젝트의 Assets/Plugins/Android/libs 폴더에 추가합니다.
 
-* libs/
+* gamebase-sdk/*
 * gamebase-sdk-VERSION.aar
 * gamebase-sdk-base-VERSION.aar
 
 인증 모듈 추가
 
-1. 다운로드 받은 SDK의 gamebase-adapter-auth-IDP_NAME 폴더를 프로젝트의 Assets/Plugins/Android폴더에 추가합니다.
-2. google, facebook, payco 중에서 사용할 인증 모듈을 모두 프로젝트의 Assets/Plugins/Android폴더에 추가합니다.
+1. 다운로드 받은 SDK의 gamebase-adapter-auth-IDP_NAME 폴더 내 파일들을 프로젝트의 Assets/Plugins/Android/libs 폴더에 추가합니다.
+2. google, facebook, payco 중에서 사용할 인증 모듈은 모두 추가합니다.
+
+푸쉬 모듈 추가
+
+1. 다운로드 받은 SDK의 gamebase-adapter-push-NAME 폴더 내 파일들을 프로젝트의 Assets/Plugins/Android/libs 폴더에 추가합니다.
+2. fcm(Firebase), tencent 중에서 사용할 푸쉬 모듈 하나만 추가합니다.
+
+결제 모듈 추가
+
+1. 다운로드 받은 SDK의 gamebase-adapter-purchase-iap 폴더 내 파일들을 프로젝트의 Assets/Plugins/Android/libs 폴더에 추가합니다.
+
+
+> **!주의**
+> 각 모듈에서 중복으로 포함하고 있는 파일들이 있을 수 있습니다.
+> 중복된 파일은 하나만 가지고 있으면 됩니다.
 
 #### AndroidManifest.xml
 Lifecycle 관리를 위해 "com.toast.gamebase.activity.GamebaseMainActivity"를 MainActivity로 해야 합니다.
@@ -172,7 +186,7 @@ public void Initialize()
         {
         	Debug.Log(string.Format("Gamebase initialization is failed. error is {0}", error));
         }
-    }
+    });
 }
 ```
 
@@ -231,7 +245,7 @@ public void Initialize()
         {
         	Debug.Log(string.Format("Gamebase initialization is failed. error is {0}", error));
         }
-    }
+    });
 }
 ```
 
@@ -956,6 +970,9 @@ public void ShowWebViewFile()
 |  |  | SOCKET_ERROR | 110 | 소켓 에러 |
 |  |  | UNKNOWN_ERROR | 999 | 소켓 알 수 없는 에러 |
 | Launching |  | LAUNCHING_SERVER_ERROR | 2001 | 런칭 서버 에러입니다. |
+| | | LAUNCHING_NOT_EXIST_CLIENT_ID | 2002 | Client ID가 존재하지 않습니다. |
+| | | LAUNCHING_UNREGISTERED_APP | 2003 | 등록되지 않은 App 입니다. |
+| | | LAUNCHING_UNREGISTERED_CLIENT | 2004 | 등록되지 않은 Client (version) 입니다. |
 | Auth | Common | AUTH_USER_CANCELED | 3001 | 로그인이 취소되었습니다. |
 |  |  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
 |  |  | AUTH_NOT_EXIST_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
@@ -965,7 +982,7 @@ public void ShowWebViewFile()
 |  |  | AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
 |  |  | AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | 최근에 로그인한 IDP 정보가 없습니다. |
 |  | IDP Login | AUTH_IDP_LOGIN_FAILED | 3201 | IDP 로그인에 실패하였습니다. |
-|  |  | AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3201 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
+|  |  | AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3202 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
 |  | Add Mapping | AUTH_ADD_MAPPING_FAILED | 3301 | 맵핑 추가에 실패하였습니다. |
 |  |  | AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | 이미 다른 멤버에 맵핑되어있습니다. |
 |  |  | AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | 이미 같은 IDP에 맵핑되어있습니다. |
@@ -980,20 +997,17 @@ public void ShowWebViewFile()
 | Purchase |  | PURCHASE_NOT_INITIALIZED | 4001 | Gamebase PurchaseAdapter가 초기화되지 않았습니다. |
 |  |  | PURCHASE_USER_CANCELED | 4002 | 구매가 취소되었습니다. |
 |  |  | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003 | 이전 구매가 완료되지 않았습니다. |
+|  |  | PURCHASE_NOT_ENOUGH_CASH | 4004 | 해당 스토어의 캐쉬가 부족하여 결제할 수 없습니다. |
 |  |  | PURCHASE_NOT_SUPPORTED_MARKET | 4010 | 지원하지 않는 스토어입니다. |
 |  |  | PURCHASE_EXTERNAL_LIBRARY_ERROR | 4201 | 외부 IAP 라이브러리 에러입니다. |
 |  |  | PURCHASE_UNKNOWN_ERROR | 4999 | 알수없는 구매 에러입니다. |
-| Push |  | PUSH_NOT_REGISTERED | 5001 | 단말기가 푸쉬 서버에 등록되지 않았습니다. |
-|  |  | PUSH_EXTERNAL_LIBRARY_ERROR | 5101 | 외부 라이브러리 에러입니다. |
+| Push |  | PUSH_EXTERNAL_LIBRARY_ERROR | 5101 | 외부 라이브러리 에러입니다. |
+|  |  | PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | 이전 PUSH API 호출이 완료되지 않았습니다. |
 |  |  | PUSH_UNKNOWN_ERROR | 5999 | 알수 없는 푸시 에러입니다. (정의되지 않은 푸시 에러입니다.) |
 | UI |  | UI_UNKNOWN_ERROR | 6999 | 알수 없는 에러입니다. (정의되지 않은 에러입니다.) |
 | Server |  | SERVER_INTERNAL_ERROR | 8001 | 서버 내부 에러 |
 |  |  | SERVER_REMOTE_SYSTEM_ERROR | 8002 | 서버에서 외부 연동중 에러 발생 |
 |  |  | SERVER_UNKNOWN_ERROR | 8999 | 서버에서 알 수 없는 에러 |
-| Platform Reserved |  | INVALID_INTERNAL_STATE | 11001 |  |
-|  |  | NOT_CALLABLE_STATE | 11002 |  |
-
-
 
 ## API Reference
 SDK 내에 포함되어 있습니다.
