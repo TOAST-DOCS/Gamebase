@@ -2,18 +2,10 @@
 
 ### 2017.08.24
 
-#### 기능 추가
-
-* Unity WebGL Platform 지원
-* Unity Standalone Platform 지원
-
 #### 기능 개선/변경
 
 * [SDK] 1.1.6 업데이트
-	* Unity WebGL & Standalone Platform 지원
 	* Push API 추가(for iOS) : SetSandboxMode
-
-
 
 ### 2017.07.20
 
