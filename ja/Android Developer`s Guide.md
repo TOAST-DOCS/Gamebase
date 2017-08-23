@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-#### Launching 상태
+#### 3. Getting launching status
 Gamebase#initialize 호출 결과로 런칭 상태를 확인 할 수 있습니다.
 ```java
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
@@ -494,6 +494,8 @@ private static void removeMappingForFacebook() {
 #### 1-4. Download
 
 * 다운로드 받은 SDK의 **gamebase-adapter-purchase-iap** 폴더를 프로젝트에 추가합니다.
+	* ONE Store 결제가 필요 없다면 **iap-tstore-x.x.x.jar**, **iap_tstore_plugin_vxx.xx.xx.jar** 파일은 삭제하셔도 됩니다.
+	* 반대로 ONE Store 결제를 하신다면 위의 jar파일은 반드시 프로젝트에 포함되어 빌드되어야 합니다.
 
 #### 1-5. AndroidManifest.xml(ONE store only)
 * ONE store 사용을 위해서는 다음 설정을 추가하여야 합니다.
@@ -537,9 +539,23 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 });
 ```
 
-### 2. Purchase item
+### 2. Purchase flow
 
-구매하고자 하는 아이템의 itemSeq를 이용해 다음의 API를 호출하여 구매요청을 합니다.
+* 아이템 구매는 다음과 같은 순서로 구현하시기 바랍니다.
+	1. requestPurchase 를 호출하여 결제를 시도합니다.
+	2. 결제가 성공하였다면 requestItemListOfNotConsumed 를 호출하여 미소비 결제내역을 확인합니다.
+	3. 리턴된 미소비 결제내역 리스트에 값이 존재한다면 게임 클라이언트가 게임 서버에 Consume 을 요청합니다.
+	4. 게임 서버는 IAP서버에 서버 API를 통해 Consume 을 요청합니다.
+	5. IAP서버에서 Consume이 성공하였다면 게임 서버가 게임 클라이언트에 아이템을 지급합니다.
+* 스토어 결제는 성공하였으나 에러가 발생하여 정상 종료되지 못하는 경우가 있습니다. 다음과 같은 순서로 재처리 로직을 구현하시기 바랍니다.
+	1. 로그인이 성공하면 requestRetryTransaction 을 호출하여 미처리 내역에 대한 자동 재처리를 시도합니다.
+	2. 리턴된 successList 에 값이 존재한다면 게임 클라이언트가 게임 서버에 Consume을 요청하여 아이템 지급 처리를 합니다.
+	3. 리턴된 failList 에 값이 존재한다면 해당 값을 게임 서버나 Log&Crash 등을 통해 전송하여 데이터를 확보하고, 빌링 개발팀에 재처리 실패 원인을 문의합니다.
+
+### 3. Purchase item
+
+* 구매하고자 하는 아이템의 itemSeq를 이용해 다음의 API를 호출하여 구매요청을 합니다.
+* 유저가 구매를 취소하는 경우 **GamebaseError.PURCHASE_USER_CANCELED** 에러가 리턴됩니다. 취소 처리를 해주시기 바랍니다.
 
 ```java
 long itemSeq; // The itemSeq value can be got through the requestItemListPurchasable API.
@@ -558,9 +574,9 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 });
 ```
 
-### 3. Get a list of items purchasable
+### 4. Get a list of items purchasable
 
-아이템 목록을 조회하기 위하여 다음의 API를 호출합니다. 콜백으로 리턴되는 Array 안에는 각 아이템들에 대한 정보가 담겨 있습니다.
+* 아이템 목록을 조회하기 위하여 다음의 API를 호출합니다. 콜백으로 리턴되는 Array 안에는 각 아이템들에 대한 정보가 담겨 있습니다.
 
 ```java
 Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<List<PurchasableItem>>() {
@@ -578,15 +594,10 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 });
 ```
 
-### 4. Get a list of items not consumed
+### 5. Get a list of items not consumed
 
-아이템을 구매는 하였지만, 아직 아이템 배송을 실시하지 않은 **미소비 결제내역**리스트를 요청합니다. 리턴받은 리스트가 존재하는 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.<br>
-
-* 미소비 결제 처리 순서
-	1. 결제 성공시 requestItemListOfNotConsumed 호출
-	2. API의 리턴값이 존재할 경우 게임 클라이언트가 게임 서버에 Consume 요청
-	3. 게임 서버가 IAP서버에 Consume 요청
-	4. IAP서버에서 성공값이 리턴될 경우 게임 서버가 게임 클라이언트에 아이템 지급
+* 아이템을 구매는 하였지만, 아직 아이템 배송을 실시하지 않은 **미소비 결제내역**리스트를 요청합니다.
+* 리턴받은 리스트가 존재하는 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.
 
 ```java
 Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallback<List<PurchasableReceipt>>() {
@@ -604,12 +615,12 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 });
 ```
 
-### 5. Reprocess purchase transaction
+### 6. Reprocess purchase transaction
 
-로그인 성공 후 매번 호출해야 하는 API입니다.<br><br>
-스토어 결제는 정상적으로 이루어졌지만, ToastCloud IAP 서버 검증 실패 등으로 인해 정상적으로 결제가 이루어지지 않은 경우,
-requestRetryTransaction API를 이용하여 재처리를 시도합니다. 최종적으로 결제가 성공한 내역을 바탕으로, 아이템 배송(지급)등의 API를 호출하여 처리를 해주어야합니다.<br><br>
-RequestRetryTransaction API는 클라이언트에 결제 실패 로직이 남아있는 경우 재처리를 실행하고, 성공/실패 결과를 콜백함수로 리턴합니다. 그래서 성공/실패 여부에 따라 이후 처리를 어떻게 진행할 것인지는 게임쪽에서 결정하여 활용할 수 있는 부분이므로 Gamebase SDK가 자동호출해주지 않습니다.
+* 클라이언트에 결제 실패 로직이 남아있는 경우 재처리를 실행하고, 성공/실패 결과를 콜백함수로 리턴합니다.
+	* 스토어 결제는 정상적으로 이루어졌지만, ToastCloud IAP 서버 검증 실패 등으로 인해 정상적으로 결제가 이루어지지 않은 경우 등이 이에 해당합니다.
+* 성공/실패 여부에 따라 각 게임별 아이템 배송 로직을 진행하거나 에러 리스트를 어떻게 관리할 것인지는 프로젝트 마다 정책이 다를 수 있으므로 Gamebase SDK는 requestRetryTransaction 를 자동으로 호출해주지 않습니다.
+	* 로그인 성공 후 직접 호출하여야 합니다.
 
 ```java
 Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<PurchasableRetryTransactionResult>() {
@@ -626,6 +637,24 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
     }
 });
 ```
+
+### 7. Exception handling
+
+| Error | Error Code | Notes |
+| ----- | ---------- | ----- |
+| PURCHASE_NOT_INITIALIZED | 4001 | Purchase 모듈이 초기화되지 않았습니다.<br>gamebase-adapter-purchase-iap 모듈을 프로젝트에 추가 했는지 확인해주세요. |
+| PURCHASE_USER_CANCELED | 4002 | 유저가 아이템 구매를 취소하였습니다. |
+| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003 | 구매 로직이 아직 완료되지 않은 상태에서 API가 호출되었습니다. |
+| PURCHASE_NOT_ENOUGH_CASH | 4004 | 해당 스토어의 캐쉬가 부족하여 결제할 수 없습니다. |
+| PURCHASE_NOT_SUPPORTED_MARKET | 4010 | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 GG(Google), TS(ONE Store), TEST 입니다. |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR | 4201 | IAP 라이브러리 에러입니다.<br>DetailCode를 확인하세요. |
+| PURCHASE_UNKNOWN_ERROR | 4999 | 정의되지 않은 구매 에러입니다.<br>전체 로그를 Gamebase 개발팀에 전달하여 에러상황을 문의해 주세요. |
+
+#### PURCHASE_EXTERNAL_LIBRARY_ERROR
+* 이 에러는 IAP 모듈에서 발생한 에러입니다.
+* exception.getDetailCode() 를 통해 IAP 에러 코드를 확인하여야 합니다.
+	* IAP 에러코드는 다음 문서를 참고하시기 바랍니다.
+	* [IAP > Error Code Guide > Client API 에러 타입](http://docs.cloud.toast.com/ko/Common/IAP/ko/Error%20Code/#client-api)
 
 ## Push
 
@@ -763,8 +792,9 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 ```
 
 ### 2. Register push
-다음의 API를 호출하여, ToastCloud Push에 해당 사용자를 등록합니다.
-Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야간 광고성 Push 동의 여부(enableAdNightPush)값을 사용자로부터 받아온 후, 다음의 API 호출을 통해 등록을 완료합니다.
+
+* 다음 API를 호출하여, ToastCloud Push에 해당 사용자를 등록합니다.
+* Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야간 광고성 Push 동의 여부(enableAdNightPush)값을 사용자로부터 받아온 후, 다음의 API 호출을 통해 등록을 완료합니다.
 
 ```java
 boolean enablePush;
@@ -789,8 +819,9 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 ```
 
 ### 3. Get push settings
-사용자의 Push 설정을 조회하기 위해서, 다음의 API를 이용합니다.
-콜백으로 오는 PushConfiguration 값을 바탕으로, 사용자 설정값을 얻을 수 있습니다.
+
+* 사용자의 Push 설정을 조회하기 위해서, 다음의 API를 이용합니다.
+* 콜백으로 오는 PushConfiguration 값을 바탕으로, 사용자 설정값을 얻을 수 있습니다.
 
 ```java
 Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() {
@@ -810,6 +841,20 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
     }
 });
 ```
+
+### 4. Exception handling
+
+| Error | Error Code | Notes |
+| ----- | ---------- | ----- |
+| PUSH_EXTERNAL_LIBRARY_ERROR | 5101 | TCPush 라이브러리 에러입니다.<br>DetailCode를 확인하세요. |
+| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | 이전 PUSH API 호출이 완료되지 않았습니다.<br>이전 PUSH API의 콜백이 실행된 이후에 다시 호출하세요. |
+| PUSH_UNKNOWN_ERROR | 5999 | 정의되지 않은 푸시 에러입니다.<br>전체 로그를 Gamebase 개발팀에 전달하여 에러상황을 문의해 주세요. |
+
+#### PUSH_EXTERNAL_LIBRARY_ERROR
+* 이 에러는 TOAST Cloud Push 라이브러리에서 발생한 에러입니다.
+* exception.getDetailCode() 를 통해 TCPush 에러 코드를 확인하여야 합니다.
+	* TCPush 에러코드는 다음 문서를 참고하시기 바랍니다.
+	* [Push > Client SDK Developer's Guide > Error Code Guide > 오류 처리](http://docs.cloud.toast.com/ko/Notification/Push/ko/Client%20SDK%20Guide/#_5)
 
 ## UI
 ### WebView
@@ -930,7 +975,7 @@ android:value의 값으로 .html 파일 또는 URL을 입력할 수 있습니다
 |  |  | AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
 |  |  | AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | 최근에 로그인한 IDP 정보가 없습니다. |
 |  | IDP Login | AUTH_IDP_LOGIN_FAILED | 3201 | IDP 로그인에 실패하였습니다. |
-|  |  | AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3201 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
+|  |  | AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3202 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
 |  | Add Mapping | AUTH_ADD_MAPPING_FAILED | 3301 | 맵핑 추가에 실패하였습니다. |
 |  |  | AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | 이미 다른 멤버에 맵핑되어있습니다. |
 |  |  | AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | 이미 같은 IDP에 맵핑되어있습니다. |
@@ -948,11 +993,11 @@ android:value의 값으로 .html 파일 또는 URL을 입력할 수 있습니다
 |  |  | PURCHASE_NOT_ENOUGH_CASH | 4004 | 해당 스토어의 캐쉬가 부족하여 결제할 수 없습니다. |
 |  |  | PURCHASE_NOT_SUPPORTED_MARKET | 4010 | 지원하지 않는 스토어입니다. |
 |  |  | PURCHASE_EXTERNAL_LIBRARY_ERROR | 4201 | 외부 IAP 라이브러리 에러입니다. |
-|  |  | PURCHASE_UNKNOWN_ERROR | 4999 | 알수없는 구매 에러입니다. |
-| Push |  | PUSH_NOT_REGISTERED | 5001 | 단말기가 푸쉬 서버에 등록되지 않았습니다. |
-|  |  | PUSH_EXTERNAL_LIBRARY_ERROR | 5101 | 외부 라이브러리 에러입니다. |
+|  |  | PURCHASE_UNKNOWN_ERROR | 4999 | 알수없는 구매 에러입니다. (정의되지 않은 에러입니다.) |
+| Push |  | PUSH_EXTERNAL_LIBRARY_ERROR | 5101 | 외부 라이브러리 에러입니다. |
+|  |  | PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | 이전 PUSH API 호출이 완료되지 않았습니다. |
 |  |  | PUSH_UNKNOWN_ERROR | 5999 | 알수 없는 푸시 에러입니다. (정의되지 않은 푸시 에러입니다.) |
-| UI |  | UI_UNKNOWN_ERROR | 6999 | 알수 없는 에러입니다. (정의되지 않은 에러입니다.) |
+| UI |  | UI_UNKNOWN_ERROR | 6999 | 알수 없는 UI 관련 에러입니다. (정의되지 않은 에러입니다.) |
 | Server |  | SERVER_INTERNAL_ERROR | 8001 |  |
 |  |  | SERVER_REMOTE_SYSTEM_ERROR | 8002 |  |
 |  |  | SERVER_UNKNOWN_ERROR | 8999 |  |
