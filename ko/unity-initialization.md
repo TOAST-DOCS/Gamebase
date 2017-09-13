@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Developer's Guide (Unity) > Initialization
+## Game > Gamebase > Developer's Guide (Unity) > Initialization
 
 ## Initialization
 
@@ -17,7 +17,7 @@ Gamebase Unity SDK 를 사용하기 전에 초기화를 수행해야 하며, App
 
 > [WARNING]
 >
-> zoneType은 "REAL" 또는 " " 으로 설정하십시오. (" " 설정 시 자동으로 "REAL"로 설정됩니다.)
+> zoneType은 "REAL" 또는 " " 으로 설정하십시오. (" " 설정 시 자동으로 "REAL"로 설정됩니다.) <br/>
 > 그외 다른 값을 입력할 경우 정상 작동하지 않습니다.
 >
 
@@ -31,7 +31,7 @@ Gamebase Unity SDK 를 사용하기 전에 초기화를 수행해야 하며, App
 
 > [WARNING]
 >
-> 생성한 게임 오브젝트를 삭제하면 Android, iOS API 호출 후 콜백을 받을 수 없으므로 주의하시기 바랍니다.
+> 생성한 게임 오브젝트를 삭제하면 Android, iOS API 호출 후 콜백을 받을 수 없으므로 주의하시기 바랍니다. <br/>
 > 실수로 삭제된 경우 "Do not destroy this gameObject in order to receive callback." 에러 메시지가 노출됩니다.
 >
 
@@ -138,6 +138,7 @@ public void Initialize()
 ```
 
 ### Launching Info
+
 Initialize API를 사용하여 UnitySDK를 초기화하면 LaunchingInfo 객체가 결과 값으로 전달됩니다.
 이 LaunchingInfo 객체에는 TOASTCloud Gamebase console에 설정한 값들과 게임 상태등이 포함되어 있습니다.
 

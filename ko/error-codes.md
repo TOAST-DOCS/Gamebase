@@ -1,8 +1,6 @@
-## Upcomming Products > Gamebase > Error Code
+## Game > Gamebase > Error Code
 
-
-
-## Gamebase SDK - Error Code
+## Client SDK
 
 | Category | Sub Cat. | Platform | Error | Error Code | Notes |
 | --- | --- | --- | --- | --- | --- |

@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Developer's Guide (Android)  > Push
+## Game > Gamebase > Developer's Guide (Android)  > Push
 
 ## Push
 
@@ -16,14 +16,18 @@
 * Tencent 푸쉬를 사용하는 경우
 	* 다운로드 받은 SDK의 **gamebase-adapter-push-tencent** 폴더를 프로젝트에 추가합니다.
 
-> 푸쉬 모듈은 하나만 존재하여야 합니다.
-> Firebase 푸쉬와 Tencent 푸쉬를 둘 다 동시에 프로젝트에 추가하지 마십시오.
+> [WARNING]
 >
+> 푸쉬 모듈은 하나만 존재하여야 합니다. <br/>
+> Firebase 푸쉬와 Tencent 푸쉬를 둘 다 동시에 프로젝트에 추가하지 마십시오.
+
 
 #### 3. AndroidManifest.xml
 
 * Gamebase 푸쉬에 필요한 설정을 추가합니다.
 
+> [WARNING]
+>
 >**${applicationId}**을 **패키지 네임**으로 변경하여야 합니다.
 >
 
@@ -85,6 +89,7 @@
 ```
 
 #### 4. Google Services Settings (Firebase only)
+
 * Gradle 빌드를 사용하는 경우
     * Firebase 푸쉬를 사용하기 위해서는 google-services.json 설정파일이 필요합니다.
         * [LINK \[https://firebase.google.com/docs/notifications/android/console-audience#add_firebase_to_your_app\]](https://firebase.google.com/docs/notifications/android/console-audience#add_firebase_to_your_app)

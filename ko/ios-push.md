@@ -1,8 +1,9 @@
-## Upcoming Products > Gamebase > Developer's Guide (iOS) > Push
+## Game > Gamebase > Developer's Guide (iOS) > Push
 
 ## Push
 
 ### 1. Import Header file into View Controller
+
 구매 API를 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
 ```objectivec
@@ -10,6 +11,7 @@
 ```
 
 ### 2. Register Push
+
 다음의 API를 호출하여, ToastCloud Push에 해당 사용자를 등록합니다.<br/>
 Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야간 광고성 Push 동의 여부(enableAdNightPush)값을
 사용자로부터 받아온 후, 다음의 API 호출을 통해 등록을 완료합니다.
@@ -34,6 +36,7 @@ Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야�
 ```
 
 ### 3. Get a Push Setting
+
 사용자의 Push 설정을 조회하기 위해서, 다음의 API를 이용합니다.<br/>
 콜백으로 오는 TCGBPushConfiguration 값을 바탕으로, 사용자 설정값을 얻을 수 있습니다.
 
@@ -54,6 +57,7 @@ Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야�
 ```
 
 ### 4. Error Handling
+
 | Error | Error Code | Notes |
 | ----- | ---------- | ----- |
 | TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR | 5101 | TCPush 라이브러리 에러입니다.<br>DetailCode를 확인하세요. |
@@ -61,6 +65,7 @@ Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야�
 | TCGB_ERROR_PUSH_UNKNOWN_ERROR | 5999 | 정의되지 않은 푸시 에러입니다.<br>전체 로그를 Gamebase 개발팀에 전달하여 에러상황을 문의해 주세요. |
 
 #### TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR
+
 이 에러는 TOAST Cloud Push 라이브러리에서 발생한 에러입니다.<br/>
 에러 코드 확인은 다음과 같이 확인하실 수 있습니다.
 

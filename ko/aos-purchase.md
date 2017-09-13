@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Developer's Guide (Android)  > Purchase
+## Game > Gamebase > Developer's Guide (Android)  > Purchase
 
 
 ## Purchase
@@ -33,6 +33,7 @@
 	* 반대로 ONE Store 결제를 하신다면 위의 jar파일은 반드시 프로젝트에 포함되어 빌드되어야 합니다.
 
 #### 1-5. AndroidManifest.xml(ONE store only)
+
 * ONE store 사용을 위해서는 다음 설정을 추가하여야 합니다.
 
 ```xml
@@ -192,7 +193,8 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 | PURCHASE_EXTERNAL_LIBRARY_ERROR | 4201 | IAP 라이브러리 에러입니다.<br>DetailCode를 확인하세요. |
 | PURCHASE_UNKNOWN_ERROR | 4999 | 정의되지 않은 구매 에러입니다.<br>전체 로그를 Gamebase 개발팀에 전달하여 에러상황을 문의해 주세요. |
 
-**PURCHASE_EXTERNAL_LIBRARY_ERROR**
+#### PURCHASE_EXTERNAL_LIBRARY_ERROR
+
 * 이 에러는 IAP 모듈에서 발생한 에러입니다.
 * exception.getDetailCode() 를 통해 IAP 에러 코드를 확인하여야 합니다.
 	* IAP 에러코드는 다음 문서를 참고하시기 바랍니다.

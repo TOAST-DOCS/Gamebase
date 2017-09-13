@@ -1,8 +1,9 @@
-## Upcoming Products > Gamebase > Developer's Guide (iOS) > UI
+## Game > Gamebase > Developer's Guide (iOS) > UI
 
 ## UI
 
 ### 1. WebView
+
 Gamebase에서는 기본적인 웹뷰를 지원합니다. 웹뷰의 스타일은 Fullscreen과 Popup 스타일을 지원하며, Customizing이 가능합니다.<br/>
 Fullscreen 스타일(Browser)은 네비게이션바를 가지며, Close/GoBack 버튼을 가집니다. 네비게이션바에 타이틀을 지정할 수 있습니다.<br/>
 Popup 스타일은 기존화면 위에 모달뷰 형식으로 나타나게 되며, 뒷 배경은 투명한 mask view로 덮어씌워집니다.
@@ -45,6 +46,7 @@ Popup 스타일은 기존화면 위에 모달뷰 형식으로 나타나게 되�
 
 
 ### 2. Alert
+
 System Alert 를 위한 API를 제공합니다.<br/>
 iOS8 이상에서 동작하는 UIAlertController와, iOS8 미만에서의 UIAlertView 처리를 내부적으로 해줍니다.<br/>
 다음의 API를 통해서, 사용자는 Alert에 버튼 및 콜백을 등록할 수 있습니다.

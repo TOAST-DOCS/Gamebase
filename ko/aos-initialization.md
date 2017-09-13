@@ -1,9 +1,10 @@
-## Upcoming Products > Gamebase > Developer's Guide (Android)  > Initialization
+## Game > Gamebase > Developer's Guide (Android)  > Initialization
 
 ## Initialization
 
 ### 1. Activate the application
-앱의 Lifecycle 관리를 위해 앱이 활성화 되었음을 Gamebase SDK에 알립니다.
+
+앱의 Lifecycle 관리를 위해 앱이 활성화 되었음을 Gamebase SDK에 알립니다.<br/>
 **Application#onCreate()**에서 **Gamebase#activeApp(Context)**을 호출합니다.
 
 ```java
@@ -18,6 +19,7 @@ public class GamebaseApplication extends Application {
 ```
 
 ### 2. Initialization
+
 **Activity#onCreate(Bundle)**에서 **Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback)**을 호출하여 Gamebase SDK 초기화를 진행합니다.
 
 ```java
@@ -66,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 ```
 
 #### 3. Getting launching status
+
 Gamebase#initialize 호출 결과로 런칭 상태를 확인 할 수 있습니다.
 ```java
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
@@ -89,7 +92,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 ```
 
 #### Launching Status Code
-
+<br/>
 | Status | Code | Description |
 | --- | --- | --- |
 | IN_SERVICE | 200 | 정상 서비스 중 |

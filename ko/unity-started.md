@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Developer's Guide (Unity) > Getting Started
+## Game > Gamebase > Developer's Guide (Unity) > Getting Started
 
 ## Getting Started
 
@@ -79,7 +79,7 @@ Unity Android 빌드 시 필요한 설정입니다.
 
 > [WARNING]
 >
-> 각 모듈에서 중복으로 포함하고 있는 파일들이 있을 수 있습니다.
+> 각 모듈에서 중복으로 포함하고 있는 파일들이 있을 수 있습니다. <br/>
 > 중복된 파일은 하나만 가지고 있으면 됩니다.
 >
 
@@ -89,7 +89,7 @@ Lifecycle 관리를 위해 "com.toast.gamebase.activity.GamebaseMainActivity"를
 
 > [WARNING]
 >
-> AndroidPlugin 개발에도 GamebaseMainActivity를 상속받아 만들어야 합니다.
+> AndroidPlugin 개발에도 GamebaseMainActivity를 상속받아 만들어야 합니다. <br/>
 > GamebaseMainActivity는 GamebaseAndroidPlugin.jar에 포함되어 있습니다.
 >
 

@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Developer's Guide (Android)  > Getting Started
+## Game > Gamebase > Developer's Guide (Android)  > Getting Started
 
 ## Getting Started
 
@@ -6,7 +6,7 @@
 > 
 > [INFO]
 > 
-> 최소사양 : Android API 15 (IceCreamSandwichMR1, 4.0.3) 이상
+> 최소사양 : Android API 15 (IceCreamSandwichMR1, 4.0.3) 이상 <br/>
 > 개발 환경 : Android Studio
 
 ### Installation
@@ -26,14 +26,14 @@ Gamebase Android SDK를 사용하기 전에 TOAST Cloud Console에서 App ID를 
 
 #### Package Includes (SDK)
 * SDK 패키지의 압축을 해제한다면 다음과 같은 모듈이 포함되어 있다.
-![](./image/DevelopersGuide/aos-developers-guide-installation-001_1.0.0.png)
+![Package Includes](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-installation-001_1.0.0.png)
 
 ### build.gradle Settings
 
 * 1) 다운로드 받은 Gamebase SDK를 Application의 Root 경로에 복사합니다.
 * 2) Gamebase 경로 및 버전, 사용할 인증, 결제, 푸시 모듈을 설정합니다.
-    * 사용하고자 하는 모듈을 `true`로 설정하면 해당 모듈이 dependency에 추가됩니다.
-    * 반대로 사용하지 않아 포함시키지 않는 모듈은 `false`로 설정합니다.
+    * 사용하고자 하는 모듈을 "true"로 설정하면 해당 모듈이 dependency에 추가됩니다.
+    * 반대로 사용하지 않아 포함시키지 않는 모듈은 "false"로 설정합니다.
 
 ```gradle
 /* Set the Gamebase path. */

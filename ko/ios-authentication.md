@@ -1,6 +1,7 @@
-## Upcoming Products > Gamebase > Developer's Guide (iOS) > Login
+## Game > Gamebase > Developer's Guide (iOS) > Login
 
 ## Login
+
 * Gamebase 에서는 기본적으로 guest 로그인을 지원합니다.
 * guest 이외의 Provider에 로그인을 하기 위해서는 해당 Provider AuthAdapter가 필요합니다.
 * AuthAdapter 및 3rd-Party SDK에 대한 설정은 위에 있는 '외부 SDK 다운로드' 링크를 참고하시길 바랍니다.
@@ -10,6 +11,7 @@
 AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 항목을 참고합니다.
 
 ### 1. Import Header file into View Controller
+
 로그인을 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
 ```objectivec
@@ -17,6 +19,7 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 ```
 
 ### 2. Latest Login API
+
 특정 IDP에 대한 로그인 버튼을 클릭하였을 때, 다음 로그인 API를 구현합니다.<br/>
 가장 최근에 로그인한 IDP로의 로그인을 시도합니다. 해당 로그인에 대한 토큰이 만료되었거나,
 토큰에 대한 검증 등이 실패하였을 때, 실패를 리턴합니다.<br/>
@@ -53,6 +56,7 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 ```
 
 ### 3. IDP Login API
+
 특정 IDP 로그인 호출을 위해서 **[TCGBGamebase loginWithType:viewController:completion:]** 메소드를 호출해줍니다.<br/>
 로그인 결과로 **(TCGBError *)error** 객체를 이용해 성공 여부를 판단할 수 있습니다. <br/>
 또한 **TCGBAuthToken** 객체를 이용하여 userId 등의 사용자 정보 및 토큰 정보를 얻을 수 있습니다.<br/>
@@ -86,7 +90,9 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 #### Gamebase에서 지원 중인 IDP
 
 ##### 1. Guest
+
 ##### 2. Facebook
+
 1. AdditionalInfo의 설정이 필요합니다.
     * **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
     * Facebook의 경우, OAuth 인증 시도 시, Facebook으로 부터 요청할 정보의 종류를 설정해야 합니다. 
@@ -96,9 +102,10 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 { "facebook_permission": [ "public_profile", "email", "user_friends"]}
 ```
 2. Facebook SDK를 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다.
-[LINK \[Facebook Developer Guide\]](https://developers.facebook.com/docs/ios/getting-started)
+* [LINK \[Facebook Developer Guide\]](https://developers.facebook.com/docs/ios/getting-started)
 
 ##### 3. Payco
+
 1. AdditionalInfo의 설정이 필요합니다.
     * **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
     * Payco의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**의 설정이 필요합니다.
@@ -109,6 +116,7 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 ```
 
 ##### 4. GameCenter
+
 TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 
@@ -149,6 +157,7 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 
 ### 5. Gets Authentication Information for external IDP
+
 외부 인증 SDK에서 AccessToken, UserId, Profile 등의 인증 정보를 가져올 수 있습니다.
 
 ```objectivec
@@ -169,6 +178,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 ## Logout
 
 ### 1. Import Header file into View Controller
+
 로그아웃을 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
 ```objectivec
@@ -176,6 +186,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 ```
 
 ### 2. Logout API
+
 로그아웃 버튼을 클릭하였을 때, 다음의 로그아웃 API를 구현합니다.
 
 ```objectivec
@@ -199,6 +210,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 ## Withdraw
 
 ### 1. Import Header file into View Controller
+
 탈퇴를 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
 ```objectivec
@@ -206,6 +218,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 ```
 
 ### 2. Widthdraw API
+
 탈퇴 버튼을 클릭하였을 때, 다음의 탈퇴 API를 구현합니다.
 
 ```objectivec
@@ -219,6 +232,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 ```
 
 ## Mapping
+
 Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시키는 기능입니다.<br/>
 특정 IDP에 연동된(guest 포함) 계정에 다른 IDP의 계정을 연동하였을 때,
 각각의 계정들에 대해서 UserID는 동일하게 주어집니다.
@@ -229,6 +243,7 @@ Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
 
 
 ### 1. Import Header file into View Controller
+
 Mapping을 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
 ```objectivec
@@ -238,6 +253,7 @@ Mapping을 구현하고자 하는 ViewController에 다음의 헤더 파일을 �
 
 
 ### 2. Add Mapping API
+
 특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다.<br/>
 Mapping을 하려는 IDP의 계정이 이미 다른 계정이 연동이 되어있다면,
 **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER** 에러를 리턴합니다.
@@ -264,6 +280,7 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 ```
 
 ### 3. Remove Mapping API
+
 특정 IDP에 대한 연동을 해제합니다. <br/>
 만약, 해제하고자 하는 IDP가 **유일한 IDP**라면, 실패를 리턴하게 됩니다.<br/>
 연동 해제후에는 Gamebase 내부에서, 해당 IDP에 대한 로그아웃처리를 해줍니다.

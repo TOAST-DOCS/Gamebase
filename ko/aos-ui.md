@@ -1,22 +1,25 @@
-## Upcoming Products > Gamebase > Developer's Guide (Android) > UI
+## Game > Gamebase > Developer's Guide (Android) > UI
 
 ## UI
 ### WebView
 
 #### 1. Browser Style WebView
+
 기본으로 설정된 브라우저 스타일의 WebView를 노출합니다.
 ```java
 Gamebase.WebView.showWebBrowser(activity, "http://cloud.toast.com");
 ```
 
 #### 2. Popup Style WebView (향후 지원예정)
+
 기본으로 설정된 팝업 스타일의 WebView를 노출합니다.
 ```java
 Gamebase.WebView.showWebPopup(activity, "http://cloud.toast.com");
 ```
 
 #### 3. Custom WebView
-Custom WebView를 노출합니다.
+
+Custom WebView를 노출합니다. <br/>
 GamebaseWebViewConfiguration 설정으로 WebView를 Customizing 할 수 있습니다.
 ```java
 GamebaseWebViewConfiguration configuration
@@ -47,9 +50,11 @@ GamebaseWebView.showWebView(MainActivity.this, "http://cloud.toast.com", configu
 | setCloseButtonImageResource(int resourceId) | ID of resource | 닫기 버튼 이미지 |
 
 ### Alert
+
 Android System Alert Dialog를 간단하게 노출 할 수 있는 API를 제공합니다.
 
 #### 1. Simple Alert Dialog
+
 타이틀과 메시지 입력만으로 간단하게 Alert Dialog를 노출할 수 있습니다.
 
 ```java
@@ -57,6 +62,7 @@ Gamebase.Util.showAlertDialog(activity, "title", "message");
 ```
 
 #### 2. Alert Dialog with Listener
+
 Alert Dialog 노출 후 처리 결과를 콜백 받고 싶을 경우 다음 API를 사용합니다.
 
 ```java
@@ -72,6 +78,7 @@ Gamebase.Util.showAlertDialog(activity,
 ```
 
 ### 3. Toast
+
 Android의 Toast를 간단하게 노출 할 수 있는 API를 제공합니다.
 
 ```java
@@ -81,6 +88,7 @@ Gamebase.Util.showToast(activity,
 ```
 
 ### 4. Custom Maintenance Page
+
 점검 상태에서 "자세히 보기" 클릭 시 노출되는 점검 페이지를 변경할 수 있습니다.
 
 * AndroidManifest.xml 에 점검 페이지 등록
