@@ -27,7 +27,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 다운로드 받은 뒤, 해당 SDK파일을 프로젝트의 target에 포함시켜야 합니다.
 
 [3rd Party SDK Download]
-<br/>
+
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | External SDK Download Link |
 | --- | --- | --- | --- |
 | Gamebase | Gamebase.framework, Gamebase.bundle |  |  |
@@ -36,6 +36,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework |  |
 | Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework | Gamebase내에 포함 |
 | Gamebase Push | GamebasePushAdapter.framework |  | Gamebase내에 포함 |
+
 
 
 > [WARNING]

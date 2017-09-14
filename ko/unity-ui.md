@@ -10,8 +10,11 @@ Fullscreen 스타일은 네비게이션바를 가지며, Close/GoBack 버튼을 
 
 
 **API**<br>
+<div align="left">
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+</div> 
+
 ```cs
 static void ShowWebBrowser(string url)
 ```
@@ -30,8 +33,11 @@ Popup 웹뷰를 지원합니다.
 Popup 스타일은 기존화면 위에 모달뷰 형식으로 나타나게 되며, 뒷 배경은 투명한 mask view로 덮어씌워집니다.
 
 **API**<br>
+<div align="left">
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+</div> 
+
 ```cs
 static void ShowWebPopup(string url)
 ```
@@ -49,8 +55,11 @@ public void ShowWebPopup(string url)
 Gamebase에서는 기본적인 웹뷰를 지원하고 Customizing이 가능합니다.
 
 **API**<br>
+<div align="left">
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+</div> 
+
 ```cs
 static void ShowWebView(GamebaseRequest.Webview.GamebaseWebViewConfiguration configuratio)
 ```
@@ -80,8 +89,11 @@ Gamebase에서는 기본적인 웹뷰를 지원하고 Customizing이 가능합�
 Local HTML 파일을 웹뷰에서 로딩이 가능합니다.
 
 **API**<br>
+<div align="left">
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+</div> 
+
 ```cs
 static void ShowWebViewFile(GamebaseRequest.Webview.GamebaseWebViewConfiguration configuratio)
 ```
@@ -114,8 +126,11 @@ System Alert 를 위한 API를 제공합니다.
 다음의 API를 통해서, 사용자는 Alert에 버튼 및 콜백을 등록할 수 있습니다.
 
 **API**<br>
+<div align="left">
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+</div> 
+
 ```cs
 static void ShowAlertDialog(string title, string message, string okTitle, GamebaseCallback.VoidDelegate okCallback, string cancelTitle, GamebaseCallback.VoidDelegate cancelCallback)
 ```

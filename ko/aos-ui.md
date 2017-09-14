@@ -92,8 +92,8 @@ Gamebase.Util.showToast(activity,
 점검 상태에서 "자세히 보기" 클릭 시 노출되는 점검 페이지를 변경할 수 있습니다.
 
 * AndroidManifest.xml 에 점검 페이지 등록
-AndroidManifest.xml에 `"com.gamebase.maintenance.detail.url"`를 키 값으로 하는 meta-data를 설정합니다.
-android:value의 값으로 .html 파일 또는 URL을 입력할 수 있습니다.
+	* AndroidManifest.xml에 "com.gamebase.maintenance.detail.url" 를 키 값으로 하는 meta-data를 설정합니다.
+	* android:value의 값으로 .html 파일 또는 URL을 입력할 수 있습니다.
 
 ```xml
 <meta-data

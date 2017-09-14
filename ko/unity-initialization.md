@@ -39,9 +39,11 @@ Gamebase Unity SDK 를 사용하기 전에 초기화를 수행해야 하며, App
 **그림. Inspector를 이용한 초기화**
 
 **API**<br>
+<div align="left">
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
 ![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor-plugin_1.0.0.png)
+</div> 
 
 ```cs
 static void Initialize(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Launching.LaunchingInfo> callback)
@@ -49,7 +51,7 @@ static void Initialize(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Launch
 
 **Example**
 
-``` cs
+```cs
 public void Initialize()
 {
     Gamebase.Initialize((launchingInfo, error) =>
@@ -89,9 +91,11 @@ Android, iOS 플랫폼을 사용하는 경우에는 Native에서 Callback을 받
 4. Gamebase.Initialize(configuration, callback) API 호출를 호출합니다.
 
 **API**<br>
+<div align="left">
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
 ![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor-plugin_1.0.0.png)
+</div> 
 
 ```cs
 static void Initialize(GamebaseRequest.GamebaseConfiguration configuration, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Launching.LaunchingInfo> callback)

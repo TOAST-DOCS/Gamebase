@@ -66,8 +66,8 @@ Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야�
 
 #### TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR
 
-이 에러는 TOAST Cloud Push 라이브러리에서 발생한 에러입니다.<br/>
-에러 코드 확인은 다음과 같이 확인하실 수 있습니다.
+* 이 에러는 TOAST Cloud Push 라이브러리에서 발생한 에러입니다.
+* 에러 코드 확인은 다음과 같이 확인하실 수 있습니다.
 
 ```objectivec
 TCGBError *tcgbError = error; // Callback 으로 넘어온 TCGBError 인스턴스

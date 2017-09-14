@@ -3,6 +3,7 @@
 ## Getting Started
 
 ### Environments
+
 > 
 > [INFO]
 > 
@@ -10,6 +11,7 @@
 > 개발 환경 : Android Studio
 
 ### Installation
+
 Gamebase Android SDK를 사용하기 전에 TOAST Cloud Console에서 App ID를 발급 받아야 합니다.
 
 #### Download Link
@@ -25,6 +27,7 @@ Gamebase Android SDK를 사용하기 전에 TOAST Cloud Console에서 App ID를 
 
 
 #### Package Includes (SDK)
+
 * SDK 패키지의 압축을 해제한다면 다음과 같은 모듈이 포함되어 있다.
 ![Package Includes](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-installation-001_1.0.0.png)
 
@@ -128,6 +131,7 @@ dependencies {
 
 
 ## Dependency
+
 Gamebase SDK에서는 3rd Party SDK 및 Dependency가 있는 모듈의 버전에 대하여 호환을 보장합니다.
 
 | Category | Provider | Modules | Dependencies | Description |
@@ -146,9 +150,11 @@ Gamebase SDK에서는 3rd Party SDK 및 Dependency가 있는 모듈의 버전에
 * 중복되는 Dependency 모듈은 하나만 포함하도록 해야합니다.
 
 ## 3rd-Party Provider SDK Guide
+
 * [LINK \[Facebook for developers\]](https://developers.facebook.com/docs/android)
 * [LINK \[Google APIs for Android\]](https://developers.google.com/android/guides/overview)
 
 ## API Reference
+
 SDK 내에 포함되어 있습니다.
 

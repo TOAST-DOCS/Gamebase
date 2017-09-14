@@ -34,11 +34,13 @@ Gamebase Unity SDK 에서 지원하는 플랫폼 선택 후, 선택한 플랫폼
 * GamebaseErrorCode.NOT_SUPPORTED_UNITY_WEBGL
 
 API 별 지원하는 플랫폼은 아래와 같은 icon 으로 구분합니다.<br>
+<div align="left">
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
 ![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor-plugin_1.0.0.png)
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone-plugin_1.0.0.png)
 ![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-webgl_1.0.0.png)
+</div> 
 
 ## Installation
 

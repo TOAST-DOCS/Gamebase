@@ -25,11 +25,11 @@
 
 스토어 결제는 성공하였으나 에러가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 다음 두 API를 각각 호출하여 재처리 로직을 구현하시기 바랍니다.<br/>
 <br/>
-1. 미처리 아이템 배송 요청<br/>
-    * 로그인이 성공하면 **requestItemListOfNotConsumedWithCompletion:** 를 호출하여 미소비 결제내역을 확인합니다.<br/>
-    * 리턴된 미소비 결제내역 리스트에 값이 존재한다면 게임 클라이언트가 게임 서버에 Consume을 요청하여 아이템 지급 처리를 합니다.<br/>
-<br/>	
-2. 결제 오류 재처리 시도<br/>
+1. 미처리 아이템 배송 요청
+	* 로그인이 성공하면 **requestItemListOfNotConsumedWithCompletion:** 를 호출하여 미소비 결제내역을 확인합니다.<br/>
+	* 리턴된 미소비 결제내역 리스트에 값이 존재한다면 게임 클라이언트가 게임 서버에 Consume을 요청하여 아이템 지급 처리를 합니다.<br/>
+
+2. 결제 오류 재처리 시도
     * 로그인이 성공하면 **requestRetryTransactionWithCompletion:** 을 호출하여 미처리 내역에 대한 자동 재처리를 시도합니다.<br/>
     * 리턴된 successList 에 값이 존재한다면 게임 클라이언트가 게임 서버에 Consume을 요청하여 아이템 지급 처리를 합니다.<br/>
     * 리턴된 failList 에 값이 존재한다면 해당 값을 게임 서버나 Log&Crash 등을 통해 전송하여 데이터를 확보하고, 빌링 개발팀에 재처리 실패 원인을 문의합니다.<br/>
@@ -105,8 +105,7 @@
 
 스토어 결제는 정상적으로 이루어졌지만, ToastCloud IAP 서버 검증 실패 등으로 인해 정상적으로 결제가 이뤄지지 않은 경우에, 해당 API를 이용하여 재처리를 시도합니다. <br/>
 최종적으로 결제가 성공한 내역을 바탕으로, 아이템 배송(지급)등의 API를 호출하여 처리를 해주어야합니다.
-
-<br/><br/>
+<br/>
 
 성공/실패 여부에 따라 각 게임별 아이템 배송 로직을 진행하거나 에러 리스트를 어떻게 관리할 것인지는 프로젝트 마다 정책이 다를 수 있으므로 Gamebase SDK는 requestRetryTransaction 를 자동으로 호출해주지 않습니다.<br/>
 로그인 성공 후 직접 호출하여야 합니다.
@@ -141,12 +140,11 @@
 
 
 
-**TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR**
-<br/>
+#### TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR
+
 * 이 에러는 IAP 모듈에서 발생한 에러입니다.
 * 에러 코드 확인은 다음과 같이 확인하실 수 있습니다.
 
-<br/>
 ```objectivec
 TCGBError *tcgbError = error; // Callback 으로 넘어온 TCGBError 인스턴스
 NSError *moduleError = [tcgbError.userInfo objectForKey:NSUnderlyingErrorKey]; // 외부 라이브러리에서 발생한 에러객체
