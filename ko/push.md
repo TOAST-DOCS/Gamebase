@@ -1,4 +1,4 @@
-## Game > Gamebase > Operator Guide > PUsh
+## Game > Gamebase > Operator Guide > Push
 
 게임 이용자에게 푸시 알림을 전송합니다.<br/>
 Gamebase 내부적으로 TOAST Cloud PUSH 상품을 사용하고 있습니다.<br/>
@@ -52,7 +52,7 @@ Gamebase를 통해 발송한 푸시 내역 및 발송 예정 내역을 조회할
 
 > [INFO]<br/>
 > 국가 판단 기준<br/>
-> 사용자의 **USIM 국가코드** 기준으로 판단하며 USIM이 없을 경우 **Device**에 설정되어 있는 국가를 기준으로 공지가 노출됩니다.<br />
+> 사용자의 **USIM 국가코드** 기준으로 판단하며 USIM이 없을 경우 **Device**에 설정되어 있는 국가를 기준으로 푸시메시지가 노출됩니다.<br />
 
 #### (5) 발송 메시지
 사용자에게 노출할 푸시 메시지를 입력합니다.<br />
