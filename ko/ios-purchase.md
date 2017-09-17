@@ -12,27 +12,22 @@
 
 ### 2. Purchase Flow
 
-아이템 구매는 다음과 같은 순서로 구현하시기 바랍니다. <br/>
-<br/>
-1. **requestPurchaseWithItemSeq:viewController:completion:** 를 호출하여 결제를 시도합니다.<br/>
-2. 결제가 성공하였다면 **requestItemListOfNotConsumedWithCompletion:** 를 호출하여 미소비 결제내역을 확인합니다.<br/>
-3. 리턴된 미소비 결제내역 리스트에 값이 존재한다면 게임 클라이언트가 게임 서버에 Consume 을 요청합니다.<br/>
-4. 게임 서버는 IAP서버에 서버 API를 통해 Consume 을 요청합니다.<br/>
-5. IAP서버에서 Consume이 성공하였다면 게임 서버가 게임 클라이언트에 아이템을 지급합니다.<br/>
+* 아이템 구매는 다음과 같은 순서로 구현하시기 바랍니다.
+	1. **requestPurchaseWithItemSeq:viewController:completion:** 를 호출하여 결제를 시도합니다.
+	2. 결제가 성공하였다면 **requestItemListOfNotConsumedWithCompletion:** 를 호출하여 미소비 결제내역을 확인합니다.
+	3. 리턴된 미소비 결제내역 리스트에 값이 존재한다면 게임 클라이언트가 게임 서버에 Consume 을 요청합니다.
+	4. 게임 서버는 IAP서버에 서버 API를 통해 Consume 을 요청합니다.
+	5. IAP서버에서 Consume이 성공하였다면 게임 서버가 게임 클라이언트에 아이템을 지급합니다.
+* 스토어 결제는 성공하였으나 에러가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 다음 두 API를 각각 호출하여 재처리 로직을 구현하시기 바랍니다.
+	1. 미처리 아이템 배송 요청
+		1. 로그인이 성공하면 **requestItemListOfNotConsumedWithCompletion:** 를 호출하여 미소비 결제내역을 확인합니다.
+		2. 리턴된 미소비 결제내역 리스트에 값이 존재한다면 게임 클라이언트가 게임 서버에 Consume을 요청하여 아이템 지급 처리를 합니다.
+	2. 결제 오류 재처리 시도
+        1. 로그인이 성공하면 **requestRetryTransactionWithCompletion:** 을 호출하여 미처리 내역에 대한 자동 재처리를 시도합니다.
+		2. 리턴된 successList 에 값이 존재한다면 게임 클라이언트가 게임 서버에 Consume을 요청하여 아이템 지급 처리를 합니다.
+    	3. 리턴된 failList 에 값이 존재한다면 해당 값을 게임 서버나 Log&Crash 등을 통해 전송하여 데이터를 확보하고, 빌링 개발팀에 재처리 실패 원인을 문의합니다.
 
-<br/><br/>
 
-
-스토어 결제는 성공하였으나 에러가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 다음 두 API를 각각 호출하여 재처리 로직을 구현하시기 바랍니다.<br/>
-<br/>
-1. 미처리 아이템 배송 요청
-	* 로그인이 성공하면 **requestItemListOfNotConsumedWithCompletion:** 를 호출하여 미소비 결제내역을 확인합니다.<br/>
-	* 리턴된 미소비 결제내역 리스트에 값이 존재한다면 게임 클라이언트가 게임 서버에 Consume을 요청하여 아이템 지급 처리를 합니다.<br/>
-
-2. 결제 오류 재처리 시도
-    * 로그인이 성공하면 **requestRetryTransactionWithCompletion:** 을 호출하여 미처리 내역에 대한 자동 재처리를 시도합니다.<br/>
-    * 리턴된 successList 에 값이 존재한다면 게임 클라이언트가 게임 서버에 Consume을 요청하여 아이템 지급 처리를 합니다.<br/>
-    * 리턴된 failList 에 값이 존재한다면 해당 값을 게임 서버나 Log&Crash 등을 통해 전송하여 데이터를 확보하고, 빌링 개발팀에 재처리 실패 원인을 문의합니다.<br/>
 
 
 ### 3. Purchase Item
@@ -52,6 +47,12 @@
     }];
 }
 ```
+
+
+
+
+
+
 
 ### 4. Get a list of Purchasable Items
 
@@ -82,9 +83,9 @@
 아이템을 구매는 하였지만, 정상적으로 아이템이 소비(배송, 지급)되었지 않은 **미소비 결제내역**을 요청합니다.<br/>
 해당 내역을 받은 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.
 
-* 다음 두가지 상황에서 호출해 주세요. <br/>
-    1. 결제 성공 후 아이템 Consume 처리 전 최종 확인을 위하여 호출.<br/>
-    2. 로그인 성공 후 Consume하지 못한 아이템이 남아있지는 않은지 확인 하기 위하여 호출.<br/>
+* 다음 두가지 상황에서 호출해 주세요.
+    1. 결제 성공 후 아이템 Consume 처리 전 최종 확인을 위하여 호출.
+    2. 로그인 성공 후 Consume하지 못한 아이템이 남아있지는 않은지 확인 하기 위하여 호출.
 
 
 ```objectivec
@@ -100,6 +101,12 @@
     }];
 }
 ```
+
+
+
+
+
+
 
 ### 6. Reprocess Failed Purchase Transaction
 
@@ -123,6 +130,14 @@
     }];
 }
 ```
+
+
+
+
+
+
+
+
 
 
 ### 7. Error Handling

@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-### Environments
+### 1. Environments
 
 
 > [INFO]
@@ -13,13 +13,11 @@
 >
 
 
-### Setting Xcode Project to use Gamebase
+### 2. Setting Xcode Project to use Gamebase
 
 Gamebase는 아래와 같은 방법으로 설정이 가능합니다.
 
-#### 1. Configuration
-
-##### 1. Download
+#### Download
 
 Gamebase는 [LINK \[http://docs.cloud.toast.com/ko/Download/\]](http://docs.cloud.toast.com/ko/Download/)에서 다운로드 받습니다.<br/>
 Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<br/>
@@ -52,18 +50,18 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 >각 IDP에서 제공하는 외부 SDK에 대한 설정은 각 IDP의 가이드 문서를 참고하시길 바랍니다.
 >
 
-##### 2. Decompression 
+#### Decompression 
 
 압축을 풀면, 다음과 같이 Gamebase.framework 등의 SDK를 볼 수 있습니다.
 
 ![unzip gamebase](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-002_1.0.0.png)
 
-##### 3. Project Configuration
 
-1. Framework 파일을 Project의 Project Navigator로 끌어와서 import 합니다. 이 때 추가된 Framework 파일들은 프로젝트 target에 추가되어야 합니다. 
-2. **Gamebase.bundle** 파일도 **Copy Bundle Resources** 에 추가하도록 합니다.
+#### Project Configuration
+* 1) Framework 파일을 Project의 Project Navigator로 끌어와서 import 합니다. 이 때 추가된 Framework 파일들은 프로젝트 target에 추가되어야 합니다. 
+* 2) **Gamebase.bundle** 파일도 **Copy Bundle Resources** 에 추가하도록 합니다.
 ![Gamebase.bundle Bundle Resources](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-003_1.0.0.png)
-3. Gamebase를 사용하기 위해서는 Gamebase의 framework외에, Gamebase에서 사용하고 있는 외부 SDK들의 기능을 포함하기 위하여, 여러 framework와 library 파일을 linker에서 참조할 수 있도록 추가해야합니다. 아래 항목들을 추가해야합니다.
+* 3) Gamebase를 사용하기 위해서는 Gamebase의 framework외에, Gamebase에서 사용하고 있는 외부 SDK들의 기능을 포함하기 위하여, 여러 framework와 library 파일을 linker에서 참조할 수 있도록 추가해야합니다. 아래 항목들을 추가해야합니다.
     * libicucore.tbd (Gamebase SDK v1.1.5 이상에서 추가)
     * libz.tbd
     * libsqlite3.tbd
@@ -72,13 +70,10 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
     * ImageIO.framework
     * GameKit.framework
     * StoreKit.framework
-
 ![Link Binary With Libraries](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
-
-4. **Target > Build Settings > Linking > Other Linker Flags**에 **-ObjC**를 추가해야 합니다.
+* 4) **Target > Build Settings > Linking > Other Linker Flags**에 **-ObjC**를 추가해야 합니다.
 ![Other Linker Flags](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
-
-5. **Target > Build Settings > Enable Bitcode**를 **No**로 설정합니다.
+* 5) **Target > Build Settings > Enable Bitcode**를 **No**로 설정합니다.
 ![Enable Bitcode](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-007_1.0.0.png)
 
 

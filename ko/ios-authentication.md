@@ -7,8 +7,9 @@
 * AuthAdapter 및 3rd-Party SDK에 대한 설정은 위에 있는 '외부 SDK 다운로드' 링크를 참고하시길 바랍니다.
 
 
-로그인을 시도하려는 IDP별로, additionalInfo 파라미터를 입력해주어야 하는 경우가 있습니다.
+로그인을 시도하려는 IDP별로, additionalInfo 파라미터를 입력해주어야 하는 경우가 있습니다.<br/>
 AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 항목을 참고합니다.
+
 
 ### 1. Import Header file into View Controller
 
@@ -30,13 +31,13 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
     // Last Logged In Provider Name
     NSString *lastLoggedInProvider = [TCGBGamebase lastLoggedInProvider];
 
-    [TCGBGamebase loginForLastLoggedInProviderWithCompletion:^(TCGBAuthToken *authToken, TCGBError *error){
+    [TCGBGamebase loginForLastLoggedInProviderWithViewController:self completion:^(TCGBAuthToken *authToken, TCGBError *error){
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             NSLog(@"Login is succeeded.");
         }
         else {
             if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_RESPONSE_TIMEOUT) {
-                NSLog(@"Retry loginForLastLoggedInProviderWithCompletion: or Notify to user -\n\terror[%@]", [error description]);
+                NSLog(@"Retry loginForLastLoggedInProviderWithViewController:completion: or Notify to user -\n\terror[%@]", [error description]);
             }
             else {
                 NSLog(@"Try to login with loginWithType:viewController:completion:");
@@ -88,25 +89,20 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 ```
 
 #### Gamebase에서 지원 중인 IDP
-
-##### 1. Guest
-
-##### 2. Facebook
-
-1. AdditionalInfo의 설정이 필요합니다.
+#### 3-1. Guest
+#### 3-2. Facebook
+- AdditionalInfo의 설정이 필요합니다.
     * **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
     * Facebook의 경우, OAuth 인증 시도 시, Facebook으로 부터 요청할 정보의 종류를 설정해야 합니다. 
     * 예제
-
 ```json
 { "facebook_permission": [ "public_profile", "email", "user_friends"]}
 ```
-2. Facebook SDK를 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다.
+- Facebook SDK를 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다.
 * [LINK \[Facebook Developer Guide\]](https://developers.facebook.com/docs/ios/getting-started)
 
-##### 3. Payco
-
-1. AdditionalInfo의 설정이 필요합니다.
+#### 3-3. Payco
+- AdditionalInfo의 설정이 필요합니다.
     * **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
     * Payco의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**의 설정이 필요합니다.
     * 예제
@@ -115,8 +111,7 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 { "service_code": "HANGAME", "service_code": "Your Service Name" }
 ```
 
-##### 4. GameCenter
-
+#### 3-4. GameCenter
 TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 
@@ -149,7 +144,8 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 #import "TCGBConstants.h"
 
 - (void)auth_login_with_credential {
-    [TCGBGamebase loginWithCredential:@{ kTCGBAuthLoginWithCredentialProviderNameKeyname: @"facebook", kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"여기에 facebook SDK에서 발급받은 Access Token을 입력하세요" } viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+	NSDictionary *credentialDic = @{ kTCGBAuthLoginWithCredentialProviderNameKeyname: @"facebook", kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"여기에 facebook SDK에서 발급받은 Access Token을 입력하세요" };
+    [TCGBGamebase loginWithCredential:credentialDic viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         NSLog([authToken description]);
     }];
 }
@@ -190,7 +186,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 로그아웃 버튼을 클릭하였을 때, 다음의 로그아웃 API를 구현합니다.
 
 ```objectivec
-[TCGBGamebase logoutWithCompletion:^(TCGBError *error) {
+[TCGBGamebase logoutWithViewController:self completion:^(TCGBError *error) {
     if ([TCGBGamebase isSuccessWithError:error] == YES) {
         // To Logout Succeeded
     } else {
@@ -198,11 +194,6 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
     }
 }];
 ```
-
-
-
-
-
 
 
 
@@ -222,7 +213,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 탈퇴 버튼을 클릭하였을 때, 다음의 탈퇴 API를 구현합니다.
 
 ```objectivec
-[TCGBGamebase withdrawWithCompletion:^(TCGBError *error) {
+[TCGBGamebase withdrawWithViewController:self completion:^(TCGBError *error) {
     if ([TCGBGamebase isSuccessWithError:error] == YES) {
         // To Withdrawal Succeeded
     } else {
@@ -286,7 +277,7 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 연동 해제후에는 Gamebase 내부에서, 해당 IDP에 대한 로그아웃처리를 해줍니다.
 
 ```objectivec
-[TCGBGamebase removeMappingWithType:@"facebook" completion:^(TCGBError *error) {
+[TCGBGamebase removeMappingWithType:@"facebook" viewController:self completion:^(TCGBError *error) {
     if ([TCGBGamebase isSuccessWithError:error] == YES) {
         // To Remove Mapping Succeeded
     } else {
