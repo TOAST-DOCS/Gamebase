@@ -142,13 +142,6 @@ Apple 개발자사이트에 등록된 BundleID를 TOAST Cloud Gamebase 콘솔에
 OS별로 그룹핑되어 보여지며 icon 내의 숫자는 클라이언트 등록시 입력한 버전을 의미합니다.<br />
 icon list는 서비스 상태가 '테스트','심사중','서비스중','서비스중(업데이트권장)'인 목록만 보여집니다. OS별 하단 오른쪽의 화살표를 클릭하면 '업데이트필수','종료'상태의 클라이언트 목록을 확인할 수 있습니다.<br />
 icon의 색을 서비스 상태별로 구분하여 한 눈에 서비스 상태를 파악할 수 있습니다.<br />
-	
-	- 테스트
-	- 심사중
-	- 서비스중
-	- 서비스중(업데이트권장)
-	- 업데이트 필수
-	- 종료
 
 ### Properties
 
@@ -163,9 +156,10 @@ OS별로 선택 가능한 스토어가 다릅니다.<br />
 각 게임별로 정해진 규칙에 따라 문자열로 입력해주시면 됩니다.<br />
 #### (3) 서비스 상태
 (<font color="red">필수</font>) Client의 서비스 상태를 선택합니다.<br />
+상태는 <font color="white" style="background-color:#F8BB28">테스트</font>, <font color="white" style="background-color:#FB8F37">심사중</font>, <font color="white" style="background-color:#88C637">서비스중</font>, <font color="white" style="background-color:#2AB1A6">서비스중(업데이트 권장)</font>, <font color="white" style="background-color:#A1A1A1">서비스중(업데이트 필수)</font>, <font color="white" style="background-color:#CCCCCC">종료</font> 이렇게 6가지가 존재합니다.
 
-- 테스트 : 내부 테스트<br />
-- 심사중 : 스토어 심사 중. <br/> 안정화 지표를 추가로 설정할 수 있습니다.<br />
+- <font color="white" style="background-color:#F8BB28">테스트</font> : 내부 테스트<br />
+- <font color="white" style="background-color:#FB8F37">심사중</font> : 스토어 심사 중. <br/> 안정화 지표를 추가로 설정할 수 있습니다.<br />
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client4_1.1.png)
 > [INFO]<br/>
 > '안정화 지표'란?<br/>
@@ -173,15 +167,15 @@ OS별로 선택 가능한 스토어가 다릅니다.<br />
 > 서비스상태가 '심사중'일 때에 안정화 지표를 활성화하면 심사중에 Gamebase내부에서 문제가 발생한 경우 문제 확인이 보다 쉬워집니다. <br />
 > Gamebase Console에서 실시간으로 안정화 지표 사용 여부와 Log Level을 설정 할 수 있습니다.<br />
 
-- 서비스중 : 정상 서비스<br />
-- 서비스중(업데이트 권장) : 정상 서비스. <br/>보다 안정적인 버전으로 유도하기 위한 팝업 노출 후 서비스 진입하도록 합니다. 새로운 버전을 다운로드 받아 이용하도록 유도하지만 사용자가 원하는 경우 현재 버전으로도 계속 서비스를 이용할 수 있습니다.<br />
-- 업데이트 필수 : 서비스 불가능. <br/>현재 게임에서 서비스 지원하지 않는 버전으로 최신버전 설치 팝업을 노출합니다.<br />
+- <font color="white" style="background-color:#88C637">서비스중</font> : 정상 서비스<br />
+- <font color="white" style="background-color:#2AB1A6">서비스중(업데이트 권장)</font> : 정상 서비스. <br/>보다 안정적인 버전으로 유도하기 위한 팝업 노출 후 서비스 진입하도록 합니다. 새로운 버전을 다운로드 받아 이용하도록 유도하지만 사용자가 원하는 경우 현재 버전으로도 계속 서비스를 이용할 수 있습니다.<br />
+- <font color="white" style="background-color:#A1A1A1">업데이트 필수</font> : 서비스 불가능. <br/>현재 게임에서 서비스 지원하지 않는 버전으로 최신버전 설치 팝업을 노출합니다.<br />
 >  <font color="red">[WARNING] </font>  <br/>
 >  업데이트 필수 상태 변경 시 주의사항<br/>
 > **업데이트 필수와 점검이 동시에 설정**되어 있을 경우 서비스 상태는 '업데이트 필수'로 Client에 내려가게 됩니다.<br/>
 > 점검 진행 도중 사용자에게 업데이트 필수 팝업 노출을 원하지 않는 경우에는 점검 완료 이후에 서비스 상태를 '업데이트 필수'로 변경해야 합니다.<br/>
 
-- 종료 : 서비스 불가능. <br/> 서비스가 종료된 버전인 경우 선택합니다.<br />
+- <font color="white" style="background-color:#CCCCCC">종료</font> : 서비스 불가능. <br/> 서비스가 종료된 버전인 경우 선택합니다.<br />
 
 > [INFO] <br/>
 > 서비스 상태별 노출 메시지 설정<br/>

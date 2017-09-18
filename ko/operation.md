@@ -26,7 +26,7 @@
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_1.3.png)
 
->  <font color="red">[WARNING] </font>  
+>  <font color="red">[WARNING] </font>
 >  업데이트 필수 상태 변경 시 주의사항<br/>
 > **업데이트 필수와 점검이 동시에 설정**되어 있을 경우 서비스 상태는 '업데이트 필수'로 Client에 내려가게 됩니다.<br/>
 > 점검 진행 도중 사용자에게 업데이트 필수 팝업 노출을 원하지 않는 경우에는 점검 완료 이후에 서비스 상태를 '업데이트 필수'로 변경해야 합니다.<br/>
