@@ -168,20 +168,21 @@ OS별로 선택 가능한 스토어가 다릅니다.<br />
 > Gamebase Console에서 실시간으로 안정화 지표 사용 여부와 Log Level을 설정 할 수 있습니다.<br />
 
 - <font color="white" style="background-color:#88C637">서비스중</font> : 정상 서비스<br />
-- <font color="white" style="background-color:#2AB1A6">서비스중(업데이트 권장)</font> : 정상 서비스. <br/>보다 안정적인 버전으로 유도하기 위한 팝업 노출 후 서비스 진입하도록 합니다. 새로운 버전을 다운로드 받아 이용하도록 유도하지만 사용자가 원하는 경우 현재 버전으로도 계속 서비스를 이용할 수 있습니다.<br />
-- <font color="white" style="background-color:#A1A1A1">업데이트 필수</font> : 서비스 불가능. <br/>현재 게임에서 서비스 지원하지 않는 버전으로 최신버전 설치 팝업을 노출합니다.<br />
+- <font color="white" style="background-color:#2AB1A6">서비스중(업데이트 권장)</font> : 정상 서비스. <br/>보다 안정적인 버전으로 유도하기 위한 팝업 노출 후 서비스 진입하도록 합니다. 새로운 버전을 다운로드 받아 이용하도록 유도하지만 사용자가 원하는 경우 현재 버전으로도 계속 서비스를 이용할 수 있습니다.<br />팝업 예시는 다음과 같습니다.<br />![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_updateRecommended_1.0.png)
+
+- <font color="white" style="background-color:#A1A1A1">업데이트 필수</font> : 서비스 불가능. <br/>현재 게임에서 서비스 지원하지 않는 버전으로 최신버전 설치 안내문 팝업을 노출합니다.<br />팝업 예시는 다음과 같습니다.<br />![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_updateRequired_1.1.png)
 >  <font color="red">[WARNING] </font>  <br/>
 >  업데이트 필수 상태 변경 시 주의사항<br/>
 > **업데이트 필수와 점검이 동시에 설정**되어 있을 경우 서비스 상태는 '업데이트 필수'로 Client에 내려가게 됩니다.<br/>
 > 점검 진행 도중 사용자에게 업데이트 필수 팝업 노출을 원하지 않는 경우에는 점검 완료 이후에 서비스 상태를 '업데이트 필수'로 변경해야 합니다.<br/>
 
-- <font color="white" style="background-color:#CCCCCC">종료</font> : 서비스 불가능. <br/> 서비스가 종료된 버전인 경우 선택합니다.<br />
+- <font color="white" style="background-color:#CCCCCC">종료</font> : 서비스 불가능. <br/> 서비스가 종료된 버전인 경우 선택합니다.<br />팝업 예시는 다음과 같습니다.<br />![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_ended_1.0.png)
 
 > [INFO] <br/>
 > 서비스 상태별 노출 메시지 설정<br/>
 > '서비스중(업데이트 권장)','업데이트 필수','종료' 상태인 경우 사용자에게 노출할 안내메시지를 다국어로 설정할 수 있습니다. <br />
 >  서비스 상태를 선택하면 각 상태에 맞는 기본 메시지가 5개(한국어, 영어, 일본어, 중국어(간체), 중국어(번체))의 언어로 제공되며 원하는 경우 언어를 추가하거나 기본 메시지의 문구를 변경할 수 있습니다.<br />
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client5_1.1.png)  
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client5_1.1.png)
 
 #### (4) 서버 주소
 Client에서 이용할 서버 주소(ip, url)를 입력합니다.<br />

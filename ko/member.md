@@ -69,15 +69,15 @@ SDK에서 로그인 관련 API 호출시에 이력이 추가됩니다.<br/>
 - IdP ID 기준 : 조회된 User ID에 현재 매핑된 IdP ID 기준으로 조회합니다. <br/>
 조회된 User ID에 facebook, gooogle IdP가 매핑된 경우 두개의 IdP ID가 리스트에 노출됩니다.<br/>
 
-- IdP ID : IdP로그인 시 사용되는 ID 정보.
-- IdP : 매핑된 IdP 정보.
-- 매핑일시 : IdP ID와 Gamebase ID가 매핑관련 작업이 이루어진 시간.
-- Type : 매핑 작업 상세 내역.
--- AAM : 매핑 추가<br/>
--- ARM : 매핑 제거<br/>
--- AFR : 매핑 강제 제거<br/>
--- GMG : 게스트 계정 생성<br/>
--- OMG : IdP 계정 생성<br/>
+* IdP ID : IdP로그인 시 사용되는 ID 정보.
+* IdP : 매핑된 IdP 정보.
+* 매핑일시 : IdP ID와 Gamebase ID가 매핑관련 작업이 이루어진 시간.
+* Type : 매핑 작업 상세 내역.
+	- AAM : 매핑 추가
+	- ARM : 매핑 제거
+	- AFR : 매핑 강제 제거
+	- GMG : 게스트 계정 생성
+	- OMG : IdP 계정 생성
 
 ### Purchase History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_PurchaseHistory1_1.0.png)
