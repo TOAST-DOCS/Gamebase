@@ -22,23 +22,23 @@ Gamebase Unity SDK를 사용하려면 반드시 초기화를 진행해야 하며
 | storeCode | iOS, Android |
 | fcmSenderId | Android |
 
-#### appID
+#### 1. appID
 
 TOAST Cloud에 등록 된 프로젝트 ID 입니다.
 
 ![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_001_1.2.0.png)
 
-#### appVersion
+#### 2. appVersion
 
 TOAST Cloud에 등록한 클라이언트 버전입니다.
 
 ![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_002_1.2.0.png)
 
-#### zoneType
+#### 3. zoneType
 
 외부 테스트를 위해 제공되고 있는 설정이므로 값을 입력하지 않도록 합니다.
 
-#### isDebugMode
+#### 4. isDebugMode
 
 Gamebase 디버그를 위한 설정입니다.
 
@@ -47,23 +47,23 @@ Gamebase 디버그를 위한 설정입니다.
 
 Gamebase 문의가 필요할 경우에는 해당 설정을 true 로 변경하시고 로그를 전달해 주셔야 빠른 지원을 받을수 있습니다.
 
-#### enablePopup
+#### 5. enablePopup
 
 Gamebase Mobile(iOS, Android) SDK에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
 
 * true : enableLaunchingStatusPopup, enableBanPopup 설정에 따라 팝업이 노출 여부가 결정됩니다.
 * false : Gamebase에서 제공하는 모든 팝업이 노출되지 않습니다.
 
-#### enableLaunchingStatusPopup
+#### 6. enableLaunchingStatusPopup
 
 LaunchingStatus가 게임을 할 수 없는 상태일 경우, Gamebase 에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
 LaunchingStatus는 아래 Launching State Code 섹션을 참고하십시오.
 
-#### enableBanPopup
+#### 7. enableBanPopup
 
 로그인 시 해당 유저가 이용정지 상태인 경우, Gamebase 에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
 
-#### storeCode
+#### 8. storeCode
 
 TOAST Cloud의 통합 인앱 결제 서비스 상품인 IAP(In-App Purchase)를 초기화 하기 위해 필요한 스토어 정보입니다.
 
@@ -73,7 +73,7 @@ TOAST Cloud의 통합 인앱 결제 서비스 상품인 IAP(In-App Purchase)를 
 | Google Play | GG | only Android |
 | One Store | TS | only Android |
 
-#### fcmSenderId
+#### 9. fcmSenderId
 
 Firebase Cloud Messaging (FCM) 사용을 위한 Sender ID 입니다.
 
@@ -206,23 +206,44 @@ TOAST Console에 등록 된 App 정보입니다.
 
 ![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_005_1.2.0.png)
 
-##### 1.3 maintenance : 점검 정보
+##### 1.3 maintenance
 
-* url :
-* typeCode : 
-* message : 
-* timezone : 
-* beginDate : 
-* endDate : 
+TOAST Console에 등록 된 점검 정보입니다.
+
+* url : 점검 페이지 URL
+* typeCode
+* message : 점검 사유
+* timezone : 타임존
+* beginDate : 시작시간
+* endDate : 종료시간
+
+![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_007_1.2.0.png)
 
 ##### 1.4 notice : 공지
 
-* message : 
-* title : 
-* url : 
+* message : 메시지
+* title
+* url : 점검 URL
 
 #### 2. tcProduct
 
-Gamebase와 연계된 TOAST Cloud 상품의 appKey가 전달됩니다.
+Gamebase와 연계된 TOAST Cloud 상품의 appKey입니다.
 
-#### 3. tcIap : IAP 관련 정보
+* gamebase
+	* appKey
+* tcLaunching
+	* appKey
+* iap
+	* appKey
+* push
+	* appKey
+
+#### 3. tcIap
+
+TOAST Console에 등록 된 IAP Store 정보입니다.
+
+* id : App ID
+* name : App Name
+* storeCode : Store Code
+
+![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_008_1.2.0.png)
