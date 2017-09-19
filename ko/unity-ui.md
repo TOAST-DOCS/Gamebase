@@ -10,10 +10,10 @@ Fullscreen 스타일은 네비게이션바를 가지며, Close/GoBack 버튼을 
 
 
 **API**<br>
-<div align="left" width = "100">
+<img align="left" src="http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png" >
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-</div>
+
 
 ```cs
 static void ShowWebBrowser(string url)
