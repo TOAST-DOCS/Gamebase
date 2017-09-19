@@ -1,4 +1,4 @@
-## Game > Gamebase > Developer's Guide (iOS) > Getting Started
+## Game > Gamebase > iOS Developer's Guide > Getting Started
 
 ## Getting Started
 
@@ -26,14 +26,14 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 
 [3rd Party SDK Download]
 
-| Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | External SDK Download Link |
-| --- | --- | --- | --- |
-| Gamebase | Gamebase.framework, Gamebase.bundle |  |  |
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v4.17.0 | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.1.6 | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) |
-|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework |  |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework | Gamebase내에 포함 |
-| Gamebase Push | GamebasePushAdapter.framework |  | Gamebase내에 포함 |
+| Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 용도 | External SDK Download Link |
+| --- | --- | --- | --- | --- |
+| Gamebase | Gamebase.framework, Gamebase.bundle |  | Gamebase의 Interface 및 핵심 로직을 포함 |  |
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v4.17.0 | Facebook 로그인을 지원 | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.1.6 | Payco 로그인을 지원 | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) |
+|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenter 로그인을 지원 |  |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework | 게임 내 결제를 지원 | Gamebase IAP 내에 포함 |
+| Gamebase Push | GamebasePushAdapter.framework |  | Push를 지원 | Gamebase내에 포함 |
 
 
 
@@ -80,7 +80,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 > [INFO]
 >
 > Linker에 **-ObjC**옵션 설정은 Static Library에 있는 모든 Objective-C class와 category를 로드하도록 합니다. <br/>
-> 따라서 이 옵션을 설정하지 않았을 때에 **selector not recognized**와 같은 오류가 발생할 수 있습니다.
+> 따라서 이 옵션을 설정하지 않았을 때에 **selector not recognized**와 같은 오류가 Runtime 상에서 발생할 수 있습니다.
 >
 
 

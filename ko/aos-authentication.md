@@ -1,4 +1,4 @@
-## Game > Gamebase > Developer's Guide (Android)  > Login
+## Game > Gamebase > Android Developer's Guide  > Login
 
 ## Login
 

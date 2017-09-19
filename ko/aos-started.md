@@ -1,4 +1,4 @@
-## Game > Gamebase > Developer's Guide (Android)  > Getting Started
+## Game > Gamebase > Android Developer's Guide  > Getting Started
 
 ## Getting Started
 

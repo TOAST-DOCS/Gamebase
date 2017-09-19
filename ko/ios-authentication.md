@@ -1,4 +1,4 @@
-## Game > Gamebase > Developer's Guide (iOS) > Login
+## Game > Gamebase > iOS Developer's Guide > Login
 
 ## Login
 
@@ -11,7 +11,7 @@
 AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 항목을 참고합니다.
 
 
-### 1. Import Header file into View Controller
+### Import Header file into View Controller
 
 로그인을 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
@@ -19,12 +19,19 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 #import <Gamebase/Gamebase.h>
 ```
 
-### 2. Latest Login API
+### Latest Login API
 
 특정 IDP에 대한 로그인 버튼을 클릭하였을 때, 다음 로그인 API를 구현합니다.<br/>
 가장 최근에 로그인한 IDP로의 로그인을 시도합니다. 해당 로그인에 대한 토큰이 만료되었거나,
 토큰에 대한 검증 등이 실패하였을 때, 실패를 리턴합니다.<br/>
 이 때는 해당 IDP에 대한 로그인을 구현해주어야합니다.
+
+#### Login Flow
+1. **loginForLastLoggedInProviderWithViewController:completion:**를 호출하여, 이전 로그인한 정보를 사용하여 Gamebase 로그인 시도
+2. Network와 관련된 로그인 실패 시, **loginForLastLoggedInProviderWithViewController:completion:** 메소드를 사용하여 로그인 재 시도
+	* 네트워크 에러 : **TCGB_ERROR_SOCKET_ERROR**, **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT**
+3. Gamebase Server 로그인 실패 시, **loginWithType:viewController:completion:** 메서드를 호출하여, 로그인 시도
+	* 로그인
 
 ```objectivec
 - (void)automaticLogin {
@@ -36,7 +43,7 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
             NSLog(@"Login is succeeded.");
         }
         else {
-            if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_RESPONSE_TIMEOUT) {
+            if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
                 NSLog(@"Retry loginForLastLoggedInProviderWithViewController:completion: or Notify to user -\n\terror[%@]", [error description]);
             }
             else {
@@ -56,11 +63,14 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 }
 ```
 
-### 3. IDP Login API
+### IDP Login API
 
 특정 IDP 로그인 호출을 위해서 **[TCGBGamebase loginWithType:viewController:completion:]** 메소드를 호출해줍니다.<br/>
+Gamebase를 통하여 로그인을 처음 시도하거나, 로그인 정보(AccessToken)등이 만료되었다면, 이 API를 사용하여 로그인을 시도해야합니다.<br/>
 로그인 결과로 **(TCGBError *)error** 객체를 이용해 성공 여부를 판단할 수 있습니다. <br/>
 또한 **TCGBAuthToken** 객체를 이용하여 userId 등의 사용자 정보 및 토큰 정보를 얻을 수 있습니다.<br/>
+로그인 성공 시, Gamebase AccessToken이 Local Storage에 저장되며 이후 loginForLastLoggedInProviderWithViewController:completion: 메서드를 사용할 때 이 저장된 AccessToken을 사용하게 됩니다.<br/>
+하지만 IDP의 AccessToken은 각 IDP가 제공하는 SDK가 관리합니다.<br/>
 
 <br/><br/>
 몇몇 IDP의 로그인시에는 필수적으로 들어가야하는 정보가 있습니다.<br/>
@@ -89,8 +99,8 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 ```
 
 #### Gamebase에서 지원 중인 IDP
-#### 3-1. Guest
-#### 3-2. Facebook
+#### Guest
+#### Facebook
 - AdditionalInfo의 설정이 필요합니다.
     * **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
     * Facebook의 경우, OAuth 인증 시도 시, Facebook으로 부터 요청할 정보의 종류를 설정해야 합니다. 
@@ -101,31 +111,30 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 - Facebook SDK를 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다.
 * [LINK \[Facebook Developer Guide\]](https://developers.facebook.com/docs/ios/getting-started)
 
-#### 3-3. Payco
+#### Payco
 - AdditionalInfo의 설정이 필요합니다.
     * **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
     * Payco의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**의 설정이 필요합니다.
     * 예제
-
 ```json
-{ "service_code": "HANGAME", "service_code": "Your Service Name" }
+{ "service_code": "HANGAME", "service_name": "Your Service Name" }
 ```
 
-#### 3-4. GameCenter
+#### GameCenter
 TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 
 
 
 
-### 4. Login with access token of external IDP
+### Login with access token of external IDP
 게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증을 하고 발급받은 AccessToken등을 이용하여, Gamebase 로그인을 할 수 있는 인터페이스 입니다.
 
 * Credential 파라미터의 설정방법
-    * NSDictionary 타입으로 설정합니다.
-    * **kTCGBAuthLoginWithCredentialProviderNameKeyname** 키에는 idp종류를 설정합니다. (faceboo, payco, iosgamecenter)
-    * **kTCGBAuthLoginWithCredentialAccessTokenKeyname** 키에는 외부 SDK로부터 받은 인증정보(AccessToken)를 입력합니다.
-
+| keyname | a use | 값 종류 |
+| --- | --- |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IDP 타입을 설정 | facebook, payco, iosgamecenter |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname | IDP 로그인 이후 받은 인증정보 (AccessToken)을 설정 |
 
 > [TIP]
 > 
@@ -137,7 +146,7 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 > [WARNING]
 > 
-> 외부 SDK에서 요구하는 개발사항은 Gamebase에서는 지원이 불가능합니다.
+> 외부 SDK에서 지원요구하는 개발사항은 외부SDK의 API를 사용하여 구현해야하며, Gamebase에서는 지원하지 않습니다.
 >
 
 ```objectivec
@@ -152,28 +161,12 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 ```
 
 
-### 5. Gets Authentication Information for external IDP
-
-외부 인증 SDK에서 AccessToken, UserId, Profile 등의 인증 정보를 가져올 수 있습니다.
-
-```objectivec
-// Example for obtaining ID Provider's Authentication Information
-
-// Obtaining Facebook UserID
-NSString *userID = [TCGBGamebase authProviderUserIDWithIDPCode:@"facebook"];
-
-// Obtaining Facebook AccessToken
-NSString *accessTokenOfIDP = [TCGBGamebase authProviderAccessTokenWithIDPCode:@"facebook"];
-
-// Obtaining Facebook Profile
-TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWithIDPCode:@"facebook"];
-```
 
 
 
 ## Logout
 
-### 1. Import Header file into View Controller
+### Import Header file into View Controller
 
 로그아웃을 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
@@ -181,9 +174,13 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 #import <Gamebase/Gamebase.h>
 ```
 
-### 2. Logout API
+### Logout API
 
-로그아웃 버튼을 클릭하였을 때, 다음의 로그아웃 API를 구현합니다.
+로그아웃 버튼을 클릭하였을 때, 다음의 로그아웃 API를 구현합니다.<br/>
+>[WARNING]
+>
+>로그아웃 성공 시에는 지원하는 모든 IDP의 External SDK로그아웃도 시도하게되며, External SDK로그아웃의 성공보장은 하지 않습니다.
+
 
 ```objectivec
 [TCGBGamebase logoutWithViewController:self completion:^(TCGBError *error) {
@@ -200,7 +197,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 
 ## Withdraw
 
-### 1. Import Header file into View Controller
+### Import Header file into View Controller
 
 탈퇴를 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
@@ -208,9 +205,15 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 #import <Gamebase/Gamebase.h>
 ```
 
-### 2. Widthdraw API
+### Widthdraw API
 
 탈퇴 버튼을 클릭하였을 때, 다음의 탈퇴 API를 구현합니다.
+
+> [WARNING]
+>
+> Gamebase의 탈퇴를 의미하며, IDP 계정에 대한 탈퇴를 의미하지 않습니다.
+>
+> Gamebase에서는 Gamebase 탈퇴 성공 시, External SDK에 대해서는 logout만 시도합니다.
 
 ```objectivec
 [TCGBGamebase withdrawWithViewController:self completion:^(TCGBError *error) {
@@ -233,7 +236,7 @@ Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해�
 Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
 
 
-### 1. Import Header file into View Controller
+### Import Header file into View Controller
 
 Mapping을 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
@@ -243,7 +246,7 @@ Mapping을 구현하고자 하는 ViewController에 다음의 헤더 파일을 �
 
 
 
-### 2. Add Mapping API
+### Add Mapping API
 
 특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다.<br/>
 Mapping을 하려는 IDP의 계정이 이미 다른 계정이 연동이 되어있다면,
@@ -270,7 +273,7 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 }];
 ```
 
-### 3. Remove Mapping API
+### Remove Mapping API
 
 특정 IDP에 대한 연동을 해제합니다. <br/>
 만약, 해제하고자 하는 IDP가 **유일한 IDP**라면, 실패를 리턴하게 됩니다.<br/>
@@ -286,3 +289,55 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 }
 }];
 ```
+
+### How to get IDP mapping list
+현재의 계정이 어떤 IDP들과 매핑되어 있는지 목록을 획득할 수 있습니다.
+```objectivec
+// Obtaining Names of Mapping IDPs
+NSArray* authMappingList = [TCGBGamebase authMappingList];
+```
+
+
+## Gamebase User`s Informations
+Gamebase를 통하여 인증절차를 진행 후, 앱을 제작할 때 필요한 정보를 획득할 수 있습니다.
+
+### Gets Authentication Information for Gamebase
+Gamebase에서 발급한 인증 정보를 가져올 수 있습니다.
+
+```objectivec
+// Obtaining Gamebase UserID
+NSString* gamebaseUserID = [TCGBGamebase userID];
+
+// Obtaining Gamebase AccessToken
+NSString* gamebaseAccessToken = [TCGBGamebase accessToken];
+
+// Obtaining Last Logged In Provider
+NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
+
+// Obtaining Ban Information
+TCGBBanInfo* banInfo = [TCGBGamebase banInfo];
+```
+
+
+### Gets Authentication Information for external IDP
+
+외부 인증 SDK에서 AccessToken, UserId, Profile 등의 인증 정보를 가져올 수 있습니다.
+
+```objectivec
+// Example for obtaining ID Provider's Authentication Information
+
+// Obtaining Facebook UserID
+NSString *userID = [TCGBGamebase authProviderUserIDWithIDPCode:@"facebook"];
+
+// Obtaining Facebook AccessToken
+NSString *accessTokenOfIDP = [TCGBGamebase authProviderAccessTokenWithIDPCode:@"facebook"];
+
+// Obtaining Facebook Profile
+TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWithIDPCode:@"facebook"];
+```
+
+### Gets Banned User Information
+
+Gamebase Console에 제재된 유저로 등록될 경우,
+로그인 시도 시, 아래와 같은 이용제한 정보 코드가 노출 될 수 있으며, **[TCGBGamebase banInfo]** 메서드를 이용하여 제재 정보를 확인할 수 있습니다.
+* TCGB_ERROR_AUTH_BANNED_MEMBER

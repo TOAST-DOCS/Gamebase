@@ -1,8 +1,30 @@
-## Game > Gamebase > Developer's Guide (iOS) > Purchase
+## Game > Gamebase > iOS Developer's Guide > Purchase
 
 ## Purchase
 
-### 1. Import Header file into View Controller
+
+### Project Settings
+#### apple iTunes-Connect
+1. 테스트용 앱 빌드를 업로드
+2. In-App Purchases 상품을 등록 및 승인
+3. Sandbox Tester 계정등록
+* Detail Guide for iTunes-Connect : https://help.apple.com/itunes-connect/developer/#/devb57be10e7
+
+#### Toast Cloud Console 등록
+ToastCloud Console에서 설정해야하는 내용입니다.
+
+1. **'Gamebase > Purchase(IAP) > 앱'**에서 이용할 스토어를 등록합니다.
+	* 스토어: **App Store**를 선택합니다.
+2. **'Gamebase > Purchase(IAP) > 아이템'**에서 아이템을 등록합니다.
+	* 스토어: **App Store**를 선택합니다.
+	* 스토어 아이템 ID: iTunes-Connect에 등록한 Product ID를 입력합니다.
+3. 아이템을 설정했다면, 저장을 누릅니다.
+
+#### Xcode Project 설정
+1. **'Targets > Capabilities > In-App Purchase'**를 **ON**으로 설정합니다.
+2. **'Targets > General > Identity'**의 Bundle Identifier, Version, Build 의 값을 알맞게 설정합니다.
+
+### Import Header file into View Controller
 
 구매 API를 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
@@ -10,7 +32,7 @@
 #import <Gamebase/Gamebase.h>
 ```
 
-### 2. Purchase Flow
+### Purchase Flow
 
 * 아이템 구매는 다음과 같은 순서로 구현하시기 바랍니다.
 	1. **requestPurchaseWithItemSeq:viewController:completion:** 를 호출하여 결제를 시도합니다.
@@ -28,9 +50,7 @@
     	3. 리턴된 failList 에 값이 존재한다면 해당 값을 게임 서버나 Log&Crash 등을 통해 전송하여 데이터를 확보하고, 빌링 개발팀에 재처리 실패 원인을 문의합니다.
 
 
-
-
-### 3. Purchase Item
+### Purchase Item
 
 구매하고자 하는 아이템의 itemSeq를 이용해 다음의 API를 호출하여 구매요청을 합니다.
 
@@ -54,7 +74,7 @@
 
 
 
-### 4. Get a list of Purchasable Items
+### Get a list of Purchasable Items
 
 아이템 목록을 조회하기 위하여 다음의 API를 호출합니다.<br/>
 콜백으로 리턴되는 Array 안에는 각 아이템들에 대한 정보가 담겨 있습니다.
@@ -78,7 +98,7 @@
 ```
 
 
-### 5. Get a list of Not-Consumed Items
+### Get a list of Not-Consumed Items
 
 아이템을 구매는 하였지만, 정상적으로 아이템이 소비(배송, 지급)되었지 않은 **미소비 결제내역**을 요청합니다.<br/>
 해당 내역을 받은 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.
@@ -108,7 +128,7 @@
 
 
 
-### 6. Reprocess Failed Purchase Transaction
+### Reprocess Failed Purchase Transaction
 
 스토어 결제는 정상적으로 이루어졌지만, ToastCloud IAP 서버 검증 실패 등으로 인해 정상적으로 결제가 이뤄지지 않은 경우에, 해당 API를 이용하여 재처리를 시도합니다. <br/>
 최종적으로 결제가 성공한 내역을 바탕으로, 아이템 배송(지급)등의 API를 호출하여 처리를 해주어야합니다.
@@ -140,7 +160,7 @@
 
 
 
-### 7. Error Handling
+### Error Handling
 
 | Error | Error Code | Notes |
 | ----- | ---------- | ----- |

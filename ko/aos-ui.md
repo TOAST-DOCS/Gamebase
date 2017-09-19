@@ -1,6 +1,7 @@
-## Game > Gamebase > Developer's Guide (Android) > UI
+## Game > Gamebase > Android Developer's Guide > UI
 
 ## UI
+
 ### WebView
 
 #### 1. Browser Style WebView
@@ -9,6 +10,9 @@
 ```java
 Gamebase.WebView.showWebBrowser(activity, "http://cloud.toast.com");
 ```
+
+![Webview Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
+
 
 #### 2. Popup Style WebView (향후 지원예정)
 
@@ -61,6 +65,9 @@ Android System Alert Dialog를 간단하게 노출 할 수 있는 API를 제공�
 Gamebase.Util.showAlertDialog(activity, "title", "message");
 ```
 
+![Alert Dialog Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-002_1.0.0.png)
+
+
 #### 2. Alert Dialog with Listener
 
 Alert Dialog 노출 후 처리 결과를 콜백 받고 싶을 경우 다음 API를 사용합니다.
@@ -77,7 +84,7 @@ Gamebase.Util.showAlertDialog(activity,
                             true);                          // Alert Dialog를 취소할 수 있는지 여부를 설정.
 ```
 
-### 3. Toast
+### Toast
 
 Android의 Toast를 간단하게 노출 할 수 있는 API를 제공합니다.
 
@@ -87,7 +94,7 @@ Gamebase.Util.showToast(activity,
                         Toast.LENGTH_SHORT);    // 메시지를 표시하는 시간 (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
 ```
 
-### 4. Custom Maintenance Page
+### Custom Maintenance Page
 
 점검 상태에서 "자세히 보기" 클릭 시 노출되는 점검 페이지를 변경할 수 있습니다.
 

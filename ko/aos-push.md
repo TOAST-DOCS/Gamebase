@@ -1,8 +1,8 @@
-## Game > Gamebase > Developer's Guide (Android)  > Push
+## Game > Gamebase > Android Developer's Guide  > Push
 
 ## Push
 
-### 1. Settings
+### Settings
 
 #### 1. TOAST Cloud Console
 
@@ -16,7 +16,7 @@
 * Tencent 푸쉬를 사용하는 경우
 	* 다운로드 받은 SDK의 **gamebase-adapter-push-tencent** 폴더를 프로젝트에 추가합니다.
 
-> [WARNING]
+> <font color="red">[WARNING]</font><br/>
 >
 > 푸쉬 모듈은 하나만 존재하여야 합니다. <br/>
 > Firebase 푸쉬와 Tencent 푸쉬를 둘 다 동시에 프로젝트에 추가하지 마십시오.
@@ -26,12 +26,12 @@
 
 * Gamebase 푸쉬에 필요한 설정을 추가합니다.
 
-> [WARNING]
+> <font color="red">[WARNING]</font><br/>
 >
 >**${applicationId}**을 **패키지 네임**으로 변경하여야 합니다.
 >
 
-##### Firebase
+*Firebase*
 
 ```xml
 <manifest>
@@ -64,7 +64,7 @@
 </manifest>
 ```
 
-##### Tencent
+*Tencent*
 
 ```xml
 <manifest>
@@ -144,7 +144,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 });
 ```
 
-### 2. Register push
+### Register push
 
 * 다음 API를 호출하여, ToastCloud Push에 해당 사용자를 등록합니다.
 * Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야간 광고성 Push 동의 여부(enableAdNightPush)값을 사용자로부터 받아온 후, 다음의 API 호출을 통해 등록을 완료합니다.
@@ -171,7 +171,7 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 });
 ```
 
-### 3. Get push settings
+### Get push settings
 
 * 사용자의 Push 설정을 조회하기 위해서, 다음의 API를 이용합니다.
 * 콜백으로 오는 PushConfiguration 값을 바탕으로, 사용자 설정값을 얻을 수 있습니다.
@@ -195,7 +195,7 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 });
 ```
 
-### 4. Error Handling
+### Error Handling
 
 | Error | Error Code | Notes |
 | ----- | ---------- | ----- |
