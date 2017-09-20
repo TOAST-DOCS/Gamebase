@@ -1,10 +1,10 @@
-## Game > Gamebase > Developer's Guide (iOS) > Initialization
+## Upcomming Products > Gamebase > iOS Developer's Guide > Initialization
 
 ## Initialization
 
-### 1. Import Header file into AppDelegate
+### 1. Import Header File
 먼저 Gamebase 헤더 파일을 앱으로 가져와야 합니다.<br/>
-AppDelegate.h 에서 다음의 헤더 파일을 가져옵니다.
+AppDelegate.h등 Gamebase기능을 초기화할 곳에서 다음의 헤더 파일을 가져옵니다.
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
@@ -12,22 +12,37 @@ AppDelegate.h 에서 다음의 헤더 파일을 가져옵니다.
 
 
 
-### 2. Initializing Method
+### Initialize
 **application:didFinishLaunchingWithOptions:** 메소드에서, 다음과 같이 초기화를 진행합니다.
 
 
-> [WARNING]
+> <font color="red">[WARNING]</font><br/>
 > 
-> **initializeWithConfiguration:launchOptions:completion:** 메서드는 초기화가 **application:didFinishLaunchingWithOptions:** 외에서도 호출이 가능합니다.
+> Gamebase초기화를 위한 **initializeWithConfiguration:launchOptions:completion:** 메서드의 호출은  **application:didFinishLaunchingWithOptions:** 외에서도 호출이 가능합니다.
 >
 
 <br/>
 
 
-> [WARNING]
+> <font color="red">[WARNING]</font><br/>
 >
 > **initializeWithConfiguration:launchOptions:completion:** 메서드는  호출되지 않은 상태에서의 다른 Gamebase API 호출에 대해서는 정상작동을 보장하지 않습니다.
->
+
+1. **TCGBConfiguration** 객체를 생성하여, 각 property를 설정합니다.
+2. 설정된 **TCGBConfiguration**객체를 사용하여, **initializeWithConfiguration:launchOptions:completion:**을 호출합니다.
+3. **completion** block으로 받은 **TCGBError** 객체를 확인하여 성공여부를 판단하며, 초기화가 실패하였을 경우에는 재시도를 할 수 있도록 합니다.
+
+**TCGBConfiguration Properties**
+* 필수 옵션
+	1. **appId** : Toast Cloud Console에서 할당받은 AppID를 설정합니다.
+		* [LINK \[AppID 확인\]](./Getting Started#id-secret-key-console)
+	2. **appVersion** : 출시할 앱의 version으로 설정합니다.
+		* [LINK \[AppVersion 등록 및 확인\]](./Getting Started#console_1)
+* 선택 옵션
+    1. **enablePopup** : Launching과 Ban 정보를 안내할 시스템 팝업을 사용할 것인지를 선택합니다. (default: YES)
+    2. **enableLaunchingStatusPopup** : Launching Status 정보를 안내할 시스템 팝업을 사용할 것인지를 선택합니다. (default: YES)
+    3. **enableBanPopup** : 유저 이용제재 정보를 안내할 시스템 팝업을 사용할 것인지를 선택합니다. (default: YES)
+    4. **storeCode** : 스토어 코드를 세팅합니다. (default: AS)
 
 ```objectivec
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -45,7 +60,8 @@ AppDelegate.h 에서 다음의 헤더 파일을 가져옵니다.
 }
 ```
 
-### 3. Launching Status
+
+### Launching Status
 
 Gamebase initialize 호출 결과로 런칭 상태를 확인 할 수 있습니다.<br/>
 런칭 상태는 Gamebase 초기화 이후에 호출되어야합니다.
@@ -71,7 +87,7 @@ Gamebase initialize 호출 결과로 런칭 상태를 확인 할 수 있습니�
 
 ```
 
-#### Launching Status Code
+### Launching Status Code
 
 | Status | Code | Description |
 | --- | --- | --- |
@@ -90,12 +106,12 @@ Gamebase initialize 호출 결과로 런칭 상태를 확인 할 수 있습니�
 
 iOS의 App Event를 관리하기 위하여 아래에 명기된 **UIApplicationDelegate** protocol을 구현해야합니다.
 
-### 1. OpenURL Event
+### OpenURL Event
 
 **application:openURL:sourceApplication:annotation:** 메소드를 호출하여 Switching App을 사용한 인증 시, 각 IDP들의 인증용 SDK에서 필요한 동작을 하도록 알려줍니다.
 
 
-> [WARNING]
+> <font color="red">[WARNING]</font><br/>
 >
 > UIApplicationDelegate의 **application:openURL:options:**를 이미 Overriding 했다면, **application:openURL:sourceApplication:annotation:**이 호출되지 않을 수 있습니다.
 >
@@ -107,7 +123,7 @@ iOS의 App Event를 관리하기 위하여 아래에 명기된 **UIApplicationDe
 }
 ```
 
-### 2. DidBecomeActive Event
+### DidBecomeActive Event
 
 **applicationDidBecomeActive:** 메소드를 호출하여, App이 활성화 되었는지 여부를 각 IDP의 인증용 SDK에서 필요한 동작을 하도록 알려줍니다.
 
@@ -117,7 +133,7 @@ iOS의 App Event를 관리하기 위하여 아래에 명기된 **UIApplicationDe
 }
 ```
 
-### 3. DidEnterBackground Event
+### DidEnterBackground Event
 
 **applicationDidEnterBackground** 메소드를 호출하여, App이 Background로 전환되었는지 알려주어야 합니다.
 
@@ -127,7 +143,7 @@ iOS의 App Event를 관리하기 위하여 아래에 명기된 **UIApplicationDe
 }
 ```
 
-### 4. WillEnterForeground Event
+### WillEnterForeground Event
 
 **applicationWillEnterForeground** 메소드를 호출하여, App이 Foreground로 전환된다는 것을 알려주어야 합니다.
 
@@ -136,3 +152,22 @@ iOS의 App Event를 관리하기 위하여 아래에 명기된 **UIApplicationDe
     [TCGBGamebase applicationWillEnterForeground:application];
 }
 ```
+
+
+### Error Handling
+
+
+
+| Error | Error Code | Notes |
+| ----- | ---------- | ----- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebase 초기화가 되어있지 않습니다. |
+| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2 | 로그인이 필요합니다. |
+| TCGB\_ERROR\_INVALID\_PARAMETER | 3 | 잘못된 파라미터입니다. |
+| TCGB\_ERROR\_INVALID\_JSON\_FORMAT | 4 | JSON 포맷 에러입니다. |
+| TCGB\_ERROR\_USER\_PERMISSION | 5 | 권한이 없습니다. |
+| TCGB\_ERROR\_NOT\_SUPPORTED | 10 | 지원하지 않는 기능입니다. |
+| TCGB\_ERROR\_NOT\_SUPPORTED\_IOS | 12 | iOS에서 지원하지 않는 기능입니다. |
+
+
+
+* 전체 에러코드 참조 : [LINK \[Entire Error Codes\]](./error-codes#client-sdk)

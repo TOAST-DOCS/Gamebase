@@ -1,254 +1,1150 @@
-## Game > Gamebase > Developer's Guide (Unity) > Login
+## Upcomming Products > Gamebase > Unity Developer's Guide > Authentication
 
 ## Login
 
-* Gamebase 에서는 기본적으로 guest 로그인을 지원합니다.
-* guest 이외의 Provider에 로그인을 하기 위해서는 해당 Provider AuthAdapter가 필요합니다.
-* AuthAdapter 및 3rd-Party Provider SDK에 대한 설정은 다음의 링크를 참고하시길 바랍니다.
-* [LINK \[3rd-Party Provider SDK Guide\]](aos-started#3rd-party-provider-sdk-guide)
+* Gamebase 에서는 guest 로그인을 기본으로 지원합니다.</br>
+* Guest 이외의 Provider에 로그인을 하기 위해서는 해당 Provider AuthAdapter가 필요합니다.</br>
+* AuthAdapter 대한 설정은 다음의 링크를 참고하시길 바랍니다.
+	* [LINK \[Android Setting\]](aos-started#dependency)
+	* [LINK \[iOS Setting\]](ios-started#installation)
 
-### 1. Login as the latest login IDP
 
-가장 최근에 로그인한 IDP로의 로그인을 시도합니다. 해당 로그인에 대한 토큰이 만료되었거나,
-토큰에 대한 검증 등이 실패하였을 때, 실패를 리턴합니다. 이 때는 해당 IDP에 대한 로그인을 구현해주어야합니다.
-```java
-private static void onLoginLastLoggedIn() {
-    Gamebase.loginForLastLoggedInProvider(new GamebaseDataCallback<AuthToken>() {
-        @Override
-        public void onCallback(AuthToken data, GamebaseException exception) {
-            if (Gamebase.isSuccess(exception)) {
-				// 로그인 성공
-                Log.d(TAG, "Login successful");
-            } else {
-	            // 로그인 실패
-	            Log.e(TAG, "Login failed- "
-                        + "errorCode: " + exception.getCode()
-                        + "errorMessage: " + exception.getMessage());
+### Login Flow
 
-	            if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
-                    exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-	                    // Socket error 입니다.
-	                    // 네트워크 상태를 확인 후 loginForLastLoggedInPovider 메소드 호출을 재시도 할 수 있습니다.
-                    }
-            }
-        }
-    });
-}
+* 앱에서의 Gamebase인증상태에 따른 처리 방법을 설명합니다.
+
+* 앱을 처음 설치했을 때, 타이틀 화면에서 로그인을 시도할 경우 로그인 정보(Gamebase AccessToken)가 존재하지 않기 때문에, ID/PW등을 입력하여, 로그인 할 수 있도록 합니다.
+	1. 타이틀 화면 등에서는 명확하게 로그인이 되지 않은 상태로 판단하여, **IDP login API**를 호출하여 로그인을 시도합니다.
+	2. 로그인 성공 시에는 게임을 진행할 수 있도록 합니다.
+	3. 로그인이 실패는 시에는 **IDP login API**을 다시 호출시도할 수 있도록 합니다.
+		* 로그인 실패 사유가 **AUTH_BANNED_MEMBER(3005)** 와 같은 경우라면 로그인이 항상 실패할 것이기 때문에 적절한 안내와 함께 게임 진입이되지 않도록 처리합니다.
+
+* 앱을 처음 실행하는 것이 아니라서, 로그인 정보(Gamebase AccessToken)가 남아있을 경우
+	1. 앱을 background에서 foreground로 전환할 때와 같이 local에 로그인 정보가 남아 있을 경우, **LoginForLastLoggedInProvider**를 호출하여, ID/PW를 입력 받지 않고 로그인을 시도합니다.
+	2. 로그인 성공 시에는 게임을 진행할 수 있도록 합니다.
+	3. 로그인 실패 시에는, 에러별로 다른 처리가 필요합니다.
+		* 로그인 실패 사유가 Network 오류일 경우: **LoginForLastLoggedInProvider**를 재시도 하도록 합니다.
+			* 네트워크 에러 : **SOCKET_ERROR(110)**, **SOCKET_RESPONSE_TIMEOUT(101)**
+		* 로그인 실패 사유가 서버 오류일 경우: 기존의 로그인 정보가 인증을 받을 수 없는 상태이기 때문에 **IDP login API**을 다시 호출할 수 있도록 합니다. (Title Scene으로의 화면 전환 등)
+    	* 로그인 실패 사유가 **AUTH_BANNED_MEMBER(3005)** 와 같은 경우라면 로그인이 항상 실패할 것이기 때문에 적절한 안내와 함께 게임 진입이 되지 않도록 처리합니다.
+		
+
+### Banned User of Login
+
+이용정지 회원일 경우 LoginForLastLoggedInProvider/Login API를 호출하면 **AUTH_BANNED_MEMBER(3005)** 에러를 리턴합니다.
+[GetBanInfo](#gets-banned-user-infomation) API로 ban정보를 가져올 수 있습니다.
+
+
+### Login as the Latest Login IDP
+
+
+
+가장 최근에 로그인한 IDP로의 로그인을 시도합니다.</br>
+해당 로그인에 대한 토큰이 만료되었거나, 토큰에 대한 검증 등이 실패하였을 때, 실패를 리턴합니다.</br>
+이 때는 [해당 IDP에 대한 로그인](#login-using-a-specific-idp)을 구현해야합니다.
+
+
+**API**<br>
+
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+
+
+```cs
+
+static void LoginForLastLoggedInProvider(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+
 ```
-### 2. Login with GUEST
 
-Gamebase는 Guest 로그인을 지원합니다.
-디바이스의 유일한 키를 생성하여 Gamebase에 로그인을 시도합니다.
-Guest 로그인은 앱 삭제 또는 디바이스 초기화 시에 계정이 삭제될 수 있으므로 IDP를 활용한 로그인 방식을 권장합니다.
-```java
-private static void onLoginForGuest(final Activity activity) {
-    Gamebase.login(activity, AuthProvider.GUEST, new GamebaseDataCallback<AuthToken>() {
-        @Override
-        public void onCallback(AuthToken data, GamebaseException exception) {
-            if (Gamebase.isSuccess(exception)) {
-                Log.d(TAG, "Login successful");
-                // 로그인 성공
-            } else {
-                Log.e(TAG, "Login failed- "
-                        + "errorCode: " + exception.getCode()
-                        + "errorMessage: " + exception.getMessage());
-                // 로그인 실패
-            }
+
+
+**Example**
+
+
+
+``` cs
+
+public void LoginForLastLoggedInProvider()
+
+{
+
+	Gamebase.LoginForLastLoggedInProvider((authToken, error) =>
+
+    {
+
+    	if (Gamebase.IsSuccess(error))
+
+        {
+
+        	Debug.Log("Login succeeded.");
+
         }
+
+        else
+
+        {
+
+        	if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+
+            {
+
+            	Debug.Log(string.Format("Retry LoginForLastLoggedInProvider or notify an error message to the user. : {0}", error.message));
+
+            }
+
+            else
+
+            {
+
+                Debug.Log("Try to login using a specifec IDP");
+
+                Login("ProviderName");
+
+            }
+
+        }
+
     });
+
 }
+
+
+
+public void Login(string providerName)
+
+{
+
+    Gamebase.Login(providerName, (authToken, error) =>
+
+    {
+
+        if (Gamebase.IsSuccess(error))
+
+        {
+
+            string userId = authToken.member.userId;
+
+            Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
+
+        }
+
+        else
+
+        {
+
+            Debug.Log(string.Format("Login failed. error is {0}", error));
+
+        }
+
+    });
+
+}
+
+```
+
+### Login with GUEST
+
+
+
+Gamebase는 Guest 로그인을 지원합니다.</br>
+
+디바이스의 유일한 키를 생성하여 Gamebase에 로그인을 시도합니다.</br>
+
+Guest 로그인은 디바이스키는 초기화 될 수 있고 디바이스키의 초기화 시에 계정이 삭제될 수 있으므로 IDP를 활용한 로그인 방식을 권장합니다.
+
+
+
+**API**<br>
+
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
+
+![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
+
+![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+
+
+
+```cs
+
+static void Login(string providerName, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+
 ```
 
 
-### 3. Login using a specific IDP
+
+**Example**
+
+
+
+``` cs
+
+public void Login()
+
+{
+
+	Gamebase.Login(GamebaseAuthProvider.GUEST, (authToken, error) =>
+
+    {
+
+    	if (Gamebase.IsSuccess(error))
+
+        {
+
+        	string userId = authToken.member.userId;
+
+        	Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
+
+        }Login with access token of external IDP.
+
+        else
+
+        {
+
+        	Debug.Log(string.Format("Login failed. error is {0}", error));
+
+        }
+
+    });
+
+}
+
+```
+
+
+
+### Login with IDP
+
+
 
 특정 IDP에 대한 로그인 버튼을 클릭하였을 때, 다음 로그인 API를 구현합니다.
-```java
-private static void onLoginForGoogle(final Activity activity) {
-    Gamebase.login(activity, AuthProvider.GOOGLE, new GamebaseDataCallback<AuthToken>() {
-        @Override
-        public void onCallback(AuthToken data, GamebaseException exception) {
-            if (Gamebase.isSuccess(exception)) {
-                Log.d(TAG, "Login successful");
-                // 로그인 성공
-            } else {
-                Log.e(TAG, "Login failed- "
-                        + "errorCode: " + exception.getCode()
-                        + "errorMessage: " + exception.getMessage());
-                // 로그인 실패
-            }
+
+
+
+**API**<br>
+
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
+
+![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
+
+![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+
+
+
+```cs
+
+static void Login(string providerName, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+
+```
+
+
+
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+
+
+```cs
+
+static void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+
+```
+
+
+
+**providerName**
+
+* GamebaseAuthProvider.GOOGLE
+
+* GamebaseAuthProvider.GAMECENTER
+
+* GamebaseAuthProvider.FACEBOOK
+
+* GamebaseAuthProvider.PAYCO
+
+
+
+
+
+> 몇몇 IDP의 로그인시에는 필수적으로 들어가야하는 정보가 있습니다.</br>
+
+> 예를 들어, facebook 로그인을 구현하기 위해서는 scope 등을 설정해주어야합니다.</br>
+
+> 이러한 필수 정보들을 설정해주기 위해 static void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) API를 제공합니다.</br>
+
+> 파라미터 additionalInfo에 필수 정보들을 Dictionary 형태로 입력하시면 됩니다. (파라미터 값이 null일 때는, TOAST Cloud Console에 등록한 additionalInfo 값으로 채워집니다. 파라미터 값이 있을 때는 Console에 등록해놓은 값보다 우선시하여 값을 덮어쓰게 됩니다.  [TOAST Cloud Console에 additionalInfo 설정하기](#authentication-additional-information-settings))
+
+
+
+**Example**
+
+
+
+``` cs
+
+public void Login()
+
+{
+
+	Gamebase.Login(GamebaseAuthProvider.FACEBOOK, (authToken, error) =>
+
+    {
+
+    	if (Gamebase.IsSuccess(error))
+
+        {
+
+        	string userId = authToken.member.userId;
+
+        	Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
+
         }
+
+        else
+
+        {
+
+        	Debug.Log(string.Format("Login failed. error is {0}", error));
+
+        }
+
     });
+
 }
-```
 
-Login을 호출한 Activity의 Activity#onActivityResult(int, int, Intent)에서 Gamebase.onActivityResult(int, int, Intent)을 호출합니다.
-```java
-@Override
-protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
 
-    Gamebase.onActivityResult(requestCode, resultCode, data);
+
+public void Login(string providerName, Dictionary<string, object> additionalInfo)
+
+{
+
+    Gamebase.Login(providerName, additionalInfo, (authToken, error) =>
+
+    {
+
+        if (Gamebase.IsSuccess(error))
+
+        {
+
+            string userId = authToken.member.userId;
+
+            Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
+
+        }
+
+        else
+
+        {
+
+            Debug.Log(string.Format("Login failed. error is {0}", error));
+
+        }
+
+    });
+
 }
+
 ```
 
-### 4. Login with access token of external IDP
 
-외부 인증 라이브러리에서 발급한 access token을 이용하여 Gamebase에 로그인 합니다.
 
-```java
-Map<String, Object> credentialInfo = new HashMap<>();
-credentialInfo.put(AuthProviderCredentialConstants.PROVIDER_NAME, AuthProvider.FACEBOOK);
-credentialInfo.put(AuthProviderCredentialConstants.ACCESS_TOKEN, facebookAccessToken);
+### Login with Credential
 
-Gamebase.login(activity, credentialInfo, new GamebaseDataCallback<AuthToken>() {
-            @Override
-            public void onCallback(AuthToken data, GamebaseException exception) {
-                if (Gamebase.isSuccess(exception)) {
-                    Log.d(TAG, "Login successful");
-                } else {
-                    Log.e(TAG, "Gamebase Login failed- "
-                            + "errorCode: " + exception.getCode()
-                            + "errorMessage: " + exception.getMessage());
-                }
-            }
-        });
+
+
+게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증을 하고 발급받은 AccessToken등을 이용하여, Gamebase 로그인을 할 수 있는 인터페이스 입니다.
+
+
+
+**API**<br>
+
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
+
+![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
+
+![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+
+
+
+UnityEditor에서는 Facebook로그인만 지원합니다.
+
+
+
+```cs
+
+static void Login(Dictionary<string, object> credentialInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+
 ```
 
-### 5. Gets Authentication Information for external IDP
 
-외부 인증 SDK에서 AccessToken, UserId, Profile 등의 정보를 가져올 수 있습니다.
 
-```java
-// 유저 ID를 가져옵니다.
-String userId = getAuthProviderUserID(AuthProvider.FACEBOOK);
-// AccessToken을 가져옵니다.
-String accessToken = getAuthProviderAccessToken(AuthProvider.FACEBOOK);
-// User Profile 정보를 가져옵니다.
-AuthFacebookProfile profile = (AuthFacebookProfile) getAuthProviderProfile(AuthProvider.FACEBOOK);
-String name = profile.getName();    // or profile.information.get("name")
-String email = profile.getEmail();  // or profile.information.get("email")
+**Example**
+
+
+
+``` cs
+
+public void Login(Dictionary<string, object> credentialInfo)
+
+{
+
+	Gamebase.Login(credentialInfo, (authToken, error) =>
+
+    {
+
+    	if (Gamebase.IsSuccess(error))
+
+        {
+
+        	string userId = authToken.member.userId;
+
+        	Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
+
+        }
+
+        else
+
+        {
+
+        	Debug.Log(string.Format("Login failed. error is {0}", error));
+
+        }
+
+    });
+
+}
+
 ```
 
-### 6. Authentication Additional Information Settings
+
+
+### Authentication Additional Information Settings
+
+
 
 #### Facebook
 
 * **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+
 	* Facebook의 경우, OAuth 인증 시도 시, Facebook으로 부터 요청할 정보의 종류를 설정해야 합니다.
+
+
 
 Facebook 인증 추가 정보 입력 예제
 
+
+
 ```json
+
 { "facebook_permission": [ "public_profile", "email", "user_friends"]}
+
 ```
+
+
 
 #### Payco
 
 * **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+
 	* Payco의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**의 설정이 필요합니다.
+
+
 
 Payco 추가 인증 정보 입력 예제
 
+
+
 ```json
+
 { "service_code": "HANGAME", "service_code": "Your Service Name" }
+
 ```
 
 ## Logout
 
+로그인 된 IDP에서 로그아웃을 시도합니다.</br>
+로그아웃이 성공하더라도, 유저 데이터는 유지됩니다.</br>
+로그아웃에 성공 하면 해당 IDP 로그아웃을 시도하게 됩니다.</br>
 로그아웃 버튼을 클릭했을 때, 다음과 같이 로그아웃 API를 구현합니다.
-```java
-private static void onLogout(final Activity activity) {
-    Gamebase.logout(new GamebaseCallback() {
-        @Override
-        public void onCallback(GamebaseException exception) {
-4            if (Gamebase.isSuccess(exception)) {
-                Log.d(TAG, "Logout successful");
-                // 로그아웃 성공
-            } else {
-                Log.e(TAG, "Logout failed- "
-                        + "errorCode: " + exception.getCode()
-                        + "errorMessage: " + exception.getMessage());
-                // 로그아웃 실패
-            }
-        }
-    });
-}
+
+**API**<br>
+
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
+
+![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
+
+![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+
+
+
+```cs
+
+static void Logout(GamebaseCallback.ErrorDelegate callback)
+
 ```
+
+
+
+**Example**
+
+```cs
+
+public void Logout()
+
+{
+
+    Gamebase.Logout((error) =>
+
+    {
+
+        if (Gamebase.IsSuccess(error))
+
+        {
+
+        	Debug.Log("Logout succeeded.");
+
+        }
+
+        else
+
+        {
+
+        	Debug.Log(string.Format("Logout failed. error is {0}", error));
+
+        }
+
+    });
+
+}
+
+```
+
+
 
 ## Withdraw
+로그인 상태에서 탈퇴를 시도합니다.</br>
+탈퇴에 성공하면, 로그인 했던 IDP와 연동 되어 있던 유저 데이터는 삭제 됩니다.</br>
+해당 IDP로 다시 로그인 가능하고 새로운 유저 데이터를 생성합니다.</br>
+Gamebase 탈퇴를 의미하며, IDP 계정 탈퇴를 의미하지는 않습니다.</br>
+탈퇴 성공 시 IDP 로그아웃을 시도하게 합니다.</br>
+탈퇴 버튼을 클릭했을 때 다음과 같이 탈퇴 API를 구현합니다.
 
-탈퇴 버튼을 클릭했을 때, 다음과 같이 로그아웃 API를 구현합니다.
-```java
-private static void onWithdraw(final Activity activity) {
-    Gamebase.withdraw(new GamebaseCallback() {
-        @Override
-        public void onCallback(GamebaseException exception) {
-            if (Gamebase.isSuccess(exception)) {
-                Log.d(TAG, "Withdraw successful");
-                // 탈퇴 성공
-            } else {
-                Log.e(TAG, "Withdraw failed- "
-                        + "errorCode: " + exception.getCode()
-                        + "errorMessage: " + exception.getMessage());
-                // 로그아웃 실패
-            }
-        }
-    });
-}
+**API**<br>
+
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
+
+![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
+
+![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+
+
+
+```cs
+
+static void Withdraw(GamebaseCallback.ErrorDelegate callback)
+
 ```
+
+
+
+**Example**
+
+```cs
+
+public void Withdraw()
+
+{
+
+    Gamebase.Withdraw((error) =>
+
+    {
+
+        if (Gamebase.IsSuccess(error))
+
+        {
+
+            Debug.Log("Withdraw succeeded.");
+
+        }
+
+        else
+
+        {
+
+            Debug.Log(string.Format("Withdraw failed. error is {0}", error));
+
+        }
+
+
+
+    });
+
+}
+
+```
+
+
 
 ## Mapping
 
-Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시키는 기능입니다.
-특정 IDP에 연동된(guest 포함) 계정에 다른 IDP의 계정을 연동하였을 때,
-각각의 계정들에 대해서 UserID는 동일하게 주어집니다.
 
-### 1. Add mapping
 
-특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다.
-Mapping을 하려는 IDP의 계정이 이미 다른 계정이 연동이 되어있다면,
-**AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 에러를 리턴합니다.
+Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시키는 기능입니다.</br>
 
-Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 아니라, 기존에 로그인했던 IDP가 됩니다. 즉, Mapping은 단순히 IDP를 연동만 해줍니다.
+특정 IDP에 연동된(guest 포함) 계정에 다른 IDP의 계정을 연동하였을 때, 각각의 계정들에 대해서 UserID는 동일하게 주어집니다.
 
-아래의 예시에서는 facebook에 대해서 Mapping을 시도하고 있습니다.
-```java
-public static void addMappingForFacebook(final Activity activity) {
-        Gamebase.addMapping(activity, AuthProvider.FACEBOOK, null, new GamebaseDataCallback<AuthToken>() {
-            @Override
-            public void onCallback(AuthToken result, GamebaseException exception) {
-                if (Gamebase.isSuccess(exception)) {
-                    Log.d(TAG, "Add Mapping successful");
-                    // 맵핑 추가 성공
-                } else {
-                    Log.e(TAG, "Add mapping failed- "
-                        + "errorCode: " + exception.getCode()
-                        + "errorMessage: " + exception.getMessage());
-                    // 맵핑 추가 성공
-                }
-            }
-        });
-    }
+
+
+### Add Mapping
+
+
+
+특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다.</br>
+
+Mapping을 하려는 IDP의 계정이 이미 다른 계정이 연동이 되어있다면, **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 에러를 리턴합니다.
+
+
+
+Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 아니라, 기존에 로그인했던 IDP가 됩니다.</br>
+
+즉, Mapping은 단순히 IDP를 연동만 해줍니다.
+
+
+
+**API**<br>
+
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+
+
+```cs
+
+static void AddMapping(string providerName, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+
 ```
-### 2. Remove mapping
 
-특정 IDP에 대한 연동을 해제합니다. 만약, 해제하고자 하는 IDP가 유일한 IDP라면, 실패를 리턴하게 됩니다. 연동 해제후에는 Gamebase 내부에서, 해당 IDP에 대한 로그아웃처리를 해줍니다.
-```java
-private static void removeMappingForFacebook() {
-        Gamebase.removeMapping(AuthProvider.FACEBOOK, new GamebaseCallback() {
-            @Override
-            public void onCallback(GamebaseException exception) {
-                if (Gamebase.isSuccess(exception)) {
-                    Log.d(TAG, "Remove mapping successful");
-                    // 맵핑 해제 성공
-                } else {
-                    Log.e(TAG, "Remove mapping failed- "
-                        + "errorCode: " + exception.getCode()
-                        + "errorMessage: " + exception.getMessage());
-                    // 맵핑 해제 실패
-                }
-            }
-        });
-    }
+
+
+**Example**
+
+```cs
+
+public void AddMapping(string providerName)
+
+{
+
+    Gamebase.AddMapping(providerName, (authToken, error) =>
+
+    {
+
+        if (Gamebase.IsSuccess(error))
+
+        {
+
+            Debug.Log("AddMapping succeeded.");
+
+        }
+
+        else
+
+        {
+
+            Debug.Log(string.Format("AddMapping failed. error is {0}", error));
+
+        }
+
+    });
+
+}
+
 ```
+
+
+
+### Remove Mapping
+
+
+
+특정 IDP에 대한 연동을 해제합니다. 만약, 해제하고자 하는 IDP가 유일한 IDP라면, 실패를 리턴하게 됩니다.</br>
+
+연동 해제후에는 Gamebase 내부에서, 해당 IDP에 대한 로그아웃처리를 해줍니다.
+
+
+
+**API**<br>
+
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+
+
+```cs
+
+static void RemoveMapping(string providerName, GamebaseCallback.ErrorDelegate callback)
+
+```
+
+
+
+**Example**
+
+```cs
+
+public void RemoveMapping(string providerName)
+
+{
+
+    Gamebase.RemoveMapping(providerName, (error) =>
+
+    {
+
+        if (Gamebase.IsSuccess(error))
+
+        {
+
+            Debug.Log("RemoveMapping succeeded.");
+
+        }
+
+        else
+
+        {
+
+            Debug.Log(string.Format("RemoveMapping failed. error is {0}", error));
+
+        }
+
+    });
+
+}
+
+```
+
+
+
+### Get Mapping List
+
+
+
+UserId에 연동되어 있는 IDP 목록을 리턴하게 됩니다.</br>
+
+
+
+**API**<br>
+
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+
+
+```cs
+
+static List<string> GetAuthMappingList()
+
+```
+
+
+
+**Example**
+
+```cs
+
+public void GetAuthMappingList()
+
+{
+
+    List<string> mappingList = Gamebase.GetAuthMappingList();
+
+}
+
+```
+
+
+
+## Get Authentication Information for Gamebase
+
+Gamebase에서 발급한 인증 정보를 가져올 수 있습니다.
+
+
+
+### UserID
+
+
+
+Gamebase에서 발급한 UserID를 가져올 수 있습니다.
+
+
+
+**API**<br>
+
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
+
+![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
+
+![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+
+
+
+```cs
+
+static string GetUserID()
+
+```
+
+
+
+**Example**
+
+```cs
+
+public void GetUserID()
+
+{
+
+    string userID = Gamebase.GetUserID();
+
+}
+
+```
+
+
+
+### AccessToken
+
+
+
+Gamebase에서 발급한 AccessToken을 가져올 수 있습니다.
+
+
+
+**API**<br>
+
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
+
+![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
+
+![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+
+
+
+```cs
+
+static string GetAccessToken()
+
+```
+
+
+
+**Example**
+
+```cs
+
+public void GetAccessToken()
+
+{
+
+    string accessToken = Gamebase.GetAccessToken();
+
+}
+
+```
+
+
+
+### Last LoggedIn Provider Name
+
+
+
+Gamebase에서 마지막 로그인에 성공한 ProviderName을 가져올 수 있습니다.
+
+
+
+**API**<br>
+
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+
+
+```cs
+
+static string GetLastLoggedInProvider()
+
+```
+
+
+
+**Example**
+
+```cs
+
+public void GetLastLoggedInProvider()
+
+{
+
+    string lastLoggedInProvider = Gamebase.GetLastLoggedInProvider();
+
+}
+
+```
+
+
+
+
+
+## Get Authentication Information for External IDP
+
+
+
+외부 인증 SDK에서 AccessToken, UserId, Profile 등의 인증 정보를 가져올 수 있습니다.
+
+
+
+### UserID
+
+
+
+외부 인증 SDK에서 UserID를 가져올 수 있습니다.
+
+
+
+**API**<br>
+
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
+
+![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
+
+![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+
+
+
+```cs
+
+static string GetAuthProviderUserID()
+
+```
+
+
+
+**Example**
+
+```cs
+
+public void GetAuthProviderUserID(string providerName)
+
+{
+
+    string authProviderUserID = Gamebase.GetAuthProviderUserID(providerName);
+
+}
+
+```
+
+
+
+### AccessToken
+
+
+
+외부 인증 SDK에서 AccessToken을 가져올 수 있습니다.
+
+
+
+**API**<br>
+
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
+
+![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
+
+![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+
+
+
+```cs
+
+static string GetAuthProviderAccessToken(string providerName)
+
+```
+
+
+
+**Example**
+
+```cs
+
+public void GetAuthProviderAccessToken(string providerName)
+
+{
+
+    string authProviderAccessToken = Gamebase.GetAuthProviderAccessToken(providerName);
+
+}
+
+```
+
+
+
+### Profile
+
+
+
+외부 인증 SDK에서 Profile을 가져올 수 있습니다.
+
+
+
+**API**<br>
+
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
+
+![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
+
+![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+
+
+
+```cs
+
+static GamebaseResponse.Auth.AuthProviderProfile GetAuthProviderProfile(string providerName)
+
+```
+
+
+
+**Example**
+
+```cs
+
+public void GetAuthProviderProfile(string providerName)
+
+{
+
+    GamebaseRequest.AuthProviderProfile profile = Gamebase.GetAuthProviderProfile(providerName);
+
+}
+
+```
+
+
+
+## Get Banned User Infomation
+
+
+
+이용정지 정보를 리턴합니다.</br>
+
+
+
+**API**<br>
+
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
+
+![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
+
+![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+
+
+
+```cs
+
+static GamebaseResponse.Auth.BanInfo GetBanInfo()
+
+```
+
+
+
+**Example**
+
+```cs
+
+public void GetBanInfo()
+
+{
+
+    GamebaseResponse.Auth.BanInfo banInfo = Gamebase.GetBanInfo();
+
+}
+
+```
+
+### Error Handling
+
+| Error | Error Code | Notes |
+| ----- | ---------- | ----- |
+| AUTH_USER_CANCELED | 3001 | 로그인이 취소되었습니다. |
+| AUTH_NOT_SUPPORTED_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
+| AUTH_NOT_EXIST_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
+| AUTH_INVALID_MEMBER | 3004 | 잘못된 회원에 대한 요청입니다. |
+| AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 외부 인증 라이브러리 에러입니다. |
+| AUTH_TOKEN_LOGIN_FAILED | 3101 | 토큰 로그인에 실패하였습니다. |
+| AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
+| AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | 최근에 로그인한 IDP 정보가 없습니다. |
+| AUTH_IDP_LOGIN_FAILED | 3201 | IDP 로그인에 실패하였습니다. |
+| AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3202 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
+| AUTH_ADD_MAPPING_FAILED | 3301 | 맵핑 추가에 실패하였습니다. |
+| AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | 이미 다른 멤버에 맵핑되어있습니다. |
+| AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | 이미 같은 IDP에 맵핑되어있습니다. |
+| AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
+| AUTH_REMOVE_MAPPING_FAILED | 3401 | 맵핑 삭제에 실패하였습니다. |
+| AUTH_REMOVE_MAPPING_LAST_MAPPED\_IDP | 3402 | 마지막에 맵핑된 IDP는 삭제할 수 없습니다. |
+| AUTH_REMOVE_MAPPING_LOGGED_IN\_IDP | 3403 | 현재 로그인되어있는 IDP 입니다. |
+| AUTH_LOGOUT_FAILED | 3501 | 로그아웃에 실패하였습니다. |
+| AUTH_WITHDRAW_FAILED | 3601 | 탈퇴에 실패하였습니다. |
+| AUTH_NOT_PLAYABLE | 3701 | 플레이할 수 없는 상태입니다. (점검 또는 서비스 종료 등) |
+| AUTH_UNKNOWN_ERROR | 3999 | 알수 없는 에러입니다. (정의 되지 않은 에러입니다.) |
+
+* 전체 에러코드 참조 : [LINK \[Entire Error Codes\]](./error-codes#client-sdk)
+
+#### AUTH_EXTERNAL_LIBRARY_ERROR
+
+* 이 에러는 TOAST Cloud 외부 인증 라이브러리에서 발생한 에러입니다.

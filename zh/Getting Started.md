@@ -1,6 +1,6 @@
 ## Upcoming Products > Gamebase > Getting Started
 
-## 사용 준비
+## Getting Started
 Gamebase 서비스 사용을 위한 아주 간단하지만 꼭 필요한 기본적인 절차에 대해 설명합니다.
 
 1. 서비스 활성화 [Console]
@@ -8,14 +8,14 @@ Gamebase 서비스 사용을 위한 아주 간단하지만 꼭 필요한 기본�
 3. 게임 및 클라이언트 정보 등록[Console]
 4. Gamebase SDK 다운로드
 
-### 서비스 활성화 [Console]
+### Enable Gamebase [Console]
 
 [TOAST Cloud Console](http://console.cloud.toast.com)에서 **[Game] > [Gamebase]** 상품을 선택한 후 **[상품 이용]** 버튼을 클릭하여 서비스를 활성화 합니다.
 
 ![상품활성화](http://static.toastoven.net/prod_gamebase/GettingStarted/img_console_active_1.0.png)
 <center>[그림1] Gamebase 상품 활성화</center>
 
-### 프로젝트 ID 및 Secret Key 확인[Console]
+### Check Project ID and {Secret Key} [Console]
 
 #### appId
 appId는 TOAST Cloud의 프로젝트ID로 Console의 Project list 화면에서 확인 가능합니다.<br>
@@ -31,10 +31,10 @@ secretKey는 API에 대한 접근 제어 방안으로 Gamebase 콘솔에서 확�
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.0.png)
 
 
-### 게임 및 클라이언트 정보 등록 [Console]
+### Register App and Client [Console]
 
 Gamebase의 Console의 [앱] 메뉴를 이용하여 게임 및 클라이언트의 기본 정보를 등록합니다.<br>
-각 항목의 자세한 설명은 [[Operators Guide > App](./Operator%60s%20Guide/#_3)] 과 [[Operators Guide > Client](./Operator%60s%20Guide/#_4)] 부분을 참고하시기 바랍니다. <br>
+각 항목의 자세한 설명은 [[Operator Guide > App](./app/#app)] 과 [[Operator Guide > Client](./app/#client)] 부분을 참고하시기 바랍니다. <br>
 SDK 설정시에 Client 버전 정보가 필요하므로 해당 화면에서 꼭 확인하세요!
 
 
@@ -47,28 +47,28 @@ SDK 설정시에 Client 버전 정보가 필요하므로 해당 화면에서 꼭
 
 
 
-### Gamebase SDK 다운로드
+### Download Gamebase SDK
 
 Gamebase SDK는 [SDK 다운로드 페이지](http://docs.cloud.toast.com/ko/Download/)에서 내려받을 수 있습니다.<br>SDK 다운로드 후 플랫폼별 자세한 설정 방법은 각 플랫폼별 [Developers Guide]를 참고하시기 바랍니다.
 
-* [iOS 개발프로젝트 설정하기](./iOS Developer`s Guide/#getting-started)
-* [Android 개발프로젝트 설정하기](./Android Developer`s Guide/#getting-started)
-* [Unity Plug-in 개발프로젝트 설정하기](./Unity Developer`s Guide/#getting-started)
+* [LINK [iOS 개발프로젝트 설정하기] ](./ios-started/)
+* [LINK [Android 개발프로젝트 설정하기] ](./aos-started/)
+* [LINK [Unity Plug-in 개발프로젝트 설정하기] ](./unity-started)
 
 > 드디어 Gamebase 서비스를 사용할 준비가 끝났습니다. :-) <br> 보다 자세한 가이드는 아래를 참고해 주세요.
 
 
 ## 플랫폼별 가이드 링크
 ### Client Developer's Guide
-* [iOS Developer's Guide](./iOS Developer`s Guide)
-* [Android Developer's Guide](./Android Developer`s Guide)
-* [Unity Developer's Guide](./Unity Developer`s Guide)
+* [LINK [iOS Developer's Guide] ](./ios-started/)
+* [LINK [Android Developer's Guide] ](./aos-started/)
+* [LINK [Unity Developer's Guide] ](./unity-started/)
 
 ### Server Developer's Guide
-* [Server Developer's Guide](./Server Developer`s Guide)
+* [LINK [Server Developer's Guide] ](./Server%20Developer%60s%20Guide/)
 
 ### Operator's Guide
-* [Operator's Guide](./Operator`s Guide)
+* [LINK [Operator's Guide] ](./operating-indicator/)
 
 
 ## 기능별 가이드 링크

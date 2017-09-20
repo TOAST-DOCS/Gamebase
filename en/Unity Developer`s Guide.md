@@ -35,11 +35,11 @@ Gamebase Unity SDK 에서 지원하는 플랫폼 선택 후, 선택한 플랫폼
 * GamebaseErrorCode.NOT_SUPPORTED_UNITY_WEBGL
 
 API 별 지원하는 플랫폼은 아래와 같은 icon 으로 구분합니다.<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone-plugin_1.0.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-webgl_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
+![STANDALONE](image/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.0.0.png)
+![WEBGL](image/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.0.0.png)
+![EDITOR](image/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.0.0.png)
 
 ### Installation
 
@@ -103,7 +103,7 @@ Android SDK 추가 설정은 아래 링크를 참조 하시기 바랍니다
 
 * [Android SDK 추가 설정 링크](./Android Developer`s Guide#initialization)
 
-![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-AndroidSetting_1.0.0.png)<br>
+![unity inspector](image/UnityDevelopersGuide/unity-developers-guide-AndroidSetting_1.0.0.png)<br>
 **그림. Android SDK 추가하기**
 
 #### IOS SDK settings
@@ -147,13 +147,15 @@ Gamebase Unity SDK 를 사용하기 전에 초기화를 수행해야 하며, App
 > 생성한 게임 오브젝트를 삭제하면 Android, iOS API 호출 후 콜백을 받을 수 없으므로 주의하시기 바랍니다.
 > 실수로 삭제된 경우 "Do not destroy this gameObject in order to receive callback." 에러 메시지가 노출됩니다.
 
-![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-Initialization_1.1.0.png)<br>
+![unity inspector](image/UnityDevelopersGuide/unity-developers-guide-Initialization_1.1.0.png)<br>
 **그림. Inspector를 이용한 초기화**
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
+![STANDALONE](image/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.0.0.png)
+![WEBGL](image/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.0.0.png)
+![EDITOR](image/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.0.0.png)
 
 ```cs
 static void Initialize(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Launching.LaunchingInfo> callback)
@@ -169,65 +171,6 @@ public void Initialize()
         if (Gamebase.IsSuccess(error))
         {
         	Debug.Log("Gamebase initialization is succeeded.");
-
-            if (GamebaseLaunchingStatus.IsPlayable(launchingInfo.launching.status.code))
-            {
-                Debug.Log("Playable");
-            }
-            else
-            {
-                if (launchingInfo.launching.status.code == GamebaseLaunchingStatus.REQUIRE_UPDATE)
-                {
-                    Debug.Log("RequireUpdate");
-                }
-            }
-        }
-        else
-        {
-        	Debug.Log(string.Format("Gamebase initialization is failed. error is {0}", error));
-        }
-    });
-}
-```
-
-### 2. Initialize UnitySDK with parameters
-
-인자를 이용한 초기화를 하기 위해서는 GamebaseRequest.GamebaseConfiguration 인스턴스에 값을 설정하여 Initialize API를 호출해야 합니다.
-Android, iOS 플랫폼을 사용하는 경우에는 Native에서 Callback을 받기 위해 PluginCallbackManager를 GameObject에 Add Component 하여 게임 오브젝트의 컴포넌트로 추가합니다.
-
-1. 빈 게임 오브젝트를 생성합니다.
-2. 생성한 게임 오브젝트에 PluginCallbackManager.cs 파일을 Add Component 하여 게임 오브젝트의 컴포넌트로 추가합니다.
-3. GamebaseRequest.GamebaseConfiguration 인스턴스에 appID, appVersion, zoneType을 설정합니다.
-4. Gamebase.Initialize(configuration, callback) API 호출를 호출합니다.
-
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor-plugin_1.0.0.png)
-
-```cs
-static void Initialize(GamebaseRequest.GamebaseConfiguration configuration, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Launching.LaunchingInfo> callback)
-```
-
-**Example**
-
-```cs
-public void Initialize()
-{
-    var configuration = new GamebaseRequest.GamebaseConfiguration();
-    configuration.appID = GamebaseUnitySDK.AppID;
-    configuration.appVersion = GamebaseUnitySDK.AppVersion;
-
-    configuration.zoneType = "REAL";
-    configuration.enableLaunchingStatusPopup = true; // Gamebase에서 기본으로 제공해주는 팝업 사용 여부
-    configuration.storeCode = "GG";
-    configuration.fcmSenderId = "fcmSenderId"; // Android Only
-
-    Gamebase.Initialize(configuration, (launchingInfo, error) =>
-    {
-        if (Gamebase.IsSuccess(error))
-        {
-            Debug.Log("Gamebase initialization is succeeded");
 
             if (GamebaseLaunchingStatus.IsPlayable(launchingInfo.launching.status.code))
             {
@@ -290,9 +233,11 @@ Gamebase 에서는 guest 로그인을 기본으로 지원합니다. guest 이외
 특정 IDP에 대한 로그인 버튼을 클릭하였을 때, 다음 로그인 API를 구현합니다.
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
+![STANDALONE](image/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.0.0.png)
+![WEBGL](image/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.0.0.png)
+![EDITOR](image/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.0.0.png)
 
 UnityEditor에서는 Guest로그인만 지원합니다.
 
@@ -338,8 +283,8 @@ public void Login()
 해당 로그인에 대한 토큰이 만료되었거나, 토큰에 대한 검증 등이 실패하였을 때, 실패를 리턴합니다. 이 때는 [해당 IDP에 대한 로그인](#1-log-in-using-a-specific-idp)을 구현해야합니다.
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
 
 ```cs
 static void LoginForLastLoggedInProvider(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -393,9 +338,11 @@ public void Login(string providerName)
 특정 IDP에 대한 로그인을 직접 구현하고 로그인 후 받아온 AccessToken을 사용하여, 다음 로그인 API를 구현합니다.
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
+![STANDALONE](image/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.0.0.png)
+![WEBGL](image/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.0.0.png)
+![EDITOR](image/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.0.0.png)
 
 UnityEditor에서는 Facebook로그인만 지원합니다.
 
@@ -432,8 +379,11 @@ public void Login(Dictionary<string, object> credentialInfo)
 * Profile
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
+![STANDALONE](image/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.0.0.png)
+![WEBGL](image/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.0.0.png)
+![EDITOR](image/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.0.0.png)
 
 ```cs
 static string GetAuthProviderUserID(string providerName)
@@ -484,9 +434,11 @@ public void GetAuthProviderProfile(string providerName)
 로그아웃 버튼을 클릭했을 때, 다음과 같이 로그아웃 API를 구현합니다.
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
+![STANDALONE](image/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.0.0.png)
+![WEBGL](image/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.0.0.png)
+![EDITOR](image/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.0.0.png)
 
 ```cs
 static void Logout(GamebaseCallback.ErrorDelegate callback)
@@ -515,9 +467,11 @@ public void Logout()
 탈퇴 버튼을 클릭했을 때, 다음과 같이 탈퇴 API를 구현합니다.
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
+![STANDALONE](image/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.0.0.png)
+![WEBGL](image/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.0.0.png)
+![EDITOR](image/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.0.0.png)
 
 ```cs
 static void Withdraw(GamebaseCallback.ErrorDelegate callback)
@@ -553,8 +507,8 @@ Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해�
 Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 아니라, 기존에 로그인했던 IDP가 됩니다. 즉, Mapping은 단순히 IDP를 연동만 해줍니다.
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
 
 ```cs
 static void AddMapping(string providerName, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -583,8 +537,8 @@ public void AddMapping(string providerName)
 특정 IDP에 대한 연동을 해제합니다. 만약, 해제하고자 하는 IDP가 유일한 IDP라면, 실패를 리턴하게 됩니다. 연동 해제후에는 Gamebase 내부에서, 해당 IDP에 대한 로그아웃처리를 해줍니다.
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
 
 ```cs
 static void RemoveMapping(string providerName, GamebaseCallback.ErrorDelegate callback)
@@ -615,8 +569,9 @@ public void RemoveMapping(string providerName)
 구매하고자 하는 아이템의 itemSeq를 이용해 다음의 API를 호출하여 구매요청을 합니다.
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
+![WEBGL](image/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.0.0.png)
 
 ```cs
 static void RequestPurchase(long itemSeq, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
@@ -653,8 +608,9 @@ public void RequestPurchase(long itemSeq)
 아이템 목록을 조회하기 위하여 다음의 API를 호출합니다. 콜백으로 리턴되는 Array 안에는 각 아이템들에 대한 정보가 담겨 있습니다.
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
+![WEBGL](image/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.0.0.png)
 
 ```cs
 static void RequestItemListPurchasable(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableItem>> callback)
@@ -684,8 +640,8 @@ public void RequestItemListPurchasable()
 아이템을 구매는 하였지만, 정상적으로 아이템이 소비(배송, 지급)되었지 않은 미소비 결제내역을 요청합니다. 해당 내역을 받은 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
 
 ```cs
 static void RequestItemListOfNotConsumed(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
@@ -718,8 +674,8 @@ public void RequestItemListOfNotConsumed()
 스토어 결제는 정상적으로 이루어졌지만, ToastCloud IAP 서버 검증 실패 등으로 인해 정상적으로 결제가 이뤄지지 않은 경우에, 해당 API를 이용하여 재처리를 시도합니다. 최종적으로 결제가 성공한 내역을 바탕으로, 아이템 배송(지급)등의 API를 호출하여 처리를 해주어야합니다.
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
 
 ```cs
 static void RequestRetryTransaction(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableRetryTransactionResult> callback)
@@ -754,8 +710,8 @@ public void RequestRetryTransaction()
 다음의 API를 호출하여, ToastCloud Push에 해당 사용자를 등록합니다. Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야간 광고성 Push 동의 여부(enableAdNightPush)값을 사용자로부터 받아온 후, 다음의 API 호출을 통해 등록을 완료합니다.
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
 
 ```cs
 static void RegisterPush(NativeRequest.Push.PushConfiguration pushConfiguration, GamebaseCallback.ErrorDelegate callback)
@@ -792,8 +748,8 @@ public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNig
 사용자의 Push 설정을 조회하기 위해서, 다음의 API를 이용합니다. 콜백으로 오는 PushConfiguration 값을 바탕으로, 사용자 설정값을 얻을 수 있습니다.
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
 
 ```cs
 static void QueryPush(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Push.PushConfiguration> callback)
@@ -831,8 +787,9 @@ Fullscreen 스타일은 네비게이션바를 가지며, Close/GoBack 버튼을 
 
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
+
 ```cs
 static void ShowWebBrowser(string url)
 ```
@@ -849,8 +806,9 @@ Popup 웹뷰를 지원합니다.
 Popup 스타일은 기존화면 위에 모달뷰 형식으로 나타나게 되며, 뒷 배경은 투명한 mask view로 덮어씌워집니다.
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
+
 ```cs
 static void ShowWebPopup(string url)
 ```
@@ -866,8 +824,9 @@ public void ShowWebPopup(string url)
 Gamebase에서는 기본적인 웹뷰를 지원하고 Customizing이 가능합니다.
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
+
 ```cs
 static void ShowWebView(GamebaseRequest.Webview.GamebaseWebViewConfiguration configuratio)
 ```
@@ -895,8 +854,9 @@ Gamebase에서는 기본적인 웹뷰를 지원하고 Customizing이 가능합�
 Local HTML 파일을 웹뷰에서 로딩이 가능합니다.
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
+
 ```cs
 static void ShowWebViewFile(GamebaseRequest.Webview.GamebaseWebViewConfiguration configuratio)
 ```
@@ -926,8 +886,9 @@ System Alert 를 위한 API를 제공합니다.
 다음의 API를 통해서, 사용자는 Alert에 버튼 및 콜백을 등록할 수 있습니다.
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+![IOS](image/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.0.0.png)
+![ANDROID](image/UnityDevelopersGuide/unity-developers-guide-icon-android_1.0.0.png)
+
 ```cs
 static void ShowAlertDialog(string title, string message, string okTitle, GamebaseCallback.VoidDelegate okCallback, string cancelTitle, GamebaseCallback.VoidDelegate cancelCallback)
 ```

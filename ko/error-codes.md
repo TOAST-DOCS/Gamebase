@@ -1,4 +1,4 @@
-## Game > Gamebase > Error Code
+## Upcomming Products > Gamebase > Error Code
 
 ## Client SDK
 
@@ -26,6 +26,7 @@
 |  |  AOS, UNITY<br>IOS | AUTH\_NOT\_SUPPORTED\_PROVIDER<br>TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
 |  |  AOS, UNITY<br>IOS | AUTH\_NOT\_EXIST\_MEMBER<br>TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
 |  |  AOS, UNITY<br>IOS | AUTH\_INVALID\_MEMBER<br>TCGB\_ERROR\_AUTH\_INVALID\_MEMBER | 3004 | 잘못된 회원에 대한 요청입니다. |
+|  |  AOS, UNITY<br>IOS | AUTH\_INVALID\_MEMBER<br>TCGB\_ERROR\_AUTH\_BANNED\_MEMBER | 3005 | 제재된 회원입니다. |
 |  |  AOS, UNITY<br>IOS | AUTH\_EXTERNAL\_LIBRARY\_ERROR<br>TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009 | 외부 인증 라이브러리 에러입니다. |
 | Auth (Login) | AOS, UNITY<br>IOS | AUTH\_TOKEN\_LOGIN\_FAILED<br>TCGB\_ERROR\_AUTH\_TAP\_LOGIN\_FAILED | 3101 | 토큰 로그인에 실패하였습니다. |
 |  |  AOS, UNITY<br>IOS | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO<br>TCGB\_ERROR\_AUTH\_TAP\_LOGIN\_INVALID\_TOKEN\_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
@@ -60,3 +61,30 @@
 
 <br>
 <br>
+## Server
+| Module | Error Code | Notes |
+| --- | --- | --- |
+| Common | -4000001<br>-4000006 | 잘못된 파라미터 타입으로 API 호출 <br>EX) parameter 는 int 형으로 선언되어 있는데, String 형 데이터로 API가 호출됨 |
+| | -4000002<br>-4000004 | 필수 파라미터가 생략 되었거나 값이 없을때 |
+| | -4000003 | Request body에 정의되지 않은 값이 전달된 경우 |
+| | -4000005 | 필수 파라미터가 생략되었거나, 부적절한 값으로 호출될 때 |
+| | -4010001 | 잘못된 AppId가 호출 됨 |
+| | -4010002 | 잘못된 AppKey가 호출 됨 |
+| | -4010003 | 인증되지 않은 클라이언트에서 인증이 필요한 API 를 호출 한 경우 |
+| | -4010004 | 잘못된 SecretKey가 호출 됨 |
+| | -4060001 | HTTP Header에 Content-Type을 잘못 설정 |
+| | -4090001 ~ 4 | 내부 DB 관련 오류 |
+| | -4150001 | 잘못된 형식의 JSON 데이터 전달 |
+| | -5000001 ~ 15 | 내부 시스템 오류 |
+| Gateway | -4010202 | 잘못된 AppId가 호출 됨 |
+| | -4010203 | 유효하지 않은 Access Token |
+| | -4010204 | 이용정지/탈퇴/계정 유실 등 유효하지 않은 사용자 |
+| | -4040201 | 호출한 API에 대한 TC 상품이 활성화 되어 있지 않을 때 <br>EX) Leaderboard 상품을 사용 안 하는 상태에서 Gamebase 를 통해 Leaderboard API를 호출할 때 <br>혹은 Gamebase 자체가 활성화 되어 있지 않을 때 |
+| | -4040202 | 정의되어 있지 않은 API를 호출 한 경우 |
+| | -5000201 ~ 7 | Gateway 내부 시스템 오류 |
+| Member | -4000402 | UserId를 잘못 입력 했을 때 |
+| | -4000403 | 잘못된 회원에 대한 요청일 때 |
+| | -4000404 | 잘못된 Auth 에 대한 요청일 때 |
+| | -4040401 | 존재하지 않거나 탈퇴된 회원에 대한 요청일 때 |
+| | -4100401 | 이미 탈퇴된 회원에 대한 요청일 때 |
+| | -4220401 | 사용자 Auth 데이터가 정상적이지 않을 때 |
