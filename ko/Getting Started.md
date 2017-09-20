@@ -51,7 +51,7 @@ SDK 설정시에 Client 버전 정보가 필요하므로 해당 화면에서 꼭
 
 Gamebase SDK는 [SDK 다운로드 페이지](http://docs.cloud.toast.com/ko/Download/)에서 내려받을 수 있습니다.<br>SDK 다운로드 후 플랫폼별 자세한 설정 방법은 각 플랫폼별 [Developers Guide]를 참고하시기 바랍니다.
 
-* [LINK [iOS 개발프로젝트 설정하기] ] (./ios-started/)
+* [LINK [iOS 개발프로젝트 설정하기] ](./ios-started/)
 * [LINK [Android 개발프로젝트 설정하기] ](./aos-started/)
 * [LINK [Unity Plug-in 개발프로젝트 설정하기] ](./unity-started)
 

@@ -1,43 +1,38 @@
-## Game > Gamebase > Unity Developer's Guide > Authentication
-
-
+## Upcomming Products > Gamebase > Unity Developer's Guide > Authentication
 
 ## Login
 
-
-
-Gamebase 에서는 guest 로그인을 기본으로 지원합니다.</br>
-
-guest 이외의 Provider에 로그인을 하기 위해서는 해당 Provider AuthAdapter가 필요합니다.</br>
-
-AuthAdapter 대한 설정은 다음의 링크를 참고하시길 바랍니다.
-
-
-
-* [LINK [Android Setting]](aos-started#dependency)</br>
-
-* [LINK [iOS Setting]](ios-started#installation)
-
+* Gamebase 에서는 guest 로그인을 기본으로 지원합니다.</br>
+* Guest 이외의 Provider에 로그인을 하기 위해서는 해당 Provider AuthAdapter가 필요합니다.</br>
+* AuthAdapter 대한 설정은 다음의 링크를 참고하시길 바랍니다.
+	* [LINK \[Android Setting\]](aos-started#dependency)
+	* [LINK \[iOS Setting\]](ios-started#installation)
 
 
 ### Login Flow
 
-* **LoginForLastLoggedInProvider**를 호출하여, 이전 로그인한 정보를 사용하여 Gamebase 로그인 시도
+* 앱에서의 Gamebase인증상태에 따른 처리 방법을 설명합니다.
 
-* Network와 관련된 로그인 실패 시, **LoginForLastLoggedInProvider** 메소드를 사용하여 로그인 재 시도
+* 앱을 처음 설치했을 때, 타이틀 화면에서 로그인을 시도할 경우 로그인 정보(Gamebase AccessToken)가 존재하지 않기 때문에, ID/PW등을 입력하여, 로그인 할 수 있도록 합니다.
+	1. 타이틀 화면 등에서는 명확하게 로그인이 되지 않은 상태로 판단하여, **IDP login API**를 호출하여 로그인을 시도합니다.
+	2. 로그인 성공 시에는 게임을 진행할 수 있도록 합니다.
+	3. 로그인이 실패는 시에는 **IDP login API**을 다시 호출시도할 수 있도록 합니다.
+		* 로그인 실패 사유가 **AUTH_BANNED_MEMBER(3005)** 와 같은 경우라면 로그인이 항상 실패할 것이기 때문에 적절한 안내와 함께 게임 진입이되지 않도록 처리합니다.
 
-	* 네트워크 에러 : **SOCKET_ERROR(110)**, **SOCKET_RESPONSE_TIMEOUT(101)**
-
-* Gamebase Server 로그인 실패 시, **Login** 메서드를 호출하여, 로그인 시도
-
-
+* 앱을 처음 실행하는 것이 아니라서, 로그인 정보(Gamebase AccessToken)가 남아있을 경우
+	1. 앱을 background에서 foreground로 전환할 때와 같이 local에 로그인 정보가 남아 있을 경우, **LoginForLastLoggedInProvider**를 호출하여, ID/PW를 입력 받지 않고 로그인을 시도합니다.
+	2. 로그인 성공 시에는 게임을 진행할 수 있도록 합니다.
+	3. 로그인 실패 시에는, 에러별로 다른 처리가 필요합니다.
+		* 로그인 실패 사유가 Network 오류일 경우: **LoginForLastLoggedInProvider**를 재시도 하도록 합니다.
+			* 네트워크 에러 : **SOCKET_ERROR(110)**, **SOCKET_RESPONSE_TIMEOUT(101)**
+		* 로그인 실패 사유가 서버 오류일 경우: 기존의 로그인 정보가 인증을 받을 수 없는 상태이기 때문에 **IDP login API**을 다시 호출할 수 있도록 합니다. (Title Scene으로의 화면 전환 등)
+    	* 로그인 실패 사유가 **AUTH_BANNED_MEMBER(3005)** 와 같은 경우라면 로그인이 항상 실패할 것이기 때문에 적절한 안내와 함께 게임 진입이 되지 않도록 처리합니다.
+		
 
 ### Banned User of Login
 
-이용정지 회원일 경우 LoginForLastLoggedInProvider/Login API를 호출하면 **AUTH_BANNED_MEMBER(3005)** 에러를 리턴합니다.</br>
-
+이용정지 회원일 경우 LoginForLastLoggedInProvider/Login API를 호출하면 **AUTH_BANNED_MEMBER(3005)** 에러를 리턴합니다.
 [GetBanInfo](#gets-banned-user-infomation) API로 ban정보를 가져올 수 있습니다.
-
 
 
 ### Login as the Latest Login IDP
@@ -45,11 +40,8 @@ AuthAdapter 대한 설정은 다음의 링크를 참고하시길 바랍니다.
 
 
 가장 최근에 로그인한 IDP로의 로그인을 시도합니다.</br>
-
 해당 로그인에 대한 토큰이 만료되었거나, 토큰에 대한 검증 등이 실패하였을 때, 실패를 리턴합니다.</br>
-
 이 때는 [해당 IDP에 대한 로그인](#login-using-a-specific-idp)을 구현해야합니다.
-
 
 
 **API**<br>
@@ -370,7 +362,7 @@ public void Login(string providerName, Dictionary<string, object> additionalInfo
 
 
 
-특정 IDP에 대한 로그인을 직접 구현하고 로그인 후 받아온 AccessToken을 사용하여, 다음 로그인 API를 구현합니다.
+게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증을 하고 발급받은 AccessToken등을 이용하여, Gamebase 로그인을 할 수 있는 인터페이스 입니다.
 
 
 

@@ -1,4 +1,4 @@
-## Game > Gamebase > iOS Developer's Guide > Initialization
+## Upcomming Products > Gamebase > iOS Developer's Guide > Initialization
 
 ## Initialization
 

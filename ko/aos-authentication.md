@@ -1,4 +1,4 @@
-## Game > Gamebase > Android Developer's Guide  > Authentication
+## Upcomming Products > Gamebase > Android Developer's Guide  > Authentication
 
 ## Login
 
@@ -25,7 +25,7 @@
 		* 로그인 실패 사유가 Network 오류일 경우: **loginForLastLoggedInProvider**를 재시도 하도록 합니다.
 			* 네트워크 에러 : **SOCKET_ERROR(110)**, **SOCKET_RESPONSE_TIMEOUT(101)**
 		* 로그인 실패 사유가 서버 오류일 경우: 기존의 로그인 정보가 인증을 받을 수 없는 상태이기 때문에 **IDP login API**을 다시 호출할 수 있도록 합니다. (Title Scene으로의 화면 전환 등)
-    	* 로그인 실패 사유가 **AUTH_BANNED_MEMBER(3005)** 와 같은 경우라면 로그인이 항상 실패할 것이기 때문에 적절한 안내와 함께 게임 진입이되지 않도록 처리합니다.
+    	* 로그인 실패 사유가 **AUTH_BANNED_MEMBER(3005)** 와 같은 경우라면 로그인이 항상 실패할 것이기 때문에 적절한 안내와 함께 게임 진입이 되지 않도록 처리합니다.
 		
 
 ### Banned User of Login
@@ -34,10 +34,11 @@
 GetBanInfo API로 ban정보를 가져올 수 있습니다.
 
 
-### Login as the Last Login IDP
+### Login as the Latest Login IDP
 
 가장 최근에 로그인한 IDP로의 로그인을 시도합니다. <br/>
-해당 로그인에 대한 토큰이 만료되었거나, 토큰에 대한 검증 등이 실패하였을 때 실패를 리턴합니다. 이 때는 해당 IDP에 대한 로그인을 구현해주어야합니다.
+해당 로그인에 대한 토큰이 만료되었거나, 토큰에 대한 검증 등이 실패하였을 때 실패를 리턴합니다. <br/>
+이 때는 해당 IDP에 대한 로그인을 구현해주어야합니다.
 
 ```java
 Gamebase.loginForLastLoggedInProvider(new GamebaseDataCallback<AuthToken>() {
@@ -87,9 +88,10 @@ private static void onLoginForGuest(final Activity activity) {
 ```
 
 
-### Login using IDP
+### Login with IDP
 
 특정 IDP에 대한 로그인 버튼을 클릭하였을 때, 다음 로그인 API를 구현합니다.
+
 ```java
 private static void onLoginForGoogle(final Activity activity) {
     Gamebase.login(activity, AuthProvider.GOOGLE, new GamebaseDataCallback<AuthToken>() {
@@ -121,7 +123,8 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 ### Login with Credential
 
-외부 인증 라이브러리에서 발급한 access token을 이용하여 Gamebase에 로그인 합니다.
+게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증을 하고 발급받은 AccessToken등을 이용하여, Gamebase 로그인을 할 수 있는 인터페이스 입니다.
+
 
 ```java
 Map<String, Object> credentialInfo = new HashMap<>();
@@ -142,7 +145,7 @@ Gamebase.login(activity, credentialInfo, new GamebaseDataCallback<AuthToken>() {
         });
 ```
 
-### Get Authentication Information for External IDP.
+### Get Authentication Information for External IDP
 
 외부 인증 SDK에서 AccessToken, UserId, Profile 등의 정보를 가져올 수 있습니다.
 
@@ -157,7 +160,7 @@ String name = profile.getName();    // or profile.information.get("name")
 String email = profile.getEmail();  // or profile.information.get("email")
 ```
 
-### Authentication Additional Information Settings.
+### Authentication Additional Information Settings
 
 #### Facebook
 * **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.

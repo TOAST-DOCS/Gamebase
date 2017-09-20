@@ -1,4 +1,4 @@
-## Game > Gamebase > iOS Developer's Guide > Authentication
+## Upcomming Products > Gamebase > iOS Developer's Guide > Authentication
 
 
 ## Login
@@ -149,7 +149,11 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 
 ### Login with Credential
+
 게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증을 하고 발급받은 AccessToken등을 이용하여, Gamebase 로그인을 할 수 있는 인터페이스 입니다.
+
+
+
 
 * Credential 파라미터의 설정방법
 | keyname | a use | 값 종류 |
@@ -233,7 +237,9 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 탈퇴에 성공하면, 로그인 했던 IDP와 연동 되어 있던 유저 데이터는 삭제 됩니다.</br>
 해당 IDP로 다시 로그인 가능하고 새로운 유저 데이터를 생성합니다.</br>
 Gamebase 탈퇴를 의미하며, IDP 계정 탈퇴를 의미하지는 않습니다.</br>
-탈퇴 성공 시 IDP 로그아웃을 시도하게 합니다.</br>
+탈퇴 성공 시 IDP 로그아웃을 시도하게 합니다.</br></br>
+
+
 탈퇴 버튼을 클릭했을 때 다음과 같이 탈퇴 API를 구현합니다.
 
 
