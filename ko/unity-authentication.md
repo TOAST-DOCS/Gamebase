@@ -6,20 +6,20 @@ Gamebase 에서는 guest 로그인을 기본으로 지원합니다.</br>
 guest 이외의 Provider에 로그인을 하기 위해서는 해당 Provider AuthAdapter가 필요합니다.</br>
 AuthAdapter 대한 설정은 다음의 링크를 참고하시길 바랍니다.
 
-* Android : [설정 링크](./Android Developer`s Guide#dependency)
-* iOS : [설정 링크](./iOS Developer`s Guide#setting-xcode-project-to-use-gamebase)
+* LINK [Android Setting](./Android Developer`s Guide#dependency)
+* LINK [iOS Setting](./iOS Developer`s Guide#setting-xcode-project-to-use-gamebase)
 
-### Login flow
+### Login Flow
 * **LoginForLastLoggedInProvider**를 호출하여, 이전 로그인한 정보를 사용하여 Gamebase 로그인 시도
 * Network와 관련된 로그인 실패 시, **LoginForLastLoggedInProvider** 메소드를 사용하여 로그인 재 시도
 	* 네트워크 에러 : **SOCKET_ERROR(110)**, **SOCKET_RESPONSE_TIMEOUT(101)**
 * Gamebase Server 로그인 실패 시, **Login** 메서드를 호출하여, 로그인 시도
 
-### Banned user of login
+### Banned User of Login
 이용정지 회원일 경우 LoginForLastLoggedInProvider/Login API를 호출하면 **AUTH_BANNED_MEMBER(3005)** 에러를 리턴합니다.</br>
 [GetBanInfo](#gets-banned-user-infomation) API로 ban정보를 가져올 수 있습니다.
 
-### Login as the latest login IDP
+### Login as the Latest Login IDP
 
 가장 최근에 로그인한 IDP로의 로그인을 시도합니다.</br>
 해당 로그인에 대한 토큰이 만료되었거나, 토큰에 대한 검증 등이 실패하였을 때, 실패를 리턴합니다.</br>
@@ -112,7 +112,7 @@ public void Login()
 }
 ```
 
-### Login using a specific IDP
+### Login with IDP
 
 특정 IDP에 대한 로그인 버튼을 클릭하였을 때, 다음 로그인 API를 구현합니다.
 
@@ -182,7 +182,7 @@ public void Login(string providerName, Dictionary<string, object> additionalInfo
 }
 ```
 
-### Login with access token of external IDP
+### Login with Credential
 
 특정 IDP에 대한 로그인을 직접 구현하고 로그인 후 받아온 AccessToken을 사용하여, 다음 로그인 API를 구현합니다.
 
@@ -219,7 +219,7 @@ public void Login(Dictionary<string, object> credentialInfo)
 }
 ```
 
-### Authentication additional Information settings
+### Authentication Additional Information Settings
 
 #### Facebook
 * **TOAST Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
@@ -314,7 +314,7 @@ public void Withdraw()
 Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시키는 기능입니다.</br>
 특정 IDP에 연동된(guest 포함) 계정에 다른 IDP의 계정을 연동하였을 때, 각각의 계정들에 대해서 UserID는 동일하게 주어집니다.
 
-### Add mapping
+### Add Mapping
 
 특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다.</br>
 Mapping을 하려는 IDP의 계정이 이미 다른 계정이 연동이 되어있다면, **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 에러를 리턴합니다.
@@ -348,7 +348,7 @@ public void AddMapping(string providerName)
 }
 ```
 
-### Remove mapping
+### Remove Mapping
 
 특정 IDP에 대한 연동을 해제합니다. 만약, 해제하고자 하는 IDP가 유일한 IDP라면, 실패를 리턴하게 됩니다.</br>
 연동 해제후에는 Gamebase 내부에서, 해당 IDP에 대한 로그아웃처리를 해줍니다.
@@ -379,7 +379,7 @@ public void RemoveMapping(string providerName)
 }
 ```
 
-## Gets mapping list
+### Gets Mapping List
 
 UserId에 연동되어 있는 IDP 목록을 리턴하게 됩니다.</br>
 
@@ -399,10 +399,10 @@ public void GetAuthMappingList()
 }
 ```
 
-## Gets authentication information for Gamebase
+## Gets Authentication Information for Gamebase
 Gamebase에서 발급한 인증 정보를 가져올 수 있습니다.
 
-### Gets user id
+### Gets UserID
 
 Gamebase에서 발급한 UserID를 가져올 수 있습니다.
 
@@ -425,7 +425,7 @@ public void GetUserID()
 }
 ```
 
-### Gets accessToken
+### Gets AccessToken
 
 Gamebase에서 발급한 AccessToken을 가져올 수 있습니다.
 
@@ -448,7 +448,7 @@ public void GetAccessToken()
 }
 ```
 
-### Gets last loggedIn provider
+### Gets Last LoggedIn Provider Name
 
 Gamebase에서 마지막 로그인에 성공한 ProviderName을 가져올 수 있습니다.
 
@@ -469,11 +469,11 @@ public void GetLastLoggedInProvider()
 ```
 
 
-## Gets authentication Information for external IDP
+## Gets Authentication Information for External IDP
 
 외부 인증 SDK에서 AccessToken, UserId, Profile 등의 인증 정보를 가져올 수 있습니다.
 
-### Gets authentication user id for external IDP
+### Gets UserID
 
 외부 인증 SDK에서 UserID를 가져올 수 있습니다.
 
@@ -496,7 +496,7 @@ public void GetAuthProviderUserID(string providerName)
 }
 ```
 
-### Gets authentication accessToken for external IDP
+### Gets AccessToken
 
 외부 인증 SDK에서 AccessToken을 가져올 수 있습니다.
 
@@ -519,7 +519,7 @@ public void GetAuthProviderAccessToken(string providerName)
 }
 ```
 
-### Gets authentication profile for external IDP
+### Gets Profile
 
 외부 인증 SDK에서 Profile을 가져올 수 있습니다.
 
@@ -542,7 +542,7 @@ public void GetAuthProviderProfile(string providerName)
 }
 ```
 
-## Gets banned user infomation
+## Gets Banned User Infomation
 
 이용정지 정보를 리턴합니다.</br>
 
@@ -564,3 +564,32 @@ public void GetBanInfo()
     GamebaseResponse.Auth.BanInfo banInfo = Gamebase.GetBanInfo();
 }
 ```
+
+### Error Handling
+| Error | Error Code | Notes |
+| ----- | ---------- | ----- |
+| AUTH_USER_CANCELED | 3001 | 로그인이 취소되었습니다. |
+| AUTH_NOT_SUPPORTED_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
+| AUTH_NOT_EXIST_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
+| AUTH_INVALID_MEMBER | 3004 | 잘못된 회원에 대한 요청입니다. |
+| AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 외부 인증 라이브러리 에러입니다. |
+| AUTH_TOKEN_LOGIN_FAILED | 3101 | 토큰 로그인에 실패하였습니다. |
+| AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
+| AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | 최근에 로그인한 IDP 정보가 없습니다. |
+| AUTH_IDP_LOGIN_FAILED | 3201 | IDP 로그인에 실패하였습니다. |
+| AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3202 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
+| AUTH_ADD_MAPPING_FAILED | 3301 | 맵핑 추가에 실패하였습니다. |
+| AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | 이미 다른 멤버에 맵핑되어있습니다. |
+| AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | 이미 같은 IDP에 맵핑되어있습니다. |
+| AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
+| AUTH_REMOVE_MAPPING_FAILED | 3401 | 맵핑 삭제에 실패하였습니다. |
+| AUTH_REMOVE_MAPPING_LAST_MAPPED\_IDP | 3402 | 마지막에 맵핑된 IDP는 삭제할 수 없습니다. |
+| AUTH_REMOVE_MAPPING_LOGGED_IN\_IDP | 3403 | 현재 로그인되어있는 IDP 입니다. |
+| AUTH_LOGOUT_FAILED | 3501 | 로그아웃에 실패하였습니다. |
+| AUTH_WITHDRAW_FAILED | 3601 | 탈퇴에 실패하였습니다. |
+| AUTH_NOT_PLAYABLE | 3701 | 플레이할 수 없는 상태입니다. (점검 또는 서비스 종료 등) |
+| AUTH_UNKNOWN_ERROR | 3999 | 알수 없는 에러입니다. (정의 되지 않은 에러입니다.) |
+* 전체 에러코드 참조 : [LINK \[Entire Error Codes\]](./error-codes#client-sdk)
+
+#### AUTH_EXTERNAL_LIBRARY_ERROR
+* 이 에러는 TOAST Cloud 외부 인증 라이브러리에서 발생한 에러입니다.

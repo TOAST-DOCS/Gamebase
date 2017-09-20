@@ -69,7 +69,7 @@ Gamebase WebView에서 로딩한 WebPages내에 scheme을 사용하여, 특정 �
 
 ##### Predefined Custom Scheme
 
-Gamebase에서 지정해 놓은 Scheme 입니다.
+Gamebase에서 지정해 놓은 Scheme 입니다.<br/>
 
 | scheme | 용도 |
 | --- | --- | --- |
@@ -77,6 +77,7 @@ Gamebase에서 지정해 놓은 Scheme 입니다.
 | gamebase://goBack | WebView 뒤로가기 |
 | gamebase://getUserId | 현재 로그인되어 있는 유저의 UserId를 표시 |
 | gamebase://getMaintenanceInfo | 점검 내용을 WebPage에 표시 |
+
 
 
 ##### User Custom Scheme
@@ -87,18 +88,18 @@ Gamebase에 유저가 scheme명과 block을 지정하여 원하는 기능을 추
 ```objectivec
 
 - (void)setCustomSchemes {
-	// gamebase://openSafari 라는 scheme을 등록하여, 'url'이라는 파라미터의 주소를 Safari browser로 로딩하도록 하는 예제
+	// reigster an scheme called 'gamebase://openSafari' to load an page has url
     [TCGBWebView addCustomScheme:@"gamebase://openSafari" block:^(UIViewController<TCGBWebViewDelegate> *viewController, TCGBWebURL *webURL) {
-        NSLog(@"%@ 호출!", webURL.host);
+        NSLog(@"%@ called!", webURL.host);
         __block NSMutableString *url = [[NSMutableString alloc] init];
-        // 파라미터를 파싱
+        // Parsing parameters
         [webURL.query enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             if ([key caseInsensitiveCompare:@"url"] == NSOrderedSame) {
                 url = obj;
             }
         }];
         
-        // 외부 브라우저를 오픈
+        // Open Safari Browser
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:^(BOOL success) {
             NSLog(@"Safari URL : %@", url);
         }];
@@ -111,20 +112,20 @@ Gamebase에 유저가 scheme명과 block을 지정하여 원하는 기능을 추
 System Alert 를 위한 API를 제공합니다.<br/>
 iOS8 이상에서 동작하는 UIAlertController와, iOS8 미만에서의 UIAlertView 처리를 내부적으로 해줍니다.<br/>
 
-#### 종류
+#### Types of Alert
 1. '확인'버튼 1개만 제공하며, 확인버튼 클릭 시, completion이 호출됩니다.
 2. '확인'버튼 1개만 제공하며, completion을 제공하지 않습니다.
 
 ```objectivec
 
-// 1. Completion을 제공하는 Alert
+// 1. Alert has completion
 - (void)showAlertWithCompletion:(id)sender {
 	[TCGBUtil showAlertWithTitle:@"TITLE" message:@"MESSAGE" completion:^{
-    	NSLog(@"확인버튼을 클릭했습니다.");
+    	NSLog(@"Tapped OK Button.");
     }];
 }
 
-// 2. Completion을 제공하지 않는 Alert
+// 2. Alert without completion
 - (void)showAlertWitoutCompletion:(id)sender {
 	[TCGBUtil showAlertWithTitle:@"TITLE" message:@"MESSAGE"];
 }
@@ -139,6 +140,18 @@ iOS8 이상에서 동작하는 UIAlertController와, iOS8 미만에서의 UIAler
 ```objectivec
 - (void)showToastMessage:(id)sender {
 	// 3초 동안 메시지 나타내기
-	[TCGBUtil showToastMessage:@"토스트 메시지 기능" duration:3];
+	[TCGBUtil showToastMessage:@"TOAST MESSAGE" duration:3];
 }
 ```
+
+
+### Error Handling
+
+
+| Error | Error Code | Notes |
+| --- | --- | --- |
+| TCGB\_ERROR\_UI\_UNKNOWN\_ERROR | 6999 | 알수 없는 에러입니다. (정의되지 않은 에러입니다.) |
+
+
+
+* 전체 에러코드 참조 : [LINK \[Entire Error Codes\]](./error-codes#client-sdk)

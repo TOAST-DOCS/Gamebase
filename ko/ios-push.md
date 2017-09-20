@@ -20,7 +20,7 @@
 	* **development**: Sandbox APNS
 	* **production**:  APNS
 
-### Import Header file into View Controller
+### Import Header File
 
 구매 API를 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 

@@ -1,4 +1,4 @@
-## Game > Gamebase > Developer's Guide (Unity) > Getting Started
+## Game > Gamebase > Unity Developer's Guide > Getting Started
 
 ## Getting Started
 
@@ -41,6 +41,7 @@ UNITY_EDITOR 에서도 일부 기능을 테스트 할 수 있습니다.
 
 API 별 지원하는 플랫폼은 아래와 같은 icon 으로 구분합니다.
 
+**API**<br>
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
 ![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
@@ -75,18 +76,18 @@ Unity Android 빌드 시 필요한 Unity 설정에 대해 설명합니다.
 * gamebase-sdk-{version}.aar
 * gamebase-sdk-base-{version}.aar
 
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started_001_1.2.0.png)
+![Add Adroid SDK](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started_001_1.2.0.png)
 
 #### 2. Auth Adapter
 
 Gamebase Android SDK 는 Google 과 같은 ID Provider(이하 IDP) 와의 연동을 지원합니다.
 Auth Adapter 는 3rd-Party IDP SDK 인터페이스를 구현하고 있으며 Gamebase 와 IDP 연동 시 필요한 정보를 Gamebase로 전달합니다.
 
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started_003_1.2.0.png)
+![Auth Adapter](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started_003_1.2.0.png)
 
 Facebook 인증 연동이 필요할 경우, gamebase-adapter-auth-facebook 폴더 내 파일들을 Assets/Plugins/Android/libs/Gamebase 폴더에 추가합니다.
 
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started_002_1.2.0.png)
+![Add Facebook Adapter](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started_002_1.2.0.png)
 
 #### 3. Push
 
@@ -127,10 +128,9 @@ Android SDK 추가 설정은 아래 링크를 참조 하시기 바랍니다
 
 * [LINK \[Android SDK 추가 설정 링크\]](./Android Developer`s Guide#initialization)
 
-![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-AndroidSetting_1.0.0.png)<br>
-**그림. Android SDK 추가하기**
+![Add Android SDK](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-AndroidSetting_1.2.0.png)<br>
 
-#### IOS SDK settings
+### IOS SDK Settings
 
 1. Unity 프로젝트에서 IOS 빌드를 진행합니다.
 2. 생성 된 XCode 프로젝트에 Gamebase IOS SDK 파일 및 설정을 추가 합니다.

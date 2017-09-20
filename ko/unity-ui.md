@@ -56,7 +56,7 @@ GamebaseWebViewConfiguration 설정으로 WebView를 Customizing 할 수 있습�
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
 
 ```cs
-static void ShowWebView(GamebaseRequest.Webview.GamebaseWebViewConfiguration configuratio)
+static void ShowWebView(GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration)
 ```
 
 **Example**
@@ -78,7 +78,7 @@ public void ShowWebView()
 }
 ```
 
-### Custom WebView with local url
+### Custom WebView with Local Url
 
 로컬에 가지고 있는 html 파일을 Custom WebView에 노출합니다. <br/>
 GamebaseWebViewConfiguration 설정으로 WebView를 Customizing 할 수 있습니다.
@@ -190,3 +190,10 @@ public void ShowToast(string message, int duration)
         );
 }
 ```
+
+### Error Handling
+
+| Error | Error Code | Notes |
+| ----- | ---------- | ----- |
+| UI\_UNKNOWN\_ERROR | 6999 | 알 수 없는 에러입니다. (정의되지 않은 에러입니다.) |
+* 전체 에러코드 참조 : [LINK \[Entire Error Codes\]](./error-codes#client-sdk)

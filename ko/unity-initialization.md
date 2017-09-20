@@ -1,10 +1,10 @@
-## Game > Gamebase > Developer's Guide (Unity) > Initialization
+## Game > Gamebase > Unity Developer's Guide > Initialization
 
 ## Initialization
 
 Gamebase Unity SDK 초기화에 대해 설명합니다.
 
-### Settings required for initialization
+### Required Settings
 
 Gamebase Unity SDK를 사용하려면 반드시 초기화를 진행해야 하며 App ID, App Version 정보는 TOAST Cloud Console에 등록되어 있어야 합니다.
 
@@ -26,13 +26,13 @@ Gamebase Unity SDK를 사용하려면 반드시 초기화를 진행해야 하며
 
 TOAST Cloud에 등록 된 프로젝트 ID 입니다.
 
-![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_001_1.2.0.png)
+![App ID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_001_1.2.0.png)
 
 #### 2. appVersion
 
 TOAST Cloud에 등록한 클라이언트 버전입니다.
 
-![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_002_1.2.0.png)
+![App Version](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_002_1.2.0.png)
 
 #### 3. zoneType
 
@@ -77,15 +77,15 @@ TOAST Cloud의 통합 인앱 결제 서비스 상품인 IAP(In-App Purchase)를 
 
 Firebase Cloud Messaging (FCM) 사용을 위한 Sender ID 입니다.
 
-![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
+![FCM Sender ID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
 
 #### GamebaseUnitySDKSettings
 
 위에서 설명한 설정들은 GamebaseUnitySDKSettings 컴포넌트의 Inspector에서 변경할 수 있습니다.
 
-![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_003_1.2.0.png)
+![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_003_1.2.0.png)
 
-### Initialize GamebaseUnitySDK using Inspector settings
+### Initialize with Inspector Settings
 
 Gamebase Unity SDK 를 초기화 하는 방법은 다음과 같습니다.
 
@@ -170,7 +170,7 @@ Gamebase Unity SDK 초기화 설정에 입력한 appVersion의 게임 상태 정
 
 appVersion 추가 및 수정은 TOAST Console에서 할 수 있습니다.
 
-![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_006_1.2.0.png)
+![Launching Status](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_006_1.2.0.png)
 
 status code는 아래 표를 참고하십시오.
 
@@ -202,7 +202,7 @@ TOAST Console에 등록 된 App 정보입니다.
 * idP : 인증 정보
 * typeCode
 
-![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_005_1.2.0.png)
+![Launching App](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_005_1.2.0.png)
 
 ##### 1.3 maintenance
 
@@ -215,7 +215,7 @@ TOAST Console에 등록 된 점검 정보입니다.
 * beginDate : 시작시간
 * endDate : 종료시간
 
-![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_007_1.2.0.png)
+![Launching Maintenance](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_007_1.2.0.png)
 
 ##### 1.4 notice : 공지
 
@@ -244,4 +244,4 @@ TOAST Console에 등록 된 IAP Store 정보입니다.
 * name : App Name
 * storeCode : Store Code
 
-![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_008_1.2.0.png)
+![Launching TC IAP](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_008_1.2.0.png)

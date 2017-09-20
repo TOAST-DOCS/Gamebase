@@ -8,7 +8,7 @@
 1. 테스트용 앱 빌드를 업로드
 2. In-App Purchases 상품을 등록 및 승인
 3. Sandbox Tester 계정등록
-* Detail Guide for iTunes-Connect : https://help.apple.com/itunes-connect/developer/#/devb57be10e7
+* Detail Guide for iTunes-Connect : [LINK \[Apple Guide\]](https://help.apple.com/itunes-connect/developer/#/devb57be10e7)
 
 #### Toast Cloud Console 등록
 ToastCloud Console에서 설정해야하는 내용입니다.
@@ -173,6 +173,8 @@ ToastCloud Console에서 설정해야하는 내용입니다.
 | TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201 | IAP 라이브러리 에러입니다.<br>error.message 를 확인하세요. |
 | TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR | 4999 | 정의되지 않은 구매 에러입니다.<br>전체 로그를 Gamebase 개발팀에 전달하여 에러상황을 문의해 주세요. |
 
+* [LINK \[Entire Error Codes\]](./error-codes#client-sdk)
+
 
 
 #### TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR
@@ -181,12 +183,12 @@ ToastCloud Console에서 설정해야하는 내용입니다.
 * 에러 코드 확인은 다음과 같이 확인하실 수 있습니다.
 
 ```objectivec
-TCGBError *tcgbError = error; // Callback 으로 넘어온 TCGBError 인스턴스
-NSError *moduleError = [tcgbError.userInfo objectForKey:NSUnderlyingErrorKey]; // 외부 라이브러리에서 발생한 에러객체
+TCGBError *tcgbError = error; // TCGBError object via callback
+NSError *moduleError = [tcgbError.userInfo objectForKey:NSUnderlyingErrorKey]; // NSError object from external module
 NSInteger moduleErrorCode = moduleError.code;
 NSString *moduleErrorMessage = moduleError.message;
 
-// 아래 [tcgbError description] 호출을 통해서 json format의 전체 에러 정보를 얻을 수 있습니다.
+// If you use **description** method, you can get entire information of this object by JSON Format
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
