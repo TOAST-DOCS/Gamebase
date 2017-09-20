@@ -10,7 +10,6 @@ Fullscreen 스타일은 네비게이션바를 가지며, Close/GoBack 버튼을 
 
 
 **API**<br>
-<img align="left" src="http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png" >
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
 
@@ -33,9 +32,7 @@ Popup 웹뷰를 지원합니다.</br>
 Popup 스타일은 기존화면 위에 모달뷰 형식으로 나타나게 되며, 뒷 배경은 투명한 mask view로 덮어씌워집니다.
 
 **API**<br>
-<div align="left" width = "100">
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-</div>
 
 ```cs
 static void ShowWebPopup(string url)
@@ -55,10 +52,8 @@ Custom WebView를 노출합니다.<br/>
 GamebaseWebViewConfiguration 설정으로 WebView를 Customizing 할 수 있습니다.
 
 **API**<br>
-<div align="left" width = "100">
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-</div>
 
 ```cs
 static void ShowWebView(GamebaseRequest.Webview.GamebaseWebViewConfiguration configuratio)
@@ -89,10 +84,8 @@ public void ShowWebView()
 GamebaseWebViewConfiguration 설정으로 WebView를 Customizing 할 수 있습니다.
 
 **API**<br>
-<div align="left" width = "100">
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-</div>
 
 ```cs
 static void ShowWebViewFile(GamebaseRequest.Webview.GamebaseWebViewConfiguration configuratio)
@@ -143,10 +136,8 @@ System Alert 를 위한 API를 제공합니다.</br>
 다음의 API를 통해서, 사용자는 Alert에 버튼 및 콜백을 등록할 수 있습니다.
 
 **API**<br>
-<div align="left" width = "100">
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-</div>
 
 ```cs
 static void ShowAlert(string title, string message)
@@ -182,10 +173,8 @@ public void ShowAlertDialog()
 Toast를 간단하게 노출 할 수 있는 API를 제공합니다.
 
 **API**<br>
-<div align="left" width = "100">
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-</div>
 
 ```cs
 static void ShowToast(string message, int duration)
