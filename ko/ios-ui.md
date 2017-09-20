@@ -14,27 +14,38 @@ Popup 스타일은 기존화면 위에 모달뷰 형식으로 나타나게 되�
 
 웹뷰와 관련된 리소스(이미지 및 html, 기타 리소스)는 Gamebase.bundle 에 포함되어있습니다.
 
-#### Show WebView
-##### WebView Styles
-WebView는 아래와 같이 2가지의 형태를 제공합니다.
+### Browser Style WebView
 
-1. Full Screen
-2. Popup
+Fullscreen 웹뷰를 지원합니다.</br>
+Fullscreen 스타일은 네비게이션바를 가지며, Close/GoBack 버튼을 가집니다. 네비게이션바에 타이틀을 지정할 수 있습니다.
+
 
 ```objectivec
 // Show Fullscreen Style WebView
 - (void)showFullScreenWebView:(id)sender {
     [TCGBWebView showWebBrowserWithURL:@"http://cloud.toast.com" viewController:self];
 }
+```
 
+
+
+### Popup Style WebView
+
+Popup 웹뷰를 지원합니다.</br>
+Popup 스타일은 기존화면 위에 모달뷰 형식으로 나타나게 되며, 뒷 배경은 투명한 mask view로 덮어씌워집니다.
+
+
+```objectivec
 // Show Popup Style WebView
 - (void)showPopupWebView:(id)sender {
     [TCGBWebView showPopupWithURL:@"http://cloud.toast.com" viewController:self];
 }
 ```
 
-##### WebView Customizing
-WebView를 Customizing 하는 기능을 제공합니다.
+### Custom WebView
+Custom WebView를 노출합니다.
+
+TCGBWebViewConfiguration 설정으로 WebView를 Customizing 할 수 있습니다.
 
 ```objectivec
 - (void)showFixedOrientationWebView:(id)sender {
@@ -63,11 +74,11 @@ WebView를 Customizing 하는 기능을 제공합니다.
 }
 ```
 
-#### Custom Scheme in WebView
+### Custom Scheme 
 
 Gamebase WebView에서 로딩한 WebPages내에 scheme을 사용하여, 특정 기능을 사용하거나, WebPage 내용을 변경할 수 있습니다.
 
-##### Predefined Custom Scheme
+#### Predefined Custom Scheme
 
 Gamebase에서 지정해 놓은 Scheme 입니다.<br/>
 
@@ -76,11 +87,10 @@ Gamebase에서 지정해 놓은 Scheme 입니다.<br/>
 | gamebase://dismiss | WebView 닫기 |
 | gamebase://goBack | WebView 뒤로가기 |
 | gamebase://getUserId | 현재 로그인되어 있는 유저의 UserId를 표시 |
-| gamebase://getMaintenanceInfo | 점검 내용을 WebPage에 표시 |
 
 
 
-##### User Custom Scheme
+#### User Custom Scheme
 
 Gamebase에 유저가 scheme명과 block을 지정하여 원하는 기능을 추가할 수 있습니다.
 
@@ -106,6 +116,47 @@ Gamebase에 유저가 scheme명과 block을 지정하여 원하는 기능을 추
     }];
 }
 ```
+
+### Custom WebView with Local URL
+로컬에 가지고 있는 html파일을 Custom WebView에 노출합니다.
+
+TCGBWebViewConfiguration 설정으로 WebView를 Customizing 할 수 있습니다.
+
+
+
+```objectivec
+- (IBAction)clickGoButton:(id)sender {
+    NSString *urlString = @"file://here.html"
+    TCGBWebViewConfiguration *configuration = [[TCGBWebViewConfiguration alloc] init];
+    configuration.style = _style;
+    configuration.orientationMask = _orientationMask;
+    configuration.navigationBarColor = [UIColor redColor];
+    configuration.navigationBarTitle = @"Loading from Local WebPage";
+    
+    [TCGBWebView showWebViewWithLocalURL:urlString bundle:nil viewController:self configuration:configuration];
+
+}
+```
+
+
+
+### TCGBWebViewConfiguration
+
+| Parameter | Values | Description |
+| --- | --- | --- |
+| navigationBarTitle | string | 웹뷰의 타이틀 |
+| orientationMask | TCGBWebViewOrientationUnspecified | 미 지정 |
+| | TCGBWebViewOrientationPortrait | 세로모드 |
+| | TCGBWebViewOrientationPortraitUpsideDown | 세로모드 180도 회전 |
+| | TCGBWebViewOrientationLandscapeRight | 가로모드 |
+| | TCGBWebViewOrientationLandscapeLeft | 가로모드를 180도 회전 |
+| navigationBarColor | UIColor | 네비게이션바 색상 |
+| isBackButtonVisible | YES or NO | 백 버튼 활성 or 비활성 |
+| navigationBarHeight | CGFloat | 네비게이션바 높이 |
+| goBackImagePathForFullScreenNavigation | file name in Gamebase.bundle | 백 버튼 이미지 |
+| closeImagePathForFullScreenNavigation | file name in Gamebase.bundle | 닫기 버튼 이미지 |
+
+
 
 ### Alert
 

@@ -4,12 +4,10 @@
 
 ### Settings
 
+각 플랫폼별 셋팅 부분을 참고하시기 바랍니다.</br>
 
-> [INFO]
-> 
-> 각 플랫폼별 셋팅 부분을 참고하시기 바랍니다.</br>
-> * [LINK \[Android Purchase Settings\]](aos-purchase#settings)</br>
-> * [LINK \[iOS Purchase Settings\]](ios-purchase#project-settings)
+* [LINK \[Android Purchase Settings\]](aos-purchase#settings)</br>
+* [LINK \[iOS Purchase Settings\]](ios-purchase#settings)
 
 
 
@@ -75,7 +73,7 @@ public void RequestPurchase(long itemSeq)
 }
 ```
 
-### Get a List of Items Purchasable
+### Get a List of Purchasable Items
 
 아이템 목록을 조회하기 위하여 다음의 API를 호출합니다. 콜백으로 리턴되는 List 안에는 각 아이템들에 대한 정보가 담겨 있습니다.
 
@@ -107,7 +105,7 @@ public void RequestItemListPurchasable()
 }
 ```
 
-### Get a List of Items Non-Consumed
+### Get a List of Non-Consumed Items
 
 아이템을 구매는 하였지만, 정상적으로 아이템이 소비(배송, 지급)되었지 않은 미소비 결제내역을 요청합니다. 
 미결제 내역이 있는 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.
@@ -144,7 +142,7 @@ public void RequestItemListOfNotConsumed()
 }
 ```
 
-### Reprocess Purchase Transaction
+### Reprocess Failed Purchase Transaction
 
 스토어 결제는 정상적으로 이루어졌지만, ToastCloud IAP 서버 검증 실패 등으로 인해 정상적으로 결제가 이뤄지지 않은 경우에, 해당 API를 이용하여 재처리를 시도합니다. 최종적으로 결제가 성공한 내역을 바탕으로, 아이템 배송(지급)등의 API를 호출하여 처리를 해주어야합니다.
 
@@ -191,6 +189,7 @@ public void RequestRetryTransaction()
 | PURCHASE_NOT_SUPPORTED_MARKET | 4010 | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 GG(Google), TS(ONE Store), TEST 입니다. |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR | 4201 | IAP 라이브러리 에러입니다.<br>DetailCode를 확인하세요. |
 | PURCHASE_UNKNOWN_ERROR | 4999 | 정의되지 않은 구매 에러입니다.<br>전체 로그를 Gamebase 개발팀에 전달하여 에러상황을 문의해 주세요. |
+
 * 전체 에러코드 참조 : [LINK \[Entire Error Codes\]](./error-codes#client-sdk)
 
 #### PURCHASE_EXTERNAL_LIBRARY_ERROR

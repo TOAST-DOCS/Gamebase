@@ -34,6 +34,11 @@ TOAST Cloud에 등록한 클라이언트 버전입니다.
 
 ![App Version](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_002_1.2.0.png)
 
+**[TOAST Console]**
+Menu : TOAST Cloud Console > Gamebase > App
+Tab : Client
+
+
 #### 3. zoneType
 
 외부 테스트를 위해 제공되고 있는 설정이므로 값을 입력하지 않도록 합니다.
@@ -79,7 +84,7 @@ Firebase Cloud Messaging (FCM) 사용을 위한 Sender ID 입니다.
 
 ![FCM Sender ID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
 
-#### GamebaseUnitySDKSettings
+#### 10. GamebaseUnitySDKSettings
 
 위에서 설명한 설정들은 GamebaseUnitySDKSettings 컴포넌트의 Inspector에서 변경할 수 있습니다.
 
@@ -161,7 +166,7 @@ Initialize API를 사용하여 Gamebase Unity SDK를 초기화하면 LaunchingIn
 
 Gameabse launching 정보입니다.
 
-##### 1.1 status
+**1.1 status**
 
 Gamebase Unity SDK 초기화 설정에 입력한 appVersion의 게임 상태 정보입니다.
 
@@ -171,6 +176,10 @@ Gamebase Unity SDK 초기화 설정에 입력한 appVersion의 게임 상태 정
 appVersion 추가 및 수정은 TOAST Console에서 할 수 있습니다.
 
 ![Launching Status](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_006_1.2.0.png)
+
+**[TOAST Console]**
+Menu : TOAST Cloud Console > Gamebase > App
+Tab : Client
 
 status code는 아래 표를 참고하십시오.
 
@@ -186,7 +195,7 @@ status code는 아래 표를 참고하십시오.
 | INSPECTING_ALL_SERVICES | 304 | 전체 시스템 점검 |
 | INTERNAL_SERVER_ERROR | 500 | 내부 서버 에러 |
 
-##### 1.2 app
+**1.2 app**
 
 TOAST Console에 등록 된 App 정보입니다.
 
@@ -204,12 +213,15 @@ TOAST Console에 등록 된 App 정보입니다.
 
 ![Launching App](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_005_1.2.0.png)
 
-##### 1.3 maintenance
+**[TOAST Console]**
+Menu : TOAST Cloud Console > Gamebase > App
+Tab : App
+
+**1.3 maintenance**
 
 TOAST Console에 등록 된 점검 정보입니다.
 
 * url : 점검 페이지 URL
-* typeCode
 * message : 점검 사유
 * timezone : 타임존
 * beginDate : 시작시간
@@ -217,10 +229,13 @@ TOAST Console에 등록 된 점검 정보입니다.
 
 ![Launching Maintenance](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_007_1.2.0.png)
 
-##### 1.4 notice : 공지
+**[TOAST Console]**
+Menu : TOAST Cloud Console > Gamebase > Operation
+Tab : Maintenance
+
+**1.4 notice**
 
 * message : 메시지
-* title
 * url : 점검 URL
 
 #### 2. tcProduct
@@ -228,13 +243,9 @@ TOAST Console에 등록 된 점검 정보입니다.
 Gamebase와 연계된 TOAST Cloud 상품의 appKey입니다.
 
 * gamebase
-	* appKey
 * tcLaunching
-	* appKey
 * iap
-	* appKey
 * push
-	* appKey
 
 #### 3. tcIap
 
@@ -245,3 +256,7 @@ TOAST Console에 등록 된 IAP Store 정보입니다.
 * storeCode : Store Code
 
 ![Launching TC IAP](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_008_1.2.0.png)
+
+**[TOAST Console]**
+Menu : TOAST Cloud Console > Gamebase > Purchase(IAP)
+Tab : App

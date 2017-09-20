@@ -72,7 +72,7 @@ public void ShowWebView()
      configuration.colorA = 255;
      configuration.barHeight = 40;
      configuration.buttonVisible = true;
-     configuration.url = "http://www.naver.com";
+     configuration.url = "https://www.toast.com/";
 
      Gamebase.Webview.ShowWebView(configuration);
 }
@@ -128,9 +128,19 @@ public void ShowWebViewFile()
 | backButtonImageResource | ID of resource | 백 버튼 이미지 |
 | closeButtonImageResource | ID of resource | 닫기 버튼 이미지 |
 | url | "http://" or "https://" or "file://" | 웹 URL |
-## Alert
 
-### Simple Alert Dialog
+### Predefined Custom Scheme
+
+Gamebase에서 지정해 놓은 Scheme 입니다.
+
+| scheme | 용도 |
+| --- | --- | --- |
+| gamebase://dismiss | WebView 닫기 |
+| gamebase://goBack | WebView 뒤로가기 |
+| gamebase://getUserId | 현재 로그인되어 있는 유저의 UserId를 표시 |
+| gamebase://getMaintenanceInfo | 점검 내용을 WebPage에 표시 |
+
+## Alert
 
 System Alert 를 위한 API를 제공합니다.</br>
 다음의 API를 통해서, 사용자는 Alert에 버튼 및 콜백을 등록할 수 있습니다.
@@ -168,7 +178,7 @@ public void ShowAlertDialog()
 }
 ```
 
-### Toast
+## Toast
 
 Toast를 간단하게 노출 할 수 있는 API를 제공합니다.
 
@@ -196,4 +206,5 @@ public void ShowToast(string message, int duration)
 | Error | Error Code | Notes |
 | ----- | ---------- | ----- |
 | UI\_UNKNOWN\_ERROR | 6999 | 알 수 없는 에러입니다. (정의되지 않은 에러입니다.) |
+
 * 전체 에러코드 참조 : [LINK \[Entire Error Codes\]](./error-codes#client-sdk)

@@ -12,9 +12,7 @@
 
 ### Installation
 
-Gamebase Android SDK를 사용하기 전에 TOAST Cloud Console에서 App ID를 발급 받아야 합니다.
-
-#### Download Link
+#### Download
 
 * [LINK \[DOWNLOAD Gamebase Android SDK\]](http://docs.cloud.toast.com/ko/Download/#upcoming-products-gamebase)
 * 다운로드 받은 SDK에서 다음 폴더 및 aar 파일을 프로젝트에 추가합니다.
@@ -28,10 +26,10 @@ Gamebase Android SDK를 사용하기 전에 TOAST Cloud Console에서 App ID를 
 
 #### Package Includes (SDK)
 
-* SDK 패키지의 압축을 해제한다면 다음과 같은 모듈이 포함되어 있다.
+* SDK 패키지의 압축을 해제한다면 다음과 같은 모듈이 포함되어 있습니다.
 ![Package Includes](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-installation-001_1.0.0.png)
 
-### build.gradle Settings
+### Setting build.gradle
 
 * 1) 다운로드 받은 Gamebase SDK를 Application의 Root 경로에 복사합니다.
 * 2) Gamebase 경로 및 버전, 사용할 인증, 결제, 푸시 모듈을 설정합니다.

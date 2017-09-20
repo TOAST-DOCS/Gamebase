@@ -4,7 +4,7 @@
 
 ### WebView
 
-#### 1. Browser Style WebView
+#### Browser Style WebView
 
 기본으로 설정된 브라우저 스타일의 WebView를 노출합니다.
 ```java
@@ -14,14 +14,14 @@ Gamebase.WebView.showWebBrowser(activity, "http://cloud.toast.com");
 ![Webview Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
 
 
-#### 2. Popup Style WebView (향후 지원예정)
+#### Popup Style WebView (향후 지원예정)
 
 기본으로 설정된 팝업 스타일의 WebView를 노출합니다.
 ```java
 Gamebase.WebView.showWebPopup(activity, "http://cloud.toast.com");
 ```
 
-#### 3. Custom WebView
+#### Custom WebView
 
 Custom WebView를 노출합니다. <br/>
 GamebaseWebViewConfiguration 설정으로 WebView를 Customizing 할 수 있습니다.
@@ -57,7 +57,7 @@ GamebaseWebView.showWebView(MainActivity.this, "http://cloud.toast.com", configu
 
 Android System Alert Dialog를 간단하게 노출 할 수 있는 API를 제공합니다.
 
-#### 1. Simple Alert Dialog
+#### Simple Alert Dialog
 
 타이틀과 메시지 입력만으로 간단하게 Alert Dialog를 노출할 수 있습니다.
 
@@ -68,7 +68,7 @@ Gamebase.Util.showAlertDialog(activity, "title", "message");
 ![Alert Dialog Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-002_1.0.0.png)
 
 
-#### 2. Alert Dialog with Listener
+#### Alert Dialog with Listener
 
 Alert Dialog 노출 후 처리 결과를 콜백 받고 싶을 경우 다음 API를 사용합니다.
 

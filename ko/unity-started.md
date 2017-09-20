@@ -57,16 +57,21 @@ Gamebase Client(iOS, Android, Unity) SDK 는 아래 링크에서 다운로드 �
 Gamebase Unity SDK 를 게임 프로젝트에 추가하는 방법은 다음과 같습니다.
 
 1. Unity 프로젝트 열기
-2. Assets > Import Package > Custome Package 메뉴를 선택 후 GamebaseUnitySDK.unitypackage 를 현재 프로젝트에 포함.
+2. Assets > Import Package > Custome Package 메뉴를 선택 후 GamebaseUnitySDK.unitypackage 를 현재 프로젝트에 포함
 
 ### Android settings
 
 Unity Android 빌드 시 필요한 Unity 설정에 대해 설명합니다.
 
 * Gamebase Android SDK
-* Authentication Adapter
+* Auth Adapter
 * Push
 * Purchase
+
+> <font color="red">[WARNING]</font>
+>
+> 각 모듈 별 중복으로 포함하고 있는 파일이 있을 수 있습니다.<br/>
+> 중복된 파일은 하나만 있으면 되므로 삭제하도록 합니다.
 
 #### 1. Gamebase Android SDK
 
@@ -99,16 +104,12 @@ FCM Push 서비스가 필요할 경우, gamebase-adapter-push-fcm 폴더 내 파
 Gamebase는 TOASTCloud 결제 상품인 IAP(In-App Purchase)를 사용하여 결제를 지원합니다.
 gamebase-adapter-purchase-iap 폴더 내 파일들을 Assets/Plugins/Android/libs/Gamebase 폴더에 추가합니다.
 
-> [WARNING]
->
-> 각 모듈 별 중복으로 포함하고 있는 파일이 있을 수 있습니다.<br/>
-> 중복된 파일은 하나만 있으면 되므로 삭제하도록 합니다.
-
 ### Android Lifecycle
 
 Lifecycle 관리를 위해 "com.toast.gamebase.activity.GamebaseMainActivity"를 MainActivity로 해야 합니다.
 "com.toast.gamebase.activity.GamebaseMainActivity"는 "com.unity3d.player.UnityPlayerNativeActivity"를 상속받아 구현되어 있습니다.
-> [WARNING]
+
+> <font color="red">[WARNING]</font>
 >
 > AndroidPlugin 개발에도 GamebaseMainActivity를 상속받아 만들어야 합니다. <br/>
 > GamebaseMainActivity는 GamebaseAndroidPlugin.jar에 포함되어 있습니다.

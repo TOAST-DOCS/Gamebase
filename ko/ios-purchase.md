@@ -3,7 +3,7 @@
 ## Purchase
 
 
-### Project Settings
+### Settings
 #### apple iTunes-Connect
 1. 테스트용 앱 빌드를 업로드
 2. In-App Purchases 상품을 등록 및 승인
@@ -24,7 +24,7 @@ ToastCloud Console에서 설정해야하는 내용입니다.
 1. **'Targets > Capabilities > In-App Purchase'**를 **ON**으로 설정합니다.
 2. **'Targets > General > Identity'**의 Bundle Identifier, Version, Build 의 값을 알맞게 설정합니다.
 
-### Import Header file into View Controller
+### Import Header File
 
 구매 API를 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
@@ -74,7 +74,7 @@ ToastCloud Console에서 설정해야하는 내용입니다.
 
 
 
-### Get a list of Purchasable Items
+### Get a List of Purchasable Items
 
 아이템 목록을 조회하기 위하여 다음의 API를 호출합니다.<br/>
 콜백으로 리턴되는 Array 안에는 각 아이템들에 대한 정보가 담겨 있습니다.
@@ -98,7 +98,7 @@ ToastCloud Console에서 설정해야하는 내용입니다.
 ```
 
 
-### Get a list of Not-Consumed Items
+### Get a List of Not-Consumed Items
 
 아이템을 구매는 하였지만, 정상적으로 아이템이 소비(배송, 지급)되었지 않은 **미소비 결제내역**을 요청합니다.<br/>
 해당 내역을 받은 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.

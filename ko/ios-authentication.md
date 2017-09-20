@@ -197,10 +197,11 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 ### Logout API
 
-로그아웃 버튼을 클릭하였을 때, 다음의 로그아웃 API를 구현합니다.<br/>
-><font color="red">[WARNING]</font><br/>
->
->로그아웃 성공 시에는 지원하는 모든 IDP의 External SDK로그아웃도 시도하게되며, External SDK로그아웃의 성공보장은 하지 않습니다.
+로그인 된 IDP에서 로그아웃을 시도합니다.</br>
+로그아웃이 성공하더라도, 유저 데이터는 유지됩니다.</br>
+로그아웃에 성공 하면 해당 IDP 로그아웃을 시도하게 됩니다.</br>
+로그아웃 버튼을 클릭했을 때, 다음과 같이 로그아웃 API를 구현합니다.
+
 
 
 ```objectivec
@@ -228,13 +229,13 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 ### Widthdraw API
 
-탈퇴 버튼을 클릭하였을 때, 다음의 탈퇴 API를 구현합니다.
+로그인 상태에서 탈퇴를 시도합니다.</br>
+탈퇴에 성공하면, 로그인 했던 IDP와 연동 되어 있던 유저 데이터는 삭제 됩니다.</br>
+해당 IDP로 다시 로그인 가능하고 새로운 유저 데이터를 생성합니다.</br>
+Gamebase 탈퇴를 의미하며, IDP 계정 탈퇴를 의미하지는 않습니다.</br>
+탈퇴 성공 시 IDP 로그아웃을 시도하게 합니다.</br>
+탈퇴 버튼을 클릭했을 때 다음과 같이 탈퇴 API를 구현합니다.
 
-> <font color="red">[WARNING]</font><br/>
->
-> Gamebase의 탈퇴를 의미하며, IDP 계정에 대한 탈퇴를 의미하지 않습니다.
->
-> Gamebase에서는 Gamebase 탈퇴 성공 시, External SDK에 대해서는 logout만 시도합니다.
 
 ```objectivec
 [TCGBGamebase withdrawWithViewController:self completion:^(TCGBError *error) {
@@ -311,7 +312,7 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 }];
 ```
 
-### How to get IDP mapping list
+### Get IDP Mapping List
 현재의 계정이 어떤 IDP들과 매핑되어 있는지 목록을 획득할 수 있습니다.
 ```objectivec
 // Obtaining Names of Mapping IDPs
@@ -322,7 +323,7 @@ NSArray* authMappingList = [TCGBGamebase authMappingList];
 ## Gamebase User`s Informations
 Gamebase를 통하여 인증절차를 진행 후, 앱을 제작할 때 필요한 정보를 획득할 수 있습니다.
 
-### Gets Authentication Information for Gamebase
+### Get Authentication Information for Gamebase
 Gamebase에서 발급한 인증 정보를 가져올 수 있습니다.
 
 ```objectivec
@@ -340,7 +341,7 @@ TCGBBanInfo* banInfo = [TCGBGamebase banInfo];
 ```
 
 
-### Gets Authentication Information for external IDP
+### Get Authentication Information for External IDP
 
 외부 인증 SDK에서 AccessToken, UserId, Profile 등의 인증 정보를 가져올 수 있습니다.
 
@@ -357,7 +358,7 @@ NSString *accessTokenOfIDP = [TCGBGamebase authProviderAccessTokenWithIDPCode:@"
 TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWithIDPCode:@"facebook"];
 ```
 
-### Gets Banned User Information
+### Get Banned User Information
 
 Gamebase Console에 제재된 유저로 등록될 경우,
 로그인 시도 시, 아래와 같은 이용제한 정보 코드가 노출 될 수 있으며, **[TCGBGamebase banInfo]** 메서드를 이용하여 제재 정보를 확인할 수 있습니다.

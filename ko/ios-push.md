@@ -2,7 +2,7 @@
 
 ## Push
 
-### Project Settings
+### Settings
 
 
 #### Apple Developer Certificates
@@ -53,7 +53,7 @@ Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야�
 }
 ```
 
-### Get a Push Setting
+### Request Push Settings
 
 사용자의 Push 설정을 조회하기 위해서, 다음의 API를 이용합니다.<br/>
 콜백으로 오는 TCGBPushConfiguration 값을 바탕으로, 사용자 설정값을 얻을 수 있습니다.
