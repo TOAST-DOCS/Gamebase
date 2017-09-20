@@ -75,12 +75,12 @@ Gamebase SDK는 [SDK 다운로드 페이지](http://docs.cloud.toast.com/ko/Down
 
 | Feature | Description | client | server  | console |
 |--------|--------|--------|--------|--------|
-| Login        | Guest , 3rd Party 인증지원  <br> - 지원되는 IDP : facebook, google+, iosgamecenter, payco      | [[iOS](./iOS%20Developer%60s%20Guide/#login)] [[Android](./Android%20Developer%60s%20Guide/#login)] [[Unity](./Unity%20Developer%60s%20Guide/#login)]  | [토큰검증](./Server%20Developer%60s%20Guide/#_5) <br> [회원조회](./Server%20Developer%60s%20Guide/#_7) |  [[App]메뉴의 인증정보설정](./Operator%60s%20Guide/#_3) <br> [[Member]메뉴](./Operator%60s%20Guide/#_11) <br> - 회원조회(기본정보, 로그인이력, 플레이타임 등) |
-| Logout       |  Logout      | [[iOS](./iOS%20Developer%60s%20Guide/#logout)] [[Android](./Android%20Developer%60s%20Guide/#logout)] [[Unity](./Unity%20Developer%60s%20Guide/#logout)]| | |
-| Withdraw       | 게임 탈퇴 <br> - User의 매핑정보 등 모든 정보 삭제     | [[iOS](./iOS%20Developer%60s%20Guide/#withdraw)] [[Android](./Android%20Developer%60s%20Guide/#withdraw)] [[Unity](./Unity%20Developer%60s%20Guide/#withdraw)]| | |
-| Mapping       | User ID하나의 여러개의 IDP를 연동하는 기능      | [[iOS](./iOS%20Developer%60s%20Guide/#mapping)] [[Android](./Android%20Developer%60s%20Guide/#mapping)] [[Unity](./Unity%20Developer%60s%20Guide/#mapping)]| | |
-| Purchase(IAP)       |  (TOAST Cloud 상품연동) <br> 인앱결제 <br> - 지원되는 스토어 : google, app store      | [[iOS](./iOS%20Developer%60s%20Guide/#purchase)] [[Android](./Android%20Developer%60s%20Guide/#purchase)] [[Unity](./Unity%20Developer%60s%20Guide/#purchase)]| | [[IAP]메뉴](./Operator%60s%20Guide/#_13)<br> [- 아이템 등록](./Operator%60s%20Guide/#_15) <br> [- 결제정보 조회](./Operator%60s%20Guide/#_16) |
-| Push       | (TOAST Cloud 상품연동) <br> Push 메시지 전송 및 결과 확인      | [[iOS](./iOS%20Developer%60s%20Guide/#push)] [[Android](./Android%20Developer%60s%20Guide/#push)] [[Unity](./Unity%20Developer%60s%20Guide/#push)]| |[[Push]메뉴](./Operator%60s%20Guide/#_9) |
+| Login        | Guest , 3rd Party 인증지원  <br> - 지원되는 IDP : facebook, google+, iosgamecenter, payco      | [[iOS](./ios-authentication/#login)] [[Android](./aos-authentication/#login)] [[Unity](./unity-authentication/#login)]  | [토큰검증](./Server%20Developer%60s%20Guide/#token-authentication) <br> [회원조회](./Server%20Developer%60s%20Guide/#get-member) |  [[App]메뉴의 인증정보설정](./app/#authentication-information) <br> [[Member]메뉴](./member/#member) <br> - 회원조회(기본정보, 로그인이력, 플레이타임 등) |
+| Logout       |  Logout      | [[iOS](./ios-authentication/#logout)] [[Android](./aos-authentication/#logout)] [[Unity](./unity-authentication/#logout)]| | |
+| Withdraw       | 게임 탈퇴 <br> - User의 매핑정보 등 모든 정보 삭제     | [[iOS](./ios-authentication/#withdraw)] [[Android](./aos-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)]| | |
+| Mapping       | User ID하나의 여러개의 IDP를 연동하는 기능      | [[iOS](./ios-authentication/#mapping)] [[Android](./aos-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)]| | |
+| Purchase(IAP)       |  (TOAST Cloud 상품연동) <br> 인앱결제 <br> - 지원되는 스토어 : google, app store      | [[iOS](./ios-authentication/#purchase)] [[Android](./aos-authentication/#purchase)] [[Unity](./unity-authentication/#purchase)]| | [[IAP]메뉴](./purchase/#app)<br> [- 아이템 등록](./purchase/#item) <br> [- 결제정보 조회](./purchase/#transactions) |
+| Push       | (TOAST Cloud 상품연동) <br> Push 메시지 전송 및 결과 확인      | [[iOS](./ios-authentication/#push)] [[Android](./aos-authentication/#push)] [[Unity](./unity-authentication/#push)]| |[[Push]메뉴](./push/#push) |
 | Webview      | 추후 지원       |  | | |
-| [Operator]Maintenance      | (운영) 점검기능       |  | [점검여부확인](./Server%20Developer%60s%20Guide/#_10) |  [[Maintenance]메뉴](./Operator%60s%20Guide/#_5) |
-| [Operator]Notice      | (운영) 긴급 공지 기능 <br> - 게임 유저가 앱 실행시 사용자는 팝업형태로 공지 확인이 가능      | | | [[Notice]메뉴](./Operator%60s%20Guide/#_7) |
+| [Operator]Maintenance      | (운영) 점검기능       |  | [점검여부확인](./Server%20Developer%60s%20Guide/#maintenance) |  [[Maintenance]메뉴](./operation/#maintenance) |
+| [Operator]Notice      | (운영) 긴급 공지 기능 <br> - 게임 유저가 앱 실행시 사용자는 팝업형태로 공지 확인이 가능      | | | [[Notice]메뉴](./operation/#notice) |

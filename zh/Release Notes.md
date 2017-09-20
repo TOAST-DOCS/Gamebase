@@ -83,7 +83,7 @@
 #### 기능 개선/변경
 * [SDK] 1.1.0 업데이트
     * 외부 AccessToken을 받아서 idPLogin을 해주는 인터페이스를 추가
-    * [UI 기능 추가](/Upcoming%20Products/Gamebase/ko/Android%20Developer%60s%20Guide/#ui) : Custom Webview, AlertDialog
+    * [UI 기능 추가](/Upcoming%20Products/Gamebase/ko/aos-ui/#ui) : Custom Webview, AlertDialog
 * [API] [Leaderboard](/Upcoming%20Products/Gamebase/ko/Server%20Developer%60s%20Guide/#leaderboard), [IAP](/Upcoming%20Products/Gamebase/ko/Server%20Developer%60s%20Guide/#purchaseiap) API 연동
 
 ### 2017.03.09
