@@ -79,8 +79,8 @@ Gamebase SDK는 [SDK 다운로드 페이지](http://docs.cloud.toast.com/ko/Down
 | Logout       |  Logout      | [[iOS](./ios-authentication/#logout)] [[Android](./aos-authentication/#logout)] [[Unity](./unity-authentication/#logout)]| | |
 | Withdraw       | 게임 탈퇴 <br> - User의 매핑정보 등 모든 정보 삭제     | [[iOS](./ios-authentication/#withdraw)] [[Android](./aos-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)]| | |
 | Mapping       | User ID하나의 여러개의 IDP를 연동하는 기능      | [[iOS](./ios-authentication/#mapping)] [[Android](./aos-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)]| | |
-| Purchase(IAP)       |  (TOAST Cloud 상품연동) <br> 인앱결제 <br> - 지원되는 스토어 : google, app store      | [[iOS](./ios-authentication/#purchase)] [[Android](./aos-authentication/#purchase)] [[Unity](./unity-authentication/#purchase)]| | [[IAP]메뉴](./purchase/#app)<br> [- 아이템 등록](./purchase/#item) <br> [- 결제정보 조회](./purchase/#transactions) |
-| Push       | (TOAST Cloud 상품연동) <br> Push 메시지 전송 및 결과 확인      | [[iOS](./ios-authentication/#push)] [[Android](./aos-authentication/#push)] [[Unity](./unity-authentication/#push)]| |[[Push]메뉴](./push/#push) |
+| Purchase(IAP)       |  (TOAST Cloud 상품연동) <br> 인앱결제 <br> - 지원되는 스토어 : google, app store      | [[iOS](./ios-purchase/#purchase)] [[Android](./aos-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)]| | [[IAP]메뉴](./purchase/#app)<br> [- 아이템 등록](./purchase/#item) <br> [- 결제정보 조회](./purchase/#transactions) |
+| Push       | (TOAST Cloud 상품연동) <br> Push 메시지 전송 및 결과 확인      | [[iOS](./ios-push/#push)] [[Android](./aos-push/#push)] [[Unity](./unity-push/#push)]| |[[Push]메뉴](./push/#push) |
 | Webview      | 추후 지원       |  | | |
 | [Operator]Maintenance      | (운영) 점검기능       |  | [점검여부확인](./Server%20Developer%60s%20Guide/#maintenance) |  [[Maintenance]메뉴](./operation/#maintenance) |
 | [Operator]Notice      | (운영) 긴급 공지 기능 <br> - 게임 유저가 앱 실행시 사용자는 팝업형태로 공지 확인이 가능      | | | [[Notice]메뉴](./operation/#notice) |
