@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > Unity Developer's Guide > Getting Started
+## Upcoming Products > Gamebase > Unity Developer's Guide > Getting Started
 
 ## Getting Started
 

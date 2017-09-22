@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > iOS Developer's Guide > Authentication
+## Upcoming Products > Gamebase > iOS Developer's Guide > Authentication
 
 
 ## Login
@@ -21,6 +21,7 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 ```
 
 ### Login Flow
+
 * 앱에서의 Gamebase인증상태에 따른 처리 방법을 설명합니다.
 
     
@@ -41,6 +42,7 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 
 
 ### Banned User of Login
+
 이용정지 회원일 경우 LoginForLastLoggedInProvider/Login API를 호출하면 **AUTH_BANNED_MEMBER(3005)** 에러를 리턴합니다.</br>
 [GetBanInfo](#gets-banned-user-infomation) API로 ban정보를 가져올 수 있습니다.
 
@@ -368,16 +370,15 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 
 Gamebase Console에 제재된 유저로 등록될 경우,
 로그인 시도 시, 아래와 같은 이용제한 정보 코드가 노출 될 수 있으며, **[TCGBGamebase banInfo]** 메서드를 이용하여 제재 정보를 확인할 수 있습니다.
+
 * TCGB_ERROR_AUTH_BANNED_MEMBER
 
 
 
-### Error Handling
-
-
+## Error Handling
 
 | Category | Error | Error Code | Notes |
-| --- | --- | --- |
+| -------- | ----- | ---------- | ----- |
 | Auth | TCGB\_ERROR\_AUTH\_USER\_CANCELED | 3001 | 로그인이 취소되었습니다. |
 |  | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
 |  | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
@@ -403,10 +404,11 @@ Gamebase Console에 제재된 유저로 등록될 경우,
 
 
 
+
 * 전체 에러코드 참조 : [LINK \[Entire Error Codes\]](./error-codes#client-sdk)
 
 
-#### TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR
+### TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR
 * 이 에러는 각 IDP의 SDK에서 발생한 에러입니다.
 * 에러 코드 확인은 다음과 같이 확인하실 수 있습니다.
 * IDP SDK의 에러코드는 각각의 Developer 페이지를 참고바랍니다.
@@ -420,3 +422,7 @@ NSString *moduleErrorMessage = moduleError.message;
 // If you use **description** method, you can get entire information of this object by JSON Format
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
+
+
+
+

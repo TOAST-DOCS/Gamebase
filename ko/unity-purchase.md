@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > Unity Developer's Guide > Purchase
+## Upcoming Products > Gamebase > Unity Developer's Guide > Purchase
 
 ## Purchase
 
@@ -22,7 +22,7 @@
 5. IAP서버에서 Consume이 성공하였다면 게임 서버가 게임 클라이언트에 아이템을 지급한니다.
 
 
-스토어 결제는 성공하였으나 에러가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 다음 두 API를 각각 호출하여 재처리 로직을 구현하시기 바랍니다.
+스토어 결제는 성공하였으나 에러가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 다음 두 API를 각각 호출하여 재처리 로직을 구현하시기 바랍니다. <br/>
 
 1. 미처리 아이템 배송 요청
 	* 로그인이 성공하면 **RequestItemListOfNotConsumed** 를 호출하여 미소비 결제내역을 확인합니다.
@@ -35,7 +35,7 @@
 
 ### Purchase Item
 
-구매하고자 하는 아이템의 itemSeq를 이용해 다음의 API를 호출하여 구매요청을 합니다.
+구매하고자 하는 아이템의 itemSeq를 이용해 다음의 API를 호출하여 구매요청을 합니다.<br/>
 유저가 구매를 취소하는 경우 **PURCHASE_USER_CANCELED** 에러가 리턴됩니다.
 
 **API**
@@ -75,7 +75,8 @@ public void RequestPurchase(long itemSeq)
 
 ### Get a List of Purchasable Items
 
-아이템 목록을 조회하기 위하여 다음의 API를 호출합니다. 콜백으로 리턴되는 List 안에는 각 아이템들에 대한 정보가 담겨 있습니다.
+아이템 목록을 조회하기 위하여 다음의 API를 호출합니다. <br/>
+콜백으로 리턴되는 List 안에는 각 아이템들에 대한 정보가 담겨 있습니다.
 
 **API**
 
@@ -107,7 +108,7 @@ public void RequestItemListPurchasable()
 
 ### Get a List of Non-Consumed Items
 
-아이템을 구매는 하였지만, 정상적으로 아이템이 소비(배송, 지급)되었지 않은 미소비 결제내역을 요청합니다. 
+아이템을 구매는 하였지만, 정상적으로 아이템이 소비(배송, 지급)되었지 않은 미소비 결제내역을 요청합니다. <br/>
 미결제 내역이 있는 경우에는 게임서버(아이템 서버)에 요청을 하여, 아이템을 배송(지급)하도록 처리하여야합니다.
 
 **API**
@@ -144,7 +145,8 @@ public void RequestItemListOfNotConsumed()
 
 ### Reprocess Failed Purchase Transaction
 
-스토어 결제는 정상적으로 이루어졌지만, ToastCloud IAP 서버 검증 실패 등으로 인해 정상적으로 결제가 이뤄지지 않은 경우에, 해당 API를 이용하여 재처리를 시도합니다. 최종적으로 결제가 성공한 내역을 바탕으로, 아이템 배송(지급)등의 API를 호출하여 처리를 해주어야합니다.
+스토어 결제는 정상적으로 이루어졌지만, ToastCloud IAP 서버 검증 실패 등으로 인해 정상적으로 결제가 이뤄지지 않은 경우에, 해당 API를 이용하여 재처리를 시도합니다. <br/>
+최종적으로 결제가 성공한 내역을 바탕으로, 아이템 배송(지급)등의 API를 호출하여 처리를 해주어야합니다.
 
 **API**
 

@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > Android Developer's Guide  > Authentication
+## Upcoming Products > Gamebase > Android Developer's Guide  > Authentication
 
 ## Login
 
@@ -145,21 +145,6 @@ Gamebase.login(activity, credentialInfo, new GamebaseDataCallback<AuthToken>() {
         });
 ```
 
-### Get Authentication Information for External IDP
-
-외부 인증 SDK에서 AccessToken, UserId, Profile 등의 정보를 가져올 수 있습니다.
-
-```java
-// 유저 ID를 가져옵니다.
-String userId = getAuthProviderUserID(AuthProvider.FACEBOOK);
-// AccessToken을 가져옵니다.
-String accessToken = getAuthProviderAccessToken(AuthProvider.FACEBOOK);
-// User Profile 정보를 가져옵니다.
-AuthFacebookProfile profile = (AuthFacebookProfile) getAuthProviderProfile(AuthProvider.FACEBOOK);
-String name = profile.getName();    // or profile.information.get("name")
-String email = profile.getEmail();  // or profile.information.get("email")
-```
-
 ### Authentication Additional Information Settings
 
 #### Facebook
@@ -293,30 +278,89 @@ private static void removeMappingForFacebook() {
 ```
 
 
-### Error Handling
+## Gamebase User`s Informations
+Gamebase를 통하여 인증절차를 진행 후, 앱을 제작할 때 필요한 정보를 획득할 수 있습니다.
 
-| Category |  Platform | Error | Error Code | Notes |
-| -------- |  -------- | ----- | ---------- | ----- |
-| Auth | AOS, UNITY<br>IOS | AUTH\_USER\_CANCELED<br>TCGB\_ERROR\_AUTH\_USER\_CANCELED | 3001 | 로그인이 취소되었습니다. |
-|  |  AOS, UNITY<br>IOS | AUTH\_NOT\_SUPPORTED\_PROVIDER<br>TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
-|  |  AOS, UNITY<br>IOS | AUTH\_NOT\_EXIST\_MEMBER<br>TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
-|  |  AOS, UNITY<br>IOS | AUTH\_INVALID\_MEMBER<br>TCGB\_ERROR\_AUTH\_INVALID\_MEMBER | 3004 | 잘못된 회원에 대한 요청입니다. |
-|  |  AOS, UNITY<br>IOS | AUTH\_EXTERNAL\_LIBRARY\_ERROR<br>TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009 | 외부 인증 라이브러리 에러입니다. |
-| Auth (Login) | AOS, UNITY<br>IOS | AUTH\_TOKEN\_LOGIN\_FAILED<br>TCGB\_ERROR\_AUTH\_TAP\_LOGIN\_FAILED | 3101 | 토큰 로그인에 실패하였습니다. |
-|  |  AOS, UNITY<br>IOS | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO<br>TCGB\_ERROR\_AUTH\_TAP\_LOGIN\_INVALID\_TOKEN\_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
-|  |  AOS, UNITY<br>IOS | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP<br>TCGB\_ERROR\_AUTH\_TAP\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103 | 최근에 로그인한 IDP 정보가 없습니다. |
-| IDP Login | AOS, UNITY<br>IOS | AUTH\_IDP\_LOGIN\_FAILED<br>TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED | 3201 | IDP 로그인에 실패하였습니다. |
-|  |  AOS, UNITY<br>IOS | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO<br>TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO | 3202 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
-| Add Mapping | AOS, UNITY<br>IOS | AUTH\_ADD\_MAPPING\_FAILED<br>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FAILED | 3301 | 맵핑 추가에 실패하였습니다. |
-|  |  AOS, UNITY<br>IOS | AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER<br>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302 | 이미 다른 멤버에 맵핑되어있습니다. |
-|  |  AOS, UNITY<br>IOS | AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP<br>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303 | 이미 같은 IDP에 맵핑되어있습니다. |
-|  |  AOS, UNITY<br>IOS | AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO<br>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO | 3304 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
-| Remove Mapping | AOS, UNITY<br>IOS | AUTH\_REMOVE\_MAPPING\_FAILED<br>TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_FAILED | 3401 | 맵핑 삭제에 실패하였습니다. |
-|  | AOS, UNITY<br>IOS | AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP<br>TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402 | 마지막에 맵핑된 IDP는 삭제할 수 없습니다. |
-|  | AOS, UNITY<br>IOS | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP<br>TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403 | 현재 로그인되어있는 IDP 입니다. |
-| Logout | AOS, UNITY<br>IOS | AUTH\_LOGOUT\_FAILED<br>TCGB\_ERROR\_AUTH\_LOGOUT\_FAILED | 3501 | 로그아웃에 실패하였습니다. |
-| Withdrawal | AOS, UNITY<br>IOS | AUTH\_WITHDRAW\_FAILED<br>TCGB\_ERROR\_AUTH\_WITHDRAW\_FAILED | 3601 | 탈퇴에 실패하였습니다. |
-| Not Playable | AOS, UNITY<br>IOS | AUTH\_NOT\_PLAYABLE<br>TCGB\_ERROR\_AUTH\_NOT\_PLAYABLE | 3701 | 플레이할 수 없는 상태입니다. (점검 또는 서비스 종료 등) |
-| Auth(Unknown) | AOS, UNITY<br>IOS | AUTH\_UNKNOWN\_ERROR<br>TCGB\_ERROR\_AUTH\_UNKNOWN\_ERROR | 3999 | 알수 없는 에러입니다. (정의 되지 않은 에러입니다.) |
 
+### Get Authentication Information for Gamebase
+Gamebase에서 발급한 인증 정보를 가져올 수 있습니다.
+
+```java
+
+// Obtaining Gamebase UserID
+String userId = Gamebase.getUserID();
+
+// Obtaining Gamebase AccessToken
+String accessToken = Gamebase.getAccessToken();
+
+// Obtaining Last Logged In Provider
+String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
+
+// Obtaining Ban Information
+AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
+```
+
+
+### Get Authentication Information for External IDP
+
+외부 인증 SDK에서 AccessToken, UserId, Profile 등의 정보를 가져올 수 있습니다.
+
+```java
+// 유저 ID를 가져옵니다.
+String userId = getAuthProviderUserID(AuthProvider.FACEBOOK);
+// AccessToken을 가져옵니다.
+String accessToken = getAuthProviderAccessToken(AuthProvider.FACEBOOK);
+// User Profile 정보를 가져옵니다.
+AuthFacebookProfile profile = (AuthFacebookProfile) getAuthProviderProfile(AuthProvider.FACEBOOK);
+String name = profile.getName();    // or profile.information.get("name")
+String email = profile.getEmail();  // or profile.information.get("email")
+```
+
+
+
+### Get Banned User Information
+
+Gamebase Console에 제재된 유저로 등록될 경우,
+로그인 시도 시, 아래와 같은 이용제한 정보 코드가 노출 될 수 있으며, **Gamebase.getAuthBanInfo()** 메서드를 이용하여 제재 정보를 확인할 수 있습니다.
+
+* AUTH_BANNED_MEMBER(3005)
+
+
+
+
+
+
+
+## Error Handling
+
+| Category |  Error | Error Code | Notes |
+| -------- | ----- | ---------- | ----- |
+| Auth | AUTH\_USER\_CANCELED | 3001 | 로그인이 취소되었습니다. |
+|  | AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
+|  | AUTH\_NOT\_EXIST\_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
+|  | AUTH\_INVALID\_MEMBER | 3004 | 잘못된 회원에 대한 요청입니다. |
+|  | AUTH\_BANNED\_MEMBER | 3005 | 제재된 회원입니다. |
+|  | AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009 | 외부 인증 라이브러리 에러입니다. |
+| Auth (Login) | AUTH\_TOKEN\_LOGIN\_FAILED | 3101 | 토큰 로그인에 실패하였습니다. |
+|  | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
+|  | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103 | 최근에 로그인한 IDP 정보가 없습니다. |
+| IDP Login | AUTH\_IDP\_LOGIN\_FAILED | 3201 | IDP 로그인에 실패하였습니다. |
+|  | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO | 3202 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
+| Add Mapping | AUTH\_ADD\_MAPPING\_FAILED | 3301 | 맵핑 추가에 실패하였습니다. |
+|  | AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302 | 이미 다른 멤버에 맵핑되어있습니다. |
+|  | AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303 | 이미 같은 IDP에 맵핑되어있습니다. |
+|  | AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO | 3304 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
+| Remove Mapping | AUTH\_REMOVE\_MAPPING\_FAILED | 3401 | 맵핑 삭제에 실패하였습니다. |
+|  | AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402 | 마지막에 맵핑된 IDP는 삭제할 수 없습니다. |
+|  | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403 | 현재 로그인되어있는 IDP 입니다. |
+| Logout | AUTH\_LOGOUT\_FAILED | 3501 | 로그아웃에 실패하였습니다. |
+| Withdrawal | AUTH\_WITHDRAW\_FAILED | 3601 | 탈퇴에 실패하였습니다. |
+| Not Playable | AUTH\_NOT\_PLAYABLE | 3701 | 플레이할 수 없는 상태입니다. (점검 또는 서비스 종료 등) |
+| Auth(Unknown) | AUTH\_UNKNOWN\_ERROR | 3999 | 알수 없는 에러입니다. (정의 되지 않은 에러입니다.) |
 * 전체 에러코드 참조 : [LINK \[Entire Error Codes\]](./error-codes#client-sdk)
+
+#### AUTH_EXTERNAL_LIBRARY_ERROR
+
+* 이 에러는 TOAST Cloud 외부 인증 라이브러리에서 발생한 에러입니다.
+
+

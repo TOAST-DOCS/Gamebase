@@ -1,8 +1,7 @@
-## Upcomming Products > Gamebase > iOS Developer's Guide > UI
+## Upcoming Products > Gamebase > iOS Developer's Guide > UI
 
-## UI
 
-### WebView
+## WebView
 
 Gamebase에서는 기본적인 웹뷰를 지원합니다. 웹뷰의 스타일은 Fullscreen과 Popup 스타일을 지원하며, Customizing이 가능합니다.<br/>
 
@@ -83,7 +82,7 @@ Gamebase WebView에서 로딩한 WebPages내에 scheme을 사용하여, 특정 �
 Gamebase에서 지정해 놓은 Scheme 입니다.<br/>
 
 | scheme | 용도 |
-| --- | --- | --- |
+| --- | --- | 
 | gamebase://dismiss | WebView 닫기 |
 | gamebase://goBack | WebView 뒤로가기 |
 | gamebase://getUserId | 현재 로그인되어 있는 유저의 UserId를 표시 |
@@ -158,7 +157,7 @@ TCGBWebViewConfiguration 설정으로 WebView를 Customizing 할 수 있습니�
 
 
 
-### Alert
+## Alert
 
 System Alert 를 위한 API를 제공합니다.<br/>
 iOS8 이상에서 동작하는 UIAlertController와, iOS8 미만에서의 UIAlertView 처리를 내부적으로 해줍니다.<br/>
@@ -183,7 +182,7 @@ iOS8 이상에서 동작하는 UIAlertController와, iOS8 미만에서의 UIAler
 
 ```
 
-### Toast
+## Toast
 
 안드로이드와 같은 Toast를 제공합니다. <br/>
 간단한 메시지와 노출되는 시간을 설정할 수 있습니다.
@@ -196,7 +195,7 @@ iOS8 이상에서 동작하는 UIAlertController와, iOS8 미만에서의 UIAler
 ```
 
 
-### Error Handling
+## Error Handling
 
 
 | Error | Error Code | Notes |

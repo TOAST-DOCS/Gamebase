@@ -1,14 +1,15 @@
-## Upcomming Products > Gamebase > Android Developer's Guide  > Getting Started
+## Upcoming Products > Gamebase > Android Developer's Guide  > Getting Started
 
 ## Getting Started
 
 ### Environments
 
-> 
+
 > [INFO]
 > 
 > 최소사양 : Android API 15 (IceCreamSandwichMR1, 4.0.3) 이상 <br/>
 > 개발 환경 : Android Studio
+
 
 ### Installation
 

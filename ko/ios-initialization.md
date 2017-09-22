@@ -1,8 +1,8 @@
-## Upcomming Products > Gamebase > iOS Developer's Guide > Initialization
+## Upcoming Products > Gamebase > iOS Developer's Guide > Initialization
 
 ## Initialization
 
-### 1. Import Header File
+### Import Header File
 먼저 Gamebase 헤더 파일을 앱으로 가져와야 합니다.<br/>
 AppDelegate.h등 Gamebase기능을 초기화할 곳에서 다음의 헤더 파일을 가져옵니다.
 
@@ -32,17 +32,18 @@ AppDelegate.h등 Gamebase기능을 초기화할 곳에서 다음의 헤더 파�
 2. 설정된 **TCGBConfiguration**객체를 사용하여, **initializeWithConfiguration:launchOptions:completion:**을 호출합니다.
 3. **completion** block으로 받은 **TCGBError** 객체를 확인하여 성공여부를 판단하며, 초기화가 실패하였을 경우에는 재시도를 할 수 있도록 합니다.
 
-**TCGBConfiguration Properties**
-* 필수 옵션
-	1. **appId** : Toast Cloud Console에서 할당받은 AppID를 설정합니다.
-		* [LINK \[AppID 확인\]](./Getting Started#id-secret-key-console)
-	2. **appVersion** : 출시할 앱의 version으로 설정합니다.
-		* [LINK \[AppVersion 등록 및 확인\]](./Getting Started#console_1)
-* 선택 옵션
-    1. **enablePopup** : Launching과 Ban 정보를 안내할 시스템 팝업을 사용할 것인지를 선택합니다. (default: YES)
-    2. **enableLaunchingStatusPopup** : Launching Status 정보를 안내할 시스템 팝업을 사용할 것인지를 선택합니다. (default: YES)
-    3. **enableBanPopup** : 유저 이용제재 정보를 안내할 시스템 팝업을 사용할 것인지를 선택합니다. (default: YES)
-    4. **storeCode** : 스토어 코드를 세팅합니다. (default: AS)
+**TCGBConfiguration Properties** <br/>
+<br/>
+* 필수 옵션<br/>
+	1. **appId** : Toast Cloud Console에서 할당받은 AppID를 설정합니다.<br/>
+		* [LINK \[AppID 확인\]](./Getting Started#id-secret-key-console)<br/>
+	2. **appVersion** : 출시할 앱의 version으로 설정합니다.<br/>
+		* [LINK \[AppVersion 등록 및 확인\]](./Getting Started#console_1)<br/>
+* 선택 옵션<br/>
+    1. **enablePopup** : Launching과 Ban 정보를 안내할 시스템 팝업을 사용할 것인지를 선택합니다. (default: YES)<br/>
+    2. **enableLaunchingStatusPopup** : Launching Status 정보를 안내할 시스템 팝업을 사용할 것인지를 선택합니다. (default: YES)<br/>
+    3. **enableBanPopup** : 유저 이용제재 정보를 안내할 시스템 팝업을 사용할 것인지를 선택합니다. (default: YES)<br/>
+    4. **storeCode** : 스토어 코드를 세팅합니다. (default: AS)<br/>
 
 ```objectivec
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -155,8 +156,6 @@ iOS의 App Event를 관리하기 위하여 아래에 명기된 **UIApplicationDe
 
 
 ### Error Handling
-
-
 
 | Error | Error Code | Notes |
 | ----- | ---------- | ----- |

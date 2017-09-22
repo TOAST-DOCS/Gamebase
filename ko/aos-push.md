@@ -1,15 +1,15 @@
-## Upcomming Products > Gamebase > Android Developer's Guide  > Push
+## Upcoming Products > Gamebase > Android Developer's Guide  > Push
 
 ## Push
 
 ### Settings
 
-#### 1. TOAST Cloud Console
+#### TOAST Cloud Console 등록
 
 * TCPush 가이드를 참고하여 Console 설정을 합니다.
 	* [LINK \[Push > Developer's Guide\]](http://docs.cloud.toast.com/ko/Notification/Push/ko/Developer%60s%20Guide/)
 
-#### 2. Download
+#### Download
 
 * Firebase 푸쉬를 사용하는 경우
 	* 다운로드 받은 SDK의 **gamebase-adapter-push-fcm** 폴더를 프로젝트에 추가합니다.
@@ -22,7 +22,7 @@
 > Firebase 푸쉬와 Tencent 푸쉬를 둘 다 동시에 프로젝트에 추가하지 마십시오.
 
 
-#### 3. AndroidManifest.xml
+#### AndroidManifest.xml
 
 * Gamebase 푸쉬에 필요한 설정을 추가합니다.
 
@@ -88,7 +88,7 @@
 </manifest>
 ```
 
-#### 4. Google Services Settings (Firebase only)
+#### Google Services Settings (Firebase only)
 
 * Gradle 빌드를 사용하는 경우
     * Firebase 푸쉬를 사용하기 위해서는 google-services.json 설정파일이 필요합니다.
@@ -114,7 +114,7 @@
 </resources>
 ```
 
-#### 5. Initialization
+#### Initialization
 
 * Gamebase 초기화시 configuration의 **setPushType()**을 호출합니다.
 * Firebase 푸쉬를 사용하는 경우
@@ -146,8 +146,9 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 ### Register Push
 
-* 다음 API를 호출하여, ToastCloud Push에 해당 사용자를 등록합니다.
-* Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야간 광고성 Push 동의 여부(enableAdNightPush)값을 사용자로부터 받아온 후, 다음의 API 호출을 통해 등록을 완료합니다.
+다음 API를 호출하여, ToastCloud Push에 해당 사용자를 등록합니다.<br/>
+Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야간 광고성 Push 동의 여부(enableAdNightPush)값을 사용자로부터 받아온 후, 다음의 API 호출을 통해 등록을 완료합니다.
+
 
 ```java
 boolean enablePush;
@@ -171,10 +172,10 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 });
 ```
 
-### Get Push Settings
+### Request Push Settings
 
-* 사용자의 Push 설정을 조회하기 위해서, 다음의 API를 이용합니다.
-* 콜백으로 오는 PushConfiguration 값을 바탕으로, 사용자 설정값을 얻을 수 있습니다.
+사용자의 Push 설정을 조회하기 위해서, 다음의 API를 이용합니다. <br/>
+콜백으로 오는 PushConfiguration 값을 바탕으로, 사용자 설정값을 얻을 수 있습니다.
 
 ```java
 Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() {
@@ -209,6 +210,6 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 
 * 이 에러는 TOAST Cloud Push 라이브러리에서 발생한 에러입니다.
 * exception.getDetailCode() 를 통해 TCPush 에러 코드를 확인하여야 합니다.
-	* TCPush 에러코드는 다음 문서를 참고하시기 바랍니다.
-	* [LINK \[Push > Client SDK Developer's Guide > Error Code Guide > 오류 처리\]](http://docs.cloud.toast.com/ko/Notification/Push/ko/Client%20SDK%20Guide/#_5)
+* TCPush 에러코드는 다음 문서를 참고하시기 바랍니다.
+* [LINK \[Push > Client SDK Developer's Guide > Error Code Guide > 오류 처리\]](http://docs.cloud.toast.com/ko/Notification/Push/ko/Client%20SDK%20Guide/#_5)
 

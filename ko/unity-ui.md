@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > Unity Developer's Guide > UI
+## Upcoming Products > Gamebase > Unity Developer's Guide > UI
 
 
 ## Webview
@@ -134,7 +134,7 @@ public void ShowWebViewFile()
 Gamebase에서 지정해 놓은 Scheme 입니다.
 
 | scheme | 용도 |
-| --- | --- | --- |
+| --- | --- | 
 | gamebase://dismiss | WebView 닫기 |
 | gamebase://goBack | WebView 뒤로가기 |
 | gamebase://getUserId | 현재 로그인되어 있는 유저의 UserId를 표시 |
@@ -201,7 +201,7 @@ public void ShowToast(string message, int duration)
 }
 ```
 
-### Error Handling
+## Error Handling
 
 | Error | Error Code | Notes |
 | ----- | ---------- | ----- |

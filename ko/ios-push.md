@@ -1,9 +1,8 @@
-## Upcomming Products > Gamebase > iOS Developer's Guide > Push
+## Upcoming Products > Gamebase > iOS Developer's Guide > Push
 
 ## Push
 
 ### Settings
-
 
 #### Apple Developer Certificates
 * **'Developer Site > Add iOS Certificate'**에서 **Apple Push Notification service SSL** 로 인증서를 생성합니다.
@@ -20,7 +19,7 @@
 	* **development**: Sandbox APNS
 	* **production**:  APNS
 
-### Import Header File
+#### Import Header File
 
 구매 API를 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
@@ -30,9 +29,9 @@
 
 ### Register Push
 
-다음의 API를 호출하여, ToastCloud Push에 해당 사용자를 등록합니다.<br/>
-Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야간 광고성 Push 동의 여부(enableAdNightPush)값을
-사용자로부터 받아온 후, 다음의 API 호출을 통해 등록을 완료합니다.
+다음 API를 호출하여, ToastCloud Push에 해당 사용자를 등록합니다.<br/>
+Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야간 광고성 Push 동의 여부(enableAdNightPush)값을 사용자로부터 받아온 후, 다음의 API 호출을 통해 등록을 완료합니다.
+
 
 ```objectivec
 - (void)didLoginSucceeded {

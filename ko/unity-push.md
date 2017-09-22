@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > Unity Developer's Guide > Push
+## Upcoming Products > Gamebase > Unity Developer's Guide > Push
 
 
 ## Push
@@ -14,8 +14,9 @@
 
 ### Register Push
 
-다음 API를 호출하여, ToastCloud Push에 해당 사용자를 등록합니다.
-Push 동의 여부, 광고성 Push 동의 여부, 야간 광고성 Push 동의 여부 값을 사용자로부터 받아온 후, 다음의 API 호출을 통해 등록을 완료합니다.
+다음 API를 호출하여, ToastCloud Push에 해당 사용자를 등록합니다.<br/>
+Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야간 광고성 Push 동의 여부(enableAdNightPush)값을 사용자로부터 받아온 후, 다음의 API 호출을 통해 등록을 완료합니다.
+
 
 **API**
 
@@ -55,7 +56,7 @@ public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNig
 
 ### Request Push Settings
 
-사용자의 Push 설정을 조회하기 위해서, 다음의 API를 이용합니다.
+사용자의 Push 설정을 조회하기 위해서, 다음의 API를 이용합니다. <br/>
 콜백으로 오는 PushConfiguration 값을 바탕으로, 사용자 설정값을 얻을 수 있습니다.
 
 **API**
@@ -106,5 +107,5 @@ public void QueryPush()
 #### PUSH_EXTERNAL_LIBRARY_ERROR
 * 이 에러는 TOAST Cloud Push 라이브러리에서 발생한 에러입니다.
 * TCPush 에러 코드를 확인하시기 바랍니다.
-	* [LINK \[Push > Client SDK Developer's Guide > Error Code Guide > 오류 처리\]](http://docs.cloud.toast.com/ko/Notification/Push/ko/Client%20SDK%20Guide/#_5)
+* [LINK \[Push > Client SDK Developer's Guide > Error Code Guide > 오류 처리\]](http://docs.cloud.toast.com/ko/Notification/Push/ko/Client%20SDK%20Guide/#_5)
 
