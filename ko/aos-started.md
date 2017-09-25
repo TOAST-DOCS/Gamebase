@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Android Developer's Guide  > Getting Started
+## Game > Gamebase > Android Developer's Guide  > Getting Started
 
 ## Getting Started
 

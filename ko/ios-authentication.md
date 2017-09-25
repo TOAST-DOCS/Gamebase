@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > iOS Developer's Guide > Authentication
+## Game > Gamebase > iOS Developer's Guide > Authentication
 
 
 ## Login
@@ -408,7 +408,7 @@ Gamebase Console에 제재된 유저로 등록될 경우,
 * 전체 에러코드 참조 : [LINK \[Entire Error Codes\]](./error-codes#client-sdk)
 
 
-### TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR
+**TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR**
 * 이 에러는 각 IDP의 SDK에서 발생한 에러입니다.
 * 에러 코드 확인은 다음과 같이 확인하실 수 있습니다.
 * IDP SDK의 에러코드는 각각의 Developer 페이지를 참고바랍니다.

@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Android Developer's Guide  > Authentication
+## Game > Gamebase > Android Developer's Guide  > Authentication
 
 ## Login
 

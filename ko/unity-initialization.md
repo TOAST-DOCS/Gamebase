@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Unity Developer's Guide > Initialization
+## Game > Gamebase > Unity Developer's Guide > Initialization
 
 ## Initialization
 

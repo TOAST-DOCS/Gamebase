@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Unity Developer's Guide > Authentication
+## Game > Gamebase > Unity Developer's Guide > Authentication
 
 ## Login
 

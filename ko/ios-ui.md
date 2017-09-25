@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > iOS Developer's Guide > UI
+## Game > Gamebase > iOS Developer's Guide > UI
 
 
 ## WebView

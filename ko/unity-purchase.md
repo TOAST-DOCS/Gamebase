@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Unity Developer's Guide > Purchase
+## Game > Gamebase > Unity Developer's Guide > Purchase
 
 ## Purchase
 

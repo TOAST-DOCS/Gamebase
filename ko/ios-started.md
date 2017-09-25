@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > iOS Developer's Guide > Getting Started
+## Game > Gamebase > iOS Developer's Guide > Getting Started
 
 ## Getting Started
 

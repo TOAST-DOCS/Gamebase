@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Android Developer's Guide  > Purchase
+## Game > Gamebase > Android Developer's Guide  > Purchase
 
 ## Purchase
 

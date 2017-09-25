@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Server Developer's Guide
+## Game > Gamebase > Server Developer's Guide
 
 Gamebase Server API는 RESTful 형식으로 다음과 같은 API들을 제공합니다.
 
@@ -13,23 +13,23 @@ API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주�
 > https://api-gamebase.cloud.toast.com
 <br>
 
-![image alt](image/Server_Developers_Guide/pre_server_address_v1.1.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.1.png)
 
 
 #### AppId
 
 AppId는 **TOAST Cloud의 프로젝트ID**로 콘솔 화면 Project list 화면에서 확인 가능합니다.
-![image alt](image/Server_Developers_Guide/pre_appId_v1.1.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.1.png)
 
 
 #### SecretKey
 
 SecretKey는 API에 대한 접근 제어 용도로 Gamebase 콘솔에서 확인 가능합니다. 해당 값은 **API 호출시 HTTP Header에 필수적**으로 설정되어야 합니다.
-> [Note] - SecretKey 갱신
+> [NOTE]<br>
 > SecretKey 가 외부에 노출되어 잘못된 호출이 발생 한다면, 생성 버튼을 통해 새로운 SecretKey를 생성한 후에 해당 SecretKey 를 사용하면 됩니다.
 <br>
 
-![image alt](image/Server_Developers_Guide/pre_secret_key_v1.1.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.1.png)
 
 #### TransactionId
 
@@ -53,7 +53,7 @@ API 호출 시 HTTP Header에 다음 항목들을 설정해야 합니다.
 
 모든 API 요청에 대한 응답으로 **HTTP 200 OK** 를 전달합니다. API 요청 성공 유무는 Response Body 의 header 항목을 참고하여 판단할 수 있습니다.
 
-###### Request
+**[Request]**
 
 ```
 Content-Type: application/json
@@ -62,7 +62,7 @@ X-Secret-Key: IgsaAP
 GET https://api-gamebase.cloud.toast.com
 ```
 
-###### Response
+**[Response]**
 
 ```
 HTTP/1.1 200 OK
@@ -553,6 +553,8 @@ Gamebase는 TOASTCloud IAP 상품의 서버 API에 대해 **Wrapping** 기능을
 | 미소비 결제 내역 조회| POST | /tcgb-inapp/v1.0/apps/{appId}/consumable/list | /standard/inapp/v1/consumable/list |
 
 **해당 API에 대한 상세 설명은 다음 링크를 참고 하시기 바랍니다.**
+
+<br>
 LINK [\[IAP 가이드\]](http://docs.cloud.toast.com/ja/Common/IAP/ja/Server%20Developer%60s%20Guide/)
 
 <br>
@@ -588,6 +590,8 @@ Gamebase는 TOASTCloud Leaderboard 상품의 서버 API에 대해 **Wrapping** �
 
 
 **해당 API에 대한 상세 설명은 다음 링크를 참고 하시기 바랍니다.**
+
+<br>
 LINK [\[Leaderboard 가이드\]](http://docs.cloud.toast.com/ja/Game/Leaderboard/ja/Developer%60s%20Guide/) 
 
 <br>
@@ -601,6 +605,7 @@ X-Secret-Key: IgsaAP
 
 GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/user-count
 ```
+
 <br>
 
 ## Etc
@@ -608,6 +613,7 @@ GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.0/apps/{appId}/fact
 ### Support
 
 API 호출 실패 원인에 대한 문의 사항이 있을 경우, **API 호출 URL(HTTP Body가 있는 경우는 body와 함께)과 그에 대한 응답 결과**를 함께 전달해 주시면 빠른 지원이 가능합니다.
+
 <br>
 
 ##### API 호출 예시

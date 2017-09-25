@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > iOS Developer's Guide > Push
+## Game > Gamebase > iOS Developer's Guide > Push
 
 ## Push
 

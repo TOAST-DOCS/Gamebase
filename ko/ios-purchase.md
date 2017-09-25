@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > iOS Developer's Guide > Purchase
+## Game > Gamebase > iOS Developer's Guide > Purchase
 
 ## Purchase
 

@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Android Developer's Guide  > Initialization
+## Game > Gamebase > Android Developer's Guide  > Initialization
 
 ## Initialization
 
