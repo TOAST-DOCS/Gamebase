@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > Operator Guide > Monitoring
+## Game > Gamebase > Operator Guide > Monitoring
 
 앱을 이용하는 사용자의 현황을 지표 및 그래프로 확인할 수 있습니다.<br />
 모니터링 / 그룹동접 / 설치 URL 통계 / 판매 현황 메뉴로 구성되어 있습니다.<br />

@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > Operator Guide > Ban
+## Game > Gamebase > Operator Guide > Ban
 앱을 부당하게 사용하거나 어뷰징을 하는 유저에 대하여 앱의 진입을 제한할 수 있는 이용 정지 기능을 제공합니다.<br/>
 이용정지된 유저가 다시 로그인하거나 세션복구를 하는 경우에 이용정지 팝업이 노출되어 게임이용이 제한됩니다.<br/>
 

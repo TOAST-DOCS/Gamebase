@@ -34,7 +34,7 @@ TOAST Cloud에 등록한 클라이언트 버전입니다.
 
 ![App Version](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_002_1.2.0.png)
 
-**[TOAST Console]**</br>
+**[TOAST Console]**<br/>
 Menu : TOAST Cloud Console > Gamebase > App
 Tab : Client
 
@@ -177,7 +177,7 @@ appVersion 추가 및 수정은 TOAST Console에서 할 수 있습니다.
 
 ![Launching Status](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_006_1.2.0.png)
 
-**[TOAST Console]**</br>
+**[TOAST Console]**<br/>
 Menu : TOAST Cloud Console > Gamebase > App
 Tab : Client
 
@@ -213,7 +213,7 @@ TOAST Console에 등록 된 App 정보입니다.
 
 ![Launching App](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_005_1.2.0.png)
 
-**[TOAST Console]**</br>
+**[TOAST Console]**<br/>
 Menu : TOAST Cloud Console > Gamebase > App
 Tab : App
 
@@ -229,7 +229,7 @@ TOAST Console에 등록 된 점검 정보입니다.
 
 ![Launching Maintenance](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_007_1.2.0.png)
 
-**[TOAST Console]**</br>
+**[TOAST Console]**<br/>
 Menu : TOAST Cloud Console > Gamebase > Operation
 Tab : Maintenance
 
@@ -257,6 +257,6 @@ TOAST Console에 등록 된 IAP Store 정보입니다.
 
 ![Launching TC IAP](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_008_1.2.0.png)
 
-**[TOAST Console]**</br>
+**[TOAST Console]**<br/>
 Menu : TOAST Cloud Console > Gamebase > Purchase(IAP)
 Tab : App

@@ -34,16 +34,16 @@ AppDelegate.h등 Gamebase기능을 초기화할 곳에서 다음의 헤더 파�
 
 **TCGBConfiguration Properties** <br/>
 <br/>
-* 필수 옵션<br/>
-	1. **appId** : Toast Cloud Console에서 할당받은 AppID를 설정합니다.<br/>
-		* [LINK \[AppID 확인\]](./Getting Started#id-secret-key-console)<br/>
-	2. **appVersion** : 출시할 앱의 version으로 설정합니다.<br/>
-		* [LINK \[AppVersion 등록 및 확인\]](./Getting Started#console_1)<br/>
-* 선택 옵션<br/>
-    1. **enablePopup** : Launching과 Ban 정보를 안내할 시스템 팝업을 사용할 것인지를 선택합니다. (default: YES)<br/>
-    2. **enableLaunchingStatusPopup** : Launching Status 정보를 안내할 시스템 팝업을 사용할 것인지를 선택합니다. (default: YES)<br/>
-    3. **enableBanPopup** : 유저 이용제재 정보를 안내할 시스템 팝업을 사용할 것인지를 선택합니다. (default: YES)<br/>
-    4. **storeCode** : 스토어 코드를 세팅합니다. (default: AS)<br/>
+* 필수 옵션
+	1. **appId** : Toast Cloud Console에서 할당받은 AppID를 설정합니다.
+		* [LINK \[AppID 확인\]](./Getting Started#id-secret-key-console)
+	2. **appVersion** : 출시할 앱의 version으로 설정합니다.
+		* [LINK \[AppVersion 등록 및 확인\]](./Getting Started#console_1)
+* 선택 옵션
+    1. **enablePopup** : Launching과 Ban 정보를 안내할 시스템 팝업을 사용할 것인지를 선택합니다. (default: YES)
+    2. **enableLaunchingStatusPopup** : Launching Status 정보를 안내할 시스템 팝업을 사용할 것인지를 선택합니다. (default: YES)
+    3. **enableBanPopup** : 유저 이용제재 정보를 안내할 시스템 팝업을 사용할 것인지를 선택합니다. (default: YES)
+    4. **storeCode** : 스토어 코드를 세팅합니다. (default: AS)
 
 ```objectivec
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

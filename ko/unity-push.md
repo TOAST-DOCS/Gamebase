@@ -6,9 +6,9 @@
 ### Settings
 
 
-각 플랫폼별 셋팅 부분을 참고하시기 바랍니다.</br>
+각 플랫폼별 셋팅 부분을 참고하시기 바랍니다.<br/>
 
-* [LINK \[Android push settings\]](aos-push#settings)</br>
+* [LINK \[Android push settings\]](aos-push#settings)<br/>
 * [LINK \[iOS push settings\]](ios-push#settings)
 
 

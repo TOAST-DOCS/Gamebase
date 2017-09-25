@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > Error Code
+## Game > Gamebase > Error Code
 
 ## Client SDK
 

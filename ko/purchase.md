@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > Operator Guide > Purchase
+## Game > Gamebase > Operator Guide > Purchase
 
 인앱 결제관련 정보를 등록 및 내역 조회 기능을 제공합니다.<br/>
 Gamebase 내부적으로 TOAST Cloud IAP 상품을 사용하고 있습니다.<br/>

@@ -76,7 +76,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 ### Purchase Flow
 
-아이템 구매는 다음과 같은 순서로 구현하시기 바랍니다.</br>
+아이템 구매는 다음과 같은 순서로 구현하시기 바랍니다.<br/>
 
 1. requestPurchase 를 호출하여 결제를 시도합니다.
 2. 결제가 성공하였다면 requestItemListOfNotConsumed 를 호출하여 미소비 결제내역을 확인합니다.

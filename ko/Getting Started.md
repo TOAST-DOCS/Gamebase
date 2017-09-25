@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Getting Started
+## Game > Gamebase > Getting Started
 
 ## Getting Started
 Gamebase 서비스 사용을 위한 아주 간단하지만 꼭 필요한 기본적인 절차에 대해 설명합니다.

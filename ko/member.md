@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > Operator Guide > Member
+## Game > Gamebase > Operator Guide > Member
 
 ## Member
 

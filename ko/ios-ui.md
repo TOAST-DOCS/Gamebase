@@ -15,7 +15,7 @@ Popup 스타일은 기존화면 위에 모달뷰 형식으로 나타나게 되�
 
 ### Browser Style WebView
 
-Fullscreen 웹뷰를 지원합니다.</br>
+Fullscreen 웹뷰를 지원합니다.<br/>
 Fullscreen 스타일은 네비게이션바를 가지며, Close/GoBack 버튼을 가집니다. 네비게이션바에 타이틀을 지정할 수 있습니다.
 
 
@@ -30,7 +30,7 @@ Fullscreen 스타일은 네비게이션바를 가지며, Close/GoBack 버튼을 
 
 ### Popup Style WebView
 
-Popup 웹뷰를 지원합니다.</br>
+Popup 웹뷰를 지원합니다.<br/>
 Popup 스타일은 기존화면 위에 모달뷰 형식으로 나타나게 되며, 뒷 배경은 투명한 mask view로 덮어씌워집니다.
 
 

@@ -2,8 +2,8 @@
 
 ## Login
 
-* Gamebase 에서는 guest 로그인을 기본으로 지원합니다.</br>
-* Guest 이외의 Provider에 로그인을 하기 위해서는 해당 Provider AuthAdapter가 필요합니다.</br>
+* Gamebase 에서는 guest 로그인을 기본으로 지원합니다.<br/>
+* Guest 이외의 Provider에 로그인을 하기 위해서는 해당 Provider AuthAdapter가 필요합니다.<br/>
 * AuthAdapter 대한 설정은 다음의 링크를 참고하시길 바랍니다.
 	* [LINK \[Android Setting\]](aos-started#dependency)
 	* [LINK \[iOS Setting\]](ios-started#installation)
@@ -35,11 +35,11 @@
 [GetBanInfo](#gets-banned-user-infomation) API로 ban정보를 가져올 수 있습니다.
 
 
-Gamebase 에서는 guest 로그인을 기본으로 지원합니다.</br>
-guest 이외의 Provider에 로그인을 하기 위해서는 해당 Provider AuthAdapter가 필요합니다.</br>
+Gamebase 에서는 guest 로그인을 기본으로 지원합니다.<br/>
+guest 이외의 Provider에 로그인을 하기 위해서는 해당 Provider AuthAdapter가 필요합니다.<br/>
 AuthAdapter 대한 설정은 다음의 링크를 참고하시길 바랍니다.
 
-* [LINK [Android Setting]](aos-started#dependency)</br>
+* [LINK [Android Setting]](aos-started#dependency)<br/>
 * [LINK [iOS Setting]](ios-started#installation)
 
 ### Login Flow
@@ -50,13 +50,13 @@ AuthAdapter 대한 설정은 다음의 링크를 참고하시길 바랍니다.
 * Gamebase Server 로그인 실패 시, **Login** 메서드를 호출하여, 로그인 시도
 
 ### Banned User of Login
-이용정지 회원일 경우 LoginForLastLoggedInProvider/Login API를 호출하면 **AUTH_BANNED_MEMBER(3005)** 에러를 리턴합니다.</br>
+이용정지 회원일 경우 LoginForLastLoggedInProvider/Login API를 호출하면 **AUTH_BANNED_MEMBER(3005)** 에러를 리턴합니다.<br/>
 [GetBanInfo](#gets-banned-user-infomation) API로 ban정보를 가져올 수 있습니다.
 
 ### Login as the Latest Login IDP
 
-가장 최근에 로그인한 IDP로의 로그인을 시도합니다.</br>
-해당 로그인에 대한 토큰이 만료되었거나, 토큰에 대한 검증 등이 실패하였을 때, 실패를 리턴합니다.</br>
+가장 최근에 로그인한 IDP로의 로그인을 시도합니다.<br/>
+해당 로그인에 대한 토큰이 만료되었거나, 토큰에 대한 검증 등이 실패하였을 때, 실패를 리턴합니다.<br/>
 이 때는 [해당 IDP에 대한 로그인](#login-using-a-specific-idp)을 구현해야합니다.
 
 **API**<br>
@@ -113,8 +113,8 @@ public void Login(string providerName)
 
 ### Login with GUEST
 
-Gamebase는 Guest 로그인을 지원합니다.</br>
-디바이스의 유일한 키를 생성하여 Gamebase에 로그인을 시도합니다.</br>
+Gamebase는 Guest 로그인을 지원합니다.<br/>
+디바이스의 유일한 키를 생성하여 Gamebase에 로그인을 시도합니다.<br/>
 Guest 로그인은 디바이스키는 초기화 될 수 있고 디바이스키의 초기화 시에 계정이 삭제될 수 있으므로 IDP를 활용한 로그인 방식을 권장합니다.
 
 **API**<br>
@@ -167,9 +167,9 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 * GamebaseAuthProvider.FACEBOOK
 * GamebaseAuthProvider.PAYCO
 
-> 몇몇 IDP의 로그인시에는 필수적으로 들어가야하는 정보가 있습니다.</br>
-> 예를 들어, facebook 로그인을 구현하기 위해서는 scope 등을 설정해주어야합니다.</br>
-> 이러한 필수 정보들을 설정해주기 위해 static void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) API를 제공합니다.</br>
+> 몇몇 IDP의 로그인시에는 필수적으로 들어가야하는 정보가 있습니다.<br/>
+> 예를 들어, facebook 로그인을 구현하기 위해서는 scope 등을 설정해주어야합니다.<br/>
+> 이러한 필수 정보들을 설정해주기 위해 static void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) API를 제공합니다.<br/>
 > 파라미터 additionalInfo에 필수 정보들을 Dictionary 형태로 입력하시면 됩니다. (파라미터 값이 null일 때는, TOAST Cloud Console에 등록한 additionalInfo 값으로 채워집니다. 파라미터 값이 있을 때는 Console에 등록해놓은 값보다 우선시하여 값을 덮어쓰게 됩니다.  [TOAST Cloud Console에 additionalInfo 설정하기](#authentication-additional-information-settings))
 
 **Example**
@@ -268,9 +268,9 @@ Payco 추가 인증 정보 입력 예제
 ```
 
 ## Logout
-로그인 된 IDP에서 로그아웃을 시도합니다.</br>
-로그아웃이 성공하더라도, 유저 데이터는 유지됩니다.</br>
-로그아웃에 성공 하면 해당 IDP 로그아웃을 시도하게 됩니다.</br>
+로그인 된 IDP에서 로그아웃을 시도합니다.<br/>
+로그아웃이 성공하더라도, 유저 데이터는 유지됩니다.<br/>
+로그아웃에 성공 하면 해당 IDP 로그아웃을 시도하게 됩니다.<br/>
 로그아웃 버튼을 클릭했을 때, 다음과 같이 로그아웃 API를 구현합니다.
 
 **API**<br>
@@ -306,12 +306,13 @@ public void Logout()
 
 
 ## Withdraw
-로그인 상태에서 탈퇴를 시도합니다.</br>
-탈퇴에 성공하면, 로그인 했던 IDP와 연동 되어 있던 유저 데이터는 삭제 됩니다.</br>
-해당 IDP로 다시 로그인 가능하고 새로운 유저 데이터를 생성합니다.</br>
-Gamebase 탈퇴를 의미하며, IDP 계정 탈퇴를 의미하지는 않습니다.</br>
-탈퇴 성공 시 IDP 로그아웃을 시도하게 합니다.</br>
-탈퇴 버튼을 클릭했을 때 다음과 같이 탈퇴 API를 구현합니다.
+로그인 상태에서 탈퇴를 시도합니다.<br/><br/>
+
+* 탈퇴에 성공하면, 로그인 했던 IDP와 연동 되어 있던 유저 데이터는 삭제 됩니다.
+* 해당 IDP로 다시 로그인 가능하고 새로운 유저 데이터를 생성합니다.
+* Gamebase 탈퇴를 의미하며, IDP 계정 탈퇴를 의미하지는 않습니다.
+* 탈퇴 성공 시 IDP 로그아웃을 시도하게 합니다.
+* 탈퇴 버튼을 클릭했을 때 다음과 같이 탈퇴 API를 구현합니다.
 
 **API**<br>
 
@@ -346,14 +347,14 @@ public void Withdraw()
 
 ## Mapping
 
-Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시키는 기능입니다.</br>
+Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시키는 기능입니다.<br/>
 특정 IDP에 연동된(guest 포함) 계정에 다른 IDP의 계정을 연동하였을 때, 각각의 계정들에 대해서 UserID는 동일하게 주어집니다.
 
 ### Add Mapping
 
-특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다.</br>
-Mapping을 하려는 IDP의 계정이 이미 다른 계정이 연동이 되어있다면, **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 에러를 리턴합니다.</br>
-Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 아니라, 기존에 로그인했던 IDP가 됩니다.</br>
+특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다.<br/>
+Mapping을 하려는 IDP의 계정이 이미 다른 계정이 연동이 되어있다면, **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 에러를 리턴합니다.<br/>
+Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 아니라, 기존에 로그인했던 IDP가 됩니다.<br/>
 즉, Mapping은 단순히 IDP를 연동만 해줍니다.
 
 **API**<br>
@@ -385,7 +386,7 @@ public void AddMapping(string providerName)
 
 ### Remove Mapping
 
-특정 IDP에 대한 연동을 해제합니다. 만약, 해제하고자 하는 IDP가 유일한 IDP라면, 실패를 리턴하게 됩니다.</br>
+특정 IDP에 대한 연동을 해제합니다. 만약, 해제하고자 하는 IDP가 유일한 IDP라면, 실패를 리턴하게 됩니다.<br/>
 연동 해제후에는 Gamebase 내부에서, 해당 IDP에 대한 로그아웃처리를 해줍니다.
 
 **API**<br>
@@ -417,7 +418,7 @@ public void RemoveMapping(string providerName)
 
 ### Get Mapping List
 
-UserId에 연동되어 있는 IDP 목록을 리턴하게 됩니다.</br>
+UserId에 연동되어 있는 IDP 목록을 리턴하게 됩니다.<br/>
 
 **API**<br>
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
@@ -580,7 +581,7 @@ public void GetAuthProviderProfile(string providerName)
 
 ## Get Banned User Infomation
 
-이용정지 정보를 리턴합니다.</br>
+이용정지 정보를 리턴합니다.<br/>
 
 **API**<br>
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)

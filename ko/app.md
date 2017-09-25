@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > Operator Guide > App
+## Game > Gamebase > Operator Guide > App
 앱의 기본적인 정보를 설정할 수 있는 메뉴입니다. 
 
 * 앱(APP) : App 정보 관리

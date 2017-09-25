@@ -43,7 +43,7 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 
 ### Banned User of Login
 
-이용정지 회원일 경우 LoginForLastLoggedInProvider/Login API를 호출하면 **AUTH_BANNED_MEMBER(3005)** 에러를 리턴합니다.</br>
+이용정지 회원일 경우 LoginForLastLoggedInProvider/Login API를 호출하면 **AUTH_BANNED_MEMBER(3005)** 에러를 리턴합니다.<br/>
 [GetBanInfo](#gets-banned-user-infomation) API로 ban정보를 가져올 수 있습니다.
 
 ### Login as the Latest Login IDP
@@ -193,7 +193,7 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 ## Logout
 
-### Import Header File
+#### Import Header File
 
 로그아웃을 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
@@ -201,11 +201,11 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 #import <Gamebase/Gamebase.h>
 ```
 
-### Logout API
+#### Logout API
 
-로그인 된 IDP에서 로그아웃을 시도합니다.</br>
-로그아웃이 성공하더라도, 유저 데이터는 유지됩니다.</br>
-로그아웃에 성공 하면 해당 IDP 로그아웃을 시도하게 됩니다.</br>
+로그인 된 IDP에서 로그아웃을 시도합니다.<br/>
+로그아웃이 성공하더라도, 유저 데이터는 유지됩니다.<br/>
+로그아웃에 성공 하면 해당 IDP 로그아웃을 시도하게 됩니다.<br/>
 로그아웃 버튼을 클릭했을 때, 다음과 같이 로그아웃 API를 구현합니다.
 
 
@@ -235,15 +235,15 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 ### Widthdraw API
 
-로그인 상태에서 탈퇴를 시도합니다.</br>
-탈퇴에 성공하면, 로그인 했던 IDP와 연동 되어 있던 유저 데이터는 삭제 됩니다.</br>
-해당 IDP로 다시 로그인 가능하고 새로운 유저 데이터를 생성합니다.</br>
-Gamebase 탈퇴를 의미하며, IDP 계정 탈퇴를 의미하지는 않습니다.</br>
-탈퇴 성공 시 IDP 로그아웃을 시도하게 합니다.</br></br>
+로그인 상태에서 탈퇴를 시도합니다.<br/><br/>
+
+* 탈퇴에 성공하면, 로그인 했던 IDP와 연동 되어 있던 유저 데이터는 삭제 됩니다.
+* 해당 IDP로 다시 로그인 가능하고 새로운 유저 데이터를 생성합니다.
+* Gamebase 탈퇴를 의미하며, IDP 계정 탈퇴를 의미하지는 않습니다.
+* 탈퇴 성공 시 IDP 로그아웃을 시도하게 합니다.
 
 
 탈퇴 버튼을 클릭했을 때 다음과 같이 탈퇴 API를 구현합니다.
-
 
 ```objectivec
 [TCGBGamebase withdrawWithViewController:self completion:^(TCGBError *error) {

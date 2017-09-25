@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > Operator Guide > Push
+## Game > Gamebase > Operator Guide > Push
 
 앱 이용자에게 푸시 알림을 전송합니다.<br/>
 Gamebase 내부적으로 TOAST Cloud PUSH 상품을 사용하고 있습니다.<br/>

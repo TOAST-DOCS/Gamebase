@@ -195,11 +195,12 @@ private static void onLogout(final Activity activity) {
 
 ## Withdraw
 
-로그인 상태에서 탈퇴를 시도합니다.
-탈퇴에 성공하면, 로그인 했던 IDP와 연동 되어 있던 유저 데이터는 삭제 됩니다.
-해당 IDP로 다시 로그인 가능하고 새로운 유저 데이터를 생성합니다.
-Gamebase 탈퇴를 의미하며, IDP 계정 탈퇴를 의미하지는 않습니다.
-탈퇴 성공 시 IDP 로그아웃을 시도하게 됩니다.
+로그인 상태에서 탈퇴를 시도합니다.<br/><br/>
+
+* 탈퇴에 성공하면, 로그인 했던 IDP와 연동 되어 있던 유저 데이터는 삭제 됩니다.
+* 해당 IDP로 다시 로그인 가능하고 새로운 유저 데이터를 생성합니다.
+* Gamebase 탈퇴를 의미하며, IDP 계정 탈퇴를 의미하지는 않습니다.
+* 탈퇴 성공 시 IDP 로그아웃을 시도하게 됩니다.
 
 탈퇴 버튼을 클릭했을 때, 다음과 같이 로그아웃 API를 구현합니다.
 ```java
@@ -223,12 +224,12 @@ private static void onWithdraw(final Activity activity) {
 
 ## Mapping
 
-Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시키는 기능입니다.
+Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시키는 기능입니다.<br/>
 특정 IDP에 연동된(guest 포함) 계정에 다른 IDP의 계정을 연동하였을 때 각각의 계정들에 대해서 UserID는 동일하게 주어집니다.
 
 ### Add Mapping
 
-특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다.
+특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다.<br/>
 Mapping을 하려는 IDP의 계정이 이미 다른 계정이 연동이 되어있다면 
 **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 에러를 리턴합니다.
 

@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > Operator Guide >  Management
+## Game > Gamebase > Operator Guide >  Management
 Gamebase를 사용하는 게임에 대한 조회권한 관리/알람 발송 설정/알람에 대한 내역조회 등의 기능을 제공합니다.
 
 ### Authorization(권한)

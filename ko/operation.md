@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > Operator Guide > Operation
+## Game > Gamebase > Operator Guide > Operation
 앱 운영시 필요한 기능들을 제공하는 메뉴입니다. <br/>
 
 * 점검(Maintenance) : 앱 점검을 관리

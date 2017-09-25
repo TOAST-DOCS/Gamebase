@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > Overview
+## Game > Gamebase > Overview
 
 게임에서 공통적으로 필요한 기능들을 통합SDK로 제공하여 손쉽고 효율적으로 게임 개발이 가능하도록 돕는 서비스입니다.<br>
 게임개발자는 게임컨텐츠만 만드시면 나머지는 Gamebase가 해결해드립니다.
