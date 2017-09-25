@@ -206,7 +206,7 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 
 * 전체 에러코드 참조 : [LINK \[Entire Error Codes\]](./error-codes#client-sdk)
 
-#### PUSH_EXTERNAL_LIBRARY_ERROR
+**PUSH_EXTERNAL_LIBRARY_ERROR**
 
 * 이 에러는 TOAST Cloud Push 라이브러리에서 발생한 에러입니다.
 * exception.getDetailCode() 를 통해 TCPush 에러 코드를 확인하여야 합니다.

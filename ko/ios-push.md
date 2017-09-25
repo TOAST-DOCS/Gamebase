@@ -81,7 +81,7 @@ Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야�
 | TCGB_ERROR_PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | 이전 PUSH API 호출이 완료되지 않았습니다.<br>이전 PUSH API의 콜백이 실행된 이후에 다시 호출하세요. |
 | TCGB_ERROR_PUSH_UNKNOWN_ERROR | 5999 | 정의되지 않은 푸시 에러입니다.<br>전체 로그를 Gamebase 개발팀에 전달하여 에러상황을 문의해 주세요. |
 
-#### TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR
+**TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR**
 
 * 이 에러는 TOAST Cloud Push 라이브러리에서 발생한 에러입니다.
 * 에러 코드 확인은 다음과 같이 확인하실 수 있습니다.

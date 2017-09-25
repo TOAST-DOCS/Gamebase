@@ -194,7 +194,8 @@ public void RequestRetryTransaction()
 
 * 전체 에러코드 참조 : [LINK \[Entire Error Codes\]](./error-codes#client-sdk)
 
-#### PURCHASE_EXTERNAL_LIBRARY_ERROR
+**PURCHASE_EXTERNAL_LIBRARY_ERROR**
+
 * 이 에러는 IAP 모듈에서 발생한 에러입니다.
 * IAP 에러 코드를 확인하시기 바랍니다.
 	* [LINK \[IAP > Error Code Guide > Client API 에러 타입\]](http://docs.cloud.toast.com/ko/Common/IAP/ko/Error%20Code/#client-api)

@@ -360,7 +360,7 @@ Gamebase Console에 제재된 유저로 등록될 경우,
 | Auth(Unknown) | AUTH\_UNKNOWN\_ERROR | 3999 | 알수 없는 에러입니다. (정의 되지 않은 에러입니다.) |
 * 전체 에러코드 참조 : [LINK \[Entire Error Codes\]](./error-codes#client-sdk)
 
-#### AUTH_EXTERNAL_LIBRARY_ERROR
+**AUTH_EXTERNAL_LIBRARY_ERROR**
 
 * 이 에러는 TOAST Cloud 외부 인증 라이브러리에서 발생한 에러입니다.
 

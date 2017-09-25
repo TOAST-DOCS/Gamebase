@@ -164,7 +164,7 @@ ToastCloud Console에서 설정해야하는 내용입니다.
 
 
 
-#### TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR
+**TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
 * 이 에러는 IAP 모듈에서 발생한 에러입니다.
 * 에러 코드 확인은 다음과 같이 확인하실 수 있습니다.

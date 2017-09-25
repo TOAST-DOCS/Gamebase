@@ -104,7 +104,8 @@ public void QueryPush()
 
 * 전체 에러코드 참조 : [LINK \[Entire Error Codes\]](./error-codes#client-sdk)
 
-#### PUSH_EXTERNAL_LIBRARY_ERROR
+**PUSH_EXTERNAL_LIBRARY_ERROR**
+
 * 이 에러는 TOAST Cloud Push 라이브러리에서 발생한 에러입니다.
 * TCPush 에러 코드를 확인하시기 바랍니다.
 * [LINK \[Push > Client SDK Developer's Guide > Error Code Guide > 오류 처리\]](http://docs.cloud.toast.com/ko/Notification/Push/ko/Client%20SDK%20Guide/#_5)

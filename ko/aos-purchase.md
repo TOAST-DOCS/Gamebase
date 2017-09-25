@@ -197,7 +197,7 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 
 * 전체 에러코드 참조 : [LINK \[Entire Error Codes\]](./error-codes#client-sdk)
 
-#### PURCHASE_EXTERNAL_LIBRARY_ERROR
+**PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
 * 이 에러는 IAP 모듈에서 발생한 에러입니다.
 * exception.getDetailCode() 를 통해 IAP 에러 코드를 확인하여야 합니다.
