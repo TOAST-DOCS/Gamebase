@@ -3,6 +3,7 @@
 게임에서 공통적으로 필요한 기능들을 통합SDK로 제공하여 손쉽고 효율적으로 게임 개발이 가능하도록 돕는 서비스입니다.<br>
 게임개발자는 게임컨텐츠만 만드시면 나머지는 Gamebase가 해결해드립니다.
 
+<br/>
 ## Key Features
 
 Gamebase는 다음과 같은 기능을 제공합니다.
@@ -40,9 +41,9 @@ facebook 인증을 사용하여 게임을 이용하고 있는 유저가 google�
 
 #### Reference
 
-* [LINK [Android Developer Guide-Auth] ](./aos-authentication)
-* [LINK [iOS Developer Guide-Auth] ](./ios-authentication)
-* [LINK [Unity Developer Guide-Auth] ](./unity-authentication)
+* [LINK [Android Developer Guide > Auth] ](./aos-authentication)
+* [LINK [iOS Developer Guide > Auth] ](./ios-authentication)
+* [LINK [Unity Developer Guide > Auth] ](./unity-authentication)
 
 ### Launching
 
@@ -60,11 +61,11 @@ Gamebase에서 제공되는 Launching 정보는 다음과 같습니다.
 
 #### Reference
 
-* [LINK [Android Developer Guide-Launching] ](./aos-initialization/#launching-status)
-* [LINK [iOS Developer Guide-Launching] ](./ios-initialization/#launching-status)
-* [LINK [Unity Developer Guide-Launching info] ](./unity-initialization/#launching-informations)
-* [LINK [Operator Guide-App Info(App, Client, Installed URL)] ](./app) : 앱, 클라이언트 상태 및 설치 URL설정
-* [LINK [Operator Guide-Operator(Maintenance,Notice)] ](./operation) : 점검, 공지 등록
+* [LINK [Android Developer Guide > Launching Info] ](./aos-initialization/#launching-status)
+* [LINK [iOS Developer Guide > Launching Info] ](./ios-initialization/#launching-status)
+* [LINK [Unity Developer Guide > Launching Info] ](./unity-initialization/#launching-informations)
+* [LINK [Operator Guide > App Info(App, Client, Installed URL)] ](./app) : 앱, 클라이언트 상태 및 설치 URL설정
+* [LINK [Operator Guide > Operator(Maintenance,Notice)] ](./operation) : 점검, 공지 등록
 
 
 ### For Global
@@ -95,7 +96,7 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 
 #### Reference
 
-* [LINK [Operator Guide-Operating indicator] ](./operating-indicator) 
+* [LINK [Operator Guide > Operating indicator] ](./operating-indicator) 
 
 ### Using the other TOAST Cloud Service
 
@@ -108,7 +109,7 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 	
 
 
-
+<br/>
 ## Terms
 
 | 용어 | 설명 |
@@ -121,6 +122,8 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 | IDP Login      | 외부 IDP 로그인 (facebook, google 등)       |
 
 [표2] Gamebase 서비스 용어
+
+<br/>
 
 ## Service Architecture
 

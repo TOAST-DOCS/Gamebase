@@ -6,7 +6,7 @@
 
 #### Apple Developer Certificates
 * **'Developer Site > Add iOS Certificate'**에서 **Apple Push Notification service SSL** 로 인증서를 생성합니다.
-* 생성된 인증서를 Keychain이 등록 후, `Personal Information Exchange (.p12)` 포맷으로 export합니다.
+* 생성된 인증서를 Keychain이 등록 후, 'Personal Information Exchange (.p12)' 포맷으로 export합니다.
 * export 시에 비밀번호를 설정합니다.
 
 #### Toast Cloud Console 등록

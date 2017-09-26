@@ -27,12 +27,12 @@
 			* 네트워크 에러 : **SOCKET_ERROR(110)**, **SOCKET_RESPONSE_TIMEOUT(101)**
 		* 로그인 실패 사유가 서버 오류일 경우: 기존의 로그인 정보가 인증을 받을 수 없는 상태이기 때문에 **IDP login API**을 다시 호출할 수 있도록 합니다. (Title Scene으로의 화면 전환 등)
     	* 로그인 실패 사유가 **AUTH_BANNED_MEMBER(3005)** 와 같은 경우라면 로그인이 항상 실패할 것이기 때문에 적절한 안내와 함께 게임 진입이 되지 않도록 처리합니다.
-		
+
 
 ### Banned User of Login
 
 이용정지 회원일 경우 LoginForLastLoggedInProvider/Login API를 호출하면 **AUTH_BANNED_MEMBER(3005)** 에러를 리턴합니다.
-[GetBanInfo](#gets-banned-user-infomation) API로 ban정보를 가져올 수 있습니다.
+[GetBanInfo](#get-banned-user-infomation) API로 ban정보를 가져올 수 있습니다.
 
 
 Gamebase 에서는 guest 로그인을 기본으로 지원합니다.<br/>
@@ -57,7 +57,7 @@ AuthAdapter 대한 설정은 다음의 링크를 참고하시길 바랍니다.
 
 가장 최근에 로그인한 IDP로의 로그인을 시도합니다.<br/>
 해당 로그인에 대한 토큰이 만료되었거나, 토큰에 대한 검증 등이 실패하였을 때, 실패를 리턴합니다.<br/>
-이 때는 [해당 IDP에 대한 로그인](#login-using-a-specific-idp)을 구현해야합니다.
+이 때는 [해당 IDP에 대한 로그인](#login-with-idp)을 구현해야합니다.
 
 **API**<br>
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
