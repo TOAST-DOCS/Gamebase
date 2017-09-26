@@ -385,9 +385,9 @@ Gamebase Console에 제재된 유저로 등록될 경우,
 |  | TCGB\_ERROR\_AUTH\_INVALID\_MEMBER | 3004 | 잘못된 회원에 대한 요청입니다. |
 |  | TCGB\_ERROR\_AUTH\_BANNED\_MEMBER | 3005 | 제재된 회원입니다. |
 |  | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009 | 외부 인증 라이브러리 에러입니다. |
-| Auth (Login) | TCGB\_ERROR\_AUTH\_TAP\_LOGIN\_FAILED | 3101 | 토큰 로그인에 실패하였습니다. |
-|  | TCGB\_ERROR\_AUTH\_TAP\_LOGIN\_INVALID\_TOKEN\_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
-|  | TCGB\_ERROR\_AUTH\_TAP\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103 | 최근에 로그인한 IDP 정보가 없습니다. |
+| Auth (Login) | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED | 3101 | 토큰 로그인에 실패하였습니다. |
+|  | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
+|  | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103 | 최근에 로그인한 IDP 정보가 없습니다. |
 | IDP Login | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED | 3201 | IDP 로그인에 실패하였습니다. |
 |  | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO | 3202 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
 | Add Mapping | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FAILED | 3301 | 맵핑 추가에 실패하였습니다. |
@@ -397,7 +397,7 @@ Gamebase Console에 제재된 유저로 등록될 경우,
 | Remove Mapping | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_FAILED | 3401 | 맵핑 삭제에 실패하였습니다. |
 |  | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402 | 마지막에 맵핑된 IDP는 삭제할 수 없습니다. |
 |  | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403 | 현재 로그인되어있는 IDP 입니다. |
-| Logout |TCGB\_ERROR\_AUTH\_LOGOUT\_FAILED | 3501 | 로그아웃에 실패하였습니다. |
+| Logout | TCGB\_ERROR\_AUTH\_LOGOUT\_FAILED | 3501 | 로그아웃에 실패하였습니다. |
 | Withdrawal | TCGB\_ERROR\_AUTH\_WITHDRAW\_FAILED | 3601 | 탈퇴에 실패하였습니다. |
 | Not Playable | TCGB\_ERROR\_AUTH\_NOT\_PLAYABLE | 3701 | 플레이할 수 없는 상태입니다. (점검 또는 서비스 종료 등) |
 | Auth(Unknown) | TCGB\_ERROR\_AUTH\_UNKNOWN\_ERROR | 3999 | 알수 없는 에러입니다. (정의 되지 않은 에러입니다.) |
@@ -411,6 +411,7 @@ Gamebase Console에 제재된 유저로 등록될 경우,
 **TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR**
 * 이 에러는 각 IDP의 SDK에서 발생한 에러입니다.
 * 에러 코드 확인은 다음과 같이 확인하실 수 있습니다.
+
 * IDP SDK의 에러코드는 각각의 Developer 페이지를 참고바랍니다.
 
 ```objectivec

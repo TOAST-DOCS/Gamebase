@@ -1,4 +1,4 @@
-## Game > Gamebase > Server Developer's Guide
+## Upcoming Products > Gamebase > Server Developer's Guide
 
 Gamebase Server API는 RESTful 형식으로 다음과 같은 API들을 제공합니다.
 
@@ -34,6 +34,9 @@ SecretKey는 API에 대한 접근 제어 용도로 Gamebase 콘솔에서 확인 
 #### TransactionId
 
 API를 호출하는 서버에서 내부적으로 API 요청을 관리 할 수 있는 방안으로 TransactionId 기능을 제공합니다. 호출하는 서버에서 HTTP Header에 TransactionId 를 설정하여 API를 호출하면, Gamebase 서버는 응답 HTTP 헤더 및 응답 결과의 Response Body header 에 해당 TransactionId 를 설정하여 결과를 전달합니다.
+
+<br>
+<br>
 <br>
 
 ## Common
@@ -88,6 +91,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | resultCode | int | 응답 코드 <br>성공시 0, 실패시 에러코드 반환 |
 | resultMessage | String | 응답 메시지 |
 
+<br>
+<br>
 <br>
 
 ## Authentication
@@ -180,13 +185,16 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 **[Error Code]**
 
 LINK [\[Error Code\]](./error-codes/#server)
+
+<br>
+<br>
 <br>
 
 ## Member
 
 #### Get member
 
-한 명의 회원에 대해 상세 정보를 조회합니다.
+단일 회원에 대해 상세 정보를 조회합니다.
 
 **[Method, URI]**
 
@@ -421,8 +429,8 @@ LINK [\[Error Code\]](./error-codes/#server)
 **[Request Header]**
 
 공통 사항 확인
-<br>
 
+<br>
 
 
 **[Path Variable]**
@@ -469,6 +477,9 @@ LINK [\[Error Code\]](./error-codes/#server)
 
 LINK [\[Error Code\]](./error-codes/#server)
 
+<br>
+<br>
+<br>
 
 ## Maintenance
 
@@ -537,6 +548,9 @@ LINK [\[Error Code\]](./error-codes/#server)
 **[Error Code]**
 
 LINK [\[Error Code\]](./error-codes/#server)
+
+<br>
+<br>
 <br>
 
 ## Purchase(IAP)
@@ -568,6 +582,9 @@ X-Secret-Key: IgsaAP
 
 POST https://api-gamebase.cloud.toast.com/tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq}
 ```
+
+<br>
+<br>
 <br>
 
 ## Leaderboard
@@ -606,6 +623,8 @@ X-Secret-Key: IgsaAP
 GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/user-count
 ```
 
+<br>
+<br>
 <br>
 
 ## Etc
