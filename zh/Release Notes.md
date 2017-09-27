@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Release Notes
+## Game > Gamebase > Release Notes
 
 ### 2017.09.21
 

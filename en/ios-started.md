@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > iOS Developer's Guide > Getting Started
+## Game > Gamebase > iOS Developer's Guide > Getting Started
 
 ## Getting Started
 
@@ -8,8 +8,8 @@
 > [INFO]
 >
 > 최소사양 : iOS8 이상 <br/>
-> - arm7, arm7s, arm64, i386, x86_64 지원 기기<br/>
-> - Xcode7 이상
+> arm7, arm7s, arm64, i386, x86_64 지원 기기<br/>
+> Xcode7 이상
 >
 
 
@@ -24,7 +24,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 또한 각 IDP의 인증을 하기위한 SDK파일들을 다운로드 받아야합니다. 해당 IDP의 로그인을 사용할 때만 포함하면 됩니다.<br/>
 다운로드 받은 뒤, 해당 SDK파일을 프로젝트의 target에 포함시켜야 합니다.
 
-*3rd Party SDK Download*
+**3rd Party SDK Download**
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 용도 | External SDK Download Link |
 | --- | --- | --- | --- | --- |
