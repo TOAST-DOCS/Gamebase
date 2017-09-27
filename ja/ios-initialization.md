@@ -29,7 +29,7 @@ Gamebase 초기화시 TCGBConfiguration 객체를 통해 Gamebase 설정을 변�
 
 > <font color="red">[WARNING]</font><br/>
 >
-> 게임을 **RELEASE** 할 때는 반드시 소스코드에서 setDebugMode 호출을 제거하거나 파라메터를 false로 바꿔 빌드하세요.
+> 게임을 **RELEASE** 할 때는 반드시 소스코드에서 setDebugMode: 호출을 제거하거나 파라메터를 NO로 바꿔 빌드하세요.
 
 
 ### Initialize
