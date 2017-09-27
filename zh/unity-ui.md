@@ -1,11 +1,11 @@
-## Upcomming Products > Gamebase > Unity Developer's Guide > UI
+## Game > Gamebase > Unity Developer's Guide > UI
 
 
 ## Webview
 
 ### Browser Style WebView
 
-Fullscreen 웹뷰를 지원합니다.</br>
+Fullscreen 웹뷰를 지원합니다.<br/>
 Fullscreen 스타일은 네비게이션바를 가지며, Close/GoBack 버튼을 가집니다. 네비게이션바에 타이틀을 지정할 수 있습니다.
 
 
@@ -28,7 +28,7 @@ public void ShowWebBrowser(string url)
 
 ### Popup Style WebView
 
-Popup 웹뷰를 지원합니다.</br>
+Popup 웹뷰를 지원합니다.<br/>
 Popup 스타일은 기존화면 위에 모달뷰 형식으로 나타나게 되며, 뒷 배경은 투명한 mask view로 덮어씌워집니다.
 
 **API**<br>
@@ -134,7 +134,7 @@ public void ShowWebViewFile()
 Gamebase에서 지정해 놓은 Scheme 입니다.
 
 | scheme | 용도 |
-| --- | --- | --- |
+| --- | --- | 
 | gamebase://dismiss | WebView 닫기 |
 | gamebase://goBack | WebView 뒤로가기 |
 | gamebase://getUserId | 현재 로그인되어 있는 유저의 UserId를 표시 |
@@ -142,7 +142,7 @@ Gamebase에서 지정해 놓은 Scheme 입니다.
 
 ## Alert
 
-System Alert 를 위한 API를 제공합니다.</br>
+System Alert 를 위한 API를 제공합니다.<br/>
 다음의 API를 통해서, 사용자는 Alert에 버튼 및 콜백을 등록할 수 있습니다.
 
 **API**<br>
@@ -201,7 +201,7 @@ public void ShowToast(string message, int duration)
 }
 ```
 
-### Error Handling
+## Error Handling
 
 | Error | Error Code | Notes |
 | ----- | ---------- | ----- |

@@ -14,10 +14,9 @@
 점검 상태는 아래와 같이 다섯 가지로 구분되어 관리됩니다.<br />
 
 (1) 예약중 : 점검이 진행될 예정<br />
-(2) 점검중 : 현재 점검 진행중<br />점검 팝업 및 기본 제공 웹뷰 페이지 예시는 다음과 같습니다.<br />
-* 점검 팝업 예시
+(2) 점검중 : 현재 점검 진행중<br />Gamebase에서 기본으로 제공하는 점검팝업
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance_popup_1.0.png)
-* 점검 기본제공 웹뷰 예시
+Gamebase에서 기본으로 제공하는 점검페이지(점검사유와 점검시간 표시)
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance_webview_1.1.png)
 (3) 종료 : 점검시간 종료<br />
 (4) 점검해제 : 점검이 진행중인 상태에서 운영자가 '점검해제'를 한 경우<br />
@@ -31,7 +30,6 @@
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_1.3.png)
 
 >  <font color="red">[WARNING] </font>
->  업데이트 필수 상태 변경 시 주의사항<br/>
 > **업데이트 필수와 점검이 동시에 설정**되어 있을 경우 서비스 상태는 '업데이트 필수'로 Client에 내려가게 됩니다.<br/>
 > 점검 진행 도중 사용자에게 업데이트 필수 팝업 노출을 원하지 않는 경우에는 점검 완료 이후에 서비스 상태를 '업데이트 필수'로 변경해야 합니다.<br/>
 
@@ -104,7 +102,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 추가하고자 하는 국가코드를 입력하면 자동으로 완성되어 입력됩니다. 입력하고자 하는 국가코드가 없는 경우 관리자에게 문의바랍니다.
 
 > [INFO]<br/>
-> 국가 판단 기준<br/>>
+> 국가 판단 기준<br/>
 > 사용자의 **USIM 국가코드** 기준으로 판단하며 USIM이 없을 경우 **Device**에 설정되어 있는 국가를 기준으로 공지가 노출됩니다.<br />
 
 #### (3) 노출 횟수
@@ -127,12 +125,15 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 
 - 닫기 : 닫기 버튼만 노출. <br/>
 '닫기'버튼 클릭하면 팝업을 닫고 게임을 진행합니다.<br />
-팝업 예시는 다음과 같습니다.<br />
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Notice_popup_close_1.1.png)
 
 - 닫기+자세히 보기 : '닫기'와 '자세히보기' 버튼을 노출.<br/>
 사용자가 '자세히보기' 버튼을 클릭하면 Console에서 입력한 링크를 웹뷰로 오픈합니다.<br />
-팝업 예시는 다음과 같습니다.<br />
+
+
+#### 긴급공지 팝업 예시
+(1) 닫기버튼
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Notice_popup_close_1.1.png)
+(2) 닫기+자세히보기
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Notice_popup_close_detail_1.0.png)
 
 ### Modify Notice

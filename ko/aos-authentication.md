@@ -200,9 +200,10 @@ Payco 추가 인증 정보 입력 예제
 
 로그인 된 IDP에서 로그아웃을 시도합니다. 주로 게임의 설정 화면에서 로그아웃 버튼을 두고 클릭시 실행되도록 구현하는 경우가 많습니다.
 로그아웃이 성공하더라도, 유저 데이터는 유지됩니다.
-로그아웃에 성공 하면 해당 IDP로 인증했던 기록을 제거하므로 다음 로그인시 ID/PW 입력창이 노출됩니다.
+로그아웃에 성공 하면 해당 IDP로 인증했던 기록을 제거하므로 다음 로그인시 ID/PW 입력창이 노출됩니다.<br/><br/>
 
-다음과 같이 구현합니다.
+로그아웃 버튼을 클릭했을 때, 다음과 같이 로그아웃 API를 구현합니다.
+
 ```java
 private static void onLogout(final Activity activity) {
     Gamebase.logout(new GamebaseCallback() {
@@ -231,7 +232,8 @@ private static void onLogout(final Activity activity) {
 * Gamebase 탈퇴를 의미하며, IDP 계정 탈퇴를 의미하지는 않습니다.
 * 탈퇴 성공 시 IDP 로그아웃을 시도하게 됩니다.
 
-탈퇴 버튼을 클릭했을 때, 다음과 같이 로그아웃 API를 구현합니다.
+탈퇴 버튼을 클릭했을 때, 다음과 같이 탈퇴 API를 구현합니다.
+
 ```java
 private static void onWithdraw(final Activity activity) {
     Gamebase.withdraw(new GamebaseCallback() {
@@ -254,11 +256,14 @@ private static void onWithdraw(final Activity activity) {
 ## Mapping
 
 많은 게임들이 하나의 계정에 여러 IDP를 연동(Mapping)할 수 있도록 하고 있습니다.
-Gamebase의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시킬 수 있습니다.<br/>
+Gamebase의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시킬 수 있습니다.<br/><br/>
+
 이렇게 하나의 Gamebase UserID에 다양한 IDP 계정을 연동할 수 있습니다.
-즉, 연동 중인 IDP 계정으로 로그인을 시도 한다면 항상 동일한 UserID로 로그인 됩니다.<br/>
+즉, 연동 중인 IDP 계정으로 로그인을 시도 한다면 항상 동일한 UserID로 로그인 됩니다.<br/><br/>
+
 주의할 점은, IDP 마다 하나의 계정씩만 연동이 가능합니다.
-예시는 다음과 같습니다.
+예시는 다음과 같습니다.<br/><br/>
+
 * Gamebase UserID : 123bcabca
 	* Google ID : aa
 	* Facebook ID : bb
@@ -267,6 +272,8 @@ Gamebase의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 
 * Gamebase UserID : 456abcabc
 	* Google ID : ee
 	* Google ID : ff **-> 이미 Google ee 계정이 연동중이므로 Google계정을 추가로 연동할 수 없습니다.**
+
+Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
 
 ### Add Mapping
 

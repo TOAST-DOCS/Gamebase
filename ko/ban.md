@@ -3,7 +3,7 @@
 이용정지된 유저가 다시 로그인하거나 세션복구를 하는 경우에 이용정지 팝업이 노출되어 게임이용이 제한됩니다.<br/>
 
 이용정지 등록은 Gamebase Console을 통해 수동으로 등록하거나 AppGuard를 사용하는 경우 패턴등록을 이용하여 자동으로 등록할 수 있습니다.
-LINK [[AppGuard 연동하기](./ban/#appguard)] <br/>
+[LINK [AppGuard 연동하기]](./ban/#appguard) <br/>
 
 
 ## Ban
@@ -27,10 +27,10 @@ LINK [[AppGuard 연동하기](./ban/#appguard)] <br/>
 	- 외부서버 : 앱을 운영하는 서버 또는 기타 다른 외부 서버에 의해서 등록
 	- 기타 : 앞의 경우를 제외한 나머지 이용 정지 등록(API 직접호출 등)
 
-> [Note] <br/>
+> [INFO] <br/>
 > 이용정지 등록을 보다 쉽게 하기 위해서 사용자에게 노출할 메시지를 다국어로 입력하여 재사용이 가능하도록 템플릿을 제공합니다.<br/>
 > 템플릿이 등록된 경우에만 이용정지 등록이 가능합니다.<br/>
-> LINK [[템플릿 등록하기](./ban/#template)] <br/>
+> [LINK [템플릿 등록하기]](./ban/#template) <br/>
 
 ** 검색결과 **
 
@@ -49,8 +49,7 @@ LINK [[AppGuard 연동하기](./ban/#appguard)] <br/>
 	- <font color="white" style="background-color:#2AB1A6">해제(기간 만료)</font> : 이용 정지 기간이 끝난 이후 자연스럽게 이용 정지가 해제된 상태.
 
  
-> <font color="blue">[TIPs]</font><br/>
-> 검색결과 파일로 저장하기
+> <font color="blue">[TIP]</font><br/>
 > '파일 다운로드'버튼을 클릭하면 검색결과를 '*.csv' 파일로 저장할 수 있습니다. <br/>
 
 
@@ -67,8 +66,8 @@ LINK [[AppGuard 연동하기](./ban/#appguard)] <br/>
 - 일괄 등록 : csv파일만 업로드 가능하며 예시파일은 console화면에서 다운로드 받을 수 있습니다. 일괄 등록은 1회 최대 10,000명까지 등록 가능합니다. <br/>
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban4_1.0.png)
 
-> <font color="blue">[TIPs]</font><br/>
-> 일괄등록을 이용하여 이용정지 등록 진행 중 실패하는 경우 팝업이 노출되고, 해당 팝업에서 'Download'버튼을 클릭하면 실패 유저 리스트를 Local PC에 파일로 다운로드 받을 수 있습니다.<br />
+> <font color="blue">[TIP]</font><br/>
+> 일괄등록을 이용하여 이용정지 등록 진행 중 실패하는 경우 팝업이 노출되고, 해당 팝업에서 'Download'버튼을 클릭하면 실패 유저 리스트를 파일로 다운로드 받을 수 있습니다.<br />
 > ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban5_1.0.png)
 
 #### (2) 기간
@@ -85,10 +84,10 @@ LINK [[AppGuard 연동하기](./ban/#appguard)] <br/>
 유저에게 노출할 이용 정지 메시지를 입력합니다. <br/>
 이용정지 등록을 보다 쉽게 하기 위해서 사용자에게 노출할 메시지를 다국어로 입력하여 재사용이 가능하도록 템플릿을 제공합니다. 미리 등록한 템플릿을 선택하여 등록합니다.<br />
 
-> <font color="red">[WARNNING]</font><br/>
+> <font color="red">[WARNING]</font><br/>
 > 노출메시지의 템플릿이 등록된 경우에만 이용정지 등록이 가능합니다. <br/>
 > 템플릿을 등록하지 않은 경우 [BAN]-[템플릿]메뉴에서 템플릿 등록을 먼저 진행하세요.<br/>
-> LINK [[템플릿 등록하기](./ban/#template)] <br/>
+> [LINK [템플릿 등록하기]](./ban/#template) <br/>
 
 
 ### Release Ban
@@ -109,8 +108,8 @@ LINK [[AppGuard 연동하기](./ban/#appguard)] <br/>
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban6_1.0.png)
 
 
-> <font color="blue">[TIPs]</font><br/>
-> 일괄등록을 이용하여 이용정지 해제 진행 중 실패하는 경우 팝업이 노출되고, 해당 팝업에서 'Download'버튼을 클릭하면 실패 유저 리스트를 Local PC에 파일로 다운로드 받을 수 있습니다.<br />
+> <font color="blue">[TIP]</font><br/>
+> 일괄등록을 이용하여 이용정지 해제 진행 중 실패하는 경우 팝업이 노출되고, 해당 팝업에서 'Download'버튼을 클릭하면 실패 유저 리스트를 파일로 다운로드 받을 수 있습니다.<br />
 > ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban7_1.0.png)
 
 ## Template
@@ -138,7 +137,7 @@ LINK [[AppGuard 연동하기](./ban/#appguard)] <br/>
 
 ## AppGuard(앱가드)
 
-> <font color="red">[WARNNING]</font><br/>
+> <font color="red">[WARNING]</font><br/>
 > TOAST Cloud Appguard 상품을 사용하는 경우에만 이용 가능합니다.  <br/>
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_AppGuard1_1.0.png)

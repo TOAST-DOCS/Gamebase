@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > iOS Developer's Guide > Authentication
+## Game > Gamebase > iOS Developer's Guide > Authentication
 
 
 ## Login
@@ -21,28 +21,59 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 ```
 
 ### Login Flow
-* 앱에서의 Gamebase인증상태에 따른 처리 방법을 설명합니다.
 
-    
-* 앱을 처음 설치했을 때, 타이틀 화면에서 로그인을 시도할 경우
-로그인 정보(Gamebase AccessToken)가 존재하지 않기 때문에, ID/PW등을 입력하여, 로그인 할 수 있도록 합니다.
-	1. 타이틀 화면 등에서는 명확하게 로그인이 되지 않은 상태로 판단하여, **loginWithType:viewController:completion:**를 호출하여 로그인을 시도합니다.
-	2. 로그인 성공 시에는 게임을 진행할 수 있도록 합니다.
-	3. 로그인이 실패는 시에는 **loginWithType:viewController:completion:**을 다시 호출시도할 수 있도록 합니다.
-		* 로그인 실패 사유가 **TCGB_ERROR_AUTH_BANNED_MEMBER** 와 같은 경우라면 로그인이 항상 실패할 것이기 때문에 적절한 안내와 함께 게임 진입이되지 않도록 처리합니다.
+* 많은 게임이 타이틀 화면에서 로그인을 구현합니다.
+	* 앱을 설치 후 처음 실행했다면 타이틀 화면에서 어떤 IDP로 인증할지 선택할 수 있도록 하여 유저가 선택한 IDP로 인증합니다.
+	* 로그인에 한번 성공한 이후에는 IDP 선택화면을 표시하지 않고 이전에 로그인에 성공했던 IDP 타입으로 인증합니다.
+* 위에서 설명한 로직을 다음과 같은 순서로 구현할 수 있습니다.
 
-* 앱을 처음 실행하는 것이아니라서, 로그인 정보(Gamebase AccessToken)가 남아있을 경우
-	1. 앱을 background에서 foreground로 전환할 때와 같이 local에 로그인 정보가 남아 있을 경우, **loginForLastLoggedInProviderWithViewController:completion:**를 호출하여, ID/PW를 입력 받지 않고 로그인을 시도합니다.
-	2. 로그인 성공 시에는 게임을 진행할 수 있도록 합니다.
-	3. 로그인 실패 시에는, 에러별로 다른 처리가 필요합니다.
-		* 로그인 실패 사유가 Network 오류일 경우: **loginForLastLoggedInProviderWithViewController:completion:**를 재시도 하도록 합니다.
-		* 로그인 실패 사유가 서버 오류일 경우: 기존의 로그인 정보가 인증을 받을 수 없는 상태이기 때문에**loginWithType:viewController:completion:**을 다시 호출할 수 있도록 합니다. (Title Scene으로의 화면 전환 등)
-    	* 로그인 실패 사유가 **TCGB_ERROR_AUTH_BANNED_MEMBER** 와 같은 경우라면 로그인이 항상 실패할 것이기 때문에 적절한 안내와 함께 게임 진입이되지 않도록 처리합니다.
+#### 1. 이전 로그인 타입 받아오기
+* **[TCGBGamebase lastLoggedInProvider]**를 호출합니다.
+* 리턴된 값이 존재한다면 **'2. 이전 로그인 타입으로 인증하기'**를 진행합니다.
+* 리턴된 값이 없다면 유저에게 IDP를 선택하도록 한 다음 **'3. 지정된 IDP로 인증하기'**를 진행합니다.
 
+#### 2. 이전 로그인 타입으로 인증하기
 
-### Banned User of Login
-이용정지 회원일 경우 LoginForLastLoggedInProvider/Login API를 호출하면 **AUTH_BANNED_MEMBER(3005)** 에러를 리턴합니다.</br>
-[GetBanInfo](#gets-banned-user-infomation) API로 ban정보를 가져올 수 있습니다.
+* 이전에 인증했던 기록이 있다면 ID/PW를 입력받지 않고 인증을 시도합니다.
+* **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**를 호출합니다.
+
+#### 2-1. 인증이 성공한 경우
+
+* 축하합니다! 인증에 성공하였습니다.
+* **[TCGBGamebase userID]**로 UserID를 획득하여 게임을 진행하세요.
+
+#### 2-2. 인증이 실패한 경우
+
+* 네트워크 에러
+	* 에러코드가 **TCGB_ERROR_SOCKET_ERROR(110)** 또는 **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)** 인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]** 를 다시 호출 하거나, 잠시 대기했다가 재시도 하도록 합니다.
+* 이용 정지 유저
+	* 에러 코드가 **TCGB_ERROR_AUTH_BANNED_MEMBER(3005)** 인 경우, 이용 정지 유저이므로 인증이 실패한 것입니다.
+	* **[TCGBGamebase banInfo]** 로 제재 정보를 확인하여 유저에게 게임을 플레이 할 수 없는 이유를 알려주시기 바랍니다.
+	* Gamebase 초기화시 **[TCGBConfiguration enablePopup:YES]** 및 **[TCGBConfiguration enableBanPopup:YES]**를 호출한다면 Gamebase 가 이용 정지에 관한 팝업을 자동으로 띄워줍니다.
+* 그 외의 에러
+	* 이전 로그인 타입으로 인증하기가 실패하였습니다. **'3. 지정된 IDP로 인증하기'**를 진행합니다.
+
+#### 3. 지정된 IDP로 인증하기
+
+* IDP 타입을 직접 지정하여 인증을 시도합니다.
+	* 인증 가능한 타입은 **TCGBConstants.h** 파일의 **TCGBAuthIDPs**에 선언되어 있습니다.
+* **[TCGBGamebase loginWithType:viewController:completion:]** API를 호출합니다.
+
+#### 3-1. 인증이 성공한 경우
+
+* 축하합니다! 인증에 성공하였습니다.
+* **[TCGBGamebase userID]** 로 UserID를 획득하여 게임을 진행하세요.
+
+#### 3-2. 인증이 실패한 경우
+
+* 네트워크 에러
+	* 에러코드가 **TCGB_ERROR_SOCKET_ERROR(110)** 또는 **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)** 인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **[TCGBGamebase loginWithType:viewController:completion:]** 를 다시 호출 하거나, 잠시 대기했다가 재시도 하도록 합니다.
+* 이용 정지 유저
+	* 에러 코드가 **TCGB_ERROR_AUTH_BANNED_MEMBER(3005)** 인 경우, 이용 정지 유저이므로 인증이 실패한 것입니다.
+	* **[TCGBGamebase banInfo]** 로 제재 정보를 확인하여 유저에게 게임을 플레이 할 수 없는 이유를 알려주시기 바랍니다.
+	* Gamebase 초기화시 **[TCGBConfiguration enablePopup:YES]** 및 **[TCGBConfiguration enableBanPopup:YES]** 를 호출한다면 Gamebase 가 이용 정지에 관한 팝업을 자동으로 띄워줍니다.
+* 그 외의 에러
+	* 에러가 발생했다는 것을 유저에게 알리고, 유저가 인증 IDP 타입을 선택할 수 있는 상태(주로 타이틀 화면 또는 로그인 화면)로 되돌아갑니다.
 
 ### Login as the Latest Login IDP
 
@@ -156,10 +187,15 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 
 * Credential 파라미터의 설정방법
+
+
+
 | keyname | a use | 값 종류 |
-| --- | --- |
+| --- | --- | --- |
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | IDP 타입을 설정 | facebook, payco, iosgamecenter |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IDP 로그인 이후 받은 인증정보 (AccessToken)을 설정 |
+
+
 
 > [TIP]
 > 
@@ -191,7 +227,7 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 ## Logout
 
-### Import Header File
+#### Import Header File
 
 로그아웃을 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
@@ -199,14 +235,13 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 #import <Gamebase/Gamebase.h>
 ```
 
-### Logout API
+#### Logout API
 
-로그인 된 IDP에서 로그아웃을 시도합니다.</br>
-로그아웃이 성공하더라도, 유저 데이터는 유지됩니다.</br>
-로그아웃에 성공 하면 해당 IDP 로그아웃을 시도하게 됩니다.</br>
+로그인 된 IDP에서 로그아웃을 시도합니다. 주로 게임의 설정 화면에서 로그아웃 버튼을 두고 클릭시 실행되도록 구현하는 경우가 많습니다.
+로그아웃이 성공하더라도, 유저 데이터는 유지됩니다.
+로그아웃에 성공 하면 해당 IDP로 인증했던 기록을 제거하므로 다음 로그인시 ID/PW 입력창이 노출됩니다.<br/><br/>
+
 로그아웃 버튼을 클릭했을 때, 다음과 같이 로그아웃 API를 구현합니다.
-
-
 
 ```objectivec
 [TCGBGamebase logoutWithViewController:self completion:^(TCGBError *error) {
@@ -233,15 +268,14 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 ### Widthdraw API
 
-로그인 상태에서 탈퇴를 시도합니다.</br>
-탈퇴에 성공하면, 로그인 했던 IDP와 연동 되어 있던 유저 데이터는 삭제 됩니다.</br>
-해당 IDP로 다시 로그인 가능하고 새로운 유저 데이터를 생성합니다.</br>
-Gamebase 탈퇴를 의미하며, IDP 계정 탈퇴를 의미하지는 않습니다.</br>
-탈퇴 성공 시 IDP 로그아웃을 시도하게 합니다.</br></br>
+로그인 상태에서 탈퇴를 시도합니다.<br/><br/>
 
+* 탈퇴에 성공하면, 로그인 했던 IDP와 연동 되어 있던 유저 데이터는 삭제 됩니다.
+* 해당 IDP로 다시 로그인 가능하고 새로운 유저 데이터를 생성합니다.
+* Gamebase 탈퇴를 의미하며, IDP 계정 탈퇴를 의미하지는 않습니다.
+* 탈퇴 성공 시 IDP 로그아웃을 시도하게 됩니다.
 
-탈퇴 버튼을 클릭했을 때 다음과 같이 탈퇴 API를 구현합니다.
-
+탈퇴 버튼을 클릭했을 때, 다음과 같이 탈퇴 API를 구현합니다.
 
 ```objectivec
 [TCGBGamebase withdrawWithViewController:self completion:^(TCGBError *error) {
@@ -255,11 +289,23 @@ Gamebase 탈퇴를 의미하며, IDP 계정 탈퇴를 의미하지는 않습니�
 
 ## Mapping
 
-Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시키는 기능입니다.<br/>
-특정 IDP에 연동된(guest 포함) 계정에 다른 IDP의 계정을 연동하였을 때,
-각각의 계정들에 대해서 UserID는 동일하게 주어집니다.
+많은 게임들이 하나의 계정에 여러 IDP를 연동(Mapping)할 수 있도록 하고 있습니다.
+Gamebase의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시킬 수 있습니다.<br/><br/>
 
-<br/>
+이렇게 하나의 Gamebase UserID에 다양한 IDP 계정을 연동할 수 있습니다.
+즉, 연동 중인 IDP 계정으로 로그인을 시도 한다면 항상 동일한 UserID로 로그인 됩니다.<br/><br/>
+
+주의할 점은, IDP 마다 하나의 계정씩만 연동이 가능합니다.
+예시는 다음과 같습니다.<br/><br/>
+
+* Gamebase UserID : 123bcabca
+	* Google ID : aa
+	* Facebook ID : bb
+	* AppleGameCenter ID : cc
+	* Payco ID : dd
+* Gamebase UserID : 456abcabc
+	* Google ID : ee
+	* Google ID : ff **-> 이미 Google ee 계정이 연동중이므로 Google계정을 추가로 연동할 수 없습니다.**
 
 Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
 
@@ -368,25 +414,24 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 
 Gamebase Console에 제재된 유저로 등록될 경우,
 로그인 시도 시, 아래와 같은 이용제한 정보 코드가 노출 될 수 있으며, **[TCGBGamebase banInfo]** 메서드를 이용하여 제재 정보를 확인할 수 있습니다.
+
 * TCGB_ERROR_AUTH_BANNED_MEMBER
 
 
 
-### Error Handling
-
-
+## Error Handling
 
 | Category | Error | Error Code | Notes |
-| --- | --- | --- |
+| -------- | ----- | ---------- | ----- |
 | Auth | TCGB\_ERROR\_AUTH\_USER\_CANCELED | 3001 | 로그인이 취소되었습니다. |
 |  | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
 |  | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
 |  | TCGB\_ERROR\_AUTH\_INVALID\_MEMBER | 3004 | 잘못된 회원에 대한 요청입니다. |
 |  | TCGB\_ERROR\_AUTH\_BANNED\_MEMBER | 3005 | 제재된 회원입니다. |
 |  | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009 | 외부 인증 라이브러리 에러입니다. |
-| Auth (Login) | TCGB\_ERROR\_AUTH\_TAP\_LOGIN\_FAILED | 3101 | 토큰 로그인에 실패하였습니다. |
-|  | TCGB\_ERROR\_AUTH\_TAP\_LOGIN\_INVALID\_TOKEN\_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
-|  | TCGB\_ERROR\_AUTH\_TAP\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103 | 최근에 로그인한 IDP 정보가 없습니다. |
+| Auth (Login) | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED | 3101 | 토큰 로그인에 실패하였습니다. |
+|  | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
+|  | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103 | 최근에 로그인한 IDP 정보가 없습니다. |
 | IDP Login | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED | 3201 | IDP 로그인에 실패하였습니다. |
 |  | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO | 3202 | IDP 정보가 유효하지 않습니다. (Console에 해당 IDP 정보가 없습니다.) |
 | Add Mapping | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FAILED | 3301 | 맵핑 추가에 실패하였습니다. |
@@ -396,19 +441,21 @@ Gamebase Console에 제재된 유저로 등록될 경우,
 | Remove Mapping | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_FAILED | 3401 | 맵핑 삭제에 실패하였습니다. |
 |  | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402 | 마지막에 맵핑된 IDP는 삭제할 수 없습니다. |
 |  | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403 | 현재 로그인되어있는 IDP 입니다. |
-| Logout |TCGB\_ERROR\_AUTH\_LOGOUT\_FAILED | 3501 | 로그아웃에 실패하였습니다. |
+| Logout | TCGB\_ERROR\_AUTH\_LOGOUT\_FAILED | 3501 | 로그아웃에 실패하였습니다. |
 | Withdrawal | TCGB\_ERROR\_AUTH\_WITHDRAW\_FAILED | 3601 | 탈퇴에 실패하였습니다. |
 | Not Playable | TCGB\_ERROR\_AUTH\_NOT\_PLAYABLE | 3701 | 플레이할 수 없는 상태입니다. (점검 또는 서비스 종료 등) |
 | Auth(Unknown) | TCGB\_ERROR\_AUTH\_UNKNOWN\_ERROR | 3999 | 알수 없는 에러입니다. (정의 되지 않은 에러입니다.) |
 
 
 
+
 * 전체 에러코드 참조 : [LINK \[Entire Error Codes\]](./error-codes#client-sdk)
 
 
-#### TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR
+**TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR**
 * 이 에러는 각 IDP의 SDK에서 발생한 에러입니다.
 * 에러 코드 확인은 다음과 같이 확인하실 수 있습니다.
+
 * IDP SDK의 에러코드는 각각의 Developer 페이지를 참고바랍니다.
 
 ```objectivec
@@ -420,3 +467,7 @@ NSString *moduleErrorMessage = moduleError.message;
 // If you use **description** method, you can get entire information of this object by JSON Format
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
+
+
+
+

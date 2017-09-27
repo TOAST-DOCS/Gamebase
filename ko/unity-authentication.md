@@ -283,9 +283,9 @@ Payco 추가 인증 정보 입력 예제
 ## Logout
 로그인 된 IDP에서 로그아웃을 시도합니다. 주로 게임의 설정 화면에서 로그아웃 버튼을 두고 클릭시 실행되도록 구현하는 경우가 많습니다.
 로그아웃이 성공하더라도, 유저 데이터는 유지됩니다.
-로그아웃에 성공 하면 해당 IDP로 인증했던 기록을 제거하므로 다음 로그인시 ID/PW 입력창이 노출됩니다.
+로그아웃에 성공 하면 해당 IDP로 인증했던 기록을 제거하므로 다음 로그인시 ID/PW 입력창이 노출됩니다.<br/><br/>
 
-다음과 같이 구현합니다.
+로그아웃 버튼을 클릭했을 때, 다음과 같이 로그아웃 API를 구현합니다.
 
 **API**<br>
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
@@ -320,7 +320,7 @@ public void Logout()
 
 
 ## Withdraw
-로그인 상태에서 탈퇴를 시도합니다.<br/>
+로그인 상태에서 탈퇴를 시도합니다.<br/><br/>
 
 * 탈퇴에 성공하면, 로그인 했던 IDP와 연동 되어 있던 유저 데이터는 삭제 됩니다.
 * 해당 IDP로 다시 로그인 가능하고 새로운 유저 데이터를 생성합니다.
@@ -363,11 +363,14 @@ public void Withdraw()
 ## Mapping
 
 많은 게임들이 하나의 계정에 여러 IDP를 연동(Mapping)할 수 있도록 하고 있습니다.
-Gamebase의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시킬 수 있습니다.<br/>
+Gamebase의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시킬 수 있습니다.<br/><br/>
+
 이렇게 하나의 Gamebase UserID에 다양한 IDP 계정을 연동할 수 있습니다.
-즉, 연동 중인 IDP 계정으로 로그인을 시도 한다면 항상 동일한 UserID로 로그인 됩니다.<br/>
+즉, 연동 중인 IDP 계정으로 로그인을 시도 한다면 항상 동일한 UserID로 로그인 됩니다.<br/><br/>
+
 주의할 점은, IDP 마다 하나의 계정씩만 연동이 가능합니다.
-예시는 다음과 같습니다.
+예시는 다음과 같습니다.<br/><br/>
+
 * Gamebase UserID : 123bcabca
 	* Google ID : aa
 	* Facebook ID : bb
@@ -376,6 +379,8 @@ Gamebase의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 
 * Gamebase UserID : 456abcabc
 	* Google ID : ee
 	* Google ID : ff **-> 이미 Google ee 계정이 연동중이므로 Google계정을 추가로 연동할 수 없습니다.**
+
+Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
 
 ### Add Mapping
 
@@ -465,11 +470,14 @@ public void GetAuthMappingList()
     List<string> mappingList = Gamebase.GetAuthMappingList();
 }
 ```
+## Gamebase User`s Informations
 
-## Get Authentication Information for Gamebase
 Gamebase를 통하여 인증절차를 진행 후, 앱을 제작할 때 필요한 정보를 획득할 수 있습니다.
 
-### UserID
+### Get Authentication Information for Gamebase
+Gamebase를 통하여 인증절차를 진행 후, 앱을 제작할 때 필요한 정보를 획득할 수 있습니다.
+
+#### UserID
 
 Gamebase에서 발급한 UserID를 가져올 수 있습니다.
 **API**<br>
@@ -491,7 +499,7 @@ public void GetUserID()
 }
 ```
 
-### AccessToken
+#### AccessToken
 
 Gamebase에서 발급한 AccessToken을 가져올 수 있습니다.
 
@@ -514,7 +522,7 @@ public void GetAccessToken()
 }
 ```
 
-### Last LoggedIn Provider Name
+#### Last LoggedIn Provider Name
 
 Gamebase에서 마지막 로그인에 성공한 ProviderName을 가져올 수 있습니다.
 
@@ -534,11 +542,11 @@ public void GetLastLoggedInProvider()
 }
 ```
 
-## Get Authentication Information for External IDP
+### Get Authentication Information for External IDP
 
 외부 인증 SDK에서 AccessToken, UserId, Profile 등의 인증 정보를 가져올 수 있습니다.
 
-### UserID
+#### UserID
 
 외부 인증 SDK에서 UserID를 가져올 수 있습니다.
 
@@ -562,7 +570,7 @@ public void GetAuthProviderUserID(string providerName)
 }
 ```
 
-### AccessToken
+#### AccessToken
 
 외부 인증 SDK에서 AccessToken을 가져올 수 있습니다.
 
@@ -585,7 +593,7 @@ public void GetAuthProviderAccessToken(string providerName)
 }
 ```
 
-### Profile
+#### Profile
 
 외부 인증 SDK에서 Profile을 가져올 수 있습니다.
 
@@ -608,7 +616,7 @@ public void GetAuthProviderProfile(string providerName)
 }
 ```
 
-## Get Banned User Infomation
+### Get Banned User Infomation
 
 Gamebase Console에 제재된 유저로 등록될 경우,
 로그인 시도 시, 이용제한 정보 코드(**AUTH_BANNED_MEMBER(3005)**)가 노출 될 수 있으며, 아래 API를 이용하여 제재 정보를 확인할 수 있습니다.

@@ -23,8 +23,10 @@ Gamebase Console에서 관리하는 App 정보를 설명합니다.<br/>
 ####(1) 설치 URL
 앱 설치 및 홍보에 이용할 수 있는 단축URL 정보입니다. <br/>
 앱이 배포된 스토어가 여러개인 경우에도 하나의 단축URL로 관리가 가능합니다. <br/>
-자세한 동작 및 관리 방법은 다음 링크를 참고합니다. LINK [[Installed URL](./app/#installed-url)]<br />
-Gamebase 활성화 시 자동으로 생성되므로 변경은 불가능합니다.<br/>
+자세한 동작 및 관리 방법은 다음 링크를 참고합니다. [LINK [Installed URL]](./app/#installed-url)<br />
+
+> [INFO] <br/>
+> Gamebase 활성화 시 자동으로 생성되므로 변경은 불가능합니다.<br/>
 
 ####(2) 서버 주소
 게임서버 주소(ip, url 등)를 실시간으로 게임에서 전달받아야 하는 경우 사용합니다.<br/>
@@ -34,13 +36,13 @@ Gamebase 활성화 시 자동으로 생성되므로 변경은 불가능합니다
 ####(3) 고객센터 정보
 고객센터페이지 이외의 고객센터 정보(e-mail, 전화번호 등)를 입력합니다.<br />
 고객센터페이지가 있는 경우에는 아래 인앱URL의 고객센터URL에 정보를 입력합니다.<br />
-> [INFO]
+> [INFO] <br/>
 > 입력된 정보는 Gamebase가 제공하는 점검상세페이지에 노출됩니다.<br />
 
 ####(4) 인증 정보
 앱에서 로그인 시 사용할 IdP의 인증정보를 등록/수정/삭제할 수 있습니다.<br />
 외부 인증의 Client ID, Secret Key 뿐만 아니라 Callback URL과 추가 정보를 설정할 수 있습니다. <br/>
-Idp별 자세한 설정방법은 다음 링크를 참고합니다. LINK [[App's Authentication Information](./app/#authentication-information)]<br />
+Idp별 자세한 설정방법은 다음 링크를 참고합니다. [LINK [App's Authentication Information]](./app/#authentication-information)]<br />
 > [INFO] <br/>
 > '토큰재검증' 이란?<br/>
 > Client에서 'Latest Login API' 호출시에 외부 IDP의 토큰 재검증여부를 설정합니다. <br/>
@@ -89,8 +91,8 @@ Idp별 자세한 설정방법은 다음 링크를 참고합니다. LINK [[App's 
 
 ** Reference URL **<br />
 
-- LINK [[페이스북 개발자 사이트](https://developers.facebook.com/)]<br />
-- LINK [[페이스북 권한](https://developers.facebook.com/docs/facebook-login/permissions/)]<br />
+- [LINK [페이스북 개발자 사이트]](https://developers.facebook.com/)<br />
+- [LINK [페이스북 권한]](https://developers.facebook.com/docs/facebook-login/permissions/)<br />
 
 
 
@@ -117,8 +119,8 @@ Apple 개발자사이트에 등록된 BundleID를 TOAST Cloud Gamebase 콘솔에
 
 ** Reference URL**<br />
 
-- LINK [[Apple 개발자 사이트](https://developer.apple.com/)]<br />
-- LINK [[Apple Itunesconnect](https://itunesconnect.apple.com/)]<br />
+- [LINK [Apple 개발자 사이트]](https://developer.apple.com/)<br />
+- [LINK [Apple Itunesconnect]](https://itunesconnect.apple.com/)<br />
 
 #### PAYCO
 페이코 Client ID 신청을 통해 발급받은 {client_id} 및 {client_secret}을 TOAST Cloud Gamebase 콘솔에 입력합니다.<br />
@@ -168,17 +170,17 @@ OS별로 선택 가능한 스토어가 다릅니다.<br />
 > Gamebase Console에서 실시간으로 안정화 지표 사용 여부와 Log Level을 설정 할 수 있습니다.<br />
 
 - <font color="white" style="background-color:#88C637">서비스중</font> : 정상 서비스<br />
-- <font color="white" style="background-color:#2AB1A6">서비스중(업데이트 권장)</font> : 정상 서비스. <br/>보다 안정적인 버전으로 유도하기 위한 팝업 노출 후 서비스 진입하도록 합니다. 새로운 버전을 다운로드 받아 이용하도록 유도하지만 사용자가 원하는 경우 현재 버전으로도 계속 서비스를 이용할 수 있습니다.<br />팝업 예시는 다음과 같습니다.<br />![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_updateRecommended_1.0.png)
+- <font color="white" style="background-color:#2AB1A6">서비스중(업데이트 권장)</font> : 정상 서비스. <br/>보다 안정적인 버전으로 유도하기 위한 팝업 노출 후 서비스 진입하도록 합니다. 새로운 버전을 다운로드 받아 이용하도록 유도하지만 사용자가 원하는 경우 현재 버전으로도 계속 서비스를 이용할 수 있습니다.<br />Gamebase에서 기본적으로 제공하는 팝업입니다.<br />![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_updateRecommended_1.0.png)
 
-- <font color="white" style="background-color:#A1A1A1">업데이트 필수</font> : 서비스 불가능. <br/>현재 게임에서 서비스 지원하지 않는 버전으로 최신버전 설치 안내문 팝업을 노출합니다.<br />팝업 예시는 다음과 같습니다.<br />![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_updateRequired_1.1.png)
+- <font color="white" style="background-color:#A1A1A1">업데이트 필수</font> : 서비스 불가능. <br/>현재 게임에서 서비스 지원하지 않는 버전으로 최신버전 설치 안내문 팝업을 노출합니다.<br />Gamebase에서 기본적으로 제공하는 팝업입니다.<br />![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_updateRequired_1.1.png)
 >  <font color="red">[WARNING] </font>  <br/>
 >  업데이트 필수 상태 변경 시 주의사항<br/>
 > **업데이트 필수와 점검이 동시에 설정**되어 있을 경우 서비스 상태는 '업데이트 필수'로 Client에 내려가게 됩니다.<br/>
 > 점검 진행 도중 사용자에게 업데이트 필수 팝업 노출을 원하지 않는 경우에는 점검 완료 이후에 서비스 상태를 '업데이트 필수'로 변경해야 합니다.<br/>
 
-- <font color="white" style="background-color:#CCCCCC">종료</font> : 서비스 불가능. <br/> 서비스가 종료된 버전인 경우 선택합니다.<br />팝업 예시는 다음과 같습니다.<br />![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_ended_1.0.png)
+- <font color="white" style="background-color:#CCCCCC">종료</font> : 서비스 불가능. <br/> 서비스가 종료된 버전인 경우 선택합니다.<br />Gamebase에서 기본적으로 제공하는 팝업입니다.<br />![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_ended_1.0.png)
 
-> [INFO] <br/>
+> > [INFO] <br/>
 > 서비스 상태별 노출 메시지 설정<br/>
 > '서비스중(업데이트 권장)','업데이트 필수','종료' 상태인 경우 사용자에게 노출할 안내메시지를 다국어로 설정할 수 있습니다. <br />
 >  서비스 상태를 선택하면 각 상태에 맞는 기본 메시지가 5개(한국어, 영어, 일본어, 중국어(간체), 중국어(번체))의 언어로 제공되며 원하는 경우 언어를 추가하거나 기본 메시지의 문구를 변경할 수 있습니다.<br />

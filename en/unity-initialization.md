@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > Unity Developer's Guide > Initialization
+## Game > Gamebase > Unity Developer's Guide > Initialization
 
 ## Initialization
 
@@ -34,8 +34,8 @@ TOAST Cloud에 등록한 클라이언트 버전입니다.
 
 ![App Version](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_002_1.2.0.png)
 
-**[TOAST Console]**
-Menu : TOAST Cloud Console > Gamebase > App
+**[TOAST Console]**<br/>
+Menu : TOAST Cloud Console > Gamebase > App<br/>
 Tab : Client
 
 
@@ -50,6 +50,8 @@ Gamebase 디버그를 위한 설정입니다.
 * true : Gamebase의 모든 로그가 출력됩니다.
 * false : Warning, Error 로그가 출력됩니다.
 
+Default value : false
+
 Gamebase 문의가 필요할 경우에는 해당 설정을 true 로 변경하시고 로그를 전달해 주셔야 빠른 지원을 받을수 있습니다.
 
 #### 5. enablePopup
@@ -59,14 +61,20 @@ Gamebase Mobile(iOS, Android) SDK에서 제공하는 기본 팝업을 사용할 
 * true : enableLaunchingStatusPopup, enableBanPopup 설정에 따라 팝업이 노출 여부가 결정됩니다.
 * false : Gamebase에서 제공하는 모든 팝업이 노출되지 않습니다.
 
+Default value : false
+
 #### 6. enableLaunchingStatusPopup
 
 LaunchingStatus가 게임을 할 수 없는 상태일 경우, Gamebase 에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
 LaunchingStatus는 아래 Launching State Code 섹션을 참고하십시오.
 
+Default value : true
+
 #### 7. enableBanPopup
 
 로그인 시 해당 유저가 이용정지 상태인 경우, Gamebase 에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+
+Default value : true
 
 #### 8. storeCode
 
@@ -177,8 +185,8 @@ appVersion 추가 및 수정은 TOAST Console에서 할 수 있습니다.
 
 ![Launching Status](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_006_1.2.0.png)
 
-**[TOAST Console]**
-Menu : TOAST Cloud Console > Gamebase > App
+**[TOAST Console]**<br/>
+Menu : TOAST Cloud Console > Gamebase > App<br/>
 Tab : Client
 
 status code는 아래 표를 참고하십시오.
@@ -209,12 +217,11 @@ TOAST Console에 등록 된 App 정보입니다.
     * personalInfoCollectionUrl : 개인 정보동의
 * install : 설치 URL
 * idP : 인증 정보
-* typeCode
 
 ![Launching App](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_005_1.2.0.png)
 
-**[TOAST Console]**
-Menu : TOAST Cloud Console > Gamebase > App
+**[TOAST Console]**<br/>
+Menu : TOAST Cloud Console > Gamebase > App<br/>
 Tab : App
 
 **1.3 maintenance**
@@ -229,14 +236,21 @@ TOAST Console에 등록 된 점검 정보입니다.
 
 ![Launching Maintenance](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_007_1.2.0.png)
 
-**[TOAST Console]**
-Menu : TOAST Cloud Console > Gamebase > Operation
+**[TOAST Console]**<br/>
+Menu : TOAST Cloud Console > Gamebase > Operation<br/>
 Tab : Maintenance
 
 **1.4 notice**
 
 * message : 메시지
+* title : 타이틀
 * url : 점검 URL
+
+![Launching Notice](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_009_1.2.0.png)
+
+**[TOAST Console]**<br/>
+Menu : TOAST Cloud Console > Gamebase > Operation<br/>
+Tab : Notice
 
 #### 2. tcProduct
 
@@ -257,6 +271,6 @@ TOAST Console에 등록 된 IAP Store 정보입니다.
 
 ![Launching TC IAP](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_008_1.2.0.png)
 
-**[TOAST Console]**
-Menu : TOAST Cloud Console > Gamebase > Purchase(IAP)
+**[TOAST Console]**<br/>
+Menu : TOAST Cloud Console > Gamebase > Purchase(IAP)<br/>
 Tab : App

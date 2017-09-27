@@ -1,4 +1,4 @@
-## Upcomming Products > Gamebase > Operator Guide > Push
+## Game > Gamebase > Operator Guide > Push
 
 앱 이용자에게 푸시 알림을 전송합니다.<br/>
 Gamebase 내부적으로 TOAST Cloud PUSH 상품을 사용하고 있습니다.<br/>
@@ -58,9 +58,9 @@ Gamebase를 통해 발송한 푸시 내역 및 발송 예정 내역을 조회할
 사용자에게 노출할 푸시 메시지를 입력합니다.<br />
 다국어 지원을 위해 여러개의 언어로 등록 가능하며, 입력한 언어 이외의 언어를 사용하는 사용자에게는 기본 언어로 선택된 언어가 노출됩니다. 오른쪽의 **'+'**버튼을 클릭하면 언어 추가가 가능하며 원하는 언어가 없는 경우 담당자에게 연락을 주시면 새로운 언어 추가가 가능합니다.<br />
 
-> [TIPs]<br/>
+> <font color="blue">[TIP]</font><br/>
 > 푸시 메시지를 발송했는데 단말기에 오지 않아요.<br/>
 > 대부분의 경우 사용자의 PUSH Token을 등록하지 않은 경우입니다. 사용자의 PUSH Token이 등록되었는지 확인해주세요. <br/>
-> - LINK [[AOS-Register PUSH](./aos-push/#2-register-push)] <br />
-> - LINK [[iOS-Register PUSH](./ios-push/#2-register-push)] <br />
-> - LINK [[Unity-Register PUSH](./unity-push/#2-register-push)] <br />
+> - [LINK [AOS > Register PUSH]](./aos-push/#2-register-push) <br />
+> - [LINK [iOS > Register PUSH]](./ios-push/#2-register-push) <br />
+> - [LINK [Unity > Register PUSH]](./unity-push/#2-register-push) <br />

@@ -237,12 +237,11 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 #### Logout API
 
-로그인 된 IDP에서 로그아웃을 시도합니다.<br/>
-로그아웃이 성공하더라도, 유저 데이터는 유지됩니다.<br/>
-로그아웃에 성공 하면 해당 IDP 로그아웃을 시도하게 됩니다.<br/>
+로그인 된 IDP에서 로그아웃을 시도합니다. 주로 게임의 설정 화면에서 로그아웃 버튼을 두고 클릭시 실행되도록 구현하는 경우가 많습니다.
+로그아웃이 성공하더라도, 유저 데이터는 유지됩니다.
+로그아웃에 성공 하면 해당 IDP로 인증했던 기록을 제거하므로 다음 로그인시 ID/PW 입력창이 노출됩니다.<br/><br/>
+
 로그아웃 버튼을 클릭했을 때, 다음과 같이 로그아웃 API를 구현합니다.
-
-
 
 ```objectivec
 [TCGBGamebase logoutWithViewController:self completion:^(TCGBError *error) {
@@ -274,10 +273,9 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 * 탈퇴에 성공하면, 로그인 했던 IDP와 연동 되어 있던 유저 데이터는 삭제 됩니다.
 * 해당 IDP로 다시 로그인 가능하고 새로운 유저 데이터를 생성합니다.
 * Gamebase 탈퇴를 의미하며, IDP 계정 탈퇴를 의미하지는 않습니다.
-* 탈퇴 성공 시 IDP 로그아웃을 시도하게 합니다.
+* 탈퇴 성공 시 IDP 로그아웃을 시도하게 됩니다.
 
-
-탈퇴 버튼을 클릭했을 때 다음과 같이 탈퇴 API를 구현합니다.
+탈퇴 버튼을 클릭했을 때, 다음과 같이 탈퇴 API를 구현합니다.
 
 ```objectivec
 [TCGBGamebase withdrawWithViewController:self completion:^(TCGBError *error) {
@@ -291,11 +289,23 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 ## Mapping
 
-Mapping은 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시키는 기능입니다.<br/>
-특정 IDP에 연동된(guest 포함) 계정에 다른 IDP의 계정을 연동하였을 때,
-각각의 계정들에 대해서 UserID는 동일하게 주어집니다.
+많은 게임들이 하나의 계정에 여러 IDP를 연동(Mapping)할 수 있도록 하고 있습니다.
+Gamebase의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시킬 수 있습니다.<br/><br/>
 
-<br/>
+이렇게 하나의 Gamebase UserID에 다양한 IDP 계정을 연동할 수 있습니다.
+즉, 연동 중인 IDP 계정으로 로그인을 시도 한다면 항상 동일한 UserID로 로그인 됩니다.<br/><br/>
+
+주의할 점은, IDP 마다 하나의 계정씩만 연동이 가능합니다.
+예시는 다음과 같습니다.<br/><br/>
+
+* Gamebase UserID : 123bcabca
+	* Google ID : aa
+	* Facebook ID : bb
+	* AppleGameCenter ID : cc
+	* Payco ID : dd
+* Gamebase UserID : 456abcabc
+	* Google ID : ee
+	* Google ID : ff **-> 이미 Google ee 계정이 연동중이므로 Google계정을 추가로 연동할 수 없습니다.**
 
 Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
 
