@@ -22,29 +22,58 @@ AdditionalInfo에 대한 설명은 하단의 'Gamebase에서 지원 중인 IDP' 
 
 ### Login Flow
 
-* 앱에서의 Gamebase인증상태에 따른 처리 방법을 설명합니다.
+* 많은 게임이 타이틀 화면에서 로그인을 구현합니다.
+	* 앱을 설치 후 처음 실행했다면 타이틀 화면에서 어떤 IDP로 인증할지 선택할 수 있도록 하여 유저가 선택한 IDP로 인증합니다.
+	* 로그인에 한번 성공한 이후에는 IDP 선택화면을 표시하지 않고 이전에 로그인에 성공했던 IDP 타입으로 인증합니다.
+* 위에서 설명한 로직을 다음과 같은 순서로 구현할 수 있습니다.
 
-    
-* 앱을 처음 설치했을 때, 타이틀 화면에서 로그인을 시도할 경우
-로그인 정보(Gamebase AccessToken)가 존재하지 않기 때문에, ID/PW등을 입력하여, 로그인 할 수 있도록 합니다.
-	1. 타이틀 화면 등에서는 명확하게 로그인이 되지 않은 상태로 판단하여, **loginWithType:viewController:completion:**를 호출하여 로그인을 시도합니다.
-	2. 로그인 성공 시에는 게임을 진행할 수 있도록 합니다.
-	3. 로그인이 실패는 시에는 **loginWithType:viewController:completion:**을 다시 호출시도할 수 있도록 합니다.
-		* 로그인 실패 사유가 **TCGB_ERROR_AUTH_BANNED_MEMBER** 와 같은 경우라면 로그인이 항상 실패할 것이기 때문에 적절한 안내와 함께 게임 진입이되지 않도록 처리합니다.
+#### 1. 이전 로그인 타입 받아오기
+* **[TCGBGamebase lastLoggedInProvider]**를 호출합니다.
+* 리턴된 값이 존재한다면 **'2. 이전 로그인 타입으로 인증하기'**를 진행합니다.
+* 리턴된 값이 없다면 유저에게 IDP를 선택하도록 한 다음 **'3. 지정된 IDP로 인증하기'**를 진행합니다.
 
-* 앱을 처음 실행하는 것이아니라서, 로그인 정보(Gamebase AccessToken)가 남아있을 경우
-	1. 앱을 background에서 foreground로 전환할 때와 같이 local에 로그인 정보가 남아 있을 경우, **loginForLastLoggedInProviderWithViewController:completion:**를 호출하여, ID/PW를 입력 받지 않고 로그인을 시도합니다.
-	2. 로그인 성공 시에는 게임을 진행할 수 있도록 합니다.
-	3. 로그인 실패 시에는, 에러별로 다른 처리가 필요합니다.
-		* 로그인 실패 사유가 Network 오류일 경우: **loginForLastLoggedInProviderWithViewController:completion:**를 재시도 하도록 합니다.
-		* 로그인 실패 사유가 서버 오류일 경우: 기존의 로그인 정보가 인증을 받을 수 없는 상태이기 때문에**loginWithType:viewController:completion:**을 다시 호출할 수 있도록 합니다. (Title Scene으로의 화면 전환 등)
-    	* 로그인 실패 사유가 **TCGB_ERROR_AUTH_BANNED_MEMBER** 와 같은 경우라면 로그인이 항상 실패할 것이기 때문에 적절한 안내와 함께 게임 진입이되지 않도록 처리합니다.
+#### 2. 이전 로그인 타입으로 인증하기
 
+* 이전에 인증했던 기록이 있다면 ID/PW를 입력받지 않고 인증을 시도합니다.
+* **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**를 호출합니다.
 
-### Banned User of Login
+#### 2-1. 인증이 성공한 경우
 
-이용정지 회원일 경우 LoginForLastLoggedInProvider/Login API를 호출하면 **AUTH_BANNED_MEMBER(3005)** 에러를 리턴합니다.<br/>
-[GetBanInfo](#gets-banned-user-infomation) API로 ban정보를 가져올 수 있습니다.
+* 축하합니다! 인증에 성공하였습니다.
+* **[TCGBGamebase userID]**로 UserID를 획득하여 게임을 진행하세요.
+
+#### 2-2. 인증이 실패한 경우
+
+* 네트워크 에러
+	* 에러코드가 **TCGB_ERROR_SOCKET_ERROR(110)** 또는 **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)** 인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]** 를 다시 호출 하거나, 잠시 대기했다가 재시도 하도록 합니다.
+* 이용 정지 유저
+	* 에러 코드가 **TCGB_ERROR_AUTH_BANNED_MEMBER(3005)** 인 경우, 이용 정지 유저이므로 인증이 실패한 것입니다.
+	* **[TCGBGamebase banInfo]** 로 제재 정보를 확인하여 유저에게 게임을 플레이 할 수 없는 이유를 알려주시기 바랍니다.
+	* Gamebase 초기화시 **[TCGBConfiguration enablePopup:YES]** 및 **[TCGBConfiguration enableBanPopup:YES]**를 호출한다면 Gamebase 가 이용 정지에 관한 팝업을 자동으로 띄워줍니다.
+* 그 외의 에러
+	* 이전 로그인 타입으로 인증하기가 실패하였습니다. **'3. 지정된 IDP로 인증하기'**를 진행합니다.
+
+#### 3. 지정된 IDP로 인증하기
+
+* IDP 타입을 직접 지정하여 인증을 시도합니다.
+	* 인증 가능한 타입은 **TCGBConstants.h** 파일의 **TCGBAuthIDPs**에 선언되어 있습니다.
+* **[TCGBGamebase loginWithType:viewController:completion:]** API를 호출합니다.
+
+#### 3-1. 인증이 성공한 경우
+
+* 축하합니다! 인증에 성공하였습니다.
+* **[TCGBGamebase userID]** 로 UserID를 획득하여 게임을 진행하세요.
+
+#### 3-2. 인증이 실패한 경우
+
+* 네트워크 에러
+	* 에러코드가 **TCGB_ERROR_SOCKET_ERROR(110)** 또는 **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)** 인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **[TCGBGamebase loginWithType:viewController:completion:]** 를 다시 호출 하거나, 잠시 대기했다가 재시도 하도록 합니다.
+* 이용 정지 유저
+	* 에러 코드가 **TCGB_ERROR_AUTH_BANNED_MEMBER(3005)** 인 경우, 이용 정지 유저이므로 인증이 실패한 것입니다.
+	* **[TCGBGamebase banInfo]** 로 제재 정보를 확인하여 유저에게 게임을 플레이 할 수 없는 이유를 알려주시기 바랍니다.
+	* Gamebase 초기화시 **[TCGBConfiguration enablePopup:YES]** 및 **[TCGBConfiguration enableBanPopup:YES]** 를 호출한다면 Gamebase 가 이용 정지에 관한 팝업을 자동으로 띄워줍니다.
+* 그 외의 에러
+	* 에러가 발생했다는 것을 유저에게 알리고, 유저가 인증 IDP 타입을 선택할 수 있는 상태(주로 타이틀 화면 또는 로그인 화면)로 되돌아갑니다.
 
 ### Login as the Latest Login IDP
 
@@ -158,10 +187,15 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 
 * Credential 파라미터의 설정방법
+
+
+
 | keyname | a use | 값 종류 |
-| --- | --- |
+| --- | --- | --- |
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | IDP 타입을 설정 | facebook, payco, iosgamecenter |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IDP 로그인 이후 받은 인증정보 (AccessToken)을 설정 |
+
+
 
 > [TIP]
 > 

@@ -3,7 +3,7 @@
 인앱 결제관련 정보를 등록 및 내역 조회 기능을 제공합니다.<br/>
 Gamebase 내부적으로 TOAST Cloud IAP 상품을 사용하고 있습니다.<br/>
 
-### App(앱)
+### App
 게임 내에서 상품을 팔기 위한 스토어에 대한 등록을 제공합니다.
 
 #### 1) 조회
@@ -35,7 +35,7 @@ Gamebase 내부적으로 TOAST Cloud IAP 상품을 사용하고 있습니다.<br
 - 수정버튼을 누르면 스토어 입력정보를 제외한 나머지 정보를 변경하실 수 있습니다.<br />
 - 삭제 버튼을 통해 미사용 스토어의 정보는 삭제하실 수 있습니다.<br />
 
-### Item(아이템)
+### Item
 각 스토어에서 판매할 아이템을 등록할 수 있습니다.
 
 #### 1) 조회
@@ -69,7 +69,7 @@ Gamebase 내부적으로 TOAST Cloud IAP 상품을 사용하고 있습니다.<br
 - 수정버튼을 누르면 스토어 정보 및 아이템 Seq를 제외한 나머지 정보를 변경하실 수 있습니다.<br />
 - 삭제 버튼을 통해 판매하지 않을 아이템의 정보는 삭제하실 수 있습니다.<br />
 
-### Transactions(결제 정보)
+### Transactions
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction1_1.1.png)
 유료에서 등록한 아이템들의 판매 정보를 조회할 수 있습니다.<br />
 **Store ID/날짜/Payment seq/Item No/User ID/Sort Order**별로 원하시는 정보를 입력하여 조회가 가능합니다.<br />
