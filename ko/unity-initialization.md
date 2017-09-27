@@ -54,6 +54,10 @@ Default value : false
 
 Gamebase 문의가 필요할 경우에는 해당 설정을 true 로 변경하시고 로그를 전달해 주셔야 빠른 지원을 받을수 있습니다.
 
+> <font color="red">[WARNING]</font><br/>
+>
+> 게임을 **RELEASE** 할 때는 반드시 false로 되돌린 후 빌드하세요.
+
 #### 5. enablePopup
 
 Gamebase Mobile(iOS, Android) SDK에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.

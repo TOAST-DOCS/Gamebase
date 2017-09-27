@@ -17,16 +17,19 @@ Gamebase 초기화시 TCGBConfiguration 객체를 통해 Gamebase 설정을 변�
 
 | API | Mandatory(M) / Optional(O) | 기능 설명 |
 | --- | --- | --- |
-| configurationWithAppID:appVersion: | M | TCGBConfiguration의 appID와 appVersion을 설정합니다.<br>업데이트, 점검에 해당하는지 여부는 게임 버전으로 판단합니다.<br>게임 버전을 지정해 주세요. |
-| enablePopup: | O | **[UI]**<br>시스템 점검, 유저 밴 등 유저가 게임을 플레이 할 수 없는 상황에서 팝업 등을 통해 사유를 표시해야 할 필요가 있습니다.<br>**YES**로 설정하는 경우 Gamebase가 해당 상황에서 정보 팝업을 자동으로 표시합니다.<br>기본값은 **NO** 입니다.<br>**NO** 상태에서는 Launching 결과를 통해 정보를 획득하여 자체 UI를 구현하여 게임을 플레이 할 수 없는 이유를 표시해주시기 바랍니다. |
-| enableLaunchingStatusPopup: | O | **[UI]**<br>Launching결과에 따라 로그인 할 수 없는 상태에서(주로 점검 상태가 해당됩니다.) Gamebase가 자동으로 팝업을 표시할지 여부를 변경할 수 있습니다.<br>**enablePopup:YES** 상태에서만 동작합니다.<br>기본값은 **YES**입니다. |
-| enableBanPopup: | O | **[UI]**<br>유저가 이용 제재를 당한 상태일때 Gamebase가 자동으로 제재 사유를 팝업으로 표시할지 여부를 변경할 수 있습니다.<br>**enablePopup:** 상태에서만 동작합니다.<br>기본값은 **YES**입니다. |
+| configurationWithAppID:appVersion: | M | TCGBConfiguration의 appID와 appVersion을 설정합니다.<br/>업데이트, 점검에 해당하는지 여부는 게임 버전으로 판단합니다.<br/>게임 버전을 지정해 주세요. |
+| enablePopup: | O | **[UI]**<br/>시스템 점검, 유저 밴 등 유저가 게임을 플레이 할 수 없는 상황에서 팝업 등을 통해 사유를 표시해야 할 필요가 있습니다.<br/>**YES**로 설정하는 경우 Gamebase가 해당 상황에서 정보 팝업을 자동으로 표시합니다.<br/>기본값은 **NO** 입니다.<br/>**NO** 상태에서는 Launching 결과를 통해 정보를 획득하여 자체 UI를 구현하여 게임을 플레이 할 수 없는 이유를 표시해주시기 바랍니다. |
+| enableLaunchingStatusPopup: | O | **[UI]**<br/>Launching결과에 따라 로그인 할 수 없는 상태에서(주로 점검 상태가 해당됩니다.) Gamebase가 자동으로 팝업을 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup:YES** 상태에서만 동작합니다.<br/>기본값은 **YES**입니다. |
+| enableBanPopup: | O | **[UI]**<br/>유저가 이용 제재를 당한 상태일때 Gamebase가 자동으로 제재 사유를 팝업으로 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup:** 상태에서만 동작합니다.<br/>기본값은 **YES**입니다. |
 
 
 ### Debug Mode
 * Gamebase는 warning 및 error 로그만을 표시합니다.
 * 개발에 참고하기 위해 시스템 로그를 켜기 위해서는 **[TCGBGamebase setDebugMode:YES]**를 호출해 주시기 바랍니다.
-	* **_게임을 RELEASE 할 때는 반드시 소스코드에서 setDebugMode: 호출을 제거하거나 파라메터를 NO로 바꿔 빌드하세요._**
+
+> <font color="red">[WARNING]</font><br/>
+>
+> 게임을 **RELEASE** 할 때는 반드시 소스코드에서 setDebugMode 호출을 제거하거나 파라메터를 false로 바꿔 빌드하세요.
 
 
 ### Initialize
@@ -34,7 +37,7 @@ Gamebase 초기화시 TCGBConfiguration 객체를 통해 Gamebase 설정을 변�
 
 
 > <font color="red">[WARNING]</font><br/>
-> 
+>
 > Gamebase초기화를 위한 **initializeWithConfiguration:launchOptions:completion:** 메서드의 호출은  **application:didFinishLaunchingWithOptions:** 외에서도 호출이 가능합니다.
 >
 
