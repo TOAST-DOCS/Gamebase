@@ -50,6 +50,8 @@ Gamebase 디버그를 위한 설정입니다.
 * true : Gamebase의 모든 로그가 출력됩니다.
 * false : Warning, Error 로그가 출력됩니다.
 
+Default value : false
+
 Gamebase 문의가 필요할 경우에는 해당 설정을 true 로 변경하시고 로그를 전달해 주셔야 빠른 지원을 받을수 있습니다.
 
 #### 5. enablePopup
@@ -59,14 +61,20 @@ Gamebase Mobile(iOS, Android) SDK에서 제공하는 기본 팝업을 사용할 
 * true : enableLaunchingStatusPopup, enableBanPopup 설정에 따라 팝업이 노출 여부가 결정됩니다.
 * false : Gamebase에서 제공하는 모든 팝업이 노출되지 않습니다.
 
+Default value : false
+
 #### 6. enableLaunchingStatusPopup
 
 LaunchingStatus가 게임을 할 수 없는 상태일 경우, Gamebase 에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
 LaunchingStatus는 아래 Launching State Code 섹션을 참고하십시오.
 
+Default value : true
+
 #### 7. enableBanPopup
 
 로그인 시 해당 유저가 이용정지 상태인 경우, Gamebase 에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+
+Default value : true
 
 #### 8. storeCode
 
@@ -209,7 +217,6 @@ TOAST Console에 등록 된 App 정보입니다.
     * personalInfoCollectionUrl : 개인 정보동의
 * install : 설치 URL
 * idP : 인증 정보
-* typeCode
 
 ![Launching App](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_005_1.2.0.png)
 

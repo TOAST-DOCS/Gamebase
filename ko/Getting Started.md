@@ -94,4 +94,6 @@ SDK 다운로드 후 플랫폼별 자세한 설정 방법은 각 플랫폼별 [D
 | Webview      |  SDK에서 기본적인 Webview UI를 제공<br/>alert, toast ui 제공      | [[iOS](./ios-ui/#webview)] [[Android](./aos-ui/#webview)] [[Unity](./unity-ui/#webview)]| | |
 | [Operator]Maintenance      | (운영) 점검기능       |  | [[점검여부확인](./Server%20Developer%60s%20Guide/#maintenance)] |  [[Maintenance]](./operation/#maintenance)<br>- 점검등록, 점검해제 |
 | [Operator]Notice      | (운영) 긴급 공지 기능 <br> - 게임 유저가 앱 실행시 팝업형태로 공지 확인이 가능      | | | [[Notice]](./operation/#notice) <br/>-공지 등록 |
+| [Operator]Ban      | (운영) 게임유저의 이용정지 등록 및 해제 <br> - 이용정지된 유저는 로그인이 불가능함      | [[iOS](./ios-authentication/#get-banned-user-information)] [[Android](./aos-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -이용정지 유저 정보 확인 | | [[Ban]](./ban/#ban) <br/>-이용정지 등록 및 해제 |
+
 
