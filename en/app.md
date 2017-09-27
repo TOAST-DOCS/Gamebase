@@ -180,7 +180,7 @@ OS별로 선택 가능한 스토어가 다릅니다.<br />
 
 - <font color="white" style="background-color:#CCCCCC">종료</font> : 서비스 불가능. <br/> 서비스가 종료된 버전인 경우 선택합니다.<br />Gamebase에서 기본적으로 제공하는 팝업입니다.<br />![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_ended_1.0.png)
 
-> > [INFO] <br/>
+> [INFO] <br/>
 > 서비스 상태별 노출 메시지 설정<br/>
 > '서비스중(업데이트 권장)','업데이트 필수','종료' 상태인 경우 사용자에게 노출할 안내메시지를 다국어로 설정할 수 있습니다. <br />
 >  서비스 상태를 선택하면 각 상태에 맞는 기본 메시지가 5개(한국어, 영어, 일본어, 중국어(간체), 중국어(번체))의 언어로 제공되며 원하는 경우 언어를 추가하거나 기본 메시지의 문구를 변경할 수 있습니다.<br />

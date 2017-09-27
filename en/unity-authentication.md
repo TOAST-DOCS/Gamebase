@@ -362,13 +362,13 @@ public void Withdraw()
 
 ## Mapping
 
-많은 게임들이 하나의 계정에 여러 IDP를 연동(Mapping)할 수 있도록 하고 있습니다.
+많은 게임들이 하나의 계정에 여러 IDP를 연동(Mapping)할 수 있도록 하고 있습니다.<br/>
 Gamebase의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시킬 수 있습니다.<br/><br/>
 
-이렇게 하나의 Gamebase UserID에 다양한 IDP 계정을 연동할 수 있습니다.
+이렇게 하나의 Gamebase UserID에 다양한 IDP 계정을 연동할 수 있습니다.<br/>
 즉, 연동 중인 IDP 계정으로 로그인을 시도 한다면 항상 동일한 UserID로 로그인 됩니다.<br/><br/>
 
-주의할 점은, IDP 마다 하나의 계정씩만 연동이 가능합니다.
+주의할 점은, IDP 마다 하나의 계정씩만 연동이 가능합니다.<br/>
 예시는 다음과 같습니다.<br/><br/>
 
 * Gamebase UserID : 123bcabca
@@ -385,11 +385,11 @@ Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
 ### Add Mapping
 
 특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다.<br/>
-Mapping을 하려는 IDP의 계정이 이미 다른 계정에 연동이 되어있다면
-**AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 에러를 리턴합니다.
+Mapping을 하려는 IDP의 계정이 이미 다른 계정에 연동이 되어있다면<br/>
+**AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 에러를 리턴합니다.<br/><br/>
 
 Mapping이 성공 하더라도 '현재 로그인 중인 IDP'가 바뀌지는 않습니다. 즉, Google 계정으로 로그인 한 후, Facebook 계정 Mapping 시도가 성공했다고 해서 '현재 로그인 중인 IDP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다.<br/>
-Mapping은 단순히 IDP 연동만 추가 해줍니다.
+Mapping은 단순히 IDP 연동만 추가 해줍니다.<br/>
 
 **API**<br>
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)

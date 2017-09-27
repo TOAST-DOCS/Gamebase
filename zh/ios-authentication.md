@@ -289,13 +289,13 @@ TOAST Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 ## Mapping
 
-많은 게임들이 하나의 계정에 여러 IDP를 연동(Mapping)할 수 있도록 하고 있습니다.
+많은 게임들이 하나의 계정에 여러 IDP를 연동(Mapping)할 수 있도록 하고 있습니다.<br/>
 Gamebase의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 IDP의 계정을 연동/해제시킬 수 있습니다.<br/><br/>
 
-이렇게 하나의 Gamebase UserID에 다양한 IDP 계정을 연동할 수 있습니다.
+이렇게 하나의 Gamebase UserID에 다양한 IDP 계정을 연동할 수 있습니다.<br/>
 즉, 연동 중인 IDP 계정으로 로그인을 시도 한다면 항상 동일한 UserID로 로그인 됩니다.<br/><br/>
 
-주의할 점은, IDP 마다 하나의 계정씩만 연동이 가능합니다.
+주의할 점은, IDP 마다 하나의 계정씩만 연동이 가능합니다.<br/>
 예시는 다음과 같습니다.<br/><br/>
 
 * Gamebase UserID : 123bcabca
@@ -323,14 +323,11 @@ Mapping을 구현하고자 하는 ViewController에 다음의 헤더 파일을 �
 ### Add Mapping API
 
 특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다.<br/>
-Mapping을 하려는 IDP의 계정이 이미 다른 계정이 연동이 되어있다면,
-**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER** 에러를 리턴합니다.
+Mapping을 하려는 IDP의 계정이 이미 다른 계정이 연동이 되어있다면,<br/>
+**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER** 에러를 리턴합니다.<br/><br/>
 
-<br/><br/>
-
-Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 아니라, 기존에 로그인했던 IDP가 됩니다.<br/>
-즉, Mapping은 단순히 IDP를 연동만 해줍니다.<br/>
-<br/>
+Mapping이 성공 하더라도 '현재 로그인 중인 IDP'가 바뀌지는 않습니다. 즉, Google 계정으로 로그인 한 후, Facebook 계정 Mapping 시도가 성공했다고 해서 '현재 로그인 중인 IDP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다.<br/>
+Mapping은 단순히 IDP 연동만 추가 해줍니다.<br/><br/>
 
 아래의 예시에서는 facebook에 대해서 Mapping을 시도하고 있습니다.
 
@@ -366,6 +363,7 @@ Mapping이 성공이 되었어도, 현재 로그인된 IDP는 Mapping된 IDP가 
 
 ### Get IDP Mapping List
 현재의 계정이 어떤 IDP들과 매핑되어 있는지 목록을 획득할 수 있습니다.
+
 ```objectivec
 // Obtaining Names of Mapping IDPs
 NSArray* authMappingList = [TCGBGamebase authMappingList];
