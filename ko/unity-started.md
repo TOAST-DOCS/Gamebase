@@ -127,7 +127,7 @@ Lifecycle 관리를 위해 "com.toast.gamebase.activity.GamebaseMainActivity"를
 
 Android SDK 추가 설정은 아래 링크를 참조 하시기 바랍니다
 
-* [LINK \[Android SDK 추가 설정 링크\]](./Android Developer`s Guide#initialization)
+* [LINK \[Android SDK 추가 설정 링크\]](http://docs.cloud.toast.com/ko/Game/Gamebase/ko/aos-started/)
 
 ![Add Android SDK](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-AndroidSetting_1.2.0.png)<br>
 
