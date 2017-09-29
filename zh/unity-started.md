@@ -59,7 +59,7 @@ Gamebase Unity SDK 를 게임 프로젝트에 추가하는 방법은 다음과 �
 1. Unity 프로젝트 열기
 2. Assets > Import Package > Custome Package 메뉴를 선택 후 GamebaseUnitySDK.unitypackage 를 현재 프로젝트에 포함
 
-### Android settings
+### Android Settings
 
 Unity Android 빌드 시 필요한 Unity 설정에 대해 설명합니다.
 
@@ -125,20 +125,14 @@ Lifecycle 관리를 위해 "com.toast.gamebase.activity.GamebaseMainActivity"를
 </activity>
 ```
 
-Android SDK 추가 설정은 아래 링크를 참조 하시기 바랍니다
-
-* [LINK \[Android SDK 추가 설정 링크\]](./Android Developer`s Guide#initialization)
-
-![Add Android SDK](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-AndroidSetting_1.2.0.png)<br>
-
-### IOS SDK Settings
+### IOS Settings
 
 1. Unity 프로젝트에서 IOS 빌드를 진행합니다.
 2. 생성 된 XCode 프로젝트에 Gamebase IOS SDK 파일 및 설정을 추가 합니다.
 
 IOS SDK에 대한 설정은 아래 가이드를 참조하시기 바랍니다.
 
-* [LINK \[IOS SDK 설정 링크\]](./ios-started#setting-xcode-project-to-use-gamebase)
+* [LINK \[IOS SDK 설정 링크\]](./ios-started)
 
 ## API Reference
 

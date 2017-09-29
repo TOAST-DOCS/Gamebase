@@ -4,9 +4,6 @@
 
 * Gamebase 에서는 Guest 로그인을 기본으로 지원합니다.<br/>
 * Guest 이외의 Provider에 로그인을 하기 위해서는 해당 Provider AuthAdapter가 필요합니다.<br/>
-* AuthAdapter 대한 설정은 다음의 링크를 참고하시길 바랍니다.
-	* [LINK \[Android Setting\]](aos-started#dependency)
-	* [LINK \[iOS Setting\]](ios-started#installation)
 
 
 ### Login Flow

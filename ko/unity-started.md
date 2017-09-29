@@ -125,20 +125,22 @@ Lifecycle 관리를 위해 "com.toast.gamebase.activity.GamebaseMainActivity"를
 </activity>
 ```
 
+
 Android SDK 추가 설정은 아래 링크를 참조 하시기 바랍니다
 
-* [LINK \[Android SDK 추가 설정 링크\]](http://beta-docs.cloud.toast.com/ko/Game/Gamebase/ko/aos-started/)
+* [LINK \[Android SDK 추가 설정 링크\]](./aos-started/)
 
 ![Add Android SDK](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-AndroidSetting_1.2.0.png)<br>
 
-### IOS SDK Settings
+### IOS Settings
+
 
 1. Unity 프로젝트에서 IOS 빌드를 진행합니다.
 2. 생성 된 XCode 프로젝트에 Gamebase IOS SDK 파일 및 설정을 추가 합니다.
 
 IOS SDK에 대한 설정은 아래 가이드를 참조하시기 바랍니다.
 
-* [LINK \[IOS SDK 설정 링크\]](./ios-started#setting-xcode-project-to-use-gamebase)
+* [LINK \[IOS SDK 설정 링크\]](./ios-started)
 
 ## API Reference
 
