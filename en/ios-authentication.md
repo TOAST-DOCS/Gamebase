@@ -5,7 +5,7 @@
 
 * Gamebase 에서는 기본적으로 guest 로그인을 지원합니다.
 * guest 이외의 Provider에 로그인을 하기 위해서는 해당 Provider AuthAdapter가 필요합니다.
-* AuthAdapter 및 3rd-Party SDK에 대한 설정은 위에 있는 '외부 SDK 다운로드' 링크를 참고하시길 바랍니다.
+* AuthAdapter 및 3rd-Party SDK에 대한 설정은 ['외부 SDK 다운로드'](./ios-started/#installation) 링크를 참고하시길 바랍니다.
 
 
 로그인을 시도하려는 IDP별로, additionalInfo 파라미터를 입력해주어야 하는 경우가 있습니다.<br/>

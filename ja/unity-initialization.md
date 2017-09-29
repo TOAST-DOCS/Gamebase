@@ -52,11 +52,11 @@ Gamebase 디버그를 위한 설정입니다.
 
 Default value : false
 
-Gamebase 문의가 필요할 경우에는 해당 설정을 true 로 변경하시고 로그를 전달해 주셔야 빠른 지원을 받을수 있습니다.
+Gamebase 문의가 필요할 경우에는 해당 설정을 true 로 변경하시고 로그를 전달해 주셔야 빠른 지원을 받을 수 있습니다.
 
 > <font color="red">[WARNING]</font><br/>
 >
-> 게임을 **RELEASE** 할 때는 반드시 false로 되돌린 후 빌드하세요.
+> 게임을 **RELEASE** 할 경우에는 해당 설정을 반드시 **false**로 변경해야 합니다.
 
 #### 5. enablePopup
 
@@ -111,7 +111,7 @@ Gamebase Unity SDK 를 초기화 하는 방법은 다음과 같습니다.
 3. Inspector에서 초기화 설정들을 입력합니다.
 4. Gamebase.Initialize(callback) API를 호출합니다.
 
-> [WARNING]
+> <font color="red">[WARNING]</font><br/>
 >
 > 생성한 게임 오브젝트를 삭제하면 Android, iOS API 호출 후 콜백을 받을 수 없으므로 주의하시기 바랍니다. <br/>
 > 실수로 삭제된 경우 "Do not destroy this gameObject in order to receive callback." 에러 메시지가 노출됩니다.
