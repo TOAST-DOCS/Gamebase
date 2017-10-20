@@ -144,7 +144,7 @@ Lifecycle 관리를 위해 "com.toast.gamebase.activity.GamebaseMainActivity"를
 
 #### 1. Build Settings
 Build System을 Gradle(new)로 선택합니다.
-![Select Build System](./image/UnityDevelopersGuide/unity-developers-guide-003_1.3.0.png)
+![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-003_1.3.0.png)
 
 #### 2. mainTemplate.bundle 파일 설정
 Unity 설치 폴더에 있는 mainTemplate.gradle 파일을 Assets/Plugins/Android/ 폴더로 복사 후 개발 환경에 맞게 설정합니다.
