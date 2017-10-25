@@ -150,6 +150,7 @@ Build System을 Gradle(new)로 선택합니다.
 Unity 설치 폴더에 있는 mainTemplate.gradle 파일을 Assets/Plugins/Android/ 폴더로 복사 후 개발 환경에 맞게 설정합니다.
 
 > [INFO]
+> 
 > **compileSdkVersion, buildToolsVersion, targetSdkVersion**은 환경에 맞게 셋팅하시면 됩니다. <br/>
 > **applicationId**는 package name을 설정하시면 됩니다.<br/>
 > **dependencies** 목록에는 사용하시는 library 파일들을 추가하시면 됩니다. <br/>
