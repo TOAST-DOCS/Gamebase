@@ -6,7 +6,6 @@
 
 * [SDK] 1.3.0 업데이트
 	* Credential을 이용한 AddMapping API추가
-	* (Unity)Facebook 인증 Adapter 추가
 
 #### 기능 개선/변경
 * [Console]
