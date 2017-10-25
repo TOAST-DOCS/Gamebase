@@ -1,5 +1,20 @@
 ## Game > Gamebase > Release Notes
 
+### 2017.10.26
+
+#### 기능 추가
+
+* [SDK] 1.3.0 업데이트
+	* Credential을 이용한 AddMapping API추가
+
+#### 기능 개선/변경
+* [Console]
+	* TC Push 에러코드에 따른 메시지 처리 작업 적용
+	* 이용 정지 템플릿 메시지 등록 화면을 Input Textbox 에서 TextArea로 변경
+	* TC 신규 권한 추가에 따라 관리메뉴가 정상적으로 보이지 않던 문제 수정
+* [SDK] 1.3.0 업데이트	
+	* (Unity)CredentialInfo를 사용하는 Login API호출 시 iOSPlugin에서 Json 파싱이 안되던 버그를 수정
+	
 ### 2017.09.21
 
 #### 기능 추가
