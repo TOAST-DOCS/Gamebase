@@ -101,7 +101,7 @@ dependencies {
     }
     if (useAuthPayco) {
         compile(name: "gamebase-adapter-auth-payco-${gamebaseSdkVersion}", ext: 'aar')
-        compile(name: 'paycologin-1.2.6', ext: 'aar') {
+        compile(name: 'paycologin-1.2.9', ext: 'aar') {
             exclude group: 'com.google.code.gson', module: 'gson'
         }
         compile 'com.google.android.gms:play-services-base:10.0.1'
@@ -110,20 +110,20 @@ dependencies {
     // Compile Purchase Modules
     if (usePurchaseIAP) {
         compile(name: "gamebase-adapter-purchase-iap-${gamebaseSdkVersion}", ext: 'aar')
-        compile(name: 'iap-1.3.2', ext: 'aar')
-        compile(name: 'mobill-core-1.3.2', ext: 'jar')
+        compile(name: 'iap-1.3.5.1', ext: 'aar')
+        compile(name: 'mobill-core-1.3.5.1', ext: 'jar')
         compile 'com.squareup.okhttp:okhttp:1.5.4'
     }
 
     // Compile Push Modules
     if (usePushFCM) {
         compile(name: "gamebase-adapter-push-fcm-${gamebaseSdkVersion}", ext: 'aar')
-        compile(name: 'pushsdk-release-v1.32', ext: 'aar')
+        compile(name: 'pushsdk-release-v1.4.1', ext: 'aar')
         compile 'com.google.android.gms:play-services-gcm:10.0.1'
         compile 'com.google.firebase:firebase-messaging:10.0.1'
     } else if (usePushTencent) {
         compile(name: "gamebase-adapter-push-tencent-${gamebaseSdkVersion}", ext: 'aar')
-        compile(name: 'pushsdk-release-v1.32', ext: 'aar')
+        compile(name: 'pushsdk-release-v1.4.1', ext: 'aar')
     }
 }
 ```

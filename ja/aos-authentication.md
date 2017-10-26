@@ -70,46 +70,98 @@
 이 때는 해당 IDP에 대한 로그인을 구현해주어야합니다.
 
 ```java
-Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthToken>() {
-    @Override
-    public void onCallback(AuthToken data, GamebaseException exception) {
-        if (Gamebase.isSuccess(exception)) {
-            // 로그인 성공
-            Log.d(TAG, "Login successful");
-        } else {
-            // 로그인 실패
-            Log.e(TAG, "Login failed- "
-                    + "errorCode: " + exception.getCode()
-                    + "errorMessage: " + exception.getMessage());
-
-            if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
-                exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                    // Socket error 입니다.
-                    // 네트워크 상태를 확인 후 loginForLastLoggedInPovider 메소드 호출을 재시도 할 수 있습니다.
-                }
-        }
+private static void onLogin(final Activity activity) {
+    if (!TextUtils.isEmpty(Gamebase.getLastLoggedInProvider())) {
+        onLoginForLastLoggedInProvider(activity);
+    } else {
+        // 이전에 로그인한 타입이 존재하지 않는다면 지정된 IDP로 인증하기를 시도합니다.
+        Gamebase.login(activity, provider, logincallback);
     }
-});
+}
 
+private static void onLoginForLastLoggedInProvider(final Activity activity) {
+    Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthToken>() {
+        @Override
+        public void onCallback(AuthToken data, GamebaseException exception) {
+            if (Gamebase.isSuccess(exception)) {
+                // 로그인 성공
+                Log.d(TAG, "Login successful");
+                String userId = Gamebase.getUserID();
+            } else {
+                if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
+                        exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
+                    // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
+                    // 네트워크 상태를 확인하거나
+                    // 잠시 대기 후 재시도 하세요.
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(2000);
+                                onLoginForLastLoggedInProvider(activity);
+                            } catch (InterruptedException e) {}
+                        }
+                    }).start();
+                } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
+                    // 로그인을 시도한 유저가 이용정지 상태입니다.
+                    // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) 를 호출하였다면
+                    // Gamebase가 이용정지에 관한 팝업을 자동으로 띄워줍니다.
+                    //
+                    // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 Gamebase.getAuthBanInfo()로
+                    // 제재 정보를 확인하여 유저에게 게임을 플레이 할 수 없는 사유를 표시해 주시기 바랍니다.
+                    AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
+                } else {
+                    // 그 외의 에러가 발생하는 경우 지정된 IDP로 인증하기를 시도합니다.
+                    Gamebase.login(activity, provider, logincallback);
+                }
+            }
+        }
+    });
 ```
 ### Login with GUEST
 
 * Gamebase는 Guest 로그인을 지원합니다.
 * 디바이스의 유일한 키를 생성하여 Gamebase에 로그인을 시도합니다.
 * Guest 로그인은 앱 삭제 또는 디바이스 초기화 시에 계정이 삭제될 수 있으므로 IDP를 활용한 로그인 방식을 권장합니다.
+
 ```java
 private static void onLoginForGuest(final Activity activity) {
     Gamebase.login(activity, AuthProvider.GUEST, new GamebaseDataCallback<AuthToken>() {
         @Override
         public void onCallback(AuthToken data, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
-                Log.d(TAG, "Login successful");
                 // 로그인 성공
+                Log.d(TAG, "Login successful");
+                String userId = Gamebase.getUserID();
             } else {
-                Log.e(TAG, "Login failed- "
-                        + "errorCode: " + exception.getCode()
-                        + "errorMessage: " + exception.getMessage());
-                // 로그인 실패
+                if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
+                        exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
+                    // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
+                    // 네트워크 상태를 확인하거나
+                    // 잠시 대기 후 재시도 하세요.
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(2000);
+                                onLoginForGuest(activity);
+                            } catch (InterruptedException e) {}
+                        }
+                    }).start();
+                } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
+                    // 로그인을 시도한 유저가 이용정지 상태입니다.
+                    // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) 를 호출하였다면
+                    // Gamebase가 이용정지에 관한 팝업을 자동으로 띄워줍니다.
+                    //
+                    // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 Gamebase.getAuthBanInfo()로
+                    // 제재 정보를 확인하여 유저에게 게임을 플레이 할 수 없는 사유를 표시해 주시기 바랍니다.
+                    AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
+                } else {
+                    // 로그인 실패
+                    Log.e(TAG, "Login failed- "
+                            + "errorCode: " + exception.getCode()
+                            + "errorMessage: " + exception.getMessage());
+                }
             }
         }
     });
@@ -128,13 +180,38 @@ private static void onLoginForGoogle(final Activity activity) {
         @Override
         public void onCallback(AuthToken data, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
-                Log.d(TAG, "Login successful");
                 // 로그인 성공
+                Log.d(TAG, "Login successful");
+                String userId = Gamebase.getUserID();
             } else {
-                Log.e(TAG, "Login failed- "
-                        + "errorCode: " + exception.getCode()
-                        + "errorMessage: " + exception.getMessage());
-                // 로그인 실패
+                if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
+                        exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
+                    // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
+                    // 네트워크 상태를 확인하거나
+                    // 잠시 대기 후 재시도 하세요.
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(2000);
+                                onLoginForGoogle(activity);
+                            } catch (InterruptedException e) {}
+                        }
+                    }).start();
+                } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
+                    // 로그인을 시도한 유저가 이용정지 상태입니다.
+                    // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) 를 호출하였다면
+                    // Gamebase가 이용정지에 관한 팝업을 자동으로 띄워줍니다.
+                    //
+                    // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 Gamebase.getAuthBanInfo()로
+                    // 제재 정보를 확인하여 유저에게 게임을 플레이 할 수 없는 사유를 표시해 주시기 바랍니다.
+                    AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
+                } else {
+                    // 로그인 실패
+                    Log.e(TAG, "Login failed- "
+                            + "errorCode: " + exception.getCode()
+                            + "errorMessage: " + exception.getMessage());
+                }
             }
         }
     });
@@ -145,24 +222,72 @@ private static void onLoginForGoogle(final Activity activity) {
 
 게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증을 하고 발급받은 AccessToken등을 이용하여, Gamebase 로그인을 할 수 있는 인터페이스 입니다.
 
+* Credential 파라미터의 설정방법
+
+| keyname | a use | 값 종류 |
+| --- | --- | --- |
+| AuthProviderCredentialConstants.PROVIDER_NAME | IDP 타입을 설정합니다. | AuthProvider.GOOGLE, AuthProvider.FACEBOOK, AuthProvider.PAYCO |
+| AuthProviderCredentialConstants.ACCESS_TOKEN | IDP 로그인 이후 받은 인증정보(AccessToken)를 설정합니다.<br/>Google 인증시에는 사용하지 않습니다. |
+| AuthProviderCredentialConstants.AUTHORIZATION_CODE | Google 로그인 이후 획득할 수 있는 One-time OAuth Code를 입력합니다. |
+
+> [TIP]
+>
+> 게임 내에서 외부 서비스(Facebook 등)의 고유기능의 사용이 필요할 때 사용될 수 있습니다.
+>
+
+<br/>
+
+> <font color="red">[WARNING]</font><br/>
+>
+> 외부 SDK에서 지원요구하는 개발사항은 외부SDK의 API를 사용하여 구현해야하며, Gamebase에서는 지원하지 않습니다.
+>
 
 ```java
-Map<String, Object> credentialInfo = new HashMap<>();
-credentialInfo.put(AuthProviderCredentialConstants.PROVIDER_NAME, AuthProvider.FACEBOOK);
-credentialInfo.put(AuthProviderCredentialConstants.ACCESS_TOKEN, facebookAccessToken);
+private static void onLoginWithCredential(final Activity activity) {
+    Map<String, Object> credentialInfo = new HashMap<>();
+    credentialInfo.put(AuthProviderCredentialConstants.PROVIDER_NAME, AuthProvider.FACEBOOK);
+    credentialInfo.put(AuthProviderCredentialConstants.ACCESS_TOKEN, facebookAccessToken);
 
-Gamebase.login(activity, credentialInfo, new GamebaseDataCallback<AuthToken>() {
-            @Override
-            public void onCallback(AuthToken data, GamebaseException exception) {
-                if (Gamebase.isSuccess(exception)) {
-                    Log.d(TAG, "Login successful");
+    Gamebase.login(activity, credentialInfo, new GamebaseDataCallback<AuthToken>() {
+        @Override
+        public void onCallback(AuthToken data, GamebaseException exception) {
+            if (Gamebase.isSuccess(exception)) {
+                // 로그인 성공
+                Log.d(TAG, "Login successful");
+                String userId = Gamebase.getUserID();
+            } else {
+                if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
+                        exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
+                    // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
+                    // 네트워크 상태를 확인하거나
+                    // 잠시 대기 후 재시도 하세요.
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(2000);
+                                onLoginWithCredential(activity);
+                            } catch (InterruptedException e) {}
+                        }
+                    }).start();
+                } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
+                    // 로그인을 시도한 유저가 이용정지 상태입니다.
+                    // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) 를 호출하였다면
+                    // Gamebase가 이용정지에 관한 팝업을 자동으로 띄워줍니다.
+                    //
+                    // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 Gamebase.getAuthBanInfo()로
+                    // 제재 정보를 확인하여 유저에게 게임을 플레이 할 수 없는 사유를 표시해 주시기 바랍니다.
+                    AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
                 } else {
-                    Log.e(TAG, "Gamebase Login failed- "
+                    // 로그인 실패
+                    Log.e(TAG, "Login failed- "
                             + "errorCode: " + exception.getCode()
                             + "errorMessage: " + exception.getMessage());
                 }
             }
-        });
+        }
+    });
+}
 ```
 
 ### Authentication Additional Information Settings
@@ -201,13 +326,29 @@ private static void onLogout(final Activity activity) {
         @Override
         public void onCallback(GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
+            	// 로그아웃 성공
                 Log.d(TAG, "Logout successful");
-                // 로그아웃 성공
             } else {
-                Log.e(TAG, "Logout failed- "
-                        + "errorCode: " + exception.getCode()
-                        + "errorMessage: " + exception.getMessage());
-                // 로그아웃 실패
+                if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
+                        exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
+                    // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
+                    // 네트워크 상태를 확인하거나
+                    // 잠시 대기 후 재시도 하세요.
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(2000);
+                                onLogout(activity);
+                            } catch (InterruptedException e) {}
+                        }
+                    }).start();
+                } else {
+                    // 로그아웃 실패
+                    Log.e(TAG, "Logout failed- "
+                            + "errorCode: " + exception.getCode()
+                            + "errorMessage: " + exception.getMessage());
+                }
             }
         }
     });
@@ -231,13 +372,29 @@ private static void onWithdraw(final Activity activity) {
         @Override
         public void onCallback(GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
+            	// 탈퇴 성공
                 Log.d(TAG, "Withdraw successful");
-                // 탈퇴 성공
             } else {
-                Log.e(TAG, "Withdraw failed- "
-                        + "errorCode: " + exception.getCode()
-                        + "errorMessage: " + exception.getMessage());
-                // 로그아웃 실패
+                if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
+                        exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
+                    // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
+                    // 네트워크 상태를 확인하거나
+                    // 잠시 대기 후 재시도 하세요.
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(2000);
+                                onWithdraw(activity);
+                            } catch (InterruptedException e) {}
+                        }
+                    }).start();
+                } else {
+                    // 탈퇴 실패
+                    Log.e(TAG, "Withdraw failed- "
+                            + "errorCode: " + exception.getCode()
+                            + "errorMessage: " + exception.getMessage());
+                }
             }
         }
     });
@@ -278,22 +435,103 @@ Mapping은 단순히 IDP 연동만 추가 해줍니다.<br/><br/>
 아래의 예시에서는 facebook에 대해서 Mapping을 시도하고 있습니다.
 
 ```java
-public static void addMappingForFacebook(final Activity activity) {
-        Gamebase.addMapping(activity, AuthProvider.FACEBOOK, null, new GamebaseDataCallback<AuthToken>() {
-            @Override
-            public void onCallback(AuthToken result, GamebaseException exception) {
-                if (Gamebase.isSuccess(exception)) {
-                    Log.d(TAG, "Add Mapping successful");
-                    // 맵핑 추가 성공
+private static void addMappingForFacebook(final Activity activity) {
+    Gamebase.addMapping(activity, AuthProvider.FACEBOOK, null, new GamebaseDataCallback<AuthToken>() {
+        @Override
+        public void onCallback(AuthToken result, GamebaseException exception) {
+            if (Gamebase.isSuccess(exception)) {
+                // 맵핑 추가 성공
+                Log.d(TAG, "Add Mapping successful");
+                String userId = Gamebase.getUserID();
+            } else {
+                if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
+                        exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
+                    // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
+                    // 네트워크 상태를 확인하거나
+                    // 잠시 대기 후 재시도 하세요.
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(2000);
+                                addMappingForFacebook(activity);
+                            } catch (InterruptedException e) {}
+                        }
+                    }).start();
                 } else {
-                    Log.e(TAG, "Add mapping failed- "
-                        + "errorCode: " + exception.getCode()
-                        + "errorMessage: " + exception.getMessage());
-                    // 맵핑 추가 성공
+                    // 맵핑 추가 실패
+                    Log.e(TAG, "Login failed- "
+                            + "errorCode: " + exception.getCode()
+                            + "errorMessage: " + exception.getMessage());
                 }
             }
-        });
-    }
+        }
+    });
+}
+```
+
+### Add Mapping with Credential
+
+게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증을 하고 발급받은 AccessToken등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스 입니다.
+
+* Credential 파라미터의 설정방법
+
+| keyname | a use | 값 종류 |
+| --- | --- | --- |
+| AuthProviderCredentialConstants.PROVIDER_NAME | IDP 타입을 설정합니다. | AuthProvider.GOOGLE, AuthProvider.FACEBOOK, AuthProvider.PAYCO |
+| AuthProviderCredentialConstants.ACCESS_TOKEN | IDP 로그인 이후 받은 인증정보(AccessToken)를 설정합니다.<br/>Google 인증시에는 사용하지 않습니다. |
+| AuthProviderCredentialConstants.AUTHORIZATION_CODE | Google 로그인 이후 획득할 수 있는 One-time OAuth Code를 입력합니다. |
+
+> [TIP]
+>
+> 게임 내에서 외부 서비스(Facebook 등)의 고유기능의 사용이 필요할 때 사용될 수 있습니다.
+>
+
+<br/>
+
+> <font color="red">[WARNING]</font><br/>
+>
+> 외부 SDK에서 지원요구하는 개발사항은 외부SDK의 API를 사용하여 구현해야하며, Gamebase에서는 지원하지 않습니다.
+>
+
+```java
+private static void addMappingWithCredential(final Activity activity) {
+    Map<String, Object> credentialInfo = new HashMap<>();
+    credentialInfo.put(AuthProviderCredentialConstants.PROVIDER_NAME, AuthProvider.FACEBOOK);
+    credentialInfo.put(AuthProviderCredentialConstants.ACCESS_TOKEN, facebookAccessToken);
+
+    Gamebase.addMapping(activity, credentialInfo, new GamebaseDataCallback<AuthToken>() {
+        @Override
+        public void onCallback(AuthToken data, GamebaseException exception) {
+            if (Gamebase.isSuccess(exception)) {
+                // 맵핑 추가 성공
+                Log.d(TAG, "Add Mapping successful");
+                String userId = Gamebase.getUserID();
+            } else {
+                if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
+                        exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
+                    // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
+                    // 네트워크 상태를 확인하거나
+                    // 잠시 대기 후 재시도 하세요.
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(2000);
+                                addMappingWithCredential(activity);
+                            } catch (InterruptedException e) {}
+                        }
+                    }).start();
+                } else {
+                    // 맵핑 추가 실패
+                    Log.e(TAG, "Login failed- "
+                            + "errorCode: " + exception.getCode()
+                            + "errorMessage: " + exception.getMessage());
+                }
+            }
+        }
+    });
+}
 ```
 
 ### Remove Mapping
@@ -303,21 +541,37 @@ public static void addMappingForFacebook(final Activity activity) {
 
 ```java
 private static void removeMappingForFacebook(final Activity activity) {
-        Gamebase.removeMapping(activity, AuthProvider.FACEBOOK, new GamebaseCallback() {
-            @Override
-            public void onCallback(GamebaseException exception) {
-                if (Gamebase.isSuccess(exception)) {
-                    Log.d(TAG, "Remove mapping successful");
-                    // 맵핑 해제 성공
+    Gamebase.removeMapping(activity, AuthProvider.FACEBOOK, new GamebaseCallback() {
+        @Override
+        public void onCallback(GamebaseException exception) {
+            if (Gamebase.isSuccess(exception)) {
+                // 맵핑 해제 성공
+                Log.d(TAG, "Remove mapping successful");
+            } else {
+                if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
+                        exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
+                    // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
+                    // 네트워크 상태를 확인하거나
+                    // 잠시 대기 후 재시도 하세요.
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(2000);
+                                removeMappingForFacebook(activity);
+                            } catch (InterruptedException e) {}
+                        }
+                    }).start();
                 } else {
-                    Log.e(TAG, "Remove mapping failed- "
-                        + "errorCode: " + exception.getCode()
-                        + "errorMessage: " + exception.getMessage());
                     // 맵핑 해제 실패
+                    Log.e(TAG, "Remove mapping failed- "
+                            + "errorCode: " + exception.getCode()
+                            + "errorMessage: " + exception.getMessage());
                 }
             }
-        });
-    }
+        }
+    });
+}
 ```
 
 
