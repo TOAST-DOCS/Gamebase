@@ -420,6 +420,9 @@ public void AddMapping(string providerName)
 게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증을 하고 발급받은 AccessToken등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스 입니다.
 
 * Credential 파라미터의 설정방법
+
+
+
 | keyname | a use | 값 종류 |
 | --- | --- | --- |
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | IDP 타입을 설정 | facebook, payco, iosgamecenter |

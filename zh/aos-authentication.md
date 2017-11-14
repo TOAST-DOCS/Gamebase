@@ -91,8 +91,7 @@ private static void onLoginForLastLoggedInProvider(final Activity activity) {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
                     // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
-                    // 네트워크 상태를 확인하거나
-                    // 잠시 대기 후 재시도 하세요.
+                    // 네트워크 상태를 확인하거나 잠시 대기 후 재시도 하세요.
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -117,6 +116,7 @@ private static void onLoginForLastLoggedInProvider(final Activity activity) {
             }
         }
     });
+}
 ```
 ### Login with GUEST
 
@@ -137,8 +137,7 @@ private static void onLoginForGuest(final Activity activity) {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
                     // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
-                    // 네트워크 상태를 확인하거나
-                    // 잠시 대기 후 재시도 하세요.
+                    // 네트워크 상태를 확인하거나 잠시 대기 후 재시도 하세요.
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -187,8 +186,7 @@ private static void onLoginForGoogle(final Activity activity) {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
                     // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
-                    // 네트워크 상태를 확인하거나
-                    // 잠시 대기 후 재시도 하세요.
+                    // 네트워크 상태를 확인하거나 잠시 대기 후 재시도 하세요.
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -259,8 +257,7 @@ private static void onLoginWithCredential(final Activity activity) {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
                     // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
-                    // 네트워크 상태를 확인하거나
-                    // 잠시 대기 후 재시도 하세요.
+                    // 네트워크 상태를 확인하거나 잠시 대기 후 재시도 하세요.
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -309,7 +306,7 @@ Facebook 인증 추가 정보 입력 예제
 Payco 추가 인증 정보 입력 예제
 
 ```json
-{ "service_code": "HANGAME", "service_code": "Your Service Name" }
+{ "service_code": "HANGAME", "service_name": "Your Service Name" }
 ```
 
 ## Logout
@@ -332,8 +329,7 @@ private static void onLogout(final Activity activity) {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
                     // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
-                    // 네트워크 상태를 확인하거나
-                    // 잠시 대기 후 재시도 하세요.
+                    // 네트워크 상태를 확인하거나 잠시 대기 후 재시도 하세요.
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -364,6 +360,11 @@ private static void onLogout(final Activity activity) {
 * Gamebase 탈퇴를 의미하며, IDP 계정 탈퇴를 의미하지는 않습니다.
 * 탈퇴 성공 시 IDP 로그아웃을 시도하게 됩니다.
 
+> <font color="red">[WARNING]</font><br/>
+>
+> 여러 IDP를 연동중인 경우 모든 IDP 연동이 해제되고 Gamebase 유저 데이터가 삭제 됩니다.
+>
+
 탈퇴 버튼을 클릭했을 때, 다음과 같이 탈퇴 API를 구현합니다.
 
 ```java
@@ -378,8 +379,7 @@ private static void onWithdraw(final Activity activity) {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
                     // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
-                    // 네트워크 상태를 확인하거나
-                    // 잠시 대기 후 재시도 하세요.
+                    // 네트워크 상태를 확인하거나 잠시 대기 후 재시도 하세요.
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -423,14 +423,41 @@ Gamebase의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 
 
 Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
 
+### Add Mapping Flow
+
+* 다음과 같은 순서로 구현할 수 있습니다.
+
+#### 1. 로그인 하기
+* Mapping은 현재 계정에 IDP 계정 연동을 추가하는 것이므로 우선 로그인이 되어 있어야 합니다.
+* 로그인 API를 호출하여 로그인을 해두시기 바랍니다.
+
+#### 2. Mapping하기
+
+* **Gamebase.addMapping(activity, idpType, callback)** 을 호출하여 Mapping을 시도합니다.
+
+#### 2-1. Mapping이 성공한 경우
+
+* 축하합니다! 현재 계정과 연동중인 IDP 계정이 추가되었습니다.
+* Mapping이 성공 하더라도 '현재 로그인 중인 IDP'가 바뀌지는 않습니다. 즉, Google 계정으로 로그인 한 후, Facebook 계정 Mapping 시도가 성공했다고 해서 '현재 로그인 중인 IDP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다.
+* Mapping은 단순히 IDP 연동만 추가 해줍니다.
+
+#### 2-2. Mapping이 실패한 경우
+
+* 네트워크 에러
+	* 에러코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)** 인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **Gamebase.addMapping()** 을 다시 호출 하거나, 잠시 대기했다가 재시도 하도록 합니다.
+* 이미 다른 계정에 연동중인 에러
+	* 에러 코드가 **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 인 경우, 맵핑하려는 IDP의 계정이 이미 다른 계정에 연동중이라는 뜻입니다.
+    * 이미 연동된 계정을 해제하려면 해당 계정으로 로그인하여 **Gamebase.withdraw()** 를 호출하여 탈퇴하거나 **Gamebase.removeMapping()** 를 호출하여 연동을 해제한 후 다시 Mapping을 시도하세요.
+* 이미 동일한 IDP 계정인 연동된 에러
+	* 에러 코드가 **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)** 인 경우, Mapping하려는 IDP와 같은 종류의 계정이 이미 연동중이라는 뜻입니다.
+    * Gamebase Mapping은 한 IDP당 하나의 계정만 연동 가능합니다. 예를 들어 Payco 계정을 이미 연동중이라면 더 이상 Payco 계정을 추가할 수 없습니다.
+    * 동일 IDP의 다른 계정을 연동하기 위해서는 **Gamebase.removeMapping()** 을 호출하여 연동 해제를 한 후 다시 Mapping을 시도하세요.
+* 그 외의 에러
+	* Mapping 시도가 실패하였습니다.
+
 ### Add Mapping
 
 특정 IDP에 로그인 된 상태에서 다른 IDP로 Mapping을 시도합니다.<br/>
-Mapping을 하려는 IDP의 계정이 이미 다른 계정에 연동이 되어있다면<br/>
-**AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 에러를 리턴합니다.<br/><br/>
-
-Mapping이 성공 하더라도 '현재 로그인 중인 IDP'가 바뀌지는 않습니다. 즉, Google 계정으로 로그인 한 후, Facebook 계정 Mapping 시도가 성공했다고 해서 '현재 로그인 중인 IDP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다.<br/>
-Mapping은 단순히 IDP 연동만 추가 해줍니다.<br/><br/>
 
 아래의 예시에서는 facebook에 대해서 Mapping을 시도하고 있습니다.
 
@@ -447,8 +474,7 @@ private static void addMappingForFacebook(final Activity activity) {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
                     // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
-                    // 네트워크 상태를 확인하거나
-                    // 잠시 대기 후 재시도 하세요.
+                    // 네트워크 상태를 확인하거나 잠시 대기 후 재시도 하세요.
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -458,9 +484,18 @@ private static void addMappingForFacebook(final Activity activity) {
                             } catch (InterruptedException e) {}
                         }
                     }).start();
+                } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+                    // Mapping을 시도하는 IDP계정이 이미 다른 계정에 연동되어 있습니다.
+                    // 강제로 연동을 해제하기 위해서는 해당 계정의 탈퇴나 Mapping 해제를 해야 합니다.
+                    Log.e(TAG, "Add Mapping failed- ALREADY_MAPPED_TO_OTHER_MEMBER");
+                } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP) {
+                    // Mapping을 시도하는 IDP의 계정이 이미 추가되어 있습니다.
+                    // Gamebase Mapping은 한 IDP당 하나의 계정만 연동 가능합니다.
+                    // IDP계정을 변경하려면 이미 연동중인 계정은 Mapping 해제를 해야 합니다.
+                    Log.e(TAG, "Add Mapping failed- ALREADY_HAS_SAME_IDP");
                 } else {
                     // 맵핑 추가 실패
-                    Log.e(TAG, "Login failed- "
+                    Log.e(TAG, "Add Mapping failed- "
                             + "errorCode: " + exception.getCode()
                             + "errorMessage: " + exception.getMessage());
                 }
@@ -511,8 +546,7 @@ private static void addMappingWithCredential(final Activity activity) {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
                     // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
-                    // 네트워크 상태를 확인하거나
-                    // 잠시 대기 후 재시도 하세요.
+                    // 네트워크 상태를 확인하거나 잠시 대기 후 재시도 하세요.
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -522,9 +556,18 @@ private static void addMappingWithCredential(final Activity activity) {
                             } catch (InterruptedException e) {}
                         }
                     }).start();
+                } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+                    // Mapping을 시도하는 IDP계정이 이미 다른 계정에 연동되어 있습니다.
+                    // 강제로 연동을 해제하기 위해서는 해당 계정의 탈퇴나 Mapping 해제를 해야 합니다.
+                    Log.e(TAG, "Add Mapping failed- ALREADY_MAPPED_TO_OTHER_MEMBER");
+                } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP) {
+                    // Mapping을 시도하는 IDP의 계정이 이미 추가되어 있습니다.
+                    // Gamebase Mapping은 한 IDP당 하나의 계정만 연동 가능합니다.
+                    // IDP계정을 변경하려면 이미 연동중인 계정은 Mapping 해제를 해야 합니다.
+                    Log.e(TAG, "Add Mapping failed- ALREADY_HAS_SAME_IDP");
                 } else {
                     // 맵핑 추가 실패
-                    Log.e(TAG, "Login failed- "
+                    Log.e(TAG, "Add Mapping failed- "
                             + "errorCode: " + exception.getCode()
                             + "errorMessage: " + exception.getMessage());
                 }
@@ -536,7 +579,7 @@ private static void addMappingWithCredential(final Activity activity) {
 
 ### Remove Mapping
 
-특정 IDP에 대한 연동을 해제합니다. 만약, 해제하고자 하는 IDP가 유일한 IDP라면, 실패를 리턴하게 됩니다.<br/>
+특정 IDP에 대한 연동을 해제합니다. 만약, 현재 로그인중인 계정을 해제하려고 하면 실패를 리턴하게 됩니다.<br/>
 연동 해제후에는 Gamebase 내부에서, 해당 IDP에 대한 로그아웃처리를 해줍니다.
 
 ```java
@@ -551,8 +594,7 @@ private static void removeMappingForFacebook(final Activity activity) {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
                     // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
-                    // 네트워크 상태를 확인하거나
-                    // 잠시 대기 후 재시도 하세요.
+                    // 네트워크 상태를 확인하거나 잠시 대기 후 재시도 하세요.
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -562,6 +604,10 @@ private static void removeMappingForFacebook(final Activity activity) {
                             } catch (InterruptedException e) {}
                         }
                     }).start();
+                } else if (exception.getCode() == GamebaseError.AUTH_REMOVE_MAPPING_LOGGED_IN_IDP) {
+                    // 로그인중인 계정으로는 Mapping 해제를 할 수 없습니다.
+                    // 다른 계정으로 로그인 하여 Mapping 해제 하거나 탈퇴하여야 합니다.
+                    Log.e(TAG, "Remove Mapping failed- LOGGED_IN_IDP");
                 } else {
                     // 맵핑 해제 실패
                     Log.e(TAG, "Remove mapping failed- "
