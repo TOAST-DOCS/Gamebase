@@ -188,6 +188,7 @@ Toast를 간단하게 노출 할 수 있는 API를 제공합니다.
 
 ```cs
 static void ShowToast(string message, int duration)
+static void ShowToast(string message, GamebaseUIToastType type)
 ```
 
 **Example**
@@ -197,6 +198,13 @@ public void ShowToast(string message, int duration)
     Gamebase.Util.ShowToast(
         message,
         duration
+        );
+}
+public void ShowToast(string message, GamebaseUIToastType type)
+{
+    Gamebase.Util.ShowToast(
+        message,
+        type
         );
 }
 ```

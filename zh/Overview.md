@@ -64,8 +64,8 @@ Gamebase에서 제공되는 Launching 정보는 다음과 같습니다.
 * [LINK [Android Developer Guide > Launching Info] ](./aos-initialization/#launching-status)
 * [LINK [iOS Developer Guide > Launching Info] ](./ios-initialization/#launching-status)
 * [LINK [Unity Developer Guide > Launching Info] ](./unity-initialization/#launching-informations)
-* [LINK [Operator Guide > App Info(App, Client, Installed URL)] ](./app) : 앱, 클라이언트 상태 및 설치 URL설정
-* [LINK [Operator Guide > Operator(Maintenance,Notice)] ](./operation) : 점검, 공지 등록
+* [LINK [Operator Guide > App Info(App, Client, Installed URL)] ](./oper-app) : 앱, 클라이언트 상태 및 설치 URL설정
+* [LINK [Operator Guide > Operator(Maintenance,Notice)] ](./oper-operation) : 점검, 공지 등록
 
 
 ### For Global
@@ -96,16 +96,16 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 
 #### Reference
 
-* [LINK [Operator Guide > Operating indicator] ](./operating-indicator) 
+* [LINK [Operator Guide > Operating indicator] ](./oper-operating-indicator) 
 
 ### Using the other TOAST Cloud Service
 
-* 게임에서 필요한 TOAST Cloud상품을 보다 쉽게 연동할 수 있도록 돕습니다.
-	* Gamebase User ID기반으로 각 상품의 API를 사용할 수 있도록 Gamebase에서 Wrapping하여 API를 제공합니다. 	
+* 게임에서 필요한 TOAST Cloud상품을 보다 쉽게 연동할 수 있도록 돕습니다. 
+	* Gamebase User ID기반으로 각 상품의 API를 사용할 수 있도록 Gamebase에서 Wrapping하여 API를 제공합니다. 따라서, 사용자는 별도 상품의 API를 직접 호출하실 필요가 없습니다.
 	* [Notification > PUSH](http://cloud.toast.com/service/notification) : 푸시 메세지를 발송해주는 통합 푸시 서비스
 	* [Common > IAP](http://cloud.toast.com/service/iap) : 통합 인앱 결제 서비스
 	* [Game > Leaderboard](http://cloud.toast.com/service/leaderboard) : 실시간 대용량 랭킹 서비스
-	* [Security > AppGuard](https://cloud.toast.com/service/security) : 애플리케이션의 코드 조작을 방지
+	* [Security > AppGuard](https://cloud.toast.com/service/security) : 실시간으로 애플리케이션의 코드 조작을 방지
 	
 
 

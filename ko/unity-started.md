@@ -112,7 +112,8 @@ Lifecycle 관리를 위해 "com.toast.gamebase.activity.GamebaseMainActivity"를
 > <font color="red">[WARNING]</font>
 >
 > AndroidPlugin 개발에도 GamebaseMainActivity를 상속받아 만들어야 합니다. <br/>
-> GamebaseMainActivity는 GamebaseAndroidPlugin.jar에 포함되어 있습니다.
+> GamebaseMainActivity는 GamebaseAndroidPlugin.jar에 포함되어 있습니다. <br/><br/>
+> launchMode는 singleTask로 해야 합니다.(Unity 기본 Activity도 singleTask로 고정됩니다.) 그렇지 않을 경우 앱 기동중 크래쉬가 발생할 수 있습니다.
 
 ```xml
 <manifest>
@@ -120,6 +121,7 @@ Lifecycle 관리를 위해 "com.toast.gamebase.activity.GamebaseMainActivity"를
     <application>
     ...
     	<activity android:name="com.toast.gamebase.activity.GamebaseMainActivity"
+        	android:launchMode="singleTask"
         	android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name">
             <intent-filter>
