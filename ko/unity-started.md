@@ -1,4 +1,4 @@
-mf ak## Game > Gamebase > Unity Developer's Guide > Getting Started
+## Game > Gamebase > Unity Developer's Guide > Getting Started
 
 ## Getting Started
 
@@ -55,8 +55,10 @@ Gamebase Unity SDK를 게임 프로젝트에 추가하는 방법은 다음과 �
 > <font color="red">[WARNING]</font>
 >
 > Facebook Adapter를 사용하는 경우, Gamebase Android, iOS SDK에서 제공하는 Facebook Adapter는 추가 하시면 안됩니다.<br/>
-> Facebook Adapter를 사용하는 경우, Facebook Unity SDK는 별도로 다운로드 받으셔야 합니다. [LINK \[Go to Download\]](https://developers.facebook.com/docs/unity/)<br/>
+> Facebook Adapter를 사용하는 경우, Facebook Unity SDK는 별도로 다운로드 받으셔야 합니다. [LINK \[Go to Download]](https://developers.facebook.com/docs/unity/)<br/>
 > Facebook Adapter에서 지원하는 Facebook Unity SDK 버전은 같이 제공되는 README 파일을 참고하시기 바랍니다. <br/>
+
+### Android Settings
 
 Unity Android 빌드 시 필요한 설정에 대해 설명합니다.
 
