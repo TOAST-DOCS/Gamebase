@@ -100,7 +100,7 @@ Firebase Cloud Messaging (FCM) 사용을 위한 Sender ID 입니다.
 
 위에서 설명한 설정들은 GamebaseUnitySDKSettings 컴포넌트의 Inspector에서 변경할 수 있습니다.
 
-![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_003_1.2.0.png)
+![GamebaseUnitySDKSettins Inspector](image/UnityDevelopersGuide/unity-developers-guide-initialization_003_1.4.0.png)
 
 ### Initialize with Inspector Settings
 

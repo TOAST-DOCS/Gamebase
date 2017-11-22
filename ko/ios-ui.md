@@ -189,8 +189,14 @@ iOS8 이상에서 동작하는 UIAlertController와, iOS8 미만에서의 UIAler
 
 ```objectivec
 - (void)showToastMessage:(id)sender {
-	// 3초 동안 메시지 나타내기
-	[TCGBUtil showToastMessage:@"TOAST MESSAGE" duration:3];
+	// 3초 동안 메시지 나타내기 (deprecated API)
+	[TCGBUtil showToastWithMessage:@"TOAST MESSAGE" duration:3];
+    
+    // 길게(3.5초) 메시지 나타내기
+    [TCGBUtil showToastWithMessage:@"TOAST MESSAGE with enum long" length:GamebaseToastLengthLong]; 
+    
+    // 짧게(2초) 메시지 나타내기
+    [TCGBUtil showToastWithMessage:@"TOAST MESSAGE with enum short" length:GamebaseToastLengthShort];
 }
 ```
 

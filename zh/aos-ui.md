@@ -84,12 +84,21 @@ Gamebase.Util.showAlertDialog(activity,
 
 ## Toast
 
-Android의 Toast를 간단하게 노출 할 수 있는 API를 제공합니다.
+Android의 Toast를 간단하게 노출 할 수 있는 API를 제공합니다.<br/>
+메시지를 표시하는 시간 종류 인자는 int 파라메터이고, Android SDK NotificationManagerService 클래스의 정의에 따라 다음과 같은 시간동안 노출됩니다.
+
+| 시간 종류(int) | 노출 시간 |
+| --- | --- |
+| Toast.LENGTH_SHORT | 2초 |
+| Toast.LENGTH_LONG | 3.5초 |
+| 0 | Toast.LENGTH_SHORT => 2초 |
+| 1 | Toast.LENGTH_LONG => 3.5초 |
+| 나머지 모든 값 | Toast.LENGTH_SHORT => 2초 |
 
 ```java
 Gamebase.Util.showToast(activity,
                         "message",              // 노출 할 메시지 텍스트
-                        Toast.LENGTH_SHORT);    // 메시지를 표시하는 시간 (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
+                        Toast.LENGTH_SHORT);    // 메시지를 표시하는 시간 종류 (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
 ```
 
 ## Custom Maintenance Page

@@ -415,6 +415,61 @@ public void AddMapping(string providerName)
 }
 ```
 
+### AddMapping with Credential
+
+게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증을 하고 발급받은 AccessToken등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스 입니다.
+
+* Credential 파라미터의 설정방법
+
+
+
+| keyname | a use | 값 종류 |
+| --- | --- | --- |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IDP 타입을 설정 | facebook, payco, iosgamecenter |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname | IDP 로그인 이후 받은 인증정보 (AccessToken)을 설정 |
+
+> [TIP]
+>
+> 게임 내에서 외부 서비스(Facebook 등)의 고유기능의 사용이 필요할 때 사용될 수 있습니다.
+>
+
+<br/>
+
+> <font color="red">[WARNING]</font><br/>
+>
+> 외부 SDK에서 지원요구하는 개발사항은 외부SDK의 API를 사용하여 구현해야하며, Gamebase에서는 지원하지 않습니다.
+>
+
+**API**<br>
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+```cs
+static void AddMapping(Dictionary<string, object> credentialInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+```
+
+**Example**
+
+```cs
+public void AddMapping(Dictionary<string, object> credentialInfo)
+{
+    Gamebase.AddMapping(credentialInfo, (authToken, error) =>
+    {
+        if (Gamebase.IsSuccess(error))
+        {
+            Debug.Log("AddMapping succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("AddMapping failed. error is {0}", error));
+        }
+    });
+}
+```
+
+
+
+
 ### Remove Mapping
 
 특정 IDP에 대한 연동을 해제합니다. 만약, 해제하고자 하는 IDP가 유일한 IDP라면, 실패를 리턴하게 됩니다.<br/>
