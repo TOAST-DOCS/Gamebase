@@ -6,31 +6,23 @@ Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 
 ### Environments
 
-UnityEditor v5.4 이상
+> [INFO]
+> 
+> Unity 지원 버전 : 5.4 이상
 
-#### 1. Standalone
+#### Supported Platforms
 
-* Windows 7 이상
-* MAC OS 는 지원하지 않습니다.
+* iOS
+* Android
+* Standalone
+	* Windows7 이상
+	* MAC OS는 지원하지 않습니다.
+* WebGL
+	* [LINK \[WebGL Browser Compatibility\]](https://docs.unity3d.com/Manual/webgl-browsercompatibility.html)
+* Editor
+	* 일부 기능만 지원합니다.
 
-#### 2. WebGL
-
-Unity Documentation 참고
-
-* [LINK \[WebGL Browser Compatibility\]](https://docs.unity3d.com/Manual/webgl-browsercompatibility.html)
-
-### Supported Unity Platforms
-
-Gamebase Unity SDK 은 아래 4개의 플랫폼을 지원합니다.
-
-* UNITY_IOS
-* UNITY_ANDROID
-* UNITY_STANDALONE
-* UNITY_WEBGL
-
-UNITY_EDITOR 에서도 일부 기능을 테스트 할 수 있습니다.
-
-선택한 플랫폼에서 지원하지 않는 Gamebase API 호출 시에는 아래와 같은 에러가 콜백으로 리턴되며 콜백이 없는 경우에는 Warning 로그가 출력됩니다.
+API를 지원하지 않는 플랫폼에서는 아래와 같은 에러가 콜백으로 리턴되며, 콜백이 없는 경우에는 Warning 로그가 출력됩니다.
 
 * GamebaseErrorCode.NOT_SUPPORTED
 * GamebaseErrorCode.NOT_SUPPORTED_IOS
@@ -54,19 +46,26 @@ Gamebase Client(iOS, Android, Unity) SDK 는 아래 링크에서 다운로드 �
 
 * [LINK \[Download Gamebase Client SDK\]](http://docs.cloud.toast.com/ko/Download/)
 
-Gamebase Unity SDK 를 게임 프로젝트에 추가하는 방법은 다음과 같습니다.
+Gamebase Unity SDK를 게임 프로젝트에 추가하는 방법은 다음과 같습니다.
 
 1. Unity 프로젝트 열기
-2. Assets > Import Package > Custome Package 메뉴를 선택 후 GamebaseUnitySDK.unitypackage 를 현재 프로젝트에 포함
+2. GamebaseUnitySDK_{version}.unitypackage를 프로젝트에 임포트합니다.
+3. Facebook 인증을 사용하는 경우, Facebook Adapter( GamebaseUnitySDK_FacebookAdapter_{version}.unitypackage )를 프로젝트에 임포트합니다.
+
+> <font color="red">[WARNING]</font>
+>
+> Facebook Adapter를 사용하는 경우, Gamebase Android, iOS SDK에서 제공하는 Facebook Adapter는 추가 하시면 안됩니다.<br/>
+> Facebook Adapter를 사용하는 경우, Facebook Unity SDK는 별도로 다운로드 받으셔야 합니다. [LINK \[Go to Download]](https://developers.facebook.com/docs/unity/)<br/>
+> Facebook Adapter에서 지원하는 Facebook Unity SDK 버전은 같이 제공되는 README 파일을 참고하시기 바랍니다. <br/>
 
 ### Android Settings
 
-Unity Android 빌드 시 필요한 Unity 설정에 대해 설명합니다.
+Unity Android 빌드 시 필요한 설정에 대해 설명합니다.
 
 * Gamebase Android SDK
-* Auth Adapter
-* Push
-* Purchase
+* Gamebase Android Auth Adapter
+* Gamebase Android Push Adapter
+* Gamebase Android Purchase Adapter
 
 > <font color="red">[WARNING]</font>
 >
@@ -83,35 +82,33 @@ Unity Android 빌드 시 필요한 Unity 설정에 대해 설명합니다.
 
 ![Add Adroid SDK](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started_001_1.2.0.png)
 
-#### 2. Auth Adapter
+#### 2. Gamebase Android Auth Adapter
 
 Gamebase Android SDK 는 Google 과 같은 ID Provider(이하 IDP) 와의 연동을 지원합니다.
 Auth Adapter 는 3rd-Party IDP SDK 인터페이스를 구현하고 있으며 Gamebase 와 IDP 연동 시 필요한 정보를 Gamebase로 전달합니다.
 
 ![Auth Adapter](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started_003_1.2.0.png)
 
-Facebook 인증 연동이 필요할 경우, gamebase-adapter-auth-facebook 폴더 내 파일들을 Assets/Plugins/Android/libs/Gamebase 폴더에 추가합니다.
+인증 연동이 필요한 auth 폴더(gamebase-adapter-auth-idp) 내 파일들을 Assets/Plugins/Android/libs/Gamebase 폴더에 추가합니다.
 
-![Add Facebook Adapter](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started_002_1.2.0.png)
+#### 3. Gamebase Android Push Adapter
 
-#### 3. Push
+Gamebase Android SDK는 FCM(Firebase), Tencent Push 서비스를 지원합니다.
+Push 서비스가 필요할 경우, gamebase-adapter-push-fcm(or tecent) 폴더 내 파일들을 Assets/Plugins/Android/libs/Gamebase 폴더에 추가합니다.
 
-Gamebase Android SDK 는 FCM(Firebase), Tencent Push 서비스를 지원합니다.
-FCM Push 서비스가 필요할 경우, gamebase-adapter-push-fcm 폴더 내 파일들을 Assets/Plugins/Android/libs/Gamebase 폴더에 추가합니다.
+#### 4. Gamebase Android Purchase Adapter
 
-#### 4. Purchase
-
-Gamebase는 TOASTCloud 결제 상품인 IAP(In-App Purchase)를 사용하여 결제를 지원합니다.
-gamebase-adapter-purchase-iap 폴더 내 파일들을 Assets/Plugins/Android/libs/Gamebase 폴더에 추가합니다.
+Gamebase Android SDK는 TOASTCloud 결제 상품인 IAP(In-App Purchase)를 사용하여 결제를 지원합니다.
+IAP 서비스가 필요할 경우, gamebase-adapter-purchase-iap 폴더 내 파일들을 Assets/Plugins/Android/libs/Gamebase 폴더에 추가합니다.
 
 ### Android Lifecycle
 
 Lifecycle 관리를 위해 "com.toast.gamebase.activity.GamebaseMainActivity"를 MainActivity로 해야 합니다.
-"com.toast.gamebase.activity.GamebaseMainActivity"는 "com.unity3d.player.UnityPlayerNativeActivity"를 상속받아 구현되어 있습니다.
+"com.toast.gamebase.activity.GamebaseMainActivity"는 "com.unity3d.player.UnityPlayerActivity"를 상속받아 구현되어 있습니다.
 
 > <font color="red">[WARNING]</font>
 >
-> AndroidPlugin 개발에도 GamebaseMainActivity를 상속받아 만들어야 합니다. <br/>
+> AndroidPlugin 개발에도 GamebaseMainActivity를 상속받아서 만들어야 합니다. <br/>
 > GamebaseMainActivity는 GamebaseAndroidPlugin.jar에 포함되어 있습니다. <br/><br/>
 > launchMode는 singleTask로 해야 합니다.(Unity 기본 Activity도 singleTask로 고정됩니다.) 그렇지 않을 경우 앱 기동중 크래쉬가 발생할 수 있습니다.
 
