@@ -14,7 +14,7 @@
 
 ### Register Push
 
-다음 API를 호출하여, ToastCloud Push에 해당 사용자를 등록합니다.<br/>
+다음 API를 호출하여, TOAST Cloud Push에 해당 사용자를 등록합니다.<br/>
 Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야간 광고성 Push 동의 여부(enableAdNightPush)값을 사용자로부터 받아온 후, 다음의 API 호출을 통해 등록을 완료합니다.
 
 

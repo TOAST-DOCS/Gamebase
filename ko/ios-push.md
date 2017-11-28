@@ -9,7 +9,7 @@
 * 생성된 인증서를 Keychain이 등록 후, 'Personal Information Exchange (.p12)' 포맷으로 export합니다.
 * export 시에 비밀번호를 설정합니다.
 
-#### Toast Cloud Console 등록
+#### TOAST Cloud Console 등록
 * **'Notification > Push > Certificate**에서 **APNS Certificate**와 **APNS (Sandbox) Certificate**에 위에서 생성한 인증서를 등록해줍니다.
 * 위 인증서를 만들때 설정해놓은 비밀번호를 사용해서 등록합니다.
 
@@ -29,7 +29,7 @@
 
 ### Register Push
 
-다음 API를 호출하여, ToastCloud Push에 해당 사용자를 등록합니다.<br/>
+다음 API를 호출하여, TOAST Cloud Push에 해당 사용자를 등록합니다.<br/>
 Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야간 광고성 Push 동의 여부(enableAdNightPush)값을 사용자로부터 받아온 후, 다음의 API 호출을 통해 등록을 완료합니다.
 
 
