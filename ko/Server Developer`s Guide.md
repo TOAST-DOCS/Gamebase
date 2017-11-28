@@ -1,4 +1,4 @@
-## Upcoming Products > Gamebase > Server Developer's Guide
+## Game > Gamebase > Server Developer's Guide
 
 Gamebase Server API는 RESTful 형식으로 다음과 같은 API들을 제공합니다.
 
@@ -26,7 +26,7 @@ AppId는 **TOAST Cloud의 프로젝트ID**로 콘솔 화면 Project list 화면�
 
 SecretKey는 API에 대한 접근 제어 용도로 Gamebase 콘솔에서 확인 가능합니다. 해당 값은 **API 호출시 HTTP Header에 필수적**으로 설정되어야 합니다.
 > [NOTE]<br>
-> SecretKey 가 외부에 노출되어 잘못된 호출이 발생 한다면, 생성 버튼을 통해 새로운 SecretKey를 생성한 후에 해당 SecretKey 를 사용하면 됩니다.
+> SecretKey 가 외부에 노출되어 비정상적인 호출이 발생 한다면, 생성 버튼을 통해 새로운 SecretKey를 생성한 후에 해당 SecretKey 를 사용하면 됩니다.
 <br>
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.1.png)
@@ -292,6 +292,8 @@ LINK [\[Error Code\]](./error-codes/#server)
 
 LINK [\[Error Code\]](./error-codes/#server)
 
+<br>
+
 #### Get members
 
 다수의 회원 정보를 간략히 조회합니다.
@@ -352,6 +354,8 @@ LINK [\[Error Code\]](./error-codes/#server)
 **[Error Code]**
 
 LINK [\[Error Code\]](./error-codes/#server)
+
+<br>
 
 #### Get IdP infomation
 
@@ -414,6 +418,8 @@ LINK [\[Error Code\]](./error-codes/#server)
 **[Error Code]**
 
 LINK [\[Error Code\]](./error-codes/#server)
+
+<br>
 
 #### Get userId infomation with auth key
 
@@ -483,9 +489,9 @@ LINK [\[Error Code\]](./error-codes/#server)
 
 ## Maintenance
 
-#### Check Under Maintenance
+#### Checked Under Maintenance
 
-현재 점검이 설정되어 있는지 여부를 확인합니다.
+현재 점검 설정 여부 및 관련 정보를 제공합니다. 이때 여러건의 점검이 설정되어 있다면 시작시간이 가장 빠른 한 건 만 제공됩니다.
 
 **[Method, URI]**
 
@@ -523,27 +529,25 @@ LINK [\[Error Code\]](./error-codes/#server)
   },
   "appId": "",
   "underMaintenance": true,
-  "maintenances": [
-    {
-      "typeCode": "APP",
-      "beginDate": "2017-01-01T12:10:00+07:00",
-      "endDate": "2017-02-01T12:17:00+07:00",
-      "url": "http://url.info",
-      "message": "maintenance reason"
-    }
-  ]
+  "maintenance": {
+    "typeCode": "APP",
+    "beginDate": "2017-01-01T12:10:00+07:00",
+    "endDate": "2017-02-01T12:17:00+07:00",
+    "url": "http://url.info",
+    "message": "maintenance reason"
+  }
 }
 ```
 
 | Key | Type | Description |
 | --- | --- | --- |
 | underMaintenance | boolean | 현재 점검 설정 여부 |
-| maintenances | Object | 점검이 설정되어 있다면 점검에 대한 기본 정보 |
-| maintenances.typeCode | Enum | APP: 게임에서 설정한 점검 <br>SYSTEM: Gamebase 시스템에서 설정한 점검 |
-| maintenances.beginDate | String | 점검 시작 시간. ISO 8601 |
-| maintenances.endDate | String | 점검 종료 시간. ISO 8601 |
-| maintenances.url | String | 상세 점검 URL |
-| maintenances.message | String | 점검 메시지 |
+| maintenance | Object | 점검이 설정되어 있다면 점검에 대한 정보 |
+| maintenance.typeCode | Enum | APP: 게임에서 설정한 점검 <br>SYSTEM: Gamebase 시스템에서 설정한 점검 |
+| maintenance.beginDate | String | 점검 시작 시간. ISO 8601 |
+| maintenance.endDate | String | 점검 종료 시간. ISO 8601 |
+| maintenance.url | String | 상세 점검 URL |
+| maintenance.message | String | 점검 메시지 |
 
 **[Error Code]**
 
