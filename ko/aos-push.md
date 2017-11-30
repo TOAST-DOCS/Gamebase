@@ -97,10 +97,10 @@
     * gradle 설정에 **apply plugin: 'com.google.gms.google-services'** 를 추가합니다.
     * 위 설정으로 Google Services Gradle Plugin이 적용되어 google-services.json 파일을 res/google-services/{build_type}/values/values.xml 라는 이름의 string resource로 변경하여 사용하게 됩니다.
 * Unity 빌드인 경우
-	* Google Services Gradle Plugin을 사용할 수 없으므로 다음 링크의 설명에 따라 직접 string resource를 만들어 프로젝트에 포함하도록 합니다.
+	* Google Services Gradle Plugin을 사용할 수 없으므로 다음 링크의 설명에 따라 직접 string resource(xml 파일)를 만들어 프로젝트에 포함하도록 합니다.
+		* Example - Assets/Plugins/Android/res/values/google-services.xml
 	* [LINK \[https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file\]](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
-	* 다음은 string resource 파일의 예시입니다.
-
+	* 다음은 xml 파일의 예시입니다.<br/>
 ```xml
 <!-- res/values/google-services-json.xml -->
 <?xml version="1.0" encoding="utf-8"?>
@@ -146,7 +146,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 ### Register Push
 
-다음 API를 호출하여, ToastCloud Push에 해당 사용자를 등록합니다.<br/>
+다음 API를 호출하여, TOAST Cloud Push에 해당 사용자를 등록합니다.<br/>
 Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야간 광고성 Push 동의 여부(enableAdNightPush)값을 사용자로부터 받아온 후, 다음의 API 호출을 통해 등록을 완료합니다.
 
 

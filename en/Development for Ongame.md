@@ -59,6 +59,34 @@ Gamebase.login(activity, "ongame", new GamebaseDataCallback<AuthToken>() {
 });
 ```
 
+##### Set the Screen Orientation of Login WebView
+
+OnGame Login WebView의 스크린 방향을 설정할 수 있습니다.
+
+아래와 같이 AndroidManifest.xml 에 meta-data를 추가하여 ScreenOrientation을 설정합니다.
+default 설정 값은 "sensorLandscape" 입니다.
+
+```xml
+<application
+	...
+    <!-- [Ongame] Configurations begin -->
+    <meta-data
+        android:name="com.toast.android.ongame.loginwebview.ScreenOrientation"
+        android:value="portrait"/>
+    <!-- [Ongame] Configurations end -->
+</application>
+```
+
+* Screen Orientation
+
+| Value | Description |
+| --- | --- |
+| "landscape" | 가로 모드 |
+| "portrait" | 세로 모드 |
+| "sensorLandscape" | 가로모드를 선호하지만 센서로 변경 가능 |
+| "reverseLandscape" | 가로모드를 180도 회전 |
+| "fullSensor" | 네 가지 회전을 모두 허용 |
+
 #### 2. Login with Access Token of Facebook
 페이스북의 Access Token을 이용하여 Gamebase에 로그인 합니다.
 
@@ -307,8 +335,8 @@ Ongame에 대한  Profile key 값은 다음과 같습니다.
 | "AuthType" | "ongame" or "ongame-facebook" | "ongame" : Ongame web login<br>"ongame-facebook" : Facebook token login |
 
 **API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+![IOS](./image/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
+![ANDROID](./image/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
 
 ```cs
 static string GetAuthProviderUserID(string providerName)
@@ -464,7 +492,7 @@ Ongame의 경우 Gamebase Unity SDK 초기화 시 StoreCode를 `ONGATE`로 설�
 
 ##### 1. Initialize using the Unity Inspector.
 Unity inspector를 사용하여 초기화 할 경우에는 아래 그림과 같이 StoreCode를 "ONGATE"로 설정하십시오.
-![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-Initialization-ongame_1.1.0.png)
+![unity inspector](./image/UnityDevelopersGuide/unity-developers-guide-Initialization-ongame_1.1.0.png)
 
 ##### 2. Initialize without using the Unity Inspector.
 Unity inspector를 사용하지 않고 초기화 할 경우에는 아래 Example을 참고하십시오.
@@ -541,7 +569,7 @@ public void GetStoreCode()
 
 
 #### 2. Check Sandbox Mode
-Project가 ToastCloud에서 Sandbox로 설정이 되어있는지 확인할 수 있습니다.
+Project가 TOAST Cloud에서 Sandbox로 설정이 되어있는지 확인할 수 있습니다.
 초기화 이후에 호출 해야하며, 초기화 이전에 호출시, 크래시 및 예외가 발생합니다.
 
 프로젝트가 Sandbox 모드일 때에는 Ongame 및 Payco 인증이 alpha/demo로 인증이 됩니다.
