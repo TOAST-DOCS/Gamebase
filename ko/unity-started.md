@@ -42,62 +42,57 @@ API 별 지원하는 플랫폼은 아래와 같은 icon 으로 구분합니다.
 
 ## Installation
 
-Gamebase Client(iOS, Android, Unity) SDK 는 아래 링크에서 다운로드 가능합니다.
-
+Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있습니다.
 * [LINK \[Download Gamebase Client SDK\]](http://docs.cloud.toast.com/ko/Download/)
 
-Gamebase Unity SDK를 게임 프로젝트에 추가하는 방법은 다음과 같습니다.
+### Specification of Setting Tool
+1. SDK 다운로드
+	- 최신 버전 다운로드를 지원합니다.
 
-1. Unity 프로젝트 열기
-2. GamebaseUnitySDK_{version}.unitypackage를 프로젝트에 임포트합니다.
-3. Facebook 인증을 사용하는 경우, Facebook Adapter( GamebaseUnitySDK_FacebookAdapter_{version}.unitypackage )를 프로젝트에 임포트합니다.
+2. SDK 설치
+	- 다운로드 된 SDK 설치를 지원합니다.
+3. SDK 삭제
+	- 설치 된 SDK 삭제를 지원합니다.
 
-> <font color="red">[WARNING]</font>
->
-> Facebook Adapter를 사용하는 경우, Gamebase Android, iOS SDK에서 제공하는 Facebook Adapter는 추가 하시면 안됩니다.<br/>
-> Facebook Adapter를 사용하는 경우, Facebook Unity SDK는 별도로 다운로드 받으셔야 합니다. [LINK \[Go to Download\]](https://developers.facebook.com/docs/unity/)<br/>
-> Facebook Adapter에서 지원하는 Facebook Unity SDK 버전은 같이 제공되는 README 파일을 참고하시기 바랍니다. <br/>
+4. SDK 업데이트
+	- 업데이트 기능은 제공 안 하고 있습니다.
+	- 삭제 후 설치로 업데이트 기능을 대신 합니다.
 
-Unity Android 빌드 시 필요한 설정에 대해 설명합니다.
+### Using the Setting Tool
 
-* Gamebase Android SDK
-* Gamebase Android Auth Adapter
-* Gamebase Android Push Adapter
-* Gamebase Android Purchase Adapter
+#### SDK 설치
+1. Unity 프로젝트를 오픈합니다.
+2. GamebaseUnitySettingTool_{version}.unitypackage를 임포트합니다.
+3. Menu > Gamebase > SDKSettings > Setting Tool을 실행합니다.
+4. [Broswe] 버튼 클릭해서 SDK 다운로드 위치를 선택합니다.
+	- 디폴트 경로 : projcet/Gamebase/
+	- Setting Tool에서 접근 가능한 위치를 선택하셔야 합니다.
+5. [Download SDK] 버튼 클릭해서 SDK를 다운로드 합니다.
+6. 원하는 플랫폼을 선택합니다.
+	- Unity Adapter
+	- Android
+	- iOS
+7. 각 플랫폼별 사용할 모듈을 선택합니다.
+	- Authentication은 Google 과 같은 ID Provider(이하 IDP)와의 연동을 지원합니다.
+	- Push는 FCM(Firebase), Tencent Push 서비스를 지원합니다.
+	- Pruchase는 TOAST 결제 상품인 IAP(In-App Purchase)를 사용하여 결제를 지원합니다.
+8. [Settings] 버튼 클릭해서 SDK를 설치합니다.
 
-> <font color="red">[WARNING]</font>
->
-> 각 모듈 별 중복으로 포함하고 있는 파일이 있을 수 있습니다.<br/>
-> 중복된 파일은 하나만 있으면 되므로 삭제하도록 합니다.
+#### SDK 삭제
+1. Menu > Gamebase > SDKSettings > Setting Tool을 실행합니다.
+2. [Remove] 버튼 클릭해서 설치된 SDK를 삭제합니다.
 
-#### 1. Gamebase Android SDK
+<br/>
+> [INFO]
+> Setting Tool에서 예기치 못한 에러가 발생할 경우 창을 닫고 다시 실행하시기 바랍니다. <br/>
+> Unity Facebook Authentication을 사용하는 경우, Facebook Unity SDK는 별도로 다운로드 받으셔야 합니다. [LINK \[Go to Download\]](https://developers.facebook.com/docs/unity/)<br/>
+> Unity Facebook Authentication에서 지원하는 Facebook Unity SDK 버전은 같이 제공되는 README 파일을 참고하시기 바랍니다. <br/>
 
-다운로드 받은 Gamabase Android SDK 에서 gamebase-sdk 폴더 및 aar 파일들을 Assets/Plugins/Android/libs/Gamebase 폴더에 추가합니다.
+### Video of Setting Tool Usage
 
-* gamebase-sdk/*
-* gamebase-sdk-{version}.aar
-* gamebase-sdk-base-{version}.aar
+![![Setting Tool Movie]()](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool_movie_1.5.0.mp4)
 
-![Add Adroid SDK](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started_001_1.2.0.png)
 
-#### 2. Gamebase Android Auth Adapter
-
-Gamebase Android SDK 는 Google 과 같은 ID Provider(이하 IDP) 와의 연동을 지원합니다.
-Auth Adapter 는 3rd-Party IDP SDK 인터페이스를 구현하고 있으며 Gamebase 와 IDP 연동 시 필요한 정보를 Gamebase로 전달합니다.
-
-![Auth Adapter](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started_003_1.2.0.png)
-
-인증 연동이 필요한 auth 폴더(gamebase-adapter-auth-idp) 내 파일들을 Assets/Plugins/Android/libs/Gamebase 폴더에 추가합니다.
-
-#### 3. Gamebase Android Push Adapter
-
-Gamebase Android SDK는 FCM(Firebase), Tencent Push 서비스를 지원합니다.
-Push 서비스가 필요할 경우, gamebase-adapter-push-fcm(or tecent) 폴더 내 파일들을 Assets/Plugins/Android/libs/Gamebase 폴더에 추가합니다.
-
-#### 4. Gamebase Android Purchase Adapter
-
-Gamebase Android SDK는 TOASTCloud 결제 상품인 IAP(In-App Purchase)를 사용하여 결제를 지원합니다.
-IAP 서비스가 필요할 경우, gamebase-adapter-purchase-iap 폴더 내 파일들을 Assets/Plugins/Android/libs/Gamebase 폴더에 추가합니다.
 
 ### Android Lifecycle
 
