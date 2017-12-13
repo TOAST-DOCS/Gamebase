@@ -43,7 +43,9 @@ API 별 지원하는 플랫폼은 아래와 같은 icon 으로 구분합니다.
 ## Installation
 
 Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있습니다.
+
 * [LINK \[Download Gamebase Client SDK\]](http://docs.cloud.toast.com/ko/Download/)
+
 
 ### Specification of Setting Tool
 1. SDK 다운로드
@@ -84,13 +86,19 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
 
 <br/>
 > [INFO]
+> 
 > Setting Tool에서 예기치 못한 에러가 발생할 경우 창을 닫고 다시 실행하시기 바랍니다. <br/>
 > Unity Facebook Authentication을 사용하는 경우, Facebook Unity SDK는 별도로 다운로드 받으셔야 합니다. [LINK \[Go to Download\]](https://developers.facebook.com/docs/unity/)<br/>
 > Unity Facebook Authentication에서 지원하는 Facebook Unity SDK 버전은 같이 제공되는 README 파일을 참고하시기 바랍니다. <br/>
 
 ### Video of Setting Tool Usage
 
-![![Setting Tool Movie]()](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool_movie_1.5.0.mp4)
+<iframe src="http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool_movie_1.5.0.mp4" frameborder="0" allowfullscreen="" wmode="Opaque" style="
+    margin: auto;
+    position: relative;
+    width: 800px;
+    height: 500px;
+"></iframe>
 
 
 
@@ -224,14 +232,14 @@ android {
 ```
 
 
-### IOS Settings
+### iOS Settings
 
-1. Unity 프로젝트에서 IOS 빌드를 진행합니다.
-2. 생성 된 XCode 프로젝트에 Gamebase IOS SDK 파일 및 설정을 추가 합니다.
+1. Unity 프로젝트에서 iOS 빌드를 진행합니다.
+2. 생성 된 XCode 프로젝트에 설정을 추가 합니다.
 
-IOS SDK에 대한 설정은 아래 가이드를 참조하시기 바랍니다.
+iOS SDK에 대한 설정은 아래 가이드를 참조하시기 바랍니다.
 
-* [LINK \[IOS SDK 설정 링크\]](./ios-started)
+* [LINK \[iOS SDK 설정 링크\]](./ios-started)
 
 ## API Reference
 
