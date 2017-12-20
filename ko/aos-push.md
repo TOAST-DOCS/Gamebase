@@ -4,31 +4,32 @@
 
 ### Settings
 
+여기에서는 플랫폼별로 푸시 알림을 사용하기 위해 필요한 설정 방법을 알아보겠습니다.
+
 #### TOAST Cloud Console 등록
 
-* TCPush 가이드를 참고하여 Console 설정을 합니다.
-	* [LINK \[Push > Developer's Guide\]](http://docs.cloud.toast.com/ko/Notification/Push/ko/Developer%60s%20Guide/)
+먼저 [TOAST Cloud Push 가이드](http://docs.cloud.toast.com/ko/Notification/Push/ko/Developer%60s%20Guide/)를 참고하여 Console을 설정합니다.
 
 #### Download
 
-* Firebase 푸쉬를 사용하는 경우
-	* 다운로드 받은 SDK의 **gamebase-adapter-push-fcm** 폴더를 프로젝트에 추가합니다.
-* Tencent 푸쉬를 사용하는 경우
-	* 다운로드 받은 SDK의 **gamebase-adapter-push-tencent** 폴더를 프로젝트에 추가합니다.
+* Firebase 푸시를 사용하는 경우
+  * 다운로드한 SDK의 **gamebase-adapter-push-fcm** 폴더를 프로젝트에 추가합니다.
+* Tencent 푸시를 사용하는 경우
+  * 다운로드한 SDK의 **gamebase-adapter-push-tencent** 폴더를 프로젝트에 추가합니다.
 
-> <font color="red">[WARNING]</font><br/>
+> <font color="red">[중요]</font><br/>
 >
-> 푸쉬 모듈은 하나만 존재하여야 합니다. <br/>
-> Firebase 푸쉬와 Tencent 푸쉬를 둘 다 동시에 프로젝트에 추가하지 마십시오.
+> 푸시 모듈은 하나만 있어야 합니다. <br/>
+> Firebase 푸시와 Tencent 푸시를 동시에 프로젝트에 추가하지 마십시오.
 
 
 #### AndroidManifest.xml
 
-* Gamebase 푸쉬에 필요한 설정을 추가합니다.
+* Gamebase 푸시에 필요한 설정을 추가합니다.
 
-> <font color="red">[WARNING]</font><br/>
+> <font color="red">[중요]</font><br/>
 >
->**${applicationId}**을 **패키지 네임**으로 변경하여야 합니다.
+> **${applicationId}**를 **패키지 네임**으로 변경해야 합니다.
 >
 
 *Firebase*
@@ -91,16 +92,13 @@
 #### Google Services Settings (Firebase only)
 
 * Gradle 빌드를 사용하는 경우
-    * Firebase 푸쉬를 사용하기 위해서는 google-services.json 설정파일이 필요합니다.
-        * [LINK \[https://firebase.google.com/docs/notifications/android/console-audience#add_firebase_to_your_app\]](https://firebase.google.com/docs/notifications/android/console-audience#add_firebase_to_your_app)
-        * 위 링크를 참조하여 설정파일을 프로젝트에 포함시킵니다.
-    * gradle 설정에 **apply plugin: 'com.google.gms.google-services'** 를 추가합니다.
-    * 위 설정으로 Google Services Gradle Plugin이 적용되어 google-services.json 파일을 res/google-services/{build_type}/values/values.xml 라는 이름의 string resource로 변경하여 사용하게 됩니다.
+    * Firebase 푸시를 사용하기 위해서는 google-services.json 설정 파일이 필요합니다. 설정 파일을 프로젝트에 포함하는 방법은 [Firebase 클라우드 메시징](https://firebase.google.com/docs/cloud-messaging/#add_firebase_to_your_app) 설명을 참고합니다.
+    * gradle 설정에 **apply plugin: 'com.google.gms.google-services'**를 추가합니다.
+    * 위 설정으로 Google Services Gradle Plugin이 적용되어 google-services.json 파일을 res/google-services/{build_type}/values/values.xml라는 이름의 string resource로 변경하여 사용하게 됩니다.
 * Unity 빌드인 경우
-	* Google Services Gradle Plugin을 사용할 수 없으므로 다음 링크의 설명에 따라 직접 string resource(xml 파일)를 만들어 프로젝트에 포함하도록 합니다.
-		* Example - Assets/Plugins/Android/res/values/google-services.xml
-	* [LINK \[https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file\]](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
-	* 다음은 xml 파일의 예시입니다.<br/>
+  * Google Services Gradle Plugin을 사용할 수 없습니다. 직접 string resource를 만들어 프로젝트에 포함하려면 [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file) 설명을 참고합니다. 
+    * 다음은 string resource 파일의 예시입니다.
+
 ```xml
 <!-- res/values/google-services-json.xml -->
 <?xml version="1.0" encoding="utf-8"?>
@@ -116,19 +114,19 @@
 
 #### Initialization
 
-* Gamebase 초기화시 configuration의 **setPushType()**을 호출합니다.
-* Firebase 푸쉬를 사용하는 경우
-	* 추가로 **setFCMSenderId()**를 호출합니다.
-* Tencent 푸쉬를 사용하는 경우
-	* 추가로 **setTencentAccessId()**를 호출합니다.
-	* 추가로 **setTencentAccessKey()**를 호출합니다.
+* Gamebase 초기화 시 configuration의 **setPushType()**을 호출합니다.
+* Firebase 푸시를 사용하는 경우
+  * 추가로 **setFCMSenderId()**를 호출합니다.
+* Tencent 푸시를 사용하는 경우
+  * 추가로 **setTencentAccessId()**를 호출합니다.
+  * 추가로 **setTencentAccessKey()**를 호출합니다.
 
 ```java
 private static final String PUSH_FCM_SENDER_ID = "...";
 private static final String PUSH_TENCENT_ACCESS_ID = "...";
 private static final String PUSH_TENCENT_ACCESS_KEY = "...";
 
-TAPConfiguration configuration = new TAPConfiguration.Builder()
+GamebaseConfiguration configuration = new GamebaseConfiguration.Builder()
         .setAppId(APP_ID)
         .setAppVersion(APP_VERSION)
         .setFCMSenderId(PUSH_FCM_SENDER_ID)				// Firebase는 SenderId가 필요합니다.
@@ -147,7 +145,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 ### Register Push
 
 다음 API를 호출하여, TOAST Cloud Push에 해당 사용자를 등록합니다.<br/>
-Push 동의 여부(enablePush), 광고성 Push 동의 여부(enableAdPush), 야간 광고성 Push 동의 여부(enableAdNightPush)값을 사용자로부터 받아온 후, 다음의 API 호출을 통해 등록을 완료합니다.
+푸시 동의 여부(enablePush), 광고성 푸시 동의 여부(enableAdPush), 야간 광고성 푸시 동의 여부(enableAdNightPush) 값을 사용자로부터 받아, 다음의 API 호출을 통해 등록을 완료합니다.
 
 
 ```java
@@ -174,8 +172,8 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 
 ### Request Push Settings
 
-사용자의 Push 설정을 조회하기 위해서, 다음의 API를 이용합니다. <br/>
-콜백으로 오는 PushConfiguration 값을 바탕으로, 사용자 설정값을 얻을 수 있습니다.
+사용자의 푸시 설정을 조회하기 위해, 다음 API를 이용합니다. <br/>
+콜백으로 오는 PushConfiguration 값으로 사용자 설정값을 얻을 수 있습니다.
 
 ```java
 Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() {
@@ -198,18 +196,22 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 
 ### Error Handling
 
-| Error | Error Code | Notes |
-| ----- | ---------- | ----- |
-| PUSH_EXTERNAL_LIBRARY_ERROR | 5101 | TCPush 라이브러리 에러입니다.<br>DetailCode를 확인하세요. |
-| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | 이전 PUSH API 호출이 완료되지 않았습니다.<br>이전 PUSH API의 콜백이 실행된 이후에 다시 호출하세요. |
-| PUSH_UNKNOWN_ERROR | 5999 | 정의되지 않은 푸시 에러입니다.<br>전체 로그를 Gamebase 개발팀에 전달하여 에러상황을 문의해 주세요. |
+| Error                          | Error Code | Description                              |
+| ------------------------------ | ---------- | ---------------------------------------- |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | TOAST Cloud Push 라이브러리 오류입니다.<br>DetailCode를 확인하세요. |
+| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 이전 푸시 API 호출이 완료되지 않았습니다.<br>이전 푸시 API의 콜백이 실행된 이후에 다시 호출하세요. |
+| PUSH_UNKNOWN_ERROR             | 5999       | 정의되지 않은 푸시 오류입니다.<br>전체 로그를 [고객 센터](https://cloud.toast.com/support/faq)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
-* 전체 에러코드 참조 : [LINK \[Entire Error Codes\]](./error-codes#client-sdk)
+* 전체 오류 코드는 다음을 참고하시기 바랍니다.
+  * [Entire Error Codes](./error-codes#client-sdk)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* 이 에러는 TOAST Cloud Push 라이브러리에서 발생한 에러입니다.
-* exception.getDetailCode() 를 통해 TCPush 에러 코드를 확인하여야 합니다.
-* TCPush 에러코드는 다음 문서를 참고하시기 바랍니다.
-* [LINK \[Push > Client SDK Developer's Guide > Error Code Guide > 오류 처리\]](http://docs.cloud.toast.com/ko/Notification/Push/ko/Client%20SDK%20Guide/#_5)
+* 이 오류는 TOAST Cloud Push 라이브러리에서 발생한 오류입니다.
+* exception.getDetailCode()로 TOAST Cloud Push 오류 코드를 확인해야 합니다.
+* TOAST Cloud Push 오류 코드는 다음 문서를 참고하시기 바랍니다.
+  * [Push > Client SDK Developer's Guide > Error Code Guide > 오류 처리](http://docs.cloud.toast.com/ko/Notification/Push/ko/Client%20SDK%20Guide/#_5)
+
+
+
 
