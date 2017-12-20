@@ -2,24 +2,23 @@
 
 ## Summary
 
-> **주의**
+> **참고**
 >
-> 본 문서는 일반적인 경우 사용하지 않는 기능을 설명하고 있습니다.
-> 프로젝트에 따라 특별한 요구사항이 있는 경우에만 Gamebase팀의 가이드에 따라 해당 기능을 사용하여야 합니다.
+> 이 문서는 프로젝트에 따라 특별한 요구 사항이 있을 때만 사용하는 기능을 설명합니다. 기능을 사용해야 할 때는 Gamebase팀의 가이드에 따라**[NE Gamebase 사내문의요청](https://nhnent.dooray.com/project/1889848516915828490)** 문의지원을 통한 가이드를 통하여 해당 기능을 사용해야 합니다.
 
 
 ## Initialization
 ### Android
-<내용없음>
+해당 사항 없습니다.
 ***
 
 ### iOS
 #### Ongame API 사용을 위한 ATS 설정
 
-> 주의!
+> 주의
 >
-> iOS의 각 프로젝트에서 사용하는 'info.plist' 파일 내에 아래의 가이드 내용을 추가해야,정상적으로 Ongame REST API를 호출할 수 있습니다.
-> iOS 10 이상에서는 TLS버전이 v1.3이상이어야만 별도의 White list 등록없이 TLS v1.3 미만의 서버 API를 호출할 수 있습니다.
+> iOS의 각 프로젝트에서 사용하는 info.plist 파일 내에 아래의 가이드 내용을 추가해야, 정상적으로 Ongame REST API를 호출할 수 있습니다.
+> iOS 10 이상에서는 TLS 버전이 v1.3 이상이어야만 별도의 화이트 리스트(white list) 등록 없이 TLS v1.3 미만의 서버 API를 호출할 수 있습니다.
 
 ```xml
 		<key>NSExceptionDomains</key>
@@ -34,13 +33,13 @@
 ***
 
 ### Unity
-<내용없음>
+해당 사항 없습니다.
 ***
 
 ## Login
 ### Android
 #### 1. Login with WebView
-OnGame Login WebView를 띄우고 인증 성공시 온게임 토큰을 가져와서 Gamebase에 로그인을 합니다.
+OnGame Login WebView를 띄우고 인증 성공 시 온게임 토큰을 가져와 Gamebase에 로그인합니다.
 providerName은 **@"ongame"**으로 설정합니다.
 ```java
 Gamebase.login(activity, "ongame", new GamebaseDataCallback<AuthToken>() {
@@ -59,36 +58,8 @@ Gamebase.login(activity, "ongame", new GamebaseDataCallback<AuthToken>() {
 });
 ```
 
-##### Set the Screen Orientation of Login WebView
-
-OnGame Login WebView의 스크린 방향을 설정할 수 있습니다.
-
-아래와 같이 AndroidManifest.xml 에 meta-data를 추가하여 ScreenOrientation을 설정합니다.
-default 설정 값은 "sensorLandscape" 입니다.
-
-```xml
-<application
-	...
-    <!-- [Ongame] Configurations begin -->
-    <meta-data
-        android:name="com.toast.android.ongame.loginwebview.ScreenOrientation"
-        android:value="portrait"/>
-    <!-- [Ongame] Configurations end -->
-</application>
-```
-
-* Screen Orientation
-
-| Value | Description |
-| --- | --- |
-| "landscape" | 가로 모드 |
-| "portrait" | 세로 모드 |
-| "sensorLandscape" | 가로모드를 선호하지만 센서로 변경 가능 |
-| "reverseLandscape" | 가로모드를 180도 회전 |
-| "fullSensor" | 네 가지 회전을 모두 허용 |
-
 #### 2. Login with Access Token of Facebook
-페이스북의 Access Token을 이용하여 Gamebase에 로그인 합니다.
+Facebook의 액세스 토큰을 이용하여 Gamebase에 로그인합니다.
 
 ```java
 LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
@@ -131,15 +102,15 @@ LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallba
 ***
 
 ### iOS
-Gamebase SDK를 이용한 ongame 로그인 방법은 다음과 같이 2가지 방법으로 시도할 수 있습니다.
+Gamebase SDK를 이용한 ongame 로그인은 다음과 같이 2 가지 방법으로 시도할 수 있습니다.
 1. Ongame 계정을 이용한 로그인
 2. Facebook 계정을 이용한 로그인
 
-각각의 방법은 모두 UserID라는 Ongame의 고유 식별자를 획득할 수 있습니다.
-또한 Gamebase의 로그인과 같이 연계되어 있기 때문에 Gamebase의 UserID도 획득할 수 있습니다.
+각각의 방법은 모두 사용자 ID라는 Ongame의 고유 식별자를 획득할 수 있습니다.
+또한 Gamebase의 로그인과 같이 연계되어 있기 때문에 Gamebase의 사용자 ID도 획득할 수 있습니다.
 
 #### 1. Ongame 계정을 이용한 로그인
-Ongame 계정을 이용한 로그인은 WebView를 사용하여 지원되며, WebView에 로딩된 WebPage 내에서 ID/PW를 입력하여 로그인을 하는 방법입니다.
+Ongame 계정을 이용한 로그인은 WebView를 사용하여 지원되며, WebView에 로딩된 WebPage 내에서 ID/PW를 입력하여 로그인하는 방법입니다.
 Type은 **@"ongame"**으로 설정합니다.
 
 ```objectivec
@@ -149,10 +120,11 @@ Type은 **@"ongame"**으로 설정합니다.
 ```
 
 #### 2. Facebook 계정을 이용한 로그인
-Facebook계정을 이용하여 로그인을 하기 위해서는 FacebookSDK를 통해 인증을 완료한 뒤, FacebookSDK에서 발급한 **AccessToken**을 사용하면 Ongame과 Gamebase를 연계한 계정 인증을 받을 수 있습니다.
-Type은 **@"ongame"**으로 설정하며, 추가적으로 **additionalInfo** 파라미터에 facebookSDK를 통해 발급받은 **accessToken**을 설정해야합니다. 설정방법은 다음 예제코드를 확인합니다.
 
-AdditionalInfo파라미터에는 **kTCGBAuthAdditionalInfoFacebookAccessToken** 키를 사용하거나, **@"facebook_access_token"** 문자열을 사용하면 됩니다.
+Facebook계정을 이용하여 로그인을 하기 위해서는 FacebookSDK를 통해 인증을 완료한 뒤, FacebookSDK에서 발급한 **액세스 토큰**을 사용하면 Ongame과 Gamebase를 연계한 계정 인증을 받을 수 있습니다.
+Type은 **@"ongame"**으로 설정하며, 추가적으로 **additionalInfo** 파라미터에 facebookSDK를 통해 발급받은 **액세스 토큰**을 설정해야합니다. 설정방법은 다음 예제코드를 확인합니다.
+
+AdditionalInfo 파라미터에는 **kTCGBAuthAdditionalInfoFacebookAccessToken** 키를 사용하거나, **@"facebook_access_token"** 문자열을 사용하면 됩니다.
 
 ```objectivec
 #import "TCGBConstants.h"
@@ -161,8 +133,9 @@ AdditionalInfo파라미터에는 **kTCGBAuthAdditionalInfoFacebookAccessToken** 
         [self printLogAndShowAlertWithData:[authToken description] error:error alertTitle:@"login ongame with facebook accessToken"];
     }];
 ```
-> **information**
-> 다음 페이지에서 권한이 있는 App에 대한 테스트용 AccessToken을 확인할 수 있습니다.
+
+> **참고**
+> 다음 페이지에서 권한이 있는 앱에 대한 테스트용 액세스 토큰을 확인할 수 있습니다.
 > https://developers.facebook.com/tools/accesstoken/
 > (위의 예제의 facebook token 부분에 입력하면 로그인 테스트가 가능함)
 
@@ -173,15 +146,15 @@ UnityEditor에서도 iOS와 동일한 방식으로 ongame 로그인을 지원합
 
 #### 1. Ongame 계정을 이용한 로그인
 
-Gamebase의 Login with credential API를 사용한 방식으로 자세한 Flow는 아래와 같습니다.
+Gamebase의 Login with credential API를 사용한 방식으로 자세한 절차는 아래와 같습니다.
 
-1. 아래 경로에서 ongame 로그인 후 token_id 획득
-	* [Register](https://id.ongame.vn/server/account/register?client_id=nhnent&redirect_uri=http://localhost)
-	* [Login](https://id.ongame.vn/server/account/login?client_id=nhnent&redirect_uri=http://localhost)
+1. 아래 경로에서 ongame에 로그인한 후 token_id 발급
+  * [Register](https://id.ongame.vn/server/account/register?client_id=nhnent&redirect_uri=http://localhost)
+  * [Login](https://id.ongame.vn/server/account/login?client_id=nhnent&redirect_uri=http://localhost)
 2. 인증 후 발급되는 token_id를 복사
 3. Gamebase.Login API 호출
 
-> !주의
+> 주의
 > Ongame Login API를 사용하려면 Register API를 통해 Ongame ID를 먼저 등록해야 합니다.
 
 **Example**
@@ -215,11 +188,11 @@ public void OngameLoginWithTokenID(string tokenID)
 
 #### 2. Facebook 계정을 이용한 로그인
 
-Gamebase의 Login with credential API를 사용한 방식으로 자세한 Flow는 아래와 같습니다.
+Gamebase의 Login with credential API를 사용한 방식으로 자세한 절차는 아래와 같습니다.
 
-1. 아래 경로에서 Facebook access token 획득
-	* [developers.facebook.com](https://developers.facebook.com/tools/accesstoken/)
-2. Net2E API를 사용하여 Facebook access token을 token_id로 변경
+1. 아래 경로에서 Facebook 액세스 토큰 획득
+  * [developers.facebook.com](https://developers.facebook.com/tools/accesstoken/)
+2. Net2E API를 사용하여 Facebook 액세스 토큰을 token_id로 변경
 3. 획득한 token_id를 사용하여 Gamebase.Login API 호출
 
 **Example**
@@ -310,33 +283,33 @@ public void OngameLoginWithTokenID(string tokenID)
 #endregion
 ```
 
-#### Get authentication information for external IDP
+#### Get authentication information for external IdP
 
-외부 IDP SDK 에서 아래와 같은 정보를 가져올 수 있습니다.
+외부 IdP SDK에서 아래와 같은 정보를 가져올 수 있습니다.
 
-* AccessToken
-* UserID
+* 액세스 토큰
+* 사용자 ID
 * Profile
 
 Ongame에 대한  Profile key 값은 다음과 같습니다.
 
-| Key | Value | Description |
-| --- | --- | --- |
-| "UserID" | "shhong" | |
-| "NickName" | null | |
-| "UserName" | "shhong" | |
-| "SEX" | 1 | |
-| "OnCash" | 0 | |
-| "PhotoPath" | "http://id-test.vn/Content/images/avatar/default.png" | |
-| "PhotoAdminAuth" | "" | |
-| "VIPType" | "" | |
-| "HackUser" | "" | |
-| "OpenID" | null | |
-| "AuthType" | "ongame" or "ongame-facebook" | "ongame" : Ongame web login<br>"ongame-facebook" : Facebook token login |
+| Key              | Value                                    | Description                              |
+| ---------------- | ---------------------------------------- | ---------------------------------------- |
+| "UserID"         | "shhong"                                 |                                          |
+| "NickName"       | null                                     |                                          |
+| "UserName"       | "shhong"                                 |                                          |
+| "SEX"            | 1                                        |                                          |
+| "OnCash"         | 0                                        |                                          |
+| "PhotoPath"      | "http://id-test.vn/Content/images/avatar/default.png" |                                          |
+| "PhotoAdminAuth" | ""                                       |                                          |
+| "VIPType"        | ""                                       |                                          |
+| "HackUser"       | ""                                       |                                          |
+| "OpenID"         | null                                     |                                          |
+| "AuthType"       | "ongame" or "ongame-facebook"            | "ongame" : Ongame web login<br>"ongame-facebook" : Facebook token login |
 
 **API**<br>
-![IOS](./image/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
-![ANDROID](./image/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios-plugin_1.0.0.png)
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android-plugin_1.0.0.png)
 
 ```cs
 static string GetAuthProviderUserID(string providerName)
@@ -364,7 +337,7 @@ public void GetAuthProviderProfile(string providerName)
 
     if (profile == null || profile.information == null)
     {
-        Debug.Log("Failed to get authentication information for external IDP..");
+        Debug.Log("Failed to get authentication information for external IdP..");
         return;
     }
 
@@ -387,7 +360,7 @@ public void GetAuthProviderProfile(string providerName)
 #### 1. Store Settings
 
 Gamebase 초기화 시에 Store Code를 "**ONGATE**"로 설정해야 합니다.
-하지만 다음 절에서 설명 드릴 **3. Change store runtime** API를 통해 동적으로 Store를 변경할 수도 있습니다.
+하지만 다음 절에서 설명할 **3. Change store runtime** API를 통해 동적으로 Store를 변경할 수도 있습니다.
 
 ```java
 String STORE_CODE = PurchaseProvider.StoreCode.ONGATE;
@@ -408,7 +381,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 #### 2. Purchase API
 
-다음 링크를 통해서, Android 결제 API를 확인하시길 바랍니다.
+다음 페이지에서 Android 결제 API를 확인하시길 바랍니다.
 * [Android 결제 API](http://docs.cloud.toast.com/ko/Upcoming%20Products/Gamebase/Android%20Developer%60s%20Guide/#purchase)
 
 #### 3. Change store runtime
@@ -426,17 +399,17 @@ Gamebase.Purchase.setStoreCode(PurchaseProvider.StoreCode.ONGATE);
 
 ### iOS
 
-현재 Gamebase에서는 결제 스토어으로 **AppStore(AS)**와 **OnGate(ONGATE)**를 지원하고 있습니다.
+현재 Gamebase에서는 결제 스토어로 **App Store(AS)**와 **OnGate(ONGATE)**를 지원하고 있습니다.
 
 > **[ 지원 스토어 정보 ]**
-> AppStore : https://itunes.apple.com/pw/genre/ios
+> App Store : https://itunes.apple.com/pw/genre/ios
 > OnGate : https://ongate.vn
 
 #### 1. 스토어 설정
-어플리케이션 초기화시에, 사용할 스토어를 설정해줍니다. 설정을 하지 않았을 경우, 디폴트인 **"AS(AppStore)"** 로 설정이 됩니다.
-**ONGATE** 스토어 설정을 위해서는 다음 예시처럼 앱 초기화 과정에서 반드시 **[configuration setStoreCode:@"ONGATE"];**로 설정해주어야합니다.
+앱 초기화 시에, 사용할 스토어를 설정해줍니다. 설정을 하지 않았을 경우, 기본값인 **"AS(AppStore)"**로 설정됩니다.
+**ONGATE** 스토어 설정을 위해서는 다음 예시처럼 앱 초기화 과정에서 반드시 **[configuration setStoreCode:@"ONGATE"];**로 설정해야 합니다.
 
-앱 구동 이후, Gamebase Initialization 이후에 Store를 변경하는 API는 **3. Runtime Store 변경**에서 설명하겠습니다.
+앱을 실행하고 Gamebase Initialization 이후에 Store를 변경하는 API는 **3. Runtime Store 변경**에서 설명합니다.
 
 
 ```objectivec
@@ -453,8 +426,8 @@ TCGBConfiguration *configuration = [TCGBConfiguration configurationWithAppID:pro
 }];
 ```
 
-#### 2. 아이템 결제 및 구매 가능 아이템 리스트 조회
-다음 링크를 통해서, iOS 결제 API를 확인하시길 바랍니다.
+#### 2. 아이템 결제 및 구매 가능 아이템 목록 조회
+다음 페이지에서 iOS 결제 API를 확인하시길 바랍니다.
 * [iOS 결제 API](http://docs.cloud.toast.com/ko/Upcoming%20Products/Gamebase/iOS%20Developer%60s%20Guide/#purchase)
 
 
@@ -483,19 +456,19 @@ TCGBConfiguration *configuration = [TCGBConfiguration configurationWithAppID:pro
 
 #### 1. Store settings
 
-Gamebase SDK를 초기화 할때 스토어 설정을 해야합니다.
-스토어 설정을 하지 않을 경우 iOS는 AppStore, Android는 Google로 자동 설정됩니다.
+Gamebase SDK를 초기화할 때 스토어를 설정해야 합니다.
+스토어를 설정하지 않을 경우 iOS는 App Store, Android는 Google로 자동 설정됩니다.
 
 Ongame의 경우 Gamebase Unity SDK 초기화 시 StoreCode를 `ONGATE`로 설정해야 하며, 초기화 관련 가이드는 아래를 참고하십시오.
 
 * [Unity Developer's Guide in TOAST Cloud](http://docs.cloud.toast.com/ko/Upcoming%20Products/Gamebase/Unity%20Developer%60s%20Guide/)
 
-##### 1. Initialize using the Unity Inspector.
-Unity inspector를 사용하여 초기화 할 경우에는 아래 그림과 같이 StoreCode를 "ONGATE"로 설정하십시오.
-![unity inspector](./image/UnityDevelopersGuide/unity-developers-guide-Initialization-ongame_1.1.0.png)
+##### 1. Initialize using the Unity Inspector
+Unity inspector를 사용하여 초기화할 경우에는 아래 그림과 같이 StoreCode를 "ONGATE"로 설정하십시오.
+![unity inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-Initialization-ongame_1.1.0.png)
 
-##### 2. Initialize without using the Unity Inspector.
-Unity inspector를 사용하지 않고 초기화 할 경우에는 아래 Example을 참고하십시오.
+##### 2. Initialize without using the Unity Inspector
+Unity inspector를 사용하지 않고 초기화할 경우에는 아래 예시를 참고하십시오.
 
 **Example**
 
@@ -525,7 +498,7 @@ public void Initialize()
 }
 ```
 ##### 3. Change store code on run time
-초기화 이후 StoreCode를 변경 할 경우에는 아래 Example을 참고하십시오.
+초기화 이후 StoreCode를 변경할 경우에는 아래 예시를 참고하십시오.
 
 **Example**
 
@@ -555,26 +528,26 @@ public void GetStoreCode()
 
 **Android store code**
 
-| Store | Code | Infomation |
-| --- | --- | --- |
-| Google | GG | https://play.google.com/store |
-| Ongame | ONGATE | https://ongate.vn |
+| Store  | Code   | Infomation                    |
+| ------ | ------ | ----------------------------- |
+| Google | GG     | https://play.google.com/store |
+| Ongame | ONGATE | https://ongate.vn             |
 
 **iOS store code**
 
-| Store | Code | Infomation |
-| --- | --- | --- |
-| AppStore | AS | https://itunes.apple.com/pw/genre/ios |
-| Ongame | ONGATE | https://ongate.vn |
+| Store     | Code   | Infomation                            |
+| --------- | ------ | ------------------------------------- |
+| App Store | AS     | https://itunes.apple.com/pw/genre/ios |
+| Ongame    | ONGATE | https://ongate.vn                     |
 
 
 #### 2. Check Sandbox Mode
-Project가 TOAST Cloud에서 Sandbox로 설정이 되어있는지 확인할 수 있습니다.
-초기화 이후에 호출 해야하며, 초기화 이전에 호출시, 크래시 및 예외가 발생합니다.
+Project가 TOAST Cloud에서 Sandbox로 설정되어 있는지 확인할 수 있습니다.
+초기화 이후에 호출해야 하며, 초기화 이전에 호출하면 크래시 및 예외가 발생합니다.
 
-프로젝트가 Sandbox 모드일 때에는 Ongame 및 Payco 인증이 alpha/demo로 인증이 됩니다.
-또한, ONGATE Store의 결제관련 기능도 **테스터 계정**에 한하여 Alpha ONGATE 로 연동됩니다.<br/>
-(**테스터 계정**은 빌링개발팀 **양은주 책임**님께 등록 요청을 하셔야합니다.)
+프로젝트가 Sandbox 모드일 때에는 Ongame 및 PAYCO 인증이 alpha/demo로 인증됩니다.
+또한, ONGATE Store의 결제 관련 기능도 **테스터 계정**에 한하여 Alpha ONGATE로 연동됩니다.<br/>
+(**테스터 계정**은 빌링개발팀 **양은주 책임**님께 등록 요청을 하셔야합니다. **{@외부에 안내할 내용으로 수정해 주세요.**})
 
 **Example**
 
