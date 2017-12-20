@@ -10,14 +10,14 @@ Gamebase에서는 기본적인 WebView를 지원합니다.
 WebView를 표시합니다.<br/>
 
 ##### Required 파라미터
-* url : 파라미터로 전송되는 url은 유효한 값이어야 합니다.
 * activity : WebView가 노출되는 Activity입니다.
+* url : 파라미터로 전송되는 url은 유효한 값이어야 합니다.
 
 ##### Optional 파라미터
 * configuration : GamebaseWebViewConfiguration으로 WebView의 레이아웃을 변경 할 수 있습니다.
-* closeCallback : WebView가 종료될 때 사용자에게 콜백으로 알려 줍니다.
+* GamebaseCallback : WebView가 종료될 때 사용자에게 콜백으로 알려 줍니다.
 * schemeList : 사용자가 받고 싶은 커스텀 Scheme 목록을 지정합니다.
-* schemeEvent : schemeList로 지정한 커스텀 Scheme을 포함하는 url을 콜백으로 알려 줍니다.
+* GamebaseDataCallback : schemeList로 지정한 커스텀 Scheme을 포함하는 url을 콜백으로 알려 줍니다.
 
 
 ```java
@@ -74,7 +74,7 @@ GamebaseWebView.showWebView(MainActivity.this, "http://cloud.toast.com", configu
 | setCloseButtonImageResource(int resourceId) | ID of resource                      | 닫기 버튼 이미지      |
 
 
-### Close Web View
+### Close WebView
 다음 API를 통하여, 보여지고 있는 WebView를 닫을 수 있습니다.
 
 ```java

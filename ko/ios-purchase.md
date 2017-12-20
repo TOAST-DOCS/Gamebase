@@ -40,7 +40,7 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 
 아이템 구매는 다음과 같은 순서로 구현하시기 바랍니다.<br/>
 
-![purchase flow](purchase_flow.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
 
 1. 게임 클라이언트에서는 Gamebase SDK의 **requestPurchaseWithItemSeq:viewController:completion:**을 호출하여 결제를 시도합니다.
 2. 결제가 성공하였다면 **requestItemListOfNotConsumedWithCompletion:**을 호출하여 미소비 결제 내역을 확인합니다.

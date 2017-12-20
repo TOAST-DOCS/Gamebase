@@ -16,7 +16,7 @@ WebView를 표시합니다.<br/>
 
 ##### Optional 파라미터
 * configuration : GamebaseWebViewConfiguration으로 WebView의 레이아웃을 변경 할 수 있습니다.
-* closeCallback : WebView가 종료될 때 사용자에게 콜백으로 알려 줍니다.
+* closeCompletion : WebView가 종료될 때 사용자에게 콜백으로 알려 줍니다.
 * schemeList : 사용자가 받고 싶은 커스텀 Scheme 목록을 지정합니다.
 * schemeEvent : schemeList로 지정한 커스텀 Scheme을 포함하는 url을 콜백으로 알려 줍니다.
 
@@ -136,7 +136,7 @@ Gamebase에 스키마 이름과 블록을 지정해 원하는 기능을 추가�
 | closeImagePathForFullScreenNavigation  | file name in Gamebase.bundle             | 닫기 버튼 이미지          |
 
 
-### Close Web View
+### Close WebView
 다음 API를 통하여, 보여지고 있는 WebView를 닫을 수 있습니다.
 
 ```objectivec

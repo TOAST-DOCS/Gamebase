@@ -438,6 +438,12 @@ NSArray* authMappingList = [TCGBGamebase authMappingList];
 ## Gamebase User`s Informations
 Gamebase로 인증 절차를 진행한 후, 앱을 제작할 때 필요한 정보를 얻을 수 있습니다.
 
+> <font color="red">[주의]</font><br/>
+>
+> "[TCGBGamebase lastLoggedInProvider]" API 로 로그인한 경우에는 인증 정보를 가져올 수 없습니다.
+>
+> 인증 정보가 필요하다면 "[TCGBGamebase lastLoggedInProvider]" 대신, 사용하고자 하는 IDPCode 와 동일한 {IDP_CODE} 를 파라미터로 하여 "[TCGBGamebase loginWithType:IDP_CODE viewController:self completion:completion];" API 로 로그인 해야 정상적으로 인증정보를 획득할 수 있습니다.
+
 ### Get Authentication Information for Gamebase
 Gamebase에서 발급한 인증 정보를 가져올 수 있습니다.
 
