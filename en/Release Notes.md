@@ -1,5 +1,32 @@
 ## Game > Gamebase > Release Notes
 
+### 2017.12.21
+
+#### 기능 추가
+
+* [Console]
+	* [Push] 현지시간대 발송(Local Time Push) 기능 추가
+	* [Operating indicator]>[판매 현황] 마켓별 매출 차트 추가
+	* [Operating indicator]>[유저 통계] 앱 출시 이후의 사용자 지표 추이 확인하는 메뉴 추가
+	* [Operation]>[점검] 점검상태에서 사용자에게 보여주는 점검페이지 등록 방법 추가
+		* 기존 : Gamebase 자체 제공 페이지, 외부 페이지 URL 입력
+		* 추가 : (1)html 직접 입력 (2)Console에서 입력한 점검내용을 외부페이지에 전달하는 기능 추가
+
+* [SDK] 1.5.0
+	* WebView가 닫힐 때 발생하는 Close Callback 추가
+	* WebView에서 사용하는 Custom Scheme의 Event를 받을 수 있는 기능 추가
+	* Unity Setting Tool 신규 배포
+
+#### 기능 개선/변경
+* [Console]
+	* [App]>[클라이언트] 클라이언트 상태 변경시 이전에 게임에서 등록한 사용자 노출메시지 정보를 재사용할 수 있도록 수정	
+
+#### 버그 수정
+* [SDK] 1.5.0
+	* (Unity) UnityEditor에서 Guest로그인이 되지 않는 현상 수정
+	* (Unity) TOAST Console에 Facebook 인증 정보를 등록하지 않고 Gamebase.Login("facebook") API를 호출할 경우, KeyNotFoundException이 발생하여 방어코드 추가
+
+
 ### 2017.11.30
 
 #### 기능 추가
@@ -16,6 +43,7 @@
 #### 버그 수정
 * [Console]
 	* [Push] : Push 등록 시 기본언어가 선택되어 있지 않아도 등록되는 오류 수정
+
 
 ### 2017.11.23
 
