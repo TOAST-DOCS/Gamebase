@@ -435,7 +435,7 @@ NSArray* authMappingList = [TCGBGamebase authMappingList];
 ```
 
 
-## Gamebase User`s Informations
+## Gamebase User`s Information
 Gamebase로 인증 절차를 진행한 후, 앱을 제작할 때 필요한 정보를 얻을 수 있습니다.
 
 > <font color="red">[주의]</font><br/>
