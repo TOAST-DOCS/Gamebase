@@ -12,8 +12,8 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
 ### Login Flow
 
 많은 게임이 타이틀 화면에 로그인을 구현합니다.
-  * 앱을 설치하고 처음 실행했을 때 타이틀 화면에서 게임 이용자가 어떤 IdP(identity provider)로 인증할지 선택할 수 있게 합니다.
-  * 한 번 로그인한 후에는 IdP 선택 화면을 표시하지 않고 이전에 로그인한 IdP 유형으로 인증합니다.
+* 앱을 설치하고 처음 실행했을 때 타이틀 화면에서 게임 이용자가 어떤 IdP(identity provider)로 인증할지 선택할 수 있게 합니다.
+* 한 번 로그인한 후에는 IdP 선택 화면을 표시하지 않고 이전에 로그인한 IdP 유형으로 인증합니다.
 
 위에서 설명한 로직은 다음과 같은 순서로 구현할 수 있습니다.
 
@@ -625,7 +625,7 @@ private static void removeMappingForFacebook(final Activity activity) {
 ```
 
 
-## Gamebase User`s Informations
+## Gamebase User`s Information
 Gamebase로 인증 절차를 진행한 후, 앱을 제작할 때 필요한 정보를 얻을 수 있습니다.
 
 > <font color="red">[주의]</font><br/>

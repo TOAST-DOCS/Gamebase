@@ -163,7 +163,7 @@ public class SampleInitialization
 }
 ```
 
-### Launching Informations
+### Launching Information
 
 Initialize API를 사용하여 Gamebase Unity SDK를 초기화하면 LaunchingInfo 객체가 결과값으로 전달됩니다.
 이 LaunchingInfo 객체에는 TOAST Cloud Gamebase Console에 설정한 값들과 게임 상태 등이 포함돼 있습니다.
