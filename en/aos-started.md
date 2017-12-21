@@ -2,43 +2,45 @@
 
 ## Getting Started
 
-Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같습니다.
+To execute Gamebase in Android, following system environment is required.
 
 ### Environments
 
 
-> [최소 사양]
+> [Minimum Specifications]
 >
-> Android API 15 (IceCreamSandwichMR1, 4.0.3) 이상 <br/>
-> 개발 환경: Android Studio
+> Android API 15 (IceCreamSandwichMR1, 4.0.3) or higher <br/>
+> Development Environment: Android Studio
 
 ### Installation
 
-Gamebase Android SDK 파일을 다운로드합니다.
+Download Gamebase Android SDK.
 
-Gamebase Android SDK를 사용하기 전에 TOAST Cloud Console에서 앱 아이디를 발급받아야 합니다. 앱 아이디를 발급받으려면 TOAST Cloud Console에서 생성한 프로젝트를 선택하고 Gamebase **상품 이용** 버튼을 클릭합니다.
+Before applying Gamebase Android SDK, you need an app ID issued at Toast Cloud Console: select a project created from TOAST Cloud Console and click **Enable** Gamebase.  
 
 #### Download
 
 * [DOWNLOAD Gamebase Android SDK](http://docs.cloud.toast.com/ko/Download/#upcoming-products-gamebase)
-* 다운로드 받은 SDK에서 다음 폴더안의 aar 파일을 프로젝트에 추가합니다.
-    * **gamebase-sdk/**
-* 인증 모듈 추가
-  * 다운로드한 SDK의 **gamebase-adapter-auth-{provider}** 폴더를 프로젝트에 추가합니다.
-  * Google, Facebook, PAYCO 중에서 사용할 인증 모듈을 모두 추가합니다.
+* Add following folders and aar files of downloaded SDK to project.
+  - **gamebase-sdk/**
+  - **gamebase-sdk-{version}.aar**
+  - **gamebase-sdk-base-{version}.aar**
+* Add Authentication Module 
+  - Add the **gamebase-adapter-auth-{provider}** folder of downloaded SDK to project.
+  - Add all authentication modules among Google, Facebook, and PAYCO.
 
 
 #### Package Includes (SDK)
 
-* SDK 패키지의 압축을 풀면 다음과 같은 모듈이 표시됩니다.
-  ![Package Includes](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-installation-001_1.5.0.png)
+* Decompress the SDK package and following modules will be shown.
+  ![Package Includes](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-installation-001_1.0.0.png)
 
-### Setting build.gradle
+### Build.gradle Setting
 
-* 1) 다운로드한 Gamebase SDK를 앱의 루트(root) 경로에 복사합니다.
-* 2) Gamebase 경로 및 버전, 사용할 인증, 결제, 푸시 모듈을 설정합니다.
-    * 사용하고자 하는 모듈을 true로 설정하면 해당 모듈이 dependency에 추가됩니다.
-    * 반대로 사용하지 않아 포함시키지 않는 모듈은 false로 설정합니다.
+* 1) Copy downloaded Gamebase SDK to app's root path.
+* 2) Set the path and version of Gamebase, authentication to use, and push modules.
+    * When a module to use is set true, the module will be added to dependency.
+    * Modules that are not included because they are not in use are set as false. 
 
 ```gradle
 /* Set the Gamebase path. */
@@ -60,7 +62,7 @@ def usePushFCM = true;
 def usePushTencent = false; // Not supported yet.
 ```
 
-* 3) 아래 내용을 repositories에 추가합니다.
+* 3) Add below to repositories.
 
 ```gradle
 repositories {
@@ -77,7 +79,7 @@ repositories {
 }
 ```
 
-* 4) 아래 내용을 dependencies에 추가합니다.
+* 4) Add below to dependencies.
 
 ```gradle
 dependencies {
@@ -132,22 +134,22 @@ dependencies {
 
 ## Dependency
 
-Gamebase SDK에서는 3rd Party SDK 및 Dependency가 있는 모듈의 버전에 대하여 호환을 보장합니다.
+Gamebase SDK ensures that those modules with 3rd Party SDK and Dependency are interchangeable.  
 
-| Category                         | Provider        | Modules                                  | Dependencies                             | Description              |
+| Category                         | Provider        | Module                                   | Dependency                               | Description              |
 | -------------------------------- | --------------- | ---------------------------------------- | ---------------------------------------- | ------------------------ |
 | **Gamebase<br>(required)**       | Gamebase        | gamebase-sdk-{version}.aar<br>gamebase-sdk-base-{version}.aar | appcompat-v7-24.0.0.aar<br>support-v4-24.0.0.aar<br>support-annotations-24.0.0.jar<br>gson-2.2.4.jar<br>okhttp-3.6.0.jar<br>okio-1.11.0.jar |                          |
 | **Authentication<br>(optional)** | Google          | gamebase-adapter-auth-google-{version}.aar | play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-tasks-10.0.1.aar<br>play-services-auth-10.0.1.aar<br>play-services-auth-base-10.0.1.aar |                          |
 |                                  | Facebook        | gamebase-adapter-auth-facebook-{version}.aar | facebook-android-sdk-4.17.0.aar<br>appcompat-v7-24.0.0.aar<br>support-vector-drawable-24.0.0.aar<br>animated-vector-drawable-24.0.0.aar<br>cardview-v7-24.0.0.aar<br>customtabs-24.0.0.aar<br>bolts-android-1.4.0.jar<br>bolts-applinks-1.4.0.jar<br>bolts-tasks-1.4.0.jar |                          |
-|                                  | Payco           | gamebase-adapter-auth-payco-{version}.aar | paycologin-1.2.9.aar<br>play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-tasks-10.0.1.aar<br>gson-2.2.4.jar |                          |
+|                                  | PAYCO           | gamebase-adapter-auth-payco-{version}.aar | paycologin-1.2.9.aar<br>play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-tasks-10.0.1.aar<br>gson-2.2.4.jar |                          |
 | **Purchase<br>(optional)**       | IAP             | gamebase-adapter-purchase-iap-{version}.aar | iap-1.3.2.20170424.aar<br>mobill-core-1.3.2.20170424.jar<br>gson-2.2.4.jar<br>okhttp-1.5.4.jar |                          |
-|                                  | IAP - ONE store |                                          | iap-tstore-1.3.2.20170424.aar<br>iap_tstore_plugin_v16.03.00_20161123.jar | ONE store 사용 시 추가해야 합니다. |
+|                                  | IAP - ONE store |                                          | iap-tstore-1.3.2.20170424.aar<br>iap_tstore_plugin_v16.03.00_20161123.jar | Add to use ONE store. |
 | **Push<br>(optional)**           | FCM             | gamebase-adapter-push-fcm-{version}.aar  | pushsdk-release-v1.4.0.aar<br>firebase-common-10.0.1.jar<br>firebase-iid-10.0.1.jar<br>firebase-messaging-10.0.1.aar<br>play-services-base-10.0.1.aar<br>play-services-basement-10.0.1.aar<br>play-services-gcm-10.0.1.aar<br>play-services-iid-10.0.1.aar<br>play-services-tasks-10.0.1.aar |                          |
 |                                  | Tencent         | gamebase-adapter-push-tencent-{version}.aar | pushsdk-release-v1.4.0.aar<br>Xg_sdk_v3.1_20170417_0946.jar<br>jg_filter_sdk_1.1.jar<br>mid-core-sdk-3.7.2.jar<br>wup-1.0.0.E-SNAPSHOT.jar |                          |
 
-* required 항목은 필수로 포함해야 하는 모듈입니다.
-* optional 항목은 해당 기능이 필요할 경우 포함해야 하는 모듈입니다.
-* 중복되는 Dependency 모듈은 하나만 포함해야 합니다.
+* 'Required' refers to the modules that are necessarily included.
+* 'Optional' refers to the modules that should be included when specific functions are in need.   
+* Need to include only one of the duplicate modules in Dependency.
 
 ## 3rd-Party Provider SDK Guide
 
@@ -156,5 +158,5 @@ Gamebase SDK에서는 3rd Party SDK 및 Dependency가 있는 모듈의 버전에
 
 ## API Reference
 
-API Reference는 SDK 내에 포함돼 있습니다.
+API Reference is included in SDK.
 

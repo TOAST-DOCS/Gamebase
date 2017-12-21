@@ -1,31 +1,72 @@
 ## Game > Gamebase > Unity Developer's Guide > UI
 
+
 ## Webview
 
-### Show WebView
+Gamebase supports basic WebView and the user can configure the style: full screen or popup. <br/>
 
-WebView를 표시합니다.<br/>
+<br/>
 
-##### Required 파라미터
-* url : 파라미터로 전송되는 url은 유효한 값이어야 합니다.
+WebView-related resources (images, html, and others) are included to Gamebase.bundle. 
 
-##### Optional 파라미터
-* configuration : GamebaseWebViewConfiguration으로 WebView의 레이아웃을 변경 할 수 있습니다.
-* closeCallback : WebView가 종료될 때 사용자에게 콜백으로 알려 줍니다.
-* schemeList : 사용자가 받고 싶은 커스텀 Scheme 목록을 지정합니다.
-* schemeEvent : schemeList로 지정한 커스텀 Scheme을 포함하는 url을 콜백으로 알려 줍니다.
+### Browser Style WebView
+
+Supports Full-screen WebView. <br/>
+The full-screen style (browser) displays a navigation bar, as well as Close and Go Back buttons. You can set a title on the navigation bar. 
+
+
+**API**<br> 
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+
+
+```cs
+static void ShowWebBrowser(string url)
+```
+
+**Example**
+```cs
+public void ShowWebBrowser(string url)
+{
+    Gamebase.Webview.ShowWebBrowser(url);
+}
+```
+
+### Popup Style WebView
+
+Supports pop-up WebView. <br/>
+The pop-up style displays a modal view on an existing screen, with the background covered by a transparent mask view. 
+
+**API**<br>
+![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
+
+```cs
+static void ShowWebPopup(string url)
+```
+
+**Example**
+```cs
+public void ShowWebPopup(string url)
+{
+    Gamebase.Webview.ShowWebPopup(url);
+}
+```
+
+### Custom WebView
+
+Displays customized WebView. <br/>Customized WebView can be created by using GamebaseWebViewConfiguration. 
 
 **API**<br>
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
 
 ```cs
-static void ShowWebView(string url, GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
+static void ShowWebView(GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration)
 ```
 
 **Example**
 ```cs
-public void ShowWebView(GamebaseCallback.ErrorDelegate closeCallback, List<string> schemeList, GamebaseCallback.GamebaseDelegate<string> schemeEvent)
+public void ShowWebView()
 {
     GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = new GamebaseRequest.Webview.GamebaseWebViewConfiguration();
      configuration.title = "Title";
@@ -36,95 +77,77 @@ public void ShowWebView(GamebaseCallback.ErrorDelegate closeCallback, List<strin
      configuration.colorA = 255;
      configuration.barHeight = 40;
      configuration.buttonVisible = true;
+     configuration.url = "https://www.toast.com/";
 
-
-     Gamebase.Webview.ShowWebView("https://www.toast.com/", configuration, closeCallback, schemeList, schemeEvent);
+     Gamebase.Webview.ShowWebView(configuration);
 }
 ```
 
+### Custom WebView with Local URL
 
-#### GamebaseWebViewConfiguration
-
-| Parameter | Values | Description |
-| ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | string                                   | WebView의 제목                 |
-| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 미지정 |
-|                          | GamebaseScreenOrientation.PORTRAIT       | 세로 모드                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE      | 가로 모드                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 가로 모드를 180도 회전              |
-| colorR                   | 0~255                                    | 내비게이션 바 색상 Alpha            |
-| colorG                   | 0~255                                    | 내비게이션 바 색상 R                |
-| colorB                   | 0~255                                    | 내비게이션 바 색상 G                |
-| colorA                   | 0~255                                    | 내비게이션 바 색상 B                |
-| buttonVisible            | true or false                            | 뒤로 가기 버튼 활성 또는 비활성          |
-| barHeight                | height                                   | 내비게이션 바 높이                  |
-| backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지                |
-| closeButtonImageResource | ID of resource | 닫기 버튼 이미지 |
-| url | "http://" or "https://" or "file://" | 웹 URL |
-
-#### Predefined Custom Scheme
-
-Gamebase에서 지정해 놓은 Scheme 입니다.
-
-| scheme | 용도 |
-| ----------------------------- | ------------------------------ |
-| gamebase://dismiss | WebView 닫기 |
-| gamebase://goBack | WebView 뒤로가기 |
-| gamebase://getUserId          | 현재 로그인되어 있는 게임 이용자의 사용자 ID를 표시 |
-| gamebase://getMaintenanceInfo | 점검 내용을 WebPage에 표시 |
-
-
-### Close WebView
-
-다음 API를 이용하여 보여지고 있는 WebView를 닫을 수 있습니다.
+Displays HTML files at a local directory on a customized WebView.<br/>Customized WebView can be created by using GamebaseWebViewConfiguration.
 
 **API**<br>
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
 ![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
 
-
 ```cs
-static void CloseWebview()
-```
-
-**Example**CloseWebview
-```cs
-public void CloseWebview()
-{
-    Gamebase.Webview.CloseWebview();
-}
-```
-
-
-## Open External Browser
-
-다음 API를 통하여 외부 브라우져를 열 수 있습니다. 파라미터로 전송되는 url은 유효한 값이어야 합니다.
-
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
-![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
-
-
-```cs
-static void OpenWebBrowser(string url)
+static void ShowWebViewFile(GamebaseRequest.Webview.GamebaseWebViewConfiguration configuratio)
 ```
 
 **Example**
 ```cs
-public void OpenWebBrowser(string url)
+public void ShowWebViewFile()
 {
-    Gamebase.Webview.OpenWebBrowser(url);
+    GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = new GamebaseRequest.Webview.GamebaseWebViewConfiguration();
+     configuration.title = "Title";
+     configuration.orientation = GamebaseScreenOrientation.Portrait;
+     configuration.colorR = 128;
+     configuration.colorG = 128;
+     configuration.colorB = 128;
+     configuration.colorA = 255;
+     configuration.barHeight = 40;
+     configuration.buttonVisible = true;
+     configuration.url = "file://test.html";
+
+     Gamebase.Webview.ShowWebViewFile(configuration);
 }
 ```
 
+### GamebaseWebViewConfiguration
+
+| Parameter                | Values                                   | Description                        |
+| ------------------------ | ---------------------------------------- | ---------------------------------- |
+| title                    | string                                   | Title of WebView                    |
+| orientation              | GamebaseScreenOrientation.UNSPECIFIED    |        |
+|                          | GamebaseScreenOrientation.PORTRAIT       | Vertical Mode                      |
+|                          | GamebaseScreenOrientation.LANDSCAPE      | Horizontal Mode                    |
+|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | Turn Left to Right                 |
+| colorR                   | 0~255                                    | Color of Navigation Bar: Alpha     |
+| colorG                   | 0~255                                    | Color of Navigation Bar: R         |
+| colorB                   | 0~255                                    | Color of Navigation Bar: G         |
+| colorA                   | 0~255                                    | Color of Navigation Bar: B         |
+| buttonVisible            | true or false                            | Activate/Deactivate Go Back Button |
+| barHeight                | height                                   | Height of Navigation Bar           |
+| backButtonImageResource  | ID of resource                           | Image of Go Back Button            |
+| closeButtonImageResource | ID of resource                           | Image of Close Button              |
+| url                      | "http://" or "https://" or "file://"     | Web URL                            |
+
+### Predefined Custom Scheme
+
+Gamebase has specified following schemes: <br/>
+
+| scheme                        | Usage                                    |
+| ----------------------------- | ---------------------------------------- |
+| gamebase://dismiss            | Close WebView                            |
+| gamebase://goBack             | Go back from WebView                     |
+| gamebase://getUserId          | Show ID of a user show is currently logged-in |
+| gamebase://getMaintenanceInfo | Display maintenance information on WebPage |
 
 ## Alert
 
-시스템 알림을 표시할 수 있습니다.<br/>
-시스템 알림에 버튼이나 콜백을 등록할 수도 있습니다. 
+Displays system alerts. <br/>
+Can register buttons or callback on system alerts. 
 
 **API**<br>
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
@@ -137,9 +160,9 @@ static void ShowAlert(string title, string message, GamebaseCallback.VoidDelegat
 
 **Example**
 ```cs
-public void ShowAlertD()
+public void ShowAlertDialog()
 {
-    Gamebase.Util.ShowAlert
+    Gamebase.Util.ShowAlertDialog
     (
         "Title",
         "Message"
@@ -148,7 +171,7 @@ public void ShowAlertD()
 
 public void ShowAlertDialog()
 {
-    Gamebase.Util.ShowAlert
+    Gamebase.Util.ShowAlertDialog
     (
         "Title",
         "Message",
@@ -161,7 +184,7 @@ public void ShowAlertDialog()
 
 ## Toast
 
-다음 API를 사용하여 쉽게 메시지를 표시할 수 있습니다.
+Displays [Android Toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) messages, by using the following API. 
 
 **API**<br>
 ![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
@@ -192,9 +215,9 @@ public void ShowToast(string message, GamebaseUIToastType type)
 
 ## Error Handling
 
-| Error              | Error Code | Description                 |
-| ------------------ | ---------- | --------------------------- |
-| UI\_UNKNOWN\_ERROR | 6999       | 알수 없는 오류입니다(정의되지 않은 오류입니다). |
+| Error              | Error Code | Description                      |
+| ------------------ | ---------- | -------------------------------- |
+| UI\_UNKNOWN\_ERROR | 6999       | Unknown error (Undefined error). |
 
-* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
+* Refer to the following document for the entire error codes: 
   - [Entire Error Codes](./error-codes#client-sdk)
