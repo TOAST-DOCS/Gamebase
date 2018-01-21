@@ -46,7 +46,7 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 2. 결제가 성공하였다면 **requestItemListOfNotConsumedWithCompletion:**을 호출하여 미소비 결제 내역을 확인합니다.
 3. 반환된 미소비 결제 내역 목록에 값이 있으면 게임 클라이언트가 게임 서버에 결제 아이템에 대한 consume(소비)을 요청합니다.
 4. 게임 서버는 Gamebase 서버 API를 통해 consume(소비) API를 요청합니다.
-    [API 가이드](http://docs.cloud.toast.com/ko/Game/Gamebase/ko/Server%20Developer%60s%20Guide/#wrapping-api)
+    [API 가이드](./api-guide/#wrapping-api)
 5. IAP 서버에서 consume(소비) API 호출에 성공했다면 게임 서버가 게임 클라이언트에 아이템을 지급합니다.
 
 스토어 결제는 성공했으나 오류가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 다음 두 API를 각각 호출하여 재처리 로직을 구현하시기 바랍니다. <br/>
@@ -57,7 +57,7 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 2. 결제 오류 재처리 시도
     * 로그인에 성공하면 **requestRetryTransactionWithCompletion:**을 호출하여 미처리 내역에 대해 자동으로 재처리를 시도합니다.
     * 반환된 successList 에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
-    * 반환된 failList에 값이 존재한다면 해당 값을 게임 서버나 Log & Crash 등을 통해 전송하여 데이터를 확보하고, [TOAST 고객센터](https://cloud.toast.com/support/faq/)에 재처리 실패 원인을 문의합니다.
+    * 반환된 failList에 값이 존재한다면 해당 값을 게임 서버나 Log & Crash 등을 통해 전송하여 데이터를 확보하고, [고객센터](https://alpha.toast.com/support/inquiry)에 재처리 실패 원인을 문의합니다.
 
 
 ### Purchase Item
@@ -161,10 +161,10 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 | TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH | 4004       | 해당 스토어의 캐쉬가 부족하여 결제할 수 없습니다.             |
 | TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010       | 지원하지 않는 스토어입니다. iOS의 지원가능한 스토어는 "AS" 입니다. |
 | TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201       | IAP 라이브러리 에러입니다.<br>error.message 를 확인하세요. |
-| TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR    | 4999       | 정의되지 않은 구매 에러입니다.<br>전체 로그를 [고객 센터](https://cloud.toast.com/support/faq)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
+| TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR    | 4999       | 정의되지 않은 구매 에러입니다.<br>전체 로그를 [고객 센터](https://alpha.toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-  - [Entire Error Codes](./error-codes#client-sdk)
+  - [오류 코드](./error-code/#client-sdk)
 
 
 
@@ -184,5 +184,5 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
 * IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    - [IAP > Error Code Guide > Client API 에러 타입](http://docs.cloud.toast.com/ko/Common/IAP/ko/Error%20Code/#client-api)
+    - [Mobile Service > IAP > 오류 코드 > Client API 에러 타입](http://alpha-docs.cloud.toast.com/ko/Mobile%20Service/IAP/ko/error-code/#client-api)
 
