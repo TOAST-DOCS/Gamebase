@@ -1,4 +1,4 @@
-## Game > Gamebase > 콘솔 사용 가이드 > App
+## Game > Gamebase > 콘솔 사용 가이드 > 앱
 
 TOAST Console에서 **Game > Gamebase > App**을 클릭하여 앱의 기본 정보를 설정할 수 있습니다.
 
