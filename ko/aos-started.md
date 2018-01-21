@@ -1,6 +1,4 @@
-## Game > Gamebase > Android SDK 사용 가이드 > Getting Started
-
-## Getting Started
+## Game > Gamebase > Android SDK 사용 가이드 > 시작하기
 
 Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같습니다.
 
