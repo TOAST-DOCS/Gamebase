@@ -105,12 +105,12 @@ public void QueryPush()
 | PUSH_UNKNOWN_ERROR             | 5999       | 정의되지 않은 푸시 오류입니다.<br>전체 로그를 Gamebase 개발팀에 전달하여 오류상황을 문의해 주세요. |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-  * [Entire Error Codes](./error-codes#client-sdk)
+  * [오류 코드](./error-code/#client-sdk)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
 * 이 오류는 TOAST Push 라이브러리에서 발생한 오류입니다.
 * TOAST Push 오류 코드를 확인하시기 바랍니다.
-  * [Push > Client SDK Developer's Guide > Error Code Guide > 오류 처리](http://docs.cloud.toast.com/ko/Notification/Push/ko/Client%20SDK%20Guide/#_5)
+  * [Notification > Push > SDK v1.4 사용 가이드 > 오류 처리](http://alpha-docs.cloud.toast.com/ko/Notification/Push/ko/sdk-guide/#_5)
 
 
