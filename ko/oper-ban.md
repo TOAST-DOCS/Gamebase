@@ -5,7 +5,7 @@
 
 이용 정지 등록은 Gamebase Console에서 수동으로 등록하거나 TOAST AppGuard를 사용하는 경우 패턴등록을 이용해 자동으로 등록할 수 있습니다.
 
-AppGuard를 연동하는 방법은 [AppGuard](./ban/#appguard)를 참고하시기 바랍니다.
+AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하시기 바랍니다.
 
 
 ## Ban
@@ -33,7 +33,7 @@ AppGuard를 연동하는 방법은 [AppGuard](./ban/#appguard)를 참고하시�
 > [참고] <br/>
 > 사용자에게 표시할 메시지를 다국어로 입력하여 손쉽게 재사용할 수 있도록 템플릿을 제공합니다. <br/>
 > 등록된 템플릿이 하나 이상이여야 이용 정지 등록을 할 수 있습니다.<br/>
-> 템플릿을 등록하는 방법은 [Template](./ban/#template)을 참고하시기 바랍니다.<br/>
+> 템플릿을 등록하는 방법은 [Template](./oper-ban/#template)을 참고하시기 바랍니다.<br/>
 
 **검색 결과**
 
@@ -90,7 +90,7 @@ AppGuard를 연동하는 방법은 [AppGuard](./ban/#appguard)를 참고하시�
 > <font color="red">[중요]</font><br/>
 > 표시된 메시지의 템플릿이 등록된 경우에만 이용 정지를 등록할 수 있습니다. <br/>
 > 템플릿을 등록하지 않은 경우 **BAN** 메뉴의 **템플릿** 탭에서 템플릿을 먼저 등록해 주세요.<br/>
-> 템플릿을 등록하는 방법은 [Template](./ban/#template)을 참고하시기 바랍니다. <br/>
+> 템플릿을 등록하는 방법은 [Template](./oper-ban/#template)을 참고하시기 바랍니다. <br/>
 
 
 ### Release Ban
@@ -137,7 +137,7 @@ AppGuard를 연동하는 방법은 [AppGuard](./ban/#appguard)를 참고하시�
 
 #### (2) 노출 메시지	
 이용 정지 이용자에게 표시할 메시지를 입력합니다. <br />
-여러 개의 언어로 등록할 수 있으며, 입력한 언어 이외의 언어를 사용하는 사용자에게는 '기본 언어'로 선택된 언어가 표시됩니다. 오른쪽의 **+** 버튼을 클릭하면 언어를 추가할 수 있으며 원하는 언어가 없는 경우 [고객 센터](https://cloud.toast.com/support/faq)로 연락 주시면 새로운 언어를 추가할 수 있습니다.<br />
+여러 개의 언어로 등록할 수 있으며, 입력한 언어 이외의 언어를 사용하는 사용자에게는 '기본 언어'로 선택된 언어가 표시됩니다. 오른쪽의 **+** 버튼을 클릭하면 언어를 추가할 수 있으며 원하는 언어가 없는 경우 [고객 센터](https://alpha.toast.com/support/inquiry)로 연락 주시면 새로운 언어를 추가할 수 있습니다.<br />
 
 ## AppGuard
 
