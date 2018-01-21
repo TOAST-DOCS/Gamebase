@@ -1,4 +1,4 @@
-## Game > Gamebase > Android SDK 사용 가이드 > Authentication
+## Game > Gamebase > Android SDK 사용 가이드 > 인증
 
 ## Login
 
