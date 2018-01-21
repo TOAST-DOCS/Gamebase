@@ -1,4 +1,4 @@
-## Game > Gamebase > 콘솔 사용 가이드 > Push
+## Game > Gamebase > 콘솔 사용 가이드 > 푸시
 
 앱 이용자에게 푸시 알림을 발송할 수 있습니다.<br/>
 Gamebase에서는 TOAST Push 서비스를 사용해 푸시 알림을 발송합니다.<br/>
