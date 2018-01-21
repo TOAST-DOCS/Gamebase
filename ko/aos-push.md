@@ -8,7 +8,7 @@
 
 #### TOAST Cloud Console 등록
 
-먼저 [TOAST Cloud Push 가이드](http://docs.cloud.toast.com/ko/Notification/Push/ko/Developer%60s%20Guide/)를 참고하여 Console을 설정합니다.
+먼저 [Notification > Push > API v2.0 가이드](http://alpha-docs.cloud.toast.com/ko/Notification/Push/ko/api-guide/)를 참고하여 Console을 설정합니다.
 
 #### Download
 
@@ -200,17 +200,17 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 | ------------------------------ | ---------- | ---------------------------------------- |
 | PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | TOAST Push 라이브러리 오류입니다.<br>DetailCode를 확인하세요. |
 | PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 이전 푸시 API 호출이 완료되지 않았습니다.<br>이전 푸시 API의 콜백이 실행된 이후에 다시 호출하세요. |
-| PUSH_UNKNOWN_ERROR             | 5999       | 정의되지 않은 푸시 오류입니다.<br>전체 로그를 [고객 센터](https://cloud.toast.com/support/faq)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
+| PUSH_UNKNOWN_ERROR             | 5999       | 정의되지 않은 푸시 오류입니다.<br>전체 로그를 [고객 센터](https://alpha.toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
 * 전체 오류 코드는 다음을 참고하시기 바랍니다.
-  * [Entire Error Codes](./error-codes#client-sdk)
+  * [오류 코드](./error-code/#client-sdk)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
 * 이 오류는 TOAST Push 라이브러리에서 발생한 오류입니다.
 * exception.getDetailCode()로 TOAST Push 오류 코드를 확인해야 합니다.
 * TOAST Push 오류 코드는 다음 문서를 참고하시기 바랍니다.
-  * [Push > Client SDK Developer's Guide > Error Code Guide > 오류 처리](http://docs.cloud.toast.com/ko/Notification/Push/ko/Client%20SDK%20Guide/#_5)
+  * [Notification > Push > 오류 코드](http://alpha-docs.cloud.toast.com/ko/Notification/Push/ko/error-code/)
 
 
 
