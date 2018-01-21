@@ -81,7 +81,7 @@
 | ---------------------------------------- | ---------- | ---------------------------------------- |
 | TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | TOAST Push 라이브러리 오류입니다.<br>DetailCode를 확인하세요. |
 | TCGB_ERROR_PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 이전 푸시 API 호출이 완료되지 않았습니다.<br>이전 푸시 API의 콜백이 실행된 이후에 다시 호출하세요. |
-| TCGB_ERROR_PUSH_UNKNOWN_ERROR            | 5999       | 정의되지 않은 푸시 오류입니다.<br>전체 로그를 [고객 센터](https://cloud.toast.com/support/faq)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
+| TCGB_ERROR_PUSH_UNKNOWN_ERROR            | 5999       | 정의되지 않은 푸시 오류입니다.<br>전체 로그를 [고객 센터](https://alpha.toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
 **TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR**
 
@@ -99,6 +99,6 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
 * TOAST Push 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [Push > Client SDK Developer's Guide > Error Code Guide > 오류 처리](http://docs.cloud.toast.com/ko/Notification/Push/ko/Client%20SDK%20Guide/#_5)
+    * [Notification > Push > SDK v1.4 사용 가이드 > 오류 처리](http://alpha-docs.cloud.toast.com/ko/Notification/Push/ko/sdk-guide/#_5)
 
 
