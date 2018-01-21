@@ -18,7 +18,7 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
   단일 인터페이스로 API를 제공하여 보다 쉽고 빠르게 외부 IdP 추가 개발이 가능하기 때문에 개발 비용이 절감됩니다. 개발자는 복잡한 인증 절차나 법적 문제, 정책 문제 등을 고려하지 않고 쉽게 인증 기능을 구현할 수 있습니다.<br/>
 
 * **다양한 외부 IdP 인증을 제공합니다.** <br/>
-  제공하는 외부 인증은 지속적으로 업데이트될 예정이며 게임에서 사용하길 원하는 인증이 있는 경우에는 [고객 센터](https://cloud.toast.com/support/faq/)로 연락주시기 바랍니다.<br/>
+  제공하는 외부 인증은 지속적으로 업데이트될 예정이며 게임에서 사용하길 원하는 인증이 있는 경우에는 [고객 센터](https://alpha.toast.com/support/inquiry)로 연락주시기 바랍니다.<br/>
 
 다음은 Gamebase에서 지원하는 외부 인증 목록입니다.
 
@@ -43,9 +43,9 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 
 #### Reference
 
-* [Android Developer Guide > Auth](./aos-authentication)
-* [iOS Developer Guide > Auth](./ios-authentication)
-* [Unity Developer Guide > Auth](./unity-authentication)
+* [Android SDK 사용 가이드 > Authentication](./aos-authentication)
+* [iOS SDK 사용 가이드 > Authentication](./ios-authentication)
+* [Unity SDK 사용 가이드 > Authentication](./unity-authentication)
 
 ### Launching
 
@@ -63,11 +63,11 @@ Gamebase에서 제공되는 론칭 정보는 다음과 같습니다.
 
 #### Reference
 
-* [Android Developer Guide > Launching Info](./aos-initialization/#launching-status)
-* [iOS Developer Guide > Launching Info](./ios-initialization/#launching-status)
-* [Unity Developer Guide > Launching Info](./unity-initialization/#launching-informations)
-* [Operator Guide > App Info(App, Client, Installed URL)](./oper-app): 앱, 클라이언트 상태 및 설치 URL 설정
-* [Operator Guide > Operator(Maintenance,Notice)](./oper-operation): 점검, 공지 등록
+* [Android SDK 사용 가이드 > Initialization > Launching Status](./aos-initialization/#launching-status)
+* [iOS SDK 사용 가이드 > Initialization > Launching Status](./ios-initialization/#launching-status)
+* [Unity SDK 사용 가이드 > Initialization > Launching Information](./unity-initialization/#launching-information)
+* [콘솔 사용 가이드 > App)](./oper-app): 앱, 클라이언트 상태 및 설치 URL 설정
+* [콘솔 사용 가이드 > Operation](./oper-operation): 점검, 공지 등록
 
 
 ### For Global
@@ -98,7 +98,7 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 
 #### Reference
 
-* [Operator Guide > Operating indicator](./oper-operating-indicator) 
+* [콘솔 사용 가이드 > Operating Indicator](./oper-operating-indicator) 
 
 ### Using the other TOAST Service
 
@@ -142,24 +142,24 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 
 ### Client Developer's Guide
 
-* [iOS Developer's Guide](./ios-started/)
-* [Android Developer's Guide](./aos-started/)
-* [Unity Developer's Guide](./unity-started/)
+* [iOS SDK 사용 가이드](./ios-started/)
+* [Android SDK 사용 가이드](./aos-started/)
+* [Unity SDK 사용 가이드](./unity-started/)
 
 ### Server Developer's Guide
 
-* [Server Developer's Guide](./api-guide/)
+* [API 가이드](./api-guide/)
 
 ### Operator's Guide
 
-* [Operator's Guide](./oper-operating-indicator/)
+* [콘솔 사용 가이드](./oper-operating-indicator/)
 
 <br/>
 ## Funtional Guide
 
 | Feature               | Description                              | Client                                   | Server                                   | Console                                  |
 | --------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| Login                 | 게스트, 3rd Party 인증 지원  <br> - 지원되는 IdP: Facebook, Google, Apple Game Center, PAYCO | [[iOS](./ios-authentication/#login)] [[Android](./aos-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[토큰 검증](./Server%20Developer%60s%20Guide/#token-authentication)] <br> [[회원 조회](./Server%20Developer%60s%20Guide/#get-member)] | [[App] > 인증 정보 설정](./oper-app/#authentication-information) <br> [[Member] > 회원 조회](./oper-member/#member) <br> - 기본 정보, 로그인 이력, 플레이 시간, 결제 이력 등 |
+| Login                 | 게스트, 3rd Party 인증 지원  <br> - 지원되는 IdP: Facebook, Google, Apple Game Center, PAYCO | [[iOS](./ios-authentication/#login)] [[Android](./aos-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[토큰 검증](./api-guide/#token-authentication)] <br> [[회원 조회](./api-guide/#get-member)] | [[App] > 인증 정보 설정](./oper-app/#authentication-information) <br> [[Member] > 회원 조회](./oper-member/#member) <br> - 기본 정보, 로그인 이력, 플레이 시간, 결제 이력 등 |
 | Logout                | 로그아웃                                     | [[iOS](./ios-authentication/#logout)] [[Android](./aos-authentication/#logout)] [[Unity](./unity-authentication/#logout)] |                                          |                                          |
 | Withdraw              | 게임 탈퇴 <br> -  게임 이용자의 사용자 ID, 매핑 정보 등 모든 정보 삭제 | [[iOS](./ios-authentication/#withdraw)] [[Android](./aos-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
 | Mapping               | 하나의 사용자 ID에 여러 개의 IdP를 연동하는 기능           | [[iOS](./ios-authentication/#mapping)] [[Android](./aos-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |                                          |
