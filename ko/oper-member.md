@@ -1,6 +1,4 @@
-## Game > Gamebase > 콘솔 사용 가이드 > Member
-
-## Member
+## Game > Gamebase > 콘솔 사용 가이드 > 회원
 
 게임에 로그인한 회원 정보를 조회합니다.
 
