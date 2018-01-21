@@ -27,7 +27,7 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 #### 3. TOAST IAP 서비스 이용
 
 * IAP 가이드를 참고하여 IAP를 설정하고 아이템을 등록합니다.
-  * [IAP > Getting Started](http://docs.cloud.toast.com/ko/Common/IAP/ko/Web%20Console/)
+  * [Mobile Service > IAP > 콘솔 사용 가이드](http://alpha-docs.cloud.toast.com/ko/Mobile%20Service/IAP/ko/console-guide/)
 
 #### 4. Download
 
