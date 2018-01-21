@@ -1,4 +1,4 @@
-## Game > Gamebase > 콘솔 사용 가이드 > Operation
+## Game > Gamebase > 콘솔 사용 가이드 > 운영
 
 앱 운영시 필요한 기능들을 제공하는 메뉴입니다. <br/>
 
