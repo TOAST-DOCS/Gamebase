@@ -719,7 +719,7 @@ public void GetBanInfo()
 | AUTH_UNKNOWN_ERROR | 3999 | 알수 없는 에러입니다. (정의 되지 않은 에러입니다.) |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-  - [Entire Error Codes](./error-codes#client-sdk)
+  - [오류 코드](./error-code/#client-sdk)
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
