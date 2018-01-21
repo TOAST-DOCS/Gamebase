@@ -519,7 +519,7 @@ Gamebase Console에 제재된 게임 이용자로 등록될 경우,
 
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    - [Entire Error Codes](./error-code/#client-sdk)
+    - [오류 코드](./error-code/#client-sdk)
 
 
 **TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR**
