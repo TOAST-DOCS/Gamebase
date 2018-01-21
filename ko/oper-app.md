@@ -258,7 +258,7 @@ _[예시3] PC에서 설치 URL을 입력한 경우_<br/>
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_InstallUrl2_1.2.png)
 
 - 각 항목은 PC, 모바일별로 따로 설정할 수 있습니다. PC와 모바일을 구분할 필요가 없다면 동일한 값을 각각 입력하면 됩니다.<br />
-- 원하는 스토어가 목록에 표시되지 않을 경우, [고객 센터](https://cloud.toast.com/support/faq/)로 연락 주시면 해당 스토어에 대한 추가가 가능합니다.<br />
+- 원하는 스토어가 목록에 표시되지 않을 경우, [고객 센터](https://alpha.toast.com/support/inquiry)로 연락 주시면 해당 스토어에 대한 추가가 가능합니다.<br />
 
 #### (1) Common
 스토어 정보가 없거나 스토어 이동에 실패했을 때 연결될 주소를 설정합니다.<br />
