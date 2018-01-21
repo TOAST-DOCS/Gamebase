@@ -1,6 +1,4 @@
-## Game > Gamebase > iOS SDK 사용 가이드 > Initialization
-
-## Initialization
+## Game > Gamebase > iOS SDK 사용 가이드 > 초기화
 
 Gamebase iOS SDK를 사용하려면 먼저 초기화를 진행해야 합니다. 
 
