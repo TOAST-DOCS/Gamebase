@@ -62,7 +62,7 @@
 #### 기능 개선/변경
 * [Console]
 	* [Operating indicator>모니터링] 차트 색상 변경, Timezone 이슈. DAU 계산로직 변경(Login시간기준->접속시간기준)
-* [API] [점검 조회 API](http://docs.cloud.toast.com/ko/Game/Gamebase/ko/Server%20Developer%60s%20Guide/#check-under-maintenance) 결과를 List 에서 단일 객체로 변경
+* [API] [점검 조회 API](./api-guide/#check-under-maintenance) 결과를 List 에서 단일 객체로 변경
 
 #### 버그 수정
 * [Console]
@@ -172,7 +172,7 @@
 * [SDK] 1.1.2 업데이트
     * 게임런칭시 점검, 긴급공지 팝업 개선
     * Unity Plugin 디버그로그 추가 및 익셉션 상세처리
-* [API] [IAP](/Upcoming%20Products/Gamebase/ko/Server%20Developer%60s%20Guide/#purchaseiap) API 연동 : 아이템 조회, 미소비내역 조회
+* [API] [IAP](./api-guide/#purchaseiap) API 연동 : 아이템 조회, 미소비내역 조회
 * [API] checkAccessToken API 응답 결과에, 로그인 시 사용된 IdP 관련 정보 포함하는 스펙 추가
 * [Console] 점검, 긴급공지 : 클라이언트 버전 선택 시 게임에서 사용하지 않는 스토어는 노출되지 않도록 변경
 
@@ -185,7 +185,7 @@
 * [SDK] 1.1.0 업데이트
     * 외부 AccessToken을 받아서 idPLogin을 해주는 인터페이스를 추가
     * [UI 기능 추가](/Upcoming%20Products/Gamebase/ko/aos-ui/#ui) : Custom Webview, AlertDialog
-* [API] [Leaderboard](/Upcoming%20Products/Gamebase/ko/Server%20Developer%60s%20Guide/#leaderboard), [IAP](/Upcoming%20Products/Gamebase/ko/Server%20Developer%60s%20Guide/#purchaseiap) API 연동
+* [API] [Leaderboard](./api-guide/#leaderboard), [IAP](./api-guide/#purchaseiap) API 연동
 
 ### 2017.03.09
 
