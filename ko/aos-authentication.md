@@ -703,7 +703,7 @@ Gamebase Console에 제재된 게임 이용자로 등록될 경우,
 | Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                     | 3999       | 알수 없는 오류입니다.(정의되지 않은 오류입니다).             |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-  - [Entire Error Codes](./error-codes#client-sdk)
+  - [Entire Error Codes](./error-code/#client-sdk)
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
