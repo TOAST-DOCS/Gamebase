@@ -1,6 +1,6 @@
-## Game > Gamebase > Android SDK 사용 가이드 > Initialization
+## Game > Gamebase > Android SDK 사용 가이드 > 초기화
 
-## Initialization
+## 초기화
 
 Gamebase Android SDK를 사용하려면 먼저 초기화를 진행해야 합니다.
 
