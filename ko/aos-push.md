@@ -1,6 +1,4 @@
-## Game > Gamebase > Android SDK 사용 가이드 > Push
-
-## Push
+## Game > Gamebase > Android SDK 사용 가이드 > 푸시
 
 ### Settings
 
