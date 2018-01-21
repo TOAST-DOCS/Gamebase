@@ -104,10 +104,10 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 
 * 게임에서 필요한 TOAST 서비스를 보다 쉽게 연동할 수 있도록 돕습니다. 
   * Gamebase 사용자 아이디로 각 서비스의 API를 사용할 수 있도록 Gamebase에서 래핑(wrapping)하여 API를 제공합니다. 따라서, 사용자는 별도 서비스의 API를 직접 호출할 필요가 없습니다.
-  * [Notification > PUSH](http://cloud.toast.com/service/notification) : 푸시 메세지를 발송해 주는 통합 푸시 서비스
-  * [Common > IAP](http://cloud.toast.com/service/iap) : 통합 인앱 결제 서비스
-  * [Game > Leaderboard](http://cloud.toast.com/service/leaderboard) : 실시간 대용량 랭킹 서비스
-  * [Security > AppGuard](https://cloud.toast.com/service/security) : 실시간으로 애플리케이션의 코드 조작을 방지하는 서비스
+  * [Notification > Push](https://alpha.toast.com/service/notification/push) : 푸시 메세지를 발송해 주는 통합 푸시 서비스
+  * [Mobile Service > IAP](https://alpha.toast.com/service/mobile_service/iap) : 통합 인앱 결제 서비스
+  * [Game > Leaderboard](https://alpha.toast.com/service/game/leaderboard) : 실시간 대용량 랭킹 서비스
+  * [Security > AppGuard](https://alpha.toast.com/service/security/appguard) : 실시간으로 애플리케이션의 코드 조작을 방지하는 서비스
 
 
 <br/>
@@ -148,7 +148,7 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 
 ### Server Developer's Guide
 
-* [Server Developer's Guide](./Server%20Developer%60s%20Guide/)
+* [Server Developer's Guide](./api-guide/)
 
 ### Operator's Guide
 
