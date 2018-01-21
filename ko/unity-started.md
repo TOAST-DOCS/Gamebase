@@ -44,7 +44,7 @@ API별 지원하는 플랫폼은 아래와 같은 아이콘으로 구분합니�
 
 Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있습니다.
 
-* [Download Gamebase Client SDK](http://docs.cloud.toast.com/ko/Download/)
+* [Download Gamebase Client SDK](http://alpha-docs.cloud.toast.com/ko/download/#game-gamebase)
 
 
 ### Specification of Setting Tool
