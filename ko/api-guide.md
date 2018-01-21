@@ -291,7 +291,7 @@ LINK [\[Error Code\]](./error-codes/#server)
 
 **[Error Code]**
 
-[Error Code](./error-codes/#server)
+[오류 코드](./error-code/#server)
 
 #### Get members
 
@@ -352,7 +352,7 @@ LINK [\[Error Code\]](./error-codes/#server)
 
 **[Error Code]**
 
-[Error Code](./error-codes/#server)
+[오류 코드](./error-code/#server)
 
 #### Get IdP infomation
 
@@ -414,7 +414,7 @@ LINK [\[Error Code\]](./error-codes/#server)
 
 **[Error Code]**
 
-[Error Code](./error-codes/#server)
+[오류 코드](./error-code/#server)
 
 #### Get userId infomation with auth key
 
@@ -476,7 +476,7 @@ LINK [\[Error Code\]](./error-codes/#server)
 
 **[Error Code]**
 
-LINK [\[Error Code\]](./error-codes/#server)
+[오류 코드](./error-code/#server)
 
 <br>
 <br>
@@ -548,7 +548,7 @@ LINK [\[Error Code\]](./error-codes/#server)
 
 **[Error Code]**
 
-[Error Code](./error-codes/#server)
+[오류 코드](./error-code/#server)
 
 <br>
 <br>
@@ -570,7 +570,7 @@ Gamebase는 TOAST IAP 서비스의 서버 API에 대해 **Wrapping** 기능을 �
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
 
 <br>
-[IAP 가이드](http://docs.cloud.toast.com/ja/Common/IAP/ja/Server%20Developer%60s%20Guide/)
+[Mobile Service > IAP > API 가이드](http://alpha-docs.cloud.toast.com/ko/Mobile%20Service/IAP/ko/api-guide/)
 
 <br>
 
@@ -610,7 +610,7 @@ Gamebase는 TOAST Leaderboard 서비스의 서버 API에 대해 **Wrapping** 기
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
 
 <br>
-[Leaderboard 가이드](http://docs.cloud.toast.com/ja/Game/Leaderboard/ja/Developer%60s%20Guide/) 
+[Game > Leaderboard > API 가이드](http://alpha-docs.cloud.toast.com/ko/Game/Leaderboard/ko/api-guide/) 
 
 <br>
 
@@ -632,7 +632,7 @@ GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.0/apps/{appId}/fact
 
 ### Support
 
-API 호출 실패 원인에 대한 문의 사항이 있을 경우, **API 호출 URL(HTTP body가 있는 경우는 body와 함께)과 그에 대한 응답 결과**를 [고객 센터](https://cloud.toast.com/support/faq)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다.
+API 호출 실패 원인에 대한 문의 사항이 있을 경우, **API 호출 URL(HTTP body가 있는 경우는 body와 함께)과 그에 대한 응답 결과**를 [고객 센터](https://alpha.toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다.
 
 <br>
 
