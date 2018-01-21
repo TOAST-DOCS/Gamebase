@@ -15,7 +15,7 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_App2_1.0.png)
 
-* **스토어**<br/>  등록하고자 하는 외부 스토어를 선택합니다.<br />  등록하고자 하는 스토어가 없다면, [고객센터](https://cloud.toast.com/support/faq)로 연락주시기 바랍니다.<br />
+* **스토어**<br/>  등록하고자 하는 외부 스토어를 선택합니다.<br />  등록하고자 하는 스토어가 없다면, [고객센터](https://alpha.toast.com/support/inquiry)로 연락주시기 바랍니다.<br />
 * **앱 이름** <br/>  등록하고자 하는 게임의 이름을 입력합니다.<br />
 * **스토어 앱 ID** <br/>  스토어에서 발급받은 정보를 입력합니다.<br />
 * **사용 여부**<br/>  스토어 사용 여부를 선택합니다.<br />
