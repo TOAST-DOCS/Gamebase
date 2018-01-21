@@ -7,7 +7,6 @@ Gamebase에서는 인증, 결제, 푸시 등 게임에 필요한 기본 기능�
 
 다음은 Gamebase에서 제공하는 주요 기능과 설명입니다.
 
-<br/>
 ## Key Features
 
 ### Authentication
