@@ -1,6 +1,4 @@
-## Game > Gamebase > Unity SDK 사용 가이드 > Getting Started
-
-## Getting Started
+## Game > Gamebase > Unity SDK 사용 가이드 > 시작하기
 
 Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 
