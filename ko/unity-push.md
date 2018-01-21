@@ -1,7 +1,4 @@
-## Game > Gamebase > Unity SDK 사용 가이드 > Push
-
-
-## Push
+## Game > Gamebase > Unity SDK 사용 가이드 > 푸시
 
 여기에서는 플랫폼별로 푸시 알림을 사용하기 위해 필요한 설정 방법을 알아보겠습니다.
 
