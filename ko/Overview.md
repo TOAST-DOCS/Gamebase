@@ -43,9 +43,9 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 
 #### Reference
 
-* [Android SDK 사용 가이드 > Authentication](./aos-authentication)
-* [iOS SDK 사용 가이드 > Authentication](./ios-authentication)
-* [Unity SDK 사용 가이드 > Authentication](./unity-authentication)
+* [Android SDK 사용 가이드 > 인증](./aos-authentication)
+* [iOS SDK 사용 가이드 > 인증](./ios-authentication)
+* [Unity SDK 사용 가이드 > 인증](./unity-authentication)
 
 ### Launching
 
@@ -63,11 +63,11 @@ Gamebase에서 제공되는 론칭 정보는 다음과 같습니다.
 
 #### Reference
 
-* [Android SDK 사용 가이드 > Initialization > Launching Status](./aos-initialization/#launching-status)
-* [iOS SDK 사용 가이드 > Initialization > Launching Status](./ios-initialization/#launching-status)
-* [Unity SDK 사용 가이드 > Initialization > Launching Information](./unity-initialization/#launching-information)
-* [콘솔 사용 가이드 > App)](./oper-app): 앱, 클라이언트 상태 및 설치 URL 설정
-* [콘솔 사용 가이드 > Operation](./oper-operation): 점검, 공지 등록
+* [Android SDK 사용 가이드 > 초기화 > Launching Status](./aos-initialization/#launching-status)
+* [iOS SDK 사용 가이드 > 초기화 > Launching Status](./ios-initialization/#launching-status)
+* [Unity SDK 사용 가이드 > 초기화 > Launching Information](./unity-initialization/#launching-information)
+* [콘솔 사용 가이드 > 앱)](./oper-app): 앱, 클라이언트 상태 및 설치 URL 설정
+* [콘솔 사용 가이드 > 운영](./oper-operation): 점검, 공지 등록
 
 
 ### For Global
@@ -98,7 +98,7 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 
 #### Reference
 
-* [콘솔 사용 가이드 > Operating Indicator](./oper-operating-indicator) 
+* [콘솔 사용 가이드 > 운영 지표](./oper-operating-indicator) 
 
 ### Using the other TOAST Service
 
