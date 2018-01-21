@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > 콘솔 사용 가이드 >  Management
+## Game > Gamebase > 콘솔 사용 가이드 >  Management
 
 Gamebase를 사용하는 게임에 대한 조회 권한 관리, 알람 발송 설정, 알람에 대한 내역 조회 등의 기능을 사용할 수 있습니다.
 
