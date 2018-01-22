@@ -19,8 +19,9 @@ Android나 iOS에서 푸시를 설정하는 방법은 다음 문서를 참고하
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
 public static void RegisterPush(GamebaseRequest.Push.PushConfiguration pushConfiguration, GamebaseCallback.ErrorDelegate callback)
@@ -59,8 +60,9 @@ public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNig
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
 public static void QueryPush(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Push.PushConfiguration> callback)
@@ -100,12 +102,12 @@ public void QueryPush()
 | PUSH_UNKNOWN_ERROR             | 5999       | 정의되지 않은 푸시 오류입니다.<br>전체 로그를 Gamebase 개발팀에 전달하여 오류상황을 문의해 주세요. |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-  * [오류 코드](./error-code/#client-sdk)
+    * [오류 코드](./error-code/#client-sdk)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
 * 이 오류는 TOAST Push 라이브러리에서 발생한 오류입니다.
 * TOAST Push 오류 코드를 확인하시기 바랍니다.
-  * [Notification > Push > SDK v1.4 사용 가이드 > 오류 처리](http://alpha-docs.cloud.toast.com/ko/Notification/Push/ko/sdk-guide/#_5)
+    * [Notification > Push > SDK v1.4 사용 가이드 > 오류 처리](http://alpha-docs.cloud.toast.com/ko/Notification/Push/ko/sdk-guide/#_5)
 
 

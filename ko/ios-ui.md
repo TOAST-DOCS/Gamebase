@@ -211,4 +211,4 @@ iOS 8 이상에서 동작하는 UIAlertController와, iOS 8 미만에서 동작�
 | TCGB\_ERROR\_UI\_UNKNOWN\_ERROR | 6999       | 알 수 없는 오류입니다(정의되지 않은 오류입니다). |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    - [오류 코드](./error-code/#client-sdk)
+    * [오류 코드](./error-code/#client-sdk)

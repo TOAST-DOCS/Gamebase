@@ -146,8 +146,8 @@ Gamebase.Util.showToast(activity,
 점검 상태에서 '자세히 보기'를 클릭하면 표시되는 점검 페이지를 변경할 수 있습니다.
 
 * 사용자 지정 웹 페이지를 점검 페이지로 등록
-  * AndroidManifest.xml에 com.gamebase.maintenance.detail.url를 키 값으로 하는 meta-data를 설정합니다.
-  * android:value 값으로 .html 파일 또는 URL을 입력할 수 있습니다.
+    * AndroidManifest.xml에 com.gamebase.maintenance.detail.url를 키 값으로 하는 meta-data를 설정합니다.
+    * android:value 값으로 .html 파일 또는 URL을 입력할 수 있습니다.
 
 ```xml
 <meta-data
@@ -162,4 +162,4 @@ Gamebase.Util.showToast(activity,
 | UI\_UNKNOWN\_ERROR | 6999       | 알 수 없는 오류입니다(정의되지 않은 오류입니다). |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-  - [오류 코드](./error-code/#client-sdk)
+    * [오류 코드](./error-code/#client-sdk)

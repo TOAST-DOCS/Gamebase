@@ -110,11 +110,12 @@ Gamebase Unity SDK를 초기화하는 방법은 다음과 같습니다.
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static void Initialize(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Launching.LaunchingInfo> callback)
@@ -201,16 +202,15 @@ Gamebase Console에서 **Game > Gamebase > App**을 클릭한 후 **클라이언
 
 Gamebase Console에 등록된 앱 정보입니다.
 
-* accessInfo
-    * serverAddress: 서버 주소
-    * csInfo: 고객 센터 정보
-* relatedUrls
-    * termsUrl: 이용약관
-    * personalInfoCollectionUrl: 개인 정보 동의
-    * punishRuleUrl: 이용 정지 규정
+* Sever URL: 서버 주소
+* Customer center info: 고객 센터 정보
+* InApp URL
+    * Terms of Use: 이용약관
+    * Personal Info Agreement: 개인 정보 동의
+    * Punishment Provision: 이용 정지 규정
     * csUrl : 고객센터
-* install: 설치 URL
-* idP: 인증 정보
+* Install URL: 설치 URL
+* Authentication Information: 인증 정보
 
 Gamebase Console에서 앱 정보를 설정하려면  **Game > Gamebase > App**을 클릭한 후 **앱** 탭을 클릭합니다.
 
@@ -220,11 +220,11 @@ Gamebase Console에서 앱 정보를 설정하려면  **Game > Gamebase > App**�
 
 Gamebase Console에 등록된 점검 정보입니다.
 
-* url: 점검 페이지 URL
-* timezone: 표준 시간대(timezone)
-* beginDate: 시작 시간
-* endDate: 종료 시간
-* message: 점검 사유
+* Page: 점검 페이지
+* Timezone: 표준 시간대(timezone)
+* Start Date: 시작 시간
+* End Date: 종료 시간
+
 
 Gamebase Console에서 점검 정보를 등록하거나 수정하려면 **Game > Gamebase > Operation**을 클릭한 후 **점검** 탭을 클릭합니다.
 

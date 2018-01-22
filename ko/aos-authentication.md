@@ -35,18 +35,18 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
 #### 2-2. 인증이 실패한 경우
 
 * 네트워크 오류
-  * 오류 코드 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **Gamebase.loginForLastLoggedInProvider()**를 다시 호출하거나, 잠시 후 다시 시도합니다.
+    * 오류 코드 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **Gamebase.loginForLastLoggedInProvider()**를 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 이용자
-  * 오류 코드가 **AUTH_BANNED_MEMBER(3005)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
-  * **Gamebase.getAuthBanInfo()**로 제재 정보를 확인하여 게임 이용자에게 게임을 할 수 없는 이유를 알려 주시기 바랍니다.
-  * Gamebase 초기화 시 **GamebaseConfiguration.Builder.enablePopup(true)** 및 **enableBanPopup(true)**를 호출한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
+    * 오류 코드가 **AUTH_BANNED_MEMBER(3005)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
+    * **Gamebase.getAuthBanInfo()**로 제재 정보를 확인하여 게임 이용자에게 게임을 할 수 없는 이유를 알려 주시기 바랍니다.
+    * Gamebase 초기화 시 **GamebaseConfiguration.Builder.enablePopup(true)** 및 **enableBanPopup(true)**를 호출한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외 오류
-  * 이전 로그인 유형으로 인증에 실패했기 때문에 **3. 지정된 IdP로 인증**을 진행하시기 바랍니다.
+    * 이전 로그인 유형으로 인증에 실패했기 때문에 **3. 지정된 IdP로 인증**을 진행하시기 바랍니다.
 
 #### 3. 지정된 IdP로 인증
 
 * IdP 유형을 직접 지정하여 인증을 시도합니다.
-  * 인증 가능한 유형은 **AuthProvider** 클래스에 선언돼 있습니다.
+    * 인증 가능한 유형은 **AuthProvider** 클래스에 선언돼 있습니다.
 * **Gamebase.login(activity, idpType, callback)** API를 호출합니다.
 
 #### 3-1. 인증에 성공한 경우
@@ -57,13 +57,13 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
 #### 3-2. 인증에 실패한 경우
 
 * 네트워크 오류
-  * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증에 실패한 것이므로 **Gamebase.login(activity, idpType, callback)**을 다시 호출하거나, 잠시 후 다시 시도합니다.
+    * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증에 실패한 것이므로 **Gamebase.login(activity, idpType, callback)**을 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 사용자
-  * 오류 코드가 **AUTH_BANNED_MEMBER(3005)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
-  * **Gamebase.getAuthBanInfo()**로 제재 정보를 확인하여 게임 이용자에게 게임을 플레이할 수 없는 이유를 알려주시기 바랍니다.
-  * Gamebase 초기화 시 **GamebaseConfiguration.Builder.enablePopup(true)** 및 **enableBanPopup(true)**를 호출한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
+    * 오류 코드가 **AUTH_BANNED_MEMBER(3005)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
+    * **Gamebase.getAuthBanInfo()**로 제재 정보를 확인하여 게임 이용자에게 게임을 플레이할 수 없는 이유를 알려주시기 바랍니다.
+    * Gamebase 초기화 시 **GamebaseConfiguration.Builder.enablePopup(true)** 및 **enableBanPopup(true)**를 호출한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외 오류
-  * 오류가 발생했다는 것을 게임 이용자에게 알리고, 게임 이용자가 인증 IdP 유형을 선택할 수 있는 상태(주로 타이틀 화면 또는 로그인 화면)로 되돌아갑니다.
+    * 오류가 발생했다는 것을 게임 이용자에게 알리고, 게임 이용자가 인증 IdP 유형을 선택할 수 있는 상태(주로 타이틀 화면 또는 로그인 화면)로 되돌아갑니다.
 
 ### Login as the Latest Login IdP
 
@@ -296,7 +296,7 @@ private static void onLoginWithCredential(final Activity activity) {
 
 #### Facebook
 * **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-  * Facebook의 경우, OAuth 인증 시도 시, Facebook에 요청할 정보의 종류를 설정해야 합니다.
+    * Facebook의 경우, OAuth 인증 시도 시, Facebook에 요청할 정보의 종류를 설정해야 합니다.
 
 Facebook 인증 추가 정보 입력 예제
 
@@ -306,7 +306,7 @@ Facebook 인증 추가 정보 입력 예제
 
 #### PAYCO
 * **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-  * PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**의 설정이 필요합니다.
+    * PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**의 설정이 필요합니다.
 
 PAYCO 추가 인증 정보 입력 예제
 
@@ -453,8 +453,8 @@ private static void onWithdraw(final Activity activity) {
     * 오류 코드가 **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**인 경우, 매핑하려는 IdP의 계정이 이미 다른 계정에 연동 중이라는 뜻입니다. 이미 연동된 계정을 해제하려면 해당 계정으로 로그인하여 **Gamebase.withdraw()**를 호출하여 탈퇴하거나 **Gamebase.removeMapping()**를 호출하여 연동을 해제한 후 다시 매핑을 시도하세요.
 * 이미 동일한 IdP 계정에 연동돼 발생하는 오류
     * 에러 코드가 **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)** 인 경우, 매핑하려는 IdP와 같은 종류의 계정이 이미 연동중이라는 뜻입니다.
-      * Gamebase 매핑은 한 IdP당 하나의 계정만 연동 가능합니다. 예를 들어 PAYCO 계정에 이미 연동 중이라면 더 이상 PAYCO 계정을 추가할 수 없습니다.
-      * 동일 IdP의 다른 계정을 연동하기 위해서는 **Gamebase.removeMapping()**을 호출해 연동을 해제한 후 다시 매핑을 시도하세요.
+        * Gamebase 매핑은 한 IdP당 하나의 계정만 연동 가능합니다. 예를 들어 PAYCO 계정에 이미 연동 중이라면 더 이상 PAYCO 계정을 추가할 수 없습니다.
+        * 동일 IdP의 다른 계정을 연동하기 위해서는 **Gamebase.removeMapping()**을 호출해 연동을 해제한 후 다시 매핑을 시도하세요.
 * 그 외의 오류
     * 매핑 시도가 실패했습니다.
 
@@ -702,7 +702,7 @@ Gamebase Console에 제재된 게임 이용자로 등록될 경우,
 | Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                     | 3999       | 알수 없는 오류입니다.(정의되지 않은 오류입니다).             |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-  - [Entire Error Codes](./error-code/#client-sdk)
+    * [Entire Error Codes](./error-code/#client-sdk)
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 

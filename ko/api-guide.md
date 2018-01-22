@@ -13,13 +13,13 @@ API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주�
 > https://api-gamebase.cloud.toast.com
 <br>
 
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
+![image alt](./image/Server_Developers_Guide/pre_server_address_v1.2.png)
 
 
 #### AppId
 
 앱 ID는 TOAST 프로젝트 ID로 앱 메뉴 화면에서 확인할 수 있습니다.
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
+![image alt](./image/Server_Developers_Guide/pre_appId_v1.2.png)
 
 
 #### SecretKey
@@ -29,7 +29,7 @@ API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주�
 > 비밀 키가 외부에 노출되어 잘못된 호출이 발생한다면 **생성** 버튼을 클릭하여 새로운 비밀 키를 만든 후, 새 비밀 키를 사용하면 됩니다.
 <br>
 
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
+![image alt](./image/Server_Developers_Guide/pre_secret_key_v1.2.png)
 
 #### TransactionId
 
@@ -214,12 +214,12 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | appId | String | TOAST 프로젝트 ID |
 | userId | String | 조회 대상 사용자 ID |
-| includeMemberInfo | Boolean | 사용자 단말기, OS 등의 상세 정보 포함 여부 <br> 기본값은 true |
 
 **[Request Parameter]**
 
-없음
-<br>
+| Name | Type | Required |  Value |
+| --- | --- | --- | --- |
+| includeMemberInfo | boolean | optional | true or false (기본값은 true) <br>사용자 단말기, OS 등의 상세 정보 포함 여부 |
 
 **[Response Body]**
 ```json
@@ -570,7 +570,7 @@ Gamebase는 TOAST IAP 서비스의 서버 API에 대해 **Wrapping** 기능을 �
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
 
 <br>
-[Mobile Service > IAP > API 가이드](http://alpha-docs.cloud.toast.com/ko/Mobile%20Service/IAP/ko/api-guide/)
+[Mobile Service > IAP > API 가이드](./ko/Mobile%20Service/IAP/ko/api-guide/)
 
 <br>
 
@@ -610,7 +610,7 @@ Gamebase는 TOAST Leaderboard 서비스의 서버 API에 대해 **Wrapping** 기
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
 
 <br>
-[Game > Leaderboard > API 가이드](http://alpha-docs.cloud.toast.com/ko/Game/Leaderboard/ko/api-guide/) 
+[Game > Leaderboard > API 가이드](./ko/Game/Leaderboard/ko/api-guide/)
 
 <br>
 
@@ -632,7 +632,7 @@ GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.0/apps/{appId}/fact
 
 ### Support
 
-API 호출 실패 원인에 대한 문의 사항이 있을 경우, **API 호출 URL(HTTP body가 있는 경우는 body와 함께)과 그에 대한 응답 결과**를 [고객 센터](https://alpha.toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다.
+API 호출 실패 원인에 대한 문의 사항이 있을 경우, **API 호출 URL(HTTP body가 있는 경우는 body와 함께)과 그에 대한 응답 결과**를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다.
 
 <br>
 

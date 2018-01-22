@@ -14,24 +14,24 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 #### 2. Register as Store's Tester
 
 * 결제 테스트를 위하여 스토어별로 다음과 같이 테스터로 등록합니다.
-  * Google
-    * [Android > 테스트 구매 설정](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
-  * ONE store
-    * [ONE store > 인앱결제 테스트](https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#%EC%9D%B8%EC%95%B1%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8)
-    * 반드시 인앱 정보 - 테스트 버튼으로 샌드박스를 원하는 단말기 전화번호를 등록해서 테스트해야 합니다.
-    * 테스트용 단말기는 USIM이 있어야 하고, 전화번호를 등록해야 합니다(MDN).
-    * **ONE store** 어플리케이션이 설치되어 있어야 합니다.
+    * Google
+        * [Android > 테스트 구매 설정](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
+    * ONE store
+        * [ONE store > 인앱결제 테스트](https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#%EC%9D%B8%EC%95%B1%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8)
+        * 반드시 인앱 정보 - 테스트 버튼으로 샌드박스를 원하는 단말기 전화번호를 등록해서 테스트해야 합니다.
+        * 테스트용 단말기는 USIM이 있어야 하고, 전화번호를 등록해야 합니다(MDN).
+        * **ONE store** 어플리케이션이 설치되어 있어야 합니다.
 
 #### 3. TOAST IAP 서비스 이용
 
 * IAP 가이드를 참고하여 IAP를 설정하고 아이템을 등록합니다.
-  * [Mobile Service > IAP > 콘솔 사용 가이드](http://alpha-docs.cloud.toast.com/ko/Mobile%20Service/IAP/ko/console-guide/)
+    * [Mobile Service > IAP > 콘솔 사용 가이드](http://alpha-docs.cloud.toast.com/ko/Mobile%20Service/IAP/ko/console-guide/)
 
 #### 4. Download
 
 * 다운로드한 SDK의 **gamebase-adapter-purchase-iap** 폴더를 프로젝트에 추가합니다.
-  * ONE store 결제가 필요 없다면 **iap-tstore-x.x.x.jar**, **iap_tstore_plugin_vxx.xx.xx.jar** 파일은 삭제해도 됩니다.
-  * 반대로 ONE store 결제를 한다면 위의 jar 파일은 반드시 프로젝트에 포함해 빌드해야 합니다.
+    * ONE store 결제가 필요 없다면 **iap-tstore-x.x.x.jar**, **iap_tstore_plugin_vxx.xx.xx.jar** 파일은 삭제해도 됩니다.
+    * 반대로 ONE store 결제를 한다면 위의 jar 파일은 반드시 프로젝트에 포함해 빌드해야 합니다.
 
 #### 5. AndroidManifest.xml(ONE store only)
 
@@ -55,9 +55,9 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 
 * Gamebase 초기화 시 configuration의 **setStoreCode()**를 호출합니다.
 * **STORE_CODE**는 다음 값 중에서 선택합니다.
-  * GG: Google
-  * TS: ONE store
-  * TEST: IAP 테스트용
+    * GG: Google
+    * TS: ONE store
+    * TEST: IAP 테스트용
 
 ```java
 String STORE_CODE = "GG";	// Google
@@ -92,13 +92,13 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 스토어 결제는 성공했으나 오류가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 다음 두 API를 각각 호출하여 재처리 로직을 구현하시기 바랍니다. <br/>
 
 1. 미처리 아이템 배송 요청
-  * 로그인에 성공하면 **requestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인합니다.
-  * 반환된 미소비 결제 내역 목록에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
+    * 로그인에 성공하면 **requestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인합니다.
+    * 반환된 미소비 결제 내역 목록에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
 
 2. 결제 오류 재처리 시도
-  * 로그인에 성공하면 **requestRetryTransaction**을 호출하여 미처리 내역에 대해 자동으로 재처리를 시도합니다.
-  * 반환된 successList에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
-  * 반환된 failList에 값이 존재한다면 해당 값을 게임 서버나 Log & Crash 등을 통해 전송하여 데이터를 확보하고, **[고객센터](https://alpha.toast.com/support/inquiry)**에 재처리 실패 원인을 문의합니다.
+    * 로그인에 성공하면 **requestRetryTransaction**을 호출하여 미처리 내역에 대해 자동으로 재처리를 시도합니다.
+    * 반환된 successList에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
+    * 반환된 failList에 값이 존재한다면 해당 값을 게임 서버나 Log & Crash 등을 통해 전송하여 데이터를 확보하고, **[고객센터](https://alpha.toast.com/support/inquiry)**에 재처리 실패 원인을 문의합니다.
 
 ### Purchase Item
 
@@ -201,12 +201,12 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 | PURCHASE_UNKNOWN_ERROR                   | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://alpha.toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-  - [오류 코드](./error-code/#client-sdk)
+    * [오류 코드](./error-code/#client-sdk)
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
 * 이 오류는 IAP 모듈에서 발생한 오류입니다.
 * exception.getDetailCode()를 통해 IAP 오류 코드를 확인해야 합니다.
 * IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
-  - [Mobile Service > IAP > 오류 코드 > Client API 에러 타입](http://alpha-docs.cloud.toast.com/ko/Mobile%20Service/IAP/ko/error-code/#client-api)
+    * [Mobile Service > IAP > 오류 코드 > Client API 에러 타입](http://alpha-docs.cloud.toast.com/ko/Mobile%20Service/IAP/ko/error-code/#client-api)
 

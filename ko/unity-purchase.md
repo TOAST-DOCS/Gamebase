@@ -26,8 +26,8 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 스토어 결제는 성공했으나 오류가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 다음 두 API를 각각 호출하여 재처리 로직을 구현하시기 바랍니다. <br/>
 
 1. 미처리 아이템 배송 요청
-  * 로그인에 성공하면 **RequestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인합니다.
-  * 반환된 미소비 결제 내역 목록에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다
+    * 로그인에 성공하면 **RequestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인합니다.
+    * 반환된 미소비 결제 내역 목록에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다
 2. 결제 오류 재처리 시도
     * 로그인에 성공하면 **RequestRetryTransaction**을 호출하여 호출하여 미처리 내역에 대해 자동으로 재처리를 시도합니다.
     * 반환된 successList에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
@@ -41,8 +41,9 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
 static void RequestPurchase(long itemSeq, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
@@ -80,8 +81,9 @@ public void RequestPurchase(long itemSeq)
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
 static void RequestItemListPurchasable(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableItem>> callback)
@@ -114,8 +116,9 @@ public void RequestItemListPurchasable()
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
 static void RequestItemListOfNotConsumed(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
@@ -149,8 +152,9 @@ public void RequestItemListOfNotConsumed()
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
 static void RequestRetryTransaction(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableRetryTransactionResult> callback)
@@ -190,12 +194,12 @@ public void RequestRetryTransaction()
 | PURCHASE_UNKNOWN_ERROR                   | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://alpha.toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-  - [오류 코드](./error-code/#client-sdk)
+    * [오류 코드](./error-code/#client-sdk)
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 * 이 오류는 IAP 모듈에서 발생한 오류입니다.
 * IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
-  * [Mobile Service > IAP > 오류 코드 > Client API 에러 타입](http://alpha-docs.cloud.toast.com/ko/Mobile%20Service/IAP/ko/error-code/#client-api)
+    * [Mobile Service > IAP > 오류 코드 > Client API 에러 타입](http://alpha-docs.cloud.toast.com/ko/Mobile%20Service/IAP/ko/error-code/#client-api)
 
 
 

@@ -22,8 +22,8 @@ Gamebase Android SDK를 사용하기 전에 TOAST Console에서 앱 아이디를
 * 다운로드 받은 SDK에서 다음 폴더안의 aar 파일을 프로젝트에 추가합니다.
     * **gamebase-sdk/**
 * 인증 모듈 추가
-  * 다운로드한 SDK의 **gamebase-adapter-auth-{provider}** 폴더를 프로젝트에 추가합니다.
-  * Google, Facebook, PAYCO 중에서 사용할 인증 모듈을 모두 추가합니다.
+    * 다운로드한 SDK의 **gamebase-adapter-auth-{provider}** 폴더를 프로젝트에 추가합니다.
+    * Google, Facebook, PAYCO 중에서 사용할 인증 모듈을 모두 추가합니다.
 
 
 #### Package Includes (SDK)

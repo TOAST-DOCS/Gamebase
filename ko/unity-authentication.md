@@ -10,8 +10,8 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 
 많은 게임이 타이틀 화면에서 로그인을 구현합니다.
 
-- 앱을 설치하고 처음 실행했을 때 타이틀 화면에서 게임 이용자가 어떤 IdP(identity provider)로 인증할지 선택할 수 있게 합니다.
-- 한 번 로그인한 후에는 IdP 선택 화면을 표시하지 않고 이전에 로그인한 IdP 유형으로 인증합니다.
+* 앱을 설치하고 처음 실행했을 때 타이틀 화면에서 게임 이용자가 어떤 IdP(identity provider)로 인증할지 선택할 수 있게 합니다.
+* 한 번 로그인한 후에는 IdP 선택 화면을 표시하지 않고 이전에 로그인한 IdP 유형으로 인증합니다.
 
 위에서 설명한 로직은 다음과 같은 순서로 구현할 수 있습니다.
 
@@ -33,18 +33,18 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 #### 2-2. 인증이 실패한 경우
 
 * 네트워크 오류
-  * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **Gamebase.LoginForLastLoggedInProvider()**를 다시 호출하거나, 잠시 후 다시 시도합니다.
+    * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **Gamebase.LoginForLastLoggedInProvider()**를 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 이용자
-  * 오류 코드가 **AUTH_BANNED_MEMBER(3005)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
-  * **Gamebase.GetBanInfo()**로 제재 정보를 확인하여 게임 이용자에게 게임을 플레이할 수 없는 이유를 알려주시기 바랍니다.
-  * Gamebase 초기화 시 **GamebaseConfiguration.enablePopup** 및 **GamebaseConfiguration.enableBanPopup **값을  true로 한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
+    * 오류 코드가 **AUTH_BANNED_MEMBER(3005)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
+    * **Gamebase.GetBanInfo()**로 제재 정보를 확인하여 게임 이용자에게 게임을 플레이할 수 없는 이유를 알려주시기 바랍니다.
+    * Gamebase 초기화 시 **GamebaseConfiguration.enablePopup** 및 **GamebaseConfiguration.enableBanPopup **값을  true로 한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외 오류
-  * 이전 로그인 유형으로 인증하기가 실패하였습니다. **'3. 지정된 IdP로 인증'**을 진행합니다.
+    * 이전 로그인 유형으로 인증하기가 실패하였습니다. **'3. 지정된 IdP로 인증'**을 진행합니다.
 
 #### 3. 지정된 IdP로 인증
 
 * IdP 유형을 직접 지정하여 인증을 시도합니다.
-  * 인증 가능한 유형은 **GamebaseAuthProvider** 클래스에 선언돼 있습니다.
+    * 인증 가능한 유형은 **GamebaseAuthProvider** 클래스에 선언돼 있습니다.
 * **Gamebase.Login(providerName, callback)** API를 호출합니다.
 
 #### 3-1. 인증에 성공한 경우
@@ -55,13 +55,13 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 #### 3-2. 인증에 실패한 경우
 
 * 네트워크 오류
-  * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증에 실패한 것이므로 **Gamebase.Login(providerName, callback)**을 다시 호출하거나, 잠시 후 다시 시도합니다.
+    * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증에 실패한 것이므로 **Gamebase.Login(providerName, callback)**을 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 이용자
-  * 오류 코드가 **AUTH_BANNED_MEMBER(3005)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
-  * **Gamebase.GetBanInfo()**로 제재 정보를 확인하여 게임 이용자에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
-  * Gamebase 초기화 시 **GamebaseConfiguration.enablePopup** 및 **GamebaseConfiguration.enableBanPopup **값을  **true**로 한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
+    * 오류 코드가 **AUTH_BANNED_MEMBER(3005)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
+    * **Gamebase.GetBanInfo()**로 제재 정보를 확인하여 게임 이용자에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
+    * Gamebase 초기화 시 **GamebaseConfiguration.enablePopup** 및 **GamebaseConfiguration.enableBanPopup **값을  **true**로 한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외의 오류
-  * 오류가 발생했다는 것을 게임 이용자에게 알리고, 게임 이용자가 인증 IdP 유형을 선택할 수 있는 상태(주로 타이틀 화면 또는 로그인 화면)로 되돌아갑니다.
+    * 오류가 발생했다는 것을 게임 이용자에게 알리고, 게임 이용자가 인증 IdP 유형을 선택할 수 있는 상태(주로 타이틀 화면 또는 로그인 화면)로 되돌아갑니다.
 
 ### Login as the Latest Login IdP
 
@@ -71,8 +71,9 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
 static void LoginForLastLoggedInProvider(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -129,11 +130,12 @@ Gamebase는 게스트 로그인을 지원합니다.
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static void Login(string providerName, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -165,8 +167,9 @@ public void Login()
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 
 ```cs
@@ -227,11 +230,12 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 UnityEditor에서는 Facebook로그인만 지원합니다.
 
@@ -263,7 +267,7 @@ public void Login(Dictionary<string, object> credentialInfo)
 
 #### Facebook
 * **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-  * Facebook의 경우, OAuth 인증 시도 시, Facebook에 요청할 정보의 종류를 설정해야 합니다.
+    * Facebook의 경우, OAuth 인증 시도 시, Facebook에 요청할 정보의 종류를 설정해야 합니다.
 
 Facebook 인증 추가 정보 입력 예제
 
@@ -273,7 +277,7 @@ Facebook 인증 추가 정보 입력 예제
 
 #### PAYCO
 * **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-  * PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
+    * PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
 
 PAYCO 추가 인증 정보 입력 예제
 
@@ -290,11 +294,12 @@ PAYCO 추가 인증 정보 입력 예제
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static void Logout(GamebaseCallback.ErrorDelegate callback)
@@ -333,11 +338,12 @@ public void Logout()
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static void Withdraw(GamebaseCallback.ErrorDelegate callback)
@@ -412,8 +418,8 @@ Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
     * 오류 코드가 **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**인 경우, 매핑하려는 IdP의 계정이 이미 다른 계정에 연동 중이라는 뜻입니다. 이미 연동된 계정을 해제하려면 해당 계정으로 로그인하여 **Gamebase.Withdraw()**를 호출하여 탈퇴하거나 **Gamebase.RemoveMapping()**를 호출하여 연동을 해제한 후 다시 매핑을 시도하세요.
 * 이미 동일한 IdP 계정에 연동돼 발생하는 오류
     * 에러 코드가 **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)** 인 경우, 매핑하려는 IdP와 같은 종류의 계정이 이미 연동중이라는 뜻입니다.
-      * Gamebase 매핑은 한 IdP당 하나의 계정만 연동 가능합니다. 예를 들어 PAYCO 계정에 이미 연동 중이라면 더 이상 PAYCO 계정을 추가할 수 없습니다.
-      * 동일 IdP의 다른 계정을 연동하기 위해서는 **Gamebase.RemoveMapping()**을 호출해 연동을 해제한 후 다시 매핑을 시도하세요.
+        * Gamebase 매핑은 한 IdP당 하나의 계정만 연동 가능합니다. 예를 들어 PAYCO 계정에 이미 연동 중이라면 더 이상 PAYCO 계정을 추가할 수 없습니다.
+        * 동일 IdP의 다른 계정을 연동하기 위해서는 **Gamebase.RemoveMapping()**을 호출해 연동을 해제한 후 다시 매핑을 시도하세요.
 * 그 외의 오류
     * 매핑 시도가 실패했습니다.
 
@@ -429,8 +435,9 @@ Mapping은 단순히 IdP 연동만 추가 해줍니다.
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
 static void AddMapping(string providerName, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -481,8 +488,9 @@ public void AddMapping(string providerName)
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
 static void AddMapping(Dictionary<string, object> credentialInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -517,8 +525,9 @@ public void AddMapping(Dictionary<string, object> credentialInfo)
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
 static void RemoveMapping(string providerName, GamebaseCallback.ErrorDelegate callback)
@@ -549,8 +558,9 @@ public void RemoveMapping(string providerName)
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
 static List<string> GetAuthMappingList()
@@ -576,11 +586,12 @@ Gamebase를 통하여 인증절차를 진행 후, 앱을 제작할 때 필요한
 Gamebase에서 발급한 UserID를 가져올 수 있습니다.
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static string GetUserID()
@@ -600,11 +611,12 @@ Gamebase에서 발급한 액세스 토큰을 가져올 수 있습니다.
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static string GetAccessToken()
@@ -624,8 +636,9 @@ Gamebase에서 마지막 로그인에 성공한 ProviderName을 가져올 수 �
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
 static string GetLastLoggedInProvider()
@@ -649,11 +662,12 @@ public void GetLastLoggedInProvider()
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static string GetAuthProviderUserID()
@@ -674,11 +688,12 @@ public void GetAuthProviderUserID(string providerName)
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static string GetAuthProviderAccessToken(string providerName)
@@ -698,11 +713,12 @@ public void GetAuthProviderAccessToken(string providerName)
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static GamebaseResponse.Auth.AuthProviderProfile GetAuthProviderProfile(string providerName)
@@ -723,11 +739,12 @@ Gamebase Console에 제재된 게임 이용자로 등록될 경우,
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static GamebaseResponse.Auth.BanInfo GetBanInfo()
@@ -769,7 +786,7 @@ public void GetBanInfo()
 | AUTH_UNKNOWN_ERROR | 3999 | 알수 없는 에러입니다. (정의 되지 않은 에러입니다.) |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-  - [오류 코드](./error-code/#client-sdk)
+    * [오류 코드](./error-code/#client-sdk)
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 

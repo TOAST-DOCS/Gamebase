@@ -17,8 +17,9 @@ WebView를 표시합니다.<br/>
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
 static void ShowWebView(string url, GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
@@ -81,8 +82,9 @@ Gamebase에서 지정해 놓은 Scheme 입니다.
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
 static void CloseWebview()
@@ -103,11 +105,12 @@ public void CloseWebview()
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static void OpenWebBrowser(string url)
@@ -129,8 +132,9 @@ public void OpenWebBrowser(string url)
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
 static void ShowAlert(string title, string message)
@@ -167,8 +171,9 @@ public void ShowAlertDialog()
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
 static void ShowToast(string message, int duration)
@@ -200,4 +205,4 @@ public void ShowToast(string message, GamebaseUIToastType type)
 | UI\_UNKNOWN\_ERROR | 6999       | 알수 없는 오류입니다(정의되지 않은 오류입니다). |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-  - [오류 코드](./error-code/#client-sdk)
+    * [오류 코드](./error-code/#client-sdk)

@@ -13,12 +13,12 @@ Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 * iOS
 * Android
 * Standalone
-	* Windows7 이상
-	* MAC OS는 지원하지 않습니다.
+    * Windows7 이상
+* MAC OS는 지원하지 않습니다.
 * WebGL
-	* [WebGL Browser Compatibility](https://docs.unity3d.com/Manual/webgl-browsercompatibility.html)
+    * [WebGL Browser Compatibility](https://docs.unity3d.com/Manual/webgl-browsercompatibility.html)
 * Editor
-	* 일부 기능만 지원합니다.
+    * 일부 기능만 지원합니다.
 
 선택한 플랫폼에서 지원하지 않는 Gamebase API를 호출할 때는 아래와 같은 오류가 콜백으로 반환되며 콜백이 없는 경우에는 Warning 로그가 출력됩니다.
 
@@ -33,11 +33,12 @@ API별 지원하는 플랫폼은 아래와 같은 아이콘으로 구분합니�
 
 **API**
 
-<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ## Installation
 
@@ -48,14 +49,14 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
 
 ### Specification of Setting Tool
 1. SDK 다운로드
-	- 최신 버전 다운로드를 지원합니다.
+    * 최신 버전 다운로드를 지원합니다.
 2. SDK 설치
-	- 다운로드 된 SDK 설치를 지원합니다.
+    * 다운로드 된 SDK 설치를 지원합니다.
 3. SDK 삭제
-	- 설치 된 SDK 삭제를 지원합니다.
+    * 설치 된 SDK 삭제를 지원합니다.
 4. SDK 업데이트
-	- 업데이트 기능은 지원하지 않습니다.
-	- 삭제 후 설치로 업데이트 기능을 대신 합니다.
+    * 업데이트 기능은 지원하지 않습니다.
+    * 삭제 후 설치로 업데이트 기능을 대신 합니다.
 
 ### Using the Setting Tool
 
@@ -64,17 +65,17 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
 2. GamebaseUnitySettingTool_{version}.unitypackage를 임포트합니다.
 3. Menu > Gamebase > SDKSettings > Setting Tool을 실행합니다.
 4. [Broswe] 버튼 클릭해서 SDK 다운로드 위치를 선택합니다.
-	- 기본 경로 : projcet/Gamebase/
-	- Setting Tool에서 접근 가능한 위치를 선택하셔야 합니다.
+    * 기본 경로 : projcet/Gamebase/
+    * Setting Tool에서 접근 가능한 위치를 선택하셔야 합니다.
 5. [Download SDK] 버튼 클릭해서 SDK를 다운로드 합니다.
 6. 원하는 플랫폼을 선택합니다.
-	- Unity Adapter
-	- Android
-	- iOS
+    * Unity Adapter
+    * Android
+    * iOS
 7. 각 플랫폼별 사용할 모듈을 선택합니다.
-	- Authentication은 Google 과 같은 ID Provider(이하 IDP)와의 연동을 지원합니다.
-	- Push는 FCM(Firebase), Tencent Push 서비스를 지원합니다.
-	- Pruchase는 TOAST 결제 서비스인 IAP(In-App Purchase)를 사용하여 결제를 지원합니다.
+    * Authentication은 Google 과 같은 ID Provider(이하 IDP)와의 연동을 지원합니다.
+    * Push는 FCM(Firebase), Tencent Push 서비스를 지원합니다.
+    * Pruchase는 TOAST 결제 서비스인 IAP(In-App Purchase)를 사용하여 결제를 지원합니다.
 8. [Settings] 버튼 클릭해서 SDK를 설치합니다.
 
 #### SDK 삭제

@@ -11,9 +11,9 @@
 #### Download
 
 * Firebase 푸시를 사용하는 경우
-  * 다운로드한 SDK의 **gamebase-adapter-push-fcm** 폴더를 프로젝트에 추가합니다.
+    * 다운로드한 SDK의 **gamebase-adapter-push-fcm** 폴더를 프로젝트에 추가합니다.
 * Tencent 푸시를 사용하는 경우
-  * 다운로드한 SDK의 **gamebase-adapter-push-tencent** 폴더를 프로젝트에 추가합니다.
+    * 다운로드한 SDK의 **gamebase-adapter-push-tencent** 폴더를 프로젝트에 추가합니다.
 
 > <font color="red">[중요]</font><br/>
 >
@@ -94,8 +94,8 @@
     * gradle 설정에 **apply plugin: 'com.google.gms.google-services'**를 추가합니다.
     * 위 설정으로 Google Services Gradle Plugin이 적용되어 google-services.json 파일을 res/google-services/{build_type}/values/values.xml라는 이름의 string resource로 변경하여 사용하게 됩니다.
 * Unity 빌드인 경우
-  * Google Services Gradle Plugin을 사용할 수 없습니다. 직접 string resource를 만들어 프로젝트에 포함하려면 [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file) 설명을 참고합니다. 
-    * 다음은 string resource 파일의 예시입니다.
+    * Google Services Gradle Plugin을 사용할 수 없습니다. 직접 string resource를 만들어 프로젝트에 포함하려면 [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file) 설명을 참고합니다. 
+        * 다음은 string resource 파일의 예시입니다.
 
 ```xml
 <!-- res/values/google-services-json.xml -->
@@ -114,10 +114,10 @@
 
 * Gamebase 초기화 시 configuration의 **setPushType()**을 호출합니다.
 * Firebase 푸시를 사용하는 경우
-  * 추가로 **setFCMSenderId()**를 호출합니다.
+    * 추가로 **setFCMSenderId()**를 호출합니다.
 * Tencent 푸시를 사용하는 경우
-  * 추가로 **setTencentAccessId()**를 호출합니다.
-  * 추가로 **setTencentAccessKey()**를 호출합니다.
+    * 추가로 **setTencentAccessId()**를 호출합니다.
+    * 추가로 **setTencentAccessKey()**를 호출합니다.
 
 ```java
 private static final String PUSH_FCM_SENDER_ID = "...";
@@ -201,14 +201,14 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 | PUSH_UNKNOWN_ERROR             | 5999       | 정의되지 않은 푸시 오류입니다.<br>전체 로그를 [고객 센터](https://alpha.toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
 * 전체 오류 코드는 다음을 참고하시기 바랍니다.
-  * [오류 코드](./error-code/#client-sdk)
+    * [오류 코드](./error-code/#client-sdk)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
 * 이 오류는 TOAST Push 라이브러리에서 발생한 오류입니다.
 * exception.getDetailCode()로 TOAST Push 오류 코드를 확인해야 합니다.
 * TOAST Push 오류 코드는 다음 문서를 참고하시기 바랍니다.
-  * [Notification > Push > 오류 코드](http://alpha-docs.cloud.toast.com/ko/Notification/Push/ko/error-code/)
+    * [Notification > Push > 오류 코드](http://alpha-docs.cloud.toast.com/ko/Notification/Push/ko/error-code/)
 
 
 
