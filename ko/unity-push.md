@@ -13,15 +13,14 @@ Android나 iOS에서 푸시를 설정하는 방법은 다음 문서를 참고하
 
 ### Register Push
 
-다음 API를 호출하여, TOAST Push에 해당 사용자를 등록합니다.<br/>
+다음 API를 호출하여, TOAST Push에 해당 사용자를 등록합니다.
 푸시 동의 여부(enablePush), 광고성 푸시 동의 여부(enableAdPush), 야간 광고성 푸시 동의 여부(enableAdNightPush) 값을 사용자로부터 받아, 다음의 API 호출을 통해 등록을 완료합니다.
 
 
 **API**
 
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
 
 ```cs
 public static void RegisterPush(GamebaseRequest.Push.PushConfiguration pushConfiguration, GamebaseCallback.ErrorDelegate callback)
@@ -55,14 +54,13 @@ public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNig
 
 ### Request Push Settings
 
-사용자의 푸시 설정을 조회하기 위해, 다음 API를 이용합니다. <br/>
+사용자의 푸시 설정을 조회하기 위해, 다음 API를 이용합니다.
 콜백으로 오는 PushConfiguration 값으로 사용자 설정값을 얻을 수 있습니다.
 
 **API**
 
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
 
 ```cs
 public static void QueryPush(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Push.PushConfiguration> callback)

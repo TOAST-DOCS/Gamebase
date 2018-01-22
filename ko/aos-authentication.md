@@ -417,13 +417,13 @@ private static void onWithdraw(final Activity activity) {
 계정 연동 예시는 다음과 같습니다.<br/><br/>
 
 * Gamebase 사용자 ID: 123bcabca
-  * Google ID: aa
-  * Facebook ID: bb
-  * Apple Game Center ID: cc
-  * Payco ID: dd
+    * Google ID: aa
+    * Facebook ID: bb
+    * Apple Game Center ID: cc
+    * Payco ID: dd
 * Gamebase 사용자 ID : 456abcabc
-  * Google ID: ee
-  * Google ID: ff **-> 이미 Google ee 계정이 연동 중이므로 Google 계정을 추가로 연동할 수 없습니다.**
+    * Google ID: ee
+    * Google ID: ff **-> 이미 Google ee 계정이 연동 중이므로 Google 계정을 추가로 연동할 수 없습니다.**
 
 매핑 API에는 매핑 추가와 매핑 해제 API가 있습니다.
 
@@ -448,16 +448,15 @@ private static void onWithdraw(final Activity activity) {
 #### 2-2. 매핑이 실패한 경우
 
 * 네트워크 오류
-  * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **Gamebase.addMapping()**을 다시 호출하거나, 잠시 대기했다가 재시도 합니다.
+    * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **Gamebase.addMapping()**을 다시 호출하거나, 잠시 대기했다가 재시도 합니다.
 * 이미 다른 계정에 연동 중일 때 발생하는 오류
-  * 오류 코드가 **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**인 경우, 매핑하려는 IdP의 계정이 이미 다른 계정에 연동 중이라는 뜻입니다.
-    이미 연동된 계정을 해제하려면 해당 계정으로 로그인하여 **Gamebase.withdraw()**를 호출하여 탈퇴하거나 **Gamebase.removeMapping()**를 호출하여 연동을 해제한 후 다시 매핑을 시도하세요.
+    * 오류 코드가 **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**인 경우, 매핑하려는 IdP의 계정이 이미 다른 계정에 연동 중이라는 뜻입니다. 이미 연동된 계정을 해제하려면 해당 계정으로 로그인하여 **Gamebase.withdraw()**를 호출하여 탈퇴하거나 **Gamebase.removeMapping()**를 호출하여 연동을 해제한 후 다시 매핑을 시도하세요.
 * 이미 동일한 IdP 계정에 연동돼 발생하는 오류
-  * 에러 코드가 **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)** 인 경우, 매핑하려는 IdP와 같은 종류의 계정이 이미 연동중이라는 뜻입니다.
-    * Gamebase 매핑은 한 IdP당 하나의 계정만 연동 가능합니다. 예를 들어 PAYCO 계정에 이미 연동 중이라면 더 이상 PAYCO 계정을 추가할 수 없습니다.
-    * 동일 IdP의 다른 계정을 연동하기 위해서는 **Gamebase.removeMapping()**을 호출해 연동을 해제한 후 다시 매핑을 시도하세요.
+    * 에러 코드가 **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)** 인 경우, 매핑하려는 IdP와 같은 종류의 계정이 이미 연동중이라는 뜻입니다.
+      * Gamebase 매핑은 한 IdP당 하나의 계정만 연동 가능합니다. 예를 들어 PAYCO 계정에 이미 연동 중이라면 더 이상 PAYCO 계정을 추가할 수 없습니다.
+      * 동일 IdP의 다른 계정을 연동하기 위해서는 **Gamebase.removeMapping()**을 호출해 연동을 해제한 후 다시 매핑을 시도하세요.
 * 그 외의 오류
-  * 매핑 시도가 실패했습니다.
+    * 매핑 시도가 실패했습니다.
 
 ### Add Mapping
 

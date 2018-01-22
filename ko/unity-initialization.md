@@ -108,12 +108,13 @@ Gamebase Unity SDK를 초기화하는 방법은 다음과 같습니다.
 > 생성한 게임 오브젝트를 삭제하면 Android, iOS API 호출 후 콜백을 받을 수 없으므로 주의하시기 바랍니다. <br/>
 > 실수로 삭제된 경우 "Do not destroy this gameObject in order to receive callback." 오류가 나타납니다.
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
-![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
 
 ```cs
 static void Initialize(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Launching.LaunchingInfo> callback)

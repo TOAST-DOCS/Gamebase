@@ -15,9 +15,10 @@ WebView를 표시합니다.<br/>
 * schemeList : 사용자가 받고 싶은 커스텀 Scheme 목록을 지정합니다.
 * schemeEvent : schemeList로 지정한 커스텀 Scheme을 포함하는 url을 콜백으로 알려 줍니다.
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
 
 ```cs
 static void ShowWebView(string url, GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
@@ -78,10 +79,10 @@ Gamebase에서 지정해 놓은 Scheme 입니다.
 
 다음 API를 이용하여 보여지고 있는 WebView를 닫을 수 있습니다.
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+**API**
 
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
 
 ```cs
 static void CloseWebview()
@@ -100,13 +101,13 @@ public void CloseWebview()
 
 다음 API를 통하여 외부 브라우져를 열 수 있습니다. 파라미터로 전송되는 url은 유효한 값이어야 합니다.
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
-![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+**API**
 
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
 
 ```cs
 static void OpenWebBrowser(string url)
@@ -123,12 +124,13 @@ public void OpenWebBrowser(string url)
 
 ## Alert
 
-시스템 알림을 표시할 수 있습니다.<br/>
+시스템 알림을 표시할 수 있습니다.
 시스템 알림에 버튼이나 콜백을 등록할 수도 있습니다. 
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
 
 ```cs
 static void ShowAlert(string title, string message)
@@ -163,9 +165,10 @@ public void ShowAlertDialog()
 
 다음 API를 사용하여 쉽게 메시지를 표시할 수 있습니다.
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
 
 ```cs
 static void ShowToast(string message, int duration)

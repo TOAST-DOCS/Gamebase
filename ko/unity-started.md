@@ -31,12 +31,13 @@ Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 
 API별 지원하는 플랫폼은 아래와 같은 아이콘으로 구분합니다.
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
-![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
 
 ## Installation
 
@@ -48,12 +49,10 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
 ### Specification of Setting Tool
 1. SDK 다운로드
 	- 최신 버전 다운로드를 지원합니다.
-
 2. SDK 설치
 	- 다운로드 된 SDK 설치를 지원합니다.
 3. SDK 삭제
 	- 설치 된 SDK 삭제를 지원합니다.
-
 4. SDK 업데이트
 	- 업데이트 기능은 지원하지 않습니다.
 	- 삭제 후 설치로 업데이트 기능을 대신 합니다.
@@ -108,7 +107,7 @@ Lifecycle 관리를 위해 "com.toast.gamebase.activity.GamebaseMainActivity"를
 > <font color="red">[주의]</font>
 >
 > AndroidPlugin 개발에도 GamebaseMainActivity를 상속받아 만들어야 합니다. <br/>
-> GamebaseMainActivity는 GamebaseAndroidPlugin.jar에 포함되어 있습니다. <br/><br/>
+> GamebaseMainActivity는 GamebaseAndroidPlugin.jar에 포함되어 있습니다. <br/>
 > launchMode는 singleTask로 해야 합니다.(Unity 기본 Activity도 singleTask로 고정됩니다.) 그렇지 않을 경우 앱을 처음 시작할 때 크래시가 발생할 수 있습니다.
 
 ```xml

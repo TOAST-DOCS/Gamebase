@@ -65,13 +65,14 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 
 ### Login as the Latest Login IdP
 
-가장 최근에 로그인한 IdP로 로그인을 시도합니다.<br/>
-해당 로그인에 대한 토큰이 만료되었거나, 토큰에 대한 검증 등에 실패하면 실패를 반환합니다.<br/>
+가장 최근에 로그인한 IdP로 로그인을 시도합니다.
+해당 로그인에 대한 토큰이 만료되었거나, 토큰에 대한 검증 등에 실패하면 실패를 반환합니다.
 이때는 [해당 IdP에 대한 로그인](#login-with-idp)을 구현해야합니다.
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
 
 ```cs
 static void LoginForLastLoggedInProvider(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -122,16 +123,17 @@ public void Login(string providerName)
 
 ### Login with GUEST
 
-Gamebase는 게스트 로그인을 지원합니다.<br/>
-디바이스의 유일한 키를 생성하여 Gamebase에 로그인을 시도합니다.<br/>
+Gamebase는 게스트 로그인을 지원합니다.
+디바이스의 유일한 키를 생성하여 Gamebase에 로그인을 시도합니다.
 게스트 로그인은 디바이스 키는 초기화될 수 있고 디바이스 키의 초기화 시에 계정이 삭제될 수 있으므로 IdP를 활용한 로그인 방식을 권장합니다.
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
-![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
 
 ```cs
 static void Login(string providerName, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -161,9 +163,11 @@ public void Login()
 
 다음은 특정 IdP로 로그인할 수 있게 하는 예시 코드입니다
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+
 
 ```cs
 static void Login(string providerName, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -221,12 +225,13 @@ public void Login(string providerName, Dictionary<string, object> additionalInfo
 
 IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급받은 액세스 토큰 등을 이용하여, Gamebase에 로그인할 수 있는 인터페이스입니다.
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
-![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
 
 UnityEditor에서는 Facebook로그인만 지원합니다.
 
@@ -283,12 +288,13 @@ PAYCO 추가 인증 정보 입력 예제
 
 다음은 로그아웃 버튼을 클릭하면 로그아웃이 되는 예시 코드입니다.
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
-![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
 
 ```cs
 static void Logout(GamebaseCallback.ErrorDelegate callback)
@@ -316,7 +322,7 @@ public void Logout()
 
 
 ## Withdraw
-로그인 상태에서 탈퇴를 시도합니다.<br/><br/>
+로그인 상태에서 탈퇴를 시도합니다.
 
 * 탈퇴에 성공하면, 로그인했던 IdP와 연동되어 있던 게임 이용자 데이터는 삭제됩니다.
 * 해당 IdP로 다시 로그인 가능하고 새로운 게임 이용자 데이터를 생성합니다.
@@ -325,13 +331,13 @@ public void Logout()
 
 다음은 탈퇴 버튼을 클릭하면 탈퇴가 되는 예시 코드입니다.
 
-**API**<br>
+**API**
 
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
-![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
 
 ```cs
 static void Withdraw(GamebaseCallback.ErrorDelegate callback)
@@ -358,14 +364,16 @@ public void Withdraw()
 
 ## Mapping
 
-많은 게임들이 하나의 계정에 여러 IdP를 연동(Mapping)할 수 있도록 하고 있습니다.<br/>
-Gamebase의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 IdP의 계정을 연동/해제시킬 수 있습니다.<br/><br/>
+매핑은 기존에 로그인된 계정에 다른 IdP의 계정을 연동하거나 해제시키는 기능입니다.
 
-이렇게 하나의 Gamebase 사용자 ID에 다양한 IdP 계정을 연동할 수 있습니다.<br/>
-즉, 연동 중인 IdP 계정으로 로그인을 시도 한다면 항상 동일한 사용자 ID로 로그인됩니다.<br/><br/>
+많은 게임들이 하나의 계정에 여러 IdP를 연동(Mapping)할 수 있도록 하고 있습니다.
+Gamebase의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 IdP의 계정을 연동/해제시킬 수 있습니다.<br/>
 
-주의할 점은, IdP 마다 하나의 계정씩만 연동이 가능합니다.<br/>
-예시는 다음과 같습니다.<br/><br/>
+이렇게 하나의 Gamebase 사용자 ID에 다양한 IdP 계정을 연동할 수 있습니다.
+즉, 연동 중인 IdP 계정으로 로그인을 시도 한다면 항상 동일한 사용자 ID로 로그인됩니다.<br/>
+
+주의할 점은, IdP 마다 하나의 계정씩만 연동이 가능합니다.
+예시는 다음과 같습니다.<br/>
 
 * Gamebase 사용자 ID : 123bcabca
 	* Google ID : aa
@@ -378,18 +386,51 @@ Gamebase의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 
 
 Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
 
+### Add Mapping Flow
+
+매핑은 다음 순서로 구현할 수 있습니다.
+
+#### 1. 로그인
+매핑은 현재 계정에 IdP 계정 연동을 추가하는 것이므로 우선 로그인이 돼 있어야 합니다.
+먼저 로그인 API를 호출해 로그인합니다.
+
+#### 2. 매핑
+
+**Gamebase.AddMapping()**을 호출해 매핑을 시도합니다.
+
+#### 2-1. 매핑이 성공한 경우
+
+* 축하합니다! 현재 계정과 연동중인 IdP 계정이 추가되었습니다.
+* 매핑에 성공해도 '현재 로그인 중인 IdP'가 바뀌지는 않습니다. <br>즉, Google 계정으로 로그인한 후, Facebook 계정 매핑 시도가 성공했다고 해서 '현재 로그인 중인 IdP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다.
+* 매핑은 단순히 IdP 연동만 추가해 줍니다.
+
+#### 2-2. 매핑이 실패한 경우
+
+* 네트워크 오류
+    * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **Gamebase.AddMapping()**을 다시 호출하거나, 잠시 대기했다가 재시도 합니다.
+* 이미 다른 계정에 연동 중일 때 발생하는 오류
+    * 오류 코드가 **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**인 경우, 매핑하려는 IdP의 계정이 이미 다른 계정에 연동 중이라는 뜻입니다. 이미 연동된 계정을 해제하려면 해당 계정으로 로그인하여 **Gamebase.Withdraw()**를 호출하여 탈퇴하거나 **Gamebase.RemoveMapping()**를 호출하여 연동을 해제한 후 다시 매핑을 시도하세요.
+* 이미 동일한 IdP 계정에 연동돼 발생하는 오류
+    * 에러 코드가 **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)** 인 경우, 매핑하려는 IdP와 같은 종류의 계정이 이미 연동중이라는 뜻입니다.
+      * Gamebase 매핑은 한 IdP당 하나의 계정만 연동 가능합니다. 예를 들어 PAYCO 계정에 이미 연동 중이라면 더 이상 PAYCO 계정을 추가할 수 없습니다.
+      * 동일 IdP의 다른 계정을 연동하기 위해서는 **Gamebase.RemoveMapping()**을 호출해 연동을 해제한 후 다시 매핑을 시도하세요.
+* 그 외의 오류
+    * 매핑 시도가 실패했습니다.
+
+
 ### Add Mapping
 
-특정 IdP에 로그인 된 상태에서 다른 IdP로 Mapping을 시도합니다.<br/>
-Mapping을 하려는 IdP의 계정이 이미 다른 계정에 연동이 되어있다면<br/>
-**AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 오류를 반환합니다.<br/><br/>
+특정 IdP에 로그인 된 상태에서 다른 IdP로 Mapping을 시도합니다.
+Mapping을 하려는 IdP의 계정이 이미 다른 계정에 연동이 되어있다면
+**AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 오류를 반환합니다.<br/>
 
-Mapping이 성공 하더라도 '현재 로그인 중인 IdP'가 바뀌지는 않습니다. 즉, Google 계정으로 로그인 한 후, Facebook 계정 Mapping 시도가 성공했다고 해서 '현재 로그인 중인 IdP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다.<br/>
-Mapping은 단순히 IdP 연동만 추가 해줍니다.<br/>
+Mapping이 성공 하더라도 '현재 로그인 중인 IdP'가 바뀌지는 않습니다. 즉, Google 계정으로 로그인 한 후, Facebook 계정 Mapping 시도가 성공했다고 해서 '현재 로그인 중인 IdP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다.
+Mapping은 단순히 IdP 연동만 추가 해줍니다.
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
 
 ```cs
 static void AddMapping(string providerName, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -432,16 +473,16 @@ public void AddMapping(string providerName)
 > 게임 내에서 외부 서비스(Facebook 등)의 고유기능의 사용이 필요할 때 사용될 수 있습니다.
 >
 
-<br/>
 
 > <font color="red">[주의]</font><br/>
 >
 > 외부 SDK에서 지원요구하는 개발사항은 외부SDK의 API를 사용하여 구현해야하며, Gamebase에서는 지원하지 않습니다.
 >
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
 
 ```cs
 static void AddMapping(Dictionary<string, object> credentialInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -471,12 +512,13 @@ public void AddMapping(Dictionary<string, object> credentialInfo)
 
 ### Remove Mapping
 
-특정 IdP에 대한 연동을 해제합니다. 만약, 해제하고자 하는 IdP가 유일한 IdP라면, 실패를 반환합니다.<br/>
+특정 IdP에 대한 연동을 해제합니다. 만약, 해제하고자 하는 IdP가 유일한 IdP라면, 실패를 반환합니다.
 연동 해제후에는 Gamebase 내부에서, 해당 IdP에 대한 로그아웃처리를 해줍니다.
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
 
 ```cs
 static void RemoveMapping(string providerName, GamebaseCallback.ErrorDelegate callback)
@@ -505,9 +547,10 @@ public void RemoveMapping(string providerName)
 
 사용자 ID에 연동되어 있는 IdP 목록을 반환합니다.<br/>
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
 
 ```cs
 static List<string> GetAuthMappingList()
@@ -531,12 +574,13 @@ Gamebase를 통하여 인증절차를 진행 후, 앱을 제작할 때 필요한
 #### UserID
 
 Gamebase에서 발급한 UserID를 가져올 수 있습니다.
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
-![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
 
 ```cs
 static string GetUserID()
@@ -554,12 +598,13 @@ public void GetUserID()
 
 Gamebase에서 발급한 액세스 토큰을 가져올 수 있습니다.
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
-![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
 
 ```cs
 static string GetAccessToken()
@@ -577,9 +622,10 @@ public void GetAccessToken()
 
 Gamebase에서 마지막 로그인에 성공한 ProviderName을 가져올 수 있습니다.
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
 
 ```cs
 static string GetLastLoggedInProvider()
@@ -601,12 +647,13 @@ public void GetLastLoggedInProvider()
 
 외부 인증 SDK에서 사용자 ID를 가져올 수 있습니다.
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
-![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
 
 ```cs
 static string GetAuthProviderUserID()
@@ -625,12 +672,13 @@ public void GetAuthProviderUserID(string providerName)
 
 외부 인증 SDK에서 액세스 토큰을 가져올 수 있습니다.
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
-![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
 
 ```cs
 static string GetAuthProviderAccessToken(string providerName)
@@ -648,12 +696,13 @@ public void GetAuthProviderAccessToken(string providerName)
 
 외부 인증 SDK에서 Profile을 가져올 수 있습니다.
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
-![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
 
 ```cs
 static GamebaseResponse.Auth.AuthProviderProfile GetAuthProviderProfile(string providerName)
@@ -672,12 +721,13 @@ public void GetAuthProviderProfile(string providerName)
 Gamebase Console에 제재된 게임 이용자로 등록될 경우,
 로그인 시도 시, 이용 제한 정보 코드(**AUTH_BANNED_MEMBER(3005)**)가 표시될 수 있으며, 아래 API를 이용하여 제재 정보를 확인할 수 있습니다.
 
-**API**<br>
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-![STANDALONE](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-standalone_1.2.0.png)
-![WEBGL](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-webgl_1.2.0.png)
-![EDITOR](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-editor_1.2.0.png)
+**API**
+
+<span style="color:#1D76DB; font-size: 20pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 20pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 20pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 20pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 20pt">■</span> UNITY_EDITOR
 
 ```cs
 static GamebaseResponse.Auth.BanInfo GetBanInfo()
