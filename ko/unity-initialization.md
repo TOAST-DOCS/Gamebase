@@ -45,7 +45,7 @@ Gamebase 디버그를 위한 설정입니다.
 * false: Warning, Error 로그가 출력됩니다.
 * 기본값: false
 
-Gamebase 문의가 필요할 경우에는 해당 설정을 true 로 변경하시고 로그를 [고객 센터](https://alpha.toast.com/support/inquiry)로 전달해 주셔야 빠른 지원을 받을 수 있습니다.
+Gamebase 문의가 필요할 경우에는 해당 설정을 true 로 변경하시고 로그를 [고객 센터](https://toast.com/support/inquiry)로 전달해 주셔야 빠른 지원을 받을 수 있습니다.
 
 > <font color="red">[주의]</font><br/>
 >

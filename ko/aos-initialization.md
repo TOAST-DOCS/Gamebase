@@ -31,7 +31,7 @@ Gamebase를 초기화할 때, GamebaseConfiguration.Builder 객체로 Gamebase �
 | enablePopup(boolean enable)              | O                          | **[UI]**<br/>시스템 점검, 이용 제재(ban) 등 게임 이용자가 게임을 플레이할 수 없는 상황에서 팝업 등으로 사유를 표시해야 할 때가 있습니다.<br/>**true**로 설정하면 Gamebase가 해당 상황에서 정보 팝업을 자동으로 표시합니다.<br/>기본값은 **false**입니다.<br/>**false** 상태에서는 론칭 결과를 통해 정보를 획득한 후 자체 UI를 구현해 게임을 플레이할 수 없는 이유를 표시해 주시기 바랍니다. |
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>론칭 결과에 따라 로그인할 수 없는 상태에서(주로 점검 상태) Gamebase가 자동으로 팝업을 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup(true)** 상태에서만 동작합니다.<br/>기본값은 **true**입니다. |
 | enableBanPopup(boolean enable)           | O                          | **[UI]**<br/>게임 이용자가 이용 제재를 당한 상태일 때 Gamebase가 자동으로 제재 사유를 팝업으로 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup(true)** 상태에서만 동작합니다.<br/>기본값은 **true**입니다. |
-| setStoreCode(String storeCode)           | O                          | **[Purchase]**<br/>TOAST 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 사용한다면 어떤 스토어를 사용할지 설정해야 합니다.<br/>파라미터는 [IAP 문서](http://alpha-docs.cloud.toast.com/ko/Mobile%20Service/IAP/ko/Overview/)를 참고하세요. |
+| setStoreCode(String storeCode)           | O                          | **[Purchase]**<br/>TOAST 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 사용한다면 어떤 스토어를 사용할지 설정해야 합니다.<br/>파라미터는 [IAP 문서](/ko/Mobile%20Service/IAP/ko/Overview/)를 참고하세요. |
 | setFCMSenderId(String senderId)          | O                          | **[Push]**<br/>Google Notification(FCM, GCM)을 통해 푸시 메시지를 전송하는 경우 발신자 ID(sender ID)를 설정해야 합니다. |
 | setTencentAccessKey(String accessKey)<br/>setTencentAccessId(String accessId) | O                          | **[Push]**<br/>Tencent 푸시 모듈을 사용하는 경우, 액세스 키 및 액세스 ID 값을 설정해야 합니다. |
 

@@ -44,7 +44,7 @@ Supported Platforms
 
 Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있습니다.
 
-* [Download Gamebase Client SDK](http://alpha-docs.cloud.toast.com/ko/download/#game-gamebase)
+* [Download Gamebase Client SDK](/ko/download/#game-gamebase)
 
 
 ### Specification of Setting Tool

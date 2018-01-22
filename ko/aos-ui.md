@@ -21,7 +21,7 @@ WebView를 표시합니다.<br/>
 
 
 ```java
-Gamebase.WebView.showWebView(activity, "http://cloud.toast.com",
+Gamebase.WebView.showWebView(activity, "http://www.toast.com",
     new GamebaseWebViewConfiguration.Builder().build(),
     new GamebaseCallback() {
         @Override
@@ -57,7 +57,7 @@ GamebaseWebViewConfiguration configuration
             .setBackButtonImageResource(R.id.back_button)       // 백 버튼 이미지 설정
             .setCloseButtonImageResource(R.id.close_button)     // 닫기 버튼 이미지 설정
             .build();
-GamebaseWebView.showWebView(MainActivity.this, "http://cloud.toast.com", configuration);
+GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configuration);
 ```
 | Method                                   | Values                              | Description    |
 | ---------------------------------------- | ----------------------------------- | -------------- |
@@ -87,7 +87,7 @@ Gamebase.WebView.closeWebView(activity);
 다음 API를 통하여 외부 브라우져를 열 수 있습니다. 파라미터로 전송되는 URL은 유효한 값이어야 합니다.
 
 ```java
-Gamebase.WebView.openWebBrowser(activity, "http://cloud.toast.com");
+Gamebase.WebView.openWebBrowser(activity, "http://www.toast.com");
 ```
 
 

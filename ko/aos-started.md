@@ -18,7 +18,7 @@ Gamebase Android SDK를 사용하기 전에 TOAST Console에서 앱 아이디를
 
 #### Download
 
-* [DOWNLOAD Gamebase Android SDK](http://alpha-docs.cloud.toast.com/ko/download/)
+* [DOWNLOAD Gamebase Android SDK](/ko/download/)
 * 다운로드 받은 SDK에서 다음 폴더안의 aar 파일을 프로젝트에 추가합니다.
     * **gamebase-sdk/**
 * 인증 모듈 추가
