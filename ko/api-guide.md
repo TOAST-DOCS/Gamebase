@@ -13,14 +13,16 @@ API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주�
 > https://api-gamebase.cloud.toast.com
 <br>
 
-![image alt](./image/Server_Developers_Guide/pre_server_address_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
 
+<br>
 
 #### AppId
 
 앱 ID는 TOAST 프로젝트 ID로 앱 메뉴 화면에서 확인할 수 있습니다.
-![image alt](./image/Server_Developers_Guide/pre_appId_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
+<br>
 
 #### SecretKey
 
@@ -29,7 +31,9 @@ API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주�
 > 비밀 키가 외부에 노출되어 잘못된 호출이 발생한다면 **생성** 버튼을 클릭하여 새로운 비밀 키를 만든 후, 새 비밀 키를 사용하면 됩니다.
 <br>
 
-![image alt](./image/Server_Developers_Guide/pre_secret_key_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
+
+<br>
 
 #### TransactionId
 
@@ -51,6 +55,7 @@ API 호출 시 HTTP Header에 다음 항목들을 설정해야 합니다.
 | X-Secret-Key | mandatory |SecretKey 설명 참고 |
 | X-TCGB-Transaction-Id | optional | TransactionId 설명 참고 |
 
+<br>
 
 #### API Response
 
@@ -293,6 +298,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [오류 코드](./error-code/#server)
 
+<br>
+
 #### Get members
 
 다수의 회원 정보를 간략히 조회합니다.
@@ -353,6 +360,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 **[Error Code]**
 
 [오류 코드](./error-code/#server)
+
+<br>
 
 #### Get IdP infomation
 
@@ -415,6 +424,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 **[Error Code]**
 
 [오류 코드](./error-code/#server)
+
+<br>
 
 #### Get userId infomation with auth key
 
@@ -570,7 +581,7 @@ Gamebase는 TOAST IAP 서비스의 서버 API에 대해 **Wrapping** 기능을 �
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
 
 <br>
-[Mobile Service > IAP > API 가이드](./ko/Mobile%20Service/IAP/ko/api-guide/)
+[Mobile Service > IAP > API 가이드](./ko/Common/IAP/ko/api-guide/)
 
 <br>
 

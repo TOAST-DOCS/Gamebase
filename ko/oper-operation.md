@@ -31,7 +31,7 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 
 **점검** 탭에서 **등록** 버튼을 클릭하면 점검을 등록하는 화면으로 이동합니다.<br />
 
-![image alt](./image/Operators_Guide/Console_Maintenance2_1.4.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_1.4.png)
 
 >  <font color="red">[주의] </font>**업데이트 필수와 점검이 동시에 설정**돼 있을 경우 서비스 상태는 '업데이트 필수'가 됩니다.<br/>
 >  점검 진행 도중 사용자에게 업데이트 필수 팝업을 표시하고 싶지 않다면 점검 완료 이후에 서비스 상태를 '업데이트 필수'로 변경해야 합니다.<br/>
@@ -59,7 +59,7 @@ Gamebase 제공 페이지(웹뷰)/사용자 정의 HTML(웹뷰)/외부 페이지
 각 항목에 대한 추가 입력항목은 아래와 같으며 입력한 내용에 대한 미리보기도 함께 지원합니다.<br />
 
 ##### 1) Gamebase 제공 페이지(웹뷰)
-![image alt](./image/Operators_Guide/Console_Maintenance2_2.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_2.0.png)
 기본적으로 제공되는 형식의 점검 페이지로써 Gamebase에서 제공하는 웹뷰 페이지에 운영자가 입력한 정보를 노출합니다.<br />
 별도의 점검 페이지가 없는 경우 유용하게 사용하실 수 있습니다.<br />
 노출 메시지 항목은 점검 진행 중에 사용자에게 표시할 메시지를 설정합니다.<br />
@@ -68,7 +68,7 @@ Gamebase 제공 페이지(웹뷰)/사용자 정의 HTML(웹뷰)/외부 페이지
 미리보기 선택 시 '기본 언어'에 대하여 미리보기 화면을 제공합니다.<br />
 
 ##### 2) 사용자 제공 HTML(웹뷰)
-![image alt](./image/Operators_Guide/Console_Maintenance2_3.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_3.0.png)
 운영자가 직접 점검 페이지를 HTML형식으로 입력하여 유저에게 제공합니다.<br />
 입력한 HTML 태그를 기반으로 미리보기 페이지도 함께 지원합니다.<br />
 자신이 원하는 점검페이지 형식을 만들고자 할 때 유용하게 사용하실 수 있습니다.<br />
@@ -76,13 +76,13 @@ Gamebase 제공 페이지(웹뷰)/사용자 정의 HTML(웹뷰)/외부 페이지
 > HTML 페이지 제공 기능은 2018년 2월 배포 이후 제공될 예정입니다.<br />
 
 ##### 3) 외부 페이지
-![image alt](./image/Operators_Guide/Console_Maintenance2_4.1.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_4.1.png)
 자체 점검 페이지 또는 점검 템플릿을 가지고 있을 경우 점검 페이지를 해당 URL로 연결할 수 있습니다.<br />
 연결하는 URL을 기반으로 미리보기 페이지도 함께 지원합니다.<br />
 점검 정보를 별도로 입력하여 전달받고 싶은 경우 점검 정보 제공 항목을 클릭 후 점검 메시지 정보를 입력하면 점검 페이지에 Gamebase 점검 내용에 등록한 점검 정보(점검시간, 메시지 등)를 전달받으실 수 있습니다.<br />
 
 ### Modify Maintenance
-![image alt](./image/Operators_Guide/Console_Maintenance3_1.3.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance3_1.3.png)
 
 등록한 점검의 상세내용을 확인하고 수정, 삭제가 가능합니다.<br />
 기본적으로 입력 항목은 등록 화면과 동일하며, 점검을 잘못 등록하였을 때 삭제버튼을 통하여 점검 삭제도 가능합니다.<br />

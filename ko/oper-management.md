@@ -57,7 +57,7 @@ Gamebase에서 기본으로 제공되는 SMS/Email외에 별도로 알람을 수
 외부 시스템의 Webhook URL을 통해 알람발송 요청이 있을 경우 함께 알람을 전송합니다.
 
 #### (1) 목록 조회
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_1.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_1.1.png)
 현재 알람을 수신할 수 있는 Webhook들에 대한 등록 내역을 조회하여 보여줍니다.<br />
 등록된 Webhook URL이 필요한 경우 우측의 URL 복사 기능을 통해 손쉽게 복사가 가능합니다.
 
@@ -68,7 +68,7 @@ Gamebase에서 기본으로 제공되는 SMS/Email외에 별도로 알람을 수
 현재는 Dooray/Slack 등록만 제공하고 있으며 추후 요청이 있을 시 새로운 목록을 추가할 예정입니다.
 
 #### (2) 상세조회/수정/삭제
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_3.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_3.1.png)
 목록에서 상세정보를 조회하고자 하는 항목을 클릭하면 위와 같이 상세정보를 조회할 수 있습니다..<br />
 더불어 수정버튼을 통해 등록된 정보를 변경할 수 있으며 해당 Webhook이 필요하지 않을 경우 삭제버튼을 통해 언제든지 삭제가 가능합니다.
 

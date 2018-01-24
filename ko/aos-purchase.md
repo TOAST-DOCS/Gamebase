@@ -9,7 +9,7 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 #### 1. Store Console
 
 * 다음 IAP 가이드를 참고하여 각 스토어에 앱을 등록하고 앱 키를 발급받습니다.
-* [Mobile Service > IAP > 콘솔 사용 가이드 > Store interlocking information](/ko/Mobile%20Service/IAP/ko/console-guide/#store-interlocking-information)
+* [Mobile Service > IAP > 콘솔 사용 가이드 > Store interlocking information](/ko/Common/IAP/ko/console-guide/#store-interlocking-information)
 
 #### 2. Register as Store's Tester
 
@@ -25,7 +25,7 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 #### 3. TOAST IAP 서비스 이용
 
 * IAP 가이드를 참고하여 IAP를 설정하고 아이템을 등록합니다.
-    * [Mobile Service > IAP > 콘솔 사용 가이드](/ko/Mobile%20Service/IAP/ko/console-guide/)
+    * [Mobile Service > IAP > 콘솔 사용 가이드](/ko/Common/IAP/ko/console-guide/)
 
 #### 4. Download
 
@@ -208,5 +208,5 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 * 이 오류는 IAP 모듈에서 발생한 오류입니다.
 * exception.getDetailCode()를 통해 IAP 오류 코드를 확인해야 합니다.
 * IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [Mobile Service > IAP > 오류 코드 > Client API 에러 타입](/ko/Mobile%20Service/IAP/ko/error-code/#client-api)
+    * [Mobile Service > IAP > 오류 코드 > Client API 에러 타입](/ko/Common/IAP/ko/error-code/#client-api)
 

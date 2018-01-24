@@ -22,15 +22,13 @@ Gamebase Unity SDK를 사용하려면 먼저 초기화를 진행해야 합니다
 
 Gamebase Console에 등록된 프로젝트 ID입니다.
 
-![App ID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_001_1.2.0.png)
+[Console Guide](/ko/Game/Gamebase/ko/oper-app/#app)
 
 #### 2. appVersion
 
 Gamebase Console에 등록한 클라이언트 버전입니다.
 
-등록한 클라이언트 목록을 확인하려면 **Game > Gamebase > App**을 클릭한 후 **클라이언트** 탭을 클릭합니다.
-
-![App Version](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_002_1.2.0.png)
+[Console Guide](/ko/Game/Gamebase/ko/oper-app/#client)
 
 
 #### 3. zoneType
@@ -179,11 +177,6 @@ Gamebase Unity SDK 초기화 설정에 입력한 앱 버전의 게임 상태 정
 * code: 게임 상태 코드(점검 중, 업데이트 필수, 서비스 종료 등)
 * message: 게임 상태 메시지
 
-appVersion 추가 및 수정은 Gamebase Console에서 할 수 있습니다.
-Gamebase Console에서 **Game > Gamebase > App**을 클릭한 후 **클라이언트** 탭을 클릭합니다.
-
-![Launching Status](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_006_1.2.0.png)
-
 상태 코드는 아래 표를 참고하십시오.
 
 | Status                      | Status Code | Description                                    |
@@ -198,47 +191,46 @@ Gamebase Console에서 **Game > Gamebase > App**을 클릭한 후 **클라이언
 | INSPECTING_ALL_SERVICES     | 304         | 전체 시스템 점검 중                              |
 | INTERNAL_SERVER_ERROR       | 500         | 내부 서버 오류                                 |
 
+[Console Guide](/ko/Game/Gamebase/ko/oper-app/#app)
+
 **1.2 App**
 
 Gamebase Console에 등록된 앱 정보입니다.
 
-* Sever URL: 서버 주소
-* Customer center info: 고객 센터 정보
-* InApp URL
-    * Terms of Use: 이용약관
-    * Personal Info Agreement: 개인 정보 동의
-    * Punishment Provision: 이용 정지 규정
+* accessInfo
+    * serverAddress: 서버 주소
+    * csInfo: 고객 센터 정보
+* relatedUrls
+    * termsUrl: 이용약관
+    * personalInfoCollectionUrl: 개인 정보 동의
+    * punishRuleUrl: 이용 정지 규정
     * csUrl : 고객센터
-* Install URL: 설치 URL
-* Authentication Information: 인증 정보
+* install: 설치 URL
+* idP: 인증 정보
 
-Gamebase Console에서 앱 정보를 설정하려면  **Game > Gamebase > App**을 클릭한 후 **앱** 탭을 클릭합니다.
-
-![Launching App](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_005_1.2.0.png)
+[Console Guide](/ko/Game/Gamebase/ko/oper-app/#client)
 
 **1.3 Maintenance**
 
 Gamebase Console에 등록된 점검 정보입니다.
 
-* Page: 점검 페이지
-* Timezone: 표준 시간대(timezone)
-* Start Date: 시작 시간
-* End Date: 종료 시간
+* url: 점검 페이지 URL
+* timezone: 표준 시간대(timezone)
+* beginDate: 시작 시간
+* endDate: 종료 시간
+* message: 점검 사유
 
-
-Gamebase Console에서 점검 정보를 등록하거나 수정하려면 **Game > Gamebase > Operation**을 클릭한 후 **점검** 탭을 클릭합니다.
-
-![Launching Maintenance](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_007_1.2.0.png)
+[Console Guide](/ko/Game/Gamebase/ko/oper-operation/#maintenance)
 
 **1.4 Notice**
+
+Gamebaes Console에 등록된 공지 정보입니다.
 
 * message: 메시지
 * title: 타이틀
 * url: 점검 URL
 
-Gamebase Console에서 공지를 등록하거나 수정하려면 **Game > Gamebase > Operation**을 클릭한 후 **공지** 탭을 클릭합니다.
-
-![Launching Notice](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_009_1.2.0.png)
+[Console Guide](/ko/Game/Gamebase/ko/oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -256,7 +248,5 @@ TOAST Console에 등록된 IAP 스토어 정보입니다.
 * id: App ID
 * name: App Name
 * storeCode: Store Code
-
-Gamebase Console에서 **Game > Gamebase > Purchase(IAP)**를 클릭한 후 **앱** 탭을 클릭합니다.
-
-![Launching TC IAP](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_008_1.2.0.png)
+ 
+[Console Guide](/ko/Game/Gamebase/ko/oper-purchase/)
