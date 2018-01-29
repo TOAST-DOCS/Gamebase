@@ -282,7 +282,7 @@ Facebook 인증 추가 정보 입력 예제
 PAYCO 추가 인증 정보 입력 예제
 
 ```json
-{ "service_code": "HANGAME", "service_code": "Your Service Name" }
+{ "service_code": "HANGAME", "service_name": "Your Service Name" }
 ```
 
 ## Logout

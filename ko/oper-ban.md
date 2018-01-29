@@ -16,7 +16,7 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 
 검색 조건에 맞는 이용 정지/이용 정지 해제 게임 이용자 목록을 조회합니다.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban1_1.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban1_1.1.png)
 
 **검색 조건**
 
@@ -61,13 +61,13 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 
 이용 정지 조회 화면에서 **등록** 버튼을 클릭하면 이용 정지 등록이 가능합니다.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban2_1.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban2_1.1.png)
 #### (1) 유저 ID
 이용 정지를 등록할 Gamebase 사용자 아이디를 입력합니다. 한번에 다수의 이용자를 등록할 수 있으며, 등록 방법은 아래 두가지입니다.
 
 - **사용자 입력**: 등록할 사용자 아이디를 입력 창에 직접 입력한 후 **Enter** 키를 누르거나 **추가** 버튼을 클릭합니다. 사용자 아이디 유효성을 검사하므로 유효하지 않은 사용자 아이디는 입력이 불가능합니다.
 - **일괄 등록**: CSV 파일만 업로드할 수 있으며 예시 파일은 Console 화면에서 다운로드할 수 있습니다. 일괄 등록은 1회 최대 10,000명까지 가능합니다. <br/>
-  ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban4_1.0.png)
+  ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban4_1.1.png)
 
 > [참고]</br>
 > 일괄 등록을 진행하다가 실패하면 팝업이 표시됩니다. 해당 팝업에서 **Download** 버튼을 클릭하면 등록에 실패한 시용자 목록을 파일로 다운로드할 수 있습니다.<br />

@@ -21,7 +21,7 @@ Gamebase Console에서 관리하는 앱 정보를 설명합니다.<br/>
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_App2_1.2.png)
 
-####(1) 설치 URL
+#### (1) 설치 URL
 앱 설치와 홍보에 이용할 수 있는 단축 URL 정보입니다. <br/>
 앱이 배포된 스토어가 여러 개인 경우에도 하나의 단축 URL로 관리할 수 있습니다. <br/>
 자세한 동작 및 관리 방법은 다음 링크를 참고합니다. [설치 URL 관리](./oper-app/#installed-url) <br />
@@ -64,7 +64,7 @@ Idp별 자세한 설정 방법은 [Authentication Information](#authentication-i
 게임에서 필요한 경우에만 입력하고, 그렇지 않은 경우에는 비워 두시면 됩니다.<br />
 설정한 정보는 클라이언트 초기화 이후에 '런칭정보'에서 입력된 정보를 확인할 수 있습니다.<br/>
 
-### Test Device
+### Test Device{@수정-시작}
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_App3_1.0.png)
 테스트 단말기로 등록되면 Gamebase를 사용하는 앱이 점검 중이어도 정상적으로 게임에 접근할 수 있습니다.<br />
@@ -103,7 +103,7 @@ Device Key와 등록 단말기의 **추가정보**를 입력 후 등록 버튼�
 
 테스트 단말기 조회 화면에서 삭제하고자 하는 테스트 단말기를 체크한 후 상단의 삭제 버튼을 클릭하면 테스트 단말기 정보가 삭제됩니다. 삭제된 정보는 복구가 불가능하므로 확인 후 삭제하시기 바랍니다.<br />
 
-
+{@수정-끝}
 ### Authentication Information
 
 #### Facebook
@@ -236,7 +236,7 @@ Gamebase Console에서 관리하는 클라이언트 등록 정보를 설명합�
 사용자가 PC나 모바일에서 단축 URL을 클릭하면, 사용자 단말기 정보(디바이스, 운영체제, 스토어 등)를 이용하여 입력된 사이트로 리디렉션합니다.<br/>
 스토어 정보가 없거나 스토어 이동에 실패하면 'COMMON'에 설정된 URL로 이동합니다.<br/><br/><br/>
 
-_[예시1] Android 휴대폰에서 문자로 받은 설치 URL을 클릭하는 경우_<br/>
+_[예시1] Android 휴대폰에서 문자로 받은 설치 URL을 클릭하는 경우<br/>
 **(Device:mobile,OS:Android,Store:없음)** Android 중에 대표 스토어로 지정된 모바일 URL로 이동. 대표 스토어가 'Google Play'인 경우 'Google Play' 모바일에 설정된 URL로 이동.<br/>
 _[예시2] 'One Store'에서 다운로드한 앱으로 게임 중이던 사용자가 '업데이트 필수' 팝업 창에서 '지금 업데이트' 버튼을 클릭한 경우_<br/>
 **(Device:mobile,OS:Android,Store:One Store)** 'One Store' 모바일에 설정된 URL로 이동(One Store 모바일 설치 페이지)<br/>

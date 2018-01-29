@@ -53,6 +53,7 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 점검이 진행될 시간을 설정합니다.<br />
 타임존의 경우 기본적으로 'UTC+09:00'가 선택돼 있으며, 서비스를 하는 국가의 시간대를 선택해 점검을 등록하는 것도 가능합니다.<br />
 
+{@수정-시작}
 #### (4) 점검 페이지
 유저에게 제공 될 점검 페이지 타입을 설정합니다.<br />
 Gamebase 제공 페이지(웹뷰)/사용자 정의 HTML(웹뷰)/외부 페이지 항목이 있으며 각 항목별로 입력창이 변경됩니다.<br />
@@ -79,7 +80,14 @@ Gamebase 제공 페이지(웹뷰)/사용자 정의 HTML(웹뷰)/외부 페이지
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_4.1.png)
 자체 점검 페이지 또는 점검 템플릿을 가지고 있을 경우 점검 페이지를 해당 URL로 연결할 수 있습니다.<br />
 연결하는 URL을 기반으로 미리보기 페이지도 함께 지원합니다.<br />
-점검 정보를 별도로 입력하여 전달받고 싶은 경우 점검 정보 제공 항목을 클릭 후 점검 메시지 정보를 입력하면 점검 페이지에 Gamebase 점검 내용에 등록한 점검 정보(점검시간, 메시지 등)를 전달받으실 수 있습니다.<br />
+점검 정보를 별도로 입력하여 전달받고 싶은 경우 점검 정보 제공 항목을 클릭 후 점검 메시지 정보를 입력하면 점검 페이지에 Gamebase 점검 내용에 등록한 점검 정보(점검시간정보, 메시지 등)를 전달받으실 수 있습니다.<br />
+점검 전달 파라미터는 아래와 같으며 모두 URL Encoding이 적용되어 전달됩니다.
+
+- message : 디바이스 정보 언어설정에 따른 점검 메시지. 미리보기의 경우 기본으로 선택된 메시지가 전달됨.
+- timezone : 점검 등록 시 선택한 timezone 정보 ex)UTC+9의 경우 전달 값 - +09:00
+- beginDate : 점검 등록 시 입력한 시작시간
+- endDate : 점검 등록 시 입력한 종료시간
+{@수정-끝}
 
 ### Modify Maintenance
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance3_1.3.png)

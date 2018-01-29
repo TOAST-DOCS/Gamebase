@@ -23,6 +23,7 @@
   * 점검 및 푸시에 따른 동시 접속 변화를 확인하기 쉽도록 점검, 푸시 내역을 그래프에 별도로 표시하고 있습니다.
     <br/>
 
+{@수정-시작}
 ## User Statistics
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_UserStatistics1_1.0.png)
 유저의 통계현황을 일자별로 정리한 정보를 그래프로 확인할 수 있습니다.<br/>
@@ -35,7 +36,7 @@
   * MCU(maximum concurrent users): 하루 동안의 최대 동시 접속자 수(실시간, 일자별 조회 가능)
   * NRU(new registered users): 하루 동안의 신규 사용자 수(실시간, 일자별 조회 가능)
   * CCU AVG(concurrent connected users Average): 실시간 동시 접속자 수의 평균값
-
+{@수정-끝}
 ## Concurrent Group User
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_ConcurrentUser1_1.1.png)
 자신이 속한 프로젝트의 그룹 동시 접속 통계를 확인할 수 있습니다. 권한이 있는 여러 프로젝트의 운영체제별 실시간 동시 접속자 수를 한눈에 볼 수 있습니다.
@@ -53,6 +54,7 @@
 ## Statistics
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Statistics1_1.2.png)
 판매 현황 화면을 통하여 앱의 매출현황을 손쉽게 확인할 수 있습니다.<br />
+{@수정-시작}
 우측 상단의 통화변경을 통하여 보고자 하는 단위로 매출액을 확인할 수 있습니다.
 
 ### (1) 판매 현황 일별 통계 그래프
@@ -66,3 +68,4 @@
 앱에서 등록된 스토어별 매출현황을 일자별로 조회할 수 있습니다.<br />
 현재 진행중인 달이라면 오늘의 데이터까지 모두 조회할 수 있습니다.<br />
 월별 데이터보다 상세한 데이터를 제공해줌으로써 이벤트 진행기간 또는 이슈시의 매출 현황을 비교 및 분석할 수 있습니다.
+{@수정-끝}

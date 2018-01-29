@@ -1,14 +1,10 @@
-## Game > Gamebase > Unity SDK 사용 가이드 > Push
+## Game > Gamebase > Unity Developer's Guide > Push
 
-
-## Push
-
-여기에서는 플랫폼별로 푸시 알림을 사용하기 위해 필요한 설정 방법을 알아보겠습니다.
+This document describes how to set push notifications for each platform.
 
 ### Settings
 
-
-Android나 iOS에서 푸시를 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
+For Android or iOS users, refer to the following documents:
 
 * [Android Push Settings](aos-push#settings)<br/>
 * [iOS Push Settings](ios-push#settings)
@@ -16,15 +12,14 @@ Android나 iOS에서 푸시를 설정하는 방법은 다음 문서를 참고하
 
 ### Register Push
 
-다음 API를 호출하여, TOAST Push에 해당 사용자를 등록합니다.<br/>
-푸시 동의 여부(enablePush), 광고성 푸시 동의 여부(enableAdPush), 야간 광고성 푸시 동의 여부(enableAdNightPush) 값을 사용자로부터 받아, 다음의 API 호출을 통해 등록을 완료합니다.
-
+Register a user to TOAST Push by calling API as below.
+With user&#39;s agreement to enablePush, enableAdPush, and enableAdNightPush, call following API to complete registration.
 
 **API**
 
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
 public static void RegisterPush(GamebaseRequest.Push.PushConfiguration pushConfiguration, GamebaseCallback.ErrorDelegate callback)
@@ -58,14 +53,14 @@ public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNig
 
 ### Request Push Settings
 
-사용자의 푸시 설정을 조회하기 위해, 다음 API를 이용합니다. <br/>
-콜백으로 오는 PushConfiguration 값으로 사용자 설정값을 얻을 수 있습니다.
+To retrieve user's push setting, apply API as below.
+From PushConfiguration callback values, you can get user's value set.
 
 **API**
 
-![IOS](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-ios_1.2.0.png)
-![ANDROID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-icon-android_1.2.0.png)
-
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
 public static void QueryPush(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Push.PushConfiguration> callback)
@@ -100,17 +95,17 @@ public void QueryPush()
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | TOAST Push 라이브러리 오류입니다.<br>DetailCode를 확인하세요. |
-| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | 이전 푸쉬 API 호출이 완료되지 않았습니다.<br>이전 푸쉬 API의 콜백이 실행된 이후에 다시 호출하세요. |
-| PUSH_UNKNOWN_ERROR             | 5999       | 정의되지 않은 푸시 오류입니다.<br>전체 로그를 Gamebase 개발팀에 전달하여 오류상황을 문의해 주세요. |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | Error in TOAST Push library.Please check DetailCode. |
+| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | Previous Push API call is not completed.Please call again after the previous push API callback is executed.  |
+| PUSH_UNKNOWN_ERROR             | 5999       | Undefined push error. Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry), and we'll respond ASAP. |
 
-* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-  * [Entire Error Codes](./error-codes#client-sdk)
+* Refer to the following document for the entire error codes.
+	* [Entire Error Codes](./error-code/#client-sdk)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* 이 오류는 TOAST Push 라이브러리에서 발생한 오류입니다.
-* TOAST Push 오류 코드를 확인하시기 바랍니다.
-  * [Push > Client SDK Developer's Guide > Error Code Guide > 오류 처리](http://docs.cloud.toast.com/ko/Notification/Push/ko/Client%20SDK%20Guide/#_5)
+* Occurs in the TOAST Push library.
+* Refer to the following document for TOAST Push error codes.
+	* [Notification > Push > SDK v1.4 {@수정}사용 가이드 > Error Handling](/en/Notification/Push/ko/sdk-guide/#_5)
 
 
