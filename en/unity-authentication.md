@@ -395,37 +395,38 @@ Google ID: ff **-> As the Google ee account is integrated, no additional Google 
 
 Mapping API includes Add Mapping API and Remove Mapping API.
 
+### Add Mapping Flow
 
-### {@수정}Add Mapping Flow
+Implement mapping in the following order.
 
-매핑은 다음 순서로 구현할 수 있습니다.
+#### 1. Login
 
-#### 1. 로그인
-매핑은 현재 계정에 IdP 계정 연동을 추가하는 것이므로 우선 로그인이 돼 있어야 합니다.
-먼저 로그인 API를 호출해 로그인합니다.
+Mapping means to add an IdP account integration to a current account, so login is a prerequisite.
+First, call a login API and log in.
 
-#### 2. 매핑
+#### 2. Mapping
 
-**Gamebase.AddMapping()**을 호출해 매핑을 시도합니다.
+Call **Gamebase.AddMapping()** to try mapping.
 
-#### 2-1. 매핑이 성공한 경우
+#### 2-1.When mapping is successful
 
-* 축하합니다! 현재 계정과 연동중인 IdP 계정이 추가되었습니다.
-* 매핑에 성공해도 '현재 로그인 중인 IdP'가 바뀌지는 않습니다. <br>즉, Google 계정으로 로그인한 후, Facebook 계정 매핑 시도가 성공했다고 해서 '현재 로그인 중인 IdP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다.
-* 매핑은 단순히 IdP 연동만 추가해 줍니다.
+* Congratulations! Successfully added an IdP account integrated with the current account.
+* Even if a mapping is successful, 'currently logged-in IdP' will not change.<br/>For example, after a user’s login with Google account and has successfully mapped with a Facebook account, the user's 'currently logged-in IdP' does not change from Google to Facebook. It still stays with Google account.
+* Mapping simply adds IdP integration.
 
-#### 2-2. 매핑이 실패한 경우
+#### 2-2. When mapping is failed
 
-* 네트워크 오류
-    * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **Gamebase.AddMapping()**을 다시 호출하거나, 잠시 대기했다가 재시도 합니다.
-* 이미 다른 계정에 연동 중일 때 발생하는 오류
-    * 오류 코드가 **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**인 경우, 매핑하려는 IdP의 계정이 이미 다른 계정에 연동 중이라는 뜻입니다. 이미 연동된 계정을 해제하려면 해당 계정으로 로그인하여 **Gamebase.Withdraw()**를 호출하여 탈퇴하거나 **Gamebase.RemoveMapping()**를 호출하여 연동을 해제한 후 다시 매핑을 시도하세요.
-* 이미 동일한 IdP 계정에 연동돼 발생하는 오류
-    * 에러 코드가 **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)** 인 경우, 매핑하려는 IdP와 같은 종류의 계정이 이미 연동중이라는 뜻입니다.
-        * Gamebase 매핑은 한 IdP당 하나의 계정만 연동 가능합니다. 예를 들어 PAYCO 계정에 이미 연동 중이라면 더 이상 PAYCO 계정을 추가할 수 없습니다.
-        * 동일 IdP의 다른 계정을 연동하기 위해서는 **Gamebase.RemoveMapping()**을 호출해 연동을 해제한 후 다시 매핑을 시도하세요.
-* 그 외의 오류
-    * 매핑 시도가 실패했습니다.
+* Network error
+    * If the error code is **SOCKET_ERROR(110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.AddMapping()** again or try again in a moment.
+* Error of integration to another account
+    * If the error code is **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**, the IdP account to map has been already integrated to another account.To remove the integrated account, log in the account and call **Gamebase.Withdraw()** to withdraw, or call **Gamebase.RemoveMapping()** to remove integration and try mapping again.
+* Error of integration to a same IdP account
+    * If the error code is **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**, a same type of account to the IdP has already been integrated.
+	* Gamebase mapping allows only one account of integration to an IdP. For example, if your account is already integrated to a PAYCO account, no other PAYCO account can be added.
+	* To integrate another account of a same IdP, call **Gamebase.RemoveMapping()** to remove integration and try mapping again.
+* Other Errors
+    * Mapping hsa failed.
+
 
 
 ### Add Mapping

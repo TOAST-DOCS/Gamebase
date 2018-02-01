@@ -106,6 +106,6 @@ public void QueryPush()
 
 * Occurs in the TOAST Push library.
 * Refer to the following document for TOAST Push error codes.
-	* [Notification > Push > SDK v1.4 {@수정}사용 가이드 > Error Handling](/en/Notification/Push/ko/sdk-guide/#_5)
+	* [Notification > Push > SDK v1.4 {@수정}사용 가이드 > Error Handling](/en/Notification/Push/en/sdk-guide/#_5)
 
 
