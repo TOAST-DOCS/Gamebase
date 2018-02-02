@@ -16,7 +16,7 @@ Gamebase can be setup as below.
 
 #### Download
 
-Download Gamebase from [{@수정}사용설명서 > Download](/en/download/#game-gamebase).
+Download Gamebase from [{@수정}사용설명서 > Download](/en/Download/#game-gamebase).
 Download Gamebase.framework.zip and required adapters.
 Also download SDK files to authenticate each IdP, which are required only for a login.
 Then, include corresponding SDK files to a target of your project.

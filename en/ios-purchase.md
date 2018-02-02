@@ -48,7 +48,7 @@ Item purchases should be implemented in the following order.
 1. Call **requestPurchaseWithItemSeq:viewController:completion:** of Gamebase SDK to purchase in a game client.
 2. After a successful purchase, call **requestItemListOfNotConsumedWithCompletion:** to check list of non-consumed purchases.
 3. If there is a value on the returned list, the game client sends a request to the game server to consume purchased items.
-4. The game server requests for Consume API to the Gamebase server via API. [API Guide](./api-guide/#wrapping-api)
+4. The game server requests for Consume API to the Gamebase server via API. [API Guide](/en/Game/Gamebase/en/Server%20Developer%60s%20Guide/#wrapping-api)
 5. If the IAP server has successfully called Consume API, the game server provides the items to the game client.
 
 A purchase at store may be successful but cannot be closed normally due to error.
@@ -184,5 +184,5 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
 * For IAP error codes, refer to the document below.
-    * [Mobile Service > IAP > Error Code > Client API Error Type](/en/Common/IAP/en/error-code/#client-api)
+    * [Mobile Service > IAP > Error Code > Client API Error Type](/en/Common/IAP/en/Error%20Code/#client-api-errors)
 

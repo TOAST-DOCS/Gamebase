@@ -44,7 +44,7 @@ Supported Platforms
 
 Setting Tool is provided to install Gamebase SDK with more at ease.
 
-* [Download Gamebase Client SDK](/en/download/#game-gamebase)
+* [Download Gamebase Client SDK](/en/Download/#game-gamebase)
 
 
 ### Specification of Setting Tool
