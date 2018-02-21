@@ -32,11 +32,10 @@ To initialize Gamebase, Gamebase setting can be modified with GamebaseConfigurat
 | build() | **M** | Convert Builder completed with setting to a configuration object. <br/>Required for **Gamebase.initialize ()** API. |
 | setAppId(String appId) | **M** | Enter an App ID issued from TOAST Cloud Project. |
 | setAppVersion(String appVersion) | **M** | Status of update or maintenance can be decided upon a game version. <br/>Specify a game version. |
-| setAppName(String appName) | O | Specify a name of game to show on the PAYCO Login/Logout page. <br/>If not specified, show android:label value from application node of the AndroidManifest.xml file. |
 | enablePopup(boolean enable) | O | **[UI]**<br/>When a game user cannot play games due to system maintenance or banned from use, reasons need to be displayed by pop-ups. <br/>If it is set **true** , Gamebase will automatically display information via pop-ups.<br/> **False** is set as default.When set to **false** , get information from launching results and display why user cannot play games by using customized UI. |
 | enableLaunchingStatusPopup(boolean enable) | O | **[UI]**<br/>Depending on the launching results, when available to log in (mainly due to maintenance), you may decide whether to allow Gamebase to automatically display pop-ups. Works only when **enablePopup (true)** is on. **True** is set as default. |
 | enableBanPopup(boolean enable) | O | **[UI]**<br/>When game user is banned, you can change whether to allow Gamebase to automatically display a pop-up on the reasons.  Works only when **enablePopup (true)** is on. **True** is set as default. |
-| setStoreCode(String storeCode) | O | **[Purchase]**<br/>Need to set which store to use for In-App Purchase (IAP). <br/>For parameters, refer to the [IAP Document](/en/Common/IAP/en/Overview/). |
+| setStoreCode(String storeCode) | O | **[Purchase]**<br/>Need to set which store to use for In-App Purchase (IAP). <br/>For parameters, refer to the [IAP Document](/en/Mobile%20Service/IAP/en/Overview/). |
 | setFCMSenderId(String senderId) | O | **[Push]**<br/>To send push messages via Google Notification (FCM, GCM), set a sender ID. |
 | setTencentAccessKey(String accessKey)<br/>setTencentAccessId(String accessId) | O | **[Push]**<br/>To use Tencent push modules, set an access key and access ID. |
 

@@ -16,7 +16,7 @@ Gamebase can be setup as below.
 
 #### Download
 
-Download Gamebase from [{@수정}사용설명서 > Download](/en/Download/#game-gamebase).
+Download Gamebase from [Manual > Download](/en/Download/#game-gamebase).
 Download Gamebase.framework.zip and required adapters.
 Also download SDK files to authenticate each IdP, which are required only for a login.
 Then, include corresponding SDK files to a target of your project.
@@ -28,6 +28,7 @@ Then, include corresponding SDK files to a target of your project.
 | Gamebase | Gamebase.framework, Gamebase.bundle |   | Includes Gamebase interface and key logics |   |
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v4.17.0 | Supports Facebook logins | [LINK [Go to Download]]( [https://developers.facebook.com/docs/ios/downloads](https://developers.facebook.com/docs/ios/downloads)) |
 |   | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.1.6 | Supports Payco logins | [LINK [Go to Download]]( [https://developers.payco.com/guide/sdk/download](https://developers.payco.com/guide/sdk/download)) |
+|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.9 | Supports Naver logins | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) |
 |   | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Supports Gamecenter logins |   |
 | Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework | Supports in-game purchase | Gamebase Included in IAP |
 | Gamebase Push | GamebasePushAdapter.framework |   | Supports Push | Included in Gamebase |
@@ -35,7 +36,7 @@ Then, include corresponding SDK files to a target of your project.
 > <font color="red">[Caution]</font><br/>
 >
 > Among Gamebase Framework files, **Adapter** files can be selectively used in a project to that end, external SDKs may be required as specified in the above table.
->
+> GamebaseNaverAut hNaverAdapter.framework is supported only in iOS 9 or later.
 
 <br/>
 
@@ -68,7 +69,8 @@ By decompression, following SDKs will show, including Gamebase.framework.
 ![Other Linker Flags](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
 * 5) Set **No** for **Target > Build Settings > Enable Bitcode**.
 ![Enable Bitcode](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-007_1.0.0.png)
-
+* 6) If you are using NaverAuthAdapter, you must add the **NaverThirdPartyLogin.framework** file provided by NaverSDK to **Target > General > Embedded Binaries**.
+ -![Naver Embeded Binaries](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.7.0.png)
 
 > [INFO]
 >

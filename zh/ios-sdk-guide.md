@@ -1,1 +1,1 @@
-## Game > Gamebase > iOS SDK Guide
+## Game > Gamebase > iOS SDK 사용 가이드

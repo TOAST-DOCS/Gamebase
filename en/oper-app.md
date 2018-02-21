@@ -167,6 +167,25 @@ Enter {client\_id} and {client\_secret} issued from PAYCO ID application in the 
 - ClientID: {Payco client_id}<br />
 - Secret Key: {Payco client_secret}<br />
 
+#### NAVER
+{@번역}
+Naver Developer 사이트에서 신청하여 발급받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
+이때, 로그인 동의창에서의 노출될 애플리케이션이름 및 scheme등 iOS 애플리케이션에서 필요한 정보 또한 JSON String 형태로 추가 정보란에 입력해야 합니다.<br />
+
+**Entry Fields**<br />
+
+- ClientID: {Payco client_id}<br />
+- Secret Key: {Payco client_secret}<br />
+- Additional Info: Naver Application Name & iOS url scheme (json format) <br />
+
+**[Example] Naver Additional input format **<br />
+```json
+{ "url_scheme_ios_only": "Your Url Scheme", "service_name": "Your Service Name" }
+```
+{@번역}
+**Reference URL**<br />
+- [Naver Developers - 애플리케이션 등록](https://developers.naver.com/apps/#/register)<br />
+- [Naver Developers - 클라이언트 아이디와 클라이언트 시크릿 확인](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)<br />
 
 ## Client
 

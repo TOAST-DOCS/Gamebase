@@ -250,7 +250,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | Keyname | Usage | Value Type |
 | --- | --- | --- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type | AuthProvider.GOOGLE, AuthProvider.FACEBOOK, AuthProvider.PAYCO |
+| AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type | AuthProvider.GOOGLE<br>AuthProvider.FACEBOOK<br> AuthProvider.PAYCO<br>AuthProvider.NAVER |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | Set authentication information (access token) received after login IdP. Not applied for Google authentication. |   |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter One Time Authorization (OTAC) which can be obtained after Google login. |   |
 
@@ -340,9 +340,15 @@ Example of adding authentication information in PAYCO
 { "service_code": "HANGAME", "service_name": "Your Service Name" }
 ```
 
+#### NAVER{@번역}
+* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+	* NAVER의 경우, 로그인 동의창에서 노출될 앱 이름 **service_name**, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
 
+NAVER 추가 인증 정보 입력 예제
 
-
+```json
+{ "url_scheme_ios_only": "Your Url Scheme", "service_name": "Your Service Name" }
+```
 
 ## Logout
 
@@ -554,7 +560,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | Keyname | Usage | Value Type |
 | --- | --- | --- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type | AuthProvider.GOOGLE, AuthProvider.FACEBOOK, AuthProvider.PAYCO |
+| AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type | AuthProvider.GOOGLE<br>AuthProvider.FACEBOOK <br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | Set authentication information (access token) received after login IdP. Not applied for Google authentication. |   |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter One Time Authorization (OTAC) which can be obtained after Google login. |   |
 

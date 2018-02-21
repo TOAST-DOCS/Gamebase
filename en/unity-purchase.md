@@ -20,7 +20,7 @@ Item purchases should be implemented in the following order.<br/>
 1. Call **RequestPurchase** of Gamebase SDK to purchase in a game client.
 2. After a successful purchase, call **RequestItemListOfNotConsumed** to check list of non-consumed purchases.
 3. If the value is on the returned list, the game client sends a request to the game server to consume purchased items.
-4. The game server request for Consume API to the Gamebase server via API. [API Guide](/en/Game/Gamebase/en/Server%20Developer%60s%20Guide/#wrapping-api)
+4. The game server request for Consume API to the Gamebase server via API. [API Guide](/en/Game/Gamebase/en/api-guide/#wrapping-api)
 5. If the IAP server has successfully called Consume API, the game server provides the items to the game client.
 
 A purchase at store may be successful but cannot be closed normally due to error. It is recommended to call each of the two APIs after login is completed, to initialize a reprocessing logic.<br/>
@@ -197,4 +197,4 @@ public void RequestRetryTransaction()
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 * Occurs at an IAP module.
 * For IAP error codes, refer to the document below.
-    * [Mobile Service > IAP > Error Code > Client API Error Typ](/en/Common/IAP/en/Error%20Code/#client-api-errors)
+    * [Mobile Service > IAP > Error Code > Client API Error Typ](/en/Mobile%20Service/IAP/en/error-code/#client-api#client-api-errors)

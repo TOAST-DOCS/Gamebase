@@ -177,6 +177,20 @@ Example of Adding Authentication Information to PAYCO
 { "service_code": "HANGAME", "service_name": "Your Service Name" }
 ```
 
+#### NAVER
+* Set AdditionalInfo.
+    * Go to **TOAST Console > Gamebase > App > Authentication Information > Additional Information & Callback URL** to set json string-type information to **Additional Information**.
+    * {@번역}NAVER의 경우, 로그인 동의창에서 노출될 앱 이름 **service_name**, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
+
+- Set URL Schemes.
+	* **XCode > Target > Info > URL Types**
+
+Example of Adding Authentication Information to NAVER
+```json
+{ "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
+```
+![Naver URL Types](http://static.toastoven.net/prod_gamebase/ios-developers-guide-auth-001_1.7.0.png)
+
 #### Game Center
 Requires no additional setting other than TOAST Console setting.
 
@@ -188,7 +202,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | keyname                                  | Usage                          | Value Type                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, payco, iosgamecenter |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, payco, iosgamecenter, naver |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP  |                                |
 
 > [Note]
@@ -369,7 +383,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | keyname                                  | Usage                          | Value Type                          |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, payco, iosgamecenter |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, payco, iosgamecenter, naver |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                                |
 
 > [Note]
