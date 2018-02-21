@@ -1,1 +1,0 @@
-## Game > Gamebase > API Guide
