@@ -229,7 +229,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 | keyname                                  | a use                                    | 값 종류                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | IdP 유형 설정                                | AuthProvider.GOOGLE, AuthProvider.FACEBOOK, AuthProvider.PAYCO |
+| AuthProviderCredentialConstants.PROVIDER_NAME | IdP 유형 설정                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/>Google 인증 시에는 사용 안 함 |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Google 로그인 이후 획득할 수 있는 OTAC(one time authorization code) 입력 |                                          |
 
@@ -312,6 +312,16 @@ PAYCO 추가 인증 정보 입력 예제
 
 ```json
 { "service_code": "HANGAME", "service_name": "Your Service Name" }
+```
+
+#### NAVER
+* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+	* NAVER의 경우, 로그인 동의창에서 노출될 앱 이름 **service_name**, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
+
+NAVER 추가 인증 정보 입력 예제
+
+```json
+{ "url_scheme_ios_only": "Your Url Scheme", "service_name": "Your Service Name" }
 ```
 
 ## Logout
@@ -516,7 +526,7 @@ private static void addMappingForFacebook(final Activity activity) {
 
 | keyname                                  | a use                                    | 값 종류                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | IDP 유형 설정                                | AuthProvider.GOOGLE, AuthProvider.FACEBOOK, AuthProvider.PAYCO |
+| AuthProviderCredentialConstants.PROVIDER_NAME | IdP 유형 설정                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰)설정.<br/>Google 인증 시에는 사용 안 함. |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Google 로그인 이후 획득할 수 있는 OTOC(one time authorization code) 입력 |                                          |
 

@@ -18,7 +18,7 @@ Gamebase supports OAuth login based on ID and passwords, using accounts of many 
   Development costs can be saved by enabling external IdP development easier and faster.  Developers can easily implement authentication without concerning complicated procedure and legal or policy issues. <br/>
 
 * **Provides various external IdP authentication methods.** <br/>
-  Provided external authentication is to be continuously updated, and if there is any other authentication you'd like to include, contact [Customer Center](https://cloud.toast.com/support/faq/).<br/>
+  Provided external authentication is to be continuously updated, and if there is any other authentication you'd like to include, contact [Customer Center](https://toast.com/support/inquiry).<br/>
 
 
 Following is the list of external authentication supported by Gamebase.
@@ -29,6 +29,7 @@ Following is the list of external authentication supported by Gamebase.
 | Apple Game Center | iOS          |
 | Google            | Android      |
 | PAYCO             | iOS, Android |
+| NAVER             | iOS, Android |
 
 * **Provides guest logins.** <br/>
   With guest login, users can log in and start a game without any authentication required. As Gamebase user ID is issued even to guest users, game data can be managed for all users, regardless of OAuth or guest login<br/>
@@ -105,9 +106,9 @@ Gamebase basically supports global games, and provides following functions to th
 
 Supports easier interfaces to TOAST service that a game requires.<br/>
 Gamebase provides wrapped APIs on the basis of Gamebase User IDs. Therefore, users don't need to make separate calls to each service's API.
-* [Notification > PUSH](http://cloud.toast.com/service/notification) : Integrated push service to send push messages
-* [Common > IAP](http://cloud.toast.com/service/iap) : Integrated In-App Purchase service
-* [Game > Leaderboard](http://cloud.toast.com/service/leaderboard) : Real-time large-capacity ranking service
+* [Notification > PUSH](http://www.toast.com/service/notification) : Integrated push service to send push messages
+* [Common > IAP](http://www.toast.com/service/iap) : Integrated In-App Purchase service
+* [Game > Leaderboard](http://www.toast.com/service/leaderboard) : Real-time large-capacity ranking service
 * [Security > AppGuard](https://cloud.toast.com/service/security) : Prevents code manipulation of applications in real time
 <br/>
 
@@ -150,7 +151,7 @@ Below shows the service structure of Gamebase with simple description
 
 ### Server Developer's Guide
 
-* [Server Developer's Guide](./Server%20Developer%60s%20Guide/)
+* [Server Developer's Guide](./api-guide/)
 
 ### Operator's Guide
 
@@ -161,15 +162,15 @@ Below shows the service structure of Gamebase with simple description
 
 | Feature               | Description                              | Client                                   | Server                                   | Console                                  |
 | --------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| Login                 | Support Guest and 3rd Party authentication<br/>- Supported IdPs: Facebook, Google, Apple Game Center, and PAYCO | [[iOS](./ios-authentication/#login)] [[Android](./aos-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[Token Authentication](./Server%20Developer%60s%20Guide/#token-authentication)] <br> [[Retrieve Member](./Server%20Developer%60s%20Guide/#get-member)] | [[App] > Setting Authentication Information](./oper-app/#authentication-information) <br> [[Member] > Retrieve](./oper-member/#member) <br> - Basic information, login history, playtime, purchase history, and etc. |
+| Login                 | Support Guest and 3rd Party authentication<br/>- Supported IdPs: Facebook, Google, Apple Game Center, PAYCO, and NAVER | [[iOS](./ios-authentication/#login)] [[Android](./aos-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[Token Authentication](./api-guide/#token-authentication)] <br> [[Retrieve Member](./api-guide/#get-member)] | [[App] > Setting Authentication Information](./oper-app/#authentication-information) <br> [[Member] > Retrieve](./oper-member/#member) <br> - Basic information, login history, playtime, purchase history, and etc. |
 | Logout                | Logout                                     | [[iOS](./ios-authentication/#logout)] [[Android](./aos-authentication/#logout)] [[Unity](./unity-authentication/#logout)] |                                          |                                          |
 | Withdraw              | Withdraw from a game<br/> - Delete all information of a game user, including user ID and mapping information | [[iOS](./ios-authentication/#withdraw)] [[Android](./aos-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
 | Mapping               | Integrate one user ID to many IdPs         | [[iOS](./ios-authentication/#mapping)] [[Android](./aos-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |                                          |
-| Purchase(IAP)         | (TOAST Integration) <br/> InApp Purchase <br/>- Supported stores: Google and App Store  | [[iOS](./ios-purchase/#purchase)] [[Android](./aos-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./Server%20Developer%60s%20Guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- Register Items](./oper-purchase/#item) <br> [- Retrieve Transaction](./oper-purchase/#transactions) |
+| Purchase(IAP)         | (TOAST Integration) <br/> InApp Purchase <br/>- Supported stores: Google and App Store  | [[iOS](./ios-purchase/#purchase)] [[Android](./aos-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- Register Items](./oper-purchase/#item) <br> [- Retrieve Transaction](./oper-purchase/#transactions) |
 | Push                  | (TOAST Integration) <br>Send push messages and check results  | [[iOS](./ios-push/#push)] [[Android](./aos-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- Real-time delivery |
-| Leaderboard           | (TOAST Integration)<br> Retrieve and register real-time ranking of large-capacity data |                                          | [[Wrapping API](./Server%20Developer%60s%20Guide/#leaderboard)] |                                          |
+| Leaderboard           | (TOAST Integration)<br> Retrieve and register real-time ranking of large-capacity data |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
 | Webview               | SDK provides default WebView UI<br/>Provides both system pop-up and TOAST UI | [[iOS](./ios-ui/#webview)] [[Android](./aos-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
-| [Operator] Maintenance | (Operational)  Maintenance                               |                                          | [[Check for Maintenance](./Server%20Developer%60s%20Guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- Register or cancel maintenance |
+| [Operator] Maintenance | (Operational)  Maintenance                               |                                          | [[Check for Maintenance](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- Register or cancel maintenance |
 | [Operator] Notice      | (Operational) Urgent Notification <br/>- In pop-ups while user is executing an app |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>-Register Notice|
 | [Operator] Ban         | (Operational) Register/Release banned game users  | [[iOS](./ios-authentication/#get-banned-user-information)][[Android](./aos-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> - Check information of banned users |                                    | [[Ban]](./oper-ban/#ban) <br/>- Register and Release Ban |
 

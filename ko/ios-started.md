@@ -29,6 +29,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 | Gamebase | Gamebase.framework, Gamebase.bundle |  | Gamebase의 Interface 및 핵심 로직을 포함 |  |
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v4.17.0 | Facebook 로그인을 지원 | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.1.6 | Payco 로그인을 지원 | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) |
+|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.9 | Naver 로그인을 지원 | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenter 로그인을 지원 |  |
 | Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework | 게임 내 결제를 지원 | Gamebase IAP 내에 포함 |
 | Gamebase Push | GamebasePushAdapter.framework |  | Push를 지원 | Gamebase내에 포함 |
@@ -38,7 +39,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 > <font color="red">[주의]</font><br/>
 >
 > Gamebase Framework 파일 중 이름에 **Adapter**가 포함되어 있는 파일들은 선택적으로 프로젝트 내에서 사용여부를 결정할 수 있으며, 해당 Adapter Framework를 사용하기 위해서는 위의 표에 명시된 외부 SDK들이 필요할 수 있습니다.
->
+> GamebaseNaverAuthNaverAdapter.framework는 iOS 9이상에서만 지원이 됩니다.
 
 <br/>
 
@@ -72,7 +73,8 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 ![Other Linker Flags](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
 * 5) **Target > Build Settings > Enable Bitcode**를 **No**로 설정합니다.
 ![Enable Bitcode](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-007_1.0.0.png)
-
+* 6) NaverAuthAdapter를 사용하는 경우에는 NaverSDK에서 제공하는 **NaverThirdPartyLogin.framework**파일을 **Target > General > Embedded Binaries**에 추가해야 합니다.
+ -![Naver Embeded Binaries](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.7.0.png)
 
 > [INFO]
 >

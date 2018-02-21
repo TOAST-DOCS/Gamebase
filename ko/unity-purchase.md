@@ -199,7 +199,7 @@ public void RequestRetryTransaction()
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 * 이 오류는 IAP 모듈에서 발생한 오류입니다.
 * IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [Mobile Service > IAP > 오류 코드 > Client API 에러 타입](/ko/Common/IAP/ko/error-code/#client-api)
+    * [Mobile Service > IAP > 오류 코드 > Client API 에러 타입](/ko/Mobile%20Service/IAP/ko/error-code/#client-api)
 
 
 

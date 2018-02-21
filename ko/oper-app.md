@@ -64,15 +64,15 @@ Idp별 자세한 설정 방법은 [Authentication Information](#authentication-i
 게임에서 필요한 경우에만 입력하고, 그렇지 않은 경우에는 비워 두시면 됩니다.<br />
 설정한 정보는 클라이언트 초기화 이후에 '런칭정보'에서 입력된 정보를 확인할 수 있습니다.<br/>
 
-### Test Device{@수정-시작}
+### Test Device
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_App3_1.0.png)
 테스트 단말기로 등록되면 Gamebase를 사용하는 앱이 점검 중이어도 정상적으로 게임에 접근할 수 있습니다.<br />
-테스트 단말기를 등록하려면 **Device Key**를 입력해야 합니다. 직접 입력하거나 **유저 ID**를 조회하여 등록할 수 있습니다.<br/> 
-더 이상 사용하지 않는 테스트 단말기 삭제도 가능합니다.<br />
+테스트 단말기를 등록하려면 **Device Key**를 입력해야 합니다. 직접 입력하거나 **게임유저 ID**를 조회하여 등록할 수 있습니다.<br/>
+더 이상 사용하지 않는 테스트 단말기를 삭제할 수도 있습니다.<br />
 
 > [참고] <br/>
-> 테스트 단말기는 최대 100개까지만 등록 가능합니다.<br/>
+> 테스트 단말기는 최대 100개까지만 등록할 수 있습니다.<br/>
 
 #### (1) 조회
 
@@ -80,30 +80,29 @@ Idp별 자세한 설정 방법은 [Authentication Information](#authentication-i
 
 #### (2) 등록
 
-조회 화면에서 **등록**버튼을 클릭하면 테스트 단말기 등록화면이 노출됩니다. 테스트 단말기는 **Device Key**를 직접 입력하거나 **유저 ID**검색으로 등록할 수 있습니다.
+조회 화면에서 **등록** 버튼을 클릭하면 테스트 단말기를 등록할 수 있는 화면이 나타납니다. **Device Key**를 직접 입력하거나 **게임유저 ID**를 검색해 테스트 단말기를 등록할 수 있습니다.
 
-**(1) 유저 ID를 통한 등록**<br/>
+**(1) 게임유저 ID를 통한 등록**<br/>
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_App3_2.1.png)
 
-타입을 유저 ID로 선택하고 유저ID를 입력하여 **검색** 버튼을 클릭하면 화면 하단에 사용자의 로그인 로그 내역이 조회됩니다. 조회된 내역에서 테스트 단말기로 등록하고자 하는 Device Key를 선택하여 **추가정보**를 입력하여 **등록**버튼을 클릭하면 해당 Device key가 테스트 단말기 정보로 등록됩니다.<br />
+타입을 유저 ID로 선택하고 게임유저 ID를 입력하여 **검색** 버튼을 클릭하면 화면 하단에 사용자의 로그인 로그 내역이 조회됩니다. 조회된 내역에서 테스트 단말기로 등록하고자 하는 Device Key를 선택하여 **추가 정보**를 입력하여 **등록** 버튼을 클릭하면 해당 Device key가 테스트 단말기 정보로 등록됩니다.<br />
 
 > [참고] <br/>
-> 추가 정보에는 사용자가 알아보기 편한 별칭을 입력하시면 됩니다. 예시) iphone6 테스트, 토스트님 아이패드<br/>
+> 추가 정보에는 사용자가 알아보기 편한 별칭을 입력하시면 됩니다. 예시) iPhone 6 테스트, 토스트님 아이패드<br/>
 
 **(2)Device Key를 통한 등록**<br />
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_App3_3.0.png)
 
 등록하고자 하는 Device key를 알고 있을 경우 타입을 **Device Key**로 선택하여 직접 테스트 단말기를 등록할 수 있습니다.<br />
-Device Key와 등록 단말기의 **추가정보**를 입력 후 등록 버튼을 누르면 테스트 단말기로 Device key가 등록됩니다.<br />
+Device Key와 등록 단말기의 **추가 정보**를 입력 후 등록 버튼을 누르면 테스트 단말기로 등록됩니다.<br />
 
 #### (3) 삭제
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_App3_4.0.png)
 
-테스트 단말기 조회 화면에서 삭제하고자 하는 테스트 단말기를 체크한 후 상단의 삭제 버튼을 클릭하면 테스트 단말기 정보가 삭제됩니다. 삭제된 정보는 복구가 불가능하므로 확인 후 삭제하시기 바랍니다.<br />
+테스트 단말기 조회 화면에서 삭제하고자 하는 테스트 단말기를 체크한 후 왼쪽 위의 삭제 버튼을 클릭하면 테스트 단말기 정보가 삭제됩니다. 삭제된 정보는 복구할 수 없으므로 삭제 전에 다시 한번 확인한 후 삭제하시기 바랍니다.<br />
 
-{@수정-끝}
 ### Authentication Information
 
 #### Facebook
@@ -168,7 +167,24 @@ PAYCO Client ID를 신청해서 발급받은 {client_id} 및 {client_secret}을 
 - ClientID: {Payco client_id}<br />
 - Secret Key: {Payco client_secret}<br />
 
+#### NAVER
+Naver Developer 사이트에서 신청하여 발급받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
+이때, 로그인 동의창에서의 노출될 애플리케이션이름 및 scheme등 iOS 애플리케이션에서 필요한 정보 또한 JSON String 형태로 추가 정보란에 입력해야 합니다.<br />
 
+**입력 필드**<br />
+
+- Client ID: {Naver client_id}<br />
+- Secret Key: {Naver client_secret}<br />
+- 추가정보: Naver Application Name & iOS url scheme (json format) <br />
+
+**[예시] Naver Additional input format **<br />
+```json
+{ "url_scheme_ios_only": "Your Url Scheme", "service_name": "Your Service Name" }
+```
+
+**Reference URL**<br />
+- [Naver Developers - 애플리케이션 등록](https://developers.naver.com/apps/#/register)<br />
+- [Naver Developers - 클라이언트 아이디와 클라이언트 시크릿 확인](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)<br />
 
 
 
