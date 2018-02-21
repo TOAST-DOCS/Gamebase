@@ -1,78 +1,70 @@
 ## Game > Gamebase > Operator Guide > Push
 
-앱 이용자에게 푸시 알림을 발송할 수 있습니다.<br/>
-Gamebase에서는 TOAST Cloud Push 상품을 사용해 푸시 알림을 발송합니다.<br/>
+You can send push notification to app users. <br/>
+In Gamebase, push notifications are delivered by applying TOAST Cloud Push service.<br/>
 
 ## Push
-Gamebase를 통해 발송된 푸시의 이력과 발송 예약으로 등록된 목록을 확인할 수 있습니다.<br />
+Push history delivered via Gamebase as well as list of scheduled delivery can be retrieved. <br />
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push1_1.1.png)
-발송 예정 내역에 있는 목록은 **Push Details**에서 전송을 취소할 수도 있습니다.<br />
+Reservation delivery on the list may be canceled in Retrieve Details. <br />
 
-### Registered List
+### Push Details 
 
-예약 발송 목록에서 푸시를 선택하면 푸시의 예상 발송 시간 및 등록 정보들을 확인할 수 있습니다. <br>
-현재는 예약 발송의 취소만 가능하며 등록된 정보를 수정하는 기능은 추후 제공될 예정입니다.<br />
-
-### Send History
-
-발송 이력 목록에서 푸시를 선택하면 전송된 푸시의 상세 내역을 조회할 수 있습니다.<br />
+By selecting a push on the list of all, details of delivered push messages can be retrieved .<br />
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push2_1.1.png)
 
+On detailed reservation message delivery screen, you can see estimated delivery time . Currently, delivery on reservation messages can be canceled only; modification function is to be provided later.<br />
 
 ### Register Push
-
-새로운 푸시를 등록하려면 **등록** 버튼을 클릭합니다.
-
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push3_1.1.png)
 
-#### (1) 메시지 타입
-> [참고]<br/>
-> 한국의 '정보통신망법'을 준수하기 위해 제공되는 기능입니다. <br/>
-> 푸시 발송 시 정보성 메시지가 아닌 경우에는 '(광고)'로 메시지를 시작해야 하며 메시지에 연락처와 수신 철회 방법이 포함돼 있어야 합니다.<br/>
+#### (1) Message Types
+> Note <br/>
+> This function is provided in compliance with the Act on Promotion of Information and Communications Network set by the Government of Korea. <br/>To deliver non-informative push messages, the messages should start with '(Ad)' and include contact information and how to cancel subscription .<br/>
 
-- **홍보성**: 입력된 메시지에 '(광고)'라는 머리말이 추가됩니다. 또한 추가로 입력한 연락처와 수신 철회 방법이 함께 발송됩니다. 전체 발송과 같은 광고성 푸시의 경우 국내에서는 정보통신망법 준수를 위하여 꼭 '홍보성' 메시지로 발송하셔야 합니다.
-- **정보성**: 입력된 메시지만 푸시로 발송됩니다. 한국 단말기가 아닌(USIM 국가 코드가 한국이 아닌) 사용자에게는 정보성 메시지로 전송하시면 됩니다.
+- Ad Messages**: Input messages are added with '(Ad)' to the header. In addition, secondary contact information and how to cancel subscription are delivered altogether. For ad push messages for all in Korea, be sure to deliver as 'ad' messages to abide by the act on promotion of information and communications network. 
+- **Informative Messages**: Only input messages are delivered as push messages. For users outside of Korea, you can deliver as informative messages.
 
-> <font color="red">[중요]</font><br/>
-> **홍보성**을 선택한 후 입력 메시지에 '(광고)' 문구를 입력하면 '(광고)' 문구가 중복되므로 주의하세요. <br/>
+> <font color="red">Caution</font><br/>
+> Please note if you enter '(Ad') to messages after selecting Ad Messages, '(Ad)' will be duplicate. <br/>
 
-#### (2) 발송 대상
-푸시 메시지를 발송할 대상을 선택합니다. <br/>
+#### (2) Delivery Targets  
+Select a target to send push messages to. <br/>
 
-- **전체 발송**: 운영체제별로 선택할 수 있습니다. 선택한 운영체제를 사용하는 사용자는 모두 푸시를 수신하게 됩니다.
-- **특정 회원에게만 발송**: 특정 회원에게만 푸시 메시지를 발송하고자 할 때 선택합니다. 입력된 사용자 ID로 푸시 토큰을 등록한 기기에 푸시 메시지를 발송합니다.
-- **그룹 발송**: 메시지 발송을 원하는 사용자 목록을 파일로 등록합니다. 그룹 발송은 1회 최대 10,000명까지 가능합니다.
+- **All**: Can select by operating system. All users of a selected operating system will receive push messages. 
+- **Particular Members**: Can be applied to send push messages to particular members only.  Push messages are sent to a device in which push token is registered with an input user ID.  
+- **Group**: Register the list of users who want message delivery as a file. The group delivery can be sent up to 10,000 persons at a time. 
 
-#### (3) 발송 유형
-발송 주기를 선택합니다.<br/>
+#### (3) Delivery Types
+Select cycle of delivery.<br/>
 
-- **즉시 발송**: 등록 즉시 푸시 메시지를 발송합니다.
-- **예약 발송**: 예약한 시간에 푸시 메시지를 발송합니다.
+- **Immediate  Delivery**: Send push messages immediately after registration 
+- **Reservation Delivery**: Send push messages on reserved time
 
-추후 예약 발송에 반복 발송(매일, 매주, 매달)과 현지 시간대 기준으로 발송 등의 기능이 추가로 제공될 예정입니다.
+Further services such as repeated delivery (every day, every week, or every month) and local time-based delivery are to be provided. 
 
-#### (4) 대상 국가
-푸시 메시지를 발송할 국가를 선택합니다.<br/>
+#### (4) Target Countries 
+Select countries to send push messages to.<br/>
 
-- **전체 국가**: 모든 사용자에게 푸시 메시지를 발송합니다.
-- **일부 국가**: 선택한 국가의 사용자에게만 푸시 메시지를 발송합니다. <br/>
-  추가하고자 하는 국가명을 입력하면 자동으로 완성되어 입력됩니다. 입력하고자 하는 국가가 없는 경우 [고객 센터](https://cloud.toast.com/support/faq)로 연락 주시기 바랍니다.
+- **All Countries**: Deliver to all users 
+- **Selected Countries**: Deliver to users of selected countries only  <br/>
+  Enter a country code to add, then it will be automatically completed and entered. If there's no country code to enter, contact administrator.
 
-> [참고]<br/>
-> 국가 판단 기준<br/>
-> 사용자의 **USIM 국가 코드**를 기준으로 판단하며 USIM이 없을 경우 단말기에 설정되어 있는 국가를 기준으로 푸시 메시지가 표시됩니다.<br />
+> Note <br/>
+> Meeting Criteria for Country <br/>
+> When there is no USIM based on user's **USIM Country Code**, push messages are displayed on the basis of countries set on a **device**.<br />
 
-#### (5) 발송 메시지
-사용자에게 표시할 푸시 메시지를 입력합니다.<br />
-메시지는 여러 개 언어로 등록할 수 있으며, 입력한 언어 이외의 언어를 사용하는 사용자에게는 기본 언어로 선택된 언어로 표시됩니다. 언어를 추가하려면 오른쪽의 **'+'** 버튼을 클릭합니다. 목록에 없는 언어를 추가하려면 [고객 센터](https://cloud.toast.com/support/faq)로 연락 주시기 바랍니다.<br />
+#### (5) Delivery Messages 
+Enter push messages to show to users .<br />
+Messages can be registered in many languages, and for users who speak other languages than registered, default language is displayed. To add a language, click **'+'**  on the right. For other languages that are not on the list, contact [Customer Center](https://cloud.toast.com/support/faq).<br />
 
-> [참고]<br/>
-> 푸시 메시지를 발송했는데 기기에 메시지가 오지 않는 경우<br/>
-> 대부분의 경우 사용자의 푸시 토큰을 등록하지 않은 경우입니다. 사용자의 푸시 토큰이 등록되었는지 확인해주세요. <br/>>
-> 플랫폼에서 푸시 토큰을 등록하는 방법은 다음 문서를 참고하시기 바랍니다.
+> <font color="blue">Note </font><br/>
+> When push messages do not arrive on a device<br/>
+> In most cases, users have not registered push tokens. Please check if user's push token has been registered. <br/>
 >
-> - [Android > Register Push](./aos-push/#2-register-push) <br />
-> - [iOS > Register Push](./ios-push/#2-register-push) <br />
-> - [Unity > Register Push](./unity-push/#2-register-push) <br />
-
+> Refer to documents as below to setup push messages in other platforms.
+>
+> - [Android OS > Register PUSH](./aos-push/#2-register-push) <br />
+> - [iOS > Register PUSH](./ios-push/#2-register-push) <br />
+>  - [Unity > Register PUSH](./unity-push/#2-register-push) <br />

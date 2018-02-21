@@ -1,154 +1,152 @@
-﻿## Game > Gamebase > Operator Guide > Ban
+## Game > Gamebase > Operator Guide > Ban
+Provides ban of app use for those game users who use apps inappropriately or abusively. <br/>
+When a banned user tries to log in again or restores session, a pop-up on ban will be displayed to restrict game use. <br/>
 
-앱을 부당하게 사용하거나 어뷰징하는 게임 이용자에 대해 앱 이용을 제한할 수 있는 이용 정지 기능을 제공합니다.<br/>
-이용이 정지된 게임 이용자가 다시 로그인하거나 세션을 복구하는 경우에 이용 정지 팝업이 표시되어 게임 이용이 제한됩니다.<br/>
+Ban can be registered, either manually in Gamebase Console or automatically with TOAST Cloud AppGuard by registering patterns. 
 
-이용 정지 등록은 Gamebase Console에서 수동으로 등록하거나 TOAST Cloud AppGuard를 사용하는 경우 패턴등록을 이용해 자동으로 등록할 수 있습니다.
-
-AppGuard를 연동하는 방법은 [AppGuard](./ban/#appguard)를 참고하시기 바랍니다.
+Refer to [AppGuard](./ban/#appguard) on how to integrate AppGuard. 
 
 
 ## Ban
 
-이용 정지 이력을 조회하거나 이용 정지 등록, 이미 이용 정지 중인 게임 이용자의 이용 정지 해제가 가능합니다.<br/>
+Can retrieve ban history, register ban, or release ban from banned game users. <br/>
 
 ### Search Banned User
-
-검색 조건에 맞는 이용 정지/이용 정지 해제 게임 이용자 목록을 조회합니다.
+Retrieve the list of game users who are banned/released from ban, as search condition allows. 
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban1_1.0.png)
 
-**검색 조건**
+**Search Conditions**
 
-- **상태**: (필수) 원하는 이용 정지 상태 선택(이용 정지/이용 정지해제). 두 가지 모두 선택은 불가능하며 한 가지만 필수로 선택해야 합니다.
-- **등록일**: (필수) 이용 정지 등록일 구간 선택(from-to)
-- **유저 ID**: 이용 정지/이용 정지 해제된 Gamebase 사용자 아이디
-- **템플릿**: 이용 정지 등록에 사용한 특정 템플릿을 선택하여 조회
-- **등록 시스템**: 이용 정지 등록한 시스템을 선택하여 조회. 다중 선택 가능
-  - **콘솔**: Gamebase Console을 통하여 등록
-  - **앱가드**: AppGuard 연동으로 자동 등록
-  - **외부 서버**: 앱을 운영하는 서버 또는 기타 다른 외부 서버에서 등록
-  - **기타**: 앞의 경우를 제외한 나머지 이용 정지 등록(API 직접 호출 등)
+- **Status**: (Required) Select a status of ban (ban/release ban). Cannot choose both but one only.  
+- **Registration Date**: (Required) Select the range of registration date of ban (from-to)
+- **User ID**: Gamebase user IDs of those who are banned/released from ban 
+- **Template**: Select and retrieve a particular template applied when registering a ban 
+- **Registration System**: Select and retrieve a system registering ban. Can make multiple choices. 
+  - **Console**: Register via Gamebase Console
+  - **AppGuard**: Automatically register with AppGuard integration 
+  - **External Server**: Register at an app operating server or other external servers
+  - **Others**: Register other cases of ban, except the above (e.g. direct API calls) 
 
-> [참고] <br/>
-> 사용자에게 표시할 메시지를 다국어로 입력하여 손쉽게 재사용할 수 있도록 템플릿을 제공합니다. <br/>
-> 등록된 템플릿이 하나 이상이여야 이용 정지 등록을 할 수 있습니다.<br/>
-> 템플릿을 등록하는 방법은 [Template](./ban/#template)을 참고하시기 바랍니다.<br/>
+> [Note] <br/>
+> A template of multi-language input is provided to display message to users and allow easy reuse. <br/>
+> Can register ban, only when a template of displayed messages is registered. <br/>
+> Refer to [Template](./ban/#template) to register a template. <br/>
 
-**검색 결과**
+**Search Results**
 
-- **유저 ID**: 이용 정지 게임 이용자 아이디
-- **기간**: 이용 정지 기간. 영구 정지인 경우 '영구정지'로 노출
-- **템플릿**: 이용 정지 등록에 사용한 템플릿
-- **사유**: 이용 정지 등록 시에 운영자가 입력한 사유. 해당 사유는 사용자에게 표시되지 않고 운영 이력으로만 확인할 수 있습니다.
-- **등록자/등록일**: 이용 정지 등록한 운영자 계정/이용 정지 등록일
-- **해제 사유**: 이용 정지 해제 시에 운영자가 등록한 사유. 해당 사유는 사용자에게 노출되지 않고 운영 이력으로만 확인할 수 있습니다.
-- **해제 등록자/해제 등록일**: 이용 정지 해제한 운영자 계정/이용 정지 해제일
-- **해제**: 이용 정지 상태인 사용자는 검색 목록에서 이용 정지 해제가 가능하도록 **이용해제** 버튼이 표시됩니다. 버튼을 클릭하면 이용 정지 해제 사유를 입력하는 팝업이 표시되고, 이용 정지 해제 사유를 입력하고 **저장** 버튼을 클릭하면 이용 정지를 해제할 수 있습니다.
-- **상태**
-  - <font color="white" style="background-color:#FB8F37">이용정지</font>: 게임 이용자가 현재 앱에 접속할 수 없는 상태
-  - <font color="white" style="background-color:#A1A1A1">이용정지(기간 만료)</font>: 게임 이용자의 이용 정지 기간이 끝났으나 현재 로그인을 하지 않은 상태. 게임 이용자가 재접속 시 해제(기간 만료)로 상태가 변경됨
-  - <font color="white" style="background-color:#88C637">해제</font>: 운영자에 의해서 게임 이용자의 이용 정지가 해제된 상태
-  - <font color="white" style="background-color:#2AB1A6">해제(기간 만료)</font>: 이용 정지 기간이 끝난 이후 자연스럽게 게임 이용자가 게임에 재접속하여 이용 정지가 해제된 상태
+- **User ID**: User ID of a banned game user 
+- **Range**: Ban period. Show as ''Permanent  Ban' for a permanent banned user 
+- **Template**: Template applied to register a ban 
+- **Reason**: Reasons that an operator enter when a ban is registered. Serves only as an operation history, without exposed to users.
+- **Registration User/Registration Date**: Account of an operator who registered a ban/date of ban registration 
+- **Release Reason**: Reasons an operator registered to release ban. Serves only as an operation history, without exposed to users. 
+- **Release User/Release Date**: Account of an operator who released a ban/date of ban release 
+- **Release**: A banned user is marked with the **Release** button on the search list to allow release. Click the button, and a pop-up will show to enter release reason; fill up the release reason, click **Save**, and a ban is released.   
+- **Status**
+  - <font color="white" style="background-color:#FB8F37">Ban</font>: Game user cannot access the app at the moment  
+  - <font color="white" style="background-color:#A1A1A1">Ban (expired)</font>: Game user's ban has expired but user has not logged in. When the user logs in, the status will change to release (expired). 
+  - <font color="white" style="background-color:#88C637">Release</font>: Game user's ban has been released by operator. 
+  - <font color="white" style="background-color:#2AB1A6">Release (expired)</font>: Game user's ban has been released due to expiration. 
 
 
-> [참고]<br/>
-> **파일 다운로드** 버튼을 클릭하면 검색 결과를 CSV 파일로 저장할 수 있습니다. <br/>
+> <font color="blue">[Note]</font><br/>
+> Click **Download Files** and save search results in CSV files.  <br/>
 
 
 
 ### Register Ban
 
-이용 정지 조회 화면에서 **등록** 버튼을 클릭하면 이용 정지 등록이 가능합니다.
+Can register a ban by clicking **Register** on the Retrieve Ban page.
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban2_1.0.png)
-#### (1) 유저 ID
-이용 정지를 등록할 Gamebase 사용자 아이디를 입력합니다. 한번에 다수의 이용자를 등록할 수 있으며, 등록 방법은 아래 두가지입니다.
+#### (1) User ID
+Enter a Gamebase user ID to register ban. Multiple users can be registered at once, following the two methods as below. 
 
-- **사용자 입력**: 등록할 사용자 아이디를 입력 창에 직접 입력한 후 **Enter** 키를 누르거나 **추가** 버튼을 클릭합니다. 사용자 아이디 유효성을 검사하므로 유효하지 않은 사용자 아이디는 입력이 불가능합니다.
-- **일괄 등록**: CSV 파일만 업로드할 수 있으며 예시 파일은 Console 화면에서 다운로드할 수 있습니다. 일괄 등록은 1회 최대 10,000명까지 가능합니다. <br/>
+- **User Input**: Directly enter a user ID to register and press **Enter** or click **Add.** As validity is checked for user IDs, invalid user IDs cannot be entered.  
+- **Batch Registration**: Can upload CSV files only, and an example file can be downloaded from the Console page. Up to 10,000 persons can be registered at once by batch.  <br/>
   ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban4_1.0.png)
 
-> <font color="blue">[참고]</font><br/>
-> 일괄 등록을 진행하다가 실패하면 팝업이 표시됩니다. 해당 팝업에서 **Download** 버튼을 클릭하면 등록에 실패한 시용자 목록을 파일로 다운로드할 수 있습니다.<br />
+> <font color="blue">[Note]</font><br/>
+> If batch registration fails during progress, a pop-up will be displayed. Click **Download** from the pop-up to download the list of users who are failed to be registered in a file. <br />
 > ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban5_1.0.png)
 
-#### (2) 기간
-게임 이용자의 이용 정지 기간을 설정합니다. 이용 정지가 등록되는 시점부터 게임 이용자는 로그인이 불가능합니다.<br />
+#### (2) Range
+Set a ban period for a game user. Ban will be applied from the moment of registration.  <br />
 
-- **영구 이용 정지**: 영구 이용 정지를 하려면 선택합니다.
-- **기간 지정**: 이용 정지 기간을 입력합니다. 일(day)과 시간(hour) **예상 만료 시간** 정보로 사용자의 이용 정지 기간을 미리 확인하실 수 있습니다.<br />
+- **Permanent Ban**: Select to ban permanently.
+- **Specify Period**: Enter how long to ban by day and hour. Can expect banned period with **anticipated expiration time**.  <br />
 
-#### (3) 사유
-사용자의 이용 정지 사유를 입력합니다.<br />
-해당 사유는 사용자에게 노출되지 않고 운영 이력으로만 확인할 수 있습니다.<br />
+#### (3) Reason
+Enter reasons why a user is to be banned. <br />
+Serves only as an operation history, without exposed to users.<br />
 
-#### (4) 노출 메시지
-사용자에게 표시할 이용 정지 메시지를 입력합니다. <br/>
-사용자에게 표시할 메시지를 다국어로 입력하여 손쉽게 재사용할 수 있도록 템플릿을 제공합니다. 미리 등록한 템플릿을 선택하여 등록합니다.<br />
+#### (4) Message
+Enter a ban message to be displayed to user. <br/>
+A template of multi-language input is provided to display message to users and allow easy reuse. Select a pre-registered template to register.<br />
 
-> <font color="red">[참고]</font><br/>
-> 표시된 메시지의 템플릿이 등록된 경우에만 이용 정지를 등록할 수 있습니다. <br/>
-> 템플릿을 등록하지 않은 경우 **BAN** 메뉴의 **템플릿** 탭에서 템플릿을 먼저 등록해 주세요.<br/>
-> 템플릿을 등록하는 방법은 [Template](./ban/#template)을 참고하시기 바랍니다. <br/>
+> <font color="red">[Note]</font><br/>
+> Can register ban, only when a template of displayed message is registered.  <br/>
+> If a template has not been registered, first go to **Template** of **BAN** to register a template. <br/>
+> Refer to [Template](./ban/#template) on how to register a template. <br/>
 
 
 ### Release Ban
 
-이용 정지 조회 화면에서 **해제** 버튼을 클릭하면 이용 정지를 해제할 수 있습니다.
+Can release a ban by clicking **Release** on the Retrieve Ban page. Register Ban by clicking **Register** on the Retrieve Ban page.
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban3_1.2.png)
 
-#### 해제 사유
-이용자의 이용 정지를 해제하는 사유를 입력합니다.<br />
-해당 사유는 사용자에게 표시되지 않고 운영 이력으로만 확인할 수 있습니다.<br />
+#### Reason 
+Enter reasons why a user's ban is to be released. <br />
+Serves only as an operation history, without exposed to users. <br />
 
-#### 유저 ID
-이용 정지를 해제할 Gamebase 사용자 아이디를 입력합니다. 한번에 다수의 이용자를 등록할 수 있으며, 등록 방법은 아래 두가지입니다.
+#### User ID
+Enter a Gamebase use ID to release ban. Multiple users can be registered at once, following the two methods as below.
 
-- **사용자 입력**: 등록할 사용자 아이디를 입력 창에 직접 입력한 후 **Enter** 키를 누르거나 **추가** 버튼을 클릭합니다. 사용자 아이디 유효성을 검사하므로 유효하지 않은 사용자 아이디는 입력이 불가능합니다.
-- **일괄 등록**: CSV 파일만 업로드할 수 있으며 예시 파일은 Console 화면에서 다운로드할 수 있습니다. 일괄 등록은 1회 최대 10,000명까지 가능합니다. <br/>
+- **User Input**: Directly enter a user ID to register and press **Enter** or click **Add.** As validity is checked for user IDs, invalid user IDs cannot be entered.  
+- **Batch Registration 등록**: Can upload CSV files only, and an example file can be downloaded from the Console page. Up to 10,000 persons can be registered by batch at once.   <br/>
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban6_1.0.png)
 
 
-> [참고]<br/>
-> 일괄 등록을 진행하다가 실패하면 팝업이 표시됩니다. 해당 팝업에서 **Download** 버튼을 클릭하면 등록에 실패한 시용자 목록을 파일로 다운로드할 수 있습니다.<br />
+> <font color="blue">[Note]</font><br/>
+> If batch registration fails during progress, a pop-up will be displayed. Click **Download** from the pop-up to download the list of users who are failed to be registered in a file. <br />
 > ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban7_1.0.png)
 
 ## Template
-이용 정지 이용자에게 표시할 메시지를 다국어로 입력하여 손쉽게 재사용할 수 있도록 템플릿을 제공합니다. 미리 등록한 템플릿을 선택합니다.
-언어별로 등록할 수 있으며 이용 정지 이용자에게는 디바이스에 설정된 언어를 기준으로 이용 정지 메시지가 표시됩니다.
+Provide a template of multi-language input to display message to users and allow easy reuse. Select a pre-registered template. 
+Can register by language, and ban messages will be displayed for banned users based on the language set on each of their devices.  
 
 ### Search
 
-등록된 템플릿 목록을 검색할 수 있습니다.<br/>
-새 템플릿을 등록하거나 등록된 템플릿을 수정할 수 있으며, 등록된 템플릿을 삭제할 수는 없습니다.<br/>
+Enable the search of registered list of templates. <br/>
+Can register a new template or modify registered templates, but cannot delete templates.  <br/>
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Template1_1.1.png)
 
-- 템플릿 목록화면에서 노출메시지 항목에는 템플릿 등록시 '기본 언어'로 입력한 노출 메시지가 표시됩니다.
+- Messages on the list are displayed with a 'default language'.
 
 ### Register Template
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Template2_1.1.png)
 
-#### (1) 이름
-이용 정지 등록 시 목록에 표시할 템플릿의 이름을 입력합니다. <br/>
+#### (1) Name
+Enter a name of template to show on the list to register ban. <br/>
 
-#### (2) 노출 메시지	
-이용 정지 이용자에게 표시할 메시지를 입력합니다. <br />
-여러 개의 언어로 등록할 수 있으며, 입력한 언어 이외의 언어를 사용하는 사용자에게는 '기본 언어'로 선택된 언어가 표시됩니다. 오른쪽의 **+** 버튼을 클릭하면 언어를 추가할 수 있으며 원하는 언어가 없는 경우 [고객 센터](https://cloud.toast.com/support/faq)로 연락 주시면 새로운 언어를 추가할 수 있습니다.<br />
+#### (2) Message 	
+Enter messages for banned users. <br />
+Can be registered in many languages, and for other language users, default language will be displayed. To add a language, click **+** on the right. If there's any other languages you want on the list, contact [Customer Center](https://cloud.toast.com/support/faq).  <br />
 
 ## AppGuard
 
-> <font color="red">[참고]</font><br/>
-> TOAST Cloud AppGuard 상품을 사용하는 경우에만 이용할 수 있습니다. <br/>
+> <font color="red">[Note]</font><br/>
+> Service is available only for TOAST Cloud AppGuard product users. <br/>
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_AppGuard1_1.0.png)
 
-- **연동 여부**: AppGuard에서 탐지 또는 제재된 사용자를 자동으로 Gamebase 이용 정지 이용자로 등록하고자 하는 경우에 활성화합니다.
-- **자동 이용 정지**를 원하는 탐지/제재 종류의 '자동 등록'을 **ON**을 선택하여 '사용자 노출 메시지'와 **이용 정지 기간**을 입력하고 **저장** 버튼을 클릭하면 적용됩니다.
+- **Integration Status**: To be enabled only when users who are detected or sanctioned by AppGuard need to be automatically registered as Gamebase banned users. 
+- To apply **automatic ban** by detection/sanction type, select **ON**, enter 'Message for User' and **Ban Period**, and click **Save**. 
 
-> [참고] <br/>
-> AppGuard 연동으로 이용 정지가 자동으로 등록된 경우 등록 시스템에 '앱가드'로 등록됩니다.
+> [Note] <br/>
+> In case a ban is automatically registered by AppGuard integration, 'AppGuard' will be registered as the Registration System. 
 

@@ -1,10 +1,10 @@
-## Game > Gamebase > Unity SDK 사용 가이드 > 초기화
+## Game > Gamebase > Unity Developer's Guide > Initialization
 
-Gamebase Unity SDK를 사용하려면 먼저 초기화를 진행해야 합니다. 또한 앱 ID, 앱 버전 정보가 TOAST Console에 반드시 등록돼 있어야 합니다.
+To use Gamebase Unity SDK, initialization is required, and App ID and app version should be registered in the TOAST Console.
 
 ### Required Settings
 
-초기화 시 필요한 설정들은 아래와 같습니다.
+Following settings are required for initialization.
 
 | Setting value              | Supported OS |
 | -------------------------- | ------------ |
@@ -20,59 +20,58 @@ Gamebase Unity SDK를 사용하려면 먼저 초기화를 진행해야 합니다
 
 #### 1. App ID
 
-Gamebase Console에 등록된 프로젝트 ID입니다.
+Project ID registered in TOAST.
 
-[Console Guide](/ko/Game/Gamebase/ko/oper-app/#app)
+[Console Guide](/en/Game/Gamebase/en/oper-app/#app)
 
 #### 2. appVersion
 
-Gamebase Console에 등록한 클라이언트 버전입니다.
+Client version registered in TOAST.
 
-[Console Guide](/ko/Game/Gamebase/ko/oper-app/#client)
+[Console Guide](/en/Game/Gamebase/en/oper-app/#client)
 
 
 #### 3. zoneType
 
-외부 테스트를 위해 제공되고 있는 설정이므로 값을 입력하지 않도록 합니다.
+Leave the value empty, as this setting is provided for external testing.
 
 #### 4. isDebugMode
 
-Gamebase 디버그를 위한 설정입니다.
+Setting for Gamebase debug.
 
-* true: Gamebase의 모든 로그가 출력됩니다.
-* false: Warning, Error 로그가 출력됩니다.
-* 기본값: false
+* True: All Gamebase logs.
+* False: Warning and error logs.
+* Default: False
 
-Gamebase 문의가 필요할 경우에는 해당 설정을 true 로 변경하시고 로그를 [고객 센터](https://toast.com/support/inquiry)로 전달해 주셔야 빠른 지원을 받을 수 있습니다.
+To inquire about Gamebase, change the setting to True and send logs to [Customer Center](https://toast.com/support/inquiry) for a quick response.
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 게임을 **RELEASE** 할 경우에는 해당 설정을 반드시 **false**로 변경해야 합니다.
+> When **releasing** a game, make sure to change **parameter** to **false**.
 
 #### 5. enablePopup
 
-Gamebase Mobile(iOS, Android) SDK에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+This setting regards to applying default pop-ups provided by Gamebase Mobile (iOS, Android) SDK.
 
-* true: enableLaunchingStatusPopup, enableBanPopup 설정에 따라 팝업이 노출 여부가 결정됩니다.
-* false: Gamebase에서 제공하는 모든 팝업이 노출되지 않습니다.
-* 기본값: false
+* True: Pop-ups are exposed depending on the setting of enableLaunchingStatusPopup and enableBanPopup.
+* False: All pop-ups provided by Gamebase are not exposed.
+* Default: False
 
 #### 6. enableLaunchingStatusPopup
 
-LaunchingStatus가 게임을 할 수 없는 상태일 경우, Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
-LaunchingStatus는 아래 Launching 절 아래 State, Code 부분을 참고하십시오.
+This setting regards to applying default pop-ups provided by Gamebase, when the LaunchingStatus is disabled to play games. For LaunchingStatus, refer to Status/Code below Launching.
 
-* 기본값: true
+* Default: True
 
 #### 7. enableBanPopup
 
-로그인 시 해당 게임 이용자가 이용 정지 상태인 경우, Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+This setting regards to applying default pop-ups provided by Gamebase, when the game user has been banned.
 
-* 기본값: true
+* Default: True
 
 #### 8. storeCode
 
-TOAST 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하기 위해 필요한 스토어 정보입니다.
+Store information required to initialize In-App Purchase (IAP) of TOAST.
 
 | Store       | Code | Description  |
 | ----------- | ---- | ------------ |
@@ -82,29 +81,29 @@ TOAST 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하기 
 
 #### 9. fcmSenderId
 
-Firebase Messaging(FCM) 사용을 위한 Sender ID입니다.
+Sender ID to use FCM (Firebase Cloud Messaging).
 
 ![FCM Sender ID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
 
 #### 10. GamebaseUnitySDKSettings
 
-위에서 설명한 설정들은 GamebaseUnitySDKSettings 컴포넌트의 Inspector에서 변경할 수 있습니다.
+Settings described above can be modified at Inspector of the GamebaseUnitySDKSettings component.
 
 ![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_003_1.4.0.png)
 
 ### Initialize with Inspector Settings
 
-Gamebase Unity SDK를 초기화하는 방법은 다음과 같습니다.
+Gamebase Unity SDK can be initialized as follows:
 
-1. 빈 게임 오브젝트를 생성합니다.
-2. GamebaseUnitySDKSettings.cs 파일을 생성한 게임 오브젝트의 컴포넌트로 추가합니다.
-3. Inspector에서 초기화 설정을 입력합니다.
-4. Gamebase.Initialize(callback) API를 호출합니다.
+1. Create an empty game object.
+2. Add the GamebaseUnitySDKSettings.cs file as a component of the game object.
+3. Fill in the initialization setting at Inspector.
+4. Call Gamebase.Initialize (callback) API.
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 생성한 게임 오브젝트를 삭제하면 Android, iOS API 호출 후 콜백을 받을 수 없으므로 주의하시기 바랍니다. <br/>
-> 실수로 삭제된 경우 "Do not destroy this gameObject in order to receive callback." 오류가 나타납니다.
+> Keep note that if a created game object is deleted, a callback cannot be received after a call of Android or iOS API. When it is deleted by mistake, <br/>
+> When it is deleted by mistake, "Do not destroy this gameObject in order to receive callback." error message will show.
 
 **API**
 
@@ -163,78 +162,78 @@ public class SampleInitialization
 
 ### Launching Information
 
-Initialize API를 사용하여 Gamebase Unity SDK를 초기화하면 LaunchingInfo 객체가 결과값으로 전달됩니다.
-이 LaunchingInfo 객체에는 Gamebase Console에 설정한 값들과 게임 상태 등이 포함돼 있습니다.
+When Gamebase Unity SDK is initialized by using Initialize API, LaunchingInfo object results will be delievered. 
+This LaunchingInfo object contains settings of the TOAST Gamebase Console and game status.
 
 #### 1. Launching
 
-Gamebase 론칭 정보입니다.
+Launching information of Gameabse.
 
 **1.1 Status**
 
-Gamebase Unity SDK 초기화 설정에 입력한 앱 버전의 게임 상태 정보입니다.
+Status information of game app version set in the Gamebase Unity SDK initialization.
 
-* code: 게임 상태 코드(점검 중, 업데이트 필수, 서비스 종료 등)
-* message: 게임 상태 메시지
+* Code: Game status code (e.g. Under maintenance, Update is required, Service has been terminated)
+* Message: Game status message
 
-상태 코드는 아래 표를 참고하십시오.
+For game status codes, refer to the table below.
 
 | Status                      | Status Code | Description                                    |
 | --------------------------- | ----------- | ---------------------------------------- |
-| IN_SERVICE | 200 | 정상 서비스 중 |
-| RECOMMEND_UPDATE | 201 | 업그레이드 권장 |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202         | 점검 중에는 서비스를 이용할 수 없지만 QA 단말기로 등록된 경우에는 점검과 상관없이 서비스에 접속해 테스트 할 수 있습니다. |
-| REQUIRE_UPDATE | 300 | 업그레이드 필수 |
-| BLOCKED_USER                | 301         | 접속 차단으로 등록된 단말기(디바이스 키)로 서비스에 접속한 경우입니다. |
-| TERMINATED_SERVICE          | 302         | 서비스 종료                                   |
-| INSPECTING_SERVICE          | 303         | 서비스 점검 중                                 |
-| INSPECTING_ALL_SERVICES     | 304         | 전체 시스템 점검 중                              |
-| INTERNAL_SERVER_ERROR       | 500         | 내부 서버 오류                                 |
+| IN_SERVICE | 200 | Service is now normally provided |
+| RECOMMEND_UPDATE | 201 | Update is recommended |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202 | Under maintenance now but QA user service is available. |
+| REQUIRE_UPDATE | 300 | Update is required |
+| BLOCKED_USER | 301 | User whose access has been blocked. |
+| TERMINATED_SERVICE | 302 | Service has been terminated |
+| INSPECTING_SERVICE | 303 | Under maintenance now |
+| INSPECTING_ALL_SERVICES | 304 | Under maintenance for the whole service |
+| INTERNAL_SERVER_ERROR | 500 | Error of internal server |
 
-[Console Guide](/ko/Game/Gamebase/ko/oper-app/#app)
+[Console Guide](/en/Game/Gamebase/en/oper-app/#app)
 
 **1.2 App**
 
-Gamebase Console에 등록된 앱 정보입니다.
+App information registered in the TOAST Console.
 
 * accessInfo
-    * serverAddress: 서버 주소
-    * csInfo: 고객 센터 정보
+	* serverAddress: Address of the server
+  	* csInfo: Customer center information
 * relatedUrls
-    * termsUrl: 이용약관
-    * personalInfoCollectionUrl: 개인 정보 동의
-    * punishRuleUrl: 이용 정지 규정
-    * csUrl : 고객센터
-* install: 설치 URL
-* idP: 인증 정보
+	* termsUrl: Terms of Use
+  	* personalInfoCollectionUrl: Agreement to Personal Information
+  	* punishRuleUrl: Rules of Punishment
+  	* csUrl: Customer Center
+* install: Installation URL
+* idP: ID Provider
 
-[Console Guide](/ko/Game/Gamebase/ko/oper-app/#client)
+[Console Guide](/en/Game/Gamebase/en/oper-app/#client)
 
 **1.3 Maintenance**
 
-Gamebase Console에 등록된 점검 정보입니다.
+Maintenance information registered in the TOAST Console is as follows.
 
-* url: 점검 페이지 URL
-* timezone: 표준 시간대(timezone)
-* beginDate: 시작 시간
-* endDate: 종료 시간
-* message: 점검 사유
+* url: Maintenance page url
+* timezone: Standard timezone (timezone)
+* beginDate: Start time
+* endDate: End time
+* message: Purpose of maintenance
 
-[Console Guide](/ko/Game/Gamebase/ko/oper-operation/#maintenance)
+[Console Guide](/en/Game/Gamebase/en/oper-operation/#maintenance)
 
 **1.4 Notice**
 
-Gamebaes Console에 등록된 공지 정보입니다.
+{@수정}Gamebaes Console에 등록된 공지 정보입니다.
 
-* message: 메시지
-* title: 타이틀
-* url: 점검 URL
+* message: Messages
+* title: Title
+* url: Maintenance url
 
-[Console Guide](/ko/Game/Gamebase/ko/oper-operation/#notice)
+[Console Guide](/en/Game/Gamebase/en/oper-operation/#notice)
 
 #### 2. tcProduct
 
-Gamebase와 연계된 TOAST 서비스의 appKey입니다.
+Appkey of TOAST Products linked to Gamebase.
 
 * gamebase
 * tcLaunching
@@ -243,10 +242,10 @@ Gamebase와 연계된 TOAST 서비스의 appKey입니다.
 
 #### 3. tcIap
 
-TOAST Console에 등록된 IAP 스토어 정보입니다.
+IAP store information registered in the TOAST Console.
 
 * id: App ID
 * name: App Name
 * storeCode: Store Code
- 
-[Console Guide](/ko/Game/Gamebase/ko/oper-purchase/)
+
+[Console Guide](/en/Game/Gamebase/en/oper-purchase/)

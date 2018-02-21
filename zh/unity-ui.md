@@ -1,19 +1,21 @@
-## Game > Gamebase > Unity SDK 사용 가이드 > UI
+## Game > Gamebase > Unity Developer's Guide > UI
 
 ## Webview
 
 ### Show WebView
 
-WebView를 표시합니다.<br/>
+Shows a WebView.<br/>
 
-##### Required 파라미터
-* url : 파라미터로 전송되는 url은 유효한 값이어야 합니다.
+##### Required Parameters
 
-##### Optional 파라미터
-* configuration : GamebaseWebViewConfiguration으로 WebView의 레이아웃을 변경 할 수 있습니다.
-* closeCallback : WebView가 종료될 때 사용자에게 콜백으로 알려 줍니다.
-* schemeList : 사용자가 받고 싶은 커스텀 Scheme 목록을 지정합니다.
-* schemeEvent : schemeList로 지정한 커스텀 Scheme을 포함하는 url을 콜백으로 알려 줍니다.
+* URL: The url delivered as a parameter should be valid.
+
+##### Optional Parameters
+
+- configuration: Changes WebView layout by using GamebaseWebViewConfiguration.
+- closeCallback: Notifies users when a WebView is closed.
+- schemeList: Specifies the list of customized schemes a user wants.
+- schemeEvent: Notifies url including customized scheme specified by the schemeList with a callback.
 
 **API**
 
@@ -49,36 +51,36 @@ public void ShowWebView(GamebaseCallback.ErrorDelegate closeCallback, List<strin
 
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | string                                   | WebView의 제목                 |
-| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 미지정 |
-|                          | GamebaseScreenOrientation.PORTRAIT       | 세로 모드                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE      | 가로 모드                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 가로 모드를 180도 회전              |
-| colorR                   | 0~255                                    | 내비게이션 바 색상 Alpha            |
-| colorG                   | 0~255                                    | 내비게이션 바 색상 R                |
-| colorB                   | 0~255                                    | 내비게이션 바 색상 G                |
-| colorA                   | 0~255                                    | 내비게이션 바 색상 B                |
-| buttonVisible            | true or false                            | 뒤로 가기 버튼 활성 또는 비활성          |
-| barHeight                | height                                   | 내비게이션 바 높이                  |
-| backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지                |
-| closeButtonImageResource | ID of resource | 닫기 버튼 이미지 |
-| url | "http://" or "https://" or "file://" | 웹 URL |
+| title                    | string                                   | Title of WebView                 |
+| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | Unspecified |
+|                          | GamebaseScreenOrientation.PORTRAIT       | Portrait Mode                      |
+|                          | GamebaseScreenOrientation.LANDSCAPE      | Landscape Mode                       |
+|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | Reverse Landscape              |
+| colorR                   | 0~255                                    | Color of Navigation Bar: Alpha            |
+| colorG                   | 0~255                                    | Color of Navigation Bar: R                 |
+| colorB                   | 0~255                                    | Color of Navigation Bar: G               |
+| colorA                   | 0~255                                    | Color of Navigation Bar: B                |
+| buttonVisible            | true or false                            | Activate/Deactivate Go Back Button           |
+| barHeight                | height                                   | Height of Navigation Bar                  |
+| backButtonImageResource  | ID of resource                           | Image of Go Back Button                |
+| closeButtonImageResource | ID of resource                           | Image of Close Button |
+| url | "http://" or "https://" or "file://" | Web URL |
 
 #### Predefined Custom Scheme
 
-Gamebase에서 지정해 놓은 Scheme 입니다.
+Gamebase has specified following schemes.
 
-| scheme | 용도 |
+| scheme | Usage |
 | ----------------------------- | ------------------------------ |
-| gamebase://dismiss | WebView 닫기 |
-| gamebase://goBack | WebView 뒤로가기 |
-| gamebase://getUserId          | 현재 로그인되어 있는 게임 이용자의 사용자 ID를 표시 |
-| gamebase://getMaintenanceInfo | 점검 내용을 WebPage에 표시 |
+| gamebase://dismiss | Close WebView |
+| gamebase://goBack | Go back from WebView |
+| gamebase://getUserId          | Show ID of a user who is currently logged-in |
+| gamebase://getMaintenanceInfo | Display maintenance information on WebPage |
 
 
 ### Close WebView
 
-다음 API를 이용하여 보여지고 있는 WebView를 닫을 수 있습니다.
+Close currently displayed WebView by using the following API.
 
 **API**
 
@@ -101,7 +103,7 @@ public void CloseWebview()
 
 ## Open External Browser
 
-다음 API를 통하여 외부 브라우져를 열 수 있습니다. 파라미터로 전송되는 url은 유효한 값이어야 합니다.
+Open an external browser by using the following API. The URL delivered as a parameter should be valid.
 
 **API**
 
@@ -127,8 +129,8 @@ public void OpenWebBrowser(string url)
 
 ## Alert
 
-시스템 알림을 표시할 수 있습니다.
-시스템 알림에 버튼이나 콜백을 등록할 수도 있습니다. 
+Displays a system alert API.
+Can register buttons or callback on system alerts.
 
 **API**
 
@@ -167,7 +169,7 @@ public void ShowAlertDialog()
 
 ## Toast
 
-다음 API를 사용하여 쉽게 메시지를 표시할 수 있습니다.
+Displays message easily, by using the following API.
 
 **API**
 
@@ -202,7 +204,7 @@ public void ShowToast(string message, GamebaseUIToastType type)
 
 | Error              | Error Code | Description                 |
 | ------------------ | ---------- | --------------------------- |
-| UI\_UNKNOWN\_ERROR | 6999       | 알수 없는 오류입니다(정의되지 않은 오류입니다). |
+| UI\_UNKNOWN\_ERROR | 6999       | Unknown error (Undefined error). |
 
-* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./error-code/#client-sdk)
+* Refer to the following document for the entire error codes.
+	- [Entire Error Codes](./error-code/#client-sdk)

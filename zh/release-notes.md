@@ -1,18 +1,11 @@
 ## Game > Gamebase > 릴리스 노트
 
-### 2018.2.22
-
-#### 기능 추가
-* [SDK] 1.7.0
-	* Naver IdP 인증 추가
-	* Display Language 설정 추가: 단말기 언어와 별도로 게임내에서 게임유저의 노출 언어를 설정할 수 있도록 Display 언어를 추가하였습니다.
-
 ### 2018.1.25
 
 #### 기능 추가
 
 * [Console]
-	* [Push] PUSH 입력값 복사기능 추가
+	* [Push] PUSH 입력값 복사기능 추가	
 	* [Operating indicator>그룹 동접] 일간 그룹 동접 변화 그래프 추가
 
 * [SDK] 1.6.0
@@ -22,12 +15,12 @@
 
 #### 기능 개선/변경
 * [Console]
-	* [Operating indicator>모니터링] 프로젝트 생성 이전 설정된 시스템 점검 항목이 노출 되는 문제 수정
+	* [Operating indicator>모니터링] 프로젝트 생성 이전 설정된 시스템 점검 항목이, 노출 되는 문제 수정
 	* [App>앱] 테스트 단말기 등록화면 개선 - User ID 로그인이력을 바탕으로 손쉽게 단말기 등록가능하도록 개선
 	* [Operation>점검] 점검 미리보기 화면 개선
 
 #### 버그 수정
-* [SDK] 1.6.0
+* [SDK] 1.5.0
 	* (iOS) WebView 호출시, 크래시가 일어날 수 있는 부분에 대한 방어로직 처리
 
 
@@ -69,7 +62,7 @@
 #### 기능 개선/변경
 * [Console]
 	* [Operating indicator>모니터링] 차트 색상 변경, Timezone 이슈. DAU 계산로직 변경(Login시간기준->접속시간기준)
-* [API] [점검 조회 API](./api-guide/#check-under-maintenance) 결과를 List 에서 단일 객체로 변경
+* [API] [점검 조회 API](http://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#check-under-maintenance) 결과를 List 에서 단일 객체로 변경
 
 #### 버그 수정
 * [Console]
@@ -179,7 +172,7 @@
 * [SDK] 1.1.2 업데이트
     * 게임런칭시 점검, 긴급공지 팝업 개선
     * Unity Plugin 디버그로그 추가 및 익셉션 상세처리
-* [API] [IAP](./api-guide/#purchaseiap) API 연동 : 아이템 조회, 미소비내역 조회
+* [API] [IAP](/Upcoming%20Products/Gamebase/ko/api-guide/#purchaseiap) API 연동 : 아이템 조회, 미소비내역 조회
 * [API] checkAccessToken API 응답 결과에, 로그인 시 사용된 IdP 관련 정보 포함하는 스펙 추가
 * [Console] 점검, 긴급공지 : 클라이언트 버전 선택 시 게임에서 사용하지 않는 스토어는 노출되지 않도록 변경
 
@@ -192,7 +185,7 @@
 * [SDK] 1.1.0 업데이트
     * 외부 AccessToken을 받아서 idPLogin을 해주는 인터페이스를 추가
     * [UI 기능 추가](/Upcoming%20Products/Gamebase/ko/aos-ui/#ui) : Custom Webview, AlertDialog
-* [API] [Leaderboard](./api-guide/#leaderboard), [IAP](./api-guide/#purchaseiap) API 연동
+* [API] [Leaderboard](/Upcoming%20Products/Gamebase/ko/api-guide/#leaderboard), [IAP](/Upcoming%20Products/Gamebase/ko/api-guide/#purchaseiap) API 연동
 
 ### 2017.03.09
 

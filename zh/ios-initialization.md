@@ -1,58 +1,57 @@
-## Game > Gamebase > iOS SDK 사용 가이드 > 초기화
+## Game > Gamebase > iOS Developer's Guide > Initialization
 
-Gamebase iOS SDK를 사용하려면 먼저 초기화를 진행해야 합니다. 
+To use Gamebase iOS SDK, initialization is required.
 
 ### Import Header File
 
-먼저 Gamebase 헤더 파일을 앱으로 가져와야 합니다.<br/>
-AppDelegate.h 등 Gamebase 기능을 초기화할 곳에 다음의 헤더 파일을 가져옵니다.
+First, import Gamebase header file to the app.
+Get the following header file to where Gamebase functions will be initialized, such as AppDelegate.h.
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
 ```
 
-
 ### Configuration Settings
 
-Gamebase 초기화 시 TCGBConfiguration 객체로 Gamebase 설정을 변경할 수 있습니다.
+When Gamebase is initialized, Gamebase setting can be modified with TCGBConfiguration.
 
 | API                                | Mandatory(M) / Optional(O) | Description                              |
 | ---------------------------------- | -------------------------- | ---------------------------------------- |
-| configurationWithAppID:appVersion: | M                          | TCGBConfiguration의 앱 ID와 앱 버전을 설정합니다.<br/>업데이트, 점검에 해당하는지 여부는 게임 버전으로 판단합니다.<br/>게임 버전을 지정해 주세요. |
-| enablePopup:                       | O                          | **[UI]**<br/>시스템 점검, 이용 제재(ban) 등 게임 이용자가 게임을 플레이할 수 없는 상황에서 팝업 등으로 사유를 표시해야 할 때가 있습니다.<br/>**YES**로 설정하면 Gamebase가 해당 상황에서 정보 팝업을 자동으로 표시합니다.<br/>기본값은 **NO**입니다.<br/>**NO** 상태에서는 론칭 결과를 통해 정보를 획득한 후 자체 UI를 구현해 게임을 플레이할 수 없는 이유를 표시해 주시기 바랍니다. |
-| enableLaunchingStatusPopup:        | O                          | **[UI]**<br/>론칭 결과에 따라 로그인할 수 없는 상태에서(주로 점검 상태) Gamebase가 자동으로 팝업을 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup:YES** 상태에서만 동작합니다.<br/>기본값은 **YES**입니다. |
-| enableBanPopup:                    | O                          | **[UI]**<br/>게임 이용자가 이용 제재를 당한 상태일 때 Gamebase가 자동으로 제재 사유를 팝업으로 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup:** 상태에서만 동작합니다.<br/>기본값은 **YES**입니다. |
+| configurationWithAppID:appVersion: | M | Set App ID and app version of TCGBConfiguration.Status of update or maintenance can be decided upon a game version.<br/>Specify a game version. |
+| enablePopup: | O | **[UI]**<br/> When a game user cannot play games due to system maintenance or banned from use, reasons need to be displayed by pop-ups.<br/>If it is set **YES**, Gamebase will automatically display information via pop-ups.<br/>**NO** is set as default.<br/>When set to **NO**, get information from launching results and display why user cannot play games by using customized UI. |
+| enableLaunchingStatusPopup: | O | **[UI]**<br/>Depending on the launching results, when unavailable to login (mainly due to maintenance), you may decide whether to allow Gamebase to automatically display pop-ups. Works only when **enablePopup:YES** is on.<br/>**YES** is set as default. |
+| enableBanPopup: | O | **[UI]**<br/>When a game user is banned, you can change whether to allow Gamebase to automatically display a pop-up on the reasons.  Works only when **enablePopup:** is on.<br/>**YES** is set as default. |
 
 
 ### Debug Mode
-Gamebase는 경고(warning)와 오류 로그만 표시합니다.
-개발에 참고할 수 있는 시스템 로그를 켜려면 **[TCGBGamebase setDebugMode:YES]**를 호출하시기 바랍니다.
 
-> <font color="red">[주의]</font><br/>
+Gamebase shows warning and error logs only.
+To turn on system logs for the reference of development, call **[TCGBGamebase setDebugMode:YES]**.
+
+> <font color="red">[Caution]</font><br/>
 >
-> 게임을 **릴리스**할 때는 반드시 소스 코드에서 setDebugMode: 호출을 제거하거나 파라미터를 NO로 바꿔 빌드하세요.
+> Before **releasing** a game, be sure to delete setDebugMode call from a source code or change the parameter to NO.
 
 
 ### Initialize
-**application:didFinishLaunchingWithOptions:** 메서드에서 다음과 같이 초기화를 진행합니다.
 
+Process initialization, in **application:didFinishLaunchingWithOptions:**.
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> Gamebase를 초기화하기 위한 **initializeWithConfiguration:launchOptions:completion:** 메서드의 호출은 **application:didFinishLaunchingWithOptions:** 외에서도 호출할 수 있습니다.
+> The **initializeWithConfiguration:launchOptions:completion:** method call can be made from **application:didFinishLaunchingWithOptions:** , as well.
 >
 
 <br/>
 
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> **initializeWithConfiguration:launchOptions:completion:** 메서드를 호출하지 않고 다른 Gamebase API를 호출하면 정상적으로 작동하지 않을 수 있습니다.
+> The **initializeWithConfiguration:launchOptions:completion:** method must be called before a call is made for another Gamebase API.
 
-1. **TCGBConfiguration** 객체를 생성하여, 각 속성을 설정합니다.
-2. 설정된 **TCGBConfiguration** 객체를 사용하여 **initializeWithConfiguration:launchOptions:completion:**을 호출합니다.
-3. **completion** 블록으로 전달된 **TCGBError** 객체를 확인하여 성공 여부를 판단하며, 초기화가 실패했을 때에는 다시 시도할 수 있게 합니다.
-
+1. Create **TCGBConfiguration** object, and set each property.
+2. Call **initializeWithConfiguration:launchOptions:completion:** by using the **TCGBConfiguration** object.
+3. Check the **completion** block by using **TCGBError** object to decide whether it is successful. If initialization fails, try again; make sure to include the logic of initialization to prevent potential problems.
 
 
 ```objectivec
@@ -77,8 +76,8 @@ Gamebase는 경고(warning)와 오류 로그만 표시합니다.
 
 ### Launching Status
 
-Gamebase 초기화 호출 결과로 론칭 상태를 확인할 수 있습니다.<br/>
-론칭 상태는 Gamebase 초기화 이후에 호출해야 합니다.
+Check launching status by calling Gamebase#initialize.
+Need to call launching status after Gamebase is initialized.
 
 ```objectivec
 - (void)myMethodAfterGamebaseInitialized {
@@ -105,27 +104,29 @@ Gamebase 초기화 호출 결과로 론칭 상태를 확인할 수 있습니다.
 
 | Status                      | Code | Description                              |
 | --------------------------- | ---- | ---------------------------------------- |
-| IN_SERVICE                  | 200  | 정상 서비스 중                                 |
-| RECOMMEND_UPDATE            | 201  | 업데이트 권장                                  |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202  | 점검 중에는 서비스를 이용할 수 없지만 QA 단말기로 등록된 경우에는 점검과 상관없이 서비스에 접속해 테스트할 수 있습니다. |
-| REQUIRE_UPDATE              | 300  | 업데이트 필수                                  |
-| BLOCKED_USER                | 301  | 접속 차단으로 등록된 단말기(디바이스 키)로 서비스에 접속한 경우입니다. |
-| TERMINATED_SERVICE          | 302  | 서비스 종료                                   |
-| INSPECTING_SERVICE          | 303  | 서비스 점검 중                                 |
-| INSPECTING_ALL_SERVICES     | 304  | 전체 서비스 점검 중                              |
-| INTERNAL_SERVER_ERROR       | 500  | 내부 서버 오류                                 |
+| IN_SERVICE                  | 200  | Service is now normally provided.                           |
+| RECOMMEND_UPDATE            | 201  | Update is recommended.                              |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202  | Under maintenance now but QA user service is available. |
+| REQUIRE_UPDATE              | 300  | Update is required.                                  |
+| BLOCKED_USER                | 301  | User whose access has been blocked. |
+| TERMINATED_SERVICE          | 302  | Service has been terminated.                                   |
+| INSPECTING_SERVICE          | 303  |  Under maintenance now.                                 |
+| INSPECTING_ALL_SERVICES     | 304  | Under maintenance for the whole service.                              |
+| INTERNAL_SERVER_ERROR       | 500  | Error of internal server.                                 |
 
 
 ## Lifecycle Event
 
-iOS의 앱 이벤트를 관리하려면 다음 **UIApplicationDelegate** 프로토콜을 구현합니다.
+To manage iOS app events, implement the following **UIApplicationDelegate** protocol.
 
 ### OpenURL Event
-**application:openURL:sourceApplication:annotation:** 메서드를 호출하여, 어플리케이션의 외부 URL Open 시도를 Gamebase에 알려주어야 합니다. Gamebase에서는 각 Idp의 인증용 SDK에 해당 값을 전달하여, 필요한 동작을 하도록 알려줍니다.
 
-> <font color="red">[주의]</font><br/>
+Call **application:openURL:sourceApplication:annotation:** method to notify Gamebase when application's external URL was tried to be open.
+Gamebase will deliver a corresponding value to authentication SDK of each IdP to make it operate as required.
+
+> <font color="red">[Caution]</font><br/>
 >
-> UIApplicationDelegate의 **application:openURL:options:**를 이미 재정의(overriding)했다면, **application:openURL:sourceApplication:annotation:**이 호출되지 않을 수 있습니다.
+> If **application:openURL:options:** of UIApplicationDelegate has been already overriden, call of **application:openURL:sourceApplication:annotation:** may not work.
 >
 
 ```objectivec
@@ -136,8 +137,9 @@ iOS의 앱 이벤트를 관리하려면 다음 **UIApplicationDelegate** 프로�
 ```
 
 ### DidBecomeActive Event
-**applicationDidBecomeActive:** 메서드를 호출하여, 앱의 활성화 여부를 Gamebase에 알려주어야 합니다. Gamebase에서는 각 Idp의 인증용 SDK에 해당 값을 전달하여, 필요한 동작을 하도록 알려줍니다.
 
+Call **applicationDidBecomeActive:** method to notify Gamebase whether an app has been activated or not.
+Gamebase delivers a corresponding value to authentication SDK of each IdP to make it operate as required.
 
 
 ```objectivec
@@ -147,7 +149,8 @@ iOS의 앱 이벤트를 관리하려면 다음 **UIApplicationDelegate** 프로�
 ```
 
 ### DidEnterBackground Event
-**applicationDidEnterBackground** 메서드를 호출하여, Gamebase에 앱이 백그라운드(background)로 전환된다는 것을 알려 주어야 합니다.
+
+Call **applicationDidEnterBackground**, to notify Gamebase that an app will be converted to background.
 
 
 ```objectivec
@@ -157,7 +160,8 @@ iOS의 앱 이벤트를 관리하려면 다음 **UIApplicationDelegate** 프로�
 ```
 
 ### WillEnterForeground Event
-**applicationWillEnterForeground** 메서드를 호출하여, Gamebase에 앱이 포그라운드(foreground)로 전환된다는 것을 알려 주어야 합니다.
+
+Call **applicationWillEnterForeground**, to notify Gamebase that an app will be converted to foreground.
 
 ```objectivec
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -170,15 +174,15 @@ iOS의 앱 이벤트를 관리하려면 다음 **UIApplicationDelegate** 프로�
 
 | Error                              | Error Code | Description            |
 | ---------------------------------- | ---------- | ---------------------- |
-| TCGB\_ERROR\_NOT\_INITIALIZED      | 1          | Gamebase 초기화돼 있지 않습니다. |
-| TCGB\_ERROR\_NOT\_LOGGED\_IN       | 2          | 로그인이 필요합니다.            |
-| TCGB\_ERROR\_INVALID\_PARAMETER    | 3          | 잘못된 파라미터입니다.           |
-| TCGB\_ERROR\_INVALID\_JSON\_FORMAT | 4          | JSON 포맷 오류입니다.         |
-| TCGB\_ERROR\_USER\_PERMISSION      | 5          | 권한이 없습니다.              |
-| TCGB\_ERROR\_NOT\_SUPPORTED        | 10         | 지원하지 않는 기능입니다.         |
-| TCGB\_ERROR\_NOT\_SUPPORTED\_IOS   | 12         | iOS에서 지원하지 않는 기능입니다.   |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebase is not initialized. |
+| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2 | Login is required.
+| TCGB\_ERROR\_INVALID\_PARAMETER | 3 | Invalid parameter. |
+| TCGB\_ERROR\_INVALID\_JSON\_FORMAT | 4 | Invalid JSON format. |
+| TCGB\_ERROR\_USER\_PERMISSION | 5 | User is not authorized. |
+| TCGB\_ERROR\_NOT\_SUPPORTED | 10 | The function is not supported. |
+| TCGB\_ERROR\_NOT\_SUPPORTED\_IOS | 12 | The function is not supported by iOS. |
 
 
 
-* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./error-code/#client-sdk)
+* Refer to the following document for the entire error codes.
+  - [Entire Error Codes](./error-code/#client-sdk)
