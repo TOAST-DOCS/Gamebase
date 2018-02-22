@@ -184,6 +184,7 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 * GamebaseAuthProvider.GAMECENTER
 * GamebaseAuthProvider.FACEBOOK
 * GamebaseAuthProvider.PAYCO
+* GamebaseAuthProvider.NAVER
 
 > There is information which must be included for login with some IdPs.<br/>
 > For instance, scope must be set to implement a Facebook login.<br/>
@@ -289,6 +290,20 @@ Example of adding authentication information in PAYCO
 ```json
 { "service_code": "HANGAME", "service_name": "Your Service Name" }
 ```
+
+#### NAVER
+* Go to **TOAST Console > Gamebase > App > Authentication Information > Additional Information & Callback URL** to set json string-type information **to**  **Additional Information**.
+   * **service_name** and **url_scheme_ios_only** should be set as NaverSDK requires. 
+
+* Set URL Schemes.
+	* **XCode > Target > Info > URL Types**
+
+Example of Adding Authentication Information to NAVER
+```json
+{ "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
+```
+![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+
 
 ## Logout
 Try to log out from logged-in IdP. In many cases, the logout button is located on the game configuration screen. Even if a logout is successful, a game user's data remain. When it is successful, as authentication records with a corresponding IdP are removed, ID and passwords will be required for the next log-in process.<br/><br/>
@@ -474,7 +489,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | keyname | a use | Value Type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                          | facebook, payco, iosgamecenter |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                          | facebook, payco, iosgamecenter, naver |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                                |
 
 > [TIP]

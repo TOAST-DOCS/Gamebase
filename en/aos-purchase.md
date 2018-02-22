@@ -11,7 +11,7 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
 #### 1. Store Console
 
 - Refer to the IAP guide as below, to register an app to each store and get an Appkey.
-- [IAP > Store interlocking information](/en/Mobile%20Service/IAP/en/Store%20interlocking%20information/)
+- [IAP > Store interlocking information](/Mobile%20Service/IAP/en/Store%20interlocking%20information/)
 
 #### 2. Register as Store's Tester
 
@@ -29,7 +29,7 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
 #### 3. TOAST IAP 서비스 이용
 
 - Refer to the IAP guide to set and register IAP.
-    - [IAP > Getting Started](/en/Mobile%20Service/IAP/en/console-guide/)
+    - [IAP > Getting Started](/Mobile%20Service/IAP/en/console-guide/)
 
 
 
@@ -93,7 +93,7 @@ Item purchases should be implemented in the following order. <br/>
 1. Call **requestPurchase** of Gamebase SDK to purchase in a game client.
 2. After a successful purchase, call **requestItemListOfNotConsumed** to check the list of non-consumed purchases.
 3. If there is a value on the returned list, the game client sends a request to the game server to consume purchased items.
-4. The game server requests for Consume API to the Gamebase server via API. [API Guide](/en/Game/Gamebase/en/api-guide/#wrapping-api)
+4. The game server requests for Consume API to the Gamebase server via API. [API Guide](/Game/Gamebase/en/api-guide/#wrapping-api)
 5. If the IAP server has successfully called Consume API, the game server provides the items to the game client.
 
 A purchase at store may be successful but cannot be closed normally due to error. It is recommended to call each of the two APIs after login is completed, to initialize a reprocessing logic.
@@ -220,4 +220,4 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 - Occurs at an IAP module.
 - Need to check IAP error codes via exception.getDetailCode().
 - For IAP error codes, refer to the document below.
-    - [IAP > Error Code Guide > Client API Error Type](/en/Mobile%20Service/IAP/en/error-code/#client-api#client-api-errors)
+    - [IAP > Error Code Guide > Client API Error Type](/Mobile%20Service/IAP/en/error-code/#client-api#client-api-errors)

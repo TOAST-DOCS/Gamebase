@@ -13,13 +13,13 @@ API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주�
 > https://api-gamebase.cloud.toast.com
 <br>
 
-![image alt](./image/Server_Developers_Guide/pre_server_address_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
 
 
 #### AppId
 
 앱 ID는 TOAST 프로젝트 ID로 앱 메뉴 화면에서 확인할 수 있습니다.
-![image alt](./image/Server_Developers_Guide/pre_appId_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
 
 #### SecretKey
@@ -29,7 +29,7 @@ API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주�
 > 비밀 키가 외부에 노출되어 잘못된 호출이 발생한다면 **생성** 버튼을 클릭하여 새로운 비밀 키를 만든 후, 새 비밀 키를 사용하면 됩니다.
 <br>
 
-![image alt](./image/Server_Developers_Guide/pre_secret_key_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
 
 #### TransactionId
 

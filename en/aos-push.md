@@ -8,7 +8,7 @@ This document describes how to set push notifications for each platform.
 
 #### TOAST Cloud Console 등록
 
-To set your Console, refer to [TOAST Cloud Push Guide](/en/Notification/Push/en/Getting%20Started/#console_1).
+To set your Console, refer to [TOAST Cloud Push Guide](/Notification/Push/en/Getting%20Started/#console_1).
 
 #### Download
 
@@ -211,7 +211,7 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 - Occurs in the TOAST Cloud Push library.
 - Need to check TOAST Cloud Push error codes with exception.getDetailCode().
 - Refer to the following document for TOAST Cloud Push error codes:
-  - [Push > Client SDK Developer's Guide > Error Code Guide > Error Handling](/en/Notification/Push/en/Client%20SDK%20Guide/#_5)
+  - [Push > Client SDK Developer's Guide > Error Code Guide > Error Handling](/Notification/Push/en/Client%20SDK%20Guide/#_5)
 
 
 

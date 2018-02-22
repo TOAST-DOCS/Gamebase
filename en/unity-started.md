@@ -44,7 +44,7 @@ Supported Platforms
 
 Setting Tool is provided to install Gamebase SDK with more at ease.
 
-* [Download Gamebase Client SDK](/en/Download/#game-gamebase)
+* [Download Gamebase Client SDK](/Download/#game-gamebase)
 
 
 ### Specification of Setting Tool
@@ -65,7 +65,7 @@ Setting Tool is provided to install Gamebase SDK with more at ease.
 #### Install SDK
 1. Open a Unity project.
 2. Import GamebaseUnitySettingTool_{version}.unitypackage.
-3. Execute Menu > Gamebase > SDKSettings > Setting Tool.
+3. Execute Menu > Tools > Gamebase > SDKSettings > Setting Tool.
 4. Click [Browse] and select a location to download SDK.
     * Default path: project/Gamebase/
     * The location you choose must be accessible from Setting Tool.
@@ -82,7 +82,7 @@ Setting Tool is provided to install Gamebase SDK with more at ease.
 
 #### Delete SDK
 
-1. Execute Menu > Gamebase > SDKSettings > Setting Tool.
+1. Execute Menu > Tools > Gamebase > SDKSettings > Setting Tool.
 2. Click [Remove] to delete installed SDKs.
 
 <br/>
