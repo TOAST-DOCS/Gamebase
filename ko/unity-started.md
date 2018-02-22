@@ -44,8 +44,7 @@ Supported Platforms
 
 Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있습니다.
 
-* [Download Gamebase Client SDK](/download/#game-gamebase)
-
+* [Download Gamebase Unity SDK](/Download/#game-gamebase)
 
 ### Specification of Setting Tool
 1. SDK 다운로드
