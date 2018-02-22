@@ -45,7 +45,7 @@ Select a target of maintenance.<br />
   Can select All for client&#39;s status and each store; select a client version for maintenance and press OK. <br/>
   ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance4_1.3.png)
 
-{@번역}
+Please note that the translation will be completed as soon as possible.
 #### (2) 사유
 점검이 진행되는 사유를 입력합니다.<br />
 이 입력정보는 유저에게 노출되지 않으며 해당 점검을 등록하는 간단한 사유에 대하여 입력하시면 됩니다.<br />
@@ -54,7 +54,7 @@ Select a target of maintenance.<br />
 Set time of maintenance.<br />
 For a timezone, &#39;UTC+09:00&#39; is selected as default, and maintenance can be registered by selecting a timezone of a serviced country.<br />
 
-{@번역}
+Please note that the translation will be completed as soon as possible.
 #### (4) 점검 페이지
 유저에게 제공 될 점검 페이지 타입을 설정합니다.<br />
 Gamebase 제공 페이지(웹뷰)/사용자 정의 HTML(웹뷰)/외부 페이지 항목이 있으며 각 항목별로 입력창이 변경됩니다.<br />

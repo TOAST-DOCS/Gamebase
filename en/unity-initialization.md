@@ -223,7 +223,7 @@ Maintenance information registered in the TOAST Console is as follows.
 
 **1.4 Notice**
 
-{@수정}Gamebaes Console에 등록된 공지 정보입니다.
+This is notification information registered in Gamebase Console.
 
 * message: Messages
 * title: Title

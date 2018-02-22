@@ -340,11 +340,11 @@ Example of adding authentication information in PAYCO
 { "service_code": "HANGAME", "service_name": "Your Service Name" }
 ```
 
-#### NAVER{@번역}
-* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-	* NAVER의 경우, 로그인 동의창에서 노출될 앱 이름 **service_name**, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
+#### NAVER
+- Go to **TOAST Cloud Console > Gamebase > App > Authentication Information > Additional Information &Callback URL** to set json string-type information to **Additional Information**.
+	* **service_name** and **url_scheme_ios_only** should be set as NaverSDK requires. 
 
-NAVER 추가 인증 정보 입력 예제
+Example of adding authentication information in NAVER 
 
 ```json
 { "url_scheme_ios_only": "Your Url Scheme", "service_name": "Your Service Name" }

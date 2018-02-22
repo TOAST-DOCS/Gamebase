@@ -138,9 +138,9 @@ To manage lifecycle, set "com.toast.gamebase.activity.GamebaseMainActivity" as t
 
 > [Note]
 >
-> Gradle build is not required, but can be selected. <br/>
-> {@수정}해당 내용은 gradle 빌드의 예시입니다.<br/>
-> The guide is not about exporting to Android project.<br/>
+> Gradle build is not required, but can be selected. 
+> The following is an example of a grid build :
+> The guide is not about exporting to Android project.
 > [Unity manual](https://docs.unity3d.com/Manual/android-gradle-overview.html)
 
 #### 1. Build Settings
