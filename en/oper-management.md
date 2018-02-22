@@ -24,7 +24,7 @@ Gamebase Alarm notifies increase/decrease rate of game users, or change of initi
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm1_1.7.png)
 
-{@번역}
+Please note that the translation will be completed as soon as possible.
 #### (1) 감소 알람 활성
 동시 접속이 감소했을 때 알람을 받을지에 대한 여부를 설정합니다. On으로 되어 있을 때는 설정된 수치만큼 변화가 있을 경우 이메일이나 SMS로 알람 메시지를 발송합니다.<br />
 기능이 활성화가 되었을 경우 원하는 감소율 및 점검에 의한 동접 감소 알람 무시 기능을 추가 설정할 수 있습니다.<br />
@@ -53,7 +53,7 @@ Logs can be retrieved up to 30 days, and real-time filtering by using **Search**
 - Number of New Concurrent Access: Information of concurrent access collected at the moment when alarm is sent
 - Rate of Change (Value Set): Rate of change refers to the number of new concurrent access as compared to previous concurrent access. Value set is the value which has been set to deliver when alarm occurs.
 
-{@번역}
+Please note that the translation will be completed as soon as possible.
 ### Webhook
 Gamebase에서 기본으로 제공되는 SMS/Email외에 별도로 알람을 수신할 수 있는 Webhook 설정기능을 제공합니다.
 외부 시스템의 Webhook URL을 통해 알람발송 요청이 있을 경우 함께 알람을 전송합니다.
@@ -90,5 +90,5 @@ Integration between Gamebase and TOAST can be configured.<br />
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Config1_1.0.png)
 
-{@번역}
+Please note that the translation will be completed as soon as possible.
 TOAST Launching에 설정한 정보를 Gamebase 런칭 API 호출 시에 함께 전달받을지를 설정할 수 있습니다. TOAST Launching 서비스를 사용하는 경우에만 기능을 On, Off할 수 있습니다.<br />

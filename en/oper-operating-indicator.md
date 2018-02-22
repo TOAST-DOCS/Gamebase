@@ -23,15 +23,17 @@ The screen is automatically refreshed every five minutes, to display changed ind
   * Show maintenance and push details on graph to easily follow changes in concurrent connection out of maintenance and push.
     <br/>
 
-{@번역}
+Please note that the translation will be completed as soon as possible.
 ## User Statistics
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_UserStatistics1_1.0.png)
+
+Please note that the translation will be completed as soon as possible.
 유저의 통계현황을 일자별로 정리한 정보를 그래프로 확인할 수 있습니다.<br/>
 그래프 변화를 통해 현재 앱을 사용하는 사용자들에 대한 추이변화를 확인할 수 있습니다. <br/>
 우측 상단의 기간 선택바를 통해 원하는 날짜를 선택하여 조회를 하실 수도 있습니다.<br/>
 각 항목별 설명은 아래와 같습니다.<br/>
 
-* 항목 설명
+* Description
   * Daily Active User (DAU): Net number of users who use game of a day (can retrieve in real time and by date)
   * Maximum Concurrent User (MCU): Maximum number of concurrently connected users of a day (can retrieve in real time and by date)
   * New Registered User (NRU): Number of new users of a day (can retrieve in real time and by date)
@@ -54,7 +56,7 @@ Shows statistical data of install URL calls.
 ## Statistics
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Statistics1_1.2.png)
 Shows real-time sales statistics of a game in Sales Status.<br />
-{@번역}
+Please note that the translation will be completed as soon as possible.
 우측 상단의 통화변경을 통하여 보고자 하는 단위로 매출액을 확인할 수 있습니다.
 
 ### (1) 판매 현황 일별 통계 그래프

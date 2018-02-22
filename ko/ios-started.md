@@ -17,7 +17,7 @@ Gamebase는 아래와 같은 방법으로 설정이 가능합니다.
 
 #### Download
 
-Gamebase는 [사용설명서 > Download](/ko/download/#game-gamebase)에서 다운로드합니다.<br/>
+Gamebase는 [사용설명서 > Download](/download/#game-gamebase)에서 다운로드합니다.<br/>
 Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<br/>
 또한 각 IdP의 인증을 하기위한 SDK파일들을 다운로드 받아야합니다. 해당 IdP의 로그인을 사용할 때만 포함하면 됩니다.<br/>
 다운로드한 뒤, 해당 SDK파일을 프로젝트의 target에 포함시켜야 합니다.

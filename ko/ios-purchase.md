@@ -182,5 +182,5 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
 * IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [Mobile Service > IAP > 오류 코드 > Client API 에러 타입](/ko/Mobile%20Service/IAP/ko/error-code/#client-api)
+    * [Mobile Service > IAP > 오류 코드 > Client API 에러 타입](/Mobile%20Service/IAP/ko/error-code/#client-api)
 

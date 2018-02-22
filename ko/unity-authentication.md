@@ -182,6 +182,7 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 * GamebaseAuthProvider.GAMECENTER
 * GamebaseAuthProvider.FACEBOOK
 * GamebaseAuthProvider.PAYCO
+* GamebaseAuthProvider.NAVER
 
 > 몇몇 IdP로 로그인할 때는 꼭 필요한 정보가 있습니다.<br/>
 > 예를 들어, Facebook 로그인을 구현하려면 scope 등을 설정해야 합니다.<br/>
@@ -276,7 +277,7 @@ Facebook 인증 추가 정보 입력 예제
 ```
 
 #### PAYCO
-* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야 합니다.
     * PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
 
 PAYCO 추가 인증 정보 입력 예제
@@ -284,6 +285,20 @@ PAYCO 추가 인증 정보 입력 예제
 ```json
 { "service_code": "HANGAME", "service_name": "Your Service Name" }
 ```
+
+#### NAVER
+* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+    * NAVER의 경우, 로그인 동의창에서 노출될 앱 이름 **service_name**, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
+
+* URL Schemes를 설정해야 합니다.
+	* **XCode > Target > Info > URL Types**
+
+NAVER 추가 인증 정보 입력 예제
+```json
+{ "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
+```
+![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+
 
 ## Logout
 로그인 된 IdP에서 로그아웃을 시도합니다. 주로 게임의 설정 화면에 로그아웃 버튼을 두고, 버튼을 클릭하면 실행되도록 구현하는 경우가 많습니다.
@@ -472,7 +487,7 @@ public void AddMapping(string providerName)
 
 | keyname | a use | 값 종류 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                           | facebook, payco, iosgamecenter |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                           | facebook, payco, iosgamecenter, naver |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정 |                                |
 
 > [TIP]

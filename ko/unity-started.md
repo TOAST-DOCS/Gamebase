@@ -44,7 +44,7 @@ Supported Platforms
 
 Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있습니다.
 
-* [Download Gamebase Client SDK](/ko/download/#game-gamebase)
+* [Download Gamebase Client SDK](/download/#game-gamebase)
 
 
 ### Specification of Setting Tool
@@ -63,13 +63,12 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
 #### SDK 설치
 1. Unity 프로젝트를 오픈합니다.
 2. GamebaseUnitySettingTool_{version}.unitypackage를 임포트합니다.
-3. Menu > Gamebase > SDKSettings > Setting Tool을 실행합니다.
+3. Menu > Tools > Gamebase > SDKSettings > Setting Tool을 실행합니다.
 4. [Broswe] 버튼 클릭해서 SDK 다운로드 위치를 선택합니다.
     * 기본 경로 : projcet/Gamebase/
     * Setting Tool에서 접근 가능한 위치를 선택하셔야 합니다.
 5. [Download SDK] 버튼 클릭해서 SDK를 다운로드 합니다.
 6. 원하는 플랫폼을 선택합니다.
-    * Unity Adapter
     * Android
     * iOS
 7. 각 플랫폼별 사용할 모듈을 선택합니다.
@@ -79,7 +78,7 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
 8. [Settings] 버튼 클릭해서 SDK를 설치합니다.
 
 #### SDK 삭제
-1. Menu > Gamebase > SDKSettings > Setting Tool을 실행합니다.
+1. Menu > Tools > Gamebase > SDKSettings > Setting Tool을 실행합니다.
 2. [Remove] 버튼 클릭해서 설치된 SDK를 삭제합니다.
 
 <br/>
