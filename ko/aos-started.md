@@ -18,7 +18,7 @@ Gamebase Android SDK를 사용하기 전에 TOAST Console에서 앱 아이디를
 
 #### Download
 
-* [DOWNLOAD Gamebase Android SDK](/download/)
+* [Download Gamebase Android SDK](/Download/#game-gamebase)
 * 다운로드 받은 SDK에서 다음 폴더안의 aar 파일을 프로젝트에 추가합니다.
     * **gamebase-sdk/**
 * 인증 모듈 추가
@@ -79,6 +79,7 @@ repositories {
         dirs "${gamebaseDir}/gamebase-sdk"
         dirs "${gamebaseDir}/gamebase-adapter-auth-google"
         dirs "${gamebaseDir}/gamebase-adapter-auth-facebook"
+        dirs "${gamebaseDir}/gamebase-adapter-auth-naver"
         dirs "${gamebaseDir}/gamebase-adapter-auth-payco"
         dirs "${gamebaseDir}/gamebase-adapter-purchase-iap"
         dirs "${gamebaseDir}/gamebase-adapter-push-fcm"
@@ -131,7 +132,9 @@ dependencies {
         implementation(name: "gamebase-adapter-auth-naver-${gamebaseNaverAdapterVersion}", ext: 'aar')
     }
     if (useAuthPayco) {
-        implementation 'com.google.android.gms:play-services-basement:11.8.0'
+        implementation('com.google.android.gms:play-services-basement:11.8.0') {
+            transitive = false
+        }
         implementation(name: 'paycologin-1.3.2', ext: 'aar')
         implementation(name: "gamebase-adapter-auth-payco-${gamebasePaycoAdapterVersion}", ext: 'aar')
     }
