@@ -19,7 +19,7 @@ Before applying Gamebase Android SDK, you need an App ID issued at the Toast Clo
 
 #### Download
 
-* [DOWNLOAD Gamebase Android SDK](/en/Download/#game-gamebase)
+* [DOWNLOAD Gamebase Android SDK](/Download/#game-gamebase)
 - Add aar files in the following folder of the downloaded SDK to a project.
     - **gamebase-sdk/**
 - Add an authentication module.
@@ -156,7 +156,7 @@ Gamebase SDK ensures that those modules with 3rd Party SDK and dependency are in
 
 * [Facebook for developers](https://developers.facebook.com/docs/android)
 * [Google APIs for Android](https://developers.google.com/android/guides/overview)
-
+* [Naver for developers](https://developers.naver.com/docs/login/android/)
 ## API Reference
 
 API Reference is included in SDK.

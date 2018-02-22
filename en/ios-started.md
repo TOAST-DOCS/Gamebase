@@ -16,7 +16,7 @@ Gamebase can be setup as below.
 
 #### Download
 
-Download Gamebase from [Manual > Download](/en/Download/#game-gamebase).
+Download Gamebase from [Manual > Download](/Download/#game-gamebase).
 Download Gamebase.framework.zip and required adapters.
 Also download SDK files to authenticate each IdP, which are required only for a login.
 Then, include corresponding SDK files to a target of your project.
@@ -38,12 +38,12 @@ Then, include corresponding SDK files to a target of your project.
 > Among Gamebase Framework files, **Adapter** files can be selectively used in a project to that end, external SDKs may be required as specified in the above table.
 > GamebaseNaverAut hNaverAdapter.framework is supported only in iOS 9 or later.
 
-<br/>
+
 
 > [INFO]
 > 
 > For setting of external SDKs which each IdP provides, refer to each IdP guide.
->
+
 
 #### Xcode Settings
 

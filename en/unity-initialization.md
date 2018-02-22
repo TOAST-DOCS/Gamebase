@@ -22,13 +22,13 @@ Following settings are required for initialization.
 
 Project ID registered in TOAST.
 
-[Console Guide](/en/Game/Gamebase/en/oper-app/#app)
+[Console Guide](/Game/Gamebase/en/oper-app/#app)
 
 #### 2. appVersion
 
 Client version registered in TOAST.
 
-[Console Guide](/en/Game/Gamebase/en/oper-app/#client)
+[Console Guide](/Game/Gamebase/en/oper-app/#client)
 
 
 #### 3. zoneType
@@ -190,7 +190,7 @@ For game status codes, refer to the table below.
 | INSPECTING_ALL_SERVICES | 304 | Under maintenance for the whole service |
 | INTERNAL_SERVER_ERROR | 500 | Error of internal server |
 
-[Console Guide](/en/Game/Gamebase/en/oper-app/#app)
+[Console Guide](/Game/Gamebase/en/oper-app/#app)
 
 **1.2 App**
 
@@ -207,7 +207,7 @@ App information registered in the TOAST Console.
 * install: Installation URL
 * idP: ID Provider
 
-[Console Guide](/en/Game/Gamebase/en/oper-app/#client)
+[Console Guide](/Game/Gamebase/en/oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -219,17 +219,17 @@ Maintenance information registered in the TOAST Console is as follows.
 * endDate: End time
 * message: Purpose of maintenance
 
-[Console Guide](/en/Game/Gamebase/en/oper-operation/#maintenance)
+[Console Guide](/Game/Gamebase/en/oper-operation/#maintenance)
 
 **1.4 Notice**
 
-This is notification information registered in Gamebase Console.
+{@수정}Gamebaes Console에 등록된 공지 정보입니다.
 
 * message: Messages
 * title: Title
 * url: Maintenance url
 
-[Console Guide](/en/Game/Gamebase/en/oper-operation/#notice)
+[Console Guide](/Game/Gamebase/en/oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -248,4 +248,4 @@ IAP store information registered in the TOAST Console.
 * name: App Name
 * storeCode: Store Code
 
-[Console Guide](/en/Game/Gamebase/en/oper-purchase/)
+[Console Guide](/Game/Gamebase/en/oper-purchase/)
