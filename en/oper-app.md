@@ -62,9 +62,9 @@ Can modify URLs that are frequently used in an app via console in real time, wit
 - Service Center <br/>
 
 Enter only when a game requires; otherwise, leave it empty.<br />
-{@번역}설정한 정보는 클라이언트 초기화 이후에 '런칭정보'에서 입력된 정보를 확인할 수 있습니다.<br/>
 
-{@번역}### Test Device
+Please note that the translation will be completed as soon as possible.
+### Test Device
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_App3_1.0.png)
 테스트 단말기로 등록되면 Gamebase를 사용하는 앱이 점검 중이어도 정상적으로 게임에 접근할 수 있습니다.<br />
@@ -168,10 +168,9 @@ Enter {client\_id} and {client\_secret} issued from PAYCO ID application in the 
 - Secret Key: {Payco client_secret}<br />
 
 #### NAVER
-{@번역}
-Naver Developer 사이트에서 신청하여 발급받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
-이때, 로그인 동의창에서의 노출될 애플리케이션이름 및 scheme등 iOS 애플리케이션에서 필요한 정보 또한 JSON String 형태로 추가 정보란에 입력해야 합니다.<br />
-
+Enter {client\_id} and {client\_secret} issued from NAVER ID application in the TOAST Cloud Gamebase Console.
+Set json string-type information to **Additional Information**. : **service_name** and **url_scheme_ios_only** should be set as NaverSDK requires. 
+	
 **Entry Fields**<br />
 
 - ClientID: {Payco client_id}<br />
@@ -182,10 +181,9 @@ Naver Developer 사이트에서 신청하여 발급받은 {client_id} 및 {clien
 ```json
 { "url_scheme_ios_only": "Your Url Scheme", "service_name": "Your Service Name" }
 ```
-{@번역}
 **Reference URL**<br />
-- [Naver Developers - 애플리케이션 등록](https://developers.naver.com/apps/#/register)<br />
-- [Naver Developers - 클라이언트 아이디와 클라이언트 시크릿 확인](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)<br />
+- [Naver Developers - Register Application](https://developers.naver.com/apps/#/register)<br />
+- [Naver Developers - client id, client secret](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)<br />
 
 ## Client
 

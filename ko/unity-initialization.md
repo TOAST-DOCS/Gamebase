@@ -22,13 +22,13 @@ Gamebase Unity SDK를 사용하려면 먼저 초기화를 진행해야 합니다
 
 Gamebase Console에 등록된 프로젝트 ID입니다.
 
-[Console Guide](/ko/Game/Gamebase/ko/oper-app/#app)
+[Console Guide](/Game/Gamebase/ko/oper-app/#app)
 
 #### 2. appVersion
 
 Gamebase Console에 등록한 클라이언트 버전입니다.
 
-[Console Guide](/ko/Game/Gamebase/ko/oper-app/#client)
+[Console Guide](/Game/Gamebase/ko/oper-app/#client)
 
 
 #### 3. zoneType
@@ -191,7 +191,7 @@ Gamebase Unity SDK 초기화 설정에 입력한 앱 버전의 게임 상태 정
 | INSPECTING_ALL_SERVICES     | 304         | 전체 시스템 점검 중                              |
 | INTERNAL_SERVER_ERROR       | 500         | 내부 서버 오류                                 |
 
-[Console Guide](/ko/Game/Gamebase/ko/oper-app/#app)
+[Console Guide](/Game/Gamebase/ko/oper-app/#app)
 
 **1.2 App**
 
@@ -208,7 +208,7 @@ Gamebase Console에 등록된 앱 정보입니다.
 * install: 설치 URL
 * idP: 인증 정보
 
-[Console Guide](/ko/Game/Gamebase/ko/oper-app/#client)
+[Console Guide](/Game/Gamebase/ko/oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -220,7 +220,7 @@ Gamebase Console에 등록된 점검 정보입니다.
 * endDate: 종료 시간
 * message: 점검 사유
 
-[Console Guide](/ko/Game/Gamebase/ko/oper-operation/#maintenance)
+[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
 
 **1.4 Notice**
 
@@ -230,7 +230,7 @@ Gamebaes Console에 등록된 공지 정보입니다.
 * title: 타이틀
 * url: 점검 URL
 
-[Console Guide](/ko/Game/Gamebase/ko/oper-operation/#notice)
+[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -249,4 +249,4 @@ TOAST Console에 등록된 IAP 스토어 정보입니다.
 * name: App Name
 * storeCode: Store Code
  
-[Console Guide](/ko/Game/Gamebase/ko/oper-purchase/)
+[Console Guide](/Game/Gamebase/ko/oper-purchase/)

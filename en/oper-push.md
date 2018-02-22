@@ -16,8 +16,7 @@ Currently, delivery schedule can only be cancelled; the modification function wi
 ### Send History
 
 Select a push on the list of delivery history to retrieve details of delivered push messages.<br />
-{@번역}
-**복사** 버튼을 클릭하여 발송된 푸시의 등록정보를 이용하여 손쉽게 푸시 등록이 가능합니다.
+You can easily register by clicking the 'Copy' button to use the registration information of the sent push.
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push2_1.2.png)
 
@@ -50,9 +49,7 @@ Select a target to send push messages to. <br/>
 Select a cycle of delivery.<br/>
 
 - **Immediate Delivery**: Send push messages immediately after registration
-- **Reservation Delivery**: Send push messages on reserved time. Further services such as repeated delivery (every day, every week, or every month) and local time-based delivery are to be provided. {@번역}'현지 시간 기준으로 발송'을 체크하고 '2017-01-01 09:00'로 설정하면 한국 단말기를 사용하는 유저는 한국시간 '2017-01-01 09:00'로 영국 단말기를 사용하는 사용자는 영국 시간 '2017-01-01 09:00'에 푸시 메시지를 수신하게 됩니다.
-
-추후 예약 발송에 반복 발송(매일, 매주, 매달)기능이 추가로 제공될 예정입니다.
+- **Reservation Delivery**: Send push messages on reserved time. Further services such as repeated delivery (every day, every week, or every month) and local time-based delivery are to be provided. 
 
 #### (4) Target Country
 Select countries to send push messages to.<br/>

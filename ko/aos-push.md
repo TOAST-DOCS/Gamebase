@@ -6,7 +6,7 @@
 
 #### TOAST Cloud Console 등록
 
-먼저 [Notification > Push > API v2.0 가이드](/ko/Notification/Push/ko/api-guide/)를 참고하여 Console을 설정합니다.
+먼저 [Notification > Push > API v2.0 가이드](/Notification/Push/ko/api-guide/)를 참고하여 Console을 설정합니다.
 
 #### Download
 
@@ -208,7 +208,7 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 * 이 오류는 TOAST Push 라이브러리에서 발생한 오류입니다.
 * exception.getDetailCode()로 TOAST Push 오류 코드를 확인해야 합니다.
 * TOAST Push 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [Notification > Push > 오류 코드](/ko/Notification/Push/ko/sdk-guide/#_5)
+    * [Notification > Push > 오류 코드](/Notification/Push/ko/sdk-guide/#_5)
 
 
 

@@ -188,7 +188,7 @@ NAVER 추가 인증 정보 입력 예제
 ```json
 { "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
 ```
-![Naver URL Types](http://static.toastoven.net/prod_gamebase/ios-developers-guide-auth-001_1.7.0.png)
+![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
 #### Game Center
 TOAST Console에서의 설정 외에 추가 설정은 없습니다.
