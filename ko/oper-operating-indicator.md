@@ -11,16 +11,16 @@
 5분이 지나면 자동으로 화면이 '새로 고침'이 되고, 실시간으로 변경된 지표를 확인할 수 있습니다.
 
 * 기본 지표
-  * CCU(concurrent connected users): 실시간 동시 접속자 수
-  * MCU(maximum concurrent users): 하루 동안의 최대 동시 접속자 수(실시간, 일자별 조회 가능)
-  * DAU(daily active users): 하루 동안 게임을 사용한 순 이용자 수(실시간, 일자별 조회 가능)
-  * NRU(new registered users): 하루 동안의 신규 사용자 수(실시간, 일자별 조회 가능)
+	* CCU(concurrent connected users): 실시간 동시 접속자 수
+	* MCU(maximum concurrent users): 하루 동안의 최대 동시 접속자 수(실시간, 일자별 조회 가능)
+	* DAU(daily active users): 하루 동안 게임을 사용한 순 이용자 수(실시간, 일자별 조회 가능)
+	* NRU(new registered users): 하루 동안의 신규 사용자 수(실시간, 일자별 조회 가능)
 * 점유율 차트: 게임 사용자의 점유율 파이 차트
-  * 운영체제별: Android, iOS, WebGL 등
-  * 국가별: SDK에서 수집된 USIM 국가 기준
-  * 버전별: Console에 등록된 클라이언트 버전별 점유율
+	* 운영체제별: Android, iOS, WebGL 등
+	* 국가별: SDK에서 수집된 USIM 국가 기준
+	* 버전별: Console에 등록된 클라이언트 버전별 점유율
 * 동시 접속 변화 그래프: 금일 00:00부터 현재 시간까지의 동시 접속 변화 그래프
-  * 점검 및 푸시에 따른 동시 접속 변화를 확인하기 쉽도록 점검, 푸시 내역을 그래프에 별도로 표시하고 있습니다.
+	* 점검 및 푸시에 따른 동시 접속 변화를 확인하기 쉽도록 점검, 푸시 내역을 그래프에 별도로 표시하고 있습니다.
     
 
 
@@ -32,10 +32,10 @@ DAU, MCU, NRU, CCU AVG 현황을 그래프로 확인할 수 있습니다.
 각 항목별 설명은 아래와 같습니다.
 
 * 항목 설명
-  * DAU(daily active users): 하루 동안 게임을 사용한 순 이용자 수(실시간, 일자별 조회 가능)
-  * MCU(maximum concurrent users): 하루 동안의 최대 동시 접속자 수(실시간, 일자별 조회 가능)
-  * NRU(new registered users): 하루 동안의 신규 사용자 수(실시간, 일자별 조회 가능)
-  * CCU AVG(concurrent connected users average): 실시간 동시 접속자 수의 평균값
+	* DAU(daily active users): 하루 동안 게임을 사용한 순 이용자 수(실시간, 일자별 조회 가능)
+	* MCU(maximum concurrent users): 하루 동안의 최대 동시 접속자 수(실시간, 일자별 조회 가능)
+	* NRU(new registered users): 하루 동안의 신규 사용자 수(실시간, 일자별 조회 가능)
+	* CCU AVG(concurrent connected users average): 실시간 동시 접속자 수의 평균값
 
 ## Concurrent Group User
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_ConcurrentUser1_1.1.png)
