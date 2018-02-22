@@ -79,6 +79,7 @@ repositories {
         dirs "${gamebaseDir}/gamebase-sdk"
         dirs "${gamebaseDir}/gamebase-adapter-auth-google"
         dirs "${gamebaseDir}/gamebase-adapter-auth-facebook"
+        dirs "${gamebaseDir}/gamebase-adapter-auth-naver"
         dirs "${gamebaseDir}/gamebase-adapter-auth-payco"
         dirs "${gamebaseDir}/gamebase-adapter-purchase-iap"
         dirs "${gamebaseDir}/gamebase-adapter-push-fcm"
