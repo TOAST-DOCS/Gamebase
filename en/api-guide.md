@@ -570,7 +570,7 @@ Gamebase는 TOAST IAP 서비스의 서버 API에 대해 **Wrapping** 기능을 �
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
 
 <br>
-[IAP 가이드](/Mobile%20Service/IAP/en/api-guide)
+[IAP 가이드](http://docs.toast.com/en/Mobile%20Service/IAP/en/api-guide/)
 
 <br>
 
@@ -610,7 +610,7 @@ Gamebase는 TOAST Leaderboard 서비스의 서버 API에 대해 **Wrapping** 기
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
 
 <br>
-[Leaderboard 가이드](/Game/Leaderboard/en/api-guide) 
+[Leaderboard 가이드](http://docs.toast.com/en/Game/Leaderboard/en/api-guide/)
 
 <br>
 
