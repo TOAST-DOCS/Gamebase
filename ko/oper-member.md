@@ -5,10 +5,10 @@
 
 ### Search Member
 
-User ID를 입력하면 회원정보를 검색할 수 있습니다.
-사용자 아이디는 최초로 로그인할 때 Gamebase에서 자동으로 발급하는 사용자 식별자입니다. 전달 시 혼란을 줄이고자 같은 발음의 문자를 배제하여 "ABCDFGHJKLMNPQRSTWXYZ1346789" 문자만을 사용하고 있습니다.
+User ID를 입력하면 회원정보를 검색할 수 있습니다.<br/>
+사용자 아이디는 최초로 로그인할 때 Gamebase에서 자동으로 발급하는 사용자 식별자입니다. 전달 시 혼란을 줄이고자 같은 발음의 문자를 배제하여 "ABCDFGHJKLMNPQRSTWXYZ1346789" 문자만을 사용하고 있습니다.<br/><br/>
 
-검색된 사용자의 상세 정보를 위쪽에 표시하고 로그인, 매핑, 결제, 이용 정지, 플레이 시간 등의 이력은 아래쪽에 탭 형태로 표시됩니다. 
+검색된 사용자의 상세 정보를 위쪽에 표시하고 로그인, 매핑, 결제, 이용 정지, 플레이 시간 등의 이력은 아래쪽에 탭 형태로 표시됩니다. <br/>
 
 
 
@@ -16,20 +16,20 @@ User ID를 입력하면 회원정보를 검색할 수 있습니다.
 ### Detail Information
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Member1_1.4.png)
 
-**User ** 
+**User ** <br/>
 
 - **유저 ID**: Gamebase 사용자 아이디
-- **국가코드(USIM)**: 사용자 단말기의 USIM 국가 코드로 수집에 실패하면 'ZZ'로 표기됩니다. 단말기에 설정된 국가 코드를 확인하고 싶다면 하단의 **로그인 이력**에서 확인하세요.
-- **마지막 로그인 시간**: 사용자가 가장 마지막에 로그인한 시간
-- **등록일**: 사용자가 최초로 로그인한 시간
-- **계정 상태**
-  - **정상**: 정상 사용자. **이용정지** 버튼을 클릭하여 수동으로 이용 정지 상태로 변경할 수 있습니다.
-  - **이용정지**: 어뷰징 등으로 이용 정지(ban)된 사용자. **이용정지해제** 버튼을 클릭하면 수동으로 이용 정지를 해제할 수 있습니다.
-  - **탈퇴**: 탈퇴한 사용자
+- **국가코드(USIM)**: 사용자 단말기의 USIM 국가 코드로 <br/>수집에 실패하면 'ZZ'로 표기됩니다. 단말기에 설정된 국가 코드를 확인하고 싶다면 하단의 **로그인 이력**에서 확인하세요.<br/>
+- **마지막 로그인 시간**: 사용자가 가장 마지막에 로그인한 시간<br/>
+- **등록일**: 사용자가 최초로 로그인한 시간<br/>
+- **계정 상태**<br/>
+  - **정상**: 정상 사용자. **이용정지** 버튼을 클릭하여 수동으로 이용 정지 상태로 변경할 수 있습니다.<br/>
+  - **이용정지**: 어뷰징 등으로 이용 정지(ban)된 사용자. **이용정지해제** 버튼을 클릭하면 수동으로 이용 정지를 해제할 수 있습니다.<br/>
+  - **탈퇴**: 탈퇴한 사용자<br/>
 
-**Identity Provider ** 
+**Identity Provider ** <br/>
 
-Gamebase에서는 여러 개의 외부 IdP를 연동할 수 있습니다. 즉, 사용자가 하나의 사용자 아이디에 Facebook, Google 두 개의 IdP를 등록하여 로그인할 수 있습니다. SDK에서 **Login using a specific IdP**나 '**Add Mapping** API를 호출하는 경우에 IdP가 등록됩니다.
+Gamebase에서는 여러 개의 외부 IdP를 연동할 수 있습니다. 즉, 사용자가 하나의 사용자 아이디에 Facebook, Google 두 개의 IdP를 등록하여 로그인할 수 있습니다. SDK에서 **Login using a specific IdP**나 '**Add Mapping** API를 호출하는 경우에 IdP가 등록됩니다.<br/>
 
 - **IdP**: 외부 IdP(게스트, Facebook, PAYCO, Google 등)
 - **Idp ID**: 외부 IdP에서 제공하는 아이디(Facebook no, PAYCO 아이디 등)
@@ -38,9 +38,9 @@ Gamebase에서는 여러 개의 외부 IdP를 연동할 수 있습니다. 즉, �
 ### Login History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_LoginHistory1_1.2.png)
 
-조회한 사용자의 로그인 내역을 조회합니다. 
-최초 조회 시에는 최근 1일로 조회하며 조회를 원하는 날짜를 다시 입력하여 조회할 수도 있습니다. 단, 최근 3개월(90일) 동안의 이력만 제공합니다.
-SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.
+조회한 사용자의 로그인 내역을 조회합니다. <br />
+최초 조회 시에는 최근 1일로 조회하며 조회를 원하는 날짜를 다시 입력하여 조회할 수도 있습니다. 단, 최근 3개월(90일) 동안의 이력만 제공합니다.<br />
+SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.<br/>
 
 - **Login Date**: 사용자가 앱에 로그인 한 시간
 - **Login Type**: 사용자 로그인 시 사용한 인증 유형(IdP Login/Guest 등). 괄호안의 정보는 실제 사용 된 IdProvider 정보.
@@ -60,11 +60,11 @@ SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.
 ### Mapping History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_MappingHistory1_1.2.png)
 
-조회한 사용자의 매핑, 매핑 해제된 이력을 조회합니다. 최근 3개월(90일) 동안의 이력이 모두 표시됩니다.
+조회한 사용자의 매핑, 매핑 해제된 이력을 조회합니다. 최근 3개월(90일) 동안의 이력이 모두 표시됩니다.<br />
 
 - **유저 ID 기준**: 조회된 사용자 아이디를 기준으로 조회합니다. 
-- **IdP ID 기준**: 조회된 사용자 아이디에 현재 매핑된 IdP 아이디 기준으로 조회합니다. 
-  조회된 사용자 아이디에 Facebook, Gooogle IdP가 매핑된 경우 두 개의 IdP 아이디가 목록에 표시됩니다.
+- **IdP ID 기준**: 조회된 사용자 아이디에 현재 매핑된 IdP 아이디 기준으로 조회합니다. <br/>
+  조회된 사용자 아이디에 Facebook, Gooogle IdP가 매핑된 경우 두 개의 IdP 아이디가 목록에 표시됩니다.<br/>
 
 * **IdP ID**: IdP 로그인 시 사용되는 ID 정보
 * **IdP**: 매핑된 IdP 정보
@@ -78,8 +78,8 @@ SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.
 
 ### Purchase History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_PurchaseHistory1_1.0.png)
-조회한 사용자의 상품 구입 내역을 조회합니다.
-원하는 날짜를 입력하여 조회할 수 있으며 조회 가능한 최대 날짜는 1개월(30일)입니다.
+조회한 사용자의 상품 구입 내역을 조회합니다.<br />
+원하는 날짜를 입력하여 조회할 수 있으며 조회 가능한 최대 날짜는 1개월(30일)입니다.<br />
 
 - **결제 번호**: Gamebase 내에서 결제를 구별할 수 있는 고유 번호
 - **스토어**: 결제한 스토어 정보
@@ -95,8 +95,8 @@ SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.
 ### Ban History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_BanHistory1_1.0.png)
 
-조회한 사용자의 이용 정지 내역을 조회할 수 있습니다.
-원하는 날짜를 입력하여 조회할 수 있으며 조회할 수 있는 최대 날짜는 1개월(30일)입니다.
+조회한 사용자의 이용 정지 내역을 조회할 수 있습니다.<br />
+원하는 날짜를 입력하여 조회할 수 있으며 조회할 수 있는 최대 날짜는 1개월(30일)입니다.<br />
 
 - **시작일**: 사용자의 이용 정지 적용 시작 시간
 - **종료일**: 사용자의 이용 정지가 끝나는 시간
@@ -108,5 +108,5 @@ SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.
 
 ### Playtime
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Playtime1_1.2.png)
-조회한 사용자가 게임을 플레이한 시간을 일자별로 조회합니다.
-원하는 날짜를 입력하여 조회할 수 있으며 조회가 가능한 최대 날짜는 1개월(30일)입니다.
+조회한 사용자가 게임을 플레이한 시간을 일자별로 조회합니다.<br />
+원하는 날짜를 입력하여 조회할 수 있으며 조회가 가능한 최대 날짜는 1개월(30일)입니다.<br />

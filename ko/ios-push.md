@@ -52,6 +52,24 @@
 }
 ```
 
+
+#### Setting for APNS Sandbox
+
+SandboxMode를 켜면, APNS Sandbox로 Push를 발송하도록 등록할 수 있습니다.
+* 클라이언트 설정 방법
+
+```objectivec
+- (void)didLoginSucceeded {
+	[TCGBPush setSandboxMode:YES];
+    [TCGBPush registerPushWithPushConfiguration:pushConfig completion:^(TCGBError *error) {
+    	...
+    }];
+}
+```
+
+* 콘솔 발송 방법
+PUSH 메뉴의 **대상**에서  **iOS Sandbox** 체크박스를 선택 후 발송합니다.
+
 ### Request Push Settings
 
 사용자의 푸시 설정을 조회하기 위해, 다음 API를 이용합니다.<br/>

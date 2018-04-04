@@ -63,6 +63,7 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
 1. Unity 프로젝트를 오픈합니다.
 2. GamebaseUnitySettingTool_{version}.unitypackage를 임포트합니다.
 3. Menu > Tools > Gamebase > SDKSettings > Setting Tool을 실행합니다.
+	* v1.0.1 이하 : Menu > Gamebase > SDKSettings > Setting Tool
 4. [Broswe] 버튼 클릭해서 SDK 다운로드 위치를 선택합니다.
     * 기본 경로 : projcet/Gamebase/
     * Setting Tool에서 접근 가능한 위치를 선택하셔야 합니다.
@@ -78,6 +79,7 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
 
 #### SDK 삭제
 1. Menu > Tools > Gamebase > SDKSettings > Setting Tool을 실행합니다.
+	* v1.0.1 이하 : Menu > Gamebase > SDKSettings > Setting Tool
 2. [Remove] 버튼 클릭해서 설치된 SDK를 삭제합니다.
 
 <br/>

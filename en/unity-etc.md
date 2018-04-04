@@ -226,3 +226,176 @@ Unity Android, iOS 플랫폼에서의 신규 언어셋 추가 방법은 아래 �
 1. 입력된 languageCode가 localizedString.json 파일에 정의되어 있는지 확인합니다.
 2. Gamebase 초기화 시, 기기에 설정된 언어코드가 localizedString.json 파일에 정의되어 있는지 확인합니다. (이 값은 초기화 이후, 기기에 설정된 언어를 변경하더라도 유지됩니다.)
 3. Display Language의 기본값인 `en`이 자동 설정됩니다.
+
+### Server Push
+* Gamebase 서버에서 클라이언트 기기로 보내는 Server Push Message를 처리할 수 있습니다.
+* Gamebase 클라이언트에서 ServerPushEvent Listener를 추가 하면 해당 메시지를 사용자가 받아서 처리할 수 있으며, 추가된 ServerPushEvent Listener를 삭제 할 수 있습니다.
+
+
+#### Server Push Type
+현재 Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
+
+* 킥아웃 (Kickout)
+    * TOAST Gamebase 콘솔의 `Operation > Kickout` 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에게 메시지를 보낼 수 있습니다.
+    * Type : GamebaseServerPushType.APP_KICKOUT (= "appKickout")
+
+
+#### Add ServerPushEvent
+Gamebase에 ServerPushEvent를 등록하여 처리할 수 있습니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void AddServerPushEvent(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent)
+```
+
+**Example**
+
+```cs
+public void AddServerPushEvent()
+{
+    GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent = (data) =>
+    {
+        GamebaseResponse.SDK.ServerPushMessage serverPushMessage = data;
+    };
+
+    Gamebase.AddServerPushEvent(serverPushEvent);
+}
+```
+
+
+#### Remove ServerPushEvent
+Gamebase에 등록된 ServerPushEvent를 삭제할 수 있습니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void RemoveServerPushEvent(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent)
+static void RemoveAllServerPushEvent()
+```
+
+**Example**
+
+```cs
+public void RemoveServerPushEvent(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent)
+{
+    Gamebase.RemoveServerPushEvent(observer);
+}
+
+public void RemoveAllServerPushEvent()
+{
+    Gamebase.RemoveAllServerPushEvent();
+}
+```
+
+### Observer
+* Gamebase Observer를 통하여 Gamebase의 각종 상태 변동 이벤트를 전달받아 처리할 수 있습니다.
+* Observer를 추가하면 들어 네트워크 타입 변동, Launching 상태 변동(점검 등에 의한 상태 변동), Heartbeat 정보 변동(사용자 이용 정지 등에 의한 Heartbeat 정보 변동) 등에 대한 이벤트를 사용자가 전달받아 처리 할 수 있습니다.
+
+
+#### Observer Type
+현재 Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
+
+* Network 타입 변동
+    * 네트워크 변동사항에 대한 정보를 받을 수 있습니다.
+    * Type : GamebaseObserverType.NETWORK (= "network")
+    * Code : GamebaseNetworkType에 선언된 상수를 참고합니다.
+        * GamebaseNetworkType.TYPE_NOT : -1
+        * GamebaseNetworkType.TYPE_MOBILE : 0
+        * GamebaseNetworkType.TYPE_WIFI : 1
+        * GamebaseNetworkType.TYPE_ANY : 2
+* Launching 상태 변동
+    * 주기적으로 어플리케이션의 상태를 체크하는 Launching Status response에 변동이 있을 때 발생합니다. 예를 들어서, 점검, 업데이트 권장 등에 의한 이벤트가 있습니다.
+    * Type : GamebaseObserverType.LAUNCHING (= "launching")
+    * Code : GamebaseLaunchingStatus에 선언된 상수를 참고합니다.
+        * GamebaseLaunchingStatus.IN_SERVICE : 200
+        * GamebaseLaunchingStatus.RECOMMEND_UPDATE : 201
+        * GamebaseLaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST : 202
+        * GamebaseLaunchingStatus.REQUIRE_UPDATE : 300
+        * GamebaseLaunchingStatus.BLOCKED_USER : 301
+        * GamebaseLaunchingStatus.TERMINATED_SERVICE : 302
+        * GamebaseLaunchingStatus.INSPECTING_SERVICE : 303
+        * GamebaseLaunchingStatus.INSPECTING_ALL_SERVICES : 304
+        * GamebaseLaunchingStatus.INTERNAL_SERVER_ERROR : 500
+* Heartbeat 정보 변동
+    * 주기적으로 Gamebase 서버와 연결을 유지하는 Heartbeat response에 변동이 있을 때 발생합니다. 예를 들어서, 사용자 이용 정지에 의한 이벤트가 있습니다.
+    * Type : GamebaseObserverType.HEARTBEAT (= "heartbeat")
+    * Code : GamebaseErrorCode에 선언된 상수를 참조합니다.
+        * GamebaseErrorCode.BANNED_MEMBER : 7
+
+
+#### Add Observer
+Gamebase에 Observer를 등록하여 처리할 수 있습니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void AddObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer)
+```
+
+**Example**
+
+```cs
+public void AddObserver()
+{
+	GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer = (data) =>
+    {
+        GamebaseResponse.SDK.ObserverMessage observerMessage = data;
+    };
+
+    Gamebase.AddObserver(observer);
+}
+```
+
+
+#### Remove Observer
+Gamebase에 등록된 Observer를 삭제할 수 있습니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void RemoveObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer)
+static void RemoveAllObserver()
+```
+
+**Example**
+
+```cs
+public void RemoveObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer)
+{
+	Gamebase.RemoveObserver(observer);
+}
+
+public void RemoveAllObserver()
+{
+    Gamebase.RemoveAllObserver();
+}
+```

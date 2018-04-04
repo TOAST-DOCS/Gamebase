@@ -57,6 +57,24 @@ With user's agreement to enablePush, enableAdPush, and enableAdNightPush, call f
 }
 ```
 
+#### Setting for APNS Sandbox
+
+If you turn on SandboxMode, you can register device token to TOAST push server with APNS Sandbox mode.
+
+* How to Set Client
+
+```objectivec
+- (void)didLoginSucceeded {
+	[TCGBPush setSandboxMode:YES];
+    [TCGBPush registerPushWithPushConfiguration:pushConfig completion:^(TCGBError *error) {
+    	...
+    }];
+}
+```
+
+* How to Send Push in Console
+In the push **menu > target**, you can select **iOS Sandbox** and send push.
+
 ### Request Push Settings
 
 To retrieve user's push setting, apply API as below.
@@ -103,6 +121,6 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
 * Refer to the following document for TOAST Push error codes
-    * [Notification > Push > SDK v1.4 Guide > Error Handling](/Notification/Push/en/Client%20SDK%20Guide/#_5)
+    * [Notification > Push > {@수정}SDK v1.4 사용 가이드 > Error Handling](/Notification/Push/en/Client%20SDK%20Guide/#_5)
 
 
