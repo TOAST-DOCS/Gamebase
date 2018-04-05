@@ -6,7 +6,7 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 
 ### Settings
 
-#### apple iTunes-Connect
+#### Apple iTunes-Connect
 1. 테스트용 앱 빌드 업로드
 2. In-App Purchases 아이템 등록 및 승인
 3. Sandbox Tester 계정 등록

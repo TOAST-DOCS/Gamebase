@@ -378,8 +378,8 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
     if ([TCGBGamebase isSuccessWithError:error] == YES) {
                  NSLog(@"AddMapping is succeeded.");
              }
-             else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_RESPONSE_TIMEOUT) {
-                 NSLog(@"Retry addMapping")
+             else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
+                 NSLog(@"Retry addMapping");
              }
              else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
                  NSLog(@"Already mapped to other member");
@@ -388,6 +388,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
                  NSLog(@"AddMapping Error - %@", [error description]);
              }
         }
+    }
 }];
 ```
 
@@ -436,7 +437,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
              if ([TCGBGamebase isSuccessWithError:error] == YES) {
                  NSLog(@"AddMapping is succeeded.");
              }
-             else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_RESPONSE_TIMEOUT) {
+             else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
                  NSLog(@"Retry addMapping")
              }
              else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
@@ -463,7 +464,6 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
     } else {
         // To Remove Mapping Failed cause of the error
     }
-}
 }];
 ```
 
@@ -481,9 +481,9 @@ Gamebase로 인증 절차를 진행한 후, 앱을 제작할 때 필요한 정�
 
 > <font color="red">[주의]</font><br/>
 >
-> "[TCGBGamebase lastLoggedInProvider]" API 로 로그인한 경우에는 인증 정보를 가져올 수 없습니다.
+> "[TCGBGamebase loginForLastLoggedInProvider]" API 로 로그인한 경우에는 인증 정보를 가져올 수 없습니다.
 >
-> 인증 정보가 필요하다면 "[TCGBGamebase lastLoggedInProvider]" 대신, 사용하고자 하는 IDPCode 와 동일한 {IDP_CODE} 를 파라미터로 하여 "[TCGBGamebase loginWithType:IDP_CODE viewController:self completion:completion];" API 로 로그인 해야 정상적으로 인증정보를 획득할 수 있습니다.
+> 인증 정보가 필요하다면 "[TCGBGamebase loginForLastLoggedInProvider]" 대신, 사용하고자 하는 IDPCode 와 동일한 {IDP_CODE} 를 파라미터로 하여 "[TCGBGamebase loginWithType:IDP_CODE viewController:self completion:completion];" API 로 로그인 해야 정상적으로 인증정보를 획득할 수 있습니다.
 
 ### Get Authentication Information for Gamebase
 Gamebase에서 발급한 인증 정보를 가져올 수 있습니다.
