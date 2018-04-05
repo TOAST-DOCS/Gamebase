@@ -197,7 +197,32 @@ public void RequestRetryTransaction()
     * [오류 코드](./error-code/#client-sdk)
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
+
 * 이 오류는 IAP 모듈에서 발생한 오류입니다.
+* 오류 코드는 다음과 같이 확인하실 수 있습니다.
+
+```cs
+GamebaseError gamebaseError = error; // GamebaseError object via callback
+
+if (Gamebase.IsSuccess(gamebaseError))
+{
+    // succeeded
+}
+else
+{
+    Debug.Log(string.Format("code:{0}, message:{1}", gamebaseError.code, gamebaseError.message));
+
+    Error moduleError = gamebaseError.error; // GamebaseError.error object from external module
+    if (null != moduleError)
+    {
+        int moduleErrorCode = moduleError.code;
+        string moduleErrorMessage = moduleError.message;
+
+        Debug.Log(string.Format("moduleErrorCode:{0}, moduleErrorMessage:{1}", moduleErrorCode, moduleErrorMessage));
+    }
+}
+```
+
 * IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
     * [Mobile Service > IAP > 오류 코드 > Client API 에러 타입](/Mobile%20Service/IAP/ko/error-code/#client-api)
 

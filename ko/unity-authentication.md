@@ -782,7 +782,7 @@ public void GetBanInfo()
 | AUTH_NOT_EXIST_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
 | AUTH_INVALID_MEMBER | 3004 | 잘못된 회원에 대한 요청입니다. |
 | AUTH\_BANNED\_MEMBER | 3005 | 제재된 회원입니다. |
-| AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 외부 인증 라이브러리 에러입니다. |
+| AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
 | AUTH_TOKEN_LOGIN_FAILED | 3101 | 토큰 로그인에 실패하였습니다. |
 | AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
 | AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | 최근에 로그인한 IdP 정보가 없습니다. |
@@ -806,4 +806,28 @@ public void GetBanInfo()
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
 * 이 오류는 외부 인증 라이브러리에서 발생한 오류입니다.
+* 오류 코드 확인은 다음과 같이 확인하실 수 있습니다.
 
+```cs
+GamebaseError gamebaseError = error; // GamebaseError object via callback
+
+if (Gamebase.IsSuccess(gamebaseError))
+{
+    // succeeded
+}
+else
+{
+    Debug.Log(string.Format("code:{0}, message:{1}", gamebaseError.code, gamebaseError.message));
+
+    Error moduleError = gamebaseError.error; // GamebaseError.error object from external module
+    if (null != moduleError)
+    {
+        int moduleErrorCode = moduleError.code;
+        string moduleErrorMessage = moduleError.message;
+
+        Debug.Log(string.Format("moduleErrorCode:{0}, moduleErrorMessage:{1}", moduleErrorCode, moduleErrorMessage));
+    }
+}
+```
+
+* IDP SDK의 오류 코드는 각각의 Developer 페이지를 참고하시기 바랍니다.

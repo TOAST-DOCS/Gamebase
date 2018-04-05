@@ -693,7 +693,7 @@ Gamebase Console에 제재된 게임 이용자로 등록될 경우,
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 존재하지 않거나 탈퇴한 회원입니다.                      |
 |                | AUTH\_INVALID\_MEMBER                    | 3004       | 잘못된 회원에 대한 요청입니다.                        |
 |                | AUTH\_BANNED\_MEMBER                     | 3005       | 제재된 회원입니다.                               |
-|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 외부 인증 라이브러리 오류입니다.                       |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
 | Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED               | 3101       | 토큰 로그인에 실패했습니다.                          |
 |                | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | 토큰 정보가 유효하지 않습니다.                        |
 |                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 최근에 로그인한 IdP 정보가 없습니다.                   |
@@ -716,4 +716,33 @@ Gamebase Console에 제재된 게임 이용자로 등록될 경우,
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* 이 오류는 TOAST 외부 인증 라이브러리에서 발생한 오류입니다.
+* 이 오류는 각 IdP의 SDK에서 발생한 오류입니다.
+* 오류 코드 확인은 다음과 같이 확인하실 수 있습니다.
+
+* IdP SDK의 오류 코드는 각각의 Developer 페이지를 참고하시기 바랍니다.
+
+```java
+Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCallback<AuthToken>() {
+    @Override
+    public void onCallback(AuthToken data, GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            Log.d(TAG, "Login successful");
+            ...
+        } else {
+            Log.e(TAG, "Login failed");
+    
+            // Gamebase Error Info            
+            String errorDomain = exception.getDomain();
+            int errorCode = exception.getCode();
+
+            // Third Party Detail Error Info
+            int detailCode = exception.getDetailCode();
+            String DetailMessage = exception.getDetailMessage();
+
+            ...
+        }
+    }
+});
+```
+
+

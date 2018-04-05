@@ -43,7 +43,7 @@ Gamebase Android SDK를 사용하기 전에 TOAST Console에서 앱 아이디를
 def gamebaseDir = '../Gamebase'
 
 /* Set the Gamebase version. */
-def gamebaseSdkVersion = '1.7.0'
+def gamebaseSdkVersion = '1.8.0'
 def gamebaseFacebookAdapterVersion = '1.7.0'
 def gamebaseGoogleAdapterVersion = '1.7.0'
 def gamebaseNaverAdapterVersion = '1.7.0'
