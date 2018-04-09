@@ -1,5 +1,13 @@
 ## Game > Gamebase > 릴리스 노트
 
+### 2018.4.9
+
+#### 버그 수정
+* [SDK] 1.8.1
+	* (Unity) UnityAndroid 플랫폼에서 아래 기능 사용 시 모듈 초기화가 되지 않아 NullReferenceException이 발생하여 수정
+		* Launching, Purchase, Push, Util, Webview
+
+
 ### 2018.4.5
 
 #### 기능 추가
