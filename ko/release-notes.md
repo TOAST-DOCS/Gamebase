@@ -4,7 +4,7 @@
 
 #### 버그 수정
 * [SDK] 1.8.1
-	* (Android) registerPush를 호출시 displayLanguageCode를 null로 전달하면 registerPush가 실패하는 버그 수정
+	* (Android. iOS) registerPush를 호출시 displayLanguageCode를 null로 전달하면 registerPush가 실패하는 버그 수정
 
 ### 2018.4.9
 
@@ -12,7 +12,6 @@
 * [SDK] 1.8.1
 	* (Unity) UnityAndroid 플랫폼에서 아래 기능 사용 시 모듈 초기화가 되지 않아 NullReferenceException이 발생하여 수정
 		* Launching, Purchase, Push, Util, Webview
-
 
 ### 2018.4.5
 
@@ -36,7 +35,6 @@
 #### 버그 수정
 * 국가코드(contry code)가 10자 이상인 경우 동접 데이터가 저장되지 않는 현상 수정
 * [SDK] 1.8.0
-	* (Android) registerPush에 displayLanguage를 빈 값으로 입력시 registerPush가 실패하는 이슈 수정
 	* (Setting Tool) Unity Facebook Adapter를 체크하면 에러가 나는 버그 수정
 
 ### 2018.3.13
