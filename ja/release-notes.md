@@ -1,14 +1,19 @@
 ## Game > Gamebase > 릴리스 노트
 
-### 2018.4.9
+### 2018.04.12
+
+#### 버그 수정
+* [SDK] 1.8.1
+	* (Android. iOS) registerPush를 호출시 displayLanguageCode를 null로 전달하면 registerPush가 실패하는 버그 수정
+
+### 2018.04.09
 
 #### 버그 수정
 * [SDK] 1.8.1
 	* (Unity) UnityAndroid 플랫폼에서 아래 기능 사용 시 모듈 초기화가 되지 않아 NullReferenceException이 발생하여 수정
 		* Launching, Purchase, Push, Util, Webview
 
-
-### 2018.4.5
+### 2018.04.05
 
 #### 기능 추가
 * Kick out 기능 추가
@@ -30,11 +35,9 @@
 #### 버그 수정
 * 국가코드(contry code)가 10자 이상인 경우 동접 데이터가 저장되지 않는 현상 수정
 * [SDK] 1.8.0
-	* (Android) registerPush에 displayLanguage를 빈 값으로 입력시 registerPush가 실패하는 이슈 수정
 	* (Setting Tool) Unity Facebook Adapter를 체크하면 에러가 나는 버그 수정
 
-
-### 2018.3.13
+### 2018.03.13
 
 #### 버그 수정
 * [SDK] 1.7.1
@@ -42,14 +45,14 @@
 	* (Unity) Standalone, WebGL: Display Language에서 사용되는 리소스 파일 누락 부분 수정
 	* (Unity) Google Adapter 1.6.2 배포: Google Adapter 1.6.1에서 AuthCode가 Empty로 반환되어 인증 실패하는 버그 수정
 
-### 2018.2.22
+### 2018.02.22
 
 #### 기능 추가
 * [SDK] 1.7.0
 	* Naver IdP 인증 추가
 	* Display Language 설정 추가: 단말기 언어와 별도로 게임내에서 게임유저의 노출 언어를 설정할 수 있도록 Display 언어를 추가하였습니다.
 
-### 2018.1.25
+### 2018.01.25
 
 #### 기능 추가
 
