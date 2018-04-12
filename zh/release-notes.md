@@ -1,5 +1,11 @@
 ## Game > Gamebase > 릴리스 노트
 
+### 2018.4.12
+
+#### 버그 수정
+* [SDK] 1.8.1
+	* (Android) registerPush를 호출시 displayLanguageCode를 null로 전달하면 registerPush가 실패하는 버그 수정
+
 ### 2018.4.9
 
 #### 버그 수정
@@ -32,7 +38,6 @@
 * [SDK] 1.8.0
 	* (Android) registerPush에 displayLanguage를 빈 값으로 입력시 registerPush가 실패하는 이슈 수정
 	* (Setting Tool) Unity Facebook Adapter를 체크하면 에러가 나는 버그 수정
-
 
 ### 2018.3.13
 
