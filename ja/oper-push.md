@@ -1,79 +1,78 @@
-## Game &gt; Gamebase &gt; Operator Guide &gt; Push
+## Game > Gamebase > Console ご利用ガイド > Push
 
-You can send push notification to app users.<br/>
-In Gamebase, push notifications are provided by applying TOAST Cloud Push service.<br/>
+アプリユーザーにPush通知を送信することができます。
+Gamebaseでは、TOAST Pushサービスを使用してPush通知を送信します。
 
 ## Push
-Check push history delivered via Gamebase and registered list of push schedule. <br />
+Gamebaseを通して送信されたPushの履歴と送信予約に登録されたリストを確認することができます。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push1_1.3.png)
-Scheduled push delivery on the list can be cancelled from Push Details.<br />
+送信予定内訳にあるリストは、**Push Details**から送信をキャンセルすることもできます。
 
 ### Registered List
 
-Select a push on the list of scheduled delivery to check expected delivery time and registration information. <br>
-Currently, delivery schedule can only be cancelled; the modification function will be provided in close future.<br />
+予約送信リストからPushを選択すると、Pushの予想送信時刻及び登録情報を確認することができます。
+現在は予約送信に対するキャンセルのみ可能で、登録された情報を修正する機能は今後実装予定です。
 
 ### Send History
 
-Select a push on the list of delivery history to retrieve details of delivered push messages.<br />
-{@번역}
-**복사** 버튼을 클릭하여 발송된 푸시의 등록정보를 이용하여 손쉽게 푸시 등록이 가능합니다.
-
+送信履歴リストからPushを選択すると、送信されたPushの詳細内訳を照会することができます。
+**コピー**ボタンをクリックすると、送信されたPushの登録情報を利用して簡単にPushを登録することができます。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push2_1.2.png)
 
 
 ### Register Push
 
-Click **Register** to register a new push.
+新しいPushを登録したい場合、**登録**ボタンをクリックします。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push3_1.1.png)
 
-#### (1) Message Type
-> [Note]<br/>
-> This function is provided in compliance with the Act on Promotion of Information and Communications Network set by the Government of Korea. <br/>
-> To deliver non-informative push messages, the messages should start with &#39;(Ad)&#39; and include contact information and how to cancel subscription.<br/>
+#### (1) メッセージタイプ
+> [参考]
+> 韓国の「情報通信網法」を遵守するために提供される機能です。
+> Pushメッセージを送信する際に情報提供型のメッセージでない場合は、「(広告)」という出だしでメッセージを始めなければならず、メッセージに連絡先と受信拒否の方法を含ませる必要があります。
 
-- **Ad Messages**: Input messages are added with &#39;(Ad)&#39; to the header. In addition, secondary contact information and how to cancel subscription are delivered altogether. For ad push messages for all in Korea, be sure to deliver as &#39;ad&#39; messages to abide by the act on promotion of information and communications network.
-- **Informative Messages**: Only input messages are delivered as push messages. Send as informative messages for non-Korean device users (when the USIM country code is not Korea).
+- **広告型**：入力されたメッセージに「(広告)」という出だしが追加されます。また、追加で入力した連絡先と受信拒否の方法が一緒に送信されます。全体送信のようなPush型広告の場合、韓国国内では情報通信網法を遵守するために必ず「広告型」のメッセージとして送信しなければなりません。
+- **情報提供型**：入力されたメッセージのみPushメッセージで送信されます。韓国の端末でない(USIMの国家コードが韓国ではない)ユーザーには、情報提供型メッセージとして送信してください。
 
-> <font color="red">[Caution]</font><br/>
-> Please note if you enter &#39;(Ad)&#39; to messages after selecting Ad Messages, &#39;(Ad)&#39; will become duplicate. <br/>
+> <font color="red">[重要]</font>
+> **広告型**を選択した後、入力メッセージに「(広告)」という文言を入力すると、「(広告)」という文言が重複して表示されますので、ご注意ください。
 
-#### (2) Push Target
-Select a target to send push messages to. <br/>
+#### (2) 送信対象
+Pushメッセージを送信する対象を選択します。 
 
-- **All**: 운영체제별로 선택할 수 있습니다. 선택한 운영체제를 사용하는 사용자는 모두 푸시를 수신하게 됩니다.
-- **Specific user**: Can be applied to send push messages to particular members only. Push messages are sent to a device in which push token is registered with an input user ID.
-- **Group**: Register the list of users who want message delivery in a file. The group delivery can be sent up to 10,000 persons at a time.
+- **全体送信**：OSごとに選択することができます。選択したOSを使用するユーザーは、すべてPushメッセージをを受信することになります。
+- **特定の会員にのみ送信**：特定の会員にのみPushメッセージを送信したい場合に選択します。入力されたユーザーIDでPushトークンを登録したデバイスにPushメッセージを送信します。
+- **グループ送信**：メッセージを送信したいユーザーリストをファイルで登録します。グループ送信は、1回に最大10,000人にまで送信できます。
 
-#### (3) Type
-Select a cycle of delivery.<br/>
+#### (3) 送信タイプ
+送信サイクルを選択します。
 
-- **Immediate Delivery**: Send push messages immediately after registration
-- **Reservation Delivery**: Send push messages on reserved time. Further services such as repeated delivery (every day, every week, or every month) and local time-based delivery are to be provided. {@번역}'현지 시간 기준으로 발송'을 체크하고 '2017-01-01 09:00'로 설정하면 한국 단말기를 사용하는 유저는 한국시간 '2017-01-01 09:00'로 영국 단말기를 사용하는 사용자는 영국 시간 '2017-01-01 09:00'에 푸시 메시지를 수신하게 됩니다.
+- **即送信**：登録後、直ちにPushメッセージを送信します。
+- **予約送信**：予約した時間にPushメッセージを送信します。ユーザー端末の国家時間を基準にPushメッセージを送信したい場合、**現地時間を基準に送信**を選択します。**現地時間を基準に送信**を選択して、「2017-01-01 09:00」に設定した場合、韓国の端末を使用するユーザーは、韓国時間の「2017-01-01 09:00」に、英国の端末を使用するユーザーは、英国時間の「2017-01-01 09:00」にPushメッセージを受信します。
 
-추후 예약 발송에 반복 발송(매일, 매주, 매달)기능이 추가로 제공될 예정입니다.
+今後、予約送信の機能に繰り返し送信(毎日、毎週、毎月)する機能が追加で提供される予定です。
 
-#### (4) Target Country
-Select countries to send push messages to.<br/>
+#### (4) 対象国家
+Pushメッセージを送信する国家を選択します。
 
-- **All Countries** : Deliver to all users
-- **Selected Countries**: Deliver to users of selected countries only. <br/>
-  Enter a country code to add, then it will be automatically completed and entered. If there&#39;s no country code to enter, contact  [Customer Center](https://toast.com/support/inquiry).
+- **全体国家**：すべてのユーザーにPushメッセージを送信します。
+- **一部国家**：選択した国家のユーザーにのみPushメッセージを送信します。 
+  追加したい国家名を入力すると自動で完成され、入力されます。入力した国家が表示されない場合、[カスタマーセンター](https://toast.com/support/inquiry)までご連絡ください。
 
-> [Note]<br/>
-> Criteria of Country Selection<br/>
-> Countries are selected on the basis of user&#39;s **USIM Country Code** ; when USIM is not available, countries set on **Device** are the target.<br />
+> [参考]
+> 国家判断基準
+> ユーザーの**USIMの国家コード**を基に判断し、USIMがない場合は端末に設定されている国家を基にPushメッセージが表示されます。
 
-#### (5) Message
-Enter push messages to show to users.<br />
-Messages can be registered in many languages, and for users who speak other languages than registered, default language is displayed. To add a language, click **&#39;+&#39;** on the right. For other languages that are not on the list, contact  [Customer Center](https://toast.com/support/inquiry).<br />
+#### (5) 送信メッセージ
+ユーザーに表示するPushメッセージを入力します。
+メッセージは複数の言語で登録でき、入力した言語以外の言語を使用するユーザーには、基本言語として選択された言語で表示されます。言語を追加したいときは右の**'+'**ボタンをクリックします。リストにない言語を追加したいときは、[カスタマーセンター](https://toast.com/support/inquiry)までご連絡ください。
 
-> [Note]<br/>
-> If push messages do not arrive on a device: in most cases, it is because users have not registered push tokens. Please check if user&#39;s push token has been registered.<br/>
-> Refer to documents as below to setup push messages in other platforms.
+> [参考]
+> Pushメッセージを送信したものの、デバイスにメッセージが届かない場合
+> ほとんどの場合、ユーザーのPushトークンが登録されていないのが原因です。ユーザーのPushトークンが登録されているかどうか確認してください。>
+> プラットフォームでPushトークンを登録する方法は、次のドキュメントをご参考ください。
 >
-> - [Android > Register Push](./aos-push/#2-register-push) <br />
-> - [iOS > Register Push](./ios-push/#2-register-push) <br />
-> - [Unity > Register Push](./unity-push/#2-register-push) <br />
+> - [Android > Register Push](./aos-push/#2-register-push) 
+> - [iOS > Register Push](./ios-push/#2-register-push) 
+> - [Unity > Register Push](./unity-push/#2-register-push) 
 

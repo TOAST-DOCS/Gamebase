@@ -1,92 +1,86 @@
-## Game &gt; Gamebase &gt; Operator Guide &gt; Purchase
+## Game > Gamebase > Console ご利用ガイド > 決済
 
-You can register information related to In-App Purchase (IAP) and retrieve details.<br/>
-In Gamebase, TOAST IAP service is provided.<br/>
-<br/>
+アプリ内決済に関連する情報を登録し、内訳を照会することができます。
+Gamebaseでは、TOAST IAP(In-App Purchase、アプリ内決済)サービスを使用します。
+
 ## Store
-Register stores to sell products in games.<br/>
-Register a new store on the **Store Information List** of the **Store** tab, or manage registered stores.<br/>
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_App1_1.0.png)
 
+ゲーム内でアイテムを販売するためにストアを登録します。
+**Store**タブの**ストア情報リスト**から新しいストアを登録したり、登録済みのストアを管理することができます。
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_App1_1.0.png)
 
 ### Register
 
-Click **Register** on the **Store Information List** to register a new store.
+新しいストアを登録したい場合、**ストア情報リスト**画面の**登録**ボタンをクリックします。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_App2_1.0.png)
 
-* **Store**<br/> Select an external store to register.<br />If it is not on the list, contact [Customer Center](https://toast.com/support/inquiry).<br />
-* **App Name** <br/> Enter the name of a game to register.<br />
-* **Store App ID** <br/> Enter information issued by store.<br />
-* **Use or Not**<br/> Select whether to use the store or not.<br />
+* **ストア**登録する外部ストアを選択します。登録するストアがない場合、[カスタマーセンター](https://toast.com/support/inquiry)までご連絡ください。
+* **アプリ名**登録するゲームの名前を入力します。
+* **ストアアプリID**ストアから発行された情報を入力します。
+* **使用有無**ストアを使用するかどうかを選択します。
 
 ### Modify
 
-Retrieve or modify detail information of registered stores on the list.
+照会リストから登録されたストアの詳細情報を照会したり、情報を変更することができます。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_App3_1.0.png)
-- Select a registered store on the list to retrieve detail information.<br />
-- Click **Modify** to modify information such as app name, store app, and use or not, but not store App ID.<br />
-- Click **Delete** to delete information: only for the stores that are Not in Use.<br />
-  <br/>
+- 照会リストから登録されたストアを選択すると、詳細情報を照会することができます。
+- **修正**ボタンをクリックすればストアアプリIDを除くアプリ名、ストアアプリ、使用有無情報を修正することができます。
+- **削除**ボタンをクリックすればストアの情報を削除することができます。ただし、使用有無の状態が未使用のストアのみ削除できます。
 
 ## Item
 
-Register items to sell at each store. <br>
-Register a new item on the **Store** tab, or manage registered stores. Items of all stores will show, and filtering is also available for each store.<br />
+ストアで販売するアイテムを登録することができます。
+**アイテム**タブから新しいアイテムを登録したり、登録済みのアイテムを管理することができます。基本的にすべてのストアに対するアイテムが表示され、各ストアごとのフィルタリング機能も使用することができます。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Item1_1.0.png)
 
 ### Register
 
-Click **Register** on the **Store Information List** to register a new item.
-
+新しいアイテムを登録したい場合、**ストア情報リスト**画面の**登録**ボタンをクリックします。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Item2_1.0.png)
 
-* **Store**<br />  Select an external store to register.<br />  If it is not on the list, need to register the store first in the **Store** menu.<br />
-* **Item Name**<br /> Enter the item information issued after store is registered.<br />Can show the item name registered in the game.<br>
-* **Store Item ID**<br />Enter the name of an item to register.<br />
-* **Use or Not**<br />  Select whether to sell the item or not<br />
+* **ストア**登録する外部ストアを選択します。登録したいストアがない場合、まず**ストア**メニューからストアを登録する必要があります。
+* **アイテム名**ストア登録後に発行されたアイテムの情報を入力します。ゲームで登録されたアイテム名を利用してアプリ内に表示することができます。
+* **ストアアイテムID**登録するアイテムの名前を入力します。
+* **使用有無**該当するアイテムを販売するかどうかを選択します。
 
 ### Modify
 
-Retrieve or modify detail information of registered items on the list.
-
+照会リストから登録されたアイテムの詳細情報を照会したり、情報を変更することができます。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Item3_1.0.png)
-- Select each item on the Item List to retrieve detail information.<br />
-- Click **Modify** to change information except store information and item sequence.<br />
-- Click **Delete** to delete item information.<br />
-  <br/>
+- 照会リストから各アイテムを選択すると、登録されたアイテムの詳細情報を照会することができます。
+- **修正**ボタンをクリックすればストアとアイテムSeqを除く残りの情報を変更することができます。
+- **削除**ボタンをクリックすればアイテム情報を削除することができます。
 
 ## Transactions
-Retrieve payment information.
+
+決済情報を照会することができます。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction1_1.1.png)
-<br />
 
-Retrieve payment information of choice, by using the search conditions as below. <br>
+下の検索条件を利用して、照会したい決済情報を照会することができます。
+### 検索条件
 
-### Search Conditions
-- **Store**: Information of a store where payment has been made
-- **Date**: Time when a user tried to purchase
-- **Payment Sequence**: Original number to identify payments within Gamebase
-- **Item Sequence**: Number of an item a user purchased in an app (can be found under the &#39;Item&#39; tab.)
-- **User ID**: ID of a user who made payments
-- **Sort Order**: Ascending or descending order, by registration date
+- **ストア**：決済されたストア情報
+- **日付**：ユーザーが購入を試みた時刻
+- **決済番号**：Gamebase内で決済を区別できる固有番号
+- **アイテム番号**：ユーザーがアプリで購入した実際のアイテム番号(アイテム番号は、「アイテム」タブから確認できます。)
+- **ユーザーID**：決済したユーザーID
+- **ソート順序**：登録日を基準に昇順、降順で並び替え
 
+### 検索結果
+- **決済番号**：Gamebase内で決済を区別できる固有番号
+- **ストア**：決済されたストア情報
+- **ユーザーID**：決済したユーザーID
+- **アイテム名**：ユーザーがアプリで購入した実際のアイテム名
+- **価格**：ユーザーが購入したアイテムの価格
+- **通貨**：ユーザーが購入時に使用した通貨の種類
+- **Consume**：決済したアイテムの配布有無
+- **決済状態**：決済の現在の進行状態
+- **Store Reference Key**：ストアから発行された決済の固有番号
+- **登録日**：ユーザーが購入を試みたり完了した時間
+- **払戻日**：ユーザーのアイテムが払戻になった時間
 
-
-### Search Results
-- **Payment Sequence**: Original number to identify payments within Gamebase
-- **Store**: Information of a store where payment has been made
-- **User ID**: ID of a user who made payments
-- **Item Name**: Name of an item a user purchased in an app
-- **Price**: Price of an item a user purchased
-- **Currency**: Type of currency used to purchase
-- **Consume**: Whether a paid item has been provided or not
-- **Payment Status**: Current status of payment
-- **Store Reference Key**: Original payment number issued at a store
-- **Registration Date**: Time when a user tried or completed purchasing
-- **Refund Date**: Time when a user item was refunded
-
-A manual payment processing function will be provided in the Console, when TOAST Cloud IAP fails to complete payment after a successful payment at external store (App Store, Google Play, and etc.) and hence items are not provided: will be updated in close future.<br />
+外部ストア(App Store、Google Playなど)では決済が完了したものの、TOAST IAPでは決済完了処理が行われなかったためアイテムが配布されなかった際にConsoleから手動で決済完了処理ができる機能を提供する予定です。日程は未定です。

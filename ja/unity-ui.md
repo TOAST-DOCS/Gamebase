@@ -1,21 +1,19 @@
-## Game > Gamebase > Unity Developer's Guide > UI
+## Game > Gamebase > Unity SDK ご利用ガイド > UI
 
 ## Webview
 
 ### Show WebView
 
-Shows a WebView.<br/>
+WebViewを表示します。<br/>
 
-##### Required Parameters
+##### Requiredパラメーター
+* url:パラメーターで送信されるurlは、有効な値でなければなりません。
 
-* URL: The url delivered as a parameter should be valid.
-
-##### Optional Parameters
-
-- configuration: Changes WebView layout by using GamebaseWebViewConfiguration.
-- closeCallback: Notifies users when a WebView is closed.
-- schemeList: Specifies the list of customized schemes a user wants.
-- schemeEvent: Notifies url including customized scheme specified by the schemeList with a callback.
+##### Optionalパラメーター
+* configuration:GamebaseWebViewConfigurationでWebViewのレイアウトを変更することができます。
+* closeCallback:WebViewが終了する際に、ユーザーにコールバックで知らせます。
+* schemeList:ユーザーの求めるカスタムSchemeのリストを指定します。
+* schemeEvent:schemeListに指定したカスタムSchemeを含むurlをコールバックで知らせます。
 
 **API**
 
@@ -51,36 +49,36 @@ public void ShowWebView(GamebaseCallback.ErrorDelegate closeCallback, List<strin
 
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | string                                   | Title of WebView                 |
-| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | Unspecified |
-|                          | GamebaseScreenOrientation.PORTRAIT       | Portrait Mode                      |
-|                          | GamebaseScreenOrientation.LANDSCAPE      | Landscape Mode                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | Reverse Landscape              |
-| colorR                   | 0~255                                    | Color of Navigation Bar: Alpha            |
-| colorG                   | 0~255                                    | Color of Navigation Bar: R                 |
-| colorB                   | 0~255                                    | Color of Navigation Bar: G               |
-| colorA                   | 0~255                                    | Color of Navigation Bar: B                |
-| buttonVisible            | true or false                            | Activate/Deactivate Go Back Button           |
-| barHeight                | height                                   | Height of Navigation Bar                  |
-| backButtonImageResource  | ID of resource                           | Image of Go Back Button                |
-| closeButtonImageResource | ID of resource                           | Image of Close Button |
-| url | "http://" or "https://" or "file://" | Web URL |
+| title                    | string                                   | WebViewのタイトル                 |
+| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 未指定 |
+|                          | GamebaseScreenOrientation.PORTRAIT       | 縦モード                       |
+|                          | GamebaseScreenOrientation.LANDSCAPE      | 横モード                       |
+|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 横モードを180度回転              |
+| colorR                   | 0~255                                    | ナビゲーションバーの色Alpha            |
+| colorG                   | 0~255                                    | ナビゲーションバーの色R                |
+| colorB                   | 0~255                                    | ナビゲーションバーの色G                |
+| colorA                   | 0~255                                    | ナビゲーションバーの色B                |
+| buttonVisible            | true or false                            | 戻るボタンの有効化または無効化          |
+| barHeight                | height                                   | ナビゲーションバーの高さ                  |
+| backButtonImageResource  | ID of resource                           | 戻るボタンのイメージ                |
+| closeButtonImageResource | ID of resource | 閉じるボタンの画像 |
+| url | "http://" or "https://" or "file://" | ウェブURL |
 
 #### Predefined Custom Scheme
 
-Gamebase has specified following schemes.
+Gamebaseで指定しておいたSchemeです。
 
-| scheme | Usage |
+| scheme | 用途 |
 | ----------------------------- | ------------------------------ |
-| gamebase://dismiss | Close WebView |
-| gamebase://goBack | Go back from WebView |
-| gamebase://getUserId          | Show ID of a user who is currently logged-in |
-| gamebase://getMaintenanceInfo | Display maintenance information on WebPage |
+| gamebase://dismiss | WebViewを閉じる |
+| gamebase://goBack | WebViewに戻る |
+| gamebase://getUserId          | 現在ログイン中のゲームユーザーのユーザーIDを表示 |
+| gamebase://getMaintenanceInfo | メンテナンス内容をWebPageに表示 |
 
 
 ### Close WebView
 
-Close currently displayed WebView by using the following API.
+次のAPIを利用して表示されているWebViewを閉じることができます。
 
 **API**
 
@@ -103,7 +101,7 @@ public void CloseWebview()
 
 ## Open External Browser
 
-Open an external browser by using the following API. The URL delivered as a parameter should be valid.
+次のAPIを通じて、外部ブラウザを開くことができます。パラメーターで送信されるurlは、有効な値でなければなりません。
 
 **API**
 
@@ -129,8 +127,8 @@ public void OpenWebBrowser(string url)
 
 ## Alert
 
-Displays a system alert API.
-Can register buttons or callback on system alerts.
+システム通知を表示することができます。
+システム通知にボタンやコールバックを登録することもできます。
 
 **API**
 
@@ -169,7 +167,7 @@ public void ShowAlertDialog()
 
 ## Toast
 
-Displays message easily, by using the following API.
+次のAPIを使用して簡単にメッセージを表示することができます。
 
 **API**
 
@@ -204,7 +202,8 @@ public void ShowToast(string message, GamebaseUIToastType type)
 
 | Error              | Error Code | Description                 |
 | ------------------ | ---------- | --------------------------- |
-| UI\_UNKNOWN\_ERROR | 6999       | Unknown error (Undefined error). |
+| UI\_UNKNOWN\_ERROR | 6999       | 不明なエラーです(定義されていないエラーです)。|
 
-* Refer to the following document for the entire error codes.
-	- [Entire Error Codes](./error-code/#client-sdk)
+* 全体のエラーコードは、次のドキュメントをご参考ください。
+    * [エラーコード](./error-code/#client-sdk)
+

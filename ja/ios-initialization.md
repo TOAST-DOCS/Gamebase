@@ -1,57 +1,58 @@
-## Game > Gamebase > iOS Developer's Guide > Initialization
+﻿## Game > Gamebase > iOS SDK ご利用ガイド > 初期化
 
-To use Gamebase iOS SDK, initialization is required.
+Gamebase iOS SDKを使用するためには、まず初期化を行う必要があります。
 
 ### Import Header File
 
-First, import Gamebase header file to the app.
-Get the following header file to where Gamebase functions will be initialized, such as AppDelegate.h.
+まず、Gamebaseのヘッダーファイルをアプリに持ってくる必要があります。<br/>
+AppDelegate.hなどGamebase機能を初期化する場所に次のヘッダーファイルを持ってきます。
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
 ```
 
+
 ### Configuration Settings
 
-When Gamebase is initialized, Gamebase setting can be modified with TCGBConfiguration.
+Gamebaseを初期化する際に、TCGBConfigurationの客体でGamebaseの設定を変更することができます。
 
 | API                                | Mandatory(M) / Optional(O) | Description                              |
 | ---------------------------------- | -------------------------- | ---------------------------------------- |
-| configurationWithAppID:appVersion: | M | Set App ID and app version of TCGBConfiguration.Status of update or maintenance can be decided upon a game version.<br/>Specify a game version. |
-| enablePopup: | O | **[UI]**<br/> When a game user cannot play games due to system maintenance or banned from use, reasons need to be displayed by pop-ups.<br/>If it is set **YES**, Gamebase will automatically display information via pop-ups.<br/>**NO** is set as default.<br/>When set to **NO**, get information from launching results and display why user cannot play games by using customized UI. |
-| enableLaunchingStatusPopup: | O | **[UI]**<br/>Depending on the launching results, when unavailable to login (mainly due to maintenance), you may decide whether to allow Gamebase to automatically display pop-ups. Works only when **enablePopup:YES** is on.<br/>**YES** is set as default. |
-| enableBanPopup: | O | **[UI]**<br/>When a game user is banned, you can change whether to allow Gamebase to automatically display a pop-up on the reasons.  Works only when **enablePopup:** is on.<br/>**YES** is set as default. |
+| configurationWithAppID:appVersion:| M                          | TCGBConfigurationのアプリIDとアプリバージョンを設定します。<br/>アップデート、メンテナンスに該当するかどうかはゲームバージョンで判断します。<br/>ゲームバージョンを指定してください。|
+| enablePopup:                      | O                          | **[UI]**<br/>システムメンテナンス、利用制限(ban)などゲームユーザーがゲームをプレイすることができない状況のとき、ポップアップなどで理由を表示しなければならない場合があります。<br/>**YES**に設定すれば、Gamebaseが該当する状況で案内ポップアップを自動で表示します。<br/>デフォルトは**NO**です。<br/>**NO**の状態のときは起動結果を通して情報を取得した後に直接UIを設計し、ゲームをプレイすることができない理由を表示してください。|
+| enableLaunchingStatusPopup:       | O                          | **[UI]**<br/>起動結果によりログインできない状態のとき(主にメンテナンス状態)、 Gamebaseが自動でポップアップを表示するかどうかを変更することができます。<br/>**enablePopup:YES**の状態でのみ動作します。<br/>デフォルトは**YES**です。|
+| enableBanPopup:                   | O                          | **[UI]**<br/>ゲームユーザーが利用を制限された状態のとき、Gamebaseが自動でbanされた理由をポップアップで表示するかどうかを変更することができます。<br/>**enablePopup:** の状態でのみ動作します。<br/>デフォルトは**YES**です。|
 
 
 ### Debug Mode
+Gamebaseは、警告(warning)とエラーログだけを表示します。
+開発の参考になるシステムログをオンにしたいときは、**[TCGBGamebase setDebugMode:YES]**を呼び出してください。
 
-Gamebase shows warning and error logs only.
-To turn on system logs for the reference of development, call **[TCGBGamebase setDebugMode:YES]**.
-
-> <font color="red">[Caution]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> Before **releasing** a game, be sure to delete setDebugMode call from a source code or change the parameter to NO.
+> ゲームを**リリース**するときは、必ずソースコードからsetDebugMode:の呼び出しを除去したりパラメーターをNOに変えてからビルドしてください。
 
 
 ### Initialize
+**application:didFinishLaunchingWithOptions:**メソッドで次のように初期化を進めます。
 
-Process initialization, in **application:didFinishLaunchingWithOptions:**.
 
-> <font color="red">[Caution]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> The **initializeWithConfiguration:launchOptions:completion:** method call can be made from **application:didFinishLaunchingWithOptions:** , as well.
+> Gamebaseを初期化するための**initializeWithConfiguration:launchOptions:completion:**メソッドの呼び出しは**application:didFinishLaunchingWithOptions:**の他にも呼び出すことができます。
 >
 
 <br/>
 
 
-> <font color="red">[Caution]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> The **initializeWithConfiguration:launchOptions:completion:** method must be called before a call is made for another Gamebase API.
+> **initializeWithConfiguration:launchOptions:completion:**メソッドを呼び出さずに他のGamebaseAPIを呼び出すと、正常に動作しないことがあります。
 
-1. Create **TCGBConfiguration** object, and set each property.
-2. Call **initializeWithConfiguration:launchOptions:completion:** by using the **TCGBConfiguration** object.
-3. Check the **completion** block by using **TCGBError** object to decide whether it is successful. If initialization fails, try again; make sure to include the logic of initialization to prevent potential problems.
+1. **TCGBConfiguration**の客体を作成して各属性を設定します。
+2. 設定された**TCGBConfiguration**の客体を使用して**initializeWithConfiguration:launchOptions:completion:**を呼び出します。
+3. **completion**ブロックに転送された**TCGBError**の客体を確認して成功したかどうかを判断し、初期化に失敗したときは、もう一度試せるようにします。
+
 
 
 ```objectivec
@@ -76,8 +77,8 @@ Process initialization, in **application:didFinishLaunchingWithOptions:**.
 
 ### Launching Status
 
-Check launching status by calling Gamebase#initialize.
-Need to call launching status after Gamebase is initialized.
+Gamebase初期化の呼び出し結果により起動状態を確認することができます。<br/>
+起動状態は、Gamebase初期化後に呼び出さなければなりません。
 
 ```objectivec
 - (void)myMethodAfterGamebaseInitialized {
@@ -104,29 +105,27 @@ Need to call launching status after Gamebase is initialized.
 
 | Status                      | Code | Description                              |
 | --------------------------- | ---- | ---------------------------------------- |
-| IN_SERVICE                  | 200  | Service is now normally provided.                           |
-| RECOMMEND_UPDATE            | 201  | Update is recommended.                              |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202  | Under maintenance now but QA user service is available. |
-| REQUIRE_UPDATE              | 300  | Update is required.                                  |
-| BLOCKED_USER                | 301  | User whose access has been blocked. |
-| TERMINATED_SERVICE          | 302  | Service has been terminated.                                   |
-| INSPECTING_SERVICE          | 303  |  Under maintenance now.                                 |
-| INSPECTING_ALL_SERVICES     | 304  | Under maintenance for the whole service.                              |
-| INTERNAL_SERVER_ERROR       | 500  | Error of internal server.                                 |
+| IN_SERVICE                  | 200  | サービスが正常に動作しています。                                 |
+| RECOMMEND_UPDATE            | 201  | アップデートを推奨します。                                 |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202  | メンテナンス中にはサービスを利用することができませんが、QA端末として登録されている場合はメンテナンスに関係なくサービスに接続してテストすることができます。|
+| REQUIRE_UPDATE              | 300  | アップデートが必ず必要です。                                 |
+| BLOCKED_USER                | 301  | 接続ブロックに登録された端末(デバイスキー)でサービスに接続したケースです。|
+| TERMINATED_SERVICE          | 302  | サービスが終了しました。                                  |
+| INSPECTING_SERVICE          | 303  | サービスをメンテナンス中です。                                |
+| INSPECTING_ALL_SERVICES     | 304  | 全体サービスをメンテナンス中です。                             |
+| INTERNAL_SERVER_ERROR       | 500  | 内部サーバーエラーです。                                |
 
 
 ## Lifecycle Event
 
-To manage iOS app events, implement the following **UIApplicationDelegate** protocol.
+iOSのアプリイベントを管理したい場合、次の**UIApplicationDelegate**プロトコルを設計します。
 
 ### OpenURL Event
+**application:openURL:sourceApplication:annotation:**メソッドを呼び出してアプリケーションの外部URL Openの試みをGamebaseに知らせなければなりません。Gamebaseでは、各Idpの認証用SDKに該当する値を送り、必要な動作をするように知らせます。
 
-Call **application:openURL:sourceApplication:annotation:** method to notify Gamebase when application's external URL was tried to be open.
-Gamebase will deliver a corresponding value to authentication SDK of each IdP to make it operate as required.
-
-> <font color="red">[Caution]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> If **application:openURL:options:** of UIApplicationDelegate has been already overriden, call of **application:openURL:sourceApplication:annotation:** may not work.
+> UIApplicationDelegateの**application:openURL:options:**を既に再定義した場合、**application:openURL:sourceApplication:annotation:**が呼び出されなことがあります。
 >
 
 ```objectivec
@@ -137,9 +136,8 @@ Gamebase will deliver a corresponding value to authentication SDK of each IdP to
 ```
 
 ### DidBecomeActive Event
+**applicationDidBecomeActive:**メソッドを呼び出してアプリを有効にするかどうかをGamebaseに知らせなければなりません。Gamebaseでは、各Idpの認証用SDKに該当する値を送り、必要な動作をするように知らせます。
 
-Call **applicationDidBecomeActive:** method to notify Gamebase whether an app has been activated or not.
-Gamebase delivers a corresponding value to authentication SDK of each IdP to make it operate as required.
 
 
 ```objectivec
@@ -149,8 +147,7 @@ Gamebase delivers a corresponding value to authentication SDK of each IdP to mak
 ```
 
 ### DidEnterBackground Event
-
-Call **applicationDidEnterBackground**, to notify Gamebase that an app will be converted to background.
+**applicationDidEnterBackground**メソッドを呼び出してGamebaseにアプリがバックグランド(background)に切り替わるということを知らせる必要があります。
 
 
 ```objectivec
@@ -160,8 +157,7 @@ Call **applicationDidEnterBackground**, to notify Gamebase that an app will be c
 ```
 
 ### WillEnterForeground Event
-
-Call **applicationWillEnterForeground**, to notify Gamebase that an app will be converted to foreground.
+**applicationWillEnterForeground**メソッドを呼び出してGamebaseにアプリがフォアグラウンド(foreground)に切り替わるということを知らせる必要があります。
 
 ```objectivec
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -174,15 +170,16 @@ Call **applicationWillEnterForeground**, to notify Gamebase that an app will be 
 
 | Error                              | Error Code | Description            |
 | ---------------------------------- | ---------- | ---------------------- |
-| TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebase is not initialized. |
-| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2 | Login is required.
-| TCGB\_ERROR\_INVALID\_PARAMETER | 3 | Invalid parameter. |
-| TCGB\_ERROR\_INVALID\_JSON\_FORMAT | 4 | Invalid JSON format. |
-| TCGB\_ERROR\_USER\_PERMISSION | 5 | User is not authorized. |
-| TCGB\_ERROR\_NOT\_SUPPORTED | 10 | The function is not supported. |
-| TCGB\_ERROR\_NOT\_SUPPORTED\_IOS | 12 | The function is not supported by iOS. |
+| TCGB\_ERROR\_NOT\_INITIALIZED      | 1          | Gamebaseが初期化されていません。|
+| TCGB\_ERROR\_NOT\_LOGGED\_IN       | 2          | ログインが必要です。          |
+| TCGB\_ERROR\_INVALID\_PARAMETER    | 3          | 正しくないパラメーターです。         |
+| TCGB\_ERROR\_INVALID\_JSON\_FORMAT | 4          | JSONフォーマットエラーです。       |
+| TCGB\_ERROR\_USER\_PERMISSION      | 5          | 権限がありません。             |
+| TCGB\_ERROR\_NOT\_SUPPORTED        | 10         | この機能には対応しておりません。       |
+| TCGB\_ERROR\_NOT\_SUPPORTED\_IOS   | 12         | この機能はiOSには対応しておりません。 |
 
 
 
-* Refer to the following document for the entire error codes.
-  - [Entire Error Codes](./error-code/#client-sdk)
+* 全体のエラーコードは、次のドキュメントをご参考ください。
+    * [エラーコード](./error-code/#client-sdk)
+

@@ -1,49 +1,41 @@
-## Game > Gamebase > Android Developer's Guide > Purchase
+## Game > Gamebase > Android SDK ご利用ガイド > 決済
 
-## Purchase
+ここではアプリでアプリ内決済機能を使用するために必要な設定方法についてご案内いたします。
 
-This page describes how to set In-App Purchase (IAP).
-
-Gamebase provides an integrated purchase API to easily link IAP of many stores in a game.
+Gamebaseは、一つの統合された決済APIを提供することで、ゲームで簡単に各ストアのアプリ内決済を連動することができるようサポートします。
 
 ### Settings
 
 #### 1. Store Console
 
-- Refer to the IAP guide as below, to register an app to each store and get an Appkey.
-- [IAP > Store interlocking information](/en/Mobile%20Service/IAP/en/Store%20interlocking%20information/)
+* 次のIAPガイドをご参考の上、各ストアにアプリを登録してアプリケーションキーを発行してもらいます。
+* [Mobile Service > IAP > Console ご利用ガイド > Store interlocking information](/Mobile%20Service/IAP/ja/console-guide/#store-interlocking-information)
 
 #### 2. Register as Store's Tester
 
+* 決済テストのため、次のようにストアごとにテスター登録をします。
+    * Google
+        * [Android > テスト購入設定](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
+    * ONE store
+        * [ONE store > アプリ内決済テスト](https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#%EC%9D%B8%EC%95%B1%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8)
+        * 必ずアプリ内情報 - テストボタンでサンドボックスを希望する端末の電話番号を登録してテストを行う必要があります。
+        * テスト用の端末にはUSIMが必要であり、電話番号を登録しなければなりません(MDN)。
+        * **ONE store**のアプリケーションがインストールされている必要があります。
 
-- Register a tester to each store for purchase testing.
-  - Google
-    - [Android > Setting test purchase](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
-  - ONE store
-    - [ONE store > In-app purchase test](https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#%EC%9D%B8%EC%95%B1%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8)
-    - For testing, be sure to register device phone number you want a sandbox for, with In-app Information-Test button.
-    - A tester device requires USIM, with registered phone number (MDN).
-    - Needs **ONE store** application installed.
+#### 3. TOAST IAPサービスの利用
 
-
-#### 3. TOAST IAP 서비스 이용
-
-- Refer to the IAP guide to set and register IAP.
-    - [IAP > Getting Started](/en/Mobile%20Service/IAP/en/console-guide/)
-
-
+* IAPガイドをご参考の上、IAPを設定し、アイテムを登録します。
+    * [Mobile Service > IAP > Console ご利用ガイド](/Mobile%20Service/IAP/ja/console-guide/)
 
 #### 4. Download
 
-- Add the **gamebase-adapter-purchase-iap** folder from downloaded SDK to your project.
-    - If ONE store purchase is not required, you may delete the **iap-tstore-x.x.x.aar** , **iap_tstore_plugin_vxx.xx.xx.jar** file.
-    - If you need ONE store purchase, the jar file above should be included to the project to build.
-
-
+* ダウンロードしたSDKの**gamebase-adapter-purchase-iap**フォルダをプロジェクトに追加します。
+    * ONE store 決済が不要な場合、**iap-tstore-x.x.x.aar**, **iap_tstore_plugin_vxx.xx.xx.jar**ファイルは削除してもかまいません。
+    * 逆に、ONE store決済を利用する場合は、上のjarファイルを必ずプロジェクトに含めてビルドする必要があります。
 
 #### 5. AndroidManifest.xml(ONE store only)
 
-- Add the following setting to use ONE store.
+* ONE storeを使用するためには、次の設定を追加する必要があります。
 
 ```xml
 <manifest>
@@ -51,8 +43,8 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
     <application>
     ...
         <!-- [ONE store] Configurations begin -->
-        <meta-data android:name="iap:api_version" android:value="4" /> <!-- If the Version is 16.XX.XX, android:value should be "4". https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#iapapi_version-%EC%84%A4%EC%A0%95 -->
-        <meta-data android:name="iap:plugin_mode" android:value="development" /> <!-- development / release -->
+        <meta-data android:name="iap:api_version" android:value="4" /> <!--バージョン 16.XX.XXの場合、4を入力します。https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#iapapi_version-%EC%84%A4%EC%A0%95 -->
+        <meta-data android:name="iap:plugin_mode" android:value="development" /> <!—development:開発モード / release:運営 -->
         <!-- [ONE store] Configurations end -->
     ...
     </application>
@@ -61,11 +53,11 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
 
 #### 6. Initialization
 
-- Call **setStoreCode()** of configuration to initialize Gamebase.
-- Select a **STORE_CODE** among the following values.
-    - GG: Google
-    - TS: ONE store
-    - TEST: For IAP testing
+* Gamebaseを初期化する際にconfigurationの**setStoreCode()**を呼び出します。
+* **STORE_CODE**は、次の値の中から選択します。
+    * GG:Google
+    * TS:ONE store
+    * TEST:IAPテスト用
 
 ```java
 String STORE_CODE = "GG";	// Google
@@ -73,7 +65,7 @@ String STORE_CODE = "GG";	// Google
 TAPConfiguration configuration = new TAPConfiguration.Builder()
         .setAppId(APP_ID)
         .setAppVersion(APP_VERSION)
-        .setStoreCode(STORE_CODE)	// Must declare a store code.
+        .setStoreCode(STORE_CODE)	// Store codeを必ず宣言します。
         .build();
 
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
@@ -86,33 +78,32 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 ### Purchase Flow
 
-Item purchases should be implemented in the following order. <br/>
+アイテムの購入は次のような手順で設計してください。<br/>
 
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
 
-1. Call **requestPurchase** of Gamebase SDK to purchase in a game client.
-2. After a successful purchase, call **requestItemListOfNotConsumed** to check the list of non-consumed purchases.
-3. If there is a value on the returned list, the game client sends a request to the game server to consume purchased items.
-4. The game server requests for Consume API to the Gamebase server via API. [API Guide](/en/Game/Gamebase/en/api-guide/#wrapping-api)
-5. If the IAP server has successfully called Consume API, the game server provides the items to the game client.
+1. ゲームクライアントでは、Gamebase SDKの**requestPurchase**を呼び出して決済を試みます。
+2. 決済に成功した場合、**requestItemListOfNotConsumed**を呼び出して未消費決済の内訳を確認します。
+3. 返された未消費決済内訳リストに値がある場合、ゲームクライアントがゲームサーバーに決済アイテムに対するconsume(消費)をリクエストします。
+4. ゲームサーバーは、GamebaseのサーバーにAPI経由でconsume(消費)APIをリクエストします。
+   [APIガイド](/Game/Gamebase/ja/api-guide/#wrapping-api)
+5. IAPサーバーからconsume(消費)APIの呼び出しに成功すると、ゲームサーバーがゲームクライアントにアイテムを配布します。
 
-A purchase at store may be successful but cannot be closed normally due to error. It is recommended to call each of the two APIs after login is completed, to initialize a reprocessing logic.
+ストア決済には成功したものの、エラーが発生して正常に終了することができない場合があります。ログイン完了後に次の二つのAPIをそれぞれ呼び出し、再処理ロジックを設計してください。<br/>
 
-1. Request list of items that are not consumed
-  - When a login is successful, call **requestItemListOfNotConsumed** to check list of non-consumed purchases.
-  - If the value is on the returned list, the game client sends a request to the game server to consume, so that items can be provided.
-2. Request to retry transaction
-  - When a login is successful, call **requestRetryTransaction** to try to automatically reprocess the unprocessed.
-  - If there is a value on the returned successList, the game client sends a request to the game server to consume, so that items can be provided.
-  - If there is a value on the returned failList, send the value to the game server or Log &amp; Crash to collect logs. Also send inquiry to  [**TOAST > Customer Center**](https://toast.com/support/inquiry)for the cause of reprocessing failure.
+1. 未処理アイテムの送信リクエスト
+    * ログインに成功した後、**requestItemListOfNotConsumed**を呼び出して未消費決済の内訳を確認します。
+    * 返された未消費決済内訳のリストに値が存在する場合、ゲームクライアントがゲームサーバーのconsume(消費)をリクエストしてアイテムを配布します。
 
-
-
-
+2. 決済エラー再処理リクエスト
+    * ログインに成功した後、**requestRetryTransaction**を呼び出して未処理内訳に対し自動で再処理を試みます。
+    * 返されたsuccessListに値が存在する場合、ゲームクライアントがゲームサーバーのconsume(消費)をリクエストしてアイテムを配布します。
+    * 返されたfailListに値が存在する場合、該当する値をゲームサーバーやLog & Crashなどで送信してデータを確保し、**[カスタマーセンター](https://toast.com/support/inquiry)**に再処理失敗の原因についてお問い合わせください。
+	
 ### Purchase Item
 
-Call following API of an item to purchase by using itemSeq to send a purchase request. <br/>
-When a game user cancels purchasing, the **GamebaseError.PURCHASE_USER_CANCELED** error will be returned. Please proceed with cancellation.
+購入したいアイテムのitemSeqを利用して次のAPIを呼び出し、購入をリクエストします。<br/>
+ゲームユーザーが購入をキャンセルする場合、**GamebaseError.PURCHASE_USER_CANCELED**エラーが返されます。キャンセル処理を行ってください。
 
 ```java
 long itemSeq; // The itemSeq value can be got through the requestItemListPurchasable API.
@@ -133,7 +124,7 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 
 ### Get a List of Purchasable Items
 
-To retrieve the list of items, call the following API. Information of each item is included in the array of callback return.
+アイテムリストを照会したい場合、次のAPIを呼び出します。コールバックで返される配列(array)の中にはそれぞれ各アイテムの情報が含まれています。
 
 ```java
 Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<List<PurchasableItem>>() {
@@ -153,13 +144,12 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 
 ### Get a List of Non-Consumed Items
 
-Request for a list of non-consumed items, which have not been normally consumed (delivered, or provided) after purchase.<br/>
-In case of non-purchased items, ask the game server (item server) to proceed with item delivery (supply).
+アイテムを購入したものの、アイテムが正常に消費(送信、配布)されていない未消費決済の内訳をリクエストします。<br/>
+未決済の内訳がある場合は、ゲームサーバー(アイテムサーバー)にリクエストを出してアイテムを送信(配布)するように処理する必要があります。
 
-1. Make a call in the following two cases.
-    1. To confirm before an item is consumed after a successful purchase
-    2. To check if there is any non-consumed item left after a login is successful
-
+* 次の二つの状況で呼び出してください。
+    1. 決済成功後、アイテム消費(consume)処理前に最終確認のために呼び出し
+    2. ログイン成功後、消費(consume)できなかったアイテムが残っていないか確認するために呼び出し
 
 ```java
 Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallback<List<PurchasableReceipt>>() {
@@ -179,8 +169,8 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 
 ### Reprocess Failed Purchase Transaction
 
-In case a purchase is not normally completed after a successful purchase at a store due to failure of authentication of TOAST Cloud IAP server, try to reprocess by using API. <br/>
-Based on the latest success of purchase, reprocessing is required by calling an API for item delivery (supply).
+ストアでは決済が正常に行われたものの、TOAST IAPサーバーの検証失敗などにより決済が正常に行われなかった場合、APIを利用して再処理を試みます。<br/>
+最後に、決済が成功した内訳を基にアイテム送信(配布)などのAPIを呼び出して処理する必要があります。
 
 ```java
 Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<PurchasableRetryTransactionResult>() {
@@ -191,8 +181,8 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
         } else {
             // Failed.
             Log.e(TAG, "Request retry transaction failed- "
-                    + "errorCode: " + exception.getCode()
-                    + "errorMessage: " + exception.getMessage());
+                    + "errorCode:" + exception.getCode()
+                    + "errorMessage:" + exception.getMessage());
         }
     }
 });
@@ -202,22 +192,22 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| PURCHASE\_NOT\_INITIALIZED | 4001 | The purchase module is not initialized.<br>Check if the gamebase-adapter-purchase-IAP module has been added to the project. |
-| PURCHASE\_USER\_CANCELED | 4002 | Purchase is cancelled. |
-| PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003 | API has been called when a purchase logic is not completed. |
-| PURCHASE\_NOT\_ENOUGH\_CASH | 4004 | Cannot purchase due to shortage of cash of the store. |
-| PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010 | The store is not supported.<br>You can choose either GG (Google), TS (ONE Store), or TEST. |
-| PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201 | Error in IAP library.<br>Check detail codes. |
-| PURCHASE\_UNKNOWN\_ERROR | 4999 | Unknown error in purchase.<br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we will respond ASAP. |
+| PURCHASE_NOT_INITIALIZED                 | 4001       | Purchaseモジュールが初期化されていません。<br>gamebase-adapter-purchase-IAPモジュールをプロジェクトに追加したか確認してください。|
+| PURCHASE_USER_CANCELED                   | 4002       | ゲームユーザーがアイテムの購入をキャンセルしました。                |
+| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 購入ロジックが完了していない状態でAPIが呼び出されました。    |
+| PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 該当するストアのcashが足りないため決済することができません。           |
+| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | このストアには対応していません。<br>選択可能なストアはGG(Google)、TS(ONE store)、TESTです。|
+| PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAPライブラリーエラーです。<br>DetailCodeを確認してください。  |
+| PURCHASE_UNKNOWN_ERROR                   | 4999       | 定義されていない購入エラーです。<br>ログ全体を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。|
 
-
-
-
-- Refer to the following document for the entire error code.
-    - [Entire Error Codes](./error-codes#client-sdk)
+* 全体のエラーコードは、次のドキュメントをご参考ください。
+    * [エラーコード](./error-code/#client-sdk)
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
-- Occurs at an IAP module.
-- Need to check IAP error codes via exception.getDetailCode().
-- For IAP error codes, refer to the document below.
-    - [IAP > Error Code Guide > Client API Error Type](/en/Mobile%20Service/IAP/en/error-code/#client-api#client-api-errors)
+
+* このエラーは、IAPモジュールで発生したエラーです。
+* exception.getDetailCode()を通してIAPのエラーコードを確認する必要があります。
+* IAPのエラーコードは、次のドキュメントをご参考ください。
+    * [Mobile Service > IAP > エラーコード > Client APIエラータイプ](/Mobile%20Service/IAP/ja/error-code/#client-api)
+
+

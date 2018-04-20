@@ -1,75 +1,73 @@
-## Game > Gamebase > Unity Developer's Guide > Authentication
+## Game > Gamebase > Unity SDK ご利用ガイド > 認証
 
 ## Login
 
-Gamebase supports Guest logins by default.<br/>
+Gamebaseでは基本的にゲストログインに対応しています。<br/>
 
-To log into providers other than guest, a matching Provider AuthAdapter is required.<br/>
+ゲスト以外のProviderでログインするためには、該当するProvider AuthAdapterが必要です。<br/>
 
 ### Login Flow
 
-In many games, login is implemented on a title page. 
+多くのゲームがタイトル画面にログインを設計しています。
 
-* Allow a game user to decide which IdP to authenticate on a title screen, when an app is implemented for the first time after installed. 
-* After initial login, the IdP selection screen does not show and authentication is made with the latest logged-in IdP.
+* アプリをインストールして初めて起動したとき、タイトル画面からゲームユーザーがどのIdP(identity provider)で認証するか選択できるようにします。
+* 一度ログインした後は、IdP選択画面を表示せずに前回ログインしたIdPタイプで認証します。
 
-The logic described in the above can be implemented in the following order.
+上述したロジックは、次のような手順で設計することができます。
 
-#### 1. Get Latest Login Type
-* Call **[TCGBGamebase lastLoggedInProvider].
-* If there is a returned value, follow **2. Authenticate with Latest Login Type**.
-* If there is no returned value, let the game user decide IdP and follow **3.Authenticate with Specified IdP**.
+#### 1. 前回のログインタイプを呼び出す
+* **Gamebase.GetLastLoggedInProvider()**を呼び出します。
+* 戻り値がある場合、**2. 前回のログインタイプで認証**を進めます。
+* 戻り値がない場合、ゲームユーザーにIdPを選択させた後、**3. 指定されたIdPで認証**を進めます。
 
-#### 2. Authenticate with Latest Login Type
+#### 2. 前回のログインタイプで認証
 
-* If a previous authentication has been recorded, try to authenticate with no need of ID and password inputs.
-* Call **Gamebase.LoginForLastLoggedInProvider()**.
+* 前回の認証記録がある場合、IDとパスワードを入力させずに認証を試みます。
+* **Gamebase.LoginForLastLoggedInProvider()**を呼び出します。
 
-#### 2-1. When Authentication is Successful
+#### 2-1. 認証に成功した場合
 
-* Congratulations! Successfully authenticated.
-* Get a user ID with **Gamebase.GetUserID()** to implement a game logic.
+* おめでとうございます！認証に成功しました。
+* **Gamebase.GetUserID()**でユーザーIDを取得し、ゲームロジックを設計してください。
 
-#### 2-2.When Authentication is Failed
+#### 2-2. 認証に失敗した場合
 
-* Network error
-	* If the error code is **SOCKET\_ERROR (110)** or **SOCKET\_RESPONSE\_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.LoginForLastLoggedInProvider()** again, or try again in a moment.
-* Banned game user
-	* If the error code is **AUTH\_BANNED\_MEMBER (3005)**, the authentication has failed due to banned game user.
-  	* Check ban information with **Gamebase.GetBanInfo()** and notify the user with reasons for not being able to play.
-  	* When **GamebaseConfiguration.enablePopup** and **GamebaseConfiguration.enableBanPopup** are set as true during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
-	* Pop-ups on banning are supported by iOS and Android only.
-* Other errors
-  	* Authentication with latest login type has failed. Follow **3. Authenticate with Specified IdP**.
+* ネットワークエラー
+    * エラーコードが**SOCKET_ERROR(110)**または**SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**Gamebase.LoginForLastLoggedInProvider()**をもう一度呼び出したり、しばらくしてからもう一度試します。
+* 利用停止中のゲームユーザー
+    * エラーコードが**AUTH_BANNED_MEMBER(3005)**の場合、利用停止中のゲームユーザーであるため認証に失敗したケースです。
+    * **Gamebase.GetBanInfo()**で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由についてご案内ください。
+    * Gamebaseを初期化する際に**GamebaseConfiguration.enablePopup**及び**GamebaseConfiguration.enableBanPopup**の値をtrueすると、Gamebaseが利用停止に関するポップアップを自動で表示します。
+* その他のエラー
+    * 前回のログインタイプで認証に失敗しました。**'3. 指定されたIdPで認証'**を進めます。
 
-#### 3. Authenticate with Specified IdP
+#### 3. 指定されたIdPで認証
 
-* Try to authenticate by specifying an IdP type.
-  * Types that can be authenticated are declared in the **GamebaseAuthProvider** class.
-* Call **Gamebase.Login(providerName, callback)** API.
+* IdPのタイプを直接指定して認証を試みます。
+    * 認証可能なタイプは、**GamebaseAuthProvider**クラスに宣言されています。
+* **Gamebase.Login(providerName, callback)**APIを呼び出します。
 
-#### 3-1. When Authentication is Successful
+#### 3-1. 認証に成功した場合
 
-* Congratulations! Successfully authenticated.
-* Get a user ID with **Gamebase.GetUserID()** to implement a game logic.
+* おめでとうございます！認証に成功しました。
+* **Gamebase.GetUserID()**でユーザーIDを取得し、ゲームロジックを設計してください。
 
-#### 3-2. When Authentication is Failed
+#### 3-2. 認証に失敗した場合
 
-* Network error
-	* If the error code is **SOCKET\_ERROR (110)** or **SOCKET\_RESPONSE\_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.LoginForLastLoggedInProvider()** again, or try again in a minute.
-* Banned game user
-	* If the error code is **AUTH\_BANNED\_MEMBER (3005)**, the authentication has failed due to banned game user.
-	* Check ban information with **Gamebase.GetBanInfo()** and notify the user with reasons for not being able to play.
-  	* When **GamebaseConfiguration.enablePopup** and **GamebaseConfiguration.enableBanPopup** are set as true during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
-  	* Pop-ups on banning are supported by iOS and Android only.
-* Other errors
-  	* Notify that an error has occurred, and return to the state (mostly in title or login screen) in which user can select an authentication IdP type.
+* ネットワークエラー
+    * エラーコードが**SOCKET_ERROR(110)**または**SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**Gamebase.Login(providerName, callback)**をもう一度呼び出したり、しばらくしてからもう一度試します。
+* 利用停止中のゲームユーザー
+    * エラーコードが**AUTH_BANNED_MEMBER(3005)**の場合、利用停止中のゲームユーザーであるため認証に失敗したケースです。
+    * **Gamebase.GetBanInfo()**で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由について知らせてください。
+    * Gamebaseを初期化する際に**GamebaseConfiguration.enablePopup**及び**GamebaseConfiguration.enableBanPopup**の値をtrueすると、Gamebaseが利用停止に関するポップアップを自動で表示します。
+* その他のエラー
+    * エラーが発生したことをゲームユーザーに知らせ、ゲームユーザーが認証IdPのタイプを選択できる状態(主にタイトル画面またはログイン画面)に戻ります。
 
-### Login with Latest Login IdP
+### Login as the Latest Login IdP
 
-Try login with the most recently logged-in IdP.
-If a token is expired or its authentication fails, return failure.
-Note that a login for the IdP should be implemented.
+最後にログインしたIdPでログインを試みます。
+該当するログイントークンの期限が切れていたり、トークン検証などに失敗した場合、失敗を返します。
+この場合、[該当するIdPに対するログイン](#login-with-idp)を設計する必要があります。
 
 **API**
 
@@ -126,9 +124,9 @@ public void Login(string providerName)
 
 ### Login with GUEST
 
-Gamebase supports Guest logins.
-Create an only key of device to try to log in Gamebase.
-As the device key may be initialized and account may be deleted, it is recommended to use IdP for a Guest login.
+Gamebaseは、ゲストログインに対応しています。
+デバイス固有のキーを作成し、Gamebaseに対しログインを試みます。
+ゲストログインはデバイスキーが初期化されることがあり、デバイスキーを初期化する場合はアカウントが削除されることがあるため、IdPを使ったログイン方式を推奨します。
 
 **API**
 
@@ -165,7 +163,7 @@ public void Login()
 
 ### Login with IdP
 
-Following is a login example with a specific IdP.
+次は特定のIdPでログインできるようにするコード例です
 
 **API**
 
@@ -184,11 +182,12 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 * GamebaseAuthProvider.GAMECENTER
 * GamebaseAuthProvider.FACEBOOK
 * GamebaseAuthProvider.PAYCO
+* GamebaseAuthProvider.NAVER
 
-> There is information which must be included for login with some IdPs.<br/>
-> For instance, scope must be set to implement a Facebook login.<br/>
-> In order to set such necessary information, static void Login (string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) API is provided.<br/>
-> You can enter those information to additionalInfo in the dictionary type. (When the parameter value is null, the additionalInfo registered in the TOAST Console will be applied. Generally, the parameter value will take precedence over the value registered in the Console. Setting additionalInfo in TOAST Console)
+> IdPの中には、ログインする際に必ず必要な情報があるものがあります。<br/>
+> 例えば、Facebookログインを設計する場合、scopeなどを設定する必要があります。<br/>
+> このような必須情報を設定することができるようにstatic void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)APIを提供します。<br/>
+> パラメーターのadditionalInfoに必須情報をdictionary形式で入力してください。(パラメーター値がの場合、TOAST Consoleに登録したadditionalInfoの値が埋められます。パラメーター値がある場合、Consoleに登録に登録してある値よりもこちらを優先してその値を上書きします。[TOAST ConsoleにadditionalInfoを設定する](#authentication-additional-information-settings))
 
 **Example**
 
@@ -228,7 +227,7 @@ public void Login(string providerName, Dictionary<string, object> additionalInfo
 
 ### Login with Credential
 
-This game interface allows authentication to be made with SDK provided by IdP, before login to Gamebase with provided access token.
+IdPが提供するSDKを使ってゲームで直接認証した後、発行されたアクセストークンなどを利用してGamebaseにログインできるインターフェースです。
 
 **API**
 
@@ -239,7 +238,7 @@ Supported Platforms
 <span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
 <span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
-UnityEditor supports Facebook login only.
+UnityEditorでは、Facebookログインのみ対応しています。
 
 ```cs
 static void Login(Dictionary<string, object> credentialInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -268,32 +267,45 @@ public void Login(Dictionary<string, object> credentialInfo)
 ### Authentication Additional Information Settings
 
 #### Facebook
-* Go to **TOAST Console > Gamebase > App > Authentication Information > Additional Information & Callback URL** to set json string-type informationto **Additional Information**.
-  * When trying OAuth authentication, type of information to request to Facebook should be set.
+* **TOAST Console > Gamebase > App > 認証情報 > 追加情報 & Callback URL**の**追加情報**項目にJSON stringタイプの情報を設定する必要があります。
+    * Facebookの場合、OAuth認証を試みるとき、Facebookにリクエストする情報の種類を設定する必要があります。
 
-
-Example of adding authentication information in Facebook
+Facebook認証追加情報の入力例
 
 ```json
 { "facebook_permission": [ "public_profile", "email", "user_friends"]}
 ```
 
 #### PAYCO
+* **TOAST Console > Gamebase > App > 認証情報 > 追加情報 & Callback URL**の**追加情報**項目にJSON stringタイプの情報を設定する必要があります。
+    * PAYCOの場合、PaycoSDKが求める**service_code**と**service_name**を設定する必要があります。
 
-* Go to **TOAST Console > Gamebase > App > Authentication Information > Additional Information & Callback URL** to set json string-type information **to**  **Additional Information**.
-  * **service_code** and **service_name** should be set as PaycoSDK requires.
-
-
-Example of adding authentication information in PAYCO
+PAYCO追加認証情報の入力例
 
 ```json
 { "service_code": "HANGAME", "service_name": "Your Service Name" }
 ```
 
-## Logout
-Try to log out from logged-in IdP. In many cases, the logout button is located on the game configuration screen. Even if a logout is successful, a game user's data remain. When it is successful, as authentication records with a corresponding IdP are removed, ID and passwords will be required for the next log-in process.<br/><br/>
+#### NAVER
+* **TOAST Console > Gamebase > App > 認証情報 > 追加情報 & Callback URL**の**追加情報**項目にJSON stringタイプの情報を設定する必要があります。
+    * NAVERの場合、ログイン同意ウィンドウに表示されるアプリ名**service_name**、iOSアプリで必要な情報**url_scheme_ios_only**の設定が必要です。
 
-Following shows an example logout code with a click of the logout button.
+* URL Schemesを設定する必要があります。
+	* **XCode > Target > Info > URL Types**
+
+NAVER追加認証情報の入力例
+```json
+{ "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
+```
+![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+
+
+## Logout
+ログインされたIdPからのログアウトを試みます。主にゲームの設定画面にログアウトボタンを設け、ボタンをクリックすると実行されるように設計するケースが多いです。
+ログアウトに成功してもゲームユーザーのデータは維持されます。
+ログアウトに成功した場合、該当するIdPで認証を行った記録が削除されるため、次回ログインする時にID・パスワードの入力ウィンドウが表示されます。<br/><br/>
+
+次は、ログアウトボタンをクリックするとログアウトされるコード例です。
 
 **API**
 
@@ -330,15 +342,14 @@ public void Logout()
 
 
 ## Withdraw
+ログインした状態で退会を試みます。
 
-Below shows an example of how a game user withdraws while logged-in.
+* 退会に成功した場合、ログインしたIdPに紐づいていたゲームユーザーデータは削除されます。
+* 該当するIdPでもう一度ログインすることができ、新しいゲームユーザーデータを作成します。
+* Gamebaseからの退会を意味するもので、IdPアカウントからの退会を意味するものではありません。
+* 退会に成功すると、IdPログアウトを試みます。
 
-* When a user is successfully withdrawn, the user's data interfaced with a login IdP will be deleted.
-* The user can log in with the IdP again, and a new user's data will be created.
-* It means user's withdrawal from Gamebase, not from IdP account.
-* After a successful withdrawal, a log-out from IdP will be tried.
-
-Following shows an example withdrawal code with a click of the withdrawal button.
+次は、退会ボタンをクリックすると退会されるコード例です。
 
 **API**
 
@@ -374,66 +385,68 @@ public void Withdraw()
 
 ## Mapping
 
-In many games, one account may have many integrated (mapped) IdPs.
-By using Gamebase Mapping API, other IdP accounts can be integrated or removed to/from another existing IdP account.<br/>
+マッピングは、既にログインされているアカウントに他のIdPアカウントを連携させたり、解除する機能です。
 
-As such, one Gamebase UserID can be integrated with many IdP accounts.
-In short, a login to a mapped IdP account will be made available with a same user ID at all times.<br/>
+ほとんどのゲームにおいて、一つのアカウントに複数のIdPを連携(Mapping)させることができるようになっています。
+GamebaseのMappingAPIを使用して既にログインされているアカウントに他のIdPのアカウントを連携させたり、解除することができます。<br/>
 
-Note, however, that each IdP can have only one account to map.
-Below shows an example.<br/>
+このように、一つのGamebaseユーザーIDに様々なIdPアカウントを連携することができます。
+つまり、連携中のIdPアカウントでログインを試みる場合、常に同じユーザーIDでログインされることになります。<br/>
 
-- Gamebase UserID : 123bcabca
-  - Google ID : aa
-  - Facebook ID : bb
-  - AppleGameCenter ID : cc
-  - Payco ID : dd
+注意すべき点は、各IdPは一つのアカウントにのみ連携させることができるという点です。
+例は、次の通りです。<br/>
 
-Gamebase UserID: 456abcabc
-Google ID: ee
-Google ID: ff **-> As the Google ee account is integrated, no additional Google account can be integrated.**
+* GamebaseユーザーID:123bcabca
+	* Google ID:aa
+	* Facebook ID:bb
+	* AppleGameCenter ID:cc
+	* Payco ID:dd
+* GamebaseユーザーID:456abcabc
+	* Google ID:ee
+	* Google ID:ff **-> すでにGoogleのeeアカウントに連携されているため、Googleアカウントを追加で連携させることができません。**
 
-Mapping API includes Add Mapping API and Remove Mapping API.
+Mappingには、Mapping追加APIと解除APIの2つがあります。
 
 ### Add Mapping Flow
 
-Implement mapping in the following order.
+マッピングは、次の手順で設計することができます。
 
-#### 1. Login
+#### 1. ログイン
+マッピングは、現在のアカウントにIdPアカウントの連携を追加する機能であるため、ログインされた状態でなければなりません。
+まず、ログインAPIを呼び出してログインします。
 
-Mapping means to add an IdP account integration to a current account, so login is a prerequisite.
-First, call a login API and log in.
+#### 2. マッピング
 
-#### 2. Mapping
+**Gamebase.AddMapping()**を呼び出してマッピングを試みます。
 
-Call **Gamebase.AddMapping()** to try mapping.
+#### 2-1. マッピングに成功した場合
 
-#### 2-1.When mapping is successful
+* おめでとうございます！現在のアカウントと連携しているIdPアカウントが追加されました。
+* マッピングに成功しても、「現在ログイン中のIdP」は変わりません。<br>つまり、Googleアカウントでログインした後、Facebookアカウントのマッピングを試み、それが成功したからといって「現在ログイン中のIdP」がGoogleからFacebookに変更されるわけではありません。Googleのままで維持されます。
+* マッピングは、単にIdP連携だけを追加する機能です。
 
-* Congratulations! Successfully added an IdP account integrated with the current account.
-* Even if a mapping is successful, 'currently logged-in IdP' will not change.<br/>For example, after a user’s login with Google account and has successfully mapped with a Facebook account, the user's 'currently logged-in IdP' does not change from Google to Facebook. It still stays with Google account.
-* Mapping simply adds IdP integration.
+#### 2-2. マッピングに失敗した場合
 
-#### 2-2. When mapping is failed
-
-* Network error
-    * If the error code is **SOCKET_ERROR(110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.AddMapping()** again or try again in a moment.
-* Error of integration to another account
-    * If the error code is **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**, the IdP account to map has been already integrated to another account.To remove the integrated account, log in the account and call **Gamebase.Withdraw()** to withdraw, or call **Gamebase.RemoveMapping()** to remove integration and try mapping again.
-* Error of integration to a same IdP account
-    * If the error code is **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**, a same type of account to the IdP has already been integrated.
-	* Gamebase mapping allows only one account of integration to an IdP. For example, if your account is already integrated to a PAYCO account, no other PAYCO account can be added.
-	* To integrate another account of a same IdP, call **Gamebase.RemoveMapping()** to remove integration and try mapping again.
-* Other Errors
-    * Mapping hsa failed.
-
+* ネットワークエラー
+    * エラーコードが**SOCKET_ERROR(110)**または**SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**Gamebase.AddMapping()**をもう一度呼び出したり、しばらくしてからもう一度試します。
+* 既に他のアカウントに連携している場合に発生するエラー
+    * エラーコード**AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**は、マッピングしようとしているIdPのアカウントが既に他のアカウントに連携しているという意味です。連携済みのアカウントを解除したい場合、該当するアカウントでログインしてから**Gamebase.Withdraw()**を呼び出して退会したり、**Gamebase.RemoveMapping()**を呼び出して連携を解除した後、もう一度マッピングを試みてください。
+* 既に同じIdPアカウントに連携されている場合に発生するエラー
+	* エラーコード**AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**は、マッピングしようとしているIdPと同じ種類のアカウントが既に連携しているという意味です。
+	* Gamebaseのマッピングは、IdP一つにつき一つのアカウントのみ連携させることができます。例えば、既にPAYCOアカウントに連携している場合は、これ以上PAYCOアカウントを追加することができません。
+	* 同じIdPの他のアカウントを連携させるためには、**Gamebase.RemoveMapping()**を呼び出して連携を解除してからもう一度マッピングを試みてください。
+* その他のエラー
+    * マッピングに失敗しました。
 
 
 ### Add Mapping
 
-Try mapping to another IdP while logged-in to a specific IdP. If an IdP account to map has already been integrated to another account, return the **AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER (3302)** error.
+特定のIdPにログインされた状態で他のIdPへのMappingを試みます。
+MappingしようとしているIdPのアカウントが既に他のアカウントに連携している場合、
+**AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**エラーを返します。<br/>
 
-Even if a mapping is successful, 'currently logged-in IdP' does not change. For example, after a user logs in a Google account and has successfully mapped with a Facebook account, the user's 'currently logged-in IdP' does not change from Google to Facebook. It still stays with Google account. Mapping simply adds IdP integration.
+Mappingに成功しても、「現在ログイン中のIdP」は変わりません。つまり、Googleアカウントでログインした後、FacebookアカウントのMappingを試み、それが成功したからといって「現在ログイン中のIdP」がGoogleからFacebookに変更されるわけではありません。Googleのままで維持されます。
+Mappingは、 単にIdP連携だけを追加する機能です。
 
 **API**
 
@@ -466,26 +479,26 @@ public void AddMapping(string providerName)
 
 ### AddMapping with Credential
 
-This game interface allows authentication to be made with SDK provided by IdP, before applying Gamebase AddMapping with provided access token.
+ゲームで直接ID Providerに提供するSDKで、予め認証を行い発行されたアクセストークンなどを利用してGamebase AddMappingをすることができるインターフェースです。
 
-* How to Set Credential Parameters
+* Credentialパラメーターの設定方法
 
 
 
-| keyname | a use | Value Type |
+| keyname | a use | 値の種類 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                          | facebook, payco, iosgamecenter |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                                |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdPタイプの設定                           | facebook, payco, iosgamecenter, naver |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdPログイン後に取得した認証情報(アクセストークン)設定 |                     |
 
 > [TIP]
 >
-> May require when original functions of external services (such as Facebook) are in need within a game.
+> ゲーム内で外部サービス(Facebookなど)の固有機能を使用しなければならないとき、必要になることがあります。
 >
 
 
-> <font color="red">[Caution]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> Development items external SDK requires to support need to be implemented by using external SDK&#39;s API, which Gamebase does not support.
+> 外部のSDKで対応を求める開発事項は外部SDKのAPIを使用して設計する必要があり、Gamebaseでは対応しておりません。
 >
 
 **API**
@@ -522,7 +535,8 @@ public void AddMapping(Dictionary<string, object> credentialInfo)
 
 ### Remove Mapping
 
-Remove mapping with a specific IdP. If IdP mapping is not removed, error will occur.  After mapping is removed, Gamebase processes logout of the IdP.
+特定のIDPに対する連携を解除します。解除しようとしているIdP以外にIdPがない場合、失敗を返します。
+連携を解除した後は、Gamebase内部で該当するIdPに対するログアウト処理を行います。
 
 **API**
 
@@ -555,7 +569,7 @@ public void RemoveMapping(string providerName)
 
 ### Get Mapping List
 
-Return the list of IdPs mapped to user IDs.
+ユーザーIDに連携されているIdPリストを返します。<br/>
 
 **API**
 
@@ -577,16 +591,14 @@ public void GetAuthMappingList()
 ```
 ## Gamebase User`s Information
 
-Process authentication with Gamebase, in order to get information required to create an app.
+Gamebaseを通して認証フローを進めた後、アプリを制作する際に必要な情報を取得することができます。
 
 ### Get Authentication Information for Gamebase
-
-Process authentication with Gamebase, in order to get information required to create an app.
+Gamebaseを通して認証フローを進めた後、アプリを制作する際に必要な情報を取得することができます。
 
 #### UserID
 
-Get User ID issued by Gamebase.
-
+Gamebaseから発行されたUserIDを取得することができます。
 **API**
 
 Supported Platforms
@@ -610,7 +622,7 @@ public void GetUserID()
 
 #### AccessToken
 
-Get AccessToken issued by Gamebase.
+Gamebaseから発行されたアクセストークンを取得することができます。
 
 **API**
 
@@ -635,7 +647,7 @@ public void GetAccessToken()
 
 #### Last LoggedIn Provider Name
 
-Get the last logged-in Provider Name in Gamebase.
+Gamebaseから最後にログインに成功したProviderNameを取得することができます。
 
 **API**
 
@@ -657,11 +669,11 @@ public void GetLastLoggedInProvider()
 
 ### Get Authentication Information for External IdP
 
-Get access token, User ID, and profiles from externally authenticated SDK.
+外部の認証SDKからアクセストークン、ユーザーID、Profileなどの認証情報を取得することができます。
 
 #### UserID
 
-Get User ID from externally authenticated SDK.
+外部認証SDKからユーザーIDを取得することができます。
 
 **API**
 
@@ -687,7 +699,7 @@ public void GetAuthProviderUserID(string providerName)
 
 #### AccessToken
 
-Get Access Token from externally authentication SDK.
+外部の認証SDKからアクセストークンを取得することができます。
 
 **API**
 
@@ -712,8 +724,7 @@ public void GetAuthProviderAccessToken(string providerName)
 
 #### Profile
 
-Get Profile from externally authenticated SDK.
-
+外部の認証SDKからProfileを取得することができます。
 **API**
 
 Supported Platforms
@@ -737,7 +748,8 @@ public void GetAuthProviderProfile(string providerName)
 
 ### Get Banned User Infomation
 
-For a banned user registered at Gamebase Console,restricted use of information code (**AUTH\_BANNED\_MEMBER(3005)**) can be displayed as below, when trying login. The ban information can be found by using the API as below.
+Gamebase Consoleで利用制限対象のゲームユーザーに登録された場合、
+ログインを試みると、利用制限情報コード(**AUTH_BANNED_MEMBER(3005)**)が表示されることがあり、次のAPIを利用して利用制限情報を確認することができます。
 
 **API**
 
@@ -764,33 +776,57 @@ public void GetBanInfo()
 
 | Error                                    | Error Code | Description                                    |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| AUTH_USER_CANCELED | 3001 | Login is cancelled. |
-| AUTH_NOT_SUPPORTED_PROVIDER | 3002 | The authentication is not supported. |
-| AUTH_NOT_EXIST_MEMBER | 3003 | Named member does not exist or has withdrawn. |
-| AUTH_INVALID_MEMBER | 3004 | Request for invalid member |
-| AUTH_BANNED_MEMBER | 3005 | Named member has been banned. |
-| AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | Error in external authentication library |
-| AUTH_TOKEN_LOGIN_FAILED | 3101 | Token login has failed. |
-| AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | Invalid token information |
-| AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | Invalid last login IDP information |
-| AUTH_IDP_LOGIN_FAILED | 3201 | IDP login has failed. |
-| AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3202 | Invalid IDP information (IDP information does not exist in the Console.) |
-| AUTH_ADD_MAPPING_FAILED | 3301 | Add mapping has failed. |
-| AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | Already mapped to another member. |
-| AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | Already mapped to same IDP. |
-| AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | Invalid IDP information (IDP information does not exist in the Console.) |
-| AUTH_REMOVE_MAPPING_FAILED | 3401 | Remove mapping has failed. |
-| AUTH_REMOVE_MAPPING_LAST_MAPPED_IDP | 3402 | Cannot delete last mapped IDP. |
-| AUTH_REMOVE_MAPPING_LOGGED_IN_IDP | 3403 | Currently logged-in IDP |
-| AUTH_LOGOUT_FAILED | 3501 | Logout has failed. |
-| AUTH_WITHDRAW_FAILED | 3601 | Withdrawal has failed. |
-| AUTH_NOT_PLAYABLE | 3701 | Not playable (due to maintenance or service closed) |
-| AUTH_UNKNOWN_ERROR | 3999 | Unknown error (Undefined error) |
+| AUTH_USER_CANCELED | 3001 | ログインがキャンセルされました。|
+| AUTH_NOT_SUPPORTED_PROVIDER | 3002 | この認証方式には対応しておりません。|
+| AUTH_NOT_EXIST_MEMBER | 3003 | 退会されているか、存在しない会員です。|
+| AUTH_INVALID_MEMBER | 3004 | 正しくない会員に対するリクエストです。|
+| AUTH\_BANNED\_MEMBER | 3005 | 利用制限対象の会員です。|
+| AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 外部認証ライブラリーエラーです。<br/> DetailCode 및 DetailMessage를 확인해 주세요.|
+| AUTH_TOKEN_LOGIN_FAILED | 3101 |トークンログインに失敗しました。|
+| AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 |トークン情報が有効ではありません。|
+| AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | 最近ログインしたIdPの情報がありません。|
+| AUTH_IDP_LOGIN_FAILED | 3201 | IdPログインに失敗しました。|
+| AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3202 | IdP情報が有効ではありません。(Consoleに該当するIdPの情報がありません。) |
+| AUTH_ADD_MAPPING_FAILED | 3301 | マッピング追加に失敗しました。|
+| AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | 既に他のメンバーにマッピングされています。 |
+| AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | 既に同じIdPにマッピングされています。 |
+| AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | IdP情報が有効ではありません。(Consoleに該当するIdPの情報がありません。) |
+| AUTH_REMOVE_MAPPING_FAILED | 3401 | マッピング削除に失敗しました。|
+| AUTH_REMOVE_MAPPING_LAST_MAPPED\_IDP | 3402 | 最後にマッピングされたIdPは、削除することができません。|
+| AUTH_REMOVE_MAPPING_LOGGED_IN\_IDP | 3403 | 現在ログイン中のIdPです。|
+| AUTH_LOGOUT_FAILED | 3501 | ログアウトに失敗しました。|
+| AUTH_WITHDRAW_FAILED | 3601 | 退会に失敗しました。|
+| AUTH_NOT_PLAYABLE | 3701 | プレイできない状態です。(メンテナンスまたはサービス終了など) |
+| AUTH_UNKNOWN_ERROR | 3999 | 不明なエラーです。(定義されていないエラーです。) |
 
-* Refer to the following document for the entire error codes.
-  * [Entire Error Codes](./error-codes#client-sdk)
+* 全体のエラーコードは、次のドキュメントをご参考ください。
+    * [エラーコード](./error-code/#client-sdk)
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs in TOAST external authentication library.
+* このエラーは、外部認証ライブラリーで発生したエラーです。
+* 오류 코드 확인은 다음과 같이 확인하실 수 있습니다.
 
+```cs
+GamebaseError gamebaseError = error; // GamebaseError object via callback
+
+if (Gamebase.IsSuccess(gamebaseError))
+{
+    // succeeded
+}
+else
+{
+    Debug.Log(string.Format("code:{0}, message:{1}", gamebaseError.code, gamebaseError.message));
+
+    Error moduleError = gamebaseError.error; // GamebaseError.error object from external module
+    if (null != moduleError)
+    {
+        int moduleErrorCode = moduleError.code;
+        string moduleErrorMessage = moduleError.message;
+
+        Debug.Log(string.Format("moduleErrorCode:{0}, moduleErrorMessage:{1}", moduleErrorCode, moduleErrorMessage));
+    }
+}
+```
+
+* IDP SDK의 오류 코드는 각각의 Developer 페이지를 참고하시기 바랍니다.

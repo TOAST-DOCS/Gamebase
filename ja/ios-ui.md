@@ -1,31 +1,32 @@
-## Game > Gamebase > iOS Developer's Guide > UI
+﻿## Game > Gamebase > iOS SDK ご利用ガイド > UI
 
 ## WebView
 
-Gamebase supports a default WebView.
-
-WebView-related resources (images, html, and others) are included to Gamebase.bundle.
+Gamebaseでは、基本的なWebViewに対応しています。<br/>
+<br/>
+WebViewの関連リソース(画像及びhtml、その他のリソース)はGamebase.bundleに含まれています。
 
 ### Show WebView
 
-Shows a WebView.
+WebViewを表示します。<br/>
 
-##### Required Parameters
-* url : The url delivered as a parameter should be valid.
-* viewController : WebView is displayed on the View Controller.
+##### Required パラメーター
+* url:パラメーターで送信されるurlは、有効な値でなければなりません。
+* viewController:WebViewが表示されるView Controllerです。
 
-##### Optional Parameters
-* configuration : Changes WebView layout by using GamebaseWebViewConfiguration.
-* closeCompletion : Notifies users with a callback when a WebView is closed.
-* schemeList : Specifies the list of customized schemes a user wants.
-* schemeEvent : Notifies url including customized scheme specified by the schemeList with a callback.
+##### Optional パラメーター
+* configuration:GamebaseWebViewConfigurationでWebViewのレイアウトを変更することができます。
+* closeCompletion : WebViewが終了する際に、ユーザーにコールバックで知らせます。
+* schemeList : ユーザーの求めるカスタムSchemeのリストを指定します。
+* schemeEvent : schemeListに指定したカスタムSchemeを含むurlをコールバックで知らせます。
+
 
 ```objectivec
 // Show Fullscreen Style WebView
 - (void)showFullScreenWebView:(id)sender {
     NSString* urlString = @"https://www.toast.com/";
-    [TCGBWebView showWebViewWithURL:urlString 
-                     viewController:self 
+    [TCGBWebView showWebViewWithURL:urlString
+                     viewController:self
                       configuration:nil
                     closeCompletion:^(TCGBError *error) {
                         NSLog(@"WebView Close Event occured");
@@ -41,9 +42,7 @@ Shows a WebView.
 
 
 #### Custom WebView
-
-Shows a customized WebView.
-Can configure a customzed WebView by using TCGBWebViewConfiguration.
+ユーザーが指定したWebViewを表示します。<br/>TCGBWebViewConfigurationでユーザーが指定したWebViewを作成することができます。
 
 ```objectivec
 - (void)showFixedOrientationWebView:(id)sender {
@@ -51,7 +50,7 @@ Can configure a customzed WebView by using TCGBWebViewConfiguration.
     TCGBWebViewConfiguration* config = [[TCGBWebViewConfiguration alloc] init];
     // Webview is fixed to Landscape mode
     config.orientationMask = TCGBWebViewOrientationLandscapeLeft | TCGBWebViewOrientationLandscapeRight;
-    
+
     [TCGBWebView showWebViewWithURL:urlString viewController:self configuration:config
                     closeCompletion:^(TCGBError *error){
                         NSLog(@"WebView Close Event occured");
@@ -78,24 +77,23 @@ Can configure a customzed WebView by using TCGBWebViewConfiguration.
 
 #### Custom Scheme
 
-Can apply scheme to use specific functions on a webpage of Gamebase Webview or change content.
+Gamebase WebViewで読み込んだウェブページ内にスキーム(scheme)で特定の機能を使用したり、ウェブページの内容を変更することができます。
 
 ##### Predefined Custom Scheme
 
-Gamebase has specified following schemes.
+Gamebaseで指定したスキームです。<br/>
 
-| Scheme               | Usage                     |
+| scheme               | 用途                     |
 | -------------------- | ---------------------- |
-| gamebase://dismiss   | Close WebView             |
-| gamebase://goBack    | Go back from WebView          |
-| gamebase://getUserId | Show ID of a user who is currently logged-in |
+| gamebase://dismiss   | WebViewを閉じる |
+| gamebase://goBack    | WebViewに戻る |
+| gamebase://getUserId | 現在ログインしているユーザーのIDを表示 |
 
 
 
 #### User Custom Scheme
 
-Can add customized functions by specifying scheme names and blocks in Gamebase.
-
+Gamebaseにスキーム名とブロックを指定し、任意の機能を追加することができます。
 
 ```objectivec
 
@@ -110,7 +108,7 @@ Can add customized functions by specifying scheme names and blocks in Gamebase.
                 url = obj;
             }
         }];
-        
+
         // Open Safari Browser
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:^(BOOL success) {
             NSLog(@"Safari URL : %@", url);
@@ -124,21 +122,21 @@ Can add customized functions by specifying scheme names and blocks in Gamebase.
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| navigationBarTitle                     | string                                   | Title of WebView        |
-| orientationMask                        | TCGBWebViewOrientationUnspecified        | Unspecified                |
-|                                        | TCGBWebViewOrientationPortrait           | Portrait Mode              |
-|                                        | TCGBWebViewOrientationPortraitUpsideDown | Reverse Portrait      |
-|                                        | TCGBWebViewOrientationLandscapeRight     | Landscape Mode              |
-|                                        | TCGBWebViewOrientationLandscapeLeft      | Reverse Landscape     |
-| navigationBarColor                     | UIColor                                  | Color of Navigation Bar         |
-| isBackButtonVisible                    | YES or NO                                | Activate/Deactivate Go Back Button |
-| navigationBarHeight                    | CGFloat                                  | Height of Navigation Bar         |
-| goBackImagePathForFullScreenNavigation | file name in Gamebase.bundle             | Image of Go Back Button       |
-| closeImagePathForFullScreenNavigation  | file name in Gamebase.bundle             | Image of Close Button          |
+| navigationBarTitle                     | string                                   | WebViewのタイトル |
+| orientationMask                        | TCGBWebViewOrientationUnspecified        | 指定なし                |
+|                                        | TCGBWebViewOrientationPortrait           | 縦モード              |
+|                                        | TCGBWebViewOrientationPortraitUpsideDown | 縦モードを180度回転      |
+|                                        | TCGBWebViewOrientationLandscapeRight     | 横モード              |
+|                                        | TCGBWebViewOrientationLandscapeLeft      | 横モードを180度回転    |
+| navigationBarColor                     | UIColor                                  | ナビゲーションバーの色         |
+| isBackButtonVisible                    | YES or NO                                | 戻るボタンの有効化または無効化 |
+| navigationBarHeight                    | CGFloat                                  | ナビゲーションバーの高さ          |
+| goBackImagePathForFullScreenNavigation | file name in Gamebase.bundle             | 戻るボタンの画像        |
+| closeImagePathForFullScreenNavigation  | file name in Gamebase.bundle             | 閉じるボタンの画像          |
 
 
 ### Close WebView
-Close currently displayed WebView by using the following API.
+次のAPIを通じて、表示されているWebViewを閉じることができます。
 
 ```objectivec
 // Close the gamebase web view
@@ -150,7 +148,7 @@ Close currently displayed WebView by using the following API.
 
 ## Open External Browser
 
-Open an external browser by using the following API. The URL delivered as a parameter should be valid.
+次のAPIを通じて、外部ブラウザを開くことができます。パラメーターで送信されるURLは、有効な値でなければなりません。
 
 ```objectivec
 // Open the url with Browser
@@ -163,14 +161,12 @@ Open an external browser by using the following API. The URL delivered as a para
 
 ## Alert
 
-Displays a system alert.
-Internally process UIAlertController for iOS 8 or higher and UIAlertView for below iOS 8 versions.
+システム通知を表示することができます。<br/>
+iOS 8以上で動作するUIAlertControllerと、iOS 8未満で動作するUIAlertViewを内部的に処理してくれます。 <br/>
 
 #### Types of Alert
-
-1. Provides only one 'OK' button, and its click brings Completion.
-2. Provides only one 'OK' button, which does not provide Completion.
-
+1. 「確認」ボタンを1つだけ提供し、確認ボタンをクリックするとcompletionを呼び出します。
+2. 「確認」ボタンを1つだけ提供し、completionは提供しません。
 
 ```objectivec
 
@@ -189,18 +185,18 @@ Internally process UIAlertController for iOS 8 or higher and UIAlertView for bel
 
 ## Toast
 
-Displays [Android Toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) messages, by using the following API.
-Simple messages with display time can be set.
+次のAPIを使用して簡単に[Android トースト(toast)](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)のメッセージを表示することができます。<br/>
+簡単なメッセージと表示される時間を設定することができます。
 
 ```objectivec
 - (void)showToastMessage:(id)sender {
-    // Show message for 3 seconds  (deprecated API)
+    // 3秒間メッセージを表示する (deprecated API)
     [TCGBUtil showToastWithMessage:@"TOAST MESSAGE" duration:3];
-    
-    // Show message for long time (3.5 seconds)
-    [TCGBUtil showToastWithMessage:@"TOAST MESSAGE with enum long" length:GamebaseToastLengthLong]; 
-    
-    // Show message for short time (2 seconds)
+
+    // メッセージを長く(3.5秒間)表示する
+    [TCGBUtil showToastWithMessage:@"TOAST MESSAGE with enum long" length:GamebaseToastLengthLong];
+
+    // メッセージを短く(2秒間)表示する
     [TCGBUtil showToastWithMessage:@"TOAST MESSAGE with enum short" length:GamebaseToastLengthShort];
 }
 ```
@@ -211,7 +207,7 @@ Simple messages with display time can be set.
 
 | Error                           | Error Code | Description                 |
 | ------------------------------- | ---------- | --------------------------- |
-| TCGB\_ERROR\_UI\_UNKNOWN\_ERROR | 6999       | Unknown error (Undefined error).  |
+| TCGB\_ERROR\_UI\_UNKNOWN\_ERROR | 6999       | 不明なエラーです(定義されていないエラーです)。 |
 
-* Refer to the following document for the entire error codes.
-    - [Entire Error Codes](./error-code/#client-sdk)
+* 全体のエラーコードは、次のドキュメントをご参考ください。
+    * [エラーコード](./error-code/#client-sdk)

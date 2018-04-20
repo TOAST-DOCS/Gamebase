@@ -1,36 +1,33 @@
-## Game > Gamebase > Android Developer's Guide > Push
-
-## Push
+## Game > Gamebase > Android SDK ご利用ガイド > Push
 
 ### Settings
 
-This document describes how to set push notifications for each platform.
+ここではプラットフォームごとにPush通知を使用するために必要な設定方法についてご案内いたします。
 
-#### TOAST Cloud Console 등록
+#### TOAST Cloud Consoleの登録
 
-To set your Console, refer to [TOAST Cloud Push Guide](/en/Notification/Push/en/Getting%20Started/#console_1).
+まず[Notification > Push > API v2.0 ガイド](/Notification/Push/ja/api-guide/)をご参考の上、Consoleを設定してください。
 
 #### Download
 
-- For Firebase Push
-    - Add the **gamebase-adapter-push-fcm** folder of downloaded SDK to your project.
-- For Tencent Push
-    - Add the **gamebase-adapter-push-tencent** folder of downloaded SDK to your project.
+* Firebase Pushを使用する場合
+    * ダウンロードしたSDKの**gamebase-adapter-push-fcm**フォルダをプロジェクトに追加します。
+* Tencent Pushを使用する場合
+    * ダウンロードしたSDKの**gamebase-adapter-push-tencent**フォルダをプロジェクトに追加します。
 
-
-> <font color="red">[Note]</font><br/>
+> <font color="red">[重要]</font><br/>
 >
-> Requires only one push module.<br/>
-> Do not add both Firebase and Tencent pushes in one project.
+> Pushモジュールは、一つでなければなりません。<br/>
+> Firebase PushとTencent Pushをプロジェクトに同時に追加しないでください。
 
 
 #### AndroidManifest.xml
 
-- Add required setting for Gamebase Push.
+* Gamebase Pushに必要な設定を追加します。
 
-> <font color="red">[Note]</font><br/>
+> <font color="red">[重要]</font><br/>
 >
-> Must set a **package name** for **${applicationId}.**
+> **${applicationId}**を**パッケージネーム**に変更する必要があります。
 >
 
 *Firebase*
@@ -92,14 +89,13 @@ To set your Console, refer to [TOAST Cloud Push Guide](/en/Notification/Push/en/
 
 #### Google Services Settings (Firebase only)
 
-
-- For Gradle Builds
-    - To use Firebase push, google-services.json file is required to setup. Refer to [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/#add_firebase_to_your_app) on how to add the configuration file to your project.
-    - Add **apply plugin: ';com.google.gms.google-services'** to the Gradle setting.
-    - With the setting above, Google Services Gradle Plugin will be applied and the google-services.json file will be changed to a string resource named res/google-services/{build_type}/values/values.xml.
-- For Unity Builds
-    - Cannot use Google Services Gradle Plugin. To add a string resource xml file of your own creation to the project, refer to [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file).
-        - Below is an example of a string resource file.
+* Gradleビルドを使用する場合
+    * Firebase Pushを使用するためには、google-services.jsonの設定ファイルが必要です。設定ファイルをプロジェクトに含める方法は、[Firebase cloud messaging](https://firebase.google.com/docs/cloud-messaging/#add_firebase_to_your_app)の説明をご参考ください。
+    * gradleの設定に**apply plugin:'com.google.gms.google-services'**を追加します。
+    * 上記の設定によりGoogle Services Gradle Pluginが適用され、google-services.jsonファイルをres/google-services/{build_type}/values/values.xmlという名前のstring resourceに変更して使用することになります。
+* Unityビルドの場合
+    * Google Services Gradle Pluginを使用することができません。直接string resourceを作成してプロジェクトに含めたい場合、[Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)の説明をご参考ください。
+        * 次は、string resourceファイルの例です。
 
 ```xml
 <!-- res/values/google-services-json.xml -->
@@ -116,12 +112,12 @@ To set your Console, refer to [TOAST Cloud Push Guide](/en/Notification/Push/en/
 
 #### Initialization
 
-- To initialize Gamebase, call **setPushType()** of configuration.
-- For Firebase Push
-    - Make an additional call to **setFCMSenderId()**.
-- For Tencent Push
-    - Make an additional call to **setTencentAccessId()**.
-    - Make an additional call to **setTencentAccessKey()**.
+* Gamebaseを初期化する際にconfigurationの**setPushType()**を呼び出します。
+* Firebase Pushを使用する場合
+    * 追加で**setFCMSenderId()**を呼び出します。
+* Tencent Pushを使用する場合
+    * 追加で**setTencentAccessId()**を呼び出します。
+    * 追加で**setTencentAccessKey()**を呼び出します。
 
 ```java
 private static final String PUSH_FCM_SENDER_ID = "...";
@@ -131,9 +127,9 @@ private static final String PUSH_TENCENT_ACCESS_KEY = "...";
 GamebaseConfiguration configuration = new GamebaseConfiguration.Builder()
         .setAppId(APP_ID)
         .setAppVersion(APP_VERSION)
-        .setFCMSenderId(PUSH_FCM_SENDER_ID)				// Firebase requires SenderId.
-        .setTencentAccessId(PUSH_TENCENT_ACCESS_ID)		// Requires Tencent AccessId.
-        .setTencentAccessKey(PUSH_TENCENT_ACCESS_KEY)   // Requires Tencent AccessKey.
+        .setFCMSenderId(PUSH_FCM_SENDER_ID)				// Firebaseは、SenderIdが必要です。
+        .setTencentAccessId(PUSH_TENCENT_ACCESS_ID)		// Tencent AccessIdが必要です。
+        .setTencentAccessKey(PUSH_TENCENT_ACCESS_KEY)	// Tencent AccessKeyが必要です。
         .build();
 
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
@@ -146,8 +142,9 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 ### Register Push
 
-By calling API as below, a user can be registered to TOAST Cloud Push.<br/>
-With user's agreement to enablePush, enableAdPush, and enableAdNightPush, call following API to complete registration.
+次のAPIを呼び出してTOAST Pushに該当するユーザーを登録します。<br/>
+Pushの同意状態(enablePush)、Push型広告の同意状態(enableAdPush)、夜間のPush型広告の同意状態(enableAdNightPush)の値をユーザーから取得し、次のAPIを呼び出して登録を完了させます。
+
 
 ```java
 boolean enablePush;
@@ -173,8 +170,8 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 
 ### Request Push Settings
 
-To retrieve user's push setting, apply API as below. <br/>
-From PushConfiguration callback values, you can get user's value set.
+ユーザーのPush設定を照会するために、次のAPIを利用します。<br/>
+コールバックによるPushConfigurationの値からユーザー設定値を取得することができます。
 
 ```java
 Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() {
@@ -199,21 +196,21 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR | 5101 | Error in TOAST Cloud Push library.<br/>Please check DetailCode. |
-| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | Previous push API call has not been completed.<br/>Please call again after the previous push API callback is executed. |
-| PUSH_UNKNOWN_ERROR | 5999 | Unknown push error.<br/>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry), and we'll respond ASAP. |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | TOAST Pushライブラリーエラーです。<br>DetailCodeを確認してください。|
+| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 前回のPush APIの呼び出しが完了していません。<br>前回のPush APIのコールバックが実行された後、もう一度呼び出してください。|
+| PUSH_UNKNOWN_ERROR             | 5999       | 定義されていないPushエラーです。<br>ログ全体を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。|
 
-- Refer to the following document for the entire error codes:
-    - [Entire Error Codes](./error-codes#client-sdk)
+* 全体のエラーコードは、次ドキュメントをご参考ください。
+    * [エラーコード](./error-code/#client-sdk)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-- Occurs in the TOAST Cloud Push library.
-- Need to check TOAST Cloud Push error codes with exception.getDetailCode().
-- Refer to the following document for TOAST Cloud Push error codes:
-  - [Push > Client SDK Developer's Guide > Error Code Guide > Error Handling](/en/Notification/Push/en/Client%20SDK%20Guide/#_5)
+* このエラーは、TOAST Pushライブラリーで発生したエラーです。
+* exception.getDetailCode()でTOAST Pushのエラーコードを確認する必要があります。
+* TOAST Pushのエラーコードは、次のドキュメントをご参考ください。
+    * [Notification > Push > エラーコード](/Notification/Push/ja/sdk-guide/#_5)
 
 
 
 
-
+    
