@@ -1,21 +1,21 @@
-## Game > Gamebase > Unity SDK 사용 가이드 > ETC
+## Game > Gamebase > Unity SDK ご利用ガイド > ETC
 
 ## Additional Features
 
-Gamebase에서 지원하는 부가적인 기능을 설명합니다.
+Gamebaseで対応している付加機能について説明します。
 
 ### Display Language
 
-* Gamebase에서 표시하는 언어를 기기에 설정된 언어가 아닌 다른 언어로 변경할 수 있습니다.
-* Gamebase는 클라이언트에 포함되어 있는 메시지를 표시하거나 서버에서 받은 메시지를 표시합니다.
-* DisplayLanguage를 설정하게 되면 사용자가 설정한 언어코드(ISO-639)에 적합한 언어로 메시지를 표시합니다.
-* 필요하다면 사용자가 지원하고 싶은 언어셋을 추가할 수 있습니다. (하단 지원 언어코드를 참고)
+* Gamebaseに表示される言語をデバイスに設定されている言語ではない他の言語に変更することができます。
+* Gamebaseは、クライアントに含まれているメッセージを表示したり、サーバーから取得したメッセージを表示します。
+* DisplayLanguageを設定すると、ユーザーが設定した言語コード(ISO-639)に対応する言語でメッセージを表示します。
+* 必要な場合、ユーザーがサポートしたい言語セットを追加することができます。(下の対応言語コードを参考)
 
-> [참고]
+> [参考]
 >
-> Gamebase의 클라이언트 메시지는 영어(en), 한글(ko)만 포함합니다.
+> Gamebaseのクライアントメッセージには、英語(en)、韓国語(ko)のみ含まれます。
 
-#### Gamebase에서 지원하고 있는 언어코드의 종류
+#### Gamebaseでサポートする言語コードの種類
 
 | Code | Name |
 | --- | --- |
@@ -36,12 +36,12 @@ Gamebase에서 지원하는 부가적인 기능을 설명합니다.
 | zh-CN | Chinese-Simplified |
 | zh-TW | Chinese-Traditional |
 
-해당 언어코드는 `DisplayLanguage` 클래스에 정의되어 있습니다.
+該当する言語コードは、「DisplayLanguage」クラスに定義されています。
 
-> `[주의]`
+> `[注意]`
 >
-> Gamebase에서 지원하고 있는 언어코드는 대소문자를 구분합니다.
-> "EN" 이나 "zh-cn"과 같이 설정할 경우 문제가 발생할 수 있습니다.
+> Gamebaseでサポートしている言語コードは、大文字・小文字を区別します。
+> “EN”や"zh-cn"のように設定する場合、問題が発生することがあります。
 
 ```cs
 package com.toast.android.gamebase.base.ui;
@@ -68,9 +68,9 @@ public class DisplayLanguage {
 }
 ```
 
-#### Gamebase 초기화 시 Display Language 설정
+#### Gamebaseを初期化する際のDisplay Languageの設定
 
-Gamebase 초기화 시 Display Language를 설정할 수 있습니다.
+Gamebaseを初期化する際のDisplay Languageを設定することができます。
 
 **API**
 
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
 #### Set Display Language
 
-Gamebase 초기화 시 입력된 Display Language를 변경할 수 있습니다.
+Gamebaseを初期化する際に入力されたDisplay Languageを変更することができます。
 
 **API**
 
@@ -126,7 +126,7 @@ public void setDisplayLanguageCodeToEnglishInRuntime() {
 
 #### Get Display Language
 
-현재 적용된 Display Language를 조회할 수 있습니다.
+現在適用されているDisplay Languageを照会することができます。
 
 **API**
 
@@ -142,13 +142,13 @@ public void getDisplayLanguageCodeInRuntime() {
 }
 ```
 
-#### 신규 언어셋 추가
+#### 言語セットの新規追加
 
-Gamebase에서 제공하는 기본 언어(ko, en) 외 다른 언어를 사용해야 할 경우에는 gamebase-sdk.aar > res > raw 에 있는 gamebasedisplay 파일에 값을 추가하여야 합니다.
+Gamebaseで提供するデフォルト言語(ko、en)以外に他の言語を使用しなければならない場合、gamebase-sdk.aar > res > rawにあるgamebasedisplayファイルに値を追加しなければなりません。
 
 ![gamebasedisplay](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/aos-developers-guide-etc_001_1.7.0.png)
 
-localizedString.json에 정의되어 있는 형식은 아래와 같습니다.
+localizedString.jsonに定義されている形式は、次の通りです。
 
 ```json
 {
@@ -167,7 +167,7 @@ localizedString.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-일본어를 추가해야 할 경우에는 localizedString.json 파일에 `"ja":{"key":"value"}` 형태로 값을 추가하시면 됩니다.
+日本語の追加が必要な場合、localizedString.jsonファイルに`"ja":{"key":"value"}`の形で値を追加してください。
 
 ```json
 {
@@ -192,12 +192,207 @@ localizedString.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-위 json 형식에서 "ja":{ } 내부에 key가 누락될 경우에는 `기기에 설정된 언어` 또는 `en`으로 자동 입력됩니다.
+上記のjson形式で"ja":{ }内部にkeyが抜けている場合、「デバイスに設定されている言語」または`en`で自動入力されます。
 
-#### Display Language 우선 순위
+#### Display Languageの優先順位
 
-초기화 및 SetDisplayLanguageCode API를 통해 Display Language를 설정할 경우, 최종 적용되는 Display Language는 입력한 값과 다르게 적용될 수 있습니다.
+初期化及びSetDisplayLanguageCodeAPIを通してDisplay Languageを設定する場合、最終的に適用されるDisplay Languageは、入力した値と違う値が適用されることがあります。
 
-1. 입력된 languageCode가 localizedString.json 파일에 정의되어 있는지 확인합니다.
-2. Gamebase 초기화 시, 기기에 설정된 언어코드가 localizedString.json 파일에 정의되어 있는지 확인합니다. (이 값은 초기화 이후, 기기에 설정된 언어를 변경하더라도 유지됩니다.)
-3. Display Language의 기본값인 `en`이 자동 설정됩니다.
+1. 入力されたlanguageCodeがlocalizedString.jsonファイルに定義されているかどうかを確認します。
+2. Gamebaseを初期化する際に、デバイスに設定されている言語コードがlocalizedString.jsonファイルに定義されているかどうかを確認します。(この値は、初期化後にデバイスに設定されている言語を変更した場合でも維持されます。)
+3. Display Languageのデフォルト値である`en`が自動で設定されます。
+
+
+
+
+
+### Server Push
+* Gamebase 서버에서 클라이언트 기기로 보내는 Server Push Message를 처리할 수 있습니다.
+* Gamebase 클라이언트에서 ServerPushEvent Listener를 추가 하면 해당 메시지를 사용자가 받아서 처리할 수 있으며, 추가된 ServerPushEvent Listener를 삭제 할 수 있습니다.
+
+
+#### Server Push Type
+현재 Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
+
+* 킥아웃 (Kickout)
+    * TOAST Gamebase 콘솔의 `Operation > Kickout` 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에게 메시지를 보낼 수 있습니다.
+    * Type : ServerPushEventMessage.Type.APP_KICKOUT (= "appKickout")
+    
+
+#### Add ServerPushEvent
+아래의 API를 사용하여 Gamebase에 ServerPushEvent를 등록하여 처리할 수 있습니다.
+
+**API**
+
+```java
++ (void)Gamebase.addServerPushEvent(ServerPushEvent serverPushEvent);
+```
+
+**Example**
+
+```java
+public class MyServerPushEventManager {
+    private ServerPushEvent mServerPushEvent = new ServerPushEvent() {
+        @Override
+        public void onReceive(ServerPushEventMessage message) {
+            if (message.type.equals(ServerPushEventMessage.Type.APP_KICKOUT)) {
+                MyGameStatus.clearSession();
+                MyGameStatus.goToMainPage();
+                MyGameStatus.goToMainPage();
+            } else {
+                ...
+            }
+        }
+    };
+
+    private void addServerPushEvent() {
+        Gamebase.addServerPushEvent(mServerPushEvent);
+    }
+    ...
+}
+```
+
+
+#### Remove ServerPushEvent
+아래의 API들을 사용하여 Gamebase에 등록된 ServerPushEvent를 삭제할 수 있습니다.
+
+**API**
+
+```java
++ (void)Gamebase.removeServerPusEvent(ServerPushEvent serverPushEvent);
++ (void)Gamebase.removeAllServerPusEvent();
+```
+
+**Example**
+
+```java
+public class MyServerPushEventManager {
+    ...
+    private void removeServerPushEvent() {
+        Gamebase.removeServerPusEvent(mServerPushEvent);
+    }
+
+    private void removeAllServerPushEvent() {
+        Gamebase.removeAllServerPushEvent();
+    }
+    ...
+}
+```
+
+
+
+
+
+### Observer
+* Gamebase Observer를 통하여 Gamebase의 각종 상태 변동 이벤트를 전달받아 처리할 수 있습니다.
+* Observer를 추가하면 들어 네트워크 타입 변동, Launching 상태 변동(점검 등에 의한 상태 변동), Heartbeat 정보 변동(사용자 이용 정지 등에 의한 Heartbeat 정보 변동) 등에 대한 이벤트를 사용자가 전달받아 처리 할 수 있습니다.
+
+
+#### Observer Type
+현재 Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
+
+* Network 타입 변동
+    * 네트워크 변동사항에 대한 정보를 받을 수 있습니다. 예를 들어서, ObserverMessage.data.get("code") 의 값으로 Network Type을 알 수 있습니다.
+    * Type : ObserverMessage.Type.NETWORK (= "network")
+    * Code : NetworkManager에 선언된 상수를 참고합니다. 
+        * NetworkManager.TYPE_NOT : -1
+        * NetworkManager.TYPE_MOBILE : 0
+        * NetworkManager.TYPE_WIFI : 1        
+        * NetworkManager.TYPE_ANY : 2
+* Launching 상태 변동
+    * 주기적으로 어플리케이션의 상태를 체크하는 Launching Status response에 변동이 있을 때 발생합니다. 예를 들어서, 점검, 업데이트 권장 등에 의한 이벤트가 있습니다.
+    * Type : ObserverMessage.Type.LAUNCHING (= "launching")
+    * Code : LaunchingStatus에 선언된 상수를 참고합니다.
+        * LaunchingStatus.IN_SERVICE : 200
+        * LaunchingStatus.RECOMMEND_UPDATE : 201
+        * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST : 202
+        * LaunchingStatus.REQUIRE_UPDATE : 300
+        * LaunchingStatus.BLOCKED_USER : 301
+        * LaunchingStatus.TERMINATED_SERVICE : 302
+        * LaunchingStatus.INSPECTING_SERVICE : 303
+        * LaunchingStatus.INSPECTING_ALL_SERVICES : 304
+        * LaunchingStatus.INTERNAL_SERVER_ERROR : 500
+* Heartbeat 정보 변동
+    * 주기적으로 Gamebase 서버와 연결을 유지하는 Heartbeat response에 변동이 있을 때 발생합니다. 예를 들어서, 사용자 이용 정지에 의한 이벤트가 있습니다.
+    * Type : ObserverMessage.Type.HEARTBEAT (= "heartbeat")
+    * Code : GamebaseError에 선언된 상수를 참조합니다.
+        * GamebaseError.BANNED_MEMBER : 7
+
+
+#### Add Observer
+아래의 API를 사용하여 Gamebase에 Observer를 등록하여 처리할 수 있습니다.
+
+**API**
+
+```java
++ (void)Gamebase.addObserver(Observer observer);
+```
+
+**Example**
+
+```java
+public class MyObserverManager {
+    private Observer mGamebaseObserver = new Observer() {
+        @Override
+        public void onUpdate(ObserverMessage message) {
+            String typeOfMessage = message.type;
+            Map<String, Object> dataMap = message.data;
+
+            if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.LAUNCHING)) {
+                // You can check the changed launching status in here.
+
+                int code = Integer.parseInt(dataMap.get("code"));
+                String messageString = (String) dataMap.get("message");
+                Log.d(TAG, "Update launching status to " + code + ", " + messageString);
+                ...
+            } else if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.HEARTBEAT)) {
+                // You can check the invalid user session in here.
+
+                int code = Integer.parseInt(dataMap.get("code"));
+                Log.d(TAG, "Heartbeat changing : " + dataMap);
+                ...
+            } else if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.NETWORK)) {
+                // You can check the changed network status in here.
+
+                int code = Integer.parseInt(dataMap.get("code"));
+                Log.d(TAG, "Network changing : " + dataMap);
+                ...
+            } else {
+                ...
+            }
+        }
+    };
+
+    private void addObserver() {
+        Gamebase.addObserver(mGamebaseObserver);
+    }
+    ...
+}
+```
+
+
+#### Remove Observer
+아래의 API들을 사용하여 Gamebase에 등록된 Observer를 삭제할 수 있습니다.
+
+**API**
+
+```java
++ (void)Gamebase.removeObserver(Observer observer);
++ (void)Gamebase.removeAllObserver();
+```
+
+**Example**
+
+```java
+public class MyObserverManager {
+    ...
+    private void removeObserver() {
+        Gamebase.removeObserver(mGamebaseObserver);
+    }
+
+    private void removeAllObserver() {
+        Gamebase.removeAllObserver();
+    }
+    ...
+}
+```

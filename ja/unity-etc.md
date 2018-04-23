@@ -1,21 +1,21 @@
-## Game > Gamebase > Unity SDK 사용 가이드 > ETC
+## Game > Gamebase > Unity SDK ご利用ガイド > ETC
 
 ## Additional Features
 
-Gamebase에서 지원하는 부가적인 기능을 설명합니다.
+Gamebaseで対応している付加機能について説明します。
 
 ### Display Language
 
-* Gamebase에서 제공하는 UI 및 SystemDialog에 표시되는 언어를 기기에 설정된 언어가 아닌 사용자가 설정한 언어로 변경할 수 있습니다.
-* Gamebase는 클라이언트에 포함되어 있는 메시지를 표시하거나 서버에서 받은 메시지를 표시합니다.
-* DisplayLanguage를 설정하게 되면 사용자가 설정한 언어코드(ISO-639)에 적합한 언어로 메시지를 표시합니다.
-* 필요하다면 사용자가 지원하고 싶은 언어셋을 추가할 수 있습니다. (하단 지원 언어코드를 참고)
+* Gamebaseで提供するUI及びSystemDialogに表示される言語をデバイスに設定されている言語ではなく、ユーザーが設定した言語に変更することができます。
+* Gamebaseは、クライアントに含まれているメッセージを表示したり、サーバーから取得したメッセージを表示します。
+* DisplayLanguageを設定すると、ユーザーが設定した言語コード(ISO-639)に対応する言語でメッセージを表示します。
+* 必要な場合、ユーザーがサポートしたい言語セットを追加することができます。(下の対応言語コードを参考)
 
-> [참고]
+> [参考]
 >
-> Gamebase의 클라이언트 메시지는 영어(en), 한글(ko)만 포함합니다.
+> Gamebaseのクライアントメッセージには、英語(en)、韓国語(ko)のみ含まれます。
 
-#### Gamebase에서 지원하고 있는 언어코드의 종류
+#### Gamebaseでサポートしている言語コードの種類
 
 | Code | Name |
 | --- | --- |
@@ -36,12 +36,12 @@ Gamebase에서 지원하는 부가적인 기능을 설명합니다.
 | zh-CN | Chinese-Simplified |
 | zh-TW | Chinese-Traditional |
 
-해당 언어코드는 `GamebaseDisplayLanguageCode` 클래스에 정의되어 있습니다.
+該当する言語コードは、`GamebaseDisplayLanguageCode`クラスに定義されています。
 
-> `[주의]`
+> `[注意]`
 >
-> Gamebase에서 지원하고 있는 언어코드는 대소문자를 구분합니다.
-> "EN" 이나 "zh-cn"과 같이 설정할 경우 문제가 발생할 수 있습니다.
+> Gamebaseでサポートしている言語コードは、大文字・小文字を区別します。
+> “EN”や"zh-cn"のように設定する場合、問題が発生することがあります。
 
 ```cs
 namespace Toast.Gamebase
@@ -68,9 +68,9 @@ namespace Toast.Gamebase
 }
 ```
 
-#### Gamebase 초기화 시 Display Language 설정
+#### Gamebaseを初期化する際のDisplay Languageの設定
 
-Gamebase 초기화 시 Display Language를 설정할 수 있습니다.
+Gamebaseを初期化する際にDisplay Languageを設定することができます。
 
 **API**
 
@@ -112,7 +112,7 @@ public void InitializeWithConfiguration()
 
 #### Set Display Language
 
-Gamebase 초기화 시 입력된 Display Language를 변경할 수 있습니다.
+Gamebaseを初期化する際に入力されたDisplay Languageを変更することができます。
 
 **API**
 
@@ -138,7 +138,7 @@ public void SetDisplayLanguageCode()
 
 #### Get Display Language
 
-현재 적용된 Display Language를 조회할 수 있습니다.
+現在適用されているDisplay Languageを照会することができます。
 
 **API**
 
@@ -162,13 +162,13 @@ public void GetDisplayLanguageCode()
 }
 ```
 
-#### 신규 언어셋 추가
+#### 言語セットの新規追加
 
-UnityEditor 및 Unity Standalone, WebGL 플랫폼 서비스 시, Gamebase에서 제공하는 기본 언어(ko, en) 외 다른 언어를 사용해야 할 경우에는 Assets > StreamingAssets > Gamebase에 있는 localizedString.json 파일에 값을 추가하여야 합니다.
+UnityEditor及びUnity Standalone、WebGLプラットフォームサービスを提供する際にGamebaseで提供するデフォルト言語(ko、en)以外に他の言語を使用しなければならない場合、Assets > StreamingAssets > GamebaseにあるlocalizedString.jsonファイルに値を追加しなければなりません。
 
 ![localizedString.json](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-etc_001_1.7.0.png)
 
-localizedString.json에 정의되어 있는 형식은 아래와 같습니다.
+localizedString.jsonに定義されている形式は、次の通りです。
 
 ```json
 {
@@ -187,7 +187,7 @@ localizedString.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-일본어를 추가해야 할 경우에는 localizedString.json 파일에 `"ja":{"key":"value"}` 형태로 값을 추가하시면 됩니다.
+日本語の追加が必要な場合、localizedString.jsonファイルに`"ja":{"key":"value"}`の形で値を追加してください。
 
 ```json
 {
@@ -203,26 +203,202 @@ localizedString.json에 정의되어 있는 형식은 아래와 같습니다.
     ...
     "launching_service_closed_title": "서비스 종료"
   },
-  "ja": {
-    "common_ok_button": "確認",
-    "common_cancel_button": "キャンセル",
+  "ja":{
+    "common_ok_button":"確認",
+    "common_cancel_button":"キャンセル",
     ...
-    "launching_service_closed_title": "サービス終了"
+    "launching_service_closed_title":"サービス終了"
   }
 }
 ```
 
-위 json 형식에서 "ja":{ } 내부에 key가 누락될 경우에는 `기기에 설정된 언어` 또는 `en`으로 자동 입력됩니다.
+上記のjson形式で"ja":{ }内部にkeyが抜けている場合、「デバイスに設定されている言語」または`en`で自動入力されます。
 
-Unity Android, iOS 플랫폼에서의 신규 언어셋 추가 방법은 아래 가이드를 참고하십시오.
+Unity Android、iOSプラットフォームでの言語セットの新規追加方法は、次のガイドをご参考ください。
 
-* [Android 신규 언어셋 추가](./aos-etc#display-language)
-* [iOS 신규 언어셋 추가](./ios-etc#display-language)
+* [Android言語セットの新規追加](./aos-etc#display-language)
+* [iOS言語セットの新規追加](./ios-etc#display-language)
 
-#### Display Language 우선 순위
+#### Display Languageの優先順位
 
-초기화 및 SetDisplayLanguageCode API를 통해 Display Language를 설정할 경우, 최종 적용되는 Display Language는 입력한 값과 다르게 적용될 수 있습니다.
+初期化及びSetDisplayLanguageCodeAPIを通してDisplay Languageを設定する場合、最終的に適用されるDisplay Languageは、入力した値と違う値が適用されることがあります。
 
-1. 입력된 languageCode가 localizedString.json 파일에 정의되어 있는지 확인합니다.
-2. Gamebase 초기화 시, 기기에 설정된 언어코드가 localizedString.json 파일에 정의되어 있는지 확인합니다. (이 값은 초기화 이후, 기기에 설정된 언어를 변경하더라도 유지됩니다.)
-3. Display Language의 기본값인 `en`이 자동 설정됩니다.
+
+1. 入力されたlanguageCodeがlocalizedString.jsonファイルに定義されているかどうかを確認します。
+2. Gamebaseを初期化する際に、デバイスに設定されている言語コードがlocalizedString.jsonファイルに定義されているかどうかを確認します。(この値は、初期化後にデバイスに設定されている言語を変更した場合でも維持されます。)
+3. Display Languageのデフォルト値である`en`が自動で設定されます。
+
+
+### Server Push
+* Gamebase 서버에서 클라이언트 기기로 보내는 Server Push Message를 처리할 수 있습니다.
+* Gamebase 클라이언트에서 ServerPushEvent Listener를 추가 하면 해당 메시지를 사용자가 받아서 처리할 수 있으며, 추가된 ServerPushEvent Listener를 삭제 할 수 있습니다.
+
+
+#### Server Push Type
+현재 Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
+
+* 킥아웃 (Kickout)
+    * TOAST Gamebase 콘솔의 `Operation > Kickout` 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에게 메시지를 보낼 수 있습니다.
+    * Type : GamebaseServerPushType.APP_KICKOUT (= "appKickout")
+
+
+#### Add ServerPushEvent
+Gamebase에 ServerPushEvent를 등록하여 처리할 수 있습니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void AddServerPushEvent(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent)
+```
+
+**Example**
+
+```cs
+public void AddServerPushEvent()
+{
+    GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent = (data) =>
+    {
+        GamebaseResponse.SDK.ServerPushMessage serverPushMessage = data;
+    };
+
+    Gamebase.AddServerPushEvent(serverPushEvent);
+}
+```
+
+
+#### Remove ServerPushEvent
+Gamebase에 등록된 ServerPushEvent를 삭제할 수 있습니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void RemoveServerPushEvent(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent)
+static void RemoveAllServerPushEvent()
+```
+
+**Example**
+
+```cs
+public void RemoveServerPushEvent(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent)
+{
+    Gamebase.RemoveServerPushEvent(observer);
+}
+
+public void RemoveAllServerPushEvent()
+{
+    Gamebase.RemoveAllServerPushEvent();
+}
+```
+
+### Observer
+* Gamebase Observer를 통하여 Gamebase의 각종 상태 변동 이벤트를 전달받아 처리할 수 있습니다.
+* Observer를 추가하면 들어 네트워크 타입 변동, Launching 상태 변동(점검 등에 의한 상태 변동), Heartbeat 정보 변동(사용자 이용 정지 등에 의한 Heartbeat 정보 변동) 등에 대한 이벤트를 사용자가 전달받아 처리 할 수 있습니다.
+
+
+#### Observer Type
+현재 Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
+
+* Network 타입 변동
+    * 네트워크 변동사항에 대한 정보를 받을 수 있습니다.
+    * Type : GamebaseObserverType.NETWORK (= "network")
+    * Code : GamebaseNetworkType에 선언된 상수를 참고합니다.
+        * GamebaseNetworkType.TYPE_NOT : -1
+        * GamebaseNetworkType.TYPE_MOBILE : 0
+        * GamebaseNetworkType.TYPE_WIFI : 1
+        * GamebaseNetworkType.TYPE_ANY : 2
+* Launching 상태 변동
+    * 주기적으로 어플리케이션의 상태를 체크하는 Launching Status response에 변동이 있을 때 발생합니다. 예를 들어서, 점검, 업데이트 권장 등에 의한 이벤트가 있습니다.
+    * Type : GamebaseObserverType.LAUNCHING (= "launching")
+    * Code : GamebaseLaunchingStatus에 선언된 상수를 참고합니다.
+        * GamebaseLaunchingStatus.IN_SERVICE : 200
+        * GamebaseLaunchingStatus.RECOMMEND_UPDATE : 201
+        * GamebaseLaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST : 202
+        * GamebaseLaunchingStatus.REQUIRE_UPDATE : 300
+        * GamebaseLaunchingStatus.BLOCKED_USER : 301
+        * GamebaseLaunchingStatus.TERMINATED_SERVICE : 302
+        * GamebaseLaunchingStatus.INSPECTING_SERVICE : 303
+        * GamebaseLaunchingStatus.INSPECTING_ALL_SERVICES : 304
+        * GamebaseLaunchingStatus.INTERNAL_SERVER_ERROR : 500
+* Heartbeat 정보 변동
+    * 주기적으로 Gamebase 서버와 연결을 유지하는 Heartbeat response에 변동이 있을 때 발생합니다. 예를 들어서, 사용자 이용 정지에 의한 이벤트가 있습니다.
+    * Type : GamebaseObserverType.HEARTBEAT (= "heartbeat")
+    * Code : GamebaseErrorCode에 선언된 상수를 참조합니다.
+        * GamebaseErrorCode.BANNED_MEMBER : 7
+
+
+#### Add Observer
+Gamebase에 Observer를 등록하여 처리할 수 있습니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void AddObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer)
+```
+
+**Example**
+
+```cs
+public void AddObserver()
+{
+	GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer = (data) =>
+    {
+        GamebaseResponse.SDK.ObserverMessage observerMessage = data;
+    };
+
+    Gamebase.AddObserver(observer);
+}
+```
+
+
+#### Remove Observer
+Gamebase에 등록된 Observer를 삭제할 수 있습니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void RemoveObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer)
+static void RemoveAllObserver()
+```
+
+**Example**
+
+```cs
+public void RemoveObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer)
+{
+	Gamebase.RemoveObserver(observer);
+}
+
+public void RemoveAllObserver()
+{
+    Gamebase.RemoveAllObserver();
+}
+```
+

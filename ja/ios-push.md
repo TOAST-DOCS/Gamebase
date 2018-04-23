@@ -1,32 +1,27 @@
-## Game > Gamebase > iOS Developer's Guide > Push
+﻿## Game > Gamebase > iOS SDK ご利用ガイド > Push
 
 ### Settings
 
 #### Apple Developer Certificates
 
-This document describes the process of creating Apple developer certificates required to deliver push notifications.
+ここではPush通知の送信に必要なApple開発者認証書を作成する過程について説明します。
 
-* Go to the [Apple Developer&#39;s Site](https://developer.apple.com) and create a certificate with **Apple Push Notification service SSL** from **Add iOS Certificate**.
-* Register a keychain and export the created certificate in the Personal Information Exchange (.p12) format.
-* To export certificates, set passwords.
+* [Apple Developerサイト](https://developer.apple.com)の**Add iOS Certificate**から**Apple Push Notification service SSL**で認証書を作成します。
+* Keychainを登録した後、作成された認証書をPersonal Information Exchange(.p12)形式でエクスポートします(export)。
+* 認証書をエクスポート(export)するときに、パスワードを設定します。
 
+#### TOAST Consoleの登録
+* **Notification > Push > Certificate**で**APNS Certificate**と**APNS (Sandbox) Certificate**に上で作成した認証書を登録します。
+* 上の認証書を作成する際に設定したパスワードを使用して登録します。
 
-#### Register TOAST Console
-
-* Go to **Notification > Push > Certificate** to register the certificate created above at **APNS Certificate** and **APNS (Sandbox) Certificate**.
-* Use the passwords set above to register.
-
-
-#### Set XCode Project
-
-* Set **ON** for **Targets > Capabilities > Push Notifications**.
-* Open .entitlements file, which has been automatically created, to set an appropriate value of **APS Environment**.
-	* **development** : Sandbox APNS
-	* **production** : APNS
-
+#### XCode Projectの設定
+* **Targets > Capabilities > Push Notifications **項目を**ON**に設定します。
+* 自動で作成された.entitlementsファイルを開いて、**APS Environment**のキーの値を正しく設定します。
+    * **development**:Sandbox APNS
+    * **production**: APNS
 
 #### Import Header File
-Import the following header file to the ViewController you want to implement a push API.
+Push APIを設計するViewControllerに次のヘッダーファイルを持ってきます。
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
@@ -34,8 +29,8 @@ Import the following header file to the ViewController you want to implement a p
 
 ### Register Push
 
-By calling API as below, a user can be registered to TOAST Push.
-With user's agreement to enablePush, enableAdPush, and enableAdNightPush, call following API to complete registration.
+次のAPIを呼び出してTOAST Pushに該当するユーザーを登録します。<br/>
+Pushの同意状態(enablePush)、Push型広告の同意状態(enableAdPush)、夜間のPush型広告の同意状態(enableAdNightPush)の値をユーザーから取得し、次のAPIを呼び出して登録を完了させます。
 
 
 ```objectivec
@@ -57,10 +52,28 @@ With user's agreement to enablePush, enableAdPush, and enableAdNightPush, call f
 }
 ```
 
+
+#### Setting for APNS Sandbox
+
+SandboxMode를 켜면, APNS Sandbox로 Push를 발송하도록 등록할 수 있습니다.
+* 클라이언트 설정 방법
+
+```objectivec
+- (void)didLoginSucceeded {
+	[TCGBPush setSandboxMode:YES];
+    [TCGBPush registerPushWithPushConfiguration:pushConfig completion:^(TCGBError *error) {
+    	...
+    }];
+}
+```
+
+* 콘솔 발송 방법
+PUSH 메뉴의 **대상**에서  **iOS Sandbox** 체크박스를 선택 후 발송합니다.
+
 ### Request Push Settings
 
-To retrieve user's push setting, apply API as below.
-From **TCGBPushConfiguration** callback values, you can get user's value set.
+ユーザーのPush設定を照会するために、次のAPIを利用します。<br/>
+コールバックで返ってくるTCGBPushConfigurationの値からユーザー設定値を取得することができます。
 
 ```objectivec
 - (void)didLoginSucceeded {
@@ -82,27 +95,25 @@ From **TCGBPushConfiguration** callback values, you can get user's value set.
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| TCGB\_ERROR\_PUSH\_EXTERNAL\_LIBRARY\_ERROR | 5101 | Error in TOAST  Push library.Please check DetailCode. |
-| TCGB\_ERROR\_PUSH\_ALREADY\_IN\_PROGRESS\_ERROR | 5102 | Previous PUSH API call is not completed.Please call again after the previous push API callback is executed. |
-| TCGB\_ERROR\_PUSH\_UNKNOWN\_ERROR | 5999 | Unknown push error. Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry), and we'll respond ASAP. |
+| TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | TOAST Pushライブラリーエラーです。<br>DetailCodeを確認してください。|
+| TCGB_ERROR_PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 前回のPush APIの呼び出しが完了していません。<br>前回のPush APIのコールバックが実行された後、もう一度呼び出してください。|
+| TCGB_ERROR_PUSH_UNKNOWN_ERROR            | 5999       | 定義されていないPushエラーです。<br>ログ全体を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。|
 
 **TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs in the TOAST Push library.
-* Check your error codes as below.
-
+* このエラーは、TOAST Pushライブラリーで発生したエラーです。
+* エラーコードの確認は、次の通りです。
 
 ```objectivec
-TCGBError *tcgbError = error; // TCGBError instance as callback
-NSError *moduleError = [tcgbError.userInfo objectForKey:NSUnderlyingErrorKey]; // Error object occurred at external library
+TCGBError *tcgbError = error; // Callbackで返ってきたTCGBErrorのインスタンス
+NSError *moduleError = [tcgbError.userInfo objectForKey:NSUnderlyingErrorKey]; // 外部ライブラリーで発生したエラーの客体
 NSInteger moduleErrorCode = moduleError.code;
 NSString *moduleErrorMessage = moduleError.message;
 
-//  By calling [tcgbError description] as below, you can get the entire error information of json format.
-NSLog(@"TCGBError: %@", [tcgbError description]);
+// 次の[tcgbError description]を呼び出すことで、json formatの全体のエラー情報を取得できます。
+NSLog(@"TCGBError:%@", [tcgbError description]);
 ```
 
-* Refer to the following document for TOAST Push error codes
-    * [Notification > Push > SDK v1.4 Guide > Error Handling](/en/Notification/Push/en/Client%20SDK%20Guide/#_5)
-
+* TOAST Pushのエラーコードは、次のドキュメントをご参考ください。
+    * [Notification > Push > SDK v1.4 ご利用ガイド > エラー処理](/Notification/Push/ja/sdk-guide/#_5)
 

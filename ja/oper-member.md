@@ -1,16 +1,14 @@
-## Game &gt; Gamebase &gt; Operator Guide &gt; Member
+## Game > Gamebase > Console ご利用ガイド > 会員
 
-## Member
-
-Retrieve information of members who are logged in a game.
+ゲームにログインした会員情報を照会します。
 
 
 ### Search Member
 
-Enter User ID to search for member information.<br/>
-User ID is a user identifier which is automatically issued at a first-time login by Gamebase. To lessen confusion while delivered, &quot;ABCDFGHJKLMNPQRSTWXYZ1346789&quot; are applied only, in order to prevent confusion due to similar pronunciation.<br/><br/>
+User IDを入力すると、会員情報を検索することができます。
+ユーザーIDは、初めてログインする際にGamebaseが自動で発行するユーザー識別子です。送信時に混乱を防ぐため、同じ発音の文字を取り除き、「ABCDFGHJKLMNPQRSTWXYZ1346789」だけを使用しています。
 
-Detailed information of searched users are displayed in the above, while history data such as login, mapping, purchase, ban, and playtime are shown under, as taps. <br/>
+検索されたユーザーの詳細情報を上の方に表示し、ログイン、マッピング、決済、利用停止、プレイ時間などの履歴は下の方にタブ形式で表示されます。
 
 
 
@@ -18,97 +16,97 @@ Detailed information of searched users are displayed in the above, while history
 ### Detail Information
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Member1_1.4.png)
 
-**User ** <br/>
+**User ** 
 
-- **User ID**: Gamebase User ID
-- **Country (USIM)**: USIM country code of a user device. When it fails to collect, it shows &#39; **ZZ**&#39;. Go to **Login History** below to check the country code of your device.<br/>
-- **Latest Login Date**: The last time a user logged in.<br/>
-- **Registration Date**: The first time a user logged in.<br/>
-- **Account Status**<br/>
-  - **OK**: Normal users. Click **Ban** to manually change status.<br/>
-  - **Banned**: Users who are banned from abusive acts. Click **Release Ban** to manually change status.<br/>
-  - **Withdraw**: Users who have withdrawn.<br/>
+- **ユーザID**：GamebaseのユーザーID
+- **国家コード(USIM)**：ユーザー端末のUSIMの国家コードで、取得に失敗した場合は'ZZ'で表記されます。端末に設定されている国家コードを確認したい場合、下の**ログイン履歴**から確認してください。
+- **最終ログイン時間**：ユーザーが最後にログインした時間
+- **登録日**：ユーザーが始めてログインした時間
+- **アカウント状態**
+  - **正常**：正常なユーザー。**利用停止**ボタンをクリックして手動で利用停止状態に変更することができます。
+  - **利用停止**：アビュージングなどにより利用停止(ban)状態となったユーザー。**利用停止解除**ボタンをクリックすると、手動で利用停止を解除することができます。
+  - **退会**：退会したユーザー
 
-**Identity Provider ** <br/>
+**Identity Provider ** 
 
-In Gamebase, many external IdPs can be integrated. In short, a user can log in by registering two IdPs, such as Facebook and Google in one user ID. IdP can be registered when **Login with Specific IDP** or &#39; **Add Mapping&#39;** API is called from SDK.<br/>
+Gamebaseでは、複数の外部IdPを連動することができます。つまり、ユーザーが一つのユーザーIDにFacebook、Googleの二つのIdPを登録してログインすることができます。SDKから**Login using a specific IdP**や**Add Mapping**APIを呼び出す際にIdPが登録されます。
 
-- **IdP**: External IdPs (Guest, Facebook, PAYCO, or Google)
-- **Idp ID**: ID provided by an external IdP (Facebook no, or PAYCO ID)
-- **Registration Date**: The first time when a user registered an IdP.
+- **IdP**：外部IdP(ゲスト、Facebook、PAYCO、Googleなど)
+- **Idp ID**：外部IdPが提供するID(Facebook no、PAYCO IDなど)
+- **登録日**：ユーザーが初めて該当するIdPを登録した時間
 
 ### Login History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_LoginHistory1_1.2.png)
 
-Retrieve login history of a searched user. <br />
-For an initial search, the duration is a recent one day or a date of choice. However, history data is provided for recent three months (or 90 days) only.<br />
-Can add history when SDK calls login-related APIs.<br/>
+照会したユーザーのログイン内訳を照会します。
+初めて照会するときは、直近1日分が照会され、照会したい日付をもう一度入力して照会することもできます。ただし、直近3ヶ月間(90日)の履歴のみ提供します。
+SDKからログイン関連のAPIを呼び出すとき、履歴が追加されます。
 
-- **Login Date**: User&#39;s login time to an app.
-- **Login Type**: Type of authentication applied for a user login (such as IdPLogin/Guest). In-parentheses refers to IdProvider information which was actually used.
-- **OS / Ver**: OS (iOS/Android/WebGL) and OS version information used for user login.
-- **Device model**: Name of a device model applied for user login.
-- **Device Key**: Original identifier (Android:Android id, iOS:IDFV) of a device applied for user login.
-- **Device Country Code**: Country code configured on a device applied for user login.
-- **USIM Country Code**: Country code configured at USIM card for user login.
-- **Telecom**: Information of telecommunication provider used for login.
-- **Network**: Network type applied for user login (Wifi/3G/LTE).
-- **Language Code**: Language code information configured on a device for user login.
-- **Store Code**: Store information where a user download apps.
-- **Client Version**: The client version information when an app is downloaded.
-- **Gamebase SDK Version**: Version information of Gamebase SDK applied to an app
-- **etc**: Any other information than above items applied for a login.
+- **Login Date**：ユーザーがアプリにログインした時間
+- **Login Type**：ユーザーログイン時に使用した認証タイプ(IdP Login/Guestなど)。括弧の中の情報は、実際に使用されたIdProviderの情報。
+- **OS / Ver**：ユーザーログイン時に使用したOS(IOS/Android/WebGLなど)及び該当するOSのバージョン情報
+- **Device model**：ユーザーがアプリにログインする際に使用したデバイスのモデル名
+- **Device Key**：ユーザーログイン時に使用したデバイスが保有している固有識別値(Android:Android id、iOS:IDFV)
+- **Device Country Code**：ユーザーログイン時にデバイスに設定されている国家コード
+- **USIM Country Code**：ユーザーログイン時にUSIMカードに設定されている国家コード
+- **Telecom**：ユーザーログイン時に利用した通信キャリア情報
+- **Network**：ユーザーログイン時に使用したネットワークタイプ(Wi-Fi/3G/LTEなど)
+- **Language Code**：ユーザーログイン時に端末に設定されている言語コード情報
+- **Store Code**：ユーザーがアプリをダウンロードしたストア情報
+- **Client Version**：アプリをダウンロードした当時のクライアントバージョン情報
+- **Gamebase SDK Version**：アプリに使用されたGamebase SDKのバージョン情報
+- **etc**：その他、ログイン時に使用された上記項目以外の情報
 
 ### Mapping History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_MappingHistory1_1.2.png)
 
-Retrieve mapping and remove mapping history of a searched user. Shows all history data of the recent 3 months (90 days).<br />
+照会したユーザーのマッピング、マッピング解除履歴を照会します。直近3ヶ月(90日)間の履歴がすべて表示されます。
 
-- **Based on User ID**: Retrieve by retrieved user ID.
-- **Based on IdP ID**: Retrieve by the currently mapped IdP ID. <br/>
-  When a user ID is mapped to Facebook and Google IdP, the list will display the two IdP IDs.<br/>
+- **ユーザIDベース**：照会されたユーザーIDを基に照会します。
+- **IdP IDベース**：照会されたユーザーIDに現在マッピングされているIdP IDを基に照会します。
+  照会されたユーザーIDにFacebook、Gooogle IdPがマッピングされている場合、二つのIdP IDがリストに表示されます。
 
-* **IdP ID**: ID information used for Idp login.
-* **IdP**: Mapped IdP information.
-* **Date**: Time when mapping between IdP ID and Gamebase ID is done.
-* **Type**: Details of mapping
-  - AAM: Add Mapping
-  - ARM: Remove Mapping
-  - AFR: Remove Mapping by force
-  - GMG: Create a guest account
-  - OMG: Create an IdP account
+- **IdP ID**：IdPログイン時に使用されるID情報
+- **IdP**：マッピングされたIdPの情報
+- **日付**：IdP IDとGamebase IDのマッピング関連の作業が行われた時刻
+- **Type**：マッピング作業内容の詳細内訳
+  - AAM：マッピング追加
+  - ARM：マッピング解除
+  - AFR：マッピング強制解除
+  - GMG：ゲストアカウント作成
+  - OMG：IdPアカウント作成
 
 ### Purchase History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_PurchaseHistory1_1.0.png)
-Retrieve purchase history of user products.<br />
-Can search by date, and history data can be retrieved up to 1 month (30 days).<br />
+照会したユーザーの商品購入内訳を照会します。
+照会したい日付を入力して照会することができ、最大1ヶ月(30日)まで照会可能です。
 
-- **Payment Sequence**: Original number to identify payments within Gamebase
-- **Store**: Information of a store where payment has been made
-- **Item Name**: Name of an item a user purchased in an app
-- **Price**: Price of an item a user purchased
-- **Currency**: Type of currency used to purchase
-- **Consume**: Whether a paid item has been provided or not
-- **Payment Status**: Current status of payment
-- **Store Reference Key**: Original payment number issued by store
-- **Registration Date**: Time when a user tried or completed purchasing
-- **Refund Date**: Time when a user item was refunded
+- **決済番号**：Gamebase内で決済内容を区別して見られる固有番号
+- **ストア**：決済したストアの情報
+- **アイテム名**：ユーザーがアプリで購入した実際のアイテム名
+- **価格**：ユーザーが購入したアイテムの価格
+- **通貨**：ユーザーが購入時に使用した通貨の種類
+- **Consume**：決済したアイテムが配布されたかどうかの内容
+- **決済状態**：現在の決済進行状態
+- **Store Reference Key**：ストアが発行する決済固有番号
+- **登録日付**：ユーザーが購入を試みたり完了した時間
+- **払戻日付**：ユーザーがアイテムを払い戻した時間
 
 ### Ban History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_BanHistory1_1.0.png)
 
-Can retrieve ban history of a searched user.<br />
-Can search by date, and history data can be retrieved up to 1 month (30 days).<br />
+照会したユーザーの利用停止内訳を照会することができます。
+照会したい日付を入力して照会することができ、最大1ヶ月(30日)まで照会可能です。
 
-- **Start Date**: Start time to apply banning
-- **End Date**: End time to apply banning
-- **Template**: Name of template applied to register banning
-- **Reason**: Actual reasons of an operator to ban a user
-- **Registered User/Registration Date**: Operator who registered banning/System information and date
-- **Release Reason**: Actual reasons of an operator to release banning
-- **Released User/Release Date**: Operator who released banning/system information and date
+- **開始日**：ユーザーの利用停止措置を適用した時間
+- **終了日**：ユーザーの利用停止状態が終了した時間
+- **テンプレート**：ユーザーに対する利用停止を登録する際に使用したテンプレート名
+- **理由**：運営者がユーザーを利用停止状態にした実際の理由に関する情報
+- **登録者/登録日**：利用停止を登録した運営者/システム情報及び日時
+- **解除理由**：運営者が利用停止の解除を行う際に入力した実際の解除理由
+- **解除登録者/解除登録日**：利用停止を解除した運営者/システム情報及び日時
 
 ### Playtime
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Playtime1_1.2.png)
-Retrieve playtime of a searched user by date.<br />
-Can search by date, and history data can be retrieved up to 1 month (30 days).<br />
+照会したユーザーがゲームをプレイした時間を日付ごとに照会します。
+照会したい日付を入力して照会することができ、最大1ヶ月(30日)まで照会可能です。

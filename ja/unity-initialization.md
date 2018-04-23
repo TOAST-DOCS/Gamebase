@@ -1,10 +1,10 @@
-## Game > Gamebase > Unity Developer's Guide > Initialization
+## Game > Gamebase > Unity SDK ご利用ガイド > 初期化
 
-To use Gamebase Unity SDK, initialization is required, and App ID and app version should be registered in the TOAST Console.
+Gamebase Unity SDKを使用するためには、まず初期化を行う必要があります。また、アプリID、アプリバージョン情報がTOAST Consoleに必ず登録されていなければなりません。
 
 ### Required Settings
 
-Following settings are required for initialization.
+初期化する際に必要な設定は、次の通りです。
 
 | Setting value              | Supported OS |
 | -------------------------- | ------------ |
@@ -20,58 +20,59 @@ Following settings are required for initialization.
 
 #### 1. App ID
 
-Project ID registered in TOAST.
+Gamebase Consoleに登録されたプロジェクトIDです。
 
-[Console Guide](/en/Game/Gamebase/en/oper-app/#app)
+[Console Guide](/Game/Gamebase/ja/oper-app/#app)
 
 #### 2. appVersion
 
-Client version registered in TOAST.
+Gamebase Consoleに登録したクライアントバージョンです。
 
-[Console Guide](/en/Game/Gamebase/en/oper-app/#client)
+[Console Guide](/Game/Gamebase/ja/oper-app/#client)
 
 
 #### 3. zoneType
 
-Leave the value empty, as this setting is provided for external testing.
+外部テストのために提供されている設定のため、値を入力しないようにします。
 
 #### 4. isDebugMode
 
-Setting for Gamebase debug.
+Gamebaseデバッグのための設定です。
 
-* True: All Gamebase logs.
-* False: Warning and error logs.
-* Default: False
+* true:Gamebaseのすべてのログが出力されます。
+* false:Warning、Errorログが出力されます。
+* デフォルト:false
 
-To inquire about Gamebase, change the setting to True and send logs to [Customer Center](https://toast.com/support/inquiry) for a quick response.
+Gamebaseに関するお問い合わせがある場合、該当する設定をtrueに変更してからログを[カスタマーセンター](https://toast.com/support/inquiry)まで送っていただけましたら、迅速に対応いたします。
 
-> <font color="red">[Caution]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> When **releasing** a game, make sure to change **parameter** to **false**.
+> ゲームを**RELEASE**する場合は、該当する設定を必ず**false**に変更する必要があります。
 
 #### 5. enablePopup
 
-This setting regards to applying default pop-ups provided by Gamebase Mobile (iOS, Android) SDK.
+Gamebase Mobile(iOS、Android) SDKで提供する基本ポップアップを使用するかどうかに対する設定です。
 
-* True: Pop-ups are exposed depending on the setting of enableLaunchingStatusPopup and enableBanPopup.
-* False: All pop-ups provided by Gamebase are not exposed.
-* Default: False
+* true:enableLaunchingStatusPopup、enableBanPopupの設定によりポップアップをの表示するかどうかが決定されます。
+* false:Gamebaseで提供するすべてのポップアップが表示されません。
+* デフォルト:false
 
 #### 6. enableLaunchingStatusPopup
 
-This setting regards to applying default pop-ups provided by Gamebase, when the LaunchingStatus is disabled to play games. For LaunchingStatus, refer to Status/Code below Launching.
+LaunchingStatusがゲームをプレイすることができない状態の場合、Gamebaseで提供する基本ポップアップを使用するかどうかに対する設定です。
+LaunchingStatusは、次のLaunchingチャプターの下のState、Code部分をご参考ください。
 
-* Default: True
+* デフォルト:true
 
 #### 7. enableBanPopup
 
-This setting regards to applying default pop-ups provided by Gamebase, when the game user has been banned.
+ログインする際に該当するゲームユーザーが利用停止状態の場合、Gamebaseで提供する基本ポップアップを使用するかどうかに対する設定です。
 
-* Default: True
+* デフォルト:true
 
 #### 8. storeCode
 
-Store information required to initialize In-App Purchase (IAP) of TOAST.
+TOASTの統合アプリ内決済サービスであるIAP(In-App Purchase)を初期化するために必要なストア情報です。
 
 | Store       | Code | Description  |
 | ----------- | ---- | ------------ |
@@ -81,29 +82,29 @@ Store information required to initialize In-App Purchase (IAP) of TOAST.
 
 #### 9. fcmSenderId
 
-Sender ID to use FCM (Firebase Cloud Messaging).
+Firebase Messaging(FCM)を使用するためのSender IDです。
 
 ![FCM Sender ID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
 
 #### 10. GamebaseUnitySDKSettings
 
-Settings described above can be modified at Inspector of the GamebaseUnitySDKSettings component.
+上で説明した設定は、GamebaseUnitySDKSettingsコンポーネントのInspectorで変更することができます。
 
 ![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_003_1.4.0.png)
 
 ### Initialize with Inspector Settings
 
-Gamebase Unity SDK can be initialized as follows:
+Gamebase Unity SDKを初期化する方法は、次の通りです。
 
-1. Create an empty game object.
-2. Add the GamebaseUnitySDKSettings.cs file as a component of the game object.
-3. Fill in the initialization setting at Inspector.
-4. Call Gamebase.Initialize (callback) API.
+1. 新しいゲームオブジェクトを作成します。
+2. GamebaseUnitySDKSettings.csファイルを作成したゲームオブジェクトのコンポーネントに追加します。
+3. Inspectorから初期化設定を入力します。
+4. Gamebase.Initialize(callback)APIを呼び出します。
 
-> <font color="red">[Caution]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> Keep note that if a created game object is deleted, a callback cannot be received after a call of Android or iOS API. When it is deleted by mistake, <br/>
-> When it is deleted by mistake, "Do not destroy this gameObject in order to receive callback." error message will show.
+> 作成したゲームオブジェクトを削除すると、Android、iOSのAPIを呼び出した後、コールバックを受け取ることができなくなりますので、ご注意ください。<br/>
+> 誤って削除した場合、"Do not destroy this gameObject in order to receive callback."エラーが表示されます。
 
 **API**
 
@@ -162,78 +163,78 @@ public class SampleInitialization
 
 ### Launching Information
 
-When Gamebase Unity SDK is initialized by using Initialize API, LaunchingInfo object results will be delievered. 
-This LaunchingInfo object contains settings of the TOAST Gamebase Console and game status.
+InitializeAPIを使用してGamebase Unity SDKを初期化すると、LaunchingInfoの客体が結果値として送られます。
+このLaunchingInfoの客体には、Gamebase Consoleに設定した値やゲーム状態などが含まれています。
 
 #### 1. Launching
 
-Launching information of Gameabse.
+Gamebaseの起動情報です。
 
 **1.1 Status**
 
-Status information of game app version set in the Gamebase Unity SDK initialization.
+Gamebase Unity SDKの初期化の設定に入力したアプリバージョンのゲームステータス情報です。
 
-* Code: Game status code (e.g. Under maintenance, Update is required, Service has been terminated)
-* Message: Game status message
+* code:ゲームステータスコード(サービスをメンテナンス中です、アップデートが必ず必要です、サービスが終了しましたなど)
+* message:ゲームステータスメッセージ
 
-For game status codes, refer to the table below.
+ステータスコードは、次の表をご参考ください。
 
 | Status                      | Status Code | Description                                    |
 | --------------------------- | ----------- | ---------------------------------------- |
-| IN_SERVICE | 200 | Service is now normally provided |
-| RECOMMEND_UPDATE | 201 | Update is recommended |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202 | Under maintenance now but QA user service is available. |
-| REQUIRE_UPDATE | 300 | Update is required |
-| BLOCKED_USER | 301 | User whose access has been blocked. |
-| TERMINATED_SERVICE | 302 | Service has been terminated |
-| INSPECTING_SERVICE | 303 | Under maintenance now |
-| INSPECTING_ALL_SERVICES | 304 | Under maintenance for the whole service |
-| INTERNAL_SERVER_ERROR | 500 | Error of internal server |
+| IN_SERVICE | 200 | サービスが正常に動作しています。 |
+| RECOMMEND_UPDATE | 201 | アップデートを推奨します。 |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202         | メンテナンス中にはサービスを利用できませんが、QA端末に登録された場合にはメンテナンスに関係なくサービスに接続してテストすることができます。|
+| REQUIRE_UPDATE | 300 | アップデートが必ず必要です。 |
+| BLOCKED_USER                | 301         | 接続ブロックに登録された端末(デバイスキー)でサービスに接続したケースです。|
+| TERMINATED_SERVICE          | 302         | サービスが終了しました。                                   |
+| INSPECTING_SERVICE          | 303         | サービスをメンテナンス中です。                                 |
+| INSPECTING_ALL_SERVICES     | 304         | 全体サービスをメンテナンス中です。                              |
+| INTERNAL_SERVER_ERROR       | 500         | 内部サーバーエラーです。                                 |
 
-[Console Guide](/en/Game/Gamebase/en/oper-app/#app)
+[Console Guide](/Game/Gamebase/ja/oper-app/#app)
 
 **1.2 App**
 
-App information registered in the TOAST Console.
+Gamebase Consoleに登録されたアプリ情報です。
 
 * accessInfo
-	* serverAddress: Address of the server
-  	* csInfo: Customer center information
+    * serverAddress:サーバーアドレス
+    * csInfo:カスタマーセンターの情報
 * relatedUrls
-	* termsUrl: Terms of Use
-  	* personalInfoCollectionUrl: Agreement to Personal Information
-  	* punishRuleUrl: Rules of Punishment
-  	* csUrl: Customer Center
-* install: Installation URL
-* idP: ID Provider
+    * termsUrl:利用規約
+    * personalInfoCollectionUrl:個人情報同意
+    * punishRuleUrl:利用停止規定
+    * csUrl:カスタマーセンター
+* install:インストールURL
+* idP:認証情報
 
-[Console Guide](/en/Game/Gamebase/en/oper-app/#client)
+[Console Guide](/Game/Gamebase/ja/oper-app/#client)
 
 **1.3 Maintenance**
 
-Maintenance information registered in the TOAST Console is as follows.
+Gamebase Consoleに登録されたメンテナンス情報です。
 
-* url: Maintenance page url
-* timezone: Standard timezone (timezone)
-* beginDate: Start time
-* endDate: End time
-* message: Purpose of maintenance
+* url:メンテナンスページのURL
+* timezone:標準時(timezone)
+* beginDate:開始時間
+* endDate:終了時間
+* message:メンテナンス理由
 
-[Console Guide](/en/Game/Gamebase/en/oper-operation/#maintenance)
+[Console Guide](/Game/Gamebase/ja/oper-operation/#maintenance)
 
 **1.4 Notice**
 
-{@수정}Gamebaes Console에 등록된 공지 정보입니다.
+Gamebaes Consoleに登録されたお知らせ情報です。
 
-* message: Messages
-* title: Title
-* url: Maintenance url
+* message:メッセージ
+* title:タイトル
+* url:メンテナンスURL
 
-[Console Guide](/en/Game/Gamebase/en/oper-operation/#notice)
+[Console Guide](/Game/Gamebase/ja/oper-operation/#notice)
 
 #### 2. tcProduct
 
-Appkey of TOAST Products linked to Gamebase.
+Gamebaseと連携しているTOASTサービスのappKeyです。
 
 * gamebase
 * tcLaunching
@@ -242,10 +243,11 @@ Appkey of TOAST Products linked to Gamebase.
 
 #### 3. tcIap
 
-IAP store information registered in the TOAST Console.
+TOAST Consoleに登録されたIAPストアの情報です。
 
-* id: App ID
-* name: App Name
-* storeCode: Store Code
+* id:App ID
+* name:App Name
+* storeCode:Store Code
+ 
+[Console Guide](/Game/Gamebase/ja/oper-purchase/)
 
-[Console Guide](/en/Game/Gamebase/en/oper-purchase/)

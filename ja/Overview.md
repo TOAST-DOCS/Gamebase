@@ -1,176 +1,172 @@
-## Game > Gamebase > Overview
+## Game > Gamebase > 概要
 
-TOAST Gamebase supports developing games with ease and efficiency by providing commonly-required game functions via integrated SDK.<br/>
-Game developers can focus on developing game content only, as Gamebase provides all the other services.<br/>
+TOAST Gamebaseは、ゲームにおいて共通で必要とする機能を統合SDKで提供し、手軽で効率的にゲームを開発できるようにするサービスです。
+ゲーム開発者の皆様は、ゲームのコンテンツだけ制作してください。残りはすべてGamebaseがご提供いたします。
 
-Gamebase provides basic game functions like authentication, payment, and push; operational functions for a game app, like data management, maintenance, and notifications. Basic indicators of interest are also supported in real time for the whole game industry.<br/>
+Gamebaseでは、認証・決済・Pushなど、ゲームに必要な基本機能のみならず、ゲームアプリを起動する際に必要なデータの管理、運営のためのメンテナンス、お知らせなどの機能を提供します。また、ゲームユーザーの照会及び利用停止機能などを簡単に利用できるようConsoleを提供します。そして、ゲーム事業に活用できるように、ゲーム側で興味を持っている基本的な指標をリアルタイムで提供します。
 
-Key functions of Gamebase and description are as follows: <br/>
+次は、Gamebaseで提供する主な機能とその説明です。
 
 ## Key Features
 
 ### Authentication
 
-Gamebase supports OAuth login based on ID and passwords, using accounts of many identity providers (IdPs); guest login by using UUID of a device. Its authentication service is based on member information provided by external IdP, without having its own member system. In other words, user's ID or passwords are not saved in Gamebase.<br/>
+Gamebaseは、様々なIdP(identity provider)のアカウントを利用したID・パスワードベースのOAuthログインと端末のUUIDを利用したゲストログインに対応しています。Gamebaseの認証は、独自の会員システムを構築せずに、外部IdPが提供する会員情報を利用して認証サービスを提供するサービスです。独自の会員システムがないということは、ユーザーのID・パスワードをGamebaseの内部に保存しないということを意味します。<br/>
 
+* **様々な認証方式を一つのインターフェースで提供します。** 
+  一つのインターフェースでAPIを提供することで、より迅速かつ手軽に外部IdPの追加開発ができるため、開発コストが削減されます。開発者は、複雑な認証フローやリーガルイシュー、ポリシーイシューなどを考えずに、簡単に認証機能を設計することができます。
 
-* **Provides many authentication methods via single interface. ** <br/>
-  Development costs can be saved by enabling external IdP development easier and faster.  Developers can easily implement authentication without concerning complicated procedure and legal or policy issues. <br/>
+* **様々な外部IdP認証を提供します。** 
+  提供する外部認証は引き続きアップデートされる予定で、ゲームで使用したい認証方法がある場合は、[カスタマーセンター](https://toast.com/support/inquiry)までご連絡ください。
 
-* **Provides various external IdP authentication methods.** <br/>
-  Provided external authentication is to be continuously updated, and if there is any other authentication you'd like to include, contact [Customer Center](https://toast.com/support/inquiry).<br/>
+次は、Gamebaseで提供している外部認証リストです。
 
-
-Following is the list of external authentication supported by Gamebase.
-
-| External Authentication            | Provided Platform     |
+| 外部認証            | 提供されるプラットフォーム     |
 | ----------------- | ------------ |
-| Facebook          | iOS, Android |
-| Apple Game Center | iOS          |
-| Google            | Android      |
-| PAYCO             | iOS, Android |
-| NAVER             | iOS, Android |
+| Facebook          | iOS、Android |
+| Apple Game Center | iOS  |
+| Google            | Android  |
+| PAYCO             | iOS、Android |
+| Naver          | iOS、Android |
 
-* **Provides guest logins.** <br/>
-  With guest login, users can log in and start a game without any authentication required. As Gamebase user ID is issued even to guest users, game data can be managed for all users, regardless of OAuth or guest login<br/>
-
-* **Provides independent member identification.** <br/>
-  On a first-time login, Gamebase user ID is automatically created, which can be used as user identifier in a game. User ID is issued to all users, regardless of authentication method, and is not inclusive to a particular IdP, so user processing is available in the same method throughout any IdP.<br/>
+* **ゲストログインを提供します。**
+  ゲストログインを利用すれば、ユーザーは何も入力しなくてもすぐにゲームにログインして簡単にゲームを始めることができます。ゲストログインをするだけでもGamebaseのユーザーIDが発行されるため、ゲームはOAuthログインユーザーかゲストログインユーザーかに関係なく同じようにユーザーのゲームデータを管理することができます。
   
-* **Provides log-out and withdrawal.**<br/>
-  You can choose to log out and log in again from different authentication, and if you withdraw from a game, user ID will be deleted from Gamebase with all related information.<br/>
+* **独立した会員識別子を提供します。**
+  初めてログインすると、GamebaseのユーザーIDが自動で作成され、ゲームではユーザーを区別する識別子として使用できます。ユーザーIDは、認証方式に関係なくすべてのユーザーに発行され、IdPに従属していないため、どのIdPを通してログインした場合でもゲーム内では同じ方式でユーザーを処理することができます。
   
-* **Provides mapping so that a game user can use multiple external IdPs at the same time.**<br/>
-  For example, a game user with Facebook authentication can use the same ID with Google authentication. If Facebook authentication is mapped with Google authentication to a user ID, the user can play games with Facebook authentication and Google authentication, each on two different devices. <br/>
+* **ログアウト及びゲーム退会機能を提供します。**
+  ログアウトした後に他の認証方式を選択してもう一度ログインすることができ、ゲームを退会すると、ユーザーのユーザーID及び関連するすべての情報がGamebaseから削除されます。
+  
+* **一人のゲームユーザーが複数の外部IdPを同時に使用することができるように、マッピング(mapping)機能を提供します。**
+  例えば、Facebook認証を使用してゲームを利用しているユーザーがGoogle認証でも同じユーザーIDを使用することができるよう、マッピング機能を提供します。一つのユーザーIDにFacebookとGoogleの認証をマッピングすれば、ゲームユーザーは、あるデバイスではFacebook、他のデバイスではGoogleで認証してゲームをすることができます。
 
 #### Reference
 
-* [Android Developer Guide > Auth](./aos-authentication)
-* [iOS Developer Guide > Auth](./ios-authentication)
-* [Unity Developer Guide > Auth](./unity-authentication)
+* [Android SDK ご利用ガイド > 認証](./aos-authentication)
+* [iOS SDK ご利用ガイド > 認証](./ios-authentication)
+* [Unity SDK ご利用ガイド > 認証](./unity-authentication)
 
 ### Launching
 
-A game app in service requires lots of information when it first launches. Gamebase provides data required to operate the game app during initial execution, which is called Launching.  <br/>
-Launching data can be set in the Gamebase Console in real time, and the changes can be checked when initializing SDK or at game launching status.<br/><br/>
+サービス中のゲームアプリは、最初に始めるとき様々な情報が必要です。Gamebaseでは、ゲームアプリを起動する初期段階において運営に必要なデータをゲームアプリに提供しており、これをLaunchingと呼んでいます。
+起動情報は、Gamebase Consoleからリアルタイムで設定することができ、SDKを初期化したり起動状態を変更する際にゲームから確認することができます。
 
-Following information is provided by Gamebase for launching.
+Gamebaseで提供される起動情報は、次の通りです。
 
-* App status
-  * Whether to update game client, and download URL
-  * Maintenance information
-* Urgent notice
-* Authentication
-* URL list of in-app games 
+* アプリステータス情報
+	* ゲームクライアントのアップデート必要有無、ダウンロードURL
+	* メンテナンス情報
+* 緊急のお知らせ情報
+* 認証情報
+* ゲームアプリ内URLリスト
 
 #### Reference
 
-* [Android Developer Guide > Launching Info](./aos-initialization/#launching-status)
-* [iOS Developer Guide > Launching Info](./ios-initialization/#launching-status)
-* [Unity Developer Guide > Launching Info](./unity-initialization/#launching-informations)
-* [Operator Guide > App Info(App, Client, Installed URL)](./oper-app): Set status of app and client, and installation URL
-* [Operator Guide > Operator(Maintenance,Notice)](./oper-operation): Register maintenance and notice
+* [Android SDK ご利用ガイド > 初期化 > Launching Status](./aos-initialization/#launching-status)
+* [iOS SDK ご利用ガイド > 初期化 > Launching Status](./ios-initialization/#launching-status)
+* [Unity SDK ご利用ガイド > 初期化 > Launching Information](./unity-initialization/#launching-information)
+* [Console ご利用ガイド > アプリ](./oper-app)：アプリ、クライアントステータス及びインストールURLの設定
+* [Console ご利用ガイド > 運営](./oper-operation)：メンテナンス、お知らせ登録
 
 
 ### For Global
 
-Gamebase basically supports global games, and provides following functions to that purpose: 
+Gamebaseは、基本的にゲームのグローバルオープンに対応しており、グローバル環境におけるゲーム運営をサポートするため、次のような機能を提供します。
 
-* **Provides user messages in multiple languages.**<br/>
-  User messages can be entered in multiple languages via console, but, language set follows user device's setting. If Korean, English, and Japanese are entered via console, users of Korean device will be displayed with Korean messages.
-* **Allows filtering by country.**<br/>
-  In case urgent notice or push messages are directed at users of a particular country during game operations, the messages can be sent to a specified country only.
-* **Selects operator's local time zone to enter time at ease.**<br/>
-  If a game is run in Vietnam, Vietnam’s time zone can be selected and entered, with no need to convert to Korean time.
+* **ゲームユーザーに表示されるメッセージは、すべて多国語処理が可能です。**
+	* ゲームユーザーに表示されるメッセージをConsoleで入力する際に多国語で入力するようにし、ユーザーのデバイス言語の設定に合わせて言語を表示します。Consoleで韓国語、英語、日本語を入力すると、韓国語のデバイスを使用するユーザーには、韓国語のメッセージが表示されます。
+* **国家フィルタリング機能を提供します。**
+	* 運営中に特定国家のゲームユーザーにのみ緊急のお知らせメッセージやPushメッセージを送りたい場合、国家を指定してメッセージを表示することができます。
+* **運営者の現地の標準時(local timezone)を選択して簡単に時間を入力できます。**
+	* ベトナムでゲームを運営する場合、ベトナムの標準時(timezone)を選択すればベトナム時間ベースで入力できるため、韓国時間に変更する手間を省くことができます。
 
-### Standard Indicators (BI)
+### Standard Index(BI)
 
-* The Gamebase Console provides basic operating indicators in real time: 
-	* Concurrent Connected User (CCU): Number of concurrently connected users in real time.
-	* Maximum Concurrent User (MCU): Maximum number of concurrently connected users of a day (can retrieve in real time and by date).
-	* Daily Active User (DAU): Net number of users who use game of a day (can retrieve in real time and by date).
-	* New Registered User (NRU): Number of new users of a day (can retrieve in real time and by date).
-	* Market Share Chart: Pie chart of market share by user's operating system, country, and game client's version.
-	* Graph of Concurrent Access Change: Change of concurrent access of a day on a graph. Can check graph changes due to maintenance and push message delivery at a glance.
-* Group indicator to find indicators of all projects at authority.
-* URL call counts and market share data per date, browser (Internet Explorer, Chrome, or others), and platform (Windows, Android, and etc.), by providing installation URL statistics.
-* Sales status page to check sales statistics of the game.
-	* Sum of sales by month, date, and store.
-	* Can check by the currency of choice: KRW or USD.
+* Gamebase Consoleから基本的な運営指標をリアルタイムで提供します。
+	* CCU(concurrent connected users)：リアルタイムの同時接続者数
+	* MCU(maximum concurrent users)：一日の最大同時接続者数(リアルタイムと日付ごとの照会機能を提供)
+	* DAU(daily active users)：一日の間ゲームを使用した純ユーザー数(リアルタイムと日付ごとの照会機能を提供)
+	* NRU(newly registered uesrs)：一日の新規ユーザー数(リアルタイムと日付ごとの照会機能を提供)
+	* 占有率チャート：ゲームユーザーのOSごと、国家ごと、ゲームクライアントバージョンごとの占有率をパイチャートで提供
+	* 同時接続変化グラフ：一日の同時接続者数の変化量をグラフで提供し、メンテナンスとPushメッセージ送信によるグラフの変更も一目で確認可能
+*権限のある各プロジェクトの指標を一目で確認できるように、グループ指標を提供します。
+* インストールURL統計を提供し、日付ごと、ブラウザ(Internet Explorer、Chromeなど)ごと、プラットフォーム(Windows、Androidなど)ごとのインストールURLの呼び出し数及び占有率を提供します。
+* ゲームの売上統計を確認することができる販売現状画面を提供します。
+	* 月ごと、日付ごと、ストアごとの売上高の合計値を提供
+	* 利用したい通貨(KRW、USDなど)に変更して確認可能
 
 #### Reference
 
-* [Operator Guide > Operating indicator](./oper-operating-indicator) 
+* [Console ご利用ガイド > 運営指標](./oper-operating-indicator) 
 
-### Other TOAST Services
+### Using the other TOAST Service
 
-Supports easier interfaces to TOAST service that a game requires.<br/>
-Gamebase provides wrapped APIs on the basis of Gamebase User IDs. Therefore, users don't need to make separate calls to each service's API.
-* [Notification > PUSH](http://www.toast.com/service/notification) : Integrated push service to send push messages
-* [Common > IAP](http://www.toast.com/service/iap) : Integrated In-App Purchase service
-* [Game > Leaderboard](http://www.toast.com/service/leaderboard) : Real-time large-capacity ranking service
-* [Security > AppGuard](https://cloud.toast.com/service/security) : Prevents code manipulation of applications in real time
-<br/>
+* ゲームで必要なTOASTサービスをより簡単に連携できるようにサポートします。 
+  * GamebaseのユーザーIDで各サービスのAPIを使用することができるようにGamebaseでラッピング(wrapping)してAPIを提供します。したがってユーザーは、サービスのAPIを直接呼び出す必要がありません。
+  * [Notification > Push](https://toast.com/service/notification/push)：Pushメッセージを送信してくれる統合Pushサービス
+  * [Mobile Service > IAP](https://toast.com/service/mobile_service/iap)：統合アプリ内決済 サービス
+  * [Game > Leaderboard](https://toast.com/service/game/leaderboard)：リアルタイムの大容量ランキングサービス
+  * [Security > AppGuard](https://toast.com/service/security/appguard)：リアルタイムでアプリケーションのコード操作を防止するサービス
 
-## Glossary
+## Terms
+次は、Gamebaseのサービス用語をまとめたものです。
 
-Gamebase service terms are as follows:
-
-| Term      | Description                                       |
+| 用語      | 説明                                      |
 | ------- | ---------------------------------------- |
-| User ID | User identifier inside of Gamebase                    |
-| Device Key  | Device identifier (iOS:IDFV, Android:Android ID)  |
-| UUID    | Device identifier used to create a guest, which is retained before app is deleted.    |
-| IdP     | Identity Providers who provide authentication: Facebook, Google, Apple Game Center, PAYCO, and etc. |
-| IdP Token  | Access token received from IdP SDK after authentication |
-| IdP Login | Login with an external IdP (such as Facebook or Google)          |
+| ゲームユーザーID  | Gamebase内部のユーザー識別子                     |
+| デバイスキー  | デバイス識別子(iOS:IDFV、Android:Android ID)   |
+| UUID    | Guest作成時に使用される端末識別子で、アプリを削除する前まで維持     |
+| IdP     | Identify Providerで、認証提供者。Facebook、Google、Apple Game Center、PAYCOなど |
+| IdPトークン  | IdP SDKから認証した後に受け取るアクセストークン(access token)  |
+| IdPログイン| 外部IdPログイン(Facebook、Googleなど)           |
 
 <br/>
 
 ## Service Architecture
-
-Below shows the service structure of Gamebase with simple description
-![논리 구성도](http://static.toastoven.net/prod_gamebase/Overview/img_logical_1.1.png)
+次は、Gamebaseのサービス構造と簡単な説明です。
+![論理構成図](http://static.toastoven.net/prod_gamebase/Overview/img_logical_1.2.png)
 <br>
 
-| Component           | Description                                       |
+| コンポーネント名           | 説明                                      |
 | --------------- | ---------------------------------------- |
-| Gamebase SDK    | - Client development SDK                      |
-| Gateway         | - Provides mashup API between internal and external modules.<br/>- Delivers to backend services at the request of client and server.|
-| Gamebase Server | - Processes internal logic of Gamebase. <br>- Provides data for client's initial execution  <br>- Issues/manages user identifier keys and manages mapping <br>- Collects and manages concurrent access indicators per game. |
-| Console         | - Web Console                              |
+| Gamebase SDK    | - クライアント開発のためのSDK                       |
+| Gamebase Server | - 内部/外部モジュール間のマッシュアップAPI(mashup API)を提供して内部ロジックを処理 <br>- クライアントの初期起動時にデータを提供 <br>-ユーザーを区別するキーの発行と管理、マッピング管理 <br>- ゲームごとの同時接続者数指標の収集及び管理 |
+| Console         | - ウェブConsole                              |
 
 
 ## Platform Guide
 
 ### Client Developer's Guide
 
-* [iOS Developer's Guide](./ios-started/)
-* [Android Developer's Guide](./aos-started/)
-* [Unity Developer's Guide](./unity-started/)
+
+* [Android SDK ご利用ガイド](./aos-started/)
+* [iOS SDK ご利用ガイド](./ios-started/)
+* [Unity SDK ご利用ガイド](./unity-started/)
 
 ### Server Developer's Guide
 
-* [Server Developer's Guide](./api-guide/)
+* [APIガイド](./api-guide/)
 
 ### Operator's Guide
 
-* [Operator's Guide](./oper-operating-indicator/)
+* [Console ご利用ガイド](./oper-operating-indicator/)
 
 <br/>
 ## Funtional Guide
 
 | Feature               | Description                              | Client                                   | Server                                   | Console                                  |
 | --------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| Login                 | Support Guest and 3rd Party authentication<br/>- Supported IdPs: Facebook, Google, Apple Game Center, PAYCO, and NAVER | [[iOS](./ios-authentication/#login)] [[Android](./aos-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[Token Authentication](./api-guide/#token-authentication)] <br> [[Retrieve Member](./api-guide/#get-member)] | [[App] > Setting Authentication Information](./oper-app/#authentication-information) <br> [[Member] > Retrieve](./oper-member/#member) <br> - Basic information, login history, playtime, purchase history, and etc. |
-| Logout                | Logout                                     | [[iOS](./ios-authentication/#logout)] [[Android](./aos-authentication/#logout)] [[Unity](./unity-authentication/#logout)] |                                          |                                          |
-| Withdraw              | Withdraw from a game<br/> - Delete all information of a game user, including user ID and mapping information | [[iOS](./ios-authentication/#withdraw)] [[Android](./aos-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
-| Mapping               | Integrate one user ID to many IdPs         | [[iOS](./ios-authentication/#mapping)] [[Android](./aos-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |                                          |
-| Purchase(IAP)         | (TOAST Integration) <br/> InApp Purchase <br/>- Supported stores: Google and App Store  | [[iOS](./ios-purchase/#purchase)] [[Android](./aos-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- Register Items](./oper-purchase/#item) <br> [- Retrieve Transaction](./oper-purchase/#transactions) |
-| Push                  | (TOAST Integration) <br>Send push messages and check results  | [[iOS](./ios-push/#push)] [[Android](./aos-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- Real-time delivery |
-| Leaderboard           | (TOAST Integration)<br> Retrieve and register real-time ranking of large-capacity data |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
-| Webview               | SDK provides default WebView UI<br/>Provides both system pop-up and TOAST UI | [[iOS](./ios-ui/#webview)] [[Android](./aos-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
-| [Operator] Maintenance | (Operational)  Maintenance                               |                                          | [[Check for Maintenance](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- Register or cancel maintenance |
-| [Operator] Notice      | (Operational) Urgent Notification <br/>- In pop-ups while user is executing an app |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>-Register Notice|
-| [Operator] Ban         | (Operational) Register/Release banned game users  | [[iOS](./ios-authentication/#get-banned-user-information)][[Android](./aos-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> - Check information of banned users |                                    | [[Ban]](./oper-ban/#ban) <br/>- Register and Release Ban |
+| Login                 | ゲスト、3rd Party認証に対応  <br> - 対応IdP：Facebook、Google、Apple Game Center、PAYCO |  [[Android](./aos-authentication/#login)] [[iOS](./ios-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[トークン検証](./api-guide/#token-authentication)] <br> [[会員照会](./api-guide/#get-member)] | [[App] > 認証情報設定](./oper-app/#authentication-information) <br> [[Member] > 会員照会](./oper-member/#member) <br> - 基本情報、ログイン履歴、プレイ時間、決済履歴など |
+| Logout                | ログアウト                                    | [[Android](./aos-authentication/#logout)]  [[iOS](./ios-authentication/#logout)] [[Unity](./unity-authentication/#logout)] |                                          |                                          |
+| Withdraw              | ゲーム退会 <br> -  ゲームユーザーのユーザーID、マッピング情報などすべての情報を削除 | [[Android](./aos-authentication/#withdraw)] [[iOS](./ios-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
+| Mapping               | 一つのユーザーIDに複数のIdPを連携する機能           | [[Android](./aos-authentication/#mapping)] [[iOS](./ios-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |                                          |
+| Purchase(IAP)         | (TOASTサービスの連携) <br> アプリ内決済 <br> - 対応ストア：Google、App Store | [[Android](./aos-purchase/#purchase)] [[iOS](./ios-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- アイテム登録](./oper-purchase/#item) <br> [- 決済情報の照会](./oper-purchase/#transactions) |
+| Push                  | (TOASTサービスの連携) <br> Pushメッセージの送信及び結果の確認 | [[Android](./aos-push/#push)] [[iOS](./ios-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- リアルタイム、予約Push送信 |
+| Leaderboard           | (TOASTサービスの連携) <br> リアルタイムの大容量ランキング照会及び登録 |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
+| Webview               | SDKで基本的なWebView UIを提供<br/>システムポップアップ、トースト(toast) UIを提供 | [[Android](./aos-ui/#webview)] [[iOS](./ios-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
+| [Operator] Maintenance | (運営)メンテナンス機能                               |                                          | [[メンテナンス有無の確認](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- メンテナンス登録、メンテナンス解除 |
+| [Operator] Notice      | (運営)緊急のお知らせ機能 <br> -  ゲームユーザーがアプリを起動する際にポップアップ形式でお知らせの確認が可能 |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>-お知らせ登録 |
+| [Operator] Ban         | (運営)ゲームユーザー利用停止の登録及び解除 <br> -  ゲームユーザー利用停止の登録及び解除 | [[Android](./aos-authentication/#get-banned-user-information)] [[iOS](./ios-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -利用停止中のゲームユーザー情報の確認 |                                          | [[Ban]](./oper-ban/#ban) <br/>-利用停止の登録及び解除 |
+
 

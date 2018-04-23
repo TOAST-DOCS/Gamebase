@@ -1,94 +1,89 @@
-## Game &gt; Gamebase &gt; Operator Guide &gt; Management
+## Game > Gamebase > Console ご利用ガイド > 管理
 
-You can manage search authority on Gamebase games, set alarm delivery, and retrieve alarm history.
+Gamebaseを使用するゲームに対する照会権限の管理、通知送信の設定、通知内訳の照会などの機能を使用することができます。
 
-<br/>
+
 
 ## Authorization
 
-Authority of Gamebase Console can be managed. <br />
+Gamebase Consoleの使用権限を管理することができます。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Authorization1_1.2.png)
 
-* Manage authority of Gamebase Console<br />
-  * **Access to sales status** : Access to **IAP** menu
-  * **Access to management menu** : Access authority to other menu
-* To register a new member, go to **TOAST Console Page**.<br />
-* Cannot modify your own authority.<br />
-  <br/>
+* Gamebase Consoleの使用権限管理
+  * **販売現状のアクセス権限**：**有料**メニューに対するアクセス権限
+  * **管理メニューアクセス権限**：その他のメニューに対するアクセス権限
+* 新しいメンバーを登録したい場合、TOASTプロジェクトメンバー管理から追加する必要があります。
+* 自分自身の権限は修正することができません。
+  
 
 ## Alarm
 
-Gamebase Alarm notifies increase/decrease rate of game users, or change of initial number of concurrent access.<br />
+Gamebaseの通知機能を使用してゲームユーザーの増加率や減少率、最小同時接続者数の変化などに対する通知を受け取ることができます。
 
 ### Alarm
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm1_1.7.png)
 
-{@번역}
-#### (1) 감소 알람 활성
-동시 접속이 감소했을 때 알람을 받을지에 대한 여부를 설정합니다. On으로 되어 있을 때는 설정된 수치만큼 변화가 있을 경우 이메일이나 SMS로 알람 메시지를 발송합니다.<br />
-기능이 활성화가 되었을 경우 원하는 감소율 및 점검에 의한 동접 감소 알람 무시 기능을 추가 설정할 수 있습니다.<br />
-점검에 의한 동접 감소 알람 무시 설정을 통해 앱에 점검이 필요할 경우 필연적으로 발생하는 동시 접속 감소 알람을 On/Off할 수 있습니다. 해당 설정이 켜져 있을 경우 앱이 점검 중일 때 동시 접속 감소에 따른 알람을 발송하지 않습니다.<br />
+#### (1) 減少通知
+同時接続者数が減少したときに通知を受け取るかどうかを設定します。通知を受け取りたい場合、**減少通知**を**On**に設定します。
 
-#### (2) 증가 알람 활성
-동시 접속자 수가 증가했을 때 알람을 받도록 설정할 수 있습니다. <br />
-기능이 활성화 되었을 경우 운영자가 알람을 받고자 하는 수치를 설정할 수 있습니다. <br />
+- **減少率**：同時接続が何%減少したときに通知を受け取るか指定します。
+- **メンテナンスによる同時接続者数減少の通知を無視する**：アプリをメンテナンスする場合は、当然、同時接続者数が減少します。
+  この場合、**メンテナンスによる同時接続者数減少の通知を無視する**を**On**に設定して通知を受け取らないようにすることができます。
 
-#### (3) 메시지 언어
-알람 발송 메시지의 언어를 선택할 수 있습니다. 현재는 한글과 영어 메시지만 지원하며 추가 요구 사항이 있을 때 다른 언어들을 추가할 예정입니다.
+#### (2) 増加通知
+同時接続者数が増加したときに通知を受け取るように設定することができます。
+機能を有効にすれば、運営者が通知を受け取る数値を設定することができます。
 
-#### (4) 최소 동시 접속자 수
-앱 사용자의 기대 최소 접속자 수를 설정하여 설정 수치 이하로 동시 접속자 수가 떨어졌을 때 알람을 받을 수 있습니다. 최소 동시 접속자 수 설정 값은 100명으로 제한되어 있습니다.
+#### (3) メッセージ言語
+通知送信メッセージの言語を選択することができます。現在は韓国語と英語のメッセージのみ対応しており、追加リクエストがある場合、他の言語も追加する予定です。
 
+#### (4) 最小同時接続者数
+**最小同時接続者数**に指定した数より少ない人数がアプリに接続した場合に通知を受け取るようにすることができます。例えば、**最小同時接続者数**を「500人」に設定した場合、同時接続者数が500人以下になったときに通知を受け取ることになります。最小設定値は100人で、100人未満には設定できません。
 
 ### Alarm Log
 
-In Alarm Log, which is under the Alarm Menu, you can retrieve history of alarm occurrences.<br />
-Logs can be retrieved up to 30 days, and real-time filtering by using **Search** Textbox is also available. <br />
+通知ログは、通知メニューの下にあり、通知が発生した履歴を照会することができます。
+最大30日まで照会することができ、照会後に**Search**ボタンをクリックすると、リアルタイムでフィルタリングすることもできます。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm2_1.0.png)
 
-- Time of Occurrence: Time when an alarm is sent
-- Number of Previous Concurrent Access: Information of concurrent access collected before alarm is sent
-- Number of New Concurrent Access: Information of concurrent access collected at the moment when alarm is sent
-- Rate of Change (Value Set): Rate of change refers to the number of new concurrent access as compared to previous concurrent access. Value set is the value which has been set to deliver when alarm occurs.
+- 発生時間：通知が送信された時間情報
+- 過去の同時接続者数：通知が送信される前に取得した同時接続者数の情報
+- 新規の同時接続者数：通知が送信される瞬間取得した同時接続者数の情報
+- 変化率(設定値)：変化率の値は過去の同時接続者数と比較した新規の同時接続者数に関する情報。設定値は通知が発生した際に送信のために設定しておいた値
 
-{@번역}
 ### Webhook
-Gamebase에서 기본으로 제공되는 SMS/Email외에 별도로 알람을 수신할 수 있는 Webhook 설정기능을 제공합니다.
-외부 시스템의 Webhook URL을 통해 알람발송 요청이 있을 경우 함께 알람을 전송합니다.
+Gamebaseで基本提供されるSMS/Email以外で別途通知を受け取ることができるWebhook設定機能を提供します。
+外部システムのWebhook URLを通して通知送信をリクエストする場合、一緒に通知を送信します。
 
-#### (1) 목록 조회
+#### (1) リスト照会
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_1.1.png)
-현재 알람을 수신할 수 있는 Webhook들에 대한 등록 내역을 조회하여 보여줍니다.<br />
-등록된 Webhook URL이 필요한 경우 우측의 URL 복사 기능을 통해 손쉽게 복사가 가능합니다.
+現在、通知を受け取ることができるWebhookに対する登録内訳を確認することができます。
+登録されたWebhook URLが必要な場合、右の**URLコピー**をクリックして簡単にコピーすることができます。
 
-#### (2) 등록
+#### (2) 登録
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_2.0.png)
-상단의 등록 버튼을 통해 Webhook정보를 등록할 수 있습니다.<br />
-외부 시스템에서 발급받은 Webhook URL을 해당 기능을 통해 등록하실 수 있습니다.<br />
-현재는 Dooray/Slack 등록만 제공하고 있으며 추후 요청이 있을 시 새로운 목록을 추가할 예정입니다.
+**登録**ボタンをクリックして外部システムから発行されたWebhook情報を登録することができます。
+現在はDoorayとSlackのみ登録でき、今後、リクエストがあれば新しいリストを追加する予定です。
 
-#### (2) 상세조회/수정/삭제
+#### (2) 詳細照会/修正/削除
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_3.1.png)
-목록에서 상세정보를 조회하고자 하는 항목을 클릭하면 위와 같이 상세정보를 조회할 수 있습니다..<br />
-더불어 수정버튼을 통해 등록된 정보를 변경할 수 있으며 해당 Webhook이 필요하지 않을 경우 삭제버튼을 통해 언제든지 삭제가 가능합니다.
-
+各項目をクリックすると、詳細情報を照会することができます。
+登録された情報を変更したい場合は**修正**ボタンをクリックします。該当するWebhookが必要でない場合は、**削除**ボタンをクリックして項目を削除することもできます。
 
 ### Recipient List
 
-Alarm receivers can be configured.<br />
-To register a new member, go to **TOAST Console Page**. <br />
+通知を受信するユーザーを設定することができます。新しいメンバーを登録したい場合はTOASTプロジェクトメンバー管理から追加しなければなりません。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm3_1.1.png)
-In both cases, subscription information to TOAST are used for delivery; alarms may not be sent properly if there is any wrong information in email address or number.<br />
-To check mobile phone information, go to **My Account** of TOAST Cloud.
+Gamebaseでは、EmailとSMSで通知を送信することができます。
+EmailとSMSはすべてTOASTの会員登録時に入力した情報を利用して送信され、Emailアドレスや番号を間違って登録した場合は、通知を受け取れないこともあります。携帯電話番号の情報は、TOASTの**自分の情報管理**ページから確認することができます。
 
-<br/>
+
 ## Config
 
-Integration between Gamebase and TOAST can be configured.<br />
+GamebaseとTOASTサービスの連携に関する設定をすることができます。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Config1_1.0.png)
 
-{@번역}
-TOAST Launching에 설정한 정보를 Gamebase 런칭 API 호출 시에 함께 전달받을지를 설정할 수 있습니다. TOAST Launching 서비스를 사용하는 경우에만 기능을 On, Off할 수 있습니다.<br />
+TOAST Launchingに設定した情報をGamebase Launching APIの呼び出し時に一緒に受け取るかどうかを設定することができます。TOAST Launchingサービスを使用する場合にのみ機能をOn・Offすることができます。

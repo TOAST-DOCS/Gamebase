@@ -1,39 +1,34 @@
-## Game > Gamebase > iOS Developer's Guide> Purchase
+﻿## Game > Gamebase > iOS SDK ご利用ガイド > 決済
 
-This page describes how to set In-App Purchase (IAP).
+ここではアプリでアプリ内決済機能を使用するために必要な設定方法についてご案内いたします。
 
-Gamebase provides an integrated purchase API to easily link IAP of many stores in a game.
+Gamebaseは、一つの統合された決済APIを提供することで、ゲームで簡単に各ストアのアプリ内決済を連携させることができるようサポートしています。
 
 ### Settings
 
 #### Apple iTunes-Connect
+1. テスト用アプリのビルドをアップロード
+2. In-App Purchasesアイテムの登録及び承認
+3. Sandbox Testerアカウントの登録
+* Detail Guide for iTunes-Connect:[Apple Guide](https://help.apple.com/itunes-connect/developer/#/devb57be10e7)
 
-1. Upload a tester app-build
-2. Register and approve IAP
-3. Register a Sandbox Tester account
-4. Detail Guide for iTunes-Connect: [Apple Guide](https://help.apple.com/itunes-connect/developer/#/devb57be10e7)
+#### TOAST Consoleの登録
+次は、TOAST Consoleで設定する必要のある内容です。
 
+1. **Gamebase > Purchase(IAP) > アプリ**で利用するストアを登録します。
+    * ストア:**App Store**を選択します。
+2. **Gamebase > Purchase(IAP) > アイテム**でアイテムを登録します。
+    * ストア:**App Store**を選択します。
+    * ストアアイテムID:iTunes-Connectに登録したProduct IDを入力します。
+3. アイテムを設定したら、**保存**をクリックします。
 
-#### Register TOAST Console
-
-Set TOAST Gamebase Console as follows.
-
-1. Register a store to use at **Gamebase > Purchase (IAP) > App**.
-	* Store: Select **App Store**.
-2. Register an item at **Gamebase &gt; Purchase (IAP) &gt; Item**.
-	* Store: Select **App Store**.
-	* Store Item ID: Enter a Product ID registered at iTunes-Connect.
-3. When item setting is completed, press **Save**.
-
-#### Set Xcode Project
-
-1. Set **ON** for **Targets > Capabilities > In-App Purchase**.
-2. Set appropriate values for Bundle Identifier, Version, and Build at **Targets > General > Identity**.
-
+#### Xcode Projectの設定
+1. **Targets > Capabilities > In-App Purchase**を**ON**に設定します。
+2. **Targets > General > Identity**のBundle Identifier、Version、Buildの値を正しく設定します。
 
 #### Import Header File
 
-Import the following header to ViewController to implement purchase API.
+購入APIを設計するViewControllerに次のヘッダーファイルを持ってきます。
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
@@ -41,30 +36,31 @@ Import the following header to ViewController to implement purchase API.
 
 ### Purchase Flow
 
-Item purchases should be implemented in the following order.
+アイテムの購入は次のような手順で設計してください。<br/>
 
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
 
-1. Call **requestPurchaseWithItemSeq:viewController:completion:** of Gamebase SDK to purchase in a game client.
-2. After a successful purchase, call **requestItemListOfNotConsumedWithCompletion:** to check list of non-consumed purchases.
-3. If there is a value on the returned list, the game client sends a request to the game server to consume purchased items.
-4. The game server requests for Consume API to the Gamebase server via API. [API Guide](/en/Game/Gamebase/en/api-guide/#wrapping-api)
-5. If the IAP server has successfully called Consume API, the game server provides the items to the game client.
+1. ゲームクライアントでは、Gamebase SDKの**requestPurchaseWithItemSeq:viewController:completion:**を呼び出して決済を試みます。
+2. 決済が成功した場合、**requestItemListOfNotConsumedWithCompletion:**を呼び出して未消費決済の内訳を確認します。
+3. 返された未消費決済内訳リストに値がある場合、ゲームクライアントがゲームサーバーに決済アイテムに対するconsume(消費)をリクエストします。
+4. ゲームサーバーは、Gamebase サーバーAPIを通してconsume(消費)APIをリクエストします。
+    [APIガイド](./api-guide/#wrapping-api)
+5. IAPサーバーからconsume(消費)APIの呼び出しに成功すると、ゲームサーバーがゲームクライアントにアイテムを配布します。
 
-A purchase at store may be successful but cannot be closed normally due to error.
-It is recommended to call each of the two APIs after login is completed, to initialize a reprocessing logic.
+ストア決済には成功したものの、エラーが発生し、正常に終了することができない場合があります。ログイン完了後に次の二つのAPIをそれぞれ呼び出し、再処理ロジックを設計してください。<br/>
 
-1. Request list of items that are not consumed
-	* When a login is successful, call **requestItemListOfNotConsumedWithCompletion:** to check list of non-consumed purchases.
-	* If the value is on the returned list, the game client sends a request to the game server to consume, so that items can be provided.
-2. Request to retry transaction
-	* When a login is successful, call **requestRetryTransactionWithCompletion:** to try to automatically reprocess the unprocessed.
-	* If there is a value on the returned successList, the game client sends a request to the game server to consume, so that items can be provided.
-	* If there is a value on the returned failList, send the value to the game server or Log & Crash to collect logs. Also send inquiry to  [**TOAST > Customer Center**](https://toast.com/support/inquiry)for the cause of reprocessing failure.
+1. 未処理アイテムの送信リクエスト
+    * ログインに成功した後、**requestItemListOfNotConsumedWithCompletion:**を呼び出して未消費決済内訳を確認します。
+    * 返された未消費決済内訳のリストに値が存在する場合、ゲームクライアントがゲームサーバーにconsume(消費)をリクエストしてアイテムを配布します。
+2. 決済エラー再処理リクエスト
+    * ログインに成功した後、**requestRetryTransactionWithCompletion:**を呼び出して未処理内訳に対し自動で再処理を試みます。
+    * 返されたsuccessList に値が存在する場合、ゲームクライアントがゲームサーバーにconsume(消費)をリクエストしてアイテムを配布します。
+    * 返されたfailListに値が存在する場合、該当する値をゲームサーバーやLog & Crashなどを通した送信でデータを確保し、[カスタマーセンター](https://toast.com/support/inquiry)に再処理失敗の原因をお問い合わせください。
+
 
 ### Purchase Item
 
-Call following API of an item to purchase by using itemSeq to send a purchase request.
+購入したいアイテムのitemSeqを利用して次のAPIを呼び出し、購入をリクエストします。
 
 ```objectivec
 - (void)purchasingItem:(long)itemSeq {
@@ -81,9 +77,10 @@ Call following API of an item to purchase by using itemSeq to send a purchase re
 ```
 
 
+
 ### Get a List of Purchasable Items
 
-To retrieve the list of items, call the following API. Information of each item is included in the array of callback return.
+アイテムリストを照会したい場合、次のAPIを呼び出します。コールバックで返される配列(array)の中にはそれぞれ各アイテムの情報が含まれています。
 
 ```objectivec
 - (void)viewDidLoad {
@@ -106,12 +103,13 @@ To retrieve the list of items, call the following API. Information of each item 
 
 ### Get a List of Non-Consumed Items
 
-Request for a list of non-consumed items, which have not been normally consumed (delivered, or provided) after purchase.
-In case of non-purchased items, ask the game server (item server) to proceed with item delivery (supply).
+アイテムを購入したものの、正常にアイテムが消費(送信、配布)されていない未消費決済の内訳をリクエストします。<br/>
+未決済の内訳がある場合は、ゲームサーバー(アイテムサーバー)にリクエストを出してアイテムを送信(配布)するように処理する必要があります。.
 
-* Make a call in the following two cases.
-    1. To confirm before an item is consumed after a successful purchase.
-    2. To check if there is any non-consumed item left after a login is successful.
+* 次の二つの状況で呼び出してください。
+    1. 決済成功後、アイテム消費(consume)処理前に最終確認のために呼び出し
+    2. ログイン成功後、消費(consume)できなかったアイテムが残っていないか確認するために呼び出し
+
 
 ```objectivec
 - (void)viewDidLoad {
@@ -131,8 +129,8 @@ In case of non-purchased items, ask the game server (item server) to proceed wit
 
 ### Reprocess Failed Purchase Transaction
 
-In case a purchase is not normally completed after a successful purchase at a store due to failure of authentication of TOAST IAP server, try to reprocess by using API.
-Based on the latest success of purchase, reprocessing is required by calling an API for item delivery (supply).
+ストアでは決済が正常に行われたものの、TOAST IAPサーバーの検証エラーなどにより正常に決済されていない場合は、APIを利用して再処理を試みます。<br/>
+最後に、決済が成功した内訳を基にアイテム送信(配布)などのAPIを呼び出して処理する必要があります。
 
 ```objectivec
 - (void)viewDidLoad {
@@ -154,24 +152,24 @@ Based on the latest success of purchase, reprocessing is required by calling an 
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| TCGB\_ERROR\_NOT\_SUPPORTED | 10 | GamebaseAdapter is not included. If the domain of error object is "TCGB.Gamebase.TCGBPurchase", check if PurchaseAdapter exists. |
-| TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED | 4001 | Gamebase PurchaseAdapter is not initialized. |
-| TCGB\_ERROR\_PURCHASE\_USER\_CANCELED | 4002 | Purchase is cancelled. |
-| TCGB\_ERROR\_PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003 | Previous purchase is not completed. |
-| TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH | 4004 | Cannot purchase due to shortage of cash of the store. |
-| TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010 | The store is not supported. iOS supports "AS";. |
-| TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201 | Error in IAP library. Check error.message. |
-| TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR | 4999 | Unknown error in purchase.<br/>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry and we'll respond ASAP. |
+| TCGB_ERROR_NOT_SUPPORTED                 | 10         | GamebaseAdapterが含まれていません。<br/>Error 客体のドメインが"TCGB.Gamebase.TCGBPurchase" の場合、PurchaseAdapterが存在しているかどうかを確認してください。|
+| TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED  | 4001       | Gamebase PurchaseAdapterが初期化されていませんでした。  |
+| TCGB\_ERROR\_PURCHASE\_USER\_CANCELED    | 4002       | 購入がキャンセルされました。                            |
+| TCGB\_ERROR\_PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003       | 前回の購入が完了していません。                      |
+| TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH | 4004       | 該当するストアのCashが足りないため、決済することができません。           |
+| TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010       | このストアには対応しておりません。iOSで対応できるストアは、「AS」です。|
+| TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201       | IAPライブラリーエラーです。<br>error.messageを確認してください。|
+| TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR    | 4999       | 定義されていない購入エラーです。<br>ログ全体を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。|
 
-* Refer to the following document for the entire error code.
-	- [Entire Error Codes](./error-code/#client-sdk)
+* 全体のエラーコードは、次のドキュメントをご参考ください。
+    * [エラーコード](./error-code/#client-sdk)
 
 
 
 **TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs at an IAP module.
-* The error code is as below.
+* このエラーは、IAPモジュールで発生したエラーです。
+* エラーコードの確認は、次の通りです。
 
 ```objectivec
 TCGBError *tcgbError = error; // TCGBError object via callback
@@ -180,9 +178,9 @@ NSInteger moduleErrorCode = moduleError.code;
 NSString *moduleErrorMessage = moduleError.message;
 
 // If you use **description** method, you can get entire information of this object by JSON Format
-NSLog(@"TCGBError: %@", [tcgbError description]);
+NSLog(@"TCGBError:%@", [tcgbError description]);
 ```
 
-* For IAP error codes, refer to the document below.
-    * [Mobile Service > IAP > Error Code > Client API Error Type](/en/Mobile%20Service/IAP/en/error-code/#client-api#client-api-errors)
+* IAPのエラーコードは、次のドキュメントをご参考ください。
+    * [Mobile Service > IAP > エラーコード> Client APIエラータイプ](/Mobile%20Service/IAP/ja/error-code/#client-api)
 

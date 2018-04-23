@@ -1,26 +1,26 @@
-## Game > Gamebase > Unity Developer's Guide > Getting Started
+## Game > Gamebase > Unity SDK ご利用ガイド > はじめる
 
-Below describes environments and initial setting of Gamebase Unity SDK.
+Gamebase Unity SDKの使用環境及び初期設定について説明します。
 
 ### Environments
 
-> [Note]
->
-> Unity support version: 5.5.4 or higher
+> [参考]
+> 
+> Unity対応バージョン:5.5.4以上
 
 #### Supported Platforms
 
 * iOS
 * Android
 * Standalone
-	* Windows7 or higher
-* MAC OS is not supported.
+    * Windows7以上
+* MAC OSには対応しておりません。
 * WebGL
-	* [WebGL Browser Compatibility](https://docs.unity3d.com/Manual/webgl-browsercompatibility.html)
+    * [WebGL Browser Compatibility](https://docs.unity3d.com/Manual/webgl-browsercompatibility.html)
 * Editor
-	* Supports functions only partially.
+    * 一部の機能のみ対応しています。
 
-To call a Gamebase API which is not supported by a selected platform, following errors are returned as callback. If there is no callback, the output will come with a warning log.
+選択したプラットフォームで対応していないGamebaseAPIを呼び出すときは、次のようなエラーがコールバックで返され、コールバックがない場合、Warningログが出力されます。
 
 * GamebaseErrorCode.NOT_SUPPORTED
 * GamebaseErrorCode.NOT_SUPPORTED_IOS
@@ -29,7 +29,7 @@ To call a Gamebase API which is not supported by a selected platform, following 
 * GamebaseErrorCode.NOT_SUPPORTED_UNITY_WEBGL
 * GamebaseErrorCode.NOT_SUPPORTED_UNITY_EDITOR
 
-Platforms supporting each API are classified by the icons as below.
+APIごとの対応プラットフォームは、次のようなアイコンで区別します。
 
 **API**
 
@@ -42,55 +42,52 @@ Supported Platforms
 
 ## Installation
 
-Setting Tool is provided to install Gamebase SDK with more at ease.
+Gamebase SDKを手軽にインストールすることができるように、Setting Toolを提供しています。
 
-* [Download Gamebase Client SDK](/en/Download/#game-gamebase)
-
+* [Download Gamebase Unity SDK](/Download/#game-gamebase)
 
 ### Specification of Setting Tool
-
-1. Download SDK
-	* Supports the latest download.
-2. Install SDK
-	* Supports installation of downloaded SDK.
-3. Delete SDK
-	* Supports deletion of installed SDK.
-4. Update SDK
-	* Update is not supported.
-	* Instead, installation after deletion is supported.
-
+1. SDKダウンロード
+    * 最新バージョンのダウンロードに対応しています。
+2. SDKインストール
+    * ダウンロードされたSDKのインストールに対応しています。
+3. SDK削除
+    * インストールされたSDKの削除に対応しています。
+4. SDKアップデート
+    * アップデート機能には対応しておりません。
+    * 削除後のインストールがアップデート機能の代わりに使われます。
 
 ### Using the Setting Tool
 
-#### Install SDK
-1. Open a Unity project.
-2. Import GamebaseUnitySettingTool_{version}.unitypackage.
-3. Execute Menu > Gamebase > SDKSettings > Setting Tool.
-4. Click [Browse] and select a location to download SDK.
-    * Default path: project/Gamebase/
-    * The location you choose must be accessible from Setting Tool.
-5. Click [Download SDK] to download SDK.
-6. Select a platform.
-    * Unity Adapter
+#### SDKインストール
+1. Unityプロジェクトを開きます。
+2. GamebaseUnitySettingTool_{version}.unitypackageをインポートします。
+3. Menu > Tools > Gamebase > SDKSettings > Setting Toolを起動します。
+	* v1.0.1 이하 : Menu > Gamebase > SDKSettings > Setting Tool
+4. [Broswe]ボタンをクリックしてSDKをダウンロードする位置を選択します。
+    * 基本ルート:projcet/Gamebase/
+    * Setting Toolからアクセス可能な位置を選択してください。
+5. [Download SDK]ボタンをクリックしてSDKをダウンロードします。
+6. 利用するプラットフォームを選択します。
     * Android
     * iOS
-7. Select a module for each platform.
-    * For Authentication, integration with an ID Provider (IdP), like Google, is supported.
-    * For Push, FCM (Firebase) and Tencent Push services are supported.
-    * For Purchase, In-App Purchase (IAP) of TOAST is provided.
-8. Click [Settings] and install SDK.
+7. プラットフォームごとに使用するモジュールを選択します。
+    * Authenticationは、Googleと同じID Provider(以下、IDP)との連携に対応しています。
+    * Pushは、FCM(Firebase)、Tencent Push、APNS Pushサービスに対応しています。
+    * Pruchaseは、TOASTの決済サービスであるIAP(In-App Purchase)を使用して決済に対応しています。
+8. [Settings]ボタンをクリックしてSDKをインストールします。
 
-#### Delete SDK
-
-1. Execute Menu > Gamebase > SDKSettings > Setting Tool.
-2. Click [Remove] to delete installed SDKs.
+#### SDK削除
+1. Menu > Tools > Gamebase > SDKSettings > Setting Toolを起動します。
+	* v1.0.1 이하 : Menu > Gamebase > SDKSettings > Setting Tool
+2. [Remove]ボタンをクリックしてインストールされたSDKを削除します。
 
 <br/>
-> [Note]
+> [参考]
 > 
-> If an unexpected error occurs at Setting Tool, close the window and try again. <br/>
-> In case of Unity Facebook Authentication, need to download Facebook Unity SDK. [Go to Download](https://developers.facebook.com/docs/unity/)<br/>
-> To check the version of Facebook Unity SDK supported by Unity Facebook Authentication, refer to the README file which is also provided. <br/>
+> Setting Toolで不測のエラーが発生する場合、ウィンドウを閉じてからもう一度起動してください。<br/>
+> Unity Facebook Authenticationを使用する場合、Facebook Unity SDKは、別途ダウンロードする必要があります。[Go to Download](https://developers.facebook.com/docs/unity/)<br/>
+> Unity Facebook Authenticationで対応しているFacebook Unity SDKバージョンについては、一緒に提供されるREADMEファイルをご参考ください。<br/>
 
 ### Video of Setting Tool Usage
 
@@ -105,14 +102,14 @@ Setting Tool is provided to install Gamebase SDK with more at ease.
 
 ### Android Lifecycle
 
-To manage lifecycle, set "com.toast.gamebase.activity.GamebaseMainActivity" as the MainActivity.
-"com.toast.gamebase.activity.GamebaseMainActivity" has been inherited from "com.unity3d.player.UnityPlayerNativeActivity".
+Lifecycle管理のために"com.toast.gamebase.activity.GamebaseMainActivity"をMainActivityにする必要があります。
+"com.toast.gamebase.activity.GamebaseMainActivity"は、"com.unity3d.player.UnityPlayerActivity"を受け継いで設計されています。
 
-> <font color="red">[Caution]</font>
+> <font color="red">[注意]</font>
 >
-> AndroidPlugin should be developed in inheritance of GamebaseMainActivity. <br/>
-> GamebaseMainActivity is included to GamebaseAndroidPlugin.jar. <br/>
-> The launchMode should be a singleTask (Unity&'s default activity will also be fixed as singleTask). Otherwise, crash may occur when an app starts.
+> AndroidPluginを開発する際にもGamebaseMainActivityを受け継いで制作しなければなりません。<br/>
+> GamebaseMainActivityは、GamebaseAndroidPlugin.jarに含まれています。 <br/>
+> launchModeは、singleTaskにする必要があります。(Unityの基本ActivityもsingleTaskで固定されます。) そうでない場合、アプリを初めて始める際にクラッシュが発生することがあります。
 
 ```xml
 <manifest>
@@ -136,33 +133,30 @@ To manage lifecycle, set "com.toast.gamebase.activity.GamebaseMainActivity" as t
 
 ### Android Gradle Build Settting
 
-> [Note]
+> [参考]
 >
-> Gradle build is not required, but can be selected. <br/>
-> {@수정}해당 내용은 gradle 빌드의 예시입니다.<br/>
-> The guide is not about exporting to Android project.<br/>
+> Gradle buildは、必須ではなく選択です。<br/>
+> 該当する内容は、Gradleビルドの例です。<br/>
+> 該当する内容は、Android projectへエクスポートする(export)方法ではありません。<br/>
 > [Unity manual](https://docs.unity3d.com/Manual/android-gradle-overview.html)
 
 #### 1. Build Settings
-
-Select Gradle (new) for a Build System.
-
+Build SystemにGradle(new)を選択します。
 ![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-003_1.3.0.png)
 
-#### 2. mainTemplate.gradle Setting
+#### 2. mainTemplate.gradleファイルの設定
+UnityインストールフォルダにあるmainTemplate.gradleのファイルをAssets/Plugins/Android/フォルダへコピーした後、開発環境に合わせて設定します。
 
-Copy the mainTemplate.gradle file in the Unity installation folder to the Assets/Plugins/Android/ folder and set in accordance with the development environment.
-
-> [Note]
+> [参考]
 >
-> Set **compileSdkVersion, buildToolsVersion, targetSdkVersion** to fit for environment. <br/>
-> Set a package name for **applicationId**.<br/>
-> Add library files to the list of **dependencies**. <br/>
-> Set true for **multiDexEnabled**.<br/>
-> Set a keystore path for **storeFile**. <br/>
-> Set a keystore password for **storePassword**. <br/>
-> Set a keystore alias for **keyAlias**. <br/>
-> Set a keystore alias password for **keyPassword**. <br/>
+> **compileSdkVersion、buildToolsVersion、targetSdkVersion**は、環境に合わせて設定してください。<br/>
+> **applicationId**は、package nameを設定してください。<br/>
+> **dependencies**リストには、使用するlibraryファイルを追加してください。<br/>
+> **multiDexEnabled**をtrueに設定します。<br/>
+> **storeFile**は、keystore pathを設定してください。<br/>
+> **storePassword**は、keystore passwordを設定してください。<br/>
+> **keyAlias**は、keystore aliasを設定してください。<br/>
+> **keyPassword**は、keystore alias passwordを設定してください。<br/>
 
 ```groovy
 // GENERATED BY UNITY. REMOVE THIS COMMENT TO PREVENT OVERWRITING WHEN EXPORTING AGAIN
@@ -238,13 +232,14 @@ android {
 
 ### iOS Settings
 
-1. Execute iOS build in a Unity project.
-2. Add settings to a new XCode project.
+1. UnityプロジェクトでiOSのビルドを進めます。
+2. 作成されたXCodeプロジェクトに設定を追加します。
 
-For setting of iOS SDK, refer to the guide as below.
+iOS SDKに対する設定は、次のガイドをご参考ください。
 
-* [Link to iOS SDK Setting](./ios-started)
+* [iOS SDK設定リンク](./ios-started)
 
 ## API Reference
 
-API Reference is included in GamebaseUnitySDK.
+API Referenceは、GamebaseUnitySDKの中に含まれています。
+

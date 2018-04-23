@@ -1,154 +1,154 @@
-## Game &gt; Gamebase &gt; Operator Guide &gt; Ban
+## Game > Gamebase > Console ご利用ガイド > 利用停止
 
-Gamebase bans those game users who use apps inappropriately or abusively.<br/>
-When a banned user tries to log in again, or session is restored, a pop-up will be displayed to restrict game use.<br/>
+アプリを不当に使用したり、アビュージング行為をするゲームユーザーに対してアプリの利用を制限することができる利用停止機能を提供します。
+利用停止状態となったゲームユーザーがもう一度ログインしたりセッションを復旧する場合に利用停止に関するポップアップが表示され、ゲームの利用が制限されます。
 
-Can register banning either manually in the Gamebase Console or automatically with TOAST Cloud AppGuard by using registered patterns.
+利用停止の登録は、Gamebase Consoleから手動で登録することができ、TOAST AppGuardを使用する場合は、パターン登録を利用して自動で登録することができます。
 
-Refer to [AppGuard](./ban/#appguard)on how to integrate AppGuard.
+AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考ください。
 
 
 ## Ban
 
-Retrieve the list of game users who are banned/released from banning, as search conditions allow.<br/>
+利用停止履歴を照会したり、利用停止の登録、利用停止状態のゲームユーザーに対する利用停止の解除が可能です。
 
 ### Search Banned User
 
-Retrieve the list of game users who are banned/released from banning, as search conditions allow.
+検索条件に合った利用停止状態/利用停止状態が解除されたゲームユーザーのリストを照会します。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban1_1.1.png)
 
-**Search Conditions**
+**検索条件**
 
-- **Status**: (Required) Select a status of banning (ban/release ban). Must choose only one, not both.
-- **Registration Date**: (Required) Select the range of registration date of banning (from-to).
-- **User ID**: Gamebase user IDs of those who are banned/released from ban.
-- **Template**: Select and retrieve a particular template which is applied to register banning.
-- **Registration System**: Select and retrieve a system which registers banning. Can make multiple choices.
-  - **Console**: Register via Gamebase Console.
-  - **AppGuard**: Automatically register with AppGuard integration.
-  - **External Server**: Register at an app operating server or other external servers.
-  - **ETC**: Register other banning cases, except the above (e.g. direct API calls).
+- **状態**：(必須)検索したい利用停止状態を選択(利用停止/利用停止解除)。二つを同時に選択することはできず、 一つだけ必須項目として選択する必要があります。
+- **登録日**：(必須)利用停止登録日の区間を選択(from-to)
+- **ユーザーID**：利用停止状態/利用停止状態が解除されたGamebaseのユーザーID
+- **テンプレート**：利用停止の登録に使用した特定のテンプレートを選択して照会
+- **登録システム**：利用停止を登録したシステムを選択して照会。複数選択可能
+  - **コンソール**：Gamebase Consoleを通して登録
+  - **アプリガード**：AppGuard連携で自動登録
+  - **外部サーバー**：アプリを運営するサーバーまたはその他の外部サーバーから登録
+  - **その他**：上の場合を除くその他の利用停止登録(APIを直接呼び出すものなど)
 
-> [Note] <br/>
-> By using a multi-language template, messages can be easily displayed to users in a language of choice, while the template can be reused.<br/>
-> Requires more than one registered template to register banning.<br/>
-> Refer to [Template](./ban/#template) to register a template.<br/>
+> [参考] 
+> ユーザーに表示するメッセージを多国語で入力して簡単に再使用することができるようにテンプレートを提供します。
+> 登録されたテンプレートは一つ以上でないと、利用停止の登録をすることができません。
+> テンプレートを登録する方法は、[Template](./oper-ban/#template)をご参考ください。
 
-**Search Results**
+**検索結果**
 
-- **User ID**: User ID of a banned game user.
-- **Period**: Banning period. Show as &#39;&#39;Permanent Banning&#39; for a permanently banned user.
-- **Template**: Template applied to register banning.
-- **Reason**: Reasons that an operator enter when registering Serves only as an operation history, without displayed to users.
-- **Registered User/Registration Date**: Account of an operator who registered banning/date of ban registration.
-- **Release Reason**: Reasons an operator registered to release banning. Serves only as an operation history, without displayed to users.
-- **Released User/Release Date**: Account of an operator who released banning/date of release.
-- **Release**: A banned user is marked with the **Release** button on the search list to allow release. Click the button, and a pop-up will show to enter release reason; fill up the release reason, click **Save** , and banning is released.
-- **Status**
-  - <font color="white" style="background-color:#FB8F37">Ban</font>: Game user cannot access the app at the moment.
-  - <font color="white" style="background-color:#A1A1A1">Ban (expired)</font>: Game user&#39;s ban has expired but user has not logged in. When the user logs in, the status will change to release (expired).
-  - <font color="white" style="background-color:#88C637">Release</font>: Game user&#39;s ban has been released by operator.
-  - <font color="white" style="background-color:#2AB1A6">Release (expired)</font>: Game user&#39;s ban has been released due to expiration.
+- **ユーザーID**：利用停止中のゲームユーザーID
+- **期間**：利用停止期間。永久停止の場合、「永久停止」と表示される
+- **テンプレート**：利用停止の登録に使用したテンプレート
+- **理由**：利用停止を登録する際に運営者が入力した理由。該当する理由はユーザーに表示されず、運営履歴でのみ確認することができます。
+- **登録者/登録日**：利用停止を登録した運営者のアカウント/利用停止登録日
+- **解除理由**：利用停止を解除する際に運営者が登録した理由。該当する理由はユーザーに表示されず、運営履歴でのみ確認することができます。
+- **解除登録者/解除登録日**：利用停止を解除した運営者のアカウント/利用停止解除日
+- **解除**：利用停止状態のユーザーには、検索リストから利用停止を解除することができるよう、**利用解除**ボタンが表示されます。ボタンをクリックすると利用停止を解除する理由を入力するポップアップが表示され、利用停止を解除する理由を入力して**保存**ボタンをクリックすると、利用停止状態を解除することができます。
+- **状態**
+  - <font color="white" style="background-color:#FB8F37">利用停止</font>：ゲームユーザーが現在、アプリに接続できない状態
+  - <font color="white" style="background-color:#A1A1A1">利用停止(期限切れ)</font>：ゲームユーザーの利用停止期間が終了したものの現在はログインをしていない状態。ゲームユーザーが再接続する際に状態が解除(期限切れ)に変更される
+  - <font color="white" style="background-color:#88C637">解除</font>：運営者によってゲームユーザーの利用停止が解除された状態
+  - <font color="white" style="background-color:#2AB1A6">解除(期限切れ)</font>：利用停止期間終了後、ゲームユーザーがゲームに再接続して利用停止が解除された状態
 
 
-> [Note]<br/>
-> Click **Download Files** and save search results in CSV files.<br/>
+> [参考]
+> **ファイルダウンロード**ボタンをクリックすると、検索結果をCSVファイルで保存することができます。
 
 
 
 ### Register Ban
 
-Can register banning by clicking **Register** on the Retrieve Ban page.
+利用停止照会画面から**登録**ボタンをクリックすると、利用停止の登録ができます。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban2_1.1.png)
-#### (1) User ID
-Enter a Gamebase user ID to register banning. Multiple users can be registered at once, following the two methods as below.
+#### (1) ユーザーID
+利用停止を登録するGamebaseのユーザーIDを入力します。一度に複数のユーザーを登録することができ、登録方法は次の二つです。
 
-- **User Input**: Directly enter a user ID to register and press **Enter** or click **Add.** As validity is checked for user IDs, invalid user IDs cannot be entered.
-- **Batch Registration**: Can upload CSV files only, and an example file can be downloaded from the Console page. Up to 10,000 persons can be registered at once by batch. <br/>
+- **ユーザー入力**：登録するユーザーIDを入力ウィンドウに直接入力した後、**Enter**キーを押したり**追加**ボタンをクリックします。ユーザーIDの有効性をチェックするため、有効でないユーザーIDは入力が不可能です。
+- **一括登録**：CSVファイルのみアップロードでき、サンプルファイルはConsole画面からダウンロードすることができます。一括登録は1回につき最大10,000人まで可能です。
   ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban4_1.1.png)
 
-> [Note]</br>
-> If batch registration fails during progress, a pop-up will be displayed. Click **Download** from the pop-up to download the list of users who are failed to be registered in a file. <br />
+> [参考]</br>
+> 一括登録を進行する途中に失敗すると、ポップアップが表示されます。該当するポップアップから**Download**ボタンをクリックすると、登録に失敗したユーザーリストをファイルでダウンロードすることができます。
 > ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban5_1.0.png)
 
-#### (2) Period
-Set a banning period for a game user. Banning will be applied from the moment of registration.<br />
+#### (2) 期間
+ゲームユーザーの利用停止期間を設定します。利用停止が登録された時点からゲームユーザーはログインができなくなります。
 
-- **Permanent**: Select to ban permanently.
-- **Specify Period**: Enter how long to ban by day and hour. Can expect banned period with **anticipated expiration time**.<br />
+- **永久利用停止**：永久利用停止にしたいときに選択します。
+- **期間指定**：利用停止にする期間を入力します。日(day)と時間(hour) **予想期限**情報からユーザーの利用停止期間を先に確認することができます。
 
-#### (3) Reason
-Enter reasons why a user is to be banned.<br />
-Serves only as an operation history, without exposed to users.<br />
+#### (3) 理由
+ユーザーが利用停止になった理由を入力します。
+該当する理由はユーザーに表示されず、運営履歴でのみ確認することができます。
 
-#### (4) Message
-Enter messages to be displayed to banned user. <br/>
-A multi-language template to display messages is supported for users and allow easy re-use. Select a pre-registered template to register.<br />
+#### (4) 表示するメッセージ
+ユーザーに表示する利用停止メッセージを入力します。
+ユーザーに表示するメッセージを多国語で入力して簡単に再使用できるようにするテンプレートを提供します。予め登録したテンプレートを選択して登録します。
 
-> <font color="red">[Note]</font><br/>
-> Can register banning, only when a template of displayed message is registered. <br/>
-> If a template has not been registered, first go to **Template** of **BAN** to register a template.<br/>
-> Refer to [Template](./ban/#template)on how to register a template.<br/>
+> <font color="red">[重要]</font>
+> 表示されたメッセージのテンプレートが登録された場合にのみ利用停止を登録することができます。
+> テンプレートを登録していない場合、**BAN**メニューの**テンプレート**タブからまずテンプレートを登録してください。
+> テンプレートを登録する方法は、[Template](./oper-ban/#template)をご参考ください。
 
 
 ### Release Ban
 
-Can release banning by clicking **Release** on the Retrieve Ban page.
+利用停止照会画面から**解除**ボタンをクリックすると、利用停止を解除することができます。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban3_1.2.png)
 
-#### Release Reason
-Enter reasons why a user is to be released from banning.<br />
-Serves only as an operation history, without exposed to users.<br />
+#### 解除理由
+ユーザーの利用停止を解除する理由を入力します。
+該当する理由はユーザーに表示されず、運営履歴でのみ確認することができます。
 
-#### User ID
-Enter a Gamebase user ID to release banning. Multiple users can be registered at once, following the two methods as below.
+#### ユーザーID
+利用停止を解除するGamebaseのユーザーIDを入力します。一度に複数のユーザーを登録することができ、 登録方法は次の二つです。
 
-- **User Input**: Directly enter a user ID to register and press **Enter** or click **Add.** As validity is checked for user IDs, invalid user IDs cannot be entered.
-- **Batch Registration**: Can upload CSV files only, and an example file can be downloaded from the Console page. Up to 10,000 persons can be registered by batch at once. <br/>
+- **ユーザー入力**： 登録するユーザーIDを入力ウィンドウに直接入力した後、**Enter**キーを押したり**追加**ボタンをクリックします。ユーザーIDの有効性をチェックするため、有効でないユーザーIDは入力が不可能です。
+- **一括登録**： CSVファイルのみアップロードでき、サンプルファイルはConsole画面からダウンロードすることができます。一括登録は1回につき最大10,000人まで可能です。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban6_1.0.png)
 
 
-> [Note]<br/>
-> If batch registration fails during progress, a pop-up will be displayed. Click **Download** from the pop-up to download the list of users who are failed to be registered in a file. <br />
+> [参考]
+> 一括登録を進行する途中に失敗すると、ポップアップが表示されます。該当するポップアップから**Download**ボタンをクリックすると、登録に失敗したユーザーリストをファイルでダウンロードすることができます。
 > ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban7_1.0.png)
 
 ## Template
-Provides a multi-language template to display messages for users and allows easy re-use. <br />
-Select a pre-registered template. Can register by language, and a message of banning will be displayed for banned users based on the language set on each of their devices.
+利用停止ユーザーに表示するメッセージを多国語で入力して簡単に再使用できるようにするテンプレートを提供します。予め登録したテンプレートを選択して登録します。
+言語ごとに登録でき、利用停止ユーザーにはデバイスで設定された言語を基に利用停止メッセージが表示されます。
 
 ### Search
 
-Search the list of registered templates.<br/>
-Can register a new template, or modify registered templates, but cannot delete them.<br/>
+登録されたテンプレートリストを検索することができます。
+新しいテンプレートを登録したり、登録されたテンプレートを修正することができ、登録されたテンプレートを削除することはできません。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Template1_1.1.png)
 
-- The Message tab will show messages in &#39;Default Language&#39; registered in Template.
+-テンプレートリスト画面の表示メッセージ項目には、テンプレート登録時に「基本言語」で入力した表示メッセージが表示されます。
 
 ### Register Template
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Template2_1.1.png)
 
-#### (1) Name
-Enter a name of template to show on the list to register banning. <br/>
+#### (1) 名前
+利用停止を登録する際にリストに表示するテンプレートの名前を入力します。 
 
-#### (2) Message
-Enter messages for banned users. <br />
-Can be registered in many languages, and for other language users, &#39;Default Language&#39; will show. To add a language, click **+** on the right, and if there&#39;s any other languages you want on the list, contact [Customer Center](https://toast.com/support/inquiry).<br />
+#### (2) 表示メッセージ 
+利用停止中のユーザーに表示するメッセージを入力します。
+複数の言語で登録することができ、入力した言語以外の言語を使用するユーザーには「基本言語」に選択された言語が表示されます。右の**+**ボタンをクリックすると言語を追加でき、利用したい言語がない場合、[カスタマーセンター](https://toast.com/support/inquiry)までご連絡ください。新しい言語を追加することができます。
 
 ## AppGuard
 
-> <font color="red">[Note]</font><br/>
-> This service is available only for TOAST Cloud AppGuard users. <br/>
+> <font color="red">[重要]</font>
+> TOAST AppGuardサービスを使用する場合にのみ利用することができます。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_AppGuard1_1.0.png)
 
-- **Integration Status**: To be enabled only when users who are detected or sanctioned by AppGuard need to be automatically registered as Gamebase banned users.
-- To **Ban Automatically** by detection/sanction type, select **ON** , enter &#39;User Messages&#39; and **Range** , and click **Save**.
+- **連携有無**：AppGuardで検知されたり、利用が制限されたユーザーを自動でGamebase利用停止ユーザーに登録する場合に有効にします。
+- **自動利用停止**にしたい検知/利用制限の種類の「自動登録」を**ON**にし、「ユーザーに表示するメッセージ」と**利用停止期間**を入力して**保存**ボタンをクリックすると、適用されます。
 
-> [Note] <br/>
-> In case banning is automatically registered due to AppGuard integration, &#39;AppGuard&#39; will be registered at a result page.
+> [参考] 
+> AppGuard連携で利用停止が自動登録された場合、登録システムには「アプリガード」で登録されます。
 

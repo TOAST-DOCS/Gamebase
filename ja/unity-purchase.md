@@ -1,42 +1,43 @@
-## Game > Gamebase > Unity Developer's Guide > Purchase
+## Game > Gamebase > Unity SDK ご利用ガイド > 決済
 
-This page describes how to set In-App Purchase (IAP).
-Gamebase provides an integrated purchase API to easily link IAP of many stores in a game.
+ここではUnityでアプリ内決済機能を使用するために必要な設定方法についてご案内いたします。
+Gamebaseは、一つの統合された決済APIを提供することで、ゲームで簡単に各ストアのアプリ内決済を連携することができるようサポートします。
 
 ### Settings
 
-For Android and iOS IAP setting, refer to the below documents.<br/>
+AndroidやiOSでアプリ内決済機能を設定する方法は、次のドキュメントをご参考ください。<br/>
 
 * [Android Purchase Settings](aos-purchase#settings)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
 ###  Purchase Flow
 
-Item purchases should be implemented in the following order.<br/>
+アイテムの購入は次のような手順で設計してください。<br/>
 
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
 
 
-1. Call **RequestPurchase** of Gamebase SDK to purchase in a game client.
-2. After a successful purchase, call **RequestItemListOfNotConsumed** to check list of non-consumed purchases.
-3. If the value is on the returned list, the game client sends a request to the game server to consume purchased items.
-4. The game server request for Consume API to the Gamebase server via API. [API Guide](/en/Game/Gamebase/en/api-guide/#wrapping-api)
-5. If the IAP server has successfully called Consume API, the game server provides the items to the game client.
+1. ゲームクライアントでは、Gamebase SDKの**RequestPurchase**を呼び出して決済を試みます。
+2. 決済が成功した場合、**RequestItemListOfNotConsumed**を呼び出して未消費決済の内訳を確認します。
+3. 返された未消費決済内訳リストに値がある場合、ゲームクライアントがゲームサーバーに決済アイテムに対するconsume(消費)をリクエストします。
+4. ゲームサーバーは、GamebaseのサーバーにAPI経由でconsume(消費)APIをリクエストします。[APIガイド](/Game/Gamebase/ja/api-guide/#wrapping-api)
+5. IAPサーバーからconsume(消費)APIの呼び出しに成功すると、ゲームサーバーがゲームクライアントにアイテムを配布します。
 
-A purchase at store may be successful but cannot be closed normally due to error. It is recommended to call each of the two APIs after login is completed, to initialize a reprocessing logic.<br/>
+ストア決済には成功したものの、エラーが発生して正常に終了することができない場合があります。ログイン完了後に次の二つのAPIをそれぞれ呼び出し、再処理ロジックを設計してください。<br/>
 
-1. Request list of items that are not consumed
-	* When a login is successful, call **RequestItemListOfNotConsumed** to check list of non-consumed purchases.
-	* If the value is on the returned list, the game client sends a request to the game server to consume, so that items can be provided.
-2. Request to retry transaction
-	* When a login is successful, call **RequestRetryTransaction** to try to automatically reprocess the unprocessed.
-	* If there is a value on the returned successList, the game client sends a request to the game server to consume, so that items can be provided.
-	* If there is a value on the returned failList, send the value to the game server or Log &amp; Crash to collect logs. Also send inquiry to  [**Customer Center**](https://toast.com/support/inquiry) for the cause of reprocessing failure.
+1. 未処理アイテムの送信リクエスト
+    * ログインに成功した後、**RequestItemListOfNotConsumed**を呼び出して未消費決済の内訳を確認します。
+    * 返された未消費決済内訳のリストに値が存在する場合、ゲームクライアントがゲームサーバーにconsume(消費)をリクエストしてアイテムを配布します。
+2. 決済エラー再処理リクエスト
+    * ログインに成功した後、**RequestRetryTransaction**を呼び出し、未処理内訳に対し自動で再処理を試みます。
+    * 返されたsuccessListに値が存在する場合、ゲームクライアントがゲームサーバーにconsume(消費)をリクエストしてアイテムを配布します。
+    * 返されたfailListに値が存在する場合、該当する値をゲームサーバーやLog & Crashなどを通し送信してデータを確保し、[カスタマーセンター](https://toast.com/support/inquiry)に再処理失敗の原因をお問い合わせください。
 
 ### Purchase Item
 
-Call following API of an item to purchase by using itemSeq to send a purchase request. 
-When a game user cancels purchasing, the **PURCHASE_USER_CANCELED** error will be returned.
+購入したいアイテムのitemSeqを利用して次のAPIを呼び出し、購入をリクエストします。
+ゲームユーザーが購入をキャンセルする場合、**PURCHASE_USER_CANCELED**エラーが返されます。
+
 
 **API**
 
@@ -75,8 +76,8 @@ public void RequestPurchase(long itemSeq)
 
 ### Get a List of Purchasable Items
 
-To retrieve the list of items, call the following API.
-Information of each item is included in the array of callback return.
+アイテムリストを照会したい場合、次のAPIを呼び出します。
+コールバックで返されるリストの中にはそれぞれ各アイテムの情報が含まれています。
 
 **API**
 
@@ -110,7 +111,8 @@ public void RequestItemListPurchasable()
 
 ### Get a List of Non-Consumed Items
 
-Request for a list of non-consumed items, which have not been normally consumed (delivered, or provided) after purchase. In case of non-purchased items, ask the game server (item server) to proceed with item delivery (supply).
+アイテムを購入したものの、正常にアイテムが消費(送信、配布)されていない未消費決済の内訳をリクエストします。
+未決済の内訳がある場合は、ゲームサーバー(アイテムサーバー)にリクエストを出してアイテムを送信(配布)するように処理する必要があります。
 
 **API**
 
@@ -145,8 +147,8 @@ public void RequestItemListOfNotConsumed()
 
 ### Reprocess Failed Purchase Transaction
 
-In case a purchase is not normally completed after a successful purchase at a store due to failure of authentication of TOAST IAP server, try to reprocess by using API.
-Based on the latest success of purchase, reprocessing is required by calling an API for item delivery (supply).
+ストアでは決済が正常に行われたものの、TOAST IAPサーバーの検証失敗などにより決済が正常に行われなかった場合、APIを利用して再処理を試みます。
+最後に決済が成功した内訳を基に、アイテム送信(配布)などのAPIを呼び出して処理する必要があります。
 
 **API**
 
@@ -183,18 +185,48 @@ public void RequestRetryTransaction()
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| PURCHASE_NOT_INITIALIZED | 4001 | The purchase module is not initialized. Check if the gamebase-adapter-purchase-IAP module has been added to project. |
-| PURCHASE_USER_CANCELED | 4002 | Purchase is cancelled. |
-| PURCHASE_NOT_FINISHED\_PREVIOUS\_PURCHASING | 4003 | API has been called when a purchase logic is not completed. |
-| PURCHASE_NOT_ENOUGH_CASH | 4004 | Cannot purchase due to shortage of cash of the store. |
-| PURCHASE_NOT_SUPPORTED_MARKET | 4010 | The store is not supported. You can choose either GG (Google), TS (ONE Store), or TEST. |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR | 4201 | Error in IAP library. Check DetailCode. |
-| PURCHASE_UNKNOWN_ERROR | 4999 | Unknown error in purchase. Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we'll respond ASAP. |
+| PURCHASE_NOT_INITIALIZED                 | 4001       | Purchaseモジュールが初期化されていません。<br>gamebase-adapter-purchase-IAPモジュールをプロジェクトに追加したか確認してください。|
+| PURCHASE_USER_CANCELED                   | 4002       | ゲームユーザーがアイテムの購入をキャンセルしました。                 |
+| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003 | 購入ロジックが完了していない状態でAPIが呼び出されました。|
+| PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 該当するストアのcashが足りないため決済することができません。            |
+| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | このストアには対応しておりません。<br>選択可能なストアは、GG(Google)、TS(ONE store)、TESTです。|
+| PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAPライブラリーエラーです。<br>DetailCodeを確認してください。  |
+| PURCHASE_UNKNOWN_ERROR                   | 4999       | 定義されていない購入エラーです。<br>ログ全体を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。|
 
-- Refer to the following document for the entire error code.
-  - [Entire Error Codes](./error-code/#client-sdk)
+* 全体のエラーコードは、次のドキュメントをご参考ください。
+    * [エラーコード](./error-code/#client-sdk)
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
-* Occurs at an IAP module.
-* For IAP error codes, refer to the document below.
-    * [Mobile Service > IAP > Error Code > Client API Error Typ](/en/Mobile%20Service/IAP/en/error-code/#client-api#client-api-errors)
+
+* このエラーは、IAPモジュールで発生したエラーです。
+* 오류 코드는 다음과 같이 확인하실 수 있습니다.
+
+```cs
+GamebaseError gamebaseError = error; // GamebaseError object via callback
+
+if (Gamebase.IsSuccess(gamebaseError))
+{
+    // succeeded
+}
+else
+{
+    Debug.Log(string.Format("code:{0}, message:{1}", gamebaseError.code, gamebaseError.message));
+
+    Error moduleError = gamebaseError.error; // GamebaseError.error object from external module
+    if (null != moduleError)
+    {
+        int moduleErrorCode = moduleError.code;
+        string moduleErrorMessage = moduleError.message;
+
+        Debug.Log(string.Format("moduleErrorCode:{0}, moduleErrorMessage:{1}", moduleErrorCode, moduleErrorMessage));
+    }
+}
+```
+
+* IAPのエラーコードは、次のドキュメントをご参考ください。
+    * [Mobile Service > IAP > エラーコード > Client APIエラータイプ](/Mobile%20Service/IAP/ja/error-code/#client-api)
+
+
+
+
+
