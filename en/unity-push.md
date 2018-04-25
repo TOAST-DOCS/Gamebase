@@ -4,7 +4,8 @@ This document describes how to set push notifications for each platform.
 
 ### Settings
 
-For Android or iOS users, refer to the following documents:
+
+For Android or iOS users, refer to the following documents:<br/>
 
 * [Android Push Settings](aos-push#settings)<br/>
 * [iOS Push Settings](ios-push#settings)
@@ -14,6 +15,7 @@ For Android or iOS users, refer to the following documents:
 
 Register a user to TOAST Push by calling API as below.
 With user&#39;s agreement to enablePush, enableAdPush, and enableAdNightPush, call following API to complete registration.
+
 
 **API**
 
@@ -95,17 +97,17 @@ public void QueryPush()
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | Error in TOAST Push library.Please check DetailCode. |
-| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | Previous Push API call is not completed.Please call again after the previous push API callback is executed.  |
-| PUSH_UNKNOWN_ERROR             | 5999       | Undefined push error. Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry), and we'll respond ASAP. |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | Error in TOAST Push library.<br/>Please check DetailCode. |
+| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | Previous Push API call is not completed.<br/>Please call again after the previous push API callback is executed.  |
+| PUSH_UNKNOWN_ERROR             | 5999       | Undefined push error.<br/>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry), and we'll respond ASAP. |
 
 * Refer to the following document for the entire error codes.
-	* [Entire Error Codes](./error-code/#client-sdk)
+    * [Entire Error Codes](./error-code/#client-sdk)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
 * Occurs in the TOAST Push library.
 * Refer to the following document for TOAST Push error codes.
-	* [Notification > Push > SDK v1.4 Guide > Error Handling](/Notification/Push/en/Client%20SDK%20Guide/#_5)
+    * [Notification > Push > SDK v1.4 Guide > Error Handling](/Notification/Push/en/Client%20SDK%20Guide/#_5)
 
 

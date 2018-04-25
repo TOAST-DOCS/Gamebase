@@ -7,15 +7,13 @@
 Shows a WebView.<br/>
 
 ##### Required Parameters
-
 * URL: The url delivered as a parameter should be valid.
 
 ##### Optional Parameters
-
-- configuration: Changes WebView layout by using GamebaseWebViewConfiguration.
-- closeCallback: Notifies users when a WebView is closed.
-- schemeList: Specifies the list of customized schemes a user wants.
-- schemeEvent: Notifies url including customized scheme specified by the schemeList with a callback.
+* configuration: Changes WebView layout by using GamebaseWebViewConfiguration.
+* closeCallback: Notifies users when a WebView is closed.
+* schemeList: Specifies the list of customized schemes a user wants.
+* schemeEvent: Notifies url including customized scheme specified by the schemeList with a callback.
 
 **API**
 
@@ -63,7 +61,7 @@ public void ShowWebView(GamebaseCallback.ErrorDelegate closeCallback, List<strin
 | buttonVisible            | true or false                            | Activate/Deactivate Go Back Button           |
 | barHeight                | height                                   | Height of Navigation Bar                  |
 | backButtonImageResource  | ID of resource                           | Image of Go Back Button                |
-| closeButtonImageResource | ID of resource                           | Image of Close Button |
+| closeButtonImageResource | ID of resource | Image of Close Button |
 | url | "http://" or "https://" or "file://" | Web URL |
 
 #### Predefined Custom Scheme
@@ -130,7 +128,7 @@ public void OpenWebBrowser(string url)
 ## Alert
 
 Displays a system alert API.
-Can register buttons or callback on system alerts.
+Can register buttons or callback on system alerts. 
 
 **API**
 
@@ -207,4 +205,4 @@ public void ShowToast(string message, GamebaseUIToastType type)
 | UI\_UNKNOWN\_ERROR | 6999       | Unknown error (Undefined error). |
 
 * Refer to the following document for the entire error codes.
-	- [Entire Error Codes](./error-code/#client-sdk)
+    * [Entire Error Codes](./error-code/#client-sdk)

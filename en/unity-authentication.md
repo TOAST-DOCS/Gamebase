@@ -8,9 +8,9 @@ To log into providers other than guest, a matching Provider AuthAdapter is requi
 
 ### Login Flow
 
-In many games, login is implemented on a title page. 
+In many games, login is implemented on a title page.
 
-* Allow a game user to decide which IdP to authenticate on a title screen, when an app is implemented for the first time after installed. 
+* Allow a game user to decide which IdP to authenticate on a title screen, when an app is implemented for the first time after installed.
 * After initial login, the IdP selection screen does not show and authentication is made with the latest logged-in IdP.
 
 The logic described in the above can be implemented in the following order.
@@ -33,19 +33,18 @@ The logic described in the above can be implemented in the following order.
 #### 2-2.When Authentication is Failed
 
 * Network error
-	* If the error code is **SOCKET\_ERROR (110)** or **SOCKET\_RESPONSE\_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.LoginForLastLoggedInProvider()** again, or try again in a moment.
+    * If the error code is **SOCKET_ERROR (110)** or **SOCKET_RESPONSE_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.LoginForLastLoggedInProvider()** again, or try again in a moment.
 * Banned game user
-	* If the error code is **AUTH\_BANNED\_MEMBER (3005)**, the authentication has failed due to banned game user.
-  	* Check ban information with **Gamebase.GetBanInfo()** and notify the user with reasons for not being able to play.
-  	* When **GamebaseConfiguration.enablePopup** and **GamebaseConfiguration.enableBanPopup** are set as true during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
-	* Pop-ups on banning are supported by iOS and Android only.
+    * If the error code is **AUTH_BANNED_MEMBER (3005)**, the authentication has failed due to banned game user.
+    * Check ban information with **Gamebase.GetBanInfo()** and notify the user with reasons for not being able to play.
+    * When **GamebaseConfiguration.enablePopup** and **GamebaseConfiguration.enableBanPopup** are set as true during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
 * Other errors
-  	* Authentication with latest login type has failed. Follow **3. Authenticate with Specified IdP**.
+    * Authentication with latest login type has failed. Follow **3. Authenticate with Specified IdP**.
 
 #### 3. Authenticate with Specified IdP
 
 * Try to authenticate by specifying an IdP type.
-  * Types that can be authenticated are declared in the **GamebaseAuthProvider** class.
+    * Types that can be authenticated are declared in the **GamebaseAuthProvider** class.
 * Call **Gamebase.Login(providerName, callback)** API.
 
 #### 3-1. When Authentication is Successful
@@ -56,20 +55,19 @@ The logic described in the above can be implemented in the following order.
 #### 3-2. When Authentication is Failed
 
 * Network error
-	* If the error code is **SOCKET\_ERROR (110)** or **SOCKET\_RESPONSE\_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.LoginForLastLoggedInProvider()** again, or try again in a minute.
+    * If the error code is **SOCKET_ERROR (110)** or **SOCKET_RESPONSE_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.LoginForLastLoggedInProvider()** again, or try again in a minute.
 * Banned game user
-	* If the error code is **AUTH\_BANNED\_MEMBER (3005)**, the authentication has failed due to banned game user.
-	* Check ban information with **Gamebase.GetBanInfo()** and notify the user with reasons for not being able to play.
-  	* When **GamebaseConfiguration.enablePopup** and **GamebaseConfiguration.enableBanPopup** are set as true during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
-  	* Pop-ups on banning are supported by iOS and Android only.
+    * If the error code is **AUTH_BANNED_MEMBER (3005)**, the authentication has failed due to banned game user.
+    * Check ban information with **Gamebase.GetBanInfo()** and notify the user with reasons for not being able to play.
+    * When **GamebaseConfiguration.enablePopup** and **GamebaseConfiguration.enableBanPopup** are set as true during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
 * Other errors
-  	* Notify that an error has occurred, and return to the state (mostly in title or login screen) in which user can select an authentication IdP type.
+    * Notify that an error has occurred, and return to the state (mostly in title or login screen) in which user can select an authentication IdP type.
 
 ### Login with Latest Login IdP
 
 Try login with the most recently logged-in IdP.
 If a token is expired or its authentication fails, return failure.
-Note that a login for the IdP should be implemented.
+Note that a [login for the IdP](#login-with-idp) should be implemented.
 
 **API**
 
@@ -189,7 +187,7 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 > There is information which must be included for login with some IdPs.<br/>
 > For instance, scope must be set to implement a Facebook login.<br/>
 > In order to set such necessary information, static void Login (string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) API is provided.<br/>
-> You can enter those information to additionalInfo in the dictionary type. (When the parameter value is null, the additionalInfo registered in the TOAST Console will be applied. Generally, the parameter value will take precedence over the value registered in the Console. Setting additionalInfo in TOAST Console)
+> You can enter those information to additionalInfo in the dictionary type. (When the parameter value is null, the additionalInfo registered in the TOAST Console will be applied. Generally, the parameter value will take precedence over the value registered in the Console.  [Setting additionalInfo in TOAST Console](#authentication-additional-information-settings))
 
 **Example**
 
@@ -270,8 +268,7 @@ public void Login(Dictionary<string, object> credentialInfo)
 
 #### Facebook
 * Go to **TOAST Console > Gamebase > App > Authentication Information > Additional Information & Callback URL** to set json string-type informationto **Additional Information**.
-  * When trying OAuth authentication, type of information to request to Facebook should be set.
-
+    * When trying OAuth authentication, type of information to request to Facebook should be set.
 
 Example of adding authentication information in Facebook
 
@@ -280,10 +277,8 @@ Example of adding authentication information in Facebook
 ```
 
 #### PAYCO
-
 * Go to **TOAST Console > Gamebase > App > Authentication Information > Additional Information & Callback URL** to set json string-type information **to**  **Additional Information**.
-  * **service_code** and **service_name** should be set as PaycoSDK requires.
-
+    * **service_code** and **service_name** should be set as PaycoSDK requires.
 
 Example of adding authentication information in PAYCO
 
@@ -293,7 +288,6 @@ Example of adding authentication information in PAYCO
 
 #### NAVER
 * Go to **TOAST Console > Gamebase > App > Authentication Information > Additional Information & Callback URL** to set json string-type information **to**  **Additional Information**.
-   * **service_name** and **url_scheme_ios_only** should be set as NaverSDK requires. 
 
 * Set URL Schemes.
 	* **XCode > Target > Info > URL Types**
@@ -306,7 +300,9 @@ Example of Adding Authentication Information to NAVER
 
 
 ## Logout
-Try to log out from logged-in IdP. In many cases, the logout button is located on the game configuration screen. Even if a logout is successful, a game user's data remain. When it is successful, as authentication records with a corresponding IdP are removed, ID and passwords will be required for the next log-in process.<br/><br/>
+Try to log out from logged-in IdP. In many cases, the logout button is located on the game configuration screen.
+Even if a logout is successful, a game user's data remain.
+When it is successful, as authentication records with a corresponding IdP are removed, ID and passwords will be required for the next log-in process.<br/><br/>
 
 Following shows an example logout code with a click of the logout button.
 
@@ -345,7 +341,6 @@ public void Logout()
 
 
 ## Withdraw
-
 Below shows an example of how a game user withdraws while logged-in.
 
 * When a user is successfully withdrawn, the user's data interfaced with a login IdP will be deleted.
@@ -389,6 +384,8 @@ public void Withdraw()
 
 ## Mapping
 
+Mapping refers to connecting or disconnecting an existing login account to/from another IdP account.
+
 In many games, one account may have many integrated (mapped) IdPs.
 By using Gamebase Mapping API, other IdP accounts can be integrated or removed to/from another existing IdP account.<br/>
 
@@ -398,15 +395,14 @@ In short, a login to a mapped IdP account will be made available with a same use
 Note, however, that each IdP can have only one account to map.
 Below shows an example.<br/>
 
-- Gamebase UserID : 123bcabca
-  - Google ID : aa
-  - Facebook ID : bb
-  - AppleGameCenter ID : cc
-  - Payco ID : dd
-
-Gamebase UserID: 456abcabc
-Google ID: ee
-Google ID: ff **-> As the Google ee account is integrated, no additional Google account can be integrated.**
+* Gamebase UserID : 123bcabca
+    * Google ID : aa
+    * Facebook ID : bb
+    * AppleGameCenter ID : cc
+    * Payco ID : dd
+* Gamebase UserID: 456abcabc
+    * Google ID: ee
+    * Google ID: ff **-> As the Google ee account is integrated, no additional Google account can be integrated.**
 
 Mapping API includes Add Mapping API and Remove Mapping API.
 
@@ -415,7 +411,6 @@ Mapping API includes Add Mapping API and Remove Mapping API.
 Implement mapping in the following order.
 
 #### 1. Login
-
 Mapping means to add an IdP account integration to a current account, so login is a prerequisite.
 First, call a login API and log in.
 
@@ -443,12 +438,14 @@ Call **Gamebase.AddMapping()** to try mapping.
     * Mapping hsa failed.
 
 
-
 ### Add Mapping
 
-Try mapping to another IdP while logged-in to a specific IdP. If an IdP account to map has already been integrated to another account, return the **AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER (3302)** error.
+Try mapping to another IdP while logged-in to a specific IdP.
+If an IdP account to map has already been integrated to another account,
+return the **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER (3302)** error.<br/>
 
-Even if a mapping is successful, 'currently logged-in IdP' does not change. For example, after a user logs in a Google account and has successfully mapped with a Facebook account, the user's 'currently logged-in IdP' does not change from Google to Facebook. It still stays with Google account. Mapping simply adds IdP integration.
+Even if a mapping is successful, 'currently logged-in IdP' does not change. For example, after a user logs in a Google account and has successfully mapped with a Facebook account, the user's 'currently logged-in IdP' does not change from Google to Facebook. It still stays with Google account.
+Mapping simply adds IdP integration.
 
 **API**
 
@@ -487,7 +484,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 
 
-| keyname | a use | Value Type |
+| keyname | Usage | Value Type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                          | facebook, payco, iosgamecenter, naver |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                                |
@@ -500,7 +497,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 > <font color="red">[Caution]</font><br/>
 >
-> Development items external SDK requires to support need to be implemented by using external SDK&#39;s API, which Gamebase does not support.
+> Development items external SDK requires to support need to be implemented by using external SDK's API, which Gamebase does not support.
 >
 
 **API**
@@ -537,7 +534,8 @@ public void AddMapping(Dictionary<string, object> credentialInfo)
 
 ### Remove Mapping
 
-Remove mapping with a specific IdP. If IdP mapping is not removed, error will occur.  After mapping is removed, Gamebase processes logout of the IdP.
+Remove mapping with a specific IdP. If IdP mapping is not removed, error will occur.
+After mapping is removed, Gamebase processes logout of the IdP.
 
 **API**
 
@@ -570,7 +568,7 @@ public void RemoveMapping(string providerName)
 
 ### Get Mapping List
 
-Return the list of IdPs mapped to user IDs.
+Return the list of IdPs mapped to user IDs.<br/>
 
 **API**
 
@@ -595,13 +593,11 @@ public void GetAuthMappingList()
 Process authentication with Gamebase, in order to get information required to create an app.
 
 ### Get Authentication Information for Gamebase
-
 Process authentication with Gamebase, in order to get information required to create an app.
 
 #### UserID
 
 Get User ID issued by Gamebase.
-
 **API**
 
 Supported Platforms
@@ -752,7 +748,8 @@ public void GetAuthProviderProfile(string providerName)
 
 ### Get Banned User Infomation
 
-For a banned user registered at Gamebase Console,restricted use of information code (**AUTH\_BANNED\_MEMBER(3005)**) can be displayed as below, when trying login. The ban information can be found by using the API as below.
+For a banned user registered at Gamebase Console,
+restricted use of information code (**AUTH_BANNED_MEMBER(3005)**) can be displayed as below, when trying login. The ban information can be found by using the API as below.
 
 **API**
 
@@ -803,7 +800,7 @@ public void GetBanInfo()
 | AUTH_UNKNOWN_ERROR | 3999 | Unknown error (Undefined error) |
 
 * Refer to the following document for the entire error codes.
-  * [Entire Error Codes](./error-codes#client-sdk)
+    * [Entire Error Codes](./error-codes#client-sdk)
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 

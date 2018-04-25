@@ -1,60 +1,50 @@
-## Game > Gamebase > API 가이드
+## Game > Gamebase > API Guide
 
-Gamebase Server API는 RESTful 형식으로, 다음과 같은 API를 제공합니다.
+Gamebase Server API provides APIs as follows, in the RESTful format.  
 
 ## Advance Notice
 
-서버 API를 사용하기 위해서는 다음과 같은 정보를 알고 있어야 합니다.
-<br>
+Following information is required to use Server API. 
 
 #### Server Address
 
-API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주소는 Gamebase Console 화면에서도 확인 가능합니다.
+To call API, below address is needed, which is also available in the Gamebase Console. 
 > https://api-gamebase.cloud.toast.com
-<br>
 
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
-
+![image alt](./image/Server_Developers_Guide/pre_server_address_v1.2.png)
 
 #### AppId
 
-앱 ID는 TOAST 프로젝트 ID로 앱 메뉴 화면에서 확인할 수 있습니다.
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
-
+App ID, as a project ID of TOAST, can be found on the **Project List** page of the Console.  
+![image alt](./image/Server_Developers_Guide/pre_appId_v1.2.png)
 
 #### SecretKey
 
-비밀 키(secret key)는 API에 대한 접근 제어 방안으로, Gamebase Console에서 확인할 수 있습니다. 비밀 키는 Server API를 호출할 때 HTTP 헤더에 필수로 설정해야 합니다.
-> [참고]<br>
-> 비밀 키가 외부에 노출되어 잘못된 호출이 발생한다면 **생성** 버튼을 클릭하여 새로운 비밀 키를 만든 후, 새 비밀 키를 사용하면 됩니다.
-<br>
+Secret Key, as a control access of API, can be found in the Gambase Console. It must be set at the HTTP header to call Server API. 
+> [Note]<br>
+> When a secret key is exposed and a wrong call is made, click **Create** to create a new secret key and replace the old one. 
 
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
+![image alt](./image/Server_Developers_Guide/pre_secret_key_v1.2.png)
 
 #### TransactionId
 
-API를 호출하는 서버에서 내부적으로 API 요청을 관리할 수 있는 방안으로 TransactionId 기능을 제공합니다. 호출하는 서버에서 HTTP 헤더에 트랜잭션 ID를 설정하여 API를 호출하면, Gamebase 서버는 응답 HTTP Header 및 응답 결과의 Response Body Header에 해당 TransactionId를 설정하여 결과를 전달합니다.
-
-<br>
-<br>
-<br>
+AS part of managing API internally within a server that calls API, TransactionId is provided.  By setting a transaction ID at the HTTP header from a calling server to call API, the Gamebase server delivers results with corresponding TransactionId set at the response HTTP Header and Response Body Header of results.
 
 ## Common
 
 #### HTTP Header
 
-API 호출 시 HTTP Header에 다음 항목들을 설정해야 합니다.
+Following items should be set at the HTTP Header to call API.
 
 | Name | Required | Value |
 | --- | --- | --- |
 | Content-Type | mandatory | application/json; charset=UTF-8 |
-| X-Secret-Key | mandatory |SecretKey 설명 참고 |
-| X-TCGB-Transaction-Id | optional | TransactionId 설명 참고 |
-
+| X-Secret-Key | mandatory |Refer to description of SecretKey  |
+| X-TCGB-Transaction-Id | optional | Refer to description of TransactionId |
 
 #### API Response
 
-모든 API 요청에 대한 응답으로 **HTTP 200 OK**를 전달합니다. API 요청 성공 유무는 Response Body의 Header 항목을 참고하여 판단할 수 있습니다.
+As a response to all API requests, **HTTP 200 OK** is delivered. Whether an API request is successful or not can be determined in reference of the Header of Response Body.
 
 **[Request]**
 
@@ -86,20 +76,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| transactionId | String | API 요청 시 HTTP Header에 설정한 값<br>해당 값을 전달하지 않으면 Gamebase 내부적으로 생성된 값을 반환 |
-| isSuccessful | boolean | 성공 여부 |
-| resultCode | int | 응답 코드 <br>성공 시 0, 실패 시 오류 코드 반환 |
-| resultMessage | String | 응답 메시지 |
+| transactionId | String | alue set at HTTP Header when API is requested. <br>If the value is not delivered, return value that is created within Gamebase. |
+| isSuccessful | boolean | Whether it is successful or not.  |
+| resultCode | int | Result code <br>0 for success; return error codes, for failure |
+| resultMessage | String | Result message  |
 
-<br>
-<br>
-<br>
 
 ## Authentication
 
 #### Token Authentication
 
-로그인 사용자에게 발급된 Access Token이 유효한지를 검사합니다. Access Token이 정상이면 해당 사용자의 정보를 리턴합니다.
+Authenticates an Access Token issued to a login user. If it is normal, return information of a corresponding user.
 
 **[Method, URI]**
 
@@ -109,22 +96,21 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-공통 사항 확인
-<br>
+Check common requirements.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
-| userId | String | 로그인한 사용자 아이디 |
-| accessToken | String | 로그인한 사용자에게 발급된 Access Token |
+| appId | String | TOAST project ID  |
+| userId | String | ID of a login user  |
+| accessToken | String |Access Token issued to a login user |
 
 **[Request Parameter]**
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| linkedIdP | boolean | optional | true or false (기본값은 false) <br>Access Token을 발급받을 때 사용된, IdP 관련 정보 포함 여부 |
+| linkedIdP | boolean | optional | True or false (Default is false) <br>Whether IdP-related information, used when Access Token is issued, is included or not |
 
 **[Response Body]**
 
@@ -168,33 +154,30 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| linkedIdP | Object | 로그인한 사용자가 사용한 IdP 정보 |
-| linkedIdP.idPCode | String | IdP 정보 <br>guest, payco, facebook 등 |
+| linkedIdP | Object | Login user's IdP information  |
+| linkedIdP.idPCode | String | IdP information <br>e.g. Guest, PAYCO, and Facebook |
 | linkedIdP.idPId | String | IdP ID |
-| member.userId | String | 사용자 ID |
-| member.lastLoginDate | long | 마지막으로 로그인한 시간<br>처음 로그인한 사용자는 해당 값이 없음 |
+| member.userId | String | User ID |
+| member.lastLoginDate | long | Last login time  <br>Not available for first-time login user  |
 | member.appId | String | appId |
-| member.valid | String | 로그인에 성공한 사용자의 값은 "Y" <br>(다른 값에 대한 설명은 멤버 API 참고) |
-| member.regDate | long | 사용자가 계정을 생성한 시간 |
-| authList | Array[Object] | 사용자 인증 IdP 관련 정보 |
-| authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템<br>추후 사용자 인증 시스템 지원 예정 |
-| authList[].idPCode | String | 사용자 인증 IdP 정보 <br>guest, payco, facebook 등 |
-| authList[].authKey | String | authSystem에서 발급된 사용자 구분 값 |
+| member.valid | String | Value of a successful login user is "Y" <br>(For description of other values, refer to member API.)) |
+| member.regDate | long | Time when a user created an account |
+| authList | Array[Object] | Information related to user-authenticated IdP.  |
+| authList[].authSystem | String | Authentication system internally used within Gamebase <br>User authentication system to be provided. |
+| authList[].idPCode | String | User-authenticated IdP information <br>e.g. Guest, PAYCO, and Facebook  |
+| authList[].authKey | String | User separator issued at authSystem  |
 
 
 **[Error Code]**
 
-LINK [\[Error Code\]](./error-codes/#server)
+[Error Code](./error-code/#server)
 
-<br>
-<br>
-<br>
 
 ## Member
 
-#### Get member
+#### Get Member
 
-단일 회원의 상세 정보를 조회합니다.
+Retrieve detailed information of a single member.
 
 **[Method, URI]**
 
@@ -205,21 +188,20 @@ LINK [\[Error Code\]](./error-codes/#server)
 
 **[Request Header]**
 
-공통 사항 확인
-<br>
+Check common requirements. 
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
-| userId | String | 조회 대상 사용자 ID |
-| includeMemberInfo | Boolean | 사용자 단말기, OS 등의 상세 정보 포함 여부 <br> 기본값은 true |
+| appId | String |  TOAST project ID |
+| userId | String | User ID to retrieve |
 
 **[Request Parameter]**
 
-없음
-<br>
+| Name | Type | Required |  Value |
+| --- | --- | --- | --- |
+| includeMemberInfo | boolean | optional | true or false (기본값은 true) <br>사용자 단말기, OS 등의 상세 정보 포함 여부 |
 
 **[Response Body]**
 ```json
@@ -264,38 +246,38 @@ LINK [\[Error Code\]](./error-codes/#server)
 
 | Key | Type | Description |
 | --- | --- | --- |
-| member | Object | 조회된 사용자의 기본 정보 |
-| member.userId | String | 사용자 ID |
-| member.valid | Enum | Y: 정상 사용자<br>D: 탈퇴된 사용자<br>B: 이용 정지된 사용자<br>M: 유실된 계정|
+| member | Object | Basic information of a retrieved user|
+| member.userId | String | User ID |
+| member.valid | Enum | Y: Normal user <br>D: Withdrawn user  <br>B: Banned user <br>M: Missing account|
 | member.appId | String | appId |
-| member.regDate | long | 사용자가 계정을 생성한 시간 |
-| member.lastLoginDate | long | 마지막으로 로그인한 시간<br>처음 로그인한 사용자는 해당 값이 없음 |
-| member.authList | Array[Object] | 사용자 인증 IdP 관련 정보 |
-| member.authList[].userId | String | 사용자 ID |
-| member.authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템<br>추후 사용자 인증 시스템 지원 예정 |
-| member.authList[].idPCode | String | 사용자 인증 IdP 정보 <br>guest, payco, facebook 등 |
-| member.authList[].authKey | String | authSystem에서 발급된 사용자 구분 값 |
-| member.authList[].regDate | long | IdP 정보가 사용자 계정과 매핑된 시간 |
-| memberInfo | Object | 사용자에 대한 부가 정보 |
-| memberInfo.deviceCountryCode | String | 사용자 기기의 국가 설정 |
-| memberInfo.usmCountryCode | String | 사용자 USIM의 국가 코드 |
-| memberInfo.language | String | 사용자 언어 |
-| memberInfo.osCode | String | 사용자 기기의 OS 종류 |
-| memberInfo.telecom | String | 통신사 |
-| memberInfo.storeCode | String | store 코드 |
-| memberInfo.network | String | 네트워크 환경<br>3g, WiFi 등|
-| memberInfo.deviceModel | String | 사용자 기기의 모델명 |
-| memberInfo.osVersion | String | 사용자 기기의 OS 버전 |
-| memberInfo.sdkVersion | String | SDK 버전 |
-| memberInfo.clientVersion | String | 클라이언트 버전 |
+| member.regDate | long | Time when a user created an account   |
+| member.lastLoginDate | long | Last login time <br>Not available for a first-time login user |
+| member.authList | Array[Object] | Information related to user-authenticated IdP  |
+| member.authList[].userId | String | User ID |
+| member.authList[].authSystem | String |  Authentication system used internally within Gamebase <br>User authentication system to be provided |
+| member.authList[].idPCode | String | User-authenticated IdP information <br>e.g. Guest, PAYCO, and Facebook |
+| member.authList[].authKey | String |  User separator issued at authSystem   |
+| member.authList[].regDate | long | Mapping time between IdP information with user account |
+| memberInfo                   | Object        | Additional user information              |
+| memberInfo.deviceCountryCode | String        | Country code of user device              |
+| memberInfo.usmCountryCode    | String        | Country code of user USIM                |
+| memberInfo.language          | String        | User language                            |
+| memberInfo.osCode            | String        | OS type of user device                   |
+| memberInfo.telecom           | String        | Telecommunication provider               |
+| memberInfo.storeCode         | String        | Store code                               |
+| memberInfo.network           | String        | Network environment <br>e.g. 3G and WiFi |
+| memberInfo.deviceModel       | String        | Model name of user device                |
+| memberInfo.osVersion         | String        | OS version of user device                |
+| memberInfo.sdkVersion        | String        | SDK version                              |
+| memberInfo.clientVersion     | String        | Client version                           |
 
 **[Error Code]**
 
-[Error Code](./error-codes/#server)
+[Error Code](./error-code/#server)
 
-#### Get members
+#### Get Members
 
-다수의 회원 정보를 간략히 조회합니다.
+Retrieves brief information about multiple members.
 
 **[Method, URI]**
 
@@ -305,20 +287,19 @@ LINK [\[Error Code\]](./error-codes/#server)
 
 **[Request Header]**
 
-공통 사항 확인
-<br>
+Check common requirements.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | TOAST project ID |
 
 **[Request Body]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| userIdList | Array[String] | mandatory | 조회 대상 사용자 ID<br>  ["userId", "userId", "userId",...]|
+| userIdList | Array[String] | mandatory | User ID to retrieve <br>  ["userId", "userId", "userId",...]|
 
 **[Response Body]**
 
@@ -343,20 +324,22 @@ LINK [\[Error Code\]](./error-codes/#server)
 
 | Key | Type | Description |
 | --- | --- | --- |
-| memberList | Array[Object] | 조회된 사용자의 기본 정보 |
-| memberList[].userId | String | 사용자 ID |
-| memberList[].valid | Enum | Y: 정상 사용자<br>D: 탈퇴된 사용자<br>B: 이용 정지된 사용자<br>M: 유실된 계정|
-| memberList[].appId | String | appId |
-| memberList[].regDate | long | 사용자가 계정을 생성한 시간 |
+| memberList           | Array [Object] | Basic information of retrieved users     |
+| memberList[].userId  | String         | User ID                                  |
+| memberList[].valid   | Enum           | Y: Normal user <br>D: Withdrawn user <br>B: Banned user <br>M: Missing account |
+| memberList[].appId   | String         | appId                                    |
+| memberList[].regDate | Long           | Time when a user created an account      |
 
 
 **[Error Code]**
 
-[Error Code](./error-codes/#server)
+[Error Code](./error-code/#server)
 
-#### Get IdP infomation
+<br>
 
-사용자 ID로 매핑된 IdP 정보를 조회합니다.
+#### Get IdP Information
+
+Retrieve IdP information mapped with user ID. 
 
 **[Method, URI]**
 
@@ -366,21 +349,20 @@ LINK [\[Error Code\]](./error-codes/#server)
 
 **[Request Header]**
 
-공통 사항 확인
-<br>
+Check common requirements.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | TOAST project ID |
 
 
 **[Request Body]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| userIdList | Array[String] | mandatory | 조회 대상 사용자 ID<br>  ["userId", "userId", "userId",...]|
+| userIdList | Array[String] | mandatory |  User ID to retrieve <br>  ["userId", "userId", "userId",...] |
 
 **[Response Body]**
 
@@ -407,18 +389,18 @@ LINK [\[Error Code\]](./error-codes/#server)
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Array[Object] | 조회된 사용자의 기본 정보 <br>userId가 key, IdP 정보가 value인 object|
-| authkey | String | authSystem에서 발급된 사용자 구분 값 |
-| IdPCode | String | 사용자 인증 IdP 정보 <br>guest, payco, facebook 등 |
-| authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템<br>추후 사용자 인증 시스템 지원 예정 |
+| result     | Array [Object] | Basic information of retrieved users <br>An object, with userId as key, and IdP information as value |
+| authkey    | String         | User separator issued at authSystem      |
+| IdPCode    | String         | User-authenticated IdP information <br>e.g. Guest, PAYCO, and Facebook |
+| authSystem | String         | Authentication system used internally within Gamebase <br>Authentication system to be provided |
 
 **[Error Code]**
 
-[Error Code](./error-codes/#server)
+[Error Code](./error-code/#server)
 
-#### Get userId infomation with auth key
+#### Get UserId Information with Auth key
 
-사용자 인증 키에 매핑된 사용자 ID를 조회합니다.
+Retrieve a user ID mapped to user authentication key.
 
 **[Method, URI]**
 
@@ -429,30 +411,26 @@ LINK [\[Error Code\]](./error-codes/#server)
 
 **[Request Header]**
 
-공통 사항 확인
-
-<br>
-
+Check common requirements.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
-
+| appId | String | TOAST project ID |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| authSystem | String | mandatory | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 사용자 인증 시스템 지원 예정 <br>현재는 gbid |
+| authSystem | String | mandatory | Authentication system used internally within Gamebase <br>User authentication system to be provided  <br>Currently provides gbid |
 
 
 **[Request Body]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| authKeyList | Array[String] | mandatory | authSystem에서 발급된 authKey<br> ["authKey", "authKey", "authKey",...]|
+| authKeyList | Array[String] | mandatory | authKey issued at authSystem <br> ["authKey", "authKey", "authKey",...]|
 
 **[Response Body]**
 
@@ -472,21 +450,17 @@ LINK [\[Error Code\]](./error-codes/#server)
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Array[Object] | 조회된 사용자의 기본 정보 <br>authKey가 key이고, userId가 value인 object|
+| result | Array [Object] | Basic information of a retrieved user <br>An object with authKey as key, and useID as value. |
 
 **[Error Code]**
 
-LINK [\[Error Code\]](./error-codes/#server)
-
-<br>
-<br>
-<br>
+[Error Code](./error-code/#server)
 
 ## Maintenance
 
-#### Check Under Maintenance
+#### Check Maintenance Set
 
-현재 점검이 설정되어 있는지 여부를 확인합니다.
+Check whether maintenance is currently set.
 
 **[Method, URI]**
 
@@ -496,20 +470,17 @@ LINK [\[Error Code\]](./error-codes/#server)
 
 **[Request Header]**
 
-공통 사항 확인
-<br>
-
+Check common requirements. 
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
-
+| appId | String | TOAST project ID |
 
 **[Request Parameter]**
 
-없음
+N/A 
 <br>
 
 **[Response Body]**
@@ -538,43 +509,36 @@ LINK [\[Error Code\]](./error-codes/#server)
 
 | Key | Type | Description |
 | --- | --- | --- |
-| underMaintenance | boolean | 현재 점검 설정 여부 |
-| maintenances | Object | 점검이 설정되어 있다면 점검 기본 정보 |
-| maintenances.typeCode | Enum | APP: 게임에서 설정한 점검 <br>SYSTEM: Gamebase 시스템에서 설정한 점검 |
-| maintenances.beginDate | String | 점검 시작 시간. ISO 8601 |
-| maintenances.endDate | String | 점검 종료 시간. ISO 8601 |
-| maintenances.url | String | 상세 점검 URL |
-| maintenances.message | String | 점검 메시지 |
+| underMaintenance       | Boolean | Whether maintenance is currently set     |
+| maintenances           | Object  | Default maintenance information, if maintenance is set |
+| maintenances.typeCode  | Enum    | APP: Maintenance set in a game <br>SYSTEM: Maintenance set by the Gamebase system |
+| maintenances.beginDate | String  | Start time of maintenance. ISO 8601      |
+| maintenances.endDate   | String  | End time of maintenance. ISO 8601        |
+| maintenances.url       | String  | Detailed maintenance URL                 |
+| maintenances.message   | String  | Maintenance message                      |
+
 
 **[Error Code]**
 
-[Error Code](./error-codes/#server)
-
-<br>
-<br>
-<br>
+[Error Code](./error-code/#server)
 
 ## Purchase(IAP)
 
-Gamebase는 TOAST IAP 서비스의 서버 API에 대해 **Wrapping** 기능을 제공합니다. Wrapping 기능을 사용하면 사용자 서버에서 일관된 인터페이스로 TOAST 서비스들을 사용할 수 있습니다.
-
+Gamebase provides **Wrapping** to Server API of TOAST IAP. With Wrapping, TOAST products become available at a user server on a consistent interface.  
 
 #### Wrapping API
 
 | API | Method | Wrapping URI | IAP URI |
 | --- | --- | --- | --- |
-| 아이템 소비 | POST | /tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq} | /inapp/v3/consume/{paymentSeq}/items/{itemSeq} |
-| 아이템 조회 | GET | /tcgb-inapp/v1.0/apps/{appId}/item/list/{appSeq} | /standard/item/list/{appSeq} |
-| 미소비 결제 내역 조회| POST | /tcgb-inapp/v1.0/apps/{appId}/consumable/list | /standard/inapp/v1/consumable/list |
+|  Consume Items    | POST | /tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq} | /inapp/v3/consume/{paymentSeq}/items/{itemSeq} |
+|  Retrieve Items     | GET | /tcgb-inapp/v1.0/apps/{appId}/item/list/{appSeq} | /standard/item/list/{appSeq} |
+| Retrieve List of Non-consumed Purchases| POST | /tcgb-inapp/v1.0/apps/{appId}/consumable/list | /standard/inapp/v1/consumable/list |
 
-**해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
+**For more information of the API, click the following link.**
 
-<br>
-[IAP 가이드](http://docs.toast.com/en/Mobile%20Service/IAP/en/api-guide/)
+[IAP Guide](/Mobile%20Service/IAP/en/api-guide/)
 
-<br>
-
-##### API 호출 예시
+##### Example of API Call 
 
 ```
 Content-Type: application/json
@@ -584,37 +548,29 @@ X-Secret-Key: IgsaAP
 POST https://api-gamebase.cloud.toast.com/tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq}
 ```
 
-<br>
-<br>
-<br>
-
 ## Leaderboard
 
-Gamebase는 TOAST Leaderboard 서비스의 서버 API에 대해 **Wrapping** 기능을 제공합니다. Wrapping 기능을 사용하면 사용자 서버에서 일관된 인터페이스로 TOAST 서비스들을 사용할 수 있습니다.
-
+Gamebase provides Wrapping to server API of TOAST Leaderboard. With Wrapping, TOAST products become available at a user server on a consistent interface. 
 
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
-| Factor에 등록된 사용자 수 조회 | GET | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
-| 단일 사용자 점수/순위 조회 | GET | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
-| 다수 사용자 점수/순위 조회 | POST | /tcgb-leaderboard/v1.0/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
-| 일정 범위의 전체 점수/순위 조회 | GET | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
-| 단일 사용자 점수 등록 | POST | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
-| 단일 사용자 점수/ExtraData 등록 | POST | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
-| 다수 사용자 점수 등록 | POST | /tcgb-leaderboard/v1.0/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
-| 다수 사용자 점수/ExtraData 등록 | POST | /tcgb-leaderboard/v1.0/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
-| 단일 사용자 Leaderboard정보 삭제 | DELETE | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| Retrieve User Count Registered at Factor | GET    | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
+| Retrieve Score/Rank of a Single User     | GET    | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
+| Retrieve Scores/Ranks of Multiple Users  | POST   | /tcgb-leaderboard/v1.0/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
+| Retrieve Entire Scores/Ranks of Range    | GET    | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
+| Register Score of a Single User          | POST   | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
+| Register Score/ExtraData of a Single User | POST   | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
+| Register Scores of Multiple Users        | POST   | /tcgb-leaderboard/v1.0/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
+| Register Scores/ExtraData of Multiple Users | POST   | /tcgb-leaderboard/v1.0/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
+| Delete Leaderboard Information of a Single User | DELETE | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
 
 
-**해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
+**For more information of the API, click the following link.**
 
-<br>
-[Leaderboard 가이드](http://docs.toast.com/en/Game/Leaderboard/en/api-guide/)
+[Leaderboard Guide](/Game/Leaderboard/en/api-guide/)
 
-<br>
-
-##### API 호출 예시
+##### Example of API Call  
 
 ```
 Content-Type: application/json
@@ -624,25 +580,19 @@ X-Secret-Key: IgsaAP
 GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/user-count
 ```
 
-<br>
-<br>
-<br>
-
-## Etc
+## Others 
 
 ### Support
 
-API 호출 실패 원인에 대한 문의 사항이 있을 경우, **API 호출 URL(HTTP body가 있는 경우는 body와 함께)과 그에 대한 응답 결과**를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다.
+To inquire about causes of failure in API call, upload **API Call URL (with HTTP body, if available) along with response results** to [Customer Center](https://cloud.toast.com/support/faq), and we'll respond ASAP. 
 
-<br>
-
-##### API 호출 예시
+##### Example of API Call  
 
 ```
 GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.0/apps/C3JmSctU/maintenances/under-maintenance
 ```
 
-##### API 실패 응답 결과
+##### Result of Failed API Response
 
 ```json
 {

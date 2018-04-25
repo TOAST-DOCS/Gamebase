@@ -1,7 +1,5 @@
 ## Game > Gamebase > Android Developer's Guide > Purchase
 
-## Purchase
-
 This page describes how to set In-App Purchase (IAP).
 
 Gamebase provides an integrated purchase API to easily link IAP of many stores in a game.
@@ -10,40 +8,34 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
 
 #### 1. Store Console
 
-- Refer to the IAP guide as below, to register an app to each store and get an Appkey.
-- [IAP > Store interlocking information](/Mobile%20Service/IAP/en/Store%20interlocking%20information/)
+* Refer to the IAP guide as below, to register an app to each store and get an Appkey.
+* [IAP > Store interlocking information](/Mobile%20Service/IAP/en/Store%20interlocking%20information/)
 
 #### 2. Register as Store's Tester
 
-
-- Register a tester to each store for purchase testing.
-  - Google
-    - [Android > Setting test purchase](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
-  - ONE store
-    - [ONE store > In-app purchase test](https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#%EC%9D%B8%EC%95%B1%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8)
-    - For testing, be sure to register device phone number you want a sandbox for, with In-app Information-Test button.
-    - A tester device requires USIM, with registered phone number (MDN).
-    - Needs **ONE store** application installed.
-
+* Register a tester to each store for purchase testing.
+    * Google
+        * [Android > Setting test purchase](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
+    * ONE store
+        * [ONE store > In-app purchase test](https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#%EC%9D%B8%EC%95%B1%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8)
+        * For testing, be sure to register device phone number you want a sandbox for, with In-app Information-Test button.
+        * A tester device requires USIM, with registered phone number (MDN).
+        * Needs **ONE store** application installed.
 
 #### 3. TOAST IAP 서비스 이용
 
-- Refer to the IAP guide to set and register IAP.
-    - [IAP > Getting Started](/Mobile%20Service/IAP/en/console-guide/)
-
-
+* Refer to the IAP guide to set and register IAP.
+    * [IAP > Getting Started](/Mobile%20Service/IAP/en/console-guide/)
 
 #### 4. Download
 
-- Add the **gamebase-adapter-purchase-iap** folder from downloaded SDK to your project.
-    - If ONE store purchase is not required, you may delete the **iap-tstore-x.x.x.aar** , **iap_tstore_plugin_vxx.xx.xx.jar** file.
-    - If you need ONE store purchase, the jar file above should be included to the project to build.
-
-
+* Add the **gamebase-adapter-purchase-iap** folder from downloaded SDK to your project.
+    * If ONE store purchase is not required, you may delete the **iap-tstore-x.x.x.aar** , **iap_tstore_plugin_vxx.xx.xx.jar** file.
+    * If you need ONE store purchase, the jar file above should be included to the project to build.
 
 #### 5. AndroidManifest.xml(ONE store only)
 
-- Add the following setting to use ONE store.
+* Add the following setting to use ONE store.
 
 ```xml
 <manifest>
@@ -61,11 +53,11 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
 
 #### 6. Initialization
 
-- Call **setStoreCode()** of configuration to initialize Gamebase.
-- Select a **STORE_CODE** among the following values.
-    - GG: Google
-    - TS: ONE store
-    - TEST: For IAP testing
+* Call **setStoreCode()** of configuration to initialize Gamebase.
+* Select a **STORE_CODE** among the following values.
+    * GG: Google
+    * TS: ONE store
+    * TEST: For IAP testing
 
 ```java
 String STORE_CODE = "GG";	// Google
@@ -86,28 +78,27 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 ### Purchase Flow
 
-Item purchases should be implemented in the following order. <br/>
+Item purchases should be implemented in the following order.<br/>
 
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
 
 1. Call **requestPurchase** of Gamebase SDK to purchase in a game client.
 2. After a successful purchase, call **requestItemListOfNotConsumed** to check the list of non-consumed purchases.
 3. If there is a value on the returned list, the game client sends a request to the game server to consume purchased items.
-4. The game server requests for Consume API to the Gamebase server via API. [API Guide](/Game/Gamebase/en/api-guide/#wrapping-api)
+4. The game server requests for Consume API to the Gamebase server via API.
+   [API Guide](/Game/Gamebase/en/api-guide/#wrapping-api)
 5. If the IAP server has successfully called Consume API, the game server provides the items to the game client.
 
-A purchase at store may be successful but cannot be closed normally due to error. It is recommended to call each of the two APIs after login is completed, to initialize a reprocessing logic.
+A purchase at store may be successful but cannot be closed normally due to error. It is recommended to call each of the two APIs after login is completed, to initialize a reprocessing logic. <br/>
 
 1. Request list of items that are not consumed
-  - When a login is successful, call **requestItemListOfNotConsumed** to check list of non-consumed purchases.
-  - If the value is on the returned list, the game client sends a request to the game server to consume, so that items can be provided.
+    * When a login is successful, call **requestItemListOfNotConsumed** to check list of non-consumed purchases.
+    * If the value is on the returned list, the game client sends a request to the game server to consume, so that items can be provided.
+
 2. Request to retry transaction
-  - When a login is successful, call **requestRetryTransaction** to try to automatically reprocess the unprocessed.
-  - If there is a value on the returned successList, the game client sends a request to the game server to consume, so that items can be provided.
-  - If there is a value on the returned failList, send the value to the game server or Log &amp; Crash to collect logs. Also send inquiry to  [**TOAST > Customer Center**](https://toast.com/support/inquiry)for the cause of reprocessing failure.
-
-
-
+    * When a login is successful, call **requestRetryTransaction** to try to automatically reprocess the unprocessed.
+    * If there is a value on the returned successList, the game client sends a request to the game server to consume, so that items can be provided.
+    * If there is a value on the returned failList, send the value to the game server or Log & Crash to collect logs. Also send inquiry to **[TOAST > Customer Center](https://toast.com/support/inquiry)** for the cause of reprocessing failure.
 
 ### Purchase Item
 
@@ -156,10 +147,9 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 Request for a list of non-consumed items, which have not been normally consumed (delivered, or provided) after purchase.<br/>
 In case of non-purchased items, ask the game server (item server) to proceed with item delivery (supply).
 
-1. Make a call in the following two cases.
+* Make a call in the following two cases.
     1. To confirm before an item is consumed after a successful purchase
     2. To check if there is any non-consumed item left after a login is successful
-
 
 ```java
 Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallback<List<PurchasableReceipt>>() {
@@ -202,22 +192,21 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| PURCHASE\_NOT\_INITIALIZED | 4001 | The purchase module is not initialized.<br>Check if the gamebase-adapter-purchase-IAP module has been added to the project. |
-| PURCHASE\_USER\_CANCELED | 4002 | Purchase is cancelled. |
-| PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003 | API has been called when a purchase logic is not completed. |
-| PURCHASE\_NOT\_ENOUGH\_CASH | 4004 | Cannot purchase due to shortage of cash of the store. |
-| PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010 | The store is not supported.<br>You can choose either GG (Google), TS (ONE Store), or TEST. |
-| PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201 | Error in IAP library.<br>Check detail codes. |
-| PURCHASE\_UNKNOWN\_ERROR | 4999 | Unknown error in purchase.<br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we will respond ASAP. |
+| PURCHASE_NOT_INITIALIZED                 | 4001       | The purchase module is not initialized.<br>Check if the gamebase-adapter-purchase-IAP module has been added to the project. |
+| PURCHASE_USER_CANCELED                   | 4002       | Purchase is cancelled.                 |
+| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | API has been called when a purchase logic is not completed.     |
+| PURCHASE_NOT_ENOUGH_CASH                 | 4004       | Cannot purchase due to shortage of cash of the store.             |
+| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | The store is not supported.<br>You can choose either GG (Google), TS (ONE Store), or TEST. |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | Error in IAP library.<br>Check detail codes.   |
+| PURCHASE_UNKNOWN_ERROR                   | 4999       | Unknown error in purchase.<br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we will respond ASAP. |
 
-
-
-
-- Refer to the following document for the entire error code.
-    - [Entire Error Codes](./error-codes#client-sdk)
+* Refer to the following document for the entire error code.
+    * [Entire Error Codes](./error-codes#client-sdk)
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
-- Occurs at an IAP module.
-- Need to check IAP error codes via exception.getDetailCode().
-- For IAP error codes, refer to the document below.
-    - [IAP > Error Code Guide > Client API Error Type](/Mobile%20Service/IAP/en/error-code/#client-api#client-api-errors)
+
+* Occurs at an IAP module.
+* Need to check IAP error codes via exception.getDetailCode().
+* For IAP error codes, refer to the document below.
+    * [IAP > Error Code Guide > Client API Error Type](/Mobile%20Service/IAP/en/error-code/#client-api#client-api-errors)
+
