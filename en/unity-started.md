@@ -64,19 +64,16 @@ Setting Tool is provided to install Gamebase SDK with more at ease.
 2. Import GamebaseUnitySettingTool_{version}.unitypackage.
 3. Execute Menu > Tools > Gamebase > SDKSettings > Setting Tool.
     * v1.0.1 or lower : Menu > Gamebase > SDKSettings > Setting Tool
-4. Click [Browse] and select a location to download SDK.
-    * Default path: project/Gamebase/
-    * The location you choose must be accessible from Setting Tool.
-5. Click [Download SDK] to download SDK.
-6. Select a platform.
+4. Click [Download SDK] to download SDK.
+5. Select a platform.
     * Unity Adapter
     * Android
     * iOS
-7. Select a module for each platform.
+6. Select a module for each platform.
     * For Authentication, integration with an ID Provider (IdP), like Google, is supported.
-    * For Push, FCM (Firebase) and Tencent Push services are supported.
+    * For Push, FCM(Firebase), Tencent and APNS Push services are supported.
     * For Purchase, In-App Purchase (IAP) of TOAST is provided.
-8. Click [Settings] and install SDK.
+7. Click [Settings] and install SDK.
 
 #### Delete SDK
 1. Execute Menu > Tools > Gamebase > SDKSettings > Setting Tool.

@@ -20,10 +20,13 @@ WebView를 표시합니다.<br/>
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
 static void ShowWebView(string url, GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
 ```
+
+> Stansalone에서는 WebViewAdapter를 통해서 WebView를 지원하며 WebView가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
 
 **Example**
 ```cs
@@ -85,6 +88,7 @@ Gamebase에서 지정해 놓은 Scheme 입니다.
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
 static void CloseWebview()
@@ -128,7 +132,7 @@ public void OpenWebBrowser(string url)
 ## Alert
 
 시스템 알림을 표시할 수 있습니다.
-시스템 알림에 버튼이나 콜백을 등록할 수도 있습니다. 
+시스템 알림에 버튼이나 콜백을 등록할 수도 있습니다.
 
 **API**
 

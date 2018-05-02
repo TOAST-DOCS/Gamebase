@@ -170,6 +170,7 @@ public void Login()
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 
 ```cs
@@ -178,8 +179,8 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 ```
 
 **providerName**
-* GamebaseAuthProvider.GOOGLE
-* GamebaseAuthProvider.GAMECENTER
+* GamebaseAuthProvider.GOOGLE(Android/Standalone Only)
+* GamebaseAuthProvider.GAMECENTER(iOS Only)
 * GamebaseAuthProvider.FACEBOOK
 * GamebaseAuthProvider.PAYCO
 * GamebaseAuthProvider.NAVER
@@ -187,7 +188,17 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 > 몇몇 IdP로 로그인할 때는 꼭 필요한 정보가 있습니다.<br/>
 > 예를 들어, Facebook 로그인을 구현하려면 scope 등을 설정해야 합니다.<br/>
 > 이러한 필수 정보들을 설정할 수 있게 static void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) API를 제공합니다.<br/>
-> 파라미터 additionalInfo에 필수 정보들을 dictionary 형태로 입력하시면 됩니다. (파라미터값이 null일 때는, TOAST Console에 등록한 additionalInfo값으로 채워집니다. 파라미터값이 있을 때는 Console에 등록해 놓은 값보다 우선시하여 값을 덮어쓰게 됩니다.  [TOAST Console에 additionalInfo 설정하기](#authentication-additional-information-settings))
+> additionalInfo 파라미터에 필수 정보들을 dictionary 형태로 입력하시면 됩니다.
+additionalInfo 값이 있을 경우에는 해당 값을 사용하고 없을 경우에는(null) TOAST Console에 등록된 값을 사용합니다.
+([TOAST Console에 additionalInfo 설정하기](#authentication-additional-information-settings))<br/>
+> Stansalone에서는 WebViewAdapter를 통해서 로그인을 지원하며 WebView가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
+
+
+Standalone WebViewAdapter를 사용하여 로그인을 하기 위해서는 IDP 개발자 사이트에서 아래 CallbackURL을 설정 하여야 합니다.
+
+* https://alpha-id-gamebase.toast.com/oauth/callback
+* https://beta-id-gamebase.toast.com/oauth/callback
+* https://id-gamebase.toast.com/oauth/callback
 
 **Example**
 
@@ -773,32 +784,125 @@ public void GetBanInfo()
 }
 ```
 
+## TransferKey
+
+게스트 계정을 다른 단말기로 이전하기 위해 발급받는 키입니다.
+발급받은 TransferKey는 다른 기기에서 **requestTransfer** API를 호출하여 계정 이전을 할 수 있습니다.
+
+> `[주의]`
+> TransferKey는 게스트 로그인 상태에서만 발급이 가능합니다.
+> TransferKey를 이용한 계정 이전은 게스트 로그인 상태 또는 로그인되어 있지 않은 상태에서만 가능합니다.
+> 로그인한 게스트 계정이 이미 다른 외부 IdP (Google, Facebook, Payco 등) 계정과 매핑되어 있다면 계정 이전이 지원되지 않습니다.
+
+
+
+### Issue TransferKey
+
+게스트 계정 이전을 위한 TransferKey를 발급합니다.
+TransferKey의 형식은 영문자 **"소문자/대문자/숫자"를 포함한 8자리의 문자열**입니다.
+또한 발급 시간 및 만료 시간을 같이 발급하며, 형식은 epoch time입니다.
+* 참고: https://www.epochconverter.com/
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+```cs
+static void IssueTransferKey(long expiresIn, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.TransferKeyInfo> callback)
+```
+
+**Example**
+```cs
+public void IssueTransferKey(long expiresIn)
+{
+	Gamebase.IssueTransferKey(expiresIn, (transferKeyInfo, error) =>
+    {
+    	if (true == Gamebase.IsSuccess(error))
+        {
+        	Debug.Log(string.Format("transferKey:{0}", transferKeyInfo.transferKey));
+            Debug.Log(string.Format("regDate:{0}", transferKeyInfo.regDate));
+            Debug.Log(string.Format("expireDate:{0}", transferKeyInfo.expireDate));
+        }
+        else
+        {
+        	Debug.Log(string.Format("IssueTransferKey failed. error is {0}", error));
+        }
+    });
+}
+```
+
+### Transfer Guest Account to Another Device
+**IssueTransferKey** API로 발급받은 TransferKey를 사용하여 계정을 이전하는 기능입니다.
+계정 이전 성공 시 TransferKey를 발급받은 단말기에서 이전 완료 메시지가 표시될 수 있고, Guest 로그인 시 새로운 계정이 생성됩니다.
+계정 이전이 성공한 단말기에서는 TransferKey를 발급받았던 단말기의 게스트 계정을 계속해서 사용할 수 있습니다.
+
+
+> `[주의]`
+> 이미 Guest 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+```cs
+static void RequestTransfer(string transferKey, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+```
+
+**Example**
+```cs
+public void RequestTransfer(string transferKey)
+{
+	Gamebase.RequestTransfer(transferKey, (authToken, error) =>
+    {
+    	if (true == Gamebase.IsSuccess(error))
+        {
+        	string userId = authToken.member.userId;
+            Debug.Log(string.Format("RequestTransfer succeeded. Gamebase userId is {0}", userId));
+        }
+        else
+        {
+        	Debug.Log(string.Format("RequestTransfer failed. error is {0}", error));
+        }
+    });
+}
+```
+
+
 ## Error Handling
 
-| Error                                    | Error Code | Description                                    |
-| ---------------------------------------- | ---------- | ---------------------------------------- |
-| AUTH_USER_CANCELED | 3001 | 로그인이 취소되었습니다. |
-| AUTH_NOT_SUPPORTED_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
-| AUTH_NOT_EXIST_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
-| AUTH_INVALID_MEMBER | 3004 | 잘못된 회원에 대한 요청입니다. |
-| AUTH\_BANNED\_MEMBER | 3005 | 제재된 회원입니다. |
-| AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
-| AUTH_TOKEN_LOGIN_FAILED | 3101 | 토큰 로그인에 실패하였습니다. |
-| AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
-| AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | 최근에 로그인한 IdP 정보가 없습니다. |
-| AUTH_IDP_LOGIN_FAILED | 3201 | IdP 로그인에 실패하였습니다. |
-| AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3202 | IdP 정보가 유효하지 않습니다. (Console에 해당 IdP 정보가 없습니다.) |
-| AUTH_ADD_MAPPING_FAILED | 3301 | 맵핑 추가에 실패하였습니다. |
-| AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | 이미 다른 멤버에 맵핑되어있습니다. |
-| AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | 이미 같은 IdP에 맵핑되어있습니다. |
-| AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | IdP 정보가 유효하지 않습니다. (Console에 해당 IdP 정보가 없습니다.) |
-| AUTH_REMOVE_MAPPING_FAILED | 3401 | 맵핑 삭제에 실패하였습니다. |
-| AUTH_REMOVE_MAPPING_LAST_MAPPED\_IDP | 3402 | 마지막에 맵핑된 IdP는 삭제할 수 없습니다. |
-| AUTH_REMOVE_MAPPING_LOGGED_IN\_IDP | 3403 | 현재 로그인 되어 있는 IdP 입니다. |
-| AUTH_LOGOUT_FAILED | 3501 | 로그아웃에 실패하였습니다. |
-| AUTH_WITHDRAW_FAILED | 3601 | 탈퇴에 실패하였습니다. |
-| AUTH_NOT_PLAYABLE | 3701 | 플레이할 수 없는 상태입니다. (점검 또는 서비스 종료 등) |
-| AUTH_UNKNOWN_ERROR | 3999 | 알수 없는 에러입니다. (정의 되지 않은 에러입니다.) |
+| Category | Error | Error Code | Description |
+| --- | --- | --- | --- |
+| Auth | AUTH_USER_CANCELED | 3001 | 로그인이 취소되었습니다. |
+|  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
+|  | AUTH_NOT_EXIST_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
+|  | AUTH_INVALID_MEMBER | 3004 | 잘못된 회원에 대한 요청입니다. |
+|  | AUTH\_BANNED\_MEMBER | 3005 | 제재된 회원입니다. |
+|  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
+| TransferKey | SAME\_REQUESTOR | 8 | 발급한 TransferKey를 동일한 기기에서 사용했습니다. |
+|  | NOT\_GUEST\_OR\_HAS\_OTHERS | 9 | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IDP가 연동되어 있습니다. |
+|  | AUTH\_TRANSFERKEY\_EXPIRED | 3031 | TransferKey의 유효기간이 만료됐습니다. |
+|  | AUTH\_TRANSFERKEY\_CONSUMED | 3032 | TransferKey가 이미 사용됐습니다. |
+|  | AUTH\_TRANSFERKEY\_NOT\_EXIST | 3033 | TransferKey가 유효하지 않습니다. |
+| Auth (Login) | AUTH_TOKEN_LOGIN_FAILED | 3101 | 토큰 로그인에 실패하였습니다. |
+|  | AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
+|  | AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | 최근에 로그인한 IdP 정보가 없습니다. |
+| IdP Login | AUTH_IDP_LOGIN_FAILED | 3201 | IdP 로그인에 실패하였습니다. |
+|  | AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3202 | IdP 정보가 유효하지 않습니다. (Console에 해당 IdP 정보가 없습니다.) |
+| Add Mapping | AUTH_ADD_MAPPING_FAILED | 3301 | 맵핑 추가에 실패하였습니다. |
+|  | AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | 이미 다른 멤버에 맵핑되어있습니다. |
+|  | AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | 이미 같은 IdP에 맵핑되어있습니다. |
+|  | AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | IdP 정보가 유효하지 않습니다. (Console에 해당 IdP 정보가 없습니다.) |
+| Remove Mapping | AUTH_REMOVE_MAPPING_FAILED | 3401 | 맵핑 삭제에 실패하였습니다. |
+|  | AUTH_REMOVE_MAPPING_LAST_MAPPED\_IDP | 3402 | 마지막에 맵핑된 IdP는 삭제할 수 없습니다. |
+|  | AUTH_REMOVE_MAPPING_LOGGED_IN\_IDP | 3403 | 현재 로그인 되어 있는 IdP 입니다. |
+| Logout | AUTH_LOGOUT_FAILED | 3501 | 로그아웃에 실패하였습니다. |
+| Withdrawal | AUTH_WITHDRAW_FAILED | 3601 | 탈퇴에 실패하였습니다. |
+| Not Playable | AUTH_NOT_PLAYABLE | 3701 | 플레이할 수 없는 상태입니다. (점검 또는 서비스 종료 등) |
+| Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | 알수 없는 에러입니다. (정의 되지 않은 에러입니다.) |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
     * [오류 코드](./error-code/#client-sdk)

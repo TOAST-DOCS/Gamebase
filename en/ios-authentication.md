@@ -528,6 +528,68 @@ information codes of restricted use will be displayed as below, when they try to
 * TCGB_ERROR_AUTH_BANNED_MEMBER
 
 
+## TransferKey
+게스트 계정을 다른 단말기로 이전하기 위해 계정 이전을 위한 키를 발급받는 기능입니다.
+이 키를 **TransferKey** 라고 부릅니다.
+발급받은 TransferKey는 다른 기기에서 **requestTransfer** API를 호출하여 계정 이전을 할 수 있습니다.
+
+
+> `주의`
+> TransferKey의 발급은 게스트 로그인 상태에서만 발급이 가능합니다.
+> TransferKey를 이용한 계정 이전은 게스트 로그인 상태 또는 로그인되어 있지 않은 상태에서만 가능합니다.
+> 로그인한 게스트 계정이 이미 다른 외부 IdP (Google, Facebook, Payco 등) 계정과 매핑이 되어 있다면 계정 이전이 지원되지 않습니다.
+
+
+
+### Issue TransferKey
+게스트 계정 이전을 위한 TransferKey를 발급합니다.
+TransferKey의 형식은 영문자 **"소문자/대문자/숫자"를 포함한 8자리의 문자열**입니다.
+또한 발급 시간 및 만료 시간을 같이 발급하며, 형식은 epoch time입니다.
+* 참고: https://www.epochconverter.com/
+
+```objectivec
+- (void)issueTransferKeyToTransfer {
+    [TCGBGamebase issueTransferKeyWithExpiresIn:3600 completion:^(TCGBTransferKeyInfo *transferKey, TCGBError *error){
+        if ([TCGBGamebase isSuccessWithError:error] == YES){}
+            NSLog(@"Published TransferKey => %@", [transferKey description]);
+            NSString* transferKeyString = [transferKey transferKey];
+            long regDat = [transferKey legDate];
+            long expireDate = [transferKey expireDate];
+        }
+        else {
+            // Handling Errors.
+            NSLog(@"Issue TranferKey Occur Error => %@", [error description]);
+        }
+    }];
+}
+```
+
+### Transfer Guest Account to Another Device
+**issueTransfer** API로 발급받은 TransferKey를 통해 계정을 이전하는 기능입니다.
+계정 이전 성공 시 TransferKey를 발급받은 단말기에서 이전 완료 메시지가 표시될 수 있고, Guest 로그인 시 새로운 계정이 생성됩니다.
+계정 이전이 성공한 단말기에서는 TransferKey를 발급받았던 단말기의 게스트 계정을 계속해서 사용할 수 있습니다.
+
+
+> `주의`
+> 이미 Guest 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
+
+```objectivec
+- (void)transferGuestAccount {
+    [TCGBGamebase requestTransferWithTransferKey:@"1i9eiAi7" completion:^(TCGBAuthToken *token, TCGBError *error)( {
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
+            // TCGBAuthToken 객체는 `loginWithType:viewController:completion:` 메서드를 호출했을 때와 동일합니다.
+            NSLog(@"Transfer Information > %@", [token description]);
+            NSString* userID = token.tcgbMember.userId;
+            NSArray* authList = token.tcgbMember.authList;
+        }
+        else {
+            // Handling Errors.
+            NSLog(@"Transfer Occur Error => %@", [error description]);
+        }
+    });
+}
+```
+
 
 ## Error Handling
 
@@ -539,6 +601,11 @@ information codes of restricted use will be displayed as below, when they try to
 |                | TCGB\_ERROR\_AUTH\_INVALID\_MEMBER       | 3004       | Request for invalid member.                        |
 |                | TCGB\_ERROR\_AUTH\_BANNED\_MEMBER        | 3005       | Named member has been banned.                               |
 |                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | Error in external authentication library.                       |
+| TransferKey    | TCGB\_ERROR\_SAME\_REQUESTOR             | 8			 | 발급한 TransferKey를 동일한 기기에서 사용했습니다. |
+|                | TCGB\_ERROR\_NOT\_GUEST\_OR\_HAS\_OTHERS | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IDP가 연동되어 있습니다. |
+|                | TCGB\_ERROR\_AUTH\_TRANSFERKEY\_EXPIRED  | 3031       | TransferKey의 유효기간이 만료됐습니다. |
+|                | TCGB\_ERROR\_AUTH\_TRANSFERKEY\_CONSUMED | 3032       | TransferKey가 이미 사용됐습니다. |
+|                | TCGB\_ERROR\_AUTH\_TRANSFERKEY\_NOT\_EXIST | 3033     | TransferKey가 유효하지 않습니다. |
 | Auth (Login)   | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED  | 3101       | Token login has failed.                          |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | Invalid token information.                        |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | Invalid last login IDP information.                   |

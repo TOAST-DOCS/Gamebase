@@ -43,9 +43,9 @@ Before applying Gamebase Android SDK, you need an App ID issued at the TOAST Clo
 def gamebaseDir = '../Gamebase'
 
 /* Set the Gamebase version. */
-def gamebaseSdkVersion = '1.8.0'
+def gamebaseSdkVersion = '1.9.0'
 def gamebaseFacebookAdapterVersion = '1.7.0'
-def gamebaseGoogleAdapterVersion = '1.7.0'
+def gamebaseGoogleAdapterVersion = '1.9.0'
 def gamebaseNaverAdapterVersion = '1.7.0'
 def gamebasePaycoAdapterVersion = '1.7.0'
 def gamebaseIAPAdapterVersion = '1.3.0'		// Not all adapters have the same version.

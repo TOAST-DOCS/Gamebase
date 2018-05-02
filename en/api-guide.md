@@ -1,30 +1,30 @@
 ## Game > Gamebase > API Guide
 
-Gamebase Server API provides APIs as follows, in the RESTful format.  
+Gamebase Server API provides APIs as follows, in the RESTful format.
 
 ## Advance Notice
 
-Following information is required to use Server API. 
+Following information is required to use Server API.
 
 #### Server Address
 
-To call API, below address is needed, which is also available in the Gamebase Console. 
+To call API, below address is needed, which is also available in the Gamebase Console.
 > https://api-gamebase.cloud.toast.com
 
-![image alt](./image/Server_Developers_Guide/pre_server_address_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
 
 #### AppId
 
-App ID, as a project ID of TOAST, can be found on the **Project List** page of the Console.  
-![image alt](./image/Server_Developers_Guide/pre_appId_v1.2.png)
+App ID, as a project ID of TOAST, can be found on the **Project List** page of the Console.
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
 #### SecretKey
 
-Secret Key, as a control access of API, can be found in the Gambase Console. It must be set at the HTTP header to call Server API. 
+Secret Key, as a control access of API, can be found in the Gambase Console. It must be set at the HTTP header to call Server API.
 > [Note]<br>
-> When a secret key is exposed and a wrong call is made, click **Create** to create a new secret key and replace the old one. 
+> When a secret key is exposed and a wrong call is made, click **Create** to create a new secret key and replace the old one.
 
-![image alt](./image/Server_Developers_Guide/pre_secret_key_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
 
 #### TransactionId
 
@@ -81,6 +81,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | resultCode | int | Result code <br>0 for success; return error codes, for failure |
 | resultMessage | String | Result message  |
 
+<br>
+<br>
 
 ## Authentication
 
@@ -172,6 +174,8 @@ Check common requirements.
 
 [Error Code](./error-code/#server)
 
+<br>
+<br>
 
 ## Member
 
@@ -188,7 +192,7 @@ Retrieve detailed information of a single member.
 
 **[Request Header]**
 
-Check common requirements. 
+Check common requirements.
 
 **[Path Variable]**
 
@@ -201,7 +205,7 @@ Check common requirements.
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| includeMemberInfo | boolean | optional | true or false (기본값은 true) <br>사용자 단말기, OS 등의 상세 정보 포함 여부 |
+| includeMemberInfo | boolean | optional | true or false (default value true) Including detailed information of user device, OS, etc. |
 
 **[Response Body]**
 ```json
@@ -275,6 +279,7 @@ Check common requirements.
 
 [Error Code](./error-code/#server)
 
+
 #### Get Members
 
 Retrieves brief information about multiple members.
@@ -335,11 +340,10 @@ Check common requirements.
 
 [Error Code](./error-code/#server)
 
-<br>
 
 #### Get IdP Information
 
-Retrieve IdP information mapped with user ID. 
+Retrieve IdP information mapped with user ID.
 
 **[Method, URI]**
 
@@ -456,6 +460,9 @@ Check common requirements.
 
 [Error Code](./error-code/#server)
 
+<br>
+<br>
+
 ## Maintenance
 
 #### Check Maintenance Set
@@ -470,7 +477,7 @@ Check whether maintenance is currently set.
 
 **[Request Header]**
 
-Check common requirements. 
+Check common requirements.
 
 **[Path Variable]**
 
@@ -480,7 +487,7 @@ Check common requirements.
 
 **[Request Parameter]**
 
-N/A 
+N/A
 <br>
 
 **[Response Body]**
@@ -522,9 +529,12 @@ N/A
 
 [Error Code](./error-code/#server)
 
+<br>
+<br>
+
 ## Purchase(IAP)
 
-Gamebase provides **Wrapping** to Server API of TOAST IAP. With Wrapping, TOAST products become available at a user server on a consistent interface.  
+Gamebase provides **Wrapping** to Server API of TOAST IAP. With Wrapping, TOAST products become available at a user server on a consistent interface.
 
 #### Wrapping API
 
@@ -538,7 +548,7 @@ Gamebase provides **Wrapping** to Server API of TOAST IAP. With Wrapping, TOAST 
 
 [IAP Guide](/Mobile%20Service/IAP/en/api-guide/)
 
-##### Example of API Call 
+##### Example of API Call
 
 ```
 Content-Type: application/json
@@ -548,9 +558,12 @@ X-Secret-Key: IgsaAP
 POST https://api-gamebase.cloud.toast.com/tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq}
 ```
 
+<br>
+<br>
+
 ## Leaderboard
 
-Gamebase provides Wrapping to server API of TOAST Leaderboard. With Wrapping, TOAST products become available at a user server on a consistent interface. 
+Gamebase provides Wrapping to server API of TOAST Leaderboard. With Wrapping, TOAST products become available at a user server on a consistent interface.
 
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
@@ -570,7 +583,7 @@ Gamebase provides Wrapping to server API of TOAST Leaderboard. With Wrapping, TO
 
 [Leaderboard Guide](/Game/Leaderboard/en/api-guide/)
 
-##### Example of API Call  
+##### Example of API Call
 
 ```
 Content-Type: application/json
@@ -580,13 +593,16 @@ X-Secret-Key: IgsaAP
 GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/user-count
 ```
 
-## Others 
+<br>
+<br>
+
+## Others
 
 ### Support
 
-To inquire about causes of failure in API call, upload **API Call URL (with HTTP body, if available) along with response results** to [Customer Center](https://cloud.toast.com/support/faq), and we'll respond ASAP. 
+To inquire about causes of failure in API call, upload **API Call URL (with HTTP body, if available) along with response results** to [Customer Center](https://cloud.toast.com/support/faq), and we'll respond ASAP.
 
-##### Example of API Call  
+##### Example of API Call
 
 ```
 GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.0/apps/C3JmSctU/maintenances/under-maintenance
