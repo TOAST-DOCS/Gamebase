@@ -7,18 +7,17 @@ Gamebase supports a default WebView.
 
 ### Show WebView
 
-Shows a WebView.
+Shows a WebView.<br/>
 
 ##### Required Parameters
-
-- activity: Shows WebView.
-- url: The url delivered as a parameter should be valid.
+* activity : Shows WebView.
+* url : The url delivered as a parameter should be valid.
 
 ##### Optional Parameters
-- configuration: Changes WebView layout by using GamebaseWebViewConfiguration.
-- GamebaseCallback: Notifies users when a WebView is closed.
-- schemeList: Specifies the list of customized schemes a user wants.
-- gamebaseDataCallback: Notifies url including customized scheme specified by the schemeList with a callback.
+* configuration: Changes WebView layout by using GamebaseWebViewConfiguration.
+* GamebaseCallback: Notifies users when a WebView is closed.
+* schemeList: Specifies the list of customized schemes a user wants.
+* gamebaseDataCallback: Notifies url including customized scheme specified by the schemeList with a callback.
 
 
 ```java
@@ -44,9 +43,8 @@ Gamebase.WebView.showWebView(activity, "http://www.toast.com",
 
 #### Custom WebView
 
-Shows a customized WebView.<br/>
+Shows a customized WebView. <br/>
 Can configure a customzed WebView by using GamebaseWebViewConfiguration.
-
 ```java
 GamebaseWebViewConfiguration configuration
         = new GamebaseWebViewConfiguration.Builder()
@@ -61,22 +59,19 @@ GamebaseWebViewConfiguration configuration
             .build();
 GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configuration);
 ```
-
 | Method                                   | Values                              | Description    |
 | ---------------------------------------- | ----------------------------------- | -------------- |
-| setStyle(int style)                          | GamebaseWebViewStyle.BROWSER | Browser-style WebView |
-|                                              | GamebaseWebViewStyle.POPUP   | Pop-up-style WebView  |
-| setTitleText(String title)                   | title                        | Title of WebView      |
-| setScreenOrientation(int orientation)        | ScreenOrientation.PORTRAIT   | Portrait Mode         |
-|                                              | ScreenOrientation.LANDSCAPE  | Landscape Mode        |
-|                                              | ScreenOrientation.LANDSCAPE_REVERSE | Reverse Landscape |
-| setNavigationBarColor(int color)             | Color.argb(a, r, b, b)       | Color of Navigation Bar  |
-| setBackButtonVisible(boolean visible)        | true or false                | Activate/Deactivate Go Back Button |
-| setNavigationBarHeight(int height)           | height                       | Height of Navigation Bar |
-| setBackButtonImageResource(int resourceId)   | ID of resource               | Image of Go Back Button  |
-| setCloseButtonImageResource(int resourceId)  | ID of resource               | Image of Close Button    |
-
-
+| setStyle(int style)                      | GamebaseWebViewStyle.BROWSER        | Browser-style WebView   |
+|                                          | GamebaseWebViewStyle.POPUP          | Pop-up-style WebView     |
+| setTitleText(String title)               | title                               | Title of WebView         |
+| setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | Portrait Mode          |
+|                                          | ScreenOrientation.LANDSCAPE         | Landscape Mode          |
+|                                          | ScreenOrientation.LANDSCAPE_REVERSE | Reverse Landscape |
+| setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | Color of Navigation Bar     |
+| setBackButtonVisible(boolean visible)    | true or false                       | Activate/Deactivate Go Back Button |
+| setNavigationBarHeight(int height)       | height                              | Height of Navigation Bar     |
+| setBackButtonImageResource(int resourceId) | ID of resource                      | Image of Go Back Button       |
+| setCloseButtonImageResource(int resourceId) | ID of resource                      | Image of Close Button      |
 
 
 ### Close WebView
@@ -98,7 +93,7 @@ Gamebase.WebView.openWebBrowser(activity, "http://www.toast.com");
 
 ## Alert
 
-Displays a system alert API.
+Displays a system alert API.<br/>
 
 ### Simple Alert Dialog
 
@@ -119,8 +114,8 @@ Use the following API to receive callbacks on processing results after an alert 
 Gamebase.Util.showAlertDialog(activity,
                             "title",                        // Title text.
                             "messsage",                     // Message text.
-                            "OK",                           // Positive button text
-                            positiveButtonEventListener,    // Listener called when pressing a positive button
+                            "OK",                           // Positive button text.
+                            positiveButtonEventListener,    // Listener called when pressing a positive button.
                             "Cancel",                       // Negative button text.
                             negativeButtonEventListener,    // Listener called when pressing a negative button.
                             backKeyEventListener,           // Listener called when an alert dialog is cancelled.
@@ -132,16 +127,13 @@ Gamebase.Util.showAlertDialog(activity,
 Displays [Android Toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) messages, by using the following API.<br/>
 The type of time parameter to display message is provided in int format and will be displayed during time as below, as the Android SDK NotificationManagerService class is defined.
 
-
-|  Type of Time (int) |  Display Time  |
-| ------------------- | -------------- |
-| Toast.LENGTH_SHORT  | 2 seconds      |
-| Toast.LENGTH_LONG   | 3.5 seconds    |
-| 0                   | Toast.LENGTH_SHORT => 2 seconds  |
-| 1                   | Toast.LENGTH_LONG => 3.5 seconds |
-| All the rest values | Toast.LENGTH_SHORT => 2 seconds  |
-
-
+| Type of Time (int)         | Display Time                     |
+| ------------------ | ------------------------- |
+| Toast.LENGTH_SHORT | 2 seconds                        |
+| Toast.LENGTH_LONG  | 3.5 seconds                      |
+| 0                  | Toast.LENGTH_SHORT => 2 seconds  |
+| 1                  | Toast.LENGTH_LONG => 3.5 seconds |
+| All the rest values           | Toast.LENGTH_SHORT => 2 seconds  |
 
 ```java
 Gamebase.Util.showToast(activity,
@@ -153,10 +145,9 @@ Gamebase.Util.showToast(activity,
 
 Click 'Detail' in maintenance status to change maintenance page.
 
-- Register a customized web page as a maintenance page
-    - Set meta-data with "com.gamebase.maintenance.detail.url" as key value to AndroidManifest.xml.
-    - Enter .html file or URL with android:value.
-
+* Register a customized web page as a maintenance page
+    * Set meta-data with "com.gamebase.maintenance.detail.url" as key value to AndroidManifest.xml.
+    * Enter .html file or URL with android:value.
 
 ```xml
 <meta-data
@@ -168,7 +159,7 @@ Click 'Detail' in maintenance status to change maintenance page.
 
 | Error              | Error Code | Description                  |
 | ------------------ | ---------- | ---------------------------- |
-| UI_UNKNOWN_ERROR   | 6999       | Unknown error (Undefined error). |
+| UI\_UNKNOWN\_ERROR | 6999       | Unknown error (Undefined error). |
 
-- Refer to the following document for the entire error codes:
-    - [Entire Error Codes](./error-codes#client-sdk)
+* Refer to the following document for the entire error codes:
+    * [Entire Error Codes](./error-codes#client-sdk)

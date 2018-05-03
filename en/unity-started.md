@@ -5,7 +5,7 @@ Below describes environments and initial setting of Gamebase Unity SDK.
 ### Environments
 
 > [Note]
->
+> 
 > Unity support version: 5.5.4 or higher
 
 #### Supported Platforms
@@ -13,12 +13,12 @@ Below describes environments and initial setting of Gamebase Unity SDK.
 * iOS
 * Android
 * Standalone
-	* Windows7 or higher
+    * Windows7 or higher
 * MAC OS is not supported.
 * WebGL
-	* [WebGL Browser Compatibility](https://docs.unity3d.com/Manual/webgl-browsercompatibility.html)
+    * [WebGL Browser Compatibility](https://docs.unity3d.com/Manual/webgl-browsercompatibility.html)
 * Editor
-	* Supports functions only partially.
+    * Supports functions only partially.
 
 To call a Gamebase API which is not supported by a selected platform, following errors are returned as callback. If there is no callback, the output will come with a warning log.
 
@@ -46,19 +46,16 @@ Setting Tool is provided to install Gamebase SDK with more at ease.
 
 * [Download Gamebase Client SDK](/Download/#game-gamebase)
 
-
 ### Specification of Setting Tool
-
 1. Download SDK
-	* Supports the latest download.
+    * Supports the latest download.
 2. Install SDK
-	* Supports installation of downloaded SDK.
+    * Supports installation of downloaded SDK.
 3. Delete SDK
-	* Supports deletion of installed SDK.
+    * Supports deletion of installed SDK.
 4. Update SDK
-	* Update is not supported.
-	* Instead, installation after deletion is supported.
-
+    * Update is not supported.
+    * Instead, installation after deletion is supported.
 
 ### Using the Setting Tool
 
@@ -66,23 +63,21 @@ Setting Tool is provided to install Gamebase SDK with more at ease.
 1. Open a Unity project.
 2. Import GamebaseUnitySettingTool_{version}.unitypackage.
 3. Execute Menu > Tools > Gamebase > SDKSettings > Setting Tool.
-4. Click [Browse] and select a location to download SDK.
-    * Default path: project/Gamebase/
-    * The location you choose must be accessible from Setting Tool.
-5. Click [Download SDK] to download SDK.
-6. Select a platform.
+    * v1.0.1 or lower : Menu > Gamebase > SDKSettings > Setting Tool
+4. Click [Download SDK] to download SDK.
+5. Select a platform.
     * Unity Adapter
     * Android
     * iOS
-7. Select a module for each platform.
+6. Select a module for each platform.
     * For Authentication, integration with an ID Provider (IdP), like Google, is supported.
-    * For Push, FCM (Firebase) and Tencent Push services are supported.
+    * For Push, FCM(Firebase), Tencent and APNS Push services are supported.
     * For Purchase, In-App Purchase (IAP) of TOAST is provided.
-8. Click [Settings] and install SDK.
+7. Click [Settings] and install SDK.
 
 #### Delete SDK
-
 1. Execute Menu > Tools > Gamebase > SDKSettings > Setting Tool.
+    * v1.0.1 or lower : Menu > Gamebase > SDKSettings > Setting Tool
 2. Click [Remove] to delete installed SDKs.
 
 <br/>
@@ -138,19 +133,16 @@ To manage lifecycle, set "com.toast.gamebase.activity.GamebaseMainActivity" as t
 
 > [Note]
 >
-> Gradle build is not required, but can be selected. 
-> The following is an example of a grid build :
-> The guide is not about exporting to Android project.
+> Gradle build is not required, but can be selected. <br/>
+> An example of gradle build is as follows.<br/>
+> The guide is not about exporting to Android project.<br/>
 > [Unity manual](https://docs.unity3d.com/Manual/android-gradle-overview.html)
 
 #### 1. Build Settings
-
 Select Gradle (new) for a Build System.
-
 ![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-003_1.3.0.png)
 
 #### 2. mainTemplate.gradle Setting
-
 Copy the mainTemplate.gradle file in the Unity installation folder to the Assets/Plugins/Android/ folder and set in accordance with the development environment.
 
 > [Note]

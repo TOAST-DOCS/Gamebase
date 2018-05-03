@@ -201,3 +201,198 @@ localizedString.json에 정의되어 있는 형식은 아래와 같습니다.
 1. 입력된 languageCode가 localizedString.json 파일에 정의되어 있는지 확인합니다.
 2. Gamebase 초기화 시, 기기에 설정된 언어코드가 localizedString.json 파일에 정의되어 있는지 확인합니다. (이 값은 초기화 이후, 기기에 설정된 언어를 변경하더라도 유지됩니다.)
 3. Display Language의 기본값인 `en`이 자동 설정됩니다.
+
+
+
+
+
+### Server Push
+* Gamebase 서버에서 클라이언트 기기로 보내는 Server Push Message를 처리할 수 있습니다.
+* Gamebase 클라이언트에서 ServerPushEvent Listener를 추가 하면 해당 메시지를 사용자가 받아서 처리할 수 있으며, 추가된 ServerPushEvent Listener를 삭제 할 수 있습니다.
+
+
+#### Server Push Type
+현재 Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
+
+* 킥아웃 (Kickout)
+    * TOAST Gamebase 콘솔의 `Operation > Kickout` 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에게 메시지를 보낼 수 있습니다.
+    * Type : ServerPushEventMessage.Type.APP_KICKOUT (= "appKickout")
+    
+
+#### Add ServerPushEvent
+아래의 API를 사용하여 Gamebase에 ServerPushEvent를 등록하여 처리할 수 있습니다.
+
+**API**
+
+```java
++ (void)Gamebase.addServerPushEvent(ServerPushEvent serverPushEvent);
+```
+
+**Example**
+
+```java
+public class MyServerPushEventManager {
+    private ServerPushEvent mServerPushEvent = new ServerPushEvent() {
+        @Override
+        public void onReceive(ServerPushEventMessage message) {
+            if (message.type.equals(ServerPushEventMessage.Type.APP_KICKOUT)) {
+                MyGameStatus.clearSession();
+                MyGameStatus.goToMainPage();
+                MyGameStatus.goToMainPage();
+            } else {
+                ...
+            }
+        }
+    };
+
+    private void addServerPushEvent() {
+        Gamebase.addServerPushEvent(mServerPushEvent);
+    }
+    ...
+}
+```
+
+
+#### Remove ServerPushEvent
+아래의 API들을 사용하여 Gamebase에 등록된 ServerPushEvent를 삭제할 수 있습니다.
+
+**API**
+
+```java
++ (void)Gamebase.removeServerPusEvent(ServerPushEvent serverPushEvent);
++ (void)Gamebase.removeAllServerPusEvent();
+```
+
+**Example**
+
+```java
+public class MyServerPushEventManager {
+    ...
+    private void removeServerPushEvent() {
+        Gamebase.removeServerPusEvent(mServerPushEvent);
+    }
+
+    private void removeAllServerPushEvent() {
+        Gamebase.removeAllServerPushEvent();
+    }
+    ...
+}
+```
+
+
+
+
+
+### Observer
+* Gamebase Observer를 통하여 Gamebase의 각종 상태 변동 이벤트를 전달받아 처리할 수 있습니다.
+* Observer를 추가하면 들어 네트워크 타입 변동, Launching 상태 변동(점검 등에 의한 상태 변동), Heartbeat 정보 변동(사용자 이용 정지 등에 의한 Heartbeat 정보 변동) 등에 대한 이벤트를 사용자가 전달받아 처리 할 수 있습니다.
+
+
+#### Observer Type
+현재 Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
+
+* Network 타입 변동
+    * 네트워크 변동사항에 대한 정보를 받을 수 있습니다. 예를 들어서, ObserverMessage.data.get("code") 의 값으로 Network Type을 알 수 있습니다.
+    * Type : ObserverMessage.Type.NETWORK (= "network")
+    * Code : NetworkManager에 선언된 상수를 참고합니다. 
+        * NetworkManager.TYPE_NOT : -1
+        * NetworkManager.TYPE_MOBILE : 0
+        * NetworkManager.TYPE_WIFI : 1        
+        * NetworkManager.TYPE_ANY : 2
+* Launching 상태 변동
+    * 주기적으로 어플리케이션의 상태를 체크하는 Launching Status response에 변동이 있을 때 발생합니다. 예를 들어서, 점검, 업데이트 권장 등에 의한 이벤트가 있습니다.
+    * Type : ObserverMessage.Type.LAUNCHING (= "launching")
+    * Code : LaunchingStatus에 선언된 상수를 참고합니다.
+        * LaunchingStatus.IN_SERVICE : 200
+        * LaunchingStatus.RECOMMEND_UPDATE : 201
+        * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST : 202
+        * LaunchingStatus.REQUIRE_UPDATE : 300
+        * LaunchingStatus.BLOCKED_USER : 301
+        * LaunchingStatus.TERMINATED_SERVICE : 302
+        * LaunchingStatus.INSPECTING_SERVICE : 303
+        * LaunchingStatus.INSPECTING_ALL_SERVICES : 304
+        * LaunchingStatus.INTERNAL_SERVER_ERROR : 500
+* Heartbeat 정보 변동
+    * 주기적으로 Gamebase 서버와 연결을 유지하는 Heartbeat response에 변동이 있을 때 발생합니다. 예를 들어서, 사용자 이용 정지에 의한 이벤트가 있습니다.
+    * Type : ObserverMessage.Type.HEARTBEAT (= "heartbeat")
+    * Code : GamebaseError에 선언된 상수를 참조합니다.
+        * GamebaseError.BANNED_MEMBER : 7
+
+
+#### Add Observer
+아래의 API를 사용하여 Gamebase에 Observer를 등록하여 처리할 수 있습니다.
+
+**API**
+
+```java
++ (void)Gamebase.addObserver(Observer observer);
+```
+
+**Example**
+
+```java
+public class MyObserverManager {
+    private Observer mGamebaseObserver = new Observer() {
+        @Override
+        public void onUpdate(ObserverMessage message) {
+            String typeOfMessage = message.type;
+            Map<String, Object> dataMap = message.data;
+
+            if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.LAUNCHING)) {
+                // You can check the changed launching status in here.
+
+                int code = Integer.parseInt(dataMap.get("code"));
+                String messageString = (String) dataMap.get("message");
+                Log.d(TAG, "Update launching status to " + code + ", " + messageString);
+                ...
+            } else if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.HEARTBEAT)) {
+                // You can check the invalid user session in here.
+
+                int code = Integer.parseInt(dataMap.get("code"));
+                Log.d(TAG, "Heartbeat changing : " + dataMap);
+                ...
+            } else if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.NETWORK)) {
+                // You can check the changed network status in here.
+
+                int code = Integer.parseInt(dataMap.get("code"));
+                Log.d(TAG, "Network changing : " + dataMap);
+                ...
+            } else {
+                ...
+            }
+        }
+    };
+
+    private void addObserver() {
+        Gamebase.addObserver(mGamebaseObserver);
+    }
+    ...
+}
+```
+
+
+#### Remove Observer
+아래의 API들을 사용하여 Gamebase에 등록된 Observer를 삭제할 수 있습니다.
+
+**API**
+
+```java
++ (void)Gamebase.removeObserver(Observer observer);
++ (void)Gamebase.removeAllObserver();
+```
+
+**Example**
+
+```java
+public class MyObserverManager {
+    ...
+    private void removeObserver() {
+        Gamebase.removeObserver(mGamebaseObserver);
+    }
+
+    private void removeAllObserver() {
+        Gamebase.removeAllObserver();
+    }
+    ...
+}
+```

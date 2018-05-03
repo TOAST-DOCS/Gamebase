@@ -1,50 +1,50 @@
-## Game &gt; Gamebase &gt; Operator Guide &gt; Management
+## Game > Gamebase > Console Guide > Management
 
 You can manage search authority on Gamebase games, set alarm delivery, and retrieve alarm history.
 
-<br/>
+
 
 ## Authorization
 
-Authority of Gamebase Console can be managed. <br />
+Authority of Gamebase Console can be managed.
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Authorization1_1.2.png)
 
-* Manage authority of Gamebase Console<br />
+* Manage authority of Gamebase Console
   * **Access to sales status** : Access to **IAP** menu
   * **Access to management menu** : Access authority to other menu
-* To register a new member, go to **TOAST Console Page**.<br />
-* Cannot modify your own authority.<br />
-  <br/>
+* To register a new member, go to **TOAST Console Page**.
+* Cannot modify your own authority.
+  
 
 ## Alarm
 
-Gamebase Alarm notifies increase/decrease rate of game users, or change of initial number of concurrent access.<br />
+Gamebase Alarm notifies increase/decrease rate of game users, or change of initial number of concurrent access.
 
 ### Alarm
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm1_1.7.png)
 
-Please note that the translation will be completed as soon as possible.
-#### (1) 감소 알람 활성
-동시 접속이 감소했을 때 알람을 받을지에 대한 여부를 설정합니다. On으로 되어 있을 때는 설정된 수치만큼 변화가 있을 경우 이메일이나 SMS로 알람 메시지를 발송합니다.<br />
-기능이 활성화가 되었을 경우 원하는 감소율 및 점검에 의한 동접 감소 알람 무시 기능을 추가 설정할 수 있습니다.<br />
-점검에 의한 동접 감소 알람 무시 설정을 통해 앱에 점검이 필요할 경우 필연적으로 발생하는 동시 접속 감소 알람을 On/Off할 수 있습니다. 해당 설정이 켜져 있을 경우 앱이 점검 중일 때 동시 접속 감소에 따른 알람을 발송하지 않습니다.<br />
+#### (1) Activate Decrease Alarms
+Set whether to receive alarms for decreased concurrent access. To receive alarms, set **On** for Activate Decrease Alarms.
 
-#### (2) 증가 알람 활성
-동시 접속자 수가 증가했을 때 알람을 받도록 설정할 수 있습니다. <br />
-기능이 활성화 되었을 경우 운영자가 알람을 받고자 하는 수치를 설정할 수 있습니다. <br />
+- **Decrease Rate**: Specify the percentage of decrease in concurrent access to send alarms.
+- **Ignore Alarms for Decrease due to maintenance**: The number of concurrent access cannot help but decrease while app is under maintenance.
+  In this case, set **On** for **Ignore Alarms for Decrease due to Maintenance** so as not to receive alarms.
 
-#### (3) 메시지 언어
-알람 발송 메시지의 언어를 선택할 수 있습니다. 현재는 한글과 영어 메시지만 지원하며 추가 요구 사항이 있을 때 다른 언어들을 추가할 예정입니다.
+#### (2) Activate Increase Alarms
+You may set to receive alarms when concurrent access increases.
+The operator can set criteria to receive alarms when the function is activated.
 
-#### (4) 최소 동시 접속자 수
-앱 사용자의 기대 최소 접속자 수를 설정하여 설정 수치 이하로 동시 접속자 수가 떨어졌을 때 알람을 받을 수 있습니다. 최소 동시 접속자 수 설정 값은 100명으로 제한되어 있습니다.
+#### (3) Message Language
+Select a language for alarm messages. Now only Korean and English are supported, and other languages will be added at the request.
 
+#### (4) Minimum Number of Concurrent Access
+You can receive alarms when there is lower number of app access than specified **minimum number of concurrent access**. For example, if the **minimum number of concurrent access** is '500', you will receive an alarm when the number is lower than 500. You cannot set below 100 as it is the minimum number.
 
 ### Alarm Log
 
-In Alarm Log, which is under the Alarm Menu, you can retrieve history of alarm occurrences.<br />
-Logs can be retrieved up to 30 days, and real-time filtering by using **Search** Textbox is also available. <br />
+In Alarm Log, which is under the Alarm Menu, you can retrieve history of alarm occurrences.
+Logs can be retrieved up to 30 days, and real-time filtering by using **Search** Textbox is also available.
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm2_1.0.png)
 
@@ -53,42 +53,36 @@ Logs can be retrieved up to 30 days, and real-time filtering by using **Search**
 - Number of New Concurrent Access: Information of concurrent access collected at the moment when alarm is sent
 - Rate of Change (Value Set): Rate of change refers to the number of new concurrent access as compared to previous concurrent access. Value set is the value which has been set to deliver when alarm occurs.
 
-Please note that the translation will be completed as soon as possible.
 ### Webhook
-Gamebase에서 기본으로 제공되는 SMS/Email외에 별도로 알람을 수신할 수 있는 Webhook 설정기능을 제공합니다.
-외부 시스템의 Webhook URL을 통해 알람발송 요청이 있을 경우 함께 알람을 전송합니다.
+Webhook configuration is provided to receive alarms, other than SMS/Email as default Gamebase functions.
+When there is a request for alarm delivery via Webhook URL of an external system, alarm is sent altogether.
 
-#### (1) 목록 조회
+#### (1) Retrieve List
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_1.1.png)
-현재 알람을 수신할 수 있는 Webhook들에 대한 등록 내역을 조회하여 보여줍니다.<br />
-등록된 Webhook URL이 필요한 경우 우측의 URL 복사 기능을 통해 손쉽게 복사가 가능합니다.
+Retrieve the list of registered webhooks that can receive alarms.
+When a registered webhook URL is required, click **Copy URL** on the right.
 
-#### (2) 등록
+#### (2) Register
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_2.0.png)
-상단의 등록 버튼을 통해 Webhook정보를 등록할 수 있습니다.<br />
-외부 시스템에서 발급받은 Webhook URL을 해당 기능을 통해 등록하실 수 있습니다.<br />
-현재는 Dooray/Slack 등록만 제공하고 있으며 추후 요청이 있을 시 새로운 목록을 추가할 예정입니다.
+Click **Register** to register webhook information from external systems.
+Currently, only Dooray and Slack can be registered, and the list is to be added at the request.
 
-#### (2) 상세조회/수정/삭제
+#### (2) Retrieve/Modify/Delete Details
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_3.1.png)
-목록에서 상세정보를 조회하고자 하는 항목을 클릭하면 위와 같이 상세정보를 조회할 수 있습니다..<br />
-더불어 수정버튼을 통해 등록된 정보를 변경할 수 있으며 해당 Webhook이 필요하지 않을 경우 삭제버튼을 통해 언제든지 삭제가 가능합니다.
-
+Click each item to retrieve details.
+To change registered information, click **Modify**. You may click to **Delete** a webhook when it is not required.
 
 ### Recipient List
 
-Alarm receivers can be configured.<br />
-To register a new member, go to **TOAST Console Page**. <br />
+Alarm receivers can be configured. To register a new member, go to TOAST Console > Project > Member Management.
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm3_1.1.png)
-In both cases, subscription information to TOAST are used for delivery; alarms may not be sent properly if there is any wrong information in email address or number.<br />
-To check mobile phone information, go to **My Account** of TOAST Cloud.
+In both cases, subscription information to TOAST are used for delivery; alarms may not be sent properly if there is any wrong information in email address or number. To check mobile phone information, go to **My Account** of TOAST Cloud.
 
 <br/>
 ## Config
 
-Integration between Gamebase and TOAST can be configured.<br />
+Integration between Gamebase and TOAST can be configured.
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Config1_1.0.png)
 
-Please note that the translation will be completed as soon as possible.
-TOAST Launching에 설정한 정보를 Gamebase 런칭 API 호출 시에 함께 전달받을지를 설정할 수 있습니다. TOAST Launching 서비스를 사용하는 경우에만 기능을 On, Off할 수 있습니다.<br />
+You may set whether to receive information set in TOAST Launching all at once, when Gamebase Launching API is called. The function can be turned On or Off, only when you use the TOAST Launching service.

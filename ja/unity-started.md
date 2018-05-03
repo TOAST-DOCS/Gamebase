@@ -64,18 +64,15 @@ Gamebase SDKを手軽にインストールすることができるように、Se
 2. GamebaseUnitySettingTool_{version}.unitypackageをインポートします。
 3. Menu > Tools > Gamebase > SDKSettings > Setting Toolを起動します。
 	* v1.0.1 이하 : Menu > Gamebase > SDKSettings > Setting Tool
-4. [Broswe]ボタンをクリックしてSDKをダウンロードする位置を選択します。
-    * 基本ルート:projcet/Gamebase/
-    * Setting Toolからアクセス可能な位置を選択してください。
-5. [Download SDK]ボタンをクリックしてSDKをダウンロードします。
-6. 利用するプラットフォームを選択します。
+4. [Download SDK]ボタンをクリックしてSDKをダウンロードします。
+5. 利用するプラットフォームを選択します。
     * Android
     * iOS
-7. プラットフォームごとに使用するモジュールを選択します。
+6. プラットフォームごとに使用するモジュールを選択します。
     * Authenticationは、Googleと同じID Provider(以下、IDP)との連携に対応しています。
     * Pushは、FCM(Firebase)、Tencent Push、APNS Pushサービスに対応しています。
     * Pruchaseは、TOASTの決済サービスであるIAP(In-App Purchase)を使用して決済に対応しています。
-8. [Settings]ボタンをクリックしてSDKをインストールします。
+7. [Settings]ボタンをクリックしてSDKをインストールします。
 
 #### SDK削除
 1. Menu > Tools > Gamebase > SDKSettings > Setting Toolを起動します。
