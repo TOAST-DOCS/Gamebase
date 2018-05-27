@@ -39,9 +39,6 @@ APIを呼び出すためのサーバーアドレスは、次の通りです。�
 
 APIを呼び出すサーバーで内部的にAPIリクエストを管理することができる方法としてTransactionId機能を提供します。呼び出すサーバーからHTTPのヘッダーにトランザクションIDを設定してAPIを呼び出すと、Gamebaseのサーバーは、レスポンスHTTP Header及びレスポンス結果のResponse Body Headerに該当するTransactionIdを設定して結果を送ります。
 
-<br>
-<br>
-<br>
 
 ## Common
 
@@ -96,9 +93,6 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | resultCode | int | レスポンスコード<br>成功すると0、失敗するとエラーコードを返す |
 | resultMessage | String | レスポンスメッセージ |
 
-<br>
-<br>
-<br>
 
 ## Authentication
 
@@ -190,10 +184,6 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 **[Error Code]**
 
 [エラーコード](./error-code/#server)
-
-<br>
-<br>
-<br>
 
 ## Member
 
@@ -489,9 +479,6 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [エラーコード](./error-code/#server)
 
-<br>
-<br>
-<br>
 
 ## Maintenance
 
@@ -561,9 +548,6 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [エラーコード](./error-code/#server)
 
-<br>
-<br>
-<br>
 
 ## Purchase(IAP)
 
@@ -581,7 +565,7 @@ Gamebaseは、TOAST IAPサービスのサーバーAPIに対して**Wrapping**機
 **該当するAPIに対する詳細説明は、次のリンクをご参考ください。**
 
 <br>
-[Mobile Service > IAP > APIガイド](./Mobile%20Service/IAP/ko/api-guide/)
+[Mobile Service > IAP > APIガイド](/Mobile%20Service/IAP/ja/api-guide/)
 
 <br>
 
@@ -595,9 +579,6 @@ X-Secret-Key：IgsaAP
 POST https://api-gamebase.cloud.toast.com/tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq}
 ```
 
-<br>
-<br>
-<br>
 
 ## Leaderboard
 
@@ -621,9 +602,7 @@ Gamebaseは、TOAST LeaderboardサービスのサーバーAPIに対して**Wrapp
 **該当するAPIに対する詳細説明は、次のリンクをご参考ください。**
 
 <br>
-[Game > Leaderboard > APIガイド](./Game/Leaderboard/ko/api-guide/)
-
-<br>
+[Game > Leaderboard > APIガイド](/Game/Leaderboard/ja/api-guide/)
 
 ##### API呼び出し例
 
@@ -635,9 +614,6 @@ X-Secret-Key：IgsaAP
 GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/user-count
 ```
 
-<br>
-<br>
-<br>
 
 ## Etc
 

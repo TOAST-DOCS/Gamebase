@@ -17,15 +17,39 @@ In many games, login is implemented on a title page.
 
 The logic described above can be implemented in the following order:
 
-#### 1. Get Latest Login Type
-* Call **Gamebase.getLastLoggedInProvider()**.
-* If there is a returned value, follow **2. Authenticate with Lates**.
-* If there is no returned value, let the game user decide IdP and follow **3. Authenticate with Specified IdP**.
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
-#### 2. Authenticate with Latest Login Type
+#### 1. Authenticate with Latest Login Type
 
 * If a previous authentication has been recorded, try to authenticate with no need of ID and passwords.
 * Call **Gamebase.loginForLastLoggedInProvider()**.
+
+#### 1-1. When Authentication is Successful
+
+* Congratulations! Successfully authenticated.
+* Get a user ID with **Gamebase.getUserID()** to implement a game logic.
+
+#### 1-2. When Authentication is Failed
+
+* Network error
+    * If the error code is **SOCKET_ERROR (110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.loginForLastLoggedInProvider()** again or try again in a moment.
+* Banned game user
+    * If the error code is **AUTH_BANNED_MEMBER (3005)**, the authentication has failed because the game user is banned.
+    * Check ban information with **Gamebase.getBanInfo ()** and notify the user with reasons for not being able to play.
+    * When **GamebaseConfiguration.Builder.enablePopup(true)** and **enableBanPopup(true)** are called during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
+* Other errors
+    * As authentication with latest login type has failed, follow **3. Authenticate with Specified IdP**.
+
+#### 2. Authenticate with Specified IdP
+
+* Try to authenticate by specifying an IdP type
+    * Types that can be authenticated are declared in the **AuthProvider** class.
+* Call **Gamebase.login(activity, idpType, callback)** API.
 
 #### 2-1. When Authentication is Successful
 
@@ -35,32 +59,10 @@ The logic described above can be implemented in the following order:
 #### 2-2. When Authentication is Failed
 
 * Network error
-    * If the error code is **SOCKET_ERROR (110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.loginForLastLoggedInProvider()** again or try again in a moment.
-* Banned game user
-    * If the error code is **AUTH_BANNED_MEMBER (3005)**, the authentication has failed because the game user is banned.
-    * Check ban information with **Gamebase.getAuthBanInfo ()** and notify the user with reasons for not being able to play.
-    * When **GamebaseConfiguration.Builder.enablePopup(true)** and **enableBanPopup(true)** are called during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
-* Other errors
-    * As authentication with latest login type has failed, follow **3. Authenticate with Specified IdP**.
-
-#### 3. Authenticate with Specified IdP
-
-* Try to authenticate by specifying an IdP type
-    * Types that can be authenticated are declared in the **AuthProvider** class.
-* Call **Gamebase.login(activity, idpType, callback)** API.
-
-#### 3-1. When Authentication is Successful
-
-* Congratulations! Successfully authenticated.
-* Get a user ID with **Gamebase.getUserID()** to implement a game logic.
-
-#### 3-2. When Authentication is Failed
-
-* Network error
     * If the error code is **SOCKET_ERROR(110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.login(activity, idpType, callback)** again or try again in a moment.
 * Banned game user
     * If the error code is **AUTH_BANNED_MEMBER(3005)**, the authentication has failed due to banned game user.
-    * Check ban information with **Gamebase.getAuthBanInfo()** and notify the user with reasons for not being able to play.
+    * Check ban information with **Gamebase.getBanInfo()** and notify the user with reasons for not being able to play.
     * When **GamebaseConfiguration.Builder.enablePopup(true)** and **enableBanPopup(true)** are called during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
 * Other errors
     * Notify that an error has occurred, and return to the state (mostly in title or login screen) in which user can select an authentication IdP type.
@@ -72,52 +74,41 @@ If a token is expired or its authentication fails, return failure. <br/>
 Note that a login should be implemented for the IdP.
 
 ```java
-private static void onLogin(final Activity activity) {
-    if (!TextUtils.isEmpty(Gamebase.getLastLoggedInProvider())) {
-        onLoginForLastLoggedInProvider(activity);
-    } else {
-        // If there is no last login format, try to authenticate with a specified IDP.
-        Gamebase.login(activity, provider, logincallback);
-    }
-}
-
-private static void onLoginForLastLoggedInProvider(final Activity activity) {
-    Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthToken>() {
-        @Override
-        public void onCallback(AuthToken data, GamebaseException exception) {
-            if (Gamebase.isSuccess(exception)) {
-                // Login successful
-                Log.d(TAG, "Login successful");
-                String userId = Gamebase.getUserID();
+Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthToken>() {
+    @Override
+    public void onCallback(AuthToken data, GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            // Login successful
+            Log.d(TAG, "Login successful");
+            String userId = Gamebase.getUserID();
+        } else {
+            if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
+                    exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
+                // Socket error means network access is temporarily unavailable.
+                // Check network status or retry after a moment.
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2000);
+                            onLoginForLastLoggedInProvider(activity);
+                        } catch (InterruptedException e) {}
+                    }
+                }).start();
+            } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
+                // The user who try to log in has been banned.
+                // If GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) has been called
+                // Gamebase automatically displays a pop-up on banning.
+                //
+                // In order to implement a pop-up on banning to fit for Game UI
+                // Use Gamebase.getBanInfo() to find any ban information and notify the user with reasons for not being able to play game.
+                BanInfo banInfo = Gamebase.getBanInfo();
             } else {
-                if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
-                        exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                    // Socket error means network access is temporarily unavailable.
-                    // Check network status or retry after a moment.
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(2000);
-                                onLoginForLastLoggedInProvider(activity);
-                            } catch (InterruptedException e) {}
-                        }
-                    }).start();
-                } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
-                    // The user who try to log in has been banned.
-                    // If GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) has been called
-                    // Gamebase automatically displays a pop-up on banning.
-                    //
-                    // In order to implement a pop-up on banning to fit for Game UI
-                    // Use Gamebase.getAuthBanInfo() to find any ban information and notify the user with reasons for not being able to play game.
-                    AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
-                } else {
-                    // For other error cases, try to authenticate with a specified IDP.
-                    Gamebase.login(activity, provider, logincallback);
-                }
+                // For other error cases, try to authenticate with a specified IDP.
+                Gamebase.login(activity, provider, logincallback);
             }
         }
-    });
+    }
 }
 ```
 ### Login with GUEST
@@ -158,8 +149,8 @@ private static void onLoginForGuest(final Activity activity) {
                     // Gamebase automatically displays a pop-up on banning.
                     //
                     // In order to implement a popup on banning to fit for Game UI
-                    // Use Gamebase.getAuthBanInfo() to find any ban information and notify the user with reasons for not being able to play game.
-                    AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
+                    // Use Gamebase.getBanInfo() to find any ban information and notify the user with reasons for not being able to play game.
+                    BanInfo banInfo = Gamebase.getBanInfo();
                 } else {
                     // Login failed
                     Log.e(TAG, "Login failed- "
@@ -207,8 +198,8 @@ private static void onLoginForGoogle(final Activity activity) {
                     // Gamebase automatically displays a pop-up on banning.
                     //
                     // In order to implement a pop-up on banning to fit for Game UI
-                    // Use Gamebase.getAuthBanInfo() to find any ban information and notify the user with reasons for not being able to play game.
-                    AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
+                    // Use Gamebase.getBanInfo() to find any ban information and notify the user with reasons for not being able to play game.
+                    BanInfo banInfo = Gamebase.getBanInfo();
                 } else {
                     // Login failed
                     Log.e(TAG, "Login failed- "
@@ -278,8 +269,8 @@ private static void onLoginWithCredential(final Activity activity) {
                     // Gamebase automatically displays a pop-up on banning.
                     //
                     // In order to implement a banning pop-up to fit for Game UI
-                    // Use Gamebase.getAuthBanInfo() to find any ban information and notify the user with reasons for not being able to play game.
-                    AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
+                    // Use Gamebase.getBanInfo() to find any ban information and notify the user with reasons for not being able to play game.
+                    BanInfo banInfo = Gamebase.getBanInfo();
                 } else {
                     // Login failed
                     Log.e(TAG, "Login failed- "
@@ -657,7 +648,7 @@ String accessToken = Gamebase.getAccessToken();
 String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
 
 // Obtaining Ban Information
-AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
+BanInfo banInfo = Gamebase.getBanInfo();
 ```
 
 
@@ -678,9 +669,10 @@ String email = profile.getEmail();  // or profile.information.get("email")
 
 ### Get Banned User Information
 
-For users who are registered as banned in the Gamebase Console, information codes of restricted use will be displayed as below, when they try to log in. The ban information can be found by using the **Gamebase.getAuthBanInfo()** method.
+For users who are registered as banned in the Gamebase Console,
+information codes of restricted use will be displayed as below, when they try to log in. The ban information can be found by using the **Gamebase.getBanInfo()** method.
 
-* AUTH_BANNED_MEMBER(3005)
+* BANNED_MEMBER(7)
 
 ## TransferKey
 게스트 계정을 다른 단말기로 이전하기 위해 계정 이전을 위한 키를 발급받는 기능입니다.
@@ -743,11 +735,11 @@ Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
 
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
-| Auth           | AUTH\_USER\_CANCELED                     | 3001       | Login is cancelled.                          |
+| Auth           | INVALID\_MEMBER                          | 6          | Request for invalid member.                        |
+|                | BANNED\_MEMBER                           | 7          | Named member has been banned.                               |
+|                | AUTH\_USER\_CANCELED                     | 3001       | Login is cancelled.                          |
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | The authentication is not supported.                        |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | Named member does not exist or has withdrawn.                      |
-|                | AUTH\_INVALID\_MEMBER                    | 3004       | Request for invalid member.                        |
-|                | AUTH\_BANNED\_MEMBER                     | 3005       | Named member has been banned.                               |
 |                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | Error in external authentication                       |
 | TransferKey    | SAME\_REQUESTOR                          | 8          | 발급한 TransferKey를 동일한 기기에서 사용했습니다. |
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IDP가 연동되어 있습니다. |

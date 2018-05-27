@@ -5,8 +5,8 @@
 
 
 ## Monitoring
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring1_1.1.png)
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring2_1.1.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring1_1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring2_1.2.png)
 현재 앱을 이용하는 사용자의 전체 통계 및 현재 예약된 푸시 현황, 예약된 점검 내역을 확인할 수 있습니다. 
 5분이 지나면 자동으로 화면이 '새로 고침'이 되고, 실시간으로 변경된 지표를 확인할 수 있습니다.
 
@@ -21,6 +21,7 @@
 	* 버전별: Console에 등록된 클라이언트 버전별 점유율
 * 동시 접속 변화 그래프: 금일 00:00부터 현재 시간까지의 동시 접속 변화 그래프
 	* 점검 및 푸시에 따른 동시 접속 변화를 확인하기 쉽도록 점검, 푸시 내역을 그래프에 별도로 표시하고 있습니다.
+	* 관련데이터는 검색조건 우측의 버튼을 통해 다운로드를 받을 수 있습니다.
     
 
 

@@ -15,22 +15,24 @@ Gamebaseでは基本的にゲストログインに対応しています。<br/>
 
 上述したロジックは、次のような手順で設計することができます。
 
-#### 1. 前回のログインタイプを呼び出す
-* **Gamebase.GetLastLoggedInProvider()**を呼び出します。
-* 戻り値がある場合、**2. 前回のログインタイプで認証**を進めます。
-* 戻り値がない場合、ゲームユーザーにIdPを選択させた後、**3. 指定されたIdPで認証**を進めます。
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
-#### 2. 前回のログインタイプで認証
+#### 1. 前回のログインタイプで認証
 
 * 前回の認証記録がある場合、IDとパスワードを入力させずに認証を試みます。
 * **Gamebase.LoginForLastLoggedInProvider()**を呼び出します。
 
-#### 2-1. 認証に成功した場合
+#### 1-1. 認証に成功した場合
 
 * おめでとうございます！認証に成功しました。
 * **Gamebase.GetUserID()**でユーザーIDを取得し、ゲームロジックを設計してください。
 
-#### 2-2. 認証に失敗した場合
+#### 1-2. 認証に失敗した場合
 
 * ネットワークエラー
     * エラーコードが**SOCKET_ERROR(110)**または**SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**Gamebase.LoginForLastLoggedInProvider()**をもう一度呼び出したり、しばらくしてからもう一度試します。
@@ -41,18 +43,18 @@ Gamebaseでは基本的にゲストログインに対応しています。<br/>
 * その他のエラー
     * 前回のログインタイプで認証に失敗しました。**'3. 指定されたIdPで認証'**を進めます。
 
-#### 3. 指定されたIdPで認証
+#### 2. 指定されたIdPで認証
 
 * IdPのタイプを直接指定して認証を試みます。
     * 認証可能なタイプは、**GamebaseAuthProvider**クラスに宣言されています。
 * **Gamebase.Login(providerName, callback)**APIを呼び出します。
 
-#### 3-1. 認証に成功した場合
+#### 2-1. 認証に成功した場合
 
 * おめでとうございます！認証に成功しました。
 * **Gamebase.GetUserID()**でユーザーIDを取得し、ゲームロジックを設計してください。
 
-#### 3-2. 認証に失敗した場合
+#### 2-2. 認証に失敗した場合
 
 * ネットワークエラー
     * エラーコードが**SOCKET_ERROR(110)**または**SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**Gamebase.Login(providerName, callback)**をもう一度呼び出したり、しばらくしてからもう一度試します。
@@ -758,7 +760,7 @@ public void GetAuthProviderProfile(string providerName)
 ### Get Banned User Infomation
 
 Gamebase Consoleで利用制限対象のゲームユーザーに登録された場合、
-ログインを試みると、利用制限情報コード(**AUTH_BANNED_MEMBER(3005)**)が表示されることがあり、次のAPIを利用して利用制限情報を確認することができます。
+ログインを試みると、利用制限情報コード(**BANNED_MEMBER(7)**)が表示されることがあり、次のAPIを利用して利用制限情報を確認することができます。
 
 **API**
 
@@ -873,11 +875,11 @@ public void RequestTransfer(string transferKey)
 
 | Category | Error                                    | Error Code | Description                                    |
 | ---  | ---------------------------------------- | ---------- | ---------------------------------------- |
-| Auth | AUTH_USER_CANCELED | 3001 | ログインがキャンセルされました。|
+| Auth | INVALID_MEMBER | 6 | 正しくない会員に対するリクエストです。 |
+|      | BANNED_MEMBER | 7 | 利用制限対象の会員です。 |
+|      | AUTH_USER_CANCELED | 3001 | ログインがキャンセルされました。|
 |      | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | この認証方式には対応しておりません。|
 |      | AUTH_NOT_EXIST_MEMBER | 3003 | 退会されているか、存在しない会員です。|
-|      | AUTH_INVALID_MEMBER | 3004 | 正しくない会員に対するリクエストです。|
-|      | AUTH\_BANNED\_MEMBER | 3005 | 利用制限対象の会員です。|
 |      | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 外部認証ライブラリーエラーです。<br/> DetailCode 및 DetailMessage를 확인해 주세요.|
 | TransferKey | SAME\_REQUESTOR | 8 | 발급한 TransferKey를 동일한 기기에서 사용했습니다. |
 |             | NOT\_GUEST\_OR\_HAS\_OTHERS | 9 | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IDP가 연동되어 있습니다. |

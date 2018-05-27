@@ -29,23 +29,24 @@ In many games, login is implemented on a title page.
 
 The logic described in the above can be implemented in the following order.
 
-#### 1. Get Latest Login Type
-* Call **[TCGBGamebase lastLoggedInProvider]**.
-* If there is a returned value, follow **2. Authenticate with Latest Login Type**.
-* If there is no returned value, let the game user decide IdP and follow **3. Authenticate with Specified IdP**.
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
-#### 2. Authenticate with Latest Login Type
+#### 1. Authenticate with Latest Login Type
 
 * If a previous authentication has been recorded, try to authenticate with no need of ID and password.
 * Call **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**.
 
-
-#### 2-1. When Authentication is Successful
+#### 1-1. When Authentication is Successful
 
 * Congratulations! Successfully authenticated
 * Get a user ID with **[TCGBGamebase userID]** to implement a game logic.
 
-#### 2-2. When Authentication is Failed
+#### 1-2. When Authentication is Failed
 
 * Network error
     * If the error code is **TCGB_ERROR_SOCKET_ERROR (110)** or **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]** again or try again in a moment.
@@ -56,18 +57,18 @@ The logic described in the above can be implemented in the following order.
 * Other errors
     * Authentication with latest login type has failed. Follow **3. Authenticate with Specified IdP**.
 
-#### 3. Authenticate with Specified IdP
+#### 2. Authenticate with Specified IdP
 
 * Try to authenticate by specifying an IdP type.
     * Types that can be authenticated are declared in **TCGBAuthIdPs** of the **TCGBConstants.h** file.
 * Call **[TCGBGamebase loginWithType:viewController:completion:]** API.
 
-#### 3-1. When Authentication is Successful
+#### 2-1. When Authentication is Successful
 
 * Congratulations! Successfully authenticated.
 * Get a user ID with **[TCGBGamebase userID]** to implement a game logic.
 
-#### 3-2. When Authentication is Failed
+#### 2-2. When Authentication is Failed
 
 * Network error
     * If the error code is **TCGB_ERROR_SOCKET_ERROR (110)** or **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT (101)**, the authentication has failed due to temporary network problem, so call **[TCGBGamebase loginWithType:viewController:completion:]** again or try again in a moment.
@@ -525,7 +526,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 For users who are registered banned in the Gamebase Console,
 information codes of restricted use will be displayed as below, when they try to log in. The ban information can be found by using the **[TCGBGamebase banInfo]** method.
 
-* TCGB_ERROR_AUTH_BANNED_MEMBER
+* TCGB_ERROR_BANNED_MEMBER
 
 
 ## TransferKey
@@ -595,11 +596,11 @@ TransferKey의 형식은 영문자 **"소문자/대문자/숫자"를 포함한 8
 
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
-| Auth           | TCGB\_ERROR\_AUTH\_USER\_CANCELED        | 3001       | Login is cancelled.                            |
+| Auth           | TCGB\_ERROR\_INVALID\_MEMBER             | 6          | Request for invalid member.                        |
+|                | TCGB\_ERROR\_BANNED\_MEMBER              | 7          | Named member has been banned.                               |
+|                | TCGB\_ERROR\_AUTH\_USER\_CANCELED        | 3001       | Login is cancelled.                            |
 |                | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | The authentication is not supported.                        |
 |                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | Named member does not exist or has withdrawn.                      |
-|                | TCGB\_ERROR\_AUTH\_INVALID\_MEMBER       | 3004       | Request for invalid member.                        |
-|                | TCGB\_ERROR\_AUTH\_BANNED\_MEMBER        | 3005       | Named member has been banned.                               |
 |                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | Error in external authentication library.                       |
 | TransferKey    | TCGB\_ERROR\_SAME\_REQUESTOR             | 8			 | 발급한 TransferKey를 동일한 기기에서 사용했습니다. |
 |                | TCGB\_ERROR\_NOT\_GUEST\_OR\_HAS\_OTHERS | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IDP가 연동되어 있습니다. |

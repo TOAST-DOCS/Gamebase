@@ -29,49 +29,51 @@ AdditionalInfo에 대한 설명은 하단의 **Gamebase에서 지원 중인 IdP*
 
 위에서 설명한 로직은 다음과 같은 순서로 구현할 수 있습니다.
 
-#### 1. 이전 로그인 유형 받아오기
-* **[TCGBGamebase lastLoggedInProvider]**를 호출합니다.
-* 반환된 값이 있으면 **2. 이전 로그인 유형으로 인증**을 진행합니다.
-* 반환된 값이 없다면 게임 이용자에게 IdP를 선택하게 한 다음 **3. 지정된 IdP로 인증**을 진행합니다.
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
-#### 2. 이전 로그인 유형으로 인증
+#### 1. 이전 로그인 유형으로 인증
 
 * 이전에 인증했던 기록이 있다면 ID와 비밀번호를 입력받지 않고 인증을 시도합니다.
 * **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**을 호출합니다.
 
-#### 2-1. 인증이 성공한 경우
+#### 1-1. 인증이 성공한 경우
 
 * 축하합니다! 인증에 성공했습니다.
 * **[TCGBGamebase userID]**로 사용자 ID를 획득하여 게임 로직을 구현하시면 됩니다.
 
-#### 2-2. 인증이 실패한 경우
+#### 1-2. 인증이 실패한 경우
 
 * 네트워크 오류
     * 오류 코드가 **TCGB_ERROR_SOCKET_ERROR(110)** 또는 **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**을 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 이용자
-    * 오류 코드가 **TCGB_ERROR_AUTH_BANNED_MEMBER(3005)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
+    * 오류 코드가 **TCGB_ERROR_BANNED_MEMBER(7)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
     * **[TCGBGamebase banInfo]**로 제재 정보를 확인하여 게임 이용자에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
     * Gamebase 초기화 시 **[TCGBConfiguration enablePopup:YES]** 및 **[TCGBConfiguration enableBanPopup:YES]**를 호출한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외 오류
     * 이전 로그인 유형으로 인증하기가 실패하였습니다. **3. 지정된 IdP로 인증**을 진행합니다.
 
-#### 3. 지정된 IdP로 인증
+#### 2. 지정된 IdP로 인증
 
 * IdP 유형을 직접 지정하여 인증을 시도합니다.
     * 인증 가능한 유형은 **TCGBConstants.h** 파일의 **TCGBAuthIdPs**에 선언돼 있습니다.
 * **[TCGBGamebase loginWithType:viewController:completion:]** API를 호출합니다.
 
-#### 3-1. 인증에 성공한 경우
+#### 2-1. 인증에 성공한 경우
 
 * 축하합니다! 인증에 성공했습니다.
 * **[TCGBGamebase userID]**로 사용자 ID를 획득하여 게임 로직을 구현하시면 됩니다.
 
-#### 3-2. 인증에 실패한 경우
+#### 2-2. 인증에 실패한 경우
 
 * 네트워크 오류
     * 오류 코드가 **TCGB_ERROR_SOCKET_ERROR(110)** 또는 **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증에 실패한 것이므로 **[TCGBGamebase loginWithType:viewController:completion:]**을 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 사용자
-    * 오류 코드가 **TCGB_ERROR_AUTH_BANNED_MEMBER(3005)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
+    * 오류 코드가 **TCGB_ERROR_BANNED_MEMBER(7)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
     * **[TCGBGamebase banInfo]** 로 제재 정보를 확인하여 게임 이용자에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
     * Gamebase 초기화 시 **[TCGBConfiguration enablePopup:YES]** 및 **[TCGBConfiguration enableBanPopup:YES]**를 호출한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외 오류
@@ -525,7 +527,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 Gamebase Console에 제재된 게임 이용자로 등록될 경우,
 로그인을 시도하면 아래와 같은 이용 제한 정보 코드가 표시될 수 있습니다. **[TCGBGamebase banInfo]** 메서드를 이용해 제재 정보를 확인할 수 있습니다.
 
-* TCGB_ERROR_AUTH_BANNED_MEMBER
+* TCGB_ERROR_BANNED_MEMBER
 
 
 ## TransferKey
@@ -595,11 +597,11 @@ TransferKey의 형식은 영문자 **"소문자/대문자/숫자"를 포함한 8
 
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
-| Auth           | TCGB\_ERROR\_AUTH\_USER\_CANCELED        | 3001       | 로그인이 취소되었습니다.                            |
+| Auth           | TCGB\_ERROR\_INVALID\_MEMBER             | 6          | 잘못된 회원에 대한 요청입니다.                        |
+|                | TCGB\_ERROR\_BANNED\_MEMBER              | 7          | 제재된 회원입니다.                               |
+|                | TCGB\_ERROR\_AUTH\_USER\_CANCELED        | 3001       | 로그인이 취소되었습니다.                            |
 |                | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | 지원하지 않는 인증 방식입니다.                        |
 |                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | 존재하지 않거나 탈퇴한 회원입니다.                      |
-|                | TCGB\_ERROR\_AUTH\_INVALID\_MEMBER       | 3004       | 잘못된 회원에 대한 요청입니다.                        |
-|                | TCGB\_ERROR\_AUTH\_BANNED\_MEMBER        | 3005       | 제재된 회원입니다.                               |
 |                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
 | TransferKey    | TCGB\_ERROR\_SAME\_REQUESTOR             | 8			 | 발급한 TransferKey를 동일한 기기에서 사용했습니다. |
 |                | TCGB\_ERROR\_NOT\_GUEST\_OR\_HAS\_OTHERS | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IDP가 연동되어 있습니다. |

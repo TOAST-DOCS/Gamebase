@@ -17,50 +17,52 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
 
 위에서 설명한 로직은 다음과 같은 순서로 구현할 수 있습니다.
 
-#### 1. 이전 로그인 유형 받아오기
-* **Gamebase.getLastLoggedInProvider()**를 호출합니다.
-* 반환된 값이 있으면 **2. 이전 로그인 유형으로 인증**를 진행합니다.
-* 반환된 값이 없다면 게임 이용자에게 IdP를 선택하게 한 다음 **3. 지정된 IdP로 인증**을 진행합니다.
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
-#### 2. 이전 로그인 유형으로 인증
+#### 1. 이전 로그인 유형으로 인증
 
 * 이전에 인증했던 기록이 있다면 ID와 비밀번호를 입력받지 않고 인증을 시도합니다.
 * **Gamebase.loginForLastLoggedInProvider()**를 호출합니다.
 
-#### 2-1. 인증이 성공한 경우
+#### 1-1. 인증이 성공한 경우
 
 * 축하합니다! 인증에 성공했습니다.
 * **Gamebase.getUserID()**로 사용자 ID를 획득하여 게임 로직을 구현하시면 됩니다.
 
-#### 2-2. 인증이 실패한 경우
+#### 1-2. 인증이 실패한 경우
 
 * 네트워크 오류
     * 오류 코드 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **Gamebase.loginForLastLoggedInProvider()**를 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 이용자
-    * 오류 코드가 **AUTH_BANNED_MEMBER(3005)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
-    * **Gamebase.getAuthBanInfo()**로 제재 정보를 확인하여 게임 이용자에게 게임을 할 수 없는 이유를 알려 주시기 바랍니다.
+    * 오류 코드가 **BANNED_MEMBER(7)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
+    * **Gamebase.getBanInfo()**로 제재 정보를 확인하여 게임 이용자에게 게임을 할 수 없는 이유를 알려 주시기 바랍니다.
     * Gamebase 초기화 시 **GamebaseConfiguration.Builder.enablePopup(true)** 및 **enableBanPopup(true)**를 호출한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외 오류
     * 이전 로그인 유형으로 인증에 실패했기 때문에 **3. 지정된 IdP로 인증**을 진행하시기 바랍니다.
 
-#### 3. 지정된 IdP로 인증
+#### 2. 지정된 IdP로 인증
 
 * IdP 유형을 직접 지정하여 인증을 시도합니다.
     * 인증 가능한 유형은 **AuthProvider** 클래스에 선언돼 있습니다.
 * **Gamebase.login(activity, idpType, callback)** API를 호출합니다.
 
-#### 3-1. 인증에 성공한 경우
+#### 2-1. 인증에 성공한 경우
 
 * 축하합니다! 인증에 성공했습니다.
 * **Gamebase.getUserID()**로 사용자 ID를 획득하여 게임 로직을 구현하시면 됩니다.
 
-#### 3-2. 인증에 실패한 경우
+#### 2-2. 인증에 실패한 경우
 
 * 네트워크 오류
     * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증에 실패한 것이므로 **Gamebase.login(activity, idpType, callback)**을 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 사용자
-    * 오류 코드가 **AUTH_BANNED_MEMBER(3005)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
-    * **Gamebase.getAuthBanInfo()**로 제재 정보를 확인하여 게임 이용자에게 게임을 플레이할 수 없는 이유를 알려주시기 바랍니다.
+    * 오류 코드가 **BANNED_MEMBER(7)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
+    * **Gamebase.getBanInfo()**로 제재 정보를 확인하여 게임 이용자에게 게임을 플레이할 수 없는 이유를 알려주시기 바랍니다.
     * Gamebase 초기화 시 **GamebaseConfiguration.Builder.enablePopup(true)** 및 **enableBanPopup(true)**를 호출한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외 오류
     * 오류가 발생했다는 것을 게임 이용자에게 알리고, 게임 이용자가 인증 IdP 유형을 선택할 수 있는 상태(주로 타이틀 화면 또는 로그인 화면)로 되돌아갑니다.
@@ -72,53 +74,42 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
 이때는 해당 IdP에 대한 로그인을 구현해야 합니다.
 
 ```java
-private static void onLogin(final Activity activity) {
-    if (!TextUtils.isEmpty(Gamebase.getLastLoggedInProvider())) {
-        onLoginForLastLoggedInProvider(activity);
-    } else {
-        // 이전에 로그인한 유형이 존재하지 않는다면 지정된 IDP로 인증하기를 시도합니다.
-        Gamebase.login(activity, provider, logincallback);
-    }
-}
-
-private static void onLoginForLastLoggedInProvider(final Activity activity) {
-    Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthToken>() {
-        @Override
-        public void onCallback(AuthToken data, GamebaseException exception) {
-            if (Gamebase.isSuccess(exception)) {
-                // 로그인 성공
-                Log.d(TAG, "Login successful");
-                String userId = Gamebase.getUserID();
+Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthToken>() {
+    @Override
+    public void onCallback(AuthToken data, GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            // 로그인 성공
+            Log.d(TAG, "Login successful");
+            String userId = Gamebase.getUserID();
+        } else {
+            if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
+                    exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
+                // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
+                // 네트워크 상태를 확인하거나 잠시 대기 후 재시도 하세요.
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2000);
+                            onLoginForLastLoggedInProvider(activity);
+                        } catch (InterruptedException e) {}
+                    }
+                }).start();
+            } else if (exception.getCode() == GamebaseError.BANNED_MEMBER) {
+                // 로그인을 시도한 게임 이용자가 이용 정지 상태입니다.
+                // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) 를 호출하였다면
+                // Gamebase가 이용정지에 관한 팝업을 자동으로 띄워줍니다.
+                //
+                // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 Gamebase.getBanInfo()로
+                // 제재 정보를 확인하여 게임 이용자에게 게임을 플레이할 수 없는 사유를 표시해 주시기 바랍니다.
+                BanInfo banInfo = Gamebase.getBanInfo();
             } else {
-                if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
-                        exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                    // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
-                    // 네트워크 상태를 확인하거나 잠시 대기 후 재시도 하세요.
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(2000);
-                                onLoginForLastLoggedInProvider(activity);
-                            } catch (InterruptedException e) {}
-                        }
-                    }).start();
-                } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
-                    // 로그인을 시도한 게임 이용자가 이용 정지 상태입니다.
-                    // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) 를 호출하였다면
-                    // Gamebase가 이용정지에 관한 팝업을 자동으로 띄워줍니다.
-                    //
-                    // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 Gamebase.getAuthBanInfo()로
-                    // 제재 정보를 확인하여 게임 이용자에게 게임을 플레이할 수 없는 사유를 표시해 주시기 바랍니다.
-                    AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
-                } else {
-                    // 그 외의 오류가 발생하는 경우 지정된 IdP로 인증을 시도합니다.
-                    Gamebase.login(activity, provider, logincallback);
-                }
+                // 그 외의 오류가 발생하는 경우 지정된 IdP로 인증을 시도합니다.
+                Gamebase.login(activity, provider, logincallback);
             }
         }
-    });
-}
+    }
+});
 ```
 ### Login with GUEST
 
@@ -152,14 +143,14 @@ private static void onLoginForGuest(final Activity activity) {
                             } catch (InterruptedException e) {}
                         }
                     }).start();
-                } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
+                } else if (exception.getCode() == GamebaseError.BANNED_MEMBER) {
                     // 로그인을 시도한 게임 이용자가 이용 정지 상태입니다.
                     // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) 를 호출하였다면
                     // Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
                     //
-                    // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 Gamebase.getAuthBanInfo()로
+                    // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 Gamebase.getBanInfo()로
                     // 제재 정보를 확인하여 게임 이용자에게 게임을 플레이할 수 없는 사유를 표시해 주시기 바랍니다.
-                    AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
+                    BanInfo banInfo = Gamebase.getBanInfo();
                 } else {
                     // 로그인 실패
                     Log.e(TAG, "Login failed- "
@@ -201,14 +192,14 @@ private static void onLoginForGoogle(final Activity activity) {
                             } catch (InterruptedException e) {}
                         }
                     }).start();
-                } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
+                } else if (exception.getCode() == GamebaseError.BANNED_MEMBER) {
                     // 로그인을 시도한 유저가 이용정지 상태입니다.
                     // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) 를 호출하였다면
                     // Gamebase가 이용정지에 관한 팝업을 자동으로 띄워줍니다.
                     //
-                    // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 Gamebase.getAuthBanInfo()로
+                    // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 Gamebase.getBanInfo()로
                     // 제재 정보를 확인하여 유저에게 게임을 플레이 할 수 없는 사유를 표시해 주시기 바랍니다.
-                    AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
+                    BanInfo banInfo = Gamebase.getBanInfo();
                 } else {
                     // 로그인 실패
                     Log.e(TAG, "Login failed- "
@@ -272,14 +263,14 @@ private static void onLoginWithCredential(final Activity activity) {
                             } catch (InterruptedException e) {}
                         }
                     }).start();
-                } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
+                } else if (exception.getCode() == GamebaseError.BANNED_MEMBER) {
                     // 로그인을 시도한 게임 이용자가 이용 정지 상태입니다.
                     // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) 를 호출하였다면
                     // Gamebase가 이용정지에 관한 팝업을 자동으로 띄워줍니다.
                     //
-                    // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 Gamebase.getAuthBanInfo()로
+                    // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 Gamebase.getBanInfo()로
                     // 제재 정보를 확인하여 사용자에게 게임을 플레이할 수 없는 사유를 표시해 주시기 바랍니다.
-                    AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
+                    BanInfo banInfo = Gamebase.getBanInfo();
                 } else {
                     // 로그인 실패
                     Log.e(TAG, "Login failed- "
@@ -658,7 +649,7 @@ String accessToken = Gamebase.getAccessToken();
 String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
 
 // Obtaining Ban Information
-AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
+BanInfo banInfo = Gamebase.getBanInfo();
 ```
 
 
@@ -680,9 +671,9 @@ String email = profile.getEmail();  // or profile.information.get("email")
 ### Get Banned User Information
 
 Gamebase Console에 제재된 게임 이용자로 등록될 경우,
-로그인을 시도하면 아래와 같은 이용 제한 정보 코드가 표시될 수 있습니다. **Gamebase.getAuthBanInfo()** 메서드를 이용해 제재 정보를 확인할 수 있습니다.
+로그인을 시도하면 아래와 같은 이용 제한 정보 코드가 표시될 수 있습니다. **Gamebase.getBanInfo()** 메서드를 이용해 제재 정보를 확인할 수 있습니다.
 
-* AUTH_BANNED_MEMBER(3005)
+* BANNED_MEMBER(7)
 
 ## TransferKey
 게스트 계정을 다른 단말기로 이전하기 위해 계정 이전을 위한 키를 발급받는 기능입니다.
@@ -745,11 +736,11 @@ Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
 
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
-| Auth           | AUTH\_USER\_CANCELED                     | 3001       | 로그인이 취소되었습니다.                            |
+| Auth           | INVALID\_MEMBER                          | 6          | 잘못된 회원에 대한 요청입니다.                        |
+|                | BANNED\_MEMBER                           | 7          | 제재된 회원입니다.                               |
+|                | AUTH\_USER\_CANCELED                     | 3001       | 로그인이 취소되었습니다.                            |
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | 지원하지 않는 인증 방식입니다.                        |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 존재하지 않거나 탈퇴한 회원입니다.                      |
-|                | AUTH\_INVALID\_MEMBER                    | 3004       | 잘못된 회원에 대한 요청입니다.                        |
-|                | AUTH\_BANNED\_MEMBER                     | 3005       | 제재된 회원입니다.                               |
 |                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
 | TransferKey    | SAME\_REQUESTOR                          | 8          | 발급한 TransferKey를 동일한 기기에서 사용했습니다. |
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IDP가 연동되어 있습니다. |

@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > iOS SDK ご利用ガイド > 認証
+## Game > Gamebase > iOS SDK ご利用ガイド > 認証
 
 
 ## Login
@@ -29,22 +29,24 @@ AdditionalInfoに対する説明は下の**Gamebaseで対応しているIdP**の
 
 上述したロジックは、次のような手順で設計することができます。
 
-#### 1. 前回のログインタイプを呼び出す
-* **[TCGBGamebase lastLoggedInProvider]**を呼び出します。
-* 戻り値がある場合、**2. 前回のログインタイプで認証**を進めます。
-* 戻り値がない場合、ゲームユーザーにIdPを選択させた後、**3. 指定されたIdPで認証**を進めます。
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
-#### 2. 前回のログインタイプで認証
+#### 1. 前回のログインタイプで認証
 
 * 前回の認証記録がある場合、IDとパスワードを入力させずに認証を試みます。
 * **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**を呼び出します。
 
-#### 2-1. 認証に成功した場合
+#### 1-1. 認証に成功した場合
 
 * おめでとうございます！認証に成功しました。
 * **[TCGBGamebase userID]**でユーザーIDを取得し、ゲームロジックを設計してください。
 
-#### 2-2. 認証に失敗した場合
+#### 1-2. 認証に失敗した場合
 
 * ネットワークエラー
     * エラーコードが**TCGB_ERROR_SOCKET_ERROR(110)**または**TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**をもう一度呼び出したり、しばらくしてからもう一度試します。
@@ -55,18 +57,18 @@ AdditionalInfoに対する説明は下の**Gamebaseで対応しているIdP**の
 * その他のエラー
     * 前回のログインタイプで認証に失敗しました。**3. 指定されたIdPで認証**を進めます。
 
-#### 3. 指定されたIdPで認証
+#### 2. 指定されたIdPで認証
 
 * IdPのタイプを直接指定して認証を試みます。
     * 認証可能なタイプは、**TCGBConstants.h**ファイルの**TCGBAuthIdPs**に宣言されています。
 * **[TCGBGamebase loginWithType:viewController:completion:]**APIを呼び出します。
 
-#### 3-1. 認証に成功した場合
+#### 2-1. 認証に成功した場合
 
 * おめでとうございます！認証に成功しました。
 * **[TCGBGamebase userID]**でユーザーIDを取得し、ゲームロジックを設計してください。
 
-#### 3-2. 認証に失敗した場合
+#### 2-2. 認証に失敗した場合
 
 * ネットワークエラー
     * エラーコードが**TCGB_ERROR_SOCKET_ERROR(110)**または**TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**[TCGBGamebase loginWithType:viewController:completion:]**をもう一度呼び出したり、しばらくしてからもう一度試します。
@@ -525,7 +527,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 Gamebase Consoleで利用制限対象のゲームユーザーに登録された場合、
 ログインを試みると、次のような利用制限情報コードが表示されることがあります。**[TCGBGamebase banInfo]**メソッドを利用して利用制限情報を確認することができます。
 
-* TCGB_ERROR_AUTH_BANNED_MEMBER
+* TCGB_ERROR_BANNED_MEMBER
 
 
 ## TransferKey
@@ -595,11 +597,11 @@ TransferKey의 형식은 영문자 **"소문자/대문자/숫자"를 포함한 8
 
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
-| Auth           | TCGB\_ERROR\_AUTH\_USER\_CANCELED        | 3001       | ログインがキャンセルされました。                           |
+| Auth           | TCGB\_ERROR\_INVALID\_MEMBER             | 6          | 正しくない会員に対するリクエストです。                        |
+|                | TCGB\_ERROR\_BANNED\_MEMBER              | 7          | 利用制限対象の会員です。                               |
+|                | TCGB\_ERROR\_AUTH\_USER\_CANCELED        | 3001       | ログインがキャンセルされました。                           |
 |                | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | この認証方式には対応しておりません。                      |
 |                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | 退会されているか、存在しない会員です。                    |
-|                | TCGB\_ERROR\_AUTH\_INVALID\_MEMBER       | 3004       | 正しくない会員に対するリクエストです。                      |
-|                | TCGB\_ERROR\_AUTH\_BANNED\_MEMBER        | 3005       | 利用制限対象の会員です。                             |
 |                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 外部認証ライブラリーエラーです。 <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
 | TransferKey    | TCGB\_ERROR\_SAME\_REQUESTOR             | 8			 | 발급한 TransferKey를 동일한 기기에서 사용했습니다. |
 |                | TCGB\_ERROR\_NOT\_GUEST\_OR\_HAS\_OTHERS | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IDP가 연동되어 있습니다. |

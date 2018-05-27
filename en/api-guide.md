@@ -76,13 +76,10 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| transactionId | String | alue set at HTTP Header when API is requested. <br>If the value is not delivered, return value that is created within Gamebase. |
+| transactionId | String | The value set at HTTP Header when API is requested.<br>If the value is not delivered, return value that is created within Gamebase. |
 | isSuccessful | boolean | Whether it is successful or not.  |
-| resultCode | int | Result code <br>0 for success; return error codes, for failure |
+| resultCode | int | Result code<br>0 for success; return error codes, for failure |
 | resultMessage | String | Result message  |
-
-<br>
-<br>
 
 ## Authentication
 
@@ -174,9 +171,6 @@ Check common requirements.
 
 [Error Code](./error-code/#server)
 
-<br>
-<br>
-
 ## Member
 
 #### Get Member
@@ -193,6 +187,7 @@ Retrieve detailed information of a single member.
 **[Request Header]**
 
 Check common requirements.
+
 
 **[Path Variable]**
 
@@ -279,7 +274,6 @@ Check common requirements.
 
 [Error Code](./error-code/#server)
 
-
 #### Get Members
 
 Retrieves brief information about multiple members.
@@ -355,6 +349,7 @@ Retrieve IdP information mapped with user ID.
 
 Check common requirements.
 
+
 **[Path Variable]**
 
 | Name | Type | Value |
@@ -423,6 +418,7 @@ Check common requirements.
 | --- | --- | --- |
 | appId | String | TOAST project ID |
 
+
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
@@ -460,9 +456,6 @@ Check common requirements.
 
 [Error Code](./error-code/#server)
 
-<br>
-<br>
-
 ## Maintenance
 
 #### Check Maintenance Set
@@ -488,7 +481,6 @@ Check common requirements.
 **[Request Parameter]**
 
 N/A
-<br>
 
 **[Response Body]**
 
@@ -529,8 +521,6 @@ N/A
 
 [Error Code](./error-code/#server)
 
-<br>
-<br>
 
 ## Purchase(IAP)
 
@@ -558,12 +548,10 @@ X-Secret-Key: IgsaAP
 POST https://api-gamebase.cloud.toast.com/tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq}
 ```
 
-<br>
-<br>
-
 ## Leaderboard
 
 Gamebase provides Wrapping to server API of TOAST Leaderboard. With Wrapping, TOAST products become available at a user server on a consistent interface.
+
 
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
@@ -581,6 +569,7 @@ Gamebase provides Wrapping to server API of TOAST Leaderboard. With Wrapping, TO
 
 **For more information of the API, click the following link.**
 
+
 [Leaderboard Guide](/Game/Leaderboard/en/api-guide/)
 
 ##### Example of API Call
@@ -593,14 +582,13 @@ X-Secret-Key: IgsaAP
 GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/user-count
 ```
 
-<br>
-<br>
-
 ## Others
 
 ### Support
 
 To inquire about causes of failure in API call, upload **API Call URL (with HTTP body, if available) along with response results** to [Customer Center](https://cloud.toast.com/support/faq), and we'll respond ASAP.
+
+
 
 ##### Example of API Call
 
