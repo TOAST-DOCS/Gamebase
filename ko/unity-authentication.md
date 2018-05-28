@@ -15,49 +15,51 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 
 위에서 설명한 로직은 다음과 같은 순서로 구현할 수 있습니다.
 
-#### 1. 이전 로그인 유형 받아오기
-* **Gamebase.GetLastLoggedInProvider()**를 호출합니다.
-* 반환된 값이 있으면 **2. 이전 로그인 유형으로 인증**을 진행합니다.
-* 반환된 값이 없다면 게임 이용자에게 IdP를 선택하게 한 다음 **3. 지정된 IdP로 인증**을 진행합니다.
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
-#### 2. 이전 로그인 유형으로 인증
+#### 1. 이전 로그인 유형으로 인증
 
 * 이전에 인증했던 기록이 있다면 ID와 비밀번호를 입력받지 않고 인증을 시도합니다.
 * **Gamebase.LoginForLastLoggedInProvider()**를 호출합니다.
 
-#### 2-1. 인증이 성공한 경우
+#### 1-1. 인증이 성공한 경우
 
 * 축하합니다! 인증에 성공했습니다.
 * **Gamebase.GetUserID()**로 사용자 ID를 획득하여 게임 로직을 구현하시면 됩니다.
 
-#### 2-2. 인증이 실패한 경우
+#### 1-2. 인증이 실패한 경우
 
 * 네트워크 오류
     * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **Gamebase.LoginForLastLoggedInProvider()**를 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 이용자
-    * 오류 코드가 **AUTH_BANNED_MEMBER(3005)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
+    * 오류 코드가 **BANNED_MEMBER(7)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
     * **Gamebase.GetBanInfo()**로 제재 정보를 확인하여 게임 이용자에게 게임을 플레이할 수 없는 이유를 알려주시기 바랍니다.
     * Gamebase 초기화 시 **GamebaseConfiguration.enablePopup** 및 **GamebaseConfiguration.enableBanPopup **값을  true로 한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외 오류
     * 이전 로그인 유형으로 인증하기가 실패하였습니다. **'3. 지정된 IdP로 인증'**을 진행합니다.
 
-#### 3. 지정된 IdP로 인증
+#### 2. 지정된 IdP로 인증
 
 * IdP 유형을 직접 지정하여 인증을 시도합니다.
     * 인증 가능한 유형은 **GamebaseAuthProvider** 클래스에 선언돼 있습니다.
 * **Gamebase.Login(providerName, callback)** API를 호출합니다.
 
-#### 3-1. 인증에 성공한 경우
+#### 2-1. 인증에 성공한 경우
 
 * 축하합니다! 인증에 성공하였습니다.
 * **Gamebase.GetUserID()**로 사용자 ID를 획득하여 게임 로직을 구현하시면 됩니다.
 
-#### 3-2. 인증에 실패한 경우
+#### 2-2. 인증에 실패한 경우
 
 * 네트워크 오류
     * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증에 실패한 것이므로 **Gamebase.Login(providerName, callback)**을 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 이용자
-    * 오류 코드가 **AUTH_BANNED_MEMBER(3005)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
+    * 오류 코드가 **BANNED_MEMBER(7)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
     * **Gamebase.GetBanInfo()**로 제재 정보를 확인하여 게임 이용자에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
     * Gamebase 초기화 시 **GamebaseConfiguration.enablePopup** 및 **GamebaseConfiguration.enableBanPopup **값을  **true**로 한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외의 오류
@@ -761,7 +763,7 @@ public void GetAuthProviderProfile(string providerName)
 ### Get Banned User Infomation
 
 Gamebase Console에 제재된 게임 이용자로 등록될 경우,
-로그인 시도 시, 이용 제한 정보 코드(**AUTH_BANNED_MEMBER(3005)**)가 표시될 수 있으며, 아래 API를 이용하여 제재 정보를 확인할 수 있습니다.
+로그인 시도 시, 이용 제한 정보 코드(**BANNED_MEMBER(7)**)가 표시될 수 있으며, 아래 API를 이용하여 제재 정보를 확인할 수 있습니다.
 
 **API**
 
@@ -876,11 +878,11 @@ public void RequestTransfer(string transferKey)
 
 | Category | Error | Error Code | Description |
 | --- | --- | --- | --- |
-| Auth | AUTH_USER_CANCELED | 3001 | 로그인이 취소되었습니다. |
+| Auth | INVALID_MEMBER | 6 | 잘못된 회원에 대한 요청입니다. |
+|  | BANNED_MEMBER | 7 | 제재된 회원입니다. |
+|  | AUTH_USER_CANCELED | 3001 | 로그인이 취소되었습니다. |
 |  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
 |  | AUTH_NOT_EXIST_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
-|  | AUTH_INVALID_MEMBER | 3004 | 잘못된 회원에 대한 요청입니다. |
-|  | AUTH\_BANNED\_MEMBER | 3005 | 제재된 회원입니다. |
 |  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
 | TransferKey | SAME\_REQUESTOR | 8 | 발급한 TransferKey를 동일한 기기에서 사용했습니다. |
 |  | NOT\_GUEST\_OR\_HAS\_OTHERS | 9 | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IDP가 연동되어 있습니다. |

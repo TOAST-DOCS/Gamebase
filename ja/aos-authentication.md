@@ -17,15 +17,39 @@ Gamebaseでは基本的にゲストログインに対応しています。
 
 上述したロジックは、次のような手順で設計することができます。
 
-#### 1. 前回のログインタイプを呼び出す
-* **Gamebase.getLastLoggedInProvider()**を呼び出します。
-* 戻り値がある場合、**2. 前回のログインタイプで認証**を進めます。
-* 戻り値がない場合、ゲームユーザーにIdPを選択させた後、**3. 指定されたIdPで認証**を進めます。
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
-#### 2. 前回のログインタイプで認証
+#### 1. 前回のログインタイプで認証
 
 * 前回の認証記録がある場合、IDとパスワードを入力させずに認証を試みます。
 * **Gamebase.loginForLastLoggedInProvider()**を呼び出します。
+
+#### 1-1. 認証に成功した場合
+
+* おめでとうございます！認証に成功しました。
+* **Gamebase.getUserID()**でユーザーIDを取得し、ゲームロジックを設計してください。
+
+#### 1-2. 認証に失敗した場合
+
+* ネットワークエラー
+    * エラーコード**SOCKET_ERROR(110)**または**SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**Gamebase.loginForLastLoggedInProvider()**をもう一度呼び出したり、しばらくしてからもう一度試します。
+* 利用停止中のゲームユーザー
+    * エラーコードが**AUTH_BANNED_MEMBER(3005)**の場合、利用停止中のゲームユーザーであるため認証に失敗したケースです。
+    * **Gamebase.getBanInfo()**で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由についてご案内ください。
+    * Gamebaseを初期化する際に**GamebaseConfiguration.Builder.enablePopup(true)**及び**enableBanPopup(true)**を呼び出せば、Gamebaseが利用停止に関するポップアップを自動で表示します。
+* その他のエラー
+    * 前回のログインタイプで認証に失敗しているため、**3. 指定されたIdPで認証**を進めてください。
+
+#### 2. 指定されたIdPで認証
+
+* IdPのタイプを直接指定して認証を試みます。
+    * 認証可能なタイプは、**AuthProvider**クラスに宣言されています。
+* **Gamebase.login(activity, idpType, callback)**APIを呼び出します。
 
 #### 2-1. 認証に成功した場合
 
@@ -35,32 +59,10 @@ Gamebaseでは基本的にゲストログインに対応しています。
 #### 2-2. 認証に失敗した場合
 
 * ネットワークエラー
-    * エラーコード**SOCKET_ERROR(110)**または**SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**Gamebase.loginForLastLoggedInProvider()**をもう一度呼び出したり、しばらくしてからもう一度試します。
-* 利用停止中のゲームユーザー
-    * エラーコードが**AUTH_BANNED_MEMBER(3005)**の場合、利用停止中のゲームユーザーであるため認証に失敗したケースです。
-    * **Gamebase.getAuthBanInfo()**で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由についてご案内ください。
-    * Gamebaseを初期化する際に**GamebaseConfiguration.Builder.enablePopup(true)**及び**enableBanPopup(true)**を呼び出せば、Gamebaseが利用停止に関するポップアップを自動で表示します。
-* その他のエラー
-    * 前回のログインタイプで認証に失敗しているため、**3. 指定されたIdPで認証**を進めてください。
-
-#### 3. 指定されたIdPで認証
-
-* IdPのタイプを直接指定して認証を試みます。
-    * 認証可能なタイプは、**AuthProvider**クラスに宣言されています。
-* **Gamebase.login(activity, idpType, callback)**APIを呼び出します。
-
-#### 3-1. 認証に成功した場合
-
-* おめでとうございます！認証に成功しました。
-* **Gamebase.getUserID()**でユーザーIDを取得し、ゲームロジックを設計してください。
-
-#### 3-2. 認証に失敗した場合
-
-* ネットワークエラー
     * エラーコードが**SOCKET_ERROR(110)**または**SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**Gamebase.login(activity, idpType, callback)**をもう一度呼び出したり、しばらくしてからもう一度試します。
 * 利用停止中のゲームユーザー
     * エラーコードが**AUTH_BANNED_MEMBER(3005)**の場合、利用停止中のゲームユーザーであるため認証に失敗したケースです。
-    * **Gamebase.getAuthBanInfo()**で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由についてご案内ください。
+    * **Gamebase.getBanInfo()**で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由についてご案内ください。
     * Gamebaseを初期化する際に**GamebaseConfiguration.Builder.enablePopup(true)**及び**enableBanPopup(true)**を呼び出せば、Gamebaseが利用停止に関するポップアップを自動で表示します。
 * その他のエラー
     * エラーが発生したことをゲームユーザーに知らせ、ゲームユーザーが認証IdPのタイプを選択できる状態(主にタイトル画面またはログイン画面)に戻ります。
@@ -72,52 +74,41 @@ Gamebaseでは基本的にゲストログインに対応しています。
 この場合、該当するIdPに対するログインを設計する必要があります。
 
 ```java
-private static void onLogin(final Activity activity) {
-    if (!TextUtils.isEmpty(Gamebase.getLastLoggedInProvider())) {
-        onLoginForLastLoggedInProvider(activity);
-    } else {
-        // 前回ログインしたタイプが存在しない場合、指定されたIdPで認証を試みます。
-        Gamebase.login(activity, provider, logincallback);
-    }
-}
-
-private static void onLoginForLastLoggedInProvider(final Activity activity) {
-    Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthToken>() {
-        @Override
-        public void onCallback(AuthToken data, GamebaseException exception) {
-            if (Gamebase.isSuccess(exception)) {
-                // ログイン成功
-                Log.d(TAG, "Login successful");
-                String userId = Gamebase.getUserID();
+Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthToken>() {
+    @Override
+    public void onCallback(AuthToken data, GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            // ログイン成功
+            Log.d(TAG, "Login successful");
+            String userId = Gamebase.getUserID();
+        } else {
+            if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
+                    exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
+                // Socket errorにより一時的にネットワークに接続できない状態であることを意味します。
+                // ネットワーク状態を確認したり、しばらくしてからもう一度試してください。
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2000);
+                            onLoginForLastLoggedInProvider(activity);
+                        } catch (InterruptedException e) {}
+                    }
+                }).start();
+            } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
+                // ログインを試みたゲームユーザーが利用停止状態です。
+                // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)を呼び出すと、
+                // Gamebaseが利用停止に関するポップアップを自動で表示します。
+                //
+                // Game UIに合わせて直接利用停止案内のポップアップを設計したい場合、Gamebase.getBanInfo()で
+                // 利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由を表示してください。
+                BanInfo banInfo = Gamebase.getBanInfo();
             } else {
-                if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
-                        exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                    // Socket errorにより一時的にネットワークに接続できない状態であることを意味します。
-                    // ネットワーク状態を確認したり、しばらくしてからもう一度試してください。
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(2000);
-                                onLoginForLastLoggedInProvider(activity);
-                            } catch (InterruptedException e) {}
-                        }
-                    }).start();
-                } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
-                    // ログインを試みたゲームユーザーが利用停止状態です。
-                    // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)を呼び出すと、
-                    // Gamebaseが利用停止に関するポップアップを自動で表示します。
-                    //
-                    // Game UIに合わせて直接利用停止案内のポップアップを設計したい場合、Gamebase.getAuthBanInfo()で
-                    // 利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由を表示してください。
-                    AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
-                } else {
-                    // その他のエラーが発生した場合、指定されたIdPで認証を試みます。
-                    Gamebase.login(activity, provider, logincallback);
-                }
+                // その他のエラーが発生した場合、指定されたIdPで認証を試みます。
+                Gamebase.login(activity, provider, logincallback);
             }
         }
-    });
+    }
 }
 ```
 ### Login with GUEST
@@ -157,9 +148,9 @@ private static void onLoginForGuest(final Activity activity) {
                     // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)を呼び出し하였다면
                     // Gamebaseが利用停止に関するポップアップを自動で表示します。
                     //
-                    // Game UIに合わせて直接利用停止案内のポップアップを設計したい場合、Gamebase.getAuthBanInfo()で
+                    // Game UIに合わせて直接利用停止案内のポップアップを設計したい場合、Gamebase.getBanInfo()で
                     // 利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由を表示してください。
-                    AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
+                    BanInfo banInfo = Gamebase.getBanInfo();
                 } else {
                     // ログイン失敗
                     Log.e(TAG, "Login failed- "
@@ -206,9 +197,9 @@ private static void onLoginForGoogle(final Activity activity) {
                     // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)を呼び出し하였다면
                     // Gamebaseが利用停止に関するポップアップを自動で表示します。
                     //
-                    // Game UIに合わせて直接利用停止案内のポップアップを設計したい場合、Gamebase.getAuthBanInfo()で
+                    // Game UIに合わせて直接利用停止案内のポップアップを設計したい場合、Gamebase.getBanInfo()で
                     // 利用制限情報を確認し、ユーザーに対しゲームプレイができない理由を表示してください。
-                    AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
+                    BanInfo banInfo = Gamebase.getBanInfo();
                 } else {
                     // ログイン失敗
                     Log.e(TAG, "Login failed- "
@@ -277,9 +268,9 @@ private static void onLoginWithCredential(final Activity activity) {
                     // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)を呼び出し하였다면
                     // Gamebaseが利用停止に関するポップアップを自動で表示します。
                     //
-                    // Game UIに合わせて直接利用停止案内のポップアップを設計したい場合、Gamebase.getAuthBanInfo()で
+                    // Game UIに合わせて直接利用停止案内のポップアップを設計したい場合、Gamebase.getBanInfo()で
                     // 利用制限情報を確認し、ユーザーに対しゲームプレイができない理由を表示してください。
-                    AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
+                    BanInfo banInfo = Gamebase.getBanInfo();
                 } else {
                     // ログイン失敗
                     Log.e(TAG, "Login failed- "
@@ -658,7 +649,7 @@ String accessToken = Gamebase.getAccessToken();
 String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
 
 // Obtaining Ban Information
-AuthBanInfo authBanInfo = Gamebase.getAuthBanInfo();
+BanInfo banInfo = Gamebase.getBanInfo();
 ```
 
 
@@ -680,9 +671,9 @@ String email = profile.getEmail();  // or profile.information.get("email")
 ### Get Banned User Information
 
 Gamebase Consoleで利用制限対象のゲームユーザーに登録された場合、
-ログインを試みると、次のような利用制限情報コードが表示されることがあります。**Gamebase.getAuthBanInfo()**メソッドを利用して利用制限情報を確認することができます。
+ログインを試みると、次のような利用制限情報コードが表示されることがあります。**Gamebase.getBanInfo()**メソッドを利用して利用制限情報を確認することができます。
 
-* AUTH_BANNED_MEMBER(3005)
+* BANNED_MEMBER(7)
 
 ## TransferKey
 게스트 계정을 다른 단말기로 이전하기 위해 계정 이전을 위한 키를 발급받는 기능입니다.
@@ -745,11 +736,11 @@ Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
 
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
+| Auth           | INVALID\_MEMBER                          | 6          | 正しくない会員に対するリクエストです。                        |
+|                | BANNED\_MEMBER                           | 7          | 利用制限対象の会員です。                               |
 | Auth           | AUTH\_USER\_CANCELED                     | 3001       | ログインがキャンセルされました。                           |
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | この認証方式には対応しておりません。                      |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 退会されているか、存在しない会員です。                    |
-|                | AUTH\_INVALID\_MEMBER                    | 3004       | 正しくない会員に対するリクエストです。                      |
-|                | AUTH\_BANNED\_MEMBER                     | 3005       | 利用制限対象の会員です。                             |
 |                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部認証ライブラリーエラーです。 <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
 | TransferKey    | SAME\_REQUESTOR                          | 8          | 발급한 TransferKey를 동일한 기기에서 사용했습니다. |
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IDP가 연동되어 있습니다. |

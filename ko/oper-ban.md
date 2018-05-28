@@ -61,13 +61,13 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 
 이용 정지 조회 화면에서 **등록** 버튼을 클릭하면 이용 정지 등록이 가능합니다.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban2_1.1.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban2_1.2.png)
 #### (1) 유저 ID
 이용 정지를 등록할 Gamebase 사용자 아이디를 입력합니다. 한번에 다수의 이용자를 등록할 수 있으며, 등록 방법은 아래 두가지입니다.
 
 - **사용자 입력**: 등록할 사용자 아이디를 입력 창에 직접 입력한 후 **Enter** 키를 누르거나 **추가** 버튼을 클릭합니다. 사용자 아이디 유효성을 검사하므로 유효하지 않은 사용자 아이디는 입력이 불가능합니다.
 - **일괄 등록**: CSV 파일만 업로드할 수 있으며 예시 파일은 Console 화면에서 다운로드할 수 있습니다. 일괄 등록은 1회 최대 10,000명까지 가능합니다. 
-  ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban4_1.1.png)
+  ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban4_1.2.png)
 
 > [참고]</br>
 > 일괄 등록을 진행하다가 실패하면 팝업이 표시됩니다. 해당 팝업에서 **Download** 버튼을 클릭하면 등록에 실패한 시용자 목록을 파일로 다운로드할 수 있습니다.
@@ -84,7 +84,7 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 해당 사유는 사용자에게 노출되지 않고 운영 이력으로만 확인할 수 있습니다.
 
 #### (4) 노출 메시지
-사용자에게 표시할 이용 정지 메시지를 입력합니다. 
+사용자에게 표시할 이용 정지 메시지를 입력합니다.
 사용자에게 표시할 메시지를 다국어로 입력하여 손쉽게 재사용할 수 있도록 템플릿을 제공합니다. 미리 등록한 템플릿을 선택하여 등록합니다.
 
 > <font color="red">[중요]</font>
@@ -92,6 +92,9 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 > 템플릿을 등록하지 않은 경우 **BAN** 메뉴의 **템플릿** 탭에서 템플릿을 먼저 등록해 주세요.
 > 템플릿을 등록하는 방법은 [Template](./oper-ban/#template)을 참고하시기 바랍니다. 
 
+#### (5) 리더보드 삭제
+이용 정지를 등록할 시 해당 유저의 Leaderboard 데이터도 함께 삭제할지에 대한 여부를 설정합니다.
+체크 후 등록시 리더보드에서 유저의 데이터가 삭제되며 <font color="red">해당데이터는 복구되지 않으므로</font> 주의가 필요합니다.
 
 ### Release Ban
 
@@ -144,10 +147,11 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 > <font color="red">[중요]</font>
 > TOAST AppGuard 서비스를 사용하는 경우에만 이용할 수 있습니다. 
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_AppGuard1_1.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_AppGuard1_1.1.png)
 
 - **연동 여부**: AppGuard에서 탐지 또는 제재된 사용자를 자동으로 Gamebase 이용 정지 이용자로 등록하고자 하는 경우에 활성화합니다.
 - **자동 이용 정지**를 원하는 탐지/제재 종류의 '자동 등록'을 **ON**을 선택하여 '사용자 노출 메시지'와 **이용 정지 기간**을 입력하고 **저장** 버튼을 클릭하면 적용됩니다.
+- **리더보드 연동**항목 선택을 통해 탐지 또는 제재된 사용자의 리더보드 데이터 삭제 여부를 함께 선택할 수 있습니다.
 
 > [참고] 
 > AppGuard 연동으로 이용 정지가 자동으로 등록된 경우 등록 시스템에 '앱가드'로 등록됩니다.

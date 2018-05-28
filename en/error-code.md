@@ -1,4 +1,4 @@
-## Game > Gamebase > 오류 코드
+## Game > Gamebase > Error Code
 
 ## Client SDK 
 
@@ -9,8 +9,8 @@
 |                 | AOS, UNITY<br/>IOS | INVALID_PARAMETER<br/>TCGB\_ERROR\_INVALID\_PARAMETER | 3          | Invalid parameter                             |
 |                 | AOS, UNITY<br/>IOS | INVALID\_JSON\_FORMAT<br/>TCGB\_ERROR\_INVALID\_JSON\_FORMAT | 4          | Invalid JSON format                           |
 |                 | AOS, UNITY<br/>IOS | USER_PERMISSION<br/>TCGB\_ERROR\_USER\_PERMISSION | 5          | User is not authorized.                               |
-|                 | AOS, UNITY<br/>IOS | INVALID\_MEMBER<br/>TCGB\_ERROR\_INVALID\_MEMBER  | 6          | 잘못된 회원에 대한 요청입니다.                              |
-|                 | AOS, UNITY<br/>IOS | BANNED\_MEMBER<br/>TCGB\_ERROR\_BANNED\_MEMBER   | 7         | 제재된 회원입니다.                                |
+|                 | AOS, UNITY<br/>IOS | INVALID\_MEMBER<br/>TCGB\_ERROR\_INVALID\_MEMBER  | 6          | Request for invalid member.                              |
+|                 | AOS, UNITY<br/>IOS | BANNED\_MEMBER<br/>TCGB\_ERROR\_BANNED\_MEMBER   | 7         | Named member has been banned.                                |
 |                 | AOS, UNITY<br/>IOS | SAME\_REQUESTOR<br/>TCGB\_ERROR\_SAME\_REQUESTOR  | 8          | 발급한 TransferKey를 동일한 기기에서 사용했습니다.  |
 |                 | AOS, UNITY<br/>IOS | NOT\_GUEST\_OR\_HAS\_OTHERS<br/>TCGB\_ERROR\_NOT\_GUEST\_OR\_HAS\_OTHERS | 9          | 게스트가 아닌 계정에서 이전을 시도했거나 계정에 게스트 이외의 IDP가 연동되어 있습니다. |
 |                 | AOS, UNITY<br/>IOS | NOT_SUPPORTED<br/>TCGB\_ERROR\_NOT\_SUPPORTED | 10         | The function is not supported.                         |
@@ -29,8 +29,6 @@
 | Auth            | AOS, UNITY<br/>IOS | AUTH\_USER\_CANCELED<br/>TCGB\_ERROR\_AUTH\_USER\_CANCELED | 3001       | Login is cancelled.                          |
 |                 | AOS, UNITY<br/>IOS | AUTH\_NOT\_SUPPORTED\_PROVIDER<br/>TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | The authentication is not supported.                    |
 |                 | AOS, UNITY<br/>IOS | AUTH\_NOT\_EXIST\_MEMBER<br/>TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER | 3003       | Named member does not exist or has withdrawn.                    |
-|                 | AOS, UNITY<br/>IOS | AUTH\_INVALID\_MEMBER<br/>TCGB\_ERROR\_AUTH\_INVALID\_MEMBER | 3004       | Request for invalid member                     |
-|                 | AOS, UNITY<br/>IOS | AUTH\_INVALID\_MEMBER<br/>TCGB\_ERROR\_AUTH\_BANNED\_MEMBER | 3005       | Named member has been banned.                          |
 |                 | AOS, UNITY<br/>IOS | AUTH\_EXTERNAL\_LIBRARY\_ERROR<br/>TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | Error in external authentication library                    |
 |                 | AOS, UNITY<br/>IOS | AUTH\_TRANSFERKEY\_EXPIRED<br/>TCGB\_ERROR\_AUTH\_TRANSFERKEY\_EXPIRED | 3031       | TransferKey의 유효기간이 만료됐습니다.  |
 |                 | AOS, UNITY<br/>IOS | AUTH\_TRANSFERKEY\_CONSUMED<br/>TCGB\_ERROR\_AUTH\_TRANSFERKEY\_CONSUMED| 3032       | TransferKey가 이미 사용됐습니다. |
@@ -71,7 +69,7 @@
 ## Server
 | Module  | Error Code            | Description                              |
 | ------- | --------------------- | ---------------------------------------- |
-| Common  | -4000001<br/>-4000006 | Called API with invalid parameter type. e.g) The parameter is declared in the int type, but API has been called with string-format data. |
+| Common  | -4000001<br/>-4000006 | Called API with invalid parameter type. <br/>e.g) The parameter is declared in the int type, but API has been called with string-format data. |
 |         | -4000002<br/>-4000004 | Required parameter is missing or has no value.               |
 |         | -4000003              | Undefined value has been delivered to request body.          |
 |         | -4000005              | Required parameter is missing or called with an inappropriate value.      |
@@ -86,7 +84,7 @@
 | Gateway | -4010202              | Called invalid App ID.                      |
 |         | -4010203              | Invalid access token                         |
 |         | -4010204              | Invalid user due to banning/withdrawal/missing account          |
-|         | -4040201              | TOAST Cloud for called API is not enabled. <br> e.g) When a Leaderboard API is called via Gamebase when the product is not used. Or, when Gamebase itself is not enabled. |
+|         | -4040201              | TOAST Cloud for called API is not enabled. <br> e.g) When a Leaderboard API is called via Gamebase when the product is not used. <br/>Or, when Gamebase itself is not enabled. |
 |         | -4040202              | Called undefined API.                  |
 |         | -5000201 ~ 7          | Error in internal system of Gateway                   |
 | Member  | -4000402              | Entered invalid user ID.                      |

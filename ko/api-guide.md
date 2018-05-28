@@ -76,9 +76,9 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| transactionId | String | API 요청 시 HTTP Header에 설정한 값해당 값을 전달하지 않으면 Gamebase 내부적으로 생성된 값을 반환 |
+| transactionId | String | API 요청 시 HTTP Header에 설정한 값.<br>해당 값을 전달하지 않으면 Gamebase 내부적으로 생성된 값을 반환 |
 | isSuccessful | boolean | 성공 여부 |
-| resultCode | int | 응답 코드 성공 시 0, 실패 시 오류 코드 반환 |
+| resultCode | int | 응답 코드<br>성공 시 0, 실패 시 오류 코드 반환 |
 | resultMessage | String | 응답 메시지 |
 
 ## Authentication
@@ -154,23 +154,22 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Key | Type | Description |
 | --- | --- | --- |
 | linkedIdP | Object | 로그인한 사용자가 사용한 IdP 정보 |
-| linkedIdP.idPCode | String | IdP 정보 guest, payco, facebook 등 |
+| linkedIdP.idPCode | String | IdP 정보 <br>guest, payco, facebook 등 |
 | linkedIdP.idPId | String | IdP ID |
 | member.userId | String | 사용자 ID |
-| member.lastLoginDate | long | 마지막으로 로그인한 시간처음 로그인한 사용자는 해당 값이 없음 |
+| member.lastLoginDate | long | 마지막으로 로그인한 시간 <br>처음 로그인한 사용자는 해당 값이 없음 |
 | member.appId | String | appId |
-| member.valid | String | 로그인에 성공한 사용자의 값은 "Y" (다른 값에 대한 설명은 멤버 API 참고) |
+| member.valid | String | 로그인에 성공한 사용자의 값은 "Y" <br>(다른 값에 대한 설명은 멤버 API 참고) |
 | member.regDate | long | 사용자가 계정을 생성한 시간 |
 | authList | Array[Object] | 사용자 인증 IdP 관련 정보 |
-| authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템추후 사용자 인증 시스템 지원 예정 |
-| authList[].idPCode | String | 사용자 인증 IdP 정보 guest, payco, facebook 등 |
+| authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 사용자 인증 시스템 지원 예정 |
+| authList[].idPCode | String | 사용자 인증 IdP 정보 <br>guest, payco, facebook 등 |
 | authList[].authKey | String | authSystem에서 발급된 사용자 구분 값 |
 
 
 **[Error Code]**
 
 [오류 코드](./error-code/#server)
-
 
 ## Member
 
@@ -248,14 +247,14 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | member | Object | 조회된 사용자의 기본 정보 |
 | member.userId | String | 사용자 ID |
-| member.valid | Enum | Y: 정상 사용자D: 탈퇴된 사용자B: 이용 정지된 사용자M: 유실된 계정|
+| member.valid | Enum | Y: 정상 사용자 <br>D: 탈퇴된 사용자 <br>B: 이용 정지된 사용자 <br>M: 유실된 계정|
 | member.appId | String | appId |
 | member.regDate | long | 사용자가 계정을 생성한 시간 |
-| member.lastLoginDate | long | 마지막으로 로그인한 시간처음 로그인한 사용자는 해당 값이 없음 |
+| member.lastLoginDate | long | 마지막으로 로그인한 시간 <br>처음 로그인한 사용자는 해당 값이 없음 |
 | member.authList | Array[Object] | 사용자 인증 IdP 관련 정보 |
 | member.authList[].userId | String | 사용자 ID |
-| member.authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템추후 사용자 인증 시스템 지원 예정 |
-| member.authList[].idPCode | String | 사용자 인증 IdP 정보 guest, payco, facebook 등 |
+| member.authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 사용자 인증 시스템 지원 예정 |
+| member.authList[].idPCode | String | 사용자 인증 IdP 정보 <br>guest, payco, facebook 등 |
 | member.authList[].authKey | String | authSystem에서 발급된 사용자 구분 값 |
 | member.authList[].regDate | long | IdP 정보가 사용자 계정과 매핑된 시간 |
 | memberInfo | Object | 사용자에 대한 부가 정보 |
@@ -265,7 +264,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | memberInfo.osCode | String | 사용자 기기의 OS 종류 |
 | memberInfo.telecom | String | 통신사 |
 | memberInfo.storeCode | String | store 코드 |
-| memberInfo.network | String | 네트워크 환경3g, WiFi 등|
+| memberInfo.network | String | 네트워크 환경 <br>3g, WiFi 등|
 | memberInfo.deviceModel | String | 사용자 기기의 모델명 |
 | memberInfo.osVersion | String | 사용자 기기의 OS 버전 |
 | memberInfo.sdkVersion | String | SDK 버전 |
@@ -299,7 +298,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| userIdList | Array[String] | mandatory | 조회 대상 사용자 ID  ["userId", "userId", "userId",...]|
+| userIdList | Array[String] | mandatory | 조회 대상 사용자 ID <br>  ["userId", "userId", "userId",...]|
 
 **[Response Body]**
 
@@ -326,7 +325,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | memberList | Array[Object] | 조회된 사용자의 기본 정보 |
 | memberList[].userId | String | 사용자 ID |
-| memberList[].valid | Enum | Y: 정상 사용자D: 탈퇴된 사용자B: 이용 정지된 사용자M: 유실된 계정|
+| memberList[].valid | Enum | Y: 정상 사용자 <br>D: 탈퇴된 사용자 <br>B: 이용 정지된 사용자 <br>M: 유실된 계정|
 | memberList[].appId | String | appId |
 | memberList[].regDate | long | 사용자가 계정을 생성한 시간 |
 
@@ -389,10 +388,10 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Array[Object] | 조회된 사용자의 기본 정보 userId가 key, IdP 정보가 value인 object|
+| result | Array[Object] | 조회된 사용자의 기본 정보 <br>userId가 key, IdP 정보가 value인 object|
 | authkey | String | authSystem에서 발급된 사용자 구분 값 |
-| IdPCode | String | 사용자 인증 IdP 정보 guest, payco, facebook 등 |
-| authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템추후 사용자 인증 시스템 지원 예정 |
+| IdPCode | String | 사용자 인증 IdP 정보 <br>guest, payco, facebook 등 |
+| authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 사용자 인증 시스템 지원 예정 |
 
 **[Error Code]**
 
@@ -511,7 +510,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | underMaintenance | boolean | 현재 점검 설정 여부 |
 | maintenances | Object | 점검이 설정되어 있다면 점검 기본 정보 |
-| maintenances.typeCode | Enum | APP: 게임에서 설정한 점검 SYSTEM: Gamebase 시스템에서 설정한 점검 |
+| maintenances.typeCode | Enum | APP: 게임에서 설정한 점검 <br>SYSTEM: Gamebase 시스템에서 설정한 점검 |
 | maintenances.beginDate | String | 점검 시작 시간. ISO 8601 |
 | maintenances.endDate | String | 점검 종료 시간. ISO 8601 |
 | maintenances.url | String | 상세 점검 URL |
@@ -571,7 +570,7 @@ Gamebase는 TOAST Leaderboard 서비스의 서버 API에 대해 **Wrapping** 기
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
 
 
-[Leaderboard Guide](/Game/Leaderboard/en/api-guide/)
+[Leaderboard Guide](/Game/Leaderboard/ko/api-guide/)
 
 ##### API 호출 예시
 

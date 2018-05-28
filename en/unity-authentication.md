@@ -15,22 +15,24 @@ In many games, login is implemented on a title page.
 
 The logic described in the above can be implemented in the following order.
 
-#### 1. Get Latest Login Type
-* Call **[TCGBGamebase lastLoggedInProvider].
-* If there is a returned value, follow **2. Authenticate with Latest Login Type**.
-* If there is no returned value, let the game user decide IdP and follow **3.Authenticate with Specified IdP**.
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
-#### 2. Authenticate with Latest Login Type
+#### 1. Authenticate with Latest Login Type
 
 * If a previous authentication has been recorded, try to authenticate with no need of ID and password inputs.
 * Call **Gamebase.LoginForLastLoggedInProvider()**.
 
-#### 2-1. When Authentication is Successful
+#### 1-1. When Authentication is Successful
 
 * Congratulations! Successfully authenticated.
 * Get a user ID with **Gamebase.GetUserID()** to implement a game logic.
 
-#### 2-2.When Authentication is Failed
+#### 1-2.When Authentication is Failed
 
 * Network error
     * If the error code is **SOCKET_ERROR (110)** or **SOCKET_RESPONSE_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.LoginForLastLoggedInProvider()** again, or try again in a moment.
@@ -41,18 +43,18 @@ The logic described in the above can be implemented in the following order.
 * Other errors
     * Authentication with latest login type has failed. Follow **3. Authenticate with Specified IdP**.
 
-#### 3. Authenticate with Specified IdP
+#### 2. Authenticate with Specified IdP
 
 * Try to authenticate by specifying an IdP type.
     * Types that can be authenticated are declared in the **GamebaseAuthProvider** class.
 * Call **Gamebase.Login(providerName, callback)** API.
 
-#### 3-1. When Authentication is Successful
+#### 2-1. When Authentication is Successful
 
 * Congratulations! Successfully authenticated.
 * Get a user ID with **Gamebase.GetUserID()** to implement a game logic.
 
-#### 3-2. When Authentication is Failed
+#### 2-2. When Authentication is Failed
 
 * Network error
     * If the error code is **SOCKET_ERROR (110)** or **SOCKET_RESPONSE_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.LoginForLastLoggedInProvider()** again, or try again in a minute.
@@ -758,7 +760,7 @@ public void GetAuthProviderProfile(string providerName)
 ### Get Banned User Infomation
 
 For a banned user registered at Gamebase Console,
-restricted use of information code (**AUTH_BANNED_MEMBER(3005)**) can be displayed as below, when trying login. The ban information can be found by using the API as below.
+restricted use of information code (**BANNED_MEMBER(7)**) can be displayed as below, when trying login. The ban information can be found by using the API as below.
 
 **API**
 
@@ -874,11 +876,11 @@ public void RequestTransfer(string transferKey)
 
 | Category | Error                                    | Error Code | Description                                    |
 | ---  | ---------------------------------------- | ---------- | ---------------------------------------- |
-| Auth | AUTH_USER_CANCELED | 3001 | Login is cancelled. |
+| Auth | INVALID_MEMBER | 6 | Request for invalid member. |
+|      | BANNED_MEMBER | 7 | Named member has been banned. |
+|      | AUTH_USER_CANCELED | 3001 | Login is cancelled. |
 |      | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | The authentication is not supported. |
 |      | AUTH_NOT_EXIST_MEMBER | 3003 | Named member does not exist or has withdrawn. |
-|      | AUTH_INVALID_MEMBER | 3004 | Request for invalid member |
-|      | AUTH_BANNED_MEMBER | 3005 | Named member has been banned. |
 |      | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | Error in external authentication library |
 | TransferKey | SAME\_REQUESTOR | 8 | 발급한 TransferKey를 동일한 기기에서 사용했습니다. |
 |             | NOT\_GUEST\_OR\_HAS\_OTHERS | 9 | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IDP가 연동되어 있습니다. |
