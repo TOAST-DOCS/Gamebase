@@ -20,23 +20,24 @@ Item purchases should be implemented in the following order.<br/>
 1. Call **RequestPurchase** of Gamebase SDK to purchase in a game client.
 2. After a successful purchase, call **RequestItemListOfNotConsumed** to check list of non-consumed purchases.
 3. If the value is on the returned list, the game client sends a request to the game server to consume purchased items.
-4. The game server request for Consume API to the Gamebase server via API. [API Guide](/en/Game/Gamebase/en/api-guide/#wrapping-api)
+4. The game server request for Consume API to the Gamebase server via API. [API Guide](/Game/Gamebase/en/api-guide/#wrapping-api)
 5. If the IAP server has successfully called Consume API, the game server provides the items to the game client.
 
 A purchase at store may be successful but cannot be closed normally due to error. It is recommended to call each of the two APIs after login is completed, to initialize a reprocessing logic.<br/>
 
 1. Request list of items that are not consumed
-	* When a login is successful, call **RequestItemListOfNotConsumed** to check list of non-consumed purchases.
-	* If the value is on the returned list, the game client sends a request to the game server to consume, so that items can be provided.
+    * When a login is successful, call **RequestItemListOfNotConsumed** to check list of non-consumed purchases.
+    * If the value is on the returned list, the game client sends a request to the game server to consume, so that items can be provided.
 2. Request to retry transaction
-	* When a login is successful, call **RequestRetryTransaction** to try to automatically reprocess the unprocessed.
-	* If there is a value on the returned successList, the game client sends a request to the game server to consume, so that items can be provided.
-	* If there is a value on the returned failList, send the value to the game server or Log &amp; Crash to collect logs. Also send inquiry to  [**Customer Center**](https://toast.com/support/inquiry) for the cause of reprocessing failure.
+    * When a login is successful, call **RequestRetryTransaction** to try to automatically reprocess the unprocessed.
+    * If there is a value on the returned successList, the game client sends a request to the game server to consume, so that items can be provided.
+    * If there is a value on the returned failList, send the value to the game server or Log &amp; Crash to collect logs. Also send inquiry to  [**Customer Center**](https://toast.com/support/inquiry) for the cause of reprocessing failure. 
 
 ### Purchase Item
 
-Call following API of an item to purchase by using itemSeq to send a purchase request. 
+Call following API of an item to purchase by using itemSeq to send a purchase request.
 When a game user cancels purchasing, the **PURCHASE_USER_CANCELED** error will be returned.
+
 
 **API**
 
@@ -75,7 +76,7 @@ public void RequestPurchase(long itemSeq)
 
 ### Get a List of Purchasable Items
 
-To retrieve the list of items, call the following API.
+To retrieve the list of items, call the following API. 
 Information of each item is included in the array of callback return.
 
 **API**
@@ -110,7 +111,8 @@ public void RequestItemListPurchasable()
 
 ### Get a List of Non-Consumed Items
 
-Request for a list of non-consumed items, which have not been normally consumed (delivered, or provided) after purchase. In case of non-purchased items, ask the game server (item server) to proceed with item delivery (supply).
+Request for a list of non-consumed items, which have not been normally consumed (delivered, or provided) after purchase.
+In case of non-purchased items, ask the game server (item server) to proceed with item delivery (supply).
 
 **API**
 
@@ -183,18 +185,24 @@ public void RequestRetryTransaction()
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| PURCHASE_NOT_INITIALIZED | 4001 | The purchase module is not initialized. Check if the gamebase-adapter-purchase-IAP module has been added to project. |
+| PURCHASE_NOT_INITIALIZED | 4001 | The purchase module is not initialized.<br>Check if the gamebase-adapter-purchase-IAP module has been added to project. |
 | PURCHASE_USER_CANCELED | 4002 | Purchase is cancelled. |
 | PURCHASE_NOT_FINISHED\_PREVIOUS\_PURCHASING | 4003 | API has been called when a purchase logic is not completed. |
 | PURCHASE_NOT_ENOUGH_CASH | 4004 | Cannot purchase due to shortage of cash of the store. |
-| PURCHASE_NOT_SUPPORTED_MARKET | 4010 | The store is not supported. You can choose either GG (Google), TS (ONE Store), or TEST. |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR | 4201 | Error in IAP library. Check DetailCode. |
-| PURCHASE_UNKNOWN_ERROR | 4999 | Unknown error in purchase. Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we'll respond ASAP. |
+| PURCHASE_NOT_SUPPORTED_MARKET | 4010 | The store is not supported.<br>You can choose either GG (Google), TS (ONE Store), or TEST. |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR | 4201 | Error in IAP library.<br>Check DetailCode. |
+| PURCHASE_UNKNOWN_ERROR | 4999 | Unknown error in purchase.<br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we'll respond ASAP. |
 
-- Refer to the following document for the entire error code.
-  - [Entire Error Codes](./error-code/#client-sdk)
+* Refer to the following document for the entire error code.
+    * [Entire Error Codes](./error-code/#client-sdk)
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
+
 * Occurs at an IAP module.
 * For IAP error codes, refer to the document below.
-    * [Mobile Service > IAP > Error Code > Client API Error Typ](/en/Mobile%20Service/IAP/en/error-code/#client-api#client-api-errors)
+    * [Mobile Service > IAP > Error Code > Client API Error Typ](/Mobile%20Service/IAP/en/error-code/#client-api#client-api-errors)
+
+
+
+
+

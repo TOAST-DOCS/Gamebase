@@ -185,3 +185,176 @@ localizedString.json에 정의되어 있는 형식은 아래와 같습니다.
 1. 입력된 languageCode가 localizedString.json 파일에 정의되어 있는지 확인합니다.
 2. Gamebase 초기화 시, 기기에 설정된 언어코드가 localizedString.json 파일에 정의되어 있는지 확인합니다. (이 값은 초기화 이후, 기기에 설정된 언어를 변경하더라도 유지됩니다.)
 3. Display Language의 기본값인 `en`이 자동 설정됩니다.
+
+
+
+### Server Push
+* Gamebase 서버에서 클라이언트 기기로 보내는 Server Push Message를 처리할 수 있습니다.
+* Gamebase 클라이언트에서 ServerPushEvent를 추가 하면 해당 메시지를 사용자가 받아서 처리할 수 있으며, 추가된 ServerPushEvent를 삭제 할 수 있습니다.
+
+
+#### Server Push Type
+현재 Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
+
+* 킥아웃 (Kickout)
+    * TOAST Gamebase 콘솔의 `Operation > Kickout` 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에게 메시지를 보낼 수 있습니다.
+    * Type : kTCGBServerPushNotificationTypeAppKickout (= @"appKickout")
+    
+
+#### Add ServerPushEvent
+아래의 API를 사용하여 Gamebase에 ServerPushEvent를 등록하여 처리할 수 있습니다.
+
+**API**
+
+```objectivec
++ (void)addServerPushEvent:(void(^)(TCGBServerPushMessage *))handler;
+```
+
+
+**Example**
+```objectivec
+- (void)wannaToReceiveServerPush {
+	void(^pushHandler)(TCGBServerPushMessage *) = ^(TCGBServerPushMessage *message) {
+        NSString* msg = [NSString stringWithFormat:@"[Sample] receive server push =>\ntype: %@\ndata: %@", message.type, message.data];
+        [self printLogAndShowAlertWithData:msg error:nil alertTitle:@"server push"];
+        
+        if ([message.type caseInsensitiveCompare:kTCGBServerPushNotificationTypeAppKickout] == NSOrderedSame) {
+        	// Logout
+            // Go to Main
+        }
+        else {
+        	...
+        }
+    };
+    [TCGBGamebase addServerPushEvent:pushHandler];
+}
+
+```
+
+
+#### Remove ServerPushEvent
+아래의 API들을 사용하여 Gamebase에 등록된 ServerPushEvent를 삭제할 수 있습니다.
+
+**API**
+```objectivec
++ (void)removeServerPushEvent:(void(^)(TCGBServerPushMessage *))handler;
++ (void)removeAllServerPushEvent;
+```
+
+**Example**
+```objectivec
+- (void)wannaToDiscardServerPush {
+	void(^pushHandler)(TCGBServerPushMessage *) = ^(TCGBServerPushMessage *message) {
+        NSString* msg = [NSString stringWithFormat:@"[Sample] receive server push =>\ntype: %@\ndata: %@", message.type, message.data];
+        [self printLogAndShowAlertWithData:msg error:nil alertTitle:@"server push"];
+    };
+    [TCGBGamebase removeServerPushEvent:pushHandler];
+}
+```
+
+
+
+
+
+### Observer
+* Gamebase Observer를 통하여 Gamebase의 각종 상태 변동 이벤트를 전달받아 처리할 수 있습니다.
+* Observer를 추가하면 들어 네트워크 타입 변동, Launching 상태 변동(점검 등에 의한 상태 변동), Heartbeat 정보 변동(사용자 이용 정지 등에 의한 Heartbeat 정보 변동) 등에 대한 이벤트를 사용자가 전달받아 처리 할 수 있습니다.
+
+
+
+#### Observer Type
+현재 Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
+
+* Network 타입 변동
+    * 네트워크 변동사항에 대한 정보를 받을 수 있습니다. 예를 들어서, message.data[@"code"] 의 값으로 Network Type을 알 수 있습니다.
+    * Type : kTCGBObserverMessageTypeNetwork (= @"network")
+    * Code : NetworkStatus에 선언된 상수를 참고합니다. 
+        * NotReachable : -1
+        * ReachableViaWWAN : 0
+        * ReachableViaWifi : 1        
+        * ReachabilityIsNotDefined : -100
+* Launching 상태 변동
+    * 주기적으로 어플리케이션의 상태를 체크하는 Launching Status response에 변동이 있을 때 발생합니다. 예를 들어서, 점검, 업데이트 권장 등에 의한 이벤트가 있습니다.
+    * Type : kTCGBObserverMessageTypeLaunching (= @"launching")
+    * Code : TCGBLaunchingStatus 선언된 상수를 참고합니다.
+        * IN_SERVICE : 200
+        * RECOMMEND_UPDATE : 201
+        * IN_SERVICE_BY_QA_WHITE_LIST : 202
+        * REQUIRE_UPDATE : 300
+        * BLOCKED_USER : 301
+        * TERMINATED_SERVICE : 302
+        * INSPECTING_SERVICE : 303
+        * INSPECTING_ALL_SERVICES : 304
+        * INTERNAL_SERVER_ERROR : 500
+* Heartbeat 정보 변동
+    * 주기적으로 Gamebase 서버와 연결을 유지하는 Heartbeat response에 변동이 있을 때 발생합니다. 예를 들어서, 사용자 이용 정지에 의한 이벤트가 있습니다.
+    * Type : ObserverkTCGBObserverMessageTypeHeartbeat (= @"heartbeat")
+    * Code : TCGBErrorCode 선언된 상수를 참조합니다.
+        * TCGB_ERROR_BANNED_MEMBER : 7
+
+
+#### Add Observer
+아래의 API를 사용하여 Gamebase에 Observer를 등록하여 처리할 수 있습니다.
+
+**API**
+```objectivec
++ (void)addObserver:(void(^)(TCGBObserverMessage *))handler;
+```
+
+**Example**
+```objectivec
+- (void)addObserver {
+    void(^observerHandler)(TCGBObserverMessage *) = ^(TCGBObserverMessage *message) {
+        NSString* msg = [NSString stringWithFormat:@"[Sample] receive from observer =>\ntype: %@\ndata: %@", message.type, message.data];
+        [self printLogAndShowAlertWithData:msg error:nil alertTitle:@"Observer"];
+            // You can check the changed network status in here.
+        if ([message.type caseInsensitiveCompare:kTCGBObserverMessageTypeNetwork] == NSOrderedSame) {
+            NSNumber* networkStatusNumber = message.data[@"code"];
+            NSInteger networkStatus = [networkStatusNumber integerValue];
+            // TODO: Check Netwokr Status by networkStatus.
+        }
+        else if ([message.type caseInsensitiveCompare:kTCGBObserverMessageTypeLaunching] == NSOrderedSame) {
+            // You can check the changed launching status in here.
+            NSNumber* launchingStatusNumber = message.data[@"code"];
+            NSInteger launchingStatus = [launchingStatusNumber integerValue];
+            // TODO: Check Launching Status by launchingStatus.
+        }
+        else if ([message.type caseInsensitiveCompare:kTCGBObserverMessageTypeHeartbeat] == NSOrderedSame) {
+        	// You can check the invalid user session in here.
+        	NSNumber* errorCodeNumber = message.data[@"code"];
+        	NSInteger errorCode = [errorCodeNumber integerValue];
+            if (errorCode == TCGB_ERROR_BANNED_MEMBER) {
+            	// TODO: Execute User Ban Proccess.
+			}
+        }
+    };
+
+    [TCGBGamebase addObserver:observerHandler];
+}
+```
+
+
+#### Remove Observer
+아래의 API들을 사용하여 Gamebase에 등록된 Observer를 삭제할 수 있습니다.
+
+**API**
+```objectivec
++ (void)removeObserver:(void(^)(TCGBObserverMessage *))handler;
++ (void)removeAllObserver;
+```
+
+**Example**
+
+```objectivec
+- (void)removeObserver {
+	void(^observerHandler)(TCGBObserverMessage *) = ^(TCGBObserverMessage *message) {
+    	...
+    };
+    
+    // Remove a Observer
+    [TCGBGamebase removeObserver:observerHandler];
+    
+    // Remove all Observers
+    [TCGBGamebase removeAllObserver];
+}
+```

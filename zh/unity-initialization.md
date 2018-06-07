@@ -22,13 +22,13 @@ Following settings are required for initialization.
 
 Project ID registered in TOAST.
 
-[Console Guide](/en/Game/Gamebase/en/oper-app/#app)
+[Console Guide](/Game/Gamebase/en/oper-app/#app)
 
 #### 2. appVersion
 
 Client version registered in TOAST.
 
-[Console Guide](/en/Game/Gamebase/en/oper-app/#client)
+[Console Guide](/Game/Gamebase/en/oper-app/#client)
 
 
 #### 3. zoneType
@@ -59,7 +59,8 @@ This setting regards to applying default pop-ups provided by Gamebase Mobile (iO
 
 #### 6. enableLaunchingStatusPopup
 
-This setting regards to applying default pop-ups provided by Gamebase, when the LaunchingStatus is disabled to play games. For LaunchingStatus, refer to Status/Code below Launching.
+This setting regards to applying default pop-ups provided by Gamebase, when the LaunchingStatus is disabled to play games.
+For LaunchingStatus, refer to Status/Code below Launching.
 
 * Default: True
 
@@ -102,7 +103,7 @@ Gamebase Unity SDK can be initialized as follows:
 
 > <font color="red">[Caution]</font><br/>
 >
-> Keep note that if a created game object is deleted, a callback cannot be received after a call of Android or iOS API. When it is deleted by mistake, <br/>
+> Keep note that if a created game object is deleted, a callback cannot be received after a call of Android or iOS API. <br/>
 > When it is deleted by mistake, "Do not destroy this gameObject in order to receive callback." error message will show.
 
 **API**
@@ -162,7 +163,7 @@ public class SampleInitialization
 
 ### Launching Information
 
-When Gamebase Unity SDK is initialized by using Initialize API, LaunchingInfo object results will be delievered. 
+When Gamebase Unity SDK is initialized by using Initialize API, LaunchingInfo object results will be delievered.
 This LaunchingInfo object contains settings of the TOAST Gamebase Console and game status.
 
 #### 1. Launching
@@ -190,24 +191,24 @@ For game status codes, refer to the table below.
 | INSPECTING_ALL_SERVICES | 304 | Under maintenance for the whole service |
 | INTERNAL_SERVER_ERROR | 500 | Error of internal server |
 
-[Console Guide](/en/Game/Gamebase/en/oper-app/#app)
+[Console Guide](/Game/Gamebase/en/oper-app/#app)
 
 **1.2 App**
 
 App information registered in the TOAST Console.
 
 * accessInfo
-	* serverAddress: Address of the server
-  	* csInfo: Customer center information
+    * serverAddress: Address of the server
+    * csInfo: Customer center information
 * relatedUrls
-	* termsUrl: Terms of Use
-  	* personalInfoCollectionUrl: Agreement to Personal Information
-  	* punishRuleUrl: Rules of Punishment
-  	* csUrl: Customer Center
+    * termsUrl: Terms of Use
+    * personalInfoCollectionUrl: Agreement to Personal Information
+    * punishRuleUrl: Rules of Punishment
+    * csUrl: Customer Center
 * install: Installation URL
 * idP: ID Provider
 
-[Console Guide](/en/Game/Gamebase/en/oper-app/#client)
+[Console Guide](/Game/Gamebase/en/oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -219,17 +220,15 @@ Maintenance information registered in the TOAST Console is as follows.
 * endDate: End time
 * message: Purpose of maintenance
 
-[Console Guide](/en/Game/Gamebase/en/oper-operation/#maintenance)
+[Console Guide](/Game/Gamebase/en/oper-operation/#maintenance)
 
 **1.4 Notice**
-
-{@수정}Gamebaes Console에 등록된 공지 정보입니다.
 
 * message: Messages
 * title: Title
 * url: Maintenance url
 
-[Console Guide](/en/Game/Gamebase/en/oper-operation/#notice)
+[Console Guide](/Game/Gamebase/en/oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -247,5 +246,5 @@ IAP store information registered in the TOAST Console.
 * id: App ID
 * name: App Name
 * storeCode: Store Code
-
-[Console Guide](/en/Game/Gamebase/en/oper-purchase/)
+ 
+[Console Guide](/Game/Gamebase/en/oper-purchase/)

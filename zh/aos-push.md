@@ -1,32 +1,29 @@
 ## Game > Gamebase > Android Developer's Guide > Push
 
-## Push
-
 ### Settings
 
 This document describes how to set push notifications for each platform.
 
-#### TOAST Cloud Console 등록
+#### Register TOAST Cloud Console
 
-To set your Console, refer to [TOAST Cloud Push Guide](/en/Notification/Push/en/Getting%20Started/#console_1).
+To set your Console, refer to [Notification > Push > API v2.0 Guide](/Notification/Push/en/api-guide/).
 
 #### Download
 
-- For Firebase Push
-    - Add the **gamebase-adapter-push-fcm** folder of downloaded SDK to your project.
-- For Tencent Push
-    - Add the **gamebase-adapter-push-tencent** folder of downloaded SDK to your project.
-
+* For Firebase Push
+    * Add the **gamebase-adapter-push-fcm** folder of downloaded SDK to your project.
+* For Tencent Push
+    * Add the **gamebase-adapter-push-tencent** folder of downloaded SDK to your project.
 
 > <font color="red">[Note]</font><br/>
 >
-> Requires only one push module.<br/>
+> Requires only one push module. <br/>
 > Do not add both Firebase and Tencent pushes in one project.
 
 
 #### AndroidManifest.xml
 
-- Add required setting for Gamebase Push.
+* Add required setting for Gamebase Push.
 
 > <font color="red">[Note]</font><br/>
 >
@@ -92,14 +89,13 @@ To set your Console, refer to [TOAST Cloud Push Guide](/en/Notification/Push/en/
 
 #### Google Services Settings (Firebase only)
 
-
-- For Gradle Builds
-    - To use Firebase push, google-services.json file is required to setup. Refer to [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/#add_firebase_to_your_app) on how to add the configuration file to your project.
-    - Add **apply plugin: ';com.google.gms.google-services'** to the Gradle setting.
-    - With the setting above, Google Services Gradle Plugin will be applied and the google-services.json file will be changed to a string resource named res/google-services/{build_type}/values/values.xml.
-- For Unity Builds
-    - Cannot use Google Services Gradle Plugin. To add a string resource xml file of your own creation to the project, refer to [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file).
-        - Below is an example of a string resource file.
+* For Gradle Builds
+    * To use Firebase push, google-services.json file is required to setup. Refer to [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/#add_firebase_to_your_app) on how to add the configuration file to your project.
+    * Add **apply plugin: 'com.google.gms.google-services'** to the Gradle setting.
+    * With the setting above, Google Services Gradle Plugin will be applied and the google-services.json file will be changed to a string resource named res/google-services/{build_type}/values/values.xml.
+* For Unity Builds
+    * Cannot use Google Services Gradle Plugin. To add a string resource xml file of your own creation to the project, refer to [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file).
+        * Below is an example of a string resource file.
 
 ```xml
 <!-- res/values/google-services-json.xml -->
@@ -116,12 +112,12 @@ To set your Console, refer to [TOAST Cloud Push Guide](/en/Notification/Push/en/
 
 #### Initialization
 
-- To initialize Gamebase, call **setPushType()** of configuration.
-- For Firebase Push
-    - Make an additional call to **setFCMSenderId()**.
-- For Tencent Push
-    - Make an additional call to **setTencentAccessId()**.
-    - Make an additional call to **setTencentAccessKey()**.
+* To initialize Gamebase, call **setPushType()** of configuration.
+* For Firebase Push
+    * Make an additional call to **setFCMSenderId()**.
+* For Tencent Push
+    * Make an additional call to **setTencentAccessId()**.
+    * Make an additional call to **setTencentAccessKey()**.
 
 ```java
 private static final String PUSH_FCM_SENDER_ID = "...";
@@ -133,7 +129,7 @@ GamebaseConfiguration configuration = new GamebaseConfiguration.Builder()
         .setAppVersion(APP_VERSION)
         .setFCMSenderId(PUSH_FCM_SENDER_ID)				// Firebase requires SenderId.
         .setTencentAccessId(PUSH_TENCENT_ACCESS_ID)		// Requires Tencent AccessId.
-        .setTencentAccessKey(PUSH_TENCENT_ACCESS_KEY)   // Requires Tencent AccessKey.
+        .setTencentAccessKey(PUSH_TENCENT_ACCESS_KEY)	// Requires Tencent AccessKey.
         .build();
 
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
@@ -148,6 +144,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 By calling API as below, a user can be registered to TOAST Cloud Push.<br/>
 With user's agreement to enablePush, enableAdPush, and enableAdNightPush, call following API to complete registration.
+
 
 ```java
 boolean enablePush;
@@ -199,20 +196,19 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR | 5101 | Error in TOAST Cloud Push library.<br/>Please check DetailCode. |
-| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | Previous push API call has not been completed.<br/>Please call again after the previous push API callback is executed. |
-| PUSH_UNKNOWN_ERROR | 5999 | Unknown push error.<br/>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry), and we'll respond ASAP. |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | Error in TOAST Cloud Push library.<br>Please check DetailCode. |
+| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | Previous push API call has not been completed.<br>Please call again after the previous push API callback is executed. |
+| PUSH_UNKNOWN_ERROR             | 5999       | Unknown push error.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry), and we'll respond ASAP. |
 
-- Refer to the following document for the entire error codes:
-    - [Entire Error Codes](./error-codes#client-sdk)
+* Refer to the following document for the entire error codes:
+    * [Entire Error Codes](./error-code/#client-sdk)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-- Occurs in the TOAST Cloud Push library.
-- Need to check TOAST Cloud Push error codes with exception.getDetailCode().
-- Refer to the following document for TOAST Cloud Push error codes:
-  - [Push > Client SDK Developer's Guide > Error Code Guide > Error Handling](/en/Notification/Push/en/Client%20SDK%20Guide/#_5)
-
+* Occurs in the TOAST Cloud Push library.
+* Need to check TOAST Cloud Push error codes with exception.getDetailCode().
+* Refer to the following document for TOAST Cloud Push error codes:
+    * [Notification > Push > Error Handling](/Notification/Push/en/sdk-guide/#_5)
 
 
 

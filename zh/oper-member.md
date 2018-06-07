@@ -1,16 +1,14 @@
-## Game &gt; Gamebase &gt; Operator Guide &gt; Member
-
-## Member
+## Game > Gamebase > Console Guide > Member
 
 Retrieve information of members who are logged in a game.
 
 
 ### Search Member
 
-Enter User ID to search for member information.<br/>
-User ID is a user identifier which is automatically issued at a first-time login by Gamebase. To lessen confusion while delivered, &quot;ABCDFGHJKLMNPQRSTWXYZ1346789&quot; are applied only, in order to prevent confusion due to similar pronunciation.<br/><br/>
+Enter User ID to search for member information.
+User ID is a user identifier which is automatically issued at a first-time login by Gamebase. To lessen confusion while delivered, "ABCDFGHJKLMNPQRSTWXYZ1346789" are applied only, in order to prevent confusion due to similar pronunciation.
 
-Detailed information of searched users are displayed in the above, while history data such as login, mapping, purchase, ban, and playtime are shown under, as taps. <br/>
+Detailed information of searched users are displayed in the above, while history data such as login, mapping, purchase, ban, and playtime are shown under, as taps.
 
 
 
@@ -18,20 +16,20 @@ Detailed information of searched users are displayed in the above, while history
 ### Detail Information
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Member1_1.4.png)
 
-**User ** <br/>
+**User **
 
 - **User ID**: Gamebase User ID
-- **Country (USIM)**: USIM country code of a user device. When it fails to collect, it shows &#39; **ZZ**&#39;. Go to **Login History** below to check the country code of your device.<br/>
-- **Latest Login Date**: The last time a user logged in.<br/>
-- **Registration Date**: The first time a user logged in.<br/>
-- **Account Status**<br/>
-  - **OK**: Normal users. Click **Ban** to manually change status.<br/>
-  - **Banned**: Users who are banned from abusive acts. Click **Release Ban** to manually change status.<br/>
-  - **Withdraw**: Users who have withdrawn.<br/>
+- **Country (USIM)**: USIM country code of a user device. When it fails to collect, it shows '**ZZ**'. Go to **Login History** below to check the country code of your device.
+- **Latest Login Date**: The last time a user logged in.
+- **Registration Date**: The first time a user logged in.
+- **Account Status**
+  - **OK**: Normal users. Click **Ban** to manually change status.
+  - **Banned**: Users who are banned from abusive acts. Click **Release Ban** to manually change status.
+  - **Withdraw**: Users who have withdrawn.
 
-**Identity Provider ** <br/>
+**Identity Provider **
 
-In Gamebase, many external IdPs can be integrated. In short, a user can log in by registering two IdPs, such as Facebook and Google in one user ID. IdP can be registered when **Login with Specific IDP** or &#39; **Add Mapping&#39;** API is called from SDK.<br/>
+In Gamebase, many external IdPs can be integrated. In short, a user can log in by registering two IdPs, such as Facebook and Google in one user ID. IdP can be registered when **Login with Specific IDP** or '**Add Mapping'** API is called from SDK.
 
 - **IdP**: External IdPs (Guest, Facebook, PAYCO, or Google)
 - **Idp ID**: ID provided by an external IdP (Facebook no, or PAYCO ID)
@@ -40,11 +38,11 @@ In Gamebase, many external IdPs can be integrated. In short, a user can log in b
 ### Login History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_LoginHistory1_1.2.png)
 
-Retrieve login history of a searched user. <br />
-For an initial search, the duration is a recent one day or a date of choice. However, history data is provided for recent three months (or 90 days) only.<br />
-Can add history when SDK calls login-related APIs.<br/>
+Retrieve login history of a searched user.
+For an initial search, the duration is a recent one day or a date of choice. However, history data is provided for recent three months (or 90 days) only.
+Can add history when SDK calls login-related APIs.
 
-- **Login Date**: User&#39;s login time to an app.
+- **Login Date**: User's login time to an app.
 - **Login Type**: Type of authentication applied for a user login (such as IdPLogin/Guest). In-parentheses refers to IdProvider information which was actually used.
 - **OS / Ver**: OS (iOS/Android/WebGL) and OS version information used for user login.
 - **Device model**: Name of a device model applied for user login.
@@ -62,11 +60,11 @@ Can add history when SDK calls login-related APIs.<br/>
 ### Mapping History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_MappingHistory1_1.2.png)
 
-Retrieve mapping and remove mapping history of a searched user. Shows all history data of the recent 3 months (90 days).<br />
+Retrieve mapping and remove mapping history of a searched user. Shows all history data of the recent 3 months (90 days).
 
 - **Based on User ID**: Retrieve by retrieved user ID.
-- **Based on IdP ID**: Retrieve by the currently mapped IdP ID. <br/>
-  When a user ID is mapped to Facebook and Google IdP, the list will display the two IdP IDs.<br/>
+- **Based on IdP ID**: Retrieve by the currently mapped IdP ID.
+  When a user ID is mapped to Facebook and Google IdP, the list will display the two IdP IDs.
 
 * **IdP ID**: ID information used for Idp login.
 * **IdP**: Mapped IdP information.
@@ -80,8 +78,8 @@ Retrieve mapping and remove mapping history of a searched user. Shows all histor
 
 ### Purchase History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_PurchaseHistory1_1.0.png)
-Retrieve purchase history of user products.<br />
-Can search by date, and history data can be retrieved up to 1 month (30 days).<br />
+Retrieve purchase history of user products.
+Can search by date, and history data can be retrieved up to 1 month (30 days).
 
 - **Payment Sequence**: Original number to identify payments within Gamebase
 - **Store**: Information of a store where payment has been made
@@ -97,8 +95,8 @@ Can search by date, and history data can be retrieved up to 1 month (30 days).<b
 ### Ban History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_BanHistory1_1.0.png)
 
-Can retrieve ban history of a searched user.<br />
-Can search by date, and history data can be retrieved up to 1 month (30 days).<br />
+Can retrieve ban history of a searched user.
+Can search by date, and history data can be retrieved up to 1 month (30 days).
 
 - **Start Date**: Start time to apply banning
 - **End Date**: End time to apply banning
@@ -110,5 +108,5 @@ Can search by date, and history data can be retrieved up to 1 month (30 days).<b
 
 ### Playtime
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Playtime1_1.2.png)
-Retrieve playtime of a searched user by date.<br />
-Can search by date, and history data can be retrieved up to 1 month (30 days).<br />
+Retrieve playtime of a searched user by date.
+Can search by date, and history data can be retrieved up to 1 month (30 days).
