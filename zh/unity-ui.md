@@ -7,25 +7,26 @@
 Shows a WebView.<br/>
 
 ##### Required Parameters
-
 * URL: The url delivered as a parameter should be valid.
 
 ##### Optional Parameters
-
-- configuration: Changes WebView layout by using GamebaseWebViewConfiguration.
-- closeCallback: Notifies users when a WebView is closed.
-- schemeList: Specifies the list of customized schemes a user wants.
-- schemeEvent: Notifies url including customized scheme specified by the schemeList with a callback.
+* configuration: Changes WebView layout by using GamebaseWebViewConfiguration.
+* closeCallback: Notifies users when a WebView is closed.
+* schemeList: Specifies the list of customized schemes a user wants.
+* schemeEvent: Notifies url including customized scheme specified by the schemeList with a callback.
 
 **API**
 
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
 static void ShowWebView(string url, GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
 ```
+
+> Stansalone에서는 WebViewAdapter를 통해서 WebView를 지원하며 WebView가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
 
 **Example**
 ```cs
@@ -63,7 +64,7 @@ public void ShowWebView(GamebaseCallback.ErrorDelegate closeCallback, List<strin
 | buttonVisible            | true or false                            | Activate/Deactivate Go Back Button           |
 | barHeight                | height                                   | Height of Navigation Bar                  |
 | backButtonImageResource  | ID of resource                           | Image of Go Back Button                |
-| closeButtonImageResource | ID of resource                           | Image of Close Button |
+| closeButtonImageResource | ID of resource | Image of Close Button |
 | url | "http://" or "https://" or "file://" | Web URL |
 
 #### Predefined Custom Scheme
@@ -87,6 +88,7 @@ Close currently displayed WebView by using the following API.
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
 static void CloseWebview()
@@ -207,4 +209,4 @@ public void ShowToast(string message, GamebaseUIToastType type)
 | UI\_UNKNOWN\_ERROR | 6999       | Unknown error (Undefined error). |
 
 * Refer to the following document for the entire error codes.
-	- [Entire Error Codes](./error-code/#client-sdk)
+    * [Entire Error Codes](./error-code/#client-sdk)

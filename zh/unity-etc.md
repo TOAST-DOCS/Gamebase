@@ -1,21 +1,21 @@
-## Game > Gamebase > Unity SDK 사용 가이드 > ETC
+## Game > Gamebase > Unity SDK User Guide > ETC
 
 ## Additional Features
 
-Gamebase에서 지원하는 부가적인 기능을 설명합니다.
+Additional functions provided by Gamebase are described as below:
 
 ### Display Language
 
-* Gamebase에서 제공하는 UI 및 SystemDialog에 표시되는 언어를 기기에 설정된 언어가 아닌 사용자가 설정한 언어로 변경할 수 있습니다.
-* Gamebase는 클라이언트에 포함되어 있는 메시지를 표시하거나 서버에서 받은 메시지를 표시합니다.
-* DisplayLanguage를 설정하게 되면 사용자가 설정한 언어코드(ISO-639)에 적합한 언어로 메시지를 표시합니다.
-* 필요하다면 사용자가 지원하고 싶은 언어셋을 추가할 수 있습니다. (하단 지원 언어코드를 참고)
+* The display language on the Gamebase UI and SystemDialog can be changed into another language, which is not set on a device, as the user wants. 
+* Gamebase displays messages which are included in a client or as received by a server. 
+* With DisplayLanguage, messages are displayed in an appropriate language for the language code (ISO-639) set by the user. 
+*  If necessary, language sets can be added as the user wants. The list of available language codes is as follows: 
 
-> [참고]
+> [Note]
 >
-> Gamebase의 클라이언트 메시지는 영어(en), 한글(ko)만 포함합니다.
+> Client messages of Gamebase include English(en) and Korean(ko), only.
 
-#### Gamebase에서 지원하고 있는 언어코드의 종류
+#### Types of Language Codes Supported by Gamebase
 
 | Code | Name |
 | --- | --- |
@@ -36,12 +36,12 @@ Gamebase에서 지원하는 부가적인 기능을 설명합니다.
 | zh-CN | Chinese-Simplified |
 | zh-TW | Chinese-Traditional |
 
-해당 언어코드는 `GamebaseDisplayLanguageCode` 클래스에 정의되어 있습니다.
+Each language code is defined in `GamebaseDisplayLanguageCode`.
 
-> `[주의]`
+> `[Warning]`
 >
-> Gamebase에서 지원하고 있는 언어코드는 대소문자를 구분합니다.
-> "EN" 이나 "zh-cn"과 같이 설정할 경우 문제가 발생할 수 있습니다.
+> Gamebase distinguishes the language code between the upper and lower case. 
+> For example, settings like 'EN' or 'zh-ch' may cause a problem. 
 
 ```cs
 namespace Toast.Gamebase
@@ -68,9 +68,9 @@ namespace Toast.Gamebase
 }
 ```
 
-#### Gamebase 초기화 시 Display Language 설정
+#### Set Display Language with Gamebase Initialization
 
-Gamebase 초기화 시 Display Language를 설정할 수 있습니다.
+Display Language can be set when Gamebase is initialized.
 
 **API**
 
@@ -112,7 +112,7 @@ public void InitializeWithConfiguration()
 
 #### Set Display Language
 
-Gamebase 초기화 시 입력된 Display Language를 변경할 수 있습니다.
+You can change the initial setting of Display Language.
 
 **API**
 
@@ -138,7 +138,7 @@ public void SetDisplayLanguageCode()
 
 #### Get Display Language
 
-현재 적용된 Display Language를 조회할 수 있습니다.
+You can retrieve the current application of Display Language.
 
 **API**
 
@@ -162,13 +162,13 @@ public void GetDisplayLanguageCode()
 }
 ```
 
-#### 신규 언어셋 추가
+#### Add New Language Sets
 
-UnityEditor 및 Unity Standalone, WebGL 플랫폼 서비스 시, Gamebase에서 제공하는 기본 언어(ko, en) 외 다른 언어를 사용해야 할 경우에는 Assets > StreamingAssets > Gamebase에 있는 localizedString.json 파일에 값을 추가하여야 합니다.
+For UnityEditor and Unity Standalone, or WebGL platform services, to use another language in addition to default Gamebase languages (ko, en), go to Assets > StreamingAssets > Gamebase and add a value to the localizedString.json file. 
 
 ![localizedString.json](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-etc_001_1.7.0.png)
 
-localizedString.json에 정의되어 있는 형식은 아래와 같습니다.
+The localizedString.json has a format defined as below:
 
 ```json
 {
@@ -187,7 +187,7 @@ localizedString.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-일본어를 추가해야 할 경우에는 localizedString.json 파일에 `"ja":{"key":"value"}` 형태로 값을 추가하시면 됩니다.
+For instance, to add Japanese, add `"ja":{"key":"value"}` to the localizedString.json file. 
 
 ```json
 {
@@ -212,17 +212,190 @@ localizedString.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-위 json 형식에서 "ja":{ } 내부에 key가 누락될 경우에는 `기기에 설정된 언어` 또는 `en`으로 자동 입력됩니다.
+If key is missing from inside of "ja":{ } of the json format above, `Language Set on Device` or `en` will be automatically entered. 
 
-Unity Android, iOS 플랫폼에서의 신규 언어셋 추가 방법은 아래 가이드를 참고하십시오.
+Refer to the guides below to learn how to add new language sets for Unity Android and  iOS platforms.
 
-* [Android 신규 언어셋 추가](./aos-etc#display-language)
-* [iOS 신규 언어셋 추가](./ios-etc#display-language)
+* [Add New Language Sets for Android](./aos-etc#display-language)
+* [Add New Language Sets for iOS](./ios-etc#display-language)
 
-#### Display Language 우선 순위
+#### Priority in Display Language
 
-초기화 및 SetDisplayLanguageCode API를 통해 Display Language를 설정할 경우, 최종 적용되는 Display Language는 입력한 값과 다르게 적용될 수 있습니다.
+If Display Language is set via initialization and SetDisplayLanguageCode API, the final application may be different from what has been entered.
 
-1. 입력된 languageCode가 localizedString.json 파일에 정의되어 있는지 확인합니다.
-2. Gamebase 초기화 시, 기기에 설정된 언어코드가 localizedString.json 파일에 정의되어 있는지 확인합니다. (이 값은 초기화 이후, 기기에 설정된 언어를 변경하더라도 유지됩니다.)
-3. Display Language의 기본값인 `en`이 자동 설정됩니다.
+1. Check if the languageCode you enter is defined in the localizedString.json file. 
+2. See if, during Gamebase initialization, the language code set on the device is defined in the localizedString.json file. (This value shall maintain even if the language set on device changes after initialization.)
+3. `en`, which is the default value of Display Language, is automatically set.
+
+### Server Push
+* Handles Server Push Messages from Gamebase server to a client device. 
+* Add ServerPushEvent Listener to Gamebase Client, and the user can handle messages; the added ServerPushEvent Listener can be deleted.
+
+
+#### Server Push Type
+Server Push Types currently supported by Gamebase are as follows:
+
+* Kickout
+    * Go to `Operation > Kickout`  in the TOAST Gamebase console and register Kickout ServerPush messages, and the messages are sent to all clients connected to Gamebase.
+    * Type: GamebaseServerPushType.APP_KICKOUT (= "appKickout")
+
+
+#### Add ServerPushEvent
+Use the API below, register ServerPushEvent to handle the push event triggered from the Gamebase Console and Gamebase server.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void AddServerPushEvent(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent)
+```
+
+**Example**
+
+```cs
+public void AddServerPushEvent()
+{
+    GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent = (data) =>
+    {
+        GamebaseResponse.SDK.ServerPushMessage serverPushMessage = data;
+    };
+
+    Gamebase.AddServerPushEvent(serverPushEvent);
+}
+```
+
+
+#### Remove ServerPushEvent
+Delete ServerPushEvent registered in Gamebase.  
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void RemoveServerPushEvent(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent)
+static void RemoveAllServerPushEvent()
+```
+
+**Example**
+
+```cs
+public void RemoveServerPushEvent(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent)
+{
+    Gamebase.RemoveServerPushEvent(observer);
+}
+
+public void RemoveAllServerPushEvent()
+{
+    Gamebase.RemoveAllServerPushEvent();
+}
+```
+
+### Observer
+* With Gamebase Observer, receive and process status change events of Gamebase.
+* Status change events : change of network type, change of launching status (change of status due to maintenance, and etc.), and change of heartbeat information (change of heartbeat information due to service suspension), and etc.
+
+
+#### Observer Type
+The Observer Types currently supported by Gamebase are as follows:
+
+* Change of Network Type
+    * Receive information on changes of a network.
+    * Type: GamebaseObserverType.NETWORK (= "network")
+    * Code: Refer to the constant numbers declared in GamebaseNetworkType.
+        * GamebaseNetworkType.TYPE_NOT: -1
+        * GamebaseNetworkType.TYPE_MOBILE: 0
+        * GamebaseNetworkType.TYPE_WIFI: 1
+        * GamebaseNetworkType.TYPE_ANY: 2
+* Change of Launching Status
+    * Occurs when there is a change in the launching status response which periodically checks application status. For example, events occur for maintenance, or update recommendations.
+    * Type: GamebaseObserverType.LAUNCHING (= "launching")
+    * Code: Refer to the constant numbers declared in GamebaseLaunchingStatus.
+        * GamebaseLaunchingStatus.IN_SERVICE: 200
+        * GamebaseLaunchingStatus.RECOMMEND_UPDATE: 201
+        * GamebaseLaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
+        * GamebaseLaunchingStatus.REQUIRE_UPDATE: 300
+        * GamebaseLaunchingStatus.BLOCKED_USER: 301
+        * GamebaseLaunchingStatus.TERMINATED_SERVICE: 302
+        * GamebaseLaunchingStatus.INSPECTING_SERVICE: 303
+        * GamebaseLaunchingStatus.INSPECTING_ALL_SERVICES: 304
+        * GamebaseLaunchingStatus.INTERNAL_SERVER_ERROR: 500
+* Change of Heartbeat Information
+    * Occurs when there is a change in the heartbeat response which periodically maintains connection with the Gamebase server. For example, an event occurs for service suspension.
+    * Type: GamebaseObserverType.HEARTBEAT (= "heartbeat")
+    * Code: Refer to the constant numbers declared in GamebaseErrorCode.
+        * GamebaseErrorCode.BANNED_MEMBER: 7
+
+
+#### Add Observer
+Use the API below, register Observer to handle the status change events of Gamebase.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void AddObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer)
+```
+
+**Example**
+
+```cs
+public void AddObserver()
+{
+	GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer = (data) =>
+    {
+        GamebaseResponse.SDK.ObserverMessage observerMessage = data;
+    };
+
+    Gamebase.AddObserver(observer);
+}
+```
+
+
+#### Remove Observer
+Delete Observer registered in Gamebase.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void RemoveObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer)
+static void RemoveAllObserver()
+```
+
+**Example**
+
+```cs
+public void RemoveObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer)
+{
+	Gamebase.RemoveObserver(observer);
+}
+
+public void RemoveAllObserver()
+{
+    Gamebase.RemoveAllObserver();
+}
+```

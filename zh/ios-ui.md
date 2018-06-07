@@ -2,13 +2,13 @@
 
 ## WebView
 
-Gamebase supports a default WebView.
-
+Gamebase supports a default WebView.<br/>
+<br/>
 WebView-related resources (images, html, and others) are included to Gamebase.bundle.
 
 ### Show WebView
 
-Shows a WebView.
+Shows a WebView.<br/>
 
 ##### Required Parameters
 * url : The url delivered as a parameter should be valid.
@@ -19,6 +19,7 @@ Shows a WebView.
 * closeCompletion : Notifies users with a callback when a WebView is closed.
 * schemeList : Specifies the list of customized schemes a user wants.
 * schemeEvent : Notifies url including customized scheme specified by the schemeList with a callback.
+
 
 ```objectivec
 // Show Fullscreen Style WebView
@@ -41,8 +42,7 @@ Shows a WebView.
 
 
 #### Custom WebView
-
-Shows a customized WebView.
+Shows a customized WebView.<br/>
 Can configure a customzed WebView by using TCGBWebViewConfiguration.
 
 ```objectivec
@@ -76,15 +76,15 @@ Can configure a customzed WebView by using TCGBWebViewConfiguration.
 ```
 
 
-#### Custom Scheme
+#### Custom Scheme 
 
 Can apply scheme to use specific functions on a webpage of Gamebase Webview or change content.
 
 ##### Predefined Custom Scheme
 
-Gamebase has specified following schemes.
+Gamebase has specified following schemes.<br/>
 
-| Scheme               | Usage                     |
+| scheme               | Usage                     |
 | -------------------- | ---------------------- |
 | gamebase://dismiss   | Close WebView             |
 | gamebase://goBack    | Go back from WebView          |
@@ -150,7 +150,7 @@ Close currently displayed WebView by using the following API.
 
 ## Open External Browser
 
-Open an external browser by using the following API. The URL delivered as a parameter should be valid.
+다음 API를 통하여 외부 브라우저를 열 수 있습니다. 파라미터로 전송되는 URL은 유효한 값이어야 합니다.
 
 ```objectivec
 // Open the url with Browser
@@ -163,14 +163,12 @@ Open an external browser by using the following API. The URL delivered as a para
 
 ## Alert
 
-Displays a system alert.
-Internally process UIAlertController for iOS 8 or higher and UIAlertView for below iOS 8 versions.
+Displays a system alert.<br/>
+Internally process UIAlertController for iOS 8 or higher and UIAlertView for below iOS 8 versions.<br/>
 
 #### Types of Alert
-
 1. Provides only one 'OK' button, and its click brings Completion.
 2. Provides only one 'OK' button, which does not provide Completion.
-
 
 ```objectivec
 
@@ -189,7 +187,7 @@ Internally process UIAlertController for iOS 8 or higher and UIAlertView for bel
 
 ## Toast
 
-Displays [Android Toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) messages, by using the following API.
+Displays [Android Toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) messages, by using the following API.<br/>
 Simple messages with display time can be set.
 
 ```objectivec
@@ -211,7 +209,7 @@ Simple messages with display time can be set.
 
 | Error                           | Error Code | Description                 |
 | ------------------------------- | ---------- | --------------------------- |
-| TCGB\_ERROR\_UI\_UNKNOWN\_ERROR | 6999       | Unknown error (Undefined error).  |
+| TCGB\_ERROR\_UI\_UNKNOWN\_ERROR | 6999       | Unknown error (Undefined error). |
 
 * Refer to the following document for the entire error codes.
-    - [Entire Error Codes](./error-code/#client-sdk)
+    * [Entire Error Codes](./error-code/#client-sdk)
