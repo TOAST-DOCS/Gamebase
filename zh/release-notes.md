@@ -1,11 +1,11 @@
 ## Game > Gamebase > 릴리스 노트
 
-### 2018.06.11
+### 2018.06.26
 
 #### 기능 추가
 * iOS Google IdP 추가 : iOS
 * Twitter IdP 추가 : Android, iOS
-* Line IdP 추가 : Android, iOS(2018년 7월 제공 예정)
+* Line IdP 추가 : Android만 제공. iOS는 2018년 7월 제공 예정입니다.
 * Server API 추가 
 	* getSimpleLaunching : 클라이언트 앱 기동시 제공되는 Launching 정보 확인용 API
 	
