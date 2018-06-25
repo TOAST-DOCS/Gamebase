@@ -61,13 +61,13 @@ AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考�
 
 利用停止照会画面から**登録**ボタンをクリックすると、利用停止の登録ができます。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban2_1.1.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban2_1.2.png)
 #### (1) ユーザーID
 利用停止を登録するGamebaseのユーザーIDを入力します。一度に複数のユーザーを登録することができ、登録方法は次の二つです。
 
 - **ユーザー入力**：登録するユーザーIDを入力ウィンドウに直接入力した後、**Enter**キーを押したり**追加**ボタンをクリックします。ユーザーIDの有効性をチェックするため、有効でないユーザーIDは入力が不可能です。
 - **一括登録**：CSVファイルのみアップロードでき、サンプルファイルはConsole画面からダウンロードすることができます。一括登録は1回につき最大10,000人まで可能です。
-  ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban4_1.1.png)
+  ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban4_1.2.png)
 
 > [参考]</br>
 > 一括登録を進行する途中に失敗すると、ポップアップが表示されます。該当するポップアップから**Download**ボタンをクリックすると、登録に失敗したユーザーリストをファイルでダウンロードすることができます。
@@ -92,6 +92,9 @@ AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考�
 > テンプレートを登録していない場合、**BAN**メニューの**テンプレート**タブからまずテンプレートを登録してください。
 > テンプレートを登録する方法は、[Template](./oper-ban/#template)をご参考ください。
 
+#### (5) 리더보드 삭제
+이용 정지를 등록할 시 해당 유저의 Leaderboard 데이터도 함께 삭제할지에 대한 여부를 설정합니다.
+체크 후 등록시 리더보드에서 유저의 데이터가 삭제되며 <font color="red">해당데이터는 복구되지 않으므로</font> 주의가 필요합니다.
 
 ### Release Ban
 
@@ -144,10 +147,11 @@ AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考�
 > <font color="red">[重要]</font>
 > TOAST AppGuardサービスを使用する場合にのみ利用することができます。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_AppGuard1_1.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_AppGuard1_1.1.png)
 
 - **連携有無**：AppGuardで検知されたり、利用が制限されたユーザーを自動でGamebase利用停止ユーザーに登録する場合に有効にします。
 - **自動利用停止**にしたい検知/利用制限の種類の「自動登録」を**ON**にし、「ユーザーに表示するメッセージ」と**利用停止期間**を入力して**保存**ボタンをクリックすると、適用されます。
+- **리더보드 연동**항목 선택을 통해 탐지 또는 제재된 사용자의 리더보드 데이터 삭제 여부를 함께 선택할 수 있습니다.
 
 > [参考] 
 > AppGuard連携で利用停止が自動登録された場合、登録システムには「アプリガード」で登録されます。

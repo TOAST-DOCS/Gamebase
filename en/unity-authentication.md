@@ -4,7 +4,9 @@
 
 Gamebase supports Guest logins by default.<br/>
 
-To log into providers other than guest, a matching Provider AuthAdapter is required.<br/>
+* To log into providers other than guest, a matching Provider AuthAdapter is required.
+* For setting of AuthAdapter and 3rd-Party Provider SDK, refer to
+    * [3rd-Party Provider SDK Guide](aos-started#3rd-party-provider-sdk-guide)
 
 ### Login Flow
 
@@ -181,11 +183,14 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 ```
 
 **providerName**
-* GamebaseAuthProvider.GOOGLE(Android/Standalone Only)
+
+* GamebaseAuthProvider.GOOGLE
 * GamebaseAuthProvider.GAMECENTER(iOS Only)
 * GamebaseAuthProvider.FACEBOOK
 * GamebaseAuthProvider.PAYCO
-* GamebaseAuthProvider.NAVER
+* GamebaseAuthProvider.NAVER(Android/iOS Only)
+* GamebaseAuthProvider.TWITTER(Android/iOS Only)
+* GamebaseAuthProvider.LINE(Android Only)
 
 > There is information which must be included for login with some IdPs.<br/>
 > For instance, scope must be set to implement a Facebook login.<br/>
@@ -240,6 +245,25 @@ public void Login(string providerName, Dictionary<string, object> additionalInfo
 
 This game interface allows authentication to be made with SDK provided by IdP, before login to Gamebase with provided access token.
 
+* How to Set Credential Parameters
+
+| Keyname | Usage | Value Type |
+| ---------------------------------------- | ------------------------------------ | ------------------------------ |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Enter One Time Authorization Code (OTAC) which can be obtained after Google login. |                                          |
+
+> [Note]
+>
+> May require when original functions of external services (such as Facebook) are in need within a game.
+>
+
+
+> <font color="red">[Caution]</font><br/>
+>
+> Development items external SDK requires to support need to be implemented by using external SDK's API, which Gamebase does not support.
+>
+
 **API**
 
 Supported Platforms
@@ -258,9 +282,19 @@ static void Login(Dictionary<string, object> credentialInfo, GamebaseCallback.Ga
 **Example**
 
 ``` cs
-public void Login(Dictionary<string, object> credentialInfo)
+public void LoginWithCredential()
 {
-	Gamebase.Login(credentialInfo, (authToken, error) =>
+    var credentialInfo = new Dictionary<string, object>();
+    
+    // facebook
+    credentialInfo.Add(GamebaseAuthProviderCredential.PROVIDER_NAME, GamebaseAuthProvider.FACEBOOK);
+    credentialInfo.Add(GamebaseAuthProviderCredential.ACCESS_TOKEN, "facebook access token");
+    
+    // google
+    // credentialInfo.Add(GamebaseAuthProviderCredential.PROVIDER_NAME, GamebaseAuthProvider.GOOGLE);
+    // credentialInfo.Add(GamebaseAuthProviderCredential.AUTHORIZATION_CODE, "google auchorization code");
+    
+    Gamebase.Login(credentialInfo, (authToken, error) =>
     {
     	if (Gamebase.IsSuccess(error))
         {
@@ -284,7 +318,7 @@ public void Login(Dictionary<string, object> credentialInfo)
 Example of adding authentication information in Facebook
 
 ```json
-{ "facebook_permission": [ "public_profile", "email", "user_friends"]}
+{ "facebook_permission": [ "public_profile", "email"]}
 ```
 
 #### PAYCO
@@ -299,6 +333,7 @@ Example of adding authentication information in PAYCO
 
 #### NAVER
 * Go to **TOAST Console > Gamebase > App > Authentication Information > Additional Information & Callback URL** to set json string-type information **to**  **Additional Information**.
+    * For NAVER, set **service_name**, the app name required for Agree to Login window, and **url_scheme_ios_only** , which is required for an iOS app.
 
 * Set URL Schemes.
 	* **XCode > Target > Info > URL Types**
@@ -307,7 +342,7 @@ Example of Adding Authentication Information to NAVER
 ```json
 { "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
 ```
-![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+![NAVER URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
 
 ## Logout
@@ -407,13 +442,13 @@ Note, however, that each IdP can have only one account to map.
 Below shows an example.<br/>
 
 * Gamebase UserID : 123bcabca
-    * Google ID : aa
-    * Facebook ID : bb
-    * AppleGameCenter ID : cc
-    * Payco ID : dd
-* Gamebase UserID: 456abcabc
-    * Google ID: ee
-    * Google ID: ff **-> As the Google ee account is integrated, no additional Google account can be integrated.**
+	* Google ID : aa
+	* Facebook ID : bb
+	* AppleGameCenter ID : cc
+	* Payco ID : dd
+* Gamebase UserID : 456abcabc
+	* Google ID : ee
+	* Google ID : ff **-> As the Google ee account is integrated, no additional Google account can be integrated.**
 
 Mapping API includes Add Mapping API and Remove Mapping API.
 
@@ -493,18 +528,16 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 * How to Set Credential Parameters
 
-
-
 | keyname | Usage | Value Type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                          | facebook, payco, iosgamecenter, naver |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                                |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | Set authentication information (access token) received after login IdP |                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Enter One Time Authorization Code (OTAC) which can be obtained after Google login. |                                          |
 
-> [TIP]
+> [Note]
 >
 > May require when original functions of external services (such as Facebook) are in need within a game.
 >
-
 
 > <font color="red">[Caution]</font><br/>
 >
@@ -524,8 +557,18 @@ static void AddMapping(Dictionary<string, object> credentialInfo, GamebaseCallba
 **Example**
 
 ```cs
-public void AddMapping(Dictionary<string, object> credentialInfo)
+public void AddMappingWithCredential()
 {
+    var credentialInfo = new Dictionary<string, object>();
+
+    // facebook
+    credentialInfo.Add(GamebaseAuthProviderCredential.PROVIDER_NAME, GamebaseAuthProvider.FACEBOOK);
+    credentialInfo.Add(GamebaseAuthProviderCredential.ACCESS_TOKEN, "facebook access token");
+
+    // google
+    // credentialInfo.Add(GamebaseAuthProviderCredential.PROVIDER_NAME, GamebaseAuthProvider.GOOGLE);
+    // credentialInfo.Add(GamebaseAuthProviderCredential.AUTHORIZATION_CODE, "google auchorization code");
+
     Gamebase.AddMapping(credentialInfo, (authToken, error) =>
     {
         if (Gamebase.IsSuccess(error))
@@ -881,7 +924,7 @@ public void RequestTransfer(string transferKey)
 |      | AUTH_USER_CANCELED | 3001 | Login is cancelled. |
 |      | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | The authentication is not supported. |
 |      | AUTH_NOT_EXIST_MEMBER | 3003 | Named member does not exist or has withdrawn. |
-|      | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | Error in external authentication library |
+|      | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | Error in external authentication library. <br/>Check DetailCode and DetailMessage. |
 | TransferKey | SAME\_REQUESTOR | 8 | 발급한 TransferKey를 동일한 기기에서 사용했습니다. |
 |             | NOT\_GUEST\_OR\_HAS\_OTHERS | 9 | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IDP가 연동되어 있습니다. |
 |             | AUTH\_TRANSFERKEY\_EXPIRED | 3031 | TransferKey의 유효기간이 만료됐습니다. |
@@ -912,7 +955,7 @@ public void RequestTransfer(string transferKey)
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
 * Occurs in TOAST external authentication library.
-* 오류 코드 확인은 다음과 같이 확인하실 수 있습니다.
+* Check the error code as below:
 
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
@@ -936,4 +979,4 @@ else
 }
 ```
 
-* IdP SDK의 오류 코드는 각각의 Developer 페이지를 참고하시기 바랍니다.
+* Check error codes of IdP SDK at each developer's page.

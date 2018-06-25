@@ -59,12 +59,11 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
     * TS:ONE store
     * TEST:IAPテスト用
 
+
 ```java
 String STORE_CODE = "GG";	// Google
 
-TAPConfiguration configuration = new TAPConfiguration.Builder()
-        .setAppId(APP_ID)
-        .setAppVersion(APP_VERSION)
+GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(APP_ID, APP_VERSION)
         .setStoreCode(STORE_CODE)	// Store codeを必ず宣言します。
         .build();
 
@@ -105,6 +104,14 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 購入したいアイテムのitemSeqを利用して次のAPIを呼び出し、購入をリクエストします。<br/>
 ゲームユーザーが購入をキャンセルする場合、**GamebaseError.PURCHASE_USER_CANCELED**エラーが返されます。キャンセル処理を行ってください。
 
+**API**
+
+```java
++ (void)Gamebase.Purchase.requestPurchase(Activity activity, long itemSeq, GamebaseDataCallback<PurchasableReceipt> callback);
+```
+
+**Example**
+
 ```java
 long itemSeq; // The itemSeq value can be got through the requestItemListPurchasable API.
 
@@ -125,6 +132,14 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 ### Get a List of Purchasable Items
 
 アイテムリストを照会したい場合、次のAPIを呼び出します。コールバックで返される配列(array)の中にはそれぞれ各アイテムの情報が含まれています。
+
+**API**
+
+```java
++ (void)Gamebase.Purchase.requestItemListPurchasable(Activity activity, GamebaseDataCallback<List<PurchasableItem>> callback);
+```
+
+**Example**
 
 ```java
 Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<List<PurchasableItem>>() {
@@ -151,6 +166,14 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
     1. 決済成功後、アイテム消費(consume)処理前に最終確認のために呼び出し
     2. ログイン成功後、消費(consume)できなかったアイテムが残っていないか確認するために呼び出し
 
+**API**
+
+```java
++ (void)Gamebase.Purchase.requestItemListOfNotConsumed(Activity activity, GamebaseDataCallback<List<PurchasableReceipt>> callback);
+```
+
+**Example**
+
 ```java
 Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallback<List<PurchasableReceipt>>() {
     @Override
@@ -171,6 +194,14 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 
 ストアでは決済が正常に行われたものの、TOAST IAPサーバーの検証失敗などにより決済が正常に行われなかった場合、APIを利用して再処理を試みます。<br/>
 最後に、決済が成功した内訳を基にアイテム送信(配布)などのAPIを呼び出して処理する必要があります。
+
+**API**
+
+```java
++ (void)Gamebase.Purchase.requestRetryTransaction(Activity activity, GamebaseDataCallback<PurchasableRetryTransactionResult> callback);
+```
+
+**Example**
 
 ```java
 Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<PurchasableRetryTransactionResult>() {

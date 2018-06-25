@@ -124,9 +124,7 @@ private static final String PUSH_FCM_SENDER_ID = "...";
 private static final String PUSH_TENCENT_ACCESS_ID = "...";
 private static final String PUSH_TENCENT_ACCESS_KEY = "...";
 
-GamebaseConfiguration configuration = new GamebaseConfiguration.Builder()
-        .setAppId(APP_ID)
-        .setAppVersion(APP_VERSION)
+GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(APP_ID, APP_VERSION)
         .setFCMSenderId(PUSH_FCM_SENDER_ID)				// Firebase requires SenderId.
         .setTencentAccessId(PUSH_TENCENT_ACCESS_ID)		// Requires Tencent AccessId.
         .setTencentAccessKey(PUSH_TENCENT_ACCESS_KEY)	// Requires Tencent AccessKey.
@@ -145,6 +143,13 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 By calling API as below, a user can be registered to TOAST Cloud Push.<br/>
 With user's agreement to enablePush, enableAdPush, and enableAdNightPush, call following API to complete registration.
 
+**API**
+
+```java
++ (void)Gamebase.Push.registerPush(Activity activity, PushConfiguration configuration, GamebaseCallback callback);
+```
+
+**Example**
 
 ```java
 boolean enablePush;
@@ -172,6 +177,14 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 
 To retrieve user's push setting, apply API as below. <br/>
 From PushConfiguration callback values, you can get user's value set.
+
+**API**
+
+```java
++ (void)Gamebase.Push.registerPush(Activity activity, GamebaseDataCallback<PushConfiguration> callback);
+```
+
+**Example**
 
 ```java
 Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() {

@@ -59,12 +59,11 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
     * TS: ONE store
     * TEST: For IAP testing
 
+
 ```java
 String STORE_CODE = "GG";	// Google
 
-TAPConfiguration configuration = new TAPConfiguration.Builder()
-        .setAppId(APP_ID)
-        .setAppVersion(APP_VERSION)
+GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(APP_ID, APP_VERSION)
         .setStoreCode(STORE_CODE)	// Must declare a store code.
         .build();
 
@@ -105,6 +104,14 @@ A purchase at store may be successful but cannot be closed normally due to error
 Call following API of an item to purchase by using itemSeq to send a purchase request. <br/>
 When a game user cancels purchasing, the **GamebaseError.PURCHASE_USER_CANCELED** error will be returned. Please proceed with cancellation.
 
+**API**
+
+```java
++ (void)Gamebase.Purchase.requestPurchase(Activity activity, long itemSeq, GamebaseDataCallback<PurchasableReceipt> callback);
+```
+
+**Example**
+
 ```java
 long itemSeq; // The itemSeq value can be got through the requestItemListPurchasable API.
 
@@ -125,6 +132,14 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 ### Get a List of Purchasable Items
 
 To retrieve the list of items, call the following API. Information of each item is included in the array of callback return.
+
+**API**
+
+```java
++ (void)Gamebase.Purchase.requestItemListPurchasable(Activity activity, GamebaseDataCallback<List<PurchasableItem>> callback);
+```
+
+**Example**
 
 ```java
 Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<List<PurchasableItem>>() {
@@ -151,6 +166,14 @@ In case of non-purchased items, ask the game server (item server) to proceed wit
     1. To confirm before an item is consumed after a successful purchase
     2. To check if there is any non-consumed item left after a login is successful
 
+**API**
+
+```java
++ (void)Gamebase.Purchase.requestItemListOfNotConsumed(Activity activity, GamebaseDataCallback<List<PurchasableReceipt>> callback);
+```
+
+**Example**
+
 ```java
 Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallback<List<PurchasableReceipt>>() {
     @Override
@@ -171,6 +194,14 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 
 In case a purchase is not normally completed after a successful purchase at a store due to failure of authentication of TOAST Cloud IAP server, try to reprocess by using API. <br/>
 Based on the latest success of purchase, reprocessing is required by calling an API for item delivery (supply).
+
+**API**
+
+```java
++ (void)Gamebase.Purchase.requestRetryTransaction(Activity activity, GamebaseDataCallback<PurchasableRetryTransactionResult> callback);
+```
+
+**Example**
 
 ```java
 Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<PurchasableRetryTransactionResult>() {

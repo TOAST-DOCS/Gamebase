@@ -163,7 +163,7 @@ You can enter those information to additionalInfo in the dictionary type.<br/>
 
 Example of Adding Authentication Information to Facebook
 ```json
-{ "facebook_permission": [ "public_profile", "email", "user_friends"]}
+{ "facebook_permission": [ "public_profile", "email"]}
 ```
 - To setup a project for the use of Facebook SDK, refer to the following link.
 * [LINK \[Facebook Developer Guide\]](https://developers.facebook.com/docs/ios/getting-started)
@@ -181,6 +181,7 @@ Example of Adding Authentication Information to PAYCO
 #### NAVER
 - Set AdditionalInfo.
     * Go to **TOAST Console > Gamebase > App > Authentication Information > Additional Information & Callback URL** to set json string-type information to **Additional Information**.
+    * For NAVER, set **service_name**, the app name required for Agree to Login window, and **url_scheme_ios_only** , which is required for an iOS app.
 
 - Set URL Schemes.
 	* **XCode > Target > Info > URL Types**
@@ -194,7 +195,23 @@ Example of Adding Authentication Information to NAVER
 #### Game Center
 Requires no additional setting other than TOAST Console setting.
 
+#### Google
+- AdditionalInfo를 설정해야 합니다.
+	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+	* GOOGLE의 경우, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
+	* **url_scheme_ios_only**의 값은 Xcode의 URL Scheme에 등록된 값들 중 한개와 일치해야 합니다.
 
+- URL Schemes를 설정해야합니다.
+	* **XCode > Target > Info > URL Types**
+
+GOOGLE 추가 인증 정보 입력 예제
+```json
+{ "url_scheme_ios_only": "Your URL Schemes" }
+```
+![Google URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+
+#### Twitter
+TOAST Console에서의 설정 외에 추가 설정은 없습니다.
 
 ### Login with Credential
 
@@ -209,7 +226,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | keyname                                  | Usage                          | Value Type                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, payco, iosgamecenter, naver |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, payco, iosgamecenter, naver, google, twitter |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                                |
 
 
@@ -406,7 +423,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | keyname                                  | Usage                          | Value Type                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, payco, iosgamecenter, naver |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, payco, iosgamecenter, naver, google, twitter |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                                |
 
 
@@ -601,7 +618,7 @@ TransferKey의 형식은 영문자 **"소문자/대문자/숫자"를 포함한 8
 |                | TCGB\_ERROR\_AUTH\_USER\_CANCELED        | 3001       | Login is cancelled.                            |
 |                | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | The authentication is not supported.                        |
 |                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | Named member does not exist or has withdrawn.                      |
-|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | Error in external authentication library.                       |
+|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | Error in external authentication library. <br/> Check DetailCode and DetailMessage. |
 | TransferKey    | TCGB\_ERROR\_SAME\_REQUESTOR             | 8			 | 발급한 TransferKey를 동일한 기기에서 사용했습니다. |
 |                | TCGB\_ERROR\_NOT\_GUEST\_OR\_HAS\_OTHERS | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IDP가 연동되어 있습니다. |
 |                | TCGB\_ERROR\_AUTH\_TRANSFERKEY\_EXPIRED  | 3031       | TransferKey의 유효기간이 만료됐습니다. |
