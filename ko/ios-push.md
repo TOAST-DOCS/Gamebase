@@ -68,7 +68,7 @@ SandboxMode를 켜면, APNS Sandbox로 Push를 발송하도록 등록할 수 있
 ```
 
 * 콘솔 발송 방법
-PUSH 메뉴의 **대상**에서  **iOS Sandbox** 체크박스를 선택 후 발송합니다.
+Push 메뉴의 **대상**에서 **iOS Sandbox**를 선택한 후 발송합니다.
 
 ### Request Push Settings
 

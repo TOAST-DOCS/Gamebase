@@ -19,6 +19,18 @@ WebView를 표시합니다.<br/>
 * schemeList : 사용자가 받고 싶은 커스텀 Scheme 목록을 지정합니다.
 * GamebaseDataCallback : schemeList로 지정한 커스텀 Scheme을 포함하는 url을 콜백으로 알려 줍니다.
 
+**API**
+
+```java
++ (void)Gamebase.WebView.showWebView(Activity activity, 
+                String urlString, 
+                GamebaseWebViewConfiguration configuration,
+                GamebaseCallback onCloseCallback,
+                List<String> schemeList,
+                GamebaseDataCallback<String> onEvent);
+```
+
+**Example**
 
 ```java
 Gamebase.WebView.showWebView(activity, "http://www.toast.com",
@@ -28,7 +40,7 @@ Gamebase.WebView.showWebView(activity, "http://www.toast.com",
         public void onCallback(GamebaseException exception) {
             Logger.d(TAG, "WebView is closed.");
         }
-    }, schmeList,
+    }, schemeList,
     new GamebaseDataCallback<String>() {
         @Override
         public void onCallback(String fullUrl, GamebaseException exception) {
@@ -45,6 +57,7 @@ Gamebase.WebView.showWebView(activity, "http://www.toast.com",
 
 사용자 지정 WebView를 표시합니다. <br/>
 GamebaseWebViewConfiguration으로 사용자 지정 WebView를 만들 수 있습니다.
+
 ```java
 GamebaseWebViewConfiguration configuration
         = new GamebaseWebViewConfiguration.Builder()
@@ -77,8 +90,10 @@ GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configura
 ### Close WebView
 다음 API를 통하여, 보여지고 있는 WebView를 닫을 수 있습니다.
 
+**API**
+
 ```java
-Gamebase.WebView.closeWebView(activity);
++ (void)Gamebase.WebView.closeWebView(Activity activity);
 ```
 
 
@@ -86,8 +101,10 @@ Gamebase.WebView.closeWebView(activity);
 
 다음 API를 통하여 외부 브라우져를 열 수 있습니다. 파라미터로 전송되는 URL은 유효한 값이어야 합니다.
 
+**API**
+
 ```java
-Gamebase.WebView.openWebBrowser(activity, "http://www.toast.com");
++ (void)Gamebase.WebView.openWebBrowser(Activity activity, String urlString);
 ```
 
 
@@ -99,8 +116,10 @@ Gamebase.WebView.openWebBrowser(activity, "http://www.toast.com");
 
 제목과 메시지만 입력하여 간단하게 알림 대화 상자를 표시할 수 있습니다.
 
+**API**
+
 ```java
-Gamebase.Util.showAlertDialog(activity, "title", "message");
++ (void)Gamebase.Util.showAlertDialog(Activity activity, String title, String message);
 ```
 
 ![Alert Dialog Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-002_1.0.0.png)
@@ -110,16 +129,14 @@ Gamebase.Util.showAlertDialog(activity, "title", "message");
 
 알림 대화 상자를 표시한 후 처리 결과를 콜백받고 싶다면 다음 API를 사용합니다.
 
+**API**
+
 ```java
-Gamebase.Util.showAlertDialog(activity,
-                            "title",                        // 타이틀 텍스트.
-                            "messsage",                     // 메시지 텍스트.
-                            "OK",                           // 긍정 버튼 텍스트.
-                            positiveButtonEventListener,    // 긍정 버튼이 눌러졌을 때 호출되는 Listener.
-                            "Cancel",                       // 부정 버튼 텍스트.
-                            negativeButtonEventListener,    // 부정 버튼이 눌러졌을 때 호출되는 Listener.
-                            backKeyEventListener,           // Alert Dialog가 취소되면 호출되는 Listener.
-                            true);                          // Alert Dialog를 취소할 수 있는지 여부를 설정.
++ (void)Gamebase.Util.showAlertDialog(Activity activity,
+                            String title,
+                            String messsage,
+                            String okButtonText,
+                            DialogInterface.OnClickListener clickListener);
 ```
 
 ## Toast
@@ -135,10 +152,12 @@ Gamebase.Util.showAlertDialog(activity,
 | 1                  | Toast.LENGTH_LONG => 3.5초 |
 | 나머지 모든 값           | Toast.LENGTH_SHORT => 2초  |
 
+**API**
+
 ```java
-Gamebase.Util.showToast(activity,
-                        "message",              // 노출 할 메시지 텍스트
-                        Toast.LENGTH_SHORT);    // 메시지를 표시하는 시간 종류 (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
+Gamebase.Util.showToast(Activity activity,
+                        String message,
+                        int duration);    // 메시지를 표시하는 시간 종류 (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
 ```
 
 ## Custom Maintenance Page

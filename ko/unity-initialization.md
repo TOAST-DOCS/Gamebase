@@ -250,3 +250,43 @@ TOAST Console에 등록된 IAP 스토어 정보입니다.
 * storeCode: Store Code
  
 [Console Guide](/Game/Gamebase/ko/oper-purchase/)
+
+### Get Launching Information
+
+GetLaunchingInformations API를 이용하면 Initialize 이후에도 LaunchingInfo 객체를 획득할 수 있습니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
+```
+
+**Example**
+
+```cs
+public GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
+{
+    return Gamebase.Launching.GetLaunchingInformations();
+}
+```
+
+### Error Handling
+
+| Error                              | Error Code | Description            |
+| ---------------------------------- | ---------- | ---------------------- |
+| NOT\_INITIALIZED      | 1          | Gamebase 초기화돼 있지 않습니다. |
+| NOT\_LOGGED\_IN       | 2          | 로그인이 필요합니다.            |
+| INVALID\_PARAMETER    | 3          | 잘못된 파라미터입니다.           |
+| INVALID\_JSON\_FORMAT | 4          | JSON 포맷 오류입니다.         |
+| USER\_PERMISSION      | 5          | 권한이 없습니다.              |
+| NOT\_SUPPORTED        | 10         | 지원하지 않는 기능입니다.         |
+
+* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
+    * [오류 코드](./error-code/#client-sdk)

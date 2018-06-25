@@ -168,25 +168,35 @@ PAYCO Client ID를 신청해서 발급받은 {client_id} 및 {client_secret}을 
 - Secret Key: {Payco client_secret}
 
 #### NAVER
-Naver Developer 사이트에서 신청하여 발급받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
-이때, 로그인 동의창에서의 노출될 애플리케이션이름 및 scheme등 iOS 애플리케이션에서 필요한 정보 또한 JSON String 형태로 추가 정보란에 입력해야 합니다.
+Naver Developers 사이트에서 신청하여 발급받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
+이때, 로그인 동의 창에서 표시할 애플리케이션 이름 및 scheme 등 iOS 애플리케이션에서 필요한 정보 또한 JSON String 형태로 추가 정보란에 입력해야 합니다.
 
 **입력 필드**
 
-- Client ID: {Naver client_id}
-- Secret Key: {Naver client_secret}
-- 추가정보: Naver Application Name & iOS url scheme (json format) 
+- Client ID: {NAVER client_id}
+- Secret Key: {NAVER client_secret}
+- 추가정보: NAVER Application Name & iOS url scheme (json format) 
 
-**[예시] Naver Additional input format **
+**[예시] NAVER Additional input format **
 ```json
 { "url_scheme_ios_only": "Your Url Scheme", "service_name": "Your Service Name" }
 ```
 
 **Reference URL**<br />
-- [Naver Developers - 애플리케이션 등록](https://developers.naver.com/apps/#/register)
-- [Naver Developers - 클라이언트 아이디와 클라이언트 시크릿 확인](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)
+- [NAVER Developers - 애플리케이션 등록](https://developers.naver.com/apps/#/register)
+- [NAVER Developers - 클라이언트 아이디와 클라이언트 시크릿 확인](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)
 
 
+#### Twitter
+Twitter Application Management 사이트에서 앱을 등록하고 발급받은 {Consumer Key} 및 {Consumer Secret}을 Gamebase Console에 입력합니다.
+
+**입력 필드**
+
+- Client ID: {Twitter Consumer Key}
+- Secret Key: {Twitter Consumer Secret}
+
+**Reference URL**
+- [Twitter Application Management](https://apps.twitter.com/)
 
 ## Client
 
