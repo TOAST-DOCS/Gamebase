@@ -17,12 +17,12 @@ In many games, login is implemented on a title page.
 
 The logic described above can be implemented in the following order:
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
 #### 1. Authenticate with Latest Login Type
 
@@ -318,6 +318,17 @@ private static void onLoginWithCredential(final Activity activity) {
 ```
 
 ### Authentication Additional Information Settings
+
+#### Google
+
+1. Google 인증을 위해서는 Google Cloud Console에서 **Web Application Client ID**를 발급받아야 합니다.
+	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-001_1.11.0.png)
+	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-002_1.11.0.png)
+2. 승인된 리디렉션 URI 란에 다음 값을 입력합니다.
+	* https://alpha-id-gamebase.toast.com/oauth/callback
+	* https://beta-id-gamebase.toast.com/oauth/callback
+	* https://id-gamebase.toast.com/oauth/callback
+	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-003_1.11.0.png)
 
 #### Facebook
 * Go to **TOAST Cloud Console > Gamebase > App > Authentication Information > Additional Information &Callback URL** to set json string-type information to **Additional Information**.
@@ -884,8 +895,11 @@ Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
 
 * Occurs in SDK of each IdP.
 * Check the error code as below.
+<<<<<<< HEAD
 
 * Check error codes of IdP SDK at each developer's page.
+=======
+>>>>>>> beta
 
 ```java
 Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCallback<AuthToken>() {
@@ -898,15 +912,22 @@ Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCa
             Log.e(TAG, "Login failed");
 
             // Gamebase Error Info
-            String errorDomain = exception.getDomain();
             int errorCode = exception.getCode();
+            String errorMessage = exception.getMessage();
 
-            // Third Party Detail Error Info
-            int detailCode = exception.getDetailCode();
-            String DetailMessage = exception.getDetailMessage();
-
-            ...
+            if (errorCode == GamebaseError.AUTH_EXTERNAL_LIBRARY_ERROR) {
+                // Third Party Detail Error Info
+                int moduleErrorCode = exception.getDetailCode();
+                String moduleErrorMessage = exception.getDetailMessage();
+                
+                ...
+            }
         }
     }
 });
 ```
+<<<<<<< HEAD
+=======
+
+* Check error codes of IdP SDK at each developer's page.
+>>>>>>> beta

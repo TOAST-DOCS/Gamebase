@@ -17,12 +17,12 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
 
 위에서 설명한 로직은 다음과 같은 순서로 구현할 수 있습니다.
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
 #### 1. 이전 로그인 유형으로 인증
 
@@ -318,6 +318,17 @@ private static void onLoginWithCredential(final Activity activity) {
 ```
 
 ### Authentication Additional Information Settings
+
+#### Google
+
+1. Google 인증을 위해서는 Google Cloud Console에서 **Web Application Client ID**를 발급받아야 합니다.
+	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-001_1.11.0.png)
+	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-002_1.11.0.png)
+2. 승인된 리디렉션 URI 란에 다음 값을 입력합니다.
+	* https://alpha-id-gamebase.toast.com/oauth/callback
+	* https://beta-id-gamebase.toast.com/oauth/callback
+	* https://id-gamebase.toast.com/oauth/callback
+	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-003_1.11.0.png)
 
 #### Facebook
 * **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
@@ -886,8 +897,6 @@ Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
 * 이 오류는 각 IdP의 SDK에서 발생한 오류입니다.
 * 오류 코드를 확인하는 방법은 다음과 같습니다.
 
-* IdP SDK의 오류 코드는 각 개발자 페이지를 참고하시기 바랍니다.
-
 ```java
 Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCallback<AuthToken>() {
     @Override
@@ -899,15 +908,19 @@ Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCa
             Log.e(TAG, "Login failed");
 
             // Gamebase Error Info
-            String errorDomain = exception.getDomain();
             int errorCode = exception.getCode();
+            String errorMessage = exception.getMessage();
 
-            // Third Party Detail Error Info
-            int detailCode = exception.getDetailCode();
-            String DetailMessage = exception.getDetailMessage();
-
-            ...
+            if (errorCode == GamebaseError.AUTH_EXTERNAL_LIBRARY_ERROR) {
+                // Third Party Detail Error Info
+                int moduleErrorCode = exception.getDetailCode();
+                String moduleErrorMessage = exception.getDetailMessage();
+                
+                ...
+            }
         }
     }
 });
 ```
+
+* IdP SDK의 오류 코드는 각 개발자 페이지를 참고하시기 바랍니다.

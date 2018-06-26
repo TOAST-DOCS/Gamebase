@@ -219,7 +219,34 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
 * このエラーは、TOAST Pushライブラリーで発生したエラーです。
-* exception.getDetailCode()でTOAST Pushのエラーコードを確認する必要があります。
+* TOAST Push エラーの詳細は次のように確認できます。
+
+```java
+Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
+    @Override
+    public void onCallback(GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            Log.d(TAG, "Register push successful");
+            ...
+        } else {
+            Log.e(TAG, "Register push failed");
+
+            // Gamebase Error Info
+            int errorCode = exception.getCode();
+            String errorMessage = exception.getMessage();
+            
+            if (errorCode == GamebaseError.PUSH_EXTERNAL_LIBRARY_ERROR) {
+                // TOAST Push Error Info
+                int moduleErrorCode = exception.getDetailCode();
+                String moduleErrorMessage = exception.getDetailMessage();
+                
+                ...
+            }
+        }
+    }
+});
+```
+
 * TOAST Pushのエラーコードは、次のドキュメントをご参考ください。
     * [Notification > Push > エラーコード](/Notification/Push/ja/sdk-guide/#_5)
 

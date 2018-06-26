@@ -237,8 +237,34 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
 * このエラーは、IAPモジュールで発生したエラーです。
-* exception.getDetailCode()を通してIAPのエラーコードを確認する必要があります。
+* IAPーエラーの詳細は次のように確認できます。
+
+```java
+Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<PurchasableReceipt>() {
+    @Override
+    public void onCallback(PurchasableReceipt data, GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            Log.d(TAG, "Purchase successful");
+            ...
+        } else {
+            Log.e(TAG, "Purchase failed");
+
+            // Gamebase Error Info
+            int errorCode = exception.getCode();
+            String errorMessage = exception.getMessage();
+            
+            if (errorCode == GamebaseError.PURCHASE_EXTERNAL_LIBRARY_ERROR) {
+                // IAP Error Info
+                int moduleErrorCode = exception.getDetailCode();
+                String moduleErrorMessage = exception.getDetailMessage();
+                
+                ...
+            }
+        }
+    }
+});
+```
+
 * IAPのエラーコードは、次のドキュメントをご参考ください。
     * [Mobile Service > IAP > エラーコード > Client APIエラータイプ](/Mobile%20Service/IAP/ja/error-code/#client-api)
-
 

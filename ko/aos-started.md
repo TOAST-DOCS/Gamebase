@@ -57,7 +57,7 @@ def pushSdkVersion = '1.4.2'
 
 /* Set the Gamebase version. */
 def gamebaseSdkVersion = '1.11.0'
-def gamebaseFacebookAdapterVersion = '1.7.0'
+def gamebaseFacebookAdapterVersion = '1.11.0'
 def gamebaseGoogleAdapterVersion = '1.9.0'
 def gamebaseNaverAdapterVersion = '1.7.0'
 def gamebaseTwitterAdapterVersion = '1.11.0'
@@ -219,6 +219,8 @@ Gamebase SDK에서는 3rd Party SDK 및 Dependency가 있는 모듈의 버전에
 * [Facebook for developers](https://developers.facebook.com/docs/android)
 * [Google APIs for Android](https://developers.google.com/android/guides/overview)
 * [Naver for developers](https://developers.naver.com/docs/login/android/)
+* [Twitter Android Developer's guide - Log in with Twitter](https://dev.twitter.com/web/sign-in/implementing)
+* [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/basics/authentication/overview/oauth)
 * [Line for developers](https://developers.line.me/en/docs/line-login/android/integrate-line-login/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/android)
 

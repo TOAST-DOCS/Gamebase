@@ -57,7 +57,11 @@ def pushSdkVersion = '1.4.2'
 
 /* Set the Gamebase version. */
 def gamebaseSdkVersion = '1.11.0'
+<<<<<<< HEAD
 def gamebaseFacebookAdapterVersion = '1.7.0'
+=======
+def gamebaseFacebookAdapterVersion = '1.11.0'
+>>>>>>> beta
 def gamebaseGoogleAdapterVersion = '1.9.0'
 def gamebaseNaverAdapterVersion = '1.7.0'
 def gamebaseTwitterAdapterVersion = '1.11.0'
@@ -219,6 +223,11 @@ Gamebase SDK ensures that those modules with 3rd Party SDK and dependency are in
 * [Facebook for developers](https://developers.facebook.com/docs/android)
 * [Google APIs for Android](https://developers.google.com/android/guides/overview)
 * [Naver for developers](https://developers.naver.com/docs/login/android/)
+<<<<<<< HEAD
+=======
+* [Twitter Android Developer's guide - Log in with Twitter](https://dev.twitter.com/web/sign-in/implementing)
+* [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/basics/authentication/overview/oauth)
+>>>>>>> beta
 * [Line for developers](https://developers.line.me/en/docs/line-login/android/integrate-line-login/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/android)
 
