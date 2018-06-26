@@ -74,8 +74,9 @@ To change registered information, click **Modify**. You may click to **Delete** 
 
 ### Recipient List
 
-Alarm receivers can be configured. To register a new member, go to TOAST Console > Project > Member Management.
+Alarm receivers can be configured. To register a new member, go to **TOAST Console > Project > Member Management**.
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm3_1.1.png)
+Gamebase allows to send alarms via email or SMS.
 In both cases, subscription information to TOAST are used for delivery; alarms may not be sent properly if there is any wrong information in email address or number. To check mobile phone information, go to **My Account** of TOAST Cloud.
 
 <br/>

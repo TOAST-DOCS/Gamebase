@@ -93,7 +93,7 @@ GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configura
 **API**
 
 ```java
-Gamebase.WebView.closeWebView(Activity activity);
++ (void)Gamebase.WebView.closeWebView(Activity activity);
 ```
 
 
@@ -104,7 +104,7 @@ Gamebase.WebView.closeWebView(Activity activity);
 **API**
 
 ```java
-Gamebase.WebView.openWebBrowser(Activity activity, String urlString);
++ (void)Gamebase.WebView.openWebBrowser(Activity activity, String urlString);
 ```
 
 
@@ -119,7 +119,7 @@ Gamebase.WebView.openWebBrowser(Activity activity, String urlString);
 **API**
 
 ```java
-Gamebase.Util.showAlertDialog(Activity activity, String title, String message);
++ (void)Gamebase.Util.showAlertDialog(Activity activity, String title, String message);
 ```
 
 ![Alert Dialog Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-002_1.0.0.png)
@@ -132,7 +132,7 @@ Gamebase.Util.showAlertDialog(Activity activity, String title, String message);
 **API**
 
 ```java
-Gamebase.Util.showAlertDialog(Activity activity,
++ (void)Gamebase.Util.showAlertDialog(Activity activity,
                             String title,
                             String messsage,
                             String okButtonText,
@@ -155,7 +155,7 @@ Gamebase.Util.showAlertDialog(Activity activity,
 **API**
 
 ```java
-Gamebase.Util.showToast(Activity activity,
++ (void)Gamebase.Util.showToast(Activity activity,
                         String message,
                         int duration);    // 메시지를 표시하는 시간 종류 (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
 ```

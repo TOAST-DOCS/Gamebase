@@ -145,7 +145,7 @@ public void getDisplayLanguageCodeInRuntime() {
 
 To use another language in addition to default Gamebase languages (en, ko, ja), go to gamebase-sdk-base.aar > res > raw and add a value to the localizedstring.json file.
 
-![localizedstring.json](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/aos-developers-guide-etc_001_1.11.0.png)
+![localizedstring.json](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-etc_001_1.11.0.png)
 
 The localizedstring.json has a format defined as below: 
 
