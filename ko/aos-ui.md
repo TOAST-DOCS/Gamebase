@@ -93,7 +93,7 @@ GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configura
 **API**
 
 ```java
-+ (void)Gamebase.WebView.closeWebView(Activity activity);
+Gamebase.WebView.closeWebView(Activity activity);
 ```
 
 
@@ -104,7 +104,7 @@ GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configura
 **API**
 
 ```java
-+ (void)Gamebase.WebView.openWebBrowser(Activity activity, String urlString);
+Gamebase.WebView.openWebBrowser(Activity activity, String urlString);
 ```
 
 
@@ -119,7 +119,7 @@ GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configura
 **API**
 
 ```java
-+ (void)Gamebase.Util.showAlertDialog(Activity activity, String title, String message);
+Gamebase.Util.showAlertDialog(Activity activity, String title, String message);
 ```
 
 ![Alert Dialog Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-002_1.0.0.png)
@@ -132,7 +132,7 @@ GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configura
 **API**
 
 ```java
-+ (void)Gamebase.Util.showAlertDialog(Activity activity,
+Gamebase.Util.showAlertDialog(Activity activity,
                             String title,
                             String messsage,
                             String okButtonText,

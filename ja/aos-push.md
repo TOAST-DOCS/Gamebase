@@ -124,10 +124,8 @@ private static final String PUSH_FCM_SENDER_ID = "...";
 private static final String PUSH_TENCENT_ACCESS_ID = "...";
 private static final String PUSH_TENCENT_ACCESS_KEY = "...";
 
-GamebaseConfiguration configuration = new GamebaseConfiguration.Builder()
-        .setAppId(APP_ID)
-        .setAppVersion(APP_VERSION)
-        .setFCMSenderId(PUSH_FCM_SENDER_ID)				// Firebaseは、SenderIdが必要です。
+GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(APP_ID, APP_VERSION)
+        .setFCMSenderId(PUSH_FCM_SENDER_ID)				// irebaseは、SenderIdが必要です。
         .setTencentAccessId(PUSH_TENCENT_ACCESS_ID)		// Tencent AccessIdが必要です。
         .setTencentAccessKey(PUSH_TENCENT_ACCESS_KEY)	// Tencent AccessKeyが必要です。
         .build();
@@ -145,6 +143,13 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 次のAPIを呼び出してTOAST Pushに該当するユーザーを登録します。<br/>
 Pushの同意状態(enablePush)、Push型広告の同意状態(enableAdPush)、夜間のPush型広告の同意状態(enableAdNightPush)の値をユーザーから取得し、次のAPIを呼び出して登録を完了させます。
 
+**API**
+
+```java
++ (void)Gamebase.Push.registerPush(Activity activity, PushConfiguration configuration, GamebaseCallback callback);
+```
+
+**Example**
 
 ```java
 boolean enablePush;
@@ -172,6 +177,14 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 
 ユーザーのPush設定を照会するために、次のAPIを利用します。<br/>
 コールバックによるPushConfigurationの値からユーザー設定値を取得することができます。
+
+**API**
+
+```java
++ (void)Gamebase.Push.registerPush(Activity activity, GamebaseDataCallback<PushConfiguration> callback);
+```
+
+**Example**
 
 ```java
 Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() {
@@ -206,7 +219,34 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
 * このエラーは、TOAST Pushライブラリーで発生したエラーです。
-* exception.getDetailCode()でTOAST Pushのエラーコードを確認する必要があります。
+* TOAST Push エラーの詳細は次のように確認できます。
+
+```java
+Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
+    @Override
+    public void onCallback(GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            Log.d(TAG, "Register push successful");
+            ...
+        } else {
+            Log.e(TAG, "Register push failed");
+
+            // Gamebase Error Info
+            int errorCode = exception.getCode();
+            String errorMessage = exception.getMessage();
+            
+            if (errorCode == GamebaseError.PUSH_EXTERNAL_LIBRARY_ERROR) {
+                // TOAST Push Error Info
+                int moduleErrorCode = exception.getDetailCode();
+                String moduleErrorMessage = exception.getDetailMessage();
+                
+                ...
+            }
+        }
+    }
+});
+```
+
 * TOAST Pushのエラーコードは、次のドキュメントをご参考ください。
     * [Notification > Push > エラーコード](/Notification/Push/ja/sdk-guide/#_5)
 

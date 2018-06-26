@@ -5,8 +5,8 @@
 
 
 ## Monitoring
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring1_1.1.png)
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring2_1.1.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring1_1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring2_1.2.png)
 現在、アプリを利用しているユーザーの全体統計及び現在予約されているPush現状、予約されているメンテナンス内訳を確認することができます。
 5分が経過すると、自動で画面が「更新」され、リアルタイムで変更された指標を確認することができます。
 
@@ -21,8 +21,7 @@
 	*バージョンごと：Consoleに登録されたクライアントバージョンごとの占有率
 * 同時接続変化グラフ：当日の00:00から現在時刻までの同時接続変化グラフ
 	* メンテナンス及びPushによる同時接続数の変化が確認しやすいようにメンテナンス、Pushの内訳をグラフに別途表示しています。
-    
-
+	* 관련데이터는 검색조건 우측의 버튼을 통해 다운로드를 받을 수 있습니다.
 
 ## User Statistics
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_UserStatistics1_1.0.png)

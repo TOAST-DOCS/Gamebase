@@ -163,7 +163,7 @@ IdPの中には、ログインする際に必ず必要な情報があるもの�
 
 Facebook認証追加情報の入力例
 ```json
-{ "facebook_permission":[ "public_profile", "email", "user_friends"]}
+{ "facebook_permission": [ "public_profile", "email"]}
 ```
 - Facebook SDKを利用するためのプロジェクト設定は、次のリンクを参考にします。
 * [LINK \[Facebook Developer Guide\]](https://developers.facebook.com/docs/ios/getting-started)
@@ -195,7 +195,23 @@ NAVER追加認証情報の入力例
 #### Game Center
 TOAST Consoleでの設定以外の追加設定はありません。
 
+#### Google
+- AdditionalInfo를 설정해야 합니다.
+	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+	* GOOGLE의 경우, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
+	* **url_scheme_ios_only**의 값은 Xcode의 URL Scheme에 등록된 값들 중 한개와 일치해야 합니다.
 
+- URL Schemes를 설정해야합니다.
+	* **XCode > Target > Info > URL Types**
+
+GOOGLE 추가 인증 정보 입력 예제
+```json
+{ "url_scheme_ios_only": "Your URL Schemes" }
+```
+![Google URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+
+#### Twitter
+TOAST Console에서의 설정 외에 추가 설정은 없습니다.
 
 ### Login with Credential
 
@@ -210,7 +226,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 | keyname                                  | a use                          | 値の種類                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdPタイプの設定                      | facebook, payco, iosgamecenter, naver |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdPタイプの設定                      | facebook, payco, iosgamecenter, naver, google, twitter |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdPログイン後に取得した認証情報(アクセストークン)設定 |                                |
 
 
@@ -407,7 +423,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 | keyname                                  | a use                          | 値の種類                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdPタイプの設定                      | facebook, payco, iosgamecenter, naver |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdPタイプの設定                      | facebook, payco, iosgamecenter, naver, google, twitter |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdPログイン後に取得した認証情報(アクセストークン)設定 |                                |
 
 

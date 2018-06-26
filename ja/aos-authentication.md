@@ -17,12 +17,12 @@ Gamebaseでは基本的にゲストログインに対応しています。
 
 上述したロジックは、次のような手順で設計することができます。
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
 #### 1. 前回のログインタイプで認証
 
@@ -73,6 +73,15 @@ Gamebaseでは基本的にゲストログインに対応しています。
 該当するログイントークンの期限が切れていたり、トークン検証などに失敗した場合、失敗を返します。<br/>
 この場合、該当するIdPに対するログインを設計する必要があります。
 
+
+**API**
+
+```java
++ (void)Gamebase.loginForLastLoggedInProvider(Activity activity, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
+
 ```java
 Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthToken>() {
     @Override
@@ -119,6 +128,15 @@ Gamebaseは、ゲストログインに対応しています。
 * ゲストログインは、アプリを削除したりデバイスを初期化した場合、アカウントが削除されることがあるためIdPを使ったログイン方式を推奨します。
 
 ゲストログインを設計する方法については、次のコード例をご参考ください。
+
+
+**API**
+
+```java
++ (void)Gamebase.login(Activity activity, AuthProvider.GUEST, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
 
 ```java
 private static void onLoginForGuest(final Activity activity) {
@@ -168,6 +186,14 @@ private static void onLoginForGuest(final Activity activity) {
 
 次は特定のIdPでログインできるようにするコード例です。<br/>
 ログイン可能なIdPのタイプは、**AuthProvider **クラスから確認することができます。
+
+**API**
+
+```java
++ (void)Gamebase.login(Activity activity, AuthProvider provider, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
 
 ```java
 private static void onLoginForGoogle(final Activity activity) {
@@ -236,6 +262,14 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 > 外部のSDKで対応を求める開発事項は、外部SDKのAPIを使用して設計する必要があり、Gamebaseでは対応しておりません。
 >
 
+**API**
+
+```java
++ (void)Gamebase.login(Activity activity, Map<String, Object> credentialInfo, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
+
 ```java
 private static void onLoginWithCredential(final Activity activity) {
     Map<String, Object> credentialInfo = new HashMap<>();
@@ -285,6 +319,17 @@ private static void onLoginWithCredential(final Activity activity) {
 
 ### Authentication Additional Information Settings
 
+#### Google
+
+1. Google 인증을 위해서는 Google Cloud Console에서 **Web Application Client ID**를 발급받아야 합니다.
+	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-001_1.11.0.png)
+	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-002_1.11.0.png)
+2. 승인된 리디렉션 URI 란에 다음 값을 입력합니다.
+	* https://alpha-id-gamebase.toast.com/oauth/callback
+	* https://beta-id-gamebase.toast.com/oauth/callback
+	* https://id-gamebase.toast.com/oauth/callback
+	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-003_1.11.0.png)
+
 #### Facebook
 * **TOAST Console > Gamebase > App > 認証情報 > 追加情報 & Callback URL**の**追加情報**項目にJSON Stringタイプの情報を設定する必要があります。
     * Facebookの場合、OAuth認証を試みるとき、Facebookにリクエストする情報の種類を設定する必要があります。
@@ -292,7 +337,7 @@ private static void onLoginWithCredential(final Activity activity) {
 Facebook認証追加情報の入力例
 
 ```json
-{ "facebook_permission"：[ "public_profile", "email", "user_friends"]}
+{ "facebook_permission"：[ "public_profile", "email"]}
 ```
 
 #### PAYCO
@@ -307,12 +352,14 @@ PAYCO追加認証情報の入力例
 
 #### NAVER
 * **TOAST Console > Gamebase > App > 認証情報 > 追加情報 & Callback URL**の**追加情報**項目にJSON Stringタイプの情報を設定する必要があります。
-	* NAVERの場合、ログイン同意ウィンドウに表示されるアプリ名**service_name**、iOSアプリで必要な情報**url_scheme_ios_only**の設定が必要です。
+	* NAVERの場合、ログイン同意ウィンドウに表示されるアプリ名**service_name**の設定が必要です。
+		* 만일 iOS 빌드도 필요하다면 **url_scheme_ios_only** 값도 설정해야 합니다.
+		* 설정 방법은 iOS 가이드를 참고하시기 바랍니다. : [iOS Developer's Guide > Authentication > NAVER](./ios-authentication/#naver)
 
 NAVER追加認証情報の入力例
 
 ```json
-{ "url_scheme_ios_only"："Your Url Scheme", "service_name"："Your Service Name" }
+{ "service_name": "Your Service Name" }
 ```
 
 ## Logout
@@ -322,6 +369,14 @@ NAVER追加認証情報の入力例
 ログアウトに成功した場合、該当するIdPで認証を行った記録が削除されるため、次回ログインする時にID・パスワードの入力ウィンドウが表示されます。<br/><br/>
 
 次は、ログアウトボタンをクリックするとログアウトされるコード例です。
+
+**API**
+
+```java
++ (void)Gamebase.logout(Activity activity, GamebaseCallback callback);
+```
+
+**Example**
 
 ```java
 private static void onLogout(final Activity activity) {
@@ -370,6 +425,14 @@ private static void onLogout(final Activity activity) {
 >
 > 複数のIdPを連携している場合、IdP連携がすべて解除され、Gamebaseのゲームユーザーデータが削除されます。
 >
+
+**API**
+
+```java
++ (void)Gamebase.withdraw(Activity activity, GamebaseCallback callback);
+```
+
+**Example**
 
 ```java
 private static void onWithdraw(final Activity activity) {
@@ -465,6 +528,14 @@ private static void onWithdraw(final Activity activity) {
 
 次は、Facebookにマッピングを試みる例です。
 
+**API**
+
+```java
++ (void)Gamebase.addMapping(Activity activity, AuthProvider authProvider, null, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
+
 ```java
 private static void addMappingForFacebook(final Activity activity) {
     Gamebase.addMapping(activity, AuthProvider.FACEBOOK, null, new GamebaseDataCallback<AuthToken>() {
@@ -533,6 +604,14 @@ private static void addMappingForFacebook(final Activity activity) {
 > 外部のSDKで対応を求める開発事項は外部SDKのAPIを使用して設計する必要があり、Gamebaseでは対応しておりません。
 >
 
+**API**
+
+```java
++ (void)Gamebase.addMapping(Activity activity, Map<String, Object> credentialInfo, null, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
+
 ```java
 private static void addMappingWithCredential(final Activity activity) {
     Map<String, Object> credentialInfo = new HashMap<>();
@@ -586,6 +665,14 @@ private static void addMappingWithCredential(final Activity activity) {
 特定のIDPに対する連携を解除します。現在ログインしているアカウントを解除しようとした場合は、失敗を返します。<br/>
 連携を解除した後は、Gamebase内部で該当するIdPに対するログアウト処理を行います。
 
+**API**
+
+```java
++ (void)Gamebase.removeMapping(Activity activity, AuthProvider authProvider, null, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
+
 ```java
 private static void removeMappingForFacebook(final Activity activity) {
     Gamebase.removeMapping(activity, AuthProvider.FACEBOOK, new GamebaseCallback() {
@@ -637,6 +724,17 @@ Gamebaseで認証フローを進めた後、アプリを制作する際に必要
 ### Get Authentication Information for Gamebase
 Gamebaseから発行された認証情報を取得することができます。
 
+**API**
+
+```java
++ (String)Gamebase.getUserID();
++ (String)Gamebase.getAccessToken();
++ (String)Gamebase.getLastLoggedInProvider();
++ (BanInfo)Gamebase.getBanInfo();
+```
+
+**Example**
+
 ```java
 
 // Obtaining Gamebase UserID
@@ -657,15 +755,26 @@ BanInfo banInfo = Gamebase.getBanInfo();
 
 外部の認証SDKでアクセストークン、ユーザーID、Profileなどの情報を取得することができます。
 
+**API**
+
+```java
++ (String)Gamebase.getAuthProviderUserID(AuthProvider authProvider);
++ (String)Gamebase.getAuthProviderAccessToken(AuthProvider authProvider);
++ (AuthProviderProfile)Gamebase.getAuthProviderProfile(AuthProvider authProvider);
+```
+
+**Example**
+
 ```java
 // ユーザIDを取得します。
-String userId = getAuthProviderUserID(AuthProvider.FACEBOOK);
+String userId = Gamebase.getAuthProviderUserID(AuthProvider.FACEBOOK);
+
 // アクセストークンを取得します。
-String accessToken = getAuthProviderAccessToken(AuthProvider.FACEBOOK);
+String accessToken = Gamebase.getAuthProviderAccessToken(AuthProvider.FACEBOOK);
+
 // User Profile情報を取得します。
-AuthFacebookProfile profile = (AuthFacebookProfile) getAuthProviderProfile(AuthProvider.FACEBOOK);
-String name = profile.getName();    // or profile.information.get("name")
-String email = profile.getEmail();  // or profile.information.get("email")
+AuthProviderProfile profile = Gamebase.getAuthProviderProfile(AuthProvider.FACEBOOK);
+Map<String, Object> profileMap = profile.information;
 ```
 
 ### Get Banned User Information
@@ -690,6 +799,14 @@ Gamebase Consoleで利用制限対象のゲームユーザーに登録された�
 TransferKey의 형식은 영문자 **"소문자/대문자/숫자"를 포함한 8자리의 문자열**입니다.
 또한 발급 시간 및 만료 시간을 같이 발급하며, 형식은 epoch time입니다.
 * 참고: https://www.epochconverter.com/
+
+**API**
+
+```java
++ (void)Gamebase.issueTransferKey(int expiredTime, GamebaseDataCallback<TransferKeyInfo> callback);
+```
+
+**Example**
 
 ```java
 Gamebase.issueTransferKey(3600 * 24, new GamebaseDataCallback<TransferKeyInfo>() {
@@ -716,6 +833,14 @@ Gamebase.issueTransferKey(3600 * 24, new GamebaseDataCallback<TransferKeyInfo>()
 
 > `주의`
 > 이미 Guest 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
+
+**API**
+
+```java
++ (void)Gamebase.requestTransfer(String transferKey, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
 
 ```java
 Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
@@ -769,10 +894,8 @@ Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* このエラーは、TOASTの外部認証ライブラリーで発生したエラーです。
-* 오류 코드 확인은 다음과 같이 확인하실 수 있습니다.
-
-* IdP SDK의 오류 코드는 각각의 Developer 페이지를 참고하시기 바랍니다.
+* このエラーは、外部認証ライブラリーで発生したエラーです。
+* 外部ライブラリーエラーの詳細は次のように確認できます。
 
 ```java
 Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCallback<AuthToken>() {
@@ -785,16 +908,19 @@ Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCa
             Log.e(TAG, "Login failed");
 
             // Gamebase Error Info
-            String errorDomain = exception.getDomain();
             int errorCode = exception.getCode();
+            String errorMessage = exception.getMessage();
 
-            // Third Party Detail Error Info
-            int detailCode = exception.getDetailCode();
-            String DetailMessage = exception.getDetailMessage();
-
-            ...
+            if (errorCode == GamebaseError.AUTH_EXTERNAL_LIBRARY_ERROR) {
+                // Third Party Detail Error Info
+                int moduleErrorCode = exception.getDetailCode();
+                String moduleErrorMessage = exception.getDetailMessage();
+                
+                ...
+            }
         }
     }
 });
 ```
 
+* IdP SDKのエラーコードは各IdPのDeveloperページをお参照ください。

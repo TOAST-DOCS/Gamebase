@@ -11,12 +11,12 @@ Following information is required to use Server API.
 To call API, below address is needed, which is also available in the Gamebase Console.
 > https://api-gamebase.cloud.toast.com
 
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
+![image alt](./image/Server_Developers_Guide/pre_server_address_v1.2.png)
 
 #### AppId
 
 App ID, as a project ID of TOAST, can be found on the **Project List** page of the Console.
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
+![image alt](./image/Server_Developers_Guide/pre_appId_v1.2.png)
 
 #### SecretKey
 
@@ -24,7 +24,7 @@ Secret Key, as a control access of API, can be found in the Gambase Console. It 
 > [Note]<br>
 > When a secret key is exposed and a wrong call is made, click **Create** to create a new secret key and replace the old one.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
+![image alt](./image/Server_Developers_Guide/pre_secret_key_v1.2.png)
 
 #### TransactionId
 
@@ -170,6 +170,137 @@ Check common requirements.
 **[Error Code]**
 
 [Error Code](./error-code/#server)
+
+## Launching
+
+#### Get Simple Launching
+
+Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면 점검 시간 및 메시지 등 클라이언트 앱 기동시 제공되는 Launching 정보들에 대해 간략히 확인할수 있습니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-launching/v1.0/apps/{appId}/launching/simple |
+
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**  
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST 프로젝트 ID |
+
+**[Request Parameter]**  
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| osCode | OsCode | true | OS 코드 <br>AOS, IOS, WEB, WINDOWS |
+| clientVersion | String | true | 클라이언트 버전 |
+
+**[Response Body]**  
+
+#### 정상
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "String",
+        "isSuccessful": true
+    },
+    "launchingData": {
+        "status": {
+            "code": 200,
+            "message": "String"
+        },
+        "app": {
+            "storeCode": "String",
+            "accessInfo": {
+                "serverAddress": "String",
+                "csInfo": "String"
+            },
+            "relatedUrls": {
+                "termsUrl": "String",
+                "csUrl": "String",
+                "punishRuleUrl": "String",
+                "personalInfoCollectionUrl": "String"
+            },
+            "install": {
+                "url": "String"
+            }
+        }
+    }
+}
+```
+
+#### 점검
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "String",
+        "isSuccessful": true
+    },
+    "launchingData": {
+        "status": {
+            "code": 303,
+            "message": "String"
+        },
+        "app": {
+            "storeCode": "String",
+            "accessInfo": {
+                "serverAddress": "String",
+                "csInfo": "String"
+            },
+            "relatedUrls": {
+                "termsUrl": "String",
+                "csUrl": "String",
+                "punishRuleUrl": "String",
+                "personalInfoCollectionUrl": "String"
+            },
+            "install": {
+                "url": "String"
+            }
+        },
+        "maintenance": {
+            "typeCode": "String",
+            "beginDate": "2018-05-23T10:44:00+09:00",
+            "endDate": "2022-01-01T10:44:00+09:00",
+            "url": null,
+            "reason": "String",
+            "message": "String"
+        }
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| status | Object | 현재 클라이언트 상태를 나타내는 정보 |
+| status.code | int | 클라이언트 상태코드 <br><br>정상: 200 <br>업데이트 권장: 201, 업데이트 필수: 300 <br>서비스 종료: 302 <br>점검 중: 303 |
+| status.message | String | 클라이언트 상태 메시지 |
+| app | Object | 앱의 정보 |
+| app.storeCode | String | 앱 스토어코드 <br>"GG", "AS" 등 |
+| app.accessInfo | Object | 콘솔 앱 화면에서 설정한 정보 |
+| app.accessInfo.serverAddress | String | 서버 주소<br>클라이언트에서 설정한 서버 주소의 우선순위가 높음. <br>클라이언트 서버 주소 미설정시, 앱 화면에서 설정한 서버 주소가 전달됨. |
+| app.accessInfo.csInfo | String | 고객 센터 정보 |
+| app.relatedUrls | Object | 앱 내에서 사용할 인앱 URL |
+| app.relatedUrls.termsUrl | String | 이용약관 |
+| app.relatedUrls.csUrl| String | 고객센터 |
+| app.relatedUrls.punishRuleUrl | String | 이용 정지 규정 |
+| app.relatedUrls.personalInfoCollectionUrl | String | 개인 정보동의 |
+| app.install | Object | 앱 설치 정보 |
+| app.install.url | String | 설치 URL |
+| maintenance | Object | 점검 정보 |
+| maintenance.typeCode | String | 점검 타입 코드 <br>전체 점검:'SYSTEM', 앱별 점검:'APP' |
+| maintenance.beginDate | Date | 점검 시작 시간 ISO 8601 |
+| maintenance.endDate | Date | 점검 종료 시간 ISO 8601 |
+| maintenance.url | String | 점검 URL |
+| maintenance.reason | String | 점검 사유 |
+| maintenance.message | String | default 점검 사유 메시지 |
 
 ## Member
 

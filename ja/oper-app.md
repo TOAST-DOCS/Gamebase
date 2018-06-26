@@ -168,25 +168,35 @@ PAYCO Client IDを申請して発行された{client_id}及び{client_secret}を
 - Secret Key：{Payco client_secret}
 
 #### NAVER
-Naver Developerサイトで申請して発行された{client_id}及び{client_secret}をGamebase Consoleに入力します。
+NAVER Developersサイトで申請して発行された{client_id}及び{client_secret}をGamebase Consoleに入力します。
 この時、ログイン同意ウィンドウに表示されるアプリケーション名及びschemeなどiOSアプリケーションで必要な情報もJSON Stringタイプで追加情報欄に入力する必要があります。
 
 **入力フィールド**
 
-- Client ID：{Naver client_id}
-- Secret Key：{Naver client_secret}
-- 追加情報：Naver Application Name & iOS url scheme (json format) 
+- Client ID：{NAVER client_id}
+- Secret Key：{NAVER client_secret}
+- 追加情報：NAVER Application Name & iOS url scheme (json format) 
 
-**[例] Naver Additional input format **
+**[例] NAVER Additional input format **
 ```json
 { "url_scheme_ios_only"："Your Url Scheme", "service_name"："Your Service Name" }
 ```
 
 **Reference URL**<br />
-- [Naver Developers - アプリケーション登録](https://developers.naver.com/apps/#/register)
-- [Naver Developers - クライアントIDとクライアントシークレット確認](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)
+- [NAVER Developers - アプリケーション登録](https://developers.naver.com/apps/#/register)
+- [NAVER Developers - クライアントIDとクライアントシークレット確認](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)
 
 
+#### Twitter
+Twitter Application Management 사이트에서 앱을 등록하고 발급받은 {Consumer Key} 및 {Consumer Secret}을 Gamebase Console에 입력합니다.
+
+**입력 필드**
+
+- Client ID: {Twitter Consumer Key}
+- Secret Key: {Twitter Consumer Secret}
+
+**Reference URL**
+- [Twitter Application Management](https://apps.twitter.com/)
 
 ## Client
 

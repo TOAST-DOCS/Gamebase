@@ -58,9 +58,10 @@ Gamebaseでは、TOAST IAP(In-App Purchase、アプリ内決済)サービスを�
 
 決済情報を照会することができます。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction1_1.1.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction1_1.2.png)
 
 下の検索条件を利用して、照会したい決済情報を照会することができます。
+결제 내역은 우측 상단의 다운로드 버튼을 통해 언제든지 다운로드 받으실 수 있습니다.
 ### 検索条件
 
 - **ストア**：決済されたストア情報
@@ -83,4 +84,30 @@ Gamebaseでは、TOAST IAP(In-App Purchase、アプリ内決済)サービスを�
 - **登録日**：ユーザーが購入を試みたり完了した時間
 - **払戻日**：ユーザーのアイテムが払戻になった時間
 
-外部ストア(App Store、Google Playなど)では決済が完了したものの、TOAST IAPでは決済完了処理が行われなかったためアイテムが配布されなかった際にConsoleから手動で決済完了処理ができる機能を提供する予定です。日程は未定です。
+### 결제 상태 변경
+조회된 결제정보의 상태는 아래와 같으며 각각의 상태는 아래와 같습니다.
+- **Success**
+	- 결제 완료
+    - 결제 처리가 정상적으로 완료됬을 경우를 의미합니다.
+    - Refund상태로 변경 가능합니다.
+- **In progress**
+	- 결제 진행중
+	- 스토어를 통한 결제가 더이상의 진행이 되지 않거나 결제검증까지 진행되지 않은 경우를 의미합니다.
+	- Success, Refund상태로 변경 가능합니다.
+- **Failure**
+	- 결제 검증 실패
+	- 스토어에서 결제를 진행했으나 결제검증에서 오류가 난 경우를 의미합니다.
+	- Success, Refund상태로 변경 가능합니다.
+- **Refund**
+	- 환불 완료
+	- 관리자가 수동으로 마켓에서 환불처리에 대한 여부를 업데이트한 경우입니다.
+	- 다른 결제상태로 변경이 불가능합니다.
+
+#### Success 변경
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction2_1.0.png)
+결제 진행시 발급받은 **영수증 번호**, **가격**, **통화**정보를 입력해야 상태 변경이 가능합니다.
+
+#### Refund 변경
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction2_2.0.png)
+별다른 추가정보의 입력 없이 상태를 선택한 후 변경을 선택합니다.
+변경된 결제 정보는 이후 변경이 불가능하므로 신중하게 확인 후 진행해야 합니다.

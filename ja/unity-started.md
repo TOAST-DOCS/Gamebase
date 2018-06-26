@@ -6,7 +6,11 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 
 > [参考]
 > 
-> Unity対応バージョン:5.5.4以上
+> Unity対応バージョン
+> 
+> * Unity 5.x : 5.5.4 ~ 5.6.6
+> * Unity 2017.x : ~ 2017.4.5
+> * Unity 2018.x : ~ 2018.1.5
 
 #### Supported Platforms
 
@@ -192,7 +196,7 @@ android {
 	defaultConfig {
 		targetSdkVersion 23
 		applicationId 'package name'
-		
+
 		// Enabling multidex support.
         multiDexEnabled true
 	}
@@ -240,3 +244,13 @@ iOS SDKに対する設定は、次のガイドをご参考ください。
 
 API Referenceは、GamebaseUnitySDKの中に含まれています。
 
+## API Deprecate Governance
+
+Gamebase에서 더 이상 지원하지 않는 API는 Deprecate 처리합니다.
+Deprecated 된 API는 다음 조건 충족 시 사전 공지 없이 삭제될 수 있습니다.
+* 5회 이상의 마이너 버전 업데이트
+	* Gamebase Version Format - XX.YY.ZZ
+		* XX : Major
+		* YY : Minor
+		* ZZ : Hotfix
+* 최소 5개월 경과

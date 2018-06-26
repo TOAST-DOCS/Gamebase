@@ -446,7 +446,7 @@ Gamebase의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 
 
 * Gamebase 사용자 ID : 123bcabca
 	* Google ID : aa
-	* FacebookFacebook ID : bb
+	* Facebook ID : bb
 	* AppleGameCenter ID : cc
 	* Payco ID : dd
 * Gamebase 사용자 ID : 456abcabc

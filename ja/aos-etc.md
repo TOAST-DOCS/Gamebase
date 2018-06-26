@@ -1,4 +1,4 @@
-## Game > Gamebase > Unity SDK ご利用ガイド > ETC
+## Game > Gamebase > Android SDK ご利用ガイド > ETC
 
 ## Additional Features
 
@@ -86,10 +86,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        GamebaseConfiguration configuration = new GamebaseConfiguration.Builder()
-                                .setAppId("T0aStC1d")
-                                .setAppVersion("1.0.0")
+        String appId = "T0aStC1d";
+        String appVersion = "1.0.0";
+        GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(appId, appVersion)
                                 .enableLaunchingStatusPopup(true)
                                 .setDisplayLanguageCode("en")
                                 .build();
@@ -144,30 +143,11 @@ public void getDisplayLanguageCodeInRuntime() {
 
 #### 言語セットの新規追加
 
-Gamebaseで提供するデフォルト言語(ko、en)以外に他の言語を使用しなければならない場合、gamebase-sdk.aar > res > rawにあるgamebasedisplayファイルに値を追加しなければなりません。
+Gamebaseで提供するデフォルト言語(ko、en、ja)以外に他の言語を使用しなければならない場合、gamebase-sdk-base.aar > res > rawにあるlocalizedstring.jsonファイルに値を追加しなければなりません。
 
-![gamebasedisplay](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/aos-developers-guide-etc_001_1.7.0.png)
+![localizedstring.json](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/aos-developers-guide-etc_001_1.11.0.png)
 
-localizedString.jsonに定義されている形式は、次の通りです。
-
-```json
-{
-  "en": {
-    "common_ok_button": "OK",
-    "common_cancel_button": "Cancel",
-    ...
-    "launching_service_closed_title": "Service Closed"
-  },
-  "ko": {
-    "common_ok_button": "확인",
-    "common_cancel_button": "취소",
-    ...
-    "launching_service_closed_title": "서비스 종료"
-  }
-}
-```
-
-日本語の追加が必要な場合、localizedString.jsonファイルに`"ja":{"key":"value"}`の形で値を追加してください。
+localizedstring.jsonに定義されている形式は、次の通りです。
 
 ```json
 {
@@ -188,18 +168,47 @@ localizedString.jsonに定義されている形式は、次の通りです。
     "common_cancel_button": "キャンセル",
     ...
     "launching_service_closed_title": "サービス終了"
+  },
+}
+```
+
+他の言語の追加が必要な場合、localizedstring.jsonファイルに`"${言語コード}":{"key":"value"}`の形で値を追加してください。
+
+```json
+{
+  "en": {
+    "common_ok_button": "OK",
+    "common_cancel_button": "Cancel",
+    ...
+    "launching_service_closed_title": "Service Closed"
+  },
+  "ko": {
+    "common_ok_button": "확인",
+    "common_cancel_button": "취소",
+    ...
+    "launching_service_closed_title": "서비스 종료"
+  },
+  "ja": {
+    "common_ok_button": "確認",
+    "common_cancel_button": "キャンセル",
+    ...
+    "launching_service_closed_title": "サービス終了"
+  },
+  "${언어코드}": {
+      "common_ok_button": "...",
+      ...
   }
 }
 ```
 
-上記のjson形式で"ja":{ }内部にkeyが抜けている場合、「デバイスに設定されている言語」または`en`で自動入力されます。
+上記のjson形式で"${言語コード}":{ }内部にkeyが抜けている場合、「デバイスに設定されている言語」または`en`で自動入力されます。
 
 #### Display Languageの優先順位
 
 初期化及びSetDisplayLanguageCodeAPIを通してDisplay Languageを設定する場合、最終的に適用されるDisplay Languageは、入力した値と違う値が適用されることがあります。
 
-1. 入力されたlanguageCodeがlocalizedString.jsonファイルに定義されているかどうかを確認します。
-2. Gamebaseを初期化する際に、デバイスに設定されている言語コードがlocalizedString.jsonファイルに定義されているかどうかを確認します。(この値は、初期化後にデバイスに設定されている言語を変更した場合でも維持されます。)
+1. 入力されたlanguageCodeがlocalizedstrin.jsonファイルに定義されているかどうかを確認します。
+2. Gamebaseを初期化する際に、デバイスに設定されている言語コードがlocalizedstrin.jsonファイルに定義されているかどうかを確認します。(この値は、初期化後にデバイスに設定されている言語を変更した場合でも維持されます。)
 3. Display Languageのデフォルト値である`en`が自動で設定されます。
 
 
@@ -208,19 +217,21 @@ localizedString.jsonに定義されている形式は、次の通りです。
 
 ### Server Push
 * Gamebase 서버에서 클라이언트 기기로 보내는 Server Push Message를 처리할 수 있습니다.
-* Gamebase 클라이언트에서 ServerPushEvent Listener를 추가 하면 해당 메시지를 사용자가 받아서 처리할 수 있으며, 추가된 ServerPushEvent Listener를 삭제 할 수 있습니다.
+* Gamebase 클라이언트에서 ServerPushEvent Listener를 추가하면 해당 메시지를 사용자가 받아서 처리할 수 있으며, 추가된 ServerPushEvent Listener를 삭제할 수 있습니다.
 
 
 #### Server Push Type
 현재 Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
 
-* 킥아웃 (Kickout)
-    * TOAST Gamebase 콘솔의 `Operation > Kickout` 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에게 메시지를 보낼 수 있습니다.
-    * Type : ServerPushEventMessage.Type.APP_KICKOUT (= "appKickout")
-    
+* ServerPushEventMessage.Type.APP_KICKOUT (= "appKickout")
+    * TOAST Gamebase 콘솔의 `Operation > Kickout`에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 `APP_KICKOUT` 메시지를 받게 됩니다.
+* ServerPushEventMessage.Type.TRANSFER_KICKOUT (= "transferKickout")
+	* TransferKey 를 통해 게스트 계정 이전이 성공한 경우, TransferKey를 발급받았던 단말기로 `TRANSFER_KICKOUT` 메세지가 전송됩니다.
+
+![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 
 #### Add ServerPushEvent
-아래의 API를 사용하여 Gamebase에 ServerPushEvent를 등록하여 처리할 수 있습니다.
+Gamebase Client에 ServerPushEvent를 등록하여 Gamebase Console 및 Gamebase 서버에서 발급된 Push 이벤트를 처리할 수 있습니다.
 
 **API**
 
@@ -236,9 +247,11 @@ public class MyServerPushEventManager {
         @Override
         public void onReceive(ServerPushEventMessage message) {
             if (message.type.equals(ServerPushEventMessage.Type.APP_KICKOUT)) {
-                MyGameStatus.clearSession();
-                MyGameStatus.goToMainPage();
-                MyGameStatus.goToMainPage();
+                // Logout
+                // Go to Main
+            } else if (message.type.equals(ServerPushEventMessage.Type.TRANSFER_KICKOUT)) {
+                // Logout
+                // Go to Main
             } else {
                 ...
             }
@@ -254,7 +267,7 @@ public class MyServerPushEventManager {
 
 
 #### Remove ServerPushEvent
-아래의 API들을 사용하여 Gamebase에 등록된 ServerPushEvent를 삭제할 수 있습니다.
+Gamebase에 등록된 ServerPushEvent를 삭제할 수 있습니다.
 
 **API**
 
@@ -284,43 +297,45 @@ public class MyServerPushEventManager {
 
 
 ### Observer
-* Gamebase Observer를 통하여 Gamebase의 각종 상태 변동 이벤트를 전달받아 처리할 수 있습니다.
-* Observer를 추가하면 들어 네트워크 타입 변동, Launching 상태 변동(점검 등에 의한 상태 변동), Heartbeat 정보 변동(사용자 이용 정지 등에 의한 Heartbeat 정보 변동) 등에 대한 이벤트를 사용자가 전달받아 처리 할 수 있습니다.
+* Gamebase Observer로 Gamebase의 각종 상태 변동 이벤트를 전달받아 처리할 수 있습니다.
+* 상태 변동 이벤트 : 네트워크 타입 변동, Launching 상태 변동(점검 등에 의한 상태 변동), Heartbeat 정보 변동(사용자 이용 정지 등에 의한 Heartbeat 정보 변동) 등
 
 
 #### Observer Type
 현재 Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
 
 * Network 타입 변동
-    * 네트워크 변동사항에 대한 정보를 받을 수 있습니다. 예를 들어서, ObserverMessage.data.get("code") 의 값으로 Network Type을 알 수 있습니다.
-    * Type : ObserverMessage.Type.NETWORK (= "network")
-    * Code : NetworkManager에 선언된 상수를 참고합니다. 
-        * NetworkManager.TYPE_NOT : -1
-        * NetworkManager.TYPE_MOBILE : 0
-        * NetworkManager.TYPE_WIFI : 1        
-        * NetworkManager.TYPE_ANY : 2
+    * 네트워크 변동 사항 정보를 받을 수 있습니다. 예를 들어 ObserverMessage.data.get("code") 의 값으로 Network Type을 알 수 있습니다.
+    * Type: ObserverMessage.Type.NETWORK (= "network")
+    * Code: NetworkManager에 선언된 상수를 참고합니다. 
+        * NetworkManager.TYPE_NOT: -1
+        * NetworkManager.TYPE_MOBILE: 0
+        * NetworkManager.TYPE_WIFI: 1        
+        * NetworkManager.TYPE_ANY: 2
 * Launching 상태 변동
-    * 주기적으로 어플리케이션의 상태를 체크하는 Launching Status response에 변동이 있을 때 발생합니다. 예를 들어서, 점검, 업데이트 권장 등에 의한 이벤트가 있습니다.
-    * Type : ObserverMessage.Type.LAUNCHING (= "launching")
-    * Code : LaunchingStatus에 선언된 상수를 참고합니다.
-        * LaunchingStatus.IN_SERVICE : 200
-        * LaunchingStatus.RECOMMEND_UPDATE : 201
-        * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST : 202
-        * LaunchingStatus.REQUIRE_UPDATE : 300
-        * LaunchingStatus.BLOCKED_USER : 301
-        * LaunchingStatus.TERMINATED_SERVICE : 302
-        * LaunchingStatus.INSPECTING_SERVICE : 303
-        * LaunchingStatus.INSPECTING_ALL_SERVICES : 304
-        * LaunchingStatus.INTERNAL_SERVER_ERROR : 500
+    * 주기적으로 애플리케이션 상태를 확인하는 Launching Status response에 변동이 있을 때 발생합니다. 예를 들어 점검, 업데이트 권장 등에 의한 이벤트가 있습니다.
+    * Type: ObserverMessage.Type.LAUNCHING (= "launching")
+    * Code: LaunchingStatus에 선언된 상수를 참고합니다.
+        * LaunchingStatus.IN_SERVICE: 200
+        * LaunchingStatus.RECOMMEND_UPDATE: 201
+        * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
+        * LaunchingStatus.REQUIRE_UPDATE: 300
+        * LaunchingStatus.BLOCKED_USER: 301
+        * LaunchingStatus.TERMINATED_SERVICE: 302
+        * LaunchingStatus.INSPECTING_SERVICE: 303
+        * LaunchingStatus.INSPECTING_ALL_SERVICES: 304
+        * LaunchingStatus.INTERNAL_SERVER_ERROR: 500
 * Heartbeat 정보 변동
-    * 주기적으로 Gamebase 서버와 연결을 유지하는 Heartbeat response에 변동이 있을 때 발생합니다. 예를 들어서, 사용자 이용 정지에 의한 이벤트가 있습니다.
-    * Type : ObserverMessage.Type.HEARTBEAT (= "heartbeat")
-    * Code : GamebaseError에 선언된 상수를 참조합니다.
-        * GamebaseError.BANNED_MEMBER : 7
+    * 주기적으로 Gamebase 서버와 연결을 유지하는 Heartbeat response에 변동이 있을 때 발생합니다. 예를 들어 사용자 이용 정지에 의한 이벤트가 있습니다.
+    * Type: ObserverMessage.Type.HEARTBEAT (= "heartbeat")
+    * Code: GamebaseError에 선언된 상수를 참조합니다.
+        * GamebaseError.INVALID_MEMBER: 6
+        * GamebaseError.BANNED_MEMBER: 7
 
+![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
 
 #### Add Observer
-아래의 API를 사용하여 Gamebase에 Observer를 등록하여 처리할 수 있습니다.
+Gamebase Client에 Observer를 등록하여 각종 상태 변동 이벤트를 처리할 수 있습니다.
 
 **API**
 
@@ -339,24 +354,46 @@ public class MyObserverManager {
             Map<String, Object> dataMap = message.data;
 
             if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.LAUNCHING)) {
-                // You can check the changed launching status in here.
-
                 int code = Integer.parseInt(dataMap.get("code"));
                 String messageString = (String) dataMap.get("message");
                 Log.d(TAG, "Update launching status to " + code + ", " + messageString);
-                ...
-            } else if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.HEARTBEAT)) {
-                // You can check the invalid user session in here.
 
+                // You can check the changed launching status in here.
+                switch (code) {
+                    case LaunchingStatus.IN_SERVICE:
+                        ...
+                        break;
+                    case LaunchingStatus.RECOMMEND_UPDATE:
+                        ...
+                        break;
+                    case ...
+                        break;
+                    ...
+                }
+            } else if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.HEARTBEAT)) {
                 int code = Integer.parseInt(dataMap.get("code"));
                 Log.d(TAG, "Heartbeat changing : " + dataMap);
-                ...
-            } else if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.NETWORK)) {
-                // You can check the changed network status in here.
 
+                switch (code) {
+                    case GamebaseError.INVALID_MEMBER:
+                        // You can check the invalid user session in here.
+                        ...
+                        break;
+                    case GamebaseError.BANNED_MEMBER:
+                        // You can check the banned user session in here.
+                        ...
+                        break;
+                }
+            } else if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.NETWORK)) {
                 int code = Integer.parseInt(dataMap.get("code"));
                 Log.d(TAG, "Network changing : " + dataMap);
-                ...
+
+                // You can check the changed network status in here.
+                if (code == NetworkManager.TYPE_NOT) {
+                    ...
+                } else {
+                    ...
+                }
             } else {
                 ...
             }
@@ -372,7 +409,7 @@ public class MyObserverManager {
 
 
 #### Remove Observer
-아래의 API들을 사용하여 Gamebase에 등록된 Observer를 삭제할 수 있습니다.
+Gamebase에 등록된 Observer를 삭제할 수 있습니다.
 
 **API**
 
