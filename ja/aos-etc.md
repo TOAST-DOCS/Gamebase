@@ -145,7 +145,7 @@ public void getDisplayLanguageCodeInRuntime() {
 
 Gamebaseで提供するデフォルト言語(ko、en、ja)以外に他の言語を使用しなければならない場合、gamebase-sdk-base.aar > res > rawにあるlocalizedstring.jsonファイルに値を追加しなければなりません。
 
-![localizedstring.json](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/aos-developers-guide-etc_001_1.11.0.png)
+![localizedstring.json](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-etc_001_1.11.0.png)
 
 localizedstring.jsonに定義されている形式は、次の通りです。
 

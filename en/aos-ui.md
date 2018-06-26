@@ -93,7 +93,7 @@ Close currently displayed WebView by using the following API.
 **API**
 
 ```java
-Gamebase.WebView.closeWebView(Activity activity);
++ (void)Gamebase.WebView.closeWebView(Activity activity);
 ```
 
 
@@ -104,7 +104,7 @@ Open an external browser by using the following API. The URL delivered as a para
 **API**
 
 ```java
-Gamebase.WebView.openWebBrowser(Activity activity, String urlString);
++ (void)Gamebase.WebView.openWebBrowser(Activity activity, String urlString);
 ```
 
 
@@ -119,7 +119,7 @@ Shows a simple alert dialogue by entering title and message only.
 **API**
 
 ```java
-Gamebase.Util.showAlertDialog(Activity activity, String title, String message);
++ (void)Gamebase.Util.showAlertDialog(Activity activity, String title, String message);
 ```
 
 ![Alert Dialog Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-002_1.0.0.png)
@@ -132,7 +132,7 @@ Use the following API to receive callbacks on processing results after an alert 
 **API**
 
 ```java
-Gamebase.Util.showAlertDialog(Activity activity,
++ (void)Gamebase.Util.showAlertDialog(Activity activity,
                             String title,                                   // Title text.
                             String messsage,                                // Message text.
                             String okButtonText,                            // Positive button text.
@@ -155,7 +155,7 @@ The type of time parameter to display message is provided in int format and will
 **API**
 
 ```java
-Gamebase.Util.showToast(Activity activity,
++ (void)Gamebase.Util.showToast(Activity activity,
                         String message,     // Message text to display
                         int duration);      // Type of time to display message (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
 ```

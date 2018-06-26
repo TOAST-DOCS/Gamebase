@@ -20,9 +20,7 @@
 	* Naver ID Login SDK 업데이트 : iOS(4.0.10)
 * Sample App 
 	* ServerPush 기능 및 Observer 기능 추가
-	* Gamebase SDK 업데이트 : Android(1.9.0), iOS(1.9.0), Unity(1.10.1)
-	* Facebook SDK 업데이트 : Unity(7.12.2)
-	
+	* Gamebase SDK 업데이트 : Android(1.9.0), iOS(1.9.0), Unity(1.10.1)	
 	
 ### 2018.06.11
 

@@ -107,6 +107,30 @@ public void QueryPush()
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
 * Occurs in the TOAST Push library.
+* Check the error code as below:
+
+```cs
+GamebaseError gamebaseError = error; // GamebaseError object via callback
+
+if (Gamebase.IsSuccess(gamebaseError))
+{
+    // succeeded
+}
+else
+{
+    Debug.Log(string.Format("code:{0}, message:{1}", gamebaseError.code, gamebaseError.message));
+
+    Error moduleError = gamebaseError.error; // GamebaseError.error object from external module
+    if (null != moduleError)
+    {
+        int moduleErrorCode = moduleError.code;
+        string moduleErrorMessage = moduleError.message;
+
+        Debug.Log(string.Format("moduleErrorCode:{0}, moduleErrorMessage:{1}", moduleErrorCode, moduleErrorMessage));
+    }
+}
+```
+
 * Refer to the following document for TOAST Push error codes.
     * [Notification > Push > SDK v1.4 Guide > Error Handling](/Notification/Push/en/Client%20SDK%20Guide/#_5)
 

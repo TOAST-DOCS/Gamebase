@@ -52,6 +52,23 @@ With user's agreement to enablePush, enableAdPush, and enableAdNightPush, call f
 }
 ```
 
+#### Setting for APNS Sandbox
+
+With SandboxMode, push can be registered to be delivered to APNS Sandbox.
+* How to register push with APNS Sandbox mode
+
+```objectivec
+- (void)didLoginSucceeded {
+	[TCGBPush setSandboxMode:YES];
+    [TCGBPush registerPushWithPushConfiguration:pushConfig completion:^(TCGBError *error) {
+    	...
+    }];
+}
+```
+
+* Send push from Console
+Select **iOS Sandbox** as the **Target** from the Push menu and send push.
+
 ### Request Push Settings
 
 To retrieve user's push setting, apply API as below.<br/>
