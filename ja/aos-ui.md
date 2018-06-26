@@ -19,6 +19,18 @@ WebViewを表示します。<br/>
 * schemeList : ユーザーの求めるカスタムSchemeのリストを指定します。
 * GamebaseDataCallback : schemeListに指定したカスタムSchemeを含むurlをコールバックで知らせます。
 
+**API**
+
+```java
++ (void)Gamebase.WebView.showWebView(Activity activity, 
+                String urlString, 
+                GamebaseWebViewConfiguration configuration,
+                GamebaseCallback onCloseCallback,
+                List<String> schemeList,
+                GamebaseDataCallback<String> onEvent);
+```
+
+**Example**
 
 ```java	
 Gamebase.WebView.showWebView(activity, "http://www.toast.com",
@@ -28,7 +40,7 @@ Gamebase.WebView.showWebView(activity, "http://www.toast.com",
         public void onCallback(GamebaseException exception) {
             Logger.d(TAG, "WebView is closed.");
         }
-    }, schmeList,
+    }, schemeList,
     new GamebaseDataCallback<String>() {
         @Override
         public void onCallback(String fullUrl, GamebaseException exception) {
@@ -45,6 +57,7 @@ Gamebase.WebView.showWebView(activity, "http://www.toast.com",
 
 ユーザーが指定したWebViewを表示します。<br/>
 GamebaseWebViewConfigurationでユーザーが指定したWebViewを作成することができます。
+
 ```java
 GamebaseWebViewConfiguration configuration
         = new GamebaseWebViewConfiguration.Builder()
@@ -77,8 +90,10 @@ GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configura
 ### Close WebView
 次のAPIを通じて、表示されているWebViewを閉じることができます。
 
+**API**
+
 ```java
-Gamebase.WebView.closeWebView(activity);
+Gamebase.WebView.closeWebView(Activity activity);
 ```
 
 
@@ -86,8 +101,10 @@ Gamebase.WebView.closeWebView(activity);
 
 次のAPIを通じて、外部ブラウザを開くことができます。パラメーターで送信されるURLは、有効な値でなければなりません。
 
+**API**
+
 ```java
-Gamebase.WebView.openWebBrowser(activity, "http://www.toast.com");
+Gamebase.WebView.openWebBrowser(Activity activity, String urlString);
 ```
 
 
@@ -99,8 +116,10 @@ Gamebase.WebView.openWebBrowser(activity, "http://www.toast.com");
 
 タイトルとメッセージだけを入力して簡単に通知のダイアログボックスを表示することができます。
 
+**API**
+
 ```java
-Gamebase.Util.showAlertDialog(activity, "title", "message");
+Gamebase.Util.showAlertDialog(Activity activity, String title, String message);
 ```
 
 ![Alert Dialog Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-002_1.0.0.png)
@@ -110,16 +129,14 @@ Gamebase.Util.showAlertDialog(activity, "title", "message");
 
 通知のダイアログボックスを表示した後、処理結果をコールバックで受け取りたい場合は次のAPIを使用します。
 
+**API**
+
 ```java
-Gamebase.Util.showAlertDialog(activity,
-                            "title",                        // タイトルテキスト。
-                            "messsage",                     // メッセージテキスト。
-                            "OK",                           // ポジティブボタンテキスト。
-                            positiveButtonEventListener,    // ポジティブボタンを押したときに呼び出されるListener。
-                            "Cancel",                       // ネガティブボタンテキスト。
-                            negativeButtonEventListener,    // ネガティブボタンを押したときに呼び出されるListener。
-                            backKeyEventListener,           // Alert Dialogをキャンセルしたときに呼び出されるListener。
-                            true);                          // Alert Dialogをキャンセルできるかどうかを設定。
+Gamebase.Util.showAlertDialog(Activity activity,
+                            String title,                                   // タイトルテキスト。
+                            String messsage,                                // メッセージテキスト。
+                            String okButtonText,                            // ポジティブボタンテキスト。
+                            DialogInterface.OnClickListener clickListener); // ポジティブボタンを押したときに呼び出されるListener。
 ```
 
 ## Toast
@@ -135,10 +152,12 @@ Gamebase.Util.showAlertDialog(activity,
 | 1                  | Toast.LENGTH_LONG => 3.5秒 |
 | 残りのすべての値           | Toast.LENGTH_SHORT => 2秒  |
 
+**API**
+
 ```java
-Gamebase.Util.showToast(activity,
-                        "message",              // 表示するメッセージテキスト
-                        Toast.LENGTH_SHORT);    // メッセージを表示する時間タイプ (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
+Gamebase.Util.showToast(Activity activity,
+                        String message,     // 表示するメッセージテキスト
+                        int duration);      // メッセージを表示する時間タイプ (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
 ```
 
 ## Custom Maintenance Page

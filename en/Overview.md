@@ -25,9 +25,11 @@ Following is the list of external authentication supported by Gamebase.
 | ----------------- | ------------ |
 | Facebook          | iOS, Android |
 | Apple Game Center | iOS          |
-| Google            | Android      |
+| Google            | iOS, Android |
 | PAYCO             | iOS, Android |
 | NAVER             | iOS, Android |
+| Twitter			| iOS, Android |
+| LINE				| Android      |
 
 * **Provides guest logins.** <br/>
   With guest login, users can log in and start a game without any authentication required. As Gamebase user ID is issued even to guest users, game data can be managed for all users, regardless of OAuth or guest login<br/>

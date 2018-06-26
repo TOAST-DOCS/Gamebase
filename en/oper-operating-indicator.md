@@ -5,8 +5,8 @@ The menu is composed of Monitoring, Concurrent Group User, User Statistics, Inst
 
 
 ## Monitoring
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring1_1.1.png)
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring2_1.1.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring1_1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring2_1.2.png)
 Shows statistics of current app users, reserved push status at the moment, and reserved maintenance.
 The screen is automatically refreshed every five minutes, to display changed indicators in real time.
 
@@ -21,8 +21,7 @@ The screen is automatically refreshed every five minutes, to display changed ind
     * By Version: By client version registered at console
 * Change Graph of Concurrent Connection: Graph of changes of concurrent connection from 00:00 today up to now
 	* Show maintenance and push details on graph to easily follow changes in concurrent connection out of maintenance and push.
-
-
+	* 관련데이터는 검색조건 우측의 버튼을 통해 다운로드를 받을 수 있습니다.
 
 ## User Statistics
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_UserStatistics1_1.0.png)

@@ -17,12 +17,12 @@ In many games, login is implemented on a title page.
 
 The logic described above can be implemented in the following order:
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
 #### 1. Authenticate with Latest Login Type
 
@@ -73,6 +73,15 @@ Try login with the most recently logged-in IdP. <br/>
 If a token is expired or its authentication fails, return failure. <br/>
 Note that a login should be implemented for the IdP.
 
+
+**API**
+
+```java
++ (void)Gamebase.loginForLastLoggedInProvider(Activity activity, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
+
 ```java
 Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthToken>() {
     @Override
@@ -119,6 +128,15 @@ Gamebase supports Guest logins.
 * As the account may be deleted, when an app is deleted or device is initialized, it is recommended to use IdP for a Guest login.
 
 Refer to the below example to implement a Guest login.
+
+
+**API**
+
+```java
++ (void)Gamebase.login(Activity activity, AuthProvider.GUEST, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
 
 ```java
 private static void onLoginForGuest(final Activity activity) {
@@ -168,6 +186,14 @@ private static void onLoginForGuest(final Activity activity) {
 
 Following is a login example with a specific IdP.<br/>
 You can find the types of IdP that can login, with **AuthProvider** class.
+
+**API**
+
+```java
++ (void)Gamebase.login(Activity activity, AuthProvider provider, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
 
 ```java
 private static void onLoginForGoogle(final Activity activity) {
@@ -224,7 +250,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 | AuthProviderCredentialConstants.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter One Time Authorization (OTAC) which can be obtained after Google login. |                                          |
 
-> [참고]
+> [Note]
 >
 > May require when original functions of external services (such as Facebook) are in need within a game.
 >
@@ -235,6 +261,14 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 >
 > Development items external SDK requires to support need to be implemented by using external SDK's API, which Gamebase does not support.
 >
+
+**API**
+
+```java
++ (void)Gamebase.login(Activity activity, Map<String, Object> credentialInfo, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
 
 ```java
 private static void onLoginWithCredential(final Activity activity) {
@@ -285,6 +319,17 @@ private static void onLoginWithCredential(final Activity activity) {
 
 ### Authentication Additional Information Settings
 
+#### Google
+
+1. Google 인증을 위해서는 Google Cloud Console에서 **Web Application Client ID**를 발급받아야 합니다.
+	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-001_1.11.0.png)
+	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-002_1.11.0.png)
+2. 승인된 리디렉션 URI 란에 다음 값을 입력합니다.
+	* https://alpha-id-gamebase.toast.com/oauth/callback
+	* https://beta-id-gamebase.toast.com/oauth/callback
+	* https://id-gamebase.toast.com/oauth/callback
+	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-003_1.11.0.png)
+
 #### Facebook
 * Go to **TOAST Cloud Console > Gamebase > App > Authentication Information > Additional Information &Callback URL** to set json string-type information to **Additional Information**.
     * When trying OAuth authentication, it is required to set additional information to request to Facebook.
@@ -292,7 +337,7 @@ private static void onLoginWithCredential(final Activity activity) {
 Example of adding authentication information in Facebook
 
 ```json
-{ "facebook_permission": [ "public_profile", "email", "user_friends"]}
+{ "facebook_permission": [ "public_profile", "email"]}
 ```
 
 #### PAYCO
@@ -307,11 +352,14 @@ Example of adding authentication information in PAYCO
 
 #### NAVER
 * Go to **TOAST Cloud Console > Gamebase > App > Authentication Information > Additional Information &Callback URL** to set json string-type information to **Additional Information**.
+	* For NAVER, set **service_name**, the app name required for Agree to Login window.
+		* 만일 iOS 빌드도 필요하다면 **url_scheme_ios_only** 값도 설정해야 합니다.
+		* 설정 방법은 iOS 가이드를 참고하시기 바랍니다. : [iOS Developer's Guide > Authentication > NAVER](./ios-authentication/#naver)
 
 Example of adding authentication information in NAVER
 
 ```json
-{ "url_scheme_ios_only": "Your Url Scheme", "service_name": "Your Service Name" }
+{ "service_name": "Your Service Name" }
 ```
 
 ## Logout
@@ -321,6 +369,14 @@ Even if a logout is successful, a game user's data remain.
 When it is successful, as authentication records with a corresponding IdP are removed, ID and passwords will be required for the next login process.<br/><br/>
 
 Following shows an example logout code with a click of the log-out button.
+
+**API**
+
+```java
++ (void)Gamebase.logout(Activity activity, GamebaseCallback callback);
+```
+
+**Example**
 
 ```java
 private static void onLogout(final Activity activity) {
@@ -369,6 +425,14 @@ Below shows an example of how a game user withdraws while logged-in.<br/><br/>
 >
 > When a user has many interfaced IdPs, all IdP interfaces will be removed and user data of Gamebase will be deleted.
 >
+
+**API**
+
+```java
++ (void)Gamebase.withdraw(Activity activity, GamebaseCallback callback);
+```
+
+**Example**
 
 ```java
 private static void onWithdraw(final Activity activity) {
@@ -464,6 +528,14 @@ Try mapping to another IdP while logged-in to a specific IdP.<br/>
 
 Below is an example of mapping to Facebook.
 
+**API**
+
+```java
++ (void)Gamebase.addMapping(Activity activity, AuthProvider authProvider, null, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
+
 ```java
 private static void addMappingForFacebook(final Activity activity) {
     Gamebase.addMapping(activity, AuthProvider.FACEBOOK, null, new GamebaseDataCallback<AuthToken>() {
@@ -532,6 +604,14 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 > Development items external SDK requires to support need to be implemented by using external SDK&#39;s API, which Gamebase does not support.
 >
 
+**API**
+
+```java
++ (void)Gamebase.addMapping(Activity activity, Map<String, Object> credentialInfo, null, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
+
 ```java
 private static void addMappingWithCredential(final Activity activity) {
     Map<String, Object> credentialInfo = new HashMap<>();
@@ -585,6 +665,14 @@ private static void addMappingWithCredential(final Activity activity) {
 Remove mapping with a specific IdP. If IdP mapping is not removed, error will occur.<br/>
 After mapping is removed, Gamebase processes logout of the IdP.
 
+**API**
+
+```java
++ (void)Gamebase.removeMapping(Activity activity, AuthProvider authProvider, null, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
+
 ```java
 private static void removeMappingForFacebook(final Activity activity) {
     Gamebase.removeMapping(activity, AuthProvider.FACEBOOK, new GamebaseCallback() {
@@ -636,6 +724,17 @@ Process authentication with Gamebase, in order to get information required to cr
 ### Get Authentication Information for Gamebase
 Get authentication information issued by Gamebase.
 
+**API**
+
+```java
++ (String)Gamebase.getUserID();
++ (String)Gamebase.getAccessToken();
++ (String)Gamebase.getLastLoggedInProvider();
++ (BanInfo)Gamebase.getBanInfo();
+```
+
+**Example**
+
 ```java
 
 // Obtaining Gamebase UserID
@@ -656,15 +755,25 @@ BanInfo banInfo = Gamebase.getBanInfo();
 
 Get access token, User ID, and profiles from externally authenticated SDK.
 
+**API**
+
 ```java
-// Get User ID.
-String userId = getAuthProviderUserID(AuthProvider.FACEBOOK);
++ (String)Gamebase.getAuthProviderUserID(AuthProvider authProvider);
++ (String)Gamebase.getAuthProviderAccessToken(AuthProvider authProvider);
++ (AuthProviderProfile)Gamebase.getAuthProviderProfile(AuthProvider authProvider);
+```
+
+**Example**
+
+```java
+String userId = Gamebase.getAuthProviderUserID(AuthProvider.FACEBOOK);
+
 // Get AccessToken.
-String accessToken = getAuthProviderAccessToken(AuthProvider.FACEBOOK);
+String accessToken = Gamebase.getAuthProviderAccessToken(AuthProvider.FACEBOOK);
+
 // Get User Profile.
-AuthFacebookProfile profile = (AuthFacebookProfile) getAuthProviderProfile(AuthProvider.FACEBOOK);
-String name = profile.getName();    // or profile.information.get("name")
-String email = profile.getEmail();  // or profile.information.get("email")
+AuthProviderProfile profile = Gamebase.getAuthProviderProfile(AuthProvider.FACEBOOK);
+Map<String, Object> profileMap = profile.information;
 ```
 
 ### Get Banned User Information
@@ -689,6 +798,14 @@ information codes of restricted use will be displayed as below, when they try to
 TransferKey의 형식은 영문자 **"소문자/대문자/숫자"를 포함한 8자리의 문자열**입니다.
 또한 발급 시간 및 만료 시간을 같이 발급하며, 형식은 epoch time입니다.
 * 참고: https://www.epochconverter.com/
+
+**API**
+
+```java
++ (void)Gamebase.issueTransferKey(int expiredTime, GamebaseDataCallback<TransferKeyInfo> callback);
+```
+
+**Example**
 
 ```java
 Gamebase.issueTransferKey(3600 * 24, new GamebaseDataCallback<TransferKeyInfo>() {
@@ -716,6 +833,14 @@ Gamebase.issueTransferKey(3600 * 24, new GamebaseDataCallback<TransferKeyInfo>()
 > `주의`
 > 이미 Guest 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
 
+**API**
+
+```java
++ (void)Gamebase.requestTransfer(String transferKey, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
+
 ```java
 Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
     @Override
@@ -740,7 +865,7 @@ Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
 |                | AUTH\_USER\_CANCELED                     | 3001       | Login is cancelled.                          |
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | The authentication is not supported.                        |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | Named member does not exist or has withdrawn.                      |
-|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | Error in external authentication                       |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | Error in external authentication library. <br/>Check DetailCode and DetailMessage. |
 | TransferKey    | SAME\_REQUESTOR                          | 8          | 발급한 TransferKey를 동일한 기기에서 사용했습니다. |
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IDP가 연동되어 있습니다. |
 |                | AUTH\_TRANSFERKEY\_EXPIRED               | 3031       | TransferKey의 유효기간이 만료됐습니다. |
@@ -768,10 +893,13 @@ Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* 이 오류는 각 IdP의 SDK에서 발생한 오류입니다.
-* 오류 코드 확인은 다음과 같이 확인하실 수 있습니다.
+* Occurs in SDK of each IdP.
+* Check the error code as below.
+<<<<<<< HEAD
 
-* IdP SDK의 오류 코드는 각각의 Developer 페이지를 참고하시기 바랍니다.
+* Check error codes of IdP SDK at each developer's page.
+=======
+>>>>>>> beta
 
 ```java
 Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCallback<AuthToken>() {
@@ -784,17 +912,22 @@ Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCa
             Log.e(TAG, "Login failed");
 
             // Gamebase Error Info
-            String errorDomain = exception.getDomain();
             int errorCode = exception.getCode();
+            String errorMessage = exception.getMessage();
 
-            // Third Party Detail Error Info
-            int detailCode = exception.getDetailCode();
-            String DetailMessage = exception.getDetailMessage();
-
-            ...
+            if (errorCode == GamebaseError.AUTH_EXTERNAL_LIBRARY_ERROR) {
+                // Third Party Detail Error Info
+                int moduleErrorCode = exception.getDetailCode();
+                String moduleErrorMessage = exception.getDetailMessage();
+                
+                ...
+            }
         }
     }
 });
 ```
+<<<<<<< HEAD
+=======
 
-
+* Check error codes of IdP SDK at each developer's page.
+>>>>>>> beta

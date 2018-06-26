@@ -19,6 +19,18 @@ Shows a WebView.<br/>
 * schemeList: Specifies the list of customized schemes a user wants.
 * gamebaseDataCallback: Notifies url including customized scheme specified by the schemeList with a callback.
 
+**API**
+
+```java
++ (void)Gamebase.WebView.showWebView(Activity activity, 
+                String urlString, 
+                GamebaseWebViewConfiguration configuration,
+                GamebaseCallback onCloseCallback,
+                List<String> schemeList,
+                GamebaseDataCallback<String> onEvent);
+```
+
+**Example**
 
 ```java
 Gamebase.WebView.showWebView(activity, "http://www.toast.com",
@@ -28,7 +40,7 @@ Gamebase.WebView.showWebView(activity, "http://www.toast.com",
         public void onCallback(GamebaseException exception) {
             Logger.d(TAG, "WebView is closed.");
         }
-    }, schmeList,
+    }, schemeList,
     new GamebaseDataCallback<String>() {
         @Override
         public void onCallback(String fullUrl, GamebaseException exception) {
@@ -45,6 +57,7 @@ Gamebase.WebView.showWebView(activity, "http://www.toast.com",
 
 Shows a customized WebView. <br/>
 Can configure a customzed WebView by using GamebaseWebViewConfiguration.
+
 ```java
 GamebaseWebViewConfiguration configuration
         = new GamebaseWebViewConfiguration.Builder()
@@ -77,8 +90,10 @@ GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configura
 ### Close WebView
 Close currently displayed WebView by using the following API.
 
+**API**
+
 ```java
-Gamebase.WebView.closeWebView(activity);
+Gamebase.WebView.closeWebView(Activity activity);
 ```
 
 
@@ -86,8 +101,10 @@ Gamebase.WebView.closeWebView(activity);
 
 Open an external browser by using the following API. The URL delivered as a parameter should be valid.
 
+**API**
+
 ```java
-Gamebase.WebView.openWebBrowser(activity, "http://www.toast.com");
+Gamebase.WebView.openWebBrowser(Activity activity, String urlString);
 ```
 
 
@@ -99,8 +116,10 @@ Displays a system alert API.<br/>
 
 Shows a simple alert dialogue by entering title and message only.
 
+**API**
+
 ```java
-Gamebase.Util.showAlertDialog(activity, "title", "message");
+Gamebase.Util.showAlertDialog(Activity activity, String title, String message);
 ```
 
 ![Alert Dialog Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-002_1.0.0.png)
@@ -110,16 +129,14 @@ Gamebase.Util.showAlertDialog(activity, "title", "message");
 
 Use the following API to receive callbacks on processing results after an alert dialog is displayed.
 
+**API**
+
 ```java
-Gamebase.Util.showAlertDialog(activity,
-                            "title",                        // Title text.
-                            "messsage",                     // Message text.
-                            "OK",                           // Positive button text.
-                            positiveButtonEventListener,    // Listener called when pressing a positive button.
-                            "Cancel",                       // Negative button text.
-                            negativeButtonEventListener,    // Listener called when pressing a negative button.
-                            backKeyEventListener,           // Listener called when an alert dialog is cancelled.
-                            true);                          // Set whether alert dialog can be cancelled.
+Gamebase.Util.showAlertDialog(Activity activity,
+                            String title,                                   // Title text.
+                            String messsage,                                // Message text.
+                            String okButtonText,                            // Positive button text.
+                            DialogInterface.OnClickListener clickListener); // Listener called when pressing a positive button.
 ```
 
 ## Toast
@@ -135,10 +152,12 @@ The type of time parameter to display message is provided in int format and will
 | 1                  | Toast.LENGTH_LONG => 3.5 seconds |
 | All the rest values           | Toast.LENGTH_SHORT => 2 seconds  |
 
+**API**
+
 ```java
-Gamebase.Util.showToast(activity,
-                        "message",              // Message text to display
-                        Toast.LENGTH_SHORT);    // Type of time to display message (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
+Gamebase.Util.showToast(Activity activity,
+                        String message,     // Message text to display
+                        int duration);      // Type of time to display message (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
 ```
 
 ## Custom Maintenance Page

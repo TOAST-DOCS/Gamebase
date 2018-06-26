@@ -5,9 +5,9 @@
 
 > [INFO]
 >
-> 최소사양 : iOS8 이상 <br/>
+> 최소사양 : iOS8 이상 또는 일부 IDP지원 시 iOS9 이상 <br/>
 > arm7, arm7s, arm64, i386, x86_64 지원 기기<br/>
-> Xcode7 이상
+> Xcode9 이상
 >
 
 
@@ -25,22 +25,25 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 
 **3rd Party SDK Download**
 
-| Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 용도 | External SDK Download Link |
-| --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework, Gamebase.bundle |  | Gamebase의 Interface 및 핵심 로직을 포함 |  |
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v4.17.0 | Facebook 로그인을 지원 | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.1.6 | Payco 로그인을 지원 | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) |
-|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.9 | Naver 로그인을 지원 | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) |
-|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenter 로그인을 지원 |  |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework | 게임 내 결제를 지원 | Gamebase IAP 내에 포함 |
-| Gamebase Push | GamebasePushAdapter.framework |  | Push를 지원 | Gamebase내에 포함 |
+| Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 용도 | External SDK Download Link | Support iOS Version |
+| --- | --- | --- | --- | --- | --- |
+| Gamebase | Gamebase.framework, Gamebase.bundle |  | Gamebase의 Interface 및 핵심 로직을 포함 |  | iOS8 or later
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v4.17.0 | Facebook 로그인을 지원 | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS8 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.1.6 | Payco 로그인을 지원 | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS8 or later |
+|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.9 | Naver 로그인을 지원 | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |
+|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenter 로그인을 지원 |  | iOS8 or later |
+|  | GamebaseAuthGoogleAdapter.framework | | Google 로그인을 지원 | | iOS9 or later |
+|  | GamebaseAuthTwitterAdapter.framework | | Twitter 로그인을 지원 | | iOS8 or later |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework | 게임 내 결제를 지원 | Gamebase IAP 내에 포함 | iOS8 or later |
+| Gamebase Push | GamebasePushAdapter.framework |  | Push를 지원 | Gamebase내에 포함 | iOS8 or later |
 
 
 
 > <font color="red">[주의]</font><br/>
 >
 > Gamebase Framework 파일 중 이름에 **Adapter**가 포함되어 있는 파일들은 선택적으로 프로젝트 내에서 사용여부를 결정할 수 있으며, 해당 Adapter Framework를 사용하기 위해서는 위의 표에 명시된 외부 SDK들이 필요할 수 있습니다.
-> GamebaseNaverAuthNaverAdapter.framework는 iOS 9이상에서만 지원이 됩니다.
+> 일부 인증 Adpater의 경우 위의 표에 있는 Support iOS Version에 유의해야합니다.
+> (지원 버전이 iOS9이상인 Auth Adpater를 빌드에 포함 시 iOS8이하에서는 runtime Crash가 발생합니다.)
 
 <br/>
 
@@ -74,8 +77,8 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 ![Other Linker Flags](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
 * 5) **Target > Build Settings > Enable Bitcode**를 **No**로 설정합니다.
 ![Enable Bitcode](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-007_1.0.0.png)
-* 6) NaverAuthAdapter를 사용하는 경우에는 NaverSDK에서 제공하는 **NaverThirdPartyLogin.framework**파일을 **Target > General > Embedded Binaries**에 추가해야 합니다.
- -![Naver Embeded Binaries](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.7.0.png)
+* 6) NaverAuthAdapter를 사용하는 경우에는 NaverSDK에서 제공하는 **NaverThirdPartyLogin.framework** 파일을 **Target > General > Embedded Binaries**에 추가해야 합니다.
+ ![Naver Embeded Binaries](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.7.0.png)
 
 > [INFO]
 >
@@ -83,9 +86,67 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 > 따라서 이 옵션을 설정하지 않았을 때에 **selector not recognized**와 같은 오류가 Runtime 상에서 발생할 수 있습니다.
 >
 
+#### CocoaPods Settings
+
+Gamebase iOS SDK는 CocoaPods를 통해서도 설정할 수 있습니다.
+
+* 1) Xcode를 실행해 프로젝트를 생성합니다.
+* 2) Terminal을 실행해 CocoaPods을 적용하려는 프로젝트의 디렉터리로 이동합니다.
+* 3) 다음 명령어를 입력해 **Podfile**을 생성합니다.
+    ```shell
+    $ pod init
+    ``` 
+* 4) 생성된 **Podfile**을 편집기로 열어 다음과 같은 내용을 작성합니다.
+    ```ruby
+    platform :ios, '9.0'
+
+    target 'SampleApplication' do
+        pod 'Gamebase'
+        pod 'GamebaseAuthFacebookAdapter'
+        pod 'GamebaseAuthGamecenterAdapter'
+        pod 'GamebaseAuthPaycoAdapter'
+        pod 'GamebaseAuthNaverAdapter'
+        pod 'GamebaseAuthTwitterAdapter'
+        pod 'GamebaseAuthGoogleAdapter'
+        pod 'GamebaseAuthLineAdapter'
+        pod 'GamebasePushAdapter'
+        pod 'GamebasePurchaseIAPAdapter'
+    end
+    ```
+    * **target 'SampleApplication' do** 부분에는 생성한 프로젝트의 타겟명을 입력합니다.
+    * 특정 Adapter만 선택적으로 적용할 수 있습니다.
+    * 각각의 pod에 버전을 명시하지 않으면 최신 버전이 설정됩니다.
+    * **pod 'Gamebase', '1.11.0'** 과 같이 작성해 특정 버전을 지정 할 수 있습니다.
+    > <font color="red">[주의]</font><br/>
+    >
+    > Gamebase 최신 버전을 사용하지 않으면 일부 Adapter의 사용이 불가능 할 수 있습니다.
+    >
+
+* 5) Podfile 작성이 완료되면 다음 명령어를 실행해 Gamebase를 설치합니다.
+    ```shell
+    $ pod install
+    ```
+* 6) 설치가 완료되면 **프로젝트명.xcworkspace** 파일이 생성됩니다. 이후부터는 생성된 **xcworkspace** 파일을 통해 개발을 진행합니다.
+* 7) Target > Build Settings > Enable Bitcode를 No로 설정합니다. 
+![Enable Bitcode](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-007_1.0.0.png)
 
 
+> [INFO]
+>
+> 더 자세한 CocoaPods 사용법에 대해서는 [CocoaPods Guide](https://guides.cocoapods.org/)의 [Using CocoaPods](https://guides.cocoapods.org/using/index.html) 페이지를 참고하시길 바랍니다.
+>
 
 ## API Reference
 
-SDK 내에 포함되어 있습니다.
+API Reference는 SDK 내에 포함되어 있습니다.
+
+## API Deprecate Governance
+
+Gamebase에서 더 이상 지원하지 않는 API는 Deprecate 처리합니다.
+Deprecated 된 API는 다음 조건 충족 시 사전 공지 없이 삭제될 수 있습니다.
+* 5회 이상의 마이너 버전 업데이트
+	* Gamebase Version Format - XX.YY.ZZ
+		* XX : Major
+		* YY : Minor
+		* ZZ : Hotfix
+* 최소 5개월 경과

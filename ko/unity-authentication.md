@@ -4,7 +4,10 @@
 
 Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 
-게스트 이외의 Provider에 로그인하려면 해당 Provider AuthAdapter가 필요합니다.<br/>
+* 게스트 이외의 Provider에 로그인하려면 해당 Provider AuthAdapter가 필요합니다.
+* AuthAdapter 및 3rd-Party Provider SDK에 대한 설정은 다음을 참고하시기 바랍니다.
+    * [3rd-Party Provider SDK Guide](aos-started#3rd-party-provider-sdk-guide)
+
 
 ### Login Flow
 
@@ -181,11 +184,14 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 ```
 
 **providerName**
-* GamebaseAuthProvider.GOOGLE(Android/Standalone Only)
+
+* GamebaseAuthProvider.GOOGLE
 * GamebaseAuthProvider.GAMECENTER(iOS Only)
 * GamebaseAuthProvider.FACEBOOK
 * GamebaseAuthProvider.PAYCO
-* GamebaseAuthProvider.NAVER
+* GamebaseAuthProvider.NAVER(Android/iOS Only)
+* GamebaseAuthProvider.TWITTER(Android/iOS Only)
+* GamebaseAuthProvider.LINE(Android Only)
 
 > 몇몇 IdP로 로그인할 때는 꼭 필요한 정보가 있습니다.<br/>
 > 예를 들어, Facebook 로그인을 구현하려면 scope 등을 설정해야 합니다.<br/>
@@ -242,6 +248,25 @@ public void Login(string providerName, Dictionary<string, object> additionalInfo
 
 IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급받은 액세스 토큰 등을 이용하여, Gamebase에 로그인할 수 있는 인터페이스입니다.
 
+* Credential 파라미터의 설정 방법
+
+| keyname | a use | 값 종류 |
+| ---------------------------------------- | ------------------------------------ | ------------------------------ |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
+
+> [TIP]
+>
+> 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
+>
+
+
+> <font color="red">[주의]</font><br/>
+>
+> 외부 SDK에서 지원 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
+>
+
 **API**
 
 Supported Platforms
@@ -260,9 +285,19 @@ static void Login(Dictionary<string, object> credentialInfo, GamebaseCallback.Ga
 **Example**
 
 ``` cs
-public void Login(Dictionary<string, object> credentialInfo)
+public void LoginWithCredential()
 {
-	Gamebase.Login(credentialInfo, (authToken, error) =>
+    var credentialInfo = new Dictionary<string, object>();
+    
+    // facebook
+    credentialInfo.Add(GamebaseAuthProviderCredential.PROVIDER_NAME, GamebaseAuthProvider.FACEBOOK);
+    credentialInfo.Add(GamebaseAuthProviderCredential.ACCESS_TOKEN, "facebook access token");
+    
+    // google
+    // credentialInfo.Add(GamebaseAuthProviderCredential.PROVIDER_NAME, GamebaseAuthProvider.GOOGLE);
+    // credentialInfo.Add(GamebaseAuthProviderCredential.AUTHORIZATION_CODE, "google auchorization code");
+    
+    Gamebase.Login(credentialInfo, (authToken, error) =>
     {
     	if (Gamebase.IsSuccess(error))
         {
@@ -286,7 +321,7 @@ public void Login(Dictionary<string, object> credentialInfo)
 Facebook 인증 추가 정보 입력 예제
 
 ```json
-{ "facebook_permission": [ "public_profile", "email", "user_friends"]}
+{ "facebook_permission": [ "public_profile", "email"]}
 ```
 
 #### PAYCO
@@ -301,7 +336,7 @@ PAYCO 추가 인증 정보 입력 예제
 
 #### NAVER
 * **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-    * NAVER의 경우, 로그인 동의창에서 노출될 앱 이름 **service_name**, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
+    * NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**, iOS 앱에서 필요한 정보인 **url_scheme_ios_only**를 설정해야 합니다.
 
 * URL Schemes를 설정해야 합니다.
 	* **XCode > Target > Info > URL Types**
@@ -494,24 +529,23 @@ public void AddMapping(string providerName)
 
 게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증을 하고 발급받은 액세스 토큰등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스 입니다.
 
-* Credential 파라미터의 설정방법
-
-
+* Credential 파라미터의 설정 방법
 
 | keyname | a use | 값 종류 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                           | facebook, payco, iosgamecenter, naver |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정 |                                |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
 
 > [TIP]
 >
-> 게임 내에서 외부 서비스(Facebook 등)의 고유기능의 사용이 필요할 때 사용될 수 있습니다.
+> 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
 >
 
 
 > <font color="red">[주의]</font><br/>
 >
-> 외부 SDK에서 지원요구하는 개발사항은 외부SDK의 API를 사용하여 구현해야하며, Gamebase에서는 지원하지 않습니다.
+> 외부 SDK에서 지원 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
 >
 
 **API**
@@ -527,8 +561,18 @@ static void AddMapping(Dictionary<string, object> credentialInfo, GamebaseCallba
 **Example**
 
 ```cs
-public void AddMapping(Dictionary<string, object> credentialInfo)
+public void AddMappingWithCredential()
 {
+    var credentialInfo = new Dictionary<string, object>();
+
+    // facebook
+    credentialInfo.Add(GamebaseAuthProviderCredential.PROVIDER_NAME, GamebaseAuthProvider.FACEBOOK);
+    credentialInfo.Add(GamebaseAuthProviderCredential.ACCESS_TOKEN, "facebook access token");
+
+    // google
+    // credentialInfo.Add(GamebaseAuthProviderCredential.PROVIDER_NAME, GamebaseAuthProvider.GOOGLE);
+    // credentialInfo.Add(GamebaseAuthProviderCredential.AUTHORIZATION_CODE, "google auchorization code");
+
     Gamebase.AddMapping(credentialInfo, (authToken, error) =>
     {
         if (Gamebase.IsSuccess(error))
@@ -912,7 +956,7 @@ public void RequestTransfer(string transferKey)
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
 * 이 오류는 외부 인증 라이브러리에서 발생한 오류입니다.
-* 오류 코드 확인은 다음과 같이 확인하실 수 있습니다.
+* 오류 코드를 확인하는 방법은 다음과 같습니다.
 
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
@@ -936,4 +980,4 @@ else
 }
 ```
 
-* IDP SDK의 오류 코드는 각각의 Developer 페이지를 참고하시기 바랍니다.
+* IdP SDK의 오류 코드는 각 개발자 페이지를 참고하시기 바랍니다.

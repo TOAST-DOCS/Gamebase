@@ -24,9 +24,8 @@ Gamebase를 초기화할 때, GamebaseConfiguration.Builder 객체로 Gamebase �
 
 | API                                      | Mandatory(M) / Optional(O) | Description                              |
 | ---------------------------------------- | -------------------------- | ---------------------------------------- |
+| Builder(String appId, String appVersion) | **M**                      | GamebaseConfiguration.Builder 생성자에 appId와 appVersion을 필수 파라미터로 넘겨주어 초기화해야합니다. <br/><br/> **appId**는 TOAST Project로 발급받은 앱 ID를 입력합니다. <br/> **appVersion**은 게임이 서비스 상태, 업데이트 상태 혹은 점검 상태 등에 해당하는지 판단하는 곳에 쓰입니다. 게임 버전을 지정해 주세요. |
 | build()                                  | **M**                      | 설정을 마친 Builder를 Configuration 객체로 변환합니다.<br/>**Gamebase.initialize()** API에서 필요합니다. |
-| setAppId(String appId)                   | **M**                      | TOAST Project로 발급받은 앱 ID를 입력합니다.   |
-| setAppVersion(String appVersion)         | **M**                      | 업데이트, 점검에 해당하는지 여부는 게임 버전으로 판단합니다.<br/>게임 버전을 지정해 주세요. |
 | enablePopup(boolean enable)              | O                          | **[UI]**<br/>시스템 점검, 이용 제재(ban) 등 게임 이용자가 게임을 플레이할 수 없는 상황에서 팝업 등으로 사유를 표시해야 할 때가 있습니다.<br/>**true**로 설정하면 Gamebase가 해당 상황에서 정보 팝업을 자동으로 표시합니다.<br/>기본값은 **false**입니다.<br/>**false** 상태에서는 론칭 결과를 통해 정보를 획득한 후 자체 UI를 구현해 게임을 플레이할 수 없는 이유를 표시해 주시기 바랍니다. |
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>론칭 결과에 따라 로그인할 수 없는 상태에서(주로 점검 상태) Gamebase가 자동으로 팝업을 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup(true)** 상태에서만 동작합니다.<br/>기본값은 **true**입니다. |
 | enableBanPopup(boolean enable)           | O                          | **[UI]**<br/>게임 이용자가 이용 제재를 당한 상태일 때 Gamebase가 자동으로 제재 사유를 팝업으로 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup(true)** 상태에서만 동작합니다.<br/>기본값은 **true**입니다. |
@@ -47,6 +46,14 @@ Gamebase를 초기화할 때, GamebaseConfiguration.Builder 객체로 Gamebase �
 **Activity#onCreate(Bundle)**에서 **Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback)**을 호출하여 Gamebase SDK를 초기화합니다.<br/>
 또한 Gamebase의 정상적인 동작을 위해 반드시 **Activity#onActivityResult(int, int, Intent)**에서 **Gamebase.onActivityResult(int, int, Intent)**를 호출합니다.
 
+**API**
+
+```java
++ (void)Gamebase.initialize(Activity activity, GamebaseConfiguration configuration, GamebaseDataCallback<LaunchingInfo> callback);
+```
+
+**Example**
+
 ```java
 public class MainActivity extends AppCompatActivity {
     ...
@@ -57,12 +64,11 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Gamebase Configuration.
          */
-        GamebaseConfiguration configuration =
-                        new GamebaseConfiguration.Builder()
-                                .setAppId("T0aStC1d")
-                                .setAppVersion("1.0.0")
-                                .enableLaunchingStatusPopup(true)
-                                .build();
+        String appId = "T0aStC1d";
+        String appVersion = "1.0.0";
+        GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(appId, appVersion)
+                                            .enableLaunchingStatusPopup(true)
+                                            .build();
         /**
          * Gamebase Initialize.
          */
@@ -112,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
 ### Launching Status
 
 Gamebase#initialize 호출 결과로 론칭 상태를 확인할 수 있습니다.
+
 ```java
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
     @Override
@@ -133,6 +140,18 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 });
 ```
 
+getLaunchingInformations API를 이용하면 초기화 이후에도 LaunchingInfo 객체를 획득할 수 있습니다.
+
+**API**
+
+```java
++ (LaunchingInfo)Gamebase.Launching.getLaunchingInformations();
+```
+
+
+
+
+
 ### Launching Status Code
 
 | Status                      | Code | Description                              |
@@ -147,3 +166,22 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 | INSPECTING_ALL_SERVICES     | 304  | 전체 서비스 점검 중                              |
 | INTERNAL_SERVER_ERROR       | 500  | 내부 서버 오류                                 |
 
+
+
+
+### Error Handling
+
+| Error                        | Error Code | Description                |
+| ---------------------------- | ---------- | -------------------------- |
+| NOT_INITIALIZED              | 1          | Gamebase 초기화돼 있지 않습니다. |
+| NOT_LOGGED_IN                | 2          | 로그인이 필요합니다.            |
+| INVALID_PARAMETER            | 3          | 잘못된 파라미터입니다.           |
+| INVALID_JSON_FORMAT          | 4          | JSON 포맷 오류입니다.          |
+| USER_PERMISSION              | 5          | 권한이 없습니다.               |
+| NOT_SUPPORTED                | 10         | 지원하지 않는 기능입니다.        |
+| NOT_SUPPORTED_ANDROID        | 11         | Android에서 지원하지 않는 기능입니다.   |
+| ANDROID_ACTIVEAPP_NOT_CALLED | 32         | activeApp API가 호출되지 않았습니다.   |
+
+
+* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
+    * [오류 코드](./error-code/#client-sdk)

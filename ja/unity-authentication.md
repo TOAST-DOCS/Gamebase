@@ -4,7 +4,10 @@
 
 Gamebaseでは基本的にゲストログインに対応しています。<br/>
 
-ゲスト以外のProviderでログインするためには、該当するProvider AuthAdapterが必要です。<br/>
+
+* ゲスト以外のProviderでログインするためには、該当するProvider AuthAdapterが必要です。
+* AuthAdapter及び3rd-Party Provider SDKの設定は、次をご参考ください。
+    * [3rd-Party Provider SDK Guide](aos-started#3rd-party-provider-sdk-guide)
 
 ### Login Flow
 
@@ -181,11 +184,14 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 ```
 
 **providerName**
-* GamebaseAuthProvider.GOOGLE(Android/Standalone Only)
+
+* GamebaseAuthProvider.GOOGLE
 * GamebaseAuthProvider.GAMECENTER(iOS Only)
 * GamebaseAuthProvider.FACEBOOK
 * GamebaseAuthProvider.PAYCO
-* GamebaseAuthProvider.NAVER
+* GamebaseAuthProvider.NAVER(Android/iOS Only)
+* GamebaseAuthProvider.TWITTER(Android/iOS Only)
+* GamebaseAuthProvider.LINE(Android Only)
 
 > IdPの中には、ログインする際に必ず必要な情報があるものがあります。<br/>
 > 例えば、Facebookログインを設計する場合、scopeなどを設定する必要があります。<br/>
@@ -240,6 +246,25 @@ public void Login(string providerName, Dictionary<string, object> additionalInfo
 
 IdPが提供するSDKを使ってゲームで直接認証した後、発行されたアクセストークンなどを利用してGamebaseにログインできるインターフェースです。
 
+* Credentialパラメーターの設定方法
+
+| keyname | a use | 値の種類 |
+| ---------------------------------------- | ------------------------------------ | ------------------------------ |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)の設定<br/>Google認証の場合は使用しない |                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Googleログイン後に取得できるOTAC(one time authorization code)の入力 |                                          |
+
+> [参考]
+>
+> ゲーム内で外部サービス(Facebookなど)の固有機能を使用しなければならないとき、必要になることがあります。
+>
+
+
+> <font color="red">[注意]</font><br/>
+>
+> 外部のSDKで対応を求める開発事項は、外部SDKのAPIを使用して設計する必要があり、Gamebaseでは対応しておりません。
+>
+
 **API**
 
 Supported Platforms
@@ -258,9 +283,19 @@ static void Login(Dictionary<string, object> credentialInfo, GamebaseCallback.Ga
 **Example**
 
 ``` cs
-public void Login(Dictionary<string, object> credentialInfo)
+public void LoginWithCredential()
 {
-	Gamebase.Login(credentialInfo, (authToken, error) =>
+    var credentialInfo = new Dictionary<string, object>();
+    
+    // facebook
+    credentialInfo.Add(GamebaseAuthProviderCredential.PROVIDER_NAME, GamebaseAuthProvider.FACEBOOK);
+    credentialInfo.Add(GamebaseAuthProviderCredential.ACCESS_TOKEN, "facebook access token");
+    
+    // google
+    // credentialInfo.Add(GamebaseAuthProviderCredential.PROVIDER_NAME, GamebaseAuthProvider.GOOGLE);
+    // credentialInfo.Add(GamebaseAuthProviderCredential.AUTHORIZATION_CODE, "google auchorization code");
+    
+    Gamebase.Login(credentialInfo, (authToken, error) =>
     {
     	if (Gamebase.IsSuccess(error))
         {
@@ -284,7 +319,7 @@ public void Login(Dictionary<string, object> credentialInfo)
 Facebook認証追加情報の入力例
 
 ```json
-{ "facebook_permission": [ "public_profile", "email", "user_friends"]}
+{ "facebook_permission": [ "public_profile", "email"]}
 ```
 
 #### PAYCO
@@ -407,14 +442,14 @@ GamebaseのMappingAPIを使用して既にログインされているアカウ�
 注意すべき点は、各IdPは一つのアカウントにのみ連携させることができるという点です。
 例は、次の通りです。<br/>
 
-* GamebaseユーザーID:123bcabca
-	* Google ID:aa
-	* Facebook ID:bb
-	* AppleGameCenter ID:cc
-	* Payco ID:dd
-* GamebaseユーザーID:456abcabc
-	* Google ID:ee
-	* Google ID:ff **-> すでにGoogleのeeアカウントに連携されているため、Googleアカウントを追加で連携させることができません。**
+* GamebaseユーザーID : 123bcabca
+	* Google ID : aa
+	* Facebook ID : bb
+	* AppleGameCenter ID : cc
+	* Payco ID : dd
+* GamebaseユーザーID : 456abcabc
+	* Google ID : ee
+	* Google ID : ff **-> すでにGoogleのeeアカウントに連携されているため、Googleアカウントを追加で連携させることができません。**
 
 Mappingには、Mapping追加APIと解除APIの2つがあります。
 
@@ -494,12 +529,11 @@ public void AddMapping(string providerName)
 
 * Credentialパラメーターの設定方法
 
-
-
 | keyname | a use | 値の種類 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdPタイプの設定                           | facebook, payco, iosgamecenter, naver |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdPログイン後に取得した認証情報(アクセストークン)設定 |                     |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | IdPタイプの設定                            | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)設定<br/>Google認証の場合は使用しない |                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Googleログイン後に取得できるOTAC(one time authorization code)を入力 |                                          |
 
 > [TIP]
 >
@@ -510,7 +544,7 @@ public void AddMapping(string providerName)
 > <font color="red">[注意]</font><br/>
 >
 > 外部のSDKで対応を求める開発事項は外部SDKのAPIを使用して設計する必要があり、Gamebaseでは対応しておりません。
->
+
 
 **API**
 
@@ -525,8 +559,18 @@ static void AddMapping(Dictionary<string, object> credentialInfo, GamebaseCallba
 **Example**
 
 ```cs
-public void AddMapping(Dictionary<string, object> credentialInfo)
+public void AddMappingWithCredential()
 {
+    var credentialInfo = new Dictionary<string, object>();
+
+    // facebook
+    credentialInfo.Add(GamebaseAuthProviderCredential.PROVIDER_NAME, GamebaseAuthProvider.FACEBOOK);
+    credentialInfo.Add(GamebaseAuthProviderCredential.ACCESS_TOKEN, "facebook access token");
+
+    // google
+    // credentialInfo.Add(GamebaseAuthProviderCredential.PROVIDER_NAME, GamebaseAuthProvider.GOOGLE);
+    // credentialInfo.Add(GamebaseAuthProviderCredential.AUTHORIZATION_CODE, "google auchorization code");
+
     Gamebase.AddMapping(credentialInfo, (authToken, error) =>
     {
         if (Gamebase.IsSuccess(error))

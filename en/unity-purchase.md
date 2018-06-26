@@ -199,6 +199,30 @@ public void RequestRetryTransaction()
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
 * Occurs at an IAP module.
+* Check the error code as below:
+
+```cs
+GamebaseError gamebaseError = error; // GamebaseError object via callback
+
+if (Gamebase.IsSuccess(gamebaseError))
+{
+    // succeeded
+}
+else
+{
+    Debug.Log(string.Format("code:{0}, message:{1}", gamebaseError.code, gamebaseError.message));
+
+    Error moduleError = gamebaseError.error; // GamebaseError.error object from external module
+    if (null != moduleError)
+    {
+        int moduleErrorCode = moduleError.code;
+        string moduleErrorMessage = moduleError.message;
+
+        Debug.Log(string.Format("moduleErrorCode:{0}, moduleErrorMessage:{1}", moduleErrorCode, moduleErrorMessage));
+    }
+}
+```
+
 * For IAP error codes, refer to the document below.
     * [Mobile Service > IAP > Error Code > Client API Error Typ](/Mobile%20Service/IAP/en/error-code/#client-api#client-api-errors)
 

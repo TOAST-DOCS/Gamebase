@@ -24,9 +24,8 @@ To initialize Gamebase, Gamebase setting can be modified with GamebaseConfigurat
 
 | API                                      | Mandatory(M) / Optional(O) | Description                              |
 | ---------------------------------------- | -------------------------- | ---------------------------------------- |
+| Builder(String appId, String appVersion) | **M**                      | GamebaseConfiguration.Builder 생성자에 appId와 appVersion을 필수 파라미터로 넘겨주어 초기화해야합니다. <br/><br/> **appId:** Enter an App ID issued from TOAST Cloud Project.<br/> **appVersion:** Status of update or maintenance can be decided upon a game version. Specify a game version. |
 | build()                                  | **M**                      | Convert Builder completed with setting to a configuration object.<br/>Required for **Gamebase.initialize ()** API. |
-| setAppId(String appId)                   | **M**                      | Enter an App ID issued from TOAST Cloud Project.   |
-| setAppVersion(String appVersion)         | **M**                      | Status of update or maintenance can be decided upon a game version.<br/>Specify a game version. |
 | enablePopup(boolean enable)              | O                          | **[UI]**<br/>When a game user cannot play games due to system maintenance or banned from use, reasons need to be displayed by pop-ups.<br/>If it is set **true** , Gamebase will automatically display information via pop-ups.<br/>**false** is set as default.<br/>When set to **false** , get information from launching results and display why user cannot play games by using customized UI. |
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>Depending on the launching results, when available to log in (mainly due to maintenance), you may decide whether to allow Gamebase to automatically display pop-ups.<br/>Works only when **enablePopup (true)** is on.<br/>**true** is set as default. |
 | enableBanPopup(boolean enable)           | O                          | **[UI]**<br/>When game user is banned, you can change whether to allow Gamebase to automatically display a pop-up on the reasons.<br/>Works only when **enablePopup (true)** is on.<br/>**true** is set as default. |
@@ -47,6 +46,14 @@ To initialize Gamebase, Gamebase setting can be modified with GamebaseConfigurat
 Call **Gamebase#initialize(Activity, GamebaseConfiguration, and GamebaseDataCallback)** from **Activity#onCreate(Bundle)** to initialize Gamebase SDK.<br/>
 And, for normal operations of Gamebase, make sure to call **Gamebase.onActivityResult(int, int, Intent)** from **Activity#onActivityResult(int, int, Intent)**.
 
+**API**
+
+```java
++ (void)Gamebase.initialize(Activity activity, GamebaseConfiguration configuration, GamebaseDataCallback<LaunchingInfo> callback);
+```
+
+**Example**
+
 ```java
 public class MainActivity extends AppCompatActivity {
     ...
@@ -57,12 +64,11 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Gamebase Configuration.
          */
-        GamebaseConfiguration configuration =
-                        new GamebaseConfiguration.Builder()
-                                .setAppId("T0aStC1d")
-                                .setAppVersion("1.0.0")
-                                .enableLaunchingStatusPopup(true)
-                                .build();
+        String appId = "T0aStC1d";
+        String appVersion = "1.0.0";
+        GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(appId, appVersion)
+                                            .enableLaunchingStatusPopup(true)
+                                            .build();
         /**
          * Gamebase Initialize.
          */
@@ -112,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
 ### Launching Status
 
 Check launching status by calling 'Gamebase#initialize()'.
+
 ```java
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
     @Override
@@ -133,6 +140,18 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 });
 ```
 
+getLaunchingInformations API를 이용하면 초기화 이후에도 LaunchingInfo 객체를 획득할 수 있습니다.
+
+**API**
+
+```java
++ (LaunchingInfo)Gamebase.Launching.getLaunchingInformations();
+```
+
+
+
+
+
 ### Launching Status Code
 
 | Status                      | Code | Description                              |
@@ -147,3 +166,22 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 | INSPECTING_ALL_SERVICES     | 304  | Under maintenance for the whole service                              |
 | INTERNAL_SERVER_ERROR       | 500  | Error in internal server                                 |
 
+
+
+
+### Error Handling
+
+| Error                        | Error Code | Description                |
+| ---------------------------- | ---------- | -------------------------- |
+| NOT_INITIALIZED              | 1          | Gamebase 초기화돼 있지 않습니다. |
+| NOT_LOGGED_IN                | 2          | 로그인이 필요합니다.            |
+| INVALID_PARAMETER            | 3          | 잘못된 파라미터입니다.           |
+| INVALID_JSON_FORMAT          | 4          | JSON 포맷 오류입니다.          |
+| USER_PERMISSION              | 5          | 권한이 없습니다.               |
+| NOT_SUPPORTED                | 10         | 지원하지 않는 기능입니다.        |
+| NOT_SUPPORTED_ANDROID        | 11         | Android에서 지원하지 않는 기능입니다.   |
+| ANDROID_ACTIVEAPP_NOT_CALLED | 32         | activeApp API가 호출되지 않았습니다.   |
+
+
+* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
+    * [오류 코드](./error-code/#client-sdk)

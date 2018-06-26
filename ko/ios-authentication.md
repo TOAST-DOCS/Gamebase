@@ -163,7 +163,7 @@ Gamebase를 통하여 로그인을 처음 시도하거나, 로그인 정보(액�
 
 Facebook 인증 추가 정보 입력 예제
 ```json
-{ "facebook_permission": [ "public_profile", "email", "user_friends"]}
+{ "facebook_permission": [ "public_profile", "email"]}
 ```
 - Facebook SDK를 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다.
 * [LINK \[Facebook Developer Guide\]](https://developers.facebook.com/docs/ios/getting-started)
@@ -181,7 +181,7 @@ PAYCO 추가 인증 정보 입력 예제
 #### NAVER
 - AdditionalInfo를 설정해야 합니다.
     * **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-    * NAVER의 경우, 로그인 동의창에서 노출될 앱 이름 **service_name**, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
+    * NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**, iOS 앱에서 필요한 정보인 **url_scheme_ios_only**를 설정해야 합니다.
 
 - URL Schemes를 설정해야 합니다.
 	* **XCode > Target > Info > URL Types**
@@ -195,7 +195,23 @@ NAVER 추가 인증 정보 입력 예제
 #### Game Center
 TOAST Console에서의 설정 외에 추가 설정은 없습니다.
 
+#### Google
+- AdditionalInfo를 설정해야 합니다.
+	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+	* GOOGLE의 경우, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
+	* **url_scheme_ios_only**의 값은 Xcode의 URL Scheme에 등록된 값들 중 한개와 일치해야 합니다.
 
+- URL Schemes를 설정해야합니다.
+	* **XCode > Target > Info > URL Types**
+
+GOOGLE 추가 인증 정보 입력 예제
+```json
+{ "url_scheme_ios_only": "Your URL Schemes" }
+```
+![Google URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+
+#### Twitter
+TOAST Console에서의 설정 외에 추가 설정은 없습니다.
 
 ### Login with Credential
 
@@ -210,7 +226,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 | keyname                                  | a use                          | 값 종류                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, payco, iosgamecenter, naver |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, payco, iosgamecenter, naver, google, twitter |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정 |                                |
 
 
@@ -407,7 +423,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 | keyname                                  | a use                          | 값 종류                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, payco, iosgamecenter, naver |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, payco, iosgamecenter, naver, google, twitter |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정 |                                |
 
 

@@ -164,30 +164,11 @@ public void GetDisplayLanguageCode()
 
 #### Add New Language Sets
 
-For UnityEditor and Unity Standalone, or WebGL platform services, to use another language in addition to default Gamebase languages (ko, en), go to Assets > StreamingAssets > Gamebase and add a value to the localizedString.json file. 
+For UnityEditor and Unity Standalone, or WebGL platform services, to use another language in addition to default Gamebase languages (ko, en, ja), go to Assets > StreamingAssets > Gamebase and add a value to the localizedstring.json file. 
 
-![localizedString.json](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-etc_001_1.7.0.png)
+![localizedstring.json](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-etc_001_1.11.0.png)
 
-The localizedString.json has a format defined as below:
-
-```json
-{
-  "en": {
-    "common_ok_button": "OK",
-    "common_cancel_button": "Cancel",
-    ...
-    "launching_service_closed_title": "Service Closed"
-  },
-  "ko": {
-    "common_ok_button": "확인",
-    "common_cancel_button": "취소",
-    ...
-    "launching_service_closed_title": "서비스 종료"
-  }
-}
-```
-
-For instance, to add Japanese, add `"ja":{"key":"value"}` to the localizedString.json file. 
+The localizedstring.json has a format defined as below:
 
 ```json
 {
@@ -208,11 +189,40 @@ For instance, to add Japanese, add `"ja":{"key":"value"}` to the localizedString
     "common_cancel_button": "キャンセル",
     ...
     "launching_service_closed_title": "サービス終了"
+  },
+}
+```
+
+To add another language, add `"${language code}":{"key":"value"}` to the localizedstring.json file. 
+
+```json
+{
+  "en": {
+    "common_ok_button": "OK",
+    "common_cancel_button": "Cancel",
+    ...
+    "launching_service_closed_title": "Service Closed"
+  },
+  "ko": {
+    "common_ok_button": "확인",
+    "common_cancel_button": "취소",
+    ...
+    "launching_service_closed_title": "서비스 종료"
+  },
+  "ja": {
+    "common_ok_button": "確認",
+    "common_cancel_button": "キャンセル",
+    ...
+    "launching_service_closed_title": "サービス終了"
+  },
+  "${언어코드}": {
+      "common_ok_button": "...",
+      ...
   }
 }
 ```
 
-If key is missing from inside of "ja":{ } of the json format above, `Language Set on Device` or `en` will be automatically entered. 
+If key is missing from inside of "${language code}":{ } of the json format above, `Language Set on Device` or `en` will be automatically entered. 
 
 Refer to the guides below to learn how to add new language sets for Unity Android and  iOS platforms.
 
@@ -223,8 +233,8 @@ Refer to the guides below to learn how to add new language sets for Unity Androi
 
 If Display Language is set via initialization and SetDisplayLanguageCode API, the final application may be different from what has been entered.
 
-1. Check if the languageCode you enter is defined in the localizedString.json file. 
-2. See if, during Gamebase initialization, the language code set on the device is defined in the localizedString.json file. (This value shall maintain even if the language set on device changes after initialization.)
+1. Check if the languageCode you enter is defined in the localizedstring.json file. 
+2. See if, during Gamebase initialization, the language code set on the device is defined in the localizedstring.json file. (This value shall maintain even if the language set on device changes after initialization.)
 3. `en`, which is the default value of Display Language, is automatically set.
 
 ### Server Push
@@ -235,10 +245,12 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 #### Server Push Type
 Server Push Types currently supported by Gamebase are as follows:
 
-* Kickout
-    * Go to `Operation > Kickout`  in the TOAST Gamebase console and register Kickout ServerPush messages, and the messages are sent to all clients connected to Gamebase.
-    * Type: GamebaseServerPushType.APP_KICKOUT (= "appKickout")
+* GamebaseServerPushType.APP_KICKOUT (= "appKickout")
+    * Go to `Operation > Kickout`  in the TOAST Gamebase console and register Kickout ServerPush messages, and `APP_KICKOUT` messages are sent to all clients connected to Gamebase.
+* GamebaseServerPushType.TRANSFER_KICKOUT (= "transferKickout")
+	* TransferKey 를 통해 게스트 계정 이전이 성공한 경우, TransferKey를 발급받았던 단말기로 `TRANSFER_KICKOUT` 메세지가 전송됩니다.
 
+![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 
 #### Add ServerPushEvent
 Use the API below, register ServerPushEvent to handle the push event triggered from the Gamebase Console and Gamebase server.
@@ -261,12 +273,26 @@ static void AddServerPushEvent(GamebaseCallback.DataDelegate<GamebaseResponse.SD
 ```cs
 public void AddServerPushEvent()
 {
-    GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent = (data) =>
-    {
-        GamebaseResponse.SDK.ServerPushMessage serverPushMessage = data;
-    };
+    Gamebase.AddServerPushEvent(ServerPushEventHandler);
+}
 
-    Gamebase.AddServerPushEvent(serverPushEvent);
+private void ServerPushEventHandler(GamebaseResponse.SDK.ServerPushMessage message)
+{
+    switch(message.type)
+    {
+        case GamebaseServerPushType.APP_KICKOUT:
+            {
+                // Logout
+                // Go to Main
+                break;
+            }
+        case GamebaseServerPushType.TRANSFER_KICKOUT:
+            {
+                // Logout
+                // Go to Main
+                break;
+            }
+    }
 }
 ```
 
@@ -293,7 +319,7 @@ static void RemoveAllServerPushEvent()
 ```cs
 public void RemoveServerPushEvent(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent)
 {
-    Gamebase.RemoveServerPushEvent(observer);
+    Gamebase.RemoveServerPushEvent(serverPushEvent);
 }
 
 public void RemoveAllServerPushEvent()
@@ -335,8 +361,10 @@ The Observer Types currently supported by Gamebase are as follows:
     * Occurs when there is a change in the heartbeat response which periodically maintains connection with the Gamebase server. For example, an event occurs for service suspension.
     * Type: GamebaseObserverType.HEARTBEAT (= "heartbeat")
     * Code: Refer to the constant numbers declared in GamebaseErrorCode.
+        * GamebaseErrorCode.INVALID_MEMBER: 6
         * GamebaseErrorCode.BANNED_MEMBER: 7
 
+![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
 
 #### Add Observer
 Use the API below, register Observer to handle the status change events of Gamebase.
@@ -359,12 +387,56 @@ static void AddObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.Obser
 ```cs
 public void AddObserver()
 {
-	GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer = (data) =>
-    {
-        GamebaseResponse.SDK.ObserverMessage observerMessage = data;
-    };
+    Gamebase.AddObserver(ObserverHandler);
+}
 
-    Gamebase.AddObserver(observer);
+private void ObserverHandler(GamebaseResponse.SDK.ObserverMessage observerMessage)
+{
+    switch (observerMessage.type)
+    {
+        // Launching
+        case GamebaseObserverType.LAUNCHING:
+            {
+                CheckLaunchingStatus(observerMessage.data);
+                break;
+            }
+        // Heartbeat
+        case GamebaseObserverType.HEARTBEAT:
+            {
+                CheckHeartbeat(observerMessage.data);
+                break;
+            }
+        // Network
+        case GamebaseObserverType.NETWORK:
+            {
+                CheckNetworkStatus(observerMessage.data);
+                break;
+            }
+    }
+}
+
+private void CheckLaunchingStatus(Dictionary<string, object> data)
+{
+    // Code : Refer to GamebaseLaunchingStatus.
+    int code        = (int)data["code"];
+
+    // Message
+    string message  = (string)data["message"];
+}
+
+private void CheckHeartbeat(Dictionary<string, object> data)
+{
+    // Code : GamebaseErrorCode.INVALID_MEMBER, GamebaseErrorCode.BANNED_MEMBER
+    int code = (int)data["code"];
+}
+
+private void CheckNetworkStatus(Dictionary<string, object> data)
+{
+    // Code: Refer to GamebaseNetworkType.
+    int code        = (int)data["code"];
+
+    // Message
+    string message  = (string)data["message"];
 }
 ```
 
@@ -391,7 +463,7 @@ static void RemoveAllObserver()
 ```cs
 public void RemoveObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer)
 {
-	Gamebase.RemoveObserver(observer);
+    Gamebase.RemoveObserver(observer);
 }
 
 public void RemoveAllObserver()

@@ -130,28 +130,9 @@ Gamebase 초기화 시 입력된 Display Language를 변경할 수 있습니다.
 
 #### 신규 언어셋 추가
 
-Gamebase에서 제공하는 기본 언어(ko, en) 외 다른 언어를 사용하는 경우에는 Gamebase.bundle 파일의 Resource폴더에 있는 **localizedString.json** 파일에 값을 추가합니다.
+Gamebase에서 제공하는 기본 언어(ko, en) 외 다른 언어를 사용하는 경우에는 Gamebase.bundle 파일의 Resource폴더에 있는 **localizedstring.json** 파일에 값을 추가합니다.
 
-localizedString.json에 정의되어 있는 형식은 아래와 같습니다.
-
-```json
-{
-  "en": {
-    "common_ok_button": "OK",
-    "common_cancel_button": "Cancel",
-    ...
-    "launching_service_closed_title": "Service Closed"
-  },
-  "ko": {
-    "common_ok_button": "확인",
-    "common_cancel_button": "취소",
-    ...
-    "launching_service_closed_title": "서비스 종료"
-  }
-}
-```
-
-일본어를 추가해야 할 경우에는 localizedString.json 파일에 `"ja":{"key":"value"}` 형태로 값을 추가하시면 됩니다.
+localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 ```json
 {
@@ -172,18 +153,47 @@ localizedString.json에 정의되어 있는 형식은 아래와 같습니다.
     "common_cancel_button": "キャンセル",
     ...
     "launching_service_closed_title": "サービス終了"
+  },
+}
+```
+
+다른 언어셋을 추가해야 할 경우에는 localizedstring.json 파일에 `"${언어 코드}":{"key":"value"}` 형태로 값을 추가하면 됩니다.
+
+```json
+{
+  "en": {
+    "common_ok_button": "OK",
+    "common_cancel_button": "Cancel",
+    ...
+    "launching_service_closed_title": "Service Closed"
+  },
+  "ko": {
+    "common_ok_button": "확인",
+    "common_cancel_button": "취소",
+    ...
+    "launching_service_closed_title": "서비스 종료"
+  },
+  "ja": {
+    "common_ok_button": "確認",
+    "common_cancel_button": "キャンセル",
+    ...
+    "launching_service_closed_title": "サービス終了"
+  },
+  "${언어코드}": {
+      "common_ok_button": "...",
+      ...
   }
 }
 ```
 
-위 json 형식에서 "ja":{ } 내부에 key가 누락될 경우에는 `기기에 설정된 언어` 또는 `en`으로 자동 입력됩니다.
+위 JSON 형식에서 "${언어코드}":{ } 내부에 key가 누락될 경우에는 `기기에 설정된 언어` 또는 `en`이 자동으로 입력됩니다.
 
 #### Display Language 우선 순위
 
 초기화 및 setDisplayLanguageCode: API를 통해 Display Language를 설정할 경우, 최종 적용되는 Display Language는 입력한 값과 다르게 적용될 수 있습니다.
 
-1. 입력된 languageCode가 localizedString.json 파일에 정의되어 있는지 확인합니다.
-2. Gamebase 초기화 시, 기기에 설정된 언어코드가 localizedString.json 파일에 정의되어 있는지 확인합니다. (이 값은 초기화 이후, 기기에 설정된 언어를 변경하더라도 유지됩니다.)
+1. 입력된 languageCode가 localizedstring.json 파일에 정의되어 있는지 확인합니다.
+2. Gamebase 초기화 시, 기기에 설정된 언어코드가 localizedstring.json 파일에 정의되어 있는지 확인합니다. (이 값은 초기화 이후, 기기에 설정된 언어를 변경하더라도 유지됩니다.)
 3. Display Language의 기본값인 `en`이 자동 설정됩니다.
 
 
@@ -196,13 +206,15 @@ localizedString.json에 정의되어 있는 형식은 아래와 같습니다.
 #### Server Push Type
 현재 Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
 
-* 킥아웃 (Kickout)
-    * TOAST Gamebase 콘솔의 `Operation > Kickout` 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에게 메시지를 보낼 수 있습니다.
-    * Type : kTCGBServerPushNotificationTypeAppKickout (= @"appKickout")
-    
+* kTCGBServerPushNotificationTypeAppKickout (= "appKickout")
+    * TOAST Gamebase 콘솔의 `Operation > Kickout`에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 `APP_KICKOUT` 메시지를 받게 됩니다.
+* kTCGBServerPushNotificationTypeTransferKickout (= "transferKickout")
+	* TransferKey 를 통해 게스트 계정 이전이 성공한 경우, TransferKey를 발급받았던 단말기로 `TRANSFER_KICKOUT` 메세지가 전송됩니다.
+
+![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 
 #### Add ServerPushEvent
-아래의 API를 사용하여 Gamebase에 ServerPushEvent를 등록하여 처리할 수 있습니다.
+Gamebase Client에 ServerPushEvent를 등록하여 Gamebase Console 및 Gamebase 서버에서 발급된 Push 이벤트를 처리할 수 있습니다.
 
 **API**
 
@@ -219,6 +231,10 @@ localizedString.json에 정의되어 있는 형식은 아래와 같습니다.
         [self printLogAndShowAlertWithData:msg error:nil alertTitle:@"server push"];
         
         if ([message.type caseInsensitiveCompare:kTCGBServerPushNotificationTypeAppKickout] == NSOrderedSame) {
+        	// Logout
+            // Go to Main
+        }
+        else if ([message.type caseInsensitiveCompare:kTCGBServerPushNotificationTypeTransferKickout] == NSOrderedSame) {
         	// Logout
             // Go to Main
         }
@@ -258,7 +274,7 @@ localizedString.json에 정의되어 있는 형식은 아래와 같습니다.
 
 ### Observer
 * Gamebase Observer를 통하여 Gamebase의 각종 상태 변동 이벤트를 전달받아 처리할 수 있습니다.
-* Observer를 추가하면 들어 네트워크 타입 변동, Launching 상태 변동(점검 등에 의한 상태 변동), Heartbeat 정보 변동(사용자 이용 정지 등에 의한 Heartbeat 정보 변동) 등에 대한 이벤트를 사용자가 전달받아 처리 할 수 있습니다.
+* 상태 변동 이벤트 : 네트워크 타입 변동, Launching 상태 변동(점검 등에 의한 상태 변동), Heartbeat 정보 변동(사용자 이용 정지 등에 의한 Heartbeat 정보 변동) 등
 
 
 
@@ -290,11 +306,13 @@ localizedString.json에 정의되어 있는 형식은 아래와 같습니다.
     * 주기적으로 Gamebase 서버와 연결을 유지하는 Heartbeat response에 변동이 있을 때 발생합니다. 예를 들어서, 사용자 이용 정지에 의한 이벤트가 있습니다.
     * Type : ObserverkTCGBObserverMessageTypeHeartbeat (= @"heartbeat")
     * Code : TCGBErrorCode 선언된 상수를 참조합니다.
+        * TCGB_ERROR_INVALID_MEMBER : 6
         * TCGB_ERROR_BANNED_MEMBER : 7
 
+![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
 
 #### Add Observer
-아래의 API를 사용하여 Gamebase에 Observer를 등록하여 처리할 수 있습니다.
+Gamebase Client에 Observer를 등록하여 각종 상태 변동 이벤트를 처리할 수 있습니다.
 
 **API**
 ```objectivec

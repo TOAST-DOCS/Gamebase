@@ -101,6 +101,16 @@ Gamebase 초기화 호출 결과로 론칭 상태를 확인할 수 있습니다.
 
 ```
 
+launchingInformations API를 이용하면 초기화 이후에도 LaunchingInfo 객체를 획득할 수 있습니다.
+
+**API**
+
+```objectivec
+#import <Gamebase/Gamebase.h>
+
++ NSDictionary* launchingInfo = [TCGBLaunching laucnhingInformations];
+```
+
 ### Launching Status Code
 
 | Status                      | Code | Description                              |
@@ -129,9 +139,8 @@ iOS의 앱 이벤트를 관리하려면 다음 **UIApplicationDelegate** 프로�
 >
 
 ```objectivec
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-    return [TCGBGamebase application:application didFinishLaunchingWithOptions:launchOptions];
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [TCGBGamebase application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 ```
 

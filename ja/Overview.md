@@ -23,11 +23,13 @@ Gamebaseは、様々なIdP(identity provider)のアカウントを利用したID
 
 | 外部認証            | 提供されるプラットフォーム     |
 | ----------------- | ------------ |
-| Facebook          | iOS、Android |
-| Apple Game Center | iOS  |
-| Google            | Android  |
-| PAYCO             | iOS、Android |
-| Naver          | iOS、Android |
+| Facebook          | iOS, Android |
+| Apple Game Center | iOS          |
+| Google            | iOS, Android |
+| PAYCO             | iOS, Android |
+| NAVER             | iOS, Android |
+| Twitter			| iOS, Android |
+| LINE				| Android      |
 
 * **ゲストログインを提供します。**
   ゲストログインを利用すれば、ユーザーは何も入力しなくてもすぐにゲームにログインして簡単にゲームを始めることができます。ゲストログインをするだけでもGamebaseのユーザーIDが発行されるため、ゲームはOAuthログインユーザーかゲストログインユーザーかに関係なく同じようにユーザーのゲームデータを管理することができます。

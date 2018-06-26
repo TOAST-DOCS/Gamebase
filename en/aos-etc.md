@@ -86,10 +86,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        GamebaseConfiguration configuration = new GamebaseConfiguration.Builder()
-                                .setAppId("T0aStC1d")
-                                .setAppVersion("1.0.0")
+        String appId = "T0aStC1d";
+        String appVersion = "1.0.0";
+        GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(appId, appVersion)
                                 .enableLaunchingStatusPopup(true)
                                 .setDisplayLanguageCode("en")
                                 .build();
@@ -144,30 +143,11 @@ public void getDisplayLanguageCodeInRuntime() {
 
 #### Add New Language Sets 
 
-To use another language in addition to default Gamebase languages (en, ko), go to gamebase-sdk.aar > res > raw and add a value to the gamebasedisplay file.
+To use another language in addition to default Gamebase languages (en, ko, ja), go to gamebase-sdk-base.aar > res > raw and add a value to the localizedstring.json file.
 
-![gamebasedisplay](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/aos-developers-guide-etc_001_1.7.0.png)
+![localizedstring.json](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/aos-developers-guide-etc_001_1.11.0.png)
 
-The localizedString.json has a format defined as below: 
-
-```json
-{
-  "en": {
-    "common_ok_button": "OK",
-    "common_cancel_button": "Cancel",
-    ...
-    "launching_service_closed_title": "Service Closed"
-  },
-  "ko": {
-    "common_ok_button": "확인",
-    "common_cancel_button": "취소",
-    ...
-    "launching_service_closed_title": "서비스 종료"
-  }
-}
-```
-
-For instance, to add Japanese, add "ja":{"key":"value"} to the localizedString.json file. 
+The localizedstring.json has a format defined as below: 
 
 ```json
 {
@@ -188,18 +168,47 @@ For instance, to add Japanese, add "ja":{"key":"value"} to the localizedString.j
     "common_cancel_button": "キャンセル",
     ...
     "launching_service_closed_title": "サービス終了"
+  },
+}
+```
+
+To add another language, add `"${language code}":{"key":"value"}` to the localizedstring.json file. 
+
+```json
+{
+  "en": {
+    "common_ok_button": "OK",
+    "common_cancel_button": "Cancel",
+    ...
+    "launching_service_closed_title": "Service Closed"
+  },
+  "ko": {
+    "common_ok_button": "확인",
+    "common_cancel_button": "취소",
+    ...
+    "launching_service_closed_title": "서비스 종료"
+  },
+  "ja": {
+    "common_ok_button": "確認",
+    "common_cancel_button": "キャンセル",
+    ...
+    "launching_service_closed_title": "サービス終了"
+  },
+  "${언어코드}": {
+      "common_ok_button": "...",
+      ...
   }
 }
 ```
 
-If key is missing from inside of "ja":{ } of the json format above, `Languages Set on Device` or `en` will be automatically entered. 
+If key is missing from inside of "${language code}":{ } of the json format above, `Languages Set on Device` or `en` will be automatically entered. 
 
 #### Priority in Display Language
 
 If Display Language is set via initialization and SetDisplayLanguageCode API, the final application may be different from what has been entered. 
 
-1. Check if the languageCode you enter is defined in the localizedString.json file. 
-2. See if, during Gamebase initialization, the language code set on the device is defined in the localizedString.json file. (This value shall maintain even if the language set on device changes after initialization.)
+1. Check if the languageCode you enter is defined in the localizedstring.json file. 
+2. See if, during Gamebase initialization, the language code set on the device is defined in the localizedstring.json file. (This value shall maintain even if the language set on device changes after initialization.)
 3.  `en`, which is the default value of Display Language, is automatically set.
 
 
@@ -214,10 +223,12 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 #### Server Push Type
 Server Push Types currently supported by Gamebase are as follows: 
 
-* Kickout
-    * Go to `Operation > Kickout`  in the TOAST Gamebase console and register Kickout ServerPush messages, and the messages are sent to all clients connected to Gamebase.  
-    * Type: ServerPushEventMessage.Type.APP_KICKOUT (= "appKickout")
-    
+* ServerPushEventMessage.Type.APP_KICKOUT (= "appKickout")
+    * Go to `Operation > Kickout`  in the TOAST Gamebase console and register Kickout ServerPush messages, and `APP_KICKOUT` messages are sent to all clients connected to Gamebase.
+* ServerPushEventMessage.Type.TRANSFER_KICKOUT (= "transferKickout")
+	* TransferKey 를 통해 게스트 계정 이전이 성공한 경우, TransferKey를 발급받았던 단말기로 `TRANSFER_KICKOUT` 메세지가 전송됩니다.
+
+![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 
 #### Add ServerPushEvent
 Use the API below, register ServerPushEvent to handle the push event triggered from the Gamebase Console and Gamebase server. 
@@ -236,9 +247,11 @@ public class MyServerPushEventManager {
         @Override
         public void onReceive(ServerPushEventMessage message) {
             if (message.type.equals(ServerPushEventMessage.Type.APP_KICKOUT)) {
-                MyGameStatus.clearSession();
-                MyGameStatus.goToMainPage();
-                MyGameStatus.goToMainPage();
+                // Logout
+                // Go to Main
+            } else if (message.type.equals(ServerPushEventMessage.Type.TRANSFER_KICKOUT)) {
+                // Logout
+                // Go to Main
             } else {
                 ...
             }
@@ -316,8 +329,10 @@ The Observer Types currently supported by Gamebase are as follows:
     * Occurs when there is a change in the heartbeat response which periodically maintains connection with the Gamebase server. For example, an event occurs for service suspension. 
     * Type: ObserverMessage.Type.HEARTBEAT (= "heartbeat")
     * Code: Refer to the constant numbers declared in GamebaseError.
+        * GamebaseError.INVALID_MEMBER: 6
         * GamebaseError.BANNED_MEMBER: 7
 
+![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
 
 #### Add Observer
 Use the API below, register Observer to handle the status change events of Gamebase.
@@ -339,24 +354,46 @@ public class MyObserverManager {
             Map<String, Object> dataMap = message.data;
 
             if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.LAUNCHING)) {
-                // You can check the changed launching status in here.
-
                 int code = Integer.parseInt(dataMap.get("code"));
                 String messageString = (String) dataMap.get("message");
                 Log.d(TAG, "Update launching status to " + code + ", " + messageString);
-                ...
-            } else if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.HEARTBEAT)) {
-                // You can check the invalid user session in here.
 
+                // You can check the changed launching status in here.
+                switch (code) {
+                    case LaunchingStatus.IN_SERVICE:
+                        ...
+                        break;
+                    case LaunchingStatus.RECOMMEND_UPDATE:
+                        ...
+                        break;
+                    case ...
+                        break;
+                    ...
+                }
+            } else if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.HEARTBEAT)) {
                 int code = Integer.parseInt(dataMap.get("code"));
                 Log.d(TAG, "Heartbeat changing : " + dataMap);
-                ...
-            } else if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.NETWORK)) {
-                // You can check the changed network status in here.
 
+                switch (code) {
+                    case GamebaseError.INVALID_MEMBER:
+                        // You can check the invalid user session in here.
+                        ...
+                        break;
+                    case GamebaseError.BANNED_MEMBER:
+                        // You can check the banned user session in here.
+                        ...
+                        break;
+                }
+            } else if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.NETWORK)) {
                 int code = Integer.parseInt(dataMap.get("code"));
                 Log.d(TAG, "Network changing : " + dataMap);
-                ...
+
+                // You can check the changed network status in here.
+                if (code == NetworkManager.TYPE_NOT) {
+                    ...
+                } else {
+                    ...
+                }
             } else {
                 ...
             }

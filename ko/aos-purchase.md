@@ -59,12 +59,11 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
     * TS: ONE store
     * TEST: IAP 테스트용
 
+
 ```java
 String STORE_CODE = "GG";	// Google
 
-TAPConfiguration configuration = new TAPConfiguration.Builder()
-        .setAppId(APP_ID)
-        .setAppVersion(APP_VERSION)
+GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(APP_ID, APP_VERSION)
         .setStoreCode(STORE_CODE)	// Store code를 반드시 선언합니다.
         .build();
 
@@ -105,6 +104,14 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 구매하고자 하는 아이템의 itemSeq를 이용해 다음의 API를 호출해 구매를 요청합니다. <br/>
 게임 이용자가 구매를 취소하는 경우 **GamebaseError.PURCHASE_USER_CANCELED** 오류가 반환됩니다. 취소 처리를 해 주시기 바랍니다.
 
+**API**
+
+```java
++ (void)Gamebase.Purchase.requestPurchase(Activity activity, long itemSeq, GamebaseDataCallback<PurchasableReceipt> callback);
+```
+
+**Example**
+
 ```java
 long itemSeq; // The itemSeq value can be got through the requestItemListPurchasable API.
 
@@ -125,6 +132,14 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 ### Get a List of Purchasable Items
 
 아이템 목록을 조회하려면 다음 API를 호출합니다. 콜백으로 반환되는 배열(array) 안에는 각 아이템들에 대한 정보가 담겨 있습니다.
+
+**API**
+
+```java
++ (void)Gamebase.Purchase.requestItemListPurchasable(Activity activity, GamebaseDataCallback<List<PurchasableItem>> callback);
+```
+
+**Example**
 
 ```java
 Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<List<PurchasableItem>>() {
@@ -151,6 +166,14 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
     1. 결제 성공 후 아이템 소비(consume) 처리 전 최종 확인을 위하여 호출
     2. 로그인 성공 후 소비(consume)하지 못한 아이템이 남아 있지는 않은지 확인하기 위하여 호출
 
+**API**
+
+```java
++ (void)Gamebase.Purchase.requestItemListOfNotConsumed(Activity activity, GamebaseDataCallback<List<PurchasableReceipt>> callback);
+```
+
+**Example**
+
 ```java
 Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallback<List<PurchasableReceipt>>() {
     @Override
@@ -171,6 +194,14 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 
 스토어에서는 결제가 정상적으로 되었으나, TOAST IAP 서버 검증 실패 등으로 정상적으로 결제되지 않은 경우에는,  API를 이용해 재처리를 시도합니다. <br/>
 마지막으로 결제가 성공한 내역을 바탕으로, 아이템 배송(지급) 등의 API를 호출해 처리해야 합니다.
+
+**API**
+
+```java
++ (void)Gamebase.Purchase.requestRetryTransaction(Activity activity, GamebaseDataCallback<PurchasableRetryTransactionResult> callback);
+```
+
+**Example**
 
 ```java
 Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<PurchasableRetryTransactionResult>() {
@@ -206,7 +237,34 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
 * 이 오류는 IAP 모듈에서 발생한 오류입니다.
-* exception.getDetailCode()를 통해 IAP 오류 코드를 확인해야 합니다.
+* 오류 코드를 확인하는 방법은 다음과 같습니다.
+
+```java
+Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<PurchasableReceipt>() {
+    @Override
+    public void onCallback(PurchasableReceipt data, GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            Log.d(TAG, "Purchase successful");
+            ...
+        } else {
+            Log.e(TAG, "Purchase failed");
+
+            // Gamebase Error Info
+            int errorCode = exception.getCode();
+            String errorMessage = exception.getMessage();
+            
+            if (errorCode == GamebaseError.PURCHASE_EXTERNAL_LIBRARY_ERROR) {
+                // IAP Error Info
+                int moduleErrorCode = exception.getDetailCode();
+                String moduleErrorMessage = exception.getDetailMessage();
+                
+                ...
+            }
+        }
+    }
+});
+```
+
 * IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
     * [Mobile Service > IAP > 오류 코드 > Client API 에러 타입](/Mobile%20Service/IAP/ko/error-code/#client-api)
 
