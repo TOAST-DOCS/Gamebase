@@ -11,7 +11,7 @@ Gamebaseでは、認証・決済・Pushなど、ゲームに必要な基本機�
 
 ### Authentication
 
-Gamebaseは、様々なIdP(identity provider)のアカウントを利用したID・パスワードベースのOAuthログインと端末のUUIDを利用したゲストログインに対応しています。Gamebaseの認証は、独自の会員システムを構築せずに、外部IdPが提供する会員情報を利用して認証サービスを提供するサービスです。独自の会員システムがないということは、ユーザーのID・パスワードをGamebaseの内部に保存しないということを意味します。<br/>
+Gamebaseは、様々なIdP(identity provider)のアカウントを利用したID・パスワードベースのOAuthログインと端末のUUIDを利用したゲストログインに対応しています。Gamebaseの認証は、独自の会員システムを構築せずに、外部IdPが提供する会員情報を利用して認証サービスを提供するサービスです。独自の会員システムがないということは、ユーザーのID・パスワードをGamebaseの内部に保存しないということを意味します。
 
 * **様々な認証方式を一つのインターフェースで提供します。** 
   一つのインターフェースでAPIを提供することで、より迅速かつ手軽に外部IdPの追加開発ができるため、開発コストが削減されます。開発者は、複雑な認証フローやリーガルイシュー、ポリシーイシューなどを考えずに、簡単に認証機能を設計することができます。
@@ -23,13 +23,13 @@ Gamebaseは、様々なIdP(identity provider)のアカウントを利用したID
 
 | 外部認証            | 提供されるプラットフォーム     |
 | ----------------- | ------------ |
-| Facebook          | iOS, Android |
+| Facebook          | iOS、Android |
 | Apple Game Center | iOS          |
 | Google            | iOS, Android |
-| PAYCO             | iOS, Android |
-| NAVER             | iOS, Android |
+| PAYCO             | iOS、Android |
+| NAVER             | iOS、Android |
 | Twitter			| iOS, Android |
-| LINE				| Android      |
+| LINE				| iOS, Android |
 
 * **ゲストログインを提供します。**
   ゲストログインを利用すれば、ユーザーは何も入力しなくてもすぐにゲームにログインして簡単にゲームを始めることができます。ゲストログインをするだけでもGamebaseのユーザーIDが発行されるため、ゲームはOAuthログインユーザーかゲストログインユーザーかに関係なく同じようにユーザーのゲームデータを管理することができます。

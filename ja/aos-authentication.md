@@ -922,8 +922,5 @@ Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCa
     }
 });
 ```
-<<<<<<< HEAD
-=======
 
 * IdP SDKのエラーコードは各IdPのDeveloperページをお参照ください。
->>>>>>> beta

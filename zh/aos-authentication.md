@@ -895,11 +895,6 @@ Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
 
 * Occurs in SDK of each IdP.
 * Check the error code as below.
-<<<<<<< HEAD
-
-* Check error codes of IdP SDK at each developer's page.
-=======
->>>>>>> beta
 
 ```java
 Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCallback<AuthToken>() {
@@ -926,8 +921,5 @@ Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCa
     }
 });
 ```
-<<<<<<< HEAD
-=======
 
 * Check error codes of IdP SDK at each developer's page.
->>>>>>> beta

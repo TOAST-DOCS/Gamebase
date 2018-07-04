@@ -56,7 +56,7 @@ def iapSdkVersion = '1.3.8'
 def pushSdkVersion = '1.4.2'
 
 /* Set the Gamebase version. */
-def gamebaseSdkVersion = '1.11.0'
+def gamebaseSdkVersion = '1.11.1'
 def gamebaseFacebookAdapterVersion = '1.11.0'
 def gamebaseGoogleAdapterVersion = '1.9.0'
 def gamebaseNaverAdapterVersion = '1.7.0'
