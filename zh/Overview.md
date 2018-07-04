@@ -11,13 +11,13 @@ Key functions of Gamebase and description are as follows:
 
 ### Authentication
 
-Gamebase supports OAuth login based on ID and passwords, using accounts of many identity providers (IdPs); guest login by using UUID of a device. Its authentication service is based on member information provided by external IdP, without having its own member system. In other words, user's ID or passwords are not saved in Gamebase.<br/>
+Gamebase supports OAuth login based on ID and passwords, using accounts of many identity providers (IdPs); guest login by using UUID of a device. Its authentication service is based on member information provided by external IdP, without having its own member system. In other words, user's ID or passwords are not saved in Gamebase.
 
-* **Provides many authentication methods via single interface. ** <br/>
-  Development costs can be saved by enabling external IdP development easier and faster.  Developers can easily implement authentication without concerning complicated procedure and legal or policy issues. <br/>
+* **Provides many authentication methods via single interface. **
+  Development costs can be saved by enabling external IdP development easier and faster.  Developers can easily implement authentication without concerning complicated procedure and legal or policy issues.
 
-* **Provides various external IdP authentication methods.** <br/>
-  Provided external authentication is to be continuously updated, and if there is any other authentication you'd like to include, contact [Customer Center](https://toast.com/support/inquiry).<br/>
+* **Provides various external IdP authentication methods.**
+  Provided external authentication is to be continuously updated, and if there is any other authentication you'd like to include, contact [Customer Center](https://toast.com/support/inquiry).
 
 Following is the list of external authentication supported by Gamebase.
 
@@ -29,19 +29,19 @@ Following is the list of external authentication supported by Gamebase.
 | PAYCO             | iOS, Android |
 | NAVER             | iOS, Android |
 | Twitter			| iOS, Android |
-| LINE				| Android      |
+| LINE				| iOS, Android |
 
-* **Provides guest logins.** <br/>
-  With guest login, users can log in and start a game without any authentication required. As Gamebase user ID is issued even to guest users, game data can be managed for all users, regardless of OAuth or guest login<br/>
+* **Provides guest logins.**
+  With guest login, users can log in and start a game without any authentication required. As Gamebase user ID is issued even to guest users, game data can be managed for all users, regardless of OAuth or guest login
   
-* **Provides independent member identification.** <br/>
-  On a first-time login, Gamebase user ID is automatically created, which can be used as user identifier in a game. User ID is issued to all users, regardless of authentication method, and is not inclusive to a particular IdP, so user processing is available in the same method throughout any IdP.<br/>
+* **Provides independent member identification.**
+  On a first-time login, Gamebase user ID is automatically created, which can be used as user identifier in a game. User ID is issued to all users, regardless of authentication method, and is not inclusive to a particular IdP, so user processing is available in the same method throughout any IdP.
   
-* **Provides log-out and withdrawal.**<br/>
-  You can choose to log out and log in again from different authentication, and if you withdraw from a game, user ID will be deleted from Gamebase with all related information.<br/>
+* **Provides log-out and withdrawal.**
+  You can choose to log out and log in again from different authentication, and if you withdraw from a game, user ID will be deleted from Gamebase with all related information.
   
-* **Provides mapping so that a game user can use multiple external IdPs at the same time.**<br/>
-  For example, a game user with Facebook authentication can use the same ID with Google authentication. If Facebook authentication is mapped with Google authentication to a user ID, the user can play games with Facebook authentication and Google authentication, each on two different devices. <br/>
+* **Provides mapping so that a game user can use multiple external IdPs at the same time.**
+  For example, a game user with Facebook authentication can use the same ID with Google authentication. If Facebook authentication is mapped with Google authentication to a user ID, the user can play games with Facebook authentication and Google authentication, each on two different devices.
 
 #### Reference
 

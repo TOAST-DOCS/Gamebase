@@ -248,7 +248,7 @@ Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
 ```
 
 * Refer to the following document for TOAST Cloud Push error codes:
-    * [Notification > Push > Error Handling](/Notification/Push/en/sdk-guide/#_5)
+    * [Notification > Push > Error Handling](/Notification/Push/en/sdk-guide/#_10)
 
 
 
