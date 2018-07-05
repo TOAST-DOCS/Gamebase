@@ -7,7 +7,7 @@ Gamebaseでは基本的にゲストログインに対応しています。
 
 - ゲスト以外のProviderでログインするためには、該当するProvider AuthAdapterが必要です。
 - AuthAdapter及び3rd-Party Provider SDKの設定は、次をご参考ください。
-    - [3rd-Party Provider SDK Guide](aos-started#3rd-party-provider-sdk-guide)
+    - [3rd-Party Provider SDK Guide](ios-started#3rd-party-provider-sdk-guide)
 
 ログインを試みるIdPごとにadditionalInfoのパラメーターを入力しなければならない場合があります。<br/>
 AdditionalInfoに対する説明は下の**Gamebaseで対応しているIdP**の説明をご参考ください。
@@ -154,64 +154,8 @@ IdPの中には、ログインする際に必ず必要な情報があるもの�
 }
 ```
 
-#### Gamebaseで対応しているIdP
-#### Guest
-#### Facebook
-- AdditionalInfoを設定する必要があります。
-    * **TOAST Console > Gamebase > App > 認証情報 > 追加情報 & Callback URL**の**追加情報**項目にJSON stringタイプの情報を設定する必要があります。
-    * Facebookの場合、OAuth認証を試みるとき、Facebookにリクエストする情報の種類を設定する必要があります。
-
-Facebook認証追加情報の入力例
-```json
-{ "facebook_permission": [ "public_profile", "email"]}
-```
-- Facebook SDKを利用するためのプロジェクト設定は、次のリンクを参考にします。
-* [LINK \[Facebook Developer Guide\]](https://developers.facebook.com/docs/ios/getting-started)
-
-#### PAYCO
-- AdditionalInfoを設定する必要があります。
-    * **TOAST Console > Gamebase > App > 認証情報 > 追加情報 & Callback URL**の**追加情報**項目にJSON stringタイプの情報を設定する必要があります。
-    * PAYCOの場合、PaycoSDKが求める**service_code**と**service_name**を設定する必要があります。
-
-PAYCO追加認証情報の入力例
-```json
-{ "service_code":"HANGAME", "service_name":"Your Service Name" }
-```
-
-#### NAVER
-- AdditionalInfoを設定する必要があります。
-    * **TOAST Console > Gamebase > App > 認証情報 > 追加情報 & Callback URL**の**追加情報**項目にJSON stringタイプの情報を設定する必要があります。
-    * NAVERの場合、ログイン同意ウィンドウに表示されるアプリ名**service_name**、iOSアプリで必要な情報**url_scheme_ios_only**の設定が必要です。
-
-- URL Schemesを設定する必要があります。
-	* **XCode > Target > Info > URL Types**
-
-NAVER追加認証情報の入力例
-```json
-{ "url_scheme_ios_only":"Your URL Schemes", "service_name":"Your Service Name" }
-```
-![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
-
-#### Game Center
-TOAST Consoleでの設定以外の追加設定はありません。
-
-#### Google
-- AdditionalInfo를 설정해야 합니다.
-	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-	* GOOGLE의 경우, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
-	* **url_scheme_ios_only**의 값은 Xcode의 URL Scheme에 등록된 값들 중 한개와 일치해야 합니다.
-
-- URL Schemes를 설정해야합니다.
-	* **XCode > Target > Info > URL Types**
-
-GOOGLE 추가 인증 정보 입력 예제
-```json
-{ "url_scheme_ios_only": "Your URL Schemes" }
-```
-![Google URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
-
-#### Twitter
-TOAST Console에서의 설정 외에 추가 설정은 없습니다.
+#### Gamebase에서 지원 중인 IdP
+[Console Guide](./oper-app/#authentication-information)를 참고하시기 바랍니다.
 
 ### Login with Credential
 
@@ -255,9 +199,9 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 }
 ```
 
+### Authentication Additional Information Settings
 
-
-
+[Console Guide](./oper-app/#authentication-information)
 
 ## Logout
 

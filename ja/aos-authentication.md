@@ -319,48 +319,7 @@ private static void onLoginWithCredential(final Activity activity) {
 
 ### Authentication Additional Information Settings
 
-#### Google
-
-1. Google 인증을 위해서는 Google Cloud Console에서 **Web Application Client ID**를 발급받아야 합니다.
-	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-001_1.11.0.png)
-	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-002_1.11.0.png)
-2. 승인된 리디렉션 URI 란에 다음 값을 입력합니다.
-	* https://alpha-id-gamebase.toast.com/oauth/callback
-	* https://beta-id-gamebase.toast.com/oauth/callback
-	* https://id-gamebase.toast.com/oauth/callback
-	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-003_1.11.0.png)
-
-#### Facebook
-* **TOAST Console > Gamebase > App > 認証情報 > 追加情報 & Callback URL**の**追加情報**項目にJSON Stringタイプの情報を設定する必要があります。
-    * Facebookの場合、OAuth認証を試みるとき、Facebookにリクエストする情報の種類を設定する必要があります。
-
-Facebook認証追加情報の入力例
-
-```json
-{ "facebook_permission"：[ "public_profile", "email"]}
-```
-
-#### PAYCO
-* **TOAST Console > Gamebase > App > 認証情報 > 追加情報 & Callback URL**の**追加情報**項目にJSON Stringタイプの情報を設定する必要があります。
-    * PAYCOの場合、PaycoSDKが求める**service_code**と**service_name**の設定が必要です。
-
-PAYCO追加認証情報の入力例
-
-```json
-{ "service_code"："HANGAME", "service_name"："Your Service Name" }
-```
-
-#### NAVER
-* **TOAST Console > Gamebase > App > 認証情報 > 追加情報 & Callback URL**の**追加情報**項目にJSON Stringタイプの情報を設定する必要があります。
-	* NAVERの場合、ログイン同意ウィンドウに表示されるアプリ名**service_name**の設定が必要です。
-		* 만일 iOS 빌드도 필요하다면 **url_scheme_ios_only** 값도 설정해야 합니다.
-		* 설정 방법은 iOS 가이드를 참고하시기 바랍니다. : [iOS Developer's Guide > Authentication > NAVER](./ios-authentication/#naver)
-
-NAVER追加認証情報の入力例
-
-```json
-{ "service_name": "Your Service Name" }
-```
+[Console Guide](./oper-app/#authentication-information)
 
 ## Logout
 

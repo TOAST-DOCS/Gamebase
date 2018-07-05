@@ -311,39 +311,7 @@ public void LoginWithCredential()
 
 ### Authentication Additional Information Settings
 
-#### Facebook
-* Go to **TOAST Console > Gamebase > App > Authentication Information > Additional Information & Callback URL** to set json string-type informationto **Additional Information**.
-    * When trying OAuth authentication, type of information to request to Facebook should be set.
-
-Example of adding authentication information in Facebook
-
-```json
-{ "facebook_permission": [ "public_profile", "email"]}
-```
-
-#### PAYCO
-* Go to **TOAST Console > Gamebase > App > Authentication Information > Additional Information & Callback URL** to set json string-type information **to**  **Additional Information**.
-    * **service_code** and **service_name** should be set as PaycoSDK requires.
-
-Example of adding authentication information in PAYCO
-
-```json
-{ "service_code": "HANGAME", "service_name": "Your Service Name" }
-```
-
-#### NAVER
-* Go to **TOAST Console > Gamebase > App > Authentication Information > Additional Information & Callback URL** to set json string-type information **to**  **Additional Information**.
-    * For NAVER, set **service_name**, the app name required for Agree to Login window, and **url_scheme_ios_only** , which is required for an iOS app.
-
-* Set URL Schemes.
-	* **XCode > Target > Info > URL Types**
-
-Example of Adding Authentication Information to NAVER
-```json
-{ "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
-```
-![NAVER URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
-
+[Console Guide](./oper-app/#authentication-information)
 
 ## Logout
 Try to log out from logged-in IdP. In many cases, the logout button is located on the game configuration screen.

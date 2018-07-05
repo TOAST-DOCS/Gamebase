@@ -7,7 +7,7 @@ Gamebase supports guest logins by default.
 
 - To log into providers other than guest, a matching Provider AuthAdapter is required.
 - For setting of AuthAdapter and 3rd-Party Provider SDK, refer to the following.
-    - [3rd-Party Provider SDK Guide](aos-started#3rd-party-provider-sdk-guide)
+    - [3rd-Party Provider SDK Guide](ios-started#3rd-party-provider-sdk-guide)
 
 In some cases, additionalInfo parameter is required for IdP trying a login.
 For more details about AdditionalInfo, refer to **IdPs supported by Gamebase** below.
@@ -154,64 +154,8 @@ You can enter those information to additionalInfo in the dictionary type.<br/>
 }
 ```
 
-#### IdPs Supported by Gamebase
-#### Guest
-#### Facebook
-- Set AdditionalInfo.
-    * Go to **TOAST  Console > Gamebase > App > Authentication Information > Additional Information & Callback URL** to set json string-type information to **Additional Information**.
-    * When trying OAuth authentication, type of information to request to Facebook should be set.
-
-Example of Adding Authentication Information to Facebook
-```json
-{ "facebook_permission": [ "public_profile", "email"]}
-```
-- To setup a project for the use of Facebook SDK, refer to the following link.
-* [LINK \[Facebook Developer Guide\]](https://developers.facebook.com/docs/ios/getting-started)
-
-#### PAYCO
-- Set AdditionalInfo.
-    * Go to **TOAST Console > Gamebase > App > Authentication Information > Additional Information & Callback URL** to set json string-type information to **Additional Information**.
-    * **service_code** and **service_name** should be set as PaycoSDK requires.
-
-Example of Adding Authentication Information to PAYCO
-```json
-{ "service_code": "HANGAME", "service_name": "Your Service Name" }
-```
-
-#### NAVER
-- Set AdditionalInfo.
-    * Go to **TOAST Console > Gamebase > App > Authentication Information > Additional Information & Callback URL** to set json string-type information to **Additional Information**.
-    * For NAVER, set **service_name**, the app name required for Agree to Login window, and **url_scheme_ios_only** , which is required for an iOS app.
-
-- Set URL Schemes.
-	* **XCode > Target > Info > URL Types**
-
-Example of Adding Authentication Information to NAVER
-```json
-{ "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
-```
-![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
-
-#### Game Center
-Requires no additional setting other than TOAST Console setting.
-
-#### Google
-- AdditionalInfo를 설정해야 합니다.
-	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-	* GOOGLE의 경우, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
-	* **url_scheme_ios_only**의 값은 Xcode의 URL Scheme에 등록된 값들 중 한개와 일치해야 합니다.
-
-- URL Schemes를 설정해야합니다.
-	* **XCode > Target > Info > URL Types**
-
-GOOGLE 추가 인증 정보 입력 예제
-```json
-{ "url_scheme_ios_only": "Your URL Schemes" }
-```
-![Google URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
-
-#### Twitter
-TOAST Console에서의 설정 외에 추가 설정은 없습니다.
+#### Gamebase에서 지원 중인 IdP
+[Console Guide](./oper-app/#authentication-information)를 참고하시기 바랍니다.
 
 ### Login with Credential
 
@@ -255,9 +199,9 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 }
 ```
 
+### Authentication Additional Information Settings
 
-
-
+[Console Guide](./oper-app/#authentication-information)
 
 ## Logout
 
