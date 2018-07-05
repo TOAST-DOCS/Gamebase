@@ -312,39 +312,7 @@ public void LoginWithCredential()
 
 ### Authentication Additional Information Settings
 
-#### Facebook
-* **TOAST Console > Gamebase > App > 認証情報 > 追加情報 & Callback URL**の**追加情報**項目にJSON stringタイプの情報を設定する必要があります。
-    * Facebookの場合、OAuth認証を試みるとき、Facebookにリクエストする情報の種類を設定する必要があります。
-
-Facebook認証追加情報の入力例
-
-```json
-{ "facebook_permission": [ "public_profile", "email"]}
-```
-
-#### PAYCO
-* **TOAST Console > Gamebase > App > 認証情報 > 追加情報 & Callback URL**の**追加情報**項目にJSON stringタイプの情報を設定する必要があります。
-    * PAYCOの場合、PaycoSDKが求める**service_code**と**service_name**を設定する必要があります。
-
-PAYCO追加認証情報の入力例
-
-```json
-{ "service_code": "HANGAME", "service_name": "Your Service Name" }
-```
-
-#### NAVER
-* **TOAST Console > Gamebase > App > 認証情報 > 追加情報 & Callback URL**の**追加情報**項目にJSON stringタイプの情報を設定する必要があります。
-    * NAVERの場合、ログイン同意ウィンドウに表示されるアプリ名**service_name**、iOSアプリで必要な情報**url_scheme_ios_only**の設定が必要です。
-
-* URL Schemesを設定する必要があります。
-	* **XCode > Target > Info > URL Types**
-
-NAVER追加認証情報の入力例
-```json
-{ "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
-```
-![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
-
+[Console Guide](./oper-app/#authentication-information)
 
 ## Logout
 ログインされたIdPからのログアウトを試みます。主にゲームの設定画面にログアウトボタンを設け、ボタンをクリックすると実行されるように設計するケースが多いです。

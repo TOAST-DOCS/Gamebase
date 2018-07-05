@@ -319,48 +319,7 @@ private static void onLoginWithCredential(final Activity activity) {
 
 ### Authentication Additional Information Settings
 
-#### Google
-
-1. Google 인증을 위해서는 Google Cloud Console에서 **Web Application Client ID**를 발급받아야 합니다.
-	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-001_1.11.0.png)
-	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-002_1.11.0.png)
-2. 승인된 리디렉션 URI 란에 다음 값을 입력합니다.
-	* https://alpha-id-gamebase.toast.com/oauth/callback
-	* https://beta-id-gamebase.toast.com/oauth/callback
-	* https://id-gamebase.toast.com/oauth/callback
-	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-003_1.11.0.png)
-
-#### Facebook
-* Go to **TOAST Cloud Console > Gamebase > App > Authentication Information > Additional Information &Callback URL** to set json string-type information to **Additional Information**.
-    * When trying OAuth authentication, it is required to set additional information to request to Facebook.
-
-Example of adding authentication information in Facebook
-
-```json
-{ "facebook_permission": [ "public_profile", "email"]}
-```
-
-#### PAYCO
-* Go to **TOAST Cloud Console > Gamebase > App > Authentication Information > Additional Information &Callback URL** to set json string-type information to **Additional Information**.
-    * **service_code** and **service_name** should be set as PaycoSDK requires.
-
-Example of adding authentication information in PAYCO
-
-```json
-{ "service_code": "HANGAME", "service_name": "Your Service Name" }
-```
-
-#### NAVER
-* Go to **TOAST Cloud Console > Gamebase > App > Authentication Information > Additional Information &Callback URL** to set json string-type information to **Additional Information**.
-	* For NAVER, set **service_name**, the app name required for Agree to Login window.
-		* 만일 iOS 빌드도 필요하다면 **url_scheme_ios_only** 값도 설정해야 합니다.
-		* 설정 방법은 iOS 가이드를 참고하시기 바랍니다. : [iOS Developer's Guide > Authentication > NAVER](./ios-authentication/#naver)
-
-Example of adding authentication information in NAVER
-
-```json
-{ "service_name": "Your Service Name" }
-```
+[Console Guide](./oper-app/#authentication-information)
 
 ## Logout
 

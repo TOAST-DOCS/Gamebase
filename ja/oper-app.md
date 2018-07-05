@@ -105,7 +105,7 @@ Device Keyと登録する端末の**追加情報**を入力した後、登録ボ
 
 ### Authentication Information
 
-#### Facebook
+#### 1. Facebook
 Facebookの開発サイトに登録したアプリの{アプリID}と{アプリシークレットコード}をGamebase Consoleに入力します。
 この時、ログインする際に必要な{Facebook Permission}もJSON Stringタイプで追加情報欄に入力する必要があります。
 
@@ -119,33 +119,52 @@ Facebookの開発サイトに登録したアプリの{アプリID}と{アプリ�
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_facebook_1.0.png)
 
 **[例] facebook_permission format **
-
+* Facebook의 경우, OAuth 인증 시도 시, Facebook에 요청할 정보의 종류를 설정해야 합니다.
 ```json
-{ "facebook_permission"：[ "public_profile", "email", "user_friends"] }
+{ "facebook_permission": [ "public_profile", "email"] }
 ```
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_facebook_permission_1.0.png)
 
-**Reference URL **<br />
+**Reference URL**<br />
 
 - [Facebookの開発者サイト](https://developers.facebook.com/)
 - [Facebookの権限](https://developers.facebook.com/docs/facebook-login/permissions/)
 
+##### Android & iOS & Unity
+TOAST Console에서의 설정 외에 추가 설정은 없습니다.
 
 
 
-#### Google
-Googleの開発者コンソールに登録されたアプリの{クライアントID}及び{クライアントセキュリティシークレット}、{リダイレクションURI}をGamebase Consoleに入力します。
+#### 2. Google
 
-**入力フィールド**
+##### Google Cloud Console
 
-- ClientID：{クライアントID}
-- Secret Key：{クライアントセキュリティシークレット}
-- Callback URL：{リダイレクションURI}
-  <br />
-  ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_google_1.0.png)
+1. Google 인증을 위해서는 Google Cloud Console에서 **Web Application Client ID**를 발급받아 Gamebase Console에 입력해야 합니다.
+	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-001_1.11.0.png)
+	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-002_1.11.0.png)
+2. 승인된 리디렉션 URI 란에 다음 값을 입력합니다.
+	* https://alpha-id-gamebase.toast.com/oauth/callback
+	* https://beta-id-gamebase.toast.com/oauth/callback
+	* https://id-gamebase.toast.com/oauth/callback
+	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-003_1.11.0.png)
+  
+##### iOS
+- AdditionalInfo를 설정해야 합니다.
+	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+	* GOOGLE의 경우, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
+	* **url_scheme_ios_only**의 값은 Xcode의 URL Scheme에 등록된 값들 중 한개와 일치해야 합니다.
 
-#### Apple Game Center
+- URL Schemes를 설정해야 합니다.
+	* **XCode > Target > Info > URL Types**
+
+- GOOGLE 추가 인증 정보 입력 예제
+	```json
+	{ "url_scheme_ios_only": "Your URL Schemes" }
+	```
+	![Google URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+
+#### 3. Apple Game Center
 Appleの開発者サイトに登録されたBundleIDをGamebase Consoleに入力します。
 
 **入力フィールド**<br />
@@ -159,35 +178,67 @@ Appleの開発者サイトに登録されたBundleIDをGamebase Consoleに入力
 - [Apple Developerサイト](https://developer.apple.com/)
 - [Apple iTunes Connect](https://itunesconnect.apple.com/)
 
-#### PAYCO
+#### 4. PAYCO
 PAYCO Client IDを申請して発行された{client_id}及び{client_secret}をGamebase Consoleに入力します。
 
 **入力フィールド**<br />
 
-- ClientID：{Payco client_id}
-- Secret Key：{Payco client_secret}
+- ClientID: {Payco client_id}
+- Secret Key: {Payco client_secret}
+- 추가정보: Payco Service & Service Name (JSON format)
 
-#### NAVER
+##### Android & iOS & Unity
+- AdditionalInfo를 설정해야 합니다.
+    * **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+    * PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
+	* PAYCO 추가 인증 정보 입력 예제
+		```json
+		{ "service_code": "HANGAME", "service_name": "Your Service Name" }
+		```
+
+
+#### 5.NAVER
 NAVER Developersサイトで申請して発行された{client_id}及び{client_secret}をGamebase Consoleに入力します。
-この時、ログイン同意ウィンドウに表示されるアプリケーション名及びschemeなどiOSアプリケーションで必要な情報もJSON Stringタイプで追加情報欄に入力する必要があります。
+이때, 로그인 동의 창에서 표시할 애플리케이션 이름인 **service_name** 을 설정해야 하고, iOS 의 경우에는 추가로 **url_scheme_ios_only** 값을 JSON String 형태로 추가 정보란에 입력해야 합니다.
 
 **入力フィールド**
 
-- Client ID：{NAVER client_id}
-- Secret Key：{NAVER client_secret}
-- 追加情報：NAVER Application Name & iOS url scheme (json format) 
+- Client ID: {NAVER client_id}
+- Secret Key: {NAVER client_secret}
+- 追加情報: NAVER Application Name & iOS url scheme (json format)
 
 **[例] NAVER Additional input format **
 ```json
-{ "url_scheme_ios_only"："Your Url Scheme", "service_name"："Your Service Name" }
+{ "service_name": "Your Service Name", "url_scheme_ios_only": "Your Url Scheme" }
 ```
 
 **Reference URL**<br />
 - [NAVER Developers - アプリケーション登録](https://developers.naver.com/apps/#/register)
 - [NAVER Developers - クライアントIDとクライアントシークレット確認](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)
 
+##### Android & Unity
+* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+	* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
 
-#### Twitter
+```json
+{"service_name": "Your Service Name" }
+```
+
+##### iOS
+* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+	* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
+	* iOS 앱에서 필요한 정보인 **url_scheme_ios_only**를 추가로 설정해야 합니다.
+
+* URL Schemes를 설정해야 합니다.
+	* **XCode > Target > Info > URL Types**
+* NAVER 추가 인증 정보 입력 예제
+	```json
+	{ "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
+	```
+	![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+
+
+#### 6. Twitter
 Twitter Application Management 사이트에서 앱을 등록하고 발급받은 {Consumer Key} 및 {Consumer Secret}을 Gamebase Console에 입력합니다.
 
 **입력 필드**
@@ -197,6 +248,44 @@ Twitter Application Management 사이트에서 앱을 등록하고 발급받은 
 
 **Reference URL**
 - [Twitter Application Management](https://apps.twitter.com/)
+
+
+#### 7. LINE
+
+**입력 필드**
+- Client ID: {LINE Channel ID}
+- Secret Key: {LINE Channel Secret}
+
+**Reference URL**
+
+- [LINE Developer Console](https://developers.line.me/console/)
+
+##### iOS
+LINE Login 기능을 사용하기 위하여, Xcode에 추가 설정이 필요합니다.
+- URL Schemes를 설정해야 합니다.
+	* **XCode > Target > Info > URL Types**에 `line3rdp.{App Bundle ID}`를 추가해야 합니다.
+
+- Info.plist파일을 설정해야합니다.
+	* LINE에서 발급받은 ChannelID를 설정합니다.
+	```xml
+	<key>LineSDKConfig</key>
+	<dict>
+    	<key>ChannelID</key>
+    	<string>{Issued LINE ChannleID}</string>
+	</dict>
+	```
+	* ATS 설정을 위하여 scheme을 등록합니다.
+	```xml
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+    	<string>lineauth</string>
+    	<string>line3rdp.{App Bundle ID}</string>
+	</array>
+	```
+- LINE Login을 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다. (인증 필요)
+* [LINK \[LINE Developer Guide\]](https://developers.line.me/en/docs/line-login/ios/try-line-login/)
+
+
 
 ## Client
 
