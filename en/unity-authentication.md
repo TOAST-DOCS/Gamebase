@@ -195,11 +195,11 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 > There is information which must be included for login with some IdPs.<br/>
 > For instance, scope must be set to implement a Facebook login.<br/>
 > In order to set such necessary information, static void Login (string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) API is provided.<br/>
-> You can enter those information to additionalInfo in the dictionary type. When the parameter value is null, the additionalInfo registered in the TOAST Console will be applied. Generally, the parameter value will take precedence over the value registered in the Console. ([Setting additionalInfo in TOAST Console](#authentication-additional-information-settings))<br/>
+> You can enter those information to additionalInfo in the dictionary type. When the parameter value is null, the additionalInfo registered in the TOAST Console will be applied. Generally, the parameter value will take precedence over the value registered in the Console. ([Setting additionalInfo in TOAST Console](./oper-app/#authentication-information))<br/>
 > Stansalone에서는 WebViewAdapter를 통해서 로그인을 지원하며 WebView가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
 
 
-Standalone WebViewAdapter를 사용하여 로그인을 하기 위해서는 IDP 개발자 사이트에서 아래 CallbackURL을 설정 하여야 합니다.
+Standalone WebViewAdapter를 사용하여 로그인을 하기 위해서는 IdP 개발자 사이트에서 아래 CallbackURL을 설정 하여야 합니다.
 
 * https://alpha-id-gamebase.toast.com/oauth/callback
 * https://beta-id-gamebase.toast.com/oauth/callback

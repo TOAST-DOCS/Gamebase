@@ -2,21 +2,22 @@
 
 To use Gamebase Unity SDK, initialization is required, and App ID and app version should be registered in the TOAST Console.
 
-### Required Settings
+### Inspector Settings
 
 Following settings are required for initialization.
 
-| Setting value              | Supported OS |
-| -------------------------- | ------------ |
-| appID | ALL |
-| appVersion | ALL |
-| zoneType | ALL |
-| isDebugMode | ALL |
-| enablePopup | iOS, Android |
-| enableLaunchingStatusPopup | iOS, Android |
-| enableBanPopup | iOS, Android |
-| storeCode | iOS, Android |
-| fcmSenderId | Android |
+| Setting value              | Supported Platform | Mandatory(M) / Optional(O) |
+| -------------------------- | ------------------ | -------------------------- |
+| appID | ALL | M |
+| appVersion | ALL | M |
+| isDebugMode | ALL | O |
+| displayLanguageCode | ALL | O |
+| enablePopup | ALL | O |
+| enableLaunchingStatusPopup | ALL | O |
+| enableBanPopup | ALL | O |
+| storeCode | ALL | O |
+| fcmSenderId | Android | O |
+| useWebview | Standalone | O |
 
 #### 1. App ID
 
@@ -30,12 +31,7 @@ Client version registered in TOAST.
 
 [Console Guide](/Game/Gamebase/en/oper-app/#client)
 
-
-#### 3. zoneType
-
-Leave the value empty, as this setting is provided for external testing.
-
-#### 4. isDebugMode
+#### 3. isDebugMode
 
 Setting for Gamebase debug.
 
@@ -49,9 +45,16 @@ To inquire about Gamebase, change the setting to True and send logs to [Customer
 >
 > When **releasing** a game, make sure to change **parameter** to **false**.
 
+#### 4. displayLanguageCode
+
+The display language on the Gamebase UI and SystemDialog can be changed into another language, which is not set on a device, as the user wants. 
+
+[Display Language](./unity-etc/#display-language)
+
 #### 5. enablePopup
 
-This setting regards to applying default pop-ups provided by Gamebase Mobile (iOS, Android) SDK.
+When a game user cannot play games due to system maintenance or banned from use, reasons need to be displayed by pop-ups.
+This setting regards to applying default pop-ups provided by Gamebase SDK.
 
 * True: Pop-ups are exposed depending on the setting of enableLaunchingStatusPopup and enableBanPopup.
 * False: All pop-ups provided by Gamebase are not exposed.
@@ -86,11 +89,15 @@ Sender ID to use FCM (Firebase Cloud Messaging).
 
 ![FCM Sender ID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
 
-#### 10. GamebaseUnitySDKSettings
+#### 10. useWebview
+
+Standalone 플랫폼에서 WebView를 통해서 로그인을 할 것인지에 대한 설정입니다. 
+
+#### 11. GamebaseUnitySDKSettings
 
 Settings described above can be modified at Inspector of the GamebaseUnitySDKSettings component.
 
-![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_003_1.4.0.png)
+![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_003_1.12.0.png)
 
 ### Initialize with Inspector Settings
 

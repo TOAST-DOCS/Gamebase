@@ -10,7 +10,7 @@ Below describes environments and initial setting of Gamebase Unity SDK.
 > 
 > * Unity 5.x : 5.5.4 ~ 5.6.6
 > * Unity 2017.x : ~ 2017.4.5
-> * Unity 2018.x : ~ 2018.1.5
+> * Unity 2018.x : ~ 2018.2.0
 
 #### Supported Platforms
 
@@ -18,7 +18,7 @@ Below describes environments and initial setting of Gamebase Unity SDK.
 * Android
 * Standalone
     * Windows7 or higher
-* MAC OS is not supported.
+	* MAC OS is not supported.
 * WebGL
     * [WebGL Browser Compatibility](https://docs.unity3d.com/Manual/webgl-browsercompatibility.html)
 * Editor

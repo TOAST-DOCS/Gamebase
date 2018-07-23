@@ -2,21 +2,22 @@
 
 Gamebase Unity SDK를 사용하려면 먼저 초기화를 진행해야 합니다. 또한 앱 ID, 앱 버전 정보가 TOAST Console에 반드시 등록돼 있어야 합니다.
 
-### Required Settings
+### Inspector Settings
 
 초기화 시 필요한 설정들은 아래와 같습니다.
 
-| Setting value              | Supported OS |
-| -------------------------- | ------------ |
-| appID | ALL |
-| appVersion | ALL |
-| zoneType | ALL |
-| isDebugMode | ALL |
-| enablePopup | iOS, Android |
-| enableLaunchingStatusPopup | iOS, Android |
-| enableBanPopup | iOS, Android |
-| storeCode | iOS, Android |
-| fcmSenderId | Android |
+| Setting value              | Supported Platform | Mandatory(M) / Optional(O) |
+| -------------------------- | ------------------ | -------------------------- |
+| appID | ALL | M |
+| appVersion | ALL | M |
+| isDebugMode | ALL | O |
+| displayLanguageCode | ALL | O |
+| enablePopup | ALL | O |
+| enableLaunchingStatusPopup | ALL | O |
+| enableBanPopup | ALL | O |
+| storeCode | ALL | O |
+| fcmSenderId | Android | O |
+| useWebview | Standalone | O |
 
 #### 1. App ID
 
@@ -30,12 +31,7 @@ Gamebase Console에 등록한 클라이언트 버전입니다.
 
 [Console Guide](/Game/Gamebase/ko/oper-app/#client)
 
-
-#### 3. zoneType
-
-외부 테스트를 위해 제공되고 있는 설정이므로 값을 입력하지 않도록 합니다.
-
-#### 4. isDebugMode
+#### 3. isDebugMode
 
 Gamebase 디버그를 위한 설정입니다.
 
@@ -49,9 +45,16 @@ Gamebase 문의가 필요할 경우에는 해당 설정을 true 로 변경하시
 >
 > 게임을 **RELEASE** 할 경우에는 해당 설정을 반드시 **false**로 변경해야 합니다.
 
+#### 4. displayLanguageCode
+
+Gamebase에서 제공하는 UI 및 SystemDialog에 표시되는 언어를 기기에 설정된 언어가 아닌 다른 언어로 변경할 수 있습니다.
+
+[Display Language](./unity-etc/#display-language)
+
 #### 5. enablePopup
 
-Gamebase Mobile(iOS, Android) SDK에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+시스템 점검, 이용 제재(ban) 등 게임 이용자가 게임을 플레이할 수 없는 상황에서 팝업 등으로 사유를 표시해야 할 때가 있습니다.
+Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
 
 * true: enableLaunchingStatusPopup, enableBanPopup 설정에 따라 팝업이 노출 여부가 결정됩니다.
 * false: Gamebase에서 제공하는 모든 팝업이 노출되지 않습니다.
@@ -86,11 +89,15 @@ Firebase Messaging(FCM) 사용을 위한 Sender ID입니다.
 
 ![FCM Sender ID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
 
-#### 10. GamebaseUnitySDKSettings
+#### 10. useWebview
+
+Standalone 플랫폼에서 WebView를 통해서 로그인을 할 것인지에 대한 설정입니다. 
+
+#### 11. GamebaseUnitySDKSettings
 
 위에서 설명한 설정들은 GamebaseUnitySDKSettings 컴포넌트의 Inspector에서 변경할 수 있습니다.
 
-![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_003_1.4.0.png)
+![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_003_1.12.0.png)
 
 ### Initialize with Inspector Settings
 
