@@ -198,11 +198,11 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 > 이러한 필수 정보들을 설정할 수 있게 static void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) API를 제공합니다.<br/>
 > additionalInfo 파라미터에 필수 정보들을 dictionary 형태로 입력하시면 됩니다.
 additionalInfo 값이 있을 경우에는 해당 값을 사용하고 없을 경우에는(null) TOAST Console에 등록된 값을 사용합니다.
-([TOAST Console에 additionalInfo 설정하기](#authentication-additional-information-settings))<br/>
+([TOAST Console에 additionalInfo 설정하기](./oper-app/#authentication-information))<br/>
 > Stansalone에서는 WebViewAdapter를 통해서 로그인을 지원하며 WebView가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
 
 
-Standalone WebViewAdapter를 사용하여 로그인을 하기 위해서는 IDP 개발자 사이트에서 아래 CallbackURL을 설정 하여야 합니다.
+Standalone WebViewAdapter를 사용하여 로그인을 하기 위해서는 IdP 개발자 사이트에서 아래 CallbackURL을 설정 하여야 합니다.
 
 * https://alpha-id-gamebase.toast.com/oauth/callback
 * https://beta-id-gamebase.toast.com/oauth/callback

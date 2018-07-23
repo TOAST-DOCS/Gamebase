@@ -159,10 +159,10 @@ TOAST Console에서의 설정 외에 추가 설정은 없습니다.
 	* **XCode > Target > Info > URL Types**
 
 - GOOGLE 추가 인증 정보 입력 예제
-	```json
-	{ "url_scheme_ios_only": "Your URL Schemes" }
-	```
-	![Google URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+```json
+{ "url_scheme_ios_only": "Your URL Schemes" }
+```
+![Google URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
 #### 3. Apple Game Center
 Enter Bundle ID registered on Apple Developer's Site in the TOAST Cloud Gamebase Console.
@@ -192,9 +192,9 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the TO
     * **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
     * PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
 	* PAYCO 추가 인증 정보 입력 예제
-		```json
-		{ "service_code": "HANGAME", "service_name": "Your Service Name" }
-		```
+    ```json
+    { "service_code": "HANGAME", "service_name": "Your Service Name" }
+    ```
 
 
 #### 5.NAVER
@@ -232,10 +232,10 @@ Enter {client_id} and {client_secret} you requested and get issued by the NAVER 
 * URL Schemes를 설정해야 합니다.
 	* **XCode > Target > Info > URL Types**
 * NAVER 추가 인증 정보 입력 예제
-	```json
-	{ "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
-	```
-	![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+```json
+{ "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
+```
+![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
 
 #### 6. Twitter

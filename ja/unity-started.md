@@ -10,7 +10,7 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 > 
 > * Unity 5.x : 5.5.4 ~ 5.6.6
 > * Unity 2017.x : ~ 2017.4.5
-> * Unity 2018.x : ~ 2018.1.5
+> * Unity 2018.x : ~ 2018.2.0
 
 #### Supported Platforms
 
@@ -18,7 +18,7 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 * Android
 * Standalone
     * Windows7以上
-* MAC OSには対応しておりません。
+	* MAC OSには対応しておりません。
 * WebGL
     * [WebGL Browser Compatibility](https://docs.unity3d.com/Manual/webgl-browsercompatibility.html)
 * Editor
