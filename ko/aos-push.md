@@ -94,21 +94,24 @@
     * gradle 설정에 **apply plugin: 'com.google.gms.google-services'**를 추가합니다.
     * 위 설정으로 Google Services Gradle Plugin이 적용되어 google-services.json 파일을 res/google-services/{build_type}/values/values.xml라는 이름의 string resource로 변경하여 사용하게 됩니다.
 * Unity 빌드인 경우
-    * Google Services Gradle Plugin을 사용할 수 없습니다. 직접 string resource를 만들어 프로젝트에 포함하려면 [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file) 설명을 참고합니다. 
-        * 다음은 string resource 파일의 예시입니다.
-
-```xml
-<!-- res/values/google-services-json.xml -->
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-  <string name="default_web_client_id" translatable="false">000000000000-abcdabcdabcdabcdabcdabcdabcd.apps.googleusercontent.com</string>
-  <string name="gcm_defaultSenderId" translatable="false">000000000000</string>
-  <string name="firebase_database_url" translatable="false">https://tap-development-00000000.firebaseio.com</string>
-  <string name="google_app_id" translatable="false">1:000000000000:android:749cbe01c8ada279</string>
-  <string name="google_api_key" translatable="false">AbCd_AbCd_AbCd_AbCd_AbCd_AbCd_AbCd</string>
-  <string name="google_storage_bucket" translatable="false">tap-development-00000000.appspot.com</string>
-</resources>
-```
+    * 직접 string resource(xml) 파일을 만들어서 Assets/Plugins/Android/res/values/ 폴더에 포함시켜야 합니다. 
+        * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
+        * 다음은 string resource(xml) 파일의 예시입니다.
+            ```xml
+            <!-- Assets/Plugins/Android/res/values/google-services-json.xml -->
+            <?xml version="1.0" encoding="utf-8"?>
+            <resources>
+            <string name="default_web_client_id" translatable="false">000000000000-abcdabcdabcdabcdabcdabcdabcd.apps.googleusercontent.com</string>
+            <string name="gcm_defaultSenderId" translatable="false">000000000000</string>
+            <string name="firebase_database_url" translatable="false">https://tap-development-00000000.firebaseio.com</string>
+            <string name="google_app_id" translatable="false">1:000000000000:android:749cbe01c8ada279</string>
+            <string name="google_api_key" translatable="false">AbCd_AbCd_AbCd_AbCd_AbCd_AbCd_AbCd</string>
+            <string name="google_storage_bucket" translatable="false">tap-development-00000000.appspot.com</string>
+            </resources>
+            ```
+        * string resource(xml) 파일에서 설정하는 각각의 값은 Firebase Console > 프로젝트 설정 > google-services.json 파일을 다운로드해서 확인 가능합니다. 
+            Firebase 서비스 연동에 따라서 google-services.json 파일의 내용은 달라질 수 있습니다.
+            ![Download google-services.json](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
 
 #### Initialization
 

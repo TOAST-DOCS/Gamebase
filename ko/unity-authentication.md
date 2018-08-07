@@ -185,13 +185,16 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 
 **providerName**
 
-* GamebaseAuthProvider.GOOGLE
-* GamebaseAuthProvider.GAMECENTER(iOS Only)
-* GamebaseAuthProvider.FACEBOOK
-* GamebaseAuthProvider.PAYCO
-* GamebaseAuthProvider.NAVER(Android/iOS Only)
-* GamebaseAuthProvider.TWITTER(Android/iOS Only)
-* GamebaseAuthProvider.LINE(Android Only)
+| Provider    | Define                          | Support Platform | 
+| --------    | ------------------------------- | ---------------- |
+| Google      | GamebaseAuthProvider.GOOGLE     | Android<br/>iOS<br/>Standalone |
+| Game Center | GamebaseAuthProvider.GAMECENTER | iOS |
+| Facebook    | GamebaseAuthProvider.FACEBOOK   | Android<br/>iOS<br/>Standalone |
+| Payco       | GamebaseAuthProvider.PAYCO      | Android<br/>iOS<br/>Standalone |
+| Naver       | GamebaseAuthProvider.NAVER      | Android<br/>iOS |
+| Twitter     | GamebaseAuthProvider.TWITTER    | Android<br/>iOS |
+| Line        | GamebaseAuthProvider.LINE       | Android |
+
 
 > 몇몇 IdP로 로그인할 때는 꼭 필요한 정보가 있습니다.<br/>
 > 예를 들어, Facebook 로그인을 구현하려면 scope 등을 설정해야 합니다.<br/>
