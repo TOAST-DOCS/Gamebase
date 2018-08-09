@@ -54,18 +54,19 @@ def lineSdkVersion = '4.0.8'
 def paycoSdkVersion = '1.3.2'
 def iapSdkVersion = '1.3.8'
 def pushSdkVersion = '1.4.2'
+def pushSdkTencentVersion = '1.6.0'
 
 /* Set the Gamebase version. */
-def gamebaseSdkVersion = '1.11.1'
+def gamebaseSdkVersion = '1.12.1'
 def gamebaseFacebookAdapterVersion = '1.11.0'
 def gamebaseGoogleAdapterVersion = '1.9.0'
 def gamebaseNaverAdapterVersion = '1.7.0'
 def gamebaseTwitterAdapterVersion = '1.11.0'
 def gamebaseLineAdapterVersion = '1.11.0'
 def gamebasePaycoAdapterVersion = '1.7.0'
-def gamebaseIAPAdapterVersion = '1.3.0'		// Not all adapters have the same version.
+def gamebaseIAPAdapterVersion = '1.12.1'		// Not all adapters have the same version.
 def gamebaseFCMAdapterVersion = '1.7.0'
-def gamebaseTencentAdapterVersion = '1.7.0'
+def gamebaseTencentAdapterVersion = '1.12.1'
 
 /* Set if defined google-services plugin */
 def useGoogleServicesPlugin = true
@@ -174,7 +175,7 @@ dependencies {
         implementation(name: "gamebase-adapter-purchase-iap-${gamebaseIAPAdapterVersion}", ext: 'aar')
 
         if (usePurchaseIAPOneStore) {
-            implementation(name: "iap-tstore-${iapSdkVersion}", ext: 'aar')
+            implementation(name: "iap-onestore-${iapSdkVersion}", ext: 'aar')
         }
     }
 
@@ -186,7 +187,7 @@ dependencies {
         implementation(name: "pushsdk-${pushSdkVersion}", ext: 'aar')
         implementation(name: "gamebase-adapter-push-fcm-${gamebaseFCMAdapterVersion}", ext: 'aar')
     } else if (usePushTencent) {
-        compile(name: "pushsdk-tencent-${pushSdkVersion}", ext: 'aar')
+        compile(name: "pushsdk-tencent-${pushSdkTencentVersion}", ext: 'aar')
         implementation(name: "gamebase-adapter-push-tencent-${gamebaseTencentAdapterVersion}", ext: 'aar')
     }
 }
@@ -206,9 +207,9 @@ Gamebase SDK에서는 3rd Party SDK 및 Dependency가 있는 모듈의 버전에
 |                                  | Line            | gamebase-adapter-auth-line<br>-{gamebaseLineAdapterVersion}.aar | line-sdk-{lineSdkVersion}.aar<br>animated-vector-drawable-{supportVersion}.aar<br>appcompat-v7-{supportVersion}.aar<br>customtabs-{supportVersion}.aar<br>support-vector-drawable-{supportVersion}.aar<br>common-1.0.0.jar<br>common-1.0.3.jar<br>runtime-1.0.3.aar<br>support-annotations-{supportVersion}.jar<br>support-compat-{supportVersion}.aar<br>support-core-ui-{supportVersion}.aar<br>support-core-utils-{supportVersion}.aar<br>support-fragment-{supportVersion}.aar |
 |                                  | Payco           | gamebase-adapter-auth-payco<br>-{gamebasePaycoAdapterVersion}.aar | paycologin-{paycoSdkVersion}.aar<br>play-services-base-{playServicesVersion}.aar<br>play-services-basement-{playServicesVersion}.aar<br>gson-{gsonVersion}.jar |
 | **Purchase<br>(optional)**       | IAP             | gamebase-adapter-purchase-iap<br>-{gamebaseIAPAdapterVersion}.aar | iap-{iapSdkVersion}.aar<br>mobill-core-{iapSdkVersion}.aar<br>gson-{gsonVersion}.jar<br>okhttp-1.5.4.jar<br>* okhttp-1.5.4.jar는 gamebase sdk가 사용하는 okhttp-3.x 와는 다른, IAP SDK가 사용하는 모듈입니다.|
-|                                  | IAP - ONE store |                                          | iap-tstore-{iapSdkVersion}.aar<br>* ONE store 사용 시 추가해야 합니다. |
+|                                  | IAP - ONE store |                                          | iap-onestore-{iapSdkVersion}.aar<br>* ONE store 사용 시 추가해야 합니다. |
 | **Push<br>(optional)**           | FCM             | gamebase-adapter-push-fcm<br>-{gamebaseFCMAdapterVersion}.aar  | pushsdk-{pushSdkVersion}.aar<br>firebase-common-{playServicesVersion}.jar<br>firebase-iid-{playServicesVersion}.jar<br>firebase-messaging-{playServicesVersion}.aar<br>play-services-base-{playServicesVersion}.aar<br>play-services-basement-{playServicesVersion}.aar<br>play-services-gcm-{playServicesVersion}.aar<br>play-services-iid-{playServicesVersion}.aar<br>play-services-tasks-{playServicesVersion}.aar<br>common-1.0.0.jar<br>common-1.0.3.jar<br>runtime-1.0.3.aar<br>support-annotations-{supportVersion}.jar<br>support-compat-{supportVersion}.aar<br>support-core-ui-{supportVersion}.aar<br>support-core-utils-{supportVersion}.aar<br>support-fragment-{supportVersion}.aar<br>support-media-compat-{supportVersion}.aar<br>support-v4-{supportVersion}.aar |
-|                                  | Tencent         | gamebase-adapter-push-tencent<br>-{gamebaseTencentAdapterVersion}.aar | pushsdk-tencent-{pushSdkVersion}.aar |
+|                                  | Tencent         | gamebase-adapter-push-tencent<br>-{gamebaseTencentAdapterVersion}.aar | pushsdk-tencent-{pushSdkTencentVersion}.aar |
 
 * required 항목은 필수로 포함해야 하는 모듈입니다.
 * optional 항목은 해당 기능이 필요할 경우 포함해야 하는 모듈입니다.

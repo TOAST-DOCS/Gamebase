@@ -30,7 +30,7 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 #### 4. Download
 
 * 다운로드한 SDK의 **gamebase-adapter-purchase-iap** 폴더를 프로젝트에 추가합니다.
-    * ONE store 결제가 필요 없다면 **iap-tstore-x.x.x.aar**, **iap_tstore_plugin_vxx.xx.xx.jar** 파일은 삭제해도 됩니다.
+    * ONE store 결제가 필요 없다면 **iap-onestore-x.x.x.aar** 파일은 삭제해도 됩니다.
     * 반대로 ONE store 결제를 한다면 위의 jar 파일은 반드시 프로젝트에 포함해 빌드해야 합니다.
 
 #### 5. AndroidManifest.xml(ONE store only)
@@ -56,7 +56,7 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 * Gamebase 초기화 시 configuration의 **setStoreCode()**를 호출합니다.
 * **STORE_CODE**는 다음 값 중에서 선택합니다.
     * GG: Google
-    * TS: ONE store
+    * ONESTORE: ONE store
     * TEST: IAP 테스트용
 
 
