@@ -30,7 +30,7 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
 #### 4. Download
 
 * Add the **gamebase-adapter-purchase-iap** folder from downloaded SDK to your project.
-    * If ONE store purchase is not required, you may delete the **iap-tstore-x.x.x.aar** , **iap_tstore_plugin_vxx.xx.xx.jar** file.
+    * If ONE store purchase is not required, you may delete the **iap-onestore-x.x.x.aar** file.
     * If you need ONE store purchase, the jar file above should be included to the project to build.
 
 #### 5. AndroidManifest.xml(ONE store only)
@@ -56,7 +56,7 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
 * Call **setStoreCode()** of configuration to initialize Gamebase.
 * Select a **STORE_CODE** among the following values.
     * GG: Google
-    * TS: ONE store
+    * ONESTORE: ONE store
     * TEST: For IAP testing
 
 

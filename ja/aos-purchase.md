@@ -30,7 +30,7 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 #### 4. Download
 
 * ダウンロードしたSDKの**gamebase-adapter-purchase-iap**フォルダをプロジェクトに追加します。
-    * ONE store 決済が不要な場合、**iap-tstore-x.x.x.aar**, **iap_tstore_plugin_vxx.xx.xx.jar**ファイルは削除してもかまいません。
+    * ONE store 決済が不要な場合、**iap-onestore-x.x.x.aar**ファイルは削除してもかまいません。
     * 逆に、ONE store決済を利用する場合は、上のjarファイルを必ずプロジェクトに含めてビルドする必要があります。
 
 #### 5. AndroidManifest.xml(ONE store only)
@@ -56,7 +56,7 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 * Gamebaseを初期化する際にconfigurationの**setStoreCode()**を呼び出します。
 * **STORE_CODE**は、次の値の中から選択します。
     * GG:Google
-    * TS:ONE store
+    * ONESTORE:ONE store
     * TEST:IAPテスト用
 
 

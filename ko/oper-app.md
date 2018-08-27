@@ -120,6 +120,7 @@ Facebook 개발자 사이트에 등록한 앱의 {앱 아이디}와 {앱 시크�
 
 **[예시] facebook_permission format**
 * Facebook의 경우, OAuth 인증 시도 시, Facebook에 요청할 정보의 종류를 설정해야 합니다.
+
 ```json
 { "facebook_permission": [ "public_profile", "email"] }
 ```
@@ -150,19 +151,33 @@ TOAST Console에서의 설정 외에 추가 설정은 없습니다.
 	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-003_1.11.0.png)
   
 ##### iOS
-- AdditionalInfo를 설정해야 합니다.
-	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-	* GOOGLE의 경우, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
-	* **url_scheme_ios_only**의 값은 Xcode의 URL Scheme에 등록된 값들 중 한개와 일치해야 합니다.
 
-- URL Schemes를 설정해야 합니다.
-	* **XCode > Target > Info > URL Types**
+> <font color="red">[주의]</font><br/>
+>
+> Gamebase iOS SDK 1.12.2 버전에서 URL Scheme의 설정 방법이 변경 되었습니다. 사용 SDK 버전에 맞는 가이드를 확인하여 설정하시기 바랍니다.
+>
 
-- GOOGLE 추가 인증 정보 입력 예제
+* 1.12.1 이하
+	* AdditionalInfo를 설정해야 합니다.
+		* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+		* GOOGLE의 경우, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
+		* **url_scheme_ios_only**의 값은 Xcode의 URL Scheme에 등록된 값들 중 한개와 일치해야 합니다.
+
+	* URL Schemes를 설정해야 합니다.
+		* **XCode > Target > Info > URL Types**
+
+* 1.12.2 이상
+	* URL Scheme를 설정해야 합니다.
+		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.google`를 추가해야 합니다.
+
+* GOOGLE 추가 인증 정보 입력 예제
+
 ```json
 { "url_scheme_ios_only": "Your URL Schemes" }
 ```
+
 ![Google URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+
 
 #### 3. Apple Game Center
 Apple 개발자 사이트에 등록된 BundleID를 Gamebase Console에 입력합니다.
@@ -188,15 +203,43 @@ PAYCO Client ID를 신청해서 발급받은 {client_id} 및 {client_secret}을 
 - Secret Key: {Payco client_secret}
 - 추가정보: Payco Service & Service Name (JSON format)
 
-##### Android & iOS & Unity
+##### Android & Unity
 - AdditionalInfo를 설정해야 합니다.
     * **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
     * PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
-	* PAYCO 추가 인증 정보 입력 예제
-    ```json
-    { "service_code": "HANGAME", "service_name": "Your Service Name" }
-    ```
 
+* PAYCO 추가 인증 정보 입력 예제
+
+```json
+{ "service_code": "HANGAME", "service_name": "Your Service Name" }
+```
+
+##### iOS
+
+> <font color="red">[주의]</font><br/>
+>
+> Gamebase iOS SDK 1.12.2 버전에서 URL Scheme의 설정 방법이 변경 되었습니다. 사용 SDK 버전에 맞는 가이드를 확인하여 설정하시기 바랍니다.
+>
+
+* 1.12.1 이하
+	* AdditionalInfo를 설정해야 합니다.
+		* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+		* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
+
+* 1.12.2 이상
+	* AdditionalInfo를 설정해야 합니다.
+		* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+		* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
+	* URL Scheme를 설정해야 합니다.
+		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.payco`를 추가해야 합니다.
+
+* PAYCO 추가 인증 정보 입력 예제
+
+```json
+{ "service_code": "HANGAME", "service_name": "Your Service Name" }
+```
+
+![Payco URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
 #### 5.NAVER
 Naver Developers 사이트에서 신청하여 발급받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
@@ -207,11 +250,6 @@ Naver Developers 사이트에서 신청하여 발급받은 {client_id} 및 {clie
 - Client ID: {NAVER client_id}
 - Secret Key: {NAVER client_secret}
 - 추가정보: NAVER Application Name & iOS url scheme (json format)
-
-**[예시] NAVER Additional input format**
-```json
-{ "service_name": "Your Service Name", "url_scheme_ios_only": "Your Url Scheme" }
-```
 
 **Reference URL**<br />
 - [NAVER Developers - 애플리케이션 등록](https://developers.naver.com/apps/#/register)
@@ -226,16 +264,33 @@ Naver Developers 사이트에서 신청하여 발급받은 {client_id} 및 {clie
 ```
 
 ##### iOS
-* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-	* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
-	* iOS 앱에서 필요한 정보인 **url_scheme_ios_only**를 추가로 설정해야 합니다.
 
-* URL Schemes를 설정해야 합니다.
-	* **XCode > Target > Info > URL Types**
+> <font color="red">[주의]</font><br/>
+>
+> Gamebase iOS SDK 1.12.2 버전에서 URL Scheme의 설정 방법이 변경 되었습니다. 사용 SDK 버전에 맞는 가이드를 확인하여 설정하시기 바랍니다.
+>
+
+* 1.12.1 이하
+	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+		* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
+		* iOS 앱에서 필요한 정보인 **url_scheme_ios_only**를 추가로 설정해야 합니다.
+
+	* URL Schemes를 설정해야 합니다.
+		* **XCode > Target > Info > URL Types**
+
+* 1.12.2 이상
+	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+		* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
+
+	* URL Scheme를 설정해야 합니다.
+		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.naver`를 추가해야 합니다.
+
 * NAVER 추가 인증 정보 입력 예제
+
 ```json
 { "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
 ```
+
 ![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
 

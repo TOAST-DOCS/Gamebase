@@ -58,10 +58,11 @@ Retrieve or modify detail information of registered items on the list.
 
 Retrieve payment information.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction1_1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction1_1.3.png)
 
 Retrieve payment information of choice, by using the search conditions as below.
 결제 내역은 우측 상단의 다운로드 버튼을 통해 언제든지 다운로드 받으실 수 있습니다.
+
 ### Search Conditions
 
 - **Store**: Information of a store where payment has been made
@@ -70,9 +71,10 @@ Retrieve payment information of choice, by using the search conditions as below.
 - **Item Sequence**: Number of an item a user purchased in an app (can be found under the 'Item' tab.)
 - **User ID**: ID of a user who made payments
 - **Sort Order**: Ascending or descending order, by registration date
+- **결제상태**: 결제 상태를 기준으로 정보를 조회
 
 ### Search Results
-- **Payment Sequence**: Original number to identify payments within Gamebase
+- **Transaction ID**: Original number to identify payments within Gamebase
 - **Store**: Information of a store where payment has been made
 - **User ID**: ID of a user who made payments
 - **Item Name**: Name of an item a user purchased in an app
@@ -81,7 +83,7 @@ Retrieve payment information of choice, by using the search conditions as below.
 - **Consume**: Whether a paid item has been provided or not
 - **Payment Status**: Current status of payment
 - **Store Reference Key**: Original payment number issued at a store
-- **Registration Date**: Time when a user tried or completed purchasing
+- **Reservation Date**: Time when a user tried or completed purchasing
 - **Refund Date**: Time when a user item was refunded
 
 ### 결제 상태 변경
@@ -90,7 +92,7 @@ Retrieve payment information of choice, by using the search conditions as below.
 	- 결제 완료
     - 결제 처리가 정상적으로 완료됬을 경우를 의미합니다.
     - Refund상태로 변경 가능합니다.
-- **In progress**
+- **Reserved**
 	- 결제 진행중
 	- 스토어를 통한 결제가 더이상의 진행이 되지 않거나 결제검증까지 진행되지 않은 경우를 의미합니다.
 	- Success, Refund상태로 변경 가능합니다.

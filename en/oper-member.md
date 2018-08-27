@@ -78,10 +78,11 @@ Retrieve mapping and remove mapping history of a searched user. Shows all histor
 
 ### Purchase History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_PurchaseHistory1_1.0.png)
+
 Retrieve purchase history of user products.
 Can search by date, and history data can be retrieved up to 1 month (30 days).
 
-- **Payment Sequence**: Original number to identify payments within Gamebase
+- **Transaction ID**: Original number to identify payments within Gamebase
 - **Store**: Information of a store where payment has been made
 - **Item Name**: Name of an item a user purchased in an app
 - **Price**: Price of an item a user purchased
@@ -89,8 +90,11 @@ Can search by date, and history data can be retrieved up to 1 month (30 days).
 - **Consume**: Whether a paid item has been provided or not
 - **Payment Status**: Current status of payment
 - **Store Reference Key**: Original payment number issued by store
-- **Registration Date**: Time when a user tried or completed purchasing
+- **Reservation date**: Time when a user tried or completed purchasing
 - **Refund Date**: Time when a user item was refunded
+
+조회한 사용자의 상품 구입 내역을 조회합니다.
+원하는 날짜를 입력하여 조회할 수 있으며 조회 가능한 최대 날짜는 1개월(30일)입니다.
 
 ### Ban History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_BanHistory1_1.0.png)

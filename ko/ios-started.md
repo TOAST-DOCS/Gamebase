@@ -34,7 +34,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenter 로그인을 지원 |  | iOS8 or later |
 |  | GamebaseAuthGoogleAdapter.framework | | Google 로그인을 지원 | | iOS9 or later |
 |  | GamebaseAuthTwitterAdapter.framework | | Twitter 로그인을 지원 | | iOS8 or later |
-|  | GamebaseAuthLineAdapter.framework | | LINE 로그인을 지원 | [ LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS8 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v4.1.1 | LINE 로그인을 지원 | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS8 or later |
 | Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework | 게임 내 결제를 지원 | Gamebase IAP 내에 포함 | iOS8 or later |
 | Gamebase Push | GamebasePushAdapter.framework |  | Push를 지원 | Gamebase내에 포함 | iOS8 or later |
 
