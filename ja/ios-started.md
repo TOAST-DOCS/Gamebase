@@ -34,7 +34,7 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenterログインに対応 |  | iOS8 or later |
 |  | GamebaseAuthGoogleAdapter.framework | | Googleログインに対応 | | iOS9 or later |
 |  | GamebaseAuthTwitterAdapter.framework | | Twitterログインに対応 | | iOS8 or later |
-|  | GamebaseAuthLineAdapter.framework | | LINEログインに対応 | [ LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS8 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v4.1.1 | LINEログインに対応 | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS8 or later |
 | Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework | ゲーム内課金に対応 | Gamebase IAP内に含む | iOS8 or later |
 | Gamebase Push | GamebasePushAdapter.framework |  | Pushに対応 | Gamebase内に含む | iOS8 or later |
 

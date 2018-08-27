@@ -826,6 +826,7 @@ Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | この認証方式には対応しておりません。                      |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 退会されているか、存在しない会員です。                    |
 |                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部認証ライブラリーエラーです。 <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
+|                | AUTH_ALREADY_IN_PROGRESS_ERROR           | 3010       | 이전 인증 프로세스가 완료되지 않았습니다. |
 | TransferKey    | SAME\_REQUESTOR                          | 8          | 발급한 TransferKey를 동일한 기기에서 사용했습니다. |
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IDP가 연동되어 있습니다. |
 |                | AUTH\_TRANSFERKEY\_EXPIRED               | 3031       | TransferKey의 유효기간이 만료됐습니다. |
@@ -840,6 +841,7 @@ Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
 |                | AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | 既に他のメンバーにマッピングされています。                     |
 |                | AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | 既に同じIdPにマッピングされています。                    |
 |                | AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO   | 3304       | IdP情報が有効でありません。(Consoleに該当するIdPの情報がありません。) |
+|                | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP    | 3305       | Guest IDP로는 AddMapping이 불가능합니다. |
 | Remove Mapping | AUTH\_REMOVE\_MAPPING\_FAILED            | 3401       | マッピング削除に失敗しました。                          |
 |                | AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | 最後にマッピングされたIdPは削除することができません。              |
 |                | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP   | 3403       | 現在ログイン中のIdPです。                    |
