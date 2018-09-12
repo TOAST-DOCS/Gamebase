@@ -251,7 +251,7 @@ Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
 ```
 
 * TOAST Push 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [Notification > Push > 오류 코드](/Notification/Push/ko/sdk-guide/#_10)
+    * [Notification > Push > 오류 코드](/Notification/Push/ko/sdk-guide-android/#_15)
 
 
 

@@ -148,6 +148,64 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 
 
 
+### AppStore Promotion IAP
+
+> `주의`
+> iOS 11 이상에서만 사용할 수 있습니다.
+> Xcode 9.0 이상에서 빌드가 필요합니다.
+> Gamebase 1.13.0 이상에서 지원합니다. (TOAST IAP SDK 1.6.0 이상적용)
+
+
+> `주의`
+> 로그인 성공 이후에만 호출 할 수 있습니다.
+> 로그인 성공 후, 다른 결제 API보다 먼저 실행되어야 합니다.
+
+
+#### Overview
+* Apple Developer Overview : https://developer.apple.com/app-store/promoting-in-app-purchases/
+* Apple Developer Reference : https://help.apple.com/app-store-connect/#/deve3105860f
+
+
+AppStore 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니다.
+아이템 구매 성공 후, 아래의 등록해놓은 핸들러를 통하여, 아이템지급을 진행할 수 있습니다.
+
+프로모션 IAP는 AppStore Connect 에서 별도의 설정이 되어야 노출이 가능합니다.
+
+
+```objectivec
+- (void)didSuccessLogin {
+	[TCGBPurchase setPromotionIAPHandler:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
+    	if ([TCGBGamebase isSuccessWithError:error] == YES) {
+            // To Purchase Item Succeeded
+        } else if (error.code == TCGB_ERROR_PURCHASE_USER_CANCELED) {
+            // User Canceled Purchasing Item
+        } else if (error) {
+            // To Purchase Item Failed cause of the error
+        }
+    }];
+}
+```
+
+
+#### How to Test AppStore Promotion IAP
+
+> `주의`
+> App Store Connect에 앱을 업로드한 다음 TestFlight를 통하여 앱을 설치 후, 테스트를 진행할 수 있습니다.
+> 
+
+1. TestFlight로 App을 설치합니다.
+2. 아래와 같은 URL Scheme을 호출하여, 테스트를 진행합니다.
+| URL Components | keyname | value |
+| --- | --- | --- |
+| scheme | itms-services | 고정값 |
+| host &amp; path | 없음 | 없음 |
+| queries | action | purchaseIntent |
+|		  | bundleId | 앱의 bundeld identifier |
+|		  | productIdentifier | 구매 아이템의 product identifier |
+
+예제) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
+
+
 ### Error Handling
 
 | Error                                    | Error Code | Description                              |

@@ -10,7 +10,7 @@ Below describes environments and initial setting of Gamebase Unity SDK.
 > 
 > * Unity 5.x : 5.5.4 ~ 5.6.6
 > * Unity 2017.x : ~ 2017.4.5
-> * Unity 2018.x : ~ 2018.2.0
+> * Unity 2018.x : ~ 2018.2.7
 
 #### Supported Platforms
 
@@ -101,6 +101,25 @@ Setting Tool is provided to install Gamebase SDK with more at ease.
 "></iframe>
 
 
+### Update of Setting Tool
+
+Setting Tool의 업데이트가 필요한 경우 Setting Tool에서 업데이트 여부를 알려드립니다.
+업데이트 종류에 따라서 Setting Tool에서 제공하는 일부 기능에 제한이 있을 수 있습니다.
+
+#### 강제 업데이트
+
+* 업데이트 필수
+* SDK 다운로드 제한
+	* 기존에 다운로드 된 SDK를 이용하여 설치, 삭제 가능
+
+![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-1_1.13.0.png)
+
+#### 선택 업데이트
+
+* 업데이트 선택
+* SDK 다운로드 가능
+
+![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-2_1.13.0.png)
 
 ### Android Lifecycle
 

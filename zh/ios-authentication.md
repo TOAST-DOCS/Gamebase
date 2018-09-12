@@ -91,20 +91,28 @@ Note that a login should be implemented for the IdP.
 
 ```objectivec
 - (void)automaticLogin {
-    // Last Logged In Provider Name
-    NSString *lastLoggedInProvider = [TCGBGamebase lastLoggedInProvider];
-
     [TCGBGamebase loginForLastLoggedInProviderWithViewController:self completion:^(TCGBAuthToken *authToken, TCGBError *error){
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             NSLog(@"Login is succeeded.");
+            //TODO: 1. Do you want.
         }
         else {
             if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
                 NSLog(@"Retry loginForLastLoggedInProviderWithViewController:completion: or Notify to user -\n\terror[%@]", [error description]);
+                //TODO: 1. If the error had occured by network problem, you can retry by loginForLastLoggedInProviderWithViewController:completion:
             }
             else {
                 NSLog(@"Try to login with loginWithType:viewController:completion:");
+                // Last Logged In Provider Name
+    			NSString *lastLoggedInProvider = [TCGBGamebase lastLoggedInProvider];
+    			if (lastLoggedInProvider == nil || lastLoggedInProvider <= 0) {
+                	//TODO: 1. Show your UI what user want to sign in.
+                    //2. If the user has selected IdP, set lastLoggedInProvider to it.
+                    //3. Invoke loginWithType:viewController:completion: method to try login.
+                }
 
+                // Try to login with IdP authentication
+                //Warning: If you receive an event asynchronously from async handler(callback), you can use codes below in the async handler.
                 [TCGBGamebase loginWithType:lastLoggedInProvider viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
                     if ([TCGBGamebase isSuccessWithError:error] == YES) {
                         NSLog(@"Login is succeeded.");
@@ -142,7 +150,7 @@ You can enter those information to additionalInfo in the dictionary type.<br/>
 >
 
 ```objectivec
-- (void)loginFacebookButtonClick {
+- (void)loginPaycoButtonClick {
     [TCGBGamebase loginWithType:kTCGBAuthPayco viewController:self completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Login Succeeded
@@ -191,7 +199,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 ```objectivec
 #import "TCGBConstants.h"
 
-- (void)auth_login_with_credential {
+- (void)authLoginWithCredential {
     NSDictionary *credentialDic = @{ kTCGBAuthLoginWithCredentialProviderNameKeyname: @"facebook", kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"여기에 facebook SDK에서 발급받은 Access Token을 입력하세요" };
     [TCGBGamebase loginWithCredential:credentialDic viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         NSLog([authToken description]);
@@ -222,13 +230,15 @@ When it is successful, as authentication records with a corresponding IdP are re
 Following shows a log-out example code with a click of the log-out button.
 
 ```objectivec
-[TCGBGamebase logoutWithViewController:self completion:^(TCGBError *error) {
-    if ([TCGBGamebase isSuccessWithError:error] == YES) {
-        // To Logout Succeeded
-    } else {
-        // To Logout Failed
-    }
-}];
+- (void)authLogout {
+    [TCGBGamebase logoutWithViewController:self completion:^(TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
+            // To Logout Succeeded
+        } else {
+            // To Logout Failed
+        }
+    }];
+}
 ```
 
 
@@ -256,13 +266,15 @@ Below shows an example of how a game user withdraws while logged-in.<br/><br/>
 Following shows an exemplary withdrawal code with a click of the withdraw button.
 
 ```objectivec
-[TCGBGamebase withdrawWithViewController:self completion:^(TCGBError *error) {
-    if ([TCGBGamebase isSuccessWithError:error] == YES) {
-        // To Withdrawal Succeeded
-    } else {
-        // To Withdrawal Failed
-    }
-}];
+- (void)authWithdrawal {
+    [TCGBGamebase withdrawWithViewController:self completion:^(TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
+            // To Withdrawal Succeeded
+        } else {
+            // To Withdrawal Failed
+        }
+    }];
+}
 ```
 
 ## Mapping
@@ -337,21 +349,24 @@ Try mapping to another IdP while logged-in to a specific IdP.<br/>
 Below is an example of mapping to Facebook.
 
 ```objectivec
-[TCGBGamebase addMappingWithType:@"facebook" viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
-    if ([TCGBGamebase isSuccessWithError:error] == YES) {
-                 NSLog(@"AddMapping is succeeded.");
-             }
-             else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
-                 NSLog(@"Retry addMapping");
-             }
-             else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                 NSLog(@"Already mapped to other member");
-             }
-             else {
-                 NSLog(@"AddMapping Error - %@", [error description]);
-             }
+- (void)authAddMapping {
+    [TCGBGamebase addMappingWithType:@"facebook" viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
+                     NSLog(@"AddMapping is succeeded.");
+                 }
+                 else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
+                     NSLog(@"Retry addMapping");
+                 }
+                 else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+                     NSLog(@"Already mapped to other member");
+                 }
+                 else {
+                     NSLog(@"AddMapping Error - %@", [error description]);
+                 }
+            }
         }
-}];
+    }];
+}
 ```
 
 ### AddMapping with Credential
@@ -563,20 +578,22 @@ TransferKey의 형식은 영문자 **"소문자/대문자/숫자"를 포함한 8
 |                | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | The authentication is not supported.                        |
 |                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | Named member does not exist or has withdrawn.                      |
 |                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | Error in external authentication library. <br/> Check DetailCode and DetailMessage. |
-| TransferKey    | TCGB\_ERROR\_SAME\_REQUESTOR             | 8			 | 발급한 TransferKey를 동일한 기기에서 사용했습니다. |
-|                | TCGB\_ERROR\_NOT\_GUEST\_OR\_HAS\_OTHERS | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IDP가 연동되어 있습니다. |
-|                | TCGB\_ERROR\_AUTH\_TRANSFERKEY\_EXPIRED  | 3031       | TransferKey의 유효기간이 만료됐습니다. |
-|                | TCGB\_ERROR\_AUTH\_TRANSFERKEY\_CONSUMED | 3032       | TransferKey가 이미 사용됐습니다. |
-|                | TCGB\_ERROR\_AUTH\_TRANSFERKEY\_NOT\_EXIST | 3033     | TransferKey가 유효하지 않습니다. |
+| TransferKey    | TCGB\_ERROR\_SAME\_REQUESTOR             | 8			 | Issued transferKey have been used on the same device. |
+|                | TCGB\_ERROR\_NOT\_GUEST\_OR\_HAS\_OTHERS | 9          | Attempted to transfer from a non-guest account, or account is already linked with IdP other than Guest. |
+|				 | TCGB\_ERROR\_IOS\_GAMECENTER\_DENIED     | 51         | Denied from Gamecenter. |
+|                | TCGB\_ERROR\_AUTH\_TRANSFERKEY\_EXPIRED  | 3031       | TransferKey has expired. |
+|                | TCGB\_ERROR\_AUTH\_TRANSFERKEY\_CONSUMED | 3032       | TransferKey has already been used. |
+|                | TCGB\_ERROR\_AUTH\_TRANSFERKEY\_NOT\_EXIST | 3033     | TransferKey is invalid. |
 | Auth (Login)   | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED  | 3101       | Token login has failed.                          |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | Invalid token information.                        |
-|                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | Invalid last login IDP information.                   |
-| IdP Login      | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED    | 3201       | IDP login has failed.                        |
+|                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | Invalid last login IdP information.                   |
+| IdP Login      | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED    | 3201       | IdP login has failed.                        |
 |                | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO | 3202       | IdP information is invalid. (The IdP information is unavailable in console.) |
 | Add Mapping    | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FAILED  | 3301       | Add mapping has failed.                           |
 |                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | Already mapped to another member.                      |
-|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | Already mapped to same IDP.                     |
+|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | Already mapped to same IdP.                     |
 |                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO | 3304       | Invalid IDP information.(IDP information does not exist in the Console.) |
+|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_CANNOT\_ADD\_GUEST\_IDP | 3305  | Mapping with guest IdP is unavailable. |
 | Remove Mapping | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_FAILED | 3401       | Remove mapping has failed.                           |
 |                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | Cannot delete last mapped IDP.                |
 |                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403       | Currently logged-in IDP.                     |
@@ -584,6 +601,7 @@ TransferKey의 형식은 영문자 **"소문자/대문자/숫자"를 포함한 8
 | Withdrawal     | TCGB\_ERROR\_AUTH\_WITHDRAW\_FAILED      | 3601       | Withdrawal has failed.                              |
 | Not Playable   | TCGB\_ERROR\_AUTH\_NOT\_PLAYABLE         | 3701       | Not playable.(due to maintenance or service closed).        |
 | Auth(Unknown)  | TCGB\_ERROR\_AUTH\_UNKNOWN\_ERROR        | 3999       | Unknown error(Undefined error)            |
+
 
 
 

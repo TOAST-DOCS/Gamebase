@@ -7,16 +7,15 @@
 
 User IDを入力すると、会員情報を検索することができます。
 ユーザーIDは、初めてログインする際にGamebaseが自動で発行するユーザー識別子です。送信時に混乱を防ぐため、同じ発音の文字を取り除き、「ABCDFGHJKLMNPQRSTWXYZ1346789」だけを使用しています。
+IdP ID는 Id Provider에서 제공하는 아이디 정보로써 로그인 시 입력하는 정보가 아닌 Id Provider내의 고유 식별자를 의미합니다. 따라서 IdP ID 항목으로 검색하고자 할 경우 검색정보 입력에 주의가 필요합니다.
 
 検索されたユーザーの詳細情報を上の方に表示し、ログイン、マッピング、決済、利用停止、プレイ時間などの履歴は下の方にタブ形式で表示されます。
 
 
-
-
 ### Detail Information
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Member1_1.4.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Member1_1.5.png)
 
-**User ** 
+**User **
 
 - **ユーザID**：GamebaseのユーザーID
 - **国家コード(USIM)**：ユーザー端末のUSIMの国家コードで、取得に失敗した場合は'ZZ'で表記されます。端末に設定されている国家コードを確認したい場合、下の**ログイン履歴**から確認してください。
@@ -26,8 +25,17 @@ User IDを入力すると、会員情報を検索することができます。
   - **正常**：正常なユーザー。**利用停止**ボタンをクリックして手動で利用停止状態に変更することができます。
   - **利用停止**：アビュージングなどにより利用停止(ban)状態となったユーザー。**利用停止解除**ボタンをクリックすると、手動で利用停止を解除することができます。
   - **退会**：退会したユーザー
+- **푸시 토큰**: 유저의 푸시 토큰 정보 조회.
 
-**Identity Provider ** 
+####계정 상태 변경
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Member1_2.2.png)
+조회한 유저의 계정 상태를 변경할 수 있는 기능입니다.
+상태별 변경할 수 있는 경우는 아래와 같습니다.
+- **정상**: 이용정지, 탈퇴상태로 변경이 가능합니다. 탈퇴시에는 해당 계정정보를 되돌릴 수 없으므로 처리 전 확인 및 주의가 필요합니다.
+- **이용 정지**: 이용정지 해제를 진행할 수 있습니다.
+- **탈퇴**: 해당 버튼이 노출되지 않습니다.
+
+**Identity Provider **
 
 Gamebaseでは、複数の外部IdPを連動することができます。つまり、ユーザーが一つのユーザーIDにFacebook、Googleの二つのIdPを登録してログインすることができます。SDKから**Login using a specific IdP**や**Add Mapping**APIを呼び出す際にIdPが登録されます。
 
@@ -58,13 +66,8 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 - **etc**：その他、ログイン時に使用された上記項目以外の情報
 
 ### Mapping History
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_MappingHistory1_1.2.png)
-
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_MappingHistory1_1.4.png)
 照会したユーザーのマッピング、マッピング解除履歴を照会します。直近3ヶ月(90日)間の履歴がすべて表示されます。
-
-- **ユーザIDベース**：照会されたユーザーIDを基に照会します。
-- **IdP IDベース**：照会されたユーザーIDに現在マッピングされているIdP IDを基に照会します。
-  照会されたユーザーIDにFacebook、Gooogle IdPがマッピングされている場合、二つのIdP IDがリストに表示されます。
 
 - **IdP ID**：IdPログイン時に使用されるID情報
 - **IdP**：マッピングされたIdPの情報
@@ -75,6 +78,9 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
   - AFR：マッピング強制解除
   - GMG：ゲストアカウント作成
   - OMG：IdPアカウント作成
+
+매핑된 IDP 이력을 클릭할 경우 해당 IdP를 기준으로 Gamebase ID에 매핑된 이력을 보여줍니다.
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_MappingHistory1_2.1.png)
 
 ### Purchase History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_PurchaseHistory1_1.0.png)
@@ -110,3 +116,8 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Playtime1_1.2.png)
 照会したユーザーがゲームをプレイした時間を日付ごとに照会します。
 照会したい日付を入力して照会することができ、最大1ヶ月(30日)まで照会可能です。
+
+### Withdraw History
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
+조회한 사용자가 탈퇴한 사용자라면 탈퇴 이력을 보여줍니다.
+이 메뉴는 탈퇴 유저를 조회할 경우에만 나타나며 유저의 탈퇴경로를 조회할 수 있습니다.
