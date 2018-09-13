@@ -5,16 +5,17 @@
 
 ### Search Member
 
-User ID를 입력하면 회원정보를 검색할 수 있습니다.
-사용자 아이디는 최초로 로그인할 때 Gamebase에서 자동으로 발급하는 사용자 식별자입니다. 전달 시 혼란을 줄이고자 같은 발음의 문자를 배제하여 "ABCDFGHJKLMNPQRSTWXYZ1346789" 문자만을 사용하고 있습니다.
+User ID/IdP ID를 입력하면 회원정보를 검색할 수 있습니다.
+사용자 아이디(User ID)는 최초로 로그인할 때 Gamebase에서 자동으로 발급하는 사용자 식별자입니다. 전달 시 혼란을 줄이고자 같은 발음의 문자를 배제하여 "ABCDFGHJKLMNPQRSTWXYZ1346789" 문자만을 사용하고 있습니다.
+IdP ID는 Id Provider에서 제공하는 아이디 정보로써 로그인 시 입력하는 정보가 아닌 Id Provider내의 고유 식별자를 의미합니다. 따라서 IdP ID 항목으로 검색하고자 할 경우 검색정보 입력에 주의가 필요합니다.
 
-검색된 사용자의 상세 정보를 위쪽에 표시하고 로그인, 매핑, 결제, 이용 정지, 플레이 시간 등의 이력은 아래쪽에 탭 형태로 표시됩니다. 
+검색된 사용자의 상세 정보를 위쪽에 표시하고 로그인, 매핑, 결제, 이용 정지, 플레이 시간 등의 이력은 아래쪽에 탭 형태로 표시됩니다.
 
 
 
 
 ### Detail Information
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Member1_1.4.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Member1_1.5.png)
 
 **User ** 
 
@@ -23,11 +24,21 @@ User ID를 입력하면 회원정보를 검색할 수 있습니다.
 - **마지막 로그인 시간**: 사용자가 가장 마지막에 로그인한 시간
 - **등록일**: 사용자가 최초로 로그인한 시간
 - **계정 상태**
-  - **정상**: 정상 사용자. **이용정지** 버튼을 클릭하여 수동으로 이용 정지 상태로 변경할 수 있습니다.
-  - **이용정지**: 어뷰징 등으로 이용 정지(ban)된 사용자. **이용정지해제** 버튼을 클릭하면 수동으로 이용 정지를 해제할 수 있습니다.
-  - **탈퇴**: 탈퇴한 사용자
+  - **정상**: 정상 사용자.
+  - **이용정지**: 어뷰징 등으로 이용 정지(ban)된 사용자. 우측 상단의 계정 상태 변경 메뉴를 통해 이용정지를 해제할 수 있습니다.
+  - **탈퇴**: 탈퇴한 사용자.
+- **푸시 토큰**: 유저의 푸시 토큰 정보 조회.
 
-**Identity Provider ** 
+####계정 상태 변경
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Member1_2.2.png)
+조회한 유저의 계정 상태를 변경할 수 있는 기능입니다.
+상태별 변경할 수 있는 경우는 아래와 같습니다.
+- **정상**: 이용정지, 탈퇴상태로 변경이 가능합니다. 탈퇴시에는 해당 계정정보를 되돌릴 수 없으므로 처리 전 확인 및 주의가 필요합니다.
+- **이용 정지**: 이용정지 해제를 진행할 수 있습니다.
+- **탈퇴**: 해당 버튼이 노출되지 않습니다.
+
+
+**Identity Provider **
 
 Gamebase에서는 여러 개의 외부 IdP를 연동할 수 있습니다. 즉, 사용자가 하나의 사용자 아이디에 Facebook, Google 두 개의 IdP를 등록하여 로그인할 수 있습니다. SDK에서 **Login using a specific IdP**나 '**Add Mapping** API를 호출하는 경우에 IdP가 등록됩니다.
 
@@ -58,13 +69,9 @@ SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.
 - **etc**: 기타 로그인 시 사용된 위 항목 외 정보
 
 ### Mapping History
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_MappingHistory1_1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_MappingHistory1_1.4.png)
 
-조회한 사용자의 매핑, 매핑 해제된 이력을 조회합니다. 최근 3개월(90일) 동안의 이력이 모두 표시됩니다.
-
-- **유저 ID 기준**: 조회된 사용자 아이디를 기준으로 조회합니다. 
-- **IdP ID 기준**: 조회된 사용자 아이디에 현재 매핑된 IdP 아이디 기준으로 조회합니다. 
-  조회된 사용자 아이디에 Facebook, Gooogle IdP가 매핑된 경우 두 개의 IdP 아이디가 목록에 표시됩니다.
+조회한 사용자의 매핑, 매핑 해제된 이력을 조회합니다. 조회 가능한 최대 날짜는 3개월(90일)입니다.
 
 * **IdP ID**: IdP 로그인 시 사용되는 ID 정보
 * **IdP**: 매핑된 IdP 정보
@@ -75,6 +82,9 @@ SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.
   - AFR: 매핑 강제 제거
   - GMG: 게스트 계정 생성
   - OMG: IdP 계정 생성
+
+매핑된 IDP 이력을 클릭할 경우 해당 IdP를 기준으로 Gamebase ID에 매핑된 이력을 보여줍니다.
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_MappingHistory1_2.1.png)
 
 ### Purchase History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_PurchaseHistory1_1.0.png)
@@ -110,3 +120,8 @@ SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Playtime1_1.2.png)
 조회한 사용자가 게임을 플레이한 시간을 일자별로 조회합니다.
 원하는 날짜를 입력하여 조회할 수 있으며 조회가 가능한 최대 날짜는 1개월(30일)입니다.
+
+### Withdraw History
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
+조회한 사용자가 탈퇴한 사용자라면 탈퇴 이력을 보여줍니다.
+이 메뉴는 탈퇴 유저를 조회할 경우에만 나타나며 유저의 탈퇴경로를 조회할 수 있습니다.

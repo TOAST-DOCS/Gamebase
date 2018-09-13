@@ -57,14 +57,14 @@ def pushSdkVersion = '1.4.2'
 def pushSdkTencentVersion = '1.6.0'
 
 /* Set the Gamebase version. */
-def gamebaseSdkVersion = '1.12.1'
+def gamebaseSdkVersion = '1.13.0'
 def gamebaseFacebookAdapterVersion = '1.11.0'
 def gamebaseGoogleAdapterVersion = '1.9.0'
-def gamebaseNaverAdapterVersion = '1.7.0'
+def gamebaseNaverAdapterVersion = '1.13.0'
 def gamebaseTwitterAdapterVersion = '1.11.0'
 def gamebaseLineAdapterVersion = '1.11.0'
 def gamebasePaycoAdapterVersion = '1.7.0'
-def gamebaseIAPAdapterVersion = '1.12.1'		// Not all adapters have the same version.
+def gamebaseIAPAdapterVersion = '1.13.0'		// Not all adapters have the same version.
 def gamebaseFCMAdapterVersion = '1.7.0'
 def gamebaseTencentAdapterVersion = '1.12.1'
 

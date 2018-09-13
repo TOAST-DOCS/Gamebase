@@ -72,6 +72,7 @@
 
 <br/>
 <br/>
+
 ## Server
 | Module  | Error Code            | Description                              |
 | ------- | --------------------- | ---------------------------------------- |
@@ -84,6 +85,8 @@
 |         | -4010003              | Unauthenticated client called an API which requires authentication.     |
 |         | -4010004              | Called invalid secret key.               |
 |         | -4060001              | Set invalid content-type in the HTTP header.         |
+|         | -4060002              | Depreated API 버전을 호출                     |
+|         | -4060003              | 지원되지 않는 API 버전을 호출 했거나, 잘못된 URI로 호출한 경우 |
 |         | -4090001 ~ 4          | Error related with internal DB                            |
 |         | -4150001              | Delivered invalid json data format.                     |
 |         | -5000001 ~ 15         | Error in internal system                               |

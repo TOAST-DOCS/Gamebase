@@ -184,13 +184,16 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 
 **providerName**
 
-* GamebaseAuthProvider.GOOGLE
-* GamebaseAuthProvider.GAMECENTER(iOS Only)
-* GamebaseAuthProvider.FACEBOOK
-* GamebaseAuthProvider.PAYCO
-* GamebaseAuthProvider.NAVER(Android/iOS Only)
-* GamebaseAuthProvider.TWITTER(Android/iOS Only)
-* GamebaseAuthProvider.LINE(Android Only)
+| Provider    | Define                          | Support Platform | 
+| --------    | ------------------------------- | ---------------- |
+| Google      | GamebaseAuthProvider.GOOGLE     | Android<br/>iOS<br/>Standalone |
+| Game Center | GamebaseAuthProvider.GAMECENTER | iOS |
+| Facebook    | GamebaseAuthProvider.FACEBOOK   | Android<br/>iOS<br/>Standalone |
+| Payco       | GamebaseAuthProvider.PAYCO      | Android<br/>iOS<br/>Standalone |
+| Naver       | GamebaseAuthProvider.NAVER      | Android<br/>iOS |
+| Twitter     | GamebaseAuthProvider.TWITTER    | Android<br/>iOS |
+| Line        | GamebaseAuthProvider.LINE       | Android |
+
 
 > There is information which must be included for login with some IdPs.<br/>
 > For instance, scope must be set to implement a Facebook login.<br/>

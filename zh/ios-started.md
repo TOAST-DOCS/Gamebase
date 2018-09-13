@@ -34,7 +34,7 @@ Then, include corresponding SDK files to a target of your project.
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Supports Gamecenter logins |  | iOS8 or later |
 |  | GamebaseAuthGoogleAdapter.framework | | Supports Google logins | | iOS9 or later |
 |  | GamebaseAuthTwitterAdapter.framework | | Supports Twitter logins | | iOS8 or later |
-|  | GamebaseAuthLineAdapter.framework | | Supports LINE logins | [ LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS8 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v4.1.1 | Supports LINE logins | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS8 or later |
 | Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework | Supports in-game purchase | Gamebase Included in IAP | iOS8 or later |
 | Gamebase Push | GamebasePushAdapter.framework |  | Supports Push | Included in Gamebase | iOS8 or later |
 

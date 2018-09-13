@@ -21,6 +21,7 @@
 |                 | UNITY              | NOT\_SUPPORTED\_UNITY\_WEBGL             | 15         | The function is not supported by WebGL.               |
 |                 | Android            | ANDROID\_ACTIVITY\_DESTROYED             | 31         | Activity가 강제종료되었습니다.                       |
 |                 | Android            | ANDROID\_ACTIVEAPP\_NOT\_CALLED          | 32         | activeApp API가 호출되지 않았습니다.                 |
+|                 | IOS                | IOS_GAMECENTER_DENIED                    | 51         | Gamecenter 로그인이 거부되었습니다.                 |
 | Network(Socket) | Android, UNITY<br/>IOS | SOCKET\_RESPONSE\_TIMEOUT<br/>TCGB\_ERROR\_SOCKET\_RESPONSE\_TIMEOUT | 101        | There is no response due to bad network connection.              |
 |                 | Android, UNITY<br/>IOS | SOCKET_ERROR<br/>TCGB\_ERROR\_SOCKET\_ERROR | 110        | Socket error                                  |
 |                 | Android, UNITY<br/>IOS | UNKNOWN_ERROR<br/>TCGB\_ERROR\_UNKNOWN\_ERROR | 999        | Unknown socket error                          |
@@ -32,6 +33,7 @@
 |                 | Android, UNITY<br/>IOS | AUTH\_NOT\_SUPPORTED\_PROVIDER<br/>TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | The authentication is not supported.                    |
 |                 | Android, UNITY<br/>IOS | AUTH\_NOT\_EXIST\_MEMBER<br/>TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER | 3003       | Named member does not exist or has withdrawn.                    |
 |                 | Android, UNITY<br/>IOS | AUTH\_EXTERNAL\_LIBRARY\_ERROR<br/>TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | Error in external authentication library                    |
+|                 | Android, UNITY<br/>IOS | AUTH_ALREADY_IN_PROGRESS_ERROR<br/>TCGB_ERROR_AUTH_ALREADY_IN_PROGRESS_ERROR | 3010       | 이전 인증 프로세스가 완료되지 않았습니다.                 |
 |                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERKEY\_EXPIRED<br/>TCGB\_ERROR\_AUTH\_TRANSFERKEY\_EXPIRED | 3031       | TransferKey의 유효기간이 만료됐습니다.  |
 |                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERKEY\_CONSUMED<br/>TCGB\_ERROR\_AUTH\_TRANSFERKEY\_CONSUMED| 3032       | TransferKey가 이미 사용됐습니다. |
 |                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERKEY\_NOT\_EXIST<br/>TCGB\_ERROR\_AUTH\_TRANSFERKEY\_NOT\_EXIST | 3033       | TransferKey가 유효하지 않습니다. |
@@ -44,6 +46,7 @@
 |                 | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | Already mapped to another member.                     |
 |                 | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | Already mapped to same IdP.                   |
 |                 | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO | 3304       | Invalid IdP information (IdP information does not exist in the Console.) |
+|                 | Android, UNITY<br/>IOS | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP<br/>TCGB_ERROR_AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP | 3305       | Guest IDP로는 AddMapping이 불가능합니다. |
 | Remove Mapping  | Android, UNITY<br/>IOS | AUTH\_REMOVE\_MAPPING\_FAILED<br/>TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_FAILED | 3401       | Remove mapping has failed.                         |
 |                 | Android, UNITY<br/>IOS | AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP<br/>TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | Cannot delete last mapped IdP.              |
 |                 | Android, UNITY<br/>IOS | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP<br/>TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403       | Currently logged-in IdP                  |
@@ -62,12 +65,14 @@
 |                 | Android, UNITY<br/>IOS | PUSH\_ALREADY\_IN\_PROGRESS\_ERROR<br/>TCGB\_ERROR\_PUSH\_ALREADY\_IN\_PROGRESS\_ERROR | 5102       | Previous PUSH API call is not completed.             |
 |                 | Android, UNITY<br/>IOS | PUSH\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_PUSH\_UNKNOWN\_ERROR | 5999       | Unknown push error(Undefined push error)     |
 | UI              | Android, UNITY<br/>IOS | UI\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_UI\_UNKNOWN\_ERROR | 6999       | Unknown error(Undefined error)            |
+| WebView         | UNITY                  | WEBVIEW\_UNKNOWN\_ERROR 								| 7999       | 웹뷰 호출시 알 수 없는 오류가 발생했습니다.(정의되지 않은 오류).            |
 | Server          | Android, UNITY<br/>IOS | SERVER\_INTERNAL\_ERROR<br/>TCGB\_ERROR\_SERVER\_INTERNAL\_ERROR | 8001       | Error in internal server                               |
 |                 | Android, UNITY<br/>IOS | SERVER\_REMOTE\_SYSTEM\_ERROR<br/>TCGB\_ERROR\_SERVER\_REMOTE\_SYSTEM\_ERROR | 8002       | Error occurred in server during remote integration.                     |
 |                 | Android, UNITY<br/>IOS | SERVER\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_SERVER\_UNKNOWN\_ERROR | 8999       | Unknown error in server                   |
 
 <br/>
 <br/>
+
 ## Server
 | Module  | Error Code            | Description                              |
 | ------- | --------------------- | ---------------------------------------- |
@@ -80,6 +85,8 @@
 |         | -4010003              | Unauthenticated client called an API which requires authentication.     |
 |         | -4010004              | Called invalid secret key.               |
 |         | -4060001              | Set invalid content-type in the HTTP header.         |
+|         | -4060002              | Depreated API 버전을 호출                     |
+|         | -4060003              | 지원되지 않는 API 버전을 호출 했거나, 잘못된 URI로 호출한 경우 |
 |         | -4090001 ~ 4          | Error related with internal DB                            |
 |         | -4150001              | Delivered invalid json data format.                     |
 |         | -5000001 ~ 15         | Error in internal system                               |

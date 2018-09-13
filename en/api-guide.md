@@ -11,12 +11,12 @@ Following information is required to use Server API.
 To call API, below address is needed, which is also available in the Gamebase Console.
 > https://api-gamebase.cloud.toast.com
 
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
+![image alt](./image/Server_Developers_Guide/pre_server_address_v1.2.png)
 
 #### AppId
 
 App ID, as a project ID of TOAST, can be found on the **Project List** page of the Console.
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
+![image alt](./image/Server_Developers_Guide/pre_appId_v1.2.png)
 
 #### SecretKey
 
@@ -24,7 +24,7 @@ Secret Key, as a control access of API, can be found in the Gambase Console. It 
 > [Note]<br>
 > When a secret key is exposed and a wrong call is made, click **Create** to create a new secret key and replace the old one.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
+![image alt](./image/Server_Developers_Guide/pre_secret_key_v1.2.png)
 
 #### TransactionId
 
@@ -301,6 +301,8 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 | maintenance.url | String | 점검 URL |
 | maintenance.reason | String | 점검 사유 |
 | maintenance.message | String | default 점검 사유 메시지 |
+
+<br>
 
 ## Member
 
@@ -586,6 +588,224 @@ Check common requirements.
 **[Error Code]**
 
 [Error Code](./error-code/#server)
+
+#### Ban Histories
+
+사용자 이용 정지 이력을 조회합니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-member/v1.0/apps/{appId}/members/bans |
+
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST 프로젝트 ID |
+
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| begin | String | mandatory | 이용 정지 이력 조회 시작 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | mandatory | 이용 정지 이력 조회 종료 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용정지가 되었다면 조회 결과에 존재 |
+| page | String | optional | 조회하고자 하는 페이지. 0부터 시작 |
+| size | String | optional | 한 페이지당 데이터 개수 |
+
+
+**[Response Body]**
+
+```json
+{
+  "header": {
+    "transactionId": "String",
+    "resultCode": 0,
+    "resultMessage": "SUCCESS",
+    "isSuccessful": true
+  },
+    "pagingInfo": {
+      "first": true,
+      "last": true,
+      "numberOfElements": 0,
+      "page": 0,
+      "size": 0,
+      "totalElements": 0,
+      "totalPages": 0
+    },
+    "result": [
+      {
+        "appId": "String",
+        "banCaller": "CONSOLE",
+        "banReason": "String",
+        "banType": "TEMPORARY",
+        "beginDate": 0,
+        "endDate": 0,
+        "flags": "String",
+        "message": "String",
+        "name": "String",
+        "regUser": "String",
+        "releaseCaller": "CONSOLE",
+        "releaseDate": 0,
+        "releaseReason": "String",
+        "releaseUser": "String",
+        "seq": 0,
+        "templateCode": 0,
+        "userId": "String"
+      }
+    ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| pagingInfo | Object | 조회된 페이징 정보 |
+| pagingInfo.first | boolean | 첫번째 페이지이면 true |
+| pagingInfo.last | boolean | 마지막 페이지이면 true |
+| pagingInfo.numberOfElements | int | 전체 데이터 수 |
+| pagingInfo.page | int | 페이지 번호 |
+| pagingInfo.size | int | 한 페이지당 데이터 개수 |
+| pagingInfo.totalElements | int | 전체 데이터 수 |
+| pagingInfo.totalPages | int | 전체 페이징 수 |
+| result | Array[Object] | 조회된 이용 정지 내역 |
+| result.appId | String | 조회된 이용 정지 의 TOAST 프로젝트 ID |
+| result.banCaller | String | 이용 정지 호출 주체 |
+| result.banReason | String | 이용 정지 사유 |
+| result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
+| result.beginDate | String | 이용 정지 시작 시간. ISO 8601 표준 시간|
+| result.endDate | String | 이용 정지 종료 시간. ISO 8601 표준 시간 |
+| result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'Leaderboard' 로 반환 |
+| result.message | String | 이용 정지 메세지 |
+| result.name | String | 콘솔에서 등록한 템플릿 이름 |
+| result.regUser | String | 이용 정지 등록자 |
+| result.releaseCaller | String | 이용 정지 해제 주체 |
+| result.releaseDate | String | 이용 정지 해제 시간. ISO 8601 표준 시간 |
+| result.releaseReason | String | 이용 정지 해제 사유 |
+| result.releaseUser | String | 이용 정지 해제 등록자 |
+| result.seq | Long | 이용 정지 내역 순번 |
+| result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
+| result.userId | String | 사용자 ID |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+#### Ban Release Histories.
+
+사용자 이용 정지 해제 이력을 조회합니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-member/v1.0/apps/{appId}/members/bans/release |
+
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST 프로젝트 ID |
+
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| begin | String | mandatory | 이용 정지 해제 이력 조회 시작 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | mandatory | 이용 정지 해제 이력 조회 종료 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용정지가 해제 되었다면 조회 결과에 존재 |
+| page | String | optional | 조회하고자 하는 페이지. 0부터 시작 |
+| size | String | optional | 한 페이지당 데이터 개수 |
+
+
+**[Response Body]**
+
+```json
+{
+  "header": {
+    "transactionId": "String",
+    "resultCode": 0,
+    "resultMessage": "SUCCESS",
+    "isSuccessful": true
+  },
+    "pagingInfo": {
+      "first": true,
+      "last": true,
+      "numberOfElements": 0,
+      "page": 0,
+      "size": 0,
+      "totalElements": 0,
+      "totalPages": 0
+    },
+    "result": [
+      {
+        "appId": "String",
+        "banCaller": "CONSOLE",
+        "banReason": "String",
+        "banType": "TEMPORARY",
+        "beginDate": 0,
+        "endDate": 0,
+        "flags": "String",
+        "message": "String",
+        "name": "String",
+        "regUser": "String",
+        "releaseCaller": "CONSOLE",
+        "releaseDate": 0,
+        "releaseReason": "String",
+        "releaseUser": "String",
+        "seq": 0,
+        "templateCode": 0,
+        "userId": "String"
+      }
+    ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| pagingInfo | Object | 조회된 페이징 정보 |
+| pagingInfo.first | boolean | 첫번째 페이지이면 true |
+| pagingInfo.last | boolean | 마지막 페이지이면 true |
+| pagingInfo.numberOfElements | int | 전체 데이터 수 |
+| pagingInfo.page | int | 페이지 번호 |
+| pagingInfo.size | int | 한 페이지당 데이터 개수 |
+| pagingInfo.totalElements | int | 전체 데이터 수 |
+| pagingInfo.totalPages | int | 전체 페이징 수 |
+| result | Array[Object] | 조회된 이용 정지 정보 |
+| result.appId | String | 조회된 이용 정지 의 TOAST 프로젝트 ID |
+| result.banCaller | String | 이용 정지 호출 주체 |
+| result.banReason | String | 이용 정지 사유 |
+| result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
+| result.beginDate | String | 이용 정지 시작 시간. ISO 8601 표준 시간 |
+| result.endDate | String | 이용 정지 종료 시간. ISO 8601 표준 시간 |
+| result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'Leaderboard' 로 반환 |
+| result.message | String | 이용 정지 메세지 |
+| result.name | String | 콘솔에서 등록한 템플릿 이름 |
+| result.regUser | String | 이용 정지 등록자 |
+| result.releaseCaller | String | 이용 정지 해제 주체 |
+| result.releaseDate | String | 이용 정지 해제 시간. ISO 8601 표준 시간 |
+| result.releaseReason | String | 이용 정지 해제 사유 |
+| result.releaseUser | String | 이용 정지 해제 등록자 |
+| result.seq | Long | 이용 정지 내역 순번 |
+| result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
+| result.userId | String | 사용자 ID |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+<br>
 
 ## Maintenance
 
