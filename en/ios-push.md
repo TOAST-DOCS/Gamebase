@@ -114,6 +114,4 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
 * Refer to the following document for TOAST Push error codes
-    * [Notification > Push > SDK v1.4 Guide > Error Handling](/Notification/Push/en/sdk-guide/#_10)
-
-
+    * [Notification > Push > SDK v1.4 Guide > Error Handling](/Notification/Push/ko/sdk-guide-ios/#_11)

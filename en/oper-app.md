@@ -304,6 +304,19 @@ Twitter Application Management 사이트에서 앱을 등록하고 발급받은 
 **Reference URL**
 - [Twitter Application Management](https://apps.twitter.com/)
 
+##### iOS
+
+ > <font color="red">[주의]</font><br/>
+ >
+ > Gamebase iOS SDK 1.14.0 버전에서 URL Scheme의 설정 방법이 변경 되었습니다. 사용 SDK 버전에 맞는 가이드를 확인하여 설정하시기 바랍니다.
+ >
+
+ * 1.13.0 이하
+	* 별도의 URL Scheme 설정이 필요하지 않습니다.
+
+* 1.14.0 이상
+	* URL Scheme를 설정해야 합니다.
+		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.twitter`를 추가해야 합니다.
 
 #### 7. LINE
 
