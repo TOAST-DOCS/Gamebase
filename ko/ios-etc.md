@@ -3,6 +3,19 @@
 ## Additional Features
 Gamebase에서 지원하는 부가적인 기능을 설명합니다.
 
+
+### Device Language
+
+* 단말기에 설정된 언어 코드를 리턴합니다.
+* 여러개의 언어가 등록된 경우, 우선권이 가장 높은 언어만을 리턴합니다.
+
+**API**
+
+```objectivec
++ (NSString *)deviceLanguageCode;
+```
+
+
 ### Display Language
 * Gamebase에서 표시하는 언어를 기기에 설정된 언어가 아닌 다른 언어로 변경할 수 있습니다.
 * Gamebase는 클라이언트에 포함되어 있는 메시지를 표시하거나 서버에서 받은 메시지를 표시합니다.
@@ -195,6 +208,52 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 1. 입력된 languageCode가 localizedstring.json 파일에 정의되어 있는지 확인합니다.
 2. Gamebase 초기화 시, 기기에 설정된 언어코드가 localizedstring.json 파일에 정의되어 있는지 확인합니다. (이 값은 초기화 이후, 기기에 설정된 언어를 변경하더라도 유지됩니다.)
 3. Display Language의 기본값인 `en`이 자동 설정됩니다.
+
+
+### Country Code
+
+* Gamebase는 System의 Country Code를 다음과 같은 API로 제공하고 있습니다.
+* 각 API 마다 특징이 있으니 쓰임새에 맞는 API를 선택하시기 바랍니다.
+
+#### USIM Country Code
+
+* USIM에 기록된 국가코드를 리턴합니다.
+* USIM에 잘못된 국가코드가 기록되어 있다 하더라도 추가적인 체크 없이 그대로 리턴합니다.
+* 값이 비어있는 경우 'ZZ'를 리턴합니다.
+
+**API**
+
+```objectivec
++ (NSString *)usimCountryCode;
+```
+
+#### Device Country Code
+
+* OS 로부터 전달받은 단말기 지역 설정을 추가적인 체크 없이 그대로 리턴합니다.
+* 단말기 국가코드는 '설정 > 일반 > 언어 및 지역 > 지역' 설정에 따라 OS가 결정합니다.
+* iOS 에서 제공하는 NSLocaleCountryCode 를 사용하여 획득한 값을 리턴합니다.
+
+**API**
+
+```objectivec
++ (NSString *)deviceCountryCode;
+```
+
+#### Intergrated Country Code
+
+* USIM, 단말기 지역 설정의 순서로 국가 코드를 확인하여 리턴합니다.
+* country API는 다음 순서로 동작합니다.
+	1. USIM에 기록된 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
+	2. USIM 국가 코드가 빈 값이라면 단말기 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
+	3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ' 를 리턴합니다.
+
+![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
+
+**API**
+
+```objectivec
++ (NSString *)countryCode;
+```
 
 
 
