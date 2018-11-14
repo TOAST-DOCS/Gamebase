@@ -940,7 +940,7 @@ else
 {
     Debug.Log(string.Format("code:{0}, message:{1}", gamebaseError.code, gamebaseError.message));
 
-    Error moduleError = gamebaseError.error; // GamebaseError.error object from external module
+    GamebaseError moduleError = gamebaseError.error; // GamebaseError.error object from external module
     if (null != moduleError)
     {
         int moduleErrorCode = moduleError.code;

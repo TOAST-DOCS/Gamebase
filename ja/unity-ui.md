@@ -132,7 +132,7 @@ public void OpenWebBrowser(string url)
 ## Alert
 
 システム通知を表示することができます。
-システム通知にボタンやコールバックを登録することもできます。
+시스템 알림에 콜백을 등록할 수도 있습니다.
 
 **API**
 
