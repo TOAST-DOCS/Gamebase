@@ -44,7 +44,7 @@
 			- (void)Gamebase.Network.removeOnChangedListener(NetworkManager.OnChangedListener)
 			- (void)Gamebase.Launching.addOnUpdatedListener(LaunchingOnUpdateListener)
 			- (void)Gamebase.Launching.removeOnUpdatedListener(LaunchingOnUpdateListener)
-		*(iOS) 9개
+		* (iOS) 9개
 			- [TCGBUtil showToastWithMessage:duration:]
 			- [TCGBWebView showWebBrowserWithURL:viewController:]
 			- [TCGBWebView showWebViewWithURL:viewController:configuration:]
@@ -67,7 +67,7 @@
 		* (Android) 2개
 			- (void)Gamebase.WebView.showWebView(Activity, String)
 			- (void)Gamebase.WebView.showWebView(Activity, String, GamebaseWebViewConfiguration)
-		*(iOS) 1개
+		* (iOS) 1개
 			- [TCGBGamebase languageCode]
 		* (Unity) 1개
 			- GetLanguageCode()
