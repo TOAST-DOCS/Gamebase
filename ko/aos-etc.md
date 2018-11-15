@@ -24,7 +24,7 @@ Gamebase에서 지원하는 부가 기능을 설명합니다.
 
 > [참고]
 >
-> Gamebase의 클라이언트 메시지는 영어(en), 한글(ko)만 포함합니다.
+> Gamebase의 클라이언트 메시지는 영어(en), 한글(ko), 일본어(ja)만 포함합니다.
 
 #### Gamebase에서 지원하는 언어코드의 종류
 
@@ -277,9 +277,9 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 현재 Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
 
 * ServerPushEventMessage.Type.APP_KICKOUT (= "appKickout")
-    * TOAST Gamebase 콘솔의 `Operation > Kickout`에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 `APP_KICKOUT` 메시지를 받게 됩니다.
+    * TOAST Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 **APP_KICKOUT** 메시지를 받게 됩니다.
 * ServerPushEventMessage.Type.TRANSFER_KICKOUT (= "transferKickout")
-	* TransferKey 를 통해 게스트 계정 이전이 성공한 경우, TransferKey를 발급받았던 단말기로 `TRANSFER_KICKOUT` 메세지가 전송됩니다.
+	* TransferKey 를 통해 게스트 계정 이전이 성공한 경우, TransferKey를 발급받았던 단말기로 **TRANSFER_KICKOUT** 메세지가 전송됩니다.
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 

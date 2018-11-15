@@ -38,7 +38,7 @@ static string GetDeviceLanguageCode()
 
 > [Note]
 >
-> Client messages of Gamebase include English(en) and Korean(ko), only.
+> Client messages of Gamebase include English(en), Korean(ko) and Japanese(ja) only.
 
 #### Types of Language Codes Supported by Gamebase
 
@@ -343,9 +343,9 @@ public static string GetCountryCode()
 Server Push Types currently supported by Gamebase are as follows:
 
 * GamebaseServerPushType.APP_KICKOUT (= "appKickout")
-    * Go to `Operation > Kickout`  in the TOAST Gamebase console and register Kickout ServerPush messages, and `APP_KICKOUT` messages are sent to all clients connected to Gamebase.
+    * Go to **Operation > Kickout**  in the TOAST Gamebase console and register Kickout ServerPush messages, and **APP_KICKOUT** messages are sent to all clients connected to Gamebase.
 * GamebaseServerPushType.TRANSFER_KICKOUT (= "transferKickout")
-	* TransferKey 를 통해 게스트 계정 이전이 성공한 경우, TransferKey를 발급받았던 단말기로 `TRANSFER_KICKOUT` 메세지가 전송됩니다.
+	* TransferKey 를 통해 게스트 계정 이전이 성공한 경우, TransferKey를 발급받았던 단말기로 **TRANSFER_KICKOUT** 메세지가 전송됩니다.
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 

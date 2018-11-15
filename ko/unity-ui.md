@@ -132,7 +132,7 @@ public void OpenWebBrowser(string url)
 ## Alert
 
 시스템 알림을 표시할 수 있습니다.
-시스템 알림에 버튼이나 콜백을 등록할 수도 있습니다.
+시스템 알림에 콜백을 등록할 수도 있습니다.
 
 **API**
 

@@ -58,7 +58,7 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 
 결제 정보를 조회할 수 있습니다.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction1_1.3.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction1_1.4.png)
 
 아래 검색조건을 이용하여 원하는 결제 정보를 조회할 수 있습니다.
 결제 내역은 우측 상단의 다운로드 버튼을 통해 언제든지 다운로드 받으실 수 있습니다.
@@ -113,3 +113,8 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 별다른 추가정보의 입력 없이 상태를 선택한 후 변경을 선택합니다.
 변경된 결제 정보는 이후 변경이 불가능하므로 신중하게 확인 후 진행해야 합니다.
 
+### 영수증 검증
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction3.1.png)
+* 조회된 영수증을 기반으로 해당 결제건이 유효한 지 검증할 수 있습니다.
+* 각 필드의 비교결과를 알려주며 스토어로부터 받은 응답값을 Json형식으로 제공하므로 필요한 경우 데이터를 직접 확인하실 수 있습니다.
+* 현재는 App Store 결제건에 대해서만 검증을 제공합니다.
