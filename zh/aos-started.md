@@ -1,42 +1,42 @@
-## Game > Gamebase > Android Developer's Guide > Getting Started
+## Game > Gamebase > Android SDK 使用指南 > 开始
 
-To execute Gamebase in Android, following system environment is required.
+在Android上应用Gamebase，需要的系统环境如下。
 
-### Environments
+### 环境
 
 
-> [Minimum Specifications]
+> [最低版本]
 >
-> Android API 15 (IceCreamSandwichMR1, 4.0.3) or higher <br/>
-> Development Environment: Android Studio
+> Android API 15 (IceCreamSandwichMR1, 4.0.3) 以上 <br/>
+> 开发环境: Android Studio
 
-### Installation
+### 安装
 
-Download Gamebase Android SDK.
+下载Gamebase Android SDK文件。
 
-Before applying Gamebase Android SDK, you need an App ID issued at the TOAST Cloud Console: select a project created in the TOAST Cloud Console and click **(+)Service** Game > Gamebase.
+在应用Gamebase Android SDK之前，您需要从TOAST Console获取App ID。获取应用App ID，请在TOAST Console上在单击**(+)服务**，然后点击Game > Gamebase以启用该服务。
 
-#### Download
+#### 下载
 
 * [Download Gamebase Android SDK](/Download/#game-gamebase)
-* Add aar files in the following folder of the downloaded SDK to a project.
+* 在下载的SDK中，将以下文件夹中的aar文件添加到项目中。
     * **gamebase-sdk/**
-* Add an authentication module.
-    * Add the **gamebase-adapter-auth-{provider}** folder of downloaded SDK to project.
-    * Add all authentication modules among Google, Facebook, Naver, and PAYCO.
+* 添加认证模块
+    * 将下载的SDK的**gamebase-adapter-auth-{provider}**文件夹添加到项目中。
+    * 添加要使用的所有认证模块：Google，Facebook或PAYCO。
 
 
 #### Package Includes (SDK)
 
-* Decompress the SDK package and modules as below will show.
+* 解压缩SDK包和模块，如下所示。
   ![Package Includes](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-installation-001_1.5.0.png)
 
-### Setting build.gradle
+### 设置build.gradle
 
-* 1) Copy downloaded Gamebase SDK to app's root path.
-* 2) Set the path and version of Gamebase, authentication to be used, and purchase/push modules.
-    * When a module is set true, the module will be added to dependency.
-    * Set false for the modules that are not included because of not in use.
+* 1) 将下载的Gamebase SDK复制到App的根(root)路径。
+* 2) 设置Gamebase路径和版本，以使用认证、支付和推送模块。
+    * 如果将要使用的模块设置为true，则模块添加到 dependency项中。
+    * 相反，未使用且未包含的模块设置为false。
 
 ```gradle
 /* Set the Gamebase path. */
@@ -57,13 +57,13 @@ def pushSdkVersion = '1.4.2'
 def pushSdkTencentVersion = '1.6.0'
 
 /* Set the Gamebase version. */
-def gamebaseSdkVersion = '1.14.0'
-def gamebaseGoogleAdapterVersion = '1.9.0'
+def gamebaseSdkVersion = '1.13.0'
 def gamebaseFacebookAdapterVersion = '1.11.0'
-def gamebasePaycoAdapterVersion = '1.7.0'
+def gamebaseGoogleAdapterVersion = '1.9.0'
 def gamebaseNaverAdapterVersion = '1.13.0'
-def gamebaseTwitterAdapterVersion = '1.12.2'
+def gamebaseTwitterAdapterVersion = '1.11.0'
 def gamebaseLineAdapterVersion = '1.11.0'
+def gamebasePaycoAdapterVersion = '1.7.0'
 def gamebaseIAPAdapterVersion = '1.13.0'		// Not all adapters have the same version.
 def gamebaseFCMAdapterVersion = '1.7.0'
 def gamebaseTencentAdapterVersion = '1.12.1'
@@ -88,7 +88,7 @@ def usePushFCM = true;
 def usePushTencent = false; // Do not use all push modules. Select one.
 ```
 
-* 3) Add below to repositories.
+* 3) 以下内容将添加到repositories。
 
 ```gradle
 repositories {
@@ -108,7 +108,7 @@ repositories {
 }
 ```
 
-* 4) Add below to dependencies.
+* 4) 以下内容将添加到 dependencies。
 
 ```gradle
 dependencies {
@@ -193,9 +193,9 @@ dependencies {
 }
 ```
 
-## Dependency
+## 依赖
 
-Gamebase SDK ensures that those modules with 3rd Party SDK and dependency are interchangeable.
+Gamebase SDK可确保具有第三方SDK和依赖的模块版本兼容。
 
 | Category                         | Provider        | Modules                                  | Dependencies                             |
 | -------------------------------- | --------------- | ---------------------------------------- | ---------------------------------------- |
@@ -206,16 +206,16 @@ Gamebase SDK ensures that those modules with 3rd Party SDK and dependency are in
 |                                  | Twitter         | gamebase-adapter-auth-twitter-{gamebaseTwitterAdapterVersion}.aar | signpost-core-{signpostVersion}.jar |                          |
 |                                  | Line            | gamebase-adapter-auth-line<br>-{gamebaseLineAdapterVersion}.aar | line-sdk-{lineSdkVersion}.aar<br>animated-vector-drawable-{supportVersion}.aar<br>appcompat-v7-{supportVersion}.aar<br>customtabs-{supportVersion}.aar<br>support-vector-drawable-{supportVersion}.aar<br>common-1.0.0.jar<br>common-1.0.3.jar<br>runtime-1.0.3.aar<br>support-annotations-{supportVersion}.jar<br>support-compat-{supportVersion}.aar<br>support-core-ui-{supportVersion}.aar<br>support-core-utils-{supportVersion}.aar<br>support-fragment-{supportVersion}.aar |
 |                                  | Payco           | gamebase-adapter-auth-payco<br>-{gamebasePaycoAdapterVersion}.aar | paycologin-{paycoSdkVersion}.aar<br>play-services-base-{playServicesVersion}.aar<br>play-services-basement-{playServicesVersion}.aar<br>gson-{gsonVersion}.jar |
-| **Purchase<br>(optional)**       | IAP             | gamebase-adapter-purchase-iap<br>-{gamebaseIAPAdapterVersion}.aar | iap-{iapSdkVersion}.aar<br>mobill-core-{iapSdkVersion}.aar<br>gson-{gsonVersion}.jar<br>okhttp-1.5.4.jar<br>* okhttp-1.5.4.jar는 gamebase sdk가 사용하는 okhttp-3.x 와는 다른, IAP SDK가 사용하는 모듈입니다.|
-|                                  | IAP - ONE store |                                          | iap-onestore-{iapSdkVersion}.aar<br>* ONE store 사용 시 추가해야 합니다. |
+| **Purchase<br>(optional)**       | IAP             | gamebase-adapter-purchase-iap<br>-{gamebaseIAPAdapterVersion}.aar | iap-{iapSdkVersion}.aar<br>mobill-core-{iapSdkVersion}.aar<br>gson-{gsonVersion}.jar<br>okhttp-1.5.4.jar<br>* okhttp-1.5.4.jar是IAP SDK使用的模块，与gamebase sdk使用的 okhttp-3.x不同。|
+|                                  | IAP - ONE store |                                          | iap-onestore-{iapSdkVersion}.aar<br>*使用 ONE store时必须添加。|
 | **Push<br>(optional)**           | FCM             | gamebase-adapter-push-fcm<br>-{gamebaseFCMAdapterVersion}.aar  | pushsdk-{pushSdkVersion}.aar<br>firebase-common-{playServicesVersion}.jar<br>firebase-iid-{playServicesVersion}.jar<br>firebase-messaging-{playServicesVersion}.aar<br>play-services-base-{playServicesVersion}.aar<br>play-services-basement-{playServicesVersion}.aar<br>play-services-gcm-{playServicesVersion}.aar<br>play-services-iid-{playServicesVersion}.aar<br>play-services-tasks-{playServicesVersion}.aar<br>common-1.0.0.jar<br>common-1.0.3.jar<br>runtime-1.0.3.aar<br>support-annotations-{supportVersion}.jar<br>support-compat-{supportVersion}.aar<br>support-core-ui-{supportVersion}.aar<br>support-core-utils-{supportVersion}.aar<br>support-fragment-{supportVersion}.aar<br>support-media-compat-{supportVersion}.aar<br>support-v4-{supportVersion}.aar |
 |                                  | Tencent         | gamebase-adapter-push-tencent<br>-{gamebaseTencentAdapterVersion}.aar | pushsdk-tencent-{pushSdkTencentVersion}.aar |
 
-* "Required" refers to the modules that must be included.
-* "Optional" refers to the modules that must be included when specific functions are in need.
-* Need to include only one of the duplicate modules in Dependency.
+* required是指必须加载的模块。
+* optiona是指在需要特定功能时必须加载的模块。
+* 只能包含一个重复的依赖模块。
 
-## 3rd-Party Provider SDK Guide
+## 第三方提供SDK的指南
 
 * [Facebook for developers](https://developers.facebook.com/docs/android)
 * [Google APIs for Android](https://developers.google.com/android/guides/overview)
@@ -227,18 +227,18 @@ Gamebase SDK ensures that those modules with 3rd Party SDK and dependency are in
 
 ## API Reference
 
-API Reference is included in SDK.
+API Reference包含在SDK中。
 
 ## API Deprecate Governance
 
-Gamebase에서 더 이상 지원하지 않는 API는 Deprecate 처리합니다.
-Deprecated 된 API는 다음 조건 충족 시 사전 공지 없이 삭제될 수 있습니다.
+Gamebase不再支持的API，进行Deprecate处理。
+在满足以下条件时，可以删除Deprecated的API，不再另行通知。
 
-* 5회 이상의 마이너 버전 업데이트
+* 超过5次小更新
 	* Gamebase Version Format - XX.YY.ZZ
 		* XX : Major
 		* YY : Minor
 		* ZZ : Hotfix
 
-* 최소 5개월 경과
+* 至少5个月
 

@@ -1,19 +1,19 @@
-## Game > Gamebase > Unity Developer's Guide > UI
+## Game > Gamebase > Unity SDK使用指南 > UI
 
 ## Webview
 
 ### Show WebView
 
-Shows a WebView.<br/>
+显示WebView。<br/>
 
-##### Required Parameters
-* URL: The url delivered as a parameter should be valid.
+##### Required参数
+* url：作为参数发送的url必须是有效值。
 
-##### Optional Parameters
-* configuration: Changes WebView layout by using GamebaseWebViewConfiguration.
-* closeCallback: Notifies users when a WebView is closed.
-* schemeList: Specifies the list of customized schemes a user wants.
-* schemeEvent: Notifies url including customized scheme specified by the schemeList with a callback.
+##### 可选参数
+* configuration：可以使用GamebaseWebViewConfiguration更改WebView的布局。
+* closeCallback：WebView关闭时通过回调通知用户。
+* schemeList：指定用户想要接收的自定义SchemeList。
+* schemeEvent：用schemeList指定的包含自定义Scheme的url，作为回调通知。
 
 **API**
 
@@ -26,9 +26,9 @@ Supported Platforms
 static void ShowWebView(string url, GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
 ```
 
-> Stansalone에서는 WebViewAdapter를 통해서 WebView를 지원하며 WebView가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
+> Stansalone支持通过WebViewAdapter登录，并且在WebView打开时，不会阻止在UI中输入的Event。
 
-**Example**
+**示例**
 ```cs
 public void ShowWebView(GamebaseCallback.ErrorDelegate closeCallback, List<string> schemeList, GamebaseCallback.GamebaseDelegate<string> schemeEvent)
 {
@@ -52,36 +52,36 @@ public void ShowWebView(GamebaseCallback.ErrorDelegate closeCallback, List<strin
 
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | string                                   | Title of WebView                 |
-| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | Unspecified |
-|                          | GamebaseScreenOrientation.PORTRAIT       | Portrait Mode                      |
-|                          | GamebaseScreenOrientation.LANDSCAPE      | Landscape Mode                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | Reverse Landscape              |
-| colorR                   | 0~255                                    | Color of Navigation Bar: Alpha            |
-| colorG                   | 0~255                                    | Color of Navigation Bar: R                 |
-| colorB                   | 0~255                                    | Color of Navigation Bar: G               |
-| colorA                   | 0~255                                    | Color of Navigation Bar: B                |
-| buttonVisible            | true or false                            | Activate/Deactivate Go Back Button           |
-| barHeight                | height                                   | Height of Navigation Bar                  |
-| backButtonImageResource  | ID of resource                           | Image of Go Back Button                |
-| closeButtonImageResource | ID of resource | Image of Close Button |
+| title                    | string                                   | WebView的标题                 |
+| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 不明 |
+|                          | GamebaseScreenOrientation.PORTRAIT       | 纵向模式                       |
+|                          | GamebaseScreenOrientation.LANDSCAPE      | 横向模式                       |
+|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 横向旋转180度              |
+| colorR                   | 0~255                                    | 导航栏颜色Alpha            |
+| colorG                   | 0~255                                    | 导航栏颜色R                 |
+| colorB                   | 0~255                                    | 导航栏颜色G                |
+| colorA                   | 0~255                                    | 导航栏颜色B                |
+| buttonVisible            | true or false                            | 返回按钮有效或无效          |
+| barHeight                | height                                   | 导航栏高度                 |
+| backButtonImageResource  | ID of resource                           | 返回按钮图标                |
+| closeButtonImageResource | ID of resource | 关闭按钮图标 |
 | url | "http://" or "https://" or "file://" | Web URL |
 
 #### Predefined Custom Scheme
 
-Gamebase has specified following schemes.
+在Gamebase中指定的架构。
 
-| scheme | Usage |
+| scheme | 作用 |
 | ----------------------------- | ------------------------------ |
-| gamebase://dismiss | Close WebView |
-| gamebase://goBack | Go back from WebView |
-| gamebase://getUserId          | Show ID of a user who is currently logged-in |
-| gamebase://getMaintenanceInfo | Display maintenance information on WebPage |
+| gamebase://dismiss |关闭WebView  |
+| gamebase://goBack | 返回WebView  |
+| gamebase://getUserId          | 显示当前登录用户的ID  |
+| gamebase://getMaintenanceInfo | 在WebPage上显示维护内容 |
 
 
 ### Close WebView
 
-Close currently displayed WebView by using the following API.
+通过以下API，可以关闭正在显示的WebView。
 
 **API**
 
@@ -94,7 +94,8 @@ Supported Platforms
 static void CloseWebview()
 ```
 
-**Example**CloseWebview
+**示例**
+
 ```cs
 public void CloseWebview()
 {
@@ -103,9 +104,9 @@ public void CloseWebview()
 ```
 
 
-## Open External Browser
+## 打开外部浏览器
 
-Open an external browser by using the following API. The URL delivered as a parameter should be valid.
+可以使用以下API打开外部浏览器。作为参数传递的URL必须是有效值。
 
 **API**
 
@@ -120,7 +121,7 @@ Supported Platforms
 static void OpenWebBrowser(string url)
 ```
 
-**Example**
+**示例**
 ```cs
 public void OpenWebBrowser(string url)
 {
@@ -129,10 +130,10 @@ public void OpenWebBrowser(string url)
 ```
 
 
-## Alert
+## 提醒
 
-Displays a system alert API.
-시스템 알림에 콜백을 등록할 수도 있습니다.
+可以显示系统提醒。
+可以在系统通知中登记按钮或回调。
 
 **API**
 
@@ -145,7 +146,7 @@ static void ShowAlert(string title, string message)
 static void ShowAlert(string title, string message, GamebaseCallback.VoidDelegate buttonCallback)
 ```
 
-**Example**
+**示例**
 ```cs
 public void ShowAlertD()
 {
@@ -171,7 +172,7 @@ public void ShowAlertDialog()
 
 ## Toast
 
-Displays message easily, by using the following API.
+可以使用以下API轻松显示消息。
 
 **API**
 
@@ -184,7 +185,7 @@ static void ShowToast(string message, int duration)
 static void ShowToast(string message, GamebaseUIToastType type)
 ```
 
-**Example**
+**示例**
 ```cs
 public void ShowToast(string message, int duration)
 {
@@ -202,11 +203,11 @@ public void ShowToast(string message, GamebaseUIToastType type)
 }
 ```
 
-## Error Handling
+## Error处理
 
 | Error              | Error Code | Description                 |
 | ------------------ | ---------- | --------------------------- |
-| UI\_UNKNOWN\_ERROR | 6999       | Unknown error (Undefined error). |
+| UI\_UNKNOWN\_ERROR | 6999       | 未知错误(未定义的错误)。 |
 
-* Refer to the following document for the entire error codes.
-    * [Entire Error Codes](./error-code/#client-sdk)
+* 所有错误代码，请参考以下文档。
+    * [错误代码](./error-code/#client-sdk)

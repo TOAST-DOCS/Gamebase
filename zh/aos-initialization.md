@@ -1,11 +1,11 @@
-## Game > Gamebase > Android Developer's Guide > Initialization
+## Game > Gamebase > Android SDK使用指南> 初始化
 
-To use Gamebase Android SDK, initialization is required.
+在使用Gamebase Android SDK之前，必须先执行初始化。
 
-### Activate the Application
+### 启用App
 
-To manage app's lifecycle, Gamebase SDK should be notified of app's activation.<br/>
-Call **Gamebase#activeApp(Context)** from **Application#onCreate()**.
+要管理App的生命周期(lifecycle)，须通知Gamebase SDK您的应用处于有效状态。<br/>
+**Application#onCreate()**调用 **Gamebase#activeApp(Context)**。
 
 ```java
 public class GamebaseApplication extends Application {
@@ -18,33 +18,33 @@ public class GamebaseApplication extends Application {
 }
 ```
 
-### Configuration Settings
+### 配置设定
 
-To initialize Gamebase, Gamebase setting can be modified with GamebaseConfiguration.Builder.
+初始化Gamebase时，可以使用GamebaseConfiguration.Builder对象修改Gamebase设置。
 
 | API                                      | Mandatory(M) / Optional(O) | Description                              |
 | ---------------------------------------- | -------------------------- | ---------------------------------------- |
-| Builder(String appId, String appVersion) | **M**                      | GamebaseConfiguration.Builder 생성자에 appId와 appVersion을 필수 파라미터로 넘겨주어 초기화해야합니다. <br/><br/> **appId:** Enter an App ID issued from TOAST Cloud Project.<br/> **appVersion:** Status of update or maintenance can be decided upon a game version. Specify a game version. |
-| build()                                  | **M**                      | Convert Builder completed with setting to a configuration object.<br/>Required for **Gamebase.initialize ()** API. |
-| enablePopup(boolean enable)              | O                          | **[UI]**<br/>When a game user cannot play games due to system maintenance or banned from use, reasons need to be displayed by pop-ups.<br/>If it is set **true** , Gamebase will automatically display information via pop-ups.<br/>**false** is set as default.<br/>When set to **false** , get information from launching results and display why user cannot play games by using customized UI. |
-| enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>Depending on the launching results, when available to log in (mainly due to maintenance), you may decide whether to allow Gamebase to automatically display pop-ups.<br/>Works only when **enablePopup (true)** is on.<br/>**true** is set as default. |
-| enableBanPopup(boolean enable)           | O                          | **[UI]**<br/>When game user is banned, you can change whether to allow Gamebase to automatically display a pop-up on the reasons.<br/>Works only when **enablePopup (true)** is on.<br/>**true** is set as default. |
-| setStoreCode(String storeCode)           | O                          | **[Purchase]**<br/>Need to set which store to use for In-App Purchase (IAP).<br/>For parameters, refer to the [IAP Document](/Mobile%20Service/IAP/en/Overview/). |
-| setFCMSenderId(String senderId)          | O                          | **[Push]**<br/>To send push messages via Google Notification (FCM, GCM), set a sender ID. |
-| setTencentAccessKey(String accessKey)<br/>setTencentAccessId(String accessId) | O                          | **[Push]**<br/>To use Tencent push modules, set an access key and access ID. |
+| Builder(String appId, String appVersion) | **M**                      | 需要使用appId和appVersion，初始化gamebaseConfiguration.Builder构造函数作为必要参数。<br/><br/> ** appId **是TOAST Project发放的App的ID。<br/> **appVersion**用于判断游戏是处于服务状态、更新状态还是维护状态。请指定游戏版本。 |
+| build()                                  | **M**                      | 将设置完的 Builder转换为Configuration对象。<br/>**Gamebase.initialize()** API要求。 |
+| enablePopup(boolean enable)              | O                          | **[UI]**<br/>因系统维护或设置禁用（ban）等原因，导致游戏用户无法玩游戏的状态下，有时需要通过弹出窗口显示原因。<br/>如果设置为**true**，Gamebase将在该情况下自动弹出窗口公告信息。<br/>默认值为 **false**。<br/>**false**的情况下，从Launching结果中获取信息，并使用自定义UI，显示用户无法玩游戏的原因。 |
+| enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>根据Launching结果，可以更改Gamebase是否在无法登录时，自动显示弹出窗口（维护状态为主）。<br/>仅适用于**enablePopup(true)** 状态下。<br/>默认值为 **true**。 |
+| enableBanPopup(boolean enable)           | O                          | **[UI]**<br/>当游戏用户被禁用时，Gamebase可以设定是否将制裁原因以弹出窗口的形式显示给用户。<br/>仅适用于**enablePopup(true)**状态下。<br/>默认值为 **true**。 |
+| setStoreCode(String storeCode)           | O                          | **[Purchase]**<br/>如果要使用TOAST的IAP(In-App Purchase)服务，则需要设置商店类型。<br/>有关参数，请参考 [IAP指南](/Mobile%20Service/IAP/ko/Overview/) |
+| setFCMSenderId(String senderId)          | O                          | **[Push]**<br/>如果要通过Google Notification（FCM，GCM）发送推送消息，则需要设置发件人ID。 |
+| setTencentAccessKey(String accessKey)<br/>setTencentAccessId(String accessId) | O                          | **[Push]**<br/> 如果您使用的是腾讯推送模块，则需要设置访问密钥和访问ID。|
 
-### Debug Mode
-* Gamebase shows warning and error logs only.
-* To turn on system logs for the reference of development, call **Gamebase.setDebugMode(true)**.
+### Debug模式
+* Gamebase仅显示警告(warning)和错误日志。
+* 要打开系统日志进行开发，请调用** Gamebase.setDebugMode（true）**。
 
-> <font color="red">[Caution]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> Before **releasing** a game, be sure to delete 'setDebugMode' call from a source code or change the parameter to 'false'.
+> 当**发布**游戏时，请务必从源代码中删除setDebugMode调用，或者将参数更改为false之后再打包。
 
-### Initialize
+### 初始化
 
-Call **Gamebase#initialize(Activity, GamebaseConfiguration, and GamebaseDataCallback)** from **Activity#onCreate(Bundle)** to initialize Gamebase SDK.<br/>
-And, for normal operations of Gamebase, make sure to call **Gamebase.onActivityResult(int, int, Intent)** from **Activity#onActivityResult(int, int, Intent)**.
+通过在**Activity#onCreate(Bundle)**调用**Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback)**来初始化Gamebase SDK。<br/>
+另外，还需要从**Activity#onActivityResult(int, int, Intent)**调用 **Gamebase.onActivityResult(int, int, Intent)**，以进行Gamebase的正常操作。
 
 **API**
 
@@ -52,7 +52,7 @@ And, for normal operations of Gamebase, make sure to call **Gamebase.onActivityR
 + (void)Gamebase.initialize(Activity activity, GamebaseConfiguration configuration, GamebaseDataCallback<LaunchingInfo> callback);
 ```
 
-**Example**
+**示例**
 
 ```java
 public class MainActivity extends AppCompatActivity {
@@ -76,16 +76,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCallback(final LaunchingInfo data, GamebaseException exception) {
                 if (Gamebase.isSuccess(exception)) {
-                    // Check launching status.
+                    // 确认Launching状态。
                     LaunchingStatus status = data.getStatus();
                     if (status.isPlayable()) {
-                        // Play games.
+                        // 玩游戏
                     } else {
-                        // Requires maintenance or app updates.
+                        // 维护或更新App。
                     }
                 } else {
-                    // If initialization fails, cannot use Gamebase SDK.
-                    // Display errors, and restart or close a game.
+                    // 如果初始化失败，您将无法使用Gamebase SDK。
+                    // 显示错误，重新启动或关闭游戏。
                     Log.e(TAG, "Initialize failed- "
                             + "errorCode: " + exception.getCode()
                             + "errorMessage: " + exception.getMessage());
@@ -115,21 +115,21 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-### Launching Status
+### Launching状态
 
-Check launching status by calling 'Gamebase#initialize()'.
+可以通过调用Gamebase#initialize来确认Launching状态。
 
 ```java
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
     @Override
     public void onCallback(final LaunchingInfo data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
-            // Check launching status.
+            //确认Launching状态。
             LaunchingStatus status = data.getStatus();
             int statusCode = status.getCode();
             switch (statusCode) {
                 case LaunchingStatus.INSPECTING_SERVICE:
-                    // Under maintenance...
+                    // 维护中...
                     break;
                 ...
             }
@@ -140,7 +140,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 });
 ```
 
-getLaunchingInformations API를 이용하면 초기화 이후에도 LaunchingInfo 객체를 획득할 수 있습니다.
+使用getLaunchingInformations API，允许在初始化后获取LaunchingInfo对象。
 
 **API**
 
@@ -152,36 +152,36 @@ getLaunchingInformations API를 이용하면 초기화 이후에도 LaunchingInf
 
 
 
-### Launching Status Code
+### Launching状态码
 
-| Status                      | Code | Description                              |
+| 状态                      | Code | 描述                              |
 | --------------------------- | ---- | ---------------------------------------- |
-| IN_SERVICE                  | 200  | Service is now normally provided                                 |
-| RECOMMEND_UPDATE            | 201  | Update is recommended                                  |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202  | Under maintenance now but QA user service is available. |
-| REQUIRE_UPDATE              | 300  | Update is required                                  |
-| BLOCKED_USER                | 301  | User whose access has been blocked |
-| TERMINATED_SERVICE          | 302  | Service has been terminated                                   |
-| INSPECTING_SERVICE          | 303  | Under maintenance now                                 |
-| INSPECTING_ALL_SERVICES     | 304  | Under maintenance for the whole service                              |
-| INTERNAL_SERVER_ERROR       | 500  | Error in internal server                                 |
+| IN_SERVICE                  | 200  | 正常服务中                             |
+| RECOMMEND_UPDATE            | 201  | 推荐更新                                 |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202  | 维护期间该服务不可用，但如果登记为测试设备，则无论维护如何，都可以连接和测试该服务。|
+| REQUIRE_UPDATE              | 300  | 强制更新                                |
+| BLOCKED_USER                | 301  | 访问权限已被禁用的用户。|
+| TERMINATED_SERVICE          | 302  | 终止服务                                  |
+| INSPECTING_SERVICE          | 303  | 服务正在维护中                             |
+| INSPECTING_ALL_SERVICES     | 304  | 所有服务正在维护中                              |
+| INTERNAL_SERVER_ERROR       | 500  | 内部服务器错误                                 |
 
 
 
 
-### Error Handling
+### Error处理
 
 | Error                        | Error Code | Description                |
 | ---------------------------- | ---------- | -------------------------- |
-| NOT_INITIALIZED              | 1          | Gamebase 초기화돼 있지 않습니다. |
-| NOT_LOGGED_IN                | 2          | 로그인이 필요합니다.            |
-| INVALID_PARAMETER            | 3          | 잘못된 파라미터입니다.           |
-| INVALID_JSON_FORMAT          | 4          | JSON 포맷 오류입니다.          |
-| USER_PERMISSION              | 5          | 권한이 없습니다.               |
-| NOT_SUPPORTED                | 10         | 지원하지 않는 기능입니다.        |
-| NOT_SUPPORTED_ANDROID        | 11         | Android에서 지원하지 않는 기능입니다.   |
-| ANDROID_ACTIVEAPP_NOT_CALLED | 32         | activeApp API가 호출되지 않았습니다.   |
+| NOT_INITIALIZED              | 1          | Gamebase未初始化。 |
+| NOT_LOGGED_IN                | 2          | 需要登录。            |
+| INVALID_PARAMETER            | 3          | 无效的参数。          |
+| INVALID_JSON_FORMAT          | 4          | JSON格式错误。         |
+| USER_PERMISSION              | 5          | 无权限。               |
+| NOT_SUPPORTED                | 10         | 不支持此功能。       |
+| NOT_SUPPORTED_ANDROID        | 11         | Android不支持此功能。|
+| ANDROID_ACTIVEAPP_NOT_CALLED | 32         | 未调用activeApp API。|
 
 
-* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./error-code/#client-sdk)
+* 所有错误代码，请参考以下文档。
+    * [错误代码](./error-code/#client-sdk)

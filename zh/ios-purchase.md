@@ -1,67 +1,66 @@
-## Game > Gamebase > iOS Developer's Guide> Purchase
+## Game > Gamebase > iOS SDK 使用指南 > 结算
 
-This page describes how to set In-App Purchase (IAP).
+以下是设置使用应用内结算的方法。
 
-Gamebase provides an integrated purchase API to easily link IAP of many stores in a game.
+Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的应用内结算。
 
-### Settings
+### 设置
 
 #### Apple iTunes-Connect
-1. Upload a tester app-build
-2. Register and approve IAP
-3. Register a Sandbox Tester account
+1. 上传测试版APP build进行测试
+2. In-App Purchases 商品登记及批准
+3. 注册您的Sandbox Tester帐户
 * Detail Guide for iTunes-Connect: [Apple Guide](https://help.apple.com/itunes-connect/developer/#/devb57be10e7)
 
-#### Register TOAST Console
-Set TOAST Gamebase Console as follows.
+#### TOAST Console 登记
+应在TOAST Console中设置以下内容。
 
-1. Register a store to use at **Gamebase > Purchase (IAP) > App**.
-    * Store: Select **App Store**.
-2. Register an item at **Gamebase &gt; Purchase (IAP) &gt; Item**.
-    * Store: Select **App Store**.
-    * Store Item ID: Enter a Product ID registered at iTunes-Connect.
-3. When item setting is completed, press **Save**.
+1. **Gamebase > Purchase(IAP) > APP**中添加使用的商店。
+    * 商店:选择**App Store**。
+2. **Gamebase > Purchase(IAP) > item**中添加商品。
+    * 商店: 选择**App Store**。
+    * 商店项目ID: 输入在iTunes-Connect中登记的Product ID。
+3. 设置完商品后，请点击**保存**。
 
-#### Set Xcode Project
-1. Set **ON** for **Targets > Capabilities > In-App Purchase**.
-2. Set appropriate values for Bundle Identifier, Version, and Build at **Targets > General > Identity**.
+#### Xcode Project 设置
+1. **Targets > Capabilities > In-App Purchase**设置为**ON**。
+2. 根据需要设置**Targets > General > Identity** 的Bundle Identifier, Version和Build的值。
 
-#### Import Header File
+#### 导入Header文件
 
-Import the following header to ViewController to implement purchase API.
+将以下头文件导入要实现Purchase API的ViewController。
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
 ```
 
-### Purchase Flow
+### 购买流程
 
-Item purchases should be implemented in the following order.<br/>
+请按以下顺序实现购买商品。<br/>
 
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
 
-1. Call **requestPurchaseWithItemSeq:viewController:completion:** of Gamebase SDK to purchase in a game client.
-2. After a successful purchase, call **requestItemListOfNotConsumedWithCompletion:** to check list of non-consumed purchases.
-3. If there is a value on the returned list, the game client sends a request to the game server to consume purchased items.
-4. The game server requests for Consume API to the Gamebase server via API.
-    [API Guide](/Game/Gamebase/en/api-guide/#wrapping-api)
-5. If the IAP server has successfully called Consume API, the game server provides the items to the game client.
+1. 游戏客户端通过从Gamebase SDK 调用**requestPurchaseWithItemSeq:viewController:completion:**进行付款。
+2. 如果付款成功，请调用 **requestItemListOfNotConsumedWithCompletion:**查看未消费结算明细。
+3. 如果返还的未消费结算明细列表中存在值，游戏客户端向游戏服务器请求对游戏付款商品的consume（消费）。
+4. 游戏服务器通过Gamebase server的API请求 consume(消费)API 。
+    [API 指南](./api-guide/#wrapping-api)
+5. 如果在IAP服务器上consume(消费)API调用成功，则游戏服务器向游戏客户端支付item。
+
+商店付款成功，但发生错误无法正常结束的情况下，请登录后调用以下两个API执行重试逻辑。 <br/>
+
+1. 未处理的商品配送请求
+* 如果登录成功，请调用 **requestItemListOfNotConsumedWithCompletion:** 以检查您的未消费结算明细。
+    *如果返还的未消费结算明细列表中存在值，则游戏客户端向游戏服务器请求consume(消费)并支付item。
+2. 尝试重新处理付款错误
+    * 如果登录成功，请调用 **requestRetryTransactionWithCompletion:** 以自动尝试重新处理未处理的明细。
+    * 如果被返回的 successList 中存在值，则游戏客户端向游戏服务器请求consume(消费)并支付item。
+    *  如果被返回的failList中存在值，请通过游戏服务器或 Log & Crash 传输来获取数据, 可以通过, [客服中心](https://toast.com/support/inquiry)咨询重新处理失败原因。
 
 
-A purchase at store may be successful but cannot be closed normally due to error. It is recommended to call each of the two APIs after login is completed, to initialize a reprocessing logic. <br/>
+### 购买商品
 
-1. Request list of items that are not consumed
-    * When a login is successful, call **requestItemListOfNotConsumedWithCompletion:** to check list of non-consumed purchases.
-    * If the value is on the returned list, the game client sends a request to the game server to consume, so that items can be provided.
-2. Request to retry transaction
-    * When a login is successful, call **requestRetryTransactionWithCompletion:** to try to automatically reprocess the unprocessed.
-    * If there is a value on the returned successList, the game client sends a request to the game server to consume, so that items can be provided.
-    * If there is a value on the returned failList, send the value to the game server or Log & Crash to collect logs. Also send inquiry to  [**TOAST > Customer Center**](https://toast.com/support/inquiry)for the cause of reprocessing failure.
-
-
-### Purchase Item
-
-Call following API of an item to purchase by using itemSeq to send a purchase request.
+使用想要购买商品的itemSeq调用以下API并请求购买。
 
 ```objectivec
 - (void)purchasingItem:(long)itemSeq {
@@ -79,9 +78,9 @@ Call following API of an item to purchase by using itemSeq to send a purchase re
 
 
 
-### Get a List of Purchasable Items
+### 获取购买商品列表
 
-To retrieve the list of items, call the following API. Information of each item is included in the array of callback return.
+要查询商品列表，请调用以下API。回调返还的数组(array)包含各item的信息。
 
 ```objectivec
 - (void)viewDidLoad {
@@ -102,14 +101,14 @@ To retrieve the list of items, call the following API. Information of each item 
 ```
 
 
-### Get a List of Non-Consumed Items
+### 获取未支付商品列表
 
-Request for a list of non-consumed items, which have not been normally consumed (delivered, or provided) after purchase.<br/>
-In case of non-purchased items, ask the game server (item server) to proceed with item delivery (supply).
+请求已购买了商品，却没有正常消费（发送，提供）item的未消费结算明细。<br/>
+如果有未完成的商品，您必须要求游戏服务器（item服务器）处理配送item（支付）。
 
-* Make a call in the following two cases.
-    1. To confirm before an item is consumed after a successful purchase.
-    2. To check if there is any non-consumed item left after a login is successful.
+* 请在以下两种情况下调用。
+    1. 成功付款后，为了在处理item消费(consume)前进行最终确认而调用。
+    2. 登录成功后，为了确认是否还存在未消费(consume)的item而调用。
 
 
 ```objectivec
@@ -128,10 +127,10 @@ In case of non-purchased items, ask the game server (item server) to proceed wit
 
 
 
-### Reprocess Failed Purchase Transaction
+### 重新处理失败的购买交易
 
-In case a purchase is not normally completed after a successful purchase at a store due to failure of authentication of TOAST IAP server, try to reprocess by using API. <br/>
-Based on the latest success of purchase, reprocessing is required by calling an API for item delivery (supply).
+如果在商店付款成功，但因TOAST IAP服务器认证失败等原因未能正常付款的情况下，我们将尝试使用API重新处理。<br/>
+最后，根据付款成功的历史记录，需要通过调用item配送(支付) 等的API 来进行处理。
 
 ```objectivec
 - (void)viewDidLoad {
@@ -151,26 +150,26 @@ Based on the latest success of purchase, reprocessing is required by calling an 
 
 ### AppStore Promotion IAP
 
-> `주의`
-> iOS 11 이상에서만 사용할 수 있습니다.
-> Xcode 9.0 이상에서 빌드가 필요합니다.
-> Gamebase 1.13.0 이상에서 지원합니다. (TOAST IAP SDK 1.6.0 이상적용)
+> `注意`
+> 仅适用于iOS 11或更高版本。
+> 需要在Xcode 9.0以上版本build。
+> Gamebase 1.13.0及更高版本支持。 (TOAST IAP SDK 1.6.0 以上适用)
 
 
-> `주의`
-> 로그인 성공 이후에만 호출 할 수 있습니다.
-> 로그인 성공 후, 다른 결제 API보다 먼저 실행되어야 합니다.
+> `注意`
+> 只能在成功登录后调用。
+> 成功登录后，必须在任何其他支付API之前执行。
 
 
-#### Overview
+#### 概述
 * Apple Developer Overview : https://developer.apple.com/app-store/promoting-in-app-purchases/
 * Apple Developer Reference : https://help.apple.com/app-store-connect/#/deve3105860f
 
 
-AppStore 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니다.
-아이템 구매 성공 후, 아래의 등록해놓은 핸들러를 통하여, 아이템지급을 진행할 수 있습니다.
+提供从AppStore应用程序内购买商品的功能。
+购买商品成功后，通过以下登记的处理程序进行item支付。
 
-프로모션 IAP는 AppStore Connect 에서 별도의 설정이 되어야 노출이 가능합니다.
+促销 IAP需在AppStore Connect中另行设置才能显示。
 
 
 ```objectivec
@@ -188,47 +187,47 @@ AppStore 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니�
 ```
 
 
-#### How to Test AppStore Promotion IAP
+#### 如何测试AppStore Promotion IAP
 
-> `주의`
-> App Store Connect에 앱을 업로드한 다음 TestFlight를 통하여 앱을 설치 후, 테스트를 진행할 수 있습니다.
+> `注意`
+> 将应用程序上传到App Store Connect后，可以通过TestFlight安装应用程序后对其进行测试。
 > 
 
-1. TestFlight로 App을 설치합니다.
-2. 아래와 같은 URL Scheme을 호출하여, 테스트를 진행합니다.
+1. 用TestFlight安装App。
+2. 调用以下URL Scheme进行测试。
 | URL Components | keyname | value |
 | --- | --- | --- |
-| scheme | itms-services | 고정값 |
-| host &amp; path | 없음 | 없음 |
+| scheme | itms-services | 固定值 |
+| host &amp; path | 无 | 无 |
 | queries | action | purchaseIntent |
-|		  | bundleId | 앱의 bundeld identifier |
-|		  | productIdentifier | 구매 아이템의 product identifier |
+|		  | bundleId | APP的 bundeld identifier |
+|		  | productIdentifier | 购买商品的 product identifier |
 
-예제) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
+示例) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 
 
-### Error Handling
+### Error处理
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| TCGB_ERROR_NOT_SUPPORTED                 | 10         | GamebaseAdapter is not included.<br/>If the domain of error object is "TCGB.Gamebase.TCGBPurchase", check if PurchaseAdapter exists. |
-| TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED  | 4001       | Gamebase PurchaseAdapter is not initialized.   |
-| TCGB\_ERROR\_PURCHASE\_USER\_CANCELED    | 4002       | Purchase is cancelled.                             |
-| TCGB\_ERROR\_PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003       | Previous purchase is not completed.                       |
-| TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH | 4004       | Cannot purchase due to shortage of cash of the store.             |
-| TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010       | The store is not supported. iOS supports "AS". |
-| TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201       | Error in IAP library.<br/>Check error.message. |
-| TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR    | 4999       | Unknown error in purchase.<br/>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry and we'll respond ASAP. |
+| TCGB_ERROR_NOT_SUPPORTED                 | 10         | 不包含GamebaseAdapter。<br/>如果Error对象的域是 "TCGB.Gamebase.TCGBPurchase"，请确认PurchaseAdapter是否存在。 |
+| TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED  | 4001       | Gamebase PurchaseAdapter未初始化。   |
+| TCGB\_ERROR\_PURCHASE\_USER\_CANCELED    | 4002       | 游戏用户已取消购买商品。                             |
+| TCGB\_ERROR\_PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003       | 之前的购买未完成。                       |
+| TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH | 4004       | 该商店的余额不足，无法结算。            |
+| TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010       | 不支持的商店。 iOS支持的商店是 "AS" 。 |
+| TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201       | IAP库错误。<br>请确认error.message。 |
+| TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR    | 4999       | 未知的购买错误。<br>请将完整的Log上传到 [客服中心](https://toast.com/support/inquiry)，我们会尽快回复。|
 
-* Refer to the following document for the entire error code.
-    * [Entire Error Codes](./error-code/#client-sdk)
+* 所有错误代码，请参考以下文档。
+    * [错误代码](./error-code/#client-sdk)
 
 
 
 **TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs at an IAP module.
-* The error code is as below.
+* 这是在IAP模块中的错误.
+* 检查错误代码的方法如下.
 
 ```objectivec
 TCGBError *tcgbError = error; // TCGBError object via callback
@@ -240,6 +239,7 @@ NSString *moduleErrorMessage = moduleError.message;
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
-* For IAP error codes, refer to the document below.
-    * [Mobile Service > IAP > Error Code > Client API Error Type](/Mobile%20Service/IAP/en/error-code/#client-api)
+* IAP错误代码，请参考以下文档。
+    * [Mobile Service > IAP > 错误代码 > Client API 错误类型](/Mobile%20Service/IAP/ko/error-code/#client-api)
+
 

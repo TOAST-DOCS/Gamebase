@@ -1,12 +1,12 @@
-## Game > Gamebase > Unity Developer's Guide > Initialization
+## Game > Gamebase > Unity SDK使用指南 > 初始化
 
-To use Gamebase Unity SDK, initialization is required, and App ID and app version should be registered in the TOAST Console.
+如需使用Gamebase Unity SDK，必须先执行初始化。此外，还需在TOAST控制台中注册APP ID、APP版本信息。
 
-### Inspector Settings
+### Inspector设定
 
-Following settings are required for initialization.
+初始化所需的设置如下。
 
-| Setting value              | Supported Platform | Mandatory(M) / Optional(O) |
+| 设定值                      | 支持的Platform | 强制(M) / 可选(O) |
 | -------------------------- | ------------------ | -------------------------- |
 | appID | ALL | M |
 | appVersion | ALL | M |
@@ -21,61 +21,61 @@ Following settings are required for initialization.
 
 #### 1. App ID
 
-Project ID registered in TOAST.
+在Gamebase控制台中注册的项目ID。
 
-[Console Guide](/Game/Gamebase/en/oper-app/#app)
+[Console Guide](/Game/Gamebase/ko/oper-app/#app)
 
 #### 2. appVersion
 
-Client version registered in TOAST.
+在Gamebase控制台中注册的客户端版本。
 
-[Console Guide](/Game/Gamebase/en/oper-app/#client)
+[Console Guide](/Game/Gamebase/ko/oper-app/#client)
 
 #### 3. isDebugMode
 
-Setting for Gamebase debug.
+Gamebase Debug的设置。
 
-* True: All Gamebase logs.
-* False: Warning and error logs.
-* Default: False
+* true：输出Gamebase的所有日志。
+* false：输出Warning、Error日志。
+* 默认值：false
 
-To inquire about Gamebase, change the setting to True and send logs to [Customer Center](https://toast.com/support/inquiry) for a quick response.
+如需咨询Gamebase，请将该设置更改为true，并将日志发送到[客服中心 ](https://toast.com/support/inquiry)，我们会尽快回复。
 
-> <font color="red">[Caution]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> When **releasing** a game, make sure to change **parameter** to **false**.
+> 如需**RELEASE** 游戏，务必将该设置更改为**false**。
 
 #### 4. displayLanguageCode
 
-The display language on the Gamebase UI and SystemDialog can be changed into another language, which is not set on a device, as the user wants. 
+可以将Gamebase提供的UI及SystemDialog中显示的语言更改为设备上设置的语言以外的语言。
 
 [Display Language](./unity-etc/#display-language)
 
 #### 5. enablePopup
 
-When a game user cannot play games due to system maintenance or banned from use, reasons need to be displayed by pop-ups.
-This setting regards to applying default pop-ups provided by Gamebase SDK.
+因系统维护、禁用(ban)等原因用户无法玩游戏时，需要通过弹出窗口等方式显示原因。
+此设置为是否使用Gamebase提供的默认弹出窗口的设置。
 
-* True: Pop-ups are exposed depending on the setting of enableLaunchingStatusPopup and enableBanPopup.
-* False: All pop-ups provided by Gamebase are not exposed.
-* Default: False
+* true：根据enableLaunchingStatusPopup, enableBanPopup的设置决定是否显示弹出窗口。
+* false：Gamebase提供的所有弹出窗口均不显示。
+* 默认值: false
 
 #### 6. enableLaunchingStatusPopup
 
-This setting regards to applying default pop-ups provided by Gamebase, when the LaunchingStatus is disabled to play games.
-For LaunchingStatus, refer to Status/Code below Launching.
+此设置是当LaunchingStatus不能进行游戏时是否使用Gamebase提供默认弹出窗口的设置。
+LaunchingStatus请参考下面Launching段落下面的State, Code部分。
 
-* Default: True
+* 默认值: true
 
 #### 7. enableBanPopup
 
-This setting regards to applying default pop-ups provided by Gamebase, when the game user has been banned.
+此设置是当登录时该游戏用户为禁用状态时，是否使用Gamebase提供的默认弹窗的设置。
 
-* Default: True
+* 默认值: true
 
 #### 8. storeCode
 
-Store information required to initialize In-App Purchase (IAP) of TOAST.
+为初始化TOAST应用程序内结算服务IAP(In-App Purchase)而所需的商店信息。
 
 | Store       | Code | Description  |
 | ----------- | ---- | ------------ |
@@ -85,33 +85,33 @@ Store information required to initialize In-App Purchase (IAP) of TOAST.
 
 #### 9. fcmSenderId
 
-Sender ID to use FCM (Firebase Cloud Messaging).
+使用Firebase Messaging(FCM)所需的Sender ID。
 
 ![FCM Sender ID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
 
 #### 10. useWebview
 
-Standalone 플랫폼에서 WebView를 통해서 로그인을 할 것인지에 대한 설정입니다. 
+此设置为是否在Standalone平台上通过WebView进行登录的设置。
 
 #### 11. GamebaseUnitySDKSettings
 
-Settings described above can be modified at Inspector of the GamebaseUnitySDKSettings component.
+上述的设置可以在GamebaseUnitySDKSettings组件的Inspector中进行更改。
 
 ![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_003_1.12.0.png)
 
-### Initialize with Inspector Settings
+### 使用Inspector设置初始化
 
-Gamebase Unity SDK can be initialized as follows:
+Gamebase Unity SDK初始化方法如下。
 
-1. Create an empty game object.
-2. Add the GamebaseUnitySDKSettings.cs file as a component of the game object.
-3. Fill in the initialization setting at Inspector.
-4. Call Gamebase.Initialize (callback) API.
+1. 创建空的游戏对象。
+2. 将GamebaseUnitySDKSettings.cs文件添加为已创建的游戏对象的组件。
+3. 在Inspector中输入初始化设置。
+4. 调用Gamebase.Initialize(callback) API。
 
-> <font color="red">[Caution]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> Keep note that if a created game object is deleted, a callback cannot be received after a call of Android or iOS API. <br/>
-> When it is deleted by mistake, "Do not destroy this gameObject in order to receive callback." error message will show.
+> 请注意，如删除了已创建的游戏对象，则在调用Android, iOS API 后无法接收回调。 <br/>
+> 如被意外删除，则显示提示"Do not destroy this gameObject in order to receive callback."。
 
 **API**
 
@@ -126,7 +126,7 @@ Supported Platforms
 static void Initialize(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Launching.LaunchingInfo> callback)
 ```
 
-**Example**
+**示例**
 
 ```cs
 public class SampleInitialization
@@ -168,80 +168,80 @@ public class SampleInitialization
 }
 ```
 
-### Launching Information
+### Launching信息
 
-When Gamebase Unity SDK is initialized by using Initialize API, LaunchingInfo object results will be delievered.
-This LaunchingInfo object contains settings of the TOAST Gamebase Console and game status.
+使用Initialize API来初始化Gamebase Unity SDK，LaunchingInfo对象将作为结果值传递。
+此LaunchingInfo对象包含了Gamebase Console中设置的值和游戏状态等。
 
 #### 1. Launching
 
-Launching information of Gameabse.
+Gamebase发布信息。
 
-**1.1 Status**
+**1.1 状态**
 
-Status information of game app version set in the Gamebase Unity SDK initialization.
+Gamebase Unity SDK初始化设置是输入的APP版本的游戏状态信息。
 
-* Code: Game status code (e.g. Under maintenance, Update is required, Service has been terminated)
-* Message: Game status message
+* code：游戏状态码(维护中，强制更新，已下线等)
+* message：游戏状态消息
 
-For game status codes, refer to the table below.
+有关状态代码，请参考下表。
 
-| Status                      | Status Code | Description                                    |
+| 状态                      | Code | 描述                                    |
 | --------------------------- | ----------- | ---------------------------------------- |
-| IN_SERVICE | 200 | Service is now normally provided |
-| RECOMMEND_UPDATE | 201 | Update is recommended |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202 | Under maintenance now but QA user service is available. |
-| REQUIRE_UPDATE | 300 | Update is required |
-| BLOCKED_USER | 301 | User whose access has been blocked. |
-| TERMINATED_SERVICE | 302 | Service has been terminated |
-| INSPECTING_SERVICE | 303 | Under maintenance now |
-| INSPECTING_ALL_SERVICES | 304 | Under maintenance for the whole service |
-| INTERNAL_SERVER_ERROR | 500 | Error of internal server |
+| IN_SERVICE | 200 | 正常服务中 |
+| RECOMMEND_UPDATE | 201 | 推荐更新 |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202         | 维护期间该服务不可用，但如果登记为测试设备，则无论维护如何，都可以连接和测试该服务。 |
+| REQUIRE_UPDATE | 300 | 强制更新 |
+| BLOCKED_USER                | 301         | 访问权限已被禁用的用户。 |
+| TERMINATED_SERVICE          | 302         | 终止服务                                   |
+| INSPECTING_SERVICE          | 303         | 服务正在维护中                                 |
+| INSPECTING_ALL_SERVICES     | 304         | 所有服务正在维护中                              |
+| INTERNAL_SERVER_ERROR       | 500         | 内部服务器出错                                 |
 
-[Console Guide](/Game/Gamebase/en/oper-app/#app)
+[Console Guide](/Game/Gamebase/ko/oper-app/#app)
 
 **1.2 App**
 
-App information registered in the TOAST Console.
+Gamebase Console中注册的APP信息。
 
 * accessInfo
-    * serverAddress: Address of the server
-    * csInfo: Customer center information
+    * serverAddress：服务器地址
+    * csInfo：客服中心信息
 * relatedUrls
-    * termsUrl: Terms of Use
-    * personalInfoCollectionUrl: Agreement to Personal Information
-    * punishRuleUrl: Rules of Punishment
-    * csUrl: Customer Center
-* install: Installation URL
-* idP: ID Provider
+    * termsUrl：使用条款
+    * personalInfoCollectionUrl：隐私条款
+    * punishRuleUrl: 禁用规定
+    * csUrl : 客服中心
+* install: 安装URL
+* idP: 认证信息
 
-[Console Guide](/Game/Gamebase/en/oper-app/#client)
+[Console Guide](/Game/Gamebase/ko/oper-app/#client)
 
-**1.3 Maintenance**
+**1.3维护**
 
-Maintenance information registered in the TOAST Console is as follows.
+在Gamebase Console设置的维护信息。
 
-* url: Maintenance page url
-* timezone: Standard timezone (timezone)
-* beginDate: Start time
-* endDate: End time
-* message: Purpose of maintenance
+* url：维护页面URL
+* timezone：标准时间段(timezone)
+* beginDate：开始时间
+* endDate：结束时间
+* message：维护理由
 
-[Console Guide](/Game/Gamebase/en/oper-operation/#maintenance)
+[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
 
-**1.4 Notice**
+**1.4 公告**
 
-Following notices are registered in the Gamebase Console:
+在Gamebaes Console中设置的公告信息。
 
-* message: Messages
-* title: Title
-* url: Maintenance url
+* message：消息
+* title：标题
+* url：维护URL
 
-[Console Guide](/Game/Gamebase/en/oper-operation/#notice)
+[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
 
 #### 2. tcProduct
 
-Appkey of TOAST Products linked to Gamebase.
+与Gamebase关联的TOAST服务的appKey。
 
 * gamebase
 * tcLaunching
@@ -250,7 +250,7 @@ Appkey of TOAST Products linked to Gamebase.
 
 #### 3. tcIap
 
-IAP store information registered in the TOAST Console.
+在TOAST Console中登记的IAP商店信息。
 
 * id: App ID
 * name: App Name
@@ -258,9 +258,9 @@ IAP store information registered in the TOAST Console.
  
 [Console Guide](/Game/Gamebase/ko/oper-purchase/)
 
-### Get Launching Information
+### 获取Launching信息
 
-GetLaunchingInformations API를 이용하면 Initialize 이후에도 LaunchingInfo 객체를 획득할 수 있습니다.
+使用GetLaunchingInformations API，Initialize之后也可获取LaunchingInfo对象。
 
 **API**
 
@@ -275,7 +275,7 @@ Supported Platforms
 static GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
 ```
 
-**Example**
+**示例**
 
 ```cs
 public GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
@@ -284,16 +284,16 @@ public GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
 }
 ```
 
-### Error Handling
+### Error处理
 
-| Error                              | Error Code | Description            |
+| Error                              | Error Code | 描述            |
 | ---------------------------------- | ---------- | ---------------------- |
-| NOT\_INITIALIZED      | 1          | Gamebase 초기화돼 있지 않습니다. |
-| NOT\_LOGGED\_IN       | 2          | 로그인이 필요합니다.            |
-| INVALID\_PARAMETER    | 3          | 잘못된 파라미터입니다.           |
-| INVALID\_JSON\_FORMAT | 4          | JSON 포맷 오류입니다.         |
-| USER\_PERMISSION      | 5          | 권한이 없습니다.              |
-| NOT\_SUPPORTED        | 10         | 지원하지 않는 기능입니다.         |
+| NOT\_INITIALIZED      | 1          | Gamebase未初始化。 |
+| NOT\_LOGGED\_IN       | 2          | 需要登录。            |
+| INVALID\_PARAMETER    | 3          | 无效的参数。           |
+| INVALID\_JSON\_FORMAT | 4          | JSON格式错误。         |
+| USER\_PERMISSION      | 5          | 无权限。              |
+| NOT\_SUPPORTED        | 10         | 不支持此功能。         |
 
-* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./error-code/#client-sdk)
+* 所有错误代码，请参考以下文档。
+    * [错误代码](./error-code/#client-sdk)

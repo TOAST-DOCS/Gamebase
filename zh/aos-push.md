@@ -1,33 +1,33 @@
-## Game > Gamebase > Android Developer's Guide > Push
+## Game > Gamebase > Android SDK 使用指南 > push
 
-### Settings
+### 设置
 
-This document describes how to set push notifications for each platform.
+以下介绍如何为每个平台设置必要的推送通知。
 
-#### Register TOAST Cloud Console
+#### TOAST Cloud Console登记
 
-To set your Console, refer to [Notification > Push > API v2.0 Guide](/Notification/Push/en/api-guide/).
+首先参考 [Notification > Push > API v2.0 指南](/Notification/Push/ko/api-guide/)设置 Console。
 
-#### Download
+#### 下载
 
-* For Firebase Push
-    * Add the **gamebase-adapter-push-fcm** folder of downloaded SDK to your project.
-* For Tencent Push
-    * Add the **gamebase-adapter-push-tencent** folder of downloaded SDK to your project.
+* 如果您使用Firebase 推送
+    * 将下载的 SDK **gamebase-adapter-push-fcm** 文件夹添加到项目中。
+* 如果您使用Tencent 推动
+    * 将下载的 SDK **gamebase-adapter-push-tencent** 文件夹添加到项目中。
 
-> <font color="red">[Note]</font><br/>
+> <font color="red">[重要]</font><br/>
 >
-> Requires only one push module. <br/>
-> Do not add both Firebase and Tencent pushes in one project.
+> 只能有一个推送模块。<br/>
+> 不要同时将Firebase 推送和 Tencent 推送添加到项目中。
 
 
 #### AndroidManifest.xml
 
-* Add required setting for Gamebase Push.
+* 添加Gamebase 推送所需的设置。
 
-> <font color="red">[Note]</font><br/>
+> <font color="red">[重要]</font><br/>
 >
-> Must set a **package name** for **${applicationId}.**
+> 需要将**${applicationId}**变更为 **Package name**。
 >
 
 *Firebase*
@@ -87,20 +87,16 @@ To set your Console, refer to [Notification > Push > API v2.0 Guide](/Notificati
 </manifest>
 ```
 
-#### Google Services Settings (Firebase only)
+#### Google服务设定(仅Firebase)
 
-* For Gradle Builds
-    * To use Firebase push, google-services.json file is required to setup. Refer to [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/#add_firebase_to_your_app) on how to add the configuration file to your project.
-    * Add **apply plugin: 'com.google.gms.google-services'** to the Gradle setting.
-    * With the setting above, Google Services Gradle Plugin will be applied and the google-services.json file will be changed to a string resource named res/google-services/{build_type}/values/values.xml.
-* For Unity Builds
-    * Firebase 푸시를 사용하기 위해서는 google-services.json 설정 파일이 필요합니다. 설정 파일을 프로젝트에 포함하는 방법은 [Firebase 클라우드 메시징](https://firebase.google.com/docs/cloud-messaging/#add_firebase_to_your_app) 설명을 참고합니다.
-    * gradle 설정에 **apply plugin: 'com.google.gms.google-services'**를 추가합니다.
-    * 위 설정으로 Google Services Gradle Plugin이 적용되어 google-services.json 파일을 res/google-services/{build_type}/values/values.xml라는 이름의 string resource로 변경하여 사용하게 됩니다.
-* Unity 빌드인 경우
-    * 직접 string resource(xml) 파일을 만들어서 Assets/Plugins/Android/res/values/ 폴더에 포함시켜야 합니다. 
+* 使用Gradle build时
+    * 要使用Firebase推送，需要google-services.json配置文件。如何在项目中包含配置文件，请参考以下说明 [Firebase 云消息传递](https://firebase.google.com/docs/cloud-messaging/#add_firebase_to_your_app) 。
+    * 将 **apply plugin: 'com.google.gms.google-services'**添加到gradle 设置中。
+	* 使用上述设置，将应用Google Services Gradle Plugin，并将google-services.json文件重命名为res / google-services / {build_type} /values/values.xml使用。
+* 如果使用Unity build
+    * 需要创建 string resource(xml) 文件，并将其包含在 Assets/Plugins/Android/res/values/文件夹中。
         * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
-        * Below is an example of a string resource file.
+        * 以下是 string resource(xml) 文件的示例。
             ```xml
             <!-- Assets/Plugins/Android/res/values/google-services-json.xml -->
             <?xml version="1.0" encoding="utf-8"?>
@@ -113,18 +109,18 @@ To set your Console, refer to [Notification > Push > API v2.0 Guide](/Notificati
             <string name="google_storage_bucket" translatable="false">tap-development-00000000.appspot.com</string>
             </resources>
             ```
-        * string resource(xml) 파일에서 설정하는 각각의 값은 Firebase Console > 프로젝트 설정 > google-services.json 파일을 다운로드해서 확인 가능합니다. 
-            Firebase 서비스 연동에 따라서 google-services.json 파일의 내용은 달라질 수 있습니다.
+        * string resource(xml) 文件中设置的各值为 Firebase Console > 项目设置 >下载并查看google-services.json文件。 
+            根据Firebase服务联动，google-services.json文件的内容可能会有所不同。
             ![Download google-services.json](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
 
-#### Initialization
+#### 初始化
 
-* To initialize Gamebase, call **setPushType()** of configuration.
-* For Firebase Push
-    * Make an additional call to **setFCMSenderId()**.
-* For Tencent Push
-    * Make an additional call to **setTencentAccessId()**.
-    * Make an additional call to **setTencentAccessKey()**.
+* Gamebase初始化时调用configuration的**setPushType()**。
+* 如果使用Firebase推送
+    * 追加调用**setFCMSenderId()**。
+* 如果使用Tencent推送
+    * 追加调用**setTencentAccessId()**。
+    * 追加调用**setTencentAccessKey()**。
 
 ```java
 private static final String PUSH_FCM_SENDER_ID = "...";
@@ -132,9 +128,9 @@ private static final String PUSH_TENCENT_ACCESS_ID = "...";
 private static final String PUSH_TENCENT_ACCESS_KEY = "...";
 
 GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(APP_ID, APP_VERSION)
-        .setFCMSenderId(PUSH_FCM_SENDER_ID)				// Firebase requires SenderId.
-        .setTencentAccessId(PUSH_TENCENT_ACCESS_ID)		// Requires Tencent AccessId.
-        .setTencentAccessKey(PUSH_TENCENT_ACCESS_KEY)	// Requires Tencent AccessKey.
+        .setFCMSenderId(PUSH_FCM_SENDER_ID)				// Firebase需要 SenderId。
+        .setTencentAccessId(PUSH_TENCENT_ACCESS_ID)		// 需要Tencent AccessId。
+        .setTencentAccessKey(PUSH_TENCENT_ACCESS_KEY)	// 需要Tencent AccessKey。
         .build();
 
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
@@ -145,10 +141,10 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 });
 ```
 
-### Register Push
+### 注册Push
 
-By calling API as below, a user can be registered to TOAST Cloud Push.<br/>
-With user's agreement to enablePush, enableAdPush, and enableAdNightPush, call following API to complete registration.
+调用以下API在TOAST Push注册该用户。<br/>
+接受来自用户的推送协议（enablePush），广告推送协议（enableAdPush），夜间广告推送协议（enableAdNightPush）的值，并调用以下API完成注册。
 
 **API**
 
@@ -156,7 +152,7 @@ With user's agreement to enablePush, enableAdPush, and enableAdNightPush, call f
 + (void)Gamebase.Push.registerPush(Activity activity, PushConfiguration configuration, GamebaseCallback callback);
 ```
 
-**Example**
+**示例**
 
 ```java
 boolean enablePush;
@@ -180,10 +176,10 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 });
 ```
 
-### Request Push Settings
+### 请求Push设定
 
-To retrieve user's push setting, apply API as below. <br/>
-From PushConfiguration callback values, you can get user's value set.
+要查询用户的推送设置，请使用以下API。<br/>
+可以通过来自回调的PushConfiguration值获取用户设置值。
 
 **API**
 
@@ -191,7 +187,7 @@ From PushConfiguration callback values, you can get user's value set.
 + (void)Gamebase.Push.registerPush(Activity activity, GamebaseDataCallback<PushConfiguration> callback);
 ```
 
-**Example**
+**示例**
 
 ```java
 Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() {
@@ -212,21 +208,21 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 });
 ```
 
-### Error Handling
+### Error处理
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | Error in TOAST Cloud Push library.<br>Please check DetailCode. |
-| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | Previous push API call has not been completed.<br>Please call again after the previous push API callback is executed. |
-| PUSH_UNKNOWN_ERROR             | 5999       | Unknown push error.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry), and we'll respond ASAP. |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | TOAST Push库错误。<br>请确认DetailCode。 |
+| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 上一次的推送API调用未完成。<br>上一次推送 API回调执行后请重新调用。 |
+| PUSH_UNKNOWN_ERROR             | 5999       | 未知推送错误。<br>请将全部的Log上传到[客服中心](https://toast.com/support/inquiry)，我们会尽快回复。 |
 
-* Refer to the following document for the entire error codes:
-    * [Entire Error Codes](./error-code/#client-sdk)
+* 全部错误代码，请参考以下文档。
+    * [错误代码](./error-code/#client-sdk)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs in the TOAST Cloud Push library.
-* Check the error code as below.
+* 这是在TOAST Push库中发生的错误。
+* 检查错误代码的方法如下。
 
 ```java
 Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
@@ -254,8 +250,8 @@ Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
 });
 ```
 
-* Refer to the following document for TOAST Cloud Push error codes:
-    * [Notification > Push > Error Handling](/Notification/Push/ko/sdk-guide-android/#_15)
+* TOAST Push 错误代码，请参考以下文档。
+    * [Notification > Push > 错误代码](/Notification/Push/ko/sdk-guide-android/#_15)
 
 
 

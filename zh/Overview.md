@@ -1,27 +1,28 @@
-## Game > Gamebase > Overview
+## Game > Gamebase > 概述
 
-TOAST Gamebase supports developing games with ease and efficiency by providing commonly-required game functions via integrated SDK.<br/>
-Game developers can focus on developing game content only, as Gamebase provides all the other services.
+TOAST Gamebase，把常用的游戏功能，以集成SDK的形式来提供服务，从而可以轻松高效地进行游戏开发。
+游戏开发人员可以只专注于开发游戏内容，剩余的由Gamebase解决。
 
-Gamebase provides basic game functions like authentication, payment, and push; operational functions for a game app, like data management, maintenance, and notifications. Basic indicators of interest are also supported in real time for the whole game industry.
+Gamebase提供基本的游戏功能，如认证、支付和推送、游戏应用程序驱动时所需的数据管理、运营维护、通知等功能。此外，还提供Console，能够实现查询游戏内用户及禁用功能。并且，还提供客户感兴趣的基本指标以活用于游戏事业。
 
-Key functions of Gamebase and description are as follows:
+以下是由Gamebase提供的主要功能与说明。
 
-## Key Features
+## 主要功能
 
-### Authentication
+### 认证
 
-Gamebase supports OAuth login based on ID and passwords, using accounts of many identity providers (IdPs); guest login by using UUID of a device. Its authentication service is based on member information provided by external IdP, without having its own member system. In other words, user's ID or passwords are not saved in Gamebase.
+Gamebase可以使用多种IDP(identity provider)账户ID，支持基于ID和密码的OAuth登录，游客使用其设备的UUID登录。
+Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的会员信息提供认证服务。没有独立会员体系意味着不会将用户的ID，密码保存在Gamebase中。<br/>
 
-* **Provides many authentication methods via single interface. **
-  Development costs can be saved by enabling external IdP development easier and faster.  Developers can easily implement authentication without concerning complicated procedure and legal or policy issues.
+* **通过单一接口提供多种认证方式。**
+   通过提供具有单一接口的API可以降低开发成本，从而更容易，更快地开发其他外部IdP。 开发人员可以轻松实现身份验证，而无需考虑复杂的身份验证过程、法律问题或策略问题。
 
-* **Provides various external IdP authentication methods.**
-  Provided external authentication is to be continuously updated, and if there is any other authentication you'd like to include, contact [Customer Center](https://toast.com/support/inquiry).
+* **提供多种外部IDP认证**
+提供的外部认证将会持续更新，如果您有想在游戏中使用的认证请联系【客服中心】。(https://toast.com/support/inquiry)
 
-Following is the list of external authentication supported by Gamebase.
+以下是Gamebase支持的外部认证列表。
 
-| External Authentication             | Provided Platform     |
+| 外部认证          | 被提供的平台 |
 | ----------------- | ------------ |
 | Facebook          | iOS, Android |
 | Apple Game Center | iOS          |
@@ -31,145 +32,143 @@ Following is the list of external authentication supported by Gamebase.
 | Twitter			| iOS, Android |
 | LINE				| iOS, Android |
 
-* **Provides guest logins.**
-  With guest login, users can log in and start a game without any authentication required. As Gamebase user ID is issued even to guest users, game data can be managed for all users, regardless of OAuth or guest login
-  
-* **Provides independent member identification.**
-  On a first-time login, Gamebase user ID is automatically created, which can be used as user identifier in a game. User ID is issued to all users, regardless of authentication method, and is not inclusive to a particular IdP, so user processing is available in the same method throughout any IdP.
-  
-* **Provides log-out and withdrawal.**
-  You can choose to log out and log in again from different authentication, and if you withdraw from a game, user ID will be deleted from Gamebase with all related information.
-  
-* **Provides mapping so that a game user can use multiple external IdPs at the same time.**
-  For example, a game user with Facebook authentication can use the same ID with Google authentication. If Facebook authentication is mapped with Google authentication to a user ID, the user can play games with Facebook authentication and Google authentication, each on two different devices.
+* **提供游客登录。**
+游客登录，玩家无需输入任何信息，即可直接登录并启动游戏。由于游客登录，是使用了Gamebase发放的ID，所以客户可以管理用户的游戏数据，游戏不论OAuth登录用户和游客登录用户，均可统一管理不用进行区分。
 
-#### Reference
+* **提供独立的会员识别符。**
+    首次登录会自动生成Gamebase用户ID，在游戏中可识别用户，无论身份认证方式如何，都会向所有用户发放用户ID，并且不依赖IdP，因此，无论通过何种IdP登录，在游戏内均可使用相同的方式处理。
 
-* [Android Developer Guide > Auth](./aos-authentication)
-* [iOS Developer Guide > Auth](./ios-authentication)
-* [Unity Developer Guide > Auth](./unity-authentication)
+* **提供退出登录及退出游戏的功能。**
+   退出登录后，您可以选择其他身份认证方式重新登录，如果退出游戏，则用户在Gamebase中的ID及其他所有相关信息都将会被删除。
+
+* **提供映射（Mapping）功能，使一名游戏用户可以同时使用多个外部IDP。**
+    例如，使用Facebook认证的游戏用户，也可以通过Google认证来使用相同用户ID。如果将Facebook和Gogle认证映射到一个游戏用户ID上，游戏用户就可在某个机器上使用Facebook认证,在其它机器上使用Google认证进行游戏。
+
+#### 参考
+
+* [Android SDK 使用指南 > 认证](./aos-authentication)
+* [iOS SDK 使用指南 > 认证](./ios-authentication)
+* [Unity SDK 使用指南 > 认证](./unity-authentication)
 
 ### Launching
 
-A game app in service requires lots of information when it first launches. Gamebase provides data required to operate the game app during initial execution, which is called Launching.  <br/>
-Launching data can be set in the Gamebase Console in real time, and the changes can be checked when initializing SDK or at game launching status.<br/><br/>
+已上线的游戏APP，在移动终端上启动游戏时需要的各种信息，是由Gamebase提供，将之称为Launching。
+Launching信息可以在 Gamebase Console实时设定，SDK的初始化或 Launching状态变更时可以在游戏中确认。
 
-Following information is provided by Gamebase for launching.
+在Gamebase上提供的Launching信息如下
 
-* App status
-  * Whether to update game client, and download URL
-  * Maintenance information
-* Urgent notice
-* Authentication
-* URL list of in-app games
+* APP状态信息
+	* 游戏客户端是否需要更新、下载URL
+	* 维护信息
+* 紧急公告信息
+* 认证信息
+* 游戏内URL清单
 
-#### Reference
+#### 参考
 
-* [Android Developer Guide > Launching Info](./aos-initialization/#launching-status)
-* [iOS Developer Guide > Launching Info](./ios-initialization/#launching-status)
-* [Unity Developer Guide > Launching Info](./unity-initialization/#launching-informations)
-* [Operator Guide > App Info(App, Client, Installed URL)](./oper-app): Set status of app and client, and installation URL
-* [Operator Guide > Operator(Maintenance,Notice)](./oper-operation): Register maintenance and notice
+* [Android SDK 使用指南 > 初始化 > Launching Status](./aos-initialization/#launching-status)
+* [iOS SDK 使用指南 > 初始化 > Launching Status](./ios-initialization/#launching-status)
+* [Unity SDK 使用指南 > 初始化 > Launching Information](./unity-initialization/#launching-information)
+* [控制台使用指南> APP](./oper-app)：设置APP、客户端状态和安装URL
+* [控制台使用指南> 运营](./oper-operation)：维护、登记公告
 
 
 ### For Global
 
-Gamebase basically supports global games, and provides following functions to that purpose:
+Gamebase基本上支持全球游戏，并提供以下功能：
 
-* Provides user messages in multiple languages.
-  * User messages can be entered in multiple languages via console, but, language set follows user device's setting. If Korean, English, and Japanese are entered via console, users of Korean device will be displayed with Korean messages.
-* Allows filtering by country.
-  * In case urgent notice or push messages are directed at users of a particular country during game operations, the messages can be sent to a specified country only. 
-* Selects operator's local time zone to enter time at ease.
-  * If a game is run in Vietnam, Vietnam’s time zone can be selected and entered, with no need to convert to Korean time.
+* **为游戏用户提供多国语言服务。**
+	* 在Console中输入游戏用户所显示的信息时,以多语种输入，会根据用户设备的语言设置显示。如果在Console中输入韩语，英语，日语，则使用韩语设备的用户将显示韩语信息。
+* **提供国家过滤功能。**
+	* 运营中，如果想给特定国家的游戏用户发送公告或推送消息，可以指定国家并显示信息。
+* **运营者可以选择当地标时区(local timezone)，轻松输入时间。**
+	* 在越南运营游戏时，可以选择越南时区(timezone)，以越南的时间为准输入，可以省去变更为韩国时间的步骤。
 
-### Standard Indicators (BI)
+### Standard Index(BI)
 
-* The Gamebase Console provides basic operating indicators in real time: 
-  * Concurrent Connected User (CCU): Number of concurrently connected users in real time.
-  * Maximum Concurrent User (MCU): Maximum number of concurrently connected users of a day (can retrieve in real time and by date).
-  * Daily Active User (DAU): Net number of users who use game of a day (can retrieve in real time and by date).
-  * New Registered User (NRU): Number of new users of a day (can retrieve in real time and by date).
-  * Market Share Chart: Pie chart of market share by user's operating system, country, and game client's version.
-  * Graph of Concurrent Access Change: Change of concurrent access of a day on a graph. Can check graph changes due to maintenance and push message delivery at a glance.
-* Group indicator to find indicators of all projects at authority.
-* URL call counts and market share data per date, browser (Internet Explorer, Chrome, or others), and platform (Windows, Android, and etc.), by providing installation URL statistics.
-* Sales status page to check sales statistics of the game.
-  * Sum of sales by month, date, and store.
-  * Can check by the currency of choice: KRW or USD.
+* Gamebase Console实时提供基本运营指标。
+	* CCU(concurrent connected users)：同时在线用户数
+	* MCU(maximum concurrent users)：最大同时在线用户数(可按实时，日期查询)
+	* DAU(daily active users)：日活跃用户数(可按实时，日期查询)
+	* NRU(newly registered uesrs)：新注册用户数(可按实时，日期查询)
+* 占有率图表：通过游戏用户的操作系统，国家，游戏客户端版本提供游戏用户占有率的图表
+	* 同时在线趋势图表：一天的变化量以图表形式显示，维护和推送消息导致的变化，在图表上也可一目了然
+* 提供组指标，可一目了然地查看有权限的多种指标。
+* 提供安装URL统计，按日期，浏览器(Internet Exploer, Chroome等)，平台(Windows, Android等)分类的数量和百分率。
+* 提供销售现状画面，可查看游戏的销售统计信息。
+	* 提供月，日，各商店总销售额
+	* 可变更为所需货币(KRW, USD 等)
 
-#### Reference
+#### 参考
 
-* [Console Guide > Operating indicator](./oper-operating-indicator) 
+* [控制台使用指南 > 运营指标](./oper-operating-indicator) 
 
-### Other TOAST Services
+### 其他TOAST服务
 
-* Supports easier interfaces to TOAST service that a game requires.<br/>
-  * Gamebase provides wrapped APIs on the basis of Gamebase User IDs. Therefore, users don't need to make separate calls to each service's API.
-  * [Notification > PUSH](http://www.toast.com/service/notification) : Integrated push service to send push messages
-  * [Common > IAP](http://www.toast.com/service/iap) : Integrated In-App Purchase service
-  * [Game > Leaderboard](http://www.toast.com/service/leaderboard) : Real-time large-capacity ranking service
-  * [Security > AppGuard](https://cloud.toast.com/service/security) : Prevents code manipulation of applications in real time
+* 可以轻松的联动游戏中所需的TOAST服务。
+  * Gamebase根据Gamebase用户ID提供封装(wrapping)的API。 因此，用户无需对每个服务的API进行单独调用。
+  * [通知 > 推送](https://toast.com/service/notification/push) ：发送推送消息的综合通知服务
+  * [移动服务 > IAP](https://toast.com/service/mobile_service/iap) ：综合移动应用程序内结算服务
+  * [游戏 > 排行榜](https://toast.com/service/game/leaderboard) ：大容量数据的实时排名服务
+  * [安全 > AppGuard](https://toast.com/service/security/appguard) ：实时防止应用程序代码被篡改的服务
 
+## 术语表
+以下是Gamebase服务术语列表。
 
-<br/>
-## Glossary
-Gamebase service terms are as follows:
-
-| Term      | Description                                       |
-| ------- | ---------------------------------------- |
-| User ID  | User identifier inside of Gamebase                     |
-| Device Key  | Device identifier (iOS:IDFV, Android:Android ID)   |
-| UUID    | Device identifier used to create a guest, which is retained before app is deleted.     |
-| IdP     | Identity Providers who provide authentication: Facebook, Google, Apple Game Center, PAYCO, and etc. |
-| IdP Token  | Access token received from IdP SDK after authentication  |
-| IdP Login | Login with an external IdP (such as Facebook or Google)           |
+| 术语      | 说明                                              |
+| --------- |    ----------------------------------------       |
+| 游戏用户名| Gamebase中的用户标识符                     |
+| 设备秘钥  | 设备标识符(iOS:IDFV, Android:Android ID)            |
+| UUID      | Guest用户创建时生成（使用）的终端识别符，应用删除前一直有效   |
+| IdP       | 身份认证的提供者（Identify Provder），例如：Facebook, Gogle, APPLE Game Center, PAYCO等 |
+| IdP 令牌 | 身份验证后从IdP SDK收到的访问令牌（access token）         |
+| IdP 登录 | 外部IdP登录(Facebook, Google 等)                  |
 
 <br/>
 
-## Service Architecture
-Below shows the service structure of Gamebase with simple description
-![논리 구성도](http://static.toastoven.net/prod_gamebase/Overview/img_logical_1.1.png)
+## 服务架构
+以下是Gamebase的服务架构图和简介
+![逻辑架构图](http://static.toastoven.net/prod_gamebase/Overview/img_logical_1.2.png)
 <br>
 
-| Component           | Description                                       |
+| 组件名称        | 说明                                       |
 | --------------- | ---------------------------------------- |
-| Gamebase SDK    | - Client development SDK                      |
-| Gateway         | - Provides mashup API between internal and external modules.<br/>- Delivers to backend services at the request of client and server.|
-| Gamebase Server | - Processes internal logic of Gamebase. <br>- Provides data for client's initial execution  <br>- Issues/manages user identifier keys and manages mapping <br>- Collects and manages concurrent access indicators per game. |
-| Console         | - Web Console                              |
+| Gamebase SDK    | - 用于客户端开发的SDK                       |
+| Gamebase Server | - 在内部/外部模块之间提供mashup API，并处理内部逻辑<br>- 在客户端启动时提供数据 <br>- 管理发放用户标识符，并管理映射<br>-收集与管理各游戏的同时在线指标|
+| Console         | - Web控制台                              |
+
+## 平台指南
+
+### 客户端开发者指南
 
 
-## Platform Guide
+* [Android SDK 使用指南](./aos-started/)
+* [iOS SDK 使用指南](./ios-started/)
+* [Unity SDK 使用指南](./unity-started/)
 
-### Client Developer's Guide
+### 服务器端开发者指南
 
-* [iOS Developer's Guide](./ios-started/)
-* [Android Developer's Guide](./aos-started/)
-* [Unity Developer's Guide](./unity-started/)
+* [API 指南](./api-guide/)
 
-### Server Developer's Guide
+### 管理员指南
 
-* [Server Developer's Guide](./api-guide/)
-
-### Operator's Guide
-
-* [Console Guide](./oper-operating-indicator/)
+* [控制台使用指南](./oper-operating-indicator/)
 
 <br/>
-## Funtional Guide
+## 功能指南
 
-| Feature               | Description                              | Client                                   | Server                                   | Console                                  |
+| 功能               | 描述                              | 客户端                                   | 服务器端                                   | 控制台                                  |
 | --------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| Login                 | Support Guest and 3rd Party authentication<br/>- Supported IdPs: Facebook, Google, Apple Game Center, PAYCO, and NAVER | [[iOS](./ios-authentication/#login)] [[Android](./aos-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[Token Authentication](./api-guide/#token-authentication)] <br> [[Retrieve Member](./api-guide/#get-member)] | [[App] > Setting Authentication Information](./oper-app/#authentication-information) <br> [[Member] > Retrieve](./oper-member/#member) <br> - Basic information, login history, playtime, purchase history, and etc. |
-| Logout                | Logout                                     | [[iOS](./ios-authentication/#logout)] [[Android](./aos-authentication/#logout)] [[Unity](./unity-authentication/#logout)] |                                          |                                          |
-| Withdraw              | Withdraw from a game<br/> - Delete all information of a game user, including user ID and mapping information | [[iOS](./ios-authentication/#withdraw)] [[Android](./aos-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
-| Mapping               | Integrate one user ID to many IdPs           | [[iOS](./ios-authentication/#mapping)] [[Android](./aos-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |                                          |
-| Purchase(IAP)         | (TOAST Integration) <br/> InApp Purchase <br/>- Supported stores: Google and App Store | [[iOS](./ios-purchase/#purchase)] [[Android](./aos-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- Register Items](./oper-purchase/#item) <br> [- Retrieve Transaction](./oper-purchase/#transactions) |
-| Push                  | (TOAST Integration) <br>Send push messages and check results | [[iOS](./ios-push/#push)] [[Android](./aos-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- Real-time delivery |
-| Leaderboard           | (TOAST Integration)<br> Retrieve and register real-time ranking of large-capacity data |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
-| Webview               | SDK provides default WebView UI<br/>Provides both system pop-up and TOAST UI | [[iOS](./ios-ui/#webview)] [[Android](./aos-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
-| [Operator] Maintenance | (Operational)  Maintenance                               |                                          | [[Check for Maintenance](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- Register or cancel maintenance |
-| [Operator] Notice      | (Operational) Urgent Notification <br> -  In pop-ups while user is executing an app |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>-Register Notice |
-| [Operator] Ban         | (Operational) Register/Release banned game users <br> -  Register/Release banned game users | [[iOS](./ios-authentication/#get-banned-user-information)][[Android](./aos-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -Check information of banned users |                                          | [[Ban]](./oper-ban/#ban) <br/>-Register and Release Ban |
+| Login                 | 游客，支持第三方认证  <br> - 支持的 IdP：Facebook, Google, Apple Game Center, PAYCO |  [[Android](./aos-authentication/#login)] [[iOS](./ios-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[令牌验证](./api-guide/#token-authentication)] <br> [[查询用户](./api-guide/#get-member)] | [[App] > 设置认证信息](./oper-app/#authentication-information) <br> [[Member] >查询用户 ](./oper-member/#member) <br> - 基本信息，登录历史，在线时间，付款记录等|
+| Logout                | 退出登录                                 | [[Android](./aos-authentication/#logout)]  [[iOS](./ios-authentication/#logout)] [[Unity](./unity-authentication/#logout)] |                                          |                                          |
+| Withdraw              | 退出游戏 <br> -  删除游戏用户的用户ID，浏览记录等所有信息 | [[Android](./aos-authentication/#withdraw)] [[iOS](./ios-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
+| Mapping               | 一个游戏用户ID映射多个IdP的功能        | [[Android](./aos-authentication/#mapping)] [[iOS](./ios-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |                                          |
+| Purchase(IAP)         | (TOAST联动服务) <br> 应用内结算 <br> - 支持商店：Google, App Store | [[Android](./aos-purchase/#purchase)] [[iOS](./ios-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- 注册商品](./oper-purchase/#item) <br> [- 查询结算信息](./oper-purchase/#transactions) |
+| 推送                  | (TOAST 连动服务) <br> 推送消息及确认结果 | [[Android](./aos-push/#push)] [[iOS](./ios-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- 实时、预约推送消息 |
+| 排行榜           | (TOAST联动服务) <br> 查询及注册大容量数据的实时排名 |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
+| Webview               |SDK提供默认的WebView UI<br/>提供系统弹出窗口和TOAST UI | [[Android](./aos-ui/#webview)] [[iOS](./ios-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
+| [管理员] Maintenance | (操作)维护功能                               |                                          | [[确认维护](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- 登记或取消维护 |
+| [管理员] Notice      | (操作) 紧急公告功能 <br> -  游戏用户运行应用时，可以以弹出窗口的形式查看公告的功能 |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>-登记公告 |
+| [管理员] Ban         | (操作) 游戏用户的登记和解除禁用状态<br> - 游戏用户的登记和解除禁用状态 | [[Android](./aos-authentication/#get-banned-user-information)] [[iOS](./ios-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -确认禁用用户信息 |                                          | [[Ban]](./oper-ban/#ban) <br/>-登记和解除禁用状态 |
+
 

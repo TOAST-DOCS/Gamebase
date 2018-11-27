@@ -118,7 +118,9 @@ end
 > **target 'SampleApplication' do** 부분에는 생성한 프로젝트의 타겟명을 입력합니다.<br/>
 > **pod 'Gamebase', '1.11.1'** 과 같이 작성해 특정 버전을 지정 할 수 있습니다. 각각의 pod에 버전을 명시하지 않으면 최신 버전이 설정됩니다.<br/>
 > 특정 Adapter만 선택적으로 적용할 수 있습니다.
->
+> 
+
+
 
 > <font color="red">[주의]</font><br/>
 >

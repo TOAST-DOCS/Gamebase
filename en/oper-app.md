@@ -166,15 +166,19 @@ TOAST Console에서의 설정 외에 추가 설정은 없습니다.
 	* URL Schemes를 설정해야 합니다.
 		* **XCode > Target > Info > URL Types**
 
-* 1.12.2 이상
-	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.google`를 추가해야 합니다.
-
 * GOOGLE 추가 인증 정보 입력 예제
 
 ```json
 { "url_scheme_ios_only": "Your URL Schemes" }
 ```
+
+![Google URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+
+* 1.12.2 이상
+	* URL Scheme를 설정해야 합니다.
+		* **XCode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.google**를 추가해야 합니다.
+
+* GOOGLE 추가 인증 정보 입력 예제
 
 ![Google URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
@@ -225,18 +229,22 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the TO
 		* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
 		* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
 
-* 1.12.2 이상
-	* AdditionalInfo를 설정해야 합니다.
-		* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-		* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
-	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.payco`를 추가해야 합니다.
-
 * PAYCO 추가 인증 정보 입력 예제
 
 ```json
 { "service_code": "HANGAME", "service_name": "Your Service Name" }
 ```
+
+![Payco URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+
+* 1.12.2 이상
+	* AdditionalInfo를 설정해야 합니다.
+		* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+		* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
+	* URL Scheme를 설정해야 합니다.
+		* **XCode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.payco**를 추가해야 합니다.
+
+* PAYCO 추가 인증 정보 입력 예제
 
 ![Payco URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
@@ -277,18 +285,22 @@ Enter {client_id} and {client_secret} you requested and get issued by the NAVER 
 	* URL Schemes를 설정해야 합니다.
 		* **XCode > Target > Info > URL Types**
 
-* 1.12.2 이상
-	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-		* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
-
-	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.naver`를 추가해야 합니다.
-
 * NAVER 추가 인증 정보 입력 예제
 
 ```json
 { "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
 ```
+
+![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+
+* 1.12.2 이상
+	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+		* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
+
+	* URL Scheme를 설정해야 합니다.
+		* **XCode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.naver**를 추가해야 합니다.
+
+* NAVER 추가 인증 정보 입력 예제
 
 ![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
@@ -316,7 +328,11 @@ Twitter Application Management 사이트에서 앱을 등록하고 발급받은 
 
 * 1.14.0 이상
 	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.twitter`를 추가해야 합니다.
+		* **XCode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.twitter**를 추가해야 합니다.
+
+* Twitter 추가 인증 정보 입력 예제
+
+![Twitter URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
 #### 7. LINE
 
@@ -331,7 +347,7 @@ Twitter Application Management 사이트에서 앱을 등록하고 발급받은 
 ##### iOS
 LINE Login 기능을 사용하기 위하여, Xcode에 추가 설정이 필요합니다.
 - URL Schemes를 설정해야 합니다.
-	* **XCode > Target > Info > URL Types**에 `line3rdp.{App Bundle ID}`를 추가해야 합니다.
+	* **XCode > Target > Info > URL Types**에 **line3rdp.{App Bundle ID}**를 추가해야 합니다.
 
 - Info.plist파일을 설정해야합니다.
 	* LINE에서 발급받은 ChannelID를 설정합니다.

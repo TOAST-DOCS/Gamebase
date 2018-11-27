@@ -1,30 +1,30 @@
-## Game > Gamebase > Unity Developer's Guide > Getting Started
+## Game > Gamebase > Unity SDK使用指南 > 开始
 
-Below describes environments and initial setting of Gamebase Unity SDK.
+以下说明Gamebase Unity SDK使用环境和初始设置。
 
-### Environments
+### 环境
 
-> [Note]
-> 
-> Unity support version
+> [参考] 
+>
+> Unity 支持版本
 > 
 > * Unity 5.x : 5.5.4 ~ 5.6.6
 > * Unity 2017.x : ~ 2017.4.x(LTS)
-> * Unity 2018.x : ~ 2018.2.15
+> * Unity 2018.x : ~ 2018.2.16
 
-#### Supported Platforms
+#### 支持的Platforms
 
 * iOS
 * Android
 * Standalone
-    * Windows7 or higher
-	* MAC OS is not supported.
+    * Windows7 以上
+	* 不支持MAC OS。
 * WebGL
     * [WebGL Browser Compatibility](https://docs.unity3d.com/Manual/webgl-browsercompatibility.html)
 * Editor
-    * Supports functions only partially.
+    * 只支持部分功能。
 
-To call a Gamebase API which is not supported by a selected platform, following errors are returned as callback. If there is no callback, the output will come with a warning log.
+调用所选平台不支持的Gamebase API时，将返回以下错误作为回调。如果没有回调，则输出Warning日志。
 
 * GamebaseErrorCode.NOT_SUPPORTED
 * GamebaseErrorCode.NOT_SUPPORTED_IOS
@@ -33,7 +33,7 @@ To call a Gamebase API which is not supported by a selected platform, following 
 * GamebaseErrorCode.NOT_SUPPORTED_UNITY_WEBGL
 * GamebaseErrorCode.NOT_SUPPORTED_UNITY_EDITOR
 
-Platforms supporting each API are classified by the icons as below.
+各API支持的平台由以下图标标识。
 
 **API**
 
@@ -44,54 +44,53 @@ Supported Platforms
 <span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
 <span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
-## Installation
+## 安装
 
-Setting Tool is provided to install Gamebase SDK with more at ease.
+为了轻松安装Gamebase SDK，提供Setting Tool。
 
-* [Download Gamebase Client SDK](/Download/#game-gamebase)
+* [Download Gamebase Unity SDK](/Download/#game-gamebase)
 
-### Specification of Setting Tool
-1. Download SDK
-    * Supports the latest download.
-2. Install SDK
-    * Supports installation of downloaded SDK.
-3. Delete SDK
-    * Supports deletion of installed SDK.
-4. Update SDK
-    * Update is not supported.
-    * Instead, installation after deletion is supported.
+### Setting Tool的规格
+1. 下载SDK
+    * 支持最新版本的下载。
+2. 安装SDK
+    * 支持下载的SDK安装。
+3. 删除SDK
+    * 支持删除已安装的SDK。
+4. 更新SDK
+    * 不支持更新功能。
+    * 如需更新请删除后重新安装。
 
-### Using the Setting Tool
+### 使用Setting Tool
 
-#### Install SDK
-1. Open a Unity project.
-2. Import GamebaseUnitySettingTool_{version}.unitypackage.
-3. Execute Menu > Tools > Gamebase > SDKSettings > Setting Tool.
-    * v1.0.1 or lower : Menu > Gamebase > SDKSettings > Setting Tool
-4. Click [Download SDK] to download SDK.
-5. Select a platform.
-    * Unity Adapter
+#### 安装SDK
+1. 打开Unity项目。
+2. 输入GamebaseUnitySettingTool_{version}.unitypackage。
+3. 运行Menu > Tools > Gamebase > SDKSettings > Setting Tool。
+	* v1.0.1 以下：Menu > Gamebase > SDKSettings > Setting Tool
+4. 点击[Download SDK]按钮下载SDK。
+5. 选择所需平台。
     * Android
     * iOS
-6. Select a module for each platform.
-    * For Authentication, integration with an ID Provider (IdP), like Google, is supported.
-    * For Push, FCM(Firebase), Tencent and APNS Push services are supported.
-    * For Purchase, In-App Purchase (IAP) of TOAST is provided.
-7. Click [Settings] and install SDK.
+6. 选择各平台使用的模块。
+    * 认证支持与Google等ID Provider(以下简称IDP)关联。
+    * Push支持FCM(Firebase), Tencent, APNS Push服务。
+    * Purchase支持使用TOAST支付服务IAP(In-App Purchase)结算。
+7. 点击[Settings]按钮安装SDK。
 
-#### Delete SDK
-1. Execute Menu > Tools > Gamebase > SDKSettings > Setting Tool.
-    * v1.0.1 or lower : Menu > Gamebase > SDKSettings > Setting Tool
-2. Click [Remove] to delete installed SDKs.
+#### 删除SDK
+1. 运行Menu > Tools > Gamebase > SDKSettings > Setting Tool。
+	* v1.0.1 以下：Menu > Gamebase > SDKSettings > Setting Tool
+2. 点击[Remove] 按钮删除已安装的SDK。
 
 <br/>
-> [Note]
+> [参考]
 > 
-> If an unexpected error occurs at Setting Tool, close the window and try again. <br/>
-> In case of Unity Facebook Authentication, need to download Facebook Unity SDK. [Go to Download](https://developers.facebook.com/docs/unity/)<br/>
-> To check the version of Facebook Unity SDK supported by Unity Facebook Authentication, refer to the README file which is also provided. <br/>
+> 如果Setting Tool发生意外错误，请关闭窗口后重新运行。 <br/>
+> 如果您使用Unity Facebook认证，则需要单独下载Facebook Unity SDK。 [Go to Download](https://developers.facebook.com/docs/unity/)<br/>
+> 有关Unity Facebook Authentication支持的Facebook Unity SDK版本，请参考随附的README文件。 <br/>
 
-### Video of Setting Tool Usage
+### Setting Tool用法视频
 
 <iframe src="https://www.youtube.com/embed/kZ3Z1Kfr7Zw" frameborder="0" allowfullscreen="" wmode="Opaque" allow="encrypted-media" style="
     margin: auto;
@@ -101,36 +100,36 @@ Setting Tool is provided to install Gamebase SDK with more at ease.
 "></iframe>
 
 
-### Update of Setting Tool
+### Setting Tool更新
 
-Setting Tool의 업데이트가 필요한 경우 Setting Tool에서 업데이트 여부를 알려드립니다.
-업데이트 종류에 따라서 Setting Tool에서 제공하는 일부 기능에 제한이 있을 수 있습니다.
+如果需要更新Setting Tool，Setting Tool将通知更新。
+根据更新类型，Setting Tool提供的部分功能会受限制。
 
-#### 강제 업데이트
+#### 强制更新
 
-* 업데이트 필수
-* SDK 다운로드 제한
-	* 기존에 다운로드 된 SDK를 이용하여 설치, 삭제 가능
+* 需要更新
+* SDK下载限制
+	* 可以使用已下载的SDK进行安装和删除
 
 ![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-1_1.13.0.png)
 
-#### 선택 업데이트
+#### 选择更新
 
-* 업데이트 선택
-* SDK 다운로드 가능
+* 选择更新
+* 可下载SDK
 
 ![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-2_1.13.0.png)
 
-### Android Lifecycle
+### Android生命周期（Lifecycle）
 
-To manage lifecycle, set "com.toast.gamebase.activity.GamebaseMainActivity" as the MainActivity.
-"com.toast.gamebase.activity.GamebaseMainActivity" has been inherited from "com.unity3d.player.UnityPlayerNativeActivity".
+为了管理生命周期，需要把“com.toast.gamebase.activity.GamebaseMainActivity”设置为为MainActivity。
+"com.toast.gamebase.activity.GamebaseMainActivity"是继承"com.unity3d.player.UnityPlayerActivity"实现的。
 
-> <font color="red">[Caution]</font>
+> <font color="red">[注意]</font>
 >
-> AndroidPlugin should be developed in inheritance of GamebaseMainActivity. <br/>
-> GamebaseMainActivity is included to GamebaseAndroidPlugin.jar. <br/>
-> The launchMode should be a singleTask (Unity&'s default activity will also be fixed as singleTask). Otherwise, crash may occur when an app starts.
+> AndroidPlugin开发也必须继承GamebaseMainActivity。 <br/>
+> GamebaseMainActivity包含在GamebaseAndroidPlugin.jar。 <br/>
+> launchMode应该是singleTask。(Unity默认Activity也将固定为singleTask。) 否则，第一次启动应用程序时可能会崩溃。
 
 ```xml
 <manifest>
@@ -154,30 +153,30 @@ To manage lifecycle, set "com.toast.gamebase.activity.GamebaseMainActivity" as t
 
 ### Android Gradle Build Settting
 
-> [Note]
+> [参考]
 >
-> Gradle build is not required, but can be selected. <br/>
-> An example of gradle build is as follows.<br/>
-> The guide is not about exporting to Android project.<br/>
+> Gradle build不是必选项。 <br/>
+> 此内容是gradle构建示例。<br/>
+> 此内容不是导出到Android project(export)的方法。<br/>
 > [Unity manual](https://docs.unity3d.com/Manual/android-gradle-overview.html)
 
-#### 1. Build Settings
-Select Gradle (new) for a Build System.
+#### 1. Build设定
+Build System选择Gradle(new)。
 ![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-003_1.3.0.png)
 
-#### 2. mainTemplate.gradle Setting
-Copy the mainTemplate.gradle file in the Unity installation folder to the Assets/Plugins/Android/ folder and set in accordance with the development environment.
+#### 2. 设置mainTemplate.gradle文件
+将Unity安装文件夹中的mainTemplate.gradle文件复制到Assets/Plugins/Android/目录后，根据开发环境进行设置。
 
-> [Note]
+> [参考]
 >
-> Set **compileSdkVersion, buildToolsVersion, targetSdkVersion** to fit for environment. <br/>
-> Set a package name for **applicationId**.<br/>
-> Add library files to the list of **dependencies**. <br/>
-> Set true for **multiDexEnabled**.<br/>
-> Set a keystore path for **storeFile**. <br/>
-> Set a keystore password for **storePassword**. <br/>
-> Set a keystore alias for **keyAlias**. <br/>
-> Set a keystore alias password for **keyPassword**. <br/>
+> **compileSdkVersion, buildToolsVersion, targetSdkVersion**根据环境进行设置。 <br/>
+> **applicationId**设置package name。<br/>
+> **dependencies**列表中添加library文件。 <br/>
+> **multiDexEnabled**设置为true。<br/>
+> **storeFile**은 keystore path를 설정하면 됩니다. <br/>
+> **storePassword**设置 keystore password。 <br/>
+> **keyAlias**设置keystore alias。 <br/>
+> **keyPassword**设置keystore alias password。 <br/>
 
 ```groovy
 // GENERATED BY UNITY. REMOVE THIS COMMENT TO PREVENT OVERWRITING WHEN EXPORTING AGAIN
@@ -251,28 +250,28 @@ android {
 ```
 
 
-### iOS Settings
+### iOS设定
 
-1. Execute iOS build in a Unity project.
-2. Add settings to a new XCode project.
+1. 在Unity项目里进行iOS Build。
+2. 在创建的XCode项目中添加设置。
 
-For setting of iOS SDK, refer to the guide as below.
+有关iOS SDK的设置，请参考下面的指南。
 
-* [Link to iOS SDK Setting](./ios-started)
+* [iOS SDK设置链接](./ios-started)
 
 ## API Reference
 
-API Reference is included in GamebaseUnitySDK.
+API Reference包含在GamebaseUnitySDK中。
 
 ## API Deprecate Governance
 
-Gamebase에서 더 이상 지원하지 않는 API는 Deprecate 처리합니다.
-Deprecated 된 API는 다음 조건 충족 시 사전 공지 없이 삭제될 수 있습니다.
+Gamebase不再支持的API，进行Deprecate处理。
+在满足以下条件时，可以删除Deprecated的API，不再另行通知。
 
-* 5회 이상의 마이너 버전 업데이트
+* 超过5次小更新
 	* Gamebase Version Format - XX.YY.ZZ
 		* XX : Major
 		* YY : Minor
 		* ZZ : Hotfix
 
-* 최소 5개월 경과
+* 至少5个月

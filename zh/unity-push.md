@@ -1,20 +1,20 @@
-## Game > Gamebase > Unity Developer's Guide > Push
+## Game > Gamebase > Unity SDK使用指南 > push
 
-This document describes how to set push notifications for each platform.
+以下介绍如何为每个平台设置必要的推送通知。
 
-### Settings
+### 设置
 
 
-For Android or iOS users, refer to the following documents:<br/>
+在Android和iOS设置推送的方法请参考以下文档。<br/>
 
 * [Android Push Settings](aos-push#settings)<br/>
 * [iOS Push Settings](ios-push#settings)
 
 
-### Register Push
+### 注册Push
 
-Register a user to TOAST Push by calling API as below.
-With user&#39;s agreement to enablePush, enableAdPush, and enableAdNightPush, call following API to complete registration.
+调用以下API在TOAST Push注册该用户。
+接受来自用户的推送协议(enablePush)，广告推送协议(enableAdPush)，夜间广告推送协议(enableAdNightPush)的值，并调用以下API完成注册。
 
 
 **API**
@@ -27,7 +27,7 @@ Supported Platforms
 public static void RegisterPush(GamebaseRequest.Push.PushConfiguration pushConfiguration, GamebaseCallback.ErrorDelegate callback)
 ```
 
-**Example**
+**示例**
 
 ```cs
 public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNight)
@@ -53,10 +53,10 @@ public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNig
 }
 ```
 
-### Request Push Settings
+### 请求Push设定
 
-To retrieve user's push setting, apply API as below.
-From PushConfiguration callback values, you can get user's value set.
+要查询用户的推送设置，请使用以下API。
+可以通过来自回调的PushConfiguration值获取用户设置值。
 
 **API**
 
@@ -68,7 +68,7 @@ Supported Platforms
 public static void QueryPush(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Push.PushConfiguration> callback)
 ```
 
-**Example**
+**示例**
 
 ```cs
 public void QueryPush()
@@ -93,21 +93,21 @@ public void QueryPush()
 }
 ```
 
-### Error Handling
+### Error处理
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | Error in TOAST Push library.<br/>Please check DetailCode. |
-| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | Previous Push API call is not completed.<br/>Please call again after the previous push API callback is executed.  |
-| PUSH_UNKNOWN_ERROR             | 5999       | Undefined push error.<br/>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry), and we'll respond ASAP. |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | TOAST Push 库错误。<br>请确认DetailCode。 |
+| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | 上一次的推送API调用未完成。<br>上一次推送 API回调执行后请重新调用。 |
+| PUSH_UNKNOWN_ERROR             | 5999       | 未知推送错误。<br>请将全部的Log上传到[客服中心](https://toast.com/support/inquiry)，我们会尽快回复。 |
 
-* Refer to the following document for the entire error codes.
-    * [Entire Error Codes](./error-code/#client-sdk)
+* 全部错误代码，请参考以下文档。
+    * [错误代码](./error-code/#client-sdk)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs in the TOAST Push library.
-* Check the error code as below:
+* 这是在TOAST Push库中发生的错误。
+* 检查错误代码的方法如下。
 
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
@@ -131,7 +131,7 @@ else
 }
 ```
 
-* Refer to the following document for TOAST Push error codes.
-    * [Notification > Push > SDK v1.4 Guide > Error Handling](/Notification/Push/en/Client%20SDK%20Guide/#_10)
+* 请确认TOAST Push错误代码。
+    * [Notification > Push > SDK v1.4使用指南 > 错误处理](/Notification/Push/ko/sdk-guide/#_10)
 
 

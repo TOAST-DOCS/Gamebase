@@ -1,41 +1,41 @@
-## Game > Gamebase > Android Developer's Guide > Purchase
+## Game > Gamebase > Android SDK使用指南> 结算
 
-This page describes how to set In-App Purchase (IAP).
+以下是设置使用应用内结算的方法。
 
-Gamebase provides an integrated purchase API to easily link IAP of many stores in a game.
+Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的应用内结算。
 
-### Settings
+### 设置
 
 #### 1. Store Console
 
-* Refer to the IAP guide as below, to register an app to each store and get an Appkey.
-* [IAP > Store interlocking information](/Mobile%20Service/IAP/en/Store%20interlocking%20information/)
+* 请参考以下IAP指南，在每个商店添加您的应用并获取应用密钥。
+* [Mobile Service > IAP > 控制台使用指南 > Store interlocking information](/Mobil e%20Service/IAP/ko/console-guide/#store-interlocking-information)
 
-#### 2. Register as Store's Tester
+#### 2. 注册Store的测试账户
 
-* Register a tester to each store for purchase testing.
+* 为了进行付费测试，请按以下方式添加每个商店的测试人员。
     * Google
-        * [Android > Setting test purchase](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
+        * [Android > 测试购买设置](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
     * ONE store
-        * [ONE store > In-app purchase test](https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#%EC%9D%B8%EC%95%B1%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8)
-        * For testing, be sure to register device phone number you want a sandbox for, with In-app Information-Test button.
-        * A tester device requires USIM, with registered phone number (MDN).
-        * Needs **ONE store** application installed.
+        * [ONE store > INAPP应用内结算测试](https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#%EC%9D%B8%EC%95%B1%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8)
+        * 必须使用应用内信息 - 通过测试按钮注册想要沙盒的终端电话号码进行测试。
+        * 测试终端必须有USIM并需要注册电话号码(MDN)。
+        * 需要安装**ONE store**。
 
-#### 3. TOAST IAP 서비스 이용
+#### 3. 使用TOAST IAP服务
 
-* Refer to the IAP guide to set and register IAP.
-    * [IAP > Getting Started](/Mobile%20Service/IAP/en/console-guide/)
+* 请参考IAP指南以设置IAP并注册item。
+    * [Mobile Service > IAP > 控制台使用指南](/Mobile%20Service/IAP/ko/console-guide/)
 
-#### 4. Download
+#### 4. 下载
 
-* Add the **gamebase-adapter-purchase-iap** folder from downloaded SDK to your project.
-    * If ONE store purchase is not required, you may delete the **iap-onestore-x.x.x.aar** file.
-    * If you need ONE store purchase, the jar file above should be included to the project to build.
+* 将下载的SDK的 **gamebase-adapter-purchase-iap** 文件夹添加到项目中。
+    * 如果您不需要ONE store 付款，则可以删除 **iap-onestore-x.x.x.aar** 文件。
+    * 相反，如果您需要ONE store付款，上述jar文件必须内置到项目中。
 
-#### 5. AndroidManifest.xml(ONE store only)
+#### 5. AndroidManifest.xml(仅ONE store)
 
-* Add the following setting to use ONE store.
+* 要使用ONE商店，您需要添加以下设置：
 
 ```xml
 <manifest>
@@ -43,28 +43,28 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
     <application>
     ...
         <!-- [ONE store] Configurations begin -->
-        <meta-data android:name="iap:api_version" android:value="4" /> <!-- If the Version is 16.XX.XX, android:value should be "4". https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#iapapi_version-%EC%84%A4%EC%A0%95 -->
-        <meta-data android:name="iap:plugin_mode" android:value="development" /> <!-- development / release -->
+        <meta-data android:name="iap:api_version" android:value="4" /> <!-- 对于版本16.XX.XX，输入4. https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#iapapi_version-%EC%84%A4%EC%A0%95 -->
+        <meta-data android:name="iap:plugin_mode" android:value="development" /> <!-- development:开发模式 / release:运营 -->
         <!-- [ONE store] Configurations end -->
     ...
     </application>
 </manifest>
 ```
 
-#### 6. Initialization
+#### 6. 初始化
 
-* Call **setStoreCode()** of configuration to initialize Gamebase.
-* Select a **STORE_CODE** among the following values.
+* 在Gamebase 初始化期间调用configuration的**setStoreCode()**。
+* **STORE_CODE**从以下值中选择。
     * GG: Google
     * ONESTORE: ONE store
-    * TEST: For IAP testing
+    * TEST: 用于IAP测试
 
 
 ```java
 String STORE_CODE = "GG";	// Google
 
 GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(APP_ID, APP_VERSION)
-        .setStoreCode(STORE_CODE)	// Must declare a store code.
+        .setStoreCode(STORE_CODE)	// 必须声明Store code.
         .build();
 
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
@@ -75,34 +75,34 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 });
 ```
 
-### Purchase Flow
+### 购买流程
 
-Item purchases should be implemented in the following order.<br/>
+请按以下顺序实现商品购买。<br/>
 
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
 
-1. Call **requestPurchase** of Gamebase SDK to purchase in a game client.
-2. After a successful purchase, call **requestItemListOfNotConsumed** to check the list of non-consumed purchases.
-3. If there is a value on the returned list, the game client sends a request to the game server to consume purchased items.
-4. The game server requests for Consume API to the Gamebase server via API.
-   [API Guide](/Game/Gamebase/en/api-guide/#wrapping-api)
-5. If the IAP server has successfully called Consume API, the game server provides the items to the game client.
+1. 游戏客户端通过从Gamebase SDK调用 **requestPurchase**进行付款。
+2. 如果付款成功，请调用 **requestItemListOfNotConsumed**查看未消费结算明细。
+3. 如果返还的未消费结算明细列表中存在值，游戏客户端向游戏服务器请求对游戏付款商品的consume（消费）。
+4. 游戏服务器通过Gamebase server的API请求 consume(消费)API。
+   [API 指南](/Game/Gamebase/ko/api-guide/#wrapping-api)
+5. 如果在IAP服务器上consume(消费)API调用成功，则游戏服务器向游戏客户端支付item。
 
-A purchase at store may be successful but cannot be closed normally due to error. It is recommended to call each of the two APIs after login is completed, to initialize a reprocessing logic. <br/>
+商店付款成功，但发生错误无法正常结束的情况下，请登录后调用以下两个API执行重试逻辑。 <br/>
 
-1. Request list of items that are not consumed
-    * When a login is successful, call **requestItemListOfNotConsumed** to check list of non-consumed purchases.
-    * If the value is on the returned list, the game client sends a request to the game server to consume, so that items can be provided.
+1. 未处理的商品配送请求
+    * 如果登录成功，请调用 **requestItemListOfNotConsumed**以检查您的未消费结算明细。
+    * 如果返还的未消费结算明细列表中存在值，则游戏客户端向游戏服务器请求consume(消费)并支付item。
 
-2. Request to retry transaction
-    * When a login is successful, call **requestRetryTransaction** to try to automatically reprocess the unprocessed.
-    * If there is a value on the returned successList, the game client sends a request to the game server to consume, so that items can be provided.
-    * If there is a value on the returned failList, send the value to the game server or Log & Crash to collect logs. Also send inquiry to **[TOAST > Customer Center](https://toast.com/support/inquiry)** for the cause of reprocessing failure.
+2. 尝试重新处理付款错误
+	* 如果登录成功，请调用 **requestRetryTransaction**以自动尝试重新处理未处理的明细。
+    * 如果被返还的successList中存在值，则游戏客户端向游戏服务器请求consume(消费)并支付item。
+    * 如果被返还的failList中存在值，请通过游戏服务器或 Log & Crash 传输来获取数据, 可以通过**[客服中心](https://toast.com/support/inquiry)**咨询重新处理失败原因。
 
-### Purchase Item
+### 购买商品
 
-Call following API of an item to purchase by using itemSeq to send a purchase request. <br/>
-When a game user cancels purchasing, the **GamebaseError.PURCHASE_USER_CANCELED** error will be returned. Please proceed with cancellation.
+使用想要购买商品的itemSeq调用以下API并请求购买。<br/>
+如果游戏用户取消购买，将返还**GamebaseError.PURCHASE_USER_CANCELED** 错误。请取消处理。
 
 **API**
 
@@ -110,7 +110,7 @@ When a game user cancels purchasing, the **GamebaseError.PURCHASE_USER_CANCELED*
 + (void)Gamebase.Purchase.requestPurchase(Activity activity, long itemSeq, GamebaseDataCallback<PurchasableReceipt> callback);
 ```
 
-**Example**
+**示例**
 
 ```java
 long itemSeq; // The itemSeq value can be got through the requestItemListPurchasable API.
@@ -129,9 +129,9 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 });
 ```
 
-### Get a List of Purchasable Items
+### 获取购买商品列表
 
-To retrieve the list of items, call the following API. Information of each item is included in the array of callback return.
+要查询商品列表，请调用以下API。回调返还的数组(array)包含各item的信息。
 
 **API**
 
@@ -139,7 +139,7 @@ To retrieve the list of items, call the following API. Information of each item 
 + (void)Gamebase.Purchase.requestItemListPurchasable(Activity activity, GamebaseDataCallback<List<PurchasableItem>> callback);
 ```
 
-**Example**
+**示例**
 
 ```java
 Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<List<PurchasableItem>>() {
@@ -157,14 +157,14 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 });
 ```
 
-### Get a List of Non-Consumed Items
+### 获取未支付商品列表
 
-Request for a list of non-consumed items, which have not been normally consumed (delivered, or provided) after purchase.<br/>
-In case of non-purchased items, ask the game server (item server) to proceed with item delivery (supply).
+请求已购买了商品，却没有正常消费（发送，提供）item的未消费结算明细。<br/>
+如果有未完成的商品，您必须要求游戏服务器（item服务器）处理配送item（支付）。
 
-* Make a call in the following two cases.
-    1. To confirm before an item is consumed after a successful purchase
-    2. To check if there is any non-consumed item left after a login is successful
+* 请在以下两种情况下调用。
+    1. 成功付款后，为了在处理item消费(consume)前进行最终确认而调用。
+    2. 登录成功后，为了确认是否还存在未消费(consume)的item而调用。
 
 **API**
 
@@ -172,7 +172,7 @@ In case of non-purchased items, ask the game server (item server) to proceed wit
 + (void)Gamebase.Purchase.requestItemListOfNotConsumed(Activity activity, GamebaseDataCallback<List<PurchasableReceipt>> callback);
 ```
 
-**Example**
+**示例**
 
 ```java
 Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallback<List<PurchasableReceipt>>() {
@@ -190,10 +190,10 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 });
 ```
 
-### Reprocess Failed Purchase Transaction
+### 重新处理失败的购买交易
 
-In case a purchase is not normally completed after a successful purchase at a store due to failure of authentication of TOAST Cloud IAP server, try to reprocess by using API. <br/>
-Based on the latest success of purchase, reprocessing is required by calling an API for item delivery (supply).
+如果在商店付款成功，但因TOAST IAP服务器认证失败等原因未能正常付款的情况下，我们将尝试使用API重新处理。 <br/>
+最后，根据付款成功的历史记录，需要通过调用item配送(支付) 等的API 来进行处理。
 
 **API**
 
@@ -201,7 +201,7 @@ Based on the latest success of purchase, reprocessing is required by calling an 
 + (void)Gamebase.Purchase.requestRetryTransaction(Activity activity, GamebaseDataCallback<PurchasableRetryTransactionResult> callback);
 ```
 
-**Example**
+**示例**
 
 ```java
 Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<PurchasableRetryTransactionResult>() {
@@ -219,25 +219,25 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 });
 ```
 
-### Error Handling
+### Error处理
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| PURCHASE_NOT_INITIALIZED                 | 4001       | The purchase module is not initialized.<br>Check if the gamebase-adapter-purchase-IAP module has been added to the project. |
-| PURCHASE_USER_CANCELED                   | 4002       | Purchase is cancelled.                 |
-| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | API has been called when a purchase logic is not completed.     |
-| PURCHASE_NOT_ENOUGH_CASH                 | 4004       | Cannot purchase due to shortage of cash of the store.             |
-| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | The store is not supported.<br>You can choose either GG (Google), TS (ONE Store), or TEST. |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | Error in IAP library.<br>Check detail codes.   |
-| PURCHASE_UNKNOWN_ERROR                   | 4999       | Unknown error in purchase.<br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we will respond ASAP. |
+| PURCHASE_NOT_INITIALIZED                 | 4001       | Purchase 模块未初始化。请确认是否将<br>gamebase-adapter-purchase-IAP 模块添加到项目中。 |
+| PURCHASE_USER_CANCELED                   | 4002       | 游戏用户已取消购买商品。                 |
+| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 尚未完成购买逻辑的情况下已调用API。    |
+| PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 该商店的余额不足，无法结算。           |
+| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 不支持的商店.<br>可选择的商店是 GG(Google), TS(ONE store), TEST . |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAP库错误。<br>请确认DetailCode。   |
+| PURCHASE_UNKNOWN_ERROR                   | 4999       | 未知的购买错误。<br>请将完整的Log上传到 [客服中心](https://toast.com/support/inquiry)，我们会尽快回复。 |
 
-* Refer to the following document for the entire error code.
-    * [Entire Error Codes](./error-codes#client-sdk)
+* 所有错误代码，请参考以下文档。
+    * [错误代码](./error-code/#client-sdk)
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs at an IAP module.
-* Check the error code as below.
+* 这是在IAP模块中发生的错误。
+* 检查错误代码的方法如下。
 
 ```java
 Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<PurchasableReceipt>() {
@@ -265,6 +265,6 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 });
 ```
 
-* For IAP error codes, refer to the document below.
-    * [IAP > Error Code Guide > Client API Error Type](/Mobile%20Service/IAP/en/error-code/#client-api#client-api-errors)
+* IAP错误代码，请参考以下文档。
+    * [Mobile Service > IAP > 错误代码 > Client API 错误类型](/Mobile%20Service/IAP/ko/error-code/#client-api)
 
