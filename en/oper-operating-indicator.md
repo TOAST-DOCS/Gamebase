@@ -5,8 +5,7 @@ The menu is composed of Monitoring, Concurrent Group User, User Statistics, Inst
 
 
 ## Monitoring
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring1_1.2.png)
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring2_1.2.png)
+![operation-indicator_01_201812_en](https://static.toastoven.net/prod_gamebase/operation-indicator_01_201812_en.png)
 Shows statistics of current app users, reserved push status at the moment, and reserved maintenance.
 The screen is automatically refreshed every five minutes, to display changed indicators in real time.
 
@@ -21,10 +20,10 @@ The screen is automatically refreshed every five minutes, to display changed ind
     * By Version: By client version registered at console
 * Change Graph of Concurrent Connection: Graph of changes of concurrent connection from 00:00 today up to now
 	* Show maintenance and push details on graph to easily follow changes in concurrent connection out of maintenance and push.
-	* 관련데이터는 검색조건 우측의 버튼을 통해 다운로드를 받을 수 있습니다.
+  * You can download the graph in .xlsx or .csv format by clicking on the button at the top right corner of the panel.
 
 ## User Statistics
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_UserStatistics1_1.0.png)
+![operation-indicator_02_201812_en](https://static.toastoven.net/prod_gamebase/operation-indicator_02_201812_en.png)
 Check DAU, MCU,NRU, and CCU AVG on graphs.
 Easy to identify trend changes of the current games users.
 You can specify a date by using the selection bar at the top right to check data.
@@ -37,12 +36,12 @@ Each item is described as below:
     * Concurrent Connected User Average(CCU AVG): Average of concurrently connected users in real time
 
 ## Concurrent Group User
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_ConcurrentUser1_1.1.png)
+![operation-indicator_03_201812_en](https://static.toastoven.net/prod_gamebase/operation-indicator_03_201812_en.png)
 Check statistics of concurrent connection of groups where your project belongs to. The real-time number of concurrent connectors can be seen at a glance per operating system of many projects at your authority.
 
 
 ## Installed URL Statistics
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_InstallUrl1_1.0.png)
+![operation-indicator_04_201812_en](https://static.toastoven.net/prod_gamebase/operation-indicator_04_201812_en.png)
 Shows statistical data of install URL calls.
 
 * Change graph of installed URL calls by date

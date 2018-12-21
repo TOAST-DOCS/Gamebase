@@ -7,14 +7,14 @@ Retrieve information of members who are logged in a game.
 
 Enter User ID to search for member information.
 User ID is a user identifier which is automatically issued at a first-time login by Gamebase. To lessen confusion while delivered, "ABCDFGHJKLMNPQRSTWXYZ1346789" are applied only, in order to prevent confusion due to similar pronunciation.
-IdP ID는 Id Provider에서 제공하는 아이디 정보로써 로그인 시 입력하는 정보가 아닌 Id Provider내의 고유 식별자를 의미합니다. 따라서 IdP ID 항목으로 검색하고자 할 경우 검색정보 입력에 주의가 필요합니다.
+IdP is not used for signing in or out, but serves as a unique identifier provided from Id Provider. So you need to be cautious when you want to search by IdP.
 
 Detailed information of searched users are displayed in the above, while history data such as login, mapping, purchase, ban, and playtime are shown under, as taps.
 
 
 
 ### Detail Information
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Member1_1.6.png)
+![gamebase_member_01_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_01_201812_en.png)
 
 **User **
 
@@ -26,15 +26,16 @@ Detailed information of searched users are displayed in the above, while history
   - **OK**: Normal users. Click **Ban** to manually change status.
   - **Banned**: Users who are banned from abusive acts. Click **Release Ban** to manually change status.
   - **Withdraw**: Users who have withdrawn.
-- **푸시 토큰**: 유저의 푸시 토큰 정보 조회.
+- **Push Token**: Shows push token details.
 
-####계정 상태 변경
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Member1_2.2.png)
-조회한 유저의 계정 상태를 변경할 수 있는 기능입니다.
-상태별 변경할 수 있는 경우는 아래와 같습니다.
-- **정상**: 이용정지, 탈퇴상태로 변경이 가능합니다. 탈퇴시에는 해당 계정정보를 되돌릴 수 없으므로 처리 전 확인 및 주의가 필요합니다.
-- **이용 정지**: 이용정지 해제를 진행할 수 있습니다.
-- **탈퇴**: 해당 버튼이 노출되지 않습니다.
+#### Changing Account Status
+![gamebase_member_02_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_02_201812_en.png)
+
+You can change user account status to these below:
+
+- **OK**: You can change to Banned or Withdrawn status. When the account is withdrawn, all the information is lost and can't be recovered. 
+- **Banned**: You can lift a ban on the account.
+- **Withdrawn**: 'Modify Status' button won't be shown.
 
 **Identity Provider **
 
@@ -44,29 +45,29 @@ In Gamebase, many external IdPs can be integrated. In short, a user can log in b
 - **Idp ID**: ID provided by an external IdP (Facebook no, or PAYCO ID)
 - **Registration Date**: The first time when a user registered an IdP.
 
-#### 매핑 추가
+#### Mapping
+You can map the user's IdP to other account.
+This only works if the target account status is OK. 
+ *Press the button pointing to the right to map the IdP*.
+ You can revoke the change - as long as you didn't press the 'Add Mapping' button - by pressing the subtract button.
+ *When a guest account is mapped to an IdP, the guest information will be lost*.
+ When the account has only one IdP bound but it's mapped to other account, the account status will change to **Lost** and it can't be used anymore.
 
-조회한 유저의 Id Provider 정보를 추가할 수 있는 기능입니다.
-연결하고자하는 IdP를 가지고 있는 유저의 정보가 **정상**일 경우에만 매핑 추가 작업이 가능합니다.
-* 제공 유저의 IdP 설정란에서 연결하고자 하는 Id Provider 정보를 1번 버튼을 통해 오른쪽화면에 추가한 후, 아래 매핑 추가 버튼을 통해 매핑 추가 작업을 진행합니다.
-* 잘못 추가했다면 매핑 추가 버튼을 누르기 전에는 2번 버튼을 통해 언제든지 다른 Id provider로 교체 가능합니다.
-* 제공 받는 유저가 GUEST정보만 가지고 있을 경우에는 새로운 Id Provider정보가 추가되면서 기존의 Guest정보는 유실되므로 작업 진행 시 주의가 필요합니다.
-* 제공 유저의 Id Provider 정보가 한개일 경우 해당작업을 진행하면 제공 유저 정보는 **유실**상태로 변경되어 더이상 사용할 수 없으므로 작업 진행 전 확인이 필요합니다.
-##### 제공 전 예시
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_AddMapping_1.3.png)
-##### 제공 후 예시
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_AddMapping_2.1.png)
+ ##### Mapping Example
 
-#### 매핑 해제
-다중 매핑이 이루어진 계정의 경우 요청에 따라 Id Provider 정보 연동을 해제할 수 있습니다.
-각각의 계정은 최소 1개의 연결정보가 존재해야 하므로 2개 이상의 연결정보가 존재할 때만 버튼이 활성화 됩니다.
-* 버튼을 누르면 아래와 같이 연결된 Id Provider 정보와 함께 매핑 해제 버튼이 노출됩니다.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_RemoveMapping_1.0.png)
-* 해제 버튼을 누를 경우 아래와 같이 최종 확인창과 함께 Id Provider 정보를 확인합니다. 확인버튼을 누르시면 매핑 해제가 진행됩니다.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_RemoveMapping_2.0.png)
+![gamebase_member_03_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_03_201812_en.png)
+
+#### Unmapping
+ If the account has been mapped multiple times, it can be unmapped.
+The button only works when the account has been mapped more than twice.
+ *Clicking on the button will make the modal appear*
+
+![gamebase_member_04_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_04_201812_en.png)
+
+ Clicking on the 'Remove' button will show final confirmation message along with IdP information.
 
 ### Login History
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_LoginHistory1_1.2.png)
+![gamebase_member_05_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_05_201812_en.png)
 
 Retrieve login history of a searched user.
 For an initial search, the duration is a recent one day or a date of choice. However, history data is provided for recent three months (or 90 days) only.
@@ -88,7 +89,7 @@ Can add history when SDK calls login-related APIs.
 - **etc**: Any other information than above items applied for a login.
 
 ### Mapping History
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_MappingHistory1_1.4.png)
+![gamebase_member_06_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_06_201812_en.png)
 
 Retrieve mapping and remove mapping history of a searched user. Shows all history data of the recent 3 months (90 days).
 
@@ -102,11 +103,11 @@ Retrieve mapping and remove mapping history of a searched user. Shows all histor
   - GMG: Create a guest account
   - OMG: Create an IdP account
 
-매핑된 IDP 이력을 클릭할 경우 해당 IdP를 기준으로 Gamebase ID에 매핑된 이력을 보여줍니다.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_MappingHistory1_2.1.png)
+Clicking on the mapped IdP will show the mapping history modal based that IdP.
+![gamebase_member_07_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_07_201812_en.png)
 
 ### Purchase History
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_PurchaseHistory1_1.0.png)
+![gamebase_member_08_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_08_201812_en.png)
 
 Retrieve purchase history of user products.
 Can search by date, and history data can be retrieved up to 1 month (30 days).
@@ -126,7 +127,7 @@ Can search by date, and history data can be retrieved up to 1 month (30 days).
 원하는 날짜를 입력하여 조회할 수 있으며 조회 가능한 최대 날짜는 1개월(30일)입니다.
 
 ### Ban History
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_BanHistory1_1.0.png)
+![gamebase_member_09_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_09_201812_en.png)
 
 Can retrieve ban history of a searched user.
 Can search by date, and history data can be retrieved up to 1 month (30 days).
@@ -140,12 +141,12 @@ Can search by date, and history data can be retrieved up to 1 month (30 days).
 - **Released User/Release Date**: Operator who released banning/system information and date
 
 ### Playtime
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Playtime1_1.2.png)
+![gamebase_member_10_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_10_201812_en.png)
 
 Retrieve playtime of a searched user by date.
 Can search by date, and history data can be retrieved up to 1 month (30 days).
 
 ### Withdraw History
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
+![image alt](./image/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
 조회한 사용자가 탈퇴한 사용자라면 탈퇴 이력을 보여줍니다.
 이 메뉴는 탈퇴 유저를 조회할 경우에만 나타나며 유저의 탈퇴경로를 조회할 수 있습니다.

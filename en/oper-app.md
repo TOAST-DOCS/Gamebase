@@ -13,7 +13,7 @@ When Gamebase is activated, app is automatically created, and only registered in
 Cannot register a new app or delete one, as each TOAST Cloud project can manage one Gamebase app. Deactivate Gamebase to delete the app.
 For details of each item, refer to **Properties** as below.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_App1_1.2.png)
+![gamebase_app_01_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_01_201812_en.png)
 
 ### Properties
 
@@ -66,7 +66,7 @@ You can find your information setting in' Launching Information' after client in
 
 ### Test Device
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_App3_1.0.png)
+![gamebase_app_02_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_02_201812_en.png)
 You can access games with a registered test device even when an app using Gamebase is under maintenance.
 To register a test device, **Device Key** is required: enter directly or search a **Game User ID**.
 Can even delete test devices that are no longer in use.
@@ -82,17 +82,16 @@ Check the list of test devices registered in an app. Enter search words in **Sea
 
 Click **Register** to find a screen for registration of test devices: enter Device Key directly or search a **game user ID** to register.
 
-**(1) ** **Register by Game User ID**
+![gamebase_app_03_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_03_201812_en.png)
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_App3_2.1.png)
+**(A) ** **Register by Game User ID**
 
 Choose User ID  in Type, and enter User ID  and click Search, and the user login history will show. Select a Device Key to register as a test device,  enter **additional information**, and click Registration to complete registering the device key as test device.
 
 > [Note] 
 > For additional information, enter user-defined names. e.g.) iPhone 6 Test, iPad of TOAST
 
-**(2)Register by Device Key**
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_App3_3.0.png)
+**(B)Register by Device Key**
 
 When you know the device key to register, select **Device Key** in Type to register the device.
 Enter Device Key and **additional information**, and click **Register** to complete registration.
@@ -116,16 +115,16 @@ Note that {Facebook Permission} which is required for a login should also be ent
 - Additional Info: Facebook Permission (json format) 
 
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_facebook_1.0.png)
+![gamebase_app_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_04_201812.png)
 
 **[Example] facebook_permission format **
-* Facebook의 경우, OAuth 인증 시도 시, Facebook에 요청할 정보의 종류를 설정해야 합니다.
+- In case of Facebook OAuth, You should specify the information to request.
 
 ```json
 { "facebook_permission": [ "public_profile", "email"] }
 ```
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_facebook_permission_1.0.png)
+![gamebase_app_05_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_05_201812_en.png)
 
 **Reference URL**<br />
 
@@ -133,55 +132,45 @@ Note that {Facebook Permission} which is required for a login should also be ent
 - [Facebook Permission](https://developers.facebook.com/docs/facebook-login/permissions/)
 
 ##### Android & iOS & Unity
-TOAST Console에서의 설정 외에 추가 설정은 없습니다.
-
-
+No further configuration needs to be done apart from TOAST console.
 
 #### 2. Google
 
 ##### Google Cloud Console
 
-1. Google 인증을 위해서는 Google Cloud Console에서 **Web Application Client ID**를 발급받아 Gamebase Console에 입력해야 합니다.
-	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-001_1.11.0.png)
-	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-002_1.11.0.png)
-2. 승인된 리디렉션 URI 란에 다음 값을 입력합니다.
-	* https://alpha-id-gamebase.toast.com/oauth/callback
-	* https://beta-id-gamebase.toast.com/oauth/callback
-	* https://id-gamebase.toast.com/oauth/callback
-	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-003_1.11.0.png)
+![gamebase_app_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_06_201812.png)
+
+1. You need to enter **Web Application Client ID** from Google Cloud Console into Gamebase Console for configuration.
+2. Enter these URIs in the **Authorized redirect URIs** field.
+   - https://alpha-id-gamebase.toast.com/oauth/callback
+   - https://beta-id-gamebase.toast.com/oauth/callback
+   - https://id-gamebase.toast.com/oauth/callback
   
 ##### iOS
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> Gamebase iOS SDK 1.12.2 버전에서 URL Scheme의 설정 방법이 변경 되었습니다. 사용 SDK 버전에 맞는 가이드를 확인하여 설정하시기 바랍니다.
+> URL Scheme configuration method has changed in Gamebase iOS SDK Version 1.12.2. Please make sure to check the version and follow the instruction accordingly.
 >
 
-* 1.12.1 이하
-	* AdditionalInfo를 설정해야 합니다.
-		* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-		* GOOGLE의 경우, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
-		* **url_scheme_ios_only**의 값은 Xcode의 URL Scheme에 등록된 값들 중 한개와 일치해야 합니다.
+- 1.12.1 or under
+  - Provide **AdditionalInfo**.
+    - You need to provide JSON string data in **TOAST Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
+    - You need to provide **url_scheme_ios_only** from iOS application for Google.
+    - **url_scheme_ios_only** should match with at least one of the URL Schemes in Xcode.
+  - Add URL schemes.
+    - **XCode > Target > Info > URL Types**
+- 1.12.2 or above
+  - Add URL schemes.
+    - Add `tcgb.{Bundle ID}.google` in **XCode > Target > Info > URL Types**.
 
-	* URL Schemes를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**
-
-* GOOGLE 추가 인증 정보 입력 예제
+- - Google authentication configuration example
 
 ```json
 { "url_scheme_ios_only": "Your URL Schemes" }
 ```
 
-![Google URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
-
-* 1.12.2 이상
-	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.google**를 추가해야 합니다.
-
-* GOOGLE 추가 인증 정보 입력 예제
-
-![Google URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
-
+![gamebase_app_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
 #### 3. Apple Game Center
 Enter Bundle ID registered on Apple Developer's Site in the TOAST Cloud Gamebase Console.
@@ -190,7 +179,8 @@ Enter Bundle ID registered on Apple Developer's Site in the TOAST Cloud Gamebase
 
 - ClientID: {Bundle ID}<br />
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_apple_1.0.png)
+![gamebase_app_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_08_201812.png)
+
 
 **Reference URL**<br />
 
@@ -204,14 +194,15 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the TO
 
 - ClientID: {Payco client_id}
 - Secret Key: {Payco client_secret}
-- 추가정보: Payco Service & Service Name (JSON format)
+- Additional Information: Payco Service & Service Name (JSON format)
 
 ##### Android & Unity
-- AdditionalInfo를 설정해야 합니다.
-    * **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-    * PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
 
-* PAYCO 추가 인증 정보 입력 예제
+- Provide **AdditionalInfo**.
+  - You need to provide JSON string data in **TOAST Console > Gamebase > App > Authentication Information**. 
+  - You need to configure **service_code** and **service_name** that Payco SDK asks for.
+
+- PAYCO authentication configuration example
 
 ```json
 { "service_code": "HANGAME", "service_name": "Your Service Name" }
@@ -219,38 +210,34 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the TO
 
 ##### iOS
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> Gamebase iOS SDK 1.12.2 버전에서 URL Scheme의 설정 방법이 변경 되었습니다. 사용 SDK 버전에 맞는 가이드를 확인하여 설정하시기 바랍니다.
->
+> URL Scheme configuration method has changed in Gamebase iOS SDK Version 1.12.2. Please make sure to check the version and follow the instruction accordingly.
 
-* 1.12.1 이하
-	* AdditionalInfo를 설정해야 합니다.
-		* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-		* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
+- 1.12.1 or under
+  - Provide **AdditionalInfo**.
+    - You need to provide JSON string data in **TOAST Console > Gamebase > App > Authentication Information**. 
+    - You need to configure **service_code** and **service_name** that Payco SDK asks for.
+- 1.12.2 or above
+  - Provide **AdditionalInfo**.
+    - You need to provide JSON string data in **TOAST Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
+    - You need to configure **service_code** and **service_name** that Payco SDK asks for.
+  - Add URL schemes.
+    - Add `tcgb.{Bundle ID}.payco` in **XCode > Target > Info > URL Types**.
 
-* PAYCO 추가 인증 정보 입력 예제
+- - PAYCO authentication configuration example
 
 ```json
 { "service_code": "HANGAME", "service_name": "Your Service Name" }
 ```
 
-![Payco URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+![gamebase_app_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
-* 1.12.2 이상
-	* AdditionalInfo를 설정해야 합니다.
-		* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-		* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
-	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.payco**를 추가해야 합니다.
-
-* PAYCO 추가 인증 정보 입력 예제
-
-![Payco URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
 #### 5.NAVER
-Enter {client_id} and {client_secret} you requested and get issued by the NAVER Developers website to the Gamebase console.
-이때, 로그인 동의 창에서 표시할 애플리케이션 이름인 **service_name** 을 설정해야 하고, iOS 의 경우에는 추가로 **url_scheme_ios_only** 값을 JSON String 형태로 추가 정보란에 입력해야 합니다.
+
+Enter {client_id} and {client_secret} you requested and acquired from NAVER Developers website into the Gamebase console.
+You need to set **service_name** which will be displayed in sign in agreement window. In case of iOS, you need to provide additional **url_scheme_ios_only** field in JSON String format.
 
 **Entry Fields**
 
@@ -272,43 +259,35 @@ Enter {client_id} and {client_secret} you requested and get issued by the NAVER 
 
 ##### iOS
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> Gamebase iOS SDK 1.12.2 버전에서 URL Scheme의 설정 방법이 변경 되었습니다. 사용 SDK 버전에 맞는 가이드를 확인하여 설정하시기 바랍니다.
->
+> URL Scheme configuration method has changed in Gamebase iOS SDK Version 1.12.2. Please make sure to check the version and follow the instruction accordingly.
 
-* 1.12.1 이하
-	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-		* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
-		* iOS 앱에서 필요한 정보인 **url_scheme_ios_only**를 추가로 설정해야 합니다.
-
-	* URL Schemes를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**
-
-* NAVER 추가 인증 정보 입력 예제
+- 1.12.1 or under
+  - You need to provide JSON string data in **TOAST Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
+    - In case of NAVER, you need to provide **service_name** to be displayed in sign-in agreement window.
+    - You need to provide **url_scheme_ios_only** for iOS.
+  - Add URL Schemes.
+    - **XCode > Target > Info > URL Types**
+- 1.12.2 or above
+  - You need to provide JSON string data in **TOAST Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
+    - In case of NAVER, you need to provide **service_name** to be displayed in sign-in agreement window.
+  - Add URL Schemes.
+    - Add `tcgb.{Bundle ID}.naver` in **XCode > Target > Info > URL Types**.
+    
+- NAVER authentication configuration example
 
 ```json
 { "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
 ```
-
-![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
-
-* 1.12.2 이상
-	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-		* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
-
-	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.naver**를 추가해야 합니다.
-
-* NAVER 추가 인증 정보 입력 예제
-
-![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+![gamebase_app_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
 
 #### 6. Twitter
-Twitter Application Management 사이트에서 앱을 등록하고 발급받은 {Consumer Key} 및 {Consumer Secret}을 Gamebase Console에 입력합니다.
 
-**입력 필드**
+You need to provide {Consumer Key} and {consumer Secret} acquired from Twitter Applicaiton Management Website.
+
+**Input Fields**
 
 - Client ID: {Twitter Consumer Key}
 - Secret Key: {Twitter Consumer Secret}
@@ -336,7 +315,8 @@ Twitter Application Management 사이트에서 앱을 등록하고 발급받은 
 
 #### 7. LINE
 
-**입력 필드**
+**Input Fields**
+
 - Client ID: {LINE Channel ID}
 - Secret Key: {LINE Channel Secret}
 
@@ -345,29 +325,37 @@ Twitter Application Management 사이트에서 앱을 등록하고 발급받은 
 - [LINE Developer Console](https://developers.line.me/console/)
 
 ##### iOS
-LINE Login 기능을 사용하기 위하여, Xcode에 추가 설정이 필요합니다.
-- URL Schemes를 설정해야 합니다.
-	* **XCode > Target > Info > URL Types**에 **line3rdp.{App Bundle ID}**를 추가해야 합니다.
 
-- Info.plist파일을 설정해야합니다.
-	* LINE에서 발급받은 ChannelID를 설정합니다.
-	```xml
-	<key>LineSDKConfig</key>
-	<dict>
+You need additional configuration in order to user LINE Login.
+
+- Add URL Schemes.
+
+  - Add `line3rdp.{App Bundle ID}` into **XCode > Target > Info > URL Types**.
+
+- Configure **Info.plist**
+  - Set **ChannelID** acquired from LINE.
+
+  ```xml
+  <key>LineSDKConfig</key>
+  <dict>
     	<key>ChannelID</key>
     	<string>{Issued LINE ChannleID}</string>
-	</dict>
-	```
-	* ATS 설정을 위하여 scheme을 등록합니다.
-	```xml
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
+  </dict>
+  ```
+
+  - Add scheme for ATS setting.
+
+  ```xml
+  <key>LSApplicationQueriesSchemes</key>
+  <array>
     	<string>lineauth</string>
     	<string>line3rdp.{App Bundle ID}</string>
-	</array>
-	```
-- LINE Login을 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다. (인증 필요)
-* [LINK \[LINE Developer Guide\]](https://developers.line.me/en/docs/line-login/ios/try-line-login/)
+  </array>
+  ```
+
+- For proejct settings in LINE Login, please refer to the link below.
+
+- [LINK \[LINE Developer Guide\]](https://developers.line.me/en/docs/ios-sdk/try-line-login/)
 
 
 
@@ -376,7 +364,9 @@ LINE Login 기능을 사용하기 위하여, Xcode에 추가 설정이 필요합
 Can manage client information by operating system (iOS, Android, Unity WebGL, or Unity Standalone), or version.
 
 ### Client List
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client1_1.2.png)
+
+![gamebase_app_12_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_12_201812_en.png)
+
 Can check the list of currently-registered clients by operating system.
 The number of icon indicates the version entered when registering a client.
 The icon list shows service status, such as <font color="white" style="background-color:#F8BB28">Test</font>, <font color="white" style="background-color:#FB8F37">Review</font>, <font color="white" style="background-color:#88C637">Service</font>, <font color="white" style="background-color:#2AB1A6">Update Recommended(in service)</font>only. Click the arrow key at the bottom right to check the list of clients, in such status as, <font color="white" style="background-color:#A1A1A1">Update required</font>, <font color="white" style="background-color:#CCCCCC">Close</font>.
@@ -386,14 +376,21 @@ The color of an icon helps identify service status at a glance.
 
 Describes client registration information managed by the Gamebase Console.
 In the **Client** tab, click **Register AOS** , **Register iOS** and a screen for client registration will show. To modify or delete client's entry value, click an icon from the icon list or select a client from the entire list.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client6_1.0.png)
+
+![gamebase_app_13_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_13_201812_en.png)
+
 #### (1) Store
+
 (<font color="red">Required</font>) Select a store to distribute a client. 
 Each operating system has a different store.
+
 #### (2) Client Version
+
 (<font color="red">Required</font>) Enter a client version. 
 Enter character strings in accordance with rules of each game.
+
 #### (3) Service Status
+
 (<font color="red">Required</font>) Select a service status of a client, out of 6:
 <font color="white" style="background-color:#F8BB28">Test</font>, <font color="white" style="background-color:#FB8F37">Review</font>, <font color="white" style="background-color:#88C637">Service</font>, <font color="white" style="background-color:#2AB1A6">Update Recommended(in service)</font>, <font color="white" style="background-color:#A1A1A1">Update required</font>, <font color="white" style="background-color:#CCCCCC">Close</font>.
 
@@ -406,31 +403,30 @@ Enter character strings in accordance with rules of each game.
 > When it is activated during 'Test', the indicator helps detect problems more at ease when an issue arises in Gamebase. 
 > Its use can be set in the Gamebase Console in real time, along with the log level.
 
+![gamebase_app_15_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_15_201812.png)
+
 - <font color="white" style="background-color:#88C637">Service</font>: Service is normally provided
 - <font color="white" style="background-color:#2AB1A6">Update Recommended (In Service)</font>: Service is normally provided. <br/>Pop-up will show to lead into more stable versions. Although downloading a newer version is recommended, users can continue playing games with a current version.<br />Gamebase provides the default pop-up as below.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_updateRecommended_1.0.png)
-
 - <font color="white" style="background-color:#A1A1A1">Update Required</font>: Service is unavailable. <br/>As the current version is not supported by game, a pop-up will show to update app.<br />Gamebase provides the default pop-up as below.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_updateRequired_1.1.png)
-<<<<<<< HEAD
+
 >  <font color="red">[Caution] </font> 
 >  When **both Update Required and Under Maintenance are set at the same time** , the service status becomes 'Update Required'.
 >  If you don't want to show the Update Required pop-up to user during maintenance, the service status should be changed to 'Update Required' after maintenance is completed.
+>  
 >  <font color="orange">[참고] </font>
 >  업데이트 버튼을 누르면 설치 URL 메뉴에서 설정한 각각의 스토어 주소로 연결됩니다.
 >  예를 들면 클라이언트가 App store로 설정되어 있고 설치 URL 메뉴에서 App store 관련 설정이 존재한다면 설정한 주소로 이동되며 만약 설치 URL 메뉴에 설정이 되어 있지 않을 경우 공통(Common) URL로 연결됩니다.
 
 
 - <font color="white" style="background-color:#CCCCCC">Close</font>: Service unavailable. <br/> To be selected for a version of closed service.<br />Gamebase provides the default pop-up as below.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_ended_1.0.png)
 
-<<<<<<< HEAD
+
 > [Note] 
 > Setting Message for Service Status.
 > For **Update Recommended (In Service)**, **Update Required** , and **Service Closed** , messages can be set in multiple languages. 
 > When a service status is selected, default messages are provided in five languages (Korean, English, Japanese, Chinese Simplified, and Chinese Traditional), and you can add a language or change messages. 
-> ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client5_1.1.png)
+> ![gamebase_app_18_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_18_201812_en.png)
 
 #### (4) Server URL
 Enter a server URL (IP, URL) that a client will use.
@@ -438,7 +434,7 @@ A server URL entered in the **App** tab will be applied for all clients; enter o
 
 ## Installed URL
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_InstallUrl1_1.2.png)
+![gamebase_app_19_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_19_201812_en.png)
 
 * Manage store URL information to install a game.
 * 클라이언트 상태 중 <font color="white" style="background-color:#2AB1A6">업데이트 권장(서비스 중)</font> 또는 <font color="white" style="background-color:#A1A1A1">업데이트 필수</font> 일 때 각각의 스토어 별로 제공할 주소들에 대한 값을 설정합니다.
@@ -456,18 +452,20 @@ _[Example 3] A user enters Install URL on a PC._
 
 To modify Install URL, click **Modify**.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_InstallUrl2_1.2.png)
+![gamebase_app_20_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_20_201812_en.png)
 
 - Item setting can be different for PC and mobile. Enter the same value for each device, if there is no need to separate.
 - When a store you want is not on the list, contact [CustomerCenter](https://toast.com/support/inquiry) so as to add as required.
 
 #### (1) Common
 Set an URL to connect when store information is unavailable or store relocation has failed.
+
 #### (2) Android
 Set an URL to connect at the request of Android users.
 
 #### (3) iOS
 Set an URL to connect at the request of App Store users.
+
 #### (4) Standalone
 Set an URL to connect from an app of standalone service. Standalone needed PC URL only.
 
