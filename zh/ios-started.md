@@ -1,6 +1,6 @@
 ## Game > Gamebase > iOS SDK使用指南 > 开始
 
-### 环境
+### Environments
 
 
 > [INFO]
@@ -11,7 +11,7 @@
 >
 
 
-### 安装
+### Installation
 
 Gamebase可以通过以下方式安装。
 
@@ -119,7 +119,6 @@ end
 > 可以通过编写 **pod 'Gamebase', '1.11.1'**创建特定版本。如果没有为每个pod指定版本，则会设置为最新版本。<br/>
 > 只能选择性地应用特定Adapter。
 >
-
 > <font color="red">[注意]</font><br/>
 >
 > 如果您不使用最新版本的Gamebase，则可能无法使用某些Adapter。
@@ -136,7 +135,7 @@ end
 >
 >
 
-## 第三方提供SDK的指南
+## 3rd-Party Provider SDK Guide
 
 * [Facebook for developers](https://developers.facebook.com/docs/ios)
 * [Naver for developers](https://developers.naver.com/docs/login/ios/)

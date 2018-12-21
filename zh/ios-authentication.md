@@ -1,7 +1,7 @@
 ## Game > Gamebase > iOS SDK 使用指南 > 认证
 
 
-## 登录
+## Login
 
 Gamebase默认支持Guest登录。
 
@@ -13,7 +13,7 @@ Gamebase默认支持Guest登录。
 有关AdditionalInfo的说明，请参考以下**Gamebase支持的IdP说明**。
 
 
-### Import Header文件
+### Import Header File
 
 在ViewController中，导入要实现登录的以下头文件。
 
@@ -21,7 +21,7 @@ Gamebase默认支持Guest登录。
 #import <Gamebase/Gamebase.h>
 ```
 
-### 登录流程
+### Login Flow
 
 多数游戏在标题页上实现登录。
 * 当App首次安装和启动时，游戏用户可以在标题页选择要进行的IdP(identity provider)类型。
@@ -126,7 +126,7 @@ Gamebase默认支持Guest登录。
 }
 ```
 
-### IdP登录
+### Login with IdP
 
 如果要调用特定的IdP登录，可以调用 **[TCGBGamebase loginWithType:viewController:completion:]**方法。<br/>
 如果是第一次尝试通过Gamebase登录，或者登录信息（访问令牌）已过期，则可以尝试使用此API登录。<br/>
@@ -164,7 +164,7 @@ Gamebase默认支持Guest登录。
 #### Gamebase支持的IdP
 请参考[控制台使用指南](./oper-app/#authentication-information)。
 
-### Credential登录
+### Login with Credential
 
 是通过IdP提供的SDK在游戏中进行认证后，并使用获取到的访问令牌，登录到Gamebase的接口。
 
@@ -206,13 +206,13 @@ Gamebase默认支持Guest登录。
 }
 ```
 
-### 认证附加信息设定
+### Authentication Additional Information Settings
 
 [控制台使用指南](./oper-app/#authentication-information)
 
-## 退出登录
+## Logout
 
-#### 导入Header文件
+#### Import Header File
 
 将以下头文件导入到ViewController中，来实现退出登录。
 
@@ -220,7 +220,7 @@ Gamebase默认支持Guest登录。
 #import <Gamebase/Gamebase.h>
 ```
 
-#### 退出登录API
+#### Logout API
 
 尝试从登录中的IdP退出。 通常，在游戏的设置画面有退出登录（退出账号）按钮，然后点击该按钮执行。
 即使退出登录成功，也会保留游戏用户数据。
@@ -243,9 +243,9 @@ Gamebase默认支持Guest登录。
 
 
 
-## 退出（删除数据）
+## Withdraw
 
-### 导入Header文件
+### Import Header File
 
 将以下头文件导入到ViewController中，来实现退出（删除数据）。
 
@@ -253,7 +253,7 @@ Gamebase默认支持Guest登录。
 #import <Gamebase/Gamebase.h>
 ```
 
-### 退出（删除数据）API
+### Withdraw API
 
 以下是游戏用户登录状态下，“退出（删除数据）”的示例代码。<br/><br/>
 
@@ -276,7 +276,7 @@ Gamebase默认支持Guest登录。
 }
 ```
 
-## 映射（Mapping）
+## Mapping
 
 映射（Mapping）是将已登录的现有游戏帐号和IdP帐户关联或解除关联的功能。
 
@@ -299,7 +299,7 @@ Gamebase默认支持Guest登录。
 
 Mapping API中有添加映射和解除映射的功能。
 
-### 添加映射（Mapping）的流程
+### Add Mapping Flow
 
 映射（Mapping）可以按以下顺序实现。
 
@@ -330,7 +330,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 * 其他错误
     * 尝试映射（Mapping）失败。
 
-### 导入Header文件到View Controller中
+### Import Header file into View Controller
 
 将以下头文件导入到ViewController中，来实现映射（Mapping）。
 
@@ -340,7 +340,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 
 
-### 添加映射（Mapping）
+### Add Mapping API
 
 在登录特定IdP状态下，尝试用其他IdP Mapping。<br/>
 
@@ -367,7 +367,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 }
 ```
 
-### 使用Credential AddMapping
+### AddMapping with Credential
 
 游戏中直接使用ID Provider提供的SDK进行认证后，使用发行的访问令牌，进行GameBase AddMapping的接口。
 
@@ -426,7 +426,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 ```
 
 
-### 解除映射（Mapping）
+### Remove Mapping API
 
 解除特定IdP的关联。 <br/>
 如果您要解除关联的IdP是 **唯一的IdP**，则会返回失败。<br/>
@@ -442,7 +442,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 }];
 ```
 
-### 获取IdP映射（Mapping）列表
+### Get IdP Mapping List
 可以查看当前帐户映射（Mapping）到哪些IdP的列表。
 
 ```objectivec
@@ -451,7 +451,7 @@ NSArray* authMappingList = [TCGBGamebase authMappingList];
 ```
 
 
-## Gamebase用户的信息
+## Gamebase Users`s Information
 在使用Gamebase完成认证过程后，制作App时可获取到所需的信息。
 
 > <font color="red">[注意]</font><br/>
@@ -460,7 +460,7 @@ NSArray* authMappingList = [TCGBGamebase authMappingList];
 >
 > 如果需要认证信息，代替“[TCGBGamebase loginForLastLoggedInProvider]”使用IDPCode和同一个{IDP_CODE}作为参数，来使用“[TCGBGamebase loginWithType:IDP_CODE viewController:self completion:completion];”API登录，才可以获取到正常的认证信息。
 
-### 获取Gamebase的认证信息
+### Get Authentication Information for Gamebase
 可以获取Gamebase发行的认证信息。
 
 ```objectivec
@@ -478,7 +478,7 @@ TCGBBanInfo* banInfo = [TCGBGamebase banInfo];
 ```
 
 
-### 为外部IDP获取认证信息
+### Get Authentication Information for External IdP
 
 从外部认证SDK，可获取访问令牌、用户ID、Profile等信息。
 
@@ -495,7 +495,7 @@ NSString *accessTokenOfIDP = [TCGBGamebase authProviderAccessTokenWithIDPCode:@"
 TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWithIDPCode:@"facebook"];
 ```
 
-### 获取被禁用的用户信息
+### Get Banned User Information
 
 如果在Gamebase Console中登记为受到制裁的游戏用户，当该用户尝试登录时，
 可能会看到以下限制信息代码。您可以使用 **[TCGBGamebase banInfo]** 方法，确认制裁信息。
@@ -539,7 +539,7 @@ TransferKey的格式为**包含“小写/大写/数字”的8位数的字符串*
 }
 ```
 
-### 将游客账户转移到另一台设备
+### Transfer Guest Account to Another Device
 通过**issueTransfer** API发放的TransferKey转移帐户的功能。
 在成功转移帐户后，在TransferKey的原设备上显示转移完成的消息，并且用在游客登录时将创建新帐户。
 在成功转移帐户的新设备上，您可以继续使用原游客帐户。
@@ -565,7 +565,7 @@ TransferKey的格式为**包含“小写/大写/数字”的8位数的字符串*
 ```
 
 
-## Error处理
+## Error Handling
 
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |

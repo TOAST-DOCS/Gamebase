@@ -3,14 +3,14 @@
 以下是如何在Unity中使用应用内结算而进行必要设置的方法。
 Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的应用内结算。
 
-### 设置
+### Settings
 
 在Android或iOS中设置应用内结算的方法请参考以下文档。<br/>
 
 * [Android Purchase Settings](aos-purchase#settings)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
-###  购买流程
+###  Purchase Flow
 
 请按以下顺序实现商品购买。<br/>
 
@@ -20,7 +20,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 1. 游戏客户端通过从Gamebase SDK调用**RequestPurchase**进行付款。
 2. 如果付款成功，请调用**RequestItemListOfNotConsumed**查看未消费结算明细。
 3. 如果返还的未消费结算明细列表中存在值，游戏客户端向游戏服务器请求对游戏付款商品的consume（消费）。
-4. 游戏服务器通过Gamebase server的API请求 consume(消费)API。 [API 가이드](/Game/Gamebase/ko/api-guide/#wrapping-api)
+4. 游戏服务器通过Gamebase server的API请求 consume(消费)API。 [API 指南](/Game/Gamebase/zh/api-guide/#wrapping-api)
 5. 如果在IAP服务器上consume(消费)API调用成功，则游戏服务器向游戏客户端支付item。
 
 商店付款成功，但出现错误无法正常结束的情况下，请登录后调用以下两个API执行重试逻辑。 <br/>
@@ -33,7 +33,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
     * 如果被返还的successList中存在值，则游戏客户端向游戏服务器请求consume(消费)并支付item。
     * 如果被返还的failList中存在值，请通过游戏服务器或 Log & Crash 传输来获取数据, 可以通过[客服中心](https://toast.com/support/inquiry) 咨询重新处理失败原因。
 
-### 购买商品
+### Purchase Item
 
 使用想要购买商品的itemSeq调用以下API并请求购。
 如果游戏用户取消购买，将返还**PURCHASE_USER_CANCELED**错误。
@@ -74,7 +74,7 @@ public void RequestPurchase(long itemSeq)
 }
 ```
 
-### 获取购买商品列表
+### Get a List of Purchasable Items
 
 要查询商品列表，请调用以下API。 
 回调返还的数组(array)包含各item的信息。
@@ -109,7 +109,7 @@ public void RequestItemListPurchasable()
 
 
 
-### 获取未支付商品列表
+### Get a List of Non-Consumed Items
 
 请求已购买了商品，却没有正常消费（发送，提供）item的未消费结算明细。
 如果有未完成的商品，您必须要求游戏服务器（item服务器）处理配送item（支付）。
@@ -145,7 +145,7 @@ public void RequestItemListOfNotConsumed()
 }
 ```
 
-### 重新处理失败的购买交易
+### Reprocess Failed Purchase Transaction
 
 如果在商店付款成功，但因TOAST IAP服务器认证失败等原因未能正常付款的情况下，我们将尝试使用API重新处理。
 最后，根据付款成功的历史记录，需要通过调用item配送(支付) 等的API 来进行处理。
@@ -244,6 +244,7 @@ public void SetPromotionIAPHandler()
 
 1. 用TestFlight安装App。
 2. 调用以下URL Scheme进行测试。
+
 | URL Components | keyname | value |
 | --- | --- | --- |
 | scheme | itms-services | 固定值 |
@@ -255,7 +256,7 @@ public void SetPromotionIAPHandler()
 示例) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 
 
-### Error处理
+### Error Handling
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
@@ -298,7 +299,7 @@ else
 ```
 
 * IAP错误代码，请参考以下文档。
-    * [Mobile Service > IAP > 错误代码 > Client API错误类型](/Mobile%20Service/IAP/ko/error-code/#client-api)
+    * [Mobile Service > IAP > 错误代码 > Client API错误类型](/Mobile%20Service/IAP/zh/error-code/#client-api)
 
 
 

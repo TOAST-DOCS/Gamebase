@@ -1,6 +1,6 @@
 ## Game > Gamebase > iOS SDK 使用指南 > Push
 
-### 设置
+### Settings
 
 #### Apple Developer证书
 
@@ -27,7 +27,7 @@
 #import <Gamebase/Gamebase.h>
 ```
 
-### 注册Push
+### Register Push
 
 调用以下API在TOAST Push注册该用户。<br/>
 接受来自用户的推送协议（enablePush），广告推送协议（enableAdPush），夜间广告推送协议（enableAdNightPush）的值，并调用以下API完成注册。
@@ -70,7 +70,7 @@
 * 发送控制台的方法
 从推送菜单中的**对象**中选择**iOS Sandbox**并发送。
 
-### 请求Push设定
+### Request Push Settings
 
 要查询用户的推送设置，请使用以下API。<br/>
 可以通过来自回调的PushConfiguration值获取用户设置值。
@@ -91,7 +91,7 @@
 }
 ```
 
-### Error处理
+### Error Handling
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |

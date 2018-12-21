@@ -3,7 +3,7 @@
 可以以指标和图表查看APP用户的状态。
 由监控、组同时在线用户数、安装URL统计、销售情况菜单组成。
 
-## 监控
+## Monitoring
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring1_1.2.png)
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring2_1.2.png)
 您可以查看当前使用APP的用户统计，预定的推送状态和维护内容。
@@ -23,7 +23,7 @@
 	* 可通过右侧按钮下载相关数据。
 
 
-## 用户统计
+## User Statistics
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_UserStatistics1_1.0.png)
 可以用图表查看DAU、MCU、NRU、CCU AVG状态。
 可以一目了然地查看当前用户的趋势变化。
@@ -36,11 +36,11 @@
 	* NRU(new registered users)：新注册用户数(可按实时，日期查询)
 	* CCU AVG(concurrent connected users average)：同时在线用户数平均值
 
-## 组同时在线用户数
+## Concurrent Group User
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_ConcurrentUser1_1.1.png)
 可以查看所属项目在线用户数。按系统分类，可一目了然地查看有权限的各项目的同时在线用户数。
 
-## 安装URL统计
+## Installed URL Statistics
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_InstallUrl1_1.0.png)
 可以查看通过安装URL调用的统计数据。
 
@@ -49,18 +49,18 @@
 * 各平台占有率: Android, iOS 等
 
 
-## 统计
+## Statistics
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Statistics1_1.2.png)
 可以通过销售情况页面，轻松查看APP销售状况。
 右上角**货币**，可按各货币查看销售额。
 
-### (1) 日销售情况统计图表
+#### (1) 日销售情况统计图表
 可通过线性图表查看每日销售情况，掌握销售情况和趋势。
 
-### (2) 月销售情况
+#### (2) 月销售情况
 按商店和综合数据，统计出每月或本月销售总额。
 
-### (3) 日销售情况
+#### (3) 日销售情况
 可以查询在APP注册的各商店的每日销售额。
 可以查询当月至今天的所有数据。
 可以查看比每月更详细的销售情况，还可以比较和分析活动期间及发生问题时的销售情况。

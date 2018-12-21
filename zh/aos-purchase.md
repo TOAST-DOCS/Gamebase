@@ -4,7 +4,7 @@
 
 Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的应用内结算。
 
-### 设置
+### Settings
 
 #### 1. Store Console
 
@@ -75,7 +75,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 });
 ```
 
-### 购买流程
+### Purchase Flow
 
 请按以下顺序实现商品购买。<br/>
 
@@ -99,7 +99,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
     * 如果被返还的successList中存在值，则游戏客户端向游戏服务器请求consume(消费)并支付item。
     * 如果被返还的failList中存在值，请通过游戏服务器或 Log & Crash 传输来获取数据, 可以通过**[客服中心](https://toast.com/support/inquiry)**咨询重新处理失败原因。
 
-### 购买商品
+### Purchase Item
 
 使用想要购买商品的itemSeq调用以下API并请求购买。<br/>
 如果游戏用户取消购买，将返还**GamebaseError.PURCHASE_USER_CANCELED** 错误。请取消处理。
@@ -129,7 +129,7 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 });
 ```
 
-### 获取购买商品列表
+### Get a List of Purchasable Items
 
 要查询商品列表，请调用以下API。回调返还的数组(array)包含各item的信息。
 
@@ -157,7 +157,7 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 });
 ```
 
-### 获取未支付商品列表
+### Get a List of Non-Consumed Items
 
 请求已购买了商品，却没有正常消费（发送，提供）item的未消费结算明细。<br/>
 如果有未完成的商品，您必须要求游戏服务器（item服务器）处理配送item（支付）。
@@ -190,7 +190,7 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 });
 ```
 
-### 重新处理失败的购买交易
+### Reprocess Failed Purchase Transaction
 
 如果在商店付款成功，但因TOAST IAP服务器认证失败等原因未能正常付款的情况下，我们将尝试使用API重新处理。 <br/>
 最后，根据付款成功的历史记录，需要通过调用item配送(支付) 等的API 来进行处理。
@@ -219,7 +219,7 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 });
 ```
 
-### Error处理
+### Error Handling
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |

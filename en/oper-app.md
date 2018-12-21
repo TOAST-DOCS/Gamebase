@@ -408,17 +408,24 @@ Enter character strings in accordance with rules of each game.
 
 - <font color="white" style="background-color:#88C637">Service</font>: Service is normally provided
 - <font color="white" style="background-color:#2AB1A6">Update Recommended (In Service)</font>: Service is normally provided. <br/>Pop-up will show to lead into more stable versions. Although downloading a newer version is recommended, users can continue playing games with a current version.<br />Gamebase provides the default pop-up as below.
+
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_updateRecommended_1.0.png)
 
 - <font color="white" style="background-color:#A1A1A1">Update Required</font>: Service is unavailable. <br/>As the current version is not supported by game, a pop-up will show to update app.<br />Gamebase provides the default pop-up as below.
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_updateRequired_1.1.png)
+<<<<<<< HEAD
 >  <font color="red">[Caution] </font> 
 >  When **both Update Required and Under Maintenance are set at the same time** , the service status becomes 'Update Required'.
 >  If you don't want to show the Update Required pop-up to user during maintenance, the service status should be changed to 'Update Required' after maintenance is completed.
+>  <font color="orange">[참고] </font>
+>  업데이트 버튼을 누르면 설치 URL 메뉴에서 설정한 각각의 스토어 주소로 연결됩니다.
+>  예를 들면 클라이언트가 App store로 설정되어 있고 설치 URL 메뉴에서 App store 관련 설정이 존재한다면 설정한 주소로 이동되며 만약 설치 URL 메뉴에 설정이 되어 있지 않을 경우 공통(Common) URL로 연결됩니다.
+
 
 - <font color="white" style="background-color:#CCCCCC">Close</font>: Service unavailable. <br/> To be selected for a version of closed service.<br />Gamebase provides the default pop-up as below.
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_ended_1.0.png)
 
+<<<<<<< HEAD
 > [Note] 
 > Setting Message for Service Status.
 > For **Update Recommended (In Service)**, **Update Required** , and **Service Closed** , messages can be set in multiple languages. 
@@ -429,14 +436,14 @@ Enter character strings in accordance with rules of each game.
 Enter a server URL (IP, URL) that a client will use.
 A server URL entered in the **App** tab will be applied for all clients; enter only when each client has a different server URL.
 
-
 ## Installed URL
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_InstallUrl1_1.2.png)
 
-Manage store URL information to install a game.
-A user's click on a short URL via PC or mobile will be redirected to a site entered on a user device (device, operating system, store, etc.).
-If there is no store information, or redirection is failed, the URL will be linked as set in 'COMMON'.
+* Manage store URL information to install a game.
+* 클라이언트 상태 중 <font color="white" style="background-color:#2AB1A6">업데이트 권장(서비스 중)</font> 또는 <font color="white" style="background-color:#A1A1A1">업데이트 필수</font> 일 때 각각의 스토어 별로 제공할 주소들에 대한 값을 설정합니다.
+* A user's click on a short URL via PC or mobile will be redirected to a site entered on a user device (device, operating system, store, etc.).
+* If there is no store information, or redirection is failed, the URL will be linked as set in 'COMMON'.
 
 _[Example 1] A user clicks Install URL in a text message on an Android device._
 **(Device:mobile,OS:Android,Store:N/A)** Move to a mobile URL of a representing Android store. In the case of 'Google Play', move to the URL set on the 'Google Play' mobile.
@@ -444,7 +451,6 @@ _[Example 2] A user playing a game downloaded from 'One Store' clicks 'Update No
 **(Device:mobile,OS:Android,Store:One Store)** Move to the URL set in 'One Store' mobile (installation page for One Store mobile)<br/>
 _[Example 3] A user enters Install URL on a PC._
 **(Device:PC,OS:Windows,Store:N/A)** Move to URL set in COMMON PC.
-
 
 ### Properties
 

@@ -2,7 +2,7 @@
 
 在Android上应用Gamebase，需要的系统环境如下。
 
-### 环境
+### Environments
 
 
 > [最低版本]
@@ -10,7 +10,7 @@
 > Android API 15 (IceCreamSandwichMR1, 4.0.3) 以上 <br/>
 > 开发环境: Android Studio
 
-### 安装
+### Installation
 
 下载Gamebase Android SDK文件。
 
@@ -31,7 +31,7 @@
 * 解压缩SDK包和模块，如下所示。
   ![Package Includes](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-installation-001_1.5.0.png)
 
-### 设置build.gradle
+### Setting build.gradle
 
 * 1) 将下载的Gamebase SDK复制到App的根(root)路径。
 * 2) 设置Gamebase路径和版本，以使用认证、支付和推送模块。
@@ -57,13 +57,13 @@ def pushSdkVersion = '1.4.2'
 def pushSdkTencentVersion = '1.6.0'
 
 /* Set the Gamebase version. */
-def gamebaseSdkVersion = '1.13.0'
-def gamebaseFacebookAdapterVersion = '1.11.0'
+def gamebaseSdkVersion = '1.14.0'
 def gamebaseGoogleAdapterVersion = '1.9.0'
-def gamebaseNaverAdapterVersion = '1.13.0'
-def gamebaseTwitterAdapterVersion = '1.11.0'
-def gamebaseLineAdapterVersion = '1.11.0'
+def gamebaseFacebookAdapterVersion = '1.11.0'
 def gamebasePaycoAdapterVersion = '1.7.0'
+def gamebaseNaverAdapterVersion = '1.13.0'
+def gamebaseTwitterAdapterVersion = '1.12.2'
+def gamebaseLineAdapterVersion = '1.11.0'
 def gamebaseIAPAdapterVersion = '1.13.0'		// Not all adapters have the same version.
 def gamebaseFCMAdapterVersion = '1.7.0'
 def gamebaseTencentAdapterVersion = '1.12.1'
@@ -193,7 +193,7 @@ dependencies {
 }
 ```
 
-## 依赖
+## Dependency
 
 Gamebase SDK可确保具有第三方SDK和依赖的模块版本兼容。
 
@@ -215,7 +215,7 @@ Gamebase SDK可确保具有第三方SDK和依赖的模块版本兼容。
 * optiona是指在需要特定功能时必须加载的模块。
 * 只能包含一个重复的依赖模块。
 
-## 第三方提供SDK的指南
+## 3rd-Party Provider SDK Guide
 
 * [Facebook for developers](https://developers.facebook.com/docs/android)
 * [Google APIs for Android](https://developers.google.com/android/guides/overview)

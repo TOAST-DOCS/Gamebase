@@ -2,7 +2,7 @@
 
 在使用Gamebase Android SDK之前，必须先执行初始化。
 
-### 启用App
+### Activate the Application
 
 要管理App的生命周期(lifecycle)，须通知Gamebase SDK您的应用处于有效状态。<br/>
 **Application#onCreate()**调用 **Gamebase#activeApp(Context)**。
@@ -18,7 +18,7 @@ public class GamebaseApplication extends Application {
 }
 ```
 
-### 配置设定
+### Configuration Settings
 
 初始化Gamebase时，可以使用GamebaseConfiguration.Builder对象修改Gamebase设置。
 
@@ -33,7 +33,7 @@ public class GamebaseApplication extends Application {
 | setFCMSenderId(String senderId)          | O                          | **[Push]**<br/>如果要通过Google Notification（FCM，GCM）发送推送消息，则需要设置发件人ID。 |
 | setTencentAccessKey(String accessKey)<br/>setTencentAccessId(String accessId) | O                          | **[Push]**<br/> 如果您使用的是腾讯推送模块，则需要设置访问密钥和访问ID。|
 
-### Debug模式
+### Debug Mode
 * Gamebase仅显示警告(warning)和错误日志。
 * 要打开系统日志进行开发，请调用** Gamebase.setDebugMode（true）**。
 
@@ -41,7 +41,7 @@ public class GamebaseApplication extends Application {
 >
 > 当**发布**游戏时，请务必从源代码中删除setDebugMode调用，或者将参数更改为false之后再打包。
 
-### 初始化
+### Initialize
 
 通过在**Activity#onCreate(Bundle)**调用**Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback)**来初始化Gamebase SDK。<br/>
 另外，还需要从**Activity#onActivityResult(int, int, Intent)**调用 **Gamebase.onActivityResult(int, int, Intent)**，以进行Gamebase的正常操作。
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-### Launching状态
+### Launching Status
 
 可以通过调用Gamebase#initialize来确认Launching状态。
 
@@ -152,7 +152,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 
 
-### Launching状态码
+### Launching Status Code
 
 | 状态                      | Code | 描述                              |
 | --------------------------- | ---- | ---------------------------------------- |
@@ -169,7 +169,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 
 
-### Error处理
+### Error Handling
 
 | Error                        | Error Code | Description                |
 | ---------------------------- | ---------- | -------------------------- |

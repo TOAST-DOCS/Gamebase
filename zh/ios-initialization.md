@@ -2,7 +2,7 @@
 
 在使用Gamebase iOS SDK之前，必须先执行初始化。
 
-### 导入Header文件
+### Import Header File
 
 首先，需要将Gamebase头文件导入您的App。<br/>
 获取以下头文件以初始化Gamebase功能，例如AppDelegate.h。
@@ -12,7 +12,7 @@
 ```
 
 
-### 配置设定
+### Configuration Settings
 
 初始化Gamebase时，可以使用TCGBConfiguration对象修改Gamebase设置。
 
@@ -24,7 +24,7 @@
 | enableBanPopup:                    | O                          | **[UI]**<br/>当游戏用户被禁用时，Gamebase可以设定是否将制裁原因以弹出窗口的形式显示给用户。<br/>仅适用于**enablePopup:** 状态下。<br/>默认值为 **YES**。 |
 
 
-### Debug模式
+### Debug Mode
 Gamebase仅显示警告(warning)和错误日志。
 要打开系统日志以进行开发，请调用 **[TCGBGamebase setDebugMode:YES]**。
 
@@ -33,7 +33,7 @@ Gamebase仅显示警告(warning)和错误日志。
 > 当**发布**游戏时，请务必从源代码中删除setDebugMode调用，或者将参数更改为false之后再打包。
 
 
-### 初始化
+### Initialize
 **application:didFinishLaunchingWithOptions:**方法中按以下方式进行初始化。
 
 
@@ -75,7 +75,7 @@ Gamebase仅显示警告(warning)和错误日志。
 
 
 
-### Launching状态
+### Launching Status
 
 可以通过调用Gamebase #initialize来确认Launching状态。<br/>
 应在Gamebase初始化后调用Launching状态。
@@ -111,7 +111,7 @@ Gamebase仅显示警告(warning)和错误日志。
 + NSDictionary* launchingInfo = [TCGBLaunching laucnhingInformations];
 ```
 
-### Launching状态码
+### Launching Status Code
 
 | Status                      | Code | Description                              |
 | --------------------------- | ---- | ---------------------------------------- |
@@ -126,11 +126,11 @@ Gamebase仅显示警告(warning)和错误日志。
 | INTERNAL_SERVER_ERROR       | 500  | 内部服务器错误                                 |
 
 
-## 生命周期（Lifecycle）事件
+## Lifecycle Event
 
 要在iOS上管理App事件，请实现**UIApplicationDelegate**协议。
 
-### OpenURL事件
+### OpenURL Event
 需要通过调用**application:openURL:sourceApplication:annotation:**方法，将App的外部URL Open尝试告知Gamebase，Gamebase将相应的值传递给各Idp的认证用SDK，告知需要的操作。
 
 > <font color="red">[注意]</font><br/>
@@ -144,7 +144,7 @@ Gamebase仅显示警告(warning)和错误日志。
 }
 ```
 
-### DidBecomeActive事件
+### DidBecomeActive Event
 需要通过调用**applicationDidBecomeActive:**方法，将App是否处于活动状态告知Gamebase，Gamebase将相应的值传递给各Idp的认证用SDK，告知需要的操作。
 
 
@@ -155,7 +155,7 @@ Gamebase仅显示警告(warning)和错误日志。
 }
 ```
 
-### DidEnterBackground事件
+### DidEnterBackground Event
 需要通过调用**applicationDidEnterBackground** 方法，将App切换到后台告知Gamebase。
 
 
@@ -165,7 +165,7 @@ Gamebase仅显示警告(warning)和错误日志。
 }
 ```
 
-### WillEnterForeground事件
+### WillEnterForeground Event
 需要通过调用**applicationWillEnterForeground** 方法，将App切换到前台(foreground)告知Gamebase。
 
 ```objectivec
@@ -175,7 +175,7 @@ Gamebase仅显示警告(warning)和错误日志。
 ```
 
 
-### Error处理
+### Error Handling
 
 | Error                              | Error Code | Description            |
 | ---------------------------------- | ---------- | ---------------------- |

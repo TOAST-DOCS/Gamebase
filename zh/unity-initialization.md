@@ -2,7 +2,7 @@
 
 如需使用Gamebase Unity SDK，必须先执行初始化。此外，还需在TOAST控制台中注册APP ID、APP版本信息。
 
-### Inspector设定
+### Inspector Settings
 
 初始化所需的设置如下。
 
@@ -23,13 +23,13 @@
 
 在Gamebase控制台中注册的项目ID。
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Console Guide](/Game/Gamebase/zh/oper-app/#app)
 
 #### 2. appVersion
 
 在Gamebase控制台中注册的客户端版本。
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+[Console Guide](/Game/Gamebase/zh/oper-app/#client)
 
 #### 3. isDebugMode
 
@@ -99,7 +99,7 @@ LaunchingStatus请参考下面Launching段落下面的State, Code部分。
 
 ![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_003_1.12.0.png)
 
-### 使用Inspector设置初始化
+### Initialize with Inspector Settings
 
 Gamebase Unity SDK初始化方法如下。
 
@@ -168,7 +168,7 @@ public class SampleInitialization
 }
 ```
 
-### Launching信息
+### Launching Information
 
 使用Initialize API来初始化Gamebase Unity SDK，LaunchingInfo对象将作为结果值传递。
 此LaunchingInfo对象包含了Gamebase Console中设置的值和游戏状态等。
@@ -198,7 +198,7 @@ Gamebase Unity SDK初始化设置是输入的APP版本的游戏状态信息。
 | INSPECTING_ALL_SERVICES     | 304         | 所有服务正在维护中                              |
 | INTERNAL_SERVER_ERROR       | 500         | 内部服务器出错                                 |
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Console Guide](/Game/Gamebase/zh/oper-app/#app)
 
 **1.2 App**
 
@@ -215,7 +215,7 @@ Gamebase Console中注册的APP信息。
 * install: 安装URL
 * idP: 认证信息
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+[Console Guide](/Game/Gamebase/zh/oper-app/#client)
 
 **1.3维护**
 
@@ -227,7 +227,7 @@ Gamebase Console中注册的APP信息。
 * endDate：结束时间
 * message：维护理由
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+[Console Guide](/Game/Gamebase/zh/oper-operation/#maintenance)
 
 **1.4 公告**
 
@@ -237,7 +237,7 @@ Gamebase Console中注册的APP信息。
 * title：标题
 * url：维护URL
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+[Console Guide](/Game/Gamebase/zh/oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -256,9 +256,9 @@ Gamebase Console中注册的APP信息。
 * name: App Name
 * storeCode: Store Code
  
-[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+[Console Guide](/Game/Gamebase/zh/oper-purchase/)
 
-### 获取Launching信息
+### Get Launching Information
 
 使用GetLaunchingInformations API，Initialize之后也可获取LaunchingInfo对象。
 
@@ -284,7 +284,7 @@ public GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
 }
 ```
 
-### Error处理
+### Error Handling
 
 | Error                              | Error Code | 描述            |
 | ---------------------------------- | ---------- | ---------------------- |

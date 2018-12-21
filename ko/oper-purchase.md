@@ -62,7 +62,7 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 
 아래 검색조건을 이용하여 원하는 결제 정보를 조회할 수 있습니다.
 결제 내역은 우측 상단의 다운로드 버튼을 통해 언제든지 다운로드 받으실 수 있습니다.
-### 검색 조건
+#### 검색 조건
 
 - **스토어**: 결제된 스토어 정보
 - **날짜**: 사용자가 구입을 시도한 시간
@@ -72,7 +72,7 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 - **정렬순서**: 등록일시 기준으로 오름차순, 내림차순 정렬
 - **결제상태**: 결제 상태를 기준으로 정보를 조회
 
-### 검색 결과
+#### 검색 결과
 - **Transaction ID**: Gamebase 내에서 결제를 구별할 수 있는 고유 번호
 - **스토어**: 결제된 스토어 정보
 - **유저 ID**: 결제한 사용자 아이디
@@ -85,7 +85,7 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 - **결제예약일시**: 사용자가 구입을 시도 또는 완료한 시간
 - **환불일시**: 사용자 아이템이 환불된 시간
 
-### 결제 상태 변경
+#### 결제 상태 변경
 조회된 결제정보의 상태는 아래와 같으며 각각의 상태는 아래와 같습니다.
 - **Success**
 	- 결제 완료
@@ -104,16 +104,16 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 	- 관리자가 수동으로 마켓에서 환불처리에 대한 여부를 업데이트한 경우입니다.
 	- 다른 결제상태로 변경이 불가능합니다.
 
-#### Success 변경
+##### Success 변경
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction2_1.0.png)
 결제 진행시 발급받은 **영수증 번호**, **가격**, **통화**정보를 입력해야 상태 변경이 가능합니다.
 
-#### Refund 변경
+##### Refund 변경
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction2_2.0.png)
 별다른 추가정보의 입력 없이 상태를 선택한 후 변경을 선택합니다.
 변경된 결제 정보는 이후 변경이 불가능하므로 신중하게 확인 후 진행해야 합니다.
 
-### 영수증 검증
+#### 영수증 검증
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction3.1.png)
 * 조회된 영수증을 기반으로 해당 결제건이 유효한 지 검증할 수 있습니다.
 * 각 필드의 비교결과를 알려주며 스토어로부터 받은 응답값을 Json형식으로 제공하므로 필요한 경우 데이터를 직접 확인하실 수 있습니다.

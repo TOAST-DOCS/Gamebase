@@ -1,5 +1,6 @@
 ## Game > Gamebase > 操控台使用指南> Push
 
+
 您可以向应用用户发送推送消息。
 Gamebase使用TOAST Push功能发送推送消息。
 
@@ -40,7 +41,7 @@ Gamebase使用TOAST Push功能发送推送消息。
 #### (2) 发送对象
 选择发送Push信息的对象
 
-- **全体发送**：您可以通过操作系统进行选择。 使用所选操作系统的所有用户都将收到推送。
+- - **全体发送**：您可以通过操作系统进行选择。 使用所选操作系统的所有用户都将收到推送。
 - **仅发送给特定用户**：仅在将推送消息发送给特定用户时进行选择，推送消息将发送到，以输入的用户ID登记推送令牌的设备。
 - **群组发送**：发送消息的用户列表，可以使用包含用户列表的文件。群组发送一次最多可支持10,000人。
 
@@ -72,6 +73,6 @@ Gamebase使用TOAST Push功能发送推送消息。
 > 在大多数情况下，是因为未登记用户的推送令牌。 请确认是否已登记用户的推送令牌。
 > 平台上登记推送令牌方法，请参考以下文件。
 >
-> - [Android > Register Push](./aos-push/#2-register-push) 
-> - [iOS > Register Push](./ios-push/#2-register-push) 
-> - [Unity > Register Push](./unity-push/#2-register-push) 
+> - [Android > Register Push](./aos-push/#2-register-push)
+> - [iOS > Register Push](./ios-push/#2-register-push)
+> - [Unity > Register Push](./unity-push/#2-register-push)

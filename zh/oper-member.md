@@ -13,7 +13,7 @@ IdP ID是Id Provider提供的ID信息，这意味着Id Provider中的唯一标�
 
 
 ### Detail Information
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Member1_1.5.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Member1_1.6.png)
 
 **User **
 
@@ -42,6 +42,35 @@ Gamebase允许多个外部IdP协同工作。 换句话说，用户可以通过�
 - **IdP**: 外部 IdP(guest, Facebook, PAYCO, Google 等)
 - **Idp ID**: 外部IdP提供的ID(Facebook no, PAYCO ID等)
 - **注册日期**: 用户首次注册IdP的时间
+
+#### 계정 상태 변경
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Member1_2.2.png)
+조회한 유저의 계정 상태를 변경할 수 있는 기능입니다.
+상태별 변경할 수 있는 경우는 아래와 같습니다.
+- **정상**: 이용정지, 탈퇴상태로 변경이 가능합니다. 탈퇴시에는 해당 계정정보를 되돌릴 수 없으므로 처리 전 확인 및 주의가 필요합니다.
+- **이용 정지**: 이용정지 해제를 진행할 수 있습니다.
+- **탈퇴**: 해당 버튼이 노출되지 않습니다.
+
+#### 매핑 추가
+
+조회한 유저의 Id Provider 정보를 추가할 수 있는 기능입니다.
+연결하고자하는 IdP를 가지고 있는 유저의 정보가 **정상**일 경우에만 매핑 추가 작업이 가능합니다.
+* 제공 유저의 IdP 설정란에서 연결하고자 하는 Id Provider 정보를 1번 버튼을 통해 오른쪽화면에 추가한 후, 아래 매핑 추가 버튼을 통해 매핑 추가 작업을 진행합니다.
+* 잘못 추가했다면 매핑 추가 버튼을 누르기 전에는 2번 버튼을 통해 언제든지 다른 Id provider로 교체 가능합니다.
+* 제공 받는 유저가 GUEST정보만 가지고 있을 경우에는 새로운 Id Provider정보가 추가되면서 기존의 Guest정보는 유실되므로 작업 진행 시 주의가 필요합니다.
+* 제공 유저의 Id Provider 정보가 한개일 경우 해당작업을 진행하면 제공 유저 정보는 **유실**상태로 변경되어 더이상 사용할 수 없으므로 작업 진행 전 확인이 필요합니다.
+##### 제공 전 예시
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/Console_Member_AddMapping_1.3.png)
+##### 제공 후 예시
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/Console_Member_AddMapping_2.1.png)
+
+#### 매핑 해제
+다중 매핑이 이루어진 계정의 경우 요청에 따라 Id Provider 정보 연동을 해제할 수 있습니다.
+각각의 계정은 최소 1개의 연결정보가 존재해야 하므로 2개 이상의 연결정보가 존재할 때만 버튼이 활성화 됩니다.
+* 버튼을 누르면 아래와 같이 연결된 Id Provider 정보와 함께 매핑 해제 버튼이 노출됩니다.
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_RemoveMapping_1.0.png)
+* 해제 버튼을 누를 경우 아래와 같이 최종 확인창과 함께 Id Provider 정보를 확인합니다. 확인버튼을 누르시면 매핑 해제가 진행됩니다.
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/Console_Member_RemoveMapping_2.0.png)
 
 ### Login History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_LoginHistory1_1.2.png)

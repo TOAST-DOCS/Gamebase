@@ -30,7 +30,17 @@ static void ShowWebView(string url, GamebaseRequest.Webview.GamebaseWebViewConfi
 
 **示例**
 ```cs
-public void ShowWebView(GamebaseCallback.ErrorDelegate closeCallback, List<string> schemeList, GamebaseCallback.GamebaseDelegate<string> schemeEvent)
+private void SchemeEvent(string scheme, GamebaseError error)
+{
+    Debug.Log(string.Format("[SchemeEvent] scheme:{0}", scheme));
+}
+
+private void CloseCallback(GamebaseError error)
+{
+    Debug.Log("CloseCallback");
+}
+    
+public void ShowWebView()
 {
     GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = new GamebaseRequest.Webview.GamebaseWebViewConfiguration();
      configuration.title = "Title";
@@ -41,9 +51,10 @@ public void ShowWebView(GamebaseCallback.ErrorDelegate closeCallback, List<strin
      configuration.colorA = 255;
      configuration.barHeight = 40;
      configuration.buttonVisible = true;
-
-
-     Gamebase.Webview.ShowWebView("https://www.toast.com/", configuration, closeCallback, schemeList, schemeEvent);
+    
+    var schemeList = new List<string>() { "customScheme://openBrowser" };
+    
+    Gamebase.Webview.ShowWebView("https://www.toast.com/", configuration, CloseCallback, schemeList, SchemeEvent);
 }
 ```
 
@@ -104,7 +115,7 @@ public void CloseWebview()
 ```
 
 
-## 打开外部浏览器
+## Open External Browser
 
 可以使用以下API打开外部浏览器。作为参数传递的URL必须是有效值。
 
@@ -130,7 +141,7 @@ public void OpenWebBrowser(string url)
 ```
 
 
-## 提醒
+## Alert
 
 可以显示系统提醒。
 可以在系统通知中登记按钮或回调。
@@ -203,7 +214,7 @@ public void ShowToast(string message, GamebaseUIToastType type)
 }
 ```
 
-## Error处理
+## Error Handling
 
 | Error              | Error Code | Description                 |
 | ------------------ | ---------- | --------------------------- |

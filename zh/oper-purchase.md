@@ -57,11 +57,11 @@
 
 可以查询结算信息。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction1_1.3.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/Console_IAP_Transaction1_1.4.png)
 
 您可以使用以下搜索条件查询所需的付款信息。
 您可以随时点击右上角的“下载”按钮下载付款详细信息。
-### 搜索条件
+#### 搜索条件
 
 - **商店**: 已付款的商店信息
 - **日期**: 用户尝试购买的时间
@@ -71,7 +71,7 @@
 - **排列顺序**: 以记录时间为基准，进行升降排序
 - **付款状态**: 根据付款状态查看信息
 
-### 搜索结果
+#### 搜索结果
 - **Transaction ID**: 用于区分Gamebase内支付的唯一编号
 - **商店**: 已付款的商店信息
 - **用户 ID**: 付款的用户ID
@@ -84,8 +84,9 @@
 - **付款日期**: 用户尝试购买或完成购买的时间
 - **退还日期**: 用户退还item的时间
 
-### 变更付款状态
+#### 变更付款状态
 查询付款信息的状态如下所示。
+
 - **Success**
 	- 完成付款
     - 这意味着付款流程已正常完成。
@@ -103,11 +104,17 @@
 	- 管理员已在商店中手动处理,是否准许退还请求。
 	- 无法更改为其他付款状态。
 
-#### Success 变更
+##### Success 变更
+
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction2_1.0.png)
 您可以通过输入付款时收到的**发票编号**, **价格**, **货币**信息来更改状态。
 
-#### Refund 变更
+##### Refund 变更
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction2_2.0.png)
 不必输入其他追加信息，确认状态后选择变更即可。
 您更改的付款信息无法再次更改，因此需要仔细检查信息。
+#### 영수증 검증
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction3.1.png)
+* 조회된 영수증을 기반으로 해당 결제건이 유효한 지 검증할 수 있습니다.
+* 각 필드의 비교결과를 알려주며 스토어로부터 받은 응답값을 Json형식으로 제공하므로 필요한 경우 데이터를 직접 확인하실 수 있습니다.
+* 현재는 App Store 결제건에 대해서만 검증을 제공합니다.

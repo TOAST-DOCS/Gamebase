@@ -2,7 +2,7 @@
 
 以下说明Gamebase Unity SDK使用环境和初始设置。
 
-### 环境
+### Environments
 
 > [参考] 
 >
@@ -10,9 +10,10 @@
 > 
 > * Unity 5.x : 5.5.4 ~ 5.6.6
 > * Unity 2017.x : ~ 2017.4.x(LTS)
-> * Unity 2018.x : ~ 2018.2.16
+> * Unity 2018.x : ~ 2018.2.19
 
-#### 支持的Platforms
+
+#### Supported Platforms
 
 * iOS
 * Android
@@ -44,13 +45,13 @@ Supported Platforms
 <span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
 <span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
-## 安装
+## Installation
 
 为了轻松安装Gamebase SDK，提供Setting Tool。
 
 * [Download Gamebase Unity SDK](/Download/#game-gamebase)
 
-### Setting Tool的规格
+### Specification of Setting Tool
 1. 下载SDK
     * 支持最新版本的下载。
 2. 安装SDK
@@ -61,7 +62,7 @@ Supported Platforms
     * 不支持更新功能。
     * 如需更新请删除后重新安装。
 
-### 使用Setting Tool
+### Using the Setting Tool
 
 #### 安装SDK
 1. 打开Unity项目。
@@ -90,7 +91,7 @@ Supported Platforms
 > 如果您使用Unity Facebook认证，则需要单独下载Facebook Unity SDK。 [Go to Download](https://developers.facebook.com/docs/unity/)<br/>
 > 有关Unity Facebook Authentication支持的Facebook Unity SDK版本，请参考随附的README文件。 <br/>
 
-### Setting Tool用法视频
+### Video of Setting Tool Usage
 
 <iframe src="https://www.youtube.com/embed/kZ3Z1Kfr7Zw" frameborder="0" allowfullscreen="" wmode="Opaque" allow="encrypted-media" style="
     margin: auto;
@@ -100,7 +101,7 @@ Supported Platforms
 "></iframe>
 
 
-### Setting Tool更新
+### Update of Setting Tool
 
 如果需要更新Setting Tool，Setting Tool将通知更新。
 根据更新类型，Setting Tool提供的部分功能会受限制。
@@ -120,7 +121,7 @@ Supported Platforms
 
 ![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-2_1.13.0.png)
 
-### Android生命周期（Lifecycle）
+### Android Lifecycle
 
 为了管理生命周期，需要把“com.toast.gamebase.activity.GamebaseMainActivity”设置为为MainActivity。
 "com.toast.gamebase.activity.GamebaseMainActivity"是继承"com.unity3d.player.UnityPlayerActivity"实现的。
@@ -250,7 +251,7 @@ android {
 ```
 
 
-### iOS设定
+### iOS Settings
 
 1. 在Unity项目里进行iOS Build。
 2. 在创建的XCode项目中添加设置。

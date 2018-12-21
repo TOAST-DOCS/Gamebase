@@ -1,6 +1,6 @@
 ## Game > Gamebase > Unity SDK 使用指南 > 认证
 
-## 登录
+## Login
 
 Gamebase默认支持访客登录。<br/>
 
@@ -9,7 +9,7 @@ Gamebase默认支持访客登录。<br/>
     * [3rd-Party Provider SDK Guide](aos-started#3rd-party-provider-sdk-guide)
 
 
-### 登录流程
+### Login Flow
 
 多数游戏在标题页上实现登录。
 
@@ -127,7 +127,7 @@ public void Login(string providerName)
 }
 ```
 
-### 游客登录
+### Login with GUEST
 
 Gamebase支持游客登录。
 尝试通过为设备创建的唯一密钥来登录Gamebase。
@@ -166,7 +166,7 @@ public void Login()
 }
 ```
 
-### IdP登录
+### Login with IdP
 
 以下是允许您使用特定IdP登录的示例代码。
 
@@ -247,7 +247,7 @@ public void Login(string providerName, Dictionary<string, object> additionalInfo
 }
 ```
 
-### Credential登录
+### Login with Credential
 
 是通过IdP提供的SDK在游戏中进行认证后，使用获取到的访问令牌，登录到Gamebase的接口。
 
@@ -315,11 +315,11 @@ public void LoginWithCredential()
 }
 ```
 
-### 认证附加信息设定
+### Authentication Additional Information Settings
 
 [Console Guide](./oper-app/#authentication-information)
 
-## 退出登录
+## Logout
 尝试从登录中的IdP退出。 通常，在游戏的设置画面有退出登录（退出账号）按钮，然后点击该按钮执行。
 即使退出登录成功，也会保留游戏用户数据。
 如果退出登录成功，将会删除IDP认证记录，则下次登录时将显示ID和密码输入窗口。<br/><br/>
@@ -360,7 +360,7 @@ public void Logout()
 
 
 
-## 退出（删除数据）
+## Withdraw
 在登录状态尝试退出（删除数据）。
 
 * 如果退出（删除数据）成功，则将删除与登录的IdP账户相关联的游戏用户数据。
@@ -402,7 +402,7 @@ public void Withdraw()
 }
 ```
 
-## 映射（Mapping）
+## Mapping
 
 映射（Mapping）是将已登录的现有游戏帐号和IdP帐户关联或解除关联的功能。
 
@@ -426,7 +426,7 @@ Gamebase的Mapping API，允许将您的其他IdP帐户和您之前登录的游�
 
 映射（Mapping）包括添加Mapping/解除Mapping API。
 
-### 添加映射（Mapping）的流程
+### Add Mapping Flow
 
 映射（Mapping）可以按以下顺序实现。
 
@@ -458,7 +458,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
     * 尝试映射（Mapping）失败。
 
 
-### 添加映射（Mapping）
+### Add Mapping
 
 登录特定IdP状态下，尝试用其他IdP Mapping。
 如果想要映射（Mapping）的IdP账户已与其他账户关联，则返还**AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**错误。<br/>
@@ -495,7 +495,7 @@ public void AddMapping(string providerName)
 }
 ```
 
-### 使用Credential AddMapping
+### AddMapping with Credential
 
 游戏中直接使用ID Provider提供的SDK进行认证后，使用发行的访问令牌，进行GameBase AddMapping的接口。
 
@@ -560,7 +560,7 @@ public void AddMappingWithCredential()
 
 
 
-### 解除映射（Mapping）
+### Remove Mapping
 
 解除特定IDP的关联。如果尝试解除当前登录中的帐户，则会失败。
 解除关联之后，Gamebase将该IdP退出登录。
@@ -594,7 +594,7 @@ public void RemoveMapping(string providerName)
 }
 ```
 
-### 获取映射（Mapping）列表
+### Get Mapping List
 
 获取与用户ID关联的IdP列表。<br/>
 
@@ -616,11 +616,11 @@ public void GetAuthMappingList()
     List<string> mappingList = Gamebase.GetAuthMappingList();
 }
 ```
-## Gamebase用户的信息
+## Gamebase User`s Information
 
 在使用Gamebase完成认证过程后，制作App时可获取到所需的信息。
 
-### 获取Gamebase的认证信息
+### Get Authentication Information for Gamebase
 在使用Gamebase完成认证过程后，制作App时可获取到所需的信息。
 
 #### UserID
@@ -694,7 +694,7 @@ public void GetLastLoggedInProvider()
 }
 ```
 
-### 为外部IDP获取认证信息
+### Get Authentication Information for External IdP
 
 从外部认证SDK，可获取访问令牌、用户ID、Profile等信息。
 
@@ -774,7 +774,7 @@ public void GetAuthProviderProfile(string providerName)
 }
 ```
 
-### 获取被禁用的用户信息
+### Get Banned User Infomation
 
 如果在Gamebase Console中登记为受到制裁的游戏用户，当该用户尝试登录时，
 可能会看到以下限制信息代码。您可以使用(**BANNED_MEMBER(7)**) 方法，确认制裁信息。
@@ -850,7 +850,7 @@ public void IssueTransferKey(long expiresIn)
 }
 ```
 
-### 将游客账户转移到另一台设备
+### Transfer Guest Account to Another Device
 通过**IssueTransferKey** API发放的TransferKey转移帐户的功能。
 在成功转移帐户后，在TransferKey的原设备上显示转移完成的消息，并且用在游客登录时将创建新帐户。
 在成功转移帐户的新设备上，您可以继续使用原游客帐户。
@@ -889,7 +889,7 @@ public void RequestTransfer(string transferKey)
 ```
 
 
-## Error处理
+## Error Handling
 
 | Category | Error | Error Code | Description |
 | --- | --- | --- | --- |

@@ -1,6 +1,6 @@
 ## Game > Gamebase > Android SDK使用指南 > 认证
 
-## 登录
+## Login
 
 Gamebase默认支持Guest登录。
 
@@ -9,7 +9,7 @@ Gamebase默认支持Guest登录。
   [第三方提供的SDK指南](aos-started#3rd-party-provider-sdk-guide)
 
 
-### 登录流程
+### Login Flow
 
 多数游戏在标题页上实现登录。
 * 当App首次安装和启动时，游戏用户可以在标题页选择要进行的IdP(identity provider)类型。
@@ -182,7 +182,7 @@ private static void onLoginForGuest(final Activity activity) {
 ```
 
 
-### IdP登录
+### Login with IdP
 
 以下是允许您使用特定IdP登录的示例代码。<br/>
 您可以在** AuthProvider **类中确认可以登录的IdP类型。
@@ -238,7 +238,7 @@ private static void onLoginForGoogle(final Activity activity) {
 }
 ```
 
-### Credential登录
+### Login with Credential
 
 是通过IdP提供的SDK在游戏中进行认证后，并使用获取到的访问令牌，登录到Gamebase的接口。
 
@@ -317,11 +317,11 @@ private static void onLoginWithCredential(final Activity activity) {
 }
 ```
 
-### 认证附加信息设定
+### Authentication Additional Information Settings
 
 [控制台使用指南](./oper-app/#authentication-information)
 
-## 退出登录
+## Logout
 
 尝试从登录中的IdP退出。 通常，在游戏的设置画面有退出登录（退出账号）按钮，然后点击该按钮执行。
 即使退出登录成功，也会保留游戏用户数据。
@@ -371,7 +371,7 @@ private static void onLogout(final Activity activity) {
 }
 ```
 
-## 退出（删除数据）
+## Withdraw
 
 以下是游戏用户登录状态下，“退出（删除数据）”的示例代码。<br/><br/>
 
@@ -427,7 +427,7 @@ private static void onWithdraw(final Activity activity) {
 }
 ```
 
-## 映射（Mapping）
+## Mapping
 
 映射（Mapping）是将已登录的现有游戏帐号和IdP帐户关联或解除关联的功能。
 
@@ -450,7 +450,7 @@ private static void onWithdraw(final Activity activity) {
 
 Mapping API中有添加映射和解除映射的功能。
 
-### 添加映射（Mapping）的流程
+### Add Mapping Flow
 
 映射（Mapping）可以按以下顺序实现。
 
@@ -481,7 +481,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 * 其他错误
     * 尝试映射（Mapping）失败。
 
-### 添加映射（Mapping）
+### Add Mapping
 
 在登录特定IdP状态下，尝试用其他IdP Mapping。<br/>
 
@@ -539,7 +539,7 @@ private static void addMappingForFacebook(final Activity activity) {
 }
 ```
 
-### 使用Credential AddMapping
+### Add Mapping with Credential
 
 游戏中直接使用ID Provider提供的SDK进行认证后，使用发行的访问令牌，进行GameBase AddMapping的接口。
 
@@ -619,7 +619,7 @@ private static void addMappingWithCredential(final Activity activity) {
 }
 ```
 
-### 解除映射（Mapping）
+### Remove Mapping
 
 解除特定IDP的关联。如果尝试解除当前登录中的帐户，则会失败。<br/>
 解除关联之后，Gamebase将该IdP退出登录。
@@ -671,7 +671,7 @@ private static void removeMappingForFacebook(final Activity activity) {
 ```
 
 
-## Gamebase用户的信息
+## Gamebase User`s Information
 在使用Gamebase完成认证过程后，制作App时可获取到所需的信息。
 
 > <font color="red">[注意]</font><br/>
@@ -680,7 +680,7 @@ private static void removeMappingForFacebook(final Activity activity) {
 >
 > 如果需要认证信息，代替“Gamebase.loginForLastLoggedInProvider”使用IDPCode和同一个{IDP_CODE}作为参数，来使用“Gamebase.login(activity, IDP_CODE, callback)” API登录，才可以获取到正常的认证信息。
 
-### 获取Gamebase的认证信息
+### Get Authentication Information for Gamebase
 可以获取Gamebase发行的认证信息。
 
 **API**
@@ -710,7 +710,7 @@ BanInfo banInfo = Gamebase.getBanInfo();
 ```
 
 
-### 为外部IDP获取认证信息
+### Get Authentication Information for External IDP
 
 从外部认证SDK，可获取访问令牌、用户ID、Profile等信息。
 
@@ -736,7 +736,7 @@ AuthProviderProfile profile = Gamebase.getAuthProviderProfile(AuthProvider.FACEB
 Map<String, Object> profileMap = profile.information;
 ```
 
-### 获取被禁用的用户信息
+### Get Banned User Information
 
 如果在Gamebase Console中登记为受到制裁的游戏用户，当该用户尝试登录时，
 可能会看到以下限制信息代码。您可以使用**Gamebase.getBanInfo()**方法，确认制裁信息。
@@ -753,7 +753,7 @@ Map<String, Object> profileMap = profile.information;
 > 只有游客登录或未登录的状态，才能使用TransferKey转移帐户。
 > 如果您登录的游客帐户已映射（Mapping）到其他外部IdP（Google，Facebook，Payco等），则不支持转移帐户。
 
-### Issue TransferKey 
+### Issue TransferKey
 发放TransferKey以转移游客帐户。
 TransferKey的格式为**包含“小写/大写/数字”的8位数的字符串**。
 同时，发行发放时间和到期时间，格式为epoch time。
@@ -785,7 +785,7 @@ Gamebase.issueTransferKey(3600 * 24, new GamebaseDataCallback<TransferKeyInfo>()
 });
 ```
 
-### 将游客账户转移到另一台设备
+### Transfer Guest Account to Another Device
 通过**issueTransfer** API发放的TransferKey转移帐户的功能。
 在成功转移帐户后，在TransferKey的原设备上显示转移完成的消息，并且用在游客登录时将创建新帐户。
 在成功转移帐户的新设备上，您可以继续使用原游客帐户。
@@ -816,7 +816,7 @@ Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
 });
 ```
 
-## Error处理
+## Error Handling
 
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |

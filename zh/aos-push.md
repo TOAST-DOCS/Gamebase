@@ -1,6 +1,6 @@
 ## Game > Gamebase > Android SDK 使用指南 > push
 
-### 设置
+### Settings
 
 以下介绍如何为每个平台设置必要的推送通知。
 
@@ -141,7 +141,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 });
 ```
 
-### 注册Push
+### Register Push
 
 调用以下API在TOAST Push注册该用户。<br/>
 接受来自用户的推送协议（enablePush），广告推送协议（enableAdPush），夜间广告推送协议（enableAdNightPush）的值，并调用以下API完成注册。
@@ -176,7 +176,7 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 });
 ```
 
-### 请求Push设定
+### Request Push Settings
 
 要查询用户的推送设置，请使用以下API。<br/>
 可以通过来自回调的PushConfiguration值获取用户设置值。
@@ -208,7 +208,7 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 });
 ```
 
-### Error处理
+### Error Handling
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |

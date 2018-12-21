@@ -1,6 +1,6 @@
 ## Game > Gamebase > Unity SDK使用指南 > ETC
 
-## 附加功能
+## Additional Features
 
 以下描述Gamebase支持的附加功能。
 
@@ -22,14 +22,13 @@ Supported Platforms
 static string GetDeviceLanguageCode()
 ```
 
-> [参考] 
+> [참고] 
 >
 > Editor on Windows, Standalone on Windows인 경우에는 [CultureInfo](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo?view=netframework-4.7.2)를 참고하여 언어 코드를 리턴합니다.
 >
 > Editor on Mac, WebGL은 [Application.systemLanguage](https://docs.unity3d.com/ScriptReference/SystemLanguage.html) 값을 참고하여 언어 코드를 리턴합니다.<br/>예를 들어, Application.systemLanguage == SystemLanguage.Korean인 경우에는 'ko'를 리턴합니다.
 
-
-### 显示语言
+### Display Language
 
 * 可以将Gamebase提供的UI及SystemDialog显示的语言更改为设备上设置的语言以外的语言。
 * Gamebase显示客户端中包含的信息或从服务器接收的信息。

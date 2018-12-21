@@ -1,10 +1,21 @@
 ## Game > Gamebase > Android SDK使用指南 > ETC
 
-## 附加功能
+## Additional Features
 
 以下描述Gamebase支持的附加功能。
 
-### 显示语言
+### Device Language
+
+* 단말기에 설정된 언어 코드를 리턴합니다.
+* 여러개의 언어가 등록된 경우, 우선권이 가장 높은 언어만을 리턴합니다.
+
+**API**
+
+```java
++ (String)Gamebase.getDeviceLanguageCode();
+```
+
+### Display Language
 
 * 可以将Gamebase显示的语言更改为设备上设置的语言以外的语言。
 * Gamebase显示客户端中包含的信息或从服务器接收的信息。
@@ -13,7 +24,7 @@
 
 > [参考]
 >
->Gamebase中的客户端信息仅包含英语（en）和韩语（ko）。
+> Gamebase의 클라이언트 메시지는 영어(en), 한글(ko), 일본어(ja)만 포함합니다.
 
 #### Gamebase支持的语言代码种类。
 
@@ -211,9 +222,51 @@ localizedstring.json中定义的格式如下。
 2. 初始化Gamebase时，确认是否在localizedstring.json文件中定义了设备上设置的语言代码（即使在初始化后更改了设备上设置的语言，此值也将保留）。
 3. 自动设置Display Language的默认值为`en`。
 
+### Country Code
 
+* Gamebase는 System의 Country Code를 다음과 같은 API로 제공하고 있습니다.
+* 각 API 마다 특징이 있으니 쓰임새에 맞는 API를 선택하시기 바랍니다.
 
+#### USIM Country Code
 
+* USIM에 기록된 국가코드를 리턴합니다.
+* USIM에 잘못된 국가코드가 기록되어 있다 하더라도 추가적인 체크 없이 그대로 리턴합니다.
+* 값이 비어있는 경우 'ZZ'를 리턴합니다.
+
+**API**
+
+```java
++ (String)Gamebase.getCountryCodeOfUSIM()
+```
+
+#### Device Country Code
+
+* OS 로부터 전달받은 단말기 국가코드를 추가적인 체크 없이 그대로 리턴합니다.
+* 단말기 국가코드는 '언어' 설정에 따라 OS가 자동으로 결정합니다.
+* 여러개의 언어가 등록된 경우, 우선권이 가장 높은 언어로 국가코드를 결정합니다.
+* 값이 비어있는 경우 'ZZ'를 리턴합니다.
+
+**API**
+
+```java
++ (String)Gamebase.getCountryCodeOfDevice()
+```
+
+#### Intergrated Country Code
+
+* USIM, 기기 언어 설정의 순서로 국가 코드를 확인하여 리턴합니다.
+* getCountryCode API는 다음 순서로 동작합니다.
+	1. USIM에 기록된 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
+	2. USIM 국가 코드가 빈 값이라면 단말기 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
+	3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ' 를 리턴합니다.
+
+![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
+
+**API**
+
+```java
++ (String)Gamebase.getCountryCode()
+```
 
 ### Server Push
 * 可以处理从Gamebase服务器发送到客户端设备的Server Push Message。
@@ -224,9 +277,9 @@ localizedstring.json中定义的格式如下。
 目前，Gamebase支持的Server Push Type如下。
 
 * ServerPushEventMessage.Type.APP_KICKOUT (= "appKickout")
-	* 如果在TOAST Gamebase控制台的`Operation> Kickout`中注册kickout ServerPush消息，与Gamebase连接的所有客户端的将收到`APP_KICKOUT`消息。
+	* 如果在TOAST Gamebase控制台的 **Operation> Kickout** 中注册kickout ServerPush消息，与Gamebase连接的所有客户端的将收到 **APP_KICKOUT** 消息。
 * ServerPushEventMessage.Type.TRANSFER_KICKOUT (= "transferKickout")
-	* 如果通过TransferKey成功转移Guest帐户，则会向接收TransferKey的终端发送`TRANSFER_KICKOUT`信息。
+	* 如果通过TransferKey成功转移Guest帐户，则会向接收TransferKey的终端发送 **TRANSFER_KICKOUT** 信息。
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 

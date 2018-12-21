@@ -2,7 +2,7 @@
 
 Gamebase Server API以RESTful类型提供如下API。
 
-## 预先通知
+## Advance Notice
 
 为了使用服务器API，应了解以下信息。
 
@@ -81,7 +81,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | resultCode | int | 响应代码<br>成功时为0，失败时返还错误代码 |
 | resultMessage | String | 响应消息 |
 
-## 认证
+## Authentication
 
 #### 令牌认证
 

@@ -30,7 +30,17 @@ static void ShowWebView(string url, GamebaseRequest.Webview.GamebaseWebViewConfi
 
 **Example**
 ```cs
-public void ShowWebView(GamebaseCallback.ErrorDelegate closeCallback, List<string> schemeList, GamebaseCallback.GamebaseDelegate<string> schemeEvent)
+private void SchemeEvent(string scheme, GamebaseError error)
+{
+    Debug.Log(string.Format("[SchemeEvent] scheme:{0}", scheme));
+}
+
+private void CloseCallback(GamebaseError error)
+{
+    Debug.Log("CloseCallback");
+}
+    
+public void ShowWebView()
 {
     GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = new GamebaseRequest.Webview.GamebaseWebViewConfiguration();
      configuration.title = "Title";
@@ -41,9 +51,10 @@ public void ShowWebView(GamebaseCallback.ErrorDelegate closeCallback, List<strin
      configuration.colorA = 255;
      configuration.barHeight = 40;
      configuration.buttonVisible = true;
-
-
-     Gamebase.Webview.ShowWebView("https://www.toast.com/", configuration, closeCallback, schemeList, schemeEvent);
+    
+    var schemeList = new List<string>() { "customScheme://openBrowser" };
+    
+    Gamebase.Webview.ShowWebView("https://www.toast.com/", configuration, CloseCallback, schemeList, SchemeEvent);
 }
 ```
 

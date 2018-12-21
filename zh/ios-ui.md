@@ -136,7 +136,7 @@ Gamebase.bundle包含与WebView相关的资源（图像和html，其他资源）
 | closeImagePathForFullScreenNavigation  | file name in Gamebase.bundle             | 关闭按钮图标          |
 
 
-### 关闭WebView
+### Close WebView
 通过以下API，可以关闭正在显示的WebView。
 
 ```objectivec
@@ -147,7 +147,7 @@ Gamebase.bundle包含与WebView相关的资源（图像和html，其他资源）
 ```
 
 
-## 打开外部浏览器
+## Open External Browser
 
 可以使用以下API打开外部浏览器。作为参数传递的URL必须是有效值。
 
@@ -160,12 +160,12 @@ Gamebase.bundle包含与WebView相关的资源（图像和html，其他资源）
 ```
 
 
-## 提醒
+## Alert
 
 可以显示系统提醒。<br/>
 iOS 8或更高版本上可以运行的UIAlertControlle，和iOS 8以下的版本可以运行的UIAlertView可进行内部处理。<br/>
 
-#### 提醒类型
+#### Types of Alert
 1. 只提供一个“确定”按钮，单击确定按钮将调用completion。
 2. 只提供一个“确定”按钮，并且不提供completion。
 
@@ -203,7 +203,7 @@ iOS 8或更高版本上可以运行的UIAlertControlle，和iOS 8以下的版本
 ```
 
 
-## Error处理
+## Error Handling
 
 
 | Error                           | Error Code | 描述                 |

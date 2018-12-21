@@ -5,7 +5,7 @@
 Gamebase支持基本的WebView。
 
 
-### 显示WebView
+### Show WebView
 
 显示WebView。<br/>
 
@@ -87,7 +87,7 @@ GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configura
 | setCloseButtonImageResource(int resourceId) | ID of resource                      | 关闭按钮的图标      |
 
 
-### 关闭WebView
+### Close WebView
 通过以下API，可以关闭正在显示的WebView。
 
 **API**
@@ -97,7 +97,7 @@ GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configura
 ```
 
 
-## 打开外部浏览器
+## Open External Browser
 
 可以使用以下API打开外部浏览器。作为参数传递的URL必须是有效值。
 
@@ -108,7 +108,7 @@ GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configura
 ```
 
 
-## 提醒
+## Alert
 
 可以显示系统提醒。<br/>
 
@@ -160,7 +160,7 @@ GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configura
                         int duration);    // 显示信息的时间类型 (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
 ```
 
-## 自定义维护页面
+## Custom Maintenance Page
 
 点击维护状态中的“详细信息”，可以更改维护页面。
 
@@ -174,7 +174,7 @@ GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configura
 	android:value="file:///android_asset/html/gamebase-maintenance.html"/>
 ```
 
-## Error处理
+## Error Handling
 
 | Error              | Error Code | 描述                  |
 | ------------------ | ---------- | ---------------------------- |

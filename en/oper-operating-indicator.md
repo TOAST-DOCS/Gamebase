@@ -55,13 +55,13 @@ Shows statistical data of install URL calls.
 Shows real-time sales statistics of a game in Sales Status.
 Select a currency to check sales volume of the currency.
 
-### (1) Statistical Graph of Daily Sales Status
+#### (1) Statistical Graph of Daily Sales Status
 Easy to identify daily sales status and trends on a line graph.
 
-### (2) Monthly Sales Status
+#### (2) Monthly Sales Status
 Displays monthly or accumulated sales of the month in statistics by store and aggregated data.
 
-### (3) Daily Sales Status
+#### (3) Daily Sales Status
 Retrieves sales status of each store registered in an app, by date.
 You can find data up to today for the month.
 Daily sales status is more precise than monthly status. You can compare and analyze sales status, during an event or when an issue occurs.
