@@ -189,12 +189,14 @@ AppStore 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니�
 프로모션 IAP는 AppStore Connect 에서 별도의 설정이 되어야 노출이 가능합니다.
 
 > <font color="red">[주의]</font><br/>
+>
 > iOS 11 이상에서만 사용할 수 있습니다.
 > Xcode 9.0 이상에서 빌드가 필요합니다.
 > Gamebase 1.13.0 이상에서 지원합니다. (TOAST IAP SDK 1.6.0 이상적용)
 
 
 > <font color="red">[주의]</font><br/>
+>
 > 로그인 성공 이후에만 호출 할 수 있습니다.
 > 로그인 성공 후, 다른 결제 API보다 먼저 실행되어야 합니다.
 
@@ -244,6 +246,7 @@ public void SetPromotionIAPHandler()
 
 1. TestFlight로 App을 설치합니다.
 2. 아래와 같은 URL Scheme을 호출하여, 테스트를 진행합니다.
+
 | URL Components | keyname | value |
 | --- | --- | --- |
 | scheme | itms-services | 고정값 |

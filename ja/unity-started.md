@@ -10,7 +10,7 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 > 
 > * Unity 5.x : 5.5.4 ~ 5.6.6
 > * Unity 2017.x : ~ 2017.4.x(LTS)
-> * Unity 2018.x : ~ 2018.2.15
+> * Unity 2018.x : ~ 2018.2.19
 
 #### Supported Platforms
 

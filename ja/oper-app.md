@@ -166,15 +166,19 @@ TOAST Console에서의 설정 외에 추가 설정은 없습니다.
 	* URL Schemes를 설정해야 합니다.
 		* **XCode > Target > Info > URL Types**
 
-* 1.12.2 이상
-	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.google`를 추가해야 합니다.
-
 * GOOGLE 추가 인증 정보 입력 예제
 
 ```json
 { "url_scheme_ios_only": "Your URL Schemes" }
 ```
+
+![Google URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+
+* 1.12.2 이상
+	* URL Scheme를 설정해야 합니다.
+		* **XCode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.google**를 추가해야 합니다.
+
+* GOOGLE 추가 인증 정보 입력 예제
 
 ![Google URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
@@ -225,18 +229,22 @@ PAYCO Client IDを申請して発行された{client_id}及び{client_secret}を
 		* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
 		* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
 
-* 1.12.2 이상
-	* AdditionalInfo를 설정해야 합니다.
-		* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-		* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
-	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.payco`를 추가해야 합니다.
-
 * PAYCO 추가 인증 정보 입력 예제
 
 ```json
 { "service_code": "HANGAME", "service_name": "Your Service Name" }
 ```
+
+![Payco URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+
+* 1.12.2 이상
+	* AdditionalInfo를 설정해야 합니다.
+		* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+		* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
+	* URL Scheme를 설정해야 합니다.
+		* **XCode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.payco**를 추가해야 합니다.
+
+* PAYCO 추가 인증 정보 입력 예제
 
 ![Payco URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
@@ -277,18 +285,22 @@ NAVER Developersサイトで申請して発行された{client_id}及び{client_
 	* URL Schemes를 설정해야 합니다.
 		* **XCode > Target > Info > URL Types**
 
-* 1.12.2 이상
-	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-		* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
-
-	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.naver`를 추가해야 합니다.
-
 * NAVER 추가 인증 정보 입력 예제
 
 ```json
 { "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
 ```
+
+![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+
+* 1.12.2 이상
+	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+		* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
+
+	* URL Scheme를 설정해야 합니다.
+		* **XCode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.naver**를 추가해야 합니다.
+
+* NAVER 추가 인증 정보 입력 예제
 
 ![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
@@ -316,7 +328,11 @@ Twitter Application Management 사이트에서 앱을 등록하고 발급받은 
 
 * 1.14.0 이상
 	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.twitter`를 추가해야 합니다.
+		* **XCode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.twitter**를 추가해야 합니다.
+
+* Twitter 추가 인증 정보 입력 예제
+
+![Twitter URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
 #### 7. LINE
 
@@ -331,7 +347,7 @@ Twitter Application Management 사이트에서 앱을 등록하고 발급받은 
 ##### iOS
 LINE Login 기능을 사용하기 위하여, Xcode에 추가 설정이 필요합니다.
 - URL Schemes를 설정해야 합니다.
-	* **XCode > Target > Info > URL Types**에 `line3rdp.{App Bundle ID}`를 추가해야 합니다.
+	* **XCode > Target > Info > URL Types**에 **line3rdp.{App Bundle ID}**를 추가해야 합니다.
 
 - Info.plist파일을 설정해야합니다.
 	* LINE에서 발급받은 ChannelID를 설정합니다.
@@ -393,14 +409,19 @@ OSごとに選択可能なストアが異なります。
 
 - <font color="white" style="background-color:#88C637">サービス中</font>：サービスが正常に動作しています。
 - <font color="white" style="background-color:#2AB1A6">アップデートお勧め(サービス中)</font>：サービスが正常に動作しています。                               <br/>より安定的なバージョンを使用するように誘導するためにポップアップを表示します。新しいバージョンをダウンロードして利用するように誘導しますが、ユーザーが希望する場合、現在のバージョンでも引き続きサービスを利用することができます。<br />下は、「アップデートを推奨します。(サービス中)」の状態のときにGamebase SDKで基本的に提供するポップアップです。
+
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_updateRecommended_1.0.png)
 
 - <font color="white" style="background-color:#A1A1A1">アップデート必須</font>：サービスできません。<br/>現在ゲームでサービスに対応していないバージョンで、最新バージョンのインストールを案内するポップアップを表示します。<br />下は、「アップデートが必ず必要です。」の状態のときにGamebase SDKで基本的に提供するポップアップです。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_updateRequired_1.1.png)
+
 >  <font color="red">[注意] </font> 
 >  **アップデートが必ず必要な場合とメンテナンスが同時に設定**されている場合、サービス状態は、「アップデートが必ず必要です。」になります。
 >  メンテナンス中にユーザーに対し「アップデートが必ず必要です。」のポップアップを表示したくない場合、メンテナンス完了後にサービス状態を「アップデートが必ず必要です。」に変更する必要があります。
-
+>  <font color="orange">[참고] </font>
+>  업데이트 버튼을 누르면 설치 URL 메뉴에서 설정한 각각의 스토어 주소로 연결됩니다.
+>  예를 들면 클라이언트가 App store로 설정되어 있고 설치 URL 메뉴에서 App store 관련 설정이 존재한다면 설정한 주소로 이동되며 만약 설치 URL 메뉴에 설정이 되어 있지 않을 경우 공통(Common) URL로 연결됩니다.
+>  
 - <font color="white" style="background-color:#CCCCCC">終了</font>：サービスできません。<br/> サービスが終了されたバージョンの場合に選択します。<br />下は、「終了」の状態のときにGamebase SDKで基本的に提供するポップアップです。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_ended_1.0.png)
 
@@ -414,14 +435,14 @@ OSごとに選択可能なストアが異なります。
 クライアントで利用するサーバーアドレス(IP、URL)を入力します。
 **アプリ**タブでサーバーアドレスを入力するとすべてのクライアントに適用されるため、クライアントごとに他のサーバーアドレスを使用したい場合にのみサーバーアドレスを入力します。
 
-
 ## Installed URL
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_InstallUrl1_1.2.png)
 
-ゲームをインストールするためのストアURL情報を管理します。
-ユーザーがPCやモバイルで短縮URLをクリックすると、ユーザー端末情報(デバイス、OS、ストアなど)を利用して入力されたサイトへリダイレクションします。
-ストア情報がなかったり、ストアへの移動に失敗した場合、「COMMON」に設定されているURLへ移動します。
+* ゲームをインストールするためのストアURL情報を管理します。
+* 클라이언트 상태 중 <font color="white" style="background-color:#2AB1A6">업데이트 권장(서비스 중)</font> 또는 <font color="white" style="background-color:#A1A1A1">업데이트 필수</font> 일 때 각각의 스토어 별로 제공할 주소들에 대한 값을 설정합니다.
+* ユーザーがPCやモバイルで短縮URLをクリックすると、ユーザー端末情報(デバイス、OS、ストアなど)を利用して入力されたサイトへリダイレクションします。
+* ストア情報がなかったり、ストアへの移動に失敗した場合、「COMMON」に設定されているURLへ移動します。
 
 _[例1] Android端末からSMSで受信したインストールURLをクリックする場合
 **(Device:mobile,OS:Android,Store:なし)**Androidのうち、代表ストアに指定されたモバイルURLへ移動。代表ストアが「Google Play」の場合、「Google Play」モバイルに設定されているURLへ移動。

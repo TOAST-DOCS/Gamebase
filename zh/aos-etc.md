@@ -1,8 +1,8 @@
-## Game > Gamebase > Android SDK User Guide > ETC
+## Game > Gamebase > Android SDK使用指南 > ETC
 
 ## Additional Features
 
-Additional functions provided by Gamebase are described as below:
+以下描述Gamebase支持的附加功能。
 
 ### Device Language
 
@@ -17,16 +17,16 @@ Additional functions provided by Gamebase are described as below:
 
 ### Display Language
 
-* The display language can be changed into another language which is not set on a device.
-* Gamebase displays messages which are included in a client or as received by a server.
-* With DisplayLanguage, messages are displayed in an appropriate language for the language code (ISO-639) set by the user.
-* If necessary, language sets can be added as the user wants. The list of available language codes is as follows:
+* 可以将Gamebase显示的语言更改为设备上设置的语言以外的语言。
+* Gamebase显示客户端中包含的信息或从服务器接收的信息。
+* 如果设置DisplayLanguage，将以用户设置的语言代码（ISO-639）的语言显示信息。
+* 可以添加所需的语言。 以下是可以添加的语言代码：
 
-> [Note]
+> [参考]
 >
-> Client messages of Gamebase include English(en), Korean(ko) and Japanese(ja) only. 
+> Gamebase의 클라이언트 메시지는 영어(en), 한글(ko), 일본어(ja)만 포함합니다.
 
-#### Types of Language Codes Supported by Gamebase
+#### Gamebase支持的语言代码种类。
 
 | Code | Name |
 | --- | --- |
@@ -47,12 +47,12 @@ Additional functions provided by Gamebase are described as below:
 | zh-CN | Chinese-Simplified |
 | zh-TW | Chinese-Traditional |
 
-Each language code is defined in the `DisplayLanguage` class.
+相应的语言代码在 `DisplayLanguage` 类中定义。
 
-> `[Warning]`
+> `[注意]`
 >
-> Gamebase distinguishes the language code between the upper and lower case. 
-> For example, settings like 'EN' or 'zh-ch' may cause a problem. 
+> Gamebase支持的语言代码区分大小写。
+> 将其设置为“EN”或“zh-cn”可能会出现问题。
 
 ```cs
 package com.toast.android.gamebase.base.ui;
@@ -79,9 +79,9 @@ public class DisplayLanguage {
 }
 ```
 
-#### Set Display Language with Gamebase Initialization
+#### 在Gamebase初始化时设置显示语言。
 
-Display Language can be set when Gamebase is initialized.
+在Gamebase初始化时可以设置显示语言。
 
 **API**
 
@@ -89,7 +89,7 @@ Display Language can be set when Gamebase is initialized.
 + (GamebaseConfiguration)GamebaseConfiguration.Builder.setDisplayLanguageCode(String displayLanguageCode);
 ```
 
-**Example**
+**示例**
 
 ```java
 public class MainActivity extends AppCompatActivity {
@@ -116,9 +116,9 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-#### Set Display Language
+#### 设置显示语言
 
-You can change the initial setting of Display Language.
+Gamebase初始化时可更改输入的 Display Language。
 
 **API**
 
@@ -126,7 +126,7 @@ You can change the initial setting of Display Language.
 + (void)Gamebase.setDisplayLanguageCode(String displayLanguageCode);
 ```
 
-**Example**
+**示例**
 
 ```java
 public void setDisplayLanguageCodeToEnglishInRuntime() {
@@ -134,9 +134,9 @@ public void setDisplayLanguageCodeToEnglishInRuntime() {
 }
 ```
 
-#### Get Display Language
+#### 查询显示语言
 
-You can retrieve the current application of Display Language.
+可以查询当前使用的显示语言。
 
 **API**
 
@@ -144,7 +144,7 @@ You can retrieve the current application of Display Language.
 + (String)Gamebase.getDisplayLanguageCode();
 ```
 
-**Example**
+**示例**
 
 ```java
 public void getDisplayLanguageCodeInRuntime() {
@@ -152,13 +152,13 @@ public void getDisplayLanguageCodeInRuntime() {
 }
 ```
 
-#### Add New Language Sets 
+#### 添加新语言集
 
-To use another language in addition to default Gamebase languages (en, ko, ja), go to gamebase-sdk-base.aar > res > raw and add a value to the localizedstring.json file.
+如果要使用Gamebase提供的默认语言(ko, en, ja)外的其他语言， 需要在gamebase-sdk-base.aar > res > raw的 localizedstring.json 文件中添加值。
 
 ![localizedstring.json](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-etc_001_1.11.0.png)
 
-The localizedstring.json has a format defined as below: 
+localizedstring.json中定义的格式如下。
 
 ```json
 {
@@ -183,7 +183,7 @@ The localizedstring.json has a format defined as below:
 }
 ```
 
-To add another language, add `"${language code}":{"key":"value"}` to the localizedstring.json file. 
+如果需要添加另一种语言集，可在localizedstring.json文件中添加 `"${语言代码}"：{"key"："value"}` 形式的值。
 
 ```json
 {
@@ -205,22 +205,22 @@ To add another language, add `"${language code}":{"key":"value"}` to the localiz
     ...
     "launching_service_closed_title": "サービス終了"
   },
-  "${언어코드}": {
+  "${语言代码}": {
       "common_ok_button": "...",
       ...
   }
 }
 ```
 
-If key is missing from inside of "${language code}":{ } of the json format above, `Languages Set on Device` or `en` will be automatically entered. 
+如果在上述JSON文件的格式 "${语言代码}":{ } 中缺少 key，则会自动输入`在设备上设置的语言`或`en`。
 
-#### Priority in Display Language
+#### 显示语言优先级
 
-If Display Language is set via initialization and SetDisplayLanguageCode API, the final application may be different from what has been entered. 
+通过初始化或SetDisplayLanguageCode API设置Display Language时，最终应用的Display Language可以与输入的值不同。
 
-1. Check if the languageCode you enter is defined in the localizedstring.json file. 
-2. See if, during Gamebase initialization, the language code set on the device is defined in the localizedstring.json file. (This value shall maintain even if the language set on device changes after initialization.)
-3.  `en`, which is the default value of Display Language, is automatically set.
+1. 确认输入的languageCode是否在localizedstring.json文件中定义。
+2. 初始化Gamebase时，确认是否在localizedstring.json文件中定义了设备上设置的语言代码（即使在初始化后更改了设备上设置的语言，此值也将保留）。
+3. 自动设置Display Language的默认值为`en`。
 
 ### Country Code
 
@@ -269,22 +269,22 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 ```
 
 ### Server Push
-* Handles Server Push Messages from Gamebase server to a client device. 
-* Add ServerPushEvent Listener to Gamebase Client, and the user can handle messages; the added ServerPushEvent Listener can be deleted. 
+* 可以处理从Gamebase服务器发送到客户端设备的Server Push Message。
+* 在Gamebase客户端上添加ServerPushEvent Listener允许用户接收和处理信息，可以删除添加的ServerPushEvent Listener。
 
 
-#### Server Push Type
-Server Push Types currently supported by Gamebase are as follows: 
+#### Server Push类型
+目前，Gamebase支持的Server Push Type如下。
 
 * ServerPushEventMessage.Type.APP_KICKOUT (= "appKickout")
-    * Go to **Operation > Kickout**  in the TOAST Gamebase console and register Kickout ServerPush messages, and **APP_KICKOUT** messages are sent to all clients connected to Gamebase.
+	* 如果在TOAST Gamebase控制台的 **Operation> Kickout** 中注册kickout ServerPush消息，与Gamebase连接的所有客户端的将收到 **APP_KICKOUT** 消息。
 * ServerPushEventMessage.Type.TRANSFER_KICKOUT (= "transferKickout")
-	* TransferKey 를 통해 게스트 계정 이전이 성공한 경우, TransferKey를 발급받았던 단말기로 **TRANSFER_KICKOUT** 메세지가 전송됩니다.
+	* 如果通过TransferKey成功转移Guest帐户，则会向接收TransferKey的终端发送 **TRANSFER_KICKOUT** 信息。
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 
-#### Add ServerPushEvent
-Use the API below, register ServerPushEvent to handle the push event triggered from the Gamebase Console and Gamebase server. 
+#### 注册 ServerPushEvent
+可以在Gamebase Client中注册ServerPushEvent来处理Gamebase Console和Gamebase服务器发出的Push事件。
 
 **API**
 
@@ -292,7 +292,7 @@ Use the API below, register ServerPushEvent to handle the push event triggered f
 + (void)Gamebase.addServerPushEvent(ServerPushEvent serverPushEvent);
 ```
 
-**Example**
+**示例**
 
 ```java
 public class MyServerPushEventManager {
@@ -319,8 +319,8 @@ public class MyServerPushEventManager {
 ```
 
 
-#### Remove ServerPushEvent
-Use the APIs below to delete ServerPushEvent registered in Gamebase. 
+#### 删除 ServerPushEvent
+可以删除在Gamebase注册的 ServerPushEvent。
 
 **API**
 
@@ -329,7 +329,7 @@ Use the APIs below to delete ServerPushEvent registered in Gamebase.
 + (void)Gamebase.removeAllServerPusEvent();
 ```
 
-**Example**
+**示例**
 
 ```java
 public class MyServerPushEventManager {
@@ -350,45 +350,45 @@ public class MyServerPushEventManager {
 
 
 ### Observer
-* With Gamebase Observer, receive and process status change events of Gamebase. 
-* Status change events : change of network type, change of launching status (change of status due to maintenance, and etc.), and change of heartbeat information (change of heartbeat information due to service suspension), and etc.
+* Gamebase Observer允许接收并处理Gamebase的各种状态变动事件。
+* 状态变动事件：网络类型变动，Launching状态变动(由于维护等引起的状态变动)，Heartbeat信息变动(用户禁用而导致Heartbeat信息变动）等。
 
 
-#### Observer Type
-The Observer Types currently supported by Gamebase are as follows:
+#### Observer类型
+Gamebase目前支持的 Observer类型如下。
 
-* Change of Network Type
-    * Receive information on changes of a network. For instance, find a network type with the ObserverMessage.data.get("code") value. 
+* Network 类型变动
+    * 可以接收网络变动信息。例如，可以用 ObserverMessage.data.get("code") 值获取 Network Type。
     * Type: ObserverMessage.Type.NETWORK (= "network")
-    * Code: Refer to the constant numbers declared in NetworkManager. 
-        * NetworkManager.TYPE_NOT : -1
-        * NetworkManager.TYPE_MOBILE : 0
-        * NetworkManager.TYPE_WIFI : 1        
-        * NetworkManager.TYPE_ANY : 2
-* Change of Launching Status 
-    * Occurs when there is a change in the launching status response which periodically checks application status. For example, events occur for maintenance, or update recommendations. 
+    * Code: 请参考NetworkManager中声明的常量。
+        * NetworkManager.TYPE_NOT: -1
+        * NetworkManager.TYPE_MOBILE: 0
+        * NetworkManager.TYPE_WIFI: 1
+        * NetworkManager.TYPE_ANY: 2
+* Launching 状态变动
+    * 当定期检查应用程序状态的Launching Status response有变动时发生触发。例如，有维护或推荐更新等产生的事件。
     * Type: ObserverMessage.Type.LAUNCHING (= "launching")
-    * Code: Refer to the constant numbers declared in LaunchingStatus. 
-        * LaunchingStatus.IN_SERVICE : 200
-        * LaunchingStatus.RECOMMEND_UPDATE : 201
-        * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST : 202
-        * LaunchingStatus.REQUIRE_UPDATE : 300
-        * LaunchingStatus.BLOCKED_USER : 301
-        * LaunchingStatus.TERMINATED_SERVICE : 302
-        * LaunchingStatus.INSPECTING_SERVICE : 303
-        * LaunchingStatus.INSPECTING_ALL_SERVICES : 304
-        * LaunchingStatus.INTERNAL_SERVER_ERROR : 500
-* Change of Heartbeat Information 
-    * Occurs when there is a change in the heartbeat response which periodically maintains connection with the Gamebase server. For example, an event occurs for service suspension. 
+    * Code: 请参考在LaunchingStatus中声明的常量。
+        * LaunchingStatus.IN_SERVICE: 200
+        * LaunchingStatus.RECOMMEND_UPDATE: 201
+        * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
+        * LaunchingStatus.REQUIRE_UPDATE: 300
+        * LaunchingStatus.BLOCKED_USER: 301
+        * LaunchingStatus.TERMINATED_SERVICE: 302
+        * LaunchingStatus.INSPECTING_SERVICE: 303
+        * LaunchingStatus.INSPECTING_ALL_SERVICES: 304
+        * LaunchingStatus.INTERNAL_SERVER_ERROR: 500
+* Heartbeat信息变动
+	* 定期与Gamebase服务器保持连接的Heartbeat response有变动时发生触发。例如，由用户禁用引起的事件。
     * Type: ObserverMessage.Type.HEARTBEAT (= "heartbeat")
-    * Code: Refer to the constant numbers declared in GamebaseError.
+    * Code: 请参考GamebaseError中声明的常量。
         * GamebaseError.INVALID_MEMBER: 6
         * GamebaseError.BANNED_MEMBER: 7
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
 
-#### Add Observer
-Use the API below, register Observer to handle the status change events of Gamebase.
+#### 注册Observer
+可以在Gamebase Client上注册Observer来处理各种状态变动事件。
 
 **API**
 
@@ -396,7 +396,7 @@ Use the API below, register Observer to handle the status change events of Gameb
 + (void)Gamebase.addObserver(Observer observer);
 ```
 
-**Example**
+**示例**
 
 ```java
 public class MyObserverManager {
@@ -461,8 +461,8 @@ public class MyObserverManager {
 ```
 
 
-#### Remove Observer
-Use the APIs below to delete Observer registered in Gamebase. 
+#### 删除 Observer
+可以删除在Gamebase中注册的Observer。
 
 **API**
 
@@ -471,7 +471,7 @@ Use the APIs below to delete Observer registered in Gamebase.
 + (void)Gamebase.removeAllObserver();
 ```
 
-**Example**
+**示例**
 
 ```java
 public class MyObserverManager {

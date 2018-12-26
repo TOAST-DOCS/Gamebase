@@ -63,7 +63,7 @@ static string GetDeviceLanguageCode()
 
 해당 언어코드는 `GamebaseDisplayLanguageCode` 클래스에 정의되어 있습니다.
 
-> `[주의]`
+> <font color="red">[주의]</font><br/>
 >
 > Gamebase에서 지원하는 언어코드는 대소문자를 구분합니다.
 > 'EN'이나 'zh-cn'과 같이 설정하면 문제가 발생할 수 있습니다.

@@ -16,7 +16,7 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 
 검색 조건에 맞는 이용 정지/이용 정지 해제 게임 이용자 목록을 조회합니다.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban1_1.1.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_01_201812.png)
 
 **검색 조건**
 
@@ -61,17 +61,17 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 
 이용 정지 조회 화면에서 **등록** 버튼을 클릭하면 이용 정지 등록이 가능합니다.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban2_1.2.png)
+![gamebase_ban_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_02_201812.png)
 #### (1) 유저 ID
 이용 정지를 등록할 Gamebase 사용자 아이디를 입력합니다. 한번에 다수의 이용자를 등록할 수 있으며, 등록 방법은 아래 두가지입니다.
 
 - **사용자 입력**: 등록할 사용자 아이디를 입력 창에 직접 입력한 후 **Enter** 키를 누르거나 **추가** 버튼을 클릭합니다. 사용자 아이디 유효성을 검사하므로 유효하지 않은 사용자 아이디는 입력이 불가능합니다.
 - **일괄 등록**: CSV 파일만 업로드할 수 있으며 예시 파일은 Console 화면에서 다운로드할 수 있습니다. 일괄 등록은 1회 최대 10,000명까지 가능합니다. 
-  ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban4_1.2.png)
+  ![gamebase_ban_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_03_201812.png)
 
 > [참고]</br>
 > 일괄 등록을 진행하다가 실패하면 팝업이 표시됩니다. 해당 팝업에서 **Download** 버튼을 클릭하면 등록에 실패한 시용자 목록을 파일로 다운로드할 수 있습니다.
-> ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban5_1.0.png)
+> ![gamebase_ban_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_04_201812.png)
 
 #### (2) 기간
 게임 이용자의 이용 정지 기간을 설정합니다. 이용 정지가 등록되는 시점부터 게임 이용자는 로그인이 불가능합니다.
@@ -100,7 +100,7 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 
 이용 정지 조회 화면에서 **해제** 버튼을 클릭하면 이용 정지를 해제할 수 있습니다.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban3_1.2.png)
+![gamebase_ban_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_05_201812.png)
 
 #### 해제 사유
 이용자의 이용 정지를 해제하는 사유를 입력합니다.
@@ -112,12 +112,12 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 - **사용자 입력**: 등록할 사용자 아이디를 입력 창에 직접 입력한 후 **Enter** 키를 누르거나 **추가** 버튼을 클릭합니다. 사용자 아이디 유효성을 검사하므로 유효하지 않은 사용자 아이디는 입력이 불가능합니다.
 - **일괄 등록**: CSV 파일만 업로드할 수 있으며 예시 파일은 Console 화면에서 다운로드할 수 있습니다. 일괄 등록은 1회 최대 10,000명까지 가능합니다. 
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban6_1.0.png)
+![gamebase_ban_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_06_201812.png)
 
 
 > [참고]
 > 일괄 등록을 진행하다가 실패하면 팝업이 표시됩니다. 해당 팝업에서 **Download** 버튼을 클릭하면 등록에 실패한 시용자 목록을 파일로 다운로드할 수 있습니다.
-> ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban7_1.0.png)
+> ![gamebase_ban_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_04_201812.png)
 
 ## Template
 이용 정지 이용자에게 표시할 메시지를 다국어로 입력하여 손쉽게 재사용할 수 있도록 템플릿을 제공합니다. 미리 등록한 템플릿을 선택합니다.
@@ -128,12 +128,12 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 등록된 템플릿 목록을 검색할 수 있습니다.
 새 템플릿을 등록하거나 등록된 템플릿을 수정할 수 있으며, 등록된 템플릿을 삭제할 수는 없습니다.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Template1_1.1.png)
+![gamebase_ban_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_07_201812.png)
 
 - 템플릿 목록화면에서 노출메시지 항목에는 템플릿 등록시 '기본 언어'로 입력한 노출 메시지가 표시됩니다.
 
 ### Register Template
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Template2_1.1.png)
+![gamebase_ban_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_08_201812.png)
 
 #### (1) 이름
 이용 정지 등록 시 목록에 표시할 템플릿의 이름을 입력합니다. 
@@ -147,7 +147,7 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 > <font color="red">[중요]</font>
 > TOAST AppGuard 서비스를 사용하는 경우에만 이용할 수 있습니다. 
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_AppGuard1_1.1.png)
+![gamebase_ban_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_09_201812.png)
 
 - **연동 여부**: AppGuard에서 탐지 또는 제재된 사용자를 자동으로 Gamebase 이용 정지 이용자로 등록하고자 하는 경우에 활성화합니다.
 - **자동 이용 정지**를 원하는 탐지/제재 종류의 '자동 등록'을 **ON**을 선택하여 '사용자 노출 메시지'와 **이용 정지 기간**을 입력하고 **저장** 버튼을 클릭하면 적용됩니다.

@@ -1,21 +1,21 @@
-## Game > Gamebase > Android Developer's Guide > Authentication
+## Game > Gamebase > Android SDK使用指南 > 认证
 
 ## Login
 
-Gamebase supports Guest logins by default.
+Gamebase默认支持Guest登录。
 
-* To log in a Provider other than Guest, a matching Provider AuthAdapter is required.
-* For setting of AuthAdapter and 3rd-Party Provider SDK, refer to
-  [3rd-Party Provider SDK Guide](./aos-started#3rd-party-provider-sdk-guide)
+* 使用游客以外的Provider登录，需要Provider AuthAdapter。
+* AuthAdapter和第三方提供的SDK设置，请参考以下内容。
+  [第三方提供的SDK指南](aos-started#3rd-party-provider-sdk-guide)
 
 
 ### Login Flow
 
-In many games, login is implemented on a title page.
-* Allow a game user to decide which IdP to authenticate on a title screen, when an app is implemented for the first time after it is installed.
-* After initial login, the IdP selection screen does not show and authentication is made with the latest logged-in IdP.
+多数游戏在标题页上实现登录。
+* 当App首次安装和启动时，游戏用户可以在标题页选择要进行的IdP(identity provider)类型。
+* 登录过一次后，您将不会看到IdP选择画面，将使用之前登录的IdP类型进行认证。
 
-The logic described above can be implemented in the following order:
+上述逻辑可以按以下顺序实现。
 
 ![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
 ![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
@@ -24,54 +24,54 @@ The logic described above can be implemented in the following order:
 ![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
 ![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
-#### 1. Authenticate with Latest Login Type
+#### 1. 按上一次的登录类型认证
 
-* If a previous authentication has been recorded, try to authenticate with no need of ID and passwords.
-* Call **Gamebase.loginForLastLoggedInProvider()**.
+* 如果存在已做过的认证的记录，则尝试进行认证，不需要输入ID和密码。
+* 调用**Gamebase.loginForLastLoggedInProvider()**。
 
-#### 1-1. When Authentication is Successful
+#### 1-1. 如果认证成功
 
-* Congratulations! Successfully authenticated.
-* Get a user ID with **Gamebase.getUserID()** to implement a game logic.
+* 恭喜！认证成功。
+* 可以使用**Gamebase.getUserID()**获取用户ID并实现游戏逻辑。
 
-#### 1-2. When Authentication is Failed
+#### 1-2. 如果认证失败
 
-* Network error
-    * If the error code is **SOCKET_ERROR (110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.loginForLastLoggedInProvider()** again or try again in a moment.
-* Banned game user
-    * If the error code is **AUTH_BANNED_MEMBER (3005)**, the authentication has failed because the game user is banned.
-    * Check ban information with **Gamebase.getBanInfo ()** and notify the user with reasons for not being able to play.
-    * When **GamebaseConfiguration.Builder.enablePopup(true)** and **enableBanPopup(true)** are called during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
-* Other errors
-    * As authentication with latest login type has failed, follow **3. Authenticate with Specified IdP**.
+* 网络错误
+    * 由于突发的网络问题，认证失败，错误代码为 **SOCKET_ERROR(110)** 或 **SOCKET_RESPONSE_TIMEOUT(101)**。需要重新调用**Gamebase.loginForLastLoggedInProvider()**，或稍后再试。
+* 禁用游戏用户。
+    * 由于用户是禁用状态，认证失败，错误代码为**BANNED_MEMBER(7)**。
+    * 请使用**Gamebase.getBanInfo()**确认制裁信息，并告知游戏用户无法进行游戏的原因。
+    * 初始化Gamebase 时调用**GamebaseConfiguration.Builder.enablePopup(true)** 和**enableBanPopup(true)**，Gamebase会自动弹出禁用的窗口。
+* 其他错误
+    * 因为使用上一次的登录类型认证失败，请进行**3.使用指定的IdP进行认证**。
 
-#### 2. Authenticate with Specified IdP
+#### 2. 使用指定的IdP进行认证
 
-* Try to authenticate by specifying an IdP type
-    * Types that can be authenticated are declared in the **AuthProvider** class.
-* Call **Gamebase.login(activity, idpType, callback)** API.
+* 通过直接指定IdP类型来尝试进行认证。
+    * 可认证的类型在**AuthProvider**类中声明。
+* 调用**Gamebase.login(activity, idpType, callback)**API。
 
-#### 2-1. When Authentication is Successful
+#### 2-1. 如果认证成功
 
-* Congratulations! Successfully authenticated.
-* Get a user ID with **Gamebase.getUserID()** to implement a game logic.
+* 恭喜！ 认证成功。
+* 可以用**Gamebase.getUserID()**获取用户ID并实现游戏逻辑。
 
-#### 2-2. When Authentication is Failed
+#### 2-2. 如果认证失败
 
-* Network error
-    * If the error code is **SOCKET_ERROR(110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.login(activity, idpType, callback)** again or try again in a moment.
-* Banned game user
-    * If the error code is **AUTH_BANNED_MEMBER(3005)**, the authentication has failed due to banned game user.
-    * Check ban information with **Gamebase.getBanInfo()** and notify the user with reasons for not being able to play.
-    * When **GamebaseConfiguration.Builder.enablePopup(true)** and **enableBanPopup(true)** are called during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
-* Other errors
-    * Notify that an error has occurred, and return to the state (mostly in title or login screen) in which user can select an authentication IdP type.
+* 网络错误
+    * 由于突发的网络问题，认证失败，错误代码为 **SOCKET_ERROR(110)**或**SOCKET_RESPONSE_TIMEOUT(101)**，需要重新调用 **Gamebase.login(activity, idpType, callback)**或稍后再试。
+* 禁用游戏用户。
+    * 由于用户是禁用状态，认证失败，错误代码为**BANNED_MEMBER(7)**。
+    * 请使用**Gamebase.getBanInfo()**确认制裁信息，并告知游戏用户无法进行游戏的原因。
+    * 初始化Gamebase 时调用**GamebaseConfiguration.Builder.enablePopup(true)** 和 **enableBanPopup(true)**，Gamebase会自动弹出禁用窗口。
+* 其他错误
+	* 通知游戏用户发生了错误，并返回到游戏用户可以选择认证IdP类型的页面（通常是标题页面或登录页面）。
 
 ### Login as the Latest Login IdP
 
-Try login with the most recently logged-in IdP. <br/>
-If a token is expired or its authentication fails, return failure. <br/>
-Note that a login should be implemented for the IdP.
+尝试使用最近登录的IdP登录。<br/>
+如果该登录的令牌已过期，或者令牌认证失败，则返回失败。<br/>
+此时，须实现对该IdP的登录。
 
 
 **API**
@@ -80,21 +80,21 @@ Note that a login should be implemented for the IdP.
 + (void)Gamebase.loginForLastLoggedInProvider(Activity activity, GamebaseDataCallback<AuthToken> callback);
 ```
 
-**Example**
+**示例**
 
 ```java
 Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthToken>() {
     @Override
     public void onCallback(AuthToken data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
-            // Login successful
+            // 登录成功
             Log.d(TAG, "Login successful");
             String userId = Gamebase.getUserID();
         } else {
             if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                     exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                // Socket error means network access is temporarily unavailable.
-                // Check network status or retry after a moment.
+                // Socket error 表示网络暂时不可用。
+                // 请确认网络状态或稍后再试。
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -104,30 +104,30 @@ Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthTok
                         } catch (InterruptedException e) {}
                     }
                 }).start();
-            } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
-                // The user who try to log in has been banned.
-                // If GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) has been called
-                // Gamebase automatically displays a pop-up on banning.
+            } else if (exception.getCode() == GamebaseError.BANNED_MEMBER) {
+                // 尝试登录的游戏用户已被禁用。
+                // 如果调用GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)
+                // Gamebase自动弹出禁用窗口。
                 //
-                // In order to implement a pop-up on banning to fit for Game UI
-                // Use Gamebase.getBanInfo() to find any ban information and notify the user with reasons for not being able to play game.
+                // 如果要根据游戏UI实现禁用弹出窗口，请使用Gamebase.getBanInfo()
+                // 确认制裁信息并告知游戏用户无法进行游戏的原因。
                 BanInfo banInfo = Gamebase.getBanInfo();
             } else {
-                // For other error cases, try to authenticate with a specified IDP.
+                // 如果发生其他错误，则尝试使用指定的IdP进行认证。
                 Gamebase.login(activity, provider, logincallback);
             }
         }
     }
-}
+});
 ```
-### Login with GUEST
+### 游客登录
 
-Gamebase supports Guest logins.
+Gamebase支持游客登录。
 
-* Create an only key of device to try to log in Gamebase.
-* As the account may be deleted, when an app is deleted or device is initialized, it is recommended to use IdP for a Guest login.
+* 尝试通过为设备创建的唯一密钥来登录Gamebase。
+* 建议基于IdP的登录方式，因为游客登录方式，在删除App或设备初始化时，账户可能会被删除。
 
-Refer to the below example to implement a Guest login.
+请参考下面的示例代码，了解如何实现游客登录。
 
 
 **API**
@@ -136,7 +136,7 @@ Refer to the below example to implement a Guest login.
 + (void)Gamebase.login(Activity activity, AuthProvider.GUEST, GamebaseDataCallback<AuthToken> callback);
 ```
 
-**Example**
+**示例**
 
 ```java
 private static void onLoginForGuest(final Activity activity) {
@@ -144,14 +144,14 @@ private static void onLoginForGuest(final Activity activity) {
         @Override
         public void onCallback(AuthToken data, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
-                // Login successful
+                // 登录成功
                 Log.d(TAG, "Login successful");
                 String userId = Gamebase.getUserID();
             } else {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                    // Socket error means network access is temporarily unavailable.
-                    // Check network status or retry after a moment.
+                    //  Socket error 表示网络暂时不可用。
+                    // 请确认网络状态或稍后再试。
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -161,16 +161,16 @@ private static void onLoginForGuest(final Activity activity) {
                             } catch (InterruptedException e) {}
                         }
                     }).start();
-                } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
-                    // The user who try to log in has been banned.
-                    // If GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) has been called
-                    // Gamebase automatically displays a pop-up on banning.
+                } else if (exception.getCode() == GamebaseError.BANNED_MEMBER) {
+                    // 尝试登录的游戏用户已被禁用。
+                    // 如果调用GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)
+                    // Gamebase自动弹出禁用窗口。
                     //
-                    // In order to implement a popup on banning to fit for Game UI
-                    // Use Gamebase.getBanInfo() to find any ban information and notify the user with reasons for not being able to play game.
+                    //如果要根据游戏UI实现禁用弹出窗口，请使用Gamebase.getBanInfo()
+                    // 确认制裁信息并告知游戏用户无法进行游戏的原因。
                     BanInfo banInfo = Gamebase.getBanInfo();
                 } else {
-                    // Login failed
+                    // 登录失败
                     Log.e(TAG, "Login failed- "
                             + "errorCode: " + exception.getCode()
                             + "errorMessage: " + exception.getMessage());
@@ -184,8 +184,8 @@ private static void onLoginForGuest(final Activity activity) {
 
 ### Login with IdP
 
-Following is a login example with a specific IdP.<br/>
-You can find the types of IdP that can login, with **AuthProvider** class.
+以下是允许您使用特定IdP登录的示例代码。<br/>
+您可以在** AuthProvider **类中确认可以登录的IdP类型。
 
 **API**
 
@@ -193,7 +193,7 @@ You can find the types of IdP that can login, with **AuthProvider** class.
 + (void)Gamebase.login(Activity activity, AuthProvider provider, GamebaseDataCallback<AuthToken> callback);
 ```
 
-**Example**
+**示例**
 
 ```java
 private static void onLoginForGoogle(final Activity activity) {
@@ -201,14 +201,14 @@ private static void onLoginForGoogle(final Activity activity) {
         @Override
         public void onCallback(AuthToken data, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
-                // Login successful
+                // 登录成功
                 Log.d(TAG, "Login successful");
                 String userId = Gamebase.getUserID();
             } else {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                    // Socket error means network access is temporarily unavailable.
-                    // Check network status or retry after a moment.
+                    // Socket error 表示网络暂时不可用。
+                    //  请确认网络状态或稍后再试。
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -218,16 +218,16 @@ private static void onLoginForGoogle(final Activity activity) {
                             } catch (InterruptedException e) {}
                         }
                     }).start();
-                } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
-                    // The user who try to log in has been banned.
-                    // If GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) has been called
-                    // Gamebase automatically displays a pop-up on banning.
+                } else if (exception.getCode() == GamebaseError.BANNED_MEMBER) {
+                    // 尝试登录的游戏用户已被禁用。
+                    // 如果调用GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)
+                    // Gamebase自动弹出禁用窗口
                     //
-                    // In order to implement a pop-up on banning to fit for Game UI
-                    // Use Gamebase.getBanInfo() to find any ban information and notify the user with reasons for not being able to play game.
+                    //如果要根据游戏UI实现禁用弹出窗口，请使用Gamebase.getBanInfo()
+                    // 确认制裁信息并告知游戏用户无法进行游戏的原因。
                     BanInfo banInfo = Gamebase.getBanInfo();
                 } else {
-                    // Login failed
+                    // 登录失败
                     Log.e(TAG, "Login failed- "
                             + "errorCode: " + exception.getCode()
                             + "errorMessage: " + exception.getMessage());
@@ -240,26 +240,26 @@ private static void onLoginForGoogle(final Activity activity) {
 
 ### Login with Credential
 
-This game interface allows authentication to be made with SDK provided by IdP, before login to Gamebase with provided access token.
+是通过IdP提供的SDK在游戏中进行认证后，并使用获取到的访问令牌，登录到Gamebase的接口。
 
-* How to Set Credential Parameters
+* Credential参数设定方法
 
-| Keyname | Usage | Value Type |
+| keyname                                  | a use                                    | 值类型                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
-| AuthProviderCredentialConstants.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                          |
-| AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter One Time Authorization (OTAC) which can be obtained after Google login. |                                          |
+| AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP 类型                               | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
+| AuthProviderCredentialConstants.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）<br/>不用于Google认证|                                          |
+| AuthProviderCredentialConstants.AUTHORIZATION_CODE | 输入登录Google后可以获取的OTAC(一次性验证码) |                                          |
 
-> [Note]
+> [参考]
 >
-> May require when original functions of external services (such as Facebook) are in need within a game.
+> 当要在游戏中使用外部服务（例如Facebook）的特有功能时，可能需要它。
 >
 
 <br/>
 
-> <font color="red">[Caution]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> Development items external SDK requires to support need to be implemented by using external SDK's API, which Gamebase does not support.
+> 外部SDK要求的开发事项需使用外部SDK的API实现，Gamebase不支持。
 >
 
 **API**
@@ -268,7 +268,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 + (void)Gamebase.login(Activity activity, Map<String, Object> credentialInfo, GamebaseDataCallback<AuthToken> callback);
 ```
 
-**Example**
+**示例**
 
 ```java
 private static void onLoginWithCredential(final Activity activity) {
@@ -280,14 +280,14 @@ private static void onLoginWithCredential(final Activity activity) {
         @Override
         public void onCallback(AuthToken data, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
-                // Login successful
+                // 登录成功
                 Log.d(TAG, "Login successful");
                 String userId = Gamebase.getUserID();
             } else {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                    // Socket error means network access is temporarily unavailable.
-                    // Check network status or retry after a moment.
+                    // Socket error 表示网络暂时不可用。
+                    // 请确认网络状态或稍后再试。
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -297,16 +297,16 @@ private static void onLoginWithCredential(final Activity activity) {
                             } catch (InterruptedException e) {}
                         }
                     }).start();
-                } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
-                    // The user who try to log in has been banned.
-                    // If GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) has been called
-                    // Gamebase automatically displays a pop-up on banning.
+                } else if (exception.getCode() == GamebaseError.BANNED_MEMBER) {
+                    // 尝试登录的游戏用户已被禁用。
+                    // 如果调用GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)
+                    // Gamebase自动弹出禁用窗口。
                     //
-                    // In order to implement a banning pop-up to fit for Game UI
-                    // Use Gamebase.getBanInfo() to find any ban information and notify the user with reasons for not being able to play game.
+                    // 如果要根据游戏UI实现禁用弹出窗口，请使用Gamebase.getBanInfo()
+                    // 确认制裁信息并告知游戏用户无法进行游戏的原因
                     BanInfo banInfo = Gamebase.getBanInfo();
                 } else {
-                    // Login failed
+                    // 登录失败
                     Log.e(TAG, "Login failed- "
                             + "errorCode: " + exception.getCode()
                             + "errorMessage: " + exception.getMessage());
@@ -319,15 +319,15 @@ private static void onLoginWithCredential(final Activity activity) {
 
 ### Authentication Additional Information Settings
 
-[Console Guide](./oper-app/#authentication-information)
+[控制台使用指南](./oper-app/#authentication-information)
 
 ## Logout
 
-Try to log out from logged-in IdP. In many cases, the logout button is located on the game configuration screen.
-Even if a logout is successful, a game user's data remain.
-When it is successful, as authentication records with a corresponding IdP are removed, ID and passwords will be required for the next login process.<br/><br/>
+尝试从登录中的IdP退出。 通常，在游戏的设置画面有退出登录（退出账号）按钮，然后点击该按钮执行。
+即使退出登录成功，也会保留游戏用户数据。
+如果退出登录成功，将会删除IDP认证记录，则下次登录时将显示ID和密码输入窗口。<br/><br/>
 
-Following shows an example logout code with a click of the log-out button.
+以下是点击“退出登录”按钮时的示例代码。
 
 **API**
 
@@ -335,7 +335,7 @@ Following shows an example logout code with a click of the log-out button.
 + (void)Gamebase.logout(Activity activity, GamebaseCallback callback);
 ```
 
-**Example**
+**示例**
 
 ```java
 private static void onLogout(final Activity activity) {
@@ -343,13 +343,13 @@ private static void onLogout(final Activity activity) {
         @Override
         public void onCallback(GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
-            	// Logout successful
+            	// 退出登录成功
                 Log.d(TAG, "Logout successful");
             } else {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                    // Socket error means network access is temporarily unavailable.
-                    // Check network status or retry after a moment.
+                    // Socket error 表示网络暂时不可用。
+                    // 请确认网络状态或稍后再试。
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -360,7 +360,7 @@ private static void onLogout(final Activity activity) {
                         }
                     }).start();
                 } else {
-                    // Logout failed
+                    // 退出登录失败
                     Log.e(TAG, "Logout failed- "
                             + "errorCode: " + exception.getCode()
                             + "errorMessage: " + exception.getMessage());
@@ -373,16 +373,16 @@ private static void onLogout(final Activity activity) {
 
 ## Withdraw
 
-Below shows an example of how a game user withdraws while logged-in.<br/><br/>
+以下是游戏用户登录状态下，“退出（删除数据）”的示例代码。<br/><br/>
 
-* When a user is successfully withdrawn, the user's data interfaced with a login IdP will be deleted.
-* The user can log in with the IdP again, and a new user's data will be created.
-* It means user's withdrawal from Gamebase, not from IdP account.
-* After a successful withdrawal, a logout from IdP will be tried.
+* 如果退出（删除数据）成功，则将删除与登录的IdP账户相关联的游戏用户数据。
+* 您可以使用该IdP重新登录并生成新的游戏用户数据。
+* 这意味着退出Gamebase，并不是退出IdP帐户。
+* 成功退出（删除数据）时，也将退出IdP登录。
 
-> <font color="red">[Caution]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> When a user has many interfaced IdPs, all IdP interfaces will be removed and user data of Gamebase will be deleted.
+> 如果您正在使用多个IdP，则所有IdP都将被解除关联，Gamebase用户数据将被删除。
 >
 
 **API**
@@ -391,7 +391,7 @@ Below shows an example of how a game user withdraws while logged-in.<br/><br/>
 + (void)Gamebase.withdraw(Activity activity, GamebaseCallback callback);
 ```
 
-**Example**
+**示例**
 
 ```java
 private static void onWithdraw(final Activity activity) {
@@ -399,13 +399,13 @@ private static void onWithdraw(final Activity activity) {
         @Override
         public void onCallback(GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
-                // Withdrawal successful
+            	// 成功退出（删除数据）
                 Log.d(TAG, "Withdraw successful");
             } else {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                    // Socket error means network access is temporarily unavailable.
-                    // Check network status or retry after a moment.
+                    // Socket error 表示网络暂时不可用。
+                    //请确认网络状态或稍后再试。
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -416,7 +416,7 @@ private static void onWithdraw(final Activity activity) {
                         }
                     }).start();
                 } else {
-                    // Withdrawal failed
+                    // 退出（删除数据）失败
                     Log.e(TAG, "Withdraw failed- "
                             + "errorCode: " + exception.getCode()
                             + "errorMessage: " + exception.getMessage());
@@ -429,63 +429,63 @@ private static void onWithdraw(final Activity activity) {
 
 ## Mapping
 
-Mapping refers to connecting or disconnecting an existing login account to/from another IdP account.
+映射（Mapping）是将已登录的现有游戏帐号和IdP帐户关联或解除关联的功能。
 
-In many games, one account may have many integrated (mapped) IdPs.<br/>By using Gamebase Mapping API, other IdP accounts can be integrated or removed to/from another existing IdP account.
+在大多数游戏中，可以将多个IdP帐户映射（Mapping）到同一个游戏账户。<br/>Gamebase的Mapping API，允许将您的其他IdP帐户和您之前登录的游戏帐户进行关联或解除关联操作。
 
-In short, a login to a mapped IdP account will be made available with a same user ID at all times.<br/><br/>
+换句话说，当您尝试使用同步的IdP帐户登录时，可以始终使用相同的用户ID登录。<br/><br/>
 
-Note, however, that each IdP can have only one account to map.<br/>
-For instance, if a Google account is mapped, no other Google account can be additionally mapped.<br/>
-Below shows an example.<br/><br/>
+请注意，每个IdP只能关联一个同域名帐户。<br/>
+例如，如果您已经关联了Google帐户，则无法添加其他Google帐户。<br/>
+以下是帐户关联的示例。<br/><br/>
 
-* Gamebase User ID: 123bcabca
+* Gamebase 用户ID: 123bcabca
     * Google ID: aa
     * Facebook ID: bb
     * Apple Game Center ID: cc
     * Payco ID: dd
-* Gamebase User ID : 456abcabc
+* Gamebase 用户 ID : 456abcabc
     * Google ID: ee
-    * Google ID: ff **-> As the Google ee account is integrated, no additional Google account can be integrated.**
+    * Google ID: ff **-> 由于您已关联Google ee帐户，因此无法添加其他Google帐户。**
 
-Mapping API includes Add Mapping API and Remove Mapping API.
+Mapping API中有添加映射和解除映射的功能。
 
 ### Add Mapping Flow
 
-Implement mapping in the following order:
+映射（Mapping）可以按以下顺序实现。
 
-#### 1. Login
-Mapping means to add an IdP account integration to a current account, so login is a prerequisite.
-First, call a login API and log in.
+#### 1. 登录
+Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
+首先通过调用登录API登录。
 
-#### 2. Mapping
+#### 2. 映射（Mapping）
 
-Call **Gamebase.addMapping(activity, idpType, callback)** to try mapping.
+调用**Gamebase.addMapping(activity, idpType, callback)**尝试进行映射（Mapping）。
 
-#### 2-1. When mapping is successful
+#### 2-1. 如果映射（Mapping）成功
 
-* Congratulations! Successfully added an IdP account integrated with the current account.
-* Even if a mapping is successful, "currently logged-in IdP" will not change. For example, after a user's login with Google account and has successfully mapped with a Facebook account, the user's 'currently logged-in IdP' does not change from Google to Facebook. It still stays with Google account.
-* Mapping simply adds IdP integration.
+* 恭喜！ 已成功添加与当前账户关联的IdP帐户。
+* 映射（Mapping）成功后，“当前登录的IdP”也不会更改。 换句话说，在已使用Google帐户登录后，成功映射（Mapping）到您的Facebook帐户，也不会将您“当前登录的IdP”从Google更改为Facebook，会保持Google的状态。
+* 映射（Mapping）只是添加IdP关联。
 
-#### 2-2. When mapping is failed
+#### 2-2. 如果映射（Mapping）失败
 
-* Network error
-    * If the error code is **SOCKET_ERROR (110)** or **SOCKET_RESPONSE_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.addMapping()** again or try again in a moment.
-* Error of integration to another account
-    * If the error code is **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER (3302)**, the IdP account to map has been already integrated to another account.To remove the integrated account, log in the account and call **Gamebase.withdraw()** to withdraw, or call **Gamebase.removeMapping()** to remove integration and try mapping again.
-* Error of integration to a same IdP account
-    * If the error code is **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP (3303)**, a same type of account to the IdP has already been integrated.
-        * Gamebase mapping allows only one account of integration to an IdP. For example, if your account is already integrated to a PAYCO account, no other PAYCO account can be added.
-        * To integrate another account of a same IdP, call **Gamebase.removeMapping()** to remove integration and try mapping again.
-* Other Errors
-    * Mapping has failed.
+* 网络错误
+	* 由于突发的网络问题，认证失败，错误代码为**SOCKET_ERROR(110)**和**SOCKET_RESPONSE_TIMEOUT(101)**，则重新调用**Gamebase.login(activity, idpType, callback)**或稍后再试。
+* 与其他帐户关联时发生的错误
+	* 错误代码为**AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**， 则表示尝试映射（Mapping）的IdP上的帐户已关联了另一个帐户，要解除已关联的帐户，请使用该帐户登录并通过调用**Gamebase.withdraw()**退出（删除数据），或者通过调用**Gamebase.removeMapping()**解除关联，再尝试映射（Mapping）。
+* 关联相同IdP帐户发生的错误
+	* 错误代码为**AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**，则表示已关联了与IDP相同类型的账户。
+        * Gamebase映射（Mapping），每个IdP只能关联一个游戏帐户。例如，已经关联了PAYCO帐户，则无法添加其他PAYCO帐户。
+        * 要关联同一IdP中的另一个帐户，请调用**Gamebase.removeMapping()**，解除关联后，再尝试映射（Mapping）。
+* 其他错误
+    * 尝试映射（Mapping）失败。
 
 ### Add Mapping
 
-Try mapping to another IdP while logged-in to a specific IdP.<br/>
+在登录特定IdP状态下，尝试用其他IdP Mapping。<br/>
 
-Below is an example of mapping to Facebook.
+以下是尝试映射（Mapping）到Facebook的示例。
 
 **API**
 
@@ -493,7 +493,7 @@ Below is an example of mapping to Facebook.
 + (void)Gamebase.addMapping(Activity activity, AuthProvider authProvider, null, GamebaseDataCallback<AuthToken> callback);
 ```
 
-**Example**
+**示例**
 
 ```java
 private static void addMappingForFacebook(final Activity activity) {
@@ -501,14 +501,14 @@ private static void addMappingForFacebook(final Activity activity) {
         @Override
         public void onCallback(AuthToken result, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
-                // Add Mapping successful
+                // 成功映射（Mapping）
                 Log.d(TAG, "Add Mapping successful");
                 String userId = Gamebase.getUserID();
             } else {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                    // Socket error means network access is temporarily unavailable.
-                    // Check network status or retry after a moment.
+                    // Socket error 表示网络暂时不可用。
+                    // 请确认网络状态或稍后再试 。
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -519,16 +519,16 @@ private static void addMappingForFacebook(final Activity activity) {
                         }
                     }).start();
                 } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                    // IDP account for mapping has already been integrated to another account.
-                    // To remove integration, withdraw from the account or remove mapping.
+                    // 您尝试映射（Mapping）的IDP帐户已经关联到其他帐户
+                    // 为了强制解除关联，您需要退出（删除数据）或解除映射（Mapping）。
                     Log.e(TAG, "Add Mapping failed- ALREADY_MAPPED_TO_OTHER_MEMBER");
                 } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP) {
-                    // IdP account for mapping has already been added.
-                    // Gamebase Mapping allows only one account of integration to an IdP.
-                    // To change IdP account, remove mapping of the integrated account.
+                    // 您尝试映射（Mapping）的IDP帐户已存在。
+                    // Gamebase映射（Mapping），每个IDP帐户只能关联一个游戏帐户。
+                    // 如果要更改IDP帐户，则必须解除已关联的帐户。
                     Log.e(TAG, "Add Mapping failed- ALREADY_HAS_SAME_IDP");
                 } else {
-                    // Add Mapping failed.
+                    // 添加映射（Mapping）失败
                     Log.e(TAG, "Add Mapping failed- "
                             + "errorCode: " + exception.getCode()
                             + "errorMessage: " + exception.getMessage());
@@ -541,26 +541,26 @@ private static void addMappingForFacebook(final Activity activity) {
 
 ### Add Mapping with Credential
 
-This game interface allows authentication to be made with SDK provided by IdP, before applying Gamebase AddMapping with provided access token.
+游戏中直接使用ID Provider提供的SDK进行认证后，使用发行的访问令牌，进行GameBase AddMapping的接口。
 
-* How to Set Credential Parameters
+* Credential参数设定方法
 
-| Keyname                                  | Usage                                    | Value Type                                     |
+| keyname                                  | a use                                    | 值类型                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
-| AuthProviderCredentialConstants.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                          |
-| AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter One Time Authorization (OTAC) which can be obtained after Google login. |                                          |
+| AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP类型                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
+| AuthProviderCredentialConstants.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）<br/>不用于Google认证|                                          |
+| AuthProviderCredentialConstants.AUTHORIZATION_CODE |输入登录Google后可以获取的OTOC(一次性验证码)|                                          |
 
-> [Note]
+> [参考]
 >
-> May require when original functions of external services (such as Facebook) are in need within a game.
+> 当要在游戏中使用外部服务（例如Facebook）的特有功能时，可能需要它。
 >
 
 <br/>
 
-> <font color="red">[Caution]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> Development items external SDK requires to support need to be implemented by using external SDK&#39;s API, which Gamebase does not support.
+> 外部SDK要求的开发事项需使用外部SDK的API实现，Gamebase不支持。
 >
 
 **API**
@@ -569,7 +569,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 + (void)Gamebase.addMapping(Activity activity, Map<String, Object> credentialInfo, null, GamebaseDataCallback<AuthToken> callback);
 ```
 
-**Example**
+**示例**
 
 ```java
 private static void addMappingWithCredential(final Activity activity) {
@@ -581,14 +581,14 @@ private static void addMappingWithCredential(final Activity activity) {
         @Override
         public void onCallback(AuthToken data, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
-                // Add Mapping successful
+                // 成功添加Mapping
                 Log.d(TAG, "Add Mapping successful");
                 String userId = Gamebase.getUserID();
             } else {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                    // Socket error means network access is temporarily unavailable.
-                    // Check network status or retry after a moment.
+                    // Socket error 表示网络暂时不可用 。
+                    // 请确认网络状态或稍后再试。
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -599,16 +599,16 @@ private static void addMappingWithCredential(final Activity activity) {
                         }
                     }).start();
                 } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                    // IDP account for mapping has already been integrated to another account.
-                    // To remove integration, withdraw from the account or remove mapping.
+                    //您尝试映射（Mapping）的IDP帐户已经关联到其他帐户。
+                    // 为了强制解除关联，您需要退出（删除数据）或解除映射（Mapping）。
                     Log.e(TAG, "Add Mapping failed- ALREADY_MAPPED_TO_OTHER_MEMBER");
                 } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP) {
-                    // IdP account for mapping has already been added.
-                    // Gamebase Mapping allows only one account of integration to an IdP.
-                    // To change IdP account, remove mapping of the integrated account.
+                    // 您尝试映射（Mapping）的IDP帐户已存在。
+                    // Gamebase映射（Mapping），每个IDP帐户只能关联一个游戏帐户。
+                    // 如果要更改IDP帐户，则必须解除已关联的帐户。
                     Log.e(TAG, "Add Mapping failed- ALREADY_HAS_SAME_IDP");
                 } else {
-                    // Add Mapping failed.
+                    // 添加映射（Mapping）失败
                     Log.e(TAG, "Add Mapping failed- "
                             + "errorCode: " + exception.getCode()
                             + "errorMessage: " + exception.getMessage());
@@ -621,8 +621,8 @@ private static void addMappingWithCredential(final Activity activity) {
 
 ### Remove Mapping
 
-Remove mapping with a specific IdP. If IdP mapping is not removed, error will occur.<br/>
-After mapping is removed, Gamebase processes logout of the IdP.
+解除特定IDP的关联。如果尝试解除当前登录中的帐户，则会失败。<br/>
+解除关联之后，Gamebase将该IdP退出登录。
 
 **API**
 
@@ -630,7 +630,7 @@ After mapping is removed, Gamebase processes logout of the IdP.
 + (void)Gamebase.removeMapping(Activity activity, AuthProvider authProvider, null, GamebaseDataCallback<AuthToken> callback);
 ```
 
-**Example**
+**示例**
 
 ```java
 private static void removeMappingForFacebook(final Activity activity) {
@@ -638,13 +638,13 @@ private static void removeMappingForFacebook(final Activity activity) {
         @Override
         public void onCallback(GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
-                // Remove Mapping successful
+                // 成功解除映射（Mapping）
                 Log.d(TAG, "Remove mapping successful");
             } else {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                    // Socket error means network access is temporarily unavailable.
-                    // Check network status or retry after a moment.
+                    // Socket error 表示网络暂时不可用。
+                    // 请确认网络状态或稍后再试。
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -655,11 +655,11 @@ private static void removeMappingForFacebook(final Activity activity) {
                         }
                     }).start();
                 } else if (exception.getCode() == GamebaseError.AUTH_REMOVE_MAPPING_LOGGED_IN_IDP) {
-                    // Cannot remove mapping with a login account.
-                    // Log in with another account to remove mapping or withdraw.
+                    //无法解除当前登录中的帐号映射（Mapping）。
+                    // 您必须使用其他帐户登录或退出（删除数据），才能解除映射（Mapping）。
                     Log.e(TAG, "Remove Mapping failed- LOGGED_IN_IDP");
                 } else {
-                    // Remove Mapping failed.
+                    //解除映射（Mapping）失败
                     Log.e(TAG, "Remove mapping failed- "
                             + "errorCode: " + exception.getCode()
                             + "errorMessage: " + exception.getMessage());
@@ -672,16 +672,16 @@ private static void removeMappingForFacebook(final Activity activity) {
 
 
 ## Gamebase User`s Information
-Process authentication with Gamebase, in order to get information required to create an app.
+在使用Gamebase完成认证过程后，制作App时可获取到所需的信息。
 
-> <font color="red">[Caution]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> Cannot obtain authentication information when you&#39;re logged in with "Gamebase.loginForLastLoggedInProvider()" API.
+> 如果您使用"Gamebase.loginForLastLoggedInProvider()" API登录，则无法获取认证信息。
 >
-> To obtain authentication information, log in with "Gamebase.login (activity, IDP_CODE, callback)" API with {IDP_CODE} parameter, which is same as IDPCode to use, instead of "Gamebase.loginForLastLoggedInProvider()".
+> 如果需要认证信息，代替“Gamebase.loginForLastLoggedInProvider”使用IDPCode和同一个{IDP_CODE}作为参数，来使用“Gamebase.login(activity, IDP_CODE, callback)” API登录，才可以获取到正常的认证信息。
 
 ### Get Authentication Information for Gamebase
-Get authentication information issued by Gamebase.
+可以获取Gamebase发行的认证信息。
 
 **API**
 
@@ -692,7 +692,7 @@ Get authentication information issued by Gamebase.
 + (BanInfo)Gamebase.getBanInfo();
 ```
 
-**Example**
+**示例**
 
 ```java
 
@@ -712,7 +712,7 @@ BanInfo banInfo = Gamebase.getBanInfo();
 
 ### Get Authentication Information for External IDP
 
-Get access token, User ID, and profiles from externally authenticated SDK.
+从外部认证SDK，可获取访问令牌、用户ID、Profile等信息。
 
 **API**
 
@@ -722,41 +722,42 @@ Get access token, User ID, and profiles from externally authenticated SDK.
 + (AuthProviderProfile)Gamebase.getAuthProviderProfile(AuthProvider authProvider);
 ```
 
-**Example**
+**示例**
 
 ```java
+// 获取用户ID。
 String userId = Gamebase.getAuthProviderUserID(AuthProvider.FACEBOOK);
 
-// Get AccessToken.
+// 获取访问令牌。
 String accessToken = Gamebase.getAuthProviderAccessToken(AuthProvider.FACEBOOK);
 
-// Get User Profile.
+// 获取用户Profile信息。
 AuthProviderProfile profile = Gamebase.getAuthProviderProfile(AuthProvider.FACEBOOK);
 Map<String, Object> profileMap = profile.information;
 ```
 
 ### Get Banned User Information
 
-For users who are registered as banned in the Gamebase Console,
-information codes of restricted use will be displayed as below, when they try to log in. The ban information can be found by using the **Gamebase.getBanInfo()** method.
+如果在Gamebase Console中登记为受到制裁的游戏用户，当该用户尝试登录时，
+可能会看到以下限制信息代码。您可以使用**Gamebase.getBanInfo()**方法，确认制裁信息。
 
 * BANNED_MEMBER(7)
 
 ## TransferKey
-게스트 계정을 다른 단말기로 이전하기 위해 계정 이전을 위한 키를 발급받는 기능입니다.
-이 키를 **TransferKey** 라고 부릅니다.
-발급받은 TransferKey는 다른 기기에서 **requestTransfer** API를 호출하여 계정 이전을 할 수 있습니다.
+获取密钥以将访客帐户转移到其他设备的功能。
+此密匙称为**TransferKey**。
+获取的TransferKey可以通过从另一台设备调用**requestTransfer**API来转移帐户。
 
-> `주의`
-> TransferKey의 발급은 게스트 로그인 상태에서만 발급이 가능합니다.
-> TransferKey를 이용한 계정 이전은 게스트 로그인 상태 또는 로그인되어 있지 않은 상태에서만 가능합니다.
-> 로그인한 게스트 계정이 이미 다른 외부 IdP (Google, Facebook, Payco 등) 계정과 매핑이 되어 있다면 계정 이전이 지원되지 않습니다.
+> `注意`
+> 只有在游客登录方式时，才能发放TransferKey。
+> 只有游客登录或未登录的状态，才能使用TransferKey转移帐户。
+> 如果您登录的游客帐户已映射（Mapping）到其他外部IdP（Google，Facebook，Payco等），则不支持转移帐户。
 
 ### Issue TransferKey
-게스트 계정 이전을 위한 TransferKey를 발급합니다.
-TransferKey의 형식은 영문자 **"소문자/대문자/숫자"를 포함한 8자리의 문자열**입니다.
-또한 발급 시간 및 만료 시간을 같이 발급하며, 형식은 epoch time입니다.
-* 참고: https://www.epochconverter.com/
+发放TransferKey以转移游客帐户。
+TransferKey的格式为**包含“小写/大写/数字”的8位数的字符串**。
+同时，发行发放时间和到期时间，格式为epoch time。
+* 参考：https://www.epochconverter.com/
 
 **API**
 
@@ -764,7 +765,7 @@ TransferKey의 형식은 영문자 **"소문자/대문자/숫자"를 포함한 8
 + (void)Gamebase.issueTransferKey(int expiredTime, GamebaseDataCallback<TransferKeyInfo> callback);
 ```
 
-**Example**
+**示例**
 
 ```java
 Gamebase.issueTransferKey(3600 * 24, new GamebaseDataCallback<TransferKeyInfo>() {
@@ -785,12 +786,12 @@ Gamebase.issueTransferKey(3600 * 24, new GamebaseDataCallback<TransferKeyInfo>()
 ```
 
 ### Transfer Guest Account to Another Device
-**issueTransfer** API로 발급받은 TransferKey를 통해 계정을 이전하는 기능입니다.
-계정 이전 성공 시 TransferKey를 발급받은 단말기에서 이전 완료 메시지가 표시될 수 있고, Guest 로그인 시 새로운 계정이 생성됩니다.
-계정 이전이 성공한 단말기에서는 TransferKey를 발급받았던 단말기의 게스트 계정을 계속해서 사용할 수 있습니다.
+通过**issueTransfer** API发放的TransferKey转移帐户的功能。
+在成功转移帐户后，在TransferKey的原设备上显示转移完成的消息，并且用在游客登录时将创建新帐户。
+在成功转移帐户的新设备上，您可以继续使用原游客帐户。
 
-> `주의`
-> 이미 Guest 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
+> `注意`
+> 如果在游客登录状态下转移成功，原设备中登录过的游客信息将丢失。
 
 **API**
 
@@ -798,7 +799,7 @@ Gamebase.issueTransferKey(3600 * 24, new GamebaseDataCallback<TransferKeyInfo>()
 + (void)Gamebase.requestTransfer(String transferKey, GamebaseDataCallback<AuthToken> callback);
 ```
 
-**Example**
+**示例**
 
 ```java
 Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
@@ -819,43 +820,43 @@ Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
 
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
-| Auth           | INVALID\_MEMBER                          | 6          | Request for invalid member.                        |
-|                | BANNED\_MEMBER                           | 7          | Named member has been banned.                               |
-|                | AUTH\_USER\_CANCELED                     | 3001       | Login is cancelled.                          |
-|                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | The authentication is not supported.                        |
-|                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | Named member does not exist or has withdrawn.                      |
-|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | Error in external authentication library. <br/>Check DetailCode and DetailMessage. |
-|                | AUTH_ALREADY_IN_PROGRESS_ERROR           | 3010       | 이전 인증 프로세스가 완료되지 않았습니다. |
-| TransferKey    | SAME\_REQUESTOR                          | 8          | 발급한 TransferKey를 동일한 기기에서 사용했습니다. |
-|                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IDP가 연동되어 있습니다. |
-|                | AUTH\_TRANSFERKEY\_EXPIRED               | 3031       | TransferKey의 유효기간이 만료됐습니다. |
-|                | AUTH\_TRANSFERKEY\_CONSUMED              | 3032       | TransferKey가 이미 사용됐습니다. |
-|                | AUTH\_TRANSFERKEY\_NOT\_EXIST            | 3033       | TransferKey가 유효하지 않습니다. |
-| Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED               | 3101       | Token login has failed.                          |
-|                | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | Invalid token information.                        |
-|                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | Invalid last login IDP information.                   |
-| IDP Login      | AUTH\_IDP\_LOGIN\_FAILED                 | 3201       | IDP login has failed.                         |
-|                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO     | 3202       | Invalid IDP information (IDP information does not exist in the Console.) |
-| Add Mapping    | AUTH\_ADD\_MAPPING\_FAILED               | 3301       | Add mapping has failed.                           |
-|                | AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | Already mapped to another member.                      |
-|                | AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | Already mapped to same IDP.                     |
-|                | AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO   | 3304       | Invalid IDP information (IDP information does not exist in the Console.) |
-|                | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP    | 3305       | Guest IDP로는 AddMapping이 불가능합니다. |
-| Remove Mapping | AUTH\_REMOVE\_MAPPING\_FAILED            | 3401       | Remove mapping has failed.                           |
-|                | AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | Cannot delete last mapped IDP.                |
-|                | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP   | 3403       | Currently logged-in IDP.                      |
-| Logout         | AUTH\_LOGOUT\_FAILED                     | 3501       | Logout has failed.                            |
-| Withdrawal     | AUTH\_WITHDRAW\_FAILED                   | 3601       | Withdrawal has failed.                              |
-| Not Playable   | AUTH\_NOT\_PLAYABLE                      | 3701       | Not playable (due to maintenance or service closed)         |
-| Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                     | 3999       | Unknown error (Undefined error)             |
+| Auth           | INVALID\_MEMBER                          | 6          | 无效的用户请求。                   |
+|                | BANNED\_MEMBER                           | 7          | 被制裁的用户。                               |
+|                | AUTH\_USER\_CANCELED                     | 3001       | 登录信息已被取消 。                           |
+|                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | 不支持的认证方式 。                  |
+|                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 不存在或已退出（删除数据）的用户。               |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部认证库错误。<br/>请确认DetailCode和DetailMessage。  |
+|                | AUTH_ALREADY_IN_PROGRESS_ERROR           | 3010       | 之前的认证过程未完成。 |
+| TransferKey    | SAME\_REQUESTOR                          | 8          | 在同一台设备上使用了相同的TransferKey。 |
+|                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 非游客帐户尝试了转移或帐户已关联了游客以外的IDP。|
+|                | AUTH\_TRANSFERKEY\_EXPIRED               | 3031       | TransferKey已过期。 |
+|                | AUTH\_TRANSFERKEY\_CONSUMED              | 3032       | TransferKey已使用。 |
+|                | AUTH\_TRANSFERKEY\_NOT\_EXIST            | 3033       | 无效的TransferKey。 |
+| Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED               | 3101       | 令牌登录失败。                          |
+|                | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | 无效的令牌信息 。                       |
+|                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 无近期登录的IdP信息。                   |
+| IDP Login      | AUTH\_IDP\_LOGIN\_FAILED                 | 3201       | IdP登录失败。                         |
+|                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO     | 3202       | 无效的IdP信息。（Console中没有此IdP信息）。 |
+| Add Mapping    | AUTH\_ADD\_MAPPING\_FAILED               | 3301       | 添加映射（Mapping）失败。                           |
+|                | AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | 已经与其他帐户映射（Mapping）。                    |
+|                | AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       |  已映射（Mapping）到相同的IdP。                   |
+|                | AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO   | 3304       | 无效的IdP信息。（Console中没有此IdP信息）。 |
+|                | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP    | 3305       | 游客IDP无法进行AddMapping。 |
+| Remove Mapping | AUTH\_REMOVE\_MAPPING\_FAILED            | 3401       | 解除映射（Mapping）失败。                           |
+|                | AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | 无法解除最后映射（Mapping）的IdP。                |
+|                | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP   | 3403       | 当前登录的IdP。                      |
+| Logout         | AUTH\_LOGOUT\_FAILED                     | 3501       | 退出登录失败。                           |
+| Withdrawal     | AUTH\_WITHDRAW\_FAILED                   | 3601       | 退出（删除数据）失败。                            |
+| Not Playable   | AUTH\_NOT\_PLAYABLE                      | 3701       | 无法玩游戏的状态(维护或已下线等)。         |
+| Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                     | 3999       | 未知错误(未定义的错误)。             |
 
-* Refer to the following document for the entire error codes
+* 所有错误代码，请参考以下文档。
     * [Entire Error Codes](./error-code/#client-sdk)
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs in SDK of each IdP.
-* Check the error code as below.
+* 该错误为各IdP的SDK中发生的错误。
+* 确认错误代码方式如下。
 
 ```java
 Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCallback<AuthToken>() {
@@ -883,4 +884,4 @@ Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCa
 });
 ```
 
-* Check error codes of IdP SDK at each developer's page.
+* IdP SDK的错误代码，请参考相应Developer页面。

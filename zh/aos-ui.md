@@ -1,23 +1,23 @@
-## Game > Gamebase > Android Developer's Guide > UI
+## Game > Gamebase > Android SDK使用指南 > UI
 
 ## WebView
 
-Gamebase supports a default WebView.
+Gamebase支持基本的WebView。
 
 
 ### Show WebView
 
-Shows a WebView.<br/>
+显示WebView。<br/>
 
-##### Required Parameters
-* activity : Shows WebView.
-* url : The url delivered as a parameter should be valid.
+##### Required 参数
+* activity：显示WebView的活动。
+* url：作为参数发送的url必须是有效值。
 
-##### Optional Parameters
-* configuration: Changes WebView layout by using GamebaseWebViewConfiguration.
-* GamebaseCallback: Notifies users when a WebView is closed.
-* schemeList: Specifies the list of customized schemes a user wants.
-* gamebaseDataCallback: Notifies url including customized scheme specified by the schemeList with a callback.
+##### 可选参数
+* configuration：可以使用GamebaseWebViewConfiguration更改WebView的布局。
+* GamebaseCallback：WebView关闭时通过回调通知用户。
+* schemeList：指定用户想要接收的自定义SchemeList。
+* GamebaseDataCallback：用schemeList指定的包含自定义Scheme的url，作为回调通知。
 
 **API**
 
@@ -30,7 +30,7 @@ Shows a WebView.<br/>
                 GamebaseDataCallback<String> onEvent);
 ```
 
-**Example**
+**示例**
 
 ```java
 Gamebase.WebView.showWebView(activity, "http://www.toast.com",
@@ -53,42 +53,42 @@ Gamebase.WebView.showWebView(activity, "http://www.toast.com",
 ![Webview Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
 
 
-#### Custom WebView
+#### 自定义WebView
 
-Shows a customized WebView. <br/>
-Can configure a customzed WebView by using GamebaseWebViewConfiguration.
+显示自定义WebView。<br/>
+可以用GamebaseWebViewConfiguration设置自定义WebView。
 
 ```java
 GamebaseWebViewConfiguration configuration
         = new GamebaseWebViewConfiguration.Builder()
             .setStyle(GamebaseWebViewStyle.BROWSER)
-            .setTitleText("title")                              // Set Title
-            .setScreenOrientation(ScreenOrientation.PORTRAIT)   // Set Screen Orientation
-            .setNavigationBarColor(Color.RED)                   // Set Navigation Bar Color
-            .setNavigationBarHeight(40)                         // Set Navigation Bar Height
-            .setBackButtonVisible(true)                         // Set Back Button Visible
-            .setBackButtonImageResource(R.id.back_button)       // Set Back Button Image
-            .setCloseButtonImageResource(R.id.close_button)     // Set Close Button Image
+            .setTitleText("title")                              // 设置WebView标题
+            .setScreenOrientation(ScreenOrientation.PORTRAIT)   // 设置WebView页面方向
+            .setNavigationBarColor(Color.RED)                   // 设置导航栏的颜色
+            .setNavigationBarHeight(40)                         // 设置导航栏的高度
+            .setBackButtonVisible(true)                         // 返回按钮有效或无效
+            .setBackButtonImageResource(R.id.back_button)       // 设置返回按钮图标
+            .setCloseButtonImageResource(R.id.close_button)     // 设置关闭按钮图标
             .build();
 GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configuration);
 ```
 | Method                                   | Values                              | Description    |
 | ---------------------------------------- | ----------------------------------- | -------------- |
-| setStyle(int style)                      | GamebaseWebViewStyle.BROWSER        | Browser-style WebView   |
-|                                          | GamebaseWebViewStyle.POPUP          | Pop-up-style WebView     |
-| setTitleText(String title)               | title                               | Title of WebView         |
-| setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | Portrait Mode          |
-|                                          | ScreenOrientation.LANDSCAPE         | Landscape Mode          |
-|                                          | ScreenOrientation.LANDSCAPE_REVERSE | Reverse Landscape |
-| setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | Color of Navigation Bar     |
-| setBackButtonVisible(boolean visible)    | true or false                       | Activate/Deactivate Go Back Button |
-| setNavigationBarHeight(int height)       | height                              | Height of Navigation Bar     |
-| setBackButtonImageResource(int resourceId) | ID of resource                      | Image of Go Back Button       |
-| setCloseButtonImageResource(int resourceId) | ID of resource                      | Image of Close Button      |
+| setStyle(int style)                      | GamebaseWebViewStyle.BROWSER        | 浏览器风格的WebView   |
+|                                          | GamebaseWebViewStyle.POPUP          | 弹出窗口风格的WebView     |
+| setTitleText(String title)               | title                               | WebView标题        |
+| setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | 纵向模式         |
+|                                          | ScreenOrientation.LANDSCAPE         | 横向模式         |
+|                                          | ScreenOrientation.LANDSCAPE_REVERSE | 将横向模式旋转180度 |
+| setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | 导航栏颜色  |
+| setBackButtonVisible(boolean visible)    | true or false                       | 返回按钮有效或无效 |
+| setNavigationBarHeight(int height)       | height                              | 导航栏高度    |
+| setBackButtonImageResource(int resourceId) | ID of resource                      | 返回按钮的图标      |
+| setCloseButtonImageResource(int resourceId) | ID of resource                      | 关闭按钮的图标      |
 
 
 ### Close WebView
-Close currently displayed WebView by using the following API.
+通过以下API，可以关闭正在显示的WebView。
 
 **API**
 
@@ -99,7 +99,7 @@ Close currently displayed WebView by using the following API.
 
 ## Open External Browser
 
-Open an external browser by using the following API. The URL delivered as a parameter should be valid.
+可以使用以下API打开外部浏览器。作为参数传递的URL必须是有效值。
 
 **API**
 
@@ -110,11 +110,11 @@ Open an external browser by using the following API. The URL delivered as a para
 
 ## Alert
 
-Displays a system alert API.<br/>
+可以显示系统提醒。<br/>
 
 ### Simple Alert Dialog
 
-Shows a simple alert dialogue by entering title and message only.
+只需要输入标题和消息即可显示提醒对话框。
 
 **API**
 
@@ -127,46 +127,46 @@ Shows a simple alert dialogue by entering title and message only.
 
 ### Alert Dialog with Listener
 
-Use the following API to receive callbacks on processing results after an alert dialog is displayed.
+如果要在显示通知对话框后接收回调，请使用以下API。
 
 **API**
 
 ```java
 + (void)Gamebase.Util.showAlertDialog(Activity activity,
-                            String title,                                   // Title text.
-                            String messsage,                                // Message text.
-                            String okButtonText,                            // Positive button text.
-                            DialogInterface.OnClickListener clickListener); // Listener called when pressing a positive button.
+                            String title,
+                            String messsage,
+                            String okButtonText,
+                            DialogInterface.OnClickListener clickListener);
 ```
 
 ## Toast
 
-Displays [Android Toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) messages, by using the following API.<br/>
-The type of time parameter to display message is provided in int format and will be displayed during time as below, as the Android SDK NotificationManagerService class is defined.
+可以使用以下API轻松显示 [Android toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) 消息。<br/>
+用于显示信息的时间类型参数是int型，并根据Android SDK NotificationManagerService类的定义，可显示的时间如下表。
 
-| Type of Time (int)         | Display Time                     |
+| 时间类型(int)         | 显示时间                     |
 | ------------------ | ------------------------- |
-| Toast.LENGTH_SHORT | 2 seconds                        |
-| Toast.LENGTH_LONG  | 3.5 seconds                      |
-| 0                  | Toast.LENGTH_SHORT => 2 seconds  |
-| 1                  | Toast.LENGTH_LONG => 3.5 seconds |
-| All the rest values           | Toast.LENGTH_SHORT => 2 seconds  |
+| Toast.LENGTH_SHORT | 2秒                        |
+| Toast.LENGTH_LONG  | 3.5秒                      |
+| 0                  | Toast.LENGTH_SHORT => 2秒  |
+| 1                  | Toast.LENGTH_LONG => 3.5秒 |
+| 全部剩余值           | Toast.LENGTH_SHORT => 2秒  |
 
 **API**
 
 ```java
 + (void)Gamebase.Util.showToast(Activity activity,
-                        String message,     // Message text to display
-                        int duration);      // Type of time to display message (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
+                        String message,
+                        int duration);    // 显示信息的时间类型 (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
 ```
 
 ## Custom Maintenance Page
 
-Click 'Detail' in maintenance status to change maintenance page.
+点击维护状态中的“详细信息”，可以更改维护页面。
 
-* Register a customized web page as a maintenance page
-    * Set meta-data with "com.gamebase.maintenance.detail.url" as key value to AndroidManifest.xml.
-    * Enter .html file or URL with android:value.
+* 将自定义的页面设置为维护页面。
+    * 在AndroidManifest.xml中， 以com.gamebase.maintenance.detail.url为键值，设置元数据。
+    * 可以输入.html文件或URL作为android：value值。
 
 ```xml
 <meta-data
@@ -176,9 +176,9 @@ Click 'Detail' in maintenance status to change maintenance page.
 
 ## Error Handling
 
-| Error              | Error Code | Description                  |
+| Error              | Error Code | 描述                  |
 | ------------------ | ---------- | ---------------------------- |
-| UI\_UNKNOWN\_ERROR | 6999       | Unknown error (Undefined error). |
+| UI\_UNKNOWN\_ERROR | 6999       | 未知错误(未定义的错误)。 |
 
-* Refer to the following document for the entire error codes:
-    * [Entire Error Codes](./error-codes#client-sdk)
+* 所有错误代码，请参考以下文档。
+    * [错误代码](./error-code/#client-sdk)

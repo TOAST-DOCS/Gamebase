@@ -7,8 +7,7 @@ This menu provides functions that are required for an app operation.
 
 ## Maintenance
 
-
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance1_1.1.png)
+![gamebase_op_01_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_op_01_201812_en.png)
 
 Can easily register maintenance in the Console, when required.
 Retrieve maintenance history of registered apps and check progress at a glance, and search maintenance by registered causes of maintenance.
@@ -22,16 +21,15 @@ Status of maintenance is classified into five as below.
 
 Gamebase provides maintenance pop-ups and detail pages to show to game users while maintenance is underway.
 Default maintenance pop-up of Gamebase.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance_popup_1.0.png)
+![gamebase_op_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_02_201812.png)
 Default maintenance page of Gamebase (with cause and time of maintenance)
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance_webview_1.1.png)
-
+![gamebase_op_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_03_201812.png)
 
 ### Register Maintenance
 
 Click **Register** under the **Maintenance** tab, to register maintenance.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_1.4.png)
+![gamebase_op_04_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_op_04_201812_en.png)
 
 >  <font color="red">[Caution] </font>When **Update Required and Maintenance are set at the same time** , the service status becomes 'Update Required'.
 >  If you don't want to show the Update Required pop-up to user during maintenance, the service status should be changed to 'Update Required' after maintenance is completed.
@@ -43,7 +41,7 @@ Select a target of maintenance.
 - Some Clients: When only a particular client version requires maintenance. Click 'Select a Version' to show the list of client versions registered in the client menu.
   **[Example of selecting particular clients]**
   Can select All for client's status and each store; select a client version for maintenance and press OK.
-  ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance4_1.3.png)
+  ![gamebase_op_05_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812_en.png)
 
 #### (2) Reason
 Provide reasons for maintenance simply.
@@ -87,7 +85,6 @@ Maintenance parameters are as follows: all delivered with URL encoded.
 - endDate:  End time entered for maintenance registration.
 
 ### Modify Maintenance
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance3_1.3.png)
 
 Can check, modify, and delete details of registered maintenance.
 Input items are same as Registration page, and Delete button is also available.
@@ -95,7 +92,7 @@ To register maintenance again with similar content, you may copy and paste for a
 
 ## Notice
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Notice1_1.2.png)
+![gamebase_op_06_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_op_06_201812_en.png)
 
 Provides pop-up notifications during app execution. The pop-ups will show before logins; in case of errors in external authentication or game server, pop-ups need to be registered.
 Can easily check the list of registered notifications with status and search messages.
@@ -109,7 +106,7 @@ Status of notice is classified into three as below.
 
 Click 'Register' on the main screen to register notices.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Notice2_1.0.png)
+![gamebase_op_07_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_op_07_201812_en.png)
 
 #### (1) Target
 
@@ -119,7 +116,7 @@ Select a target to show notification.
 - Some Clients: When only a particular client version requires maintenance. Click 'Select a Version' to show the list of client versions registered in the client menu.
   **Example of selecting particular clients**
   Can select a client status and all for each store, and select a client version for maintenance and press OK.
-  ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance4_1.3.png)
+  ![gamebase_op_05_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812_en.png)
 
 
 #### (2) Target Country
@@ -160,13 +157,10 @@ Specify a type of button to show at the bottom of a notice pop-up.
 
 
 #### Example of a Notice Pop-up
-(1) Close
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Notice_popup_close_1.1.png)
-(2) Close + More
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Notice_popup_close_detail_1.0.png)
+Close (left), Close+More (right)
+![gamebase_op_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_08_201812.png)
 
 ### Modify Notice
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Notice3_1.1.png)
 
 Can check, modify, and delete details of notification.
 Input items are same as registration, and Delete button is provided to delete a notice.

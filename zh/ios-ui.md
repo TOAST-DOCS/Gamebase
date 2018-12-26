@@ -1,24 +1,24 @@
-## Game > Gamebase > iOS Developer's Guide > UI
+## Game > Gamebase > iOS SDK 使用指南 > UI
 
 ## WebView
 
-Gamebase supports a default WebView.<br/>
+Gamebase支持基本WebView。<br/>
 <br/>
-WebView-related resources (images, html, and others) are included to Gamebase.bundle.
+Gamebase.bundle包含与WebView相关的资源（图像和html，其他资源）。
 
 ### Show WebView
 
-Shows a WebView.<br/>
+显示WebView。<br/>
 
-##### Required Parameters
-* url : The url delivered as a parameter should be valid.
-* viewController : WebView is displayed on the View Controller.
+##### Required 参数
+* url : 作为参数发送的url必须是有效值。
+* viewController : View Controller用于显示WebView。
 
-##### Optional Parameters
-* configuration : Changes WebView layout by using GamebaseWebViewConfiguration.
-* closeCompletion : Notifies users with a callback when a WebView is closed.
-* schemeList : Specifies the list of customized schemes a user wants.
-* schemeEvent : Notifies url including customized scheme specified by the schemeList with a callback.
+##### 可选参数
+* configuration : 可以使用GamebaseWebViewConfiguration更改WebView的布局。
+* closeCompletion : WebView关闭时通过回调通知用户。
+* schemeList : 指定用户想要接收的自定义SchemeList。
+* schemeEvent : 用schemeList指定的包含自定义Scheme的url，作为回调通知。
 
 
 ```objectivec
@@ -41,9 +41,8 @@ Shows a WebView.<br/>
 ```
 
 
-#### Custom WebView
-Shows a customized WebView.<br/>
-Can configure a customzed WebView by using TCGBWebViewConfiguration.
+#### 自定义WebView
+显示自定义WebView。<br/>可以用GamebaseWebViewConfiguration设置自定义WebView。
 
 ```objectivec
 - (void)showFixedOrientationWebView:(id)sender {
@@ -78,23 +77,23 @@ Can configure a customzed WebView by using TCGBWebViewConfiguration.
 
 #### Custom Scheme 
 
-Can apply scheme to use specific functions on a webpage of Gamebase Webview or change content.
+您可以用amebase WebView加载的网页中利用scheme使用某些功能或更改网页内容。
 
 ##### Predefined Custom Scheme
 
-Gamebase has specified following schemes.<br/>
+在Gamebase中指定的架构。<br/>
 
-| scheme               | Usage                     |
+| scheme               | 作用                     |
 | -------------------- | ---------------------- |
-| gamebase://dismiss   | Close WebView             |
-| gamebase://goBack    | Go back from WebView          |
-| gamebase://getUserId | Show ID of a user who is currently logged-in |
+| gamebase://dismiss   | 关闭WebView             |
+| gamebase://goBack    | 返回WebView         |
+| gamebase://getUserId | 显示当前登录用户的ID |
 
 
 
 #### User Custom Scheme
 
-Can add customized functions by specifying scheme names and blocks in Gamebase.
+您可以通过在Gamebase中指定模式名称和块来添加所需的功能。
 
 
 ```objectivec
@@ -124,21 +123,21 @@ Can add customized functions by specifying scheme names and blocks in Gamebase.
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| navigationBarTitle                     | string                                   | Title of WebView        |
-| orientationMask                        | TCGBWebViewOrientationUnspecified        | Unspecified                |
-|                                        | TCGBWebViewOrientationPortrait           | Portrait Mode              |
-|                                        | TCGBWebViewOrientationPortraitUpsideDown | Reverse Portrait      |
-|                                        | TCGBWebViewOrientationLandscapeRight     | Landscape Mode              |
-|                                        | TCGBWebViewOrientationLandscapeLeft      | Reverse Landscape     |
-| navigationBarColor                     | UIColor                                  | Color of Navigation Bar         |
-| isBackButtonVisible                    | YES or NO                                | Activate/Deactivate Go Back Button |
-| navigationBarHeight                    | CGFloat                                  | Height of Navigation Bar         |
-| goBackImagePathForFullScreenNavigation | file name in Gamebase.bundle             | Image of Go Back Button       |
-| closeImagePathForFullScreenNavigation  | file name in Gamebase.bundle             | Image of Close Button          |
+| navigationBarTitle                     | string                                   | WebView的标题        |
+| orientationMask                        | TCGBWebViewOrientationUnspecified        | 不明               |
+|                                        | TCGBWebViewOrientationPortrait           | 纵向模式              |
+|                                        | TCGBWebViewOrientationPortraitUpsideDown | 纵向旋转180度     |
+|                                        | TCGBWebViewOrientationLandscapeRight     | 横向模式              |
+|                                        | TCGBWebViewOrientationLandscapeLeft      |横向旋转180度     |
+| navigationBarColor                     | UIColor                                  | 导航栏颜色         |
+| isBackButtonVisible                    | YES or NO                                | 返回按钮有效或无效 |
+| navigationBarHeight                    | CGFloat                                  | 导航栏高度     |
+| goBackImagePathForFullScreenNavigation | file name in Gamebase.bundle             | 返回按钮图标      |
+| closeImagePathForFullScreenNavigation  | file name in Gamebase.bundle             | 关闭按钮图标          |
 
 
 ### Close WebView
-Close currently displayed WebView by using the following API.
+通过以下API，可以关闭正在显示的WebView。
 
 ```objectivec
 // Close the gamebase web view
@@ -150,7 +149,7 @@ Close currently displayed WebView by using the following API.
 
 ## Open External Browser
 
-다음 API를 통하여 외부 브라우저를 열 수 있습니다. 파라미터로 전송되는 URL은 유효한 값이어야 합니다.
+可以使用以下API打开外部浏览器。作为参数传递的URL必须是有效值。
 
 ```objectivec
 // Open the url with Browser
@@ -163,12 +162,12 @@ Close currently displayed WebView by using the following API.
 
 ## Alert
 
-Displays a system alert.<br/>
-Internally process UIAlertController for iOS 8 or higher and UIAlertView for below iOS 8 versions.<br/>
+可以显示系统提醒。<br/>
+iOS 8或更高版本上可以运行的UIAlertControlle，和iOS 8以下的版本可以运行的UIAlertView可进行内部处理。<br/>
 
 #### Types of Alert
-1. Provides only one 'OK' button, and its click brings Completion.
-2. Provides only one 'OK' button, which does not provide Completion.
+1. 只提供一个“确定”按钮，单击确定按钮将调用completion。
+2. 只提供一个“确定”按钮，并且不提供completion。
 
 ```objectivec
 
@@ -187,18 +186,18 @@ Internally process UIAlertController for iOS 8 or higher and UIAlertView for bel
 
 ## Toast
 
-Displays [Android Toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) messages, by using the following API.<br/>
-Simple messages with display time can be set.
+可以使用以下API轻松显示 [Android 토스트(toast)](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)消息。<br/>
+可以设置简单的消息和显示的时间。
 
 ```objectivec
 - (void)showToastMessage:(id)sender {
-    // Show message for 3 seconds  (deprecated API)
+    // 显示消息3秒钟 (deprecated API)
     [TCGBUtil showToastWithMessage:@"TOAST MESSAGE" duration:3];
     
-    // Show message for long time (3.5 seconds)
+    // 显示较长时间消息（3.5秒）
     [TCGBUtil showToastWithMessage:@"TOAST MESSAGE with enum long" length:GamebaseToastLengthLong]; 
     
-    // Show message for short time (2 seconds)
+    // 显示较短时间消息（2秒）
     [TCGBUtil showToastWithMessage:@"TOAST MESSAGE with enum short" length:GamebaseToastLengthShort];
 }
 ```
@@ -207,9 +206,9 @@ Simple messages with display time can be set.
 ## Error Handling
 
 
-| Error                           | Error Code | Description                 |
+| Error                           | Error Code | 描述                 |
 | ------------------------------- | ---------- | --------------------------- |
-| TCGB\_ERROR\_UI\_UNKNOWN\_ERROR | 6999       | Unknown error (Undefined error). |
+| TCGB\_ERROR\_UI\_UNKNOWN\_ERROR | 6999       | 未知错误(未定义的错误)。|
 
-* Refer to the following document for the entire error codes.
-    * [Entire Error Codes](./error-code/#client-sdk)
+* 所有错误代码，请参考以下文档。
+    * [错误代码](./error-code/#client-sdk)

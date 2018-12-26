@@ -5,7 +5,7 @@ In Gamebase, push notifications are provided by applying TOAST Cloud Push servic
 
 ## Push
 Check push history delivered via Gamebase and registered list of push schedule.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push1_1.3.png)
+![gamebase_push_01_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_push_01_201812_en.png)
 Scheduled push delivery on the list can be cancelled from Push Details.
 
 ### Registered List
@@ -18,14 +18,14 @@ Currently, delivery schedule can only be cancelled; the modification function wi
 
 Select a push on the list of delivery history to retrieve details of delivered push messages.
 You can easily register by clicking the **Copy** button to use the registration information of the sent push.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push2_1.2.png)
+![gamebase_push_02_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_push_02_201812_en.png)
 
 
 ### Register Push
 
 Click **Register** to register a new push.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push3_1.1.png)
+![gamebase_push_03_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_push_03_201812_en.png)
 
 #### (1) Message Type
 > [Note]

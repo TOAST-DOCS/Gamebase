@@ -1,79 +1,78 @@
-## Game > Gamebase > Console Guide > Push
+## Game > Gamebase > 操控台使用指南> Push
 
-You can send push notification to app users.
-In Gamebase, push notifications are provided by applying TOAST Cloud Push service.
+
+您可以向应用用户发送推送消息。
+Gamebase使用TOAST Push功能发送推送消息。
 
 ## Push
-Check push history delivered via Gamebase and registered list of push schedule.
+您可以通过Gamebase确认已发送的推送记录和预约发送列表。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push1_1.3.png)
-Scheduled push delivery on the list can be cancelled from Push Details.
+推送计划明细里的列表可以在**Push Details**中取消发送。
 
 ### Registered List
 
-Select a push on the list of scheduled delivery to check expected delivery time and registration information.
-Currently, delivery schedule can only be cancelled; the modification function will be provided in close future.
-
+如果从推送计划列表中选择推送，则可以查看推送的预计发送时间和创建的信息。
+目前，只能直接取消预约，预计将会提供编辑已创建信息的功能。
 
 ### Send History
 
-Select a push on the list of delivery history to retrieve details of delivered push messages.
-You can easily register by clicking the **Copy** button to use the registration information of the sent push.
+您可以通过“推送记录”列表选择“推送”来查看已发推送的详细信息。
+通过单击**复制**按钮，可以利用已发推送的信息轻松创建推送。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push2_1.2.png)
 
-
+阿
 ### Register Push
 
-Click **Register** to register a new push.
+要创建新的Push，请单击**创建**按钮。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push3_1.1.png)
 
-#### (1) Message Type
-> [Note]
-> This function is provided in compliance with the Act on Promotion of Information and Communications Network set by the Government of Korea.
-> To deliver non-informative push messages, the messages should start with '(Ad)' and include contact information and how to cancel subscription.
+#### (1) 消息类型
+> [参考]
+> 提供此功能是为了遵守韩国的“信息和通信网络法案”。
+> 如果推送的不是信息类的消息，则消息必须以“（广告）”标题 ，并且消息必须包含联系方式以及取消订阅方法。
 
-- **Ad Messages**: Input messages are added with '(Ad)' to the header. In addition, secondary contact information and how to cancel subscription are delivered altogether. For ad push messages for all in Korea, be sure to deliver as 'ad' messages to abide by the act on promotion of information and communications network.
-- **Informative Messages**: Only input messages are delivered as push messages. Send as informative messages for non-Korean device users (when the USIM country code is not Korea).
+- **宣传性**：输入的消息将自动添加标题为“（广告）”。并将发送联系方式和取消订阅的方法。在韩国国内，全体发送广告类推送时，必须遵守通信网络法，将其作为“宣传性”消息来发送。
+- **信息性**：只推送输入的信息。 使用非韩国手机的用户（USIM国家代码不是韩语），将发送信息性消息。
 
-> <font color="red">[Caution]</font>
-> Please note if you enter '(Ad)' to messages after selecting Ad Messages, '(Ad)' will become duplicate.
+> <font color="red">[重要]</font>
+>  选择**宣传性**后，在输入消息中输入“（广告）”字样，则会重复短语“（广告）”，敬请注意。
 
-#### (2) Push Target
-Select a target to send push messages to.
+#### (2) 发送对象
+选择发送Push信息的对象
 
-- **All**: Select by operating system. Any user using a selected operating system shall receive push messages.
-- **Specific user**: Can be applied to send push messages to particular members only. Push messages are sent to a device in which push token is registered with an input user ID.
-- **Group**: Register the list of users who want message delivery in a file. The group delivery can be sent up to 10,000 persons at a time.
+- - **全体发送**：您可以通过操作系统进行选择。 使用所选操作系统的所有用户都将收到推送。
+- **仅发送给特定用户**：仅在将推送消息发送给特定用户时进行选择，推送消息将发送到，以输入的用户ID登记推送令牌的设备。
+- **群组发送**：发送消息的用户列表，可以使用包含用户列表的文件。群组发送一次最多可支持10,000人。
 
-#### (3) Type
-Select a cycle of delivery.
+#### (3) 发送类型
+选择发送周期。
 
-- **Immediate Delivery**: Send push messages immediately after registration
-- **Reservation Delivery**: Send push messages on reserved time. Further services such as repeated delivery (every day, every week, or every month) and local time-based delivery are to be provided. For instance, if you check 'Deliver by Local Time' and set time in '2017- 01-01 09:00', a Korean device user shallÍ receive a push message in '2017-01-01 09:00' in Korean time, while a British device user shall receive his own in '2017-01-01 09:00' in British time.
+- **立即发送**：创建后立即发出推送消息。
+- **预约发送**：在预定时间发出推送消息。如想根据设备的用户所在国家时间发送推送消息，请选择**按当地时间发送**。例如: 将时间设定为'2017-01-01 09:00',使用韩国手机的用户在韩国时间'2017-01-01 09:00'收到推送消息，使用英国手机的用户在英国时间'2017-01-01 09:00'收到推送消息。
 
-Repeated delivery services (every day, week, or month) are to be added for Reservation Delivery.
+预计将会追加重复发送(每日，每周，每月)的功能。
 
-#### (4) Target Country
-Select countries to send push messages to.
+#### (4)选择国家
+选择要发出推送信息的国家。
 
-- **All Countries** : Deliver to all users
-- **Selected Countries**: Deliver to users of selected countries only.
-  Enter a country code to add, then it will be automatically completed and entered. If there's no country code to enter, contact  [Customer Center](https://toast.com/support/inquiry).
+- **所有国家**：向所有用户发出推送信息。
+- **部分国家**：仅向所选国家的用户发出推送消息
+  输入您要添加的国家名，它将自动完成。如果没有所需国家，请您可以通过 [用户中心](https://toast.com/support/inquiry)与我们联系
 
-> [Note]
-> Criteria of Country Selection
-> Countries are selected on the basis of user's **USIM Country Code** ; when USIM is not available, countries set on **Device** are the target.
+> [参考]
+> 国家标准
+>以用户的 **USIM国家代码** 判断，如果没有USIM，将根据 **Device**中设置的地区显示推送消息。
 
-#### (5) Message
-Enter push messages to show to users.
-Messages can be registered in many languages, and for users who speak other languages than registered, default language is displayed. To add a language, click **'+'** on the right. For other languages that are not on the list, contact  [Customer Center](https://toast.com/support/inquiry).
+#### (5) 推送消息
+输入要显示给用户的推送消息。
+输入的消息可以使用多种语言，对于使用您输入语言以外的其他语言的用户，将选择默认语言作为显示语言. 单击右侧的 **+** 按钮可以添加语言。如果没有所需语言，您可以通过[用户中心](https://toast.com/support/inquiry)与我们联系，添加新语言。
 
-> [Note]
-> If push messages do not arrive on a device: in most cases,
-> it is because users have not registered push tokens. Please check if user's push token has been registered.
-> Refer to documents as below to setup push messages in other platforms.
+> [参考]
+> 发出了推送消息，但设备上没有收到信息时
+> 在大多数情况下，是因为未登记用户的推送令牌。 请确认是否已登记用户的推送令牌。
+> 平台上登记推送令牌方法，请参考以下文件。
 >
 > - [Android > Register Push](./aos-push/#2-register-push)
 > - [iOS > Register Push](./ios-push/#2-register-push)
 > - [Unity > Register Push](./unity-push/#2-register-push)
-

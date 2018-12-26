@@ -5,7 +5,7 @@ Gamebase에서는 TOAST Push 서비스를 사용해 푸시 알림을 발송합�
 
 ## Push
 Gamebase를 통해 발송된 푸시의 이력과 발송 예약으로 등록된 목록을 확인할 수 있습니다.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push1_1.3.png)
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_01_201812.png)
 발송 예정 내역에 있는 목록은 **Push Details**에서 전송을 취소할 수도 있습니다.
 
 ### Registered List
@@ -17,14 +17,14 @@ Gamebase를 통해 발송된 푸시의 이력과 발송 예약으로 등록된 �
 
 발송 이력 목록에서 푸시를 선택하면 전송된 푸시의 상세 내역을 조회할 수 있습니다.
 **복사** 버튼을 클릭하면 발송된 푸시의 등록 정보를 이용해 손쉽게 푸시를 등록할 수 있습니다.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push2_1.2.png)
+![gamebase_push_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_02_201812.png)
 
 
 ### Register Push
 
 새로운 푸시를 등록하려면 **등록** 버튼을 클릭합니다.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push3_1.1.png)
+![gamebase_push_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_03_201812.png)
 
 #### (1) 메시지 타입
 > [참고]

@@ -1,120 +1,119 @@
-## Game > Gamebase > Console Guide > Purchase
+## Game > Gamebase > 控制台使用指南 > IAP
 
-You can register information related to In-App Purchase (IAP) and retrieve details.
-In Gamebase, TOAST IAP service is provided.
+您可以注册应用程序内结算有关的信息并查看其历史记录。
+在Gamebase使用 TOAST IAP(In-App Purchase，应用程序内支付)服务。
 
 ## Store
 
-Register stores to sell products in games. 
-Register a new store on the **Store Information List** of the **Store** tab, or manage registered stores.
+为了在游戏内销售商品，添加应用商店。
+您可以在**Store** 选项卡中的**商店信息列表**中添加新商店或管理已添加的商店。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_App1_1.0.png)
 
 ### Register
 
-Click **Register** on the **Store Information List** to register a new store.
-
+添加新商店，请点击**商店信息列表**页面上的**添加**按钮。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_App2_1.0.png)
 
-* **Store**  Select an external store to register.  If it is not on the list, contact [Customer Center](https://toast.com/support/inquiry).
-* **App Name**   Enter the name of a game to register.
-* **Store App ID**   Enter information issued by store.
-* **Use or Not**  Select whether to use the store or not.
+* **商店**  选择要添加的外部商店，如果没有需要添加的商店，请联系 [客服中心](https://toast.com/support/inquiry)。
+* **App 名称** 输入要添加的游戏名称。
+* **Store App ID** 输入从商店获取的信息。
+* **使用与否**  选择是否使用商店。
 
 ### Modify
 
-Retrieve or modify detail information of registered stores on the list.
+您可以在查询列表中查询已添加商店的详细信息或更改信息。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_App3_1.0.png)
-- Select a registered store on the list to retrieve detail information.
-- Click **Modify** to modify information such as app name, store app, and use or not, but not store App ID.
-- Click **Delete** to delete information: only for the stores that are Not in Use.
+- 在查询目录中选择已添加的商店来查询详细信息。
+- 点击**编辑** 按钮可以编辑应用程序名称、商店应用程序和可用性信息，但Store App ID除外。
+- 点击**删除** 按钮可以删除商店信息。但，只能删除未使用的商店。
 
 ## Item
 
-Register items to sell at each store. 
-Register a new item on the **Store** tab, or manage registered stores. Items of all stores will show, and filtering is also available for each store.
+您可以添加在商店中出售的item。
+您可以在** Item ** 标签中添加新item或管理已添加的item。默认情况下，将显示所有商店的item，并且还可以使用各商店的筛选功能。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Item1_1.0.png)
 
 ### Register
 
-Click **Register** on the **Store Information List** to register a new item.
+要添加新item，请点击**商店信息列表**页面上的** 添加 **按钮。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Item2_1.0.png)
 
-* **Store**  Select an external store to register.  If it is not on the list, need to register the store first in the **Store** menu.
-* **Item Name** Enter the item information issued after store is registered.Can show the item name registered in the game.
-* **Store Item ID**Enter the name of an item to register.
-* **Use or Not**  Select whether to sell the item or not.
+* **商店** 选择要添加的外部商店。如果没有您要添加的商店，请先在**商店**菜单上添加商店。
+* **item名称** 输入您在添加商店后收到的商品信息。使用游戏中添加的item名称在app中显示。
+* **商店商品ID** 输入您要添加的item名称。
+* **使用与否** 选择是否出售该item。
 
 ### Modify
 
-Retrieve or modify detail information of registered items on the list.
+您可以在查询列表中查询已添加item的详细信息或更改信息。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Item3_1.0.png)
-- Select each item on the Item List to retrieve detail information.
-- Click **Modify** to change information except store information and item sequence.
-- Click **Delete** to delete item information.
+- 在查询列表中选择各item，则可以查询已添加item的详细信息。
+- 点击**编辑** 按钮可以更改除商店和 item以外的信息。
+- 点击**删除** 按钮可以删除item信息。
 
 ## Transactions
 
-Retrieve payment information.
+可以查询结算信息。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction1_1.4.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/Console_IAP_Transaction1_1.4.png)
 
-Retrieve payment information of choice, by using the search conditions as below.
-결제 내역은 우측 상단의 다운로드 버튼을 통해 언제든지 다운로드 받으실 수 있습니다.
+您可以使用以下搜索条件查询所需的付款信息。
+您可以随时点击右上角的“下载”按钮下载付款详细信息。
+#### 搜索条件
 
-### Search Conditions
+- **商店**: 已付款的商店信息
+- **日期**: 用户尝试购买的时间
+- **付款编号**: 用于区分Gamebase内支付的唯一编号
+- **item编号**: 用户在APP中购买的实际item编号（item编号可在“item”标签上确认）
+- **用户ID**: 付款的用户ID
+- **排列顺序**: 以记录时间为基准，进行升降排序
+- **付款状态**: 根据付款状态查看信息
 
-- **Store**: Information of a store where payment has been made
-- **Date**: Time when a user tried to purchase
-- **Payment Sequence**: Original number to identify payments within Gamebase
-- **Item Sequence**: Number of an item a user purchased in an app (can be found under the 'Item' tab.)
-- **User ID**: ID of a user who made payments
-- **Sort Order**: Ascending or descending order, by registration date
-- **결제상태**: 결제 상태를 기준으로 정보를 조회
+#### 搜索结果
+- **Transaction ID**: 用于区分Gamebase内支付的唯一编号
+- **商店**: 已付款的商店信息
+- **用户 ID**: 付款的用户ID
+- **item名称**: 用户在APP内购买的实际item名称
+- **价格**: 用户购买的item价格
+- **货币**: 用户购买时使用的货币类型
+- **消费状态**: 付款项目是否已付款
+- **付款状态**: 目前的付款进度
+- **Store Reference Key**: 商店发行的付款唯一编号
+- **付款日期**: 用户尝试购买或完成购买的时间
+- **退还日期**: 用户退还item的时间
 
-### Search Results
-- **Transaction ID**: Original number to identify payments within Gamebase
-- **Store**: Information of a store where payment has been made
-- **User ID**: ID of a user who made payments
-- **Item Name**: Name of an item a user purchased in an app
-- **Price**: Price of an item a user purchased
-- **Currency**: Type of currency used to purchase
-- **Consume**: Whether a paid item has been provided or not
-- **Payment Status**: Current status of payment
-- **Store Reference Key**: Original payment number issued at a store
-- **Reservation Date**: Time when a user tried or completed purchasing
-- **Refund Date**: Time when a user item was refunded
+#### 变更付款状态
+查询付款信息的状态如下所示。
 
-### 결제 상태 변경
-조회된 결제정보의 상태는 아래와 같으며 각각의 상태는 아래와 같습니다.
 - **Success**
-	- 결제 완료
-    - 결제 처리가 정상적으로 완료됬을 경우를 의미합니다.
-    - Refund상태로 변경 가능합니다.
+	- 完成付款
+    - 这意味着付款流程已正常完成。
+    - 可以变更为Refund状态。
 - **Reserved**
-	- 결제 진행중
-	- 스토어를 통한 결제가 더이상의 진행이 되지 않거나 결제검증까지 진행되지 않은 경우를 의미합니다.
-	- Success, Refund상태로 변경 가능합니다.
+	- 正在进行付款
+	- 这意味着通过商店付款不再进行或尚未进行验证
+	- 可以变更为Success, Refund状态
 - **Failure**
-	- 결제 검증 실패
-	- 스토어에서 결제를 진행했으나 결제검증에서 오류가 난 경우를 의미합니다.
-	- Success, Refund상태로 변경 가능합니다.
+	- 付款验证失败
+	- 这意味着在商店付款过程中验证失败。
+	- 可以变更为Success, Refund状态。
 - **Refund**
-	- 환불 완료
-	- 관리자가 수동으로 마켓에서 환불처리에 대한 여부를 업데이트한 경우입니다.
-	- 다른 결제상태로 변경이 불가능합니다.
+	- 完成退款
+	- 管理员已在商店中手动处理,是否准许退还请求。
+	- 无法更改为其他付款状态。
 
-#### Success 변경
+##### Success 变更
+
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction2_1.0.png)
-결제 진행시 발급받은 **영수증 번호**, **가격**, **통화**정보를 입력해야 상태 변경이 가능합니다.
+您可以通过输入付款时收到的**发票编号**, **价格**, **货币**信息来更改状态。
 
-#### Refund 변경
+##### Refund 变更
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction2_2.0.png)
-별다른 추가정보의 입력 없이 상태를 선택한 후 변경을 선택합니다.
-변경된 결제 정보는 이후 변경이 불가능하므로 신중하게 확인 후 진행해야 합니다.
-
-### 영수증 검증
+不必输入其他追加信息，确认状态后选择变更即可。
+您更改的付款信息无法再次更改，因此需要仔细检查信息。
+#### 영수증 검증
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction3.1.png)
 * 조회된 영수증을 기반으로 해당 결제건이 유효한 지 검증할 수 있습니다.
 * 각 필드의 비교결과를 알려주며 스토어로부터 받은 응답값을 Json형식으로 제공하므로 필요한 경우 데이터를 직접 확인하실 수 있습니다.

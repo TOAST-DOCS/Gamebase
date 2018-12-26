@@ -244,6 +244,7 @@ public void SetPromotionIAPHandler()
 
 1. TestFlight로 App을 설치합니다.
 2. 아래와 같은 URL Scheme을 호출하여, 테스트를 진행합니다.
+
 | URL Components | keyname | value |
 | --- | --- | --- |
 | scheme | itms-services | 고정값 |

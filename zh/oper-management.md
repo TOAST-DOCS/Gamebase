@@ -1,89 +1,89 @@
-## Game > Gamebase > Console Guide > Management
+## Game > Gamebase > 操控台使用指南 >  管理
 
-You can manage search authority on Gamebase games, set alarm delivery, and retrieve alarm history.
+可对使用Gamebase 的游戏，使用查询权限管理、报警发送设置、查询报警记录等功能。
 
 
 
 ## Authorization
 
-Authority of Gamebase Console can be managed.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Authorization1_1.2.png)
+您可以管理Gamebase Console使用权限。
+![image 1320alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Authorization1_1.2.png)
 
-* Manage authority of Gamebase Console
-  * **Access to sales status** : Access to **IAP** menu
-  * **Access to management menu** : Access authority to other menu
-* To register a new member, go to **TOAST Console Page**.
-* Cannot modify your own authority.
+* Gamebase Console使用权限管理
+  * **销售情况的访问权限**：**付费** 菜单的访问权限
+  * **管理菜单的访问权限**：其他菜单的访问权限
+* 要注册新成员，您必须将其添加到TOAST项目成员管理中。
+* 您无法修改自己的权限。
+
   
-
 ## Alarm
 
-Gamebase Alarm notifies increase/decrease rate of game users, or change of initial number of concurrent access.
+您可以使用Gamebase的报警功能接收有关游戏用户增减率，最低同时在线用户数变化的报警。
 
 ### Alarm
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm1_1.7.png)
 
-#### (1) Activate Decrease Alarms
-Set whether to receive alarms for decreased concurrent access. To receive alarms, set **On** for Activate Decrease Alarms.
+#### (1) 启用减少报警
+设置同时在线用户数减少时是否接受报警。如需接收报警将 **启用减少报警**设置为 **On**。
 
-- **Decrease Rate**: Specify the percentage of decrease in concurrent access to send alarms.
-- **Ignore Alarms for Decrease due to maintenance**: The number of concurrent access cannot help but decrease while app is under maintenance.
-  In this case, set **On** for **Ignore Alarms for Decrease due to Maintenance** so as not to receive alarms.
+- **减少率**: 指定接收报警的同时在线用户数减少百分比。
+- **维护时忽略同时在线用户数减少报警**: 如果您在维护应用程序，同时在线用户数会减少。
+  在这种情况下，您可以将**忽略维护引起的减少报警** 设置为**On**，拒绝接受报警。
 
-#### (2) Activate Increase Alarms
-You may set to receive alarms when concurrent access increases.
-The operator can set criteria to receive alarms when the function is activated.
+#### (2) 启用增加报警
+您可以设置同时在线用户数增加时接受报警。
+启用该功能后，您可以设置管理员需要接收报警的值。
 
-#### (3) Message Language
-Select a language for alarm messages. Now only Korean and English are supported, and other languages will be added at the request.
+#### (3) 消息语言
+您可以选择报警发送的语种。目前仅支持韩语和英语消息，以后根据需求将会添加其他语言。
 
-#### (4) Minimum Number of Concurrent Access
-You can receive alarms when there is lower number of app access than specified **minimum number of concurrent access**. For example, if the **minimum number of concurrent access** is '500', you will receive an alarm when the number is lower than 500. You cannot set below 100 as it is the minimum number.
+#### (4)最低同时在线用户数
+当同时在线用户数少于指定的**最低同时在线用户数**时您可以收到报警。 例如，**最低同时在线用户数**设置为500名，如果同时在线用户数低于500，您将收到报警。最低设定值为100，不能设定小于100的值。
 
 ### Alarm Log
 
-In Alarm Log, which is under the Alarm Menu, you can retrieve history of alarm occurrences.
-Logs can be retrieved up to 30 days, and real-time filtering by using **Search** Textbox is also available.
+报警记录位于报警菜单下，您可以查询报警的历史记录。
+最多可以搜索30天以内的报警记录。查询后单击**Search**按钮，可以实时筛选。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm2_1.0.png)
 
-- Time of Occurrence: Time when an alarm is sent
-- Number of Previous Concurrent Access: Information of concurrent access collected before alarm is sent
-- Number of New Concurrent Access: Information of concurrent access collected at the moment when alarm is sent
-- Rate of Change (Value Set): Rate of change refers to the number of new concurrent access as compared to previous concurrent access. Value set is the value which has been set to deliver when alarm occurs.
+- 发生时间：发送报警的时间信息
+- 历史同时在线用户数:在发送报警之前收集的同时在线用户数
+- 新的同时在线用户数:发送报警的瞬间收集的同时在线用户数
+- 变化率（设定值）：前面提到的变化率是历史同时在线用户数与新的同时在线用户数对比信息。设定值是为了发生报警时发送而设定的值
 
 ### Webhook
-Webhook configuration is provided to receive alarms, other than SMS/Email as default Gamebase functions.
-When there is a request for alarm delivery via Webhook URL of an external system, alarm is sent altogether.
+除了Gamebase提供的默认SMS/Email外，还提供可以单独接收报警的Webhook设置功能。
+如果有通过外部系统的Webhook URL发出报警的请求，则会同时发送报警。
 
-#### (1) Retrieve List
+#### (1) 查询列表
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_1.1.png)
-Retrieve the list of registered webhooks that can receive alarms.
-When a registered webhook URL is required, click **Copy URL** on the right.
+您可以看到可以接收当前报警的Webhooks的注册详细信息。
+如果您需要已注册的Webhook URL，可以通过单击右侧的** Copy URL **轻松复制它。
 
-#### (2) Register
+#### (2) 注册
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_2.0.png)
-Click **Register** to register webhook information from external systems.
-Currently, only Dooray and Slack can be registered, and the list is to be added at the request.
+可以单击**注册** 按钮注册外部系统发放的Webhook信息。
+目前，只有Dooray和Slack可以注册，以后根据需求将会添加新列表。
 
-#### (2) Retrieve/Modify/Delete Details
+#### (2) 查询详细信息/修改/删除
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_3.1.png)
-Click each item to retrieve details.
-To change registered information, click **Modify**. You may click to **Delete** a webhook when it is not required.
+点击各个项目以查询详细信息。
+需要修改注册信息请点击**编辑**按钮。 如果您不需要此webhook，也可以通过 **删除** 按钮删除项目。
 
 ### Recipient List
 
-Alarm receivers can be configured. To register a new member, go to **TOAST Console > Project > Member Management**.
+设定接收报警的用户。要注册新成员，您必须将其添加到TOAST项目成员管理中。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm3_1.1.png)
-Gamebase allows to send alarms via email or SMS.
-In both cases, subscription information to TOAST are used for delivery; alarms may not be sent properly if there is any wrong information in email address or number. To check mobile phone information, go to **My Account** of TOAST Cloud.
+Gamebase可以通过电子邮件和SMS发送报警。
+使用您在注册TOAST时输入的信息发送电子邮件和SMS，如果输入了错误的电子邮件地址或电话号码，则有可能收不到报警。可以在TOAST**我的信息管理** 页面中确认电话号码信息。
 
-<br/>
+
 ## Config
 
-Integration between Gamebase and TOAST can be configured.
+您可以进行Gamebase和TOAST服务之间的联动相关设置。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Config1_1.0.png)
 
-You may set whether to receive information set in TOAST Launching all at once, when Gamebase Launching API is called. The function can be turned On or Off, only when you use the TOAST Launching service.
+您可以设置是否在调用 Gamebase Launching API时一并获取在TOAST Launching中设置的信息。 只有在使用TOAST Launching服务时才能打开或关闭此功能。
