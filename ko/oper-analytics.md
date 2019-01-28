@@ -9,9 +9,9 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 * 그룹 동접: Gamebase 서비스 이용자가 속한 프로젝트의 그룹 동접과 그룹별 기본 지표
 * 이용 환경: 설치 URL 호출에 대한 통계 지표
 
-## 실시간 모니터링
-### 실시간 동접
-![gamebase_analytics_01_201901_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_01_201901_1.png)
+## Real-time Monitoring
+### Concurrent User
+![gamebase_analytics_01_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_01_201901_2.png)
 
 현재 앱 이용자의 실시간 동접 지표 및 점검, 푸시 정보를 확인할 수 있습니다.
 
@@ -29,7 +29,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 앱 이용자들에게 푸시를 보냈다면, 푸시 정보를 확인할 수 있습니다.
 
 ### Dashboard
-![gamebase_analytics_02_201901_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_02_201901_1.png)
+![gamebase_analytics_02_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_02_201901_2.png)
 
 실시간 이용자 현황에 대한 여러 지표를 한눈에 확인할 수 있습니다.
 
@@ -59,9 +59,9 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 이용자의 OS, APP 버전, Store, 국가에 대한 점유율을 그래프로 확인할 수 있습니다.
 일자가 오늘이면 CCU를 기준으로, 이전 날이면 DAU를 기준으로 보여줍니다.
 
-## 이용자 지표
-### 이용자 지표
-![gamebase_analytics_03_201901_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_201901_1.png)
+## User Statistics
+### User
+![gamebase_analytics_03_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_201901_2.png)
 
 이용자의 기본 지표들을 확인할 수 있습니다.
 
@@ -80,28 +80,28 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 
 ※ MCU, 누적 이용자(ACU)의 경우 필터가 전체일 경우만 확인할 수 있습니다.
 
-### 이용환경
-![gamebase_analytics_04_201901_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_04_201901_1.png)
+### User Environment
+![gamebase_analytics_04_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_04_201901_2.png)
 
 이용 환경에 따른 이용자의 지표를 확인할 수 있습니다.
 
 * 조회 조건: OS, Country, Store, IdP, AppVersion, Device
 * 조회 값: DAU, NRU, PU, 결제금액
 
-### 유입/유출
-![gamebase_analytics_05_201901_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_05_201901_1.png)
+### User Inflow and Outflow
+![gamebase_analytics_05_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_05_201901_2.png)
 
 앱 이용자의 유입, 유출에 대한 일자별 추이를 확인할 수 있습니다.
 
 ### Retention
-![gamebase_analytics_06_201901_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_201901_1.png)
+![gamebase_analytics_06_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_201901_2.png)
 
 Retention은 특정 일에 가입한 이용자가 D+1일부터 D+90일까지 얼마나 잔존해 있는지를 보여주는 지표입니다.
 현재는 당일 탈퇴자를 포함하여 Retention 값을 보여주고 있습니다. 추후에 당일 탈퇴자를 제외한 기준의 Retention 도 제공할 예정입니다.
 
-## 매출 지표
-### 결제 금액
-![gamebase_analytics_07_201901_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_201901_1.png)
+## Sales Statistics
+### Payment Amount
+![gamebase_analytics_07_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_201901_2.png)
 
 결제 금액에 대한 지표를 확인할 수 있습니다.
 
@@ -113,8 +113,8 @@ Retention은 특정 일에 가입한 이용자가 D+1일부터 D+90일까지 얼
 일자별로 신규 매출, 재구매 매출, PU(결제 이용자)의 추이를 그래프로 확인할 수 있습니다.
 아래의 표에서는 국가별 매출을 확인할 수 있습니다.
 
-### 유료 이용자
-![gamebase_analytics_08_201901_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_08_201901_1.png)
+### Paying User
+![gamebase_analytics_08_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_08_201901_2.png)
 
 유료 이용자(PU)에 관한 지표를 확인할 수 있습니다.
 아래는 그래프와 표에 나온 용어 설명입니다.
@@ -127,8 +127,8 @@ Retention은 특정 일에 가입한 이용자가 D+1일부터 D+90일까지 얼
 * ARPPU: 결제 이용자 수의 평균 결제 금액 (결제 금액/PU)
 * ARPNPU: 신규 유료 이용자의 평균 결제 금액 (결제 금액/NPU)
 
-### 아이템 판매 지표
-![gamebase_analytics_09_201901_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_201901_1.png)
+### Item Sales
+![gamebase_analytics_09_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_201901_2.png)
 
 등록된 아이템의 판매 지표를 확인할 수 있습니다.
 
@@ -136,31 +136,31 @@ Retention은 특정 일에 가입한 이용자가 D+1일부터 D+90일까지 얼
 * 오른쪽 표는 스토어별 판매 비중을 보여줍니다.
 * 아래 표에서는 등록된 모든 아이템에 대한 판매 지표를 보여줍니다.
 
-### 첫 구매
-![gamebase_analytics_10_201901_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_201901_1.png)
+### First Purchase
+![gamebase_analytics_10_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_201901_2.png)
 
 신규 유료 이용자의 첫 구매에 관한 정보를 확인할 수 있습니다.
 신규 유료 이용자가 구입한 모든 아이템을 결제 금액 순으로 보여줍니다.
 
-## 그룹 동접
-### 그룹동접
-![gamebase_analytics_11_201901_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_11_201901_1.png)
+## Concurrent Group User
+### Concurrent Group User
+![gamebase_analytics_11_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_11_201901_2.png)
 
 Gamebase 서비스 이용자가 속한 모든 프로젝트의 동접 지표를 확인할 수 있습니다.
 
 실시간 그룹 동접 영역은 현재 시간을 기준으로 동접이 나타납니다.
 프로젝트 그룹 동접 영역은 선택된 날짜, 필터를 기준으로 앱 이용자 수가 나타납니다.
 
-### 그룹 비교 지표
-![gamebase_analytics_12_201901_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_12_201901_1.png)
+### Group Comparison
+![gamebase_analytics_12_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_12_201901_2.png)
 
 Gamebase 서비스 이용자가 속한 프로젝트들을 필터와 조합하여 그룹으로 비교할 수 있습니다.
 
 ※ 그래프에 표시되는 그룹명은 **{appId} _ {OS} _ {국가}** 형태입니다.
 
-## 이용환경
-### 설치 URL
-![gamebase_analytics_13_201901_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_13_201901_1.png)
+## Environment
+### Installed URL
+![gamebase_analytics_13_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_13_201901_2.png)
 
 설치 URL 호출에 대한 통계 지표를 확인할 수 있습니다.
 

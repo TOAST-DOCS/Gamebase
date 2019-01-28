@@ -32,6 +32,12 @@ Gamebase는 경고(warning)와 오류 로그만 표시합니다.
 >
 > 게임을 **릴리스**할 때는 반드시 소스 코드에서 setDebugMode: 호출을 제거하거나 파라미터를 NO로 바꿔 빌드하세요.
 
+디버그 설정은 Console에서도 가능하며 Console에서 설정된 값을 우선시합니다.
+Console 설정 방법은 아래 가이드를 참고하십시오.
+* [Console 테스트 단말기 설정](./oper-app/#test-device)
+* [Console Client 설정](./oper-app/#client)
+
+
 
 ### Initialize
 **application:didFinishLaunchingWithOptions:** 메서드에서 다음과 같이 초기화를 진행합니다.
