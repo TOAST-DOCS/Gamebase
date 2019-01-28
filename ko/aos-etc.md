@@ -486,3 +486,89 @@ public class MyObserverManager {
     ...
 }
 ```
+
+
+### Analytics
+
+Game지표를 Gamebase Server로 전송할 수 있습니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> Gamebase Analytics에서 지원하는 모든 API는 로그인 후에 호출이 가능합니다.
+>
+
+> [TIP]
+>
+> Gamebase.Purchase.requestPurchase() API를 호출하여 결제를 진행한 경우, 결제가 완료되면 자동으로 서버로 지표가 전송됩니다.
+>
+
+#### Game User Data Settings
+
+로그인 이후 유저 레벨 정보를 설정할 수 있습니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> 게임 로그인 이후 setGameUserData API를 호출하지 않으면 다른 지표에서 Level 정보가 누락될 수 있습니다.
+>
+
+API 호출에 필요한 파라미터는 아래와 같습니다.
+* GameUserData
+| Name                       | Mandatory(M) / Optional(O) | Desc |
+| -------------------------- | -------------------------- | ---- |
+| userLevel | M | 유저의 레벨입니다. |
+| channelId | O | 유저가 속해있는 채널 이름입니다. |
+| characterId | O | 유저의 캐릭터 아이디입니다. |
+
+**API**
+
+```java
+static void setGameUserData(GameUserData gameUserData)
+```
+
+**Example**
+
+``` java
+public void onLoginSuccess(, String channelId, String characterId) {
+    int userLevel = 10;
+    String channelId, characterId;
+
+    GameUserData gameUserData = new GameUserData(userLevel);
+    gameUserData.channelId = channelId; // Optional
+    gameUserData.characterId = characterId; // Optional
+
+    Gamebase.Analytics.setGameUserData(gameUserData);
+}
+```
+
+#### Level Up Trace
+
+레벨업이 되었을 경우 유저 레벨 정보를 변경할 수 있습니다.
+
+API 호출에 필요한 파라미터는 아래와 같습니다.
+* LevelUpData
+| Name                       | Mandatory(M) / Optional(O) | Desc |
+| -------------------------- | -------------------------- | ---- |
+| userLevel | M | 레벨업 완료후의 유저 레벨입니다. |
+| levelUpTime | O | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
+| channelId | O | 유저가 속해있는 채널 이름입니다. |
+| characterId | O | 유저의 캐릭터 아이디입니다. |
+
+
+**API**
+
+```java
+static void TraceLevelUp(GamebaseRequest.Analytics.LevelUpData levelUpData)
+```
+
+**Example**
+
+``` java
+public void onLevelUp(int userLevel, long levelUpTime, String channelId, String characterId) {
+    LevelUpData levelUpData = new LevelUpData(userLevel);
+    levelUpData.levelUpTime = levelUpTime; // Optional
+    levelUpData.channelId = channelId; // Optional
+    levelUpData.characterId = characterId; // Optional
+
+    Gamebase.Analytics.traceLevelUp(levelUpData);
+}
+```
