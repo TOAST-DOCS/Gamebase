@@ -13,7 +13,7 @@ IdP ID는 Id Provider에서 제공하는 아이디 정보로써 로그인 시 �
 
 
 ### Detail Information
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Member1_1.6.png)
+![image alt](./image/Operators_Guide/Console_Member_Member1_1.6.png)
 
 **User **
 
@@ -28,7 +28,7 @@ IdP ID는 Id Provider에서 제공하는 아이디 정보로써 로그인 시 �
 - **푸시 토큰**: 유저의 푸시 토큰 정보 조회.
 
 ####계정 상태 변경
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Member1_2.2.png)
+![image alt](./image/Operators_Guide/Console_Member_Member1_2.2.png)
 조회한 유저의 계정 상태를 변경할 수 있는 기능입니다.
 상태별 변경할 수 있는 경우는 아래와 같습니다.
 - **정상**: 이용정지, 탈퇴상태로 변경이 가능합니다. 탈퇴시에는 해당 계정정보를 되돌릴 수 없으므로 처리 전 확인 및 주의가 필요합니다.
@@ -52,17 +52,17 @@ Gamebaseでは、複数の外部IdPを連動することができます。つま
 * 제공 받는 유저가 GUEST정보만 가지고 있을 경우에는 새로운 Id Provider정보가 추가되면서 기존의 Guest정보는 유실되므로 작업 진행 시 주의가 필요합니다.
 * 제공 유저의 Id Provider 정보가 한개일 경우 해당작업을 진행하면 제공 유저 정보는 **유실**상태로 변경되어 더이상 사용할 수 없으므로 작업 진행 전 확인이 필요합니다.
 ##### 제공 전 예시
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_AddMapping_1.3.png)
+![image alt](./image/Operators_Guide/Console_Member_AddMapping_1.3.png)
 ##### 제공 후 예시
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_AddMapping_2.1.png)
+![image alt](./image/Operators_Guide/Console_Member_AddMapping_2.1.png)
 
 #### 매핑 해제
 다중 매핑이 이루어진 계정의 경우 요청에 따라 Id Provider 정보 연동을 해제할 수 있습니다.
 각각의 계정은 최소 1개의 연결정보가 존재해야 하므로 2개 이상의 연결정보가 존재할 때만 버튼이 활성화 됩니다.
 * 버튼을 누르면 아래와 같이 연결된 Id Provider 정보와 함께 매핑 해제 버튼이 노출됩니다.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_RemoveMapping_1.0.png)
+![image alt](./image/Operators_Guide/Console_Member_RemoveMapping_1.0.png)
 * 해제 버튼을 누를 경우 아래와 같이 최종 확인창과 함께 Id Provider 정보를 확인합니다. 확인버튼을 누르시면 매핑 해제가 진행됩니다.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_RemoveMapping_2.0.png)
+![image alt](./image/Operators_Guide/Console_Member_RemoveMapping_2.0.png)
 
 ### Login History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_LoginHistory1_1.2.png)
@@ -87,7 +87,7 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 - **etc**：その他、ログイン時に使用された上記項目以外の情報
 
 ### Mapping History
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_MappingHistory1_1.4.png)
+![image alt](./image/Operators_Guide/Console_Member_MappingHistory1_1.4.png)
 照会したユーザーのマッピング、マッピング解除履歴を照会します。直近3ヶ月(90日)間の履歴がすべて表示されます。
 
 - **IdP ID**：IdPログイン時に使用されるID情報
@@ -101,7 +101,7 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
   - OMG：IdPアカウント作成
 
 매핑된 IDP 이력을 클릭할 경우 해당 IdP를 기준으로 Gamebase ID에 매핑된 이력을 보여줍니다.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_MappingHistory1_2.1.png)
+![image alt](./image/Operators_Guide/Console_Member_MappingHistory1_2.1.png)
 
 ### Purchase History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_PurchaseHistory1_1.0.png)
@@ -139,6 +139,6 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 照会したい日付を入力して照会することができ、最大1ヶ月(30日)まで照会可能です。
 
 ### Withdraw History
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
+![image alt](./image/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
 조회한 사용자가 탈퇴한 사용자라면 탈퇴 이력을 보여줍니다.
 이 메뉴는 탈퇴 유저를 조회할 경우에만 나타나며 유저의 탈퇴경로를 조회할 수 있습니다.
