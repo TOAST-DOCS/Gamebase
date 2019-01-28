@@ -512,12 +512,14 @@ Game지표를 Gamebase Server로 전송할 수 있습니다.
 >
 
 API 호출에 필요한 파라미터는 아래와 같습니다.
-* GameUserData
-| Name                       | Mandatory(M) / Optional(O) | Desc |
-| -------------------------- | -------------------------- | ---- |
-| userLevel | M | 유저의 레벨입니다. |
-| channelId | O | 유저가 속해있는 채널 이름입니다. |
-| characterId | O | 유저의 캐릭터 아이디입니다. |
+
+**GameUserData**
+
+| Name                       | Mandatory(M) / Optional(O) | type | Desc |
+| -------------------------- | -------------------------- | ---- | ---- |
+| userLevel | M | int |  |
+| channelId | O | String |  |
+| characterId | O | String |  |
 
 **API**
 
@@ -545,13 +547,16 @@ public void onLoginSuccess(, String channelId, String characterId) {
 레벨업이 되었을 경우 유저 레벨 정보를 변경할 수 있습니다.
 
 API 호출에 필요한 파라미터는 아래와 같습니다.
-* LevelUpData
-| Name                       | Mandatory(M) / Optional(O) | Desc |
-| -------------------------- | -------------------------- | ---- |
-| userLevel | M | 레벨업 완료후의 유저 레벨입니다. |
-| levelUpTime | O | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
-| channelId | O | 유저가 속해있는 채널 이름입니다. |
-| characterId | O | 유저의 캐릭터 아이디입니다. |
+
+**LevelUpData**
+
+| Name                       | Mandatory(M) / Optional(O) | type | Desc	|
+| -------------------------- | -------------------------- | ---- | ---- |
+| userLevel | M | int |  |
+| levelUpTime | O | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
+| channelId | O | String |  |
+| characterId | O | String |  |
+
 
 
 **API**
