@@ -143,6 +143,6 @@ SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.
 원하는 날짜를 입력하여 조회할 수 있으며 조회가 가능한 최대 날짜는 1개월(30일)입니다.
 
 ### Withdraw History
-![image alt](./image/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
+![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
 조회한 사용자가 탈퇴한 사용자라면 탈퇴 이력을 보여줍니다.
 이 메뉴는 탈퇴 유저를 조회할 경우에만 나타나며 유저의 탈퇴경로를 조회할 수 있습니다.

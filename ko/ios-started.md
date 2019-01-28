@@ -7,7 +7,7 @@
 >
 > 최소사양 : iOS8 이상 또는 일부 IDP지원 시 iOS9 이상 <br/>
 > arm7, arm7s, arm64, i386, x86_64 지원 기기<br/>
-> Xcode9 이상
+> Xcode10 이상
 >
 
 
@@ -68,7 +68,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
     * libicucore.tbd (Gamebase SDK v1.1.5 이상에서 추가)
     * libz.tbd
     * libsqlite3.tbd
-    * libstdc++.tbd
+    * libc++.tbd
     * AdSupport.framework
     * ImageIO.framework
     * GameKit.framework

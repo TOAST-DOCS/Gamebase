@@ -60,9 +60,9 @@ Gamebase允许多个外部IdP协同工作。 换句话说，用户可以通过�
 * 제공 받는 유저가 GUEST정보만 가지고 있을 경우에는 새로운 Id Provider정보가 추가되면서 기존의 Guest정보는 유실되므로 작업 진행 시 주의가 필요합니다.
 * 제공 유저의 Id Provider 정보가 한개일 경우 해당작업을 진행하면 제공 유저 정보는 **유실**상태로 변경되어 더이상 사용할 수 없으므로 작업 진행 전 확인이 필요합니다.
 ##### 제공 전 예시
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/Console_Member_AddMapping_1.3.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_AddMapping_1.3.png)
 ##### 제공 후 예시
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/Console_Member_AddMapping_2.1.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_AddMapping_2.1.png)
 
 #### 매핑 해제
 다중 매핑이 이루어진 계정의 경우 요청에 따라 Id Provider 정보 연동을 해제할 수 있습니다.
@@ -70,7 +70,7 @@ Gamebase允许多个外部IdP协同工作。 换句话说，用户可以通过�
 * 버튼을 누르면 아래와 같이 연결된 Id Provider 정보와 함께 매핑 해제 버튼이 노출됩니다.
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_RemoveMapping_1.0.png)
 * 해제 버튼을 누를 경우 아래와 같이 최종 확인창과 함께 Id Provider 정보를 확인합니다. 확인버튼을 누르시면 매핑 해제가 진행됩니다.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/Console_Member_RemoveMapping_2.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_RemoveMapping_2.0.png)
 
 ### Login History
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_LoginHistory1_1.2.png)

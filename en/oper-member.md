@@ -147,6 +147,6 @@ Retrieve playtime of a searched user by date.
 Can search by date, and history data can be retrieved up to 1 month (30 days).
 
 ### Withdraw History
-![image alt](./image/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
+![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
 조회한 사용자가 탈퇴한 사용자라면 탈퇴 이력을 보여줍니다.
 이 메뉴는 탈퇴 유저를 조회할 경우에만 나타나며 유저의 탈퇴경로를 조회할 수 있습니다.

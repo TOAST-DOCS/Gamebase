@@ -57,7 +57,7 @@
 
 可以查询结算信息。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/Console_IAP_Transaction1_1.4.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction1_1.4.png)
 
 您可以使用以下搜索条件查询所需的付款信息。
 您可以随时点击右上角的“下载”按钮下载付款详细信息。
