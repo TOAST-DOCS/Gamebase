@@ -60,7 +60,7 @@ Idp별 자세한 설정 방법은 [Authentication Information](#authentication-i
 
 ### Test Device
 
-![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_02_201901.png)
+![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_02_201812.png)
 테스트 단말기로 등록되면 Gamebase를 사용하는 앱이 점검 중이어도 정상적으로 게임에 접근할 수 있습니다.
 테스트 단말기를 등록하려면 **Device Key**를 입력해야 합니다. 직접 입력하거나 **게임유저 ID**를 조회하여 등록할 수 있습니다.
 점검시 게임플레이가 가능할 수 있도록 하거나 단말기별 Debug Log 저장여부를 설정하여 테스트 단말기를 관리할 수 있습니다.
@@ -77,7 +77,7 @@ Idp별 자세한 설정 방법은 [Authentication Information](#authentication-i
 
 조회 화면에서 **등록** 버튼을 클릭하면 테스트 단말기를 등록할 수 있는 화면이 나타납니다. **Device Key**를 직접 입력하거나 **게임유저 ID**를 검색해 테스트 단말기를 등록할 수 있습니다.
 
-![gamebase_app_03_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_03_201812.png)
+![gamebase_app_03_201901.png](./image/Operators_guide/gamebase_app_02_201901.png)
 
 **(A) 게임유저 ID를 통한 등록**
 
@@ -367,7 +367,7 @@ LINE Login 기능을 사용하기 위하여, Xcode에 추가 설정이 필요합
 
 Gamebase Console에서 관리하는 클라이언트 등록 정보를 설명합니다.
 **클라이언트** 탭에서 **AOS 등록**, **iOS 등록** 버튼 등을 클릭하면 클라이언트 등록 화면이 나타납니다. 등록된 클라이언트의 입력값을 수정하거나 삭제하고 싶다면 아이콘 목록에서 아이콘을 클릭하거나 클라이언트 전체 목록에서 원하는 클라이언트를 선택하시면 됩니다.
-![gamebase_app_13_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_13_201901.png)
+![gamebase_app_13_201812.png](./image/Operators_Guide/gamebase_app_13_201901.png)
 #### (1) 스토어
 (<font color="red">필수</font>) 클라이언트를 배포할 스토어를 선택합니다. 
 운영체제별로 선택 가능한 스토어가 다릅니다.
