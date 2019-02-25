@@ -485,7 +485,9 @@ Analytics Console 사용법은 아래 가이드를 참고하십시오.
 >
 
 API 호출에 필요한 파라미터는 아래와 같습니다.
-* GameUserData
+
+**GameUserData**
+
 | Name                       | Mandatory(M) / Optional(O) | type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
 | userLevel | M | number |  |
@@ -523,7 +525,9 @@ function setGameUserData(userLevel, channelId, characterId) {
 레벨업이 되었을 경우 유저 레벨 정보를 지표로 전송할 수 있습니다.
 
 API 호출에 필요한 파라미터는 아래와 같습니다.
-* LevelUpData
+
+**LevelUpData**
+
 | Name                       | Mandatory(M) / Optional(O) | type | Desc	|
 | -------------------------- | -------------------------- | ---- | ---- |
 | userLevel | M | number |  |

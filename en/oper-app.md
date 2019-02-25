@@ -280,8 +280,8 @@ You need to set **service_name** which will be displayed in sign in agreement wi
 ```json
 { "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
 ```
-![gamebase_app_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
+![gamebase_app_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
 #### 6. Twitter
 

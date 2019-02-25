@@ -123,8 +123,6 @@ Can search by date, and history data can be retrieved up to 1 month (30 days).
 - **Reservation date**: Time when a user tried or completed purchasing
 - **Refund Date**: Time when a user item was refunded
 
-조회한 사용자의 상품 구입 내역을 조회합니다.
-원하는 날짜를 입력하여 조회할 수 있으며 조회 가능한 최대 날짜는 1개월(30일)입니다.
 
 ### Ban History
 ![gamebase_member_09_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_09_201812_en.png)

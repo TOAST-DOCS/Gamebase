@@ -32,6 +32,13 @@ To turn on system logs for the reference of development, call **[TCGBGamebase se
 >
 > Before **releasing** a game, be sure to delete setDebugMode call from a source code or change the parameter to NO.
 
+디버그 설정은 Console에서도 가능하며 Console에서 설정된 값을 우선시합니다.
+Console 설정 방법은 아래 가이드를 참고하십시오.
+
+* [Console 테스트 단말기 설정](./oper-app/#test-device)
+* [Console Client 설정](./oper-app/#client)
+
+
 
 ### Initialize
 Process initialization, in **application:didFinishLaunchingWithOptions:**.

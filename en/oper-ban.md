@@ -134,7 +134,6 @@ Can register a new template, or modify registered templates, but cannot delete t
 - The Message tab will show messages in 'Default Language' registered in Template.
 
 ### Register Template
-
 ![gamebase_ban_08_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_08_201812_en.png)
 
 #### (1) Name

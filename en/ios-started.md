@@ -7,7 +7,7 @@
 >
 > Minimum Requirements: iOS8 or 일부 IDP지원 시 iOS9 이상 <br/>
 > Supports arm7, arm7s, arm64, i386, x86_64<br/>
-> Xcode9 or higher
+> Xcode10 or higher
 >
 
 
@@ -68,7 +68,7 @@ By decompression, following SDKs will show, including Gamebase.framework.
     * libicucore.tbd (for Gamebase SDK v1.1.5 or higher)
     * libz.tbd
     * libsqlite3.tbd
-    * libstdc++.tbd
+    * libc++.tbd
     * AdSupport.framework
     * ImageIO.framework
     * GameKit.framework
