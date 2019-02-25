@@ -39,6 +39,12 @@ Setting for Gamebase debug.
 * False: Warning and error logs.
 * Default: False
 
+디버그 설정은 Console에서도 가능하며 Console에서 설정된 값을 우선시합니다.
+Console 설정 방법은 아래 가이드를 참고하십시오.
+
+* [Console 테스트 단말기 설정](./oper-app/#test-device)
+* [Console Client 설정](./oper-app/#client)
+
 To inquire about Gamebase, change the setting to True and send logs to [Customer Center](https://toast.com/support/inquiry) for a quick response.
 
 > <font color="red">[Caution]</font><br/>

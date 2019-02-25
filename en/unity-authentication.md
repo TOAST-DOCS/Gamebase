@@ -802,7 +802,8 @@ public void GetBanInfo()
 게스트 계정을 다른 단말기로 이전하기 위해 발급받는 키입니다.
 발급받은 TransferKey는 다른 기기에서 **requestTransfer** API를 호출하여 계정 이전을 할 수 있습니다.
 
-> `[주의]`
+> <font color="red">[주의]</font><br/>
+>
 > TransferKey는 게스트 로그인 상태에서만 발급이 가능합니다.
 > TransferKey를 이용한 계정 이전은 게스트 로그인 상태 또는 로그인되어 있지 않은 상태에서만 가능합니다.
 > 로그인한 게스트 계정이 이미 다른 외부 IdP (Google, Facebook, Payco 등) 계정과 매핑되어 있다면 계정 이전이 지원되지 않습니다.
@@ -852,7 +853,8 @@ public void IssueTransferKey(long expiresIn)
 계정 이전이 성공한 단말기에서는 TransferKey를 발급받았던 단말기의 게스트 계정을 계속해서 사용할 수 있습니다.
 
 
-> `[주의]`
+> <font color="red">[주의]</font><br/>
+>
 > 이미 Guest 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
 
 **API**
