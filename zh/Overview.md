@@ -1,11 +1,9 @@
 ## Game > Gamebase > 概述
 
-TOAST Gamebase，把常用的游戏功能，以集成SDK的形式来提供服务，从而可以轻松高效地进行游戏开发。
-游戏开发人员可以只专注于开发游戏内容，剩余的由Gamebase解决。
+充满信心地为您推荐拥有游戏平台领先企业NHN的10年经验的Gamebase。 
+只要应用Gamebase SDK，即可轻松地使用游戏中所需的常规服务。 
 
-Gamebase提供基本的游戏功能，如认证、支付和推送、游戏应用程序驱动时所需的数据管理、运营维护、通知等功能。此外，还提供Console，能够实现查询游戏内用户及禁用功能。并且，还提供客户感兴趣的基本指标以活用于游戏事业。
-
-以下是由Gamebase提供的主要功能与说明。
+![Gamebase_summary](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_01_201903_en.png)
 
 ## 主要功能
 
@@ -22,15 +20,15 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 
 以下是Gamebase支持的外部认证列表。
 
-| 外部认证          | 被提供的平台 |
-| ----------------- | ------------ |
-| Facebook          | iOS, Android |
-| Apple Game Center | iOS          |
-| Google            | iOS, Android |
-| PAYCO             | iOS, Android |
-| NAVER             | iOS, Android |
-| Twitter			| iOS, Android |
-| LINE				| iOS, Android |
+| 外部认证          | Android | iOS | Windows(based Unity) | Web(based JavaScript)    |
+| ----------------- | ------------ | ------------ | ------------ | ------------ |
+| Facebook          | O | O | O | O |
+| Apple Game Center | O | | | |
+| Google            | O | O | O | O |
+| PAYCO             | O | O | O | O |
+| NAVER             | O | O | O | O |
+| Twitter			| O | O | |  |
+| LINE				| O | O |  |  |
 
 * **提供游客登录。**
 游客登录，玩家无需输入任何信息，即可直接登录并启动游戏。由于游客登录，是使用了Gamebase发放的ID，所以客户可以管理用户的游戏数据，游戏不论OAuth登录用户和游客登录用户，均可统一管理不用进行区分。
@@ -49,6 +47,17 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 * [Android SDK 使用指南 > 认证](./aos-authentication)
 * [iOS SDK 使用指南 > 认证](./ios-authentication)
 * [Unity SDK 使用指南 > 认证](./unity-authentication)
+
+### Gamebase Analytics
+
+只要应用Gamebase SDK，即免费提供销售、用户、游戏平衡指标。 
+提供游戏中产生的销售、并发用户、用户、级别、道具销售等游戏事业与运营中必不可少的指标服务。 
+请快速应用，并积极地运用于服务中！
+![Gamebase_analytics](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_02_201903_en.png)
+
+#### Reference
+
+* [控制台使用指南 > Analytics](./oper-analytics) 
 
 ### Launching
 
@@ -128,7 +137,7 @@ Gamebase基本上支持全球游戏，并提供以下功能：
 
 ## 服务架构
 以下是Gamebase的服务架构图和简介
-![逻辑架构图](http://static.toastoven.net/prod_gamebase/Overview/img_logical_1.2.png)
+![逻辑架构图](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_201903_en.png)
 <br>
 
 | 组件名称        | 说明                                       |
@@ -163,12 +172,13 @@ Gamebase基本上支持全球游戏，并提供以下功能：
 | Logout                | 退出登录                                 | [[Android](./aos-authentication/#logout)]  [[iOS](./ios-authentication/#logout)] [[Unity](./unity-authentication/#logout)] |                                          |                                          |
 | Withdraw              | 退出游戏 <br> -  删除游戏用户的用户ID，浏览记录等所有信息 | [[Android](./aos-authentication/#withdraw)] [[iOS](./ios-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
 | Mapping               | 一个游戏用户ID映射多个IdP的功能        | [[Android](./aos-authentication/#mapping)] [[iOS](./ios-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |                                          |
+| Analytics                  | 实时指标, 销售指标, 用户指标, 平衡指标 | [[Android](./aos-etc/#analytics)] [[iOS](./ios-etc/#analytics)] [[Unity](./unity-etc/#analytics)] |                                          | [[Analytics]](./oper-analytics)  ||
 | Purchase(IAP)         | (TOAST联动服务) <br> 应用内结算 <br> - 支持商店：Google, App Store | [[Android](./aos-purchase/#purchase)] [[iOS](./ios-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- 注册商品](./oper-purchase/#item) <br> [- 查询结算信息](./oper-purchase/#transactions) |
 | 推送                  | (TOAST 连动服务) <br> 推送消息及确认结果 | [[Android](./aos-push/#push)] [[iOS](./ios-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- 实时、预约推送消息 |
 | 排行榜           | (TOAST联动服务) <br> 查询及注册大容量数据的实时排名 |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
 | Webview               |SDK提供默认的WebView UI<br/>提供系统弹出窗口和TOAST UI | [[Android](./aos-ui/#webview)] [[iOS](./ios-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
 | [管理员] Maintenance | (操作)维护功能                               |                                          | [[确认维护](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- 登记或取消维护 |
 | [管理员] Notice      | (操作) 紧急公告功能 <br> -  游戏用户运行应用时，可以以弹出窗口的形式查看公告的功能 |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>-登记公告 |
-| [管理员] Ban         | (操作) 游戏用户的登记和解除禁用状态<br> - 游戏用户的登记和解除禁用状态 | [[Android](./aos-authentication/#get-banned-user-information)] [[iOS](./ios-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -确认禁用用户信息 |                                          | [[Ban]](./oper-ban/#ban) <br/>-登记和解除禁用状态 |
+| [管理员] Ban         | (操作) 游戏用户的登记和解除禁用状态<br> - 游戏用户的登记和解除禁用状态 | [[Android](./aos-authentication/#get-banned-user-information)] [[iOS](./ios-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -确认禁用用户信息 |   [[게임 이용자의 이용정지 이력조회](./api-guide/#ban-histories)                                       | [[Ban]](./oper-ban/#ban) <br/>-登记和解除禁用状态 |
 
 

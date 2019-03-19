@@ -1,11 +1,9 @@
 ## Game > Gamebase > 개요
 
-TOAST Gamebase는 게임에서 공통으로 필요한 기능들을 통합 SDK로 제공하여 손쉽고 효율적으로 게임을 개발할 수 있도록 한 서비스입니다.
-게임 개발자는 게임 콘텐츠만 만드세요. 나머지는 Gamebase가 해결해 드립니다.
+게임플랫폼 선두기업 NHN 의 10년 노하우를 담은 Gamebase, 자신있게 추천합니다. 
+Gamebase SDK 만 적용하면,  모든 서비스를 손쉽게 이용 가능합니다. 
 
-Gamebase에서는 인증, 결제, 푸시 등 게임에 필요한 기본 기능뿐만 아니라 게임 앱 구동에 필요한 데이터 관리, 운영을 위한 점검, 공지 등의 기능을 제공합니다. 또한, 게임 내 사용자 조회 및 이용 정지 기능 등을 손쉽게 할 수 있도록 Console을 제공합니다. 그리고, 게임 사업에서 활용할 수 있도록 게임에서 관심 있는 기본적인 지표를 실시간으로 제공합니다.
-
-다음은 Gamebase에서 제공하는 주요 기능과 설명입니다.
+![Gamebase_summary](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_01_201903.png)
 
 ## Key Features
 
@@ -21,15 +19,15 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 
 다음은 Gamebase에서 지원하는 외부 인증 목록입니다.
 
-| 외부 인증             | 제공되는 플랫폼     |
-| ----------------- | ------------ |
-| Facebook          | iOS, Android |
-| Apple Game Center | iOS          |
-| Google            | iOS, Android |
-| PAYCO             | iOS, Android |
-| NAVER             | iOS, Android |
-| Twitter			| iOS, Android |
-| LINE				| iOS, Android |
+| 외부 인증             | Android | iOS | Windows(based Unity) | Web(based JavaScript)    |
+| ----------------- | ------------ | ------------ | ------------ | ------------ |
+| Facebook          | O | O | O | O |
+| Apple Game Center | O | | | |
+| Google            | O | O | O | O |
+| PAYCO             | O | O | O | O |
+| NAVER             | O | O | O | O |
+| Twitter			| O | O | |  |
+| LINE				| O | O |  |  |
 
 * **게스트 로그인을 제공합니다.**
   게스트 로그인을 이용하면 사용자는 아무런 입력 없이 바로 게임에 로그인하여 간편하게 게임을 시작할 수 있습니다. 게스트 로그인만으로도 Gamebase 사용자 아이디가 발급되므로 게임은 OAuth 로그인 사용자와 게스트 로그인 사용자의 구분 없이 동일하게 사용자의 게임 데이터를 관리할 수 있습니다.
@@ -48,6 +46,18 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 * [Android SDK 사용 가이드 > 인증](./aos-authentication)
 * [iOS SDK 사용 가이드 > 인증](./ios-authentication)
 * [Unity SDK 사용 가이드 > 인증](./unity-authentication)
+
+### Gamebase Analytics
+
+Gamebase SDK만 적용하면, 매출, 이용자, 게임밸런싱 지표를 무료로 제공합니다. 
+게임에서 발생하는 매출, 동접, 이용자, 레벨, 아이템 판매 등 게임 사업과 운영에  꼭 필요한 지표 서비스를 제공합니다. 
+빠르게 적용하시고 서비스에 적극 활용해보세요!
+![Gamebase_analytics](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_02_201903.png)
+
+#### Reference
+
+* [콘솔 사용 가이드 > Analytics](./oper-analytics) 
+
 
 ### Launching
 
@@ -83,25 +93,6 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 * **운영자의 현지 표준 시간대(local timezone)를 선택하여 손쉽게 시간 입력이 가능합니다.**
 	* 베트남에서 게임을 운영하는 경우, 베트남 표준 시간대(timezone)를 선택하여 베트남 시간 기준으로 입력할 수 있으므로, 한국 시간으로 변경하는 수고를 줄일 수 있습니다.
 
-### Standard Index(BI)
-
-* Gamebase Console에서 기본적인 운영 지표를 실시간으로 제공합니다.
-	* CCU(concurrent connected users): 실시간 동시 접속자 수
-	* MCU(maximum concurrent users): 하루 동안의 최대 동시 접속자 수(실시간과 일자별 조회 제공)
-	* DAU(daily active users): 하루 동안 게임을 사용한 순수 이용자 수(실시간과 일자별 조회 제공)
-	* NRU(newly registered uesrs): 하루 동안의 신규 사용자 수(실시간과 일자별 조회 제공)
-	* 점유율 차트: 게임 이용자의 운영체제별, 국가별, 게임 클라이언트 버전별 점유율을 파이 차트로 제공
-	* 동시 접속(동접) 변화 그래프: 하루 동안의 동접 변화량을 그래프로 제공하고 점검과 푸시 메시지 전송에 따른 그래프 변경도 한눈에 확인 가능
-* 권한 있는 여러 프로젝트의 지표를 한눈에 확인할 수 있도록 그룹 지표를 제공합니다.
-* 설치 URL 통계를 제공하여 일자별, 브라우저(Internet Explorer, Chrome등)별, 플랫폼(Windows, Android 등)별 설치 URL 호출 수 및 점유율을 제공합니다.
-* 게임의 매출 통계를 확인할 수 있는 판매 현황 화면을 제공합니다.
-	* 월별, 일자별, 스토어별 매출 합계를 제공
-	* 원하는 통화(KRW, USD 등)로 변경하여 확인 가능
-
-#### Reference
-
-* [콘솔 사용 가이드 > 운영 지표](./oper-operating-indicator) 
-
 ### Using the other TOAST Service
 
 * 게임에서 필요한 TOAST 서비스를 보다 쉽게 연동할 수 있도록 돕습니다. 
@@ -127,7 +118,7 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 
 ## Service Architecture
 다음은 Gamebase 서비스 구조도와 간단한 설명입니다.
-![논리 구성도](http://static.toastoven.net/prod_gamebase/Overview/img_logical_1.2.png)
+![논리 구성도](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_201903.png)
 <br>
 
 | 컴포넌트명           | 설명                                       |
@@ -159,15 +150,16 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 
 | Feature               | Description                              | Client                                   | Server                                   | Console                                  |
 | --------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| Login                 | 게스트, 3rd Party 인증 지원  <br> - 지원되는 IdP: Facebook, Google, Apple Game Center, PAYCO |  [[Android](./aos-authentication/#login)] [[iOS](./ios-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[토큰 검증](./api-guide/#token-authentication)] <br> [[회원 조회](./api-guide/#get-member)] | [[App] > 인증 정보 설정](./oper-app/#authentication-information) <br> [[Member] > 회원 조회](./oper-member/#member) <br> - 기본 정보, 로그인 이력, 플레이 시간, 결제 이력 등 |
+| Login                 | 게스트, 3rd Party 인증 지원  <br> - [지원되는 IdP](./Overview/#authentication) |  [[Android](./aos-authentication/#login)] [[iOS](./ios-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[토큰 검증](./api-guide/#token-authentication)] <br> [[회원 조회](./api-guide/#get-member)] | [[App] > 인증 정보 설정](./oper-app/#authentication-information) <br> [[Member] > 회원 조회](./oper-member/#member) <br> - 기본 정보, 로그인 이력, 플레이 시간, 결제 이력 등 |
 | Logout                | 로그아웃                                     | [[Android](./aos-authentication/#logout)]  [[iOS](./ios-authentication/#logout)] [[Unity](./unity-authentication/#logout)] |                                          |                                          |
 | Withdraw              | 게임 탈퇴 <br> -  게임 이용자의 사용자 ID, 매핑 정보 등 모든 정보 삭제 | [[Android](./aos-authentication/#withdraw)] [[iOS](./ios-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
-| Mapping               | 하나의 사용자 ID에 여러 개의 IdP를 연동하는 기능           | [[Android](./aos-authentication/#mapping)] [[iOS](./ios-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |                                          |
-| Purchase(IAP)         | (TOAST 서비스 연동) <br> 인앱 결제 <br> - 지원되는 스토어: Google, App Store | [[Android](./aos-purchase/#purchase)] [[iOS](./ios-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- 아이템 등록](./oper-purchase/#item) <br> [- 결제 정보 조회](./oper-purchase/#transactions) |
+| Mapping               | 하나의 사용자 ID에 여러 개의 IdP를 연동하는 기능           | [[Android](./aos-authentication/#mapping)] [[iOS](./ios-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |
+| Analytics                  | 실시간, 매출, 이용자, 밸런싱 지표 제공 | [[Android](./aos-etc/#analytics)] [[iOS](./ios-etc/#analytics)] [[Unity](./unity-etc/#analytics)] |                                          | [[Analytics]](./oper-analytics)  ||
+| Purchase(IAP)         | (TOAST 서비스 연동) <br> 인앱 결제  | [[Android](./aos-purchase/#purchase)] [[iOS](./ios-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- 아이템 등록](./oper-purchase/#item) <br> [- 결제 정보 조회](./oper-purchase/#transactions) |
 | Push                  | (TOAST 서비스 연동) <br> 푸시 메시지 전송 및 결과 확인 | [[Android](./aos-push/#push)] [[iOS](./ios-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- 실시간, 예약 푸시 발송 |
 | Leaderboard           | (TOAST 서비스 연동) <br> 실시간 대용량 랭킹 조회 및 등록 |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
 | Webview               | SDK에서 기본적인 WebView UI를 제공<br/>시스템 팝업, 토스트(toast) UI 제공 | [[Android](./aos-ui/#webview)] [[iOS](./ios-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
 | [Operator] Maintenance | (운영) 점검 기능                               |                                          | [[점검 여부 확인](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- 점검 등록, 점검 해제 |
 | [Operator] Notice      | (운영) 긴급 공지 기능 <br> -  게임 이용자가 앱을 실행할 때 팝업 형태로 공지 확인 가능 |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>-공지 등록 |
-| [Operator] Ban         | (운영) 게임 이용자의 이용 정지 등록 및 해제 <br> -  게임 이용자의 이용 정지 등록 및 해제 | [[Android](./aos-authentication/#get-banned-user-information)] [[iOS](./ios-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -이용 정지 게임 이용자 정보 확인 |                                          | [[Ban]](./oper-ban/#ban) <br/>-이용 정지 등록 및 해제 |
+| [Operator] Ban         | (운영) 게임 이용자의 이용 정지 등록 및 해제 <br> -  게임 이용자의 이용 정지 등록 및 해제 | [[Android](./aos-authentication/#get-banned-user-information)] [[iOS](./ios-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -이용 정지 게임 이용자 정보 확인 |    [[게임 이용자의 이용정지 이력조회](./api-guide/#ban-histories)                                      | [[Ban]](./oper-ban/#ban) <br/>-이용 정지 등록 및 해제 |
 
