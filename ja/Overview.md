@@ -114,12 +114,9 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
 | IdPトークン  | IdP SDKから認証した後に受け取るアクセストークン(access token)  |
 | IdPログイン| 外部IdPログイン(Facebook、Googleなど)           |
 
-<br/>
-
 ## Service Architecture
 次は、Gamebaseのサービス構造と簡単な説明です。
 ![論理構成図](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_201903_en.png)
-<br>
 
 | コンポーネント名           | 説明                                      |
 | --------------- | ---------------------------------------- |
@@ -131,7 +128,6 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
 ## Platform Guide
 
 ### Client Developer's Guide
-
 
 * [Android SDK ご利用ガイド](./aos-started/)
 * [iOS SDK ご利用ガイド](./ios-started/)
@@ -145,7 +141,6 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
 
 * [Console ご利用ガイド](./oper-operating-indicator/)
 
-<br/>
 ## Funtional Guide
 
 | Feature               | Description                              | Client                                   | Server                                   | Console                                  |
@@ -155,12 +150,12 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
 | Withdraw              | ゲーム退会 <br> -  ゲームユーザーのユーザーID、マッピング情報などすべての情報を削除 | [[Android](./aos-authentication/#withdraw)] [[iOS](./ios-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
 | Mapping               | 一つのユーザーIDに複数のIdPを連携する機能           | [[Android](./aos-authentication/#mapping)] [[iOS](./ios-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |                                          |
 | Analytics                  | リアルタイム指標, 売上指標, 利用者指標, バランシング指標 | [[Android](./aos-etc/#analytics)] [[iOS](./ios-etc/#analytics)] [[Unity](./unity-etc/#analytics)] |                                          | [[Analytics]](./oper-analytics)  ||
-| Purchase(IAP)         | (TOASTサービスの連携) <br> アプリ内決済 <br> - 対応ストア：Google、App Store | [[Android](./aos-purchase/#purchase)] [[iOS](./ios-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- アイテム登録](./oper-purchase/#item) <br> [- 決済情報の照会](./oper-purchase/#transactions) |
+| Purchase(IAP)         | (TOASTサービスの連携) <br> アプリ内決済  | [[Android](./aos-purchase/#purchase)] [[iOS](./ios-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- アイテム登録](./oper-purchase/#item) <br> [- 決済情報の照会](./oper-purchase/#transactions) |
 | Push                  | (TOASTサービスの連携) <br> Pushメッセージの送信及び結果の確認 | [[Android](./aos-push/#push)] [[iOS](./ios-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- リアルタイム、予約Push送信 |
 | Leaderboard           | (TOASTサービスの連携) <br> リアルタイムの大容量ランキング照会及び登録 |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
 | Webview               | SDKで基本的なWebView UIを提供<br/>システムポップアップ、トースト(toast) UIを提供 | [[Android](./aos-ui/#webview)] [[iOS](./ios-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
 | [Operator] Maintenance | (運営)メンテナンス機能                               |                                          | [[メンテナンス有無の確認](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- メンテナンス登録、メンテナンス解除 |
 | [Operator] Notice      | (運営)緊急のお知らせ機能 <br> -  ゲームユーザーがアプリを起動する際にポップアップ形式でお知らせの確認が可能 |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>-お知らせ登録 |
-| [Operator] Ban         | (運営)ゲームユーザー利用停止の登録及び解除 <br> -  ゲームユーザー利用停止の登録及び解除 | [[Android](./aos-authentication/#get-banned-user-information)] [[iOS](./ios-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -利用停止中のゲームユーザー情報の確認 |       [ゲーム利用者の利用停止履歴照会](./api-guide/#ban-histories)                                         | [[Ban]](./oper-ban/#ban) <br/>-利用停止の登録及び解除 |
+| [Operator] Ban         | (運営)ゲームユーザー利用停止の登録及び解除 <br> -  ゲームユーザー利用停止の登録及び解除 | [[Android](./aos-authentication/#get-banned-user-information)] [[iOS](./ios-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -利用停止中のゲームユーザー情報の確認 |       [[ゲーム利用者の利用停止履歴照会](./api-guide/#ban-histories)]                                         | [[Ban]](./oper-ban/#ban) <br/>-利用停止の登録及び解除 |
 
 

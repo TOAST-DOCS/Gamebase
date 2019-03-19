@@ -62,8 +62,8 @@ Apply them fast to the needs of your service!
 
 ### Launching
 
-A game app in service requires lots of information when it first launches. Gamebase provides data required to operate the game app during initial execution, which is called Launching.  <br/>
-Launching data can be set in the Gamebase Console in real time, and the changes can be checked when initializing SDK or at game launching status.<br/><br/>
+A game app in service requires lots of information when it first launches. Gamebase provides data required to operate the game app during initial execution, which is called Launching. 
+Launching data can be set in the Gamebase Console in real time, and the changes can be checked when initializing SDK or at game launching status.
 
 Following information is provided by Gamebase for launching.
 
@@ -96,15 +96,13 @@ Gamebase basically supports global games, and provides following functions to th
 
 ### Other TOAST Services
 
-* Supports easier interfaces to TOAST service that a game requires.<br/>
+* Supports easier interfaces to TOAST service that a game requires.
   * Gamebase provides wrapped APIs on the basis of Gamebase User IDs. Therefore, users don't need to make separate calls to each service's API.
   * [Notification > PUSH](http://www.toast.com/service/notification) : Integrated push service to send push messages
   * [Common > IAP](http://www.toast.com/service/iap) : Integrated In-App Purchase service
   * [Game > Leaderboard](http://www.toast.com/service/leaderboard) : Real-time large-capacity ranking service
   * [Security > AppGuard](https://cloud.toast.com/service/security) : Prevents code manipulation of applications in real time
 
-
-<br/>
 ## Glossary
 Gamebase service terms are as follows:
 
@@ -117,12 +115,9 @@ Gamebase service terms are as follows:
 | IdP Token  | Access token received from IdP SDK after authentication  |
 | IdP Login | Login with an external IdP (such as Facebook or Google)           |
 
-<br/>
-
 ## Service Architecture
 Below shows the service structure of Gamebase with simple description
 ![logical architecture](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_201903_en.png)
-<br>
 
 | Component           | Description                                       |
 | --------------- | ---------------------------------------- |
@@ -148,7 +143,6 @@ Below shows the service structure of Gamebase with simple description
 
 * [Console Guide](./oper-operating-indicator/)
 
-<br/>
 ## Funtional Guide
 
 | Feature               | Description                              | Client                                   | Server                                   | Console                                  |
