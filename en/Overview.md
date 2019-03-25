@@ -1,11 +1,9 @@
 ## Game > Gamebase > Overview
 
-TOAST Gamebase supports developing games with ease and efficiency by providing commonly-required game functions via integrated SDK.<br/>
-Game developers can focus on developing game content only, as Gamebase provides all the other services.
+Gamebase is a strongly recommended service as it embraces a decade's operational knowhow of NHN Entertainment, which is the leading game platform provider. 
+It only takes Gamebase SDK to make easy use of common game services.  
 
-Gamebase provides basic game functions like authentication, payment, and push; operational functions for a game app, like data management, maintenance, and notifications. Basic indicators of interest are also supported in real time for the whole game industry.
-
-Key functions of Gamebase and description are as follows:
+![Gamebase_summary](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_01_201903_en.png)
 
 ## Key Features
 
@@ -21,15 +19,15 @@ Gamebase supports OAuth login based on ID and passwords, using accounts of many 
 
 Following is the list of external authentication supported by Gamebase.
 
-| External Authentication             | Provided Platform     |
-| ----------------- | ------------ |
-| Facebook          | iOS, Android |
-| Apple Game Center | iOS          |
-| Google            | iOS, Android |
-| PAYCO             | iOS, Android |
-| NAVER             | iOS, Android |
-| Twitter			| iOS, Android |
-| LINE				| iOS, Android |
+| External Authentication             | Android | iOS | Windows(based Unity) | Web(based JavaScript)    |
+| ----------------- | ------------ | ------------ | ------------ | ------------ |
+| Facebook          | O | O | O | O |
+| Apple Game Center | O | | | |
+| Google            | O | O | O | O |
+| PAYCO             | O | O | O | O |
+| NAVER             | O | O | O | O |
+| Twitter			| O | O | |  |
+| LINE				| O | O |  |  |
 
 * **Provides guest logins.**
   With guest login, users can log in and start a game without any authentication required. As Gamebase user ID is issued even to guest users, game data can be managed for all users, regardless of OAuth or guest login
@@ -49,10 +47,23 @@ Following is the list of external authentication supported by Gamebase.
 * [iOS Developer Guide > Auth](./ios-authentication)
 * [Unity Developer Guide > Auth](./unity-authentication)
 
+
+### Gamebase Analytics
+
+With Gamebase SDK,indicators on sales, users, and game balancing are provided for free. 
+Necessary indicator services for game business and operations, including sales, concurrent access, users, level, and item sales, are provided. 
+Apply them fast to the needs of your service!
+![Gamebase_analytics](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_02_201903_en.png)
+
+#### Reference
+
+* [Operator Guide > Analytics](./oper-analytics) 
+
+
 ### Launching
 
-A game app in service requires lots of information when it first launches. Gamebase provides data required to operate the game app during initial execution, which is called Launching.  <br/>
-Launching data can be set in the Gamebase Console in real time, and the changes can be checked when initializing SDK or at game launching status.<br/><br/>
+A game app in service requires lots of information when it first launches. Gamebase provides data required to operate the game app during initial execution, which is called Launching. 
+Launching data can be set in the Gamebase Console in real time, and the changes can be checked when initializing SDK or at game launching status.
 
 Following information is provided by Gamebase for launching.
 
@@ -83,36 +94,15 @@ Gamebase basically supports global games, and provides following functions to th
 * Selects operator's local time zone to enter time at ease.
   * If a game is run in Vietnam, Vietnam’s time zone can be selected and entered, with no need to convert to Korean time.
 
-### Standard Indicators (BI)
-
-* The Gamebase Console provides basic operating indicators in real time: 
-  * Concurrent Connected User (CCU): Number of concurrently connected users in real time.
-  * Maximum Concurrent User (MCU): Maximum number of concurrently connected users of a day (can retrieve in real time and by date).
-  * Daily Active User (DAU): Net number of users who use game of a day (can retrieve in real time and by date).
-  * New Registered User (NRU): Number of new users of a day (can retrieve in real time and by date).
-  * Market Share Chart: Pie chart of market share by user's operating system, country, and game client's version.
-  * Graph of Concurrent Access Change: Change of concurrent access of a day on a graph. Can check graph changes due to maintenance and push message delivery at a glance.
-* Group indicator to find indicators of all projects at authority.
-* URL call counts and market share data per date, browser (Internet Explorer, Chrome, or others), and platform (Windows, Android, and etc.), by providing installation URL statistics.
-* Sales status page to check sales statistics of the game.
-  * Sum of sales by month, date, and store.
-  * Can check by the currency of choice: KRW or USD.
-
-#### Reference
-
-* [Console Guide > Operating indicator](./oper-operating-indicator) 
-
 ### Other TOAST Services
 
-* Supports easier interfaces to TOAST service that a game requires.<br/>
+* Supports easier interfaces to TOAST service that a game requires.
   * Gamebase provides wrapped APIs on the basis of Gamebase User IDs. Therefore, users don't need to make separate calls to each service's API.
   * [Notification > PUSH](http://www.toast.com/service/notification) : Integrated push service to send push messages
   * [Common > IAP](http://www.toast.com/service/iap) : Integrated In-App Purchase service
   * [Game > Leaderboard](http://www.toast.com/service/leaderboard) : Real-time large-capacity ranking service
   * [Security > AppGuard](https://cloud.toast.com/service/security) : Prevents code manipulation of applications in real time
 
-
-<br/>
 ## Glossary
 Gamebase service terms are as follows:
 
@@ -125,12 +115,9 @@ Gamebase service terms are as follows:
 | IdP Token  | Access token received from IdP SDK after authentication  |
 | IdP Login | Login with an external IdP (such as Facebook or Google)           |
 
-<br/>
-
 ## Service Architecture
 Below shows the service structure of Gamebase with simple description
-![논리 구성도](http://static.toastoven.net/prod_gamebase/Overview/img_logical_1.1.png)
-<br>
+![logical architecture](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_201903_en.png)
 
 | Component           | Description                                       |
 | --------------- | ---------------------------------------- |
@@ -156,20 +143,20 @@ Below shows the service structure of Gamebase with simple description
 
 * [Console Guide](./oper-operating-indicator/)
 
-<br/>
 ## Funtional Guide
 
 | Feature               | Description                              | Client                                   | Server                                   | Console                                  |
 | --------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| Login                 | Support Guest and 3rd Party authentication<br/>- Supported IdPs: Facebook, Google, Apple Game Center, PAYCO, and NAVER | [[iOS](./ios-authentication/#login)] [[Android](./aos-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[Token Authentication](./api-guide/#token-authentication)] <br> [[Retrieve Member](./api-guide/#get-member)] | [[App] > Setting Authentication Information](./oper-app/#authentication-information) <br> [[Member] > Retrieve](./oper-member/#member) <br> - Basic information, login history, playtime, purchase history, and etc. |
+| Login                 | Support Guest and 3rd Party authentication<br/>- [Supported IdPs](./Overview/#authentication) | [[iOS](./ios-authentication/#login)] [[Android](./aos-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[Token Authentication](./api-guide/#token-authentication)] <br> [[Retrieve Member](./api-guide/#get-member)] | [[App] > Setting Authentication Information](./oper-app/#authentication-information) <br> [[Member] > Retrieve](./oper-member/#member) <br> - Basic information, login history, playtime, purchase history, and etc. |
 | Logout                | Logout                                     | [[iOS](./ios-authentication/#logout)] [[Android](./aos-authentication/#logout)] [[Unity](./unity-authentication/#logout)] |                                          |                                          |
 | Withdraw              | Withdraw from a game<br/> - Delete all information of a game user, including user ID and mapping information | [[iOS](./ios-authentication/#withdraw)] [[Android](./aos-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
 | Mapping               | Integrate one user ID to many IdPs           | [[iOS](./ios-authentication/#mapping)] [[Android](./aos-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |                                          |
+| Analytics                  | - Real-time Indicators<br>- Sales Indicators<br>- User Indicators<br>- Balancing Indicators | [[Android](./aos-etc/#analytics)] [[iOS](./ios-etc/#analytics)] [[Unity](./unity-etc/#analytics)] |                                          | [[Analytics]](./oper-analytics)   ||
 | Purchase(IAP)         | (TOAST Integration) <br/> InApp Purchase <br/>- Supported stores: Google and App Store | [[iOS](./ios-purchase/#purchase)] [[Android](./aos-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- Register Items](./oper-purchase/#item) <br> [- Retrieve Transaction](./oper-purchase/#transactions) |
 | Push                  | (TOAST Integration) <br>Send push messages and check results | [[iOS](./ios-push/#push)] [[Android](./aos-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- Real-time delivery |
 | Leaderboard           | (TOAST Integration)<br> Retrieve and register real-time ranking of large-capacity data |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
 | Webview               | SDK provides default WebView UI<br/>Provides both system pop-up and TOAST UI | [[iOS](./ios-ui/#webview)] [[Android](./aos-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
 | [Operator] Maintenance | (Operational)  Maintenance                               |                                          | [[Check for Maintenance](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- Register or cancel maintenance |
 | [Operator] Notice      | (Operational) Urgent Notification <br> -  In pop-ups while user is executing an app |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>-Register Notice |
-| [Operator] Ban         | (Operational) Register/Release banned game users <br> -  Register/Release banned game users | [[iOS](./ios-authentication/#get-banned-user-information)][[Android](./aos-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -Check information of banned users |                                          | [[Ban]](./oper-ban/#ban) <br/>-Register and Release Ban |
+| [Operator] Ban         | (Operational) Register/Release banned game users <br> -  Register/Release banned game users | [[iOS](./ios-authentication/#get-banned-user-information)][[Android](./aos-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -Check information of banned users |   [[Retrieving the ban history of game users](./api-guide/#ban-histories)                                       | [[Ban]](./oper-ban/#ban) <br/>-Register and Release Ban |
 

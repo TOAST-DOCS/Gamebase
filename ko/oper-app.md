@@ -81,7 +81,6 @@ Idp별 자세한 설정 방법은 [Authentication Information](#authentication-i
 
 **(A) 게임유저 ID를 통한 등록**
 
-
 타입을 유저 ID로 선택하고 게임유저 ID를 입력하여 **검색** 버튼을 클릭하면 화면 하단에 사용자의 로그인 로그 내역이 조회됩니다. 조회된 내역에서 테스트 단말기로 등록하고자 하는 Device Key를 선택하여 **추가 정보**를 입력하여 **등록** 버튼을 클릭하면 해당 Device key가 테스트 단말기 정보로 등록됩니다.
 
 **(B)Device Key를 통한 등록**
@@ -332,7 +331,7 @@ LINE Login 기능을 사용하기 위하여, Xcode에 추가 설정이 필요합
 
 - Info.plist파일을 설정해야합니다.
 	* LINE에서 발급받은 ChannelID를 설정합니다.
-	```xml
+	```
 	<key>LineSDKConfig</key>
 	<dict>
     	<key>ChannelID</key>
@@ -340,7 +339,7 @@ LINE Login 기능을 사용하기 위하여, Xcode에 추가 설정이 필요합
 	</dict>
 	```
 	* ATS 설정을 위하여 scheme을 등록합니다.
-	```xml
+	```
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
     	<string>lineauth</string>
@@ -348,7 +347,7 @@ LINE Login 기능을 사용하기 위하여, Xcode에 추가 설정이 필요합
 	</array>
 	```
 - LINE Login을 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다. (인증 필요)
-* [LINK \[LINE Developer Guide\]](https://developers.line.me/en/docs/line-login/ios/try-line-login/)
+* [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
 
 
 
@@ -367,7 +366,7 @@ LINE Login 기능을 사용하기 위하여, Xcode에 추가 설정이 필요합
 
 Gamebase Console에서 관리하는 클라이언트 등록 정보를 설명합니다.
 **클라이언트** 탭에서 **AOS 등록**, **iOS 등록** 버튼 등을 클릭하면 클라이언트 등록 화면이 나타납니다. 등록된 클라이언트의 입력값을 수정하거나 삭제하고 싶다면 아이콘 목록에서 아이콘을 클릭하거나 클라이언트 전체 목록에서 원하는 클라이언트를 선택하시면 됩니다.
-![gamebase_app_13_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_13_201901.png)
+![gamebase_app_13_201812.png](./image/Operators_Guide/gamebase_app_13_201901.png)
 #### (1) 스토어
 (<font color="red">필수</font>) 클라이언트를 배포할 스토어를 선택합니다. 
 운영체제별로 선택 가능한 스토어가 다릅니다.
