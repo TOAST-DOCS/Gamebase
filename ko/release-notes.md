@@ -1,5 +1,29 @@
 ## Game > Gamebase > 릴리스 노트
 
+### 2019.3.26
+
+#### 기능 추가
+* TransferAccount 기능 추가: guest 사용자가 매핑없이 최대 2개의 키를 이용하여 새로운 기기로 이전할 수 있는 기능
+    - (SDK공통)추가된 API 
+		* TransferAccountInfo 발급 API (issueTransferAccount)
+		* 발급된 TransferAccountInfo를 사용하여 계정 이전을 요청하는 API (transferAccountWithIdPLogin)
+		* 발급된 TransferAccountInfo를 확인하는 API (queryTransferAccount)
+		* 이미 발급된 TransferAccountInfo 갱신하는 API (renewTransferAccount)		
+	- (Server API)
+		* 발급된 TransferAccount의 ID/PW 검증하는 서버 API (validateTransferAccount)
+    - (console)회원메뉴의 매핑이력조회 탭에서 Transfer 이력 확인이 가능
+* 강제매핑 기능 추가: 이미 다른 계정에 연동 되어있는 IdP계정을 매핑할 수 있는 기능
+	- (SDK공통)추가된 API 
+		* 강제매핑하는 API (addMappingForcibly)
+		
+#### 기능 개선/변경
+* [SDK] 2.2.0
+	* (Android) IAP SDK 버전을 최신버전인 v1.5.3 버전으로 업데이트
+	* (iOS) LINE SDK의 App 로그인 기능이 비활성화
+		* LINE SDK v4의 버그로 인해 iOS 12에서 앱 로그인이 실패 하는 이슈가 있어 Gamebase Line Adatper에서 Web 로그인만 지원하도록 변경
+	* (Unity) GamebaseMainActivity의 Package Name이 변경
+		* com.toast.gamebase.activity.GamebaseMainActivity -> com.toast.android.gamebase.activity.GamebaseMainActivity
+
 ### 2019.2.26
 
 #### 기능 개선/변경
