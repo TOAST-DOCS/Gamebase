@@ -522,7 +522,7 @@ private static void addMappingForFacebook(final Activity activity) {
                     }
                 }).start();
             } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                // Mapping을 시도하는 IDP계정이 이미 다른 계정에 연동되어 있습니다.
+                // Mapping을 시도하는 IdP계정이 이미 다른 계정에 연동되어 있습니다.
                 // 강제로 연동을 해제하기 위해서는 해당 계정의 탈퇴나 Mapping 해제를 하거나, 다음과 같이
                 // ForcingMappingTicket을 획득 후, addMappingForcibly() 메소드를 이용하여 강제 매핑을 시도합니다.
                 Log.e(TAG, "Add Mapping failed- ALREADY_MAPPED_TO_OTHER_MEMBER");
@@ -537,9 +537,9 @@ private static void addMappingForFacebook(final Activity activity) {
                     }
                 }
             } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP) {
-                // Mapping을 시도하는 IDP의 계정이 이미 추가되어 있습니다.
-                // Gamebase Mapping은 한 IDP당 하나의 계정만 연동 가능합니다.
-                // IDP 계정을 변경하려면 이미 연동중인 계정은 Mapping 해제를 해야 합니다.
+                // Mapping을 시도하는 IdP의 계정이 이미 추가되어 있습니다.
+                // Gamebase Mapping은 한 IdP당 하나의 계정만 연동 가능합니다.
+                // IdP 계정을 변경하려면 이미 연동중인 계정은 Mapping 해제를 해야 합니다.
                 Log.e(TAG, "Add Mapping failed- ALREADY_HAS_SAME_IDP");
             } else {
                 // 매핑 추가 실패
@@ -554,7 +554,7 @@ private static void addMappingForFacebook(final Activity activity) {
 
 ### Add Mapping with Credential
 
-게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스입니다.
+게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스입니다.
 
 * Credential 파라미터 설정방법
 
@@ -615,7 +615,7 @@ private static void addMappingWithCredential(final Activity activity) {
                     }
                 }).start();
             } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                // Mapping을 시도하는 IDP계정이 이미 다른 계정에 연동되어 있습니다.
+                // Mapping을 시도하는 IdP계정이 이미 다른 계정에 연동되어 있습니다.
                 // 강제로 연동을 해제하기 위해서는 해당 계정의 탈퇴나 Mapping 해제를 하거나, 다음과 같이
                 // ForcingMappingTicket을 획득 후, addMappingForcibly() 메소드를 이용하여 강제 매핑을 시도합니다.
                 Log.e(TAG, "Add Mapping failed- ALREADY_MAPPED_TO_OTHER_MEMBER");
@@ -630,9 +630,9 @@ private static void addMappingWithCredential(final Activity activity) {
                     }
                 }
             } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP) {
-                // Mapping을 시도하는 IDP의 계정이 이미 추가되어 있습니다.
-                // Gamebase Mapping은 한 IDP당 하나의 계정만 연동 가능합니다.
-                // IDP계정을 변경하려면 이미 연동중인 계정은 Mapping 해제를 해야 합니다.
+                // Mapping을 시도하는 IdP의 계정이 이미 추가되어 있습니다.
+                // Gamebase Mapping은 한 IdP당 하나의 계정만 연동 가능합니다.
+                // IdP계정을 변경하려면 이미 연동중인 계정은 Mapping 해제를 해야 합니다.
                 Log.e(TAG, "Add Mapping failed- ALREADY_HAS_SAME_IDP");
             } else {
                 // 매핑 추가 실패
@@ -705,7 +705,7 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
 **강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
 
-게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMappingForcibly를 호출 할 수 있는 인터페이스입니다.
+게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMappingForcibly를 호출 할 수 있는 인터페이스입니다.
 
 * Credential 파라미터 설정방법
 
@@ -786,7 +786,7 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 
 ### Remove Mapping
 
-특정 IDP에 대한 연동을 해제합니다. 만약, 현재 로그인 중인 계정을 해제하려고 하면 실패를 반환합니다.<br/>
+특정 IdP에 대한 연동을 해제합니다. 만약, 현재 로그인 중인 계정을 해제하려고 하면 실패를 반환합니다.<br/>
 연동 해제 후에는 Gamebase 내부에서, 해당 IdP에 대한 로그아웃을 처리합니다.
 
 **API**
@@ -875,7 +875,7 @@ BanInfo banInfo = Gamebase.getBanInfo();
 ```
 
 
-### Get Authentication Information for External IDP
+### Get Authentication Information for External IdP
 
 외부 인증 SDK에서 액세스 토큰, 사용자 ID, Profile 등의 정보를 가져올 수 있습니다.
 
@@ -976,7 +976,7 @@ Gamebase.queryTransferAccount(new GamebaseDataCallback<TransferAccountInfo>() {
 
 ### Renew TransferAccount
 이미 발급받은 TransferAccountInfo 정보를 갱신합니다.
-"자동 갱신", "수동 갱신"의 방법이 있으며, "PASSWORD만 갱신", "ID와 PASSWORD 모두 갱신" 등의 설정을 통해
+"자동 갱신", "수동 갱신"의 방법이 있으며, "Password만 갱신", "ID와 Password 모두 갱신" 등의 설정을 통해
 TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 ```java
@@ -1052,7 +1052,7 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 |                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
 |                | AUTH_ALREADY_IN_PROGRESS_ERROR           | 3010       | 이전 인증 프로세스가 완료되지 않았습니다. |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | 발급한 TransferAccount를 동일한 기기에서 사용했습니다. |
-|                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IDP가 연동되어 있습니다. |
+|                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IdP가 연동되어 있습니다. |
 |                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccount의 유효기간이 만료됐습니다. |
 |                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | 잘못된 TransferAccount를 여러번 입력하여 계정 이전 기능이 잠겼습니다. |
 |                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | TransferAccount의 Id가 유효하지 않습니다. |
@@ -1064,17 +1064,17 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 | Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED               | 3101       | 토큰 로그인에 실패했습니다.                          |
 |                | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | 토큰 정보가 유효하지 않습니다.                        |
 |                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 최근에 로그인한 IdP 정보가 없습니다.                   |
-| IDP Login      | AUTH\_IDP\_LOGIN\_FAILED                 | 3201       | IdP 로그인에 실패했습니다.                         |
+| IdP Login      | AUTH\_IDP\_LOGIN\_FAILED                 | 3201       | IdP 로그인에 실패했습니다.                         |
 |                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO     | 3202       | IdP 정보가 유효하지 않습니다. (Console에 해당 IdP 정보가 없습니다.) |
 | Add Mapping    | AUTH\_ADD\_MAPPING\_FAILED               | 3301       | 매핑 추가에 실패했습니다.                           |
 |                | AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | 이미 다른 멤버에 매핑돼 있습니다.                      |
 |                | AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | 이미 같은 IdP에 매핑돼 있습니다.                     |
 |                | AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO   | 3304       | IdP 정보가 유효하지 않습니다. (Console에 해당 IdP 정보가 없습니다.) |
-|                | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP    | 3305       | Guest IDP로는 AddMapping이 불가능합니다. |
+|                | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP    | 3305       | Guest IdP로는 AddMapping이 불가능합니다. |
 | Add Mapping Forcibly | AUTH_ADD_MAPPING_FORCIBLY_NOT_EXIST_KEY         | 3311       | 강제매핑키(ForcingMappingKey)가 존재하지 않습니다. <br/>ForcingMappingTicket을 다시 한번 확인해주세요. |
 |                      | AUTH_ADD_MAPPING_FORCIBLY_ALREADY_USED_KEY      | 3312       | 강제매핑키(ForcingMappingKey)가 이미 사용되었습니다. |
 |                      | AUTH_ADD_MAPPING_FORCIBLY_EXPIRED_KEY           | 3313       | 강제매핑키(ForcingMappingKey)의 유효기간이 만료되었습니다. |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_IDP         | 3314       | 강제매핑키(ForcingMappingKey)가 다른 IDP에 사용되었습니다. <br/>발급받은 ForcingMappingKey는 같은 IdP에 강제 매핑을 시도 하는데 사용됩니다. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_IDP         | 3314       | 강제매핑키(ForcingMappingKey)가 다른 IdP에 사용되었습니다. <br/>발급받은 ForcingMappingKey는 같은 IdP에 강제 매핑을 시도 하는데 사용됩니다. |
 |                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_AUTHKEY     | 3315       | 강제매핑키(ForcingMappingKey)가 다른 계정에 사용되었습니다. <br/>발급받은 ForcingMappingKey는 같은 IdP 및 계정에 강제 매핑을 시도 하는데 사용됩니다. |
 | Remove Mapping | AUTH\_REMOVE\_MAPPING\_FAILED            | 3401       | 매핑 삭제에 실패했습니다.                           |
 |                | AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | 마지막에 매핑된 IdP는 삭제할 수 없습니다.                |

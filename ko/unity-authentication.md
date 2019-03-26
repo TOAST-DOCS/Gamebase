@@ -494,7 +494,7 @@ public void AddMapping(string providerName)
 
 ### AddMapping with Credential
 
-게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증을 하고 발급받은 액세스 토큰등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스 입니다.
+게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증을 하고 발급받은 액세스 토큰등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스 입니다.
 
 * Credential 파라미터의 설정 방법
 
@@ -554,7 +554,136 @@ public void AddMappingWithCredential()
 }
 ```
 
+### Add Mapping Forcibly
+특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
+**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
 
+다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
+
+**API**
+
+```cs
+static void AddMappingForcibly(string providerName, string forcingMappingKey, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+```
+
+**Example**
+
+```cs
+public void AddMappingForcibly(string idPName)
+{
+    Gamebase.AddMapping(idPName, (authToken, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            // 매핑 추가 성공
+        }
+        else
+        {
+            // 우선 addMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
+            if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
+            {
+                // ForcingMappingTicket 클래스의 MakeForcingMappingTicket() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
+                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.MakeForcingMappingTicket(error);
+
+                // 강제 매핑을 시도합니다.
+                Gamebase.AddMappingForcibly(idPName, forcingMappingTicket.forcingMappingKey, (authTokenForcibly, errorForcibly) =>
+                {
+                    if (Gamebase.IsSuccess(error) == true)
+                    {
+                        // 강제 매핑 추가 성공
+                    }
+                    else
+                    {
+                        // 강제 매핑 추가 실패
+                        // 에러 코드를 확인하고 적절한 처리를 진행합니다.
+                    }
+                });
+            }
+            else
+            {
+                // 에러 코드를 확인하고 적절한 처리를 진행합니다.
+            }
+        }
+    });
+}
+```
+
+
+### Add Mapping Forcibly with Credential
+특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
+**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+
+게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMappingForcibly를 호출 할 수 있는 인터페이스입니다.
+
+* Credential 파라미터의 설정 방법
+
+| keyname | a use | 값 종류 |
+| ---------------------------------------- | ------------------------------------ | ------------------------------ |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                        |
+
+> [TIP]
+>
+> 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
+>
+
+
+> <font color="red">[주의]</font><br/>
+>
+> 외부 SDK에서 지원 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
+>
+
+다음은 강제 매핑을 시도하는 예시입니다.
+
+**API**
+
+```cs
+static void AddMappingForcibly(Dictionary<string, object> credentialInfo, string forcingMappingKey, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+```
+
+**Example**
+
+```cs
+public void AddMappingForcibly(Dictionary<string, object> credential)
+{
+    Gamebase.AddMapping(credential, (authToken, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            // 매핑 추가 성공
+        }
+        else
+        {
+            // 우선 addMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
+            if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
+            {
+                // ForcingMappingTicket 클래스의 MakeForcingMappingTicket() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
+                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.MakeForcingMappingTicket(error);
+
+                // 강제 매핑을 시도합니다.
+                Gamebase.AddMappingForcibly(credential, forcingMappingTicket.forcingMappingKey, (authTokenForcibly, errorForcibly) =>
+                {
+                    if (Gamebase.IsSuccess(error) == true)
+                    {
+                        // 강제 매핑 추가 성공
+                    }
+                    else
+                    {
+                        // 강제 매핑 추가 실패
+                        // 에러 코드를 확인하고 적절한 처리를 진행합니다.
+                    }
+                });
+            }
+            else
+            {
+                // Add Mapping Failed.
+                // 에러 코드를 확인하고 적절한 처리를 진행합니다.
+            }
+        }
+    });
+}
+```
 
 
 ### Remove Mapping
@@ -797,7 +926,145 @@ public void GetBanInfo()
 }
 ```
 
+## TransferAccount
+게스트 계정을 다른 단말기로 이전하기 위해 계정 이전을 위한 키를 발급받는 기능입니다.
 
+이 키를 **TransferAccountInfo** 라고 부릅니다.
+발급받은 TransferAccountInfo는 다른 기기에서 **requestTransferAccount** API를 호출하여 계정 이전을 할 수 있습니다.
+
+> <font color="red">[주의]</font><br/>
+> TransferAccountInfo의 발급은 게스트 로그인 상태에서만 발급이 가능합니다.
+> TransferAccountInfo를 이용한 계정 이전은 게스트 로그인 상태 또는 로그인되어 있지 않은 상태에서만 가능합니다.
+> 로그인한 게스트 계정이 이미 다른 외부 IdP (Google, Facebook, Payco 등) 계정과 매핑이 되어 있다면 계정 이전이 지원되지 않습니다.
+
+### Issue TransferAccount
+게스트 계정 이전을 위한 TransferAccountInfo를 발급합니다.
+
+**API**
+
+```cs
+static void IssueTransferAccount(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.TransferAccountInfo> callback)
+```
+
+**Example**
+
+```cs
+public void IssueTransferAccount()
+{
+    Gamebase.IssueTransferAccount((transfer, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            // Issuing TransferAccount success.
+        }
+        else
+        {
+            // Issuing TransferAccount failed.
+        }
+    });
+}
+```
+
+### Query TransferAccount
+게스트 계정 이전을 위해 이미 발급받은 TransferAccountInfo 정보를 게임베이스 서버에 질의합니다.
+
+**API**
+
+```cs
+static void QueryTransferAccount(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.TransferAccountInfo> callback)
+```
+
+**Example**
+
+```cs
+public void QueryTransferAccount()
+{
+    Gamebase.QueryTransferAccount((transfer, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            // Querying TransferAccount success.
+        }
+        else
+        {
+            // Querying TransferAccount failed.
+        }
+    });
+}
+```
+
+
+### Renew TransferAccount
+이미 발급받은 TransferAccountInfo 정보를 갱신합니다.
+"자동 갱신", "수동 갱신"의 방법이 있으며, "Password만 갱신", "ID와 Password 모두 갱신" 등의 설정을 통해
+TransferAccountInfo 정보를 갱신 할 수 있습니다.
+
+```cs
+static void RenewTransferAccount(GamebaseRequest.Auth.TransferAccountRenewConfiguration configuration, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.TransferAccountInfo> callback)
+```
+
+**Example**
+
+```cs
+public void RenewTransferAccountManualIdPassword(string accountId, string accountPassword)
+{
+    // 수동 설정
+    GamebaseRequest.Auth.TransferAccountRenewConfiguration configuration = GamebaseRequest.Auth.TransferAccountRenewConfiguration.MakeManualRenewConfiguration(accountId, accountPassword); // ID + Password
+    GamebaseRequest.Auth.TransferAccountRenewConfiguration configuration = GamebaseRequest.Auth.TransferAccountRenewConfiguration.MakeManualRenewConfiguration(accountPassword); // Password
+
+    // 자동 설정  
+    GamebaseRequest.Auth.TransferAccountRenewConfiguration configuration = GamebaseRequest.Auth.TransferAccountRenewConfiguration.MakeAutoRenewConfiguration(type);
+    
+    Gamebase.RenewTransferAccount(configuration, (transfer, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            // Renewing TransferAccount success.
+        }
+        else
+        {
+            // Renewing TransferAccount failed.
+        }
+    });
+}
+```
+
+
+
+
+### Transfer Guest Account to Another Device
+**issueTransfer** API로 발급받은 TransferAccount를 통해 계정을 이전하는 기능입니다.
+계정 이전 성공 시 TransferAccount를 발급받은 단말기에서 이전 완료 메시지가 표시될 수 있고, Guest 로그인 시 새로운 계정이 생성됩니다.
+계정 이전이 성공한 단말기에서는 TransferAccount를 발급받았던 단말기의 게스트 계정을 계속해서 사용할 수 있습니다.
+
+> <font color="red">[주의]</font><br/>
+> 이미 Guest 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
+
+**API**
+
+```cs
+static void TransferAccountWithIdPLogin(string accountId, string accountPassword, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+```
+
+**Example**
+
+```cs
+public void TransferAccountWithIdPLogin(string accountId, string accountPassword)
+{
+    Gamebase.TransferAccountWithIdPLogin(accountId, accountPassword, (authToken, error) => 
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            // Transfering Account success.
+            // TODO: implements post login process
+        }
+        else
+        {
+            // Transfering Account failed.
+        }
+    });
+}
+```
 
 ## Error Handling
 
@@ -809,6 +1076,16 @@ public void GetBanInfo()
 |  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
 |  | AUTH_NOT_EXIST_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
 |  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
+| TransferAccount| SAME\_REQUESTOR                          | 8          | 발급한 TransferAccount를 동일한 기기에서 사용했습니다. |
+|                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IdP가 연동되어 있습니다. |
+|                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccount의 유효기간이 만료됐습니다. |
+|                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | 잘못된 TransferAccount를 여러번 입력하여 계정 이전 기능이 잠겼습니다. |
+|                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | TransferAccount의 ID가 유효하지 않습니다. |
+|                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | TransferAccount의 Password가 유효하지 않습니다. |
+|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccount 설정이 되어있지 않습니다. <br/> TOAST Gamebase Console에서 먼저 설정해주세요. |
+|                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccount가 존재하지 않습니다. TransferAccount를 먼저 발급받아주세요. |
+|                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccount가 이미 존재합니다. |
+|                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount가 이미 사용되었습니다. |
 | Auth (Login) | AUTH_TOKEN_LOGIN_FAILED | 3101 | 토큰 로그인에 실패하였습니다. |
 |  | AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
 |  | AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | 최근에 로그인한 IdP 정보가 없습니다. |
@@ -818,6 +1095,12 @@ public void GetBanInfo()
 |  | AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | 이미 다른 멤버에 맵핑되어있습니다. |
 |  | AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | 이미 같은 IdP에 맵핑되어있습니다. |
 |  | AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | IdP 정보가 유효하지 않습니다. (Console에 해당 IdP 정보가 없습니다.) |
+|                | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP    | 3305       | Guest IdP로는 AddMapping이 불가능합니다. |
+| Add Mapping Forcibly | AUTH_ADD_MAPPING_FORCIBLY_NOT_EXIST_KEY         | 3311       | 강제매핑키(ForcingMappingKey)가 존재하지 않습니다. <br/>ForcingMappingTicket을 다시 한번 확인해주세요. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_ALREADY_USED_KEY      | 3312       | 강제매핑키(ForcingMappingKey)가 이미 사용되었습니다. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_EXPIRED_KEY           | 3313       | 강제매핑키(ForcingMappingKey)의 유효기간이 만료되었습니다. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_IDP         | 3314       | 강제매핑키(ForcingMappingKey)가 다른 IDP에 사용되었습니다. <br/>발급받은 ForcingMappingKey는 같은 IdP에 강제 매핑을 시도 하는데 사용됩니다. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_AUTHKEY     | 3315       | 강제매핑키(ForcingMappingKey)가 다른 계정에 사용되었습니다. <br/>발급받은 ForcingMappingKey는 같은 IdP 및 계정에 강제 매핑을 시도 하는데 사용됩니다. |
 | Remove Mapping | AUTH_REMOVE_MAPPING_FAILED | 3401 | 맵핑 삭제에 실패하였습니다. |
 |  | AUTH_REMOVE_MAPPING_LAST_MAPPED\_IDP | 3402 | 마지막에 맵핑된 IdP는 삭제할 수 없습니다. |
 |  | AUTH_REMOVE_MAPPING_LOGGED_IN\_IDP | 3403 | 현재 로그인 되어 있는 IdP 입니다. |

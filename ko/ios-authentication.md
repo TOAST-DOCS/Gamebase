@@ -370,7 +370,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 ### AddMapping with Credential
 
-게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스입니다.
+게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스입니다.
 
 
 
@@ -465,7 +465,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
 **강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
 
-게임에서 직접 ID Provider에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMappingForcibly를 호출 할 수 있는 인터페이스입니다.
+게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMappingForcibly를 호출 할 수 있는 인터페이스입니다.
 
 * Credential 파라미터 설정방법
 
@@ -546,7 +546,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 현재의 계정이 어떤 IdP들과 매핑되어 있는지 목록을 확인할 수 있습니다.
 
 ```objectivec
-// Obtaining Names of Mapping IDPs
+// Obtaining Names of Mapping IdPs
 NSArray* authMappingList = [TCGBGamebase authMappingList];
 ```
 
@@ -657,7 +657,7 @@ Gamebase Console에 제재된 게임 이용자로 등록될 경우,
 
 ### Renew TransferAccount
 이미 발급받은 TransferAccountInfo 정보를 갱신합니다.
-"자동 갱신", "수동 갱신"의 방법이 있으며, "PASSWORD만 갱신", "ID와 PASSWORD 모두 갱신" 등의 설정을 통해
+"자동 갱신", "수동 갱신"의 방법이 있으며, "Password만 갱신", "ID와 Password 모두 갱신" 등의 설정을 통해
 TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 ```objectivec
