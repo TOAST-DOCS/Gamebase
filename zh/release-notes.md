@@ -1,6 +1,12 @@
 ## Game > Gamebase > 릴리스 노트
 
-### 2019.3.26
+### 2019.04.02
+
+#### 버그수정
+* [SDK] 2.2.1
+	* (Unity) Unity Editor에서 Android 플랫폼을 선택하고 플레이를 하면 initialize시 서버에서 에러가 발생하는 이슈 수정
+
+### 2019.03.26
 
 #### 기능 추가
 * TransferAccount 기능 추가: guest 사용자가 매핑없이 최대 2개의 키를 이용하여 새로운 기기로 이전할 수 있는 기능
@@ -24,7 +30,7 @@
 	* (Unity) GamebaseMainActivity의 Package Name이 변경
 		* com.toast.gamebase.activity.GamebaseMainActivity -> com.toast.android.gamebase.activity.GamebaseMainActivity
 
-### 2019.2.26
+### 2019.02.26
 
 #### 기능 개선/변경
 * [SDK] 2.1.0
@@ -37,7 +43,7 @@
 	* (Android) Gamebase 초기화 이전, onActivityResult() 가 호출되면서 이상 동작하던 버그 수정
 	* (iOS) Gamecenter를 Gamebase가 아닌 다른 로직에의해 로그인 한 후, Gamebase를 통하여 Gamecenter로그인을 시도할 때, 반응이 없는 버그 수정
 
-### 2019.1.29
+### 2019.01.29
 
 ```
 Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데이트가 필요합니다.
