@@ -22,7 +22,7 @@ Following is the list of external authentication supported by Gamebase.
 | External Authentication             | Android | iOS | Windows(based Unity) | Web(based JavaScript)    |
 | ----------------- | ------------ | ------------ | ------------ | ------------ |
 | Facebook          | O | O | O | O |
-| Apple Game Center | O | | | |
+| Apple Game Center |  | O | | |
 | Google            | O | O | O | O |
 | PAYCO             | O | O | O | O |
 | NAVER             | O | O | O | O |
