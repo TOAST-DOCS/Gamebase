@@ -1,5 +1,20 @@
 ## Game > Gamebase > 릴리스 노트
 
+### 2019.04.11
+
+#### 기능 개선/변경
+* [SDK] 2.2.2
+	* (Unity)SDK 로그 개선
+* [Console]
+	* Analytics 메뉴 다국어 적용
+	* 보안검수 관련 취약점 패치	
+	
+#### 버그수정
+* [SDK] 2.2.2
+	* (Android)Gamebase 초기화 이전 TransferAccount API 호출시, 콜백이 오지 않는 이슈를 수정
+	* (iOS)showBlockingPopup을 NO로 설정 할 경우 Gamebase 초기화 콜백이 호출되지 않는 이슈를 수정
+	* (Unity)AddMappingForcibly API를 호출하면 크래쉬가 발생하여 수정
+
 ### 2019.04.02
 
 #### 버그수정
@@ -24,24 +39,24 @@
 		
 #### 기능 개선/변경
 * [SDK] 2.2.0
-	* (Android) IAP SDK 버전을 최신버전인 v1.5.3 버전으로 업데이트
-	* (iOS) LINE SDK의 App 로그인 기능이 비활성화
+	* (Android)IAP SDK 버전을 최신버전인 v1.5.3 버전으로 업데이트
+	* (iOS)LINE SDK의 App 로그인 기능이 비활성화
 		* LINE SDK v4의 버그로 인해 iOS 12에서 앱 로그인이 실패 하는 이슈가 있어 Gamebase Line Adatper에서 Web 로그인만 지원하도록 변경
-	* (Unity) GamebaseMainActivity의 Package Name이 변경
+	* (Unity)GamebaseMainActivity의 Package Name이 변경
 		* com.toast.gamebase.activity.GamebaseMainActivity -> com.toast.android.gamebase.activity.GamebaseMainActivity
 
 ### 2019.02.26
 
 #### 기능 개선/변경
 * [SDK] 2.1.0
-	* (공통) TransferKey API 삭제
+	* (공통)TransferKey API 삭제
 		* issueTransferKey : TransferKey 발급
 		* requestTransfer : TransferKey 검증
 		
 #### 버그수정
 * [SDK] 2.1.0
-	* (Android) Gamebase 초기화 이전, onActivityResult() 가 호출되면서 이상 동작하던 버그 수정
-	* (iOS) Gamecenter를 Gamebase가 아닌 다른 로직에의해 로그인 한 후, Gamebase를 통하여 Gamecenter로그인을 시도할 때, 반응이 없는 버그 수정
+	* (Android)Gamebase 초기화 이전, onActivityResult() 가 호출되면서 이상 동작하던 버그 수정
+	* (iOS)Gamecenter를 Gamebase가 아닌 다른 로직에의해 로그인 한 후, Gamebase를 통하여 Gamecenter로그인을 시도할 때, 반응이 없는 버그 수정
 
 ### 2019.01.29
 
@@ -54,23 +69,23 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	* Analytics : Gamebase 2.0 지표 신규 오픈
 	* 앱 : 클라이언트의 디버그 로그를 실시간으로 변경할 수 있는 기능 추가
 * [SDK] 2.0.0
-	* (공통) Custom 지표를 위한 API 추가 (구매 성공의 경우 SDK내부에서 자동 전송)
+	* (공통)Custom 지표를 위한 API 추가 (구매 성공의 경우 SDK내부에서 자동 전송)
 		* setGameUserData : 게임 로그인 이후 유저 레벨 정보 전송
 		* traceLevelUpData : 레벨업 추적을 위하여 게임 유저의 레벨업이 되었을 때 호출
-    * (JavaScript) SDK 신규 배포
+    * (JavaScript)SDK 신규 배포
 
 #### 기능 개선/변경
 * [SDK] 2.0.0
-	* (Android) Push SDK 업데이트(android:1.7.0)
-	* (Android) Adapter API 변경
+	* (Android)Push SDK 업데이트(android:1.7.0)
+	* (Android)Adapter API 변경
 		* Launching 정보 전달
 		* logout, withdraw API에 Callback 추가
-	* (iOS) IAP SDK 업데이트
+	* (iOS)IAP SDK 업데이트
 		* 결제 실패 시 간헐적으로 크래시가 발생하던 현상 수정
 
 #### 버그수정
 * [SDK] 2.0.0
-	* (iOS) iOS 12 이상의 시뮬레이터에서 debugMode On 상태로 Gamebase 초기화 시 크래시가 발생하던 현상 수정
+	* (iOS)iOS 12 이상의 시뮬레이터에서 debugMode On 상태로 Gamebase 초기화 시 크래시가 발생하던 현상 수정
 
 ### 2018.12.27
 
@@ -106,16 +121,16 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * Console
 	* 달력 다국어 지원 추가
 * [SDK] 1.14.2
-	* (Android) 점검시, 데이터구조에서 점검 시작/종료 시간을 의미하는 epoch time의 타입을 기존 String에서 long으로 타입 변경 : 기존 Gamebase Unity와 연동 후 점검 호출 시 타입불일치로 콜백이 내려오지 않는 현상으로 인한 수정
-	* (iOS) Provider Profile 획득 메서드 호출 시, 반환하는 TCGBAuthProviderProfile 객체의 description 메서드의 JSON 문자열 구조 변경으로 인하여 Gamebase iOS SDK 1.14.0와 Unity Plugin 1.14.0 적용시 crash가 발생될 수 있는 구조 수정
+	* (Android)점검시, 데이터구조에서 점검 시작/종료 시간을 의미하는 epoch time의 타입을 기존 String에서 long으로 타입 변경 : 기존 Gamebase Unity와 연동 후 점검 호출 시 타입불일치로 콜백이 내려오지 않는 현상으로 인한 수정
+	* (iOS)Provider Profile 획득 메서드 호출 시, 반환하는 TCGBAuthProviderProfile 객체의 description 메서드의 JSON 문자열 구조 변경으로 인하여 Gamebase iOS SDK 1.14.0와 Unity Plugin 1.14.0 적용시 crash가 발생될 수 있는 구조 수정
 
 #### 버그수정
 * Console
 	* 푸시 : 특정대상 발송 이후 등록된 푸시건을 복사하여 등록할 때 등록 실패하던 문제 수정	
 * [SDK] 1.14.2
-	* (Android) 에뮬레이터 환경에서 스토어앱(PlayStore, OneStore 등)이 없는 상태에서 "앱 설치/업데이트"시 스토어 미체크로 인한 crash 버그를 수정
-	* (Unity) ShowWebView API 호출시 파라메타에 Callback을 넣지 않으면 crash가 발생되는 부분 수정
-	* (Unity) iOS SDK의 Deleted API를 호출하는 코드가 있어 컴파일시 오류가 발생 되는 버그 수정
+	* (Android)에뮬레이터 환경에서 스토어앱(PlayStore, OneStore 등)이 없는 상태에서 "앱 설치/업데이트"시 스토어 미체크로 인한 crash 버그를 수정
+	* (Unity)ShowWebView API 호출시 파라메타에 Callback을 넣지 않으면 crash가 발생되는 부분 수정
+	* (Unity)iOS SDK의 Deleted API를 호출하는 코드가 있어 컴파일시 오류가 발생 되는 버그 수정
 	
 ### 2018.10.23
 
@@ -123,23 +138,23 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * Console
 	* IAP : 결제 정보메뉴에서 App Store 영수증 검증 기능 추가
 * [SDK] 1.14.0
-	* (공통) Gamebase Webview에서 파일첨부 기능 추가 : Android의 API 19, Kitcat 에서는 정상 동작하지 않습니다.
+	* (공통)Gamebase Webview에서 파일첨부 기능 추가 : Android의 API 19, Kitcat 에서는 정상 동작하지 않습니다.
 	
 #### 기능 개선/변경
 * Console
 	* IAP : 결제 정보메뉴에서 결제내역 다운로드 검색 조건 개선(1일 ->30일)
 * [SDK] 1.14.0
-	* (공통) 이용정지/점검에 대해 사용자가 콘솔에 작성한 메시지들을 URL 인코딩하여 전송하고 클라이언트에서 디코딩하여 처리하도록 수정
-	* (iOS) Payco SDK의 버전이 1.2.4로 업데이트 
-	* (Unity) GamebaseSDKSetting 오브젝트가 있는 씬으로 돌아갈 경우 오브젝트가 중복으로 생기지 않도록 개선
+	* (공통)이용정지/점검에 대해 사용자가 콘솔에 작성한 메시지들을 URL 인코딩하여 전송하고 클라이언트에서 디코딩하여 처리하도록 수정
+	* (iOS)Payco SDK의 버전이 1.2.4로 업데이트 
+	* (Unity)GamebaseSDKSetting 오브젝트가 있는 씬으로 돌아갈 경우 오브젝트가 중복으로 생기지 않도록 개선
 	* Remove API : Webview, Network, Launching
-		* (Android) 5개
+		* (Android)5개
 			- (void)Gamebase.WebView.showWebBrowser(Activity, String)
 			- (void)Gamebase.Network.addOnChangedListener(NetworkManager.OnChangedListener)
 			- (void)Gamebase.Network.removeOnChangedListener(NetworkManager.OnChangedListener)
 			- (void)Gamebase.Launching.addOnUpdatedListener(LaunchingOnUpdateListener)
 			- (void)Gamebase.Launching.removeOnUpdatedListener(LaunchingOnUpdateListener)
-		* (iOS) 9개
+		* (iOS)9개
 			- [TCGBUtil showToastWithMessage:duration:]
 			- [TCGBWebView showWebBrowserWithURL:viewController:]
 			- [TCGBWebView showWebViewWithURL:viewController:configuration:]
@@ -149,7 +164,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 			- [TCGBLaunching removeUpdateStatusNotification]
 			- [TCGBNetwork addObserverOnChangedNetworkStatusWithHandler:]
 			- [TCGBNetwork removeObserverOnChangedNetworkStatusWithHandler:]
-		* (Unity) 7개
+		* (Unity)7개
 			- ShowWebBrowser(string url)
 			- ShowWebView(GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration)
 			- ShowToast(string message, int duration)
@@ -159,19 +174,19 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 			- RemoveOnChangedStatusListener(GamebaseCallback.DataDelegate<GamebaseNetworkType> callback)
 			
 	* Deprecated  API 
-		* (Android) 2개
+		* (Android)2개
 			- (void)Gamebase.WebView.showWebView(Activity, String)
 			- (void)Gamebase.WebView.showWebView(Activity, String, GamebaseWebViewConfiguration)
-		* (iOS) 1개
+		* (iOS)1개
 			- [TCGBGamebase languageCode]
-		* (Unity) 1개
+		* (Unity)1개
 			- GetLanguageCode()
 * [SDK] Setting Tool		
 	* 팝업 및 UI 개선
 	
 #### 버그수정
 * [SDK] 1.14.1
-	* (Android) Auth API 호출 후 콜백에서 다시 Auth API 중복 호출시 정상 호출이 되지 않는 버그 수정
+	* (Android)Auth API 호출 후 콜백에서 다시 Auth API 중복 호출시 정상 호출이 되지 않는 버그 수정
 	
 ### 2018.10.11
 
@@ -192,25 +207,25 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	* 회원: 계정의 IdP 추가 및 삭제 기능 추가, IdP ID 검색 기능 추가
 	* 푸시: 푸시상태별로 발송이력 조회하는 기능 추가
 * [SDK] 1.13.0
-	* (iOS) App Store Promotion IAP를 지원하기 위한 API 추가
+	* (iOS)App Store Promotion IAP를 지원하기 위한 API 추가
 
 
 #### 기능 개선/변경
 * [SDK] 1.13.0
-	* (공통) IAP SDK 최신버전 적용 (android:1.5.1, iOS:1.6.0)
-	* (Android) Push API 호출 시, Gamebase 초기화/로그인 상태에 따라 호출 실패에 대한 에러 메시지를 보다 명확하게 개선
+	* (공통)IAP SDK 최신버전 적용 (android:1.5.1, iOS:1.6.0)
+	* (Android)Push API 호출 시, Gamebase 초기화/로그인 상태에 따라 호출 실패에 대한 에러 메시지를 보다 명확하게 개선
 		* 초기화 전 호출 : NOT_INITIALIZED(1)
 		* 초기화 이후 호출시 Push 모듈이 없음 : NOT_SUPPORTED(10)
 		* 초기화 성공 및 로그인 이전 호출 : NOT_LOGGED_IN(2)		
-	* (iOS) authProviderProfileWithIDPCode api의 호출 결과의 구조가 1depth로 변경 (Android, Unity와 통일)
-	* (Unity) 로그에서 보여주는 json 데이터를 알아보기 쉽도록 출력 포맷 개선
+	* (iOS)authProviderProfileWithIDPCode api의 호출 결과의 구조가 1depth로 변경 (Android, Unity와 통일)
+	* (Unity)로그에서 보여주는 json 데이터를 알아보기 쉽도록 출력 포맷 개선
 * Console
 	* 이용정지 : 앱가드를 이용한 이용정지 등록하는 UI 개선 - 기능 off시 데이터 초기화, Leaderboard 데이터 삭제 설정을 상태가 'on'인 경우에만 노출하도록 개선
 	
 #### 버그수정
 * [SDK] 1.13.0
-	* (Android) NaverCafe SDK와의 충돌로 Naver 로그인시 발생하던 오류 해결
-	* (Unity) Unity 2017.2 이상 버전에서 Editor Play Mode 종료 시 websocke close 처리에서 발생하던 오류 수정
+	* (Android)NaverCafe SDK와의 충돌로 Naver 로그인시 발생하던 오류 해결
+	* (Unity)Unity 2017.2 이상 버전에서 Editor Play Mode 종료 시 websocke close 처리에서 발생하던 오류 수정
 * Console
 	* App : 정보 수정시 삭제버튼 뒤의 내용이 잘리는 현상 수정
 		
@@ -223,10 +238,10 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 개선/변경
 * [SDK] 1.12.2
-	* (Android) WebSocket 타입아웃시 (API 호출 시간 경과), 크래시가 날 수 있는 버그에 대해 방어로직 처리
-	* (iOS) Google Auth Adapter, Naver Auth Adapter의 Callback URL Scheme 설정 개선
+	* (Android)WebSocket 타입아웃시 (API 호출 시간 경과), 크래시가 날 수 있는 버그에 대해 방어로직 처리
+	* (iOS)Google Auth Adapter, Naver Auth Adapter의 Callback URL Scheme 설정 개선
 		* 콘솔에 "url_scheme_ios_only" 값을 설정하지 않으면 Default URL Scheme을 설정 하도록 개선 : Default URL Scheme을 사용하기 위해서는 XCode > Target > Info > URL Types에 tcgb.{Bundle ID}.google 또는 tcgb.{Bundle ID}.naver 등록 필요
-	* (iOS) Payco Auth Adapter 개선
+	* (iOS)Payco Auth Adapter 개선
 		* URL Scheme 미설정으로 인해 의도치 않은 URL Scheme을 호출하던 문제 수정 : 설정 방법이 변경되어 업데이트를 위해서는 반드시 URL Scheme 설정 필요 (XCode > Target > Info > URL Types에 tcgb.{Bundle ID}.payco를 등록)
 * Console
 	* 회원 : 아이디 매핑 이력 조회 기능 추가(최근 3개월 조회 -> 조회기간 직접 설정하도록 변경)
@@ -234,36 +249,36 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	
 #### 버그수정
 * [SDK] 1.12.2
-	* (Android) auth-twitter-adapter 를 포함한 상태에서 TargetSdk 28로 빌드시 초기화 에러가 발생하는 문제 수정
+	* (Android)auth-twitter-adapter 를 포함한 상태에서 TargetSdk 28로 빌드시 초기화 에러가 발생하는 문제 수정
 
 ### 2018.08.09
 
 #### 기능 개선/변경
 * [SDK] 1.12.1
-	* (공통) IAP SDK 최신버전 적용 (1.5.0)
-	* (공통) Gamebase 점검페이지에서 점검시간을 단말기 설정 국가시간에 맞추어 노출하도록 개선
-	* (공통) 점검페이지를 외부 페이지로 사용할 때 Console에 입력한 점검 정보를 사용할 수 있도록 기능 추가
-	* (공통) IdP 매핑된 사용자의 Guest 매핑시도시 에러 발생(TCGB_ERROR_AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP)
-	* (공통) 인증 API 중복 호출시 에러 발생(AUTH_ALREADY_IN_PROGRESS_ERROR)
-	* (Android) TencentPush SDK 업데이트 (3.2.3)
-	* (Android) Onestore v17(API v5) 지원 : Gamebase에서는 v16(스토어코드=TS)은 제공하지 않습니다.
-	* (iOS) 에러코드 추가 : Gamecenter 로그인 거부(TCGB_ERROR_IOS_GAMECENTER_DENIED)
+	* (공통)IAP SDK 최신버전 적용 (1.5.0)
+	* (공통)Gamebase 점검페이지에서 점검시간을 단말기 설정 국가시간에 맞추어 노출하도록 개선
+	* (공통)점검페이지를 외부 페이지로 사용할 때 Console에 입력한 점검 정보를 사용할 수 있도록 기능 추가
+	* (공통)IdP 매핑된 사용자의 Guest 매핑시도시 에러 발생(TCGB_ERROR_AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP)
+	* (공통)인증 API 중복 호출시 에러 발생(AUTH_ALREADY_IN_PROGRESS_ERROR)
+	* (Android)TencentPush SDK 업데이트 (3.2.3)
+	* (Android)Onestore v17(API v5) 지원 : Gamebase에서는 v16(스토어코드=TS)은 제공하지 않습니다.
+	* (iOS)에러코드 추가 : Gamecenter 로그인 거부(TCGB_ERROR_IOS_GAMECENTER_DENIED)
 * [SDK] Setting Tool
 	* 폴더명 변경 : TOAST -> Toast
 	* 에러발생시 팝업 알림 추가 : File Download 실패, File Extract 실패, XML 파싱 실패
 	
 #### 버그수정
 * [SDK] 1.12.1
-	* (iOS) Naver 로그인 시 프로필 정보 조회 실패로 인해 로그인이 불가능한 버그 수정 : 프로필 정보 조회 실패하더라도 로그인은 성공하도록 변경	
+	* (iOS)Naver 로그인 시 프로필 정보 조회 실패로 인해 로그인이 불가능한 버그 수정 : 프로필 정보 조회 실패하더라도 로그인은 성공하도록 변경	
 * Console
-	* 결제 내역 : 'Reserved'상태에서 결제 상태 변경이 되지 않는 버그와 엑셀 다운로드 시 필터링이 적용되지 않던 문제 수정
+	* 결제 내역: 'Reserved'상태에서 결제 상태 변경이 되지 않는 버그와 엑셀 다운로드 시 필터링이 적용되지 않던 문제 수정
 	
 ### 2018.07.24
 
 #### 기능 개선/변경
 * [SDK] 1.12.0
-	* (iOS) Gamebase 초기화 시 Debug Log에 사용중인 Adapter들의 버전 정보, 앱의 빌드 정보를 출력하는 기능이 추가 
-	* (iOS) CocoaPods을 통해 배포 되는 Naver Auth Adapter에서 포함하고 있던 Naver ID Login SDK의 바이너리가 제거 되고 의존성 설정 방식으로 변경
+	* (iOS)Gamebase 초기화 시 Debug Log에 사용중인 Adapter들의 버전 정보, 앱의 빌드 정보를 출력하는 기능이 추가 
+	* (iOS)CocoaPods을 통해 배포 되는 Naver Auth Adapter에서 포함하고 있던 Naver ID Login SDK의 바이너리가 제거 되고 의존성 설정 방식으로 변경
 * Console
 	* Web 클라이언트 등록일 경우 선택할 수 있는 서비스상태에 대한 제한 적용 : 업데이트권한, 업데이트필수 선택 불가능
 * [SDK] Setting Tool
@@ -272,8 +287,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	
 #### 버그수정
 * [SDK] 1.12.0
-	* (Unity) IssueTransferKey API 호출시 exception 발생하던 버그 수정
-	* (Unity) Unity Google Adapter 제거 : 기존에 GoogleAdapter 사용중인 개발사는 아래 업데이트 가이드 참고
+	* (Unity)IssueTransferKey API 호출시 exception 발생하던 버그 수정
+	* (Unity)Unity Google Adapter 제거 : 기존에 GoogleAdapter 사용중인 개발사는 아래 업데이트 가이드 참고
 	
 **Unity Google Adapter 업데이트 가이드**
 
@@ -300,12 +315,12 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 개선/변경
 * [SDK] 1.11.1
-	* (공통) Guest로그인 후 AddMapping 성공 시, loginForLastLoggedInPrivder를 하게되면, AddMapping 성공한 IdP계정을 사용하여 로그인하도록 변경
+	* (공통)Guest로그인 후 AddMapping 성공 시, loginForLastLoggedInPrivder를 하게되면, AddMapping 성공한 IdP계정을 사용하여 로그인하도록 변경
 	
 #### 버그수정
 * [SDK] 1.11.1
-	* (공통) 점검 해제 후 후속 API 진행(login/push/purchase 등)이 되지 않던 버그 수정
-	* (Android) Gamebase.addObserver()를 통해 ObserverMessage를 수신하였을 경우, ObserverMessage.data.code의 타입이 int가 아니라 String인 버그를 수정
+	* (공통)점검 해제 후 후속 API 진행(login/push/purchase 등)이 되지 않던 버그 수정
+	* (Android)Gamebase.addObserver()를 통해 ObserverMessage를 수신하였을 경우, ObserverMessage.data.code의 타입이 int가 아니라 String인 버그를 수정
 * Console
 	* Windows client 등록 시 스토어코드가 잘못 등록되던 문제 수정
 
@@ -320,12 +335,12 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	
 #### 기능 개선/변경
 * [SDK] 1.11.0
-	* (공통) LocalizedString 일본어 번역 추가
-	* (공통) 인증 API 호출시 초기화, 로그인을 하지 않은 경우 명확히 에러 코드를 구분하도록 내부 로직을 개선
-	* (Android) 'android.permission.READ_PHONE_STATE' 권한 제거
-	* (Android) GamebaseConfiguration.Builder의 필수 설정값인 setAppId, setAppVersion을 생성자에서 입력할 수 있도록 변경
-	* (Android) GamebaseConfiguration.Builder 의 setServerApiVerseion API를 제거
-	* (Android) getAuthBanInfo() API, class AuthBanInfo 이름을 변경 : getBanInfo(), class BanInfo
+	* (공통)LocalizedString 일본어 번역 추가
+	* (공통)인증 API 호출시 초기화, 로그인을 하지 않은 경우 명확히 에러 코드를 구분하도록 내부 로직을 개선
+	* (Android)'android.permission.READ_PHONE_STATE' 권한 제거
+	* (Android)GamebaseConfiguration.Builder의 필수 설정값인 setAppId, setAppVersion을 생성자에서 입력할 수 있도록 변경
+	* (Android)GamebaseConfiguration.Builder 의 setServerApiVerseion API를 제거
+	* (Android)getAuthBanInfo() API, class AuthBanInfo 이름을 변경 : getBanInfo(), class BanInfo
 	* Naver ID Login SDK 업데이트 : iOS(4.0.10)
 * Sample App 
 	* ServerPush 기능 및 Observer 기능 추가
@@ -335,22 +350,22 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그수정
 * [SDK] 1.10.1
-	* (Unity) Unity Adapter가 없는 경우 AddMapping API 호출 시 내부적으로 로그인으로 처리하던 버그 수정
+	* (Unity)Unity Adapter가 없는 경우 AddMapping API 호출 시 내부적으로 로그인으로 처리하던 버그 수정
 
 ### 2018.06.07
 
 #### 기능 추가
 * [SDK] 1.10.0
-	* (Unity) StandaloneWebviewAdapter: html source rendering 지원	
+	* (Unity)StandaloneWebviewAdapter: html source rendering 지원	
 
 #### 기능 개선/변경
 * [SDK] 1.10.0
-	* (Unity) Unity Adapter의 interface가 수정
+	* (Unity)Unity Adapter의 interface가 수정
 		* v1.10.0 이상 사용 시에는 UnityAdapter 버전 업그레이드가 필요(GamebaseUnitySDK_FacebookAdapter_v1.5.0, GamebaseUnitySDK_StandaloneWebviewAdapter_v1.7.0)
-	* (Unity) Login API 호출 시 Unity Adapter가 없는 경우 네이티브(Android/iOS)의 로그인 API를 호출하도록 로직 변경 : facebook, Google
-	* (Unity) 각 Adapter 폴더 구조 및 이름 오타 수정
-		* 경로 : Assets/Gamebase/Scripts/Adapter => Assets/Gamebase/Adapter
-		* 오타 : Adapater => Adapter	
+	* (Unity)Login API 호출 시 Unity Adapter가 없는 경우 네이티브(Android/iOS)의 로그인 API를 호출하도록 로직 변경 : facebook, Google
+	* (Unity)각 Adapter 폴더 구조 및 이름 오타 수정
+		* 경로: Assets/Gamebase/Scripts/Adapter => Assets/Gamebase/Adapter
+		* 오타: Adapater => Adapter	
 	
 ### 2018.05.29
 
@@ -394,13 +409,13 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그 수정
 * [SDK] 1.8.1
-	* (Android. iOS) registerPush를 호출시 displayLanguageCode를 null로 전달하면 registerPush가 실패하는 버그 수정
+	* (Android. iOS)registerPush를 호출시 displayLanguageCode를 null로 전달하면 registerPush가 실패하는 버그 수정
 
 ### 2018.04.09
 
 #### 버그 수정
 * [SDK] 1.8.1
-	* (Unity) UnityAndroid 플랫폼에서 아래 기능 사용 시 모듈 초기화가 되지 않아 NullReferenceException이 발생하여 수정
+	* (Unity)UnityAndroid 플랫폼에서 아래 기능 사용 시 모듈 초기화가 되지 않아 NullReferenceException이 발생하여 수정
 		* Launching, Purchase, Push, Util, Webview
 
 ### 2018.04.05
@@ -408,8 +423,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 추가
 * Kick out 기능 추가
     - 현재 게임 중인 전체 사용자의 연결을 끊는 기능(점검시 게임에서 전체 사용자의 연결을 끊고 싶을 때 사용할 수 있음)
-    - (console) 메뉴 추가
-    - (SDK 공통) kick out 이벤트를 받을 수 있는 API 추가
+    - (console)메뉴 추가
+    - (SDK 공통)kick out 이벤트를 받을 수 있는 API 추가
 * 점검 웹페이지를 사용자가 Console에서 입력한 HTML 페이지로 사용할 수 있도록 기능을 개선
     - 이전에는 Gamebase에서 제공하는 웹페이지나 외부 웹페이지 연결만 가능했음
     - 웹서버가 없는 경우에도 점검페이지를 사용자가 원하는 형태로 만들 수 있음
@@ -418,22 +433,22 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 개선/변경
 * [SDK] 1.8.0
-	* (SDK 공통) Observer 기능 추가에 따라 다음 API Deprecated : LaunchingStatus Listener, Network Listener(기존 사용자는 계속 사용 가능)
-	* (iOS) 페이코 간편로그인 3rd SDK v1.2.2 적용 : 로그인 성공 시 토큰 만료 정보(expires_in) 제공, iPhoneX 로그인 UI 개선
-	* (iOS) iPhoneX 지원을 위하여, Webview 사용 인터페이스 수정
+	* (공통)Observer 기능 추가에 따라 다음 API Deprecated : LaunchingStatus Listener, Network Listener(기존 사용자는 계속 사용 가능)
+	* (iOS)페이코 간편로그인 3rd SDK v1.2.2 적용 : 로그인 성공 시 토큰 만료 정보(expires_in) 제공, iPhoneX 로그인 UI 개선
+	* (iOS)iPhoneX 지원을 위하여, Webview 사용 인터페이스 수정
 
 #### 버그 수정
 * 국가코드(contry code)가 10자 이상인 경우 동접 데이터가 저장되지 않는 현상 수정
 * [SDK] 1.8.0
-	* (Setting Tool) Unity Facebook Adapter를 체크하면 에러가 나는 버그 수정
+	* (Setting Tool)Unity Facebook Adapter를 체크하면 에러가 나는 버그 수정
 
 ### 2018.03.13
 
 #### 버그 수정
 * [SDK] 1.7.1
-	* (Unity) Inspector에서 설정된 SetDebugMode 값이 반영 안 되던 버그 수정
-	* (Unity) Standalone, WebGL: Display Language에서 사용되는 리소스 파일 누락 부분 수정
-	* (Unity) Google Adapter 1.6.2 배포: Google Adapter 1.6.1에서 AuthCode가 Empty로 반환되어 인증 실패하는 버그 수정
+	* (Unity)Inspector에서 설정된 SetDebugMode 값이 반영 안 되던 버그 수정
+	* (Unity)Standalone, WebGL: Display Language에서 사용되는 리소스 파일 누락 부분 수정
+	* (Unity)Google Adapter 1.6.2 배포: Google Adapter 1.6.1에서 AuthCode가 Empty로 반환되어 인증 실패하는 버그 수정
 
 ### 2018.02.22
 
@@ -451,7 +466,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	* [Operating indicator>그룹 동접] 일간 그룹 동접 변화 그래프 추가
 
 * [SDK] 1.6.0
-	* (Unity) Standalone WinSDK 추가
+	* (Unity)Standalone WinSDK 추가
 		* 64비트 지원
 		* 인증 지원 : facebook, google, payco
 
@@ -463,7 +478,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그 수정
 * [SDK] 1.6.0
-	* (iOS) WebView 호출시, 크래시가 일어날 수 있는 부분에 대한 방어로직 처리
+	* (iOS)WebView 호출시, 크래시가 일어날 수 있는 부분에 대한 방어로직 처리
 
 
 ### 2017.12.21
@@ -489,8 +504,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그 수정
 * [SDK] 1.5.0
-	* (Unity) UnityEditor에서 Guest로그인이 되지 않는 현상 수정
-	* (Unity) TOAST Console에 Facebook 인증 정보를 등록하지 않고 Gamebase.Login("facebook") API를 호출할 경우, KeyNotFoundException이 발생하여 방어코드 추가
+	* (Unity)UnityEditor에서 Guest로그인이 되지 않는 현상 수정
+	* (Unity)TOAST Console에 Facebook 인증 정보를 등록하지 않고 Gamebase.Login("facebook") API를 호출할 경우, KeyNotFoundException이 발생하여 방어코드 추가
 
 
 ### 2017.11.30
