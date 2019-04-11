@@ -22,7 +22,7 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 | 외부 인증             | Android | iOS | Windows(based Unity) | Web(based JavaScript)    |
 | ----------------- | ------------ | ------------ | ------------ | ------------ |
 | Facebook          | O | O | O | O |
-| Apple Game Center | O | | | |
+| Apple Game Center |  | O | | |
 | Google            | O | O | O | O |
 | PAYCO             | O | O | O | O |
 | NAVER             | O | O | O | O |

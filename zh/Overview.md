@@ -25,7 +25,7 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 | 外部认证          | Android | iOS | Windows(based Unity) | Web(based JavaScript)    |
 | ----------------- | ------------ | ------------ | ------------ | ------------ |
 | Facebook          | O | O | O | O |
-| Apple Game Center | O | | | |
+| Apple Game Center |  | O| | |
 | Google            | O | O | O | O |
 | PAYCO             | O | O | O | O |
 | NAVER             | O | O | O | O |

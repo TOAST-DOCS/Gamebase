@@ -57,7 +57,7 @@ def pushSdkVersion = '1.7.0'
 def pushSdkTencentVersion = '1.7.0'
 
 /* Set the Gamebase version. */
-def gamebaseSdkVersion = '2.2.0'
+def gamebaseSdkVersion = '2.2.2'
 def gamebaseGoogleAdapterVersion = '2.0.0'
 def gamebaseFacebookAdapterVersion = '2.0.0'
 def gamebasePaycoAdapterVersion = '2.0.0'

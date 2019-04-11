@@ -122,13 +122,13 @@ Setting Tool의 업데이트가 필요한 경우 Setting Tool에서 업데이트
 
 ### Android Lifecycle
 
-Lifecycle 관리를 위해 "com.toast.gamebase.activity.GamebaseMainActivity"를 MainActivity로 해야 합니다.
-"com.toast.gamebase.activity.GamebaseMainActivity"는 "com.unity3d.player.UnityPlayerActivity"를 상속받아 구현되어 있습니다.
+Lifecycle 관리를 위해 "com.toast.android.gamebase.activity.GamebaseMainActivity"를 MainActivity로 해야 합니다.
+"com.toast.android.gamebase.activity.GamebaseMainActivity"는 "com.unity3d.player.UnityPlayerActivity"를 상속받아 구현되어 있습니다.
 
 > <font color="red">[주의]</font>
 >
 > AndroidPlugin 개발에도 GamebaseMainActivity를 상속받아 만들어야 합니다. <br/>
-> GamebaseMainActivity는 GamebaseAndroidPlugin.jar에 포함되어 있습니다. <br/>
+> GamebaseMainActivity는 GamebasePlugin.jar에 포함되어 있습니다. <br/>
 > launchMode는 singleTask로 해야 합니다.(Unity 기본 Activity도 singleTask로 고정됩니다.) 그렇지 않을 경우 앱을 처음 시작할 때 크래시가 발생할 수 있습니다.
 
 ```xml
@@ -136,7 +136,7 @@ Lifecycle 관리를 위해 "com.toast.gamebase.activity.GamebaseMainActivity"를
 	...
     <application>
     ...
-    	<activity android:name="com.toast.gamebase.activity.GamebaseMainActivity"
+    	<activity android:name="com.toast.android.gamebase.activity.GamebaseMainActivity"
         	android:launchMode="singleTask"
         	android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name">
