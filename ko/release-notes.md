@@ -1,5 +1,23 @@
 ## Game > Gamebase > 릴리스 노트
 
+
+### 2019.04.23
+
+```
+중국 RedbeanCC 연동된 Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
+중국출시에 관심 있으신 경우에는 고객센터로 연락주세요.
+```
+
+#### 기능 추가
+* [SDK] 2.3.0
+	* (Android/Unity)중국 RedbeanCC 인증 방식 추가
+
+#### 기능 개선/변경
+* [SDK] 2.3.0
+	* (공통)Launching Status Code 추가: "심사중(204)", "테스트중(203)"
+	* (Android)최근 로그인한 Provider로 로그인 및 웹소켓 응답 실패를 받았을 경우(Timeout, network disable 등) AuthToken을 삭제 처리하지 않도록 수정
+	* (Android)IdP로그인 시 AuthAdapter 내부에서 발생하는 MemoryLeak을 수정
+
 ### 2019.04.11
 
 #### 기능 개선/변경
@@ -7,8 +25,8 @@
 	* (Unity)SDK 로그 개선
 * [Console]
 	* Analytics 메뉴 다국어 적용
-	* 보안검수 관련 취약점 패치	
-	
+	* 보안검수 관련 취약점 패치
+
 #### 버그수정
 * [SDK] 2.2.2
 	* (Android)Gamebase 초기화 이전 TransferAccount API 호출시, 콜백이 오지 않는 이슈를 수정
@@ -36,7 +54,7 @@
 * 강제매핑 기능 추가: 이미 다른 계정에 연동 되어있는 IdP계정을 매핑할 수 있는 기능
 	- (SDK공통)추가된 API 
 		* 강제매핑하는 API (addMappingForcibly)
-		
+
 #### 기능 개선/변경
 * [SDK] 2.2.0
 	* (Android)IAP SDK 버전을 최신버전인 v1.5.3 버전으로 업데이트
