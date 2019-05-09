@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > iOS SDK ご利用ガイド > Push
+## Game > Gamebase > iOS SDK ご利用ガイド > Push
 
 ### Settings
 

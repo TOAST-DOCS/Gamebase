@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > iOS SDK ご利用ガイド > はじめる
+## Game > Gamebase > iOS SDK ご利用ガイド > はじめる
 
 ### Environments
 
