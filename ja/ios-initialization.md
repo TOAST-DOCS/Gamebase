@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > iOS SDK ご利用ガイド > 初期化
+## Game > Gamebase > iOS SDK ご利用ガイド > 初期化
 
 Gamebase iOS SDKを使用するためには、まず初期化を行う必要があります。
 
