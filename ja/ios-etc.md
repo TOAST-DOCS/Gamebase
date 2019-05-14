@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > iOS SDK ご利用ガイド > ETC
+## Game > Gamebase > iOS SDK ご利用ガイド > ETC
 
 ## Additional Features
 Gamebaseで対応している付加機能について説明します。
