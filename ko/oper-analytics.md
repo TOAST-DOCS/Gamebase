@@ -80,7 +80,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 * 신규 가입자(NRU): 신규 가입자. 당일 0시~24시까지 로그인 로그가 최초 수집된 유저 (memberno 기준)
 * 탈퇴 유저: 탈퇴 유저. 당일 0시~24시까지 memberno 가 삭제된 유저 수
 * Avg.CCU: 선택된 기간 동안의 CCU의 평균
-* Avg.Playtime: Gamebase 설치 후 가입된 전체 누적 유저 수 (memberno 기준)
+* Avg.Playtime(/DAU): 조회기간의 Playtime 평균 (DAU의 Playtime의 합 / DAU)
 
 #### 2. 일별 지표
 선택된 기간 동안의 일별 이용자 기본 지표를 그래프와 표로 보여줍니다.

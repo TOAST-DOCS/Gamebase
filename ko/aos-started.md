@@ -57,16 +57,16 @@ def pushSdkVersion = '1.7.0'
 def pushSdkTencentVersion = '1.7.0'
 
 /* Set the Gamebase version. */
-def gamebaseSdkVersion = '2.2.2'
-def gamebaseGoogleAdapterVersion = '2.0.0'
-def gamebaseFacebookAdapterVersion = '2.0.0'
-def gamebasePaycoAdapterVersion = '2.0.0'
-def gamebaseNaverAdapterVersion = '2.0.0'
-def gamebaseTwitterAdapterVersion = '2.0.0'
-def gamebaseLineAdapterVersion = '2.0.0'
-def gamebaseIAPAdapterVersion = '2.2.0'    // Not all adapters have the same version.
-def gamebaseFCMAdapterVersion = '2.0.0'
-def gamebaseTencentAdapterVersion = '2.0.0'
+def gamebaseSdkVersion = '2.3.0'
+def gamebaseGoogleAdapterVersion = '2.3.0'
+def gamebaseFacebookAdapterVersion = '2.3.0'
+def gamebasePaycoAdapterVersion = '2.3.0'
+def gamebaseNaverAdapterVersion = '2.3.0'
+def gamebaseTwitterAdapterVersion = '2.3.0'
+def gamebaseLineAdapterVersion = '2.3.0'
+def gamebaseIAPAdapterVersion = '2.3.0'
+def gamebaseFCMAdapterVersion = '2.3.0'
+def gamebaseTencentAdapterVersion = '2.3.0'
 
 /* Set if defined google-services plugin */
 def useGoogleServicesPlugin = true
