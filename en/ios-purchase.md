@@ -192,17 +192,18 @@ AppStore 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니�
 
 > `주의`
 > App Store Connect에 앱을 업로드한 다음 TestFlight를 통하여 앱을 설치 후, 테스트를 진행할 수 있습니다.
-> 
+>
 
 1. TestFlight로 App을 설치합니다.
 2. 아래와 같은 URL Scheme을 호출하여, 테스트를 진행합니다.
+
 | URL Components | keyname | value |
 | --- | --- | --- |
 | scheme | itms-services | 고정값 |
 | host &amp; path | 없음 | 없음 |
 | queries | action | purchaseIntent |
-|		  | bundleId | 앱의 bundeld identifier |
-|		  | productIdentifier | 구매 아이템의 product identifier |
+| | bundleId | 앱의 bundeld identifier |
+| | productIdentifier | 구매 아이템의 product identifier |
 
 예제) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 

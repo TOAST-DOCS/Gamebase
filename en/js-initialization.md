@@ -121,6 +121,8 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 | IN_SERVICE                  | 200  | 정상 서비스 중                                 |
 | RECOMMEND_UPDATE            | 201  | 업데이트 권장                                  |
 | IN_SERVICE_BY_QA_WHITE_LIST | 202  | 점검 중에는 서비스를 이용할 수 없지만 QA 단말기로 등록된 경우에는 점검과 상관없이 서비스에 접속해 테스트할 수 있습니다. |
+| IN_TEST                     | 203  | 테스트 중 |
+| IN_REVIEW                   | 204  | 심사 중 |
 | REQUIRE_UPDATE              | 300  | 업데이트 필수                                  |
 | BLOCKED_USER                | 301  | 접속 차단으로 등록된 단말기(디바이스 키)로 서비스에 접속한 경우입니다. |
 | TERMINATED_SERVICE          | 302  | 서비스 종료                                   |

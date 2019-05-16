@@ -166,6 +166,8 @@ getLaunchingInformations API를 이용하면 초기화 이후에도 LaunchingInf
 | IN_SERVICE                  | 200  | Service is now normally provided                                 |
 | RECOMMEND_UPDATE            | 201  | Update is recommended                                  |
 | IN_SERVICE_BY_QA_WHITE_LIST | 202  | Under maintenance now but QA user service is available. |
+| IN_TEST                     | 203  | 테스트 중 |
+| IN_REVIEW                   | 204  | 심사 중 |
 | REQUIRE_UPDATE              | 300  | Update is required                                  |
 | BLOCKED_USER                | 301  | User whose access has been blocked |
 | TERMINATED_SERVICE          | 302  | Service has been terminated                                   |
