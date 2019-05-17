@@ -3,7 +3,7 @@
 ゲームにログインした会員情報を照会します。
 
 
-### Search Member
+## Search Member
 
 User IDを入力すると、会員情報を検索することができます。
 ユーザーIDは、初めてログインする際にGamebaseが自動で発行するユーザー識別子です。送信時に混乱を防ぐため、同じ発音の文字を取り除き、「ABCDFGHJKLMNPQRSTWXYZ1346789」だけを使用しています。
@@ -13,7 +13,7 @@ IdP ID는 Id Provider에서 제공하는 아이디 정보로써 로그인 시 �
 
 
 ### Detail Information
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Member1_1.6.png)
+![gamebase_member_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_01_201812.png)
 
 **User **
 
@@ -27,8 +27,9 @@ IdP ID는 Id Provider에서 제공하는 아이디 정보로써 로그인 시 �
   - **退会**：退会したユーザー
 - **푸시 토큰**: 유저의 푸시 토큰 정보 조회.
 
-####계정 상태 변경
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Member1_2.2.png)
+#### 계정 상태 변경
+![gamebase_member_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_02_201812.png)
+
 조회한 유저의 계정 상태를 변경할 수 있는 기능입니다.
 상태별 변경할 수 있는 경우는 아래와 같습니다.
 - **정상**: 이용정지, 탈퇴상태로 변경이 가능합니다. 탈퇴시에는 해당 계정정보를 되돌릴 수 없으므로 처리 전 확인 및 주의가 필요합니다.
@@ -51,21 +52,21 @@ Gamebaseでは、複数の外部IdPを連動することができます。つま
 * 잘못 추가했다면 매핑 추가 버튼을 누르기 전에는 2번 버튼을 통해 언제든지 다른 Id provider로 교체 가능합니다.
 * 제공 받는 유저가 GUEST정보만 가지고 있을 경우에는 새로운 Id Provider정보가 추가되면서 기존의 Guest정보는 유실되므로 작업 진행 시 주의가 필요합니다.
 * 제공 유저의 Id Provider 정보가 한개일 경우 해당작업을 진행하면 제공 유저 정보는 **유실**상태로 변경되어 더이상 사용할 수 없으므로 작업 진행 전 확인이 필요합니다.
-##### 제공 전 예시
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_AddMapping_1.3.png)
-##### 제공 후 예시
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_AddMapping_2.1.png)
+##### 제공 예시
+![gamebase_member_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_03_201812.png)
 
 #### 매핑 해제
 다중 매핑이 이루어진 계정의 경우 요청에 따라 Id Provider 정보 연동을 해제할 수 있습니다.
 각각의 계정은 최소 1개의 연결정보가 존재해야 하므로 2개 이상의 연결정보가 존재할 때만 버튼이 활성화 됩니다.
 * 버튼을 누르면 아래와 같이 연결된 Id Provider 정보와 함께 매핑 해제 버튼이 노출됩니다.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_RemoveMapping_1.0.png)
-* 해제 버튼을 누를 경우 아래와 같이 최종 확인창과 함께 Id Provider 정보를 확인합니다. 확인버튼을 누르시면 매핑 해제가 진행됩니다.
+
+![gamebase_member_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_04_201812.png)
+
+* * 해제 버튼을 누를 경우 아래와 같이 최종 확인창과 함께 Id Provider 정보를 확인합니다. 확인버튼을 누르시면 매핑 해제가 진행됩니다.
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_RemoveMapping_2.0.png)
 
 ### Login History
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_LoginHistory1_1.2.png)
+![gamebase_member_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_05_201812.png)
 
 照会したユーザーのログイン内訳を照会します。
 初めて照会するときは、直近1日分が照会され、照会したい日付をもう一度入力して照会することもできます。ただし、直近3ヶ月間(90日)の履歴のみ提供します。
@@ -87,7 +88,7 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 - **etc**：その他、ログイン時に使用された上記項目以外の情報
 
 ### Mapping History
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_MappingHistory1_1.4.png)
+![gamebase_member_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_06_201812.png)
 照会したユーザーのマッピング、マッピング解除履歴を照会します。直近3ヶ月(90日)間の履歴がすべて表示されます。
 
 - **IdP ID**：IdPログイン時に使用されるID情報
@@ -101,10 +102,10 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
   - OMG：IdPアカウント作成
 
 매핑된 IDP 이력을 클릭할 경우 해당 IdP를 기준으로 Gamebase ID에 매핑된 이력을 보여줍니다.
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_MappingHistory1_2.1.png)
+![gamebase_member_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_07_201812.png)
 
 ### Purchase History
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_PurchaseHistory1_1.0.png)
+![gamebase_member_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_08_201812.png)
 照会したユーザーの商品購入内訳を照会します。
 照会したい日付を入力して照会することができ、最大1ヶ月(30日)まで照会可能です。
 
@@ -120,7 +121,7 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 - **환불일시**：ユーザーがアイテムを払い戻した時間
 
 ### Ban History
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_BanHistory1_1.0.png)
+![gamebase_member_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_09_201812.png)
 
 照会したユーザーの利用停止内訳を照会することができます。
 照会したい日付を入力して照会することができ、最大1ヶ月(30日)まで照会可能です。
@@ -134,11 +135,39 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 - **解除登録者/解除登録日**：利用停止を解除した運営者/システム情報及び日時
 
 ### Playtime
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_Playtime1_1.2.png)
+![gamebase_member_10_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_10_201812.png)
 照会したユーザーがゲームをプレイした時間を日付ごとに照会します。
 照会したい日付を入力して照会することができ、最大1ヶ月(30日)まで照会可能です。
 
 ### Withdraw History
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
+![image alt](./image/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
 조회한 사용자가 탈퇴한 사용자라면 탈퇴 이력을 보여줍니다.
 이 메뉴는 탈퇴 유저를 조회할 경우에만 나타나며 유저의 탈퇴경로를 조회할 수 있습니다.
+
+## Transfer account
+유저에게 발급된 기기 이전 정보를 조회할 수 있으며 만료된 계정 또는 차단된 계정들에 대하여 재발급을 진행하실 수도 있습니다.
+이 메뉴는 기기 이전 기능을 사용할 경우에만 사용하실 수 있습니다.
+![image alt](./image/Operators_Guide/Console_Member_TransferAccount1_1.0.png)
+**기기 이전 발급 Key**
+- **ID** : 유저에게 발급된 기기 이전 ID
+- **발급 일자** : 기기 이전 ID가 발급된 일자
+- **만료 일자** : 발급된 기기 이전 ID의 만료 일자
+- **상태** : 발급된 기기 이전 ID의 현재 상태
+  - <font color="white" style="background-color:#88C637">정상</font>: 유저의 계정이 정상상태임을 의미합니다.
+  - <font color="white" style="background-color:#FB8F37">차단</font>: 프로젝트의 기기 이전 관련 설정내용에 기반하여 유저의 계정이 차단 횟수를 초과했을 경우 차단상태가 됩니다.
+  - <font color="white" style="background-color:#A1A1A1">만료</font>: 유저의 기기 이전 계정이 현재 만료되어 사용할 수 없는 상태를 의미합니다.
+
+**기기 이전 이력**
+해당 유저에게 발급된 계정을 기반으로 정보를 조회하여 조회한 ID의 이력을 조회할 수 있습니다.
+기본적으로 현재 발급된 ID가 선택되어 있으며 다른 ID를 선택할 경우 해당 ID에 대한 이력이 조회 가능합니다.
+
+### 기기 이전 재발급
+![image alt](./image/Operators_Guide/Console_Member_TransferAccount_Renewal1_1.0.png)
+기기 이전 ID를 다시 발급받고자 하실 경우 재발급 기능을 통해 다시 발급받으실 수 있습니다.
+1) **ID,비밀번호 재발급** : ID, 비밀번호를 모두 새롭게 발급합니다. 이전 아이디는 사용할 수 없게 됩니다.
+2) **비밀번호 재발급** : 비밀번호를 재발급합니다. 이전에 사용하던 아이디를 동일하게 사용할 수 있습니다.
+
+#### 재발급시 주의사항
+- 비밀번호는 재발급 시 한번만 노출되므로 재발급 진행 이후 꼭 해당 정보를 별도로 보관하셔야 합니다.
+- 보관하지 못하셨을 경우 따로 비밀번호를 찾을 수 있는 방법이 없으므로 재발급을 다시 진행해 주셔야 합니다.
+- 만료된 계정은 만료 일자가 갱신되나 계정 상태가 정상/차단일 경우에는 만료 일자가 따로 갱신되지 않습니다.

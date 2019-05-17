@@ -1,4 +1,4 @@
-## Game > Gamebase > iOS SDK ご利用ガイド > Push
+﻿## Game > Gamebase > iOS SDK ご利用ガイド > Push
 
 ### Settings
 
@@ -114,6 +114,15 @@ NSString *moduleErrorMessage = moduleError.message;
 NSLog(@"TCGBError:%@", [tcgbError description]);
 ```
 
-* TOAST Pushのエラーコードは、次のドキュメントをご参考ください。
-    * [Notification > Push > SDK v1.4 ご利用ガイド > エラー処理](/Notification/Push/ko/sdk-guide-ios/#_11)
-
+* TOAST Push 오류 코드는 다음과 같습니다.
+    
+| 오류 코드 |  설명 |
+| --- | --- |
+| TCPushErrorNotInitialized | 초기화되지 않음 |
+| TCPushErrorInvalidParameters | 파라미터 오류 |
+| TCPushErrorPermissionDenined | 권한 미획득 |
+| TCPushErrorSystemFail | 시스템 알림 등록 실패 |
+| TCPushErrorNetworkFail | 네트워크 송수신 실패 |
+| TCPushErrorServerFail | 서버 응답 실패 |
+| TCPushErrorInvalidUrl | 잘못된 URL 요청 |
+| TCPushErrorNetworkNotReachable | 네트워크 미연결 |

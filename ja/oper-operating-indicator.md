@@ -5,8 +5,7 @@
 
 
 ## Monitoring
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring1_1.2.png)
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring2_1.2.png)
+![operation-indicator_01_201812](https://static.toastoven.net/prod_gamebase/operation-indicator_01_201812.png)
 現在、アプリを利用しているユーザーの全体統計及び現在予約されているPush現状、予約されているメンテナンス内訳を確認することができます。
 5分が経過すると、自動で画面が「更新」され、リアルタイムで変更された指標を確認することができます。
 
@@ -24,7 +23,7 @@
 	* 관련데이터는 검색조건 우측의 버튼을 통해 다운로드를 받을 수 있습니다.
 
 ## User Statistics
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_UserStatistics1_1.0.png)
+![operation-indicator_02_201812](https://static.toastoven.net/prod_gamebase/operation-indicator_02_201812.png)
 DAU、MCU、NRU、CCU AVGの現状をグラフで確認することができます。
 現在、アプリを使用しているゲームユーザーの推移の変化を一目で確認することができます。
 右上の期間選択バーを利用して確認したい日付を選択して確認することもできます。
@@ -37,12 +36,12 @@ DAU、MCU、NRU、CCU AVGの現状をグラフで確認することができま�
 	* CCU AVG(concurrent connected users average)：リアルタイムの同時接続者数の平均値
 
 ## Concurrent Group User
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_ConcurrentUser1_1.1.png)
+![operation-indicator_03_201812](https://static.toastoven.net/prod_gamebase/operation-indicator_03_201812.png)
 自分が属したプロジェクトのグループ同時接続統計を確認することができます。権限のある複数のプロジェクトのOSごとのリアルタイムの同時接続者数を一目で確認できます。
 
 
 ## Installed URL Statistics
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_InstallUrl1_1.0.png)
+![operation-indicator_04_201812](https://static.toastoven.net/prod_gamebase/operation-indicator_04_201812.png)
 インストールURLの呼び出しに対する統計データを確認することができます。
 
 * 日付ごとのインストールURL呼び出し数の変化グラフ
