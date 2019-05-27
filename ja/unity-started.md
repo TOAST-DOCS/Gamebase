@@ -10,7 +10,7 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 > 
 > * Unity 5.x : 5.5.4 ~ 5.6.6
 > * Unity 2017.x : ~ 2017.4.x(LTS)
-> * Unity 2018.x : ~ 2018.2.19
+> * Unity 2018.x : ~ 2018.3.8
 
 #### Supported Platforms
 
@@ -128,15 +128,16 @@ Lifecycle管理のために"com.toast.gamebase.activity.GamebaseMainActivity"を
 > <font color="red">[注意]</font>
 >
 > AndroidPluginを開発する際にもGamebaseMainActivityを受け継いで制作しなければなりません。<br/>
-> GamebaseMainActivityは、GamebaseAndroidPlugin.jarに含まれています。 <br/>
+> GamebaseMainActivityは、GamebasePlugin.jarに含まれています。 <br/>
 > launchModeは、singleTaskにする必要があります。(Unityの基本ActivityもsingleTaskで固定されます。) そうでない場合、アプリを初めて始める際にクラッシュが発生することがあります。
+
 
 ```xml
 <manifest>
 	...
     <application>
     ...
-    	<activity android:name="com.toast.gamebase.activity.GamebaseMainActivity"
+    	<activity android:name="com.toast.android.gamebase.activity.GamebaseMainActivity"
         	android:launchMode="singleTask"
         	android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name">

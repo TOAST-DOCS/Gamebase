@@ -463,11 +463,13 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 
 **GameUserData**
 
-  | Name | Mandatory(M) / Optional(O) | type | Desc |
-  | -------------------------- | -------------------------- | ---- | ---- |
-  | userLevel | M | int | |
-  | channelId | O | string | |
-  | characterId | O | string | |
+| Name | Mandatory(M) / Optional(O) | type | Desc |
+| -------------------------- | -------------------------- | ---- | ---- |
+| userLevel | M | int | 유저 레벨을 나타내는 필드입니다. |
+| channelId | O | String | 채널을 나타내는 필드입니다. |
+| characterId | O | String | 케릭터 명을 나타내는 필드입니다. |
+| classId | O | String | 직업을 나타내는 필드입니다. |
+
 
 **API**
 
@@ -496,10 +498,8 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 
   | Name | Mandatory(M) / Optional(O) | type | Desc |
   | -------------------------- | -------------------------- | ---- | ---- |
-  | userLevel | M | int | |
-  | levelUpTime | O | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
-  | channelId | O | string | |
-  | characterId | O | string | |
+  | userLevel | M | int | 유저 레벨을 나타내는 필드입니다. |
+  | levelUpTime | M | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
 
 **API**
 
@@ -511,10 +511,7 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 
 ```objectivec
 - (void)traceLevelUpWith:(int)level levelUpTime:(long long)levelUpTime channelId:(NSString *)channelId characterId:(NSString *)characterId {
-  TCGBAnalyticsLevelUpData* levelUpData = [TCGBAnalyticsLevelUpData levelUpDataWithUserLevel:level];
-  [levelUpData setLevelUpTime:levelUpTime];
-  [levelUpData setChannelId:channelId];
-  [levelUpData setCharacterId:characterId];
+  TCGBAnalyticsLevelUpData* levelUpData = [TCGBAnalyticsLevelUpData levelUpDataWithUserLevel:level levelUpTime:levelUpTime];
   [TCGBAnalytics traceLevelUpWithLevelUpData:levelUpData];
 }
 ```

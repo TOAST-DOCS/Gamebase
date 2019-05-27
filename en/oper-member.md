@@ -3,7 +3,7 @@
 Retrieve information of members who are logged in a game.
 
 
-### Search Member
+## Search Member
 
 Enter User ID to search for member information.
 User ID is a user identifier which is automatically issued at a first-time login by Gamebase. To lessen confusion while delivered, "ABCDFGHJKLMNPQRSTWXYZ1346789" are applied only, in order to prevent confusion due to similar pronunciation.
@@ -148,3 +148,31 @@ Can search by date, and history data can be retrieved up to 1 month (30 days).
 ![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
 조회한 사용자가 탈퇴한 사용자라면 탈퇴 이력을 보여줍니다.
 이 메뉴는 탈퇴 유저를 조회할 경우에만 나타나며 유저의 탈퇴경로를 조회할 수 있습니다.
+
+## Transfer account
+기기 이전 기능을 사용할 경우에만 사용하실 수 있습니다. [기기이전 기능 활성화하기](./oper-app/#transfer-account)
+유저의 기기 이전키의 발급 및 검증 이력을 확인할 수 있습니다. 차단된 키의 차단해제나 만료된 키의 재발급이 가능합니다.
+
+![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_TransferAccount1_1.0.png)
+- **ID** : 유저에게 발급된 기기 이전 ID
+- **발급 일자** : 기기 이전 ID가 발급된 일자
+- **만료 일자** : 발급된 기기 이전 ID의 만료 일자
+- **상태** : 발급된 기기 이전 ID의 현재 상태
+  - <font color="white" style="background-color:#88C637">정상</font>: 발급된 키가 정상 상태입니다. 해당 키를 이용하여 기기 이전이 가능합니다.
+  - <font color="white" style="background-color:#FB8F37">차단</font>: 발급된 키가 차단된 상태입니다. 발급된 키를 이용하여 기기 이전이 불가능합니다.
+  - <font color="white" style="background-color:#A1A1A1">만료</font>: 발급된 키의 사용 기간이 만료된 상태입니다. 발급된 키를 이용하여 기기 이전이 불가능합니다.
+
+**기기 이전 이력**
+해당 유저에게 발급된 키의 이력을 조회할 수 있습니다.
+기본적으로 가장 최근에 발급된 키가 선택되어 있으며 다른 키를 선택할 경우 선택한 키의 이력을 조회할 수 있습니다.
+
+### 기기 이전 재발급
+![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_TransferAccount_Renewal1_1.0.png)
+**재발급** 버튼을 클릭하여 새로운 기기 이전 키를 다시 발급 할 수 있습니다. 재발급하면 이전에 발급된 키는 더이상 사용할 수 없습니다.
+1) **ID,비밀번호 재발급** : ID, 비밀번호를 모두 새롭게 발급합니다. 
+2) **비밀번호 재발급** : ID는 이전에 발급된 ID를 그대로 사용하고 비밀번호만을 재발급합니다.
+
+#### 재발급시 주의사항
+- 비밀번호는 재발급 시 한번만 노출되므로 재발급 진행 이후 꼭 해당 정보를 별도로 보관하셔야 합니다.
+- 보관하지 못하셨을 경우 따로 비밀번호를 찾을 수 있는 방법이 없으므로 재발급을 다시 진행해 주셔야 합니다.
+- 만료된 키는 만료 일자가 갱신되나 계정 상태가 정상/차단일 경우에는 만료 일자가 갱신되지 않습니다.

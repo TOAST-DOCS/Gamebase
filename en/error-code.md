@@ -1,6 +1,6 @@
 ## Game > Gamebase > Error Code
 
-## Client SDK 
+## Client SDK
 
 | Category        | Platform           | Error                                    | Error Code | Description                                    |
 | --------------- | ------------------ | ---------------------------------------- | ---------- | ---------------------------------------- |
@@ -99,6 +99,14 @@
 | Member  | -4000402              | Entered invalid user ID.                      |
 |         | -4000403              | Requested for invalid member.                        |
 |         | -4000404              | Requested for invalid authentication. |
+|         | -4100402              | 이미 사용된 TransferAccount 요청일 때  |
+|         | -4100403              | 유효 기간이 만료된 TransferAccount 의 요청일 때  |
 |         | -4040401              | Requested for a member who does not exist or has withdrawn.              |
 |         | -4100401              | Requested for a member who has withdrawn.                     |
 |         | -4220401              | User authentication data is not normal.                |
+|         | -5000201 ~ 7          | Gateway 내부 시스템 오류                        |
+| IdP     | -4000901              | Block 된 유저가 TransferAccount 검증 요청한 경우 |
+|         | -4040920              | TransferAccount 유효성 검증시, ID 가 존재하지 않을 때 |
+|         | -4000927              | TransferAccount 유효성 검증시, PASSWORD 가 잘못 되었을 때 |
+|         | -4000920              | 내부에서 PASSWORD 암호화시 오류 발생. 계속 발생시 문의 필요 |
+|         | -4000924              | 내부 오류. 계속 발생시 문의 필요 |

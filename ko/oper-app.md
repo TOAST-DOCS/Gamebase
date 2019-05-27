@@ -77,7 +77,7 @@ Idp별 자세한 설정 방법은 [Authentication Information](#authentication-i
 
 조회 화면에서 **등록** 버튼을 클릭하면 테스트 단말기를 등록할 수 있는 화면이 나타납니다. **Device Key**를 직접 입력하거나 **게임유저 ID**를 검색해 테스트 단말기를 등록할 수 있습니다.
 
-![gamebase_app_03_201901.png](https://static.toastoven.net/prod_gamebase/Operators_guide/gamebase_app_02_201901.png)
+![gamebase_app_03_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_03_201812.png)
 
 **(A) 게임유저 ID를 통한 등록**
 

@@ -805,6 +805,83 @@ Check common requirements.
 
 [오류 코드](./error-code/#server)
 
+#### Validate TransferAccount
+
+GUEST 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사를 수행합니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-gateway/v1.1.2/apps/{appId}/members/transfer-account |
+
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST 프로젝트 ID |
+
+
+**[Request Parameter]**
+
+없음
+
+
+**[Request Body]**
+
+```json
+{
+  "account": {
+    "id": "198704206255",
+    "password": "Zw548q7zE"
+  }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| account.id | String | 유효성 검증을 수행할 ID |
+| account.password | String | 유효성 검증을 수행할 PASSWORD |
+
+**[Response Body]**
+
+```json
+{
+  "header": {
+    "transactionId": "String",
+    "resultCode": 0,
+    "resultMessage": "SUCCESS",
+    "isSuccessful": true
+  },
+  "member": {
+    "userId": "String",
+    "valid": "Y",
+    "appId": "String",
+    "regDate": 1488185201000,
+    "lastLoginDate": 1488185201000
+  }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| member | Object | 조회된 사용자의 기본 정보 |
+| member.userId | String | 사용자 ID |
+| member.valid | Enum | Y: 정상 사용자 <br>D: 탈퇴된 사용자 <br>B: 이용 정지된 사용자 <br>M: 유실된 계정|
+| member.appId | String | appId |
+| member.regDate | long | 사용자가 계정을 생성한 시간 |
+| member.lastLoginDate | long | 마지막으로 로그인한 시간 <br>처음 로그인한 사용자는 해당 값이 없음 |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+
 <br>
 
 ## Maintenance

@@ -22,7 +22,7 @@ Supported Platforms
 static string GetDeviceLanguageCode()
 ```
 
-> [참고] 
+> [참고]
 >
 > Editor on Windows, Standalone on Windows인 경우에는 [CultureInfo](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo?view=netframework-4.7.2)를 참고하여 언어 코드를 리턴합니다.
 >
@@ -63,7 +63,7 @@ static string GetDeviceLanguageCode()
 
 該当する言語コードは、`GamebaseDisplayLanguageCode`クラスに定義されています。
 
-> `[注意]`
+> <font color="red">[注意]</font><br/>
 >
 > Gamebaseでサポートしている言語コードは、大文字・小文字を区別します。
 > “EN”や"zh-cn"のように設定する場合、問題が発生することがあります。
@@ -344,8 +344,6 @@ public static string GetCountryCode()
 
 * GamebaseServerPushType.APP_KICKOUT (= "appKickout")
     * TOAST Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 **APP_KICKOUT** 메시지를 받게 됩니다.
-* GamebaseServerPushType.TRANSFER_KICKOUT (= "transferKickout")
-	* TransferKey 를 통해 게스트 계정 이전이 성공한 경우, TransferKey를 발급받았던 단말기로 **TRANSFER_KICKOUT** 메세지가 전송됩니다.
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 
@@ -566,6 +564,111 @@ public void RemoveObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.Ob
 public void RemoveAllObserver()
 {
     Gamebase.RemoveAllObserver();
+}
+```
+
+### Analytics
+
+Game지표를 Gamebase Server로 전송할 수 있습니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> Gamebase Analytics에서 지원하는 모든 API는 로그인 후에 호출할 수 있습니다.
+>
+>
+> [TIP]
+>
+> Gamebase.Purchase.RequestPurchase API를 호출하여 결제를 완료하면, 자동으로 지표를 전송합니다.
+>
+
+Analytics Console 사용법은 아래 가이드를 참고하십시오.
+
+* [Analytics Console](./oper-analytics)
+
+#### Game User Data Settings
+
+게임 로그인 이후 유저 레벨 정보를 지표로 전송할 수 있습니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> 게임 로그인 이후 SetGameUserData API를 호출하지 않으면 다른 지표에서 Level 정보가 누락될 수 있습니다.
+>
+
+API 호출에 필요한 파라미터는 아래와 같습니다.
+
+**GameUserData**
+
+| Name                       | Mandatory(M) / Optional(O) | type | Desc |
+| -------------------------- | -------------------------- | ---- | ---- |
+| userLevel | M | int |  |
+| channelId | O | string |  |
+| characterId | O | string |  |
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void SetGameUserData(GamebaseRequest.Analytics.GameUserData gameUserData)
+```
+
+**Example**
+
+``` cs
+public void SetGameUserData(int userLevel, string channelId, string characterId)
+{
+    GamebaseRequest.Analytics.GameUserData gameUserData = new GamebaseRequest.Analytics.GameUserData(userLevel);
+    gameUserData.channelId = channelId;
+    gameUserData.characterId = characterId;
+
+    Gamebase.Analytics.SetGameUserData(gameUserData);
+}
+```
+
+#### Level Up Trace
+
+레벨업이 되었을 경우 유저 레벨 정보를 지표로 전송할 수 있습니다.
+
+API 호출에 필요한 파라미터는 아래와 같습니다.
+
+**LevelUpData**
+
+| Name                       | Mandatory(M) / Optional(O) | type | Desc	|
+| -------------------------- | -------------------------- | ---- | ---- |
+| userLevel | M | int |  |
+| levelUpTime | O | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
+| channelId | O | string |  |
+| characterId | O | string |  |
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void TraceLevelUp(GamebaseRequest.Analytics.LevelUpData levelUpData)
+```
+
+**Example**
+
+``` cs
+public void TraceLevelUp(int userLevel, long levelUpTime, string channelId, string characterId)
+{
+    GamebaseRequest.Analytics.LevelUpData levelUpData = new GamebaseRequest.Analytics.LevelUpData(userLevel);
+    levelUpData.levelUpTime = levelUpTime;
+    levelUpData.channelId = channelId;
+    levelUpData.characterId = characterId;
+
+    Gamebase.Analytics.TraceLevelUp(levelUpData);
 }
 ```
 

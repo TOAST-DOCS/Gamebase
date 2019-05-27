@@ -39,7 +39,14 @@ Gamebaseデバッグのための設定です。
 * false:Warning、Errorログが出力されます。
 * デフォルト:false
 
+디버그 설정은 Console에서도 가능하며 Console에서 설정된 값을 우선시합니다.
+Console 설정 방법은 아래 가이드를 참고하십시오.
+
+* [Console 테스트 단말기 설정](./oper-app/#test-device)
+* [Console Client 설정](./oper-app/#client)
+
 Gamebaseに関するお問い合わせがある場合、該当する設定をtrueに変更してからログを[カスタマーセンター](https://toast.com/support/inquiry)まで送っていただけましたら、迅速に対応いたします。
+
 
 > <font color="red">[注意]</font><br/>
 >
@@ -191,6 +198,8 @@ Gamebase Unity SDKの初期化の設定に入力したアプリバージョン�
 | IN_SERVICE | 200 | サービスが正常に動作しています。 |
 | RECOMMEND_UPDATE | 201 | アップデートを推奨します。 |
 | IN_SERVICE_BY_QA_WHITE_LIST | 202         | メンテナンス中にはサービスを利用できませんが、QA端末に登録された場合にはメンテナンスに関係なくサービスに接続してテストすることができます。|
+| IN_TEST                     | 203  | 테스트 중 |
+| IN_REVIEW                   | 204  | 심사 중 |
 | REQUIRE_UPDATE | 300 | アップデートが必ず必要です。 |
 | BLOCKED_USER                | 301         | 接続ブロックに登録された端末(デバイスキー)でサービスに接続したケースです。|
 | TERMINATED_SERVICE          | 302         | サービスが終了しました。                                   |
@@ -199,6 +208,7 @@ Gamebase Unity SDKの初期化の設定に入力したアプリバージョン�
 | INTERNAL_SERVER_ERROR       | 500         | 内部サーバーエラーです。                                 |
 
 [Console Guide](/Game/Gamebase/ja/oper-app/#app)
+
 
 **1.2 App**
 

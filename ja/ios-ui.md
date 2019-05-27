@@ -1,4 +1,4 @@
-## Game > Gamebase > iOS SDK ご利用ガイド > UI
+﻿## Game > Gamebase > iOS SDK ご利用ガイド > UI
 
 ## WebView
 
