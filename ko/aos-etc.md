@@ -515,9 +515,10 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int |  |
-| channelId | O | String |  |
-| characterId | O | String |  |
+| userLevel | M | int | 유저 레벨을 나타내는 필드입니다. |
+| channelId | O | String | 채널을 나타내는 필드입니다. |
+| characterId | O | String | 케릭터 명을 나타내는 필드입니다. |
+| classId | O | String | 직업을 나타내는 필드입니다. |
 
 **API**
 
@@ -550,10 +551,8 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc	|
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int |  |
-| levelUpTime | O | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
-| channelId | O | String |  |
-| characterId | O | String |  |
+| userLevel | M | int | 유저 레벨을 나타내는 필드입니다. |
+| levelUpTime | M | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
 
 
 
