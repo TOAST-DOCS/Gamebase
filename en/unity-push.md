@@ -131,7 +131,8 @@ else
 }
 ```
 
-* Refer to the following document for TOAST Push error codes.
-    * [Notification > Push > SDK v1.4 Guide > Error Handling](/Notification/Push/en/Client%20SDK%20Guide/#_10)
+* TOAST Push 오류 코드를 확인하시기 바랍니다.
+    * [Android](aos-push#error-handling)<br/>
+    * [iOS](ios-push#error-handling)
 
 

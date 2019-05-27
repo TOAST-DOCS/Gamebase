@@ -1,4 +1,4 @@
-## Game > Gamebase > iOS SDK ご利用ガイド > はじめる
+﻿## Game > Gamebase > iOS SDK ご利用ガイド > はじめる
 
 ### Environments
 
@@ -7,7 +7,7 @@
 >
 > 最小仕様:iOS8以上または一部のIdPに対してはiOS9以上<br/>
 > arm7, arm7s, arm64, i386, x86_64に対応している端末<br/>
-> Xcode9以上
+> Xcode10以上
 >
 
 
@@ -68,7 +68,7 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
     * libicucore.tbd (Gamebase SDK v1.1.5以上で追加)
     * libz.tbd
     * libsqlite3.tbd
-    * libstdc++.tbd
+    * libc++.tbd
     * AdSupport.framework
     * ImageIO.framework
     * GameKit.framework

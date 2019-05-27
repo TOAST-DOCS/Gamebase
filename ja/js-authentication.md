@@ -45,8 +45,10 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
 
 ### Login with IdP
 
-다음은 특정 IdP로 로그인할 수 있게 하는 예시 코드입니다. <br/>
+다음은 특정 IdP로 로그인할 수 있게 하는 예시 코드입니다.
+
 로그인할 수 있는 IdP 유형은 아래와 같습니다.
+
 * Guest('guest')
 * Google('google')
 * Facebook('facebook')
@@ -102,7 +104,8 @@ function gamebaseLogin() {
 
 IdP에서 제공하는 SDK, RestAPI 등을 사용해 게임에서 직접 인증한 후 발급받은 액세스 토큰 등을 이용하여, Gamebase에 로그인할 수 있는 인터페이스입니다.
 
-* Credential 파라미터 설정 방법
+**Credential 파라미터 설정 방법**
+
 | key name             | a use                                                               |
 | -------------------- | ------------------------------------------------------------------- |
 | providerName         | IdP 유형 설정                                                        |

@@ -41,6 +41,13 @@ Gamebaseを初期化するとき、GamebaseConfiguration.Builderの客体でGame
 >
 > ゲームを**リリース**するときは、必ずソースコードからsetDebugModeの呼び出しを除去したりパラメーターをfalseに変えてからビルドしてください。
 
+디버그 설정은 Console에서도 가능하며 Console에서 설정된 값을 우선시합니다.
+Console 설정 방법은 아래 가이드를 참고하십시오.
+
+* [Console 테스트 단말기 설정](./oper-app/#test-device)
+* [Console Client 설정](./oper-app/#client)
+
+
 ### Initialize
 
 **Activity#onCreate(Bundle)**から**Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback)**を呼び出してGamebase SDKを初期化します。<br/>
@@ -159,6 +166,8 @@ getLaunchingInformations API를 이용하면 초기화 이후에도 LaunchingInf
 | IN_SERVICE                  | 200  | サービスが正常に動作しています。                               |
 | RECOMMEND_UPDATE            | 201  | アップデートを推奨します。                                |
 | IN_SERVICE_BY_QA_WHITE_LIST | 202  | メンテナンス中にはサービスを利用することができませんが、QA端末として登録されている場合はメンテナンスに関係なくサービスに接続してテストすることができます。|
+| IN_TEST                     | 203  | 테스트 중 |
+| IN_REVIEW                   | 204  | 심사 중 |
 | REQUIRE_UPDATE              | 300  | アップデートが必ず必要です。                                |
 | BLOCKED_USER                | 301  | 接続ブロックに登録された端末(デバイスキー)でサービスに接続したケースです。|
 | TERMINATED_SERVICE          | 302  | サービスが終了しました。                                 |

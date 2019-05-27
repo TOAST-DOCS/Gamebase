@@ -8,7 +8,7 @@
 ## Maintenance
 
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance1_1.1.png)
+![gamebase_op_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_01_201812.png)
 
 ゲームメンテナンスが必要な場合、Consoleから簡単に登録することができます。
 登録したアプリメンテナンス内訳の照会とメンテナンスの登録内容及び進行状態などを一目で確認でき、登録されたメンテナンス理由でメンテナンスを検索することができます。
@@ -22,16 +22,15 @@
 
 Gamebaseでは、メンテナンスが進行しているゲーム内でユーザーに表示するメンテナンスポップアップと詳細ページを提供しています。
 Gamebaseで基本提供するメンテナンスポップアップ
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance_popup_1.0.png)
+![gamebase_op_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_02_201812.png)
 Gamebaseで基本提供するメンテナンスページ(メンテナンス理由とメンテナンス時間を表示)
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance_webview_1.1.png)
-
+![gamebase_op_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_03_201812.png)
 
 ### Register Maintenance
 
 **メンテナンス**タブから**登録**ボタンをクリックすると、メンテナンスを登録する画面へ移動します。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_1.4.png)
+![gamebase_op_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_04_201812.png)
 
 >  <font color="red">[注意] </font>**アップデートが必ず必要な場合とメンテナンスが同時に設定**されている場合、サービス状態は、「アップデートが必ず必要です。」になります。
 >  メンテナンス進行中にユーザーに対し「アップデートが必ず必要です。」のポップアップを表示したくない場合、メンテナンス完了後にサービス状態を「アップデートが必ず必要です。」に変更する必要があります。
@@ -43,7 +42,7 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 - 一部クライアント：特定のクライアントバージョンでのみメンテナンスが必要な場合に選択します。「バージョン選択」ボタンをクリックすると、クライアントメニューから登録したクライアントバージョンのリストが出力されます。
   **[一部クライアントを選択した時の画面の例]**
   クライアントの状態及びストアごとに全体選択が可能で、メンテナンスしたいクライアントバージョンを選択した後、確認ボタンを押してください。
-  ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance4_1.3.png)
+  ![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
 
 #### (2) 理由
 メンテナンス進行の理由を入力します。
@@ -88,7 +87,6 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 - endDate：メンテナンスを登録する際に入力した終了時刻
 
 ### Modify Maintenance
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance3_1.3.png)
 
 登録したメンテナンスの詳細内容を確認して修正、削除することができます。
 基本的に入力項目は登録画面と同じで、メンテナンスを誤って登録した場合、削除ボタンでメンテナンスを削除することもできます。
@@ -96,7 +94,7 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 
 ## Notice
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Notice1_1.2.png)
+![gamebase_op_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_06_201812.png)
 
 アプリを起動する際にポップアップ形式で表示されるお知らせを提供します。ログインする前に表示されるポップアップですので、外部認証障害やゲームサーバーに障害が発生した場合、登録して使用してください。
 登録されたお知らせリストと進行状態などを一目で確認でき、お知らせメッセージでも検索できます。
@@ -110,7 +108,7 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 
 お知らせのメイン画面で「登録」ボタンをクリックすると、お知らせを登録する画面へ移動します。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Notice2_1.0.png)
+![gamebase_op_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_07_201812.png)
 
 #### (1) 対象
 
@@ -120,8 +118,7 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 - 一部のクライアント：特定のクライアントバージョンに対してだけメンテナンスが必要な場合に選択します。「バージョン 選択」ボタンをクリックすると、クライアントメニューから登録したクライアントバージョンのリストが出力されます。
   **一部のクライアントを選択する画面の例** 
   クライアントの状態及びストアごとに全体を選択することができ、メンテナンスが必要なクライアントバージョンを選択してから確認ボタンを押してください。
-  ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance4_1.3.png)
-
+  ![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
 
 #### (2) 対象国家
 お知らせを表示する国家を選択します。
@@ -161,15 +158,11 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 
 
 #### 緊急のお知らせポップアップの例
-(1) 閉じるボタン
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Notice_popup_close_1.1.png)
-(2) 閉じる+詳細確認
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Notice_popup_close_detail_1.0.png)
+閉じるボタン(左), 閉じる+詳細確認(右)
+![gamebase_op_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_08_201812.png)
 
 ### Modify Notice
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Notice3_1.1.png)
 
 登録したお知らせの詳細内容を確認して修正、削除することができます。
 基本的に入力項目は登録画面と同じで、お知らせを誤って登録した場合、削除ボタンでお知らせを削除することもできます。
 同じような内容でお知らせをもう一度登録する場合、コピー機能を使ってお知らせを簡単に登録することができます。
-

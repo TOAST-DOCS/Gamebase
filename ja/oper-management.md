@@ -7,7 +7,7 @@ Gamebaseを使用するゲームに対する照会権限の管理、通知送信
 ## Authorization
 
 Gamebase Consoleの使用権限を管理することができます。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Authorization1_1.2.png)
+![gamebase_manage_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_01_201812.png)
 
 * Gamebase Consoleの使用権限管理
   * **販売現状のアクセス権限**：**有料**メニューに対するアクセス権限
@@ -22,7 +22,7 @@ Gamebaseの通知機能を使用してゲームユーザーの増加率や減少
 
 ### Alarm
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm1_1.7.png)
+![gamebase_manage_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_02_201812.png)
 
 #### (1) 減少通知
 同時接続者数が減少したときに通知を受け取るかどうかを設定します。通知を受け取りたい場合、**減少通知**を**On**に設定します。
@@ -46,7 +46,7 @@ Gamebaseの通知機能を使用してゲームユーザーの増加率や減少
 通知ログは、通知メニューの下にあり、通知が発生した履歴を照会することができます。
 最大30日まで照会することができ、照会後に**Search**ボタンをクリックすると、リアルタイムでフィルタリングすることもできます。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm2_1.0.png)
+![gamebase_manage_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_03_201812.png)
 
 - 発生時間：通知が送信された時間情報
 - 過去の同時接続者数：通知が送信される前に取得した同時接続者数の情報
@@ -58,24 +58,24 @@ Gamebaseで基本提供されるSMS/Email以外で別途通知を受け取るこ
 外部システムのWebhook URLを通して通知送信をリクエストする場合、一緒に通知を送信します。
 
 #### (1) リスト照会
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_1.1.png)
+![gamebase_manage_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_04_201812.png)
 現在、通知を受け取ることができるWebhookに対する登録内訳を確認することができます。
 登録されたWebhook URLが必要な場合、右の**URLコピー**をクリックして簡単にコピーすることができます。
 
 #### (2) 登録
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_2.0.png)
+![gamebase_manage_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_04_201812.png)
 **登録**ボタンをクリックして外部システムから発行されたWebhook情報を登録することができます。
 現在はDoorayとSlackのみ登録でき、今後、リクエストがあれば新しいリストを追加する予定です。
 
-#### (2) 詳細照会/修正/削除
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_3.1.png)
+#### (3) 詳細照会/修正/削除
+![gamebase_manage_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_06_201812.png)
 各項目をクリックすると、詳細情報を照会することができます。
 登録された情報を変更したい場合は**修正**ボタンをクリックします。該当するWebhookが必要でない場合は、**削除**ボタンをクリックして項目を削除することもできます。
 
 ### Recipient List
 
 通知を受信するユーザーを設定することができます。新しいメンバーを登録したい場合はTOASTプロジェクトメンバー管理から追加しなければなりません。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm3_1.1.png)
+![gamebase_manage_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_07_201812.png)
 Gamebaseでは、EmailとSMSで通知を送信することができます。
 EmailとSMSはすべてTOASTの会員登録時に入力した情報を利用して送信され、Emailアドレスや番号を間違って登録した場合は、通知を受け取れないこともあります。携帯電話番号の情報は、TOASTの**自分の情報管理**ページから確認することができます。
 
@@ -84,6 +84,6 @@ EmailとSMSはすべてTOASTの会員登録時に入力した情報を利用し�
 
 GamebaseとTOASTサービスの連携に関する設定をすることができます。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Config1_1.0.png)
+![gamebase_manage_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_08_201812.png)
 
 TOAST Launchingに設定した情報をGamebase Launching APIの呼び出し時に一緒に受け取るかどうかを設定することができます。TOAST Launchingサービスを使用する場合にのみ機能をOn・Offすることができます。

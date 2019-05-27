@@ -5,7 +5,7 @@ Gamebaseでは、TOAST Pushサービスを使用してPush通知を送信しま�
 
 ## Push
 Gamebaseを通して送信されたPushの履歴と送信予約に登録されたリストを確認することができます。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push1_1.3.png)
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_01_201812.png)
 送信予定内訳にあるリストは、**Push Details**から送信をキャンセルすることもできます。
 
 ### Registered List
@@ -17,14 +17,14 @@ Gamebaseを通して送信されたPushの履歴と送信予約に登録され�
 
 送信履歴リストからPushを選択すると、送信されたPushの詳細内訳を照会することができます。
 **コピー**ボタンをクリックすると、送信されたPushの登録情報を利用して簡単にPushを登録することができます。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push2_1.2.png)
+![gamebase_push_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_02_201812.png)
 
 
 ### Register Push
 
 新しいPushを登録したい場合、**登録**ボタンをクリックします。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push3_1.1.png)
+![gamebase_push_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_03_201812.png)
 
 #### (1) メッセージタイプ
 > [参考]
