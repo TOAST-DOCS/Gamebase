@@ -1,5 +1,12 @@
 ## Game > Gamebase > 릴리스 노트
 
+
+### 2019.06.13
+
+#### 버그수정
+* [SDK] 2.4.1
+	* (iOS)Analytics 지표 전송 시 일부 파라미터가 누락 되어 지표가 제대로 출력되지 않는 버그 수정
+	
 ### 2019.05.28
 
 #### 기능 추가
@@ -15,15 +22,14 @@
 #### 기능 개선/변경
 * [SDK 2.4.0]
 	* (공통) 지표관련 Class 변경
-        * LevelUpData Class: userLevel, levelUpTime 파라미터가 필수로 변경 / 그 외 필드 삭제
-        * GameUserData Class: classId(게임유저의 직업) 필드 추가
+        * LevelUpData Class: userLevel, levelUpTime 파라미터가 필수로 변경 / 그 외 필드 삭제 [자세히보기 [Android](http://docs.toast.com/ko/Game/Gamebase/ko/aos-etc/#game-user-data-settings) / [iOS](http://docs.toast.com/ko/Game/Gamebase/ko/ios-etc/#game-user-data-settings) / [Unity](http://docs.toast.com/ko/Game/Gamebase/ko/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#game-user-data-settings)]
+        * GameUserData Class: classId(게임유저의 직업) 필드 추가 [자세히보기 [Android](http://docs.toast.com/ko/Game/Gamebase/ko/aos-etc/#level-up-trace) / [iOS](http://docs.toast.com/ko/Game/Gamebase/ko/ios-etc/#level-up-trace) / [Unity](http://docs.toast.com/ko/Game/Gamebase/ko/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#level-up-trace)]
     * (Android)Naver SDK 버전 업데이트(v4.2.5): Naver SDK 버그 수정(Naver 로그인 도중에 앱 아이콘을 통해 앱을 재시작할 경우, Activity가 강제종료 되는 이슈로 인해 인증 프로세스가 중단되는 이슈가 해결)
+    * (Unity)StandaloneWebview가 32bit Build를 지원 (SDK 용량 53.6MB에서 99.2MB로 증가)
 * Server
     * LTV 쿼리 수정 및 failover 로직 수정
-    * IAP pay_seq 저장하도록 로직 수정
 * [Console]
     * LTV Grid ComplexColumns 지원 및 엑셀 다운로드 지원
-
 
 ### 2019.05.16
 
