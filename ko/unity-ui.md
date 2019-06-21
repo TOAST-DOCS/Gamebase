@@ -86,7 +86,7 @@ Gamebase에서 지정해 놓은 Scheme 입니다.
 | ----------------------------- | ------------------------------ |
 | gamebase://dismiss | WebView 닫기 |
 | gamebase://goBack | WebView 뒤로가기 |
-| gamebase://getUserId          | 현재 로그인되어 있는 게임 이용자의 사용자 ID를 표시 |
+| gamebase://getUserId          | 현재 로그인되어 있는 게임 유저의 사용자 ID를 표시 |
 | gamebase://getMaintenanceInfo | 점검 내용을 WebPage에 표시 |
 
 

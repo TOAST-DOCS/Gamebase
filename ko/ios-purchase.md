@@ -148,7 +148,7 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 
 
 
-### AppStore Promotion IAP
+### App Store Promotion IAP
 
 > `주의`
 > iOS 11 이상에서만 사용할 수 있습니다.
@@ -166,10 +166,10 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 * Apple Developer Reference : https://help.apple.com/app-store-connect/#/deve3105860f
 
 
-AppStore 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니다.
+App Store 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니다.
 아이템 구매 성공 후, 아래의 등록해놓은 핸들러를 통하여, 아이템지급을 진행할 수 있습니다.
 
-프로모션 IAP는 AppStore Connect 에서 별도의 설정이 되어야 노출이 가능합니다.
+프로모션 IAP는 App Store Connect 에서 별도의 설정이 되어야 노출이 가능합니다.
 
 
 ```objectivec
@@ -187,7 +187,7 @@ AppStore 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니�
 ```
 
 
-#### How to Test AppStore Promotion IAP
+#### How to Test App Store Promotion IAP
 
 > `주의`
 > App Store Connect에 앱을 업로드한 다음 TestFlight를 통하여 앱을 설치 후, 테스트를 진행할 수 있습니다.

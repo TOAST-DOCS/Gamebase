@@ -77,9 +77,9 @@ SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.
 - **Login Date**: 사용자가 앱에 로그인 한 시간
 - **Login Type**: 사용자 로그인 시 사용한 인증 유형(IdP Login/Guest 등). 괄호안의 정보는 실제 사용 된 IdProvider 정보.
 - **OS / Ver**: 사용자 로그인 시 사용한 OS(IOS/Android/WebGL 등) 및 해당 OS의 버전 정보
-- **Device model**: 사용자가 앱 로그인 시 사용한 기기 모델명
-- **Device Key**: 사용자 로그인 시 사용한 기기가 가지고 있는 고유 식별값(Android:Android id, iOS:IDFV)
-- **Device Country Code**: 사용자 로그인 시 기기에 설정된 국가 코드
+- **Device model**: 사용자가 앱 로그인 시 사용한 단말기 모델명
+- **Device Key**: 사용자 로그인 시 사용한 단말기가 가지고 있는 고유 식별값(Android:Android id, iOS:IDFV)
+- **Device Country Code**: 사용자 로그인 시 단말기에 설정된 국가 코드
 - **USIM Country Code**: 사용자 로그인 시 USIM카드에 설정된 국가 코드
 - **Telecom**: 사용자 로그인 시 이용한 통신사 정보
 - **Network**: 사용자 로그인 시 사용한 네트워크 유형(Wi-Fi/3G/LTE 등)

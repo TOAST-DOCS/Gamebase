@@ -94,10 +94,10 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 
 * 조회 조건
     * OS: 모바일 운영 소프트웨어 Android, IOS 등
-    * Country: 이용자 모바일기기에 설정된 국가
+    * Country: 이용자 모바일 단말기에 설정된 국가
     * Store: IdP: 페이스북, 구글 등 이용자의 IdP 로그인/인증 정보
     * App Version: 실행된 앱의 버전 정보
-    * Device: 이용자의 디바이스 기기 종류. Device 선택 시 PU, 결제금액은 제공하지 않음.(주간, 월간 데이터도 제공하지 않음)
+    * Device: 이용자의 디바이스 단말기 종류. Device 선택 시 PU, 결제금액은 제공하지 않음.(주간, 월간 데이터도 제공하지 않음)
 * 조회 값
     * 일 사용자(DAU): 일간 memberno 기준 로그인 1회 이상 액티브 이용자 수 (Daily Active Users)
     * 신규 가입자(NRU): 신규 가입자. 당일 0시~24시까지 로그인 로그가 최초 수집된 유저 (memberno 기준)
@@ -211,3 +211,92 @@ Gamebase 서비스 이용자가 속한 프로젝트들을 필터와 조합하여
 * 최근 일주일간 다운로드 URL 호출 수: 앱 > 설치 URL의 설치 경로로 게임 설치 API를 호출한 고객수. 앱 설치 마케팅용으로 Short URL 호출한 고객수를 측정함으로써, 고객 반응도를 확인할 수 있습니다.
 * 브라우저별 점유율(전체 누적): 브라우저별로 설치 URL 호출 수 비율을 확인할 수 있습니다. (전체 누적)
 * 플랫폼별 점유율(전체 누적): 플랫폼별로 설치 URL 호출 수 비율을 확인할 수 있습니다. (전체 누적)
+
+## Transmission
+
+전송 지표는 게임에서 API로 지표 전송 시 확인할 수 있는 화면입니다.
+전송 지표의 종류는 아래 3개입니다.
+
+* 유저 레벨: 유저 레벨별로 접속과 매출 정보를 확인할 수 있습니다.
+* 월드/서버/채널: 월드/서버/채널별로 접속과 매출 정보를 확인할 수 있습니다.
+* 클래스/직업: 클래스/직업별로 접속과 매출 정보를 확인할 수 있습니다.
+
+### Concurrent Status
+![gamebase_analytics_14_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_14_201906_1.png)
+
+선택된 전송 지표 종류와 날짜의 접속, 매출 정보를 확인할 수 있습니다.
+동시 접속자는 당일은 CCU를 제공하며, 일자별은 DAU 정보를 제공합니다. 당일이면 10분 단위로 정보가 갱신됩니다.
+
+* CCU: 10분 단위로 측정된 실시간 동시 접속자 수 (로그인 이용자 수)
+* DAU: 일간 memberno 기준 로그인 1회 이상 액티브 이용자 수 (Daily Active Users)
+* NRU: 당일 신규 가입자
+* 결제 건수: 유료 상품 결제 건수
+* 결제 금액: 유료 상품 결제 금액
+
+### Status By Level
+![gamebase_analytics_15_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_15_201906_1.png)
+
+레벨별로 접속, 매출 현황을 확인할 수 있습니다.
+
+* DAU: 일간 memberno 기준 로그인 1회 이상 액티브 이용자 수 (Daily Active Users)
+* Avg.Playtime: 해당 레벨의 일자별 전체 Playtime의 평균 (DAU의 Playtime의 합 / DAU)
+* 결제 금액: 유료 상품 결제 금액
+* 신규 결제: 신규 결제 이용자(NPU)가 결제한 금액
+* 재구매 결제: 재구매 결제 이용자가 결제한 금액
+* PU: 유료상품을 결제한 이용자 (Paying User). (=재구매 PU + 신규 PU)
+* 신규 PU: 유료 상품을 처음 결제한 이용자 (New Paying Users)
+* 재구매 PU: 전체 PU - 신규 PU (재구매 PU 는 일간 data 로 전일자 기준으로 계산)
+
+### Status By Channel
+![gamebase_analytics_16_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_16_201906_1.png)
+
+월드/서버/채널별로 접속, 매출 현황을 확인할 수 있습니다.
+
+* DAU: 일간 memberno 기준 로그인 1회 이상 액티브 이용자 수 (Daily Active Users)
+* Avg.Playtime: 해당 레벨의 일자별 전체 Playtime의 평균 (DAU의 Playtime의 합 / DAU)
+* 결제 금액: 유료 상품 결제 금액
+* 신규 결제: 신규 결제 이용자(NPU)가 결제한 금액
+* 재구매 결제: 재구매 결제 이용자가 결제한 금액
+* PU: 유료상품을 결제한 이용자 (Paying User). (=재구매 PU + 신규 PU)
+* 신규 PU: 유료 상품을 처음 결제한 이용자 (New Paying Users)
+* 재구매 PU: 전체 PU - 신규 PU (재구매 PU 는 일간 data 로 전일자 기준으로 계산)
+
+### Status By Class
+![gamebase_analytics_17_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_17_201906_1.png)
+
+클래스/직업별로 접속, 매출 현황을 확인할 수 있습니다.
+
+* DAU: 일간 memberno 기준 로그인 1회 이상 액티브 이용자 수 (Daily Active Users)
+* Avg.Playtime: 해당 레벨의 일자별 전체 Playtime의 평균 (DAU의 Playtime의 합 / DAU)
+* 결제 금액: 유료 상품 결제 금액
+* 신규 결제: 신규 결제 이용자(NPU)가 결제한 금액
+* 재구매 결제: 재구매 결제 이용자가 결제한 금액
+* PU: 유료상품을 결제한 이용자 (Paying User). (=재구매 PU + 신규 PU)
+* 신규 PU: 유료 상품을 처음 결제한 이용자 (New Paying Users)
+* 재구매 PU: 전체 PU - 신규 PU (재구매 PU 는 일간 data 로 전일자 기준으로 계산)
+
+### Level Up
+![gamebase_analytics_18_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_18_201906_1.png)
+
+이용자들의 레벨업에 관한 정보를 확인할 수 있습니다.
+
+* 달성 레벨: 달성한 레벨
+* 레벨업 달성 이용자: 해당 레벨을 달성한 이용자 수
+* 레벨업 평균 달성시간(분): 해당 레벨을 달성한 이용자들의 평균 달성시간(분)
+
+### Item Sales Status
+![gamebase_analytics_19_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_19_201906_1.png)
+
+선택된 전송 지표 종류에 따른 아이템 판매 현황을 확인할 수 있습니다.
+
+조건 버튼을 클릭해, 아래의 조회 값을 선택할 수 있습니다.
+
+* 결제금액
+* 결제건수
+* PU
+* 신규 PU
+
+### Item Sales TOP 50
+![gamebase_analytics_20_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_20_201906_1.png)
+
+선택된 전송 지표 종류 및 값에 따른 아이템 판매 상위 50개 항목을 확인할 수 있습니다.

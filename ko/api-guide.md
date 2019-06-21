@@ -175,7 +175,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 #### Get Simple Launching
 
-Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면 점검 시간 및 메시지 등 클라이언트 앱 기동시 제공되는 Launching 정보들에 대해 간략히 확인할수 있습니다.
+Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 설정 정보 및 현재 점검 상태/시간/ 메시지 등 클라이언트 앱 기동시 제공되는 Launching 정보들에 대해 서버에서 간략히 확인할수 있습니다.
 
 **[Method, URI]**
 
@@ -391,15 +391,15 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 | member.authList[].authKey | String | authSystem에서 발급된 사용자 구분 값 |
 | member.authList[].regDate | long | IdP 정보가 사용자 계정과 매핑된 시간 |
 | memberInfo | Object | 사용자에 대한 부가 정보 |
-| memberInfo.deviceCountryCode | String | 사용자 기기의 국가 설정 |
+| memberInfo.deviceCountryCode | String | 사용자 단말기의 국가 설정 |
 | memberInfo.usmCountryCode | String | 사용자 USIM의 국가 코드 |
 | memberInfo.language | String | 사용자 언어 |
-| memberInfo.osCode | String | 사용자 기기의 OS 종류 |
+| memberInfo.osCode | String | 사용자 단말기의 OS 종류 |
 | memberInfo.telecom | String | 통신사 |
 | memberInfo.storeCode | String | store 코드 |
 | memberInfo.network | String | 네트워크 환경 <br>3g, WiFi 등|
-| memberInfo.deviceModel | String | 사용자 기기의 모델명 |
-| memberInfo.osVersion | String | 사용자 기기의 OS 버전 |
+| memberInfo.deviceModel | String | 사용자 단말기의 모델명 |
+| memberInfo.osVersion | String | 사용자 단말기의 OS 버전 |
 | memberInfo.sdkVersion | String | SDK 버전 |
 | memberInfo.clientVersion | String | 클라이언트 버전 |
 
@@ -807,7 +807,7 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 #### Validate TransferAccount
 
-GUEST 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사를 수행합니다.
+게스트 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사를 수행합니다.
 
 **[Method, URI]**
 
@@ -1042,4 +1042,3 @@ GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.0/apps/C3JmSctU/maint
 }
 
 ```
-

@@ -6,7 +6,7 @@
 > [INFO]
 >
 > 최소사양 : iOS8 이상 또는 일부 IDP지원 시 iOS9 이상 <br/>
-> arm7, arm7s, arm64, i386, x86_64 지원 기기<br/>
+> arm7, arm7s, arm64, i386, x86_64 지원 단말기<br/>
 > Xcode10 이상
 >
 

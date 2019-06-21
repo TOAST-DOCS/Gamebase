@@ -10,6 +10,10 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 * [Android Purchase Settings](aos-purchase#settings)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
+Unity Standalone에서 결제를 진행하기 위해 IapAdapter와 WebViewAdapter를 반드시 추가하여야 합니다.
+![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/settingtool_iap_2.4.0.png)
+
+
 ###  Purchase Flow
 
 아이템 구매는 다음과 같은 순서로 구현하시기 바랍니다.<br/>
@@ -36,7 +40,7 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 ### Purchase Item
 
 구매하고자 하는 아이템의 itemSeq를 이용해 다음의 API를 호출하여 구매를 요청합니다.
-게임 이용자가 구매를 취소하는 경우 **PURCHASE_USER_CANCELED** 오류가 반환됩니다.
+게임 유저가 구매를 취소하는 경우 **PURCHASE_USER_CANCELED** 오류가 반환됩니다.
 
 
 **API**
@@ -181,12 +185,12 @@ public void RequestRetryTransaction()
 }
 ```
 
-### AppStore Promotion IAP
+### App Store Promotion IAP
 
-AppStore 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니다.
+App Store 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니다.
 아이템 구매 성공 후, 아래의 등록해놓은 핸들러를 통하여, 아이템지급을 진행할 수 있습니다.
 
-프로모션 IAP는 AppStore Connect 에서 별도의 설정이 되어야 노출이 가능합니다.
+프로모션 IAP는 App Store Connect 에서 별도의 설정이 되어야 노출이 가능합니다.
 
 > <font color="red">[주의]</font><br/>
 >
@@ -263,7 +267,7 @@ public void SetPromotionIAPHandler()
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
 | PURCHASE_NOT_INITIALIZED                 | 4001       | Purchase 모듈이 초기화되지 않았습니다.<br>gamebase-adapter-purchase-IAP 모듈을 프로젝트에 추가했는지 확인해 주세요. |
-| PURCHASE_USER_CANCELED                   | 4002       | 게임 이용자가 아이템 구매를 취소하였습니다.                  |
+| PURCHASE_USER_CANCELED                   | 4002       | 게임 유저가 아이템 구매를 취소하였습니다.                  |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003 | 구매 로직이 아직 완료되지 않은 상태에서 API가 호출되었습니다. |
 | PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 해당 스토어의 캐시가 부족해 결제할 수 없습니다.              |
 | PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 GG(Google), TS(ONE store), TEST입니다. |

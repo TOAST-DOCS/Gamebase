@@ -53,13 +53,13 @@ Gamebase 문의가 필요할 경우에는 해당 설정을 true 로 변경하시
 
 #### 4. displayLanguageCode
 
-Gamebase에서 제공하는 UI 및 SystemDialog에 표시되는 언어를 기기에 설정된 언어가 아닌 다른 언어로 변경할 수 있습니다.
+Gamebase에서 제공하는 UI 및 SystemDialog에 표시되는 언어를 단말기에 설정된 언어가 아닌 다른 언어로 변경할 수 있습니다.
 
 [Display Language](./unity-etc/#display-language)
 
 #### 5. enablePopup
 
-시스템 점검, 이용 제재(ban) 등 게임 이용자가 게임을 플레이할 수 없는 상황에서 팝업 등으로 사유를 표시해야 할 때가 있습니다.
+시스템 점검, 이용 제재(ban) 등 게임 유저가 게임을 플레이할 수 없는 상황에서 팝업 등으로 사유를 표시해야 할 때가 있습니다.
 Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
 
 * true: enableLaunchingStatusPopup, enableBanPopup 설정에 따라 팝업이 노출 여부가 결정됩니다.
@@ -75,7 +75,7 @@ LaunchingStatus는 아래 Launching 절 아래 State, Code 부분을 참고하�
 
 #### 7. enableBanPopup
 
-로그인 시 해당 게임 이용자가 이용 정지 상태인 경우, Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+로그인 시 해당 게임 유저가 이용 정지 상태인 경우, Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
 
 * 기본값: true
 
