@@ -24,7 +24,7 @@ AdditionalInfo에 대한 설명은 하단의 **Gamebase에서 지원 중인 IdP*
 ### Login Flow
 
 많은 게임이 타이틀 화면에서 로그인을 구현합니다.
-* 앱을 설치하고 처음 실행했을 때 타이틀 화면에서 게임 이용자가 어떤 IdP(identity provider)로 인증할지 선택할 수 있게 합니다.
+* 앱을 설치하고 처음 실행했을 때 타이틀 화면에서 게임 유저가 어떤 IdP(identity provider)로 인증할지 선택할 수 있게 합니다.
 * 한 번 로그인한 후에는 IdP 선택 화면을 표시하지 않고 이전에 로그인한 IdP 유형으로 인증합니다.
 
 위에서 설명한 로직은 다음과 같은 순서로 구현할 수 있습니다.
@@ -50,9 +50,9 @@ AdditionalInfo에 대한 설명은 하단의 **Gamebase에서 지원 중인 IdP*
 
 * 네트워크 오류
     * 오류 코드가 **TCGB_ERROR_SOCKET_ERROR(110)** 또는 **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**을 다시 호출하거나, 잠시 후 다시 시도합니다.
-* 이용 정지 게임 이용자
-    * 오류 코드가 **TCGB_ERROR_BANNED_MEMBER(7)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
-    * **[TCGBGamebase banInfo]**로 제재 정보를 확인하여 게임 이용자에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
+* 이용 정지 게임 유저
+    * 오류 코드가 **TCGB_ERROR_BANNED_MEMBER(7)**인 경우, 이용 정지 게임 유저이므로 인증에 실패한 것입니다.
+    * **[TCGBGamebase banInfo]**로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
     * Gamebase 초기화 시 **[TCGBConfiguration enablePopup:YES]** 및 **[TCGBConfiguration enableBanPopup:YES]**를 호출한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외 오류
     * 이전 로그인 유형으로 인증하기가 실패하였습니다. **3. 지정된 IdP로 인증**을 진행합니다.
@@ -73,11 +73,11 @@ AdditionalInfo에 대한 설명은 하단의 **Gamebase에서 지원 중인 IdP*
 * 네트워크 오류
     * 오류 코드가 **TCGB_ERROR_SOCKET_ERROR(110)** 또는 **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증에 실패한 것이므로 **[TCGBGamebase loginWithType:viewController:completion:]**을 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 사용자
-    * 오류 코드가 **TCGB_ERROR_BANNED_MEMBER(7)**인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
-    * **[TCGBGamebase banInfo]** 로 제재 정보를 확인하여 게임 이용자에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
+    * 오류 코드가 **TCGB_ERROR_BANNED_MEMBER(7)**인 경우, 이용 정지 게임 유저이므로 인증에 실패한 것입니다.
+    * **[TCGBGamebase banInfo]** 로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
     * Gamebase 초기화 시 **[TCGBConfiguration enablePopup:YES]** 및 **[TCGBConfiguration enableBanPopup:YES]**를 호출한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외 오류
-    * 오류가 발생했다는 것을 게임 이용자에게 알리고, 게임 이용자가 인증 IdP 유형을 선택할 수 있는 상태(주로 타이틀 화면 또는 로그인 화면)로 되돌아갑니다.
+    * 오류가 발생했다는 것을 게임 유저에게 알리고, 게임 유저가 인증 IdP 유형을 선택할 수 있는 상태(주로 타이틀 화면 또는 로그인 화면)로 되돌아갑니다.
 
 ### Login as the Latest Login IdP
 
@@ -224,7 +224,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 #### Logout API
 
 로그인된 IdP에서 로그아웃을 시도합니다. 주로 게임의 설정 화면에 로그아웃 버튼을 두고, 버튼을 클릭하면 실행되도록 구현하는 경우가 많습니다.
-로그아웃이 성공하더라도, 게임 이용자 데이터는 유지됩니다.
+로그아웃이 성공하더라도, 게임 유저 데이터는 유지됩니다.
 로그아웃에 성공하면 해당 IdP로 인증했던 기록을 제거하므로 다음에 로그인할 때 ID, 비밀번호 입력 창이 표시됩니다.<br/><br/>
 
 다음은 로그아웃 버튼을 클릭하면 로그아웃이 되는 예시 코드입니다.
@@ -256,10 +256,10 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 ### Widthdraw API
 
-다음은 로그인 상태에서 게임 이용자 탈퇴를 구현하는 예시 코드입니다.<br/><br/>
+다음은 로그인 상태에서 게임 유저 탈퇴를 구현하는 예시 코드입니다.<br/><br/>
 
-* 탈퇴에 성공하면, 로그인했던 IdP와 연동되어 있던 게임 이용자 데이터는 삭제됩니다.
-* 해당 IdP로 다시 로그인할 수 있으며, 새 게임 이용자 데이터를 생성합니다.
+* 탈퇴에 성공하면, 로그인했던 IdP와 연동되어 있던 게임 유저 데이터는 삭제됩니다.
+* 해당 IdP로 다시 로그인할 수 있으며, 새 게임 유저 데이터를 생성합니다.
 * Gamebase 탈퇴를 의미하며, IdP 계정 탈퇴를 의미하지는 않습니다.
 * 탈퇴 성공 시 IdP 로그아웃을 시도하게 됩니다.
 
@@ -281,7 +281,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 매핑은 기존에 로그인된 계정에 다른 IdP의 계정을 연동하거나 해제시키는 기능입니다.
 
-대다수의 게임에서는 게임 이용자 계정 하나에 여러 IdP를 연동(매핑)할 수 있습니다.<br/>Gamebase의 매핑 API를 사용하면 기존에 로그인된 계정에 다른 IdP 계정을 연동하거나 해제할 수 있습니다.
+대다수의 게임에서는 게임 유저 계정 하나에 여러 IdP를 연동(매핑)할 수 있습니다.<br/>Gamebase의 매핑 API를 사용하면 기존에 로그인된 계정에 다른 IdP 계정을 연동하거나 해제할 수 있습니다.
 
 즉, 연동 중인 IdP 계정으로 로그인을 시도하면 항상 같은 사용자 ID로 로그인됩니다.<br/><br/>
 
@@ -597,7 +597,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 
 ### Get Banned User Information
 
-Gamebase Console에 제재된 게임 이용자로 등록될 경우,
+Gamebase Console에 제재된 게임 유저로 등록될 경우,
 로그인을 시도하면 아래와 같은 이용 제한 정보 코드가 표시될 수 있습니다. **[TCGBGamebase banInfo]** 메서드를 이용해 제재 정보를 확인할 수 있습니다.
 
 * TCGB_ERROR_BANNED_MEMBER
@@ -609,7 +609,7 @@ Gamebase Console에 제재된 게임 이용자로 등록될 경우,
 게스트 계정을 다른 단말기로 이전하기 위해 계정 이전을 위한 키를 발급받는 기능입니다.
 
 이 키를 **TransferAccountInfo** 라고 부릅니다.
-발급받은 TransferAccountInfo는 다른 기기에서 **requestTransferAccount** API를 호출하여 계정 이전을 할 수 있습니다.
+발급받은 TransferAccountInfo는 다른 단말기에서 **requestTransferAccount** API를 호출하여 계정 이전을 할 수 있습니다.
 
 > `주의`
 > TransferAccountInfo의 발급은 게스트 로그인 상태에서만 발급이 가능합니다.
@@ -693,11 +693,11 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 ### Transfer Guest Account to Another Device
 **issueTransfer** API로 발급받은 TransferAccount를 통해 계정을 이전하는 기능입니다.
-계정 이전 성공 시 TransferAccount를 발급받은 단말기에서 이전 완료 메시지가 표시될 수 있고, Guest 로그인 시 새로운 계정이 생성됩니다.
+계정 이전 성공 시 TransferAccount를 발급받은 단말기에서 이전 완료 메시지가 표시될 수 있고, 게스트 로그인 시 새로운 계정이 생성됩니다.
 계정 이전이 성공한 단말기에서는 TransferAccount를 발급받았던 단말기의 게스트 계정을 계속해서 사용할 수 있습니다.
 
 > `주의`
-> 이미 Guest 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
+> 이미 게스트 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
 
 **API**
 
@@ -735,7 +735,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 |                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | 이미 다른 멤버에 매핑돼 있습니다.                      |
 |                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | 이미 같은 IdP에 매핑돼 있습니다.                     |
 |                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO | 3304       | IdP 정보가 유효하지 않습니다. (Console에 해당 IdP 정보가 없습니다.) |
-|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_CANNOT\_ADD\_GUEST\_IDP | 3305  | Guest IdP로는 AddMapping이 불가능합니다. |
+|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_CANNOT\_ADD\_GUEST\_IDP | 3305  | 게스트 IdP로는 AddMapping이 불가능합니다. |
 | Remove Mapping | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_FAILED | 3401       | 맵핑 삭제에 실패했습니다.                           |
 |                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | 마지막에 맵핑된 IdP는 삭제할 수 없습니다.                |
 |                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403       | 현재 로그인되어 있는 IdP 입니다.                     |

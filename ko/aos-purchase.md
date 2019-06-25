@@ -102,7 +102,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 ### Purchase Item
 
 구매하고자 하는 아이템의 itemSeq를 이용해 다음의 API를 호출해 구매를 요청합니다. <br/>
-게임 이용자가 구매를 취소하는 경우 **GamebaseError.PURCHASE_USER_CANCELED** 오류가 반환됩니다. 취소 처리를 해 주시기 바랍니다.
+게임 유저가 구매를 취소하는 경우 **GamebaseError.PURCHASE_USER_CANCELED** 오류가 반환됩니다. 취소 처리를 해 주시기 바랍니다.
 
 **API**
 
@@ -224,7 +224,7 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
 | PURCHASE_NOT_INITIALIZED                 | 4001       | Purchase 모듈이 초기화되지 않았습니다.<br>gamebase-adapter-purchase-IAP 모듈을 프로젝트에 추가했는지 확인해주세요. |
-| PURCHASE_USER_CANCELED                   | 4002       | 게임 이용자가 아이템 구매를 취소하였습니다.                 |
+| PURCHASE_USER_CANCELED                   | 4002       | 게임 유저가 아이템 구매를 취소하였습니다.                 |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 구매 로직이 아직 완료되지 않은 상태에서 API가 호출되었습니다.     |
 | PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 해당 스토어의 캐시가 부족하여 결제할 수 없습니다.             |
 | PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 GG(Google), TS(ONE store), TEST 입니다. |

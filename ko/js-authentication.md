@@ -2,7 +2,7 @@
 
 ## Login
 Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
-다른 IdP(Identity Provider, ex) google, facebook, line, naver, twitter)를 사용하시려면 "Login with IdP" 섹션을 참고하시기 바랍니다.
+다른 IdP(Identity Provider, ex) google, facebook, payco, line, naver 등)를 사용하시려면 "Login with IdP" 섹션을 참고하시기 바랍니다.
 
 
 ### Login Flow
@@ -23,7 +23,6 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
         * Facebook('facebook')
         * Payco('payco')
         * Naver('naver')
-        * Twitter('twitter')
         * Line('line')
 * **toast.Gamebase.login(providerName, (authToken, error) => { ... })** API를 호출합니다.
 
@@ -54,7 +53,6 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
 * Facebook('facebook')
 * Payco('payco')
 * Naver('naver')
-* Twitter('twitter')
 * Line('line')
 
 > <font color="red">[주의]</font><br/>
@@ -251,7 +249,7 @@ var accessToken = toast.Gamebase.getAccessToken();
 
 ### Get Banned User Information
 TOAST Gamebase Console에 제재된 게임 이용자로 등록될 경우,
-로그인을 시도하면 아래와 같은 이용 제한 정보 코드가 표시될 수 있습니다. **toast.Gamebase.getBanInfo()** 메서드를 이용해 제재 정보를 확인할 수 있습니다.
+로그인을 시도하면 아래와 같은 이용 제한 정보 코드가 표시됩니다. **toast.Gamebase.getBanInfo()** 메서드를 이용해 제재 정보를 확인할 수 있습니다.
 
 ```js
 // Obtaining Ban Information

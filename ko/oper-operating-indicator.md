@@ -27,7 +27,7 @@
 ## User Statistics
 ![operation-indicator_02_201812](https://static.toastoven.net/prod_gamebase/operation-indicator_02_201812.png)
 DAU, MCU, NRU, CCU AVG 현황을 그래프로 확인할 수 있습니다.
-현재 앱을 사용하는 게임유저의 추이 변화를 한눈에 확인할 수 있습니다. 
+현재 앱을 사용하는 게임 유저의 추이 변화를 한눈에 확인할 수 있습니다. 
 오른쪽 위의 기간 선택 바를 이용해 원하는 날짜를 선택하여 확인할 수도 있습니다.
 각 항목별 설명은 아래와 같습니다.
 

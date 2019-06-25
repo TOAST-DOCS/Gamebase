@@ -31,7 +31,7 @@ static string GetDeviceLanguageCode()
 
 ### Display Language
 
-* Gamebase에서 제공하는 UI 및 SystemDialog에 표시되는 언어를 기기에 설정된 언어가 아닌 다른 언어로 변경할 수 있습니다.
+* Gamebase에서 제공하는 UI 및 SystemDialog에 표시되는 언어를 단말기에 설정된 언어가 아닌 다른 언어로 변경할 수 있습니다.
 * Gamebase는 클라이언트에 포함되어 있는 메시지를 표시하거나 서버에서 받은 메시지를 표시합니다.
 * DisplayLanguage를 설정하면 사용자가 설정한 언어코드(ISO-639)에 적합한 언어로 메시지를 표시합니다.
 * 원하는 언어셋을 추가할 수 있습니다. 추가할 수 있는 언어코드는 다음과 같습니다.
@@ -247,7 +247,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-위 JSON 형식에서 "${언어코드}":{ } 내부에 key가 누락될 경우에는 `기기에 설정된 언어` 또는 `en`이 자동으로 입력됩니다.
+위 JSON 형식에서 "${언어코드}":{ } 내부에 key가 누락될 경우에는 `단말기에 설정된 언어` 또는 `en`이 자동으로 입력됩니다.
 
 Unity Android, iOS 플랫폼에서의 신규 언어셋 추가 방법은 아래 가이드를 참고하십시오.
 
@@ -259,7 +259,7 @@ Unity Android, iOS 플랫폼에서의 신규 언어셋 추가 방법은 아래 �
 초기화 및 SetDisplayLanguageCode API를 통해 Display Language를 설정할 경우, 최종 적용되는 Display Language는 입력한 값과 다르게 적용될 수 있습니다.
 
 1. 입력된 languageCode가 localizedstring.json 파일에 정의되어 있는지 확인합니다.
-2. Gamebase 초기화 시, 기기에 설정된 언어코드가 localizedstring.json 파일에 정의되어 있는지 확인합니다.(이 값은 초기화 이후, 기기에 설정된 언어를 변경하더라도 유지됩니다.)
+2. Gamebase 초기화 시, 단말기에 설정된 언어코드가 localizedstring.json 파일에 정의되어 있는지 확인합니다.(이 값은 초기화 이후, 단말기에 설정된 언어를 변경하더라도 유지됩니다.)
 3. Display Language의 기본값인 `en`이 자동으로 설정됩니다.
 
 ### Country Code
@@ -303,7 +303,7 @@ static string GetCountryCodeOfDevice()
 
 #### Intergrated Country Code
 
-* USIM, 기기 언어 설정의 순서로 국가 코드를 확인하여 리턴합니다.
+* USIM, 단말기 언어 설정의 순서로 국가 코드를 확인하여 리턴합니다.
 * GetCountryCode API는 다음 순서로 동작합니다.
 	1. USIM에 기록된 국가 코드를 확인하고, 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
 	2. USIM 국가 코드가 빈 값이라면 단말기 국가 코드를 확인하고, 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
@@ -335,7 +335,7 @@ public static string GetCountryCode()
 ```
 
 ### Server Push
-* Gamebase 서버에서 클라이언트 기기로 보내는 Server Push Message를 처리할 수 있습니다.
+* Gamebase 서버에서 클라이언트 단말기로 보내는 Server Push Message를 처리할 수 있습니다.
 * Gamebase 클라이언트에서 ServerPushEvent Listener를 추가하면 해당 메시지를 사용자가 받아서 처리할 수 있으며, 추가된 ServerPushEvent Listener를 삭제할 수 있습니다.
 
 
@@ -587,7 +587,7 @@ Analytics Console 사용법은 아래 가이드를 참고하십시오.
 
 #### Game User Data Settings
 
-게임 로그인 이후 유저 레벨 정보를 지표로 전송할 수 있습니다.
+게임 로그인 이후 게임 유저 레벨 정보를 지표로 전송할 수 있습니다.
 
 > <font color="red">[주의]</font><br/>
 >
@@ -600,10 +600,10 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int | 유저 레벨을 나타내는 필드입니다. |
+| userLevel | M | int | 게임 유저 레벨을 나타내는 필드입니다. |
 | channelId | O | String | 채널을 나타내는 필드입니다. |
 | characterId | O | String | 케릭터 명을 나타내는 필드입니다. |
-| classId | O | String | 직업을 나타내는 필드입니다. |
+| characterClassId | O | String | 직업을 나타내는 필드입니다. |
 
 **API**
 
@@ -621,11 +621,12 @@ static void SetGameUserData(GamebaseRequest.Analytics.GameUserData gameUserData)
 **Example**
 
 ``` cs
-public void SetGameUserData(int userLevel, string channelId, string characterId)
+public void SetGameUserData(int userLevel, string channelId, string characterId, string characterClassId)
 {
     GamebaseRequest.Analytics.GameUserData gameUserData = new GamebaseRequest.Analytics.GameUserData(userLevel);
     gameUserData.channelId = channelId;
     gameUserData.characterId = characterId;
+    gameUserData.characterClassId = characterClassId;
 
     Gamebase.Analytics.SetGameUserData(gameUserData);
 }
@@ -633,7 +634,7 @@ public void SetGameUserData(int userLevel, string channelId, string characterId)
 
 #### Level Up Trace
 
-레벨업이 되었을 경우 유저 레벨 정보를 지표로 전송할 수 있습니다.
+레벨업이 되었을 경우 게임 유저 레벨 정보를 지표로 전송할 수 있습니다.
 
 API 호출에 필요한 파라미터는 아래와 같습니다.
 
@@ -641,7 +642,7 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc	|
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int | 유저 레벨을 나타내는 필드입니다. |
+| userLevel | M | int | 게임 유저 레벨을 나타내는 필드입니다. |
 | levelUpTime | M | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
 
 **API**
@@ -660,12 +661,9 @@ static void TraceLevelUp(GamebaseRequest.Analytics.LevelUpData levelUpData)
 **Example**
 
 ``` cs
-public void TraceLevelUp(int userLevel, long levelUpTime, string channelId, string characterId)
+public void TraceLevelUp(int userLevel, long levelUpTime)
 {
-    GamebaseRequest.Analytics.LevelUpData levelUpData = new GamebaseRequest.Analytics.LevelUpData(userLevel);
-    levelUpData.levelUpTime = levelUpTime;
-    levelUpData.channelId = channelId;
-    levelUpData.characterId = characterId;
+    GamebaseRequest.Analytics.LevelUpData levelUpData = new GamebaseRequest.Analytics.LevelUpData(userLevel, levelUpTime);
 
     Gamebase.Analytics.TraceLevelUp(levelUpData);
 }

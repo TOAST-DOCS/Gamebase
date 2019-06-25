@@ -19,9 +19,9 @@ Gamebase 초기화 시 TCGBConfiguration 객체로 Gamebase 설정을 변경할 
 | API                                | Mandatory(M) / Optional(O) | Description                              |
 | ---------------------------------- | -------------------------- | ---------------------------------------- |
 | configurationWithAppID:appVersion: | M                          | TCGBConfiguration의 앱 ID와 앱 버전을 설정합니다.<br/>업데이트, 점검에 해당하는지 여부는 게임 버전으로 판단합니다.<br/>게임 버전을 지정해 주세요. |
-| enablePopup:                       | O                          | **[UI]**<br/>시스템 점검, 이용 제재(ban) 등 게임 이용자가 게임을 플레이할 수 없는 상황에서 팝업 등으로 사유를 표시해야 할 때가 있습니다.<br/>**YES**로 설정하면 Gamebase가 해당 상황에서 정보 팝업을 자동으로 표시합니다.<br/>기본값은 **NO**입니다.<br/>**NO** 상태에서는 론칭 결과를 통해 정보를 획득한 후 자체 UI를 구현해 게임을 플레이할 수 없는 이유를 표시해 주시기 바랍니다. |
+| enablePopup:                       | O                          | **[UI]**<br/>시스템 점검, 이용 제재(ban) 등 게임 유저가 게임을 플레이할 수 없는 상황에서 팝업 등으로 사유를 표시해야 할 때가 있습니다.<br/>**YES**로 설정하면 Gamebase가 해당 상황에서 정보 팝업을 자동으로 표시합니다.<br/>기본값은 **NO**입니다.<br/>**NO** 상태에서는 론칭 결과를 통해 정보를 획득한 후 자체 UI를 구현해 게임을 플레이할 수 없는 이유를 표시해 주시기 바랍니다. |
 | enableLaunchingStatusPopup:        | O                          | **[UI]**<br/>론칭 결과에 따라 로그인할 수 없는 상태에서(주로 점검 상태) Gamebase가 자동으로 팝업을 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup:YES** 상태에서만 동작합니다.<br/>기본값은 **YES**입니다. |
-| enableBanPopup:                    | O                          | **[UI]**<br/>게임 이용자가 이용 제재를 당한 상태일 때 Gamebase가 자동으로 제재 사유를 팝업으로 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup:** 상태에서만 동작합니다.<br/>기본값은 **YES**입니다. |
+| enableBanPopup:                    | O                          | **[UI]**<br/>게임 유저가 이용 제재를 당한 상태일 때 Gamebase가 자동으로 제재 사유를 팝업으로 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup:** 상태에서만 동작합니다.<br/>기본값은 **YES**입니다. |
 
 
 ### Debug Mode

@@ -6,7 +6,7 @@ Gamebase에서 지원하는 부가 기능을 설명합니다.
 
 ### Display Language
 
-* Gamebase에서 표시하는 언어(Gamebase 내장 UI에 표시되는 텍스트)를 기기에 설정된 언어(device language)가 아닌 다른 언어로 변경할 수 있습니다.
+* Gamebase에서 표시하는 언어(Gamebase 내장 UI에 표시되는 텍스트)를 단말기에 설정된 언어(device language)가 아닌 다른 언어로 변경할 수 있습니다.
 * Gamebase는 클라이언트에 포함되어 있는 메시지를 표시하거나 서버에서 받은 메시지를 표시합니다.
 * DisplayLanguage를 설정하면 사용자가 설정한 언어코드(ISO-639)에 적합한 언어로 메시지를 표시합니다.
 * 원하는 언어셋을 추가할 수 있습니다. 추가할 수 있는 언어코드는 다음과 같습니다.
@@ -38,10 +38,11 @@ Gamebase에서 지원하는 부가 기능을 설명합니다.
 
 해당 언어코드는 `toast.GamebaseDisplayLanguage.DefaultCode` 상수에 정의되어 있습니다.
 
-> `[주의]`
+> <font color="red">[주의]</font><br/>
 >
 > Gamebase에서 지원하는 언어코드는 대소문자를 구분합니다.
 > 'EN'이나 'zh-cn'과 같이 설정하면 문제가 발생할 수 있습니다.
+>
 
 ```js
 var toast.GamebaseDisplayLanguage.DefaultCode = {
@@ -226,18 +227,18 @@ toast.Gamebase.setDisplayLanguageTable(displayLanguageTable) {
 }
 ```
 
-위 JSON 형식에서 "${언어코드}":{ } 내부에 key가 누락될 경우에는 `기기에 설정된 언어 또는 en`이 자동으로 입력됩니다.
+위 JSON 형식에서 "${언어코드}":{ } 내부에 key가 누락될 경우에는 `단말기에 설정된 언어 또는 en`이 자동으로 입력됩니다.
 
 #### Display Language 우선순위
 
 초기화 및 setDisplayLanguageCode API를 통해 Display Language를 설정할 경우, 최종 적용되는 Display Language는 입력한 값과 다르게 적용될 수 있습니다.
 
 1. 입력된 languageCode가 localized string에 정의되어 있는지 확인합니다.
-2. Gamebase 초기화 시, 기기에 설정된 언어코드가 localized string에 정의되어 있는지 확인합니다.(이 값은 초기화 이후, 기기에 설정된 언어를 변경하더라도 유지됩니다.)
+2. Gamebase 초기화 시, 단말기에 설정된 언어코드가 localized string에 정의되어 있는지 확인합니다.(이 값은 초기화 이후, 단말기에 설정된 언어를 변경하더라도 유지됩니다.)
 3. Display Language의 기본값인 `en`이 자동으로 설정됩니다.
 
 ### Server Push
-* Gamebase 서버에서 클라이언트 기기로 WebSocket을 이용하여 보내는 Server Push Message를 처리할 수 있습니다.
+* Gamebase 서버에서 클라이언트 단말기로 WebSocket을 이용하여 보내는 Server Push Message를 처리할 수 있습니다.
 * Gamebase 클라이언트에서 ServerPushEvent Listener를 추가하면 해당 메시지를 사용자가 받아서 처리할 수 있으며, 추가된 ServerPushEvent Listener를 삭제할 수 있습니다.
 
 #### Flow
@@ -498,11 +499,10 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 **API**
 
 ```js
-var gameUserData = {
-	userLevel: ${User Level},
-    channelId: ${Channel Id},
-    characterId: ${Character Id},
-}
+var gameUserData = new toast.GameUserData(userLevel);
+gameUserData.channelId = channelId;
+gameUserData.characterId = characterId;
+gameUserData.classId = classId;
 
 toast.Gamebase.Analytics.setGameUserData(gameUserData);
 ```
@@ -510,12 +510,11 @@ toast.Gamebase.Analytics.setGameUserData(gameUserData);
 **Example**
 
 ``` js
-function setGameUserData(userLevel, channelId, characterId) {
-    var gameUserData = {
-        userLevel: userLevel,
-        channelId: channelId,
-        characterId: characterId,
-    }
+function setGameUserData(userLevel, channelId, characterId, classId) {
+    var gameUserData = new toast.GameUserData(userLevel);
+    gameUserData.channelId = channelId;
+    gameUserData.characterId = characterId;
+    gameUserData.classId = classId;
 
     toast.Gamebase.Analytics.setGameUserData(gameUserData);
 }
@@ -537,12 +536,7 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 **API**
 
 ```js
-var levelUpData = {
-	userLevel: ${User Level},
-    levelUpTime: ${LevelUp Time},
-    channelId: ${Channel Id},
-    characterId: ${Character Id},
-}
+var levelUpData = new toast.LevelUpData(userLevel, levelUpTime);
 
 toast.Gamebase.Analytics.traceLevelUp(levelUpData);
 ```
@@ -550,15 +544,8 @@ toast.Gamebase.Analytics.traceLevelUp(levelUpData);
 **Example**
 
 ``` js
-function traceLevelUp(userLevel, levelUpTime, channelId, characterId)
-{
-    var levelUpData = {
-        userLevel: userLevel,
-        levelUpTime: levelUpTime,
-        channelId: channelId,
-        characterId: characterId,
-    }
-
+function traceLevelUp(userLevel, levelUpTime) {
+    var levelUpData = new toast.LevelUpData(userLevel, levelUpTime);
     toast.Gamebase.Analytics.traceLevelUp(levelUpData);
 }
 ```

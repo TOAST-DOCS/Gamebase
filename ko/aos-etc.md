@@ -17,7 +17,7 @@ Gamebase에서 지원하는 부가 기능을 설명합니다.
 
 ### Display Language
 
-* Gamebase에서 표시하는 언어를 기기에 설정된 언어가 아닌 다른 언어로 변경할 수 있습니다.
+* Gamebase에서 표시하는 언어를 단말기에 설정된 언어가 아닌 다른 언어로 변경할 수 있습니다.
 * Gamebase는 클라이언트에 포함되어 있는 메시지를 표시하거나 서버에서 받은 메시지를 표시합니다.
 * DisplayLanguage를 설정하면 사용자가 설정한 언어코드(ISO-639)에 적합한 언어로 메시지를 표시합니다.
 * 원하는 언어셋을 추가할 수 있습니다. 추가할 수 있는 언어코드는 다음과 같습니다.
@@ -49,7 +49,7 @@ Gamebase에서 지원하는 부가 기능을 설명합니다.
 
 해당 언어코드는 `DisplayLanguage` 클래스에 정의되어 있습니다.
 
-> `[주의]`
+> <font color="red">[주의]</font><br/>
 >
 > Gamebase에서 지원하는 언어코드는 대소문자를 구분합니다.
 > 'EN'이나 'zh-cn'과 같이 설정하면 문제가 발생할 수 있습니다.
@@ -212,14 +212,14 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-위 JSON 형식에서 "${언어코드}":{ } 내부에 key가 누락될 경우에는 `기기에 설정된 언어` 또는 `en`이 자동으로 입력됩니다.
+위 JSON 형식에서 "${언어코드}":{ } 내부에 key가 누락될 경우에는 `단말기에 설정된 언어` 또는 `en`이 자동으로 입력됩니다.
 
 #### Display Language 우선순위
 
 초기화 및 SetDisplayLanguageCode API를 통해 Display Language를 설정할 경우, 최종 적용되는 Display Language는 입력한 값과 다르게 적용될 수 있습니다.
 
 1. 입력된 languageCode가 localizedstring.json 파일에 정의되어 있는지 확인합니다.
-2. Gamebase 초기화 시, 기기에 설정된 언어코드가 localizedstring.json 파일에 정의되어 있는지 확인합니다.(이 값은 초기화 이후, 기기에 설정된 언어를 변경하더라도 유지됩니다.)
+2. Gamebase 초기화 시, 단말기에 설정된 언어코드가 localizedstring.json 파일에 정의되어 있는지 확인합니다.(이 값은 초기화 이후, 단말기에 설정된 언어를 변경하더라도 유지됩니다.)
 3. Display Language의 기본값인 `en`이 자동으로 설정됩니다.
 
 ### Country Code
@@ -254,7 +254,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 #### Intergrated Country Code
 
-* USIM, 기기 언어 설정의 순서로 국가 코드를 확인하여 리턴합니다.
+* USIM, 단말기 언어 설정의 순서로 국가 코드를 확인하여 리턴합니다.
 * getCountryCode API는 다음 순서로 동작합니다.
 	1. USIM에 기록된 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
 	2. USIM 국가 코드가 빈 값이라면 단말기 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
@@ -269,7 +269,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 ```
 
 ### Server Push
-* Gamebase 서버에서 클라이언트 기기로 보내는 Server Push Message를 처리할 수 있습니다.
+* Gamebase 서버에서 클라이언트 단말기로 보내는 Server Push Message를 처리할 수 있습니다.
 * Gamebase 클라이언트에서 ServerPushEvent Listener를 추가하면 해당 메시지를 사용자가 받아서 처리할 수 있으며, 추가된 ServerPushEvent Listener를 삭제할 수 있습니다.
 
 
@@ -523,19 +523,20 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 **API**
 
 ```java
-static void setGameUserData(GameUserData gameUserData)
+Gamebase.Analytics.setGameUserData(GameUserData gameUserData);
 ```
 
 **Example**
 
 ``` java
-public void onLoginSuccess(, String channelId, String characterId) {
+public void onLoginSuccess() {
     int userLevel = 10;
-    String channelId, characterId;
+    String channelId, characterId, classId;
 
     GameUserData gameUserData = new GameUserData(userLevel);
     gameUserData.channelId = channelId; // Optional
     gameUserData.characterId = characterId; // Optional
+    gameUserData.classId = classId; // Optional
 
     Gamebase.Analytics.setGameUserData(gameUserData);
 }
@@ -559,17 +560,14 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 **API**
 
 ```java
-static void TraceLevelUp(GamebaseRequest.Analytics.LevelUpData levelUpData)
+Gamebase.Analytics.traceLevelUp(LevelUpData levelUpData);
 ```
 
 **Example**
 
 ``` java
-public void onLevelUp(int userLevel, long levelUpTime, String channelId, String characterId) {
-    LevelUpData levelUpData = new LevelUpData(userLevel);
-    levelUpData.levelUpTime = levelUpTime; // Optional
-    levelUpData.channelId = channelId; // Optional
-    levelUpData.characterId = characterId; // Optional
+public void onLevelUp(int userLevel, long levelUpTime) {
+    LevelUpData levelUpData = new LevelUpData(userLevel, levelUpTime);
 
     Gamebase.Analytics.traceLevelUp(levelUpData);
 }
