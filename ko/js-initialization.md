@@ -100,9 +100,10 @@ function gamebaseInitialize() {
 }
 ```
 
-### Launching Status
+### Launching Information
 
 toast.Gamebase.initialize 호출 결과로 론칭 상태를 확인할 수 있습니다.
+
 ```js
 toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error) {
     if (error) {
@@ -114,7 +115,30 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 });
 ```
 
-### Launching Status Code
+`toast.Gamebase.Launching.getLaunchingInformations()` API를 이용하면 초기화 이후에도 LaunchingInfo 객체를 획득할 수 있습니다.
+
+**API**
+
+```java
++ (LaunchingInfo)Gamebase.Launching.getLaunchingInformations();
+```
+LaunchingInfo 객체에는 Gamebase Console에 설정한 값들과 게임 상태 등이 포함돼 있습니다.
+
+
+#### 1. Launching
+
+Gamebase 론칭 정보입니다.
+
+**1.1 Status**
+
+Gamebase JavaScript SDK 초기화 설정에 입력한 앱 버전의 게임 상태 정보입니다.
+
+* code: 게임 상태 코드(점검 중, 업데이트 필수, 서비스 종료 등)
+* message: 게임 상태 메시지
+
+상태 코드는 아래 표를 참고하십시오.
+
+#### Launching Status Code
 
 | Status                      | Code | Description                              |
 | --------------------------- | ---- | ---------------------------------------- |
@@ -130,3 +154,86 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 | INSPECTING_ALL_SERVICES     | 304  | 전체 서비스 점검 중                              |
 | INTERNAL_SERVER_ERROR       | 500  | 내부 서버 오류                                 |
 
+[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+
+**1.2 App**
+
+Gamebase Console에 등록된 앱 정보입니다.
+
+* accessInfo
+    * serverAddress: 서버 주소
+    * csInfo: 고객 센터 정보
+* relatedUrls
+    * termsUrl: 이용약관
+    * personalInfoCollectionUrl: 개인 정보 동의
+    * punishRuleUrl: 이용 정지 규정
+    * csUrl : 고객센터
+* install: 설치 URL
+* idP: 인증 정보
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+
+**1.3 Maintenance**
+
+Gamebase Console에 등록된 점검 정보입니다.
+
+* url: 점검 페이지 URL
+* timezone: 표준 시간대(timezone)
+* beginDate: 시작 시간
+* endDate: 종료 시간
+* message: 점검 사유
+
+[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+
+**1.4 Notice**
+
+Gamebase Console에 등록된 공지 정보입니다.
+
+* message: 메시지
+* title: 타이틀
+* url: 점검 URL
+
+[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+
+#### 2. tcProduct
+
+Gamebase와 연계된 TOAST 서비스의 appKey입니다.
+
+* gamebase
+* tcLaunching
+* iap
+* push
+
+#### 3. tcIap
+
+TOAST Console에 등록된 IAP 스토어 정보입니다.
+
+* id: App ID
+* name: App Name
+* storeCode: Store Code
+ 
+[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+
+#### 4. tcLaunching
+
+TOAST Console에 등록된 Launching 정보입니다
+
+* 사용자가 Console에 입력한 값을 JSON string으로 전달합니다.
+ 
+[Console Guide](/Game/Gamebase/ko/oper-management/#config)
+
+
+### Error Handling
+
+| Error                        | Error Code | Description                |
+| ---------------------------- | ---------- | -------------------------- |
+| NOT_INITIALIZED              | 1          | Gamebase 초기화돼 있지 않습니다. |
+| NOT_LOGGED_IN                | 2          | 로그인이 필요합니다.            |
+| INVALID_PARAMETER            | 3          | 잘못된 파라미터입니다.           |
+| INVALID_JSON_FORMAT          | 4          | JSON 포맷 오류입니다.          |
+| USER_PERMISSION              | 5          | 권한이 없습니다.               |
+| NOT_SUPPORTED                | 10         | 지원하지 않는 기능입니다.        |
+
+
+* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
+    * [오류 코드](./error-code/#client-sdk)
