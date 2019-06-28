@@ -13,6 +13,8 @@ Gamebaesサービスを有効にすると自動でアプリが作成され、該
 一つのTOAST プロジェクトにつき一つのGamebaseアプリを管理することができるため、アプリを追加で登録したり削除することはできません。Gamebaseサービスを無効にするとアプリに登録された情報が削除されます。
 各項目ごとの詳細説明は、下の**Properties**項目を参考にします。
 
+### Properties
+
 ![gamebase_app_01_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_01_201812.png)
 
 #### (1) インストールURL
@@ -76,22 +78,23 @@ Idpごとの詳細な設定方法は、[Authentication Information](#authenticat
 
 照会画面から**登録**ボタンをクリックすると、テスト端末を登録することができる画面が表示されます。**Device Key**を直接入力したり**ゲームユーザID**を検索してテスト端末を登録することができます。
 
+![gamebase_app_03_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_03_201812.png)
 ![gamebase_app_02_201901.png](https://static.toastoven.net/prod_gamebase/gamebase_app_02_201901.png)
 
 **(A) ゲームユーザIDを通じた登録**
 
 タイプにユーザIDを選択し、ゲームユーザIDを入力して**検索**ボタンをクリックすると画面下にユーザーのログインログ内訳が照会されます。照会された内訳からテスト端末に登録するDevice Keyを選択して**追加情報**を入力し、**登録**ボタンをクリックすると、該当するDevice keyがテスト端末情報に登録されます。
 
-> [参考] 
-> 追加情報には、ユーザーが確認しやすいように別称を入力してください。例) iPhone6テスト、トースト様のiPad
+> [参考]
+> 追加情報には、ユーザーが確認しやすいように別称を入力してください。例) iPhone6テスト、TOASTのiPad
 
 **(B)Device Keyを通した登録**
 
 登録するDevice keyを知っている場合、タイプに**Device Key**を選択して直接テスト端末を登録することができます。
 Device Keyと登録する端末の**追加情報**を入力した後、登録ボタンを押すとテスト端末に登録されます。
 
-> [참고] 
-> 추가 정보에는 사용자가 알아보기 편한 별칭을 입력하시면 됩니다. 예시) iPhone 6 테스트, 토스트님 아이패드
+> [参考]
+> 追加情報にはユーザーがわかりやすいエイリアスを入力してください。例) iPhone 6テスト、TOASTのiPad
 
 #### (3) 削除
 
@@ -115,7 +118,7 @@ Facebookの開発サイトに登録したアプリの{アプリID}と{アプリ�
 ![gamebase_app_04_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_04_201812.png)
 
 **[例] facebook_permission format **
-* Facebook의 경우, OAuth 인증 시도 시, Facebook에 요청할 정보의 종류를 설정해야 합니다.
+* Facebookの場合、OAuth認証試行時、Facebookにリクエストする情報の種類を設定する必要があります。
 
 ```json
 { "facebook_permission": [ "public_profile", "email"] }
@@ -129,7 +132,7 @@ Facebookの開発サイトに登録したアプリの{アプリID}と{アプリ�
 - [Facebookの権限](https://developers.facebook.com/docs/facebook-login/permissions/)
 
 ##### Android & iOS & Unity
-TOAST Console에서의 설정 외에 추가 설정은 없습니다.
+TOAST Consoleでの設定の他に追加設定はありません。
 
 
 
@@ -139,33 +142,33 @@ TOAST Console에서의 설정 외에 추가 설정은 없습니다.
 
 ![gamebase_app_06_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_06_201812.png)
 
-1. Google 인증을 위해서는 Google Cloud Console에서 **Web Application Client ID**를 발급받아 Gamebase Console에 입력해야 합니다.
-2. 승인된 리디렉션 URI 란에 다음 값을 입력합니다.
+1. Google認証を行うには、Google Cloud Consoleで**Web Application Client ID**を発行し、Gamebase Consoleに入力する必要があります。
+2. 承認されたリダイレクトURI欄に次の値を入力します。
 	* https://alpha-id-gamebase.toast.com/oauth/callback
 	* https://beta-id-gamebase.toast.com/oauth/callback
 	* https://id-gamebase.toast.com/oauth/callback
 
 ##### iOS
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> Gamebase iOS SDK 1.12.2 버전에서 URL Scheme의 설정 방법이 변경 되었습니다. 사용 SDK 버전에 맞는 가이드를 확인하여 설정하시기 바랍니다.
+> Gamebase iOS SDK 1.12.2バージョンで、URLスキームの設定方法が変更されました。使用SDKバージョンに合ったガイドを確認して設定してください。
 >
 
-* 1.12.1 이하
-	* AdditionalInfo를 설정해야 합니다.
-		* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-		* GOOGLE의 경우, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
-		* **url_scheme_ios_only**의 값은 Xcode의 URL Scheme에 등록된 값들 중 한개와 일치해야 합니다.
+* 1.12.1以下
+	* AdditionalInfoを設定する必要があります。
+		* **TOAST Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON string形式の情報を設定する必要があります。
+		* GOOGLEの場合、iOSアプリで必要な情報**url_scheme_ios_only**を設定する必要があります。
+		* **url_scheme_ios_only**の値は、XcodeのURLスキームに登録された値のいずれか1つと一致する必要があります。
 
-	* URL Schemes를 설정해야 합니다.
+	* URLスキームsを設定する必要があります。
 		* **XCode > Target > Info > URL Types**
 
-* 1.12.2 이상
-	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.google`를 추가해야 합니다.
+* 1.12.2以上
+	* URLスキームを設定する必要があります。
+		* **XCode > Target > Info > URL Types**に`tcgb.{Bundle ID}.google`を追加する必要があります。
 
-* GOOGLE 추가 인증 정보 입력 예제
+* GOOGLE追加認証情報の入力例
 
 ```json
 { "url_scheme_ios_only": "Your URL Schemes" }
@@ -192,16 +195,16 @@ PAYCO Client IDを申請して発行された{client_id}及び{client_secret}を
 
 **入力フィールド**<br />
 
-- ClientID: {Payco client_id}
-- Secret Key: {Payco client_secret}
-- 추가정보: Payco Service & Service Name (JSON format)
+- ClientID：{Payco client_id}
+- Secret Key：{Payco client_secret}
+- 追加情報：Payco Service & Service Name (JSON format)
 
 ##### Android & Unity
-- AdditionalInfo를 설정해야 합니다.
-    * **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-    * PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
+- AdditionalInfoを設定する必要があります。
+    * **TOAST Console > Gamebase > App > 認証情報 > 追加情報**項目に、JSON string形式の情報を設定する必要があります。
+    * PAYCOの場合、PaycoSDKで要求する**service_code**と**service_name**を設定する必要があります。
 
-* PAYCO 추가 인증 정보 입력 예제
+* PAYCO追加認証情報の入力例
 
 ```json
 { "service_code": "HANGAME", "service_name": "Your Service Name" }
@@ -209,24 +212,24 @@ PAYCO Client IDを申請して発行された{client_id}及び{client_secret}を
 
 ##### iOS
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> Gamebase iOS SDK 1.12.2 버전에서 URL Scheme의 설정 방법이 변경 되었습니다. 사용 SDK 버전에 맞는 가이드를 확인하여 설정하시기 바랍니다.
+> Gamebase iOS SDK 1.12.2バージョンでURLスキームの設定方法が変更されました。使用SDKバージョンに合ったガイドを参照してください。
 >
 
-* 1.12.1 이하
-	* AdditionalInfo를 설정해야 합니다.
-		* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-		* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
+* 1.12.1以下
+	* AdditionalInfoを設定する必要があります。
+		* **TOAST Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON string形式の情報を設定する必要があります。
+		* PAYCOの場合、PaycoSDKで要求する**service_code**と**service_name**を設定する必要があります。
 
-* 1.12.2 이상
-	* AdditionalInfo를 설정해야 합니다.
-		* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-		* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
-	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.payco`를 추가해야 합니다.
+* 1.12.2以上
+	* AdditionalInfoを設定する必要があります。
+		* **TOAST Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON string形式の情報を設定する必要があります。
+		* PAYCOの場合、PaycoSDKで要求する**service_code**と**service_name**を設定する必要があります。
+	* URLスキームを設定する必要があります。
+		* **XCode > Target > Info > URL Types**に`tcgb.{Bundle ID}.payco`を追加する必要があります。
 
-* PAYCO 추가 인증 정보 입력 예제
+* PAYCO追加認証情報の入力例
 
 ```json
 { "service_code": "HANGAME", "service_name": "Your Service Name" }
@@ -236,21 +239,21 @@ PAYCO Client IDを申請して発行された{client_id}及び{client_secret}を
 
 #### 5.NAVER
 NAVER Developersサイトで申請して発行された{client_id}及び{client_secret}をGamebase Consoleに入力します。
-이때, 로그인 동의 창에서 표시할 애플리케이션 이름인 **service_name** 을 설정해야 하고, iOS 의 경우에는 추가로 **url_scheme_ios_only** 값을 JSON String 형태로 추가 정보란에 입력해야 합니다.
+この時、ログイン同意ウィンドウで表示するアプリケーション名である**service_name**を設定する必要があり、iOSの場合はさらに**url_scheme_ios_only**値をJSON String形式で追加情報欄に入力する必要があります。
 
-**入力フィールド**
+**入力フィールド**<br />
 
-- Client ID: {NAVER client_id}
-- Secret Key: {NAVER client_secret}
-- 追加情報: NAVER Application Name & iOS url scheme (json format)
+- Client ID：{NAVER client_id}
+- Secret Key：{NAVER client_secret}
+- 追加情報：NAVER Application Name & iOS URLスキーム(json format)
 
 **Reference URL**<br />
 - [NAVER Developers - アプリケーション登録](https://developers.naver.com/apps/#/register)
-- [NAVER Developers - クライアントIDとクライアントシークレット確認](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)
+- [NAVER Developers - クライアントIDとクライアントシークレットの確認](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)
 
 ##### Android & Unity
-* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-	* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
+* **TOAST Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON String形式の情報を設定する必要があります。
+	* NAVERの場合、ログイン同意ウィンドウに表示するアプリ名である**service_name**を設定する必要があります。
 
 ```json
 {"service_name": "Your Service Name" }
@@ -258,80 +261,81 @@ NAVER Developersサイトで申請して発行された{client_id}及び{client_
 
 ##### iOS
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> Gamebase iOS SDK 1.12.2 버전에서 URL Scheme의 설정 방법이 변경 되었습니다. 사용 SDK 버전에 맞는 가이드를 확인하여 설정하시기 바랍니다.
+> Gamebase iOS SDK 1.12.2バージョンでURLスキームの設定方法が変更されました。使用SDKバージョンに合ったガイドを参照してください。
 >
 
-* 1.12.1 이하
-	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-		* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
-		* iOS 앱에서 필요한 정보인 **url_scheme_ios_only**를 추가로 설정해야 합니다.
+* 1.12.1以下
+	* **TOAST Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON String形式の情報を設定する必要があります。
+		* NAVERの場合、ログイン同意ウィンドウに表示するアプリ名である**service_name**を設定する必要があります。
+		* iOSアプリで必要な情報の**url_scheme_ios_only**を追加で設定する必要があります。
 
-	* URL Schemes를 설정해야 합니다.
+	* URLスキームsを設定する必要があります。
 		* **XCode > Target > Info > URL Types**
 
-* 1.12.2 이상
-	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-		* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
+* 1.12.2以上
+	* **TOAST Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON String形式の情報を設定する必要があります。
+		* NAVERの場合、ログイン同意ウィンドウに表示するアプリ名である**service_name**を設定する必要があります。
 
-	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.naver`를 추가해야 합니다.
+	* URLスキームを設定する必要があります。
+		* **XCode > Target > Info > URL Types**に`tcgb.{Bundle ID}.naver`を追加する必要があります。
 
-* NAVER 추가 인증 정보 입력 예제
+* NAVER追加認証情報の入力例
 
 ```json
-{ "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
+{ "url_scheme_ios_only": "Your URLスキームs", "service_name": "Your Service Name" }
 ```
 
 ![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
 #### 6. Twitter
-Twitter Application Management 사이트에서 앱을 등록하고 발급받은 {Consumer Key} 및 {Consumer Secret}을 Gamebase Console에 입력합니다.
+Twitter Application Managementサイトでアプリを登録して発行した{Consumer Key}および{Consumer Secret}をGamebase Consoleに入力します。
 
-**입력 필드**
+**入力フィールド**
 
-- Client ID: {Twitter Consumer Key}
-- Secret Key: {Twitter Consumer Secret}
+- Client ID：{Twitter Consumer Key}
+- Secret Key：{Twitter Consumer Secret}
 
-**Reference URL**
+**Reference URL**<br />
 - [Twitter Application Management](https://apps.twitter.com/)
 
 ##### iOS
 
- > <font color="red">[주의]</font><br/>
+ > <font color="red">[注意]</font><br/>
  >
- > Gamebase iOS SDK 1.14.0 버전에서 URL Scheme의 설정 방법이 변경 되었습니다. 사용 SDK 버전에 맞는 가이드를 확인하여 설정하시기 바랍니다.
+ > Gamebase iOS SDK 1.14.0バージョンでURLスキームの設定方法が変更されました。使用SDKバージョンに合ったガイドを参照してください。
  >
 
- * 1.13.0 이하
-	* 별도의 URL Scheme 설정이 필요하지 않습니다.
+ * 1.13.0以下
+	* 別途URLスキームを設定する必要はありません。
 
-* 1.14.0 이상
-	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.twitter**를 추가해야 합니다.
+* 1.14.0以上
+	* URLスキームを設定する必要があります。
+		* **XCode > Target > Info > URL Types**に**tcgb.{Bundle ID}.twitter**を追加する必要があります。
 
-* Twitter 추가 인증 정보 입력 예제
+* Twitter追加認証情報の入力例
 
 ![Twitter URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
 #### 7. LINE
 
-**입력 필드**
-- Client ID: {LINE Channel ID}
-- Secret Key: {LINE Channel Secret}
+**入力フィールド**
+- Client ID：{LINE Channel ID}
+- Secret Key：{LINE Channel Secret}
 
-**Reference URL**
+**Reference URL**<br />
 
 - [LINE Developer Console](https://developers.line.me/console/)
 
 ##### iOS
-LINE Login 기능을 사용하기 위하여, Xcode에 추가 설정이 필요합니다.
-- URL Schemes를 설정해야 합니다.
-	* **XCode > Target > Info > URL Types**에 **line3rdp.{App Bundle ID}**를 추가해야 합니다.
+LINE Login機能を使用するには、Xcodeに追加設定を行う必要があります。
+- URLスキームsを設定する必要があります。
 
-- Info.plist파일을 설정해야합니다.
-	* LINE에서 발급받은 ChannelID를 설정합니다.
+  * **XCode > Target > Info > URL Types**に**line3rdp.{App Bundle ID}**を追加する必要があります。
+
+- Info.plistファイルを設定する必要があります。
+	* LINEで発行したChannelIDを設定します。
 	```
 	<key>LineSDKConfig</key>
 	<dict>
@@ -339,7 +343,7 @@ LINE Login 기능을 사용하기 위하여, Xcode에 추가 설정이 필요합
     	<string>{Issued LINE ChannleID}</string>
 	</dict>
 	```
-	* ATS 설정을 위하여 scheme을 등록합니다.
+	* ATS設定のためにschemeを登録します。
 	```
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
@@ -347,7 +351,7 @@ LINE Login 기능을 사용하기 위하여, Xcode에 추가 설정이 필요합
     	<string>line3rdp.{App Bundle ID}</string>
 	</array>
 	```
-- LINE Login을 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다. (인증 필요)
+- LINE Loginを使用するためのプロジェクト設定は、次のリンクを参照してください。(認証必要)
 * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
 
 
@@ -400,9 +404,9 @@ OSごとに選択可能なストアが異なります。
 >  <font color="red">[注意] </font> 
 >  **アップデートが必ず必要な場合とメンテナンスが同時に設定**されている場合、サービス状態は、「アップデートが必ず必要です。」になります。
 >  メンテナンス中にユーザーに対し「アップデートが必ず必要です。」のポップアップを表示したくない場合、メンテナンス完了後にサービス状態を「アップデートが必ず必要です。」に変更する必要があります。
->  <font color="orange">[참고] </font>
->  업데이트 버튼을 누르면 설치 URL 메뉴에서 설정한 각각의 스토어 주소로 연결됩니다.
->  예를 들면 클라이언트가 App store로 설정되어 있고 설치 URL 메뉴에서 App store 관련 설정이 존재한다면 설정한 주소로 이동되며 만약 설치 URL 메뉴에 설정이 되어 있지 않을 경우 공통(Common) URL로 연결됩니다.
+>  <font color="orange">[参考] </font>
+> アップデートボタンを押すと、インストールURLメニューで設定した各々のストアアドレスに接続されます。
+> 例えば、クライアントがApp storeに設定されていて、インストールURLメニューでApp store関連設定が存在する場合は設定したアドレスに移動し、インストールURLメニューに設定されていない場合は共通(Common)URLに接続されます。
 >  
 - <font color="white" style="background-color:#CCCCCC">終了</font>：サービスできません。<br/> サービスが終了されたバージョンの場合に選択します。<br />下は、「終了」の状態のときにGamebase SDKで基本的に提供するポップアップです。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_ended_1.0.png)
@@ -418,18 +422,18 @@ OSごとに選択可能なストアが異なります。
 **アプリ**タブでサーバーアドレスを入力するとすべてのクライアントに適用されるため、クライアントごとに他のサーバーアドレスを使用したい場合にのみサーバーアドレスを入力します。
 
 #### (5) Debug log
-Gamebae SDK의 Debug Log 출력 여부를 Console을 통하여 실시간으로 변경할 수 있습니다.
-설정되어 있지 않으면 기본적으로 Gamebase SDK 내부에 설정된 값을 우선으로 동작하고 Gamebase Console에서 Debug Log 출력 여부를 설정하실 수 있습니다.
-Gamebase SDK에 Debug Log가 'OFF"상태이더라도 Console에서 'ON'으로 설정하시면 단말기에 Gamebase Debug Log가 출력됩니다.
+Gamebae SDKのDebug Logを出力するかどうかを、コンソールでリアルタイムに変更できます。
+設定されていない場合は、基本的にGamebase SDK内部に設定された値で動作し、GamebaseコンソールでDebug Logを出力するかどうかを設定できます。
+Gamebase SDKのDebug Logが'OFF'状態でも、コンソールで'ON'に設定すれば端末にGamebase Debug Logが出力されます
 
 ## Installed URL
 
 ![gamebase_app_19_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_19_201812.png)
 
 * ゲームをインストールするためのストアURL情報を管理します。
-* 클라이언트 상태 중 <font color="white" style="background-color:#2AB1A6">업데이트 권장(서비스 중)</font> 또는 <font color="white" style="background-color:#A1A1A1">업데이트 필수</font> 일 때 각각의 스토어 별로 제공할 주소들에 대한 값을 설정합니다.
-* ユーザーがPCやモバイルで短縮URLをクリックすると、ユーザー端末情報(デバイス、OS、ストアなど)を利用して入力されたサイトへリダイレクションします。
-* ストア情報がなかったり、ストアへの移動に失敗した場合、「COMMON」に設定されているURLへ移動します。
+* クライアント状態が<font color="white" style="background-color:#2AB1A6">アップデート推奨(サービス中)</font>または<font color="white" style="background-color:#A1A1A1">アップデート必須</font>の時、ストアごとに提供するアドレスの値を設定します。
+* ユーザーがPCやモバイルで短縮URLをクリックすると、ユーザー端末情報(デバイス、オペレーションシステム、ストアなど)を利用して入力されたサイトにリダイレクトします。
+* ストア情報がない、もしくはストア移動に失敗した場合は、'COMMON'に設定されたURLに移動します。
 
 _[例1] Android端末からSMSで受信したインストールURLをクリックする場合
 **(Device:mobile,OS:Android,Store:なし)**Androidのうち、代表ストアに指定されたモバイルURLへ移動。代表ストアが「Google Play」の場合、「Google Play」モバイルに設定されているURLへ移動。
@@ -461,46 +465,46 @@ iOSユーザーがインストールURLを実行した際に接続されるア�
 Standaloneでサービスされているアプリから接続されるアドレスを設定します。Standaloneは、PCでのみ動作しますので、PC設定のみ行ってください。
 
 ## Transfer account
-Guest로 로그인한 유저가 다른 아이디 제공자를 연동하지 않고 다른 단말기에서 이어서 게임을 할 수 있는 기능을 제공합니다.
-사용자는 현재 게임중인 단말에서 기기 이전을 위한 Key를 발급 받아 이전하려는 단말기에 Key를 입력하는 것만으로 쉽게 게임 기기를 변경할 수 있습니다.
-기기이전 기능은 기본적으로 비활성화 되어 있으며 사용을 원하는 경우에는 기기이전 메뉴에서 **사용하기** 클릭하여 기능을 활성화 해야 합니다.
+ゲストでログインしたゲームユーザーが、他のID提供者と連携を行わずに、他の端末で続けてゲームをプレイできる機能を提供します。
+ユーザーは、現在ゲーム中の端末で移行のためのキーを発行し、移行する端末にキーを入力することで、簡単にゲーム端末を変更できます。
+**端末移行**機能は、デフォルトで無効になっています。使用するには**端末移行**で**使用する**をクリックします。
 
 ![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_1.0.png)
-1) 기기 이전 기능을 사용하기 위해서는 **사용하기** 클릭하여 기능을 활성화 해야 합니다. 사용하기 버튼을 누르면 기기 이전 기능 사용을 위해 필요한 값을 설정하는 화면으로 전환됩니다.
+**使用する**ボタンをクリックした後、端末移行に必要な情報を入力します。
 
 ![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_2.0.png)
-기기 이전 기능에 필요한 값들을 설정 할 수 있는 화면입니다.
-각 항목에 대한 설명은 아래와 같습니다.
+端末移行機能に必要な値を設定できる画面です。
+各項目の説明は下記の通りです。
 
-#### 발급
-기기 이전 발급키의 형식을 설정합니다.
-사용자의 기기 이전키는 ID만 사용하거나 ID, 비밀번호 두 개의 키를 이용할 수 있습니다. ID, 비밀번호의 형식은 게임에서 원하는 소문자, 대문자, 숫자 조합으로 구성할 수 있습니다.
-1) **ID 자동 발급 형식** : 기기 이전 ID 발급 형식을 설정합니다. 설정 항목은 아래와 같습니다.
-  - **숫자(최소길이12)** : 숫자로만 이루어진 아이디를 발급합니다. 발급되는 ID의 최소길이는 12자입니다.
-  - **숫자+소문자(최소길이10)** : 숫자와 소문자의 조합으로만 이루어진 ID를 발급합니다. 발급되는 ID의 최소길이는 10자입니다.
-  - **숫자+대문자(최소길이10)** : 숫자와 대문자의 조합으로만 이루어진 ID를 발급합니다. 발급되는 ID의 최소길이는 10자입니다.
-  - **숫자+소문자+대문자(최소길이:9)** : 숫자, 소문자, 대문자의 조합으로 이루어진 ID를 발급합니다. 발급되는 ID의 최소길이는 9자입니다.
-  - **소문자+대문자(최소길이9)** : 소문자와 대문자의 조합으로만 이루어진 ID를 발급합니다. 발급되는 ID의 최소길이는 9자입니다.
+#### 発行
+端末移行発行キーの形式を設定します。
+端末移行キーはIDのみまたは、IDとパスワードのキーを利用できます。ID、パスワードの形式はゲームで任意の小文字、大文字、数字の組み合わせで構成できます。
 
-2) **비밀번호 자동 발급 형식** : 기기 이전 ID를 이용하여 로그인할 때 사용할 비밀번호 발급 형식을 설정합니다. 설정 항목은 아래와 같습니다.
-  - **비밀번호 사용 안함** : 비밀번호를 사용하지 않을 때 선택합니다. 해당항목을 선택하면 아래 검증항목에서 아이디의 유효시간만 설정할 수 있습니다.
-  - **숫자(최소길이12)** : 숫자로만 이루어진 비밀전호를 발급합니다. 발급되는 비밀번호의 최소길이는 12자입니다.
-  - **숫자+소문자(최소길이10)** : 숫자와 소문자의 조합으로만 이루어진 비밀번호를 발급합니다. 발급되는 비밀번호의 최소길이는 10자입니다.
-  - **숫자+대문자(최소길이10)** : 숫자와 대문자의 조합으로만 이루어진 ID를 발급합니다. 발급되는 비밀번호의 최소길이는 10자입니다.
-  - **숫자+소문자+대문자(최소길이:9)** : 숫자, 소문자, 대문자의 조합으로 이루어진 ID를 발급합니다. 발급되는 비밀번호의 최소길이는 9자입니다.
-  - **소문자+대문자(최소길이9)** : 소문자와 대문자의 조합으로만 이루어진 ID를 발급합니다. 발급되는 비밀번호의 최소길이는 9자입니다.
+1. **ID自動発行形式**：端末移行ID発行形式を設定します。設定項目は下記の通りです。
 
-#### 검증
-발급된 기기이전키의 검증 조건을 설정합니다.
-기기이전키의 검증시 이전횟수나 유효기간, 실패시 차단 등의 설정을 하실 수 있습니다.
-3) **기기 이전 횟수** : 발급된 아이디의 기기 이전이 가능한 횟수를 설정합니다. 무제한/일회성 중 한가지를 선택해야 합니다.
-4) **유효 기간** : 발급된 계정의 유효 시간을 설정합니다. 발급된 기기 이전 ID는 이 설정값의 영향을 받습니다. 무제한/기간 설정 중 한가지를 선택해야 합니다.
-5) **실패 시 재검증 차단 여부** : 유저가 아이디를 이용하여 로그인을 시도했을 때 실패했을 경우 재시도에 대한 설정을 추가로 설정하실 수 있습니다. 해당 항목을 체크하면 차단 관련 설정을 추가로 진행해야 합니다.
-6) **차단 기준 횟수** : 실패 시 재검증 차단 여부가 선택되었을 때 설정할 수 있는 항목입니다. 유저가 최대로 실패할 수 있는 횟수를 설정할 수 있습니다. 최소 1회 이상은 설정되어야 합니다.
-7) **차단 기간** : 유저가 검증에 실패하여 계정이 차단되었을 경우 다시 재시도를 할 수 있는 시간에 대한 설정을 할 수 있습니다. 영구 차단/기간 지정 중 한가지를 선택해야 합니다.
+- **数字(最小：12)**：数字のみで構成されたIDを発行します。発行されるIDの長さは12文字が最小です。
+- **数字+小文字(最小：10)**：数字と小文字の組み合わせで構成されたIDを発行します。発行されるIDの長さは10文字が最小です。
+- **数字+大文字(最小：10)**：数字と大文字の組み合わせで構成されたIDを発行します。発行されるIDの長さは10文字が最小です。
+- **数字+小文字+大文字(最小：9)**：数字、小文字、大文字の組み合わせで構成されたIDを発行します。発行されるIDの長さは9文字が最小です。
+- **小文字+大文字(最小：9)**：小文字と大文字の組み合わせで構成されたIDを発行します。発行されるIDの長さは9文字が最小です。
+2. **パスワード自動発行形式**：端末移行IDを利用してログインする時に使用するパスワード発行形式を設定します。設定項目は下記の通りです。
+- **パスワード使用しない**：パスワードを使用しない時に選択します。この項目を選択する場合は、下記の検証項目でIDの有効時間のみ設定できます。
+- **数字(最小：12)**：数字のみで構成されたパスワードを発行します。発行されるパスワードの長さは12文字が最小です。
+- **数字+小文字(最小：10)**：数字と小文字の組み合わせで構成されたパスワードを発行します。発行されるパスワードの長さは10文字が最小です。
+- **数字+大文字(最小：10)**：数字と大文字の組み合わせで構成されたIDを発行します。発行されるパスワードの長さは10文字が最小です。
+- **数字+小文字+大文字(最小：9)**：数字、小文字、大文字の組み合わせで構成されたIDを発行します。発行されるパスワードの長さは9文字が最小です。
+- **小文字+大文字(最小：9)**：小文字と大文字の組み合わせで構成されたIDを発行します。発行されるパスワードの長さは9文字が最小です。
 
+#### 検証
+発行された端末移行キーの検証条件を設定します。
+端末移行キーを検証する時、移行回数や有効期間、失敗時遮断などを設定できます。
+3. **端末移行回数**：発行されたIDの端末移行可能回数を設定します。無制限、1回のどちらかを選択する必要があります。
+4. **有効期間**：発行されたアカウントの有効時間を設定します。発行された端末移行IDは、この設定値の影響を受けます。無制限、期間設定のどちらかを選択する必要があります。
+5. **失敗時、再検証を遮断するかどうか**：ログインに失敗した場合、特定時間アカウントを遮断します。選択すると追加設定項目が表示されます。
+6. **遮断基準回数**：**失敗時、再検証を遮断するかどうか**を選択すると表示されます。入力した回数、検証に失敗した場合、アカウントが遮断されます。 1回以上に設定する必要があります。
+7. **遮断期間**：アカウント遮断時、何分後に検証を試行できるかを設定します。**永久遮断**、**期間指定**のどちらかを選択します。**期間指定**を選択すると、自由に遮断時間/分を指定できます。
 
-#### 초기 설정 완료 이후
+#### 初期設定完了後
 ![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_3.0.png)
-최초 설정이 완료되면 유저는 기기 이전 기능의 비활성화만 가능하며 설정 변경이 필요할 경우 고객센터에 문의하시기 바랍니다.
-**사용 안함** 버튼을 클릭하여 기능을 비활성화 할 수 있고 기존에 발급된 기기이전키는 모두 삭제되기 때문에 활성화 이후에는 비활성화 여부를 신중하게 선택해야 합니다.
+初期設定が完了すると、ゲームユーザーは端末移行機能の無効化のみ可能です。設定の変更が必要な場合はサポートにお問い合わせください。
+**使用しない**ボタンをクリックして機能を無効化できます。既に発行された端末移行キーはすべて削除されるため、有効化した後は無効化するかどうかを慎重に選択する必要があります。

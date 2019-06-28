@@ -42,9 +42,9 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 
 > <font color="red">[注意]</font><br/>
 >
-> Gamebase Frameworkファイルのうち、名前に**Adapter**が含まれているファイルは、プロジェクト内で使用するかどうかを選択・決定することができ、該当するAdapter Frameworkを使用するためには、上の表に明記されている外部SDKが必要になることがあります。
-> 일부 인증 Adpater의 경우 위의 표에 있는 Support iOS Version에 유의해야합니다.
-> (지원 버전이 iOS9이상인 Auth Adpater를 빌드에 포함 시 iOS8이하에서는 runtime Crash가 발생합니다.)
+> Gamebase Frameworkファイルのうち、名前に**Adapter**が含まれているファイルは、プロジェクト内で使用するかどうかを選択・決定することができ、該当するAdapter Frameworkを使用するためには、上記の表に明記されている外部SDKが必要になることがあります。
+> 一部の認証Adpaterの場合、上記の表にあるSupport iOS Versionに注意する必要があります。
+>(サポートバージョンがiOS 9以上のAuth Adpaterをビルドに含めると、iOS 8以下ではランタイムクラッシュが発生します。)
 
 <br/>
 
@@ -89,12 +89,12 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 
 #### CocoaPods Settings
 
-Gamebase iOS SDK는 CocoaPods를 통해서도 설정할 수 있습니다.
+Gamebase iOS SDKは、CocoaPodsを使用して設定できます。
 
-* 1) Xcode를 실행해 프로젝트를 생성합니다.
-* 2) Terminal을 실행해 CocoaPods을 적용하려는 프로젝트의 디렉터리로 이동합니다.
-* 3) **pod init** 명령어를 실행해 **Podfile**을 생성합니다.
-* 4) 생성된 **Podfile**을 편집기로 열어 다음과 같은 내용을 작성합니다.
+1. Xcodeを実行し、プロジェクトを作成します。
+2. Terminalを実行し、CocoaPodsを適用するプロジェクトのディレクトリに移動します。
+3. **pod init**コマンドを実行し、**Podfile**を作成します。
+4. 作成された**Podfile**をエディタで開き、次のような内容を作成します。
 
 ```ruby
 platform :ios, '9.0'
@@ -113,28 +113,28 @@ target 'SampleApplication' do
 end
 ```
 
-> [INFO]
+> [参考]
 >
-> **target 'SampleApplication' do** 부분에는 생성한 프로젝트의 타겟명을 입력합니다.<br/>
-> **pod 'Gamebase', '1.11.1'** 과 같이 작성해 특정 버전을 지정 할 수 있습니다. 각각의 pod에 버전을 명시하지 않으면 최신 버전이 설정됩니다.<br/>
-> 특정 Adapter만 선택적으로 적용할 수 있습니다.
-> 
-
-
-
-> <font color="red">[주의]</font><br/>
->
-> Gamebase 최신 버전을 사용하지 않으면 일부 Adapter의 사용이 불가능 할 수 있습니다.
+> **target 'SampleApplication' do**部分には作成したプロジェクトの対象名を入力します。<br/>
+> **pod 'Gamebase', '1.11.1'**と入力して特定バージョンを指定できます。各々のpodにバージョンを明示しない場合は、最新バージョンが設定されます。<br/>
+> 特定Adapterのみを選択的に適用できます。
 >
 
-* 5) Podfile 작성이 완료되면 **pod install** 또는 **pod update** 명령어를 실행해 Gamebase를 설치합니다.
-* 6) 설치가 완료되면 **프로젝트명.xcworkspace** 파일이 생성됩니다. 이후부터는 생성된 **xcworkspace** 파일을 통해 개발을 진행합니다.
-* 7) Target > Build Settings > Enable Bitcode를 No로 설정합니다. 
+
+
+> <font color="red">[注意]</font><br/>
+>
+> Gamebase最新バージョンを使用しない場合、一部のAdapterを使用できないことがあります。
+>
+
+5. Podfileの作成が完了したら、**pod install**または**pod update**コマンドを実行してGamebaseをインストールします。
+6. インストールが完了したら、**プロジェクト名.xcworkspace**ファイルが作成されます。以降は作成された**xcworkspace**ファイルを使用して開発を行います。
+7. **Target > Build Settings > Enable Bitcode**を**No**に設定します。
 ![Enable Bitcode](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-007_1.0.0.png)
 
-> [INFO]
+> [参考]
 >
-> 더 자세한 CocoaPods 사용법에 대해서는 [CocoaPods Guide](https://guides.cocoapods.org/)의 [Using CocoaPods](https://guides.cocoapods.org/using/index.html) 페이지를 참고하시길 바랍니다.
+> 詳細なCocoaPods使用方法は、[CocoaPods Guide](https://guides.cocoapods.org/)の[Using CocoaPods](https://guides.cocoapods.org/using/index.html)ページを参照してください。
 >
 >
 
@@ -153,13 +153,13 @@ SDKの中に含まれています。
 
 ## API Deprecate Governance
 
-Gamebase에서 더 이상 지원하지 않는 API는 Deprecate 처리합니다.
-Deprecated 된 API는 다음 조건 충족 시 사전 공지 없이 삭제될 수 있습니다.
+GamebaseでサポートしないAPIは、使用していないもの(deprecate)として処理します。
+使用していない(deprecated) APIは、次の条件を満たす場合、事前告知を行わずに削除されることがあります。
 
-* 5회 이상의 마이너 버전 업데이트
+* 5回以上のマイナーバージョンアップデート
 	* Gamebase Version Format - XX.YY.ZZ
-		* XX : Major
-		* YY : Minor
-		* ZZ : Hotfix
+		* XX：Major
+		* YY：Minor
+		* ZZ：Hotfix
 
-* 최소 5개월 경과
+* 最低5ヶ月経過

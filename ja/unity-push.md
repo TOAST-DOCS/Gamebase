@@ -107,7 +107,7 @@ public void QueryPush()
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
 * このエラーは、TOAST Pushライブラリーで発生したエラーです。
-* 오류 코드 확인은 다음과 같이 확인하실 수 있습니다.
+* エラーコードは次のように確認できます。
 
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
@@ -131,7 +131,7 @@ else
 }
 ```
 
-* TOAST Push 오류 코드를 확인하시기 바랍니다.
+* TOAST Pushのエラーコードを確認してください。
     * [Android](aos-push#error-handling)<br/>
     * [iOS](ios-push#error-handling)
 

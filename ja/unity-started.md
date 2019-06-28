@@ -1,4 +1,4 @@
-## Game > Gamebase > Unity SDK ご利用ガイド > はじめる
+﻿## Game > Gamebase > Unity SDK ご利用ガイド > はじめる
 
 Gamebase Unity SDKの使用環境及び初期設定について説明します。
 
@@ -67,7 +67,7 @@ Gamebase SDKを手軽にインストールすることができるように、Se
 1. Unityプロジェクトを開きます。
 2. GamebaseUnitySettingTool_{version}.unitypackageをインポートします。
 3. Menu > Tools > Gamebase > SDKSettings > Setting Toolを起動します。
-	* v1.0.1 이하 : Menu > Gamebase > SDKSettings > Setting Tool
+	* v1.0.1以下 : Menu > Gamebase > SDKSettings > Setting Tool
 4. [Download SDK]ボタンをクリックしてSDKをダウンロードします。
 5. 利用するプラットフォームを選択します。
     * Android
@@ -80,7 +80,7 @@ Gamebase SDKを手軽にインストールすることができるように、Se
 
 #### SDK削除
 1. Menu > Tools > Gamebase > SDKSettings > Setting Toolを起動します。
-	* v1.0.1 이하 : Menu > Gamebase > SDKSettings > Setting Tool
+	* v1.0.1以下 : Menu > Gamebase > SDKSettings > Setting Tool
 2. [Remove]ボタンをクリックしてインストールされたSDKを削除します。
 
 <br/>
@@ -102,21 +102,21 @@ Gamebase SDKを手軽にインストールすることができるように、Se
 
 ### Update of Setting Tool
 
-Setting Tool의 업데이트가 필요한 경우 Setting Tool에서 업데이트 여부를 알려드립니다.
-업데이트 종류에 따라서 Setting Tool에서 제공하는 일부 기능에 제한이 있을 수 있습니다.
+Setting Toolのアップデートが必要な場合、Setting Toolでアップデートするかどうかをお知らせします。
+アップデートの種類によって、Setting Toolで提供する一部機能に制限がかかる場合があります。
 
-#### 강제 업데이트
+#### 強制アップデート
 
-* 업데이트 필수
-* SDK 다운로드 제한
-	* 기존에 다운로드 된 SDK를 이용하여 설치, 삭제 가능
+* アップデート必須
+* SDKダウンロード制限
+	* 既にダウンロードしたSDKを利用してインストール、削除可能
 
 ![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-1_1.13.0.png)
 
-#### 선택 업데이트
+#### 選択アップデート
 
-* 업데이트 선택
-* SDK 다운로드 가능
+* アップデート選択
+* SDKダウンロード可能
 
 ![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-2_1.13.0.png)
 
@@ -266,13 +266,13 @@ API Referenceは、GamebaseUnitySDKの中に含まれています。
 
 ## API Deprecate Governance
 
-Gamebase에서 더 이상 지원하지 않는 API는 Deprecate 처리합니다.
-Deprecated 된 API는 다음 조건 충족 시 사전 공지 없이 삭제될 수 있습니다.
+GamebaseでサポートしないAPIは、使用していないもの(deprecate)として処理します。
+使用していない(deprecated) APIは、次の条件を満たす場合、事前告知を行わずに削除されることがあります。
 
-* 5회 이상의 마이너 버전 업데이트
-	* Gamebase Version Format - XX.YY.ZZ
+* 5回以上のマイナーバージョンアップデート
+	* Gamebaseバージョン形式 - XX.YY.ZZ
 		* XX : Major
 		* YY : Minor
 		* ZZ : Hotfix
 
-* 최소 5개월 경과
+* 最低5ヶ月経過

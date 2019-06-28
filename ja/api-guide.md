@@ -189,7 +189,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 #### Get Simple Launching
 
-Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면 점검 시간 및 메시지 등 클라이언트 앱 기동시 제공되는 Launching 정보들에 대해 간략히 확인할수 있습니다.
+コンソールで設定したサーバーアドレス、インストールURL、現在のメンテナンス状態とメンテナンス時間およびメッセージなど、クライアントアプリ起動時に提供されるLaunching情報を確認できます。
 
 **[Method, URI]**
 
@@ -200,24 +200,24 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 **[Request Header]**
 
-공통 사항 확인
+共通事項確認
 
 **[Path Variable]**  
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | TOASTプロジェクトID |
 
 **[Request Parameter]**  
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| osCode | OsCode | true | OS 코드 <br>AOS, IOS, WEB, WINDOWS |
-| clientVersion | String | true | 클라이언트 버전 |
+| osCode | OsCode | true | OSコード <br>AOS、IOS、WEB、WINDOWS |
+| clientVersion | String | true | クライアントバージョン |
 
 **[Response Body]**  
 
-##### 정상
+##### 正常
 ```json
 {
     "header": {
@@ -250,7 +250,7 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 }
 ```
 
-##### 점검
+##### メンテナンス
 ```json
 {
     "header": {
@@ -293,28 +293,28 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 | Key | Type | Description |
 | --- | --- | --- |
-| status | Object | 현재 클라이언트 상태를 나타내는 정보 |
-| status.code | int | 클라이언트 상태코드 <br><br>정상: 200 <br>업데이트 권장: 201, 업데이트 필수: 300 <br>서비스 종료: 302 <br>점검 중: 303 |
-| status.message | String | 클라이언트 상태 메시지 |
-| app | Object | 앱의 정보 |
-| app.storeCode | String | 앱 스토어코드 <br>"GG", "AS" 등 |
-| app.accessInfo | Object | 콘솔 앱 화면에서 설정한 정보 |
-| app.accessInfo.serverAddress | String | 서버 주소<br>클라이언트에서 설정한 서버 주소의 우선순위가 높음. <br>클라이언트 서버 주소 미설정시, 앱 화면에서 설정한 서버 주소가 전달됨. |
-| app.accessInfo.csInfo | String | 고객 센터 정보 |
-| app.relatedUrls | Object | 앱 내에서 사용할 인앱 URL |
-| app.relatedUrls.termsUrl | String | 이용약관 |
-| app.relatedUrls.csUrl| String | 고객센터 |
-| app.relatedUrls.punishRuleUrl | String | 이용 정지 규정 |
-| app.relatedUrls.personalInfoCollectionUrl | String | 개인 정보동의 |
-| app.install | Object | 앱 설치 정보 |
-| app.install.url | String | 설치 URL |
-| maintenance | Object | 점검 정보 |
-| maintenance.typeCode | String | 점검 타입 코드 <br>전체 점검:'SYSTEM', 앱별 점검:'APP' |
-| maintenance.beginDate | Date | 점검 시작 시간 ISO 8601 |
-| maintenance.endDate | Date | 점검 종료 시간 ISO 8601 |
-| maintenance.url | String | 점검 URL |
-| maintenance.reason | String | 점검 사유 |
-| maintenance.message | String | default 점검 사유 메시지 |
+| status | Object | 現在のクライアントのステータスを表す情報 |
+| status.code | int | クライアントステータスコード <br><br>正常：200 <br>アップデート推奨：201、アップデート必須：300 <br>サービス終了：302 <br>メンテナンス中：303 |
+| status.message | String | クライアントステータスメッセージ |
+| app | Object | アプリ情報 |
+| app.storeCode | String | アプリストアコード <br>'GG'、'AS'など |
+| app.accessInfo | Object | コンソールアプリ画面で設定した情報 |
+| app.accessInfo.serverAddress | String | サーバーアドレス<br>クライアントで設定したサーバーアドレスの優先順位が高い。<br>クライアントサーバーアドレスが未設定の時は、アプリ画面で設定したサーバーアドレスが伝達される。|
+| app.accessInfo.csInfo | String | サポート情報 |
+| app.relatedUrls | Object | アプリ内で使用するアプリ内URL |
+| app.relatedUrls.termsUrl | String | 利用約款 |
+| app.relatedUrls.csUrl| String | サポート |
+| app.relatedUrls.punishRuleUrl | String | 利用停止規定 |
+| app.relatedUrls.personalInfoCollectionUrl | String | 個人情報同意 |
+| app.install | Object | アプリインストール情報 |
+| app.install.url | String | インストールURL |
+| maintenance | Object | メンテナンス情報 |
+| maintenance.typeCode | String | メンテナンスタイプコード <br>全体メンテナンス：'SYSTEM'、アプリ別メンテナンス： 'APP' |
+| maintenance.beginDate | Date | メンテナンス開始時間ISO 8601 |
+| maintenance.endDate | Date | メンテナンス終了時間ISO 8601 |
+| maintenance.url | String | メンテナンスURL |
+| maintenance.reason | String | メンテナンス理由 |
+| maintenance.message | String | 基本メンテナンス理由メッセージ |
 
 <br>
 
@@ -615,7 +615,9 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 #### Ban Histories
 
-사용자 이용 정지 이력을 조회합니다.
+#### Ban Histories
+
+ユーザー利用停止履歴を照会します。
 
 **[Method, URI]**
 
@@ -623,26 +625,25 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 | --- | --- |
 | GET | /tcgb-member/v1.0/apps/{appId}/members/bans |
 
-
 **[Request Header]**
 
-공통 사항 확인
+共通事項確認
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | TOASTプロジェクトID |
 
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | mandatory | 이용 정지 이력 조회 시작 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | mandatory | 이용 정지 이력 조회 종료 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용정지가 되었다면 조회 결과에 존재 |
-| page | String | optional | 조회하고자 하는 페이지. 0부터 시작 |
-| size | String | optional | 한 페이지당 데이터 개수 |
+| begin | String | mandatory | 利用停止履歴照会開始時間(ISO 8601標準時間、UTF-8エンコード必要) <br>例) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | mandatory | 利用停止履歴照会終了時間(ISO 8601標準時間、UTF-8エンコード必要) <br>beginとendの間の時間に利用停止した場合、照会結果に存在 |
+| page | String | optional | 照会するページ。0から開始 |
+| size | String | optional | 1ページ当たりのデータ数 |
 
 
 **[Response Body]**
@@ -690,40 +691,40 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 | Key | Type | Description |
 | --- | --- | --- |
-| pagingInfo | Object | 조회된 페이징 정보 |
-| pagingInfo.first | boolean | 첫번째 페이지이면 true |
-| pagingInfo.last | boolean | 마지막 페이지이면 true |
-| pagingInfo.numberOfElements | int | 전체 데이터 수 |
-| pagingInfo.page | int | 페이지 번호 |
-| pagingInfo.size | int | 한 페이지당 데이터 개수 |
-| pagingInfo.totalElements | int | 전체 데이터 수 |
-| pagingInfo.totalPages | int | 전체 페이징 수 |
-| result | Array[Object] | 조회된 이용 정지 내역 |
-| result.appId | String | 조회된 이용 정지 의 TOAST 프로젝트 ID |
-| result.banCaller | String | 이용 정지 호출 주체 |
-| result.banReason | String | 이용 정지 사유 |
-| result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
-| result.beginDate | String | 이용 정지 시작 시간. ISO 8601 표준 시간|
-| result.endDate | String | 이용 정지 종료 시간. ISO 8601 표준 시간 |
-| result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'Leaderboard' 로 반환 |
-| result.message | String | 이용 정지 메세지 |
-| result.name | String | 콘솔에서 등록한 템플릿 이름 |
-| result.regUser | String | 이용 정지 등록자 |
-| result.releaseCaller | String | 이용 정지 해제 주체 |
-| result.releaseDate | String | 이용 정지 해제 시간. ISO 8601 표준 시간 |
-| result.releaseReason | String | 이용 정지 해제 사유 |
-| result.releaseUser | String | 이용 정지 해제 등록자 |
-| result.seq | Long | 이용 정지 내역 순번 |
-| result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
-| result.userId | String | 사용자 ID |
+| pagingInfo | Object | 照会されたページ情報 |
+| pagingInfo.first | boolean | 最初のページの場合はtrue |
+| pagingInfo.last | boolean | 最後のページの場合はtrue |
+| pagingInfo.numberOfElements | int | 総データ数 |
+| pagingInfo.page | int | ページ番号 |
+| pagingInfo.size | int | 1ページ当たりのデータ数 |
+| pagingInfo.totalElements | int | 総データ数 |
+| pagingInfo.totalPages | int | 総ページ数 |
+| result | Array[Object] | 照会された利用停止内訳 |
+| result.appId | String | 照会された利用停止のTOASTプロジェクトID |
+| result.banCaller | String | 利用停止指示者 |
+| result.banReason | String | 利用停止理由 |
+| result.banType | String | 利用停止タイプ。TEMPORARYまたはPERMANENT |
+| result.beginDate | String | 利用停止開始時間。ISO 8601標準時間|
+| result.endDate | String | 利用停止終了時間。ISO 8601標準時間 |
+| result.flags | String | コンソールから利用停止を登録した時、リーダーボード削除を選択した場合は'Leaderboard'を返す |
+| result.message | String | 利用停止メッセージ |
+| result.name | String | コンソールで登録したテンプレート名 |
+| result.regUser | String | 利用停止登録者 |
+| result.releaseCaller | String | 利用停止解除者 |
+| result.releaseDate | String | 利用停止解除時間。ISO 8601標準時間 |
+| result.releaseReason | String | 利用停止解除理由 |
+| result.releaseUser | String | 利用停止解除登録者 |
+| result.seq | Long | 利用停止内訳順番 |
+| result.templateCode | Long | コンソールで登録した利用停止テンプレートコード値 |
+| result.userId | String | ユーザーID |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[エラーコード](./error-code/#server)
 
 #### Ban Release Histories.
 
-사용자 이용 정지 해제 이력을 조회합니다.
+ユーザー利用停止解除履歴を照会します。
 
 **[Method, URI]**
 
@@ -734,23 +735,23 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 **[Request Header]**
 
-공통 사항 확인
+共通事項確認
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | TOASTプロジェクトID |
 
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | mandatory | 이용 정지 해제 이력 조회 시작 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | mandatory | 이용 정지 해제 이력 조회 종료 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용정지가 해제 되었다면 조회 결과에 존재 |
-| page | String | optional | 조회하고자 하는 페이지. 0부터 시작 |
-| size | String | optional | 한 페이지당 데이터 개수 |
+| begin | String | mandatory | 利用停止解除履歴照会開始時間(ISO 8601標準時間、UTF-8エンコード必要) <br>例) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | mandatory | 利用停止解除履歴照会終了時間(ISO 8601標準時間、UTF-8エンコード必要) <br>beginとendの間の時間に利用停止が解除された場合、照会結果に存在 |
+| page | String | optional | 照会するページ。0から開始 |
+| size | String | optional | 1ページ当たりのデータ数 |
 
 
 **[Response Body]**
@@ -798,40 +799,40 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 | Key | Type | Description |
 | --- | --- | --- |
-| pagingInfo | Object | 조회된 페이징 정보 |
-| pagingInfo.first | boolean | 첫번째 페이지이면 true |
-| pagingInfo.last | boolean | 마지막 페이지이면 true |
-| pagingInfo.numberOfElements | int | 전체 데이터 수 |
-| pagingInfo.page | int | 페이지 번호 |
-| pagingInfo.size | int | 한 페이지당 데이터 개수 |
-| pagingInfo.totalElements | int | 전체 데이터 수 |
-| pagingInfo.totalPages | int | 전체 페이징 수 |
-| result | Array[Object] | 조회된 이용 정지 정보 |
-| result.appId | String | 조회된 이용 정지 의 TOAST 프로젝트 ID |
-| result.banCaller | String | 이용 정지 호출 주체 |
-| result.banReason | String | 이용 정지 사유 |
-| result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
-| result.beginDate | String | 이용 정지 시작 시간. ISO 8601 표준 시간 |
-| result.endDate | String | 이용 정지 종료 시간. ISO 8601 표준 시간 |
-| result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'Leaderboard' 로 반환 |
-| result.message | String | 이용 정지 메세지 |
-| result.name | String | 콘솔에서 등록한 템플릿 이름 |
-| result.regUser | String | 이용 정지 등록자 |
-| result.releaseCaller | String | 이용 정지 해제 주체 |
-| result.releaseDate | String | 이용 정지 해제 시간. ISO 8601 표준 시간 |
-| result.releaseReason | String | 이용 정지 해제 사유 |
-| result.releaseUser | String | 이용 정지 해제 등록자 |
-| result.seq | Long | 이용 정지 내역 순번 |
-| result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
-| result.userId | String | 사용자 ID |
+| pagingInfo | Object | 照会されたページ情報 |
+| pagingInfo.first | boolean | 最初のページの場合はtrue |
+| pagingInfo.last | boolean | 最後のページの場合はtrue |
+| pagingInfo.numberOfElements | int | 総データ数 |
+| pagingInfo.page | int | ページ番号 |
+| pagingInfo.size | int | 1ページ当たりのデータ数 |
+| pagingInfo.totalElements | int | 総データ数 |
+| pagingInfo.totalPages | int | 総ページ数 |
+| result | Array[Object] | 照会された利用停止情報 |
+| result.appId | String | 照会された利用停止のTOASTプロジェクトID |
+| result.banCaller | String | 利用停止指示者 |
+| result.banReason | String | 利用停止理由 |
+| result.banType | String | 利用停止タイプ。TEMPORARYまたはPERMANENT |
+| result.beginDate | String | 利用停止開始時間。ISO 8601標準時間 |
+| result.endDate | String | 利用停止終了時間。ISO 8601標準時間 |
+| result.flags | String | コンソールから利用停止を登録した時、リーダーボード削除を選択した場合は'Leaderboard'を返す |
+| result.message | String | 利用停止メッセージ |
+| result.name | String | コンソールで登録したテンプレート名 |
+| result.regUser | String | 利用停止登録者 |
+| result.releaseCaller | String | 利用停止解除者 |
+| result.releaseDate | String | 利用停止解除時間。ISO 8601標準時間 |
+| result.releaseReason | String | 利用停止解除理由 |
+| result.releaseUser | String | 利用停止解除登録者 |
+| result.seq | Long | 利用停止内訳順番 |
+| result.templateCode | Long | コンソールで登録した利用停止テンプレートコード値 |
+| result.userId | String | ユーザーID |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[エラーコード](./error-code/#server)
 
 #### Validate TransferAccount
 
-GUEST 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사를 수행합니다.
+ゲストアカウントを移行するために、すでに発行されているIDおよびパスワードの有効性をチェックします。
 
 **[Method, URI]**
 
@@ -842,19 +843,18 @@ GUEST 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사
 
 **[Request Header]**
 
-공통 사항 확인
+共通事項確認
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | TOASTプロジェクトID |
 
 
 **[Request Parameter]**
 
-없음
-
+なし
 
 **[Request Body]**
 
@@ -869,8 +869,8 @@ GUEST 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사
 
 | Key | Type | Description |
 | --- | --- | --- |
-| account.id | String | 유효성 검증을 수행할 ID |
-| account.password | String | 유효성 검증을 수행할 PASSWORD |
+| account.id | String | 有効性検証を行うID |
+| account.password | String | 有効性検証を行うパスワード |
 
 **[Response Body]**
 
@@ -894,16 +894,16 @@ GUEST 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사
 
 | Key | Type | Description |
 | --- | --- | --- |
-| member | Object | 조회된 사용자의 기본 정보 |
-| member.userId | String | 사용자 ID |
-| member.valid | Enum | Y: 정상 사용자 <br>D: 탈퇴된 사용자 <br>B: 이용 정지된 사용자 <br>M: 유실된 계정|
-| member.appId | String | appId |
-| member.regDate | long | 사용자가 계정을 생성한 시간 |
-| member.lastLoginDate | long | 마지막으로 로그인한 시간 <br>처음 로그인한 사용자는 해당 값이 없음 |
+| member | Object | 照会されたユーザーの基本情報 |
+| member.userId | String | ユーザーID |
+| member.valid | Enum | Y：正常ユーザー <br>D：退会したユーザー <br>B：利用停止したユーザー <br>M：消滅したアカウント|
+| member.appId | String | アプリID |
+| member.regDate | long | ユーザーがアカウントを作成した時間 |
+| member.lastLoginDate | long | 最後にログインした時間 <br>初めてログインしたユーザーは該当値がない |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[エラーコード](./error-code/#server)
 
 
 <br>

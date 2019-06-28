@@ -6,8 +6,8 @@ Gamebaseで対応している付加機能について説明します。
 
 ### Device Language
 
-* 단말기에 설정된 언어 코드를 리턴합니다.
-* 여러개의 언어가 등록된 경우, 우선권이 가장 높은 언어만을 리턴합니다.
+* 端末に設定されている言語コードを返します。
+* 複数の言語が登録されている場合、優先権が最も高い言語だけを返します。
 
 **API**
 
@@ -22,11 +22,11 @@ Supported Platforms
 static string GetDeviceLanguageCode()
 ```
 
-> [참고]
+> [参考]
 >
-> Editor on Windows, Standalone on Windows인 경우에는 [CultureInfo](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo?view=netframework-4.7.2)를 참고하여 언어 코드를 리턴합니다.
+> Editor on Windows, Standalone on Windowsの場合には[CultureInfo](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo?view=netframework-4.7.2)を参照して言語コードを返します。
 >
-> Editor on Mac, WebGL은 [Application.systemLanguage](https://docs.unity3d.com/ScriptReference/SystemLanguage.html) 값을 참고하여 언어 코드를 리턴합니다.<br/>예를 들어, Application.systemLanguage == SystemLanguage.Korean인 경우에는 'ko'를 리턴합니다.
+> Editor on Mac, WebGLは[Application.systemLanguage](https://docs.unity3d.com/ScriptReference/SystemLanguage.html)の値を参照して言語コードを返します。<br/>例えば、Application.systemLanguage == SystemLanguage.Koreanの場合は'ko'を返します。
 
 
 ### Display Language
@@ -38,7 +38,7 @@ static string GetDeviceLanguageCode()
 
 > [参考]
 >
-> Gamebaseのクライアントメッセージには、英語(en)、韓国語(ko)、일본어(ja)のみ含まれます。
+> Gamebaseのクライアントメッセージには、英語(en)、韓国語(ko)、日本語(ja)のみ含まれます。
 
 #### Gamebaseでサポートしている言語コードの種類
 
@@ -264,14 +264,14 @@ Unity Android、iOSプラットフォームでの言語セットの新規追加�
 
 ### Country Code
 
-* Gamebase는 System의 국가 코드를 다음과 같은 API로 제공하고 있습니다.
-* 각 API 마다 특징이 있으니 쓰임새에 맞는 API를 선택하시기 바랍니다.
+* Gamebaseは、システムの国コード(country code)を次のようなAPIで提供しています。
+* APIごとに特徴があるため、使用用途に合ったAPIを選択してください。
 
 #### USIM Country Code
 
-* USIM에 기록된 국가 코드를 리턴합니다.
-* USIM에 잘못된 국가 코드가 기록되어 있다 하더라도 추가적인 체크 없이 그대로 리턴합니다.
-* 값이 비어있는 경우 'ZZ'를 리턴합니다.
+* USIMに記録された国コードを返します。
+* USIMに無効な国コードが記録されていても、確認せずにそのまま返します。
+* 値が空の場合、'ZZ'を返します。
 
 **API**
 
@@ -286,10 +286,10 @@ static string GetCountryCodeOfUSIM()
 
 #### Device Country Code
 
-* OS로부터 전달받은 단말기 국가 코드를 추가적인 체크 없이 그대로 리턴합니다.
-* 단말기 국가 코드는 '언어' 설정에 따라 OS가 자동으로 결정합니다.
-* 여러 개의 언어가 등록된 경우, 우선권이 가장 높은 언어로 국가 코드를 결정합니다.
-* 값이 비어있는 경우 'ZZ'를 리턴합니다.
+* OSから伝達された端末国コードを、確認しないでそのまま返します。
+* 端末国コードは、'言語'設定に応じてOSが自動的に決定します。
+* 複数の言語が登録されている場合、優先権が最も高い言語で国コードを決定します。
+* 値が空の場合、'ZZ'を返します。
 
 **API**
 
@@ -303,19 +303,19 @@ static string GetCountryCodeOfDevice()
 
 #### Intergrated Country Code
 
-* USIM, 기기 언어 설정의 순서로 국가 코드를 확인하여 리턴합니다.
-* GetCountryCode API는 다음 순서로 동작합니다.
-	1. USIM에 기록된 국가 코드를 확인하고, 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
-	2. USIM 국가 코드가 빈 값이라면 단말기 국가 코드를 확인하고, 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
-	3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ' 를 리턴합니다.
+* USIM、端末の言語設定の順序で国コードを確認して返します。
+* getCountryCode APIは次の順序で動作します。
+	1. USIMに記録されている国コードを確認し、値があれば別途確認しないでそのまま返します。
+	2. USIM国コードが空の値の場合、端末国コードを確認し、値があれば別途確認しないでそのまま返します。
+	3. USIM、端末国コードがどちらも空の値の場合は、'ZZ'を返します。
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
-> [참고] 
+> [参考] 
 >
-> Editor on Windows, Standalone on Windows인 경우에는 [CultureInfo](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo?view=netframework-4.7.2)를 참고하여 국가 코드를 리턴합니다.
+> Editor on Windows, Standalone on Windowsの場合は、[CultureInfo](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo?view=netframework-4.7.2)を参照して国コードを返します。
 >
-> Editor on Mac, WebGL은 [Application.systemLanguage](https://docs.unity3d.com/ScriptReference/SystemLanguage.html) 값을 참고하여 국가 코드를 리턴합니다.<br/>예를 들어,Application.systemLanguage == SystemLanguage.Korean인 경우에는 'KR'을 리턴합니다.
+> Editor on Mac, WebGLは、[Application.systemLanguage](https://docs.unity3d.com/ScriptReference/SystemLanguage.html)の値を参照して国コードを返します。<br/>例えば、Application.systemLanguage == SystemLanguage.Koreanの場合は'KR'を返します。
 
 
 
@@ -335,20 +335,20 @@ public static string GetCountryCode()
 ```
 
 ### Server Push
-* Gamebase 서버에서 클라이언트 기기로 보내는 Server Push Message를 처리할 수 있습니다.
-* Gamebase 클라이언트에서 ServerPushEvent Listener를 추가하면 해당 메시지를 사용자가 받아서 처리할 수 있으며, 추가된 ServerPushEvent Listener를 삭제할 수 있습니다.
+* Gamebaseサーバーからクライアント端末に送るServer Push Messageを処理できます。
+* GamebaseクライアントでServerPushEvent Listenerを追加すると、該当メッセージをユーザーが受信して処理でき、追加されたServerPushEvent Listenerを削除できます。
 
 
 #### Server Push Type
-현재 Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
+現在GamebaseでサポートするServer Push Typeは次の通りです。
 
 * GamebaseServerPushType.APP_KICKOUT (= "appKickout")
-    * TOAST Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 **APP_KICKOUT** 메시지를 받게 됩니다.
+    * TOAST Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseと接続されたすべてのクライアントで**APP_KICKOUT**メッセージを受け取ることになります。
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 
 #### Add ServerPushEvent
-Gamebase Client에 ServerPushEvent를 등록하여 Gamebase Console 및 Gamebase 서버에서 발급된 Push 이벤트를 처리할 수 있습니다
+Gamebase ClientにServerPushEventを登録して、GamebaseコンソールおよびGamebaseサーバーで発行されたPushイベントを処理できます。
 
 **API**
 
@@ -393,7 +393,7 @@ private void ServerPushEventHandler(GamebaseResponse.SDK.ServerPushMessage messa
 
 
 #### Remove ServerPushEvent
-Gamebase에 등록된 ServerPushEvent를 삭제할 수 있습니다.
+Gamebaseに登録されたServerPushEventを削除できます。
 
 **API**
 
@@ -424,25 +424,25 @@ public void RemoveAllServerPushEvent()
 ```
 
 ### Observer
-* Gamebase Observer로 Gamebase의 각종 상태 변동 이벤트를 전달받아 처리할 수 있습니다.
-* 상태 변동 이벤트 : 네트워크 타입 변동, Launching 상태 변동(점검 등에 의한 상태 변동), Heartbeat 정보 변동(사용자 이용 정지 등에 의한 Heartbeat 정보 변동) 등
+* Gamebase ObserverでGamebaseの各種ステータス変動イベントを受け取って処理できます。
+* ステータス変動イベント：ネットワークタイプ変動、Launchingステータス変動(メンテナンスなどによるステータス変動)、Heartbeat情報変動(ユーザー利用停止などによるHeartbeat情報変動)など
 
 
 #### Observer Type
-현재 Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
+現在GamebaseでサポートするObserver Typeは次の通りです。
 
-* Network 타입 변동
-    * 네트워크 변동 사항 정보를 받을 수 있습니다.
+* Networkタイプ変動
+    * ネットワーク変動事項情報を受け取れます。
     * Type: GamebaseObserverType.NETWORK (= "network")
-    * Code: GamebaseNetworkType에 선언된 상수를 참고합니다.
+    * Code: GamebaseNetworkTypeに宣言された定数を参照します。
         * GamebaseNetworkType.TYPE_NOT: -1
         * GamebaseNetworkType.TYPE_MOBILE: 0
         * GamebaseNetworkType.TYPE_WIFI: 1
         * GamebaseNetworkType.TYPE_ANY: 2
-* Launching 상태 변동
-    * 주기적으로 애플리케이션 상태를 확인하는 Launching Status response에 변동이 있을 때 발생합니다. 예를 들어 점검, 업데이트 권장 등에 의한 이벤트가 있습니다.
+* Launchingステータス変動
+    * 周期的にアプリケーションのステータスを確認するLaunching Status responseに変動がある時に発生します。例えば、メンテナンス、アップデート推奨などによるイベントがあります。
     * Type: GamebaseObserverType.LAUNCHING (= "launching")
-    * Code: GamebaseLaunchingStatus에 선언된 상수를 참고합니다.
+    * Code: GamebaseLaunchingStatusに宣言された定数を参照します。
         * GamebaseLaunchingStatus.IN_SERVICE: 200
         * GamebaseLaunchingStatus.RECOMMEND_UPDATE: 201
         * GamebaseLaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
@@ -452,17 +452,17 @@ public void RemoveAllServerPushEvent()
         * GamebaseLaunchingStatus.INSPECTING_SERVICE: 303
         * GamebaseLaunchingStatus.INSPECTING_ALL_SERVICES: 304
         * GamebaseLaunchingStatus.INTERNAL_SERVER_ERROR: 500
-* Heartbeat 정보 변동
-    * 주기적으로 Gamebase 서버와 연결을 유지하는 Heartbeat response에 변동이 있을 때 발생합니다. 예를 들어 사용자 이용 정지에 의한 이벤트가 있습니다.
+* Heartbeat情報の変動
+    * 周期的にGamebaseサーバーと接続を維持するHeartbeat responseに変動がある時に発生します。例えばユーザー利用停止によるイベントがあります。
     * Type: GamebaseObserverType.HEARTBEAT (= "heartbeat")
-    * Code: GamebaseErrorCode에 선언된 상수를 참조합니다.
+    * Code: GamebaseErrorCodeに宣言された定数を参照します。
         * GamebaseErrorCode.INVALID_MEMBER: 6
         * GamebaseErrorCode.BANNED_MEMBER: 7
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
 
 #### Add Observer
-Gamebase Client에 Observer를 등록하여 각종 상태 변동 이벤트를 처리할 수 있습니다.
+Gamebase ClientにObserverを登録して各種ステータス変動イベントを処理できます。
 
 **API**
 
@@ -537,7 +537,7 @@ private void CheckNetworkStatus(Dictionary<string, object> data)
 
 
 #### Remove Observer
-Gamebase에 등록된 Observer를 삭제할 수 있습니다.
+Gamebaseに登録されたObserverを削除できます。
 
 **API**
 
@@ -569,32 +569,32 @@ public void RemoveAllObserver()
 
 ### Analytics
 
-Game지표를 Gamebase Server로 전송할 수 있습니다.
+Game指標をGamebase Serverに伝送できます。
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> Gamebase Analytics에서 지원하는 모든 API는 로그인 후에 호출할 수 있습니다.
+> Gamebase AnalyticsでサポートするすべてのAPIは、ログイン後に呼び出すことができます。
 >
 >
 > [TIP]
 >
-> Gamebase.Purchase.RequestPurchase API를 호출하여 결제를 완료하면, 자동으로 지표를 전송합니다.
+> Gamebase.Purchase.RequestPurchase APIを呼び出して決済を完了すると、自動的に指標を伝送します。
 >
 
-Analytics Console 사용법은 아래 가이드를 참고하십시오.
+Analyticsコンソールの使用方法は、下記のガイドを参照してください。
 
 * [Analytics Console](./oper-analytics)
 
 #### Game User Data Settings
 
-게임 로그인 이후 유저 레벨 정보를 지표로 전송할 수 있습니다.
+ゲームログイン後、ゲームユーザーレベル情報を指標として伝送できます。
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> 게임 로그인 이후 SetGameUserData API를 호출하지 않으면 다른 지표에서 Level 정보가 누락될 수 있습니다.
+> ゲームログイン後にsetGameUserData APIを呼び出さない場合、他の指標でレベル情報が抜ける場合があります。
 >
 
-API 호출에 필요한 파라미터는 아래와 같습니다.
+APIの呼び出しに必要なパラメータは下記の通りです。
 
 **GameUserData**
 
@@ -632,16 +632,16 @@ public void SetGameUserData(int userLevel, string channelId, string characterId)
 
 #### Level Up Trace
 
-레벨업이 되었을 경우 유저 레벨 정보를 지표로 전송할 수 있습니다.
+レベルアップすると、ゲームユーザーレベル情報を指標として伝送できます。
 
-API 호출에 필요한 파라미터는 아래와 같습니다.
+APIの呼び出しに必要なパラメータは下記の通りです。
 
 **LevelUpData**
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc	|
 | -------------------------- | -------------------------- | ---- | ---- |
 | userLevel | M | int |  |
-| levelUpTime | O | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
+| levelUpTime | O | long | Epoch Timeで入力します。</br>Millisecond単位で入力します。 |
 | channelId | O | string |  |
 | characterId | O | string |  |
 

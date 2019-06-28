@@ -57,16 +57,16 @@ def pushSdkVersion = '1.7.0'
 def pushSdkTencentVersion = '1.7.0'
 
 /* Set the Gamebase version. */
-def gamebaseSdkVersion = '2.3.0'
-def gamebaseGoogleAdapterVersion = '2.3.0'
-def gamebaseFacebookAdapterVersion = '2.3.0'
-def gamebasePaycoAdapterVersion = '2.3.0'
-def gamebaseNaverAdapterVersion = '2.3.0'
-def gamebaseTwitterAdapterVersion = '2.3.0'
-def gamebaseLineAdapterVersion = '2.3.0'
-def gamebaseIAPAdapterVersion = '2.3.0'
-def gamebaseFCMAdapterVersion = '2.3.0'
-def gamebaseTencentAdapterVersion = '2.3.0'
+def gamebaseSdkVersion = '2.3.1'
+def gamebaseGoogleAdapterVersion = '2.3.1'
+def gamebaseFacebookAdapterVersion = '2.3.1'
+def gamebasePaycoAdapterVersion = '2.3.1'
+def gamebaseNaverAdapterVersion = '2.3.1'
+def gamebaseTwitterAdapterVersion = '2.3.1'
+def gamebaseLineAdapterVersion = '2.3.1'
+def gamebaseIAPAdapterVersion = '2.3.1'
+def gamebaseFCMAdapterVersion = '2.3.1'
+def gamebaseTencentAdapterVersion = '2.3.1'
 
 /* Set if defined google-services plugin */
 def useGoogleServicesPlugin = true
@@ -231,14 +231,13 @@ API Referenceは、SDKの中に含まれています。
 
 ## API Deprecate Governance
 
-Gamebase에서 더 이상 지원하지 않는 API는 Deprecate 처리합니다.
-Deprecated 된 API는 다음 조건 충족 시 사전 공지 없이 삭제될 수 있습니다.
+GamebaseでサポートしないAPIは、使用していないもの(deprecate)として処理します。
+使用していない(deprecated) APIは、次の条件を満たす場合、事前告知を行わずに削除されることがあります。
 
-* 5회 이상의 마이너 버전 업데이트
-	* Gamebase Version Format - XX.YY.ZZ
-		* XX : Major
-		* YY : Minor
-		* ZZ : Hotfix
+* 5回以上のマイナーバージョンアップデート
+	* Gamebaseバージョン形式 - XX.YY.ZZ
+		* XX：Major
+		* YY：Minor
+		* ZZ：Hotfix
 
-* 최소 5개월 경과
-
+* 最低5ヶ月経過

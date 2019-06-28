@@ -55,8 +55,8 @@ Pushの同意状態(enablePush)、Push型広告の同意状態(enableAdPush)、�
 
 #### Setting for APNS Sandbox
 
-SandboxMode를 켜면, APNS Sandbox로 Push를 발송하도록 등록할 수 있습니다.
-* 클라이언트 설정 방법
+SandboxModeを有効にすると、APNS SandboxでPushを送信するように登録できます。
+* クライアント設定方法
 
 ```objectivec
 - (void)didLoginSucceeded {
@@ -67,8 +67,8 @@ SandboxMode를 켜면, APNS Sandbox로 Push를 발송하도록 등록할 수 있
 }
 ```
 
-* 콘솔 발송 방법
-Push 메뉴의 **대상**에서 **iOS Sandbox**를 선택한 후 발송합니다.
+* コンソール送信方法
+Pushメニューの**対象**から**iOS Sandbox**を選択した後に送信します。
 
 ### Request Push Settings
 
@@ -114,15 +114,15 @@ NSString *moduleErrorMessage = moduleError.message;
 NSLog(@"TCGBError:%@", [tcgbError description]);
 ```
 
-* TOAST Push 오류 코드는 다음과 같습니다.
-    
-| 오류 코드 |  설명 |
+* TOAST Pushのエラーコードは次の通りです。
+
+| エラーコード | 説明 |
 | --- | --- |
-| TCPushErrorNotInitialized | 초기화되지 않음 |
-| TCPushErrorInvalidParameters | 파라미터 오류 |
-| TCPushErrorPermissionDenined | 권한 미획득 |
-| TCPushErrorSystemFail | 시스템 알림 등록 실패 |
-| TCPushErrorNetworkFail | 네트워크 송수신 실패 |
-| TCPushErrorServerFail | 서버 응답 실패 |
-| TCPushErrorInvalidUrl | 잘못된 URL 요청 |
-| TCPushErrorNetworkNotReachable | 네트워크 미연결 |
+| TCPushErrorNotInitialized | 初期化されていない |
+| TCPushErrorInvalidParameters | パラメータエラー |
+| TCPushErrorPermissionDenined | 権限未取得 |
+| TCPushErrorSystemFail | システム通知登録失敗 |
+| TCPushErrorNetworkFail | ネットワーク送受信失敗 |
+| TCPushErrorServerFail | サーバーレスポンス失敗 |
+| TCPushErrorInvalidUrl | 無効なURLリクエスト |
+| TCPushErrorNetworkNotReachable | ネットワーク未接続 |
