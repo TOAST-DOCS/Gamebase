@@ -11,7 +11,7 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 * [iOS Purchase Settings](ios-purchase#settings)
 
 Unity Standalone에서 결제를 진행하기 위해 IapAdapter와 WebViewAdapter를 반드시 추가하여야 합니다.
-![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/settingtool_iap_2.4.0.png)
+![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-settingtool_iap_2.4.0.png)
 
 
 ###  Purchase Flow
