@@ -24,7 +24,7 @@ Gamebaseを初期化するとき、GamebaseConfiguration.Builderの客体でGame
 
 | API                                      | Mandatory(M) / Optional(O) | Description                              |
 | ---------------------------------------- | -------------------------- | ---------------------------------------- |
-| Builder(String appId, String appVersion) | **M**                      | GamebaseConfiguration.Builder 생성자에 appId와 appVersion을 필수 파라미터로 넘겨주어 초기화해야합니다. <br/><br/> **appId**はTOAST Projectから発行したアプリIDを入力します。<br/> **appVersion**はアップデート、メンテナンスに該当するかどうかはゲームバージョンで判断します。ゲームバージョンを指定してください。 |
+| Builder(String appId, String appVersion) | **M**                      | GamebaseConfiguration.Builder作成者にappIdとappVersionを必須パラメータとして渡して初期化する必要があります。<br/><br/> **appId**はTOAST Projectで発行したアプリIDを入力します。<br/> **appVersion**はアップデート、メンテナンスに該当するかどうかはゲームバージョンで判断します。ゲームバージョンを指定してください。 |
 | build()                                  | **M**                      | 設定を終えたBuilderをConfigurationの客体に変換します。<br/>**Gamebase.initialize()**APIで必要です。|
 | enablePopup(boolean enable)              | O                          | **[UI]**<br/>システムメンテナンス、利用制限(ban)などゲームユーザーがゲームをプレイすることができない状況の場合、ポップアップなどで理由を表示しなければならないときがあります。<br/>**true**に設定すれば、Gamebaseが該当する状況のとき、案内ポップアップを自動で表示します。<br/>デフォルトは**false**です。<br/>**false**状態では起動結果を通して情報を取得した後に直接UIを設計し、ゲームをプレイすることができない理由を表示してください。|
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>起動結果によりログインできない状態の場合(主にメンテナンス状態)、Gamebaseが自動でポップアップを表示するかどうかを変更することができます。<br/>**enablePopup(true)**の状態でのみ動作します。<br/>デフォルトは**true**です。|
@@ -41,11 +41,11 @@ Gamebaseを初期化するとき、GamebaseConfiguration.Builderの客体でGame
 >
 > ゲームを**リリース**するときは、必ずソースコードからsetDebugModeの呼び出しを除去したりパラメーターをfalseに変えてからビルドしてください。
 
-디버그 설정은 Console에서도 가능하며 Console에서 설정된 값을 우선시합니다.
-Console 설정 방법은 아래 가이드를 참고하십시오.
+デバッグ設定は、コンソールでも行うことができ、コンソールで設定された値を優先視します。
+コンソールの設定方法は、下記のガイドを参照してください。
 
-* [Console 테스트 단말기 설정](./oper-app/#test-device)
-* [Console Client 설정](./oper-app/#client)
+* [コンソールテスト端末設定](./oper-app/#test-device)
+* [コンソールクライアント設定](./oper-app/#client)
 
 
 ### Initialize
@@ -147,7 +147,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 });
 ```
 
-getLaunchingInformations API를 이용하면 초기화 이후에도 LaunchingInfo 객체를 획득할 수 있습니다.
+getLaunchingInformations APIを利用すると、初期化後にもLaunchingInfoオブジェクトを取得できます。
 
 **API**
 
@@ -166,8 +166,8 @@ getLaunchingInformations API를 이용하면 초기화 이후에도 LaunchingInf
 | IN_SERVICE                  | 200  | サービスが正常に動作しています。                               |
 | RECOMMEND_UPDATE            | 201  | アップデートを推奨します。                                |
 | IN_SERVICE_BY_QA_WHITE_LIST | 202  | メンテナンス中にはサービスを利用することができませんが、QA端末として登録されている場合はメンテナンスに関係なくサービスに接続してテストすることができます。|
-| IN_TEST                     | 203  | 테스트 중 |
-| IN_REVIEW                   | 204  | 심사 중 |
+| IN_TEST                     | 203  | テスト中 |
+| IN_REVIEW                   | 204  | 審査中 |
 | REQUIRE_UPDATE              | 300  | アップデートが必ず必要です。                                |
 | BLOCKED_USER                | 301  | 接続ブロックに登録された端末(デバイスキー)でサービスに接続したケースです。|
 | TERMINATED_SERVICE          | 302  | サービスが終了しました。                                 |
@@ -182,15 +182,15 @@ getLaunchingInformations API를 이용하면 초기화 이후에도 LaunchingInf
 
 | Error                        | Error Code | Description                |
 | ---------------------------- | ---------- | -------------------------- |
-| NOT_INITIALIZED              | 1          | Gamebase 초기화돼 있지 않습니다. |
-| NOT_LOGGED_IN                | 2          | 로그인이 필요합니다.            |
-| INVALID_PARAMETER            | 3          | 잘못된 파라미터입니다.           |
-| INVALID_JSON_FORMAT          | 4          | JSON 포맷 오류입니다.          |
-| USER_PERMISSION              | 5          | 권한이 없습니다.               |
-| NOT_SUPPORTED                | 10         | 지원하지 않는 기능입니다.        |
-| NOT_SUPPORTED_ANDROID        | 11         | Android에서 지원하지 않는 기능입니다.   |
-| ANDROID_ACTIVEAPP_NOT_CALLED | 32         | activeApp API가 호출되지 않았습니다.   |
+| NOT_INITIALIZED              | 1          | Gamebaseが初期化されていません。 |
+| NOT_LOGGED_IN                | 2          | ログインが必要です。            |
+| INVALID_PARAMETER            | 3          | 無効なパラメータです。           |
+| INVALID_JSON_FORMAT          | 4          | JSONフォーマットエラーです。          |
+| USER_PERMISSION              | 5          | 権限がありません。               |
+| NOT_SUPPORTED                | 10         | サポートしていない機能です。        |
+| NOT_SUPPORTED_ANDROID        | 11         | Androidでサポートしていない機能です。   |
+| ANDROID_ACTIVEAPP_NOT_CALLED | 32         | activeApp APIが呼び出されませんでした。   |
 
 
-* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
+* エラーコードの一覧は、次の文書を参照してください。
     * [오류 코드](./error-code/#client-sdk)

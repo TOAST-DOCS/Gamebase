@@ -39,11 +39,11 @@ Gamebaseデバッグのための設定です。
 * false:Warning、Errorログが出力されます。
 * デフォルト:false
 
-디버그 설정은 Console에서도 가능하며 Console에서 설정된 값을 우선시합니다.
-Console 설정 방법은 아래 가이드를 참고하십시오.
+デバッグ設定は、コンソールでも行うことができ、コンソールで設定された値を優先視します。
+コンソールの設定方法は、下記のガイドを参照してください。
 
-* [Console 테스트 단말기 설정](./oper-app/#test-device)
-* [Console Client 설정](./oper-app/#client)
+* [コンソールテスト端末設定](./oper-app/#test-device)
+* [コンソールクライアント設定](./oper-app/#client)
 
 Gamebaseに関するお問い合わせがある場合、該当する設定をtrueに変更してからログを[カスタマーセンター](https://toast.com/support/inquiry)まで送っていただけましたら、迅速に対応いたします。
 
@@ -98,7 +98,7 @@ Firebase Messaging(FCM)を使用するためのSender IDです。
 
 #### 10. useWebview
 
-Standalone 플랫폼에서 WebView를 통해서 로그인을 할 것인지에 대한 설정입니다. 
+スタンドアローン(standalone)プラットフォームで、WebViewでログインするかどうかに対する設定です。
 
 #### 11. GamebaseUnitySDKSettings
 
@@ -198,8 +198,8 @@ Gamebase Unity SDKの初期化の設定に入力したアプリバージョン�
 | IN_SERVICE | 200 | サービスが正常に動作しています。 |
 | RECOMMEND_UPDATE | 201 | アップデートを推奨します。 |
 | IN_SERVICE_BY_QA_WHITE_LIST | 202         | メンテナンス中にはサービスを利用できませんが、QA端末に登録された場合にはメンテナンスに関係なくサービスに接続してテストすることができます。|
-| IN_TEST                     | 203  | 테스트 중 |
-| IN_REVIEW                   | 204  | 심사 중 |
+| IN_TEST                     | 203  | テスト中 |
+| IN_REVIEW                   | 204  | 審査中 |
 | REQUIRE_UPDATE | 300 | アップデートが必ず必要です。 |
 | BLOCKED_USER                | 301         | 接続ブロックに登録された端末(デバイスキー)でサービスに接続したケースです。|
 | TERMINATED_SERVICE          | 302         | サービスが終了しました。                                   |
@@ -270,7 +270,7 @@ TOAST Consoleに登録されたIAPストアの情報です。
 
 ### Get Launching Information
 
-GetLaunchingInformations API를 이용하면 Initialize 이후에도 LaunchingInfo 객체를 획득할 수 있습니다.
+GetLaunchingInformations APIを利用すると、Initialize後もLaunchingInfoオブジェクトを取得できます。
 
 **API**
 
@@ -298,12 +298,12 @@ public GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
 
 | Error                              | Error Code | Description            |
 | ---------------------------------- | ---------- | ---------------------- |
-| NOT\_INITIALIZED      | 1          | Gamebase 초기화돼 있지 않습니다. |
-| NOT\_LOGGED\_IN       | 2          | 로그인이 필요합니다.            |
-| INVALID\_PARAMETER    | 3          | 잘못된 파라미터입니다.           |
-| INVALID\_JSON\_FORMAT | 4          | JSON 포맷 오류입니다.         |
-| USER\_PERMISSION      | 5          | 권한이 없습니다.              |
-| NOT\_SUPPORTED        | 10         | 지원하지 않는 기능입니다.         |
+| NOT\_INITIALIZED      | 1          | Gamebaseが初期化されていません。 |
+| NOT\_LOGGED\_IN       | 2          | ログインする必要があります。            |
+| INVALID\_PARAMETER    | 3          | 無効なパラメータです。           |
+| INVALID\_JSON\_FORMAT | 4          | JSONフォーマットエラーです。         |
+| USER\_PERMISSION      | 5          | 権限がありません。              |
+| NOT\_SUPPORTED        | 10         | サポートしていない機能です。         |
 
-* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./error-code/#client-sdk)
+* エラーコードの一覧は、次の文書を参照してください。
+    * [エラーコード](./error-code/#client-sdk)

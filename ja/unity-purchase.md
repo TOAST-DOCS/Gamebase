@@ -183,22 +183,22 @@ public void RequestRetryTransaction()
 
 ### AppStore Promotion IAP
 
-AppStore 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니다.
-아이템 구매 성공 후, 아래의 등록해놓은 핸들러를 통하여, 아이템지급을 진행할 수 있습니다.
+App Storeアプリでアイテムを購入できる機能を提供します。
+アイテム購入成功後、登録しておいた下記のハンドラを利用してアイテムを支給できます。
 
-프로모션 IAP는 AppStore Connect 에서 별도의 설정이 되어야 노출이 가능합니다.
+プロモーションIAPは、App Store Connectで別途設定すると表示できます。
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> iOS 11 이상에서만 사용할 수 있습니다.
-> Xcode 9.0 이상에서 빌드가 필요합니다.
-> Gamebase 1.13.0 이상에서 지원합니다. (TOAST IAP SDK 1.6.0 이상적용)
+> iOS 11以上でのみ使用できます。
+> Xcode 9.0以上でビルドする必要があります。
+> Gamebase 1.13.0以上でサポートします(TOAST IAP SDK 1.6.0以上適用)。
 
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> 로그인 성공 이후에만 호출 할 수 있습니다.
-> 로그인 성공 후, 다른 결제 API보다 먼저 실행되어야 합니다.
+> ログイン成功後にのみ呼び出すことができます。
+> ログイン成功後、他の決済APIより先に実行する必要があります。
 
 **API**
 
@@ -240,22 +240,22 @@ public void SetPromotionIAPHandler()
 
 **How to Test AppStore Promotion IAP**
 
-> `주의`
-> App Store Connect에 앱을 업로드한 다음 TestFlight를 통하여 앱을 설치 후, 테스트를 진행할 수 있습니다.
+> `注意`
+> App Store Connectにアプリをアップロードし、TestFlightでアプリをインストールした後、テストできます。
 > 
 
-1. TestFlight로 App을 설치합니다.
-2. 아래와 같은 URL Scheme을 호출하여, 테스트를 진행합니다.
+1. TestFlightでアプリをインストールします。
+2. 下記のようなURLスキーム(scheme)を呼び出し、テストを進行します。
 
 | URL Components | keyname | value |
 | --- | --- | --- |
-| scheme | itms-services | 고정값 |
-| host &amp; path | 없음 | 없음 |
+| scheme | itms-services | 固定値 |
+| host &amp; path | なし | なし |
 | queries | action | purchaseIntent |
-|		  | bundleId | 앱의 bundeld identifier |
-|		  | productIdentifier | 구매 아이템의 product identifier |
+|		  | bundleId | アプリのbundeld identifier |
+|		  | productIdentifier | 購入アイテムのproduct identifier |
 
-예제) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
+例) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 
 
 ### Error Handling
@@ -276,7 +276,7 @@ public void SetPromotionIAPHandler()
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
 * このエラーは、IAPモジュールで発生したエラーです。
-* 오류 코드는 다음과 같이 확인하실 수 있습니다.
+* エラーコードは次のように確認できます。
 
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback

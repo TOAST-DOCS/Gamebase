@@ -1,12 +1,12 @@
-## Game > Gamebase > JavaScript SDK 사용 가이드 > UI
+## Game > Gamebase > JavaScript SDK使用ガイド > UI
 
 ## Alert
 
-시스템 알림을 표시할 수 있습니다.<br/>
+システム通知を表示できます。<br/>
 
 ### Simple Alert Dialog
 
-메시지만 입력하여 간단하게 알림 대화 상자를 표시할 수 있습니다.
+メッセージのみ入力し、簡単に通知ダイアログボックスを表示できます。
 
 ```js
 toast.Gamebase.Util.showAlert(message, () => { ... }));
@@ -23,7 +23,7 @@ function showAlert() {
 
 ### Alert Dialog with Callback
 
-알림 대화 상자를 표시한 후 처리 결과를 콜백받고 싶다면 다음 API를 사용합니다.
+通知ダイアログボックスを表示した後、処理結果をコールバックで受信したい場合は、次のAPIを使用します。
 
 ```js
 toast.Gamebase.Util.showConfirm(message, (isConfirmed) => { ... });
@@ -46,7 +46,7 @@ function showConfirm() {
 
 | Error                                      | Error Code    | Description                                               |
 | ------------------------------------------ | ------------- | --------------------------------------------------------- |
-| UI\_UNKNOWN\_ERROR                         | 6999          | 알 수 없는 오류입니다(정의되지 않은 오류입니다).                      |
+| UI\_UNKNOWN\_ERROR                         | 6999          | 不明なエラーです(定義されていないエラーです)。                      |
 
-* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./error-code/#client-sdk)
+* エラーコードの一覧は、次の文書を参照してください。
+    * [エラーコード](./error-code/#client-sdk)

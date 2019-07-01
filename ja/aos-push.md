@@ -94,7 +94,7 @@
     * gradleの設定に**apply plugin:'com.google.gms.google-services'**を追加します。
     * 上記の設定によりGoogle Services Gradle Pluginが適用され、google-services.jsonファイルをres/google-services/{build_type}/values/values.xmlという名前のstring resourceに変更して使用することになります。
 * Unityビルドの場合
-    * 직접 string resource(xml) 파일을 만들어서 Assets/Plugins/Android/res/values/ 폴더에 포함시켜야 합니다. 
+    * 直接string resource(xml)ファイルを作成して、Assets/Plugins/Android/res/values/ フォルダに含める必要があります。
         * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
         * 次は、string resourceファイルの例です。
             ```xml
@@ -109,8 +109,8 @@
             <string name="google_storage_bucket" translatable="false">tap-development-00000000.appspot.com</string>
             </resources>
             ```
-        * string resource(xml) 파일에서 설정하는 각각의 값은 Firebase Console > 프로젝트 설정 > google-services.json 파일을 다운로드해서 확인 가능합니다. 
-            Firebase 서비스 연동에 따라서 google-services.json 파일의 내용은 달라질 수 있습니다.
+        * string resource(xml)ファイルで設定する各値は、**Firebase Console > プロジェクト設定**をクリックし、**google-services.json**ファイルをダウンロードして確認できます。
+            Firebaseサービス連携に応じて、google-services.jsonファイルの内容は変わる場合があります。
             ![Download google-services.json](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
 
 #### Initialization
@@ -250,17 +250,17 @@ Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
 });
 ```
 
-* TOAST Push 오류 코드는 다음과 같습니다.
+* TOAST Pushのエラーコードは次の通りです。
     
-| 오류 코드 |  설명 |
+| エラーコード | 説明 |
 | --- | --- |
-| ERROR_SYSTEM_FAIL | 시스템 문제로 토큰 획득에 실패한 경우 |
-| ERROR_NETWORK_FAIL | 네트워크 문제로 요청에 실패한 경우 |
-| ERROR_SERVER_FAIL | 서버에서 실패 응답을 반환한 경우 |
-| ERROR_ALREADY_IN_PROGRESS | 토큰 등록/조회가 이미 실행 중인 경우 |
-| ERROR_INVALID_PARAMETERS | 파라미터가 잘못된 경우 |
-| ERROR_PERMISSION_REQUIRED | 권한이 필요한 경우(Tencent만 해당) |
-| ERROR_PARSE_JSON_FAIL | 서버 응답을 파싱하지 못한 경우 |
+| ERROR_SYSTEM_FAIL | システムの問題でトークンの取得に失敗した場合 |\
+| ERROR_NETWORK_FAIL | ネットワークの問題でリクエストに失敗した場合 |
+| ERROR_SERVER_FAIL | サーバーが失敗レスポンスを返した場合 |
+| ERROR_ALREADY_IN_PROGRESS | トークン登録、照会がすでに実行中の場合 |
+| ERROR_INVALID_PARAMETERS | パラメータが無効の場合 |
+| ERROR_PERMISSION_REQUIRED | 権限が必要な場合(Tencentのみ該当) |
+| ERROR_PARSE_JSON_FAIL | サーバーレスポンスを解析できなかった場合 |
 
 
 

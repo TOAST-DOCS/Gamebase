@@ -162,8 +162,8 @@ IdPの中には、ログインする際に必ず必要な情報があるもの�
 }
 ```
 
-#### Gamebase에서 지원 중인 IdP
-[Console Guide](./oper-app/#authentication-information)를 참고하시기 바랍니다.
+#### Gamebaseでサポート中のIdP
+[Console Guide](./oper-app/#authentication-information)を参照してください。
 
 ### Login with Credential
 
@@ -200,7 +200,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 #import "TCGBConstants.h"
 
 - (void)authLoginWithCredential {
-    NSDictionary *credentialDic = @{ kTCGBAuthLoginWithCredentialProviderNameKeyname: @"facebook", kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"여기에 facebook SDK에서 발급받은 Access Token을 입력하세요" };
+    NSDictionary *credentialDic = @{ kTCGBAuthLoginWithCredentialProviderNameKeyname: @"facebook", kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"ここにfacebook SDKで発行したAccess Tokenを入力してください" };
     [TCGBGamebase loginWithCredential:credentialDic viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         NSLog([authToken description]);
     }];
@@ -427,10 +427,10 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 ```
 
 ### Add Mapping Forcibly
-특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
-**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+特定IdPにすでにマッピングされているアカウントがある時、**強制的に**マッピングを試行します。
+**強制マッピング**を試行する時は、AddMapping APIで取得した`ForcingMappingTicket`が必要です。
 
-다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
+次はFacebookに強制マッピングを試行する例です。
 
 ```objectivec
 - (void)authAddMapping {
@@ -462,33 +462,33 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 
 ### Add Mapping Forcibly with Credential
-특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
-**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+特定IdPにすでにマッピングされているアカウントがある時、**強制的に**マッピングを試行します。
+**強制マッピング**を試行する時は、AddMapping APIで取得した`ForcingMappingTicket`が必要です。
 
-게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMappingForcibly를 호출 할 수 있는 인터페이스입니다.
+ゲームで直接IdPが提供するSDKにより先に認証して発行されたアクセストークンなどを利用して、Gamebase AddMappingForciblyを呼び出すことができるインターフェイスです。
 
-* Credential 파라미터 설정방법
+* Credentialパラメータ設定方法
 
 
-| keyname                                  | a use                          | 값 종류                           |
+| keyname                                  | a use                          | 値種類                       |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, payco, iosgamecenter, naver, google, twitter |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정 |                                           |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdPタイプ設定                  | facebook, payco, iosgamecenter, naver, google, twitter |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdPログイン後に取得した認証情報(アクセストークン)設定 |                                           |
 
-> [참고]
+> [参考]
 >
-> 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
+> ゲーム内から外部サービス(Facebookなど)の固有機能を使用する際に、必要な場合があります。
 >
 
 <br/>
 
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> 외부 SDK에서 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
+> 外部SDKで要求する開発事項は外部SDKのAPIを使用して実装する必要があり、Gamebaseではサポートしません。
 >
 
-다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
+次はFacebookに強制マッピングを試行する例です。
 
 ```objc
 - (void)onButtonLogin {
@@ -606,18 +606,18 @@ Gamebase Consoleで利用制限対象のゲームユーザーに登録された�
 
 
 ## TransferAccount
-게스트 계정을 다른 단말기로 이전하기 위해 계정 이전을 위한 키를 발급받는 기능입니다.
+ゲストアカウントを他の端末に移行するためのキーを発行する機能です。
 
-이 키를 **TransferAccountInfo** 라고 부릅니다.
-발급받은 TransferAccountInfo는 다른 기기에서 **requestTransferAccount** API를 호출하여 계정 이전을 할 수 있습니다.
+このキーを**TransferAccountInfo**と呼びます。
+発行されたTransferAccountInfoは、他の端末で**requestTransferAccount**APIを呼び出してアカウントを移行できます。
 
-> `주의`
-> TransferAccountInfo의 발급은 게스트 로그인 상태에서만 발급이 가능합니다.
-> TransferAccountInfo를 이용한 계정 이전은 게스트 로그인 상태 또는 로그인되어 있지 않은 상태에서만 가능합니다.
-> 로그인한 게스트 계정이 이미 다른 외부 IdP (Google, Facebook, Payco 등) 계정과 매핑이 되어 있다면 계정 이전이 지원되지 않습니다.
+> `注意`
+> TransferAccountInfoは、ゲストログイン状態でのみ発行できます。
+> TransferAccountInfoを利用したアカウント移行は、ゲストログイン状態またはログインされていない状態でのみ可能です。
+> ログインしたゲストアカウントがすでに他の外部IdP(Google、Facebook、PAYCOなど)アカウントとマッピングされている場合、アカウント移行がサポートされません。
 
 ### Issue TransferAccount
-게스트 계정 이전을 위한 TransferAccountInfo를 발급합니다.
+ゲストアカウントを移行するためにTransferAccountInfoを発行します。
 
 **API**
 
@@ -636,7 +636,7 @@ Gamebase Consoleで利用制限対象のゲームユーザーに登録された�
 ```
 
 ### Query TransferAccount
-게스트 계정 이전을 위해 이미 발급받은 TransferAccountInfo 정보를 게임베이스 서버에 질의합니다.
+ゲストアカウントを移行するために、すでに発行されているTransferAccountInfo情報をGamebaseサーバーに問い合わせます。
 
 **API**
 
@@ -656,9 +656,8 @@ Gamebase Consoleで利用制限対象のゲームユーザーに登録された�
 
 
 ### Renew TransferAccount
-이미 발급받은 TransferAccountInfo 정보를 갱신합니다.
-"자동 갱신", "수동 갱신"의 방법이 있으며, "Password만 갱신", "ID와 Password 모두 갱신" 등의 설정을 통해
-TransferAccountInfo 정보를 갱신 할 수 있습니다.
+すでに発行されたTransferAccountInfo情報を更新します。
+更新方法には**自動更新**と**手動更新**があり、**パスワードのみ更新**、**IDとパスワードを更新**を選択してTransferAccountInfo情報を更新できます。
 
 ```objectivec
 + (void)renewTransferAccountWithConfiguration:(TCGBTransferAccountRenewConfiguration *)config completion:(TransferAccountCompletion)completion;
@@ -671,7 +670,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
     // If you want renew the account automatically, use this config.
     TCGBTransferAccountRenewalTargetType renewalTargetType = TCGBTransferAccountRenewalTargetTypeIdPassword;
     TCGBTransferAccountRenewConfiguration* autoConfig = [TCGBTransferAccountRenewConfiguration autoRenewConfigurationWithRenewalTarget:renewalTargetType];
-    
+
     // If you want renew the account manually, use this config.
     TCGBTransferAccountRenewConfiguration* manualConfig = [TCGBTransferAccountRenewConfiguration manualRenewConfigurationWithAccountId:@"ID" accountPassword:@"PASSWORD"];
     [TCGBGamebase renewTransferAccountWithConfiguration:autoConfig completion:^(TCGBTransferAccountInfo *transferAccount, TCGBError *error) {
@@ -692,12 +691,12 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 
 ### Transfer Guest Account to Another Device
-**issueTransfer** API로 발급받은 TransferAccount를 통해 계정을 이전하는 기능입니다.
-계정 이전 성공 시 TransferAccount를 발급받은 단말기에서 이전 완료 메시지가 표시될 수 있고, Guest 로그인 시 새로운 계정이 생성됩니다.
-계정 이전이 성공한 단말기에서는 TransferAccount를 발급받았던 단말기의 게스트 계정을 계속해서 사용할 수 있습니다.
+**issueTransfer**APIで発行したTransferAccountにアカウントを移行する機能です。
+アカウントの移行に成功した時、TransferAccountを発行した端末から移行完了メッセージが表示される場合があり、ゲストログインすると新規のアカウントが作成されます。
+アカウント移行が成功した端末では、TransferAccountを発行した端末のゲストアカウントを継続して使用できます。
 
-> `주의`
-> 이미 Guest 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
+> `注意`
+> ゲストでログインした状態でアカウントを移行すると、ゲストアカウントは消滅します。
 
 **API**
 
@@ -725,7 +724,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 |                | TCGB\_ERROR\_AUTH\_USER\_CANCELED        | 3001       | ログインがキャンセルされました。                           |
 |                | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | この認証方式には対応しておりません。                      |
 |                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | 退会されているか、存在しない会員です。                    |
-|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 外部認証ライブラリーエラーです。 <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
+|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 外部認証ライブラリーエラーです。 <br/> DetailCodeおよびDetailMessageを確認してください。 |
 | Auth (Login)   | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED  | 3101       |トークンログインに失敗しました。                         |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       |トークン情報が有効ではありません。                       |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 最近ログインしたIdPの情報がありません。                  |
@@ -735,7 +734,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 |                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | 既に他のメンバーにマッピングされています。                     |
 |                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | 既に同じIdPにマッピングされています。                    |
 |                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO | 3304       | IdP情報が有効ではありません。(Consoleに該当するIdPの情報がありません。) |
-|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_CANNOT\_ADD\_GUEST\_IDP | 3305  | Guest IdP로는 AddMapping이 불가능합니다. |
+|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_CANNOT\_ADD\_GUEST\_IDP | 3305  | ゲストIdPではAddMappingができません。 |
 | Remove Mapping | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_FAILED | 3401       | マッピング削除に失敗しました。                          |
 |                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | 最後にマッピングされたIdPは、削除することができません。              |
 |                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403       | 現在ログイン中のIdP です。                   |
