@@ -1,67 +1,71 @@
-## Game > Gamebase > 릴리스 노트
+## Game > Gamebase > Release note
 
-### 2019.06.27
+### June 27,2019
 
-#### 버그수정
+#### Bug Fixes
 * [Console]
-	* 이용정지: 이용정지 대량등록을 위한 파일 업로드 실패 현상 수정
+	* Service Suspension: Fixed failure in uploading files to register suspension of service in mass 
 * [SDK] Setting Tool 1.4.1
-	* GamebaseSettingTool 실행시 기존 설정 정보를 가져오지 못하는 오류가 발생하여 수정
+	* Fixed the error in uploading existing setting data when GamebaseSettingTool was executed
 
-### 2019.06.25
+### June 25, 2019 
 
-#### 기능 추가
-* 전송 지표 기능 추가
-    * [Console]Analytics>전송지표: Level, Channel, Class별 지표 확인 메뉴 오픈
-		* 실시간 현황
-		* 레벨별 현황
-		* 월드/서버/채널별 현황
-		* 클래스/직업별 현황
-		* 레벨업
-		* 아이템 판매 현황
-		* 아이템 판매 TOP 50
+#### Feature Added 
+* More Transfer Indicators 
+    * [Console]Analytics>Transfer Indicators: Menu available to check indicators per Level, Channel, or Class
+		* Status in real time
+		* Status by level
+		* Status of the world, or each server or channel 
+		* Status of each class or profession
+		* Level-ups 
+		* Sales status of items 
+		* Top 50 best-selling items 
 
-#### 기능 개선/변경
+#### Features Updates/Changes
 * [SDK] 2.4.2
-	* (공통)LaunchingInfo에 JSON string 형식의 TOAST Launching 정보를 추가
-	* (iOS)LINE SDK 업데이트(v5.0.1)
-		* LINE Adpater의 최소 지원 OS 버전이 iOS 10으로 변경 
-		* LINE 앱을 통한 로그인 기능 추가
+	* (Common) Add TOAST Launching information in the JSON string format to LaunchingInfo
+	* (iOS) LINE SDK Updated (v5.0.1)
+		* The minimum support OS version for LINE Adapter has changed to iOS 10
+		* Login also available via LINE app
 
-#### 버그수정
+#### Bug Fixes
 * [SDK] 2.4.2
-	* (공통)Analytics 버그 수정: 로그아웃, 탈퇴, 계정 이전 시 저장된 지표 데이터를 초기화 하도록 수정
-	* (iOS)네트워크 연결 문제로 간헐적으로 크래시가 발생하던 현상 수정
+	* (Common) Fixed Bugs in Analytics: Modified to initialize indicators data that are saved before logout, withdrawal, or account transfer. 
+	* (iOS) Fixed infrequent crashes occurred out of network connection issues 
 
-### 2019.06.13
+### June 13, 2019 
 
-#### 버그수정
+#### Bug Fixes
 * [SDK] 2.4.1
-	* (iOS)Analytics 지표 전송 시 일부 파라미터가 누락 되어 지표가 제대로 출력되지 않는 버그 수정
+	* (iOS) Fixed the error in output of indicators due to missing of partial parameters during transfer of Analyticis indicators 
 	
-### 2019.05.28
+### May 28, 2019 
 
-#### 기능 추가
-* HANGAME mix 일본결제 추가
+#### Feature Updates 
+* Purchase for HANGAME mix Available for Japan 
     * [SDK] 2.4.0
-    	* (Unity)Standalone 일본 외부결제 추가
-    	* (Unity)Standalone 일본 HANGAME 인증 추가
+      * (Unity) Added external purchase for Standalone Japan  
+      * (Unity)  Added HANGAME authentication for Standalone Japan 
     * [Console] 
-    	* 구매>스토어: 'HANGAME mix(JAPAN)' Store 추가
-    	* 앱>클라이언트: Windows 클라이언트 등록 시 스토어 설정 항목 추가
-    	* 앱>설치URL: Windo 설치 URL 추가 시 스토어 설정 항목 추가
+      * Purchase>Store: Added 'HANGAME mix (JAPAN)' Store 
+      * App>Client: Added store setting for client registration on Windows
+      * App> Installation URL: Added store setting to add installation URL on Windows
 
-#### 기능 개선/변경
+#### Feature Updates/Changes
 * [SDK] 2.4.0
-	* (공통) 지표관련 Class 변경
-        * LevelUpData Class: userLevel, levelUpTime 파라미터가 필수로 변경 / 그 외 필드 삭제 [자세히보기 [Android](http://docs.toast.com/ko/Game/Gamebase/ko/aos-etc/#game-user-data-settings) / [iOS](http://docs.toast.com/ko/Game/Gamebase/ko/ios-etc/#game-user-data-settings) / [Unity](http://docs.toast.com/ko/Game/Gamebase/ko/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#game-user-data-settings)]
-        * GameUserData Class: classId(게임유저의 직업) 필드 추가 [자세히보기 [Android](http://docs.toast.com/ko/Game/Gamebase/ko/aos-etc/#level-up-trace) / [iOS](http://docs.toast.com/ko/Game/Gamebase/ko/ios-etc/#level-up-trace) / [Unity](http://docs.toast.com/ko/Game/Gamebase/ko/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#level-up-trace)]
-    * (Android)Naver SDK 버전 업데이트(v4.2.5): Naver SDK 버그 수정(Naver 로그인 도중에 앱 아이콘을 통해 앱을 재시작할 경우, Activity가 강제종료 되는 이슈로 인해 인증 프로세스가 중단되는 이슈가 해결)
-    * (Unity)StandaloneWebview가 32bit Build를 지원 (SDK 용량 53.6MB에서 99.2MB로 증가)
+
+  * (Common) Chanage of Classes Relevant to Indicators 
+        * LevelUpData Class: Changed userLevel and levelUpTime as required parameters; the other fields are deleted [See Details: [Android](http://docs.toast.com/ko/Game/Gamebase/ko/aos-etc/#game-user-data-settings) / [iOS](http://docs.toast.com/ko/Game/Gamebase/ko/ios-etc/#game-user-data-settings) / [Unity](http://docs.toast.com/ko/Game/Gamebase/ko/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#game-user-data-settings)]
+            * GameUserData Class: Added the classId (game user's profession) field [See Details: [Android](http://docs.toast.com/ko/Game/Gamebase/ko/aos-etc/#level-up-trace) / [iOS](http://docs.toast.com/ko/Game/Gamebase/ko/ios-etc/#level-up-trace) / [Unity](http://docs.toast.com/ko/Game/Gamebase/ko/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#level-up-trace)]
+
+    * (Android) Naver SDK Version Updated (v4.2.5): Bug of Naver SDK fixed (fixed the issue, in which authentication process was stopped due to forced closure of activities when the app was restarted via app icon while login to Naver was underway)  
+    * (Unity) StandaloneWebview supports 32bit Build (SDK volume upgraded from 53.6MB to 99.2MB)
 * [Server]
-    * LTV 쿼리 수정 및 failover 로직 수정
+
+    * Modified LTV queries and the failover logic 
 * [Console]
-    * LTV Grid ComplexColumns 지원 및 엑셀 다운로드 지원
+
+    * Support available for LTV Grid ComplexColumns and excel downloading 
 
 ### 2019.05.16
 
