@@ -1,5 +1,11 @@
-## Game > Gamebase > Release note
+## Game > Gamebase > Release Notes
 
+### July 1, 2019 
+
+#### Bug Fixes 
+* [Console]
+	* Management > Alarms: Fixed the failure in modifying set alarm after Webhook is set up  
+	
 ### June 27,2019
 
 #### Bug Fixes

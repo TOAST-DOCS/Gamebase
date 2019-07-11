@@ -1,13 +1,26 @@
 ## Game > Gamebase > 릴리스 노트
 
+### 2019. 07. 11.
 
-### 2019.07.01
+#### 기능 개선/변경
+* [Console]Analytics
+	* 레벨업 쿼리 성능 개선
+	* 차트 내 min, max 정보 노출
+	* 다국어 적용(중국어)
 
-#### 버그수정
+#### 버그 수정
+* [SDK] 2.4.3
+	* (iOS)인증 시도 시 오류가 발생했을 경우, 형식에 맞지 않는 오류 메시지 파싱 시도에 따른 크래시 발생 이슈 수정
+	* (Unity)iOS와 Android로 빌드시 AddMappingForcibly API 가 동작하지 않는 오류 수정
+	* (Unity)RequestRetryTransaction API 호출시 iOSPlugin에서 JSON 파싱 오류가 있어 수정
+
+### 2019. 07. 01.
+
+#### 버그 수정
 * [Console]
-	* 관리>알람: Webhook 설정 후 수정에 실패하는 현상 수정
+	* 관리 > 알람: Webhook 설정 후 알람 설정값 수정에 실패하는 현상 수정
 
-### 2019.06.27
+### 2019. 06. 27.
 
 #### 버그수정
 * [Console]
@@ -15,11 +28,11 @@
 * [SDK] Setting Tool 1.4.1
 	* GamebaseSettingTool 실행시 기존 설정 정보를 가져오지 못하는 오류가 발생하여 수정
 
-### 2019.06.25
+### 2019. 06. 25.
 
 #### 기능 추가
 * 전송 지표 기능 추가
-    * [Console]Analytics>전송지표: Level, Channel, Class별 지표 확인 메뉴 오픈
+    * [Console]Analytics > 전송지표: Level, Channel, Class별 지표 확인 메뉴 오픈
 		* 실시간 현황
 		* 레벨별 현황
 		* 월드/서버/채널별 현황
@@ -40,13 +53,13 @@
 	* (공통)Analytics 버그 수정: 로그아웃, 탈퇴, 계정 이전 시 저장된 지표 데이터를 초기화 하도록 수정
 	* (iOS)네트워크 연결 문제로 간헐적으로 크래시가 발생하던 현상 수정
 
-### 2019.06.13
+### 2019. 06. 13.
 
 #### 버그수정
 * [SDK] 2.4.1
 	* (iOS)Analytics 지표 전송 시 일부 파라미터가 누락 되어 지표가 제대로 출력되지 않는 버그 수정
 	
-### 2019.05.28
+### 2019. 05. 28.
 
 #### 기능 추가
 * HANGAME mix 일본결제 추가
@@ -54,9 +67,9 @@
     	* (Unity)Standalone 일본 외부결제 추가
     	* (Unity)Standalone 일본 HANGAME 인증 추가
     * [Console] 
-    	* 구매>스토어: 'HANGAME mix(JAPAN)' Store 추가
-    	* 앱>클라이언트: Windows 클라이언트 등록 시 스토어 설정 항목 추가
-    	* 앱>설치URL: Windo 설치 URL 추가 시 스토어 설정 항목 추가
+    	* 구매 > 스토어: 'HANGAME mix(JAPAN)' Store 추가
+    	* 앱 > 클라이언트: Windows 클라이언트 등록 시 스토어 설정 항목 추가
+    	* 앱 > 설치URL: Windo 설치 URL 추가 시 스토어 설정 항목 추가
 
 #### 기능 개선/변경
 * [SDK] 2.4.0
@@ -70,13 +83,13 @@
 * [Console]
     * LTV Grid ComplexColumns 지원 및 엑셀 다운로드 지원
 
-### 2019.05.16
+### 2019. 05. 16.
 
 #### 기능 추가
 * [Console]
 	* 단말기 이전 기능 추가(신규 메뉴)
-		* 앱>기기 이전(Transfer account): 기기이전 기능 사용을 위한 설정값 저장
-		* 회원>기기 이전: 발급된 키의 상태 및 이력 조회
+		* 앱 > 기기 이전(Transfer account): 기기이전 기능 사용을 위한 설정값 저장
+		* 회원 > 기기 이전: 발급된 키의 상태 및 이력 조회
 
 #### 기능 개선/변경
 * [Console]
@@ -93,7 +106,7 @@
 	* 회원: 구매 이력에서 영수증 검증이 되지 않던 문제 수정
 	* Kickout: 조회 요청시 인증체크 추가하여 비정상 동작하던 이슈 수정
 	
-### 2019.04.23
+### 2019. 04. 23.
 
 ```
 Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
@@ -110,7 +123,7 @@ Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
 	* (Android)최근 로그인한 Provider로 로그인 및 웹소켓 응답 실패를 받았을 경우(Timeout, network disable 등) AuthToken을 삭제 처리하지 않도록 수정
 	* (Android)IdP로그인 시 AuthAdapter 내부에서 발생하는 MemoryLeak을 수정
 
-### 2019.04.11
+### 2019. 04. 11.
 
 #### 기능 개선/변경
 * [SDK] 2.2.2
@@ -125,13 +138,13 @@ Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
 	* (iOS)showBlockingPopup을 NO로 설정 할 경우 Gamebase 초기화 콜백이 호출되지 않는 이슈를 수정
 	* (Unity)AddMappingForcibly API를 호출하면 크래쉬가 발생하여 수정
 
-### 2019.04.02
+### 2019. 04. 02.
 
 #### 버그수정
 * [SDK] 2.2.1
 	* (Unity) Unity Editor에서 Android 플랫폼을 선택하고 플레이를 하면 initialize시 서버에서 에러가 발생하는 이슈 수정
 
-### 2019.03.26
+### 2019. 03. 26.
 
 #### 기능 추가
 * TransferAccount 기능 추가: guest 사용자가 매핑없이 최대 2개의 키를 이용하여 새로운 기기로 이전할 수 있는 기능
@@ -155,7 +168,7 @@ Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
 	* (Unity)GamebaseMainActivity의 Package Name이 변경
 		* com.toast.gamebase.activity.GamebaseMainActivity -> com.toast.android.gamebase.activity.GamebaseMainActivity
 
-### 2019.02.26
+### 2019. 02. 26.
 
 #### 기능 개선/변경
 * [SDK] 2.1.0
@@ -168,7 +181,7 @@ Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
 	* (Android)Gamebase 초기화 이전, onActivityResult() 가 호출되면서 이상 동작하던 버그 수정
 	* (iOS)Gamecenter를 Gamebase가 아닌 다른 로직에의해 로그인 한 후, Gamebase를 통하여 Gamecenter로그인을 시도할 때, 반응이 없는 버그 수정
 
-### 2019.01.29
+### 2019. 01. 29.
 
 ```
 Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데이트가 필요합니다.
@@ -197,7 +210,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 2.0.0
 	* (iOS)iOS 12 이상의 시뮬레이터에서 debugMode On 상태로 Gamebase 초기화 시 크래시가 발생하던 현상 수정
 
-### 2018.12.27
+### 2018. 12. 27.
 
 #### 기능 추가
 * Console
@@ -220,7 +233,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	* 인증이 풀렸을 때 Rest API 요청에도 로그인페이지로 이동하도록 수정
 	* IAP Transaction 조회 필터 추가
 
-### 2018.11.15
+### 2018. 11. 15.
 
 #### 기능 추가
 * Console
@@ -242,7 +255,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	* (Unity)ShowWebView API 호출시 파라메타에 Callback을 넣지 않으면 crash가 발생되는 부분 수정
 	* (Unity)iOS SDK의 Deleted API를 호출하는 코드가 있어 컴파일시 오류가 발생 되는 버그 수정
 	
-### 2018.10.23
+### 2018. 10. 23.
 
 #### 기능 추가
 * Console
@@ -298,19 +311,19 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.14.1
 	* (Android)Auth API 호출 후 콜백에서 다시 Auth API 중복 호출시 정상 호출이 되지 않는 버그 수정
 	
-### 2018.10.11
+### 2018. 10. 11.
 
 #### 버그수정
 * Console
 	* 이용정지 : 대량등록시 발생하던 오류 수정
 	
-### 2018.09.20
+### 2018. 09. 20.
 
 #### 버그수정
 * Console
 	* 관리 : 페이지 주소 오류로 인한 알람페이지 처리 실패 발생 수정
 
-### 2018.09.13
+### 2018. 09. 13.
 
 #### 기능 추가
 * Console	
@@ -339,7 +352,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * Console
 	* App : 정보 수정시 삭제버튼 뒤의 내용이 잘리는 현상 수정
 		
-### 2018.08.28
+### 2018. 08. 28.
 
 #### 기능 추가
 * Console	
@@ -361,7 +374,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.12.2
 	* (Android)auth-twitter-adapter 를 포함한 상태에서 TargetSdk 28로 빌드시 초기화 에러가 발생하는 문제 수정
 
-### 2018.08.09
+### 2018. 08. 09.
 
 #### 기능 개선/변경
 * [SDK] 1.12.1
@@ -383,7 +396,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * Console
 	* 결제 내역: 'Reserved'상태에서 결제 상태 변경이 되지 않는 버그와 엑셀 다운로드 시 필터링이 적용되지 않던 문제 수정
 	
-### 2018.07.24
+### 2018. 07. 24.
 
 #### 기능 개선/변경
 * [SDK] 1.12.0
@@ -416,9 +429,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     4. GPGS 기능을 사용하지 않는 경우
         * GPGS SDK for Unity 삭제 
 
-
-	
-### 2018.07.05
+### 2018. 07. 05.
 
 #### 기능 추가
 * Line IdP 추가 : iOS
@@ -434,7 +445,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * Console
 	* Windows client 등록 시 스토어코드가 잘못 등록되던 문제 수정
 
-### 2018.06.26
+### 2018. 06. 26.
 
 #### 기능 추가
 * iOS Google IdP 추가 : iOS
@@ -456,13 +467,13 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	* ServerPush 기능 및 Observer 기능 추가
 	* Gamebase SDK 업데이트 : Android(1.9.0), iOS(1.9.0), Unity(1.10.1)	
 	
-### 2018.06.11
+### 2018. 06. 11.
 
 #### 버그수정
 * [SDK] 1.10.1
 	* (Unity)Unity Adapter가 없는 경우 AddMapping API 호출 시 내부적으로 로그인으로 처리하던 버그 수정
 
-### 2018.06.07
+### 2018. 06. 07.
 
 #### 기능 추가
 * [SDK] 1.10.0
@@ -477,7 +488,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 		* 경로: Assets/Gamebase/Scripts/Adapter => Assets/Gamebase/Adapter
 		* 오타: Adapater => Adapter	
 	
-### 2018.05.29
+### 2018. 05. 29.
 
 #### 기능 추가
 * [Console] 지표(Operating indicator) 다운로드 기능 추가
@@ -490,14 +501,14 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.9.1
 	* (iOS) Gamebase WebView NavigationBar 영역에 타이틀, 뒤로가기, 닫기 버튼이 나타나지 않는 현상을 수정
 
-### 2018.05.18
+### 2018. 05. 18.
 
 #### 기능 개선/변경
 * [SDK] 1.9.0
 	* Unity SDK(1.9.0) Google Adapter 신규버전(1.6.2)으로 교체하여 재배포
     	- 5/3 배포된 Unity SDK(1.9.0)에 적용된 Google Adapter를 최신버전으로 교체(1.6.1->1.6.2)
     
-### 2018.05.03
+### 2018. 05. 03.
 
 #### 기능 추가
 * Transfer 기능 추가
@@ -515,20 +526,20 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * (iOS) Adapter로부터 UnderlyingError 객체를 받아서 유저에게 전달되는 에러객체를 생성하는 로직에서 메시지 및 Underlying Error의 설정이 되지 않는 버그 수정
     * (Android) Heartbeat 에서 잘못된 사용자로 판정되는 경우 이용정지 팝업이 뜨지 않도록 수정(iOS 와 동일한 로직으로 수정)
 
-### 2018.04.12
+### 2018. 04. 12.
 
 #### 버그 수정
 * [SDK] 1.8.1
 	* (Android. iOS)registerPush를 호출시 displayLanguageCode를 null로 전달하면 registerPush가 실패하는 버그 수정
 
-### 2018.04.09
+### 2018. 04. 09.
 
 #### 버그 수정
 * [SDK] 1.8.1
 	* (Unity)UnityAndroid 플랫폼에서 아래 기능 사용 시 모듈 초기화가 되지 않아 NullReferenceException이 발생하여 수정
 		* Launching, Purchase, Push, Util, Webview
 
-### 2018.04.05
+### 2018. 04. 05.
 
 #### 기능 추가
 * Kick out 기능 추가
@@ -552,7 +563,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.8.0
 	* (Setting Tool)Unity Facebook Adapter를 체크하면 에러가 나는 버그 수정
 
-### 2018.03.13
+### 2018. 03. 13.
 
 #### 버그 수정
 * [SDK] 1.7.1
@@ -560,20 +571,20 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	* (Unity)Standalone, WebGL: Display Language에서 사용되는 리소스 파일 누락 부분 수정
 	* (Unity)Google Adapter 1.6.2 배포: Google Adapter 1.6.1에서 AuthCode가 Empty로 반환되어 인증 실패하는 버그 수정
 
-### 2018.02.22
+### 2018. 02. 22.
 
 #### 기능 추가
 * [SDK] 1.7.0
 	* Naver IdP 인증 추가
 	* Display Language 설정 추가: 단말기 언어와 별도로 게임내에서 게임유저의 노출 언어를 설정할 수 있도록 Display 언어를 추가하였습니다.
 
-### 2018.01.25
+### 2018. 01. 25.
 
 #### 기능 추가
 
 * [Console]
 	* [Push] PUSH 입력값 복사기능 추가
-	* [Operating indicator>그룹 동접] 일간 그룹 동접 변화 그래프 추가
+	* [Operating indicator > 그룹 동접] 일간 그룹 동접 변화 그래프 추가
 
 * [SDK] 1.6.0
 	* (Unity)Standalone WinSDK 추가
@@ -582,24 +593,24 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 개선/변경
 * [Console]
-	* [Operating indicator>모니터링] 프로젝트 생성 이전 설정된 시스템 점검 항목이 노출 되는 문제 수정
-	* [App>앱] 테스트 단말기 등록화면 개선 - User ID 로그인이력을 바탕으로 손쉽게 단말기 등록가능하도록 개선
-	* [Operation>점검] 점검 미리보기 화면 개선
+	* [Operating indicator > 모니터링] 프로젝트 생성 이전 설정된 시스템 점검 항목이 노출 되는 문제 수정
+	* [App > 앱] 테스트 단말기 등록화면 개선 - User ID 로그인이력을 바탕으로 손쉽게 단말기 등록가능하도록 개선
+	* [Operation > 점검] 점검 미리보기 화면 개선
 
 #### 버그 수정
 * [SDK] 1.6.0
 	* (iOS)WebView 호출시, 크래시가 일어날 수 있는 부분에 대한 방어로직 처리
 
 
-### 2017.12.21
+### 2017. 12. 21.
 
 #### 기능 추가
 
 * [Console]
 	* [Push] 현지시간대 발송(Local Time Push) 기능 추가
-	* [Operating indicator>판매 현황] 마켓별 매출 차트 추가
-	* [Operating indicator>유저 통계] 앱 출시 이후의 사용자 지표 추이 확인하는 메뉴 추가
-	* [Operation>점검] 점검상태에서 사용자에게 보여주는 점검페이지 등록 방법 추가
+	* [Operating indicator > 판매 현황] 마켓별 매출 차트 추가
+	* [Operating indicator > 유저 통계] 앱 출시 이후의 사용자 지표 추이 확인하는 메뉴 추가
+	* [Operation > 점검] 점검상태에서 사용자에게 보여주는 점검페이지 등록 방법 추가
 		* 기존 : Gamebase 자체 제공 페이지, 외부 페이지 URL 입력
 		* 추가 : Console에서 입력한 점검내용을 외부페이지에 전달하는 기능 추가
 
@@ -610,7 +621,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 개선/변경
 * [Console]
-	* [App>클라이언트] 클라이언트 상태 변경시 이전에 게임에서 등록한 사용자 노출메시지 정보를 재사용할 수 있도록 수정	
+	* [App > 클라이언트] 클라이언트 상태 변경시 이전에 게임에서 등록한 사용자 노출메시지 정보를 재사용할 수 있도록 수정	
 
 #### 버그 수정
 * [SDK] 1.5.0
@@ -618,17 +629,17 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	* (Unity)TOAST Console에 Facebook 인증 정보를 등록하지 않고 Gamebase.Login("facebook") API를 호출할 경우, KeyNotFoundException이 발생하여 방어코드 추가
 
 
-### 2017.11.30
+### 2017. 11. 30.
 
 #### 기능 추가
 
 * [Console]
-	* [Management>알람] Webhook 알람 등록하는 기능 추가
-	* [Operating indicator>모니터링] Push 발송 이력 조회 추가
+	* [Management > 알람] Webhook 알람 등록하는 기능 추가
+	* [Operating indicator > 모니터링] Push 발송 이력 조회 추가
 
 #### 기능 개선/변경
 * [Console]
-	* [Operating indicator>모니터링] 차트 색상 변경, Timezone 이슈. DAU 계산로직 변경(Login시간기준->접속시간기준)
+	* [Operating indicator > 모니터링] 차트 색상 변경, Timezone 이슈. DAU 계산로직 변경(Login시간기준->접속시간기준)
 * [API] [점검 조회 API](./api-guide/#check-under-maintenance) 결과를 List 에서 단일 객체로 변경
 
 #### 버그 수정
@@ -636,7 +647,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	* [Push] Push 등록 시 기본언어가 선택되어 있지 않아도 등록되는 오류 수정
 
 
-### 2017.11.23
+### 2017. 11. 23.
 
 #### 기능 추가
 
@@ -653,7 +664,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	* (iOS)WebView 런치 후, 기기 회전시 NavigationBar Title 이 reset이 되는 오류 수정
 	* (iOS)WebView의 NavigationBar Height을 커스터마이징 할 때, NavigationBar 배경 부분이 겹쳐서 노출되는 오류 수정
 
-### 2017.10.26
+### 2017. 10. 26.
 
 #### 기능 추가
 
@@ -668,7 +679,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.3.0 업데이트	
 	* (Unity)CredentialInfo를 사용하는 Login API호출 시 iOSPlugin에서 Json 파싱이 안되던 버그를 수정
 	
-### 2017.09.21
+### 2017. 09. 21.
 
 #### 기능 추가
 
@@ -688,14 +699,14 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	* 판매현황 소수점 이하 가격처리
 	* 동접변화량 알람 발송 다국어 지원(영어/한국어 선택 가능)
 
-### 2017.08.24
+### 2017. 08. 24.
 
 #### 기능 개선/변경
 
 * [SDK] 1.1.6 업데이트
 	* Push API 추가(for iOS) : SetSandboxMode
 
-### 2017.07.20
+### 2017. 07. 20.
 
 #### 기능 개선/변경
 
@@ -708,7 +719,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [Console]
 	* 외부 연동 모듈에서 오류 발생시, 추적을 위한 TrackingTime 추가 노출
 
-### 2017.05.25
+### 2017. 05. 25.
 
 #### 기능 개선/변경
 
@@ -720,7 +731,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	* 다국어 지원
 	* 모든 메뉴의 Create, Update, Modify 수행시에 Audit log 기능 추가
 
-### 2017.04.20
+### 2017. 04. 20.
 
 #### 기능 개선/변경
 
@@ -733,7 +744,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	* (Android)Facebook SDK v4.19.0 이상에서 초기화시 크래시 오류 수정
 
 
-### 2017.04.04
+### 2017. 04. 04.
 
 #### 기능 개선/변경
 * [SDK] 1.1.2 업데이트
@@ -746,7 +757,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 버그 수정
 * [Console] iOS 클라이언트 등록 시 마켓 비정상 노출 수정
 
-### 2017.03.21
+### 2017. 03. 21.
 
 #### 기능 개선/변경
 * [SDK] 1.1.0 업데이트
@@ -754,7 +765,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * [UI 기능 추가](./aos-ui) : Custom Webview, AlertDialog
 * [API] [Leaderboard](./api-guide/#leaderboard), [IAP](./api-guide/#purchaseiap) API 연동
 
-### 2017.03.09
+### 2017. 03. 09.
 
 #### 신규 상품 출시
 * 게임에서 공통적으로 필요한 기능들을 제공하여 손쉽고 효율적으로 게임 개발이 가능하도록 돕는 서비스입니다.
