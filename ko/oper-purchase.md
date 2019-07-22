@@ -114,7 +114,7 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 변경된 결제 정보는 이후 변경이 불가능하므로 신중하게 확인해야 합니다.
 
 #### 영수증 검증
-![image alt](./image/Operators_Guide/Console_IAP_Transaction3.1.png)
+![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction3.1.png)
 * 조회된 영수증의 결제가 유효한지 검증할 수 있습니다.
 * 각 필드를 비교한 결과를 확인할 수 있습니다. 스토어에서 받은 응답값을 JSON 형식으로 제공하므로 필요한 경우 데이터를 직접 확인하실 수 있습니다.
 * 현재는 App Store 결제 건만 검증할 수 있습니다.

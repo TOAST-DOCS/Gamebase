@@ -1,5 +1,19 @@
 ## Game > Gamebase > Release Notes
 
+### July 11, 2019 
+
+#### Feature Updates/Changes 
+* [Console] Analytics
+	* Improved in level-up query performance 
+	* Shows Min./Max. data within a chart 
+	* Supported in multiple languages (Chinese) 
+
+#### Bug Fixes 
+* [SDK] 2.4.3
+	* (iOS) Fixed crash occurrence due to parsing attempts of error messages with conflicting formats, regarding authentication
+	* (Unity) Fixed failed operations of AddMappingForcibly API, for the builds in iOS or Android 
+	* (Unity) Fixed the json parsing error at iOSPlugin when RequestRetryTransaction API is called 
+
 ### July 1, 2019 
 
 #### Bug Fixes 
