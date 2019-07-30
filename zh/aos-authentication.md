@@ -490,7 +490,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 **API**
 
 ```java
-+ (void)Gamebase.addMapping(Activity activity, AuthProvider authProvider, null, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.addMapping(Activity activity, String providerName, null, GamebaseDataCallback<AuthToken> callback);
 ```
 
 **示例**
@@ -504,35 +504,48 @@ private static void addMappingForFacebook(final Activity activity) {
                 // 成功映射（Mapping）
                 Log.d(TAG, "Add Mapping successful");
                 String userId = Gamebase.getUserID();
-            } else {
-                if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
-                        exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                    // Socket error 表示网络暂时不可用。
-                    // 请确认网络状态或稍后再试 。
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(2000);
-                                addMappingForFacebook(activity);
-                            } catch (InterruptedException e) {}
-                        }
-                    }).start();
-                } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                    // 您尝试映射（Mapping）的IDP帐户已经关联到其他帐户
-                    // 为了强制解除关联，您需要退出（删除数据）或解除映射（Mapping）。
-                    Log.e(TAG, "Add Mapping failed- ALREADY_MAPPED_TO_OTHER_MEMBER");
-                } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP) {
-                    // 您尝试映射（Mapping）的IDP帐户已存在。
-                    // Gamebase映射（Mapping），每个IDP帐户只能关联一个游戏帐户。
-                    // 如果要更改IDP帐户，则必须解除已关联的帐户。
-                    Log.e(TAG, "Add Mapping failed- ALREADY_HAS_SAME_IDP");
-                } else {
-                    // 添加映射（Mapping）失败
-                    Log.e(TAG, "Add Mapping failed- "
-                            + "errorCode: " + exception.getCode()
-                            + "errorMessage: " + exception.getMessage());
+                return;
+            }
+
+            // 添加映射（Mapping）失败
+            if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
+                    exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
+                // Socket error 表示网络暂时不可用。
+                // 请确认网络状态或稍后再试 。
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2000);
+                            addMappingForFacebook(activity);
+                        } catch (InterruptedException e) {}
+                    }
+                }).start();
+            } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+                // 您尝试映射（Mapping）的IDP帐户已经关联到其他帐户
+                // 강제로 연동을 해제하기 위해서는 해당 계정의 탈퇴나 Mapping 해제를 하거나, 다음과 같이
+                // ForcingMappingTicket을 획득 후, addMappingForcibly() 메소드를 이용하여 강제 매핑을 시도합니다.
+                Log.e(TAG, "Add Mapping failed- ALREADY_MAPPED_TO_OTHER_MEMBER");
+                final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
+                final String forcingMappingKey = ticket.forcingMappingKey;
+
+                Gamebase.addMappingForcibly(activity, credentialInfo, forcingMappingKey, new GamebaseDataCallback<AuthToken>() {
+                    @Override
+                    public void onCallback(AuthToken data, GamebaseException exception) {
+                        ...
+                        // 자세한 내용은 addMappingForcibly API 문서를 참고하세요.    
+                    }
                 }
+            } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP) {
+                // 您尝试映射（Mapping）的IDP帐户已存在。
+                // Gamebase映射（Mapping），每个IDP帐户只能关联一个游戏帐户。
+                // 如果要更改IDP帐户，则必须解除已关联的帐户。
+                Log.e(TAG, "Add Mapping failed- ALREADY_HAS_SAME_IDP");
+            } else {
+                // 添加映射（Mapping）失败
+                Log.e(TAG, "Add Mapping failed- "
+                        + "errorCode: " + exception.getCode()
+                        + "errorMessage: " + exception.getMessage());
             }
         }
     });
@@ -541,7 +554,7 @@ private static void addMappingForFacebook(final Activity activity) {
 
 ### Add Mapping with Credential
 
-游戏中直接使用ID Provider提供的SDK进行认证后，使用发行的访问令牌，进行GameBase AddMapping的接口。
+游戏中直接使用IdP提供的SDK进行认证后，使用发行的访问令牌，进行GameBase AddMapping的接口。
 
 * Credential参数设定方法
 
@@ -584,50 +597,202 @@ private static void addMappingWithCredential(final Activity activity) {
                 // 成功添加Mapping
                 Log.d(TAG, "Add Mapping successful");
                 String userId = Gamebase.getUserID();
-            } else {
-                if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
-                        exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                    // Socket error 表示网络暂时不可用 。
-                    // 请确认网络状态或稍后再试。
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(2000);
-                                addMappingWithCredential(activity);
-                            } catch (InterruptedException e) {}
-                        }
-                    }).start();
-                } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                    //您尝试映射（Mapping）的IDP帐户已经关联到其他帐户。
-                    // 为了强制解除关联，您需要退出（删除数据）或解除映射（Mapping）。
-                    Log.e(TAG, "Add Mapping failed- ALREADY_MAPPED_TO_OTHER_MEMBER");
-                } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP) {
-                    // 您尝试映射（Mapping）的IDP帐户已存在。
-                    // Gamebase映射（Mapping），每个IDP帐户只能关联一个游戏帐户。
-                    // 如果要更改IDP帐户，则必须解除已关联的帐户。
-                    Log.e(TAG, "Add Mapping failed- ALREADY_HAS_SAME_IDP");
-                } else {
-                    // 添加映射（Mapping）失败
-                    Log.e(TAG, "Add Mapping failed- "
-                            + "errorCode: " + exception.getCode()
-                            + "errorMessage: " + exception.getMessage());
+                return;
+            }
+
+            // 添加映射（Mapping）失败
+            if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
+                    exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
+                // Socket error 表示网络暂时不可用。
+                // 请确认网络状态或稍后再试 。
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2000);
+                            addMappingWithCredential(activity);
+                        } catch (InterruptedException e) {}
+                    }
+                }).start();
+            } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+                // 您尝试映射（Mapping）的IDP帐户已经关联到其他帐户
+                // 강제로 연동을 해제하기 위해서는 해당 계정의 탈퇴나 Mapping 해제를 하거나, 다음과 같이
+                // ForcingMappingTicket을 획득 후, addMappingForcibly() 메소드를 이용하여 강제 매핑을 시도합니다.
+                Log.e(TAG, "Add Mapping failed- ALREADY_MAPPED_TO_OTHER_MEMBER");
+                final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
+                final String forcingMappingKey = ticket.forcingMappingKey;
+
+                Gamebase.addMappingForcibly(activity, credentialInfo, forcingMappingKey, new GamebaseDataCallback<AuthToken>() {
+                    @Override
+                    public void onCallback(AuthToken data, GamebaseException exception) {
+                        ...
+                        // 자세한 내용은 addMappingForcibly API 문서를 참고하세요.    
+                    }
                 }
+            } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP) {
+                // 您尝试映射（Mapping）的IDP帐户已存在。
+                // Gamebase映射（Mapping），每个IDP帐户只能关联一个游戏帐户。
+                // 如果要更改IDP帐户，则必须解除已关联的帐户。
+                Log.e(TAG, "Add Mapping failed- ALREADY_HAS_SAME_IDP");
+            } else {
+                // 添加映射（Mapping）失败
+                Log.e(TAG, "Add Mapping failed- "
+                        + "errorCode: " + exception.getCode()
+                        + "errorMessage: " + exception.getMessage());
             }
         }
     });
 }
 ```
 
+### Add Mapping Forcibly
+특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
+**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+
+다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
+
+**API**
+
+```java
++ (void)Gamebase.addMappingForcibly(Activity activity, String providerName, String forcingMappingKey, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
+
+```java
+private static void addMappingForciblyFacebook(final Activity activity) {
+    Gamebase.addMapping(activity, AuthProvider.FACEBOOK, null, new GamebaseDataCallback<AuthToken>() {
+        @Override
+        public void onCallback(AuthToken result, GamebaseException exception) {
+            if (Gamebase.isSuccess(exception)) {
+                // 成功添加Mapping
+                Log.d(TAG, "Add Mapping successful");
+                String userId = Gamebase.getUserID();
+                return;
+            }
+
+            // 우선 addMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
+            if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+                // ForcingMappingTicket 클래스의 from() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
+                final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
+                final String forcingMappingKey = ticket.forcingMappingKey;
+
+                // 강제 매핑을 시도합니다.
+                Gamebase.addMappingForcibly(activity, AuthProvider.FACEBOOK, forcingMappingKey, null, new GamebaseDataCallback<AuthToken>() {
+                    @Override
+                    public void onCallback(AuthToken data, GamebaseException addMappingForciblyException) {
+                        if (Gamebase.isSuccess(addMappingForciblyException)) {
+                            // 강제 매핑 추가 성공
+                            Log.d(TAG, "Add Mapping Forcibly successful");
+                            String userId = Gamebase.getUserID();
+                            return;
+                        }           
+
+                        // 강제 매핑 추가 실패
+                        // 에러 코드를 확인하고 적절한 처리를 진행합니다.
+                    }
+                }
+            } else {
+                ...
+            }
+        }
+    });
+}
+```
+
+
+### Add Mapping Forcibly with Credential
+특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
+**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+
+게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMappingForcibly를 호출 할 수 있는 인터페이스입니다.
+
+* Credential 파라미터 설정방법
+
+| keyname                                  | a use                                    | 값 종류                                     |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.PROVIDER_NAME | IdP 유형 설정                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
+| AuthProviderCredentialConstants.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰)설정.<br/>Google 인증 시에는 사용 안 함. |                                          |
+| AuthProviderCredentialConstants.AUTHORIZATION_CODE | Google 로그인 이후 획득할 수 있는 OTOC(one time authorization code) 입력 |                                          |
+
+> [참고]
+>
+> 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
+>
+
+<br/>
+
+> <font color="red">[주의]</font><br/>
+>
+> 외부 SDK에서 지원 요구하는 개발사항은 외부 SDK의 API를 사용하여 구현해야 하며, Gamebase에서는 지원하지 않습니다.
+>
+
+다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
+
+**API**
+
+```java
++ (void)Gamebase.addMappingForcibly(Activity activity, Map<String, Object> credentialInfo, String forcingMappingKey, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
+
+```java
+private static void addMappingForciblyFacebook(final Activity activity) {
+    final Map<String, Object> credentialInfo = new HashMap<>();
+    credentialInfo.put(AuthProviderCredentialConstants.PROVIDER_NAME, AuthProvider.FACEBOOK);
+    credentialInfo.put(AuthProviderCredentialConstants.ACCESS_TOKEN, facebookAccessToken);
+
+    Gamebase.addMapping(activity, credentialInfo, new GamebaseDataCallback<AuthToken>() {
+        @Override
+        public void onCallback(AuthToken result, GamebaseException exception) {
+            if (Gamebase.isSuccess(exception)) {
+                // 매핑 추가 성공
+                Log.d(TAG, "Add Mapping successful");
+                String userId = Gamebase.getUserID();
+                return;
+            }
+
+            // 우선 addMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
+            if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+                // ForcingMappingTicket 클래스의 from() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
+                final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
+                final String forcingMappingKey = ticket.forcingMappingKey;
+
+                // 강제 매핑을 시도합니다.
+                Gamebase.addMappingForcibly(activity, credentialInfo, forcingMappingKey, null, new GamebaseDataCallback<AuthToken>() {
+                    @Override
+                    public void onCallback(AuthToken data, GamebaseException addMappingForciblyException) {
+                        if (Gamebase.isSuccess(addMappingForciblyException)) {
+                            // 강제 매핑 추가 성공
+                            Log.d(TAG, "Add Mapping Forcibly successful");
+                            String userId = Gamebase.getUserID();
+                            return;
+                        }           
+
+                        // 강제 매핑 추가 실패
+                        // 에러 코드를 확인하고 적절한 처리를 진행합니다.
+                    }
+                }
+            } else {
+                ...
+            }
+        }
+    });
+}
+```
+
+
+
 ### Remove Mapping
 
-解除特定IDP的关联。如果尝试解除当前登录中的帐户，则会失败。<br/>
+특정 IdP에 대한 연동을 해제합니다. 만약, 현재 로그인 중인 계정을 해제하려고 하면 실패를 반환합니다.<br/>
 解除关联之后，Gamebase将该IdP退出登录。
 
 **API**
 
 ```java
-+ (void)Gamebase.removeMapping(Activity activity, AuthProvider authProvider, null, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.removeMapping(Activity activity, String providerName, null, GamebaseDataCallback<AuthToken> callback);
 ```
 
 **示例**
@@ -710,16 +875,16 @@ BanInfo banInfo = Gamebase.getBanInfo();
 ```
 
 
-### Get Authentication Information for External IDP
+### Get Authentication Information for External IdP
 
 从外部认证SDK，可获取访问令牌、用户ID、Profile等信息。
 
 **API**
 
 ```java
-+ (String)Gamebase.getAuthProviderUserID(AuthProvider authProvider);
-+ (String)Gamebase.getAuthProviderAccessToken(AuthProvider authProvider);
-+ (AuthProviderProfile)Gamebase.getAuthProviderProfile(AuthProvider authProvider);
++ (String)Gamebase.getAuthProviderUserID(String providerName);
++ (String)Gamebase.getAuthProviderAccessToken(String providerName);
++ (AuthProviderProfile)Gamebase.getAuthProviderProfile(String providerName);
 ```
 
 **示例**
@@ -743,52 +908,112 @@ Map<String, Object> profileMap = profile.information;
 
 * BANNED_MEMBER(7)
 
-## TransferKey
-获取密钥以将访客帐户转移到其他设备的功能。
-此密匙称为**TransferKey**。
-获取的TransferKey可以通过从另一台设备调用**requestTransfer**API来转移帐户。
+## TransferAccount
+게스트 계정을 다른 단말기로 이전하기 위해 계정 이전을 위한 키를 발급받는 기능입니다.
 
-> `注意`
-> 只有在游客登录方式时，才能发放TransferKey。
-> 只有游客登录或未登录的状态，才能使用TransferKey转移帐户。
-> 如果您登录的游客帐户已映射（Mapping）到其他外部IdP（Google，Facebook，Payco等），则不支持转移帐户。
+이 키를 **TransferAccountInfo** 라고 부릅니다.
+발급받은 TransferAccountInfo는 다른 기기에서 **requestTransferAccount** API를 호출하여 계정 이전을 할 수 있습니다.
 
-### Issue TransferKey
-发放TransferKey以转移游客帐户。
-TransferKey的格式为**包含“小写/大写/数字”的8位数的字符串**。
-同时，发行发放时间和到期时间，格式为epoch time。
-* 参考：https://www.epochconverter.com/
+> `주의`
+> TransferAccountInfo의 발급은 게스트 로그인 상태에서만 발급이 가능합니다.
+> TransferAccountInfo를 이용한 계정 이전은 게스트 로그인 상태 또는 로그인되어 있지 않은 상태에서만 가능합니다.
+> 로그인한 게스트 계정이 이미 다른 외부 IdP (Google, Facebook, Payco 등) 계정과 매핑이 되어 있다면 계정 이전이 지원되지 않습니다.
+
+### Issue TransferAccount
+게스트 계정 이전을 위한 TransferAccountInfo를 발급합니다.
 
 **API**
 
 ```java
-+ (void)Gamebase.issueTransferKey(int expiredTime, GamebaseDataCallback<TransferKeyInfo> callback);
++ (void)Gamebase.issueTransferAccount(final GamebaseDataCallback<TransferAccountInfo> callback);
 ```
 
 **示例**
 
 ```java
-Gamebase.issueTransferKey(3600 * 24, new GamebaseDataCallback<TransferKeyInfo>() {
+Gamebase.issueTransferAccount(new GamebaseDataCallback<TransferAccountInfo>() {
     @Override
-    public void onCallback(TransferKeyInfo transferKeyData, GamebaseException exception) {
-        if (Gamebase.isSuccess(exception)) {
-            Log.d(TAG, "Issue TransferKey successful");
-            Log.i(TAG, "transferKey : " + transferKeyData.getTransferKey());
-            Log.i(TAG, "regDate : " + transferKeyData.getRegDate());
-            Log.i(TAG, "expireDate : " + transferKeyData.getExpireDate());
-            ...
-        } else {
-            Log.e(TAG, "Issue TransferKey failed");
-            ...
+    public void onCallback(final TransferAccountInfo transferAccount, final GamebaseException exception) {
+        if (!Gamebase.isSuccess(exception)) {
+            // Issuing TransferAccount failed.
+            return;
         }
+
+        // Issuing TransferAccount success.
+        final String account = transferAccount.account.id;
+        final String password = transferAccount.account.password;
     }
 });
 ```
 
+### Query TransferAccount
+게스트 계정 이전을 위해 이미 발급받은 TransferAccountInfo 정보를 게임베이스 서버에 질의합니다.
+
+**API**
+
+```java
++ (void)Gamebase.queryTransferAccount(final GamebaseDataCallback<TransferAccountInfo> callback);
+```
+
+**Example**
+
+```java
+Gamebase.queryTransferAccount(new GamebaseDataCallback<TransferAccountInfo>() {
+    @Override
+    public void onCallback(final TransferAccountInfo transferAccount, final GamebaseException exception) {
+        if (!Gamebase.isSuccess(exception)) {
+            // Querying TransferAccount failed.
+            return;
+        }
+
+        // Querying TransferAccount success.
+        final String account = transferAccount.account.id;
+        final String password = transferAccount.account.password;
+    }
+});
+```
+
+
+### Renew TransferAccount
+이미 발급받은 TransferAccountInfo 정보를 갱신합니다.
+"자동 갱신", "수동 갱신"의 방법이 있으며, "Password만 갱신", "ID와 Password 모두 갱신" 등의 설정을 통해
+TransferAccountInfo 정보를 갱신 할 수 있습니다.
+
+```java
++ (void)Gamebase.renewTransferAccount(final TransferAccountRenewConfiguration config, final GamebaseDataCallback<TransferAccountInfo> callback);
+```
+
+**Example**
+
+```java
+// If you want renew the account automatically, use this config.
+final RenewalTargetType renewalTargetType = RenewalTargetType.ID_PASSWORD; // RenewalTargetType.PASSWORD
+final TransferAccountRenewConfiguration autoConfig = TransferAccountRenewConfiguration.newAutoRenewConfiguration(renewalTargetType);
+
+// If you want renew the account manually, use this config.
+final TransferAccountRenewConfiguration manualConfig = TransferAccountRenewConfiguration.newManualRenewConfiguration("id", "password");
+Gamebase.renewTransferAccount(autoConfig, new GamebaseDataCallback<TransferAccountInfo>() {
+    @Override
+    public void onCallback(final TransferAccountInfo transferAccountInfo, final GamebaseException exception) {
+        if (!Gamebase.isSuccess(exception)) {
+            // Renewing TransferAccount failed.
+            return;
+        }
+
+        // Renewing TransferAccount success.
+        final String renewedAccount = transferAccount.account.id;
+        final String renewedPassword = transferAccount.account.password;
+    }
+});
+```
+
+
+
+
 ### Transfer Guest Account to Another Device
-通过**issueTransfer** API发放的TransferKey转移帐户的功能。
-在成功转移帐户后，在TransferKey的原设备上显示转移完成的消息，并且用在游客登录时将创建新帐户。
-在成功转移帐户的新设备上，您可以继续使用原游客帐户。
+**issueTransfer** API로 발급받은 TransferAccount를 통해 계정을 이전하는 기능입니다.
+계정 이전 성공 시 TransferAccount를 발급받은 단말기에서 이전 완료 메시지가 표시될 수 있고, Guest 로그인 시 새로운 계정이 생성됩니다.
+계정 이전이 성공한 단말기에서는 TransferAccount를 발급받았던 단말기의 게스트 계정을 계속해서 사용할 수 있습니다.
 
 > `注意`
 > 如果在游客登录状态下转移成功，原设备中登录过的游客信息将丢失。
@@ -796,22 +1021,21 @@ Gamebase.issueTransferKey(3600 * 24, new GamebaseDataCallback<TransferKeyInfo>()
 **API**
 
 ```java
-+ (void)Gamebase.requestTransfer(String transferKey, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.transferAccountWithIdPLogin(String accountId, String accountPassword, GamebaseDataCallback<AuthToken> callback);
 ```
 
 **示例**
 
 ```java
-Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
+Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDataCallback<AuthToken>() {
     @Override
-    public void onCallback(AuthToken data, GamebaseException exception) {
-        if (Gamebase.isSuccess(exception)) {
-            Log.d(TAG, "Transfer account successful");
-            ...
-        } else {
-            Log.e(TAG, "Transfer account failed");
-            ...
+    public void onCallback(final AuthToken authToken, final GamebaseException exception) {
+        if (!Gamebase.isSuccess(exception)) {
+            // Transfering Account failed.
+            return;
         }
+        // Transfering Account success.
+        // TODO: implements post login process
     }
 });
 ```
@@ -829,9 +1053,14 @@ Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
 |                | AUTH_ALREADY_IN_PROGRESS_ERROR           | 3010       | 之前的认证过程未完成。 |
 | TransferKey    | SAME\_REQUESTOR                          | 8          | 在同一台设备上使用了相同的TransferKey。 |
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 非游客帐户尝试了转移或帐户已关联了游客以外的IDP。|
-|                | AUTH\_TRANSFERKEY\_EXPIRED               | 3031       | TransferKey已过期。 |
-|                | AUTH\_TRANSFERKEY\_CONSUMED              | 3032       | TransferKey已使用。 |
-|                | AUTH\_TRANSFERKEY\_NOT\_EXIST            | 3033       | 无效的TransferKey。 |
+|                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccount의 유효기간이 만료됐습니다. |
+|                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | 잘못된 TransferAccount를 여러번 입력하여 계정 이전 기능이 잠겼습니다. |
+|                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | TransferAccount의 Id가 유효하지 않습니다. |
+|                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | TransferAccount의 Password가 유효하지 않습니다. |
+|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccount 설정이 되어있지 않습니다. <br/> TOAST Gamebase Console에서 먼저 설정해주세요. |
+|                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccount가 존재하지 않습니다. TransferAccount를 먼저 발급받아주세요. |
+|                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccount가 이미 존재합니다. |
+|                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount가 이미 사용되었습니다. |
 | Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED               | 3101       | 令牌登录失败。                          |
 |                | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | 无效的令牌信息 。                       |
 |                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 无近期登录的IdP信息。                   |
@@ -842,6 +1071,11 @@ Gamebase.requestTransfer(transferKey, new GamebaseDataCallback<AuthToken>() {
 |                | AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       |  已映射（Mapping）到相同的IdP。                   |
 |                | AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO   | 3304       | 无效的IdP信息。（Console中没有此IdP信息）。 |
 |                | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP    | 3305       | 游客IDP无法进行AddMapping。 |
+| Add Mapping Forcibly | AUTH_ADD_MAPPING_FORCIBLY_NOT_EXIST_KEY         | 3311       | 강제매핑키(ForcingMappingKey)가 존재하지 않습니다. <br/>ForcingMappingTicket을 다시 한번 확인해주세요. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_ALREADY_USED_KEY      | 3312       | 강제매핑키(ForcingMappingKey)가 이미 사용되었습니다. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_EXPIRED_KEY           | 3313       | 강제매핑키(ForcingMappingKey)의 유효기간이 만료되었습니다. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_IDP         | 3314       | 강제매핑키(ForcingMappingKey)가 다른 IdP에 사용되었습니다. <br/>발급받은 ForcingMappingKey는 같은 IdP에 강제 매핑을 시도 하는데 사용됩니다. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_AUTHKEY     | 3315       | 강제매핑키(ForcingMappingKey)가 다른 계정에 사용되었습니다. <br/>발급받은 ForcingMappingKey는 같은 IdP 및 계정에 강제 매핑을 시도 하는데 사용됩니다. |
 | Remove Mapping | AUTH\_REMOVE\_MAPPING\_FAILED            | 3401       | 解除映射（Mapping）失败。                           |
 |                | AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | 无法解除最后映射（Mapping）的IdP。                |
 |                | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP   | 3403       | 当前登录的IdP。                      |

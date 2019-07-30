@@ -4,11 +4,10 @@
 由监控、组同时在线用户数、安装URL统计、销售情况菜单组成。
 
 ## Monitoring
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring1_1.2.png)
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Monitoring2_1.2.png)
+![operation-indicator_01_201812](https://static.toastoven.net/prod_gamebase/operation-indicator_01_201812.png)
 您可以查看当前使用APP的用户统计，预定的推送状态和维护内容。
 每隔5分钟，页面会自动“刷新”，您可以实时查看变化的指标。
-
+1
 * 基准指标
 	* CCU(concurrent connected users)：同时在线用户数
 	* MCU(maximum concurrent users)：最大同时在线用户数(可按实时，日期查询)
@@ -24,7 +23,7 @@
 
 
 ## User Statistics
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_UserStatistics1_1.0.png)
+![operation-indicator_02_201812](https://static.toastoven.net/prod_gamebase/operation-indicator_02_201812.png)
 可以用图表查看DAU、MCU、NRU、CCU AVG状态。
 可以一目了然地查看当前用户的趋势变化。
 可以通过右上角选择栏来指定日期，查看数据。
@@ -37,17 +36,16 @@
 	* CCU AVG(concurrent connected users average)：同时在线用户数平均值
 
 ## Concurrent Group User
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_ConcurrentUser1_1.1.png)
+![operation-indicator_03_201812](https://static.toastoven.net/prod_gamebase/operation-indicator_03_201812.png)
 可以查看所属项目在线用户数。按系统分类，可一目了然地查看有权限的各项目的同时在线用户数。
 
 ## Installed URL Statistics
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_InstallUrl1_1.0.png)
+![operation-indicator_04_201812](https://static.toastoven.net/prod_gamebase/operation-indicator_04_201812.png)
 可以查看通过安装URL调用的统计数据。
 
 * 每日安装URL调用的图表
 * 各浏览器占有率: Internet Explorer, Chrome 等
 * 各平台占有率: Android, iOS 等
-
 
 ## Statistics
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Statistics1_1.2.png)

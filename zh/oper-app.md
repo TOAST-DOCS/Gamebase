@@ -12,13 +12,11 @@
 由于每个TOAST项目可以管理一个Gamebase应用程序，因此您无法添加或删除其他应用程序。如果禁用Gamebase服务，将删除应用程序中登记的信息。
 有关各个项目的详细说明，请参考以下 **属性** 项目。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_App1_1.2.png)
-
 ### Properties
 
 以下描述在Gamebase Console管理的应用信息。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_App2_1.2.png)
+![gamebase_app_01_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_01_201812.png)
 
 #### (1) 安装URL
 简捷URL可用于APP安装和宣传。
@@ -66,7 +64,7 @@
 
 ### Test Device
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_App3_1.0.png)
+![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_02_201812.png)
 如果注册为测试设备，即使正在维护使用Gamebase的APP，您也可以正常登录该游戏。
 要注册为测试设备，必须输入**Device Key**。直接输入或查询“游戏用户ID” 后注册。
 可以删除不再使用的测试设备。
@@ -80,21 +78,20 @@
 
 #### (2) 注册
 
+![gamebase_app_03_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_03_201812.png)
+
+
 在查询页面单击**注册**按钮，将出现注册测试设备的页面。直接输入**Device Key**或者搜索**游戏用户ID**后注册测试设备。
-**(1) 通过游戏用户ID注册**
-
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_App3_2.1.png)
-
+**(A) 通过游戏用户ID注册**
 选择类型作为用户的ID，输入游戏用户ID，然后单击**搜索**按钮，用户的登录日志显示在页面底部。从显示的列表中选择要注册为测试设备的设备密钥，然后输入**备注信息**后单击**注册**按钮将相应的设备密钥注册为测试设备。
+
+
+**(B) 通过设备密匙注册**
+如果知道要注册的设备密钥，可以通过选择类型**设备密钥**直接注册测试设备。
+输入注册设备和设备密钥的**备注信息**后单击注册按钮则注册为测试设备。
 
 > [参考] 
 > 请在备注信息中输入用户易于查看的自定义名称。 例) iPhone 6 测试, Toast的iPad
-
-**(2) 通过设备密匙注册**
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_App3_3.0.png)
-
-如果知道要注册的设备密钥，可以通过选择类型**设备密钥**直接注册测试设备。
-输入注册设备和设备密钥的**备注信息**后单击注册按钮则注册为测试设备。
 
 #### (3) 删除
 
@@ -115,7 +112,7 @@
 - 备注信息：Facebook Permission (json format) 
 
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_facebook_1.0.png)
+![gamebase_app_04_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_04_201812.png)
 
 **[例] facebook_permission format**
 *在Facebook上，当您尝试使用OAuth进行身份验证时，您需要在Facebook上设置要求提供的信息类型。
@@ -124,7 +121,7 @@
 { "facebook_permission"：[ "public_profile", "email"] }
 ```
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_facebook_permission_1.0.png)
+![gamebase_app_05_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_05_201812.png)
 
 **Reference URL**<br />
 
@@ -139,6 +136,7 @@
 
 ##### Google Cloud Console
 
+![gamebase_app_06_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_06_201812.png)
 1. 为了进行Google认证，必须从Google Cloud Console获取 **Web Application Client ID**，并将其输入到Gamebase Console。
 	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-001_1.11.0.png)
 	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-002_1.11.0.png)
@@ -168,16 +166,7 @@
 { "url_scheme_ios_only"："Your URL Schemes" }
 ```
 
-![Google URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
-
-* 1.12.2 이상
-	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.google**를 추가해야 합니다.
-
-* GOOGLE 추가 인증 정보 입력 예제
-
-![Google URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
-
+![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
 #### 3. Apple游戏中心
 在Gamebase Console上，输入Apple 开发者网站上注册的BundleID。
@@ -186,7 +175,7 @@
 
 - ClientID：{Bundle ID}<br />
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_apple_1.0.png)
+![gamebase_app_08_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_08_201812.png)
 
 **Reference URL**<br />
 
@@ -234,7 +223,11 @@
 
 * PAYCO添加认证信息示例
 
-![Payco URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+```json
+{ "service_code": "HANGAME", "service_name": "Your Service Name" }
+```
+
+![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
 #### 5.NAVER
  在Gamebase Console上，输入在Naver开发者网站上申请发放的{client_id} 及 {client_secret}。
@@ -278,7 +271,7 @@
 { "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
 ```
 
-![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
 * 1.12.2 或更高版本
 	* ** TOAST Console > Gamebase > App > 认证信息 > 备注信息 & Callback URL**的 **备注信息**中，您必须以JSON string的形式设置信息。
@@ -288,9 +281,6 @@
 	* 需要设置URL Scheme
 		* **需要在XCode > Target > Info > URL Types**添加 `tcgb.{Bundle ID}.naver`
 
-* NAVER添加认证信息例示
-
-![Naver URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
 #### 6. Twitter
  在Gamebase Console上，输入在Twitter Application Management网站申请发放的 {Consumer Key}及 {Consumer Secret}。
@@ -354,9 +344,7 @@
 	</array>
 	```
 - 有关项目设置，请参考以下链接以使用LINE登录。 （需要验证）
-* [LINK \[LINE Developer Guide\]](https://developers.line.me/en/docs/line-login/ios/try-line-login/)
-
-
+* [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
 
 ## Client
 
@@ -373,7 +361,7 @@
 
 下面描述Gamebase控制台管理的客户端属性。
 在**客户端**选项卡中，单击** AOS注册**，** iOS注册**按钮等，将弹出注册客户端页面。如果要修改或删除已注册客户端的信息，请单击图标列表中的图标，或从客户端的整个列表中选择所需的客户端即可。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client6_1.0.png)
+![gamebase_app_13_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_13_201901.png)
 #### (1) 商店
 (<font color="red">必须</font>)选择要发布客户端的商店。每个系统都有不同的商店。
 #### (2) 客户端版本
@@ -385,7 +373,7 @@
 
 - <font color="white" style="background-color:#F8BB28">测试</font>：内部测试。
 - <font color="white" style="background-color:#FB8F37">审核中</font>：商店正在审核中时，可以设置其他稳定指标。
-  ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client4_1.1.png)
+	![gamebase_app_14_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_14_201812.png)
 
 > [参考]
 >什么是“稳定指标”？<br/>
@@ -393,19 +381,16 @@
 >如果服务状态为“审核中”时，启用稳定性指标，可以更容易地确认审核期间Gamebase内发生的问题。
 >您可以在Gamebase控制台中设置是否实时使用稳定指标及日志保存级别。
 
+![gamebase_app_15_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_15_201812.png)
+
 - <font color="white" style="background-color:#88C637">服务中</font>：正常服务。
 - <font color="white" style="background-color:#2AB1A6">推荐更新(服务中)</font>：正常服务。<br/>显示弹出窗口以建议您使用更新的版本。虽然建议下载新版本，但用户仍然可以使用当前版本。<br />下面是“推荐更新（服务中心）”状态时，Gamebase SDK中默认弹出的窗口。
-
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_updateRecommended_1.0.png)
 
 - <font color="white" style="background-color:#A1A1A1">强制更新</font>：服务不可用。<br/>当前版本已经不能继续使用，提示必须安装最新版本。<br />下面是“强制更新”状态时，Gamebase SDK中默认弹出的窗口。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_updateRequired_1.1.png)
 >  <font color="red">[注意] </font>
 >  如果**同时设置强制更新和维护**，则服务状态变为“强制更新”。
 >  如果不希望在维护过程中向用户弹出“强制更新”的窗口，则应在维护结束后将服务状态改为“强制更新”。
->  <font color="orange">[참고] </font>
->  업데이트 버튼을 누르면 설치 URL 메뉴에서 설정한 각각의 스토어 주소로 연결됩니다.
->  예를 들면 클라이언트가 App store로 설정되어 있고 설치 URL 메뉴에서 App store 관련 설정이 존재한다면 설정한 주소로 이동되며 만약 설치 URL 메뉴에 설정이 되어 있지 않을 경우 공통(Common) URL로 연결됩니다.
 
 - <font color="white" style="background-color:#CCCCCC">已下线</font>：服务不可用。<br/>如果版本已下线不再对外服务时，请选择此项。<br />下面是“已下线”状态时，Gamebase SDK中默认弹出的窗口。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_ended_1.0.png)
@@ -414,20 +399,26 @@
 >设置各服务状态显示的消息。
 >您可以设置多语言消息，在状态为**推荐更新(服务中)**, **强制更新**, **已下线**时提示用户。
 >选择服务状态时，每种状态的默认消息有五种语言（韩语，英语，日语，简体中文和繁体中文），您可以根据需要添加语言或更改默认消息的文本。
-> ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client5_1.1.png)
+> ![gamebase_app_18_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_18_201812.png)
 
 #### (4) 服务器地址
 输入客户端要使用的服务器地址（IP，URL）。
 在** App **选项卡中输入的服务器地址适用于所有客户端，因此仅当您要为每个客户端使用不同的服务器地址时才输入服务器地址。
 
+#### (5) Debug log
+Gamebae SDK의 Debug Log 출력 여부를 Console을 통하여 실시간으로 변경할 수 있습니다.
+설정되어 있지 않으면 기본적으로 Gamebase SDK 내부에 설정된 값을 우선으로 동작하고 Gamebase Console에서 Debug Log 출력 여부를 설정하실 수 있습니다.
+Gamebase SDK에 Debug Log가 'OFF"상태이더라도 Console에서 'ON'으로 설정하시면 단말기에 Gamebase Debug Log가 출력됩니다.
+
 ## Installed URL
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_InstallUrl1_1.2.png)
+![gamebase_app_19_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_19_201812.png)
 
-* 게임을 설치하기 위한 스토어 URL 정보를 관리합니다.
-* 클라이언트 상태 중 <font color="white" style="background-color:#2AB1A6">업데이트 권장(서비스 중)</font> 또는 <font color="white" style="background-color:#A1A1A1">업데이트 필수</font> 일 때 각각의 스토어 별로 제공할 주소들에 대한 값을 설정합니다.
-* 사용자가 PC나 모바일에서 단축 URL을 클릭하면, 사용자 단말기 정보(디바이스, 운영체제, 스토어 등)를 이용하여 입력된 사이트로 리디렉션합니다.
-* 스토어 정보가 없거나 스토어 이동에 실패하면 '공통(COMMON)'에 설정된 URL로 이동합니다.
+
+게임을 설치하기 위한 스토어 URL 정보를 관리합니다.
+클라이언트 상태 중 <font color="white" style="background-color:#2AB1A6">업데이트 권장(서비스 중)</font> 또는 <font color="white" style="background-color:#A1A1A1">업데이트 필수</font> 일 때 각각의 스토어 별로 제공할 주소들에 대한 값을 설정합니다.
+사용자가 PC나 모바일에서 단축 URL을 클릭하면, 사용자 단말기 정보(디바이스, 운영체제, 스토어 등)를 이용하여 입력된 사이트로 리디렉션합니다.
+스토어 정보가 없거나 스토어 이동에 실패하면 'COMMON'에 설정된 URL로 이동합니다.
 
 
 _[示例1] 单击在Android手机上收到的安装URL
@@ -441,13 +432,14 @@ _[例示3] 如果在PC上输入安装URL
 
 要更改输入的安装URL信息，请单击**修改**按钮。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_InstallUrl2_1.2.png)
+![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_20_201812.png)
 
 -  可以为PC和移动设备单独设置每个项。如果您不需要区分PC和移动设备，则可以输入相同的值。
 - 如果在列表中没有所需的商店，可以通过联系[客服中心](https://toast.com/support/inquiry) 将其添加。
 
 #### (1) Common
 设置没有商店信息或商店重定向失败时要连接的地址。
+
 #### (2) Android
 设置Android用户在运行安装URL时要连接的地址。
 
@@ -455,3 +447,48 @@ _[例示3] 如果在PC上输入安装URL
 设置iOS用户在运行安装URL时要连接的地址。
 #### (4) Standalone
 在Standalone提供的应用中设置要连接的地址。 Standalone仅适用于PC，因此只需设置PC即可。
+
+## Transfer account
+Guest로 로그인한 유저가 다른 아이디 제공자를 연동하지 않고 다른 단말기에서 이어서 게임을 할 수 있는 기능을 제공합니다.
+사용자는 현재 게임중인 단말에서 기기 이전을 위한 Key를 발급 받아 이전하려는 단말기에 Key를 입력하는 것만으로 쉽게 게임 기기를 변경할 수 있습니다.
+기기이전 기능은 기본적으로 비활성화 되어 있으며 사용을 원하는 경우에는 기기이전 메뉴에서 **사용하기** 클릭하여 기능을 활성화 해야 합니다.
+
+![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_1.0.png)
+1) 기기 이전 기능을 사용하기 위해서는 **사용하기** 클릭하여 기능을 활성화 해야 합니다. 사용하기 버튼을 누르면 기기 이전 기능 사용을 위해 필요한 값을 설정하는 화면으로 전환됩니다.
+
+![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_2.0.png)
+기기 이전 기능에 필요한 값들을 설정 할 수 있는 화면입니다.
+각 항목에 대한 설명은 아래와 같습니다.
+
+#### 발급
+기기 이전 발급키의 형식을 설정합니다.
+사용자의 기기 이전키는 ID만 사용하거나 ID, 비밀번호 두 개의 키를 이용할 수 있습니다. ID, 비밀번호의 형식은 게임에서 원하는 소문자, 대문자, 숫자 조합으로 구성할 수 있습니다.
+1) **ID 자동 발급 형식** : 기기 이전 ID 발급 형식을 설정합니다. 설정 항목은 아래와 같습니다.
+  - **숫자(최소길이12)** : 숫자로만 이루어진 아이디를 발급합니다. 발급되는 ID의 최소길이는 12자입니다.
+  - **숫자+소문자(최소길이10)** : 숫자와 소문자의 조합으로만 이루어진 ID를 발급합니다. 발급되는 ID의 최소길이는 10자입니다.
+  - **숫자+대문자(최소길이10)** : 숫자와 대문자의 조합으로만 이루어진 ID를 발급합니다. 발급되는 ID의 최소길이는 10자입니다.
+  - **숫자+소문자+대문자(최소길이:9)** : 숫자, 소문자, 대문자의 조합으로 이루어진 ID를 발급합니다. 발급되는 ID의 최소길이는 9자입니다.
+  - **소문자+대문자(최소길이9)** : 소문자와 대문자의 조합으로만 이루어진 ID를 발급합니다. 발급되는 ID의 최소길이는 9자입니다.
+
+2) **비밀번호 자동 발급 형식** : 기기 이전 ID를 이용하여 로그인할 때 사용할 비밀번호 발급 형식을 설정합니다. 설정 항목은 아래와 같습니다.
+  - **비밀번호 사용 안함** : 비밀번호를 사용하지 않을 때 선택합니다. 해당항목을 선택하면 아래 검증항목에서 아이디의 유효시간만 설정할 수 있습니다.
+  - **숫자(최소길이12)** : 숫자로만 이루어진 비밀전호를 발급합니다. 발급되는 비밀번호의 최소길이는 12자입니다.
+  - **숫자+소문자(최소길이10)** : 숫자와 소문자의 조합으로만 이루어진 비밀번호를 발급합니다. 발급되는 비밀번호의 최소길이는 10자입니다.
+  - **숫자+대문자(최소길이10)** : 숫자와 대문자의 조합으로만 이루어진 ID를 발급합니다. 발급되는 비밀번호의 최소길이는 10자입니다.
+  - **숫자+소문자+대문자(최소길이:9)** : 숫자, 소문자, 대문자의 조합으로 이루어진 ID를 발급합니다. 발급되는 비밀번호의 최소길이는 9자입니다.
+  - **소문자+대문자(최소길이9)** : 소문자와 대문자의 조합으로만 이루어진 ID를 발급합니다. 발급되는 비밀번호의 최소길이는 9자입니다.
+
+#### 검증
+발급된 기기이전키의 검증 조건을 설정합니다.
+기기이전키의 검증시 이전횟수나 유효기간, 실패시 차단 등의 설정을 하실 수 있습니다.
+3) **기기 이전 횟수** : 발급된 아이디의 기기 이전이 가능한 횟수를 설정합니다. 무제한/일회성 중 한가지를 선택해야 합니다.
+4) **유효 기간** : 발급된 계정의 유효 시간을 설정합니다. 발급된 기기 이전 ID는 이 설정값의 영향을 받습니다. 무제한/기간 설정 중 한가지를 선택해야 합니다.
+5) **실패 시 재검증 차단 여부** : 유저가 아이디를 이용하여 로그인을 시도했을 때 실패했을 경우 재시도에 대한 설정을 추가로 설정하실 수 있습니다. 해당 항목을 체크하면 차단 관련 설정을 추가로 진행해야 합니다.
+6) **차단 기준 횟수** : 실패 시 재검증 차단 여부가 선택되었을 때 설정할 수 있는 항목입니다. 유저가 최대로 실패할 수 있는 횟수를 설정할 수 있습니다. 최소 1회 이상은 설정되어야 합니다.
+7) **차단 기간** : 유저가 검증에 실패하여 계정이 차단되었을 경우 다시 재시도를 할 수 있는 시간에 대한 설정을 할 수 있습니다. 영구 차단/기간 지정 중 한가지를 선택해야 합니다.
+
+
+#### 초기 설정 완료 이후
+![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_3.0.png)
+최초 설정이 완료되면 유저는 기기 이전 기능의 비활성화만 가능하며 설정 변경이 필요할 경우 고객센터에 문의하시기 바랍니다.
+**사용 안함** 버튼을 클릭하여 기능을 비활성화 할 수 있고 기존에 발급된 기기이전키는 모두 삭제되기 때문에 활성화 이후에는 비활성화 여부를 신중하게 선택해야 합니다.

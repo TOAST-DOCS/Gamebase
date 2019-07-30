@@ -8,7 +8,7 @@
 ## Maintenance
 
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance1_1.1.png)
+![gamebase_op_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_01_201812.png)
 
 如果您需要维护游戏，可以轻松的在Console中设置。
 可以一目了然地查询已添加App的维护历史记录，和维护设置内容以及进度状态。
@@ -22,15 +22,14 @@
 
 Gamebase提供维护弹出窗口和详细信息的页面，以便在维护期间向游戏内的用户公告。
 Gamebase的默认维护弹出窗口如下：
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance_popup_1.0.png)
+![gamebase_op_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_02_201812.png)
 Gamebase提供的默认维护网页(显示维护原因和维护时间）如下：
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance_webview_1.1.png)
-
+![gamebase_op_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_03_201812.png)
 
 ### Register Maintenance
 
 点击**维护** 选项卡上的**添加** 按钮，进入设置维护界面。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_1.4.png)
+![gamebase_op_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_04_201812.png)
 
 >  <font color="red">[注意] </font>**同时设定强制更新与维护**时，服务状态为 “强制更新”。
 > 如果您不希望用户在维护过程中看到“强制更新”的弹出窗口，则应在维修完成后将服务状态更改为“强制更新”。
@@ -42,7 +41,7 @@ Gamebase提供的默认维护网页(显示维护原因和维护时间）如下�
 - 部分客户端：仅当特定客户端版本需要维护时选择。点击“选择版本”，可以查看在客户端菜单中，登记的客户端版本列表。
   **[选择部分客户端的页面如下]**
   可以按客户端状态和商店类别进行全部选择。选择要维护的客户端版本后，点击“确定”按钮。
-  ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance4_1.3.png)
+  ![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
 
 #### (2) 原因
 输入维护原因。
@@ -57,14 +56,14 @@ Gamebase提供的默认维护网页(显示维护原因和维护时间）如下�
 可以在**Gamebase提供的页面（WebView）**，**自定义HTML（WebView）**和**外部页面** 中选择。
 每个页面的其他项如下所示。输入的内容可以通过点击**预览**按钮确认。
 
-##### 1)Gamebase提供的页面（WebView）
+##### 4-1)Gamebase提供的页面（WebView）
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_2.0.png)
 这是默认格式维护页面，显示管理员在Gamebase提供的webview页面上输入的信息。
 在**公告**中，输入在维护过程中向用户推送的消息。
 信息也可以用英语，日语和中文等外语输入，选择的语言将设置为“默认语言”。
 如果在已登记信息中没有匹配的语言，将显示选择的“默认语言”。点击右侧的 ** + ** 按钮可以添加语言。如果没有所需语言，通过 [客服中心](https://alpha.toast.com/support/inquiry)与我们联系，即可添加新语言。点击**预览**，以“默认语言”查看预览页面。
 
-##### 2) 自定义HTML(WebView)
+##### 4-2) 自定义HTML(WebView)
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_3.0.png)
 管理员以HTML格式手动输入维护页面，并将其提供给用户。
 它还支持基于输入的HTML标签的预览页面。
@@ -85,7 +84,6 @@ Gamebase提供的默认维护网页(显示维护原因和维护时间）如下�
 - endDate：设置维护时输入的结束时间
 
 ### Modify Maintenance
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance3_1.3.png)
 
 可以查看、修改和删除已设置维护的详细信息。
 修改维护的输入项与设置维护页面的基本相同。当维护信息不正确时，可以通过点击删除按钮来删除维护。
@@ -93,7 +91,7 @@ Gamebase提供的默认维护网页(显示维护原因和维护时间）如下�
 
 ## Notice
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Notice1_1.2.png)
+![gamebase_op_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_06_201812.png)
 
 提供App启动时以弹出窗口方式的公告。因为是在登录前弹出的公告，所以在发生外部身份验证失败或游戏服务器故障时，可设置使用。
 可以一目了然地查看已设置的公告列表和进行情况，并可以按公告信息进行搜索。
@@ -108,7 +106,7 @@ Gamebase提供的默认维护网页(显示维护原因和维护时间）如下�
 
 点击主页上的“添加”按钮转到设置公告页面。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Notice2_1.0.png)
+![gamebase_op_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_07_201812.png)
 
 #### (1) 对象
 
@@ -118,7 +116,7 @@ Gamebase提供的默认维护网页(显示维护原因和维护时间）如下�
 - 部分客户端：仅当特定客户端版本需要维护时选择。点击“选择版本”，可以查看在客户端菜单中，登记的的客户端版本列表。
   **选择部分客户端的如下**
   可以按客户端状态和商店类别进行全部选择。选择了要维护的客户端版本后，点击“确定”按钮。
-  ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance4_1.3.png)
+  ![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
 
 
 #### (2) 选择国家
@@ -158,13 +156,10 @@ Gamebase提供的默认维护网页(显示维护原因和维护时间）如下�
 当用户点击“详细信息”按钮时，在WebView中打开在 Console中输入的链接。
 
 #### 紧急公告弹出窗口示例
-(1) 关闭按钮
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Notice_popup_close_1.1.png)
-(2) 关闭+详细信息
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Notice_popup_close_detail_1.0.png)
+关闭按钮(左), 关闭+详细信息(右)
+![gamebase_op_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_08_201812.png)
 
 ### Modify Notice
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Notice3_1.1.png)
 
 可以查看，修改和删除已设置公告的详细信息。
 修改公告的输入项与设置公告页面的基本相同。当公告信息不正确时，可以通过点击删除按钮来删除公告。

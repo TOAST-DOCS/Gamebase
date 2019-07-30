@@ -15,7 +15,7 @@ AppGuard的联动方法 ，请参考[AppGuard](./oper-ban/#appguard)。
 
 根据搜索条件查询禁用/解除禁用的游戏用户列表。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban1_1.1.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_01_201812.png)
 
 **搜索条件**
 
@@ -57,18 +57,18 @@ AppGuard的联动方法 ，请参考[AppGuard](./oper-ban/#appguard)。
 
 点击禁用页面上的**添加**按钮，则可以添加禁用。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban2_1.2.png)
+![gamebase_ban_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_02_201812.png)
 #### (1) 用户 ID
 输入Gamebase用户ID以添加禁用。 您可以一次添加多个用户，有两种添加方式。
 
 - **输入用户**: 在输入窗口中直接输入要禁用的用户ID，然后按**Enter** 键或点击**添加**按钮。
 - **批量添加**: 只能上传CSV文件。可以从Console 画面下载示例文件。批量添加一次最多可支持10,000人。
-  ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban4_1.2.png)
+  ![gamebase_ban_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_03_201812.png)
 
 > [参考]</br>
 > 如果批量添加失败，将出现提示。您可以通过点击提示页面中的**Download**按钮下载添加失败的用户列表文件。
 
-> ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban5_1.0.png)
+> ![gamebase_ban_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_04_201812.png)
 
 #### (2) 期限
 设置游戏用户的禁用期限。 添加禁用后此游戏用户无法登录。
@@ -97,7 +97,7 @@ AppGuard的联动方法 ，请参考[AppGuard](./oper-ban/#appguard)。
 
 您可以通过点击禁用页面上的 **解除** 按钮解除禁用。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban3_1.2.png)
+![gamebase_ban_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_05_201812.png)
 
 #### 解除原因
 输入解除用户禁用原因。
@@ -106,15 +106,15 @@ AppGuard的联动方法 ，请参考[AppGuard](./oper-ban/#appguard)。
 #### 用户 ID
 输入要解除禁用的Gamebase用户ID。 您可以一次添加多个用户，有两种添加方式。
 
+<<<<<<< HEAD
 - **用户输入**：在输入窗口中直接输入要添加禁用的用户ID，然后按**Enter** 按钮或点击**添加**按钮。由于检查用户ID的有效性，因此无法输入无效的用户ID。
 - **批量注册**：只能上传CSV文件。可以从Console 画面下载示例文件。批量添加一次最多可支持10,000人。
 、
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban6_1.0.png)
-
+![gamebase_ban_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_06_201812.png)
 
 > [参考]
 > 如果批量添加失败，将出现提示。您可以通过点击提示页面中的**Download**按钮下载添加失败的用户列表文件。
-> ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Ban7_1.0.png)
+> ![gamebase_ban_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_04_201812.png)
 
 ## Template
 提供模板轻松以多种语言输入消息显示给用户。 选择预先创建的模板。
@@ -126,12 +126,12 @@ AppGuard的联动方法 ，请参考[AppGuard](./oper-ban/#appguard)。
 您可以创建新模板，修改已创建的模板，不能删除已创建的模板。
 
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Template1_1.1.png)
+![gamebase_ban_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_07_201812.png)
 
 - 在模板列表页面中，公布消息显示创建模板时作为“默认语言”输入的消息。
 
 ### Register Template
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_Template2_1.1.png)
+![gamebase_ban_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_08_201812.png)
 
 #### (1) 名称
 输入禁用在列表中显示的模板的名称。
@@ -146,7 +146,7 @@ AppGuard的联动方法 ，请参考[AppGuard](./oper-ban/#appguard)。
 > <font color="red">[重要]</font>
 > 仅在使用TOAST AppGuard服务时可用。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Ban_AppGuard1_1.1.png)
+![gamebase_ban_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_09_201812.png)
 
 - **是否联动**: 当AppGuard需要自动将已检测或被制裁用户添加为Gamebase禁用用户时启用。
 - **自动禁用** 是针对检测/制裁等种类，通过将自动禁用设置为**ON**，输入 '显示给用户消息'和 **禁用期限**，点击**保存** 按钮即可。

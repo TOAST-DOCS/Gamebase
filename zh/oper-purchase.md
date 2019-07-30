@@ -7,12 +7,12 @@
 
 为了在游戏内销售商品，添加应用商店。
 您可以在**Store** 选项卡中的**商店信息列表**中添加新商店或管理已添加的商店。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_App1_1.0.png)
+![gamebase_purchase_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_01_201812.png)
 
 ### Register
 
 添加新商店，请点击**商店信息列表**页面上的**添加**按钮。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_App2_1.0.png)
+![gamebase_purchase_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_02_201812.png)
 
 * **商店**  选择要添加的外部商店，如果没有需要添加的商店，请联系 [客服中心](https://toast.com/support/inquiry)。
 * **App 名称** 输入要添加的游戏名称。
@@ -23,7 +23,7 @@
 
 您可以在查询列表中查询已添加商店的详细信息或更改信息。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_App3_1.0.png)
+![gamebase_purchase_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_03_201812.png)
 - 在查询目录中选择已添加的商店来查询详细信息。
 - 点击**编辑** 按钮可以编辑应用程序名称、商店应用程序和可用性信息，但Store App ID除外。
 - 点击**删除** 按钮可以删除商店信息。但，只能删除未使用的商店。
@@ -33,12 +33,12 @@
 您可以添加在商店中出售的item。
 您可以在** Item ** 标签中添加新item或管理已添加的item。默认情况下，将显示所有商店的item，并且还可以使用各商店的筛选功能。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Item1_1.0.png)
+![gamebase_purchase_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_04_201812.png)
 
 ### Register
 
 要添加新item，请点击**商店信息列表**页面上的** 添加 **按钮。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Item2_1.0.png)
+![gamebase_purchase_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_05_201812.png)
 
 * **商店** 选择要添加的外部商店。如果没有您要添加的商店，请先在**商店**菜单上添加商店。
 * **item名称** 输入您在添加商店后收到的商品信息。使用游戏中添加的item名称在app中显示。
@@ -48,7 +48,7 @@
 ### Modify
 
 您可以在查询列表中查询已添加item的详细信息或更改信息。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Item3_1.0.png)
+![gamebase_purchase_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_06_201812.png)
 - 在查询列表中选择各item，则可以查询已添加item的详细信息。
 - 点击**编辑** 按钮可以更改除商店和 item以外的信息。
 - 点击**删除** 按钮可以删除item信息。
@@ -57,7 +57,7 @@
 
 可以查询结算信息。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction1_1.4.png)
+![gamebase_purchase_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_07_201812.png)
 
 您可以使用以下搜索条件查询所需的付款信息。
 您可以随时点击右上角的“下载”按钮下载付款详细信息。
@@ -106,15 +106,16 @@
 
 ##### Success 变更
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction2_1.0.png)
+<<<<<<< HEAD
+![gamebase_purchase_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_201812.png)
 您可以通过输入付款时收到的**发票编号**, **价格**, **货币**信息来更改状态。
 
 ##### Refund 变更
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction2_2.0.png)
+![gamebase_purchase_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_09_201812.png)
 不必输入其他追加信息，确认状态后选择变更即可。
 您更改的付款信息无法再次更改，因此需要仔细检查信息。
 #### 영수증 검증
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction3.1.png)
+![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction3.1.png)
 * 조회된 영수증을 기반으로 해당 결제건이 유효한 지 검증할 수 있습니다.
 * 각 필드의 비교결과를 알려주며 스토어로부터 받은 응답값을 Json형식으로 제공하므로 필요한 경우 데이터를 직접 확인하실 수 있습니다.
 * 현재는 App Store 결제건에 대해서만 검증을 제공합니다.

@@ -10,7 +10,7 @@
 > 
 > * Unity 5.x : 5.5.4 ~ 5.6.6
 > * Unity 2017.x : ~ 2017.4.x(LTS)
-> * Unity 2018.x : ~ 2018.2.19
+> * Unity 2018.x : ~ 2018.3.8
 
 
 #### Supported Platforms
@@ -126,10 +126,11 @@ Supported Platforms
 为了管理生命周期，需要把“com.toast.gamebase.activity.GamebaseMainActivity”设置为为MainActivity。
 "com.toast.gamebase.activity.GamebaseMainActivity"是继承"com.unity3d.player.UnityPlayerActivity"实现的。
 
+
 > <font color="red">[注意]</font>
 >
 > AndroidPlugin开发也必须继承GamebaseMainActivity。 <br/>
-> GamebaseMainActivity包含在GamebaseAndroidPlugin.jar。 <br/>
+> GamebaseMainActivity包含在GamebasePlugin.jar。 <br/>
 > launchMode应该是singleTask。(Unity默认Activity也将固定为singleTask。) 否则，第一次启动应用程序时可能会崩溃。
 
 ```xml
@@ -137,7 +138,7 @@ Supported Platforms
 	...
     <application>
     ...
-    	<activity android:name="com.toast.gamebase.activity.GamebaseMainActivity"
+    	<activity android:name="com.toast.android.gamebase.activity.GamebaseMainActivity"
         	android:launchMode="singleTask"
         	android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name">
