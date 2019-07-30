@@ -1,4 +1,4 @@
-## Game > Gamebase > iOS SDK 使用指南 > 初始化
+﻿## Game > Gamebase > iOS SDK 使用指南 > 初始化
 
 在使用Gamebase iOS SDK之前，必须先执行初始化。
 
@@ -31,6 +31,13 @@ Gamebase仅显示警告(warning)和错误日志。
 > <font color="red">[注意]</font><br/>
 >
 > 当**发布**游戏时，请务必从源代码中删除setDebugMode调用，或者将参数更改为false之后再打包。
+
+디버그 설정은 Console에서도 가능하며 Console에서 설정된 값을 우선시합니다.
+Console 설정 방법은 아래 가이드를 참고하십시오.
+
+* [Console 테스트 단말기 설정](./oper-app/#test-device)
+* [Console Client 설정](./oper-app/#client)
+
 
 
 ### Initialize
@@ -118,6 +125,8 @@ Gamebase仅显示警告(warning)和错误日志。
 | IN_SERVICE                  | 200  | 正常服务中                                 |
 | RECOMMEND_UPDATE            | 201  | 推荐更新                                  |
 | IN_SERVICE_BY_QA_WHITE_LIST | 202  | 维护期间该服务不可用，但如果登记为测试设备，则无论维护如何，都可以连接和测试该服务。|
+| IN_TEST                     | 203  | 테스트 중 |
+| IN_REVIEW                   | 204  | 심사 중 |
 | REQUIRE_UPDATE              | 300  | 强制更新                                  |
 | BLOCKED_USER                | 301  | 访问权限已被禁用的用户 |
 | TERMINATED_SERVICE          | 302  | 终止服务                                   |

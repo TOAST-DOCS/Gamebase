@@ -195,13 +195,14 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 1. 用TestFlight安装App。
 2. 调用以下URL Scheme进行测试。
+
 | URL Components | keyname | value |
 | --- | --- | --- |
 | scheme | itms-services | 固定值 |
 | host &amp; path | 无 | 无 |
 | queries | action | purchaseIntent |
-|		  | bundleId | APP的 bundeld identifier |
-|		  | productIdentifier | 购买商品的 product identifier |
+| | bundleId | APP的 bundeld identifier |
+| | productIdentifier | 购买商品的 product identifier |
 
 示例) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 

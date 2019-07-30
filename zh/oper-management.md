@@ -2,12 +2,10 @@
 
 可对使用Gamebase 的游戏，使用查询权限管理、报警发送设置、查询报警记录等功能。
 
-
-
 ## Authorization
 
 您可以管理Gamebase Console使用权限。
-![image 1320alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Authorization1_1.2.png)
+![gamebase_manage_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_01_201812.png)
 
 * Gamebase Console使用权限管理
   * **销售情况的访问权限**：**付费** 菜单的访问权限
@@ -15,14 +13,13 @@
 * 要注册新成员，您必须将其添加到TOAST项目成员管理中。
 * 您无法修改自己的权限。
 
-  
 ## Alarm
 
 您可以使用Gamebase的报警功能接收有关游戏用户增减率，最低同时在线用户数变化的报警。
 
 ### Alarm
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm1_1.7.png)
+![gamebase_manage_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_02_201812.png)
 
 #### (1) 启用减少报警
 设置同时在线用户数减少时是否接受报警。如需接收报警将 **启用减少报警**设置为 **On**。
@@ -46,7 +43,7 @@
 报警记录位于报警菜单下，您可以查询报警的历史记录。
 最多可以搜索30天以内的报警记录。查询后单击**Search**按钮，可以实时筛选。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm2_1.0.png)
+![gamebase_manage_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_03_201812.png)
 
 - 发生时间：发送报警的时间信息
 - 历史同时在线用户数:在发送报警之前收集的同时在线用户数
@@ -58,32 +55,31 @@
 如果有通过外部系统的Webhook URL发出报警的请求，则会同时发送报警。
 
 #### (1) 查询列表
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_1.1.png)
+![gamebase_manage_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_04_201812.png)
 您可以看到可以接收当前报警的Webhooks的注册详细信息。
 如果您需要已注册的Webhook URL，可以通过单击右侧的** Copy URL **轻松复制它。
 
 #### (2) 注册
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_2.0.png)
+![gamebase_manage_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_05_201812.png)
 可以单击**注册** 按钮注册外部系统发放的Webhook信息。
 目前，只有Dooray和Slack可以注册，以后根据需求将会添加新列表。
 
-#### (2) 查询详细信息/修改/删除
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm4_3.1.png)
+#### (3) 查询详细信息/修改/删除
+![gamebase_manage_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_06_201812.png)
 点击各个项目以查询详细信息。
 需要修改注册信息请点击**编辑**按钮。 如果您不需要此webhook，也可以通过 **删除** 按钮删除项目。
 
 ### Recipient List
 
 设定接收报警的用户。要注册新成员，您必须将其添加到TOAST项目成员管理中。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Alarm3_1.1.png)
+![gamebase_manage_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_07_201812.png)
 Gamebase可以通过电子邮件和SMS发送报警。
 使用您在注册TOAST时输入的信息发送电子邮件和SMS，如果输入了错误的电子邮件地址或电话号码，则有可能收不到报警。可以在TOAST**我的信息管理** 页面中确认电话号码信息。
-
 
 ## Config
 
 您可以进行Gamebase和TOAST服务之间的联动相关设置。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Management_Config1_1.0.png)
+![gamebase_manage_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_08_201812.png)
 
 您可以设置是否在调用 Gamebase Launching API时一并获取在TOAST Launching中设置的信息。 只有在使用TOAST Launching服务时才能打开或关闭此功能。

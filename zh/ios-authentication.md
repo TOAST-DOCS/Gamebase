@@ -369,7 +369,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 ### AddMapping with Credential
 
-游戏中直接使用ID Provider提供的SDK进行认证后，使用发行的访问令牌，进行GameBase AddMapping的接口。
+游戏中直接使用IdP提供的SDK进行认证后，使用发行的访问令牌，进行Gamebase AddMapping的接口。
 
 
 
@@ -413,7 +413,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
                  NSLog(@"AddMapping is succeeded.");
              }
              else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
-                 NSLog(@"Retry addMapping")
+                 NSLog(@"Retry addMapping");
              }
              else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
                  NSLog(@"Already mapped to other member");
@@ -423,6 +423,105 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
              }
          }];
      }
+```
+
+### Add Mapping Forcibly
+특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
+**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+
+다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
+
+```objectivec
+- (void)authAddMapping {
+    [TCGBGamebase addMappingWithType:@"facebook" viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
+            NSLog(@"AddMapping is succeeded.");
+        }
+        else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
+            NSLog(@"Retry addMapping");
+        }
+        else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+            NSLog(@"Already mapped to other member");
+            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketWithError:error];
+            [TCGBGamebase addMappingForciblyWithType:ticket.idPCode forcingMappingKey:ticket.forcingMappingKey viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+                if ([TCGBGamebase isSuccessWithError:error]) {
+                    // Mapping success.
+                }
+                else {
+                    // Mapping failed.
+                }
+            }];
+        }
+        else {
+            NSLog(@"AddMapping Error - %@", [error description]);
+        }
+    }];
+}
+```
+
+
+### Add Mapping Forcibly with Credential
+특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
+**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+
+게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMappingForcibly를 호출 할 수 있는 인터페이스입니다.
+
+* Credential 파라미터 설정방법
+
+
+| keyname                                  | a use                          | 값 종류                           |
+| ---------------------------------------- | ------------------------------ | ------------------------------ |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, payco, iosgamecenter, naver, google, twitter |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정 |                                           |
+
+> [참고]
+>
+> 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
+>
+
+<br/>
+
+
+> <font color="red">[주의]</font><br/>
+>
+> 외부 SDK에서 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
+>
+
+다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
+
+```objc
+- (void)onButtonLogin {
+    UIViewController* topViewController = nil;
+    
+    NSString* facebookAccessToken = @"feijla;feij;fdklvda;hfihsdfeuipivaipef/131fcusp";
+    NSMutableDictionary* credentialInfo = [NSMutableDictionary dictionary];
+    credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = @"facebook";
+    credentialInfo[kTCGBAuthLoginWithCredentialAccessTokenKeyname] = facebookAccessToken;
+    
+    [TCGBGamebase addMappingWithCredential:credentialInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
+            NSLog(@"AddMapping is succeeded.");
+        }
+        else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
+            NSLog(@"Retry addMapping");
+        }
+        else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+            NSLog(@"Already mapped to other member");
+            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketWithError:error];
+            [TCGBGamebase addMappingWithCredential:credentialInfo forcingMappingKey:ticket.forcingMappingKey viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+                if ([TCGBGamebase isSuccessWithError:error]) {
+                    // Mapping success.
+                }
+                else {
+                    // Mapping failed.
+                }
+            }];
+        }
+        else {
+            NSLog(@"AddMapping Error - %@", [error description]);
+        }
+    }];
+}
 ```
 
 
@@ -446,7 +545,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 可以查看当前帐户映射（Mapping）到哪些IdP的列表。
 
 ```objectivec
-// Obtaining Names of Mapping IDPs
+// Obtaining Names of Mapping IdPs
 NSArray* authMappingList = [TCGBGamebase authMappingList];
 ```
 
@@ -503,65 +602,116 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 * TCGB_ERROR_BANNED_MEMBER
 
 
-## TransferKey
-获取密钥以将访客帐户转移到其他设备的功能。
-此密匙称为**TransferKey**。
-获取的TransferKey可以通过从另一台设备调用**requestTransfer**API来转移帐户。
 
 
-> `注意`
-> 只有在游客登录方式时，才能发放TransferKey。
-> 只有游客登录或未登录的状态，才能使用TransferKey转移帐户。
-> 如果您登录的游客帐户已映射（Mapping）到其他外部IdP（Google，Facebook，Payco等），则不支持转移帐户。
+## TransferAccount
+게스트 계정을 다른 단말기로 이전하기 위해 계정 이전을 위한 키를 발급받는 기능입니다.
 
+이 키를 **TransferAccountInfo** 라고 부릅니다.
+발급받은 TransferAccountInfo는 다른 기기에서 **requestTransferAccount** API를 호출하여 계정 이전을 할 수 있습니다.
 
+> `주의`
+> TransferAccountInfo의 발급은 게스트 로그인 상태에서만 발급이 가능합니다.
+> TransferAccountInfo를 이용한 계정 이전은 게스트 로그인 상태 또는 로그인되어 있지 않은 상태에서만 가능합니다.
+> 로그인한 게스트 계정이 이미 다른 외부 IdP (Google, Facebook, Payco 등) 계정과 매핑이 되어 있다면 계정 이전이 지원되지 않습니다.
 
-### Issue TransferKey
-发放TransferKey以转移游客帐户。
-TransferKey的格式为**包含“小写/大写/数字”的8位数的字符串**。
-同时，发行发放时间和到期时间，格式为epoch time。
-* 参考：https://www.epochconverter.com/
+### Issue TransferAccount
+게스트 계정 이전을 위한 TransferAccountInfo를 발급합니다.
+
+**API**
 
 ```objectivec
-- (void)issueTransferKeyToTransfer {
-    [TCGBGamebase issueTransferKeyWithExpiresIn:3600 completion:^(TCGBTransferKeyInfo *transferKey, TCGBError *error){
-        if ([TCGBGamebase isSuccessWithError:error] == YES){}
-            NSLog(@"Published TransferKey => %@", [transferKey description]);
-            NSString* transferKeyString = [transferKey transferKey];
-            long regDat = [transferKey legDate];
-            long expireDate = [transferKey expireDate];
++ (void)issueTransferAccountWithCompletion:(TransferAccountCompletion)completion;
+```
+
+**Example**
+
+```objectivec
+ - (void)issueTransferAccount {
+     [TCGBGamebase issueTransferAccountWithCompletion:^(TCGBTransferAccountInfo* transferAccount, TCGBError *error) {
+        NSLog(@"Issued TransferAccount => %@, error => %@", [transferAccount description], [error description]);
+     }];
+ }
+```
+
+### Query TransferAccount
+게스트 계정 이전을 위해 이미 발급받은 TransferAccountInfo 정보를 게임베이스 서버에 질의합니다.
+
+**API**
+
+```objectivec
++ (void)queryTransferAccountWithCompletion:(TransferAccountCompletion)completion;
+```
+
+**Example**
+
+```objectivec
+ - (void)queryTransferAccount {
+     [TCGBGamebase queryTransferAccountWithCompletion:^(TCGBTransferAccountInfo* transferAccount, TCGBError *error) {
+        NSLog(@"Published TransferAccount => %@, error => %@", [transferAccount description], [error description]);
+     }];
+ }
+```
+
+
+### Renew TransferAccount
+이미 발급받은 TransferAccountInfo 정보를 갱신합니다.
+"자동 갱신", "수동 갱신"의 방법이 있으며, "Password만 갱신", "ID와 Password 모두 갱신" 등의 설정을 통해
+TransferAccountInfo 정보를 갱신 할 수 있습니다.
+
+```objectivec
++ (void)renewTransferAccountWithConfiguration:(TCGBTransferAccountRenewConfiguration *)config completion:(TransferAccountCompletion)completion;
+```
+
+**Example**
+
+```objectivec
+- (void)renewTransferAccount {
+    // If you want renew the account automatically, use this config.
+    TCGBTransferAccountRenewalTargetType renewalTargetType = TCGBTransferAccountRenewalTargetTypeIdPassword;
+    TCGBTransferAccountRenewConfiguration* autoConfig = [TCGBTransferAccountRenewConfiguration autoRenewConfigurationWithRenewalTarget:renewalTargetType];
+    
+    // If you want renew the account manually, use this config.
+    TCGBTransferAccountRenewConfiguration* manualConfig = [TCGBTransferAccountRenewConfiguration manualRenewConfigurationWithAccountId:@"ID" accountPassword:@"PASSWORD"];
+    [TCGBGamebase renewTransferAccountWithConfiguration:autoConfig completion:^(TCGBTransferAccountInfo *transferAccount, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error]) {
+            // Renewing TransferAccount success.
+            NSString* accountId = transferAccount.account.accountId;
+            NSString* accountPw = transferAccount.account.accountPassword;
+            return;
         }
         else {
-            // Handling Errors.
-            NSLog(@"Issue TranferKey Occur Error => %@", [error description]);
+            // Renewing TransferAccount failed.
         }
     }];
 }
 ```
 
-### Transfer Guest Account to Another Device
-通过**issueTransfer** API发放的TransferKey转移帐户的功能。
-在成功转移帐户后，在TransferKey的原设备上显示转移完成的消息，并且用在游客登录时将创建新帐户。
-在成功转移帐户的新设备上，您可以继续使用原游客帐户。
 
-> `注意`
-> 如果在游客登录状态下转移成功，原设备中登录过的游客信息将丢失。
+
+
+### Transfer Guest Account to Another Device
+**issueTransfer** API로 발급받은 TransferAccount를 통해 계정을 이전하는 기능입니다.
+계정 이전 성공 시 TransferAccount를 발급받은 단말기에서 이전 완료 메시지가 표시될 수 있고, Guest 로그인 시 새로운 계정이 생성됩니다.
+계정 이전이 성공한 단말기에서는 TransferAccount를 발급받았던 단말기의 게스트 계정을 계속해서 사용할 수 있습니다.
+
+> `주의`
+> 이미 Guest 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
+
+**API**
 
 ```objectivec
-- (void)transferGuestAccount {
-    [TCGBGamebase requestTransferWithTransferKey:@"1i9eiAi7" completion:^(TCGBAuthToken *token, TCGBError *error)( {
-        if ([TCGBGamebase isSuccessWithError:error] == YES) {
-            // TCGBAuthToken 对象相当于调用 `loginWithType:viewController:completion:` 方法
-            NSLog(@"Transfer Information > %@", [token description]);
-            NSString* userID = token.tcgbMember.userId;
-            NSArray* authList = token.tcgbMember.authList;
-        }
-        else {
-            // Handling Errors.
-            NSLog(@"Transfer Occur Error => %@", [error description]);
-        }
-    });
-}
++ (void)transferAccountWithIdPLoginWithAccountId:(NSString *)accountId accountPassword:(NSString *)accountPassword completion:(void(^)(TCGBAuthToken* authToken, TCGBError* error))completion;
+```
+
+**Example**
+
+```objectivec
+ - (void)transferOtherDevice {
+    [TCGBGamebase transferAccountWithIdPLoginWithAccountId:@"1Aie0198" accountPassword:@"1Aie0199" completion:^(TCGBAuthToken* authToken, TCGBError* error) {
+        NSLog(@"Transfered => %@,\nerror => %@", [authToken description], [error description]);
+    }];
+ }
 ```
 
 
@@ -575,12 +725,6 @@ TransferKey的格式为**包含“小写/大写/数字”的8位数的字符串*
 |                | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | 不支持的认证方式。                        |
 |                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | 不存在或已退出（删除数据）的用户。                      |
 |                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 外部认证库错误。<br/>请确认 DetailCode和DetailMessage。  |
-| TransferKey    | TCGB\_ERROR\_SAME\_REQUESTOR             | 8			 | 在同一台设备上使用了相同的TransferKey。 |
-|                | TCGB\_ERROR\_NOT\_GUEST\_OR\_HAS\_OTHERS | 9          | 非游客帐户尝试了转移或帐户已关联了游客以外的IDP。 |
-|				 | TCGB\_ERROR\_IOS\_GAMECENTER\_DENIED     | 51         | GameCenter登录被拒绝。<br/>连续三次以上，在游戏内的GameCenter登录画面取消登录后，再尝试登录时，登录画面可能不再显示。|
-|                | TCGB\_ERROR\_AUTH\_TRANSFERKEY\_EXPIRED  | 3031       | TransferKey已过期。|
-|                | TCGB\_ERROR\_AUTH\_TRANSFERKEY\_CONSUMED | 3032       | TransferKey已使用。 |
-|                | TCGB\_ERROR\_AUTH\_TRANSFERKEY\_NOT\_EXIST | 3033     | TransferKey无效。 |
 | Auth (Login)   | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED  | 3101       | 令牌登录失败。                          |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | 无效的令牌信息。                       |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 无近期登录的IdP信息。                   |

@@ -7,7 +7,7 @@
 >
 > 最低版本 : iOS8以上或部分支持IdP的iOS9以上 <br/>
 > 支持arm7, arm7s, arm64, i386, x86_64 <br/>
-> Xcode9或更高版本
+> Xcode10或更高版本
 >
 
 
@@ -68,7 +68,7 @@ Gamebase可以通过以下方式安装。
     * libicucore.tbd (在Gamebase SDK v1.1.5或更高版本中添加)
     * libz.tbd
     * libsqlite3.tbd
-    * libstdc++.tbd
+    * libc++.tbd
     * AdSupport.framework
     * ImageIO.framework
     * GameKit.framework

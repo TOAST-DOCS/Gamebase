@@ -22,7 +22,7 @@ Supported Platforms
 static string GetDeviceLanguageCode()
 ```
 
-> [참고] 
+> [참고]
 >
 > Editor on Windows, Standalone on Windows인 경우에는 [CultureInfo](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo?view=netframework-4.7.2)를 참고하여 언어 코드를 리턴합니다.
 >
@@ -62,7 +62,7 @@ static string GetDeviceLanguageCode()
 
 相应的语言代码在`GamebaseDisplayLanguageCode`类中定义。
 
-> `[注意]`
+> <font color="red">[注意]</font>
 >
 > Gamebase支持的语言代码区分大小写。
 > 将其设置为'EN'或'zh-cn'可能会出现问题。
@@ -343,8 +343,6 @@ public static string GetCountryCode()
 
 * GamebaseServerPushType.APP_KICKOUT (= "appKickout")
     * 如果在TOAST Gamebase控制台的`Operation > Kickout`中注册ServerPush 消息，与Gamebase连接的所有客户端的将收到`APP_KICKOUT`消息。
-* GamebaseServerPushType.TRANSFER_KICKOUT (= "transferKickout")
-	* 如果通过TransferKey成功转移Guest帐户，则会向接收TransferKey的终端发送`TRANSFER_KICKOUT`信息。
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 
@@ -565,5 +563,110 @@ public void RemoveObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.Ob
 public void RemoveAllObserver()
 {
     Gamebase.RemoveAllObserver();
+}
+```
+
+### Analytics
+
+Game지표를 Gamebase Server로 전송할 수 있습니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> Gamebase Analytics에서 지원하는 모든 API는 로그인 후에 호출할 수 있습니다.
+>
+>
+> [TIP]
+>
+> Gamebase.Purchase.RequestPurchase API를 호출하여 결제를 완료하면, 자동으로 지표를 전송합니다.
+>
+
+Analytics Console 사용법은 아래 가이드를 참고하십시오.
+
+* [Analytics Console](./oper-analytics)
+
+#### Game User Data Settings
+
+게임 로그인 이후 유저 레벨 정보를 지표로 전송할 수 있습니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> 게임 로그인 이후 SetGameUserData API를 호출하지 않으면 다른 지표에서 Level 정보가 누락될 수 있습니다.
+>
+
+API 호출에 필요한 파라미터는 아래와 같습니다.
+
+**GameUserData**
+
+| Name                       | Mandatory(M) / Optional(O) | type | Desc |
+| -------------------------- | -------------------------- | ---- | ---- |
+| userLevel | M | int |  |
+| channelId | O | string |  |
+| characterId | O | string |  |
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void SetGameUserData(GamebaseRequest.Analytics.GameUserData gameUserData)
+```
+
+**Example**
+
+``` cs
+public void SetGameUserData(int userLevel, string channelId, string characterId)
+{
+    GamebaseRequest.Analytics.GameUserData gameUserData = new GamebaseRequest.Analytics.GameUserData(userLevel);
+    gameUserData.channelId = channelId;
+    gameUserData.characterId = characterId;
+
+    Gamebase.Analytics.SetGameUserData(gameUserData);
+}
+```
+
+#### Level Up Trace
+
+레벨업이 되었을 경우 유저 레벨 정보를 지표로 전송할 수 있습니다.
+
+API 호출에 필요한 파라미터는 아래와 같습니다.
+
+**LevelUpData**
+
+| Name                       | Mandatory(M) / Optional(O) | type | Desc	|
+| -------------------------- | -------------------------- | ---- | ---- |
+| userLevel | M | int |  |
+| levelUpTime | O | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
+| channelId | O | string |  |
+| characterId | O | string |  |
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void TraceLevelUp(GamebaseRequest.Analytics.LevelUpData levelUpData)
+```
+
+**Example**
+
+``` cs
+public void TraceLevelUp(int userLevel, long levelUpTime, string channelId, string characterId)
+{
+    GamebaseRequest.Analytics.LevelUpData levelUpData = new GamebaseRequest.Analytics.LevelUpData(userLevel);
+    levelUpData.levelUpTime = levelUpTime;
+    levelUpData.channelId = channelId;
+    levelUpData.characterId = characterId;
+
+    Gamebase.Analytics.TraceLevelUp(levelUpData);
 }
 ```

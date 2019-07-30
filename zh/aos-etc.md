@@ -277,9 +277,7 @@ localizedstring.json中定义的格式如下。
 目前，Gamebase支持的Server Push Type如下。
 
 * ServerPushEventMessage.Type.APP_KICKOUT (= "appKickout")
-	* 如果在TOAST Gamebase控制台的 **Operation> Kickout** 中注册kickout ServerPush消息，与Gamebase连接的所有客户端的将收到 **APP_KICKOUT** 消息。
-* ServerPushEventMessage.Type.TRANSFER_KICKOUT (= "transferKickout")
-	* 如果通过TransferKey成功转移Guest帐户，则会向接收TransferKey的终端发送 **TRANSFER_KICKOUT** 信息。
+    * 如果在TOAST Gamebase控制台的 **Operation > Kickout** 中注册kickout ServerPush消息，与Gamebase连接的所有客户端的将收到 **APP_KICKOUT** 消息。
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 
@@ -484,5 +482,96 @@ public class MyObserverManager {
         Gamebase.removeAllObserver();
     }
     ...
+}
+```
+
+
+### Analytics
+
+Game지표를 Gamebase Server로 전송할 수 있습니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> Gamebase Analytics에서 지원하는 모든 API는 로그인 후에 호출이 가능합니다.
+>
+
+> [TIP]
+>
+> Gamebase.Purchase.requestPurchase() API를 호출하여 결제를 진행한 경우, 결제가 완료되면 자동으로 서버로 지표가 전송됩니다.
+>
+
+#### Game User Data Settings
+
+로그인 이후 유저 레벨 정보를 설정할 수 있습니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> 게임 로그인 이후 setGameUserData API를 호출하지 않으면 다른 지표에서 Level 정보가 누락될 수 있습니다.
+>
+
+API 호출에 필요한 파라미터는 아래와 같습니다.
+
+**GameUserData**
+
+| Name                       | Mandatory(M) / Optional(O) | type | Desc |
+| -------------------------- | -------------------------- | ---- | ---- |
+| userLevel | M | int |  |
+| channelId | O | String |  |
+| characterId | O | String |  |
+
+**API**
+
+```java
+static void setGameUserData(GameUserData gameUserData)
+```
+
+**Example**
+
+``` java
+public void onLoginSuccess(, String channelId, String characterId) {
+    int userLevel = 10;
+    String channelId, characterId;
+
+    GameUserData gameUserData = new GameUserData(userLevel);
+    gameUserData.channelId = channelId; // Optional
+    gameUserData.characterId = characterId; // Optional
+
+    Gamebase.Analytics.setGameUserData(gameUserData);
+}
+```
+
+#### Level Up Trace
+
+레벨업이 되었을 경우 유저 레벨 정보를 변경할 수 있습니다.
+
+API 호출에 필요한 파라미터는 아래와 같습니다.
+
+**LevelUpData**
+
+| Name                       | Mandatory(M) / Optional(O) | type | Desc	|
+| -------------------------- | -------------------------- | ---- | ---- |
+| userLevel | M | int |  |
+| levelUpTime | O | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
+| channelId | O | String |  |
+| characterId | O | String |  |
+
+
+
+**API**
+
+```java
+static void TraceLevelUp(GamebaseRequest.Analytics.LevelUpData levelUpData)
+```
+
+**Example**
+
+``` java
+public void onLevelUp(int userLevel, long levelUpTime, String channelId, String characterId) {
+    LevelUpData levelUpData = new LevelUpData(userLevel);
+    levelUpData.levelUpTime = levelUpTime; // Optional
+    levelUpData.channelId = channelId; // Optional
+    levelUpData.characterId = characterId; // Optional
+
+    Gamebase.Analytics.traceLevelUp(levelUpData);
 }
 ```

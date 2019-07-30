@@ -135,7 +135,7 @@ Gamebase初始化时可更改输入的 Display Language。
 
 **示例**
 
-``` cs
+```objectivec
 - (void)getDisplayLanguageCode()
 {
     NSString* displayLanguage = [TCGBGamebase displayLanguageCode];
@@ -268,9 +268,6 @@ localizedstring.json中定义的格式如下。
 
 * kTCGBServerPushNotificationTypeAppKickout (= "appKickout")
     * 如果在TOAST Gamebase控制台的`Operation > Kickout`中注册kickout ServerPush消息，与Gamebase连接的所有客户端的将收到`APP_KICKOUT`消息。
-* kTCGBServerPushNotificationTypeTransferKickout (= "transferKickout")
-	* 如果通过TransferKey成功转移Guest帐户，则会向接收TransferKey的终端发送`TRANSFER_KICKOUT`信息。
-
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 
@@ -435,5 +432,90 @@ Gamebase目前支持的 Observer类型如下。
     
     // Remove all Observers
     [TCGBGamebase removeAllObserver];
+}
+```
+
+### Analytics
+
+Game지표를 Gamebase Server로 전송할 수 있습니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> Gamebase Analytics에서 지원하는 모든 API는 로그인 후에 호출할 수 있습니다.
+
+> [TIP]
+>
+> TCGBPurchase의 requestPurchaseWithItemSeq:viewController:completion API의 호출을 통한 결제 또는 setPromotionIAPHandler를 통한 프로모션 결제를 완료하면 자동으로 지표를 전송합니다.
+
+Analytics Console 사용법은 아래 가이드를 참고하십시오.
+
+- [Analytics Console](./oper-analytics)
+
+#### Game User Data Settings
+
+게임 로그인 이후 유저 레벨 정보를 지표로 전송할 수 있습니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> 게임 로그인 이후 SetGameUserData API를 호출하지 않으면 다른 지표에서 Level 정보가 누락될 수 있습니다.
+>
+
+API 호출에 필요한 파라미터는 아래와 같습니다.
+
+**GameUserData**
+
+  | Name | Mandatory(M) / Optional(O) | type | Desc |
+  | -------------------------- | -------------------------- | ---- | ---- |
+  | userLevel | M | int | |
+  | channelId | O | string | |
+  | characterId | O | string | |
+
+**API**
+
+```objectivec
++ (void)setGameUserData:(nonnull TCGBAnalyticsGameUserData *)gameUserData;
+```
+
+**Example**
+
+```objectivec
+- (void)setGameUserDataWithLevel:(int)level channelId:(NSString *)channelId characterId:(NSString *)characterId {
+    TCGBAnalyticsGameUserData* gameUserData = [TCGBAnalyticsGameUserData gameUserDataWithUserLevel:level];
+    [gameUserData setChannelId:channelId];
+    [gameUserData setCharacterId:characterId];
+    [TCGBAnalytics setGameUserData:gameUserData];
+}
+```
+
+#### Level Up Trace
+
+레벨업이 되었을 경우 유저 레벨 정보를 지표로 전송할 수 있습니다.
+
+API 호출에 필요한 파라미터는 아래와 같습니다.
+
+**LevelUpData**
+
+  | Name | Mandatory(M) / Optional(O) | type | Desc |
+  | -------------------------- | -------------------------- | ---- | ---- |
+  | userLevel | M | int | |
+  | levelUpTime | O | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
+  | channelId | O | string | |
+  | characterId | O | string | |
+
+**API**
+
+```objectivec
++ (void)traceLevelUpWithLevelUpData:(nonnull TCGBAnalyticsLevelUpData *)levelUpData;
+```
+
+**Example**
+
+```objectivec
+- (void)traceLevelUpWith:(int)level levelUpTime:(long long)levelUpTime channelId:(NSString *)channelId characterId:(NSString *)characterId {
+  TCGBAnalyticsLevelUpData* levelUpData = [TCGBAnalyticsLevelUpData levelUpDataWithUserLevel:level];
+  [levelUpData setLevelUpTime:levelUpTime];
+  [levelUpData setChannelId:channelId];
+  [levelUpData setCharacterId:characterId];
+  [TCGBAnalytics traceLevelUpWithLevelUpData:levelUpData];
 }
 ```

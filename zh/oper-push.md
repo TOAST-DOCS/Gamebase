@@ -6,7 +6,7 @@ Gamebase使用TOAST Push功能发送推送消息。
 
 ## Push
 您可以通过Gamebase确认已发送的推送记录和预约发送列表。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push1_1.3.png)
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_01_201812.png)
 推送计划明细里的列表可以在**Push Details**中取消发送。
 
 ### Registered List
@@ -18,14 +18,14 @@ Gamebase使用TOAST Push功能发送推送消息。
 
 您可以通过“推送记录”列表选择“推送”来查看已发推送的详细信息。
 通过单击**复制**按钮，可以利用已发推送的信息轻松创建推送。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push2_1.2.png)
+![gamebase_push_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_02_201812.png)
 
 阿
 ### Register Push
 
 要创建新的Push，请单击**创建**按钮。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Push3_1.1.png)
+![gamebase_push_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_03_201812.png)
 
 #### (1) 消息类型
 > [参考]
