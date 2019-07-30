@@ -1,5 +1,25 @@
 ## Game > Gamebase > Release Notes
 
+### July 23, 2019 
+
+#### Added 
+* [Console]
+	* New Menu Released on Member > Download: As of the last login time on the date of service joining, list of game users can be queried and downloaded in files   
+
+#### Feature Updates
+* [Console] Mobile 
+	* Can register and modify maintenance and push  
+* [SDK] 2.4.4
+	* (Common) Format changed for member error code
+	* (Unity) Key added for GamebaseServerPushType (TRANSFER_KICKOUT)
+* Setting Tool
+	* Change of Folder Structure: Must reinstall after previous SettingTool is completely deleted  
+	* More languages are supported 
+	
+#### Bug Fixes
+* [Console]
+	* Analytics > User Indicators: Fixed the issue of date overlaps on the axis X 
+
 ### July 11, 2019 
 
 #### Feature Updates/Changes 
