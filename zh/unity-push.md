@@ -131,7 +131,7 @@ else
 }
 ```
 
-* TOAST Push 오류 코드를 확인하시기 바랍니다.
+* 请确认TOAST Push错误代码。
     * [Android](aos-push#error-handling)<br/>
     * [iOS](ios-push#error-handling)
 

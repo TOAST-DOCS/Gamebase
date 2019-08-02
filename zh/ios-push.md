@@ -114,16 +114,16 @@ NSString *moduleErrorMessage = moduleError.message;
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
-* TOAST Push 오류 코드는 다음과 같습니다.
+* TOAST Push错误代码如下。
     
-| 오류 코드 |  설명 |
+| 错误代码 |  说明 |
 | --- | --- |
-| TCPushErrorNotInitialized | 초기화되지 않음 |
-| TCPushErrorInvalidParameters | 파라미터 오류 |
-| TCPushErrorPermissionDenined | 권한 미획득 |
-| TCPushErrorSystemFail | 시스템 알림 등록 실패 |
-| TCPushErrorNetworkFail | 네트워크 송수신 실패 |
-| TCPushErrorServerFail | 서버 응답 실패 |
-| TCPushErrorInvalidUrl | 잘못된 URL 요청 |
-| TCPushErrorNetworkNotReachable | 네트워크 미연결 |
+| TCPushErrorNotInitialized | 未初始化 |
+| TCPushErrorInvalidParameters | 参数错误 |
+| TCPushErrorPermissionDenined | 未获得权限 |
+| TCPushErrorSystemFail | 系统警报注册失败 |
+| TCPushErrorNetworkFail | 网络收发信失败 |
+| TCPushErrorServerFail | 服务器响应失败 |
+| TCPushErrorInvalidUrl | 无效的URL 请求 |
+| TCPushErrorNetworkNotReachable | 网络未连接 |
 

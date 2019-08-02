@@ -808,7 +808,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 #### Validate TransferAccount
 
-GUEST 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사를 수행합니다.
+检查为转移访客账户获得的ID及密码的有效性。
 
 **[Method, URI]**
 
@@ -819,21 +819,21 @@ GUEST 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사
 
 **[Request Header]**
 
-공통 사항 확인
+确认通用事项
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | TOAST项目ID |
 
 
 **[Request Parameter]**
 
-없음
+无
 
 
-**[Request Body]**
+# Request Body
 
 ```json
 {
@@ -846,10 +846,10 @@ GUEST 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사
 
 | Key | Type | Description |
 | --- | --- | --- |
-| account.id | String | 유효성 검증을 수행할 ID |
-| account.password | String | 유효성 검증을 수행할 PASSWORD |
+| account.id | String | 要进行有效性验证的ID |
+| account.password | String | 要进行有效性验证的密码 |
 
-**[Response Body]**
+# Response Body
 
 ```json
 {
@@ -871,16 +871,16 @@ GUEST 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사
 
 | Key | Type | Description |
 | --- | --- | --- |
-| member | Object | 조회된 사용자의 기본 정보 |
-| member.userId | String | 사용자 ID |
-| member.valid | Enum | Y: 정상 사용자 <br>D: 탈퇴된 사용자 <br>B: 이용 정지된 사용자 <br>M: 유실된 계정|
-| member.appId | String | appId |
-| member.regDate | long | 사용자가 계정을 생성한 시간 |
-| member.lastLoginDate | long | 마지막으로 로그인한 시간 <br>처음 로그인한 사용자는 해당 값이 없음 |
+| member | Object | 查询的用户的基本信息 |
+| member.userId | String | 用户ID |
+| member.valid | Enum | Y:正常用户<br>D：注销的用户<br>B：停止使用的用户<br>M：丢失的账户|
+| member.appId | String | 应用程序ID |
+| member.regDate | long | 用户创建账户的时间 |
+| member.lastLoginDate | long | 最后一次登录的时间 <br>初次登录的用户无相应值 |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[错误代码](./error-code/#server)
 
 
 <br>

@@ -1,4 +1,4 @@
-## Game > Gamebase > Unity SDK使用指南 > 开始
+﻿## Game > Gamebase > Unity SDK使用指南 > 开始
 
 以下说明Gamebase Unity SDK使用环境和初始设置。
 
@@ -8,9 +8,10 @@
 >
 > Unity 支持版本
 > 
-> * Unity 5.x : 5.5.4 ~ 5.6.6
+> * Unity 5.x : 5.6.6
 > * Unity 2017.x : ~ 2017.4.x(LTS)
-> * Unity 2018.x : ~ 2018.3.8
+> * Unity 2018.x : ~ 2018.4.x(LTS)
+> * Unity 2019.x : ~ 2019.1.10
 
 
 #### Supported Platforms
@@ -175,8 +176,8 @@ Build System选择Gradle(new)。
 > **applicationId**设置package name。<br/>
 > **dependencies**列表中添加library文件。 <br/>
 > **multiDexEnabled**设置为true。<br/>
-> **storeFile**은 keystore path를 설정하면 됩니다. <br/>
-> **storePassword**设置 keystore password。 <br/>
+> **storeFile**设置keystore path即可。<br/>
+> **storePassword**设置keystore password。 <br/>
 > **keyAlias**设置keystore alias。 <br/>
 > **keyPassword**设置keystore alias password。 <br/>
 

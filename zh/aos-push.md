@@ -250,17 +250,17 @@ Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
 });
 ```
 
-* TOAST Push 오류 코드는 다음과 같습니다.
-    
-| 오류 코드 |  설명 |
+* TOAST Push错误代码如下。
+
+| 错误代码 |  说明 |
 | --- | --- |
-| ERROR_SYSTEM_FAIL | 시스템 문제로 토큰 획득에 실패한 경우 |
-| ERROR_NETWORK_FAIL | 네트워크 문제로 요청에 실패한 경우 |
-| ERROR_SERVER_FAIL | 서버에서 실패 응답을 반환한 경우 |
-| ERROR_ALREADY_IN_PROGRESS | 토큰 등록/조회가 이미 실행 중인 경우 |
-| ERROR_INVALID_PARAMETERS | 파라미터가 잘못된 경우 |
-| ERROR_PERMISSION_REQUIRED | 권한이 필요한 경우(Tencent만 해당) |
-| ERROR_PARSE_JSON_FAIL | 서버 응답을 파싱하지 못한 경우 |
+| ERROR_SYSTEM_FAIL | 系统问题导致获得令牌失败时 |
+| ERROR_NETWORK_FAIL | 网络问题导致请求失败时 |
+| ERROR_SERVER_FAIL | 服务器返回失败响应时 |
+| ERROR_ALREADY_IN_PROGRESS | 令牌注册、查询已在执行时 |
+| ERROR_INVALID_PARAMETERS | 参数错误时 |
+| ERROR_PERMISSION_REQUIRED | 需要权限时（仅Tencent适用） |
+| ERROR_PARSE_JSON_FAIL | 服务器响应无法解析时 |
 
 
 
