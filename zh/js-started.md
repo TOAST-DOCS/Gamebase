@@ -1,40 +1,40 @@
-## Game > Gamebase > JavaScript SDK 사용 가이드 > 시작하기
+## Game > Gamebase > JavaScript SDK使用指南 > 开始
 
-Gamebase JavaScript SDK를 사용하기 위한 환경은 다음과 같습니다.
+使用Gamebase JavaScript SDK的环境如下。
 
 ### Environments
 
-> [최소 사양]
+> [最小规格]
 >
-> HTML5 WebSocket 동작 가능 브라우져
-> Brower Popup 허용
-> Browser Cookie 접근 허용
+> 可运行HTML5 WebSocket的浏览器
+> 允许使用弹出窗口
+> 允许访问cookie
 
 ### Installation
 
-Gamebase JavaScript SDK 파일을 다운로드합니다.
+下载Gamebase JavaScript SDK文件。
 
-Gamebase JavaScript SDK를 사용하기 전에 TOAST Console에서 앱 아이디를 발급받아야 합니다. 앱 아이디를 발급받으려면 TOAST Console에서 **(+)서비스 선택**을 클릭하여 Game > Gamebase를 클릭하여 서비스를 활성화 합니다.
+使用Gamebase JavaScript SDK前应从TOAST Console获取应用程序ID。若欲获取应用程序ID，在TOAST Console中单击**选择服务**后单击**Game > Gamebase**，启用服务。
 
 #### Download
-아래의 링크에서 Gamebase JavaScript SDK를 다운로드 받습니다. 이후, 다운로드 받은 zip 파일의 압축을 해제하여, 적용할 프로젝트의 폴더로 이동합니다.
-* [Download Gamebase JavaScript SDK](/Download/#game-gamebase)
+从以下链接下载Gamebase JavaScript SDK。然后将下载的ZIP文件解压，移动至要应用的项目的文件夹。
+* [下载Gamebase JavaScript SDK](/Download/#game-gamebase)
 
 
-#### SDK 적용
-Gamebase를 사용하고자 하는 파일에 다음 구문을 추가하여 JavaScript 파일을 로드합니다.
+#### 应用SDK
+为要使用Gamebase的文件添加如下语句，载入JavaScript文件。
 
 ```html
-<script src="${gamebase.min.js 가 위치한 경로}"></script>
+<script src="${gamebase.min.js所在路径}"></script>
 ```
 
 
 #### npm
 
-* 지원예정입니다.
+* 预计支持。
 
 
 
 ## API Reference
 
-API Reference는 SDK 내에 포함돼 있습니다.
+API Reference包含在SDK内。

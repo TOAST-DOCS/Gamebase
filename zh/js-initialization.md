@@ -1,92 +1,92 @@
-## Game > Gamebase > JavaScript SDK 사용 가이드 > 초기화
+## Game > Gamebase > JavaScript SDK使用指南 > 初始化
 
-Gamebase JavaScript SDK를 사용하려면 먼저 초기화를 진행해야 합니다.
+若欲使用Gamebase JavaScript SDK，应先进行初始化。
 
 ### Configuration Settings
 
-Gamebase를 초기화할 때, GamebaseConfiguration 객체로 Gamebase 설정을 변경할 수 있습니다.
+对Gamebase进行初始化时，可利用GamebaseConfiguration对象更改Gamebase设置。
 
 | KEY                                                 | Mandatory(M) / Optional(O) | Description                              |
 | --------------------------------------------------- | -------------------------- | ---------------------------------------- |
-| appId: string                                       | **M**                      | TOAST Project ID 입니다. 필수적으로 입력해야합니다. |
-| clientVersion: string                               | **M**                      | 서비스 중, 점검, 공지사항 등 Playable한 상태인지를 게임 버전을 통해 판단합니다. <br/> `TOAST Console > Gamebase > App > Client Version > WEB`의 버전을 입력해주세요. |
-| enableDebugMode: boolean                            | O                          | DebugMode를 활성화 할 수 있습니다. Debug log는 개발자 콘솔에 출력됩니다. <br/> 기본값은 **false** 입니다. |
-| uiConfiguration.enablePopup: boolean                | O                          | **[UI]**<br/>시스템 점검, 이용 제재(ban) 등 게임 이용자가 게임을 플레이할 수 없는 상황에서 팝업 등으로 사유를 표시해야 할 때가 있습니다. <br/> **true**로 설정하면 Gamebase가 해당 상황에서 정보 팝업을 자동으로 표시합니다. <br/> 기본값은 **false**입니다.<br/>**false** 상태에서는 론칭 결과를 통해 정보를 획득한 후 자체 UI를 구현해 게임을 플레이할 수 없는 이유를 표시해 주시기 바랍니다. |
-| uiConfiguration.enableLaunchingStatusPopup: boolean | O                          | **[UI]**<br/>론칭 결과에 따라 로그인할 수 없는 상태에서(주로 점검 상태) Gamebase가 자동으로 팝업을 표시할지 여부를 변경할 수 있습니다. <br/>**enablePopup(true)** 상태에서만 동작합니다.<br/>기본값은 **true**입니다. |
-| uiConfiguration.enableBanPopup: boolean             | O                          | **[UI]**<br/>게임 이용자가 이용 제재를 당한 상태일 때 Gamebase가 자동으로 이용정지 사유를 팝업으로 표시할지 여부를 변경할 수 있습니다. <br/>**enablePopup(true)** 상태에서만 동작합니다.<br/>기본값은 **true**입니다. |
-| displayLanguageCode: string                         | O                          | Gamebase UI 에서 사용하는 언어코드입니다. <br/> 기본값은 **브라우져의 language**(navigator.language) 입니다. |
-| displayLanguageTable: json                          | O                          | Gamebase UI 노출시 사용하는 Text Resource 입니다. <br/> 해당 값은 내장되어있는 언어셋 테이블과 자동으로 merging이 되어 사용됩니다. <br/> `toast.Gamebase.getDisplayLanguageTable()` 을 통해서 내장되어있는 언어셋 테이블 및 포멧을 확인할 수 있습니다.|
+| appId:string                                       | **M**                      | 为TOAST Project ID。必须输入。|
+| clientVersion:string                               | **M**                      | 通过游戏版本确认是否为正在服务、检查、通知事项等可以玩游戏的状态。<br/> 请输入`TOAST Console > Gamebase > App > Client Version > WEB`的版本。|
+| enableDebugMode:boolean                            | O                          | 可启用Debug Mode。调试日志输出至开发者控制台。<br/> 默认值为**false**。|
+| uiConfiguration.enablePopup:boolean                | O                          | 在**[UI]**<br/>系统检查、禁用(ban)等游戏用户无法玩游戏的情况下，有时应利用弹出窗口等显示原因。<br/> 若设置为**true**，Gamebase在相应情况下自动显示信息弹出窗口。<br/> 默认值为**false**。<br/>在**false**状态下，请通过推出结果获得信息后实现自主UI，显示无法玩游戏的原因。|
+| uiConfiguration.enableLaunchingStatusPopup:boolean | O                          | 由于**[UI]**<br/>推出结果无法登录的状态下（主要为检查状态），可更改Gamebase是否自动显示弹出窗口。<br/>仅在**enablePopup(true)**状态下运行。<br/>默认值为**true**。|
+| uiConfiguration.enableBanPopup:boolean             | O                          | **[UI]**<br/>游戏用户为被禁用状态时，可更改Gamebase是否通过自动弹出窗口来显示停止使用的原因。<br/>仅在**enablePopup(true)**状态下运行。<br/>默认值为**true**。|
+| displayLanguageCode:string                         | O                          | 为Gamebase UI中使用的语言代码。<br/> 默认值为**浏览器的language**(navigator.language)。|
+| displayLanguageTable:json                          | O                          | 为显示Gamebase UI时使用的文本源(text resource)。<br/> 该值与内置的语言集合表自动合并使用。<br/> 可通过`toast.Gamebase.getDisplayLanguageTable()`确认内置的语言集合表及格式。|
 
 
 #### GamebaseConfiguration Example
 ```javascript
 var gamebaseConfiguration = {
-    appId: 'T0asTC1oud',    // TOAST Console Project ID
-    clientVersion: '1.0.0', // TOAST Console Gamebase App Client Version
-    enableDebugMode: true,  // Note: Do not turn it on in production mode.
-    uiConfiguration: {
-        enablePopup: true,  // Default is false. If you want to use the Gamebase UI, please turn it on.
-        enableLaunchingStatusPopup: true,
-        enableBanPopup: true,
+    appId:'T0asTC1oud',    // TOAST Console Project ID
+    clientVersion:'1.0.0', // TOAST Console Gamebase App Client Version
+    enableDebugMode:true,  // Note:Do not turn it on in production mode.
+    uiConfiguration:{
+        enablePopup:true,  // Default is false.If you want to use the Gamebase UI, please turn it on.
+        enableLaunchingStatusPopup:true,
+        enableBanPopup:true,
     },
 };
 ```
 
 
 ### Debug Mode
-Gamebase 디버그를 위한 설정입니다.
-* true: Gamebase의 모든 로그가 출력됩니다.
-* false: warning, error 로그가 출력됩니다.
-* 기본값: false
+用于Gamebase调试的设置。
+* true:输出Gamebase的所有日志。
+* false:输出警告(warning)、错误(error)日志。
+* 默认值：false
 
-디버그 설정은 Console에서도 가능하며 Console에서 설정된 값을 우선시합니다.
-Console 설정 방법은 아래 가이드를 참고하십시오.
+调试设置也可在控制台进行，优先考虑在控制台中设置的值。
+控制台设置方法请参考如下指南。
 
-* [Console 테스트 단말기 설정](./oper-app/#test-device)
-* [Console Client 설정](./oper-app/#client)
+* [控制台测试终端机设置](./oper-app/#test-device)
+* [控制台客户设置](./oper-app/#client)
 
 
-개발에 참고할 수 있는 시스템 로그를 켜려면 **toast.Gamebase.setDebugMode(true)**를 호출하시기 바랍니다.
-> <font color="red">[주의]</font><br/>
+若欲打开开发中可以参考的系统日志，请调用**toast.Gamebase.setDebugMode(true)**。
+> <font color="red">[注意]</font><br/>
 >
-> 게임을 **릴리스**할 때는 반드시 소스 코드에서 setDebugMode 호출을 제거하거나 파라미터를 false로 바꿔야합니다.
+> **发布**游戏时必须从源代码中删除调用setDebugMode或将参数更改为false。
 
 
 
 
 ### Initialize
 
-**toast.Gamebase.initialize(gamebaseConfiguration, (launchingInfo, error) => { ... })**를 호출하여 Gamebase SDK를 초기화합니다.<br/>
+**toast.Gamebase.initialize(gamebaseConfiguration, (launchingInfo, error) => { ...})调用**，对Gamebase SDK进行初始化<br/>
 
 ```js
 function gamebaseInitialize() {
     var gamebaseConfiguration = {
-        appId: 'T0asTC1oud',    // TOAST Console Project ID
-        clientVersion: '1.0.0', // TOAST Console Gamebase App Client Version
-        enableDebugMode: true,  // Note: Do not turn it on in production mode.
-        uiConfiguration: {
-            enablePopup: true,  // Default is false. If you want to use the Gamebase UI, please turn it on.
-            enableLaunchingStatusPopup: true,
-            enableBanPopup: true,
+        appId:'T0asTC1oud',    // TOAST Console Project ID
+        clientVersion:'1.0.0', // TOAST Console Gamebase App Client Version
+        enableDebugMode:true,  // Note:Do not turn it on in production mode.
+        uiConfiguration:{
+            enablePopup:true,  // Default is false.If you want to use the Gamebase UI, please turn it on.
+            enableLaunchingStatusPopup:true,
+            enableBanPopup:true,
         },
     };  
 
 
     toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error) {
         if (error) {
-            // 초기화에 실패하면 Gamebase SDK를 이용할 수 없습니다.
-            // appId, clientVersion 및 TOAST Console의 설정이 정상적으로 입력되었는지 확인하세요.
+            // 若初始化失败，则不可使用Gamebase SDK。
+            // 请确认是否正常输入了appId、clientVersion及TOAST控制台的设置。
             console.log('Gamebase initialization failed');
             console.log(error);
             return;
         }
 
         const statusCode = launchingInfo.launching.status.code;
-        if (isPlayable(statusCode)) { // Status 값은 하단의 Launching Status Code 표를 참조하시길 바랍니다.
-            // 게임 플레이 가능상태입니다.
+        if (isPlayable(statusCode)) { // Status值请参考下端的Launching Status Code表。
+            // 为游戏可玩状态。
             console.log('Playable!');
         } else {
-            // 게임 플레이 불가능상태입니다. (점검, 서비스 종료 등)
+            // 为游戏不可玩状态（检查、服务结束等）
             console.log('Not Playable!');
         }
     });
@@ -102,7 +102,7 @@ function gamebaseInitialize() {
 
 ### Launching Status
 
-toast.Gamebase.initialize 호출 결과로 론칭 상태를 확인할 수 있습니다.
+可通过toast.Gamebase.initialize调用结果确认推出状态。
 ```js
 toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error) {
     if (error) {
@@ -118,15 +118,14 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 
 | Status                      | Code | Description                              |
 | --------------------------- | ---- | ---------------------------------------- |
-| IN_SERVICE                  | 200  | 정상 서비스 중                                 |
-| RECOMMEND_UPDATE            | 201  | 업데이트 권장                                  |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202  | 점검 중에는 서비스를 이용할 수 없지만 QA 단말기로 등록된 경우에는 점검과 상관없이 서비스에 접속해 테스트할 수 있습니다. |
-| IN_TEST                     | 203  | 테스트 중 |
-| IN_REVIEW                   | 204  | 심사 중 |
-| REQUIRE_UPDATE              | 300  | 업데이트 필수                                  |
-| BLOCKED_USER                | 301  | 접속 차단으로 등록된 단말기(디바이스 키)로 서비스에 접속한 경우입니다. |
-| TERMINATED_SERVICE          | 302  | 서비스 종료                                   |
-| INSPECTING_SERVICE          | 303  | 서비스 점검 중                                 |
-| INSPECTING_ALL_SERVICES     | 304  | 전체 서비스 점검 중                              |
-| INTERNAL_SERVER_ERROR       | 500  | 내부 서버 오류                                 |
-
+| IN_SERVICE                  | 200  | 正在正常服务                                 |
+| RECOMMEND_UPDATE            | 201  | 建议升级                                  |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202  | 检查中无法使用服务，但以QA终端机注册时，无论是否检查，都可访问服务进行测试。|
+| IN_TEST                     | 203  | 正在测试 |
+| IN_REVIEW                   | 204  | 正在审查 |
+| REQUIRE_UPDATE              | 300  | 必须升级                                  |
+| BLOCKED_USER                | 301  | 因访问断开，利用注册的终端机（设备密钥）访问服务的情况。|
+| TERMINATED_SERVICE          | 302  | 服务结束                                   |
+| INSPECTING_SERVICE          | 303  | 正在检查服务                                 |
+| INSPECTING_ALL_SERVICES     | 304  | 正在检查所有服务                             |
+| INTERNAL_SERVER_ERROR       | 500  | 内部服务器错误                                 |

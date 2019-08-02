@@ -6,8 +6,8 @@
 
 ### Device Language
 
-* 단말기에 설정된 언어 코드를 리턴합니다.
-* 여러개의 언어가 등록된 경우, 우선권이 가장 높은 언어만을 리턴합니다.
+* 返回终端机设置的语言代码。
+* 注册多种语言时，仅返回优先权最高的语言。
 
 **API**
 
@@ -24,7 +24,7 @@
 
 > [参考]
 >
-> Gamebase의 클라이언트 메시지는 영어(en), 한글(ko), 일본어(ja)만 포함합니다.
+> Gamebase的客户信息仅包含英文(en)、韩文(ko)、日文(ja)。
 
 #### Gamebase支持的语言代码种类。
 
@@ -224,14 +224,14 @@ localizedstring.json中定义的格式如下。
 
 ### Country Code
 
-* Gamebase는 System의 Country Code를 다음과 같은 API로 제공하고 있습니다.
-* 각 API 마다 특징이 있으니 쓰임새에 맞는 API를 선택하시기 바랍니다.
+* Gamebase以如下API提供系统的国家代码(country code)。
+* 各API具有不同特征，因此请选择与用途相符的API。
 
 #### USIM Country Code
 
-* USIM에 기록된 국가코드를 리턴합니다.
-* USIM에 잘못된 국가코드가 기록되어 있다 하더라도 추가적인 체크 없이 그대로 리턴합니다.
-* 값이 비어있는 경우 'ZZ'를 리턴합니다.
+* 返回USIM中记录的国家代码。
+* 即使USIM中记录的是错误的国家代码也将不进行确认就直接返回，。
+* 若值为空，则返回’ZZ’。
 
 **API**
 
@@ -241,10 +241,10 @@ localizedstring.json中定义的格式如下。
 
 #### Device Country Code
 
-* OS 로부터 전달받은 단말기 국가코드를 추가적인 체크 없이 그대로 리턴합니다.
-* 단말기 국가코드는 '언어' 설정에 따라 OS가 자동으로 결정합니다.
-* 여러개의 언어가 등록된 경우, 우선권이 가장 높은 언어로 국가코드를 결정합니다.
-* 값이 비어있는 경우 'ZZ'를 리턴합니다.
+* 从OS接收的终端机国家代码直接返回，不另行确认。
+* 终端机国家代码根据’语言’设置，由OS自动决定。
+* 注册多种语言时，以优先权最高的语言决定国家代码。
+* 若值为空，则返回’ZZ’。
 
 **API**
 
@@ -254,11 +254,11 @@ localizedstring.json中定义的格式如下。
 
 #### Intergrated Country Code
 
-* USIM, 기기 언어 설정의 순서로 국가 코드를 확인하여 리턴합니다.
-* getCountryCode API는 다음 순서로 동작합니다.
-	1. USIM에 기록된 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
-	2. USIM 국가 코드가 빈 값이라면 단말기 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
-	3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ' 를 리턴합니다.
+* 按照USIM、终端机语言设置的顺序确认国家代码并返回。
+* getCountryCode API按照如下顺序运行。
+	1.确认USIM中记录的国家代码，若存在值，则直接返回，不另行确认。
+	2.若USIM国家代码为空值，确认终端机国家代码，若存在值，则直接返回，不另行确认。
+	3.若USIM、终端机国家代码均为空值，则返回’ZZ’。
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
@@ -488,28 +488,28 @@ public class MyObserverManager {
 
 ### Analytics
 
-Game지표를 Gamebase Server로 전송할 수 있습니다.
+可将游戏指标传送至Gamebase服务器。
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> Gamebase Analytics에서 지원하는 모든 API는 로그인 후에 호출이 가능합니다.
+> Gamebase Analytics支持的所有API登录后可调用。
 >
 
 > [TIP]
 >
-> Gamebase.Purchase.requestPurchase() API를 호출하여 결제를 진행한 경우, 결제가 완료되면 자동으로 서버로 지표가 전송됩니다.
+> 调用Gamebase.Purchase.requestPurchase() API并完成付款后，自动传送指标。
 >
 
 #### Game User Data Settings
 
-로그인 이후 유저 레벨 정보를 설정할 수 있습니다.
+登录游戏后可设置用户级别信息。
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> 게임 로그인 이후 setGameUserData API를 호출하지 않으면 다른 지표에서 Level 정보가 누락될 수 있습니다.
+> 若登录游戏后不调用setGameUserData API，则其他指标中可能遗漏级别信息。
 >
 
-API 호출에 필요한 파라미터는 아래와 같습니다.
+调用API所需的参数如下。
 
 **GameUserData**
 
@@ -542,16 +542,16 @@ public void onLoginSuccess(, String channelId, String characterId) {
 
 #### Level Up Trace
 
-레벨업이 되었을 경우 유저 레벨 정보를 변경할 수 있습니다.
+升级后可更改用户级别信息。
 
-API 호출에 필요한 파라미터는 아래와 같습니다.
+调用API所需的参数如下。
 
 **LevelUpData**
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc	|
 | -------------------------- | -------------------------- | ---- | ---- |
 | userLevel | M | int |  |
-| levelUpTime | O | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
+| levelUpTime | O | long | 按Epoch Time输入。</br>按Millisecond单位输入。|
 | channelId | O | String |  |
 | characterId | O | String |  |
 

@@ -426,10 +426,10 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 ```
 
 ### Add Mapping Forcibly
-특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
-**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+若特定IdP有已映射的账户，尝试**强制**映射。
+尝试**强制映射**时需要从AddMapping API获得的`ForcingMappingTicket`。
 
-다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
+如下为对Facebook尝试强制映射的范例。
 
 ```objectivec
 - (void)authAddMapping {
@@ -461,33 +461,33 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 
 ### Add Mapping Forcibly with Credential
-특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
-**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+若特定IdP有已映射的账户，尝试**强制**映射。
+尝试**强制映射**时需要从AddMapping API获得的`ForcingMappingTicket`。
 
-게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMappingForcibly를 호출 할 수 있는 인터페이스입니다.
+游戏中先直接以IdP提供的SDK进行验证，并可利用发放的访问令牌等调用Gamebase AddMappingForcibly的接口。
 
-* Credential 파라미터 설정방법
+* Credential参数设置方法
 
 
-| keyname                                  | a use                          | 값 종류                           |
+| keyname                                  | a use                          | 值类型                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, payco, iosgamecenter, naver, google, twitter |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정 |                                           |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | 设置IdP类型                      | facebook, payco, iosgamecenter, naver, google, twitter |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname | 设置登录IdP后获得的验证信息（访问令牌） |                                           |
 
-> [참고]
+> [参考]
 >
-> 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
+> 游戏中必须使用外部服务（Facebook等）的固有功能时可能需要。
 >
 
 <br/>
 
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> 외부 SDK에서 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
+> 外部SDK要求的开发事项应使用外部SDK的API实现，Gamebase不支持。
 >
 
-다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
+如下为对Facebook尝试强制映射的范例。
 
 ```objc
 - (void)onButtonLogin {
@@ -605,18 +605,18 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 
 
 ## TransferAccount
-게스트 계정을 다른 단말기로 이전하기 위해 계정 이전을 위한 키를 발급받는 기능입니다.
+获得将访客账户转移至其他终端机的密钥的功能。
 
-이 키를 **TransferAccountInfo** 라고 부릅니다.
-발급받은 TransferAccountInfo는 다른 기기에서 **requestTransferAccount** API를 호출하여 계정 이전을 할 수 있습니다.
+该密钥称为**TransferAccountInfo**。
+获得的TransferAccountInfo可从其他终端机调用**requestTransferAccount** API，并转移账户。
 
-> `주의`
-> TransferAccountInfo의 발급은 게스트 로그인 상태에서만 발급이 가능합니다.
-> TransferAccountInfo를 이용한 계정 이전은 게스트 로그인 상태 또는 로그인되어 있지 않은 상태에서만 가능합니다.
-> 로그인한 게스트 계정이 이미 다른 외부 IdP (Google, Facebook, Payco 등) 계정과 매핑이 되어 있다면 계정 이전이 지원되지 않습니다.
+> `注意`
+> TransferAccountInfo仅在访客登录状态下可获得。
+> 使用TransferAccountInfo的账户转移仅可在访客登录状态或未登录状态下实现。
+> 若登录的访客账户已与其他外部IdP（Google、Facebook、PAYCO等）映射，则不支持账户转移。
 
 ### Issue TransferAccount
-게스트 계정 이전을 위한 TransferAccountInfo를 발급합니다.
+为转移访客账户，发放TransferAccountInfo。
 
 **API**
 
@@ -635,7 +635,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 ```
 
 ### Query TransferAccount
-게스트 계정 이전을 위해 이미 발급받은 TransferAccountInfo 정보를 게임베이스 서버에 질의합니다.
+为转移访客账户，向Gamebase服务器查询已获得的TransferAccountInfo信息。
 
 **API**
 
@@ -655,9 +655,8 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 
 
 ### Renew TransferAccount
-이미 발급받은 TransferAccountInfo 정보를 갱신합니다.
-"자동 갱신", "수동 갱신"의 방법이 있으며, "Password만 갱신", "ID와 Password 모두 갱신" 등의 설정을 통해
-TransferAccountInfo 정보를 갱신 할 수 있습니다.
+更新已获得的TransferAccountInfo信息。
+更新方法有**自动更新**与**手动更新**，可选择**仅更新密码**、**同时更新ID与密码**更新TransferAccountInfo信息。
 
 ```objectivec
 + (void)renewTransferAccountWithConfiguration:(TCGBTransferAccountRenewConfiguration *)config completion:(TransferAccountCompletion)completion;
@@ -670,7 +669,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
     // If you want renew the account automatically, use this config.
     TCGBTransferAccountRenewalTargetType renewalTargetType = TCGBTransferAccountRenewalTargetTypeIdPassword;
     TCGBTransferAccountRenewConfiguration* autoConfig = [TCGBTransferAccountRenewConfiguration autoRenewConfigurationWithRenewalTarget:renewalTargetType];
-    
+
     // If you want renew the account manually, use this config.
     TCGBTransferAccountRenewConfiguration* manualConfig = [TCGBTransferAccountRenewConfiguration manualRenewConfigurationWithAccountId:@"ID" accountPassword:@"PASSWORD"];
     [TCGBGamebase renewTransferAccountWithConfiguration:autoConfig completion:^(TCGBTransferAccountInfo *transferAccount, TCGBError *error) {
@@ -691,12 +690,12 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 
 ### Transfer Guest Account to Another Device
-**issueTransfer** API로 발급받은 TransferAccount를 통해 계정을 이전하는 기능입니다.
-계정 이전 성공 시 TransferAccount를 발급받은 단말기에서 이전 완료 메시지가 표시될 수 있고, Guest 로그인 시 새로운 계정이 생성됩니다.
-계정 이전이 성공한 단말기에서는 TransferAccount를 발급받았던 단말기의 게스트 계정을 계속해서 사용할 수 있습니다.
+向从**issueTransfer** API获得的TransferAccount转移账户的功能。
+账户转移成功时获得TransferAccount的终端机可显示转移完成信息，访客登录时创建新的账户。
+在账户转移成功的终端机中可继续使用获得TransferAccount的终端机的账户信息。
 
-> `주의`
-> 이미 Guest 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
+> `注意`
+> 若以访客登录的状态转移账户，访客账户将丢失。
 
 **API**
 
