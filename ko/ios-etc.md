@@ -515,3 +515,40 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
   [TCGBAnalytics traceLevelUpWithLevelUpData:levelUpData];
 }
 ```
+
+### Contact
+
+Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
+
+> [TIP]
+>
+> TOAST Contact 상품과 연동하여 사용하시면, 보다 쉽고 편리하게 고객 문의 대응이 가능합니다.
+> 자세한 TOAST Contact 상품 이용은 아래 가이드를 참고하시길 바랍니다.
+> [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+>
+
+#### Open Contact WebView
+
+Gamebase Console에 입력한 **고객센터 URL** 웹뷰를 띄울 수 있는 기능입니다.
+**Gamebase Console > App > InApp URL > Service center** 에 입력한 값이 사용됩니다.
+
+**API**
+
+```objectivec
++ (void)openContactWithViewController:(UIViewController *)viewController completion:(void(^)(TCGBError *error))completion;
+```
+
+**Example**
+
+```objectivec
+[TCGBContact openContactWithViewController:parentViewController completion:^(TCGBError *error) {
+    if (error != NULL && error.code == TCGB_ERROR_WEBVIEW_INVALID_URL) { // 7001
+        // TODO: Gamebase Console Service Center URL is invalid.
+        //  Please check the url field in the TOAST Gamebase Console.
+    } else if (error != NULL) {
+        // TODO: Error occur when opening the contact web view.
+    } else {
+        // A user close the contact web view.
+    }
+}];
+```

@@ -7,11 +7,17 @@ Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 > [참고] 
 >
 > Unity 지원 버전
-> 
-> * Unity 5.x : 5.5.4 ~ 5.6.6
-> * Unity 2017.x : ~ 2017.4.x(LTS)
+>
+> * Unity 2019.x : ~ 2019.1.10 
 > * Unity 2018.x : ~ 2018.4.x(LTS)
-> * Unity 2019.x : ~ 2019.1.2
+> * Unity 2017.x : ~ 2017.4.x(LTS)
+> * Unity 5.x : 5.6.6
+> * 하위 버전의 Unity 지원이 필요하시면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
+
+> <font color="red">[주의]</font>
+>
+> 2019년 8월 1일부터 Google Play에 게시되는 신규 앱에서는 64비트 아키텍처를 지원해야 합니다.
+> [Google Play 정책 및 64bit 지원 Unity 버전 확인](https://developer.android.com/distribute/best-practices/develop/64-bit#unity-developers)
 
 #### Supported Platforms
 

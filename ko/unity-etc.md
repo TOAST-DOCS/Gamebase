@@ -668,3 +668,56 @@ public void TraceLevelUp(int userLevel, long levelUpTime)
     Gamebase.Analytics.TraceLevelUp(levelUpData);
 }
 ```
+
+### Contact
+
+Gamebase 는 고객 문의 대응을 위한 기능을 제공합니다.
+
+> [TIP]
+>
+> TOAST Contact 상품과 연동하여 사용하면, 보다 쉽고 편리하게 고객 문의 대응이 가능합니다.
+> TOAST Contact 상품 이용은 아래 가이드를 참고하시길 바랍니다.
+> [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+
+#### Open Contact WebView
+
+Gamebase Console에 입력한 **고객센터 URL** 을 웹뷰로 띄울 수 있는 기능입니다.
+
+* **Gamebase Console > App > InApp URL > Service center** 에 입력한 값이 사용됩니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+```cs
+static void OpenContact(GamebaseCallback.ErrorDelegate callback)
+```
+
+**Example**
+
+``` cs
+public void SampleOpenContact()
+{
+    Gamebase.Contact.OpenContact((error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            Debug.Log("OpenContact succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("OpenContact failed. error:{0}", error));
+
+            if (error.code == GamebaseErrorCode.WEBVIEW_INVALID_URL)
+            {
+                // Gamebase Console Service Center URL is invalid.
+                // Please check the url field in the TOAST Gamebase Console.
+                var launchingInfo = Gamebase.Launching.GetLaunchingInformations();
+                Debug.Log(string.Format("csUrl:{0}", launchingInfo.launching.app.relatedUrls.csUrl));
+            }
+        }
+    });
+}
+```
