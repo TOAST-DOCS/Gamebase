@@ -1,5 +1,15 @@
 ## Game > Gamebase > Release Notes
 
+### August 27, 2019
+
+#### More Features 
+* [SDK] 2.5.0
+	* Provides API which opens CS URL entered on a console via webview 
+	
+#### Feature Updates/Changes 
+* [Console]
+	* Analytics: Updated chart performances
+	
 ### August 2, 2019 
 
 #### Bug Fixes 

@@ -599,8 +599,8 @@ Gamebase.Contact.openContact(Activity activity, GamebaseCallback callback);
 **Example**
 
 ``` java
-public void showCustomerServicePage(Activity activity) {
-    Gamebase.WebView.showCSWebView(activity, new GamebaseCallback() {
+public void openContact(Activity activity) {
+    Gamebase.Contact.openContact(activity, new GamebaseCallback() {
         @Override
         public void onCallback(GamebaseException exception) {
             if (exception != null && exception.code == WEBVIEW_INVALID_URL) { // 7001
