@@ -1,5 +1,15 @@
 ## Game > Gamebase > リリースノート
 
+### 2019.08.27.
+
+#### 機能追加
+* [SDK]2.5.0
+	* Consoleで入力したCS URLをWebビューで開くAPIを提供
+
+#### 機能改善/変更
+* [Console]
+	* Analytics：Chart性能を改善
+	
 ### 2019.08.02.
 
 #### バグ修正
