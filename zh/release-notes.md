@@ -1,5 +1,12 @@
 ## Game > Gamebase > Release Notes
 
+### August 2, 2019 
+
+#### Bug Fixes 
+* [SDK] Setting Tool 1.4.3
+	* Fixed the build error by moving down the script file below the editor folder  
+	* Fixed failed operations when Multilanguage is provided with the entire path of the language file on MAC OS. 
+
 ### July 23, 2019 
 
 #### Added 

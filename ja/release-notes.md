@@ -1,5 +1,12 @@
 ## Game > Gamebase > リリースノート
 
+### 2019.08.02.
+
+#### バグ修正
+* [SDK] Setting Tool 1.4.3
+	* Scriptファイルの位置をEditorフォルダの下に移動してビルドエラーを解決
+	* Mac OSでMultilanguageにLanguageファイルの全体パスを与えると動作しない問題を修正
+
 ### 2019.07.23
 
 #### 機能追加
