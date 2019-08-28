@@ -3,12 +3,12 @@
 ### 2019. 08. 27.
 
 #### 기능 추가
-* [SDK]2.5.0
-	* Console에서 입력한 CS URL을 웹뷰로 오픈하는 API제공
+* [SDK] 2.5.0
+	* Console에서 입력한 CS URL을 웹뷰로 오픈하는 API 제공
 	
 #### 기능 개선/변경
 * [Console]
-	* Analytics: Chart 성능 개선
+	* Analytics: 차트 성능 개선
 
 #### 버그 수정
 * [SDK] Setting Tool 1.4.3
