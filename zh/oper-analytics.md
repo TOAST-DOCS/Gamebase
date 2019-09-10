@@ -223,3 +223,98 @@ Retention为可以确认在指定日注册的用户从第二天起的90天内还
 * 最近一周下载URL调用数：通过[应用程序 > 安装URL]的安装路径调用游戏安装API的顾客数.通过应用程序安装的市场营销，可测定调用Short URL的客户数，以确认客户反应。
 * 各浏览器占有率（全部累计）：可确认各浏览器安装URL调用数的比例。
 * 各平台占有率（全部累计）：可确认各平台安装URL调用数的比例。
+
+## Transmission
+
+**传送指标**标签可在游戏向API传送指标时确认。
+传送指标分为如下3种。
+
+* 用户级别：可按用户级别确认访问及销售信息。
+* 世界/服务器/渠道：可按世界/服务器/渠道确认访问及销售信息User IdUser Id。
+* 类别/职业：可按类别/职业确认访问及销售信息。
+
+### Concurrent Status
+
+可确认所选传送指标类型及日期的访问、销售信息。
+同时在线人数按当天提供CCU，按日期提供DAU信息。当天以10分钟为单位更新信息。
+
+![gamebase_analytics_14_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_14_201906_1.png)
+
+* CCU (Concurrent User)：以10分钟为单位测定的实时同时在线人数（登录用户数）
+* DAU (Daily Active User)：以一日用户ID为准，登录1次以上的活跃用户数
+* NRU (New Registered User)：当天新增用户
+* 付款件数：收费商品付款件数
+* 付款金额：收费商品付款金额
+
+### Status By Level
+
+可按级别确认访问、销售现况。
+
+![gamebase_analytics_15_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_15_201906_1.png)
+
+* DAU (Daily Active User)：以日间用户ID为准，登录1次以上活动用户数
+* Avg.Playtime:该级别的各日期所有Playtime的平均值（DAU的Playtime之和 / DAU）
+* 付款金额：收费商品付款金额
+* 新增付款：新增付款用户(NPU)支付的金额
+* 再次购买付款：再次购买付款用户支付的金额
+* PU (Paying User)：支付收费商品的用户。（=再次购买PU + 新增PU）
+* 新增PU：首次支付收费商品的用户
+* 再次购买PU：所有PU - 新增PU（再次购买PU为一日数据，以前一日为基准计算）
+
+### Status By Channel
+
+可按世界/服务器/渠道确认访问、销售现况。
+
+![gamebase_analytics_16_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_16_201906_1.png)
+
+* DAU (Daily Active User)：以一日用户ID为准，登录1次以上的活跃用户数
+* Avg.Playtime:相应级别的各日期所有Playtime的平均值（DAU的Playtime之和 / DAU）
+* 付款金额：收费商品付款金额
+* 新增付款：新增付款用户(NPU)支付的金额
+* 再次购买付款：再次购买付款用户支付的金额
+* PU (Paying User)：支付收费商品的用户（=再次购买PU + 新增PU）
+* 新增PU：首次支付收费商品的用户
+* 再次购买PU：所有PU - 新增PU（再次购买PU为一日数据，以前一日为基准计算）
+
+### Status By Class
+
+可按类别/职业确认访问、销售现况。
+
+![gamebase_analytics_17_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_17_201906_1.png)
+
+* DAU (Daily Active Users)：以一日用户ID为准，登录1次以上的活跃用户数
+* Avg.Playtime:相应级别的各日期所有Playtime的平均值（DAU的Playtime之和 / DAU）
+* 付款金额：收费商品付款金额
+* 新增付款：新增付款用户(NPU)支付的金额
+* 再次购买付款：再次购买付款用户支付的金额
+* PU (Paying User)：支付收费商品的用户。（=再次购买PU + 新增PU）
+* 新增PU：首次支付收费商品的用户
+* 再次购买PU：所有PU - 新增PU（再次购买PU为一日数据，以前一日为基准计算）
+
+### Level Up
+
+可确认用户的升级信息。
+
+* 达成级别：已达成的级别
+* 升级达成用户：已达成相应级别的用户数
+* 升级平均达成时间（分钟）：达成相应级别的用户的平均达成时间（分钟）
+
+![gamebase_analytics_18_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_18_201906_1.png)
+
+### Item Sales Status
+
+可确认所选传送指标类型的道具销售现况。
+单击**条件**按钮，可选择如下查询值。
+
+* 付款金额
+* 付款件数
+* PU (Paying User)
+* 新增PU
+
+![gamebase_analytics_19_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_19_201906_1.png)
+
+### Item Sales TOP 50
+
+可确认所选传送指标类型及值的道具销售前50名项目。
+
+![gamebase_analytics_20_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_20_201906_1.png)

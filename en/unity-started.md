@@ -1,4 +1,4 @@
-## Game > Gamebase > Unity Developer's Guide > Getting Started
+﻿## Game > Gamebase > Unity Developer's Guide > Getting Started
 
 Below describes environments and initial setting of Gamebase Unity SDK.
 
@@ -8,9 +8,10 @@ Below describes environments and initial setting of Gamebase Unity SDK.
 > 
 > Unity support version
 > 
-> * Unity 5.x : 5.5.4 ~ 5.6.6
+> * Unity 5.x : 5.6.6
 > * Unity 2017.x : ~ 2017.4.x(LTS)
-> * Unity 2018.x : ~ 2018.3.8
+> * Unity 2018.x : ~ 2018.4.x(LTS)
+> * Unity 2019.x : ~ 2019.1.10
 
 #### Supported Platforms
 
