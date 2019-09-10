@@ -223,3 +223,99 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 * 過去1週間のダウンロードURL呼び出し数：[アプリ > インストールURL]のインストールパスに、ゲームインストールAPIを呼び出した顧客数。アプリインストールマーケティング用で、Short URL呼び出した顧客数を測定し、顧客の反応を確認できます。
 * ブラウザ別占有率(全体累積)：ブラウザ別にインストールURL呼び出し数の比率を確認できます。
 * プラットフォーム別占有率(全体累積)：プラットフォーム別にインストールURL呼び出し数の比率を確認できます。
+
+## Transmission
+
+**転送指標**タブは、ゲームからAPIで指標を転送する時に確認できます。
+転送指標の種類は下記の3個です。
+
+* 利用者レベル：利用者レベル別に接続と売上情報を確認できます。
+* ワールド/サーバー/チャンネル：ワールド/サーバー/チャンネル別に接続と売上情報をUser IdUser Id確認できます。
+* クラス/職業：クラス/職業別に接続と売上情報を確認できます。
+
+### Concurrent Status
+
+選択された転送指標の種類と、各日付の接続、売上情報を確認できます。
+同時接続者は、当日はCCUを提供し、日付別はDAU情報を提供します。当日の場合は10分単位で情報が更新されます。
+
+![gamebase_analytics_14_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_14_201906_1.png)
+
+* CCU (Concurrent User)：10分単位で測定されたリアルタイム同時接続者数(ログイン利用者数)
+* DAU (Daily Active User)：利用者ID基準で、1日に1回以上ログインしたアクティブ利用者数
+* NRU (New Registered User)：当日の新規加入者
+* 決済件数：有料商品の決済件数
+* 決済金額：有料商品の決済金額
+
+### Status By Level
+
+レベル別に接続、売上状況を確認できます。
+
+![gamebase_analytics_15_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_15_201906_1.png)
+
+* DAU (Daily Active User)：利用者ID基準で、1日に1回以上ログインしたアクティブ利用者数
+* Avg.Playtime：該当レベルの日付別の全Playtimeの平均(DAUのPlaytimeの合計 / DAU)
+* 決済金額：有料商品の決済金額
+* 新規決済：新規決済利用者(NPU)が決済した金額
+* 再購入決済：再購入決済利用者が決済した金額
+* PU (Paying User)：有料商品を決済した利用者。(=再購入PU + 新規PU)
+* 新規PU：有料商品を初めて決済した利用者
+* 再購入PU：全体PU - 新規PU(再購入PUは1日間のデータで、前日を基準に計算)
+
+### Status By Channel
+
+ワールド/サーバー/チャンネル別に接続、売上状況を確認できます。
+
+![gamebase_analytics_16_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_16_201906_1.png)
+
+* DAU (Daily Active User)：利用者ID基準で、1日に1回以上ログインしたアクティブ利用者数
+* Avg.Playtime：該当レベルの日付別の全Playtimeの平均(DAUのPlaytimeの合計 / DAU)
+* 決済金額：有料商品の決済金額
+* 新規決済：新規決済利用者(NPU)が決済した金額
+* 再購入決済：再購入決済利用者が決済した金額
+* PU (Paying User)：有料商品を決済した利用者(=再購入PU + 新規PU)
+* 新規PU：有料商品を初めて決済した利用者
+* 再購入PU：全体PU - 新規PU(再購入PUは1日間のデータで、前日を基準に計算)
+
+### Status By Class
+
+クラス/職業別に接続、売上状況を確認できます。
+
+![gamebase_analytics_17_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_17_201906_1.png)
+
+* DAU (Daily Active User)：利用者ID基準で、1日に1回以上ログインしたアクティブ利用者数
+* Avg.Playtime：該当レベルの日付別の全Playtimeの平均(DAUのPlaytimeの合計 / DAU)
+* 決済金額：有料商品の決済金額
+* 新規決済：新規決済利用者(NPU)が決済した金額
+* 再購入決済：再購入決済利用者が決済した金額
+* PU (Paying User)：有料商品を決済した利用者。(=再購入PU + 新規PU)
+* 新規PU：有料商品を初めて決済した利用者
+* 再購入PU：全体PU - 新規PU(再購入PUは1日間のデータで、前日を基準に計算)
+
+### Level Up
+
+利用者のレベルアップ情報を確認できます。
+
+* 達成レベル：達成したレベル
+* レベルアップ達成利用者：該当レベルを達成した利用者数
+* レベルアップ平均達成時間(分)：該当レベルを達成した利用者の平均達成時間(分)
+
+![gamebase_analytics_18_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_18_201906_1.png)
+
+### Item Sales Status
+
+選択された転送指標の種類ごとにアイテム販売状況を確認できます。
+**条件**ボタンをクリックし、下記の照会値を選択できます。
+
+* 決済金額
+* 決済件数
+* PU (Paying User)
+* 新規PU
+
+![gamebase_analytics_19_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_19_201906_1.png)
+
+
+### Item Sales TOP 50
+
+選択された転送指標の種類および値に応じて、アイテム販売上位50個の項目を確認できます。
+
+![gamebase_analytics_20_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_20_201906_1.png)

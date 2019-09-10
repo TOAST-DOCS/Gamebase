@@ -154,6 +154,7 @@ Can search by date, and history data can be retrieved up to 1 month (30 days).
 유저의 기기 이전키의 발급 및 검증 이력을 확인할 수 있습니다. 차단된 키의 차단해제나 만료된 키의 재발급이 가능합니다.
 
 ![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_TransferAccount1_1.0.png)
+**기기 이전 발급 Key**
 - **ID** : 유저에게 발급된 기기 이전 ID
 - **발급 일자** : 기기 이전 ID가 발급된 일자
 - **만료 일자** : 발급된 기기 이전 ID의 만료 일자
@@ -176,3 +177,4 @@ Can search by date, and history data can be retrieved up to 1 month (30 days).
 - 비밀번호는 재발급 시 한번만 노출되므로 재발급 진행 이후 꼭 해당 정보를 별도로 보관하셔야 합니다.
 - 보관하지 못하셨을 경우 따로 비밀번호를 찾을 수 있는 방법이 없으므로 재발급을 다시 진행해 주셔야 합니다.
 - 만료된 키는 만료 일자가 갱신되나 계정 상태가 정상/차단일 경우에는 만료 일자가 갱신되지 않습니다.
+
