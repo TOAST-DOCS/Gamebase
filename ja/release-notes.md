@@ -1,5 +1,18 @@
 ## Game > Gamebase > リリースノート
 
+### 2019.09.10.
+
+#### 機能追加
+* [Console]
+	* Analytics：チャンネル/ワールド/サーバー、職業/クラス転送指標にレベル指標を追加表示
+
+#### 機能改善/変更
+* [Console]
+	* Analytics：Gridレンダリング性能を改善(tui-grid 4.4.x適用)
+* [SDK] 2.5.1
+	* (iOS) GamebasePushAdapterで使用中のTCPushSDKを1.7.0にアップデート
+		* TCPushSDKが、Static LibraryからFrameworkファイルに変更されたため、プロジェクトにTCPushSDK.frameworkを追加する必要があります。
+
 ### 2019.08.27.
 
 #### 機能追加
