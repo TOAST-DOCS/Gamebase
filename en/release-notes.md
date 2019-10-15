@@ -1,5 +1,18 @@
 ## Game > Gamebase > Release Notes
 
+### Sept. 10, 2019 
+
+#### More Features
+* [Console]
+	* Analytics: Further shows the level indicator for channel/world/server and occupation/class transfer indicators 
+	
+#### Feature Updates 
+* [Console]
+	* Analytics: Performance updated for grid rendering (with tui-grid 4.4x)
+* [SDK] 2.5.1
+	* (iOS) Updated to TCPushSDK 1.7.0 which is for GamebasePushAdapter
+		* Since file has changed from static library to framework for TCPushSDK, TCPushSDK.framework must be added to project. 
+
 ### August 27, 2019
 
 #### More Features 
