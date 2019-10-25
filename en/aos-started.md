@@ -206,8 +206,8 @@ Gamebase SDK ensures that those modules with 3rd Party SDK and dependency are in
 |                                  | Twitter         | gamebase-adapter-auth-twitter-{gamebaseTwitterAdapterVersion}.aar | signpost-core-{signpostVersion}.jar |                          |
 |                                  | Line            | gamebase-adapter-auth-line<br>-{gamebaseLineAdapterVersion}.aar | line-sdk-{lineSdkVersion}.aar<br>animated-vector-drawable-{supportVersion}.aar<br>appcompat-v7-{supportVersion}.aar<br>customtabs-{supportVersion}.aar<br>support-vector-drawable-{supportVersion}.aar<br>common-1.0.0.jar<br>common-1.0.3.jar<br>runtime-1.0.3.aar<br>support-annotations-{supportVersion}.jar<br>support-compat-{supportVersion}.aar<br>support-core-ui-{supportVersion}.aar<br>support-core-utils-{supportVersion}.aar<br>support-fragment-{supportVersion}.aar |
 |                                  | Payco           | gamebase-adapter-auth-payco<br>-{gamebasePaycoAdapterVersion}.aar | paycologin-{paycoSdkVersion}.aar<br>play-services-base-{playServicesVersion}.aar<br>play-services-basement-{playServicesVersion}.aar<br>gson-{gsonVersion}.jar |
-| **Purchase<br>(optional)**       | IAP             | gamebase-adapter-purchase-iap<br>-{gamebaseIAPAdapterVersion}.aar | iap-{iapSdkVersion}.aar<br>mobill-core-{iapSdkVersion}.aar<br>gson-{gsonVersion}.jar<br>okhttp-1.5.4.jar<br>* okhttp-1.5.4.jar는 gamebase sdk가 사용하는 okhttp-3.x 와는 다른, IAP SDK가 사용하는 모듈입니다.|
-|                                  | IAP - ONE store |                                          | iap-onestore-{iapSdkVersion}.aar<br>* ONE store 사용 시 추가해야 합니다. |
+| **Purchase<br>(optional)**       | IAP             | gamebase-adapter-purchase-iap<br>-{gamebaseIAPAdapterVersion}.aar | iap-{iapSdkVersion}.aar<br>mobill-core-{iapSdkVersion}.aar<br>gson-{gsonVersion}.jar<br>okhttp-1.5.4.jar<br>* okhttp-1.5.4.jar is a module used by IAP SDK and is different from okhttp-3.x used by Gamebase SDK.|
+|                                  | IAP - ONE store |                                          | iap-onestore-{iapSdkVersion}.aar<br>* It should be added to use ONE store. |
 | **Push<br>(optional)**           | FCM             | gamebase-adapter-push-fcm<br>-{gamebaseFCMAdapterVersion}.aar  | pushsdk-{pushSdkVersion}.aar<br>firebase-common-{playServicesVersion}.jar<br>firebase-iid-{playServicesVersion}.jar<br>firebase-messaging-{playServicesVersion}.aar<br>play-services-base-{playServicesVersion}.aar<br>play-services-basement-{playServicesVersion}.aar<br>play-services-gcm-{playServicesVersion}.aar<br>play-services-iid-{playServicesVersion}.aar<br>play-services-tasks-{playServicesVersion}.aar<br>common-1.0.0.jar<br>common-1.0.3.jar<br>runtime-1.0.3.aar<br>support-annotations-{supportVersion}.jar<br>support-compat-{supportVersion}.aar<br>support-core-ui-{supportVersion}.aar<br>support-core-utils-{supportVersion}.aar<br>support-fragment-{supportVersion}.aar<br>support-media-compat-{supportVersion}.aar<br>support-v4-{supportVersion}.aar |
 |                                  | Tencent         | gamebase-adapter-push-tencent<br>-{gamebaseTencentAdapterVersion}.aar | pushsdk-tencent-{pushSdkTencentVersion}.aar |
 
@@ -231,14 +231,14 @@ API Reference is included in SDK.
 
 ## API Deprecate Governance
 
-Gamebase에서 더 이상 지원하지 않는 API는 Deprecate 처리합니다.
-Deprecated 된 API는 다음 조건 충족 시 사전 공지 없이 삭제될 수 있습니다.
+The API which is not supported by Gamebase anymore is processed as deprecated (deprecate).
+A deprecated API can be deleted without any prior notice when the following conditions are met:
 
-* 5회 이상의 마이너 버전 업데이트
-	* Gamebase Version Format - XX.YY.ZZ
-		* XX : Major
-		* YY : Minor
-		* ZZ : Hotfix
+* Minor version updates of five or more times.
+	* Gamebase version format - XX.YY.ZZ
+		* XX: Major
+		* YY: Minor
+		* ZZ: Hotfix
 
-* 최소 5개월 경과
+* Time elapse of at least five months
 

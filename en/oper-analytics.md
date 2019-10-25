@@ -222,3 +222,101 @@ Statistical indicators for an installation URL call are available.
 * Download URL Call Counts of the Recent Week: Number of clients who call API for game installation via [App > Installation URL]. You can find customer responses, as part of marketing for app installation, by measuring the number of users who call short URL. 
 * Share by Browser (all accumulated): Shows the rate of URL call counts on each browser. 
 * Share by Platform (all accumulated): Shows the rate of installation URL call counts on each platform 
+
+## Transfer
+
+The **Transfer Indicator** tab is available when indicators are sent via API on a game. 
+There are three types of transfer indicators as below: 
+
+* User Level: Access and sales data are available by user level. 
+* World/Server/Channel: Access by world/server/channel and sales data are available with user ID. 
+* Class/Occupation: Access and sales data are available by class/occupation. 
+
+### Concurrent Status
+
+You can find each type of selected transfer indicators, as well as access and sales information on a particular date.  
+Concurrent access is available via CCU for the day, or DAU on each date. 
+Information is updated at every 10 minutes for the day.  
+
+![gamebase_analytics_14_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_14_201906_1.png)
+
+* CCU (Concurrent User): Concurrent real-time users measured at every minute (number of login users) 
+* DAU (Daily Active User): Active users, who log in more than once
+* NRU (Newly Registered User) :Users who are newly registered on the day
+* Purchase Count : Number of paid product purchases
+* Purchase Amount: Purchase amount of paid products 
+
+### Status by Level
+
+Access and sales status are available at each level.
+
+![gamebase_analytics_15_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_15_201906_1.png)
+
+* DAU (Daily Active User): Daily active users, by user ID, who log in more than once 
+* Avg.Playtime: Average total play time on each day of the level (sum of playtime of DAU/DAU)
+* Purchase Amount: Purchase amount of paid products  
+* New Purchase: Purchase amount by new paying users (NPU)
+* Repeat Purchase: Purchase amount by repeat paying users
+* PU (Paying User): Users who purchase paid products (= repeat PU + new PU)
+* New PU: First-time paying user
+* Repeat PU: Total PU - New PU (calculated upon the previous day on a daily basis)
+
+### Status by Channel
+
+Access and sales status are available by world/server/channel. 
+
+![gamebase_analytics_16_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_16_201906_1.png)
+
+
+* DAU (Daily Active User): Daily active users, by user ID, who log in more than once 
+* Avg.Playtime: Average total play time on each day of the level (sum of playtime of DAU/DAU)
+* Purchase Amount: Purchase amount of paid products  
+* New Purchase: Purchase amount by new paying users (NPU)
+* Repeat Purchase: Purchase amount by repeat paying users
+* PU (Paying User): Users who purchase paid products (= repeat PU + new PU)
+* New PU: First-time paying user
+* Repeat PU: Total PU - New PU (calculated upon the previous day on a daily basis)
+
+### Status by Class
+
+Access and sales status are available by class/occupation. 
+
+![gamebase_analytics_17_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_17_201906_1.png)
+
+* DAU (Daily Active User): Daily active users, by user ID, who log in more than once 
+* Avg.Playtime: Average total play time on each day of the level (sum of playtime of DAU/DAU)
+* Purchase Amount: Purchase amount of paid products  
+* New Purchase: Purchase amount by new paying users (NPU)
+* Repeat Purchase: Purchase amount by repeat paying users
+* PU (Paying User): Users who purchase paid products (= repeat PU + new PU)
+* New PU: First-time paying user
+* Repeat PU: Total PU - New PU (calculated upon the previous day on a daily basis)
+
+### Level-ups
+
+Find the level-up information of each user.  
+
+* Achieved Level: The level that is achieved 
+* Successful Level-up User: Users who achieved the level 
+* Average Level-up Achievement Time (minutes): Average achievement time (minutes) of level-up users 
+
+![gamebase_analytics_18_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_18_201906_1.png)
+
+### Item Sales Status 
+
+Check item sales status for each type of selected transfer indicators. 
+Click **Conditions** and select query values as below:
+
+* Purchase Amount
+* Number of Purchases 
+* PU (Paying User) 
+* New PU 
+![gamebase_analytics_19_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_19_201906_1.png)
+
+
+
+### Top 50 Sales Items 
+
+Find the 50 most selling items for each type and value of selected transfer indicators. 
+
+![gamebase_analytics_20_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_20_201906_1.png)

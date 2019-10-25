@@ -6,8 +6,8 @@ Additional functions provided by Gamebase are described as below:
 
 ### Device Language
 
-* 단말기에 설정된 언어 코드를 리턴합니다.
-* 여러개의 언어가 등록된 경우, 우선권이 가장 높은 언어만을 리턴합니다.
+* Returns the language code from the device.
+* If there are several languages registered, only the language of top priority is returned.
 
 **API**
 
@@ -22,11 +22,11 @@ Supported Platforms
 static string GetDeviceLanguageCode()
 ```
 
-> [참고]
+> [Note]
 >
-> Editor on Windows, Standalone on Windows인 경우에는 [CultureInfo](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo?view=netframework-4.7.2)를 참고하여 언어 코드를 리턴합니다.
+> In case of Editor on Windows or Standalone on Windows, the language code is returned based on the [CultureInfo](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo?view=netframework-4.7.2).
 >
-> Editor on Mac, WebGL은 [Application.systemLanguage](https://docs.unity3d.com/ScriptReference/SystemLanguage.html) 값을 참고하여 언어 코드를 리턴합니다.<br/>예를 들어, Application.systemLanguage == SystemLanguage.Korean인 경우에는 'ko'를 리턴합니다.
+> In case of Editor on Mac or WebGL, the language code is returned based on the [Application.systemLanguage](https://docs.unity3d.com/ScriptReference/SystemLanguage.html) value.<br/>For example, when Application.systemLanguage == SystemLanguage.Korean, 'ko' is returned.
 
 
 ### Display Language
@@ -264,14 +264,14 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 
 ### Country Code
 
-* Gamebase는 System의 국가 코드를 다음과 같은 API로 제공하고 있습니다.
-* 각 API 마다 특징이 있으니 쓰임새에 맞는 API를 선택하시기 바랍니다.
+* Gamebase provides (country codes) for the system in the following APIs.
+* Please select an appropriate API that best fits your purpose as each API has its own characteristics.
 
 #### USIM Country Code
 
-* USIM에 기록된 국가 코드를 리턴합니다.
-* USIM에 잘못된 국가 코드가 기록되어 있다 하더라도 추가적인 체크 없이 그대로 리턴합니다.
-* 값이 비어있는 경우 'ZZ'를 리턴합니다.
+* Returns a country code written in the USIM.
+* Even if a wrong country code has been written in the USIM, it will be returned as it is without any verification.
+* 'ZZ' is returned when the value is empty.
 
 **API**
 
@@ -286,10 +286,10 @@ static string GetCountryCodeOfUSIM()
 
 #### Device Country Code
 
-* OS로부터 전달받은 단말기 국가 코드를 추가적인 체크 없이 그대로 리턴합니다.
-* 단말기 국가 코드는 '언어' 설정에 따라 OS가 자동으로 결정합니다.
-* 여러 개의 언어가 등록된 경우, 우선권이 가장 높은 언어로 국가 코드를 결정합니다.
-* 값이 비어있는 경우 'ZZ'를 리턴합니다.
+* Returns the country code received from the OS as it is without any verification.
+* The country code of the device is automatically determined by the OS based on the "Language" setting.
+* If there are several languages registered, the country code is determined based on the language of top priority.
+* 'ZZ' is returned when the value is empty.
 
 **API**
 
@@ -303,19 +303,19 @@ static string GetCountryCodeOfDevice()
 
 #### Intergrated Country Code
 
-* USIM, 기기 언어 설정의 순서로 국가 코드를 확인하여 리턴합니다.
-* GetCountryCode API는 다음 순서로 동작합니다.
-	1. USIM에 기록된 국가 코드를 확인하고, 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
-	2. USIM 국가 코드가 빈 값이라면 단말기 국가 코드를 확인하고, 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
-	3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ' 를 리턴합니다.
+* Verifies and returns the country code in the order of the language settings in the USIM.
+* GetCountryCode API operates in the following order:
+	1. Checks the country code written in the USIM. If a value exists, returns the value without any separate verification.
+	2. If the country code in the USIM is empty, checks the country code of the device. If a value exists, returns the value without any separate verification.
+	3. 'ZZ' is returned when the country code values of USIM and device are empty.
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
-> [참고] 
+> [Note]
 >
-> Editor on Windows, Standalone on Windows인 경우에는 [CultureInfo](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo?view=netframework-4.7.2)를 참고하여 국가 코드를 리턴합니다.
+> In case of Editor on Windows or Standalone on Windows, the country code is returned based on the [CultureInfo](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo?view=netframework-4.7.2).
 >
-> Editor on Mac, WebGL은 [Application.systemLanguage](https://docs.unity3d.com/ScriptReference/SystemLanguage.html) 값을 참고하여 국가 코드를 리턴합니다.<br/>예를 들어,Application.systemLanguage == SystemLanguage.Korean인 경우에는 'KR'을 리턴합니다.
+> In case of Editor on Mac or WebGL, the country code is returned based on the [Application.systemLanguage](https://docs.unity3d.com/ScriptReference/SystemLanguage.html) value.<br/>For example, when Application.systemLanguage == SystemLanguage.Korean, 'KR' is returned.
 
 
 
@@ -569,32 +569,32 @@ public void RemoveAllObserver()
 
 ### Analytics
 
-Game지표를 Gamebase Server로 전송할 수 있습니다.
+The game index can be transferred to the Gamebase server.
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> Gamebase Analytics에서 지원하는 모든 API는 로그인 후에 호출할 수 있습니다.
+> All APIs supported by the Gamebase Analytics can be called after login.
 >
 >
 > [TIP]
 >
-> Gamebase.Purchase.RequestPurchase API를 호출하여 결제를 완료하면, 자동으로 지표를 전송합니다.
+> When the Gamebase.Purchase.RequestPurchase API is called and payment is completed, an index is automatically transferred.
 >
 
-Analytics Console 사용법은 아래 가이드를 참고하십시오.
+Please see the following guide for how to use Analytics console.
 
 * [Analytics Console](./oper-analytics)
 
 #### Game User Data Settings
 
-게임 로그인 이후 유저 레벨 정보를 지표로 전송할 수 있습니다.
+The game user level information can be transmitted as an index after logging in to the game.
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 게임 로그인 이후 SetGameUserData API를 호출하지 않으면 다른 지표에서 Level 정보가 누락될 수 있습니다.
+> If the SetGameUserData API is not called after login to the game, the level information may be missed from other indexes.
 >
 
-API 호출에 필요한 파라미터는 아래와 같습니다.
+Parameters required for calling the API are as follows:
 
 **GameUserData**
 
@@ -632,16 +632,16 @@ public void SetGameUserData(int userLevel, string channelId, string characterId)
 
 #### Level Up Trace
 
-레벨업이 되었을 경우 유저 레벨 정보를 지표로 전송할 수 있습니다.
+The game user level information can be transmitted as an index after leveling up.
 
-API 호출에 필요한 파라미터는 아래와 같습니다.
+Parameters required for calling the API are as follows:
 
 **LevelUpData**
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc	|
 | -------------------------- | -------------------------- | ---- | ---- |
 | userLevel | M | int |  |
-| levelUpTime | O | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
+| levelUpTime | O | long | Enter Epoch Time</br>in millisecond. |
 | channelId | O | string |  |
 | characterId | O | string |  |
 

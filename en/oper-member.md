@@ -146,35 +146,38 @@ Can search by date, and history data can be retrieved up to 1 month (30 days).
 
 ### Withdraw History
 ![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
-조회한 사용자가 탈퇴한 사용자라면 탈퇴 이력을 보여줍니다.
-이 메뉴는 탈퇴 유저를 조회할 경우에만 나타나며 유저의 탈퇴경로를 조회할 수 있습니다.
+Displays a withdrawal history if the searched user is a withdrawn user.
+This menu is displayed only when searching for withdrawn game users, which allows you to check the withdrawal path of the user.
 
 ## Transfer account
-기기 이전 기능을 사용할 경우에만 사용하실 수 있습니다. [기기이전 기능 활성화하기](./oper-app/#transfer-account)
-유저의 기기 이전키의 발급 및 검증 이력을 확인할 수 있습니다. 차단된 키의 차단해제나 만료된 키의 재발급이 가능합니다.
+This is available only when the **device transfer** function is used. [Enable the device transfer function](./oper-app/#transfer-account)
+You can check the history of issue and verification of the device transfer key for game users. You can unblock blocked keys or reissue expired keys.
 
 ![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_TransferAccount1_1.0.png)
-**기기 이전 발급 Key**
-- **ID** : 유저에게 발급된 기기 이전 ID
-- **발급 일자** : 기기 이전 ID가 발급된 일자
-- **만료 일자** : 발급된 기기 이전 ID의 만료 일자
-- **상태** : 발급된 기기 이전 ID의 현재 상태
-  - <font color="white" style="background-color:#88C637">정상</font>: 발급된 키가 정상 상태입니다. 해당 키를 이용하여 기기 이전이 가능합니다.
-  - <font color="white" style="background-color:#FB8F37">차단</font>: 발급된 키가 차단된 상태입니다. 발급된 키를 이용하여 기기 이전이 불가능합니다.
-  - <font color="white" style="background-color:#A1A1A1">만료</font>: 발급된 키의 사용 기간이 만료된 상태입니다. 발급된 키를 이용하여 기기 이전이 불가능합니다.
+**Device transfer issue key**
 
-**기기 이전 이력**
-해당 유저에게 발급된 키의 이력을 조회할 수 있습니다.
-기본적으로 가장 최근에 발급된 키가 선택되어 있으며 다른 키를 선택할 경우 선택한 키의 이력을 조회할 수 있습니다.
+- **ID**: A device transfer ID issued to a game user
+- **Issued on**: A date when the device transfer ID has been issued
+- **Expired on**: An expiry date of the device transfer ID
+- **Status**: The current status of the issued device transfer ID
+  - <font color="white" style="background-color:#88C637">OK</font>: The issued key status is normal. Your device can be transferred using the key.
+  - <font color="white" style="background-color:#FB8F37">Blocked</font>: The issued key status is blocked. Your device cannot be transferred using the key.
+  - <font color="white" style="background-color:#A1A1A1">Expired</font>: The issued key has expired. Your device cannot be transferred using the key.
 
-### 기기 이전 재발급
+**Device transfer history**:
+You can retrieve the history of keys issued to game users.
+By default, the last issued key is selected. If you select another key, you can check the history of that key.
+
+### Device transfer reissuance
+
+Click the **Reissue** button to reissue the device transfer key. The previous key cannot be used when a new one is reissued.
+
 ![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_TransferAccount_Renewal1_1.0.png)
-**재발급** 버튼을 클릭하여 새로운 기기 이전 키를 다시 발급 할 수 있습니다. 재발급하면 이전에 발급된 키는 더이상 사용할 수 없습니다.
-1) **ID,비밀번호 재발급** : ID, 비밀번호를 모두 새롭게 발급합니다. 
-2) **비밀번호 재발급** : ID는 이전에 발급된 ID를 그대로 사용하고 비밀번호만을 재발급합니다.
 
-#### 재발급시 주의사항
-- 비밀번호는 재발급 시 한번만 노출되므로 재발급 진행 이후 꼭 해당 정보를 별도로 보관하셔야 합니다.
-- 보관하지 못하셨을 경우 따로 비밀번호를 찾을 수 있는 방법이 없으므로 재발급을 다시 진행해 주셔야 합니다.
-- 만료된 키는 만료 일자가 갱신되나 계정 상태가 정상/차단일 경우에는 만료 일자가 갱신되지 않습니다.
+- **Reissue ID/Password**: Reissue both the ID and password.
+- **Reissue Password**: Use the ID issued as it is and reissue the password only.
 
+#### Cautions for reissuance
+- The password is displayed only once when it is reissued. Please write down the information somewhere else once it is reissued.
+- If you lost it again, there is no way to find the password and in that case, you need to reissue it again.
+- The expiration date of the expired key will be updated; however, it is not updated when the account status is either OK or Blocked.

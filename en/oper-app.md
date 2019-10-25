@@ -76,15 +76,11 @@ Can even delete test devices that are no longer in use.
 
 Check the list of test devices registered in an app. Enter search words in **Search** to find the devices that fit your search conditions.
 
-<<<<<<< HEAD
 #### (2) Register
-=======
-![gamebase_app_03_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_03_201812.png)
->>>>>>> develop
-
-Click **Register** to find a screen for registration of test devices: enter Device Key directly or search a **game user ID** to register.
 
 ![gamebase_app_03_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_03_201812_en.png)
+
+Click **Register** to find a screen for registration of test devices: enter Device Key directly or search a **game user ID** to register.
 
 **(A) ** **Register by Game User ID**
 
@@ -186,7 +182,7 @@ Enter Bundle ID registered on Apple Developer's Site in the TOAST Cloud Gamebase
 
 **Reference URL**<br />
 
-- [Apple Developer 사이트](https://developer.apple.com/)
+- [Apple Developer Site](https://developer.apple.com/)
 - [Apple iTunes Connect](https://itunesconnect.apple.com/)
 
 #### 4. PAYCO
@@ -252,8 +248,8 @@ You need to set **service_name** which will be displayed in sign in agreement wi
 - [NAVER Developers - Check Client IDs and Client Secrets](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)
 
 ##### Android & Unity
-* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-	* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
+* You need to provide JSON string data in **Additional Info** at **TOAST Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
+	* For NAVER, you need to set the app name **service_name** which will be displayed in login agreement window.
 
 ```json
 {"service_name": "Your Service Name" }
@@ -299,19 +295,19 @@ You need to provide {Consumer Key} and {consumer Secret} acquired from Twitter A
 
 ##### iOS
 
- > <font color="red">[주의]</font><br/>
+ > <font color="red">[Caution]</font><br/>
  >
- > Gamebase iOS SDK 1.14.0 버전에서 URL Scheme의 설정 방법이 변경 되었습니다. 사용 SDK 버전에 맞는 가이드를 확인하여 설정하시기 바랍니다.
+ > In the Gamebase iOS SDK Version 1.14.0, URL scheme setting has been changed. See the guide appropriate for your SDK version.
  >
 
- * 1.13.0 이하
-	* 별도의 URL Scheme 설정이 필요하지 않습니다.
+ * 1.13.0 or earlier
+	* You don't need to set the URL scheme separately.
 
-* 1.14.0 이상
-	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.twitter**를 추가해야 합니다.
+* 1.14.0 or later
+	* Set the URL scheme.
+		* **tcgb.{Bundle ID}.twitter** must be added to **XCode > Target > Info > URL Types**.
 
-* Twitter 추가 인증 정보 입력 예제
+* Example of entering the additional authentication information for Twitter
 
 ![Twitter URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
@@ -429,16 +425,18 @@ Enter a server URL (IP, URL) that a client will use.
 A server URL entered in the **App** tab will be applied for all clients; enter only when each client has a different server URL.
 
 #### (5) Debug log
-Gamebae SDK의 Debug Log 출력 여부를 Console을 통하여 실시간으로 변경할 수 있습니다.
-설정되어 있지 않으면 기본적으로 Gamebase SDK 내부에 설정된 값을 우선으로 동작하고 Gamebase Console에서 Debug Log 출력 여부를 설정하실 수 있습니다.
-Gamebase SDK에 Debug Log가 'OFF"상태이더라도 Console에서 'ON'으로 설정하시면 단말기에 Gamebase Debug Log가 출력됩니다.
+You can change whether to display debug logs of Gamebase SDK in the console in real time.
+If it is not set, the default value set in the Gamebase SDK will be used. You can set whether to display debug logs in the console or not.
+Even if the debug log is 'OFF' in the Gamebase SDK, the Gamebase debug logs are displayed on the device if you set debug log to 'ON' for the console.
 
 ## Installed URL
 
+Manage store URL information to install a game.
+
 ![gamebase_app_19_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_19_201812_en.png)
 
-* Manage store URL information to install a game.
-* 클라이언트 상태 중 <font color="white" style="background-color:#2AB1A6">업데이트 권장(서비스 중)</font> 또는 <font color="white" style="background-color:#A1A1A1">업데이트 필수</font> 일 때 각각의 스토어 별로 제공할 주소들에 대한 값을 설정합니다.
+Set the value of address to be provided by store when the client status is   <font color="white" style="background-color:#2AB1A6">Update is recommended(in service )</font> or <font color="white" style="background-color:#A1A1A1">update is required</font>.
+
 * A user's click on a short URL via PC or mobile will be redirected to a site entered on a user device (device, operating system, store, etc.).
 * If there is no store information, or redirection is failed, the URL will be linked as set in 'COMMON'.
 
@@ -471,46 +469,47 @@ Set an URL to connect at the request of App Store users.
 Set an URL to connect from an app of standalone service. Standalone needed PC URL only.
 
 ## Transfer account
-Guest로 로그인한 유저가 다른 아이디 제공자를 연동하지 않고 다른 단말기에서 이어서 게임을 할 수 있는 기능을 제공합니다.
-사용자는 현재 게임중인 단말에서 기기 이전을 위한 Key를 발급 받아 이전하려는 단말기에 Key를 입력하는 것만으로 쉽게 게임 기기를 변경할 수 있습니다.
-기기이전 기능은 기본적으로 비활성화 되어 있으며 사용을 원하는 경우에는 기기이전 메뉴에서 **사용하기** 클릭하여 기능을 활성화 해야 합니다.
+Transfer account allows a game user logged in as Guest to continue the game on another device without using another ID provider.
+You can change the game device just by getting the transfer key from the current device where the game is being played and entering the key on another device.
+**Transfer Device** function is disabled by default. To use this, click **Enable** on **Transfer Device**.
 
 ![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_1.0.png)
-1) 기기 이전 기능을 사용하기 위해서는 **사용하기** 클릭하여 기능을 활성화 해야 합니다. 사용하기 버튼을 누르면 기기 이전 기능 사용을 위해 필요한 값을 설정하는 화면으로 전환됩니다.
+
+Click the **Enable** button and then enter the information required for transferring to the device.
 
 ![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_2.0.png)
-기기 이전 기능에 필요한 값들을 설정 할 수 있는 화면입니다.
-각 항목에 대한 설명은 아래와 같습니다.
+Description on each item is as follows:
 
-#### 발급
-기기 이전 발급키의 형식을 설정합니다.
-사용자의 기기 이전키는 ID만 사용하거나 ID, 비밀번호 두 개의 키를 이용할 수 있습니다. ID, 비밀번호의 형식은 게임에서 원하는 소문자, 대문자, 숫자 조합으로 구성할 수 있습니다.
-1) **ID 자동 발급 형식** : 기기 이전 ID 발급 형식을 설정합니다. 설정 항목은 아래와 같습니다.
-  - **숫자(최소길이12)** : 숫자로만 이루어진 아이디를 발급합니다. 발급되는 ID의 최소길이는 12자입니다.
-  - **숫자+소문자(최소길이10)** : 숫자와 소문자의 조합으로만 이루어진 ID를 발급합니다. 발급되는 ID의 최소길이는 10자입니다.
-  - **숫자+대문자(최소길이10)** : 숫자와 대문자의 조합으로만 이루어진 ID를 발급합니다. 발급되는 ID의 최소길이는 10자입니다.
-  - **숫자+소문자+대문자(최소길이:9)** : 숫자, 소문자, 대문자의 조합으로 이루어진 ID를 발급합니다. 발급되는 ID의 최소길이는 9자입니다.
-  - **소문자+대문자(최소길이9)** : 소문자와 대문자의 조합으로만 이루어진 ID를 발급합니다. 발급되는 ID의 최소길이는 9자입니다.
+#### Issue
+Sets the format of a key issued for device transfer.
+The key for device transfer can be either ID only or both ID and password. Format of ID and password can be a combination of the desired lowercase letters, uppercase letters, and numbers.
 
-2) **비밀번호 자동 발급 형식** : 기기 이전 ID를 이용하여 로그인할 때 사용할 비밀번호 발급 형식을 설정합니다. 설정 항목은 아래와 같습니다.
-  - **비밀번호 사용 안함** : 비밀번호를 사용하지 않을 때 선택합니다. 해당항목을 선택하면 아래 검증항목에서 아이디의 유효시간만 설정할 수 있습니다.
-  - **숫자(최소길이12)** : 숫자로만 이루어진 비밀전호를 발급합니다. 발급되는 비밀번호의 최소길이는 12자입니다.
-  - **숫자+소문자(최소길이10)** : 숫자와 소문자의 조합으로만 이루어진 비밀번호를 발급합니다. 발급되는 비밀번호의 최소길이는 10자입니다.
-  - **숫자+대문자(최소길이10)** : 숫자와 대문자의 조합으로만 이루어진 ID를 발급합니다. 발급되는 비밀번호의 최소길이는 10자입니다.
-  - **숫자+소문자+대문자(최소길이:9)** : 숫자, 소문자, 대문자의 조합으로 이루어진 ID를 발급합니다. 발급되는 비밀번호의 최소길이는 9자입니다.
-  - **소문자+대문자(최소길이9)** : 소문자와 대문자의 조합으로만 이루어진 ID를 발급합니다. 발급되는 비밀번호의 최소길이는 9자입니다.
+1. **Auto ID Issue Format**: Sets the format of issuing a device transfer ID. The options to be set are as follows:
 
-#### 검증
-발급된 기기이전키의 검증 조건을 설정합니다.
-기기이전키의 검증시 이전횟수나 유효기간, 실패시 차단 등의 설정을 하실 수 있습니다.
-3) **기기 이전 횟수** : 발급된 아이디의 기기 이전이 가능한 횟수를 설정합니다. 무제한/일회성 중 한가지를 선택해야 합니다.
-4) **유효 기간** : 발급된 계정의 유효 시간을 설정합니다. 발급된 기기 이전 ID는 이 설정값의 영향을 받습니다. 무제한/기간 설정 중 한가지를 선택해야 합니다.
-5) **실패 시 재검증 차단 여부** : 유저가 아이디를 이용하여 로그인을 시도했을 때 실패했을 경우 재시도에 대한 설정을 추가로 설정하실 수 있습니다. 해당 항목을 체크하면 차단 관련 설정을 추가로 진행해야 합니다.
-6) **차단 기준 횟수** : 실패 시 재검증 차단 여부가 선택되었을 때 설정할 수 있는 항목입니다. 유저가 최대로 실패할 수 있는 횟수를 설정할 수 있습니다. 최소 1회 이상은 설정되어야 합니다.
-7) **차단 기간** : 유저가 검증에 실패하여 계정이 차단되었을 경우 다시 재시도를 할 수 있는 시간에 대한 설정을 할 수 있습니다. 영구 차단/기간 지정 중 한가지를 선택해야 합니다.
+- **Number(Minimum length: 12)**: Issues an ID with numbers only. The minimum length of the issued ID is 12 characters.
+- **Number+Lowercase(Minimum length: 10)**: Issues an ID with numbers and lowercase letters. The minimum length of the issued ID is 10 characters.
+- **Number+Uppercase(Minimum length: 10)**: Issues an ID with numbers and uppercase letters. The minimum length of the issued ID is 10 characters.
+- **Number+Lowercase+Uppercase(Minimum length: 9)**: Issues an ID with numbers, lowercase letters, and uppercase letters. The minimum length of the issued ID is 9 characters.
+- **Lowercase+Uppercase(Minimum length: 9)**: Issues an ID with lowercase letters and uppercase letters. The minimum length of the issued ID is 9 characters.
+2. **Password auto issue format**: Sets the format for issuing the password to be used for login with the ID transferred to the device. The options to be set are as follows:
+- **Disable Password**: Select this not to use a password. If you select this option, you can set the valid time of the ID only from the verification below.
+- **Number(Minimum length: 12)**: Issues a password with numbers only. The minimum length of the issued password is 12 characters.
+- **Number+Lowercase(Minimum length: 10)**: Issues a password with numbers and lowercase letters. The minimum length of the issued password is 10 characters.
+- **Number+Uppercase(Minimum length: 10)**: Issues an ID with numbers and uppercase letters. The minimum length of the issued password is 10 characters.
+- **Number+Lowercase+Uppercase(Minimum length: 9)**: Issues an ID with numbers, lowercase letters, and uppercase letters. The minimum length of the issued password is 9 characters.
+- **Lowercase+Uppercase(Minimum length: 9)**: Issues an ID with lowercase letters and uppercase letters. The minimum length of the issued password is 9 characters.
+
+#### Verification
+Sets the verification conditions of the issued device transfer key.
+For verification of the issued device transfer, you can set the transfer count, expiration date, block upon failure, etc.
+3. **Device transfer count**: Sets the count of allowed number of device transfers for the issued ID. You can select either Unlimited or One-time.
+4. **Expiration date**: Sets the expiration date of the issued account. The issued device transfer ID is affected by this value. You have to select either Unlimited or Set Period.
+5. **Block reverification upon failure**: When a user tried logging in but failed, the account is blocked for a certain period. If you select this option, additional settings will be displayed.
+6. **Login attempt count until blocking**: Displayed when **Block reverification upon failure** is selected. The account is blocked when login verification is failed for the specific count entered here. The value must be 1 or above.
+7. **Block period**: Sets the period of blocking time that must be passed to unblock the account for retry. Select **PERMANENT** or **Specify Period**.If you select **Specify Period**, you can set the desired block hours and minutes.
 
 
-#### 초기 설정 완료 이후
+#### After initial setting completed
 ![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_3.0.png)
-최초 설정이 완료되면 유저는 기기 이전 기능의 비활성화만 가능하며 설정 변경이 필요할 경우 고객센터에 문의하시기 바랍니다.
-**사용 안함** 버튼을 클릭하여 기능을 비활성화 할 수 있고 기존에 발급된 기기이전키는 모두 삭제되기 때문에 활성화 이후에는 비활성화 여부를 신중하게 선택해야 합니다.
+Once the initial settings are done, game users can disable the device transfer function only if they want. If they need to change the settings, they need to contact Customer Center.
+Click **Disable** to disable the function. In this case, all device transfer keys issued will be deleted. So be careful when you should determine whether to disable the function or not.

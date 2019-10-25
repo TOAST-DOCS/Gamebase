@@ -300,6 +300,14 @@ Twitter Application Management 사이트에서 앱을 등록하고 발급받은 
 **Reference URL**
 - [Twitter Application Management](https://apps.twitter.com/)
 
+##### Android
+ > <font color="red">[주의]</font><br/>
+ >
+ > 2019년 7월 25일부로 Twitter에서는 TLS 1.0, TLS 1.1 지원을 중단하고, TLS1.2만 지원하고 있습니다.
+ > 이에, Android 4.3 (Jellybean, API Level 18) 이하의 단말기에서는 Android WebView를 통한 Twitter 로그인이 불가능합니다.
+ > 
+ > 즉, Android 4.4 이상(KitKat, API Level 19)인 기기에서만 Twitter 로그인을 사용하실 수 있습니다.
+
 ##### iOS
 
  > <font color="red">[주의]</font><br/>

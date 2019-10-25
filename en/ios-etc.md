@@ -6,8 +6,8 @@ Additional functions provided by Gamebase are described as below:
 
 ### Device Language
 
-* 단말기에 설정된 언어 코드를 리턴합니다.
-* 여러개의 언어가 등록된 경우, 우선권이 가장 높은 언어만을 리턴합니다.
+* Returns the language code from the device.
+* If there are several languages registered, only the language of top priority is returned.
 
 **API**
 
@@ -212,14 +212,14 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 
 ### Country Code
 
-* Gamebase는 System의 Country Code를 다음과 같은 API로 제공하고 있습니다.
-* 각 API 마다 특징이 있으니 쓰임새에 맞는 API를 선택하시기 바랍니다.
+* Gamebase provides (country codes) for the system in the following APIs.
+* Please select an appropriate API that best fits your purpose as each API has its own characteristics.
 
 #### USIM Country Code
 
-* USIM에 기록된 국가코드를 리턴합니다.
-* USIM에 잘못된 국가코드가 기록되어 있다 하더라도 추가적인 체크 없이 그대로 리턴합니다.
-* 값이 비어있는 경우 'ZZ'를 리턴합니다.
+* Returns a country code written in the USIM.
+* Even if a wrong country code has been written in the USIM, it will be returned as it is without any further verification.
+* 'ZZ' is returned when the value is empty.
 
 **API**
 
@@ -229,9 +229,9 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 
 #### Device Country Code
 
-* OS 로부터 전달받은 단말기 지역 설정을 추가적인 체크 없이 그대로 리턴합니다.
-* 단말기 국가코드는 '설정 > 일반 > 언어 및 지역 > 지역' 설정에 따라 OS가 결정합니다.
-* iOS 에서 제공하는 NSLocaleCountryCode 를 사용하여 획득한 값을 리턴합니다.
+* Returns the device region setting received from the OS as it is without any further verification.
+* The country code of the device is automatically determined by the OS according to the **Setting> General > Language and Region > Region** settings.
+* Returns the value obtained using NSLocaleCountryCode provided by iOS.
 
 **API**
 
@@ -241,11 +241,11 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 
 #### Intergrated Country Code
 
-* USIM, 단말기 지역 설정의 순서로 국가 코드를 확인하여 리턴합니다.
-* country API는 다음 순서로 동작합니다.
-	1. USIM에 기록된 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
-	2. USIM 국가 코드가 빈 값이라면 단말기 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
-	3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ' 를 리턴합니다.
+* Verifies and returns the country code in the order of the region setting in the USIM.
+* The country API operates in the following order:
+	1. Checks the country code written in the USIM. If a value exists, returns the value without any separate verification.
+	2. If the country code in the USIM is empty, checks the country code of the device. If a value exists, returns the value without any further verification.
+	3. 'ZZ' is returned when the country code values of USIM and device are empty.
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
@@ -437,34 +437,34 @@ Use the APIs below to delete Observer registered in Gamebase.
 
 ### Analytics
 
-Game지표를 Gamebase Server로 전송할 수 있습니다.
+The game index can be transferred to the Gamebase server.
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> Gamebase Analytics에서 지원하는 모든 API는 로그인 후에 호출할 수 있습니다.
+> All APIs supported by the Gamebase Analytics can be called after login.
 
 > [TIP]
 >
-> TCGBPurchase의 requestPurchaseWithItemSeq:viewController:completion API의 호출을 통한 결제 또는 setPromotionIAPHandler를 통한 프로모션 결제를 완료하면 자동으로 지표를 전송합니다.
+> The index is transmitted automatically when payment is made by calling requestPurchaseWithItemSeq:viewController:completion API of TCGBPurchase or when promotion payment is made by calling setPromotionIAPHandler.
 
-Analytics Console 사용법은 아래 가이드를 참고하십시오.
+Please see the following guide for how to use Analytics console.
 
-- [Analytics Console](./oper-analytics)
+- [Analytics console](./oper-analytics)
 
 #### Game User Data Settings
 
-게임 로그인 이후 유저 레벨 정보를 지표로 전송할 수 있습니다.
+The game user level information can be transmitted as an index after logging in to the game.
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 게임 로그인 이후 SetGameUserData API를 호출하지 않으면 다른 지표에서 Level 정보가 누락될 수 있습니다.
+> If the SetGameUserData API is not called after login to the game, the level information may be missed from other indexes.
 >
 
-API 호출에 필요한 파라미터는 아래와 같습니다.
+Parameters required for calling the API are as follows:
 
 **GameUserData**
 
-  | Name | Mandatory(M) / Optional(O) | type | Desc |
+  | Name | Mandatory (M) / Optional (O) | type | Desc |
   | -------------------------- | -------------------------- | ---- | ---- |
   | userLevel | M | int | |
   | channelId | O | string | |
@@ -489,16 +489,16 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 
 #### Level Up Trace
 
-레벨업이 되었을 경우 유저 레벨 정보를 지표로 전송할 수 있습니다.
+The game user level information can be transmitted as an index after leveling up.
 
-API 호출에 필요한 파라미터는 아래와 같습니다.
+Parameters required for calling the API are as follows:
 
 **LevelUpData**
 
-  | Name | Mandatory(M) / Optional(O) | type | Desc |
+  | Name | Mandatory (M) / Optional (O) | type | Desc |
   | -------------------------- | -------------------------- | ---- | ---- |
   | userLevel | M | int | |
-  | levelUpTime | O | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
+  | levelUpTime | O | long | Enter Epoch Time</br>in millisecond. |
   | channelId | O | string | |
   | characterId | O | string | |
 

@@ -1,66 +1,66 @@
-## Game > Gamebase > JavaScript SDK 사용 가이드 > 인증
+﻿## Game > Gamebase > JavaScript SDK User Guide > Authentication
 
 ## Login
-Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
-다른 IdP(Identity Provider, ex) google, facebook, line, naver, twitter)를 사용하시려면 "Login with IdP" 섹션을 참고하시기 바랍니다.
+The Gamebase supports guest login by default.
+To use other IdPs (identity providers, such as Google, Facebook, Line, NAVER, Twitter), please see the section "Login with IdP".
 
 
 ### Login Flow
-많은 게임이 타이틀 화면에 로그인을 구현합니다.
-* 게임 초기 타이틀 화면에서 이용자에게 어떤 IdP(identity provider)로 인증할지 선택할 수 있게 합니다.
+In most games, login is implemented on the title screen.
+* This allows you to select an IdP to be used for authentication on the initial title screen of the game.
 
-위에서 설명한 로직은 다음과 같은 순서로 구현할 수 있습니다.
+The logic described above can be implemented in the following sequence.
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
 
-#### 1. 지정된 IdP로 인증
+#### 1. Authenticate with the specified IdP
 
-* IdP 유형을 직접 지정하여 인증을 시도합니다.
-    * 인증 가능한 유형은 아래와 같습니다.
+* Try authentication by specifying the IdP type.
+    * The authenticable types are as follows:
         * Guest('guest')
         * Google('google')
         * Facebook('facebook')
-        * Payco('payco')
-        * Naver('naver')
+        * PAYCO('payco')
+        * NAVER('naver')
         * Twitter('twitter')
         * Line('line')
-* **toast.Gamebase.login(providerName, (authToken, error) => { ... })** API를 호출합니다.
+* **toast.Gamebase.login(providerName, (authToken, error) => { ... })** Calls the API.
 
-#### 1-1. 인증에 성공한 경우
+#### 1-1. When authentication is successful
 
-* 축하합니다! 인증에 성공했습니다.
-* **toast.Gamebase.getUserID()** 로 사용자 ID를 획득하여 게임 로직을 구현하시면 됩니다.
+* Congratulations! Successfully authenticated.
+* Get a user ID with **toast.Gamebase.getUserID()** to implement a game logic.
 
-#### 1-2. 인증에 실패한 경우
+#### 1-2. When authentication fails
 
-* 네트워크 오류
-    * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)** 인 경우, 일시적인 네트워크 문제로 인증에 실패한 것이므로 **toast.Gamebase.login(providerName, callback)**을 다시 호출하거나, 잠시 후 다시 시도합니다.
-* 이용 정지 게임 사용자
-    * 오류 코드가 **BANNED_MEMBER(7)** 인 경우, 이용 정지 게임 이용자이므로 인증에 실패한 것입니다.
-    * **toast.Gamebase.getBanInfo()** 로 제재 정보를 확인하여 게임 이용자에게 게임을 플레이할 수 없는 이유를 알려주시기 바랍니다.
-    * Gamebase 초기화 시 **enablePopup** 을 true로 설정한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
-* 그 외 오류
-    * 오류가 발생했다는 것을 게임 이용자에게 알리고, 게임 이용자가 인증 IdP 유형을 선택할 수 있는 상태(주로 타이틀 화면 또는 로그인 화면)로 되돌아갑니다.
+* Network error
+    * If the error code is **SOCKET_ERROR(110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, the authentication has failed due to a temporary network problem, so call **toast.Gamebase.login(providerName, callback)** again, or try again in a moment.
+* Banned game user
+    * If the error code is **BANNED_MEMBER(7)**, the authentication has failed due to banned game user.
+    * Check ban information with **toast.Gamebase.getBanInfo()** and notify the user with reasons for not being able to play.
+    * When **enablePopup** is set to true during Gamebase initialization, Gamebase will automatically display a popup on banning.
+* Other errors
+    * Notifies that an error has occurred and returns to the state (mostly title or login screen) in which user can select an authentication IdP type.
 
 ### Login with IdP
 
-다음은 특정 IdP로 로그인할 수 있게 하는 예시 코드입니다.
+Below is an example of logging in with a specific IdP.
 
-로그인할 수 있는 IdP 유형은 아래와 같습니다.
+The IdP types available for login are as follows:
 
 * Guest('guest')
 * Google('google')
 * Facebook('facebook')
-* Payco('payco')
-* Naver('naver')
+* PAYCO('payco')
+* NAVER('naver')
 * Twitter('twitter')
 * Line('line')
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> Gamebase에서는 인증을 위해 "팝업"을 이용합니다. 만약 사용자의 "팝업"이 허용되어있지 않는다면, "로그인 시도" 중인 상태로 계속 대기할 수 있습니다.
-> 사전에 사용자에게 인증 전 "팝업" 허용을 해달라는 문구를 노출하여 사용자가 불편함을 느끼지 않도록 해야합니다.
+> 'Popup' is used for authentication in the Gamebase. If 'popup' is not allowed, the user may have to keep waiting in the 'trying to log in' state.
+> A message such as 'Please allow popup for the authentication step' should be displayed in advance for convenient user experience.
 >
 
 ```js
@@ -74,25 +74,25 @@ function gamebaseLogin() {
         if (error) {
                if (error.code == toast.GamebaseConstant.SOCKET_ERROR ||
                 error.code == toast.GamebaseConstant.SOCKET_RESPONSE_TIMEOUT) {
-                // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
-                // 네트워크 상태를 확인하거나 잠시 대기 후 재시도 하세요.
+                // Indicates that the network cannot be accessed temporarily due to socket error.
+                // Check the network status or try again after a while.
             } else if (error.code == toast.GamebaseConstant.BANNED_MEMBER) {
-                // 로그인을 시도한 유저가 이용정지 상태입니다.
+                // The user who tried logging in is banned.
                 // GamebaseConfiguration.uiConfiguration.enablePopup(true) 및
-                // GamebaseConfiguration.uiConfiguration.enableBanPopup(true) 로 초기화를 하였다면,
-                // Gamebase가 이용정지에 관한 UI를 자동으로 띄워줍니다.
+                // If initialized with GamebaseConfiguration.uiConfiguration.enableBanPopup(true),
+                // The Gamebase displays the UI for ban automatically.
 
-                // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 toast.Gamebase.getBanInfo()로
-                // 제재 정보를 확인하여 유저에게 게임을 플레이 할 수 없는 사유를 표시해 주시기 바랍니다.
+                // To implement the ban popup directly according to the game UI, check the ban information with toast.Gamebase.getBanInfo()
+                // and notify the user with reasons for not being able to play.
                 var banInfo = toast.Gamebase.getBanInfo();
             } else {
-                // 로그인 실패
+                // Login failed
             }
 
             return;
         }
 
-        // 로그인 성공
+        // Login successful
         console.log('login success');
         var userId = authToken.member.userId; // Gamebase UserId
         var accessToken = authToken.token.accessToken; // Gamebase AccessToken
@@ -102,33 +102,33 @@ function gamebaseLogin() {
 
 ### Login with Credential
 
-IdP에서 제공하는 SDK, RestAPI 등을 사용해 게임에서 직접 인증한 후 발급받은 액세스 토큰 등을 이용하여, Gamebase에 로그인할 수 있는 인터페이스입니다.
+This is the interface which allows users to log in to the Gamebase with the access token issued by authenticating in game with SDK or REST API provided by the IdP.
 
-**Credential 파라미터 설정 방법**
+**How to set the Credential parameter**
 
 | key name             | a use                                                               |
 | -------------------- | ------------------------------------------------------------------- |
-| providerName         | IdP 유형 설정                                                        |
-| accessToken          | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정                          |
-| accessTokenSecret    | IdP 로그인 이후 받은 인증 정보(액세스 토큰 시크릿) 설정                    |
+| providerName         | IdP type setting                                                        |
+| accessToken          | Set the authentication information (access token) received after login to IdP                          |
+| accessTokenSecret    | Set the authentication information (access token secret) received after login to IdP                    |
 
-> [참고]
+> [Note]
 >
-> 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
+> This may be needed to use unique functions of external services (e.g. Facebook).
 >
 
 <br/>
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 외부 SDK에서 지원 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
+> Developments requested by an external SDK must be implement using APIs from the external SDK; Gamebase does not support those development features.
 >
 
 ```js
 var credential = {
     providerName: ${IdP},
     acessToken: ${IdP AccessToken},
-    accessTokenSecret: ${IdP AccessTokenSecret}, // This is only nessassary in the case that IdP give you this value.
+    accessTokenSecret: ${IdP AccessTokenSecret}, // This is only necessary in the case that IdP gives you this value.
 };
 
 toast.Gamebase.loginWithCredential(credential, callback);
@@ -147,25 +147,25 @@ function loginWithFacebookCredential() {
         if (error) {
                if (error.code == toast.GamebaseConstant.SOCKET_ERROR ||
                 error.code == toast.GamebaseConstant.SOCKET_RESPONSE_TIMEOUT) {
-                // Socket error 로 일시적인 네트워크 접속 불가 상태임을 의미합니다.
-                // 네트워크 상태를 확인하거나 잠시 대기 후 재시도 하세요.
+                // Indicates that the network cannot be accessed temporarily due to socket error.
+                // Check the network status or try again after a while.
             } else if (error.code == toast.GamebaseConstant.BANNED_MEMBER) {
-                // 로그인을 시도한 유저가 이용정지 상태입니다.
+                // The user who tried logging in is banned.
                 // GamebaseConfiguration.uiConfiguration.enablePopup(true) 및
-                // GamebaseConfiguration.uiConfiguration.enableBanPopup(true) 로 초기화를 하였다면,
-                // Gamebase가 이용정지에 관한 UI를 자동으로 띄워줍니다.
+                // If initialized with GamebaseConfiguration.uiConfiguration.enableBanPopup(true),
+                // The Gamebase displays the UI for ban automatically.
 
-                // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 Gamebase.getBanInfo()로
-                // 제재 정보를 확인하여 유저에게 게임을 플레이 할 수 없는 사유를 표시해 주시기 바랍니다.
+                // To implement the ban popup directly according to the game UI, check the ban information with Gamebase.getBanInfo()
+                // and notify the user with reasons for not being able to play.
                 var banInfo = toast.Gamebase.getBanInfo();
             } else {
-                // 로그인 실패
+                // Login failed
             }
 
             return;
         }
 
-        // 로그인 성공
+        // Login successful
         console.log('login success');
         var userId = authToken.member.userId; // Gamebase UserId
         var accessToken = authToken.token.accessToken; // Gamebase AccessToken
@@ -175,11 +175,11 @@ function loginWithFacebookCredential() {
 
 ## Logout
 
-로그인된 IdP에서 로그아웃을 시도합니다. 주로 게임의 설정 화면에 로그아웃 버튼을 두고, 버튼을 클릭하면 실행되도록 구현하는 경우가 많습니다.
-로그아웃이 성공하더라도, 게임 이용자 데이터는 유지됩니다.
-로그아웃에 성공하면 해당 IdP로 인증했던 기록을 제거하므로 다음에 로그인할 때 ID, 비밀번호 입력 창이 표시됩니다.<br/><br/>
+Try logging out from the IdP currently logged in. In general, the logout button is placed in the Setting screen of the game and the button is executed with click.
+Even if logged out, the game user data is maintained.
+When logout is successful, the record authenticated with the corresponding IdP is removed. Therefore, the window with the ID/password fields are displayed for the next login.<br/><br/>
 
-다음은 로그아웃 버튼을 클릭하면 로그아웃이 되는 예시 코드입니다.
+The following example shows the code that lets you log out just by clicking the **Logout** button.
 
 ```js
 toast.Gamebase.logout((error) => { ... })
@@ -190,12 +190,12 @@ toast.Gamebase.logout((error) => { ... })
 function logout() {
     toast.Gamebase.logout(function (error) {
         if (error) {
-            // 로그아웃 실패
+            // Logout failed
             console.log(error);
             return;
         }
 
-        // 로그아웃 성공
+        // Logout successful
         console.log(data);
     });
 }
@@ -203,16 +203,16 @@ function logout() {
 
 ## Withdraw
 
-다음은 로그인 상태에서 게임 이용자 탈퇴를 구현하는 예시 코드입니다.<br/><br/>
+The following example shows the code of how a game user withdraws while logged-in.<br/><br/>
 
-* 탈퇴에 성공하면, 로그인했던 IdP와 연동되어 있던 게임 이용자 데이터는 삭제됩니다.
-* 해당 IdP로 다시 로그인할 수 있으며, 새 게임 이용자 데이터를 생성합니다.
-* Gamebase 탈퇴를 의미하며, IdP 계정 탈퇴를 의미하지는 않습니다.
-* 탈퇴 성공 시 IdP 로그아웃을 시도하게 됩니다.
+* When a user is successfully withdrawn, the user's data interfaced with a login IdP will be deleted.
+* The user can log in with the IdP again, and a new user's data will be created.
+* It means user's withdrawal from Gamebase but not IdP account.
+* After a successful withdrawal, a logout from IdP will be tried.
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 여러 IdP를 연동 중인 경우 모든 IdP 연동이 해제되고 Gamebase 게임 이용자 데이터가 삭제됩니다.
+> When several IdPs are linked with a user, all IdP links are released and the Gamebase game user data is removed.
 >
 
 ```js
@@ -224,22 +224,22 @@ toast.Gamebase.withdraw(callback)
 function withdraw() {
     toast.Gamebase.withdraw(function (data, error) {
         if (error) {
-            // 탈퇴 실패
+            // Withdrawal failed
             console.log(error);
             return;
         }
 
-        // 탈퇴 성공
+        // Withdrawal successful
          console.log(data);
     });
 }
 ```
 
 ## Gamebase User's Information
-Gamebase로 인증 절차를 진행한 후, 앱을 제작할 때 필요한 정보를 얻을 수 있습니다.
+Proceed the authentication with Gamebase to get information required to create an app.
 
 ### Get Authentication Information for Gamebase
-Gamebase에서 발급한 인증 정보를 가져올 수 있습니다.
+Get authentication information issued by Gamebase.
 
 ```js
 // Obtaining Gamebase UserID
@@ -250,8 +250,8 @@ var accessToken = toast.Gamebase.getAccessToken();
 ```
 
 ### Get Banned User Information
-TOAST Gamebase Console에 제재된 게임 이용자로 등록될 경우,
-로그인을 시도하면 아래와 같은 이용 제한 정보 코드가 표시될 수 있습니다. **toast.Gamebase.getBanInfo()** 메서드를 이용해 제재 정보를 확인할 수 있습니다.
+If you are registered as a banned game user in the TOAST Gamebase console,
+the following ban information code will be displayed when you try to log in. You can check the ban information with the **toast.Gamebase.getBanInfo()** method.
 
 ```js
 // Obtaining Ban Information
@@ -264,21 +264,21 @@ var banInfo = toast.Gamebase.getBanInfo();
 
 | Category       | Error                                                   | Error Code | Description                                                       |
 | -------------- | ------------------------------------------------------- | ---------- | ----------------------------------------------------------------- |
-| Auth           | INVALID\_MEMBER                                         | 6          | 잘못된 회원에 대한 요청입니다.                                            |
-|                | BANNED\_MEMBER                                          | 7          | 제재된 회원입니다.                                                     |
-|                | AUTH\_USER\_CANCELED                                    | 3001       | 로그인이 취소되었습니다.                                                |
-|                | AUTH\_NOT\_SUPPORTED\_PROVIDER                          | 3002       | 지원하지 않는 인증 방식입니다.                                           | 
-|                | AUTH\_NOT\_EXIST\_MEMBER                                | 3003       | 존재하지 않거나 탈퇴한 회원입니다.                                        |
-|                | AUTH_ALREADY_IN_PROGRESS_ERROR                          | 3010       | 이전 인증 프로세스가 완료되지 않았습니다.                                   |
-| Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED                              | 3101       | 토큰 로그인에 실패했습니다.                                              |
-|                | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO                | 3102       | 토큰 정보가 유효하지 않습니다.                                            |
-|                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP      | 3103       | 최근에 로그인한 IdP 정보가 없습니다.                                      |
-| IDP Login      | AUTH\_IDP\_LOGIN\_FAILED                                | 3201       | IdP 로그인에 실패했습니다.                                              |
-|                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO                    | 3202       | IdP 정보가 유효하지 않습니다. (Console에 해당 IdP 정보가 없습니다.)           |
-| Logout         | AUTH\_LOGOUT\_FAILED                                    | 3501       | 로그아웃에 실패했습니다.                                                |
-| Withdrawal     | AUTH\_WITHDRAW\_FAILED                                  | 3601       | 탈퇴에 실패했습니다.                                                   |
-| Not Playable   | AUTH\_NOT\_PLAYABLE                                     | 3701       | 플레이할 수 없는 상태입니다(점검 또는 서비스 종료 등).                        |
-| Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                                    | 3999       | 알수 없는 오류입니다.(정의되지 않은 오류입니다).                             |
+| Auth           | INVALID\_MEMBER                                         | 6          | Request for invalid member.                                            |
+|                | BANNED\_MEMBER                                          | 7          | Named member has been banned.                                                     |
+|                | AUTH\_USER\_CANCELED                                    | 3001       | Login is cancelled.                                                |
+|                | AUTH\_NOT\_SUPPORTED\_PROVIDER                          | 3002       | The authentication is not supported.                                           |
+|                | AUTH\_NOT\_EXIST\_MEMBER                                | 3003       | The member does not exist or has already withdrawn.                                        |
+|                | AUTH_ALREADY_IN_PROGRESS_ERROR                          | 3010       | The previous authentication process has not been completed.                                   |
+| Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED                              | 3101       | Token login has failed.                                              |
+|                | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO                | 3102       | Invalid token information.  |
+|                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP      | 3103       | Invalid last login IdP information.                                      |
+| IDP Login      | AUTH\_IDP\_LOGIN\_FAILED                                | 3201       | IdP login has failed.                                              |
+|                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO                    | 3202       | Invalid IdP information.(The console has no information about the IdP.)           |
+| Logout         | AUTH\_LOGOUT\_FAILED                                    | 3501       | Logout has failed.                                                |
+| Withdrawal     | AUTH\_WITHDRAW\_FAILED                                  | 3601       | Withdrawal has failed.                                                   |
+| Not Playable   | AUTH\_NOT\_PLAYABLE                                     | 3701       | Not playable (due to maintenance or service closed).                        |
+| Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                                    | 3999       | Unknown error.(Undefined error).                             |
 
-* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
+* Refer to the following document for all error codes.
     * [Entire Error Codes](./error-code/#client-sdk)

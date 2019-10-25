@@ -8,10 +8,10 @@ Below describes environments and initial setting of Gamebase Unity SDK.
 > 
 > Unity support version
 > 
-> * Unity 5.x : 5.6.6
-> * Unity 2017.x : ~ 2017.4.x(LTS)
+> * Unity 2019.x : ~ 2019.2.9
 > * Unity 2018.x : ~ 2018.4.x(LTS)
-> * Unity 2019.x : ~ 2019.1.10
+> * Unity 2017.x : ~ 2017.4.x(LTS)
+> * Unity 5.x : 5.6.6
 
 #### Supported Platforms
 
@@ -104,21 +104,21 @@ Setting Tool is provided to install Gamebase SDK with more at ease.
 
 ### Update of Setting Tool
 
-Setting Tool의 업데이트가 필요한 경우 Setting Tool에서 업데이트 여부를 알려드립니다.
-업데이트 종류에 따라서 Setting Tool에서 제공하는 일부 기능에 제한이 있을 수 있습니다.
+If the Setting Tool needs to be updated, the Setting Tool informs whether update is available or not.
+Depending on the update type, some functions provided by Setting Tool may be limited.
 
-#### 강제 업데이트
+#### Force update
 
-* 업데이트 필수
-* SDK 다운로드 제한
-	* 기존에 다운로드 된 SDK를 이용하여 설치, 삭제 가능
+* Update required
+* SDK download limited
+	* You can install or uninstall using the SDK downloaded before.
 
 ![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-1_1.13.0.png)
 
-#### 선택 업데이트
+#### Selective update
 
-* 업데이트 선택
-* SDK 다운로드 가능
+* Select update
+* SDK download available
 
 ![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-2_1.13.0.png)
 
@@ -269,13 +269,13 @@ API Reference is included in GamebaseUnitySDK.
 
 ## API Deprecate Governance
 
-Gamebase에서 더 이상 지원하지 않는 API는 Deprecate 처리합니다.
-Deprecated 된 API는 다음 조건 충족 시 사전 공지 없이 삭제될 수 있습니다.
+The API which is not supported by Gamebase anymore is processed as deprecated (deprecate).
+A deprecated API can be deleted without any prior notice when the following conditions are met:
 
-* 5회 이상의 마이너 버전 업데이트
-	* Gamebase Version Format - XX.YY.ZZ
-		* XX : Major
-		* YY : Minor
-		* ZZ : Hotfix
+- Minor version updates of five or more times.
+  - Gamebase version format - XX.YY.ZZ
+    - XX: Major
+    - YY: Minor
+    - ZZ: Hotfix
 
-* 최소 5개월 경과
+- Time elapse of at least five months
