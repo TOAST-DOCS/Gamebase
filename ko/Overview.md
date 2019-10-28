@@ -7,9 +7,20 @@ Gamebase SDK 만 적용하면,  모든 서비스를 손쉽게 이용 가능합�
 
 ## Key Features
 
+### Gamebase Analytics
+
+Gamebase SDK만 적용하면, 매출, 이용자, 게임밸런싱 지표를 무료로 제공합니다. 
+게임에서 발생하는 매출, 동접, 이용자, 레벨, 아이템 판매 등 게임 사업과 운영에  꼭 필요한 지표 서비스를 제공합니다. 
+빠르게 적용하시고 서비스에 적극 활용해보세요!
+![Gamebase_analytics](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_02_201903.png)
+
+#### Reference
+
+* [콘솔 사용 가이드 > Analytics](./oper-analytics) 
+
 ### Authentication
 
-Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번호 기반의 OAuth 로그인과 단말기의 UUID를 이용한 게스트 로그인을 지원합니다. Gamebase의 인증은 자체적인 회원 체계를 구축하지 않고 외부 IdP에서 제공하는 회원 정보를 이용하여 인증 서비스를 제공하는 서비스입니다. 자체적인 회원 체계가 없다라는 것은 사용자의 아이디, 비밀번호를 Gamebase 내부에 저장하지 않는 것을 의미합니다.<br/>
+Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번호 기반의 OAuth 로그인과 단말기의 UUID를 이용한 게스트 로그인을 지원합니다. Gamebase의 인증은 자체적인 회원 체계를 구축하지 않고 외부 IdP에서 제공하는 회원 정보를 이용하여 인증 서비스를 제공하는 서비스입니다. 자체적인 회원 체계가 없다라는 것은 사용자의 아이디, 비밀번호를 Gamebase 내부에 저장하지 않는 것을 의미합니다.
 
 * **다양한 인증 방식을 단일 인터페이스로 제공합니다.** 
   단일 인터페이스로 API를 제공하여 보다 쉽고 빠르게 외부 IdP 추가 개발이 가능하기 때문에 개발 비용이 절감됩니다. 개발자는 복잡한 인증 절차나 법적 문제, 정책 문제 등을 고려하지 않고 쉽게 인증 기능을 구현할 수 있습니다.
@@ -27,7 +38,15 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 | PAYCO             | O | O | O | O |
 | NAVER             | O | O | O | O |
 | Twitter			| O | O | |  |
-| LINE				| O | O |  |  |
+| LINE				| O | O | O  | O  |
+| Hangame			| O | O | O  | O  |
+| Hangame			| O | O | O  | O  |
+| CHINA				| O |  |   |   |
+
+인증 및 결제를 지원하는 중국 스토어 리스트(50여개)
+```
+RedBean(红豆), Lenovo(联想), PPS(爱奇艺), Downjoy(当乐), PPTV(PPTV), Mftnn(4399), Coolpad(酷派), Amigo(金立),Mzw(拇指玩), Sogou(搜狗), AppChina(应用汇), Pengyouwan(朋友玩), Guopan(果盘), Gfan(机锋), Mumayi(木蚂蚁), Hmpay(海马玩), Toutidao(今日头条), Bilibili(bilibili), Mi(小米), Uc(UC), Badu(百度), And360(360), Oppo(OPPO), JiuMeng(九玩(手盟)), BukaSdk(布卡), Moge(摩格(乐游)), StarGame(口袋巴士(星游)), Letv(乐视), Tt(TT语音), Papa(啪啪), NoxPay(夜神模拟器), XiaoBens(笨手机), DouYou(逗游), Ungame(搞趣网), Hanfeng(汉风), QiGuo(七果(七匣子)), SinaV2(新浪v2), XiaoQiV2(新小七), btgame01(乐嗨嗨), ccgame(虫虫游戏), LingDong(灵动), KuaiKan(快看), DouYu(斗鱼), MiFengFanLi(蜜蜂), KaopuRB(靠谱助手), VivoRB(Vivo), BluestacksRB(蓝蝶), HwGamesRB(新华为), XinDong(心动)
+```
 
 * **게스트 로그인을 제공합니다.**
   게스트 로그인을 이용하면 사용자는 아무런 입력 없이 바로 게임에 로그인하여 간편하게 게임을 시작할 수 있습니다. 게스트 로그인만으로도 Gamebase 사용자 아이디가 발급되므로 게임은 OAuth 로그인 사용자와 게스트 로그인 사용자의 구분 없이 동일하게 사용자의 게임 데이터를 관리할 수 있습니다.
@@ -47,17 +66,33 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 * [iOS SDK 사용 가이드 > 인증](./ios-authentication)
 * [Unity SDK 사용 가이드 > 인증](./unity-authentication)
 
-### Gamebase Analytics
 
-Gamebase SDK만 적용하면, 매출, 이용자, 게임밸런싱 지표를 무료로 제공합니다. 
-게임에서 발생하는 매출, 동접, 이용자, 레벨, 아이템 판매 등 게임 사업과 운영에  꼭 필요한 지표 서비스를 제공합니다. 
-빠르게 적용하시고 서비스에 적극 활용해보세요!
-![Gamebase_analytics](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_02_201903.png)
+### Payment
+
+게임사는 이미 만들어진 게임을 여러 개의 스토어에 출시하게 되면 적은 노력으로 수익을 극대화 할 수 있습니다. Gamebase는 손쉽게 여러 개의 스토어 연동을 지원하기 때문에 게임에서는 주요 스토어별 결제 연동 스펙을 완벽하게 학습하지 않아도 됩니다.
+
+다음은 Gamebase에서 지원하는 스토어 목록입니다.
+  * Google Play Store
+  * App Store
+  * ONE Store
+  * Facebook
+  * Amazon
+  * 중국스토어: 연동된 [스토어 목록](./Overview/#authentication)
+
+* **여러 스토어의 인앱 결제를 단일 인터페이스로 제공합니다.**
+  단일 인터페이스로 API를 제공하여 보다 쉽고 빠르게 스토어 추가 개발이 가능하기 때문에 개발 비용이 절감됩니다. 개발자는 복잡한 결제 연동 방법을 학습하지 않고 쉽게 결제 기능을 구현할 수 있습니다.  
+* **별도로 운용하는 결제 검증 서버로 결제 보안 및 안정성을 확보할 수 있습니다.**
+  Gamebase에서 외부스토어와의 결제 검증을 위한 별도 서버를 구축하여 모바일 특성상 불안정할 수 있는 결제 트랜잭션 처리를 보다 안정적으로 제공하고 있습니다. 불안정한 네트워크 상태를 고려하여 결제 재시도 및 아이템 지급처리 관리를 별도로 하고 있습니다.
+* **단일 아이템 구매 뿐만 아니라 구독, Promotion 기능을 제공합니다.**
+  구글스토어와 앱스토어에서 제공하는 구독 기능을 제공하여 월상품을 사용자에게 판매할 수 있습니다. 게임에서는 별도 구현없이 손쉽게 구글의 프로모션 기능도 사용할 수 있습니다. 외부 스토어에서 추가되는 기능들은 앞으로도 계속해서 게임베이스에도 추가 기능으로 제공할 예정입니다.
+* **웹콘솔에서의 다양한 기능(결제내역 조회기능 등)으로 고객 문의에 대한 원활한 대응이 가능합니다.**
+  웹콘솔에서 사용자의 결제내역과 아이템 지급상태 확인이 가능하며, 결제취소 및 어뷰징 대응도 가능합니다.
 
 #### Reference
 
-* [콘솔 사용 가이드 > Analytics](./oper-analytics) 
-
+* [Android SDK 사용 가이드 > 결제](./aos-purchase/)
+* [iOS SDK 사용 가이드 > 결제](./ios-purchase)
+* [Unity SDK 사용 가이드 > 결제](./unity-purchase)
 
 ### Launching
 
@@ -97,8 +132,7 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 
 * 게임에서 필요한 TOAST 서비스를 보다 쉽게 연동할 수 있도록 돕습니다. 
   * Gamebase 사용자 아이디로 각 서비스의 API를 사용할 수 있도록 Gamebase에서 래핑(wrapping)하여 API를 제공합니다. 따라서, 사용자는 별도 서비스의 API를 직접 호출할 필요가 없습니다.
-  * [Notification > Push](https://toast.com/service/notification/push) : 푸시 메세지를 발송해 주는 통합 푸시 서비스
-  * [Mobile Service > IAP](https://toast.com/service/mobile_service/iap) : 통합 인앱 결제 서비스
+  * [Notification > Push](https://toast.com/service/notification/push) : 푸시 메세지를 발송해 주는 통합 푸시 서비스  
   * [Game > Leaderboard](https://toast.com/service/game/leaderboard) : 실시간 대용량 랭킹 서비스
   * [Security > AppGuard](https://toast.com/service/security/appguard) : 실시간으로 애플리케이션의 코드 조작을 방지하는 서비스
 
