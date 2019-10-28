@@ -125,8 +125,8 @@ In order to proceed, you need to provide **Receipt Number, Value, and Currency**
 
 No additional information is required. Once it has been changed to Refund status, it's set for good.
 
-#### 영수증 검증
+#### Validate Receipt
 ![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction3.1.png)
-* 조회된 영수증을 기반으로 해당 결제건이 유효한 지 검증할 수 있습니다.
-* 각 필드의 비교결과를 알려주며 스토어로부터 받은 응답값을 Json형식으로 제공하므로 필요한 경우 데이터를 직접 확인하실 수 있습니다.
-* 현재는 App Store 결제건에 대해서만 검증을 제공합니다.
+* Validates transaction of the retrieved receipt.
+* You can see the results of comparing each field. The response value is provided in JSON format, so you can directly check the data if needed.
+* For now, only App Store transactions can be validated.

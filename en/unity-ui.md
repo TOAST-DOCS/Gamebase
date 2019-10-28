@@ -26,7 +26,7 @@ Supported Platforms
 static void ShowWebView(string url, GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
 ```
 
-> Stansalone에서는 WebViewAdapter를 통해서 WebView를 지원하며 WebView가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
+> (Standalone) supports login with WebViewAdapter and does not block events entered through UI when WebView is open.
 
 **Example**
 ```cs
@@ -143,7 +143,7 @@ public void OpenWebBrowser(string url)
 ## Alert
 
 Displays a system alert API.
-시스템 알림에 콜백을 등록할 수도 있습니다.
+You can also register a callback to the system alert.
 
 **API**
 

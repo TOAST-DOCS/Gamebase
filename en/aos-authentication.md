@@ -522,9 +522,9 @@ private static void addMappingForFacebook(final Activity activity) {
                     }
                 }).start();
             } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                // IDP account for mapping has already been integrated to another account.
-                // 강제로 연동을 해제하기 위해서는 해당 계정의 탈퇴나 Mapping 해제를 하거나, 다음과 같이
-                // ForcingMappingTicket을 획득 후, addMappingForcibly() 메소드를 이용하여 강제 매핑을 시도합니다.
+                // IdP account for mapping has already been integrated to another account.
+                // To force the account to unlink, delete or unmap it. Or, as shown below,
+                // get ForcingMappingTicket and then try force mapping using the addMappingForcibly() method.
                 Log.e(TAG, "Add Mapping failed- ALREADY_MAPPED_TO_OTHER_MEMBER");
                 final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
                 final String forcingMappingKey = ticket.forcingMappingKey;
@@ -533,7 +533,7 @@ private static void addMappingForFacebook(final Activity activity) {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException exception) {
                         ...
-                        // 자세한 내용은 addMappingForcibly API 문서를 참고하세요.    
+                        // For more details, see the addMappingForcibly API document.
                     }
                 }
             } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP) {
@@ -615,9 +615,9 @@ private static void addMappingWithCredential(final Activity activity) {
                     }
                 }).start();
             } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                // IDP account for mapping has already been integrated to another account.
-                // 강제로 연동을 해제하기 위해서는 해당 계정의 탈퇴나 Mapping 해제를 하거나, 다음과 같이
-                // ForcingMappingTicket을 획득 후, addMappingForcibly() 메소드를 이용하여 강제 매핑을 시도합니다.
+                // IdP account for mapping has already been integrated to another account.
+                // To force the account to unlink, delete or unmap it. Or, as shown below,
+                // get ForcingMappingTicket and then try force mapping using the addMappingForcibly() method.
                 Log.e(TAG, "Add Mapping failed- ALREADY_MAPPED_TO_OTHER_MEMBER");
                 final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
                 final String forcingMappingKey = ticket.forcingMappingKey;
@@ -626,7 +626,7 @@ private static void addMappingWithCredential(final Activity activity) {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException exception) {
                         ...
-                        // 자세한 내용은 addMappingForcibly API 문서를 참고하세요.    
+                        // For more details, see the addMappingForcibly API document.
                     }
                 }
             } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP) {
@@ -646,10 +646,10 @@ private static void addMappingWithCredential(final Activity activity) {
 ```
 
 ### Add Mapping Forcibly
-특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
-**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+If there is any account mapped to a specific IdP, try **force** mapping.
+When you try **force mapping**, you need `ForcingMappingTicket` obtained from the AddMapping API.
 
-다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
+The following is an example of force mapping to Facebook:
 
 **API**
 
@@ -665,31 +665,31 @@ private static void addMappingForciblyFacebook(final Activity activity) {
         @Override
         public void onCallback(AuthToken result, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
-                // 매핑 추가 성공
+                // Successfully added mapping
                 Log.d(TAG, "Add Mapping successful");
                 String userId = Gamebase.getUserID();
                 return;
             }
 
-            // 우선 addMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
+            // First, call the addMapping API to try mapping to an already linked account and get ForcingMappingTicket as follows.
             if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                // ForcingMappingTicket 클래스의 from() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
+                // Use the from() method of the ForcingMappingTicket class to obtain the ForcingMappingTicket instance.
                 final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
                 final String forcingMappingKey = ticket.forcingMappingKey;
 
-                // 강제 매핑을 시도합니다.
+                // Try force mapping.
                 Gamebase.addMappingForcibly(activity, AuthProvider.FACEBOOK, forcingMappingKey, null, new GamebaseDataCallback<AuthToken>() {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException addMappingForciblyException) {
                         if (Gamebase.isSuccess(addMappingForciblyException)) {
-                            // 강제 매핑 추가 성공
+                            // Successfully added force mapping
                             Log.d(TAG, "Add Mapping Forcibly successful");
                             String userId = Gamebase.getUserID();
                             return;
                         }           
 
-                        // 강제 매핑 추가 실패
-                        // 에러 코드를 확인하고 적절한 처리를 진행합니다.
+                        // Failed to add force mapping
+                        // Check the error code and resolve the error.
                     }
                 }
             } else {
@@ -702,32 +702,32 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 
 
 ### Add Mapping Forcibly with Credential
-특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
-**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+If there is any account mapped to a specific IdP, try **force** mapping.
+When you try **force mapping**, you need `ForcingMappingTicket` obtained from the AddMapping API.
 
-게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMappingForcibly를 호출 할 수 있는 인터페이스입니다.
+This interface allows you to perform authentication in the game with the SDK provided by IdP first and then to call the Gamebase AddMappingForcibly by using the access token issued.
 
-* Credential 파라미터 설정방법
+* How to set the Credential parameter
 
-| keyname                                  | a use                                    | 값 종류                                     |
+| keyname                                  | a use                                    | Value type                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | IdP 유형 설정                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
-| AuthProviderCredentialConstants.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰)설정.<br/>Google 인증 시에는 사용 안 함. |                                          |
-| AuthProviderCredentialConstants.AUTHORIZATION_CODE | Google 로그인 이후 획득할 수 있는 OTOC(one time authorization code) 입력 |                                          |
+| AuthProviderCredentialConstants.PROVIDER_NAME | IdP type setting                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
+| AuthProviderCredentialConstants.ACCESS_TOKEN | Set the authentication information (access token) received after IdP login.<br/>It is not used for Google authentication. |                                          |
+| AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter the OTOC (one-time authorization code) which can be obtained after Google login. |                                          |
 
-> [참고]
+> [Note]
 >
-> 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
+> This may be needed to use unique functions of external services (e.g. Facebook).
 >
 
 <br/>
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 외부 SDK에서 지원 요구하는 개발사항은 외부 SDK의 API를 사용하여 구현해야 하며, Gamebase에서는 지원하지 않습니다.
+> Developments requested by an external SDK must be implement using APIs from the external SDK; Gamebase does not support those development features.
 >
 
-다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
+The following is an example of force mapping to Facebook:
 
 **API**
 
@@ -747,31 +747,31 @@ private static void addMappingForciblyFacebook(final Activity activity) {
         @Override
         public void onCallback(AuthToken result, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
-                // 매핑 추가 성공
+                // Successfully added mapping
                 Log.d(TAG, "Add Mapping successful");
                 String userId = Gamebase.getUserID();
                 return;
             }
 
-            // 우선 addMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
+            // First, call the addMapping API to try mapping to an already linked account and get ForcingMappingTicket as follows.
             if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                // ForcingMappingTicket 클래스의 from() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
+                // Use the from() method of the ForcingMappingTicket class to obtain the ForcingMappingTicket instance.
                 final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
                 final String forcingMappingKey = ticket.forcingMappingKey;
 
-                // 강제 매핑을 시도합니다.
+                // Try force mapping.
                 Gamebase.addMappingForcibly(activity, credentialInfo, forcingMappingKey, null, new GamebaseDataCallback<AuthToken>() {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException addMappingForciblyException) {
                         if (Gamebase.isSuccess(addMappingForciblyException)) {
-                            // 강제 매핑 추가 성공
+                            // Successfully added force mapping
                             Log.d(TAG, "Add Mapping Forcibly successful");
                             String userId = Gamebase.getUserID();
                             return;
                         }           
 
-                        // 강제 매핑 추가 실패
-                        // 에러 코드를 확인하고 적절한 처리를 진행합니다.
+                        // Failed to add force mapping
+                        // Check the error code and resolve the error.
                     }
                 }
             } else {
@@ -786,7 +786,7 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 
 ### Remove Mapping
 
-특정 IdP에 대한 연동을 해제합니다. 만약, 현재 로그인 중인 계정을 해제하려고 하면 실패를 반환합니다.<br/>
+Unlink a specific IdP. Returns fail when trying to disconnect an account currently logged in.<br/>
 After mapping is removed, Gamebase processes logout of the IdP.
 
 **API**
@@ -908,18 +908,18 @@ information codes of restricted use will be displayed as below, when they try to
 * BANNED_MEMBER(7)
 
 ## TransferAccount
-게스트 계정을 다른 단말기로 이전하기 위해 계정 이전을 위한 키를 발급받는 기능입니다.
+Issues a key to transfer the guest account to another device.
 
-이 키를 **TransferAccountInfo** 라고 부릅니다.
-발급받은 TransferAccountInfo는 다른 기기에서 **requestTransferAccount** API를 호출하여 계정 이전을 할 수 있습니다.
+This key is called **TransferAccountInfo**.
+The issued TransferAccountInfo calls the **requestTransferAccount** API from another device to transfer the account.
 
-> `주의`
-> TransferAccountInfo의 발급은 게스트 로그인 상태에서만 발급이 가능합니다.
-> TransferAccountInfo를 이용한 계정 이전은 게스트 로그인 상태 또는 로그인되어 있지 않은 상태에서만 가능합니다.
-> 로그인한 게스트 계정이 이미 다른 외부 IdP (Google, Facebook, Payco 등) 계정과 매핑이 되어 있다면 계정 이전이 지원되지 않습니다.
+> `Caution`
+> The TransferAccountInfo key can be issued while the guest account is logged in.
+> Transfer of guest account using TransferAccountInfo is allowed only when logged in to a guest account or not logged in.
+> If the logged-in guest account has already been mapped to an IdP ((Google, Facebook, PAYCO, etc.)) account, account transfer is not supported.
 
 ### Issue TransferAccount
-게스트 계정 이전을 위한 TransferAccountInfo를 발급합니다.
+Issues TransferAccountInfo to transfer the guest account.
 
 **API**
 
@@ -946,7 +946,7 @@ Gamebase.issueTransferAccount(new GamebaseDataCallback<TransferAccountInfo>() {
 ```
 
 ### Query TransferAccount
-게스트 계정 이전을 위해 이미 발급받은 TransferAccountInfo 정보를 게임베이스 서버에 질의합니다.
+Queries the TransferAccountInfo information issued for guest account transfer to the Gamebase server.
 
 **API**
 
@@ -974,9 +974,8 @@ Gamebase.queryTransferAccount(new GamebaseDataCallback<TransferAccountInfo>() {
 
 
 ### Renew TransferAccount
-이미 발급받은 TransferAccountInfo 정보를 갱신합니다.
-"자동 갱신", "수동 갱신"의 방법이 있으며, "Password만 갱신", "ID와 Password 모두 갱신" 등의 설정을 통해
-TransferAccountInfo 정보를 갱신 할 수 있습니다.
+Renews the issued TransferAccountInfo information.
+There are two types of renewal: **Auto Renew** and **Manual Renew**. You can select either **Renew Password Only** or **Renew Both ID and Password** to renew the TransferAccountInfo information.
 
 ```java
 + (void)Gamebase.renewTransferAccount(final TransferAccountRenewConfiguration config, final GamebaseDataCallback<TransferAccountInfo> callback);
@@ -1010,12 +1009,12 @@ Gamebase.renewTransferAccount(autoConfig, new GamebaseDataCallback<TransferAccou
 
 
 ### Transfer Guest Account to Another Device
-**issueTransfer** API로 발급받은 TransferAccount를 통해 계정을 이전하는 기능입니다.
-계정 이전 성공 시 TransferAccount를 발급받은 단말기에서 이전 완료 메시지가 표시될 수 있고, Guest 로그인 시 새로운 계정이 생성됩니다.
-계정 이전이 성공한 단말기에서는 TransferAccount를 발급받았던 단말기의 게스트 계정을 계속해서 사용할 수 있습니다.
+Transfers the account with TransferAccount issued with **issueTransfer** API.
+When account transfer is successful, a transfer completion message will be displayed from the device where TransferAccount has been issued and a new account will be created when a guest logs in.
+On the device where the account transfer was successfully made, the guest account from the previous device where TransferAccount was issued can still be used.
 
-> `주의`
-> 이미 Guest 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
+> `Caution`
+> If account transfer is executed while logged in as a guest, the guest account logged in on the device will be lost.
 
 **API**
 
@@ -1049,35 +1048,35 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | The authentication is not supported.                        |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | Named member does not exist or has withdrawn.                      |
 |                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | Error in external authentication library. <br/>Check DetailCode and DetailMessage. |
-|                | AUTH_ALREADY_IN_PROGRESS_ERROR           | 3010       | 이전 인증 프로세스가 완료되지 않았습니다. |
-| TransferAccount| SAME\_REQUESTOR                          | 8          | 발급한 TransferAccount를 동일한 기기에서 사용했습니다. |
-|                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IdP가 연동되어 있습니다. |
-|                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccount의 유효기간이 만료됐습니다. |
-|                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | 잘못된 TransferAccount를 여러번 입력하여 계정 이전 기능이 잠겼습니다. |
-|                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | TransferAccount의 Id가 유효하지 않습니다. |
-|                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | TransferAccount의 Password가 유효하지 않습니다. |
-|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccount 설정이 되어있지 않습니다. <br/> TOAST Gamebase Console에서 먼저 설정해주세요. |
-|                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccount가 존재하지 않습니다. TransferAccount를 먼저 발급받아주세요. |
-|                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccount가 이미 존재합니다. |
-|                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount가 이미 사용되었습니다. |
+|                | AUTH_ALREADY_IN_PROGRESS_ERROR           | 3010       | The previous authentication process has not been completed. |
+| TransferAccount| SAME\_REQUESTOR                          | 8          | The issued TransferAccount has been used on the same device. |
+|                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | You have tried transferring with a non-guest account or the account is linked with a non-guest IdP. |
+|                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | The date of TransferAccount has expired. |
+|                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | You have entered a wrong TransferAccount several times, so the account transfer function has been locked. |
+|                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | Invalid TransferAccount ID. |
+|                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | Invalid TransferAccount Password. |
+|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccount has not been set. <br/> Please set it on the TOAST Gamebase console first. |
+|                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | No TransferAccount found. Please issue TransferAccount first. |
+|                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccount already exists. |
+|                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount has already been used. |
 | Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED               | 3101       | Token login has failed.                          |
 |                | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | Invalid token information.                        |
-|                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | Invalid last login IDP information.                   |
-| IDP Login      | AUTH\_IDP\_LOGIN\_FAILED                 | 3201       | IDP login has failed.                         |
-|                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO     | 3202       | Invalid IDP information (IDP information does not exist in the Console.) |
+|                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | Invalid last login IdP information.                   |
+| IDP Login      | AUTH\_IDP\_LOGIN\_FAILED                 | 3201       | IdP login has failed.                         |
+|                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO     | 3202       | Invalid IdP information (IdP information does not exist in the Console.) |
 | Add Mapping    | AUTH\_ADD\_MAPPING\_FAILED               | 3301       | Add mapping has failed.                           |
 |                | AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | Already mapped to another member.                      |
 |                | AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | Already mapped to same IDP.                     |
-|                | AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO   | 3304       | Invalid IDP information (IDP information does not exist in the Console.) |
-|                | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP    | 3305       | Guest IDP로는 AddMapping이 불가능합니다. |
-| Add Mapping Forcibly | AUTH_ADD_MAPPING_FORCIBLY_NOT_EXIST_KEY         | 3311       | 강제매핑키(ForcingMappingKey)가 존재하지 않습니다. <br/>ForcingMappingTicket을 다시 한번 확인해주세요. |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_ALREADY_USED_KEY      | 3312       | 강제매핑키(ForcingMappingKey)가 이미 사용되었습니다. |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_EXPIRED_KEY           | 3313       | 강제매핑키(ForcingMappingKey)의 유효기간이 만료되었습니다. |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_IDP         | 3314       | 강제매핑키(ForcingMappingKey)가 다른 IdP에 사용되었습니다. <br/>발급받은 ForcingMappingKey는 같은 IdP에 강제 매핑을 시도 하는데 사용됩니다. |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_AUTHKEY     | 3315       | 강제매핑키(ForcingMappingKey)가 다른 계정에 사용되었습니다. <br/>발급받은 ForcingMappingKey는 같은 IdP 및 계정에 강제 매핑을 시도 하는데 사용됩니다. |
+|                | AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO   | 3304       | Invalid IdP information (IdP information does not exist in the Console.) |
+|                | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP    | 3305       | AddMapping is not available with a guest IdP. |
+| Add Mapping Forcibly | AUTH_ADD_MAPPING_FORCIBLY_NOT_EXIST_KEY         | 3311       | No force mapping key (ForcingMappingKey) found. <br/>Please check ForcingMappingTicket again. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_ALREADY_USED_KEY      | 3312       | The force mapping key (ForcingMappingKey) has already been used. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_EXPIRED_KEY           | 3313       | The date of force mapping key (ForcingMappingKey) has expired. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_IDP         | 3314       | The force mapping key (ForcingMappingKey) has been used for a different IdP. <br/>The issued ForcingMappingKey is used for trying to force map to the same IdP. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_AUTHKEY     | 3315       | The force mapping key (ForcingMappingKey) has been used for a different account. <br/>The issued ForcingMappingKey is used for trying to force map to the same IdP and account. |
 | Remove Mapping | AUTH\_REMOVE\_MAPPING\_FAILED            | 3401       | Remove mapping has failed.                           |
-|                | AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | Cannot delete last mapped IDP.                |
-|                | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP   | 3403       | Currently logged-in IDP.                      |
+|                | AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | Cannot delete last mapped IdP.                |
+|                | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP   | 3403       | Currently logged-in IdP.                      |
 | Logout         | AUTH\_LOGOUT\_FAILED                     | 3501       | Logout has failed.                            |
 | Withdrawal     | AUTH\_WITHDRAW\_FAILED                   | 3601       | Withdrawal has failed.                              |
 | Not Playable   | AUTH\_NOT\_PLAYABLE                      | 3701       | Not playable (due to maintenance or service closed)         |
@@ -1118,3 +1117,5 @@ Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCa
 ```
 
 * Check error codes of IdP SDK at each developer's page.
+
+`Last Update: 2019.05.28`

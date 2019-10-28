@@ -8,7 +8,7 @@ Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 >
 > Unity 지원 버전
 >
-> * Unity 2019.x : ~ 2019.1.10 
+> * Unity 2019.x : ~ 2019.2.9
 > * Unity 2018.x : ~ 2018.4.x(LTS)
 > * Unity 2017.x : ~ 2017.4.x(LTS)
 > * Unity 5.x : 5.6.6

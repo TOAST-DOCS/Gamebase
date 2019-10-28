@@ -22,9 +22,9 @@ public class GamebaseApplication extends Application {
 
 To initialize Gamebase, Gamebase setting can be modified with GamebaseConfiguration.Builder.
 
-| API                                      | Mandatory(M) / Optional(O) | Description                              |
+| API                                      | Mandatory (M) / Optional (O) | Description                              |
 | ---------------------------------------- | -------------------------- | ---------------------------------------- |
-| Builder(String appId, String appVersion) | **M**                      | GamebaseConfiguration.Builder 생성자에 appId와 appVersion을 필수 파라미터로 넘겨주어 초기화해야합니다. <br/><br/> **appId:** Enter an App ID issued from TOAST Cloud Project.<br/> **appVersion:** Status of update or maintenance can be decided upon a game version. Specify a game version. |
+| Builder(String appId, String appVersion) | **M**                      | appId and appVersion must be passed to the GamebaseConfiguration.Builder constructor as mandatory parameters and initialized. <br/><br/> **appId:** Enter an App ID issued from TOAST Cloud Project.<br/> **appVersion:** Status of update or maintenance can be decided upon a game version. Specify a game version. |
 | build()                                  | **M**                      | Convert Builder completed with setting to a configuration object.<br/>Required for **Gamebase.initialize ()** API. |
 | enablePopup(boolean enable)              | O                          | **[UI]**<br/>When a game user cannot play games due to system maintenance or banned from use, reasons need to be displayed by pop-ups.<br/>If it is set **true** , Gamebase will automatically display information via pop-ups.<br/>**false** is set as default.<br/>When set to **false** , get information from launching results and display why user cannot play games by using customized UI. |
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>Depending on the launching results, when available to log in (mainly due to maintenance), you may decide whether to allow Gamebase to automatically display pop-ups.<br/>Works only when **enablePopup (true)** is on.<br/>**true** is set as default. |
@@ -41,11 +41,11 @@ To initialize Gamebase, Gamebase setting can be modified with GamebaseConfigurat
 >
 > Before **releasing** a game, be sure to delete 'setDebugMode' call from a source code or change the parameter to 'false'.
 
-디버그 설정은 Console에서도 가능하며 Console에서 설정된 값을 우선시합니다.
-Console 설정 방법은 아래 가이드를 참고하십시오.
+You can also perform the debug setting in the console and the values set in the console have priority.
+Please see the following guide to set in the console.
 
-* [Console 테스트 단말기 설정](./oper-app/#test-device)
-* [Console Client 설정](./oper-app/#client)
+* [Setting the console test device](./oper-app/#test-device)
+* [Setting the console client](./oper-app/#client)
 
 
 ### Initialize
@@ -147,7 +147,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 });
 ```
 
-getLaunchingInformations API를 이용하면 초기화 이후에도 LaunchingInfo 객체를 획득할 수 있습니다.
+With the getLaunchingInformations API, you can get the LaunchingInfo object after initialization.
 
 **API**
 
@@ -166,8 +166,8 @@ getLaunchingInformations API를 이용하면 초기화 이후에도 LaunchingInf
 | IN_SERVICE                  | 200  | Service is now normally provided                                 |
 | RECOMMEND_UPDATE            | 201  | Update is recommended                                  |
 | IN_SERVICE_BY_QA_WHITE_LIST | 202  | Under maintenance now but QA user service is available. |
-| IN_TEST                     | 203  | 테스트 중 |
-| IN_REVIEW                   | 204  | 심사 중 |
+| IN_TEST                     | 203  | Under test |
+| IN_REVIEW                   | 204  | Review in progress |
 | REQUIRE_UPDATE              | 300  | Update is required                                  |
 | BLOCKED_USER                | 301  | User whose access has been blocked |
 | TERMINATED_SERVICE          | 302  | Service has been terminated                                   |
@@ -182,15 +182,17 @@ getLaunchingInformations API를 이용하면 초기화 이후에도 LaunchingInf
 
 | Error                        | Error Code | Description                |
 | ---------------------------- | ---------- | -------------------------- |
-| NOT_INITIALIZED              | 1          | Gamebase 초기화돼 있지 않습니다. |
-| NOT_LOGGED_IN                | 2          | 로그인이 필요합니다.            |
-| INVALID_PARAMETER            | 3          | 잘못된 파라미터입니다.           |
-| INVALID_JSON_FORMAT          | 4          | JSON 포맷 오류입니다.          |
-| USER_PERMISSION              | 5          | 권한이 없습니다.               |
-| NOT_SUPPORTED                | 10         | 지원하지 않는 기능입니다.        |
-| NOT_SUPPORTED_ANDROID        | 11         | Android에서 지원하지 않는 기능입니다.   |
-| ANDROID_ACTIVEAPP_NOT_CALLED | 32         | activeApp API가 호출되지 않았습니다.   |
+| NOT_INITIALIZED              | 1          | Gamebase not initialized. |
+| NOT_LOGGED_IN                | 2          | Login required.            |
+| INVALID_PARAMETER            | 3          | Invalid parameter.           |
+| INVALID_JSON_FORMAT          | 4          | JSON format error.          |
+| USER_PERMISSION              | 5          | No permissions.               |
+| NOT_SUPPORTED                | 10         | Function not supported.        |
+| NOT_SUPPORTED_ANDROID        | 11         | Function not supported in Android.   |
+| ANDROID_ACTIVEAPP_NOT_CALLED | 32         | The activeApp API has not been called.   |
 
 
-* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./error-code/#client-sdk)
+* Refer to the following document for all error codes.
+    * [Error Code](./error-code/#client-sdk)
+
+`Last Update: 2019.05.28`

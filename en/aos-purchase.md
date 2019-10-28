@@ -22,7 +22,7 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
         * A tester device requires USIM, with registered phone number (MDN).
         * Needs **ONE store** application installed.
 
-#### 3. TOAST IAP 서비스 이용
+#### 3. Using TOAST IAP Service
 
 * Refer to the IAP guide to set and register IAP.
     * [IAP > Getting Started](/Mobile%20Service/IAP/en/console-guide/)
@@ -268,3 +268,4 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 * For IAP error codes, refer to the document below.
     * [IAP > Error Code Guide > Client API Error Type](/Mobile%20Service/IAP/en/error-code/#client-api#client-api-errors)
 
+`Last Update: 2019.05.28`
