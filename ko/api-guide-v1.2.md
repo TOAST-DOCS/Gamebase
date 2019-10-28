@@ -1,12 +1,11 @@
 ## Game > Gamebase > API v1.2 가이드
 
 ## 변경 사항
-- Get Simple Launching API 호출 시 필수 파라미터가 추가 되었습니다.
+- IAP API가 변경 되었습니다.
+- Get Simple Launching API 호출 시 필수 파라미터로 storeCode가 추가 되었습니다.
 - Check Maintenance API 응답 결과에 점검 대상에 대한 storeCode 정보가 추가 되었습니다.
 - GUEST 계정에 대한 단말기 이전에 사용되는 TransferAccount에 대해, 사전에 발급된 TransferAccount를 검증 할 수 있는 Validate TransferAccount API가 추가 되었습니다.
-- API 응답결과의 date 타입이 Epoch time 에서 ISO 8601 형식으로 변경되었습니다.
-  - Token Authentication, Get Member, Get Members API 응답 결과의 regDate, lastLoginDate 항목
-  - yyyy-MM-dd'T'HH:mm:ssXXX
+- API 응답결과의 date 타입이 Epoch time 에서 ISO 8601 형식(yyyy-MM-dd'T'HH:mm:ssXXX)으로 변경되었습니다. Token Authentication, Get Member, Get Members API 응답 결과의 regDate, lastLoginDate 항목
 
 ## Advance Notice
 
