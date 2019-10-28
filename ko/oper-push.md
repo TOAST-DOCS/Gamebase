@@ -82,7 +82,7 @@ Gamebase를 통해 발송된 푸시의 이력과 발송 예약으로 등록된 �
 
 ## Push
 Gamebase를 통해 발송된 푸시의 이력과 발송 예약으로 등록된 목록을 확인할 수 있습니다.
-![gamebase_push_01_201812](./image/Operators_Guide/gamebase_push_01_201910.png)
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_01_201910.png)
 발송 예정 내역에 있는 목록은 **Push Details**에서 전송을 취소할 수도 있습니다.
 
 ### Registered List
@@ -93,8 +93,8 @@ Gamebase를 통해 발송된 푸시의 이력과 발송 예약으로 등록된 �
 
 발송 이력 목록에서 푸시를 선택하면 전송된 푸시의 상세 내역을 조회할 수 있습니다.
 **복사** 버튼을 클릭하면 발송된 푸시의 등록 정보를 이용해 손쉽게 푸시를 등록할 수 있습니다.
-![gamebase_push_01_201812](./image/Operators_Guide/gamebase_push_02_201910.png)
-![gamebase_push_01_201812](./image/Operators_Guide/gamebase_push_03_201910.png)
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_02_201910.png)
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_03_201910.png)
 
 
 ### Register Push
@@ -102,8 +102,8 @@ Gamebase를 통해 발송된 푸시의 이력과 발송 예약으로 등록된 �
 새로운 푸시를 등록하려면 **등록** 버튼을 클릭합니다.
 등록을 진행하는 푸시 내용은 오른쪽의 미리보기 화면을 통해 발송 전에 확인할 수 있습니다.
 
-![gamebase_push_01_201812](./image/Operators_Guide/gamebase_push_04_201910.png)
-![gamebase_push_01_201812](./image/Operators_Guide/gamebase_push_05_201910.png)
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_04_201910.png)
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_05_201910.png)
 
 
 #### (1) 발송 타입
@@ -201,26 +201,26 @@ Android 푸시 수신시에 실행되는 미디어를 추가할 수 있습니다
 
 ## Tag
 유저를 특정 기준으로 묶어서 전송할 수 있는 태그 기능을 제공합니다.
-![gamebase_push_01_201812](./image/Operators_Guide/gamebase_push_06_201910.png)
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_06_201910.png)
 TOAST Push에서 푸시 발송시 사용할 태그명을 등록할 수 있습니다.
 
 ### Tag register
-![gamebase_push_01_201812](./image/Operators_Guide/gamebase_push_09_201910.png)
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_09_201910.png)
 
 ### Tag detail
 등록된 태그의 관리 및 해당 태그에 등록된 유저의 목록을 관리할 수 있습니다.
-![gamebase_push_01_201812](./image/Operators_Guide/gamebase_push_07_201910.png)
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_07_201910.png)
 상단의 삭제/수정 버튼을 통해 태그에 대한 정보 수정 및 삭제를 진행할 수 있으며 하단의 유저ID 관리 기능을 통해 태그에 유저를 등록하거나 삭제할 수 있습니다.
 #### 유저 등록
 ##### 단건 등록
-![gamebase_push_01_201812](./image/Operators_Guide/gamebase_push_08_201910.png)
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_08_201910.png)
 ##### 파일 등록
-![gamebase_push_01_201812](./image/Operators_Guide/gamebase_push_10_201910.png)
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_10_201910.png)
 등록버튼을 누르면 위와같이 등록 팝업이 노출되며 직접 ID를 입력하거나 파일 등록을 통해 입력 가능합니다.
 파일등록을 이용해 등록하고자 할 경우 한 번에 최대 1000명까지 등록 가능합니다.
 
 #### 유저 삭제
-![gamebase_push_01_201812](./image/Operators_Guide/gamebase_push_11_201910.png)
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_11_201910.png)
 삭제를 하고자 할 경우 유저목록에서 왼쪽의 체크박스를 선택한 후 삭제버튼을 누르면 태그에 등록된 유저를 삭제할 수 있습니다.
 
 
