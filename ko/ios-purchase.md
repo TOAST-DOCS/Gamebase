@@ -47,16 +47,10 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
     [API 가이드](./api-guide/#wrapping-api)
 5. IAP 서버에서 consume(소비) API 호출에 성공했다면 게임 서버가 게임 클라이언트에 아이템을 지급합니다.
 
-스토어 결제는 성공했으나 오류가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 다음 두 API를 각각 호출하여 재처리 로직을 구현하시기 바랍니다. <br/>
 
-1. 미처리 아이템 배송 요청
-    * 로그인에 성공하면 **requestItemListOfNotConsumedWithCompletion:**을 호출하여 미소비 결제내역을 확인합니다.
-    * 반환된 미소비 결제 내역 목록에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
-2. 결제 오류 재처리 시도
-    * 로그인에 성공하면 **requestRetryTransactionWithCompletion:**을 호출하여 미처리 내역에 대해 자동으로 재처리를 시도합니다.
-    * 반환된 successList 에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
-    * 반환된 failList에 값이 존재한다면 해당 값을 게임 서버나 Log & Crash 등을 통해 전송하여 데이터를 확보하고, [고객 센터](https://toast.com/support/inquiry)에 재처리 실패 원인을 문의합니다.
-
+* 스토어 결제는 성공했으나 오류가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 미소비 결제 내역을 확인하시기 바랍니다. <br/>
+	* 로그인에 성공하면 **requestItemListOfNotConsumedWithCompletion:**를 호출하여 미소비 결제 내역을 확인합니다.
+	* 반환된 미소비 결제 내역 목록에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
 
 ### Purchase Item
 
@@ -125,28 +119,46 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 }
 ```
 
+### Get a List of Activated Subscriptions
 
+현재 사용자 ID 기준으로 활성화된 구독 목록을 조회합니다.
+결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다.
+사용자 ID가 같다면 Android와 iOS에서 구매한 구독 상품이 모두 조회됩니다.
 
-### Reprocess Failed Purchase Transaction
-
-스토어에서는 결제가 정상적으로 되었으나, TOAST IAP 서버 검증 실패 등으로 정상적으로 결제되지 않은 경우에는, API를 이용해 재처리를 시도합니다. <br/>
-마지막으로 결제가 성공한 내역을 바탕으로, 아이템 배송(지급) 등의 API를 호출해 처리해야 합니다.
 
 ```objectivec
 - (void)viewDidLoad {
-    [TCGBPurchase requestRetryTransactionWithCompletion:^(TCGBPurchasableRetryTransactionResult *transactionResult, TCGBError *error) {
+    [TCGBPurchase requestActivatedPurchasesWithCompletion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
         if (error != nil) {
-            // To Retry Failed Purchasing Transaction Failed cause of the error
+            // To Requesting Activated Item List Failed cause of the error
             return;
         }
 
-        // Should Deal With This Retry Transaction Result.
-        // You may send result to your gameserver and add item to user.
+        // Should Deal With This Activated Items.
     }];
 }
 ```
 
+### Restore Purchase
 
+사용자의 AppStore 계정으로 구매한 내역을 기준으로 구매 내역을 복원하여 콘솔에 반영합니다.
+구매한 구독 상품이 조회되지 않거나 활성화 되지 않을 경우 사용합니다.
+만료된 결제건을 포함하여 복원된 결제건이 결과로 반환됩니다.
+자동 갱신형 소비성 구독 상품의 경우 반영되지 않은 구매 내역이 존재할 경우 복원 후 미소비 구매 내역에서 조회 가능합니다.
+
+
+```objectivec
+- (void)viewDidLoad {
+    [TCGBPurchase requestRestoreWithCompletion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
+        if (error != nil) {
+            // To Requesting Restore Failed cause of the error
+            return;
+        }
+
+        // Should Deal With This Restored Items.
+    }];
+}
+```
 
 ### App Store Promotion IAP
 
@@ -185,7 +197,6 @@ App Store 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니
     }];
 }
 ```
-
 
 #### How to Test App Store Promotion IAP
 

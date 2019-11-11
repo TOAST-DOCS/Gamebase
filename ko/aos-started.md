@@ -1,219 +1,45 @@
 ## Game > Gamebase > Android SDK 사용 가이드 > 시작하기
 
+## Environments
+
 Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같습니다.
-
-### Environments
-
 
 > [최소 사양]
 >
-> Android API 15 (IceCreamSandwichMR1, 4.0.3) 이상 <br/>
+> Android API 16 (JellyBean, 4.1) 이상
+> Gradle Android Plugin 2.3.0 이상 <br/>
 > 개발 환경: Android Studio
 
-### Installation
+## Setting
 
-Gamebase Android SDK 파일을 다운로드합니다.
+* Gamebase Android SDK를 사용하기 전에 TOAST Console에서 앱 아이디를 발급받아야 합니다. 앱 아이디를 발급받으려면 TOAST Console 에서 **(+)서비스 선택**을 클릭하여 **Game > Gamebase** 를 클릭하여 서비스를 활성화 합니다.
+* 사용할 Gamebase 버전, 사용할 인증, 결제, 푸시 모듈을 build.gradle 파일에 선언하세요.
+	* Gamebase 최신 버전은 [릴리스 노트](./release-notes/) 에서 확인할 수 있습니다.
 
-Gamebase Android SDK를 사용하기 전에 TOAST Console에서 앱 아이디를 발급받아야 합니다. 앱 아이디를 발급받으려면 TOAST Console에서 **(+)서비스 선택**을 클릭하여 Game > Gamebase를 클릭하여 서비스를 활성화 합니다.
-
-#### Download
-
-* [Download Gamebase Android SDK](/Download/#game-gamebase)
-* 다운로드 받은 SDK에서 다음 폴더안의 aar 파일을 프로젝트에 추가합니다.
-    * **gamebase-sdk/**
-* 인증 모듈 추가
-    * 다운로드한 SDK의 **gamebase-adapter-auth-{provider}** 폴더를 프로젝트에 추가합니다.
-    * Google, Facebook, PAYCO 중에서 사용할 인증 모듈을 모두 추가합니다.
-
-
-#### Package Includes (SDK)
-
-* SDK 패키지의 압축을 풀면 다음과 같은 모듈이 표시됩니다.
-  ![Package Includes](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-installation-001_1.5.0.png)
-
-### Setting build.gradle
-
-* 1) 다운로드한 Gamebase SDK를 앱의 루트(root) 경로에 복사합니다.
-* 2) Gamebase 경로 및 버전, 사용할 인증, 결제, 푸시 모듈을 설정합니다.
-    * 사용하고자 하는 모듈을 true로 설정하면 해당 모듈이 dependency에 추가됩니다.
-    * 반대로 사용하지 않아 포함시키지 않는 모듈은 false로 설정합니다.
-
-```gradle
-/* Set the Gamebase path. */
-def gamebaseDir = '../Gamebase'
-
-/* Set external libraries version. */
-def supportVersion = '27.0.2'
-def playServicesVersion = '11.8.0'
-def gsonVersion = '2.2.4'
-def okhttpVersion = '3.6.0'
-def facebookSdkVersion = '4.30.0'
-def naverSdkVersion = '4.2.0'
-def signpostVersion = '1.2.1.2'
-def lineSdkVersion = '4.0.8'
-def paycoSdkVersion = '1.3.2'
-def iapSdkVersion = '1.5.3'
-def pushSdkVersion = '1.7.0'
-def pushSdkTencentVersion = '1.7.0'
-
-/* Set the Gamebase version. */
-def gamebaseSdkVersion = '2.5.0'
-def gamebaseGoogleAdapterVersion = '2.5.0'
-def gamebaseFacebookAdapterVersion = '2.5.0'
-def gamebasePaycoAdapterVersion = '2.5.0'
-def gamebaseNaverAdapterVersion = '2.5.0'
-def gamebaseTwitterAdapterVersion = '2.5.0'
-def gamebaseLineAdapterVersion = '2.5.0'
-def gamebaseIAPAdapterVersion = '2.5.0'
-def gamebaseFCMAdapterVersion = '2.5.0'
-def gamebaseTencentAdapterVersion = '2.5.0'
-
-/* Set if defined google-services plugin */
-def useGoogleServicesPlugin = true
-
-/* Set the Gamebase authentication modules. */
-def useAuthFacebook = true;
-def useAuthGoogle = true;
-def useAuthNaver = true;
-def useAuthTwitter = true;
-def useAuthLine = true;
-def useAuthPayco = true;
-
-/* Set the Gamebase purchase modules. */
-def usePurchaseIAP = true;
-def usePurchaseIAPOneStore = true;
-
-/* Set the Gamebase push modules. */
-def usePushFCM = true;
-def usePushTencent = false; // Do not use all push modules. Select one.
-```
-
-* 3) 아래 내용을 repositories에 추가합니다.
-
-```gradle
-repositories {
-    flatDir {
-        dirs "${gamebaseDir}"
-        dirs "${gamebaseDir}/gamebase-sdk"
-        dirs "${gamebaseDir}/gamebase-adapter-auth-google"
-        dirs "${gamebaseDir}/gamebase-adapter-auth-facebook"
-        dirs "${gamebaseDir}/gamebase-adapter-auth-naver"
-        dirs "${gamebaseDir}/gamebase-adapter-auth-twitter"
-        dirs "${gamebaseDir}/gamebase-adapter-auth-line"
-        dirs "${gamebaseDir}/gamebase-adapter-auth-payco"
-        dirs "${gamebaseDir}/gamebase-adapter-purchase-iap"
-        dirs "${gamebaseDir}/gamebase-adapter-push-fcm"
-        dirs "${gamebaseDir}/gamebase-adapter-push-tencent"
-    }
-}
-```
-
-* 4) 아래 내용을 dependencies에 추가합니다.
-
-```gradle
+```groovy
 dependencies {
-    ...
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    // if defined "apply plugin: 'com.google.gms.google-services'"
-    if (useGoogleServicesPlugin) {
-        implementation "com.android.support:support-v4:${supportVersion}"
-        implementation "com.google.firebase:firebase-core:${playServicesVersion}"
-    }
+    // >>> Gamebase Version
+    def GAMEBASE_SDK_VERSION = 'x.x.x'
 
-    // Compile Gamebase External Libraries
-    implementation "com.android.support:support-compat:${supportVersion}"
-    implementation "com.google.code.gson:gson:${gsonVersion}"
-    implementation "com.squareup.okhttp3:okhttp:${okhttpVersion}"
+    // >>> Gamebase - Add Auth Adapter
+    implementation "com.toast.android.gamebase:gamebase-adapter-auth-facebook:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-auth-google:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-auth-line:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-auth-naver:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-auth-payco:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-auth-twitter:$GAMEBASE_SDK_VERSION"
 
-    // Compile Gamebase SDKs
-    implementation (name: "gamebase-sdk-base-${gamebaseSdkVersion}", ext: 'aar')
-    implementation (name: "gamebase-sdk-${gamebaseSdkVersion}", ext: 'aar')
+    // >>> Gamebase - Select Purchase Adapter
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
 
-    // Compile Authentication Modules
-    if (useAuthFacebook) {
-        implementation "com.android.support:support-v4:${supportVersion}"
-        implementation "com.android.support:appcompat-v7:${supportVersion}"
-        implementation "com.android.support:cardview-v7:${supportVersion}"
-        implementation "com.android.support:customtabs:${supportVersion}"
-        implementation "com.facebook.android:facebook-login:${facebookSdkVersion}"
-        implementation(name: "gamebase-adapter-auth-facebook-${gamebaseFacebookAdapterVersion}", ext: 'aar')
-    }
-    if (useAuthGoogle) {
-        implementation "com.android.support:support-v4:${supportVersion}"
-        implementation "com.google.android.gms:play-services-auth:${playServicesVersion}"
-        implementation(name: "gamebase-adapter-auth-google-${gamebaseGoogleAdapterVersion}", ext: 'aar')
-    }
-    if (useAuthNaver) {
-        implementation "com.android.support:appcompat-v7:${supportVersion}"
-        implementation "com.android.support:support-core-utils:${supportVersion}"
-        implementation "com.android.support:customtabs:${supportVersion}"
-        implementation "com.android.support:support-v4:${supportVersion}"
-        implementation "com.naver.nid:naveridlogin-android-sdk:${naverSdkVersion}"
-        implementation(name: "gamebase-adapter-auth-naver-${gamebaseNaverAdapterVersion}", ext: 'aar')
-    }
-    if (useAuthTwitter) {
-        implementation "oauth.signpost:signpost-core:${signpostVersion}"
-        implementation(name: "gamebase-adapter-auth-twitter-${gamebaseTwitterAdapterVersion}", ext: 'aar')
-    }
-    if (useAuthLine) {
-        implementation "com.android.support:appcompat-v7:${supportVersion}"
-        implementation "com.android.support:customtabs:${supportVersion}"
-        implementation(name: "line-sdk-${lineSdkVersion}", ext: 'aar')
-        implementation(name: "gamebase-adapter-auth-line-${gamebaseLineAdapterVersion}", ext: 'aar')
-    }
-    if (useAuthPayco) {
-        implementation("com.google.android.gms:play-services-basement:${playServicesVersion}") {
-            transitive = false
-        }
-        implementation(name: "paycologin-${paycoSdkVersion}", ext: 'aar')
-        implementation(name: "gamebase-adapter-auth-payco-${gamebasePaycoAdapterVersion}", ext: 'aar')
-    }
-
-    // Compile Purchase Modules
-    if (usePurchaseIAP) {
-        implementation "com.toast.iap:iap:${iapSdkVersion}"
-        implementation(name: "gamebase-adapter-purchase-iap-${gamebaseIAPAdapterVersion}", ext: 'aar')
-
-        if (usePurchaseIAPOneStore) {
-            implementation(name: "iap-onestore-${iapSdkVersion}", ext: 'aar')
-        }
-    }
-
-    // Compile Push Modules
-    if (usePushFCM) {
-        implementation "com.android.support:support-v4:${supportVersion}"
-        implementation "com.google.android.gms:play-services-gcm:${playServicesVersion}"
-        implementation "com.google.firebase:firebase-messaging:${playServicesVersion}"
-        implementation(name: "pushsdk-${pushSdkVersion}", ext: 'aar')
-        implementation(name: "gamebase-adapter-push-fcm-${gamebaseFCMAdapterVersion}", ext: 'aar')
-    } else if (usePushTencent) {
-        compile(name: "pushsdk-tencent-${pushSdkTencentVersion}", ext: 'aar')
-        implementation(name: "gamebase-adapter-push-tencent-${gamebaseTencentAdapterVersion}", ext: 'aar')
-    }
+    // >>> Gamebase - Select Push Adapter
+    implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-push-tencent:$GAMEBASE_SDK_VERSION"
 }
 ```
-
-## Dependency
-
-Gamebase SDK에서는 3rd Party SDK 및 Dependency가 있는 모듈의 버전에 대하여 호환을 보장합니다.
-
-| Category                         | Provider        | Modules                                  | Dependencies                             |
-| -------------------------------- | --------------- | ---------------------------------------- | ---------------------------------------- |
-| **Gamebase<br>(required)**       | Gamebase        | gamebase-sdk<br>-{gamebaseSdkVersion}.aar<br>gamebase-sdk-base<br>-{gamebaseSdkVersion}.aar | appcompat-v7-{supportVersion}.aar<br>common-1.0.0.jar<br>common-1.0.3.jar<br>runtime-1.0.3.aar<br>support-annotations-{supportVersion}.jar<br>support-compat-{supportVersion}.aar<br>support-core-ui-{supportVersion}.aar<br>support-core-utils-{supportVersion}.aar<br>support-fragment-{supportVersion}.aar<br>support-media-compat-{supportVersion}.aar<br>support-v4-{supportVersion}.aar<br>gson-{gsonVersion}.jar<br>okhttp-{okhttpVersion}.jar<br>okio-1.11.0.jar |
-| **Authentication<br>(optional)** | Google          | gamebase-adapter-auth-google<br>-{gamebaseGoogleAdapterVersion}.aar | play-services-base-{playServicesVersion}.aar<br>play-services-basement-{playServicesVersion}.aar<br>play-services-tasks-{playServicesVersion}.aar<br>play-services-auth-{playServicesVersion}.aar<br>play-services-auth-base-{playServicesVersion}.aar<br>common-1.0.0.jar<br>common-1.0.3.jar<br>runtime-1.0.3.aar<br>support-annotations-{supportVersion}.jar<br>support-compat-{supportVersion}.aar<br>support-core-ui-{supportVersion}.aar<br>support-core-utils-{supportVersion}.aar<br>support-fragment-{supportVersion}.aar<br>support-media-compat-{supportVersion}.aar<br>support-v4-{supportVersion}.aar |
-|                                  | Facebook        | gamebase-adapter-auth-facebook<br>-{gamebaseFacebookAdapterVersion}.aar | facebook-core-{facebookSdkVersion}.aar<br>facebook-common-{facebookSdkVersion}.aar<br>facebook-login-{facebookSdkVersion}.aar<br>appcompat-v7-{supportVersion}.aar<br>support-vector-drawable-{supportVersion}.aar<br>animated-vector-drawable-{supportVersion}.aar<br>cardview-v7-{supportVersion}.aar<br>customtabs-{supportVersion}.aar<br>bolts-android-1.4.0.jar<br>bolts-applinks-1.4.0.jar<br>bolts-tasks-1.4.0.jar<br>common-1.0.0.jar<br>common-1.0.3.jar<br>runtime-1.0.3.aar<br>support-annotations-{supportVersion}.jar<br>support-compat-{supportVersion}.aar<br>support-core-ui-{supportVersion}.aar<br>support-core-utils-{supportVersion}.aar<br>support-fragment-{supportVersion}.aar<br>support-media-compat-{supportVersion}.aar<br>support-v4-{supportVersion}.aar |
-|                                  | Naver           | gamebase-adapter-auth-naver<br>-{gamebaseNaverAdapterVersion}.aar | naveridlogin-android-sdk-{naverSdkVersion}.aar<br>animated-vector-drawable-{supportVersion}.aar<br>appcompat-v7-{supportVersion}.aar<br>customtabs-{supportVersion}.aar<br>support-vector-drawable-{supportVersion}.aar<br>common-1.0.0.jar<br>common-1.0.3.jar<br>runtime-1.0.3.aar<br>support-annotations-{supportVersion}.jar<br>support-compat-{supportVersion}.aar<br>support-core-ui-{supportVersion}.aar<br>support-core-utils-{supportVersion}.aar<br>support-fragment-{supportVersion}.aar<br>support-media-compat-{supportVersion}.aar<br>support-v4-{supportVersion}.aar |
-|                                  | Twitter         | gamebase-adapter-auth-twitter-{gamebaseTwitterAdapterVersion}.aar | signpost-core-{signpostVersion}.jar |                          |
-|                                  | Line            | gamebase-adapter-auth-line<br>-{gamebaseLineAdapterVersion}.aar | line-sdk-{lineSdkVersion}.aar<br>animated-vector-drawable-{supportVersion}.aar<br>appcompat-v7-{supportVersion}.aar<br>customtabs-{supportVersion}.aar<br>support-vector-drawable-{supportVersion}.aar<br>common-1.0.0.jar<br>common-1.0.3.jar<br>runtime-1.0.3.aar<br>support-annotations-{supportVersion}.jar<br>support-compat-{supportVersion}.aar<br>support-core-ui-{supportVersion}.aar<br>support-core-utils-{supportVersion}.aar<br>support-fragment-{supportVersion}.aar |
-|                                  | Payco           | gamebase-adapter-auth-payco<br>-{gamebasePaycoAdapterVersion}.aar | paycologin-{paycoSdkVersion}.aar<br>play-services-base-{playServicesVersion}.aar<br>play-services-basement-{playServicesVersion}.aar<br>gson-{gsonVersion}.jar |
-| **Purchase<br>(optional)**       | IAP             | gamebase-adapter-purchase-iap<br>-{gamebaseIAPAdapterVersion}.aar | iap-{iapSdkVersion}.aar<br>mobill-core-{iapSdkVersion}.aar<br>gson-{gsonVersion}.jar<br>okhttp-1.5.4.jar<br>* okhttp-1.5.4.jar는 gamebase sdk가 사용하는 okhttp-3.x 와는 다른, IAP SDK가 사용하는 모듈입니다.|
-|                                  | IAP - ONE store |                                          | iap-onestore-{iapSdkVersion}.aar<br>* ONE store 사용 시 추가해야 합니다. |
-| **Push<br>(optional)**           | FCM             | gamebase-adapter-push-fcm<br>-{gamebaseFCMAdapterVersion}.aar  | pushsdk-{pushSdkVersion}.aar<br>firebase-common-{playServicesVersion}.jar<br>firebase-iid-{playServicesVersion}.jar<br>firebase-messaging-{playServicesVersion}.aar<br>play-services-base-{playServicesVersion}.aar<br>play-services-basement-{playServicesVersion}.aar<br>play-services-gcm-{playServicesVersion}.aar<br>play-services-iid-{playServicesVersion}.aar<br>play-services-tasks-{playServicesVersion}.aar<br>common-1.0.0.jar<br>common-1.0.3.jar<br>runtime-1.0.3.aar<br>support-annotations-{supportVersion}.jar<br>support-compat-{supportVersion}.aar<br>support-core-ui-{supportVersion}.aar<br>support-core-utils-{supportVersion}.aar<br>support-fragment-{supportVersion}.aar<br>support-media-compat-{supportVersion}.aar<br>support-v4-{supportVersion}.aar |
-|                                  | Tencent         | gamebase-adapter-push-tencent<br>-{gamebaseTencentAdapterVersion}.aar | pushsdk-tencent-{pushSdkTencentVersion}.aar |
-
-* required 항목은 필수로 포함해야 하는 모듈입니다.
-* optional 항목은 해당 기능이 필요할 경우 포함해야 하는 모듈입니다.
-* 중복되는 Dependency 모듈은 하나만 포함해야 합니다.
 
 ## 3rd-Party Provider SDK Guide
 
@@ -227,7 +53,11 @@ Gamebase SDK에서는 3rd Party SDK 및 Dependency가 있는 모듈의 버전에
 
 ## API Reference
 
-API Reference는 SDK 내에 포함돼 있습니다.
+* API Reference는 SDK 내에 포함되어 있습니다.
+
+## Sample Codes
+
+* 빌드 및 실행이 가능한 Sample Project 는 [다운로드](https://docs.toast.com/ko/Download/) 페이지에서 배포되는 Gamebase Android SDK 의 Zip 파일에 포함되어 있습니다.
 
 ## API Deprecate Governance
 
@@ -239,6 +69,5 @@ Deprecated 된 API는 다음 조건 충족 시 사전 공지 없이 삭제될 �
 		* XX : Major
 		* YY : Minor
 		* ZZ : Hotfix
-
 * 최소 5개월 경과
 

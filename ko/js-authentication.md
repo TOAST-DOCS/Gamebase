@@ -10,7 +10,7 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
 * 게임 초기 타이틀 화면에서 이용자에게 어떤 IdP(identity provider)로 인증할지 선택할 수 있게 합니다.
 
 위에서 설명한 로직은 다음과 같은 순서로 구현할 수 있습니다.
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
 
