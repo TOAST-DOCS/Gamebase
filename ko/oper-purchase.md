@@ -34,12 +34,12 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 스토어에서 판매할 아이템을 등록할 수 있습니다.
 **아이템** 탭에서 새 아이템을 등록하거나 이미 등록한 아이템을 관리할 수 있습니다. 기본적으로 모든 스토어에 대한 아이템이 표시되며, 각 스토어별 필터링 기능도 사용할 수 있습니다.
 
-![gamebase_ban_01_201812](./image/Operators_Guide/gamebase_purchase_04_201911.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_04_201911.png)
 
 ### Register
 
 새로운 아이템을 등록하려면 **스토어 정보 리스트** 화면의 **등록** 버튼을 클릭합니다.
-![gamebase_ban_01_201812](./image/Operators_Guide/gamebase_purchase_05_201911.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_05_201911.png)
 
 * (1) **스토어**  등록하고자 하는 외부 스토어를 선택합니다.  등록하려는 스토어가 없다면 **스토어** 메뉴에서 먼저 스토어를 등록해야 합니다.
 * (2) **상품 유형**  등록하고자 하는 상품 유형을 선택합니다. Google play, App store의 경우 구독 아이템 등록이 가능하며 그 외의 스토어를 선택할 경우 일회성 아이템으로 등록됩니다.
@@ -50,7 +50,7 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 ### Modify
 
 조회 목록에서 등록된 아이템의 상세 정보를 조회하거나 정보를 변경할 수 있습니다.
-![gamebase_ban_01_201812](./image/Operators_Guide/gamebase_purchase_06_201911.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_06_201911.png)
 - 조회 목록에서 각 아이템을 선택하면 등록된 아이템의 상세 정보를 조회할 수 있습니다.
 - **수정** 버튼을 클릭하면 스토어와 아이템 번호 및 상품 유형을 제외한 나머지 정보를 변경할 수 있습니다.
 - **삭제** 버튼을 클릭하면 아이템 정보를 삭제할 수 있습니다.
@@ -65,7 +65,7 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 선택한 검색 유형에 따라 검색 항목이 다르게 노출됩니다.
 
 ##### (1) 일반 검색
-![gamebase_ban_01_201812](./image/Operators_Guide/gamebase_purchase_10_201911.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_201911.png)
 
 일반 검색의 경우 아래의 검색 조건항목을 만족하는 결과를 조회할 수 있습니다.
 - **스토어**: 결제된 스토어 정보
@@ -77,12 +77,12 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 - **결제 상태**: 결제 상태를 기준으로 검색
 
 ##### (2) Trnasaction ID 검색
-![gamebase_ban_01_201812](./image/Operators_Guide/gamebase_purchase_11_201911.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_201911.png)
 
 결제를 하면 생성되는 Transaction ID를 통해 조회할 수 있습니다.
 
 ##### (3) 영수증 검색
-![gamebase_ban_01_201812](./image/Operators_Guide/gamebase_purchase_12_201911.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_201911.png)
 결제 시 지급된 영수증 정보를 가지고 조회할 수 있습니다.
 
 
@@ -132,7 +132,7 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 변경된 결제 정보는 이후 변경이 불가능하므로 신중하게 확인해야 합니다.
 
 #### 영수증 검증
-![image alt](./image/Operators_Guide/Console_IAP_Transaction3.1.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction3.1.png)
 * 조회된 영수증의 결제가 유효한지 검증할 수 있습니다.
 * 각 필드를 비교한 결과를 확인할 수 있습니다. 스토어에서 받은 응답값을 JSON 형식으로 제공하므로 필요한 경우 데이터를 직접 확인하실 수 있습니다.
 * 현재는 App Store 결제 건만 검증할 수 있습니다.
@@ -141,7 +141,7 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 
 결제 어뷰징 정보를 조회하고 제재 할 수 있습니다.
 
-![image alt](./image/Operators_Guide/Console_IAP_PaymentAbusing1_1.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing1_1.0.png)
 
 아래 검색조건을 이용하여 원하는 결제 및 환불 정보를 조회할 수 있습니다.
 결제 및 환불 내역은 오른쪽 상단의 **다운로드** 버튼을 클릭해 언제든지 다운로드할 수 있습니다.
@@ -179,7 +179,7 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 
 검색된 목록에서 유저 ID 클릭 시 검색 기간의 결제 상세 내역을 조회 할 수 있습니다.
 
-![image alt](./image/Operators_Guide/Console_IAP_PaymentAbusing2_1.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing2_1.0.png)
 
 #### 결제 내역
 - **결제 예약 일시**: 사용자가 구입을 시도 또는 완료한 시간
@@ -195,11 +195,11 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 
 자동 제재 설정을 사용하려면 **사용** 버튼을 클릭해 설정 값을 입력합니다.
 
-![image alt](./image/Operators_Guide/Console_IAP_PaymentAbusing3_1.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing3_1.0.png)
 
 #### 설정 정보
 
-![image alt](./image/Operators_Guide/Console_IAP_PaymentAbusing4_1.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing4_1.0.png)
 
 * **이용 정지 기간**  자동 제재 적용 시 이용 정지 기간을 입력합니다.
     * **영구 정지**: 영구 이용 정지를 하려면 선택합니다.
