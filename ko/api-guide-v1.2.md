@@ -6,6 +6,7 @@
 - Check Maintenance API 응답 결과에 점검 대상에 대한 storeCode 정보가 추가 되었습니다.
 - GUEST 계정에 대한 단말기 이전에 사용되는 TransferAccount에 대해, 사전에 발급된 TransferAccount를 검증 할 수 있는 Validate TransferAccount API가 추가 되었습니다.
 - API 응답결과의 date 타입이 Epoch time 에서 ISO 8601 형식(yyyy-MM-dd'T'HH:mm:ssXXX)으로 변경되었습니다. Token Authentication, Get Member, Get Members API 응답 결과의 regDate, lastLoginDate 항목
+- 쿠폰 소진 API가 추가 되었습니다.
 
 ## Advance Notice
 
@@ -960,6 +961,74 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 [오류 코드](./error-code/#server)
 
+<br>
+
+## Coupon
+
+#### Check Validation And Consume Coupon
+
+콘솔을 통해 발급된 쿠폰 코드에 대해 유효성 검증 및 쿠폰 상태를 변경 합니다. 유효한 쿠폰인 경우 소비 상태로 변경을 하고, 응답 결과로 지급할 아이템 정보를 리턴합니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}/coupons/{couponCode} |
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST 프로젝트 ID |
+| userId | String | 쿠폰을 사용할 userId |
+| couponCode | String | 쿠폰 코드 |
+
+**[Request Parameter]**
+
+없음
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "title": "Coupon Title",
+        "benefits": [
+            {
+                "itemId": "heart",
+                "amount": 10
+            },
+            {
+                "itemId": "diamond",
+                "amount": 20
+            }
+        ]
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Object | 쿠폰 정보 |
+| result.title | String | 쿠폰 이름 |
+| result.benefits | Array[Object] | 지급할 아이템 정보 |
+| result.benefits.itemId | String | 아이템 ID |
+| result.benefits.amount | Integer | 아이템 개수 |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+<br>
 
 ## Purchase(IAP)
 

@@ -16,7 +16,7 @@ TOAST 프로젝트 하나당 하나의 Gamebase 앱을 관리할 수 있으므�
 
 ### Properties
 
-![gamebase_app_01_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_01_201812.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_01_201911.png)
 
 #### (1) 설치 URL
 앱 설치와 홍보에 이용할 수 있는 단축 URL 정보입니다.
@@ -29,6 +29,7 @@ TOAST 프로젝트 하나당 하나의 Gamebase 앱을 관리할 수 있으므�
 ####(2) 서버 주소
 게임에서 게임 서버 주소(IP, URL 등)를 실시간으로 전달받아야 할 때 사용합니다.
 서버 주소를 설정하면 클라이언트 초기화 이후에 '런칭정보'에서 입력된 정보를 확인할 수 있습니다.
+클라이언트의 상태에 따라 전달할 서버주소를 설정할 수 있습니다. 예를 들어 클라이언트의 상태가 테스트중이거나 심사중 일 경우 각 항목에 설정된 서버주소값이 최초 런칭정보에 내려가게 됩니다.
 게임에서 필요한 경우에만 입력하고, 그렇지 않은 경우에는 비워 두시면 됩니다.
 
 ####(3) 고객 센터 정보
@@ -360,6 +361,75 @@ LINE Login 기능을 사용하기 위하여, Xcode에 추가 설정이 필요합
 	```
 - LINE Login을 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다. (인증 필요)
 * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
+
+
+#### 8. Sign In with Apple
+Sign In with Apple 기능을 사용하기 위하여, AppStore Connect, Gamebase Console 그리고 Xcode 에 설정이 필요합니다.
+
+##### AppStore Connect Settings
+* [Certificates, Identifiers & Profiles \> Keys 로 바로가기](https://developer.apple.com/account/resources/authkeys/list)
+
+###### Certificates, Identifiers & Profiles > Keys > 추가(+)
+1. `Sign In with Apple` 체크박스를 선택하고 설정을 진행합니다.
+![Check SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid0_1.0.png)
+2. `Sign in with Apple` 을 사용할 Bundle ID 를 선택합니다.
+![ChooseAPrimaryAppID](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid1_1.0.png)
+3. <span style="color:#e11d21">Privatekey</span>를 다운로드 후 보관, 생성된 <span style="color:#e11d21">Key ID를 </span> 확인합니다.
+![DownloadPrivateKey](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid2_1.0.png)
+4. Certificates, Identifiers & Profiles > Identifiers > 대상 앱을 선택 > `Sign In with Apple`을 활성화합니다.
+    * `Enable as a primary App ID` 로 설정합니다.
+![DownloadPrivateKey](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid3_1.0.png)
+
+##### Gamebase Console > App Settings
+[TOAST Console 바로가기](https://console.toast.com/)
+
+* Gamebase
+![SecretKey설정](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
+
+
+###### Client ID Settings
+> 앱의 Bundle ID를 설정합니다.
+
+###### Secret Key Settings
+> Apple Developer Account 설정에서 획득한 값(**TeamID**, **KeyID**, **PrivateKey**)으로 JSON 문자열을 생성해서 설정합니다.
+
+* `teamId` : 개발자 계정 우측상단의 값을 설정합니다.
+* `keyId` : Certificates, Identifiers & Profiles > Keys > Sign In with Apple 을 체크하여 생성된 값을 설정합니다.
+![SecretKey설정](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
+* `privateKey` : 위의 Keys에서 키를 생성하면서 같이 생성된 PrivateKey 파일의 내용을 설정합니다. (다운로드한 파일을 열어서 아래 스크린샷과 같이 빨간 사각형 부분의 값을 사용합니다.)
+![SecretKey설정](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
+
+위의 값을 아래의 예제와 같이 JSON 으로 만들어서 설정합니다.
+
+
+```json
+{
+    "teamId":"2UH5Cxxxx",
+    "keyId":"3C3FXYxxxx",
+    "privateKey":"MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBA.. 중략"
+}
+```
+
+###### Additional Info Settings
+[Sign In with Apple 의 AuthorizationScope 에 대해서 알아보기](https://developer.apple.com/documentation/authenticationservices/asauthorizationscope?language=occ)
+
+Gamebase Console > App 에서 Apple 을 추가하게 되면 기본 값으로 아래의 JSON 값이 설정됩니다.
+현재 (2019.11) 기준으로는 Scope의 종류가 `full_name`, `email` 만 존재하며, Gamebase 에서는 이 두 가지 값을 기본값으로 설정합니다.
+
+```json
+{ "authorization_scope":["full_name", "email"] }
+```
+
+##### Xcode Project Settings
+> <font color="red">[주의]</font><br/>
+> Xcode 11 이상에서만 'Sign In with Apple` 기능을 사용하는 프로젝트를 빌드할 수 있습니다.
+
+
+1. Target 선택 > Signing & Capabilities > Sign In with Apple 항목을 추가합니다.
+![Capability_SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid8_1.0.png)
+2. Target 선택 > Build Phases > Link Binary With Libraries > Authentication.framework 를 **Optional** 로 추가합니다.
+![AuthenticationServices.framework](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid9_1.0.png)
+    - ```주의```: Optional이 아닌 Required 로 설정되어 있을 경우에는 iOS 11 이하의 단말기에서는 앱 실행 시, runtime crash 가 발생합니다.
 
 
 

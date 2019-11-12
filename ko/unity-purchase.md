@@ -27,15 +27,9 @@ Unity Standalone에서 결제를 진행하기 위해 IapAdapter와 WebViewAdapte
 4. 게임 서버는 Gamebase 서버에 API를 통해 consume(소비) API를 요청합니다. [API 가이드](/Game/Gamebase/ko/api-guide/#wrapping-api)
 5. IAP 서버에서 consume(소비) API 호출에 성공했다면 게임 서버가 게임 클라이언트에 아이템을 지급합니다.
 
-스토어 결제는 성공했으나 오류가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 다음 두 API를 각각 호출하여 재처리 로직을 구현하시기 바랍니다. <br/>
-
-1. 미처리 아이템 배송 요청
-    * 로그인에 성공하면 **RequestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인합니다.
-    * 반환된 미소비 결제 내역 목록에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다
-2. 결제 오류 재처리 시도
-    * 로그인에 성공하면 **RequestRetryTransaction**을 호출하여 호출하여 미처리 내역에 대해 자동으로 재처리를 시도합니다.
-    * 반환된 successList에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
-    * 반환된 failList에 값이 존재한다면 해당 값을 게임 서버나 Log & Crash 등을 통해 전송하여 데이터를 확보하고, [고객 센터](https://toast.com/support/inquiry)에 재처리 실패 원인을 문의합니다. 
+* 스토어 결제는 성공했으나 오류가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 미소비 결제 내역을 확인하시기 바랍니다. <br/>
+	* 로그인에 성공하면 **RequestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인합니다.
+	* 반환된 미소비 결제 내역 목록에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
 
 ### Purchase Item
 
@@ -149,10 +143,15 @@ public void RequestItemListOfNotConsumed()
 }
 ```
 
-### Reprocess Failed Purchase Transaction
+### Get the List of Actived Subscriptions
 
-스토어에서는 결제가 정상적으로 되었으나, TOAST IAP 서버 검증 실패 등으로 정상적으로 결제되지 않은 경우에는,  API를 이용해 재처리를 시도합니다.
-마지막으로 결제가 성공한 내역을 바탕으로, 아이템 배송(지급) 등의 API를 호출해 처리해야 합니다.
+현재 사용자 ID 기준으로 활성화된 구독 목록을 조회합니다.
+결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다.
+사용자 ID가 같다면 Android와 iOS에서 구매한 구독 상품이 모두 조회됩니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> 현재 구독 상품은 Android의 경우 Google Play 스토어만 지원합니다.
 
 **API**
 
@@ -161,25 +160,39 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
-static void RequestRetryTransaction(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableRetryTransactionResult> callback)
+static void RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
 ```
 
 **Example**
 ```cs
-public void RequestRetryTransaction()
+public void RequestActivatedPurchasesSample()
 {
-    Gamebase.Purchase.RequestRetryTransaction((purchasableRetryTransactionResult, error) =>
+    Gamebase.Purchase.RequestActivatedPurchases((purchasableReceiptList, error) =>
     {
-        if (Gamebase.IsSuccess(error))
+        if (Gamebase.IsSuccess(error) == true)
         {
-            Debug.Log("RequestRetryTransaction succeeded.");
+            Debug.Log("RequestItemListPurchasable succeeded");
 
-            // Should Deal With This Retry Transaction Result.
-            // You may send result to your gameserver and add item to user.
+            foreach (GamebaseResponse.Purchase.PurchasableReceipt purchasableReceipt in purchasableReceiptList)
+            {
+                var message = new StringBuilder();
+                message.AppendLine(string.Format("itemSeq:{0}", purchasableReceipt.itemSeq));
+                message.AppendLine(string.Format("price:{0}", purchasableReceipt.price));
+                message.AppendLine(string.Format("currency:{0}", purchasableReceipt.currency));
+                
+                // You will need paymentSeq and purchaseToken when calling the Consume API.
+                // Refer to the following document for the Consume API.
+                // https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchaseiap
+                message.AppendLine(string.Format("paymentSeq:{0}", purchasableReceipt.paymentSeq));
+                message.AppendLine(string.Format("purchaseToken:{0}", purchasableReceipt.purchaseToken));
+                message.AppendLine(string.Format("marketItemId:{0}", purchasableReceipt.marketItemId));
+                Debug.Log(message);
+            }
         }
         else
         {
-            Debug.Log(string.Format("RequestRetryTransaction failed. error is {0}", error));
+            // Check the error code and handle the error appropriately.
+            Debug.Log(string.Format("RequestItemListPurchasable failed. error is {0}", error));
         }
     });
 }
@@ -225,7 +238,7 @@ public void SetPromotionIAPHandler()
         }
         else
         {
-        	if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
+            if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
             {
                 Debug.Log("User canceled purchase.");
             }
@@ -260,7 +273,6 @@ public void SetPromotionIAPHandler()
 |		  | productIdentifier | 구매 아이템의 product identifier |
 
 예제) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
-
 
 ### Error Handling
 
