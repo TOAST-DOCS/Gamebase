@@ -32,11 +32,11 @@ To turn on system logs for the reference of development, call **[TCGBGamebase se
 >
 > Before **releasing** a game, be sure to delete setDebugMode call from a source code or change the parameter to NO.
 
-디버그 설정은 Console에서도 가능하며 Console에서 설정된 값을 우선시합니다.
-Console 설정 방법은 아래 가이드를 참고하십시오.
+You can also perform the debug setting in the console and the values set in the console have priority.
+Please see the following guide to set in the console.
 
-* [Console 테스트 단말기 설정](./oper-app/#test-device)
-* [Console Client 설정](./oper-app/#client)
+* [Setting the console test device](./oper-app/#test-device)
+* [Setting the console client](./oper-app/#client)
 
 
 
@@ -108,7 +108,7 @@ Need to call launching status after Gamebase is initialized.
 
 ```
 
-launchingInformations API를 이용하면 초기화 이후에도 LaunchingInfo 객체를 획득할 수 있습니다.
+With the launchingInformations API, you can get the LaunchingInfo object after initialization.
 
 **API**
 
@@ -125,8 +125,8 @@ launchingInformations API를 이용하면 초기화 이후에도 LaunchingInfo �
 | IN_SERVICE                  | 200  | Service is now normally provided.                                 |
 | RECOMMEND_UPDATE            | 201  | Update is recommended.                                  |
 | IN_SERVICE_BY_QA_WHITE_LIST | 202  | Under maintenance now but QA user service is available. |
-| IN_TEST                     | 203  | 테스트 중 |
-| IN_REVIEW                   | 204  | 심사 중 |
+| IN_TEST                     | 203  | Under test |
+| IN_REVIEW                   | 204  | Review in progress |
 | REQUIRE_UPDATE              | 300  | Update is required.                                  |
 | BLOCKED_USER                | 301  | User whose access has been blocked. |
 | TERMINATED_SERVICE          | 302  | Service has been terminated.                                   |

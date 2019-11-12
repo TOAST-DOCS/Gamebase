@@ -131,7 +131,7 @@ else
 }
 ```
 
-* TOAST Push 오류 코드를 확인하시기 바랍니다.
+* TOAST Push error codes are as follows:
     * [Android](aos-push#error-handling)<br/>
     * [iOS](ios-push#error-handling)
 

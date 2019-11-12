@@ -2,20 +2,15 @@
 
 Gamebase Android SDK를 사용하려면 먼저 초기화를 진행해야 합니다.
 
-### Activate the Application
+### onActivityResult
 
-앱의 수명 주기(lifecycle)를 관리하려면 앱이 활성화된 것을 Gamebase SDK에 알려야 합니다.<br/>
-**Application#onCreate()**에서 **Gamebase#activeApp(Context)**을 호출합니다.
+Gamebase의 정상적인 동작을 위해 반드시 **Activity#onActivityResult(int, int, Intent)**에서 **Gamebase.onActivityResult(int, int, Intent)**를 호출해야 합니다.
+
+
+**API**
 
 ```java
-public class GamebaseApplication extends Application {
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        Gamebase.activeApp(getApplicationContext());
-    }
-}
++ (void)Gamebase.onActivityResult(int requestCode, int resultCode, Intent data);
 ```
 
 ### Configuration Settings
@@ -24,14 +19,11 @@ Gamebase를 초기화할 때, GamebaseConfiguration.Builder 객체로 Gamebase �
 
 | API                                      | Mandatory(M) / Optional(O) | Description                              |
 | ---------------------------------------- | -------------------------- | ---------------------------------------- |
-| Builder(String appId, String appVersion) | **M**                      | GamebaseConfiguration.Builder 생성자에 appId와 appVersion을 필수 파라미터로 넘겨주어 초기화해야합니다. <br/><br/> **appId**는 TOAST Project로 발급받은 앱 ID를 입력합니다. <br/> **appVersion**은 게임이 서비스 상태, 업데이트 상태 혹은 점검 상태 등에 해당하는지 판단하는 곳에 쓰입니다. 게임 버전을 지정해 주세요. |
+| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | GamebaseConfiguration.Builder 생성자에 appId와 appVersion을 필수 파라미터로 넘겨주어 초기화해야합니다. <br/><br/> **appId**는 TOAST Project로 발급받은 앱 ID를 입력합니다. <br/> **appVersion**은 게임이 서비스 상태, 업데이트 상태 혹은 점검 상태 등에 해당하는지 판단하는 곳에 쓰입니다. 게임 버전을 지정해 주세요. <br/> **storeCode**는 APK가 배포되는 스토어를 의미하는 코드입니다. 다음 가이드에 스토어별 코드가 설명되어 있습니다. [Purchase - Initialization](./aos-purchase/#6-initialization) |
 | build()                                  | **M**                      | 설정을 마친 Builder를 Configuration 객체로 변환합니다.<br/>**Gamebase.initialize()** API에서 필요합니다. |
 | enablePopup(boolean enable)              | O                          | **[UI]**<br/>시스템 점검, 이용 제재(ban) 등 게임 유저가 게임을 플레이할 수 없는 상황에서 팝업 등으로 사유를 표시해야 할 때가 있습니다.<br/>**true**로 설정하면 Gamebase가 해당 상황에서 정보 팝업을 자동으로 표시합니다.<br/>기본값은 **false**입니다.<br/>**false** 상태에서는 론칭 결과를 통해 정보를 획득한 후 자체 UI를 구현해 게임을 플레이할 수 없는 이유를 표시해 주시기 바랍니다. |
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>론칭 결과에 따라 로그인할 수 없는 상태에서(주로 점검 상태) Gamebase가 자동으로 팝업을 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup(true)** 상태에서만 동작합니다.<br/>기본값은 **true**입니다. |
 | enableBanPopup(boolean enable)           | O                          | **[UI]**<br/>게임 유저가 이용 제재를 당한 상태일 때 Gamebase가 자동으로 제재 사유를 팝업으로 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup(true)** 상태에서만 동작합니다.<br/>기본값은 **true**입니다. |
-| setStoreCode(String storeCode)           | O                          | **[Purchase]**<br/>TOAST 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 사용한다면 어떤 스토어를 사용할지 설정해야 합니다.<br/>파라미터는 [IAP 문서](/Mobile%20Service/IAP/ko/Overview/)를 참고하세요. |
-| setFCMSenderId(String senderId)          | O                          | **[Push]**<br/>Google Notification(FCM, GCM)을 통해 푸시 메시지를 전송하는 경우 발신자 ID(sender ID)를 설정해야 합니다. |
-| setTencentAccessKey(String accessKey)<br/>setTencentAccessId(String accessId) | O                          | **[Push]**<br/>Tencent 푸시 모듈을 사용하는 경우, 액세스 키 및 액세스 ID 값을 설정해야 합니다. |
 
 ### Debug Mode
 * Gamebase는 경고(warning)와 오류 로그만을 표시합니다.
@@ -50,8 +42,7 @@ Console 설정 방법은 아래 가이드를 참고하십시오.
 
 ### Initialize
 
-**Activity#onCreate(Bundle)**에서 **Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback)**을 호출하여 Gamebase SDK를 초기화합니다.<br/>
-또한 Gamebase의 정상적인 동작을 위해 반드시 **Activity#onActivityResult(int, int, Intent)**에서 **Gamebase.onActivityResult(int, int, Intent)**를 호출합니다.
+**Activity#onCreate(Bundle)**에서 **Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback)**을 호출하여 Gamebase SDK를 초기화합니다.
 
 **API**
 
@@ -69,11 +60,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         /**
+         * Show gamebase debug message.
+		 * set 'false' when build RELEASE.
+         */
+        Gamebase.setDebugMode(true);
+
+        /**
          * Gamebase Configuration.
          */
         String appId = "T0aStC1d";
         String appVersion = "1.0.0";
-        GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(appId, appVersion)
+        String storeCode = "GG";
+        GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(appId, appVersio, storeCode)
                                             .enableLaunchingStatusPopup(true)
                                             .build();
         /**
@@ -83,13 +81,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCallback(final LaunchingInfo data, GamebaseException exception) {
                 if (Gamebase.isSuccess(exception)) {
-                    // 론칭 상태를 확인합니다.
-                    LaunchingStatus status = data.getStatus();
-                    if (status.isPlayable()) {
-                        // 게임 플레이
-                    } else {
-                        // 점검 또는 앱을 업데이트해야 합니다.
-                    }
+                    // 게임 진입을 허용할지 여부를 런칭 코드에 따라 판단하십시오.
+                    ...
                 } else {
                     // 초기화에 실패하면 Gamebase SDK를 이용할 수 없습니다.
                     // 오류를 표시하고 게임을 재시작 또는 종료해야 합니다.
@@ -100,11 +93,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /**
-         * Show gamebase debug message.
-		 * set 'false' when build RELEASE.
-         */
-        Gamebase.setDebugMode(true);
         ...
     }
     ...
@@ -124,7 +112,8 @@ public class MainActivity extends AppCompatActivity {
 
 ### Launching Information
 
-Gamebase#initialize 호출 결과로 론칭 상태를 확인할 수 있습니다.
+Gamebase#initialize 호출 결과로 론칭 상태를 확인할 수 있습니다.<br/>
+론칭 코드에 따라 게임 플레이 여부를 판단하시기 바랍니다.
 
 ```java
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
@@ -132,15 +121,47 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
     public void onCallback(final LaunchingInfo data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
             // 론칭 상태를 확인합니다.
-            LaunchingStatus status = data.getStatus();
-            int statusCode = status.getCode();
-            switch (statusCode) {
-                case LaunchingStatus.INSPECTING_SERVICE:
-                    // 점검 중...
+            boolean canPlay = true;
+            String errorLog = "";
+            switch (launchingInfo.getStatus().getCode()) {
+                case LaunchingStatus.IN_SERVICE:
                     break;
-                ...
+                case LaunchingStatus.RECOMMEND_UPDATE:
+                    Log.d(TAG, "There is a new version of this application.");
+                    break;
+                case LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST:
+                case LaunchingStatus.IN_TEST:
+                case LaunchingStatus.IN_REVIEW:
+                    Log.d(TAG, "You logged in because you are developer.");
+                    break;
+                case LaunchingStatus.REQUIRE_UPDATE:
+                    canPlay = false;
+                    errorLog = "You have to update this application.";
+                    break;
+                case LaunchingStatus.BLOCKED_USER:
+                    canPlay = false;
+                    errorLog = "You are blocked user!";
+                    break;
+                case LaunchingStatus.TERMINATED_SERVICE:
+                    canPlay = false;
+                    errorLog = "Game is closed!";
+                    break;
+                case LaunchingStatus.INSPECTING_SERVICE:
+                case LaunchingStatus.INSPECTING_ALL_SERVICES:
+                    canPlay = false;
+                    errorLog = "Under maintenance.";
+                    break;
+                case LaunchingStatus.INTERNAL_SERVER_ERROR:
+                default:
+                    canPlay = false;
+                    errorLog = "Unknown internal error.";
+                    break;
             }
-            ...
+            if (canPlay) {
+                // 게임 플레이를 시작합니다.
+            } else {
+                // 게임 불가 사유를 밝히고 게임을 중지합니다.
+            }
         }
         ...
     }

@@ -1,21 +1,21 @@
-## Game > Gamebase > JavaScript SDK 사용 가이드 > ETC
+﻿## Game > Gamebase > JavaScript SDK User Guide > ETC
 
 ## Additional Features
 
-Gamebase에서 지원하는 부가 기능을 설명합니다.
+Additional functions provided by Gamebase are described as below:
 
 ### Display Language
 
-* Gamebase에서 표시하는 언어(Gamebase 내장 UI에 표시되는 텍스트)를 기기에 설정된 언어(device language)가 아닌 다른 언어로 변경할 수 있습니다.
-* Gamebase는 클라이언트에 포함되어 있는 메시지를 표시하거나 서버에서 받은 메시지를 표시합니다.
-* DisplayLanguage를 설정하면 사용자가 설정한 언어코드(ISO-639)에 적합한 언어로 메시지를 표시합니다.
-* 원하는 언어셋을 추가할 수 있습니다. 추가할 수 있는 언어코드는 다음과 같습니다.
+* The language displayed on Gamebase (text displayed on the UI embedded in Gamebase) can be changed into another language which is not a (device language) set for the device.
+* Gamebase displays messages which are included in a client or as received by a server.
+* With Display Language, messages are displayed in an appropriate language for the language code (ISO-639).
+* If necessary, language sets can be added as the user wants. The list of available language codes is as follows:
 
-> [참고]
+> [Note]
 >
-> Gamebase의 클라이언트 메시지는 영어(en), 한글(ko), 일본어(ja)만 포함합니다.
+> Client messages of Gamebase include only English (en), Korean (ko), and Japanese (ja).
 
-#### Gamebase에서 지원하는 언어코드의 종류
+#### Types of Language Codes Supported by Gamebase
 
 | Code     | Name                      |
 | -------- | ------------------------- |
@@ -36,12 +36,12 @@ Gamebase에서 지원하는 부가 기능을 설명합니다.
 | zh-CN    | Chinese-Simplified        |
 | zh-TW    | Chinese-Traditional       |
 
-해당 언어코드는 `toast.GamebaseDisplayLanguage.DefaultCode` 상수에 정의되어 있습니다.
+Each language code is defined in the `toast.GamebaseDisplayLanguage.DefaultCode` constant.
 
-> `[주의]`
+> `[Caution]`
 >
-> Gamebase에서 지원하는 언어코드는 대소문자를 구분합니다.
-> 'EN'이나 'zh-cn'과 같이 설정하면 문제가 발생할 수 있습니다.
+> Language codes supported by Gamebase are case-sensitive.
+> For example, spellings like 'EN' or 'zh-ch' may cause a problem.
 
 ```js
 var toast.GamebaseDisplayLanguage.DefaultCode = {
@@ -64,9 +64,9 @@ var toast.GamebaseDisplayLanguage.DefaultCode = {
 };
 ```
 
-#### Gamebase 초기화 시 Display Language 설정
+#### Set Display Language at Gamebase Initialization
 
-Gamebase 초기화 시 Display Language를 설정할 수 있습니다.
+Display Language can be set when Gamebase is initialized.
 
 **API**
 
@@ -91,19 +91,19 @@ function initialize() {
 
     toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error) {
        if (error) {
-            // 초기화에 실패하면 Gamebase SDK를 이용할 수 없습니다.
-            // appId, clientVersion 및 TOAST Console의 설정이 정상적으로 입력되었는지 확인하세요.
+            // If initialization fails, you cannot use Gamebase SDK.
+            // Make sure that settings of appId, clientVersion, and TOAST Console have been correctly set.
             console.log('Gamebase initialization failed');
             console.log(error);
             return;
         }
 
         const statusCode = launchingInfo.launching.status.code;
-        if (isPlayable(statusCode)) { // Status 값은 하단의 Launching Status Code 표를 참조하시길 바랍니다.
-            // 게임 플레이 가능상태입니다.
+        if (isPlayable(statusCode)) { // For the status value, see the Launching Status Code table below.
+            // Game can be played.
             console.log('Playable!');
         } else {
-            // 게임 플레이 불가능상태입니다. (점검, 서비스 종료 등)
+            // Game cannot be played. (maintenance, service terminated, etc.)
             console.log('Not Playable!');
         }
     });
@@ -112,7 +112,7 @@ function initialize() {
 
 #### Set Display Language
 
-Gamebase 초기화 시 입력된 Display Language를 변경할 수 있습니다.
+You can change the initial setting of Display Language set in Gamebase initialization.
 
 **API**
 
@@ -132,7 +132,7 @@ function setDisplayLanguageCode() {
 
 #### Get Display Language
 
-현재 적용된 Display Language를 조회할 수 있습니다.
+You can retrieve the current application of Display Language.
 
 **API**
 
@@ -149,10 +149,10 @@ function getDisplayLanguageCode() {
 }
 ```
 
-#### 신규 언어셋 추가
+#### Add New Language Sets
 
-Gamebase에서 제공하는 기본 언어(en, ko, ja) 외 다른 언어를 사용하려면, 다른 언어셋에 대한 JSON 객체를 만들어서 입력해주어야합니다.
-해당 언어셋을 Gamebase에 입력하려면 다음의 API를 호출하여 입력합니다.
+To use another language in addition to default Gamebase languages (en, ko, ja), you have to create and enter a JSON object for other language sets.
+To enter the language sets in Gamebase, call the following API and enter the following:
 
 **API**
 
@@ -171,7 +171,7 @@ toast.Gamebase.initialize(gamebaseConfiguration, (lanchingInfo, error) => { ... 
 toast.Gamebase.setDisplayLanguageTable(displayLanguageTable) {
 ```
 
-기본적으로 Gamebase에 내장되어있는 localized string은 다음과 같습니다.
+By default, the localized string embedded in Gamebase is as follows:
 **Format**
 ```json
 {
@@ -196,8 +196,8 @@ toast.Gamebase.setDisplayLanguageTable(displayLanguageTable) {
 }
 ```
 
-다른 언어셋을 추가해야 할 경우에는 위의 API로 넘기는 파라미터값으로 다음과 같이 
-`"${언어 코드}":{"key":"value"}` 형태로 값을 추가하여 호출하면 됩니다
+To add another language sets, add the value in the format of
+`"${language code}":{"key":"value"}` as the parameter passed to the higher API.
 
 ```json
 {
@@ -219,41 +219,41 @@ toast.Gamebase.setDisplayLanguageTable(displayLanguageTable) {
     ...
     "launching_service_closed_title": "サービス終了"
   },
-  "${언어코드}": {
+  "${Language code}": {
       "common_ok_button": "...",
       ...
   }
 }
 ```
 
-위 JSON 형식에서 "${언어코드}":{ } 내부에 key가 누락될 경우에는 `기기에 설정된 언어 또는 en`이 자동으로 입력됩니다.
+If a key is missing in ${language code}":{ } of the JSON format above, the language set for the device or 'en' will be automatically entered.
 
-#### Display Language 우선순위
+#### Priority in Display Language
 
-초기화 및 setDisplayLanguageCode API를 통해 Display Language를 설정할 경우, 최종 적용되는 Display Language는 입력한 값과 다르게 적용될 수 있습니다.
+If Display Language is set via initialization and setDisplayLanguageCode API, the final application may be different from what has been entered.
 
-1. 입력된 languageCode가 localized string에 정의되어 있는지 확인합니다.
-2. Gamebase 초기화 시, 기기에 설정된 언어코드가 localized string에 정의되어 있는지 확인합니다.(이 값은 초기화 이후, 기기에 설정된 언어를 변경하더라도 유지됩니다.)
-3. Display Language의 기본값인 `en`이 자동으로 설정됩니다.
+1. Check if the languageCode you enter is defined in the localized string.
+2. See if, during Gamebase initialization, the language code set for the device is defined in the localized string. (This value shall maintain even if the language set for the device changes after initialization.)
+3. 'en', which is the default value of Display Language, is automatically set.
 
 ### Server Push
-* Gamebase 서버에서 클라이언트 기기로 WebSocket을 이용하여 보내는 Server Push Message를 처리할 수 있습니다.
-* Gamebase 클라이언트에서 ServerPushEvent Listener를 추가하면 해당 메시지를 사용자가 받아서 처리할 수 있으며, 추가된 ServerPushEvent Listener를 삭제할 수 있습니다.
+* Handles Server Push Messages sent from the Gamebase server to client devices using WebSocket.
+* Add ServerPushEvent Listener to Gamebase Client, and the user can receive and handle messages. The added ServerPushEvent Listener can be deleted.
 
 #### Flow
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 
 #### Server Push Type
-현재 Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
-**toast.GamebaseServerPushType** 상수에서 확인가능합니다.
+Server Push Types currently supported by Gamebase are as follows:
+You can check it in the **toast.GamebaseServerPushType** constant.
 
-* 킥아웃(Kickout)
-    * TOAST Gamebase 콘솔의 `Operation > Kickout`에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에게 메시지를 보낼 수 있습니다.
+* Kickout (Kickout)
+    * Go to Operation > Kickout in the TOAST Gamebase console and register Kickout ServerPush messages. Then, messages will be sent to all clients connected to Gamebase.
     * Type: toast.GamebaseServerPushType.APP_KICKOUT (= "appKickout")
 
 
 #### Add ServerPushEvent
-Gamebase Client에 ServerPushEvent를 등록하여 Gamebase Console 및 Gamebase 서버에서 발급된 Push 이벤트를 처리할 수 있습니다.
+Registers ServerPushEvent to the Gamebase Client to handle the push event issued by the Gamebase Console and Gamebase server.
 
 **API**
 
@@ -283,7 +283,7 @@ function addServerPush() {
 
 
 #### Remove ServerPushEvent
-Gamebase에 등록된 ServerPushEvent를 삭제할 수 있습니다.
+Deletes ServerPushEvent registered in Gamebase.
 
 **API**
 
@@ -309,28 +309,28 @@ function removeAllServerPush() {
 
 
 ### Observer
-* Gamebase Observer로 Gamebase의 각종 상태 변동 이벤트를 전달받아 처리할 수 있습니다.
-* 상태 변동 이벤트 : 네트워크 타입 변동, Launching 상태 변동(점검 등에 의한 상태 변동), Heartbeat 정보 변동(사용자 이용 정지 등에 의한 Heartbeat 정보 변동) 등
+* With Gamebase Observer, get and proceed with status change events of Gamebase.
+* Status change events: Change of network type, change of launching status (change of status due to maintenance), change of heartbeat information(, change of heartbeat information due to user ban), and etc.
 
 #### Flow
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
 
 #### Observer Type
-현재 Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
-**toast.GamebaseObserverType** 상수에서 확인가능합니다.
+Observer Types currently supported by Gamebase are as follows:
+You can check it in the **toast.GamebaseObserverType** constant.
 
-* Network 타입 변동
-    * 네트워크 변동 사항 정보를 받을 수 있습니다. 예를 들어 ObserverMessage.data.get("code") 의 값으로 Network Type을 알 수 있습니다.
+* Change of Network Type
+    * Receive information about network changes. For instance, find a network type with the ObserverMessage.data.get("code") value.
     * Type: toast.GamebaseObserverType.NETWORK (= "network")
-    * Code: **toast.GamebaseNetworkType** 에 선언된 상수를 참고합니다.
+    * Code: Refer to the constant declared in **toast.GamebaseNetworkType**.
         * toast.GamebaseNetworkType.TYPE_NOT: -1
         * toast.GamebaseNetworkType.TYPE_MOBILE: 0
         * toast.GamebaseNetworkType.TYPE_WIFI: 1
         * toast.GamebaseNetworkType.TYPE_ANY: 2
-* Launching 상태 변동
-    * 주기적으로 애플리케이션 상태를 확인하는 Launching Status response에 변동이 있을 때 발생합니다. 예를 들어 점검, 서비스 종료 등에 의한 이벤트가 있습니다.
+* Launching status change
+    * Occurs when there is a change in the launching status response that periodically checks application status. For example, events occur for maintenance, service termination, etc.
     * Type: toast.GamebaseObserverType.LAUNCHING (= "launching")
-    * Code: **toast.GamebaseLaunchingStatus** 에 선언된 상수를 참고합니다.
+    * Code: Refer to the constant declared in **toast.GamebaseLaunchingStatus**.
         * toast.GamebaseLaunchingStatus.IN_SERVICE: 200
         * toast.GamebaseLaunchingStatus.RECOMMEND_UPDATE: 201
         * toast.GamebaseLaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
@@ -340,15 +340,15 @@ function removeAllServerPush() {
         * toast.GamebaseLaunchingStatus.INSPECTING_SERVICE: 303
         * toast.GamebaseLaunchingStatus.INSPECTING_ALL_SERVICES: 304
         * toast.GamebaseLaunchingStatus.INTERNAL_SERVER_ERROR: 500
-* Heartbeat 정보 변동
-    * 주기적으로 Gamebase 서버와 연결을 유지하는 Heartbeat response에 변동이 있을 때 발생합니다. 예를 들어 사용자가 이용정지를 당했을 때, 정상적인 "로그인 연결"을 맺지 못하므로, 사용자 이용 정지 이벤트가 발생합니다.
+* Heartbeat Information Change
+    * Occurs when there is a change in the heartbeat response which periodically maintains connection with the Gamebase server. For example, a user ban event occurs because a normal 'login connection' cannot be made when a user has been banned.
     * Type: toast.GamebaseObserverType.HEARTBEAT (= "heartbeat")
-    * Code: **toast.GamebaseConstant** 에 선언된 상수를 참조합니다.
+    * Code: Refer to the constant declared in **toast.GamebaseConstant**.
         * toast.GamebaseConstant.BANNED_MEMBER: 7
 
 
 #### Add Observer
-Gamebase Client에 Observer를 등록하여 각종 상태 변동 이벤트를 처리할 수 있습니다.
+Register Observer to handle the status change events of Gamebase client.
 
 **API**
 
@@ -436,7 +436,7 @@ function checkNetworkStatus(data) {
 
 
 #### Remove Observer
-Gamebase에 등록된 Observer를 삭제할 수 있습니다.
+Deletes Observer registered in Gamebase.
 
 **API**
 
@@ -459,36 +459,36 @@ function removeAllObserver() {
 
 ### Analytics
 
-Game지표를 Gamebase Server로 전송할 수 있습니다.
+The game index can be transferred to the Gamebase server.
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> Gamebase Analytics에서 지원하는 모든 API는 로그인 후에 호출이 가능합니다..
+> All APIs supported by the Gamebase Analytics can be called after login.
 >
 
 > [TIP]
 >
-> Gamebase.Purchase.RequestPurchase API를 호출하여 결제를 진행한 경우, 결제가 완료되면 자동으로 서버로 지표가 전송됩니다.
+> If payment was made by calling the Gamebase.Purchase.RequestPurchase API, the index is transmitted to the server automatically when the payment is completed.
 >
 
-Analytics Console 사용법은 아래 가이드를 참고하십시오.
+Please see the following guide for how to use Analytics console.
 
-* [Analytics Console](./oper-analytics)
+* [Analytics console](./oper-analytics)
 
 #### Game User Data Settings
 
-로그인 이후 유저 레벨 정보를 지표로 전송할 수 있습니다.
+The game user level information can be transmitted as an index after logging in.
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 게임 로그인 이후 SetGameUserData API를 호출하지 않으면 다른 지표에서 Level 정보가 누락될 수 있습니다.
+> If the SetGameUserData API is not called after login to the game, the level information may be missed from other indexes.
 >
 
-API 호출에 필요한 파라미터는 아래와 같습니다.
+Parameters required for calling the API are as follows:
 
 **GameUserData**
 
-| Name                       | Mandatory(M) / Optional(O) | type | Desc |
+| Name                       | Mandatory (M) / Optional (O) | type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
 | userLevel | M | number |  |
 | channelId | O | string |  |
@@ -522,16 +522,16 @@ function setGameUserData(userLevel, channelId, characterId) {
 
 #### Level Up Trace
 
-레벨업이 되었을 경우 유저 레벨 정보를 지표로 전송할 수 있습니다.
+The game user level information can be transmitted as an index after leveling up.
 
-API 호출에 필요한 파라미터는 아래와 같습니다.
+Parameters required for calling the API are as follows:
 
 **LevelUpData**
 
-| Name                       | Mandatory(M) / Optional(O) | type | Desc	|
+| Name                       | Mandatory (M) / Optional (O) | type | Desc	|
 | -------------------------- | -------------------------- | ---- | ---- |
 | userLevel | M | number |  |
-| levelUpTime | O | number | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
+| levelUpTime | O | number | Enter Epoch Time</br>in millisecond. |
 | channelId | O | string |  |
 | characterId | O | string |  |
 

@@ -94,11 +94,11 @@ To set your Console, refer to [Notification > Push > API v2.0 Guide](/Notificati
     * Add **apply plugin: 'com.google.gms.google-services'** to the Gradle setting.
     * With the setting above, Google Services Gradle Plugin will be applied and the google-services.json file will be changed to a string resource named res/google-services/{build_type}/values/values.xml.
 * For Unity Builds
-    * Firebase 푸시를 사용하기 위해서는 google-services.json 설정 파일이 필요합니다. 설정 파일을 프로젝트에 포함하는 방법은 [Firebase 클라우드 메시징](https://firebase.google.com/docs/cloud-messaging/#add_firebase_to_your_app) 설명을 참고합니다.
-    * gradle 설정에 **apply plugin: 'com.google.gms.google-services'**를 추가합니다.
-    * 위 설정으로 Google Services Gradle Plugin이 적용되어 google-services.json 파일을 res/google-services/{build_type}/values/values.xml라는 이름의 string resource로 변경하여 사용하게 됩니다.
-* Unity 빌드인 경우
-    * 직접 string resource(xml) 파일을 만들어서 Assets/Plugins/Android/res/values/ 폴더에 포함시켜야 합니다. 
+    * To use the Firebase push, you need the google-services.json setup file. To include the setup file in the project, see the descriptions at [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/#add_firebase_to_your_app).
+    * Add **apply plugin: 'com.google.gms.google-services'** to the gradle setting.
+    * With the setting in the above, the Google Services Gradle Plugin is applied to modify the google-services.json file to the string resource of res/google-services/{build_type}/values/values.xml.
+* For a Unity build
+    * You must create a string resource (xml) file by yourself and place it in the Assets/Plugins/Android/res/values/ folder.
         * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
         * Below is an example of a string resource file.
             ```xml
@@ -113,8 +113,8 @@ To set your Console, refer to [Notification > Push > API v2.0 Guide](/Notificati
             <string name="google_storage_bucket" translatable="false">tap-development-00000000.appspot.com</string>
             </resources>
             ```
-        * string resource(xml) 파일에서 설정하는 각각의 값은 Firebase Console > 프로젝트 설정 > google-services.json 파일을 다운로드해서 확인 가능합니다. 
-            Firebase 서비스 연동에 따라서 google-services.json 파일의 내용은 달라질 수 있습니다.
+        * You can view each of values set in the string resource (xml) file by clicking **Firebase Console > Project Setting** and download the **google-services.json** file.
+            Depending on the Firebase service link, the contents of the google-services.json file may vary.
             ![Download google-services.json](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
 
 #### Initialization
@@ -254,17 +254,17 @@ Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
 });
 ```
 
-* TOAST Push 오류 코드는 다음과 같습니다.
-    
-| 오류 코드 |  설명 |
+* The TOAST Push error codes are as follows:
+
+| Error Code |  Description |
 | --- | --- |
-| ERROR_SYSTEM_FAIL | 시스템 문제로 토큰 획득에 실패한 경우 |
-| ERROR_NETWORK_FAIL | 네트워크 문제로 요청에 실패한 경우 |
-| ERROR_SERVER_FAIL | 서버에서 실패 응답을 반환한 경우 |
-| ERROR_ALREADY_IN_PROGRESS | 토큰 등록/조회가 이미 실행 중인 경우 |
-| ERROR_INVALID_PARAMETERS | 파라미터가 잘못된 경우 |
-| ERROR_PERMISSION_REQUIRED | 권한이 필요한 경우(Tencent만 해당) |
-| ERROR_PARSE_JSON_FAIL | 서버 응답을 파싱하지 못한 경우 |
+| ERROR_SYSTEM_FAIL | Failed to get the token due to system error |
+| ERROR_NETWORK_FAIL | Failed to request due to network error |
+| ERROR_SERVER_FAIL | A server has returned fail as response |
+| ERROR_ALREADY_IN_PROGRESS | Registration and query of token is already in action |
+| ERROR_INVALID_PARAMETERS | Invalid parameter |
+| ERROR_PERMISSION_REQUIRED | Permissions required (for Tencent only) |
+| ERROR_PARSE_JSON_FAIL | The server response could not be parsed |
 
 
 

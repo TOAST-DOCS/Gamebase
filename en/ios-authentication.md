@@ -162,8 +162,8 @@ You can enter those information to additionalInfo in the dictionary type.<br/>
 }
 ```
 
-#### Gamebase에서 지원 중인 IdP
-[Console Guide](./oper-app/#authentication-information)를 참고하시기 바랍니다.
+#### IdPs supported by Gamebase
+Please refer to [Console Guide](./oper-app/#authentication-information).
 
 ### Login with Credential
 
@@ -200,7 +200,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 #import "TCGBConstants.h"
 
 - (void)authLoginWithCredential {
-    NSDictionary *credentialDic = @{ kTCGBAuthLoginWithCredentialProviderNameKeyname: @"facebook", kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"여기에 facebook SDK에서 발급받은 Access Token을 입력하세요" };
+    NSDictionary *credentialDic = @{ kTCGBAuthLoginWithCredentialProviderNameKeyname: @"facebook", kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"Enter the Access Token issued by the Facebook SDK here" };
     [TCGBGamebase loginWithCredential:credentialDic viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         NSLog([authToken description]);
     }];
@@ -428,10 +428,10 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 ```
 
 ### Add Mapping Forcibly
-특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
-**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+If there is any account mapped to a specific IdP, try **force** mapping.
+When you try **force mapping**, you need `ForcingMappingTicket` obtained from the AddMapping API.
 
-다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
+The following is an example of force mapping to Facebook:
 
 ```objectivec
 - (void)authAddMapping {
@@ -463,33 +463,33 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 
 ### Add Mapping Forcibly with Credential
-특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
-**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+If there is any account mapped to a specific IdP, try **force** mapping.
+When you try **force mapping**, you need `ForcingMappingTicket` obtained from the AddMapping API.
 
-게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMappingForcibly를 호출 할 수 있는 인터페이스입니다.
+This interface allows you to perform authentication in the game with the SDK provided by IdP first and then to call the Gamebase AddMappingForcibly by using the access token issued.
 
-* Credential 파라미터 설정방법
+* How to set the Credential parameter
 
 
-| keyname                                  | a use                          | 값 종류                           |
+| keyname                                  | a use                          | Value type                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, payco, iosgamecenter, naver, google, twitter |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정 |                                           |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP type setting                      | facebook, payco, iosgamecenter, naver, google, twitter |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set the authentication information (access token) received after login to IdP |                                           |
 
-> [참고]
+> [Note]
 >
-> 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
+> This may be needed to use unique functions of external services (e.g. Facebook).
 >
 
 <br/>
 
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 외부 SDK에서 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
+> Developments requested by an external SDK must be implement using APIs from the external SDK; Gamebase does not support those development features.
 >
 
-다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
+The following is an example of force mapping to Facebook:
 
 ```objc
 - (void)onButtonLogin {
@@ -607,18 +607,18 @@ information codes of restricted use will be displayed as below, when they try to
 
 
 ## TransferAccount
-게스트 계정을 다른 단말기로 이전하기 위해 계정 이전을 위한 키를 발급받는 기능입니다.
+Issues a key to transfer the guest account to another device.
 
-이 키를 **TransferAccountInfo** 라고 부릅니다.
-발급받은 TransferAccountInfo는 다른 기기에서 **requestTransferAccount** API를 호출하여 계정 이전을 할 수 있습니다.
+This key is called **TransferAccountInfo**.
+The issued TransferAccountInfo calls the **requestTransferAccount** API from another device to transfer the account.
 
-> `주의`
-> TransferAccountInfo의 발급은 게스트 로그인 상태에서만 발급이 가능합니다.
-> TransferAccountInfo를 이용한 계정 이전은 게스트 로그인 상태 또는 로그인되어 있지 않은 상태에서만 가능합니다.
-> 로그인한 게스트 계정이 이미 다른 외부 IdP (Google, Facebook, Payco 등) 계정과 매핑이 되어 있다면 계정 이전이 지원되지 않습니다.
+> `Caution`
+> The TransferAccountInfo key can be issued while the guest account is logged in.
+> Transfer of guest account using TransferAccountInfo is allowed only when logged in to a guest account or not logged in.
+> If the logged-in guest account has already been mapped to an IdP ((Google, Facebook, PAYCO, etc.)) account, account transfer is not supported.
 
 ### Issue TransferAccount
-게스트 계정 이전을 위한 TransferAccountInfo를 발급합니다.
+Issues TransferAccountInfo to transfer the guest account.
 
 **API**
 
@@ -637,7 +637,7 @@ information codes of restricted use will be displayed as below, when they try to
 ```
 
 ### Query TransferAccount
-게스트 계정 이전을 위해 이미 발급받은 TransferAccountInfo 정보를 게임베이스 서버에 질의합니다.
+Queries the TransferAccountInfo information issued for guest account transfer to the Gamebase server.
 
 **API**
 
@@ -657,9 +657,8 @@ information codes of restricted use will be displayed as below, when they try to
 
 
 ### Renew TransferAccount
-이미 발급받은 TransferAccountInfo 정보를 갱신합니다.
-"자동 갱신", "수동 갱신"의 방법이 있으며, "Password만 갱신", "ID와 Password 모두 갱신" 등의 설정을 통해
-TransferAccountInfo 정보를 갱신 할 수 있습니다.
+Renews the issued TransferAccountInfo information.
+There are two types of renewal: **Auto Renew** and **Manual Renew**. You can select either **Renew Password Only** or **Renew Both ID and Password** to renew the TransferAccountInfo information.
 
 ```objectivec
 + (void)renewTransferAccountWithConfiguration:(TCGBTransferAccountRenewConfiguration *)config completion:(TransferAccountCompletion)completion;
@@ -693,12 +692,12 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 
 ### Transfer Guest Account to Another Device
-**issueTransfer** API로 발급받은 TransferAccount를 통해 계정을 이전하는 기능입니다.
-계정 이전 성공 시 TransferAccount를 발급받은 단말기에서 이전 완료 메시지가 표시될 수 있고, Guest 로그인 시 새로운 계정이 생성됩니다.
-계정 이전이 성공한 단말기에서는 TransferAccount를 발급받았던 단말기의 게스트 계정을 계속해서 사용할 수 있습니다.
+Transfers the account with TransferAccount issued with **issueTransfer** API.
+When account transfer is successful, a transfer completion message will be displayed from the device where TransferAccount has been issued and a new account will be created when a guest logs in.
+On the device where the account transfer was successfully made, the guest account from the previous device where TransferAccount was issued can still be used.
 
-> `주의`
-> 이미 Guest 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
+> `Caution`
+> If account transfer is made while logged in to the guest account, the guest account will be lost.
 
 **API**
 

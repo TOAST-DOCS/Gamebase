@@ -53,7 +53,7 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 
 #### 6. Initialization
 
-* Gamebase 초기화 시 configuration의 **setStoreCode()**를 호출합니다.
+* Gamebase 초기화 시 Store Code 를 지정해야 합니다.
 * **STORE_CODE**는 다음 값 중에서 선택합니다.
     * GG: Google
     * ONESTORE: ONE store
@@ -61,8 +61,7 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 ```java
 String STORE_CODE = "GG";	// Google
 
-GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(APP_ID, APP_VERSION)
-        .setStoreCode(STORE_CODE)	// Store code를 반드시 선언합니다.
+GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(APP_ID, APP_VERSION, STORE_CODE)
         .build();
 
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
@@ -86,16 +85,9 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
    [API 가이드](/Game/Gamebase/ko/api-guide/#wrapping-api)
 5. IAP 서버에서 consume(소비) API 호출에 성공했다면 게임 서버가 게임 클라이언트에 아이템을 지급합니다.
 
-스토어 결제는 성공했으나 오류가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 다음 두 API를 각각 호출하여 재처리 로직을 구현하시기 바랍니다. <br/>
-
-1. 미처리 아이템 배송 요청
-    * 로그인에 성공하면 **requestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인합니다.
-    * 반환된 미소비 결제 내역 목록에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
-
-2. 결제 오류 재처리 시도
-    * 로그인에 성공하면 **requestRetryTransaction**을 호출하여 미처리 내역에 대해 자동으로 재처리를 시도합니다.
-    * 반환된 successList에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
-    * 반환된 failList에 값이 존재한다면 해당 값을 게임 서버나 Log & Crash 등을 통해 전송하여 데이터를 확보하고, **[고객 센터](https://toast.com/support/inquiry)**에 재처리 실패 원인을 문의합니다.
+* 스토어 결제는 성공했으나 오류가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 미소비 결제 내역을 확인하시기 바랍니다. <br/>
+	* 로그인에 성공하면 **requestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인합니다.
+	* 반환된 미소비 결제 내역 목록에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
 
 ### Purchase Item
 
@@ -157,8 +149,8 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 
 ### Get a List of Non-Consumed Items
 
-아이템을 구매했지만, 정상적으로 아이템이 소비(배송, 지급)되지 않은 미소비 결제 내역을 요청합니다.<br/>
-미결제 내역이 있는 경우에는 게임 서버(아이템 서버)에 요청하여, 아이템을 배송(지급)하도록 처리해야 합니다.
+* 아직 소비되지 않은 일회성 상품(CONSUMABLE)과 소비성 구독 상품(CONSUMABLE_AUTO_RENEWABLE) 정보를 조회합니다.<br/>
+* 미결제 내역이 있는 경우에는 게임 서버(아이템 서버)에 요청하여, 아이템을 배송(지급)하도록 처리해야 합니다.
 
 * 다음 두 가지 상황에서 호출해 주세요.
     1. 결제 성공 후 아이템 소비(consume) 처리 전 최종 확인을 위하여 호출
@@ -188,28 +180,34 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 });
 ```
 
-### Reprocess Failed Purchase Transaction
+### Get a List of Activated Subscriptions
 
-스토어에서는 결제가 정상적으로 되었으나, TOAST IAP 서버 검증 실패 등으로 정상적으로 결제되지 않은 경우에는,  API를 이용해 재처리를 시도합니다. <br/>
-마지막으로 결제가 성공한 내역을 바탕으로, 아이템 배송(지급) 등의 API를 호출해 처리해야 합니다.
+현재 사용자 ID 기준으로 활성화된 구독 목록을 조회합니다.
+결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다. 
+사용자 ID가 같다면 Android와 iOS에서 구매한 구독 상품이 모두 조회됩니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> 현재 구독 상품은 Android의 경우 Google Play 스토어만 지원합니다.
+>
 
 **API**
 
 ```java
-+ (void)Gamebase.Purchase.requestRetryTransaction(Activity activity, GamebaseDataCallback<PurchasableRetryTransactionResult> callback);
++ (void)Gamebase.Purchase.requestActivatedPurchases(Activity activity, GamebaseDataCallback<List<PurchasableReceipt>> callback);
 ```
 
 **Example**
 
 ```java
-Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<PurchasableRetryTransactionResult>() {
+Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<List<PurchasableReceipt>>() {
     @Override
-    public void onCallback(PurchasableRetryTransactionResult data, GamebaseException exception) {
+    public void onCallback(List<PurchasableReceipt> data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
             // Succeeded.
         } else {
             // Failed.
-            Log.e(TAG, "Request retry transaction failed- "
+            Log.e(TAG, "Request subscription list failed- "
                     + "errorCode: " + exception.getCode()
                     + "errorMessage: " + exception.getMessage());
         }
@@ -264,5 +262,5 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 ```
 
 * IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [Mobile Service > IAP > 오류 코드 > Client API 에러 타입](/Mobile%20Service/IAP/ko/error-code/#client-api)
+    * [TOAST > TOAST SDK 사용 가이드 > TOAST IAP > Android > 오류 코드](/TOAST/ko/toast-sdk/iap-android/#_24)
 

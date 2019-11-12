@@ -39,8 +39,8 @@ Setting for Gamebase debug.
 * False: Warning and error logs.
 * Default: False
 
-디버그 설정은 Console에서도 가능하며 Console에서 설정된 값을 우선시합니다.
-Console 설정 방법은 아래 가이드를 참고하십시오.
+You can also perform the debug setting in the console and the values set in the console have priority.
+Please see the following guide to set in the console.
 
 * [Console 테스트 단말기 설정](./oper-app/#test-device)
 * [Console Client 설정](./oper-app/#client)
@@ -97,7 +97,7 @@ Sender ID to use FCM (Firebase Cloud Messaging).
 
 #### 10. useWebview
 
-Standalone 플랫폼에서 WebView를 통해서 로그인을 할 것인지에 대한 설정입니다. 
+Set whether or not to log in to WebView on a (Standalone) platform.
 
 #### 11. GamebaseUnitySDKSettings
 
@@ -197,8 +197,8 @@ For game status codes, refer to the table below.
 | IN_SERVICE | 200 | Service is now normally provided |
 | RECOMMEND_UPDATE | 201 | Update is recommended |
 | IN_SERVICE_BY_QA_WHITE_LIST | 202 | Under maintenance now but QA user service is available. |
-| IN_TEST                     | 203  | 테스트 중 |
-| IN_REVIEW                   | 204  | 심사 중 |
+| IN_TEST                     | 203  | Under test |
+| IN_REVIEW                   | 204  | Review in progress |
 | REQUIRE_UPDATE | 300 | Update is required |
 | BLOCKED_USER | 301 | User whose access has been blocked. |
 | TERMINATED_SERVICE | 302 | Service has been terminated |
@@ -269,7 +269,7 @@ IAP store information registered in the TOAST Console.
 
 ### Get Launching Information
 
-GetLaunchingInformations API를 이용하면 Initialize 이후에도 LaunchingInfo 객체를 획득할 수 있습니다.
+With GetLaunchingInformations API, you can get the LaunchingInfo object even after initialization.
 
 **API**
 
@@ -297,12 +297,12 @@ public GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
 
 | Error                              | Error Code | Description            |
 | ---------------------------------- | ---------- | ---------------------- |
-| NOT\_INITIALIZED      | 1          | Gamebase 초기화돼 있지 않습니다. |
-| NOT\_LOGGED\_IN       | 2          | 로그인이 필요합니다.            |
-| INVALID\_PARAMETER    | 3          | 잘못된 파라미터입니다.           |
-| INVALID\_JSON\_FORMAT | 4          | JSON 포맷 오류입니다.         |
-| USER\_PERMISSION      | 5          | 권한이 없습니다.              |
-| NOT\_SUPPORTED        | 10         | 지원하지 않는 기능입니다.         |
+| NOT\_INITIALIZED      | 1          | Gamebase not initialized. |
+| NOT\_LOGGED\_IN       | 2          | Login required.            |
+| INVALID\_PARAMETER    | 3          | Invalid parameter.           |
+| INVALID\_JSON\_FORMAT | 4          | JSON format error.         |
+| USER\_PERMISSION      | 5          | No permissions.              |
+| NOT\_SUPPORTED        | 10         | Function not supported.         |
 
-* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./error-code/#client-sdk)
+* Refer to the following document for all error codes.
+    * [Error code](./error-code/#client-sdk)

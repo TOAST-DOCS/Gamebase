@@ -5,7 +5,7 @@
 
 > [INFO]
 >
-> Minimum Requirements: iOS8 or 일부 IDP지원 시 iOS9 이상 <br/>
+> Minimum Requirements: iOS 8; if some IdPs are supported, iOS 9 or later <br/>
 > Supports arm7, arm7s, arm64, i386, x86_64<br/>
 > Xcode10 or higher
 >
@@ -43,8 +43,8 @@ Then, include corresponding SDK files to a target of your project.
 > <font color="red">[Caution]</font><br/>
 >
 > Among Gamebase Framework files, **Adapter** files can be selectively used in a project to that end, external SDKs may be required as specified in the above table.
-> 일부 인증 Adpater의 경우 위의 표에 있는 Support iOS Version에 유의해야합니다.
-> (지원 버전이 iOS9이상인 Auth Adpater를 빌드에 포함 시 iOS8이하에서는 runtime Crash가 발생합니다.)
+> For some Auth adapters, you must check the Support iOS Version in the table shown above.
+>(If the Auth adapter whose support version is iOS 9 or later is included in the build, runtime crash occurs in iOS 8 or earlier.)
 
 <br/>
 
@@ -89,12 +89,12 @@ By decompression, following SDKs will show, including Gamebase.framework.
 
 #### CocoaPods Settings
 
-Gamebase iOS SDK는 CocoaPods를 통해서도 설정할 수 있습니다.
+You can set the Gamebase iOS SDK with CocoaPods.
 
-* 1) Xcode를 실행해 프로젝트를 생성합니다.
-* 2) Terminal을 실행해 CocoaPods을 적용하려는 프로젝트의 디렉터리로 이동합니다.
-* 3) **pod init** 명령어를 실행해 **Podfile**을 생성합니다.
-* 4) 생성된 **Podfile**을 편집기로 열어 다음과 같은 내용을 작성합니다.
+1. Execute Xcode to create a project.
+2. Execute the terminal to navigate to the directory of the project where CocoaPods will be applied.
+3. Execute the **pod init** command to create **Podfile**.
+4. Open the created **Podfile** with the editor and enter the following.
 
 ```ruby
 platform :ios, '9.0'
@@ -113,28 +113,28 @@ target 'SampleApplication' do
 end
 ```
 
-> [INFO]
+> [Note]
 >
-> **target 'SampleApplication' do** 부분에는 생성한 프로젝트의 타겟명을 입력합니다.<br/>
-> **pod 'Gamebase', '1.11.1'** 과 같이 작성해 특정 버전을 지정 할 수 있습니다. 각각의 pod에 버전을 명시하지 않으면 최신 버전이 설정됩니다.<br/>
-> 특정 Adapter만 선택적으로 적용할 수 있습니다.
+> Enter the target name of the created project in the **target 'SampleApplication' do** part.<br/>
+> You can specify a specific version (e.g. by writing **pod 'Gamebase', '1.11.1'**). If you do not specify a version for each pod, the latest version is set.<br/>
+> You can selectively apply to specific adapters.
 > 
 
 
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> Gamebase 최신 버전을 사용하지 않으면 일부 Adapter의 사용이 불가능 할 수 있습니다.
+> If you do not use the latest Gamebase version, some adapter may not be available.
 >
 
-* 5) Podfile 작성이 완료되면 **pod install** 또는 **pod update** 명령어를 실행해 Gamebase를 설치합니다.
-* 6) 설치가 완료되면 **프로젝트명.xcworkspace** 파일이 생성됩니다. 이후부터는 생성된 **xcworkspace** 파일을 통해 개발을 진행합니다.
-* 7) Target > Build Settings > Enable Bitcode를 No로 설정합니다. 
+5. After completing writing the Podfile, execute **pod install** or **pod update** command to install Gamebase.
+6. After installation is complete, the file **project_name.xcworkspace** is created. From now on, use the created **xcworkspace** file for development.
+7. **Set Target > Build Settings > Enable Bitcode** to **No**.
 ![Enable Bitcode](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-007_1.0.0.png)
 
-> [INFO]
+> [Note]
 >
-> 더 자세한 CocoaPods 사용법에 대해서는 [CocoaPods Guide](https://guides.cocoapods.org/)의 [Using CocoaPods](https://guides.cocoapods.org/using/index.html) 페이지를 참고하시길 바랍니다.
+> For more detailed information on how to use CocoaPods, see [Using CocoaPods](https://guides.cocoapods.org/using/index.html) at [CocoaPods Guide](https://guides.cocoapods.org/).
 >
 >
 
@@ -153,13 +153,13 @@ Included in SDK.
 
 ## API Deprecate Governance
 
-Gamebase에서 더 이상 지원하지 않는 API는 Deprecate 처리합니다.
-Deprecated 된 API는 다음 조건 충족 시 사전 공지 없이 삭제될 수 있습니다.
+The API which is not supported by Gamebase anymore is processed as deprecated (deprecate).
+A (deprecated) API can be deleted without any prior notice when the following conditions are met:
 
-* 5회 이상의 마이너 버전 업데이트
+* Minor version updates of five or more times.
 	* Gamebase Version Format - XX.YY.ZZ
 		* XX : Major
 		* YY : Minor
 		* ZZ : Hotfix
 
-* 최소 5개월 경과
+* Time elapse of at least five months

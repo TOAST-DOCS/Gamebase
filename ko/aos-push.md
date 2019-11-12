@@ -4,100 +4,56 @@
 
 여기에서는 플랫폼별로 푸시 알림을 사용하기 위해 필요한 설정 방법을 알아보겠습니다.
 
-#### TOAST Cloud Console 등록
+#### Register TOAST Cloud Console
 
-먼저 [Notification > Push > API v2.0 가이드](/Notification/Push/ko/api-guide/)를 참고하여 Console을 설정합니다.
+[Notification > Push > Console Guide](/Notification/Push/ko/console-guide/)를 참고하여 Console을 설정합니다.
 
-#### Download
+#### Gradle
 
-* Firebase 푸시를 사용하는 경우
-    * 다운로드한 SDK의 **gamebase-adapter-push-fcm** 폴더를 프로젝트에 추가합니다.
-* Tencent 푸시를 사용하는 경우
-    * 다운로드한 SDK의 **gamebase-adapter-push-tencent** 폴더를 프로젝트에 추가합니다.
+* build.gradle 에 사용하고자 하는 모듈을 추가합니다.
 
-> <font color="red">[중요]</font><br/>
->
-> 푸시 모듈은 하나만 있어야 합니다. <br/>
-> Firebase 푸시와 Tencent 푸시를 동시에 프로젝트에 추가하지 마십시오.
-
-
-#### AndroidManifest.xml
-
-* Gamebase 푸시에 필요한 설정을 추가합니다.
-
-> <font color="red">[중요]</font><br/>
->
-> **${applicationId}**를 **패키지 네임**으로 변경해야 합니다.
->
-
-*Firebase*
-
-```xml
-<manifest>
-    ...
-    <permission
-        android:name="${applicationId}.permission.C2D_MESSAGE"
-        android:protectionLevel="signature" />
-    <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
-    ...
-    <application>
-    ...
-        <provider
-            android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="${applicationId}.firebaseinitprovider"
-            android:exported="false"
-            android:initOrder="100" />
-        <receiver
-            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
-            android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-
-                <category android:name="${applicationId}" />
-            </intent-filter>
-        </receiver>
-    ...
-    </application>
-</manifest>
+```groovy
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    
+    // >>> Gamebase Version
+    def GAMEBASE_SDK_VERSION = 'x.x.x'
+    
+    // >>> Gamebase - Select Push Adapter
+    implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-push-tencent:$GAMEBASE_SDK_VERSION"
+}
 ```
 
-*Tencent*
+* 푸시 모듈은 FCM(Firebase Cloud Messaging)과 Tencent 중에서 하나만 추가해야 하지만, 테스트 목적으로 복수의 모듈을 추가했다면 Gamebase.initialize 에서 사용하고자 하는 PushType 을 선택할 수도 있습니다.
+    * PushProvider.Type.FCM : "FCM"
+    * PushProvider.Type.TENCENT : "TENCENT"
 
-```xml
-<manifest>
-    ...
-    <application>
-    ...
-        <provider
-            android:name="com.tencent.android.tpush.XGPushProvider"
-            android:authorities="${applicationId}.AUTH_XGPUSH"
-            android:exported="true" />
-        <provider
-            android:name="com.tencent.android.tpush.SettingsContentProvider"
-            android:authorities="${applicationId}.TPUSH_PROVIDER"
-            android:exported="false" />
-        <provider
-            android:name="com.tencent.mid.api.MidProvider"
-            android:authorities="${applicationId}.TENCENT.MID.V3"
-            android:exported="true" />
-    ...
-    </application>
-</manifest>
+```java
+String PUSH_TYPE = PushProvider.Type.FCM;	// Firebase Cloud Messaging
+
+GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(APP_ID, APP_VERSION, STORE_CODE)
+		.setPushType(PUSH_TYPE)
+        .build();
+
+Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
+    @Override
+    public void onCallback(final LaunchingInfo data, GamebaseException exception) {
+        ...
+    }
+});
 ```
 
-#### Google Services Settings (Firebase only)
+#### Firebase
 
 * Gradle 빌드를 사용하는 경우
-    * Firebase 푸시를 사용하기 위해서는 google-services.json 설정 파일이 필요합니다. 설정 파일을 프로젝트에 포함하는 방법은 [Firebase 클라우드 메시징](https://firebase.google.com/docs/cloud-messaging/#add_firebase_to_your_app) 설명을 참고합니다.
-    * gradle 설정에 **apply plugin: 'com.google.gms.google-services'**를 추가합니다.
-    * 위 설정으로 Google Services Gradle Plugin이 적용되어 google-services.json 파일을 res/google-services/{build_type}/values/values.xml라는 이름의 string resource로 변경하여 사용하게 됩니다.
+    * Firebase 푸시를 사용하기 위해서는 아래 가이드에 따라 Firebase 설정을 완료하여야 합니다.
+		* [TOAST > TOAST SDK 사용 가이드 > TOAST Push > Android > Firebase Cloud Messaging 설정](/toast-sdk/push-android/#firebase-cloud-messaging)
 * Unity 빌드인 경우
-    * 직접 string resource(xml) 파일을 만들어서 Assets/Plugins/Android/res/values/ 폴더에 포함시켜야 합니다. 
+    * 직접 string resource(xml) 파일을 만들어서 Assets/Plugins/Android/res/values/ 폴더에 포함시켜야 합니다.
         * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
         * 다음은 string resource(xml) 파일의 예시입니다.
-            ```xml
+            ```
             <!-- Assets/Plugins/Android/res/values/google-services-json.xml -->
             <?xml version="1.0" encoding="utf-8"?>
             <resources>
@@ -109,37 +65,14 @@
             <string name="google_storage_bucket" translatable="false">tap-development-00000000.appspot.com</string>
             </resources>
             ```
-        * string resource(xml) 파일에서 설정하는 각각의 값은 Firebase Console > 프로젝트 설정 > google-services.json 파일을 다운로드해서 확인 가능합니다. 
+        * string resource(xml) 파일에서 설정하는 각각의 값은 Firebase Console > 프로젝트 설정 > google-services.json 파일을 다운로드해서 확인 가능합니다.
             Firebase 서비스 연동에 따라서 google-services.json 파일의 내용은 달라질 수 있습니다.
             ![Download google-services.json](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
 
-#### Initialization
+#### Tencent
 
-* Gamebase 초기화 시 configuration의 **setPushType()**을 호출합니다.
-* Firebase 푸시를 사용하는 경우
-    * 추가로 **setFCMSenderId()**를 호출합니다.
-* Tencent 푸시를 사용하는 경우
-    * 추가로 **setTencentAccessId()**를 호출합니다.
-    * 추가로 **setTencentAccessKey()**를 호출합니다.
-
-```java
-private static final String PUSH_FCM_SENDER_ID = "...";
-private static final String PUSH_TENCENT_ACCESS_ID = "...";
-private static final String PUSH_TENCENT_ACCESS_KEY = "...";
-
-GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(APP_ID, APP_VERSION)
-        .setFCMSenderId(PUSH_FCM_SENDER_ID)				// Firebase는 SenderId가 필요합니다.
-        .setTencentAccessId(PUSH_TENCENT_ACCESS_ID)		// Tencent AccessId가 필요합니다.
-        .setTencentAccessKey(PUSH_TENCENT_ACCESS_KEY)	// Tencent AccessKey가 필요합니다.
-        .build();
-
-Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
-    @Override
-    public void onCallback(final LaunchingInfo data, GamebaseException exception) {
-        ...
-    }
-});
-```
+* Tencent 푸시를 사용하기 위해서는 아래 가이드에 따라 Tencent 설정을 완료하여야 합니다.
+	* [TOAST > TOAST SDK 사용 가이드 > TOAST Push > Android > Tencent Push Notification 설정](/toast-sdk/push-android/#tencent-push-notification)
 
 ### Register Push
 
@@ -250,18 +183,14 @@ Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
 });
 ```
 
-* TOAST Push 오류 코드는 다음과 같습니다.
-    
-| 오류 코드 |  설명 |
-| --- | --- |
-| ERROR_SYSTEM_FAIL | 시스템 문제로 토큰 획득에 실패한 경우 |
-| ERROR_NETWORK_FAIL | 네트워크 문제로 요청에 실패한 경우 |
-| ERROR_SERVER_FAIL | 서버에서 실패 응답을 반환한 경우 |
-| ERROR_ALREADY_IN_PROGRESS | 토큰 등록/조회가 이미 실행 중인 경우 |
-| ERROR_INVALID_PARAMETERS | 파라미터가 잘못된 경우 |
-| ERROR_PERMISSION_REQUIRED | 권한이 필요한 경우(Tencent만 해당) |
-| ERROR_PARSE_JSON_FAIL | 서버 응답을 파싱하지 못한 경우 |
+* TOAST Push SDK 의 오류 코드는 다음과 같습니다.
 
-
-
-
+| Error | Error Code | Description |
+| --- | --- | --- |
+| OK | 0 | API 호출 성공 |
+| NOT_INITIALIZE | 100 | TOAST SDK 또는 TOAST Push SDK 가 초기화 되지 않은 경우. |
+| PROVIDER_SDK_ERROR | 101 | 외부 SDK(Firebase, Tencent) 에서 에러가 발생한 경우. |
+| USER_ID_NOT_REGISTERED | 102 | 로그인 하지 않은 경우. |
+| UNSUPPORTED_PUSH_TYPE | 103 | PushType 을 잘못 입력 했거나 푸시 라이브러리가 프로젝트에 포함되지 않은 경우. |
+| API_SERVER_ERROR | 104 | TOAST Push 서버 API 호출이 실패한 경우. |
+| TOKEN_NOT_REGISTERED | 105 | 내부에 캐싱된 Push Token 이 존재하지 않는 경우. |
