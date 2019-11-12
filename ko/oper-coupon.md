@@ -1,6 +1,6 @@
 ## Game > Gamebase > 콘솔 사용 가이드 > 쿠폰
 
-// 소개 멘트 어떻게 써야할지 확인?
+게임운영시 게임 유저에게 배포할 쿠폰을 대량으로 생성하고 관리할 수 있는 기능입니다.
 
 ## Coupon Publish
 앱 내에서 사용할 수 있는 쿠폰을 발급 또는 조회할 수 있습니다.
@@ -9,7 +9,7 @@
 ### Search Coupon publish
 검색조건에 맞는 쿠폰 발급 내역을 조회합니다.
 
-![gamebase_ban_01_201812](./image/Operators_Guide/gamebase_coupon_01_201911.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_01_201911.png)
 
 **검색 조건**
 
@@ -31,7 +31,7 @@
 ### Publish coupon
 쿠폰 발급 조회화면에서 등록 버튼을 누르면 쿠폰에 대한 발급 진행이 가능합니다.
 
-![gamebase_ban_01_201812](./image/Operators_Guide/gamebase_coupon_02_201911.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_02_201911.png)
 
 #### (1) 쿠폰 타입
 발급할 쿠폰 타입을 설정할 수 있습니다.
@@ -40,7 +40,7 @@
 - **시리얼** : 임의의 쿠폰번호를 생성하여 쿠폰 코드를 발급합니다.
 
 #### (2) 쿠폰명
-발급한 쿠폰의 목적을 알 수 있는 쿠폰명을 입력합니다.
+발급한 쿠폰의 목적을 알 수 있는 쿠폰명을 입력합니다. 
 
 #### (3) 스토어
 발급한 쿠폰을 사용할 수 있는 스토어를 선택합니다.
@@ -69,10 +69,11 @@
 
 
 ### Update publish coupon
+
 발급한 쿠폰 정보를 수정하고 싶을 경우 상세 정보에서 수정버튼을 누르면 정보를 수정할 수 있습니다.
 수정 시 이미 발급한 쿠폰 코드 타입에 대한 수정은 불가능하므로 새로운 타입의 쿠폰을 발급하기 원하신다면 발급 정보를 새롭게 등록하셔야 합니다.
 
-![gamebase_ban_01_201812](./image/Operators_Guide/gamebase_coupon_03_201911.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_03_201911.png)
 
 #### (1) 쿠폰명
 발급한 쿠폰의 목적을 알 수 있는 쿠폰명을 입력합니다.
@@ -104,15 +105,15 @@
 
 ### 쿠폰 코드별 조회
 쿠폰 코드를 직접 입력하여 사용여부를 조회할 수 있습니다.
-![gamebase_ban_01_201812](./image/Operators_Guide/gamebase_coupon_04_201911.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_04_201911.png)
 
 ### 유저 ID별 조회
 유저 ID를 통해 해당 유저가 쿠폰을 사용한 이력을 조회할 수 있습니다.
-![gamebase_ban_01_201812](./image/Operators_Guide/gamebase_coupon_05_201911.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_05_201911.png)
 
 ### 쿠폰명 조회
 쿠폰명 및 기타 검색조건을 통해 사용 이력을 조회할 수 있습니다.
-![gamebase_ban_01_201812](./image/Operators_Guide/gamebase_coupon_06_201911.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_06_201911.png)
 (1) **쿠폰명**: 쿠폰 발급 메뉴를 통해 발급한 쿠폰을 선택할 수 있습니다.
 (2) **사용 여부**: 사용 여부를 선택하여 조회할 수 있는 기능을 제공합니다. 현재는 사용된 쿠폰만 조회가능하며 추후 다른 상태에 대한 검색 조건도 제공할 예정입니다.
 (3) **쿠폰 사용일**: 기간을 설정하여 해당 기간에 사용된 쿠폰만 조회할 수 있는 기능을 제공합니다.
@@ -123,14 +124,14 @@
 ### 쿠폰 아이템 조회
 등록된 쿠폰 아이템 내역을 조회할 수 있습니다.
 필터를 통해 아이템 ID/아이템 이름을 통한 검색도 가능합니다.
-![gamebase_ban_01_201812](./image/Operators_Guide/gamebase_coupon_07_201911.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_07_201911.png)
 
 ### 쿠폰 아이템 등록
 쿠폰 코드 사용 시 지급할 아이템을 등록합니다.
 등록되는 아이템은 단건 입력 또는 파일을 통해 등록할 수 있습니다.
 
 #### 단건 등록
-![gamebase_ban_01_201812](./image/Operators_Guide/gamebase_coupon_08_201911.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_08_201911.png)
 
 ##### (1) 아이템 ID
 앱 내에 등록된 아이템 고유 ID를 입력합니다. 쿠폰 코드 사용 시 이곳에 입력된 정보가 실제 서버에 결과 데이터로 전달되므로 아이템을 제공할 수 있는 서버에서 구별할 수 있는 고유 아이템 ID를 입력해야 합니다.
@@ -140,7 +141,7 @@
 등록된 아이템을 구별할 수 있는 아이템 이름을 입력합니다.
 
 #### 파일 업로드
-![gamebase_ban_01_201812](./image/Operators_Guide/gamebase_coupon_09_201911.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_09_201911.png)
 한번에 대량으로 등록하고자 할 때 파일을 이용하여 등록할 수 있습니다.
 파일을 이용해서 등록할 경우 한번에 최대 10,000건까지 등록할 수 있으며 템플릿 예시 파일을 다운로드 받은 후 해당 형식에 맞도록 작성해서 업로드를 해주셔야 정상적으로 파일을 이용한 아이템 등록 작업 진행이 가능합니다.
 
@@ -149,12 +150,12 @@
 
 > [참고]
 > 
-> 아이템 ID 정보는 변경할 수 없으므로 아이템 ID가 잘못되었다면 새로운 아이템 ID로 다시 등록해주셔야 합니다.
+> 아이템 ID 정보는 변경할 수 없으므로 아이템 ID가 잘못 되었다면 새로운 아이템 ID로 다시 등록해주셔야 합니다.
 
-![gamebase_ban_01_201812](./image/Operators_Guide/gamebase_coupon_10_201911.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_10_201911.png)
 
 #### (1) 아이템 이름
-등록한 아이템을 구별할 수 있는 아이템 이름을 입력합니다.
+구별할 수 있는 아이템 이름을 입력합니다.
 
 #### (2) 사용 여부
-최초 아이템 등록시에는 항상 아이템은 사용으로 등록되며 발급 시 해당아이템을 노출하고 싶지 않을 경우 사용하지 않음으로 변경하여 수정하면 발급 시 해당아이템은 노출되지 않습니다.
+**사용**상태인 경우에만 쿠폰 등록시 아이템 추가가 가능합니다. 아이템을 쿠폰 등록 화면에서 노출하고 싶지 않은 경우에는 사용 여부를 **사용하지 않음**으로 변경하면 됩니다. 최초 아이템 등록 시에는 항상 **사용**으로 등록됩니다.
