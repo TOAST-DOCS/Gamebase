@@ -2,10 +2,6 @@
 
 ### 2019. 11. 20.
 
-#### 기능 개선/변경
-* [SDK] 2.6.1
-	* (Unity)불필요한 로그 삭제: Trace Log 삭제
-	
 #### 버그 수정
 * [SDK] 2.6.1
 	* (Unity)iOS Plugin 파일이 Package에 누락되어 iOS 빌드시 에러가 발생하여 해당 파일을 추가: 'toast_sdk_wrap.m'
