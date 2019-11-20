@@ -289,7 +289,7 @@ TOAST Push에서 푸시 발송시 사용할 태그명을 등록할 수 있습니
 
 등록된 태그의 관리 및 해당 태그에 등록된 유저의 목록을 관리할 수 있습니다.
 
-![gamebase_push_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_push_07_201911.png)
+![gamebase_push_01_201812](./image/Operators_Guide/gamebase_push_07_201911.png)
 
 상단의 삭제/수정 버튼을 통해 태그에 대한 정보 수정 및 삭제를 진행할 수 있으며 하단의 유저ID 관리 기능을 통해 태그에 유저를 등록하거나 삭제할 수 있습니다.
 
