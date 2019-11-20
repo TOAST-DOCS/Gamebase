@@ -15,7 +15,7 @@ Gamebase Unity SDK를 사용하려면 먼저 초기화를 진행해야 합니다
 | enablePopup | ALL | O |
 | enableLaunchingStatusPopup | ALL | O |
 | enableBanPopup | ALL | O |
-| storeCode | ALL | O |
+| storeCode | ALL | M |
 | fcmSenderId | Android | O |
 | useWebview | Standalone | O |
 

@@ -1,6 +1,19 @@
 ## Game > Gamebase > 릴리스 노트
 
+### 2019. 11. 20.
+
+#### 기능 개선/변경
+* [SDK] 2.6.1
+	* (Unity)불필요한 로그 삭제: Trace Log 삭제
+	
+#### 버그 수정
+* [SDK] 2.6.1
+	* (Unity)iOS Plugin 파일이 Package에 누락되어 iOS 빌드시 에러가 발생하여 해당 파일을 추가: 'toast_sdk_wrap.m'
+	* (Unity)UnityEditor에서 Standalone 이외의 플랫폼으로 실행시 Store Code가 Empty로 입력되어 초기화에 실패하는 오류 수정
+	* (Unity)ZoneType을 입력하지 않고 Initialize API를 호출시 NullReferenceException 발생되는 오류 수정
+
 ### 2019. 11. 13.
+
 #### 버그 수정
 * GamebaseSettingTool
 	* Gamebase v2.6.0 업데이트 시, 파일이 정상적으로 변경되지 않는 오류 수정
