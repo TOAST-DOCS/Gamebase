@@ -43,7 +43,6 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
     <application>
     ...
         <!-- [ONE store] Configurations begin -->
-        <meta-data android:name="iap:api_version" android:value="4" /> <!-- 버전 16.XX.XX의 경우, 4를 입력합니다. https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#iapapi_version-%EC%84%A4%EC%A0%95 -->
         <meta-data android:name="iap:plugin_mode" android:value="development" /> <!-- development:개발모드 / release:운영 -->
         <!-- [ONE store] Configurations end -->
     ...
