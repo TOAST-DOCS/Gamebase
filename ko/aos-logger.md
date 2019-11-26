@@ -73,7 +73,6 @@ TOAST Logger SDK는 아래 다섯 가지 레벨의 로그를 전송할 수 있�
 ```java
 // Default
 Gamebase.Logger.debug("Message", userField);
-[TCGBLogger debug:@"Message"];
 
 // With userFields
 final Map<String, String> userField = new HashMap<>();

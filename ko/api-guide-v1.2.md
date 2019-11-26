@@ -191,7 +191,6 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | --- | --- |
 | GET | /tcgb-launching/v1.2/apps/{appId}/launching/simple |
 
-
 **[Request Header]**
 
 공통 사항 확인
@@ -398,7 +397,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | member.authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 사용자 인증 시스템 지원 예정 |
 | member.authList[].idPCode | String | 사용자 인증 IdP 정보 <br>guest, payco, facebook 등 |
 | member.authList[].authKey | String | authSystem에서 발급된 사용자 구분 값 |
-| member.authList[].regDate | long | IdP 정보가 사용자 계정과 매핑된 시간 |
+| member.authList[].regDate | String | IdP 정보가 사용자 계정과 매핑된 시간 |
 | memberInfo | Object | 사용자에 대한 부가 정보 |
 | memberInfo.deviceCountryCode | String | 사용자 단말기의 국가 설정 |
 | memberInfo.usmCountryCode | String | 사용자 USIM의 국가 코드 |
@@ -469,7 +468,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | memberList[].userId | String | 사용자 ID |
 | memberList[].valid | Enum | Y: 정상 사용자 <br>D: 탈퇴된 사용자 <br>B: 이용 정지된 사용자 <br>M: 유실된 계정|
 | memberList[].appId | String | appId |
-| memberList[].regDate | long | 사용자가 계정을 생성한 시간 |
+| memberList[].regDate | String | 사용자가 계정을 생성한 시간 |
 
 
 **[Error Code]**
@@ -688,14 +687,14 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | result.banCaller | String | 이용 정지 호출 주체 |
 | result.banReason | String | 이용 정지 사유 |
 | result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
-| result.beginDate | String | 이용 정지 시작 시간. ISO 8601 표준 시간|
-| result.endDate | String | 이용 정지 종료 시간. ISO 8601 표준 시간 |
+| result.beginDate | Long | 이용 정지 시작 시간 |
+| result.endDate | Long | 이용 정지 종료 시간 |
 | result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'Leaderboard' 로 반환 |
 | result.message | String | 이용 정지 메세지 |
 | result.name | String | 콘솔에서 등록한 템플릿 이름 |
 | result.regUser | String | 이용 정지 등록자 |
 | result.releaseCaller | String | 이용 정지 해제 주체 |
-| result.releaseDate | String | 이용 정지 해제 시간. ISO 8601 표준 시간 |
+| result.releaseDate | Long | 이용 정지 해제 시간 |
 | result.releaseReason | String | 이용 정지 해제 사유 |
 | result.releaseUser | String | 이용 정지 해제 등록자 |
 | result.seq | Long | 이용 정지 내역 순번 |
@@ -796,14 +795,14 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | result.banCaller | String | 이용 정지 호출 주체 |
 | result.banReason | String | 이용 정지 사유 |
 | result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
-| result.beginDate | String | 이용 정지 시작 시간. ISO 8601 표준 시간 |
-| result.endDate | String | 이용 정지 종료 시간. ISO 8601 표준 시간 |
+| result.beginDate | Long | 이용 정지 시작 시간 |
+| result.endDate | Long | 이용 정지 종료 시간 |
 | result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'Leaderboard' 로 반환 |
 | result.message | String | 이용 정지 메세지 |
 | result.name | String | 콘솔에서 등록한 템플릿 이름 |
 | result.regUser | String | 이용 정지 등록자 |
 | result.releaseCaller | String | 이용 정지 해제 주체 |
-| result.releaseDate | String | 이용 정지 해제 시간. ISO 8601 표준 시간 |
+| result.releaseDate | Long | 이용 정지 해제 시간 |
 | result.releaseReason | String | 이용 정지 해제 사유 |
 | result.releaseUser | String | 이용 정지 해제 등록자 |
 | result.seq | Long | 이용 정지 내역 순번 |
@@ -890,6 +889,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 [오류 코드](./error-code/#server)
 
+<br>
 
 ## Maintenance
 
@@ -1032,38 +1032,258 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 ## Purchase(IAP)
 
-Gamebase는 TOAST IAP 서비스의 서버 API에 대해 **Wrapping** 기능을 제공합니다. Wrapping 기능을 사용하면 사용자 서버에서 일관된 인터페이스로 TOAST 서비스들을 사용할 수 있습니다.
+#### Consume
 
+Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 유저에게 아이템을 지급하기 전에 결제를 소비 할 것을 알려야 합니다. 결제 1건당 1번만 결제소비 가능하며, 결제의 상태가 정상이 아니면 소비되지 않습니다.
+(결재 소비가 완료 되었다면 유저의 결제 및 아이템 지급이 정상적으로 완료 되었다고 판단)
 
-#### Wrapping API
-
-| API | Method | Wrapping URI | IAP URI |
-| --- | --- | --- | --- |
-| 아이템 소비 | POST | /tcgb-inapp/v1.2/apps/{appId}/consume | /v1/service/consume |
-| 미소비 결제 내역 조회| POST | /tcgb-inapp/v1.2/apps/{appId}/consumable | /v1/service/consumable |
-| 만료되지 않은 구독 결제 조회 | POST | /tcgb-inapp/v1.2/apps/{appId}/active-subscriptions | /v1/service/activeSubscriptionList |
-
-**해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
-
-[IAP Guide](/Mobile%20Service/IAP/ko/api-guide-for-toast-sdk/)
+소비 (Consume) 하지 않은 결제내역은 SDK 및 서버의 미소비 결제 내역조회 API를 통해 조회할 수 있습니다. 참고로 아이템 등록시 상품 유형이 일회성(CONSUMABLE)인 아이템 결제건에 대해서만 consume 처리 됩니다.
 
 > [참고]
-> 클라이언트에서 requestPurchase API 호출시 응답으로 오는 purchaseToken 값이 아이템 소비 API의 accessToken으로 사용됩니다.
+> 결제 1건당 1번 소비 가능하며, 결제소비 하지 않은 결제는 IAP에서 아이템을 지급하지 않은 것으로 간주합니다.
 
-##### API 호출 예시
+**[Method, URI]**
 
-```
-Content-Type: application/json
-X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
-X-Secret-Key: IgsaAP
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.2/apps/{appId}/consume |
 
-POST https://api-gamebase.cloud.toast.com/tcgb-inapp/v1.2/apps/{appId}/consume
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST 프로젝트 ID |
+
+**[Request Parameter]**
+
+없음
+
+**[Request Body]**
+
+```json
 {
-    "paymentSeq": "2019091931571201",
-    "accessToken" : "90fD1bs1guXwY6aZ7rseEKYW_6gMCISjDASgten4MD6O7XZD7VRjZcs8OTm8lOQVFTegoY4WK78P2WQCMm7cx"
+  "paymentSeq": "2019091931571201",
+  "accessToken" : "90fD1bs1guXwY6aZ7rseEKYW_6gMCISjDASgten4MD6O7XZD7VRjZcs8OTm8lOQVFTegoY4WK78P2WQCMm7cx"
 }
 ```
 
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| paymentSeq | String | mandatory | 결제 번호 |
+| accessToken | String | mandatory  | 결제 인증 토큰 (로그인 인증 토큰이 아님)  |
+
+> [참고]
+> 클라이언트에서 requestPurchase API 호출시 응답으로 오는 purchaseToken 값이 accessToken으로 사용
+
+
+**[Response Body]**
+
+```json
+{
+   "header":{
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "result":{
+        "price": 1500,
+        "currency": "KRW",
+        "productSeq": 12345
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Object | 결제 기본 정보 |
+| result.price | Long | 결제 가격 |
+| result.currency  | String  | 결제 통화  |
+| result.productSeq | Long | 결제 아이템 번호 (console에 등록된 아이템 고유 번호) |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+#### Get Consumable List
+
+결제가 완료되었지만 아직 소비(Consume)되지 않은, 미소비 결제내역을 조회할 수 있습니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.2/apps/{appId}/consumable |
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST 프로젝트 ID |
+
+**[Request Parameter]**
+
+없음
+
+**[Request Body]**
+
+```json
+{
+  "marketId": "GG",
+  "userChannel" : "GF",
+  "userKey" : "QXG774PMRZMWR3BR"
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| marketId | String | mandatory | 스토어코드<br>GG : Google, AS : Apple, ONESTORE : 원스토어 |
+| userChannel | String | mandatory  | 유저 채널<br>현재는 미구현 상태로 항상 `GF` 값을 설정  |
+| userKey | String | mandatory  | 유저 ID  |
+
+**[Response Body]**
+
+```json
+{
+    "header":{
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "success"
+    },
+    "result":[
+        {
+            "paymentSeq": "2016122110023124",
+            "productSeq": 1000292,
+            "currency": "KRW",
+            "price": 1000,
+            "accessToken": "oJgM1EfDRjnQY7yqhWCUVgAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
+        },
+
+        {
+            "paymentSeq": "2016122110023125",
+            "productSeq": 1000292,
+            "currency": "KRW",
+            "price": 1000,
+            "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
+        }
+    ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Array[Object] | 결제 기본 정보 |
+| result[].paymentSeq | String  |  결제 번호 |
+| result[].productSeq | Long | 결제 아이템 번호 (console에 등록된 아이템 고유 번호) |
+| result[].currency  | String  | 결제 통화  |
+| result[].price | Long | 결제 가격 |
+| result[].accessToken | String | 결제 인증 토큰 |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+### Get ActiveSubscription List
+
+유저가 현재 구독중인 결제를 조회 할 수 있습니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.2/apps/{appId}/active-subscriptions |
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST 프로젝트 ID |
+
+**[Request Parameter]**
+
+없음
+
+**[Request Body]**
+
+```json
+{
+  "marketId": "GG",
+  "packageName" : "com.toast.gamebase",
+  "userChannel" : "GF",
+  "userKey" : "QXG774PMRZMWR3BR"
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| marketId | String | mandatory | 스토어코드<br>GG : Google, AS : Apple, ONESTORE : 원스토어 |
+| packageName | String | mandatory | 콘솔에 등록한 앱의 packageName |
+| userChannel | String | mandatory  | 유저 채널<br>현재는 미구현 상태로 항상 `GF` 값을 설정  |
+| userKey | String | mandatory  | 유저 ID  |
+
+**[Response Body]**
+
+```json
+{
+  "header": {
+    "isSuccessful": true,
+    "resultCode": 0,
+    "resultMessage": "SUCCESS"
+  },
+  "result": [
+    {
+      "channel": "GF",
+      "userId": "string",
+      "paymentSeq": "2018102610330423",
+      "appId": "com.toast.gamebase",
+      "productId": "subs_p1w",
+      "productType": "AUTO_RENEWABLE",
+      "productSeq": 1002904,
+      "currency": "KRW",
+      "price": 1000,
+      "paymentId": "GPA.3375-2193-1175-57698",
+      "originalPaymentId": "GPA.3375-2193-1175-57698",
+      "purchaseTimeMillis": 1540522998289,
+      "expiryTimeMillis": 1541134994548
+    }
+  ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Array[Object] | 결제 기본 정보 |
+| result[].channel  | String  | 유저 채널  |
+| result[].userId  | String  | 유저 ID  |
+| result[].paymentSeq | String  |  결제 번호 |
+| result[].appId | String  |  패키지 이름 |
+| result[].productId | String  |  스토어에 등록된 상품(아이템) 식별자 |
+| result[].productType | String  |  상품(아이템) 타입<br>구독: AUTO_RENEWABLE |
+| result[].productSeq | Long | 결제 아이템 번호 (console에 등록된 아이템 고유 번호) |
+| result[].currency  | String  | 결제 통화  |
+| result[].price | Long | 결제 가격 |
+| result[].paymentId | String | 최근 갱신된 스토어 결제 번호 |
+| result[].originalPaymentId | String | 최초 스토어 결제 번호 |
+| result[].purchaseTimeMillis | Long | 최근 갱신된 시간 |
+| result[].expiryTimeMillis | Long | 구독 만료 시간 |
+
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+<br>
 
 ## Leaderboard
 
