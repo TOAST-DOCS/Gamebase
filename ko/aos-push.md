@@ -48,7 +48,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 * Gradle 빌드를 사용하는 경우
     * Firebase 푸시를 사용하기 위해서는 아래 가이드에 따라 Firebase 설정을 완료하여야 합니다.
-		* [TOAST > TOAST SDK 사용 가이드 > TOAST Push > Android > Firebase Cloud Messaging 설정](/toast-sdk/push-android/#firebase-cloud-messaging)
+		* [TOAST > TOAST SDK 사용 가이드 > TOAST Push > Android > Firebase Cloud Messaging 설정](/TOAST/ko/toast-sdk/push-android/#firebase-cloud-messaging)
 * Unity 빌드인 경우
     * 직접 string resource(xml) 파일을 만들어서 Assets/Plugins/Android/res/values/ 폴더에 포함시켜야 합니다.
         * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
@@ -72,7 +72,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 #### Tencent
 
 * Tencent 푸시를 사용하기 위해서는 아래 가이드에 따라 Tencent 설정을 완료하여야 합니다.
-	* [TOAST > TOAST SDK 사용 가이드 > TOAST Push > Android > Tencent Push Notification 설정](/toast-sdk/push-android/#tencent-push-notification)
+	* [TOAST > TOAST SDK 사용 가이드 > TOAST Push > Android > Tencent Push Notification 설정](/TOAST/ko/toast-sdk/push-android/#tencent-push-notification)
 
 ### Register Push
 
