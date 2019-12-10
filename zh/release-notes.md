@@ -1,5 +1,49 @@
 ## Game > Gamebase > Release Notes
 
+### Oct.15, 2019
+
+#### Feature Updates 
+* [SDK] 2.5.2 
+	* (iOS) Changed UIWebView into WKWebView
+* Sample App
+	* Updated Gamebase SDK (v2.4.0)
+	* Applied Smart Downloader (v1.5.8) and Leaderboard 
+	* More Features: Downloading game resources, integrating Leaderboard and TAA indicators, transferring devices, and forced mapping 
+	* Updates: Added ServerPush listeners and detection of observer maintenance  
+	* Renewed games 
+		
+#### Bug Fixes 
+* [Console]	
+	* Management > Authority: Fixed failed modification of authority 
+	* For Mobile 
+		* Fixed the issue of keyword enabled by selecting Datepicker 
+		* Analytics: Fixed the issue of NRU value exposed for ARPPU 
+		
+### Sept. 24, 2019 
+
+#### Feature Updates 
+* [Console]
+	* App >Client: Modified UI to select stores for the registration of web client  
+#### Bug Fixes 
+* [Console]	
+	* Management > Authority: Fixed the failed modification of authority 
+	* For Mobile 
+		* Fixed the issue of keyword enabled by selecting Datepicker 
+		* Analytics: Fixed the issue of NRU value exposed for ARPPU 
+		
+### Sept. 10, 2019 
+
+#### More Features
+* [Console]
+	* Analytics: Further shows the level indicator for channel/world/server and occupation/class transfer indicators 
+	
+#### Feature Updates 
+* [Console]
+	* Analytics: Performance updated for grid rendering (with tui-grid 4.4x)
+* [SDK] 2.5.1
+	* (iOS) Updated to TCPushSDK 1.7.0 which is for GamebasePushAdapter
+		* Since file has changed from static library to framework for TCPushSDK, TCPushSDK.framework must be added to project. 
+
 ### August 27, 2019
 
 #### More Features 
