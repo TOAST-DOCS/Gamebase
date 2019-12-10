@@ -1,5 +1,83 @@
 ## Game > Gamebase > リリースノート
 
+## Game > Gamebase > リリースノート
+
+### 2019. 12. 10.
+
+#### 機能追加
+* アプリ > アプリ：メンテナンス中にQAテスト端末を登録すると、IPでも登録できる機能を追加
+
+#### バグ修正
+* [Console]
+	* 日本語文言を修正
+* [SDK] 2.6.1
+	* (Android)Gamebase.initialize()呼び出し前にGamebase.login()を呼び出すとクラッシュが発生する問題を修正
+	* (Android)TOAST Analytics User Dataを誤ってjavaアドレス値で転送する問題を修正
+	* (Android)IAPサービスを有効にしていない場合に発生するクラッシュを修正
+	* (iOS)AddMapping(強制、Forcibly)使用時、マッピングされない問題を修正
+	* (iOS)Unity PluginにPushConfigurationのdisplayLanguageCodeを設定していない場合、NSNullオブジェクトによりクラッシュが発生する問題を修正
+
+### 2019. 11. 26.
+
+#### バグ修正
+* [Console]
+	* クーポン > クーポン発行：セッション終了後にクーポンをダウンロードすると、異常なファイルをダウンロードする問題を修正
+	* Analytics > リアルタイムモニタリング > ダッシュボード：昨日のデータが0と表示される現象を修正
+	* TOASTサービス(IAP、Push、AppGuardなど)関連メニューにアクセスした時、サービス無効になっている場合に無効ページが正常に表示されない問題を修正
+
+### 2019. 11. 20.
+
+#### バグ修正
+* [SDK] 2.6.1
+	* (Unity)iOS PluginファイルがPackageに入っておらず、iOSビルド時にエラーが発生するため、該当ファイルを追加：'toast_sdk_wrap.m'
+	* (Unity)UnityEditorでStandalone以外のプラットフォームで実行時、Store CodeがEmptyになり初期化に失敗するエラーを修正
+	* (Unity)Initialize API内部zone type処理部分でのエラーで、NullReferenceExceptionが発生するエラーを修正
+
+### 2019. 11. 13.
+
+#### バグ修正
+* GamebaseSettingTool
+	* Gamebase v2.6.0アップデートの際、ファイルが正常に変更されないエラーを修正
+
+
+### 2019. 11. 12.
+
+```
+Gamebase SDK 2.6.0未満バージョンから2.6.0にアップグレードする場合
+必ずUpgrade Guide文書に記載された変更事項を反映してください。 
+ガイドの場所：Game > Gamebase > Upgrade Guide
+```
+
+#### 機能追加
+* クーポンサービス新規オープン：クーポンを大量に作成し、管理する機能
+	* [Console]Couponメニュー新規オープン
+	* [Server API]クーポン確認および消費APIを追加
+* 自動決済アビューズ機能を追加
+	* [Console]購入(IAP) > 決済アビューズモニタリングメニューを新規オープン
+		* 決済アビューズ自動制裁設定機能
+		* 決済アビューズ条件検索後、手動で利用停止が可能
+* Google定期購入決済機能を追加
+	* [SDK] 2.6.0 Android
+* [SDK] 2.6.0
+	* (共通)データをLog&Crashに転送して、各種分析に利用できるようにTOAST Loggerを追加
+	* (iOS) Sign In with Apple認証を追加
+	* (Android) Gamebase Android SDKがBintrayを通して配布されるため、gradle設定だけでGamebaseを使用可能
+
+#### 機能改善/変更
+* [SDK] 2.6.0
+	* (Unity)ログイン時にLaunchingStatusを更新するロジックにエラーがあったため修正
+	* (Unity) Debug Logを転送する機能をGamebaseコンソールで設定する場合、Clientからログ転送を無限に繰り返すエラーを修正
+* [Console]
+	* アプリ > アプリ：サーバーアドレスをサービス状態別(テスト、審査中、サービス)に入力できるように変更
+	* 購入(IAP) > 決済情報：検索条件を選択して検索できるようにUIを変更
+
+### 2019. 10. 29.
+
+#### 機能改善/変更
+* [Console]
+	* Analytics：円グラフのツールチップを変更
+	* Analytics > リアルタイムモニタリング：Push送信対象追加作業
+
 ### 2019. 10. 15.
 
 #### 機能改善/変更
