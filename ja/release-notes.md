@@ -1,5 +1,7 @@
 ## Game > Gamebase > リリースノート
 
+### 2019. 10. 15.
+
 #### 機能改善/変更
 * [SDK] 2.5.2
 	* (iOS) UIWebViewをWKWebViewに変更
