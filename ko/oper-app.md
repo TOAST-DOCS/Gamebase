@@ -64,13 +64,13 @@ Idp별 자세한 설정 방법은 [Authentication Information](#authentication-i
 
 ### Test Device
 
-![gamebase_app_02_201812.png](./image/Operators_Guide/gamebase_app_02_201912.png)
+![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_02_201912.png)
 테스트 단말기로 등록되면 Gamebase를 사용하는 앱이 점검 중이어도 정상적으로 게임에 접근할 수 있습니다.
 테스트 단말기를 등록하려면 **Device Key** 또는 **IP** 정보를 등록해야 합니다. 직접 입력하거나 **게임유저 ID**를 조회하여 등록할 수 있습니다.
 점검시 게임플레이가 가능할 수 있도록 하거나 단말기별 Debug Log 출력 여부를 설정하여 테스트 단말기를 관리할 수 있습니다.
 더 이상 사용하지 않는 테스트 단말기를 삭제할 수도 있습니다.
 접속 이력 확인버튼을 누르면 해당 기기를 통한 **점검이 진행되는 동안의 접속 시간 및 상세 접속 로그**를 확인할 수 있습니다.
-![gamebase_app_02_201812.png](./image/Operators_Guide/gamebase_app_09_201912.png)
+![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_09_201912.png)
 
 > [참고]
 > 테스트 단말기는 최대 100개까지만 등록할 수 있습니다.
@@ -83,8 +83,8 @@ Idp별 자세한 설정 방법은 [Authentication Information](#authentication-i
 
 조회 화면에서 **등록** 버튼을 클릭하면 테스트 단말기를 등록할 수 있는 화면이 나타납니다. **Device Key**를 직접 입력하거나 **게임유저 ID**를 검색해 테스트 단말기를 등록할 수 있습니다.
 
-![gamebase_app_02_201812.png](./image/Operators_Guide/gamebase_app_10_201912.png)
-![gamebase_app_02_201812.png](./image/Operators_Guide/gamebase_app_11_201912.png)
+![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_10_201912.png)
+![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_11_201912.png)
 
 **(1) 게임유저 ID를 통한 등록**
 
@@ -102,7 +102,7 @@ Idp별 자세한 설정 방법은 [Authentication Information](#authentication-i
 
 #### (3) 삭제
 
-![gamebase_app_02_201812.png](./image/Operators_Guide/gamebase_app_12_201912.png)
+![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_12_201912.png)
 
 테스트 단말기 조회 화면에서 삭제하고자 하는 테스트 단말기를 체크한 후 왼쪽 위의 삭제 버튼을 클릭하면 테스트 단말기 정보가 삭제됩니다. 삭제된 정보는 복구할 수 없으므로 삭제 전에 다시 한번 확인한 후 삭제하시기 바랍니다.
 
