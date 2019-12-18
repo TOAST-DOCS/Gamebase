@@ -103,15 +103,16 @@
 발급한 쿠폰에 대하여 사용내역을 조회할 수 있는 기능을 제공합니다.
 검색 조건에 따라 아래와 같은 검색 화면을 제공합니다.
 
-### 쿠폰 코드별 조회
+### Properties
+#### 쿠폰 코드별 조회
 쿠폰 코드를 직접 입력하여 사용여부를 조회할 수 있습니다.
 ![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_04_201911.png)
 
-### 유저 ID별 조회
+#### 유저 ID별 조회
 유저 ID를 통해 해당 유저가 쿠폰을 사용한 이력을 조회할 수 있습니다.
 ![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_05_201911.png)
 
-### 쿠폰명 조회
+#### 쿠폰명 조회
 쿠폰명 및 기타 검색조건을 통해 사용 이력을 조회할 수 있습니다.
 ![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_06_201911.png)
 (1) **쿠폰명**: 쿠폰 발급 메뉴를 통해 발급한 쿠폰을 선택할 수 있습니다.
@@ -121,12 +122,12 @@
 ## Coupon Item
 쿠폰 코드 사용 시 지급할 쿠폰 아이템을 조회/관리할 수 있습니다.
 
-### 쿠폰 아이템 조회
+### Search Coupon item
 등록된 쿠폰 아이템 내역을 조회할 수 있습니다.
 필터를 통해 아이템 ID/아이템 이름을 통한 검색도 가능합니다.
 ![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_07_201911.png)
 
-### 쿠폰 아이템 등록
+### Register Coupon item
 쿠폰 코드 사용 시 지급할 아이템을 등록합니다.
 등록되는 아이템은 단건 입력 또는 파일을 통해 등록할 수 있습니다.
 
@@ -145,7 +146,7 @@
 한번에 대량으로 등록하고자 할 때 파일을 이용하여 등록할 수 있습니다.
 파일을 이용해서 등록할 경우 한번에 최대 10,000건까지 등록할 수 있으며 템플릿 예시 파일을 다운로드 받은 후 해당 형식에 맞도록 작성해서 업로드를 해주셔야 정상적으로 파일을 이용한 아이템 등록 작업 진행이 가능합니다.
 
-### 쿠폰 아이템 수정
+### Update Coupon item
 등록한 아이템에 대한 정보를 수정할 수 있으며 해당 아이템을 사용하지 않고자 할 경우 사용하지 않음으로 설정하여 쿠폰 발급시 해당 아이템이 노출되지 않도록 변경할 수 있습니다.
 
 > [참고]

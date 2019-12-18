@@ -25,7 +25,7 @@ secret key를 IAP 앱 정보에 등록합니다.
 2. [My Apps] 클릭
 3. [Master Shared Secret] 클릭
 ```
-![[]](http://static.toastoven.net/prod_iap/iap-console-apple-shared-key-1.png)
+![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-shared-key-1.png)
 
 <br>
 
@@ -35,7 +35,7 @@ secret key를 IAP 앱 정보에 등록합니다.
 2. [My Apps] 클릭 > 생성 하려는 [앱] 클릭 > toolbar에서 [Features] 클릭
 3. [App-Specific Shared Secret] 클릭
 ```
-![[]](http://static.toastoven.net/prod_iap/iap-console-apple-shared-key-2.png)
+![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-shared-key-2.png)
 
 
 ### IAP 앱 정보에 shared secret key 입력하기
@@ -43,7 +43,7 @@ secret key를 IAP 앱 정보에 등록합니다.
 1. IAP Console > App > ios 앱 선택
 2. Apple Shared Secret 입력
 ```
-![[]](http://static.toastoven.net/prod_iap/iap-console-apple-edit.png)
+![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-edit.png)
 
 
 

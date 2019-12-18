@@ -12,8 +12,8 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 3. Sandbox Tester 계정 등록
 * Detail Guide for iTunes-Connect: [Apple Guide](https://help.apple.com/itunes-connect/developer/#/devb57be10e7)
 
-#### TOAST Console 등록
-다음은 TOAST Console에서 설정해야 하는 내용입니다.
+#### Gamebase Console 등록
+다음은 Gamebase Console에서 설정해야 하는 내용입니다.
 
 1. **Gamebase > Purchase(IAP) > 앱**에서 이용할 스토어를 등록합니다.
     * 스토어: **App Store**를 선택합니다.
@@ -38,14 +38,17 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 
 아이템 구매는 다음과 같은 순서로 구현하시기 바랍니다.<br/>
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.6.2.png)
 
 1. 게임 클라이언트에서는 Gamebase SDK의 **requestPurchaseWithItemSeq:viewController:completion:**을 호출하여 결제를 시도합니다.
 2. 결제가 성공하였다면 **requestItemListOfNotConsumedWithCompletion:**을 호출하여 미소비 결제 내역을 확인합니다.
 3. 반환된 미소비 결제 내역 목록에 값이 있으면 게임 클라이언트가 게임 서버에 결제 아이템에 대한 consume(소비)을 요청합니다.
-4. 게임 서버는 Gamebase 서버 API를 통해 consume(소비) API를 요청합니다.
-    [API 가이드](./api-guide/#wrapping-api)
-5. IAP 서버에서 consume(소비) API 호출에 성공했다면 게임 서버가 게임 클라이언트에 아이템을 지급합니다.
+	* UserID, itemSeq, paymentSeq, purchaseToken 을 전달합니다.
+4. 게임 서버는 게임 DB 에 이미 동일한 paymentSeq, purchaseToken 으로 아이템을 지급한 이력이 있는지 확인합니다.
+	4-1. 아직 아이템을 지급하지 않았다면 UserID 에 itemSeq 에 해당하는 아이템을 지급합니다.
+    4-2. 아이템 지급 후 게임 DB 에 UserID, itemSeq, paymentSeq, purchaseToken 을 저장하여 이후에 중복 지급을 확인할 수 있도록 합니다.
+5. 게임 서버는 Gamebase 서버에 API를 통해 consume(소비) API를 요청합니다.
+   [API 가이드](./api-guide/#wrapping-api)
 
 
 * 스토어 결제는 성공했으나 오류가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 미소비 결제 내역을 확인하시기 바랍니다. <br/>
@@ -252,5 +255,5 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
 * IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [Mobile Service > IAP > 오류 코드 > Client API 에러 타입](/Mobile%20Service/IAP/ko/error-code/#client-api)
+    * [TOAST > TOAST SDK 사용 가이드 > TOAST IAP > iOS > 에러 코드](/TOAST/ko/toast-sdk/iap-ios/#_15)
 

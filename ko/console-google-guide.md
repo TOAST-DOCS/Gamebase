@@ -39,7 +39,7 @@ Notification 설정이 올바르지 않으면 구독 결제가 진행되지 않�
 ```
 Google Play Console > App 선택 > (좌측) 개발 도구 > 서비스 및 API > 라이선스 및 인앱 결제
 ```
-![](http://static.toastoven.net/prod_iap/iap_google_license_ko.jpg)
+![](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_license_ko.jpg)
 
 ## Google API Console
 
@@ -58,26 +58,26 @@ Google Play Consle과 동일한 계정으로 Google API Console에 프로젝트�
 <br>
 
 ##### 1. https://console.developers.google.com/apis/credentials 에서 OAuth 클라이언트 생성 (웹 어플리케이션)
-![[그림 1] Client ID 및 Client Secret 생성 1](http://static.toastoven.net/prod_iap/iap_g_01.png)
+![[그림 1] Client ID 및 Client Secret 생성 1](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_g_01.png)
 
 
 ##### 2. 승인된 redirection url에 https://developers.google.com/oauthplayground 입력
-![[그림 2] Client ID 및 Client Secret 생성 2](http://static.toastoven.net/prod_iap/iap_google_Oauth_ko.png)
+![[그림 2] Client ID 및 Client Secret 생성 2](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_Oauth_ko.png)
 
 
 ##### 3. 생성 후 팝업 창에서 클라이언트 ID / 클라이언트 seceret 복사
-![[그림 3] Client ID 및 Client Secret 생성 3](http://static.toastoven.net/prod_iap/iap_google_Oauth_clientSecret_ko.png)
+![[그림 3] Client ID 및 Client Secret 생성 3](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_Oauth_clientSecret_ko.png)
 
 ##### 4. [OAuth Playground](https://developers.google.com/oauthplayground/) > 오른쪽 상단 oauthplayground 설정 > Use your own OAuth credentials 사용 체크 후 복사한 클라이언트 ID, 클라이언트 Secret 입력
-![[그림 4] Client ID 및 Client Secret 생성 3](http://static.toastoven.net/prod_iap/iap_g_03.png)
+![[그림 4] Client ID 및 Client Secret 생성 3](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_g_03.png)
 
 
 ##### 5. Step 1에서 https://www.googleapis.com/auth/androidpublisher 입력하여 Authorization code 코드 발급
-![[그림 5] Client ID 및 Client Secret 생성 4](http://static.toastoven.net/prod_iap/iap_g_04.png)
+![[그림 5] Client ID 및 Client Secret 생성 4](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_g_04.png)
 
 
 ##### 6. Step 2에서 Exchange authorization code for tokens 버튼을 눌러 토큰 발급
-![[그림 6] Client ID 및 Client Secret 생성 5](http://static.toastoven.net/prod_iap/iap_g_05.png)
+![[그림 6] Client ID 및 Client Secret 생성 5](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_g_05.png)
 
 
 ## Google Play 연동 주의사항
@@ -92,7 +92,7 @@ OAuth 인증 정보 생성 후, 아래 가이드를 참고하여 프로젝트 �
 ```
   - https://console.developers.google.com > APIs & Services > Dashboard
 ```
-![[]](http://static.toastoven.net/prod_iap/iap-console-google-console-1.png)
+![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-google-console-1.png)
 
 <br>
 
@@ -101,7 +101,7 @@ OAuth 인증 정보 생성 후, 아래 가이드를 참고하여 프로젝트 �
 ```
   - https://play.google.com/apps/publish > Settings > Developer account > API access
 ```
-![[]](http://static.toastoven.net/prod_iap/iap-console-google-console-2.png)
+![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-google-console-2.png)
 
 ## Google real-time developer notification 설정하기
 
@@ -122,8 +122,8 @@ OAuth 인증 정보 생성 후, 아래 가이드를 참고하여 프로젝트 �
 3. 구성원 추가에 google-play-developer-notifications@system.gserviceaccount.com 를 입력합니다.
 4. 추가 버튼을 클릭합니다.
 ```
-![[] Topic 만들기](http://static.toastoven.net/prod_iap/iap-console-new-topic.png)
-![[] Topic 수정하기](http://static.toastoven.net/prod_iap/iap_google_addMember_ko.png)
+![[] Topic 만들기](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-new-topic.png)
+![[] Topic 수정하기](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_addMember_ko.png)
 
 <br>
 
@@ -135,8 +135,8 @@ OAuth 인증 정보 생성 후, 아래 가이드를 참고하여 프로젝트 �
 - URL :  https://api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG
 - {YOUR_PACKAGE_NAME} : google package name
 ```
-![[] Subscription 만들기](http://static.toastoven.net/prod_iap/iap_google_new_subscirption_ko.png)
-![[] Subscription 만들기](http://static.toastoven.net/prod_iap/iap_google_create_subscription_ko.png)
+![[] Subscription 만들기](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_new_subscirption_ko.png)
+![[] Subscription 만들기](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_create_subscription_ko.png)
 
 <br>
 
@@ -156,14 +156,14 @@ OAuth 인증 정보 생성 후, 아래 가이드를 참고하여 프로젝트 �
 ```
 #### 1. https://console.cloud.google.com/apis/credentials/domainverification 에 접근합니다.
 #### 2. [도메인 확인] 화면에서 [도메인 추가] 를 클릭합니다.
-![[] domain verification](http://static.toastoven.net/prod_iap/iap-console-domain-verification-1.png)<br>
+![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-domain-verification-1.png)<br>
 #### 3. https://api-iap.cloud.toast.com를 입력합니다.
-![[] domain verification](http://static.toastoven.net/prod_iap/iap-console-domain-verification-2.png)<br>
+![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-domain-verification-2.png)<br>
 
-![[] domain verification](http://static.toastoven.net/prod_iap/iap-console-domain-verification-3.png)<br>
-![[] domain verification](http://static.toastoven.net/prod_iap/google_domain_auth.png)<br>
-![[] domain verification](http://static.toastoven.net/prod_iap/iap-console-domain-verification-4.png)<br>
-![[] domain verification](http://static.toastoven.net/prod_iap/iap-console-domain-verification-5.png)<br>
+![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-domain-verification-3.png)<br>
+![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/google_domain_auth.png)<br>
+![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-domain-verification-4.png)<br>
+![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-domain-verification-5.png)<br>
 
 
 

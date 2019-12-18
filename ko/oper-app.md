@@ -547,6 +547,8 @@ Standalone으로 서비스 되는 앱에서 연결될 주소를 설정합니다.
 ![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_2.0.png)
 각 항목에 대한 설명은 아래와 같습니다.
 
+### Properties
+
 #### 발급
 단말기 이전 발급 키의 형식을 설정합니다.
 단말기 이전 키는 ID만 사용하거나 ID, 비밀번호 두 개의 키를 이용할 수 있습니다. ID, 비밀번호의 형식은 게임에서 원하는 소문자, 대문자, 숫자 조합으로 구성할 수 있습니다.
