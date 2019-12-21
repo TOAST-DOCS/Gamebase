@@ -1,18 +1,10 @@
 ## Mobile Service > IAP > Apple 設定ガイド
 
-> [お知らせ]
-> 購読決済を支援する新規のIAP SDKが[TOAST SDK](http://docs.toast.com/ko/TOAST/ko/toast-sdk/overview/)として発売されました。
-> 既存IAP SDKはこれ以上新規機能を開発しない予定です。
-> 本文書は[TOAST SDK](http://docs.toast.com/ko/TOAST/ko/toast-sdk/overview/)ガイドです
-
-Apple購読商品の決済を使用するには,App Store Connectでsecret key生成およびNotification url設定が必要です。<br>
-Secret KeyはIAPアプリ情報に登録します。<br>
+Apple購読商品の決済を使用するには,App Store Connectでsecret key生成およびNotification url設定が必要です。
+Secret KeyはIAPアプリ情報に登録します。
 Apple一般商品決済は特別な設定が必要でありません。
 
-
-
-
-> 参考<br>
+> 参考
 > https://help.apple.com/app-store-connect/#/devf341c0f01
 
 ## shared secret key 生成下期
@@ -29,8 +21,6 @@ secret keyをIAPアプリ情報に登録します。
 ```
 ![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-shared-key-1.png)
 
-<br>
-
 ### App-specific shared secret key
 ```
 1. App Store Connect
@@ -46,8 +36,6 @@ secret keyをIAPアプリ情報に登録します。
 2. Apple Shared Secret 入力
 ```
 ![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-edit.png)
-
-
 
 ## Notification url 登録する
 ```
