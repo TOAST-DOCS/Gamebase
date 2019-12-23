@@ -1,4 +1,4 @@
- Mobile Service > IAP > Google Console Guide
+## Mobile Service > IAP > Google Console Guide
 
 Google Play Billing is a service that lets you sell consumable product or subscription from inside an Android app, or in-app.
 Google Play Billing requires some keys created in Google Play Console and Google API Console. 
