@@ -101,7 +101,7 @@
 
 > [참고]
 > 
-> 쿠폰 아이템을 등록하는 방법은 [Coupon Item](./oper-coupon/#Coupon_Item)을 참고하시기 바랍니다.
+> 쿠폰 아이템을 등록하는 방법은 [Coupon Item](./oper-coupon/#coupon-item)을 참고하시기 바랍니다.
 
 ## Coupon history
 발급한 쿠폰에 대하여 사용내역을 조회할 수 있는 기능을 제공합니다.
