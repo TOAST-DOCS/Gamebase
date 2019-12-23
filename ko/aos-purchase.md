@@ -8,8 +8,10 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 
 #### 1. Store Console
 
-* 다음 IAP 가이드를 참고하여 각 스토어에 앱을 등록하고 앱 키를 발급받습니다.
-* [Mobile Service > IAP > 콘솔 사용 가이드 > Store interlocking information](/Mobile%20Service/IAP/ko/console-guide/#store-interlocking-information)
+* 다음 스토어 콘솔 가이드를 참고하여 각 스토어에 앱을 등록하고 앱 키를 발급받습니다.
+	* [Game > Gamebase > 스토어 콘솔 가이드 > Google 콘솔 가이드](./console-google-guide)
+	* [Game > Gamebase > 스토어 콘솔 가이드 > Apple 콘솔 가이드](./console-apple-guide)
+	* [Game > Gamebase > 스토어 콘솔 가이드 > ONEStore 콘솔 가이드](./console-onestore-guide)
 
 #### 2. Register as Store's Tester
 
@@ -22,10 +24,10 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
         * 테스트용 단말기는 USIM이 있어야 하고, 전화번호를 등록해야 합니다(MDN).
         * **ONE store** 어플리케이션이 설치되어 있어야 합니다.
 
-#### 3. TOAST IAP 서비스 이용
+#### 3. 아이템 등록
 
-* IAP 가이드를 참고하여 IAP를 설정하고 아이템을 등록합니다.
-    * [Mobile Service > IAP > 콘솔 사용 가이드](/Mobile%20Service/IAP/ko/console-guide/)
+* 아래 가이드를 참고하여 아이템을 등록합니다.
+    * [Game > Gamebase > 콘솔 사용 가이드 > 결제 > Register](./oper-purchase/#register_1)
 
 #### 4. Download
 
@@ -75,16 +77,21 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 아이템 구매는 다음과 같은 순서로 구현하시기 바랍니다.<br/>
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.6.2.png)
 
 1. 게임 클라이언트에서는 Gamebase SDK의 **requestPurchase**를 호출하여 결제를 시도합니다.
 2. 결제가 성공하였다면 **requestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인합니다.
 3. 반환된 미소비 결제 내역 목록에 값이 있으면 게임 클라이언트가 게임 서버에 결제 아이템에 대한 consume(소비)을 요청합니다.
-4. 게임 서버는 Gamebase 서버에 API를 통해 consume(소비) API를 요청합니다.
-   [API 가이드](./api-guide/#wrapping-api)
-5. IAP 서버에서 consume(소비) API 호출에 성공했다면 게임 서버가 게임 클라이언트에 아이템을 지급합니다.
+	* UserID, itemSeq, paymentSeq, purchaseToken 을 전달합니다.
+4. 게임 서버는 게임 DB 에 이미 동일한 paymentSeq, purchaseToken 으로 아이템을 지급한 이력이 있는지 확인합니다.
+	* 4-1. 아직 아이템을 지급하지 않았다면 UserID 에 itemSeq 에 해당하는 아이템을 지급합니다.
+    * 4-2. 아이템 지급 후 게임 DB 에 UserID, itemSeq, paymentSeq, purchaseToken 을 저장하여 이후에 중복 지급을 확인할 수 있도록 합니다.
+5. 게임 서버는 Gamebase 서버에 API를 통해 consume(소비) API를 요청합니다.
+	* [API 가이드](./api-guide/#consume)
 
-* 스토어 결제는 성공했으나 오류가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 미소비 결제 내역을 확인하시기 바랍니다. <br/>
+<br/>
+
+* 스토어 결제는 성공했으나 오류가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 미소비 결제 내역을 확인하시기 바랍니다.
 	* 로그인에 성공하면 **requestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인합니다.
 	* 반환된 미소비 결제 내역 목록에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
 

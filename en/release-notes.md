@@ -1,5 +1,82 @@
 ## Game > Gamebase > Release Notes
 
+### Dec.10, 2019 
+
+#### More Features 
+* App > App: Allows to register devices for QA testing via IP as well  
+
+#### Bug Fixes
+* [Console]
+  * Modified incorrect Japanese 
+* [SDK] 2.6.1
+  * (Android) Fixed crash occurrence when Gamebase.login() is called before Gamebase.initialize() 
+  * (Android) Fixed the wrong delivery of TOAST Analytics User Data to java address 
+  * (Android) Fixed crash occurrence when IAP is not enabled  
+  * (iOS) Fixed the issue in which mapping is not available when AddMapping (Forcibly) is applied 
+  * (iOS) Fixed crash occurrence by NSNUll object, when displayLanguageCode of PushConfiguration is not set by Unity Plugin 
+
+### Nov.26, 2019
+
+#### Bug Fixes 
+* [Console]
+  * Coupons >Issuance: Fixed the abnormal downloading when downloading a coupon after session is expired  
+  * Analytics > Real-time Monitoring > Dashboard: Fixed data of the previous date wrongly displayed as 0  
+     Fixed the issue in which the page is not properly displayed for a disabled product, when accessing relevant menu of TOAST Product (e.g. IAP, Push, or AppGuard)
+
+### Nov.20, 2019 
+
+#### Bug Fixes
+* [SDK] 2.6.1
+  * (Unity) Added the iOS Plugin file (toast_sdk_wrap.m) to Package in order to prevent errors for an iOS build  
+  * (Unity) Fixed the error of UnityEditor in which the store code comes as empty on a platform other than Standalone, resulting in failed initialization  
+  * (Unity) Fixed the error of NullReferenceException due to errors from processing zone type within Initialize API 
+
+### Nov.13, 2019
+
+#### Bug Fixes
+* GamebaseSettingTool
+  * Fixed the error in which files are not properly updated, with the version updated to Gamebase v2.6.0
+
+
+### Nov.12, 2019 
+
+```
+To upgrade to Gamebase SDK 2.6.0 from a lower-than-2.6.0 version,  
+make sure to apply changes as described in the Upgrade Guide.  
+Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
+```
+
+#### More Features 
+* Coupon Service Newly Open: Create and manage coupons in large quantity 
+  * [Console] Newly opened the Coupon Menu             
+  * [Server API] Find coupons and add Consume API 
+* Auto anti-abusive payment practices  
+  * [Console] Purchase (IAP) > Newly opened monitoring menu for abusive payment practices 
+    * Auto banning against abusive payment 
+    * Manual service suspension after searching conditions for abusive payment 
+* Added the payment feature for Google subscription  
+  * [SDK] 2.6.0 Android
+* [SDK] 2.6.0
+  * (Common) Added TOAST Logger to send data to Log & Crash for analysis 
+  * (iOS) Added authentication for Sign In with Apple 
+  * (Android) Since Gamebase Android SDK is deployed by Bintray, it only takes a gradle setting to enable Gamebase. 
+
+#### Feature Updates 
+* [SDK] 2.6.0
+  * (Unity) Fixed the error in the logic of updating LaunchingStatus for a login 
+  * (Unity) Fixed the error of endless repetition of log delivery from the client, if delivery of debug logs is set on the Gamebase console
+* [Console]
+  * App >App: Allowed to enter each service status (e.g. testing, under inspection, or in service) of a server address  
+  * Purchase (IAP) > Payment Information: Changed UI to search by selecting search conditions
+
+### Oct.29, 2019 
+
+#### Feature Updates 
+* [Console]
+  * Analytics: Changed tooltips in the pie chart 
+  * Analytics > Real-time Monitoring: More targets for push delivery 
+
+
 ### Oct.15, 2019
 
 #### Feature Updates 
