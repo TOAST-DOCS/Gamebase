@@ -10,7 +10,6 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 
 * 다음 스토어 콘솔 가이드를 참고하여 각 스토어에 앱을 등록하고 앱 키를 발급받습니다.
 	* [Game > Gamebase > 스토어 콘솔 가이드 > Google 콘솔 가이드](./console-google-guide)
-	* [Game > Gamebase > 스토어 콘솔 가이드 > Apple 콘솔 가이드](./console-apple-guide)
 	* [Game > Gamebase > 스토어 콘솔 가이드 > ONEStore 콘솔 가이드](./console-onestore-guide)
 
 #### 2. Register as Store's Tester
@@ -24,16 +23,27 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
         * 테스트용 단말기는 USIM이 있어야 하고, 전화번호를 등록해야 합니다(MDN).
         * **ONE store** 어플리케이션이 설치되어 있어야 합니다.
 
-#### 3. 아이템 등록
+#### 3. Register Item
 
 * 아래 가이드를 참고하여 아이템을 등록합니다.
     * [Game > Gamebase > 콘솔 사용 가이드 > 결제 > Register](./oper-purchase/#register_1)
 
-#### 4. Download
+#### 4. Setting SDK
 
-* 다운로드한 SDK의 **gamebase-adapter-purchase-iap** 폴더를 프로젝트에 추가합니다.
-    * ONE store 결제가 필요 없다면 **iap-onestore-x.x.x.aar** 파일은 삭제해도 됩니다.
-    * 반대로 ONE store 결제를 한다면 위의 jar 파일은 반드시 프로젝트에 포함해 빌드해야 합니다.
+* 사용하려는 마켓의 gamebase-adapter-purchase 모듈을 gradle 의존성에 추가합니다.
+
+```groovy
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // >>> Gamebase Version
+    def GAMEBASE_SDK_VERSION = 'x.x.x'
+    
+    // >>> Gamebase - Select Purchase Adapter
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
+}
+```
 
 #### 5. AndroidManifest.xml(ONE store only)
 
@@ -65,12 +75,7 @@ String STORE_CODE = "GG";	// Google
 GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(APP_ID, APP_VERSION, STORE_CODE)
         .build();
 
-Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
-    @Override
-    public void onCallback(final LaunchingInfo data, GamebaseException exception) {
-        ...
-    }
-});
+Gamebase.initialize(activity, configuration, callback);
 ```
 
 ### Purchase Flow
@@ -87,7 +92,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 	* 4-1. 아직 아이템을 지급하지 않았다면 UserID 에 itemSeq 에 해당하는 아이템을 지급합니다.
     * 4-2. 아이템 지급 후 게임 DB 에 UserID, itemSeq, paymentSeq, purchaseToken 을 저장하여 이후에 중복 지급을 확인할 수 있도록 합니다.
 5. 게임 서버는 Gamebase 서버에 API를 통해 consume(소비) API를 요청합니다.
-	* [API 가이드](./api-guide/#consume)
+	* [API 가이드 > Purchase(IAP) > Consume](./api-guide/#consume)
 
 <br/>
 
@@ -238,7 +243,7 @@ Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<L
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* 이 오류는 IAP 모듈에서 발생한 오류입니다.
+* 이 오류는 TOAST IAP SDK 에서 발생한 오류입니다.
 * 오류 코드를 확인하는 방법은 다음과 같습니다.
 
 ```java
@@ -267,6 +272,6 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 });
 ```
 
-* IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
+* TOAST IAP SDK 오류 코드는 다음 문서를 참고하시기 바랍니다.
     * [TOAST > TOAST SDK 사용 가이드 > TOAST IAP > Android > 오류 코드](/TOAST/ko/toast-sdk/iap-android/#_24)
 

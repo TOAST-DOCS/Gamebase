@@ -1,4 +1,4 @@
-## Mobile Service > IAP > Apple 콘솔 가이드
+## Game > Gamebase > 스토어 콘솔 가이드 > Apple 콘솔 가이드
 
 Apple 구독 상품 결제를 사용하려면 App Store Connect에서 secret key 생성 및 Notification url 설정이 필요합니다.
 Secret Key는 IAP 앱 정보에 등록합니다.

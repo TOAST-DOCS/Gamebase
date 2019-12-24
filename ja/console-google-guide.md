@@ -1,4 +1,4 @@
-## Mobile Service > IAP > Google 設定ガイド
+## Game > Gamebase > Store 設定ガイド > Google 設定ガイド
 
 Google一般商品および購読商品のインアップ決済のためにGoogle Play Billingを連動しなければなりません。
 Google Play Billingは,Google Play ConsoleとGoogle API Consoleで生成された値を使用します。
@@ -65,7 +65,7 @@ Google Play Consleと同一のアカウントでGoogle API Consoleにプロジ�
 ![[그림 6] OAuth クライアント生成 5](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_g_05.png)
 
 
-## Google Play連動注意事項
+### Google Play連動注意事項
 
 OAuth 認証情報生成後,以下のガイドを参考にプロジェクト設定を進めます。
 
