@@ -5,17 +5,17 @@ Gamebase SDKを適用すれば、ゲームに必要な共通サービスを簡�
 
 ![Gamebase_summary](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_01_201903_jp.png)
 
-## Key Features
+## 主要機能
 
-### Authentication
+### 認証
 
-Gamebaseは、様々なIdP(identity provider)のアカウントを利用したID・パスワードベースのOAuthログインと端末のUUIDを利用したゲストログインに対応しています。Gamebaseの認証は、独自の会員システムを構築せずに、外部IdPが提供する会員情報を利用して認証サービスを提供するサービスです。独自の会員システムがないということは、ユーザーのID・パスワードをGamebaseの内部に保存しないということを意味します。
+Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカウントを利用したID・パスワードベースのOAuthログインと端末のUUIDを利用したゲストログインに対応しています。Gamebaseの認証は、独自の会員システムを構築せずに、外部IdPが提供する会員情報を利用して認証サービスを提供するサービスです。独自の会員システムがないということは、ユーザーのID・パスワードをGamebaseの内部に保存しないということを意味します。
 
-* **様々な認証方式を一つのインターフェースで提供します。** 
+* **さまざまな認証方式を一つのインターフェースで提供します。** 
   一つのインターフェースでAPIを提供することで、より迅速かつ手軽に外部IdPの追加開発ができるため、開発コストが削減されます。開発者は、複雑な認証フローやリーガルイシュー、ポリシーイシューなどを考えずに、簡単に認証機能を設計することができます。
 
-* **様々な外部IdP認証を提供します。** 
-  提供する外部認証は引き続きアップデートされる予定で、ゲームで使用したい認証方法がある場合は、[カスタマーセンター](https://toast.com/support/inquiry)までご連絡ください。
+* **さまざまな外部IdP認証を提供します。** 
+  提供する外部認証は引き続きアップデートされる予定で、ゲームで使用したい認証方法がある場合は、[カスタマーサポート](https://toast.com/support/inquiry)までご連絡ください。
 
 次は、Gamebaseで提供している外部認証リストです。
 
@@ -41,28 +41,28 @@ Gamebaseは、様々なIdP(identity provider)のアカウントを利用したID
 * **一人のゲームユーザーが複数の外部IdPを同時に使用することができるように、マッピング(mapping)機能を提供します。**
   例えば、Facebook認証を使用してゲームを利用しているユーザーがGoogle認証でも同じユーザーIDを使用することができるよう、マッピング機能を提供します。一つのユーザーIDにFacebookとGoogleの認証をマッピングすれば、ゲームユーザーは、あるデバイスではFacebook、他のデバイスではGoogleで認証してゲームをすることができます。
 
-#### Reference
+#### 関連リンク
 
 * [Android SDK ご利用ガイド > 認証](./aos-authentication)
 * [iOS SDK ご利用ガイド > 認証](./ios-authentication)
 * [Unity SDK ご利用ガイド > 認証](./unity-authentication)
 
 
-### Gamebase Analytics
+### Gamebaseアナリティクス
 
 Gamebase SDKを適用すれば、売上、利用者、ゲームバランシング指標を無料で提供します。 
 ゲームで発生する売上、同時接続者、利用者、レベル、アイテム販売など、ゲーム事業と運営に必要な指標サービスを提供します。
 すぐに適用して、サービスに積極的に活用してみてください。
 ![Gamebase_analytics](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_02_201903_jp.png)
 
-#### Reference
+#### 関連リンク
 
 * [Console ご利用ガイド > Analytics](./oper-analytics) 
-* 
-### Launching
+ 
+### ローンチ
 
-サービス中のゲームアプリは、最初に始めるとき様々な情報が必要です。Gamebaseでは、ゲームアプリを起動する初期段階において運営に必要なデータをゲームアプリに提供しており、これをLaunchingと呼んでいます。
-起動情報は、Gamebase Consoleからリアルタイムで設定することができ、SDKを初期化したり起動状態を変更する際にゲームから確認することができます。
+サービス中のゲームアプリは、最初に始めるときさまざまな情報が必要です。Gamebaseでは、ゲームアプリを起動する初期段階において運営に必要なデータをゲームアプリに提供しており、これをローンチ（Launching）と呼んでいます。
+起動情報は、Gamebase コンソールからリアルタイムで設定することができ、SDKを初期化したり起動状態を変更する際にゲームから確認することができます。
 
 Gamebaseで提供される起動情報は、次の通りです。
 
@@ -73,7 +73,7 @@ Gamebaseで提供される起動情報は、次の通りです。
 * 認証情報
 * ゲームアプリ内URLリスト
 
-#### Reference
+#### 関連リンク
 
 * [Android SDK ご利用ガイド > 初期化 > Launching Status](./aos-initialization/#launching-status)
 * [iOS SDK ご利用ガイド > 初期化 > Launching Status](./ios-initialization/#launching-status)
@@ -82,7 +82,7 @@ Gamebaseで提供される起動情報は、次の通りです。
 * [Console ご利用ガイド > 運営](./oper-operation)：メンテナンス、お知らせ登録
 
 
-### For Global
+### グローバル展開への適応
 
 Gamebaseは、基本的にゲームのグローバルオープンに対応しており、グローバル環境におけるゲーム運営をサポートするため、次のような機能を提供します。
 
@@ -93,7 +93,7 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
 * **運営者の現地の標準時(local timezone)を選択して簡単に時間を入力できます。**
 	* ベトナムでゲームを運営する場合、ベトナムの標準時(timezone)を選択すればベトナム時間ベースで入力できるため、韓国時間に変更する手間を省くことができます。
 
-### Using the other TOAST Service
+### 他のTOASTサービスとの連携
 
 * ゲームで必要なTOASTサービスをより簡単に連携できるようにサポートします。 
   * GamebaseのユーザーIDで各サービスのAPIを使用することができるようにGamebaseでラッピング(wrapping)してAPIを提供します。したがってユーザーは、サービスのAPIを直接呼び出す必要がありません。
@@ -102,19 +102,19 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
   * [Game > Leaderboard](https://toast.com/service/game/leaderboard)：リアルタイムの大容量ランキングサービス
   * [Security > AppGuard](https://toast.com/service/security/appguard)：リアルタイムでアプリケーションのコード操作を防止するサービス
 
-## Terms
+## 用語一覧
 次は、Gamebaseのサービス用語をまとめたものです。
 
 | 用語      | 説明                                      |
 | ------- | ---------------------------------------- |
 | ゲームユーザーID  | Gamebase内部のユーザー識別子                     |
 | デバイスキー  | デバイス識別子(iOS:IDFV、Android:Android ID)   |
-| UUID    | Guest作成時に使用される端末識別子で、アプリを削除する前まで維持     |
-| IdP     | Identify Providerで、認証提供者。Facebook、Google、Apple Game Center、PAYCOなど |
+| UUID    | ゲスト作成時に使用される端末識別子で、アプリを削除する前まで維持     |
+| IdP     | アイデンティティプロバイダで、認証提供者。Facebook、Google、Apple Game Center、PAYCOなど |
 | IdPトークン  | IdP SDKから認証した後に受け取るアクセストークン(access token)  |
 | IdPログイン| 外部IdPログイン(Facebook、Googleなど)           |
 
-## Service Architecture
+## サービス構造
 次は、Gamebaseのサービス構造と簡単な説明です。
 ![論理構成図](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_201903_en.png)
 
@@ -122,30 +122,30 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
 | --------------- | ---------------------------------------- |
 | Gamebase SDK    | - クライアント開発のためのSDK                       |
 | Gamebase Server | - 内部/外部モジュール間のマッシュアップAPI(mashup API)を提供して内部ロジックを処理 <br>- クライアントの初期起動時にデータを提供 <br>-ユーザーを区別するキーの発行と管理、マッピング管理 <br>- ゲームごとの同時接続者数指標の収集及び管理 |
-| Console         | - ウェブConsole                              |
+| Console         | - ウェブコンソール                              |
 
 
-## Platform Guide
+## プラットフォームガイド
 
-### Client Developer's Guide
+### クライアントアプリ開発者向けガイド
 
 * [Android SDK ご利用ガイド](./aos-started/)
 * [iOS SDK ご利用ガイド](./ios-started/)
 * [Unity SDK ご利用ガイド](./unity-started/)
 
-### Server Developer's Guide
+### サーバー開発者向けガイド
 
 * [APIガイド](./api-guide/)
 
-### Operator's Guide
+### コンソール操作ガイド
 
 * [Console ご利用ガイド](./oper-operating-indicator/)
 
-## Funtional Guide
+## 機能別ガイド
 
-| Feature               | Description                              | Client                                   | Server                                   | Console                                  |
+| 機能名               | 詳細                             | クライアント                                   | サーバー                                 | コンソール                                 |
 | --------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| Login                 | ゲスト、3rd Party認証に対応  <br> - [対応IdP](./Overview/#authentication) |  [[Android](./aos-authentication/#login)] [[iOS](./ios-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[トークン検証](./api-guide/#token-authentication)] <br> [[会員照会](./api-guide/#get-member)] | [[App] > 認証情報設定](./oper-app/#authentication-information) <br> [[Member] > 会員照会](./oper-member/#member) <br> - 基本情報、ログイン履歴、プレイ時間、決済履歴など |
+| Login                 | ゲスト、サードパーティ認証に対応  <br> - [対応IdP](./Overview/#authentication) |  [[Android](./aos-authentication/#login)] [[iOS](./ios-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[トークン検証](./api-guide/#token-authentication)] <br> [[会員照会](./api-guide/#get-member)] | [[App] > 認証情報設定](./oper-app/#authentication-information) <br> [[Member] > 会員照会](./oper-member/#member) <br> - 基本情報、ログイン履歴、プレイ時間、決済履歴など |
 | Logout                | ログアウト                                    | [[Android](./aos-authentication/#logout)]  [[iOS](./ios-authentication/#logout)] [[Unity](./unity-authentication/#logout)] |                                          |                                          |
 | Withdraw              | ゲーム退会 <br> -  ゲームユーザーのユーザーID、マッピング情報などすべての情報を削除 | [[Android](./aos-authentication/#withdraw)] [[iOS](./ios-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
 | Mapping               | 一つのユーザーIDに複数のIdPを連携する機能           | [[Android](./aos-authentication/#mapping)] [[iOS](./ios-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |                                          |
