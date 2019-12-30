@@ -1,13 +1,13 @@
-﻿## Game > Gamebase > iOS SDK ご利用ガイド > はじめる
+## Game > Gamebase > iOS SDK ご利用ガイド > はじめる
 
 ### Environments
 
 
 > [INFO]
 >
-> 最小仕様:iOS8以上または一部のIdPに対してはiOS9以上<br/>
-> arm7, arm7s, arm64, i386, x86_64に対応している端末<br/>
-> Xcode10以上
+> 要件：iOS9以上、または一部IDPサポート時、iOS10以上<br/>
+> iOS、iOS Simulator
+> Xcode10以上でビルド可能
 >
 
 
@@ -25,26 +25,32 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 
 **3rd Party SDK Download**
 
-| Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 用途 | External SDK Download Link | Support iOS Version |
-| --- | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework, Gamebase.bundle |  | GamebaseのInterface及びメインロジックを含む |  | iOS8 or later |
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v4.17.0 | Facebook ログインに対応 | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS8 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.1.6 | Payco ログインに対応 | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS8 or later |
-|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Naverログインに対応 | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |
-|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenterログインに対応 |  | iOS8 or later |
-|  | GamebaseAuthGoogleAdapter.framework | | Googleログインに対応 | | iOS9 or later |
-|  | GamebaseAuthTwitterAdapter.framework | | Twitterログインに対応 | | iOS8 or later |
-|  | GamebaseAuthLineAdapter.framework | LineSDK v4.1.1 | LINEログインに対応 | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS8 or later |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework | ゲーム内課金に対応 | Gamebase IAP内に含む | iOS8 or later |
-| Gamebase Push | GamebasePushAdapter.framework |  | Pushに対応 | Gamebase内に含む | iOS8 or later |
-
+| Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.19.3 | GamebaseのInterfaceおよび核心ロジックを含む | Gamebase内に含まれる | iOS9 or later
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v5.6.0 | Facebookログインをサポート | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS9 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.3.2 | Paycoログインをサポート | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS9 or later |
+|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Naverログインをサポート | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |
+|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenterログインをサポート |  | iOS9 or later |
+|  | GamebaseAuthGoogleAdapter.framework | | Googleログインをサポート | | iOS9 or later |
+|  | GamebaseAuthTwitterAdapter.framework | | Twitterログインをサポート | | iOS9 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | LINEログインをサポート | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS10 or later |
+|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | AuthenticationServices.frameworkをOptionalに設定 | iOS13 or later |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework, ToastIAP 0.19.8, ToastGamebaseIAP 0.9.7 | ゲーム内決済をサポート | Gamebase IAP内に含まれる | iOS9 or later |
+| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.19.3 | Pushをサポート | Gamebase Push内に含まれる | iOS9 or later |
 
 
 > <font color="red">[注意]</font><br/>
 >
-> Gamebase Frameworkファイルのうち、名前に**Adapter**が含まれているファイルは、プロジェクト内で使用するかどうかを選択・決定することができ、該当するAdapter Frameworkを使用するためには、上記の表に明記されている外部SDKが必要になることがあります。
-> 一部の認証Adpaterの場合、上記の表にあるSupport iOS Versionに注意する必要があります。
->(サポートバージョンがiOS 9以上のAuth Adpaterをビルドに含めると、iOS 8以下ではランタイムクラッシュが発生します。)
+> Sign In with Appleに必要なAuthenticationServices.frameworkを追加する場合は、必ずOptionalに設定する必要があります。
+> Requiredに設定した場合は、iOS 11以下の端末では実行直後にクラッシュが発生します。
+> 
+<br/>
+
+
+> <font color="red">[注意]</font><br/>
+>
+> Gamebase Frameworkのファイルのうち、名前に**Adapter**が含まれるファイルはプロジェクト内で使用するかどうかを任意で決定することができ、該当Adapter Frameworkを使用するには上記の表に記載された外部SDKが必要な場合があります。
+> 一部認証Adpaterの場合は、上の表にあるSupport iOS Versionに注意してください。
+> (サポートバージョンがiOS10以上のAuth Adpaterをビルドに含めた時、iOS9以下ではruntime Crashが発生します)
 
 <br/>
 
@@ -73,6 +79,7 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
     * ImageIO.framework
     * GameKit.framework
     * StoreKit.framework
+    * AuthenicationServices.framework (Optional)
 ![Link Binary With Libraries](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
 * 4) **Target > Build Settings > Linking > Other Linker Flags**に**-ObjC**を追加する必要があります。
 ![Other Linker Flags](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
@@ -97,7 +104,7 @@ Gamebase iOS SDKは、CocoaPodsを使用して設定できます。
 4. 作成された**Podfile**をエディタで開き、次のような内容を作成します。
 
 ```ruby
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'SampleApplication' do
     pod 'Gamebase'
@@ -108,16 +115,18 @@ target 'SampleApplication' do
     pod 'GamebaseAuthTwitterAdapter'
     pod 'GamebaseAuthGoogleAdapter'
     pod 'GamebaseAuthLineAdapter'
+    pod 'GamebaseAuthAppleidAdapter'
     pod 'GamebasePushAdapter'
     pod 'GamebasePurchaseIAPAdapter'
+
 end
 ```
 
 > [参考]
 >
-> **target 'SampleApplication' do**部分には作成したプロジェクトの対象名を入力します。<br/>
-> **pod 'Gamebase', '1.11.1'**と入力して特定バージョンを指定できます。各々のpodにバージョンを明示しない場合は、最新バージョンが設定されます。<br/>
-> 特定Adapterのみを選択的に適用できます。
+> **target 'SampleApplication' do**部分には作成したプロジェクトのターゲット名を入力します。<br/>
+> **pod 'Gamebase', '2.6.0'**のように入力して、特定バージョンを指定できます。それぞれのpodにバージョンを明示しない場合は最新バージョンが設定されます。<br/>
+> 特定Adapterのみを任意で適用できます。
 >
 
 

@@ -15,7 +15,7 @@ Gamebase Unity SDKを使用するためには、まず初期化を行う必要�
 | enablePopup | ALL | O |
 | enableLaunchingStatusPopup | ALL | O |
 | enableBanPopup | ALL | O |
-| storeCode | ALL | O |
+| storeCode | ALL | M |
 | fcmSenderId | Android | O |
 | useWebview | Standalone | O |
 
@@ -88,7 +88,7 @@ TOASTの統合アプリ内決済サービスであるIAP(In-App Purchase)を初�
 | ----------- | ---- | ------------ |
 | App Store | AS | only iOS |
 | Google Play | GG | only Android |
-| One Store | TS | only Android |
+| One Store | ONESTORE | only Android |
 
 #### 9. fcmSenderId
 
@@ -266,7 +266,16 @@ TOAST Consoleに登録されたIAPストアの情報です。
 * name:App Name
 * storeCode:Store Code
  
-[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+[Console Guide](/Game/Gamebase/ja/oper-purchase/)
+
+#### 4. tcLaunching
+
+TOAST Launching Consoleでユーザーが入力した情報です。
+
+* ユーザーが入力した値をJSON stringで伝達します。
+* TOAST Launchingの詳細設定は、下記のガイドを参照してください。
+ 
+[Console Guide](/Game/Gamebase/ja/oper-management/#config)
 
 ### Get Launching Information
 

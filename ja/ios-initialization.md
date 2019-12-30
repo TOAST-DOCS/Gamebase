@@ -82,7 +82,7 @@ Gamebaseは、警告(warning)とエラーログだけを表示します。
 
 
 
-### Launching Status
+### Launching Information
 
 Gamebase初期化の呼び出し結果により起動状態を確認することができます。<br/>
 起動状態は、Gamebase初期化後に呼び出さなければなりません。
@@ -118,7 +118,21 @@ launchingInformations APIを利用すると、初期化後もLaunchingInfoオブ
 + NSDictionary* launchingInfo = [TCGBLaunching laucnhingInformations];
 ```
 
-### Launching Status Code
+
+#### 1. Launching
+
+Gamebaseローンチ情報です。
+
+**1.1 Status**
+
+Gamebase iOS SDKの初期化設定に入力したアプリバージョンのゲーム状態情報です。
+
+* code：ゲームステータスコード(メンテナンス中、アップデート必須、サービス終了など)
+* message：ゲーム状態メッセージ
+
+ステータスコードは下記の表を参照してください。
+
+##### Launching Status Code
 
 | Status                      | Code | Description                              |
 | --------------------------- | ---- | ---------------------------------------- |
@@ -133,6 +147,78 @@ launchingInformations APIを利用すると、初期化後もLaunchingInfoオブ
 | INSPECTING_SERVICE          | 303  | サービスをメンテナンス中です。                                |
 | INSPECTING_ALL_SERVICES     | 304  | 全体サービスをメンテナンス中です。                             |
 | INTERNAL_SERVER_ERROR       | 500  | 内部サーバーエラーです。                                |
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+
+**1.2 App**
+
+Gamebase Consoleに登録されたアプリ情報です。
+
+* accessInfo
+    * serverAddress：サーバーアドレス
+    * csInfo：サポート情報
+* relatedUrls
+    * termsUrl：利用規約
+    * personalInfoCollectionUrl：個人情報同意
+    * punishRuleUrl：利用停止規定
+    * csUrl：サポート
+* install：インストールURL
+* idP：認証情報
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+
+**1.3 Maintenance**
+
+Gamebase Consoleに登録されたメンテナンス情報です。
+
+* url：メンテナンスページURL
+* timezone：標準時間帯(timezone)
+* beginDate：開始時間
+* endDate：終了時間
+* message：メンテナンス理由
+
+[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+
+**1.4 Notice**
+
+Gamebase Consoleに登録された告知情報です。
+
+* message：メッセージ
+* title：タイトル
+* url：メンテナンスURL
+
+[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+
+#### 2. tcProduct
+
+Gamebaseと連携したTOASTサービスのappKeyです。
+
+* gamebase
+* tcLaunching
+* iap
+* push
+
+#### 3. tcIap
+
+TOAST Consoleに登録されたIAPストア情報です。
+
+* id：App ID
+* name：App Name
+* storeCode：Store Code
+ 
+[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+
+#### 4. tcLaunching
+
+TOAST Launching Consoleでユーザーが入力した情報です。
+
+* ユーザーが入力した値をJSON stringで伝達します。
+* TOAST Launchingの詳細設定は下記のガイドを参照してください。
+ 
+[Console Guide](/Game/Gamebase/ko/oper-management/#config)
+
+
+
 
 
 ## Lifecycle Event

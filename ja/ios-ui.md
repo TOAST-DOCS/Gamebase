@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > iOS SDK ご利用ガイド > UI
+## Game > Gamebase > iOS SDK ご利用ガイド > UI
 
 ## WebView
 
@@ -148,7 +148,7 @@ Gamebaseにスキーム名とブロックを指定し、任意の機能を追加
 
 ## Open External Browser
 
-次のAPIを通じて、外部ブラウザを開くことができます。パラメーターで送信されるURLは、有効な値でなければなりません。
+次のAPIを使って外部ブラウザを開くことができます。パラメータに転送されるURLは有効な値である必要があります。
 
 ```objectivec
 // Open the url with Browser

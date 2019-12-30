@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > iOS SDK ご利用ガイド > 決済
+## Game > Gamebase > iOS SDK ご利用ガイド > 決済
 
 ここではアプリでアプリ内決済機能を使用するために必要な設定方法についてご案内いたします。
 
@@ -57,6 +57,9 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
     * 返されたsuccessList に値が存在する場合、ゲームクライアントがゲームサーバーにconsume(消費)をリクエストしてアイテムを配布します。
     * 返されたfailListに値が存在する場合、該当する値をゲームサーバーやLog & Crashなどを通した送信でデータを確保し、[カスタマーセンター](https://toast.com/support/inquiry)に再処理失敗の原因をお問い合わせください。
 
+* ストア決済は成功しましたが、エラーが発生し正常に終了できない場合があります。ログイン完了後、未消費決済履歴を確認してください。<br/>
+	* ログインに成功すると、**requestItemListOfNotConsumedWithCompletion：**を呼び出して未消費決済履歴を確認します。
+	* 返された未消費決済履歴リストに値が存在する場合は、ゲームクライアントがゲームサーバーにconsume(消費)をリクエストしてアイテムを支給します。
 
 ### Purchase Item
 
@@ -125,7 +128,11 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 }
 ```
 
+### Get a List of Activated Subscriptions
 
+現在のユーザーIDで有効になっている定期購入リストを照会します。
+決済が完了した定期購入商品(自動更新型定期購入、自動更新型消費性定期購入商品)は、期間が終了するまで照会できます。 
+ユーザーIDが同じならAndroidとiOSで購入した定期購入商品が全て照会されます。
 
 ### Reprocess Failed Purchase Transaction
 
@@ -134,21 +141,39 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 
 ```objectivec
 - (void)viewDidLoad {
-    [TCGBPurchase requestRetryTransactionWithCompletion:^(TCGBPurchasableRetryTransactionResult *transactionResult, TCGBError *error) {
+    [TCGBPurchase requestActivatedPurchasesWithCompletion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
         if (error != nil) {
-            // To Retry Failed Purchasing Transaction Failed cause of the error
+            // To Requesting Activated Item List Failed cause of the error
             return;
         }
 
-        // Should Deal With This Retry Transaction Result.
-        // You may send result to your gameserver and add item to user.
+        // Should Deal With This Activated Items.
     }];
 }
 ```
 
+### Restore Purchase
+
+ユーザーのAppStoreアカウントで購入した履歴を基準に購入履歴を復元してコンソールに反映します。
+購入した定期購入商品が照会できなかったり、有効になっていない場合に使用します。
+期間が終了した決済を含め、復元された決済が結果として返されます。
+自動更新型消費性定期購入商品は、反映されていない購入履歴が存在する場合、復元後に未消費購入履歴で照会できます。
 
 
-### AppStore Promotion IAP
+```objectivec
+- (void)viewDidLoad {
+    [TCGBPurchase requestRestoreWithCompletion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
+        if (error != nil) {
+            // To Requesting Restore Failed cause of the error
+            return;
+        }
+
+        // Should Deal With This Restored Items.
+    }];
+}
+```
+
+### App Store Promotion IAP
 
 > `注意`
 > iOS 11以上でのみ使用できます。
@@ -186,8 +211,7 @@ App Storeアプリ内でアイテムを購入できる機能を提供します�
 }
 ```
 
-
-#### How to Test AppStore Promotion IAP
+#### How to Test App Store Promotion IAP
 
 > `注意`
 > App Store Connectにアプリをアップロードし、TestFlightでアプリをインストールした後、テストできます。

@@ -2,20 +2,15 @@
 
 Gamebase Android SDKを使用するためには、まず初期化を行う必要があります。
 
-### Activate the Application
+### onActivityResult
 
-アプリのライフサイクル(lifecycle)を管理するためには、アプリが有効になったことをGamebase SDKに知らせなければなりません。<br/>
-**Application#onCreate()**から**Gamebase#activeApp(Context)**を呼び出します。
+Gamebaseが正常に動作するよう、必ず**Activity#onActivityResult(int, int, Intent)**から**Gamebase.onActivityResult(int, int, Intent)**を呼び出します。
+
+
+**API**
 
 ```java
-public class GamebaseApplication extends Application {
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        Gamebase.activeApp(getApplicationContext());
-    }
-}
++ (void)Gamebase.onActivityResult(int requestCode, int resultCode, Intent data);
 ```
 
 ### Configuration Settings
@@ -24,14 +19,11 @@ Gamebaseを初期化するとき、GamebaseConfiguration.Builderの客体でGame
 
 | API                                      | Mandatory(M) / Optional(O) | Description                              |
 | ---------------------------------------- | -------------------------- | ---------------------------------------- |
-| Builder(String appId, String appVersion) | **M**                      | GamebaseConfiguration.Builder作成者にappIdとappVersionを必須パラメータとして渡して初期化する必要があります。<br/><br/> **appId**はTOAST Projectで発行したアプリIDを入力します。<br/> **appVersion**はアップデート、メンテナンスに該当するかどうかはゲームバージョンで判断します。ゲームバージョンを指定してください。 |
+| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | GamebaseConfiguration.newBuilderにappIdとappVersionを必須パラメータとして渡して初期化する必要があります。<br/><br/> **appId**はTOAST Projectで発行したアプリIDを入力します。<br/> **appVersion**はアップデート、メンテナンスに該当するかどうかはゲームバージョンで判断します。ゲームバージョンを指定してください。 <br/> **storeCode**はAPKが配布されるストアを意味するコードです。次のガイドで各ストアのコードを確認できます。 [Purchase - Initialization](./aos-purchase/#6-initialization) |
 | build()                                  | **M**                      | 設定を終えたBuilderをConfigurationの客体に変換します。<br/>**Gamebase.initialize()**APIで必要です。|
 | enablePopup(boolean enable)              | O                          | **[UI]**<br/>システムメンテナンス、利用制限(ban)などゲームユーザーがゲームをプレイすることができない状況の場合、ポップアップなどで理由を表示しなければならないときがあります。<br/>**true**に設定すれば、Gamebaseが該当する状況のとき、案内ポップアップを自動で表示します。<br/>デフォルトは**false**です。<br/>**false**状態では起動結果を通して情報を取得した後に直接UIを設計し、ゲームをプレイすることができない理由を表示してください。|
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>起動結果によりログインできない状態の場合(主にメンテナンス状態)、Gamebaseが自動でポップアップを表示するかどうかを変更することができます。<br/>**enablePopup(true)**の状態でのみ動作します。<br/>デフォルトは**true**です。|
 | enableBanPopup(boolean enable)           | O                          | **[UI]**<br/>ゲームユーザーが利用を制限された状態の場合、Gamebaseが自動でbanされた理由をポップアップで表示するかどうかを変更することができます。<br/>**enablePopup(true)**の状態でのみ動作します。<br/>デフォルトは**true**です。|
-| setStoreCode(String storeCode)           | O                          | **[Purchase]**<br/>TOASTの統合アプリ内決済サービス・IAP(In-App Purchase)を使用する場合、どのストアを使用するか設定しなければなりません。<br/>パラメーターは[IAPドキュメント](/Mobile%20Service/IAP/ja/Overview/)をご参考ください。|
-| setFCMSenderId(String senderId)          | O                          | **[Push]**<br/>Google Notification(FCM, GCM)を通してPushメッセージを送信する場合、送信者のID(sender ID)を設定する必要があります。|
-| setTencentAccessKey(String accessKey)<br/>setTencentAccessId(String accessId) | O                          | **[Push]**<br/>Tencent Pushモジュールを使用する場合、アクセスキー及びアクセスIDの値を設定する必要があります。|
 
 ### Debug Mode
 * Gamebaseは、警告(warning)とエラーログのみ表示します。
@@ -50,8 +42,7 @@ Gamebaseを初期化するとき、GamebaseConfiguration.Builderの客体でGame
 
 ### Initialize
 
-**Activity#onCreate(Bundle)**から**Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback)**を呼び出してGamebase SDKを初期化します。<br/>
-また、Gamebaseが正常に動作するよう、必ず**Activity#onActivityResult(int, int, Intent)**から**Gamebase.onActivityResult(int, int, Intent)**を呼び出します。
+**Activity#onCreate(Bundle)**から**Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback)**を呼び出してGamebase SDKを初期化します。
 
 **API**
 
@@ -69,11 +60,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         /**
+         * Show gamebase debug message.
+		 * set 'false' when build RELEASE.
+         */
+        Gamebase.setDebugMode(true);
+
+        /**
          * Gamebase Configuration.
          */
         String appId = "T0aStC1d";
         String appVersion = "1.0.0";
-        GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(appId, appVersion)
+        String storeCode = "GG";
+        GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(appId, appVersio, storeCode)
                                             .enableLaunchingStatusPopup(true)
                                             .build();
         /**
@@ -83,13 +81,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCallback(final LaunchingInfo data, GamebaseException exception) {
                 if (Gamebase.isSuccess(exception)) {
-                    // 起動状態を確認します。
-                    LaunchingStatus status = data.getStatus();
-                    if (status.isPlayable()) {
-                        // ゲームプレイ
-                    } else {
-                        // メンテナンスまたはアプリをアップデートする必要があります。
-                    }
+                    // ゲームログインを許可するかどうかは、ローンチコードに応じて判断してください。
+                    ...
                 } else {
                     // 初期化に失敗すると、Gamebase SDKを利用することができません。
                     // エラーを表示して、ゲームを再起動または終了する必要があります。
@@ -100,11 +93,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /**
-         * Show gamebase debug message.
-		 * set 'false' when build RELEASE.
-         */
-        Gamebase.setDebugMode(true);
         ...
     }
     ...
@@ -122,9 +110,10 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-### Launching Status
+### Launching Information
 
-Gamebase#initializeの呼び出し結果で起動状態を確認することができます。
+Gamebase#initializeの呼び出し結果で起動状態を確認することができます。<br/>
+ローンチコードに応じてゲームプレイ可否を判断してください。
 
 ```java
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
@@ -132,15 +121,47 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
     public void onCallback(final LaunchingInfo data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
             // 起動状態を確認します。
-            LaunchingStatus status = data.getStatus();
-            int statusCode = status.getCode();
-            switch (statusCode) {
-                case LaunchingStatus.INSPECTING_SERVICE:
-                    // メンテナンス中…
+            boolean canPlay = true;
+            String errorLog = "";
+            switch (launchingInfo.getStatus().getCode()) {
+                case LaunchingStatus.IN_SERVICE:
                     break;
-                ...
+                case LaunchingStatus.RECOMMEND_UPDATE:
+                    Log.d(TAG, "There is a new version of this application.");
+                    break;
+                case LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST:
+                case LaunchingStatus.IN_TEST:
+                case LaunchingStatus.IN_REVIEW:
+                    Log.d(TAG, "You logged in because you are developer.");
+                    break;
+                case LaunchingStatus.REQUIRE_UPDATE:
+                    canPlay = false;
+                    errorLog = "You have to update this application.";
+                    break;
+                case LaunchingStatus.BLOCKED_USER:
+                    canPlay = false;
+                    errorLog = "You are blocked user!";
+                    break;
+                case LaunchingStatus.TERMINATED_SERVICE:
+                    canPlay = false;
+                    errorLog = "Game is closed!";
+                    break;
+                case LaunchingStatus.INSPECTING_SERVICE:
+                case LaunchingStatus.INSPECTING_ALL_SERVICES:
+                    canPlay = false;
+                    errorLog = "Under maintenance.";
+                    break;
+                case LaunchingStatus.INTERNAL_SERVER_ERROR:
+                default:
+                    canPlay = false;
+                    errorLog = "Unknown internal error.";
+                    break;
             }
-            ...
+            if (canPlay) {
+                // ゲームプレイを開始します。
+            } else {
+                // ゲーム不可の理由を表示してゲームを中止します。
+            }
         }
         ...
     }
@@ -154,12 +175,23 @@ getLaunchingInformations APIを利用すると、初期化後にもLaunchingInfo
 ```java
 + (LaunchingInfo)Gamebase.Launching.getLaunchingInformations();
 ```
+LaunchingInfoオブジェクトにはGamebase Consoleに設定した値、ゲーム状態などが含まれています。
 
 
+#### 1. Launching
 
+Gamebaseローンチ情報です。
 
+**1.1 Status**
 
-### Launching Status Code
+Gamebase Android SDKの初期化設定に入力したアプリバージョンのゲーム状態情報です。
+
+* code：ゲームステータスコード(メンテナンス中、アップデート必須、サービス終了など)
+* message：ゲーム状態メッセージ
+
+ステータスコードは下記の表を参照してください。
+
+##### Launching Status Code
 
 | Status                      | Code | Description                              |
 | --------------------------- | ---- | ---------------------------------------- |
@@ -174,6 +206,75 @@ getLaunchingInformations APIを利用すると、初期化後にもLaunchingInfo
 | INSPECTING_SERVICE          | 303  | サービスメンテナンス中です。                               |
 | INSPECTING_ALL_SERVICES     | 304  | 全体サービスメンテナンス中です。                            |
 | INTERNAL_SERVER_ERROR       | 500  | 内部サーバーエラーです。                               |
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+
+**1.2 App**
+
+Gamebase Consoleに登録されたアプリ情報です。
+
+* accessInfo
+    * serverAddress：サーバーアドレス
+    * csInfo：サポート情報
+* relatedUrls
+    * termsUrl：利用規約
+    * personalInfoCollectionUrl：個人情報同意
+    * punishRuleUrl：利用停止規定
+    * csUrl：サポート
+* install：インストールURL
+* idP：認証情報
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+
+**1.3 Maintenance**
+
+Gamebase Consoleに登録されたメンテナンス情報です。
+
+* url：メンテナンスページURL
+* timezone：標準時間帯(timezone)
+* beginDate：開始時間
+* endDate：終了時間
+* message：メンテナンス理由
+
+[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+
+**1.4 Notice**
+
+Gamebase Consoleに登録された告知情報です。
+
+* message：メッセージ
+* title：タイトル
+* url：メンテナンスURL
+
+[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+
+#### 2. tcProduct
+
+Gamebaseと連携したTOASTサービスのappKeyです。
+
+* gamebase
+* tcLaunching
+* iap
+* push
+
+#### 3. tcIap
+
+TOAST Consoleに登録されたIAPストア情報です。
+
+* id: App ID
+* name: App Name
+* storeCode: Store Code
+ 
+[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+
+#### 4. tcLaunching
+
+TOAST Launching Consoleでユーザーが入力した情報です。
+
+* ユーザーが入力した値をJSON stringで伝達します。
+* TOAST Launchingの詳細設定は下記のガイドを参照してください。
+ 
+[Console Guide](/Game/Gamebase/ko/oper-management/#config)
 
 
 
@@ -193,4 +294,4 @@ getLaunchingInformations APIを利用すると、初期化後にもLaunchingInfo
 
 
 * エラーコードの一覧は、次の文書を参照してください。
-    * [오류 코드](./error-code/#client-sdk)
+    * [エラーコード](./error-code/#client-sdk)

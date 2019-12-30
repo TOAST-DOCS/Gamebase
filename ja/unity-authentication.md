@@ -18,12 +18,11 @@ Gamebaseでは基本的にゲストログインに対応しています。<br/>
 
 上述したロジックは、次のような手順で設計することができます。
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
 #### 1. 前回のログインタイプで認証
 
@@ -40,7 +39,7 @@ Gamebaseでは基本的にゲストログインに対応しています。<br/>
 * ネットワークエラー
     * エラーコードが**SOCKET_ERROR(110)**または**SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**Gamebase.LoginForLastLoggedInProvider()**をもう一度呼び出したり、しばらくしてからもう一度試します。
 * 利用停止中のゲームユーザー
-    * エラーコードが**AUTH_BANNED_MEMBER(3005)**の場合、利用停止中のゲームユーザーであるため認証に失敗したケースです。
+    * エラーコードが**BANNED_MEMBER(7)**の場合、利用停止ゲームユーザーのため認証に失敗したということです。
     * **Gamebase.GetBanInfo()**で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由についてご案内ください。
     * Gamebaseを初期化する際に**GamebaseConfiguration.enablePopup**及び**GamebaseConfiguration.enableBanPopup**の値をtrueすると、Gamebaseが利用停止に関するポップアップを自動で表示します。
 * その他のエラー
@@ -62,7 +61,7 @@ Gamebaseでは基本的にゲストログインに対応しています。<br/>
 * ネットワークエラー
     * エラーコードが**SOCKET_ERROR(110)**または**SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**Gamebase.Login(providerName, callback)**をもう一度呼び出したり、しばらくしてからもう一度試します。
 * 利用停止中のゲームユーザー
-    * エラーコードが**AUTH_BANNED_MEMBER(3005)**の場合、利用停止中のゲームユーザーであるため認証に失敗したケースです。
+    * エラーコードが**BANNED_MEMBER(7)**の場合、利用停止ゲームユーザーのため認証に失敗したということです。
     * **Gamebase.GetBanInfo()**で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由について知らせてください。
     * Gamebaseを初期化する際に**GamebaseConfiguration.enablePopup**及び**GamebaseConfiguration.enableBanPopup**の値をtrueすると、Gamebaseが利用停止に関するポップアップを自動で表示します。
 * その他のエラー
@@ -318,12 +317,10 @@ public void LoginWithCredential()
 [Console Guide](./oper-app/#authentication-information)
 
 ## Logout
+
 ログインされたIdPからのログアウトを試みます。主にゲームの設定画面にログアウトボタンを設け、ボタンをクリックすると実行されるように設計するケースが多いです。
 ログアウトに成功してもゲームユーザーのデータは維持されます。
 ログアウトに成功した場合、該当するIdPで認証を行った記録が削除されるため、次回ログインする時にID・パスワードの入力ウィンドウが表示されます。<br/><br/>
-
-
-次は、ログアウトボタンをクリックするとログアウトされるコード例です。
 
 **API**
 
@@ -366,8 +363,6 @@ public void Logout()
 * 該当するIdPでもう一度ログインすることができ、新しいゲームユーザーデータを作成します。
 * Gamebaseからの退会を意味するもので、IdPアカウントからの退会を意味するものではありません。
 * 退会に成功すると、IdPログアウトを試みます。
-
-次は、退会ボタンをクリックすると退会されるコード例です。
 
 **API**
 
@@ -1078,6 +1073,7 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 |      | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | この認証方式には対応しておりません。|
 |      | AUTH_NOT_EXIST_MEMBER | 3003 | 退会されているか、存在しない会員です。|
 |      | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 外部認証ライブラリーエラーです。<br/> DetailCodeおよびDetailMessageを確認してください。|
+|  | AUTH_ALREADY_IN_PROGRESS_ERROR | 3010 | 以前の認証プロセスが完了しませんでした。
 | TransferKey | SAME\_REQUESTOR | 8 | 発行したTransferKeyを同じ端末で使用しました。 |
 |             | NOT\_GUEST\_OR\_HAS\_OTHERS | 9 | ゲストではないアカウントから移行しようとしたか、アカウントにゲスト以外のIdPが連携されています。 |
 |                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccountの有効期限が切れました。 |
@@ -1113,7 +1109,6 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 
 * 全体のエラーコードは、次のドキュメントをご参考ください。
     * [エラーコード](./error-code/#client-sdk)
-
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 

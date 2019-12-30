@@ -464,11 +464,13 @@ APIの呼び出しに必要なパラメータは下記の通りです。
 
 > ゲームログイン後にsetGameUserData APIを呼び出さない場合、他の指標でレベル情報が抜ける場合があります。
 
-  | Name | Mandatory(M) / Optional(O) | type | Desc |
-  | -------------------------- | -------------------------- | ---- | ---- |
-  | userLevel | M | int | |
-  | channelId | O | string | |
-  | characterId | O | string | |
+| Name | Mandatory(M) / Optional(O) | type | Desc |
+| -------------------------- | -------------------------- | ---- | ---- |
+| userLevel | M | int | ゲームユーザーレベルを表すフィールドです。 |
+| channelId | O | String | チャンネルを表すフィールドです。 |
+| characterId | O | String | キャラクター名を表すフィールドです。 |
+| classId | O | String | 職業を表すフィールドです。 |
+
 
 **API**
 
@@ -495,10 +497,10 @@ APIの呼び出しに必要なパラメータは下記の通りです。
 
 **LevelUpData**
 
-  | Name | Mandatory(M) / Optional(O) | type | Desc |
+  | Name | Mandatory (M) / Optional (O) | type | Desc |
   | -------------------------- | -------------------------- | ---- | ---- |
-  | userLevel | M | int | |
-  | levelUpTime | O | long | Epoch Timeで入力します。</br>Millisecond単位で入力します。 |
+  |  userLevel | M | int | ゲームユーザーレベルを表すフィールドです。 |
+  | levelUpTime | M | long | Epoch Timeで入力します。</br>Millisecond単位で入力します。 |
   | channelId | O | string | |
   | characterId | O | string | |
 
@@ -512,10 +514,44 @@ APIの呼び出しに必要なパラメータは下記の通りです。
 
 ```objectivec
 - (void)traceLevelUpWith:(int)level levelUpTime:(long long)levelUpTime channelId:(NSString *)channelId characterId:(NSString *)characterId {
-  TCGBAnalyticsLevelUpData* levelUpData = [TCGBAnalyticsLevelUpData levelUpDataWithUserLevel:level];
-  [levelUpData setLevelUpTime:levelUpTime];
-  [levelUpData setChannelId:channelId];
-  [levelUpData setCharacterId:characterId];
+  TCGBAnalyticsLevelUpData* levelUpData = [TCGBAnalyticsLevelUpData levelUpDataWithUserLevel:level levelUpTime:levelUpTime];
   [TCGBAnalytics traceLevelUpWithLevelUpData:levelUpData];
 }
+```
+
+### Contact
+
+Gamebaseでは顧客からの問い合わせに対応するための機能を提供します。
+
+> [TIP]
+>
+> TOAST Contactサービスと連携して使用すると、簡単に顧客からの問い合わせに対応できます。
+> 詳細はTOAST Contactサービスの利用ガイドを参照してください。
+> [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+>
+
+#### Open Contact WebView
+
+Gamebase Consoleに入力した**サポートURL**をWebビューで表示する機能です。
+**Gamebase Console > App > InApp URL > Service center**に入力した値が使用されます。
+
+**API**
+
+```objectivec
++ (void)openContactWithViewController:(UIViewController *)viewController completion:(void(^)(TCGBError *error))completion;
+```
+
+**Example**
+
+```objectivec
+[TCGBContact openContactWithViewController:parentViewController completion:^(TCGBError *error) {
+    if (error != NULL && error.code == TCGB_ERROR_WEBVIEW_INVALID_URL) { // 7001
+        // TODO: Gamebase Console Service Center URL is invalid.
+        //  Please check the url field in the TOAST Gamebase Console.
+    } else if (error != NULL) {
+        // TODO: Error occur when opening the contact web view.
+    } else {
+        // A user close the contact web view.
+    }
+}];
 ```

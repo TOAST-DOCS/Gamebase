@@ -17,12 +17,11 @@ Gamebaseでは基本的にゲストログインに対応しています。
 
 上述したロジックは、次のような手順で設計することができます。
 
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
 ![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
 ![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
 ![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
 ![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
 #### 1. 前回のログインタイプで認証
 
@@ -39,7 +38,7 @@ Gamebaseでは基本的にゲストログインに対応しています。
 * ネットワークエラー
     * エラーコード**SOCKET_ERROR(110)**または**SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**Gamebase.loginForLastLoggedInProvider()**をもう一度呼び出したり、しばらくしてからもう一度試します。
 * 利用停止中のゲームユーザー
-    * エラーコードが**AUTH_BANNED_MEMBER(3005)**の場合、利用停止中のゲームユーザーであるため認証に失敗したケースです。
+    * エラーコードが**BANNED_MEMBER(7)**の場合、利用停止中のゲームユーザーであるため認証に失敗したケースです。
     * **Gamebase.getBanInfo()**で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由についてご案内ください。
     * Gamebaseを初期化する際に**GamebaseConfiguration.Builder.enablePopup(true)**及び**enableBanPopup(true)**を呼び出せば、Gamebaseが利用停止に関するポップアップを自動で表示します。
 * その他のエラー
@@ -61,7 +60,7 @@ Gamebaseでは基本的にゲストログインに対応しています。
 * ネットワークエラー
     * エラーコードが**SOCKET_ERROR(110)**または**SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**Gamebase.login(activity, idpType, callback)**をもう一度呼び出したり、しばらくしてからもう一度試します。
 * 利用停止中のゲームユーザー
-    * エラーコードが**AUTH_BANNED_MEMBER(3005)**の場合、利用停止中のゲームユーザーであるため認証に失敗したケースです。
+    * エラーコードが**BANNED_MEMBER(7)**の場合、利用停止中のゲームユーザーであるため認証に失敗したケースです。
     * **Gamebase.getBanInfo()**で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由についてご案内ください。
     * Gamebaseを初期化する際に**GamebaseConfiguration.Builder.enablePopup(true)**及び**enableBanPopup(true)**を呼び出せば、Gamebaseが利用停止に関するポップアップを自動で表示します。
 * その他のエラー
@@ -104,7 +103,7 @@ Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthTok
                         } catch (InterruptedException e) {}
                     }
                 }).start();
-            } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
+            } else if (exception.getCode() == GamebaseError.BANNED_MEMBER) {
                 // ログインを試みたゲームユーザーが利用停止状態です。
                 // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)を呼び出すと、
                 // Gamebaseが利用停止に関するポップアップを自動で表示します。
@@ -161,7 +160,7 @@ private static void onLoginForGuest(final Activity activity) {
                             } catch (InterruptedException e) {}
                         }
                     }).start();
-                } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
+                } else if (exception.getCode() == GamebaseError.BANNED_MEMBER) {
                     // ログインを試みたゲームユーザーが利用停止状態です。
                     // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)を呼び出した場合
                     // Gamebaseが利用停止に関するポップアップを自動で表示します。
@@ -246,7 +245,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 | keyname                                  | a use                                    | 値の種類                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | IdPタイプの設定                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
+| AuthProviderCredentialConstants.PROVIDER_NAME | IdPタイプの設定                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)の設定<br/>Google認証の場合は使用しない |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Googleログイン後に取得できるOTAC(one time authorization code)の入力 |                                          |
 
@@ -297,7 +296,7 @@ private static void onLoginWithCredential(final Activity activity) {
                             } catch (InterruptedException e) {}
                         }
                     }).start();
-                } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
+                } else if (exception.getCode() == GamebaseError.BANNED_MEMBER) {
                     // ログインを試みたゲームユーザーが利用停止状態です。
                     // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)を呼び出した場合
                     // Gamebaseが利用停止に関するポップアップを自動で表示します。
@@ -450,6 +449,11 @@ private static void onWithdraw(final Activity activity) {
 
 マッピングAPIにはマッピング追加APIとマッピング解除APIがあります。
 
+> <font color="red">[注意]</font><br/>
+>
+> Guestログイン中にMappingに成功するとGuest IdPは消滅します。
+>
+
 ### Add Mapping Flow
 
 マッピングは、次の手順で設計することができます。
@@ -560,7 +564,7 @@ private static void addMappingForFacebook(final Activity activity) {
 
 | keyname                                  | a use                                    | 値の種類                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | IdPタイプの設定                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
+| AuthProviderCredentialConstants.PROVIDER_NAME | IdPタイプの設定                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)の設定<br/>Google認証の場合は使用しない  |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Googleログイン後に取得できるOTOC(one time authorization code)の入力 |                                          |
 
@@ -711,7 +715,7 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 
 | keyname                                  | a use                                    | 値種類                                 |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | IdPタイプ設定                            | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
+| AuthProviderCredentialConstants.PROVIDER_NAME | IdPタイプ設定                            | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)設定。<br/>Google認証時には使用しない。 |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Googleログイン後に取得できるOTOC(one time authorization code)入力 |                                          |
 
@@ -1063,7 +1067,7 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 | Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED               | 3101       |トークンログインに失敗しました。                         |
 |                | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       |トークン情報が有効ではありません。                       |
 |                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 最近ログインしたIdPの情報がありません。                  |
-| IDP Login      | AUTH\_IDP\_LOGIN\_FAILED                 | 3201       | IdPログインに失敗しました。                        |
+| IdP Login      | AUTH\_IDP\_LOGIN\_FAILED                 | 3201       | IdPログインに失敗しました。                        |
 |                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO     | 3202       | IdP情報が有効ではありません。(Consoleに該当するIdPの情報がありません。) |
 | Add Mapping    | AUTH\_ADD\_MAPPING\_FAILED               | 3301       | マッピング追加に失敗しました。                          |
 |                | AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | 既に他のメンバーにマッピングされています。                     |
