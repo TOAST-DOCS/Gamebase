@@ -1,4 +1,4 @@
-## Mobile Service > IAP > Apple 設定ガイド
+## Game > Gamebase > Store 設定ガイド > Apple 設定ガイド
 
 Apple購読商品の決済を使用するには,App Store Connectでsecret key生成およびNotification url設定が必要です。
 Secret KeyはIAPアプリ情報に登録します。

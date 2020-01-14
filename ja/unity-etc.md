@@ -335,6 +335,7 @@ public static string GetCountryCode()
 ```
 
 ### Server Push
+
 * Gamebaseサーバーからクライアント端末に送るServer Push Messageを処理できます。
 * GamebaseクライアントでServerPushEvent Listenerを追加すると、該当メッセージをユーザーが受信して処理でき、追加されたServerPushEvent Listenerを削除できます。
 
@@ -600,9 +601,10 @@ APIの呼び出しに必要なパラメータは下記の通りです。
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int |  |
-| channelId | O | string |  |
-| characterId | O | string |  |
+| userLevel | M | int | ゲームユーザーレベルを表すフィールドです。 |
+| channelId | O | string | チャンネルを表すフィールドです。 |
+| characterId | O | string | キャラクター名を表すフィールドです。 |
+| characterClassId | O | string | 職業を表すフィールドです。 |
 
 **API**
 
@@ -620,11 +622,12 @@ static void SetGameUserData(GamebaseRequest.Analytics.GameUserData gameUserData)
 **Example**
 
 ``` cs
-public void SetGameUserData(int userLevel, string channelId, string characterId)
+public void SetGameUserData(int userLevel, string channelId, string characterId, string characterClassId)
 {
     GamebaseRequest.Analytics.GameUserData gameUserData = new GamebaseRequest.Analytics.GameUserData(userLevel);
     gameUserData.channelId = channelId;
     gameUserData.characterId = characterId;
+    gameUserData.characterClassId = characterClassId;
 
     Gamebase.Analytics.SetGameUserData(gameUserData);
 }
@@ -640,10 +643,8 @@ APIの呼び出しに必要なパラメータは下記の通りです。
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc	|
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int |  |
+| userLevel | M | int | ゲームユーザーレベルを表すフィールドです。 |
 | levelUpTime | O | long | Epoch Timeで入力します。</br>Millisecond単位で入力します。 |
-| channelId | O | string |  |
-| characterId | O | string |  |
 
 **API**
 
@@ -661,14 +662,63 @@ static void TraceLevelUp(GamebaseRequest.Analytics.LevelUpData levelUpData)
 **Example**
 
 ``` cs
-public void TraceLevelUp(int userLevel, long levelUpTime, string channelId, string characterId)
+public void TraceLevelUp(int userLevel, long levelUpTime)
 {
-    GamebaseRequest.Analytics.LevelUpData levelUpData = new GamebaseRequest.Analytics.LevelUpData(userLevel);
-    levelUpData.levelUpTime = levelUpTime;
-    levelUpData.channelId = channelId;
-    levelUpData.characterId = characterId;
+    GamebaseRequest.Analytics.LevelUpData levelUpData = new GamebaseRequest.Analytics.LevelUpData(userLevel, levelUpTime);
 
     Gamebase.Analytics.TraceLevelUp(levelUpData);
 }
 ```
 
+### Contact
+
+Gamebaseは、顧客の問い合わせに対応するための機能を提供します。
+
+> [TIP]
+>
+> TOAST Contactサービスと連携して使用すると、顧客からの問い合わせに簡単に対応できます。
+> 詳細はTOAST Contactサービスの利用ガイドを参照してください。
+> [TOAST Online Contact Guide](/Contact%20Center/ja/online-contact-overview/)
+
+#### Open Contact WebView
+
+Gamebase Consoleに入力した**サポートURL**をWebビューで表示する機能です。
+
+**Gamebase Console > App > InApp URL > Service center**に入力した値が使用されます。
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+```cs
+static void OpenContact(GamebaseCallback.ErrorDelegate callback)
+```
+
+**Example**
+
+``` cs
+public void SampleOpenContact()
+{
+    Gamebase.Contact.OpenContact((error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            Debug.Log("OpenContact succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("OpenContact failed. error:{0}", error));
+
+            if (error.code == GamebaseErrorCode.WEBVIEW_INVALID_URL)
+            {
+                // Gamebase Console Service Center URL is invalid.
+                // Please check the url field in the TOAST Gamebase Console.
+                var launchingInfo = Gamebase.Launching.GetLaunchingInformations();
+                Debug.Log(string.Format("csUrl:{0}", launchingInfo.launching.app.relatedUrls.csUrl));
+            }
+        }
+    });
+}
+```

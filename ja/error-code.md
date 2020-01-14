@@ -40,7 +40,7 @@
 | Auth (Login)    | Android, UNITY<br/>IOS | AUTH\_TOKEN\_LOGIN\_FAILED<br/>TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED | 3101       |トークンログインに失敗しました。                        |
 |                 | Android, UNITY<br/>IOS | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO<br/>TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       |トークン情報が有効ではありません。                       |
 |                 | Android, UNITY<br/>IOS | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP<br/>TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 最近ログインしたIdPの情報がありません。                  |
-| IDP Login       | Android, UNITY<br/>IOS | AUTH\_IDP\_LOGIN\_FAILED<br/>TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED | 3201       | IdPログインに失敗しました。                       |
+| IdP Login       | Android, UNITY<br/>IOS | AUTH\_IDP\_LOGIN\_FAILED<br/>TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED | 3201       | IdPログインに失敗しました。                       |
 |                 | Android, UNITY<br/>IOS | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO<br/>TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO | 3202       | IdP情報が有効ではありません(Consoleに該当するIdP情報がありません)。 |
 | Add Mapping     | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_FAILED<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FAILED | 3301       | マッピング追加に失敗しました。                         |
 |                 | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | 既に他のメンバーにマッピングされています。                      |
@@ -72,6 +72,7 @@
 <br/>
 <br/>
 
+
 ## Server
 | Module  | Error Code            | Description                              |
 | ------- | --------------------- | ---------------------------------------- |
@@ -99,14 +100,29 @@
 | Member  | -4000402              |ユーザーIDを間違って入力したとき                        |
 |         | -4000403              | 正しくない会員をリクエストしたとき                         |
 |         | -4000404              | 正しくないAuthをリクエストしたとき |
+|         | -4000409              | 端末移行のために発行されたTransferAccount情報を同じ端末で使用 |
 |         | -4040401              | 退会されているか、存在しない会員をリクエストしたとき                |
-|         | -4040403              | 존재하지 않는 TransferAccount 에 대한 요청일 때 |
+|         | -4040403              | 存在しないTransferAccountに対するリクエストの時 |
 |         | -4100402              | 이미 사용된 TransferAccount 요청일 때  |
 |         | -4100403              | 유효 기간이 만료된 TransferAccount 의 요청일 때  |
 |         | -4100401              | 既に退会した会員をリクエストしたとき                      |
 |         | -4220401              |ユーザーAuthデータが正常でないとき                 |
-| IdP     | -4000901              | Block 된 유저가 TransferAccount 검증 요청한 경우 |
-|         | -4040920              | TransferAccount 유효성 검증시, ID 가 존재하지 않을 때 |
-|         | -4000927              | TransferAccount 유효성 검증시, PASSWORD 가 잘못 되었을 때 |
-|         | -4000920              | 내부에서 PASSWORD 암호화시 오류 발생. 계속 발생시 문의 필요 |
-|         | -4000924              | 내부 오류. 계속 발생시 문의 필요 |
+| IdP     | -4000901              | Block 된 게임 유저가 TransferAccount 검증 요청한 경우 |
+|         | -4000920              | 내부에서 PASSWORD 암호화시 오류 발생. 계속 발생시 고객센터를 통해 문의 필요 |
+|         | -4000921 ～ 2          | TransferAccount発行時、内部エラー発生。繰り返し発生する場合はサポートへ問い合わせ必要 |
+|         | -4000923              | マニュアル(MANUAL)方式でPASSWORDを変更しようとする時、現在のPASSWORDと同じ文字列を入力 |
+|         | -4000924              | Internal error. If this problem persists, please contact Customer Center. |
+|         | -4000925              | マニュアル(MANUAL)方式でIDを変更しようとする時、現在使用中のIDを入力 |
+|         | -4000927              | TransferAccountの有効性を検証時、 PASSWORDが間違っていた時 |
+|         | -4040920              | TransferAccountの有効性を検証時、IDが存在しない時 |
+|         | -5110920              | TransferAccount発行システムエラー。繰り返し発生する場合はサポートへ問い合わせ必要 |
+| Coupon  | -100003               | 無効なクーポンコードをリクエストした場合                 |
+|         | -100004               | リクエストにより手動ですでに終了処理したクーポンコード  |
+|         | -100005               | すでに使用されたクーポン                              |
+|         | -100006 ～ 10          | クーポン使用期間ではない場合                     |
+|         | -100011               | クーポンを使用できる制限数を超過した場合        |
+|         | -999999               | クーポンシステム内部エラー。繰り返し発生する場合はサポートへ問い合わせ必要 |
+| IAP     | 5000                  | CONSUME FAILED                                 |
+|         | 5018                  | すでに消費を行った決済                      |
+|         | 1100                  | 必須パラメータが省略、または無効なパラメータを伝達      |
+|         | 9999                  | UNKNOWN ERROR                                  |

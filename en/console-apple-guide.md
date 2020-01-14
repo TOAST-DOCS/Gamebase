@@ -1,4 +1,4 @@
-## Mobile Service > IAP > Apple Console Guide
+## Game > Gamebase > Store Console Guide > Apple Console Guide
 
 To use App store subscription, you should create a secret key and set a notification url in App Store Connect.
 After that, register secret key into IAP app property.

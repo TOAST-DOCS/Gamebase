@@ -1,4 +1,4 @@
-## Mobile Service > IAP > Google 콘솔 가이드
+## Game > Gamebase > 스토어 콘솔 가이드 > Google 콘솔 가이드
 
 Google 일반상품 및 구독상품 인앱 결제를 위해 Google Play Billing을 연동해야 합니다.
 Google Play Billing은 Google Play Console 과 Google API Console에서 생성된 값들을 사용합니다.
@@ -15,8 +15,8 @@ Notification 설정이 올바르지 않으면 구독 결제가 진행되지 않�
 | Google API Client ID               | Google API Project의 OAuth Client ID            |
 | Google API Client Secret           | Google API Project의 OAuth Client Secret        |
 | Refresh Token For Google OAuth     | Google Play Developer 계정을 통해 획득한 Refresh Token |
-<center>[표 1] Google 인앱 결제를 위한 앱 등록값</center>
 
+<center>[표 1] Google 인앱 결제를 위한 앱 등록값</center>
 
 ## Google Console
 
@@ -49,32 +49,32 @@ Google Play Consle과 동일한 계정으로 Google API Console에 프로젝트�
 3) Refresh Token  
 ```
 
-##### 1. OAuth 클라이언트 생성 (웹 어플리케이션)
+#### 1. OAuth 클라이언트 생성 (웹 어플리케이션)
 
 * https://console.developers.google.com/apis/credentials
 ![[그림 1] Client ID 및 Client Secret 생성 1](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_g_01.png)
 
 
-##### 2. 승인된 redirection url 입력: `https://developers.google.com/oauthplayground`
+#### 2. 승인된 redirection url 입력: `https://developers.google.com/oauthplayground`
 ![[그림 2] Client ID 및 Client Secret 생성 2](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_Oauth_ko.png)
 
 
-##### 3. 생성 후 팝업 창에서 클라이언트 ID / 클라이언트 seceret 복사
+#### 3. 생성 후 팝업 창에서 클라이언트 ID / 클라이언트 seceret 복사
 ![[그림 3] Client ID 및 Client Secret 생성 3](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_Oauth_clientSecret_ko.png)
 
-##### 4. 클라이언트 ID, 클라이언트 Secret 입력: [OAuth Playground](https://developers.google.com/oauthplayground/) > 오른쪽 상단 oauthplayground 설정 > Use your own OAuth credentials 사용 체크 후 복사한 클라이언트 ID, 클라이언트 Secret 입력
+#### 4. 클라이언트 ID, 클라이언트 Secret 입력: [OAuth Playground](https://developers.google.com/oauthplayground/) > 오른쪽 상단 oauthplayground 설정 > Use your own OAuth credentials 사용 체크 후 복사한 클라이언트 ID, 클라이언트 Secret 입력
 ![[그림 4] Client ID 및 Client Secret 생성 3](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_g_03.png)
 
 
-##### 5. Authorization code 코드 발급: Step 1에서 https://www.googleapis.com/auth/androidpublisher 입력하여 발급
+#### 5. Authorization code 코드 발급: Step 1에서 https://www.googleapis.com/auth/androidpublisher 입력하여 발급
 ![[그림 5] Client ID 및 Client Secret 생성 4](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_g_04.png)
 
 
-##### 6. 토큰 발급: Step 2에서 Exchange authorization code for tokens 버튼을 눌러 발급
+#### 6. 토큰 발급: Step 2에서 Exchange authorization code for tokens 버튼을 눌러 발급
 ![[그림 6] Client ID 및 Client Secret 생성 5](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_g_05.png)
 
 
-## Google Play 연동 주의사항
+### Google Play 연동 주의사항
 
 OAuth 인증 정보 생성 후, 아래 가이드를 참고하여 프로젝트 설정을 진행합니다.
 
