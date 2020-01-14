@@ -10,12 +10,15 @@ AndroidやiOSでアプリ内決済機能を設定する方法は、次のドキ�
 * [Android Purchase Settings](aos-purchase#settings)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
+Unity Standaloneで決済を行うには、IapAdapterとWebViewAdapterを追加する必要があります。
+![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-settingtool_iap_2.4.0.png)
+
+
 ###  Purchase Flow
 
 アイテムの購入は次のような手順で設計してください。<br/>
 
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
-
 
 1. ゲームクライアントでは、Gamebase SDKの**RequestPurchase**を呼び出して決済を試みます。
 2. 決済が成功した場合、**RequestItemListOfNotConsumed**を呼び出して未消費決済の内訳を確認します。
@@ -23,15 +26,9 @@ AndroidやiOSでアプリ内決済機能を設定する方法は、次のドキ�
 4. ゲームサーバーは、GamebaseのサーバーにAPI経由でconsume(消費)APIをリクエストします。[APIガイド](/Game/Gamebase/ja/api-guide/#wrapping-api)
 5. IAPサーバーからconsume(消費)APIの呼び出しに成功すると、ゲームサーバーがゲームクライアントにアイテムを配布します。
 
-ストア決済には成功したものの、エラーが発生して正常に終了することができない場合があります。ログイン完了後に次の二つのAPIをそれぞれ呼び出し、再処理ロジックを設計してください。<br/>
-
-1. 未処理アイテムの送信リクエスト
-    * ログインに成功した後、**RequestItemListOfNotConsumed**を呼び出して未消費決済の内訳を確認します。
-    * 返された未消費決済内訳のリストに値が存在する場合、ゲームクライアントがゲームサーバーにconsume(消費)をリクエストしてアイテムを配布します。
-2. 決済エラー再処理リクエスト
-    * ログインに成功した後、**RequestRetryTransaction**を呼び出し、未処理内訳に対し自動で再処理を試みます。
-    * 返されたsuccessListに値が存在する場合、ゲームクライアントがゲームサーバーにconsume(消費)をリクエストしてアイテムを配布します。
-    * 返されたfailListに値が存在する場合、該当する値をゲームサーバーやLog & Crashなどを通し送信してデータを確保し、[カスタマーセンター](https://toast.com/support/inquiry)に再処理失敗の原因をお問い合わせください。
+* ストア決済は成功しましたが、エラーが発生し正常に終了できない場合があります。ログイン完了後、未消費決済履歴を確認してください。<br/>
+	* ログインに成功すると、**RequestItemListOfNotConsumed**を呼び出して未消費決済履歴を確認します。
+	* 返された未消費決済履歴リストに値が存在する場合は、ゲームクライアントがゲームサーバーにconsume(消費)をリクエストしてアイテムを支給します。
 
 ### Purchase Item
 
@@ -145,10 +142,15 @@ public void RequestItemListOfNotConsumed()
 }
 ```
 
-### Reprocess Failed Purchase Transaction
+### Get the List of Actived Subscriptions
 
-ストアでは決済が正常に行われたものの、TOAST IAPサーバーの検証失敗などにより決済が正常に行われなかった場合、APIを利用して再処理を試みます。
-最後に決済が成功した内訳を基に、アイテム送信(配布)などのAPIを呼び出して処理する必要があります。
+現在のユーザーIDで有効になっている定期購入リストを照会します。
+決済が完了した定期購入商品(自動更新型定期購入、自動更新型消費性定期購入商品)は、期間が終了するまで照会できます。 
+ユーザーIDが同じならAndroidとiOSで購入した定期購入商品が全て照会されます。
+
+> <font color="red">[注意]</font><br/>
+>
+> 現在、定期購入商品は、Androidの場合Google Playストアのみサポートします。
 
 **API**
 
@@ -157,31 +159,45 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
-static void RequestRetryTransaction(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableRetryTransactionResult> callback)
+static void RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
 ```
 
 **Example**
 ```cs
-public void RequestRetryTransaction()
+public void RequestActivatedPurchasesSample()
 {
-    Gamebase.Purchase.RequestRetryTransaction((purchasableRetryTransactionResult, error) =>
+    Gamebase.Purchase.RequestActivatedPurchases((purchasableReceiptList, error) =>
     {
-        if (Gamebase.IsSuccess(error))
+        if (Gamebase.IsSuccess(error) == true)
         {
-            Debug.Log("RequestRetryTransaction succeeded.");
+            Debug.Log("RequestItemListPurchasable succeeded");
 
-            // Should Deal With This Retry Transaction Result.
-            // You may send result to your gameserver and add item to user.
+            foreach (GamebaseResponse.Purchase.PurchasableReceipt purchasableReceipt in purchasableReceiptList)
+            {
+                var message = new StringBuilder();
+                message.AppendLine(string.Format("itemSeq:{0}", purchasableReceipt.itemSeq));
+                message.AppendLine(string.Format("price:{0}", purchasableReceipt.price));
+                message.AppendLine(string.Format("currency:{0}", purchasableReceipt.currency));
+                
+                // You will need paymentSeq and purchaseToken when calling the Consume API.
+                // Refer to the following document for the Consume API.
+                // https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchaseiap
+                message.AppendLine(string.Format("paymentSeq:{0}", purchasableReceipt.paymentSeq));
+                message.AppendLine(string.Format("purchaseToken:{0}", purchasableReceipt.purchaseToken));
+                message.AppendLine(string.Format("marketItemId:{0}", purchasableReceipt.marketItemId));
+                Debug.Log(message);
+            }
         }
         else
         {
-            Debug.Log(string.Format("RequestRetryTransaction failed. error is {0}", error));
+            // Check the error code and handle the error appropriately.
+            Debug.Log(string.Format("RequestItemListPurchasable failed. error is {0}", error));
         }
     });
 }
 ```
 
-### AppStore Promotion IAP
+### App Store Promotion IAP
 
 App Storeアプリでアイテムを購入できる機能を提供します。
 アイテム購入成功後、登録しておいた下記のハンドラを利用してアイテムを支給できます。
@@ -221,7 +237,7 @@ public void SetPromotionIAPHandler()
         }
         else
         {
-        	if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
+            if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
             {
                 Debug.Log("User canceled purchase.");
             }
@@ -256,7 +272,6 @@ public void SetPromotionIAPHandler()
 |		  | productIdentifier | 購入アイテムのproduct identifier |
 
 例) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
-
 
 ### Error Handling
 

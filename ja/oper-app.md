@@ -15,7 +15,7 @@ Gamebaesサービスを有効にすると自動でアプリが作成され、該
 
 ### Properties
 
-![gamebase_app_01_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_01_201812.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_01_201911.png)
 
 #### (1) インストールURL
 アプリインストールとPRに利用できる短縮URLの情報です。
@@ -28,6 +28,7 @@ Gamebaesサービスを有効にすると自動でアプリが作成され、該
 ####(2) サーバーアドレス
 ゲームからゲームサーバーアドレス(IP、URLなど)をリアルタイムで受け取らなければならないときに使用します。
 サーバーアドレスを設定するとクライアント初期化後に「Launching情報」から入力された情報を確認することができます。
+クライアントの状態に応じて伝達するサーバーアドレスを設定できます。例えば、クライアントの状態がテスト中または審査中の場合は、各項目に設定されたサーバーアドレス値が最初のローンチ情報に伝達されます。
 ゲームで必要な場合にのみ入力し、そうでない場合は、空白のままにしておいてください。
 
 ####(3) カスタマーセンター情報
@@ -300,6 +301,14 @@ Twitter Application Managementサイトでアプリを登録して発行した{C
 **Reference URL**<br />
 - [Twitter Application Management](https://apps.twitter.com/)
 
+##### Android
+ > <font color="red">[注意]</font><br/>
+ >
+ > 2019年7月25日から、TwitterではTLS 1.0、TLS 1.1のサポートを中断し、TLS1.2のみサポートしています。
+ > それにより、Android 4.3 (Jellybean、API Level 18)以下の端末ではAndroid WebViewによるTwitterログインができません。
+ > 
+ > すなわち、Android 4.4以上(KitKat、API Level 19)の端末でのみTwitterログインを使用できます。
+
 ##### iOS
 
  > <font color="red">[注意]</font><br/>
@@ -307,13 +316,12 @@ Twitter Application Managementサイトでアプリを登録して発行した{C
  > Gamebase iOS SDK 1.14.0バージョンでURLスキームの設定方法が変更されました。使用SDKバージョンに合ったガイドを参照してください。
  >
 
- * 1.13.0以下
+* 1.13.0以下
 	* 別途URLスキームを設定する必要はありません。
 
 * 1.14.0以上
 	* URLスキームを設定する必要があります。
 		* **XCode > Target > Info > URL Types**に**tcgb.{Bundle ID}.twitter**を追加する必要があります。
-
 * Twitter追加認証情報の入力例
 
 ![Twitter URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
@@ -355,6 +363,73 @@ LINE Login機能を使用するには、Xcodeに追加設定を行う必要が�
 * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
 
 
+#### 8. Sign In with Apple
+Sign In with Apple機能を使用するには、AppStore Connect、Gamebase Console、そしてXcodeの設定が必要です。
+
+##### AppStore Connect Settings
+* [Certificates, Identifiers & Profiles \> Keysへ](https://developer.apple.com/account/resources/authkeys/list)
+
+###### Certificates, Identifiers & Profiles > Keys > 追加(+)
+1. `Sign In with Apple`チェックボックスを選択して設定を行います。
+![Check SignInWithApple](./image/Operators_Guide/Console_App_Auth_appleid0_1.0.png)
+2. `Sign in with Apple`を使用するBundle IDを選択します。
+![ChooseAPrimaryAppID](./image/Operators_Guide/Console_App_Auth_appleid1_1.0.png)
+3. <span style="color:#e11d21">Privatekey</span>をダウンロードして、作成された<span style="color:#e11d21">Key IDを </span>確認します。
+![DownloadPrivateKey](./image/Operators_Guide/Console_App_Auth_appleid2_1.0.png)
+4. Certificates, Identifiers & Profiles > Identifiers > 対象アプリを選択 > `Sign In with Apple`を有効化します。
+    * `Enable as a primary App ID`に設定します。
+![DownloadPrivateKey](./image/Operators_Guide/Console_App_Auth_appleid3_1.0.png)
+
+##### Gamebase Console > App Settings
+[TOAST Consoleへ](https://console.toast.com/)
+
+* Gamebase
+![SecretKey設定](./image/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
+
+
+###### Client ID Settings
+> アプリのBundle IDを設定します。
+
+###### Secret Key Settings
+> Apple Developer Account設定で取得した値(**TeamID**、**KeyID**、**PrivateKey**)にJSON文字列を作成して設定します。
+
+* `teamId`：開発者アカウントの右上の値を設定します。
+* `keyId`：Certificates, Identifiers & Profiles > Keys > Sign In with Appleをチェックし、作成された値を設定します。
+![SecretKey設定](./image/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
+* `privateKey`：上のKeysでキーを作成した時に作成されたPrivateKeyファイルの内容を設定します。 (ダウンロードしたファイルを開き、下記のスクリーンショットのように赤い四角形部分の値を使用します)
+![SecretKey設定](./image/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
+
+上の値を下記の例のようにJSONで作って設定します。
+
+
+```json
+{
+    "teamId":"2UH5Cxxxx",
+    "keyId":"3C3FXYxxxx",
+    "privateKey":"MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBA.. 中略"
+}
+```
+
+###### Additional Info Settings
+[Sign In with AppleのAuthorizationScopeの詳細](https://developer.apple.com/documentation/authenticationservices/asauthorizationscope?language=occ)
+
+Gamebase Console > AppでAppleを追加すると、基本値に下記のJSON値が設定されます。
+現在(2019.11)はScopeの種類が`full_name`、`email`のみ存在し、Gamebaseではこの2つ値をデフォルト値に設定します。
+
+```json
+{ "authorization_scope":["full_name", "email"] }
+```
+
+##### Xcode Project Settings
+> <font color="red">[注意]</font><br/>
+> Xcode 11以上でのみ`Sign In with Apple`機能を使用するプロジェクトをビルドできます。
+
+
+1. Target選択 > Signing & Capabilities > Sign In with Apple項目を追加します。
+![Capability_SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid8_1.0.png)
+2. Target選択 > Build Phases > Link Binary With Libraries > Authentication.frameworkを**Optional**で追加します。
+![AuthenticationServices.framework](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid9_1.0.png)
+    - ```注意```: OptionalではなくRequiredに設定されている場合、iOS 11以下の端末ではアプリ実行時にruntime crashが発生します。
 
 ## Client
 
@@ -428,9 +503,10 @@ Gamebase SDKのDebug Logが'OFF'状態でも、コンソールで'ON'に設定�
 
 ## Installed URL
 
-![gamebase_app_19_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_19_201812.png)
+ゲームをインストールするためのストアURL情報を管理します。
 
-* ゲームをインストールするためのストアURL情報を管理します。
+![gamebase_app_19_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_19_201812_en.png)
+
 * クライアント状態が<font color="white" style="background-color:#2AB1A6">アップデート推奨(サービス中)</font>または<font color="white" style="background-color:#A1A1A1">アップデート必須</font>の時、ストアごとに提供するアドレスの値を設定します。
 * ユーザーがPCやモバイルで短縮URLをクリックすると、ユーザー端末情報(デバイス、オペレーションシステム、ストアなど)を利用して入力されたサイトにリダイレクトします。
 * ストア情報がない、もしくはストア移動に失敗した場合は、'COMMON'に設定されたURLに移動します。
@@ -441,7 +517,6 @@ _[例2] 「One Store」からダウンロードしたアプリでゲームして
 **(Device:mobile,OS:Android,Store:One Store)**「One Store」モバイルに設定されているURLへ移動(One Storeモバイルインストールページ)<br/>
 _[例3] PCからインストールURLを入力した場合_
 **(Device:PC、OS:Windows、Store:なし)** COMMON PCに設定されているURLへ移動
-
 
 ### Properties
 

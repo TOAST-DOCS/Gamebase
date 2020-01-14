@@ -1,4 +1,4 @@
-## Mobile Service > IAP > Google Console Guide
+## Game > Gamebase > Store Console Guide > Google Console Guide
 
 Google Play Billing is a service that lets you sell consumable product or subscription from inside an Android app, or in-app.
 Google Play Billing requires some keys created in Google Play Console and Google API Console. 
@@ -62,7 +62,7 @@ Use the links below to generate the following information required for OAuth aut
 ![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_g_05.png)
 
 
-## Google Play Additional Settings
+### Google Play Additional Settings
 
 After creating the OAuth credentials, proceed with the project setup by referring to the guide below.
 

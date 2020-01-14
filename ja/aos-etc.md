@@ -49,7 +49,7 @@ Gamebaseで対応している付加機能について説明します。
 
 該当する言語コードは、「DisplayLanguage」クラスに定義されています。
 
-> `[注意]`
+> <font color="red">[注意]</font><br/>
 >
 > Gamebaseでサポートしている言語コードは、大文字・小文字を区別します。
 > “EN”や"zh-cn"のように設定する場合、問題が発生することがあります。
@@ -205,7 +205,7 @@ localizedstring.jsonに定義されている形式は、次の通りです。
     ...
     "launching_service_closed_title": "サービス終了"
   },
-  "${언어코드}": {
+  "${言語コード}": {
       "common_ok_button": "...",
       ...
   }
@@ -515,10 +515,10 @@ APIの呼び出しに必要なパラメータは下記の通りです。
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int |  |
-| channelId | O | String |  |
-| characterId | O | String |  |
-| classId | O | String |  |
+| userLevel | M | int | ユーザーレベルを表すフィールドです。 |
+| channelId | O | String | チャンネルを表すフィールドです。 |
+| characterId | O | String | キャラクター名を表すフィールドです。 |
+| classId | O | String | 職業を表すフィールドです。 |
 
 **API**
 
@@ -552,7 +552,7 @@ APIの呼び出しに必要なパラメータは、下記の通りです。
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc	|
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int |  |
+| userLevel | M | int | ユーザーレベルを表すフィールドです。 |
 | levelUpTime | M | long | Epoch Timeで入力します。</br>Millisecond単位で入力します。 |
 
 
@@ -570,5 +570,48 @@ public void onLevelUp(int userLevel, long levelUpTime) {
     LevelUpData levelUpData = new LevelUpData(userLevel, levelUpTime);
 
     Gamebase.Analytics.traceLevelUp(levelUpData);
+}
+```
+
+
+### Contact
+
+Gamebaseでは顧客からの問い合わせに対応するための機能を提供します。
+
+> [TIP]
+>
+> TOAST Contactサービスと連携して使用すると、簡単に顧客からの問い合わせに対応できます。
+> 詳細はTOAST Contactサービスの利用ガイドを参照してください。
+> [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+>
+
+#### Open Contact WebView
+
+Gamebase Consoleに入力した**サポートURL**をWebビューで表示する機能です。
+**Gamebase Console > App > InApp URL > Service center**に入力した値が使用されます。
+
+**API**
+
+```java
+Gamebase.Contact.openContact(Activity activity, GamebaseCallback callback);
+```
+
+**Example**
+
+``` java
+public void openContact(Activity activity) {
+    Gamebase.Contact.openContact(activity, new GamebaseCallback() {
+        @Override
+        public void onCallback(GamebaseException exception) {
+            if (exception != null && exception.code == WEBVIEW_INVALID_URL) { // 7001
+                // TODO: Gamebase Console Service Center URL is invalid.
+                //  Please check the url field in the TOAST Gamebase Console.
+            } else if (exception != null) {
+                // TODO: Error occur when opening the contact web view.
+            } else {
+                // A user close the contact web view.
+            }
+        }
+    });
 }
 ```

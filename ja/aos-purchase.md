@@ -53,18 +53,15 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 
 #### 6. Initialization
 
-* Gamebaseを初期化する際にconfigurationの**setStoreCode()**を呼び出します。
+* Gamebaseの初期化時、Store Codeを指定する必要があります。
 * **STORE_CODE**は、次の値の中から選択します。
-    * GG:Google
-    * ONESTORE:ONE store
-    * TEST:IAPテスト用
-
+    * GG: Google
+    * ONESTORE: ONE store
 
 ```java
 String STORE_CODE = "GG";	// Google
 
-GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(APP_ID, APP_VERSION)
-        .setStoreCode(STORE_CODE)	// Store codeを必ず宣言します。
+GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(APP_ID, APP_VERSION, STORE_CODE)
         .build();
 
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
@@ -85,19 +82,12 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 2. 決済に成功した場合、**requestItemListOfNotConsumed**を呼び出して未消費決済の内訳を確認します。
 3. 返された未消費決済内訳リストに値がある場合、ゲームクライアントがゲームサーバーに決済アイテムに対するconsume(消費)をリクエストします。
 4. ゲームサーバーは、GamebaseのサーバーにAPI経由でconsume(消費)APIをリクエストします。
-   [APIガイド](/Game/Gamebase/ja/api-guide/#wrapping-api)
+   [APIガイド](./api-guide/#wrapping-api)
 5. IAPサーバーからconsume(消費)APIの呼び出しに成功すると、ゲームサーバーがゲームクライアントにアイテムを配布します。
 
-ストア決済には成功したものの、エラーが発生して正常に終了することができない場合があります。ログイン完了後に次の二つのAPIをそれぞれ呼び出し、再処理ロジックを設計してください。<br/>
-
-1. 未処理アイテムの送信リクエスト
+* ストア決済は成功しましたが、エラーが発生したたま正常に終了できない場合があります。ログイン完了後、未消費決済履歴を確認してください。<br/>
     * ログインに成功した後、**requestItemListOfNotConsumed**を呼び出して未消費決済の内訳を確認します。
     * 返された未消費決済内訳のリストに値が存在する場合、ゲームクライアントがゲームサーバーのconsume(消費)をリクエストしてアイテムを配布します。
-
-2. 決済エラー再処理リクエスト
-    * ログインに成功した後、**requestRetryTransaction**を呼び出して未処理内訳に対し自動で再処理を試みます。
-    * 返されたsuccessListに値が存在する場合、ゲームクライアントがゲームサーバーのconsume(消費)をリクエストしてアイテムを配布します。
-    * 返されたfailListに値が存在する場合、該当する値をゲームサーバーやLog & Crashなどで送信してデータを確保し、**[カスタマーセンター](https://toast.com/support/inquiry)**に再処理失敗の原因についてお問い合わせください。
 	
 ### Purchase Item
 
@@ -159,7 +149,7 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 
 ### Get a List of Non-Consumed Items
 
-アイテムを購入したものの、アイテムが正常に消費(送信、配布)されていない未消費決済の内訳をリクエストします。<br/>
+* まだ消費していない一回性商品(CONSUMABLE)と消費性定期購入商品(CONSUMABLE_AUTO_RENEWABLE)情報を照会します。<br/>
 未決済の内訳がある場合は、ゲームサーバー(アイテムサーバー)にリクエストを出してアイテムを送信(配布)するように処理する必要があります。
 
 * 次の二つの状況で呼び出してください。
@@ -190,30 +180,36 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 });
 ```
 
-### Reprocess Failed Purchase Transaction
+### Get a List of Activated Subscriptions
 
-ストアでは決済が正常に行われたものの、TOAST IAPサーバーの検証失敗などにより決済が正常に行われなかった場合、APIを利用して再処理を試みます。<br/>
-最後に、決済が成功した内訳を基にアイテム送信(配布)などのAPIを呼び出して処理する必要があります。
+現在のユーザーID基準で有効になっている定期購入リストを照会します。
+決済が完了した定期購入商品(自動更新型定期購入、自動更新型消費性定期購入商品)は期間が終了するまで照会できます。
+ユーザーIDが同じならAndroidとiOSで購入した定期購入商品が全て照会されます。
+
+> <font color="red">[注意]</font><br/>
+>
+> 現在定期購入商品は、Androidの場合はGoogle Playストアのみサポートします。
+>
 
 **API**
 
 ```java
-+ (void)Gamebase.Purchase.requestRetryTransaction(Activity activity, GamebaseDataCallback<PurchasableRetryTransactionResult> callback);
++ (void)Gamebase.Purchase.requestActivatedPurchases(Activity activity, GamebaseDataCallback<List<PurchasableReceipt>> callback);
 ```
 
 **Example**
 
 ```java
-Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<PurchasableRetryTransactionResult>() {
+Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<List<PurchasableReceipt>>() {
     @Override
-    public void onCallback(PurchasableRetryTransactionResult data, GamebaseException exception) {
+    public void onCallback(List<PurchasableReceipt> data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
             // Succeeded.
         } else {
             // Failed.
-            Log.e(TAG, "Request retry transaction failed- "
-                    + "errorCode:" + exception.getCode()
-                    + "errorMessage:" + exception.getMessage());
+            Log.e(TAG, "Request subscription list failed- "
+                    + "errorCode: " + exception.getCode()
+                    + "errorMessage: " + exception.getMessage());
         }
     }
 });
@@ -227,7 +223,7 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 | PURCHASE_USER_CANCELED                   | 4002       | ゲームユーザーがアイテムの購入をキャンセルしました。                |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 購入ロジックが完了していない状態でAPIが呼び出されました。    |
 | PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 該当するストアのcashが足りないため決済することができません。           |
-| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | このストアには対応していません。<br>選択可能なストアはGG(Google)、TS(ONE store)、TESTです。|
+| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | このストアには対応していません。<br>選択可能なストアはGG(Google)、ONESTOREです。|
 | PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAPライブラリーエラーです。<br>DetailCodeを確認してください。  |
 | PURCHASE_UNKNOWN_ERROR                   | 4999       | 定義されていない購入エラーです。<br>ログ全体を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。|
 
@@ -266,5 +262,5 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 ```
 
 * IAPのエラーコードは、次のドキュメントをご参考ください。
-    * [Mobile Service > IAP > エラーコード > Client APIエラータイプ](/Mobile%20Service/IAP/ja/error-code/#client-api)
+    * [TOAST > TOAST SDK使用ガイド > TOAST IAP > Android > エラーコード](/TOAST/ko/toast-sdk/iap-android/#_24)
 

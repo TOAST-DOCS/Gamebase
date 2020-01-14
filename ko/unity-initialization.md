@@ -141,35 +141,55 @@ public class SampleInitialization
     {
         Gamebase.Initialize((launchingInfo, error) =>
         {
-            if (Gamebase.IsSuccess(error))
+            if (Gamebase.IsSuccess(error) == true)
             {
-                Debug.Log("Gamebase initialization is succeeded.");
+                Debug.Log("Initialization succeeded.");
 
-                if (IsPlayable(launchingInfo.launching.status.code))
+                //Following notices are registered in the Gamebase Console
+                var notice = launchingInfo.launching.notice;
+                if (notice != null)
                 {
-                    Debug.Log("Playable");
+                    if (string.IsNullOrEmpty(notice.message) == false)
+                    {
+                        Debug.Log(string.Format("title:{0}", notice.title));
+                        Debug.Log(string.Format("message:{0}", notice.message));
+                        Debug.Log(string.Format("url:{0}", notice.url));
+                    }
+                }
+        
+                //Status information of game app version set in the Gamebase Unity SDK initialization.
+                var status = launchingInfo.launching.status;
+        
+                // Game status code (e.g. Under maintenance, Update is required, Service has been terminated)
+                // refer to GamebaseLaunchingStatus
+                if (status.code == GamebaseLaunchingStatus.IN_SERVICE)
+                {
+                    // Service is now normally provided.
                 }
                 else
                 {
-                    if (launchingInfo.launching.status.code == GamebaseLaunchingStatus.REQUIRE_UPDATE)
+                    switch (status.code)
                     {
-                        Debug.Log(string.Format("message:{0}", launchingInfo.launching.status.message));
+                        case GamebaseLaunchingStatus.RECOMMEND_UPDATE:
+                        {
+                            // Update is recommended.
+                            break;
+                        }
+                        // ... 
+                        case GamebaseLaunchingStatus.INTERNAL_SERVER_ERROR:
+                        {
+                            // Error in internal server.
+                            break;
+                        }
                     }
                 }
             }
             else
             {
-                Debug.Log(string.Format("Gamebase initialization is failed. error is {0}", error));
+                // Check the error code and handle the error appropriately.
+                Debug.Log(string.Format("Initialization failed. error is {0}", error));
             }
         });
-    }
-
-    private bool IsPlayable(int status)
-    {
-        if (status >= 200 && status < 300)
-            return true;
-
-        return false;
     }
 }
 ```
