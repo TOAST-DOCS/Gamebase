@@ -7,6 +7,7 @@
 - GUEST 계정에 대한 단말기 이전에 사용되는 TransferAccount에 대해, 사전에 발급된 TransferAccount를 검증 할 수 있는 Validate TransferAccount API가 추가 되었습니다.
 - API 응답결과의 date 타입이 Epoch time 에서 ISO 8601 형식(yyyy-MM-dd'T'HH:mm:ssXXX)으로 변경되었습니다. Token Authentication, Get Member, Get Members API 응답 결과의 regDate, lastLoginDate 항목
 - 쿠폰 소진 API가 추가 되었습니다.
+- 사용자 탈퇴 API가 추가 되었습니다.
 
 ## Advance Notice
 
@@ -839,7 +840,6 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 없음
 
-
 **[Request Body]**
 
 ```json
@@ -884,6 +884,54 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | member.appId | String | appId |
 | member.regDate | String | 사용자가 계정을 생성한 시간 |
 | member.lastLoginDate | String | 마지막으로 로그인한 시간 <br>처음 로그인한 사용자는 해당 값이 없음 |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+#### Withdraw
+
+사용자 계정을 탈퇴 처리합니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| DELETE | /tcgb-gateway/v1.2/apps/{appId}/members/{userId} |
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST 프로젝트 ID |
+| userId | String | 탈퇴 대상 사용자 ID |
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| regUser | String | mandatory | 탈퇴를 요청한 시스템 혹은 사용자 정보 <br> - 해당 정보는 Console > '멤버' 페이지의 '탈퇴 이력' 화면에서 확인 가능 <br> - 탈퇴 이력 화면은 탈퇴된 이용자 조회시에만 노출됨 |
+
+**[Request Body]**
+
+없음
+
+**[Response Body]**
+
+```json
+{
+  "header": {
+    "transactionId": "String",
+    "resultCode": 0,
+    "resultMessage": "SUCCESS",
+    "isSuccessful": true
+  }
+}
+```
 
 **[Error Code]**
 
