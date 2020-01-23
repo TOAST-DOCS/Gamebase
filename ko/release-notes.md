@@ -1,6 +1,21 @@
 ## Game > Gamebase > 릴리스 노트
 
-### 2019. 1. 14.
+### 2019. 01. 21.
+
+#### 기능 추가
+* [SDK] 2.7.0
+	* (Unity)NaverCafePLUG 지원
+
+#### 버그 수정
+* [SDK] 2.7.0
+	* (Android)서버 response 에서 traceError 필수 파라메터가 없더라도 크래쉬 나지 않도록 수정
+	* (Android)Firebase 설정이 누락되어 있을때 Exception 이 발생하지 않도록 수정
+	* (Unity)Web Login 시, gamebase://dismiss 스킴 처리를 추가
+	* (Unity)Release 빌드 시, 간헐적으로 Webview가 노출되지 않는 문제 수정	
+* [Console]
+	* Analytics: 유저 세션 만료시 로그인 페이지로 Redirect 되지 않는 현상 수정
+
+### 2019. 01. 14.
 
 #### 기능 추가
 * [서버 API]사용자 탈퇴 API 추가

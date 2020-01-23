@@ -127,6 +127,30 @@ Retention은 특정 일에 가입한 이용자가 D+1일부터 D+90일까지 얼
     * 신규 가입자(New User) = 당일 가입자 - 당일가입 후 탈퇴자
     * 예) 1월 1일 100명 신규 가입, 이 중 20명이 1월 1일 탈퇴자라면 실제 신규 가입자를 80명(100명-20명)으로 계산
 
+### LTV
+![gamebase_analytics_06_201912_1_ltv](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_201912_1_ltv.png)
+
+LTV는 선택된 이용자 그룹에서 이용자 1명의 1년간 기대 매출을 나타내는 추정 지표입니다.
+
+국가/OS 별, 일자별로 LTV 차트를 제공하고, 하단의 표에는 LTV, 누적 NRU, 누적 PU, 누적 결제금액 정보를 세부적으로 확인할 수 있습니다.
+
+#### 추정 방법
+Gamebase에서는 LTV 추정 방법으로 가입 후 365일 경과 시점의 누적 ARPU를 사용합니다. 
+
+#### 이용자 그룹 조건
+이용자 그룹의 조건은 아래와 같습니다.
+
+* 가입일
+* 국가
+* OS
+
+#### 제한 조건
+LTV의 정확한 추정을 위해 아래의 제한 조건이 있습니다.
+
+* 이용자 그룹의 이용자 수가 1000명 이상이어야 합니다.
+* 이용자 그룹의 PU(결제 이용자 수)가 30 이상이어야 합니다.
+* 이용자 그룹 중 가장 최근 가입일에 대해 7일이 경과해야 합니다.
+
 ## Sales Statistics
 ### Payment Amount
 ![gamebase_analytics_07_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_201901_2.png)
