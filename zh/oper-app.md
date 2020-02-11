@@ -16,7 +16,7 @@
 
 以下描述在Gamebase Console管理的应用信息。
 
-![gamebase_app_01_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_01_201812.png)
+![gamebase_app_01_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_01_201911.png)
 
 #### (1) 安装URL
 简捷URL可用于APP安装和宣传。
@@ -29,6 +29,7 @@
 ####(2) 服务器地址
 当游戏需要实时接收游戏服务器地址（IP，URL等）时使用。
 如果设置了服务器地址，则可以在客户端初始化后的“启动信息”中确认信息。
+可根据客户的状态设置要传达的服务器地址。例如，若客户的状态为正在测试或正在审查，各项目中设置的服务器地址值下移至最初启动信息。
 仅在游戏需要时输入，否则请留空。
 
 ####(3) 客服中心信息
@@ -293,14 +294,22 @@
 **Reference URL**
 - [Twitter Application Management](https://apps.twitter.com/)
 
+##### Android
+> <font color="red">[注意]</font><br/>
+>
+> 2019年7月25日起，Twitter终止支持TLS 1.0、TLS 1.1，仅支持TLS1.2。
+> 因此，Android 4.3 (Jellybean, API Level 18)以下的终端机无法通过Android WebView登录Twitter。
+> 
+> 即，仅Android 4.4以上(KitKat, API Level 19)的设备可使用Twitter登录。
+
 ##### iOS
 
- > <font color="red">[注意]</font><br/>
- >
- > Gamebase iOS SDK 1.14.0版本中URL方案的设置方法已更改。请参考符合所用SDK版本的指南。
- >
+> <font color="red">[注意]</font><br/>
+>
+> Gamebase iOS SDK 1.14.0版本中URL方案的设置方法已更改。请参考符合所用SDK版本的指南。
+>
 
- * 1.13.0以下
+* 1.13.0以下
 	* 可以不另行设置URL方案。
 
 * 1.14.0以上
@@ -345,6 +354,74 @@
 	```
 - 有关项目设置，请参考以下链接以使用LINE登录。 （需要验证）
 * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
+
+#### 8. Sign In with Apple
+为使用Sign In with Apple功能，需要对AppStore Connect、Gamebase Console及Xcode进行设置。
+
+##### AppStore Connect Settings
+* [Certificates, Identifiers & Profiles \> 跳转至Keys](https://developer.apple.com/account/resources/authkeys/list)
+
+###### Certificates, Identifiers & Profiles > Keys > 添加(+)
+1. 选择“Sign In with Apple”复选框并进行设置。
+![Check SignInWithApple](./image/Operators_Guide/Console_App_Auth_appleid0_1.0.png)
+2. 选择要使用“Sign in with Apple”的Bundle ID。
+![ChooseAPrimaryAppID](./image/Operators_Guide/Console_App_Auth_appleid1_1.0.png)
+3. 下载<span style="color:#e11d21">Privatekey</span>后保管，确认生成的<span style="color:#e11d21">Key ID</span>。
+![DownloadPrivateKey](./image/Operators_Guide/Console_App_Auth_appleid2_1.0.png)
+4. Certificates, Identifiers & Profiles > Identifiers > 选择对象应用程序 > 激活“Sign In with Apple”。
+    * 设置为“Enable as a primary App ID”。
+![DownloadPrivateKey](./image/Operators_Guide/Console_App_Auth_appleid3_1.0.png)
+
+##### Gamebase Console > App Settings
+[跳转至TOAST Console](https://console.toast.com/)
+
+* Gamebase
+![设置SecretKey](./image/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
+
+
+###### Client ID Settings
+> 设置应用程序的Bundle ID。
+
+###### Secret Key Settings
+> 利用在Apple Developer Account设置中获得的值(**TeamID**, **KeyID**, **PrivateKey**)创建JSON字符串并进行设置。
+
+* “teamId”：设置开发者账号右上方的值。
+* “keyId”：Certificates, Identifiers & Profiles > Keys > 勾选Sign In with Apple，设置创建的值。
+![设置SecretKey](./image/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
+* “privateKey”：设置在上面的Keys中创建密钥同时创建的PrivateKey文件的内容。（打开下载的文件，如下方截屏所示，使用红色矩形部分的值。）
+![设置SecretKey](./image/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
+
+如下方示例所示，将上面的值创建为JSON，进行设置。
+
+
+```json
+{
+    "teamId":"2UH5Cxxxx",
+    "keyId":"3C3FXYxxxx",
+    "privateKey":"MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBA.. 中间省略“
+}
+```
+
+###### Additional Info Settings
+[了解Sign In with Apple的AuthorizationScope](https://developer.apple.com/documentation/authenticationservices/asauthorizationscope?language=occ)
+
+在Gamebase Console > App中添加Apple后，将下方的JSON值设置为默认值。
+以当前(2019.11)为准，Scope的类型仅有“full_name”、“email”，在Gamebase中将这两种值设置为默认值。
+
+```json
+{ "authorization_scope":["full_name", "email"] }
+```
+
+##### Xcode Project Settings
+> <font color="red">[注意]</font><br/>
+> 仅在Xcode 11以上可创建使用“Sign In with Apple”功能的项目。
+
+
+1. 选择Target > Signing & Capabilities > 添加Sign In with Apple项目。
+![Capability_SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid8_1.0.png)
+2. 选择Target > Build Phases > Link Binary With Libraries > 将Authentication.framework添加为**Optional**。
+![AuthenticationServices.framework](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid9_1.0.png)
+    - ```注意```：不是设置为Optional，而是设置为Required时，在iOS 11以下的终端机运行应用程序时，会发生runtime crash。
 
 ## Client
 
@@ -414,12 +491,11 @@
 
 管理用于安装游戏的商店URL信息。
 
-![gamebase_app_19_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_19_201812.png)
+![gamebase_app_19_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_19_201812_en.png)
 
 客户状态为<font color="white" style="background-color:#2AB1A6">建议升级（正在服务）</font>或<font color="white" style="background-color:#A1A1A1">必须升级</font>时，设置各商店提供的地址的值。
 用户在PC或移动设备中单击快捷URL，利用用户终端机信息（设备、操作系统、商店等）重定向至输入的网站。
 若无商店信息或移动至商店失败，移动至‘COMMON’中设置的URL。
-
 
 _[示例1] 单击在Android手机上收到的安装URL
 **(Device:mobile,OS:Android,Store:无)** 时，会转到Android上默认商店的移动网址。如果默认商店是“Google Play”，会转到“Google Play”移动设备中设置的网址。

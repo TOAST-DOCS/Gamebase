@@ -82,7 +82,7 @@ Gamebase仅显示警告(warning)和错误日志。
 
 
 
-### Launching Status
+### Launching Information
 
 可以通过调用Gamebase #initialize来确认Launching状态。<br/>
 应在Gamebase初始化后调用Launching状态。
@@ -118,7 +118,21 @@ Gamebase仅显示警告(warning)和错误日志。
 + NSDictionary* launchingInfo = [TCGBLaunching laucnhingInformations];
 ```
 
-### Launching Status Code
+
+#### 1. Launching
+
+是Gamebase启动信息。
+
+**1.1 Status**
+
+是Gamebase iOS SDK初始化设置中输入的应用程序版本的游戏状态信息。
+
+* code: 游戏状态代码（正在检查、必须升级、结束服务等）
+* message: 游戏状态信息
+
+状态代码请参考下表。
+
+##### Launching Status Code
 
 | Status                      | Code | Description                              |
 | --------------------------- | ---- | ---------------------------------------- |
@@ -133,6 +147,78 @@ Gamebase仅显示警告(warning)和错误日志。
 | INSPECTING_SERVICE          | 303  | 服务正在维护中                                 |
 | INSPECTING_ALL_SERVICES     | 304  | 所有服务正在维护中                             |
 | INTERNAL_SERVER_ERROR       | 500  | 内部服务器错误                                 |
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+
+**1.2 App**
+
+是Gamebase Console中创建的应用程序信息。
+
+* accessInfo
+    * serverAddress: 服务器地址
+    * csInfo: 客服中心信息
+* relatedUrls
+    * termsUrl: 使用条款
+    * personalInfoCollectionUrl: 同意个人信息
+    * punishRuleUrl: 停止使用规定
+    * csUrl：客服中心
+* install: 安装URL
+* idP: 验证信息
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+
+**1.3 Maintenance**
+
+是Gamebase Console中创建的检查信息。
+
+* url: 检查页面URL
+* timezone: 标准时间段(timezone)
+* beginDate: 开始时间
+* endDate: 结束时间
+* message: 检查原因
+
+[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+
+**1.4 Notice**
+
+是Gamebase Console中创建的公告信息。
+
+* message: 信息
+* title: 标题
+* url: 检查URL
+
+[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+
+#### 2. tcProduct
+
+是与Gamebase相关的TOAST服务的appKey。
+
+* gamebase
+* tcLaunching
+* iap
+* push
+
+#### 3. tcIap
+
+是TOAST Console中创建的IAP商店信息。
+
+* id: App ID
+* name: App Name
+* storeCode: Store Code
+ 
+[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+
+#### 4. tcLaunching
+
+是TOAST Launching Console中用户输入的信息
+
+* 用户输入的值传至JSON string。
+* TOAST Launching具体设置请参考如下指南。
+ 
+[Console Guide](/Game/Gamebase/ko/oper-management/#config)
+
+
+
 
 
 ## Lifecycle Event

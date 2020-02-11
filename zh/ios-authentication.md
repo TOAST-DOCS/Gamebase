@@ -29,12 +29,11 @@ Gamebase默认支持Guest登录。
 
 上述逻辑可以按以下顺序实现。
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
 #### 1. 按上一次的登录类型认证
 
@@ -177,8 +176,9 @@ Gamebase默认支持Guest登录。
 
 | keyname                                  | a use                          | 值类型                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | 设定IdP类型                     | facebook, payco, iosgamecenter, naver, google, twitter |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | 设定IdP类型                     | facebook, payco, iosgamecenter, naver, google, twitter, line, appleid |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname |设置登录IdP后收到的认证信息（访问令牌） |                                |
+
 
 
 
@@ -380,7 +380,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 | keyname                                  | a use                          | 值类型                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | 设定IdP类型                     | facebook, payco, iosgamecenter, naver, google, twitter |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | 设定IdP类型                     | facebook, payco, iosgamecenter, naver, google, twitter, line, appleid |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | 设置登录IdP后收到的认证信息（访问令牌） |                                |
 
 

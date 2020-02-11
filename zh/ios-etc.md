@@ -464,11 +464,13 @@ Analytics控制台使用方法请参考如下指南。
 
 **GameUserData**
 
-  | Name | Mandatory(M) / Optional(O) | type | Desc |
-  | -------------------------- | -------------------------- | ---- | ---- |
-  | userLevel | M | int | |
-  | channelId | O | string | |
-  | characterId | O | string | |
+| Name | Mandatory(M) / Optional(O) | type | Desc |
+| -------------------------- | -------------------------- | ---- | ---- |
+| userLevel | M | int | 是显示游戏用户级别的字段。 |
+| channelId | O | String | 是显示通道的字段。 |
+| characterId | O | String | 是显示角色名的字段。 |
+| classId | O | String | 是显示职业的字段。 |
+
 
 **API**
 
@@ -495,10 +497,10 @@ Analytics控制台使用方法请参考如下指南。
 
 **LevelUpData**
 
-  | Name | Mandatory(M) / Optional(O) | type | Desc |
+  | Name | Mandatory (M) / Optional (O) | type | Desc |
   | -------------------------- | -------------------------- | ---- | ---- |
-  | userLevel | M | int | |
-  | levelUpTime | O | long | 按Epoch Time输入。</br>按Millisecond单位输入。|
+  | userLevel | M | int | 是显示游戏用户级别的字段。 |
+  | levelUpTime | M | long | 按Epoch Time输入。</br>按Millisecond单位输入。 |
   | channelId | O | string | |
   | characterId | O | string | |
 
@@ -512,10 +514,44 @@ Analytics控制台使用方法请参考如下指南。
 
 ```objectivec
 - (void)traceLevelUpWith:(int)level levelUpTime:(long long)levelUpTime channelId:(NSString *)channelId characterId:(NSString *)characterId {
-  TCGBAnalyticsLevelUpData* levelUpData = [TCGBAnalyticsLevelUpData levelUpDataWithUserLevel:level];
-  [levelUpData setLevelUpTime:levelUpTime];
-  [levelUpData setChannelId:channelId];
-  [levelUpData setCharacterId:characterId];
+  TCGBAnalyticsLevelUpData* levelUpData = [TCGBAnalyticsLevelUpData levelUpDataWithUserLevel:level levelUpTime:levelUpTime];
   [TCGBAnalytics traceLevelUpWithLevelUpData:levelUpData];
 }
+```
+
+### Contact
+
+Gamebase提供用于应对客户咨询的功能。
+
+> [TIP]
+>
+> 若与TOAST Contact商品关联使用，则可更加轻松方便地应对顾客咨询。
+> 详细的TOAST Contact商品使用，请参考如下指南。
+> [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+>
+
+#### Open Contact WebView
+
+可弹出Gamebase Console中输入的**客服中心URL**页面的功能。
+使用**Gamebase Console > App > InApp URL > Service center**中输入的值。
+
+**API**
+
+```objectivec
++ (void)openContactWithViewController:(UIViewController *)viewController completion:(void(^)(TCGBError *error))completion;
+```
+
+**Example**
+
+```objectivec
+[TCGBContact openContactWithViewController:parentViewController completion:^(TCGBError *error) {
+    if (error != NULL && error.code == TCGB_ERROR_WEBVIEW_INVALID_URL) { // 7001
+        // TODO: Gamebase Console Service Center URL is invalid.
+        //  Please check the url field in the TOAST Gamebase Console.
+    } else if (error != NULL) {
+        // TODO: Error occur when opening the contact web view.
+    } else {
+        // A user close the contact web view.
+    }
+}];
 ```

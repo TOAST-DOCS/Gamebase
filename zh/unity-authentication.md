@@ -1,4 +1,4 @@
-## Game > Gamebase > Unity SDK 使用指南 > 认证
+﻿## Game > Gamebase > Unity SDK 使用指南 > 认证
 
 ## Login
 
@@ -18,12 +18,11 @@ Gamebase默认支持访客登录。<br/>
 
 上述逻辑可以按以下顺序实现。
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
 #### 1. 按上一次的登录类型认证
 
@@ -40,7 +39,7 @@ Gamebase默认支持访客登录。<br/>
 * 网络错误
     * 由于突发的网络问题，认证失败，错误代码为**SOCKET_ERROR(110)**或**SOCKET_RESPONSE_TIMEOUT(101)**。需要重新调用**Gamebase.LoginForLastLoggedInProvider()**，或稍后再试。
 * 禁用游戏用户
-    * 由于用户是禁用状态，认证失败，错误代码为**BANNED_MEMBER(7)**。
+    * 错误代码为**BANNED_MEMBER(7)**时，为停止使用游戏用户，因此验证失败。
     * 请使用**Gamebase.GetBanInfo()**确认制裁信息，并告知游戏用户无法进行游戏的原因。
     * 初始化Gamebase 时将**GamebaseConfiguration.enablePopup**和**GamebaseConfiguration.enableBanPopup** 的值设置为**true**，Gamebase会自动弹出禁用窗口。
 * 其他错误
@@ -62,7 +61,7 @@ Gamebase默认支持访客登录。<br/>
 * 网络错误
     * 由于突发的网络问题，认证失败，错误代码为**SOCKET_ERROR(110)**或**SOCKET_RESPONSE_TIMEOUT(101)**，需要重新调用**Gamebase.Login(providerName, callback)**或稍后再试。
 * 禁用游戏用户
-    * 由于用户是禁用状态，认证失败，错误代码为**BANNED_MEMBER(7)**。
+    * 错误代码为**BANNED_MEMBER(7)**时，为停止使用游戏用户，因此验证失败。
     * 请使用**Gamebase.GetBanInfo()**确认制裁信息，并告知游戏用户无法进行游戏的原因。
     * 初始化Gamebase 时将**GamebaseConfiguration.enablePopup** 和**GamebaseConfiguration.enableBanPopup**的值设置为**true**，Gamebase会自动弹出禁用窗口。
 * 其他错误
@@ -320,11 +319,10 @@ public void LoginWithCredential()
 [Console Guide](./oper-app/#authentication-information)
 
 ## Logout
+
 尝试从登录中的IdP退出。 通常，在游戏的设置画面有退出登录（退出账号）按钮，然后点击该按钮执行。
 即使退出登录成功，也会保留游戏用户数据。
 如果退出登录成功，将会删除IDP认证记录，则下次登录时将显示ID和密码输入窗口。<br/><br/>
-
-以下是点击“退出登录”按钮时的示例代码。
 
 **API**
 
@@ -367,8 +365,6 @@ public void Logout()
 * 您可以使用该IdP重新登录并生成新的游戏用户数据。
 * 这意味着退出Gamebase，并不是退出IdP帐户。
 * 成功退出（删除数据）时，也将退出IdP登录。
-
-以下是游戏用户登录状态下，“退出（删除数据）”的示例代码。
 
 **API**
 
@@ -909,7 +905,6 @@ public void GetAuthProviderProfile(string providerName)
 如果在Gamebase Console中登记为受到制裁的游戏用户，当该用户尝试登录时，
 可能会看到以下限制信息代码。您可以使用(**BANNED_MEMBER(7)**) 方法，确认制裁信息。
 
-
 **API**
 
 Supported Platforms
@@ -1078,6 +1073,7 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 |  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | 不支持的认证方式。 |
 |  | AUTH_NOT_EXIST_MEMBER | 3003 | 不存在或已退出（删除数据）的用户。 |
 |  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 外部认证库错误。 <br/> 请确认DetailCode和DetailMessage。  |
+|  | AUTH_ALREADY_IN_PROGRESS_ERROR | 3010 | 之前的验证流程未完成。
 | TransferKey | SAME\_REQUESTOR | 8 | 在同一台设备上使用了相同的TransferKey。 |
 |  | NOT\_GUEST\_OR\_HAS\_OTHERS | 9 | 非游客帐户尝试了转移或帐户已关联了游客以外的IDP。 |
 |                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccount的有效期已结束。 |
@@ -1113,7 +1109,6 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 
 * 所有错误代码，请参考以下文档。
     * [错误代码](./error-code/#client-sdk)
-
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 

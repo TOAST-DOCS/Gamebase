@@ -17,12 +17,11 @@ Gamebase默认支持Guest登录。
 
 上述逻辑可以按以下顺序实现。
 
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
 ![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
 ![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
 ![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
 ![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
 #### 1. 按上一次的登录类型认证
 
@@ -246,7 +245,7 @@ private static void onLoginForGoogle(final Activity activity) {
 
 | keyname                                  | a use                                    | 值类型                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP 类型                               | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
+| AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP 类型                               | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）<br/>不用于Google认证|                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | 输入登录Google后可以获取的OTAC(一次性验证码) |                                          |
 
@@ -450,6 +449,11 @@ private static void onWithdraw(final Activity activity) {
 
 Mapping API中有添加映射和解除映射的功能。
 
+> <font color="red">[注意]</font><br/>
+>
+> Guest登录中若成功Mapping，则Guest IdP消失。
+>
+
 ### Add Mapping Flow
 
 映射（Mapping）可以按以下顺序实现。
@@ -560,7 +564,7 @@ private static void addMappingForFacebook(final Activity activity) {
 
 | keyname                                  | a use                                    | 值类型                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP类型                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
+| AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP类型                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）<br/>不用于Google认证|                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE |输入登录Google后可以获取的OTOC(一次性验证码)|                                          |
 
@@ -711,7 +715,7 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 
 | keyname                                            | a use                                                        | 值类型                                                      |
 | -------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| AuthProviderCredentialConstants.PROVIDER_NAME      | 设置IdP类型                                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
+| AuthProviderCredentialConstants.PROVIDER_NAME      | 设置IdP类型                                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
 | AuthProviderCredentialConstants.ACCESS_TOKEN       | 设置登录IdP后获得的验证信息（访问令牌）<br/>在Google验证时不使用 |                                                              |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | 输入登录Google后可获得的OTOC(one time authorization code) |                                                              |
 
@@ -1063,7 +1067,7 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 | Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED               | 3101       | 令牌登录失败。                          |
 |                | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | 无效的令牌信息 。                       |
 |                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 无近期登录的IdP信息。                   |
-| IDP Login      | AUTH\_IDP\_LOGIN\_FAILED                 | 3201       | IdP登录失败。                         |
+| IdP Login      | AUTH\_IDP\_LOGIN\_FAILED                 | 3201       | IdP登录失败。                         |
 |                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO     | 3202       | 无效的IdP信息。（Console中没有此IdP信息）。 |
 | Add Mapping    | AUTH\_ADD\_MAPPING\_FAILED               | 3301       | 添加映射（Mapping）失败。                           |
 |                | AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | 已经与其他帐户映射（Mapping）。                    |

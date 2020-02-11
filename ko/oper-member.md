@@ -148,11 +148,6 @@ SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.
 조회한 사용자가 탈퇴한 사용자라면 탈퇴 이력을 보여줍니다.
 이 메뉴는 탈퇴 유저를 조회할 경우에만 나타나며 유저의 탈퇴경로를 조회할 수 있습니다.
 
-### Withdraw History
-![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
-검색한 사용자가 탈퇴한 사용자라면 탈퇴 이력을 보여줍니다.
-이 메뉴는 탈퇴한 게임 유저를 검색할 경우에만 나타나며 게임 유저의 탈퇴 경로를 확인할 수 있습니다.
-
 ## Transfer account
 **단말기 이전** 기능을 사용할 경우에만 사용하실 수 있습니다. [단말기 이전 기능 활성화](./oper-app/#transfer-account)
 게임 유저의 단말기 이전 키의 발급 및 검증 이력을 확인할 수 있습니다. 차단된 키를 차단 해제하거나 만료된 키를 재발급할 수 있습니다.
