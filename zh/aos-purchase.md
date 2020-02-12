@@ -262,5 +262,5 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 ```
 
 * IAP错误代码，请参考以下文档。
-    * [TOAST > TOAST SDK使用指南 > TOAST IAP > Android > 错误代码](/TOAST/ko/toast-sdk/iap-android/#_24)
+    * [TOAST > TOAST SDK使用指南 > TOAST IAP > Android > 错误代码](/TOAST/zh/toast-sdk/iap-android/#_24)
 
