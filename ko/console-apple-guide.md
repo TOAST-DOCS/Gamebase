@@ -34,10 +34,10 @@ secret key를 IAP 앱 정보에 등록합니다.
 
 ### IAP 앱 정보에 shared secret key 입력하기
 ```
-1. IAP Console > App > ios 앱 선택
+1. Gamebase > 구매(IAP) > 스토어 메뉴에서 등록된 App store 정보 선택
 2. Apple Shared Secret 입력
 ```
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-edit.png)
+![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-edit-gamebase.png)
 
 
 
