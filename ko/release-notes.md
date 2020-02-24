@@ -3,12 +3,15 @@
 ### 2019. 02. 25.
 
 #### 기능 추가
-* Weekly Report 기능 추가
-
+* [Console] 
+	* 쿠폰 > 쿠폰 발급: 발급한 쿠폰을 설정한 스토어에서만 사용할 수 있도록 기능 추가
+	
 #### 기능 개선/변경
 * [SDK] 2.7.1
 	* (Common) Guest로 Login 후 GetAuthProviderUserID 호출하면 값을 리턴하도록 수정
-
+* [Console]
+	* 앱 > 앱: 동일한 클라이언트 버전 삭제 이후 재등록 시 알림 로직 추가
+	* 구매(IAP) > Item: 등록 시 구독상품 등록을 위한 등록 필드 값 추가(App store - Shared secret,Google store - Domain authentication File Names)
 
 #### 버그 수정
 * [Console]
