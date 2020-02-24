@@ -8,6 +8,7 @@
 - API 응답결과의 date 타입이 Epoch time 에서 ISO 8601 형식(yyyy-MM-dd'T'HH:mm:ssXXX)으로 변경되었습니다. Token Authentication, Get Member, Get Members API 응답 결과의 regDate, lastLoginDate 항목
 - 쿠폰 소진 API가 추가 되었습니다.
 - 사용자 탈퇴 API가 추가 되었습니다.
+- Purchase(IAP)의 구매 가격(price) 데이터 타입이 가이드상에서 Long 으로 잘못 표기된 것을 Float 타입으로 변경하였습니다.
 
 ## Advance Notice
 
@@ -304,7 +305,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | app.install | Object | 앱 설치 정보 |
 | app.install.url | String | 설치 URL |
 | maintenance | Object | 점검 정보 |
-| maintenance.typeCode | String | 점검 타입 코드 <br>전체 점검:'SYSTEM', 앱별 점검:'APP' |
+| maintenance.typeCode | String | 점검 타입 코드 <br>APP: 게임에서 설정한 점검 <br>SYSTEM: Gamebase 시스템에서 설정한 점검 |
 | maintenance.beginDate | Date | 점검 시작 시간 ISO 8601 |
 | maintenance.endDate | Date | 점검 종료 시간 ISO 8601 |
 | maintenance.url | String | 점검 URL |
@@ -1037,7 +1038,9 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 **[Request Parameter]**
 
-없음
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| storeCode | String | optional | 콘솔에서 특정 스토어만 사용 가능하도록 쿠폰을 발급 받았다면, 스토어 코드를 전달해야 함<br>- GG: Google<br>- ONESTORE<br>- AS: AppStore |
 
 **[Response Body]**
 
@@ -1148,7 +1151,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Object | 결제 기본 정보 |
-| result.price | Long | 결제 가격 |
+| result.price | Float | 결제 가격 |
 | result.currency  | String  | 결제 통화  |
 | result.productSeq | Long | 결제 아이템 번호 (console에 등록된 아이템 고유 번호) |
 
@@ -1231,7 +1234,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 | result[].paymentSeq | String  |  결제 번호 |
 | result[].productSeq | Long | 결제 아이템 번호 (console에 등록된 아이템 고유 번호) |
 | result[].currency  | String  | 결제 통화  |
-| result[].price | Long | 결제 가격 |
+| result[].price | Float | 결제 가격 |
 | result[].accessToken | String | 결제 인증 토큰 |
 
 **[Error Code]**
@@ -1320,7 +1323,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 | result[].productType | String  |  상품(아이템) 타입<br>구독: AUTO_RENEWABLE |
 | result[].productSeq | Long | 결제 아이템 번호 (console에 등록된 아이템 고유 번호) |
 | result[].currency  | String  | 결제 통화  |
-| result[].price | Long | 결제 가격 |
+| result[].price | Float | 결제 가격 |
 | result[].paymentId | String | 최근 갱신된 스토어 결제 번호 |
 | result[].originalPaymentId | String | 최초 스토어 결제 번호 |
 | result[].purchaseTimeMillis | Long | 최근 갱신된 시간 |

@@ -9,7 +9,7 @@
 ### Search Coupon publish
 검색조건에 맞는 쿠폰 발급 내역을 조회합니다.
 
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_01_201912.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/gamebase_coupon_01_201912.png)
 
 **검색 조건**
 
@@ -32,7 +32,7 @@
 ### Publish coupon
 쿠폰 발급 조회화면에서 등록 버튼을 누르면 쿠폰에 대한 발급 진행이 가능합니다.
 
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_02_201912.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/gamebase_coupon_02_201912.png)
 
 #### (1) 쿠폰 타입
 발급할 쿠폰 타입을 설정할 수 있습니다.
@@ -59,7 +59,7 @@
 
 #### (7) 유저별 사용 가능 개수
 발급한 쿠폰에 대하여 한 유저가 최대로 사용할 수 있는 개수를 설정합니다.
-현재 설정할 수 있는 최대 개수는 100개이며 0으로 설정할 경우 무제한으로 사용 가능하도록 설정할 수 있습니다.
+현재 설정할 수 있는 최대 개수는 99개이며 0으로 설정할 경우 무제한으로 사용 가능하도록 설정할 수 있습니다.
 
 #### (8) 아이템
 쿠폰 코드 등록시 지급할 아이템 정보를 입력합니다.
@@ -77,7 +77,7 @@
 발급한 쿠폰 정보를 수정하고 싶을 경우 상세 정보에서 수정버튼을 누르면 정보를 수정할 수 있습니다.
 수정 시 이미 발급한 쿠폰 코드 타입에 대한 수정은 불가능하므로 새로운 타입의 쿠폰을 발급하기 원하신다면 발급 정보를 새롭게 등록하셔야 합니다.
 
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_03_201912.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/gamebase_coupon_03_201912.png)
 
 #### (1) 쿠폰명
 발급한 쿠폰의 목적을 알 수 있는 쿠폰명을 입력합니다.

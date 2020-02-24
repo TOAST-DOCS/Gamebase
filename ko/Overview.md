@@ -71,7 +71,6 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 게임사는 이미 만들어진 게임을 여러 개의 스토어에 출시하게 되면 적은 노력으로 수익을 극대화 할 수 있습니다. Gamebase는 손쉽게 여러 개의 스토어 연동을 지원하기 때문에 게임에서는 주요 스토어별 결제 연동 스펙을 완벽하게 학습하지 않아도 됩니다.
 
 다음은 Gamebase에서 지원하는 스토어 목록입니다.
-
 * Google Play Store
 * App Store
 * ONE Store
