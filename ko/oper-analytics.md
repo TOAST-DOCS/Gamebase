@@ -151,19 +151,6 @@ LTV의 정확한 추정을 위해 아래의 제한 조건이 있습니다.
 * 이용자 그룹의 PU(결제 이용자 수)가 30 이상이어야 합니다.
 * 이용자 그룹 중 가장 최근 가입일에 대해 7일이 경과해야 합니다.
 
-### Life Cycle
-![gamebase_analytics_06_202002_1_lifeCycle](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202002_1_lifeCycle.png)
-
-Life Cycle은 최초로 이용자가 유입된 시점부터, 일별 이용자 추이를 확인할 수 있는 지표입니다. 데이터는 최대 3년까지 제공됩니다.
-
-* 일간 이용자(DAU): 일간 memberno 기준 로그인 1회 이상 액티브 이용자 수(Daily Active Users)
-* 최대 동시 접속자(MCU): 0시~24시까지 최대 동접자 수. 1분 단위 CCU 값에서 가장 큰 값을 1일 단위로 집계함.
-* 신규 가입자(NRU): 신규 가입자. 당일 0시~24시까지 로그인 로그가 최초 수집된 이용자 (memberno 기준)
-* 탈퇴 이용자: 탈퇴한 이용자. 당일 0시~24시까지 memberno 가 삭제된 이용자
-* 가입 당일 탈퇴 이용자: 당일에 가입하고, 당일에 탈퇴한 이용자
-* 평균 CCU: 선택된 기간 동안의 CCU의 평균
-* 평균 게임 시간 - Avg.Playtime(/DAU): 조회기간의 Playtime 평균 (DAU의 Playtime의 합 / DAU)
-
 ## Sales Statistics
 ### Payment Amount
 ![gamebase_analytics_07_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_201901_2.png)
