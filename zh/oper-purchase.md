@@ -33,7 +33,7 @@
 您可以添加在商店中出售的item。
 您可以在** Item ** 标签中添加新item或管理已添加的item。默认情况下，将显示所有商店的item，并且还可以使用各商店的筛选功能。
 
-![gamebase_purchase_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_04_201812.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_04_201911.png)
 
 ### Register
 
@@ -56,20 +56,32 @@
 ## Transactions
 
 可以查询结算信息。
+원하는 검색 유형을 선택하여 원하는 결제 정보를 편리하게 조회할 수 있습니다.
+결제 내역 조회 결과는 오른쪽 상단의 **다운로드** 버튼을 클릭해 언제든지 다운로드할 수 있습니다.
 
-![gamebase_purchase_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_07_201812.png)
+#### Search conditions
+按照选择的搜索类型显示不同的搜索项目。
 
-您可以使用以下搜索条件查询所需的付款信息。
-您可以随时点击右上角的“下载”按钮下载付款详细信息。
-#### 搜索条件
+##### (1) 一般搜索
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_201911.png)
 
-- **商店**: 已付款的商店信息
-- **日期**: 用户尝试购买的时间
-- **付款编号**: 用于区分Gamebase内支付的唯一编号
-- **item编号**: 用户在APP中购买的实际item编号（item编号可在“item”标签上确认）
-- **用户ID**: 付款的用户ID
-- **排列顺序**: 以记录时间为基准，进行升降排序
-- **付款状态**: 根据付款状态查看信息
+一般搜索的情况下，可查询满足如下搜索条件项目的结果。
+- **商店**：支付的商店信息
+- **日期**：用户尝试购买的时间
+- **支付编号**：Gamebase中可区别支付的固有编号
+- **道具编号**：用户在应用程序中购买的实际道具编号（道具编号可在“道具”标签确认。）
+- **用户ID**：支付的用户ID
+- **排列顺序**：以注册日期为准升序、降序排列
+- **支付状态**：以支付状态为准搜索
+
+##### (2) 搜索Trnasaction ID
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_201911.png)
+
+可通过支付后生成的Transaction ID查询。
+
+##### (3) 搜索发票
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_201911.png)
+可利用支付时提供的发票信息查询。
 
 #### 搜索结果
 - **Transaction ID**: 用于区分Gamebase内支付的唯一编号
@@ -118,3 +130,80 @@
 * 可验证查询的发票的付款是否有效。
 * 可确认各字段的比较结果。从商店获得的响应值以JSON形式提供，因此需要时可直接确认数据。
 * 当前仅可验证App Store付款项目。
+
+## Payment abusing monitoring
+
+可查询滥用支付信息并制裁。
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing1_1.0.png)
+
+可利用如下搜索条件查询所需支付及退款信息。
+支付及退款明细可单击右上方的**下载**按钮随时下载。
+#### 搜索条件
+
+- **退款日期**：退款处理的时间
+- **用户ID**：支付的用户ID
+- **退款次数**：用户获得退款的次数。查询到超出输入的次数。
+- **退款金额**：用户获得退款的金额。查询到超出输入的金额。
+
+#### 搜索结果
+- **用户ID**：支付的用户ID
+- **商店**：支付的商店信息
+- **退款次数**：用户获得退款的次数
+- **退款金额**：用户获得退款的金额
+- **支付次数（查询期间）**：用户在查询期间内支付的次数
+- **支付金额（查询期间）**：用户在查询期间内支付的金额
+- **支付次数（累计）**：用户支付的全部累计次数
+- **支付金额（累计）**：用户支付的全部累计金额
+- **支付次数（最近3个月）**：用户最近3个月内支付的次数
+- **支付金额（最近3个月）**：用户最近3个月内支付的金额
+- **状态**：用户的当前状态
+- **手动制裁**：根据用户状态，停止使用或解除停止
+
+#### 手动制裁
+![gamebase_member_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_02_201812.png)
+
+可更改查询的用户账号状态的功能。
+可按状态更改的情况如下。
+- **正常**：可更改为停止使用、退出状态。退出时无法恢复相应账号信息，因此处理前需要确认并注意。
+- **停止使用**：可取消停止使用。
+- **退出**：不显示相应按钮。
+
+#### 确认支付明细
+
+在搜索的列表中单击用户ID时，可查询搜索期间的支付详细明细。
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing2_1.0.png)
+
+#### 支付明细
+- **预约支付日期**：用户尝试或完成购买的时间
+- **退款日期**：用户对道具进行退款的时间
+- **Transaction ID**：Gamebase中可区别支付的固有编号
+- **商店**：支付的商店信息
+- **道具名**：用户在应用程序中购买的实际道具名
+- **价格**：用户购买的道具的价格
+- **货币单位**：用户购买时使用的货币类型
+- **支付状态**：支付的当前进行状态
+
+#### 设置自动制裁滥用支付
+
+若欲使用设置自动制裁，单击**使用**按钮，输入设定值。
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing3_1.0.png)
+
+#### 设置信息
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing4_1.0.png)
+
+* **停止使用期间**  应用自动制裁时，输入停止使用期间。
+    * **永久停止**：欲永久停止使用时选择。
+    * **指定期间**：输入停止使用期间。日 (day)
+* **设置自动制裁条件**  符合设置条件的用户自动进行制裁处理。最少应设置为1个以上。
+    * **退款次数**：输入属于滥用的退款次数。
+    * **退款金额**：输入属于滥用的退款金额。
+* **设置自动制裁信息**  
+    * 输入向用户显示的停止使用信息。 
+    * 以多国语言输入向用户显示的信息，提供模板，以便再次使用。选择提前注册的模板注册。
+* **删除排行榜** 
+    * 设置自动制裁时相应游戏用户的Leaderboard数据是否也一同删除。
+    * 选择后注册，则应用自动制裁时，排行榜中游戏用户的数据被删除，<font color="red">相应数据无法恢复，</font>因此应注意。

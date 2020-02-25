@@ -62,6 +62,7 @@ Gamebase允许多个外部IdP协同工作。 换句话说，用户可以通过�
 ![gamebase_member_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_04_201812.png)
 
 * 单击**解除**按钮，如下所示，确认最终确认窗口及IdP信息。单击**确认**按钮，解除映射。
+
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_RemoveMapping_2.0.png)
 
 ### Login History
@@ -147,6 +148,11 @@ SDK调用与登录相关的API时会添加历史记录。
 如果查询的用户是退出的用户，则会显示退出记录。
 只有在您查询退出用户时才会显示此菜单，可以查询用户退出的方式。
 
+
+### Withdraw History
+![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
+검색한 사용자가 탈퇴한 사용자라면 탈퇴 이력을 보여줍니다.
+이 메뉴는 탈퇴한 게임 유저를 검색할 경우에만 나타나며 게임 유저의 탈퇴 경로를 확인할 수 있습니다.
 
 ## Transfer account
 

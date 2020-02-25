@@ -40,7 +40,7 @@
 | Auth (Login)    | Android, UNITY<br/>IOS | AUTH\_TOKEN\_LOGIN\_FAILED<br/>TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED | 3101       | 令牌登录失败。                         |
 |                 | Android, UNITY<br/>IOS | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO<br/>TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | 无效的令牌信息。                        |
 |                 | Android, UNITY<br/>IOS | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP<br/>TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 无近期登录的IdP信息。                   |
-| IDP Login       | Android, UNITY<br/>IOS | AUTH\_IDP\_LOGIN\_FAILED<br/>TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED | 3201       | IdP登录失败。                        |
+| IdP Login       | Android, UNITY<br/>IOS | AUTH\_IDP\_LOGIN\_FAILED<br/>TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED | 3201       | IdP登录失败。                        |
 |                 | Android, UNITY<br/>IOS | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO<br/>TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO | 3202       | 无效的IdP信息。（Console中没有此IdP信息）。 |
 | Add Mapping     | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_FAILED<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FAILED | 3301       | 添加映射（Mapping）失败。                          |
 |                 | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | 已经与其他帐户映射（Mapping）。                      |
@@ -100,6 +100,7 @@
 | Member  | -4000402              | 用户ID输入错误时                        |
 |         | -4000403              | 请求了无效的用户时                         |
 |         | -4000404              | 请求了无效Auth时 |
+|         | -4000409              | 在相同终端机中使用为迁移终端机获得的TransferAccount信息 |
 |         | -4040401              | 请求了不存在或退出（删除数据）的用户时                |
 |         | -4040403              | 请求了不存在的TransferAccount时 |
 |         | -4100402              | 请求了已使用的TransferAccount时  |
@@ -108,6 +109,20 @@
 |         | -4220401              | 用户Auth数据不正常时                 |
 | IdP     | -4000901              | 被禁用的(block)用户请求TransferAccount验证时 |
 |         | -4040920              | TransferAccount有效性验证中，ID不存在时 |
-|         | -4000927              | TransferAccount有效性验证中，密码错误时 |
-|         | -4000920              | 内部进行密码加密时发生错误。若反复发生，需咨询客服中心 |
+|         | -4000921 ~ 2          | 发放TransferAccount时发生内部错误。持续发生时需要通过客服中心咨询 |
+|         | -4000923              | 若欲按照用户手册(MANUAL)方式更改PASSWORD，输入与当前PASSWORD相同的字符串 |
 |         | -4000924              | 内部错误。若反复发生，需咨询客服中心 |
+|         | -4000925              | 若欲按照用户手册(MANUAL)方式更改ID，输入当前使用中的ID |
+|         | -4000927              | TransferAccount有效性验证中，PASSWORD错误时 |
+|         | -4040920              | TransferAccount有效性验证中，ID不存在时 |
+|         | -5110920              | TransferAccount发放系统错误。持续发生时需要通过客服中心咨询 |
+| Coupon  | -100003               | 请求错误的优惠券代码时                   |
+|         | -100004               | 依据请求已手动完成处理的优惠券代码    |
+|         | -100005               | 已使用的优惠券                                |
+|         | -100006 ~ 10          | 非优惠券使用期时                       |
+|         | -100011               | 超出可使用的优惠券限制数量时          |
+|         | -999999               | 优惠券系统内部错误。持续发生时需要通过客服中心咨询  |
+| IAP     | 5000                  | CONSUME FAILED                                 |
+|         | 5018                  | 已进行消费的支付项                     |
+|         | 1100                  | 省略必需参数并传输错误的参数        |
+|         | 9999                  | UNKNOWN ERROR                                  |

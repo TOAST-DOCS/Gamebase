@@ -14,7 +14,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 * Gamebase Android SDK를 사용하기 전에 TOAST Console에서 앱 아이디를 발급받아야 합니다. 앱 아이디를 발급받으려면 TOAST Console 에서 **(+)서비스 선택**을 클릭하여 **Game > Gamebase** 를 클릭하여 서비스를 활성화 합니다.
 * 사용할 Gamebase 버전, 사용할 인증, 결제, 푸시 모듈을 build.gradle 파일에 선언하세요.
-	* Gamebase 최신 버전은 [릴리스 노트](./release-notes/) 에서 확인할 수 있습니다.
+	* Gamebase 최신 버전은 [jCenter(LINK)](https://jcenter.bintray.com/com/toast/android/gamebase/gamebase-sdk/) 에서 확인할 수 있습니다.
 
 ```groovy
 dependencies {
@@ -47,8 +47,8 @@ dependencies {
 * [Google APIs for Android](https://developers.google.com/android/guides/overview)
 * [Naver for developers](https://developers.naver.com/docs/login/android/)
 * [Twitter Android Developer's guide - Log in with Twitter](https://dev.twitter.com/web/sign-in/implementing)
-* [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/basics/authentication/overview/oauth)
-* [Line for developers](https://developers.line.me/en/docs/line-login/android/integrate-line-login/)
+* [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/basics/authentication/overview)
+* [Line for developers](https://developers.line.biz/en/docs/android-sdk/integrate-line-login/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/android)
 
 ## API Reference

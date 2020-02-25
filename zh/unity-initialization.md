@@ -15,7 +15,7 @@
 | enablePopup | ALL | O |
 | enableLaunchingStatusPopup | ALL | O |
 | enableBanPopup | ALL | O |
-| storeCode | ALL | O |
+| storeCode | ALL | M |
 | fcmSenderId | Android | O |
 | useWebview | Standalone | O |
 
@@ -87,7 +87,7 @@ LaunchingStatus请参考下面Launching段落下面的State, Code部分。
 | ----------- | ---- | ------------ |
 | App Store | AS | only iOS |
 | Google Play | GG | only Android |
-| One Store | TS | only Android |
+| One Store | ONESTORE | only Android |
 
 #### 9. fcmSenderId
 
@@ -266,6 +266,15 @@ Gamebase Console中注册的APP信息。
 * storeCode: Store Code
  
 [Console Guide](/Game/Gamebase/zh/oper-purchase/)
+
+#### 4. tcLaunching
+
+是TOAST Launching Console中用户输入的信息
+
+* 用户输入的值传至JSON string。
+* TOAST Launching具体设置请参考如下指南。
+ 
+[Console Guide](/Game/Gamebase/zh/oper-management/#config)
 
 ### Get Launching Information
 

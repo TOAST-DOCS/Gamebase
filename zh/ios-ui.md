@@ -149,7 +149,7 @@ Gamebase.bundle包含与WebView相关的资源（图像和html，其他资源）
 
 ## Open External Browser
 
-可以使用以下API打开外部浏览器。作为参数传递的URL必须是有效值。
+可通过如下API打开外部浏览器。作为参数传输的URL应为有效值。
 
 ```objectivec
 // Open the url with Browser

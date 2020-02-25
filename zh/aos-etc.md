@@ -49,7 +49,7 @@
 
 相应的语言代码在 `DisplayLanguage` 类中定义。
 
-> `[注意]`
+> <font color="red">[注意]</font><br/>
 >
 > Gamebase支持的语言代码区分大小写。
 > 将其设置为“EN”或“zh-cn”可能会出现问题。
@@ -515,26 +515,28 @@ public class MyObserverManager {
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int |  |
-| channelId | O | String |  |
-| characterId | O | String |  |
+| userLevel | M | int | 是显示用户级别的字段。 |
+| channelId | O | String | 是显示通道的字段。 |
+| characterId | O | String | 是显示角色名的字段。 |
+| classId | O | String | 是显示职业的字段。 |
 
 **API**
 
 ```java
-static void setGameUserData(GameUserData gameUserData)
+Gamebase.Analytics.setGameUserData(GameUserData gameUserData);
 ```
 
 **Example**
 
 ``` java
-public void onLoginSuccess(, String channelId, String characterId) {
+public void onLoginSuccess() {
     int userLevel = 10;
-    String channelId, characterId;
+    String channelId, characterId, classId;
 
     GameUserData gameUserData = new GameUserData(userLevel);
     gameUserData.channelId = channelId; // Optional
     gameUserData.characterId = characterId; // Optional
+    gameUserData.classId = classId; // Optional
 
     Gamebase.Analytics.setGameUserData(gameUserData);
 }
@@ -550,28 +552,66 @@ public void onLoginSuccess(, String channelId, String characterId) {
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc	|
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int |  |
-| levelUpTime | O | long | 按Epoch Time输入。</br>按Millisecond单位输入。|
-| channelId | O | String |  |
-| characterId | O | String |  |
+| userLevel | M | int | 是显示用户级别的字段。 |
+| levelUpTime | M | long | 按Epoch Time输入。</br>按Millisecond单位输入。|
 
 
 
 **API**
 
 ```java
-static void TraceLevelUp(GamebaseRequest.Analytics.LevelUpData levelUpData)
+Gamebase.Analytics.traceLevelUp(LevelUpData levelUpData);
 ```
 
 **Example**
 
 ``` java
-public void onLevelUp(int userLevel, long levelUpTime, String channelId, String characterId) {
-    LevelUpData levelUpData = new LevelUpData(userLevel);
-    levelUpData.levelUpTime = levelUpTime; // Optional
-    levelUpData.channelId = channelId; // Optional
-    levelUpData.characterId = characterId; // Optional
+public void onLevelUp(int userLevel, long levelUpTime) {
+    LevelUpData levelUpData = new LevelUpData(userLevel, levelUpTime);
 
     Gamebase.Analytics.traceLevelUp(levelUpData);
+}
+```
+
+
+### Contact
+
+Gamebase提供用于应对客户咨询的功能。
+
+> [TIP]
+>
+> 若与TOAST Contact商品关联使用，则可更加轻松方便地应对顾客咨询。
+> 详细的TOAST Contact商品使用，请参考如下指南。
+> [TOAST Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
+>
+
+#### Open Contact WebView
+
+可弹出Gamebase Console中输入的**客服中心URL**页面的功能。
+使用**Gamebase Console > App > InApp URL > Service center**中输入的值。
+
+**API**
+
+```java
+Gamebase.Contact.openContact(Activity activity, GamebaseCallback callback);
+```
+
+**Example**
+
+``` java
+public void openContact(Activity activity) {
+    Gamebase.Contact.openContact(activity, new GamebaseCallback() {
+        @Override
+        public void onCallback(GamebaseException exception) {
+            if (exception != null && exception.code == WEBVIEW_INVALID_URL) { // 7001
+                // TODO: Gamebase Console Service Center URL is invalid.
+                //  Please check the url field in the TOAST Gamebase Console.
+            } else if (exception != null) {
+                // TODO: Error occur when opening the contact web view.
+            } else {
+                // A user close the contact web view.
+            }
+        }
+    });
 }
 ```

@@ -4,100 +4,56 @@
 
 以下介绍如何为每个平台设置必要的推送通知。
 
-#### TOAST Cloud Console登记
+#### Register TOAST Cloud Console
 
-首先参考 [Notification > Push > API v2.0 指南](/Notification/Push/ko/api-guide/)设置 Console。
+参考[Notification > Push > Console Guide](/Notification/Push/ko/console-guide/)设置Console。
 
-#### 下载
+#### Gradle
 
-* 如果您使用Firebase 推送
-    * 将下载的 SDK **gamebase-adapter-push-fcm** 文件夹添加到项目中。
-* 如果您使用Tencent 推动
-    * 将下载的 SDK **gamebase-adapter-push-tencent** 文件夹添加到项目中。
+* 在build.gradle中添加要使用的模块。
 
-> <font color="red">[重要]</font><br/>
->
-> 只能有一个推送模块。<br/>
-> 不要同时将Firebase 推送和 Tencent 推送添加到项目中。
-
-
-#### AndroidManifest.xml
-
-* 添加Gamebase 推送所需的设置。
-
-> <font color="red">[重要]</font><br/>
->
-> 需要将**${applicationId}**变更为 **Package name**。
->
-
-*Firebase*
-
-```xml
-<manifest>
-    ...
-    <permission
-        android:name="${applicationId}.permission.C2D_MESSAGE"
-        android:protectionLevel="signature" />
-    <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
-    ...
-    <application>
-    ...
-        <provider
-            android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="${applicationId}.firebaseinitprovider"
-            android:exported="false"
-            android:initOrder="100" />
-        <receiver
-            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
-            android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-
-                <category android:name="${applicationId}" />
-            </intent-filter>
-        </receiver>
-    ...
-    </application>
-</manifest>
+```groovy
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    
+    // >>> Gamebase Version
+    def GAMEBASE_SDK_VERSION = 'x.x.x'
+    
+    // >>> Gamebase - Select Push Adapter
+    implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-push-tencent:$GAMEBASE_SDK_VERSION"
+}
 ```
 
-*Tencent*
+* 推送模块应在FCM(Firebase Cloud Messaging)与Tencent中仅添加一种，但若按照测试目的添加了多个模块，也可以选择欲在Gamebase.initialize中使用的PushType。
+    * PushProvider.Type.FCM : "FCM"
+    * PushProvider.Type.TENCENT : "TENCENT"
 
-```xml
-<manifest>
-    ...
-    <application>
-    ...
-        <provider
-            android:name="com.tencent.android.tpush.XGPushProvider"
-            android:authorities="${applicationId}.AUTH_XGPUSH"
-            android:exported="true" />
-        <provider
-            android:name="com.tencent.android.tpush.SettingsContentProvider"
-            android:authorities="${applicationId}.TPUSH_PROVIDER"
-            android:exported="false" />
-        <provider
-            android:name="com.tencent.mid.api.MidProvider"
-            android:authorities="${applicationId}.TENCENT.MID.V3"
-            android:exported="true" />
-    ...
-    </application>
-</manifest>
+```java
+String PUSH_TYPE = PushProvider.Type.FCM;	// Firebase Cloud Messaging
+
+GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(APP_ID, APP_VERSION, STORE_CODE)
+		.setPushType(PUSH_TYPE)
+        .build();
+
+Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
+    @Override
+    public void onCallback(final LaunchingInfo data, GamebaseException exception) {
+        ...
+    }
+});
 ```
 
 #### Google服务设定(仅Firebase)
 
 * 使用Gradle build时
-    * 要使用Firebase推送，需要google-services.json配置文件。如何在项目中包含配置文件，请参考以下说明 [Firebase 云消息传递](https://firebase.google.com/docs/cloud-messaging/#add_firebase_to_your_app) 。
-    * 将 **apply plugin: 'com.google.gms.google-services'**添加到gradle 设置中。
-	* 使用上述设置，将应用Google Services Gradle Plugin，并将google-services.json文件重命名为res / google-services / {build_type} /values/values.xml使用。
+    * F为使用Firebase推送，应按照如下指南完成Firebase设置。
+		* [TOAST > TOAST SDK使用指南 > TOAST Push > Android > 设置Firebase Cloud Messaging](/toast-sdk/push-android/#firebase-cloud-messaging)
 * 如果使用Unity build
     * 需要创建 string resource(xml) 文件，并将其包含在 Assets/Plugins/Android/res/values/文件夹中。
         * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
         * 以下是 string resource(xml) 文件的示例。
-            ```xml
+            ```
             <!-- Assets/Plugins/Android/res/values/google-services-json.xml -->
             <?xml version="1.0" encoding="utf-8"?>
             <resources>
@@ -113,33 +69,10 @@
             根据Firebase服务联动，google-services.json文件的内容可能会有所不同。
             ![Download google-services.json](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
 
-#### 初始化
+#### Tencent
 
-* Gamebase初始化时调用configuration的**setPushType()**。
-* 如果使用Firebase推送
-    * 追加调用**setFCMSenderId()**。
-* 如果使用Tencent推送
-    * 追加调用**setTencentAccessId()**。
-    * 追加调用**setTencentAccessKey()**。
-
-```java
-private static final String PUSH_FCM_SENDER_ID = "...";
-private static final String PUSH_TENCENT_ACCESS_ID = "...";
-private static final String PUSH_TENCENT_ACCESS_KEY = "...";
-
-GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(APP_ID, APP_VERSION)
-        .setFCMSenderId(PUSH_FCM_SENDER_ID)				// Firebase需要 SenderId。
-        .setTencentAccessId(PUSH_TENCENT_ACCESS_ID)		// 需要Tencent AccessId。
-        .setTencentAccessKey(PUSH_TENCENT_ACCESS_KEY)	// 需要Tencent AccessKey。
-        .build();
-
-Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
-    @Override
-    public void onCallback(final LaunchingInfo data, GamebaseException exception) {
-        ...
-    }
-});
-```
+* 为使用Tencent推送，应按照如下指南完成Tencent设置。
+	* [TOAST > TOAST SDK使用指南 > TOAST Push > Android > 设置Tencent Push Notification](/toast-sdk/push-android/#tencent-push-notification)
 
 ### Register Push
 
@@ -250,18 +183,14 @@ Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
 });
 ```
 
-* TOAST Push错误代码如下。
+* TOAST Push SDK错误代码如下。
 
-| 错误代码 |  说明 |
-| --- | --- |
-| ERROR_SYSTEM_FAIL | 系统问题导致获得令牌失败时 |
-| ERROR_NETWORK_FAIL | 网络问题导致请求失败时 |
-| ERROR_SERVER_FAIL | 服务器返回失败响应时 |
-| ERROR_ALREADY_IN_PROGRESS | 令牌注册、查询已在执行时 |
-| ERROR_INVALID_PARAMETERS | 参数错误时 |
-| ERROR_PERMISSION_REQUIRED | 需要权限时（仅Tencent适用） |
-| ERROR_PARSE_JSON_FAIL | 服务器响应无法解析时 |
-
-
-
-
+| Error | Error Code | Description |
+| --- | --- | --- |
+| OK | 0 | 调用API成功 |
+| NOT_INITIALIZE | 100 | 未对TOAST SDK或TOAST Push SDK进行初始化时。 |
+| PROVIDER_SDK_ERROR | 101 | 外部SDK(Firebase, Tencent)发生错误时。 |
+| USER_ID_NOT_REGISTERED | 102 | 未登录时。 |
+| UNSUPPORTED_PUSH_TYPE | 103 | PushType输入错误或项目中不包含推送库。 |
+| API_SERVER_ERROR | 104 | 调用TOAST Push服务器API失败时 |
+| TOKEN_NOT_REGISTERED | 105 | 内部缓存的Push Token不存在时。 |

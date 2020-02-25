@@ -109,6 +109,7 @@ Analytics由以下菜单构成。
 
 ### 用户流入与流出
 
+
 可以确认与应用程序用户的流入、流出相关的不同日期的趋势。
 
 ![gamebase_analytics_05_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_05_201901_2.png)

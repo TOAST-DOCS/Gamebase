@@ -53,18 +53,15 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 #### 6. 初始化
 
-* 在Gamebase 初始化期间调用configuration的**setStoreCode()**。
+* 初始化Gamebase时应指定Store Code。
 * **STORE_CODE**从以下值中选择。
     * GG: Google
     * ONESTORE: ONE store
-    * TEST: 用于IAP测试
-
 
 ```java
 String STORE_CODE = "GG";	// Google
 
-GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(APP_ID, APP_VERSION)
-        .setStoreCode(STORE_CODE)	// 必须声明Store code.
+GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(APP_ID, APP_VERSION, STORE_CODE)
         .build();
 
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
@@ -85,19 +82,12 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 2. 如果付款成功，请调用 **requestItemListOfNotConsumed**查看未消费结算明细。
 3. 如果返还的未消费结算明细列表中存在值，游戏客户端向游戏服务器请求对游戏付款商品的consume（消费）。
 4. 游戏服务器通过Gamebase server的API请求 consume(消费)API。
-   [API 指南](/Game/Gamebase/ko/api-guide/#wrapping-api)
+   [API 指南](./api-guide/#wrapping-api)
 5. 如果在IAP服务器上consume(消费)API调用成功，则游戏服务器向游戏客户端支付item。
 
-商店付款成功，但发生错误无法正常结束的情况下，请登录后调用以下两个API执行重试逻辑。 <br/>
-
-1. 未处理的商品配送请求
+* 商店支付成功，但存在发生错误而未能正常结束的情况。完成登录后请确认未消费支付明细。 <br/>
     * 如果登录成功，请调用 **requestItemListOfNotConsumed**以检查您的未消费结算明细。
     * 如果返还的未消费结算明细列表中存在值，则游戏客户端向游戏服务器请求consume(消费)并支付item。
-
-2. 尝试重新处理付款错误
-	* 如果登录成功，请调用 **requestRetryTransaction**以自动尝试重新处理未处理的明细。
-    * 如果被返还的successList中存在值，则游戏客户端向游戏服务器请求consume(消费)并支付item。
-    * 如果被返还的failList中存在值，请通过游戏服务器或 Log & Crash 传输来获取数据, 可以通过**[客服中心](https://toast.com/support/inquiry)**咨询重新处理失败原因。
 
 ### Purchase Item
 
@@ -159,7 +149,7 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 
 ### Get a List of Non-Consumed Items
 
-请求已购买了商品，却没有正常消费（发送，提供）item的未消费结算明细。<br/>
+* 查询尚未消费的一次性商品(CONSUMABLE)与消费性订阅商品(CONSUMABLE_AUTO_RENEWABLE) 信息。<br/>
 如果有未完成的商品，您必须要求游戏服务器（item服务器）处理配送item（支付）。
 
 * 请在以下两种情况下调用。
@@ -190,28 +180,34 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 });
 ```
 
-### Reprocess Failed Purchase Transaction
+### Get a List of Activated Subscriptions
 
-如果在商店付款成功，但因TOAST IAP服务器认证失败等原因未能正常付款的情况下，我们将尝试使用API重新处理。 <br/>
-最后，根据付款成功的历史记录，需要通过调用item配送(支付) 等的API 来进行处理。
+以当前用户ID为准查询激活的订阅列表。
+完成支付的订阅商品（自动更新型订阅、自动更新型消费性订阅商品）到期前可一直查询。 
+若用户ID相同，同时查询在Android和iOS中购买的订阅商品。
+
+> <font color="red">[注意]</font><br/>
+>
+> 当前订阅商品为Android的商品时，仅支持Google Play商店。
+>
 
 **API**
 
 ```java
-+ (void)Gamebase.Purchase.requestRetryTransaction(Activity activity, GamebaseDataCallback<PurchasableRetryTransactionResult> callback);
++ (void)Gamebase.Purchase.requestActivatedPurchases(Activity activity, GamebaseDataCallback<List<PurchasableReceipt>> callback);
 ```
 
 **示例**
 
 ```java
-Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<PurchasableRetryTransactionResult>() {
+Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<List<PurchasableReceipt>>() {
     @Override
-    public void onCallback(PurchasableRetryTransactionResult data, GamebaseException exception) {
+    public void onCallback(List<PurchasableReceipt> data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
             // Succeeded.
         } else {
             // Failed.
-            Log.e(TAG, "Request retry transaction failed- "
+            Log.e(TAG, "Request subscription list failed- "
                     + "errorCode: " + exception.getCode()
                     + "errorMessage: " + exception.getMessage());
         }
@@ -227,7 +223,7 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 | PURCHASE_USER_CANCELED                   | 4002       | 游戏用户已取消购买商品。                 |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 尚未完成购买逻辑的情况下已调用API。    |
 | PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 该商店的余额不足，无法结算。           |
-| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 不支持的商店.<br>可选择的商店是 GG(Google), TS(ONE store), TEST . |
+| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 不支持的商店.<br>可选择的商店是 GG(Google), ONESTORE。 |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAP库错误。<br>请确认DetailCode。   |
 | PURCHASE_UNKNOWN_ERROR                   | 4999       | 未知的购买错误。<br>请将完整的Log上传到 [客服中心](https://toast.com/support/inquiry)，我们会尽快回复。 |
 
@@ -266,5 +262,5 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 ```
 
 * IAP错误代码，请参考以下文档。
-    * [Mobile Service > IAP > 错误代码 > Client API 错误类型](/Mobile%20Service/IAP/ko/error-code/#client-api)
+    * [TOAST > TOAST SDK使用指南 > TOAST IAP > Android > 错误代码](/TOAST/zh/toast-sdk/iap-android/#_24)
 
