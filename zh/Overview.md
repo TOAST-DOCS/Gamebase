@@ -8,6 +8,17 @@
 
 ## 主要功能
 
+### Gamebase Analytics
+
+只要应用Gamebase SDK，即免费提供销售、用户、游戏平衡指标。 
+提供游戏中产生的销售、并发用户、用户、级别、道具销售等游戏事业与运营中必不可少的指标服务。 
+请快速应用，并积极地运用于服务中！
+![Gamebase_analytics](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_02_201903_en.png)
+
+#### Reference
+
+* [控制台使用指南 > Analytics](./oper-analytics) 
+
 ### 认证
 
 Gamebase可以使用多种IDP(identity provider)账户ID，支持基于ID和密码的OAuth登录，游客使用其设备的UUID登录。
@@ -25,12 +36,18 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 | 外部认证          | Android | iOS | Windows(based Unity) | Web(based JavaScript)    |
 | ----------------- | ------------ | ------------ | ------------ | ------------ |
 | Facebook          | O | O | O | O |
-| Apple Game Center |  | O| | |
+| Sign In with Apple |  | O | | |
+| Apple Game Center |  | O | | |
 | Google            | O | O | O | O |
 | PAYCO             | O | O | O | O |
 | NAVER             | O | O | O | O |
 | Twitter			| O | O | |  |
-| LINE				| O | O |  |  |
+| LINE				| O | O | O  | O  |
+| Hangame			| O | O | O  | O  |
+| CHINA				| O |  |   |   |
+
+> [参考] 支持验证及支付的中国商店列表（50余个）
+> RedBean(红豆), Lenovo(联想), PPS(爱奇艺), Downjoy(当乐), PPTV(PPTV), Mftnn(4399), Coolpad(酷派), Amigo(金立),Mzw(拇指玩), Sogou(搜狗), AppChina(应用汇), Pengyouwan(朋友玩), Guopan(果盘), Gfan(机锋), Mumayi(木蚂蚁), Hmpay(海马玩), Toutidao(今日头条), Bilibili(bilibili), Mi(小米), Uc(UC), Badu(百度), And360(360), Oppo(OPPO), JiuMeng(九玩(手盟)), BukaSdk(布卡), Moge(摩格(乐游)), StarGame(口袋巴士(星游)), Letv(乐视), Tt(TT语音), Papa(啪啪), NoxPay(夜神模拟器), XiaoBens(笨手机), DouYou(逗游), Ungame(搞趣网), Hanfeng(汉风), QiGuo(七果(七匣子)), SinaV2(新浪v2), XiaoQiV2(新小七), btgame01(乐嗨嗨), ccgame(虫虫游戏), LingDong(灵动), KuaiKan(快看), DouYu(斗鱼), MiFengFanLi(蜜蜂), KaopuRB(靠谱助手), VivoRB(Vivo), BluestacksRB(蓝蝶), HwGamesRB(新华为), XinDong(心动)
 
 * **提供游客登录。**
 游客登录，玩家无需输入任何信息，即可直接登录并启动游戏。由于游客登录，是使用了Gamebase发放的ID，所以客户可以管理用户的游戏数据，游戏不论OAuth登录用户和游客登录用户，均可统一管理不用进行区分。
@@ -52,16 +69,27 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 * [iOS SDK 使用指南 > 认证](./ios-authentication)
 * [Unity SDK 使用指南 > 认证](./unity-authentication)
 
-### Gamebase Analytics
+### Payment
 
-只要应用Gamebase SDK，即免费提供销售、用户、游戏平衡指标。 
-提供游戏中产生的销售、并发用户、用户、级别、道具销售等游戏事业与运营中必不可少的指标服务。 
-请快速应用，并积极地运用于服务中！
-![Gamebase_analytics](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_02_201903_en.png)
+若游戏公司在多个商店推出已经打造的游戏，则可以通过较少的努力将利润最大化。Gamebase支持轻松地关联多个商店，因此不完全学会游戏中各主要商店的支付绑定配置也无妨。
 
-#### Reference
+如下为Gamebase支持的商店列表。
 
-* [控制台使用指南 > Analytics](./oper-analytics) 
+* Google Play Store
+* App Store
+* ONE Store
+* Facebook
+* Amazon
+* 中国商店：关联的 [商店列表](./Overview/#authentication)
+
+* **通过单一接口提供多个商店的应用程序内支付。**
+  通过单一接口提供API，可更轻松快速地进一步开发商店，因此节省了开发费用。开发者可以不学习复杂的支付绑定方法，轻松地实现支付功能。  
+* **通过另外运用的支付验证服务器可确保支付安全及稳定性。**
+  Gamebase中另外构筑用于验证与外部商店进行支付的服务器，更加稳定地提供从移动设备特性上来说可能不稳定的支付交易处理。考虑不稳定的网络状态，重新尝试支付并另外进行道具提供处理管理。
+* **除购买单一道具，还提供订阅、Promotion功能。**
+  提供谷歌商店和应用程序商店提供的订阅功能，可向用户销售月商品。游戏中无需另行实现即可轻松使用谷歌的促销功能。外部商店添加的功能今后也将在游戏库中作为添加功能提供。
+* **利用网页控制台的各种功能（支付明细查询功能等）可顺利应对顾客咨询。**
+  在网页控制台可确认用户的支付明细及道具提供状态，还可应对取消支付及滥用。
 
 ### Launching
 

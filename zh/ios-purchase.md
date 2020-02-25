@@ -57,6 +57,9 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
     * 如果被返回的 successList 中存在值，则游戏客户端向游戏服务器请求consume(消费)并支付item。
     *  如果被返回的failList中存在值，请通过游戏服务器或 Log & Crash 传输来获取数据, 可以通过, [客服中心](https://toast.com/support/inquiry)咨询重新处理失败原因。
 
+* 商店支付成功，但存在发生错误而未能正常结束的情况。完成登录后请确认未消费支付明细。<br/>
+	* 若登录成功，调用**requestItemListOfNotConsumedWithCompletion:**确认未消费支付明细。
+	* 若返回的未消费支付明细列表中存在值，游戏客户向游戏服务器申请consume（消费），提供道具。
 
 ### Purchase Item
 
@@ -125,7 +128,11 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 }
 ```
 
+### Get a List of Activated Subscriptions
 
+以当前用户ID为准查询激活的订阅列表。
+完成支付的订阅商品（自动更新型订阅、自动更新型消费性订阅商品）到期前可一直查询。
+若用户ID相同，同时查询在Android和iOS中购买的订阅商品。
 
 ### Reprocess Failed Purchase Transaction
 
@@ -134,21 +141,39 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 ```objectivec
 - (void)viewDidLoad {
-    [TCGBPurchase requestRetryTransactionWithCompletion:^(TCGBPurchasableRetryTransactionResult *transactionResult, TCGBError *error) {
+    [TCGBPurchase requestActivatedPurchasesWithCompletion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
         if (error != nil) {
-            // To Retry Failed Purchasing Transaction Failed cause of the error
+            // To Requesting Activated Item List Failed cause of the error
             return;
         }
 
-        // Should Deal With This Retry Transaction Result.
-        // You may send result to your gameserver and add item to user.
+        // Should Deal With This Activated Items.
     }];
 }
 ```
 
+### Restore Purchase
+
+以利用用户的AppStore账号购买的明细为准，恢复购买明细，反映在控制台中。
+购买的订阅商品查询不到或者未激活时使用。
+包括完成的支付项，恢复的支付项作为结果返回。
+对于自动更新型消费性订阅商品，存在未反映的购买明细时，恢复后可在未消费购买明细中查询。
 
 
-### AppStore Promotion IAP
+```objectivec
+- (void)viewDidLoad {
+    [TCGBPurchase requestRestoreWithCompletion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
+        if (error != nil) {
+            // To Requesting Restore Failed cause of the error
+            return;
+        }
+
+        // Should Deal With This Restored Items.
+    }];
+}
+```
+
+### App Store Promotion IAP
 
 > `注意`
 > 仅适用于iOS 11或更高版本。

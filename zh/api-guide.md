@@ -1,10 +1,16 @@
-## Game > Gamebase > API指南
+## Game > Gamebase > API v1.2指南
 
-Gamebase Server API以RESTful类型提供如下API。
+## 更改事项
+- IAP API已更改。
+- 调用Get Simple Launching API时,已添加必需的参数storeCode。
+- 已在Check Maintenance API响应结果中添加检查对象相关storeCode信息。
+- 对于迁移GUEST账号相关终端机使用的TransferAccount，添加可验证提前发放的TransferAccount的Validate TransferAccount API。
+- API响应结果的date类型从Epoch time更改为ISO 8601格式(yyyy-MM-dd’T’HH:mm:ssXXX)。Token Authentication, Get Member, Get Members API响应结果的regDate, lastLoginDate项目
+- 已添加优惠券耗尽的API。
 
 ## Advance Notice
 
-为了使用服务器API，应了解以下信息。
+Gamebase Server API以RESTful类型提供如下API。 为了使用服务器API，应了解以下信息。
 
 #### 服务器地址
 
@@ -90,7 +96,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-gateway/v1.0/apps/{appId}/members/{userId}/tokens/{accessToken}?linkedIdP=false |
+| GET | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}/tokens/{accessToken}?linkedIdP=false |
 
 **[Request Header]**
 
@@ -128,22 +134,22 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
     "userId": "String",
     "valid": "Y",
     "appId": "String",
-    "regDate": 1488257745000,
-    "lastLoginDate": 1488286059000,
+    "regDate": "2019-08-27T17:41:05+09:00",
+    "lastLoginDate": "2019-08-27T17:41:05+09:00",
     "authList": [
       {
         "userId": "String",
         "authSystem": "String",
         "idPCode": "String",
         "authKey": "String",
-        "regDate": 1488257745000
+        "regDate": "2019-08-27T17:41:05+09:00"
       },
       {
         "userId": "String",
         "authSystem": "String",
         "idPCode": "String",
         "authKey": "String",
-        "regDate": 1490922916000
+        "regDate": "2019-08-27T17:41:05+09:00"
       }
     ]
   }
@@ -156,10 +162,10 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | linkedIdP.idPCode | String | IdP信息 <br>guest, payco, facebook等 |
 | linkedIdP.idPId | String | IdP ID |
 | member.userId | String | 用户 ID |
-| member.lastLoginDate | long | 上一次登录的时间 <br>第一次登录的用户没有此值 |
+| member.lastLoginDate | String | 上一次登录的时间 <br>第一次登录的用户没有此值 |
 | member.appId | String | appId |
 | member.valid | String | 登录成功的用户的值为"Y" <br>(有关其他值的说明请参考成员API) |
-| member.regDate | long | 用户创建账户的时间 |
+| member.regDate | String | 用户创建账户的时间 |
 | authList | Array[Object] | 用户认证IdP相关信息 |
 | authList[].authSystem | String | Gamebase内部使用的认证系统 <br>预计将会支持用户认证系统 |
 | authList[].idPCode | String | 用户认证IdP信息 <br>guest, payco, facebook等 |
@@ -175,12 +181,13 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 #### Get Simple Launching
 
 可以简单确认在Console设置的服务器地址、安装URL及当前维护状态时的维护时间、消息等启动客户端时提供的Launching信息。
+若仅欲确认当前是否设置检查，使用[Check Maintenance] API即可。
 
 **[Method, URI]**
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-launching/v1.0/apps/{appId}/launching/simple |
+| GET | /tcgb-launching/v1.2/apps/{appId}/launching/simple |
 
 
 **[Request Header]**
@@ -313,7 +320,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-member/v1.0/apps/{appId}/members/{userId} |
+| GET | /tcgb-member/v1.2/apps/{appId}/members/{userId} |
 
 
 **[Request Header]**
@@ -347,15 +354,15 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
     "userId": "String",
     "valid": "Y",
     "appId": "String",
-    "regDate": 1488185201000,
-    "lastLoginDate": 1488185201000,
+    "regDate": "2019-08-27T17:41:05+09:00",
+    "lastLoginDate": "2019-08-27T17:41:05+09:00",
 	"authList": [
 		  {
 			"userId": "String",
 			"authSystem": "String",
 			"idPCode": "String",
 			"authKey": "String",
-			"regDate": 1488185201000
+			"regDate": "2019-08-27T17:41:05+09:00"
 		  }
 		]
 	  },
@@ -381,14 +388,14 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | member.userId | String | 用户ID |
 | member.valid | Enum | Y：正常用户 <br>D: 已退出的用户 <br>B：禁用的用户 <br>M：丢失的账户|
 | member.appId | String | appId |
-| member.regDate | long | 用户创建账户的时间 |
-| member.lastLoginDate | long | 上一次登录的时间 <br>第一次登录的用户没有此值 |
+| member.regDate | String | 用户创建账户的时间 |
+| member.lastLoginDate | String | 上一次登录的时间 <br>第一次登录的用户没有此值 |
 | member.authList | Array[Object] | 用户认证IdP相关信息 |
 | member.authList[].userId | String | 用户ID |
 | member.authList[].authSystem | String | Gamebase内部使用的认证系统 <br>预计将会支持用户认证系统 |
 | member.authList[].idPCode | String | 用户认证IdP信息 <br>guest, payco, facebook等 |
 | member.authList[].authKey | String | authSystem发放的用户区分值 |
-| member.authList[].regDate | long | IdP信息与用户账户映射的时间 |
+| member.authList[].regDate | String | IdP信息与用户账户映射的时间 |
 | memberInfo | Object | 用户附加信息 |
 | memberInfo.deviceCountryCode | String | 设置用户设备的国家 |
 | memberInfo.usmCountryCode | String | 用户USIM的国家代码 |
@@ -414,7 +421,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-member/v1.0/apps/{appId}/members |
+| POST | /tcgb-member/v1.2/apps/{appId}/members |
 
 **[Request Header]**
 
@@ -447,7 +454,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 		"userId": "String",
 		"valid": "Y",
 		"appId": "String",
-		"regDate": 1488185201000
+		"regDate": "2019-08-27T17:41:05+09:00"
     }
   ]
 }
@@ -459,7 +466,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | memberList[].userId | String | 用户ID |
 | memberList[].valid | Enum | Y：正常用户 <br>D: 已退出的用户 <br>B：禁用的用户 <br>M：丢失的账户|
 | memberList[].appId | String | appId |
-| memberList[].regDate | long | 用户创建账户的时间 |
+| memberList[].regDate | String | 用户创建账户的时间 |
 
 
 **[Error Code]**
@@ -475,7 +482,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | Type | URI |
 | --- | --- | --- |
-| POST | String | /tcgb-member/v1.0/apps/{appId}/auth/authKeys |
+| POST | String | /tcgb-member/v1.2/apps/{appId}/auth/authKeys |
 
 **[Request Header]**
 
@@ -537,7 +544,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-member/v1.0/apps/{appId}/members/userIds/authKeys?authSystem={authSystem} |
+| POST | /tcgb-member/v1.2/apps/{appId}/members/userIds/authKeys?authSystem={authSystem} |
 
 
 **[Request Header]**
@@ -596,7 +603,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-member/v1.0/apps/{appId}/members/bans |
+| GET | /tcgb-member/v1.2/apps/{appId}/members/bans |
 
 
 **[Request Header]**
@@ -704,7 +711,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-member/v1.0/apps/{appId}/members/bans/release |
+| GET | /tcgb-member/v1.2/apps/{appId}/members/bans/release |
 
 
 **[Request Header]**
@@ -726,8 +733,6 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | end | String | mandatory | 禁用解除历史记录查询结束时间 (ISO 8601标准时间， 需要UTF-8 Encoding) <br>begin ~ end期间禁用解除，则在查询结果中存在 |
 | page | String | optional | 要查询的页面。从0开始 |
 | size | String | optional | 每页的数据数量 |
-
-
 
 
 **[Response Body]**
@@ -808,7 +813,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 #### Validate TransferAccount
 
-检查为转移访客账户获得的ID及密码的有效性。
+检查为转移访客账户获得的ID及密码的有效性。为有效的TransferAccount时，返回获得的userId信息。
 
 **[Method, URI]**
 
@@ -863,8 +868,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
     "userId": "String",
     "valid": "Y",
     "appId": "String",
-    "regDate": 1488185201000,
-    "lastLoginDate": 1488185201000
+    "regDate": "2019-08-27T17:41:05+09:00",
+    "lastLoginDate": "2019-08-27T17:41:05+09:00"
   }
 }
 ```
@@ -875,8 +880,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | member.userId | String | 用户ID |
 | member.valid | Enum | Y:正常用户<br>D：注销的用户<br>B：停止使用的用户<br>M：丢失的账户|
 | member.appId | String | 应用程序ID |
-| member.regDate | long | 用户创建账户的时间 |
-| member.lastLoginDate | long | 最后一次登录的时间 <br>初次登录的用户无相应值 |
+| member.regDate | String | 用户创建账户的时间 |
+| member.lastLoginDate | String | 最后一次登录的时间 <br>初次登录的用户无相应值 |
 
 **[Error Code]**
 
@@ -895,7 +900,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-launching/v1.0/apps/{appId}/maintenances/under-maintenance |
+| GET | /tcgb-launching/v1.2/apps/{appId}/maintenances/under-maintenance |
 
 **[Request Header]**
 
@@ -929,7 +934,12 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
       "beginDate": "2017-01-01T12:10:00+07:00",
       "endDate": "2017-02-01T12:17:00+07:00",
       "url": "http://url.info",
-      "message": "maintenance reason"
+      "message": "maintenance message",
+      "targetStores": [
+        "GG",
+        "AS",
+        "ONESTROE"
+      ]
     }
   ]
 }
@@ -944,38 +954,335 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | maintenances.endDate | String | 维护结束时间。ISO 8601 |
 | maintenances.url | String | 详细维护URL |
 | maintenances.message | String | 维护消息 |
+| maintenances.targetStores | Array[Enum] | 仅对特定客户设置检查时，设置检查的客户的商店代码<br>- GG: Google<br>- ONESTORE<br>- AS: AppStore |
 
 **[Error Code]**
 
 [错误代码](./error-code/#server)
 
+<br>
+
+## Coupon
+
+#### Check Validation And Consume Coupon
+
+对于通过Console获得的优惠券代码，验证有效性并更改优惠券状态。为有效的优惠券时，更改为消费状态，作为响应结果，返回支付的道具信息。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}/coupons/{couponCode} |
+
+**[Request Header]**
+
+确认通用事项
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST项目ID |
+| userId | String | 要使用优惠券的userId |
+| couponCode | String | 优惠券代码 |
+
+**[Request Parameter]**
+
+无
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "title": "Coupon Title",
+        "benefits": [
+            {
+                "itemId": "heart",
+                "amount": 10
+            },
+            {
+                "itemId": "diamond",
+                "amount": 20
+            }
+        ]
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Object | 优惠券信息 |
+| result.title | String | 优惠券名 |
+| result.benefits | Array[Object] | 要支付的道具信息 |
+| result.benefits.itemId | String | 道具ID |
+| result.benefits.amount | Integer | 道具个数 |
+
+**[Error Code]**
+
+[错误代码](./error-code/#server)
+
+<br>
 
 ## Purchase(IAP)
 
-Gamebase为TOAST IAP服务的服务器API提供**Wrapping**功能。使用Wrapping 功能可在用户服务器上通过统一接口使用TOAST服务。
+#### Consume
 
+Google Play Store, App Store, ONEStore等商店支付完成后，向用户提供道具前，应告知将支付消费。1项支付仅可进行1次支付消费，若支付的状态非正常，则不消费。
+（支付消费完成后，判断为用户的支付及道具提供正常完成）
 
-#### Wrapping API
+未消费(Consume)的支付明细可通过SDK及服务器的未消费支付明细查询API查询。作为参考，注册道具时，仅对商品类型为一次性(CONSUMABLE)的道具支付进行consume处理。
 
-| API | Method | Wrapping URI | IAP URI |
+> [参考]
+> 1项支付可进行1次消费，未进行支付消费的支付视为IAP未提供道具。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.2/apps/{appId}/consume |
+
+**[Request Header]**
+
+确认通用事项
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST项目ID |
+
+**[Request Parameter]**
+
+无
+
+**[Request Body]**
+
+```json
+{
+  "paymentSeq": "2019091931571201",
+  "accessToken" : "90fD1bs1guXwY6aZ7rseEKYW_6gMCISjDASgten4MD6O7XZD7VRjZcs8OTm8lOQVFTegoY4WK78P2WQCMm7cx"
+}
+```
+
+| Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| item消费 | POST | /tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq} | /inapp/v3/consume/{paymentSeq}/items/{itemSeq} |
-| item查询 | GET | /tcgb-inapp/v1.0/apps/{appId}/item/list/{appSeq} | /standard/item/list/{appSeq} |
-| 查询未消费结算明细| POST | /tcgb-inapp/v1.0/apps/{appId}/consumable/list | /standard/inapp/v1/consumable/list |
+| paymentSeq | String | mandatory | 支付编号 |
+| accessToken | String | mandatory  | 支付验证令牌（非登录验证令牌） |
 
-**有关API的详细说明，请参考以下链接。**
+> [参考]
+> 客户调用requestPurchase API时响应的purchaseToken值作为accessToken使用
 
-[IAP Guide](/Mobile%20Service/IAP/ko/api-guide/)
 
-##### API调用示例
+**[Response Body]**
 
+```json
+{
+   "header":{
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "result":{
+        "price": 1500,
+        "currency": "KRW",
+        "productSeq": 12345
+    }
+}
 ```
-Content-Type: application/json
-X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
-X-Secret-Key: IgsaAP
 
-POST https://api-gamebase.cloud.toast.com/tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq}
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Object | 支付基本信息 |
+| result.price | Long | 支付价格 |
+| result.currency  | String  | 支付货币  |
+| result.productSeq | Long | 支付道具编号（console中注册的道具固有编号）|
+
+**[Error Code]**
+
+[错误代码](./error-code/#server)
+
+#### Get Consumable List
+
+可查询完成支付但尚未消费(Consume)的未消费支付明细。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.2/apps/{appId}/consumable |
+
+**[Request Header]**
+
+确认通用事项
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST项目ID |
+
+**[Request Parameter]**
+
+无
+
+**[Request Body]**
+
+```json
+{
+  "marketId": "GG",
+  "userChannel" : "GF",
+  "userKey" : "QXG774PMRZMWR3BR"
+}
 ```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| marketId | String | mandatory | 商店代码<br>GG : Google, AS : Apple, ONESTORE : One Store |
+| userChannel | String | mandatory  | 用户通道<br>当前总是以未实现状态设置“GF”值  |
+| userKey | String | mandatory  | 用户ID  |
+
+**[Response Body]**
+
+```json
+{
+    "header":{
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "success"
+    },
+    "result":[
+        {
+            "paymentSeq": "2016122110023124",
+            "productSeq": 1000292,
+            "currency": "KRW",
+            "price": 1000,
+            "accessToken": "oJgM1EfDRjnQY7yqhWCUVgAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
+        },
+
+        {
+            "paymentSeq": "2016122110023125",
+            "productSeq": 1000292,
+            "currency": "KRW",
+            "price": 1000,
+            "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
+        }
+    ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Array[Object] | 支付基本信息 |
+| result[].paymentSeq | String  |  支付编号 |
+| result[].productSeq | Long | 支付道具编号（console中注册的道具固有编号）|
+| result[].currency  | String  | 支付货币  |
+| result[].price | Long | 支付价格 |
+| result[].accessToken | String | 支付验证令牌 |
+
+**[Error Code]**
+
+[错误代码](./error-code/#server)
+
+### Get ActiveSubscription List
+
+可查询用户当前订阅的支付。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.2/apps/{appId}/active-subscriptions |
+
+**[Request Header]**
+
+确认通用事项
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST项目ID |
+
+**[Request Parameter]**
+
+无
+
+**[Request Body]**
+
+```json
+{
+  "marketId": "GG",
+  "packageName" : "com.toast.gamebase",
+  "userChannel" : "GF",
+  "userKey" : "QXG774PMRZMWR3BR"
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| marketId | String | mandatory | 商店代码<br>GG : Google, AS : Apple, ONESTORE : One Store |
+| packageName | String | mandatory | 控制台中注册的应用程序的packageName |
+| userChannel | String | mandatory  | 用户通道<br>当前总是以未实现状态设置“GF”值  |
+| userKey | String | mandatory  | 用户ID  |
+
+**[Response Body]**
+
+```json
+{
+  "header": {
+    "isSuccessful": true,
+    "resultCode": 0,
+    "resultMessage": "SUCCESS"
+  },
+  "result": [
+    {
+      "channel": "GF",
+      "userId": "string",
+      "paymentSeq": "2018102610330423",
+      "appId": "com.toast.gamebase",
+      "productId": "subs_p1w",
+      "productType": "AUTO_RENEWABLE",
+      "productSeq": 1002904,
+      "currency": "KRW",
+      "price": 1000,
+      "paymentId": "GPA.3375-2193-1175-57698",
+      "originalPaymentId": "GPA.3375-2193-1175-57698",
+      "purchaseTimeMillis": 1540522998289,
+      "expiryTimeMillis": 1541134994548
+    }
+  ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Array[Object] | 支付基本信息 |
+| result[].channel  | String  | 用户通道  |
+| result[].userId  | String  | 用户ID  |
+| result[].paymentSeq | String  |  支付编号 |
+| result[].appId | String  |  套装名 |
+| result[].productId | String  |  商店注册的商品（道具）标识符 |
+| result[].productType | String  |  商品（道具）类型<br>订阅： AUTO_RENEWABLE |
+| result[].productSeq | Long | 支付道具编号（console中注册的道具固有编号）|
+| result[].currency  | String  | 支付货币  |
+| result[].price | Long | 支付价格 |
+| result[].paymentId | String | 最近更新的商店支付编号 |
+| result[].originalPaymentId | String | 最初商店支付编号 |
+| result[].purchaseTimeMillis | Long | 最近更新的时间 |
+| result[].expiryTimeMillis | Long | 订阅到期时间 |
+
+
+**[Error Code]**
+
+[错误代码](./error-code/#server)
+
+<br>
 
 ## Leaderboard
 
@@ -985,15 +1292,15 @@ Gamebase为TOAST Leaderboard服务的服务器API提供**Wrapping**功能。使�
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
-| 查询Factor中的注册用户数 | GET | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
-| 查询单个用户分数/排名 | GET | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
-| 查询多个用户分数/排名 | POST | /tcgb-leaderboard/v1.0/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
-| 查询一定范围的整体分数/排名 | GET | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
-| 登录单个用户分数 | POST | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
-| 登录单个用户分数/ExtraData | POST | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
-| 登录多个用户分数 | POST | /tcgb-leaderboard/v1.0/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
-| 登录多个用户分数/ExtraData | POST | /tcgb-leaderboard/v1.0/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
-| 删除单个用户Leaderboard信息 | DELETE | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| 查询Factor中的注册用户数 | GET | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
+| 查询单个用户分数/排名 | GET | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
+| 查询多个用户分数/排名 | POST | /tcgb-leaderboard/v1.2/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
+| 查询一定范围的整体分数/排名 | GET | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
+| 登录单个用户分数 | POST | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
+| 登录单个用户分数/ExtraData | POST | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
+| 登录多个用户分数 | POST | /tcgb-leaderboard/v1.2/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
+| 登录多个用户分数/ExtraData | POST | /tcgb-leaderboard/v1.2/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
+| 删除单个用户Leaderboard信息 | DELETE | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
 
 
 **有关API的详细说明，请参考以下链接。**
@@ -1008,7 +1315,7 @@ Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 X-Secret-Key: IgsaAP
 
-GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/user-count
+GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/user-count
 ```
 
 ## Others
@@ -1022,7 +1329,7 @@ GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.0/apps/{appId}/fact
 ##### API调用示例
 
 ```
-GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.0/apps/C3JmSctU/maintenances/under-maintenance
+GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.2/apps/C3JmSctU/maintenances/under-maintenance
 ```
 
 ##### API失败响应结果
@@ -1036,11 +1343,10 @@ GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.0/apps/C3JmSctU/maint
     "traceError": {
       "trackingTime": 1489726350287,
       "throwPoint": "gateway",
-      "uri": "/tcgb-launching/v1.0/apps/C3JmSctU/maintenances/under-maintenance"
+      "uri": "/tcgb-launching/v1.2/apps/C3JmSctU/maintenances/under-maintenance"
     },
     "isSuccessful": false
   }
 }
 
 ```
-

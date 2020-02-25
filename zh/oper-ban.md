@@ -106,15 +106,13 @@ AppGuard的联动方法 ，请参考[AppGuard](./oper-ban/#appguard)。
 #### 用户 ID
 输入要解除禁用的Gamebase用户ID。 您可以一次添加多个用户，有两种添加方式。
 
-<<<<<<< HEAD
 - **用户输入**：在输入窗口中直接输入要添加禁用的用户ID，然后按**Enter** 按钮或点击**添加**按钮。由于检查用户ID的有效性，因此无法输入无效的用户ID。
 - **批量注册**：只能上传CSV文件。可以从Console 画面下载示例文件。批量添加一次最多可支持10,000人。
-、
 ![gamebase_ban_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_06_201812.png)
 
 > [参考]
 > 如果批量添加失败，将出现提示。您可以通过点击提示页面中的**Download**按钮下载添加失败的用户列表文件。
-> ![gamebase_ban_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_04_201812.png)
+> > ![gamebase_ban_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_04_201812.png)
 
 ## Template
 提供模板轻松以多种语言输入消息显示给用户。 选择预先创建的模板。

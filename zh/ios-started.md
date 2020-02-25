@@ -5,9 +5,9 @@
 
 > [INFO]
 >
-> 最低版本 : iOS8以上或部分支持IdP的iOS9以上 <br/>
-> 支持arm7, arm7s, arm64, i386, x86_64 <br/>
-> Xcode10或更高版本
+> 最低规格：iOS9以上或支持部分IDP时iOS10以上<br/>
+> iOS, iOS Simulator
+> Xcode10以上可创建
 >
 
 
@@ -27,24 +27,32 @@ Gamebase可以通过以下方式安装。
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 目的 | External SDK Download Link | Support iOS Version |
 | --- | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework, Gamebase.bundle |  |  包括Gamebase的 Interface和核心逻辑 |  | iOS8 or later
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v4.17.0 | 支持Facebook登录 | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS8 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.1.6 | 支持Payco登录 | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS8 or later |
+| Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.19.3 | 包含Gamebase的Interface及核心逻辑 | 包含于Gamebase内 | iOS9 or later
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v5.6.0 | 支持Facebook登录 | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS9 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.3.2 | 支持Payco登录 | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | 支持Naver登录 | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |
-|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | 支持Gamecenter登录 |  | iOS8 or later |
+|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | 支持Gamecenter登录 |  | iOS9 or later |
 |  | GamebaseAuthGoogleAdapter.framework | | 支持Google登录 | | iOS9 or later |
-|  | GamebaseAuthTwitterAdapter.framework | | 支持Twitter登录 | | iOS8 or later |
-|  | GamebaseAuthLineAdapter.framework | LineSDK v4.1.1 | 支持LINE登录 | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS8 or later |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework | 支持应用内结算 | 包含在Gamebase IAP 中 | iOS8 or later |
-| Gamebase Push | GamebasePushAdapter.framework |  | 支持推送 | 包含在Gamebase中 | iOS8 or later |
-
+|  | GamebaseAuthTwitterAdapter.framework | | 支持Twitter登录 | | iOS9 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | 支持LINE登录 | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS10 or later |
+|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | AuthenticationServices.framework设置为Optional | iOS13 or later |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework, ToastIAP 0.19.8, ToastGamebaseIAP 0.9.7 | 支持游戏内支付 | 包含于Gamebase IAP内 | iOS9 or later |
+| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.19.3 | 支持Push | 包含于Gamebase Push内 | iOS9 or later |
 
 
 > <font color="red">[注意]</font><br/>
 >
-> Gamebase Framework文件中，名字包含**Adapter**的文件可选择性地在项目内决定是否使用，为了Adapter Framework的使用，可能需要上表中列出的外部SDK。
-> 对于某些经过认证的Adpaters，请注意上表中的Support iOS Version。
-> (支持版本为 iOS9以上的Auth Adpater包含在build包时，iOS8以下发生runtime Crash。)
+> 添加Sign In with Apple需要的AuthenticationServices.framework时必须设置为Optional。
+> 设置为Required时，iOS 11以下设备运行后会发生崩溃。
+> 
+<br/>
+
+
+> <font color="red">[注意]</font><br/>
+>
+> Gamebase Framework文件中名称中含有**Adapter**的文件可决定是否选择性地在项目中使用，为使用相应Adapter Framework可能需要上表中列出的外部SDK。
+> 对于部分验证Adpater，应注意上表中的Support iOS Version。
+>（Build中包含支持版本为iOS10以上的Auth Adpater时，iOS9以下发生runtime Crash。）
 
 <br/>
 
@@ -73,6 +81,7 @@ Gamebase可以通过以下方式安装。
     * ImageIO.framework
     * GameKit.framework
     * StoreKit.framework
+    * AuthenicationServices.framework (Optional)
 ![Link Binary With Libraries](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
 * 4) **Target > Build Settings > Linking > Other Linker Flags**中需要添加**-ObjC**。
 ![Other Linker Flags](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
@@ -97,7 +106,7 @@ Gamebase iOS SDK可以通过CocoaPods来设置。
 * 4) 使用编辑器打开已创建的**Podfile**并编写以下内容。
 
 ```ruby
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'SampleApplication' do
     pod 'Gamebase'
@@ -108,16 +117,18 @@ target 'SampleApplication' do
     pod 'GamebaseAuthTwitterAdapter'
     pod 'GamebaseAuthGoogleAdapter'
     pod 'GamebaseAuthLineAdapter'
+    pod 'GamebaseAuthAppleidAdapter'
     pod 'GamebasePushAdapter'
     pod 'GamebasePurchaseIAPAdapter'
+
 end
 ```
 
 > [INFO]
 >
-> **target 'SampleApplication'do**部分中，输入已创建项目的目标名称。<br/> 
-> 可以通过编写 **pod 'Gamebase', '1.11.1'**创建特定版本。如果没有为每个pod指定版本，则会设置为最新版本。<br/>
-> 只能选择性地应用特定Adapter。
+> 在**target ‘SampleApplication’ do**部分输入创建的项目的目标名。<br/>
+> 按照**pod ‘Gamebase’, ‘2.6.0’**编制，可指定特定版本。若各pod未列出版本，则设置为最新版。<br/>
+> 仅可选择性应用特定Adapter。
 >
 > <font color="red">[注意]</font><br/>
 >

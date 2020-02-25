@@ -334,6 +334,7 @@ public static string GetCountryCode()
 ```
 
 ### Server Push
+
 * 可以处理从Gamebase服务器发送到客户端设备的Server Push Message。
 * 在Gamebase客户端上添加ServerPushEvent Listener允许用户接收和处理信息，可以删除添加的ServerPushEvent Listener。
 
@@ -599,9 +600,10 @@ Analytics控制台使用方法请参考如下指南。
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int |  |
-| channelId | O | string |  |
-| characterId | O | string |  |
+| userLevel | M | int | 是显示游戏用户级别的字段。 |
+| channelId | O | string | 是显示通道的字段。 |
+| characterId | O | string | 是显示角色名的字段。 |
+| characterClassId | O | string | 是显示职业的字段。 |
 
 **API**
 
@@ -619,11 +621,12 @@ static void SetGameUserData(GamebaseRequest.Analytics.GameUserData gameUserData)
 **Example**
 
 ``` cs
-public void SetGameUserData(int userLevel, string channelId, string characterId)
+public void SetGameUserData(int userLevel, string channelId, string characterId, string characterClassId)
 {
     GamebaseRequest.Analytics.GameUserData gameUserData = new GamebaseRequest.Analytics.GameUserData(userLevel);
     gameUserData.channelId = channelId;
     gameUserData.characterId = characterId;
+    gameUserData.characterClassId = characterClassId;
 
     Gamebase.Analytics.SetGameUserData(gameUserData);
 }
@@ -639,10 +642,10 @@ public void SetGameUserData(int userLevel, string channelId, string characterId)
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc	|
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int |  |
-| levelUpTime | O | long | 按Epoch Time输入。</br>按Millisecond单位输入。 |
-| channelId | O | string |  |
-| characterId | O | string |  |
+| userLevel | M | int | 是显示游戏用户级别的字段。 |
+| levelUpTime | O | long | Enter Epoch Time</br>in millisecond. |
+| channelId | O | string | 是显示角色名的字段。 |
+| characterId | O | string | 是显示职业的字段。 |
 
 **API**
 
@@ -660,13 +663,63 @@ static void TraceLevelUp(GamebaseRequest.Analytics.LevelUpData levelUpData)
 **Example**
 
 ``` cs
-public void TraceLevelUp(int userLevel, long levelUpTime, string channelId, string characterId)
+public void TraceLevelUp(int userLevel, long levelUpTime)
 {
-    GamebaseRequest.Analytics.LevelUpData levelUpData = new GamebaseRequest.Analytics.LevelUpData(userLevel);
-    levelUpData.levelUpTime = levelUpTime;
-    levelUpData.channelId = channelId;
-    levelUpData.characterId = characterId;
+    GamebaseRequest.Analytics.LevelUpData levelUpData = new GamebaseRequest.Analytics.LevelUpData(userLevel, levelUpTime);
 
     Gamebase.Analytics.TraceLevelUp(levelUpData);
+}
+```
+
+### Contact
+
+Gamebase提供用于应对客户咨询的功能。
+
+> [TIP]
+>
+> 与TOAST Contact商品关联使用，则可更加轻松方便地应对顾客咨询。
+> TOAST Contact商品使用，请参考如下指南。
+> [TOAST Online Contact Guide](/Contact%20Center/zh/online-contact-overview/)
+
+#### Open Contact WebView
+
+可弹出Gamebase Console中输入的**客服中心URL**页面的功能。
+
+* 使用**Gamebase Console > App > InApp URL > Service center**中输入的值。
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+```cs
+static void OpenContact(GamebaseCallback.ErrorDelegate callback)
+```
+
+**Example**
+
+``` cs
+public void SampleOpenContact()
+{
+    Gamebase.Contact.OpenContact((error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            Debug.Log("OpenContact succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("OpenContact failed. error:{0}", error));
+
+            if (error.code == GamebaseErrorCode.WEBVIEW_INVALID_URL)
+            {
+                // Gamebase Console Service Center URL is invalid.
+                // Please check the url field in the TOAST Gamebase Console.
+                var launchingInfo = Gamebase.Launching.GetLaunchingInformations();
+                Debug.Log(string.Format("csUrl:{0}", launchingInfo.launching.app.relatedUrls.csUrl));
+            }
+        }
+    });
 }
 ```

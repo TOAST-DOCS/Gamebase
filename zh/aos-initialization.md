@@ -2,20 +2,15 @@
 
 在使用Gamebase Android SDK之前，必须先执行初始化。
 
-### Activate the Application
+### onActivityResult
 
-要管理App的生命周期(lifecycle)，须通知Gamebase SDK您的应用处于有效状态。<br/>
-**Application#onCreate()**调用 **Gamebase#activeApp(Context)**。
+还需要从**Activity#onActivityResult(int, int, Intent)**调用 **Gamebase.onActivityResult(int, int, Intent)**，以进行Gamebase的正常操作。
+
+
+**API**
 
 ```java
-public class GamebaseApplication extends Application {
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        Gamebase.activeApp(getApplicationContext());
-    }
-}
++ (void)Gamebase.onActivityResult(int requestCode, int resultCode, Intent data);
 ```
 
 ### Configuration Settings
@@ -24,14 +19,11 @@ public class GamebaseApplication extends Application {
 
 | API                                      | Mandatory(M) / Optional(O) | Description                              |
 | ---------------------------------------- | -------------------------- | ---------------------------------------- |
-| Builder(String appId, String appVersion) | **M**                      | 需要使用appId和appVersion，初始化gamebaseConfiguration.Builder构造函数作为必要参数。<br/><br/> ** appId **是TOAST Project发放的App的ID。<br/> **appVersion**用于判断游戏是处于服务状态、更新状态还是维护状态。请指定游戏版本。 |
+| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | 需要使用appId和appVersion，初始化gamebaseConfiguration.newBuilder初始化为必要的参数。<br/><br/> **appId**是TOAST Project发放的App的ID。<br/> **appVersion**用于判断游戏是处于服务状态、更新状态还是维护状态。请指定游戏版本。 <br/> **storeCode**是代表APK分配的商店的代码。以下指南中有对各商店代码的说明。 [Purchase - Initialization](./aos-purchase/#6-initialization) |
 | build()                                  | **M**                      | 将设置完的 Builder转换为Configuration对象。<br/>**Gamebase.initialize()** API要求。 |
 | enablePopup(boolean enable)              | O                          | **[UI]**<br/>因系统维护或设置禁用（ban）等原因，导致游戏用户无法玩游戏的状态下，有时需要通过弹出窗口显示原因。<br/>如果设置为**true**，Gamebase将在该情况下自动弹出窗口公告信息。<br/>默认值为 **false**。<br/>**false**的情况下，从Launching结果中获取信息，并使用自定义UI，显示用户无法玩游戏的原因。 |
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>根据Launching结果，可以更改Gamebase是否在无法登录时，自动显示弹出窗口（维护状态为主）。<br/>仅适用于**enablePopup(true)** 状态下。<br/>默认值为 **true**。 |
 | enableBanPopup(boolean enable)           | O                          | **[UI]**<br/>当游戏用户被禁用时，Gamebase可以设定是否将制裁原因以弹出窗口的形式显示给用户。<br/>仅适用于**enablePopup(true)**状态下。<br/>默认值为 **true**。 |
-| setStoreCode(String storeCode)           | O                          | **[Purchase]**<br/>如果要使用TOAST的IAP(In-App Purchase)服务，则需要设置商店类型。<br/>有关参数，请参考 [IAP指南](/Mobile%20Service/IAP/ko/Overview/) |
-| setFCMSenderId(String senderId)          | O                          | **[Push]**<br/>如果要通过Google Notification（FCM，GCM）发送推送消息，则需要设置发件人ID。 |
-| setTencentAccessKey(String accessKey)<br/>setTencentAccessId(String accessId) | O                          | **[Push]**<br/> 如果您使用的是腾讯推送模块，则需要设置访问密钥和访问ID。|
 
 ### Debug Mode
 * Gamebase仅显示警告(warning)和错误日志。
@@ -50,8 +42,7 @@ public class GamebaseApplication extends Application {
 
 ### Initialize
 
-通过在**Activity#onCreate(Bundle)**调用**Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback)**来初始化Gamebase SDK。<br/>
-另外，还需要从**Activity#onActivityResult(int, int, Intent)**调用 **Gamebase.onActivityResult(int, int, Intent)**，以进行Gamebase的正常操作。
+通过在**Activity#onCreate(Bundle)**调用**Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback)**来初始化Gamebase SDK。
 
 **API**
 
@@ -69,11 +60,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         /**
+         * Show gamebase debug message.
+		 * set 'false' when build RELEASE.
+         */
+        Gamebase.setDebugMode(true);
+
+        /**
          * Gamebase Configuration.
          */
         String appId = "T0aStC1d";
         String appVersion = "1.0.0";
-        GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(appId, appVersion)
+        String storeCode = "GG";
+        GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(appId, appVersio, storeCode)
                                             .enableLaunchingStatusPopup(true)
                                             .build();
         /**
@@ -83,13 +81,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCallback(final LaunchingInfo data, GamebaseException exception) {
                 if (Gamebase.isSuccess(exception)) {
-                    // 确认Launching状态。
-                    LaunchingStatus status = data.getStatus();
-                    if (status.isPlayable()) {
-                        // 玩游戏
-                    } else {
-                        // 维护或更新App。
-                    }
+                    // 请根据启动代码判断是否允许进入游戏。
+                    ...
                 } else {
                     // 如果初始化失败，您将无法使用Gamebase SDK。
                     // 显示错误，重新启动或关闭游戏。
@@ -100,11 +93,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /**
-         * Show gamebase debug message.
-		 * set 'false' when build RELEASE.
-         */
-        Gamebase.setDebugMode(true);
         ...
     }
     ...
@@ -122,9 +110,10 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-### Launching Status
+### Launching Information
 
-可以通过调用Gamebase#initialize来确认Launching状态。
+可以通过调用Gamebase#initialize来确认Launching状态。<br/>
+请根据启动代码判断是否玩游戏。
 
 ```java
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
@@ -132,15 +121,47 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
     public void onCallback(final LaunchingInfo data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
             //确认Launching状态。
-            LaunchingStatus status = data.getStatus();
-            int statusCode = status.getCode();
-            switch (statusCode) {
-                case LaunchingStatus.INSPECTING_SERVICE:
-                    // 维护中...
+            boolean canPlay = true;
+            String errorLog = "";
+            switch (launchingInfo.getStatus().getCode()) {
+                case LaunchingStatus.IN_SERVICE:
                     break;
-                ...
+                case LaunchingStatus.RECOMMEND_UPDATE:
+                    Log.d(TAG, "There is a new version of this application.");
+                    break;
+                case LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST:
+                case LaunchingStatus.IN_TEST:
+                case LaunchingStatus.IN_REVIEW:
+                    Log.d(TAG, "You logged in because you are developer.");
+                    break;
+                case LaunchingStatus.REQUIRE_UPDATE:
+                    canPlay = false;
+                    errorLog = "You have to update this application.";
+                    break;
+                case LaunchingStatus.BLOCKED_USER:
+                    canPlay = false;
+                    errorLog = "You are blocked user!";
+                    break;
+                case LaunchingStatus.TERMINATED_SERVICE:
+                    canPlay = false;
+                    errorLog = "Game is closed!";
+                    break;
+                case LaunchingStatus.INSPECTING_SERVICE:
+                case LaunchingStatus.INSPECTING_ALL_SERVICES:
+                    canPlay = false;
+                    errorLog = "Under maintenance.";
+                    break;
+                case LaunchingStatus.INTERNAL_SERVER_ERROR:
+                default:
+                    canPlay = false;
+                    errorLog = "Unknown internal error.";
+                    break;
             }
-            ...
+            if (canPlay) {
+                // 开始玩游戏。
+            } else {
+                // 显示不可玩游戏的原因并终止游戏，
+            }
         }
         ...
     }
@@ -154,12 +175,23 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 ```java
 + (LaunchingInfo)Gamebase.Launching.getLaunchingInformations();
 ```
+LaunchingInfo对象中包含Gamebase Console中设置的值及游戏状态等。
 
 
+#### 1. Launching
 
+是Gamebase启动信息。
 
+**1.1 Status**
 
-### Launching Status Code
+是Gamebase Android SDK初始化设置中输入的应用程序版本的游戏状态信息。
+
+* code: 游戏状态代码（正在检查、必须升级、结束服务等）
+* message: 游戏状态信息
+
+状态代码请参考下表。
+
+##### Launching Status Code
 
 | 状态                      | Code | 描述                              |
 | --------------------------- | ---- | ---------------------------------------- |
@@ -174,6 +206,75 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 | INSPECTING_SERVICE          | 303  | 服务正在维护中                             |
 | INSPECTING_ALL_SERVICES     | 304  | 所有服务正在维护中                              |
 | INTERNAL_SERVER_ERROR       | 500  | 内部服务器错误                                 |
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+
+**1.2 App**
+
+是Gamebase Console中创建的应用程序信息。
+
+* accessInfo
+    * serverAddress: 服务器地址
+    * csInfo: 客服中心信息
+* relatedUrls
+    * termsUrl: 使用条款
+    * personalInfoCollectionUrl: 同意个人信息
+    * punishRuleUrl: 停止使用规定
+    * csUrl：客服中心
+* install: 安装URL
+* idP: 验证信息
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+
+**1.3 Maintenance**
+
+是Gamebase Console中创建的检查信息。
+
+* url: 检查页面URL
+* timezone: 标准时间段(timezone)
+* beginDate: 开始时间
+* endDate: 结束时间
+* message: 检查原因
+
+[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+
+**1.4 Notice**
+
+是Gamebase Console中创建的公告信息。
+
+* message: 信息
+* title: 标题
+* url: 检查URL
+
+[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+
+#### 2. tcProduct
+
+是与Gamebase相关的TOAST服务的appKey。
+
+* gamebase
+* tcLaunching
+* iap
+* push
+
+#### 3. tcIap
+
+是TOAST Console中创建的IAP商店信息。
+
+* id: App ID
+* name: App Name
+* storeCode: Store Code
+ 
+[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+
+#### 4. tcLaunching
+
+是TOAST Launching Console中用户输入的信息
+
+* 用户输入的值传至JSON string。
+* TOAST Launching具体设置请参考如下指南。
+ 
+[Console Guide](/Game/Gamebase/ko/oper-management/#config)
 
 
 
