@@ -1,5 +1,17 @@
 ## Game > Gamebase > Release Notes
 
+### Dec. 24, 2019
+
+#### More Features
+* Coupon > Issue Coupons: Added coupon as keyword
+
+#### Feature Updates
+* [Console]
+	* Purchase > Query Payment Data: Column added for additional information 
+* [SDK] 2.6.2
+	* (Common) TOAST SDK Update: Android(0.19.4), iOS(0.20.1), Unity(0.18.0)
+	* (iOS) Update of Naver SDK Version (4.1.0)
+	
 ### Dec.10, 2019 
 
 #### More Features 
