@@ -1,3 +1,9 @@
+## IAP 메뉴 이용에 앞서
+![gamebase_purchase_01_201812](http://static.toastoven.net/prod_gamebase/Console_IAP_Select_currency_1.0.png)
+IAP 메뉴를 이용하려면 결제 지표를 위한 통화를 먼저 선택해 주셔야 합니다.
+최초 한번만 설정 가능하며 Analytics 매출지표에는 설정된 통화코드로 지표가 노출됩니다.
+한번 선택한 통화코드는 변경할 수 없으니 신중히 선택해 주세요.
+
 ## Game > Gamebase > 콘솔 사용 가이드 > 결제
 
 인앱 결제와 관련된 정보를 등록하고 내역을 조회할 수 있습니다.
@@ -5,7 +11,7 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 
 ## Store
 
-게임 내에서 아이템을 판매하기 위해 스토어를 등록합니다. 
+게임 내에서 아이템을 판매하기 위해 스토어를 등록합니다.
 **Store** 탭의 **스토어 정보 리스트**에서 새 스토어를 등록하거나 이미 등록한 스토어를 관리할 수 있습니다.
 ![gamebase_purchase_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_01_201812.png)
 
