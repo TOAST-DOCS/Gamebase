@@ -490,10 +490,10 @@ APIの呼び出しに必要なパラメータは下記の通りです。
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | number |  |
-| channelId | O | string |  |
-| characterId | O | string |  |
-| classId | O | string |  |
+| userLevel | M | number | ゲームユーザーレベルを表すフィールドです。 |
+| channelId | O | string | チャンネルを表すフィールドです。 |
+| characterId | O | string | キャラクター名を表すフィールドです。 |
+| characterClassId | O | string | 職業を表すフィールドです。 |
 
 **API**
 
@@ -532,6 +532,8 @@ APIの呼び出しに必要なパラメータは下記の通りです。
 | -------------------------- | -------------------------- | ---- | ---- |
 | userLevel | M | number |  |
 | levelUpTime | M | number | Epoch Timeで入力します。</br>Millisecond単位で入力します。 |
+| channelId | O | string |  |
+| characterId | O | string |  |
 
 **API**
 
