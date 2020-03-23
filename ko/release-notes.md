@@ -1,14 +1,50 @@
 ## Game > Gamebase > 릴리스 노트
 
-### 2019. 02. 25.
+### 2020. 03. 10.
 
 #### 기능 추가
-* Weekly Report 기능 추가
+* [Console] 
+	* 앱 > 앱: Analytics 매출 지표 표시할 때 테스트 결제 포함여부 설정   
+		* '테스트 결제 제외'로 설정하면 Analytics 매출 지표에서 테스트 결제건은 모두 제외하고 보여줍니다. 
+	* 구매(IAP): 구매(IAP)메뉴 최초 접근시 결제지표 통화 코드 설정  
+	* 최초 한번만 설정 가능하며 Analytics 매출지표에는 설정된 통화코드로 지표가 노출됩니다.  
+	* 모바일 콘솔(TOAST APP포함)에 '데스크탑 보기' 기능 추가
 
+#### 기능 개선/변경
+* [Console] 
+	* 앱 > 설치URL: URL 입력가능한 scheme 추가적용  
+		* 기존: 공통('http://', 'https://')Android('market://')  
+		* 추가: iOS('itms://', 'itmss://', 'itms-apps://'), Android('intent://')
+* [SDK] 2.7.2 
+	* (Unity) FacebookAdapter 개선  
+		* v7.9.4 ~ v7.18.1 버전 까지 호환성 테스트  
+		* null exception 예외 처리 
+	* (Unity) StandaloneWebviewAdapter 개선  
+		* Web페이지를 Texture 내보내기  
+		* 멀티 웹뷰 지원  
+		* 쿠키 삭제 옵션 추가  
+		* Texture Resizing 지원  
+		* Scrollbar on/off 지원  
+		* 페이지 로드 완료 알림  
+		* 투명 배경 지원 
+	* (Unity) Editor에서 Android/iOS 플랫폼을 선택하고 Initialize API를 호출하면 에러가 발생하여 수정
+
+#### 버그 수정
+* [Console] 
+	* Anlytics: 통화코드가 코인성인 경우 매출지표가 '0'으로 표시되는 이슈 해결
+
+### 2020. 02. 25.
+
+#### 기능 추가
+* [Console] 
+	* 쿠폰 > 쿠폰 발급: 발급한 쿠폰을 설정한 스토어에서만 사용할 수 있도록 기능 추가
+	
 #### 기능 개선/변경
 * [SDK] 2.7.1
 	* (Common) Guest로 Login 후 GetAuthProviderUserID 호출하면 값을 리턴하도록 수정
-
+* [Console]
+	* 앱 > 앱: 동일한 클라이언트 버전 삭제 이후 재등록 시 알림 로직 추가
+	* 구매(IAP) > Item: 등록 시 구독상품 등록을 위한 등록 필드 값 추가(App store - Shared secret,Google store - Domain authentication File Names)
 
 #### 버그 수정
 * [Console]
@@ -17,7 +53,7 @@
 		* 그리드에 데이터가 있다가 없어지면 No Data로 갱신되지 않는 버그 수정
 		* 필터 이름이 짧을 시 버튼 정렬이 세로로 나오는 현상 수정
 
-### 2019. 02. 11.
+### 2020. 02. 11.
 
 #### 기능 추가
 * [Console] 
@@ -35,7 +71,7 @@
 * [Console]
 	* Analytics: 일본어로 언어 변경시 통화가 '엔(JPY)'으로 노출되던 것을 '원(KRW)'으로 노출되도록 수정
 
-### 2019. 01. 21.
+### 2020. 01. 21.
 
 #### 기능 추가
 * [SDK] 2.7.0
@@ -50,7 +86,7 @@
 * [Console]
 	* Analytics: 유저 세션 만료시 로그인 페이지로 Redirect 되지 않는 현상 수정
 
-### 2019. 01. 14.
+### 2020. 01. 14.
 
 #### 기능 추가
 * [서버 API]사용자 탈퇴 API 추가

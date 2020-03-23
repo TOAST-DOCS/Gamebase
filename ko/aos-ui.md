@@ -22,8 +22,8 @@ WebView를 표시합니다.<br/>
 **API**
 
 ```java
-+ (void)Gamebase.WebView.showWebView(Activity activity, 
-                String urlString, 
++ (void)Gamebase.WebView.showWebView(Activity activity,
+                String urlString,
                 GamebaseWebViewConfiguration configuration,
                 GamebaseCallback onCloseCallback,
                 List<String> schemeList,
@@ -33,25 +33,10 @@ WebView를 표시합니다.<br/>
 **Example**
 
 ```java
-Gamebase.WebView.showWebView(activity, "http://www.toast.com",
-    new GamebaseWebViewConfiguration.Builder().build(),
-    new GamebaseCallback() {
-        @Override
-        public void onCallback(GamebaseException exception) {
-            Logger.d(TAG, "WebView is closed.");
-        }
-    }, schemeList,
-    new GamebaseDataCallback<String>() {
-        @Override
-        public void onCallback(String fullUrl, GamebaseException exception) {
-            Logger.d(TAG, "WebView Event occured. Event Url :" + fullUrl);
-        }
-    }
- );
+Gamebase.WebView.showWebView(activity, "http://www.toast.com");
 ```
 
 ![Webview Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
-
 
 #### Custom WebView
 
@@ -61,7 +46,6 @@ GamebaseWebViewConfiguration으로 사용자 지정 WebView를 만들 수 있습
 ```java
 GamebaseWebViewConfiguration configuration
         = new GamebaseWebViewConfiguration.Builder()
-            .setStyle(GamebaseWebViewStyle.BROWSER)
             .setTitleText("title")                              // WebView 제목을 설정
             .setScreenOrientation(ScreenOrientation.PORTRAIT)   // WebView 스크린 방향 설정
             .setNavigationBarColor(Color.RED)                   // 내비게이션바 색상 설정
@@ -70,12 +54,66 @@ GamebaseWebViewConfiguration configuration
             .setBackButtonImageResource(R.id.back_button)       // 백 버튼 이미지 설정
             .setCloseButtonImageResource(R.id.close_button)     // 닫기 버튼 이미지 설정
             .build();
-GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configuration);
+GamebaseWebView.showWebView(activity, "http://www.toast.com", configuration);
 ```
+
+#### Custom Scheme
+
+Gamebase WebView에서 로딩한 웹 페이지 내에 스키마(scheme)로 특정 기능을 사용하거나 웹 페이지 내용을 변경할 수 있습니다.
+
+##### Predefined Custom Scheme
+
+Gamebase에서 지정해 놓은 스키마입니다.
+
+| scheme               | 용도                                  |
+| -------------------- | ------------------------------------- |
+| gamebase://dismiss   | WebView 닫기                          |
+| gamebase://goBack    | WebView 뒤로 가기                     |
+| gamebase://getUserId | 현재 로그인돼 있는 사용자의 아이디 표시 |
+
+#### User Custom Scheme
+
+Gamebase에 스키마 이름과 블록을 지정해 원하는 기능을 추가할 수 있습니다.
+
+```java
+GamebaseWebViewConfiguration configuration = new GamebaseWebViewConfiguration.Builder()
+        .setTitleText(title)
+        .build();
+List<String> schemeList = new ArrayList<>();
+schemeList.add("mygame://test");
+schemeList.add("mygame://opensomebrowser");
+schemeList.add("closemywebview://");
+showWebView(activity, urlString, configuration,
+        new GamebaseCallback() {
+            @Override
+            public void onCallback(GamebaseException exception) {
+                // When closed WebView, this callback will be called.
+            }
+        },
+        schemeList,
+        new GamebaseDataCallback<String>() {
+            @Override
+            public void onCallback(String fullUrl, GamebaseException exception) {
+                if (Gamebase.isSuccess(exception)) {
+                    if (fullUrl.contains("mygame://test")) {
+                        // Do something.
+                    } else if (fullUrl.contains("mygame://opensomebrowser")) {
+                        Gamebase.WebView.openWebBrowser(someUrl);
+                    } else if (fullUrl.contains("closemywebview://")) {
+                        // We will close webview.
+                        Gamebase.WebView.closeWebView(activity);
+                    }
+                } else {
+                    // Something went wrong.
+                }
+            }
+        });
+```
+
+#### GamebaseWebViewConfiguration
+
 | Method                                   | Values                              | Description    |
 | ---------------------------------------- | ----------------------------------- | -------------- |
-| setStyle(int style)                      | GamebaseWebViewStyle.BROWSER        | 브라우저 스타일의 WebView   |
-|                                          | GamebaseWebViewStyle.POPUP          | 팝업 스타일의 WebView     |
 | setTitleText(String title)               | title                               | WebView의 제목         |
 | setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | 세로 모드          |
 |                                          | ScreenOrientation.LANDSCAPE         | 가로 모드          |
