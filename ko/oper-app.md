@@ -16,8 +16,8 @@ TOAST 프로젝트 하나당 하나의 Gamebase 앱을 관리할 수 있으므�
 
 ### Properties
 
-![gamebase_ban_01_201812](./image/Operators_Guide/gamebase_app_01_202003_1.png)
-![gamebase_ban_01_201812](./image/Operators_Guide/gamebase_app_01_202003_2.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/gamebase_app_01_202003_1.png)
+![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/gamebase_app_01_202003_2.png)
 
 #### (1) 설치 URL
 앱 설치와 홍보에 이용할 수 있는 단축 URL 정보입니다.
