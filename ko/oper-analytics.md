@@ -164,6 +164,25 @@ Life Cycle은 최초로 이용자가 유입된 시점부터, 일별 이용자 �
 * 평균 CCU: 선택된 기간 동안의 CCU의 평균
 * 평균 게임 시간 - Avg.Playtime(/DAU): 조회기간의 Playtime 평균 (DAU의 Playtime의 합 / DAU)
 
+### Frequency7
+
+![gamebase_analytics_06_202003_1_frequency](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202003_1_frequency.png)
+
+Frequency7 지표는 DAU의 일주일간 방문 수와 비율 정보를 제공합니다. 게임 몰입도, 충성도 등을 한눈에 파악할 수 있습니다.
+
+Frequency7 기준은 아래 3개로 나뉩니다.
+
+* 방문 횟수: 7일 중 총 방문 횟수
+* 연속 방문 횟수: 7일 중 해당 일을 포함하는 연속 방문한 횟수
+* 최대 연속 방문 횟수: 7일 중 연속 방문한 최대 횟수
+
+위 3가지 기준의 계산 방법 예를 살펴보면 다음과 같습니다. 
+3/7 일을 기준으로 3/1, 3/2, 3/3, 3/6, 3/7 방문한 유저가 있다면, 기준에 따른 방문 횟수는 다음처럼 계산됩니다.
+
+* 총 방문 횟수: 5일 (3/1, 3/2, 3/3, 3/6, 3/7)
+* 연속 방문 횟수: 2일 (3/6, 3/7)
+* 최대 연속 방문 횟수: 3일 (3/1, 3/2, 3/3)
+
 ## Sales Statistics
 ### Payment Amount
 ![gamebase_analytics_07_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_201901_2.png)
