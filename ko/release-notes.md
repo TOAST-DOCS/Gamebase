@@ -33,30 +33,30 @@
 
 - [Console] 
 	- 앱  >  앱: Analytics 매출 지표를 표시할 때 테스트 결제 포함 여부 설정  
-    		- '테스트 결제 제외'로 설정하면 Analytics 매출 지표에서 테스트 결제는 모두 제외하고 보여줍니다. 
-		- 구매(IAP): 구매(IAP) 메뉴 최초 접근 시 결제 지표 통화 코드 설정 
-	- 최초 한 번만 설정 가능하며 Analytics 매출 지표에는 설정된 통화 코드로 지표가 표시됩니다.  
+		- '테스트 결제 제외'로 설정하면 Analytics 매출 지표에서 테스트 결제는 모두 제외하고 보여줍니다. 
+	- 구매(IAP): 구매(IAP) 메뉴 최초 접근 시 결제 지표 통화 코드 설정 	
+		- 최초 한 번만 설정 가능하며 Analytics 매출 지표에는 설정된 통화 코드로 지표가 표시됩니다.  
   	- 모바일 콘솔(TOAST 앱 포함)에 '데스크톱 보기' 기능 추가
 
 #### 기능 개선/변경
 
 - [Console] 
-  	- 앱  >  설치 URL: URL 입력 가능한 스킴(scheme) 추가 적용 
-    		- 기존: 공통('http://', 'https://'), Android('market://') 
-    		- 추가: iOS('itms://', 'itmss://', 'itms-apps://'), Android('intent://')
+	- 앱  >  설치 URL: URL 입력 가능한 스킴(scheme) 추가 적용
+		- 기존: 공통('http://', 'https://'), Android('market://') 
+		- 추가: iOS('itms://', 'itmss://', 'itms-apps://'), Android('intent://')
 - [SDK] 2.7.2 
-  	- (Unity) FacebookAdapter 개선 
-    		- v7.9.4~v7.18.1 버전까지 호환성 테스트
-    		- Null 예외 처리 
-  	- (Unity) StandaloneWebviewAdapter 개선 
-    		- 웹 페이지를 텍스처(texture)로 내보내기 추가
-    		- 멀티 웹뷰 지원 
-    		- 쿠키 삭제 옵션 추가 
-    		- 텍스처(texture) 크기 조절 지원 
-		- 스크롤바 표시/숨기기 지원 
-    		- 페이지 로드 완료 알림 
-    		- 투명 배경 지원 
-  	- (Unity) 에디터에서 Android/iOS 플랫폼을 선택하고 Initialize API를 호출하면 오류가 발생하는 문제 해결
+	- (Unity) FacebookAdapter 개선
+		- v7.9.4~v7.18.1 버전까지 호환성 테스트
+		- Null 예외 처리 
+	- (Unity) StandaloneWebviewAdapter 개선
+		- 웹 페이지를 텍스처(texture)로 내보내기 추가
+		- 멀티 웹뷰 지원
+		- 쿠키 삭제 옵션 추가 
+		- 텍스처(texture) 크기 조절 지원
+		- 스크롤바 표시/숨기기 지원
+		- 페이지 로드 완료 알림
+		- 투명 배경 지원 
+	- (Unity) 에디터에서 Android/iOS 플랫폼을 선택하고 Initialize API를 호출하면 오류가 발생하는 문제 해결
 
 #### 버그 수정
 
@@ -87,7 +87,8 @@
 
 #### 기능 추가
 * [Console] 
-	* Analytics > 이용자 지표 > Life Cycle 메뉴 신규 오픈 프로젝트 생성부터 이용자 지표의 흐름을 그래프로 한눈에 파악할 수 있도록 기능 제공
+	* 신규 메뉴 오픈: Analytics > 이용자 지표 > Life Cycle
+		* 프로젝트 생성부터 이용자 지표의 흐름을 그래프로 한눈에 파악할 수 있도록 기능 제공
 	* 관리 > 권한: 위클리 리포트 수신 권한 항목 추가
 		* 실제 '위클리 리포트' 메일은 3월부터 전송될 예정입니다.
 
@@ -191,10 +192,10 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 
 #### 기능 추가
 * 쿠폰 서비스 신규 오픈: 쿠폰을 대량으로 생성하고 관리하는 기능
-	* [Console] Coupon 메뉴 신규 오픈
+	* [Console] 신규 메뉴 오픈: 쿠폰 
 	* [Server API] 쿠폰 확인 및 소비 API 추가
 * 자동 결제 어뷰징 기능 추가
-	* [Console] 구매(IAP) > 결제어뷰징 모니터링 메뉴 신규 오픈
+	* [Console] 신규 메뉴 오픈: 구매(IAP) > 결제어뷰징 모니터링
 		* 결제 어뷰징 자동 제재 설정 기능
 		* 결제 어뷰징 조건 검색 후 수동 이용 정지 가능
 * Google 구독 결제 기능 추가
