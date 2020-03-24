@@ -15,8 +15,15 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 * Gamebase Android SDK를 사용하기 전에 TOAST Console에서 앱 아이디를 발급받아야 합니다. 앱 아이디를 발급받으려면 TOAST Console 에서 **(+)서비스 선택**을 클릭하여 **Game > Gamebase** 를 클릭하여 서비스를 활성화 합니다.
 * 사용할 Gamebase 버전, 사용할 인증, 결제, 푸시 모듈을 build.gradle 파일에 선언하세요.
 	* Gamebase 최신 버전은 [jCenter(LINK)](https://jcenter.bintray.com/com/toast/android/gamebase/gamebase-sdk/) 에서 확인할 수 있습니다.
+	* Gamebase 에서 의존하는 라이브러리 다운로드를 위해 `mavenCentral()` 저장소를 추가 해주세요.
 
 ```groovy
+repositories {
+    jcenter()
+    mavenCentral()
+    ...
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
