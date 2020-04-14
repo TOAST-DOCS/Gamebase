@@ -467,7 +467,7 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 | -------------------------- | -------------------------- | ---- | ---- |
 | userLevel | M | int | 게임 유저 레벨을 나타내는 필드입니다. |
 | channelId | O | String | 채널을 나타내는 필드입니다. |
-| characterId | O | String | 케릭터 명을 나타내는 필드입니다. |
+| characterId | O | String | 캐릭터 이름을 나타내는 필드입니다. |
 | classId | O | String | 직업을 나타내는 필드입니다. |
 
 
@@ -496,10 +496,12 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 
 **LevelUpData**
 
-  | Name | Mandatory(M) / Optional(O) | type | Desc |
-  | -------------------------- | -------------------------- | ---- | ---- |
-  | userLevel | M | int | 게임 유저 레벨을 나타내는 필드입니다. |
-  | levelUpTime | M | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
+| Name | Mandatory (M) / Optional (O) | type | Desc |
+| -------------------------- | -------------------------- | ---- | ---- |
+| userLevel | M | int | 게임 유저 레벨을 나타내는 필드입니다. |
+| levelUpTime | M | long | Epoch time으로 입력합니다.</br>밀리초(ms) 단위로 입력합니다. |
+| channelId | O | string | |
+| characterId | O | string | |
 
 **API**
 
@@ -522,15 +524,15 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 
 > [TIP]
 >
-> TOAST Contact 상품과 연동하여 사용하시면, 보다 쉽고 편리하게 고객 문의 대응이 가능합니다.
-> 자세한 TOAST Contact 상품 이용은 아래 가이드를 참고하시길 바랍니다.
+> TOAST Contact 서비스와 연동해서 사용하면 보다 쉽고 편리하게 고객 문의에 대응할 수 있습니다.
+> 자세한 TOAST Contact 서비스 이용법은 아래 가이드를 참고하시기 바랍니다.
 > [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
 >
 
 #### Open Contact WebView
 
-Gamebase Console에 입력한 **고객센터 URL** 웹뷰를 띄울 수 있는 기능입니다.
-**Gamebase Console > App > InApp URL > Service center** 에 입력한 값이 사용됩니다.
+Gamebase 콘솔에 입력한 **고객 센터 URL** 웹뷰를 나타낼 수 있는 기능입니다.
+**Gamebase 콘솔 > App > InApp URL > Service center**에 입력한 값이 사용됩니다.
 
 **API**
 

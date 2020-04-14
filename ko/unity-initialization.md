@@ -288,10 +288,10 @@ TOAST Console에 등록된 IAP 스토어 정보입니다.
 
 #### 4. tcLaunching
 
-TOAST Launching Console에서 사용자가 입력한 정보입니다
+TOAST Launching 콘솔에서 사용자가 입력한 정보입니다
 
 * 사용자가 입력한 값을 JSON string으로 전달합니다.
-* TOAST Launching 상세 설정은 아래 가이드를 참고해주시길 바랍니다.
+* TOAST Launching 상세 설정은 아래 가이드를 참고하시기 바랍니다.
  
 [Console Guide](/Game/Gamebase/ko/oper-management/#config)
 
