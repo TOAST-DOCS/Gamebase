@@ -11,8 +11,9 @@
 	* Analytics 공통: 국가명이 길어질 경우 스크롤이 영역을 벗어나는 이슈 수정
 	* Analytics > 실시간 모니터링: 데이터 저장 중에 조회 요청시 지표가 0으로 보이는 현상 수정
 * [SDK] 2.8.1 
+	* (공통) Analytics 전송 결과 확인을 위한 내부 지표 추가
 	* (Android) 프로세스 재시작 이후 크래쉬가 발생할 수 있는 코드를 수정
-	* (JavaScript) AdditionalInfo 로그인에서 Hangame IdP로 로그인이 안되는 문제를 수정
+	* (JavaScript) credentialInfo 로그인에서 Hangame IdP로 로그인이 안되는 문제를 수정
 	
 ### 2020. 03. 24.
 
