@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > Unity SDK使用指南 > 开始
+## Game > Gamebase > Unity SDK使用指南 > 开始
 
 以下说明Gamebase Unity SDK使用环境和初始设置。
 
