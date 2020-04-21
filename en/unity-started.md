@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > Unity Developer's Guide > Getting Started
+## Game > Gamebase > Unity Developer's Guide > Getting Started
 
 Below describes environments and initial setting of Gamebase Unity SDK.
 
