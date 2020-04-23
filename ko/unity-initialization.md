@@ -2,7 +2,7 @@
 
 Gamebase Unity SDK를 사용하려면 먼저 초기화를 진행해야 합니다. 또한 앱 ID, 앱 버전 정보가 TOAST Console에 반드시 등록돼 있어야 합니다.
 
-### Inspector Settings
+### GamebaseConfiguration 
 
 초기화 시 필요한 설정들은 아래와 같습니다.
 
@@ -10,12 +10,12 @@ Gamebase Unity SDK를 사용하려면 먼저 초기화를 진행해야 합니다
 | -------------------------- | ------------------ | -------------------------- |
 | appID | ALL | M |
 | appVersion | ALL | M |
-| isDebugMode | ALL | O |
+| storeCode | ALL | M |
 | displayLanguageCode | ALL | O |
 | enablePopup | ALL | O |
 | enableLaunchingStatusPopup | ALL | O |
 | enableBanPopup | ALL | O |
-| storeCode | ALL | M |
+| enableKickoutPopup | ALL | O |
 | fcmSenderId | Android | O |
 | useWebview | Standalone | O |
 
@@ -31,25 +31,15 @@ Gamebase Console에 등록한 클라이언트 버전입니다.
 
 [Console Guide](/Game/Gamebase/ko/oper-app/#client)
 
-#### 3. isDebugMode
+#### 3. storeCode
 
-Gamebase 디버그를 위한 설정입니다.
+TOAST 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하기 위해 필요한 스토어 정보입니다.
 
-* true: Gamebase의 모든 로그가 출력됩니다.
-* false: Warning, Error 로그가 출력됩니다.
-* 기본값: false
-
-디버그 설정은 Console에서도 가능하며 Console에서 설정된 값을 우선시합니다.
-Console 설정 방법은 아래 가이드를 참고하십시오.
-
-* [Console 테스트 단말기 설정](./oper-app/#test-device)
-* [Console Client 설정](./oper-app/#client)
-
-Gamebase 문의가 필요할 경우에는 해당 설정을 true 로 변경하시고 로그를 [고객 센터](https://toast.com/support/inquiry)로 전달해 주셔야 빠른 지원을 받을 수 있습니다.
-
-> <font color="red">[주의]</font><br/>
->
-> 게임을 **RELEASE** 할 경우에는 해당 설정을 반드시 **false**로 변경해야 합니다.
+| Store       | Code | Description  |
+| ----------- | ---- | ------------ |
+| App Store | AS | only iOS |
+| Google Play | GG | only Android |
+| One Store | ONESTORE | only Android |
 
 #### 4. displayLanguageCode
 
@@ -79,15 +69,12 @@ LaunchingStatus는 아래 Launching 절 아래 State, Code 부분을 참고하�
 
 * 기본값: true
 
-#### 8. storeCode
+#### 8. enableKickoutPopup
 
-TOAST 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하기 위해 필요한 스토어 정보입니다.
+Gamebase Server로 부터 Kickout 이벤트를 받은 경우, Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
 
-| Store       | Code | Description  |
-| ----------- | ---- | ------------ |
-| App Store | AS | only iOS |
-| Google Play | GG | only Android |
-| One Store | ONESTORE | only Android |
+* 기본값: true
+
 
 #### 9. fcmSenderId
 
@@ -99,25 +86,9 @@ Firebase Messaging(FCM) 사용을 위한 Sender ID입니다.
 
 Standalone 플랫폼에서 WebView를 통해서 로그인을 할 것인지에 대한 설정입니다. 
 
-#### 11. GamebaseUnitySDKSettings
+### Initialize
 
-위에서 설명한 설정들은 GamebaseUnitySDKSettings 컴포넌트의 Inspector에서 변경할 수 있습니다.
-
-![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_003_1.12.0.png)
-
-### Initialize with Inspector Settings
-
-Gamebase Unity SDK를 초기화하는 방법은 다음과 같습니다.
-
-1. 빈 게임 오브젝트를 생성합니다.
-2. GamebaseUnitySDKSettings.cs 파일을 생성한 게임 오브젝트의 컴포넌트로 추가합니다.
-3. Inspector에서 초기화 설정을 입력합니다.
-4. Gamebase.Initialize(callback) API를 호출합니다.
-
-> <font color="red">[주의]</font><br/>
->
-> 생성한 게임 오브젝트를 삭제하면 Android, iOS API 호출 후 콜백을 받을 수 없으므로 주의하시기 바랍니다. <br/>
-> 실수로 삭제된 경우 "Do not destroy this gameObject in order to receive callback." 오류가 나타납니다.
+SDK를 초기화 합니다.
 
 **API**
 
@@ -129,7 +100,7 @@ Supported Platforms
 <span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
-static void Initialize(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Launching.LaunchingInfo> callback)
+static void Initialize(GamebaseRequest.GamebaseConfiguration configuration, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Launching.LaunchingInfo> callback)
 ```
 
 **Example**
@@ -139,7 +110,23 @@ public class SampleInitialization
 {
     public void Initialize()
     {
-        Gamebase.Initialize((launchingInfo, error) =>
+        var configuration = new GamebaseRequest.GamebaseConfiguration();
+        configuration.appID = "appID";
+        configuration.appVersion = "appVersion;"
+        configuration.displayLanguageCode = GamebaseDisplayLanguageCode.English;
+    #if UNITY_ANDROID
+        configuration.storeCode = GamebaseStoreCode.GOOGLE;
+    #elif UNITY_IOS
+        configuration.storeCode = GamebaseStoreCode.APPSTORE;
+    #elif UNITY_WEBGL
+        configuration.storeCode = GamebaseStoreCode.WEBGL;
+    #elif UNITY_STANDALONE
+        configuration.storeCode = GamebaseStoreCode.WINDOWS;
+    #else
+        configuration.storeCode = GamebaseStoreCode.WINDOWS;
+    #endif
+
+        Gamebase.Initialize(configuration, (launchingInfo, error) =>
         {
             if (Gamebase.IsSuccess(error) == true)
             {
