@@ -32,7 +32,7 @@
 	* Analytics > 실시간 모니터링: 데이터 저장 중에 조회 요청시 지표가 0으로 보이는 현상 수정
 * [SDK] 2.8.1 
 	* (Android) 프로세스 재시작 이후 크래쉬가 발생할 수 있는 코드를 수정
-	* (JavaScript) AdditionalInfo 로그인에서 Hangame IdP로 로그인이 안되는 문제를 수정
+	* (JavaScript) credentialInfo 로그인에서 Hangame IdP로 로그인이 안되는 문제를 수정
 	
 ### 2020. 03. 24.
 
@@ -229,7 +229,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 	* [Console] Coupon 메뉴 신규 오픈
 	* [Server API] 쿠폰 확인 및 소비 API 추가
 * 자동 결제 어뷰징 기능 추가
-	* [Console] 구매(IAP) > 결제어뷰징 모니터링 메뉴 신규 오픈
+	* [Console] 구매(IAP) > 결제 어뷰징 모니터링 메뉴 신규 오픈
 		* 결제 어뷰징 자동 제재 설정 기능
 		* 결제 어뷰징 조건 검색 후 수동 이용 정지 가능
 * Google 구독 결제 기능 추가
