@@ -1,5 +1,22 @@
 ## Game > Gamebase > Release Notes
 
+### April 28, 2020
+
+#### More Features
+* Suspension of Membership Withdrawal 
+	* [SDK 2.9.0]
+		* (Common) Added API: Apply for suspension of withdrawal, Cancel application for suspension of withdrawal, Immediately withdraw while on suspension, Check if user's withdrawal is suspended  
+	* [Console]
+		* Apps > Apps: Added features allowing to set suspension period for withdrawal
+#### Feature Updates
+* [SDK 2.9.0]
+	* (Common) Updated TOAST SDK: Android(v0.21.0), iOS(v0.23.0), Unity(0.20.1)
+	* (Common) Updated Payco Login SDK: Android(v1.5.0), iOS(v1.4.0)
+* [Console]
+	* All Menus: Changed the design of buttons and tags on console 
+	* Operations > Maintenance, Operations > Notice, Push: Supports auto-translation in multiple languages
+	* Members > Membership: Further shows period of suspension expired, when querying members who are suspended from withdrawal 
+	
 ### 2020. 03. 24.
 
 #### 기능 추가
