@@ -103,7 +103,7 @@ User indicators are available on each environment.
 * Query Values
     * Daily Active Users (DAU): Number of daily active users, by member number, who are logged in more than once a day 
     * Newly Registered Users (NRU): New subscribers whose first login logs are collected around the clock of the day (by member number)
-    * Paying Users (PU): Users (game users) who pay for products (=renewed PU +New PU) 
+    * Paying Users (PU): Users (game users) who pay for products (=renewed PU +New PU)
     * Purchase Amount: Total amount paid by a user  
 
 ### User Inflow and Outflow  
@@ -231,6 +231,13 @@ There are three types of transfer indicators as below:
 * User Level: Access and sales data are available by user level. 
 * World/Server/Channel: Access by world/server/channel and sales data are available with user ID. 
 * Class/Occupation: Access and sales data are available by class/occupation. 
+
+> [Note] 
+>
+> Only previously registered information of world/server/channel and class/occupations will be processed for analytics.
+> Refer to the following document for registration.
+>
+> - [App > Analytics Indicator](./oper-app/#analytics-indicator)
 
 ### Concurrent Status
 

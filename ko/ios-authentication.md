@@ -90,7 +90,7 @@ AdditionalInfo에 대한 설명은 하단의 **Gamebase에서 지원 중인 IdP*
 
 ```objectivec
 - (void)automaticLogin {
-    [TCGBGamebase loginForLastLoggedInProviderWithViewController:self completion:^(TCGBAuthToken *authToken, TCGBError *error){
+    [TCGBGamebase loginForLastLoggedInProviderWithViewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error){
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             NSLog(@"Login is succeeded.");
             //TODO: 1. Do you want.
@@ -150,7 +150,7 @@ Gamebase를 통하여 로그인을 처음 시도하거나, 로그인 정보(액�
 
 ```objectivec
 - (void)loginPaycoButtonClick {
-    [TCGBGamebase loginWithType:kTCGBAuthPayco viewController:self completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+    [TCGBGamebase loginWithType:kTCGBAuthPayco viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Login Succeeded
             NSString *userId = [authToken.tcgbMember.userId];
@@ -230,7 +230,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 ```objectivec
 - (void)authLogout {
-    [TCGBGamebase logoutWithViewController:self completion:^(TCGBError *error) {
+    [TCGBGamebase logoutWithViewController:topViewController completion:^(TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Logout Succeeded
         } else {
@@ -266,7 +266,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 ```objectivec
 - (void)authWithdrawal {
-    [TCGBGamebase withdrawWithViewController:self completion:^(TCGBError *error) {
+    [TCGBGamebase withdrawWithViewController:topViewController completion:^(TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Withdrawal Succeeded
         } else {
@@ -532,7 +532,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 연동 해제 후에는 Gamebase 내부에서, 해당 IdP에 대한 로그아웃을 처리합니다.
 
 ```objectivec
-[TCGBGamebase removeMappingWithType:@"facebook" viewController:self completion:^(TCGBError *error) {
+[TCGBGamebase removeMappingWithType:@"facebook" viewController:topViewController completion:^(TCGBError *error) {
     if ([TCGBGamebase isSuccessWithError:error] == YES) {
         // To Remove Mapping Succeeded
     } else {
@@ -557,7 +557,7 @@ Gamebase로 인증 절차를 진행한 후, 앱을 제작할 때 필요한 정�
 >
 > "[TCGBGamebase loginForLastLoggedInProvider]" API 로 로그인한 경우에는 인증 정보를 가져올 수 없습니다.
 >
-> 인증 정보가 필요하다면 "[TCGBGamebase loginForLastLoggedInProvider]" 대신, 사용하고자 하는 IDPCode 와 동일한 {IDP_CODE} 를 파라미터로 하여 "[TCGBGamebase loginWithType:IDP_CODE viewController:self completion:completion];" API 로 로그인 해야 정상적으로 인증정보를 획득할 수 있습니다.
+> 인증 정보가 필요하다면 "[TCGBGamebase loginForLastLoggedInProvider]" 대신, 사용하고자 하는 IDPCode 와 동일한 {IDP_CODE} 를 파라미터로 하여 "[TCGBGamebase loginWithType:IDP_CODE viewController:topViewController completion:completion];" API 로 로그인 해야 정상적으로 인증정보를 획득할 수 있습니다.
 
 ### Get Authentication Information for Gamebase
 Gamebase에서 발급한 인증 정보를 가져올 수 있습니다.
@@ -714,6 +714,150 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
  }
 ```
 
+## TemporaryWithdrawal
+
+'탈퇴 유예' 기능입니다.
+임시 탈퇴를 요청하여 즉시 탈퇴가 진행되지 않고 일정 기간의 유예 기간이 지나면 탈퇴가 이루어집니다.
+유예 기간은 콘솔에서 변경할 수 있습니다.
+
+> `주의`
+>
+> 탈퇴 유예 기능을 사용하는 경우에는 **[TCGBGamebase withdrawWithViewController:completion:]** API 를 사용하지 마세요.
+> **[TCGBGamebase withdrawWithViewController:completion:]** API 는 즉시 계정을 탈퇴합니다.
+
+로그인이 성공하면 AuthToken.getTemporaryWithdrawalInfo() API 를 호출하여 탈퇴 유예 상태인 유저인지 판단할 수 있습니다.
+
+### Request TemporaryWithdrawal
+
+임시 탈퇴를 요청합니다.
+콘솔에 지정된 기간이 지나면 자동으로 탈퇴 진행이 완료됩니다.
+
+**API**
+
+```objectivec
++ (void)withdrawWithViewController:(UIViewController *)viewController completion:(WithdrawCompletion)completion;
+```
+
+**ErrorCode**
+
+|Error Code | Description |
+| --- | --- |
+| TCGB\_ERROR\_AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW(3602) | 이미 임시 탈퇴중인 유저 입니다. |
+
+**Example**
+
+```objectivec
+- (void)testRequestWithdraw {
+    TCGBGamebase requestTemporaryWithdrawalWithViewController:parentViewController completion:^(TCGBTemporaryWithdrawalInfo *info, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == NO) {
+            if (error.code == TCGB_ERROR_AUTH_WITHDRAW_ALREADY_TEMPORARY_WITHDRAW) {
+                // Already requested temporary withdrawal before.
+            }
+            else {
+                // Request temporary withdrawal failed.
+                return;
+            }
+        }
+
+        // Request temporary withdrawal success.
+    }];
+}
+```
+
+### Check TemporaryWithdrawal User
+
+탈퇴 유예를 사용하는 게임은 로그인 후 항상 **TCGBAuthToken.tcgbMember.temporaryWithdrawal** 를 사용하여하여, 결과가 null 이 아닌 유효한 TemporaryWithdrawalInfo 객체를 리턴한다면 해당 유저에게 탈퇴 진행중이라는 사실을 알려주어야 합니다.
+
+**Example**
+
+
+```objectivec
+- (void)testLogin {
+    [TCGBGamebase loginWithType:@"appleid" viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == NO) {
+            // Login failed
+            return;
+        }
+
+        // Check if user is requesting withdrawal
+        if (authToken.tcgbMember.temporaryWithdrawal != nil) {
+            // User is under temporary withdrawal
+            long gradePeriod = authToken.tcgbMember.temporaryWithdrawal.gracePeriodDate;
+        }
+        else {
+            // Login Success
+        }
+    }];
+}
+```
+
+
+### Cancel TemporaryWithdrawal
+
+탈퇴를 요청을 취소합니다.
+탈퇴 요청 후 기간이 만료되어 탈퇴가 완료되면 취소가 불가능합니다.
+
+**API**
+
+```objectivec
++ (void)cancelTemporaryWithdrawalWithViewController:(UIViewController *)viewController completion:(WithdrawCompletion)completion;
+```
+
+**ErrorCode**
+
+|Error Code | Description |
+| --- | --- |
+| TCGB\_ERROR\_AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW(3603) | 임시 탈퇴중인 유저가 아닙니다. |
+
+**Example**
+
+```objectivec
+- (void)testCancelWithdraw {
+    [TCGBGamebase cancelTemporaryWithdrawalWithViewController:parentViewController completion:^(TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == NO) {
+            if (error.code == TCGB_ERROR_AUTH_WITHDRAW_NOT_TEMPORARY_WITHDRAW) {
+                // Never requested temporary withdrawal before.
+            }
+            else {
+                // Cancel temporary withdrawal failed.
+                return
+            }
+        }
+
+        // Cancel temporary withdrawal success.
+    }];
+}
+```
+
+### Withdraw Immediately
+
+탈퇴 유예 기간을 무시하고 즉시 탈퇴를 진행합니다.
+실제 내부 동작은 **[TCGBGamebase withdrawWithViewController:completion:]** API 와 동일합니다.
+
+즉시 탈퇴는 취소가 불가능하므로 유저에게 실행 여부를 거듭 확인하시기 바랍니다.
+
+**API**
+
+```objectivec
++ (void)withdrawImmediatelyWithViewController:(UIViewController *)viewController completion:(WithdrawCompletion)completion;
+```
+
+
+**Example**
+
+```objectivec
+- (void)testWithdrawImmediately {
+    [TCGBGamebase withdrawImmediatelyWithViewController:parentViewController completion:^(TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == NO) {
+            // withdraw failed.
+            return;
+        }
+
+        // Withdraw success.
+    }];
+}
+```
+
 
 ## Error Handling
 
@@ -740,6 +884,8 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 |                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403       | 현재 로그인되어 있는 IdP 입니다.                     |
 | Logout         | TCGB\_ERROR\_AUTH\_LOGOUT\_FAILED        | 3501       | 로그아웃에 실패했습니다.                            |
 | Withdrawal     | TCGB\_ERROR\_AUTH\_WITHDRAW\_FAILED      | 3601       | 탈퇴에 실패했습니다.                              |
+|                | TCGB\_ERROR\_AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 이미 임시 탈퇴중인 유저 입니다.                    |
+|                | TCGB\_ERROR\_AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 임시 탈퇴중인 유저가 아닙니다.                     |
 | Not Playable   | TCGB\_ERROR\_AUTH\_NOT\_PLAYABLE         | 3701       | 플레이할 수 없는 상태입니다 (점검 또는 서비스 종료 등).        |
 | Auth(Unknown)  | TCGB\_ERROR\_AUTH\_UNKNOWN\_ERROR        | 3999       | 알수 없는 오류입니다. (정의되지 않은 오류입니다.)            |
 

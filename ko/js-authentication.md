@@ -257,6 +257,129 @@ var banInfo = toast.Gamebase.getBanInfo();
 ```
 * BANNED_MEMBER (7)
 
+## TemporaryWithdrawal
+
+'탈퇴 유예' 기능입니다.
+임시 탈퇴를 요청하여 즉시 탈퇴가 진행되지 않고 일정 기간의 유예 기간이 지나면 탈퇴가 이루어집니다.
+유예 기간은 콘솔에서 변경할 수 있습니다.
+
+> `주의`
+>
+> 탈퇴 유예 기능을 사용하는 경우에는 **Gamebase.withdraw()** API 를 사용하지 마세요.
+> **Gamebase.withdraw()** API 는 즉시 계정을 탈퇴합니다.
+
+로그인이 성공하면 AuthToken.member.temporaryWithdrawal로 탈퇴 유예 상태인 유저인지 판단할 수 있습니다.
+
+### Request TemporaryWithdrawal
+
+임시 탈퇴를 요청합니다.
+콘솔에 지정된 기간이 지나면 자동으로 탈퇴 진행이 완료됩니다.
+
+**API**
+
+```js
+toast.Gamebase.TemporaryWithdrawal.requestWithdrawal(callback)
+```
+
+**Example**
+
+```js
+function requestWithdrawal() {
+    gamebase.TemporaryWithdrawal.requestWithdrawal(function (data, error) {
+        if (error) {
+            if (error.code == GamebaseConstant.AUTH_WITHDRAW_ALREADY_TEMPORARY_WITHDRAW) {
+                // Already requested temporary withdrawal before.
+            } else {
+                // Request temporary withdrawal failed.
+            }
+            return;
+        }
+        
+        // Request temporary withdrawal success.
+    });
+}
+```
+
+### Check TemporaryWithdrawal User
+
+탈퇴 유예를 사용하는 게임은 로그인 후 항상 AuthToken.member.temporaryWithdrawal가 null이 아니라면 해당 유저에게 탈퇴 진행중이라는 사실을 알려주어야 합니다.
+
+**Example**
+
+```js
+function gamebaseLogin() {
+    toast.Gamebase.login('google', function (authToken, error) {
+        if (error) {
+            // Login failed
+            return;
+        }
+
+        if(authToken.member.temporaryWithdrawal != null) {    
+            // User is under temporary withdrawal    
+            var gracePeriodDate = authToken.member.temporaryWithdrawal.gracePeriodDate;            
+        } else {
+            // Login success.
+        }
+    });
+}
+```
+
+### Cancel TemporaryWithdrawal
+
+탈퇴를 요청을 취소합니다.
+탈퇴 요청 후 기간이 만료되어 탈퇴가 완료되면 취소가 불가능합니다.
+
+**API**
+
+```js
+toast.Gamebase.TemporaryWithdrawal.cancelWithdrawal(callback)
+```
+**Example**
+
+```js
+function cancelWithdrawal() {
+    gamebase.TemporaryWithdrawal.cancelWithdrawal(function (error) {
+        if (error) {
+            if (error.code == GamebaseConstant.AUTH_WITHDRAW_NOT_TEMPORARY_WITHDRAW) {
+                // Never requested temporary withdrawal before.
+            } else {
+                // Cancel temporary withdrawal failed.
+            }
+            return;
+        }
+        
+        // Cancel temporary withdrawal success.
+    });
+}
+```
+
+### Withdraw Immediately
+
+탈퇴 유예 기간을 무시하고 즉시 탈퇴를 진행합니다.
+실제 내부 동작은 Gamebase.withdraw() API 와 동일합니다.
+
+즉시 탈퇴는 취소가 불가능하므로 유저에게 실행 여부를 거듭 확인하시기 바랍니다.
+
+**API**
+
+```js
+toast.Gamebase.TemporaryWithdrawal.withdrawImmediately(callback)
+```
+
+**Example**
+
+```js
+function withdrawImmediately() {
+    gamebase.TemporaryWithdrawal.withdrawImmediately(function (error) {
+        if (error) {
+            // Withdraw failed.
+            return;
+        }
+        
+        // Withdraw success.
+    });
+}
+```
 
 ## Error Handling
 
@@ -275,6 +398,8 @@ var banInfo = toast.Gamebase.getBanInfo();
 |                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO                    | 3202       | IdP 정보가 유효하지 않습니다. (Console에 해당 IdP 정보가 없습니다.)           |
 | Logout         | AUTH\_LOGOUT\_FAILED                                    | 3501       | 로그아웃에 실패했습니다.                                                |
 | Withdrawal     | AUTH\_WITHDRAW\_FAILED                                  | 3601       | 탈퇴에 실패했습니다.                                                   |
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 이미 임시 탈퇴중인 유저 입니다.                    |
+|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 임시 탈퇴중인 유저가 아닙니다.                     |
 | Not Playable   | AUTH\_NOT\_PLAYABLE                                     | 3701       | 플레이할 수 없는 상태입니다(점검 또는 서비스 종료 등).                        |
 | Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                                    | 3999       | 알수 없는 오류입니다.(정의되지 않은 오류입니다).                             |
 
