@@ -9,6 +9,7 @@
 - 쿠폰 소진 API가 추가되었습니다.
 - 사용자 탈퇴 API가 추가 되었습니다.
 - Purchase(IAP)의 구매 가격(price) 데이터 타입이 가이드상에서 Long 으로 잘못 표기된 것을 Float 타입으로 변경하였습니다.
+- 탈퇴 유예 기능 추가에 따라 Token Authentication, Get Member API 응답 결과에 탈퇴 유예 상태인 사용자에 대한 정보가 추가 되었습니다.
 
 ## Advance Notice
 
@@ -154,7 +155,10 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
         "authKey": "String",
         "regDate": "2019-08-27T17:41:05+09:00"
       }
-    ]
+    ],
+    "temporaryWithdrawal": {
+      "gracePeriodDate": "2020-04-18T09:12:01+09:00"
+    }
   }
 }
 ```
@@ -172,7 +176,9 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | authList | Array[Object] | 사용자 인증 IdP 관련 정보 |
 | authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 사용자 인증 시스템 지원 예정 |
 | authList[].idPCode | String | 사용자 인증 IdP 정보 <br>guest, payco, facebook 등 |
-| authList[].authKey | String | authSystem에서 발급된 사용자 구분 값 |
+| authList[].authKey | String | authSystem에서 IdP Id 별로 발급된 사용자 구분 값 |
+| temporaryWithdrawal | Object | 탈퇴 유예 관련 정보 <br>valid 가 "T" 값에서만 제공 |
+| temporaryWithdrawal.gracePeriodDate | String | 탈퇴 유예 만료 시간 ISO 8601 |
 
 
 **[Error Code]**
@@ -369,7 +375,10 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 			"regDate": "2019-08-27T17:41:05+09:00"
 		  }
 		]
-	  },
+	},
+  "temporaryWithdrawal": {
+    "gracePeriodDate": "2020-04-18T09:12:01+09:00"
+  },
   "memberInfo": {
     "deviceCountryCode": "String",
     "usimCountryCode": "String",
@@ -390,7 +399,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | --- | --- | --- |
 | member | Object | 조회된 사용자의 기본 정보 |
 | member.userId | String | 사용자 ID |
-| member.valid | Enum | Y: 정상 사용자 <br>D: 탈퇴된 사용자 <br>B: 이용 정지된 사용자 <br>M: 유실된 계정|
+| member.valid | Enum | Y: 정상 사용자 <br>D: 탈퇴된 사용자 <br>B: 이용 정지된 사용자 <br>M: 유실된 계정 <br>T: 탈퇴 유예 상태인 사용자 |
 | member.appId | String | appId |
 | member.regDate | String | 사용자가 계정을 생성한 시간 |
 | member.lastLoginDate | String | 마지막으로 로그인한 시간 <br>처음 로그인한 사용자는 해당 값이 없음 |
@@ -400,6 +409,8 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | member.authList[].idPCode | String | 사용자 인증 IdP 정보 <br>guest, payco, facebook 등 |
 | member.authList[].authKey | String | authSystem에서 발급된 사용자 구분 값 |
 | member.authList[].regDate | String | IdP 정보가 사용자 계정과 매핑된 시간 |
+| temporaryWithdrawal | Object | 탈퇴 유예 관련 정보 <br>valid 가 "T" 값에서만 제공 |
+| temporaryWithdrawal.gracePeriodDate | String | 탈퇴 유예 만료 시간 ISO 8601 |
 | memberInfo | Object | 사용자에 대한 부가 정보 |
 | memberInfo.deviceCountryCode | String | 사용자 단말기의 국가 설정 |
 | memberInfo.usmCountryCode | String | 사용자 USIM의 국가 코드 |
@@ -898,7 +909,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Method | URI |
 | --- | --- |
-| DELETE | /tcgb-gateway/v1.2/apps/{appId}/members/{userId} |
+| DELETE | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}?regUser={regUser} |
 
 **[Request Header]**
 

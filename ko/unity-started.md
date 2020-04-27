@@ -8,10 +8,7 @@ Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 >
 > Unity 지원 버전
 >
-> * Unity 2019.x : ~ 2019.2.9
-> * Unity 2018.x : ~ 2018.4.x(LTS)
-> * Unity 2017.x : ~ 2017.4.x(LTS)
-> * Unity 5.x : 5.6.6
+> * 2017.4.16 ~ 2019.3.9
 > * 하위 버전의 Unity 지원이 필요하면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
 
 #### Android

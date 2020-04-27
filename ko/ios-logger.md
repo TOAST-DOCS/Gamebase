@@ -12,14 +12,13 @@ Log & Crash Search에서 발급받은 앱키로  TOAST Logger SDK를 초기화�
 ```
 
 **Example**
-
 ```objectivec
 - (void)initializeSample {
-    TCGBLoggerConfiguration *configuration = [TCGBLoggerConfiguration configurationWithAppKey:@"2BvA3gGZHyPMQYzk"];
+    TCGBLoggerConfiguration *configuration = [TCGBLoggerConfiguration configurationWithAppKey:@"YOUR_APP_KEY"];
 
 // Default value of enableCrashReport is YES
 // You can set NO if you don't want use a crash report feature.
-//    TCGBLoggerConfiguration *configuration = [TCGBLoggerConfiguration configurationWithAppKey:@"2BvA3gGZHyPMQYzk" enableCrashReporter:NO];
+//    TCGBLoggerConfiguration *configuration = [TCGBLoggerConfiguration configurationWithAppKey:@"YOUR_APP_KEY" enableCrashReporter:NO];
 
     [TCGBLogger initializeWithConfiguration:configuration];
 }
