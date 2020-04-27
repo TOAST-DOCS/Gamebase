@@ -5,7 +5,7 @@
 #### More Features
 * Suspension of Membership Withdrawal 
 	* [SDK 2.9.0]
-		* (Common) Added API: Apply for suspension of withdrawal, Cancel application for suspension of withdrawal, Immediately withdraw while on suspension, Check if user's withdrawal is suspended  
+		* (Common) Added API: Apply for suspension of withdrawal, Cancel application for suspension of withdrawal, Immediately withdraw while on suspension, and Check if user's withdrawal is suspended  
 	* [Console]
 		* Apps > Apps: Added features allowing to set suspension period for withdrawal
 #### Feature Updates
@@ -15,7 +15,7 @@
 * [Console]
 	* All Menus: Changed the design of buttons and tags on console 
 	* Operations > Maintenance, Operations > Notice, Push: Supports auto-translation in multiple languages
-	* Members > Membership: Further shows period of suspension expired, when querying members who are suspended from withdrawal 
+	* Members > Membership: Further shows suspension period expired, when querying members who are suspended for withdrawal 
 	
 ### 2020. 03. 24.
 
