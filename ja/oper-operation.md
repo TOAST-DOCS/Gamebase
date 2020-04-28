@@ -1,4 +1,4 @@
-## Game > Gamebase > Console ご利用ガイド > 運営
+## Game > Gamebase > コンソール使用ガイド > 運営
 
 アプリを運営する際に必要な機能を提供するメニューです。 
 
