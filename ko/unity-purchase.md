@@ -10,7 +10,7 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 * [Android Purchase Settings](aos-purchase#settings)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
-Unity Standalone에서 결제를 진행하기 위해 IapAdapter와 WebViewAdapter를 반드시 추가하여야 합니다.
+Unity Standalone에서 결제하려면 IapAdapter와 WebViewAdapter를 반드시 추가해야 합니다.
 ![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-settingtool_iap_2.4.0.png)
 
 
@@ -33,9 +33,9 @@ Unity Standalone에서 결제를 진행하기 위해 IapAdapter와 WebViewAdapte
 
 <br/>
 
-* 스토어 결제는 성공했으나 오류가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 미소비 결제 내역을 확인하시기 바랍니다.
-	* 로그인에 성공하면 **RequestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인합니다.
-	* 반환된 미소비 결제 내역 목록에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
+* 스토어 결제에는 성공했으나 오류가 발생해 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 미소비 결제 내역을 확인하시기 바랍니다.
+	* 로그인에 성공하면 **RequestItemListOfNotConsumed**를 호출해 미소비 결제 내역을 확인합니다.
+	* 반환된 미소비 결제 내역 목록에 값이 있다면 게임 클라이언트가 게임 서버에 consume(소비)을 요청해 아이템을 지급합니다.
 
 ### Purchase Item
 

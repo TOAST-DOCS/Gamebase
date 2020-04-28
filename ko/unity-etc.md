@@ -31,14 +31,28 @@ static string GetDeviceLanguageCode()
 
 ### Display Language
 
-* Gamebase에서 제공하는 UI 및 SystemDialog에 표시되는 언어를 단말기에 설정된 언어가 아닌 다른 언어로 변경할 수 있습니다.
-* Gamebase는 클라이언트에 포함되어 있는 메시지를 표시하거나 서버에서 받은 메시지를 표시합니다.
-* DisplayLanguage를 설정하면 사용자가 설정한 언어코드(ISO-639)에 적합한 언어로 메시지를 표시합니다.
-* 원하는 언어셋을 추가할 수 있습니다. 추가할 수 있는 언어코드는 다음과 같습니다.
+점검 팝업과 같이 Gamebase 가 표시하는 언어는 단말기에 설정된 언어로 표시됩니다.
+
+그런데 게임에서 표시하는 언어를 단말기에 설정된 언어가 아닌, 별도의 옵션으로 언어를 변경할 수 있는 게임이 있습니다.
+예를 들어, 단말기에 설정된 언어는 영어 이지만 게임 표시 언어를 일본어로 변경한 경우, Gamebase 에서 표시하는 언어도 일본어로 변경하고 싶지만 Gamebase 가 표시하는 언어는 단말기에 설정된 언어인 영어로 표시됩니다.
+
+이와 같이 `단말기에 설정된 언어가 아닌, 다른 언어로 Gamebase 메세지를 표시하고 싶은` 어플리케이션을 위해 Gamebase 는 `Display Language` 라는 기능을 제공합니다.
+
+Gamebase 는 Display Language 로 설정한 언어로 Gamebase 메세지를 표시합니다.
+Display Language 에 입력하는 언어 코드는 반드시 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 지정된 코드만을 사용할 수 있습니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> * Display Language 는 단말기 설정 언어와 무관하게 Gamebase 의 표시 언어를 변경하고 싶은 경우에만 사용하시기 바랍니다.
+> * Display Language Code 는 ISO-639 형태의 값으로, 대소문자를 구분합니다.
+> 'EN'이나 'zh-cn'과 같이 설정하면 문제가 발생할 수 있습니다.
+> * 만일 Display Language Code 로 입력한 값이 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 존재하지 않는다면, Display Langauge Code 는 자동으로 기본값인 영어(en)로 지정됩니다.
 
 > [참고]
 >
-> Gamebase의 클라이언트 메시지는 영어(en), 한글(ko), 일본어(ja)만 포함합니다.
+> * Gamebase의 클라이언트 메시지는 영어(en), 한글(ko), 일본어(ja)만 포함하고 있으므로 아래의 표에 존재하는 언어 코드라 할지라도 영어(en), 한글(ko), 일본어(ja) 이외의 언어를 지정하면 기본값인 영어(en)로 자동 설정됩니다.
+> * Gamebase의 클라이언트에 포함되어 있지 않은 언어셋은 직접 추가할 수 있습니다.
+> **신규 언어셋 추가** 항목을 참조하시기 바랍니다.
 
 #### Gamebase에서 지원하는 언어코드의 종류
 
@@ -62,11 +76,6 @@ static string GetDeviceLanguageCode()
 | zh-TW | Chinese-Traditional |
 
 해당 언어코드는 `GamebaseDisplayLanguageCode` 클래스에 정의되어 있습니다.
-
-> <font color="red">[주의]</font><br/>
->
-> Gamebase에서 지원하는 언어코드는 대소문자를 구분합니다.
-> 'EN'이나 'zh-cn'과 같이 설정하면 문제가 발생할 수 있습니다.
 
 ```cs
 namespace Toast.Gamebase
@@ -601,9 +610,9 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 | Name                       | Mandatory(M) / Optional(O) | type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
 | userLevel | M | int | 게임 유저 레벨을 나타내는 필드입니다. |
-| channelId | O | String | 채널을 나타내는 필드입니다. |
-| characterId | O | String | 케릭터 명을 나타내는 필드입니다. |
-| characterClassId | O | String | 직업을 나타내는 필드입니다. |
+| channelId | O | string | 채널을 나타내는 필드입니다. |
+| characterId | O | string | 캐릭터 이름을 나타내는 필드입니다. |
+| characterClassId | O | string | 직업을 나타내는 필드입니다. |
 
 **API**
 
@@ -675,15 +684,15 @@ Gamebase 는 고객 문의 대응을 위한 기능을 제공합니다.
 
 > [TIP]
 >
-> TOAST Contact 상품과 연동하여 사용하면, 보다 쉽고 편리하게 고객 문의 대응이 가능합니다.
-> TOAST Contact 상품 이용은 아래 가이드를 참고하시길 바랍니다.
+> TOAST Contact 서비스와 연동해서 사용하면 보다 쉽고 편리하게 고객 문의에 대응할 수 있습니다.
+> 자세한 TOAST Contact 서비스 이용법은 아래 가이드를 참고하시기 바랍니다.
 > [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
 
 #### Open Contact WebView
 
-Gamebase Console에 입력한 **고객센터 URL** 을 웹뷰로 띄울 수 있는 기능입니다.
+Gamebase 콘솔에 입력한 **고객 센터 URL** 웹뷰를 나타낼 수 있는 기능입니다.
 
-* **Gamebase Console > App > InApp URL > Service center** 에 입력한 값이 사용됩니다.
+* **Gamebase 콘솔 > App > InApp URL > Service center** 에 입력한 값이 사용됩니다.
 
 **API**
 

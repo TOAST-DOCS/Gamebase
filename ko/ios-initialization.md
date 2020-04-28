@@ -152,24 +152,24 @@ Gamebase iOS SDK 초기화 설정에 입력한 앱 버전의 게임 상태 정�
 
 **1.2 App**
 
-Gamebase Console에 등록된 앱 정보입니다.
+Gamebase 콘솔에 등록된 앱 정보입니다.
 
 * accessInfo
     * serverAddress: 서버 주소
     * csInfo: 고객 센터 정보
 * relatedUrls
-    * termsUrl: 이용약관
+    * termsUrl: 이용 약관
     * personalInfoCollectionUrl: 개인 정보 동의
     * punishRuleUrl: 이용 정지 규정
-    * csUrl : 고객센터
+    * csUrl : 고객 센터
 * install: 설치 URL
 * idP: 인증 정보
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+[콘솔 가이드](/Game/Gamebase/ko/oper-app/#client)
 
 **1.3 Maintenance**
 
-Gamebase Console에 등록된 점검 정보입니다.
+Gamebase 콘솔에 등록된 점검 정보입니다.
 
 * url: 점검 페이지 URL
 * timezone: 표준 시간대(timezone)
@@ -177,21 +177,21 @@ Gamebase Console에 등록된 점검 정보입니다.
 * endDate: 종료 시간
 * message: 점검 사유
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+[콘솔 가이드](/Game/Gamebase/ko/oper-operation/#maintenance)
 
 **1.4 Notice**
 
-Gamebase Console에 등록된 공지 정보입니다.
+Gamebase 콘솔에 등록된 공지 정보입니다.
 
 * message: 메시지
 * title: 타이틀
 * url: 점검 URL
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+[콘솔 가이드](/Game/Gamebase/ko/oper-operation/#notice)
 
 #### 2. tcProduct
 
-Gamebase와 연계된 TOAST 서비스의 appKey입니다.
+Gamebase와 연계된 TOAST 서비스의 앱키입니다.
 
 * gamebase
 * tcLaunching
@@ -200,22 +200,22 @@ Gamebase와 연계된 TOAST 서비스의 appKey입니다.
 
 #### 3. tcIap
 
-TOAST Console에 등록된 IAP 스토어 정보입니다.
+TOAST 콘솔에 등록된 IAP 스토어 정보입니다.
 
 * id: App ID
 * name: App Name
 * storeCode: Store Code
- 
-[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+
+[콘솔 가이드](/Game/Gamebase/ko/oper-purchase/)
 
 #### 4. tcLaunching
 
-TOAST Launching Console에서 사용자가 입력한 정보입니다
+TOAST Launching Console에서 사용자가 입력한 정보입니다.
 
 * 사용자가 입력한 값을 JSON string으로 전달합니다.
-* TOAST Launching 상세 설정은 아래 가이드를 참고해주시길 바랍니다.
- 
-[Console Guide](/Game/Gamebase/ko/oper-management/#config)
+* TOAST Launching 상세 설정은 아래 가이드를 참고하시기 바랍니다.
+
+[콘솔 가이드](/Game/Gamebase/ko/oper-management/#config)
 
 
 

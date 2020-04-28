@@ -1,117 +1,182 @@
 ## Game > Gamebase > リリースノート
 
+### 2020. 04. 28.
+
+#### 機能追加
+* 退会猶予機能
+	* [SDK 2.9.0]
+		*(共通)API追加：退会猶予申請、退会猶予申請キャンセル、退会猶予状態から即時退会、ユーザーの退会猶予状態を確認
+	* [Console]
+		* アプリ > アプリ：退会猶予期間を設定できる機能を追加
+
+#### 機能改善/変更
+* [SDK 2.9.0]
+	* (共通) TOAST SDKアップデート： Android(v0.21.0)、iOS(v0.23.0)、Unity(0.20.1)
+	* (共通) PAYCO Login SDKアップデート： Android(v1.5.0)、iOS(v1.4.0)
+* [Console]
+	* 全体メニュー：コンソールボタン、タグのデザインを修正
+	* 運営 > メンテナンス、運営 > 告知、プッシュ：多言語自動翻訳機能をサポート
+	* メンバー > 会員：退会猶予ユーザーの会員照会時、猶予終了期間を表示
+	
+### 2020. 04. 14.
+
+#### 機能改善/変更
+* [Console] 
+	* Analytics共通：TUIチャートバージョンのアップデート、Frequency7指標に適用
+* [SDK] 2.8.1 
+	* (共通) Analytics転送結果を確認するための内部指標を追加
+	
+#### バグ修正
+* [Console] 
+	* Analytics共通：国名が長い場合、スクロール領域からはみ出る問題を修正
+	* Analytics > リアルタイムモニタリング：データの保存中に照会リクエストをした時、指標が0と表示される現象を修正
+* [SDK] 2.8.1 
+	* (Android)プロセスの再起動後、クラッシュが発生する場合があるコードを修正
+	* (JavaScript) AdditionalInfoログインにおいて、Hangame IdPでログインできない問題を修正
+
+### 2020. 03. 24.
+
+#### 機能追加
+* [Console] 
+	* 新規メニューオープン: Analytics > 利用者指標 > Frequency 7
+* ユーザーの過去一週間の訪問数と訪問率を提供します。ゲーへの没入度などをひと目で把握できます。
+	* クーポン > クーポン発行：クーポンメッセージ送信機能を追加
+* [SDK] 2.8.0
+	* (共通)決済および商品情報に商品タイプおよび地域価格などの情報を追加
+	* (Unity) StandaloneWebviewAdapter内部のCefWebviewがv2.0.1バージョンにアップデート
+		* PopupTypeがPASS_INFOの場合、ポップアップを表示させずにポップアップ情報を伝達する機能を追加
+ 	* (Javascript)ハンゲームチャネリングをサポート：ハンゲームIdP認証、ハンコイン決済を追加
+
+
+#### 機能改善/変更
+* [Console] 
+	* アプリ > 転送指標セッティング：あらかじめ登録したメタフィルタのみ転送指標に使用できるように制限
+		* メタフィルタ数を制限し、それ以上転送する場合は指標が表示されないため注意してください。：レベル(5,000個)、ワールド/サーバー/チャンネル(100個)、職業/クラス(100個)
+* [SDK] 2.8.0 
+	* (共通)コンソールに登録されていないアプリバージョンで初期化に失敗した時、ストアに移動できるポップアップが表示されるように改善
+	* (Android)ログイン直後に決済関連APIを呼び出す時、初期化タイミングの問題で失敗する場合があるコードを修正
+
+#### バグ修正
+* [Console] 
+	* 売上指標 > 決済金額
+		* チャートのツールチップで通貨がKRWに固定されてしまう問題がありました。アプリで設定した通貨で表示されるように修正
+		* 月別で照会時、2月の指標が表示されない問題を修正
+		
 ### 2020. 03. 10.
 
-#### 기능 추가
-* [Console] 
-	* 앱 > 앱: Analytics 매출 지표 표시할 때 테스트 결제 포함여부 설정   
-		* '테스트 결제 제외'로 설정하면 Analytics 매출 지표에서 테스트 결제건은 모두 제외하고 보여줍니다. 
-	* 구매(IAP): 구매(IAP)메뉴 최초 접근시 결제지표 통화 코드 설정  
-	* 최초 한번만 설정 가능하며 Analytics 매출지표에는 설정된 통화코드로 지표가 노출됩니다.  
-	* 모바일 콘솔(TOAST APP포함)에 '데스크탑 보기' 기능 추가
+#### 機能追加
 
-#### 기능 개선/변경
-* [Console] 
-	* 앱 > 설치URL: URL 입력가능한 scheme 추가적용  
-		* 기존: 공통('http://', 'https://')Android('market://')  
-		* 추가: iOS('itms://', 'itmss://', 'itms-apps://'), Android('intent://')
-* [SDK] 2.7.2 
-	* (Unity) FacebookAdapter 개선  
-		* v7.9.4 ~ v7.18.1 버전 까지 호환성 테스트  
-		* null exception 예외 처리 
-	* (Unity) StandaloneWebviewAdapter 개선  
-		* Web페이지를 Texture 내보내기  
-		* 멀티 웹뷰 지원  
-		* 쿠키 삭제 옵션 추가  
-		* Texture Resizing 지원  
-		* Scrollbar on/off 지원  
-		* 페이지 로드 완료 알림  
-		* 투명 배경 지원 
-	* (Unity) Editor에서 Android/iOS 플랫폼을 선택하고 Initialize API를 호출하면 에러가 발생하여 수정
+- [Console] 
+	- アプリ > アプリ：Analytics売上指標を表示する時、テスト決済を含めるかどうかを設定 
+    		- 「テスト決済除外」を設定するとAnalytics売上指標からテスト決済は全て除外されて表示されます。
+		- 購入(IAP)：購入(IAP)メニューに初めてアクセスした時、決済指標通貨コードを設定 
+	- 最初の1回だけ設定可能です。Analytics売上指標には設定された通貨コードで指標が表示されます。  
+  	- モバイルコンソール(TOASTアプリ含む)に「デスクトップ表示」機能を追加
 
-#### 버그 수정
-* [Console] 
-	* Anlytics: 통화코드가 코인성인 경우 매출지표가 '0'으로 표시되는 이슈 해결
+#### 機能改善/変更
+
+- [Console] 
+  	- アプリ > インストールURL：URLを入力できるスキーム(scheme)を追加適用 
+    		- 既存：共通('http://', 'https://'), Android('market://') 
+    		- 追加：iOS('itms://', 'itmss://', 'itms-apps://'), Android('intent://')
+- [SDK] 2.7.2 
+  	- (Unity) FacebookAdapter改善 
+    		- v7.9.4～v7.18.1バージョンまで互換性テスト
+    		- Null例外処理 
+  	- (Unity) StandaloneWebviewAdapterを改善 
+    		- Webページをテスクチャ(texture)でエクスポート追加
+    		- マルチWebビューをサポート 
+    		- Cookie削除オプションを追加 
+    		- テクスチャ(texture)のサイズ調節をサポート 
+		- スクロールバー表示/非表示をサポート 
+    		- ページロード完了通知 
+    		- 透明背景をサポート 
+  	- (Unity)エディタでAndroid/iOSプラットフォームを選択してInitialize APIを呼び出すとエラーが発生する問題を修正
+
+#### バグ修正
+
+- [Console] 
+  	- Analytics：通貨コードがゲーム内通貨の場合、売上指標が「0」と表示される問題を修正
 
 ### 2020. 02. 25.
 
-#### 기능 추가
+#### 機能追加
 * [Console] 
-	* 쿠폰 > 쿠폰 발급: 발급한 쿠폰을 설정한 스토어에서만 사용할 수 있도록 기능 추가
+	* クーポン > クーポン発行：発行したクーポンを設定したストアでのみ使用できる機能を追加
 	
-#### 기능 개선/변경
+#### 機能改善/変更
 * [SDK] 2.7.1
-	* (Common) Guest로 Login 후 GetAuthProviderUserID 호출하면 값을 리턴하도록 수정
+	* (Common) GuestでLoginしてGetAuthProviderUserIDを呼び出した時、値を返すように修正
 * [Console]
-	* 앱 > 앱: 동일한 클라이언트 버전 삭제 이후 재등록 시 알림 로직 추가
-	* 구매(IAP) > Item: 등록 시 구독상품 등록을 위한 등록 필드 값 추가(App store - Shared secret,Google store - Domain authentication File Names)
+	* アプリ > アプリ：同じクライアントバージョンを削除して再登録した時に通知するロジック追加
+	* 購入(IAP) > Item：登録時、購読サービスを登録するための登録フィールド値を追加(App Store - Shared secret,Google store - Domain authentication File Names)
 
-#### 버그 수정
+#### バグ修正
 * [Console]
-	* Analytics > 실시간 모지터링 > 실시간 지표: 간헐적으로 푸시 발송 후 ccu 항목에 빈값 혹은 infinity로 나타나는 현상 수정
-	* Analytics > 전송 지표
-		* 그리드에 데이터가 있다가 없어지면 No Data로 갱신되지 않는 버그 수정
-		* 필터 이름이 짧을 시 버튼 정렬이 세로로 나오는 현상 수정
+	* Analytics > リアルタイムモニタリング > リアルタイム指標：プッシュ送信後、ccu項目に空の値またはinfinityが表示される現象を修正
+	* Analytics > 転送指標
+		* グリッドのデータがなくなった時、No Dataとなり更新されない問題を修正
+		* フィルタ名が短い時、ボタンソートが縦に表示される現象を修正
 
 ### 2020. 02. 11.
 
-#### 기능 추가
+#### 機能追加
 * [Console] 
-	* Analytics > 이용자 지표 > Life Cycle 메뉴 신규 오픈프로젝트 생성부터 이용자 지표의 흐름을 그래프로 한눈에 파악할 수 있도록 기능 제공
-	* 관리 > 권한: 위클리 리포트 수신 권한 항목 추가
-		* 실제 '위클리 리포트' 메일은 3월부터 전송될 예정입니다.
+	* Analytics > 利用者指標 > Life Cycleメニュー新規オープンプロジェクト作成から利用者指標の流れをグラフでひと目で把握できる機能を提供
+	* 管理 > 権限：ウィークリーﾚポート受信権限項目を追加
+		* 実際の「ウィークリーレポート」メールは3月から送信される予定です。
 
-#### 기능 개선/변경
-* [서버 API] 탈퇴 API호출 시 regUser 길이에 대한 Validation 추가
+#### 機能改善/変更
+* [サーバーAPI]退会APIを呼び出す時、regUserの長さに対する有効性チェック(validation)を追加
 * [Console] 
-	* Analytics: Grid, Chart에 일본어 폰트 적용
-	* 구매: 에러발생 시 노출되는 팝업 메시지를 사용자가 직관적으로 알 수 있는 메시지로 내용 개선
+	* Analytics：Grid、Chartに日本語フォントを適用
+	* 購入：エラー発生時に表示されるポップアップメッセージをユーザーが直感的に確認できるように改善
 
-#### 버그 수정
+#### バグ修正
 * [Console]
-	* Analytics: 일본어로 언어 변경시 통화가 '엔(JPY)'으로 노출되던 것을 '원(KRW)'으로 노출되도록 수정
+	* Analytics：言語を日本語に変更した時、通貨が円(JPY)で表示されていたのをウォン(KRW)で表示されるように修正
 
 ### 2020. 01. 21.
 
-#### 기능 추가
+#### 機能追加
 * [SDK] 2.7.0
-	* (Unity)NaverCafePLUG 지원
+	* (Unity) NaverCafePLUGサポート
 
-#### 버그 수정
+#### バグ修正
 * [SDK] 2.7.0
-	* (Android)서버 response 에서 traceError 필수 파라메터가 없더라도 크래쉬 나지 않도록 수정
-	* (Android)Firebase 설정이 누락되어 있을때 Exception 이 발생하지 않도록 수정
-	* (Unity)Web Login 시, gamebase://dismiss 스킴 처리를 추가
-	* (Unity)Release 빌드 시, 간헐적으로 Webview가 노출되지 않는 문제 수정	
+	* (Android)サーバーレスポンス(response)でtraceError必須パラメータがなくてもクラッシュが発生しないように修正
+	* (Android) Firebaseの設定が行われていない時、例外が発生しないように修正
+	* (Unity) Web Login時、 gamebase://dismissスキーム処理を追加
+	* (Unity)リリースビルド時、Webviewが表示されない問題を修正	
 * [Console]
-	* Analytics: 유저 세션 만료시 로그인 페이지로 Redirect 되지 않는 현상 수정
+	* Analytics：ユーザーセッションの有効期限が切れた時、ログインページにリダイレクトされない現象を修正
 
 ### 2020. 01. 14.
 
-#### 기능 추가
-* [서버 API]사용자 탈퇴 API 추가
+#### 機能追加
+* [サーバーAPI]ユーザー退会APIを追加
 
-#### 기능 개선/변경
+#### 機能改善/変更
 * [SDK] 2.6.3
-	* (Unity)Standalone Webview 개선: CefWebview 업데이트	
-	* (Unity)로그인 이후 에러가 발생하여 누락된 dll 파일 추가
-		* ToastCommon.dll, vcruntime140.dll
+	* (Unity) Standalone Webview改善：CefWebviewアップデート	
+	* (Unity)ログイン後、エラーが発生していたため、抜けていた.dllファイルを追加
+		* ToastCommon.dll、vcruntime140.dll
 
-#### 버그 수정
+#### バグ修正
 * [SDK] 2.6.3
-	* (Unity)Login(CredentialInfo) API 호출시 에러가 발생하여 수정
+	* (Unity) Login(CredentialInfo) API呼び出し時にエラーが発生していた問題を修正
 	
 ### 2019. 12. 24.
 
-#### 기능 추가
-* 쿠폰 > 쿠폰발급: 키워드 쿠폰 기능 추가
+#### 機能追加
+* クーポン > クーポン発行：キーワードクーポン機能を追加
 
-#### 기능 개선/변경
+#### 機能改善/変更
 * [Console]
-	* 구매 > 결제 정보 조회: 추가정보 컬럼 추가
+	* 購入 > 決済情報照会：追加情報カラムを追加
 * [SDK] 2.6.2
-	* (공통)TOAST SDK 업데이트: Android(0.19.4), iOS(0.20.1), Unity(0.18.0)
-	* (iOS) Naver SDK 버전 업데이트(4.1.0)
+	* (共通) TOAST SDKアップデート: Android(0.19.4), iOS(0.20.1), Unity(0.18.0)
+	* (iOS) Naver SDKバージョンをアップデート(4.1.0)
 
 ### 2019. 12. 10.
 
@@ -271,7 +336,7 @@ Gamebase SDK 2.6.0未満バージョンから2.6.0にアップグレードする
 
 #### バグ修正
 * [Console]
-	* Analytics > 利用者指標：チャートx軸の日付が重なるイシューを修正
+	* Analytics > 利用者指標：チャートx軸の日付が重なる問題を修正
 
 ### 2019.07.01
 
@@ -310,14 +375,14 @@ Gamebase SDK 2.6.0未満バージョンから2.6.0にアップグレードする
 
 #### バグ修正
 * [SDK] 2.4.2
-	* (共通)Analyticsバグ修正：ログアウト、退会、アカウント移行時に保存された指標データを初期化するように修正
+	* (共通)Analyticsのバグを修正：ログアウト、退会、アカウント移行時に保存された指標データを初期化するように修正
 	* (iOS)ネットワーク接続問題により、断続的にクラッシュが発生する現象を修正
 
 ### 2019.06.13
 
 #### バグ修正
 * [SDK] 2.4.1
-	* (iOS)Analytics指標転送時、一部パラメータが抜けて指標が正常に出力されないバグを修正
+	* (iOS)Analytics指標転送時、一部パラメータが抜けて指標が正常に出力されない問題を修正
 	
 ### 2019.05.28
 
@@ -336,7 +401,7 @@ Gamebase SDK 2.6.0未満バージョンから2.6.0にアップグレードする
 	* (共通)指標関連Class変更
         * LevelUpData Class：userLevel、levelUpTimeパラメータが必須に変更 / その他フィールド削除[詳細表示[Android](http://docs.toast.com/ko/Game/Gamebase/ko/aos-etc/#game-user-data-settings) / [iOS](http://docs.toast.com/ko/Game/Gamebase/ko/ios-etc/#game-user-data-settings) / [Unity](http://docs.toast.com/ko/Game/Gamebase/ko/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#game-user-data-settings)]
         * GameUserData Class：classId(ゲームユーザーの職業)フィールド追加[詳細表示[Android](http://docs.toast.com/ko/Game/Gamebase/ko/aos-etc/#level-up-trace) / [iOS](http://docs.toast.com/ko/Game/Gamebase/ko/ios-etc/#level-up-trace) / [Unity](http://docs.toast.com/ko/Game/Gamebase/ko/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#level-up-trace)]
-    * (Android)Naver SDKバージョンアップデート(v4.2.5)：Naver SDKバグ修正(Naverログイン中にアプリアイコンからアプリを再起動した場合、Activityが強制終了するイシューにより、認証プロセスが中断されるイシューを解決)
+    * (Android)Naver SDKバージョンアップデート(v4.2.5)：Naver SDKのバグを修正(Naverログイン中にアプリアイコンからアプリを再起動した場合、Activityが強制終了する問題により、認証プロセスが中断される問題を解決)
     * (Unity)StandaloneWebviewが32bit Buildをサポート(SDK容量53.6MBから99.2MBに増加)
 * [Server]
     * LTVクエリー修正およびfailoverロジック修正
@@ -364,7 +429,7 @@ Gamebase SDK 2.6.0未満バージョンから2.6.0にアップグレードする
   - (Android) 2.3.0バージョンでTwitterログインできない問題を修正
 - [Console]
   - 会員：購入履歴で、領収書の検証ができない問題を修正
-  - キックアウト(kickout)：照会リクエスト時、認証確認を追加し、動作異常イシューを修正
+  - キックアウト(kickout)：照会リクエスト時、認証確認を追加し、動作異常の問題を修正
 
 ### 2019.04.23
 
@@ -394,15 +459,15 @@ Gamebaseを使用すると、10数個の中国ストアと連携が可能です�
 
 #### バグ修正
 * [SDK] 2.2.2
-	* (Android)Gamebase初期化前にTransferAccount APIを呼び出した時、コールバックが来ないイシューを修正
-	* (iOS)showBlockingPopupをNOに設定した場合、Gamebase初期化コールバックが呼び出されないイシューを修正
+	* (Android)Gamebase初期化前にTransferAccount APIを呼び出した時、コールバックが来ない問題を修正
+	* (iOS)showBlockingPopupをNOに設定した場合、Gamebase初期化コールバックが呼び出されない問題を修正
 	* (Unity)AddMappingForcibly APIを呼び出すとクラッシュする問題を修正
 
 ### 2019.04.02
 
 #### バグ修正
 * [SDK] 2.2.1
-	* (Unity) Unity EditorでAndroidプラットフォームを選択してプレイすると、initializeの時にサーバーでエラーが発生するイシューを修正
+	* (Unity) Unity EditorでAndroidプラットフォームを選択してプレイすると、initializeの時にサーバーでエラーが発生する問題を修正
 
 ### 2019.03.26
 
@@ -424,7 +489,7 @@ Gamebaseを使用すると、10数個の中国ストアと連携が可能です�
 * [SDK] 2.2.0
 	* (Android)IAP SDKバージョンを最新バージョンであるv1.5.3バージョンにアップデート
 	* (iOS)LINE SDKのAppログイン機能が無効化
-		* LINE SDK v4のバグにより、iOS 12でアプリログインが失敗するイシューがあり、Gamebase Line AdatperでWebログインのみサポートするように変更
+		* LINE SDK v4の問題により、iOS 12でアプリログインが失敗する問題があり、Gamebase Line AdatperでWebログインのみサポートするように変更
 	* (Unity)GamebaseMainActivityのPackage Nameが変更
 		* com.toast.gamebase.activity.GamebaseMainActivity → com.toast.android.gamebase.activity.GamebaseMainActivity
 
@@ -438,8 +503,8 @@ Gamebaseを使用すると、10数個の中国ストアと連携が可能です�
 		
 #### バグ修正
 * [SDK] 2.1.0
-	* (Android)Gamebaseの初期化前に、onActivityResult()が呼び出され、動作異常を起こすバグを修正
-	* (iOS)GamecenterをGamebaseではない別のロジックによりログインした後、Gamebaseを通してGamecenterログインを試行した時、反応がないバグを修正
+	* (Android)Gamebaseの初期化前に、onActivityResult()が呼び出され、動作異常を起こす問題を修正
+	* (iOS)GamecenterをGamebaseではない別のロジックによりログインした後、Gamebaseを通してGamecenterログインを試行した時、反応がない問題を修正
 
 ### 2019.01.29
 
@@ -511,9 +576,9 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 * Console
 	* プッシュ：特定対象に送信後、登録されたプッシュをコピーして登録する時に登録失敗する問題を修正	
 * [SDK] 1.14.2
-	* (Android)エミュレータ環境でストアアプリ(PlayStore、OneStoreなど)がない状態で、"アプリインストール/アップデート"時にストア未チェックによるcrashバグを修正
+	* (Android)エミュレータ環境でストアアプリ(PlayStore、OneStoreなど)がない状態で、"アプリインストール/アップデート"時にストア未チェックによるcrashする問題を修正
 	* (Unity)ShowWebView APIを呼び出した時、パラメータにCallbackを入れない場合、crashが発生する部分を修正
-	* (Unity)iOS SDKのDeleted APIを呼び出すコードがあり、コンパイル時にエラーが発生するバグを修正
+	* (Unity)iOS SDKのDeleted APIを呼び出すコードがあり、コンパイル時にエラーが発生する問題を修正
 	
 ### 2018.10.23
 
@@ -568,7 +633,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 	
 #### バグ修正
 * [SDK] 1.14.1
-	* (Android)Auth APIを呼び出した後、コールバックで再度Auth APIを重複して呼び出した時、正常に呼び出されないバグを修正
+	* (Android)Auth APIを呼び出した後、コールバックで再度Auth APIを重複して呼び出した時、正常に呼び出されない問題を修正
 	
 ### 2018.10.11
 
@@ -620,7 +685,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 
 #### 機能改善/変更
 * [SDK] 1.12.2
-	* (Android)WebSocketタイムアウト時(API呼び出し時間経過)、クラッシュが発生することがあるバグについて防御ロジック処理
+	* (Android)WebSocketタイムアウト時(API呼び出し時間経過)、クラッシュが発生することがある問題について予防ロジック処理
 	* (iOS)Google Auth Adapter、Naver Auth AdapterのCallback URL Scheme設定を改善
 		* コンソールに"url_scheme_ios_only"値を設定しない場合、Default URL Schemeを設定するように改善：Default URL Schemeを使用するためには、XCode > Target > Info > URL Typesにtcgb.{Bundle ID}.googleまたはtcgb.{Bundle ID}.naver登録が必要
 	* (iOS)Payco Auth Adapterの改善
@@ -651,9 +716,9 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 	
 #### バグ修正
 * [SDK] 1.12.1
-	* (iOS)Naverログイン時、プロフィール情報照会失敗により、ログインできないバグを修正：プロフィール情報の照会に失敗してもログインは成功するように変更	
+	* (iOS)Naverログイン時、プロフィール情報照会失敗により、ログインできない問題を修正：プロフィール情報の照会に失敗してもログインは成功するように変更	
 * Console
-	* 決済履歴：'Reserved'状態で決済状態の変更ができないバグとExcelダウンロード時にフィルタリングが適用されない問題を修正
+	* 決済履歴：'Reserved'状態で決済状態の変更ができない問題とExcelダウンロード時にフィルタリングが適用されない問題を修正
 	
 ### 2018.07.24
 
@@ -669,7 +734,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 	
 #### バグ修正
 * [SDK] 1.12.0
-	* (Unity)IssueTransferKey APIを呼び出した時、exceptionが発生するバグを修正
+	* (Unity)IssueTransferKey APIを呼び出した時、exceptionが発生する問題を修正
 	* (Unity)Unity Google Adapter削除：GoogleAdapterを使用中の場合は、下記のアップデートガイドを参照
 	
 
@@ -702,8 +767,8 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 	
 #### バグ修正
 * [SDK] 1.11.1
-	* (共通)メンテナンス解除後にAPI進行(login/push/purchaseなど)ができないバグを修正
-	* (Android)Gamebase.addObserver()を通してObserverMessageを受信した場合、 ObserverMessage.data.codeのタイプがintではなくStringになっているバグを修正
+	* (共通)メンテナンス解除後にAPI進行(login/push/purchaseなど)ができない問題を修正
+	* (Android)Gamebase.addObserver()を通してObserverMessageを受信した場合、 ObserverMessage.data.codeのタイプがintではなくStringになっている問題を修正
 * Console
 	* Windows client登録時、ストアコードの登録に誤りがある問題を修正
 
@@ -733,7 +798,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 
 #### バグ修正
 * [SDK] 1.10.1
-	* (Unity)Unity Adapterがない場合、AddMapping APIを呼び出した時、内部的にログインで処理していたバグを修正
+	* (Unity)Unity Adapterがない場合、AddMapping APIを呼び出した時、内部的にログインで処理していた問題を修正
 
 ### 2018.06.07
 
@@ -785,14 +850,14 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 #### バグ修正
 * [SDK] 1.9.0
 	* (iOS) Naverアカウントを利用してログイン中にApp to Webログインを試行時、サーバーから受け取ったSchemeの形式が変更され、ログインされない現象を修正
-    * (iOS) AdapterからUnderlyingErrorオブジェクトを受け取ってゲームユーザーに伝達するエラーオブジェクトを作成するロジックで、メッセージおよびUnderlying Errorの設定ができていないバグを修正
+    * (iOS) AdapterからUnderlyingErrorオブジェクトを受け取ってゲームユーザーに伝達するエラーオブジェクトを作成するロジックで、メッセージおよびUnderlying Errorの設定ができていない問題を修正
     * (Android) Heartbeatで、無効なユーザーと判定される場合、利用停止ポップアップが表示されないように修正(iOSと同じロジックで修正)
 
 ### 2018.04.12
 
 #### バグ修正
 * [SDK] 1.8.1
-	* (Android. iOS)registerPushを呼び出す時、displayLanguageCodeをnullで渡すと、registerPushが失敗するバグを修正
+	* (Android. iOS)registerPushを呼び出す時、displayLanguageCodeをnullで渡すと、registerPushが失敗する問題を修正
 
 ### 2018.04.09
 
@@ -823,15 +888,15 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 #### バグ修正
 * 国コード(contry code)が10文字以上の場合、同時接続データが保存されない現象を修正
 * [SDK] 1.8.0
-	* (Setting Tool)Unity Facebook Adapterをチェックすると、エラーが発生するバグを修正
+	* (Setting Tool)Unity Facebook Adapterをチェックすると、エラーが発生する問題を修正
 
 ### 2018.03.13
 
 #### バグ修正
 * [SDK] 1.7.1
-	* (Unity)Inspectorで設定されたSetDebugModeの値が反映されないバグを修正
+	* (Unity)Inspectorで設定されたSetDebugModeの値が反映されない問題を修正
 	* (Unity)Standalone、WebGL：Display Languageで使用されるリソースファイルの欠損部分を修正
-	* (Unity)Google Adapter 1.6.2配布：Google Adapter 1.6.1でAuthCodeがEmptyで返され、認証が失敗するバグを修正
+	* (Unity)Google Adapter 1.6.2配布：Google Adapter 1.6.1でAuthCodeがEmptyで返され、認証が失敗する問題を修正
 
 ### 2018.02.22
 
@@ -901,7 +966,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 
 #### 機能改善/変更
 * [Console]
-	* [Operating indicator>モニタリング]チャートの色を変更、Timezoneイシュー。DAU計算ロジックを変更(Login時間基準→接続時間基準)
+	* [Operating indicator>モニタリング]チャートの色を変更、Timezoneの問題。DAU計算ロジックを変更(Login時間基準→接続時間基準)
 * [API] [メンテナンス照会API](./api-guide/#check-under-maintenance)結果をListから単一オブジェクトに変更
 
 #### バグ修正
@@ -918,7 +983,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 
 #### 機能改善/変更
 * [SDK] 1.4.0アップデート
-	* (iOS)close/backボタンリソースがない時、'x', '<'などのテキストが表示されていたイシューをデフォルト値に変更
+	* (iOS)close/backボタンリソースがない時、'x', '<'などのテキストが表示されていた問題をデフォルト値に変更
 
 #### バグ修正
 * [SDK] 1.4.0アップデート
@@ -939,7 +1004,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 	* 利用停止テンプレートメッセージ登録画面をInput TextboxからTextAreaに変更
 	* TC新規権限追加によって管理メニューが正常に表示されない問題を修正
 * [SDK] 1.3.0アップデート	
-	* (Unity)CredentialInfoを使用するLogin APIを呼び出した時、iOSPluginでJson解析がされないバグを修正
+	* (Unity)CredentialInfoを使用するLogin APIを呼び出した時、iOSPluginでJson解析がされない問題を修正
 	
 ### 2017.09.21
 
@@ -1037,4 +1102,3 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 	* ゲーム運営のためのゲームアプリ状態管理、メンテナンス、緊急告知などの機能をWebコンソールで提供
 	* リアルタイムに運営指標を確認できるWebコンソール画面を提供
 	* TOAST Cloudサービスと連携：PUSH、IAP
-

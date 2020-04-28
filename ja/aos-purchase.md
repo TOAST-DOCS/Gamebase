@@ -262,5 +262,5 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 ```
 
 * IAPのエラーコードは、次のドキュメントをご参考ください。
-    * [TOAST > TOAST SDK使用ガイド > TOAST IAP > Android > エラーコード](/TOAST/ko/toast-sdk/iap-android/#_24)
+    * [TOAST > TOAST SDK使用ガイド > TOAST IAP > Android > エラーコード](/TOAST/ja/toast-sdk/iap-android/#_24)
 

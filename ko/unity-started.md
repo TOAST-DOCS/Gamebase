@@ -8,21 +8,18 @@ Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 >
 > Unity 지원 버전
 >
-> * Unity 2019.x : ~ 2019.2.9
-> * Unity 2018.x : ~ 2018.4.x(LTS)
-> * Unity 2017.x : ~ 2017.4.x(LTS)
-> * Unity 5.x : 5.6.6
-> * 하위 버전의 Unity 지원이 필요하시면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
+> * 2017.4.16 ~ 2019.3.9
+> * 하위 버전의 Unity 지원이 필요하면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
 
 #### Android
 > <font color="red">[주의]</font>
 >
 > 2019년 8월 1일부터 Google Play에 게시되는 신규 앱에서는 64비트 아키텍처를 지원해야 합니다.
-> [Google Play 정책 및 64bit 지원 Unity 버전 확인](https://developer.android.com/distribute/best-practices/develop/64-bit#unity-developers)
+> [Google Play 정책 및 64비트 지원 Unity 버전 확인](https://developer.android.com/distribute/best-practices/develop/64-bit#unity-developers)
 >
 > <font color="red">[주의]</font>
-> Gamebase 2.6.0 부터 Android Target SDK 28 대응을 위해 Support Library Version 이 28.0.0 으로 올라, Unity 5, Unity 2017.1, Unity 2017.2 에서는 빌드가 실패하는 문제가 발생했습니다.
-> 해당 Unity Editor 를 사용하신다면 아래 Upgrade Guide 에 따라 gradle version 을 업데이트 해주시면 Android 빌드가 정상적으로 진행됩니다.
+> Gamebase 2.6.0부터 Android Target SDK 28 대응을 위해 Support Library Version이 28.0.0으로 변경돼, Unity 5, Unity 2017.1, Unity 2017.2에서는 빌드에 실패하는 문제가 발생했습니다.
+> 아래 업그레이드 가이드에 따라 gradle 버전을 업데이트하면 Android 빌드가 정상적으로 진행됩니다.
 > 만일 빌드에 어려움을 겪으신다면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
 > [Game > Gamebase > Upgrade Guide > 2.6.0 > Unity > Android Limitation](./upgrade-guide/#android-limitation)
 
