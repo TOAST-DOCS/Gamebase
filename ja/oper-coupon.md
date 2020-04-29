@@ -2,14 +2,14 @@
 
 ゲーム運営中に、ゲームユーザーに配布するクーポンを大量に作成して管理できる機能です。
 
-## Coupon Publish
+## クーポン発行リスト
 アプリ内で使用できるクーポンを発行または照会できます。
 現在はシリアルクーポンのみ発行できますが、今後はキーワードクーポンも提供する予定です。
 
-### Search Coupon publish
+### クーポンの検索
 検索条件に一致したクーポンの発行履歴を照会します。
 
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_01_201911.png)
+![gamebase_coupon_01_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_coupon_01_202004_ja.png)
 
 **検索条件**
 
@@ -26,12 +26,11 @@
 - **発行日時**：発行した日時情報
 - **クーポン使用履歴**：発行したクーポンの使用履歴情報を照会する画面に移動します。
 - **ダウンロード**：発行したクーポンの詳細コードリストをダウンロードします。
-- **支給アイテム**：発行したクーポンが登録可能かどうかを表示します。
 
-### Publish coupon
+### クーポン発行
 クーポン発行照会画面の登録ボタンからクーポンを発行できます。
 
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_02_201911.png)
+![gamebase_coupon_02_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_coupon_02_202004_ja.png)
 
 #### (1)クーポンタイプ
 発行するクーポンのタイプを設定できます。
@@ -49,15 +48,18 @@
 #### (4)有効期間
 発行したクーポンを使用できる期間を設定します。
 
-#### (5)発行個数
+#### (5)発行数
 発行時に作成するクーポンコードの数を設定します。
 1回のリクエストで最大5万個のクーポンコードを作成できます。
 
-#### (6)ユーザー別使用可能数
+#### (6)ユーザー制限数量
 発行したクーポンを、1人のユーザーが使用できる最大数を設定します。
 現在設定できる最大数は100個で、0に設定すると無制限で使用可能に設定できます。
 
-#### (7)アイテム
+#### (7)状態
+発行したクーポンの状態を設定できます。
+
+#### (8)アイテム
 クーポンコード登録時に支給するアイテム情報を入力します。
 支給するアイテムを選択し、右側の欄に該当アイテムの支給数を入力します。
 アイテムを登録するには、クーポンアイテムメニューで先にアイテムを登録する必要があります。
@@ -68,12 +70,12 @@
 > クーポンアイテムを登録する方法は[Coupon Item](./oper-coupon/#Coupon_Item)を参照してください。
 
 
-### Update publish coupon
+### クーポン発行内訳変更
 
 発行したクーポン情報を修正したい場合は、詳細情報の修正ボタンから情報を修正できます。
 修正時、すでに発行したクーポンコードのタイプを修正することはできないため、新しいタイプのクーポンを発行したい場合は発行情報を新たに登録する必要があります。
 
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_03_201911.png)
+![gamebase_coupon_03_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_coupon_03_202004_ja.png)
 
 #### (1)クーポン名
 発行したクーポンの目的を把握できるクーポン名を入力します。
@@ -99,39 +101,39 @@
 > 
 > クーポンアイテムを登録する方法は[Coupon Item](./oper-coupon/#Coupon Item)を参照してください。
 
-## Coupon history
+## 使用内訳
 発行したクーポンの使用履歴を照会できる機能を提供します。
 検索条件に応じて、下記のような検索画面を提供します。
 
 ### クーポンコード別照会
 クーポンコードを直接入力して、使用履歴を照会できます。
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_04_201911.png)
+![gamebase_coupon_04_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_coupon_04_202004_ja.png)
 
 ### ユーザーID別照会
 ユーザーIDから該当ユーザーがクーポンを使用した履歴を照会できます。
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_05_201911.png)
+![gamebase_coupon_05_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_coupon_05_202004_ja.png)
 
 ### クーポン名照会
 クーポン名およびその他の検索条件で使用履歴を照会できます。
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_06_201911.png)
+![gamebase_coupon_06_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_coupon_06_202004_ja.png)
 (1) **クーポン名**：クーポン発行メニューから、発行したクーポンを選択できます。
-(2) **使用有無**：使用有無を選択して照会できる機能を提供します。現在は使用したクーポンのみ照会可能で、今後は別の状態の検索条件も提供する予定です。
+(2) **使用**：使用有無を選択して照会できる機能を提供します。現在は使用したクーポンのみ照会可能で、今後は別の状態の検索条件も提供する予定です。
 (3) **クーポン使用日**：期間を設定して該当期間に使用したクーポンのみを照会できる機能を提供します。
 
-## Coupon Item
+## クーポンアイテム
 クーポンコード使用時に支給するクーポンアイテムを照会、管理できます。
 
 ### クーポンアイテム照会
 登録されたクーポンアイテムの内訳を照会できます。
 フィルタを使い、アイテムID/アイテム名で検索することもできます。
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_07_201911.png)
+![gamebase_coupon_07_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_coupon_07_202004_ja.png)
 
 ### クーポンアイテムの登録
 クーポンコード使用時に支給するアイテムを登録します。
 アイテムは1件ずつ入力するか、ファイルを通して登録できます。
 
-#### 1件登録
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_08_201911.png)
+#### 直接入力
+![gamebase_coupon_08_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_coupon_08_202004_ja.png)
 
 ##### (1)アイテムID
 アプリ内に登録されたアイテムの固有IDを入力します。クーポンコード使用時、ここに入力された情報が実際のサーバーに結果データとして伝達されます。そのため、アイテムを提供することができるサーバーで区別することができる固有のアイテムIDを入力する必要があります。
@@ -141,7 +143,7 @@
 登録されたアイテムを区別することができるアイテム名を入力します。
 
 #### ファイルアップロード
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_09_201911.png)
+![gamebase_coupon_09_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_coupon_09_202004_ja.png)
 一度に大量に登録したい時は、ファイルを利用して登録できます。
 ファイルを利用して登録する場合は、一度に最大10,000件まで登録することができます。テンプレートファイルをダウンロードした後、該当の形式に合わせて作成したものをアップロードすると、正常にファイルを利用してアイテム登録作業を行うことができます。
 
@@ -152,7 +154,7 @@
 > 
 > アイテムID情報は変更できないため、アイテムIDを間違えた場合は、新しいアイテムIDで再度登録する必要があります。
 
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_10_201911.png)
+![gamebase_coupon_10_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_coupon_10_202004_ja.png)
 
 #### (1)アイテム名
 区別することができるアイテム名を入力します。
