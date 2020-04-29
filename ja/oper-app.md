@@ -1,4 +1,4 @@
-## Game > Gamebase > Console ご利用ガイド > アプリ
+## Game > Gamebase > コンソール使用ガイド > アプリ
 
 TOAST Consoleで **Game > Gamebase > App**をクリックしてアプリの基本情報を設定することができます。
 
@@ -7,7 +7,7 @@ TOAST Consoleで **Game > Gamebase > App**をクリックしてアプリの基�
 * **インストール URL**：アプリのストアごとのインストールURL管理
 
 
-## App
+## アプリ
 
 Gamebaesサービスを有効にすると自動でアプリが作成され、該当するメニューでは登録された情報の修正のみ可能です。
 一つのTOAST プロジェクトにつき一つのGamebaseアプリを管理することができるため、アプリを追加で登録したり削除することはできません。Gamebaseサービスを無効にするとアプリに登録された情報が削除されます。
@@ -15,7 +15,7 @@ Gamebaesサービスを有効にすると自動でアプリが作成され、該
 
 ### Properties
 
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_01_201911.png)
+![gamebase_app_01_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_app_01_202004_ja.png)
 
 #### (1) インストールURL
 アプリインストールとPRに利用できる短縮URLの情報です。
@@ -31,9 +31,9 @@ Gamebaesサービスを有効にすると自動でアプリが作成され、該
 クライアントの状態に応じて伝達するサーバーアドレスを設定できます。例えば、クライアントの状態がテスト中または審査中の場合は、各項目に設定されたサーバーアドレス値が最初のローンチ情報に伝達されます。
 ゲームで必要な場合にのみ入力し、そうでない場合は、空白のままにしておいてください。
 
-####(3) カスタマーセンター情報
-カスタマーセンターのページの他にEmail、電話番号などの情報を入力します。
-カスタマーセンターのページがある場合は、下の**アプリ内URL**の**カスタマーセンター**に情報を入力します。
+####(3) サポート情報
+カスタマーサポートのページの他にEmail、電話番号などの情報を入力します。
+カスタマーサポートのページがある場合は、下の**アプリ内URL**の**サポート**に情報を入力します。
 > [参考] <br/>
 > 入力された情報は、Gamebaseが提供するメンテナンス詳細ページに表示されます。
 
@@ -61,8 +61,8 @@ Idpごとの詳細な設定方法は、[Authentication Information](#authenticat
 ゲームで必要な場合にのみ入力し、そうでない場合は、空白のままにしておいてください。
 設定した情報は、クライアント初期化後に「Launching情報」から入力された情報を確認することができます。
 
-### Test Device
-![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_02_201812.png)
+### テスト端末
+![gamebase_app_02_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_app_02_202004_ja.png)
 
 テスト端末に登録されるとGamebaseを使用するアプリがメンテナンス中でも正常にゲームにアクセスすることができます。
 テスト端末を登録するためには、**Device Key**を入力する必要があります。直接入力したり**ゲームユーザID**を照会して登録することができます。
@@ -79,8 +79,7 @@ Idpごとの詳細な設定方法は、[Authentication Information](#authenticat
 
 照会画面から**登録**ボタンをクリックすると、テスト端末を登録することができる画面が表示されます。**Device Key**を直接入力したり**ゲームユーザID**を検索してテスト端末を登録することができます。
 
-![gamebase_app_03_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_03_201812.png)
-![gamebase_app_02_201901.png](https://static.toastoven.net/prod_gamebase/gamebase_app_02_201901.png)
+![gamebase_app_03_202004_reg_ja](https://static.toastoven.net/prod_gamebase/gamebase_app_03_202004_reg_ja.png)
 
 **(A) ゲームユーザIDを通じた登録**
 
@@ -99,7 +98,7 @@ Device Keyと登録する端末の**追加情報**を入力した後、登録ボ
 
 #### (3) 削除
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_App3_4.0.png)
+![gamebase_app_03_202004_del_ja](http://static.toastoven.net/prod_gamebase/gamebase_app_03_202004_del_ja.png)
 
 テスト端末照会画面から削除するテスト端末をチェックした後、左上の削除ボタンをクリックするとテスト端末情報が削除されます。削除された情報は復旧できないため、削除する前にもう一度確認してから削除してください。
 
@@ -116,7 +115,7 @@ Facebookの開発サイトに登録したアプリの{アプリID}と{アプリ�
 - 追加情報：Facebook Permission (json format) 
 
 
-![gamebase_app_04_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_04_201812.png)
+![gamebase_app_04_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_app_04_202004_ja.png)
 
 **[例] facebook_permission format **
 * Facebookの場合、OAuth認証試行時、Facebookにリクエストする情報の種類を設定する必要があります。
@@ -125,7 +124,7 @@ Facebookの開発サイトに登録したアプリの{アプリID}と{アプリ�
 { "facebook_permission": [ "public_profile", "email"] }
 ```
 
-![gamebase_app_05_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_05_201812.png)
+![gamebase_app_05_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_app_05_202004_ja.png)
 
 **Reference URL**<br />
 
@@ -141,7 +140,7 @@ TOAST Consoleでの設定の他に追加設定はありません。
 
 ##### Google Cloud Console
 
-![gamebase_app_06_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_06_201812.png)
+![gamebase_app_06_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_app_06_202004_ja.png)
 
 1. Google認証を行うには、Google Cloud Consoleで**Web Application Client ID**を発行し、Gamebase Consoleに入力する必要があります。
 2. 承認されたリダイレクトURI欄に次の値を入力します。
@@ -435,8 +434,8 @@ Gamebase Console > AppでAppleを追加すると、基本値に下記のJSON値�
 
 クライアント情報をOS(iOS、Android、Unity WebGL、Unity Standalone)、バージョンごとに管理することができます。
 
-### Client List
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client1_1.2.png)
+### クライアントリスト
+![gamebase_app_12_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_app_12_202004_ja.png)
 現在登録されているクライアントのリストを確認することができます。
 OSごとに分かれて表示され、アイコンにある数字は、クライアントを登録する際に入力したバージョンを意味します。
 アイコンリストは、サービス状態が<font color="white" style="background-color:#F8BB28">テスト</font>、<font color="white" style="background-color:#FB8F37">審査中</font>、<font color="white" style="background-color:#88C637">サービス</font>、<font color="white" style="background-color:#2AB1A6">アップデートお勧め(サービス中)</font>のリストのみ表示されます。各OS右下の矢印をクリックすると<font color="white" style="background-color:#A1A1A1">アップデート必須</font>、<font color="white" style="background-color:#CCCCCC">終了</font>状態のクライアントリストを確認することができます。
@@ -446,11 +445,11 @@ OSごとに分かれて表示され、アイコンにある数字は、クライ
 
 Gamebase Consoleから管理するクライアント登録情報について説明します。
 **クライアント**のタブから**AOS登録**、**iOS登録**ボタンなどをクリックすると、クライアント登録画面が表示されます。登録されたクライアントの入力値を修正したり削除したい場合、アイコンリストからアイコンをクリックしたり、クライアント全体のリストから修正したり削除したいクライアントを選択してください。
-![gamebase_app_13_201901.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_13_201901.png)
+![gamebase_app_13_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_app_13_202004_ja.png)
 #### (1) ストア
 (<font color="red">必須</font>)クライアントをリリースするストアを選択します。
 OSごとに選択可能なストアが異なります。
-#### (2) ゲームバージョン
+#### (2) クライアントバージョン
 (<font color="red">必須</font>) クライアントバージョンを入力します。
 ゲームで決めたルールに沿って文字列で入力してください。
 #### (3) サービス状態
@@ -490,22 +489,22 @@ OSごとに選択可能なストアが異なります。
 > サービス状態ごとに表示するメッセージ設定
 > **アップデートを推奨します。(サービス中)**、**アップデートが必ず必要です。**、**終了**状態の場合にユーザーに表示する案内メッセージを多国語で設定することができます。
 > サービス状態を選択すると、各状態に合った基本メッセージが5カ国語(韓国語、英語、日本語、中国語簡体字、中国語繁体字)で提供され、必要な場合、言語を追加したり基本メッセージの文章を変更することができます。
-> ![gamebase_app_18_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_18_201812.png)
+> ![gamebase_app_18_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_app_18_202004_ja.png)
 
 #### (4) サーバーアドレス
 クライアントで利用するサーバーアドレス(IP、URL)を入力します。
 **アプリ**タブでサーバーアドレスを入力するとすべてのクライアントに適用されるため、クライアントごとに他のサーバーアドレスを使用したい場合にのみサーバーアドレスを入力します。
 
-#### (5) Debug log
+#### (5) デバッグログ
 Gamebae SDKのDebug Logを出力するかどうかを、コンソールでリアルタイムに変更できます。
 設定されていない場合は、基本的にGamebase SDK内部に設定された値で動作し、GamebaseコンソールでDebug Logを出力するかどうかを設定できます。
 Gamebase SDKのDebug Logが'OFF'状態でも、コンソールで'ON'に設定すれば端末にGamebase Debug Logが出力されます
 
-## Installed URL
+## インストールURL
 
 ゲームをインストールするためのストアURL情報を管理します。
 
-![gamebase_app_19_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_19_201812_en.png)
+![gamebase_app_19_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_app_19_202004_ja.png)
 
 * クライアント状態が<font color="white" style="background-color:#2AB1A6">アップデート推奨(サービス中)</font>または<font color="white" style="background-color:#A1A1A1">アップデート必須</font>の時、ストアごとに提供するアドレスの値を設定します。
 * ユーザーがPCやモバイルで短縮URLをクリックすると、ユーザー端末情報(デバイス、オペレーションシステム、ストアなど)を利用して入力されたサイトにリダイレクトします。
@@ -522,12 +521,12 @@ _[例3] PCからインストールURLを入力した場合_
 
 入力されたインストールURL情報を変更したい場合、**修正**ボタンをクリックします。
 
-![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_20_201812.png)
+![gamebase_app_20_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_app_20_202004_ja.png)
 
 - 各項目はPC、モバイルごとにそれぞれ設定することができます。PCとモバイルを分ける必要がない場合、同じ値をそれぞれ入力してください。
 - 探しているストアがリストに表示されない場合、[カスタマーセンター](https://toast.com/support/inquiry)までご連絡ください。該当するストアを追加いたします。
 
-#### (1) Common
+#### (1) 共通
 ストア情報がなかったり、ストアへの移動に失敗したときに接続されるアドレスを設定します。
 
 #### (2) Android
@@ -536,18 +535,15 @@ AndroidユーザーがインストールURLを実行した際に接続される�
 #### (3) iOS
 iOSユーザーがインストールURLを実行した際に接続されるアドレスを設定します。
 
-#### (4) Standalone
-Standaloneでサービスされているアプリから接続されるアドレスを設定します。Standaloneは、PCでのみ動作しますので、PC設定のみ行ってください。
-
-## Transfer account
+## 端末移行
 ゲストでログインしたゲームユーザーが、他のID提供者と連携を行わずに、他の端末で続けてゲームをプレイできる機能を提供します。
 ユーザーは、現在ゲーム中の端末で移行のためのキーを発行し、移行する端末にキーを入力することで、簡単にゲーム端末を変更できます。
 **端末移行**機能は、デフォルトで無効になっています。使用するには**端末移行**で**使用する**をクリックします。
 
-![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_1.0.png)
+![gamebase_app_21_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_app_21_202004_ja.png)
 **使用する**ボタンをクリックした後、端末移行に必要な情報を入力します。
 
-![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_2.0.png)
+![gamebase_app_22_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_app_22_202004_ja.png)
 端末移行機能に必要な値を設定できる画面です。
 各項目の説明は下記の通りです。
 
@@ -580,6 +576,6 @@ Standaloneでサービスされているアプリから接続されるアドレ�
 7. **遮断期間**：アカウント遮断時、何分後に検証を試行できるかを設定します。**永久遮断**、**期間指定**のどちらかを選択します。**期間指定**を選択すると、自由に遮断時間/分を指定できます。
 
 #### 初期設定完了後
-![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_3.0.png)
+![gamebase_app_23_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_app_23_202004_ja.png)
 初期設定が完了すると、ゲームユーザーは端末移行機能の無効化のみ可能です。設定の変更が必要な場合はサポートにお問い合わせください。
 **使用しない**ボタンをクリックして機能を無効化できます。既に発行された端末移行キーはすべて削除されるため、有効化した後は無効化するかどうかを慎重に選択する必要があります。

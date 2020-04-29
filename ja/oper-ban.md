@@ -1,4 +1,4 @@
-## Game > Gamebase > Console ご利用ガイド > 利用停止
+## Game > Gamebase > コンソール使用ガイド > 利用停止
 
 アプリを不当に使用したり、アビュージング行為をするゲームユーザーに対してアプリの利用を制限することができる利用停止機能を提供します。
 利用停止状態となったゲームユーザーがもう一度ログインしたりセッションを復旧する場合に利用停止に関するポップアップが表示され、ゲームの利用が制限されます。
@@ -8,15 +8,15 @@
 AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考ください。
 
 
-## Ban
+## 利用停止
 
 利用停止履歴を照会したり、利用停止の登録、利用停止状態のゲームユーザーに対する利用停止の解除が可能です。
 
-### Search Banned User
+### 利用停止ユーザーの検索
 
 検索条件に合った利用停止状態/利用停止状態が解除されたゲームユーザーのリストを照会します。
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_01_201812.png)
+![gamebase_ban_01_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_ban_01_202004_ja.png)
 
 **検索条件**
 
@@ -26,7 +26,7 @@ AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考�
 - **テンプレート**：利用停止の登録に使用した特定のテンプレートを選択して照会
 - **登録システム**：利用停止を登録したシステムを選択して照会。複数選択可能
   - **コンソール**：Gamebase Consoleを通して登録
-  - **アプリガード**：AppGuard連携で自動登録
+  - **AppGuard**：AppGuard連携で自動登録
   - **外部サーバー**：アプリを運営するサーバーまたはその他の外部サーバーから登録
   - **その他**：上の場合を除くその他の利用停止登録(APIを直接呼び出すものなど)
 
@@ -57,21 +57,21 @@ AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考�
 
 
 
-### Register Ban
+### 利用停止登録
 
 利用停止照会画面から**登録**ボタンをクリックすると、利用停止の登録ができます。
 
-![gamebase_ban_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_02_201812.png)
+![gamebase_ban_02_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_ban_02_202004_ja.png)
 #### (1) ユーザーID
 利用停止を登録するGamebaseのユーザーIDを入力します。一度に複数のユーザーを登録することができ、登録方法は次の二つです。
 
 - **ユーザー入力**：登録するユーザーIDを入力ウィンドウに直接入力した後、**Enter**キーを押したり**追加**ボタンをクリックします。ユーザーIDの有効性をチェックするため、有効でないユーザーIDは入力が不可能です。
 - **一括登録**：CSVファイルのみアップロードでき、サンプルファイルはConsole画面からダウンロードすることができます。一括登録は1回につき最大10,000人まで可能です。
-  ![gamebase_ban_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_03_201812.png)
+  ![gamebase_ban_03_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_ban_03_202004_ja.png)
 
 > [参考]</br>
 > 一括登録を進行する途中に失敗すると、ポップアップが表示されます。該当するポップアップから**Download**ボタンをクリックすると、登録に失敗したユーザーリストをファイルでダウンロードすることができます。
-> ![gamebase_ban_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_04_201812.png)
+> ![gamebase_ban_04_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_ban_04_202004_ja.png)
 
 #### (2) 期間
 ゲームユーザーの利用停止期間を設定します。利用停止が登録された時点からゲームユーザーはログインができなくなります。
@@ -83,7 +83,7 @@ AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考�
 ユーザーが利用停止になった理由を入力します。
 該当する理由はユーザーに表示されず、運営履歴でのみ確認することができます。
 
-#### (4) 表示するメッセージ
+#### (4) 表示メッセージ
 ユーザーに表示する利用停止メッセージを入力します。
 ユーザーに表示するメッセージを多国語で入力して簡単に再使用できるようにするテンプレートを提供します。予め登録したテンプレートを選択して登録します。
 
@@ -92,16 +92,16 @@ AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考�
 > テンプレートを登録していない場合、**BAN**メニューの**テンプレート**タブからまずテンプレートを登録してください。
 > テンプレートを登録する方法は、[Template](./oper-ban/#template)をご参考ください。
 
-#### (5)リーダーボード削除
+#### (5)Leaderboardの削除
 
 利用停止を登録する時、該当ゲームユーザーのLeaderboardデータも一緒に削除するかどうかを設定します。
 選択して登録すると、リーダーボードからゲームユーザーのデータが削除されます。<font color="red">データは復旧できないため</font>注意してください。
 
-### Release Ban
+### 利用停止解除
 
 利用停止照会画面から**解除**ボタンをクリックすると、利用停止を解除することができます。
 
-![gamebase_ban_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_05_201812.png)
+![gamebase_ban_05_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_ban_05_202004_ja.png)
 
 #### 解除理由
 ユーザーの利用停止を解除する理由を入力します。
@@ -113,27 +113,27 @@ AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考�
 - **ユーザー入力**： 登録するユーザーIDを入力ウィンドウに直接入力した後、**Enter**キーを押したり**追加**ボタンをクリックします。ユーザーIDの有効性をチェックするため、有効でないユーザーIDは入力が不可能です。
 - **一括登録**： CSVファイルのみアップロードでき、サンプルファイルはConsole画面からダウンロードすることができます。一括登録は1回につき最大10,000人まで可能です。
 
-![gamebase_ban_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_06_201812.png)
+![gamebase_ban_06_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_ban_06_202004_ja.png)
 
 > [参考]
 > 一括登録を進行する途中に失敗すると、ポップアップが表示されます。該当するポップアップから**Download**ボタンをクリックすると、登録に失敗したユーザーリストをファイルでダウンロードすることができます。
-> ![gamebase_ban_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_04_201812.png)
+> ![gamebase_ban_04_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_ban_04_202004_ja.png)
 
-## Template
+## テンプレート
 利用停止ユーザーに表示するメッセージを多国語で入力して簡単に再使用できるようにするテンプレートを提供します。予め登録したテンプレートを選択して登録します。
 言語ごとに登録でき、利用停止ユーザーにはデバイスで設定された言語を基に利用停止メッセージが表示されます。
 
-### Search
+### テンプレートの検索
 
 登録されたテンプレートリストを検索することができます。
 新しいテンプレートを登録したり、登録されたテンプレートを修正することができ、登録されたテンプレートを削除することはできません。
 
-![gamebase_ban_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_07_201812.png)
+![gamebase_ban_07_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_ban_07_202004_ja.png)
 
 -テンプレートリスト画面の表示メッセージ項目には、テンプレート登録時に「基本言語」で入力した表示メッセージが表示されます。
 
-### Register Template
-![gamebase_ban_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_08_201812.png)
+### テンプレートの登録
+![gamebase_ban_08_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_ban_08_202004_ja.png)
 
 #### (1) 名前
 利用停止を登録する際にリストに表示するテンプレートの名前を入力します。 
@@ -147,11 +147,11 @@ AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考�
 > <font color="red">[重要]</font>
 > TOAST AppGuardサービスを使用する場合にのみ利用することができます。
 
-![gamebase_ban_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_09_201812.png)
+![gamebase_ban_09_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_ban_09_202004_ja.png)
 
 - **連携有無**：AppGuardで検知されたり、利用が制限されたユーザーを自動でGamebase利用停止ユーザーに登録する場合に有効にします。
 - **自動利用停止**にしたい検知/利用制限の種類の「自動登録」を**ON**にし、「ユーザーに表示するメッセージ」と**利用停止期間**を入力して**保存**ボタンをクリックすると、適用されます。
-- **リーダーボード連動**項目を選択すると、探知または制裁されたユーザーのリーダーボードデータを一緒に削除するかどうかを選択できます。
+- **Leaderboardの削除**項目を選択すると、探知または制裁されたユーザーのリーダーボードデータを一緒に削除するかどうかを選択できます。
 
 > [参考] 
 > AppGuard連携で利用停止が自動登録された場合、登録システムには「アプリガード」で登録されます。
