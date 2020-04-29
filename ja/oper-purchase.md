@@ -1,99 +1,95 @@
-## Game > Gamebase > Console ご利用ガイド > 決済
+## Game > Gamebase > コンソール使用ガイド > IAP
 
 アプリ内決済に関連する情報を登録し、内訳を照会することができます。
 Gamebaseでは、TOAST IAP(In-App Purchase、アプリ内決済)サービスを使用します。
 
-## Store
+## ストア
 
 ゲーム内でアイテムを販売するためにストアを登録します。
 **Store**タブの**ストア情報リスト**から新しいストアを登録したり、登録済みのストアを管理することができます。
-![gamebase_purchase_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_01_201812.png)
+![gamebase_purchase_01_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_purchase_01_202004_ja.png)
 
-### Register
+### ストア情報の登録
 
 新しいストアを登録したい場合、**ストア情報リスト**画面の**登録**ボタンをクリックします。
 
-![gamebase_purchase_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_02_201812.png)
+![gamebase_purchase_02_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_purchase_02_202004_ja.png)
 
-* **ストア**登録する外部ストアを選択します。登録するストアがない場合、[カスタマーセンター](https://toast.com/support/inquiry)までご連絡ください。
-* **アプリ名**登録するゲームの名前を入力します。
-* **ストアアプリID**ストアから発行された情報を入力します。
-* **使用有無**ストアを使用するかどうかを選択します。
+* **ストア**：登録する外部ストアを選択します。登録するストアがない場合、[カスタマーセンター](https://toast.com/support/inquiry)までご連絡ください。
+* **アプリ名**：登録するゲームの名前を入力します。
+* **ストアアプリID**：ストアから発行された情報を入力します。
+* **使用有無**：ストアを使用するかどうかを選択します。
 
-### Modify
+### ストア情報の修正・削除
 
 照会リストから登録されたストアの詳細情報を照会したり、情報を変更することができます。
 
-![gamebase_purchase_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_03_201812.png)
+![gamebase_purchase_03_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_purchase_03_202004_ja.png)
 - 照会リストから登録されたストアを選択すると、詳細情報を照会することができます。
 - **修正**ボタンをクリックすればストアアプリIDを除くアプリ名、ストアアプリ、使用有無情報を修正することができます。
 - **削除**ボタンをクリックすればストアの情報を削除することができます。ただし、使用有無の状態が未使用のストアのみ削除できます。
 
-## Item
+## アイテム
 
 ストアで販売するアイテムを登録することができます。
 **アイテム**タブから新しいアイテムを登録したり、登録済みのアイテムを管理することができます。基本的にすべてのストアに対するアイテムが表示され、各ストアごとのフィルタリング機能も使用することができます。
 
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_04_201911.png)
+![gamebase_purchase_04_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_purchase_04_202004_ja.png)
 
-### Register
+### アイテムの登録
 
 新しいアイテムを登録したい場合、**ストア情報リスト**画面の**登録**ボタンをクリックします。
-![gamebase_purchase_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_05_201812.png)
+![gamebase_purchase_05_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_purchase_05_202004_ja.png)
 
-* (1) **스토어**  등록하고자 하는 외부 스토어를 선택합니다.  등록하려는 스토어가 없다면 **스토어** 메뉴에서 먼저 스토어를 등록해야 합니다.
-* (2) **상품 유형**  등록하고자 하는 상품 유형을 선택합니다. Google play, App store의 경우 구독 아이템 등록이 가능하며 그 외의 스토어를 선택할 경우 일회성 아이템으로 등록됩니다.
-* (3) **아이템 이름** 스토어 등록 후 발급받은 아이템의 정보를 입력합니다.게임에서 등록된 아이템 이름을 이용하여 앱 내에 노출이 가능합니다.
-* (4) **스토어 아이템 ID**등록하고자 하는 아이템의 이름을 입력합니다.
-* (5) **사용 여부**  해당 아이템의 판매 여부를 선택합니다.
+* (1) **ストア**：アイテムを登録する外部ストアを選択します。登録するストアがない場合は**ストア**メニューから、ストア情報を登録する必要があります。
+* (2) **商品種類**：登録するアイテムの種類を選択します。 Google play、App storeの場合、サブスクリプションアイテム登録が可能であり、それ以外のストアを選択した場合一回アイテムに登録されます。
+* (3) **アイテム名**：登録するアイテムの名前を入力します。
+* (4) **アイテムストアID**：ストア登録後に発行されたアイテムのID情報を入力します。
+* (5) **使用有無**：該当アイテムを販売するかどうかを選択します。
 
-### Modify
+### アイテム情報の修正
 
 照会リストから登録されたアイテムの詳細情報を照会したり、情報を変更することができます。
-![gamebase_purchase_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_06_201812.png)
+![gamebase_purchase_06_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_purchase_06_202004_ja.png)
 - 照会リストから各アイテムを選択すると、登録されたアイテムの詳細情報を照会することができます。
-- **修正**ボタンをクリックすればストアとアイテムSeqを除く残りの情報を変更することができます。
-- **削除**ボタンをクリックすればアイテム情報を削除することができます。
+- **修正**ボタンをクリックすればストアとアイテム番号と商品種類を除く残りの情報を変更することができます。
 
-## Transactions
+## 決済情報
 
 選択した検索タイプによって、異なる検索項目が表示されます。
 支払い履歴照会の結果は、右の**ダウンロード**ボタンをクリックして、いつでもダウンロードすることができます。
 
-#### Search conditions
+#### 決済履歴
 選択した検索タイプによって、異なる検索項目が表示されます。
 
 ##### (1)一般検索
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_201911.png)
+![gamebase_purchase_10_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_purchase_10_202004_ja.png)
 
 一般検索の場合、下記の検索条件項目を満たした結果を照会できます。
+- **検索期間**：ユーザーが購入を試みた期間
 - **ストア**：決済したストアの情報
-- **日**：ユーザーが購入を試みた時間
-- **決済番号**：Gamebase内で決済を区別する固有番号
-- **アイテム番号**：ユーザーがアプリで購入した実際のアイテム番号(アイテム番号は「アイテム」タブで確認できます)
+- **アイテム**：登録したアイテムの情報
 - **ユーザーID**：決済したユーザーのID
-- **ソート順序**：登録日時を基準に昇順、降順ソート
 - **決済状態**：決済状態を基準に検索
 
 ##### (2) Trnasaction ID検索
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_201911.png)
+![gamebase_purchase_11_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_purchase_11_202004_ja.png)
 
 決済を行うと作成されるTransaction IDを通して照会できます。
 
 ##### (3) 領収書検索
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_201911.png)
+![gamebase_purchase_12_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_purchase_12_202004_ja.png)
 決済時に支給した領収書情報で照会できます。
 
-#### Search result
+#### 検索結果
 検索結果の項目は以下の通りです。
 
 - **Transaction ID**：Gamebase内で決済を区別できる固有番号
 - **ストア**：決済されたストア情報
 - **ユーザーID**：決済したユーザーID
 - **アイテム名**：ユーザーがアプリで購入した実際のアイテム名
-- **商品タイプ**: ユーザーがアプリで購入した、実際のアイテムの商品タイプ
-- **価格**：ユーザーが購入したアイテムの価格
-- **通貨**：ユーザーが購入時に使用した通貨の種類
+- **商品種類**: ユーザーがアプリで購入した、実際のアイテムの商品タイプ
+- **価格通貨単位**：ユーザーが購入したアイテムの価格
 - **消費状態**：決済したアイテムの配布有無
 - **決済状態**：決済の現在の進行状態
 - **Store Reference Key**：ストアから発行された決済の固有番号
@@ -102,29 +98,25 @@ Gamebaseでは、TOAST IAP(In-App Purchase、アプリ内決済)サービスを�
 
 #### 決済状態の変更
 検索した決済情報の状態と各状態の説明は下記の通りです。
-- **Success**
-	- 決済完了
+- **決済完了**
     - 決済処理が正常に完了した場合を意味します。
     - Refund状態に変更できます。
-- **Reserved**
-	- 決済進行中
+- **決済準備完了**
 	- ストアを通した決済がこれ以上進行できないか、決済検証まで行われなかった場合を意味します。
 	- Success、Refund状態に変更できます。
-- **Failure**
-	- 決済検証失敗
+- **決済失敗**
 	- ストアで決済を進行したが、決済検証でエラーが発生した場合を意味します。
 	- Success、Refund状態に変更できます。
-- **Refund**
-	- 払戻完了
+- **払い戻し完了**
 	- 管理者が手動で、ストアで払戻処理をアップデートした場合です。
 	- 他の決済状態に変更できません。
 
-##### Success変更
-![gamebase_purchase_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_201812.png)
+##### 決済完了への変更
+![gamebase_purchase_08_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_202004_ja.png)
 決済進行時に発行された**領収書番号**、**価格**、**通貨**情報を入力すると、状態を変更できます。
 
-##### Refund変更
-![gamebase_purchase_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_09_201812.png)
+##### 払い戻し完了への変更
+![gamebase_purchase_09_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_purchase_09_202004_ja.png)
 追加情報を入力しないで状態を選択した後、変更を選択します。
 変更された決済情報は、変更できないため、慎重に確認してください。
 
@@ -134,26 +126,27 @@ Gamebaseでは、TOAST IAP(In-App Purchase、アプリ内決済)サービスを�
 * 各フィールドを比較した結果を確認できます。ストアから受け取ったレスポンス値をJSON形式で提供するため、必要な場合はデータを直接確認できます。
 * 現在はApp Store決済のみ検証できます。
 
-## Payment abusing monitoring
+## 不正決済
 
 決済に関する不正行為情報を照会して制裁できます。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing1_1.0.png)
+![gamebase_purchase_15_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_purchase_15_202004_ja.png)
 
 下記の検索条件を利用して決済および返金情報を照会できます。
 決済および返金履歴は、右上の**ダウンロード**ボタンをクリックしていつでもダウンロードできます。
 #### 検索条件
 
-- **返金日時**：返金処理された時間
+- **払い戻し日時**：返金処理された時間
 - **ユーザーID**：決済したユーザーID
-- **返金件数**：ユーザーが返金を受けた回数。入力した回数以上が照会されます。
-- **返金金額**：ユーザーが返金を受けた金額。入力した金額以上が照会されます。
+- **払い戻し件数**：ユーザーが返金を受けた回数。入力した回数以上が照会されます。
+- **払い戻し金額**：ユーザーが返金を受けた金額。入力した金額以上が照会されます。
 
 #### 検索結果
 - **ユーザーID**：決済したユーザーID
 - **ストア**：決済したストア情報
-- **返金件数**：ユーザーが返金を受けた回数
-- **返金金額**：ユーザーが返金を受けた金額
+- **払い戻し件数**：ユーザーが払い戻しを受けた回数
+- **払い戻し金額**：ユーザーが払い戻しを受けた金額
+- **貨幣単位**：ユーザーが払い戻し時に使用した通貨
 - **決済件数(照会期間)**：ユーザーが照会期間内に決済した回数
 - **決済金額(照会期間)**：ユーザーが照会期間内に決済した金額
 - **決済件数(累積)**：ユーザーが決済した累積回数
@@ -192,11 +185,11 @@ Gamebaseでは、TOAST IAP(In-App Purchase、アプリ内決済)サービスを�
 
 自動制裁設定を使用するには、**使用**ボタンをクリックして設定値を入力します。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing3_1.0.png)
+![gamebase_purchase_16_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_purchase_16_202004_ja.png)
 
 #### 設定情報
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing4_1.0.png)
+![gamebase_purchase_17_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_purchase_17_202004_ja.png)
 
 * **利用停止期間**自動制裁適用時の利用停止期間を入力します。
     * **永久停止**：永久に利用を停止する時に選択します。
@@ -207,6 +200,6 @@ Gamebaseでは、TOAST IAP(In-App Purchase、アプリ内決済)サービスを�
 * **自動制裁メッセージ設定**
     * ユーザーに表示する利用停止メッセージを入力します。 
     * ユーザーに表示するメッセージを多言語で入力して簡単に再使用できるようにテンプレートを提供します。あらかじめ登録したテンプレートを選択して登録します。
-* **リーダーボードの削除**
+* **Leaderboardの削除**
     * 自動制裁を行う時、該当ゲームユーザーのLeaderboardデータも同時に削除するかどうかを設定します。
     * 選択して登録すると、自動制裁適用時にリーダーボードからゲームユーザーのデータが削除されます。<font color="red">該当データは復旧できないため、</font> 注意が必要です。
