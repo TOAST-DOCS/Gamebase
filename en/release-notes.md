@@ -1,5 +1,13 @@
 ## Game > Gamebase > Release Notes
 
+### April 29, 2020
+
+#### Bug Fixes
+* [SDK] 2.9.1 
+	* (Unity) Initialize 이후 콘솔에서 클라이언트의 서비스 상태를 변경하면 오류가 발생하는 문제를 수정
+		* 이슈 발생 버전: v2.8.0 이상
+		* 이슈가 있는 플랫폼: Standalone, WebGL, Editor
+		
 ### April 28, 2020
 
 #### More Features
@@ -16,7 +24,23 @@
 	* All Menus: Changed the design of buttons and tags on console 
 	* Operations > Maintenance, Operations > Notice, Push: Supports auto-translation in multiple languages
 	* Members > Membership: Further shows suspension period expired, when querying members who are suspended for withdrawal 
+
+### 2020. 04. 14.
+
+#### 기능 개선/변경
+* [Console] 
+	* Analytics 공통: TUI 차트 버전 업데이트, Frequency7 지표에 적용
+* [SDK] 2.8.1 
+	* (공통) Analytics 전송 결과 확인을 위한 내부 지표 추가
 	
+#### 버그 수정
+* [Console] 
+	* Analytics 공통: 국가명이 길어질 경우 스크롤이 영역을 벗어나는 이슈 수정
+	* Analytics > 실시간 모니터링: 데이터 저장 중에 조회 요청시 지표가 0으로 보이는 현상 수정
+* [SDK] 2.8.1 
+	* (Android) 프로세스 재시작 이후 크래쉬가 발생할 수 있는 코드를 수정
+	* (JavaScript) credentialInfo 로그인에서 Hangame IdP로 로그인이 안되는 문제를 수정
+
 ### 2020. 03. 24.
 
 #### 기능 추가
@@ -29,7 +53,6 @@
 	* (Unity) StandaloneWebviewAdapter 내부의 CefWebview가 v2.0.1 버전으로 업데이트
 		* PopupType이 PASS_INFO일 경우, 팝업을 띄우지 않고 팝업 정보를 전달하는 기능을 추가
  	* (Javascript) 한게임 채널링 지원: 한게임 IdP 인증, 한코인 결제 추가
-
 
 #### 기능 개선/변경
 * [Console] 
