@@ -33,7 +33,7 @@
 
 #### Feature Updates 
 * [Console] 
-	* App > Transfer Indicator 전송 지표 세팅: Allows pre-registered meta filters only as transfer indicators 미리 등록한 메타 필터만 전송 지표에 사용할 수 있도록 제한
+	* App > Transfer Indicator Setting: Allows pre-registered meta filters only for transfer indicators 미리 등록한 메타 필터만 전송 지표에 사용할 수 있도록 제한
 		* Meta filter indicators that go beyond limit are not displayed.: Level (5,000), World/Server/Channel (100), and Occupation/Class (100) 메타필터 개수 제한하여 그 이상 전송하는 경우 지표가 노출되지 않으니 주의해 주세요.: 레벨(5,000개), 월드/서버/채널(100개), 직업/클래스(100개)
 * [SDK] 2.8.0 
 	* (Common) 콘솔에 등록되지 않은 앱 버전으로 초기화 실패할 때 스토어로 이동할 수 있는 팝업이 추가로 노출하도록 개선
@@ -42,8 +42,8 @@
 #### Bug Fixes
 * [Console] 
 	* Sales Indicators > Purchase Amount 
-		* Modified the display of currency as configured on the app  차트 툴 팁에 통화가 원(KRW)으로 고정되어 노출되어 앱에서 설정한 통화로 보이도록 수정
-		* Fixed the issue of not showing February indicators for monthly search 월별 조회시 2월 지표가 노출안되는 이슈 수정
+		* Modified the display of currency, which is currently fixed at Won (KRW) for chart tooltips, to show as configured on the app  
+		* Fixed the issue of not showing February indicators for monthly search 
 		
 ### March 10, 2020 
 
@@ -60,8 +60,8 @@
 
 - [Console] 
   	- App  >  Installation URL: Additionally apply available scheme for input URL 입력 가능한 스킴(scheme) 추가 적용 
-    		- 기존: 공통('http://', 'https://'), Android('market://') 
-    		- 추가: iOS('itms://', 'itmss://', 'itms-apps://'), Android('intent://')
+    		- Previously: Common ('http://', 'https://'), Android('market://') 
+    		- Now: iOS('itms://', 'itmss://', 'itms-apps://'), Android('intent://')
 - [SDK] 2.7.2 
   	- (Unity) Updated FacebookAdapter  
     		- Compatibility testig from v7.9.4 to v7.18.1 버전까지 호환성 테스트
@@ -85,28 +85,28 @@
 
 #### More Features 
 * [Console] 
-	* Coupon > Publish쿠폰 발급: Added the feature of allowing published coupons to be used only at certain stores.   발급한 쿠폰을 설정한 스토어에서만 사용할 수 있도록 기능 추가
+	* Coupon > Publish: Added the feature of allowing published coupons to be used only at certain stores.   
 	
 #### Feature Updates 
 * [SDK] 2.7.1
-	* (Common) Updated to return value, after guest login, when GetAuthProviderUserID is called호출하면 값을 반환하도록 수정
+	* (Common) Updated to return value, after guest login, when GetAuthProviderUserID is called
 * [Console]
-	* App > App: Added the notification logic when a same client is re-registered after deleted 동일한 클라이언트 버전 삭제 이후 재등록 시 알림 로직 추가
-	* Purchase (IAP) > Item: Added the registration field to register subscription product 등록 시 구독 상품 등록을 위한 등록 필드값 추가(App Store - Shared secret,Google store - Domain authentication File Names)
+	* App > App: Added the notification logic when a same client is re-registered after deleted 
+	* Purchase (IAP) > Item: Added the registration field to register subscription product (App Store - Shared secret,Google store - Domain authentication File Names)
 
 #### Bug Fixes
 * [Console]
-	* Analytics > Real-time Monitoring실시간 모니터링 > Real-time Indicators실시간 지표: 간헐적으로 푸시 발송 후 ccu 항목에 빈 값 혹은 infinity로 나타나는 현상 수정
+	* Analytics > Real-time Monitoring > Real-time Indicators: 간헐적으로 푸시 발송 후 ccu 항목에 빈 값 혹은 infinity로 나타나는 현상 수정
 	* Analytics > Transfer Indicators 전송 지표
 		* 그리드에 데이터가 있다가 없어지면 No Data로 갱신되지 않는 버그 수정
 		* 필터 이름이 짧을 때 버튼 정렬이 세로로 나오는 현상 수정
 
 ### February 11, 2020
 
-#### 기능 추가 More Features
+#### More Features
 * [Console] 
 	* Analytics > User Indicators > Life Cycle 메뉴 신규 오픈 프로젝트 생성부터 이용자 지표의 흐름을 그래프로 한눈에 파악할 수 있도록 기능 제공
-	* Management관리 > Authority권한: 위클리 리포트 수신 권한 항목 추가
+	* Management > Authority권한: 위클리 리포트 수신 권한 항목 추가
 		* The 'Weekly Report' is to be mailed from March. 실제 '위클리 리포트' 메일은 3월부터 전송될 예정입니다.
 
 #### Feature Updates
