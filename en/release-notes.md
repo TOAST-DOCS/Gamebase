@@ -33,45 +33,45 @@
 
 #### Feature Updates 
 * [Console] 
-	* App 앱 > Transfer Indicator 전송 지표 세팅: Allows pre-registered meta filters only for transfer indicators 미리 등록한 메타 필터만 전송 지표에 사용할 수 있도록 제한
-		* 메타필터 개수 제한하여 그 이상 전송하는 경우 지표가 노출되지 않으니 주의해 주세요.: 레벨(5,000개), 월드/서버/채널(100개), 직업/클래스(100개)
+	* App > Transfer Indicator 전송 지표 세팅: Allows pre-registered meta filters only as transfer indicators 미리 등록한 메타 필터만 전송 지표에 사용할 수 있도록 제한
+		* Meta filter indicators that go beyond limit are not displayed.: Level (5,000), World/Server/Channel (100), and Occupation/Class (100) 메타필터 개수 제한하여 그 이상 전송하는 경우 지표가 노출되지 않으니 주의해 주세요.: 레벨(5,000개), 월드/서버/채널(100개), 직업/클래스(100개)
 * [SDK] 2.8.0 
-	* (공통) 콘솔에 등록되지 않은 앱 버전으로 초기화 실패할 때 스토어로 이동할 수 있는 팝업이 추가로 노출하도록 개선
+	* (Common) 콘솔에 등록되지 않은 앱 버전으로 초기화 실패할 때 스토어로 이동할 수 있는 팝업이 추가로 노출하도록 개선
 	* (Android) 로그인 직후 결제 관련 API를 호출할 때 초기화 타이밍 문제로 실패가 발생할 수 있는 코드를 수정
 
 #### Bug Fixes
 * [Console] 
 	* Sales Indicators > Purchase Amount 
-		* 차트 툴 팁에 통화가 원(KRW)으로 고정되어 노출되어 앱에서 설정한 통화로 보이도록 수정
-		* 월별 조회시 2월 지표가 노출안되는 이슈 수정
+		* Modified the display of currency as configured on the app  차트 툴 팁에 통화가 원(KRW)으로 고정되어 노출되어 앱에서 설정한 통화로 보이도록 수정
+		* Fixed the issue of not showing February indicators for monthly search 월별 조회시 2월 지표가 노출안되는 이슈 수정
 		
 ### March 10, 2020 
 
 #### More Features
 
 - [Console] 
-	- 앱  >  앱: Analytics 매출 지표를 표시할 때 테스트 결제 포함 여부 설정  
+	- App  >  App: Analytics 매출 지표를 표시할 때 테스트 결제 포함 여부 설정  
     		- '테스트 결제 제외'로 설정하면 Analytics 매출 지표에서 테스트 결제는 모두 제외하고 보여줍니다. 
 		- 구매(IAP): 구매(IAP) 메뉴 최초 접근 시 결제 지표 통화 코드 설정 
-	- 최초 한 번만 설정 가능하며 Analytics 매출 지표에는 설정된 통화 코드로 지표가 표시됩니다.  
+	- Only the initial setting is available  is 최초 한 번만 설정 가능하며 Analytics 매출 지표에는 설정된 통화 코드로 지표가 표시됩니다.  
   	- 모바일 콘솔(TOAST 앱 포함)에 '데스크톱 보기' 기능 추가
 
 #### Feature Updates
 
 - [Console] 
-  	- 앱  >  설치 URL: URL 입력 가능한 스킴(scheme) 추가 적용 
+  	- App  >  Installation URL: Additionally apply available scheme for input URL 입력 가능한 스킴(scheme) 추가 적용 
     		- 기존: 공통('http://', 'https://'), Android('market://') 
     		- 추가: iOS('itms://', 'itmss://', 'itms-apps://'), Android('intent://')
 - [SDK] 2.7.2 
-  	- (Unity) Updated FacebookAdapter 개선 
-    		- v7.9.4~v7.18.1 버전까지 호환성 테스트
-    		- Null 예외 처리 
-  	- (Unity) StandaloneWebviewAdapter 개선 
+  	- (Unity) Updated FacebookAdapter  
+    		- Compatibility testig from v7.9.4 to v7.18.1 버전까지 호환성 테스트
+    		- Null exception handling  예외 처리 
+  	- (Unity) Updated StandaloneWebviewAdapter 
     		- 웹 페이지를 텍스처(texture)로 내보내기 추가
-    		- 멀티 웹뷰 지원 
-    		- 쿠키 삭제 옵션 추가 
-    		- 텍스처(texture) 크기 조절 지원 
-		- 스크롤바 표시/숨기기 지원 
+    		- Support multiple webviews 멀티 웹뷰 지원 
+    		- Added the option of deleting cookies 쿠키 삭제 옵션 추가 
+    		- Supports sizing of texture 텍스처(texture) 크기 조절 지원 
+		- Supports showing/hiding the scrollbar 스크롤바 표시/숨기기 지원 
     		- 페이지 로드 완료 알림 
     		- 투명 배경 지원 
   	- (Unity) 에디터에서 Android/iOS 플랫폼을 선택하고 Initialize API를 호출하면 오류가 발생하는 문제 해결
@@ -83,21 +83,21 @@
 
 ### February 25, 2020
 
-#### 기능 추가 More Features 
+#### More Features 
 * [Console] 
-	* 쿠폰 > 쿠폰 발급: 발급한 쿠폰을 설정한 스토어에서만 사용할 수 있도록 기능 추가
+	* Coupon > Publish쿠폰 발급: Added the feature of allowing published coupons to be used only at certain stores.   발급한 쿠폰을 설정한 스토어에서만 사용할 수 있도록 기능 추가
 	
 #### Feature Updates 
 * [SDK] 2.7.1
-	* (Common) Guest로 Login 후 GetAuthProviderUserID 호출하면 값을 반환하도록 수정
+	* (Common) Updated to return value, after guest login, when GetAuthProviderUserID is called호출하면 값을 반환하도록 수정
 * [Console]
-	* 앱 > 앱: 동일한 클라이언트 버전 삭제 이후 재등록 시 알림 로직 추가
-	* 구매(IAP) > Item: 등록 시 구독 상품 등록을 위한 등록 필드값 추가(App Store - Shared secret,Google store - Domain authentication File Names)
+	* App > App: Added the notification logic when a same client is re-registered after deleted 동일한 클라이언트 버전 삭제 이후 재등록 시 알림 로직 추가
+	* Purchase (IAP) > Item: Added the registration field to register subscription product 등록 시 구독 상품 등록을 위한 등록 필드값 추가(App Store - Shared secret,Google store - Domain authentication File Names)
 
 #### Bug Fixes
 * [Console]
-	* Analytics > 실시간 모니터링 > 실시간 지표: 간헐적으로 푸시 발송 후 ccu 항목에 빈 값 혹은 infinity로 나타나는 현상 수정
-	* Analytics > 전송 지표
+	* Analytics > Real-time Monitoring실시간 모니터링 > Real-time Indicators실시간 지표: 간헐적으로 푸시 발송 후 ccu 항목에 빈 값 혹은 infinity로 나타나는 현상 수정
+	* Analytics > Transfer Indicators 전송 지표
 		* 그리드에 데이터가 있다가 없어지면 No Data로 갱신되지 않는 버그 수정
 		* 필터 이름이 짧을 때 버튼 정렬이 세로로 나오는 현상 수정
 
@@ -105,25 +105,25 @@
 
 #### 기능 추가 More Features
 * [Console] 
-	* Analytics > 이용자 지표 > Life Cycle 메뉴 신규 오픈 프로젝트 생성부터 이용자 지표의 흐름을 그래프로 한눈에 파악할 수 있도록 기능 제공
-	* 관리 > 권한: 위클리 리포트 수신 권한 항목 추가
-		* 실제 '위클리 리포트' 메일은 3월부터 전송될 예정입니다.
+	* Analytics > User Indicators > Life Cycle 메뉴 신규 오픈 프로젝트 생성부터 이용자 지표의 흐름을 그래프로 한눈에 파악할 수 있도록 기능 제공
+	* Management관리 > Authority권한: 위클리 리포트 수신 권한 항목 추가
+		* The 'Weekly Report' is to be mailed from March. 실제 '위클리 리포트' 메일은 3월부터 전송될 예정입니다.
 
-#### 기능 개선/변경 Feature Updates
-* [서버 API] 탈퇴 API 호출 시 regUser 길이에 대한 유효성 검사(validation) 추가
+#### Feature Updates
+* [Server API] 탈퇴 API 호출 시 regUser 길이에 대한 유효성 검사(validation) 추가
 * [Console] 
 	* Analytics: Grid, Chart에 일본어 폰트 적용
 	* 구매: 오류 발생 시 나타나는 팝업 메시지를 사용자가 직관적으로 알 수 있게 개선
 
-#### 버그 수정 Bug Fixes
+#### Bug Fixes
 * [Console]
-	* Analytics: 일본어로 언어 변경 시 통화가 '엔(JPY)'으로 표시되던 것을 '원(KRW)'으로 표시되도록 수정
+	* Analytics: Modified the currency display from 'Yen (JPY)' to 'Won (KRW)' when the language is changed to Japanese 일본어로 언어 변경 시 통화가 '엔(JPY)'으로 표시되던 것을 '원(KRW)'으로 표시되도록 수정
 
 ### January 21, 2020 
 
 #### More Features
 * [SDK] 2.7.0
-	* (Unity) NaverCafePLUG 지원
+	* (Unity) Supports NaverCafePLUG 
 
 #### Bug Fixes
 * [SDK] 2.7.0
@@ -134,34 +134,34 @@
 * [Console]
 	* Analytics: 유저 세션 만료 시 로그인 페이지로 리디렉트되지 않는 현상 수정
 
-### 2020. 01. 14.
+### January 14, 2020
 
-#### 기능 추가
-* [서버 API] 사용자 탈퇴 API 추가
+#### More Features
+* [Server API] Added Withdraw Users API
 
-#### 기능 개선/변경
+#### Feature Updates
 * [SDK] 2.6.3
-	* (Unity) Standalone Webview 개선: CefWebview 업데이트	
-	* (Unity) 로그인 이후 오류가 발생하여 누락된 .dll 파일 추가
+	* (Unity) Updated Standalone Webview: Updated CefWebview 	
+	* (Unity) Added .dll file missing from an error occured after login 
 		* ToastCommon.dll, vcruntime140.dll
 
-#### 버그 수정
+#### Bug Fixes
 * [SDK] 2.6.3
-	* (Unity) Login(CredentialInfo) API 호출 시 오류가 발생하여 수정
+	* (Unity) Fixed error that occur when Login(CredentialInfo) API is called
 	
-### 2019. 12. 24.
+### December 24, 2019
 
-#### 기능 추가
-* 쿠폰 > 쿠폰 발급: 키워드 쿠폰 기능 추가
+#### More Features
+* Conpon > Publish: Added the feature of keyword coupons
 
-#### 기능 개선/변경
+#### Feature Updates
 * [Console]
-	* 구매 > 결제 정보 조회: 추가 정보 칼럼 추가
+	* Purchase > Query Payment Information: Added the column for additional information
 * [SDK] 2.6.2
-	* (공통) TOAST SDK 업데이트: Android(0.19.4), iOS(0.20.1), Unity(0.18.0)
-	* (iOS) Naver SDK 버전 업데이트(4.1.0)
+	* (Common) TOAST SDK Updates: Android(0.19.4), iOS(0.20.1), Unity(0.18.0)
+	* (iOS) Naver SDK Updates (4.1.0)
 
-### Dec.10, 2019 
+### December 10, 2019 
 
 #### More Features 
 * App > App: Allows to register devices for QA testing via IP as well  
@@ -176,7 +176,7 @@
   * (iOS) Fixed the issue in which mapping is not available when AddMapping (Forcibly) is applied 
   * (iOS) Fixed crash occurrence by NSNUll object, when displayLanguageCode of PushConfiguration is not set by Unity Plugin 
 
-### Nov.26, 2019
+### November 26, 2019
 
 #### Bug Fixes 
 * [Console]
@@ -184,7 +184,7 @@
   * Analytics > Real-time Monitoring > Dashboard: Fixed data of the previous date wrongly displayed as 0  
      Fixed the issue in which the page is not properly displayed for a disabled product, when accessing relevant menu of TOAST Product (e.g. IAP, Push, or AppGuard)
 
-### Nov.20, 2019 
+### November 20, 2019 
 
 #### Bug Fixes
 * [SDK] 2.6.1
@@ -192,14 +192,14 @@
   * (Unity) Fixed the error of UnityEditor in which the store code comes as empty on a platform other than Standalone, resulting in failed initialization  
   * (Unity) Fixed the error of NullReferenceException due to errors from processing zone type within Initialize API 
 
-### Nov.13, 2019
+### November 13, 2019
 
 #### Bug Fixes
 * GamebaseSettingTool
   * Fixed the error in which files are not properly updated, with the version updated to Gamebase v2.6.0
 
 
-### Nov.12, 2019 
+### November 12, 2019 
 
 ```
 To upgrade to Gamebase SDK 2.6.0 from a lower-than-2.6.0 version,  
@@ -230,7 +230,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
   * App >App: Allowed to enter each service status (e.g. testing, under inspection, or in service) of a server address  
   * Purchase (IAP) > Payment Information: Changed UI to search by selecting search conditions
 
-### Oct.29, 2019 
+### October 29, 2019 
 
 #### Feature Updates 
 * [Console]
@@ -238,7 +238,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
   * Analytics > Real-time Monitoring: More targets for push delivery 
 
 
-### Oct.15, 2019
+### October 15, 2019
 
 #### Feature Updates 
 * [SDK] 2.5.2 
@@ -257,7 +257,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 		* Fixed the issue of keyword enabled by selecting Datepicker 
 		* Analytics: Fixed the issue of NRU value exposed for ARPPU 
 		
-### Sept. 24, 2019 
+### September 24, 2019 
 
 #### Feature Updates 
 * [Console]
@@ -269,7 +269,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 		* Fixed the issue of keyword enabled by selecting Datepicker 
 		* Analytics: Fixed the issue of NRU value exposed for ARPPU 
 		
-### Sept. 10, 2019 
+### September 10, 2019 
 
 #### More Features
 * [Console]
