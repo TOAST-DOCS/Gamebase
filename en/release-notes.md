@@ -33,10 +33,10 @@
 
 #### Feature Updates 
 * [Console] 
-	* App > Transfer Indicator Setting: Allows pre-registered meta filters only for transfer indicators 미리 등록한 메타 필터만 전송 지표에 사용할 수 있도록 제한
-		* Meta filter indicators that go beyond limit are not displayed.: Level (5,000), World/Server/Channel (100), and Occupation/Class (100) 메타필터 개수 제한하여 그 이상 전송하는 경우 지표가 노출되지 않으니 주의해 주세요.: 레벨(5,000개), 월드/서버/채널(100개), 직업/클래스(100개)
+	* App > Transfer Indicator Setting: Allows pre-registered meta filters only for transfer indicators 
+		* Meta filter indicators that go beyond limit are not displayed.: Level (5,000), World/Server/Channel (100), and Occupation/Class (100) 
 * [SDK] 2.8.0 
-	* (Common) 콘솔에 등록되지 않은 앱 버전으로 초기화 실패할 때 스토어로 이동할 수 있는 팝업이 추가로 노출하도록 개선
+	* (Common) Updated to further show a popup to move to stores when it fails to initialize on an app version not registered on console 콘솔에 등록되지 않은 앱 버전으로 초기화 실패할 때 스토어로 이동할 수 있는 팝업이 추가로 노출하도록 개선
 	* (Android) 로그인 직후 결제 관련 API를 호출할 때 초기화 타이밍 문제로 실패가 발생할 수 있는 코드를 수정
 
 #### Bug Fixes
@@ -50,9 +50,9 @@
 #### More Features
 
 - [Console] 
-	- App  >  App: Analytics 매출 지표를 표시할 때 테스트 결제 포함 여부 설정  
+	- App  >  App: Set whether to include test payment or not, when analytics sales indicators are displayed 매출 지표를 표시할 때 테스트 결제 포함 여부 설정  
     		- '테스트 결제 제외'로 설정하면 Analytics 매출 지표에서 테스트 결제는 모두 제외하고 보여줍니다. 
-		- 구매(IAP): 구매(IAP) 메뉴 최초 접근 시 결제 지표 통화 코드 설정 
+		- Purchase (IAP): 구매(IAP) 메뉴 최초 접근 시 결제 지표 통화 코드 설정 
 	- Only the initial setting is available  is 최초 한 번만 설정 가능하며 Analytics 매출 지표에는 설정된 통화 코드로 지표가 표시됩니다.  
   	- 모바일 콘솔(TOAST 앱 포함)에 '데스크톱 보기' 기능 추가
 
@@ -64,22 +64,22 @@
     		- Now: iOS('itms://', 'itmss://', 'itms-apps://'), Android('intent://')
 - [SDK] 2.7.2 
   	- (Unity) Updated FacebookAdapter  
-    		- Compatibility testig from v7.9.4 to v7.18.1 버전까지 호환성 테스트
-    		- Null exception handling  예외 처리 
+    		- Compatibility testig from v7.9.4 to v7.18.1 
+    		- Null exception handling   
   	- (Unity) Updated StandaloneWebviewAdapter 
-    		- 웹 페이지를 텍스처(texture)로 내보내기 추가
-    		- Support multiple webviews 멀티 웹뷰 지원 
-    		- Added the option of deleting cookies 쿠키 삭제 옵션 추가 
-    		- Supports sizing of texture 텍스처(texture) 크기 조절 지원 
-		- Supports showing/hiding the scrollbar 스크롤바 표시/숨기기 지원 
-    		- 페이지 로드 완료 알림 
-    		- 투명 배경 지원 
-  	- (Unity) 에디터에서 Android/iOS 플랫폼을 선택하고 Initialize API를 호출하면 오류가 발생하는 문제 해결
+    		- Added the feature of exporting webpages in texture 
+    		- Support multiple webviews  
+    		- Added the option of deleting cookies  
+    		- Supports sizing of texture  
+		- Supports showing/hiding the scrollbar 
+    		- Notifies the completion of page loading  
+    		- Supports transparent background
+  	- (Unity) Fixed an error which occurs when Android/iOS is selected from Editor and Initialize API is called 
 
 #### Bug Fixes
 
 - [Console] 
-  	- Analytics: 통화 코드가 코인성인 경우 매출 지표가 '0'으로 표시되는 문제 해결
+  	- Analytics: Fixed an issue in which the sales indicator is displayed as '0' when the currency code is in coins 
 
 ### February 25, 2020
 
