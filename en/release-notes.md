@@ -36,8 +36,8 @@
 	* App > Transfer Indicator Setting: Allows pre-registered meta filters only for transfer indicators 
 		* Meta filter indicators that go beyond limit are not displayed.: Level (5,000), World/Server/Channel (100), and Occupation/Class (100) 
 * [SDK] 2.8.0 
-	* (Common) Updated to further show a popup to move to stores when it fails to initialize on an app version not registered on console 콘솔에 등록되지 않은 앱 버전으로 초기화 실패할 때 스토어로 이동할 수 있는 팝업이 추가로 노출하도록 개선
-	* (Android) 로그인 직후 결제 관련 API를 호출할 때 초기화 타이밍 문제로 실패가 발생할 수 있는 코드를 수정
+	* (Common) Updated to further show a popup to move to stores when it fails to initialize on an app version not registered on console 
+	* (Android) Fixed codes that may fail due to initialization timing when payment-related API is called immediately after login 
 
 #### Bug Fixes
 * [Console] 
@@ -50,16 +50,16 @@
 #### More Features
 
 - [Console] 
-	- App  >  App: Set whether to include test payment or not, when analytics sales indicators are displayed 매출 지표를 표시할 때 테스트 결제 포함 여부 설정  
-    		- '테스트 결제 제외'로 설정하면 Analytics 매출 지표에서 테스트 결제는 모두 제외하고 보여줍니다. 
-		- Purchase (IAP): 구매(IAP) 메뉴 최초 접근 시 결제 지표 통화 코드 설정 
-	- Only the initial setting is available  is 최초 한 번만 설정 가능하며 Analytics 매출 지표에는 설정된 통화 코드로 지표가 표시됩니다.  
-  	- 모바일 콘솔(TOAST 앱 포함)에 '데스크톱 보기' 기능 추가
+	- App  >  App: Set whether to include test payment or not, when analytics sales indicators are displayed   
+    		- With 'Exclude Test Payment', the analytics sales indicators show all but test payment. 
+		- Purchase (IAP): Set currency code for payment indicators on the initial access to purchase (IAP) menu 
+	- Only the initial setting is available, and the Analytics sales indicators show in the configured currency code. 
+  	- Added the 'View on Desktop' feature on the mobile console (including TOAST app)
 
 #### Feature Updates
 
 - [Console] 
-  	- App  >  Installation URL: Additionally apply available scheme for input URL 입력 가능한 스킴(scheme) 추가 적용 
+  	- App  >  Installation URL: Additionally apply available scheme for input URL  
     		- Previously: Common ('http://', 'https://'), Android('market://') 
     		- Now: iOS('itms://', 'itmss://', 'itms-apps://'), Android('intent://')
 - [SDK] 2.7.2 
@@ -96,28 +96,28 @@
 
 #### Bug Fixes
 * [Console]
-	* Analytics > Real-time Monitoring > Real-time Indicators: 간헐적으로 푸시 발송 후 ccu 항목에 빈 값 혹은 infinity로 나타나는 현상 수정
-	* Analytics > Transfer Indicators 전송 지표
-		* 그리드에 데이터가 있다가 없어지면 No Data로 갱신되지 않는 버그 수정
-		* 필터 이름이 짧을 때 버튼 정렬이 세로로 나오는 현상 수정
+	* Analytics > Real-time Monitoring > Real-time Indicators: Fixed empty or infinity issues that infrequently occur for ccu after push is sent 
+	* Analytics > Transfer Indicators 
+		* Fixed bugs that are not updated to No Data when data is gone from grid 
+		* Fixed the vertical display of buttons when the filter name is short 
 
 ### February 11, 2020
 
 #### More Features
 * [Console] 
-	* Analytics > User Indicators > Life Cycle 메뉴 신규 오픈 프로젝트 생성부터 이용자 지표의 흐름을 그래프로 한눈에 파악할 수 있도록 기능 제공
-	* Management > Authority권한: 위클리 리포트 수신 권한 항목 추가
-		* The 'Weekly Report' is to be mailed from March. 실제 '위클리 리포트' 메일은 3월부터 전송될 예정입니다.
+	* Allows to see the flow of user indicators at a glance, from creating a new menu release project at Analytics > User Indicators > Life Cycle 
+	* Management > Authority: Added the role of receiving Weekly Report
+		* The 'Weekly Report' is to be mailed from March. 
 
 #### Feature Updates
-* [Server API] 탈퇴 API 호출 시 regUser 길이에 대한 유효성 검사(validation) 추가
+* [Server API] Added validation for the regUser length when Withdraw API is called 
 * [Console] 
-	* Analytics: Grid, Chart에 일본어 폰트 적용
-	* 구매: 오류 발생 시 나타나는 팝업 메시지를 사용자가 직관적으로 알 수 있게 개선
+	* Analytics: Apply Japanese fonts for Grid, Chart
+	* Purchase: Updated to let users intuitively view popup message display when error occurs 
 
 #### Bug Fixes
 * [Console]
-	* Analytics: Modified the currency display from 'Yen (JPY)' to 'Won (KRW)' when the language is changed to Japanese 일본어로 언어 변경 시 통화가 '엔(JPY)'으로 표시되던 것을 '원(KRW)'으로 표시되도록 수정
+	* Analytics: Modified the currency display from 'Yen (JPY)' to 'Won (KRW)' when the language is changed to Japanese 
 
 ### January 21, 2020 
 
@@ -127,12 +127,12 @@
 
 #### Bug Fixes
 * [SDK] 2.7.0
-	* (Android) 서버 응답(response)에서 traceError 필수 파라미터가 없더라도 크래시가 발생하지 않도록 수정
-	* (Android) Firebase 설정이 누락되어 있을 때 예외가 발생하지 않도록 수정
-	* (Unity) Web Login 시, gamebase://dismiss 스킴 처리 추가
-	* (Unity) 릴리스 빌드 시, 간헐적으로 Webview가 노출되지 않는 문제 수정	
+	* (Android) Modified not to occur crash when the traceError, which is a required parameter, is missing at the server response 
+	* (Android) Modified not to occur exceptions when Firebase setting is missing 
+	* (Unity) Added the gamebase://dismiss scheme handling for a web login
+	* (Unity) Modified infrequent failure in the display of webview for a release build 	
 * [Console]
-	* Analytics: 유저 세션 만료 시 로그인 페이지로 리디렉트되지 않는 현상 수정
+	* Analytics: Fixed failed re-direction to a login page when the user session is expired 
 
 ### January 14, 2020
 
