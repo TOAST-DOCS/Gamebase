@@ -464,11 +464,13 @@ Parameters required for calling the API are as follows:
 
 **GameUserData**
 
-  | Name | Mandatory (M) / Optional (O) | type | Desc |
-  | -------------------------- | -------------------------- | ---- | ---- |
-  | userLevel | M | int | |
-  | channelId | O | string | |
-  | characterId | O | string | |
+| Name | Mandatory(M) / Optional(O) | type | Desc |
+| -------------------------- | -------------------------- | ---- | ---- |
+| userLevel | M | int | Describes the level of game user. |
+| channelId | O | String | Describes the channel. |
+| characterId | O | String | Describes the name of character. |
+| classId | O | String | Describes the occupation. |
+
 
 **API**
 
@@ -495,12 +497,13 @@ Parameters required for calling the API are as follows:
 
 **LevelUpData**
 
-  | Name | Mandatory (M) / Optional (O) | type | Desc |
-  | -------------------------- | -------------------------- | ---- | ---- |
-  | userLevel | M | int | |
-  | levelUpTime | O | long | Enter Epoch Time</br>in millisecond. |
-  | channelId | O | string | |
-  | characterId | O | string | |
+| Name | Mandatory (M) / Optional (O) | type | Desc |
+| -------------------------- | -------------------------- | ---- | ---- |
+| userLevel | M | int | Describes the level of game user. |
+| levelUpTime | M | long | Enter in Epoch Time</br>by the millisecond. |
+| channelId | O | string | |
+| characterId | O | string | |
+
 
 **API**
 
@@ -512,10 +515,43 @@ Parameters required for calling the API are as follows:
 
 ```objectivec
 - (void)traceLevelUpWith:(int)level levelUpTime:(long long)levelUpTime channelId:(NSString *)channelId characterId:(NSString *)characterId {
-  TCGBAnalyticsLevelUpData* levelUpData = [TCGBAnalyticsLevelUpData levelUpDataWithUserLevel:level];
-  [levelUpData setLevelUpTime:levelUpTime];
-  [levelUpData setChannelId:channelId];
-  [levelUpData setCharacterId:characterId];
+  TCGBAnalyticsLevelUpData* levelUpData = [TCGBAnalyticsLevelUpData levelUpDataWithUserLevel:level levelUpTime:levelUpTime];
   [TCGBAnalytics traceLevelUpWithLevelUpData:levelUpData];
 }
+```
+
+### Contact
+
+Gamebase provides features to respond to customer inquiries. 
+
+> [TIP]
+>
+> By integrating with TOAST Contact, customer inquiries can be handled more at ease and convenience. 
+> For more details on TOAST Contact, see the guide as below: 
+> [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+
+#### Open Contact WebView
+
+The webview for **Customer Center URL** can be displayed as on Gamebase Console. 
+Apply the same input values for **Gamebase Console > App > InApp URL > Service center**.
+
+**API**
+
+```objectivec
++ (void)openContactWithViewController:(UIViewController *)viewController completion:(void(^)(TCGBError *error))completion;
+```
+
+**Example**
+
+```objectivec
+[TCGBContact openContactWithViewController:parentViewController completion:^(TCGBError *error) {
+    if (error != NULL && error.code == TCGB_ERROR_WEBVIEW_INVALID_URL) { // 7001
+        // TODO: Gamebase Console Service Center URL is invalid.
+        //  Please check the url field in the TOAST Gamebase Console.
+    } else if (error != NULL) {
+        // TODO: Error occur when opening the contact web view.
+    } else {
+        // A user close the contact web view.
+    }
+}];
 ```

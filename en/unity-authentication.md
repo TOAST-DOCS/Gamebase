@@ -17,12 +17,11 @@ In many games, login is implemented on a title page.
 
 The logic described in the above can be implemented in the following order.
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
 #### 1. Authenticate with Latest Login Type
 
@@ -39,7 +38,7 @@ The logic described in the above can be implemented in the following order.
 * Network error
     * If the error code is **SOCKET_ERROR (110)** or **SOCKET_RESPONSE_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.LoginForLastLoggedInProvider()** again, or try again in a moment.
 * Banned game user
-    * If the error code is **AUTH_BANNED_MEMBER (3005)**, the authentication has failed due to banned game user.
+    * When the error code is found as **BANNED_MEMBER(7)** , authentication has failed because the user is banned from the game.
     * Check ban information with **Gamebase.GetBanInfo()** and notify the user with reasons for not being able to play.
     * When **GamebaseConfiguration.enablePopup** and **GamebaseConfiguration.enableBanPopup** are set as true during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
 * Other errors
@@ -61,7 +60,7 @@ The logic described in the above can be implemented in the following order.
 * Network error
     * If the error code is **SOCKET_ERROR (110)** or **SOCKET_RESPONSE_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.LoginForLastLoggedInProvider()** again, or try again in a minute.
 * Banned game user
-    * If the error code is **AUTH_BANNED_MEMBER (3005)**, the authentication has failed due to banned game user.
+    * When the error code is found as **BANNED_MEMBER(7)**, authentication has failed because the user is banned from the game.
     * Check ban information with **Gamebase.GetBanInfo()** and notify the user with reasons for not being able to play.
     * When **GamebaseConfiguration.enablePopup** and **GamebaseConfiguration.enableBanPopup** are set as true during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
 * Other errors
@@ -317,11 +316,10 @@ public void LoginWithCredential()
 [Console Guide](./oper-app/#authentication-information)
 
 ## Logout
+
 Try to log out from logged-in IdP. In many cases, the logout button is located on the game configuration screen.
 Even if a logout is successful, a game user's data remain.
 When it is successful, as authentication records with a corresponding IdP are removed, ID and passwords will be required for the next log-in process.<br/><br/>
-
-Following shows an example logout code with a click of the logout button.
 
 **API**
 
@@ -358,14 +356,13 @@ public void Logout()
 
 
 ## Withdraw
-Below shows an example of how a game user withdraws while logged-in.
+
+로그인 상태에서 탈퇴를 시도합니다.
 
 * When a user is successfully withdrawn, the user's data interfaced with a login IdP will be deleted.
 * The user can log in with the IdP again, and a new user's data will be created.
 * It means user's withdrawal from Gamebase, not from IdP account.
 * After a successful withdrawal, a log-out from IdP will be tried.
-
-Following shows an example withdrawal code with a click of the withdrawal button.
 
 **API**
 
@@ -1076,6 +1073,7 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 |      | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | The authentication is not supported. |
 |      | AUTH_NOT_EXIST_MEMBER | 3003 | Named member does not exist or has withdrawn. |
 |      | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | Error in external authentication library. <br/>Check DetailCode and DetailMessage. |
+|  | AUTH_ALREADY_IN_PROGRESS_ERROR | 3010 | Previous authentication process is not complete.
 | TransferKey | SAME\_REQUESTOR | 8 | The issued TransferKey has been used on the same device. |
 |             | NOT\_GUEST\_OR\_HAS\_OTHERS | 9 | You have tried transferring with a non-guest account or the account is linked with a non-guest IdP. |
 |                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | The date of TransferAccount has expired. |
@@ -1111,7 +1109,6 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 
 * Refer to the following document for the entire error codes.
     * [Entire Error Codes](./error-codes#client-sdk)
-
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 

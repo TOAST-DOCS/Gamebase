@@ -1,22 +1,28 @@
-## Game > Gamebase > API Guide
+## Game > Gamebase > API v1.2 Guide
 
-Gamebase Server API provides APIs as follows, in the RESTful format.
+## Updates
+- Changed IAP API.
+- Added storeCode as required parameter to call Get Simple Launching API.
+- Added storeCode information of the maintenance target for the response result of Check Maintenance API.  
+- Added Validate TransferAccount API to verify TransferAccount that is published in advance and used for device transfer on a guest account.
+- Changed the date time of API response result frmo Epoch Time to ISO 8601 (ssXXX:mm:HH'T'dd-MM-yyyy).  regDate and lastLoginDate for response result of Token Authentication, Get Member, and Get Members API.
+- Added Exhaust Coupons API.
 
 ## Advance Notice
 
-Following information is required to use Server API.
+Gamebase Server API provides APIs as follows, in the RESTful format. Following information is required to use Server API.
 
 #### Server Address
 
 To call API, below address is needed, which is also available in the Gamebase Console.
 > https://api-gamebase.cloud.toast.com
 
-![image alt](./image/Server_Developers_Guide/pre_server_address_v1.2.png)
+![image alt](https://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
 
 #### AppId
 
 App ID, as a project ID of TOAST, can be found on the **Project List** page of the Console.
-![image alt](./image/Server_Developers_Guide/pre_appId_v1.2.png)
+![image alt](https://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
 #### SecretKey
 
@@ -24,7 +30,7 @@ Secret Key, as a control access of API, can be found in the Gambase Console. It 
 > [Note]<br>
 > When a secret key is exposed and a wrong call is made, click **Create** to create a new secret key and replace the old one.
 
-![image alt](./image/Server_Developers_Guide/pre_secret_key_v1.2.png)
+![image alt](https://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
 
 #### TransactionId
 
@@ -91,7 +97,7 @@ Authenticates an Access Token issued to a login user. If it is normal, return in
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-gateway/v1.0/apps/{appId}/members/{userId}/tokens/{accessToken}?linkedIdP=false |
+| GET | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}/tokens/{accessToken}?linkedIdP=false |
 
 **[Request Header]**
 
@@ -129,22 +135,22 @@ Check common requirements.
     "userId": "String",
     "valid": "Y",
     "appId": "String",
-    "regDate": 1488257745000,
-    "lastLoginDate": 1488286059000,
+    "regDate": "2019-08-27T17:41:05+09:00",
+    "lastLoginDate": "2019-08-27T17:41:05+09:00",
     "authList": [
       {
         "userId": "String",
         "authSystem": "String",
         "idPCode": "String",
         "authKey": "String",
-        "regDate": 1488257745000
+        "regDate": "2019-08-27T17:41:05+09:00"
       },
       {
         "userId": "String",
         "authSystem": "String",
         "idPCode": "String",
         "authKey": "String",
-        "regDate": 1490922916000
+        "regDate": "2019-08-27T17:41:05+09:00"
       }
     ]
   }
@@ -157,7 +163,7 @@ Check common requirements.
 | linkedIdP.idPCode | String | IdP information <br>e.g. Guest, PAYCO, and Facebook |
 | linkedIdP.idPId | String | IdP ID |
 | member.userId | String | User ID |
-| member.lastLoginDate | long | Last login time  <br>Not available for first-time login user  |
+| member.lastLoginDate | String | Last login time ISO 8601 <br>Not available for first-time login user  |
 | member.appId | String | appId |
 | member.valid | String | Value of a successful login user is "Y" <br>(For description of other values, refer to member API.)) |
 | member.regDate | long | Time when a user created an account |
@@ -171,39 +177,41 @@ Check common requirements.
 
 [Error Code](./error-code/#server)
 
+
 ## Launching
 
 #### Get Simple Launching
 
-Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면 점검 시간 및 메시지 등 클라이언트 앱 기동시 제공되는 Launching 정보들에 대해 간략히 확인할수 있습니다.
+In the console, you can view the launching information provided when starting up a client app, such as the server address, install URL, current maintenance status, maintenance time, and messages.
+To check only if the current maintenance setting is enabled, use [Check Maintenance] API.
 
 **[Method, URI]**
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-launching/v1.0/apps/{appId}/launching/simple |
-
+| GET | /tcgb-launching/v1.2/apps/{appId}/launching/simple |
 
 **[Request Header]**
 
-공통 사항 확인
+Check Common Factors
 
 **[Path Variable]**  
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | TOAST Project ID |
 
 **[Request Parameter]**  
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| osCode | OsCode | true | OS 코드 <br>AOS, IOS, WEB, WINDOWS |
-| clientVersion | String | true | 클라이언트 버전 |
+| osCode | OsCode | true | OS code <br>AOS, IOS, WEB, WINDOWS |
+| storeCode | Enum | true | Store Code <br>- GG: Google<br>- ONESTORE<br>- AS: AppStore |
+| clientVersion | String | true | Client version |
 
 **[Response Body]**  
 
-##### 정상
+##### OK
 ```json
 {
     "header": {
@@ -236,7 +244,7 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 }
 ```
 
-##### 점검
+##### Maintenance
 ```json
 {
     "header": {
@@ -279,28 +287,28 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 | Key | Type | Description |
 | --- | --- | --- |
-| status | Object | 현재 클라이언트 상태를 나타내는 정보 |
-| status.code | int | 클라이언트 상태코드 <br><br>정상: 200 <br>업데이트 권장: 201, 업데이트 필수: 300 <br>서비스 종료: 302 <br>점검 중: 303 |
-| status.message | String | 클라이언트 상태 메시지 |
-| app | Object | 앱의 정보 |
-| app.storeCode | String | 앱 스토어코드 <br>"GG", "AS" 등 |
-| app.accessInfo | Object | 콘솔 앱 화면에서 설정한 정보 |
-| app.accessInfo.serverAddress | String | 서버 주소<br>클라이언트에서 설정한 서버 주소의 우선순위가 높음. <br>클라이언트 서버 주소 미설정시, 앱 화면에서 설정한 서버 주소가 전달됨. |
-| app.accessInfo.csInfo | String | 고객 센터 정보 |
-| app.relatedUrls | Object | 앱 내에서 사용할 인앱 URL |
-| app.relatedUrls.termsUrl | String | 이용약관 |
-| app.relatedUrls.csUrl| String | 고객센터 |
-| app.relatedUrls.punishRuleUrl | String | 이용 정지 규정 |
-| app.relatedUrls.personalInfoCollectionUrl | String | 개인 정보동의 |
-| app.install | Object | 앱 설치 정보 |
-| app.install.url | String | 설치 URL |
-| maintenance | Object | 점검 정보 |
-| maintenance.typeCode | String | 점검 타입 코드 <br>전체 점검:'SYSTEM', 앱별 점검:'APP' |
-| maintenance.beginDate | Date | 점검 시작 시간 ISO 8601 |
-| maintenance.endDate | Date | 점검 종료 시간 ISO 8601 |
-| maintenance.url | String | 점검 URL |
-| maintenance.reason | String | 점검 사유 |
-| maintenance.message | String | default 점검 사유 메시지 |
+| status | Object | Information which shows the current client status |
+| status.code | int | Client status code <br><br>OK: 200 <br>Update recommended: 201, Update required: 300 <br>Service terminated: 302 <br>Maintenance in progress: 303 |
+| status.message | String | Client status message |
+| app | Object | App information |
+| app.storeCode | String | App Store code <br>'GG', 'AS', etc. |
+| app.accessInfo | Object | Information set on the console app screen |
+| app.accessInfo.serverAddress | String | Server address<br>The server address set on the client side has a higher priority. <br>When no client server address is set, the server address set on the app screen is delivered. |
+| app.accessInfo.csInfo | String | Customer Center information |
+| app.relatedUrls | Object | In-app URL to be used within the app |
+| app.relatedUrls.termsUrl | String | Terms and Conditions |
+| app.relatedUrls.csUrl| String | Customer Center |
+| app.relatedUrls.punishRuleUrl | String | Ban Rules |
+| app.relatedUrls.personalInfoCollectionUrl | String | Privacy Information Agreement |
+| app.install | Object | App Installation information |
+| app.install.url | String | Install URL |
+| maintenance | Object | Maintenance Information |
+| maintenance.typeCode | String | Maintenance type code <br>Overall maintenance : 'SYSTEM', Maintenance per App: 'APP' |
+| maintenance.beginDate | Date | Maintenance start date ISO 8601 |
+| maintenance.endDate | Date | Maintenance end date ISO 8601 |
+| maintenance.url | String | Maintenance URL |
+| maintenance.reason | String | Maintenance reason |
+| maintenance.message | String | Default maintenance reason message |
 
 <br>
 
@@ -314,7 +322,7 @@ Retrieve detailed information of a single member.
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-member/v1.0/apps/{appId}/members/{userId} |
+| GET | /tcgb-member/v1.2/apps/{appId}/members/{userId} |
 
 
 **[Request Header]**
@@ -348,15 +356,15 @@ Check common requirements.
     "userId": "String",
     "valid": "Y",
     "appId": "String",
-    "regDate": 1488185201000,
-    "lastLoginDate": 1488185201000,
+    "regDate": "2019-08-27T17:41:05+09:00",
+    "lastLoginDate": "2019-08-27T17:41:05+09:00",
 	"authList": [
 		  {
 			"userId": "String",
 			"authSystem": "String",
 			"idPCode": "String",
 			"authKey": "String",
-			"regDate": 1488185201000
+			"regDate": "2019-08-27T17:41:05+09:00"
 		  }
 		]
 	  },
@@ -382,14 +390,14 @@ Check common requirements.
 | member.userId | String | User ID |
 | member.valid | Enum | Y: Normal user <br>D: Withdrawn user  <br>B: Banned user <br>M: Missing account|
 | member.appId | String | appId |
-| member.regDate | long | Time when a user created an account   |
-| member.lastLoginDate | long | Last login time <br>Not available for a first-time login user |
+| member.regDate | String | Time when a user created an account   |
+| member.lastLoginDate | String | Last login time <br>Not available for a first-time login user |
 | member.authList | Array[Object] | Information related to user-authenticated IdP  |
 | member.authList[].userId | String | User ID |
 | member.authList[].authSystem | String |  Authentication system used internally within Gamebase <br>User authentication system to be provided |
 | member.authList[].idPCode | String | User-authenticated IdP information <br>e.g. Guest, PAYCO, and Facebook |
 | member.authList[].authKey | String |  User separator issued at authSystem   |
-| member.authList[].regDate | long | Mapping time between IdP information with user account |
+| member.authList[].regDate | String | Mapping time between IdP information with user account |
 | memberInfo                   | Object        | Additional user information              |
 | memberInfo.deviceCountryCode | String        | Country code of user device              |
 | memberInfo.usmCountryCode    | String        | Country code of user USIM                |
@@ -415,7 +423,7 @@ Retrieves brief information about multiple members.
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-member/v1.0/apps/{appId}/members |
+| POST | /tcgb-member/v1.2/apps/{appId}/members |
 
 **[Request Header]**
 
@@ -448,7 +456,7 @@ Check common requirements.
 		"userId": "String",
 		"valid": "Y",
 		"appId": "String",
-		"regDate": 1488185201000
+		"regDate": "2019-08-27T17:41:05+09:00"
     }
   ]
 }
@@ -460,7 +468,7 @@ Check common requirements.
 | memberList[].userId  | String         | User ID                                  |
 | memberList[].valid   | Enum           | Y: Normal user <br>D: Withdrawn user <br>B: Banned user <br>M: Missing account |
 | memberList[].appId   | String         | appId                                    |
-| memberList[].regDate | Long           | Time when a user created an account      |
+| memberList[].regDate | String         | Time when a user created an account      |
 
 
 **[Error Code]**
@@ -476,7 +484,7 @@ Retrieve IdP information mapped with user ID.
 
 | Method | Type | URI |
 | --- | --- | --- |
-| POST | String | /tcgb-member/v1.0/apps/{appId}/auth/authKeys |
+| POST | String | /tcgb-member/v1.2/apps/{appId}/auth/authKeys |
 
 **[Request Header]**
 
@@ -538,7 +546,7 @@ Retrieve a user ID mapped to user authentication key.
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-member/v1.0/apps/{appId}/members/userIds/authKeys?authSystem={authSystem} |
+| POST | /tcgb-member/v1.2/apps/{appId}/members/userIds/authKeys?authSystem={authSystem} |
 
 
 **[Request Header]**
@@ -591,34 +599,34 @@ Check common requirements.
 
 #### Ban Histories
 
-사용자 이용 정지 이력을 조회합니다.
+Looks up users' ban history.
 
 **[Method, URI]**
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-member/v1.0/apps/{appId}/members/bans |
+| GET | /tcgb-member/v1.2/apps/{appId}/members/bans |
 
 
 **[Request Header]**
 
-공통 사항 확인
+Check Common Factors
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | TOAST Project ID |
 
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | mandatory | 이용 정지 이력 조회 시작 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | mandatory | 이용 정지 이력 조회 종료 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용정지가 되었다면 조회 결과에 존재 |
-| page | String | optional | 조회하고자 하는 페이지. 0부터 시작 |
-| size | String | optional | 한 페이지당 데이터 개수 |
+| begin | String | mandatory | Ban history query start time (ISO 8601 standard time, UTF-8 encoding required) <br>E.g. yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | mandatory | Ban history query end time (ISO 8601 standard time, UTF-8 encoding required)<br>If banned between the start and end time, the query result shows this. |
+| page | String | optional | Page to query about. Starting from 0 |
+| size | String | optional | Number of data per page |
 
 
 **[Response Body]**
@@ -666,67 +674,67 @@ Check common requirements.
 
 | Key | Type | Description |
 | --- | --- | --- |
-| pagingInfo | Object | 조회된 페이징 정보 |
-| pagingInfo.first | boolean | 첫번째 페이지이면 true |
-| pagingInfo.last | boolean | 마지막 페이지이면 true |
-| pagingInfo.numberOfElements | int | 전체 데이터 수 |
-| pagingInfo.page | int | 페이지 번호 |
-| pagingInfo.size | int | 한 페이지당 데이터 개수 |
-| pagingInfo.totalElements | int | 전체 데이터 수 |
-| pagingInfo.totalPages | int | 전체 페이징 수 |
-| result | Array[Object] | 조회된 이용 정지 내역 |
-| result.appId | String | 조회된 이용 정지 의 TOAST 프로젝트 ID |
-| result.banCaller | String | 이용 정지 호출 주체 |
-| result.banReason | String | 이용 정지 사유 |
-| result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
-| result.beginDate | String | 이용 정지 시작 시간. ISO 8601 표준 시간|
-| result.endDate | String | 이용 정지 종료 시간. ISO 8601 표준 시간 |
-| result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'Leaderboard' 로 반환 |
-| result.message | String | 이용 정지 메세지 |
-| result.name | String | 콘솔에서 등록한 템플릿 이름 |
-| result.regUser | String | 이용 정지 등록자 |
-| result.releaseCaller | String | 이용 정지 해제 주체 |
-| result.releaseDate | String | 이용 정지 해제 시간. ISO 8601 표준 시간 |
-| result.releaseReason | String | 이용 정지 해제 사유 |
-| result.releaseUser | String | 이용 정지 해제 등록자 |
-| result.seq | Long | 이용 정지 내역 순번 |
-| result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
-| result.userId | String | 사용자 ID |
+| pagingInfo | Object | Queried page information |
+| pagingInfo.first | boolean | True if it is the first page |
+| pagingInfo.last | boolean | True if it is the last page |
+| pagingInfo.numberOfElements | int | Total number of data |
+| pagingInfo.page | int | Page No. |
+| pagingInfo.size | int | Number of data per page |
+| pagingInfo.totalElements | int | Total number of data |
+| pagingInfo.totalPages | int | Total number of pages |
+| result | Array[Object] | Queried ban history details |
+| result.appId | String | TOAST Project ID of the queried ban |
+| result.banCaller | String | Subject of calling ban |
+| result.banReason | String | Reason of ban |
+| result.banType | String | Type of ban TEMPORARY or PERMANENT |
+| result.beginDate | Long | Start date of ban epoch time|
+| result.endDate | Long | End date of ban epoch time |
+| result.flags | String | Returns 'Leaderboard' when you have selected Delete Leaderboard upon Registering Ban in the console. |
+| result.message | String | Ban message |
+| result.name | String | Template name registered in the console |
+| result.regUser | String | Banned user |
+| result.releaseCaller | String | Subject of unban |
+| result.releaseDate | Long | Date of unban epoch time |
+| result.releaseReason | String | Reason of unban |
+| result.releaseUser | String | Unbanned user |
+| result.seq | Long | Sequence number of ban history |
+| result.templateCode | Long | Code value of ban template registered in the console |
+| result.userId | String | User ID |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[Error code](./error-code/#server)
 
 #### Ban Release Histories.
 
-사용자 이용 정지 해제 이력을 조회합니다.
+Queries the user's unban history.
 
 **[Method, URI]**
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-member/v1.0/apps/{appId}/members/bans/release |
+| GET | /tcgb-member/v1.2/apps/{appId}/members/bans/release |
 
 
 **[Request Header]**
 
-공통 사항 확인
+Check Common Factors
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
-
+| appId | String | TOAST Project ID |
+|   |   |   |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | mandatory | 이용 정지 해제 이력 조회 시작 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | mandatory | 이용 정지 해제 이력 조회 종료 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용정지가 해제 되었다면 조회 결과에 존재 |
-| page | String | optional | 조회하고자 하는 페이지. 0부터 시작 |
-| size | String | optional | 한 페이지당 데이터 개수 |
+| begin | String | mandatory | Unban history query start time (ISO 8601 standard time, UTF-8 encoding required) <br>E.g. yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | mandatory | Unban history query end time (ISO 8601 standard time, UTF-8 encoding required)<br>If unbanned between the start and end time, the query result shows this. |
+| page | String | optional | Page to query about. Starting from 0 |
+| size | String | optional | Number of data per page |
 
 
 **[Response Body]**
@@ -774,40 +782,40 @@ Check common requirements.
 
 | Key | Type | Description |
 | --- | --- | --- |
-| pagingInfo | Object | 조회된 페이징 정보 |
-| pagingInfo.first | boolean | 첫번째 페이지이면 true |
-| pagingInfo.last | boolean | 마지막 페이지이면 true |
-| pagingInfo.numberOfElements | int | 전체 데이터 수 |
-| pagingInfo.page | int | 페이지 번호 |
-| pagingInfo.size | int | 한 페이지당 데이터 개수 |
-| pagingInfo.totalElements | int | 전체 데이터 수 |
-| pagingInfo.totalPages | int | 전체 페이징 수 |
-| result | Array[Object] | 조회된 이용 정지 정보 |
-| result.appId | String | 조회된 이용 정지 의 TOAST 프로젝트 ID |
-| result.banCaller | String | 이용 정지 호출 주체 |
-| result.banReason | String | 이용 정지 사유 |
-| result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
-| result.beginDate | String | 이용 정지 시작 시간. ISO 8601 표준 시간 |
-| result.endDate | String | 이용 정지 종료 시간. ISO 8601 표준 시간 |
-| result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'Leaderboard' 로 반환 |
-| result.message | String | 이용 정지 메세지 |
-| result.name | String | 콘솔에서 등록한 템플릿 이름 |
-| result.regUser | String | 이용 정지 등록자 |
-| result.releaseCaller | String | 이용 정지 해제 주체 |
-| result.releaseDate | String | 이용 정지 해제 시간. ISO 8601 표준 시간 |
-| result.releaseReason | String | 이용 정지 해제 사유 |
-| result.releaseUser | String | 이용 정지 해제 등록자 |
-| result.seq | Long | 이용 정지 내역 순번 |
-| result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
-| result.userId | String | 사용자 ID |
+| pagingInfo | Object | Queried page information |
+| pagingInfo.first | boolean | True if it is the first page |
+| pagingInfo.last | boolean | True if it is the last page |
+| pagingInfo.numberOfElements | int | Total number of data |
+| pagingInfo.page | int | Page No. |
+| pagingInfo.size | int | Number of data per page |
+| pagingInfo.totalElements | int | Total number of data |
+| pagingInfo.totalPages | int | Total number of pages |
+| result | Array[Object] | Queried ban information |
+| result.appId | String | TOAST Project ID of the queried ban |
+| result.banCaller | String | Subject of calling ban |
+| result.banReason | String | Reason of ban |
+| result.banType | String | Type of ban TEMPORARY or PERMANENT |
+| result.beginDate | String | Start date of ban epoch time |
+| result.endDate | String | End date of ban epoch time |
+| result.flags | String | Returns 'Leaderboard' when you have selected Delete Leaderboard upon Registering Ban in the console. |
+| result.message | String | Ban message |
+| result.name | String | Template name registered in the console |
+| result.regUser | String | Banned user |
+| result.releaseCaller | String | Subject of unban |
+| result.releaseDate | String | Date of unban epoch time |
+| result.releaseReason | String | Reason of unban |
+| result.releaseUser | String | Unbanned user |
+| result.seq | Long | Sequence number of ban history |
+| result.templateCode | Long | Code value of ban template registered in the console |
+| result.userId | String | User ID |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[Error code](./error-code/#server)
 
 #### Validate TransferAccount
 
-GUEST 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사를 수행합니다.
+Validates the ID and password issued for transferring the guest account. For valid TransferAccount, return issued userID information.
 
 **[Method, URI]**
 
@@ -818,18 +826,18 @@ GUEST 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사
 
 **[Request Header]**
 
-공통 사항 확인
+Check Common Factors
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | TOAST Project ID |
 
 
 **[Request Parameter]**
 
-없음
+None
 
 
 **[Request Body]**
@@ -845,8 +853,8 @@ GUEST 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사
 
 | Key | Type | Description |
 | --- | --- | --- |
-| account.id | String | 유효성 검증을 수행할 ID |
-| account.password | String | 유효성 검증을 수행할 PASSWORD |
+| account.id | String | ID to be validated |
+| account.password | String | Password to be validated |
 
 **[Response Body]**
 
@@ -862,25 +870,24 @@ GUEST 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사
     "userId": "String",
     "valid": "Y",
     "appId": "String",
-    "regDate": 1488185201000,
-    "lastLoginDate": 1488185201000
+    "regDate": "2019-08-27T17:41:05+09:00",
+    "lastLoginDate": "2019-08-27T17:41:05+09:00"
   }
 }
 ```
 
 | Key | Type | Description |
 | --- | --- | --- |
-| member | Object | 조회된 사용자의 기본 정보 |
-| member.userId | String | 사용자 ID |
-| member.valid | Enum | Y: 정상 사용자 <br>D: 탈퇴된 사용자 <br>B: 이용 정지된 사용자 <br>M: 유실된 계정|
-| member.appId | String | appId |
-| member.regDate | long | 사용자가 계정을 생성한 시간 |
-| member.lastLoginDate | long | 마지막으로 로그인한 시간 <br>처음 로그인한 사용자는 해당 값이 없음 |
+| member | Object | Basic information of the queried user |
+| member.userId | String | User ID |
+| member.valid | Enum | Y: Normal user <br>D: Withdrawn user <br>B: Banned user<br>M: Lost account|
+| member.appId | String | App ID |
+| member.regDate | String | The time when the user created the account |
+| member.lastLoginDate | String | The last login time <br>The user who logged in for the first time has no value |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
-
+[Error code](./error-code/#server)
 
 <br>
 
@@ -894,7 +901,7 @@ Check whether maintenance is currently set.
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-launching/v1.0/apps/{appId}/maintenances/under-maintenance |
+| GET | /tcgb-launching/v1.2/apps/{appId}/maintenances/under-maintenance |
 
 **[Request Header]**
 
@@ -928,7 +935,12 @@ N/A
       "beginDate": "2017-01-01T12:10:00+07:00",
       "endDate": "2017-02-01T12:17:00+07:00",
       "url": "http://url.info",
-      "message": "maintenance reason"
+      "message": "maintenance message",
+      "targetStores": [
+        "GG",
+        "AS",
+        "ONESTROE"
+      ]
     }
   ]
 }
@@ -943,38 +955,334 @@ N/A
 | maintenances.endDate   | String  | End time of maintenance. ISO 8601        |
 | maintenances.url       | String  | Detailed maintenance URL                 |
 | maintenances.message   | String  | Maintenance message                      |
-
+| maintenances.targetStores | Array[Enum] | Storecode of a client for the maintenance setting of a particular client only <br>- GG: Google<br>- ONESTORE<br>- AS: AppStore |
 
 **[Error Code]**
 
 [Error Code](./error-code/#server)
 
+<br>
 
-## Purchase(IAP)
+## Coupon
 
-Gamebase provides **Wrapping** to Server API of TOAST IAP. With Wrapping, TOAST products become available at a user server on a consistent interface.
+#### Validate and Consume Coupons
 
-#### Wrapping API
+Validate published coupon code and change coupon status via console. For valid coupons, change to consume status and return item information to be paid as response result.
 
-| API | Method | Wrapping URI | IAP URI |
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}/coupons/{couponCode} |
+
+**[Request Header]**
+
+Check common issues
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST project ID |
+| userId | String | User ID to use coupons |
+| couponCode | String | Coupon code |
+
+**[Request Parameter]**
+
+N/A
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "title": "Coupon Title",
+        "benefits": [
+            {
+                "itemId": "heart",
+                "amount": 10
+            },
+            {
+                "itemId": "diamond",
+                "amount": 20
+            }
+        ]
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Object | Coupon Information |
+| result.title | String | Coupon name |
+| result.benefits | Array[Object] | Information of item to be provided |
+| result.benefits.itemId | String | Item ID |
+| result.benefits.amount | Integer | Item count |
+
+**[Error Code]**
+
+[Error Codes](./error-code/#server)
+
+<br>
+
+## Purchase (IAP)
+
+#### Consume
+
+After purchase is completed at each store, such as Google Play Store, App Store, and ONEStore, users must be notified to consume such purchase before item is provided. Consume only once per purchase, but if purchase state is not normal, it cannot be consumed.    
+(If purchase is consumed, user's purchase and item supply is deemed to have been complete.)
+
+Non-consumed purchases can be queried on SDK or server via Query Consume Non-Consumed Purchases API. Note that only consumable items can be consumed when registering items.  
+
+> [Note]
+> Consume once per purchase, and non-consumed purchases are considered that no item has been provided by IAP.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.2/apps/{appId}/consume |
+
+**[Request Header]**
+
+Check common issues
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST project ID |
+
+**[Request Parameter]**
+
+N/A
+
+**[Request Body]**
+
+```json
+{
+  "paymentSeq": "2019091931571201",
+  "accessToken" : "90fD1bs1guXwY6aZ7rseEKYW_6gMCISjDASgten4MD6O7XZD7VRjZcs8OTm8lOQVFTegoY4WK78P2WQCMm7cx"
+}
+```
+
+| Name | Type | Required | Value |
 | --- | --- | --- | --- |
-|  Consume Items    | POST | /tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq} | /inapp/v3/consume/{paymentSeq}/items/{itemSeq} |
-|  Retrieve Items     | GET | /tcgb-inapp/v1.0/apps/{appId}/item/list/{appSeq} | /standard/item/list/{appSeq} |
-| Retrieve List of Non-consumed Purchases| POST | /tcgb-inapp/v1.0/apps/{appId}/consumable/list | /standard/inapp/v1/consumable/list |
+| paymentSeq | String | mandatory | Payment number |
+| accessToken | String | mandatory  | Payment authentication token (not a login authentication token) |
 
-**For more information of the API, click the following link.**
+> [Note]
+> When client calls requestPurchase API, the purchaseToken for response is used as accessToken
 
-[IAP Guide](/Mobile%20Service/IAP/en/api-guide/)
 
-##### Example of API Call
+**[Response Body]**
 
+```json
+{
+   "header":{
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "result":{
+        "price": 1500,
+        "currency": "KRW",
+        "productSeq": 12345
+    }
+}
 ```
-Content-Type: application/json
-X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
-X-Secret-Key: IgsaAP
 
-POST https://api-gamebase.cloud.toast.com/tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq}
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Object | Basic payment information |
+| result.price | Float | Payment price |
+| result.currency  | String  | Payment currency |
+| result.productSeq | Long | Payment item number (original item number registered on console) |
+
+**[Error Code]**
+
+[Error Codes](./error-code/#server)
+
+#### List Consumables
+
+List non-consumed payment, which is not consumed even if paid up.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.2/apps/{appId}/consumable |
+
+**[Request Header]**
+
+Check common issues
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST project ID |
+
+**[Request Parameter]**
+
+N/A
+
+**[Request Body]**
+
+```json
+{
+  "marketId": "GG",
+  "userChannel" : "GF",
+  "userKey" : "QXG774PMRZMWR3BR"
+}
 ```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| marketId | String | mandatory | Store code<br>GG: Google, AS: Apple, ONESTORE: One store |
+| userChannel | String | mandatory  | User channel<br>Currently not realized, with the `GF` setting at all times |
+| userKey | String | mandatory  | User ID |
+
+**[Response Body]**
+
+```json
+{
+    "header":{
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "success"
+    },
+    "result":[
+        {
+            "paymentSeq": "2016122110023124",
+            "productSeq": 1000292,
+            "currency": "KRW",
+            "price": 1000,
+            "accessToken": "oJgM1EfDRjnQY7yqhWCUVgAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
+        },
+
+        {
+            "paymentSeq": "2016122110023125",
+            "productSeq": 1000292,
+            "currency": "KRW",
+            "price": 1000,
+            "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
+        }
+    ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Array[Object] | Basic payment information |
+| result[].paymentSeq | String  | Payment number |
+| result[].productSeq | Long | Payment item number (original item number registered on console) |
+| result[].currency  | String  | Payment currency |
+| result[].price | Float | Payment price |
+| result[].accessToken | String | Payment authentication token |
+
+**[Error Code]**
+
+[Error Codes](./error-code/#server)
+
+### List Active Subscriptions
+
+List payment of user's current subscriptions.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.2/apps/{appId}/active-subscriptions |
+
+**[Request Header]**
+
+Check common issues
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST project ID |
+
+**[Request Parameter]**
+
+N/A
+
+**[Request Body]**
+
+```json
+{
+  "marketId": "GG",
+  "packageName" : "com.toast.gamebase",
+  "userChannel" : "GF",
+  "userKey" : "QXG774PMRZMWR3BR"
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| marketId | String | mandatory | Store code<br>GG: Google, AS: Apple, ONESTORE: One store |
+| packageName | String | mandatory | packageName of the app registered on console |
+| userChannel | String | mandatory  | User channel <br>Currently not realized, with`GF` setting at all times |
+| userKey | String | mandatory  | User ID |
+
+**[Response Body]**
+
+```json
+{
+  "header": {
+    "isSuccessful": true,
+    "resultCode": 0,
+    "resultMessage": "SUCCESS"
+  },
+  "result": [
+    {
+      "channel": "GF",
+      "userId": "string",
+      "paymentSeq": "2018102610330423",
+      "appId": "com.toast.gamebase",
+      "productId": "subs_p1w",
+      "productType": "AUTO_RENEWABLE",
+      "productSeq": 1002904,
+      "currency": "KRW",
+      "price": 1000,
+      "paymentId": "GPA.3375-2193-1175-57698",
+      "originalPaymentId": "GPA.3375-2193-1175-57698",
+      "purchaseTimeMillis": 1540522998289,
+      "expiryTimeMillis": 1541134994548
+    }
+  ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Array[Object] | Basic payment information |
+| result[].channel  | String  | User channel 널 |
+| result[].userId  | String  | User ID |
+| result[].paymentSeq | String  | Payment number |
+| result[].appId | String  | Package name |
+| result[].productId | String  | Identifier of product (item) registered at store |
+| result[].productType | String  | Product (item) type <br>Subscription: AUTO_RENEWABLE |
+| result[].productSeq | Long | Payment item number (original item number registered on console) |
+| result[].currency  | String  | Payment currency |
+| result[].price | Float | Payment price |
+| result[].paymentId | String | Recently updated store payment number |
+| result[].originalPaymentId | String | Initial store payment number |
+| result[].purchaseTimeMillis | Long | Recent updated time |
+| result[].expiryTimeMillis | Long | Subscription expiration time |
+
+**[Error Code]**
+
+[Error Codes](./error-code/#server)
+
+<br>
 
 ## Leaderboard
 
@@ -984,15 +1292,15 @@ Gamebase provides Wrapping to server API of TOAST Leaderboard. With Wrapping, TO
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
-| Retrieve User Count Registered at Factor | GET    | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
-| Retrieve Score/Rank of a Single User     | GET    | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
-| Retrieve Scores/Ranks of Multiple Users  | POST   | /tcgb-leaderboard/v1.0/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
-| Retrieve Entire Scores/Ranks of Range    | GET    | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
-| Register Score of a Single User          | POST   | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
-| Register Score/ExtraData of a Single User | POST   | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
-| Register Scores of Multiple Users        | POST   | /tcgb-leaderboard/v1.0/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
-| Register Scores/ExtraData of Multiple Users | POST   | /tcgb-leaderboard/v1.0/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
-| Delete Leaderboard Information of a Single User | DELETE | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| Retrieve User Count Registered at Factor | GET    | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
+| Retrieve Score/Rank of a Single User     | GET    | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
+| Retrieve Scores/Ranks of Multiple Users  | POST   | /tcgb-leaderboard/v1.2/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
+| Retrieve Entire Scores/Ranks of Range    | GET    | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
+| Register Score of a Single User          | POST   | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
+| Register Score/ExtraData of a Single User | POST   | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
+| Register Scores of Multiple Users        | POST   | /tcgb-leaderboard/v1.2/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
+| Register Scores/ExtraData of Multiple Users | POST   | /tcgb-leaderboard/v1.2/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
+| Delete Leaderboard Information of a Single User | DELETE | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
 
 
 **For more information of the API, click the following link.**
@@ -1007,8 +1315,10 @@ Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 X-Secret-Key: IgsaAP
 
-GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/user-count
+GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/user-count
 ```
+
+<br>
 
 ## Others
 
@@ -1021,7 +1331,7 @@ To inquire about causes of failure in API call, upload **API Call URL (with HTTP
 ##### Example of API Call
 
 ```
-GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.0/apps/C3JmSctU/maintenances/under-maintenance
+GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.2/apps/C3JmSctU/maintenances/under-maintenance
 ```
 
 ##### Result of Failed API Response
@@ -1035,11 +1345,10 @@ GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.0/apps/C3JmSctU/maint
     "traceError": {
       "trackingTime": 1489726350287,
       "throwPoint": "gateway",
-      "uri": "/tcgb-launching/v1.0/apps/C3JmSctU/maintenances/under-maintenance"
+      "uri": "/tcgb-launching/v1.2/apps/C3JmSctU/maintenances/under-maintenance"
     },
     "isSuccessful": false
   }
 }
 
 ```
-

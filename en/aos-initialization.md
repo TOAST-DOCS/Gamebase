@@ -2,20 +2,15 @@
 
 To use Gamebase Android SDK, initialization is required.
 
-### Activate the Application
+### onActivityResult
 
-To manage app's lifecycle, Gamebase SDK should be notified of app's activation.<br/>
-Call **Gamebase#activeApp(Context)** from **Application#onCreate()**.
+For normal operations of Gamebase, make sure to call **Gamebase.onActivityResult(int, int, Intent)** from **Activity#onActivityResult(int, int, Intent)**.
+
+
+**API**
 
 ```java
-public class GamebaseApplication extends Application {
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        Gamebase.activeApp(getApplicationContext());
-    }
-}
++ (void)Gamebase.onActivityResult(int requestCode, int resultCode, Intent data);
 ```
 
 ### Configuration Settings
@@ -24,14 +19,11 @@ To initialize Gamebase, Gamebase setting can be modified with GamebaseConfigurat
 
 | API                                      | Mandatory (M) / Optional (O) | Description                              |
 | ---------------------------------------- | -------------------------- | ---------------------------------------- |
-| Builder(String appId, String appVersion) | **M**                      | appId and appVersion must be passed to the GamebaseConfiguration.Builder constructor as mandatory parameters and initialized. <br/><br/> **appId:** Enter an App ID issued from TOAST Cloud Project.<br/> **appVersion:** Status of update or maintenance can be decided upon a game version. Specify a game version. |
+| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | appId and appVersion must be passed to the GamebaseConfiguration.newBuilder as mandatory parameters and initialized. <br/><br/> **appId:** Enter an App ID issued from TOAST Cloud Project.<br/> **appVersion:** Update or maintenance status can be decided upon a game version. Specify a game version. <br/> **storeCode** refers to the store in which APK is deployed. Find each store code in the following guide. [Purchase - Initialization](./aos-purchase/#6-initialization) |
 | build()                                  | **M**                      | Convert Builder completed with setting to a configuration object.<br/>Required for **Gamebase.initialize ()** API. |
 | enablePopup(boolean enable)              | O                          | **[UI]**<br/>When a game user cannot play games due to system maintenance or banned from use, reasons need to be displayed by pop-ups.<br/>If it is set **true** , Gamebase will automatically display information via pop-ups.<br/>**false** is set as default.<br/>When set to **false** , get information from launching results and display why user cannot play games by using customized UI. |
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>Depending on the launching results, when available to log in (mainly due to maintenance), you may decide whether to allow Gamebase to automatically display pop-ups.<br/>Works only when **enablePopup (true)** is on.<br/>**true** is set as default. |
 | enableBanPopup(boolean enable)           | O                          | **[UI]**<br/>When game user is banned, you can change whether to allow Gamebase to automatically display a pop-up on the reasons.<br/>Works only when **enablePopup (true)** is on.<br/>**true** is set as default. |
-| setStoreCode(String storeCode)           | O                          | **[Purchase]**<br/>Need to set which store to use for In-App Purchase (IAP).<br/>For parameters, refer to the [IAP Document](/Mobile%20Service/IAP/en/Overview/). |
-| setFCMSenderId(String senderId)          | O                          | **[Push]**<br/>To send push messages via Google Notification (FCM, GCM), set a sender ID. |
-| setTencentAccessKey(String accessKey)<br/>setTencentAccessId(String accessId) | O                          | **[Push]**<br/>To use Tencent push modules, set an access key and access ID. |
 
 ### Debug Mode
 * Gamebase shows warning and error logs only.
@@ -50,8 +42,7 @@ Please see the following guide to set in the console.
 
 ### Initialize
 
-Call **Gamebase#initialize(Activity, GamebaseConfiguration, and GamebaseDataCallback)** from **Activity#onCreate(Bundle)** to initialize Gamebase SDK.<br/>
-And, for normal operations of Gamebase, make sure to call **Gamebase.onActivityResult(int, int, Intent)** from **Activity#onActivityResult(int, int, Intent)**.
+Call **Gamebase#initialize(Activity, GamebaseConfiguration, and GamebaseDataCallback)** from **Activity#onCreate(Bundle)** to initialize Gamebase SDK.
 
 **API**
 
@@ -69,11 +60,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         /**
+         * Show gamebase debug message.
+		 * set 'false' when build RELEASE.
+         */
+        Gamebase.setDebugMode(true);
+
+        /**
          * Gamebase Configuration.
          */
         String appId = "T0aStC1d";
         String appVersion = "1.0.0";
-        GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(appId, appVersion)
+        String storeCode = "GG";
+        GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(appId, appVersio, storeCode)
                                             .enableLaunchingStatusPopup(true)
                                             .build();
         /**
@@ -83,13 +81,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCallback(final LaunchingInfo data, GamebaseException exception) {
                 if (Gamebase.isSuccess(exception)) {
-                    // Check launching status.
-                    LaunchingStatus status = data.getStatus();
-                    if (status.isPlayable()) {
-                        // Play games.
-                    } else {
-                        // Requires maintenance or app updates.
-                    }
+                    // Follow the launch code to decide whether to allow entry to the game.
+                    ...
                 } else {
                     // If initialization fails, cannot use Gamebase SDK.
                     // Display errors, and restart or close a game.
@@ -100,11 +93,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /**
-         * Show gamebase debug message.
-		 * set 'false' when build RELEASE.
-         */
-        Gamebase.setDebugMode(true);
         ...
     }
     ...
@@ -122,9 +110,10 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-### Launching Status
+### Launching Information
 
-Check launching status by calling 'Gamebase#initialize()'.
+Check launching status by calling 'Gamebase#initialize()'.<br/>
+Follow each launching code to decide on the game play.
 
 ```java
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
@@ -132,15 +121,47 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
     public void onCallback(final LaunchingInfo data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
             // Check launching status.
-            LaunchingStatus status = data.getStatus();
-            int statusCode = status.getCode();
-            switch (statusCode) {
-                case LaunchingStatus.INSPECTING_SERVICE:
-                    // Under maintenance...
+            boolean canPlay = true;
+            String errorLog = "";
+            switch (launchingInfo.getStatus().getCode()) {
+                case LaunchingStatus.IN_SERVICE:
                     break;
-                ...
+                case LaunchingStatus.RECOMMEND_UPDATE:
+                    Log.d(TAG, "There is a new version of this application.");
+                    break;
+                case LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST:
+                case LaunchingStatus.IN_TEST:
+                case LaunchingStatus.IN_REVIEW:
+                    Log.d(TAG, "You logged in because you are developer.");
+                    break;
+                case LaunchingStatus.REQUIRE_UPDATE:
+                    canPlay = false;
+                    errorLog = "You have to update this application.";
+                    break;
+                case LaunchingStatus.BLOCKED_USER:
+                    canPlay = false;
+                    errorLog = "You are blocked user!";
+                    break;
+                case LaunchingStatus.TERMINATED_SERVICE:
+                    canPlay = false;
+                    errorLog = "Game is closed!";
+                    break;
+                case LaunchingStatus.INSPECTING_SERVICE:
+                case LaunchingStatus.INSPECTING_ALL_SERVICES:
+                    canPlay = false;
+                    errorLog = "Under maintenance.";
+                    break;
+                case LaunchingStatus.INTERNAL_SERVER_ERROR:
+                default:
+                    canPlay = false;
+                    errorLog = "Unknown internal error.";
+                    break;
             }
-            ...
+            if (canPlay) {
+                // Game play starts.
+            } else {
+                // Disclose why you cannot play and suspend the game.
+            }
         }
         ...
     }
@@ -154,12 +175,23 @@ With the getLaunchingInformations API, you can get the LaunchingInfo object afte
 ```java
 + (LaunchingInfo)Gamebase.Launching.getLaunchingInformations();
 ```
+LaunchingInfo includes values set on Gamebase Console, as well as game status.
 
 
+#### 1. Launching
 
+Refers to Gamebase launching data.
 
+**1.1 Status**
 
-### Launching Status Code
+The game status information belongs to the app version entered for the setting of Gamebase Android SDK initialization. 
+
+* code: Game status code (Under Maintenance, Requires Update, Service Closed, and etc.)
+* message: Status message of a game
+
+Refer to the table for status codes:
+
+##### Launching Status Code
 
 | Status                      | Code | Description                              |
 | --------------------------- | ---- | ---------------------------------------- |
@@ -174,6 +206,75 @@ With the getLaunchingInformations API, you can get the LaunchingInfo object afte
 | INSPECTING_SERVICE          | 303  | Under maintenance now                                 |
 | INSPECTING_ALL_SERVICES     | 304  | Under maintenance for the whole service                              |
 | INTERNAL_SERVER_ERROR       | 500  | Error in internal server                                 |
+
+[Console Guide](/Game/Gamebase/en/oper-app/#app)
+
+**1.2 App**
+
+App information registered on Gamebase console.
+
+* accessInfo
+    * serverAddress: Server address
+    * csInfo: Customer center information
+* relatedUrls
+    * termsUrl: Terms of Service
+    * personalInfoCollectionUrl: Consent to Personal Information
+    * punishRuleUrl: Ban Regulation
+    * csUrl: Customer Center
+* install: Installation URL
+* idP: Authentication information
+
+[Console Guide](/Game/Gamebase/en/oper-app/#client)
+
+**1.3 Maintenance**
+
+Maintenance information registered on Gamebase Console:
+
+* url: URL for maintenance page
+* timezone: Standard time zone (timezone)
+* beginDate: Start time
+* endDate: End time
+* message: Cause of maintenance
+
+[Console Guide](/Game/Gamebase/en/oper-operation/#maintenance)
+
+**1.4 Notice**
+
+Notice information registered on Gamebase console:
+
+* message: Message
+* title: Title
+* url: Maintenance URL
+
+[Console Guide](/Game/Gamebase/en/oper-operation/#notice)
+
+#### 2. tcProduct
+
+AppKey of TOAST linked to Gamebase:
+
+* gamebase
+* tcLaunching
+* iap
+* push
+
+#### 3. tcIap
+
+IAP store information registered on TOAST console:
+
+* id: App ID
+* name: App Name
+* storeCode: Store Code
+
+[Console Guide](/Game/Gamebase/en/oper-purchase/)
+
+#### 4. tcLaunching
+
+User-input information for TOAST launching console:
+
+* Send user-input values in JSON string.
+* For further details of TOAST Launching, see the guide as below:
+
+[Console Guide](/Game/Gamebase/en/oper-management/#config)
 
 
 
@@ -194,5 +295,3 @@ With the getLaunchingInformations API, you can get the LaunchingInfo object afte
 
 * Refer to the following document for all error codes.
     * [Error Code](./error-code/#client-sdk)
-
-`Last Update: 2019.05.28`

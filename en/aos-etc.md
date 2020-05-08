@@ -49,7 +49,7 @@ Additional functions provided by Gamebase are described as below:
 
 Each language code is defined in the `DisplayLanguage` class.
 
-> `[Warning]`
+> <font color="red">[Warning]</font><br/>
 >
 > Gamebase distinguishes the language code between the upper and lower case. 
 > For example, settings like 'EN' or 'zh-ch' may cause a problem. 
@@ -205,20 +205,20 @@ To add another language, add `"${language code}":{"key":"value"}` to the localiz
     ...
     "launching_service_closed_title": "サービス終了"
   },
-  "${언어코드}": {
+  "${language code}": {
       "common_ok_button": "...",
       ...
   }
 }
 ```
 
-If key is missing from inside of "${language code}":{ } of the json format above, `Languages Set on Device` or `en` will be automatically entered. 
+If key is missing from inside of "${language code}":{ } of the json format above, `Languages Set on Device` or `en` will be automatically entered.
 
 #### Priority in Display Language
 
 If Display Language is set via initialization and SetDisplayLanguageCode API, the final application may be different from what has been entered. 
 
-1. Check if the languageCode you enter is defined in the localizedstring.json file. 
+1. Check if the languageCode you enter is defined in the localizedstring.json file.
 2. See if, during Gamebase initialization, the language code set on the device is defined in the localizedstring.json file. (This value shall maintain even if the language set on device changes after initialization.)
 3.  `en`, which is the default value of Display Language, is automatically set.
 
@@ -270,7 +270,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 
 ### Server Push
 * Handles Server Push Messages from Gamebase server to a client device. 
-* Add ServerPushEvent Listener to Gamebase Client, and the user can handle messages; the added ServerPushEvent Listener can be deleted. 
+* Add ServerPushEvent Listener to Gamebase Client, and the user can handle messages; the added ServerPushEvent Listener can be deleted.
 
 
 #### Server Push Type
@@ -515,26 +515,28 @@ Parameters required for calling the API are as follows:
 
 | Name                       | Mandatory (M) / Optional (O) | type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int |  |
-| channelId | O | String |  |
-| characterId | O | String |  |
+| userLevel | M | int | Describes the level of game user. |
+| channelId | O | String | Describes the channel. |
+| characterId | O | String | Describes the name of character. |
+| classId | O | String | Shows the occupation. |
 
 **API**
 
 ```java
-static void setGameUserData(GameUserData gameUserData)
+Gamebase.Analytics.setGameUserData(GameUserData gameUserData);
 ```
 
 **Example**
 
 ``` java
-public void onLoginSuccess(, String channelId, String characterId) {
+public void onLoginSuccess() {
     int userLevel = 10;
-    String channelId, characterId;
+    String channelId, characterId, classId;
 
     GameUserData gameUserData = new GameUserData(userLevel);
     gameUserData.channelId = channelId; // Optional
     gameUserData.characterId = characterId; // Optional
+    gameUserData.classId = classId; // Optional
 
     Gamebase.Analytics.setGameUserData(gameUserData);
 }
@@ -550,30 +552,66 @@ Parameters required for calling the API are as follows:
 
 | Name                       | Mandatory (M) / Optional (O) | type | Desc	|
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int |  |
-| levelUpTime | O | long | Enter Epoch Time</br>in millisecond. |
-| channelId | O | String |  |
-| characterId | O | String |  |
+| userLevel | M | int | Describes the level of user. |
+| levelUpTime | M | long | Enter Epoch Time</br>in millisecond. |
 
 
 
 **API**
 
 ```java
-static void TraceLevelUp(GamebaseRequest.Analytics.LevelUpData levelUpData)
+Gamebase.Analytics.traceLevelUp(LevelUpData levelUpData);
 ```
 
 **Example**
 
 ``` java
-public void onLevelUp(int userLevel, long levelUpTime, String channelId, String characterId) {
-    LevelUpData levelUpData = new LevelUpData(userLevel);
-    levelUpData.levelUpTime = levelUpTime; // Optional
-    levelUpData.channelId = channelId; // Optional
-    levelUpData.characterId = characterId; // Optional
+public void onLevelUp(int userLevel, long levelUpTime) {
+    LevelUpData levelUpData = new LevelUpData(userLevel, levelUpTime);
 
     Gamebase.Analytics.traceLevelUp(levelUpData);
 }
 ```
 
-`Last Update: 2019.05.28`
+
+### Contact
+
+Gamebase provides features to respond to customer inquiries.
+
+> [TIP]
+>
+> By integrating with TOAST Contact, customer inquiries can be handled more at ease and convenience.
+> For more details on TOAST Contact, see the guide as below:
+> [TOAST Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
+>
+
+#### Open Contact WebView
+
+The webview for **Customer Center URL** can be displayed as on Gamebase Console.
+Apply the same input values for **Gamebase Console > App > InApp URL > Service center**.
+
+**API**
+
+```java
+Gamebase.Contact.openContact(Activity activity, GamebaseCallback callback);
+```
+
+**Example**
+
+``` java
+public void openContact(Activity activity) {
+    Gamebase.Contact.openContact(activity, new GamebaseCallback() {
+        @Override
+        public void onCallback(GamebaseException exception) {
+            if (exception != null && exception.code == WEBVIEW_INVALID_URL) { // 7001
+                // TODO: Gamebase Console Service Center URL is invalid.
+                //  Please check the url field in the TOAST Gamebase Console.
+            } else if (exception != null) {
+                // TODO: Error occur when opening the contact web view.
+            } else {
+                // A user close the contact web view.
+            }
+        }
+    });
+}
+```
