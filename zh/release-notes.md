@@ -1,5 +1,191 @@
 ## Game > Gamebase > Release Notes
 
+### May 12, 2020
+
+#### More Features
+* [SDK 2.9.0]
+	* (Unreal) SDK 신규 배포
+	
+#### Feature Updates 
+* [Console] 
+	* 앱 > 앱: 탈퇴 유예 기간을 변경한 사용자의 토스트 계정을 저장하도록 개선
+	* 멤버 > 회원: 매핑 이력 조회 시 정보가 제대로 보이지 않는 문제 수정
+	* 구매(IAP) > 스토어: 테스트, 구) 원스토어는 신규 등록이 되지 않도록 수정
+
+#### Bug Fixes
+* [SDK 2.9.1]
+	* (Andoird) 매핑 이후 지표 레벨이 null이 되어 결제 지표에 정상적으로 반영되지 않는 오류 수정
+	* (iOS) unreal 엔진에서 빌드 하면, warning을 빌드 오류로 판정해서 빌드가 안되는 부분을 수정
+
+### April 29, 2020
+
+#### Bug Fixes
+* [SDK] 2.9.1 
+	* (Unity) Initialize 이후 콘솔에서 클라이언트의 서비스 상태를 변경하면 오류가 발생하는 문제를 수정
+		* 이슈 발생 버전: v2.8.0 이상	
+		* 이슈가 있는 플랫폼: Standalone, WebGL, Editor
+
+### April 28, 2020
+
+#### More Features
+* Suspension of Membership Withdrawal 
+	* [SDK 2.9.0]
+		* (Common) Added API: Apply for suspension of withdrawal, Cancel application for suspension of withdrawal, Immediately withdraw while on suspension, and Check if user's withdrawal is suspended  
+	* [Console]
+		* Apps > Apps: Added features allowing to set suspension period for withdrawal
+#### Feature Updates
+* [SDK 2.9.0]
+	* (Common) Updated TOAST SDK: Android(v0.21.0), iOS(v0.23.0), Unity(0.20.1)
+	* (Common) Updated Payco Login SDK: Android(v1.5.0), iOS(v1.4.0)
+* [Console]
+	* All Menus: Changed the design of buttons and tags on console 
+	* Operations > Maintenance, Operations > Notice, Push: Supports auto-translation in multiple languages
+	* Members > Membership: Further shows suspension period expired, when querying members who are suspended for withdrawal 
+	
+### March 24, 2020
+
+#### More Features 
+* [Console] 
+	* Release of New Menus: Analytics > User Indicators > Frequency 7
+		* Provides weekly visits and rate of DAU. You can find the level of immersion and loyalty for a game. 
+	* Coupon > Publish: Texting coupons is now available  
+* [SDK] 2.8.0
+	* (Common) Added more purchase and product information, such as product type and regional prices 
+	* (Unity) Updated CefWebview to v2.0.1 within StandaloneWebviewAdapter 
+		* When the PopupType is PASS_INFO, popup data can be delivered without a popup 
+ 	* (Javascript) Supports Hangame channeling: Hangame IdP authentication and purchase with Hancoin 
+
+
+#### Feature Updates 
+* [Console] 
+	* App > Transfer Indicator Setting: Allows pre-registered meta filters only for transfer indicators 
+		* Meta filter indicators that go beyond limit are not displayed.: Level (5,000), World/Server/Channel (100), and Occupation/Class (100) 
+* [SDK] 2.8.0 
+	* (Common) Updated to further show a popup to move to stores when it fails to initialize on an app version not registered on console 
+	* (Android) Fixed codes that may fail due to initialization timing when payment-related API is called immediately after login 
+
+#### Bug Fixes
+* [Console] 
+	* Sales Indicators > Purchase Amount 
+		* Modified the display of currency, which is currently fixed at Won (KRW) for chart tooltips, to show as configured on the app  
+		* Fixed the issue of not showing February indicators for monthly search 
+		
+### March 10, 2020 
+
+#### More Features
+
+- [Console] 
+	- App  >  App: Set whether to include test payment or not, when analytics sales indicators are displayed   
+    		- With 'Exclude Test Payment', the analytics sales indicators show all but test payment. 
+		- Purchase (IAP): Set currency code for payment indicators on the initial access to purchase (IAP) menu 
+	- Only the initial setting is available, and the Analytics sales indicators show in the configured currency code. 
+  	- Added the 'View on Desktop' feature on the mobile console (including TOAST app)
+
+#### Feature Updates
+
+- [Console] 
+  	- App  >  Installation URL: Additionally apply available scheme for input URL  
+    		- Previously: Common ('http://', 'https://'), Android('market://') 
+    		- Now: iOS('itms://', 'itmss://', 'itms-apps://'), Android('intent://')
+- [SDK] 2.7.2 
+  	- (Unity) Updated FacebookAdapter  
+    		- Compatibility testig from v7.9.4 to v7.18.1 
+    		- Null exception handling   
+  	- (Unity) Updated StandaloneWebviewAdapter 
+    		- Added the feature of exporting webpages in texture 
+    		- Support multiple webviews  
+    		- Added the option of deleting cookies  
+    		- Supports sizing of texture  
+		- Supports showing/hiding the scrollbar 
+    		- Notifies the completion of page loading  
+    		- Supports transparent background
+  	- (Unity) Fixed an error which occurs when Android/iOS is selected from Editor and Initialize API is called 
+
+#### Bug Fixes
+
+- [Console] 
+  	- Analytics: Fixed an issue in which the sales indicator is displayed as '0' when the currency code is in coins 
+
+### February 25, 2020
+
+#### More Features 
+* [Console] 
+	* Coupon > Publish: Added the feature of allowing published coupons to be used only at certain stores.   
+	
+#### Feature Updates 
+* [SDK] 2.7.1
+	* (Common) Updated to return value, after guest login, when GetAuthProviderUserID is called
+* [Console]
+	* App > App: Added the notification logic when a same client is re-registered after deleted 
+	* Purchase (IAP) > Item: Added the registration field to register subscription product (App Store - Shared secret,Google store - Domain authentication File Names)
+
+#### Bug Fixes
+* [Console]
+	* Analytics > Real-time Monitoring > Real-time Indicators: Fixed empty or infinity issues that infrequently occur for ccu after push is sent 
+	* Analytics > Transfer Indicators 
+		* Fixed bugs that are not updated to No Data when data is gone from grid 
+		* Fixed the vertical display of buttons when the filter name is short 
+
+### February 11, 2020
+
+#### More Features
+* [Console] 
+	* Allows to see the flow of user indicators at a glance, from creating a new menu release project at Analytics > User Indicators > Life Cycle 
+	* Management > Authority: Added the role of receiving Weekly Report
+		* The 'Weekly Report' is to be mailed from March. 
+
+#### Feature Updates
+* [Server API] Added validation for the regUser length when Withdraw API is called 
+* [Console] 
+	* Analytics: Apply Japanese fonts for Grid, Chart
+	* Purchase: Updated to let users intuitively view popup message display when error occurs 
+
+#### Bug Fixes
+* [Console]
+	* Analytics: Modified the currency display from 'Yen (JPY)' to 'Won (KRW)' when the language is changed to Japanese 
+
+### January 21, 2020 
+
+#### More Features
+* [SDK] 2.7.0
+	* (Unity) Supports NaverCafePLUG 
+
+#### Bug Fixes
+* [SDK] 2.7.0
+	* (Android) Modified not to occur crash when the traceError, which is a required parameter, is missing at the server response 
+	* (Android) Modified not to occur exceptions when Firebase setting is missing 
+	* (Unity) Added the gamebase://dismiss scheme handling for a web login
+	* (Unity) Modified infrequent failure in the display of webview for a release build 	
+* [Console]
+	* Analytics: Fixed failed re-direction to a login page when the user session is expired 
+
+### January 14, 2020
+
+#### More Features
+* [Server API] Added Withdraw Users API
+
+#### Feature Updates
+* [SDK] 2.6.3
+	* (Unity) Updated Standalone Webview: Updated CefWebview 	
+	* (Unity) Added .dll file missing from an error occured after login 
+		* ToastCommon.dll, vcruntime140.dll
+
+#### Bug Fixes
+* [SDK] 2.6.3
+	* (Unity) Fixed error that occur when Login(CredentialInfo) API is called
+	
+### December 24, 2019
+
+#### More Features
+* Conpon > Publish: Added the feature of keyword coupons
+
+#### Feature Updates
+* [Console]
+	* Purchase > Query Payment Information: Added the column for additional information
+* [SDK] 2.6.2
+	* (Common) TOAST SDK Updates: Android(0.19.4), iOS(0.20.1), Unity(0.18.0)
+	* (iOS) Naver SDK Updates (4.1.0)
+	
 ### Dec.10, 2019 
 
 #### More Features 
