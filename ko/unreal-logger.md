@@ -26,7 +26,8 @@ void Sample::InitializeLogger()
 
 ### Send Logs
 Log & Crash Server로 로그를 전송합니다
-TOAST Logger SDK는 아래 다섯 가지 레벨의 로그를 전송할 수 있습니다. 
+TOAST Logger SDK는 아래 다섯 가지 레벨의 로그를 전송할 수 있습니다.
+
 * DEBUG
 * INFO
 * WARN
@@ -34,6 +35,7 @@ TOAST Logger SDK는 아래 다섯 가지 레벨의 로그를 전송할 수 있�
 * FATAL
 
 로그 레벨은 다음과 같습니다.
+
 * DEBUG > INFO > WARN > ERROR > FATAL
 
 **API**

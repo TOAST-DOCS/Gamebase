@@ -37,7 +37,7 @@ void Sample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNi
     
     IGamebase::Get().GetPush().RegisterPush(FGamebasePushConfigurationDelegate::CreateLambda([](const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush succeeded"));
         }
@@ -72,7 +72,7 @@ void Sample::QueryPush()
     IGamebase::Get().GetPush().QueryPush(
         FGamebasePushConfigurationDelegate::CreateLambda([](const FGamebasePushConfiguration* pushAdvertisements, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("QueryPush succeeded. (pushEnabled= %s, adAgreement= %s, adAgreementNight= %s, displayLanguageCode= %s)"),
                 pushAdvertisements->pushEnabled ? TEXT("true") : TEXT("fasle"),
@@ -107,7 +107,7 @@ void Sample::QueryPush()
 ```cpp
 GamebaseError* gamebaseError = error; // GamebaseError object via callback
 
-if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+if (Gamebase::IsSuccess(error))
 {
     // succeeded
 }

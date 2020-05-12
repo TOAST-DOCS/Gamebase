@@ -90,7 +90,7 @@ void Sample::LoginForLastLoggedInProvider()
 {
     IGamebase::Get().LoginForLastLoggedInProvider(FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("LoginForLastLoggedInProvider succeeded."));
         }
@@ -133,7 +133,7 @@ void Sample::Login()
 {
     IGamebase::Get().Login(GamebaseAuthProvider::Guest, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("Login succeeded. Gamebase userId is %s"), *authToken->member.userId);
         }
@@ -189,7 +189,7 @@ void Sample::Login()
 {
     IGamebase::Get().Login(GamebaseAuthProvider::Facebook, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("Login succeeded. Gamebase userId is %s"), *authToken->member.userId);
         }
@@ -207,7 +207,7 @@ void Sample::LoginWithAdditionalInfo()
 
     IGamebase::Get().Login(GamebaseAuthProvider::Facebook, *additionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("Login succeeded. Gamebase userId is %s"), *authToken->member.userId);
         }
@@ -269,7 +269,7 @@ void Sample::LoginWithCredential()
 
     IGamebase::Get().Login(*credentialInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("Login succeeded. Gamebase userId is %s"), *authToken->member.userId);
         }
@@ -308,7 +308,7 @@ void Sample::Logout()
 {
     IGamebase::Get().Logout(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("Logout succeeded."));
         }
@@ -347,7 +347,7 @@ void Sample::Withdraw()
 {
     IGamebase::Get().Withdraw(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("Withdraw succeeded."));
         }
@@ -442,7 +442,7 @@ void Sample::AddMapping(const FString& providerName)
 {
     IGamebase::Get().AddMapping(providerName, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("AddMapping succeeded."));
         }
@@ -504,7 +504,7 @@ void Sample::AddMappingWithCredential()
 
     IGamebase::Get().AddMapping(*credentialInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("AddMapping succeeded."));
         }
@@ -537,7 +537,7 @@ void Sample::AddMappingForcibly(const FString& providerName)
 {
     IGamebase::Get().AddMapping(providerName, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("AddMapping succeeded. Gamebase userId is %s"), *authToken->member.userId);
         }
@@ -557,7 +557,7 @@ void Sample::AddMappingForcibly(const FString& providerName)
                 IGamebase::Get().AddMappingForcibly(providerName, forcingMappingTicket->forcingMappingKey,
                     FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* innerAuthToken, const FGamebaseError* innerError)
                 {
-                    if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+                    if (Gamebase::IsSuccess(error))
                     {
                         // 강제 매핑 추가 성공
                         UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly succeeded."));
@@ -630,7 +630,7 @@ void Sample::AddMappingForcibly()
 
     IGamebase::Get().AddMapping(*credentialInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("AddMapping succeeded. Gamebase userId is %s"), *authToken->member.userId);
         }
@@ -650,7 +650,7 @@ void Sample::AddMappingForcibly()
                 IGamebase::Get().AddMappingForcibly(*credentialInfo, forcingMappingTicket->forcingMappingKey,
                     FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* innerAuthToken, const FGamebaseError* innerError)
                 {
-                    if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+                    if (Gamebase::IsSuccess(error))
                     {
                         // 강제 매핑 추가 성공
                         UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly succeeded."));
@@ -695,7 +695,7 @@ void Sample::RemoveMapping(const FString& providerName)
 {
     IGamebase::Get().RemoveMapping(providerName, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("RemoveMapping succeeded."));
         }
@@ -944,7 +944,7 @@ void Sample::IssueTransferAccount()
 {
     IGamebase::Get().IssueTransferAccount(FGamebaseTransferAccountDelegate::CreateLambda([=](const FGamebaseTransferAccountInfo* transferAccountInfo, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             // Issuing TransferAccount success.
         }
@@ -972,7 +972,7 @@ void Sample::QueryTransferAccount()
 {
     IGamebase::Get().IssueTransferAccount(FGamebaseTransferAccountDelegate::CreateLambda([=](const FGamebaseTransferAccountInfo* transferAccountInfo, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             // Querying TransferAccount success.
         }
@@ -1007,7 +1007,7 @@ void Sample::RenewTransferAccount(const FString& accountId, const FString& accou
 
     IGamebase::Get().RenewTransferAccount(configuration, FGamebaseTransferAccountDelegate::CreateLambda([=](const FGamebaseTransferAccountInfo* transferAccountInfo, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             // Renewing TransferAccount success.
         }
@@ -1041,7 +1041,7 @@ void Sample::TransferAccountWithIdPLogin(const FString& accountId, const FString
 {
     IGamebase::Get().TransferAccountWithIdPLogin(accountId, accountPassword, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             // Transfering Account success.
             // TODO: implements post login process
@@ -1086,7 +1086,7 @@ void Sample::RequestWithdrawal()
 {
     IGamebase::Get().GetTemporaryWithdrawal().RequestWithdrawal(FGamebaseTemporaryWithdrawalDelegate::CreateLambda([=](const FGamebaseTemporaryWithdrawalInfo* info, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("RequestWithdrawal succeeded. The date when you can withdraw your withdrawal is %d"), info->gracePeriodDate);
         }
@@ -1109,7 +1109,7 @@ void Sample::Login()
 {
     IGamebase::Get().Login(GamebaseAuthProvider::Guest, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             if (authToken->member.temporaryWithdrawal.gracePeriodDate > 0)
             {
@@ -1145,7 +1145,7 @@ void Sample::CancelTemporaryWithdrawal()
 {
     IGamebase::Get().GetTemporaryWithdrawal().CancelTemporaryWithdrawal(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("CancelTemporaryWithdrawal succeeded."));
         }
@@ -1177,7 +1177,7 @@ void Sample::WithdrawImmediately()
 {
     IGamebase::Get().GetTemporaryWithdrawal().WithdrawImmediately(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("WithdrawImmediately succeeded."));
         }
@@ -1246,7 +1246,7 @@ void Sample::WithdrawImmediately()
 ```cpp
 GamebaseError* gamebaseError = error; // GamebaseError object via callback
 
-if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+if (Gamebase::IsSuccess(error))
 {
     // succeeded
 }

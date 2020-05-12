@@ -105,7 +105,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 
     IGamebase::Get().Initialize(configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("Initialize succeeded."));
         

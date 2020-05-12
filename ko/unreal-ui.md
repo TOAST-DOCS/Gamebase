@@ -40,7 +40,7 @@ void Sample::ShowWebView(const FString& url)
         }),
         schemeList,
         FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* error) {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             Result(ANSI_TO_TCHAR(__FUNCTION__), true, *FString::Printf(TEXT("scheme= %s"), *scheme));
         }
@@ -58,10 +58,10 @@ void Sample::ShowWebView(const FString& url)
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
 | title                    | string                                   | WebView의 제목                 |
-| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 미지정 |
-|                          | GamebaseScreenOrientation.PORTRAIT       | 세로 모드                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE      | 가로 모드                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 가로 모드를 180도 회전              |
+| orientation              | GamebaseScreenOrientation::Unspecified    | 미지정 |
+|                          | GamebaseScreenOrientation::Portrait       | 세로 모드                       |
+|                          | GamebaseScreenOrientation::Landscape      | 가로 모드                       |
+|                          | GamebaseScreenOrientation::LandscapeReverse | 가로 모드를 180도 회전              |
 | colorR                   | 0~255                                    | 내비게이션 바 색상 Alpha            |
 | colorG                   | 0~255                                    | 내비게이션 바 색상 R                |
 | colorB                   | 0~255                                    | 내비게이션 바 색상 G                |
@@ -178,7 +178,6 @@ void ShowToast(const FString& message, EGamebaseToastExposureTime exposureTimeTy
 
 **Example**
 ```cpp
-
 void Sample::ShowToast(const FString& message, EGamebaseToastExposureTime exposureTimeType)
 {
     IGamebase::Get().GetUtil().ShowToast(message, exposureTimeType);
