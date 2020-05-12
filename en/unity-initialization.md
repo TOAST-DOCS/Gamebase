@@ -15,7 +15,7 @@ Following settings are required for initialization.
 | enablePopup | ALL | O |
 | enableLaunchingStatusPopup | ALL | O |
 | enableBanPopup | ALL | O |
-| storeCode | ALL | O |
+| storeCode | ALL | M |
 | fcmSenderId | Android | O |
 | useWebview | Standalone | O |
 
@@ -87,7 +87,7 @@ Store information required to initialize In-App Purchase (IAP) of TOAST.
 | ----------- | ---- | ------------ |
 | App Store | AS | only iOS |
 | Google Play | GG | only Android |
-| One Store | TS | only Android |
+| One Store | ONESTORE | only Android |
 
 #### 9. fcmSenderId
 
@@ -240,7 +240,7 @@ Maintenance information registered in the TOAST Console is as follows.
 
 **1.4 Notice**
 
-Following notices are registered in the Gamebase Console:
+Following notices are registered in the Gamebase Console.
 
 * message: Messages
 * title: Title
@@ -265,7 +265,16 @@ IAP store information registered in the TOAST Console.
 * name: App Name
 * storeCode: Store Code
  
-[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+[Console Guide](/Game/Gamebase/en/oper-purchase/)
+
+#### 4. tcLaunching
+
+Refers to user-input information on TOAST Launching Console.  
+
+* Deliver user-input values via JSON string. 
+* For detail setting of TOAST Launching, see the guide as below. 
+ 
+[Console Guide](/Game/Gamebase/en/oper-management/#config)
 
 ### Get Launching Information
 

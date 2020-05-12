@@ -93,9 +93,9 @@ Gamebaseでは、TOAST Pushサービスを使用してPush通知を送信しま�
 > 大部分の場合、ユーザーのプッシュトークンを登録していない場合です。ユーザーのプッシュトークンが登録されているかを確認してください。 
 > プラットフォームでプッシュトークンを登録する方法は次の文書を参照してください。
 >
-> - [Android > Register Push](./aos-push/#2-register-push) 
-> - [iOS > Register Push](./ios-push/#2-register-push) 
-> - [Unity > Register Push](./unity-push/#2-register-push) 
+> - [Android > Register Push](./aos-push/#register-push) 
+> - [iOS > Register Push](./ios-push/#register-push) 
+> - [Unity > Register Push](./unity-push/#register-push) 
 
 #### (6)メッセージ文字色(Only Android)
 
@@ -210,9 +210,9 @@ Pushメッセージを送信する国を選択します。
 > ほとんどの場合、ユーザーのPushトークンが登録されていないのが原因です。ユーザーのPushトークンが登録されているかどうか確認してください。>
 > プラットフォームでPushトークンを登録する方法は、次のドキュメントをご参考ください。
 >
-> - [Android > Register Push](./aos-push/#2-register-push) 
-> - [iOS > Register Push](./ios-push/#2-register-push) 
-> - [Unity > Register Push](./unity-push/#2-register-push) 
+> - [Android > Register Push](./aos-push/#register-push) 
+> - [iOS > Register Push](./ios-push/#register-push) 
+> - [Unity > Register Push](./unity-push/#register-push) 
 
 ## タグ
 

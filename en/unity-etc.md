@@ -34,7 +34,7 @@ static string GetDeviceLanguageCode()
 * The display language on the Gamebase UI and SystemDialog can be changed into another language, which is not set on a device, as the user wants. 
 * Gamebase displays messages which are included in a client or as received by a server. 
 * With DisplayLanguage, messages are displayed in an appropriate language for the language code (ISO-639) set by the user. 
-*  If necessary, language sets can be added as the user wants. The list of available language codes is as follows: 
+* If necessary, language sets can be added as the user wants. The list of available language codes is as follows.
 
 > [Note]
 >
@@ -335,6 +335,7 @@ public static string GetCountryCode()
 ```
 
 ### Server Push
+
 * Handles Server Push Messages from Gamebase server to a client device. 
 * Add ServerPushEvent Listener to Gamebase Client, and the user can handle messages; the added ServerPushEvent Listener can be deleted.
 
@@ -600,9 +601,10 @@ Parameters required for calling the API are as follows:
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int |  |
-| channelId | O | string |  |
-| characterId | O | string |  |
+| userLevel | M | int | Describes the level of game user. |
+| channelId | O | string | Describes the channel. |
+| characterId | O | string | Describes the name of character. |
+| characterClassId | O | string | Describes the occupation. |
 
 **API**
 
@@ -620,11 +622,12 @@ static void SetGameUserData(GamebaseRequest.Analytics.GameUserData gameUserData)
 **Example**
 
 ``` cs
-public void SetGameUserData(int userLevel, string channelId, string characterId)
+public void SetGameUserData(int userLevel, string channelId, string characterId, string characterClassId)
 {
     GamebaseRequest.Analytics.GameUserData gameUserData = new GamebaseRequest.Analytics.GameUserData(userLevel);
     gameUserData.channelId = channelId;
     gameUserData.characterId = characterId;
+    gameUserData.characterClassId = characterClassId;
 
     Gamebase.Analytics.SetGameUserData(gameUserData);
 }
@@ -640,10 +643,9 @@ Parameters required for calling the API are as follows:
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc	|
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int |  |
-| levelUpTime | O | long | Enter Epoch Time</br>in millisecond. |
-| channelId | O | string |  |
-| characterId | O | string |  |
+| userLevel | M | int | Describes the level of game user. |
+| levelUpTime | M | long | Enter Epoch Time</br>in millisecond. |
+
 
 **API**
 
@@ -661,13 +663,63 @@ static void TraceLevelUp(GamebaseRequest.Analytics.LevelUpData levelUpData)
 **Example**
 
 ``` cs
-public void TraceLevelUp(int userLevel, long levelUpTime, string channelId, string characterId)
+public void TraceLevelUp(int userLevel, long levelUpTime)
 {
-    GamebaseRequest.Analytics.LevelUpData levelUpData = new GamebaseRequest.Analytics.LevelUpData(userLevel);
-    levelUpData.levelUpTime = levelUpTime;
-    levelUpData.channelId = channelId;
-    levelUpData.characterId = characterId;
+    GamebaseRequest.Analytics.LevelUpData levelUpData = new GamebaseRequest.Analytics.LevelUpData(userLevel, levelUpTime);
 
     Gamebase.Analytics.TraceLevelUp(levelUpData);
+}
+```
+
+### Contact
+
+Gamebase provides features to respond to customer inquiries. 
+
+> [TIP]
+>
+> By integrating with TOAST Contact, customer inquiries can be handled more at ease and convenience. 
+> For more details on TOAST Contact, see the guide as below: 
+> [TOAST Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
+
+#### Open Contact WebView
+
+The webview for **Customer Center URL** can be displayed as on Gamebase Console.  
+
+* Apply the same input values for **Gamebase Console > App > InApp URL > Service center**.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+```cs
+static void OpenContact(GamebaseCallback.ErrorDelegate callback)
+```
+
+**Example**
+
+``` cs
+public void SampleOpenContact()
+{
+    Gamebase.Contact.OpenContact((error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            Debug.Log("OpenContact succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("OpenContact failed. error:{0}", error));
+
+            if (error.code == GamebaseErrorCode.WEBVIEW_INVALID_URL)
+            {
+                // Gamebase Console Service Center URL is invalid.
+                // Please check the url field in the TOAST Gamebase Console.
+                var launchingInfo = Gamebase.Launching.GetLaunchingInformations();
+                Debug.Log(string.Format("csUrl:{0}", launchingInfo.launching.app.relatedUrls.csUrl));
+            }
+        }
+    });
 }
 ```

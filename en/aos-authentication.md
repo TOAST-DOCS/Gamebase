@@ -17,12 +17,11 @@ In many games, login is implemented on a title page.
 
 The logic described above can be implemented in the following order:
 
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
 ![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
 ![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
 ![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
 ![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
 #### 1. Authenticate with Latest Login Type
 
@@ -39,7 +38,7 @@ The logic described above can be implemented in the following order:
 * Network error
     * If the error code is **SOCKET_ERROR (110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.loginForLastLoggedInProvider()** again or try again in a moment.
 * Banned game user
-    * If the error code is **AUTH_BANNED_MEMBER (3005)**, the authentication has failed because the game user is banned.
+    * If the error code is **BANNED_MEMBER(7)**, the authentication has failed because the game user is banned.
     * Check ban information with **Gamebase.getBanInfo ()** and notify the user with reasons for not being able to play.
     * When **GamebaseConfiguration.Builder.enablePopup(true)** and **enableBanPopup(true)** are called during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
 * Other errors
@@ -61,7 +60,7 @@ The logic described above can be implemented in the following order:
 * Network error
     * If the error code is **SOCKET_ERROR(110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.login(activity, idpType, callback)** again or try again in a moment.
 * Banned game user
-    * If the error code is **AUTH_BANNED_MEMBER(3005)**, the authentication has failed due to banned game user.
+    * If the error code is **BANNED_MEMBER(7)**, the authentication has failed due to banned game user.
     * Check ban information with **Gamebase.getBanInfo()** and notify the user with reasons for not being able to play.
     * When **GamebaseConfiguration.Builder.enablePopup(true)** and **enableBanPopup(true)** are called during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
 * Other errors
@@ -104,7 +103,7 @@ Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthTok
                         } catch (InterruptedException e) {}
                     }
                 }).start();
-            } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
+            } else if (exception.getCode() == GamebaseError.BANNED_MEMBER) {
                 // The user who try to log in has been banned.
                 // If GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) has been called
                 // Gamebase automatically displays a pop-up on banning.
@@ -161,7 +160,7 @@ private static void onLoginForGuest(final Activity activity) {
                             } catch (InterruptedException e) {}
                         }
                     }).start();
-                } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
+                } else if (exception.getCode() == GamebaseError.BANNED_MEMBER) {
                     // The user who try to log in has been banned.
                     // If GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) has been called
                     // Gamebase automatically displays a pop-up on banning.
@@ -246,7 +245,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | Keyname | Usage | Value Type |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
+| AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter One Time Authorization (OTAC) which can be obtained after Google login. |                                          |
 
@@ -297,7 +296,7 @@ private static void onLoginWithCredential(final Activity activity) {
                             } catch (InterruptedException e) {}
                         }
                     }).start();
-                } else if (exception.getCode() == GamebaseError.AUTH_BANNED_MEMBER) {
+                } else if (exception.getCode() == GamebaseError.BANNED_MEMBER) {
                     // The user who try to log in has been banned.
                     // If GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) has been called
                     // Gamebase automatically displays a pop-up on banning.
@@ -450,6 +449,11 @@ Below shows an example.<br/><br/>
 
 Mapping API includes Add Mapping API and Remove Mapping API.
 
+> <font color="red">[Caution]</font><br/>
+>
+> When mapping is successfully done during guest login, guest IdP disappers. 
+>
+
 ### Add Mapping Flow
 
 Implement mapping in the following order:
@@ -560,7 +564,7 @@ This interface can be used for Gamebase AddMapping by an access token issued by 
 
 | Keyname                                  | Usage                                    | Value Type                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
+| AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter One Time Authorization (OTAC) which can be obtained after Google login. |                                          |
 
@@ -711,7 +715,7 @@ This interface allows you to perform authentication in the game with the SDK pro
 
 | keyname                                  | a use                                    | Value type                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | IdP type setting                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER |
+| AuthProviderCredentialConstants.PROVIDER_NAME | IdP type setting                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | Set the authentication information (access token) received after IdP login.<br/>It is not used for Google authentication. |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter the OTOC (one-time authorization code) which can be obtained after Google login. |                                          |
 
@@ -1062,7 +1066,7 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 | Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED               | 3101       | Token login has failed.                          |
 |                | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | Invalid token information.                        |
 |                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | Invalid last login IdP information.                   |
-| IDP Login      | AUTH\_IDP\_LOGIN\_FAILED                 | 3201       | IdP login has failed.                         |
+| IdP Login      | AUTH\_IDP\_LOGIN\_FAILED                 | 3201       | IdP login has failed.                         |
 |                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO     | 3202       | Invalid IdP information (IdP information does not exist in the Console.) |
 | Add Mapping    | AUTH\_ADD\_MAPPING\_FAILED               | 3301       | Add mapping has failed.                           |
 |                | AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | Already mapped to another member.                      |
@@ -1117,5 +1121,3 @@ Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCa
 ```
 
 * Check error codes of IdP SDK at each developer's page.
-
-`Last Update: 2019.05.28`

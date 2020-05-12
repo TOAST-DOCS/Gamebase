@@ -58,6 +58,9 @@ A purchase at store may be successful but cannot be closed normally due to error
     * If there is a value on the returned successList, the game client sends a request to the game server to consume, so that items can be provided.
     * If there is a value on the returned failList, send the value to the game server or Log & Crash to collect logs. Also send inquiry to  [**TOAST > Customer Center**](https://toast.com/support/inquiry)for the cause of reprocessing failure.
 
+* Some cases end up with abnormal closure due to errors, although purchase was successful at store. Please check the list of non-consumed purchases after login.  <br/>
+	* When login is successful, call **requestItemListOfNotConsumedWithCompletion:** to check list of non-consumed purchases. 
+	* If the value is on the returned list, the game client sends a request to the game server to consume, so that items can be provided. 
 
 ### Purchase Item
 
@@ -126,7 +129,10 @@ In case of non-purchased items, ask the game server (item server) to proceed wit
 }
 ```
 
+### Get a List of Activated Subscriptions
 
+Subscriptions that are paid up (e.g. auto-renewable subscription, auto-renewed consumable subscription) can be listed before they are expired. 
+With a same user ID, all purchased subscriptions from Android and iOS can be listed.
 
 ### Reprocess Failed Purchase Transaction
 
@@ -135,19 +141,37 @@ Based on the latest success of purchase, reprocessing is required by calling an 
 
 ```objectivec
 - (void)viewDidLoad {
-    [TCGBPurchase requestRetryTransactionWithCompletion:^(TCGBPurchasableRetryTransactionResult *transactionResult, TCGBError *error) {
+    [TCGBPurchase requestActivatedPurchasesWithCompletion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
         if (error != nil) {
-            // To Retry Failed Purchasing Transaction Failed cause of the error
+            // To Requesting Activated Item List Failed cause of the error
             return;
         }
 
-        // Should Deal With This Retry Transaction Result.
-        // You may send result to your gameserver and add item to user.
+        // Should Deal With This Activated Items.
     }];
 }
 ```
 
+### Restore Purchase
 
+Restore purchase list based on user's AppStore account and apply it to console. 
+Enable the feature when you cannot find or activate purchased subscriptions. 
+Restored purchases, including expired ones, are returned as results. 
+When there is non-applied purchase on the list of auto-renewed consumable subscriptions, you can get it from the list of non-consumed purchases after restoration. 
+
+
+```objectivec
+- (void)viewDidLoad {
+    [TCGBPurchase requestRestoreWithCompletion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
+        if (error != nil) {
+            // To Requesting Restore Failed cause of the error
+            return;
+        }
+
+        // Should Deal With This Restored Items.
+    }];
+}
+```
 
 ### App Store Promotion IAP
 
