@@ -1,13 +1,30 @@
 ## Game > Gamebase > Release Notes
 
+### May 12, 2020
+
+#### More Features
+* [SDK 2.9.0]
+	* (Unreal) SDK 신규 배포
+	
+#### Feature Updates 
+* [Console] 
+	* 앱 > 앱: 탈퇴 유예 기간을 변경한 사용자의 토스트 계정을 저장하도록 개선
+	* 멤버 > 회원: 매핑 이력 조회 시 정보가 제대로 보이지 않는 문제 수정
+	* 구매(IAP) > 스토어: 테스트, 구) 원스토어는 신규 등록이 되지 않도록 수정
+
+#### Bug Fixes
+* [SDK 2.9.1]
+	* (Andoird) 매핑 이후 지표 레벨이 null이 되어 결제 지표에 정상적으로 반영되지 않는 오류 수정
+	* (iOS) unreal 엔진에서 빌드 하면, warning을 빌드 오류로 판정해서 빌드가 안되는 부분을 수정
+
 ### April 29, 2020
 
 #### Bug Fixes
 * [SDK] 2.9.1 
 	* (Unity) Initialize 이후 콘솔에서 클라이언트의 서비스 상태를 변경하면 오류가 발생하는 문제를 수정
-		* 이슈 발생 버전: v2.8.0 이상
+		* 이슈 발생 버전: v2.8.0 이상	
 		* 이슈가 있는 플랫폼: Standalone, WebGL, Editor
-		
+
 ### April 28, 2020
 
 #### More Features
@@ -24,166 +41,151 @@
 	* All Menus: Changed the design of buttons and tags on console 
 	* Operations > Maintenance, Operations > Notice, Push: Supports auto-translation in multiple languages
 	* Members > Membership: Further shows suspension period expired, when querying members who are suspended for withdrawal 
-
-### 2020. 04. 14.
-
-#### 기능 개선/변경
-* [Console] 
-	* Analytics 공통: TUI 차트 버전 업데이트, Frequency7 지표에 적용
-* [SDK] 2.8.1 
-	* (공통) Analytics 전송 결과 확인을 위한 내부 지표 추가
 	
-#### 버그 수정
-* [Console] 
-	* Analytics 공통: 국가명이 길어질 경우 스크롤이 영역을 벗어나는 이슈 수정
-	* Analytics > 실시간 모니터링: 데이터 저장 중에 조회 요청시 지표가 0으로 보이는 현상 수정
-* [SDK] 2.8.1 
-	* (Android) 프로세스 재시작 이후 크래쉬가 발생할 수 있는 코드를 수정
-	* (JavaScript) credentialInfo 로그인에서 Hangame IdP로 로그인이 안되는 문제를 수정
+### March 24, 2020
 
-### 2020. 03. 24.
-
-#### 기능 추가
+#### More Features 
 * [Console] 
-	* 신규 메뉴 오픈: Analytics > 이용자 지표 > Frequency 7
-		* DAU의 일주일간 방문수와 비율 정보를 제공합니다. 게임몰입도, 충성도 등을 한 눈에 파악할 수 있습니다.
-	* 쿠폰 > 쿠폰 발급: 쿠폰 문자 발송 기능 추가
+	* Release of New Menus: Analytics > User Indicators > Frequency 7
+		* Provides weekly visits and rate of DAU. You can find the level of immersion and loyalty for a game. 
+	* Coupon > Publish: Texting coupons is now available  
 * [SDK] 2.8.0
-	* (공통) 결제 및 상품 정보에 상품 타입 및 지역 가격 등의 정보를 추가
-	* (Unity) StandaloneWebviewAdapter 내부의 CefWebview가 v2.0.1 버전으로 업데이트
-		* PopupType이 PASS_INFO일 경우, 팝업을 띄우지 않고 팝업 정보를 전달하는 기능을 추가
- 	* (Javascript) 한게임 채널링 지원: 한게임 IdP 인증, 한코인 결제 추가
+	* (Common) Added more purchase and product information, such as product type and regional prices 
+	* (Unity) Updated CefWebview to v2.0.1 within StandaloneWebviewAdapter 
+		* When the PopupType is PASS_INFO, popup data can be delivered without a popup 
+ 	* (Javascript) Supports Hangame channeling: Hangame IdP authentication and purchase with Hancoin 
 
-#### 기능 개선/변경
+
+#### Feature Updates 
 * [Console] 
-	* 앱 > 전송 지표 세팅: 미리 등록한 메타 필터만 전송 지표에 사용할 수 있도록 제한
-		* 메타필터 개수 제한하여 그 이상 전송하는 경우 지표가 노출되지 않으니 주의해 주세요.: 레벨(5,000개), 월드/서버/채널(100개), 직업/클래스(100개)
+	* App > Transfer Indicator Setting: Allows pre-registered meta filters only for transfer indicators 
+		* Meta filter indicators that go beyond limit are not displayed.: Level (5,000), World/Server/Channel (100), and Occupation/Class (100) 
 * [SDK] 2.8.0 
-	* (공통) 콘솔에 등록되지 않은 앱 버전으로 초기화 실패할 때 스토어로 이동할 수 있는 팝업이 추가로 노출하도록 개선
-	* (Android) 로그인 직후 결제 관련 API를 호출할 때 초기화 타이밍 문제로 실패가 발생할 수 있는 코드를 수정
+	* (Common) Updated to further show a popup to move to stores when it fails to initialize on an app version not registered on console 
+	* (Android) Fixed codes that may fail due to initialization timing when payment-related API is called immediately after login 
 
-#### 버그 수정
+#### Bug Fixes
 * [Console] 
-	* 매출 지표 > 결제 금액
-		* 차트 툴 팁에 통화가 원(KRW)으로 고정되어 노출되어 앱에서 설정한 통화로 보이도록 수정
-		* 월별 조회시 2월 지표가 노출안되는 이슈 수정
+	* Sales Indicators > Purchase Amount 
+		* Modified the display of currency, which is currently fixed at Won (KRW) for chart tooltips, to show as configured on the app  
+		* Fixed the issue of not showing February indicators for monthly search 
 		
-### 2020. 03. 10.
+### March 10, 2020 
 
-#### 기능 추가
-
-- [Console] 
-	- 앱  >  앱: Analytics 매출 지표를 표시할 때 테스트 결제 포함 여부 설정  
-    		- '테스트 결제 제외'로 설정하면 Analytics 매출 지표에서 테스트 결제는 모두 제외하고 보여줍니다. 
-		- 구매(IAP): 구매(IAP) 메뉴 최초 접근 시 결제 지표 통화 코드 설정 
-	- 최초 한 번만 설정 가능하며 Analytics 매출 지표에는 설정된 통화 코드로 지표가 표시됩니다.  
-  	- 모바일 콘솔(TOAST 앱 포함)에 '데스크톱 보기' 기능 추가
-
-#### 기능 개선/변경
+#### More Features
 
 - [Console] 
-  	- 앱  >  설치 URL: URL 입력 가능한 스킴(scheme) 추가 적용 
-    		- 기존: 공통('http://', 'https://'), Android('market://') 
-    		- 추가: iOS('itms://', 'itmss://', 'itms-apps://'), Android('intent://')
+	- App  >  App: Set whether to include test payment or not, when analytics sales indicators are displayed   
+    		- With 'Exclude Test Payment', the analytics sales indicators show all but test payment. 
+		- Purchase (IAP): Set currency code for payment indicators on the initial access to purchase (IAP) menu 
+	- Only the initial setting is available, and the Analytics sales indicators show in the configured currency code. 
+  	- Added the 'View on Desktop' feature on the mobile console (including TOAST app)
+
+#### Feature Updates
+
+- [Console] 
+  	- App  >  Installation URL: Additionally apply available scheme for input URL  
+    		- Previously: Common ('http://', 'https://'), Android('market://') 
+    		- Now: iOS('itms://', 'itmss://', 'itms-apps://'), Android('intent://')
 - [SDK] 2.7.2 
-  	- (Unity) FacebookAdapter 개선 
-    		- v7.9.4~v7.18.1 버전까지 호환성 테스트
-    		- Null 예외 처리 
-  	- (Unity) StandaloneWebviewAdapter 개선 
-    		- 웹 페이지를 텍스처(texture)로 내보내기 추가
-    		- 멀티 웹뷰 지원 
-    		- 쿠키 삭제 옵션 추가 
-    		- 텍스처(texture) 크기 조절 지원 
-		- 스크롤바 표시/숨기기 지원 
-    		- 페이지 로드 완료 알림 
-    		- 투명 배경 지원 
-  	- (Unity) 에디터에서 Android/iOS 플랫폼을 선택하고 Initialize API를 호출하면 오류가 발생하는 문제 해결
+  	- (Unity) Updated FacebookAdapter  
+    		- Compatibility testig from v7.9.4 to v7.18.1 
+    		- Null exception handling   
+  	- (Unity) Updated StandaloneWebviewAdapter 
+    		- Added the feature of exporting webpages in texture 
+    		- Support multiple webviews  
+    		- Added the option of deleting cookies  
+    		- Supports sizing of texture  
+		- Supports showing/hiding the scrollbar 
+    		- Notifies the completion of page loading  
+    		- Supports transparent background
+  	- (Unity) Fixed an error which occurs when Android/iOS is selected from Editor and Initialize API is called 
 
-#### 버그 수정
+#### Bug Fixes
 
 - [Console] 
-  	- Analytics: 통화 코드가 코인성인 경우 매출 지표가 '0'으로 표시되는 문제 해결
+  	- Analytics: Fixed an issue in which the sales indicator is displayed as '0' when the currency code is in coins 
 
-### 2020. 02. 25.
+### February 25, 2020
 
-#### 기능 추가
+#### More Features 
 * [Console] 
-	* 쿠폰 > 쿠폰 발급: 발급한 쿠폰을 설정한 스토어에서만 사용할 수 있도록 기능 추가
+	* Coupon > Publish: Added the feature of allowing published coupons to be used only at certain stores.   
 	
-#### 기능 개선/변경
+#### Feature Updates 
 * [SDK] 2.7.1
-	* (Common) Guest로 Login 후 GetAuthProviderUserID 호출하면 값을 반환하도록 수정
+	* (Common) Updated to return value, after guest login, when GetAuthProviderUserID is called
 * [Console]
-	* 앱 > 앱: 동일한 클라이언트 버전 삭제 이후 재등록 시 알림 로직 추가
-	* 구매(IAP) > Item: 등록 시 구독 상품 등록을 위한 등록 필드값 추가(App Store - Shared secret,Google store - Domain authentication File Names)
+	* App > App: Added the notification logic when a same client is re-registered after deleted 
+	* Purchase (IAP) > Item: Added the registration field to register subscription product (App Store - Shared secret,Google store - Domain authentication File Names)
 
-#### 버그 수정
+#### Bug Fixes
 * [Console]
-	* Analytics > 실시간 모니터링 > 실시간 지표: 간헐적으로 푸시 발송 후 ccu 항목에 빈 값 혹은 infinity로 나타나는 현상 수정
-	* Analytics > 전송 지표
-		* 그리드에 데이터가 있다가 없어지면 No Data로 갱신되지 않는 버그 수정
-		* 필터 이름이 짧을 때 버튼 정렬이 세로로 나오는 현상 수정
+	* Analytics > Real-time Monitoring > Real-time Indicators: Fixed empty or infinity issues that infrequently occur for ccu after push is sent 
+	* Analytics > Transfer Indicators 
+		* Fixed bugs that are not updated to No Data when data is gone from grid 
+		* Fixed the vertical display of buttons when the filter name is short 
 
-### 2020. 02. 11.
+### February 11, 2020
 
-#### 기능 추가
+#### More Features
 * [Console] 
-	* Analytics > 이용자 지표 > Life Cycle 메뉴 신규 오픈 프로젝트 생성부터 이용자 지표의 흐름을 그래프로 한눈에 파악할 수 있도록 기능 제공
-	* 관리 > 권한: 위클리 리포트 수신 권한 항목 추가
-		* 실제 '위클리 리포트' 메일은 3월부터 전송될 예정입니다.
+	* Allows to see the flow of user indicators at a glance, from creating a new menu release project at Analytics > User Indicators > Life Cycle 
+	* Management > Authority: Added the role of receiving Weekly Report
+		* The 'Weekly Report' is to be mailed from March. 
 
-#### 기능 개선/변경
-* [서버 API] 탈퇴 API 호출 시 regUser 길이에 대한 유효성 검사(validation) 추가
+#### Feature Updates
+* [Server API] Added validation for the regUser length when Withdraw API is called 
 * [Console] 
-	* Analytics: Grid, Chart에 일본어 폰트 적용
-	* 구매: 오류 발생 시 나타나는 팝업 메시지를 사용자가 직관적으로 알 수 있게 개선
+	* Analytics: Apply Japanese fonts for Grid, Chart
+	* Purchase: Updated to let users intuitively view popup message display when error occurs 
 
-#### 버그 수정
+#### Bug Fixes
 * [Console]
-	* Analytics: 일본어로 언어 변경 시 통화가 '엔(JPY)'으로 표시되던 것을 '원(KRW)'으로 표시되도록 수정
+	* Analytics: Modified the currency display from 'Yen (JPY)' to 'Won (KRW)' when the language is changed to Japanese 
 
-### 2020. 01. 21.
+### January 21, 2020 
 
-#### 기능 추가
+#### More Features
 * [SDK] 2.7.0
-	* (Unity) NaverCafePLUG 지원
+	* (Unity) Supports NaverCafePLUG 
 
-#### 버그 수정
+#### Bug Fixes
 * [SDK] 2.7.0
-	* (Android) 서버 응답(response)에서 traceError 필수 파라미터가 없더라도 크래시가 발생하지 않도록 수정
-	* (Android) Firebase 설정이 누락되어 있을 때 예외가 발생하지 않도록 수정
-	* (Unity) Web Login 시, gamebase://dismiss 스킴 처리 추가
-	* (Unity) 릴리스 빌드 시, 간헐적으로 Webview가 노출되지 않는 문제 수정	
+	* (Android) Modified not to occur crash when the traceError, which is a required parameter, is missing at the server response 
+	* (Android) Modified not to occur exceptions when Firebase setting is missing 
+	* (Unity) Added the gamebase://dismiss scheme handling for a web login
+	* (Unity) Modified infrequent failure in the display of webview for a release build 	
 * [Console]
-	* Analytics: 유저 세션 만료 시 로그인 페이지로 리디렉트되지 않는 현상 수정
+	* Analytics: Fixed failed re-direction to a login page when the user session is expired 
 
-### 2020. 01. 14.
+### January 14, 2020
 
-#### 기능 추가
-* [서버 API] 사용자 탈퇴 API 추가
+#### More Features
+* [Server API] Added Withdraw Users API
 
-#### 기능 개선/변경
+#### Feature Updates
 * [SDK] 2.6.3
-	* (Unity) Standalone Webview 개선: CefWebview 업데이트	
-	* (Unity) 로그인 이후 오류가 발생하여 누락된 .dll 파일 추가
+	* (Unity) Updated Standalone Webview: Updated CefWebview 	
+	* (Unity) Added .dll file missing from an error occured after login 
 		* ToastCommon.dll, vcruntime140.dll
 
-#### 버그 수정
+#### Bug Fixes
 * [SDK] 2.6.3
-	* (Unity) Login(CredentialInfo) API 호출 시 오류가 발생하여 수정
+	* (Unity) Fixed error that occur when Login(CredentialInfo) API is called
 	
-### 2019. 12. 24.
+### December 24, 2019
 
-#### 기능 추가
-* 쿠폰 > 쿠폰 발급: 키워드 쿠폰 기능 추가
+#### More Features
+* Conpon > Publish: Added the feature of keyword coupons
 
-#### 기능 개선/변경
+#### Feature Updates
 * [Console]
-	* 구매 > 결제 정보 조회: 추가 정보 칼럼 추가
+	* Purchase > Query Payment Information: Added the column for additional information
 * [SDK] 2.6.2
-	* (공통) TOAST SDK 업데이트: Android(0.19.4), iOS(0.20.1), Unity(0.18.0)
-	* (iOS) Naver SDK 버전 업데이트(4.1.0)
-
+	* (Common) TOAST SDK Updates: Android(0.19.4), iOS(0.20.1), Unity(0.18.0)
+	* (iOS) Naver SDK Updates (4.1.0)
+	
 ### Dec.10, 2019 
 
 #### More Features 

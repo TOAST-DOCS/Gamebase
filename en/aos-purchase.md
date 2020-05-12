@@ -53,18 +53,15 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
 
 #### 6. Initialization
 
-* Call **setStoreCode()** of configuration to initialize Gamebase.
-* Select a **STORE_CODE** among the following values.
+* The store code must be specified when a Gamebase is initialized.
+* Select a **STORE_CODE** among the following:
     * GG: Google
     * ONESTORE: ONE store
-    * TEST: For IAP testing
-
 
 ```java
 String STORE_CODE = "GG";	// Google
 
-GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(APP_ID, APP_VERSION)
-        .setStoreCode(STORE_CODE)	// Must declare a store code.
+GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(APP_ID, APP_VERSION, STORE_CODE)
         .build();
 
 Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
@@ -85,19 +82,12 @@ Item purchases should be implemented in the following order.<br/>
 2. After a successful purchase, call **requestItemListOfNotConsumed** to check the list of non-consumed purchases.
 3. If there is a value on the returned list, the game client sends a request to the game server to consume purchased items.
 4. The game server requests for Consume API to the Gamebase server via API.
-   [API Guide](/Game/Gamebase/en/api-guide/#wrapping-api)
+   [API Guide](./api-guide/#wrapping-api)
 5. If the IAP server has successfully called Consume API, the game server provides the items to the game client.
 
-A purchase at store may be successful but cannot be closed normally due to error. It is recommended to call each of the two APIs after login is completed, to initialize a reprocessing logic. <br/>
-
-1. Request list of items that are not consumed
+* Some cases end up with abnormal closure due to errors, although purchase was successful at store. Please check the list of non-consumed purchases after login. <br/>
     * When a login is successful, call **requestItemListOfNotConsumed** to check list of non-consumed purchases.
     * If the value is on the returned list, the game client sends a request to the game server to consume, so that items can be provided.
-
-2. Request to retry transaction
-    * When a login is successful, call **requestRetryTransaction** to try to automatically reprocess the unprocessed.
-    * If there is a value on the returned successList, the game client sends a request to the game server to consume, so that items can be provided.
-    * If there is a value on the returned failList, send the value to the game server or Log & Crash to collect logs. Also send inquiry to **[TOAST > Customer Center](https://toast.com/support/inquiry)** for the cause of reprocessing failure.
 
 ### Purchase Item
 
@@ -129,7 +119,7 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 });
 ```
 
-### Get a List of Purchasable Items
+### List Purchasable Items
 
 To retrieve the list of items, call the following API. Information of each item is included in the array of callback return.
 
@@ -157,9 +147,9 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 });
 ```
 
-### Get a List of Non-Consumed Items
+### List Non-Consumed Items
 
-Request for a list of non-consumed items, which have not been normally consumed (delivered, or provided) after purchase.<br/>
+* List non-consumed consumables and consumable subscriptions (CONSUMABLE_AUTO_RENEWABLE). <br/>
 In case of non-purchased items, ask the game server (item server) to proceed with item delivery (supply).
 
 * Make a call in the following two cases.
@@ -190,28 +180,34 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 });
 ```
 
-### Reprocess Failed Purchase Transaction
+### List Activated Subscriptions
 
-In case a purchase is not normally completed after a successful purchase at a store due to failure of authentication of TOAST Cloud IAP server, try to reprocess by using API. <br/>
-Based on the latest success of purchase, reprocessing is required by calling an API for item delivery (supply).
+List activated subscriptions for the current user ID.
+Subscriptions that are paid up (e.g. auto-renewable subscription, auto-renewed consumable subscription) can be listed before they are expired.
+With a same user ID, all purchased subscriptions from Android and iOS can be listed.
+
+> <font color="red">[Caution]</font><br/>
+>
+> Current subscriptions for Android are supported by Google Play Store only.
+>
 
 **API**
 
 ```java
-+ (void)Gamebase.Purchase.requestRetryTransaction(Activity activity, GamebaseDataCallback<PurchasableRetryTransactionResult> callback);
++ (void)Gamebase.Purchase.requestActivatedPurchases(Activity activity, GamebaseDataCallback<List<PurchasableReceipt>> callback);
 ```
 
 **Example**
 
 ```java
-Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<PurchasableRetryTransactionResult>() {
+Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<List<PurchasableReceipt>>() {
     @Override
-    public void onCallback(PurchasableRetryTransactionResult data, GamebaseException exception) {
+    public void onCallback(List<PurchasableReceipt> data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
             // Succeeded.
         } else {
             // Failed.
-            Log.e(TAG, "Request retry transaction failed- "
+            Log.e(TAG, "Request subscription list failed- "
                     + "errorCode: " + exception.getCode()
                     + "errorMessage: " + exception.getMessage());
         }
@@ -227,7 +223,7 @@ Gamebase.Purchase.requestRetryTransaction(activity, new GamebaseDataCallback<Pur
 | PURCHASE_USER_CANCELED                   | 4002       | Purchase is cancelled.                 |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | API has been called when a purchase logic is not completed.     |
 | PURCHASE_NOT_ENOUGH_CASH                 | 4004       | Cannot purchase due to shortage of cash of the store.             |
-| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | The store is not supported.<br>You can choose either GG (Google), TS (ONE Store), or TEST. |
+| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | The store is not supported.<br>You can choose either GG (Google), ONESTORE. |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | Error in IAP library.<br>Check detail codes.   |
 | PURCHASE_UNKNOWN_ERROR                   | 4999       | Unknown error in purchase.<br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we will respond ASAP. |
 
@@ -266,6 +262,5 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 ```
 
 * For IAP error codes, refer to the document below.
-    * [IAP > Error Code Guide > Client API Error Type](/Mobile%20Service/IAP/en/error-code/#client-api#client-api-errors)
+    * [TOAST > TOAST SDK User Guide > TOAST IAP > Android > Error Codes](/TOAST/en/toast-sdk/iap-android/#_24)
 
-`Last Update: 2019.05.28`

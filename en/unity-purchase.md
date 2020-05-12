@@ -10,12 +10,15 @@ For Android and iOS IAP setting, refer to the below documents.<br/>
 * [Android Purchase Settings](aos-purchase#settings)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
+To make payments at Unity Standalone, IapAdapter and WebViewAdapter must be added. 
+![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-settingtool_iap_2.4.0.png)
+
+
 ###  Purchase Flow
 
 Item purchases should be implemented in the following order.<br/>
 
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
-
 
 1. Call **RequestPurchase** of Gamebase SDK to purchase in a game client.
 2. After a successful purchase, call **RequestItemListOfNotConsumed** to check list of non-consumed purchases.
@@ -23,21 +26,14 @@ Item purchases should be implemented in the following order.<br/>
 4. The game server request for Consume API to the Gamebase server via API. [API Guide](/Game/Gamebase/en/api-guide/#wrapping-api)
 5. If the IAP server has successfully called Consume API, the game server provides the items to the game client.
 
-A purchase at store may be successful but cannot be closed normally due to error. It is recommended to call each of the two APIs after login is completed, to initialize a reprocessing logic.<br/>
-
-1. Request list of items that are not consumed
-    * When a login is successful, call **RequestItemListOfNotConsumed** to check list of non-consumed purchases.
-    * If the value is on the returned list, the game client sends a request to the game server to consume, so that items can be provided.
-2. Request to retry transaction
-    * When a login is successful, call **RequestRetryTransaction** to try to automatically reprocess the unprocessed.
-    * If there is a value on the returned successList, the game client sends a request to the game server to consume, so that items can be provided.
-    * If there is a value on the returned failList, send the value to the game server or Log &amp; Crash to collect logs. Also send inquiry to  [**Customer Center**](https://toast.com/support/inquiry) for the cause of reprocessing failure. 
+* Some cases end up with abnormal closure due to errors, although purchase was successful at store. Please check the list of non-consumed purchases after login.<br/>
+	* When a login is successful, call **requestItemListOfNotConsumed** to check the list of non-consumed purchases.
+	* If the value is on the returned list, the game client sends a request to the game server to consume, so that items can be provided.
 
 ### Purchase Item
 
 Call following API of an item to purchase by using itemSeq to send a purchase request.
 When a game user cancels purchasing, the **PURCHASE_USER_CANCELED** error will be returned.
-
 
 **API**
 
@@ -145,10 +141,15 @@ public void RequestItemListOfNotConsumed()
 }
 ```
 
-### Reprocess Failed Purchase Transaction
+### Get the List of Actived Subscriptions
 
-In case a purchase is not normally completed after a successful purchase at a store due to failure of authentication of TOAST IAP server, try to reprocess by using API.
-Based on the latest success of purchase, reprocessing is required by calling an API for item delivery (supply).
+List activated subscriptions for the current user ID. 
+Subscriptions that are paid up (e.g. auto-renewable subscription, auto-renewed consumable subscription) can be listed before they are expired.
+With a same user ID, all purchased subscriptions from Android and iOS can be listed. 
+
+> <font color="red">[Caution]</font><br/>
+>
+> Current subscriptions for Android are supported by Google Play Store only. 
 
 **API**
 
@@ -157,31 +158,45 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
-static void RequestRetryTransaction(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableRetryTransactionResult> callback)
+static void RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
 ```
 
 **Example**
 ```cs
-public void RequestRetryTransaction()
+public void RequestActivatedPurchasesSample()
 {
-    Gamebase.Purchase.RequestRetryTransaction((purchasableRetryTransactionResult, error) =>
+    Gamebase.Purchase.RequestActivatedPurchases((purchasableReceiptList, error) =>
     {
-        if (Gamebase.IsSuccess(error))
+        if (Gamebase.IsSuccess(error) == true)
         {
-            Debug.Log("RequestRetryTransaction succeeded.");
+            Debug.Log("RequestItemListPurchasable succeeded");
 
-            // Should Deal With This Retry Transaction Result.
-            // You may send result to your gameserver and add item to user.
+            foreach (GamebaseResponse.Purchase.PurchasableReceipt purchasableReceipt in purchasableReceiptList)
+            {
+                var message = new StringBuilder();
+                message.AppendLine(string.Format("itemSeq:{0}", purchasableReceipt.itemSeq));
+                message.AppendLine(string.Format("price:{0}", purchasableReceipt.price));
+                message.AppendLine(string.Format("currency:{0}", purchasableReceipt.currency));
+                
+                // You will need paymentSeq and purchaseToken when calling the Consume API.
+                // Refer to the following document for the Consume API.
+                // https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchaseiap
+                message.AppendLine(string.Format("paymentSeq:{0}", purchasableReceipt.paymentSeq));
+                message.AppendLine(string.Format("purchaseToken:{0}", purchasableReceipt.purchaseToken));
+                message.AppendLine(string.Format("marketItemId:{0}", purchasableReceipt.marketItemId));
+                Debug.Log(message);
+            }
         }
         else
         {
-            Debug.Log(string.Format("RequestRetryTransaction failed. error is {0}", error));
+            // Check the error code and handle the error appropriately.
+            Debug.Log(string.Format("RequestItemListPurchasable failed. error is {0}", error));
         }
     });
 }
 ```
 
-### AppStore Promotion IAP
+### App Store Promotion IAP
 
 It provides the function to purchase items in the App Store apps.
 After a successful purchase of items, the items can be provided using the handler registered below.
@@ -221,7 +236,7 @@ public void SetPromotionIAPHandler()
         }
         else
         {
-        	if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
+            if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
             {
                 Debug.Log("User canceled purchase.");
             }
@@ -256,7 +271,6 @@ public void SetPromotionIAPHandler()
 |		  | productIdentifier | product identifier of the purchased item |
 
 e.g.) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
-
 
 ### Error Handling
 

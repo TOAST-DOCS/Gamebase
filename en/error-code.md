@@ -99,14 +99,31 @@
 | Member  | -4000402              | Entered invalid user ID.                      |
 |         | -4000403              | Requested for invalid member.                        |
 |         | -4000404              | Requested for invalid authentication. |
+|         | -4000409              | Using TransferAccount information issued for device transfer on same device |
+|         | -4040401              | Requested for a member who does not exist or has withdrawn.              |
+|         | -4040403              | Requested for invalid TransferAccount |
 |         | -4100402              | Used TransferAccount has been requested  |
 |         | -4100403              | Expired TransferAccount has been requested  |
-|         | -4040401              | Requested for a member who does not exist or has withdrawn.              |
 |         | -4100401              | Requested for a member who has withdrawn.                     |
 |         | -4220401              | User authentication data is not normal.                |
-|         | -5000201 ~ 7          | Gateway internal system error                        |
 | IdP     | -4000901              | A (blocked) user has requested validation of TransferAccount |
 |         | -4040920              | The ID does not exist during TransferAccount verification |
 |         | -4000927              | The password is wrong during TransferAccount verification |
 |         | -4000920              | An error has occurred during internal password encryption. If this problem persists, please contact Customer Center. |
+|         | -4000921 ~ 2          | Internal error occurred while issuing TransferAccount. If error continues, contact Customer Center for inquiries.  |
+|         | -4000923              | To change password in the manual mode, enter the same characters as current password. |
 |         | -4000924              | Internal error. If this problem persists, please contact Customer Center. |
+|         | -4000925              | To change ID in the manual mode, enter current ID. |
+|         | -4000927              | Invalid password to validate TransferAccount  |
+|         | -4040920              | ID does not exist when validating TransferAccount  |
+|         | -5110920              | Error in TransferAccount issuance. If error continues, contact Customer Center for inquiries.  |
+| Coupon  | -100003               | Requested for invalid coupon code                    |
+|         | -100004               | Coupon code already manually expired at the request    |
+|         | -100005               | Coupon already used                                  |
+|         | -100006 ~ 10          | Coupon not in service period                        |
+|         | -100011               | Exceeded available coupon limits          |
+|         | -999999               | Internal error in the coupon system. If error continues, contact Customer Center for inquiries. |
+| IAP     | 5000                  | CONSUME FAILED                                 |
+|         | 5018                  | Payment already consumed                        |
+|         | 1100                  | Missing required parameter or sent invalid parameter      |
+|         | 9999                  | UNKNOWN ERROR                                  |

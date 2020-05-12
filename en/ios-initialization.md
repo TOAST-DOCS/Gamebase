@@ -82,7 +82,7 @@ Process initialization, in **application:didFinishLaunchingWithOptions:**.
 
 
 
-### Launching Status
+### Launching Information
 
 Check launching status by calling Gamebase#initialize.<br/>
 Need to call launching status after Gamebase is initialized.
@@ -118,7 +118,21 @@ With the launchingInformations API, you can get the LaunchingInfo object after i
 + NSDictionary* launchingInfo = [TCGBLaunching laucnhingInformations];
 ```
 
-### Launching Status Code
+
+#### 1. Launching
+
+Refers to Gamebase launching data.
+
+**1.1 Status**
+
+The game status information belongs to the app version entered for the setting of Gamebase Android SDK initialization.
+
+* code: Game status code (Under Maintenance, Requires Update, Service Closed, and etc.)
+* message: Status message of a game
+
+Refer to the table for status codes:
+
+##### Launching Status Code
 
 | Status                      | Code | Description                              |
 | --------------------------- | ---- | ---------------------------------------- |
@@ -133,6 +147,78 @@ With the launchingInformations API, you can get the LaunchingInfo object after i
 | INSPECTING_SERVICE          | 303  | Under maintenance now.                                 |
 | INSPECTING_ALL_SERVICES     | 304  | Under maintenance for the whole service.                              |
 | INTERNAL_SERVER_ERROR       | 500  | Error of internal server.                                 |
+
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+
+**1.2 App**
+
+App information registered on Gamebase console:
+
+* accessInfo
+    * serverAddress: Server address
+    * csInfo: Customer center information
+* relatedUrls
+    * termsUrl: Terms of Service
+    * personalInfoCollectionUrl: Consent to Personal Information
+    * punishRuleUrl: Ban Regulation 
+    * csUrl: Customer Center
+* install: Installation URL
+* idP: Authentication information
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+
+**1.3 Maintenance**
+
+Maintenance information registered on Gamebase Console.
+
+* url: URL for maintenance page
+* timezone: Standard time zone (timezone)
+* beginDate: Start time
+* endDate: End time
+* message: Cause of maintenance
+
+[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+
+**1.4 Notice**
+
+Notice information registered on Gamebase console:
+
+* message: Message
+* title: Title
+* url: Maintenance URL
+
+[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+
+#### 2. tcProduct
+
+Appkey of TOAST linked to Gamebase: 
+
+* gamebase
+* tcLaunching
+* iap
+* push
+
+#### 3. tcIap
+
+IAP store information registered on TOAST console:
+
+* id: App ID
+* name: App Name
+* storeCode: Store Code
+
+[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+
+#### 4. tcLaunching
+
+User-input information for TOAST launching console:
+
+* Send user-input values in JSON string.
+* For further details of TOAST Launching, see the guide as below:  
+
+[Console Guide](/Game/Gamebase/ko/oper-management/#config)
+
+
 
 
 

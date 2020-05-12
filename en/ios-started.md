@@ -5,10 +5,9 @@
 
 > [INFO]
 >
-> Minimum Requirements: iOS 8; if some IdPs are supported, iOS 9 or later <br/>
-> Supports arm7, arm7s, arm64, i386, x86_64<br/>
-> Xcode10 or higher
->
+> Minimum Specifications: Over iOS9 or iOS10, to support a part of IDP <br/>
+> iOS, iOS Simulator
+> Build available for Xcode10 or higher versions
 
 
 ### Installation
@@ -27,24 +26,32 @@ Then, include corresponding SDK files to a target of your project.
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage | External SDK Download Link | Support iOS Version |
 | --- | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework, Gamebase.bundle |  | Includes Gamebase interface and key logics |  | iOS8 or later |
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v4.17.0 | Supports Facebook logins | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS8 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.1.6 | Supports Payco logins | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS8 or later |
-|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Supports Naver logins | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |
-|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Supports Gamecenter logins |  | iOS8 or later |
-|  | GamebaseAuthGoogleAdapter.framework | | Supports Google logins | | iOS9 or later |
-|  | GamebaseAuthTwitterAdapter.framework | | Supports Twitter logins | | iOS8 or later |
-|  | GamebaseAuthLineAdapter.framework | LineSDK v4.1.1 | Supports LINE logins | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS8 or later |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework | Supports in-game purchase | Gamebase Included in IAP | iOS8 or later |
-| Gamebase Push | GamebasePushAdapter.framework |  | Supports Push | Included in Gamebase | iOS8 or later |
-
+| Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.19.3 | Includes interface and core logic of Gamebase | Included in Gamebase | iOS9 or later
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v5.6.0 | Supports Facebook login | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS9 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.3.2 | Supports Payco login | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS9 or later |
+|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Supports Naver login | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |
+|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Supports Gamecenter login  |  | iOS9 or later |
+|  | GamebaseAuthGoogleAdapter.framework | | Supports Google login | | iOS9 or later |
+|  | GamebaseAuthTwitterAdapter.framework | | Supports Twitter login | | iOS9 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | Supports LINE login | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS10 or later |
+|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | Set Optional for AuthenticationServices.framework | iOS13 or later |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework, ToastIAP 0.19.8, ToastGamebaseIAP 0.9.7 | Supports in-game purchase | Included in Gamebase IAP | iOS9 or later |
+| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.19.3 | Supports Push | Included in Gamebase Push | iOS9 or later |
 
 
 > <font color="red">[Caution]</font><br/>
 >
-> Among Gamebase Framework files, **Adapter** files can be selectively used in a project to that end, external SDKs may be required as specified in the above table.
-> For some Auth adapters, you must check the Support iOS Version in the table shown above.
->(If the Auth adapter whose support version is iOS 9 or later is included in the build, runtime crash occurs in iOS 8 or earlier.)
+> Must set Optional forAuthenticationServices.framework which is required for Sign In with Apple.
+> When the setting is Required, crash may occur on iOS 11 or lower version devices, immediately after execution.
+> 
+<br/>
+
+
+> <font color="red">[Caution]</font><br/>
+>
+> Gamebase Framework files that include **Adapter** in the name can be decided whether to be enabled in the project, and to use the Adapter Framework, external SDKs may be required as specified in the above table. 
+> For some authentication adapter, note the Support iOS version of the table. 
+> (If iOS 10 or higher Auth Adpater is included to a build, runtime crash shall occur on iOS9 or lower version.)
 
 <br/>
 
@@ -73,6 +80,7 @@ By decompression, following SDKs will show, including Gamebase.framework.
     * ImageIO.framework
     * GameKit.framework
     * StoreKit.framework
+    * AuthenicationServices.framework (Optional)
 ![Link Binary With Libraries](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
 * 4) Add **-ObjC** to **Target > Build Settings > Linking > Other Linker Flags**.
 ![Other Linker Flags](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
@@ -97,7 +105,7 @@ You can set the Gamebase iOS SDK with CocoaPods.
 4. Open the created **Podfile** with the editor and enter the following.
 
 ```ruby
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'SampleApplication' do
     pod 'Gamebase'
@@ -108,16 +116,18 @@ target 'SampleApplication' do
     pod 'GamebaseAuthTwitterAdapter'
     pod 'GamebaseAuthGoogleAdapter'
     pod 'GamebaseAuthLineAdapter'
+    pod 'GamebaseAuthAppleidAdapter'
     pod 'GamebasePushAdapter'
     pod 'GamebasePurchaseIAPAdapter'
+
 end
 ```
 
 > [Note]
 >
-> Enter the target name of the created project in the **target 'SampleApplication' do** part.<br/>
-> You can specify a specific version (e.g. by writing **pod 'Gamebase', '1.11.1'**). If you do not specify a version for each pod, the latest version is set.<br/>
-> You can selectively apply to specific adapters.
+> Enter target name of the project for **target 'SampleApplication' do**.  <br/>
+> Any particular version can be specified, like **pod 'Gamebase', '2.6.0'**. Unless each pod has specific version, the latest version is to be set. <br/>
+> Optional application is available with a specific adapter. 
 > 
 
 
