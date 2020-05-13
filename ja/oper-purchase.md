@@ -72,7 +72,7 @@ Gamebaseでは、TOAST IAP(In-App Purchase、アプリ内決済)サービスを�
 - **ユーザーID**：決済したユーザーのID
 - **決済状態**：決済状態を基準に検索
 
-##### (2) Trnasaction ID検索
+##### (2) Transaction ID検索
 ![gamebase_purchase_11_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_purchase_11_202004_ja.png)
 
 決済を行うと作成されるTransaction IDを通して照会できます。
