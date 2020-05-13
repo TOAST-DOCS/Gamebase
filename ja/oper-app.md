@@ -383,7 +383,7 @@ Sign In with Apple機能を使用するには、AppStore Connect、Gamebase Cons
 [TOAST Consoleへ](https://console.toast.com/)
 
 * Gamebase
-![SecretKey??](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
+![SecretKey設定](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
 
 
 ###### Client ID Settings
@@ -394,7 +394,7 @@ Sign In with Apple機能を使用するには、AppStore Connect、Gamebase Cons
 
 * `teamId`：開発者アカウントの右上の値を設定します。
 * `keyId`：Certificates, Identifiers & Profiles > Keys > Sign In with Appleをチェックし、作成された値を設定します。
-![SecretKey??](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
+![SecretKey設定](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
 * `privateKey`：上のKeysでキーを作成した時に作成されたPrivateKeyファイルの内容を設定します。 (ダウンロードしたファイルを開き、下記のスクリーンショットのように赤い四角形部分の値を使用します)
 ![SecretKey設定](./image/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
 
