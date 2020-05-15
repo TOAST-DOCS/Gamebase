@@ -4,26 +4,26 @@
 
 #### More Features
 * [SDK 2.9.0]
-	* (Unreal) SDK 신규 배포
+	* (Unreal) Newly released SDK
 	
 #### Feature Updates 
 * [Console] 
-	* 앱 > 앱: 탈퇴 유예 기간을 변경한 사용자의 토스트 계정을 저장하도록 개선
-	* 멤버 > 회원: 매핑 이력 조회 시 정보가 제대로 보이지 않는 문제 수정
-	* 구매(IAP) > 스토어: 테스트, 구) 원스토어는 신규 등록이 되지 않도록 수정
+	* App > App: Updated to save TOAST accounts of the users who changed the grace period of withdrawal  
+	* Member > Member: Fixed an issue in which data does not properly show when mapping history is queried 
+	* Purchase (IAP) > Store: Test, Old) OneStore is updated not to allow new registration  
 
 #### Bug Fixes
 * [SDK 2.9.1]
-	* (Andoird) 매핑 이후 지표 레벨이 null이 되어 결제 지표에 정상적으로 반영되지 않는 오류 수정
-	* (iOS) unreal 엔진에서 빌드 하면, warning을 빌드 오류로 판정해서 빌드가 안되는 부분을 수정
+	* (Andoird) Fixed an error in which an indicator level becomes null after mapped and does not show properly on the purchase indicator  
+	* (iOS) Fixed the inavailability of a build on an unreal engine since warning is considered as a build error 
 
 ### April 29, 2020
 
 #### Bug Fixes
 * [SDK] 2.9.1 
-	* (Unity) Initialize 이후 콘솔에서 클라이언트의 서비스 상태를 변경하면 오류가 발생하는 문제를 수정
-		* 이슈 발생 버전: v2.8.0 이상	
-		* 이슈가 있는 플랫폼: Standalone, WebGL, Editor
+	* (Unity) Fixed a error which occurs when client service status is changed after initialized on console 
+		* Versions at Issue: v2.8.0 or highr	
+		* Platforms at Issue: Standalone, WebGL, and Editor
 
 ### April 28, 2020
 
