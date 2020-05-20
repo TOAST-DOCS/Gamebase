@@ -1,5 +1,40 @@
 ## Game > Gamebase > リリースノート
 
+### 2020. 05. 26.
+
+#### 기능 추가
+* [Console] 
+	* 쿠폰 > 쿠폰 발급: 발송 통계 기능, 쿠폰 발송 내역 다운로드 기능 추가
+* [SDK] 2.10.0
+	* (공통) 기존의 모든 이벤트 시스템을 통합하는 GamebaseEventHandler 추가
+		* ServerPush, Observer 기능을 포함하고 있고, Promotion 결제 이벤트 및 Push 이벤트도 확인 가능
+
+#### 기능 개선/변경
+* [Console] 
+	* 전체: 공통 디자인 가이드에 맞도록 버튼/태그 UI 수정
+* [SDK] 2.10.0 
+	* (Unity) StandaloneWebviewAdapter 내부의 CefWebview 버전 업데이트: v2.0.4
+		* WebviewIndex 검증 로직을 개선
+		* Webview 생성 시, 간헐적으로 NullReferenceException이 발생하는 오류를 개선
+	* (Unity) GamebaseErrorCode에 소켓 연결에 관한 에러 코드 추가: SOCKET_CONNECTION_TIMEOUT, SOCKET_CONNECTION_FAIL
+
+### 2020. 05. 12.
+
+#### 기능 추가
+* [SDK] 2.9.0
+	* (Unreal) SDK 신규 배포
+	
+#### 기능 개선/변경
+* [Console] 
+	* 앱 > 앱: 탈퇴 유예 기간을 변경한 사용자의 토스트 계정을 저장하도록 개선
+	* 멤버 > 회원: 매핑 이력 조회 시 정보가 제대로 보이지 않는 문제 수정
+	* 구매(IAP) > 스토어: 테스트, 구) 원스토어는 신규 등록이 되지 않도록 수정
+
+#### 버그 수정
+* [SDK] 2.9.1
+	* (Andoird) 매핑 이후 지표 레벨이 null이 되어 결제 지표에 정상적으로 반영되지 않는 오류 수정
+	* (iOS) Unreal 엔진에서 빌드하면, 경고(warning)를 빌드 오류로 판정해 빌드가 되지 않는 문제 수정
+
 ### 2020. 04. 29.
 
 #### バグ修正
@@ -10,13 +45,13 @@
 
 #### 機能追加
 * 退会猶予機能
-	* [SDK 2.9.0]
+	* [SDK] 2.9.0
 		*(共通)API追加：退会猶予申請、退会猶予申請キャンセル、退会猶予状態から即時退会、ユーザーの退会猶予状態を確認
 	* [Console]
 		* アプリ > アプリ：退会猶予期間を設定できる機能を追加
 
 #### 機能改善/変更
-* [SDK 2.9.0]
+* [SDK] 2.9.0
 	* (共通) TOAST SDKアップデート： Android(v0.21.0)、iOS(v0.23.0)、Unity(0.20.1)
 	* (共通) PAYCO Login SDKアップデート： Android(v1.5.0)、iOS(v1.4.0)
 * [Console]
