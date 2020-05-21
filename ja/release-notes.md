@@ -2,21 +2,21 @@
 
 ### 2020. 05. 26.
 
-#### 기능 추가
+#### 機能追加
 * [Console] 
-	* 쿠폰 > 쿠폰 발급: 발송 통계 기능, 쿠폰 발송 내역 다운로드 기능 추가
+	* クーポン > クーポン発行：送信統計機能、クーポン送信履歴のダウンロード機能を追加
 * [SDK] 2.10.0
-	* (공통) 기존의 모든 이벤트 시스템을 통합하는 GamebaseEventHandler 추가
-		* ServerPush, Observer 기능을 포함하고 있고, 프로모션 결제 이벤트 및 푸시 이벤트도 확인 가능
+	* (共通)既存のすべてのイベントシステムを統合するGamebaseEventHandlerを追加
+		* ServerPush、Observer機能が含まれていて、プロモーション決済イベントおよびプッシュイベントも確認可能
 
-#### 기능 개선/변경
+#### 機能改善/変更
 * [Console] 
-	* 전체: 공통 디자인 가이드에 맞도록 버튼/태그 UI 수정
+	* 全体：共通デザインガイドに合わせてボタン/タグUIを修正
 * [SDK] 2.10.0 
-	* (Unity) StandaloneWebviewAdapter 내부의 CefWebview 버전 업데이트: v2.0.4
-		* WebviewIndex 검증 로직을 개선
-		* Webview 생성 시, 간헐적으로 NullReferenceException이 발생하는 오류를 개선
-	* (Unity) GamebaseErrorCode에 소켓 연결에 관한 오류 코드 추가: SOCKET_CONNECTION_TIMEOUT, SOCKET_CONNECTION_FAIL
+	* (Unity) StandaloneWebviewAdapter内部のCefWebviewバージョンアップデート：v2.0.4
+		* WebviewIndex検証ロジックを改善
+		* Webview作成時、断続的にNullReferenceExceptionが発生するエラーを修正
+	* (Unity) GamebaseErrorCodeにソケット接続に関するエラーコードを追加： SOCKET_CONNECTION_TIMEOUT, SOCKET_CONNECTION_FAIL
 
 ### 2020. 05. 12.
 
