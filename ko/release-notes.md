@@ -16,7 +16,6 @@
 	* (Unity) StandaloneWebviewAdapter 내부의 CefWebview 버전 업데이트: v2.0.4
 		* WebviewIndex 검증 로직을 개선
 		* Webview 생성 시, 간헐적으로 NullReferenceException이 발생하는 오류를 개선
-	* (Unity) GamebaseErrorCode에 소켓 연결에 관한 오류 코드 추가: SOCKET_CONNECTION_TIMEOUT, SOCKET_CONNECTION_FAIL
 
 ### 2020. 05. 12.
 
