@@ -16,12 +16,11 @@
 	* (Unity) StandaloneWebviewAdapter内部のCefWebviewバージョンアップデート：v2.0.4
 		* WebviewIndex検証ロジックを改善
 		* Webview作成時、断続的にNullReferenceExceptionが発生するエラーを修正
-	* (Unity) GamebaseErrorCodeにソケット接続に関するエラーコードを追加： SOCKET_CONNECTION_TIMEOUT, SOCKET_CONNECTION_FAIL
 
 ### 2020. 05. 12.
 
 #### 機能追加
-* [SDK 2.9.0]
+* [SDK] 2.9.0
 	* (Unreal) SDK新規配布
 
 #### 機能改善/変更
@@ -31,7 +30,7 @@
 	* 購入(IAP) > ストア：テスト、購) ONEstoreは新規登録できないように修正
 
 #### バグ修正
-* [SDK 2.9.1]
+* [SDK] 2.9.1
 	* (Andｒoid)マッピング以降、指標レベルがnullになり決済指標に正常に反映されない問題を修正
 	* (iOS) Unrealエンジンでビルドすると、警告(warning)をビルドエラーと判定してビルドができない問題を修正
 
