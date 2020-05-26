@@ -277,223 +277,396 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 + (String)Gamebase.getCountryCode()
 ```
 
-### Server Push
-* Gamebase 서버에서 클라이언트 단말기로 보내는 Server Push Message를 처리할 수 있습니다.
-* Gamebase 클라이언트에서 ServerPushEvent Listener를 추가하면 해당 메시지를 사용자가 받아서 처리할 수 있으며, 추가된 ServerPushEvent Listener를 삭제할 수 있습니다.
+### Gamebase Event Handler
 
-
-#### Server Push Type
-현재 Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
-
-* ServerPushEventMessage.Type.APP_KICKOUT (= "appKickout")
-    * TOAST Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 **APP_KICKOUT** 메시지를 받게 됩니다.
-
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
-
-#### Add ServerPushEvent
-Gamebase Client에 ServerPushEvent를 등록하여 Gamebase Console 및 Gamebase 서버에서 발급된 Push 이벤트를 처리할 수 있습니다.
+* Gamebase 는 각종 이벤트를 `GamebaseEventHandler` 라는 하나의 이벤트 시스템에서 모두 처리할 수 있습니다.
+* GamebaseEventHandler 는 아래 API 를 통해 간단하게 Listener 를 추가/제거 할 수 있습니다.
 
 **API**
 
 ```java
-+ (void)Gamebase.addServerPushEvent(ServerPushEvent serverPushEvent);
++ (void)Gamebase.addEventHandler(GamebaseEventHandler handler);
++ (void)Gamebase.removeEventHandler(GamebaseEventHandler handler);
++ (void)Gamebase.removeAllEventHandler();
+```
+
+**VO**
+
+```java
+class GamebaseEventMessage {
+	// Event 종류를 나타냅니다.
+    // GamebaseEventCategory 클래스의 값이 할당됩니다.
+    @NonNull
+    final public String category;
+
+    // 각 category 에 맞는 VO 로 변환할 수 있는 JSON String 데이터 입니다.
+    @Nullable
+    final public String data;
+}
 ```
 
 **Example**
 
 ```java
-public class MyServerPushEventManager {
-    private ServerPushEvent mServerPushEvent = new ServerPushEvent() {
+void eventHandlerSample(Activity activity) {
+    Gamebase.addEventHandler(new GamebaseEventHandler() {
         @Override
-        public void onReceive(ServerPushEventMessage message) {
-            if (message.type.equals(ServerPushEventMessage.Type.APP_KICKOUT)) {
-                // Logout
-                // Go to Main
-            } else if (message.type.equals(ServerPushEventMessage.Type.TRANSFER_KICKOUT)) {
-                // Logout
-                // Go to Main
-            } else {
-                ...
+        public void onReceive(@NonNull GamebaseEventMessage message) {
+            switch (message.category) {
+                case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
+                case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
+                    GamebaseEventServerPushData serverPushData = GamebaseEventServerPushData.from(message.data);
+                    if (serverPushData != null) {
+                        processServerPush(activity, message.category, serverPushData);
+                    }
+                    break;
+                case GamebaseEventCategory.OBSERVER_LAUNCHING:
+                case GamebaseEventCategory.OBSERVER_HEARTBEAT:
+                case GamebaseEventCategory.OBSERVER_NETWORK:
+                    GamebaseEventObserverData observerData = GamebaseEventObserverData.from(message.data);
+                    if (observerData != null) {
+                        processObserver(activity, message.category, observerData);
+                    }
+                    break;
+                case GamebaseEventCategory.PURCHASE_UPDATED:
+                    ...
+                case GamebaseEventCategory.PUSH_RECEIVED_MESSAGE:
+                    ...
+                case GamebaseEventCategory.PUSH_CLICK_MESSAGE:
+                    ...
+                case GamebaseEventCategory.PUSH_CLICK_ACTION:
+                    ...
+                default:
+                    ...
             }
         }
-    };
-
-    private void addServerPushEvent() {
-        Gamebase.addServerPushEvent(mServerPushEvent);
-    }
-    ...
+    });
 }
 ```
 
+* Category 는 GamebaseEventCategory 클래스에 정의되어 있습니다.
+* 이벤트는 크게 ServerPush, Observer, Purchase, Push 로 나눌 수 있고, 각 Category 에 따라, GamebaseEventMessage.data 를 아래 표와 같은 방법으로 VO 로 변환할 수 있습니다.
 
-#### Remove ServerPushEvent
-Gamebase에 등록된 ServerPushEvent를 삭제할 수 있습니다.
+| Event 종류 | GamebaseEventCategory | VO 변환 방법 | 비고 |
+| --------- | --------------------- | ----------- | --- |
+| ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseEventServerPushData.from(message.data) | \- |
+| Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseEventObserverData.from(message.data) | \- |
+| Purchase - 프로모션 결제 | GamebaseEventCategory.PURCHASE_UPDATED | PurchasableReceipt.from(message.data) | \- |
+| Push - 메세지 수신 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | PushMessage.from(message.data) | **isForeground** 값을 통해 Foreground 에서 메세지를 수신했는지 여부를 확인할 수 있습니다. |
+| Push - 메세지 클릭 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | PushMessage.from(message.data) | **isForeground** 값이 없습니다. |
+| Push - 액션 클릭 | GamebaseEventCategory.PUSH_CLICK_ACTION | PushAction.from(message.data) | RichMessage 버튼 클릭시 동작합니다. |
 
-**API**
+#### Server Push
 
-```java
-+ (void)Gamebase.removeServerPusEvent(ServerPushEvent serverPushEvent);
-+ (void)Gamebase.removeAllServerPusEvent();
-```
+* Gamebase 서버에서 클라이언트 단말기로 보내는 메세지 입니다.
+* Gamebase 에서 지원하는 Server Push Type 은 다음과 같습니다.
+	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
+    	* TOAST Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
+    * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
+    	* Guest 계정을 다른 단말기로 이전을 성공하게 되면 이전 단말기에서 킥아웃 메세지를 받게 됩니다.
 
 **Example**
 
 ```java
-public class MyServerPushEventManager {
-    ...
-    private void removeServerPushEvent() {
-        Gamebase.removeServerPusEvent(mServerPushEvent);
-    }
-
-    private void removeAllServerPushEvent() {
-        Gamebase.removeAllServerPushEvent();
-    }
-    ...
-}
-```
-
-
-
-
-
-### Observer
-* Gamebase Observer로 Gamebase의 각종 상태 변동 이벤트를 전달받아 처리할 수 있습니다.
-* 상태 변동 이벤트 : 네트워크 타입 변동, Launching 상태 변동(점검 등에 의한 상태 변동), Heartbeat 정보 변동(사용자 이용 정지 등에 의한 Heartbeat 정보 변동) 등
-
-
-#### Observer Type
-현재 Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
-
-* Network 타입 변동
-    * 네트워크 변동 사항 정보를 받을 수 있습니다. 예를 들어 ObserverMessage.data.get("code") 의 값으로 Network Type을 알 수 있습니다.
-    * Type: ObserverMessage.Type.NETWORK (= "network")
-    * Code: NetworkManager에 선언된 상수를 참고합니다. 
-        * NetworkManager.TYPE_NOT: -1
-        * NetworkManager.TYPE_MOBILE: 0
-        * NetworkManager.TYPE_WIFI: 1        
-        * NetworkManager.TYPE_ANY: 2
-* Launching 상태 변동
-    * 주기적으로 애플리케이션 상태를 확인하는 Launching Status response에 변동이 있을 때 발생합니다. 예를 들어 점검, 업데이트 권장 등에 의한 이벤트가 있습니다.
-    * Type: ObserverMessage.Type.LAUNCHING (= "launching")
-    * Code: LaunchingStatus에 선언된 상수를 참고합니다.
-        * LaunchingStatus.IN_SERVICE: 200
-        * LaunchingStatus.RECOMMEND_UPDATE: 201
-        * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
-        * LaunchingStatus.REQUIRE_UPDATE: 300
-        * LaunchingStatus.BLOCKED_USER: 301
-        * LaunchingStatus.TERMINATED_SERVICE: 302
-        * LaunchingStatus.INSPECTING_SERVICE: 303
-        * LaunchingStatus.INSPECTING_ALL_SERVICES: 304
-        * LaunchingStatus.INTERNAL_SERVER_ERROR: 500
-* Heartbeat 정보 변동
-    * 주기적으로 Gamebase 서버와 연결을 유지하는 Heartbeat response에 변동이 있을 때 발생합니다. 예를 들어 사용자 이용 정지에 의한 이벤트가 있습니다.
-    * Type: ObserverMessage.Type.HEARTBEAT (= "heartbeat")
-    * Code: GamebaseError에 선언된 상수를 참조합니다.
-        * GamebaseError.INVALID_MEMBER: 6
-        * GamebaseError.BANNED_MEMBER: 7
-
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
-
-#### Add Observer
-Gamebase Client에 Observer를 등록하여 각종 상태 변동 이벤트를 처리할 수 있습니다.
-
-**API**
-
-```java
-+ (void)Gamebase.addObserver(Observer observer);
-```
-
-**Example**
-
-```java
-public class MyObserverManager {
-    private Observer mGamebaseObserver = new Observer() {
+void eventHandlerSample(Activity activity) {
+    Gamebase.addEventHandler(new GamebaseEventHandler() {
         @Override
-        public void onUpdate(ObserverMessage message) {
-            String typeOfMessage = message.type;
-            Map<String, Object> dataMap = message.data;
-
-            if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.LAUNCHING)) {
-                int code = Integer.parseInt(dataMap.get("code"));
-                String messageString = (String) dataMap.get("message");
-                Log.d(TAG, "Update launching status to " + code + ", " + messageString);
-
-                // You can check the changed launching status in here.
-                switch (code) {
-                    case LaunchingStatus.IN_SERVICE:
-                        ...
-                        break;
-                    case LaunchingStatus.RECOMMEND_UPDATE:
-                        ...
-                        break;
-                    case ...
-                        break;
+        public void onReceive(@NonNull GamebaseEventMessage message) {
+            switch (message.category) {
+                case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
+                case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
+                    GamebaseEventServerPushData serverPushData = GamebaseEventServerPushData.from(message.data);
+                    if (serverPushData != null) {
+                        processServerPush(activity, message.category, serverPushData);
+                    }
+                    break;
+                default:
                     ...
-                }
-            } else if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.HEARTBEAT)) {
-                int code = Integer.parseInt(dataMap.get("code"));
-                Log.d(TAG, "Heartbeat changing : " + dataMap);
-
-                switch (code) {
-                    case GamebaseError.INVALID_MEMBER:
-                        // You can check the invalid user session in here.
-                        ...
-                        break;
-                    case GamebaseError.BANNED_MEMBER:
-                        // You can check the banned user session in here.
-                        ...
-                        break;
-                }
-            } else if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.NETWORK)) {
-                int code = Integer.parseInt(dataMap.get("code"));
-                Log.d(TAG, "Network changing : " + dataMap);
-
-                // You can check the changed network status in here.
-                if (code == NetworkManager.TYPE_NOT) {
-                    ...
-                } else {
-                    ...
-                }
-            } else {
-                ...
             }
         }
-    };
+    });
+}
 
-    private void addObserver() {
-        Gamebase.addObserver(mGamebaseObserver);
+void processServerPush(String category, GamebaseEventServerPushData data) {
+    if (category.equals(GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT)) {
+        // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+        // Return to title and initialize Gamebase again.
+    } else if (category.equals(GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT)) {
+        // If the user wants to move the guest account to another device,
+        // if the account transfer is successful,
+        // the login of the previous device is released,
+        // so go back to the title and try to log in again.
     }
-    ...
 }
 ```
 
+#### Observer
 
-#### Remove Observer
-Gamebase에 등록된 Observer를 삭제할 수 있습니다.
+* Gamebase Gamebase의 각종 상태 변동 이벤트를 처리하는 시스템 입니다.
+* Gamebase 에서 지원하는 Observer Type 은 다음과 같습니다.
+    * GamebaseEventCategory.OBSERVER_LAUNCHING
+    	* 점검이 걸리거나 풀린 경우, 새로운 버전이 배포되어 업데이트가 필요한 경우와 같이, Launching 상태가 변경되었을 때 동작합니다.
+    	* GamebaseEventObserverData.code : LaunchingStatus 값을 의미합니다.
+            * LaunchingStatus.IN_SERVICE: 200
+            * LaunchingStatus.RECOMMEND_UPDATE: 201
+            * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
+            * LaunchingStatus.REQUIRE_UPDATE: 300
+            * LaunchingStatus.BLOCKED_USER: 301
+            * LaunchingStatus.TERMINATED_SERVICE: 302
+            * LaunchingStatus.INSPECTING_SERVICE: 303
+            * LaunchingStatus.INSPECTING_ALL_SERVICES: 304
+            * LaunchingStatus.INTERNAL_SERVER_ERROR: 500
+    * GamebaseEventCategory.OBSERVER_HEARTBEAT
+    	* 탈퇴 처리 되거나 이용 정지로 인하여 사용자 계정 상태가 변했을 때 동작합니다.
+    	* GamebaseEventObserverData.code : GamebaseError 값을 의미합니다.
+            * GamebaseError.INVALID_MEMBER: 6
+            * GamebaseError.BANNED_MEMBER: 7
+    * GamebaseEventCategory.OBSERVER_NETWORK
+    	* 네트워크 변동 사항 정보를 받을 수 있습니다.
+    	* 네트워크가 끊기거나 연결되었을 때, 혹은 Wifi 에서 셀룰러 네트워크로 변경되었을 때 동작합니다.
+    	* GamebaseEventObserverData.code : NetworkManager 값을 의미합니다.
+            * NetworkManager.TYPE_NOT: -1
+            * NetworkManager.TYPE_MOBILE: 0
+            * NetworkManager.TYPE_WIFI: 1
+            * NetworkManager.TYPE_ANY: 2
 
-**API**
+**VO**
 
 ```java
-+ (void)Gamebase.removeObserver(Observer observer);
-+ (void)Gamebase.removeAllObserver();
+class GamebaseEventObserverData {
+	// 상태값을 나타내는 정보입니다.
+    public int code;
+
+    // 상태에 관련된 메세지 정보 입니다.
+    @Nullable
+    public String message;
+
+    // 추가 정보용 예비 필드 입니다.
+    @Nullable
+    public String extras;
+}
 ```
 
 **Example**
 
 ```java
-public class MyObserverManager {
-    ...
-    private void removeObserver() {
-        Gamebase.removeObserver(mGamebaseObserver);
-    }
+void eventHandlerSample(Activity activity) {
+    Gamebase.addEventHandler(new GamebaseEventHandler() {
+        @Override
+        public void onReceive(@NonNull GamebaseEventMessage message) {
+            switch (message.category) {
+                case GamebaseEventCategory.OBSERVER_LAUNCHING:
+                case GamebaseEventCategory.OBSERVER_HEARTBEAT:
+                case GamebaseEventCategory.OBSERVER_NETWORK:
+                    GamebaseEventObserverData observerData = GamebaseEventObserverData.from(message.data);
+                    if (observerData != null) {
+                        processObserver(activity, message.category, observerData);
+                    }
+                    break;
+                default:
+                    ...
+            }
+        }
+    });
+}
 
-    private void removeAllObserver() {
-        Gamebase.removeAllObserver();
+void processObserver(String category, GamebaseEventObserverData data) {
+    if (category.equals(GamebaseEventCategory.OBSERVER_LAUNCHING)) {
+        int launchingStatusCode = data.code;
+        String launchingMessage = data.message;
+        switch (launchingStatusCode) {
+            case LaunchingStatus.IN_SERVICE:
+                // Finished maintenance.
+                break;
+            case LaunchingStatus.INSPECTING_SERVICE:
+            case LaunchingStatus.INSPECTING_ALL_SERVICES:
+                // Under maintenance.
+                break;
+            ...
+        }
+    } else if (category.equals(GamebaseEventCategory.OBSERVER_HEARTBEAT)) {
+        int errorCode = data.code;
+        switch (errorCode) {
+            case GamebaseError.INVALID_MEMBER:
+                // You can check the invalid user session in here.
+                // ex) After transferred account to another device.
+                break;
+            case GamebaseError.BANNED_MEMBER:
+                // You can check the banned user session in here.
+                break;
+        }
+    } else if (category.equals(GamebaseEventCategory.OBSERVER_NETWORK)) {
+        int networkTypeCode = data.code;
+        // You can check the changed network status in here.
+        if (networkTypeCode == NetworkManager.TYPE_NOT) {
+            // Network disconnected.
+        } else {
+            // Network connected.
+        }
     }
-    ...
 }
 ```
 
+
+#### Purchase Updated
+
+* Promotion 코드 입력을 통해 상품을 획득한 경우 발생하는 이벤트 입니다.
+* 결제 영수증 정보를 획득할 수 있습니다.
+
+**Example**
+
+```java
+void eventHandlerSample(Activity activity) {
+    Gamebase.addEventHandler(new GamebaseEventHandler() {
+        @Override
+        public void onReceive(@NonNull GamebaseEventMessage message) {
+            switch (message.category) {
+                case GamebaseEventCategory.PURCHASE_UPDATED:
+                    PurchasableReceipt receipt = PurchasableReceipt.from(message.data);
+                    if (receipt != null) {
+                        // If the user got item by 'Promotion Code',
+                        // this event will be occurred.
+                    }
+                    break;
+                default:
+                    ...
+            }
+        }
+    });
+}
+```
+
+#### Push Received Message
+
+* Push 메세지가 도착했을때 발생하는 이벤트 입니다.
+* **isForeground** 필드를 통해 포그라운드에서 메세지를 수신했는지, 백그라운드에서 메세지를 수신했는지 구분할 수 있습니다.
+* extras 필드를 JSON 으로 변환하여, Push 발송시 전송했던 커스텀 정보를 얻을 수도 있습니다.
+
+**VO**
+
+```java
+class PushMessage {
+	// 메세지 고유의 id 입니다.
+    @NonNull
+    public String id;
+
+    // Push 메세지 제목 입니다.
+    @Nullable
+    public String title;
+
+    // Push 메세지 본문 내용 입니다.
+    @Nullable
+    public String body;
+
+    // JSONObject 로 변환하여 모든 정보를 확인할 수 있습니다.
+    @NonNull
+    public String extras;
+}
+```
+
+**Example**
+
+```java
+void eventHandlerSample(Activity activity) {
+    Gamebase.addEventHandler(new GamebaseEventHandler() {
+        @Override
+        public void onReceive(@NonNull GamebaseEventMessage message) {
+            switch (message.category) {
+                case GamebaseEventCategory.PUSH_RECEIVED_MESSAGE:
+                    PushMessage pushMessage = PushMessage.from(message.data);
+                    if (pushMessage != null) {
+                        // When you received push message.
+                        try {
+                            JSONObject json = new JSONObject(pushMessage.extras);
+                            // There is 'isForeground' information.
+                            boolean isForeground = json.getBoolean("isForeground");
+                            Object customValue = json.get("YourCustomKey");
+                        } catch (Exception e) {}
+                    }
+                    break;
+                default:
+                    ...
+            }
+        }
+    });
+}
+```
+
+#### Push Click Message
+
+* 수신한 Push 메세지를 클릭했을때 발생하는 이벤트 입니다.
+* 'GamebaseEventCategory.PUSH_RECEIVED_MESSAGE' 와는 다르게 **isForeground** 필드가 존재하지 않습니다.
+
+**Example**
+
+```java
+void eventHandlerSample(Activity activity) {
+    Gamebase.addEventHandler(new GamebaseEventHandler() {
+        @Override
+        public void onReceive(@NonNull GamebaseEventMessage message) {
+            switch (message.category) {
+                case GamebaseEventCategory.PUSH_CLICK_MESSAGE:
+                    PushMessage clickedMessage = PushMessage.from(message.data);
+                    if (clickedMessage != null) {
+                        // When you clicked push message.
+                    }
+                    break;
+                default:
+                    ...
+            }
+        }
+    });
+}
+```
+
+#### Push Click Action
+
+* Rich Message 기능을 통해 생성한 버튼을 클릭했을때 발생하는 이벤트 입니다.
+* actionType 은 다음 항목이 제공됩니다.
+	* "OPEN_APP"
+	* "OPEN_URL"
+	* "REPLY"
+	* "DISMISS"
+
+**VO**
+
+```java
+class PushAction {
+	// 버튼 액션 종류 입니다.
+    @NonNull
+    public String actionType;
+
+	// PushMessage 데이터 입니다.
+    @NonNull
+    public PushMessage message;
+
+	// Push 콘솔에서 입력한 사용자 텍스트 입니다.
+    @Nullable
+    public String userText;
+}
+```
+
+**Example**
+
+```java
+void eventHandlerSample(Activity activity) {
+    Gamebase.addEventHandler(new GamebaseEventHandler() {
+        @Override
+        public void onReceive(@NonNull GamebaseEventMessage message) {
+            switch (message.category) {
+                case GamebaseEventCategory.PUSH_CLICK_ACTION:
+                    PushAction pushAction = PushAction.from(message.data);
+                    if (pushAction != null) {
+                        // When you clicked action button by 'Rich Message'.
+                    }
+                    break;
+                default:
+                    ...
+            }
+        }
+    });
+}
+```
 
 ### Analytics
 
