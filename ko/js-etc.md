@@ -245,224 +245,177 @@ toast.Gamebase.setDisplayLanguageTable(displayLanguageTable) {
 2. Gamebase 초기화 시, 단말기에 설정된 언어코드가 localized string에 정의되어 있는지 확인합니다.(이 값은 초기화 이후, 단말기에 설정된 언어를 변경하더라도 유지됩니다.)
 3. Display Language의 기본값인 `en`이 자동으로 설정됩니다.
 
-### Server Push
-* Gamebase 서버에서 클라이언트 단말기로 WebSocket을 이용하여 보내는 Server Push Message를 처리할 수 있습니다.
-* Gamebase 클라이언트에서 ServerPushEvent Listener를 추가하면 해당 메시지를 사용자가 받아서 처리할 수 있으며, 추가된 ServerPushEvent Listener를 삭제할 수 있습니다.
+### Gamebase Event Handler
 
-#### Flow
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
-
-#### Server Push Type
-현재 Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
-**toast.GamebaseServerPushType** 상수에서 확인가능합니다.
-
-* 킥아웃(Kickout)
-    * TOAST Gamebase 콘솔의 `Operation > Kickout`에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에게 메시지를 보낼 수 있습니다.
-    * Type: toast.GamebaseServerPushType.APP_KICKOUT (= "appKickout")
-
-
-#### Add ServerPushEvent
-Gamebase Client에 ServerPushEvent를 등록하여 Gamebase Console 및 Gamebase 서버에서 발급된 Push 이벤트를 처리할 수 있습니다.
+* Gamebase 는 각종 이벤트를 `GamebaseEventHandler` 라는 하나의 이벤트 시스템에서 모두 처리할 수 있습니다.
+* GamebaseEventHandler 는 아래 API 를 통해 간단하게 Listener 를 추가/제거 할 수 있습니다.
 
 **API**
 
-```js
-toast.Gamebase.addServerPushEvent((serverPushEvent) => { ... });
+```cs
+toast.Gamebase..addEventHandler(eventHandler);
+toast.Gamebase..removeEventHandler(eventHandler);
+toast.Gamebase..removeAllEventHandler();
 ```
 
 **Example**
 
-```js
-var serverPushEvent = (event) => {
-    var type = event.type;
-    var data = event.data;
-
-    if (type === toast.GamebaseServerPushType.APP_KICKOUT) {
-        console.log('User is kicked out.');
-    } else {
-        console.log('Unknown server push event is arrived');
-        console.log(event);
+```javascript
+toast.Gamebase.addEventHandler((message) => {
+    const category = message.category;
+    const data = message.data;
+    switch (category) {
+        case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
+            // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+            // Return to title and initialize Gamebase again.
+            break;
+        case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
+            // If the user wants to move the guest account to another device,
+            // if the account transfer is successful,
+            // the login of the previous device is released,
+            // so go back to the title and try to log in again.
+            break;
+        case GamebaseEventCategory.OBSERVER_LAUNCHING:
+            checkLaunchingStatus(JSON.parse(message.data));
+            break;
+        case GamebaseEventCategory.OBSERVER_NETWORK:
+            checkNetworkStatus(JSON.parse(message.data));
+            break;
+        case GamebaseEventCategory.OBSERVER_HEARTBEAT:
+            checkHeartbeat(JSON.parse(message.data));
+            break;
+        case GamebaseEventCategory.OBSERVER_INTROSPECT:
+            // Introspect error
+            var observerData = JSON.parse(message.data);
+            var errorCode = observerData.code;
+            var errorMessage = observerData.message;
+            break;
     }
-};
-
-function addServerPush() {
-    toast.Gamebase.addServerPushEvent(serverPushEvent);
-}
+});
 ```
 
+* Category 는 GamebaseEventCategory 클래스에 정의되어 있습니다.
 
-#### Remove ServerPushEvent
-Gamebase에 등록된 ServerPushEvent를 삭제할 수 있습니다.
+#### Server Push
 
-**API**
-
-```js
-toast.Gamebase.removeServerPushEvent(serverPushEvent);
-toast.Gamebase.removeAllServerPushEvent();
-```
+* Gamebase 서버에서 클라이언트 단말기로 보내는 메세지 입니다.
+* Gamebase 에서 지원하는 Server Push Type 은 다음과 같습니다.
+	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
+    	* TOAST Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
+    * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
+    	* Guest 계정을 다른 단말기로 이전을 성공하게 되면 이전 단말기에서 킥아웃 메세지를 받게 됩니다.
 
 **Example**
 
-```js
-function removeServerPush() {
-    toast.Gamebase.removeServerPushEvent(serverPushEvent);
-}
-
-function removeAllServerPush() {
-    toast.Gamebase.removeAllServerPushEvent();
-}
-```
-
-
-
-
-
-### Observer
-* Gamebase Observer로 Gamebase의 각종 상태 변동 이벤트를 전달받아 처리할 수 있습니다.
-* 상태 변동 이벤트 : 네트워크 타입 변동, Launching 상태 변동(점검 등에 의한 상태 변동), Heartbeat 정보 변동(사용자 이용 정지 등에 의한 Heartbeat 정보 변동) 등
-
-#### Flow
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
-
-#### Observer Type
-현재 Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
-**toast.GamebaseObserverType** 상수에서 확인가능합니다.
-
-* Network 타입 변동
-    * 네트워크 변동 사항 정보를 받을 수 있습니다. 예를 들어 ObserverMessage.data.get("code") 의 값으로 Network Type을 알 수 있습니다.
-    * Type: toast.GamebaseObserverType.NETWORK (= "network")
-    * Code: **toast.GamebaseNetworkType** 에 선언된 상수를 참고합니다.
-        * toast.GamebaseNetworkType.TYPE_NOT: -1
-        * toast.GamebaseNetworkType.TYPE_MOBILE: 0
-        * toast.GamebaseNetworkType.TYPE_WIFI: 1
-        * toast.GamebaseNetworkType.TYPE_ANY: 2
-* Launching 상태 변동
-    * 주기적으로 애플리케이션 상태를 확인하는 Launching Status response에 변동이 있을 때 발생합니다. 예를 들어 점검, 서비스 종료 등에 의한 이벤트가 있습니다.
-    * Type: toast.GamebaseObserverType.LAUNCHING (= "launching")
-    * Code: **toast.GamebaseLaunchingStatus** 에 선언된 상수를 참고합니다.
-        * toast.GamebaseLaunchingStatus.IN_SERVICE: 200
-        * toast.GamebaseLaunchingStatus.RECOMMEND_UPDATE: 201
-        * toast.GamebaseLaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
-        * toast.GamebaseLaunchingStatus.REQUIRE_UPDATE: 300
-        * toast.GamebaseLaunchingStatus.BLOCKED_USER: 301
-        * toast.GamebaseLaunchingStatus.TERMINATED_SERVICE: 302
-        * toast.GamebaseLaunchingStatus.INSPECTING_SERVICE: 303
-        * toast.GamebaseLaunchingStatus.INSPECTING_ALL_SERVICES: 304
-        * toast.GamebaseLaunchingStatus.INTERNAL_SERVER_ERROR: 500
-* Heartbeat 정보 변동
-    * 주기적으로 Gamebase 서버와 연결을 유지하는 Heartbeat response에 변동이 있을 때 발생합니다. 예를 들어 사용자가 이용정지를 당했을 때, 정상적인 "로그인 연결"을 맺지 못하므로, 사용자 이용 정지 이벤트가 발생합니다.
-    * Type: toast.GamebaseObserverType.HEARTBEAT (= "heartbeat")
-    * Code: **toast.GamebaseConstant** 에 선언된 상수를 참조합니다.
-        * toast.GamebaseConstant.BANNED_MEMBER: 7
-
-
-#### Add Observer
-Gamebase Client에 Observer를 등록하여 각종 상태 변동 이벤트를 처리할 수 있습니다.
-
-**API**
-
-```js
-var observerEvent = (event) => {
-    var type = event.type;
-    var data = event.data;
-
-    if (type === toast.GamebaseServerPushType.APP_KICKOUT) {
-        console.log('User is kicked out.');
-    } else {
-        console.log('Unknown server push event is arrived');
-        console.log(event);
+```javascript
+toast.Gamebase.addEventHandler((message) => {
+    const category = message.category;
+    const data = message.data;
+    switch (category) {
+        case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
+            // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+            // Return to title and initialize Gamebase again.
+            break;
+        case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
+            // If the user wants to move the guest account to another device,
+            // if the account transfer is successful,
+            // the login of the previous device is released,
+            // so go back to the title and try to log in again.
+            break;
+        default:
+            break;
     }
-};
-toast.Gamebase.addObserver(observerEvent);
+});
 ```
+
+#### Observer
+
+* Gamebase Gamebase의 각종 상태 변동 이벤트를 처리하는 시스템 입니다.
+* Gamebase 에서 지원하는 Observer Type 은 다음과 같습니다.
+    * GamebaseEventCategory.OBSERVER_LAUNCHING
+    	* 점검이 걸리거나 풀린 경우, 새로운 버전이 배포되어 업데이트가 필요한 경우와 같이, Launching 상태가 변경되었을 때 동작합니다.
+    	* GamebaseEventObserverData.code : LaunchingStatus 값을 의미합니다.
+            * LaunchingStatus.IN_SERVICE: 200
+            * LaunchingStatus.RECOMMEND_UPDATE: 201
+            * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
+            * LaunchingStatus.REQUIRE_UPDATE: 300
+            * LaunchingStatus.BLOCKED_USER: 301
+            * LaunchingStatus.TERMINATED_SERVICE: 302
+            * LaunchingStatus.INSPECTING_SERVICE: 303
+            * LaunchingStatus.INSPECTING_ALL_SERVICES: 304
+            * LaunchingStatus.INTERNAL_SERVER_ERROR: 500
+    * GamebaseEventCategory.OBSERVER_HEARTBEAT
+    	* 탈퇴 처리 되거나 이용 정지로 인하여 사용자 계정 상태가 변했을 때 동작합니다.
+    	* GamebaseEventObserverData.code : GamebaseError 값을 의미합니다.
+            * GamebaseError.INVALID_MEMBER: 6
+            * GamebaseError.BANNED_MEMBER: 7
+    * GamebaseEventCategory.OBSERVER_NETWORK
+    	* 네트워크 변동 사항 정보를 받을 수 있습니다.
+    	* 네트워크가 끊기거나 연결되었을 때, 혹은 Wifi 에서 셀룰러 네트워크로 변경되었을 때 동작합니다.
+    	* GamebaseEventObserverData.code : NetworkManager 값을 의미합니다.
+            * NetworkManager.TYPE_NOT: -1
+            * NetworkManager.TYPE_MOBILE: 0
+            * NetworkManager.TYPE_WIFI: 1
+            * NetworkManager.TYPE_ANY: 2
+    * GamebaseEventCategory.OBSERVER_INTROSPECT
+        * Standalone/WebGL에서 로그인 후 세션 연장에 실패할 때 동작합니다.
 
 **Example**
 
-```js
-function addObserver() {
-    toast.Gamebase.addObserver(observerEvent);
-}
-
-var observerEvent = (event) => {
-    var typeOfEvent = event.type;
-    var data = event.data;
-
-    if (typeOfEvent === toast.GamebaseObserverType.NETWORK) {
-        checkNetworkStatus(data);
-    } else if (typeOfEvent === toast.GamebaseObserverType.HEARTBEAT) {
-        checkHeartbeat(data);
-    } else if (typeOfEvent === toast.GamebaseObserverType.LAUNCHING) {
-        checkLaunchingStatus(data);
+```javascript
+toast.Gamebase.addEventHandler((message) => {
+    const category = message.category;
+    const data = message.data;
+    switch (category) {        
+        case GamebaseEventCategory.OBSERVER_LAUNCHING:
+            checkLaunchingStatus(JSON.parse(message.data));
+            break;
+        case GamebaseEventCategory.OBSERVER_NETWORK:
+            checkNetworkStatus(JSON.parse(message.data));
+            break;
+        case GamebaseEventCategory.OBSERVER_HEARTBEAT:
+            checkHeartbeat(JSON.parse(message.data));
+            break;
+        case GamebaseEventCategory.OBSERVER_INTROSPECT:
+            // Introspect error
+            var observerData = JSON.parse(message.data);
+            var errorCode = observerData.code;
+            var errorMessage = observerData.message;
+            break;
+        default:
+            break;
     }
-};
+});
 
 function checkLaunchingStatus(data) {
-    var code = data.code;       // Code : toast.GamebaseLaunchingStatus
-    var message = data.message;
-
-    console.log(message);
-
+    var code = data.code;
     var isPlayable = toast.GamebaseLaunching.isPlayable(code);
     if (isPlayable) {
-        console.log('The Game is playable');
+        // 'The Game is playable'
     } else {
-        console.log('The Game is not playable');
+        // 'The Game is not playable'
     }
 }
 
 function checkHeartbeat(data) {
-    // Code : toast.GamebaseConstant.INVALID_MEMBER, toast.GamebaseConstant.BANNED_MEMBER
     var code = data.code;
-    var message = data.message;
-
-    console.log('Heartbeat status is changed.');
-    console.log(message);
-
     if (code === toast.GamebaseConstant.INVALID_MEMBER) {
-        console.log('This user is an invalid member.');
-        console.log('Maybe the user was withdrawn or has a trouble with his/her account.');
+        // You should to write the code necessary in game. (End the session.)
     } else if (code === toast.GamebaseConstant.BANNED_MEMBER) {
-        console.log('This user is banned.');
+        // The ban information can be found by using the GetBanInfo API.
+        // Show kickout message to user and need kickout in game.
     } else {
         console.log('Heartbeat code: ' + code);
     }
 }
 
 function checkNetworkStatus(data) {
-    var code = data.code;       // Code: toast.GamebaseNetworkType
-    var message = data.message;
-
-    console.log('Network status is changed.');
-    console.log(message);
-
+    var code = data.code;
     if (code === toast.GamebaseNetworkType.TYPE_NOT) {
-        console.log('Network is unreachable.');
+        // Network disconnected
     } else {
-        console.log('Network is rechable.');
+        // Network connected
     }
-}
-```
-
-
-#### Remove Observer
-Gamebase에 등록된 Observer를 삭제할 수 있습니다.
-
-**API**
-
-```js
-toast.Gamebase.removeObserver(observerEvent);
-toast.Gamebase.removeAllObserver();
-```
-
-**Example**
-
-```js
-function removeObserver() {
-    toast.Gamebase.removeObserver(observerEvent);
-}
-
-function removeAllObserver() {
-    toast.Gamebase.removeAllObserver();
 }
 ```
 
