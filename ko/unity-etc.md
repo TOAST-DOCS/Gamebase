@@ -320,7 +320,7 @@ static string GetCountryCodeOfDevice()
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
-> [참고] 
+> [참고]
 >
 > Editor on Windows, Standalone on Windows인 경우에는 [CultureInfo](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo?view=netframework-4.7.2)를 참고하여 국가 코드를 리턴합니다.
 >
@@ -340,7 +340,7 @@ public static string GetCountryCode()
 
 ### Gamebase Event Handler
 
-* Gamebase 는 각종 이벤트를 `GamebaseEventHandler` 라는 하나의 이벤트 시스템에서 모두 처리할 수 있습니다.
+* Gamebase 는 각종 이벤트를 **GamebaseEventHandler** 라는 하나의 이벤트 시스템에서 모두 처리할 수 있습니다.
 * GamebaseEventHandler 는 아래 API 를 통해 간단하게 Listener 를 추가/제거 할 수 있습니다.
 
 **API**
