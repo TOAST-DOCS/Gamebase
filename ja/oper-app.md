@@ -158,7 +158,7 @@ TOAST Consoleでの設定の他に追加設定はありません。
 * 1.12.1以下
 	* AdditionalInfoを設定する必要があります。
 		* **TOAST Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON string形式の情報を設定する必要があります。
-		* GOOGLEの場合、iOSアプリで必要な情報**url_scheme_ios_only**を設定する必要があります。
+		* Googleの場合、iOSアプリで必要な情報**url_scheme_ios_only**を設定する必要があります。
 		* **url_scheme_ios_only**の値は、XcodeのURLスキームに登録された値のいずれか1つと一致する必要があります。
 
 	* URLスキームsを設定する必要があります。
@@ -168,7 +168,7 @@ TOAST Consoleでの設定の他に追加設定はありません。
 	* URLスキームを設定する必要があります。
 		* **XCode > Target > Info > URL Types**に`tcgb.{Bundle ID}.google`を追加する必要があります。
 
-* GOOGLE追加認証情報の入力例
+* Google追加認証情報の入力例
 
 ```json
 { "url_scheme_ios_only": "Your URL Schemes" }
@@ -370,20 +370,20 @@ Sign In with Apple機能を使用するには、AppStore Connect、Gamebase Cons
 
 ###### Certificates, Identifiers & Profiles > Keys > 追加(+)
 1. `Sign In with Apple`チェックボックスを選択して設定を行います。
-![Check SignInWithApple](./image/Operators_Guide/Console_App_Auth_appleid0_1.0.png)
+![Check SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid0_1.0.png)
 2. `Sign in with Apple`を使用するBundle IDを選択します。
-![ChooseAPrimaryAppID](./image/Operators_Guide/Console_App_Auth_appleid1_1.0.png)
+![ChooseAPrimaryAppID](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid1_1.0.png)
 3. <span style="color:#e11d21">Privatekey</span>をダウンロードして、作成された<span style="color:#e11d21">Key IDを </span>確認します。
-![DownloadPrivateKey](./image/Operators_Guide/Console_App_Auth_appleid2_1.0.png)
+![DownloadPrivateKey](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid2_1.0.png)
 4. Certificates, Identifiers & Profiles > Identifiers > 対象アプリを選択 > `Sign In with Apple`を有効化します。
     * `Enable as a primary App ID`に設定します。
-![DownloadPrivateKey](./image/Operators_Guide/Console_App_Auth_appleid3_1.0.png)
+![DownloadPrivateKey](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid3_1.0.png)
 
 ##### Gamebase Console > App Settings
 [TOAST Consoleへ](https://console.toast.com/)
 
 * Gamebase
-![SecretKey設定](./image/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
+![SecretKey設定](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
 
 
 ###### Client ID Settings
@@ -394,7 +394,7 @@ Sign In with Apple機能を使用するには、AppStore Connect、Gamebase Cons
 
 * `teamId`：開発者アカウントの右上の値を設定します。
 * `keyId`：Certificates, Identifiers & Profiles > Keys > Sign In with Appleをチェックし、作成された値を設定します。
-![SecretKey設定](./image/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
+![SecretKey設定](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
 * `privateKey`：上のKeysでキーを作成した時に作成されたPrivateKeyファイルの内容を設定します。 (ダウンロードしたファイルを開き、下記のスクリーンショットのように赤い四角形部分の値を使用します)
 ![SecretKey設定](./image/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
 
