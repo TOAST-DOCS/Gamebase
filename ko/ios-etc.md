@@ -270,7 +270,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 ### Gamebase Event Handler
 
-* Gamebase 는 각종 이벤트를 `GamebaseEventHandler` 라는 하나의 이벤트 시스템에서 모두 처리할 수 있습니다.
+* Gamebase 는 각종 이벤트를 **GamebaseEventHandler** 라는 하나의 이벤트 시스템에서 모두 처리할 수 있습니다.
 * GamebaseEventHandler 는 아래 API 를 통해 간단하게 Handler 를 추가/제거 할 수 있습니다.
 
 **API**
