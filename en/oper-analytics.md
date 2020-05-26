@@ -131,6 +131,25 @@ By opting for the exclusion of withdrawer on the same day of subscription, you c
     * New Users = Subscriber - Withdrawer on the same day of subscription
       e.g.) Out of 100 new users on January 1st, 20 withdrew on January 1st: then, the number of actual new users is calculated at 80 (100-20).
 
+### Frequency7
+
+![gamebase_analytics_06_202003_1_frequency](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202003_1_frequency.png)
+
+Frequency 7 provides the number and rate of weekly visits of DAU. It helps to identify the flow and loyalty for a game.
+
+Frequency 7 is comprised of the three criteria as below.
+
+* Number of Visits: Total number of visits for 7 days
+* Number of Consecutive Visits: Number of consecutive visits for 7 days, including the day
+* Maximum Number of Consecutive Visits: Maximum number of consecutive visits for 7 days
+
+Examples of calculation by the above three criteria are like follows. 
+As of March 7, a user visited on March 1, 2, 3, 6, and 7, and the number of visits are calculated by each criteria. 
+
+* Total Number of Visits: 5 days (March 1, 2, 3, 6, and 7)
+* Number of Consecutive Visits: 2 days (March 6 and 7)
+* Maximum Number of Consecutive Visits: 3 days (March 1, 2, and 3)
+
 ## Sales Indicators 
 ### Purchase Amount 
 
