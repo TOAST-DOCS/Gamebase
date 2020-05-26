@@ -277,9 +277,9 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 
 ```objectivec
-+ (void)addEventHandler(GamebaseEventHandler handler);
-+ (void)removeEventHandler(GamebaseEventHandler handler);
-+ (void)removeAllEventHandler();
++ (void)addEventHandler:(GamebaseEventHandler)handler;
++ (void)removeEventHandler:(GamebaseEventHandler)handler;
++ (void)removeAllEventHandler;
 ```
 
 **VO**
