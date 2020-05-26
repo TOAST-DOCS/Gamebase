@@ -39,7 +39,7 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
     * 오류 코드 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **Gamebase.loginForLastLoggedInProvider()**를 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 유저
     * 오류 코드가 **BANNED_MEMBER(7)**인 경우, 이용 정지 게임 유저이므로 인증에 실패한 것입니다.
-    * **Gamebase.getBanInfo()**로 제재 정보를 확인하여 게임 유저에게 게임을 할 수 없는 이유를 알려 주시기 바랍니다.
+    * **BanInfo.from(exception)**으로 제재 정보를 확인하여 게임 유저에게 게임을 할 수 없는 이유를 알려 주시기 바랍니다.
     * Gamebase 초기화 시 **GamebaseConfiguration.Builder.enablePopup(true)** 및 **enableBanPopup(true)**를 호출한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외 오류
     * 이전 로그인 유형으로 인증에 실패했기 때문에 **3. 지정된 IdP로 인증**을 진행하시기 바랍니다.
@@ -61,7 +61,7 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
     * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증에 실패한 것이므로 **Gamebase.login(activity, idpType, callback)**을 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 유저
     * 오류 코드가 **BANNED_MEMBER(7)**인 경우, 이용 정지 게임 유저이므로 인증에 실패한 것입니다.
-    * **Gamebase.getBanInfo()**로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려주시기 바랍니다.
+    * **BanInfo.from(exception)**으로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려주시기 바랍니다.
     * Gamebase 초기화 시 **GamebaseConfiguration.Builder.enablePopup(true)** 및 **enableBanPopup(true)**를 호출한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외 오류
     * 오류가 발생했다는 것을 게임 유저에게 알리고, 게임 유저가 인증 IdP 유형을 선택할 수 있는 상태(주로 타이틀 화면 또는 로그인 화면)로 되돌아갑니다.
@@ -108,9 +108,9 @@ Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthTok
                 // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) 를 호출하였다면
                 // Gamebase가 이용정지에 관한 팝업을 자동으로 띄워줍니다.
                 //
-                // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 Gamebase.getBanInfo()로
+                // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 BanInfo.from(exception)으로
                 // 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 사유를 표시해 주시기 바랍니다.
-                BanInfo banInfo = Gamebase.getBanInfo();
+                BanInfo banInfo = BanInfo.from(exception);
             } else {
                 // 그 외의 오류가 발생하는 경우 지정된 IdP로 인증을 시도합니다.
                 Gamebase.login(activity, provider, logincallback);
@@ -165,9 +165,9 @@ private static void onLoginForGuest(final Activity activity) {
                     // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) 를 호출하였다면
                     // Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
                     //
-                    // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 Gamebase.getBanInfo()로
+                    // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 BanInfo.from(exception)으로
                     // 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 사유를 표시해 주시기 바랍니다.
-                    BanInfo banInfo = Gamebase.getBanInfo();
+                    BanInfo banInfo = BanInfo.from(exception);
                 } else {
                     // 로그인 실패
                     Log.e(TAG, "Login failed- "
@@ -190,6 +190,7 @@ private static void onLoginForGuest(final Activity activity) {
 
 ```java
 + (void)Gamebase.login(Activity activity, AuthProvider provider, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.login(Activity activity, AuthProvider provider, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
 ```
 
 **Example**
@@ -222,9 +223,9 @@ private static void onLoginForGoogle(final Activity activity) {
                     // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) 를 호출하였다면
                     // Gamebase가 이용정지에 관한 팝업을 자동으로 띄워줍니다.
                     //
-                    // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 Gamebase.getBanInfo()로
+                    // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 BanInfo.from(exception)으로
                     // 제재 정보를 확인하여 유저에게 게임을 플레이 할 수 없는 사유를 표시해 주시기 바랍니다.
-                    BanInfo banInfo = Gamebase.getBanInfo();
+                    BanInfo banInfo = BanInfo.from(exception);
                 } else {
                     // 로그인 실패
                     Log.e(TAG, "Login failed- "
@@ -301,9 +302,9 @@ private static void onLoginWithCredential(final Activity activity) {
                     // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) 를 호출하였다면
                     // Gamebase가 이용정지에 관한 팝업을 자동으로 띄워줍니다.
                     //
-                    // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 Gamebase.getBanInfo()로
+                    // Game UI에 맞게 직접 이용정지 팝업을 구현하고자 한다면 BanInfo.from(exception)으로
                     // 제재 정보를 확인하여 사용자에게 게임을 플레이할 수 없는 사유를 표시해 주시기 바랍니다.
-                    BanInfo banInfo = Gamebase.getBanInfo();
+                    BanInfo banInfo = BanInfo.from(exception);
                 } else {
                     // 로그인 실패
                     Log.e(TAG, "Login failed- "
@@ -494,14 +495,16 @@ private static void onWithdraw(final Activity activity) {
 **API**
 
 ```java
-+ (void)Gamebase.addMapping(Activity activity, String providerName, null, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.addMapping(Activity activity, String providerName, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.addMapping(Activity activity, String providerName, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
 ```
 
 **Example**
 
 ```java
 private static void addMappingForFacebook(final Activity activity) {
-    Gamebase.addMapping(activity, AuthProvider.FACEBOOK, null, new GamebaseDataCallback<AuthToken>() {
+    String mappingProvider = AuthProvider.FACEBOOK;
+    Gamebase.addMapping(activity, mappingProvider, new GamebaseDataCallback<AuthToken>() {
         @Override
         public void onCallback(AuthToken result, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
@@ -533,11 +536,11 @@ private static void addMappingForFacebook(final Activity activity) {
                 final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
                 final String forcingMappingKey = ticket.forcingMappingKey;
 
-                Gamebase.addMappingForcibly(activity, credentialInfo, forcingMappingKey, new GamebaseDataCallback<AuthToken>() {
+                Gamebase.addMappingForcibly(activity, mappingProvider, forcingMappingKey, new GamebaseDataCallback<AuthToken>() {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException exception) {
                         ...
-                        // 자세한 내용은 addMappingForcibly API 문서를 참고하세요.    
+                        // 자세한 내용은 addMappingForcibly API 문서를 참고하세요.
                     }
                 }
             } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP) {
@@ -630,7 +633,7 @@ private static void addMappingWithCredential(final Activity activity) {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException exception) {
                         ...
-                        // 자세한 내용은 addMappingForcibly API 문서를 참고하세요.    
+                        // 자세한 내용은 addMappingForcibly API 문서를 참고하세요.
                     }
                 }
             } else if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP) {
@@ -658,6 +661,7 @@ private static void addMappingWithCredential(final Activity activity) {
 **API**
 
 ```java
++ (void)Gamebase.addMappingForcibly(Activity activity, String providerName, String forcingMappingKey, GamebaseDataCallback<AuthToken> callback);
 + (void)Gamebase.addMappingForcibly(Activity activity, String providerName, String forcingMappingKey, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
 ```
 
@@ -665,7 +669,8 @@ private static void addMappingWithCredential(final Activity activity) {
 
 ```java
 private static void addMappingForciblyFacebook(final Activity activity) {
-    Gamebase.addMapping(activity, AuthProvider.FACEBOOK, null, new GamebaseDataCallback<AuthToken>() {
+    String mappingProvider = AuthProvider.FACEBOOK;
+    Gamebase.addMapping(activity, mappingProvider, new GamebaseDataCallback<AuthToken>() {
         @Override
         public void onCallback(AuthToken result, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
@@ -682,7 +687,7 @@ private static void addMappingForciblyFacebook(final Activity activity) {
                 final String forcingMappingKey = ticket.forcingMappingKey;
 
                 // 강제 매핑을 시도합니다.
-                Gamebase.addMappingForcibly(activity, AuthProvider.FACEBOOK, forcingMappingKey, null, new GamebaseDataCallback<AuthToken>() {
+                Gamebase.addMappingForcibly(activity, mappingProvider, forcingMappingKey, null, new GamebaseDataCallback<AuthToken>() {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException addMappingForciblyException) {
                         if (Gamebase.isSuccess(addMappingForciblyException)) {
@@ -690,7 +695,7 @@ private static void addMappingForciblyFacebook(final Activity activity) {
                             Log.d(TAG, "Add Mapping Forcibly successful");
                             String userId = Gamebase.getUserID();
                             return;
-                        }           
+                        }
 
                         // 강제 매핑 추가 실패
                         // 에러 코드를 확인하고 적절한 처리를 진행합니다.
@@ -772,7 +777,7 @@ private static void addMappingForciblyFacebook(final Activity activity) {
                             Log.d(TAG, "Add Mapping Forcibly successful");
                             String userId = Gamebase.getUserID();
                             return;
-                        }           
+                        }
 
                         // 강제 매핑 추가 실패
                         // 에러 코드를 확인하고 적절한 처리를 진행합니다.
@@ -858,7 +863,6 @@ Gamebase에서 발급한 인증 정보를 가져올 수 있습니다.
 + (String)Gamebase.getUserID();
 + (String)Gamebase.getAccessToken();
 + (String)Gamebase.getLastLoggedInProvider();
-+ (BanInfo)Gamebase.getBanInfo();
 ```
 
 **Example**
@@ -873,9 +877,6 @@ String accessToken = Gamebase.getAccessToken();
 
 // Obtaining Last Logged In Provider
 String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
-
-// Obtaining Ban Information
-BanInfo banInfo = Gamebase.getBanInfo();
 ```
 
 
@@ -908,7 +909,7 @@ Map<String, Object> profileMap = profile.information;
 ### Get Banned User Information
 
 Gamebase Console에 제재된 게임 유저로 등록될 경우,
-로그인을 시도하면 아래와 같은 이용 제한 정보 코드가 표시될 수 있습니다. **Gamebase.getBanInfo()** 메서드를 이용해 제재 정보를 확인할 수 있습니다.
+로그인을 시도하면 아래와 같은 이용 제한 정보 코드가 표시될 수 있습니다. **BanInfo.from(exception)** 메서드를 이용해 제재 정보를 확인할 수 있습니다.
 
 * BANNED_MEMBER(7)
 
@@ -1011,16 +1012,16 @@ Gamebase.renewTransferAccount(autoConfig, new GamebaseDataCallback<TransferAccou
 });
 ```
 
-
-
-
 ### Transfer Guest Account to Another Device
 **issueTransfer** API로 발급받은 TransferAccount를 통해 계정을 이전하는 기능입니다.
 계정 이전 성공 시 TransferAccount를 발급받은 단말기에서 이전 완료 메시지가 표시될 수 있고, 게스트 로그인 시 새로운 계정이 생성됩니다.
 계정 이전이 성공한 단말기에서는 TransferAccount를 발급받았던 단말기의 게스트 계정을 계속해서 사용할 수 있습니다.
 
 > `주의`
-> 이미 게스트 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
+>
+> * 이미 게스트 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
+> * 만일 잘못된 id/password 를 연속해서 입력하면 **AUTH_TRANSFERACCOUNT_BLOCK(3042)** 에러가 발생하며 계정 이전이 일정 시간 차단됩니다.
+> 이 경우에는 아래의 예제와 같이 TransferAccountFailInfo 값을 통해 언제까지 계정 이전이 차단되는지 유저에게 알려줄 수 있습니다.
 
 **API**
 
@@ -1033,11 +1034,23 @@ Gamebase.renewTransferAccount(autoConfig, new GamebaseDataCallback<TransferAccou
 ```java
 Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDataCallback<AuthToken>() {
     @Override
-    public void onCallback(final AuthToken authToken, final GamebaseException exception) {
+    public void onCallback(AuthToken authToken, GamebaseException exception) {
         if (!Gamebase.isSuccess(exception)) {
             // Transfering Account failed.
+            TransferAccountFailInfo failInfo = TransferAccountFailInfo.from(exception);
+            if (failInfo != null) {
+                // Transfering Account failed by entering the wrong id / pw multiple times.
+                // You can tell when the account transfer is blocked by the TransferAccountFailInfo.
+                String failedId = failInfo.id;
+                int failCount = failInfo.failCount;
+                Date blockedDate = new Date(failInfo.blockEndDate);
+                return;
+            }
+
+            // Transfering Account failed by another reason.
             return;
         }
+
         // Transfering Account success.
         // TODO: implements post login process
     }
@@ -1252,7 +1265,7 @@ public static void testWithdrawImmediately() {
 * 오류 코드를 확인하는 방법은 다음과 같습니다.
 
 ```java
-Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCallback<AuthToken>() {
+Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
     @Override
     public void onCallback(AuthToken data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
@@ -1269,7 +1282,7 @@ Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCa
                 // Third Party Detail Error Info
                 int moduleErrorCode = exception.getDetailCode();
                 String moduleErrorMessage = exception.getDetailMessage();
-                
+
                 ...
             }
         }
