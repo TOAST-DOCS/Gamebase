@@ -64,10 +64,10 @@ dependencies {
 
 #### 6. Initialization
 
-* Gamebase 초기화 시 Store Code 를 지정해야 합니다.
+* Gamebase 초기화 시 스토어 코드를 지정해야 합니다.
 * **STORE_CODE**는 다음 값 중에서 선택합니다.
     * GG: Google
-    * ONESTORE: ONE store
+    * ONESTORE: 원스토어
 
 ```java
 String STORE_CODE = "GG";	// Google
@@ -80,25 +80,31 @@ Gamebase.initialize(activity, configuration, callback);
 
 ### Purchase Flow
 
-아이템 구매는 다음과 같은 순서로 구현하시기 바랍니다.<br/>
+아이템 구매는 크게 결제 Flow 와 Consume Flow 로 나누어 볼 수 있습니다.
+결제 Flow는 다음과 같은 순서로 구현하시기 바랍니다.
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.6.2.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-1. 게임 클라이언트에서는 Gamebase SDK의 **requestPurchase**를 호출하여 결제를 시도합니다.
-2. 결제가 성공하였다면 **requestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인합니다.
-3. 반환된 미소비 결제 내역 목록에 값이 있으면 게임 클라이언트가 게임 서버에 결제 아이템에 대한 consume(소비)을 요청합니다.
-	* UserID, itemSeq, paymentSeq, purchaseToken 을 전달합니다.
-4. 게임 서버는 게임 DB 에 이미 동일한 paymentSeq, purchaseToken 으로 아이템을 지급한 이력이 있는지 확인합니다.
-	* 4-1. 아직 아이템을 지급하지 않았다면 UserID 에 itemSeq 에 해당하는 아이템을 지급합니다.
-    * 4-2. 아이템 지급 후 게임 DB 에 UserID, itemSeq, paymentSeq, purchaseToken 을 저장하여 이후에 중복 지급을 확인할 수 있도록 합니다.
-5. 게임 서버는 Gamebase 서버에 API를 통해 consume(소비) API를 요청합니다.
-	* [API 가이드 > Purchase(IAP) > Consume](./api-guide/#consume)
+1. 이전 결제가 정상적으로 종료되지 못한 경우 재처리가 동작하지 않으면 결제가 실패합니다. 그러므로 결제 전에 **requestItemListOfNotConsumed**를 호출하여 재처리를 동작시켜 미지급된 아이템이 있으면 Consume Flow 를 진행합니다.
+2. 게임 클라이언트에서는 Gamebase SDK의 **requestPurchase**를 호출하여 결제를 시도합니다.
+3. 결제가 성공하였다면 **requestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인한 후 지급할 아이템이 존재한다면 Consume Flow 를 진행합니다.
 
-<br/>
+* 스토어 결제에는 성공했으나 오류가 발생해 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 미소비 결제 내역을 확인하시기 바랍니다.
+    * 로그인에 성공하면 **requestItemListOfNotConsumed**를 호출하여 재처리를 동작시켜 미지급된 아이템이 있으면 Consume Flow 를 진행합니다.
 
-* 스토어 결제는 성공했으나 오류가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 미소비 결제 내역을 확인하시기 바랍니다.
-	* 로그인에 성공하면 **requestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인합니다.
-	* 반환된 미소비 결제 내역 목록에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
+### Consume Flow
+
+미소비 결제 내역 목록에 값이 있으면 다음과 같은 순서로 Consume Flow 를 진행하시기 바랍니다.
+
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.10.0.png)
+
+1. 게임 클라이언트가 게임 서버에 결제 아이템에 대한 consume(소비)을 요청합니다.
+    * UserID, itemSeq, paymentSeq, purchaseToken 을 전달합니다.
+2. 게임 서버는 게임 DB 에 이미 동일한 paymentSeq, purchaseToken 으로 아이템을 지급한 이력이 있는지 확인합니다.
+    * 2-1. 아직 아이템을 지급하지 않았다면 UserID 에 itemSeq 에 해당하는 아이템을 지급합니다.
+    * 2-2. 아이템 지급 후 게임 DB 에 UserID, itemSeq, paymentSeq, purchaseToken 을 저장하여 이후에 중복 지급 여부를 확인할 수 있도록 합니다.
+3. 게임 서버는 Gamebase 서버의 consume(소비) API를 호출하여 아이템 지급을 완료합니다.
+    * [API 가이드 > Purchase(IAP) > Consume](./api-guide/#consume)
 
 ### Purchase Item
 
@@ -130,7 +136,7 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 });
 ```
 
-### Get a List of Purchasable Items
+### List Purchasable Items
 
 아이템 목록을 조회하려면 다음 API를 호출합니다. 콜백으로 반환되는 배열(array) 안에는 각 아이템들에 대한 정보가 담겨 있습니다.
 
@@ -158,9 +164,9 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 });
 ```
 
-### Get a List of Non-Consumed Items
+### List Non-Consumed Items
 
-* 아직 소비되지 않은 일회성 상품(CONSUMABLE)과 소비성 구독 상품(CONSUMABLE_AUTO_RENEWABLE) 정보를 조회합니다.<br/>
+* 아직 소비되지 않은 일회성 상품(CONSUMABLE)과 소비성 구독 상품(CONSUMABLE_AUTO_RENEWABLE) 정보를 조회합니다.
 * 미결제 내역이 있는 경우에는 게임 서버(아이템 서버)에 요청하여, 아이템을 배송(지급)하도록 처리해야 합니다.
 
 * 다음 두 가지 상황에서 호출해 주세요.
@@ -191,10 +197,10 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 });
 ```
 
-### Get a List of Activated Subscriptions
+### List Activated Subscriptions
 
 현재 사용자 ID 기준으로 활성화된 구독 목록을 조회합니다.
-결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다. 
+결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다.
 사용자 ID가 같다면 Android와 iOS에서 구매한 구독 상품이 모두 조회됩니다.
 
 > <font color="red">[주의]</font><br/>
