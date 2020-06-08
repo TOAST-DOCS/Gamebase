@@ -1,12 +1,15 @@
 ## Game > Gamebase > API v1.2 가이드
 
 ## 변경 사항
-- IAP API가 변경 되었습니다.
-- Get Simple Launching API 호출 시 필수 파라미터로 storeCode가 추가 되었습니다.
-- Check Maintenance API 응답 결과에 점검 대상에 대한 storeCode 정보가 추가 되었습니다.
-- GUEST 계정에 대한 단말기 이전에 사용되는 TransferAccount에 대해, 사전에 발급된 TransferAccount를 검증 할 수 있는 Validate TransferAccount API가 추가 되었습니다.
-- API 응답결과의 date 타입이 Epoch time 에서 ISO 8601 형식(yyyy-MM-dd'T'HH:mm:ssXXX)으로 변경되었습니다. Token Authentication, Get Member, Get Members API 응답 결과의 regDate, lastLoginDate 항목
-- 쿠폰 소진 API가 추가 되었습니다.
+- IAP(in app purchase) API가 변경되었습니다.
+- Get Simple Launching API 호출 시 필수 파라미터로 storeCode가 추가되었습니다.
+- Check Maintenance API 응답 결과에 점검 대상에 대한 storeCode 정보가 추가되었습니다.
+- GUEST 계정의 단말기 이전에 사용되는 TransferAccount에 대해, 사전에 발급된 TransferAccount를 검증할 수 있는 Validate TransferAccount API가 추가되었습니다.
+- API 응답 결과의 date 타입이 Epoch time에서 ISO 8601 형식(yyyy-MM-dd'T'HH:mm:ssXXX)으로 변경되었습니다. Token Authentication, Get Member, Get Members API 응답 결과의 regDate, lastLoginDate 항목
+- 쿠폰 소진 API가 추가되었습니다.
+- 사용자 탈퇴 API가 추가 되었습니다.
+- Purchase(IAP)의 구매 가격(price) 데이터 타입이 가이드상에서 Long 으로 잘못 표기된 것을 Float 타입으로 변경하였습니다.
+- 탈퇴 유예 기능 추가에 따라 Token Authentication, Get Member API 응답 결과에 탈퇴 유예 상태인 사용자에 대한 정보가 추가 되었습니다.
 
 ## Advance Notice
 
@@ -152,7 +155,10 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
         "authKey": "String",
         "regDate": "2019-08-27T17:41:05+09:00"
       }
-    ]
+    ],
+    "temporaryWithdrawal": {
+      "gracePeriodDate": "2020-04-18T09:12:01+09:00"
+    }
   }
 }
 ```
@@ -170,7 +176,9 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | authList | Array[Object] | 사용자 인증 IdP 관련 정보 |
 | authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 사용자 인증 시스템 지원 예정 |
 | authList[].idPCode | String | 사용자 인증 IdP 정보 <br>guest, payco, facebook 등 |
-| authList[].authKey | String | authSystem에서 발급된 사용자 구분 값 |
+| authList[].authKey | String | authSystem에서 IdP Id 별로 발급된 사용자 구분 값 |
+| temporaryWithdrawal | Object | 탈퇴 유예 관련 정보 <br>valid 가 "T" 값에서만 제공 |
+| temporaryWithdrawal.gracePeriodDate | String | 탈퇴 유예 만료 시간 ISO 8601 |
 
 
 **[Error Code]**
@@ -183,7 +191,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 #### Get Simple Launching
 
 Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 설정 정보 및 현재 점검 상태/시간/ 메시지 등 클라이언트 앱 기동시 제공되는 Launching 정보들에 대해 서버에서 간략히 확인할수 있습니다.
-현재 점검 설정 여부 만을 확인하고 싶다면, [Check Maintenance] API를 사용하면 됩니다.
+현재 점검 설정 여부만을 확인하고 싶다면, [Check Maintenance] API를 사용하면 됩니다.
 
 **[Method, URI]**
 
@@ -303,7 +311,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | app.install | Object | 앱 설치 정보 |
 | app.install.url | String | 설치 URL |
 | maintenance | Object | 점검 정보 |
-| maintenance.typeCode | String | 점검 타입 코드 <br>전체 점검:'SYSTEM', 앱별 점검:'APP' |
+| maintenance.typeCode | String | 점검 타입 코드 <br>APP: 게임에서 설정한 점검 <br>SYSTEM: Gamebase 시스템에서 설정한 점검 |
 | maintenance.beginDate | Date | 점검 시작 시간 ISO 8601 |
 | maintenance.endDate | Date | 점검 종료 시간 ISO 8601 |
 | maintenance.url | String | 점검 URL |
@@ -367,7 +375,10 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 			"regDate": "2019-08-27T17:41:05+09:00"
 		  }
 		]
-	  },
+	},
+  "temporaryWithdrawal": {
+    "gracePeriodDate": "2020-04-18T09:12:01+09:00"
+  },
   "memberInfo": {
     "deviceCountryCode": "String",
     "usimCountryCode": "String",
@@ -388,7 +399,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | --- | --- | --- |
 | member | Object | 조회된 사용자의 기본 정보 |
 | member.userId | String | 사용자 ID |
-| member.valid | Enum | Y: 정상 사용자 <br>D: 탈퇴된 사용자 <br>B: 이용 정지된 사용자 <br>M: 유실된 계정|
+| member.valid | Enum | Y: 정상 사용자 <br>D: 탈퇴된 사용자 <br>B: 이용 정지된 사용자 <br>M: 유실된 계정 <br>T: 탈퇴 유예 상태인 사용자 |
 | member.appId | String | appId |
 | member.regDate | String | 사용자가 계정을 생성한 시간 |
 | member.lastLoginDate | String | 마지막으로 로그인한 시간 <br>처음 로그인한 사용자는 해당 값이 없음 |
@@ -398,6 +409,8 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | member.authList[].idPCode | String | 사용자 인증 IdP 정보 <br>guest, payco, facebook 등 |
 | member.authList[].authKey | String | authSystem에서 발급된 사용자 구분 값 |
 | member.authList[].regDate | String | IdP 정보가 사용자 계정과 매핑된 시간 |
+| temporaryWithdrawal | Object | 탈퇴 유예 관련 정보 <br>valid 가 "T" 값에서만 제공 |
+| temporaryWithdrawal.gracePeriodDate | String | 탈퇴 유예 만료 시간 ISO 8601 |
 | memberInfo | Object | 사용자에 대한 부가 정보 |
 | memberInfo.deviceCountryCode | String | 사용자 단말기의 국가 설정 |
 | memberInfo.usmCountryCode | String | 사용자 USIM의 국가 코드 |
@@ -815,7 +828,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 #### Validate TransferAccount
 
-게스트 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사를 수행합니다. 유효한 TransferAccount인 경우 발급 받은 userId 정보를 리턴합니다.
+게스트 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사를 수행합니다. 유효한 TransferAccount인 경우 발급받은 userId 정보를 반환합니다.
 
 **[Method, URI]**
 
@@ -838,7 +851,6 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 **[Request Parameter]**
 
 없음
-
 
 **[Request Body]**
 
@@ -884,6 +896,57 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | member.appId | String | appId |
 | member.regDate | String | 사용자가 계정을 생성한 시간 |
 | member.lastLoginDate | String | 마지막으로 로그인한 시간 <br>처음 로그인한 사용자는 해당 값이 없음 |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+#### Withdraw
+
+사용자 계정을 탈퇴 처리합니다.
+
+> [참고]
+> SDK의 탈퇴 API를 사용하지 않고 서버 탈퇴 API를 사용하여 계정 탈퇴를 구현한 경우, 클라이언트에서는 탈퇴 성공 후 SDK의 logout API를 호출하여 캐시되어 있는 토큰 등의 데이터 삭제가 필요하다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| DELETE | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}?regUser={regUser} |
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST 프로젝트 ID |
+| userId | String | 탈퇴 대상 사용자 ID |
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| regUser | String | mandatory | 탈퇴를 요청한 시스템 혹은 사용자 정보 <br> - 해당 정보는 Console > '멤버' 페이지의 '탈퇴 이력' 화면에서 확인 가능 <br> - 탈퇴 이력 화면은 탈퇴된 이용자 조회시에만 노출됨 |
+
+**[Request Body]**
+
+없음
+
+**[Response Body]**
+
+```json
+{
+  "header": {
+    "transactionId": "String",
+    "resultCode": 0,
+    "resultMessage": "SUCCESS",
+    "isSuccessful": true
+  }
+}
+```
 
 **[Error Code]**
 
@@ -955,7 +1018,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | maintenances.endDate | String | 점검 종료 시간. ISO 8601 |
 | maintenances.url | String | 상세 점검 URL |
 | maintenances.message | String | 점검 메시지 |
-| maintenances.targetStores | Array[Enum] | 특정 클라이언트에 대해서만 점검 설정시, 점검 설정된 클라이언트의 스토어코드<br>- GG: Google<br>- ONESTORE<br>- AS: AppStore |
+| maintenances.targetStores | Array[Enum] | 특정 클라이언트에 대해서만 점검을 설정했을 때 점검 설정된 클라이언트의 스토어 코드<br>- GG: Google<br>- ONESTORE<br>- AS: AppStore |
 
 **[Error Code]**
 
@@ -967,7 +1030,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 #### Check Validation And Consume Coupon
 
-콘솔을 통해 발급된 쿠폰 코드에 대해 유효성 검증 및 쿠폰 상태를 변경 합니다. 유효한 쿠폰인 경우 소비 상태로 변경을 하고, 응답 결과로 지급할 아이템 정보를 리턴합니다.
+콘솔에서 발급된 쿠폰 코드의 유효성 검증 및 쿠폰 상태를 변경합니다. 유효한 쿠폰이면 소비 상태로 변경하고, 응답 결과로 지급할 아이템 정보를 반환합니다.
 
 **[Method, URI]**
 
@@ -989,7 +1052,9 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 **[Request Parameter]**
 
-없음
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| storeCode | String | optional | 콘솔에서 특정 스토어만 사용 가능하도록 쿠폰을 발급 받았다면, 스토어 코드를 전달해야 함<br>- GG: Google<br>- ONESTORE<br>- AS: AppStore |
 
 **[Response Body]**
 
@@ -1034,13 +1099,13 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 #### Consume
 
-Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 유저에게 아이템을 지급하기 전에 결제를 소비 할 것을 알려야 합니다. 결제 1건당 1번만 결제소비 가능하며, 결제의 상태가 정상이 아니면 소비되지 않습니다.
-(결재 소비가 완료 되었다면 유저의 결제 및 아이템 지급이 정상적으로 완료 되었다고 판단)
+Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 유저에게 아이템을 지급하기 전에 결제를 소비할 것을 알려야 합니다. 결제 1건당 1번만 결제를 소비할 수 있으며, 결제 상태가 정상이 아니면 소비되지 않습니다.
+(결재 소비가 완료되었다면 유저의 결제 및 아이템 지급이 정상적으로 완료되었다고 판단)
 
-소비 (Consume) 하지 않은 결제내역은 SDK 및 서버의 미소비 결제 내역조회 API를 통해 조회할 수 있습니다. 참고로 아이템 등록시 상품 유형이 일회성(CONSUMABLE)인 아이템 결제건에 대해서만 consume 처리 됩니다.
+소비(consume)하지 않은 결제 내역은 SDK 및 서버의 미소비 결제 내역 조회 API를 통해 조회할 수 있습니다. 참고로 아이템 등록 시 상품 유형이 일회성(CONSUMABLE)인 아이템 결제에 대해서만 소비(consume) 처리됩니다.
 
 > [참고]
-> 결제 1건당 1번 소비 가능하며, 결제소비 하지 않은 결제는 IAP에서 아이템을 지급하지 않은 것으로 간주합니다.
+> 결제 1건당 1번 소비 가능하며, 결제 소비를 하지 않은 결제는 IAP에서 아이템을 지급하지 않은 것으로 간주합니다.
 
 **[Method, URI]**
 
@@ -1074,7 +1139,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | paymentSeq | String | mandatory | 결제 번호 |
-| accessToken | String | mandatory  | 결제 인증 토큰 (로그인 인증 토큰이 아님)  |
+| accessToken | String | mandatory  | 결제 인증 토큰(로그인 인증 토큰이 아님) |
 
 > [참고]
 > 클라이언트에서 requestPurchase API 호출시 응답으로 오는 purchaseToken 값이 accessToken으로 사용
@@ -1100,9 +1165,9 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Object | 결제 기본 정보 |
-| result.price | Long | 결제 가격 |
+| result.price | Float | 결제 가격 |
 | result.currency  | String  | 결제 통화  |
-| result.productSeq | Long | 결제 아이템 번호 (console에 등록된 아이템 고유 번호) |
+| result.productSeq | Long | 결제 아이템 번호(콘솔에 등록된 아이템 고유 번호) |
 
 **[Error Code]**
 
@@ -1110,7 +1175,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 #### Get Consumable List
 
-결제가 완료되었지만 아직 소비(Consume)되지 않은, 미소비 결제내역을 조회할 수 있습니다.
+결제가 완료되었지만 아직 소비(consume)되지 않은, 미소비 결제 내역을 조회할 수 있습니다.
 
 **[Method, URI]**
 
@@ -1144,8 +1209,8 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | 스토어코드<br>GG : Google, AS : Apple, ONESTORE : 원스토어 |
-| userChannel | String | mandatory  | 유저 채널<br>현재는 미구현 상태로 항상 `GF` 값을 설정  |
+| marketId | String | mandatory | 스토어 코드<br>GG: Google, AS: Apple, ONESTORE: 원스토어 |
+| userChannel | String | mandatory  | 유저 채널<br>현재는 미구현 상태로 항상 `GF`값을 설정  |
 | userKey | String | mandatory  | 유저 ID  |
 
 **[Response Body]**
@@ -1181,9 +1246,9 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 | --- | --- | --- |
 | result | Array[Object] | 결제 기본 정보 |
 | result[].paymentSeq | String  |  결제 번호 |
-| result[].productSeq | Long | 결제 아이템 번호 (console에 등록된 아이템 고유 번호) |
+| result[].productSeq | Long | 결제 아이템 번호(콘솔에 등록된 아이템 고유 번호) |
 | result[].currency  | String  | 결제 통화  |
-| result[].price | Long | 결제 가격 |
+| result[].price | Float | 결제 가격 |
 | result[].accessToken | String | 결제 인증 토큰 |
 
 **[Error Code]**
@@ -1192,7 +1257,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 ### Get ActiveSubscription List
 
-유저가 현재 구독중인 결제를 조회 할 수 있습니다.
+유저가 현재 구독 중인 결제를 조회할 수 있습니다.
 
 **[Method, URI]**
 
@@ -1227,9 +1292,9 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | 스토어코드<br>GG : Google, AS : Apple, ONESTORE : 원스토어 |
+| marketId | String | mandatory | 스토어 코드<br>GG: Google, AS: Apple, ONESTORE: 원스토어 |
 | packageName | String | mandatory | 콘솔에 등록한 앱의 packageName |
-| userChannel | String | mandatory  | 유저 채널<br>현재는 미구현 상태로 항상 `GF` 값을 설정  |
+| userChannel | String | mandatory  | 유저 채널<br>현재는 미구현 상태로 항상 `GF`값을 설정  |
 | userKey | String | mandatory  | 유저 ID  |
 
 **[Response Body]**
@@ -1270,9 +1335,9 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 | result[].appId | String  |  패키지 이름 |
 | result[].productId | String  |  스토어에 등록된 상품(아이템) 식별자 |
 | result[].productType | String  |  상품(아이템) 타입<br>구독: AUTO_RENEWABLE |
-| result[].productSeq | Long | 결제 아이템 번호 (console에 등록된 아이템 고유 번호) |
+| result[].productSeq | Long | 결제 아이템 번호(콘솔에 등록된 아이템 고유 번호) |
 | result[].currency  | String  | 결제 통화  |
-| result[].price | Long | 결제 가격 |
+| result[].price | Float | 결제 가격 |
 | result[].paymentId | String | 최근 갱신된 스토어 결제 번호 |
 | result[].originalPaymentId | String | 최초 스토어 결제 번호 |
 | result[].purchaseTimeMillis | Long | 최근 갱신된 시간 |

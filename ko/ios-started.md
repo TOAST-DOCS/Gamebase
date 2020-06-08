@@ -5,7 +5,7 @@
 
 > [INFO]
 >
-> 최소 사양: iOS 9 이상 또는 일부 IdP 지원 시 iOS 10 이상 <br/>
+> 최소 사양: iOS 9 이상 또는 일부 IdP 지원 시 **하단 3rd Party Gamebase Auth Adapters 표 안의 Support iOS Version 항목을 참고**하세요. <br/>
 > iOS, iOS Simulator
 > Xcode 10 이상에서 빌드 가능
 >

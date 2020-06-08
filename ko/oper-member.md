@@ -17,7 +17,7 @@ IdP ID는 IdP에서 제공하는 아이디 정보로써 로그인 시 입력하�
 ### Detail Information
 ![gamebase_member_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_01_201812.png)
 
-**User ** 
+**User **
 
 - **유저 ID**: Gamebase 사용자 아이디
 - **국가코드(USIM)**: 사용자 단말기의 USIM 국가 코드로 수집에 실패하면 'ZZ'로 표기됩니다. 단말기에 설정된 국가 코드를 확인하고 싶다면 하단의 **로그인 이력**에서 확인하세요.
@@ -144,9 +144,9 @@ SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.
 원하는 날짜를 입력하여 조회할 수 있으며 조회가 가능한 최대 날짜는 1개월(30일)입니다.
 
 ### Withdraw History
-![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
+![image alt](https://static.toastoven.net/prod_gamebase/gamebase_member_11_202006.png)
 조회한 사용자가 탈퇴한 사용자라면 탈퇴 이력을 보여줍니다.
-이 메뉴는 탈퇴 유저를 조회할 경우에만 나타나며 유저의 탈퇴경로를 조회할 수 있습니다.
+이 메뉴는 탈퇴이거나 탈퇴 유예 상태의 유저를 조회할 경우에만 나타나며 유저의 탈퇴내역을 상세히 조회할 수 있습니다.
 
 ## Transfer account
 **단말기 이전** 기능을 사용할 경우에만 사용하실 수 있습니다. [단말기 이전 기능 활성화](./oper-app/#transfer-account)

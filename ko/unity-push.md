@@ -70,9 +70,9 @@ public static void SetSandboxMode(bool isSandbox)
 **Example**
 
 ```cs
-public static void SetSandboxModeSample()
+public void SetSandboxModeSample()
 {
-    GamebasePushImplementation.Instance.SetSandboxMode(true);
+    Gamebase.Push.SetSandboxMode(true);
 }
 ```
 
@@ -157,5 +157,3 @@ else
 * TOAST Push 오류 코드를 확인하시기 바랍니다.
     * [Android](aos-push#error-handling)<br/>
     * [iOS](ios-push#error-handling)
-
-
