@@ -9,55 +9,81 @@ TOAST Console에서 **Game > Gamebase > App**을 클릭하여 앱의 기본 정�
 
 ## App
 
-
 Gamebase 서비스를 활성화하면 자동으로 앱이 생성되며 해당 메뉴에서는 등록된 정보의 수정만 가능합니다.
 TOAST 프로젝트 하나당 하나의 Gamebase 앱을 관리할 수 있으므로 앱을 추가로 등록하거나 삭제할 수는 없습니다. Gamebase 서비스를 비활성화 하시면 앱에 등록된 정보가 삭제됩니다.
-각 항목별 상세 설명은 아래 **Properties** 항목을 참고합니다.
+각 항목별 상세 설명은 아래 세부 항목을 참고합니다.
 
-### Properties
-
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_01_201911.png)
+### 기본 정보
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_01_202004.png)
 
 #### (1) 설치 URL
 앱 설치와 홍보에 이용할 수 있는 단축 URL 정보입니다.
 앱이 배포된 스토어가 여러 개인 경우에도 하나의 단축 URL로 관리할 수 있습니다.
 자세한 동작 및 관리 방법은 다음 링크를 참고합니다. [설치 URL 관리](./oper-app/#installed-url)
 
-> [참고] 
+> [참고]
 > Gamebase를 활성화하면 자동으로 생성되므로 변경은 불가능합니다.
 
-####(2) 서버 주소
-게임에서 게임 서버 주소(IP, URL 등)를 실시간으로 전달받아야 할 때 사용합니다.
-서버 주소를 설정하면 클라이언트 초기화 이후에 '런칭정보'에서 입력된 정보를 확인할 수 있습니다.
-클라이언트의 상태에 따라 전달할 서버주소를 설정할 수 있습니다. 예를 들어 클라이언트의 상태가 테스트중이거나 심사중 일 경우 각 항목에 설정된 서버주소값이 최초 런칭정보에 내려가게 됩니다.
-게임에서 필요한 경우에만 입력하고, 그렇지 않은 경우에는 비워 두시면 됩니다.
-
-####(3) 고객 센터 정보
+#### (2) 고객 센터 연락처
 고객 센터 페이지 이외 이메일, 전화번호 등의 정보를 입력합니다.
 고객 센터 페이지가 있는 경우에는 아래 **인앱 URL**의 **고객센터**에 정보를 입력합니다.
 > [참고] <br/>
 > 입력된 정보는 Gamebase가 제공하는 점검 상세 페이지에 표시됩니다.
 
-####(4) 인증 정보
+#### (3) 테스트 결제 포함 여부
+앱의 지표를 볼 때 테스트 결제도 함께 지표에 포함할 지에 대한 여부를 선택합니다.
+기본 설정은 '테스트 결제 포함'으로 설정되어 있으며 '테스트 결제 제외'로 설정하면 Analytics 매출 지표에서 테스트 결제건은 모두 제외하여 보여줍니다.
+> [참고1]
+> 지표 표시 설정여부에 관계 없이 데이터는 테스트 결제 건과 실제 결제 건을 항상 쌓고 있으므로 테스트 결제에 대한 표시여부는 언제든지 변경해도 실제 데이터 수집에는 영향이 없습니다.
+
+> [참고2]
+> 테스트 데이터는 Google 및 AppStore만 지원하고 있으며 다른 스토어는 지원하지 않습니다.
+> 각 스토어 별 테스트 지표 기준은 아래와 같습니다.
+> * Google : Google 콘솔에 등록한 테스트 계정을 이용하여 결제를 진행한 내역
+> * AppStore : Sandbox 환경에서 테스트 결제를 진행한 내역
+
+#### (4) 탈퇴 유예 기간
+앱의 탈퇴 유예 기능을 사용하고자 할 경우 탈퇴 유예시 부여할 기간을 설정합니다.
+기본 설정은 '7일'로 설정되어 있으며 1일 ~ 30일까지 설정이 가능합니다.
+> [참고]
+> 탈퇴 유예 기간동안에는 정상적으로 서비스 이용이 가능합니다.
+
+### 서버 주소
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_02_202004.png)
+
+- 게임에서 게임 서버 주소(IP, URL 등)를 실시간으로 전달받아야 할 때 사용합니다.
+- 서버 주소를 설정하면 클라이언트 초기화 이후에 '런칭정보'에서 입력된 정보를 확인할 수 있습니다.
+- 클라이언트의 상태별로 서버 주소를 설정할 수 있고 런칭 정보에서 서버 주소를 확인할 수 있습니다.
+- 게임에서 필요한 경우에만 입력하고, 그렇지 않은 경우에는 비워 두시면 됩니다.
+
+### 언어 설정
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_03_202004.png)
+- 각 메뉴의 다국어 설정에서 기본적으로 노출할 언어를 미리 지정할 수 있습니다.
+- 다국어 항목을 표시할 때 선택한 언어들이 표시되며 기본 언어도 설정한 항목으로 선택되어 있습니다.
+- 사용하고자 하지 않을 경우에는 해당 란을 비워 두시면 됩니다.
+
+###  인증 정보
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_04_202004.png)
+
 앱에서 로그인할 때 사용할 IdP의 인증 정보를 등록, 수정, 삭제할 수 있습니다.
 
-외부 인증의 클라이언트 아이디, 비밀 키(secret key)뿐만 아니라 콜백 URL과 추가 정보를 설정할 수 있습니다. 
+외부 인증의 클라이언트 아이디, 비밀 키(secret key)뿐만 아니라 콜백 URL과 추가 정보를 설정할 수 있습니다.
 인증 정보 옆에 **+** 버튼을 클릭하면 정보를 추가할 수 있으며 **-** 버튼을 클릭하면 정보를 삭제할 수 있습니다.
 Idp별 자세한 설정 방법은 [Authentication Information](#authentication-information)을 참고하시기 바랍니다.
-> [참고] 
+> [참고]
 > **토큰 재검증**이란?
-> 클라이언트에서 Latest Login API 호출 시에 외부 IdP의 토큰 재검증 여부를 설정합니다. 
-> **검증 안함**을 선택하면 외부 IdP의 토큰 재검증 없이 내부 토큰 검증만을 수행합니다. 
+> 클라이언트에서 Latest Login API 호출 시에 외부 IdP의 토큰 재검증 여부를 설정합니다.
+> **검증 안함**을 선택하면 외부 IdP의 토큰 재검증 없이 내부 토큰 검증만을 수행합니다.
 > **항상 검증**을 선택하면 Gamebase에서 발급한 내부 토큰뿐만 아니라 외부 IdP 토큰에 대해서도 항상 유효성 검증을 진행합니다.
 
-
-####(5) 인앱 URL
+### 인앱 URL
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_05_202004.png)
 클라이언트를 다시 배포하지 않고 앱 내에서 자주 사용하는 URL을 Console을 통해 실시간으로 수정할 수 있습니다.
 
-- 이용약관 
-- 개인 정보동의 
-- 이용 정지 규정 
-- 고객센터 URL 
+- 이용약관
+- 개인 정보동의
+- 이용 정지 규정
+- 고객센터 URL
 
 게임에서 필요한 경우에만 입력하고, 그렇지 않은 경우에는 비워 두시면 됩니다.
 설정한 정보는 클라이언트 초기화 이후에 '런칭정보'에서 입력된 정보를 확인할 수 있습니다.
@@ -97,7 +123,7 @@ Idp별 자세한 설정 방법은 [Authentication Information](#authentication-i
 등록하고자 하는 Device key 또는 IP 정보를 알고 있을 경우 타입을 원하는 입력방식으로 선택하여 직접 테스트 단말기를 등록할 수 있습니다.
 등록하고자 하는 단말기의 **단말기 이름** 및 디버그 로그, 점검 무시 여부를 입력 후 등록 버튼을 누르면 테스트 단말기로 등록됩니다.
 
-> [참고] 
+> [참고]
 > 단말기 이름에는 사용자가 알아보기 편한 별칭을 입력하시면 됩니다. 예시) iPhone 6 테스트, 토스트님 아이패드
 
 #### (3) 삭제
@@ -112,11 +138,11 @@ Idp별 자세한 설정 방법은 [Authentication Information](#authentication-i
 Facebook 개발자 사이트에 등록한 앱의 {앱 아이디}와 {앱 시크릿 코드}를 Gamebase Console에 입력합니다.
 이때, 로그인 시 필요한 {Facebook Permission} 또한 JSON String 형태로 추가 정보란에 입력해야 합니다.
 
-**입력 필드** 
+**입력 필드**
 
-- ClientID: {AppID} 
-- Secret Key: {App Secret Code} 
-- 추가정보: Facebook Permission (json format) 
+- ClientID: {AppID}
+- Secret Key: {App Secret Code}
+- 추가정보: Facebook Permission (json format)
 
 
 ![gamebase_app_04_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_04_201812.png)
@@ -308,10 +334,10 @@ Twitter Application Management 사이트에서 앱을 등록하고 발급받은 
 ##### Android
  > <font color="red">[주의]</font><br/>
  >
- > 2019년 7월 25일부로 Twitter에서는 TLS 1.0, TLS 1.1 지원을 중단하고, TLS1.2만 지원하고 있습니다.
- > 이에, Android 4.3 (Jellybean, API Level 18) 이하의 단말기에서는 Android WebView를 통한 Twitter 로그인이 불가능합니다.
- > 
- > 즉, Android 4.4 이상(KitKat, API Level 19)인 기기에서만 Twitter 로그인을 사용하실 수 있습니다.
+ > 2019년 7월 25일부로 Twitter에서는 TLS 1.0, TLS 1.1 지원을 중단하고, TLS1.2만 지원합니다.
+ > 이에, Android 4.3(Jelly Bean, API Level 18) 이하의 단말기에서는 Android WebView로 Twitter에 로그인할 수 없습니다.
+ >
+ > 즉, Android 4.4 이상(KitKat, API Level 19)인 기기에서만 Twitter 로그인을 사용할 수 있습니다.
 
 ##### iOS
 
@@ -326,6 +352,8 @@ Twitter Application Management 사이트에서 앱을 등록하고 발급받은 
 * 1.14.0 이상
 	* URL 스킴을 설정해야 합니다.
 		* **XCode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.twitter**를 추가해야 합니다.
+    * Twitter 의 Developer 사이트의 Apps > 대상 프로젝트 > App Details > Callback URL 항목을 설정해야 합니다.
+      *  **tcgb.{Bundle ID}.twitter://** 를 추가합니다.
 
 * Twitter 추가 인증 정보 입력 예제
 
@@ -368,19 +396,19 @@ LINE Login 기능을 사용하기 위하여, Xcode에 추가 설정이 필요합
 
 
 #### 8. Sign In with Apple
-Sign In with Apple 기능을 사용하기 위하여, AppStore Connect, Gamebase Console 그리고 Xcode 에 설정이 필요합니다.
+Sign In with Apple 기능을 사용하려면 App Store Connect, Gamebase 콘솔, Xcode에 설정이 필요합니다.
 
 ##### AppStore Connect Settings
 * [Certificates, Identifiers & Profiles \> Keys 로 바로가기](https://developer.apple.com/account/resources/authkeys/list)
 
 ###### Certificates, Identifiers & Profiles > Keys > 추가(+)
-1. `Sign In with Apple` 체크박스를 선택하고 설정을 진행합니다.
+1. **Sign In with Apple** 체크 박스를 선택하고 설정을 진행합니다.
 ![Check SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid0_1.0.png)
-2. `Sign in with Apple` 을 사용할 Bundle ID 를 선택합니다.
+2. **Sign in with Apple**을 사용할 Bundle ID를 선택합니다.
 ![ChooseAPrimaryAppID](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid1_1.0.png)
-3. <span style="color:#e11d21">Privatekey</span>를 다운로드 후 보관, 생성된 <span style="color:#e11d21">Key ID를 </span> 확인합니다.
+3. <span style="color:#e11d21">Privatekey</span>를 다운로드 후 보관, 생성된 <span style="color:#e11d21">Key ID를 </span>확인합니다.
 ![DownloadPrivateKey](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid2_1.0.png)
-4. Certificates, Identifiers & Profiles > Identifiers > 대상 앱을 선택 > `Sign In with Apple`을 활성화합니다.
+4. Certificates, Identifiers & Profiles > Identifiers > 대상 앱을 선택하고 **Sign In with Apple**을 활성화합니다.
     * `Enable as a primary App ID` 로 설정합니다.
 ![DownloadPrivateKey](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid3_1.0.png)
 
@@ -395,15 +423,15 @@ Sign In with Apple 기능을 사용하기 위하여, AppStore Connect, Gamebase 
 > 앱의 Bundle ID를 설정합니다.
 
 ###### Secret Key Settings
-> Apple Developer Account 설정에서 획득한 값(**TeamID**, **KeyID**, **PrivateKey**)으로 JSON 문자열을 생성해서 설정합니다.
+> Apple Developer Account 설정에서 획득한 값(**TeamID**, **KeyID**, **PrivateKey**)으로 JSON 문자열을 생성해 설정합니다.
 
-* `teamId` : 개발자 계정 우측상단의 값을 설정합니다.
-* `keyId` : Certificates, Identifiers & Profiles > Keys > Sign In with Apple 을 체크하여 생성된 값을 설정합니다.
+* `teamId`: 개발자 계정 오른쪽 상단의 값을 설정합니다.
+* `keyId`: Certificates, Identifiers & Profiles > Keys > Sign In with Apple을 선택하여 생성된 값을 설정합니다.
 ![SecretKey설정](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
-* `privateKey` : 위의 Keys에서 키를 생성하면서 같이 생성된 PrivateKey 파일의 내용을 설정합니다. (다운로드한 파일을 열어서 아래 스크린샷과 같이 빨간 사각형 부분의 값을 사용합니다.)
+* `privateKey`: 위의 Keys에서 키를 생성하면서 같이 생성된 PrivateKey 파일의 내용을 설정합니다. 다운로드한 파일을 열어서 아래 그림과 같이 빨간 사각형 부분의 값을 사용합니다.
 ![SecretKey설정](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
 
-위의 값을 아래의 예제와 같이 JSON 으로 만들어서 설정합니다.
+위의 값을 아래의 예제와 같이 JSON으로 만들어서 설정합니다.
 
 
 ```json
@@ -415,10 +443,10 @@ Sign In with Apple 기능을 사용하기 위하여, AppStore Connect, Gamebase 
 ```
 
 ###### Additional Info Settings
-[Sign In with Apple 의 AuthorizationScope 에 대해서 알아보기](https://developer.apple.com/documentation/authenticationservices/asauthorizationscope?language=occ)
+[Sign In with Apple 의 AuthorizationScope 알아보기](https://developer.apple.com/documentation/authenticationservices/asauthorizationscope?language=occ)
 
-Gamebase Console > App 에서 Apple 을 추가하게 되면 기본 값으로 아래의 JSON 값이 설정됩니다.
-현재 (2019.11) 기준으로는 Scope의 종류가 `full_name`, `email` 만 존재하며, Gamebase 에서는 이 두 가지 값을 기본값으로 설정합니다.
+Gamebase 콘솔 **App**에서 Apple을 추가하면 기본으로 아래의 JSON값이 설정됩니다.
+2019년 11월 기준으로 Scope의 종류는 `full_name`, `email`만 있으며, Gamebase에서는 이 두 가지 값을 기본값으로 설정합니다.
 
 ```json
 { "authorization_scope":["full_name", "email"] }
@@ -426,14 +454,14 @@ Gamebase Console > App 에서 Apple 을 추가하게 되면 기본 값으로 아
 
 ##### Xcode Project Settings
 > <font color="red">[주의]</font><br/>
-> Xcode 11 이상에서만 'Sign In with Apple` 기능을 사용하는 프로젝트를 빌드할 수 있습니다.
+> Xcode 11 이상에서만 **Sign In with Apple** 기능을 사용하는 프로젝트를 빌드할 수 있습니다.
 
 
-1. Target 선택 > Signing & Capabilities > Sign In with Apple 항목을 추가합니다.
+1. **Target**을 선택하고 **Signing & Capabilities**에서 **Sign In with Apple** 항목을 추가합니다.
 ![Capability_SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid8_1.0.png)
-2. Target 선택 > Build Phases > Link Binary With Libraries > Authentication.framework 를 **Optional** 로 추가합니다.
+2. **Target**을 선택하고 **Build Phases > Link Binary With Libraries**에서 **Authentication.framework**를 **Optional**로 추가합니다.
 ![AuthenticationServices.framework](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid9_1.0.png)
-    - ```주의```: Optional이 아닌 Required 로 설정되어 있을 경우에는 iOS 11 이하의 단말기에서는 앱 실행 시, runtime crash 가 발생합니다.
+    - ```주의```: Optional이 아닌 Required로 설정되어 있으면 iOS 11 이하의 단말기에서는 앱 실행 시 런타임 크래시가 발생합니다.
 
 
 
@@ -454,10 +482,10 @@ Gamebase Console에서 관리하는 클라이언트 등록 정보를 설명합�
 **클라이언트** 탭에서 **AOS 등록**, **iOS 등록** 버튼 등을 클릭하면 클라이언트 등록 화면이 나타납니다. 등록된 클라이언트의 입력값을 수정하거나 삭제하고 싶다면 아이콘 목록에서 아이콘을 클릭하거나 클라이언트 전체 목록에서 원하는 클라이언트를 선택하시면 됩니다.
 ![gamebase_app_13_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_13_201901.png)
 #### (1) 스토어
-(<font color="red">필수</font>) 클라이언트를 배포할 스토어를 선택합니다. 
+(<font color="red">필수</font>) 클라이언트를 배포할 스토어를 선택합니다.
 운영체제별로 선택 가능한 스토어가 다릅니다.
 #### (2) 게임 버전
-(<font color="red">필수</font>) 클라이언트 버전을 입력합니다. 
+(<font color="red">필수</font>) 클라이언트 버전을 입력합니다.
 게임에서 정한 규칙에 따라 문자열로 입력하면 됩니다.
 #### (3) 서비스 상태
 (<font color="red">필수</font>) 클라이언트의 서비스 상태를 선택합니다.
@@ -472,7 +500,7 @@ Gamebase Console에서 관리하는 클라이언트 등록 정보를 설명합�
 
 - <font color="white" style="background-color:#A1A1A1">업데이트 필수</font>: 서비스 불가능. <br/>현재 게임에서 서비스를 지원하지 않는 버전으로, 최신 버전 설치 안내 팝업을 표시합니다.<br />아래는 '업데이트 필수' 상태일 때 Gamebase SDK에서 기본적으로 제공하는 팝업입니다.
 
->  <font color="red">[주의] </font> 
+>  <font color="red">[주의] </font>
 >  **업데이트 필수와 점검이 동시에 설정**되어 있을 경우 서비스 상태는 '업데이트 필수'가 됩니다.
 >  점검 진행 도중 사용자에게 업데이트 필수 팝업을 표시하고 싶지 않다면 점검 완료 이후에 서비스 상태를 '업데이트 필수'로 변경해야 합니다.
 >  <font color="orange">[참고] </font>
@@ -484,8 +512,10 @@ Gamebase Console에서 관리하는 클라이언트 등록 정보를 설명합�
 > [참고]
 > 서비스 상태별 표시할 메시지 설정
 > **업데이트 권장(서비스중)**, **업데이트 필수**, **종료** 상태인 경우 사용자에게 표시할 안내 메시지를 다국어로 설정할 수 있습니다.
-> 서비스 상태를 선택하면 각 상태에 맞는 기본 메시지가 5개(한국어, 영어, 일본어, 중국어 간체, 중국어 번체)의 언어로 제공되며 원하는 경우 언어를 추가하거나 기본 메시지의 문구를 변경할 수 있습니다.
-> ![gamebase_app_18_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_18_201812.png)
+> 서비스 상태를 선택하면 앱에 설정되어 있는 언어 설정 정보에 따라 각 상태에 맞는 기본 메시지가 제공되며 원하는 경우 언어를 추가하거나 기본 메시지의 문구를 변경할 수 있습니다.
+> 만약 이전에 각 상태로 설정되어 있던 각 언어별 설정들이 있다면 앱의 언어 설정 정보에 관계 없이 이전에 등록했던 내용들을 불러와 보여지게 됩니다.
+> 앱의 언어 설정에 설정된 정보가 없을 경우 5개(한국어, 영어, 일본어, 중국어 간체, 중국어 번체)의 언어로 기본 메시지가 제공되며 원하는 경우 언어를 추가하거나 기본 메시지의 문구를 변경할 수 있습니다.
+> ![gamebase_app_18_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_18_202004.png)
 
 #### (4) 서버 주소
 클라이언트에서 이용할 서버 주소(IP, URL)를 입력합니다.
@@ -502,7 +532,7 @@ Gamebase SDK에 Debug Log가 'OFF' 상태이더라도 콘솔에서 'ON'으로 �
 
 ![gamebase_app_19_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_19_201812_en.png)
 
-클라이언트 상태가  <font color="white" style="background-color:#2AB1A6">업데이트 권장(서비스 중)</font> 또는 <font color="white" style="background-color:#A1A1A1">업데이트 필수</font>일 때 스토어별로 제공할 주소의 값을 설정합니다. 
+클라이언트 상태가  <font color="white" style="background-color:#2AB1A6">업데이트 권장(서비스 중)</font> 또는 <font color="white" style="background-color:#A1A1A1">업데이트 필수</font>일 때 스토어별로 제공할 주소의 값을 설정합니다.
 사용자가 PC나 모바일에서 단축 URL을 클릭하면, 사용자 단말기 정보(디바이스, 운영체제, 스토어 등)를 이용하여 입력된 사이트로 리디렉션합니다.
 스토어 정보가 없거나 스토어 이동에 실패하면 'COMMON'에 설정된 URL로 이동합니다.
 
@@ -581,3 +611,27 @@ Standalone으로 서비스 되는 앱에서 연결될 주소를 설정합니다.
 ![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_3.0.png)
 최초 설정이 완료되면 게임 유저는 단말기 이전 기능의 비활성화만 가능하며 설정 변경이 필요할 경우 고객 센터에 문의하시기 바랍니다.
 **사용 안함** 버튼을 클릭하여 기능을 비활성화할 수 있고 기존에 발급된 단말기 이전 키는 모두 삭제되기 때문에 활성화 이후에는 비활성화 여부를 신중하게 선택해야 합니다.
+
+## Analytics indicator
+Analytics에 지표를 쌓기위한 전송 지표를 확인 및 설정할 수 있습니다.
+유저 레벨(INT)별, 월드/서버/채널별, 클래스/직업별 항목이 나누어져 있으며 유저 레벨의 경우는 실제 Analytics에 전송된 레벨 항목만 표시되고 월드/서버/채널별, 클래스/직업별 항목에서는 이 메뉴에서 등록된 항목들만 Analytics에 지표로 쌓이게 됩니다.
+### 유저 레벨(INT)별
+Analytics 시스템에 전송된 레벨 지표 항목을 확인할 수 있습니다.
+이 항목에서는 별도의 수정항목이 없이 조회만 가능합니다.
+![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_analytics_indicator_01_202003.png)
+
+### 월드/서버/채널별, 클래스/직업별 조회
+현재 각 항목별로 설정되어 있는 전송 지표 항목을 확인할 수 있습니다.
+조회화면에서는 설정된 항목들에 대한 지표를 쌓지 않고자 할 경우 삭제 버튼을 통하여기존에 등록된 항목에 대한 삭제가 가능합니다.
+항목이 삭제되면 이후 **Analytics 메뉴에서 지표에 표시가 되지 않으며** 이후에는 삭제한 항목에 대한 지표가 쌓이지 않으므로 삭제 시 주의가 필요합니다.
+![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_analytics_indicator_02_202003.png)
+
+### 월드/서버/채널별, 클래스/직업별 등록
+Analytics 지표로 쌓고자 하는 정보를 새롭게 등록할 수 있습니다.
+하단에 있는 추가 버튼을 이용해 등록할 수 있으며 **전체 항목 최대 100개**까지 신규로 등록이 가능합니다.
+등록화면에서는 기존에 등록된 데이터들에 대하여 **지표 화면 표시 항목을 수정만을 제공**하며 삭제를 하고자 할 경우 다시 조회화면으로 이동하여 삭제를 진행해주셔야 합니다.
+![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_analytics_indicator_03_202003.png)
+
+#### (1) ChannelId / ClassId : Analytics내에 쌓을 구분자 정보를 입력합니다. 지표를 쌓고자 할 떄 설정하실 ID정보를 입력하시면 됩니다.
+#### (2) 지표 화면 표시 : 1번항목으로 입력한 ID로 전송된 지표를 화면에서 표시할 떄 보여주고자 하는 내용을 입력합니다. 해당정보는 기존에 등록된 지표항목들도 수정할 수 있습니다.
+#### (3) 삭제 : 등록 화면에서는 새롭게 추가된 항목들만 삭제가 가능합니다.

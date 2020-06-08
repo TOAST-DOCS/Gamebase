@@ -17,14 +17,30 @@ Gamebase에서 지원하는 부가적인 기능을 설명합니다.
 
 
 ### Display Language
-* Gamebase에서 표시하는 언어를 단말기에 설정된 언어가 아닌 다른 언어로 변경할 수 있습니다.
-* Gamebase는 클라이언트에 포함되어 있는 메시지를 표시하거나 서버에서 받은 메시지를 표시합니다.
-* DisplayLanguage를 설정하게 되면 사용자가 설정한 언어코드(ISO-639)에 적합한 언어로 메시지를 표시합니다.
-* 필요하다면 사용자가 지원하고 싶은 언어셋을 추가할 수 있습니다. (하단 지원 언어코드를 참고)
+
+점검 팝업과 같이 Gamebase 가 표시하는 언어는 단말기에 설정된 언어로 표시됩니다.
+
+그런데 게임에서 표시하는 언어를 단말기에 설정된 언어가 아닌, 별도의 옵션으로 언어를 변경할 수 있는 게임이 있습니다.
+예를 들어, 단말기에 설정된 언어는 영어 이지만 게임 표시 언어를 일본어로 변경한 경우, Gamebase 에서 표시하는 언어도 일본어로 변경하고 싶지만 Gamebase 가 표시하는 언어는 단말기에 설정된 언어인 영어로 표시됩니다.
+
+이와 같이 `단말기에 설정된 언어가 아닌, 다른 언어로 Gamebase 메세지를 표시하고 싶은` 어플리케이션을 위해 Gamebase 는 `Display Language` 라는 기능을 제공합니다.
+
+Gamebase 는 Display Language 로 설정한 언어로 Gamebase 메세지를 표시합니다.
+Display Language 에 입력하는 언어 코드는 반드시 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 지정된 코드만을 사용할 수 있습니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> * Display Language 는 단말기 설정 언어와 무관하게 Gamebase 의 표시 언어를 변경하고 싶은 경우에만 사용하시기 바랍니다.
+> * Display Language Code 는 ISO-639 형태의 값으로, 대소문자를 구분합니다.
+> 'EN'이나 'zh-cn'과 같이 설정하면 문제가 발생할 수 있습니다.
+> * 만일 Display Language Code 로 입력한 값이 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 존재하지 않는다면, Display Langauge Code 는 자동으로 기본값인 영어(en)로 지정됩니다.
 
 > [참고]
 >
-> Gamebase의 클라이언트 메시지는 영어(en), 한글(ko), 일본어(ja)만 포함합니다.
+> * Gamebase의 클라이언트 메시지는 영어(en), 한글(ko), 일본어(ja)만 포함하고 있으므로 아래의 표에 존재하는 언어 코드라 할지라도 영어(en), 한글(ko), 일본어(ja) 이외의 언어를 지정하면 기본값인 영어(en)로 자동 설정됩니다.
+> * Gamebase의 클라이언트에 포함되어 있지 않은 언어셋은 직접 추가할 수 있습니다.
+> **신규 언어셋 추가** 항목을 참조하시기 바랍니다.
+
 
 #### Gamebase에서 지원하고 있는 언어코드의 종류
 | Code | Name |
@@ -48,10 +64,6 @@ Gamebase에서 지원하는 부가적인 기능을 설명합니다.
 
 해당 언어코드는 `TCGBConstants.h`에 정의되어 있습니다.
 
-> `[주의]`
->
-> Gamebase에서 지원하고 있는 언어코드는 대소문자를 구분합니다.
-> "EN" 이나 "zh-cn"과 같이 설정할 경우 문제가 발생할 수 있습니다.
 
 ```objectivec
 #pragma mark - DisplayLanguageCode
@@ -256,183 +268,324 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 ```
 
 
+### Gamebase Event Handler
 
-### Server Push
-* Gamebase 서버에서 클라이언트 단말기로 보내는 Server Push Message를 처리할 수 있습니다.
-* Gamebase 클라이언트에서 ServerPushEvent를 추가 하면 해당 메시지를 사용자가 받아서 처리할 수 있으며, 추가된 ServerPushEvent를 삭제 할 수 있습니다.
-
-
-#### Server Push Type
-현재 Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
-
-* kTCGBServerPushNotificationTypeAppKickout (= "appKickout")
-    * TOAST Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 **APP_KICKOUT** 메시지를 받게 됩니다.
-
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
-
-#### Add ServerPushEvent
-Gamebase Client에 ServerPushEvent를 등록하여 Gamebase Console 및 Gamebase 서버에서 발급된 Push 이벤트를 처리할 수 있습니다.
+* Gamebase 는 각종 이벤트를 **GamebaseEventHandler** 라는 하나의 이벤트 시스템에서 모두 처리할 수 있습니다.
+* GamebaseEventHandler 는 아래 API 를 통해 간단하게 Handler 를 추가/제거 할 수 있습니다.
 
 **API**
 
+
 ```objectivec
-+ (void)addServerPushEvent:(void(^)(TCGBServerPushMessage *))handler;
++ (void)addEventHandler:(GamebaseEventHandler)handler;
++ (void)removeEventHandler:(GamebaseEventHandler)handler;
++ (void)removeAllEventHandler;
 ```
 
+**VO**
+
+```objectivec
+@interface TCGBGamebaseEventMessage : NSObject <TCGBValueObject>
+
+@property (nonatomic, strong, nonnull)  NSString* category;
+@property (nonatomic, strong, nullable) NSString* data;
+
+@end
+```
 
 **Example**
+
 ```objectivec
-- (void)wannaToReceiveServerPush {
-	void(^pushHandler)(TCGBServerPushMessage *) = ^(TCGBServerPushMessage *message) {
-        NSString* msg = [NSString stringWithFormat:@"[Sample] receive server push =>\ntype: %@\ndata: %@", message.type, message.data];
-        [self printLogAndShowAlertWithData:msg error:nil alertTitle:@"server push"];
-        
-        if ([message.type caseInsensitiveCompare:kTCGBServerPushNotificationTypeAppKickout] == NSOrderedSame) {
-        	// Logout
-            // Go to Main
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES
+            || [message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
+            TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gaembaseEventServerPushDataFromJsonString:message.data];
+            if (serverPushData != nil) {
+                //TODO: process server push
+            }
         }
-        else if ([message.type caseInsensitiveCompare:kTCGBServerPushNotificationTypeTransferKickout] == NSOrderedSame) {
-        	// Logout
-            // Go to Main
+        else if ([message.category isEqualToString:kTCGBObserverLaunching] == YES
+                 || [message.category isEqualToString:kTCGBObserverHeartbeat] == YES
+                 || [message.category isEqualToString:kTCGBObserverNetwork] == YES) {
+            TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
+            if (observerData != nil) {
+                //TODO: process observer
+            }
         }
-        else {
-        	...
+        else if ([message.category isEqualToString:kTCGBPurchaseUpdated] == YES) {
+            
+        }
+        else if ([message.category isEqualToString:kTCGBPushReceivedMessage] == YES) {
+            
+        }
+        else if ([message.category isEqualToString:kTCGBPushClickMessage] == YES) {
+            
+        }
+        else if ([message.category isEqualToString:kTCGBPushClickAction] == YES) {
+            
         }
     };
-    [TCGBGamebase addServerPushEvent:pushHandler];
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
+```
+
+* Category 는 GamebaseEventCategory 클래스에 정의되어 있습니다.
+* 이벤트는 크게 ServerPush, Observer, Purchase, Push 로 나눌 수 있고, 각 Category 에 따라, TCGBGamebaseEventMessage.data 를 아래 표와 같은 방법으로 VO 로 변환할 수 있습니다.
+
+| Event 종류 | GamebaseEventCategory | VO 변환 방법 | 비고 |
+| --------- | --------------------- | ----------- | --- |
+| ServerPush | kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
+| Observer | kTCGBObserverLaunching<br>kTCGBObserverHeartbeat<br>kTCGBObserverNetwork | [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data] | \- |
+| Purchase - 프로모션 결제 | kTCGBPurchaseUpdated | [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data] | \- |
+| Push - 메세지 수신 | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
+| Push - 메세지 클릭 | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
+| Push - 액션 클릭 | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | RichMessage 버튼 클릭 시 동작합니다. |
+
+#### Server Push
+
+* Gamebase 서버에서 클라이언트 단말기로 보내는 메세지 입니다.
+* Gamebase 에서 지원하는 Server Push Type 은 다음과 같습니다.
+	* kTCGBServerPushAppKickout
+    	* TOAST Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
+    * kTCGBServerPushTransferKickout
+    	* Guest 계정을 다른 단말기로 이전을 성공하게 되면 이전 단말기에서 킥아웃 메세지를 받게 됩니다.
+
+**Example**
+
+```objectivec
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        [self printLogAndShowAlertWithData:[message prettyJsonString] error:nil alertTitle:@"addEventHandler Result"];
+        if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES) {
+            TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
+            if (serverPushData != nil) {
+                //TODO: process server push
+            }
+        }
+        esle if ([message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
+            TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
+            if (serverPushData != nil) {
+                //TODO: process server push
+            }
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
 }
 
 ```
 
+#### Observer
 
-#### Remove ServerPushEvent
-아래의 API들을 사용하여 Gamebase에 등록된 ServerPushEvent를 삭제할 수 있습니다.
+* Gamebase Gamebase의 각종 상태 변동 이벤트를 처리하는 시스템 입니다.
+* Gamebase 에서 지원하는 Observer Type 은 다음과 같습니다.
+    * kTCGBObserverLaunching
+    	* 점검이 걸리거나 풀린 경우, 새로운 버전이 배포되어 업데이트가 필요한 경우와 같이, Launching 상태가 변경되었을 때 동작합니다.
+    	* TCGBGamebaseEventObserverData.code : TCGBLaunchingStatus 값을 의미합니다.
+            * IN_SERVICE: 200
+            * RECOMMEND_UPDATE: 201
+            * IN_SERVICE_BY_QA_WHITE_LIST: 202
+            * REQUIRE_UPDATE: 300
+            * BLOCKED_USER: 301
+            * TERMINATED_SERVICE: 302
+            * INSPECTING_SERVICE: 303
+            * INSPECTING_ALL_SERVICES: 304
+            * INTERNAL_SERVER_ERROR: 500
+    * kTCGBObserverHeartbeat
+    	* 탈퇴 처리 되거나 이용 정지로 인하여 사용자 계정 상태가 변했을 때 동작합니다.
+    	* TCGBGamebaseEventObserverData.code : TCGBError 값을 의미합니다.
+            * TCGB_ERROR_INVALID_MEMBER: 6
+            * TCGB_ERROR_BANNED_MEMBER: 7
+    * kTCGBObserverNetwork
+    	* 네트워크 변동 사항 정보를 받을 수 있습니다.
+    	* 네트워크가 끊기거나 연결되었을 때, 혹은 Wifi 에서 셀룰러 네트워크로 변경되었을 때 동작합니다.
+    	* TCGBGamebaseEventObserverData.code : NetworkManager 값을 의미합니다.
+            * ReachabilityIsNotDefined = -100
+            * NotReachable = -1
+            * ReachableViaWWAN = 0
+            * ReachableViaWifi = 1
 
-**API**
+**VO**
+
 ```objectivec
-+ (void)removeServerPushEvent:(void(^)(TCGBServerPushMessage *))handler;
-+ (void)removeAllServerPushEvent;
+@interface TCGBGamebaseEventObserverData : NSObject <TCGBValueObject>
+
+@property (nonatomic, assign)           int64_t     code;
+@property (nonatomic, strong, nullable) NSString*   message;
+@property (nonatomic, strong, nullable) NSString*   extras;
 ```
 
 **Example**
+
 ```objectivec
-- (void)wannaToDiscardServerPush {
-	void(^pushHandler)(TCGBServerPushMessage *) = ^(TCGBServerPushMessage *message) {
-        NSString* msg = [NSString stringWithFormat:@"[Sample] receive server push =>\ntype: %@\ndata: %@", message.type, message.data];
-        [self printLogAndShowAlertWithData:msg error:nil alertTitle:@"server push"];
-    };
-    [TCGBGamebase removeServerPushEvent:pushHandler];
-}
-```
-
-
-
-
-
-### Observer
-* Gamebase Observer를 통하여 Gamebase의 각종 상태 변동 이벤트를 전달받아 처리할 수 있습니다.
-* 상태 변동 이벤트 : 네트워크 타입 변동, Launching 상태 변동(점검 등에 의한 상태 변동), Heartbeat 정보 변동(사용자 이용 정지 등에 의한 Heartbeat 정보 변동) 등
-
-
-
-#### Observer Type
-현재 Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
-
-* Network 타입 변동
-    * 네트워크 변동사항에 대한 정보를 받을 수 있습니다. 예를 들어서, message.data[@"code"] 의 값으로 Network Type을 알 수 있습니다.
-    * Type : kTCGBObserverMessageTypeNetwork (= @"network")
-    * Code : NetworkStatus에 선언된 상수를 참고합니다. 
-        * NotReachable : -1
-        * ReachableViaWWAN : 0
-        * ReachableViaWifi : 1        
-        * ReachabilityIsNotDefined : -100
-* Launching 상태 변동
-    * 주기적으로 어플리케이션의 상태를 체크하는 Launching Status response에 변동이 있을 때 발생합니다. 예를 들어서, 점검, 업데이트 권장 등에 의한 이벤트가 있습니다.
-    * Type : kTCGBObserverMessageTypeLaunching (= @"launching")
-    * Code : TCGBLaunchingStatus 선언된 상수를 참고합니다.
-        * IN_SERVICE : 200
-        * RECOMMEND_UPDATE : 201
-        * IN_SERVICE_BY_QA_WHITE_LIST : 202
-        * REQUIRE_UPDATE : 300
-        * BLOCKED_USER : 301
-        * TERMINATED_SERVICE : 302
-        * INSPECTING_SERVICE : 303
-        * INSPECTING_ALL_SERVICES : 304
-        * INTERNAL_SERVER_ERROR : 500
-* Heartbeat 정보 변동
-    * 주기적으로 Gamebase 서버와 연결을 유지하는 Heartbeat response에 변동이 있을 때 발생합니다. 예를 들어서, 사용자 이용 정지에 의한 이벤트가 있습니다.
-    * Type : ObserverkTCGBObserverMessageTypeHeartbeat (= @"heartbeat")
-    * Code : TCGBErrorCode 선언된 상수를 참조합니다.
-        * TCGB_ERROR_INVALID_MEMBER : 6
-        * TCGB_ERROR_BANNED_MEMBER : 7
-
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
-
-#### Add Observer
-Gamebase Client에 Observer를 등록하여 각종 상태 변동 이벤트를 처리할 수 있습니다.
-
-**API**
-```objectivec
-+ (void)addObserver:(void(^)(TCGBObserverMessage *))handler;
-```
-
-**Example**
-```objectivec
-- (void)addObserver {
-    void(^observerHandler)(TCGBObserverMessage *) = ^(TCGBObserverMessage *message) {
-        NSString* msg = [NSString stringWithFormat:@"[Sample] receive from observer =>\ntype: %@\ndata: %@", message.type, message.data];
-        [self printLogAndShowAlertWithData:msg error:nil alertTitle:@"Observer"];
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        if ([message.category isEqualToString:kTCGBObserverLaunching] == YES) {
+            TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
+            if (observerData != nil) {
+                int launchingStatusCode = observerData.code;
+                NSString* launchingMessage = observerData.message;
+                switch (launchingStatusCode) {
+                    case IN_SERVICE:
+                    // Finished maintenance.
+                    break;
+                case INSPECTING_SERVICE:
+                case INSPECTING_ALL_SERVICES:
+                    // Under maintenance.
+                    break;
+                ...
+        }
+            }
+        }
+        else if ([message.category isEqualToString:kTCGBObserverHeartbeat] == YES) {
+            TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
+            int errorCode = observerData.code;
+            switch (errorCode) {
+            case TCGB_ERROR_INVALID_MEMBER:
+                // You can check the invalid user session in here.
+                // ex) After transferred account to another device.
+                break;
+            case TCGB_ERROR_BANNED_MEMBER:
+                // You can check the banned user session in here.
+                break;
+        }
+        }
+        else if ([message.category isEqualToString:kTCGBObserverNetwork] == YES) {
+            TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
+            NetworkStatus networkTypeCode = observerData.code;
             // You can check the changed network status in here.
-        if ([message.type caseInsensitiveCompare:kTCGBObserverMessageTypeNetwork] == NSOrderedSame) {
-            NSNumber* networkStatusNumber = message.data[@"code"];
-            NSInteger networkStatus = [networkStatusNumber integerValue];
-            // TODO: Check Netwokr Status by networkStatus.
-        }
-        else if ([message.type caseInsensitiveCompare:kTCGBObserverMessageTypeLaunching] == NSOrderedSame) {
-            // You can check the changed launching status in here.
-            NSNumber* launchingStatusNumber = message.data[@"code"];
-            NSInteger launchingStatus = [launchingStatusNumber integerValue];
-            // TODO: Check Launching Status by launchingStatus.
-        }
-        else if ([message.type caseInsensitiveCompare:kTCGBObserverMessageTypeHeartbeat] == NSOrderedSame) {
-        	// You can check the invalid user session in here.
-        	NSNumber* errorCodeNumber = message.data[@"code"];
-        	NSInteger errorCode = [errorCodeNumber integerValue];
-            if (errorCode == TCGB_ERROR_BANNED_MEMBER) {
-            	// TODO: Execute User Ban Proccess.
-			}
+            if (networkTypeCode == NotReachable || networkTypeCode == ReachabilityIsNotDefined) {
+                // Network disconnected.
+            } else {
+                // Network connected.
+            }
         }
     };
-
-    [TCGBGamebase addObserver:observerHandler];
+    
+    [TCGBGamebase addEventHandler:eventHandler];
 }
 ```
 
 
-#### Remove Observer
-아래의 API들을 사용하여 Gamebase에 등록된 Observer를 삭제할 수 있습니다.
+#### Purchase Updated
 
-**API**
+* Promotion 코드 입력을 통해 상품을 획득한 경우 발생하는 이벤트 입니다.
+* 결제 영수증 정보를 획득할 수 있습니다.
+
+**Example**
+
 ```objectivec
-+ (void)removeObserver:(void(^)(TCGBObserverMessage *))handler;
-+ (void)removeAllObserver;
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        TCGBPurchasableReceipt* receipt = [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data];
+        if (receipt != nil) {
+            // If user purchase item from appstore promoting iap
+            // this event will be occurred.
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
+```
+
+#### Push Received Message
+
+
+* Push 메세지가 도착했을때 발생하는 이벤트 입니다.
+* extras 필드를 JSON 으로 변환하여, Push 발송시 전송했던 커스텀 정보를 얻을 수도 있습니다.
+
+**VO**
+
+```objectivec
+@interface TCGBPushMessage : NSObject <TCGBValueObject>
+
+@property (nonatomic, strong, nonnull) NSString* identifier;
+@property (nonatomic, strong, nullable) NSString* title;
+@property (nonatomic, strong, nullable) NSString* body;
+@property (nonatomic, strong, nonnull) NSString* extras;
+
+@end
 ```
 
 **Example**
 
 ```objectivec
-- (void)removeObserver {
-	void(^observerHandler)(TCGBObserverMessage *) = ^(TCGBObserverMessage *message) {
-    	...
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        if ([message.category isEqualToString:kTCGBPushReceivedMessage] == YES) {
+            TCGBPushMessage* pushMessage = [TCGBPushMessage pushMessageFromJsonString:message.data];
+            if (pusMessage != nil) {
+                //TODO: process 
+            }
+        }
     };
     
-    // Remove a Observer
-    [TCGBGamebase removeObserver:observerHandler];
-    
-    // Remove all Observers
-    [TCGBGamebase removeAllObserver];
+    [TCGBGamebase addEventHandler:eventHandler];
 }
 ```
+
+#### Push Click Message
+
+* 수신한 Push 메세지를 클릭했을때 발생하는 이벤트 입니다.
+
+**Example**
+
+```objectivec
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        if ([message.category isEqualToString:kTCGBPushClickMessage] == YES) {
+            TCGBPushMessage* pushMessage = [TCGBPushMessage pushMessageFromJsonString:message.data];
+            if (pusMessage != nil) {
+                //TODO: process 
+            }
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
+```
+
+#### Push Click Action
+
+* Rich Message 기능을 통해 생성한 버튼을 클릭했을때 발생하는 이벤트 입니다.
+* actionType 은 다음 항목이 제공됩니다.
+	* "OPEN_APP"
+	* "OPEN_URL"
+	* "REPLY"
+	* "DISMISS"
+
+**VO**
+
+```objectivec
+@interface TCGBPushAction : NSObject <TCGBValueObject>
+
+@property (nonatomic, strong, nonnull) NSString* actionType;
+@property (nonatomic, strong, nullable) TCGBPushMessage* message;
+@property (nonatomic, strong, nullable) NSString* userText;
+
+@end
+```
+
+**Example**
+
+```objectivec
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        if ([message.category isEqualToString:kTCGBPushClickAction] == YES) {
+            TCGBPushAction* pushMessage = [TCGBPushAction pushActionFromJsonString:message.data];
+            if (pushAction != nil) {
+                //TODO: process 
+            }
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
+```
+
+
 
 ### Analytics
 
@@ -467,7 +620,7 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 | -------------------------- | -------------------------- | ---- | ---- |
 | userLevel | M | int | 게임 유저 레벨을 나타내는 필드입니다. |
 | channelId | O | String | 채널을 나타내는 필드입니다. |
-| characterId | O | String | 케릭터 명을 나타내는 필드입니다. |
+| characterId | O | String | 캐릭터 이름을 나타내는 필드입니다. |
 | classId | O | String | 직업을 나타내는 필드입니다. |
 
 
@@ -496,10 +649,12 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 
 **LevelUpData**
 
-  | Name | Mandatory(M) / Optional(O) | type | Desc |
-  | -------------------------- | -------------------------- | ---- | ---- |
-  | userLevel | M | int | 게임 유저 레벨을 나타내는 필드입니다. |
-  | levelUpTime | M | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
+| Name | Mandatory (M) / Optional (O) | type | Desc |
+| -------------------------- | -------------------------- | ---- | ---- |
+| userLevel | M | int | 게임 유저 레벨을 나타내는 필드입니다. |
+| levelUpTime | M | long | Epoch time으로 입력합니다.</br>밀리초(ms) 단위로 입력합니다. |
+| channelId | O | string | |
+| characterId | O | string | |
 
 **API**
 
@@ -522,15 +677,15 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 
 > [TIP]
 >
-> TOAST Contact 상품과 연동하여 사용하시면, 보다 쉽고 편리하게 고객 문의 대응이 가능합니다.
-> 자세한 TOAST Contact 상품 이용은 아래 가이드를 참고하시길 바랍니다.
+> TOAST Contact 서비스와 연동해서 사용하면 보다 쉽고 편리하게 고객 문의에 대응할 수 있습니다.
+> 자세한 TOAST Contact 서비스 이용법은 아래 가이드를 참고하시기 바랍니다.
 > [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
 >
 
 #### Open Contact WebView
 
-Gamebase Console에 입력한 **고객센터 URL** 웹뷰를 띄울 수 있는 기능입니다.
-**Gamebase Console > App > InApp URL > Service center** 에 입력한 값이 사용됩니다.
+Gamebase 콘솔에 입력한 **고객 센터 URL** 웹뷰를 나타낼 수 있는 기능입니다.
+**Gamebase 콘솔 > App > InApp URL > Service center**에 입력한 값이 사용됩니다.
 
 **API**
 

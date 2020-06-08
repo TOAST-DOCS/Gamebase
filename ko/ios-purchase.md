@@ -36,25 +36,31 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 
 ### Purchase Flow
 
-아이템 구매는 다음과 같은 순서로 구현하시기 바랍니다.<br/>
+아이템 구매는 크게 결제 Flow 와 Consume Flow 로 나누어 볼 수 있습니다.
+결제 Flow는 다음과 같은 순서로 구현하시기 바랍니다.
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.6.2.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-1. 게임 클라이언트에서는 Gamebase SDK의 **requestPurchaseWithItemSeq:viewController:completion:**을 호출하여 결제를 시도합니다.
-2. 결제가 성공하였다면 **requestItemListOfNotConsumedWithCompletion:**을 호출하여 미소비 결제 내역을 확인합니다.
-3. 반환된 미소비 결제 내역 목록에 값이 있으면 게임 클라이언트가 게임 서버에 결제 아이템에 대한 consume(소비)을 요청합니다.
-	* UserID, itemSeq, paymentSeq, purchaseToken 을 전달합니다.
-4. 게임 서버는 게임 DB 에 이미 동일한 paymentSeq, purchaseToken 으로 아이템을 지급한 이력이 있는지 확인합니다.
-	* 4-1. 아직 아이템을 지급하지 않았다면 UserID 에 itemSeq 에 해당하는 아이템을 지급합니다.
-    * 4-2. 아이템 지급 후 게임 DB 에 UserID, itemSeq, paymentSeq, purchaseToken 을 저장하여 이후에 중복 지급을 확인할 수 있도록 합니다.
-5. 게임 서버는 Gamebase 서버에 API를 통해 consume(소비) API를 요청합니다.
-	* [API 가이드](./api-guide/#consume)
+1. 이전 결제가 정상적으로 종료되지 못한 경우 재처리가 동작하지 않으면 결제가 실패합니다. 그러므로 결제 전에 **requestItemListOfNotConsumedWithCompletion:**를 호출하여 재처리를 동작시켜 미지급된 아이템이 있으면 Consume Flow 를 진행합니다.
+2. 게임 클라이언트에서는 Gamebase SDK의 **requestPurchaseWithItemSeq:viewController:completion:**를 호출하여 결제를 시도합니다.
+3. 결제가 성공하였다면 **requestItemListOfNotConsumedWithCompletion:**를 호출하여 미소비 결제 내역을 확인한 후 지급할 아이템이 존재한다면 Consume Flow 를 진행합니다.
 
-<br/>
+* 스토어 결제에는 성공했으나 오류가 발생해 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 미소비 결제 내역을 확인하시기 바랍니다.
+    * 로그인에 성공하면 **requestItemListOfNotConsumedWithCompletion:**를 호출하여 재처리를 동작시켜 미지급된 아이템이 있으면 Consume Flow 를 진행합니다.
 
-* 스토어 결제는 성공했으나 오류가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 미소비 결제 내역을 확인하시기 바랍니다.
-	* 로그인에 성공하면 **requestItemListOfNotConsumedWithCompletion:**를 호출하여 미소비 결제 내역을 확인합니다.
-	* 반환된 미소비 결제 내역 목록에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
+### Consume Flow
+
+미소비 결제 내역 목록에 값이 있으면 다음과 같은 순서로 Consume Flow 를 진행하시기 바랍니다.
+
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.10.0.png)
+
+1. 게임 클라이언트가 게임 서버에 결제 아이템에 대한 consume(소비)을 요청합니다.
+    * UserID, itemSeq, paymentSeq, purchaseToken 을 전달합니다.
+2. 게임 서버는 게임 DB 에 이미 동일한 paymentSeq, purchaseToken 으로 아이템을 지급한 이력이 있는지 확인합니다.
+    * 2-1. 아직 아이템을 지급하지 않았다면 UserID 에 itemSeq 에 해당하는 아이템을 지급합니다.
+    * 2-2. 아이템 지급 후 게임 DB 에 UserID, itemSeq, paymentSeq, purchaseToken 을 저장하여 이후에 중복 지급 여부를 확인할 수 있도록 합니다.
+3. 게임 서버는 Gamebase 서버의 consume(소비) API를 호출하여 아이템 지급을 완료합니다.
+    * [API 가이드 > Purchase(IAP) > Consume](./api-guide/#consume)
 
 ### Purchase Item
 
@@ -145,10 +151,10 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 
 ### Restore Purchase
 
-사용자의 AppStore 계정으로 구매한 내역을 기준으로 구매 내역을 복원하여 콘솔에 반영합니다.
-구매한 구독 상품이 조회되지 않거나 활성화 되지 않을 경우 사용합니다.
-만료된 결제건을 포함하여 복원된 결제건이 결과로 반환됩니다.
-자동 갱신형 소비성 구독 상품의 경우 반영되지 않은 구매 내역이 존재할 경우 복원 후 미소비 구매 내역에서 조회 가능합니다.
+사용자의 App Store 계정으로 구매한 내역을 기준으로 구매 내역을 복원하여 콘솔에 반영합니다.
+구매한 구독 상품이 조회되지 않거나 활성화되지 않을 경우 사용합니다.
+만료된 결제 건을 포함해 복원된 결제 건이 결과로 반환됩니다.
+자동 갱신형 소비성 구독 상품의 경우 반영되지 않은 구매 내역이 있다면 복원 후 미소비 구매 내역에서 조회할 수 있습니다.
 
 
 ```objectivec
@@ -175,6 +181,14 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 > `주의`
 > 로그인 성공 이후에만 호출 할 수 있습니다.
 > 로그인 성공 후, 다른 결제 API보다 먼저 실행되어야 합니다.
+
+#### 사용시 주의 사항
+Facebook SDK, Google AdMob SDK 와 같이 SDK 내에 In App Purchase (AppStore 결제) 기능이 있는 경우에는 Gamebase Login 을 하기 전에 사전결제를 시작할 경우에는 정상적으로 결제창이 나타나지 않을 수 있습니다.
+
+* 해결 방법
+  * Facebook
+    * Facebook Console > 설정 > 기본 설정 > `앱 내 이벤트를 자동으로 로깅(권장)` 기능을 비활성화
+    * Facebook 인증 기능을 사용하지 않을 경우 : `GamebaseAuthFacebookAdapter.framework 파일을 제외`시킨 후 빌드
 
 
 #### Overview

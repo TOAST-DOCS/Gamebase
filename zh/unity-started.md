@@ -8,10 +8,7 @@
 >
 > Unity 支持版本
 > 
-> * Unity 2019.x : ~ 2019.2.9
-> * Unity 2018.x : ~ 2018.4.x(LTS)
-> * Unity 2017.x : ~ 2017.4.x(LTS)
-> * Unity 5.x : 5.6.6
+> * Unity 2017.4.16 ~ 2019.3.9
 > * 若需要支持下级版本的Unity，请咨询[客服中心](https://toast.com/support/inquiry)。
 
 #### Android
@@ -19,12 +16,6 @@
 >
 > 2019年8月1日起Google Play公告的新应用程序应支持64位架构。
 > [确认Google Play政策及支持64bit Unity版本](https://developer.android.com/distribute/best-practices/develop/64-bit#unity-developers)
->
-> <font color="red">[注意]</font>
-> 自Gamebase 2.6.0起，为应对Android Target SDK 28，Support Library Version升至28.0.0，Unity 5、Unity 2017.1、Unity 2017.2出现创建失败的问题。
-> 若使用相应Unity Editor，按照以下Upgrade Guide升级gradle version，Android创建即可正常进行。
-> 若创建存在困难，请咨询[客服中心](https://toast.com/support/inquiry)。
-> [Game > Gamebase > Upgrade Guide > 2.6.0 > Unity > Android Limitation](./upgrade-guide/#android-limitation)
 
 #### Supported Platforms
 

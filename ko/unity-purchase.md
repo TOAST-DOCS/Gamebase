@@ -10,32 +10,36 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 * [Android Purchase Settings](aos-purchase#settings)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
-Unity Standalone에서 결제를 진행하기 위해 IapAdapter와 WebViewAdapter를 반드시 추가하여야 합니다.
+Unity Standalone에서 결제하려면 IapAdapter와 WebViewAdapter를 반드시 추가해야 합니다.
 ![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-settingtool_iap_2.4.0.png)
 
+### Purchase Flow
 
-###  Purchase Flow
+아이템 구매는 크게 결제 Flow 와 Consume Flow 로 나누어 볼 수 있습니다.
+결제 Flow는 다음과 같은 순서로 구현하시기 바랍니다.
 
-아이템 구매는 다음과 같은 순서로 구현하시기 바랍니다.<br/>
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.6.2.png)
+1. 이전 결제가 정상적으로 종료되지 못한 경우 재처리가 동작하지 않으면 결제가 실패합니다. 그러므로 결제 전에 **RequestItemListOfNotConsumed**를 호출하여 재처리를 동작시켜 미지급된 아이템이 있으면 Consume Flow 를 진행합니다.
+2. 게임 클라이언트에서는 Gamebase SDK의 **RequestPurchase**를 호출하여 결제를 시도합니다.
+3. 결제가 성공하였다면 **RequestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인한 후 지급할 아이템이 존재한다면 Consume Flow 를 진행합니다.
 
+* 스토어 결제에는 성공했으나 오류가 발생해 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 미소비 결제 내역을 확인하시기 바랍니다.
+    * 로그인에 성공하면 **RequestItemListOfNotConsumed**를 호출하여 재처리를 동작시켜 미지급된 아이템이 있으면 Consume Flow 를 진행합니다.
 
-1. 게임 클라이언트에서는 Gamebase SDK의 **RequestPurchase**를 호출하여 결제를 시도합니다.
-2. 결제가 성공하였다면 **RequestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인합니다.
-3. 반환된 미소비 결제 내역 목록에 값이 있으면 게임 클라이언트가 게임 서버에 결제 아이템에 대한 consume(소비)을 요청합니다.
-	* UserID, itemSeq, paymentSeq, purchaseToken 을 전달합니다.
-4. 게임 서버는 게임 DB 에 이미 동일한 paymentSeq, purchaseToken 으로 아이템을 지급한 이력이 있는지 확인합니다.
-	* 4-1. 아직 아이템을 지급하지 않았다면 UserID 에 itemSeq 에 해당하는 아이템을 지급합니다.
-    * 4-2. 아이템 지급 후 게임 DB 에 UserID, itemSeq, paymentSeq, purchaseToken 을 저장하여 이후에 중복 지급을 확인할 수 있도록 합니다.
-5. 게임 서버는 Gamebase 서버에 API를 통해 consume(소비) API를 요청합니다.
-	* [API 가이드](./api-guide/#consume)
+### Consume Flow
 
-<br/>
+미소비 결제 내역 목록에 값이 있으면 다음과 같은 순서로 Consume Flow 를 진행하시기 바랍니다.
 
-* 스토어 결제는 성공했으나 오류가 발생하여 정상 종료되지 못하는 경우가 있습니다. 로그인 완료 후 미소비 결제 내역을 확인하시기 바랍니다.
-	* 로그인에 성공하면 **RequestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인합니다.
-	* 반환된 미소비 결제 내역 목록에 값이 존재한다면 게임 클라이언트가 게임 서버에 consume(소비)를 요청하여 아이템을 지급합니다.
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.10.0.png)
+
+1. 게임 클라이언트가 게임 서버에 결제 아이템에 대한 consume(소비)을 요청합니다.
+    * UserID, itemSeq, paymentSeq, purchaseToken 을 전달합니다.
+2. 게임 서버는 게임 DB 에 이미 동일한 paymentSeq, purchaseToken 으로 아이템을 지급한 이력이 있는지 확인합니다.
+    * 2-1. 아직 아이템을 지급하지 않았다면 UserID 에 itemSeq 에 해당하는 아이템을 지급합니다.
+    * 2-2. 아이템 지급 후 게임 DB 에 UserID, itemSeq, paymentSeq, purchaseToken 을 저장하여 이후에 중복 지급 여부를 확인할 수 있도록 합니다.
+3. 게임 서버는 Gamebase 서버의 consume(소비) API를 호출하여 아이템 지급을 완료합니다.
+    * [API 가이드 > Purchase(IAP) > Consume](./api-guide/#consume)
 
 ### Purchase Item
 
@@ -203,82 +207,6 @@ public void RequestActivatedPurchasesSample()
     });
 }
 ```
-
-### App Store Promotion IAP
-
-App Store 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니다.
-아이템 구매 성공 후, 아래의 등록해놓은 핸들러를 통하여, 아이템지급을 진행할 수 있습니다.
-
-프로모션 IAP는 App Store Connect 에서 별도의 설정이 되어야 노출이 가능합니다.
-
-> <font color="red">[주의]</font><br/>
->
-> iOS 11 이상에서만 사용할 수 있습니다.
-> Xcode 9.0 이상에서 빌드가 필요합니다.
-> Gamebase 1.13.0 이상에서 지원합니다. (TOAST IAP SDK 1.6.0 이상적용)
-
-
-> <font color="red">[주의]</font><br/>
->
-> 로그인 성공 이후에만 호출 할 수 있습니다.
-> 로그인 성공 후, 다른 결제 API보다 먼저 실행되어야 합니다.
-
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-
-```cs
-static void SetPromotionIAPHandler(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
-```
-
-**Example**
-```cs
-public void SetPromotionIAPHandler()
-{
-    Gamebase.Purchase.SetPromotionIAPHandler((purchasableReceipt, error) => 
-    {
-        if (Gamebase.IsSuccess(error))
-        {
-            Debug.Log("Purchase succeeded.");
-        }
-        else
-        {
-            if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
-            {
-                Debug.Log("User canceled purchase.");
-            }
-            else
-            {
-            	Debug.Log(string.Format("Purchase failed. error is {0}", error));
-            }
-        }
-    });
-}
-```
-**Overview**
-
-* Apple Developer Overview : https://developer.apple.com/app-store/promoting-in-app-purchases/
-* Apple Developer Reference : https://help.apple.com/app-store-connect/#/deve3105860f
-
-**How to Test AppStore Promotion IAP**
-
-> `주의`
-> App Store Connect에 앱을 업로드한 다음 TestFlight를 통하여 앱을 설치 후, 테스트를 진행할 수 있습니다.
-> 
-
-1. TestFlight로 App을 설치합니다.
-2. 아래와 같은 URL Scheme을 호출하여, 테스트를 진행합니다.
-
-| URL Components | keyname | value |
-| --- | --- | --- |
-| scheme | itms-services | 고정값 |
-| host &amp; path | 없음 | 없음 |
-| queries | action | purchaseIntent |
-|		  | bundleId | 앱의 bundeld identifier |
-|		  | productIdentifier | 구매 아이템의 product identifier |
-
-예제) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 
 ### Error Handling
 

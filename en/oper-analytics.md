@@ -103,7 +103,7 @@ User indicators are available on each environment.
 * Query Values
     * Daily Active Users (DAU): Number of daily active users, by member number, who are logged in more than once a day 
     * Newly Registered Users (NRU): New subscribers whose first login logs are collected around the clock of the day (by member number)
-    * Paying Users (PU): Users (game users) who pay for products (=renewed PU +New PU) 
+    * Paying Users (PU): Users (game users) who pay for products (=renewed PU +New PU)
     * Purchase Amount: Total amount paid by a user  
 
 ### User Inflow and Outflow  
@@ -130,6 +130,25 @@ By opting for the exclusion of withdrawer on the same day of subscription, you c
 * Exclusion of withdrawer on the same day of subscription: Calculate by excluding those users who subscribed and withdrew on the same day 
     * New Users = Subscriber - Withdrawer on the same day of subscription
       e.g.) Out of 100 new users on January 1st, 20 withdrew on January 1st: then, the number of actual new users is calculated at 80 (100-20).
+
+### Frequency7
+
+![gamebase_analytics_06_202003_1_frequency](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202003_1_frequency.png)
+
+Frequency 7 provides the number and rate of weekly visits of DAU. It helps to identify the flow and loyalty for a game.
+
+Frequency 7 is comprised of the three criteria as below.
+
+* Number of Visits: Total number of visits for 7 days
+* Number of Consecutive Visits: Number of consecutive visits for 7 days, including the day
+* Maximum Number of Consecutive Visits: Maximum number of consecutive visits for 7 days
+
+Examples of calculation by the above three criteria are like follows. 
+As of March 7, a user visited on March 1, 2, 3, 6, and 7, and the number of visits are calculated by each criteria. 
+
+* Total Number of Visits: 5 days (March 1, 2, 3, 6, and 7)
+* Number of Consecutive Visits: 2 days (March 6 and 7)
+* Maximum Number of Consecutive Visits: 3 days (March 1, 2, and 3)
 
 ## Sales Indicators 
 ### Purchase Amount 
@@ -231,6 +250,13 @@ There are three types of transfer indicators as below:
 * User Level: Access and sales data are available by user level. 
 * World/Server/Channel: Access by world/server/channel and sales data are available with user ID. 
 * Class/Occupation: Access and sales data are available by class/occupation. 
+
+> [Note] 
+>
+> Only previously registered information of world/server/channel and class/occupations will be processed for analytics.
+> Refer to the following document for registration.
+>
+> - [App > Analytics Indicator](./oper-app/#analytics-indicator)
 
 ### Concurrent Status
 

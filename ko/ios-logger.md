@@ -1,9 +1,9 @@
 ## Game > Gamebase > iOS SDK 사용 가이드 > Logger
 
-여기에서는 iOS에서 TOAST Logger SDK를 사용하는 방법을 알아 보겠습니다.
+여기에서는 iOS에서 TOAST Logger SDK를 사용하는 방법을 알아보겠습니다.
 
 ### Initialize
-Log & Crash Search에서 발급받은 AppKey로  TOAST Logger SDK를 초기화 합니다
+Log & Crash Search에서 발급받은 앱키로  TOAST Logger SDK를 초기화합니다.
 
 **API**
 
@@ -12,14 +12,13 @@ Log & Crash Search에서 발급받은 AppKey로  TOAST Logger SDK를 초기화 �
 ```
 
 **Example**
-
 ```objectivec
 - (void)initializeSample {
-    TCGBLoggerConfiguration *configuration = [TCGBLoggerConfiguration configurationWithAppKey:@"2BvA3gGZHyPMQYzk"];
+    TCGBLoggerConfiguration *configuration = [TCGBLoggerConfiguration configurationWithAppKey:@"YOUR_APP_KEY"];
 
 // Default value of enableCrashReport is YES
 // You can set NO if you don't want use a crash report feature.
-//    TCGBLoggerConfiguration *configuration = [TCGBLoggerConfiguration configurationWithAppKey:@"2BvA3gGZHyPMQYzk" enableCrashReporter:NO];
+//    TCGBLoggerConfiguration *configuration = [TCGBLoggerConfiguration configurationWithAppKey:@"YOUR_APP_KEY" enableCrashReporter:NO];
 
     [TCGBLogger initializeWithConfiguration:configuration];
 }
@@ -27,8 +26,8 @@ Log & Crash Search에서 발급받은 AppKey로  TOAST Logger SDK를 초기화 �
 
 ### Send Logs
 
-Log & Crash Server로 로그를 전송합니다
-TOAST Logger SDK는 아래 다섯 가지 레벨의 로그를 전송할 수 있습니다. 
+Log & Crash 서버로 로그를 전송합니다
+TOAST Logger SDK는 아래 5가지 레벨의 로그를 전송할 수 있습니다.
 
 * DEBUG
 * INFO
@@ -101,7 +100,7 @@ TOAST Logger SDK는 아래 다섯 가지 레벨의 로그를 전송할 수 있�
 
 ### Further Tasks after Sending Logs
 
-delegate를 등록하면 로그 전송 후 추가 작업을 진행할 수 있습니다.
+델리게이트(delegate)를 등록하면 로그 전송 후 추가 작업을 진행할 수 있습니다.
 
 **API**
 

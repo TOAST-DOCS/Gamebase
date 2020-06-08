@@ -149,7 +149,7 @@ Gamebase에 스키마 이름과 블록을 지정해 원하는 기능을 추가�
 
 ## Open External Browser
 
-다음 API를 통하여 외부 브라우저를 열 수 있습니다. 파라미터로 전송되는 URL은 유효한 값이어야 합니다.
+다음 API를 사용해 외부 브라우저를 열 수 있습니다. 파라미터로 전송되는 URL은 유효한 값이어야 합니다.
 
 ```objectivec
 // Open the url with Browser
@@ -163,14 +163,12 @@ Gamebase에 스키마 이름과 블록을 지정해 원하는 기능을 추가�
 ## Alert
 
 시스템 알림을 표시할 수 있습니다.<br/>
-iOS 8 이상에서 동작하는 UIAlertController와, iOS 8 미만에서 동작하는 UIAlertView 처리를 내부적으로 해 줍니다.<br/>
 
 #### Types of Alert
 1. '확인' 버튼을 1개만 제공하며, 확인 버튼을 클릭하면 completion이 호출됩니다.
 2. '확인' 버튼을 1개만 제공하며, completion을 제공하지 않습니다.
 
 ```objectivec
-
 // 1. Alert has completion
 - (void)showAlertWithCompletion:(id)sender {
     [TCGBUtil showAlertWithTitle:@"TITLE" message:@"MESSAGE" completion:^{
@@ -183,6 +181,34 @@ iOS 8 이상에서 동작하는 UIAlertController와, iOS 8 미만에서 동작�
     [TCGBUtil showAlertWithTitle:@"TITLE" message:@"MESSAGE"];
 }
 ```
+
+#### Types of ActionSheet
+1. 기본적으로 'Cancel' 버튼이 있는 ActionSheet을 제공합니다.
+2. 'blocks'에 사용자의 AlertAction을 등록할 수 있습니다.
+
+
+```objectivec
+// Create ActionSheet [OK, Detail, Cancel]
+- (void)showActionSheet {
+    NSMutableDictionary<NSString *, void(^)(UIAlertAction *)> *blocks = [NSMutableDictionary dictionary];
+    
+    void(^okActionHandler)(UIAlertAction *) = ^(UIAlertAction *action){
+        NSLog(@"OK");
+    };
+    void(^detailActionHandler)(UIAlertAction *) = ^(UIAlertAction *action){
+        NSLog(@"Detail");
+    };
+
+    // Add AlertAction(Title: "OK", Handler: okActionHandler)
+    [blocks setValue:okActionHandler forKey:@"OK"];
+
+    // Add AlertAction(Title: "Detail", Handler: detailActionHandler)
+    [blocks setValue:detailActionHandler forKey:@"Detail"];
+    
+    [TCGBUtil showActionSheetWithTitle:@"TITLE" message:@"MESSAGE" blocks:blocks];
+}
+```
+
 
 ## Toast
 
