@@ -40,7 +40,7 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
     * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **Gamebase.LoginForLastLoggedInProvider()**를 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 유저
     * 오류 코드가 **BANNED_MEMBER(7)**인 경우, 이용 정지 게임 유저이므로 인증에 실패한 것입니다.
-    * **Gamebase.GetBanInfo()**로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려주시기 바랍니다.
+    * **GamebaseResponse.Auth.BanInfo.From(GamebaseError error)**으로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려주시기 바랍니다.
     * Gamebase 초기화 시 **GamebaseConfiguration.enablePopup** 및 **GamebaseConfiguration.enableBanPopup **값을  true로 한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외 오류
     * 이전 로그인 유형으로 인증하기가 실패하였습니다. **'3. 지정된 IdP로 인증'**을 진행합니다.
@@ -62,7 +62,7 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
     * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증에 실패한 것이므로 **Gamebase.Login(providerName, callback)**을 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 유저
     * 오류 코드가 **BANNED_MEMBER(7)**인 경우, 이용 정지 게임 유저이므로 인증에 실패한 것입니다.
-    * **Gamebase.GetBanInfo()**로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
+    * **GamebaseResponse.Auth.BanInfo.From(GamebaseError error)**으로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
     * Gamebase 초기화 시 **GamebaseConfiguration.enablePopup** 및 **GamebaseConfiguration.enableBanPopup **값을  **true**로 한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외의 오류
     * 오류가 발생했다는 것을 게임 유저에게 알리고, 게임 가 인증 IdP 유형을 선택할 수 있는 상태(주로 타이틀 화면 또는 로그인 화면)로 되돌아갑니다.
@@ -96,31 +96,24 @@ public void LoginForLastLoggedInProvider()
         }
         else
         {
+            // Check the error code and handle the error appropriately.
+            Debug.Log(string.Format("Login failed. error is {0}", error));
         	if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
             {
             	Debug.Log(string.Format("Retry LoginForLastLoggedInProvider or notify an error message to the user. : {0}", error.message));
             }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
             else
             {
                 Debug.Log("Try to login using a specifec IdP");
-                Login("ProviderName");
+                Gamebase.Login("ProviderName", (authToken, error) => {});
             }
-        }
-    });
-}
-
-public void Login(string providerName)
-{
-    Gamebase.Login(providerName, (authToken, error) =>
-    {
-        if (Gamebase.IsSuccess(error))
-        {
-            string userId = authToken.member.userId;
-            Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
-        }
-        else
-        {
-            Debug.Log(string.Format("Login failed. error is {0}", error));
         }
     });
 }
@@ -159,7 +152,19 @@ public void Login()
         }
         else
         {
+            // Check the error code and handle the error appropriately.
         	Debug.Log(string.Format("Login failed. error is {0}", error));
+            if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+            {
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
         }
     });
 }
@@ -188,11 +193,12 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 | --------    | ------------------------------- | ---------------- |
 | Google      | GamebaseAuthProvider.GOOGLE     | Android<br/>iOS<br/>Standalone |
 | Game Center | GamebaseAuthProvider.GAMECENTER | iOS |
+| Apple ID    | GamebaseAuthProvider.AppleId    | iOS |
 | Facebook    | GamebaseAuthProvider.FACEBOOK   | Android<br/>iOS<br/>Standalone |
 | Payco       | GamebaseAuthProvider.PAYCO      | Android<br/>iOS<br/>Standalone |
 | Naver       | GamebaseAuthProvider.NAVER      | Android<br/>iOS |
 | Twitter     | GamebaseAuthProvider.TWITTER    | Android<br/>iOS |
-| Line        | GamebaseAuthProvider.LINE       | Android |
+| Line        | GamebaseAuthProvider.LINE       | Android<br/>iOS |
 
 
 > 몇몇 IdP로 로그인할 때는 꼭 필요한 정보가 있습니다.<br/>
@@ -224,23 +230,52 @@ public void Login()
         }
         else
         {
+            // Check the error code and handle the error appropriately.
         	Debug.Log(string.Format("Login failed. error is {0}", error));
+            if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+            {
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
         }
     });
 }
 
-public void Login(string providerName, Dictionary<string, object> additionalInfo)
+public void LoginWithAdditionalInfo()
 {
-    Gamebase.Login(providerName, additionalInfo, (authToken, error) =>
+    var additionalInfo = new Dictionary<string, object>
     {
-        if (Gamebase.IsSuccess(error))
-        {
+        { "key", "value" }
+    };
+
+    Gamebase.Login(GamebaseAuthProvider.FACEBOOK, additionalInfo, (authToken, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {            
             string userId = authToken.member.userId;
             Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
         }
         else
         {
+            // Check the error code and handle the error appropriately.
             Debug.Log(string.Format("Login failed. error is {0}", error));
+            if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+            {
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
         }
     });
 }
@@ -254,7 +289,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 | keyname | a use | 값 종류 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
 
@@ -301,14 +336,27 @@ public void LoginWithCredential()
     
     Gamebase.Login(credentialInfo, (authToken, error) =>
     {
-    	if (Gamebase.IsSuccess(error))
+    	if (Gamebase.IsSuccess(error) == true)
         {
-        	string userId = authToken.member.userId;
-        	Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
+            
+            string userId = authToken.member.userId;
+            Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
         }
         else
         {
+            // Check the error code and handle the error appropriately.
         	Debug.Log(string.Format("Login failed. error is {0}", error));
+            if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+            {
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
         }
     });
 }
@@ -499,7 +547,7 @@ public void AddMapping(string providerName)
 
 | keyname | a use | 값 종류 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
 
@@ -582,7 +630,7 @@ public void AddMappingForcibly(string idPName)
             if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
             {
                 // ForcingMappingTicket 클래스의 MakeForcingMappingTicket() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
-                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.MakeForcingMappingTicket(error);
+                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
 
                 // 강제 매핑을 시도합니다.
                 Gamebase.AddMappingForcibly(idPName, forcingMappingTicket.forcingMappingKey, (authTokenForcibly, errorForcibly) =>
@@ -618,7 +666,7 @@ public void AddMappingForcibly(string idPName)
 
 | keyname | a use | 값 종류 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                        |
 
@@ -658,7 +706,7 @@ public void AddMappingForcibly(Dictionary<string, object> credential)
             if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
             {
                 // ForcingMappingTicket 클래스의 MakeForcingMappingTicket() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
-                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.MakeForcingMappingTicket(error);
+                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
 
                 // 강제 매핑을 시도합니다.
                 Gamebase.AddMappingForcibly(credential, forcingMappingTicket.forcingMappingKey, (authTokenForcibly, errorForcibly) =>
@@ -899,31 +947,12 @@ public void GetAuthProviderProfile(string providerName)
 }
 ```
 
-### Get Banned User Infomation
+### Get Banned User Information
 
 Gamebase Console에 제재된 게임 유저로 등록될 경우,
-로그인 시도 시, 이용 제한 정보 코드(**BANNED_MEMBER(7)**)가 표시될 수 있으며, 아래 API를 이용하여 제재 정보를 확인할 수 있습니다.
+로그인을 시도하면 아래와 같은 이용 제한 정보 코드가 표시될 수 있습니다. **GamebaseResponse.Auth.BanInfo.from(GamebaseError error)** 메서드를 이용해 제재 정보를 확인할 수 있습니다.
 
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-
-```cs
-static GamebaseResponse.Auth.BanInfo GetBanInfo()
-```
-
-**Example**
-```cs
-public void GetBanInfo()
-{
-    GamebaseResponse.Auth.BanInfo banInfo = Gamebase.GetBanInfo();
-}
-```
+* BANNED_MEMBER(7)
 
 ## TransferAccount
 게스트 계정을 다른 단말기로 이전하기 위해 계정 이전을 위한 키를 발급받는 기능입니다.
@@ -1037,7 +1066,9 @@ public void RenewTransferAccountManualIdPassword(string accountId, string accoun
 계정 이전이 성공한 단말기에서는 TransferAccount를 발급받았던 단말기의 게스트 계정을 계속해서 사용할 수 있습니다.
 
 > <font color="red">[주의]</font><br/>
-> 이미 게스트 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
+> * 이미 게스트 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
+> * 만일 잘못된 id/password 를 연속해서 입력하면 **AUTH_TRANSFERACCOUNT_BLOCK(3042)** 에러가 발생하며 계정 이전이 일정 시간 차단됩니다.
+> 이 경우에는 아래의 예제와 같이 TransferAccountFailInfo 값을 통해 언제까지 계정 이전이 차단되는지 유저에게 알려줄 수 있습니다.
 
 **API**
 
@@ -1059,7 +1090,19 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
         }
         else
         {
-            // Transfering Account failed.
+            // Check the error code and handle the error appropriately.
+            if (error.code == GamebaseErrorCode.AUTH_TRANSFERACCOUNT_BLOCK)
+            {
+                GamebaseResponse.Auth.TransferAccountFailInfo transferAccountFailInfo = GamebaseResponse.Auth.TransferAccountFailInfo.From(error);
+                if (transferAccountFailInfo != null)
+                {
+                    // Transfering Account failed by entering the wrong id / pw multiple times.
+                    // You can tell when the account transfer is blocked by the TransferAccountFailInfo.
+                    string failId = transferAccountFailInfo.id;
+                    int failCount = transferAccountFailInfo.failCount;
+                    DateTime dateTime = new DateTime(transferAccountFailInfo.blockEndDate);
+                }
+            }
         }
     });
 }
@@ -1261,7 +1304,7 @@ public void SampleWithdrawImmediately()
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
 
-if (Gamebase.IsSuccess(gamebaseError))
+if (Gamebase.IsSuccess(gamebaseError) == true)
 {
     // succeeded
 }

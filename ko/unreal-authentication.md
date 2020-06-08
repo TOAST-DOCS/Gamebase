@@ -40,7 +40,7 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
     * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)** 인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **LoginForLastLoggedInProvider API**를 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 유저
     * 오류 코드가 **BANNED_MEMBER(7)** 인 경우, 이용 정지 게임 유저이므로 인증에 실패한 것입니다.
-    * **GetBanInfo API**로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려주시기 바랍니다.
+    * **FGamebaseBanInfo::From API**로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려주시기 바랍니다.
     * Gamebase 초기화 시 **FGamebaseConfiguration.enablePopup** 및 **FGamebaseConfiguration.enableBanPopup**값을  true로 한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외 오류
     * 이전 로그인 유형으로 인증하기가 실패하였습니다. **'3. 지정된 IdP로 인증'**을 진행합니다.
@@ -62,7 +62,7 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
     * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증에 실패한 것이므로 **Login(providerName, callback) API**을 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 유저
     * 오류 코드가 **BANNED_MEMBER(7)**인 경우, 이용 정지 게임 유저이므로 인증에 실패한 것입니다.
-    * **GetBanInfo API**로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
+    * **FGamebaseBanInfo::From API**로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
     * Gamebase 초기화 시 **FGamebaseConfiguration.enablePopup** 및 **FGamebaseConfiguration.enableBanPopup**값을  **true**로 한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외의 오류
     * 오류가 발생했다는 것을 게임 유저에게 알리고, 게임 가 인증 IdP 유형을 선택할 수 있는 상태(주로 타이틀 화면 또는 로그인 화면)로 되돌아갑니다.
@@ -99,6 +99,14 @@ void Sample::LoginForLastLoggedInProvider()
             if (error->code == GamebaseErrorCode::SOCKET_ERROR || error->code == GamebaseErrorCode::SOCKET_RESPONSE_TIMEOUT)
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("Retry LoginForLastLoggedInProvider or notify an error message to the user. : %s"), *error->message);
+            }
+            else if (error->code == GamebaseErrorCode::BANNED_MEMBER)
+            {
+                auto banInfo = FGamebaseBanInfo::From(error);
+                if (banInfo.IsValid())
+                {
+                    UE_LOG(GamebaseTestResults, Display, TEXT("This user has been banned. Gamebase userId is %s"), *banInfo->userId);
+                }
             }
             else
             {
@@ -140,6 +148,19 @@ void Sample::Login()
         else
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("Login failed. (errorCode: %d, errorMessage: %s)"), error->code, *error->message);
+
+            if (error->code == GamebaseErrorCode::SOCKET_ERROR || error->code == GamebaseErrorCode::SOCKET_RESPONSE_TIMEOUT)
+            {
+                UE_LOG(GamebaseTestResults, Display, TEXT("Retry LoginForLastLoggedInProvider or notify an error message to the user. : %s"), *error->message);
+            }
+            else if (error->code == GamebaseErrorCode::BANNED_MEMBER)
+            {
+                auto banInfo = FGamebaseBanInfo::From(error);
+                if (banInfo.IsValid())
+                {
+                    UE_LOG(GamebaseTestResults, Display, TEXT("This user has been banned. Gamebase userId is %s"), *banInfo->userId);
+                }
+            }
         }
     }));
 }
@@ -196,6 +217,19 @@ void Sample::Login()
         else
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("Login failed. (errorCode: %d, errorMessage: %s)"), error->code, *error->message);
+
+            if (error->code == GamebaseErrorCode::SOCKET_ERROR || error->code == GamebaseErrorCode::SOCKET_RESPONSE_TIMEOUT)
+            {
+                UE_LOG(GamebaseTestResults, Display, TEXT("Retry LoginForLastLoggedInProvider or notify an error message to the user. : %s"), *error->message);
+            }
+            else if (error->code == GamebaseErrorCode::BANNED_MEMBER)
+            {
+                auto banInfo = FGamebaseBanInfo::From(error);
+                if (banInfo.IsValid())
+                {
+                    UE_LOG(GamebaseTestResults, Display, TEXT("This user has been banned. Gamebase userId is %s"), *banInfo->userId);
+                }
+            }
         }
     }));
 }
@@ -886,36 +920,11 @@ void Sample::GetAuthProviderProfile(const FString& providerName)
 }
 ```
 
-### Get Banned User Infomation
+### Get Banned User Information
 
-Gamebase Console에 제재된 게임 유저로 등록될 경우,
-로그인 시도 시, 이용 제한 정보 코드(**BANNED_MEMBER(7)**)가 표시될 수 있으며, 아래 API를 이용하여 제재 정보를 확인할 수 있습니다.
+Gamebase Console에 제재된 게임 유저로 등록될 경우, 로그인을 시도하면 아래와 같은 이용 제한 정보 코드(**BANNED_MEMBER(7)**)가 표시될 수 있습니다.
+**FGamebaseBanInfo::From API**를 이용해 제재 정보를 확인할 수 있습니다.
 
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
-
-```cpp
-const FGambaseBanInfoPtr GetBanInfo() const;
-```
-
-**Example**
-```cpp
-void Sample::GetBanInfo()
-{
-    auto banInfo = IGamebase::Get().GetBanInfo();
-    if (banInfo.IsValid())
-    {
-        UE_LOG(GamebaseTestResults, Display, TEXT("GetBanInfo: %s"), *banInfo->userId);
-    }
-    else
-    {
-        UE_LOG(GamebaseTestResults, Display, TEXT("Not found ban info."));
-    }
-}
-```
 
 ## TransferAccount
 게스트 계정을 다른 단말기로 이전하기 위해 계정 이전을 위한 키를 발급받는 기능입니다.

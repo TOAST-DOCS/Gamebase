@@ -1,11 +1,11 @@
 ## Game > Gamebase > Android SDK 사용 가이드 > Logger
 
-여기에서는 Android에서 TOAST Logger SDK를 사용하는 방법을 알아 보겠습니다.
+여기에서는 Android에서 TOAST Logger SDK를 사용하는 방법을 알아보겠습니다.
 
 ### Initialize
 
-Log & Crash Search에서 발급받은 AppKey로  TOAST Logger SDK를 초기화 합니다.<br/>
-앱이 실행되자 마자 발생하는 크래쉬 로그도 빠짐없이 전송하기 위해서는 **Application.onCreate()** 에서 TOAST Logger 를 초기화 해야 합니다.
+Log & Crash Search에서 발급받은 앱키(Appkey)로  TOAST Logger SDK를 초기화합니다.<br/>
+앱이 실행되자마자 발생하는 크래시 로그도 빠짐없이 전송하려면 **Application.onCreate()**에서 TOAST Logger를 초기화해야 합니다.
 
 **API**
 
@@ -33,8 +33,8 @@ public class MyApplication extends Application {
 
 ### Send Logs
 
-Log & Crash Server로 로그를 전송합니다
-TOAST Logger SDK는 아래 다섯 가지 레벨의 로그를 전송할 수 있습니다.
+Log & Crash 서버로 로그를 전송합니다
+TOAST Logger SDK는 아래 5가지 레벨의 로그를 전송할 수 있습니다.
 
 * DEBUG
 * INFO
@@ -104,7 +104,7 @@ Gamebase.Logger.setUserField("KEY", "VALUE");
 
 ### Further Tasks after Sending Logs
 
-delegate를 등록하면 로그 전송 후 추가 작업을 진행할 수 있습니다.
+리스너(listener)를 등록하면 로그 전송 후 추가 작업을 진행할 수 있습니다.
 
 **API**
 
