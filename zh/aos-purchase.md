@@ -119,7 +119,7 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 });
 ```
 
-### Get a List of Purchasable Items
+### List Purchasable Items
 
 要查询商品列表，请调用以下API。回调返还的数组(array)包含各item的信息。
 
@@ -147,7 +147,7 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 });
 ```
 
-### Get a List of Non-Consumed Items
+### List Non-Consumed Items
 
 * 查询尚未消费的一次性商品(CONSUMABLE)与消费性订阅商品(CONSUMABLE_AUTO_RENEWABLE) 信息。<br/>
 如果有未完成的商品，您必须要求游戏服务器（item服务器）处理配送item（支付）。
@@ -180,7 +180,7 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 });
 ```
 
-### Get a List of Activated Subscriptions
+### List Activated Subscriptions
 
 以当前用户ID为准查询激活的订阅列表。
 完成支付的订阅商品（自动更新型订阅、自动更新型消费性订阅商品）到期前可一直查询。 
