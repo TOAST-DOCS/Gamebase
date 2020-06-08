@@ -6,11 +6,11 @@
 
 #### Register TOAST Cloud Console
 
-[Notification > Push > Console Guide](/Notification/Push/ko/console-guide/)를 참고하여 Console을 설정합니다.
+[Notification > Push > Console Guide](/Notification/Push/ko/console-guide/)를 참고해 콘솔을 설정합니다.
 
 #### Gradle
 
-* build.gradle 에 사용하고자 하는 모듈을 추가합니다.
+* build.gradle에 사용할 모듈을 추가합니다.
 
 ```groovy
 dependencies {
@@ -25,7 +25,7 @@ dependencies {
 }
 ```
 
-* 푸시 모듈은 FCM(Firebase Cloud Messaging)과 Tencent 중에서 하나만 추가해야 하지만, 테스트 목적으로 복수의 모듈을 추가했다면 Gamebase.initialize 에서 사용하고자 하는 PushType 을 선택할 수도 있습니다.
+* 푸시 모듈은 FCM(Firebase Cloud Messaging)과 Tencent 중에서 하나만 추가해야 하지만, 테스트 목적으로 모듈을 여러 개 추가했다면 Gamebase.initialize에서 사용할 PushType을 선택할 수 있습니다.
     * PushProvider.Type.FCM : "FCM"
     * PushProvider.Type.TENCENT : "TENCENT"
 
@@ -47,7 +47,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 #### Firebase
 
 * Gradle 빌드를 사용하는 경우
-    * Firebase 푸시를 사용하기 위해서는 아래 가이드에 따라 Firebase 설정을 완료하여야 합니다.
+    * Firebase 푸시를 사용하려면 아래 가이드에 따라 Firebase 설정을 완료해야 합니다.
 		* [TOAST > TOAST SDK 사용 가이드 > TOAST Push > Android > Firebase Cloud Messaging 설정](/TOAST/ko/toast-sdk/push-android/#firebase-cloud-messaging)
 * Unity 빌드인 경우
     * 직접 string resource(xml) 파일을 만들어서 Assets/Plugins/Android/res/values/ 폴더에 포함시켜야 합니다.
@@ -71,7 +71,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 #### Tencent
 
-* Tencent 푸시를 사용하기 위해서는 아래 가이드에 따라 Tencent 설정을 완료하여야 합니다.
+* Tencent 푸시를 사용하려면 아래 가이드에 따라 Tencent 설정을 완료해야 합니다.
 	* [TOAST > TOAST SDK 사용 가이드 > TOAST Push > Android > Tencent Push Notification 설정](/TOAST/ko/toast-sdk/push-android/#tencent-push-notification)
 
 ### Register Push
@@ -188,9 +188,9 @@ Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
 | Error | Error Code | Description |
 | --- | --- | --- |
 | OK | 0 | API 호출 성공 |
-| NOT_INITIALIZE | 100 | TOAST SDK 또는 TOAST Push SDK 가 초기화 되지 않은 경우. |
-| PROVIDER_SDK_ERROR | 101 | 외부 SDK(Firebase, Tencent) 에서 에러가 발생한 경우. |
-| USER_ID_NOT_REGISTERED | 102 | 로그인 하지 않은 경우. |
-| UNSUPPORTED_PUSH_TYPE | 103 | PushType 을 잘못 입력 했거나 푸시 라이브러리가 프로젝트에 포함되지 않은 경우. |
-| API_SERVER_ERROR | 104 | TOAST Push 서버 API 호출이 실패한 경우. |
-| TOKEN_NOT_REGISTERED | 105 | 내부에 캐싱된 Push Token 이 존재하지 않는 경우. |
+| NOT_INITIALIZE | 100 | TOAST SDK 또는 TOAST Push SDK가 초기화되지 않은 경우 |
+| PROVIDER_SDK_ERROR | 101 | 외부 SDK(Firebase, Tencent)에서 오류가 발생한 경우 |
+| USER_ID_NOT_REGISTERED | 102 | 로그인하지 않은 경우 |
+| UNSUPPORTED_PUSH_TYPE | 103 | PushType을 잘못 입력했거나 푸시 라이브러리가 프로젝트에 포함되지 않은 경우 |
+| API_SERVER_ERROR | 104 | TOAST Push 서버 API 호출에 실패한 경우 |
+| TOKEN_NOT_REGISTERED | 105 | 내부에 캐시된 푸시 토큰이 없는 경우 |

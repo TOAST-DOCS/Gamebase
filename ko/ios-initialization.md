@@ -218,8 +218,58 @@ TOAST Launching Console에서 사용자가 입력한 정보입니다.
 [콘솔 가이드](/Game/Gamebase/ko/oper-management/#config)
 
 
+### Handling Unregistered Version
+      
+Gamebase 콘솔에 등록되지 않은 GameClientVersion 을 초기화를 하면 **LAUNCHING_UNREGISTERED_CLIENT(2004)** 에러가 발생합니다.
+enablePopup(true), enableLaunchingStatusPopup(true) 상태라면 강제 업데이트 팝업이 표시되고, 마켓으로 이동할 수 있습니다.
+Gamebase 팝업을 사용하지 않을 경우에는 UpdateInfo를 TCGBError 객체로부터 얻어 사용자가 마켓으로 이동할 수 있도록 게임에서 직접 UI를 구현할 수 있습니다.
+
+**VO**
+
+```objectivec
+@interface TCGBUpdateInfo : NSObject
+
+// 최신 버전을 다운로드 할 수 있는 스토어 설치 URL.
+@property (nonatomic, strong, nullable) NSString* installUrl;
+
+// 사용자에게 노출할 수 있는 메시지로 사용자의 단말기 언어에 맞게 전달됩니다.
+// 만일 언어가 'en'인 경우 메시지는 아래와 같습니다.
+// 'The version is not supported. Please get the latest update version.'
+@property (nonatomic, strong, nullable) NSString* message;
+
+@end
+```
 
 
+**API**
+
+```objectivec
++ (nullable TCGBUpdateInfo *)updateInfoFromError:(nonnull TCGBError *)error;
+```
+
+
+**Example**
+
+```objectivec
+- (void)initializeGamebase {
+    TCGBConfiguration* config = [TCGBConfiguration configurationWithAppID:@"YOUR_APP_ID" appVersion:@"YOUR_APP_VERSION" zoneType:@"YOUR_ZONE_TYPE"];
+    [TCGBGamebase initializeWithConfiguration:config completion:^(id launchingData, TCGBError *result) {
+
+        if (result == nil) {
+            // Gamebase initialization succeeded.
+        } else {
+            // Gamebase initialization failed.
+            TCGBUpdateInfo* updateInfo = [TCGBUpdateInfo updateInfoFromError:result];
+            if (updateInfo) {
+                // Unregistered game client version.
+                // Open market url to update application.
+                NSLog(@"UpdateInfo after initialize => \n%@", [updateInfo prettyJsonString]);
+            }
+        
+        }
+    }];
+}
+```
 
 ## Lifecycle Event
 

@@ -64,7 +64,7 @@ dependencies {
 
 ## Sample Codes
 
-* 빌드 및 실행이 가능한 Sample Project 는 [다운로드](https://docs.toast.com/ko/Download/) 페이지에서 배포되는 Gamebase Android SDK 의 Zip 파일에 포함되어 있습니다.
+* 빌드 및 실행 가능한 Sample Project는 [다운로드](https://docs.toast.com/ko/Download/) 페이지에서 배포되는 Gamebase Android SDK의 .zip 파일에 포함되어 있습니다.
 
 ## API Deprecate Governance
 

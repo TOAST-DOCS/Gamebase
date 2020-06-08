@@ -1,5 +1,22 @@
 ## Game > Gamebase > Release Notes
 
+### June 9, 2020
+
+#### Feature Updates 
+* [Console] 
+	* 멤버 > 회원:  **탈퇴 이력 조회** 화면에 탈퇴 유예 상태(탈퇴 유예, 탈퇴 취소, 즉시 탈퇴) 추가 표시
+* [SDK] 2.10.1
+	* (iOS) 사용자 푸시 설정 초기화 시 언어 코드가 설정되어 있지 않으면 디바이스 언어로 설정되도록 변경
+
+#### Bug Fixes
+* [Console] 
+	* 쿠폰 > 쿠폰 발급: 쿠폰 통계 다운로드 시 SMS로 발송한 내역이 다운로드되지 않는 문제 수정
+
+* [SDK] 2.10.1
+	* (Unity) iOS Plugin에서 ViewController가 설정되지 않아 로그인 호출 시 실패하는 문제 수정
+	* (JavaScript) 초기화 시 StoreCode를 입력하지 않으면 오류가 발생하는 문제 수정
+
+
 ### May 26, 2020
 
 #### More Features
@@ -218,8 +235,8 @@
 * [SDK] 2.6.2
 	* (Common) TOAST SDK Updates: Android(0.19.4), iOS(0.20.1), Unity(0.18.0)
 	* (iOS) Naver SDK Updates (4.1.0)
-	
-### Dec.10, 2019 
+
+### December 10, 2019 
 
 #### More Features 
 * App > App: Allows to register devices for QA testing via IP as well  
@@ -234,7 +251,7 @@
   * (iOS) Fixed the issue in which mapping is not available when AddMapping (Forcibly) is applied 
   * (iOS) Fixed crash occurrence by NSNUll object, when displayLanguageCode of PushConfiguration is not set by Unity Plugin 
 
-### Nov.26, 2019
+### November 26, 2019
 
 #### Bug Fixes 
 * [Console]
@@ -242,7 +259,7 @@
   * Analytics > Real-time Monitoring > Dashboard: Fixed data of the previous date wrongly displayed as 0  
      Fixed the issue in which the page is not properly displayed for a disabled product, when accessing relevant menu of TOAST Product (e.g. IAP, Push, or AppGuard)
 
-### Nov.20, 2019 
+### November 20, 2019 
 
 #### Bug Fixes
 * [SDK] 2.6.1
@@ -250,14 +267,14 @@
   * (Unity) Fixed the error of UnityEditor in which the store code comes as empty on a platform other than Standalone, resulting in failed initialization  
   * (Unity) Fixed the error of NullReferenceException due to errors from processing zone type within Initialize API 
 
-### Nov.13, 2019
+### November 13, 2019
 
 #### Bug Fixes
 * GamebaseSettingTool
   * Fixed the error in which files are not properly updated, with the version updated to Gamebase v2.6.0
 
 
-### Nov.12, 2019 
+### November 12, 2019 
 
 ```
 To upgrade to Gamebase SDK 2.6.0 from a lower-than-2.6.0 version,  
@@ -288,7 +305,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
   * App >App: Allowed to enter each service status (e.g. testing, under inspection, or in service) of a server address  
   * Purchase (IAP) > Payment Information: Changed UI to search by selecting search conditions
 
-### Oct.29, 2019 
+### October 29, 2019 
 
 #### Feature Updates 
 * [Console]
@@ -296,7 +313,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
   * Analytics > Real-time Monitoring: More targets for push delivery 
 
 
-### Oct.15, 2019
+### October 15, 2019
 
 #### Feature Updates 
 * [SDK] 2.5.2 
@@ -315,7 +332,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 		* Fixed the issue of keyword enabled by selecting Datepicker 
 		* Analytics: Fixed the issue of NRU value exposed for ARPPU 
 		
-### Sept. 24, 2019 
+### September 24, 2019 
 
 #### Feature Updates 
 * [Console]
@@ -327,7 +344,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 		* Fixed the issue of keyword enabled by selecting Datepicker 
 		* Analytics: Fixed the issue of NRU value exposed for ARPPU 
 		
-### Sept. 10, 2019 
+### September 10, 2019 
 
 #### More Features
 * [Console]
