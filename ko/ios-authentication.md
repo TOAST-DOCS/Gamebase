@@ -51,7 +51,7 @@ AdditionalInfo에 대한 설명은 하단의 **Gamebase에서 지원 중인 IdP*
     * 오류 코드가 **TCGB_ERROR_SOCKET_ERROR(110)** 또는 **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**을 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 유저
     * 오류 코드가 **TCGB_ERROR_BANNED_MEMBER(7)**인 경우, 이용 정지 게임 유저이므로 인증에 실패한 것입니다.
-    * **[TCGBGamebase banInfo]**로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
+    * **[TCGBBanInfo banInfoFromError:error]**로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
     * Gamebase 초기화 시 **[TCGBConfiguration enablePopup:YES]** 및 **[TCGBConfiguration enableBanPopup:YES]**를 호출한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외 오류
     * 이전 로그인 유형으로 인증하기가 실패하였습니다. **3. 지정된 IdP로 인증**을 진행합니다.
@@ -73,7 +73,7 @@ AdditionalInfo에 대한 설명은 하단의 **Gamebase에서 지원 중인 IdP*
     * 오류 코드가 **TCGB_ERROR_SOCKET_ERROR(110)** 또는 **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증에 실패한 것이므로 **[TCGBGamebase loginWithType:viewController:completion:]**을 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 사용자
     * 오류 코드가 **TCGB_ERROR_BANNED_MEMBER(7)**인 경우, 이용 정지 게임 유저이므로 인증에 실패한 것입니다.
-    * **[TCGBGamebase banInfo]** 로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
+    * **[TCGBBanInfo banInfoFromError:error]** 로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
     * Gamebase 초기화 시 **[TCGBConfiguration enablePopup:YES]** 및 **[TCGBConfiguration enableBanPopup:YES]**를 호출한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외 오류
     * 오류가 발생했다는 것을 게임 유저에게 알리고, 게임 유저가 인증 IdP 유형을 선택할 수 있는 상태(주로 타이틀 화면 또는 로그인 화면)로 되돌아갑니다.
@@ -442,7 +442,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
         }
         else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
             NSLog(@"Already mapped to other member");
-            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketWithError:error];
+            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketFromError:error];
             [TCGBGamebase addMappingForciblyWithType:ticket.idPCode forcingMappingKey:ticket.forcingMappingKey viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
                 if ([TCGBGamebase isSuccessWithError:error]) {
                     // Mapping success.
@@ -507,7 +507,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
         }
         else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
             NSLog(@"Already mapped to other member");
-            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketWithError:error];
+            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketFromError:error];
             [TCGBGamebase addMappingWithCredential:credentialInfo forcingMappingKey:ticket.forcingMappingKey viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
                 if ([TCGBGamebase isSuccessWithError:error]) {
                     // Mapping success.
@@ -571,9 +571,6 @@ NSString* gamebaseAccessToken = [TCGBGamebase accessToken];
 
 // Obtaining Last Logged In Provider
 NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
-
-// Obtaining Ban Information
-TCGBBanInfo* banInfo = [TCGBGamebase banInfo];
 ```
 
 
@@ -597,7 +594,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 ### Get Banned User Information
 
 Gamebase Console에 제재된 게임 유저로 등록될 경우,
-로그인을 시도하면 아래와 같은 이용 제한 정보 코드가 표시될 수 있습니다. **[TCGBGamebase banInfo]** 메서드를 이용해 제재 정보를 확인할 수 있습니다.
+로그인을 시도하면 아래와 같은 이용 제한 정보 코드가 표시될 수 있습니다. **[TCGBBanInfo banInfoFromError:error]** 메서드를 이용해 제재 정보를 확인할 수 있습니다.
 
 * TCGB_ERROR_BANNED_MEMBER
 
@@ -697,6 +694,10 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 > `주의`
 > 이미 게스트 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
+> 만일 잘못된 id/password 를 연속해서 입력하면 **AUTH_TRANSFERACCOUNT_BLOCK(3042)** 에러가 발생하며 계정 이전이 일정 시간 차단됩니다.
+> 이 경우에는 아래의 예제와 같이 TCGBTransferAccountFailInfo 값을 통해 언제까지 계정 이전이 차단되는지 유저에게 알려줄 수 있습니다.
+
+
 
 **API**
 
@@ -709,10 +710,28 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 ```objectivec
  - (void)transferOtherDevice {
     [TCGBGamebase transferAccountWithIdPLoginWithAccountId:@"1Aie0198" accountPassword:@"1Aie0199" completion:^(TCGBAuthToken* authToken, TCGBError* error) {
-        NSLog(@"Transfered => %@,\nerror => %@", [authToken description], [error description]);
+       if (error.code == TCGB_ERROR_AUTH_TRANSFERACCOUNT_BLOCK) {
+            // Transfering Account failed.
+            TCGBTransferAccountFailInfo* failInfo = [TCGBTransferAccountFailInfo transferAccountFailInfoFrom:error];
+            if (failInfo == nil) {
+                // Transfering Account failed by entering the wrong id / pw multiple times.
+                // You can tell when the account transfer is blocked by the TransferAccountFailInfo.
+
+                NSString *failedId = failInfo.accountId;
+                NSInteger failCount = failInfo.failCount;
+                NSDate *blockedDate = [NSDate dateTimeIntervalSince1970:(failInfo.blockEndDate / 1000.0)];
+                return;
+            }
+            // Transfering Account failed by another reason.
+            return;  
+        }
+        // Transfering Account success.
+        // TODO: implements post login process
     }];
  }
 ```
+
+
 
 ## TemporaryWithdrawal
 

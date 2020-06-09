@@ -49,6 +49,29 @@ void Sample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNi
 }
 ```
 
+#### Setting for APNS Sandbox
+* SandboxMode를 켜면, APNS Sandbox로 Push를 발송하도록 등록할 수 있습니다.
+* 콘솔 발송 방법
+    * Push 메뉴의 **대상**에서 **iOS Sandbox**를 선택한 후 발송합니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+
+```cpp
+void SetSandboxMode(bool isSandbox);
+```
+
+**Example**
+
+```cpp
+void Sample::SetSandboxMode(bool isSandbox)
+{
+    IGamebase::Get().GetPush().SetSandboxMode(isSandbox);
+}
+```
+
 ### Request Push Settings
 
 사용자의 푸시 설정을 조회하기 위해, 다음 API를 이용합니다.
