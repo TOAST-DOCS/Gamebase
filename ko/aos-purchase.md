@@ -115,23 +115,35 @@ Gamebase.initialize(activity, configuration, callback);
 
 ### Purchase Item
 
-구매하고자 하는 아이템의 itemSeq를 이용해 다음의 API를 호출해 구매를 요청합니다. <br/>
-게임 유저가 구매를 취소하는 경우 **GamebaseError.PURCHASE_USER_CANCELED** 오류가 반환됩니다. 취소 처리를 해 주시기 바랍니다.
+구매하고자 하는 아이템의 gamebaseProductId 를 이용해 다음의 API를 호출해 구매를 요청합니다.<br/>
+gamebaseProductId 는 일반적으로는 스토어에 등록한 아이템의 id와 동일하지만, Gamebase 콘솔에서 변경할 수도 있습니다.
+payload 필드에 입력한 추가 정보는 결제 성공 후 **PurchasableReceipt.payload** 필드에 유지되므로 여러가지 용도로 활용할 수 있습니다.<br/>
+게임 유저가 구매를 취소하는 경우 **GamebaseError.PURCHASE_USER_CANCELED** 오류가 반환됩니다.
+취소 처리를 해 주시기 바랍니다.
 
 **API**
 
 ```java
-+ (void)Gamebase.Purchase.requestPurchase(Activity activity, long itemSeq, GamebaseDataCallback<PurchasableReceipt> callback);
++ (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
+                                          @NonNull final String gamebaseProductId,
+                                          @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
++ (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
+                                          @NonNull final String gamebaseProductId,
+                                          @NonNull final String payload,
+                                          @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
+// Legacy API
++ (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
+                                          final long itemSeq,
+                                          @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
 ```
 
 **Example**
 
 ```java
-long itemSeq; // The itemSeq value can be got through the requestItemListPurchasable API.
-
-Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<PurchasableReceipt>() {
+String userPayload = "{\"description\":\"This is example\",\"channelId\":\"delta\",\"characterId\":\"abc\"}";
+Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, userPayload, new GamebaseDataCallback<PurchasableReceipt>() {
     @Override
-    public void onCallback(PurchasableReceipt data, GamebaseException exception) {
+    public void onCallback(PurchasableReceipt receipt, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
             // Succeeded.
         } else if(exception.getCode() == GamebaseError.PURCHASE_USER_CANCELED) {
@@ -175,10 +187,14 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 
 * 아직 소비되지 않은 일회성 상품(CONSUMABLE)과 소비성 구독 상품(CONSUMABLE_AUTO_RENEWABLE) 정보를 조회합니다.
 * 미결제 내역이 있는 경우에는 게임 서버(아이템 서버)에 요청하여, 아이템을 배송(지급)하도록 처리해야 합니다.
-
-* 다음 두 가지 상황에서 호출해 주세요.
-    1. 결제 성공 후 아이템 소비(consume) 처리 전 최종 확인을 위하여 호출
-    2. 로그인 성공 후 소비(consume)하지 못한 아이템이 남아 있지는 않은지 확인하기 위하여 호출
+* 정상적으로 결제가 완료되지 못한 경우 재처리의 역할도 하므로 다음 상황에서 호출해 주세요.
+    * 게임 유저에게 지급되지 못한 아이템이 남아 있는지 확인
+    	* 로그인 완료 후
+    	* 게임 내 상점(또는 로비) 진입시
+    	* 유저 프로필 또는 우편함 확인시
+    * 재처리가 필요한 아이템이 있는지 확인
+    	* 결제 전
+    	* 결제 실패 후
 
 **API**
 
@@ -239,6 +255,12 @@ Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<L
 });
 ```
 
+### Event by Promotion
+
+프로모션 결제가 완료되었을때 GamebaseEventHandler 를 통해 이벤트를 받아 처리할 수 있습니다.
+GamebaseEventHandler 로 프로모션 결제 이벤트를 처리하는 방법은 아래 가이드를 확인하세요.
+[Game > Gamebase > Android SDK 사용 가이드 > ETC > Gamebase Event Handler](./aos-etc/#purchase-updated)
+
 ### Error Handling
 
 | Error                                    | Error Code | Description                              |
@@ -246,7 +268,8 @@ Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<L
 | PURCHASE_NOT_INITIALIZED                 | 4001       | Purchase 모듈이 초기화되지 않았습니다.<br>gamebase-adapter-purchase-IAP 모듈을 프로젝트에 추가했는지 확인해주세요. |
 | PURCHASE_USER_CANCELED                   | 4002       | 게임 유저가 아이템 구매를 취소하였습니다.                 |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 구매 로직이 아직 완료되지 않은 상태에서 API가 호출되었습니다.     |
-| PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 해당 스토어의 캐시가 부족하여 결제할 수 없습니다.             |
+| PURCHASE_INACTIVE_PRODUCT_ID             | 4005       | 해당 상품이 활성화 상태가 아닙니다.  |
+| PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | 존재하지 않는 GamebaseProductID 로 결제를 요청하였습니다. |
 | PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 GG(Google), ONESTORE 입니다. |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAP 라이브러리 오류입니다.<br>DetailCode를 확인하세요.   |
 | PURCHASE_UNKNOWN_ERROR                   | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
