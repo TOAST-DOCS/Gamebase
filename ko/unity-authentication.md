@@ -1256,6 +1256,7 @@ public void SampleWithdrawImmediately()
 |  | AUTH_USER_CANCELED | 3001 | 로그인이 취소되었습니다. |
 |  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
 |  | AUTH_NOT_EXIST_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
+|  | AUTH_EXTERNAL_LIBRARY_INITIALIZATION_ERROR | 3006 | 외부 인증 라이브러리 초기화에 실패하였습니다. |
 |  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
 |  | AUTH_ALREADY_IN_PROGRESS_ERROR | 3010 | 이전 인증 프로세스가 완료되지 않았습니다.
 | TransferAccount| SAME\_REQUESTOR                          | 8          | 발급한 TransferAccount를 동일한 단말기에서 사용했습니다. |

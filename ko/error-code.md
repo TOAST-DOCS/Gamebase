@@ -11,8 +11,6 @@
 |                 | Android, UNITY<br/>IOS | USER_PERMISSION<br/>TCGB\_ERROR\_USER\_PERMISSION | 5          | 권한이 없습니다.                                |
 |                 | Android, UNITY<br/>IOS | INVALID\_MEMBER<br/>TCGB\_ERROR\_INVALID\_MEMBER  | 6          | 잘못된 회원에 대한 요청입니다.                              |
 |                 | Android, UNITY<br/>IOS | BANNED\_MEMBER<br/>TCGB\_ERROR\_BANNED\_MEMBER   | 7         | 제재된 회원입니다.                                |
-|                 | Android, UNITY<br/>IOS | SAME\_REQUESTOR<br/>TCGB\_ERROR\_SAME\_REQUESTOR  | 8          | 발급한 TransferKey를 동일한 단말기에서 사용했습니다.  |
-|                 | Android, UNITY<br/>IOS | NOT\_GUEST\_OR\_HAS\_OTHERS<br/>TCGB\_ERROR\_NOT\_GUEST\_OR\_HAS\_OTHERS | 9          | 게스트가 아닌 계정에서 이전을 시도했거나 계정에 게스트 이외의 IDP가 연동되어 있습니다. |
 |                 | Android, UNITY<br/>IOS | NOT_SUPPORTED<br/>TCGB\_ERROR\_NOT\_SUPPORTED | 10         | 지원하지 않는 기능입니다.                           |
 |                 | UNITY<br/>IOS      | NOT\_SUPPORTED\_ANDROID<br/>TCGB\_ERROR\_NOT\_SUPPORTED\_ANDROID | 11         | Android에서 지원하지 않는 기능입니다.                 |
 |                 | UNITY<br/>IOS      | NOT\_SUPPORTED\_IOS<br/>TCGB\_ERROR\_NOT\_SUPPORTED\_IOS | 12         | iOS에서 지원하지 않는 기능입니다.                     |
@@ -34,10 +32,17 @@
 |                 | Android, UNITY<br/>IOS | AUTH\_NOT\_EXIST\_MEMBER<br/>TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER | 3003       | 존재하지 않거나 탈퇴한 회원입니다.                      |
 |                 | Android, UNITY<br/>IOS | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR<br/>TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006       | 외부 인증 라이브러리 초기화에 실패하였습니다.                       |
 |                 | Android, UNITY<br/>IOS | AUTH\_EXTERNAL\_LIBRARY\_ERROR<br/>TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 외부 인증 라이브러리 오류입니다.                       |
-|                 | Android, UNITY<br/>IOS | AUTH_ALREADY_IN_PROGRESS_ERROR<br/>TCGB_ERROR_AUTH_ALREADY_IN_PROGRESS_ERROR | 3010       | 이전 인증 프로세스가 완료되지 않았습니다.                 |
-|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERKEY\_EXPIRED<br/>TCGB\_ERROR\_AUTH\_TRANSFERKEY\_EXPIRED | 3031       | TransferKey의 유효기간이 만료됐습니다.  |
-|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERKEY\_CONSUMED<br/>TCGB\_ERROR\_AUTH\_TRANSFERKEY\_CONSUMED| 3032       | TransferKey가 이미 사용됐습니다. |
-|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERKEY\_NOT\_EXIST<br/>TCGB\_ERROR\_AUTH\_TRANSFERKEY\_NOT\_EXIST | 3033       | TransferKey가 유효하지 않습니다. |
+|                 | Android, UNITY<br/>IOS | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR<br/>TCGB\_ERROR\_AUTH\_ALREADY\_IN\_PROGRESS\_ERROR | 3010       | 이전 인증 프로세스가 완료되지 않았습니다.                 |
+| TransferAccount | Android, UNITY<br/>IOS | SAME\_REQUESTOR<br/>TCGB\_ERROR\_SAME\_REQUESTOR | 8 | 발급한 TransferAccount를 동일한 단말기에서 사용했습니다. |
+|                 | Android, UNITY<br/>IOS | NOT\_GUEST\_OR\_HAS\_OTHERS<br/>TCGB\_ERROR\_NOT\_GUEST\_OR\_HAS\_OTHERS | 9 | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IdP가 연동되어 있습니다. |
+|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_EXPIRED<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_EXPIRED | 3041 | TransferAccount의 유효기간이 만료됐습니다. |
+|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_BLOCK<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_BLOCK | 3042 | 잘못된 TransferAccount를 여러번 입력하여 계정 이전 기능이 잠겼습니다. |
+|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_INVALID\_ID<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_INVALID\_ID | 3043 | TransferAccount의 Id가 유효하지 않습니다. |
+|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_INVALID\_PASSWORD<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_INVALID\_PASSWORD | 3044 | TransferAccount의 Password가 유효하지 않습니다. |
+|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_CONSOLE\_NO\_CONDITION<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_CONSOLE\_NO\_CONDITION | 3045 | TransferAccount 설정이 되어있지 않습니다. <br/> TOAST Gamebase Console에서 먼저 설정해주세요. |
+|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_NOT\_EXIST<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_NOT\_EXIST | 3046 | TransferAccount가 존재하지 않습니다. TransferAccount를 먼저 발급받아주세요. |
+|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_ALREADY\_EXIST\_ID<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_ALREADY\_EXIST\_ID | 3047 | TransferAccount가 이미 존재합니다. |
+|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_ALREADY\_USED<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_ALREADY\_USED | 3048 | TransferAccount가 이미 사용되었습니다. |
 | Auth (Login)    | Android, UNITY<br/>IOS | AUTH\_TOKEN\_LOGIN\_FAILED<br/>TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED | 3101       | 토큰 로그인에 실패했습니다.                         |
 |                 | Android, UNITY<br/>IOS | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO<br/>TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | 토큰 정보가 유효하지 않습니다.                        |
 |                 | Android, UNITY<br/>IOS | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP<br/>TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 최근에 로그인한 IdP 정보가 없습니다.                   |
@@ -47,18 +52,27 @@
 |                 | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | 이미 다른 멤버에 매핑되어 있습니다.                      |
 |                 | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | 이미 같은 IdP에 매핑되어 있습니다.                     |
 |                 | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO | 3304       | IdP 정보가 유효하지 않습니다(Console에 해당 IdP 정보가 없습니다). |
-|                 | Android, UNITY<br/>IOS | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP<br/>TCGB_ERROR_AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP | 3305       | 게스트 IDP로는 AddMapping이 불가능합니다. |
+|                 | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_CANNOT\_ADD\_GUEST\_IDP<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_CANNOT\_ADD\_GUEST\_IDP | 3305       | 게스트 IDP로는 AddMapping이 불가능합니다. |
+| Add Mapping Forcibly | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_FORCIBLY\_NOT\_EXIST\_KEY<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FORCIBLY\_NOT\_EXIST\_KEY | 3311       | 강제매핑키(ForcingMappingKey)가 존재하지 않습니다. <br/>ForcingMappingTicket을 다시 한번 확인해주세요. |
+|                      | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_FORCIBLY\_ALREADY\_USED\_KEY<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FORCIBLY\_ALREADY\_USED\_KEY | 3312       | 강제매핑키(ForcingMappingKey)가 이미 사용되었습니다. |
+|                      | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_FORCIBLY\_EXPIRED\_KEY<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FORCIBLY\_EXPIRED\_KEY | 3313       | 강제매핑키(ForcingMappingKey)의 유효기간이 만료되었습니다. |
+|                      | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_FORCIBLY\_DIFFERENT\_IDP<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FORCIBLY\_DIFFERENT\_IDP | 3314       | 강제매핑키(ForcingMappingKey)가 다른 IdP에 사용되었습니다. <br/>발급받은 ForcingMappingKey는 같은 IdP에 강제 매핑을 시도 하는데 사용됩니다. |
+|                      | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_FORCIBLY\_DIFFERENT\_AUTHKEY<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FORCIBLY\_DIFFERENT\_AUTHKEY | 3315       | 강제매핑키(ForcingMappingKey)가 다른 계정에 사용되었습니다. <br/>발급받은 ForcingMappingKey는 같은 IdP 및 계정에 강제 매핑을 시도 하는데 사용됩니다. |
 | Remove Mapping  | Android, UNITY<br/>IOS | AUTH\_REMOVE\_MAPPING\_FAILED<br/>TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_FAILED | 3401       | 매핑 삭제에 실패했습니다.                          |
 |                 | Android, UNITY<br/>IOS | AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP<br/>TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | 마지막에 매핑된 IdP는 삭제할 수 없습니다.                |
 |                 | Android, UNITY<br/>IOS | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP<br/>TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403       | 현재 로그인되어 있는 IdP입니다.                      |
 | Logout          | Android, UNITY<br/>IOS | AUTH\_LOGOUT\_FAILED<br/>TCGB\_ERROR\_AUTH\_LOGOUT\_FAILED | 3501       | 로그아웃에 실패했습니다.                           |
 | Withdrawal      | Android, UNITY<br/>IOS | AUTH\_WITHDRAW\_FAILED<br/>TCGB\_ERROR\_AUTH\_WITHDRAW\_FAILED | 3601       | 탈퇴에 실패했습니다.                             |
+|                 | Android, UNITY<br/>IOS | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW<br/>TCGB\_ERROR\_AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 이미 임시 탈퇴중인 유저 입니다.                    |
+|                 | Android, UNITY<br/>IOS | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW<br/>TCGB\_ERROR\_AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 임시 탈퇴중인 유저가 아닙니다.                     |
 | Not Playable    | Android, UNITY<br/>IOS | AUTH\_NOT\_PLAYABLE<br/>TCGB\_ERROR\_AUTH\_NOT\_PLAYABLE | 3701       | 플레이할 수 없는 상태입니다(점검 또는 서비스 종료 등).        |
 | Auth(Unknown)   | Android, UNITY<br/>IOS | AUTH\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_AUTH\_UNKNOWN\_ERROR | 3999       | 알 수 없는 오류입니다(정의되지 않은 오류).           |
 | Purchase        | Android, UNITY<br/>IOS | PURCHASE\_NOT\_INITIALIZED<br/>TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED | 4001       | Gamebase PurchaseAdapter가 초기화되지 않았습니다.   |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_USER\_CANCELED<br/>TCGB\_ERROR\_PURCHASE\_USER\_CANCELED | 4002       | 구매가 취소되었습니다.                             |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING<br/>TCGB\_ERROR\_PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003       | 이전 구매가 완료되지 않았습니다.                       |
-|                 | Android, UNITY<br/>IOS | PURCHASE\_NOT\_ENOUGH\_CASH<br/>TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH | 4004       | 해당 스토어의 캐시가 부족하여 결제할 수 없습니다.             |
+|                 | UNITY                  | PURCHASE\_NOT\_ENOUGH\_CASH                                        | 4004       | 해당 스토어의 캐시가 부족하여 결제할 수 없습니다.(Unity Only) |
+|                 | Android, UNITY<br/>IOS | PURCHASE\_INACTIVE\_PRODUCT\_ID<br/>TCGB\_ERROR\_PURCHASE\_INACTIVE\_PRODUCT\_ID | 4005       | 해당 상품이 활성화 상태가 아닙니다.  |
+|                 | Android, UNITY<br/>IOS | PURCHASE\_NOT\_EXIST\_PRODUCT\_ID<br/>TCGB\_ERROR\_PURCHASE\_NOT\_EXIST\_PRODUCT\_ID | 4006       | 존재하지 않는 GamebaseProductID 로 결제를 요청하였습니다. |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_NOT\_SUPPORTED\_MARKET<br/>TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010       | 지원하지 않는 스토어입니다.                          |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_EXTERNAL\_LIBRARY\_ERROR<br/>TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201       | 외부 IAP 라이브러리 오류입니다.                      |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR | 4999       | 알 수 없는 구매 오류입니다.                           |

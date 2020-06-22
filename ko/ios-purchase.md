@@ -15,9 +15,12 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 #### Gamebase Console 등록
 다음은 Gamebase Console에서 설정해야 하는 내용입니다.
 
-1. **Gamebase > Purchase(IAP) > 앱**에서 이용할 스토어를 등록합니다.
+1. **Gamebase > Purchase(IAP) > 스토어**에서 이용할 스토어를 등록합니다.
     * 스토어: **App Store**를 선택합니다.
-2. **Gamebase > Purchase(IAP) > 아이템**에서 아이템을 등록합니다.
+2. **Gamebase > Purchase(IAP) > 상품**에서 아이템을 등록합니다.
+    * 상품 ID: 결제 요청 시 사용할 상품 ID를 입력합니다.
+    * 상품 이름: 결제 시 표시할 상품 이름을 입력합니다.
+    * 사용 여부: 아이템의 사용여부를 결정합니다.
     * 스토어: **App Store**를 선택합니다.
     * 스토어 아이템 ID: iTunes-Connect에 등록한 Product ID를 입력합니다.
 3. 아이템을 설정했다면, **저장**을 누릅니다.
@@ -71,11 +74,29 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 
 ### Purchase Item
 
-구매하고자 하는 아이템의 itemSeq를 이용해 다음의 API를 호출하여 구매를 요청합니다.
+구매하고자 하는 아이템의 gamebaseProductId를 이용해 다음의 API를 호출해 구매를 요청합니다. <br/>
+gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID와 동일하지만, Gamebase 콘솔에서도 변경할 수도 있습니다. payload 필드에 입력한 추가 정보는 결제 성공 후 **TCGBPurchasableReceipt.payload** 필드에 유지되므로 여러가지 용도로 활용할 수 있습니다. <br/>
+게임 유저가 구매를 취소하는 경우 **TCGB_ERROR_PURCHASE_USER_CANCELED** 오류가 반환됩니다. 취소 처리를 해 주시기 바랍니다.
+
+**API**
 
 ```objectivec
-- (void)purchasingItem:(long)itemSeq {
-    [TCGBPurchase requestPurchaseWithItemSeq:itemSeq viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
++ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId viewController:(UIViewController *)viewController completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
+
++ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId payload:(NSString *)payload viewController:(UIViewController *)viewController completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
+
+// Legacy API
++ (void)requestPurchaseWithItemSeq:(long)itemSeq viewController:(UIViewController *)viewController completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
+```
+
+**Example**
+
+```objectivec
+
+- (void)purchasingItem:(NSString *)gamebaseProductId {
+    NSString *userPayload = @"USER_PAYLOAD";
+
+    [TCGBPurchase requestPurchaseWithGamebaseProductId:gamebaseProductId viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Purchase Item Succeeded
         } else if (error.code == TCGB_ERROR_PURCHASE_USER_CANCELED) {
@@ -117,10 +138,14 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 아이템을 구매했지만, 정상적으로 아이템이 소비(배송, 지급)되지 않은 미소비 결제 내역을 요청합니다.<br/>
 미결제 내역이 있는 경우에는 게임 서버(아이템 서버)에 요청하여, 아이템을 배송(지급)하도록 처리해야 합니다..
 
-* 다음 두 가지 상황에서 호출해 주세요.
-    1. 결제 성공 후 아이템 소비(consume) 처리 전 최종 확인을 위하여 호출
-    2. 로그인 성공 후 소비(consume)하지 못한 아이템이 남아 있지는 않은지 확인하기 위하여 호출
-
+* 정상적으로 결제가 완료되지 못한 경우 재처리의 역할도 하므로 다음 상황에서 호출해 주세요.
+    * 게임 유저에게 지급되지 못한 아이템이 남아 있는지 확인
+        * 로그인 완료 후
+        * 게임 내 상점(또는 로비) 진입 시
+        * 유저 프로필 또는 우편함 확인 시
+    * 재처리가 필요한 아이템이 있는지 확인
+        * 결제 전
+        * 결제 실패 후
 
 ```objectivec
 - (void)viewDidLoad {
@@ -177,7 +202,7 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 }
 ```
 
-### App Store Promotion IAP
+### Event by Promotion
 
 > `주의`
 > iOS 11 이상에서만 사용할 수 있습니다.
@@ -242,6 +267,11 @@ App Store 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니
 
 예제) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 
+#### Process Promotion Event with GamebaseEventHandler
+
+프로모션 결제 이벤트는 GamebaseEventHandler 를 통해서도 처리할 수 있습니다.
+GamebaseEventHandler 로 프로모션 결제 이벤트를 처리하는 방법은 아래 가이드를 확인하세요.
+[Game > Gamebase > iOS SDK 사용 가이드 > ETC > Gamebase Event Handler](./ios-etc/#purchase-updated)
 
 ### Error Handling
 
@@ -252,6 +282,8 @@ App Store 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니
 | TCGB\_ERROR\_PURCHASE\_USER\_CANCELED    | 4002       | 구매가 취소되었습니다.                             |
 | TCGB\_ERROR\_PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003       | 이전 구매가 완료되지 않았습니다.                       |
 | TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH | 4004       | 해당 스토어의 캐쉬가 부족하여 결제할 수 없습니다.             |
+| TCGB\_ERROR\_PURCHASE\_INACTIVE\_PRODUCT\_ID | 4005       | 해당 상품이 활성화 상태가 아닙니다.             |
+| TCGB\_ERROR\_PURCHASE\_NOT\_EXIST\_PRODUCT\_ID | 4006       | 존재하지 않은 GamebaseProductID로 결제를 요청하였습니다.             |
 | TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010       | 지원하지 않는 스토어입니다. iOS의 지원가능한 스토어는 "AS" 입니다. |
 | TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201       | IAP 라이브러리 에러입니다.<br>error.message 를 확인하세요. |
 | TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR    | 4999       | 정의되지 않은 구매 에러입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
