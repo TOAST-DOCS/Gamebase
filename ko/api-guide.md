@@ -1,15 +1,7 @@
-## Game > Gamebase > API v1.2 가이드
+## Game > Gamebase > API v1.3 가이드
 
 ## 변경 사항
-- IAP(in app purchase) API가 변경되었습니다.
-- Get Simple Launching API 호출 시 필수 파라미터로 storeCode가 추가되었습니다.
-- Check Maintenance API 응답 결과에 점검 대상에 대한 storeCode 정보가 추가되었습니다.
-- GUEST 계정의 단말기 이전에 사용되는 TransferAccount에 대해, 사전에 발급된 TransferAccount를 검증할 수 있는 Validate TransferAccount API가 추가되었습니다.
-- API 응답 결과의 date 타입이 Epoch time에서 ISO 8601 형식(yyyy-MM-dd'T'HH:mm:ssXXX)으로 변경되었습니다. Token Authentication, Get Member, Get Members API 응답 결과의 regDate, lastLoginDate 항목
-- 쿠폰 소진 API가 추가되었습니다.
-- 사용자 탈퇴 API가 추가 되었습니다.
-- Purchase(IAP)의 구매 가격(price) 데이터 타입이 가이드상에서 Long 으로 잘못 표기된 것을 Float 타입으로 변경하였습니다.
-- 탈퇴 유예 기능 추가에 따라 Token Authentication, Get Member API 응답 결과에 탈퇴 유예 상태인 사용자에 대한 정보가 추가 되었습니다.
+- IAP(In App Purchase) API의 요청 파라미터 및 응답 결과에 새로운 항목이 추가 및 삭제 되었습니다.
 
 ## Advance Notice
 
@@ -25,6 +17,7 @@ API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주�
 #### AppId
 
 앱 ID는 TOAST 프로젝트 ID로 앱 메뉴 화면에서 확인할 수 있습니다.
+
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
 #### SecretKey
@@ -100,7 +93,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}/tokens/{accessToken}?linkedIdP=false |
+| GET | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}/tokens/{accessToken}?linkedIdP=false |
 
 **[Request Header]**
 
@@ -197,7 +190,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-launching/v1.2/apps/{appId}/launching/simple |
+| GET | /tcgb-launching/v1.3/apps/{appId}/launching/simple |
 
 **[Request Header]**
 
@@ -330,7 +323,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-member/v1.2/apps/{appId}/members/{userId} |
+| GET | /tcgb-member/v1.3/apps/{appId}/members/{userId} |
 
 
 **[Request Header]**
@@ -436,7 +429,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-member/v1.2/apps/{appId}/members |
+| POST | /tcgb-member/v1.3/apps/{appId}/members |
 
 **[Request Header]**
 
@@ -497,7 +490,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Method | Type | URI |
 | --- | --- | --- |
-| POST | String | /tcgb-member/v1.2/apps/{appId}/auth/authKeys |
+| POST | String | /tcgb-member/v1.3/apps/{appId}/auth/authKeys |
 
 **[Request Header]**
 
@@ -559,7 +552,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-member/v1.2/apps/{appId}/members/userIds/authKeys?authSystem={authSystem} |
+| POST | /tcgb-member/v1.3/apps/{appId}/members/userIds/authKeys?authSystem={authSystem} |
 
 
 **[Request Header]**
@@ -618,7 +611,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-member/v1.2/apps/{appId}/members/bans |
+| GET | /tcgb-member/v1.3/apps/{appId}/members/bans |
 
 
 **[Request Header]**
@@ -726,7 +719,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-member/v1.2/apps/{appId}/members/bans/release |
+| GET | /tcgb-member/v1.3/apps/{appId}/members/bans/release |
 
 
 **[Request Header]**
@@ -834,7 +827,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-gateway/v1.2/apps/{appId}/members/transfer-account |
+| POST | /tcgb-gateway/v1.3/apps/{appId}/members/transfer-account |
 
 
 **[Request Header]**
@@ -912,7 +905,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Method | URI |
 | --- | --- |
-| DELETE | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}?regUser={regUser} |
+| DELETE | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}?regUser={regUser} |
 
 **[Request Header]**
 
@@ -964,7 +957,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-launching/v1.2/apps/{appId}/maintenances/under-maintenance |
+| GET | /tcgb-launching/v1.3/apps/{appId}/maintenances/under-maintenance |
 
 **[Request Header]**
 
@@ -1036,7 +1029,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}/coupons/{couponCode} |
+| POST | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}/coupons/{couponCode} |
 
 **[Request Header]**
 
@@ -1102,7 +1095,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 유저에게 아이템을 지급하기 전에 결제를 소비할 것을 알려야 합니다. 결제 1건당 1번만 결제를 소비할 수 있으며, 결제 상태가 정상이 아니면 소비되지 않습니다.
 (결재 소비가 완료되었다면 유저의 결제 및 아이템 지급이 정상적으로 완료되었다고 판단)
 
-소비(consume)하지 않은 결제 내역은 SDK 및 서버의 미소비 결제 내역 조회 API를 통해 조회할 수 있습니다. 참고로 아이템 등록 시 상품 유형이 일회성(CONSUMABLE)인 아이템 결제에 대해서만 소비(consume) 처리됩니다.
+소비(consume)하지 않은 결제 내역은 SDK 및 서버의 미소비 결제 내역 조회 API를 통해 조회할 수 있습니다. 참고로 상품 등록 시 상품 유형이 일회성(CONSUMABLE)인 아이템 결제에 대해서만 소비(consume) 처리됩니다.
 
 > [참고]
 > 결제 1건당 1번 소비 가능하며, 결제 소비를 하지 않은 결제는 IAP에서 아이템을 지급하지 않은 것으로 간주합니다.
@@ -1111,7 +1104,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-inapp/v1.2/apps/{appId}/consume |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/consume |
 
 **[Request Header]**
 
@@ -1155,9 +1148,12 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
         "resultMessage": "SUCCESS"
     },
     "result":{
-        "price": 1500,
+        "price": 1500.0,
         "currency": "KRW",
-        "productSeq": 12345
+        "productSeq": 1000292,
+        "marketId" : "GG",
+        "gamebaseProductId" : "tap_prod_001",
+        "payload" : "additional info"
     }
 }
 ```
@@ -1166,8 +1162,17 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 | --- | --- | --- |
 | result | Object | 결제 기본 정보 |
 | result.price | Float | 결제 가격 |
-| result.currency  | String  | 결제 통화  |
-| result.productSeq | Long | 결제 아이템 번호(콘솔에 등록된 아이템 고유 번호) |
+| result.currency | String  | 결제 통화  |
+| result.productSeq | Long | 아이템 번호<br>콘솔에서 상품 등록 시, 외부 스토어 아이템에 대해 자동 생성된 값 |
+| result.marketId | String | 스토어 코드<br>GG: Google, AS: Apple, ONESTORE: 원스토어 |
+| result.gamebaseProductId | String | Gamebase 상품 아이디<br>콘솔에서 상품 등록 시, 사용자 입력 값 |
+| result.payload | String | SDK에서 설정한 추가 정보 |
+
+> [참고]
+> 클라이언트에서 사용하는 SDK 버전 및 결제 API에 따라 응답 결과에 gamebaseProductId 값이 존재합니다.
+
+> [참고]
+> 게임 서버에서는 아이템 번호 또는 스토어 코드와 Gamebase 상품 아이디로 지정한 상품(아이템)을 지급할 수 있지만, 1개의 스토어 아이템 아이디에 N개의 Gamebase 상품을 등록한 경우 스토어 코드와 Gamebase 상품 아이디로 지급해야 합니다.
 
 **[Error Code]**
 
@@ -1181,7 +1186,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-inapp/v1.2/apps/{appId}/consumable |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/consumable |
 
 **[Request Header]**
 
@@ -1202,16 +1207,14 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 ```json
 {
   "marketId": "GG",
-  "userChannel" : "GF",
-  "userKey" : "QXG774PMRZMWR3BR"
+  "userId" : "QXG774PMRZMWR3BR"
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | marketId | String | mandatory | 스토어 코드<br>GG: Google, AS: Apple, ONESTORE: 원스토어 |
-| userChannel | String | mandatory  | 유저 채널<br>현재는 미구현 상태로 항상 `GF`값을 설정  |
-| userKey | String | mandatory  | 유저 ID  |
+| userId | String | mandatory | 유저 ID  |
 
 **[Response Body]**
 
@@ -1224,19 +1227,26 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
     },
     "result":[
         {
-            "paymentSeq": "2016122110023124",
-            "productSeq": 1000292,
+            "paymentSeq": "2020060210364966",
+            "productSeq": 1000312,
             "currency": "KRW",
-            "price": 1000,
-            "accessToken": "oJgM1EfDRjnQY7yqhWCUVgAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
+            "price": 2500.0,
+            "marketId": "AS",
+            "accessToken": "ja5SBJBfr7rYUdjFr6dRe7gKnkX0r7EKPvuK6CIUBBekc1rE9CVbMKVCNuw6ZtwmcpDRXrToR9l26NF9zub6ol",
+            "gamebaseProductId": "gamebase_prod_001",
+            "purchaseTime": "2020-06-02T13:38:56+09:00",
+            "payload": "additional info"
         },
 
         {
             "paymentSeq": "2016122110023125",
             "productSeq": 1000292,
             "currency": "KRW",
-            "price": 1000,
-            "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
+            "price": 1000.0,
+            "marketId" : "AS",
+            "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ",
+            "gamebaseProductId": "gamebase_prod_002",
+            "purchaseTime": "2020-06-02T13:37:42+09:00"
         }
     ]
 }
@@ -1245,11 +1255,15 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Array[Object] | 결제 기본 정보 |
-| result[].paymentSeq | String  |  결제 번호 |
-| result[].productSeq | Long | 결제 아이템 번호(콘솔에 등록된 아이템 고유 번호) |
-| result[].currency  | String  | 결제 통화  |
+| result[].paymentSeq | String |  결제 번호 |
+| result[].productSeq | Long | 아이템 번호<br>콘솔에서 상품 등록 시, 외부 스토어 아이템에 대해 자동 생성된 값 |
+| result[].currency  | String | 결제 통화  |
 | result[].price | Float | 결제 가격 |
 | result[].accessToken | String | 결제 인증 토큰 |
+| result[].marketId | String | 스토어 코드 |
+| result[].gamebaseProductId | String | Gamebase 상품 아이디<br>콘솔에서 상품 등록 시, 사용자 입력 값 |
+| result[].purchaseTime | String | 결제 발생 일시 |
+| result[].payload | String | SDK에서 설정한 추가 정보 |
 
 **[Error Code]**
 
@@ -1263,7 +1277,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-inapp/v1.2/apps/{appId}/active-subscriptions |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/active-subscriptions |
 
 **[Request Header]**
 
@@ -1285,8 +1299,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 {
   "marketId": "GG",
   "packageName" : "com.toast.gamebase",
-  "userChannel" : "GF",
-  "userKey" : "QXG774PMRZMWR3BR"
+  "userId" : "QXG774PMRZMWR3BR"
 }
 ```
 
@@ -1294,54 +1307,55 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 | --- | --- | --- | --- |
 | marketId | String | mandatory | 스토어 코드<br>GG: Google, AS: Apple, ONESTORE: 원스토어 |
 | packageName | String | mandatory | 콘솔에 등록한 앱의 packageName |
-| userChannel | String | mandatory  | 유저 채널<br>현재는 미구현 상태로 항상 `GF`값을 설정  |
-| userKey | String | mandatory  | 유저 ID  |
+| userId | String | mandatory | 유저 ID  |
 
 **[Response Body]**
 
 ```json
 {
-  "header": {
-    "isSuccessful": true,
-    "resultCode": 0,
-    "resultMessage": "SUCCESS"
-  },
-  "result": [
-    {
-      "channel": "GF",
-      "userId": "string",
-      "paymentSeq": "2018102610330423",
-      "appId": "com.toast.gamebase",
-      "productId": "subs_p1w",
-      "productType": "AUTO_RENEWABLE",
-      "productSeq": 1002904,
-      "currency": "KRW",
-      "price": 1000,
-      "paymentId": "GPA.3375-2193-1175-57698",
-      "originalPaymentId": "GPA.3375-2193-1175-57698",
-      "purchaseTimeMillis": 1540522998289,
-      "expiryTimeMillis": 1541134994548
-    }
-  ]
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "result": [
+        {
+            "marketId": "GG",
+            "userId": "QXG774PMRZMWR3BR",
+            "paymentSeq": "2020052810364755",
+            "accessToken": "NczL3n4TumMF8n9oRR5l8zXDyMXRVjxSRks0Lk1Saob2A9rdAupqjZSrQ0-hb2GOSFwTx5uDDchH8EB-EkWGGQ",
+            "productSeq": 1001221,
+            "productId": "money_100",
+            "productType": "AUTO_RENEWABLE",
+            "paymentId": "GPA.3302-8679-7228-41195",
+            "price": 1000,
+            "currency": "KRW",
+            "gamebaseProductId": "gamebase_renewal_001",
+            "payload" : "additional info",
+            "purchaseTime": "2020-06-02T13:38:56+09:00",
+            "expiryTime": "2020-06-02T13:48:56+09:00"
+        }
+    ]
 }
 ```
 
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Array[Object] | 결제 기본 정보 |
-| result[].channel  | String  | 유저 채널  |
-| result[].userId  | String  | 유저 ID  |
-| result[].paymentSeq | String  |  결제 번호 |
-| result[].appId | String  |  패키지 이름 |
-| result[].productId | String  |  스토어에 등록된 상품(아이템) 식별자 |
-| result[].productType | String  |  상품(아이템) 타입<br>구독: AUTO_RENEWABLE |
-| result[].productSeq | Long | 결제 아이템 번호(콘솔에 등록된 아이템 고유 번호) |
-| result[].currency  | String  | 결제 통화  |
+| result[].marketId  | String  | 스토어 코드  |
+| result[].userId | String  | 유저 ID  |
+| result[].paymentSeq | String  | 결제 번호 |
+| result[].accessToken | String | 결제 인증 토큰 |
+| result[].productSeq | Long | 아이템 번호<br>콘솔에서 상품 등록 시, 외부 스토어 아이템에 대해 자동 생성된 값 |
+| result[].productId | String | 스토어에 등록된 상품(아이템) 식별자 |
+| result[].productType | String  | 상품(아이템) 타입<br>구독: AUTO_RENEWABLE |
+| result[].currency  | String  | 결제 통화 |
 | result[].price | Float | 결제 가격 |
 | result[].paymentId | String | 최근 갱신된 스토어 결제 번호 |
-| result[].originalPaymentId | String | 최초 스토어 결제 번호 |
-| result[].purchaseTimeMillis | Long | 최근 갱신된 시간 |
-| result[].expiryTimeMillis | Long | 구독 만료 시간 |
+| result[].gamebaseProductId | String | Gamebase 상품 아이디<br>콘솔에서 상품 등록 시, 사용자 입력 값 |
+| result[].payload | String | SDK에서 설정한 추가 정보 |
+| result[].purchaseTime | String | 최근 갱신된 시간 |
+| result[].expiryTime | String | 구독 만료 시간 |
 
 
 **[Error Code]**
@@ -1358,15 +1372,15 @@ Gamebase는 TOAST Leaderboard 서비스의 서버 API에 대해 **Wrapping** 기
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
-| Factor에 등록된 사용자 수 조회 | GET | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
-| 단일 사용자 점수/순위 조회 | GET | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
-| 다수 사용자 점수/순위 조회 | POST | /tcgb-leaderboard/v1.2/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
-| 일정 범위의 전체 점수/순위 조회 | GET | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
-| 단일 사용자 점수 등록 | POST | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
-| 단일 사용자 점수/ExtraData 등록 | POST | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
-| 다수 사용자 점수 등록 | POST | /tcgb-leaderboard/v1.2/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
-| 다수 사용자 점수/ExtraData 등록 | POST | /tcgb-leaderboard/v1.2/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
-| 단일 사용자 Leaderboard정보 삭제 | DELETE | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| Factor에 등록된 사용자 수 조회 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
+| 단일 사용자 점수/순위 조회 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
+| 다수 사용자 점수/순위 조회 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
+| 일정 범위의 전체 점수/순위 조회 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
+| 단일 사용자 점수 등록 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
+| 단일 사용자 점수/ExtraData 등록 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
+| 다수 사용자 점수 등록 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
+| 다수 사용자 점수/ExtraData 등록 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
+| 단일 사용자 Leaderboard정보 삭제 | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
 
 
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
@@ -1381,7 +1395,7 @@ Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 X-Secret-Key: IgsaAP
 
-GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/user-count
+GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
 ```
 
 <br>
@@ -1397,7 +1411,7 @@ API 호출 실패 원인에 대한 문의 사항이 있을 경우, **API 호출 
 ##### API 호출 예시
 
 ```
-GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.2/apps/C3JmSctU/maintenances/under-maintenance
+GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance
 ```
 
 ##### API 실패 응답 결과
@@ -1411,7 +1425,7 @@ GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.2/apps/C3JmSctU/maint
     "traceError": {
       "trackingTime": 1489726350287,
       "throwPoint": "gateway",
-      "uri": "/tcgb-launching/v1.2/apps/C3JmSctU/maintenances/under-maintenance"
+      "uri": "/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance"
     },
     "isSuccessful": false
   }

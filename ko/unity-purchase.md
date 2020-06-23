@@ -62,6 +62,8 @@ Supported Platforms
 
 ```cs
 static void RequestPurchase(long itemSeq, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
+static void RequestPurchase(string gamebaseProductId, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
+static void RequestPurchase(string gamebaseProductId, string payload, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
 ```
 
 **Example**
@@ -87,6 +89,54 @@ public void RequestPurchase(long itemSeq)
         }
     });
 }
+
+public void RequestPurchase(string gamebaseProductId)
+{
+    Gamebase.Purchase.RequestPurchase(gamebaseProductId, (purchasableReceipt, error) =>
+    {
+        if (Gamebase.IsSuccess(error))
+        {
+            Debug.Log("Purchase succeeded.");
+        }
+        else
+        {
+        	if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
+            {
+                Debug.Log("User canceled purchase.");
+            }
+            else
+            {
+            	Debug.Log(string.Format("Purchase failed. error is {0}", error));
+            }
+        }
+    });
+}
+
+
+public void RequestPurchase(string gamebaseProductId)
+{
+    string userPayload = "{\"description\":\"This is example\",\"channelId\":\"delta\",\"characterId\":\"abc\"}";
+    Gamebase.Purchase.RequestPurchase(gamebaseProductId, userPayload, (purchasableReceipt, error) =>
+    {
+        if (Gamebase.IsSuccess(error))
+        {
+            Debug.Log("Purchase succeeded.");
+            // userPayload value entered when calling API
+            string payload = purchasableReceipt.payload
+        }
+        else
+        {
+        	if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
+            {
+                Debug.Log("User canceled purchase.");
+            }
+            else
+            {
+            	Debug.Log(string.Format("Purchase failed. error is {0}", error));
+            }
+        }
+    });
+}  
 ```
 
 ### List Purchasable Items
@@ -128,6 +178,14 @@ public void RequestItemListPurchasable()
 
 아이템을 구매했지만, 정상적으로 아이템이 소비(배송, 지급)되지 않은 미소비 결제 내역을 요청합니다.
 미결제 내역이 있는 경우에는 게임 서버(아이템 서버)에 요청하여, 아이템을 배송(지급)하도록 처리해야 합니다.
+정상적으로 결제가 완료되지 못한 경우 재처리의 역할도 하므로 다음 상황에서 호출해 주세요.
+* 게임 유저에게 지급되지 못한 아이템이 남아 있는지 확인
+    * 로그인 완료 후
+    * 게임 내 상점(또는 로비) 진입시
+    * 유저 프로필 또는 우편함 확인시
+* 재처리가 필요한 아이템이 있는지 확인
+    * 결제 전
+    * 결제 실패 후
 
 **API**
 
@@ -215,6 +273,21 @@ public void RequestActivatedPurchasesSample()
 }
 ```
 
+### Event by Promotion
+
+프로모션 결제가 완료되었을때 GamebaseEventHandler 를 통해 이벤트를 받아 처리할 수 있습니다.
+GamebaseEventHandler 로 프로모션 결제 이벤트를 처리하는 방법은 아래 가이드를 확인하세요.
+[Game > Gamebase > Unity SDK 사용 가이드 > ETC > Gamebase Event Handler](./unity-etc/#purchase-updated)
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+> <font color="red">[주의]</font><br/>
+>
+> iOS 프로모션 결제를 위해서는 반드시 아래 가이드를 따라 설정하세요.
+> [Game > Gamebase > iOS SDK 사용 가이드 > 결제 > Event by Promotion](./ios-purchase/#event-by-promotion)
+
 ### Error Handling
 
 | Error                                    | Error Code | Description                              |
@@ -223,6 +296,8 @@ public void RequestActivatedPurchasesSample()
 | PURCHASE_USER_CANCELED                   | 4002       | 게임 유저가 아이템 구매를 취소하였습니다.                  |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003 | 구매 로직이 아직 완료되지 않은 상태에서 API가 호출되었습니다. |
 | PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 해당 스토어의 캐시가 부족해 결제할 수 없습니다.              |
+| PURCHASE_INACTIVE_PRODUCT_ID             | 4005       | 해당 상품이 활성화 상태가 아닙니다.  |
+| PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | 존재하지 않는 GamebaseProductID 로 결제를 요청하였습니다. |
 | PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 GG(Google), ONESTORE 입니다. |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAP 라이브러리 오류입니다.<br>DetailCode를 확인하세요.   |
 | PURCHASE_UNKNOWN_ERROR                   | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
