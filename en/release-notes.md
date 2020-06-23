@@ -1,5 +1,15 @@
 ## Game > Gamebase > Release Notes
 
+### June 23, 2020
+
+#### More Features
+* [SDK] 2.11.0
+	* 결제 API 추가: 추가 정보(UserPayload) 입력해 결제 완료시 확인할 수 있음
+
+#### Feature Updates 
+* [Console] 
+	* 구매(IAP) > 상품: 스토어 아이템 ID에 여러 개의 게임베이스 상품을 등록하여 관리할 수 있도록 개선
+
 ### June 9, 2020
 
 #### Feature Updates 
