@@ -1,22 +1,22 @@
-## Game > Gamebase > Unreal SDK 사용 가이드 > 푸시
+## Game > Gamebase > Unreal SDK使用ガイド > プッシュ
 
-여기에서는 플랫폼별로 푸시 알림을 사용하기 위해 필요한 설정 방법을 알아보겠습니다.
+ここでは各プラットフォームでプッシュ通知を使用するのに必要な設定方法を説明します。
 
 ### Settings
 
-Android나 iOS에서 푸시를 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
+AndroidやiOSでプッシュを設定する方法は、次の文書を参照してください。<br/>
 
 * [Android Push Settings](aos-push#settings)
-    * Firebase 푸시를 사용한다면 아래 가이드를 참고 바랍니다.
-        * 해당 가이드에서 Unity 빌드인 경우는 Unreal의 경우도 동일하게 설정이 필요합니다.
-            * Android 빌드 시 res/values/google-services-json.xml 파일이 포함되어야 하므로 가이드를 참고하여 작성합니다.
-            * Plugins/Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xml 경로에 파일이 있습니다.
+    * Firebaseプッシュを使用する時は、下記のガイドを参照してください。
+        * 該当ガイドでUnityビルドの場合はUnrealの場合も同じように設定する必要があります。
+            * Androidビルド時、res/values/google-services-json.xmlファイルが含まれている必要があるため、ガイドを参照して作成します。
+            * Plugins/Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xmlパスにファイルがあります。
 * [iOS Push Settings](ios-push#settings)
 
 ### Register Push
 
-다음 API를 호출하여, TOAST Push에 해당 사용자를 등록합니다.
-푸시 동의 여부(enablePush), 광고성 푸시 동의 여부(enableAdPush), 야간 광고성 푸시 동의 여부(enableAdNightPush) 값을 사용자로부터 받아, 다음의 API 호출을 통해 등록을 완료합니다.
+次のAPIを呼び出して、TOAST Pushに該当ユーザーを登録します。
+プッシュ同意(enablePush)、広告性プッシュ同意(enableAdPush)、夜間広告性プッシュ同意(enableAdNightPush)値をユーザーから受け取り、次のAPIを呼び出して登録を完了します。
 
 **API**
 
@@ -51,8 +51,8 @@ void Sample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNi
 
 ### Request Push Settings
 
-사용자의 푸시 설정을 조회하기 위해, 다음 API를 이용합니다.
-콜백으로 오는 PushConfiguration 값으로 사용자 설정값을 얻을 수 있습니다.
+ユーザーのプッシュ設定を照会するには、次のAPIを利用します。
+コールバックされるPushConfiguration値でユーザー設定値を取得できます。
 
 **API**
 
@@ -92,17 +92,17 @@ void Sample::QueryPush()
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | TOAST Push 라이브러리 오류입니다.<br>DetailCode를 확인하세요. |
-| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 이전 푸쉬 API 호출이 완료되지 않았습니다.<br>이전 푸쉬 API의 콜백이 실행된 이후에 다시 호출하세요. |
-| PUSH_UNKNOWN_ERROR             | 5999       | 정의되지 않은 푸쉬 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | TOAST Pushライブラリエラーです。<br>DetailCodeを確認してください。 |
+| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 以前のプッシュAPIの呼び出しが完了しませんでした。<br>以前のプッシュAPIのコールバックが実行された後に再度呼び出してください。 |
+| PUSH_UNKNOWN_ERROR             | 5999       | 定義されていないプッシュエラーです。<br>全てのログを[サポート](https://toast.com/support/inquiry)へご送付ください。迅速に対応いたします。
 
-* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./error-code/#client-sdk)
+* エラーコードの一覧は、次の文書を参照してください。
+    * [エラーコード](./error-code/#client-sdk)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* 이 오류는 TOAST Push 라이브러리에서 발생한 오류입니다.
-* 오류 코드를 확인하는 방법은 다음과 같습니다.
+* このエラーは、TOAST Pushライブラリで発生したエラーです。
+* エラーコードを確認する方法は次のとおりです。
 
 ```cpp
 GamebaseError* gamebaseError = error; // GamebaseError object via callback
@@ -123,6 +123,6 @@ else
 }
 ```
 
-* TOAST Push 오류 코드를 확인하시기 바랍니다.
+* TOAST Pushエラーコードを確認してください。
     * [Android](aos-push#error-handling)
     * [iOS](ios-push#error-handling)
