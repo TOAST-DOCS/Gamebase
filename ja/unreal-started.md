@@ -1,24 +1,24 @@
-## Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기
+## Game > Gamebase > Unreal SDK使用ガイド > 開始する
 
-Gamebase Unreal SDK 사용 환경 및 초기 설정에 대해 설명합니다.
+Gamebase Unreal SDKの使用環境および初期設定の説明を行います。
 
 ### Environments
 
-> [참고] 
+> [参考] 
 >
-> Unreal 지원 버전
+> Unrealサポートバージョン
 >
 > * UE 4.24
-> * 하위 버전의 Unreal 지원이 필요하면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
+> * 下位バージョンのUnrealのサポートが必要な場合は[サポート](https://toast.com/support/inquiry)へお問い合わせください。
 
 #### Supported Platforms
 
 * iOS
 * Android
 * Editor
-    * 일부 기능만 지원합니다.
+    * 一部機能のみサポートします。
 
-선택한 플랫폼에서 지원하지 않는 Gamebase API를 호출할 때는 아래와 같은 오류가 콜백으로 반환되며 콜백이 없는 경우에는 Warning 로그가 출력됩니다.
+選択したプラットフォームでサポートしないGamebase APIを呼び出す時は、下記のエラーがコールバックで返り、コールバックがない場合はWarningログが出力されます。
 
 * GamebaseErrorCode::NOT_SUPPORTED
 * GamebaseErrorCode::NOT_SUPPORTED_IOS
@@ -26,7 +26,7 @@ Gamebase Unreal SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 * GamebaseErrorCode::NOT_SUPPORTED_UE4_STANDALONE
 * GamebaseErrorCode::NOT_SUPPORTED_UE4_EDITOR
 
-API별 지원하는 플랫폼은 아래와 같은 아이콘으로 구분합니다.
+各APIでサポートするプラットフォームは、下記のアイコンで区別します。
 
 **API**
 
@@ -37,15 +37,15 @@ Supported Platforms
 
 ## Installation
 
-1. Gamebase Unreal SDK를 다운로드 받아 프로젝트 경로에 `Plugins` 폴더를 만들어 다운로드 받은 SDK를 추가합니다.
-2. Unreal 에디터에서 `Settings > Plugins` 창을 띄우고, `Project > Gamebase > Gamebase Plugin` 플러그인을 찾아 활성화합니다.
+1. Gamebase Unreal SDKをダウンロードして、プロジェクトパスに`Plugins`フォルダを作成し、ダウンロードしたSDKを追加します。
+2. Unrealエディタで`Settings > Plugins`ウィンドウを開き、`Project > Gamebase > Gamebase Plugin`プラグインを探して有効にします。
 
 * [Download Gamebase Unreal SDK](/Download/#game-gamebase)
 
 ### Android Settings
 
 * Plugins/Gamebase/Source/Gamebase/Gamebase_Android_UPL.xml
-    * 사용하려는 인증, 결제, 푸시 모듈 gradle 의존성을 추가합니다.
+    * 使用する認証、決済、プッシュモジュールgradle依存性を追加します。
 
 ```xml
 <buildGradleAdditions>
@@ -57,7 +57,7 @@ Supported Platforms
             implementation "com.toast.android.gamebase:gamebase-sdk:$GAMEBASE_SDK_VERSION"
             implementation "com.toast.android.gamebase:gamebase-sdk-base:$GAMEBASE_SDK_VERSION"
 
-            // >>> Gamebase - Add Auth Adapter (사용하려는 IdP에 맞게 gamebase-adapter-auth 모듈을 gradle 의존성에 추가합니다.)
+            // >>> Gamebase - Add Auth Adapter (使用するIdPに合わせてgamebase-adapter-authモジュールをgradle依存性に追加します。)
             //implementation "com.toast.android.gamebase:gamebase-adapter-auth-facebook:$GAMEBASE_SDK_VERSION"
             //implementation "com.toast.android.gamebase:gamebase-adapter-auth-google:$GAMEBASE_SDK_VERSION"
             //implementation "com.toast.android.gamebase:gamebase-adapter-auth-line:$GAMEBASE_SDK_VERSION"
@@ -65,11 +65,11 @@ Supported Platforms
             //implementation "com.toast.android.gamebase:gamebase-adapter-auth-payco:$GAMEBASE_SDK_VERSION"
             //implementation "com.toast.android.gamebase:gamebase-adapter-auth-twitter:$GAMEBASE_SDK_VERSION"
 
-            // >>> Gamebase - Select Purchase Adapter (사용하려는 마켓의 gamebase-adapter-purchase 모듈을 gradle 의존성에 추가합니다.)
+            // >>> Gamebase - Select Purchase Adapter (使用するマーケットのgamebase-adapter-purchaseモジュールをgradle依存性に追加します。)
             //implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
             //implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
 
-            // >>> Gamebase - Select Push Adapter (사용하려는 Push의 gamebase-adapter-purchase 모듈을 gradle 의존성에 추가합니다.)
+            // >>> Gamebase - Select Push Adapter (使用するPushのgamebase-adapter-purchaseモジュールをgradle依存性に追加します。)
             //implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
             //implementation "com.toast.android.gamebase:gamebase-adapter-push-tencent:$GAMEBASE_SDK_VERSION"
 
@@ -80,35 +80,35 @@ Supported Platforms
 </buildGradleAdditions>
 ```
 
-#### Google Play 인증 및 결제 진행이 안되는 문제
+#### Google Play認証および決済ができない問題
 
-Google Play 서비스에 인증과 결제를 진행하기 위해서는 Distribution 설정이 필요합니다.
-상세한 내용은 아래 문서를 참고 바랍니다. 
+Google Playサービスで認証と決済を進行するには、Distribution設定が必要です。
+詳細な内容は、下記の文書を参照してください。
 
 * [Signing Projects for Release](https://docs.unrealengine.com/en-US/Platforms/Mobile/Android/DistributionSigning/index.html)
 
 ### iOS Settings
 
-Gamebase SDK for Unreal을 사용하려면 UE4 소스 코드를 다운로드하여 사용해야 합니다.
-관련 가이드는 아래 문서를 참고하십시오.
+Gamebase SDK for Unrealを使用するにはUE4ソースコードをダウンロードして使用する必要があります。
+関連ガイドは、下記の文書を参照してください。
 
 * [Downloading Unreal Engine Source Code](https://docs.unrealengine.com/en-US/GettingStarted/DownloadingUnrealEngine/index.html)
 * [Getting up and running](https://github.com/EpicGames/UnrealEngine#getting-up-and-running)
 
 #### Sign in with Apple
 
-Sign in with Apple 기능을 사용하려면 entitlement에 com.apple.developer.applesignin 키값이 추가되어야 합니다.
+Sign in with Apple機能を使用するにはentitlementにcom.apple.developer.applesigninキー値が追加されている必要があります。
 
 * [Sign in with Apple Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_applesignin)
 
-해당 키값을 추가하지 않고 Gamebsae AppleId 로그인을 진행할 경우, 아래와 같은 오류가 발생합니다.
+該当のキー値を追加せずにGamebsae AppleIdログインを進行する場合、下記のようなエラーが発生します。
 
 ```
 Authorization failed: Error Domain=AKAuthenticationError Code=-7026 "(null)"
 
 ```
 
-UE4(4.24.3)는 해당 기능을 지원하지 않으므로 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs) 파일의 296번 라인 위에 아래 코드를 추가해야 합니다.
+UE4(4.24.3)は該当機能をサポートしないため、[Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs)ファイルの296行目の上に上記コードを追加する必要があります。
 
 ```cs
 Text.AppendLine("\t<key>com.apple.developer.applesignin</key>");
@@ -119,11 +119,11 @@ Text.AppendLine("\t</array>");
 
 #### Remote Notification
 
-Gamebase Push 기능을 사용하려면 Project Settings > Platforms > iOS 페이지에서 Enable Remote Notifications Support 기능을 활성화해야 합니다. (Github 소스에서만 가능)
+Gamebase Push機能を使用するには、Project Settings > Platforms > iOSページでEnable Remote Notifications Support機能を有効化する必要があります。(Githubソースからのみ可能)
 
-#### iOS SDK의 Warning 메시지로 인한 Unreal 빌드 오류
+#### iOS SDKのWarningメッセージによるUnrealビルドエラー
 
-iOS SDK에서 발생하는 Warning 메시지가 Unreal 빌드 시 오류로 변환되어 빌드에 실패하는 현상이 발생한다면 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) 파일의 269 라인에 있는 clang 컴파일 옵션 코드를 주석 처리하십시오.
+iOS SDKで発生するWarningメッセージがUnrealビルド時、エラーに変換されてビルドに失敗する現象が発生する場合は[Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs)ファイルの269行目にあるclangコンパイルオプションコードをコメント処理してください。
 
 ```cs
 // Result += " -Wall -Werror";
@@ -131,13 +131,13 @@ iOS SDK에서 발생하는 Warning 메시지가 Unreal 빌드 시 오류로 변�
 
 ## API Deprecate Governance
 
-Gamebase에서 더 이상 지원하지 않는 API는 Deprecate 처리합니다.
-Deprecated 된 API는 다음 조건 충족 시 사전 공지 없이 삭제될 수 있습니다.
+GamebaseでサポートしないAPIはDeprecate処理します。
+DeprecatedされたAPIは、次の条件を満たすと、事前告知を行わずに削除される場合があります。
 
-* 5회 이상의 마이너 버전 업데이트
+* 5回以上のマイナーバージョンアップデート
 	* Gamebase Version Format - XX.YY.ZZ
 		* XX : Major
 		* YY : Minor
 		* ZZ : Hotfix
 
-* 최소 5개월 경과
+* 5か月経過
