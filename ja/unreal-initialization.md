@@ -1,10 +1,10 @@
-## Game > Gamebase > Unreal SDK 사용 가이드 > 초기화
+## Game > Gamebase > Unreal SDK使用ガイド > 初期化
 
-Gamebase Unreal SDK를 사용하려면 먼저 초기화를 진행해야 합니다. 또한 앱 ID, 앱 버전 정보가 TOAST Console에 반드시 등록돼 있어야 합니다.
+Gamebase Unreal SDKを使用するには、初期化を行う必要があります。またアプリID、アプリバージョン情報がTOAST Consoleに登録されている必要があります。
 
 ### Include Header File
 
-Gamebase API를 사용하기 위해서는 다음의 헤더 파일을 가져옵니다.
+Gamebase APIを使用するには、次のヘッダファイルをインクルードします。
 
 ```cpp
 #include "Gamebase.h"
@@ -12,7 +12,7 @@ Gamebase API를 사용하기 위해서는 다음의 헤더 파일을 가져옵�
 
 ### GamebaseConfiguration 
 
-초기화 시 필요한 설정들은 아래와 같습니다.
+初期化時に必要な設定は下記の通りです。
 
 | Setting value              | Supported Platform | Mandatory(M) / Optional(O) |
 | -------------------------- | ------------------ | -------------------------- |
@@ -27,19 +27,19 @@ Gamebase API를 사용하기 위해서는 다음의 헤더 파일을 가져옵�
 
 #### 1. App ID
 
-Gamebase Console에 등록된 프로젝트 ID입니다.
+Gamebase Consoleに登録されたプロジェクトIDです。
 
 [Console Guide](/Game/Gamebase/ko/oper-app/#app)
 
 #### 2. appVersion
 
-Gamebase Console에 등록한 클라이언트 버전입니다.
+Gamebase Consoleに登録したクライアントバージョンです。
 
 [Console Guide](/Game/Gamebase/ko/oper-app/#client)
 
 #### 3. storeCode
 
-TOAST 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하기 위해 필요한 스토어 정보입니다.
+TOAST統合アプリ内決済サービスであるIAP(In-App Purchase)を初期化するために必要なストア情報です。
 
 | Store       | Code | Description  |
 | ----------- | ---- | ------------ |
@@ -49,41 +49,41 @@ TOAST 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하기 
 
 #### 4. displayLanguageCode
 
-Gamebase에서 제공하는 UI 및 SystemDialog에 표시되는 언어를 단말기에 설정된 언어가 아닌 다른 언어로 변경할 수 있습니다.
+Gamebaseで提供するUIおよびSystemDialogに表示される言語を、端末に設定された言語ではない別の言語に変更できます。
 
 [Display Language](./unreal-etc/#display-language)
 
 #### 5. enablePopup
 
-시스템 점검, 이용 제재(ban) 등 게임 유저가 게임을 플레이할 수 없는 상황에서 팝업 등으로 사유를 표시해야 할 때가 있습니다.
-Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+システムメンテナンス、利用制裁(ban)など、ゲームユーザーがゲームをプレイできない状況で、ポップアップなどで理由を表示する必要がある時があります。
+Gamebaseで提供する基本ポップアップを使用するかの設定です。
 
-* true: enableLaunchingStatusPopup, enableBanPopup 설정에 따라 팝업이 노출 여부가 결정됩니다.
-* false: Gamebase에서 제공하는 모든 팝업이 노출되지 않습니다.
-* 기본값: false
+* true：enableLaunchingStatusPopup、enableBanPopup設定に応じてポップアップが表示されるかどうかが決定されます。
+* false：Gamebaseで提供するすべてのポップアップが表示されません。
+* デフォルト値：false
 
 #### 6. enableLaunchingStatusPopup
 
-LaunchingStatus가 게임을 할 수 없는 상태일 경우, Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
-LaunchingStatus는 아래 Launching 절 아래 State, Code 부분을 참고하십시오.
+LaunchingStatusがゲームをできない状態の場合、Gamebaseで提供する基本ポップアップを使用するかの設定です。
+LaunchingStatusは、下記Launching項目下のState、Code部分を参照してください。
 
-* 기본값: true
+* デフォルト値：true
 
 #### 7. enableBanPopup
 
-로그인 시 해당 게임 유저가 이용 정지 상태인 경우, Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+ログイン時、該当ゲームユーザーが利用停止状態の場合、Gamebaseで提供する基本ポップアップを使用するかどうかの設定です。
 
-* 기본값: true
+* デフォルト値：true
 
 #### 8. enableKickoutPopup
 
-Gamebase Server로 부터 Kickout 이벤트를 받은 경우, Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+Gamebase ServerからKickoutイベントを受け取った場合、Gamebaseで提供する基本ポップアップを使用するかどうかの設定です。
 
-* 기본값: true
+* デフォルト値：true
 
 ### Initialize
 
-SDK를 초기화 합니다.
+SDKを初期化します。
 
 **API**
 
@@ -159,80 +159,80 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 
 ### Launching Information
 
-Initialize API를 사용하여 Gamebase Unreal SDK를 초기화하면 LaunchingInfo 객체가 결과값으로 전달됩니다.
-이 LaunchingInfo 객체에는 Gamebase Console에 설정한 값들과 게임 상태 등이 포함돼 있습니다.
+Initialize APIを使用してGamebase Unreal SDKを初期化すると、LaunchingInfoオブジェクトが結果値として伝達されます。
+このLaunchingInfoオブジェクトにはGamebase Consoleに設定した値とゲーム状態などが含まれています。
 
 #### 1. Launching
 
-Gamebase 론칭 정보입니다.
+Gamebaseローンチ情報です。
 
 **1.1 Status**
 
-Gamebase Unreal SDK 초기화 설정에 입력한 앱 버전의 게임 상태 정보입니다.
+Gamebase Unreal SDK初期化設定に入力したアプリバージョンのゲーム状態情報です。
 
-* code: 게임 상태 코드(점검 중, 업데이트 필수, 서비스 종료 등)
-* message: 게임 상태 메시지
+* code：ゲームステータスコード(メンテナンス中、アップデート必須、サービス終了など)
+* message：ゲーム状態メッセージ
 
-상태 코드는 아래 표를 참고하십시오.
+ステータスコードは、下記の表を参照してください。
 
 | Status                      | Status Code | Description                                    |
 | --------------------------- | ----------- | ---------------------------------------- |
-| IN_SERVICE | 200 | 정상 서비스 중 |
-| RECOMMEND_UPDATE | 201 | 업그레이드 권장 |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202         | 점검 중에는 서비스를 이용할 수 없지만 QA 단말기로 등록된 경우에는 점검과 상관없이 서비스에 접속해 테스트 할 수 있습니다. |
-| IN_TEST                     | 203  | 테스트 중 |
-| IN_REVIEW                   | 204  | 심사 중 |
-| REQUIRE_UPDATE | 300 | 업그레이드 필수 |
-| BLOCKED_USER                | 301         | 접속 차단으로 등록된 단말기(디바이스 키)로 서비스에 접속한 경우입니다. |
-| TERMINATED_SERVICE          | 302         | 서비스 종료                                   |
-| INSPECTING_SERVICE          | 303         | 서비스 점검 중                                 |
-| INSPECTING_ALL_SERVICES     | 304         | 전체 시스템 점검 중                              |
-| INTERNAL_SERVER_ERROR       | 500         | 내부 서버 오류                                 |
+| IN_SERVICE | 200 | 正常サービス中 |
+| RECOMMEND_UPDATE | 201 | アップグレード推奨 |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202         | メンテナンス中はサービスを利用できませんが、QA端末に登録されている場合はメンテナンスに関係なくサービスに接続してテストできます。 |
+| IN_TEST                     | 203  | テスト中 |
+| IN_REVIEW                   | 204  | 審査中 |
+| REQUIRE_UPDATE | 300 | アップグレード必須 |
+| BLOCKED_USER                | 301         | 接続遮断に登録された端末(デバイスキー)でサービスに接続した場合です。 |
+| TERMINATED_SERVICE          | 302         | サービス終了                                |
+| INSPECTING_SERVICE          | 303         | サービスメンテナンス中                              |
+| INSPECTING_ALL_SERVICES     | 304         | 全体システムメンテナンス中                           |
+| INTERNAL_SERVER_ERROR       | 500         | 内部サーバーエラー                              |
 
 [Console Guide](/Game/Gamebase/ko/oper-app/#app)
 
 **1.2 App**
 
-Gamebase Console에 등록된 앱 정보입니다.
+Gamebase Consoleに登録されたアプリ情報です。
 
 * accessInfo
-    * serverAddress: 서버 주소
-    * csInfo: 고객 센터 정보
+    * serverAddress：サーバーアドレス
+    * csInfo：サポート情報
 * relatedUrls
-    * termsUrl: 이용약관
-    * personalInfoCollectionUrl: 개인 정보 동의
-    * punishRuleUrl: 이용 정지 규정
-    * csUrl : 고객센터
-* install: 설치 URL
-* idP: 인증 정보
+    * termsUrl：利用約款
+    * personalInfoCollectionUrl：個人情報同意
+    * punishRuleUrl：利用停止規定
+    * csUrl ：サポート
+* install：インストールURL
+* idP：認証情報
 
 [Console Guide](/Game/Gamebase/ko/oper-app/#client)
 
 **1.3 Maintenance**
 
-Gamebase Console에 등록된 점검 정보입니다.
+Gamebase Consoleに登録されたメンテナンス情報です。
 
-* url: 점검 페이지 URL
-* timezone: 표준 시간대(timezone)
-* beginDate: 시작 시간
-* endDate: 종료 시간
-* message: 점검 사유
+* url：メンテナンスページURL
+* timezone：標準時間帯(timezone)
+* beginDate：開始時間
+* endDate：終了時間
+* message：メンテナンス理由
 
 [Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
 
 **1.4 Notice**
 
-Gamebase Console에 등록된 공지 정보입니다.
+Gamebase Consoleに登録された告知情報です。
 
-* message: 메시지
-* title: 타이틀
-* url: 점검 URL
+* message：メッセージ
+* title：タイトル
+* url：メンテナンスURL
 
 [Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
 
 #### 2. tcProduct
 
-Gamebase와 연계된 TOAST 서비스의 appKey입니다.
+Gamebaseと連携されたTOASTサービスのappKeyです。
 
 * gamebase
 * tcLaunching
@@ -241,26 +241,26 @@ Gamebase와 연계된 TOAST 서비스의 appKey입니다.
 
 #### 3. tcIap
 
-TOAST Console에 등록된 IAP 스토어 정보입니다.
+TOAST Consoleに登録されたIAPストア情報です。
 
-* id: App ID
-* name: App Name
-* storeCode: Store Code
+* id： App ID
+* name： App Name
+* storeCode： Store Code
  
 [Console Guide](/Game/Gamebase/ko/oper-purchase/)
 
 #### 4. tcLaunching
 
-TOAST Launching 콘솔에서 사용자가 입력한 정보입니다
+TOAST Launchingコンソールでユーザーが入力した情報です。
 
-* 사용자가 입력한 값을 JSON string으로 전달합니다.
-* TOAST Launching 상세 설정은 아래 가이드를 참고하시기 바랍니다.
+* ユーザーが入力した値をJSON stringで伝達します。
+* TOAST Launchingの詳細設定は、下記のガイドを参照してください。
  
 [Console Guide](/Game/Gamebase/ko/oper-management/#config)
 
 ### Get Launching Information
 
-GetLaunchingInformations API를 이용하면 Initialize 이후에도 LaunchingInfo 객체를 획득할 수 있습니다.
+GetLaunchingInformations APIを利用すると、Initialize後にもLaunchingInfoオブジェクトを取得できます。
 
 **API**
 
@@ -291,12 +291,12 @@ void Sample::GetLaunchingInformations()
 
 | Error                              | Error Code | Description            |
 | ---------------------------------- | ---------- | ---------------------- |
-| NOT\_INITIALIZED      | 1          | Gamebase 초기화돼 있지 않습니다. |
-| NOT\_LOGGED\_IN       | 2          | 로그인이 필요합니다.            |
-| INVALID\_PARAMETER    | 3          | 잘못된 파라미터입니다.           |
-| INVALID\_JSON\_FORMAT | 4          | JSON 포맷 오류입니다.         |
-| USER\_PERMISSION      | 5          | 권한이 없습니다.              |
-| NOT\_SUPPORTED        | 10         | 지원하지 않는 기능입니다.         |
+| NOT\_INITIALIZED      | 1          | Gamebaseが初期化されていません。 |
+| NOT\_LOGGED\_IN       | 2          | ログインが必要です。            |
+| INVALID\_PARAMETER    | 3          | 無効なパラメータです。           |
+| INVALID\_JSON\_FORMAT | 4          | JSONフォーマットエラーです。         |
+| USER\_PERMISSION      | 5          | 権限がありません。              |
+| NOT\_SUPPORTED        | 10         | サポートしない機能です。         |
 
-* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./error-code/#client-sdk)
+* エラーコードの一覧は、次の文書を参照してください。
+    * [エラーコード](./error-code/#client-sdk)
