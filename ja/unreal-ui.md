@@ -1,19 +1,19 @@
-## Game > Gamebase > Unreal SDK 사용 가이드 > UI
+## Game > Gamebase > Unreal SDK使用ガイド > UI
 
 ## Webview
 
 ### Show WebView
 
-WebView를 표시합니다.<br/>
+WebViewを表示します。<br/>
 
-##### Required 파라미터
-* url : 파라미터로 전송되는 url은 유효한 값이어야 합니다.
+##### Requiredパラメータ
+* url：パラメータに転送されるurlは、有効な値である必要があります。
 
-##### Optional 파라미터 (현재는 Require 파라미터지만, 이후 버전에서 Optional로 변경 예정)
-* configuration : GamebaseWebViewConfiguration으로 WebView의 레이아웃을 변경 할 수 있습니다.
-* closeCallback : WebView가 종료될 때 사용자에게 콜백으로 알려 줍니다.
-* schemeList : 사용자가 받고 싶은 커스텀 Scheme 목록을 지정합니다.
-* schemeEvent : schemeList로 지정한 커스텀 Scheme을 포함하는 url을 콜백으로 알려 줍니다.
+##### Optionalパラメータ(現在はRequireパラメータですが、今後のバージョンでOptionalに変更予定)
+* configuration：GamebaseWebViewConfigurationでWebViewのレイアウトを変更できます。
+* closeCallback：WebViewが終了する時、ユーザーにコールバックで伝えます。
+* schemeList：ユーザーが受け取りたいカスタムSchemeリストを指定します。
+* schemeEvent：schemeListに指定したカスタムSchemeを含むurlをコールバックで伝えます。
 
 **API**
 
@@ -57,36 +57,36 @@ void Sample::ShowWebView(const FString& url)
 
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | string                                   | WebView의 제목                 |
-| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 미지정 |
-|                          | GamebaseScreenOrientation.PORTRAIT       | 세로 모드                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE      | 가로 모드                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 가로 모드를 180도 회전              |
-| colorR                   | 0~255                                    | 내비게이션 바 색상 Alpha            |
-| colorG                   | 0~255                                    | 내비게이션 바 색상 R                |
-| colorB                   | 0~255                                    | 내비게이션 바 색상 G                |
-| colorA                   | 0~255                                    | 내비게이션 바 색상 B                |
-| buttonVisible            | true or false                            | 뒤로 가기 버튼 활성 또는 비활성          |
-| barHeight                | height                                   | 내비게이션 바 높이                  |
-| backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지                |
-| closeButtonImageResource | ID of resource | 닫기 버튼 이미지 |
-| url | "http://" or "https://" or "file://" | 웹 URL |
+| title                    | string                                   | WebViewのタイトル               |
+| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 未指定 |
+|                          | GamebaseScreenOrientation.PORTRAIT       | 縦モード                     |
+|                          | GamebaseScreenOrientation.LANDSCAPE      | 横モード                     |
+|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 横モードを180度回転              |
+| colorR                   | 0～255                                    | ナビゲーションバーの色相Alpha            |
+| colorG                   | 0～255                                    | ナビゲーションバーの色相R                |
+| colorB                   | 0～255                                    | ナビゲーションバーの色相G                |
+| colorA                   | 0～255                                    | ナビゲーションバーの色相B                |
+| buttonVisible            | true or false                            | 戻るボタン有効/無効          |
+| barHeight                | height                                   | ナビゲーションバーの高さ                  |
+| backButtonImageResource  | ID of resource                           | 戻るボタンのイメージ              |
+| closeButtonImageResource | ID of resource | 閉じるボタンのイメージ |
+| url | "http://" or "https://" or "file://" | Web URL |
 
 #### Predefined Custom Scheme
 
-Gamebase에서 지정해 놓은 Scheme 입니다.
+Gamebaseで指定しておいたSchemeです。
 
-| scheme | 용도 |
+| scheme | 用途 |
 | ----------------------------- | ------------------------------ |
-| gamebase://dismiss | WebView 닫기 |
-| gamebase://goBack | WebView 뒤로가기 |
-| gamebase://getUserId          | 현재 로그인되어 있는 게임 유저의 사용자 ID를 표시 |
-| gamebase://getMaintenanceInfo | 점검 내용을 WebPage에 표시 |
+| gamebase://dismiss | WebViewを閉じる |
+| gamebase://goBack | WebView戻る |
+| gamebase://getUserId          | 現在ログインしているゲームユーザーのユーザーIDを表示 |
+| gamebase://getMaintenanceInfo | メンテナンス内容をWebPageに表示 |
 
 
 ### Close WebView
 
-다음 API를 이용하여 보여지고 있는 WebView를 닫을 수 있습니다.
+次のAPIを利用して、表示されているWebViewを閉じることができます。
 
 **API**
 
@@ -109,7 +109,7 @@ void Sample::CloseWebView()
 
 ## Open External Browser
 
-다음 API를 통하여 외부 브라우져를 열 수 있습니다. 파라미터로 전송되는 url은 유효한 값이어야 합니다.
+次のAPIを通して外部ブラウザーを開くことができます。パラメータに転送されるurlは有効な値である必要があります。
 
 **API**
 
@@ -132,8 +132,8 @@ void Sample::OpenWebBrowser(const FString& url)
 
 ## Alert
 
-시스템 알림을 표시할 수 있습니다.
-시스템 알림에 콜백을 등록할 수도 있습니다.
+システム通知を表示できます。
+システム通知にコールバックを登録することもできます。
 
 **API**
 
@@ -164,7 +164,7 @@ void Sample::ShowAlertEvent(const FString& title, const FString& message)
 
 ## Toast
 
-다음 API를 사용하여 쉽게 메시지를 표시할 수 있습니다.
+次のAPIを使用して、簡単にメッセージを表示できます。
 
 **API**
 
@@ -189,7 +189,7 @@ void Sample::ShowToast(const FString& message, EGamebaseToastExposureTime exposu
 
 | Error              | Error Code | Description                 |
 | ------------------ | ---------- | --------------------------- |
-| UI\_UNKNOWN\_ERROR | 6999       | 알수 없는 오류입니다(정의되지 않은 오류입니다). |
+| UI\_UNKNOWN\_ERROR | 6999       | 不明なエラーです(定義されていないエラーです)。 |
 
-* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./error-code/#client-sdk)
+* エラーコードの一覧は、次の文書を参照してください。
+    * [エラーコード](./error-code/#client-sdk)
