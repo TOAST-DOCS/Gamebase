@@ -153,7 +153,7 @@ Gamebase를 통하여 로그인을 처음 시도하거나, 로그인 정보(액�
     [TCGBGamebase loginWithType:kTCGBAuthPayco viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Login Succeeded
-            NSString *userId = [authToken.tcgbMember.userId];
+            NSString *userId = [authToken.tcgbMember userId];
         } else {
             // To Login Failed
         }

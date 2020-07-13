@@ -1,5 +1,104 @@
 ## Game > Gamebase > Unity SDK 사용 가이드 > UI
 
+## ImageNotice
+
+콘솔에 이미지를 등록한 후 사용자에게 공지를 띄울 수 있습니다.
+
+![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-001.png)
+
+### Show ImageNotices
+
+이미지 공지를 화면에 띄워 줍니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+```cs
+static void ShowImageNotices(GamebaseRequest.ImageNotice.Configuration configuration, GamebaseCallback.ErrorDelegate closeCallback, GamebaseCallback.GamebaseDelegate<string> eventCallback = null)
+```
+
+**Example**
+
+```cs
+public void ShowImageNotices()
+{
+    Gamebase.ImageNotice.ShowImageNotices(
+        null,
+        (error) =>
+        {
+            // Called when the entire imageNotice is closed.
+            ...
+            
+        },
+        (scheme, error) =>
+        {
+            // Called when custom event occurred.
+            ...
+        });        
+}
+```
+
+### Custom ImageNotices
+
+사용자 설정 이미지 공지를 화면에 띄워 줍니다.
+GamebaseRequest.ImageNotice.Configuration으로 사용자 설정 이미지 공지를 만들 수 있습니다.
+
+**Example**
+
+```cs
+public void ShowImageNotices(int colorR = 0 , int colorG = 0, int colorB = 0, int colorA = 128, long timeOut = 5000)
+{
+    GamebaseRequest.ImageNotice.Configuration configuration = new GamebaseRequest.ImageNotice.Configuration();
+    configuration.colorR = colorR;
+    configuration.colorG = colorG;
+    configuration.colorB = colorB;
+    configuration.colorA = colorA;
+    configuration.timeOut = timeOut;
+
+    Gamebase.ImageNotice.ShowImageNotices(
+        configuration,
+        (error) =>
+        {
+            // Called when the entire imageNotice is closed.
+            ...
+            
+        },
+        (scheme, error) =>
+        {
+            // Called when custom event occurred.
+            ...
+        });        
+}
+```
+
+#### GamebaseRequest.ImageNotice.Configuration
+
+| Parameter                              | Values                                   | Description        |
+| -------------------------------------- | ---------------------------------------- | ------------------ |
+| colorR                   | 0~255                                    | 내비게이션 바 색상 R            |
+| colorG                   | 0~255                                    | 내비게이션 바 색상 G                |
+| colorB                   | 0~255                                    | 내비게이션 바 색상 B                |
+| colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha                |
+| timeoutMS                | long        | 이미지 공지 최대 로딩 시간 (단위 : millisecond)<br/>**default**: 5000                     |
+
+
+### Close ImageNotices
+
+closeImageNotices API를 호출하여 현재 표시 중인 이미지 공지를 모두 종료할 수 있습니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+```cs
+static void CloseImageNotices()
+```
+
 ## Webview
 
 ### Show WebView
@@ -26,7 +125,7 @@ Supported Platforms
 static void ShowWebView(string url, GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
 ```
 
-> Stansalone에서는 WebViewAdapter를 통해서 WebView를 지원하며 WebView가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
+> Standalone에서는 WebViewAdapter를 통해서 WebView를 지원하며 WebView가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
 
 **Example**
 ```cs
@@ -68,10 +167,10 @@ public void ShowWebView()
 |                          | GamebaseScreenOrientation.PORTRAIT       | 세로 모드                       |
 |                          | GamebaseScreenOrientation.LANDSCAPE      | 가로 모드                       |
 |                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 가로 모드를 180도 회전              |
-| colorR                   | 0~255                                    | 내비게이션 바 색상 Alpha            |
-| colorG                   | 0~255                                    | 내비게이션 바 색상 R                |
-| colorB                   | 0~255                                    | 내비게이션 바 색상 G                |
-| colorA                   | 0~255                                    | 내비게이션 바 색상 B                |
+| colorR                   | 0~255                                    | 내비게이션 바 색상 R            |
+| colorG                   | 0~255                                    | 내비게이션 바 색상 G                |
+| colorB                   | 0~255                                    | 내비게이션 바 색상 B                |
+| colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha                |
 | buttonVisible            | true or false                            | 뒤로 가기 버튼 활성 또는 비활성          |
 | barHeight                | height                                   | 내비게이션 바 높이                  |
 | backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지                |

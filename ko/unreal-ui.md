@@ -7,13 +7,13 @@
 WebView를 표시합니다.<br/>
 
 ##### Required 파라미터
-* url : 파라미터로 전송되는 url은 유효한 값이어야 합니다.
+* url: 파라미터로 전송되는 url은 유효한 값이어야 합니다.
 
 ##### Optional 파라미터 (현재는 Require 파라미터지만, 이후 버전에서 Optional로 변경 예정)
-* configuration : GamebaseWebViewConfiguration으로 WebView의 레이아웃을 변경 할 수 있습니다.
-* closeCallback : WebView가 종료될 때 사용자에게 콜백으로 알려 줍니다.
-* schemeList : 사용자가 받고 싶은 커스텀 Scheme 목록을 지정합니다.
-* schemeEvent : schemeList로 지정한 커스텀 Scheme을 포함하는 url을 콜백으로 알려 줍니다.
+* configuration: GamebaseWebViewConfiguration으로 WebView의 레이아웃을 변경할 수 있습니다.
+* closeCallback: WebView가 종료될 때 사용자에게 콜백으로 알려 줍니다.
+* schemeList: 사용자가 받고 싶은 커스텀 Scheme 목록을 지정합니다.
+* schemeEvent: schemeList로 지정한 커스텀 Scheme을 포함하는 url을 콜백으로 알려 줍니다.
 
 **API**
 
@@ -74,19 +74,19 @@ void Sample::ShowWebView(const FString& url)
 
 #### Predefined Custom Scheme
 
-Gamebase에서 지정해 놓은 Scheme 입니다.
+Gamebase에서 지정해 놓은 Scheme입니다.
 
 | scheme | 용도 |
 | ----------------------------- | ------------------------------ |
 | gamebase://dismiss | WebView 닫기 |
-| gamebase://goBack | WebView 뒤로가기 |
-| gamebase://getUserId          | 현재 로그인되어 있는 게임 유저의 사용자 ID를 표시 |
+| gamebase://goBack | WebView 뒤로 가기 |
+| gamebase://getUserId          | 현재 로그인된 게임 유저의 사용자 ID를 표시 |
 | gamebase://getMaintenanceInfo | 점검 내용을 WebPage에 표시 |
 
 
 ### Close WebView
 
-다음 API를 이용하여 보여지고 있는 WebView를 닫을 수 있습니다.
+다음 API를 이용해 보이는 WebView를 닫을 수 있습니다.
 
 **API**
 
