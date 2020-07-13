@@ -16,7 +16,7 @@ Android나 iOS에서 푸시를 설정하는 방법은 다음 문서를 참고하
 ### Register Push
 
 다음 API를 호출하여, TOAST Push에 해당 사용자를 등록합니다.
-푸시 동의 여부(enablePush), 광고성 푸시 동의 여부(enableAdPush), 야간 광고성 푸시 동의 여부(enableAdNightPush) 값을 사용자로부터 받아, 다음의 API 호출을 통해 등록을 완료합니다.
+푸시 동의 여부(enablePush), 광고성 푸시 동의 여부(enableAdPush), 야간 광고성 푸시 동의 여부(enableAdNightPush)값을 사용자로부터 받아, 다음 API를 호출해 등록을 완료합니다.
 
 **API**
 
@@ -50,6 +50,7 @@ void Sample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNi
 ```
 
 #### Setting for APNS Sandbox
+
 * SandboxMode를 켜면, APNS Sandbox로 Push를 발송하도록 등록할 수 있습니다.
 * 콘솔 발송 방법
     * Push 메뉴의 **대상**에서 **iOS Sandbox**를 선택한 후 발송합니다.
@@ -74,8 +75,8 @@ void Sample::SetSandboxMode(bool isSandbox)
 
 ### Request Push Settings
 
-사용자의 푸시 설정을 조회하기 위해, 다음 API를 이용합니다.
-콜백으로 오는 PushConfiguration 값으로 사용자 설정값을 얻을 수 있습니다.
+사용자의 푸시 설정을 조회하려면 다음 API를 이용합니다.
+콜백으로 받은 PushConfiguration 값으로 사용자 설정값을 얻을 수 있습니다.
 
 **API**
 
@@ -116,8 +117,8 @@ void Sample::QueryPush()
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
 | PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | TOAST Push 라이브러리 오류입니다.<br>DetailCode를 확인하세요. |
-| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 이전 푸쉬 API 호출이 완료되지 않았습니다.<br>이전 푸쉬 API의 콜백이 실행된 이후에 다시 호출하세요. |
-| PUSH_UNKNOWN_ERROR             | 5999       | 정의되지 않은 푸쉬 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
+| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 이전 푸시 API 호출이 완료되지 않았습니다.<br>이전 푸시 API의 콜백이 실행된 이후에 다시 호출하세요. |
+| PUSH_UNKNOWN_ERROR             | 5999       | 정의되지 않은 푸시 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
     * [오류 코드](./error-code/#client-sdk)

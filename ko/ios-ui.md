@@ -1,9 +1,91 @@
 ## Game > Gamebase > iOS SDK 사용 가이드 > UI
 
+## ImageNotice
+
+콘솔에 이미지를 등록한 후 사용자에게 공지를 띄울 수 있습니다.
+
+![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-001.png)
+
+### Show ImageNotices
+
+이미지 공지를 화면에 띄워 줍니다.
+
+#### Required 파라미터
+* viewController : 이미지 공지가 노출되는 ViewController 입니다.
+ 
+#### Optional 파라미터
+* configuration : TCGBImageNoticeConfiguration으로 배경색 등 이미지 공지 설정을 변경할 수 있습니다.
+* closeCompletion : 이미지 공지가 전체 종료될 때 사용자에게 콜백으로 알려 줍니다.
+* schemeEvent : 이미지를 클릭했을 때, 콘솔에 등록한 payload를 콜백으로 알려 줍니다.
+
+
+```objectivec
+- (void)showImageNotices {
+    void(^closeCompletion)(TCGBError *) = ^(TCGBError *error) {
+        // Called when the entire imageNotice is closed.
+        NSLog(@"ImageNotices closed");
+    };
+
+    void(^schemeEvent)(NSString *, TCGBError *) = ^(NSString *payload , TCGBError *error) {
+        // Called when image click event occurred.
+        NSLog(@"Image click event occurred : %@", payload);
+    };
+
+    [TCGBImageNotice showImageNoticesWithViewController:self configuration:nil closeCompletion:closeCompletion schemeEvent:schemeEvent];
+}
+```
+
+
+### Custom ImageNotices
+
+사용자 설정 이미지 공지를 화면에 띄워 줍니다.
+TCGBImageNoticeConfiguration으로 사용자 설정 이미지 공지를 만들 수 있습니다.
+
+
+```objectivec
+- (void)showImageNotices {
+    void(^closeCompletion)(TCGBError *) = ^(TCGBError *error) {
+        // Called when the entire imageNotice is closed.
+        NSLog(@"ImageNotices closed");
+    };
+
+    void(^schemeEvent)(NSString *, TCGBError *) = ^(NSString *payload , TCGBError *error) {
+        // Called when image click event occurred.
+        NSLog(@"Image click event occurred : %@", payload);
+    };
+
+    TCGBImageNoticeConfiguration *configuration = [[TCGBImageNoticeConfiguration] alloc] init];
+    configuartion.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    configuartion.timeoutInterval = 5000;
+    configuartion.enableAutoCloseByCustomScheme = YES;
+
+    [TCGBImageNotice showImageNoticesWithViewController:self configuration:configuration closeCompletion:closeCompletion schemeEvent:schemeEvent];
+}
+```
+
+
+#### TCGBImageNoticeConfiguration
+
+| Parameter                              | Values                                   | Description        |
+| -------------------------------------- | ---------------------------------------- | ------------------ |
+| backgroundColor                  | UIColor     | 이미지 공지 뒷 배경색<br/>**default**: [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]         |
+| timeoutMS                  | long        | 이미지 공지 최대 로딩 시간 (단위 : millisecond)<br/>**default**: 5000                     |
+| enableAutoCloseByCustomScheme    | YES or NO   | custom scheme 이벤트 발생 시 공지 전체 닫기 또는 다음 공지 표시<br/>**default**: YES         |
+
+
+### Close ImageNotices
+
+closeImageNotices API를 호출하여 현재 표시 중인 이미지 공지를 모두 종료할 수 있습니다.
+
+```objectivec
+- (void)closeImageNotices {
+    [TCGBImageNotice closeImageNoticesWithViewController:self];
+}
+```
+
 ## WebView
 
 Gamebase에서는 기본적인 WebView를 지원합니다.<br/>
-<br/>
 WebView와 관련된 리소스(이미지 및 html, 기타 리소스)는 Gamebase.bundle에 포함돼 있습니다.
 
 ### Show WebView
@@ -15,7 +97,7 @@ WebView를 표시합니다.<br/>
 * viewController : WebView가 노출되는 View Controller입니다.
 
 ##### Optional 파라미터
-* configuration : GamebaseWebViewConfiguration으로 WebView의 레이아웃을 변경 할 수 있습니다.
+* configuration : TCGBWebViewConfiguration으로 WebView의 레이아웃을 변경 할 수 있습니다.
 * closeCompletion : WebView가 종료될 때 사용자에게 콜백으로 알려 줍니다.
 * schemeList : 사용자가 받고 싶은 커스텀 Scheme 목록을 지정합니다.
 * schemeEvent : schemeList로 지정한 커스텀 Scheme을 포함하는 url을 콜백으로 알려 줍니다.
@@ -234,6 +316,7 @@ Gamebase에 스키마 이름과 블록을 지정해 원하는 기능을 추가�
 
 | Error                           | Error Code | Description                 |
 | ------------------------------- | ---------- | --------------------------- |
+| TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT | 6901       | 이미지 공지 표시 중 타임아웃이 발생했습니다. |
 | TCGB\_ERROR\_UI\_UNKNOWN\_ERROR | 6999       | 알 수 없는 오류입니다(정의되지 않은 오류입니다). |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.

@@ -629,7 +629,7 @@ public void AddMappingForcibly(string idPName)
             // 우선 addMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
             if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
             {
-                // ForcingMappingTicket 클래스의 MakeForcingMappingTicket() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
+                // ForcingMappingTicket 클래스의 From() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
                 GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
 
                 // 강제 매핑을 시도합니다.
@@ -705,7 +705,7 @@ public void AddMappingForcibly(Dictionary<string, object> credential)
             // 우선 addMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
             if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
             {
-                // ForcingMappingTicket 클래스의 MakeForcingMappingTicket() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
+                // ForcingMappingTicket 클래스의 From() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
                 GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
 
                 // 강제 매핑을 시도합니다.
@@ -1313,13 +1313,15 @@ else
 {
     Debug.Log(string.Format("code:{0}, message:{1}", gamebaseError.code, gamebaseError.message));
 
-    GamebaseError moduleError = gamebaseError.error; // GamebaseError.error object from external module
-    if (null != moduleError)
+    if (gamebaseError.code == GamebaseErrorCode.AUTH_EXTERNAL_LIBRARY_ERROR) 
     {
-        int moduleErrorCode = moduleError.code;
-        string moduleErrorMessage = moduleError.message;
-
-        Debug.Log(string.Format("moduleErrorCode:{0}, moduleErrorMessage:{1}", moduleErrorCode, moduleErrorMessage));
+        GamebaseError moduleError = gamebaseError.error; // GamebaseError.error object from external module
+        if (null != moduleError)
+        {
+            int moduleErrorCode = moduleError.code;
+            string moduleErrorMessage = moduleError.message;        
+            Debug.Log(string.Format("moduleErrorCode:{0}, moduleErrorMessage:{1}", moduleErrorCode, moduleErrorMessage));
+        }
     }
 }
 ```

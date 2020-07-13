@@ -1,31 +1,5 @@
 ## Game > Gamebase > 릴리스 노트
 
-### 2020. 06. 23.
-
-#### 기능 추가
-* [SDK] 2.11.0
-	* 결제 API 추가: 추가 정보(UserPayload) 입력해 결제 완료시 확인할 수 있음
-
-#### 기능 개선/변경
-* [Console] 
-	* 구매(IAP) > 상품: 스토어 아이템 ID에 여러 개의 게임베이스 상품을 등록하여 관리할 수 있도록 개선
-
-### 2020. 06. 09.
-
-#### 기능 개선/변경
-* [Console] 
-	* 멤버 > 회원:  **탈퇴 이력 조회** 화면에 탈퇴 유예 상태(탈퇴 유예, 탈퇴 취소, 즉시 탈퇴) 추가 표시
-* [SDK] 2.10.1
-	* (iOS) 사용자 푸시 설정 초기화 시 언어 코드가 설정되어 있지 않으면 디바이스 언어로 설정되도록 변경
-
-#### 버그 수정
-* [Console] 
-	* 쿠폰 > 쿠폰 발급: 쿠폰 통계 다운로드 시 SMS로 발송한 내역이 다운로드되지 않는 문제 수정
-
-* [SDK] 2.10.1
-	* (Unity) iOS Plugin에서 ViewController가 설정되지 않아 로그인 호출 시 실패하는 문제 수정
-	* (JavaScript) 초기화 시 StoreCode를 입력하지 않으면 오류가 발생하는 문제 수정
-
 ### 2020. 05. 26.
 
 #### 기능 추가
@@ -33,7 +7,7 @@
 	* 쿠폰 > 쿠폰 발급: 발송 통계 기능, 쿠폰 발송 내역 다운로드 기능 추가
 * [SDK] 2.10.0
 	* (공통) 기존의 모든 이벤트 시스템을 통합하는 GamebaseEventHandler 추가
-		* ServerPush, Observer 기능을 포함하고 있고, 프로모션 결제 이벤트 및 푸시 이벤트도 확인 가능
+		* ServerPush, Observer 기능을 포함하고 있고, Promotion 결제 이벤트 및 Push 이벤트도 확인 가능
 
 #### 기능 개선/변경
 * [Console] 
@@ -42,6 +16,7 @@
 	* (Unity) StandaloneWebviewAdapter 내부의 CefWebview 버전 업데이트: v2.0.4
 		* WebviewIndex 검증 로직을 개선
 		* Webview 생성 시, 간헐적으로 NullReferenceException이 발생하는 오류를 개선
+	* (Unity) GamebaseErrorCode에 소켓 연결에 관한 에러 코드 추가: SOCKET_CONNECTION_TIMEOUT, SOCKET_CONNECTION_FAIL
 
 ### 2020. 05. 12.
 
@@ -58,7 +33,7 @@
 #### 버그 수정
 * [SDK] 2.9.1
 	* (Andoird) 매핑 이후 지표 레벨이 null이 되어 결제 지표에 정상적으로 반영되지 않는 오류 수정
-	* (iOS) Unreal 엔진에서 빌드하면, 경고(warning)를 빌드 오류로 판정해 빌드가 되지 않는 문제 수정
+	* (iOS) unreal 엔진에서 빌드 하면, warning을 빌드 오류로 판정해서 빌드가 안되는 부분을 수정
 
 ### 2020. 04. 29.
 
