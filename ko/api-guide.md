@@ -83,6 +83,9 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | resultCode | int | 응답 코드<br>성공 시 0, 실패 시 오류 코드 반환 |
 | resultMessage | String | 응답 메시지 |
 
+<br>
+<br>
+
 ## Authentication
 
 #### Token Authentication
@@ -117,42 +120,42 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "String",
-    "isSuccessful": true
-  },
-  "linkedIdP": {
-    "idPCode": "String",
-    "idPId": "String"
-  },
-  "member": {
-    "userId": "String",
-    "valid": "Y",
-    "appId": "String",
-    "regDate": "2019-08-27T17:41:05+09:00",
-    "lastLoginDate": "2019-08-27T17:41:05+09:00",
-    "authList": [
-      {
-        "userId": "String",
-        "authSystem": "String",
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "String",
+        "isSuccessful": true
+    },
+    "linkedIdP": {
         "idPCode": "String",
-        "authKey": "String",
-        "regDate": "2019-08-27T17:41:05+09:00"
-      },
-      {
+        "idPId": "String"
+    },
+    "member": {
         "userId": "String",
-        "authSystem": "String",
-        "idPCode": "String",
-        "authKey": "String",
-        "regDate": "2019-08-27T17:41:05+09:00"
-      }
-    ],
-    "temporaryWithdrawal": {
-      "gracePeriodDate": "2020-04-18T09:12:01+09:00"
+        "valid": "Y",
+        "appId": "String",
+        "regDate": "2019-08-27T17:41:05+09:00",
+        "lastLoginDate": "2019-08-27T17:41:05+09:00",
+        "authList": [
+            {
+                "userId": "String",
+                "authSystem": "String",
+                "idPCode": "String",
+                "authKey": "String",
+                "regDate": "2019-08-27T17:41:05+09:00"
+            },
+            {
+                "userId": "String",
+                "authSystem": "String",
+                "idPCode": "String",
+                "authKey": "String",
+                "regDate": "2019-08-27T17:41:05+09:00"
+            }
+        ],
+        "temporaryWithdrawal": {
+            "gracePeriodDate": "2020-04-18T09:12:01+09:00"
+        }
     }
-  }
 }
 ```
 
@@ -178,6 +181,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [오류 코드](./error-code/#server)
 
+<br>
+<br>
 
 ## Launching
 
@@ -312,6 +317,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | maintenance.message | String | default 점검 사유 메시지 |
 
 <br>
+<br>
 
 ## Member
 
@@ -325,11 +331,9 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | --- | --- |
 | GET | /tcgb-member/v1.3/apps/{appId}/members/{userId} |
 
-
 **[Request Header]**
 
 공통 사항 확인
-
 
 **[Path Variable]**
 
@@ -347,44 +351,44 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 **[Response Body]**
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "member": {
-    "userId": "String",
-    "valid": "Y",
-    "appId": "String",
-    "regDate": "2019-08-27T17:41:05+09:00",
-    "lastLoginDate": "2019-08-27T17:41:05+09:00",
-	"authList": [
-		  {
-			"userId": "String",
-			"authSystem": "String",
-			"idPCode": "String",
-			"authKey": "String",
-			"regDate": "2019-08-27T17:41:05+09:00"
-		  }
-		]
-	},
-  "temporaryWithdrawal": {
-    "gracePeriodDate": "2020-04-18T09:12:01+09:00"
-  },
-  "memberInfo": {
-    "deviceCountryCode": "String",
-    "usimCountryCode": "String",
-    "language": "String",
-    "osCode": "String",
-    "telecom": "String",
-    "storeCode": "String",
-    "network": "String",
-    "deviceModel": "String",
-    "osVersion": "String",
-    "sdkVersion": "String",
-    "clientVersion": "String"
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "member": {
+        "userId": "String",
+        "valid": "Y",
+        "appId": "String",
+        "regDate": "2019-08-27T17:41:05+09:00",
+        "lastLoginDate": "2019-08-27T17:41:05+09:00",
+        "authList": [
+            {
+                "userId": "String",
+                "authSystem": "String",
+                "idPCode": "String",
+                "authKey": "String",
+                "regDate": "2019-08-27T17:41:05+09:00"
+            }
+        ]
+    },
+    "temporaryWithdrawal": {
+        "gracePeriodDate": "2020-04-18T09:12:01+09:00"
+    },
+    "memberInfo": {
+        "deviceCountryCode": "String",
+        "usimCountryCode": "String",
+        "language": "String",
+        "osCode": "String",
+        "telecom": "String",
+        "storeCode": "String",
+        "network": "String",
+        "deviceModel": "String",
+        "osVersion": "String",
+        "sdkVersion": "String",
+        "clientVersion": "String"
+    }
 }
 ```
 
@@ -421,6 +425,8 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 [오류 코드](./error-code/#server)
 
+<br>
+
 #### Get Members
 
 다수의 사용자 정보를 간략히 조회합니다.
@@ -451,20 +457,20 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "memberList": [
-    {
-		"userId": "String",
-		"valid": "Y",
-		"appId": "String",
-		"regDate": "2019-08-27T17:41:05+09:00"
-    }
-  ]
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "memberList": [
+        {
+            "userId": "String",
+            "valid": "Y",
+            "appId": "String",
+            "regDate": "2019-08-27T17:41:05+09:00"
+        }
+    ]
 }
 ```
 
@@ -476,11 +482,11 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | memberList[].appId | String | appId |
 | memberList[].regDate | String | 사용자가 계정을 생성한 시간 |
 
-
 **[Error Code]**
 
 [오류 코드](./error-code/#server)
 
+<br>
 
 #### Get IdP Information
 
@@ -496,13 +502,11 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 공통 사항 확인
 
-
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
 | appId | String | TOAST 프로젝트 ID |
-
 
 **[Request Body]**
 
@@ -514,23 +518,22 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "result": {
-    "String": [
-      {
-        "authKey": "String",
-        "idPCode": "gbid",
-        "authSystem": "String"
-      }
-    ]
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "String": [
+            {
+                "authKey": "String",
+                "idPCode": "gbid",
+                "authSystem": "String"
+            }
+        ]
+    }
 }
-
 ```
 
 | Key | Type | Description |
@@ -544,6 +547,8 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 [오류 코드](./error-code/#server)
 
+<br>
+
 #### Get UserId Information with Auth key
 
 사용자 인증 키에 매핑된 사용자 ID를 조회합니다.
@@ -553,7 +558,6 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | Method | URI |
 | --- | --- |
 | POST | /tcgb-member/v1.3/apps/{appId}/members/userIds/authKeys?authSystem={authSystem} |
-
 
 **[Request Header]**
 
@@ -565,13 +569,11 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | --- | --- | --- |
 | appId | String | TOAST 프로젝트 ID |
 
-
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | authSystem | String | mandatory | Gamebase 내부적으로 사용되는 인증 시스템 추후 사용자 인증 시스템 지원 예정 현재는 gbid |
-
 
 **[Request Body]**
 
@@ -583,15 +585,15 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "result": {
-    "String": "String"
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "String": "String"
+    }
 }
 ```
 
@@ -603,6 +605,8 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 [오류 코드](./error-code/#server)
 
+<br>
+
 #### Ban Histories
 
 사용자 이용 정지 이력을 조회합니다.
@@ -612,7 +616,6 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | Method | URI |
 | --- | --- |
 | GET | /tcgb-member/v1.3/apps/{appId}/members/bans |
-
 
 **[Request Header]**
 
@@ -624,7 +627,6 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | --- | --- | --- |
 | appId | String | TOAST 프로젝트 ID |
 
-
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
@@ -634,46 +636,45 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | page | String | optional | 조회하고자 하는 페이지. 0부터 시작 |
 | size | String | optional | 한 페이지당 데이터 개수 |
 
-
 **[Response Body]**
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
     "pagingInfo": {
-      "first": true,
-      "last": true,
-      "numberOfElements": 0,
-      "page": 0,
-      "size": 0,
-      "totalElements": 0,
-      "totalPages": 0
+        "first": true,
+        "last": true,
+        "numberOfElements": 0,
+        "page": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0
     },
     "result": [
-      {
-        "appId": "String",
-        "banCaller": "CONSOLE",
-        "banReason": "String",
-        "banType": "TEMPORARY",
-        "beginDate": 0,
-        "endDate": 0,
-        "flags": "String",
-        "message": "String",
-        "name": "String",
-        "regUser": "String",
-        "releaseCaller": "CONSOLE",
-        "releaseDate": 0,
-        "releaseReason": "String",
-        "releaseUser": "String",
-        "seq": 0,
-        "templateCode": 0,
-        "userId": "String"
-      }
+        {
+            "appId": "String",
+            "banCaller": "CONSOLE",
+            "banReason": "String",
+            "banType": "TEMPORARY",
+            "beginDate": 0,
+            "endDate": 0,
+            "flags": "String",
+            "message": "String",
+            "name": "String",
+            "regUser": "String",
+            "releaseCaller": "CONSOLE",
+            "releaseDate": 0,
+            "releaseReason": "String",
+            "releaseUser": "String",
+            "seq": 0,
+            "templateCode": 0,
+            "userId": "String"
+        }
     ]
 }
 ```
@@ -711,6 +712,8 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 [오류 코드](./error-code/#server)
 
+<br>
+
 #### Ban Release Histories.
 
 사용자 이용 정지 해제 이력을 조회합니다.
@@ -720,7 +723,6 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | Method | URI |
 | --- | --- |
 | GET | /tcgb-member/v1.3/apps/{appId}/members/bans/release |
-
 
 **[Request Header]**
 
@@ -732,7 +734,6 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | --- | --- | --- |
 | appId | String | TOAST 프로젝트 ID |
 
-
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
@@ -742,46 +743,45 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | page | String | optional | 조회하고자 하는 페이지. 0부터 시작 |
 | size | String | optional | 한 페이지당 데이터 개수 |
 
-
 **[Response Body]**
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
     "pagingInfo": {
-      "first": true,
-      "last": true,
-      "numberOfElements": 0,
-      "page": 0,
-      "size": 0,
-      "totalElements": 0,
-      "totalPages": 0
+        "first": true,
+        "last": true,
+        "numberOfElements": 0,
+        "page": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0
     },
     "result": [
-      {
-        "appId": "String",
-        "banCaller": "CONSOLE",
-        "banReason": "String",
-        "banType": "TEMPORARY",
-        "beginDate": 0,
-        "endDate": 0,
-        "flags": "String",
-        "message": "String",
-        "name": "String",
-        "regUser": "String",
-        "releaseCaller": "CONSOLE",
-        "releaseDate": 0,
-        "releaseReason": "String",
-        "releaseUser": "String",
-        "seq": 0,
-        "templateCode": 0,
-        "userId": "String"
-      }
+        {
+            "appId": "String",
+            "banCaller": "CONSOLE",
+            "banReason": "String",
+            "banType": "TEMPORARY",
+            "beginDate": 0,
+            "endDate": 0,
+            "flags": "String",
+            "message": "String",
+            "name": "String",
+            "regUser": "String",
+            "releaseCaller": "CONSOLE",
+            "releaseDate": 0,
+            "releaseReason": "String",
+            "releaseUser": "String",
+            "seq": 0,
+            "templateCode": 0,
+            "userId": "String"
+        }
     ]
 }
 ```
@@ -819,6 +819,8 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 [오류 코드](./error-code/#server)
 
+<br>
+
 #### Validate TransferAccount
 
 게스트 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사를 수행합니다. 유효한 TransferAccount인 경우 발급받은 userId 정보를 반환합니다.
@@ -828,7 +830,6 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | Method | URI |
 | --- | --- |
 | POST | /tcgb-gateway/v1.3/apps/{appId}/members/transfer-account |
-
 
 **[Request Header]**
 
@@ -840,7 +841,6 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | --- | --- | --- |
 | appId | String | TOAST 프로젝트 ID |
 
-
 **[Request Parameter]**
 
 없음
@@ -849,10 +849,10 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 ```json
 {
-  "account": {
-    "id": "198704206255",
-    "password": "Zw548q7zE"
-  }
+    "account": {
+        "id": "198704206255",
+        "password": "Zw548q7zE"
+    }
 }
 ```
 
@@ -865,19 +865,19 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "member": {
-    "userId": "String",
-    "valid": "Y",
-    "appId": "String",
-    "regDate": "2019-08-27T17:41:05+09:00",
-    "lastLoginDate": "2019-08-27T17:41:05+09:00"
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "member": {
+        "userId": "String",
+        "valid": "Y",
+        "appId": "String",
+        "regDate": "2019-08-27T17:41:05+09:00",
+        "lastLoginDate": "2019-08-27T17:41:05+09:00"
+    }
 }
 ```
 
@@ -893,6 +893,8 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 **[Error Code]**
 
 [오류 코드](./error-code/#server)
+
+<br>
 
 #### Withdraw
 
@@ -922,7 +924,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| regUser | String | mandatory | 탈퇴를 요청한 시스템 혹은 사용자 정보 <br> - 해당 정보는 Console > '멤버' 페이지의 '탈퇴 이력' 화면에서 확인 가능 <br> - 탈퇴 이력 화면은 탈퇴된 이용자 조회시에만 노출됨 |
+| regUser | String | mandatory | 탈퇴를 요청한 시스템 혹은 사용자 정보 <br> - 해당 정보는 Console > '멤버' 페이지의 '탈퇴 이력' 화면에서 확인 가능 |
 
 **[Request Body]**
 
@@ -932,12 +934,12 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    }
 }
 ```
 
@@ -945,6 +947,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 [오류 코드](./error-code/#server)
 
+<br>
 <br>
 
 ## Maintenance
@@ -977,28 +980,28 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "String",
-    "isSuccessful": true
-  },
-  "appId": "",
-  "underMaintenance": true,
-  "maintenances": [
-    {
-      "typeCode": "APP",
-      "beginDate": "2017-01-01T12:10:00+07:00",
-      "endDate": "2017-02-01T12:17:00+07:00",
-      "url": "http://url.info",
-      "message": "maintenance message",
-      "targetStores": [
-        "GG",
-        "AS",
-        "ONESTROE"
-      ]
-    }
-  ]
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "String",
+        "isSuccessful": true
+    },
+    "appId": "",
+    "underMaintenance": true,
+    "maintenances": [
+        {
+            "typeCode": "APP",
+            "beginDate": "2017-01-01T12:10:00+07:00",
+            "endDate": "2017-02-01T12:17:00+07:00",
+            "url": "http://url.info",
+            "message": "maintenance message",
+            "targetStores": [
+                "GG",
+                "AS",
+                "ONESTROE"
+            ]
+        }
+    ]
 }
 ```
 
@@ -1018,6 +1021,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 [오류 코드](./error-code/#server)
 
 <br>
+<br>
 
 ## Coupon
 
@@ -1029,7 +1033,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}/coupons/{couponCode} |
+| POST | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}/coupons/{couponCode}?storeCode={storeCode} |
 
 **[Request Header]**
 
@@ -1047,7 +1051,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| storeCode | String | optional | 콘솔에서 특정 스토어만 사용 가능하도록 쿠폰을 발급 받았다면, 스토어 코드를 전달해야 함<br>- GG: Google<br>- ONESTORE<br>- AS: AppStore |
+| storeCode | String | optional | 콘솔에서 특정 스토어만 사용 가능하도록 쿠폰을 발급 받았다면, 스토어 코드를 전달해야 함<br>전체 스토어인 경우 ALL 또는 파라미터 생략<br>- GG: Google<br>- ONESTORE: ONE store<br>- AS: AppStore |
 
 **[Response Body]**
 
@@ -1087,6 +1091,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 [오류 코드](./error-code/#server)
 
 <br>
+<br>
 
 ## Purchase(IAP)
 
@@ -1124,8 +1129,8 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 ```json
 {
-  "paymentSeq": "2019091931571201",
-  "accessToken" : "90fD1bs1guXwY6aZ7rseEKYW_6gMCISjDASgten4MD6O7XZD7VRjZcs8OTm8lOQVFTegoY4WK78P2WQCMm7cx"
+    "paymentSeq": "2019091931571201",
+    "accessToken": "90fD1bs1guXwY6aZ7rseEKYW_6gMCISjDASgten4MD6O7XZD7VRjZcs8OTm8lOQVFTegoY4WK78P2WQCMm7cx"
 }
 ```
 
@@ -1137,23 +1142,22 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 > [참고]
 > 클라이언트에서 requestPurchase API 호출시 응답으로 오는 purchaseToken 값이 accessToken으로 사용
 
-
 **[Response Body]**
 
 ```json
 {
-   "header":{
+    "header": {
         "isSuccessful": true,
         "resultCode": 0,
         "resultMessage": "SUCCESS"
     },
-    "result":{
+    "result": {
         "price": 1500.0,
         "currency": "KRW",
         "productSeq": 1000292,
-        "marketId" : "GG",
-        "gamebaseProductId" : "tap_prod_001",
-        "payload" : "additional info"
+        "marketId": "GG",
+        "gamebaseProductId": "tap_prod_001",
+        "payload": "additional info"
     }
 }
 ```
@@ -1178,7 +1182,9 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 [오류 코드](./error-code/#server)
 
-#### Get Consumable List
+<br>
+
+#### List Consumables
 
 결제가 완료되었지만 아직 소비(consume)되지 않은, 미소비 결제 내역을 조회할 수 있습니다.
 
@@ -1206,8 +1212,8 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 ```json
 {
-  "marketId": "GG",
-  "userId" : "QXG774PMRZMWR3BR"
+    "marketId": "GG",
+    "userId": "QXG774PMRZMWR3BR"
 }
 ```
 
@@ -1220,12 +1226,12 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 ```json
 {
-    "header":{
+    "header": {
         "isSuccessful": true,
         "resultCode": 0,
         "resultMessage": "success"
     },
-    "result":[
+    "result": [
         {
             "paymentSeq": "2020060210364966",
             "productSeq": 1000312,
@@ -1237,13 +1243,12 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
             "purchaseTime": "2020-06-02T13:38:56+09:00",
             "payload": "additional info"
         },
-
         {
             "paymentSeq": "2016122110023125",
             "productSeq": 1000292,
             "currency": "KRW",
             "price": 1000.0,
-            "marketId" : "AS",
+            "marketId": "AS",
             "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ",
             "gamebaseProductId": "gamebase_prod_002",
             "purchaseTime": "2020-06-02T13:37:42+09:00"
@@ -1269,7 +1274,9 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 [오류 코드](./error-code/#server)
 
-### Get ActiveSubscription List
+<br>
+
+### List Active Subscriptions
 
 유저가 현재 구독 중인 결제를 조회할 수 있습니다.
 
@@ -1297,9 +1304,9 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 ```json
 {
-  "marketId": "GG",
-  "packageName" : "com.toast.gamebase",
-  "userId" : "QXG774PMRZMWR3BR"
+    "marketId": "GG",
+    "packageName": "com.toast.gamebase",
+    "userId": "QXG774PMRZMWR3BR"
 }
 ```
 
@@ -1328,7 +1335,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
             "productId": "money_100",
             "productType": "AUTO_RENEWABLE",
             "paymentId": "GPA.3302-8679-7228-41195",
-            "price": 1000,
+            "price": 1000.0,
             "currency": "KRW",
             "gamebaseProductId": "gamebase_renewal_001",
             "payload" : "additional info",
@@ -1357,17 +1364,16 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 | result[].purchaseTime | String | 최근 갱신된 시간 |
 | result[].expiryTime | String | 구독 만료 시간 |
 
-
 **[Error Code]**
 
 [오류 코드](./error-code/#server)
 
 <br>
+<br>
 
 ## Leaderboard
 
 Gamebase는 TOAST Leaderboard 서비스의 서버 API에 대해 **Wrapping** 기능을 제공합니다. Wrapping 기능을 사용하면 사용자 서버에서 일관된 인터페이스로 TOAST 서비스들을 사용할 수 있습니다.
-
 
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
@@ -1382,9 +1388,7 @@ Gamebase는 TOAST Leaderboard 서비스의 서버 API에 대해 **Wrapping** 기
 | 다수 사용자 점수/ExtraData 등록 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
 | 단일 사용자 Leaderboard정보 삭제 | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
 
-
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
-
 
 [Leaderboard Guide](/Game/Leaderboard/ko/api-guide/)
 
@@ -1398,6 +1402,7 @@ X-Secret-Key: IgsaAP
 GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
 ```
 
+<br>
 <br>
 
 ## Others
@@ -1418,17 +1423,16 @@ GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.3/apps/C3JmSctU/maint
 
 ```json
 {
-  "header": {
-    "transactionId": "18a1ae42-6b1d-54c8-894e-54e97bca07fq",
-    "resultCode": -4010002,
-    "resultMessage": "Gamebase product appKey is invalid, appId:C3JmSctU",
-    "traceError": {
-      "trackingTime": 1489726350287,
-      "throwPoint": "gateway",
-      "uri": "/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance"
-    },
-    "isSuccessful": false
-  }
+    "header": {
+        "transactionId": "18a1ae42-6b1d-54c8-894e-54e97bca07fq",
+        "resultCode": -4010002,
+        "resultMessage": "Gamebase product appKey is invalid, appId:C3JmSctU",
+        "traceError": {
+            "trackingTime": 1489726350287,
+            "throwPoint": "gateway",
+            "uri": "/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance"
+        },
+        "isSuccessful": false
+    }
 }
-
 ```

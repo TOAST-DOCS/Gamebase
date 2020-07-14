@@ -96,7 +96,8 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 - (void)purchasingItem:(NSString *)gamebaseProductId {
     NSString *userPayload = @"USER_PAYLOAD";
 
-    [TCGBPurchase requestPurchaseWithGamebaseProductId:gamebaseProductId viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
+    [TCGBPurchase requestPurchaseWithGamebaseProductId:gamebaseProductId payload:userPayload viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
+        NSString *receivedPayload = purchasableReceipt.payload;
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Purchase Item Succeeded
         } else if (error.code == TCGB_ERROR_PURCHASE_USER_CANCELED) {

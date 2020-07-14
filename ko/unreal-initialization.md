@@ -58,7 +58,7 @@ Gamebase에서 제공하는 UI 및 SystemDialog에 표시되는 언어를 단말
 시스템 점검, 이용 제재(ban) 등 게임 유저가 게임을 플레이할 수 없는 상황에서 팝업 등으로 사유를 표시해야 할 때가 있습니다.
 Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
 
-* true: enableLaunchingStatusPopup, enableBanPopup 설정에 따라 팝업이 노출 여부가 결정됩니다.
+* true: enableLaunchingStatusPopup, enableBanPopup 설정에 따라 팝업 노출 여부가 결정됩니다.
 * false: Gamebase에서 제공하는 모든 팝업이 노출되지 않습니다.
 * 기본값: false
 
@@ -83,7 +83,7 @@ Gamebase Server로 부터 Kickout 이벤트를 받은 경우, Gamebase에서 제
 
 ### Initialize
 
-SDK를 초기화 합니다.
+SDK를 초기화합니다.
 
 **API**
 
@@ -159,7 +159,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 
 ### Launching Information
 
-Initialize API를 사용하여 Gamebase Unreal SDK를 초기화하면 LaunchingInfo 객체가 결과값으로 전달됩니다.
+Initialize API를 사용하여 Gamebase Unreal SDK를 초기화하면 LaunchingInfo 객체가 결괏값으로 전달됩니다.
 이 LaunchingInfo 객체에는 Gamebase Console에 설정한 값들과 게임 상태 등이 포함돼 있습니다.
 
 #### 1. Launching
@@ -179,7 +179,7 @@ Gamebase Unreal SDK 초기화 설정에 입력한 앱 버전의 게임 상태 �
 | --------------------------- | ----------- | ---------------------------------------- |
 | IN_SERVICE | 200 | 정상 서비스 중 |
 | RECOMMEND_UPDATE | 201 | 업그레이드 권장 |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202         | 점검 중에는 서비스를 이용할 수 없지만 QA 단말기로 등록된 경우에는 점검과 상관없이 서비스에 접속해 테스트 할 수 있습니다. |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202         | 점검 중에는 서비스를 이용할 수 없지만 QA 단말기로 등록된 경우에는 점검과 상관없이 서비스에 접속해 테스트할 수 있습니다. |
 | IN_TEST                     | 203  | 테스트 중 |
 | IN_REVIEW                   | 204  | 심사 중 |
 | REQUIRE_UPDATE | 300 | 업그레이드 필수 |
@@ -199,10 +199,10 @@ Gamebase Console에 등록된 앱 정보입니다.
     * serverAddress: 서버 주소
     * csInfo: 고객 센터 정보
 * relatedUrls
-    * termsUrl: 이용약관
+    * termsUrl: 이용 약관
     * personalInfoCollectionUrl: 개인 정보 동의
     * punishRuleUrl: 이용 정지 규정
-    * csUrl : 고객센터
+    * csUrl : 고객 센터
 * install: 설치 URL
 * idP: 인증 정보
 
@@ -232,7 +232,7 @@ Gamebase Console에 등록된 공지 정보입니다.
 
 #### 2. tcProduct
 
-Gamebase와 연계된 TOAST 서비스의 appKey입니다.
+Gamebase와 연계된 TOAST 서비스의 Appkey입니다.
 
 * gamebase
 * tcLaunching
@@ -260,7 +260,7 @@ TOAST Launching 콘솔에서 사용자가 입력한 정보입니다
 
 ### Get Launching Information
 
-GetLaunchingInformations API를 이용하면 Initialize 이후에도 LaunchingInfo 객체를 획득할 수 있습니다.
+GetLaunchingInformations API를 이용하면 Initialize 이후에도 LaunchingInfo 객체를 얻을 수 있습니다.
 
 **API**
 

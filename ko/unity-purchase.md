@@ -61,35 +61,15 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
-static void RequestPurchase(long itemSeq, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
 static void RequestPurchase(string gamebaseProductId, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
 static void RequestPurchase(string gamebaseProductId, string payload, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
+
+// Legacy API
+static void RequestPurchase(long itemSeq, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
 ```
 
 **Example**
 ```cs
-public void RequestPurchase(long itemSeq)
-{
-    Gamebase.Purchase.RequestPurchase(itemSeq, (purchasableReceipt, error) =>
-    {
-        if (Gamebase.IsSuccess(error))
-        {
-            Debug.Log("Purchase succeeded.");
-        }
-        else
-        {
-        	if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
-            {
-                Debug.Log("User canceled purchase.");
-            }
-            else
-            {
-            	Debug.Log(string.Format("Purchase failed. error is {0}", error));
-            }
-        }
-    });
-}
-
 public void RequestPurchase(string gamebaseProductId)
 {
     Gamebase.Purchase.RequestPurchase(gamebaseProductId, (purchasableReceipt, error) =>
