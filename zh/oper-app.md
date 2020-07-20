@@ -363,20 +363,20 @@
 
 ###### Certificates, Identifiers & Profiles > Keys > 添加(+)
 1. 选择“Sign In with Apple”复选框并进行设置。
-![Check SignInWithApple](./image/Operators_Guide/Console_App_Auth_appleid0_1.0.png)
+![Check SignInWithApple](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid0_1.0.png)
 2. 选择要使用“Sign in with Apple”的Bundle ID。
-![ChooseAPrimaryAppID](./image/Operators_Guide/Console_App_Auth_appleid1_1.0.png)
+![ChooseAPrimaryAppID](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid1_1.0.png)
 3. 下载<span style="color:#e11d21">Privatekey</span>后保管，确认生成的<span style="color:#e11d21">Key ID</span>。
-![DownloadPrivateKey](./image/Operators_Guide/Console_App_Auth_appleid2_1.0.png)
+![DownloadPrivateKey](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid2_1.0.png)
 4. Certificates, Identifiers & Profiles > Identifiers > 选择对象应用程序 > 激活“Sign In with Apple”。
     * 设置为“Enable as a primary App ID”。
-![DownloadPrivateKey](./image/Operators_Guide/Console_App_Auth_appleid3_1.0.png)
+![DownloadPrivateKey](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid3_1.0.png)
 
 ##### Gamebase Console > App Settings
 [跳转至TOAST Console](https://console.toast.com/)
 
 * Gamebase
-![设置SecretKey](./image/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
+![设置SecretKey](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
 
 
 ###### Client ID Settings
@@ -387,9 +387,9 @@
 
 * “teamId”：设置开发者账号右上方的值。
 * “keyId”：Certificates, Identifiers & Profiles > Keys > 勾选Sign In with Apple，设置创建的值。
-![设置SecretKey](./image/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
+![设置SecretKey](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
 * “privateKey”：设置在上面的Keys中创建密钥同时创建的PrivateKey文件的内容。（打开下载的文件，如下方截屏所示，使用红色矩形部分的值。）
-![设置SecretKey](./image/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
+![设置SecretKey](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
 
 如下方示例所示，将上面的值创建为JSON，进行设置。
 
