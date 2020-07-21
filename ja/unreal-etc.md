@@ -106,7 +106,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 
     IGamebase::Get().Initialize(configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("Initialize succeeded."));
             FString displayLanguage = IGamebase::Get().GetDisplayLanguageCode();
@@ -525,7 +525,7 @@ Gamebaseは、顧客からの問い合わせに対応するための機能を提
 >
 > TOAST Contactサービスと連携して使用すると、より簡単に顧客からの問い合わせに対応できます。
 > 詳しいTOAST Contactサービス利用方法は、下記のガイドを参照してください。
-> [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+> [TOAST Online Contact Guide](/Contact%20Center/ja/online-contact-overview/)
 
 #### Open Contact WebView
 
@@ -550,7 +550,7 @@ void Sample::OpenContact()
 {
     IGamebase::Get().GetContact().OpenContact(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("OpenContact succeeded."));
         }
@@ -570,4 +570,3 @@ void Sample::OpenContact()
     }));
 }
 ```
-

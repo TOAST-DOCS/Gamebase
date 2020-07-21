@@ -40,7 +40,7 @@ void Sample::ShowWebView(const FString& url)
         }),
         schemeList,
         FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* error) {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             Result(ANSI_TO_TCHAR(__FUNCTION__), true, *FString::Printf(TEXT("scheme= %s"), *scheme));
         }
@@ -178,7 +178,6 @@ void ShowToast(const FString& message, EGamebaseToastExposureTime exposureTimeTy
 
 **Example**
 ```cpp
-
 void Sample::ShowToast(const FString& message, EGamebaseToastExposureTime exposureTimeType)
 {
     IGamebase::Get().GetUtil().ShowToast(message, exposureTimeType);
@@ -193,4 +192,3 @@ void Sample::ShowToast(const FString& message, EGamebaseToastExposureTime exposu
 
 * エラーコードの一覧は、次の文書を参照してください。
     * [エラーコード](./error-code/#client-sdk)
-
