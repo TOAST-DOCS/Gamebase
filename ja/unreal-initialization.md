@@ -1,1 +1,303 @@
+## Game > Gamebase > Unreal SDK使用ガイド > 初期化
+
+Gamebase Unreal SDKを使用するには、初期化を行う必要があります。またアプリID、アプリバージョン情報がTOAST Consoleに登録されている必要があります。
+
+### Include Header File
+
+Gamebase APIを使用するには、次のヘッダファイルをインクルードします。
+
+```cpp
+#include "Gamebase.h"
+```
+
+### GamebaseConfiguration 
+
+初期化時に必要な設定は下記の通りです。
+
+| Setting value              | Supported Platform | Mandatory(M) / Optional(O) |
+| -------------------------- | ------------------ | -------------------------- |
+| appID | ALL | M |
+| appVersion | ALL | M |
+| storeCode | ALL | M |
+| displayLanguageCode | ALL | O |
+| enablePopup | ALL | O |
+| enableLaunchingStatusPopup | ALL | O |
+| enableBanPopup | ALL | O |
+| enableKickoutPopup | ALL | O |
+
+#### 1. App ID
+
+Gamebase Consoleに登録されたプロジェクトIDです。
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+
+#### 2. appVersion
+
+Gamebase Consoleに登録したクライアントバージョンです。
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+
+#### 3. storeCode
+
+TOAST統合アプリ内決済サービスであるIAP(In-App Purchase)を初期化するために必要なストア情報です。
+
+| Store       | Code | Description  |
+| ----------- | ---- | ------------ |
+| App Store | AS | only iOS |
+| Google Play | GG | only Android |
+| One Store | ONESTORE | only Android |
+
+#### 4. displayLanguageCode
+
+Gamebaseで提供するUIおよびSystemDialogに表示される言語を、端末に設定された言語ではない別の言語に変更できます。
+
+[Display Language](./unreal-etc/#display-language)
+
+#### 5. enablePopup
+
+システムメンテナンス、利用制裁(ban)など、ゲームユーザーがゲームをプレイできない状況で、ポップアップなどで理由を表示する必要がある時があります。
+Gamebaseで提供する基本ポップアップを使用するかの設定です。
+
+* true：enableLaunchingStatusPopup、enableBanPopup設定に応じてポップアップが表示されるかどうかが決定されます。
+* false：Gamebaseで提供するすべてのポップアップが表示されません。
+* デフォルト値：false
+
+#### 6. enableLaunchingStatusPopup
+
+LaunchingStatusがゲームをできない状態の場合、Gamebaseで提供する基本ポップアップを使用するかの設定です。
+LaunchingStatusは、下記Launching項目下のState、Code部分を参照してください。
+
+* デフォルト値：true
+
+#### 7. enableBanPopup
+
+ログイン時、該当ゲームユーザーが利用停止状態の場合、Gamebaseで提供する基本ポップアップを使用するかどうかの設定です。
+
+* デフォルト値：true
+
+#### 8. enableKickoutPopup
+
+Gamebase ServerからKickoutイベントを受け取った場合、Gamebaseで提供する基本ポップアップを使用するかどうかの設定です。
+
+* デフォルト値：true
+
+### Initialize
+
+SDKを初期化します。
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
+
+```cpp
+void Initialize(const FGamebaseConfiguration& configuration, const FGamebaseLaunchingInfoDelegate& onCallback);
+```
+
+**Example**
+
+```cpp
+void Sample::Initialize(const FString& appID, const FString& appVersion)
+{
+    FGamebaseConfiguration configuration{ "AppID", "AppVersion", "real", GamebaseDisplayLanguageCode.Korean, true, true, true, true, GamebaseStoreCode.Google, true };
+
+    IGamebase::Get().Initialize(configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* error)
+    {
+        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("Initialize succeeded."));
+        
+            // Following notices are registered in the Gamebase Console
+            auto notice = launchingInfo->launching.notice;
+            if (notice != null)
+            {
+                if (string.IsNullOrEmpty(notice.message) == false)
+                {
+                    UE_LOG(GamebaseTestResults, Display, TEXT("title: %s"), notice.title);
+                    UE_LOG(GamebaseTestResults, Display, TEXT("message: %s"), notice.message);
+                    UE_LOG(GamebaseTestResults, Display, TEXT("url: %s"), notice.url);
+                }
+            }
+            
+            // Status information of game app version set in the Gamebase Unreal SDK initialization.
+            auto status = launchingInfo->launching.status;
+    
+            // Game status code (e.g. Under maintenance, Update is required, Service has been terminated)
+            // refer to GamebaseLaunchingStatus
+            if (status.code == GamebaseLaunchingStatus::IN_SERVICE)
+            {
+                // Service is now normally provided.
+            }
+            else
+            {
+                switch (status.code)
+                {
+                    case GamebaseLaunchingStatus::RECOMMEND_UPDATE:
+                    {
+                        // Update is recommended.
+                        break;
+                    }
+                    // ... 
+                    case GamebaseLaunchingStatus::INTERNAL_SERVER_ERROR:
+                    {
+                        // Error in internal server.
+                        break;
+                    }
+                }
+            }
+        }
+        else
+        {
+                // Check the error code and handle the error appropriately.
+            UE_LOG(GamebaseTestResults, Display, TEXT("Initialize failed."));
+        }
+    }));
+}
+```
+
+### Launching Information
+
+Initialize APIを使用してGamebase Unreal SDKを初期化すると、LaunchingInfoオブジェクトが結果値として伝達されます。
+このLaunchingInfoオブジェクトにはGamebase Consoleに設定した値とゲーム状態などが含まれています。
+
+#### 1. Launching
+
+Gamebaseローンチ情報です。
+
+**1.1 Status**
+
+Gamebase Unreal SDK初期化設定に入力したアプリバージョンのゲーム状態情報です。
+
+* code：ゲームステータスコード(メンテナンス中、アップデート必須、サービス終了など)
+* message：ゲーム状態メッセージ
+
+ステータスコードは、下記の表を参照してください。
+
+| Status                      | Status Code | Description                                    |
+| --------------------------- | ----------- | ---------------------------------------- |
+| IN_SERVICE | 200 | 正常サービス中 |
+| RECOMMEND_UPDATE | 201 | アップグレード推奨 |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202         | メンテナンス中はサービスを利用できませんが、QA端末に登録されている場合はメンテナンスに関係なくサービスに接続してテストできます。 |
+| IN_TEST                     | 203  | テスト中 |
+| IN_REVIEW                   | 204  | 審査中 |
+| REQUIRE_UPDATE | 300 | アップグレード必須 |
+| BLOCKED_USER                | 301         | 接続遮断に登録された端末(デバイスキー)でサービスに接続した場合です。 |
+| TERMINATED_SERVICE          | 302         | サービス終了                                |
+| INSPECTING_SERVICE          | 303         | サービスメンテナンス中                              |
+| INSPECTING_ALL_SERVICES     | 304         | 全体システムメンテナンス中                           |
+| INTERNAL_SERVER_ERROR       | 500         | 内部サーバーエラー                              |
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+
+**1.2 App**
+
+Gamebase Consoleに登録されたアプリ情報です。
+
+* accessInfo
+    * serverAddress：サーバーアドレス
+    * csInfo：サポート情報
+* relatedUrls
+    * termsUrl：利用約款
+    * personalInfoCollectionUrl：個人情報同意
+    * punishRuleUrl：利用停止規定
+    * csUrl ：サポート
+* install：インストールURL
+* idP：認証情報
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+
+**1.3 Maintenance**
+
+Gamebase Consoleに登録されたメンテナンス情報です。
+
+* url：メンテナンスページURL
+* timezone：標準時間帯(timezone)
+* beginDate：開始時間
+* endDate：終了時間
+* message：メンテナンス理由
+
+[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+
+**1.4 Notice**
+
+Gamebase Consoleに登録された告知情報です。
+
+* message：メッセージ
+* title：タイトル
+* url：メンテナンスURL
+
+[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+
+#### 2. tcProduct
+
+Gamebaseと連携されたTOASTサービスのappKeyです。
+
+* gamebase
+* tcLaunching
+* iap
+* push
+
+#### 3. tcIap
+
+TOAST Consoleに登録されたIAPストア情報です。
+
+* id： App ID
+* name： App Name
+* storeCode： Store Code
+ 
+[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+
+#### 4. tcLaunching
+
+TOAST Launchingコンソールでユーザーが入力した情報です。
+
+* ユーザーが入力した値をJSON stringで伝達します。
+* TOAST Launchingの詳細設定は、下記のガイドを参照してください。
+ 
+[Console Guide](/Game/Gamebase/ko/oper-management/#config)
+
+### Get Launching Information
+
+GetLaunchingInformations APIを利用すると、Initialize後にもLaunchingInfoオブジェクトを取得できます。
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
+
+```cpp
+const FGamebaseLaunchingInfoPtr GetLaunchingInformations() const;
+```
+
+**Example**
+
+```cpp
+void Sample::GetLaunchingInformations()
+{
+    auto launchingInformation = IGamebase::Get().GetLaunching().GetLaunchingInformations();
+    if (launchingInformation.IsValid() == false)
+    {
+        UE_LOG(GamebaseTestResults, Display, TEXT("Not found launching info."));
+        return;
+    }
+}
+```
+
+### Error Handling
+
+| Error                              | Error Code | Description            |
+| ---------------------------------- | ---------- | ---------------------- |
+| NOT\_INITIALIZED      | 1          | Gamebaseが初期化されていません。 |
+| NOT\_LOGGED\_IN       | 2          | ログインが必要です。            |
+| INVALID\_PARAMETER    | 3          | 無効なパラメータです。           |
+| INVALID\_JSON\_FORMAT | 4          | JSONフォーマットエラーです。         |
+| USER\_PERMISSION      | 5          | 権限がありません。              |
+| NOT\_SUPPORTED        | 10         | サポートしない機能です。         |
+
+* エラーコードの一覧は、次の文書を参照してください。
+    * [エラーコード](./error-code/#client-sdk)
 
