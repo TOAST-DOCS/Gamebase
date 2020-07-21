@@ -1,50 +1,50 @@
-## Game > Gamebase > API v1.0 가이드
+## Game > Gamebase > API v1.0 Guide
 
-Gamebase Server API는 RESTful 형식으로, 다음과 같은 API를 제공합니다.
+Gamebase Server API provides APIs as follows, in the RESTful format.
 
 ## Advance Notice
 
-서버 API를 사용하기 위해서는 다음과 같은 정보를 알고 있어야 합니다.
+Following information is required to use Server API.
 
 #### Server Address
 
-API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주소는 Gamebase Console 화면에서도 확인 가능합니다.
+To call API, below address is needed, which is also available in the Gamebase Console.
 > https://api-gamebase.cloud.toast.com
 
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
+![image alt](https://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
 
 #### AppId
 
-앱 ID는 TOAST 프로젝트 ID로 앱 메뉴 화면에서 확인할 수 있습니다.
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
+App ID, as a project ID of TOAST, can be found on the **Project List** page of the Console.
+![image alt](https://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
 #### SecretKey
 
-비밀 키(secret key)는 API에 대한 접근 제어 방안으로, Gamebase Console에서 확인할 수 있습니다. 비밀 키는 Server API를 호출할 때 HTTP 헤더에 필수로 설정해야 합니다.
-> [참고]
-> 비밀 키가 외부에 노출되어 잘못된 호출이 발생한다면 **생성** 버튼을 클릭하여 새로운 비밀 키를 만든 후, 새 비밀 키를 사용하면 됩니다.
+Secret Key, as a control access of API, can be found in the Gambase Console. It must be set at the HTTP header to call Server API.
+> [Note]<br>
+> When a secret key is exposed and a wrong call is made, click **Create** to create a new secret key and replace the old one.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
+![image alt](https://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
 
 #### TransactionId
 
-API를 호출하는 서버에서 내부적으로 API 요청을 관리할 수 있는 방안으로 TransactionId 기능을 제공합니다. 호출하는 서버에서 HTTP 헤더에 트랜잭션 ID를 설정하여 API를 호출하면, Gamebase 서버는 응답 HTTP Header 및 응답 결과의 Response Body Header에 해당 TransactionId를 설정하여 결과를 전달합니다.
+AS part of managing API internally within a server that calls API, TransactionId is provided.  By setting a transaction ID at the HTTP header from a calling server to call API, the Gamebase server delivers results with corresponding TransactionId set at the response HTTP Header and Response Body Header of results.
 
 ## Common
 
 #### HTTP Header
 
-API 호출 시 HTTP Header에 다음 항목들을 설정해야 합니다.
+Following items should be set at the HTTP Header to call API.
 
 | Name | Required | Value |
 | --- | --- | --- |
 | Content-Type | mandatory | application/json; charset=UTF-8 |
-| X-Secret-Key | mandatory |SecretKey 설명 참고 |
-| X-TCGB-Transaction-Id | optional | TransactionId 설명 참고 |
+| X-Secret-Key | mandatory |Refer to description of SecretKey  |
+| X-TCGB-Transaction-Id | optional | Refer to description of TransactionId |
 
 #### API Response
 
-모든 API 요청에 대한 응답으로 **HTTP 200 OK**를 전달합니다. API 요청 성공 유무는 Response Body의 Header 항목을 참고하여 판단할 수 있습니다.
+As a response to all API requests, **HTTP 200 OK** is delivered. Whether an API request is successful or not can be determined in reference of the Header of Response Body.
 
 **[Request]**
 
@@ -76,16 +76,16 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| transactionId | String | API 요청 시 HTTP Header에 설정한 값.<br>해당 값을 전달하지 않으면 Gamebase 내부적으로 생성된 값을 반환 |
-| isSuccessful | boolean | 성공 여부 |
-| resultCode | int | 응답 코드<br>성공 시 0, 실패 시 오류 코드 반환 |
-| resultMessage | String | 응답 메시지 |
+| transactionId | String | The value set at HTTP Header when API is requested.<br>If the value is not delivered, return value that is created within Gamebase. |
+| isSuccessful | boolean | Whether it is successful or not.  |
+| resultCode | int | Result code<br>0 for success; return error codes, for failure |
+| resultMessage | String | Result message  |
 
 ## Authentication
 
 #### Token Authentication
 
-로그인 사용자에게 발급된 Access Token이 유효한지를 검사합니다. Access Token이 정상이면 해당 사용자의 정보를 리턴합니다.
+Authenticates an Access Token issued to a login user. If it is normal, return information of a corresponding user.
 
 **[Method, URI]**
 
@@ -95,21 +95,21 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-공통 사항 확인
+Check common requirements.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
-| userId | String | 로그인한 사용자 아이디 |
-| accessToken | String | 로그인한 사용자에게 발급된 Access Token |
+| appId | String | TOAST project ID  |
+| userId | String | ID of a login user  |
+| accessToken | String |Access Token issued to a login user |
 
 **[Request Parameter]**
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| linkedIdP | boolean | optional | true or false (기본값은 false) Access Token을 발급받을 때 사용된, IdP 관련 정보 포함 여부 |
+| linkedIdP | boolean | optional | True or false (Default is false) <br>Whether IdP-related information, used when Access Token is issued, is included or not |
 
 **[Response Body]**
 
@@ -153,29 +153,29 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| linkedIdP | Object | 로그인한 사용자가 사용한 IdP 정보 |
-| linkedIdP.idPCode | String | IdP 정보 <br>guest, payco, facebook 등 |
+| linkedIdP | Object | Login user's IdP information  |
+| linkedIdP.idPCode | String | IdP information <br>e.g. Guest, PAYCO, and Facebook |
 | linkedIdP.idPId | String | IdP ID |
-| member.userId | String | 사용자 ID |
-| member.lastLoginDate | long | 마지막으로 로그인한 시간 <br>처음 로그인한 사용자는 해당 값이 없음 |
+| member.userId | String | User ID |
+| member.lastLoginDate | long | Last login time  <br>Not available for first-time login user  |
 | member.appId | String | appId |
-| member.valid | String | 로그인에 성공한 사용자의 값은 "Y" <br>(다른 값에 대한 설명은 멤버 API 참고) |
-| member.regDate | long | 사용자가 계정을 생성한 시간 |
-| authList | Array[Object] | 사용자 인증 IdP 관련 정보 |
-| authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 사용자 인증 시스템 지원 예정 |
-| authList[].idPCode | String | 사용자 인증 IdP 정보 <br>guest, payco, facebook 등 |
-| authList[].authKey | String | authSystem에서 발급된 사용자 구분 값 |
+| member.valid | String | Value of a successful login user is "Y" <br>(For description of other values, refer to member API.)) |
+| member.regDate | long | Time when a user created an account |
+| authList | Array[Object] | Information related to user-authenticated IdP.  |
+| authList[].authSystem | String | Authentication system internally used within Gamebase <br>User authentication system to be provided. |
+| authList[].idPCode | String | User-authenticated IdP information <br>e.g. Guest, PAYCO, and Facebook  |
+| authList[].authKey | String | User separator issued at authSystem  |
 
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[Error Code](./error-code/#server)
 
 ## Launching
 
 #### Get Simple Launching
 
-Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면 점검 시간 및 메시지 등 클라이언트 앱 기동시 제공되는 Launching 정보들에 대해 간략히 확인할수 있습니다.
+In the console, you can view the launching information provided when starting up a client app, such as the server address, install URL, current maintenance status, maintenance time, and messages.
 
 **[Method, URI]**
 
@@ -186,24 +186,24 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 **[Request Header]**
 
-공통 사항 확인
+Check Common Factors
 
 **[Path Variable]**  
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | TOAST Project ID |
 
 **[Request Parameter]**  
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| osCode | OsCode | true | OS 코드 <br>AOS, IOS, WEB, WINDOWS |
-| clientVersion | String | true | 클라이언트 버전 |
+| osCode | OsCode | true | OS code <br>AOS, IOS, WEB, WINDOWS |
+| clientVersion | String | true | Client version |
 
 **[Response Body]**  
 
-##### 정상
+##### OK
 ```json
 {
     "header": {
@@ -236,7 +236,7 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 }
 ```
 
-##### 점검
+##### Maintenance
 ```json
 {
     "header": {
@@ -279,28 +279,28 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 | Key | Type | Description |
 | --- | --- | --- |
-| status | Object | 현재 클라이언트 상태를 나타내는 정보 |
-| status.code | int | 클라이언트 상태코드 <br><br>정상: 200 <br>업데이트 권장: 201, 업데이트 필수: 300 <br>서비스 종료: 302 <br>점검 중: 303 |
-| status.message | String | 클라이언트 상태 메시지 |
-| app | Object | 앱의 정보 |
-| app.storeCode | String | 앱 스토어코드 <br>"GG", "AS" 등 |
-| app.accessInfo | Object | 콘솔 앱 화면에서 설정한 정보 |
-| app.accessInfo.serverAddress | String | 서버 주소<br>클라이언트에서 설정한 서버 주소의 우선순위가 높음. <br>클라이언트 서버 주소 미설정시, 앱 화면에서 설정한 서버 주소가 전달됨. |
-| app.accessInfo.csInfo | String | 고객 센터 정보 |
-| app.relatedUrls | Object | 앱 내에서 사용할 인앱 URL |
-| app.relatedUrls.termsUrl | String | 이용약관 |
-| app.relatedUrls.csUrl| String | 고객센터 |
-| app.relatedUrls.punishRuleUrl | String | 이용 정지 규정 |
-| app.relatedUrls.personalInfoCollectionUrl | String | 개인 정보동의 |
-| app.install | Object | 앱 설치 정보 |
-| app.install.url | String | 설치 URL |
-| maintenance | Object | 점검 정보 |
-| maintenance.typeCode | String | 점검 타입 코드 <br>전체 점검:'SYSTEM', 앱별 점검:'APP' |
-| maintenance.beginDate | Date | 점검 시작 시간 ISO 8601 |
-| maintenance.endDate | Date | 점검 종료 시간 ISO 8601 |
-| maintenance.url | String | 점검 URL |
-| maintenance.reason | String | 점검 사유 |
-| maintenance.message | String | default 점검 사유 메시지 |
+| status | Object | Information which shows the current client status |
+| status.code | int | Client status code <br><br>OK: 200 <br>Update recommended: 201, Update required: 300 <br>Service terminated: 302 <br>Maintenance in progress: 303 |
+| status.message | String | Client status message |
+| app | Object | App information |
+| app.storeCode | String | App Store code <br>'GG', 'AS', etc. |
+| app.accessInfo | Object | Information set on the console app screen |
+| app.accessInfo.serverAddress | String | Server address<br>The server address set on the client side has a higher priority. <br>When no client server address is set, the server address set on the app screen is delivered. |
+| app.accessInfo.csInfo | String | Customer Center information |
+| app.relatedUrls | Object | In-app URL to be used within the app |
+| app.relatedUrls.termsUrl | String | Terms and Conditions |
+| app.relatedUrls.csUrl| String | Customer Center |
+| app.relatedUrls.punishRuleUrl | String | Ban Rules |
+| app.relatedUrls.personalInfoCollectionUrl | String | Privacy Information Agreement |
+| app.install | Object | App Installation information |
+| app.install.url | String | Install URL |
+| maintenance | Object | Maintenance Information |
+| maintenance.typeCode | String | Maintenance type code <br>Overall maintenance : 'SYSTEM', Maintenance per App: 'APP' |
+| maintenance.beginDate | Date | Maintenance start date ISO 8601 |
+| maintenance.endDate | Date | Maintenance end date ISO 8601 |
+| maintenance.url | String | Maintenance URL |
+| maintenance.reason | String | Maintenance reason |
+| maintenance.message | String | Default maintenance reason message |
 
 <br>
 
@@ -308,7 +308,7 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 #### Get Member
 
-단일 사용자에 대해 상세 정보를 조회합니다.
+Retrieve detailed information of a single member.
 
 **[Method, URI]**
 
@@ -319,21 +319,21 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 **[Request Header]**
 
-공통 사항 확인
+Check common requirements.
 
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
-| userId | String | 조회 대상 사용자 ID |
+| appId | String |  TOAST project ID |
+| userId | String | User ID to retrieve |
 
 **[Request Parameter]**
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| includeMemberInfo | boolean | optional | true or false (기본값은 true) 사용자 단말기, OS 등의 상세 정보 포함 여부 |
+| includeMemberInfo | boolean | optional | true or false (default value true) Including detailed information of user device, OS, etc. |
 
 **[Response Body]**
 ```json
@@ -378,38 +378,38 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 | Key | Type | Description |
 | --- | --- | --- |
-| member | Object | 조회된 사용자의 기본 정보 |
-| member.userId | String | 사용자 ID |
-| member.valid | Enum | Y: 정상 사용자 <br>D: 탈퇴된 사용자 <br>B: 이용 정지된 사용자 <br>M: 유실된 계정|
+| member | Object | Basic information of a retrieved user|
+| member.userId | String | User ID |
+| member.valid | Enum | Y: Normal user <br>D: Withdrawn user  <br>B: Banned user <br>M: Missing account|
 | member.appId | String | appId |
-| member.regDate | long | 사용자가 계정을 생성한 시간 |
-| member.lastLoginDate | long | 마지막으로 로그인한 시간 <br>처음 로그인한 사용자는 해당 값이 없음 |
-| member.authList | Array[Object] | 사용자 인증 IdP 관련 정보 |
-| member.authList[].userId | String | 사용자 ID |
-| member.authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 사용자 인증 시스템 지원 예정 |
-| member.authList[].idPCode | String | 사용자 인증 IdP 정보 <br>guest, payco, facebook 등 |
-| member.authList[].authKey | String | authSystem에서 발급된 사용자 구분 값 |
-| member.authList[].regDate | long | IdP 정보가 사용자 계정과 매핑된 시간 |
-| memberInfo | Object | 사용자에 대한 부가 정보 |
-| memberInfo.deviceCountryCode | String | 사용자 기기의 국가 설정 |
-| memberInfo.usmCountryCode | String | 사용자 USIM의 국가 코드 |
-| memberInfo.language | String | 사용자 언어 |
-| memberInfo.osCode | String | 사용자 기기의 OS 종류 |
-| memberInfo.telecom | String | 통신사 |
-| memberInfo.storeCode | String | store 코드 |
-| memberInfo.network | String | 네트워크 환경 <br>3g, WiFi 등|
-| memberInfo.deviceModel | String | 사용자 기기의 모델명 |
-| memberInfo.osVersion | String | 사용자 기기의 OS 버전 |
-| memberInfo.sdkVersion | String | SDK 버전 |
-| memberInfo.clientVersion | String | 클라이언트 버전 |
+| member.regDate | long | Time when a user created an account   |
+| member.lastLoginDate | long | Last login time <br>Not available for a first-time login user |
+| member.authList | Array[Object] | Information related to user-authenticated IdP  |
+| member.authList[].userId | String | User ID |
+| member.authList[].authSystem | String |  Authentication system used internally within Gamebase <br>User authentication system to be provided |
+| member.authList[].idPCode | String | User-authenticated IdP information <br>e.g. Guest, PAYCO, and Facebook |
+| member.authList[].authKey | String |  User separator issued at authSystem   |
+| member.authList[].regDate | long | Mapping time between IdP information with user account |
+| memberInfo                   | Object        | Additional user information              |
+| memberInfo.deviceCountryCode | String        | Country code of user device              |
+| memberInfo.usmCountryCode    | String        | Country code of user USIM                |
+| memberInfo.language          | String        | User language                            |
+| memberInfo.osCode            | String        | OS type of user device                   |
+| memberInfo.telecom           | String        | Telecommunication provider               |
+| memberInfo.storeCode         | String        | Store code                               |
+| memberInfo.network           | String        | Network environment <br>e.g. 3G and WiFi |
+| memberInfo.deviceModel       | String        | Model name of user device                |
+| memberInfo.osVersion         | String        | OS version of user device                |
+| memberInfo.sdkVersion        | String        | SDK version                              |
+| memberInfo.clientVersion     | String        | Client version                           |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[Error Code](./error-code/#server)
 
 #### Get Members
 
-다수의 사용자 정보를 간략히 조회합니다.
+Retrieves brief information about multiple members.
 
 **[Method, URI]**
 
@@ -419,19 +419,19 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 **[Request Header]**
 
-공통 사항 확인
+Check common requirements.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | TOAST project ID |
 
 **[Request Body]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| userIdList | Array[String] | mandatory | 조회 대상 사용자 ID <br>  ["userId", "userId", "userId",...]|
+| userIdList | Array[String] | mandatory | User ID to retrieve <br>  ["userId", "userId", "userId",...]|
 
 **[Response Body]**
 
@@ -456,21 +456,21 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 | Key | Type | Description |
 | --- | --- | --- |
-| memberList | Array[Object] | 조회된 사용자의 기본 정보 |
-| memberList[].userId | String | 사용자 ID |
-| memberList[].valid | Enum | Y: 정상 사용자 <br>D: 탈퇴된 사용자 <br>B: 이용 정지된 사용자 <br>M: 유실된 계정|
-| memberList[].appId | String | appId |
-| memberList[].regDate | long | 사용자가 계정을 생성한 시간 |
+| memberList           | Array [Object] | Basic information of retrieved users     |
+| memberList[].userId  | String         | User ID                                  |
+| memberList[].valid   | Enum           | Y: Normal user <br>D: Withdrawn user <br>B: Banned user <br>M: Missing account |
+| memberList[].appId   | String         | appId                                    |
+| memberList[].regDate | Long           | Time when a user created an account      |
 
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[Error Code](./error-code/#server)
 
 
 #### Get IdP Information
 
-사용자 ID로 매핑된 IdP 정보를 조회합니다.
+Retrieve IdP information mapped with user ID.
 
 **[Method, URI]**
 
@@ -480,21 +480,21 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 **[Request Header]**
 
-공통 사항 확인
+Check common requirements.
 
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | TOAST project ID |
 
 
 **[Request Body]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| userIdList | Array[String] | mandatory | 조회 대상 사용자 ID  ["userId", "userId", "userId",...]|
+| userIdList | Array[String] | mandatory |  User ID to retrieve <br>  ["userId", "userId", "userId",...] |
 
 **[Response Body]**
 
@@ -521,18 +521,18 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Array[Object] | 조회된 사용자의 기본 정보 <br>userId가 key, IdP 정보가 value인 object|
-| authkey | String | authSystem에서 발급된 사용자 구분 값 |
-| IdPCode | String | 사용자 인증 IdP 정보 <br>guest, payco, facebook 등 |
-| authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 사용자 인증 시스템 지원 예정 |
+| result     | Array [Object] | Basic information of retrieved users <br>An object, with userId as key, and IdP information as value |
+| authkey    | String         | User separator issued at authSystem      |
+| IdPCode    | String         | User-authenticated IdP information <br>e.g. Guest, PAYCO, and Facebook |
+| authSystem | String         | Authentication system used internally within Gamebase <br>Authentication system to be provided |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[Error Code](./error-code/#server)
 
 #### Get UserId Information with Auth key
 
-사용자 인증 키에 매핑된 사용자 ID를 조회합니다.
+Retrieve a user ID mapped to user authentication key.
 
 **[Method, URI]**
 
@@ -543,27 +543,27 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 **[Request Header]**
 
-공통 사항 확인
+Check common requirements.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | TOAST project ID |
 
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| authSystem | String | mandatory | Gamebase 내부적으로 사용되는 인증 시스템 추후 사용자 인증 시스템 지원 예정 현재는 gbid |
+| authSystem | String | mandatory | Authentication system used internally within Gamebase <br>User authentication system to be provided  <br>Currently provides gbid |
 
 
 **[Request Body]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| authKeyList | Array[String] | mandatory | authSystem에서 발급된 authKey ["authKey", "authKey", "authKey",...]|
+| authKeyList | Array[String] | mandatory | authKey issued at authSystem <br> ["authKey", "authKey", "authKey",...]|
 
 **[Response Body]**
 
@@ -583,15 +583,15 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Array[Object] | 조회된 사용자의 기본 정보 authKey가 key이고, userId가 value인 object|
+| result | Array [Object] | Basic information of a retrieved user <br>An object with authKey as key, and useID as value. |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[Error Code](./error-code/#server)
 
 #### Ban Histories
 
-사용자 이용 정지 이력을 조회합니다.
+Looks up users' ban history.
 
 **[Method, URI]**
 
@@ -599,26 +599,25 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 | --- | --- |
 | GET | /tcgb-member/v1.0/apps/{appId}/members/bans |
 
-
 **[Request Header]**
 
-공통 사항 확인
+Check Common Factors
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | TOAST Project ID |
 
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | mandatory | 이용 정지 이력 조회 시작 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | mandatory | 이용 정지 이력 조회 종료 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용정지가 되었다면 조회 결과에 존재 |
-| page | String | optional | 조회하고자 하는 페이지. 0부터 시작 |
-| size | String | optional | 한 페이지당 데이터 개수 |
+| begin | String | mandatory | Ban history query start time (ISO 8601 standard time, UTF-8 encoding required) <br>E.g. yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | mandatory | Ban history query end time (ISO 8601 standard time, UTF-8 encoding required)<br>If banned between the start and end time, the query result shows this. |
+| page | String | optional | Page to query about. Starting from 0 |
+| size | String | optional | Number of data per page |
 
 
 **[Response Body]**
@@ -666,40 +665,40 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 | Key | Type | Description |
 | --- | --- | --- |
-| pagingInfo | Object | 조회된 페이징 정보 |
-| pagingInfo.first | boolean | 첫번째 페이지이면 true |
-| pagingInfo.last | boolean | 마지막 페이지이면 true |
-| pagingInfo.numberOfElements | int | 전체 데이터 수 |
-| pagingInfo.page | int | 페이지 번호 |
-| pagingInfo.size | int | 한 페이지당 데이터 개수 |
-| pagingInfo.totalElements | int | 전체 데이터 수 |
-| pagingInfo.totalPages | int | 전체 페이징 수 |
-| result | Array[Object] | 조회된 이용 정지 내역 |
-| result.appId | String | 조회된 이용 정지 의 TOAST 프로젝트 ID |
-| result.banCaller | String | 이용 정지 호출 주체 |
-| result.banReason | String | 이용 정지 사유 |
-| result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
-| result.beginDate | String | 이용 정지 시작 시간. ISO 8601 표준 시간|
-| result.endDate | String | 이용 정지 종료 시간. ISO 8601 표준 시간 |
-| result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'Leaderboard' 로 반환 |
-| result.message | String | 이용 정지 메세지 |
-| result.name | String | 콘솔에서 등록한 템플릿 이름 |
-| result.regUser | String | 이용 정지 등록자 |
-| result.releaseCaller | String | 이용 정지 해제 주체 |
-| result.releaseDate | String | 이용 정지 해제 시간. ISO 8601 표준 시간 |
-| result.releaseReason | String | 이용 정지 해제 사유 |
-| result.releaseUser | String | 이용 정지 해제 등록자 |
-| result.seq | Long | 이용 정지 내역 순번 |
-| result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
-| result.userId | String | 사용자 ID |
+| pagingInfo | Object | Queried page information |
+| pagingInfo.first | boolean | True if it is the first page |
+| pagingInfo.last | boolean | True if it is the last page |
+| pagingInfo.numberOfElements | int | Total number of data |
+| pagingInfo.page | int | Page No. |
+| pagingInfo.size | int | Number of data per page |
+| pagingInfo.totalElements | int | Total number of data |
+| pagingInfo.totalPages | int | Total number of pages |
+| result | Array[Object] | Queried ban history details |
+| result.appId | String | TOAST Project ID of the queried ban |
+| result.banCaller | String | Subject of calling ban |
+| result.banReason | String | Reason of ban |
+| result.banType | String | Type of ban TEMPORARY or PERMANENT |
+| result.beginDate | String | Start date of ban ISO 8601 standard time|
+| result.endDate | String | End date of ban ISO 8601 standard time |
+| result.flags | String | Returns 'Leaderboard' when you have selected Delete Leaderboard upon Registering Ban in the console. |
+| result.message | String | Ban message |
+| result.name | String | Template name registered in the console |
+| result.regUser | String | Banned user |
+| result.releaseCaller | String | Subject of unban |
+| result.releaseDate | String | Date of unban ISO 8601 standard time |
+| result.releaseReason | String | Reason of unban |
+| result.releaseUser | String | Unbanned user |
+| result.seq | Long | Sequence number of ban history |
+| result.templateCode | Long | Code value of ban template registered in the console |
+| result.userId | String | User ID |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[Error code](./error-code/#server)
 
 #### Ban Release Histories.
 
-사용자 이용 정지 해제 이력을 조회합니다.
+Queries the user's unban history.
 
 **[Method, URI]**
 
@@ -710,24 +709,22 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 **[Request Header]**
 
-공통 사항 확인
+Check Common Factors
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
-
+| appId | String | TOAST Project ID |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | mandatory | 이용 정지 해제 이력 조회 시작 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | mandatory | 이용 정지 해제 이력 조회 종료 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용정지가 해제 되었다면 조회 결과에 존재 |
-| page | String | optional | 조회하고자 하는 페이지. 0부터 시작 |
-| size | String | optional | 한 페이지당 데이터 개수 |
-
+| begin | String | mandatory | Unban history query start time (ISO 8601 standard time, UTF-8 encoding required) <br>E.g. yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | mandatory | Unban history query end time (ISO 8601 standard time, UTF-8 encoding required)<br>If unbanned between the start and end time, the query result shows this. |
+| page | String | optional | Page to query about. Starting from 0 |
+| size | String | optional | Number of data per page |
 
 **[Response Body]**
 
@@ -774,112 +771,37 @@ Console 에서 설정한 서버 주소, 설치 URL 및 현재 점검상태이면
 
 | Key | Type | Description |
 | --- | --- | --- |
-| pagingInfo | Object | 조회된 페이징 정보 |
-| pagingInfo.first | boolean | 첫번째 페이지이면 true |
-| pagingInfo.last | boolean | 마지막 페이지이면 true |
-| pagingInfo.numberOfElements | int | 전체 데이터 수 |
-| pagingInfo.page | int | 페이지 번호 |
-| pagingInfo.size | int | 한 페이지당 데이터 개수 |
-| pagingInfo.totalElements | int | 전체 데이터 수 |
-| pagingInfo.totalPages | int | 전체 페이징 수 |
-| result | Array[Object] | 조회된 이용 정지 정보 |
-| result.appId | String | 조회된 이용 정지 의 TOAST 프로젝트 ID |
-| result.banCaller | String | 이용 정지 호출 주체 |
-| result.banReason | String | 이용 정지 사유 |
-| result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
-| result.beginDate | String | 이용 정지 시작 시간. ISO 8601 표준 시간 |
-| result.endDate | String | 이용 정지 종료 시간. ISO 8601 표준 시간 |
-| result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'Leaderboard' 로 반환 |
-| result.message | String | 이용 정지 메세지 |
-| result.name | String | 콘솔에서 등록한 템플릿 이름 |
-| result.regUser | String | 이용 정지 등록자 |
-| result.releaseCaller | String | 이용 정지 해제 주체 |
-| result.releaseDate | String | 이용 정지 해제 시간. ISO 8601 표준 시간 |
-| result.releaseReason | String | 이용 정지 해제 사유 |
-| result.releaseUser | String | 이용 정지 해제 등록자 |
-| result.seq | Long | 이용 정지 내역 순번 |
-| result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
-| result.userId | String | 사용자 ID |
+| pagingInfo | Object | Queried page information |
+| pagingInfo.first | boolean | True if it is the first page |
+| pagingInfo.last | boolean | True if it is the last page |
+| pagingInfo.numberOfElements | int | Total number of data |
+| pagingInfo.page | int | Page No. |
+| pagingInfo.size | int | Number of data per page |
+| pagingInfo.totalElements | int | Total number of data |
+| pagingInfo.totalPages | int | Total number of pages |
+| result | Array[Object] | Queried ban information |
+| result.appId | String | TOAST Project ID of the queried ban |
+| result.banCaller | String | Subject of calling ban |
+| result.banReason | String | Reason of ban |
+| result.banType | String | Type of ban TEMPORARY or PERMANENT |
+| result.beginDate | String | Start date of ban ISO 8601 standard time |
+| result.endDate | String | End date of ban ISO 8601 standard time |
+| result.flags | String | Returns 'Leaderboard' when you have selected Delete Leaderboard upon Registering Ban in the console. |
+| result.message | String | Ban message |
+| result.name | String | Template name registered in the console |
+| result.regUser | String | Banned user |
+| result.releaseCaller | String | Subject of unban |
+| result.releaseDate | String | Date of unban ISO 8601 standard time |
+| result.releaseReason | String | Reason of unban |
+| result.releaseUser | String | Unbanned user |
+| result.seq | Long | Sequence number of ban history |
+| result.templateCode | Long | Code value of ban template registered in the console |
+| result.userId | String | User ID |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[Error code](./error-code/#server)
 
-#### Validate TransferAccount
-
-GUEST 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사를 수행합니다.
-
-**[Method, URI]**
-
-| Method | URI |
-| --- | --- |
-| POST | /tcgb-gateway/v1.1.2/apps/{appId}/members/transfer-account |
-
-
-**[Request Header]**
-
-공통 사항 확인
-
-**[Path Variable]**
-
-| Name | Type | Value |
-| --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
-
-
-**[Request Parameter]**
-
-없음
-
-
-**[Request Body]**
-
-```json
-{
-  "account": {
-    "id": "198704206255",
-    "password": "Zw548q7zE"
-  }
-}
-```
-
-| Key | Type | Description |
-| --- | --- | --- |
-| account.id | String | 유효성 검증을 수행할 ID |
-| account.password | String | 유효성 검증을 수행할 PASSWORD |
-
-**[Response Body]**
-
-```json
-{
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "member": {
-    "userId": "String",
-    "valid": "Y",
-    "appId": "String",
-    "regDate": 1488185201000,
-    "lastLoginDate": 1488185201000
-  }
-}
-```
-
-| Key | Type | Description |
-| --- | --- | --- |
-| member | Object | 조회된 사용자의 기본 정보 |
-| member.userId | String | 사용자 ID |
-| member.valid | Enum | Y: 정상 사용자 <br>D: 탈퇴된 사용자 <br>B: 이용 정지된 사용자 <br>M: 유실된 계정|
-| member.appId | String | appId |
-| member.regDate | long | 사용자가 계정을 생성한 시간 |
-| member.lastLoginDate | long | 마지막으로 로그인한 시간 <br>처음 로그인한 사용자는 해당 값이 없음 |
-
-**[Error Code]**
-
-[오류 코드](./error-code/#server)
 
 
 <br>
@@ -888,7 +810,7 @@ GUEST 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사
 
 #### Check Maintenance Set
 
-현재 점검이 설정되어 있는지 여부를 확인합니다.
+Check whether maintenance is currently set.
 
 **[Method, URI]**
 
@@ -898,17 +820,17 @@ GUEST 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사
 
 **[Request Header]**
 
-공통 사항 확인
+Check common requirements.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | TOAST project ID |
 
 **[Request Parameter]**
 
-없음
+N/A
 
 **[Response Body]**
 
@@ -936,39 +858,37 @@ GUEST 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사
 
 | Key | Type | Description |
 | --- | --- | --- |
-| underMaintenance | boolean | 현재 점검 설정 여부 |
-| maintenances | Object | 점검이 설정되어 있다면 점검 기본 정보 |
-| maintenances.typeCode | Enum | APP: 게임에서 설정한 점검 <br>SYSTEM: Gamebase 시스템에서 설정한 점검 |
-| maintenances.beginDate | String | 점검 시작 시간. ISO 8601 |
-| maintenances.endDate | String | 점검 종료 시간. ISO 8601 |
-| maintenances.url | String | 상세 점검 URL |
-| maintenances.message | String | 점검 메시지 |
+| underMaintenance       | Boolean | Whether maintenance is currently set     |
+| maintenances           | Object  | Default maintenance information, if maintenance is set |
+| maintenances.typeCode  | Enum    | APP: Maintenance set in a game <br>SYSTEM: Maintenance set by the Gamebase system |
+| maintenances.beginDate | String  | Start time of maintenance. ISO 8601      |
+| maintenances.endDate   | String  | End time of maintenance. ISO 8601        |
+| maintenances.url       | String  | Detailed maintenance URL                 |
+| maintenances.message   | String  | Maintenance message                      |
+
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[Error Code](./error-code/#server)
 
 
 ## Purchase(IAP)
 
-Gamebase는 TOAST IAP 서비스의 서버 API에 대해 **Wrapping** 기능을 제공합니다. Wrapping 기능을 사용하면 사용자 서버에서 일관된 인터페이스로 TOAST 서비스들을 사용할 수 있습니다.
-
+Gamebase provides **Wrapping** to Server API of TOAST IAP. With Wrapping, TOAST products become available at a user server on a consistent interface.
 
 #### Wrapping API
 
 | API | Method | Wrapping URI | IAP URI |
 | --- | --- | --- | --- |
-| 아이템 소비 | POST | /tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq} | /inapp/v3/consume/{paymentSeq}/items/{itemSeq} |
-| 아이템 조회 | GET | /tcgb-inapp/v1.0/apps/{appId}/item/list/{appSeq} | /standard/item/list/{appSeq} |
-| 미소비 결제 내역 조회| POST | /tcgb-inapp/v1.0/apps/{appId}/consumable/list | /standard/inapp/v1/consumable/list |
+|  Consume Items    | POST | /tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq} | /inapp/v3/consume/{paymentSeq}/items/{itemSeq} |
+|  Retrieve Items     | GET | /tcgb-inapp/v1.0/apps/{appId}/item/list/{appSeq} | /standard/item/list/{appSeq} |
+| Retrieve List of Non-consumed Purchases| POST | /tcgb-inapp/v1.0/apps/{appId}/consumable/list | /standard/inapp/v1/consumable/list |
 
-**해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
+**For more information of the API, click the following link.**
 
-```
-해당 API 들은 IAP에서 deprecated 되었습니다.
-```
+[IAP Guide](/Mobile%20Service/IAP/en/api-guide/)
 
-##### API 호출 예시
+##### Example of API Call
 
 ```
 Content-Type: application/json
@@ -980,29 +900,29 @@ POST https://api-gamebase.cloud.toast.com/tcgb-inapp/v1.0/apps/{appId}/consume/{
 
 ## Leaderboard
 
-Gamebase는 TOAST Leaderboard 서비스의 서버 API에 대해 **Wrapping** 기능을 제공합니다. Wrapping 기능을 사용하면 사용자 서버에서 일관된 인터페이스로 TOAST 서비스들을 사용할 수 있습니다.
+Gamebase provides Wrapping to server API of TOAST Leaderboard. With Wrapping, TOAST products become available at a user server on a consistent interface.
 
 
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
-| Factor에 등록된 사용자 수 조회 | GET | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
-| 단일 사용자 점수/순위 조회 | GET | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
-| 다수 사용자 점수/순위 조회 | POST | /tcgb-leaderboard/v1.0/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
-| 일정 범위의 전체 점수/순위 조회 | GET | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
-| 단일 사용자 점수 등록 | POST | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
-| 단일 사용자 점수/ExtraData 등록 | POST | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
-| 다수 사용자 점수 등록 | POST | /tcgb-leaderboard/v1.0/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
-| 다수 사용자 점수/ExtraData 등록 | POST | /tcgb-leaderboard/v1.0/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
-| 단일 사용자 Leaderboard정보 삭제 | DELETE | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| Retrieve User Count Registered at Factor | GET    | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
+| Retrieve Score/Rank of a Single User     | GET    | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
+| Retrieve Scores/Ranks of Multiple Users  | POST   | /tcgb-leaderboard/v1.0/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
+| Retrieve Entire Scores/Ranks of Range    | GET    | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
+| Register Score of a Single User          | POST   | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
+| Register Score/ExtraData of a Single User | POST   | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
+| Register Scores of Multiple Users        | POST   | /tcgb-leaderboard/v1.0/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
+| Register Scores/ExtraData of Multiple Users | POST   | /tcgb-leaderboard/v1.0/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
+| Delete Leaderboard Information of a Single User | DELETE | /tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
 
 
-**해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
+**For more information of the API, click the following link.**
 
 
-[Leaderboard Guide](/Game/Leaderboard/ko/api-guide/)
+[Leaderboard Guide](/Game/Leaderboard/en/api-guide/)
 
-##### API 호출 예시
+##### Example of API Call
 
 ```
 Content-Type: application/json
@@ -1016,17 +936,17 @@ GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.0/apps/{appId}/fact
 
 ### Support
 
-API 호출 실패 원인에 대한 문의 사항이 있을 경우, **API 호출 URL(HTTP body가 있는 경우는 body와 함께)과 그에 대한 응답 결과**를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다.
+To inquire about causes of failure in API call, upload **API Call URL (with HTTP body, if available) along with response results** to [Customer Center](https://cloud.toast.com/support/faq), and we'll respond ASAP.
 
 
 
-##### API 호출 예시
+##### Example of API Call
 
 ```
 GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.0/apps/C3JmSctU/maintenances/under-maintenance
 ```
 
-##### API 실패 응답 결과
+##### Result of Failed API Response
 
 ```json
 {
