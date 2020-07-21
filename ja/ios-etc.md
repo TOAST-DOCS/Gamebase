@@ -527,7 +527,7 @@ Gamebaseでは顧客からの問い合わせに対応するための機能を提
 >
 > TOAST Contactサービスと連携して使用すると、簡単に顧客からの問い合わせに対応できます。
 > 詳細はTOAST Contactサービスの利用ガイドを参照してください。
-> [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+> [TOAST Online Contact Guide](/Contact%20Center/ja/online-contact-overview/)
 >
 
 #### Open Contact WebView

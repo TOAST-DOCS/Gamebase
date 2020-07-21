@@ -57,7 +57,7 @@ dependencies {
 
 ## Sample Codes
 
-* 可创建及执行的Sample Project包含在[下载](https://docs.toast.com/ko/Download/)页面中分配的Gamebase Android SDK的Zip文件中。
+* 可创建及执行的Sample Project包含在[下载](https://docs.toast.com/zh/Download/)页面中分配的Gamebase Android SDK的Zip文件中。
 
 ## API Deprecate Governance
 

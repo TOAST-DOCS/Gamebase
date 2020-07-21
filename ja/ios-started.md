@@ -152,8 +152,8 @@ end
 * [Facebook for developers](https://developers.facebook.com/docs/ios)
 * [Naver for developers](https://developers.naver.com/docs/login/ios/)
 * [Twitter Developer's guide - Log in with Twitter](https://dev.twitter.com/web/sign-in/implementing)
-* [Twitter Developer's guide - Authentication](https://developer.twitter.com/en/docs/basics/authentication/overview/oauth)
-* [Line for developers](https://developers.line.me/en/docs/line-login/ios/integrate-line-login/)
+* [Twitter Developer's guide - Authentication](https://developer.twitter.com/ja/docs/basics/authentication/overview/oauth)
+* [Line for developers](https://developers.line.me/ja/docs/line-login/ios/integrate-line-login/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/ios)
 
 ## API Reference

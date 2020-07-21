@@ -148,7 +148,7 @@ Gamebase iOS SDKの初期化設定に入力したアプリバージョンのゲ�
 | INSPECTING_ALL_SERVICES     | 304  | 全体サービスをメンテナンス中です。                             |
 | INTERNAL_SERVER_ERROR       | 500  | 内部サーバーエラーです。                                |
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Console Guide](/Game/Gamebase/ja/oper-app/#app)
 
 **1.2 App**
 
@@ -165,7 +165,7 @@ Gamebase Consoleに登録されたアプリ情報です。
 * install：インストールURL
 * idP：認証情報
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+[Console Guide](/Game/Gamebase/ja/oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -177,7 +177,7 @@ Gamebase Consoleに登録されたメンテナンス情報です。
 * endDate：終了時間
 * message：メンテナンス理由
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+[Console Guide](/Game/Gamebase/ja/oper-operation/#maintenance)
 
 **1.4 Notice**
 
@@ -187,7 +187,7 @@ Gamebase Consoleに登録された告知情報です。
 * title：タイトル
 * url：メンテナンスURL
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+[Console Guide](/Game/Gamebase/ja/oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -206,7 +206,7 @@ TOAST Consoleに登録されたIAPストア情報です。
 * name：App Name
 * storeCode：Store Code
  
-[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+[Console Guide](/Game/Gamebase/ja/oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -215,7 +215,7 @@ TOAST Launching Consoleでユーザーが入力した情報です。
 * ユーザーが入力した値をJSON stringで伝達します。
 * TOAST Launchingの詳細設定は下記のガイドを参照してください。
  
-[Console Guide](/Game/Gamebase/ko/oper-management/#config)
+[Console Guide](/Game/Gamebase/ja/oper-management/#config)
 
 
 
