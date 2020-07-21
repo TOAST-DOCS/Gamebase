@@ -34,6 +34,7 @@ TOAST Logger SDKは、下記5つのレベルのログを転送できます。
 * FATAL
 
 ログレベルは次のとおりです。
+
 * DEBUG > INFO > WARN > ERROR > FATAL
 
 **API**
@@ -119,4 +120,3 @@ void Sample::SetLoggerUserField()
     IGamebase::Get().GetLogger().SetUserField("KEY", "VALUE");
 }
 ```
-

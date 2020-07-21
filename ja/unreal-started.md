@@ -141,4 +141,3 @@ DeprecatedされたAPIは、次の条件を満たすと、事前告知を行わ�
 		* ZZ : Hotfix
 
 * 5か月経過
-
