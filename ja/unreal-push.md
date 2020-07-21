@@ -37,7 +37,7 @@ void Sample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNi
     
     IGamebase::Get().GetPush().RegisterPush(FGamebasePushConfigurationDelegate::CreateLambda([](const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush succeeded"));
         }
@@ -46,6 +46,29 @@ void Sample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNi
             UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush failed. (error: %d)"), error->code);
         }
     }));
+}
+```
+
+#### Setting for APNS Sandbox
+* SandboxMode를 켜면, APNS Sandbox로 Push를 발송하도록 등록할 수 있습니다.
+* 콘솔 발송 방법
+    * Push 메뉴의 **대상**에서 **iOS Sandbox**를 선택한 후 발송합니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+
+```cpp
+void SetSandboxMode(bool isSandbox);
+```
+
+**Example**
+
+```cpp
+void Sample::SetSandboxMode(bool isSandbox)
+{
+    IGamebase::Get().GetPush().SetSandboxMode(isSandbox);
 }
 ```
 
@@ -72,7 +95,7 @@ void Sample::QueryPush()
     IGamebase::Get().GetPush().QueryPush(
         FGamebasePushConfigurationDelegate::CreateLambda([](const FGamebasePushConfiguration* pushAdvertisements, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("QueryPush succeeded. (pushEnabled= %s, adAgreement= %s, adAgreementNight= %s, displayLanguageCode= %s)"),
                 pushAdvertisements->pushEnabled ? TEXT("true") : TEXT("fasle"),
@@ -107,7 +130,7 @@ void Sample::QueryPush()
 ```cpp
 GamebaseError* gamebaseError = error; // GamebaseError object via callback
 
-if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+if (Gamebase::IsSuccess(error))
 {
     // succeeded
 }
@@ -126,4 +149,3 @@ else
 * TOAST Pushエラーコードを確認してください。
     * [Android](aos-push#error-handling)
     * [iOS](ios-push#error-handling)
-

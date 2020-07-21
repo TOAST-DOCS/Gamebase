@@ -29,13 +29,13 @@ Gamebase APIを使用するには、次のヘッダファイルをインクル�
 
 Gamebase Consoleに登録されたプロジェクトIDです。
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Console Guide](/Game/Gamebase/ja/oper-app/#app)
 
 #### 2. appVersion
 
 Gamebase Consoleに登録したクライアントバージョンです。
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+[Console Guide](/Game/Gamebase/ja/oper-app/#client)
 
 #### 3. storeCode
 
@@ -105,7 +105,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 
     IGamebase::Get().Initialize(configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("Initialize succeeded."));
         
@@ -189,7 +189,7 @@ Gamebase Unreal SDK初期化設定に入力したアプリバージョンのゲ�
 | INSPECTING_ALL_SERVICES     | 304         | 全体システムメンテナンス中                           |
 | INTERNAL_SERVER_ERROR       | 500         | 内部サーバーエラー                              |
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Console Guide](/Game/Gamebase/ja/oper-app/#app)
 
 **1.2 App**
 
@@ -206,7 +206,7 @@ Gamebase Consoleに登録されたアプリ情報です。
 * install：インストールURL
 * idP：認証情報
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+[Console Guide](/Game/Gamebase/ja/oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -218,7 +218,7 @@ Gamebase Consoleに登録されたメンテナンス情報です。
 * endDate：終了時間
 * message：メンテナンス理由
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+[Console Guide](/Game/Gamebase/ja/oper-operation/#maintenance)
 
 **1.4 Notice**
 
@@ -228,7 +228,7 @@ Gamebase Consoleに登録された告知情報です。
 * title：タイトル
 * url：メンテナンスURL
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+[Console Guide](/Game/Gamebase/ja/oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -247,7 +247,7 @@ TOAST Consoleに登録されたIAPストア情報です。
 * name： App Name
 * storeCode： Store Code
  
-[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+[Console Guide](/Game/Gamebase/ja/oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -256,7 +256,7 @@ TOAST Launchingコンソールでユーザーが入力した情報です。
 * ユーザーが入力した値をJSON stringで伝達します。
 * TOAST Launchingの詳細設定は、下記のガイドを参照してください。
  
-[Console Guide](/Game/Gamebase/ko/oper-management/#config)
+[Console Guide](/Game/Gamebase/ja/oper-management/#config)
 
 ### Get Launching Information
 
@@ -300,4 +300,3 @@ void Sample::GetLaunchingInformations()
 
 * エラーコードの一覧は、次の文書を参照してください。
     * [エラーコード](./error-code/#client-sdk)
-

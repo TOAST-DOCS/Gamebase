@@ -63,7 +63,7 @@ void Sample::RequestPurchaseSample(int64 itemSeq)
     IGamebase::Get().GetPurchase().RequestPurchase(itemSeq, FGamebasePurchasableReceiptDelegate::CreateLambda(
         [](const FGamebasePurchasableReceipt* purchasableReceipt, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase succeeded. (itemSeq= %ld, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
                 purchasableReceipt->itemSeq, purchasableReceipt->price, *purchasableReceipt->currency, *purchasableReceipt->paymentSeq, *purchasableReceipt->purchaseToken);
@@ -106,7 +106,7 @@ void Sample::RequestItemListPurchasable()
     IGamebase::Get().GetPurchase().RequestItemListPurchasable(FGamebasePurchasableItemListDelegate::CreateLambda(
         [](const TArray<FGamebasePurchasableItem>* purchasableItemList, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("RequestItemListPurchasable succeeded."));
 
@@ -148,7 +148,7 @@ void Sample::RequestItemListOfNotConsumed()
     IGamebase::Get().GetPurchase().RequestItemListOfNotConsumed(FGamebasePurchasableItemListDelegate::CreateLambda(
         [](const TArray<FGamebasePurchasableItem>* purchasableItemList, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             // Should Deal With This non-consumed Items.
             // Send this item list to the game(item) server for consuming item.
@@ -197,7 +197,7 @@ void Sample::RequestActivatedPurchases()
     IGamebase::Get().GetPurchase().RequestActivatedPurchases(FGamebasePurchasableReceiptListDelegate::CreateLambda(
         [](const TArray<FGamebasePurchasableReceipt>* purchasableReceiptList, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("RequestActivatedPurchases succeeded."));
 
@@ -253,7 +253,7 @@ void Sample::SetPromotionIAPHandler()
 {
     IGamebase::Get().GetPurchase().SetPromotionIAPHandler(FGamebasePurchasableReceiptDelegate::CreateLambda([](const FGamebasePurchasableReceipt* purchasableReceipt, const FGamebaseError* error)
     {
-        if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+        if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("SetPromotionIAPHandler succeeded. (itemSeq= %ld, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
                 purchasableReceipt->itemSeq, purchasableReceipt->price, *purchasableReceipt->currency, *purchasableReceipt->paymentSeq, *purchasableReceipt->purchaseToken);
@@ -319,7 +319,7 @@ void Sample::SetPromotionIAPHandler()
 ```cpp
 GamebaseError* gamebaseError = error; // GamebaseError object via callback
 
-if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
+if (Gamebase::IsSuccess(error))
 {
     // succeeded
 }
@@ -336,5 +336,4 @@ else
 ```
 
 * IAPエラーコードは、次の文書を参照してください。
-    * [TOAST > TOAST SDK使用ガイド > TOAST IAP > Unity > エラーコード](/TOAST/ko/toast-sdk/iap-unity/#_17)
-
+    * [TOAST > TOAST SDK使用ガイド > TOAST IAP > Unity > エラーコード](/TOAST/ja/toast-sdk/iap-unity/#_17)
