@@ -207,7 +207,7 @@ LaunchingInfo对象中包含Gamebase Console中设置的值及游戏状态等。
 | INSPECTING_ALL_SERVICES     | 304  | 所有服务正在维护中                              |
 | INTERNAL_SERVER_ERROR       | 500  | 内部服务器错误                                 |
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Console Guide](/Game/Gamebase/zh/oper-app/#app)
 
 **1.2 App**
 
@@ -224,7 +224,7 @@ LaunchingInfo对象中包含Gamebase Console中设置的值及游戏状态等。
 * install: 安装URL
 * idP: 验证信息
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+[Console Guide](/Game/Gamebase/zh/oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -236,7 +236,7 @@ LaunchingInfo对象中包含Gamebase Console中设置的值及游戏状态等。
 * endDate: 结束时间
 * message: 检查原因
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+[Console Guide](/Game/Gamebase/zh/oper-operation/#maintenance)
 
 **1.4 Notice**
 
@@ -246,7 +246,7 @@ LaunchingInfo对象中包含Gamebase Console中设置的值及游戏状态等。
 * title: 标题
 * url: 检查URL
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+[Console Guide](/Game/Gamebase/zh/oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -265,7 +265,7 @@ LaunchingInfo对象中包含Gamebase Console中设置的值及游戏状态等。
 * name: App Name
 * storeCode: Store Code
  
-[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+[Console Guide](/Game/Gamebase/zh/oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -274,7 +274,7 @@ LaunchingInfo对象中包含Gamebase Console中设置的值及游戏状态等。
 * 用户输入的值传至JSON string。
 * TOAST Launching具体设置请参考如下指南。
  
-[Console Guide](/Game/Gamebase/ko/oper-management/#config)
+[Console Guide](/Game/Gamebase/zh/oper-management/#config)
 
 
 

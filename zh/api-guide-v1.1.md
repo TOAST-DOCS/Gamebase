@@ -889,7 +889,7 @@ Gamebase는 TOAST IAP 서비스의 서버 API에 대해 **Wrapping** 기능을 �
 
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
 
-[IAP Guide](/Mobile%20Service/IAP/ko/api-guide-for-toast-sdk/)
+[IAP Guide](/Mobile%20Service/IAP/zh/api-guide-for-toast-sdk/)
 
 > [참고]
 > 클라이언트에서 requestPurchase API 호출시 응답으로 오는 purchaseToken 값이 아이템 소비 API의 accessToken으로 사용됩니다.
@@ -930,7 +930,7 @@ Gamebase는 TOAST Leaderboard 서비스의 서버 API에 대해 **Wrapping** 기
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
 
 
-[Leaderboard Guide](/Game/Leaderboard/ko/api-guide/)
+[Leaderboard Guide](/Game/Leaderboard/zh/api-guide/)
 
 ##### API 호출 예시
 

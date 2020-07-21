@@ -6,7 +6,7 @@
 
 #### Register TOAST Cloud Console
 
-[Notification > Push > Console Guide](/Notification/Push/ko/console-guide/)を参照してConsoleを設定します。
+[Notification > Push > Console Guide](/Notification/Push/ja/console-guide/)を参照してConsoleを設定します。
 
 #### Gradle
 

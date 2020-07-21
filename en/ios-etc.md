@@ -528,7 +528,7 @@ Gamebase provides features to respond to customer inquiries.
 >
 > By integrating with TOAST Contact, customer inquiries can be handled more at ease and convenience. 
 > For more details on TOAST Contact, see the guide as below: 
-> [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+> [TOAST Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
 
 #### Open Contact WebView
 

@@ -47,8 +47,8 @@ dependencies {
 * [Google APIs for Android](https://developers.google.com/android/guides/overview)
 * [Naver for developers](https://developers.naver.com/docs/login/android/)
 * [Twitter Android Developer's guide - Log in with Twitter](https://dev.twitter.com/web/sign-in/implementing)
-* [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/basics/authentication/overview/oauth)
-* [Line for developers](https://developers.line.me/en/docs/line-login/android/integrate-line-login/)
+* [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/ja/docs/basics/authentication/overview/oauth)
+* [Line for developers](https://developers.line.me/ja/docs/line-login/android/integrate-line-login/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/android)
 
 ## API Reference
@@ -57,7 +57,7 @@ dependencies {
 
 ## Sample Codes
 
-* ビルドおよび実行が可能なSample Projectは[ダウンロード](https://docs.toast.com/ko/Download/)ページで配布しているGamebase Android SDKのZipファイルに含まれています。
+* ビルドおよび実行が可能なSample Projectは[ダウンロード](https://docs.toast.com/ja/Download/)ページで配布しているGamebase Android SDKのZipファイルに含まれています。
 
 ## API Deprecate Governance
 
