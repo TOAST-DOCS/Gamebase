@@ -1,12 +1,14 @@
 ## Game > Gamebase > API v1.2 Guide
 
-## 변경 사항
-- IAP API가 변경 되었습니다.
-- Get Simple Launching API 호출 시 필수 파라미터로 storeCode가 추가 되었습니다.
-- Check Maintenance API 응답 결과에 점검 대상에 대한 storeCode 정보가 추가 되었습니다.
-- GUEST 계정에 대한 단말기 이전에 사용되는 TransferAccount에 대해, 사전에 발급된 TransferAccount를 검증 할 수 있는 Validate TransferAccount API가 추가 되었습니다.
-- API 응답결과의 date 타입이 Epoch time 에서 ISO 8601 형식(yyyy-MM-dd'T'HH:mm:ssXXX)으로 변경되었습니다. Token Authentication, Get Member, Get Members API 응답 결과의 regDate, lastLoginDate 항목
-- 쿠폰 소진 API가 추가 되었습니다.
+## Updates
+- Changed IAP API.
+- Added storeCode as required parameter to call Get Simple Launching API.
+- Added storeCode information of the maintenance target for the response result of Check Maintenance API.
+- Added Validate TransferAccount API to verify TransferAccount that is published in advance and used for device transfer on a guest account.
+- Changed the date time of API response result frmo Epoch Time to ISO 8601 (ssXXX:mm:HH'T'dd-MM-yyyy). regDate and lastLoginDate for response result of Token Authentication, Get Member, and Get Members API.
+- Added Exhaust Coupons API.
+- Purchase(IAP)의 구매 가격(price) 데이터 타입이 가이드상에서 Long 으로 잘못 표기된 것을 Float 타입으로 변경하였습니다.
+- 탈퇴 유예 기능 추가에 따라 Token Authentication, Get Member API 응답 결과에 탈퇴 유예 상태인 사용자에 대한 정보가 추가 되었습니다.
 
 ## Advance Notice
 
@@ -71,11 +73,11 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-    "header" : {
-    	"transactionId": "88a1ae42-6b1d-48c8-894e-54e97aca07fq",
-        "isSuccessful" : true,
+    "header": {
+        "transactionId": "88a1ae42-6b1d-48c8-894e-54e97aca07fq",
+        "isSuccessful": true,
         "resultCode": 0,
-        "resultMessage" : "Success."
+        "resultMessage": "Success."
     }
 }
 ```
@@ -86,6 +88,9 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | isSuccessful | boolean | Whether it is successful or not.  |
 | resultCode | int | Result code<br>0 for success; return error codes, for failure |
 | resultMessage | String | Result message  |
+
+<br>
+<br>
 
 ## Authentication
 
@@ -121,39 +126,42 @@ Check common requirements.
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "String",
-    "isSuccessful": true
-  },
-  "linkedIdP": {
-    "idPCode": "String",
-    "idPId": "String"
-  },
-  "member": {
-    "userId": "String",
-    "valid": "Y",
-    "appId": "String",
-    "regDate": "2019-08-27T17:41:05+09:00",
-    "lastLoginDate": "2019-08-27T17:41:05+09:00",
-    "authList": [
-      {
-        "userId": "String",
-        "authSystem": "String",
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "String",
+        "isSuccessful": true
+    },
+    "linkedIdP": {
         "idPCode": "String",
-        "authKey": "String",
-        "regDate": "2019-08-27T17:41:05+09:00"
-      },
-      {
+        "idPId": "String"
+    },
+    "member": {
         "userId": "String",
-        "authSystem": "String",
-        "idPCode": "String",
-        "authKey": "String",
-        "regDate": "2019-08-27T17:41:05+09:00"
-      }
-    ]
-  }
+        "valid": "Y",
+        "appId": "String",
+        "regDate": "2019-08-27T17:41:05+09:00",
+        "lastLoginDate": "2019-08-27T17:41:05+09:00",
+        "authList": [
+            {
+                "userId": "String",
+                "authSystem": "String",
+                "idPCode": "String",
+                "authKey": "String",
+                "regDate": "2019-08-27T17:41:05+09:00"
+            },
+            {
+                "userId": "String",
+                "authSystem": "String",
+                "idPCode": "String",
+                "authKey": "String",
+                "regDate": "2019-08-27T17:41:05+09:00"
+            }
+        ],
+        "temporaryWithdrawal": {
+            "gracePeriodDate": "2020-04-18T09:12:01+09:00"
+        }
+    }
 }
 ```
 
@@ -171,19 +179,23 @@ Check common requirements.
 | authList[].authSystem | String | Authentication system internally used within Gamebase <br>User authentication system to be provided. |
 | authList[].idPCode | String | User-authenticated IdP information <br>e.g. Guest, PAYCO, and Facebook  |
 | authList[].authKey | String | User separator issued at authSystem  |
+| temporaryWithdrawal | Object | 탈퇴 유예 관련 정보 <br>valid 가 "T" 값에서만 제공 |
+| temporaryWithdrawal.gracePeriodDate | String | 탈퇴 유예 만료 시간 ISO 8601 |
 
 
 **[Error Code]**
 
 [Error Code](./error-code/#server)
 
+<br>
+<br>
 
 ## Launching
 
 #### Get Simple Launching
 
 In the console, you can view the launching information provided when starting up a client app, such as the server address, install URL, current maintenance status, maintenance time, and messages.
-현재 점검 설정 여부 만을 확인하고 싶다면, [Check Maintenance] API를 사용하면 됩니다.
+To check only if the current maintenance setting is enabled, use [Check Maintenance] API.
 
 **[Method, URI]**
 
@@ -311,6 +323,7 @@ Check Common Factors
 | maintenance.message | String | Default maintenance reason message |
 
 <br>
+<br>
 
 ## Member
 
@@ -346,41 +359,44 @@ Check common requirements.
 **[Response Body]**
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "member": {
-    "userId": "String",
-    "valid": "Y",
-    "appId": "String",
-    "regDate": "2019-08-27T17:41:05+09:00",
-    "lastLoginDate": "2019-08-27T17:41:05+09:00",
-	"authList": [
-		  {
-			"userId": "String",
-			"authSystem": "String",
-			"idPCode": "String",
-			"authKey": "String",
-			"regDate": "2019-08-27T17:41:05+09:00"
-		  }
-		]
-	  },
-  "memberInfo": {
-    "deviceCountryCode": "String",
-    "usimCountryCode": "String",
-    "language": "String",
-    "osCode": "String",
-    "telecom": "String",
-    "storeCode": "String",
-    "network": "String",
-    "deviceModel": "String",
-    "osVersion": "String",
-    "sdkVersion": "String",
-    "clientVersion": "String"
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "member": {
+        "userId": "String",
+        "valid": "Y",
+        "appId": "String",
+        "regDate": "2019-08-27T17:41:05+09:00",
+        "lastLoginDate": "2019-08-27T17:41:05+09:00",
+        "authList": [
+            {
+                "userId": "String",
+                "authSystem": "String",
+                "idPCode": "String",
+                "authKey": "String",
+                "regDate": "2019-08-27T17:41:05+09:00"
+            }
+        ]
+    },
+    "temporaryWithdrawal": {
+        "gracePeriodDate": "2020-04-18T09:12:01+09:00"
+    },
+    "memberInfo": {
+        "deviceCountryCode": "String",
+        "usimCountryCode": "String",
+        "language": "String",
+        "osCode": "String",
+        "telecom": "String",
+        "storeCode": "String",
+        "network": "String",
+        "deviceModel": "String",
+        "osVersion": "String",
+        "sdkVersion": "String",
+        "clientVersion": "String"
+    }
 }
 ```
 
@@ -398,6 +414,8 @@ Check common requirements.
 | member.authList[].idPCode | String | User-authenticated IdP information <br>e.g. Guest, PAYCO, and Facebook |
 | member.authList[].authKey | String |  User separator issued at authSystem   |
 | member.authList[].regDate | String | Mapping time between IdP information with user account |
+| temporaryWithdrawal | Object | 탈퇴 유예 관련 정보 <br>valid 가 "T" 값에서만 제공 |
+| temporaryWithdrawal.gracePeriodDate | String | 탈퇴 유예 만료 시간 ISO 8601 |
 | memberInfo                   | Object        | Additional user information              |
 | memberInfo.deviceCountryCode | String        | Country code of user device              |
 | memberInfo.usmCountryCode    | String        | Country code of user USIM                |
@@ -414,6 +432,8 @@ Check common requirements.
 **[Error Code]**
 
 [Error Code](./error-code/#server)
+
+<br>
 
 #### Get Members
 
@@ -445,20 +465,20 @@ Check common requirements.
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "memberList": [
-    {
-		"userId": "String",
-		"valid": "Y",
-		"appId": "String",
-		"regDate": "2019-08-27T17:41:05+09:00"
-    }
-  ]
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "memberList": [
+        {
+            "userId": "String",
+            "valid": "Y",
+            "appId": "String",
+            "regDate": "2019-08-27T17:41:05+09:00"
+        }
+    ]
 }
 ```
 
@@ -470,11 +490,11 @@ Check common requirements.
 | memberList[].appId   | String         | appId                                    |
 | memberList[].regDate | String         | Time when a user created an account      |
 
-
 **[Error Code]**
 
 [Error Code](./error-code/#server)
 
+<br>
 
 #### Get IdP Information
 
@@ -490,13 +510,11 @@ Retrieve IdP information mapped with user ID.
 
 Check common requirements.
 
-
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
 | appId | String | TOAST project ID |
-
 
 **[Request Body]**
 
@@ -508,23 +526,22 @@ Check common requirements.
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "result": {
-    "String": [
-      {
-        "authKey": "String",
-        "idPCode": "gbid",
-        "authSystem": "String"
-      }
-    ]
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "String": [
+            {
+                "authKey": "String",
+                "idPCode": "gbid",
+                "authSystem": "String"
+            }
+        ]
+    }
 }
-
 ```
 
 | Key | Type | Description |
@@ -538,6 +555,8 @@ Check common requirements.
 
 [Error Code](./error-code/#server)
 
+<br>
+
 #### Get UserId Information with Auth key
 
 Retrieve a user ID mapped to user authentication key.
@@ -547,7 +566,6 @@ Retrieve a user ID mapped to user authentication key.
 | Method | URI |
 | --- | --- |
 | POST | /tcgb-member/v1.2/apps/{appId}/members/userIds/authKeys?authSystem={authSystem} |
-
 
 **[Request Header]**
 
@@ -559,13 +577,11 @@ Check common requirements.
 | --- | --- | --- |
 | appId | String | TOAST project ID |
 
-
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | authSystem | String | mandatory | Authentication system used internally within Gamebase <br>User authentication system to be provided  <br>Currently provides gbid |
-
 
 **[Request Body]**
 
@@ -577,15 +593,15 @@ Check common requirements.
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "result": {
-    "String": "String"
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "String": "String"
+    }
 }
 ```
 
@@ -597,6 +613,8 @@ Check common requirements.
 
 [Error Code](./error-code/#server)
 
+<br>
+
 #### Ban Histories
 
 Looks up users' ban history.
@@ -606,7 +624,6 @@ Looks up users' ban history.
 | Method | URI |
 | --- | --- |
 | GET | /tcgb-member/v1.2/apps/{appId}/members/bans |
-
 
 **[Request Header]**
 
@@ -618,7 +635,6 @@ Check Common Factors
 | --- | --- | --- |
 | appId | String | TOAST Project ID |
 
-
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
@@ -628,46 +644,45 @@ Check Common Factors
 | page | String | optional | Page to query about. Starting from 0 |
 | size | String | optional | Number of data per page |
 
-
 **[Response Body]**
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
     "pagingInfo": {
-      "first": true,
-      "last": true,
-      "numberOfElements": 0,
-      "page": 0,
-      "size": 0,
-      "totalElements": 0,
-      "totalPages": 0
+        "first": true,
+        "last": true,
+        "numberOfElements": 0,
+        "page": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0
     },
     "result": [
-      {
-        "appId": "String",
-        "banCaller": "CONSOLE",
-        "banReason": "String",
-        "banType": "TEMPORARY",
-        "beginDate": 0,
-        "endDate": 0,
-        "flags": "String",
-        "message": "String",
-        "name": "String",
-        "regUser": "String",
-        "releaseCaller": "CONSOLE",
-        "releaseDate": 0,
-        "releaseReason": "String",
-        "releaseUser": "String",
-        "seq": 0,
-        "templateCode": 0,
-        "userId": "String"
-      }
+        {
+            "appId": "String",
+            "banCaller": "CONSOLE",
+            "banReason": "String",
+            "banType": "TEMPORARY",
+            "beginDate": 0,
+            "endDate": 0,
+            "flags": "String",
+            "message": "String",
+            "name": "String",
+            "regUser": "String",
+            "releaseCaller": "CONSOLE",
+            "releaseDate": 0,
+            "releaseReason": "String",
+            "releaseUser": "String",
+            "seq": 0,
+            "templateCode": 0,
+            "userId": "String"
+        }
     ]
 }
 ```
@@ -703,7 +718,9 @@ Check Common Factors
 
 **[Error Code]**
 
-[Error code](./error-code/#server)
+[Error Code](./error-code/#server)
+
+<br>
 
 #### Ban Release Histories.
 
@@ -715,7 +732,6 @@ Queries the user's unban history.
 | --- | --- |
 | GET | /tcgb-member/v1.2/apps/{appId}/members/bans/release |
 
-
 **[Request Header]**
 
 Check Common Factors
@@ -725,7 +741,6 @@ Check Common Factors
 | Name | Type | Value |
 | --- | --- | --- |
 | appId | String | TOAST Project ID |
-|   |   |   |
 
 **[Request Parameter]**
 
@@ -736,46 +751,45 @@ Check Common Factors
 | page | String | optional | Page to query about. Starting from 0 |
 | size | String | optional | Number of data per page |
 
-
 **[Response Body]**
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
     "pagingInfo": {
-      "first": true,
-      "last": true,
-      "numberOfElements": 0,
-      "page": 0,
-      "size": 0,
-      "totalElements": 0,
-      "totalPages": 0
+        "first": true,
+        "last": true,
+        "numberOfElements": 0,
+        "page": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0
     },
     "result": [
-      {
-        "appId": "String",
-        "banCaller": "CONSOLE",
-        "banReason": "String",
-        "banType": "TEMPORARY",
-        "beginDate": 0,
-        "endDate": 0,
-        "flags": "String",
-        "message": "String",
-        "name": "String",
-        "regUser": "String",
-        "releaseCaller": "CONSOLE",
-        "releaseDate": 0,
-        "releaseReason": "String",
-        "releaseUser": "String",
-        "seq": 0,
-        "templateCode": 0,
-        "userId": "String"
-      }
+        {
+            "appId": "String",
+            "banCaller": "CONSOLE",
+            "banReason": "String",
+            "banType": "TEMPORARY",
+            "beginDate": 0,
+            "endDate": 0,
+            "flags": "String",
+            "message": "String",
+            "name": "String",
+            "regUser": "String",
+            "releaseCaller": "CONSOLE",
+            "releaseDate": 0,
+            "releaseReason": "String",
+            "releaseUser": "String",
+            "seq": 0,
+            "templateCode": 0,
+            "userId": "String"
+        }
     ]
 }
 ```
@@ -813,16 +827,17 @@ Check Common Factors
 
 [Error code](./error-code/#server)
 
+<br>
+
 #### Validate TransferAccount
 
-Validates the ID and password issued for transferring the guest account. 유효한 TransferAccount인 경우 발급 받은 userId 정보를 리턴합니다.
+Validates the ID and password issued for transferring the guest account. For valid TransferAccount, return issued userID information.
 
 **[Method, URI]**
 
 | Method | URI |
 | --- | --- |
 | POST | /tcgb-gateway/v1.1.2/apps/{appId}/members/transfer-account |
-
 
 **[Request Header]**
 
@@ -834,20 +849,18 @@ Check Common Factors
 | --- | --- | --- |
 | appId | String | TOAST Project ID |
 
-
 **[Request Parameter]**
 
 None
-
 
 **[Request Body]**
 
 ```json
 {
-  "account": {
-    "id": "198704206255",
-    "password": "Zw548q7zE"
-  }
+    "account": {
+        "id": "198704206255",
+        "password": "Zw548q7zE"
+    }
 }
 ```
 
@@ -860,19 +873,19 @@ None
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "member": {
-    "userId": "String",
-    "valid": "Y",
-    "appId": "String",
-    "regDate": "2019-08-27T17:41:05+09:00",
-    "lastLoginDate": "2019-08-27T17:41:05+09:00"
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "member": {
+        "userId": "String",
+        "valid": "Y",
+        "appId": "String",
+        "regDate": "2019-08-27T17:41:05+09:00",
+        "lastLoginDate": "2019-08-27T17:41:05+09:00"
+    }
 }
 ```
 
@@ -889,6 +902,60 @@ None
 
 [Error code](./error-code/#server)
 
+<br>
+
+#### Withdraw
+
+사용자 계정을 탈퇴 처리합니다.
+
+> [참고]
+> SDK의 탈퇴 API를 사용하지 않고 서버 탈퇴 API를 사용하여 계정 탈퇴를 구현한 경우, 클라이언트에서는 탈퇴 성공 후 SDK의 logout API를 호출하여 캐시되어 있는 토큰 등의 데이터 삭제가 필요하다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| DELETE | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}?regUser={regUser} |
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST 프로젝트 ID |
+| userId | String | 탈퇴 대상 사용자 ID |
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| regUser | String | mandatory | 탈퇴를 요청한 시스템 혹은 사용자 정보 <br> - 해당 정보는 Console > '멤버' 페이지의 '탈퇴 이력' 화면에서 확인 가능 <br> - 탈퇴 이력 화면은 탈퇴된 이용자 조회시에만 노출됨 |
+
+**[Request Body]**
+
+없음
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    }
+}
+```
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+<br>
 <br>
 
 ## Maintenance
@@ -921,28 +988,28 @@ N/A
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "String",
-    "isSuccessful": true
-  },
-  "appId": "",
-  "underMaintenance": true,
-  "maintenances": [
-    {
-      "typeCode": "APP",
-      "beginDate": "2017-01-01T12:10:00+07:00",
-      "endDate": "2017-02-01T12:17:00+07:00",
-      "url": "http://url.info",
-      "message": "maintenance message",
-      "targetStores": [
-        "GG",
-        "AS",
-        "ONESTROE"
-      ]
-    }
-  ]
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "String",
+        "isSuccessful": true
+    },
+    "appId": "",
+    "underMaintenance": true,
+    "maintenances": [
+        {
+            "typeCode": "APP",
+            "beginDate": "2017-01-01T12:10:00+07:00",
+            "endDate": "2017-02-01T12:17:00+07:00",
+            "url": "http://url.info",
+            "message": "maintenance message",
+            "targetStores": [
+                "GG",
+                "AS",
+                "ONESTROE"
+            ]
+        }
+    ]
 }
 ```
 
@@ -955,41 +1022,44 @@ N/A
 | maintenances.endDate   | String  | End time of maintenance. ISO 8601        |
 | maintenances.url       | String  | Detailed maintenance URL                 |
 | maintenances.message   | String  | Maintenance message                      |
-| maintenances.targetStores | Array[Enum] | 특정 클라이언트에 대해서만 점검 설정시, 점검 설정된 클라이언트의 스토어코드<br>- GG: Google<br>- ONESTORE<br>- AS: AppStore |
+| maintenances.targetStores | Array[Enum] | Storecode of a client for the maintenance setting of a particular client only <br>- GG: Google<br>- ONESTORE: ONE store<br>- AS: AppStore |
 
 **[Error Code]**
 
 [Error Code](./error-code/#server)
 
 <br>
+<br>
 
 ## Coupon
 
 #### Check Validation And Consume Coupon
 
-콘솔을 통해 발급된 쿠폰 코드에 대해 유효성 검증 및 쿠폰 상태를 변경 합니다. 유효한 쿠폰인 경우 소비 상태로 변경을 하고, 응답 결과로 지급할 아이템 정보를 리턴합니다.
+Validate published coupon code and change coupon status via console. For valid coupons, change to consume status and return item information to be paid as response result.
 
 **[Method, URI]**
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}/coupons/{couponCode} |
+| POST | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}/coupons/{couponCode}?storeCode={storeCode} |
 
 **[Request Header]**
 
-공통 사항 확인
+Check common issues
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
-| userId | String | 쿠폰을 사용할 userId |
-| couponCode | String | 쿠폰 코드 |
+| appId | String | TOAST project ID |
+| userId | String | User ID to use coupons |
+| couponCode | String | Coupon code |
 
 **[Request Parameter]**
 
-없음
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| storeCode | String | optional | 콘솔에서 특정 스토어만 사용 가능하도록 쿠폰을 발급 받았다면, 스토어 코드를 전달해야 함<br>전체 스토어인 경우 ALL 또는 파라미터 생략<br>- GG: Google<br>- ONESTORE: ONE store<br>- AS: AppStore |
 
 **[Response Body]**
 
@@ -1018,29 +1088,30 @@ N/A
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Object | 쿠폰 정보 |
-| result.title | String | 쿠폰 이름 |
-| result.benefits | Array[Object] | 지급할 아이템 정보 |
-| result.benefits.itemId | String | 아이템 ID |
-| result.benefits.amount | Integer | 아이템 개수 |
+| result | Object | Coupon Information |
+| result.title | String | Coupon name |
+| result.benefits | Array[Object] | Information of item to be provided |
+| result.benefits.itemId | String | Item ID |
+| result.benefits.amount | Integer | Item count |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[Error Code](./error-code/#server)
 
+<br>
 <br>
 
 ## Purchase(IAP)
 
 #### Consume
 
-Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 유저에게 아이템을 지급하기 전에 결제를 소비 할 것을 알려야 합니다. 결제 1건당 1번만 결제소비 가능하며, 결제의 상태가 정상이 아니면 소비되지 않습니다.
-(결재 소비가 완료 되었다면 유저의 결제 및 아이템 지급이 정상적으로 완료 되었다고 판단)
+After purchase is completed at each store, such as Google Play Store, App Store, and ONEStore, users must be notified to consume such purchase before item is provided. Consume only once per purchase, but if purchase state is not normal, it cannot be consumed.    
+(If purchase is consumed, user's purchase and item supply is deemed to have been complete.)
 
-소비 (Consume) 하지 않은 결제내역은 SDK 및 서버의 미소비 결제 내역조회 API를 통해 조회할 수 있습니다. 참고로 아이템 등록시 상품 유형이 일회성(CONSUMABLE)인 아이템 결제건에 대해서만 consume 처리 됩니다.
+Non-consumed purchases can be queried on SDK or server via Query Consume Non-Consumed Purchases API. Note that only consumable items can be consumed when registering items.  
 
-> [참고]
-> 결제 1건당 1번 소비 가능하며, 결제소비 하지 않은 결제는 IAP에서 아이템을 지급하지 않은 것으로 간주합니다.
+> [Note]
+> Consume once per purchase, and non-consumed purchases are considered that no item has been provided by IAP.
 
 **[Method, URI]**
 
@@ -1050,47 +1121,46 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 **[Request Header]**
 
-공통 사항 확인
+Check common issues
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | TOAST project ID |
 
 **[Request Parameter]**
 
-없음
+N/A
 
 **[Request Body]**
 
 ```json
 {
-  "paymentSeq": "2019091931571201",
-  "accessToken" : "90fD1bs1guXwY6aZ7rseEKYW_6gMCISjDASgten4MD6O7XZD7VRjZcs8OTm8lOQVFTegoY4WK78P2WQCMm7cx"
+    "paymentSeq": "2019091931571201",
+    "accessToken": "90fD1bs1guXwY6aZ7rseEKYW_6gMCISjDASgten4MD6O7XZD7VRjZcs8OTm8lOQVFTegoY4WK78P2WQCMm7cx"
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| paymentSeq | String | mandatory | 결제 번호 |
-| accessToken | String | mandatory  | 결제 인증 토큰 (로그인 인증 토큰이 아님)  |
+| paymentSeq | String | mandatory | Payment number |
+| accessToken | String | mandatory  | Payment authentication token (not a login authentication token) |
 
-> [참고]
-> 클라이언트에서 requestPurchase API 호출시 응답으로 오는 purchaseToken 값이 accessToken으로 사용
-
+> [Note]
+> When client calls requestPurchase API, the purchaseToken for response is used as accessToken
 
 **[Response Body]**
 
 ```json
 {
-   "header":{
+    "header": {
         "isSuccessful": true,
         "resultCode": 0,
         "resultMessage": "SUCCESS"
     },
-    "result":{
-        "price": 1500,
+    "result": {
+        "price": 1500.0,
         "currency": "KRW",
         "productSeq": 12345
     }
@@ -1099,18 +1169,20 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Object | 결제 기본 정보 |
-| result.price | Long | 결제 가격 |
-| result.currency  | String  | 결제 통화  |
-| result.productSeq | Long | 결제 아이템 번호 (console에 등록된 아이템 고유 번호) |
+| result | Object | Basic payment information |
+| result.price | Float | Payment price |
+| result.currency  | String  | Payment currency |
+| result.productSeq | Long | Payment item number (original item number registered on console) |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[Error Code](./error-code/#server)
 
-#### Get Consumable List
+<br>
 
-결제가 완료되었지만 아직 소비(Consume)되지 않은, 미소비 결제내역을 조회할 수 있습니다.
+#### List Consumables
+
+List non-consumed payment, which is not consumed even if paid up.
 
 **[Method, URI]**
 
@@ -1126,7 +1198,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | 	TOAST project ID |
 
 **[Request Parameter]**
 
@@ -1136,41 +1208,40 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 ```json
 {
-  "marketId": "GG",
-  "userChannel" : "GF",
-  "userKey" : "QXG774PMRZMWR3BR"
+    "marketId": "GG",
+    "userChannel": "GF",
+    "userKey": "QXG774PMRZMWR3BR"
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | 스토어코드<br>GG : Google, AS : Apple, ONESTORE : 원스토어 |
-| userChannel | String | mandatory  | 유저 채널<br>현재는 미구현 상태로 항상 `GF` 값을 설정  |
-| userKey | String | mandatory  | 유저 ID  |
+| marketId | String | mandatory | Stroe code<br>GG: Google, AS: Apple, ONESTORE: One store |
+| userChannel | String | mandatory  | User channel<br>Currently not realized, with the `GF` setting at all times |
+| userKey | String | mandatory  | User ID |
 
 **[Response Body]**
 
 ```json
 {
-    "header":{
+    "header": {
         "isSuccessful": true,
         "resultCode": 0,
         "resultMessage": "success"
     },
-    "result":[
+    "result": [
         {
             "paymentSeq": "2016122110023124",
             "productSeq": 1000292,
             "currency": "KRW",
-            "price": 1000,
+            "price": 1000.0,
             "accessToken": "oJgM1EfDRjnQY7yqhWCUVgAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
         },
-
         {
             "paymentSeq": "2016122110023125",
             "productSeq": 1000292,
             "currency": "KRW",
-            "price": 1000,
+            "price": 1000.0,
             "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
         }
     ]
@@ -1179,20 +1250,22 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Array[Object] | 결제 기본 정보 |
-| result[].paymentSeq | String  |  결제 번호 |
-| result[].productSeq | Long | 결제 아이템 번호 (console에 등록된 아이템 고유 번호) |
-| result[].currency  | String  | 결제 통화  |
-| result[].price | Long | 결제 가격 |
-| result[].accessToken | String | 결제 인증 토큰 |
+| result | Array[Object] | Basic payment information |
+| result[].paymentSeq | String  | Payment number |
+| result[].productSeq | Long | Payment item number (original item number registered on console) |
+| result[].currency  | String  | Payment currency |
+| result[].price | Float | 	Payment price |
+| result[].accessToken | String | Payment authentication token |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[Error Code](./error-code/#server)
 
-### Get ActiveSubscription List
+<br>
 
-유저가 현재 구독중인 결제를 조회 할 수 있습니다.
+### List Active Subscriptions
+
+List payment of user's current subscriptions.
 
 **[Method, URI]**
 
@@ -1202,87 +1275,87 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 **[Request Header]**
 
-공통 사항 확인
+Check common issues
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | TOAST project ID |
 
 **[Request Parameter]**
 
-없음
+N/A
 
 **[Request Body]**
 
 ```json
 {
-  "marketId": "GG",
-  "packageName" : "com.toast.gamebase",
-  "userChannel" : "GF",
-  "userKey" : "QXG774PMRZMWR3BR"
+    "marketId": "GG",
+    "packageName": "com.toast.gamebase",
+    "userChannel": "GF",
+    "userKey": "QXG774PMRZMWR3BR"
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | 스토어코드<br>GG : Google, AS : Apple, ONESTORE : 원스토어 |
-| packageName | String | mandatory | 콘솔에 등록한 앱의 packageName |
-| userChannel | String | mandatory  | 유저 채널<br>현재는 미구현 상태로 항상 `GF` 값을 설정  |
-| userKey | String | mandatory  | 유저 ID  |
+| marketId | String | mandatory | Store code<br>GG : Google, AS : Apple, ONESTORE : One store |
+| packageName | String | mandatory | packageName of the app registered on console |
+| userChannel | String | mandatory  | User channel<br>Currently not realized, with the `GF` setting at all times |
+| userKey | String | mandatory  | User ID |
 
 **[Response Body]**
 
 ```json
 {
-  "header": {
-    "isSuccessful": true,
-    "resultCode": 0,
-    "resultMessage": "SUCCESS"
-  },
-  "result": [
-    {
-      "channel": "GF",
-      "userId": "string",
-      "paymentSeq": "2018102610330423",
-      "appId": "com.toast.gamebase",
-      "productId": "subs_p1w",
-      "productType": "AUTO_RENEWABLE",
-      "productSeq": 1002904,
-      "currency": "KRW",
-      "price": 1000,
-      "paymentId": "GPA.3375-2193-1175-57698",
-      "originalPaymentId": "GPA.3375-2193-1175-57698",
-      "purchaseTimeMillis": 1540522998289,
-      "expiryTimeMillis": 1541134994548
-    }
-  ]
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "result": [
+        {
+            "channel": "GF",
+            "userId": "string",
+            "paymentSeq": "2018102610330423",
+            "appId": "com.toast.gamebase",
+            "productId": "subs_p1w",
+            "productType": "AUTO_RENEWABLE",
+            "productSeq": 1002904,
+            "currency": "KRW",
+            "price": 1000.0,
+            "paymentId": "GPA.3375-2193-1175-57698",
+            "originalPaymentId": "GPA.3375-2193-1175-57698",
+            "purchaseTimeMillis": 1540522998289,
+            "expiryTimeMillis": 1541134994548
+        }
+    ]
 }
 ```
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Array[Object] | 결제 기본 정보 |
-| result[].channel  | String  | 유저 채널  |
-| result[].userId  | String  | 유저 ID  |
-| result[].paymentSeq | String  |  결제 번호 |
-| result[].appId | String  |  패키지 이름 |
-| result[].productId | String  |  스토어에 등록된 상품(아이템) 식별자 |
-| result[].productType | String  |  상품(아이템) 타입<br>구독: AUTO_RENEWABLE |
-| result[].productSeq | Long | 결제 아이템 번호 (console에 등록된 아이템 고유 번호) |
-| result[].currency  | String  | 결제 통화  |
-| result[].price | Long | 결제 가격 |
-| result[].paymentId | String | 최근 갱신된 스토어 결제 번호 |
-| result[].originalPaymentId | String | 최초 스토어 결제 번호 |
-| result[].purchaseTimeMillis | Long | 최근 갱신된 시간 |
-| result[].expiryTimeMillis | Long | 구독 만료 시간 |
-
+| result | Array[Object] | Basic payment information |
+| result[].channel  | String  | User channel |
+| result[].userId  | String  | User ID |
+| result[].paymentSeq | String  | Payment number |
+| result[].appId | String  | Package name |
+| result[].productId | String  | Identifier of product (item) registered at store |
+| result[].productType | String  | Product (item) type<br>Subscription: AUTO_RENEWABLE |
+| result[].productSeq | Long | Payment item number (original item number registered on console) |
+| result[].currency  | String  | Payment currency |
+| result[].price | Float | Payment price |
+| result[].paymentId | String | Recently updated store payment number |
+| result[].originalPaymentId | String | Initial store payment number |
+| result[].purchaseTimeMillis | Long | Recent updated time |
+| result[].expiryTimeMillis | Long | Subscription expiration time |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[Error Code](./error-code/#server)
 
+<br>
 <br>
 
 ## Leaderboard
@@ -1319,6 +1392,7 @@ X-Secret-Key: IgsaAP
 GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/user-count
 ```
 
+<br>
 <br>
 
 ## Others
