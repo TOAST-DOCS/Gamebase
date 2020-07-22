@@ -9,7 +9,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 #### 1. Store Console
 
 * 请参考以下IAP指南，在每个商店添加您的应用并获取应用密钥。
-* [Mobile Service > IAP > 控制台使用指南 > Store interlocking information](/Mobil e%20Service/IAP/ko/console-guide/#store-interlocking-information)
+* [Mobile Service > IAP > 控制台使用指南 > Store interlocking information](/Mobil e%20Service/IAP/zh/console-guide/#store-interlocking-information)
 
 #### 2. 注册Store的测试账户
 
@@ -25,7 +25,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 #### 3. 使用TOAST IAP服务
 
 * 请参考IAP指南以设置IAP并注册item。
-    * [Mobile Service > IAP > 控制台使用指南](/Mobile%20Service/IAP/ko/console-guide/)
+    * [Mobile Service > IAP > 控制台使用指南](/Mobile%20Service/IAP/zh/console-guide/)
 
 #### 4. 下载
 

@@ -149,7 +149,7 @@ Refer to the table for status codes:
 | INTERNAL_SERVER_ERROR       | 500  | Error of internal server.                                 |
 
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Console Guide](/Game/Gamebase/en/oper-app/#app)
 
 **1.2 App**
 
@@ -166,7 +166,7 @@ App information registered on Gamebase console:
 * install: Installation URL
 * idP: Authentication information
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+[Console Guide](/Game/Gamebase/en/oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -178,7 +178,7 @@ Maintenance information registered on Gamebase Console.
 * endDate: End time
 * message: Cause of maintenance
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+[Console Guide](/Game/Gamebase/en/oper-operation/#maintenance)
 
 **1.4 Notice**
 
@@ -188,7 +188,7 @@ Notice information registered on Gamebase console:
 * title: Title
 * url: Maintenance URL
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+[Console Guide](/Game/Gamebase/en/oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -207,7 +207,7 @@ IAP store information registered on TOAST console:
 * name: App Name
 * storeCode: Store Code
 
-[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+[Console Guide](/Game/Gamebase/en/oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -216,7 +216,7 @@ User-input information for TOAST launching console:
 * Send user-input values in JSON string.
 * For further details of TOAST Launching, see the guide as below:  
 
-[Console Guide](/Game/Gamebase/ko/oper-management/#config)
+[Console Guide](/Game/Gamebase/en/oper-management/#config)
 
 
 

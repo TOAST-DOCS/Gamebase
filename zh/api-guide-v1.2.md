@@ -1306,7 +1306,7 @@ Gamebase为TOAST Leaderboard服务的服务器API提供**Wrapping**功能。使�
 **有关API的详细说明，请参考以下链接。**
 
 
-[Leaderboard Guide](/Game/Leaderboard/ko/api-guide/)
+[Leaderboard Guide](/Game/Leaderboard/zh/api-guide/)
 
 ##### API调用示例
 

@@ -266,6 +266,6 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
 * IAP错误代码，请参考以下文档。
-    * [Mobile Service > IAP > 错误代码 > Client API 错误类型](/Mobile%20Service/IAP/ko/error-code/#client-api)
+    * [Mobile Service > IAP > 错误代码 > Client API 错误类型](/Mobile%20Service/IAP/zh/error-code/#client-api)
 
 
