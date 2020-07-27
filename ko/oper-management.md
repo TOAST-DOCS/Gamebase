@@ -7,7 +7,7 @@ Gamebase를 사용하는 게임에 대한 조회 권한 관리, 알람 발송 �
 ## Authorization
 
 Gamebase Console 사용 권한을 관리할 수 있습니다.
-![gamebase_manage_01_201812](https://static.toastoven.net/prod_gamebase/Operators_guide/gamebase_manage_01_202003.png)
+![gamebase_manage_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_manage_01_202003.png)
 
 * Gamebase Console 사용 권한 관리
   * **위클리 리포트 수신 권한** : **위클리 리포트** 수신에 대한 권한
