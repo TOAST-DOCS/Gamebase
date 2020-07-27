@@ -40,6 +40,8 @@ TOAST 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하기 
 | App Store | AS | only iOS |
 | Google Play | GG | only Android |
 | One Store | ONESTORE | only Android |
+| Windows | WIN | only Unity Standalone |
+| Web | WEB | only Unity WebGL and JavaScript |
 
 #### 4. displayLanguageCode
 
