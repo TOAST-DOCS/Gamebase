@@ -3,23 +3,23 @@
 
 #### 機能追加
 * [Console]
-    * Analytics: WAU(Weekly Active User), MAU(Monthly Active User) 지표 추가
+    * Analytics：WAU(Weekly Active User)、MAU(Monthly Active User)指標を追加
 * [SDK] 2.13.0
-    * (Unity) Standalone: 이미지 공지 표시 API 추가    
+    * (Unity) Standalone:イメージ告知表示APIを追加   
 
 #### 機能改善/変更
 * [Console]
-    * 앱 > 앱: iOS 12 이하에서 Sign In With Apple 인증을 하기 위한 정보를 추가 입력할 수 있도록 수정
+    * アプリ > アプリ：iOS 12以下でSign In With Apple認証を行うための情報を追加入力できるように修正
 * [SDK] 2.13.0
-    * (Android) 이미지 공지의 팝업 이미지 비율 계산 로직 수정
-    * (iOS) Sign In With Apple 인증: iOS 12 이하 지원
+    * (Android)イメージ告知のポップアップイメージ比率計算ロジックを修正
+    * (iOS) Sign In With Apple認証：iOS 12以下をサポート
 
 #### バグ修正
 * [Console]
-    * 운영 > 이미지 공지: 복사 기능 및 대상 국가 선택 후 전체 국가로 수정 시 반영되지 않는 오류 수정
+    * 運営 > イメージ告知：コピー機能および対象国を選択した後、全ての国に修正すると反映されない問題を修正
 * [SDK] 2.13.0
-    * (Android) 웹뷰 종료 시 종료 콜백에서 ANDROID_ACTIVITY_DESTROYED(31) 오류가 반환되는 문제 수정
-    * (Android) 결제 모듈에 ProGuard 선언이 누락된 오류 수정
+    * (Android) Webビュー終了時、終了コールバックからANDROID_ACTIVITY_DESTROYED(31)エラーが返る問題を修正
+    * (Android)決済モジュールにProGuard宣言が抜けていた問題を修正
     
 ### 2020. 07. 14.
 
