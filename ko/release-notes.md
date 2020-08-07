@@ -1,5 +1,16 @@
 ## Game > Gamebase > 릴리스 노트
 
+### 2020. 08. 11.
+
+#### 기능 개선/변경
+* [Console]
+    * Analytics > 이용자 지표 > Retention: % 외에 수치를 추가로 노출
+* [SDK] 2.14.0
+    * (iOS) 이미지 공지의 팝업 이미지 비율 계산 로직 수정
+    * (iOS, Unity) TCGBWebViewConfiguration에 contentMode 설정 추가
+* [Server]
+    * 쿠폰 소진 API의 오류 코드 추가: 쿠폰 코드에 영문, 숫자 이외의 값을 입력한 경우(Error Code:-4000205)
+
 ### 2020. 07. 28.
 
 #### 기능 추가
