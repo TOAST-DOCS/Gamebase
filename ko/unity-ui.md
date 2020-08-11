@@ -169,6 +169,9 @@ public void ShowWebView()
 |                          | GamebaseScreenOrientation.PORTRAIT       | 세로 모드                       |
 |                          | GamebaseScreenOrientation.LANDSCAPE      | 가로 모드                       |
 |                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 가로 모드를 180도 회전              |
+| contentMode              | GamebaseWebViewContentMode.RECOMMENDED        | 현재 플랫폼 추천 브라우저    |
+|                          | GamebaseWebViewContentMode.MOBILE             | 모바일 브라우저            |
+|                          | GamebaseWebViewContentMode.DESKTOP            | 데스크탑 브라우저          |
 | colorR                   | 0~255                                    | 내비게이션 바 색상 R            |
 | colorG                   | 0~255                                    | 내비게이션 바 색상 G                |
 | colorB                   | 0~255                                    | 내비게이션 바 색상 B                |
@@ -178,6 +181,11 @@ public void ShowWebView()
 | backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지                |
 | closeButtonImageResource | ID of resource | 닫기 버튼 이미지 |
 | url | "http://" or "https://" or "file://" | 웹 URL |
+
+> [TIP]
+>
+> iPadOS 13 이상에서 WebView는 기본적으로 데스크탑 모드입니다.
+> contentMode =`GamebaseWebViewContentMode.MOBILE` 설정으로 모바일 모드로 변경할 수 있습니다.
 
 #### Predefined Custom Scheme
 
