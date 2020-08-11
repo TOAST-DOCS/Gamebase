@@ -4,7 +4,7 @@
 
 #### 기능 개선/변경
 * [Console]
-    * Analytics > 이용자 지표 > Retention: % 외에 수치를 추가로 노출
+    * Analytics > 이용자 지표 > Retention: % 외에 수치를 추가로 표시
 * [SDK] 2.14.0
     * (iOS) PAYCO IdP의 상수값 제거: PAYCO 문자열로 인한 애플 검수가 리젝되는 경우가 발생하여 제거
     * (iOS, Unity) TCGBWebViewConfiguration에 contentMode 설정 추가
