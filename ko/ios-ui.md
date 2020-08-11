@@ -211,11 +211,20 @@ Gamebase에 스키마 이름과 블록을 지정해 원하는 기능을 추가�
 |                                        | TCGBWebViewOrientationPortraitUpsideDown | 세로 모드 180도 회전      |
 |                                        | TCGBWebViewOrientationLandscapeRight     | 가로 모드              |
 |                                        | TCGBWebViewOrientationLandscapeLeft      | 가로 모드를 180도 회전     |
+| contentMode                            | TCGBWebViewContentModeRecommended        | 현재 플랫폼 추천 브라우저    |
+|                                        | TCGBWebViewContentModeMobile             | 모바일 브라우저            |
+|                                        | TCGBWebViewContentModeDesktop            | 데스크탑 브라우저          |
 | navigationBarColor                     | UIColor                                  | 내비게이션 바 색상         |
 | isBackButtonVisible                    | YES or NO                                | 뒤로 가기 버튼 활성 또는 비활성 |
 | navigationBarHeight                    | CGFloat                                  | 내비게이션 바 높이         |
 | goBackImagePathForFullScreenNavigation | file name in Gamebase.bundle             | 뒤로 가기 버튼 이미지       |
 | closeImagePathForFullScreenNavigation  | file name in Gamebase.bundle             | 닫기 버튼 이미지          |
+
+> [TIP]
+>
+> iPadOS 13 이상에서 WebView는 기본적으로 데스크탑 모드입니다.
+> contentMode=`TCGBWebViewContentModeMobile` 설정으로 모바일 모드로 변경할 수 있습니다.
+
 
 
 ### Close WebView

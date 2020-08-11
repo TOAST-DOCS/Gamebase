@@ -149,8 +149,8 @@ Gamebase를 통하여 로그인을 처음 시도하거나, 로그인 정보(액�
 >
 
 ```objectivec
-- (void)loginPaycoButtonClick {
-    [TCGBGamebase loginWithType:kTCGBAuthPayco viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+- (void)loginFacebookButtonClick {
+    [TCGBGamebase loginWithType:kTCGBAuthFacebook viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Login Succeeded
             NSString *userId = [authToken.tcgbMember userId];
@@ -177,7 +177,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 | keyname                                  | a use                          | 값 종류                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, payco, iosgamecenter, naver, google, twitter, line, appleid |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, iosgamecenter, naver, google, twitter, line, appleid |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정 |                                |
 
 
@@ -199,7 +199,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 #import "TCGBConstants.h"
 
 - (void)authLoginWithCredential {
-    NSDictionary *credentialDic = @{ kTCGBAuthLoginWithCredentialProviderNameKeyname: @"facebook", kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"여기에 facebook SDK에서 발급받은 Access Token을 입력하세요" };
+    NSDictionary *credentialDic = @{ kTCGBAuthLoginWithCredentialProviderNameKeyname: kTCGBAuthFacebook, kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"여기에 facebook SDK에서 발급받은 Access Token을 입력하세요" };
     [TCGBGamebase loginWithCredential:credentialDic viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         NSLog([authToken description]);
     }];
@@ -292,7 +292,6 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
     * Google ID: aa
     * Facebook ID: bb
     * AppleGameCenter ID: cc
-    * Payco ID: dd
 * Gamebase 사용자 ID: 456abcabc
     * Google ID: ee
     * Google ID: ff **-> 이미 Google ee 계정이 연동중이므로 Google 계정을 추가로 연동할 수 없습니다.**
@@ -325,7 +324,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
     * 오류 코드가 **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**인 경우, 매핑하려는 IdP의 계정이 이미 다른 계정에 연동 중이라는 뜻입니다. 이미 연동된 계정을 해제하려면 해당 계정으로 로그인하여 **[TCGBGamebase withdrawWithViewController:completion:]**를 호출하여 탈퇴하거나 **[TCGBGamebase removeMappingWithType:viewController:completion:]**를 호출하여 연동을 해제한 후 다시 매핑을 시도하세요.
 * 이미 동일한 IdP 계정에 연동돼 발생하는 오류
 	* 에러 코드가 **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)** 인 경우, 매핑하려는 IdP와 같은 종류의 계정이 이미 연동중이라는 뜻입니다.
-	* Gamebase 매핑은 한 IdP당 하나의 계정만 연동 가능합니다. 예를 들어 PAYCO 계정에 이미 연동 중이라면 더 이상 PAYCO 계정을 추가할 수 없습니다.
+	* Gamebase 매핑은 한 IdP당 하나의 계정만 연동 가능합니다. 예를 들어 Google 계정에 이미 연동 중이라면 더 이상 Google 계정을 추가할 수 없습니다.
 	* 동일 IdP의 다른 계정을 연동하기 위해서는 **[TCGBGamebase removeMappingWithType:viewController:completion:]**을 호출해 연동을 해제한 후 다시 매핑을 시도하세요.
 * 그 외의 오류
     * 매핑 시도가 실패했습니다.
@@ -348,7 +347,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 ```objectivec
 - (void)authAddMapping {
-    [TCGBGamebase addMappingWithType:@"facebook" viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+    [TCGBGamebase addMappingWithType:kTCGBAuthFacebook viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
                      NSLog(@"AddMapping is succeeded.");
                  }
@@ -380,7 +379,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 | keyname                                  | a use                          | 값 종류                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, payco, iosgamecenter, naver, google, twitter, line, appleid |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, iosgamecenter, naver, google, twitter, line, appleid |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정 |                                |
 
 
@@ -405,7 +404,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
  
          NSString* facebookAccessToken = @"feijla;feij;fdklvda;hfihsdfeuipivaipef/131fcusp";
          NSMutableDictionary* credentialInfo = [NSMutableDictionary dictionary];
-         credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = @"facebook";
+         credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = kTCGBAuthFacebook;
          credentialInfo[kTCGBAuthLoginWithCredentialAccessTokenKeyname] = facebookAccessToken;
  
          [TCGBGamebase addMappingWithCredential:credentialInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
@@ -433,7 +432,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 ```objectivec
 - (void)authAddMapping {
-    [TCGBGamebase addMappingWithType:@"facebook" viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+    [TCGBGamebase addMappingWithType:kTCGBAuthFacebook viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             NSLog(@"AddMapping is succeeded.");
         }
@@ -471,7 +470,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 | keyname                                  | a use                          | 값 종류                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, payco, iosgamecenter, naver, google, twitter |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, iosgamecenter, naver, google, twitter |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정 |                                           |
 
 > [참고]
@@ -495,7 +494,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
     
     NSString* facebookAccessToken = @"feijla;feij;fdklvda;hfihsdfeuipivaipef/131fcusp";
     NSMutableDictionary* credentialInfo = [NSMutableDictionary dictionary];
-    credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = @"facebook";
+    credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = kTCGBAuthFacebook;
     credentialInfo[kTCGBAuthLoginWithCredentialAccessTokenKeyname] = facebookAccessToken;
     
     [TCGBGamebase addMappingWithCredential:credentialInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
@@ -532,7 +531,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 연동 해제 후에는 Gamebase 내부에서, 해당 IdP에 대한 로그아웃을 처리합니다.
 
 ```objectivec
-[TCGBGamebase removeMappingWithType:@"facebook" viewController:topViewController completion:^(TCGBError *error) {
+[TCGBGamebase removeMappingWithType:kTCGBAuthFacebook viewController:topViewController completion:^(TCGBError *error) {
     if ([TCGBGamebase isSuccessWithError:error] == YES) {
         // To Remove Mapping Succeeded
     } else {
@@ -582,13 +581,13 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 // Example for obtaining ID Provider's Authentication Information
 
 // Obtaining Facebook UserID
-NSString *userID = [TCGBGamebase authProviderUserIDWithIDPCode:@"facebook"];
+NSString *userID = [TCGBGamebase authProviderUserIDWithIDPCode:kTCGBAuthFacebook];
 
 // Obtaining Facebook AccessToken
-NSString *accessTokenOfIDP = [TCGBGamebase authProviderAccessTokenWithIDPCode:@"facebook"];
+NSString *accessTokenOfIDP = [TCGBGamebase authProviderAccessTokenWithIDPCode:kTCGBAuthFacebook];
 
 // Obtaining Facebook Profile
-TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWithIDPCode:@"facebook"];
+TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWithIDPCode:kTCGBAuthFacebook];
 ```
 
 ### Get Banned User Information
@@ -610,7 +609,7 @@ Gamebase Console에 제재된 게임 유저로 등록될 경우,
 > `주의`
 > TransferAccountInfo의 발급은 게스트 로그인 상태에서만 발급이 가능합니다.
 > TransferAccountInfo를 이용한 계정 이전은 게스트 로그인 상태 또는 로그인되어 있지 않은 상태에서만 가능합니다.
-> 로그인한 게스트 계정이 이미 다른 외부 IdP (Google, Facebook, Payco 등) 계정과 매핑이 되어 있다면 계정 이전이 지원되지 않습니다.
+> 로그인한 게스트 계정이 이미 다른 외부 IdP (Google, Facebook 등) 계정과 매핑이 되어 있다면 계정 이전이 지원되지 않습니다.
 
 ### Issue TransferAccount
 게스트 계정 이전을 위한 TransferAccountInfo를 발급합니다.
