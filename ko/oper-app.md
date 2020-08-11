@@ -484,19 +484,19 @@ Gamebase 콘솔 **App**에서 Apple을 추가하면 기본으로 아래의 JSON�
 **아래의 절차를 따라서 Apple 개발자 사이트에서 새로운 Service ID 를 등록해야 합니다.**
 
 1. Service ID 를 추가<br/>
-![Create new Service ID](./image/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_01.png)
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_01.png)
 2. Service ID 로 사용할 식별자를 설정 (일반적으로는 bundle ID + **.구분할 문자열**)<br/>
-![Create new Service ID](./image/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_02.png)
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_02.png)
 3. 등록된 Service ID 를 확인 후 수정<br/>
-![Create new Service ID](./image/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_03.png)
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_03.png)
 4. 하단의 Sign In with Apple 항목의 Configure 를 클릭<br/>
-![Create new Service ID](./image/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_04.png)
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_04.png)
 5. Primary App ID 를 썰정 (기존에 Sign In with Apple 을 사용하고 있었다면, 해당앱의 Bundle ID 를 설정)<br/>
-![Create new Service ID](./image/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_05.png)
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_05.png)
 6. Apple ID 로 인증한 이후 인증 정보를 받을 Callback URL 설정<br/>
-![Create new Service ID](./image/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_06.png)
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_06.png)
 7. 설정 후 저장<br/>
-![Create new Service ID](./image/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_07.png)
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_07.png)
 
 
 **위에서 설정한 Service ID 를 TOAST Gamebase Console > Gamebase > 앱 > 인증 정보 > Apple > Service ID 에 입력합니다.***
@@ -506,7 +506,7 @@ Gamebase 콘솔 **App**에서 Apple을 추가하면 기본으로 아래의 JSON�
 > 기존에 Sign In with Apple 설정이 되어 있지 않다면, 나머지 항목도 설정이 필요합니다.
 
 1. Apple 개발자 사이트에서 설정한 Service ID 를 아래와 같이 Service ID 항목에 추가합니다. (기존에 Sign In with Apple 설정값이 있다면, 다른 값들은 변경이 필요없습니다.)
-![Set Service ID for Sign In with Apple JS](./image/Operators_Guide/gamebase_SignInWithAppleJS_TOAST_01.png)
+![Set Service ID for Sign In with Apple JS](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_TOAST_01.png)
 
 
 
