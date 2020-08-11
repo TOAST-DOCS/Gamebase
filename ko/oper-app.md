@@ -462,7 +462,9 @@ Gamebase 콘솔 **App**에서 Apple을 추가하면 기본으로 아래의 JSON�
 ![Capability_SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid8_1.0.png)
 2. **Target**을 선택하고 **Build Phases > Link Binary With Libraries**에서 **Authentication.framework**를 **Optional**로 추가합니다.
 ![AuthenticationServices.framework](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid9_1.0.png)
-    - ```주의```: Optional이 아닌 Required로 설정되어 있으면 iOS 11 이하의 단말기에서는 앱 실행 시 런타임 크래시가 발생합니다.
+    
+> <font color="red">[주의]</font><br/>
+> Optional이 아닌 Required로 설정되어 있으면 iOS 12 이하의 단말기에서는 앱 실행 시 런타임 크래시가 발생합니다.
 
 
 
@@ -474,7 +476,8 @@ Gamebase 콘솔 **App**에서 Apple을 추가하면 기본으로 아래의 JSON�
 >
 > Gamebase SDK iOS 2.13.0 이상 버전에서는 iOS 12 이하 버전에서의 WebView를 이용한 Sign In with Apple 기능 사용이 가능합니다.
 >
-> 기존의 2.13.0 이전버전을 사용했던 게임의 경우에도 하단 **iOS 12 버전 이하를 지원하기 위한 설정** 을 참고하여 기존 프로젝트를 설정하고,<br/>
+> 기존의 2.13.0 이전버전을 사용했던 게임의 경우에도 하단 **iOS 12 버전 이하를 지원하기 위한 설정** 을 참고하여 기존 프로젝트를 설정하고,
+> 
 > Gambase SDK iOS 2.13.0 이상을 적용하면, iOS 12 이하버전에서 Sign In with Apple 기능을 사용할 수 있습니다.
 
 
@@ -491,7 +494,7 @@ Gamebase 콘솔 **App**에서 Apple을 추가하면 기본으로 아래의 JSON�
 ![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_03.png)
 4. 하단의 Sign In with Apple 항목의 Configure 를 클릭<br/>
 ![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_04.png)
-5. Primary App ID 를 썰정 (기존에 Sign In with Apple 을 사용하고 있었다면, 해당앱의 Bundle ID 를 설정)<br/>
+5. Primary App ID 를 설정 (기존에 Sign In with Apple 을 사용하고 있었다면, 해당앱의 Bundle ID 를 설정)<br/>
 ![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_05.png)
 6. Apple ID 로 인증한 이후 인증 정보를 받을 Callback URL 설정<br/>
 ![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_06.png)
