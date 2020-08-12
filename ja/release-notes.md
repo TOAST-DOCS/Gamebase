@@ -1,4 +1,15 @@
 ## Game > Gamebase > リリースノート
+### 2020. 08. 11.
+
+#### 機能改善/変更
+* [Console]
+    * Analytics > 利用者指標 > Retention: %の他に数値を追加で表示
+* [SDK] 2.14.0
+    * (iOS) PAYCO IdPの定数値を削除：PAYCO文字列によるApple検収がリジェクトされる場合があり削除
+    * (iOS、Unity) TCGBWebViewConfigurationにcontentMode設定を追加
+* [Server]
+    * クーポン消費APIのエラーコード追加：クーポンコードに英数字以外の値を入力した場合(Error Code:-4000205)
+
 ### 2020. 07. 28.
 
 #### 機能追加
