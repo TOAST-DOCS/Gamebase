@@ -1,5 +1,11 @@
 ## Game > Gamebase > Release Notes
 
+### August 19, 2020
+
+#### Bug Fixes
+* [Console]
+    * Analytics 전체 메뉴: 엑셀 다운로드가 되지 않는 문제 수정
+
 ### August 11, 2020
 
 #### Feature Updates
