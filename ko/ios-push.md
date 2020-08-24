@@ -14,6 +14,10 @@
 * **Notification > Push > Certificate**에서 **APNS Certificate**와 **APNS (Sandbox) Certificate**에 위에서 생성한 인증서를 등록합니다.
 * 위 인증서를 만들 때 설정한 비밀번호를 사용해서 등록합니다.
 
+#### Notification Service Extension 구현
+* 수신 지표 수집, 알림음 설정 등을 위해서는 [TOAST Push 가이드](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-ios/#notification-service-extension)를 참고하여 어플리케이션에 **Notification Service Extension**을 구현해야 합니다.
+
+
 #### XCode Project 설정
 * **Targets > Capabilities > Push Notifications **항목을 **ON**으로 설정합니다.
 * 자동으로 생성된 .entitlements 파일을 열어서, **APS Environment** 키의 값을 알맞은 값으로 설정합니다.
@@ -52,10 +56,38 @@
 }
 ```
 
+TOAST Push에 사용자를 등록할 때 TCGBNotificationOptions 객체로 알림 옵션 설정이 가능합니다.<Mb>
+포그라운드 푸시 여부(foregroundEnabled), 배지 사용 여부(badgeEnabled), 알림음 사용 여부(soundEnabled) 값을 사용자로부터 받아, 다음의 API 호출을 통해 알림 옵션 설정이 가능합니다.
+
+```objectivec
+- (void)didLoginSucceeded {
+    BOOL enablePush;
+    BOOL enableAdPush;
+    BOOL enableAdNightPush;
+
+    BOOL foregroundEnabled;
+    BOOL badgeEnabled;
+    BOOL soundEnabled;
+
+    // You should receive the above values to the logged-in user.
+    
+    TCGBPushConfiguration* pushConfig = [TCGBPushConfiguration pushConfigurationWithPushEnable:enablePush ADAgreement:enableAdPush ADAgreementNight:enableAdNightPush];
+    
+    TCGBNotificationOptions* options = [TCGBNotificationOptions notificationOptionsWithForegroundEnabled:foregroundEnabled badgeEnabled:badgeEnabled soundEnabled:soundEnabled];
+
+    [TCGBPush registerPushWithPushConfiguration:pushConfig notificationOptions:options completion:^(TCGBError* error) {
+        if (error != nil) {
+            // To Register Push Failed.
+        }
+    }];
+    // You should receive the above values to the logged-in user.
+}
+```
 
 #### Setting for APNS Sandbox
 
 SandboxMode를 켜면, APNS Sandbox로 Push를 발송하도록 등록할 수 있습니다.
+
 * 클라이언트 설정 방법
 
 ```objectivec
@@ -68,28 +100,80 @@ SandboxMode를 켜면, APNS Sandbox로 Push를 발송하도록 등록할 수 있
 ```
 
 * 콘솔 발송 방법
+
 Push 메뉴의 **대상**에서 **iOS Sandbox**를 선택한 후 발송합니다.
+
+#### Get NotificationOptions
+
+푸시를 등록할 때 설정한 알림 옵션값을 가져옵니다.
+
+```objectivec
+- (void)didLoginSucceeded {
+    TCGBNotificationOptions *options = [TCGBPush notificationOptions];
+
+    if (options == nil) {
+        // You need to login and call the registerPush API first.
+    }
+}
+```
+
+#### TCGBNotificationOptions
+
+| Parameter             | Values       | Description        |
+| --------------------  | ------------ | ------------------ |
+| foregroundEnabled     | YES or NO    | 앱이 포그라운드 상태일때의 알림 노출 여부<br/>**default**: NO           |
+| badgeEnabled          | YES or NO    | 배지 아이콘 사용 여부<br/>**default**: YES           |
+| soundEnabled          | YES or NO    | 알림음 사용 여부<br/>**default**: YES           |
+
+
+> [참고]
+>
+> foregroundEnabled 옵션은 런타임 때 변경이 가능합니다.
+> badgeEnabled, soundEnabled 옵션은 registerPush API 최초 호출 시에만 반영이 되고 런타임 때의 변경은 보장되지 않습니다.
+>
+
 
 ### Request Push Settings
 
 사용자의 푸시 설정을 조회하기 위해, 다음 API를 이용합니다.<br/>
-콜백으로 오는 TCGBPushConfiguration 값으로 사용자 설정값을 얻을 수 있습니다.
+콜백으로 오는 TCGBPushTokenInfo 값으로 등록한 푸시 정보를 얻을 수 있습니다.
 
 ```objectivec
 - (void)didLoginSucceeded {
-    [TCGBPush queryPushWithCompletion:^(TCGBPushConfiguration *configuration, TCGBError *error) {
+    [TCGBPush queryTokenInfoWithCompletion:^(TCGBPushTokenInfo *tokenInfo, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == NO) {
-            // To Request Push Configuration Failed.
+            // To Request Push Token Info Failed.
         }
 
-        BOOL enablePush = configuration.pushEnabled;
-        BOOL enableAdPush = configuration.ADAgreement;
-        BOOL enableAdNightPush = configuration.ADAgreementNight;
-
+        NSString *pushType = tokenInfo.pushType;
+        NSString *token = tokenInfo.token;
+        ...
         // You can handle these variables.
     }];
 }
 ```
+
+#### TCGBPushTokenInfo
+
+| Parameter                              | Values                           | Description                        |
+| -------------------------------------- | -------------------------------- | ---------------------------------- |
+| pushType                               | string                           | Push 토큰 타입                       |
+| token                                  | string                           | 토큰                                |
+| userId                                 | string                           | 사용자 아이디                         |
+| deviceCountryCode                      | string                           | 국가 코드                            |
+| timezone                               | string                           | 표준시간대                            |
+| registeredDateTime                     | string                           | 토큰 업데이트 시간                      |
+| languageCode                           | string                           | 언어 설정                             |
+| sandbox                                | YES or NO                        | 샌드박스 환경에서 등록된 토큰인지 확인       |
+| agreement                              | TCGBPushAgreement                | 수신 동의 여부                         |
+
+#### TCGBPushAgreement
+
+| Parameter                              | Values                            | Description               |
+| -------------------------------------- | --------------------------------- | ------------------------- |
+| pushEnabled                            | YES or NO                         | 알림 표시 동의 여부           |
+| ADAgreement                            | YES or NO                         | 광고성 알림 표시 동의 여부      |
+| ADAgreementNight                       | YES or NO                         | 야간 광고성 알림 표시 동의 여부  |
 
 ### Error Handling
 

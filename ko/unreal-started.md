@@ -8,7 +8,7 @@ Gamebase Unreal SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 >
 > Unreal 지원 버전
 >
-> * UE 4.24
+> * UE 4.22 ~ UE 4.25
 > * 하위 버전의 Unreal 지원이 필요하면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
 
 #### Supported Platforms
@@ -128,6 +128,16 @@ iOS SDK에서 발생하는 Warning 메시지가 Unreal 빌드 시 오류로 변�
 ```cs
 // Result += " -Wall -Werror";
 ```
+
+#### PLCrashReporter
+
+UE4에서 사용 중인 PLCrashReporter가 `arm64e` architecture를 지원하지 않아, 해당 architecture를 사용하는 디바이스에서 메모리 주솟값을 획득하지 못하는 이슈가 있습니다.
+
+TOAST Log & Crash Search에서 크래시 분석을 사용하는 게임 개발사는 다음 가이드를 참고하여 UE4 내부 PLCrashReporter를 수정해야 합니다.
+
+1. GamebaseSDK-Unreal/Source/Gamebase/ThirdParty/IOS/GamebaseSDK-iOS/externals/plcrashreporter.zip 파일을 압축 해제합니다.
+2. UE4 내부 PLCrashReporter의 a 파일과 header 파일을 압축 해제한 파일로 교체합니다.
+    * Engine/Source/ThirdParty/PLCrashReporter/plcrashreporter-master-xxxxxxx
 
 ## API Deprecate Governance
 
