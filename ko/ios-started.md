@@ -27,7 +27,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 용도 | External SDK Download Link | Support iOS Version |
 | --- | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.19.3 | Gamebase의 Interface 및 핵심 로직을 포함 | Gamebase 내에 포함 | iOS9 or later
+| Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.26.0 | Gamebase의 Interface 및 핵심 로직을 포함 | Gamebase 내에 포함 | iOS9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v7.1.1 | Facebook 로그인을 지원 | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS9 or later<br/>&<br/>Xcode 11 이상 |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.4.0 | Payco 로그인을 지원 | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Naver 로그인을 지원 | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |
@@ -36,8 +36,8 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 |  | GamebaseAuthTwitterAdapter.framework | | Twitter 로그인을 지원 | | iOS9 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | LINE 로그인을 지원 | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | AuthenticationServices.framework를 Optional로 설정 | iOS9 or later<br/>arm64 지원<br/> |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework, ToastIAP 0.19.8, ToastGamebaseIAP 0.9.7 | 게임 내 결제를 지원 | Gamebase IAP 내에 포함 | iOS9 or later |
-| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.19.3 | Push를 지원 | Gamebase Push 내에 포함 | iOS9 or later |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.26.0<br/> ToastGamebaseIAP 0.10.0 | 게임 내 결제를 지원 | Gamebase IAP 내에 포함 | iOS9 or later |
+| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.26.0 | Push를 지원 | Gamebase Push 내에 포함 | iOS9 or later |
 
 
 > <font color="red">[주의]</font><br/>

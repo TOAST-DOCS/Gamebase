@@ -93,13 +93,13 @@ Gamebase.initialize(activity, configuration, callback);
 
 미소비 결제 내역 목록에 값이 있으면 다음과 같은 순서로 Consume Flow 를 진행하시기 바랍니다.
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.15.0.png)
 
 1. 게임 클라이언트가 게임 서버에 결제 아이템에 대한 consume(소비)을 요청합니다.
-    * UserID, itemSeq, paymentSeq, purchaseToken 을 전달합니다.
+    * UserID, gamebaseProductId, paymentSeq, purchaseToken 을 전달합니다.
 2. 게임 서버는 게임 DB 에 이미 동일한 paymentSeq, purchaseToken 으로 아이템을 지급한 이력이 있는지 확인합니다.
-    * 2-1. 아직 아이템을 지급하지 않았다면 UserID 에 itemSeq 에 해당하는 아이템을 지급합니다.
-    * 2-2. 아이템 지급 후 게임 DB 에 UserID, itemSeq, paymentSeq, purchaseToken 을 저장하여 이후에 중복 지급 여부를 확인할 수 있도록 합니다.
+    * 2-1. 아직 아이템을 지급하지 않았다면 UserID 에 gamebaseProductId 에 해당하는 아이템을 지급합니다.
+    * 2-2. 아이템 지급 후 게임 DB 에 UserID, gamebaseProductId, paymentSeq, purchaseToken 을 저장하여 이후에 중복 지급 여부를 확인할 수 있도록 합니다.
 3. 게임 서버는 Gamebase 서버의 consume(소비) API를 호출하여 아이템 지급을 완료합니다.
     * [API 가이드 > Purchase(IAP) > Consume](./api-guide/#consume)
 
@@ -283,7 +283,7 @@ GamebaseEventHandler 로 프로모션 결제 이벤트를 처리하는 방법은
 * 오류 코드를 확인하는 방법은 다음과 같습니다.
 
 ```java
-Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<PurchasableReceipt>() {
+Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataCallback<PurchasableReceipt>() {
     @Override
     public void onCallback(PurchasableReceipt data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {

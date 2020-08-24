@@ -45,20 +45,20 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
 1. 이전 결제가 정상적으로 종료되지 못한 경우 재처리가 동작하지 않으면 결제가 실패합니다. 그러므로 결제 전에 **requestItemListOfNotConsumedWithCompletion:**를 호출하여 재처리를 동작시켜 미지급된 아이템이 있으면 Consume Flow 를 진행합니다.
-2. 게임 클라이언트에서는 Gamebase SDK의 **requestPurchaseWithItemSeq:viewController:completion:**를 호출하여 결제를 시도합니다.
+2. 게임 클라이언트에서는 Gamebase SDK의 **requestPurchaseWithGamebaseProductId:viewController:completion:**를 호출하여 결제를 시도합니다.
 3. 결제가 성공하였다면 **requestItemListOfNotConsumedWithCompletion:**를 호출하여 미소비 결제 내역을 확인한 후 지급할 아이템이 존재한다면 Consume Flow 를 진행합니다.
 
 ### Consume Flow
 
 미소비 결제 내역 목록에 값이 있으면 다음과 같은 순서로 Consume Flow 를 진행하시기 바랍니다.
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.15.0.png)
 
 1. 게임 클라이언트가 게임 서버에 결제 아이템에 대한 consume(소비)을 요청합니다.
-    * UserID, itemSeq, paymentSeq, purchaseToken 을 전달합니다.
+    * UserID, gamebaseProductId, paymentSeq, purchaseToken 을 전달합니다.
 2. 게임 서버는 게임 DB 에 이미 동일한 paymentSeq, purchaseToken 으로 아이템을 지급한 이력이 있는지 확인합니다.
-    * 2-1. 아직 아이템을 지급하지 않았다면 UserID 에 itemSeq 에 해당하는 아이템을 지급합니다.
-    * 2-2. 아이템 지급 후 게임 DB 에 UserID, itemSeq, paymentSeq, purchaseToken 을 저장하여 이후에 중복 지급 여부를 확인할 수 있도록 합니다.
+    * 2-1. 아직 아이템을 지급하지 않았다면 UserID 에 gamebaseProductId 에 해당하는 아이템을 지급합니다.
+    * 2-2. 아이템 지급 후 게임 DB 에 UserID, gamebaseProductId, paymentSeq, purchaseToken 을 저장하여 이후에 중복 지급 여부를 확인할 수 있도록 합니다.
 3. 게임 서버는 Gamebase 서버의 consume(소비) API를 호출하여 아이템 지급을 완료합니다.
     * [API 가이드 > Purchase(IAP) > Consume](./api-guide/#consume)
 
@@ -81,12 +81,19 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 **API**
 
 ```objectivec
-+ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId viewController:(UIViewController *)viewController completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
++ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId 
+                              viewController:(UIViewController *)viewController
+                                  completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
 
-+ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId payload:(NSString *)payload viewController:(UIViewController *)viewController completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
++ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId 
+                                     payload:(NSString *)payload 
+                              viewController:(UIViewController *)viewController 
+                                  completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
 
 // Legacy API
-+ (void)requestPurchaseWithItemSeq:(long)itemSeq viewController:(UIViewController *)viewController completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
++ (void)requestPurchaseWithItemSeq:(long)itemSeq 
+                    viewController:(UIViewController *)viewController 
+                        completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
 ```
 
 **Example**
