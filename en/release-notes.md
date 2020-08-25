@@ -42,64 +42,64 @@
 ### July 14, 2020
 
 #### More Features
-* 이미지 공지: 노출 기간과 우선순위에 따라 게임 내 이미지 팝업 노출
-    * [Console] 운영 > 이미지 공지: 메뉴 추가
-    * [SDK] 2.12.0: 이미지 공지 노출 API 추가
+* Image Notices: Shows image popups within a game according to exposed period and priority order 
+    * [Console] Operations > Image Notices: Menu added  
+    * [SDK] 2.12.0: Added Show Image Notice API 
 
 #### Feature Updates 
 * [Console] 
-    * 구매(IAP) > 상품: 아이템 번호로 상품 조회 가능하도록 추가
-    * 멤버 > 회원: 탈퇴 유예 상태의 유저를 정상 상태로 변경할 수 있도록 개선
-    * 멤버 > 다운로드: 로그인 로그 이력에 deveiceKey, IdP 코드 항목 추가
+    * Purchase (IAP) > Products: Products can be queried by item number 
+    * Membership > Member: Updated to change the status of users who are suspended from withdrawal to normal 
+    * Membership > Download: Added deviceKey and IdP code to the history of login logs 
 * [SDK] 2.12.0
-    * (iOS)Facebook SDK 업데이트(7.1.1)
-    * (iOS)configuartion에 설정된 storeCode(default=AS)로 Gamebase 초기화 시도
-    * (iOS)콘텐츠를 로딩할 수 없는 웹뷰 출력 시 닫기 버튼이 없어 닫을 수 없는 문제 수정
-    * (Unity)TOAST Unity SDK 업데이트(0.20.1.1)
+    * (iOS) Updated Facebook SDK (7.1.1)
+    * (iOS) Attempts Gamebase initialization with storeCode(default=AS) set for configuration 
+    * (iOS) Fixed failed closing due to lack of the close button while printing webview which cannot load content 
+    * (Unity) Updated TOAST Unity SDK (0.20.1.1)
     
 ### June 23, 2020
 
 #### More Features
 * [SDK] 2.11.0
-	* 결제 API 추가: 상품ID로 결제 요청, 추가 정보(UserPayload) 입력해 결제 완료시 확인할 수 있음
+	* Added Purchase API: Request for payment with Product ID, and enter additional information (UserPayload) to be confirmed when payment is completed 
 
 #### Feature Updates 
 * [Console] 
-	* 구매(IAP) > 상품: 스토어 아이템 ID에 여러 개의 게임베이스 상품을 등록하여 관리할 수 있도록 개선
+	* Purchase (IAP) > Products: Updated to register and manage many Gamebase products for a store item ID  
 
 ### June 9, 2020
 
 #### Feature Updates 
 * [Console] 
-	* 멤버 > 회원:  **탈퇴 이력 조회** 화면에 탈퇴 유예 상태(탈퇴 유예, 탈퇴 취소, 즉시 탈퇴) 추가 표시
+	* Membership > Member: Additionally shows the status of withdrwal suspension (withdrawal suspended, cancelled, or immediately withdrawn) on the **Query Withdrawal History** 
 * [SDK] 2.10.1
-	* (iOS) 사용자 푸시 설정 초기화 시 언어 코드가 설정되어 있지 않으면 디바이스 언어로 설정되도록 변경
+	* (iOS) Updated to set device language if language code is not configured when user push setting is initialized 
 
 #### Bug Fixes
 * [Console] 
-	* 쿠폰 > 쿠폰 발급: 쿠폰 통계 다운로드 시 SMS로 발송한 내역이 다운로드되지 않는 문제 수정
+	* Coupons > Issue Coupons: Fixed the inavailability of downloading history of coupon statistics sent via SMS 
 
 * [SDK] 2.10.1
-	* (Unity) iOS Plugin에서 ViewController가 설정되지 않아 로그인 호출 시 실패하는 문제 수정
-	* (JavaScript) 초기화 시 StoreCode를 입력하지 않으면 오류가 발생하는 문제 수정
+	* (Unity) Fixed failed login calls since ViewController is not configured at iOS Plugin 
+	* (JavaScript) Fixed errors that occur if StoreCode is not entered during initialization
 
 
 ### May 26, 2020
 
 #### More Features
 * [Console] 
-	* 쿠폰 > 쿠폰 발급: 발송 통계 기능, 쿠폰 발송 내역 다운로드 기능 추가
+	* Coupons > Issue Coupons: Added features of delivery statistics and downloading history of coupon deliveries  
 * [SDK] 2.10.0
-	* (공통) 기존의 모든 이벤트 시스템을 통합하는 GamebaseEventHandler 추가
-		* ServerPush, Observer 기능을 포함하고 있고, Promotion 결제 이벤트 및 Push 이벤트도 확인 가능
+	* (Common) Added GamebaseEventHandler which has all previous event systems 
+		* Includes ServerPush and Observer, and checks promotional purchase or push events 
 
 #### Feature Updates 
 * [Console] 
-	* 전체: 공통 디자인 가이드에 맞도록 버튼/태그 UI 수정
+	* All: Updated button/tag UIs to suit for common design guides  
 * [SDK] 2.10.0 
-	* (Unity) StandaloneWebviewAdapter 내부의 CefWebview 버전 업데이트: v2.0.4
-		* WebviewIndex 검증 로직을 개선
-		* Webview 생성 시, 간헐적으로 NullReferenceException이 발생하는 오류를 개선
+	* (Unity) Updated CefWebview version with StandaloneWebviewAdapter: v2.0.4
+		* Updated the logic of WebviewIndex validation  
+		* Fixed infrequent error of NullReferenceException while Webview is created 
 
 ### May 12, 2020
 
@@ -147,17 +147,17 @@
 
 #### Feature Updates 
 * [Console] 
-	* Analytics 공통: TUI 차트 버전 업데이트, Frequency7 지표에 적용
+	* Analytics Common: Updated the TUI chart version, and applied to Frequency7 indicators
 * [SDK] 2.8.1 
-	* (공통) Analytics 전송 결과 확인을 위한 내부 지표 추가
+	* (Common) Added internal indicators to check Analytics delivery results
 	
 #### Bug Fixes
 * [Console] 
-	* Analytics 공통: 국가명이 길어질 경우 스크롤이 영역을 벗어나는 이슈 수정
-	* Analytics > 실시간 모니터링: 데이터 저장 중에 조회 요청시 지표가 0으로 보이는 현상 수정
+	* Analytics Common: Fixed an issue in which the scroll is deviated from area for a long country name 
+	* Analytics > Real-time Monitoring: Fixed an issue in which indicator shows 0 when query is requested while saving data
 * [SDK] 2.8.1 
-	* (Android) 프로세스 재시작 이후 크래쉬가 발생할 수 있는 코드를 수정
-	* (JavaScript) credentialInfo 로그인에서 Hangame IdP로 로그인이 안되는 문제를 수정
+	* (Android) Modified codes that may cause crashes after process restarts
+	* (JavaScript) Modified an issue in which credentialInfo login is unavailable with Hangame IdP
 
 ### March 24, 2020
 
