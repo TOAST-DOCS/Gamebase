@@ -3,12 +3,19 @@
 ### August 25, 2020
 
 ```
-'gamebase-adapter-purchase-google'을 사용한다면 Gamebase SDK 2.15.0 미만 버전에서 2.15.0 이상으로 업그레이드하는 경우 반드시 이전 버전의 'Game Client Version'을 '업데이트 필수'로 설정해야 합니다.
+Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 되었습니다.
 
-2.15.0버전에서 Google Billing Client 모듈이 업데이트되어, 여러 개의 단말기에서 서로 다른 Billing Client 버전이 적용된 상태에서 아이템을 구매하여 오류가 발생했을 때 재처리에 문제가 생길 수 있기 때문입니다.
+'gamebase-adapter-purchase-google'을 사용한다면 Gamebase SDK 2.15.0 미만 버전에서 2.15.0 이상으로 업그레이드하는 경우 
+반드시 이전 버전의 'Game Client Version'을 '업데이트 필수'로 설정해야 합니다.
+
+아이템을 구매하다 오류가 발생하면 재처리를 수행하게 되는데 
+여러 개의 단말기에서 서로 다른 Billing Client 버전이 적용된 상태에서는 재처리 수행 중에 문제가 생길 수 있기 때문입니다.
 ```
 
 #### More Features
+* [SDK] 2.15.0
+    * (공통) 푸시 토큰 등록시 앱이 NotificationOption 설정으로 Foreground 상태에서도 푸시 알림을 받을 수 있도록 기능 추가
+    * (공통) 푸시 API 추가: Push 토큰 정보 확인(Gamebase.Push.queryTokenInfo API)
 * [SDK] 2.9.1
     * (Unreal) Unreal 4.22 ~ 4.25 지원
     * (Unreal) PLCrashReporter 이슈 지원: [가이드](http://docs.toast.com/ko/Game/Gamebase/ko/unreal-started/#ios-settings)
