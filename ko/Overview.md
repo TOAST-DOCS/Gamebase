@@ -41,11 +41,6 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 | Twitter			| O | O | |  |
 | LINE				| O | O | O  | O  |
 | Hangame			| O | O | O  | O  |
-| CHINA				| O |  |   |   |
-
-> [참고] 인증 및 결제를 지원하는 중국 스토어 목록(50여 개)
-> RedBean(红豆), Lenovo(联想), PPS(爱奇艺), Downjoy(当乐), PPTV(PPTV), Mftnn(4399), Coolpad(酷派), Amigo(金立),Mzw(拇指玩), Sogou(搜狗), AppChina(应用汇), Pengyouwan(朋友玩), Guopan(果盘), Gfan(机锋), Mumayi(木蚂蚁), Hmpay(海马玩), Toutidao(今日头条), Bilibili(bilibili), Mi(小米), Uc(UC), Badu(百度), And360(360), Oppo(OPPO), JiuMeng(九玩(手盟)), BukaSdk(布卡), Moge(摩格(乐游)), StarGame(口袋巴士(星游)), Letv(乐视), Tt(TT语音), Papa(啪啪), NoxPay(夜神模拟器), XiaoBens(笨手机), DouYou(逗游), Ungame(搞趣网), Hanfeng(汉风), QiGuo(七果(七匣子)), SinaV2(新浪v2), XiaoQiV2(新小七), btgame01(乐嗨嗨), ccgame(虫虫游戏), LingDong(灵动), KuaiKan(快看), DouYu(斗鱼), MiFengFanLi(蜜蜂), KaopuRB(靠谱助手), VivoRB(Vivo), BluestacksRB(蓝蝶), HwGamesRB(新华为), XinDong(心动)
-
 
 * **게스트 로그인을 제공합니다.**
   게스트 로그인을 이용하면 사용자는 아무런 입력 없이 바로 게임에 로그인하여 간편하게 게임을 시작할 수 있습니다. 게스트 로그인만으로도 Gamebase 사용자 아이디가 발급되므로 게임은 OAuth 로그인 사용자와 게스트 로그인 사용자의 구분 없이 동일하게 사용자의 게임 데이터를 관리할 수 있습니다.
@@ -76,7 +71,6 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 * 원스토어
 * Facebook
 * Amazon
-* 중국 스토어: 연동된 [스토어 목록](./Overview/#authentication)
 
 * **여러 스토어의 인앱 결제를 단일 인터페이스로 제공합니다.**
   단일 인터페이스로 API를 제공해 보다 쉽고 빠르게 스토어를 추가 개발할 수 있어 개발 비용이 절감됩니다. 개발자는 복잡한 결제 연동 방법을 학습하지 않고 쉽게 결제 기능을 구현할 수 있습니다.  
