@@ -47,7 +47,9 @@ dependencies {
 
 #### 5. AndroidManifest.xml(ONE store only)
 
-* ONE store을 사용하려면 다음 설정을 추가해야 합니다.
+* ONE store 는 전체 결제 화면과 팝업 결제 화면을 지원합니다.
+    * AndroidManifest.xml에 meta-data를 추가하여 전체 결제 화면("full") 또는 팝업 결제 화면("popup")을 선택할 수 있습니다.
+    * meta-data를 설정하지 않으면 기본값("full")이 적용됩니다.
 
 ```xml
 <manifest>
@@ -55,12 +57,18 @@ dependencies {
     <application>
     ...
         <!-- [ONE store] Configurations begin -->
-        <meta-data android:name="iap:plugin_mode" android:value="development" /> <!-- development:개발모드 / release:운영 -->
+        <!-- popup:팝업 결제 화면 / full:전체 결제 화면 -->
+        <meta-data android:name="iap:view_option" android:value="popup | full"/>
         <!-- [ONE store] Configurations end -->
     ...
     </application>
 </manifest>
 ```
+
+| 결제 화면 | 설정 값 |
+| --- | --- |
+| 전체 결제 화면 | "full" |
+| 팝업 결제 화면 | "popup" |
 
 #### 6. Initialization
 

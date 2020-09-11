@@ -193,7 +193,7 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 | --------    | ------------------------------- | ---------------- |
 | Google      | GamebaseAuthProvider.GOOGLE     | Android<br/>iOS<br/>Standalone |
 | Game Center | GamebaseAuthProvider.GAMECENTER | iOS |
-| Apple ID    | GamebaseAuthProvider.AppleId    | iOS |
+| Apple ID    | GamebaseAuthProvider.APPLEID    | iOS |
 | Facebook    | GamebaseAuthProvider.FACEBOOK   | Android<br/>iOS<br/>Standalone |
 | Payco       | GamebaseAuthProvider.PAYCO      | Android<br/>iOS<br/>Standalone |
 | Naver       | GamebaseAuthProvider.NAVER      | Android<br/>iOS |
