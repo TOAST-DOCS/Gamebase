@@ -1,5 +1,15 @@
 ## Game > Gamebase > Release Notes
 
+### September 15, 2020
+
+#### More Features
+* [SDK] 2.15.0
+    * (JavaScript) 한게임 포인트 결제 API에 GamebaseProductId 추가
+    
+#### Bug Fixes    
+* [Console]
+    * 구매(IAP) > 결제 정보: 영수증 검증 표시가 제대로 되지 않던 문제 수정
+
 ### August 25, 2020
 
 ```
