@@ -1,77 +1,87 @@
 ## Game > Gamebase > Release Notes
 
+### September 15, 2020
+
+#### More Features
+* [SDK] 2.15.0
+    * (JavaScript) Added GamebaseProductId to Purchase API of Hangame points
+    
+#### Bug Fixes    
+* [Console]
+    * Fixed Purchase (IAP) > Payment Information: Fixed an issue in which authentication by receipt did not properly show 
+
 ### August 25, 2020
 
 ```
-Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 되었습니다.
+Updated Google Billing Client in the Gamebase SDK 2.15.0 version. 
 
-'gamebase-adapter-purchase-google'을 사용한다면 Gamebase SDK 2.15.0 미만 버전에서 2.15.0 이상으로 업그레이드하는 경우 
-반드시 이전 버전의 'Game Client Version'을 '업데이트 필수'로 설정해야 합니다.
+For 'gamebase-adapter-purchase-google', to upgrade a version below Gamebase SDK 2.15.0 to more than 2.15.0,  
+set 'Requires Update' for 'Game Client Version' of the previous version.
 
-아이템을 구매하다 오류가 발생하면 재처리를 수행하게 되는데 
-여러 개의 단말기에서 서로 다른 Billing Client 버전이 적용된 상태에서는 재처리 수행 중에 문제가 생길 수 있기 때문입니다.
+This is because, in order to execute reprocessing when an error occurs during purchasing an item,  
+you may encounter an issue during reprocessing if a different billing client version is applied to each of many devices.   
 ```
 
 #### More Features
 * [SDK] 2.15.0
-    * (공통) 푸시 토큰 등록시 앱이 NotificationOption 설정으로 Foreground 상태에서도 푸시 알림을 받을 수 있도록 기능 추가
-    * (공통) 푸시 API 추가: Push 토큰 정보 확인(Gamebase.Push.queryTokenInfo API)
+    * (Common) Added feature, for push token registration, to allow the app to receive push alarms even under Foreground with the NotificationOption setting  
+    * (Common) Added Push API: Check token information of a push (Gamebase.Push.queryTokenInfo API)
 * [SDK] 2.9.1
-    * (Unreal) Unreal 4.22 ~ 4.25 지원
-    * (Unreal) PLCrashReporter 이슈 지원: [가이드](http://docs.toast.com/ko/Game/Gamebase/ko/unreal-started/#ios-settings)
+    * (Unreal) Supports Unreal 4.22 ~ 4.25
+    * (Unreal) Supports PLCrashReporter Issue: [Guide](http://docs.toast.com/ko/Game/Gamebase/ko/unreal-started/#ios-settings)
 
 #### Feature Updates
 * [Console]
-    * 푸시 > 푸시: 홍보성 푸시 알림 발송 시 발신자 연락처, 수신 철회 동의 방법을 입력하지 않아도 발송이 가능하도록 수정
+    * Push > Push: Modified to allow sending without sender's contact information or method of unsubscription when notification is sent for promotional push 
 * [SDK] 2.15.0
-    * (공통) TOAST SDK 업데이트: Android(0.23.0), iOS(0.26.0), Unity(0.21.0)
-    * (iOS) 결제 payload의 null check 로직 추가
+    * (Common) TOAST SDK Updates: Android(0.23.0), iOS(0.26.0), Unity(0.21.0)
+    * (iOS) Added the null check logic for the payload of payment 
 * [SDK] 2.9.1
-    * (Unreal) iOS Plugin 내부 Gamebase SDK for iOS 버전 업데이트(2.9.1)
-    * (Unreal) UObject 레퍼런싱 처리가 누락된 부분을 수정
+    * (Unreal) Updated Gamebase SDK version for iOS within iOS Plugin (2.9.1)
+    * (Unreal) Fixed the missing part of UObject referencing 
 
 #### Bug Fixes
 * [Console]
-    * 푸시 > 푸시: 푸시 알림 반복 발송 시 시간 정보가 입력된 타임존과 상관없이 무조건 UTC+9로 계산되어 전송되던 문제 수정
+    * Push > Push: Fixed an issue in which time was identically applied with UTC+9, for delivering repetitive push notification, regardless of timezone 
 
 ### August 19, 2020
 
 #### Bug Fixes
 * [Console]
-    * Analytics 전체 메뉴: 엑셀 다운로드가 되지 않는 문제 수정
+    * The Entire Menus of Analytics: Fixed the unavailability of downloading excel files 
 
 ### August 11, 2020
 
 #### Feature Updates
 * [Console]
-    * Analytics > 이용자 지표 > Retention: % 외에 수치를 추가로 표시
+    * Analytics > User Indicators > Retention: Show numbers, as well as % 
 * [SDK] 2.14.0
-    * (iOS) PAYCO IdP의 상수값 제거: PAYCO 문자열로 인한 애플 검수가 리젝되는 경우가 발생하여 제거
-    * (iOS, Unity) TCGBWebViewConfiguration에 contentMode 설정 추가
+    * (iOS) Removed Constant Value of PAYCO IdP: Due to rejections made on Apple inspections thanks to PAYCO character strings 
+    * (iOS, Unity) Adde the contentMode setting for TCGBWebViewConfiguration
 * [Server]
-    * 쿠폰 소진 API의 오류 코드 추가: 쿠폰 코드에 영문, 숫자 이외의 값을 입력한 경우(Error Code:-4000205)
+    * Added error code for Coupon Expired API: When a coupon code includes a value other than English or numbers (Error Code:-4000205)
 
 ### July 28, 2020
 
 #### More Features
 * [Console]
-    * Analytics: WAU(Weekly Active User), MAU(Monthly Active User) 지표 추가
+    * Analytics: Added the WAU (Weekly Active User) and MAU (Monthly Active User) indicators
 * [SDK] 2.13.0
-    * (Unity) Standalone: 이미지 공지 표시 API 추가    
+    * (Unity) Standalone: Added Show Notice on Image API     
 
 #### Feature Updates
 * [Console]
-    * 앱 > 앱: iOS 12 이하에서 Sign In With Apple 인증을 하기 위한 정보를 추가 입력할 수 있도록 수정
+    * App > App: Modified to enter further information to authenticate Sign In With Apple on iOS 12 or lower versions  
 * [SDK] 2.13.0
-    * (Android) 이미지 공지의 팝업 이미지 비율 계산 로직 수정
-    * (iOS) Sign In With Apple 인증: iOS 12 이하 지원
+    * (Android) Modified the logic of calculating the percentage of popup image for notice on image 
+    * (iOS) Authenticate Sign In With Apple: Supported for iOS 12 or lower 
 
 #### Bug Fixes
 * [Console]
-    * 운영 > 이미지 공지: 복사 기능 및 대상 국가 선택 후 전체 국가로 수정 시 반영되지 않는 오류 수정
+    * Operations > Notice on Image: Fixed the feature of copying, as well as error in which selected countries are not properly changed to all countries 
 * [SDK] 2.13.0
-    * (Android) 웹뷰 종료 시 종료 콜백에서 ANDROID_ACTIVITY_DESTROYED(31) 오류가 반환되는 문제 수정
-    * (Android) 결제 모듈에 ProGuard 선언이 누락된 오류 수정
+    * (Android) Fixed an issue in which the ANDROID_ACTIVITY_DESTROYED(31) error is returned for the close callback when an webview is closed 
+    * (Android) Fixed error in which the ProGuard declaraction is missing from the payment module 
 
 ### July 14, 2020
 
