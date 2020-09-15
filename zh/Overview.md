@@ -44,10 +44,6 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 | Twitter			| O | O | |  |
 | LINE				| O | O | O  | O  |
 | Hangame			| O | O | O  | O  |
-| CHINA				| O |  |   |   |
-
-> [参考] 支持验证及支付的中国商店列表（50余个）
-> RedBean(红豆), Lenovo(联想), PPS(爱奇艺), Downjoy(当乐), PPTV(PPTV), Mftnn(4399), Coolpad(酷派), Amigo(金立),Mzw(拇指玩), Sogou(搜狗), AppChina(应用汇), Pengyouwan(朋友玩), Guopan(果盘), Gfan(机锋), Mumayi(木蚂蚁), Hmpay(海马玩), Toutidao(今日头条), Bilibili(bilibili), Mi(小米), Uc(UC), Badu(百度), And360(360), Oppo(OPPO), JiuMeng(九玩(手盟)), BukaSdk(布卡), Moge(摩格(乐游)), StarGame(口袋巴士(星游)), Letv(乐视), Tt(TT语音), Papa(啪啪), NoxPay(夜神模拟器), XiaoBens(笨手机), DouYou(逗游), Ungame(搞趣网), Hanfeng(汉风), QiGuo(七果(七匣子)), SinaV2(新浪v2), XiaoQiV2(新小七), btgame01(乐嗨嗨), ccgame(虫虫游戏), LingDong(灵动), KuaiKan(快看), DouYu(斗鱼), MiFengFanLi(蜜蜂), KaopuRB(靠谱助手), VivoRB(Vivo), BluestacksRB(蓝蝶), HwGamesRB(新华为), XinDong(心动)
 
 * **提供游客登录。**
 游客登录，玩家无需输入任何信息，即可直接登录并启动游戏。由于游客登录，是使用了Gamebase发放的ID，所以客户可以管理用户的游戏数据，游戏不论OAuth登录用户和游客登录用户，均可统一管理不用进行区分。
@@ -80,7 +76,6 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 * ONE Store
 * Facebook
 * Amazon
-* 中国商店：关联的 [商店列表](./Overview/#authentication)
 
 * **通过单一接口提供多个商店的应用程序内支付。**
   通过单一接口提供API，可更轻松快速地进一步开发商店，因此节省了开发费用。开发者可以不学习复杂的支付绑定方法，轻松地实现支付功能。  
