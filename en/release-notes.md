@@ -1,5 +1,12 @@
 ## Game > Gamebase > Release Notes
 
+### September 16, 2020
+
+#### Feature Updates
+* [SDK] 2.15.1
+    * (iOS) TOAST SDK 업데이트: iOS(0.27..0)
+	* iOS 14 beta 변경 사항을 대응한 IAP SDK 새버전이 적용되었습니다. [TOAST SDK Release Notes](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0270-20200911)
+
 ### September 15, 2020
 
 #### More Features
