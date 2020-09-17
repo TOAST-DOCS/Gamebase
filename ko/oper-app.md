@@ -14,7 +14,7 @@ TOAST 프로젝트 하나당 하나의 Gamebase 앱을 관리할 수 있으므�
 각 항목별 상세 설명은 아래 세부 항목을 참고합니다.
 
 ### 기본 정보
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_01_202004.png)
+![gamebase_app_01_202009](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_01_202009.png)
 
 #### (1) 설치 URL
 앱 설치와 홍보에 이용할 수 있는 단축 URL 정보입니다.
@@ -24,13 +24,7 @@ TOAST 프로젝트 하나당 하나의 Gamebase 앱을 관리할 수 있으므�
 > [참고]
 > Gamebase를 활성화하면 자동으로 생성되므로 변경은 불가능합니다.
 
-#### (2) 고객 센터 연락처
-고객 센터 페이지 이외 이메일, 전화번호 등의 정보를 입력합니다.
-고객 센터 페이지가 있는 경우에는 아래 **인앱 URL**의 **고객센터**에 정보를 입력합니다.
-> [참고] <br/>
-> 입력된 정보는 Gamebase가 제공하는 점검 상세 페이지에 표시됩니다.
-
-#### (3) 테스트 결제 포함 여부
+#### (2) 테스트 결제 포함 여부
 앱의 지표를 볼 때 테스트 결제도 함께 지표에 포함할 지에 대한 여부를 선택합니다.
 기본 설정은 '테스트 결제 포함'으로 설정되어 있으며 '테스트 결제 제외'로 설정하면 Analytics 매출 지표에서 테스트 결제건은 모두 제외하여 보여줍니다.
 > [참고1]
@@ -42,7 +36,7 @@ TOAST 프로젝트 하나당 하나의 Gamebase 앱을 관리할 수 있으므�
 > * Google : Google 콘솔에 등록한 테스트 계정을 이용하여 결제를 진행한 내역
 > * AppStore : Sandbox 환경에서 테스트 결제를 진행한 내역
 
-#### (4) 탈퇴 유예 기간
+#### (3) 탈퇴 유예 기간
 앱의 탈퇴 유예 기능을 사용하고자 할 경우 탈퇴 유예시 부여할 기간을 설정합니다.
 기본 설정은 '7일'로 설정되어 있으며 1일 ~ 30일까지 설정이 가능합니다.
 > [참고]
@@ -77,16 +71,71 @@ Idp별 자세한 설정 방법은 [Authentication Information](#authentication-i
 > **항상 검증**을 선택하면 Gamebase에서 발급한 내부 토큰뿐만 아니라 외부 IdP 토큰에 대해서도 항상 유효성 검증을 진행합니다.
 
 ### 인앱 URL
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_05_202004.png)
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_05_202009.png)
 클라이언트를 다시 배포하지 않고 앱 내에서 자주 사용하는 URL을 Console을 통해 실시간으로 수정할 수 있습니다.
 
 - 이용약관
 - 개인 정보동의
 - 이용 정지 규정
-- 고객센터 URL
 
 게임에서 필요한 경우에만 입력하고, 그렇지 않은 경우에는 비워 두시면 됩니다.
 설정한 정보는 클라이언트 초기화 이후에 '런칭정보'에서 입력된 정보를 확인할 수 있습니다.
+
+### 고객센터
+고객센터 관련 설정을 진행할 수 있습니다.
+현재 Gamebase에서는 3가지의 고객센터 형식을 제공하고 있으며 선택되는 고객센터 유형별로 설정할 수 있는 항목이 다릅니다.
+각 고객센터 유형별 설정은 아래와 같습니다.
+
+#### 1. 개발사 자체 고객센터
+![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_19_202009.png)
+개발사에서 자체적으로 고객센터를 사용하고 있을 경우 설정합니다.
+설정 항목은 아래와 같습니다.
+* **고객센터 URL** : 현재 제공하거나 사용하고 있는 개발사의 자체 고객센터 주소를 입력합니다.
+* **연락처** : 고객센터 연락처를 입력합니다. 이 정보는 Gamebase SDK를 통해 추가로 정보를 전달받을 수 있습니다.
+
+#### 2. Gamebase 제공 고객센터
+![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_20_202009.png)
+Gamebase에서 제공하는 고객센터 기능을 사용하고자 할 때 설정합니다.
+설정 항목은 아래와 같습니다.
+* **고객센터 URL** : 고객에게 문의를 인입받을 수 있는 페이지 정보를 제공합니다. 해당 URL은 Gamebase 제공 고객센터를 선택할 경우 자동으로 생성되며 이 URL을 통해 고객의 문의를 별도의 웹페이지를 통해 전달받을 수 있습니다.
+* **연락처** : 고객센터 연락처를 입력합니다. 이 정보는 Gamebase SDK를 통해 추가로 정보를 전달받을 수 있습니다.
+* **지원 언어** : 고객센터 사용자에게 지원할 언어를 선택합니다. 프로젝트 자체 언어설정과는 별도로 설정되는 정보이며 현재는 한국어, 영어, 일본어, 중국어를 지원하고 있습니다. 이 설정에서 선택된 언어를 기반으로 Gamebase 고객센터 기능을 사용할 수 있습니다.
+* **기본 언어** : 지원 언어에서 선택한 항목 중 고객센터 내에서 기본으로 제공할 언어를 선택합니다.
+
+#### 3. TOAST 조직 상품(Online Contact)
+![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_21_202009.png)
+TOAST에서 조직별로 제공되는 Online contact 상품을 사용하는 경우 설정합니다.
+설정 항목은 아래와 같습니다.
+* **고객센터 URL** : TOAST Online Contact에서 제공되는 주소를 입력합니다. 해당정보는 TOAST Online Contact에 접속하여 확인할 수 있습니다.
+* **연락처** : 고객센터 연락처를 입력합니다. 이 정보는 Gamebase SDK를 통해 추가로 정보를 전달받을 수 있습니다.
+* **SSO 로그인 API Key** : TOAST Online Contact 고객센터 문의를 확인하기 위한 Key를 입력합니다. 해당정보를 입력하지 않을 경우 고객센터 페이지 내에서 인입된 문의를 확인할 수 없으므로 확인 후 입력해야 합니다. 자세한 연동 방법은 아래 참고내용을 보시고 연동해주시면 됩니다.
+> [참고] TOAST Online Contact와 Gamebase간의 연동
+> Gamebase내에서 TOAST Online Contact 연동하고자 할 경우 아래 과정에 따라 SSO 로그인 API Key를 발급받아 Gamebase내에 설정해주셔야 고객센터 서비스를 정상적으로 이용할 수 있습니다.
+> 고객센터의 안정적인 서비스 제공을 위해 아래 순서대로 참고하시어 진행 해주시기 바랍니다.
+> 1. TOAST Online Contact에 SSO 등록하기
+> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_22_202009.png)
+> 전체 관리 -> SSO 로그인 -> 등록 버튼 클릭
+>
+> 2. SSO 로그인 추가 정보 입력
+> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_23_202009.png)
+> SSO 로그인 명 : Gamebase SSO 인증(또는 해당하는 구별자 정보 입력)
+> 원격 로그인 URL : https://gamebase-web.cloud.toast.com/tcgb-web/v1.0/apps/{appId}/online-contact/login
+> 로그인 상태 URL : https://gamebase-web.cloud.toast.com/tcgb-web/v1.0/apps/{appId}/online-contact/login
+> **{appId}** 부분은 설정하고자 하는 Gamebase의 프로젝트 ID를 확인하신 후 해당 위치에 입력해주시면 됩니다.
+>
+> 3. SSO 로그인 인증 활성화 및 등록한 SSO 선택
+> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_24_202009.png)
+> 서비스 관리 -> 인증 -> SSO로그인으로 이동한 후 SSO로그인 활성화 항목을 활성화로 선택 및 SSO 로그인 지정을 Gamebase SSO 인증으로 선택
+>
+> 4. SSO 로그인 API Key를 획득하여 SSO 로그인 API Key항목에 입력
+> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_25_202009.png)
+> 전체 관리 -> SSO 로그인으로 이동하여 적혀있는 API Key를 복사하여 Gamebase SSO 로그인 API Key항목에 입력
+>
+> 5. TOAST Online contact 고객센터 페이지 주소를 획득하여 고객센터 URL에 입력
+> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_26_202009.png)
+> 헬프센터 -> 하위메뉴 선택 -> 우측 위 헬프센터 바로가기 클릭
+> > ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_27_202009.png)
+> 브라우저 상단에 표시된 주소를 Gamebase 고객센터 URL 항목에 입력
 
 ### Test Device
 
@@ -462,7 +511,7 @@ Gamebase 콘솔 **App**에서 Apple을 추가하면 기본으로 아래의 JSON�
 ![Capability_SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid8_1.0.png)
 2. **Target**을 선택하고 **Build Phases > Link Binary With Libraries**에서 **Authentication.framework**를 **Optional**로 추가합니다.
 ![AuthenticationServices.framework](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid9_1.0.png)
-    
+
 > <font color="red">[주의]</font><br/>
 > Optional이 아닌 Required로 설정되어 있으면 iOS 12 이하의 단말기에서는 앱 실행 시 런타임 크래시가 발생합니다.
 
@@ -477,7 +526,7 @@ Gamebase 콘솔 **App**에서 Apple을 추가하면 기본으로 아래의 JSON�
 > Gamebase SDK iOS 2.13.0 이상 버전에서는 iOS 12 이하 버전에서의 WebView를 이용한 Sign In with Apple 기능 사용이 가능합니다.
 >
 > 기존의 2.13.0 이전버전을 사용했던 게임의 경우에도 하단 **iOS 12 버전 이하를 지원하기 위한 설정** 을 참고하여 기존 프로젝트를 설정하고,
-> 
+>
 > Gambase SDK iOS 2.13.0 이상을 적용하면, iOS 12 이하버전에서 Sign In with Apple 기능을 사용할 수 있습니다.
 
 
