@@ -1061,7 +1061,7 @@ Gamebase 는 고객 문의 대응을 위한 기능을 제공합니다.
 * 개발사 자체 고객센터(Developer customer center)
     * **고객센터 URL** 에 입력한 URL.
 * Gamebase 제공 고객센터(Gamebase customer center)
-    * 로그인 전 : **고객센터 URL** 에 입력한 URL.
+    * 로그인 전 : 유저 정보가 **없는** 고객센터 URL.
     * 로그인 후 : 유저 정보가 포함된 고객센터 URL.
 * TOAST 조직 상품(Online Contact)
     * 로그인 전 : NOT_LOGGED_IN(2) 에러가 발생.
