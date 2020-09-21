@@ -29,6 +29,13 @@
                                               @Nullable GamebaseDataCallback<String> onEvent);
 ```
 
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1) | Gamebase.initialize 가 호출되지 않았습니다. |
+| UI\_IMAGE\_NOTICE\_TIMEOUT(6901) | 이미지 공지 팝업 표시중 타임아웃이 발생하여 모든 팝업을 강제 종료합니다. |
+
 **Example**
 
 ```java
