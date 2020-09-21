@@ -4,10 +4,10 @@
 
 #### 기능 추가
 * 고객센터 기능 추가
-	* [Console] 고객센터 메뉴 오픈: 고객 문의 처리, FAQ/공지사항 관리 
+	* [Console] 고객 센터 메뉴 오픈: 고객 문의 처리, FAQ/공지 사항 관리 
 	* [SDK] 2.16.0
-		* (공통) API 추가(Gamebase.Contact.requestContactURL): 고객센터 URL 리턴
-		* (공통) 고객센터 API 에 userName 을 설정할 수 있도록 ContactConfiguration 파라메터 추가 
+		* (공통) API 추가(Gamebase.Contact.requestContactURL): 고객 센터 URL 리턴
+		* (공통) 고객 센터 API 에 userName 을 설정할 수 있도록 ContactConfiguration 파라메터 추가 
 		
 #### 기능 개선/변경
 * [Console] 
