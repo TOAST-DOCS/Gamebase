@@ -586,7 +586,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 ```
 
 
-
+ 
 ### Analytics
 
 Game지표를 Gamebase Server로 전송할 수 있습니다.
@@ -682,28 +682,115 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 > [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
 >
 
+#### Customer Service Type
+
+**Gamebase 콘솔 > App > InApp URL > Service center** 에서는 아래와 같이 3가지 유형의 고객센터를 선택할 수 있습니다.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
+
+| Customer Service Type     | Required Login |
+| ------------------------- | -------------- |
+| Developer customer center | X              |
+| Gamebase customer center  | △              |
+| TOAST Online Contact      | O              |
+
+각 유형에 따라 Gamebase SDK 의 고객센터 API 는 다음 URL 을 사용합니다.
+
+* 개발사 자체 고객센터(Developer customer center)
+    * **고객센터 URL** 에 입력한 URL.
+* Gamebase 제공 고객센터(Gamebase customer center)
+    * 로그인 전 : 유저 정보가 **없는** 고객센터 URL.
+    * 로그인 후 : 유저 정보가 포함된 고객센터 URL.
+* TOAST 조직 상품(Online Contact)
+    * 로그인 전 : TCGB_ERROR_NOT_LOGGED_IN(2) 에러 발생.
+    * 로그인 후 : 유저 정보가 포함된 고객센터 URL.
+
 #### Open Contact WebView
 
 Gamebase 콘솔에 입력한 **고객 센터 URL** 웹뷰를 나타낼 수 있는 기능입니다.
-**Gamebase 콘솔 > App > InApp URL > Service center**에 입력한 값이 사용됩니다.
+TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니다.
+
+
+**TCGBContactConfiguration**
+
+| Parameter     | Values         | Description        |
+| ------------- | -------------- | ------------------ |
+| userName      | string         | 사용자 이름(닉네임)    |
+
 
 **API**
 
 ```objectivec
-+ (void)openContactWithViewController:(UIViewController *)viewController completion:(void(^)(TCGBError *error))completion;
++ (void)openContactWithViewController:(UIViewController *)viewController 
+                           completion:(void(^)(TCGBError *error))completion;
+
++ (void)openContactWithViewController:(UIViewController *)viewController
+                        configuration:(TCGBContactConfiguration *)configuration
+                           completion:(void(^)(TCGBError *error))completion;
 ```
+
+**Error Code**
+
+| Error                           | Error Code | Description                 |
+| ------------------------------- | ---------- | --------------------------- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1       | Gamebase가 초기화되어 있지 않습니다. |
+| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2       | 고객센터 유형이 'TOAST Online Contact' 인데 로그인 전에 호출하였습니다. |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 고객센터 URL이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL** 을 확인하세요. |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 사용자 식별을 위한 임시 티켓 발급에 실패하였습니다. |
 
 **Example**
 
 ```objectivec
-[TCGBContact openContactWithViewController:parentViewController completion:^(TCGBError *error) {
-    if (error != NULL && error.code == TCGB_ERROR_WEBVIEW_INVALID_URL) { // 7001
-        // TODO: Gamebase Console Service Center URL is invalid.
-        //  Please check the url field in the TOAST Gamebase Console.
-    } else if (error != NULL) {
-        // TODO: Error occur when opening the contact web view.
-    } else {
+[TCGBContact openContactWithViewController:self completion:^(TCGBError *error) {
+    if ([TCGBGamebase isSuccessWithError:error] == YES) {
         // A user close the contact web view.
+    } else if (error.code == TCGB_ERROR_UI_CONTACT_FAIL_INVALID_URL) {
+        // TODO: Gamebase Console Service Center URL is invalid.
+        // Please check the url field in the TOAST Gamebase Console.
+    } else {
+        // TODO: Error occur when opening the contact web view.
     }
 }];
 ```
+
+> <font color="red">[주의]</font><br/>
+>
+> 고객센터 문의 시 파일 첨부를 위해 카메라 또는 앨범 접근이 필요할 수 있습니다.
+> info.plist에 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description' 설정을 해주시기 바랍니다.
+
+#### Request Contact URL
+
+고객센터 웹뷰를 표시하는데 사용되는 URL을 얻을 수 있습니다.
+
+**API**
+
+```objectivec
++ (void)requestContactURLWithCompletion:(void(^)(NSString *contactUrl, TCGBError *error))completion;
+
++ (void)requestContactURLWithConfiguration:(TCGBContactConfiguration *)configuration
+                                completion:(void(^)(NSString *contactUrl, TCGBError *error))completion;
+```
+
+**Error Code**
+
+| Error                           | Error Code | Description                 |
+| ------------------------------- | ---------- | --------------------------- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1       | Gamebase가 초기화되어 있지 않습니다. |
+| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2       | 고객센터 유형이 'TOAST Online Contact' 인데 로그인 전에 호출하였습니다. |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 고객센터 URL이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL** 을 확인하세요. |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 사용자 식별을 위한 임시 티켓 발급에 실패하였습니다. |
+
+**Example**
+
+```objectivec
+[TCGBContact requestContactURLWithCompletion^(NSString *contactUrl, TCGBError *error){
+    if ([TCGBGamebase isSuccessWithError:error] == YES) {
+        NSLog(@"ContactURL : %@", contactUrl);
+    } else if (error.code == TCGB_ERROR_UI_CONTACT_FAIL_INVALID_URL) {
+        // TODO: Gamebase Console Service Center URL is invalid.
+        // Please check the url field in the TOAST Gamebase Console.
+    } else {
+        // TODO: Error occur when request contact url.
+    }
+}];
+```
+

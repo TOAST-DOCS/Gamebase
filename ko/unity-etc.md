@@ -1045,21 +1045,61 @@ Gamebase 는 고객 문의 대응을 위한 기능을 제공합니다.
 > 자세한 TOAST Contact 서비스 이용법은 아래 가이드를 참고하시기 바랍니다.
 > [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
 
+#### Customer Service Type
+
+**Gamebase 콘솔 > App > InApp URL > Service center** 에서는 아래와 같이 3가지 유형의 고객센터를 선택할 수 있습니다.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
+
+| Customer Service Type     | Required Login |
+| ------------------------- | -------------- |
+| Developer customer center | X              |
+| Gamebase customer center  | △             |
+| TOAST Online Contact      | O              |
+
+각 유형에 따라 Gamebase SDK 의 고객센터 API 는 다음 URL 을 사용합니다.
+
+* 개발사 자체 고객센터(Developer customer center)
+    * **고객센터 URL** 에 입력한 URL.
+* Gamebase 제공 고객센터(Gamebase customer center)
+    * 로그인 전 : 유저 정보가 **없는** 고객센터 URL.
+    * 로그인 후 : 유저 정보가 포함된 고객센터 URL.
+* TOAST 조직 상품(Online Contact)
+    * 로그인 전 : NOT_LOGGED_IN(2) 에러가 발생.
+    * 로그인 후 : 유저 정보가 포함된 고객센터 URL.
+
 #### Open Contact WebView
 
-Gamebase 콘솔에 입력한 **고객 센터 URL** 웹뷰를 나타낼 수 있는 기능입니다.
+고객센터 웹뷰를 표시합니다.
+URL은 고객센터 유형에 따라 결정됩니다.
+ContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니다.
 
-* **Gamebase 콘솔 > App > InApp URL > Service center** 에 입력한 값이 사용됩니다.
+**GamebaseRequest.Contact.Configuration**
+
+| Parameter     | Values         | Description        |
+| ------------- | -------------- | ------------------ |
+| userName      | string         | 사용자 이름(닉네임)    |
 
 **API**
 
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
-static void OpenContact(GamebaseCallback.ErrorDelegate callback)
+static void OpenContact(GamebaseCallback.ErrorDelegate callback);
+static void OpenContact(GamebaseRequest.Contact.Configuration configuration, GamebaseCallback.ErrorDelegate callback);
 ```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initialize 가 호출되지 않았습니다. |
+| NOT\_LOGGED\_IN(2)                                  | 고객센터 유형이 'TOAST OC' 인데 로그인 전에 호출하였습니다. |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 고객센터 URL 이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL** 을 확인하세요. |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 사용자 식별을 위한 임시 티켓 발급에 실패하였습니다. |
+| UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | 고객센터 웹뷰가 이미 표시중입니다. |
 
 **Example**
 
@@ -1070,19 +1110,85 @@ public void SampleOpenContact()
     {
         if (Gamebase.IsSuccess(error) == true)
         {
-            Debug.Log("OpenContact succeeded.");
+            // A user close the contact web view.
         }
-        else
+        else if (exception.code == GamebaseErrorCode.UI_CONTACT_FAIL_INVALID_URL)  // 6911
         {
-            Debug.Log(string.Format("OpenContact failed. error:{0}", error));
+            // TODO: Gamebase Console Service Center URL is invalid.
+            // Please check the url field in the TOAST Gamebase Console.
+        } 
+        else if (exception.code == GamebaseErrorCode.UI_CONTACT_FAIL_ANDROID_DUPLICATED_VIEW) // 6913
+        { 
+            // The customer center web view is already opened.
+        } 
+        else 
+        {
+            // An error occur when opening the contact web view.
+        }
+    });
+}
+```
 
-            if (error.code == GamebaseErrorCode.WEBVIEW_INVALID_URL)
-            {
-                // Gamebase Console Service Center URL is invalid.
-                // Please check the url field in the TOAST Gamebase Console.
-                var launchingInfo = Gamebase.Launching.GetLaunchingInformations();
-                Debug.Log(string.Format("csUrl:{0}", launchingInfo.launching.app.relatedUrls.csUrl));
-            }
+> <font color="red">[주의]</font><br/>
+>
+> 고객센터 문의 시 파일 첨부가 필요할 수 있습니다.
+> 이를 위해 사용자로부터 카메라 촬영이나 Storage 저장에 대한 권한을 런타임에 획득하여야 합니다.
+>
+> Android 사용자
+>
+> * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
+>
+> * Unity 사용자는 아래 가이드를 참조하여 구현할 수 있습니다.
+> [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
+>
+> iOS 사용자
+>
+> * info.plist에 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description' 설정을 해주시기 바랍니다.
+
+#### Request Contact URL
+
+고객센터 웹뷰를 표시하는데 사용되는 URL 을 리턴합니다.
+
+**API**
+
+```cs
+static void RequestContactURL(GamebaseCallback.GamebaseDelegate<string> callback);
+static void RequestContactURL(GamebaseRequest.Contact.Configuration configuration, GamebaseCallback.GamebaseDelegate<string> callback);
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initialize 가 호출되지 않았습니다. |
+| NOT\_LOGGED\_IN(2)                                  | 고객센터 유형이 'TOAST OC' 인데 로그인 전에 호출하였습니다. |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 고객센터 URL 이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL** 을 확인하세요. |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 사용자를 식별을 위한 임시 티켓 발급에 실패하였습니다. |
+
+**Example**
+
+``` cs
+public void SampleRequestContactURL()
+{
+    var configuration = new GamebaseRequest.Contact.Configuration()
+                            {
+                                userName = "User Name"
+                            };
+
+    Gamebase.Contact.RequestContactURL(configuration, (url, error) => 
+    {
+        if (Gamebase.IsSuccess(error) == true) 
+        {
+            // Open webview with 'contactUrl'
+        } 
+        else if (error.code == GamebaseErrorCode.UI_CONTACT_FAIL_INVALID_URL) // 6911
+        { 
+            // TODO: Gamebase Console Service Center URL is invalid.
+            // Please check the url field in the TOAST Gamebase Console.
+        } 
+        else 
+        {
+            // An error occur when requesting the contact web view url.
         }
     });
 }

@@ -755,7 +755,6 @@ public void onLevelUp(int userLevel, long levelUpTime) {
 }
 ```
 
-
 ### Contact
 
 Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
@@ -767,33 +766,131 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 > [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
 >
 
+#### Customer Service Type
+
+**Gamebase 콘솔 > App > InApp URL > Service center** 에서는 아래와 같이 3가지 유형의 고객센터를 선택할 수 있습니다.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
+
+| Customer Service Type     | Required Login |
+| ------------------------- | -------------- |
+| Developer customer center | X              |
+| Gamebase customer center  | △             |
+| TOAST Online Contact      | O              |
+
+각 유형에 따라 Gamebase SDK 의 고객센터 API 는 다음 URL 을 사용합니다.
+
+* 개발사 자체 고객센터(Developer customer center)
+    * **고객센터 URL** 에 입력한 URL.
+* Gamebase 제공 고객센터(Gamebase customer center)
+    * 로그인 전 : 유저 정보가 **없는** 고객센터 URL.
+    * 로그인 후 : 유저 정보가 포함된 고객센터 URL.
+* TOAST 조직 상품(Online Contact)
+    * 로그인 전 : NOT_LOGGED_IN(2) 에러가 발생.
+    * 로그인 후 : 유저 정보가 포함된 고객센터 URL.
+
 #### Open Contact WebView
 
-Gamebase 콘솔에 입력한 **고객 센터 URL** 웹뷰를 나타낼 수 있는 기능입니다.
-**Gamebase 콘솔 > App > InApp URL > Service center**에 입력한 값이 사용됩니다.
+고객센터 웹뷰를 표시합니다.
+URL은 고객센터 유형에 따라 결정됩니다.
+ContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니다.
+
+**ContactConfiguration**
+
+| API | Mandatory(M) / Optional(O) | Description |
+| --- | --- | --- |
+| newBuilder() | **M** | ContactConfiguration 객체는 newBuilder() 함수를 통해 생성할 수 있습니다. |
+| build() | **M** | 설정을 마친 Builder 를 Configuration 객체로 변환합니다. |
+| setUserName(String userName) | O | 사용자 이름(닉네임)을 전달하고자 할 때 사용합니다.<br>TOAST 조직 상품(Online Contact) 유형에서 사용하는 필드입니다.<br>**default** : null |
 
 **API**
 
 ```java
-Gamebase.Contact.openContact(Activity activity, GamebaseCallback callback);
++ (void)Gamebase.Contact.openContact(@NonNull  final Activity activity,
+                                     @Nullable final GamebaseCallback onCloseCallback);
+
++ (void)Gamebase.Contact.openContact(@NonNull  final Activity activity,
+                                     @NonNull  final ContactConfiguration configuration,
+                                     @Nullable final GamebaseCallback onCloseCallback);
 ```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initialize 가 호출되지 않았습니다. |
+| NOT\_LOGGED\_IN(2)                                  | 고객센터 유형이 'TOAST OC' 인데 로그인 전에 호출하였습니다. |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 고객센터 URL 이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL** 을 확인하세요. |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 사용자 식별을 위한 임시 티켓 발급에 실패하였습니다. |
+| UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | 고객센터 웹뷰가 이미 표시중입니다. |
 
 **Example**
 
 ``` java
-public void openContact(Activity activity) {
-    Gamebase.Contact.openContact(activity, new GamebaseCallback() {
-        @Override
-        public void onCallback(GamebaseException exception) {
-            if (exception != null && exception.code == WEBVIEW_INVALID_URL) { // 7001
-                // TODO: Gamebase Console Service Center URL is invalid.
-                //  Please check the url field in the TOAST Gamebase Console.
-            } else if (exception != null) {
-                // TODO: Error occur when opening the contact web view.
-            } else {
-                // A user close the contact web view.
-            }
+Gamebase.Contact.openContact(activity, new GamebaseCallback() {
+    @Override
+    public void onCallback(GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            // A user close the contact web view.
+        } else if (exception.code == UI_CONTACT_FAIL_INVALID_URL) { // 6911
+            // TODO: Gamebase Console Service Center URL is invalid.
+            // Please check the url field in the TOAST Gamebase Console.
+        } else if (exception.code == UI_CONTACT_FAIL_ANDROID_DUPLICATED_VIEW) { // 6913
+            // The customer center web view is already opened.
+        } else {
+            // An error occur when opening the contact web view.
         }
-    });
-}
+    }
+});
+```
+
+> <font color="red">[주의]</font><br/>
+>
+> 고객센터 문의 시 파일 첨부가 필요할 수 있습니다.
+> 이를 위해 사용자로부터 카메라 촬영이나 Storage 저장에 대한 권한을 런타임에 획득하여야 합니다.
+> [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
+>
+> Unity 사용자는 아래 가이드를 참조하여 구현할 수 있습니다.
+> [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
+
+#### Request Contact URL
+
+고객센터 웹뷰를 표시하는데 사용되는 URL 을 리턴합니다.
+
+**API**
+
+```java
++ (void)Gamebase.Contact.requestContactURL(@NonNull final GamebaseDataCallback<String> callback);
+
++ (void)Gamebase.Contact.requestContactURL(@NonNull final ContactConfiguration configuration,
+                                           @NonNull final GamebaseDataCallback<String> callback);
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initialize 가 호출되지 않았습니다. |
+| NOT\_LOGGED\_IN(2)                                  | 고객센터 유형이 'TOAST OC' 인데 로그인 전에 호출하였습니다. |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 고객센터 URL 이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL** 을 확인하세요. |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 사용자를 식별을 위한 임시 티켓 발급에 실패하였습니다. |
+
+**Example**
+
+``` java
+ContactConfiguration configuration = ContactConfiguration.newBuilder()
+        .setUserName(userName)
+        .build();
+Gamebase.Contact.requestContactURL(configuration, new GamebaseDataCallback<String>() {
+    @Override
+    public void onCallback(String contactUrl, GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            // Open webview with 'contactUrl'
+        } else if (exception.code == UI_CONTACT_FAIL_INVALID_URL) { // 6911
+            // TODO: Gamebase Console Service Center URL is invalid.
+            // Please check the url field in the TOAST Gamebase Console.
+        } else {
+            // An error occur when requesting the contact web view url.
+        }
+    }
+});
 ```
