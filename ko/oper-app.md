@@ -112,30 +112,32 @@ TOAST에서 조직별로 제공되는 Online contact 상품을 사용하는 경�
 > [참고] TOAST Online Contact와 Gamebase간의 연동
 > Gamebase내에서 TOAST Online Contact 연동하고자 할 경우 아래 과정에 따라 SSO 로그인 API Key를 발급받아 Gamebase내에 설정해주셔야 고객센터 서비스를 정상적으로 이용할 수 있습니다.
 > 고객센터의 안정적인 서비스 제공을 위해 아래 순서대로 참고하시어 진행 해주시기 바랍니다.
-> 1. TOAST Online Contact에 SSO 등록하기
-> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_22_202009.png)
-> 전체 관리 -> SSO 로그인 -> 등록 버튼 클릭
 >
-> 2. SSO 로그인 추가 정보 입력
-> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_23_202009.png)
+> 1) TOAST Online Contact에 SSO 등록하기
+> 전체 관리 -> SSO 로그인 -> 등록 버튼 클릭
+> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_22_202009.png)
+>
+> 2) SSO 로그인 추가 정보 입력
 > SSO 로그인 명 : Gamebase SSO 인증(또는 해당하는 구별자 정보 입력)
 > 원격 로그인 URL : https://gamebase-web.cloud.toast.com/tcgb-web/v1.0/apps/{appId}/online-contact/login
 > 로그인 상태 URL : https://gamebase-web.cloud.toast.com/tcgb-web/v1.0/apps/{appId}/online-contact/login
 > **{appId}** 부분은 설정하고자 하는 Gamebase의 프로젝트 ID를 확인하신 후 해당 위치에 입력해주시면 됩니다.
+> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_23_202009.png)
 >
-> 3. SSO 로그인 인증 활성화 및 등록한 SSO 선택
-> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_24_202009.png)
+> 3) SSO 로그인 인증 활성화 및 등록한 SSO 선택
 > 서비스 관리 -> 인증 -> SSO로그인으로 이동한 후 SSO로그인 활성화 항목을 활성화로 선택 및 SSO 로그인 지정을 Gamebase SSO 인증으로 선택
+> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_24_202009.png)
 >
-> 4. SSO 로그인 API Key를 획득하여 SSO 로그인 API Key항목에 입력
-> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_25_202009.png)
+> 4) SSO 로그인 API Key를 획득하여 SSO 로그인 API Key항목에 입력
 > 전체 관리 -> SSO 로그인으로 이동하여 적혀있는 API Key를 복사하여 Gamebase SSO 로그인 API Key항목에 입력
+> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_25_202009.png)
 >
-> 5. TOAST Online contact 고객센터 페이지 주소를 획득하여 고객센터 URL에 입력
-> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_26_202009.png)
+> 5) TOAST Online contact 고객센터 페이지 주소를 획득하여 고객센터 URL에 입력
 > 헬프센터 -> 하위메뉴 선택 -> 우측 위 헬프센터 바로가기 클릭
-> > ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_27_202009.png)
+> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_26_202009.png)
 > 브라우저 상단에 표시된 주소를 Gamebase 고객센터 URL 항목에 입력
+> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_27_202009.png)
+>
 
 ### Test Device
 

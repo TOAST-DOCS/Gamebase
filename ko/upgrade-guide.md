@@ -1,5 +1,11 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.15.1
+
+### iOS
+* SDK에서 정의한 타입 **GamebaseEventCategory**를 NSString 대신에 사용할 경우, 해당 타입을 **TCGBGamebaseEventCategory**로 수정해야 합니다.
+
+
 ## 2.15.0
 
 ### Android
