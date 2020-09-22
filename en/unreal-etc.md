@@ -1,8 +1,8 @@
-## Game > Gamebase > Unreal SDK 사용 가이드 > ETC
+## Game > Gamebase > User Guide for Unreal SDK 사용 가이드 > ETC
 
 ## Additional Features
 
-Gamebase에서 지원하는 부가 기능을 설명합니다.
+This document describes additional features supported by Gamebase. 에서 지원하는 부가 기능을 설명합니다.
 
 ### Device Language
 
