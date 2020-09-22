@@ -1,9 +1,9 @@
-## Game > Gamebase > Unreal SDK 사용 가이드 > Logger
+## Game > Gamebase > User Guide for Unreal SDK > Logger
 
-여기에서는 Unreal에서 TOAST Logger SDK를 사용하는 방법을 알아 보겠습니다. This document describes how to use TOAST Logger SDK 
+This document describes how to use Unreal TOAST Logger SDK.  
 
 ### Initialize
-Log & Crash Search에서 발급받은 AppKey로  TOAST Logger SDK를 초기화 합니다. Initialize TOAST Logger SDK with appkey issued from Log & Crash Search. 
+Initialize TOAST Logger SDK with appkey issued from Log & Crash Search. 
 
 **API**
 
@@ -25,15 +25,15 @@ void Sample::InitializeLogger()
 ```
 
 ### Send Logs
-Log & Crash Server로 로그를 전송합니다. Send logs to Log & Crash Server. 
-TOAST Logger SDK는 아래 다섯 가지 레벨의 로그를 전송할 수 있습니다.  TOAST Logger SDK can send logs of the five levels as below: 
+Send logs to Log & Crash Server. 
+TOAST Logger SDK can send logs of the five levels as below: 
 * DEBUG
 * INFO
 * WARN
 * ERROR
 * FATAL
 
-로그 레벨은 다음과 같습니다. Logs are levelled as follows:
+Logs are levelled as follows:
 * DEBUG > INFO > WARN > ERROR > FATAL
 
 **API**
@@ -99,8 +99,8 @@ void Sample::FatalLogger()
 ```
 
 ### Set User-Defined Fields
-원하는 사용자 정의 필드를 설정합니다. Set user-defined field as needed. 
-사용자 정의 필드를 설정하면 로그 전송 API를 호출할 때마다 설정한 값을 로그와 함께 서버로 전송합니다. With user-defined field setting, set value is sent to server along with logs every time Send Logs API is called. 
+Set user-defined field as needed. 
+With user-defined field setting, set value is sent to server along with logs every time Send Logs API is called. 
 
 **API**
 
