@@ -1,10 +1,10 @@
-## Game > Gamebase > Unreal SDK 사용 가이드 > 인증
+## Game > Gamebase > User Guide for Unreal SDK 사용 가이드 > 인증 Authentication 
 
 ## Login
 
-Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
+Gamebase supports guest login. 에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 
-* 게스트 이외의 Provider에 로그인하려면 해당 Provider AuthAdapter가 필요합니다.
+* To login to Provider 게스트 이외의 Provider에 로그인하려면 해당 Provider AuthAdapter가 필요합니다.
 * AuthAdapter 및 3rd-Party Provider SDK에 대한 설정은 다음을 참고하시기 바랍니다.
     * [3rd-Party Provider SDK Guide](aos-started#3rd-party-provider-sdk-guide)
 
@@ -456,25 +456,25 @@ void Sample::AddMapping(const FString& providerName)
 
 ### AddMapping with Credential
 
-게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증을 하고 발급받은 액세스 토큰등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스 입니다.
+The interface allows to authenticate with SDK provided by IdP of a game to enable Gamebase AddMapping by using a given access token.  게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증을 하고 발급받은 액세스 토큰등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스 입니다.
 
-* Credential 파라미터의 설정 방법
+* How to Set Credential Parameters  파라미터의 설정 방법
 
-| keyname | a use | 값 종류 |
+| Keyname | Usage | Value Type 값 종류 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | Set authentication information (access token) given after IdP login 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/> Not for Google authentication 인증 시에는 사용 안 함 |                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Set authorization code given after Google login  Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
 
 > [TIP]
 >
-> 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
+> Might be required to use original features of external services (e.g. Facebook) for a game.  게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
 >
 
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 외부 SDK에서 지원 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
+> Development issues required to be supported by external SDKs must be implemented by using APIs of such external SDK, which is not supported by Gamebase.  외부 SDK에서 지원 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
 >
 
 **API**
@@ -518,10 +518,10 @@ void Sample::AddMappingWithCredential()
 
 ### Add Mapping Forcibly
 
-특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
-**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+For an account which is already mapped to a particular IdP, try mapping **With Force **. 특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
+When trying **Force Mapping강제 매핑**, you need 을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket` acquiried from AddMpping API. 이 필요합니다.
 
-다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
+다음은 Facebook에 강제 매핑을 시도하는 예시입니다. Following are examples of trying to force mapping: 
 
 **API**
 
@@ -543,7 +543,7 @@ void Sample::AddMappingForcibly(const FString& providerName)
         }
         else
         {
-            // 우선 addMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
+            // By calling addMapping API and mapping to an account already integrated, you can get  우선 addMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
             if (error->code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
                 // ForcingMappingTicket 클래스의 From() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
@@ -553,7 +553,7 @@ void Sample::AddMappingForcibly(const FString& providerName)
                     // Unexpected error occurred. Contact Administrator.
                 }
                 
-                // 강제 매핑을 시도합니다.
+                // Try to force mapping. 강제 매핑을 시도합니다.
                 IGamebase::Get().AddMappingForcibly(providerName, forcingMappingTicket->forcingMappingKey,
                     FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* innerAuthToken, const FGamebaseError* innerError)
                 {
@@ -600,9 +600,9 @@ void Sample::AddMappingForcibly(const FString& providerName)
 >
 
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 외부 SDK에서 지원 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
+> Development issues required to be supported by external SDKs must be 외부 SDK에서 지원 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
 >
 
 다음은 강제 매핑을 시도하는 예시입니다.
