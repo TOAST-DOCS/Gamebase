@@ -3,23 +3,24 @@
 ### 2020. 09. 22.
 
 #### 機能追加
-* 고객센터 기능 추가
-	* [Console] 고객 센터 메뉴 오픈: 고객 문의 처리, FAQ/공지 사항 관리 
+* サポート機能追加
+	* [Console]サポートメニューオープン：顧客お問い合わせ処理、FAQ/告知事項管理 
 	* [SDK] 2.16.0
-		* (공통) API 추가(Gamebase.Contact.requestContactURL): 고객 센터 URL 리턴
-		* (공통) 고객 센터 API 에 userName 을 설정할 수 있도록 ContactConfiguration 파라메터 추가 
+		* (共通) API追加(Gamebase.Contact.requestContactURL)：サポートURLリターン
+		* (共通)サポートAPIにuserNameを設定できるようにContactConfigurationパラメータを追加 
 		
 #### 機能改善/変更
 * [Console] 
-	* Analytics 메뉴 공통: 국가별 필터 정렬 기준 변경(지표 내림차순 -> 국가 이름 오름차순)     
-    * Analytics > 매출지표: 스토어별 대시보드에 해당 스토어의 국가별 결제 금액 이외에 결제 금액 총합도 함께 표시 
+	* Analyticsメニュー共通：国別フィルタソート基準を変更(指標降順→国名昇順)     
+    * Analytics > 売上指標：ストア別ダッシュボードに該当ストアの国別決済金額の他に決済金額合計も表示 
 
 ### 2020. 09. 16.
 
 #### 機能改善/変更
 * [SDK] 2.15.1
-    * (iOS) TOAST SDK 업데이트: iOS(0.27.0)
-	* iOS 14 beta 변경 사항을 대응한 IAP SDK 신규 버전이 적용되었습니다. [TOAST SDK Release Notes](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0270-20200911)
+    * (iOS) TOAST SDKアップデート：iOS(0.27.0)
+	* iOS 14 beta変更事項を対応したIAP SDK新規バージョンが適用されました。 [TOAST SDK Release Notes](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0270-20200911)
+
 
 ### 2020. 09. 15.
 
