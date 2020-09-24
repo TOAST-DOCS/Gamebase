@@ -108,7 +108,7 @@ Authorization failed: Error Domain=AKAuthenticationError Code=-7026 "(null)"
 
 ```
 
-Since UE4(4.24.3) does not support the feature는 해당 기능을 지원하지 않으므로 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs) 파일의 296번 라인 위에 아래 코드를 추가해야 합니다.
+Since UE4(4.24.3) does not support the feature는 해당 기능을 지원하지 않으므로, below codes must be added above line 196 of the following file.  [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs) 파일의 296번 라인 위에 아래 코드를 추가해야 합니다.
 
 ```cs
 Text.AppendLine("\t<key>com.apple.developer.applesignin</key>");
@@ -119,11 +119,11 @@ Text.AppendLine("\t</array>");
 
 #### Remote Notification
 
-Gamebase Push 기능을 사용하려면 Project Settings > Platforms > iOS 페이지에서 Enable Remote Notifications Support 기능을 활성화해야 합니다. (Github 소스에서만 가능)
+To enable Gamebase Push, go to 기능을 사용하려면 Project Settings > Platforms > iOS and activate Enable Remote Notifications Support 기능을 활성화해야 합니다. (available only on Github sources 소스에서만 가능)
 
 #### Error in Unreal Builds due to Warning Messages of iOS SDK의 Warning 메시지로 인한 Unreal 빌드 오류
 
-iOS SDK에서 발생하는 Warning 메시지가 Unreal 빌드 시 오류로 변환되어 빌드에 실패하는 현상이 발생한다면 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) 파일의 269 라인에 있는 clang 컴파일 옵션 코드를 주석 처리하십시오.
+If a warning message from iOS SDK is converted as error for Unreal build, leading into failure in the buildup, handle the clang compile option code in line 269 of the following file as footnotes: 에서 발생하는 Warning 메시지가 Unreal 빌드 시 오류로 변환되어 빌드에 실패하는 현상이 발생한다면 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) 파일의 269 라인에 있는 clang 컴파일 옵션 코드를 주석 처리하십시오.
 
 ```cs
 // Result += " -Wall -Werror";
@@ -131,13 +131,13 @@ iOS SDK에서 발생하는 Warning 메시지가 Unreal 빌드 시 오류로 변�
 
 ## API Deprecate Governance
 
-Gamebase에서 더 이상 지원하지 않는 API는 Deprecate 처리합니다.
-Deprecated 된 API는 다음 조건 충족 시 사전 공지 없이 삭제될 수 있습니다.
+APIs that are no longer supported by Gamebase are to be deprecated. 에서 더 이상 지원하지 않는 API는 Deprecate 처리합니다.
+Once deprecated, APIs might be deleted without previous notice if they fulfill the following conditions: Deprecated 된 API는 다음 조건 충족 시 사전 공지 없이 삭제될 수 있습니다.
 
-* 5회 이상의 마이너 버전 업데이트
+* Updated more than 5 times for a minor version 5회 이상의 마이너 버전 업데이트
 	* Gamebase Version Format - XX.YY.ZZ
 		* XX : Major
 		* YY : Minor
 		* ZZ : Hotfix
 
-* 최소 5개월 경과
+* At least 5-month old 최소 5개월 경과
