@@ -1,16 +1,16 @@
-## Game > Gamebase > Unreal SDK 사용 가이드 > 결제
+## Game > Gamebase > User Guide for Unreal SDK 사용 가이드 > Purchase 결제
 
-여기에서는 Unreal에서 인앱 결제 기능을 사용하기 위해 필요한 설정 방법을 알아보겠습니다.
-Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 많은 스토어의 인앱 결제를 연동할 수 있도록 돕습니다.
+This document describes setting requirements to use Unreal in-app purchase.  여기에서는 Unreal에서 인앱 결제 기능을 사용하기 위해 필요한 설정 방법을 알아보겠습니다.
+The unified purchase API of Gamebase supports for easy integration of in-app purchases of many stores. 는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 많은 스토어의 인앱 결제를 연동할 수 있도록 돕습니다.
 
 ### Settings
 
-Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
+Regarding how to set in-app purchases on Android or iOS, read the following documents: Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
 
 * [Android Purchase Settings](aos-purchase#settings)
 * [iOS Purchase Settings](ios-purchase#settings)
 
-#### Android 결제 설정 (엔진 버전 4.24 이하)
+#### Setting for Purchases on Android 결제 설정 (for 4.24 or lower engine version 엔진 버전 4.24 이하)
 
 * Epic Games Launcher를 통해 4.24 버전을 설치한 경우,
     **Engine\Build\Android\Java\src\com\android\vending\billing\IInAppBillingService.aidl**을 삭제해야 정상적으로 빌드할 수 있습니다.
@@ -19,20 +19,20 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 
 ###  Purchase Flow
 
-아이템 구매는 다음과 같은 순서로 구현하시기 바랍니다.<br/>
+You may execute item purchaes in the following order: 아이템 구매는 다음과 같은 순서로 구현하시기 바랍니다.<br/>
 
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.6.2.png)
 
 
-1. 게임 클라이언트에서는 Gamebase SDK의 **RequestPurchase**를 호출하여 결제를 시도합니다.
-2. 결제가 성공하였다면 **RequestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인합니다.
-3. 반환된 미소비 결제 내역 목록에 값이 있으면 게임 클라이언트가 게임 서버에 결제 아이템에 대한 consume(소비)을 요청합니다.
+1. For the game client, call 게임 클라이언트에서는 Gamebase SDK의 **RequestPurchase** of Gamebase SDK to make a purchase. 를 호출하여 결제를 시도합니다.
+2. When purchase has been successful, call 결제가 성공하였다면 **RequestItemListOfNotConsumed** and check history of non-consumable purchases. 를 호출하여 미소비 결제 내역을 확인합니다.
+3. Whena a value exists on the list of returned non-consumable purchases, the game client 반환된 미소비 결제 내역 목록에 값이 있으면 게임 클라이언트가 게임 서버에 결제 아이템에 대한 consume(소비)을 요청합니다.
 	* UserID, itemSeq, paymentSeq, purchaseToken 을 전달합니다.
 4. 게임 서버는 게임 DB 에 이미 동일한 paymentSeq, purchaseToken 으로 아이템을 지급한 이력이 있는지 확인합니다.
 	* 4-1. 아직 아이템을 지급하지 않았다면 UserID 에 itemSeq 에 해당하는 아이템을 지급합니다.
     * 4-2. 아이템 지급 후 게임 DB 에 UserID, itemSeq, paymentSeq, purchaseToken 을 저장하여 이후에 중복 지급을 확인할 수 있도록 합니다.
 5. 게임 서버는 Gamebase 서버에 API를 통해 consume(소비) API를 요청합니다.
-	* [API 가이드](./api-guide/#consume)
+	* [API Guide](./api-guide/#consume)
 
 <br/>
 
@@ -126,7 +126,7 @@ void Sample::RequestItemListPurchasable()
 
 
 
-### Get a List of Non-Consumed Items
+### List Non-Consumables
 
 아이템을 구매했지만, 정상적으로 아이템이 소비(배송, 지급)되지 않은 미소비 결제 내역을 요청합니다.
 미결제 내역이 있는 경우에는 게임 서버(아이템 서버)에 요청하여, 아이템을 배송(지급)하도록 처리해야 합니다.
@@ -169,7 +169,7 @@ void Sample::RequestItemListOfNotConsumed()
 }
 ```
 
-### Get the List of Actived Subscriptions
+### List Actived Subscriptions
 
 현재 사용자 ID 기준으로 활성화된 구독 목록을 조회합니다.
 결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다.
