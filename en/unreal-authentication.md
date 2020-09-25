@@ -2,21 +2,21 @@
 
 ## Login
 
-Gamebase supports guest login. 에서는 게스트 로그인을 기본으로 지원합니다.<br/>
+Gamebase basically supports guest login. 에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 
-* To login to Provider 게스트 이외의 Provider에 로그인하려면 해당 Provider AuthAdapter가 필요합니다.
-* AuthAdapter 및 3rd-Party Provider SDK에 대한 설정은 다음을 참고하시기 바랍니다.
+* To login to a provider other than guests, AuthAdapter for each provider is required.  게스트 이외의 Provider에 로그인하려면 해당 Provider AuthAdapter가 필요합니다.
+* Regarding setting for AuthAdapter and 3rd-Party Provider SDK, see the following: 에 대한 설정은 다음을 참고하시기 바랍니다.
     * [3rd-Party Provider SDK Guide](aos-started#3rd-party-provider-sdk-guide)
 
 
 ### Login Flow
 
-많은 게임이 타이틀 화면에서 로그인을 구현합니다.
+Many games allow login execution on the title page.  많은 게임이 타이틀 화면에서 로그인을 구현합니다.
 
-* 앱을 설치하고 처음 실행했을 때 타이틀 화면에서 게임 유저가 어떤 IdP(identity provider)로 인증할지 선택할 수 있게 합니다.
-* 한 번 로그인한 후에는 IdP 선택 화면을 표시하지 않고 이전에 로그인한 IdP 유형으로 인증합니다.
+* On the initial execution after app is installed, game users are allowed to select IdP (Identity Provider) on the title page.  앱을 설치하고 처음 실행했을 때 타이틀 화면에서 게임 유저가 어떤 IdP(identity provider)로 인증할지 선택할 수 있게 합니다.
+* After one-time login, IdP option page does not show again and it is authenticated with the previous login IdP type. 한 번 로그인한 후에는 IdP 선택 화면을 표시하지 않고 이전에 로그인한 IdP 유형으로 인증합니다.
 
-위에서 설명한 로직은 다음과 같은 순서로 구현할 수 있습니다.
+위에서 설명한 로직은 다음과 같은 순서로 구현할 수 있습니다. The above login can be implemented in the following order: 
 
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
@@ -24,22 +24,22 @@ Gamebase supports guest login. 에서는 게스트 로그인을 기본으로 지
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
 
-#### 1. 이전 로그인 유형으로 인증
+#### 1. 이전 로그인 유형으로 인증 Authenticate with Previous Login Type 
 
-* 이전에 인증했던 기록이 있다면 ID와 비밀번호를 입력받지 않고 인증을 시도합니다.
-* **LoginForLastLoggedInProvider API**를 호출합니다.
+* 이전에 인증했던 기록이 있다면 ID와 비밀번호를 입력받지 않고 인증을 시도합니다. If a previous record exists for authentication, authentication can be tried without ID or password. 
+* Call **LoginForLastLoggedInProvider API**를 호출합니다. 
 
-#### 1-1. 인증이 성공한 경우
+#### 1-1. When Authentication is Successful 인증이 성공한 경우
 
-* 축하합니다! 인증에 성공했습니다.
-* **GetUserID API**로 사용자 ID를 획득하여 게임 로직을 구현하시면 됩니다.
+* Congratuations축하합니다! Successfully authenticated 인증에 성공했습니다.
+* Get a user ID with **GetUserID API** and implement game logic. 로 사용자 ID를 획득하여 게임 로직을 구현하시면 됩니다.
 
-#### 1-2. 인증이 실패한 경우
+#### 1-2. 인증이 실패한 경우 When Authentication is Failed 
 
-* 네트워크 오류
-    * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)** 인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **LoginForLastLoggedInProvider API**를 다시 호출하거나, 잠시 후 다시 시도합니다.
+* 네트워크 오류 Network Error 
+    * When the error code is 오류 코드가 **SOCKET_ERROR(110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, authentication fails due to temporary network issue, so call  인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **LoginForLastLoggedInProvider API** again or try again in a moment. 를 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 유저
-    * 오류 코드가 **BANNED_MEMBER(7)** 인 경우, 이용 정지 게임 유저이므로 인증에 실패한 것입니다.
+    * When the error code is **BANNED_MEMBER(7)**, authentication has failed since the game user is banned.  인 경우, 이용 정지 게임 유저이므로 인증에 실패한 것입니다.
     * **GetBanInfo API**로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려주시기 바랍니다.
     * Gamebase 초기화 시 **FGamebaseConfiguration.enablePopup** 및 **FGamebaseConfiguration.enableBanPopup**값을  true로 한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외 오류
