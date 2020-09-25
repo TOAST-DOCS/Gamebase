@@ -1,19 +1,19 @@
-## Game > Gamebase > User Guide for Unreal SDK 사용 가이드 > UI
+## Game > Gamebase > User Guide for Unreal SDK > UI
 
 ## Webview
 
 ### Show WebView
 
-Shows WebView를 표시합니다.<br/>
+Shows WebView.<br/>
 
-##### Required Parameters 파라미터
-* url : URLs sent to parameters must be valid. 파라미터로 전송되는 url은 유효한 값이어야 합니다.
+##### Required Parameters 
+* url: An URL sent to parameters must be valid. 
 
-##### Optional Parameters 파라미터 (현재는 Require 파라미터지만, 이후 버전에서 Optional로 변경 예정)
-* configuration: WebView layout could be changed with GamebaseWebViewConfiguration으로 WebView의 레이아웃을 변경 할 수 있습니다.
-* closeCallback: Notifies the closure of WebView to user by callback. 가 종료될 때 사용자에게 콜백으로 알려 줍니다.
-* schemeList: Specify the list of custom scheme as user needs.  사용자가 받고 싶은 커스텀 Scheme 목록을 지정합니다.
-* schemeEvent: Notifies the URL including custom scheme which is specified by schemeList로 지정한 커스텀 Scheme을 포함하는 url을 콜백으로 알려 줍니다.
+##### Optional Parameters (Currently Required, which is to be changed to Optional in a later version)
+* configuration: WebView layout could be changed with GamebaseWebViewConfiguration.
+* closeCallback: Notify the user of the closure of WebView with a callback. 
+* schemeList: Specify the list of customized scheme as the user needs.  
+* schemeEvent: Notify the URL including customized scheme which is specified by schemeList.
 
 **API**
 
@@ -74,19 +74,19 @@ void Sample::ShowWebView(const FString& url)
 
 #### Predefined Custom Scheme
 
-Refers to the scheme specified by Gamebase에서 지정해 놓은 Scheme 입니다.
+Refers to the scheme specified by Gamebase.
 
 | Scheme | Usage |
 | ----------------------------- | ------------------------------ |
-| gamebase://dismiss | Close WebView 닫기 |
-| gamebase://goBack | Go Back of WebView 뒤로가기 |
-| gamebase://getUserId          | Show user ID of the currently logged-in game user 현재 로그인되어 있는 게임 유저의 사용자 ID를 표시 |
-| gamebase://getMaintenanceInfo | Show maintenance on WebPage 점검 내용을 WebPage에 표시 |
+| gamebase://dismiss | Close WebView  |
+| gamebase://goBack | Go Back of WebView |
+| gamebase://getUserId          | Show user ID of the currently logged-in game user  |
+| gamebase://getMaintenanceInfo | Show maintenance on WebPage  |
 
 
 ### Close WebView
 
-With the following API, you can close the Webview in the current display다음 API를 이용하여 보여지고 있는 WebView를 닫을 수 있습니다.
+With the following API, you can close the Webview of the current display.
 
 **API**
 
@@ -109,7 +109,7 @@ void Sample::CloseWebView()
 
 ## Open External Browser
 
-With the following API, you can open an external browser. The URL sent to parameters must be valid. 다음 API를 통하여 외부 브라우져를 열 수 있습니다. 파라미터로 전송되는 url은 유효한 값이어야 합니다.
+With the following API, you can open an external browser. The URL sent to parameters must be valid. 
 
 **API**
 
@@ -132,8 +132,8 @@ void Sample::OpenWebBrowser(const FString& url)
 
 ## Alert
 
-Shows notifications of the system. 시스템 알림을 표시할 수 있습니다.
-Callback registration is also available on the system notification. 시스템 알림에 콜백을 등록할 수도 있습니다.
+Shows notifications of the system. 
+Callback registration is also available on the system notification. 
 
 **API**
 
@@ -164,7 +164,7 @@ void Sample::ShowAlertEvent(const FString& title, const FString& message)
 
 ## Toast
 
-다음 API를 사용하여 쉽게 메시지를 표시할 수 있습니다. With the following API, it gets easy to display messages. 
+With the following API, it gets easy to display messages. 
 
 **API**
 
@@ -189,7 +189,7 @@ void Sample::ShowToast(const FString& message, EGamebaseToastExposureTime exposu
 
 | Error              | Error Code | Description                 |
 | ------------------ | ---------- | --------------------------- |
-| UI\_UNKNOWN\_ERROR | 6999       | Unknown (undefined) error. 알수 없는 오류입니다(정의되지 않은 오류입니다). |
+| UI\_UNKNOWN\_ERROR | 6999       | Unknown (undefined) error.  |
 
-* See the following document for the entire error codes. 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
+* See the following document for the entire error codes. 
     * [Error Codes](./error-code/#client-sdk)
