@@ -167,29 +167,29 @@ void Sample::GetDisplayLanguageCode()
 
 #### 신규 언어셋 추가 Add New Language Sets
 
-Unreal Android, iOS 플랫폼에서의 신규 언어셋 추가 방법은 아래 가이드를 참고하십시오.
+Regarding how to add new language sets on Unreal Android or iOS platform, see the following guides:  플랫폼에서의 신규 언어셋 추가 방법은 아래 가이드를 참고하십시오.
 
-* [Android 신규 언어셋 추가](./aos-etc#display-language)
-* [iOS 신규 언어셋 추가](./ios-etc#display-language)
+* [Adding New Language Sets on Android 신규 언어셋 추가](./aos-etc#display-language)
+* [Addig New Languages Sets on iOS 신규 언어셋 추가](./ios-etc#display-language)
 
-#### Display Language 우선순위
+#### Priority of Display Language 우선순위
 
-초기화 및 SetDisplayLanguageCode API를 통해 Display Language를 설정할 경우, 최종 적용되는 Display Language는 입력한 값과 다르게 적용될 수 있습니다.
+When Display Language is set by initialization or 초기화 및 SetDisplayLanguageCode API, the final value might be different from actual input. 를 통해 Display Language를 설정할 경우, 최종 적용되는 Display Language는 입력한 값과 다르게 적용될 수 있습니다.
 
-1. 입력된 languageCode가 localizedstring.json 파일에 정의되어 있는지 확인합니다.
-2. Gamebase 초기화 시, 단말기에 설정된 언어코드가 localizedstring.json 파일에 정의되어 있는지 확인합니다.(이 값은 초기화 이후, 단말기에 설정된 언어를 변경하더라도 유지됩니다.)
-3. Display Language의 기본값인 `en`이 자동으로 설정됩니다.
+1. Check if input 입력된 languageCode is defined in the가 localizedstring.json file. 파일에 정의되어 있는지 확인합니다.
+2. When Gamebase is initialized, see if the language set on device is defined in the  초기화 시, 단말기에 설정된 언어코드가 localizedstring.json file. 파일에 정의되어 있는지 확인합니다.(This value, after initialization, shall remain the same even with the change of language set on device. 이 값은 초기화 이후, 단말기에 설정된 언어를 변경하더라도 유지됩니다.)
+3. Display Language의 기본값인The default `en` is automatically set for Display Language. 이 자동으로 설정됩니다.
 
 ### Country Code
 
-* Gamebase는 System의 국가 코드를 다음과 같은 API로 제공하고 있습니다.
-* 각 API 마다 특징이 있으니 쓰임새에 맞는 API를 선택하시기 바랍니다.
+* Gamebase provides country codes of a system on the following APIs. 는 System의 국가 코드를 다음과 같은 API로 제공하고 있습니다. 
+* Each API has different features, so select one to suit your needs. 각 API 마다 특징이 있으니 쓰임새에 맞는 API를 선택하시기 바랍니다.
 
 #### USIM Country Code
 
-* USIM에 기록된 국가 코드를 리턴합니다.
-* USIM에 잘못된 국가 코드가 기록되어 있다 하더라도 추가적인 체크 없이 그대로 리턴합니다.
-* 값이 비어있는 경우 'ZZ'를 리턴합니다.
+* USIM에 기록된 국가 코드를 리턴합니다. Return the country code recorded at USIM. 
+* USIM에 잘못된 국가 코드가 기록되어 있다 하더라도 추가적인 체크 없이 그대로 리턴합니다. Return without further checks even with invalid country code recorded at USIM. 
+* 값이 비어있는 경우 'ZZ'를 리턴합니다.If value is empty, return 'zz'. 
 
 **API**
 
@@ -204,10 +204,10 @@ FString GetCountryCodeOfUSIM() const;
 
 #### Device Country Code
 
-* OS로부터 전달받은 단말기 국가 코드를 추가적인 체크 없이 그대로 리턴합니다.
-* 단말기 국가 코드는 '언어' 설정에 따라 OS가 자동으로 결정합니다.
-* 여러 개의 언어가 등록된 경우, 우선권이 가장 높은 언어로 국가 코드를 결정합니다.
-* 값이 비어있는 경우 'ZZ'를 리턴합니다.
+* OS로부터 전달받은 단말기 국가 코드를 추가적인 체크 없이 그대로 리턴합니다. Return the device country code delivered from OS without further checks. 
+* 단말기 국가 코드는 '언어' 설정에 따라 OS가 자동으로 결정합니다. Device language code is automatically determined by OS, according to each 'Language' setting. 
+* 여러 개의 언어가 등록된 경우, 우선권이 가장 높은 언어로 국가 코드를 결정합니다. When many languages are registered, a language of the highest priority order is determined as the country code.   
+* 값이 비어있는 경우 'ZZ'를 리턴합니다. If the value is empty, return 'zz'. 
 
 **API**
 
@@ -221,11 +221,11 @@ FString GetCountryCodeOfDevice() const;
 
 #### Intergrated Country Code
 
-* USIM, 단말기 언어 설정의 순서로 국가 코드를 확인하여 리턴합니다.
-* GetCountryCode API는 다음 순서로 동작합니다.
-    1. USIM에 기록된 국가 코드를 확인하고, 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
-    2. USIM 국가 코드가 빈 값이라면 단말기 국가 코드를 확인하고, 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
-    3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ' 를 리턴합니다.
+* USIM, 단말기 언어 설정의 순서로 국가 코드를 확인하여 리턴합니다.Check and return country code in the order of language setting of USIM and device. 
+* GetCountryCode API는 다음 순서로 동작합니다. operates in the following order:  
+    1. Check country code recorded at USIM, and if a value exists, return it without further checks. 에 기록된 국가 코드를 확인하고, 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
+    2. If USIM country code is empty, check the device country code; if a value exists, return it without further checks.  국가 코드가 빈 값이라면 단말기 국가 코드를 확인하고, 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
+    3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ' 를 리턴합니다. If both USIM and device have empty value of country code, return 'zz'.  
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
@@ -240,20 +240,20 @@ FString GetCountryCode() const;
 ```
 
 ### Server Push
-* Gamebase 서버에서 클라이언트 단말기로 보내는 Server Push Message를 처리할 수 있습니다.
+* Gamebase 서버에서 클라이언트 단말기로 보내는 Server Push Message를 처리할 수 있습니다. The Gamebase server can process Server Push Messages sent to a client device. 
 * Gamebase 클라이언트에서 ServerPushEvent Listener를 추가하면 해당 메시지를 사용자가 받아서 처리할 수 있으며, 추가된 ServerPushEvent Listener를 삭제할 수 있습니다.
 
 
 #### Server Push Type
-현재 Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
+현재 Gamebase에서 지원하는 Server Push Type은 다음과 같습니다. Gamebase currently supports the following server push type: 
 
 * GamebaseServerPushType::AppKickout (= "appKickout")
-    * TOAST Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 **APP_KICKOUT** 메시지를 받게 됩니다.
+    * TOAST Gamebase 콘솔의 When a kickout ServerPush message is registered at **Operation > Kickout**, and you receive **APP_KICKOUT** message on all clients connected to Gamebase. 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 **APP_KICKOUT** 메시지를 받게 됩니다.
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 
 #### Add ServerPushEvent
-Gamebase Client에 ServerPushEvent를 등록하여 Gamebase Console 및 Gamebase 서버에서 발급된 Push 이벤트를 처리할 수 있습니다
+By registering ServerPushEvent for Gamebase Client, push events issued by Gamebase console or server can be processed. 에 ServerPushEvent를 등록하여 Gamebase Console 및 Gamebase 서버에서 발급된 Push 이벤트를 처리할 수 있습니다
 
 **API**
 
@@ -288,7 +288,7 @@ void Sample::AddServerPushEvent()
 
 
 #### Remove ServerPushEvent
-Gamebase에 등록된 ServerPushEvent를 삭제할 수 있습니다.
+You can delete ServerPushEvent registered at Gamebase. 에 등록된 ServerPushEvent를 삭제할 수 있습니다.
 
 **API**
 
@@ -316,21 +316,21 @@ void Sample::RemoveAllServerPushEvent()
 ```
 
 ### Observer
-* Gamebase Observer로 Gamebase의 각종 상태 변동 이벤트를 전달받아 처리할 수 있습니다.
-* 상태 변동 이벤트 : 네트워크 타입 변동, Launching 상태 변동(점검 등에 의한 상태 변동), Heartbeat 정보 변동(사용자 이용 정지 등에 의한 Heartbeat 정보 변동) 등
+* With Gamebase Observer, Gamebase status change events can be delivered and processed. 로 Gamebase의 각종 상태 변동 이벤트를 전달받아 처리할 수 있습니다.
+* Status Change Events상태 변동 이벤트 : Change of network type, launching status (due to maintenance, and etc.), or heartbeat information, and others 네트워크 타입 변동, Launching 상태 변동(점검 등에 의한 상태 변동), Heartbeat 정보 변동(사용자 이용 정지 등에 의한 Heartbeat 정보 변동) 등
 
 #### Observer Type
-현재 Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
+Gamebase supports the followint observer types: 현재 Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
 
-* Network 타입 변동
-    * 네트워크 변동 사항 정보를 받을 수 있습니다.
+* Network 타입 변동 Change of Network Types 
+    * 네트워크 변동 사항 정보를 받을 수 있습니다. You can get information on network changes. 
     * Type: GamebaseObserverType::Network (= "network")
     * Code: GamebaseNetworkType에 선언된 상수를 참고합니다.
         * GamebaseNetworkType::TYPE_NOT: 255
         * GamebaseNetworkType::TYPE_MOBILE: 0
         * GamebaseNetworkType::TYPE_WIFI: 1
         * GamebaseNetworkType::TYPE_ANY: 2
-* Launching 상태 변동
+* Launching 상태 변동 Change of Launching Status 
     * 주기적으로 애플리케이션 상태를 확인하는 Launching Status response에 변동이 있을 때 발생합니다. 예를 들어 점검, 업데이트 권장 등에 의한 이벤트가 있습니다.
     * Type: GamebaseObserverType::Launching (= "launching")
     * Code: GamebaseLaunchingStatus에 선언된 상수를 참고합니다.
@@ -343,7 +343,7 @@ void Sample::RemoveAllServerPushEvent()
         * GamebaseLaunchingStatus::INSPECTING_SERVICE: 303
         * GamebaseLaunchingStatus::INSPECTING_ALL_SERVICES: 304
         * GamebaseLaunchingStatus::INTERNAL_SERVER_ERROR: 500
-* Heartbeat 정보 변동
+* Heartbeat 정보 변동 Change of Heartbeat Information 
     * 주기적으로 Gamebase 서버와 연결을 유지하는 Heartbeat response에 변동이 있을 때 발생합니다. 예를 들어 사용자 이용 정지에 의한 이벤트가 있습니다.
     * Type: GamebaseObserverType::Heartbeat (= "heartbeat")
     * Code: GamebaseErrorCode에 선언된 상수를 참조합니다.
@@ -353,7 +353,7 @@ void Sample::RemoveAllServerPushEvent()
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
 
 #### Add Observer
-Gamebase Client에 Observer를 등록하여 각종 상태 변동 이벤트를 처리할 수 있습니다.
+Gamebase Client에 Observer를 등록하여 각종 상태 변동 이벤트를 처리할 수 있습니다. By registering an observer at the Gamebase client, status change events can be processed. 
 
 **API**
 
