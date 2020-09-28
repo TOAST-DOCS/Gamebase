@@ -308,13 +308,13 @@ void Sample::SetPromotionIAPHandler()
 | PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAP 라이브러리 오류입니다.<br>DetailCode를 확인하세요.   |
 | PURCHASE_UNKNOWN_ERROR                   | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
-* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
+* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다. See the following document for the entire error codes. 
     * [Error Codes](./error-code/#client-sdk)
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* 이 오류는 IAP 모듈에서 발생한 오류입니다.
-* 오류 코드를 확인하는 방법은 다음과 같습니다.
+* 이 오류는 IAP 모듈에서 발생한 오류입니다. The error occurs from IAP module. 
+* 오류 코드를 확인하는 방법은 다음과 같습니다. Here's how to check error codes: 
 
 ```cpp
 GamebaseError* gamebaseError = error; // GamebaseError object via callback
