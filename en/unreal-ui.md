@@ -57,19 +57,19 @@ void Sample::ShowWebView(const FString& url)
 
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | string                                   | Title of WebView의 제목                 |
-| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | Unspecified 미지정 |
-|                          | GamebaseScreenOrientation.PORTRAIT       | Portrait Mode 세로 모드                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE      | Landscape Mode 가로 모드                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | Rotate portrait mode 180 degrees가로 모드를 180도 회전              |
-| colorR                   | 0~255                                    | Color alpha of navigation bar내비게이션 바 색상 Alpha            |
-| colorG                   | 0~255                                    | Color R of navigation bar 내비게이션 바 색상 R                |
-| colorB                   | 0~255                                    | Color G of navigation bar 내비게이션 바 색상 G                |
-| colorA                   | 0~255                                    | Color B of navigation bar 내비게이션 바 색상 B                |
-| buttonVisible            | true or false                            | Activate or deactivate the back button 뒤로 가기 버튼 활성 또는 비활성          |
-| barHeight                | height                                   | Height of navigation bar 내비게이션 바 높이                  |
-| backButtonImageResource  | ID of resource                           | The back button image 뒤로 가기 버튼 이미지                |
-| closeButtonImageResource | ID of resource | The close button image 닫기 버튼 이미지 |
+| title                    | string                                   | Title of WebView                 |
+| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | Unspecified |
+|                          | GamebaseScreenOrientation.PORTRAIT       | Portrait Mode                       |
+|                          | GamebaseScreenOrientation.LANDSCAPE      | Landscape Mode                      |
+|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | Rotate portrait mode 180 degrees              |
+| colorR                   | 0~255                                    | Color alpha of navigation bar            |
+| colorG                   | 0~255                                    | Color R of navigation bar                |
+| colorB                   | 0~255                                    | Color G of navigation bar                |
+| colorA                   | 0~255                                    | Color B of navigation bar                |
+| buttonVisible            | true or false                            | Activate or deactivate the back button           |
+| barHeight                | height                                   | Height of navigation bar                  |
+| backButtonImageResource  | ID of resource                           | The back button image                     |
+| closeButtonImageResource | ID of resource | The close button image  |
 | url | "http://" or "https://" or "file://" | Web URL |
 
 #### Predefined Custom Scheme
