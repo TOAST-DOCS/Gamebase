@@ -1,4 +1,4 @@
-## Game > Gamebase > User Guide for Unreal SDK > Purchase 결제
+## Game > Gamebase > User Guide for Unreal SDK > Purchase 
 
 This document describes setting requirements to use Unreal in-app purchase.  
 The unified purchase API of Gamebase supports for easy integration of in-app purchases of many stores. 
@@ -12,10 +12,10 @@ Regarding how to set in-app purchases on Android or iOS, read the following docu
 
 #### Setting for Purchases on Android (for 4.24 or lower engine version)
 
-* When 4.24 is installed via Epic Games Launcher, 를 통해 4.24 버전을 설치한 경우,
-    delete **Engine\Build\Android\Java\src\com\android\vending\billing\IInAppBillingService.aidl** to build it properly.  을 삭제해야 정상적으로 빌드할 수 있습니다.
-    * [IInAppBillingService.aidl](https://developer.android.com/google/play/billing/api), provided by Gamebase, must be removed to prevent conflicts. 에서 제공하고 있어 충돌이 발생하여 제거가 필요합니다.
-    * There's no need to remove it, though, if you're using 4.25 or higher engine versions, or if the engine is provided by github. 4.25 이상 버전이나 github에서 엔진을 받은 경우에는 별도로 제거하실 필요 없습니다.
+* When 4.24 is installed via Epic Games Launcher, 
+    delete **Engine\Build\Android\Java\src\com\android\vending\billing\IInAppBillingService.aidl** to build it properly.  
+    * [IInAppBillingService.aidl](https://developer.android.com/google/play/billing/api), provided by Gamebase, must be removed to prevent conflicts. 
+    * There's no need to remove it, though, if you're using 4.25 or higher engine versions, or if the engine is provided by github. 
 
 ###  Purchase Flow
 
