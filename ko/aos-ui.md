@@ -161,8 +161,9 @@ Gamebase에서 지정해 놓은 스키마입니다.
 | scheme               | 용도                                  |
 | -------------------- | ------------------------------------- |
 | gamebase://dismiss   | WebView 닫기                          |
-| gamebase://goBack    | WebView 뒤로 가기                     |
-| gamebase://getUserId | 현재 로그인돼 있는 사용자의 아이디 표시 |
+| gamebase://goback    | WebView 뒤로 가기                     |
+| gamebase://getuserid | 현재 로그인돼 있는 사용자의 아이디 표시 |
+| gamebase://openbrowser?link={URLEncodedURL} | link 파라메터의 URL 을 외부 브라우저로 열기.<br>URLEncodedURL : 외부 브라우저로 열 URL.<br>URL 디코딩 필요. |
 
 #### User Custom Scheme
 

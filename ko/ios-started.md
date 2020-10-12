@@ -27,7 +27,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 용도 | External SDK Download Link | Support iOS Version |
 | --- | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.26.0 | Gamebase의 Interface 및 핵심 로직을 포함 | Gamebase 내에 포함 | iOS9 or later
+| Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.27.0 | Gamebase의 Interface 및 핵심 로직을 포함 | Gamebase 내에 포함 | iOS9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v7.1.1 | Facebook 로그인을 지원 | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS9 or later<br/>&<br/>Xcode 11 이상 |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.4.0 | Payco 로그인을 지원 | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Naver 로그인을 지원 | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |
@@ -36,8 +36,9 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 |  | GamebaseAuthTwitterAdapter.framework | | Twitter 로그인을 지원 | | iOS9 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | LINE 로그인을 지원 | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | AuthenticationServices.framework를 Optional로 설정 | iOS9 or later<br/>arm64 지원<br/> |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.26.0<br/> ToastGamebaseIAP 0.10.0 | 게임 내 결제를 지원 | Gamebase IAP 내에 포함 | iOS9 or later |
-| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.26.0 | Push를 지원 | Gamebase Push 내에 포함 | iOS9 or later |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.5.1 | Hangame 로그인을 지원 | | iOS9 or later |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.27.0<br/> ToastGamebaseIAP 0.11.0 | 게임 내 결제를 지원 | Gamebase IAP 내에 포함 | iOS9 or later |
+| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.27.0 | Push를 지원 | Gamebase Push 내에 포함 | iOS9 or later |
 
 
 > <font color="red">[주의]</font><br/>
@@ -59,6 +60,12 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 
 <br/>
 
+> <font color="red">[주의]</font><br/>
+>
+> Hangame IdP 사용을 위해서는 고객센터로 연락해주시기 바랍니다.
+> 추가 설정 없이 Hangame 로그인을 시도할 경우 실패합니다.
+
+<br/>
 
 > [INFO]
 > 
@@ -85,6 +92,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
     * GameKit.framework
     * StoreKit.framework
     * AuthenicationServices.framework (Optional)
+
 ![Link Binary With Libraries](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
 * 4) **Gamebase iOS SDK 2.12.0 이상**을 사용할 경우 Facebook SDK가 업데이트 됨에 따라 추가 설정이 필요합니다.
     * **Accelerate.framework** 추가
