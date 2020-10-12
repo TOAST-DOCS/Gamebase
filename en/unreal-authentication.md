@@ -67,11 +67,11 @@ The above login can be implemented in the following order:
 * Other Errors 
     * Notify game users of the occurrence of error, and it is reverted to a status (mostly, title or login page) in which game user can select an IdP type of authetication.   
 
-### Login as the Latest Login IdP
+### Login with the Latest Login IdP
 
 가장 최근에 로그인한 IdP로 로그인을 시도합니다. Try a login with the most recent login IdP. 
-해당 로그인에 대한 토큰이 만료되었거나, 토큰에 대한 검증 등에 실패하면 실패를 반환합니다.
-이때는 [해당 IdP에 대한 로그인](#login-with-idp)을 구현해야합니다.
+해당 로그인에 대한 토큰이 만료되었거나, 토큰에 대한 검증 등에 실패하면 실패를 반환합니다. When token for the login has expired, or if token verification has failed, return such failure.  
+To that end, it is required to implement [Login for IdP](#login-with-idp).
 
 **API**
 
@@ -111,9 +111,9 @@ void Sample::LoginForLastLoggedInProvider()
 
 ### Login with GUEST
 
-Gamebase는 게스트 로그인을 지원합니다.
-디바이스의 유일한 키를 생성하여 Gamebase에 로그인을 시도합니다.
-게스트 로그인은 디바이스 키는 초기화될 수 있고 디바이스 키의 초기화 시에 계정이 삭제될 수 있으므로 IdP를 활용한 로그인 방식을 권장합니다.
+Gamebase supports guest login. 는 게스트 로그인을 지원합니다.
+Create a unique key of device to try login to Gamebase. 디바이스의 유일한 키를 생성하여 Gamebase에 로그인을 시도합니다.
+With guest login, device key might be initialized, which may cause your account to be deleted; so, it is recommended to use IdP to log in. login 게스트 로그인은 디바이스 키는 초기화될 수 있고 디바이스 키의 초기화 시에 계정이 삭제될 수 있으므로 IdP를 활용한 로그인 방식을 권장합니다.
 
 **API**
 
@@ -147,7 +147,7 @@ void Sample::Login()
 
 ### Login with IdP
 
-다음은 특정 IdP로 로그인할 수 있게 하는 예시 코드입니다
+Following codes are login examples with particular IdP. 
 
 **API**
 
@@ -174,13 +174,13 @@ void Login(const FString& providerName, const UGamebaseJsonObject& additionalInf
 | Line        | GamebaseAuthProvider::Line       | Android<br/>iOS |
 
 
-> 몇몇 IdP로 로그인할 때는 꼭 필요한 정보가 있습니다.<br/>
-> 예를 들어, Facebook 로그인을 구현하려면 scope 등을 설정해야 합니다.<br/>
-> 이러한 필수 정보들을 설정할 수 있게 static void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) API를 제공합니다.<br/>
-> additionalInfo 파라미터에 필수 정보들을 dictionary 형태로 입력하시면 됩니다.
-additionalInfo 값이 있을 경우에는 해당 값을 사용하고 없을 경우에는(null) TOAST Console에 등록된 값을 사용합니다.
-([TOAST Console에 additionalInfo 설정하기](./oper-app/#authentication-information))<br/>
-> Stansalone에서는 WebViewAdapter를 통해서 로그인을 지원하며 WebView가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
+> Some IdP logins require particular information. 몇몇 IdP로 로그인할 때는 꼭 필요한 정보가 있습니다.<br/>
+> For instance, to log in to Facebook, the setting for scope is needed.  를 들어, Facebook 로그인을 구현하려면 scope 등을 설정해야 합니다.<br/>
+> To configure such required information, 이러한 필수 정보들을 설정할 수 있게 API for static void Login (string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) is provided. 를 제공합니다.<br/>
+> You may enter information for the additionalInfo parameter in the format of dictionary.  파라미터에 필수 정보들을 dictionary 형태로 입력하시면 됩니다.
+When there's available value for additionalInfo, use it; otherwise (null), apply default value registered on TOAST Console.   값이 있을 경우에는 해당 값을 사용하고 없을 경우에는(null) TOAST Console에 등록된 값을 사용합니다.
+([Setting additionalInfo for TOAST Console](./oper-app/#authentication-information))<br/>
+> Standalone supports a login via WebViewAdapter and does not block event input via UIs when WebView is open. 를 통해서 로그인을 지원하며 WebView가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
 
 **Example**
 
@@ -225,7 +225,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 * Credential 파라미터의 설정 방법
 
-| keyname | a use | 값 종류 |
+| Keyname | Usage | Value Type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
 | GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
@@ -237,7 +237,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 >
 
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
 > 외부 SDK에서 지원 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
 >
