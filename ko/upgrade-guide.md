@@ -1,10 +1,17 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.17.0
+
+### Android
+
+* Gamebase Android SDK 2.17.0 에서 Gamebase.ImageNotice.showImageNotices API 를 호출하면 크래쉬가 발생합니다.
+    * 이슈가 수정된 Gamebase Android SDK 2.17.1 을 사용하시기 바랍니다.
+
 ## 2.15.1
 
 ### iOS
-* SDK에서 정의한 타입 **GamebaseEventCategory**를 NSString 대신에 사용할 경우, 해당 타입을 **TCGBGamebaseEventCategory**로 수정해야 합니다.
 
+* SDK에서 정의한 타입 **GamebaseEventCategory**를 NSString 대신에 사용할 경우, 해당 타입을 **TCGBGamebaseEventCategory**로 수정해야 합니다.
 
 ## 2.15.0
 
@@ -103,10 +110,6 @@ android {
     }
 }
 ```
-
-### iOS
-
-* No special steps are required.
 
 ## 2.4.4
 
