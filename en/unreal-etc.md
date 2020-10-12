@@ -6,8 +6,8 @@ This document describes additional features supported by Gamebase.
 
 ### Device Language
 
-* Return the language code configured for your device. 단말기에 설정된 언어 코드를 리턴합니다.
-* When there's many number of registered languagues, return only the language of the highest priority.     여러개의 언어가 등록된 경우, 우선권이 가장 높은 언어만을 리턴합니다.
+* Return the language code configured for your device. 
+* When there's many number of registered languagues, return only the language of the highest priority.   
 
 **API**
 
@@ -21,16 +21,16 @@ FString GetDeviceLanguageCode() const;
 
 ### Display Language
 
-* You may change language displayed on Gamebase UI or SystemDialog to another one which is different from the configured language on device.  Gamebase에서 제공하는 UI 및 SystemDialog에 표시되는 언어를 단말기에 설정된 언어가 아닌 다른 언어로 변경할 수 있습니다.
-* Gamebase shows messages that are included to client or received from the server. 는 클라이언트에 포함되어 있는 메시지를 표시하거나 서버에서 받은 메시지를 표시합니다.
-* With DisplayLanguage, messages are displayed in an appropriate language for the user-configured language code (ISO-639). 를 설정하면 사용자가 설정한 언어코드(ISO-639)에 적합한 언어로 메시지를 표시합니다.
-* More language sets could be added as required. Following language codes are available: 원하는 언어셋을 추가할 수 있습니다. 추가할 수 있는 언어코드는 다음과 같습니다.
+* You may change language displayed on Gamebase UI or SystemDialog to another one which is different from the configured language on device. 
+* Gamebase shows messages that are included to client or received from the server. 
+* With DisplayLanguage, messages are displayed in an appropriate language for the user-configured language code (ISO-639). 
+* More language sets could be added as required. Following language codes are available: 
 
 > [Note 참고]
 >
-> Gamebase client messages are available in English (en), Korean (ko), and Japanese (ja). 의 클라이언트 메시지는 영어(en), 한글(ko), 일본어(ja)만 포함합니다.
+> Gamebase client messages are available in English (en), Korean (ko), and Japanese (ja) only. 
 
-#### Language Codes Supported by Gamebase에서 지원하는 언어코드의 종류
+#### Language Codes Supported by Gamebase
 
 | Code | Name |
 | --- | --- |
@@ -51,12 +51,12 @@ FString GetDeviceLanguageCode() const;
 | zh-CN | Chinese-Simplified |
 | zh-TW | Chinese-Traditional |
 
-Each language code is defined in the `GamebaseDisplayLanguageCode` class. 클래스에 정의되어 있습니다.
+Each language code is defined in the `GamebaseDisplayLanguageCode` class. 
 
 > <font color="red">[Caution]</font><br/>
 >
-> Gamebase-supported language codes are case-sensitive. Gamebase에서 지원하는 언어코드는 대소문자를 구분합니다.
-> Settings like 'EN' or이나 'zh-cn' may cause trouble. 과 같이 설정하면 문제가 발생할 수 있습니다.
+> Gamebase-supported language codes are case-sensitive. 
+> Settings like 'EN' or 'zh-cn' may cause trouble. 
 
 ```cpp
 namespace GamebaseDisplayLanguageCode
@@ -80,9 +80,9 @@ namespace GamebaseDisplayLanguageCode
 }
 ```
 
-#### Display Language Setting for Gamebase Initialization 초기화 시 Display Language 설정
+#### Display Language Setting for Gamebase Initialization
 
-Display Language can be set when Gamebase is initialized.  초기화 시 Display Language를 설정할 수 있습니다.
+Display Language can be configured when Gamebase is initialized.  
 
 **API**
 
@@ -121,7 +121,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 
 #### Set Display Language
 
-Display Language can be changed from Gamebase initialization. Gamebase 초기화 시 입력된 Display Language를 변경할 수 있습니다.
+Display Language can be changed from Gamebase initialization. 
 
 **API**
 
@@ -144,7 +144,7 @@ void Sample::SetDisplayLanguageCode(cosnt FString& displayLanguage)
 
 #### Get Display Language
 
-Current Display Language can be queried. 현재 적용된 Display Language를 조회할 수 있습니다.
+Current Display Language can be queried.
 
 **API**
 
@@ -165,7 +165,7 @@ void Sample::GetDisplayLanguageCode()
 }
 ```
 
-#### 신규 언어셋 추가 Add New Language Sets
+#### Add New Language Sets
 
 Regarding how to add new language sets on Unreal Android or iOS platform, see the following guides:  플랫폼에서의 신규 언어셋 추가 방법은 아래 가이드를 참고하십시오.
 
