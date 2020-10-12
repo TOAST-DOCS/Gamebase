@@ -1,8 +1,8 @@
-## Game > Gamebase > User Guide for Unreal SDK 사용 가이드 > ETC
+## Game > Gamebase > User Guide for Unreal SDK > ETC
 
 ## Additional Features
 
-This document describes additional features supported by Gamebase. 에서 지원하는 부가 기능을 설명합니다.
+This document describes additional features supported by Gamebase. 
 
 ### Device Language
 
@@ -253,7 +253,7 @@ FString GetCountryCode() const;
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 
 #### Add ServerPushEvent
-By registering ServerPushEvent for Gamebase Client, push events issued by Gamebase console or server can be processed. 에 ServerPushEvent를 등록하여 Gamebase Console 및 Gamebase 서버에서 발급된 Push 이벤트를 처리할 수 있습니다
+By registering ServerPushEvent for Gamebase Client, push events issued by Gamebase console or server can be processed. 
 
 **API**
 
@@ -288,7 +288,7 @@ void Sample::AddServerPushEvent()
 
 
 #### Remove ServerPushEvent
-You can delete ServerPushEvent registered at Gamebase. 에 등록된 ServerPushEvent를 삭제할 수 있습니다.
+You can delete ServerPushEvent registered at Gamebase. 
 
 **API**
 
@@ -316,24 +316,24 @@ void Sample::RemoveAllServerPushEvent()
 ```
 
 ### Observer
-* With Gamebase Observer, Gamebase status change events can be delivered and processed. 로 Gamebase의 각종 상태 변동 이벤트를 전달받아 처리할 수 있습니다.
-* Status Change Events상태 변동 이벤트 : Change of network type, launching status (due to maintenance, and etc.), or heartbeat information, and others 네트워크 타입 변동, Launching 상태 변동(점검 등에 의한 상태 변동), Heartbeat 정보 변동(사용자 이용 정지 등에 의한 Heartbeat 정보 변동) 등
+* With Gamebase Observer, Gamebase status change events can be delivered and processed. 
+* Status Change Events: Change of network type, launching status (due to maintenance, and etc.), or heartbeat information (e.g. change of heartbeat information due to user banned), and others 
 
 #### Observer Type
-Gamebase supports the followint observer types: 현재 Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
+Gamebase supports the following observer types: 
 
-* Network 타입 변동 Change of Network Types 
-    * 네트워크 변동 사항 정보를 받을 수 있습니다. You can get information on network changes. 
+* Change of Network Types 
+    * You can get information on network changes. 
     * Type: GamebaseObserverType::Network (= "network")
-    * Code: GamebaseNetworkType에 선언된 상수를 참고합니다.
+    * Code: See constant value declared at each GamebaseNetworkType. 
         * GamebaseNetworkType::TYPE_NOT: 255
         * GamebaseNetworkType::TYPE_MOBILE: 0
         * GamebaseNetworkType::TYPE_WIFI: 1
         * GamebaseNetworkType::TYPE_ANY: 2
-* Launching 상태 변동 Change of Launching Status 
-    * 주기적으로 애플리케이션 상태를 확인하는 Launching Status response에 변동이 있을 때 발생합니다. 예를 들어 점검, 업데이트 권장 등에 의한 이벤트가 있습니다.
+* Change of Launching Status 
+    * Occurs when there is changed in the Launching Status Response which periodically checks application status. For instance, event occurrences due to maintenance, or update recommendation. 주기적으로 애플리케이션 상태를 확인하는 Launching Status response에 변동이 있을 때 발생합니다. 예를 들어 점검, 업데이트 권장 등에 의한 이벤트가 있습니다.
     * Type: GamebaseObserverType::Launching (= "launching")
-    * Code: GamebaseLaunchingStatus에 선언된 상수를 참고합니다.
+    * Code: See constant value declared at each GamebaseLaunchingStatus.
         * GamebaseLaunchingStatus::IN_SERVICE: 200
         * GamebaseLaunchingStatus::RECOMMEND_UPDATE: 201
         * GamebaseLaunchingStatus::IN_SERVICE_BY_QA_WHITE_LIST: 202
@@ -343,10 +343,10 @@ Gamebase supports the followint observer types: 현재 Gamebase에서 지원하�
         * GamebaseLaunchingStatus::INSPECTING_SERVICE: 303
         * GamebaseLaunchingStatus::INSPECTING_ALL_SERVICES: 304
         * GamebaseLaunchingStatus::INTERNAL_SERVER_ERROR: 500
-* Heartbeat 정보 변동 Change of Heartbeat Information 
-    * 주기적으로 Gamebase 서버와 연결을 유지하는 Heartbeat response에 변동이 있을 때 발생합니다. 예를 들어 사용자 이용 정지에 의한 이벤트가 있습니다.
+* Change of Heartbeat Information 
+    * Occurs when there is change in the heartbeat response which periodically stays connected to Gamebase server. For instance, event occurrence due to banning on user. 주기적으로 Gamebase 서버와 연결을 유지하는 Heartbeat response에 변동이 있을 때 발생합니다. 예를 들어 사용자 이용 정지에 의한 이벤트가 있습니다.
     * Type: GamebaseObserverType::Heartbeat (= "heartbeat")
-    * Code: GamebaseErrorCode에 선언된 상수를 참조합니다.
+    * Code: See constant value declared at each GamebaseErrorCode에 선언된 상수를 참조합니다.
         * GamebaseErrorCode::INVALID_MEMBER: 6
         * GamebaseErrorCode::BANNED_MEMBER: 7
 
