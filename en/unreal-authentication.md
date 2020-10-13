@@ -379,7 +379,7 @@ See the following for example: 예시는 다음과 같습니다.<br/>
 	* Payco ID : dd
 * Gamebase 사용자 ID : 456abcabc
 	* Google ID : ee
-	* Google ID : ff **-> 이미 Google ee 계정이 연동중이므로 Google계정을 추가로 연동할 수 없습니다.**
+	* Google ID : ff **-> Unable to map further Google account, since the Google ee account has been mapped.**
 
 Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
 
@@ -393,7 +393,7 @@ Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
 
 #### 2. 매핑 Mapping 
 
-**AddMapping API**을 호출해 매핑을 시도합니다.
+Call **AddMapping API** to attempt a mapping. 을 호출해 매핑을 시도합니다.
 
 #### 2-1. 매핑이 성공한 경우 When Mapping is Successful
 
@@ -518,10 +518,10 @@ void Sample::AddMappingWithCredential()
 
 ### Add Mapping Forcibly
 
-For an account which is already mapped to a particular IdP, try mapping **With Force **. 특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
-When trying **Force Mapping강제 매핑**, you need 을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket` acquiried from AddMpping API. 이 필요합니다.
+For an account which is already mapped to a particular IdP, try mapping **With Force **. 
+To attempt **Force Mapping강제 매핑**, you need `ForcingMappingTicket` acquiried from AddMpping API. 
 
-다음은 Facebook에 강제 매핑을 시도하는 예시입니다. Following are examples of trying to force mapping: 
+다음은 Facebook에 강제 매핑을 시도하는 예시입니다. See the following example for the attempt of force mapping: 
 
 **API**
 
