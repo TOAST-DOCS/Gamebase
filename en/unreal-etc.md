@@ -167,29 +167,29 @@ void Sample::GetDisplayLanguageCode()
 
 #### Add New Language Sets
 
-Regarding how to add new language sets on Unreal Android or iOS platform, see the following guides:  플랫폼에서의 신규 언어셋 추가 방법은 아래 가이드를 참고하십시오.
+Regarding how to add new language sets on Unreal Android or iOS platform, see the following guides:  
 
-* [Adding New Language Sets on Android 신규 언어셋 추가](./aos-etc#display-language)
-* [Addig New Languages Sets on iOS 신규 언어셋 추가](./ios-etc#display-language)
+* [Adding New Language Sets on Android](./aos-etc#display-language)
+* [Addig New Languages Sets on iOS](./ios-etc#display-language)
 
-#### Priority of Display Language 우선순위
+#### Priority of Display Languages
 
-When Display Language is set by initialization or 초기화 및 SetDisplayLanguageCode API, the final value might be different from actual input. 를 통해 Display Language를 설정할 경우, 최종 적용되는 Display Language는 입력한 값과 다르게 적용될 수 있습니다.
+When Display Language is set by initialization or SetDisplayLanguageCode API, the final value might be different from actual input. 
 
-1. Check if input 입력된 languageCode is defined in the가 localizedstring.json file. 파일에 정의되어 있는지 확인합니다.
-2. When Gamebase is initialized, see if the language set on device is defined in the  초기화 시, 단말기에 설정된 언어코드가 localizedstring.json file. 파일에 정의되어 있는지 확인합니다.(This value, after initialization, shall remain the same even with the change of language set on device. 이 값은 초기화 이후, 단말기에 설정된 언어를 변경하더라도 유지됩니다.)
-3. Display Language의 기본값인The default `en` is automatically set for Display Language. 이 자동으로 설정됩니다.
+1. Check if the languageCode input is defined in the localizedstring.json file. 
+2. When Gamebase is initialized, see if the language set on device is defined in the localizedstring.json file. (This value, after initialization, shall remain the same even with the change of language set on device.)
+3. The default `en` is automatically set for Display Language. 
 
 ### Country Code
 
-* Gamebase provides country codes of a system on the following APIs. 는 System의 국가 코드를 다음과 같은 API로 제공하고 있습니다. 
-* Each API has different features, so select one to suit your needs. 각 API 마다 특징이 있으니 쓰임새에 맞는 API를 선택하시기 바랍니다.
+* Gamebase provides country codes of a system on the following APIs.  
+* Each API has different features, so select one to suit your needs. 
 
 #### USIM Country Code
 
-* USIM에 기록된 국가 코드를 리턴합니다. Return the country code recorded at USIM. 
-* USIM에 잘못된 국가 코드가 기록되어 있다 하더라도 추가적인 체크 없이 그대로 리턴합니다. Return without further checks even with invalid country code recorded at USIM. 
-* 값이 비어있는 경우 'ZZ'를 리턴합니다.If value is empty, return 'zz'. 
+* Return the country code recorded at USIM. 
+* Return without further checks even with invalid country code recorded at USIM. 
+* If value is empty, return 'zz'. 
 
 **API**
 
@@ -204,10 +204,10 @@ FString GetCountryCodeOfUSIM() const;
 
 #### Device Country Code
 
-* OS로부터 전달받은 단말기 국가 코드를 추가적인 체크 없이 그대로 리턴합니다. Return the device country code delivered from OS without further checks. 
-* 단말기 국가 코드는 '언어' 설정에 따라 OS가 자동으로 결정합니다. Device language code is automatically determined by OS, according to each 'Language' setting. 
-* 여러 개의 언어가 등록된 경우, 우선권이 가장 높은 언어로 국가 코드를 결정합니다. When many languages are registered, a language of the highest priority order is determined as the country code.   
-* 값이 비어있는 경우 'ZZ'를 리턴합니다. If the value is empty, return 'zz'. 
+* Return the device country code delivered from OS without further checks. 
+* Device language code is automatically determined by OS, according to each 'Language' setting. 
+* When many languages are registered, a language of the highest priority order is determined as the country code.   
+* If the value is empty, return 'zz'. 
 
 **API**
 
@@ -221,11 +221,11 @@ FString GetCountryCodeOfDevice() const;
 
 #### Intergrated Country Code
 
-* USIM, 단말기 언어 설정의 순서로 국가 코드를 확인하여 리턴합니다.Check and return country code in the order of language setting of USIM and device. 
-* GetCountryCode API는 다음 순서로 동작합니다. operates in the following order:  
-    1. Check country code recorded at USIM, and if a value exists, return it without further checks. 에 기록된 국가 코드를 확인하고, 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
-    2. If USIM country code is empty, check the device country code; if a value exists, return it without further checks.  국가 코드가 빈 값이라면 단말기 국가 코드를 확인하고, 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
-    3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ' 를 리턴합니다. If both USIM and device have empty value of country code, return 'zz'.  
+* Check and return country code in the order of language setting of USIM and device. 
+* GetCountryCode API operates in the following order:  
+    1. Check country code recorded at USIM, and if a value exists, return it without further checks. 
+    2. If USIM country code is empty, check the device country code; if a value exists, return it without further checks.  
+    3. If both USIM and device have empty country code, return 'zz'.  
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
@@ -240,15 +240,15 @@ FString GetCountryCode() const;
 ```
 
 ### Server Push
-* Gamebase 서버에서 클라이언트 단말기로 보내는 Server Push Message를 처리할 수 있습니다. The Gamebase server can process Server Push Messages sent to a client device. 
-* Gamebase 클라이언트에서 ServerPushEvent Listener를 추가하면 해당 메시지를 사용자가 받아서 처리할 수 있으며, 추가된 ServerPushEvent Listener를 삭제할 수 있습니다.
+* The Gamebase server can process Server Push Messages sent onto a client device. 
+* Add ServerPushEvent Listener to Gamebase client, and the user may receive to process the message and may delete the added ServerPushEvent Listener.
 
 
 #### Server Push Type
-현재 Gamebase에서 지원하는 Server Push Type은 다음과 같습니다. Gamebase currently supports the following server push type: 
+Gamebase currently supports the following server push type: 
 
 * GamebaseServerPushType::AppKickout (= "appKickout")
-    * TOAST Gamebase 콘솔의 When a kickout ServerPush message is registered at **Operation > Kickout**, and you receive **APP_KICKOUT** message on all clients connected to Gamebase. 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 **APP_KICKOUT** 메시지를 받게 됩니다.
+    * When a kickout ServerPush message is registered at **Operation > Kickout** on a TOAST Gamebase console, and you'll receive **APP_KICKOUT** message on all clients connected to Gamebase. 
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 
@@ -331,7 +331,7 @@ Gamebase supports the following observer types:
         * GamebaseNetworkType::TYPE_WIFI: 1
         * GamebaseNetworkType::TYPE_ANY: 2
 * Change of Launching Status 
-    * Occurs when there is changed in the Launching Status Response which periodically checks application status. For instance, event occurrences due to maintenance, or update recommendation. 주기적으로 애플리케이션 상태를 확인하는 Launching Status response에 변동이 있을 때 발생합니다. 예를 들어 점검, 업데이트 권장 등에 의한 이벤트가 있습니다.
+    * Occurs when there is a change in the Launching Status Response which periodically checks application status. For instance, event occurrences due to maintenance, or update recommendation. 주기적으로 애플리케이션 상태를 확인하는 Launching Status response에 변동이 있을 때 발생합니다. 예를 들어 점검, 업데이트 권장 등에 의한 이벤트가 있습니다.
     * Type: GamebaseObserverType::Launching (= "launching")
     * Code: See constant value declared at each GamebaseLaunchingStatus.
         * GamebaseLaunchingStatus::IN_SERVICE: 200
@@ -353,7 +353,7 @@ Gamebase supports the following observer types:
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
 
 #### Add Observer
-Gamebase Client에 Observer를 등록하여 각종 상태 변동 이벤트를 처리할 수 있습니다. By registering an observer at the Gamebase client, status change events can be processed. 
+By registering an observer at the Gamebase client, status change events can be processed. 
 
 **API**
 
@@ -398,7 +398,7 @@ void Sample::AddObserver()
 ```
 
 #### Remove Observer
-Gamebase에 등록된 Observer를 삭제할 수 있습니다.
+Gamebase에 등록된 Observer를 삭제할 수 있습니다. Oberservers registered at Gamebase can be removed. 
 
 **API**
 
@@ -519,12 +519,12 @@ void Sample::TraceLevelUpNow(int32 userLevel)
 
 ### Contact
 
-Gamebase 는 고객 문의 대응을 위한 기능을 제공합니다.
+Gamebase 는 고객 문의 대응을 위한 기능을 제공합니다. Gamebase provides features for customer response. 
 
 > [TIP]
 >
-> TOAST Contact 서비스와 연동해서 사용하면 보다 쉽고 편리하게 고객 문의에 대응할 수 있습니다.
-> 자세한 TOAST Contact 서비스 이용법은 아래 가이드를 참고하시기 바랍니다.
+> TOAST Contact 서비스와 연동해서 사용하면 보다 쉽고 편리하게 고객 문의에 대응할 수 있습니다. By integrating with TOAST Contact, customer inquiries can be handled with more ease and convenience.  
+> For more details on TOAST Contact, see the guide as below: 자세한 TOAST Contact 서비스 이용법은 아래 가이드를 참고하시기 바랍니다.
 > [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
 
 #### Open Contact WebView
