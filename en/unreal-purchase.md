@@ -86,8 +86,8 @@ void Sample::RequestPurchaseSample(int64 itemSeq)
 
 ### List Purchasable Items
 
-아이템 목록을 조회하려면 다음 API를 호출합니다. To query the list of items, call the following API: 
-콜백으로 반환되는 목록 안에는 각 아이템들에 대한 정보가 담겨 있습니다. The list of callback returns includes information of each item. 
+To query the list of items, call the following API: 
+The list of callback returns includes information of each item. 
 
 **API**
 
@@ -236,7 +236,7 @@ The promotion IAP can be made public by separate configuration at App Store Conn
 
 > <font color="red">[Caution]</font><br/>
 >
-> Facebook SDK 사용 시, App Dashboard > Settings > Basic 페이지에서 `Log In-App Events Automatically (Recommended)` 설정을 활성화하면 해당 기능이 정상 작동하지 않으니 주의하십시오.
+> Note, if you're using Facebook SDK, that the feature will not operate, if `Log In-App Events Automatically (Recommended)` is activated from the App Dashboard > Settings > Basic page. 
 
 **API**
 
@@ -280,35 +280,35 @@ void Sample::SetPromotionIAPHandler()
 **How to Test AppStore Promotion IAP**
 
 > `Caution`
-> App Store Connect에 앱을 업로드한 다음 TestFlight를 통하여 앱을 설치 후, 테스트를 진행할 수 있습니다.
+> To test, upload the app to App Store Connect and install it with TestFlight. 
 > 
 
-1. TestFlight로 App을 설치합니다.
-2. 아래와 같은 URL Scheme을 호출하여, 테스트를 진행합니다.
+1. Ue TestFlight to install the app. 
+2. Call URL Scheme as below, and execute testing. 
 
 | URL Components | keyname | value |
 | --- | --- | --- |
-| scheme | itms-services | 고정값 |
-| host &amp; path | 없음 | 없음 |
+| scheme | itms-services | Fixed value |
+| host &amp; path | N/A | N/A |
 | queries | action | purchaseIntent |
-|		  | bundleId | 앱의 bundeld identifier |
-|		  | productIdentifier | 구매 아이템의 product identifier |
+|		  | bundleId | Bundled identifier of app |
+|		  | productIdentifier | Product identifier of purchase item |
 
-예제) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
+Example) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 
 ### Error Handling
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| PURCHASE_NOT_INITIALIZED                 | 4001       | Purchase 모듈이 초기화되지 않았습니다.<br>gamebase-adapter-purchase-IAP 모듈을 프로젝트에 추가했는지 확인해 주세요. |
-| PURCHASE_USER_CANCELED                   | 4002       | 게임 유저가 아이템 구매를 취소하였습니다.                  |
-| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003      | 구매 로직이 아직 완료되지 않은 상태에서 API가 호출되었습니다. |
-| PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 해당 스토어의 캐시가 부족해 결제할 수 없습니다.              |
-| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 GG(Google), ONESTORE 입니다. |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAP 라이브러리 오류입니다.<br>DetailCode를 확인하세요.   |
-| PURCHASE_UNKNOWN_ERROR                   | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
+| PURCHASE_NOT_INITIALIZED                 | 4001       | Purchase module has not been initialized. <br> Check if the gamebase-adapter-purchase-IAP module has been added to project. |
+| PURCHASE_USER_CANCELED                   | 4002       | Game user cancelled purchase of an item.                   |
+| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003      | Called API while the purchase logic was not completed.  |
+| PURCHASE_NOT_ENOUGH_CASH                 | 4004       | Cannot pay due to shortage of cash of the store.              |
+| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | Unsupported store. <br> Available stores are GG(Google) and ONESTORE. |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | Error in IAP library. <br> Check DetailCode.   |
+| PURCHASE_UNKNOWN_ERROR                   | 4999       | Undefined purchase error. <br> Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry) and we'll reply at the earliest possible moment. |
 
-* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다. See the following document for the entire error codes. 
+* See the following document for the entire error codes. 
     * [Error Codes](./error-code/#client-sdk)
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
