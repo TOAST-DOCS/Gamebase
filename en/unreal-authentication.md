@@ -113,7 +113,7 @@ void Sample::LoginForLastLoggedInProvider()
 
 Gamebase supports guest login. 
 Create a unique key of device to try a login to Gamebase. 
-With guest login, device key might be initialized, which may cause your account to be deleted; so, it is recommended to use IdP for a login. 
+With guest login, device key might be initialized, which may cause your account to be deleted; therefore, it is recommended to use IdP for a login. 
 
 **API**
 
@@ -361,16 +361,16 @@ void Sample::Withdraw()
 
 ## Mapping
 
-매핑은 기존에 로그인된 계정에 다른 IdP의 계정을 연동하거나 해제시키는 기능입니다. Mapping refers to integrating or disintegrating other IdP accounts with a previously logged-in account. 
+Mapping refers to integrating or disintegrating other IdP accounts with a previously logged-in account. 
 
-많은 게임들이 하나의 계정에 여러 IdP를 연동(Mapping)할 수 있도록 하고 있습니다. Many games allow one account to be mapped with many IdPs. 
-With Mapping API of Gamebase, accounts of other IdP can be mapped/unmapped with previously logged-in account. 의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 IdP의 계정을 연동/해제시킬 수 있습니다.<br/>
+In many games, one account is allowed to be mapped with many IdPs. 
+With Mapping API of Gamebase, accounts of other IdP can be mapped/unmapped with previously logged-in account. <br/>
 
-이렇게 하나의 Gamebase 사용자 ID에 다양한 IdP 계정을 연동할 수 있습니다. As such, one Gamebase user ID can be mapped with many IdP accounts. 
-That is, to log in with mapped IdP account, it is logged in with same user ID at all times. 즉, 연동 중인 IdP 계정으로 로그인을 시도 한다면 항상 동일한 사용자 ID로 로그인됩니다.<br/>
+As such, one Gamebase user ID can be mapped with many IdP accounts. 
+That is, to log in with mapped IdP account, it is logged in with same user ID at all times. <br/>
 
-Note, however, that each IdP allows only one account for a mapping. 주의할 점은, IdP 마다 하나의 계정씩만 연동이 가능합니다.
-See the following for example: 예시는 다음과 같습니다.<br/>
+Note, however, that each IdP allows only one account for a mapping. 
+See the following for example: <br/>
 
 * Gamebase User ID : 123bcabca
 	* Google ID : aa
@@ -385,17 +385,17 @@ Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
 
 ### Add Mapping Flow
 
-매핑은 다음 순서로 구현할 수 있습니다. Mapping can be implemented in the following order. 
+Mapping can be implemented in the following order. 
 
-#### 1. 로그인 Login 
+#### 1. Login 
 매핑은 현재 계정에 IdP 계정 연동을 추가하는 것이므로 우선 로그인이 돼 있어야 합니다.
 먼저 로그인 API를 호출해 로그인합니다.
 
-#### 2. 매핑 Mapping 
+#### 2. Mapping 
 
-Call **AddMapping API** to attempt a mapping. 을 호출해 매핑을 시도합니다.
+Call **AddMapping API** to attempt a mapping. 
 
-#### 2-1. 매핑이 성공한 경우 When Mapping is Successful
+#### 2-1. When Mapping is Successful
 
 * 축하합니다! 현재 계정과 연동중인 IdP 계정이 추가되었습니다.
 * 매핑에 성공해도 '현재 로그인 중인 IdP'가 바뀌지는 않습니다. <br>즉, Google 계정으로 로그인한 후, Facebook 계정 매핑 시도가 성공했다고 해서 '현재 로그인 중인 IdP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다.
@@ -403,7 +403,7 @@ Call **AddMapping API** to attempt a mapping. 을 호출해 매핑을 시도합�
 
 #### 2-2. 매핑이 실패한 경우 When Mapping Fails 
 
-* 네트워크 오류
+* 네트워크 오류 Network Error
     * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **AddMapping API**을 다시 호출하거나, 잠시 대기했다가 재시도 합니다.
 * 이미 다른 계정에 연동 중일 때 발생하는 오류
     * 오류 코드가 **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**인 경우, 매핑하려는 IdP의 계정이 이미 다른 계정에 연동 중이라는 뜻입니다. 이미 연동된 계정을 해제하려면 해당 계정으로 로그인하여 **Withdraw API**를 호출하여 탈퇴하거나 **RemoveMapping API**를 호출하여 연동을 해제한 후 다시 매핑을 시도하세요.
@@ -411,13 +411,13 @@ Call **AddMapping API** to attempt a mapping. 을 호출해 매핑을 시도합�
 	* 에러 코드가 **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)** 인 경우, 매핑하려는 IdP와 같은 종류의 계정이 이미 연동중이라는 뜻입니다.
 	* Gamebase 매핑은 한 IdP당 하나의 계정만 연동 가능합니다. 예를 들어 PAYCO 계정에 이미 연동 중이라면 더 이상 PAYCO 계정을 추가할 수 없습니다.
 	* 동일 IdP의 다른 계정을 연동하기 위해서는 **RemoveMapping API**을 호출해 연동을 해제한 후 다시 매핑을 시도하세요.
-* 그 외의 오류
-    * 매핑 시도가 실패했습니다.
+* 그 외의 오류 Other Errors 
+    * 매핑 시도가 실패했습니다. Attempt of mapping has failed. 
 
 
 ### Add Mapping
 
-특정 IdP에 로그인 된 상태에서 다른 IdP로 Mapping을 시도합니다.
+특정 IdP에 로그인 된 상태에서 다른 IdP로 Mapping을 시도합니다. Mapping is attempted with another IdP while it is logged in to an IdP. 
 Mapping을 하려는 IdP의 계정이 이미 다른 계정에 연동이 되어있다면
 **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 오류를 반환합니다.<br/>
 
@@ -518,10 +518,10 @@ void Sample::AddMappingWithCredential()
 
 ### Add Mapping Forcibly
 
-For an account which is already mapped to a particular IdP, try mapping **With Force **. 
-To attempt **Force Mapping강제 매핑**, you need `ForcingMappingTicket` acquiried from AddMpping API. 
+For an account which is already mapped to a particular IdP, try mapping **Forcibly**. 
+To attempt a **Force Mapping**, you need `ForcingMappingTicket` acquiried from AddMpping API. 
 
-다음은 Facebook에 강제 매핑을 시도하는 예시입니다. See the following example for the attempt of force mapping: 
+See the following example for the attempt of force mapping: 
 
 **API**
 
@@ -543,7 +543,7 @@ void Sample::AddMappingForcibly(const FString& providerName)
         }
         else
         {
-            // By calling addMapping API and mapping to an account already integrated, you can get  우선 addMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
+            // By calling addMapping API and mapping to an account already integrated, you can get ForcingMappingTicket, like below.
             if (error->code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
                 // ForcingMappingTicket 클래스의 From() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
