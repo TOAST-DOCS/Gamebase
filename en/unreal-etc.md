@@ -26,7 +26,7 @@ FString GetDeviceLanguageCode() const;
 * With DisplayLanguage, messages are displayed in an appropriate language for the user-configured language code (ISO-639). 
 * More language sets could be added as required. Following language codes are available: 
 
-> [Note 참고]
+> [Note]
 >
 > Gamebase client messages are available in English (en), Korean (ko), and Japanese (ja) only. 
 
@@ -331,7 +331,7 @@ Gamebase supports the following observer types:
         * GamebaseNetworkType::TYPE_WIFI: 1
         * GamebaseNetworkType::TYPE_ANY: 2
 * Change of Launching Status 
-    * Occurs when there is a change in the Launching Status Response which periodically checks application status. For instance, event occurrences due to maintenance, or update recommendation. 주기적으로 애플리케이션 상태를 확인하는 Launching Status response에 변동이 있을 때 발생합니다. 예를 들어 점검, 업데이트 권장 등에 의한 이벤트가 있습니다.
+    * Occurs when there is a change in the Launching Status Response which periodically checks application status. For instance, event occurrences due to maintenance, or update recommendation. 
     * Type: GamebaseObserverType::Launching (= "launching")
     * Code: See constant value declared at each GamebaseLaunchingStatus.
         * GamebaseLaunchingStatus::IN_SERVICE: 200
@@ -344,9 +344,9 @@ Gamebase supports the following observer types:
         * GamebaseLaunchingStatus::INSPECTING_ALL_SERVICES: 304
         * GamebaseLaunchingStatus::INTERNAL_SERVER_ERROR: 500
 * Change of Heartbeat Information 
-    * Occurs when there is change in the heartbeat response which periodically stays connected to Gamebase server. For instance, event occurrence due to banning on user. 주기적으로 Gamebase 서버와 연결을 유지하는 Heartbeat response에 변동이 있을 때 발생합니다. 예를 들어 사용자 이용 정지에 의한 이벤트가 있습니다.
+    * Occurs when there is change in the heartbeat response which periodically stays connected to Gamebase server. For instance, event occurrence due to banning on user. 
     * Type: GamebaseObserverType::Heartbeat (= "heartbeat")
-    * Code: See constant value declared at each GamebaseErrorCode에 선언된 상수를 참조합니다.
+    * Code: See constant value declared at each GamebaseErrorCode.
         * GamebaseErrorCode::INVALID_MEMBER: 6
         * GamebaseErrorCode::BANNED_MEMBER: 7
 
@@ -398,7 +398,7 @@ void Sample::AddObserver()
 ```
 
 #### Remove Observer
-Gamebase에 등록된 Observer를 삭제할 수 있습니다. Oberservers registered at Gamebase can be removed. 
+Oberservers registered at Gamebase can be removed. 
 
 **API**
 
@@ -427,41 +427,41 @@ void Sample::RemoveAllObserver()
 
 ### Analytics
 
-Game지표를 Gamebase Server로 전송할 수 있습니다.
+Game indicators can be sent to Gamebase Server. 
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> Gamebase Analytics에서 지원하는 모든 API는 로그인 후에 호출할 수 있습니다.
+> All APIs supported by Gamebase Analytics can be called after login. 
 >
 >
 > [TIP]
 >
-> RequestPurchase API를 호출하여 결제를 완료하면, 자동으로 지표를 전송합니다.
+> When a purchase is completed by calling RequestPurchase API, indicators are automatically deliverd. 
 >
 
-Analytics Console 사용법은 아래 가이드를 참고하십시오.
+Regarding the usage of Analytics Console, see the following guide:  
 
 * [Analytics Console](./oper-analytics)
 
 #### Game User Data Settings
 
-게임 로그인 이후 게임 유저 레벨 정보를 지표로 전송할 수 있습니다.
+Level information of a game user can be delivered to indicators, after a user login.  
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 게임 로그인 이후 SetGameUserData API를 호출하지 않으면 다른 지표에서 Level 정보가 누락될 수 있습니다.
+> If SetGameUserData API is not called after a login to game, level information might be missing from other indicators. 
 >
 
-API 호출에 필요한 파라미터는 아래와 같습니다.
+Following parameters are required to call APIs:  
 
 **GameUserData**
 
-| Name                       | Mandatory(M) / Optional(O) | type | Desc |
+| Name                       | Mandatory(M) / Optional(O) | Type | Desc. |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int | 게임 유저 레벨을 나타내는 필드입니다. |
-| channelId | O | string | 채널을 나타내는 필드입니다. |
-| characterId | O | string | 캐릭터 이름을 나타내는 필드입니다. |
-| characterClassId | O | string | 직업을 나타내는 필드입니다. |
+| userLevel | M | int | Refers to the level of a game user. |
+| channelId | O | string | Indicates a channel. |
+| characterId | O | string | Refers to the name of a character. |
+| characterClassId | O | string | Indicates an occupation. |
 
 **API**
 
@@ -486,16 +486,16 @@ void Sample::SetGameUserData(int32 userLevel, const FString& channelId, const FS
 
 #### Level Up Trace
 
-레벨업이 되었을 경우 게임 유저 레벨 정보를 지표로 전송할 수 있습니다.
+Updated level information of a game user can be delivered to indicators. 
 
-API 호출에 필요한 파라미터는 아래와 같습니다.
+Following paratemers are required to call APIs:
 
 **LevelUpData**
 
-| Name                       | Mandatory(M) / Optional(O) | type | Desc	|
+| Name                       | Mandatory(M) / Optional(O) | Type | Desc.	|
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int | 게임 유저 레벨을 나타내는 필드입니다. |
-| levelUpTime | M | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력 합니다. |
+| userLevel | M | int | Refers to the level of a game user. |
+| levelUpTime | M | long | Enter by Epoch Time.</br> Enter by the millisecond. |
 
 **API**
 
@@ -519,19 +519,19 @@ void Sample::TraceLevelUpNow(int32 userLevel)
 
 ### Contact
 
-Gamebase 는 고객 문의 대응을 위한 기능을 제공합니다. Gamebase provides features for customer response. 
+Gamebase provides features for customer response. 
 
 > [TIP]
 >
-> TOAST Contact 서비스와 연동해서 사용하면 보다 쉽고 편리하게 고객 문의에 대응할 수 있습니다. By integrating with TOAST Contact, customer inquiries can be handled with more ease and convenience.  
-> For more details on TOAST Contact, see the guide as below: 자세한 TOAST Contact 서비스 이용법은 아래 가이드를 참고하시기 바랍니다.
+> By integrating with TOAST Contact, customer inquiries can be handled with more ease and convenience.  
+> For more details on TOAST Contact, see the guide as below: 
 > [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
 
 #### Open Contact WebView
 
-Gamebase 콘솔에 입력한 **고객 센터 URL** 웹뷰를 나타낼 수 있는 기능입니다.
+Shows the webview of **Customer Center URL** entered on Gamebase console. 
 
-* **Gamebase 콘솔 > App > InApp URL > Service center** 에 입력한 값이 사용됩니다.
+* Value is applied same as **Gamebase Console > App > InApp URL > Service Center**.
 
 **API**
 
