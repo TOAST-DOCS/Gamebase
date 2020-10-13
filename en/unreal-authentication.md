@@ -69,8 +69,8 @@ The above login can be implemented in the following order:
 
 ### Login with the Latest Login IdP
 
-가장 최근에 로그인한 IdP로 로그인을 시도합니다. Try a login with the most recent login IdP. 
-해당 로그인에 대한 토큰이 만료되었거나, 토큰에 대한 검증 등에 실패하면 실패를 반환합니다. When token for the login has expired, or if token verification has failed, return such failure.  
+Attempt a login with the most recent login IdP. 
+When token for the login has expired, or if token verification has failed, return such failure.  
 To that end, it is required to implement [Login for IdP](#login-with-idp).
 
 **API**
@@ -111,9 +111,9 @@ void Sample::LoginForLastLoggedInProvider()
 
 ### Login with GUEST
 
-Gamebase supports guest login. 는 게스트 로그인을 지원합니다.
-Create a unique key of device to try login to Gamebase. 디바이스의 유일한 키를 생성하여 Gamebase에 로그인을 시도합니다.
-With guest login, device key might be initialized, which may cause your account to be deleted; so, it is recommended to use IdP to log in. login 게스트 로그인은 디바이스 키는 초기화될 수 있고 디바이스 키의 초기화 시에 계정이 삭제될 수 있으므로 IdP를 활용한 로그인 방식을 권장합니다.
+Gamebase supports guest login. 
+Create a unique key of device to try a login to Gamebase. 
+With guest login, device key might be initialized, which may cause your account to be deleted; so, it is recommended to use IdP for a login. 
 
 **API**
 
@@ -174,13 +174,13 @@ void Login(const FString& providerName, const UGamebaseJsonObject& additionalInf
 | Line        | GamebaseAuthProvider::Line       | Android<br/>iOS |
 
 
-> Some IdP logins require particular information. 몇몇 IdP로 로그인할 때는 꼭 필요한 정보가 있습니다.<br/>
-> For instance, to log in to Facebook, the setting for scope is needed.  를 들어, Facebook 로그인을 구현하려면 scope 등을 설정해야 합니다.<br/>
-> To configure such required information, 이러한 필수 정보들을 설정할 수 있게 API for static void Login (string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) is provided. 를 제공합니다.<br/>
-> You may enter information for the additionalInfo parameter in the format of dictionary.  파라미터에 필수 정보들을 dictionary 형태로 입력하시면 됩니다.
-When there's available value for additionalInfo, use it; otherwise (null), apply default value registered on TOAST Console.   값이 있을 경우에는 해당 값을 사용하고 없을 경우에는(null) TOAST Console에 등록된 값을 사용합니다.
+> Some IdP logins require particular information. <br/>
+> For instance, to log in to Facebook, the setting for scope is needed. <br/>
+> To configure such required information, API for static void Login (string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) is provided. <br/>
+> You may enter information for the additionalInfo parameter in the format of dictionary.  
+When there's available value for additionalInfo, use it; otherwise (null), apply default value registered on TOAST Console.   
 ([Setting additionalInfo for TOAST Console](./oper-app/#authentication-information))<br/>
-> Standalone supports a login via WebViewAdapter and does not block event input via UIs when WebView is open. 를 통해서 로그인을 지원하며 WebView가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
+> Standalone supports a login via WebViewAdapter and does not block event input via UIs when WebView is open. 
 
 **Example**
 
@@ -221,25 +221,25 @@ void Sample::LoginWithAdditionalInfo()
 
 ### Login with Credential
 
-IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급받은 액세스 토큰 등을 이용하여, Gamebase에 로그인할 수 있는 인터페이스입니다.
+This interface allows login to Gamebase with SDKs provided by IdP and authenticated in each game, by using access token.  
 
-* Credential 파라미터의 설정 방법
+* Setting Credential Parameters 
 
 | Keyname | Usage | Value Type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                          | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | Set authentication information (e.g. access token) given after IdP login <br/> Disabled for Google authentication |                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Set authorization code given after Google login |                                          |
 
 > [TIP]
 >
-> 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
+> Might be required to use unique features of an external service (e.g. Facebook) for a game.  
 >
 
 
 > <font color="red">[Caution]</font><br/>
 >
-> 외부 SDK에서 지원 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
+> Development issues requiring the support of an external SDK must be implemented by using API of such SDK, which is not supported by Gamebase.
 >
 
 **API**
@@ -281,14 +281,14 @@ void Sample::LoginWithCredential()
 }
 ```
 
-### Authentication Additional Information Settings
+### Authentication of Additional Information Settings
 
 [Console Guide](./oper-app/#authentication-information)
 
 ## Logout
-로그인 된 IdP에서 로그아웃을 시도합니다. 주로 게임의 설정 화면에 로그아웃 버튼을 두고, 버튼을 클릭하면 실행되도록 구현하는 경우가 많습니다.
-로그아웃이 성공하더라도, 게임 유저 데이터는 유지됩니다.
-로그아웃에 성공 하면 해당 IdP로 인증했던 기록을 제거하므로 다음에 로그인할 때 ID, 비밀번호 입력 창이 노출됩니다.<br/><br/>
+Logout is attempted from login IdP. In most cases, the logout button is located on the setting page of a game, to be clicked for execution. 
+Even with a successful logout, game user's data remains. 
+When it is successfully logged out, authentication records with IdP are removed, and therefore, popup will show to enter ID and password for the next login attempt. <br/><br/>
 
 **API**
 
@@ -322,12 +322,12 @@ void Sample::Logout()
 
 
 ## Withdraw
-로그인 상태에서 탈퇴를 시도합니다.
+Withdrawal is attempted while it is logged in. 
 
-* 탈퇴에 성공하면, 로그인했던 IdP와 연동되어 있던 게임 유저 데이터는 삭제됩니다.
-* 해당 IdP로 다시 로그인 가능하고 새로운 게임 유저 데이터를 생성합니다.
-* Gamebase 탈퇴를 의미하며, IdP 계정 탈퇴를 의미하지는 않습니다.
-* 탈퇴 성공 시 IdP 로그아웃을 시도합니다.
+* When it is successfully withdrawn, game user's data integrated with logged IdP will be removed. 
+* It is available to log in again with the IdP, which creates data of a new game user.   
+* Withdrawing from Gamebase does not mean withdrwaing from an IdP account. 
+* When it is successfully withdrawn, logout from IdP is attempted. 
 
 **API**
 
@@ -361,18 +361,18 @@ void Sample::Withdraw()
 
 ## Mapping
 
-매핑은 기존에 로그인된 계정에 다른 IdP의 계정을 연동하거나 해제시키는 기능입니다.
+매핑은 기존에 로그인된 계정에 다른 IdP의 계정을 연동하거나 해제시키는 기능입니다. Mapping refers to integrating or disintegrating other IdP accounts with a previously logged-in account. 
 
-많은 게임들이 하나의 계정에 여러 IdP를 연동(Mapping)할 수 있도록 하고 있습니다.
-Gamebase의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 IdP의 계정을 연동/해제시킬 수 있습니다.<br/>
+많은 게임들이 하나의 계정에 여러 IdP를 연동(Mapping)할 수 있도록 하고 있습니다. Many games allow one account to be mapped with many IdPs. 
+With Mapping API of Gamebase, accounts of other IdP can be mapped/unmapped with previously logged-in account. 의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 IdP의 계정을 연동/해제시킬 수 있습니다.<br/>
 
-이렇게 하나의 Gamebase 사용자 ID에 다양한 IdP 계정을 연동할 수 있습니다.
-즉, 연동 중인 IdP 계정으로 로그인을 시도 한다면 항상 동일한 사용자 ID로 로그인됩니다.<br/>
+이렇게 하나의 Gamebase 사용자 ID에 다양한 IdP 계정을 연동할 수 있습니다. As such, one Gamebase user ID can be mapped with many IdP accounts. 
+That is, to log in with mapped IdP account, it is logged in with same user ID at all times. 즉, 연동 중인 IdP 계정으로 로그인을 시도 한다면 항상 동일한 사용자 ID로 로그인됩니다.<br/>
 
-주의할 점은, IdP 마다 하나의 계정씩만 연동이 가능합니다.
-예시는 다음과 같습니다.<br/>
+Note, however, that each IdP allows only one account for a mapping. 주의할 점은, IdP 마다 하나의 계정씩만 연동이 가능합니다.
+See the following for example: 예시는 다음과 같습니다.<br/>
 
-* Gamebase 사용자 ID : 123bcabca
+* Gamebase User ID : 123bcabca
 	* Google ID : aa
 	* Facebook ID : bb
 	* AppleGameCenter ID : cc
@@ -385,23 +385,23 @@ Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
 
 ### Add Mapping Flow
 
-매핑은 다음 순서로 구현할 수 있습니다.
+매핑은 다음 순서로 구현할 수 있습니다. Mapping can be implemented in the following order. 
 
-#### 1. 로그인
+#### 1. 로그인 Login 
 매핑은 현재 계정에 IdP 계정 연동을 추가하는 것이므로 우선 로그인이 돼 있어야 합니다.
 먼저 로그인 API를 호출해 로그인합니다.
 
-#### 2. 매핑
+#### 2. 매핑 Mapping 
 
 **AddMapping API**을 호출해 매핑을 시도합니다.
 
-#### 2-1. 매핑이 성공한 경우
+#### 2-1. 매핑이 성공한 경우 When Mapping is Successful
 
 * 축하합니다! 현재 계정과 연동중인 IdP 계정이 추가되었습니다.
 * 매핑에 성공해도 '현재 로그인 중인 IdP'가 바뀌지는 않습니다. <br>즉, Google 계정으로 로그인한 후, Facebook 계정 매핑 시도가 성공했다고 해서 '현재 로그인 중인 IdP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다.
 * 매핑은 단순히 IdP 연동만 추가해 줍니다.
 
-#### 2-2. 매핑이 실패한 경우
+#### 2-2. 매핑이 실패한 경우 When Mapping Fails 
 
 * 네트워크 오류
     * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **AddMapping API**을 다시 호출하거나, 잠시 대기했다가 재시도 합니다.
@@ -456,25 +456,25 @@ void Sample::AddMapping(const FString& providerName)
 
 ### AddMapping with Credential
 
-The interface allows to authenticate with SDK provided by IdP of a game to enable Gamebase AddMapping by using a given access token.  게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증을 하고 발급받은 액세스 토큰등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스 입니다.
+This interface allows to authenticate with SDK provided by IdP of a game to enable Gamebase AddMapping by using a given access token.  
 
-* How to Set Credential Parameters  파라미터의 설정 방법
+* Setting Credential Parameters  
 
-| Keyname | Usage | Value Type 값 종류 |
+| Keyname | Usage | Value Type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | Set authentication information (access token) given after IdP login 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/> Not for Google authentication 인증 시에는 사용 안 함 |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Set authorization code given after Google login  Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                            | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | Set authentication information (e.g. access token) given after IdP login <br/> Disabled for Google authentication |                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Set authorization code given after Google login  |                                          |
 
 > [TIP]
 >
-> Might be required to use original features of external services (e.g. Facebook) for a game.  게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
+> Might be required to use unique features of an external service (e.g. Facebook) for a game.  
 >
 
 
 > <font color="red">[Caution]</font><br/>
 >
-> Development issues required to be supported by external SDKs must be implemented by using APIs of such external SDK, which is not supported by Gamebase.  외부 SDK에서 지원 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
+> Development issues requiring the support of an external SDK must be implemented by using API of such SDK, which is not supported by Gamebase.
 >
 
 **API**
@@ -586,23 +586,23 @@ void Sample::AddMappingForcibly(const FString& providerName)
 
 게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMappingForcibly를 호출 할 수 있는 인터페이스입니다.
 
-* Credential 파라미터의 설정 방법
+* Setting Credential Parameters
 
-| keyname | a use | 값 종류 |
+| Keyname | Usage | Value Type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                        |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | Set authentication information (e.g. access token) given after IdP login <br/> Disabled for Google authentication |                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Set authorization code given after Google login |                                        |
 
 > [TIP]
 >
-> 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
+> Might be required to use unique features of an external service (e.g. Facebook) for a game. 
 >
 
 
 > <font color="red">[Caution]</font><br/>
 >
-> Development issues required to be supported by external SDKs must be 외부 SDK에서 지원 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
+> Development issues requiring the support of an external SDK must be implemented by using API of such SDK, which is not supported by Gamebase.
 >
 
 다음은 강제 매핑을 시도하는 예시입니다.
