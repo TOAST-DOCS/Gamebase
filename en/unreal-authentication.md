@@ -737,10 +737,10 @@ void Sample::GetAuthMappingList()
 
 ## Gamebase User`s Information
 
-Execute authentication via Gamebase, to obtain information required to produce an app. 를 통하여 인증절차를 진행 후, 앱을 제작할 때 필요한 정보를 획득할 수 있습니다.
+Execute authentication via Gamebase, to obtain information required to produce an app. 
 
 ### Get Authentication Information for Gamebase
-Execute authentication via Gamebase, to obtain information required to produce an app. 를 통하여 인증절차를 진행 후, 앱을 제작할 때 필요한 정보를 획득할 수 있습니다.
+Execute authentication via Gamebase, to obtain information required to produce an app. 
 
 #### UserID
 
@@ -813,7 +813,7 @@ Get authentication information, such as access token, User ID, and profile from 
 
 #### UserID
 
-Get user ID from externally authenticated SDK. 외부 인증 SDK에서 사용자 ID를 가져올 수 있습니다.
+Get user ID from externally authenticated SDK.
 
 **API**
 
@@ -889,7 +889,7 @@ void Sample::GetAuthProviderProfile(const FString& providerName)
 ### Get Banned User Infomation
 
 When a user is registered as banned from Gamebase Console, 
-with his login attempt, servic restriction code (**BANNED_MEMBER(7)**) may be displayed, and punishment information can be found by using the following API: 아래 API를 이용하여 제재 정보를 확인할 수 있습니다.
+with his login attempt, servic restriction code (**BANNED_MEMBER(7)**) may be displayed, and punishment information can be found by using the following API: 
 
 **API**
 
@@ -957,7 +957,7 @@ void Sample::IssueTransferAccount()
 ```
 
 ### Query TransferAccount
-게스트 계정 이전을 위해 이미 발급받은 TransferAccountInfo 정보를 게임베이스 서버에 질의합니다.
+Query TransferAccountInfo, already issued for the transfer of guest account, to a Gamebase server. 
 
 **API**
 
@@ -985,8 +985,8 @@ void Sample::QueryTransferAccount()
 ```
 
 ### Renew TransferAccount
-Renew 이미 발급받은 TransferAccountInfo which has already been issued.  정보를 갱신합니다.
-"자동 갱신", "수동 갱신"의 방법이 있으며, "Password만 갱신", "ID와 Password 모두 갱신" 등의 설정을 통해
+Renew TransferAccountInfo which has already been issued.  
+It is available either by "Automatic Renewal자동 갱신", "Manul Renewal수동 갱신"의 방법이 있으며, "Password만 갱신", "ID와 Password 모두 갱신" 등의 설정을 통해
 TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 ```cpp
@@ -1061,7 +1061,7 @@ void Sample::TransferAccountWithIdPLogin(const FString& accountId, const FString
 임시 탈퇴를 요청하여 즉시 탈퇴가 진행되지 않고 일정 기간의 유예 기간이 지나면 탈퇴가 이루어집니다.
 유예 기간은 콘솔에서 변경할 수 있습니다.
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
 > 탈퇴 유예 기능을 사용하는 경우에는 **Withdraw API** 를 사용하지 마세요.
 > **Withdraw API**는 즉시 계정을 탈퇴합니다.
@@ -1070,7 +1070,7 @@ void Sample::TransferAccountWithIdPLogin(const FString& accountId, const FString
 
 ### Request TemporaryWithdrawal
 
-임시 탈퇴를 요청합니다.
+임시 탈퇴를 요청합니다. Request temporary withdrawal. 
 콘솔에 지정된 기간이 지나면 자동으로 탈퇴 진행이 완료됩니다.
 
 **API**
@@ -1208,8 +1208,8 @@ void Sample::WithdrawImmediately()
 |                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | TransferAccount의 Password가 유효하지 않습니다. |
 |                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccount 설정이 되어있지 않습니다. <br/> TOAST Gamebase Console에서 먼저 설정해주세요. |
 |                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccount가 존재하지 않습니다. TransferAccount를 먼저 발급받아주세요. |
-|                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccount가 이미 존재합니다. |
-|                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount가 이미 사용되었습니다. |
+|                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccount already exists. 가 이미 존재합니다. |
+|                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount has already been used. 가 이미 사용되었습니다. |
 | Auth (Login) | AUTH_TOKEN_LOGIN_FAILED | 3101 | 토큰 로그인에 실패하였습니다. |
 |  | AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
 |  | AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | 최근에 로그인한 IdP 정보가 없습니다. |
