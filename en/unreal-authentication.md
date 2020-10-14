@@ -69,7 +69,7 @@ The above login can be implemented in the following order:
 
 ### Login with the Latest Login IdP
 
-Attempt a login with the most recent login IdP. 
+Attempt to log in with the most recent login IdP. 
 When token for the login has expired, or if token verification has failed, return such failure.  
 To that end, it is required to implement [Login for IdP](#login-with-idp).
 
@@ -286,7 +286,7 @@ void Sample::LoginWithCredential()
 [Console Guide](./oper-app/#authentication-information)
 
 ## Logout
-Logout is attempted from login IdP. In most cases, the logout button is located on the setting page of a game, to be clicked for execution. 
+Attempt to log out from login IdP. In most cases, the logout button is located on the setting page of a game, to be clicked for execution. 
 Even with a successful logout, game user's data remains. 
 When it is successfully logged out, authentication records with IdP are removed, and therefore, popup will show to enter ID and password for the next login attempt. <br/><br/>
 
@@ -322,7 +322,7 @@ void Sample::Logout()
 
 
 ## Withdraw
-Withdrawal is attempted while it is logged in. 
+Attempt to withdraw while it is logged in. 
 
 * When it is successfully withdrawn, game user's data integrated with logged IdP will be removed. 
 * It is available to log in again with the IdP, which creates data of a new game user.   
@@ -381,15 +381,15 @@ See the following for example: <br/>
 	* Google ID : ee
 	* Google ID : ff **-> Unable to map further Google account, since the Google ee account is already mapped.**
 
-Mapping 에는 Mapping 추가/해제 API 2개가 있습니다. In mapping, two APIs exist: Add/Cancel Mapping API.  
+Regarding mapping, two APIs exist: Add/Cancel Mapping API.  
 
 ### Add Mapping Flow
 
 Mapping can be implemented in the following order. 
 
 #### 1. Login 
-매핑은 현재 계정에 IdP 계정 연동을 추가하는 것이므로 우선 로그인이 돼 있어야 합니다. Since mapping refers to adding IdP account integration to a current account, login is required. 
-먼저 로그인 API를 호출해 로그인합니다. Call login API to log in. 
+Since mapping refers to adding IdP account integration to a current account, login is required. 
+Call login API first to log in. 
 
 #### 2. Mapping 
 
@@ -397,32 +397,32 @@ Call **AddMapping API** to attempt a mapping.
 
 #### 2-1. When Mapping is Successful
 
-* 축하합니다! 현재 계정과 연동중인 IdP 계정이 추가되었습니다. Congratulations! Just added an IdP account now mapped with the current account. 
-* 매핑에 성공해도 '현재 로그인 중인 IdP'가 바뀌지는 않습니다. <br>즉, Google 계정으로 로그인한 후, Facebook 계정 매핑 시도가 성공했다고 해서 '현재 로그인 중인 IdP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다. Even with a successful mapping, 'Currently logged IdP' does not change. <br> For instance, if you've been logged with Google account, and if an attempt of mapping with Facebook has been successful, the 'Currently logged IdP' does not change from Google to Facebook.
-* 매핑은 단순히 IdP 연동만 추가해 줍니다. Mapping simply adds IdP integration. 
+* Congratulations! Just added an IdP account now mapped with the current account. 
+* Even with a successful mapping, 'Currently logged IdP' does not change. <br> For instance, if you've been logged with Google account, and even if an attempt of mapping with Facebook has been successful, the 'Currently logged IdP' does not change from Google to Facebook.
+* Mapping simply adds IdP integration. 
 
-#### 2-2. 매핑이 실패한 경우 When Mapping Fails 
+#### 2-2. When Mapping Fails 
 
-* 네트워크 오류 Network Error
-    * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **AddMapping API**을 다시 호출하거나, 잠시 대기했다가 재시도 합니다.
-* 이미 다른 계정에 연동 중일 때 발생하는 오류
-    * 오류 코드가 **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**인 경우, 매핑하려는 IdP의 계정이 이미 다른 계정에 연동 중이라는 뜻입니다. 이미 연동된 계정을 해제하려면 해당 계정으로 로그인하여 **Withdraw API**를 호출하여 탈퇴하거나 **RemoveMapping API**를 호출하여 연동을 해제한 후 다시 매핑을 시도하세요.
-* 이미 동일한 IdP 계정에 연동돼 발생하는 오류
-	* 에러 코드가 **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)** 인 경우, 매핑하려는 IdP와 같은 종류의 계정이 이미 연동중이라는 뜻입니다.
-	* Gamebase 매핑은 한 IdP당 하나의 계정만 연동 가능합니다. 예를 들어 PAYCO 계정에 이미 연동 중이라면 더 이상 PAYCO 계정을 추가할 수 없습니다.
-	* 동일 IdP의 다른 계정을 연동하기 위해서는 **RemoveMapping API**을 호출해 연동을 해제한 후 다시 매핑을 시도하세요.
-* 그 외의 오류 Other Errors 
-    * 매핑 시도가 실패했습니다. Attempt of mapping has failed. 
+* Network Error
+    * When the error code is **SOCKET_ERROR(110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, authentication has failed due to temporary network issue, so call **AddMapping API** again or try again in a moment. 
+* Error from Mapping to Another Account
+    * When the error code is **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**, the IdP account about to map is already mapped to another account. To disintegrate such account, login to the account and call **Withdraw API** to withdraw, or call **RemoveMapping API** to cancel mapping and try a new mapping again.  
+* Error from Mapping to Same IdP Account 
+	* When the error code is **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**, it means the same type of account with an IdP about to map is already mapped.  
+	* Gamebase mapping allows mapping of only one account from each IdP. For example, if an account is already mapped to a PAYCO account, no further PAYCO account can be added.  
+	* To map to another account of same IdP, call **RemoveMapping API** to cancel mapping and try a new mapping again. 
+* Other Errors 
+    * An attempt to map has failed. 
 
 
 ### Add Mapping
 
-특정 IdP에 로그인 된 상태에서 다른 IdP로 Mapping을 시도합니다. Mapping is attempted with another IdP while it is logged in to an IdP. 
-Mapping을 하려는 IdP의 계정이 이미 다른 계정에 연동이 되어있다면
-**AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 오류를 반환합니다.<br/>
+Attempt to map with another IdP while it is logged in to a specific IdP. 
+If an account of IdP about to mapp is already mapped to another account, 
+return the error of **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**.<br/>
 
-Mapping이 성공 하더라도 '현재 로그인 중인 IdP'가 바뀌지는 않습니다. 즉, Google 계정으로 로그인 한 후, Facebook 계정 Mapping 시도가 성공했다고 해서 '현재 로그인 중인 IdP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다.
-Mapping은 단순히 IdP 연동만 추가 해줍니다.
+Even with a successful mapping, 'Currently logged IdP' does not change. For instance, if you've been logged with Google account, and even if an attempt of mapping with Facebook has been successful, the 'Currently logged IdP' does not change from Google to Facebook.
+Mapping simply adds IdP integration.
 
 **API**
 
@@ -518,8 +518,8 @@ void Sample::AddMappingWithCredential()
 
 ### Add Mapping Forcibly
 
-For an account which is already mapped to a particular IdP, try mapping **Forcibly**. 
-To attempt a **Force Mapping**, you need `ForcingMappingTicket` acquiried from AddMpping API. 
+When there's an account which is already mapped to a particular IdP, attempt to **Force Mapping**. 
+To attempt a **Force Mapping**, you need `ForcingMappingTicket` acquired from AddMpping API. 
 
 See the following example for the attempt of force mapping: 
 
@@ -543,35 +543,35 @@ void Sample::AddMappingForcibly(const FString& providerName)
         }
         else
         {
-            // By calling addMapping API and mapping to an account already integrated, you can get ForcingMappingTicket, like below.
+            // Call addMapping API and map to an account already integrated, and get ForcingMappingTicket, like below.
             if (error->code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
-                // ForcingMappingTicket 클래스의 From() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
+                // Use the From() method of the ForcingMappingTicket class to get an ForcingMappingTicket instance. 
                 auto forcingMappingTicket = FGamebaseForcingMappingTicket::From(error);
                 if (forcingMappingTicket.IsValid() == false)
                 {
                     // Unexpected error occurred. Contact Administrator.
                 }
                 
-                // Try to force mapping. 강제 매핑을 시도합니다.
+                // Attempt to force mapping. 
                 IGamebase::Get().AddMappingForcibly(providerName, forcingMappingTicket->forcingMappingKey,
                     FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* innerAuthToken, const FGamebaseError* innerError)
                 {
                     if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
                     {
-                        // 강제 매핑 추가 성공
+                        // Successfully added force mapping
                         UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly succeeded."));
                     }
                     else
                     {
-                        // 에러 코드를 확인하고 적절한 처리를 진행합니다.
+                        // Check error code and take an appropriate processing. 
                         UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly failed. (errorCode: %d, errorMessage: %s)"), error->code, *error->message);
                     }
                 }));
             }
             else
             {
-                // 에러 코드를 확인하고 적절한 처리를 진행합니다.
+                // Check error code and take an appropriate processing. 
                 UE_LOG(GamebaseTestResults, Display, TEXT("AddMapping failed."));
             }
         }
@@ -581,12 +581,12 @@ void Sample::AddMappingForcibly(const FString& providerName)
 
 
 ### Add Mapping Forcibly with Credential
-특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
-**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+When there's an account which is already mapped to a particular IdP, attempt to **Force Mapping**. 
+To attempt a **Force Mapping**, you need `ForcingMappingTicket` acquired from AddMpping API. 
 
-게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMappingForcibly를 호출 할 수 있는 인터페이스입니다.
+The interface enables to authenticate with SDK provided by game IdP to call Gamebase AddMappingForcibly, by using given access token. 
 
-* Setting Credential Parameters
+* Setting Credential Parameters 
 
 | Keyname | Usage | Value Type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
@@ -605,7 +605,7 @@ void Sample::AddMappingForcibly(const FString& providerName)
 > Development issues requiring the support of an external SDK must be implemented by using API of such SDK, which is not supported by Gamebase.
 >
 
-다음은 강제 매핑을 시도하는 예시입니다.
+See the following example of attempting force mapping. 
 
 **API**
 
@@ -636,35 +636,35 @@ void Sample::AddMappingForcibly()
         }
         else
         {
-            // 우선 addMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
+            // Call addMapping API and map to an account already integrated, and get ForcingMappingTicket, like below.
             if (error->code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
-                // ForcingMappingTicket 클래스의 From() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
+                // Use the From() method of the ForcingMappingTicket class to get an ForcingMappingTicket instance.
                 auto forcingMappingTicket = FGamebaseForcingMappingTicket::From(error);
                 if (forcingMappingTicket.IsValid() == false)
                 {
                     // Unexpected error occurred. Contact Administrator.
                 }
                 
-                // 강제 매핑을 시도합니다.
+                // Attempt to force mapping. 
                 IGamebase::Get().AddMappingForcibly(*credentialInfo, forcingMappingTicket->forcingMappingKey,
                     FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* innerAuthToken, const FGamebaseError* innerError)
                 {
                     if (error == nullptr || error->code == GamebaseErrorCode::SUCCESS)
                     {
-                        // 강제 매핑 추가 성공
+                        // Successfully added force mapping 
                         UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly succeeded."));
                     }
                     else
                     {
-                        // 에러 코드를 확인하고 적절한 처리를 진행합니다.
+                        // Check error code and take an appropriate processing. 
                         UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly failed. (errorCode: %d, errorMessage: %s)"), error->code, *error->message);
                     }
                 }));
             }
             else
             {
-                // 에러 코드를 확인하고 적절한 처리를 진행합니다.
+                // Check error code and take an appropriate processing. 
                 UE_LOG(GamebaseTestResults, Display, TEXT("AddMapping failed."));
             }
         }
@@ -675,8 +675,8 @@ void Sample::AddMappingForcibly()
 
 ### Remove Mapping
 
-특정 IdP에 대한 연동을 해제합니다. 만약, 해제하고자 하는 IdP가 유일한 IdP라면, 실패를 반환합니다.
-연동 해제후에는 Gamebase 내부에서, 해당 IdP에 대한 로그아웃처리를 해줍니다.
+Remove mapping from a particular IdP. If there's only one IdP, return failure. 
+After mapping is removed, log out from the IdP within Gamebase. 
 
 **API**
 
@@ -709,7 +709,7 @@ void Sample::RemoveMapping(const FString& providerName)
 
 ### Get Mapping List
 
-사용자 ID에 연동되어 있는 IdP 목록을 반환합니다.<br/>
+Return the list of IdPs mapped with user ID. <br/>
 
 **API**
 
@@ -737,14 +737,14 @@ void Sample::GetAuthMappingList()
 
 ## Gamebase User`s Information
 
-Gamebase를 통하여 인증절차를 진행 후, 앱을 제작할 때 필요한 정보를 획득할 수 있습니다.
+Execute authentication via Gamebase, to obtain information required to produce an app. 를 통하여 인증절차를 진행 후, 앱을 제작할 때 필요한 정보를 획득할 수 있습니다.
 
 ### Get Authentication Information for Gamebase
-Gamebase를 통하여 인증절차를 진행 후, 앱을 제작할 때 필요한 정보를 획득할 수 있습니다.
+Execute authentication via Gamebase, to obtain information required to produce an app. 를 통하여 인증절차를 진행 후, 앱을 제작할 때 필요한 정보를 획득할 수 있습니다.
 
 #### UserID
 
-Gamebase에서 발급한 UserID를 가져올 수 있습니다.
+Get UserID issued from Gamebase. 
 **API**
 
 Supported Platforms
@@ -765,7 +765,7 @@ void Sample::GetUserID()
 
 #### AccessToken
 
-Gamebase에서 발급한 액세스 토큰을 가져올 수 있습니다.
+Get access token issued from Gamebase.
 
 **API**
 
@@ -787,7 +787,7 @@ void Sample::GetAccessToken()
 
 #### Last LoggedIn Provider Name
 
-Gamebase에서 마지막 로그인에 성공한 ProviderName을 가져올 수 있습니다.
+Get ProviderName that was successful with the last login from Gamebase.
 
 **API**
 
@@ -809,11 +809,11 @@ void Sample::GetLastLoggedInProvider()
 
 ### Get Authentication Information for External IdP
 
-외부 인증 SDK에서 액세스 토큰, 사용자 ID, Profile 등의 인증 정보를 가져올 수 있습니다.
+Get authentication information, such as access token, User ID, and profile from externally authenticated SDK. 
 
 #### UserID
 
-외부 인증 SDK에서 사용자 ID를 가져올 수 있습니다.
+Get user ID from externally authenticated SDK. 외부 인증 SDK에서 사용자 ID를 가져올 수 있습니다.
 
 **API**
 
@@ -836,7 +836,7 @@ void Sample::GetLastLoggedInProvider(const FString& providerName)z
 
 #### AccessToken
 
-외부 인증 SDK에서 액세스 토큰을 가져올 수 있습니다.
+Get access token from externally authenticated SDK.  
 
 **API**
 
@@ -858,7 +858,7 @@ void Sample::GetAuthProviderAccessToken(const FString& providerName)
 
 #### Profile
 
-외부 인증 SDK에서 Profile을 가져올 수 있습니다.
+Get profile from externally authenticated SDK. 
 
 **API**
 
@@ -888,8 +888,8 @@ void Sample::GetAuthProviderProfile(const FString& providerName)
 
 ### Get Banned User Infomation
 
-Gamebase Console에 제재된 게임 유저로 등록될 경우,
-로그인 시도 시, 이용 제한 정보 코드(**BANNED_MEMBER(7)**)가 표시될 수 있으며, 아래 API를 이용하여 제재 정보를 확인할 수 있습니다.
+When a user is registered as banned from Gamebase Console, 
+with his login attempt, servic restriction code (**BANNED_MEMBER(7)**) may be displayed, and punishment information can be found by using the following API: 아래 API를 이용하여 제재 정보를 확인할 수 있습니다.
 
 **API**
 
@@ -918,18 +918,18 @@ void Sample::GetBanInfo()
 ```
 
 ## TransferAccount
-게스트 계정을 다른 단말기로 이전하기 위해 계정 이전을 위한 키를 발급받는 기능입니다.
+With this feature, key to transfer guest account onto another device can be issued.  
 
-이 키를 **TransferAccountInfo** 라고 부릅니다.
-발급받은 TransferAccountInfo는 다른 단말기에서 **requestTransferAccount** API를 호출하여 계정 이전을 할 수 있습니다.
+The key is called **TransferAccountInfo**.
+The issued TransferAccountInfo enables account transfer by calling **requestTransferAccount** API from another device. 
 
-> <font color="red">[주의]</font><br/>
-> TransferAccountInfo의 발급은 게스트 로그인 상태에서만 발급이 가능합니다.
-> TransferAccountInfo를 이용한 계정 이전은 게스트 로그인 상태 또는 로그인되어 있지 않은 상태에서만 가능합니다.
-> 로그인한 게스트 계정이 이미 다른 외부 IdP (Google, Facebook, Payco 등) 계정과 매핑이 되어 있다면 계정 이전이 지원되지 않습니다.
+> <font color="red">[Caution]</font><br/>
+> TransferAccountInfo can be issued only under guest login.  
+> Account transfer by using TransferAccountInfo is available only with a guest login or logout. 
+> If a login guest account is already mapped with another external IdP (e.g. Google, Facebook, or Payco), account transfer is not supported. 
 
 ### Issue TransferAccount
-게스트 계정 이전을 위한 TransferAccountInfo를 발급합니다.
+Issue TransferAccountInfo to transfer account. 
 
 **API**
 
@@ -985,7 +985,7 @@ void Sample::QueryTransferAccount()
 ```
 
 ### Renew TransferAccount
-이미 발급받은 TransferAccountInfo 정보를 갱신합니다.
+Renew 이미 발급받은 TransferAccountInfo which has already been issued.  정보를 갱신합니다.
 "자동 갱신", "수동 갱신"의 방법이 있으며, "Password만 갱신", "ID와 Password 모두 갱신" 등의 설정을 통해
 TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
@@ -1193,12 +1193,12 @@ void Sample::WithdrawImmediately()
 
 | Category | Error | Error Code | Description |
 | --- | --- | --- | --- |
-| Auth | INVALID_MEMBER | 6 | 잘못된 회원에 대한 요청입니다. |
-|  | BANNED_MEMBER | 7 | 제재된 회원입니다. |
-|  | AUTH_USER_CANCELED | 3001 | 로그인이 취소되었습니다. |
-|  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
-|  | AUTH_NOT_EXIST_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
-|  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
+| Auth | INVALID_MEMBER | 6 | Requested for invalid member.  잘못된 회원에 대한 요청입니다. |
+|  | BANNED_MEMBER | 7 | The member has been banned. 제재된 회원입니다. |
+|  | AUTH_USER_CANCELED | 3001 | Cancelled login. 로그인이 취소되었습니다. |
+|  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | The authentication method is not supported. 지원하지 않는 인증 방식입니다. |
+|  | AUTH_NOT_EXIST_MEMBER | 3003 | The member does not exist or has withdrawn. 존재하지 않거나 탈퇴한 회원입니다. |
+|  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | Error of external authentication library. 외부 인증 라이브러리 오류입니다. <br/> Check DetailCode and DetailMessage.  |
 |  | AUTH_ALREADY_IN_PROGRESS_ERROR | 3010 | 이전 인증 프로세스가 완료되지 않았습니다.
 | TransferAccount| SAME\_REQUESTOR                          | 8          | 발급한 TransferAccount를 동일한 단말기에서 사용했습니다. |
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IdP가 연동되어 있습니다. |
@@ -1236,12 +1236,12 @@ void Sample::WithdrawImmediately()
 | Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | 알수 없는 에러입니다. (정의 되지 않은 에러입니다.) |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./error-code/#client-sdk)
+    * [Error Codes](./error-code/#client-sdk)
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* 이 오류는 외부 인증 라이브러리에서 발생한 오류입니다.
-* 오류 코드를 확인하는 방법은 다음과 같습니다.
+* The error occurs from externally authenticated library. 
+* Check error codes like below: 
 
 ```cpp
 GamebaseError* gamebaseError = error; // GamebaseError object via callback
@@ -1262,4 +1262,4 @@ else
 }
 ```
 
-* IdP SDK의 오류 코드는 각 개발자 페이지를 참고하시기 바랍니다.
+* Please see each developer's page for error codes of IdP SDK. 
