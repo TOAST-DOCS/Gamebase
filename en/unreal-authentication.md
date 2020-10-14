@@ -986,8 +986,7 @@ void Sample::QueryTransferAccount()
 
 ### Renew TransferAccount
 Renew TransferAccountInfo which has already been issued.  
-It is available either by "Automatic Renewal자동 갱신", "Manul Renewal수동 갱신"의 방법이 있으며, "Password만 갱신", "ID와 Password 모두 갱신" 등의 설정을 통해
-TransferAccountInfo 정보를 갱신 할 수 있습니다.
+It is available either by "Auto Renewal", or "Manual Renewal", and TransferAccountInfo can be updated by setting "Renew Password Only", or "Renew Both ID and Password". 
 
 ```cpp
 void RenewTransferAccount(const FGamebaseTransferAccountRenewConfiguration& configuration, const FGamebaseTransferAccountDelegate& onCallback);
@@ -998,11 +997,11 @@ void RenewTransferAccount(const FGamebaseTransferAccountRenewConfiguration& conf
 ```cpp
 void Sample::RenewTransferAccount(const FString& accountId, const FString& accountPassword)
 {
-    // 수동 설정
+    // Manual Setting
     FGamebaseTransferAccountRenewConfiguration configuration{ accountId, accountPassword };
     //FGamebaseTransferAccountRenewConfiguration configuration{ accountPassword };
 
-    // 자동 설정
+    // Auto Setting
     //FGamebaseTransferAccountRenewConfiguration configuration{ type };
 
     IGamebase::Get().RenewTransferAccount(configuration, FGamebaseTransferAccountDelegate::CreateLambda([=](const FGamebaseTransferAccountInfo* transferAccountInfo, const FGamebaseError* error)
@@ -1021,12 +1020,12 @@ void Sample::RenewTransferAccount(const FString& accountId, const FString& accou
 
 
 ### Transfer Guest Account to Another Device
-**issueTransfer** API로 발급받은 TransferAccount를 통해 계정을 이전하는 기능입니다.
-계정 이전 성공 시 TransferAccount를 발급받은 단말기에서 이전 완료 메시지가 표시될 수 있고, Guest 로그인 시 새로운 계정이 생성됩니다.
-계정 이전이 성공한 단말기에서는 TransferAccount를 발급받았던 단말기의 게스트 계정을 계속해서 사용할 수 있습니다.
+Account can be transferred via TransferAccount with the **issueTransfer** API. 
+When account transfer is successful, transfer completion message may be displayed on the device that issued TransferAccount, and a new account will be created with a guest login.  
+On a device with successful account transfer, you can continue to apply the guest account of device which issued TransferAccount.  
 
-> <font color="red">[주의]</font><br/>
-> 이미 게스트 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
+> <font color="red">[Caution]</font><br/>
+> If transfer is successful while guest is logged in, the guest account logged in the device will be lost. 
 
 **API**
 
