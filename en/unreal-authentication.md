@@ -379,17 +379,17 @@ See the following for example: <br/>
 	* Payco ID : dd
 * Gamebase 사용자 ID : 456abcabc
 	* Google ID : ee
-	* Google ID : ff **-> Unable to map further Google account, since the Google ee account has been mapped.**
+	* Google ID : ff **-> Unable to map further Google account, since the Google ee account is already mapped.**
 
-Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
+Mapping 에는 Mapping 추가/해제 API 2개가 있습니다. In mapping, two APIs exist: Add/Cancel Mapping API.  
 
 ### Add Mapping Flow
 
 Mapping can be implemented in the following order. 
 
 #### 1. Login 
-매핑은 현재 계정에 IdP 계정 연동을 추가하는 것이므로 우선 로그인이 돼 있어야 합니다.
-먼저 로그인 API를 호출해 로그인합니다.
+매핑은 현재 계정에 IdP 계정 연동을 추가하는 것이므로 우선 로그인이 돼 있어야 합니다. Since mapping refers to adding IdP account integration to a current account, login is required. 
+먼저 로그인 API를 호출해 로그인합니다. Call login API to log in. 
 
 #### 2. Mapping 
 
@@ -397,9 +397,9 @@ Call **AddMapping API** to attempt a mapping.
 
 #### 2-1. When Mapping is Successful
 
-* 축하합니다! 현재 계정과 연동중인 IdP 계정이 추가되었습니다.
-* 매핑에 성공해도 '현재 로그인 중인 IdP'가 바뀌지는 않습니다. <br>즉, Google 계정으로 로그인한 후, Facebook 계정 매핑 시도가 성공했다고 해서 '현재 로그인 중인 IdP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다.
-* 매핑은 단순히 IdP 연동만 추가해 줍니다.
+* 축하합니다! 현재 계정과 연동중인 IdP 계정이 추가되었습니다. Congratulations! Just added an IdP account now mapped with the current account. 
+* 매핑에 성공해도 '현재 로그인 중인 IdP'가 바뀌지는 않습니다. <br>즉, Google 계정으로 로그인한 후, Facebook 계정 매핑 시도가 성공했다고 해서 '현재 로그인 중인 IdP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다. Even with a successful mapping, 'Currently logged IdP' does not change. <br> For instance, if you've been logged with Google account, and if an attempt of mapping with Facebook has been successful, the 'Currently logged IdP' does not change from Google to Facebook.
+* 매핑은 단순히 IdP 연동만 추가해 줍니다. Mapping simply adds IdP integration. 
 
 #### 2-2. 매핑이 실패한 경우 When Mapping Fails 
 
