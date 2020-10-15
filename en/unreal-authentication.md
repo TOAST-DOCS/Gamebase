@@ -377,7 +377,7 @@ See the following for example: <br/>
 	* Facebook ID : bb
 	* AppleGameCenter ID : cc
 	* Payco ID : dd
-* Gamebase 사용자 ID : 456abcabc
+* Gamebase User ID : 456abcabc
 	* Google ID : ee
 	* Google ID : ff **-> Unable to map further Google account, since the Google ee account is already mapped.**
 
