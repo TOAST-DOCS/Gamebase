@@ -1056,21 +1056,21 @@ void Sample::TransferAccountWithIdPLogin(const FString& accountId, const FString
 
 ## TemporaryWithdrawal
 
-'탈퇴 유예' 기능입니다.
-임시 탈퇴를 요청하여 즉시 탈퇴가 진행되지 않고 일정 기간의 유예 기간이 지나면 탈퇴가 이루어집니다.
-유예 기간은 콘솔에서 변경할 수 있습니다.
+'Suspension of Withdrawal' is available. 
+At the request for a temporary withdrawal, user can withdraw after certain period of suspension. 
+Suspension period can be changed from the console.
 
 > <font color="red">[Caution]</font><br/>
 >
-> 탈퇴 유예 기능을 사용하는 경우에는 **Withdraw API** 를 사용하지 마세요.
-> **Withdraw API**는 즉시 계정을 탈퇴합니다.
+> To suspend withdrawal, do not use **Withdraw API**.
+> **Withdraw API** regards to immediate withdrawal from account. 
 
-로그인이 성공하면 AuthToken.member.temporaryWithdrawal로 탈퇴 유예 상태인 유저인지 판단할 수 있습니다.
+When it is successfully logged in, the withdrawal status of a user can be found with AuthToken.member.temporaryWithdrawal.
 
 ### Request TemporaryWithdrawal
 
-임시 탈퇴를 요청합니다. Request temporary withdrawal. 
-콘솔에 지정된 기간이 지나면 자동으로 탈퇴 진행이 완료됩니다.
+Send a request for a temporary withdrawal. 
+After a certain period specified on console, user withdrawal is automatically processed.  
 
 **API**
 
@@ -1099,7 +1099,7 @@ void Sample::RequestWithdrawal()
 
 ### Check TemporaryWithdrawal User
 
-탈퇴 유예를 사용하는 게임은 로그인 후 항상 AuthToken.member.temporaryWithdrawal가 null이 아니라면 해당 유저에게 탈퇴 진행중이라는 사실을 알려주어야 합니다.
+Games enabling the suspension of withdrawal must always notify the user after login that withdrawal is underway, unless AuthToken.member.temporaryWithdrawal is null. 
 
 **Example**
 
@@ -1129,8 +1129,8 @@ void Sample::Login()
 
 ### Cancel TemporaryWithdrawal
 
-탈퇴를 요청을 취소합니다.
-탈퇴 요청 후 기간이 만료되어 탈퇴가 완료되면 취소가 불가능합니다.
+Cancel request for a withdrawal.
+After withdrawal is completed and if it has expired, withdrawal cannot be reverted.  
 
 **API**
 
@@ -1158,10 +1158,10 @@ void Sample::CancelTemporaryWithdrawal()
 
 ### Withdraw Immediately
 
-탈퇴 유예 기간을 무시하고 즉시 탈퇴를 진행합니다.
-실제 내부 동작은 Withdraw API 와 동일합니다.
+Withdraw immediately without considering the suspension period. 탈퇴 유예 기간을 무시하고 즉시 탈퇴를 진행합니다.
+It runs the same as Withdraw API. 실제 내부 동작은 Withdraw API 와 동일합니다.
 
-즉시 탈퇴는 취소가 불가능하므로 유저에게 실행 여부를 거듭 확인하시기 바랍니다.
+Since immediate withdrawal cannot be cancelled, it must be confirmed by the user several times.  즉시 탈퇴는 취소가 불가능하므로 유저에게 실행 여부를 거듭 확인하시기 바랍니다.
 
 **API**
 
@@ -1192,49 +1192,49 @@ void Sample::WithdrawImmediately()
 
 | Category | Error | Error Code | Description |
 | --- | --- | --- | --- |
-| Auth | INVALID_MEMBER | 6 | Requested for invalid member.  잘못된 회원에 대한 요청입니다. |
-|  | BANNED_MEMBER | 7 | The member has been banned. 제재된 회원입니다. |
-|  | AUTH_USER_CANCELED | 3001 | Cancelled login. 로그인이 취소되었습니다. |
-|  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | The authentication method is not supported. 지원하지 않는 인증 방식입니다. |
-|  | AUTH_NOT_EXIST_MEMBER | 3003 | The member does not exist or has withdrawn. 존재하지 않거나 탈퇴한 회원입니다. |
-|  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | Error of external authentication library. 외부 인증 라이브러리 오류입니다. <br/> Check DetailCode and DetailMessage.  |
-|  | AUTH_ALREADY_IN_PROGRESS_ERROR | 3010 | 이전 인증 프로세스가 완료되지 않았습니다.
-| TransferAccount| SAME\_REQUESTOR                          | 8          | 발급한 TransferAccount를 동일한 단말기에서 사용했습니다. |
-|                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IdP가 연동되어 있습니다. |
-|                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccount의 유효기간이 만료됐습니다. |
-|                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | 잘못된 TransferAccount를 여러번 입력하여 계정 이전 기능이 잠겼습니다. |
-|                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | TransferAccount의 ID가 유효하지 않습니다. |
-|                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | TransferAccount의 Password가 유효하지 않습니다. |
-|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccount 설정이 되어있지 않습니다. <br/> TOAST Gamebase Console에서 먼저 설정해주세요. |
-|                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccount가 존재하지 않습니다. TransferAccount를 먼저 발급받아주세요. |
-|                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccount already exists. 가 이미 존재합니다. |
-|                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount has already been used. 가 이미 사용되었습니다. |
-| Auth (Login) | AUTH_TOKEN_LOGIN_FAILED | 3101 | 토큰 로그인에 실패하였습니다. |
-|  | AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | 토큰 정보가 유효하지 않습니다. |
-|  | AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | 최근에 로그인한 IdP 정보가 없습니다. |
-| IdP Login | AUTH_IDP_LOGIN_FAILED | 3201 | IdP 로그인에 실패하였습니다. |
-|  | AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3202 | IdP 정보가 유효하지 않습니다. (Console에 해당 IdP 정보가 없습니다.) |
-| Add Mapping | AUTH_ADD_MAPPING_FAILED | 3301 | 맵핑 추가에 실패하였습니다. |
-|  | AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | 이미 다른 멤버에 맵핑되어있습니다. |
-|  | AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | 이미 같은 IdP에 맵핑되어있습니다. |
-|  | AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | IdP 정보가 유효하지 않습니다. (Console에 해당 IdP 정보가 없습니다.) |
-|                | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP    | 3305       | Guest IdP로는 AddMapping이 불가능합니다. |
-| Add Mapping Forcibly | AUTH_ADD_MAPPING_FORCIBLY_NOT_EXIST_KEY         | 3311       | 강제매핑키(ForcingMappingKey)가 존재하지 않습니다. <br/>ForcingMappingTicket을 다시 한번 확인해주세요. |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_ALREADY_USED_KEY      | 3312       | 강제매핑키(ForcingMappingKey)가 이미 사용되었습니다. |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_EXPIRED_KEY           | 3313       | 강제매핑키(ForcingMappingKey)의 유효기간이 만료되었습니다. |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_IDP         | 3314       | 강제매핑키(ForcingMappingKey)가 다른 IDP에 사용되었습니다. <br/>발급받은 ForcingMappingKey는 같은 IdP에 강제 매핑을 시도 하는데 사용됩니다. |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_AUTHKEY     | 3315       | 강제매핑키(ForcingMappingKey)가 다른 계정에 사용되었습니다. <br/>발급받은 ForcingMappingKey는 같은 IdP 및 계정에 강제 매핑을 시도 하는데 사용됩니다. |
-| Remove Mapping | AUTH_REMOVE_MAPPING_FAILED | 3401 | 맵핑 삭제에 실패하였습니다. |
-|  | AUTH_REMOVE_MAPPING_LAST_MAPPED\_IDP | 3402 | 마지막에 맵핑된 IdP는 삭제할 수 없습니다. |
-|  | AUTH_REMOVE_MAPPING_LOGGED_IN\_IDP | 3403 | 현재 로그인 되어 있는 IdP 입니다. |
-| Logout | AUTH_LOGOUT_FAILED | 3501 | 로그아웃에 실패하였습니다. |
-| Withdrawal     | AUTH\_WITHDRAW\_FAILED                   | 3601       | 탈퇴에 실패했습니다.                              |
-|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 이미 임시 탈퇴중인 유저 입니다.                    |
-|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 임시 탈퇴중인 유저가 아닙니다.                     |
-| Not Playable | AUTH_NOT_PLAYABLE | 3701 | 플레이할 수 없는 상태입니다. (점검 또는 서비스 종료 등) |
-| Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | 알수 없는 에러입니다. (정의 되지 않은 에러입니다.) |
+| Auth | INVALID_MEMBER | 6 | Requested for invalid member.  |
+|  | BANNED_MEMBER | 7 | The member has been banned.  |
+|  | AUTH_USER_CANCELED | 3001 | Cancelled login. |
+|  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | The authentication method is not supported.  |
+|  | AUTH_NOT_EXIST_MEMBER | 3003 | The member does not exist or has withdrawn.  |
+|  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | Error of external authentication library. <br/> Check DetailCode and DetailMessage.  |
+|  | AUTH_ALREADY_IN_PROGRESS_ERROR | 3010 | Previous authentication process has not been completed. 
+| TransferAccount| SAME\_REQUESTOR                          | 8          | Used TransferAccount on a same device.  |
+|                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | Attempted to transfer on a non-guest account, or mapped a non-guest IdP to account.  |
+|                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccount has been expired.  |
+|                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | Account transfer is locked due to many inputs of invalid TransferAccount. |
+|                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | TransferAccount ID is invalid. |
+|                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | TransferAccount password is invalid. |
+|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccount is not set up. <br/> Please enable it first on TOAST Gamebase Console.  |
+|                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccount does not exist. Please get TransferAccount issued.  |
+|                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccount already exists. |
+|                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount has already been used. |
+| Auth (Login) | AUTH_TOKEN_LOGIN_FAILED | 3101 | Token login failed.  |
+|  | AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | Token information is invalid.  |
+|  | AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | There's no last login IdP information.  |
+| IdP Login | AUTH_IDP_LOGIN_FAILED | 3201 | IdP login has failed.   |
+|  | AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3202 | IdP information is invalid. (IdP information is unavialable on console.) |
+| Add Mapping | AUTH_ADD_MAPPING_FAILED | 3301 | Failed to add mapping. |
+|  | AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | Mapped to another member. |
+|  | AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | Already mapped to same IdP. |
+|  | AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | IdP information is invalid (IdP information is unavailable on console).  |
+|                | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP    | 3305       | AddMapping is unavailable with Guest IdP.  |
+| Add Mapping Forcibly | AUTH_ADD_MAPPING_FORCIBLY_NOT_EXIST_KEY         | 3311       | ForcingMappingKey does not exist. <br/> Check ForcingMappingTicket again. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_ALREADY_USED_KEY      | 3312       | ForcingMappingKey has already been used.  |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_EXPIRED_KEY           | 3313       | ForcingMappingKey is expired.  |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_IDP         | 3314       | ForcingMappingKey has been used for another IdP. <br/> The ForcingMappingKey is applied for the attempt of force mapping to a same IdP.  |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_AUTHKEY     | 3315       | ForcingMappingKey has been used for another account.  <br/> The ForcingMappingKey is applied for the attempt of force mapping to a same IdP and account.  |
+| Remove Mapping | AUTH_REMOVE_MAPPING_FAILED | 3401 | Failed to delete mapping  |
+|  | AUTH_REMOVE_MAPPING_LAST_MAPPED\_IDP | 3402 | Unable to delete the last mapped IdP. |
+|  | AUTH_REMOVE_MAPPING_LOGGED_IN\_IDP | 3403 | The IdP is currently logged-in.  |
+| Logout | AUTH_LOGOUT_FAILED | 3501 | Failed to log out. |
+| Withdrawal     | AUTH\_WITHDRAW\_FAILED                   | 3601       | Failed to withdraw.                             |
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | The user is already under temporary withdrawal.                   |
+|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | The user is not under temporary withdrawal.                    |
+| Not Playable | AUTH_NOT_PLAYABLE | 3701 | Unavailable to play game (e.g. due to maintenance or service closed.)  |
+| Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | Unknown error (undefined error). |
 
-* 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
+* Please see the following document for the entire error codes. 
     * [Error Codes](./error-code/#client-sdk)
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
