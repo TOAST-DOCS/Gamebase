@@ -1,4 +1,4 @@
-## Game > Gamebase > User Guide for Unreal SDK 사용 가이드 > Initialization 
+## Game > Gamebase > User Guide for Unreal SDK > Initialization 
 
 To use Unreal Gamebase SDK, initialization is required. In addition, app ID, and app version information must be registered on TOAST console. 
 
