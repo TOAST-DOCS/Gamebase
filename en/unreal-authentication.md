@@ -1158,10 +1158,10 @@ void Sample::CancelTemporaryWithdrawal()
 
 ### Withdraw Immediately
 
-Withdraw immediately without considering the suspension period. 탈퇴 유예 기간을 무시하고 즉시 탈퇴를 진행합니다.
-It runs the same as Withdraw API. 실제 내부 동작은 Withdraw API 와 동일합니다.
+Withdraw immediately without considering the suspension period. 
+It runs the same as Withdraw API. 
 
-Since immediate withdrawal cannot be cancelled, it must be confirmed by the user several times.  즉시 탈퇴는 취소가 불가능하므로 유저에게 실행 여부를 거듭 확인하시기 바랍니다.
+Since immediate withdrawal cannot be cancelled, it is recommended to be confirmed by the user several times.  
 
 **API**
 
