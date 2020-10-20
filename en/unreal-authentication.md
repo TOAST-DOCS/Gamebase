@@ -1239,7 +1239,7 @@ void Sample::WithdrawImmediately()
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* The error occurs from externally authenticated library. 
+* The error occurs from external authentication library. 
 * Check error codes like below: 
 
 ```cpp
