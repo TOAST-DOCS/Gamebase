@@ -19,7 +19,7 @@ Regarding how to set in-app purchases on Android or iOS, read the following docu
 
 ###  Purchase Flow
 
-You may execute item purchase in the following order: <br/>
+You may execute an item purchase in the following order: <br/>
 
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.6.2.png)
 
