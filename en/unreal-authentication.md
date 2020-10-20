@@ -1130,7 +1130,7 @@ void Sample::Login()
 ### Cancel TemporaryWithdrawal
 
 Cancel request for a withdrawal.
-After withdrawal is completed and if it has expired, withdrawal cannot be reverted.  
+After withdrawal is completed and if the request has expired, withdrawal cannot be reverted.  
 
 **API**
 
