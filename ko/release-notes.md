@@ -1,5 +1,30 @@
 ## Game > Gamebase > 릴리스 노트
 
+### 2020. 10. 27.
+
+#### 기능 추가
+* Unreal SDK 기능 추가: SDK 2.15.0
+    * 기존의 모든 이벤트 시스템을 통합하는 GamebaseEventHandler 추가
+        * ServerPush, Observer 기능을 포함하고 있고, Promotion 결제 이벤트 및 Push 이벤트 확인 가능
+    * API 추가
+    	* 상품 ID로 결제 요청하고 추가 정보(UserPayload)를 입력해 결제 완료 시 확인 가능한 결제 API 추가
+    	* 이미지 공지 표시: showImageNotices
+    	* Push 토큰 정보 확인: queryTokenInfo
+    * 푸시 토큰 등록시 NotificationOption 설정으로 앱이 Foreground 상태에서도 푸시 알림을 받을 수 있도록 기능 추가
+    * WebViewConfiguration contentMode 설정 추가
+    
+#### 기능 개선/변경
+* [SDK] 2.17.1
+    * (iOS) 특정 지표 전송시 에러 메시지를 추가하여 전송: 푸시 등록에 실패시, Game 지표 전송
+* [SDK] 2.15.0
+    * (Unreal) TOAST SDK 업데이트: Android(0.23.0), iOS(0.26.0), Unity(0.21.0)
+    * (Unreal) 결제 모듈에 ProGuard 선언이 누락된 오류 수정
+
+#### 버그 수정
+* [Console]
+    * Analytics > 이용자 지표: 주간, 월간 평균 CCU 계산 로직 수정하여 비정상적으로 노출되는 문제 수정
+    * 쿠폰 > 쿠폰 발급: 발급된 쿠폰의 파일 다운로드가 되지 않는 문제 수정
+
 ### 2020. 10. 13.
 
 ```
@@ -11,29 +36,29 @@
 
 #### 기능 개선/변경
 * [SDK] 2.17.0
-	* (공통) 고객 센터 첨부 이미지 클릭 시 다운로드 지원
-	* (공통) TOAST SDK 업데이트: Android(0.23.2), Unity(0.21.2)
-	* (iOS) TCGBMember.regDate, TCGBMember.lastLoginDate의 타입을 long long으로 변경
-	* (iOS) 웹뷰에서 URL 및 타이틀 변경 시 타이틀을 재출력할 수 있도록 로직 변경
+    * (공통) 고객 센터 첨부 이미지 클릭 시 다운로드 지원
+    * (공통) TOAST SDK 업데이트: Android(0.23.2), Unity(0.21.2)
+    * (iOS) TCGBMember.regDate, TCGBMember.lastLoginDate의 타입을 long long으로 변경
+    * (iOS) 웹뷰에서 URL 및 타이틀 변경 시 타이틀을 재출력할 수 있도록 로직 변경
 
 #### 버그 수정
 * [SDK] 2.17.0
-	* (iOS) PAYCO 인증: lastLoggedInProvider 로그인 후 로그아웃 호출 시 로그아웃 콜백이 오지 않는 문제 수정
+    * (iOS) PAYCO 인증: lastLoggedInProvider 로그인 후 로그아웃 호출 시 로그아웃 콜백이 오지 않는 문제 수정
 * [SDK] 2.17.1
-	* (Android) 2.17.0에서 ImageNotice API 호출 시 kotlinx-coroutine 모듈에서 크래시가 발생하는 문제 수정
+    * (Android) 2.17.0에서 ImageNotice API 호출 시 kotlinx-coroutine 모듈에서 크래시가 발생하는 문제 수정
 	
 ### 2020. 09. 22.
 
 #### 기능 추가
 * 고객센터 기능 추가
-	* [Console] 고객 센터 메뉴 오픈: 고객 문의 처리, FAQ/공지 사항 관리 
-	* [SDK] 2.16.0
-		* (공통) API 추가(Gamebase.Contact.requestContactURL): 고객 센터 URL 리턴
-		* (공통) 고객 센터 API 에 userName 을 설정할 수 있도록 ContactConfiguration 파라미터 추가 
+    * [Console] 고객 센터 메뉴 오픈: 고객 문의 처리, FAQ/공지 사항 관리 
+    * [SDK] 2.16.0
+	* (공통) API 추가(Gamebase.Contact.requestContactURL): 고객 센터 URL 리턴
+	* (공통) 고객 센터 API 에 userName 을 설정할 수 있도록 ContactConfiguration 파라미터 추가 
 		
 #### 기능 개선/변경
 * [Console] 
-	* Analytics 메뉴 공통: 국가별 필터 정렬 기준 변경(지표 내림차순 -> 국가 이름 오름차순)     
+    * Analytics 메뉴 공통: 국가별 필터 정렬 기준 변경(지표 내림차순 -> 국가 이름 오름차순)     
     * Analytics > 매출지표: 스토어별 대시보드에 해당 스토어의 국가별 결제 금액 이외에 결제 금액 총합도 함께 표시 
 
 ### 2020. 09. 16.
@@ -67,7 +92,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 
 #### 기능 추가
 * [SDK] 2.15.0
-    * (공통) 푸시 토큰 등록시 앱이 NotificationOption 설정으로 Foreground 상태에서도 푸시 알림을 받을 수 있도록 기능 추가
+    * (공통) 푸시 토큰 등록시 NotificationOption 설정으로 앱이 Foreground 상태에서도 푸시 알림을 받을 수 있도록 기능 추가
     * (공통) 푸시 API 추가: Push 토큰 정보 확인(Gamebase.Push.queryTokenInfo API)
 * [SDK] 2.9.1
     * (Unreal) Unreal 4.22 ~ 4.25 지원
