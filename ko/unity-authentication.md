@@ -43,7 +43,7 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
     * **GamebaseResponse.Auth.BanInfo.From(GamebaseError error)**으로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려주시기 바랍니다.
     * Gamebase 초기화 시 **GamebaseConfiguration.enablePopup** 및 **GamebaseConfiguration.enableBanPopup **값을  true로 한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
 * 그 외 오류
-    * 이전 로그인 유형으로 인증하기가 실패하였습니다. **'3. 지정된 IdP로 인증'**을 진행합니다.
+    * 이전 로그인 유형으로 인증하기가 실패하였습니다. **'2. 지정된 IdP로 인증'**을 진행합니다.
 
 #### 2. 지정된 IdP로 인증
 
