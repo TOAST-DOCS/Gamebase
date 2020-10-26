@@ -89,11 +89,14 @@ Google Play 서비스에 인증과 결제를 진행하려면 Distribution 설정
 
 ### iOS Settings
 
-Gamebase SDK for Unreal을 사용하려면 UE4 소스 코드를 다운로드해 사용해야 합니다.
+Gamebase SDK for Unreal을 사용하려면 `UE4 Github 소스 코드`를 사용해야 하며, Epic games 회원 가입 후 Github 계정을 연결해야 UnrealEngine repository가 노출됩니다.
 관련 가이드는 아래 문서를 참고하시기 바랍니다.
 
 * [Downloading Unreal Engine Source Code](https://docs.unrealengine.com/en-US/GettingStarted/DownloadingUnrealEngine/index.html)
 * [Getting up and running](https://github.com/EpicGames/UnrealEngine#getting-up-and-running)
+
+>`!중요`
+> 이 과정을 무시할 경우, 아래 가이드 링크가 정상 작동하지 않거나 Gamebase SDK for Unreal 사용이 불가합니다.
 
 #### Sign in with Apple
 
@@ -108,22 +111,65 @@ Authorization failed: Error Domain=AKAuthenticationError Code=-7026 "(null)"
 
 ```
 
-UE4(4.24.3)는 해당 기능을 지원하지 않으므로 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs) 파일의 296번 라인 위에 아래 코드를 추가해야 합니다.
+UE4(4.24.3)는 해당 기능을 지원하지 않으므로 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs) 파일에서 아래 코드를 수정해야 합니다.
 
 ```cs
-Text.AppendLine("\t<key>com.apple.developer.applesignin</key>");
-Text.AppendLine("\t<array>");
-Text.AppendLine("\t\t<string>Default</string>");
-Text.AppendLine("\t</array>");
+// AS-IS
+if (bRemoteNotificationsSupported)
+{
+    Text.AppendLine("\t<key>aps-environment</key>");
+    Text.AppendLine(string.Format("\t<string>{0}</string>", bForDistribution ? "production" : "development"));
+}
+
+// TO-BE
+if (bRemoteNotificationsSupported)
+{
+    Text.AppendLine("\t<key>aps-environment</key>");
+    Text.AppendLine(string.Format("\t<string>{0}</string>", bForDistribution ? "production" : "development"));
+    Text.AppendLine("\t<key>com.apple.developer.applesignin</key>");
+    Text.AppendLine("\t<array>");
+    Text.AppendLine("\t\t<string>Default</string>");
+    Text.AppendLine("\t</array>");
+}
 ```
 
 #### Remote Notification
 
-Gamebase Push 기능을 사용하려면 **Project Settings > Platforms > iOS** 페이지에서 **Enable Remote Notifications Support** 기능을 활성화해야 합니다(Github 소스에서만 가능).
+1. Gamebase Remote Notification 기능을 사용하려면 **Project Settings > Platforms > iOS** 설정에서 **Enable Remote Notifications Support** 기능을 활성화해야 합니다. (Github 소스에서만 가능)
+2. Foreground 푸시 알림을 받기 위해서는 [Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp) 파일에서 아래 코드를 제거하거나,
+
+    ```objectivec
+    - (void)userNotificationCenter:(UNUserNotificationCenter *)center
+        willPresentNotification:(UNNotification *)notification
+            withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
+    {
+        // Received notification while app is in the foreground
+        HandleReceivedNotification(notification);
+        
+        completionHandler(UNNotificationPresentationOptionNone);
+    }
+    ```
+
+    다음과 같이 수정해야 합니다.
+
+    ```objectivec
+    // AS-IS
+    completionHandler(UNNotificationPresentationOptionNone);
+
+    // TO-BE
+    completionHandler(UNNotificationPresentationOptionAlert);
+    ```
+
+#### Rich Push Notification
+
+다음과 같은 이슈로 인해 Rich Push Notification 기능을 사용할 수 없습니다.
+
+* Unreal은 프로젝트에 [Notification Service Extension](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension?language=objc)을 추가할 수 있는 방법을 제공하지 않습니다.
+    * [TOAST Push Notification Service Extension 생성](https://docs.toast.com/en/TOAST/en/toast-sdk/push-ios/#notification-service-extension)
 
 #### iOS SDK의 Warning 메시지로 인한 Unreal 빌드 오류
 
-iOS SDK에서 발생하는 Warning 메시지가 Unreal 빌드 시 오류로 변환되어 빌드에 실패하는 현상이 발생하면 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) 파일의 269 라인에 있는 clang 컴파일 옵션 코드를 주석 처리하십시오.
+iOS SDK에서 발생하는 Warning 메시지가 Unreal 빌드 시 오류로 변환되어 빌드에 실패하는 현상이 발생하면 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) 파일에서 clang 컴파일 옵션 코드를 주석 처리하십시오.
 
 ```cs
 // Result += " -Wall -Werror";
@@ -145,9 +191,9 @@ Gamebase에서 더 이상 지원하지 않는 API는 Deprecate 처리합니다.
 Deprecated된 API는 다음 조건 충족 시 사전 공지 없이 삭제될 수 있습니다.
 
 * 5회 이상의 마이너 버전 업데이트
-	* Gamebase Version Format - XX.YY.ZZ
-		* XX : Major
-		* YY : Minor
-		* ZZ : Hotfix
+    * Gamebase Version Format - XX.YY.ZZ
+        * XX : Major
+        * YY : Minor
+        * ZZ : Hotfix
 
 * 최소 5개월 경과
