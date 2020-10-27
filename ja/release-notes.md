@@ -1,26 +1,56 @@
 ## Game > Gamebase > リリースノート
 
+### 2020. 10. 27.
+
+#### 機能追加
+* Unreal SDK 기능 추가: SDK 2.15.0
+    * 기존의 모든 이벤트 시스템을 통합하는 GamebaseEventHandler 추가
+        * ServerPush, Observer 기능을 포함하고 있고, 프로모션 결제 이벤트 및 푸시 이벤트 확인 가능
+    * API 추가
+    	* 상품 ID로 결제 요청하고 추가 정보(UserPayload)를 입력해 결제 완료 시 확인 가능한 결제 API 추가
+    	* 이미지 공지 표시: showImageNotices
+    	* Push 토큰 정보 확인: queryTokenInfo
+    * 푸시 토큰 등록 시 NotificationOption 설정으로 앱이 포그라운드(foreground) 상태에서도 푸시 알림을 받을 수 있도록 기능 추가
+    * WebViewConfiguration contentMode 설정 추가
+
+#### 機能改善/変更
+* [SDK] 2.17.1
+    * (iOS) 특정 지표 전송 시 오류 메시지를 추가하여 전송: 푸시 등록에 실패 시, 게임 지표 전송 시
+    * (Unity) Unity 2017.2.5 지원
+* [SDK] 2.15.0
+    * (Unreal) TOAST SDK 업데이트: Android(0.23.0), iOS(0.26.0), Unity(0.21.0)   
+
+#### バグ修正
+* [Console]
+    * Analytics > 이용자 지표: 주간, 월간 평균 CCU 계산 로직 수정하여 비정상적으로 노출되는 문제 수정
+    * Push > 푸시: 제목을 입력하지 않고 제목 글자색을 검은색이 아닌 색으로 설정하면 제목에 'null'이 표시되는 문제 수정
+	* 쿠폰 > 쿠폰 발급: 발급된 쿠폰이 5만 개 이상인 경우 파일이 다운로드되지 않는 문제 수정
+* [SDK] 2.17.1
+    * (Unity) 이미지 공지와 웹뷰를 차례로 호출하면 뒤에 호출한 API가 동작하지 않는 오류 수정	
+* [SDK] 2.15.0    
+    * (Unreal) 결제 모듈에 ProGuard 선언이 누락된 오류 수정
+	
 ### 2020. 10. 13.
 
 ```
-한게임 인증 사용을 원하는 경우 고객센터로 미리 연락주세요.
+ハンゲーム認証を使用したい場合はサポートへご連絡ください。
 ```
 
 #### 機能追加
-* Hangame IdP 인증 추가: SDK 2.17.0
+* Hangame IdP認証追加：SDK 2.17.0
 
 #### 機能改善/変更
 * [SDK] 2.17.0
-	* (공통) 고객 센터 첨부 이미지 클릭 시 다운로드 지원
-	* (공통) TOAST SDK 업데이트: Android(0.23.2), Unity(0.21.2)
-	* (iOS) TCGBMember.regDate, TCGBMember.lastLoginDate의 타입을 long long으로 변경
-	* (iOS) 웹뷰에서 URL 및 타이틀 변경 시 타이틀을 재출력할 수 있도록 로직 변경
+	* (共通)サポート添付イメージクリック時、ダウンロードサポート
+	* (共通) TOAST SDKアップデート：Android(0.23.2), Unity(0.21.2)
+	* (iOS) TCGBMember.regDate、TCGBMember.lastLoginDateのタイプをlong longに変更
+	* (iOS) WebビューからURLおよびタイトルを変更した時、タイトルを再出力できるようにロジックを変更
 
 #### バグ修正
 * [SDK] 2.17.0
-	* (iOS) PAYCO 인증: lastLoggedInProvider 로그인 후 로그아웃 호출 시 로그아웃 콜백이 오지 않는 문제 수정
+	* (iOS) PAYCO認証：lastLoggedInProviderログイン後、ログアウトを呼び出した時、ログアウトコールバックが来ない問題を修正
 * [SDK] 2.17.1
-	* (Android) 2.17.0에서 ImageNotice API 호출 시 kotlinx-coroutine 모듈에서 크래시가 발생하는 문제 수정
+	* (Android) 2.17.0でImageNotice APIを呼び出した時、kotlinx-coroutineモジュールでクラッシュが発生する問題を修正
 	
 	
 ### 2020. 09. 22.

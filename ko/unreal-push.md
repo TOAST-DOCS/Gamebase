@@ -26,6 +26,7 @@ Supported Platforms
 
 ```cpp
 void RegisterPush(const FGamebasePushConfiguration& configuration, const FGamebaseErrorDelegate& onCallback);
+void RegisterPush(const FGamebasePushConfiguration& configuration, const FGamebaseNotificationOptions& notificationOptions, const FGamebaseErrorDelegate& onCallback);
 ```
 
 **Example**
@@ -48,6 +49,152 @@ void Sample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNi
     }));
 }
 ```
+
+### Notification Options
+
+* 단말기에 표시하는 알림을 어떤 형태로 표시할 것인지 Notification Options 를 통해 변경할 수 있습니다.
+* 런타임에 RegisterPush API 를 호출하여 변경할 수 있습니다.
+
+#### Set Notification Options with RegisterPush in Runtime
+
+RegisterPush API 호출시 FGamebaseNotificationOptions 인자를 추가하여 알림 옵션을 설정할 수 있습니다.
+FGamebaseNotificationOptions 의 생성자에 IGamebase::Get().GetPush().GetNotificationOptions() 호출 결과를 전달하면, 현재의 알림 옵션으로 초기화 된 오브젝트가 생성되므로, 필요한 값만 변경할 수 있습니다.<br/>
+설정 가능한 값은 아래와 같습니다.
+
+| API                    | Parameter       | Description        |
+| ---------------------  | ------------ | ------------------ |
+| foregroundEnabled      | bool         | 앱이 포그라운드 상태일때의 알림 노출 여부<br/>**default**: false |
+| badgeEnabled           | bool         | 배지 아이콘 사용 여부<br/>**default**: true |
+| soundEnabled           | bool         | 알림음 사용 여부<br/>**default**: true<br/>**iOS Only** |
+| priority               | int32        | 알림 우선 순위. 아래 5가지 값을 설정할 수 있습니다.<br/>GamebaseNotificationPriority::Min : -2<br/> GamebaseNotificationPriority::Low : -1<br/>GamebaseNotificationPriority::Default : 0<br/>GamebaseNotificationPriority::High : 1<br/>GamebaseNotificationPriority::Max : 2<br/>**default**: GamebaseNotificationPriority::High<br/>**Android Only** |
+| smallIconName          | FString       | 알림용 작은 아이콘 파일 이름.<br/>설정하지 않을 경우 앱 아이콘이 사용됩니다.<br/>**default**: null<br/>**Android Only** |
+| soundFileName          | FString       | 알림음 파일 이름. 안드로이드 8.0 미만 OS 에서만 동작합니다.<br/>'res/raw' 폴더의 mp3, wav 파일명을 지정하면 알림음이 변경됩니다.<br/>**default**: null<br/>**Android Only** |
+
+**Example**
+
+```cpp
+void Sample::RegisterPushWithOption(bool pushEnabled, bool adAgreement, bool adAgreementNight, const FString& displayLanguage, bool foregroundEnabled, bool badgeEnabled, bool soundEnabled, int32 priority, const FString& smallIconName, const FString& soundFileName)
+{
+    FGamebasePushConfiguration configuration{ pushEnabled, adAgreement, adAgreementNight, displayLanguage };
+    FGamebaseNotificationOptions notificationOptions{ foregroundEnabled, badgeEnabled, soundEnabled, priority, smallIconName, soundFileName };
+
+    IGamebase::Get().GetPush().RegisterPush(configuration, notificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+    {
+        if (Gamebase::IsSuccess(error))
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush succeeded"));
+        }
+        else
+        {
+            // Check the error code and handle the error appropriately.
+            UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush failed. (error: %d)"), error->code);
+        }
+    }));
+}
+```
+
+#### Get NotificationOptions
+
+푸시를 등록할 때 기존에 설정했던 알림 옵션값을 가져옵니다.
+
+**API**
+
+Supported Platforms
+
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+
+```cpp
+FGamebaseNotificationOptionsPtr GetNotificationOptions();
+```
+
+**Example**
+
+```cpp
+void Sample::GetNotificationOptions()
+{
+    auto notificationOptions = IGamebase::Get().GetPush().GetNotificationOptions();
+    if (result.IsValid())
+    {
+        notificationOptions->foregroundEnabled = true;
+        notificationOptions->smallIconName = TEXT("notification_icon_name");
+        
+        FGamebasePushConfiguration configuration;
+        
+        IGamebase::Get().GetPush().RegisterPush(configuration, notificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) { }));
+    }
+    else
+    {
+        UE_LOG(GamebaseTestResults, Display, TEXT("No GetNotificationOptions"));
+    }
+}
+```
+
+
+### Request Push Settings
+
+사용자의 푸시 설정을 조회하려면 다음 API를 이용합니다.
+콜백으로 받은 FGamebasePushTokenInfo 값으로 사용자 설정값을 얻을 수 있습니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+
+```cpp
+void QueryTokenInfo(const FGamebasePushTokenInfoDelegate& onCallback);
+
+// Legacy API
+void QueryPush(const FGamebasePushConfigurationDelegate& onCallback);
+```
+
+**Example**
+
+```cpp
+void Sample::QueryTokenInfo()
+{
+    IGamebase::Get().GetPush().QueryTokenInfo(FGamebasePushTokenInfoDelegate::CreateLambda([=](const FGamebasePushTokenInfo* tokenInfo, const FGamebaseError* error)
+    {
+        if (Gamebase::IsSuccess(error))
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("QueryTokenInfo succeeded. (pushEnabled= %s, adAgreement= %s, adAgreementNight= %s, tokenInfo= %s)"),
+                tokenInfo->pushEnabled ? TEXT("true") : TEXT("false"),
+                tokenInfo->adAgreement ? TEXT("true") : TEXT("false"),
+                tokenInfo->adAgreementNight ? TEXT("true") : TEXT("false"),
+                *tokenInfo->token);
+        }
+        else
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("QueryTokenInfo failed. (error: %d)"), error->code);
+        }
+    }));
+}
+```
+
+
+#### FGamebasePushTokenInfo
+
+| Parameter           | Values                 | Description         |
+| --------------------| -----------------------| ------------------- |
+| pushType            | FString                | Push 토큰 타입       |
+| token               | FString                | 토큰                 |
+| userId              | FString                | 사용자 아이디         |
+| deviceCountryCode   | FString                | 국가 코드           |
+| timezone            | FString                | 표준시간대           |
+| registeredDateTime  | FString                | 토큰 업데이트 시간    |
+| languageCode        | FString                | 언어 설정            |
+| agreement           | FGamebasePushAgreement | 수신 동의 여부        |
+| sandbox             | bool                   | sandbox 여부(iOS Only)        |
+
+#### FGamebasePushAgreement
+
+| Parameter        | Values  | Description               |
+| -----------------| --------| ------------------------- |
+| pushEnabled      | bool | 알림 표시 동의 여부           |
+| adAgreement      | bool | 광고성 알림 표시 동의 여부      |
+| adAgreementNight | bool | 야간 광고성 알림 표시 동의 여부  |
+
 
 #### Setting for APNS Sandbox
 
@@ -73,44 +220,6 @@ void Sample::SetSandboxMode(bool isSandbox)
 }
 ```
 
-### Request Push Settings
-
-사용자의 푸시 설정을 조회하려면 다음 API를 이용합니다.
-콜백으로 받은 PushConfiguration 값으로 사용자 설정값을 얻을 수 있습니다.
-
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
-
-```cpp
-void QueryPush(const FGamebasePushConfigurationDelegate& onCallback);
-```
-
-**Example**
-
-```cpp
-void Sample::QueryPush()
-{
-    IGamebase::Get().GetPush().QueryPush(
-        FGamebasePushConfigurationDelegate::CreateLambda([](const FGamebasePushConfiguration* pushAdvertisements, const FGamebaseError* error)
-    {
-        if (Gamebase::IsSuccess(error))
-        {
-            UE_LOG(GamebaseTestResults, Display, TEXT("QueryPush succeeded. (pushEnabled= %s, adAgreement= %s, adAgreementNight= %s, displayLanguageCode= %s)"),
-                pushAdvertisements->pushEnabled ? TEXT("true") : TEXT("fasle"),
-                pushAdvertisements->adAgreement ? TEXT("true") : TEXT("fasle"),
-                pushAdvertisements->adAgreementNight ? TEXT("true") : TEXT("fasle"),
-                *pushAdvertisements->displayLanguageCode.ToString());
-        }
-        else
-        {
-            UE_LOG(GamebaseTestResults, Display, TEXT("QueryPush failed. (error: %d)"), error->code);
-        }
-    }));
-}
-```
 
 ### Error Handling
 

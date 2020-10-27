@@ -1,5 +1,72 @@
 ## Game > Gamebase > Unreal SDK 사용 가이드 > UI
 
+## ImageNotice
+
+콘솔에 이미지를 등록한 후 사용자에게 공지를 띄울 수 있습니다.
+
+![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-001.png)
+
+### Show ImageNotices
+
+이미지 공지를 화면에 띄워 줍니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+
+```cpp
+void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback);
+void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback, const FGamebaseImageNoticeEventDelegate& onEventCallback);
+```
+
+**Example**
+
+```cpp
+void Sample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 colorA, int64 timeOut)
+{
+    FGamebaseImageNoticeConfiguration configuration{ colorR, colorG, colorB, colorA, timeOut };
+
+    IGamebase::Get().GetImageNotice().ShowImageNotices(configuration,
+        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) {
+            // Called when the entire imageNotice is closed.
+            ...
+        }),
+        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* error) {
+            // Called when custom event occurred.
+            ...
+        })
+    );
+}
+```
+
+#### FGamebaseImageNoticeConfiguration
+
+| Parameter                              | Values                                   | Description        |
+| -------------------------------------- | ---------------------------------------- | ------------------ |
+| colorR                   | 0~255                                    | 내비게이션 바 색상 R            |
+| colorG                   | 0~255                                    | 내비게이션 바 색상 G                |
+| colorB                   | 0~255                                    | 내비게이션 바 색상 B                |
+| colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha                |
+| timeOut                  | int64        | 이미지 공지 최대 로딩 시간 (단위 : millisecond)<br/>**default**: 5000                     |
+
+
+### Close ImageNotices
+
+closeImageNotices API를 호출하여 현재 표시 중인 이미지 공지를 모두 종료할 수 있습니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+
+```cpp
+void CloseImageNotices();
+```
+
+
 ## Webview
 
 ### Show WebView
@@ -23,7 +90,6 @@ Supported Platforms
 
 ```cpp
 void ShowWebView(const FString& url, const FGamebaseWebViewConfiguration& configuration, FGamebaseErrorDelegate& onCloseCallback, const TArray<FString>& schemeList, const FGamebaseSchemeEventDelegate& onSchemeEvent);
-static void ShowWebView(string url, GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
 ```
 
 **Example**
@@ -53,7 +119,7 @@ void Sample::ShowWebView(const FString& url)
 ```
 
 
-#### GamebaseWebViewConfiguration
+#### FGamebaseWebViewConfiguration
 
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
@@ -62,15 +128,23 @@ void Sample::ShowWebView(const FString& url)
 |                          | GamebaseScreenOrientation::Portrait       | 세로 모드                       |
 |                          | GamebaseScreenOrientation::Landscape      | 가로 모드                       |
 |                          | GamebaseScreenOrientation::LandscapeReverse | 가로 모드를 180도 회전              |
-| colorR                   | 0~255                                    | 내비게이션 바 색상 Alpha            |
-| colorG                   | 0~255                                    | 내비게이션 바 색상 R                |
-| colorB                   | 0~255                                    | 내비게이션 바 색상 G                |
-| colorA                   | 0~255                                    | 내비게이션 바 색상 B                |
+| contentMode              | GamebaseWebViewContentMode::Recommended        | 현재 플랫폼 추천 브라우저    |
+|                          | GamebaseWebViewContentMode::Mobile             | 모바일 브라우저            |
+|                          | GamebaseWebViewContentMode::Desktop            | 데스크탑 브라우저          |
+| colorR                   | 0~255                                    | 내비게이션 바 색상 R            |
+| colorG                   | 0~255                                    | 내비게이션 바 색상 G                |
+| colorB                   | 0~255                                    | 내비게이션 바 색상 B                |
+| colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha                |
 | buttonVisible            | true or false                            | 뒤로 가기 버튼 활성 또는 비활성          |
 | barHeight                | height                                   | 내비게이션 바 높이                  |
 | backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지                |
 | closeButtonImageResource | ID of resource | 닫기 버튼 이미지 |
 | url | "http://" or "https://" or "file://" | 웹 URL |
+
+> [TIP]
+>
+> iPadOS 13 이상에서 WebView는 기본적으로 데스크탑 모드입니다.
+> contentMode =`GamebaseWebViewContentMode.MOBILE` 설정으로 모바일 모드로 변경할 수 있습니다.
 
 #### Predefined Custom Scheme
 
@@ -79,9 +153,9 @@ Gamebase에서 지정해 놓은 Scheme입니다.
 | scheme | 용도 |
 | ----------------------------- | ------------------------------ |
 | gamebase://dismiss | WebView 닫기 |
-| gamebase://goBack | WebView 뒤로 가기 |
-| gamebase://getUserId          | 현재 로그인된 게임 유저의 사용자 ID를 표시 |
 | gamebase://getMaintenanceInfo | 점검 내용을 WebPage에 표시 |
+| gamebase://getUserId          | 현재 로그인된 게임 유저의 사용자 ID를 표시 |
+| gamebase://goBack | WebView 뒤로 가기 |
 
 
 ### Close WebView
