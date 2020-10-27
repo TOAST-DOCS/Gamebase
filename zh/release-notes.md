@@ -1,5 +1,31 @@
 ## Game > Gamebase > Release Notes
 
+### October 27, 2020
+
+#### More Features
+* Unreal SDK 기능 추가: SDK 2.15.0
+    * 기존의 모든 이벤트 시스템을 통합하는 GamebaseEventHandler 추가
+        * ServerPush, Observer 기능을 포함하고 있고, 프로모션 결제 이벤트 및 푸시 이벤트 확인 가능
+    * API 추가
+    	* 상품 ID로 결제 요청하고 추가 정보(UserPayload)를 입력해 결제 완료 시 확인 가능한 결제 API 추가
+    	* 이미지 공지 표시: showImageNotices
+    	* Push 토큰 정보 확인: queryTokenInfo
+    * 푸시 토큰 등록 시 NotificationOption 설정으로 앱이 포그라운드(foreground) 상태에서도 푸시 알림을 받을 수 있도록 기능 추가
+    * WebViewConfiguration contentMode 설정 추가
+
+#### Feature Updates
+* [SDK] 2.17.1
+    * (iOS) 특정 지표 전송 시 오류 메시지를 추가하여 전송: 푸시 등록에 실패 시, 게임 지표 전송 시
+    * (Unity) Unity 2017.2.5 지원
+* [SDK] 2.15.0
+    * (Unreal) TOAST SDK 업데이트: Android(0.23.0), iOS(0.26.0), Unity(0.21.0)
+    * (Unreal) 결제 모듈에 ProGuard 선언이 누락된 오류 수정
+
+#### Bug Fixes  
+* [Console]
+    * Analytics > 이용자 지표: 주간, 월간 평균 CCU 계산 로직 수정하여 비정상적으로 노출되는 문제 수정
+    * Push > 푸시: 제목을 입력하지 않고 제목 글자색을 검정색이 아닌 색으로 설정하면 제목에 'null'이 표시되는 문제 수정
+
 ### October 13, 2020
 
 ```
