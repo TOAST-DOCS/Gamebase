@@ -16,16 +16,17 @@ Also you should set Google Real-time developer notifications for subscription.
 ## Google Console
 | Console        | URL                              |
 | -------------- | ------------------------------- |
-| Google Play Console | https://developer.android.com/distribute/console |
+| Google Play Console | https://play.google.com/console/developers |
 | Google API Console | https://console.developers.google.com/apis/dashboard |
 
 ## Google Play Console
 
 ### Google In App Purchase License Key
 ```
-Google Play Console > select App> (left panel) Development tools > Services & APIs > Licensing & in-app billing
+https://play.google.com/console/developers > [Select App] > Monetize > Monetization setup > Licensing
+
 ```
-![](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_license_en.png)
+![](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/2020-google_license_en.png)
 
 
 ## Google API Console
@@ -140,4 +141,8 @@ See more documents here.(https://cloud.google.com/pubsub/docs/push)
 ![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-domain-verification_en_5.png)
 
 
-
+### Realtime developer notifications
+````
+https://play.google.com/console/developers > [Select App] > Monetize > Monetization setup > Real-time developer notificqations
+````
+![[]realtime notification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/2020-google_realtime_notification_en.png)

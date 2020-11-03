@@ -144,6 +144,9 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 	- 환불 완료
 	- 관리자가 수동으로 스토어에서 환불 처리에 대한 여부를 업데이트한 경우입니다.
 	- 다른 결제 상태로 변경이 불가능합니다.
+- **UserClose** 
+	- 유저가 결제 진행중 취소
+
 
 ##### Success 변경
 ![gamebase_purchase_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_201812.png)

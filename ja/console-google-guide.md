@@ -18,16 +18,16 @@ Notificationの設定が正しくなければ購読決済が進みません。
 ## Googleが提供するコンソール
 | Console        | Location                              |
 | -------------- | ------------------------------- |
-| Google Play Console | https://developer.android.com/distribute/console |
+| Google Play Console | https://play.google.com/console/developers |
 | Google API Console | https://console.developers.google.com/apis/dashboard |
 
 ## Google Playコンソール
 
 ### Google In App Purchase License Key 確認
 ```
-Google Play Console > App > (左側) 開発ツール > サービス及びAPI > ライセンス及びインアップ決済
+https://play.google.com/console/developers > [Select App] > Monetize > Monetization setup > Licensing
 ```
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_license_ja.png)
+![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/2020-google_license_en.png)
 
 ## Google APIコンソール
 
@@ -138,10 +138,15 @@ OAuth 認証情報生成後、以下のガイドを参考にプロジェクト�
 8. [推奨方法] 下段の [ロボットではない] クリック後、[OK] をクリックします。
 9. 認証に成功すると最後のイメージと同じ画面が表示されます。 この画面が表示されないと購読決済を正常に使用できません。
 ```
-
 ![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-domain-verification_ja_1.png)
 ![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_add_domain_ja.png)
 ![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-domain-verification_ja_3.png)
 ![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/google_domain_auth.png)
 ![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-domain-verification_ja_4.png)
 ![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-domain-verification_ja_5.png)
+
+### Realtime developer notifications
+````
+https://play.google.com/console/developers > [Select App] > Monetize > Monetization setup > Real-time developer notificqations
+````
+![[]realtime notification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/2020-google_realtime_notification_en.png)
