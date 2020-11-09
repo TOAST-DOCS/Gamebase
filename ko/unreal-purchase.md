@@ -54,7 +54,7 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 
 ### Purchase Item
 
-구매하고자 하는 아이템의 itemSeq를 이용해 다음의 API를 호출하여 구매를 요청합니다.
+구매하고자 하는 아이템의 gamebaseProductId를 이용해 다음의 API를 호출하여 구매를 요청합니다.
 게임 유저가 구매를 취소하는 경우 **PURCHASE_USER_CANCELED** 오류가 반환됩니다.
 
 
@@ -81,8 +81,8 @@ void Sample::RequestPurchase(const FString& gamebaseProductId)
     {
         if (Gamebase::IsSuccess(error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase succeeded. (itemSeq= %ld, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
-                purchasableReceipt->itemSeq, purchasableReceipt->price, *purchasableReceipt->currency,
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase succeeded. (gamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
+                *purchasableReceipt->gamebaseProductId, purchasableReceipt->price, *purchasableReceipt->currency,
                 *purchasableReceipt->paymentSeq, *purchasableReceipt->purchaseToken);
         }
         else
@@ -110,8 +110,8 @@ void Sample::RequestPurchaseWithPayload(const FString& gamebaseProductId)
     {
         if (Gamebase::IsSuccess(error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase succeeded. (itemSeq= %ld, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
-                purchasableReceipt->itemSeq, purchasableReceipt->price, *purchasableReceipt->currency,
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase succeeded. (gamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
+                *purchasableReceipt->gamebaseProductId, purchasableReceipt->price, *purchasableReceipt->currency,
                 *purchasableReceipt->paymentSeq, *purchasableReceipt->purchaseToken);
 
             FString payload = purchasableReceipt->payload;
@@ -160,8 +160,8 @@ void Sample::RequestItemListPurchasable()
 
             for (const FGamebasePurchasableItem& purchasableItem : *purchasableItemList)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT(" - itemSeq= %ld, price= %f, itemName= %s, itemName= %s, marketItemId= %s"),
-                    purchasableItem.itemSeq, purchasableItem.price, *purchasableItem.currency, *purchasableItem.itemName, *purchasableItem.marketItemId);
+                UE_LOG(GamebaseTestResults, Display, TEXT(" - gamebaseProductId= %s, price= %f, itemName= %s, itemName= %s, marketItemId= %s"),
+                    *purchasableItem.gamebaseProductId, purchasableItem.price, *purchasableItem.currency, *purchasableItem.itemName, *purchasableItem.marketItemId);
             }
         }
         else
@@ -205,8 +205,8 @@ void Sample::RequestItemListOfNotConsumed()
 
             for (const FGamebasePurchasableItem& purchasableItem : *purchasableItemList)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT(" - itemSeq= %ld, price= %f, itemName= %s, itemName= %s, marketItemId= %s"),
-                    purchasableItem.itemSeq, purchasableItem.price, *purchasableItem.currency, *purchasableItem.itemName, *purchasableItem.marketItemId);
+                UE_LOG(GamebaseTestResults, Display, TEXT(" - gamebaseProductId= %s, price= %f, itemName= %s, itemName= %s, marketItemId= %s"),
+                    *purchasableReceipt.gamebaseProductId, purchasableItem.price, *purchasableItem.currency, *purchasableItem.itemName, *purchasableItem.marketItemId);
             }
         }
         else
@@ -239,7 +239,6 @@ void RequestActivatedPurchases(const FGamebasePurchasableReceiptListDelegate& on
 
 **Example**
 ```cpp
-
 void Sample::RequestActivatedPurchases()
 {
     IGamebase::Get().GetPurchase().RequestActivatedPurchases(FGamebasePurchasableReceiptListDelegate::CreateLambda(
@@ -251,8 +250,8 @@ void Sample::RequestActivatedPurchases()
 
             for (const FGamebasePurchasableReceipt& purchasableReceipt : *purchasableReceiptList)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT(" - itemSeq= %ld, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s"),
-                    purchasableReceipt.itemSeq, purchasableReceipt.price, *purchasableReceipt.currency, *purchasableReceipt.paymentSeq, *purchasableReceipt.purchaseToken);
+                UE_LOG(GamebaseTestResults, Display, TEXT(" - gamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s"),
+                    *purchasableReceipt.gamebaseProductId, purchasableReceipt.price, *purchasableReceipt.currency, *purchasableReceipt.paymentSeq, *purchasableReceipt.purchaseToken);
             }
         }
         else

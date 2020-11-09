@@ -1112,12 +1112,12 @@ public void SampleOpenContact()
         {
             // A user close the contact web view.
         }
-        else if (exception.code == GamebaseErrorCode.UI_CONTACT_FAIL_INVALID_URL)  // 6911
+        else if (error.code == GamebaseErrorCode.UI_CONTACT_FAIL_INVALID_URL)  // 6911
         {
             // TODO: Gamebase Console Service Center URL is invalid.
             // Please check the url field in the TOAST Gamebase Console.
         } 
-        else if (exception.code == GamebaseErrorCode.UI_CONTACT_FAIL_ANDROID_DUPLICATED_VIEW) // 6913
+        else if (error.code == GamebaseErrorCode.UI_CONTACT_FAIL_ANDROID_DUPLICATED_VIEW) // 6913
         { 
             // The customer center web view is already opened.
         } 
