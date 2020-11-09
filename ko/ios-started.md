@@ -60,13 +60,6 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 
 <br/>
 
-> <font color="red">[주의]</font><br/>
->
-> Hangame IdP 사용을 위해서는 고객센터로 연락해주시기 바랍니다.
-> 추가 설정 없이 Hangame 로그인을 시도할 경우 실패합니다.
-
-<br/>
-
 > [INFO]
 > 
 > 각 IdP에서 제공하는 외부 SDK에 대한 설정은 각 IdP의 가이드 문서를 참고하시길 바랍니다.

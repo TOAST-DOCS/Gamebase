@@ -170,7 +170,7 @@ Gamebase에서 지정해 놓은 스키마입니다.<br/>
 | gamebase://dismiss   | WebView 닫기             |
 | gamebase://goBack    | WebView 뒤로 가기          |
 | gamebase://getUserId | 현재 로그인돼 있는 사용자의 아이디 표시 |
-| gamebase://openbrowser?link={URLEncodeURL} | link 파라메터의 URL을 외부 브라우저로 열기<br/>URLEncodedURL : 외부 브라우저로 열 URL<br/>URL 디코딩 필요 |
+| gamebase://openbrowser?link={URLEncodedURL} | link 파라메터의 URL을 외부 브라우저로 열기<br/>URLEncodedURL : 외부 브라우저로 열 URL<br/>URL 디코딩 필요 |
 
 
 

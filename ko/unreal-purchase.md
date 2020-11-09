@@ -32,13 +32,13 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 
 미소비 결제 내역 목록에 값이 있으면 다음과 같은 순서로 Consume Flow 를 진행하시기 바랍니다.
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.0.png)
 
 1. 게임 클라이언트가 게임 서버에 결제 아이템에 대한 consume(소비)을 요청합니다.
-    * UserID, itemSeq, paymentSeq, purchaseToken 을 전달합니다.
-2. 게임 서버는 게임 DB에 이미 동일한 paymentSeq, purchaseToken으로 아이템을 지급한 이력이 있는지 확인합니다.
-    * 2-1. 아직 아이템을 지급하지 않았다면 UserID에 itemSeq에 해당하는 아이템을 지급합니다.
-    * 2-2. 아이템 지급 후 게임 DB에 UserID, itemSeq, paymentSeq, purchaseToken을 저장하여 이후에 중복 지급을 확인할 수 있도록 합니다.
+    * UserID, gamebaseProductId, paymentSeq, purchaseToken 을 전달합니다.
+2. 게임 서버는 게임 DB에 이미 동일한 paymentSeq 로 아이템을 지급한 이력이 있는지 확인합니다.
+    * 2-1. 아직 아이템을 지급하지 않았다면 UserID 에 gamebaseProductId 에 해당하는 아이템을 지급합니다.
+    * 2-2. 아이템 지급 후 게임 DB에 UserID, gamebaseProductId, paymentSeq, purchaseToken을 저장하여 중복 지급 방지 또는 재지급을 할 수 있도록 합니다.
 3. 게임 서버는 Gamebase 서버의 consume(소비) API를 호출하여 아이템 지급을 완료합니다.
     * [API 가이드 > Purchase(IAP) > Consume](./api-guide/#consume)
 
@@ -65,20 +65,25 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
+void RequestPurchase(const FString& gamebaseProductId, const FGamebasePurchasableReceiptDelegate& onCallback);
+void RequestPurchase(const FString& gamebaseProductId, const FString& payload, const FGamebasePurchasableReceiptDelegate& onCallback);
+
+// Legacy API
 void RequestPurchase(int64 itemSeq, const FGamebasePurchasableReceiptDelegate& onCallback);
 ```
 
 **Example**
 ```cpp
-void Sample::RequestPurchaseSample(int64 itemSeq)
+void Sample::RequestPurchase(const FString& gamebaseProductId)
 {
-    IGamebase::Get().GetPurchase().RequestPurchase(itemSeq, FGamebasePurchasableReceiptDelegate::CreateLambda(
+    IGamebase::Get().GetPurchase().RequestPurchase(gamebaseProductId, FGamebasePurchasableReceiptDelegate::CreateLambda(
         [](const FGamebasePurchasableReceipt* purchasableReceipt, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase succeeded. (itemSeq= %ld, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
-                purchasableReceipt->itemSeq, purchasableReceipt->price, *purchasableReceipt->currency, *purchasableReceipt->paymentSeq, *purchasableReceipt->purchaseToken);
+                purchasableReceipt->itemSeq, purchasableReceipt->price, *purchasableReceipt->currency,
+                *purchasableReceipt->paymentSeq, *purchasableReceipt->purchaseToken);
         }
         else
         {
@@ -88,9 +93,40 @@ void Sample::RequestPurchaseSample(int64 itemSeq)
             }
             else
             {
+                // Check the error code and handle the error appropriately.
                 UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase failed. (error: %d)"), error->code);
             }
-            
+
+        }
+    }));
+}
+
+void Sample::RequestPurchaseWithPayload(const FString& gamebaseProductId)
+{
+    FString userPayload = TEXT("{\"description\":\"This is example\",\"channelId\":\"delta\",\"characterId\":\"abc\"}");
+    
+    IGamebase::Get().GetPurchase().RequestPurchase(gamebaseProductId, userPayload, FGamebasePurchasableReceiptDelegate::CreateLambda(
+        [](const FGamebasePurchasableReceipt* purchasableReceipt, const FGamebaseError* error)
+    {
+        if (Gamebase::IsSuccess(error))
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase succeeded. (itemSeq= %ld, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
+                purchasableReceipt->itemSeq, purchasableReceipt->price, *purchasableReceipt->currency,
+                *purchasableReceipt->paymentSeq, *purchasableReceipt->purchaseToken);
+
+            FString payload = purchasableReceipt->payload;
+        }
+        else
+        {
+            if (error->code == GamebaseErrorCode::PURCHASE_USER_CANCELED)
+            {
+                UE_LOG(GamebaseTestResults, Display, TEXT("User canceled purchase."));
+            }
+            else
+            {
+                // Check the error code and handle the error appropriately.
+                UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase failed. (error: %d)"), error->code);
+            }
         }
     }));
 }

@@ -11,6 +11,7 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 * 다음 스토어 콘솔 가이드를 참고하여 각 스토어에 앱을 등록하고 앱 키를 발급받습니다.
 	* [Game > Gamebase > 스토어 콘솔 가이드 > Google 콘솔 가이드](./console-google-guide)
 	* [Game > Gamebase > 스토어 콘솔 가이드 > ONEStore 콘솔 가이드](./console-onestore-guide)
+	* [Game > Gamebase > 스토어 콘솔 가이드 > GALAXY Store 콘솔 가이드](./console-galaxy-guide)
 
 #### 2. Register as Store's Tester
 
@@ -22,6 +23,9 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
         * 반드시 인앱 정보 - 테스트 버튼으로 샌드박스를 원하는 단말기 전화번호를 등록해서 테스트해야 합니다.
         * 테스트용 단말기는 USIM이 있어야 하고, 전화번호를 등록해야 합니다(MDN).
         * **ONE store** 어플리케이션이 설치되어 있어야 합니다.
+    * GALAXY store
+        * [GALAXY store > 앱 > 등록한 앱 > 바이너리 > Beta Test > Tester 설정](https://seller.samsungapps.com/application)
+        * 삼성 단말기에서만 결제 테스트가 가능합니다.
 
 #### 3. Register Item
 
@@ -42,10 +46,20 @@ dependencies {
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
 }
 ```
 
-#### 5. AndroidManifest.xml(ONE store only)
+#### 5. Limitation
+
+##### GALAXY Store
+
+* 갤럭시 IAP SDK 의 minSdkVersion 은 18(OS 4.3) 이므로 이보다 작은 값을 설정하는 경우 빌드가 실패합니다.
+* 하지만 실제 결제를 위해서는 Checkout 서비스앱의 설치가 필요한데, Chekcout 서비스앱은 API 21(OS 5.0. Lollipop) 미만에서는 설치가 실패하므로 결제를 진행할 수 없습니다.
+
+#### 6. AndroidManifest.xml
+
+##### ONE Store
 
 * ONE store 는 전체 결제 화면과 팝업 결제 화면을 지원합니다.
     * AndroidManifest.xml에 meta-data를 추가하여 전체 결제 화면("full") 또는 팝업 결제 화면("popup")을 선택할 수 있습니다.
@@ -58,7 +72,9 @@ dependencies {
     ...
         <!-- [ONE store] Configurations begin -->
         <!-- popup:팝업 결제 화면 / full:전체 결제 화면 -->
-        <meta-data android:name="iap:view_option" android:value="popup | full"/>
+        <meta-data
+            android:name="iap:view_option"
+            android:value="popup | full" />
         <!-- [ONE store] Configurations end -->
     ...
     </application>
@@ -70,12 +86,48 @@ dependencies {
 | 전체 결제 화면 | "full" |
 | 팝업 결제 화면 | "popup" |
 
-#### 6. Initialization
+##### GALAXY Store
+
+* GALAXY store 는 테스트 결제 여부, 성공/실패시 다이얼로그 표시 여부를 변경할 수 있습니다.
+
+```xml
+<manifest>
+    ...
+    <application>
+    ...
+        <!-- [GALAXY store] Configurations start -->
+        <!-- OPERATION_MODE_TEST: 항상 성공 / OPERATION_MODE_TEST_FAILURE: 항상 실패 -->
+        <meta-data
+            android:name="com.toast.sdk.iap.galaxy.operation_mode"
+            android:value="OPERATION_MODE_TEST | OPERATION_MODE_TEST_FAILURE" />
+        <!-- 에러 다이얼로그 표시 -->
+        <meta-data
+            android:name="com.toast.sdk.iap.galaxy.error_dialog_enabled"
+            android:value="true" />
+        <!-- 결제 성공 다이얼로그 표시 -->
+        <meta-data
+            android:name="com.toast.sdk.iap.galaxy.purchase_success_dialog_enabled"
+            android:value="true" />
+        <!-- [GALAXY store] Configurations end -->
+    ...
+    </application>
+</manifest>
+```
+
+| meta-data key| 테스트 결제 결과 | 설정 값 |
+| --- | --- | --- |
+| com.toast.sdk.iap.galaxy.operation_mode<br/>**default** : NONE | 항상 성공 | OPERATION_MODE_TEST |
+| | 항상 실패 | OPERATION_MODE_TEST_FAILURE |
+| com.toast.sdk.iap.galaxy.error_dialog_enabled<br/>**default** : false | 에러 발생시 다이얼로그 팝업 표시 | true |
+| com.toast.sdk.iap.galaxy.purchase_success_dialog_enabled<br/>**default** : false | 결제 성공시 다이얼로그 팝업 표시 | true |
+
+#### 7. Initialization
 
 * Gamebase 초기화 시 스토어 코드를 지정해야 합니다.
 * **STORE_CODE**는 다음 값 중에서 선택합니다.
-    * GG: Google
-    * ONESTORE: 원스토어
+    * GG: Google Store
+    * ONESTORE: ONE Store
+    * GALAXY: Galaxy Store
 
 ```java
 String STORE_CODE = "GG";	// Google
@@ -101,13 +153,13 @@ Gamebase.initialize(activity, configuration, callback);
 
 미소비 결제 내역 목록에 값이 있으면 다음과 같은 순서로 Consume Flow 를 진행하시기 바랍니다.
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.15.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.0.png)
 
 1. 게임 클라이언트가 게임 서버에 결제 아이템에 대한 consume(소비)을 요청합니다.
     * UserID, gamebaseProductId, paymentSeq, purchaseToken 을 전달합니다.
-2. 게임 서버는 게임 DB 에 이미 동일한 paymentSeq, purchaseToken 으로 아이템을 지급한 이력이 있는지 확인합니다.
+2. 게임 서버는 게임 DB 에 이미 동일한 paymentSeq 로 아이템을 지급한 이력이 있는지 확인합니다.
     * 2-1. 아직 아이템을 지급하지 않았다면 UserID 에 gamebaseProductId 에 해당하는 아이템을 지급합니다.
-    * 2-2. 아이템 지급 후 게임 DB 에 UserID, gamebaseProductId, paymentSeq, purchaseToken 을 저장하여 이후에 중복 지급 여부를 확인할 수 있도록 합니다.
+    * 2-2. 아이템 지급 후 게임 DB 에 UserID, gamebaseProductId, paymentSeq, purchaseToken 을 저장하여 중복 지급 방지 또는 재지급을 할 수 있도록 합니다.
 3. 게임 서버는 Gamebase 서버의 consume(소비) API를 호출하여 아이템 지급을 완료합니다.
     * [API 가이드 > Purchase(IAP) > Consume](./api-guide/#consume)
 

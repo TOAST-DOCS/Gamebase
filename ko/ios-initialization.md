@@ -156,12 +156,14 @@ Gamebase 콘솔에 등록된 앱 정보입니다.
 
 * accessInfo
     * serverAddress: 서버 주소
-    * csInfo: 고객 센터 정보
+* customerService
+    * accessInfo : 고객센터 연락처
+    * type : 고객센터 유형
+    * url : 고객센터 URL
 * relatedUrls
     * termsUrl: 이용 약관
     * personalInfoCollectionUrl: 개인 정보 동의
     * punishRuleUrl: 이용 정지 규정
-    * csUrl : 고객 센터
 * install: 설치 URL
 * idP: 인증 정보
 
@@ -275,6 +277,11 @@ Gamebase 팝업을 사용하지 않을 경우에는 UpdateInfo를 TCGBError 객�
 
 iOS의 앱 이벤트를 관리하려면 다음 **UIApplicationDelegate** 프로토콜을 구현합니다.
 
+> <font color="red">[주의]</font><br/>
+>
+> SceneDelegate(iOS 13 이상)을 사용한다면, **UISceneDelegate** 프로토콜을 구현해야 합니다.
+>
+
 ### OpenURL Event
 **application:openURL:sourceApplication:annotation:** 메서드를 호출하여, 어플리케이션의 외부 URL Open 시도를 Gamebase에 알려주어야 합니다. Gamebase에서는 각 Idp의 인증용 SDK에 해당 값을 전달하여, 필요한 동작을 하도록 알려줍니다.
 
@@ -284,10 +291,21 @@ iOS의 앱 이벤트를 관리하려면 다음 **UIApplicationDelegate** 프로�
 >
 
 ```objectivec
+// AppDelegate.m
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [TCGBGamebase application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 ```
+
+만약 SceneDelegate(iOS 13 이상)을 사용한다면, **scene:openURLContexts:** 메서드를 호출해야 합니다.
+
+```objectivec
+// SceneDelegate.m
+- (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts {
+    [TCGBGamebase scene:scene openURLContexts:URLContexts];
+}
+```
+
 
 ### DidBecomeActive Event
 **applicationDidBecomeActive:** 메서드를 호출하여, 앱의 활성화 여부를 Gamebase에 알려주어야 합니다. Gamebase에서는 각 Idp의 인증용 SDK에 해당 값을 전달하여, 필요한 동작을 하도록 알려줍니다.
@@ -295,8 +313,18 @@ iOS의 앱 이벤트를 관리하려면 다음 **UIApplicationDelegate** 프로�
 
 
 ```objectivec
+// AppDelegate.m
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [TCGBGamebase applicationDidBecomeActive:application];
+}
+```
+
+만약 SceneDelegate(iOS 13 이상)을 사용한다면, **sceneDidBecomeActive:** 메서드를 호출해야 합니다.
+
+```objectivec
+// SceneDelegate.m
+- (void)sceneDidBecomeActive:(UIScene *)scene {
+    [TCGBGamebase sceneDidBecomeActive:scene];
 }
 ```
 
@@ -305,8 +333,18 @@ iOS의 앱 이벤트를 관리하려면 다음 **UIApplicationDelegate** 프로�
 
 
 ```objectivec
+// AppDelegate.m
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     [TCGBGamebase applicationDidEnterBackground:application];
+}
+```
+
+만약 SceneDelegate(iOS 13 이상)을 사용한다면, **sceneDidEnterBackground:** 메서드를 호출해야 합니다.
+
+```objectivec
+// SceneDelegate.m
+- (void)sceneDidEnterBackground:(UIScene *)scene {
+    [TCGBGamebase sceneDidEnterBackground:scene];
 }
 ```
 
@@ -314,11 +352,20 @@ iOS의 앱 이벤트를 관리하려면 다음 **UIApplicationDelegate** 프로�
 **applicationWillEnterForeground** 메서드를 호출하여, Gamebase에 앱이 포그라운드(foreground)로 전환된다는 것을 알려 주어야 합니다.
 
 ```objectivec
+// AppDelegate.m
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     [TCGBGamebase applicationWillEnterForeground:application];
 }
 ```
 
+만약 SceneDelegate(iOS 13 이상)을 사용한다면, **sceneWillEnterForeground:** 메서드를 호출해야 합니다.
+
+```objectivec
+// SceneDelegate.m
+- (void)sceneWillEnterForeground:(UIScene *)scene {
+    [TCGBGamebase sceneWillEnterForeground:scene];
+}
+```
 
 ### Error Handling
 
