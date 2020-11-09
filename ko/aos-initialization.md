@@ -215,12 +215,14 @@ Gamebase 콘솔에 등록된 앱 정보입니다.
 
 * accessInfo
     * serverAddress: 서버 주소
-    * csInfo: 고객 센터 정보
+* customerService
+    * accessInfo : 고객센터 연락처
+    * type : 고객센터 유형
+    * url : 고객센터 URL
 * relatedUrls
     * termsUrl: 이용 약관
     * personalInfoCollectionUrl: 개인 정보 동의
     * punishRuleUrl: 이용 정지 규정
-    * csUrl : 고객센터
 * install: 설치 URL
 * idP: 인증 정보
 
