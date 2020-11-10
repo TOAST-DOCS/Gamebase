@@ -192,11 +192,6 @@ private static void onLoginForGuest(final Activity activity) {
 > AuthProvider.PAYCO 의 상수를 제공하지 않게 되었으므로
 > "payco" 라는 문자열을 직접 파라메터로 전달해야 합니다.
 
-> <font color="red">[주의]</font><br/>
->
-> HANGAME IdP 사용을 위해서는 고객센터로 연락해주시기 바랍니다.
-> 추가 설정 없이 AuthProvider.HANGAME 로그인을 시도할 경우 실패합니다.
-
 **API**
 
 ```java

@@ -59,19 +59,20 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
         ![Download google-services.json](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
         * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
         * 다음은 직접 제작한 string resource(xml) 파일의 예시입니다.
-            ```
-            <!-- Assets/Plugins/Android/res/values/google-services-json.xml -->
-            <?xml version="1.0" encoding="utf-8"?>
-            <resources>
-            <string name="firebase_database_url" translatable="false">https://gamebase-sample-00000000.firebaseio.com</string>
-            <string name="gcm_defaultSenderId" translatable="false">000000000000</string>
-            <string name="google_storage_bucket" translatable="false">gamebase-sample-00000000.appspot.com</string>
-            <string name="project_id" translatable="false">gamebase-sample-00000000</string>
-            <string name="google_api_key" translatable="false">AbCd_AbCd_AbCd_AbCd_AbCd_AbCd_AbCd</string>
-            <string name="google_app_id" translatable="false">1:000000000000:android:749cbe01c8ada279</string>
-            <string name="default_web_client_id" translatable="false">000000000000-abcdabcdabcdabcdabcdabcdabcd.apps.googleusercontent.com</string>
-            </resources>
-            ```
+
+```xml
+<!-- Assets/Plugins/Android/res/values/google-services-json.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="firebase_database_url" translatable="false">https://gamebase-sample-00000000.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">000000000000</string>
+    <string name="google_storage_bucket" translatable="false">gamebase-sample-00000000.appspot.com</string>
+    <string name="project_id" translatable="false">gamebase-sample-00000000</string>
+    <string name="google_api_key" translatable="false">AbCd_AbCd_AbCd_AbCd_AbCd_AbCd_AbCd</string>
+    <string name="google_app_id" translatable="false">1:000000000000:android:749cbe01c8ada279</string>
+    <string name="default_web_client_id" translatable="false">000000000000-abcdabcdabcdabcdabcdabcdabcd.apps.googleusercontent.com</string>
+</resources>
+```
 
 #### Tencent
 

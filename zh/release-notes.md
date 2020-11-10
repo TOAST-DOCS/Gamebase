@@ -1,5 +1,20 @@
 ## Game > Gamebase > Release Notes
 
+### November 10, 2020
+
+#### More Features
+* Galaxy 스토어 추가: SDK 2.18.0
+
+#### Feature Updates
+* [SDK] 2.18.0
+    * (Android) TOAST SDK 업데이트: Android(0.24.1)
+    * (Android) WebView SSL 보안경고 대응 처리 추가
+    * (iOS) iOS 13이상부터 제공되는 SceneDelegate 대응 API 추가
+
+#### Bug Fixes  
+* [SDK] 2.18.1
+    * (Android) 2.18.0 에서 Google 결제 후 크래시가 발생하는 이슈 수정
+
 ### October 27, 2020
 
 #### More Features

@@ -107,17 +107,11 @@ WebView를 표시합니다.<br/>
 // Show Fullscreen Style WebView
 - (void)showFullScreenWebView:(id)sender {
     NSString* urlString = @"https://www.toast.com/";
-    [TCGBWebView showWebViewWithURL:urlString 
-                     viewController:self 
-                      configuration:nil
-                    closeCompletion:^(TCGBError *error) {
-                        NSLog(@"WebView Close Event occured");
-                    }
-                         schemeList:@[@"gamebase://"]
-                        schemeEvent:^(NSString *fullUrl, TCGBError *error) {
-                            NSLog(@"WebView Event occured. Event Url : %@", fullUrl);
-                        }
-    ];
+    void(^closeCompletion)(TCGBError *) = ^(TCGBError *error) {
+        NSLog(@"WebView Close Event occured");
+    };
+
+    [TCGBWebView showWebViewWithURL:urlString viewController:self configuration:nil closeCompletion:closeCompletion schemeList:nil schemeEvent:nil];
 
 }
 ```
@@ -130,17 +124,15 @@ WebView를 표시합니다.<br/>
 - (void)showFixedOrientationWebView:(id)sender {
     NSString* urlString = @"https://www.toast.com/";
     TCGBWebViewConfiguration* config = [[TCGBWebViewConfiguration alloc] init];
+    
     // Webview is fixed to Landscape mode
     config.orientationMask = TCGBWebViewOrientationLandscapeLeft | TCGBWebViewOrientationLandscapeRight;
     
-    [TCGBWebView showWebViewWithURL:urlString viewController:self configuration:config
-                    closeCompletion:^(TCGBError *error){
-                        NSLog(@"WebView Close Event occured");
-                    }
-                         schemeList:@[@"gamebase://"]
-                        schemeEvent:^(NSString *fullUrl, TCGBError *error) {
-                            NSLog(@"WebView Event occured. Event Url : %@", fullUrl);
-                        }];
+    void(^closeCompletion)(TCGBError *) = ^(TCGBError *error) {
+        NSLog(@"WebView Close Event occured");
+    };
+
+    [TCGBWebView showWebViewWithURL:urlString viewController:self configuration:config closeCompletion:closeCompletion schemeList:nil schemeEvent:nil];
 }
 ```
 
@@ -170,7 +162,7 @@ Gamebase에서 지정해 놓은 스키마입니다.<br/>
 | gamebase://dismiss   | WebView 닫기             |
 | gamebase://goBack    | WebView 뒤로 가기          |
 | gamebase://getUserId | 현재 로그인돼 있는 사용자의 아이디 표시 |
-| gamebase://openbrowser?link={URLEncodeURL} | link 파라메터의 URL을 외부 브라우저로 열기<br/>URLEncodedURL : 외부 브라우저로 열 URL<br/>URL 디코딩 필요 |
+| gamebase://openbrowser?link={URLEncodedURL} | link 파라메터의 URL을 외부 브라우저로 열기<br/>URLEncodedURL : 외부 브라우저로 열 URL<br/>URL 디코딩 필요 |
 
 
 
@@ -182,22 +174,25 @@ Gamebase에 스키마 이름과 블록을 지정해 원하는 기능을 추가�
 ```objectivec
 
 - (void)setCustomSchemes {
-    // reigster an scheme called 'gamebase://openSafari' to load an page has url
-    [TCGBWebView addCustomScheme:@"gamebase://openSafari" block:^(UIViewController<TCGBWebViewDelegate> *viewController, TCGBWebURL *webURL) {
-        NSLog(@"%@ called!", webURL.host);
-        __block NSMutableString *url = [[NSMutableString alloc] init];
-        // Parsing parameters
-        [webURL.query enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-            if ([key caseInsensitiveCompare:@"url"] == NSOrderedSame) {
-                url = obj;
+    NSString* urlString = @"https://www.toast.com/";
+    
+    void(^closeCompletion)(TCGBError *) = ^(TCGBError *error) {
+        NSLog(@"WebView Close Event occured");
+    };
+
+    NSArray *schemeList = @[@"mygame://test", @"mygame://opensomebrowser"];
+
+    void(^schemeEvent)(NSString *, TCGBError *error) = ^(NSString *fullUrl, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error]) {
+            if ([@"mygame://test" isEqualToString:fullUrl]) {
+                NSLog(@"mygame://test scheme event occurred");
+            } else if ([@"mygame://opensomebrowser" isEqualToString:fullUrl]) {
+                NSLog(@"mygame://opensomebrowser scheme event occurred");
             }
-        }];
-        
-        // Open Safari Browser
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:@{} completionHandler:^(BOOL success) {
-            NSLog(@"Safari URL : %@", url);
-        }];
-    }];
+        }
+    };
+
+    [TCGBWebView showWebViewWithURL:urlString viewController:self configuration:config closeCompletion:closeCompletion schemeList:schemeList schemeEvent:schemeEvent];
 }
 ```
 
