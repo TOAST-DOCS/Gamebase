@@ -25,25 +25,6 @@ dependencies {
 }
 ```
 
-* 푸시 모듈은 FCM(Firebase Cloud Messaging)과 Tencent 중에서 하나만 추가해야 하지만, 테스트 목적으로 모듈을 여러 개 추가했다면 Gamebase.initialize에서 사용할 PushType을 선택할 수 있습니다.
-    * PushProvider.Type.FCM : "FCM"
-    * PushProvider.Type.TENCENT : "TENCENT"
-
-```java
-String PUSH_TYPE = PushProvider.Type.FCM;	// Firebase Cloud Messaging
-
-GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(APP_ID, APP_VERSION, STORE_CODE)
-		.setPushType(PUSH_TYPE)
-        .build();
-
-Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
-    @Override
-    public void onCallback(final LaunchingInfo data, GamebaseException exception) {
-        ...
-    }
-});
-```
-
 #### Firebase
 
 * Gradle 빌드를 사용하는 경우
