@@ -42,7 +42,7 @@
 > 지원 언어 선택 현황은 앱 - 고객센터 설정에서 확인할 수 있습니다.
 
 #### 2. 답변 발송 설정
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202011.png)
 
 문의에 대한 처리가 완료되었을 경우 유저에게 Push 메시지를 통해 알림을 발송하고자 할 경우에 해당 기능을 설정할 수 있습니다.
 사용하고자 할 경우에 상단에 발송여부를 체크하면 유저에게 처리완료 시 완료 Push알람이 함께 전송됩니다.
@@ -63,9 +63,9 @@
 이후 처리하기가 완료될 경우 문의 인입시 등록된 email을 통해 담당자가 작성한 내용이 유저에게 전달됩니다.
 이 때 답변 발송 항목을 통해 문의 처리 완료 시 해당 유저에게 Push알람이 전송되는지에 대한 여부를 확인할 수 있습니다.
 > [참고]
-> ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_06_202009.png)
-> 로그인된 유저가 문의를 등록했을 경우 해당 유저에 대한 정보를 한 화면에서 조회하여 확인할 수 있습니다.
-> 기존 회원 메뉴에서 사용했던 기능과 동일하게 유저정보를 조회할 수 있으므로 유저 문의대응시 필요한 정보를 한화면에서 편리하게 조회하여 사용하실 수 있습니다.
+> ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_06_202011.png)
+> 로그인된 유저가 문의를 등록했을 경우 해당 유저에 대한 정보가 한 화면에 조회되어 확인할 수 있습니다.
+> 기존 회원 메뉴에서 사용했던 기능과 동일하게 유저정보가 조회되므로 유저 문의대응시 필요한 정보를 한화면에서 편리하게 확인하실 수 있습니다.
 
 #### 1. 답변 발송 설정
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202009.png)
@@ -241,7 +241,7 @@ Text editor를 이용하여 자유롭게 입력이 가능하며 입력된 내용
 
 테스트 발송 기능이 제공되며 해당 기능을 통해 현재 입력한 템플릿을 이용하여 실제 유저에게 어떤 형태로 전송되는지 미리 확인할 수 있습니다.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_14_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_14_202011.png)
 
 > [참고]
 > 발신 주소에 설정된 이메일이 SPF 레코드가 설정되지 않았을 경우에는 수신거부가 될 가능성이 있으므로 아래 값을 DNS의  TXT레코드에 먼저 등록 후 발신주소에 설정해 주셔야 합니다.
