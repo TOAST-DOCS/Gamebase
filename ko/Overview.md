@@ -200,18 +200,18 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 TOAST의 기본적인 멤버 정책과 권한에 대해서는 다음 가이드를 참고 하시기 바랍니다.
 * [TOAST > 콘솔 사용 가이드 > 멤버 관리](https://docs.toast.com/ko/TOAST/ko/console-guide/#_14)
 
-### 권한 부여 방법
+### Manage Role
 
-프로젝트 설정 화면에서 토스트 회원을 추가하거나 등록된 회원에게 개별적인 권한 부여가 가능합니다. 한 명의 회원에게 여러개의 권한을 중복하여 지급할 수 있습니다.
 **Console > 프로젝트 설정 > 멤버 관리**
+프로젝트 설정 화면에서 토스트 회원을 추가하거나 등록된 회원에게 개별적인 권한 부여가 가능합니다. 한 명의 회원에게 여러개의 권한을 중복하여 지급할 수 있습니다.
 ![프로젝트권한](http://static.toastoven.net/prod_gamebase/Overview/overview_project_role_01_20201123.png)
 
-운영상의 편의를 위해서 자주 사용하는 권한은 *권한 그룹*으로 등록하여 토스트 회원에게 권한 그룹 단위로 권한을 줄 수 있습니다.
 **Console > 프로젝트 설정 > 권한 그룹 관리**
+운영상의 편의를 위해서 자주 사용하는 권한은 *권한 그룹*으로 등록하여 토스트 회원에게 권한 그룹 단위로 권한을 줄 수 있습니다.
 ![프로젝트권한그룹](http://static.toastoven.net/prod_gamebase/Overview/overview_project_role_02_20201123.png)
 
-조직 관리 화면에서 조직내의 프로젝트에서 공통으로 사용하는 권한 그룹을 관리할 수 있습니다.
 **Console > 조직 설정 > 프로젝트 공통 권한 그룹 설정**
+조직 관리 화면에서 조직내의 프로젝트에서 공통으로 사용하는 권한 그룹을 관리할 수 있습니다.
 ![조직권한그룹](http://static.toastoven.net/prod_gamebase/Overview/overview_company_role_01_20201123.png)
 
 ### Gamebase에서 제공하는 권한 목록
