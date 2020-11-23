@@ -159,10 +159,11 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 
 ### Client Developer's Guide
 
-
 * [Android SDK 사용 가이드](./aos-started/)
 * [iOS SDK 사용 가이드](./ios-started/)
 * [Unity SDK 사용 가이드](./unity-started/)
+* [Unreal SDK 사용 가이드](./unreal-started/)
+* [JavaScript SDK 사용 가이드](./js-started/)
 
 ### Server Developer's Guide
 
@@ -177,16 +178,96 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 
 | Feature               | Description                              | Client                                   | Server                                   | Console                                  |
 | --------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| Analytics                  | 실시간, 매출, 이용자, 밸런싱 지표 제공<br>레벨별, 서버별 지표 제공 | [[Android](./aos-etc/#analytics)] [[iOS](./ios-etc/#analytics)] [[Unity](./unity-etc/#analytics)] |                                          | [[Analytics]](./oper-analytics)  ||
 | Login                 | 게스트, 3rd Party 인증 지원  <br> - [지원되는 IdP](./Overview/#authentication) |  [[Android](./aos-authentication/#login)] [[iOS](./ios-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[토큰 검증](./api-guide/#token-authentication)] <br> [[회원 조회](./api-guide/#get-member)] | [[App] > 인증 정보 설정](./oper-app/#authentication-information) <br> [[Member] > 회원 조회](./oper-member/#member) <br> - 기본 정보, 로그인 이력, 플레이 시간, 결제 이력 등 |
 | Logout                | 로그아웃                                     | [[Android](./aos-authentication/#logout)]  [[iOS](./ios-authentication/#logout)] [[Unity](./unity-authentication/#logout)] |                                          |                                          |
 | Withdraw              | 게임 탈퇴 <br> -  게임 이용자의 사용자 ID, 매핑 정보 등 모든 정보 삭제 | [[Android](./aos-authentication/#withdraw)] [[iOS](./ios-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
 | Mapping               | 하나의 사용자 ID에 여러 개의 IdP를 연동하는 기능           | [[Android](./aos-authentication/#mapping)] [[iOS](./ios-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |
-| Analytics                  | 실시간, 매출, 이용자, 밸런싱 지표 제공 | [[Android](./aos-etc/#analytics)] [[iOS](./ios-etc/#analytics)] [[Unity](./unity-etc/#analytics)] |                                          | [[Analytics]](./oper-analytics)  ||
-| Purchase(IAP)         | (TOAST 서비스 연동) <br> 인앱 결제  | [[Android](./aos-purchase/#purchase)] [[iOS](./ios-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- 아이템 등록](./oper-purchase/#item) <br> [- 결제 정보 조회](./oper-purchase/#transactions) |
+| Purchase(IAP)         | 인앱 결제  | [[Android](./aos-purchase/#purchase)] [[iOS](./ios-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- 아이템 등록](./oper-purchase/#item) <br> [- 결제 정보 조회](./oper-purchase/#transactions) |
 | Push                  | (TOAST 서비스 연동) <br> 푸시 메시지 전송 및 결과 확인 | [[Android](./aos-push/#push)] [[iOS](./ios-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- 실시간, 예약 푸시 발송 |
-| Leaderboard           | (TOAST 서비스 연동) <br> 실시간 대용량 랭킹 조회 및 등록 |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
+| Leaderboard           | 실시간 대용량 랭킹 조회 및 등록 |                                          | [[API](./api-guide/#leaderboard)] |                                          |
 | Webview               | SDK에서 기본적인 WebView UI를 제공<br/>시스템 팝업, 토스트(toast) UI 제공 | [[Android](./aos-ui/#webview)] [[iOS](./ios-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
 | [Operator] Maintenance | (운영) 점검 기능                               |                                          | [[점검 여부 확인](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- 점검 등록, 점검 해제 |
-| [Operator] Notice      | (운영) 긴급 공지 기능 <br> -  게임 이용자가 앱을 실행할 때 팝업 형태로 공지 확인 가능 |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>-공지 등록 |
-| [Operator] Ban         | (운영) 게임 이용자의 이용 정지 등록 및 해제 <br> -  게임 이용자의 이용 정지 등록 및 해제 | [[Android](./aos-authentication/#get-banned-user-information)] [[iOS](./ios-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -이용 정지 게임 이용자 정보 확인 |    [[게임 이용자의 이용정지 이력조회](./api-guide/#ban-histories)]                                      | [[Ban]](./oper-ban/#ban) <br/>-이용 정지 등록 및 해제 |
+| [Operator] Notice      | (운영) 긴급 공지 기능 <br> -  게임 이용자가 앱을 실행할 때 팝업 형태로 공지 확인 가능 |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>- 공지 등록 |
+| [Operator] Image Notice         | (운영) 이미지 공지 기능 <br> -  게임내 팝업 형태의 이미지 공지 노출 | [[Android](./aos-ui/#imagenotice)] [[iOS](./ios-ui/#imagenotice)] [[Unity](./unity-ui/#imagenotice)] <br/> - 이미지 공지 노출 |                             | [[Image Notice]](./oper-operation/#image-notice) <br/>- 이미지 공지 관리 |
+| [Operator] Ban         | (운영) 게임 이용자의 이용 정지 등록 및 해제 <br> -  게임 이용자의 이용 정지 등록 및 해제 | [[Android](./aos-authentication/#get-banned-user-information)] [[iOS](./ios-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> - 이용 정지 게임 이용자 정보 확인 |    [[게임 이용자의 이용정지 이력조회](./api-guide/#ban-histories)]                                      | [[Ban]](./oper-ban/#ban) <br/>- 이용 정지 등록 및 해제 |
+| [Operator] Coupon         | (운영) 쿠폰 관리<br>- 발급, 이력 조회 |  |                                      [[쿠폰 유효성 검증 및 쿠폰 상태 변경](./api-guide/#coupon)  | [[Coupon]](./oper-coupon) <br/>- 쿠폰 발급 |
+| [Operator] Customer Service         | (운영) 1:1 문의 접수 및 처리 <br> -  FAQ, 공지사항 관리 | [[Android](./aos-etc/#contact] [[iOS](./ios-etc/#contact)] [[Unity](./unity-etc/#contact)] <br/> - 고객센터 웹페이지를 웹뷰로 표시 |                                        | [[Customer Service]](./oper-customer-service) <br/>- 고객센터 문의 처리<br>- FAQ/공지 관리 |
 
+
+## Console Role
+
+TOAST의 기본적인 멤버 정책과 권한에 대해서는 다음 가이드를 참고 하시기 바랍니다.
+* [TOAST > 콘솔 사용 가이드 > 멤버 관리](../console-guide/#_14)
+
+### 권한 부여 방법
+
+프로젝트 설정 화면에서 토스트 회원을 추가하거나 등록된 회원에게 개별적인 권한 부여가 가능합니다. 한 명의 회원에게 여러개의 권한을 중복하여 지급할 수 있습니다.
+* Console > 프로젝트 설정 > 멤버 관리
+![프로젝트권한](http://static.toastoven.net/prod_gamebase/Overview/overview_project_role_01_20201123.png)
+
+운영상의 편의를 위해서 자주 사용하는 권한은 *권한 그룹*으로 등록하여 토스트 회원에게 권한 그룹 단위로 권한을 줄 수 있습니다.
+* Console > 프로젝트 설정 > 권한 그룹 관리
+![프로젝트권한그룹](http://static.toastoven.net/prod_gamebase/Overview/overview_project_role_02_20201123.png)
+
+조직내의 프로젝트에서 공통으로 사용하는 권한 그룹은 조직 관리 화면에서 관리할 수 있습니다.
+* Console > 조직 설정 > 프로젝트 공통 권한 그룹 설정
+![조직권한그룹](http://static.toastoven.net/prod_gamebase/Overview/overview_company_role_01_20201123.png)
+
+### Gamebase에서 제공하는 권한 목록
+
+| 서비스 | 권한 | 설명 |
+| --- | --- | --- |
+| Gamebase | ADMIN | **전체 화면의 접근 및 제어**<br>Gamebase 서비스 Create(생성), Read(읽기), Update(갱신), Delete(삭제) |
+| Gamebase | ANALYTICS VIEWER - ALL | 모든 지표 Read(읽기)<br>지표 결과의 엑셀 파일 다운로드 가능 |
+| Gamebase | ANALYTICS VIEWER - EXCLUDING SALES | 매출을 제외한 모든 지표 Read(읽기) |
+| Gamebase | ANALYTICS VIEWER - ONLY REAL-TIME | 실시간 지표 Read(읽기) |
+| Gamebase | APP ADMIN | APP 메뉴 Create(생성), Read(읽기), Update(갱신), Delete(삭제) |
+| Gamebase | APP VIEWER | APP 메뉴 Read(읽기) |
+| Gamebase | BAN ADMIN | 이용 정지 메뉴 Create(생성), Read(읽기), Update(갱신), Delete(삭제) |
+| Gamebase | BAN VIEWER | 이용 정지 메뉴 Read(읽기) |
+| Gamebase | COUPON ADMIN | 쿠폰 메뉴 Create(생성), Read(읽기), Update(갱신), Delete(삭제) |
+| Gamebase | COUPON VIEWER | 쿠폰 메뉴 Read(읽기) |
+| Gamebase | CS ADMIN | 고객센터 메뉴 Create(생성), Read(읽기), Update(갱신), Delete(삭제) |
+| Gamebase | CS INQUIRY SUPPORT | 고객센터 문의 메뉴 Read(읽기), Update(갱신) 및 멤버 메뉴 Read(읽기) |
+| Gamebase | IAP ADMIN | 구매 메뉴 Create(생성), Read(읽기), Update(갱신), Delete(삭제) |
+| Gamebase | IAP VIEWER | 구매 메뉴 Read(읽기) |
+| Gamebase | LEADERBOARD ADMIN | 리더보드 메뉴 Create(생성), Read(읽기), Update(갱신), Delete(삭제) |
+| Gamebase | LEADERBOARD VIEWER | 리더보드 메뉴 Read(읽기) |
+| Gamebase | MANAGEMENT ADMIN | 관리 메뉴 Create(생성), Read(읽기), Update(갱신), Delete(삭제) |
+| Gamebase | MEMBER ADMIN | 멤버 메뉴 Create(생성), Read(읽기), Update(갱신), Delete(삭제) |
+| Gamebase | MEMBER VIEWER | 멤버 메뉴 Read(읽기) |
+| Gamebase | MEMBER FILE DOWNLOAD | 멤버 메뉴 Read(읽기) 및 멤버 파일 다운로드 |
+| Gamebase | OPERATION ADMIN | 운영 메뉴 Create(생성), Read(읽기), Update(갱신), Delete(삭제) |
+| Gamebase | OPERATION VIEWER | 운영 메뉴 Read(읽기) |
+| Gamebase | PUSH ADMIN | 푸시 메뉴 Create(생성), Read(읽기), Update(갱신), Delete(삭제) |
+| Gamebase | PUSH VIEWER | 푸시 메뉴 Read(읽기) |
+
+* 권한 그룹별로 권한을 관리하는 예시입니다. 게임에서 필요에 따라 적절한 권한 그룹을 생성하여 관리할 수 있습니다.
+
+| 서비스 | 권한 | 관리자/사업 | 개발 | CS |
+| --- | --- | --- | --- | --- | --- |
+| Gamebase | ADMIN | ● | | |
+| Gamebase | ANALYTICS VIEWER - ALL |  |  | |
+| Gamebase | ANALYTICS VIEWER - EXCLUDING SALES |   |  | |
+| Gamebase | ANALYTICS VIEWER - ONLY REAL-TIME |  | ● | |
+| Gamebase | APP ADMIN | |  ● | |
+| Gamebase | APP VIEWER | |  | |
+| Gamebase | BAN ADMIN | |  ● | ●|
+| Gamebase | BAN VIEWER | |  | |
+| Gamebase | COUPON ADMIN | | ● | |
+| Gamebase | COUPON VIEWER | |  |● |
+| Gamebase | CS ADMIN | |  | |
+| Gamebase | CS INQUIRY SUPPORT | |  | ● |
+| Gamebase | IAP ADMIN | | ● | |
+| Gamebase | IAP VIEWER | |  |● |
+| Gamebase | LEADERBOARD ADMIN || ● | | 
+| Gamebase | LEADERBOARD VIEWER | |  | |
+| Gamebase | MANAGEMENT ADMIN | | ● | |
+| Gamebase | MEMBER ADMIN | | ● | ● |
+| Gamebase | MEMBER VIEWER | |  |  |
+| Gamebase | MEMBER FILE DOWNLOAD | |  | |
+| Gamebase | OPERATION ADMIN | | ● | |
+| Gamebase | OPERATION VIEWER | |  |● |
+| Gamebase | PUSH ADMIN | | ● | |
+| Gamebase | PUSH VIEWER | |  | ● |
