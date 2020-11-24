@@ -22,7 +22,7 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 아이템 구매는 크게 결제 Flow 와 Consume Flow, 재처리 Flow 로 나누어 볼 수 있습니다.
 결제 Flow는 다음과 같은 순서로 구현하시기 바랍니다.
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
+![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
 1. 이전 결제가 정상적으로 종료되지 못한 경우 재처리가 동작하지 않으면 결제가 실패합니다. 그러므로 결제 전에 **RequestItemListOfNotConsumed**를 호출하여 재처리를 동작시켜 미지급된 아이템이 있으면 Consume Flow 를 진행합니다.
 2. 게임 클라이언트에서는 Gamebase SDK의 **RequestPurchase**를 호출하여 결제를 시도합니다.
@@ -32,14 +32,19 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 
 미소비 결제 내역 목록에 값이 있으면 다음과 같은 순서로 Consume Flow 를 진행하시기 바랍니다.
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.0.png)
+> <font color="red">[주의]</font><br/>
+>
+> 아이템이 중복 지급되는 일이 발생하지 않도록, 게임 서버에서 반드시 중복 지급 여부를 체크하시기 바랍니다.
+>
+
+![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
 
 1. 게임 클라이언트가 게임 서버에 결제 아이템에 대한 consume(소비)을 요청합니다.
     * UserID, gamebaseProductId, paymentSeq, purchaseToken 을 전달합니다.
 2. 게임 서버는 게임 DB에 이미 동일한 paymentSeq 로 아이템을 지급한 이력이 있는지 확인합니다.
     * 2-1. 아직 아이템을 지급하지 않았다면 UserID 에 gamebaseProductId 에 해당하는 아이템을 지급합니다.
     * 2-2. 아이템 지급 후 게임 DB에 UserID, gamebaseProductId, paymentSeq, purchaseToken을 저장하여 중복 지급 방지 또는 재지급을 할 수 있도록 합니다.
-3. 게임 서버는 Gamebase 서버의 consume(소비) API를 호출하여 아이템 지급을 완료합니다.
+3. 아이템 지급 여부와 무관하게 게임 서버는 Gamebase 서버의 consume(소비) API를 호출하여 아이템 지급을 완료합니다.
     * [API 가이드 > Purchase(IAP) > Consume](./api-guide/#consume)
 
 ### Retry Transaction Flow
