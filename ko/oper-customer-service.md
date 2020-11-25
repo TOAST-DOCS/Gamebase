@@ -6,79 +6,6 @@
 > 이 메뉴를 이용하시려면 앱 - 고객센터 설정에서 Gamebase 제공 고객센터 항목을 선택하셔야 합니다.
 >
 
-## Help Center Web Page 
-
-유저에게 노출되는 고객센터 웹페이지에 대해서 설명합니다.
-해당 화면을 통해 유저는 1:1 문의를 등록하고 내 문의 내역 조회가 가능하며, 자주하는 질문 및 공지사항을 확인할 수 있습니다.
-
-### Main 
-
-게임에서 Gamebase SDK를 이용하여 고객센터 페이지를 오픈하면 다음과 같은 화면이 유저에게 노출됩니다.
-
-#### (1) 1:1 문의
-
-**1:1 문의** 버튼을 클릭하면 1:1 문의를 등록하는 화면으로 이동합니다.
-
-![Gamebase_Customer Stories_N02.png](http://static.toastoven.net/prod_gamebase/Gamebase_Customer Stories_N02.png)
-
-다음은 문의 등록 시에 입력하는 항목입니다.
-등록된 문의는 **[고객센터 > 고객문의](./oper-customer-service/#inquiry)** 콘솔에서 확인하고 답변 처리가 가능합니다.
-
-1. 문의 유형: 접수 문의 유형을 선택합니다. 접수 문의 유형은 [고객센터 > 고객문의](./oper-customer-service/#inquiry)에서 등록, 수정, 삭제가 가능합니다. 
-2. 답변 이메일: 문의에 관한 답변을 받을 이메일 주소를 입력합니다. 콘솔에서 문의 처리를 완료하면 입력된 이메일 주소로 자동으로 메일을 발송합니다.
-3. 이름(닉네임): 게임에서 사용하는 닉네임을 입력합니다. 최대 10자까지 입력 가능합니다. 
-게임 닉네임을 추가 정보로 설정하여 고객센터 페이지를 열면 유저가 입력하지 않아도 자동으로 닉네임이 입력됩니다.
-4. 제목: 문의 제목을 입력합니다. 최대 100자까지 입력 가능합니다.
-5. 문의 내용: 문의 내용을 작성하여 입력합니다. 최대 1,000자까지 입력 가능합니다.
-6. 첨부: 첨부파일이 있는 경우 등록합니다. 10MB 미만의 파일 5개까지 첨부 가능합니다.
-
-#### (2) 내 문의 내역
-
-**1) 로그인을 했을 경우**
-**내 문의 내역** 버튼이 출력되며, 클릭하면 이전에 고객이 문의한 내역을 확인하는 화면으로 이동합니다.
-![Gamebase_Customer Stories_002.png](http://static.toastoven.net/prod_gamebase/Gamebase_Customer Stories_002.png)
-
-내 문의 내역은 최대 10개가 리스트에 노출되며 더 보기 클릭 시 10개가 추가로 노출됩니다.
-목록 버튼을 통해 내 문의 내역 조회 화면으로 이동할 수 있습니다.
-
-**2) 로그인을 하지 않았을 경우**
-로그인을 하지 않은 경우에는 "내 문의 내역"은 노출되지 않습니다.
-로그인 하지 않고 문의를 남기면 이메일로만 문의 내역 확인이 가능하며 내 문의 내역에서의 확인 또한 불가능합니다.
-![Gamebase_Customer Stories_000_NotLogin.png](http://static.toastoven.net/prod_gamebase/Gamebase_Customer Stories__000_NotLogin.png)
-
-#### (3) 자주하는 질문
-
-FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 있습니다. 리스트에서는 최대 12개가 노출됩니다.
-![Gamebase_Customer Stories_000.png](http://static.toastoven.net/prod_gamebase/Gamebase_Customer Stories_000.png)
-
-원하는 내용을 검색하거나 카테고리 버튼을 클릭하여 [고객센터 > FAQ](./oper-customer-service/#faq)에서 등록한 FAQ내용을 확인할 수 있습니다.
-
-![Gamebase_Customer Stories__004.png](http://static.toastoven.net/prod_gamebase/Gamebase_Customer Stories__004.png)
-1) 확인하고 싶은 검색어를 입력하여 검색어가 포함된 FAQ를 확인할 수 있습니다.
-![Gamebase_Customer Stories__004.png](http://static.toastoven.net/prod_gamebase/Gamebase_Customer Stories__004.png)
-2) 자주 하는 질문으로 등록된 질문을 확인할 수 있습니다.
-![Gamebase_Customer Stories_006.png](http://static.toastoven.net/prod_gamebase/Gamebase_Customer Stories_006.png)
-3) FAQ 등록시 설정한 **FAQ 유형 관리**별로 묶어서 FAQ를 확인할 수 있습니다.
-![Gamebase_Customer Stories_003.png](http://static.toastoven.net/prod_gamebase/Gamebase_Customer Stories_003.png)
-4) FAQ 카테고리는 Gamebase Console > 고객센터 >  FAQ 유형관리를 통해 추가하거나 삭제할 수 있습니다.)
-![Gamebase_Customer Stories_console.png](http://static.toastoven.net/prod_gamebase/Gamebase_Customer Stories_console.png)
-
-#### (4) 공지사항
-**고객센터 > 공지사항**에 등록된 게시물을 확인할 수 있습니다.
-
-공지사항은 작성일 내림차순으로 정렬됩니다.
-상단 노출로 지정한 게시물은 굵은 폰트로 표시됩니다.
-
-![Gamebase_Customer Stories__000_NotLogin](http://static.toastoven.net/prod_gamebase/Gamebase_Customer Stories__000_NotLogin.png)
-해당 내용을 클릭하면 자세한 본문 내용까지 확인이 가능합니다.
-노출 기간이 지난 게시물은 더 이상 표시되지 않습니다.
-
-![Gamebase_Customer Stories_008](http://static.toastoven.net/prod_gamebase/Gamebase_Customer Stories_008.png)
-
-첫 화면에서는 최근에 작성한 3개의 게시물이 표시되고, **more**를 클릭하면 등록된 전체 공지사항을 확인할 수 있습니다.
-more을 통해 진입한 페이지에서는 상단 고정으로 지정한 체크한 공지가 가장 상단에 노출됩니다.
-![Gamebase_Customer Stories__010](http://static.toastoven.net/prod_gamebase/Gamebase_Customer Stories_010.png)
-
 ## Inquiry
 
 고객에게 인입된 문의를 처리하거나 조회할 수 있습니다.
@@ -115,7 +42,7 @@ more을 통해 진입한 페이지에서는 상단 고정으로 지정한 체크
 > 지원 언어 선택 현황은 앱 - 고객센터 설정에서 확인할 수 있습니다.
 
 #### 2. 답변 발송 설정
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202011.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202009.png)
 
 문의에 대한 처리가 완료되었을 경우 유저에게 Push 메시지를 통해 알림을 발송하고자 할 경우에 해당 기능을 설정할 수 있습니다.
 사용하고자 할 경우에 상단에 발송여부를 체크하면 유저에게 처리완료 시 완료 Push알람이 함께 전송됩니다.
@@ -136,9 +63,9 @@ more을 통해 진입한 페이지에서는 상단 고정으로 지정한 체크
 이후 처리하기가 완료될 경우 문의 인입시 등록된 email을 통해 담당자가 작성한 내용이 유저에게 전달됩니다.
 이 때 답변 발송 항목을 통해 문의 처리 완료 시 해당 유저에게 Push알람이 전송되는지에 대한 여부를 확인할 수 있습니다.
 > [참고]
-> ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_06_202011.png)
-> 로그인된 유저가 문의를 등록했을 경우 해당 유저에 대한 정보가 한 화면에 조회되어 확인할 수 있습니다.
-> 기존 회원 메뉴에서 사용했던 기능과 동일하게 유저정보가 조회되므로 유저 문의대응시 필요한 정보를 한화면에서 편리하게 확인하실 수 있습니다.
+> ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_06_202009.png)
+> 로그인된 유저가 문의를 등록했을 경우 해당 유저에 대한 정보를 한 화면에서 조회하여 확인할 수 있습니다.
+> 기존 회원 메뉴에서 사용했던 기능과 동일하게 유저정보를 조회할 수 있으므로 유저 문의대응시 필요한 정보를 한화면에서 편리하게 조회하여 사용하실 수 있습니다.
 
 #### 1. 답변 발송 설정
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202009.png)
@@ -314,7 +241,7 @@ Text editor를 이용하여 자유롭게 입력이 가능하며 입력된 내용
 
 테스트 발송 기능이 제공되며 해당 기능을 통해 현재 입력한 템플릿을 이용하여 실제 유저에게 어떤 형태로 전송되는지 미리 확인할 수 있습니다.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_14_202011.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_14_202009.png)
 
 > [참고]
 > 발신 주소에 설정된 이메일이 SPF 레코드가 설정되지 않았을 경우에는 수신거부가 될 가능성이 있으므로 아래 값을 DNS의  TXT레코드에 먼저 등록 후 발신주소에 설정해 주셔야 합니다.

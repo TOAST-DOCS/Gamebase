@@ -66,7 +66,7 @@
 #### 6. 발급 개수
 
 발급 시 생성할 쿠폰 코드의 개수를 설정합니다.
-한 번 요청 시 최대 100만 개의 쿠폰 코드까지 생성할 수 있습니다.
+한 번 요청 시 최대 5만 개의 쿠폰 코드까지 생성할 수 있습니다.
 
 #### 7. 유저별 사용 가능 개수
 
@@ -90,7 +90,7 @@
 발급한 쿠폰 정보를 수정하려면 상세 정보에서 **수정** 버튼을 클릭합니다.
 이미 발급한 쿠폰 코드 타입은 수정할 수 없으므로 새 타입의 쿠폰을 발급하려면 발급 정보를 새로 등록해야 합니다.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_03_202011.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_coupon_03_202003.png)
 
 #### 1. 쿠폰명
 
@@ -144,11 +144,7 @@
 >
 > 쿠폰 아이템을 등록하는 방법은 [Coupon Item](./oper-coupon/#coupon-item)을 참고하시기 바랍니다.
 
-#### 7. 쿠폰 추가 발급
-쿠폰 타입이 시리얼인 경우 1회 10만개씩 최대 100개까지(초기 발급 개수 포함) 추가로 발급받을 수 있습니다.
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_11_202011.png)
-
-#### 8. 쿠폰 통계
+#### 7. 쿠폰 통계
 쿠폰 발급 상세 정보 화면의 하단에서 SMS 발송 내역을 조회할 수 있으며 발송과 관련된 통계를 조회 및 파일 다운로드를 진행할 수 있습니다.
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_coupon_05_202006.png)
 
