@@ -21,7 +21,6 @@ dependencies {
     
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
-    implementation "com.toast.android.gamebase:gamebase-adapter-push-tencent:$GAMEBASE_SDK_VERSION"
 }
 ```
 
@@ -54,11 +53,6 @@ dependencies {
     <string name="default_web_client_id" translatable="false">000000000000-abcdabcdabcdabcdabcdabcdabcd.apps.googleusercontent.com</string>
 </resources>
 ```
-
-#### Tencent
-
-* Tencent 푸시를 사용하려면 아래 가이드에 따라 Tencent 설정을 완료해야 합니다.
-	* [TOAST > TOAST SDK 사용 가이드 > TOAST Push > Android > Tencent Push Notification 설정](/TOAST/ko/toast-sdk/push-android/#tencent-push-notification)
 
 ### Register Push
 
@@ -322,7 +316,7 @@ Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
 | --- | --- | --- |
 | OK | 0 | API 호출 성공 |
 | NOT_INITIALIZE | 100 | TOAST SDK 또는 TOAST Push SDK가 초기화되지 않은 경우 |
-| PROVIDER_SDK_ERROR | 101 | 외부 SDK(Firebase, Tencent)에서 오류가 발생한 경우 |
+| PROVIDER_SDK_ERROR | 101 | 외부 SDK(Firebase)에서 오류가 발생한 경우 |
 | USER_ID_NOT_REGISTERED | 102 | 로그인하지 않은 경우 |
 | UNSUPPORTED_PUSH_TYPE | 103 | PushType을 잘못 입력했거나 푸시 라이브러리가 프로젝트에 포함되지 않은 경우 |
 | API_SERVER_ERROR | 104 | TOAST Push 서버 API 호출에 실패한 경우 |
