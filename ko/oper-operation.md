@@ -111,7 +111,7 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 
 공지 메인화면에서 '등록'버튼을 클릭하면 공지를 등록하는 화면으로 이동합니다.
 
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_op_07_202004.png)
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_op_07_202011.png)
 
 #### (1) 대상
 
@@ -155,12 +155,13 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 
 #### (6) 하단 버튼 타입
 공지 팝업 하단에 노출될 버튼의 타입을 지정합니다.
-
 - 닫기: 닫기 버튼만 노출.
   '닫기'버튼 클릭하면 팝업을 닫고 게임을 진행합니다.
 
 - 닫기+자세히 보기: '닫기'와 '자세히보기' 버튼을 노출.
-  사용자가 '자세히보기' 버튼을 클릭하면 Console에서 입력한 링크를 WebView로 오픈합니다.
+  - 직접 입력: 사용자가 '자세히보기' 버튼을 클릭하면 Console에서 입력한 링크를 WebView로 오픈합니다.
+  - 고객센터 연결: Gamebase 제공 고객센터 설정시, 사용자가 '자세히보기' 버튼을 클릭하면 고객센터를 WebView로 오픈합니다.
+  
 
 
 #### 긴급공지 팝업 예시
