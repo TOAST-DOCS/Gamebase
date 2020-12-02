@@ -8,7 +8,6 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 >
 > Android API 16 (JellyBean, 4.1) 이상
 >   - GALAXY Store 는 21(Lollipop, 5.0) 이상
->   - Tencent Push 는 20(KitkatWatch, 4.4W) 이상
 > Gradle Android Plugin 2.3.0 이상 <br/>
 > 개발 환경: Android Studio
 
@@ -47,7 +46,6 @@ dependencies {
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
-    implementation "com.toast.android.gamebase:gamebase-adapter-push-tencent:$GAMEBASE_SDK_VERSION"
 }
 ```
 

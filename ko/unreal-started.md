@@ -69,9 +69,8 @@ Supported Platforms
             //implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
             //implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
 
-            // >>> Gamebase - Select Push Adapter (사용하려는 Push의 gamebase-adapter-purchase 모듈을 gradle 의존성에 추가합니다.)
+            // >>> Gamebase - Select Push Adapter (사용하려는 Push의 gamebase-adapter-push 모듈을 gradle 의존성에 추가합니다.)
             //implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-push-tencent:$GAMEBASE_SDK_VERSION"
 
             // Add the TOAST Crash Reporter for NDK dependency
             implementation 'com.toast.android:toast-crash-reporter-ndk:0.21.0'
