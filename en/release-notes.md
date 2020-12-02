@@ -1,6 +1,6 @@
 ## Game > Gamebase > Release Notes
 
-### November 24, 2020
+### December 2, 2020
 
 #### More Features
 * [Console] 
@@ -18,9 +18,9 @@
 	* 고객센터 > 고객 문의: 답변 발송 설정에 자동 번역 기능 추가
 	* 쿠폰 > 쿠폰 발급: 쿠폰 최초 발급 수량을 최대 5만 개에서 최대 100만 개로 증가
 
-#### Bug Fixes 
+#### Bug Fixes
 * [Console]
-    * 구매(IAP) > 결제 정보: 조회한 데이터가 많은 경우 파일 다운로드 실패하는 문제 수정
+    * 구매(IAP) > 결제 정보: 조회한 데이터가 많은 경우 파일을 다운로드하지 못하는 문제 수정
 
 ### November 10, 2020
 
