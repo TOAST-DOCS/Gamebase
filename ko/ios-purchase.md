@@ -104,7 +104,6 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 **Example**
 
 ```objectivec
-
 - (void)purchasingItem:(NSString *)gamebaseProductId {
     NSString *userPayload = @"USER_PAYLOAD";
 
@@ -237,8 +236,8 @@ Facebook SDK, Google AdMob SDK 와 같이 SDK 내에 In App Purchase (AppStore �
 
 
 #### Overview
-* Apple Developer Overview : https://developer.apple.com/app-store/promoting-in-app-purchases/
-* Apple Developer Reference : https://help.apple.com/app-store-connect/#/deve3105860f
+* Apple Developer Overview : [https://developer.apple.com/app-store/promoting-in-app-purchases/](https://developer.apple.com/app-store/promoting-in-app-purchases/)
+* Apple Developer Reference : [https://help.apple.com/app-store-connect/#/deve3105860f](https://help.apple.com/app-store-connect/#/deve3105860f)
 
 
 App Store 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니다.

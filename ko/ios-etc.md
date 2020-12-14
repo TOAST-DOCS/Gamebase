@@ -712,9 +712,11 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
 
 **TCGBContactConfiguration**
 
-| Parameter     | Values         | Description        |
-| ------------- | -------------- | ------------------ |
-| userName      | string         | 사용자 이름(닉네임)    |
+| Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
+| ------------- | ------------- | ---------------------------------- | ------------------ |
+| userName      | O             | string                             | 사용자 이름(닉네임)<br>**default** : nil    |
+| additionalURL | O             | string                             | 개발사 자체 고객센터 URL 뒤에 붙는 추가적인 URL<br>고객센터 타입이 `CUSTOM` 인 경우에만 사용<br>**default** : nil    |
+| extraData     | O             | dictionary<string, string>         | 개발사가 원하는 extra data를 고객센터 오픈 시에 전달<br>**default** : nil    |
 
 
 **API**
