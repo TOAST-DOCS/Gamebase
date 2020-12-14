@@ -6,7 +6,8 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 > [최소 사양]
 >
-> Android API 16 (JellyBean, 4.1) 이상
+> Android API 16 (JellyBean, OS 4.1) 이상
+>   - Twitter Login 은 19(Kitkat, 4.4) 이상
 >   - GALAXY Store 는 21(Lollipop, 5.0) 이상
 > Gradle Android Plugin 2.3.0 이상 <br/>
 > 개발 환경: Android Studio
