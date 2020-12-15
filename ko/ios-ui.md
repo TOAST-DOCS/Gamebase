@@ -83,6 +83,13 @@ closeImageNotices API를 호출하여 현재 표시 중인 이미지 공지를 �
 }
 ```
 
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| TCGB\_ERROR\_NOT\_INITIALIZED(1) | Gamebase가 초기화되어 있지 않습니다. |
+| TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT(6901) | 이미지 공지 팝업 표시중 타임아웃이 발생하여 모든 팝업을 강제 종료합니다. |
+
 ## WebView
 
 Gamebase에서는 기본적인 WebView를 지원합니다.<br/>
@@ -160,8 +167,8 @@ Gamebase에서 지정해 놓은 스키마입니다.<br/>
 | scheme               | 용도                     |
 | -------------------- | ---------------------- |
 | gamebase://dismiss   | WebView 닫기             |
-| gamebase://goBack    | WebView 뒤로 가기          |
-| gamebase://getUserId | 현재 로그인돼 있는 사용자의 아이디 표시 |
+| gamebase://goback    | WebView 뒤로 가기          |
+| gamebase://getuserid | 현재 로그인돼 있는 사용자의 아이디 표시 |
 | gamebase://openbrowser?link={URLEncodedURL} | link 파라메터의 URL을 외부 브라우저로 열기<br/>URLEncodedURL : 외부 브라우저로 열 URL<br/>URL 디코딩 필요 |
 
 
@@ -183,7 +190,7 @@ Gamebase에 스키마 이름과 블록을 지정해 원하는 기능을 추가�
     NSArray *schemeList = @[@"mygame://test", @"mygame://opensomebrowser"];
 
     void(^schemeEvent)(NSString *, TCGBError *error) = ^(NSString *fullUrl, TCGBError *error) {
-        if ([TCGBGamebase isSuccessWithError:error]) {
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
             if ([@"mygame://test" isEqualToString:fullUrl]) {
                 NSLog(@"mygame://test scheme event occurred");
             } else if ([@"mygame://opensomebrowser" isEqualToString:fullUrl]) {

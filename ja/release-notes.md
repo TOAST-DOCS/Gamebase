@@ -1,5 +1,31 @@
 ## Game > Gamebase > リリースノート
 
+### 2020. 12. 15.
+
+#### 機能追加
+* Gamebase 고객센터 페이지 오픈 시 게임에서 정의한 extra data 전달: SDK 2.18.2
+	* [Console] 고객센터 > 고객 문의: 고객 문의 상세 조회 화면에서 추가로 등록한 extra data 확인 가능
+* [SDK] 2.18.2
+	* (공통) 개발사 자체 고객센터 오픈 시 additionalURL 필드 추가
+	* (공통) 결제 아이템 정보에 지역화된 상품 정보 추가: localizedTitle, localizedDescription
+
+#### 機能改善/変更
+* [Console]
+	* Analytics: 필터 검색 후 날짜 변경하여도 선택한 검색 조건이 유지되도록 개선
+	* Push > 푸시: Tencent Push 제거
+	* 구매(IAP) > 결제 정보: 환불 상태에서 영수증 검증 버튼 노출되지 않도록 변경
+* [SDK] 2.18.2
+    * (공통) TOAST SDK 업데이트: [Android(0.24.2)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0242-20201124), [iOS(0.27.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-unity/#0213-20201124)
+	* (Android) 암호화 로직 보안 경고 해결을 위한 외부 SDK 업데이트: Payco Login SDK(1.5.3), Hangame ID SDK(1.3.2)
+	* (Android) Tencent Push 모듈 제거
+	* (Android) Gamebase Android SDK 2.6.0에서 deprecated 된 함수 제거
+		* GamebaseConfiguration.Builder.setFCMSenderId()
+		* GamebaseConfiguration.Builder.setTencentAccessKey()
+		* GamebaseConfiguration.Builder.setTencentAccessId()
+	* (iOS) showWebView: 잘못된 URL을 전달 했을 경우 에러 반환, 전달받은 URL은 인코딩하지 않고 그대로 사용
+	* (iOS) 대소문자 상관없이 커스텀 스킴이 동작하도록 변경
+	* (Unity) GamebaseRequest.GamebaseConfiguration 클래스의 필드 deprecated: zoneType, fcmSenderId
+	
 ### 2020. 12. 2.
 
 #### 機能追加
@@ -25,17 +51,17 @@
 ### 2020. 11. 10.
 
 #### 機能追加
-* Galaxy 스토어 추가: SDK 2.18.0
+* Galaxyストア追加：SDK 2.18.0
 
 #### 機能改善/変更
 * [SDK] 2.18.0
-    * (Android) TOAST SDK 업데이트: Android(0.24.1)
-    * (Android) WebView SSL 보안경고 대응 처리 추가
-    * (iOS) iOS 13이상부터 제공되는 SceneDelegate 대응 API 추가
+    * (Android) TOAST SDKアップデート：[Android(0.24.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0240-20201027)-GooglePlay Billing Library v.3.0.1 適用
+    * (Android) WebView SSLセキュリティ警告対応処理を追加
+    * (iOS) iOS 13以上から提供されるSceneDelegate対応APIを追加
 
 #### バグ修正 
 * [SDK] 2.18.1
-    * (Android) 2.18.0 에서 Google 결제 후 크래시가 발생하는 이슈 수정
+    * (Android) 2.18.0でGoogle決済後にクラッシュが発生するイシューを修正
 
 ### 2020. 10. 27.
 
