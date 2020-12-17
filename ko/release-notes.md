@@ -18,20 +18,19 @@
     * (공통) TOAST SDK 업데이트: [Android(0.24.2)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0242-20201124), [iOS(0.27.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-unity/#0213-20201124)
 	* (Android) 암호화 로직 보안 경고 해결을 위한 외부 SDK 업데이트: Payco Login SDK(1.5.3), Hangame ID SDK(1.3.2)
 	* (Android) Tencent Push 모듈 제거
-	* (Android) Gamebase Android SDK 2.6.0에서 deprecated 된 함수 제거
+	* (Android) Gamebase Android SDK 2.6.0에서 deprecated된 함수 제거
 		* GamebaseConfiguration.Builder.setFCMSenderId()
 		* GamebaseConfiguration.Builder.setTencentAccessKey()
 		* GamebaseConfiguration.Builder.setTencentAccessId()
-	* (iOS) showWebView: 잘못된 URL을 전달 했을 경우 에러 반환, 전달받은 URL은 인코딩하지 않고 그대로 사용
+	* (iOS) showWebView: 잘못된 URL을 전달했을 경우 에러 반환, 전달받은 URL은 인코딩하지 않고 그대로 사용
 	* (iOS) 대소문자 상관없이 커스텀 스킴이 동작하도록 변경
 	* (Unity) GamebaseRequest.GamebaseConfiguration 클래스의 필드 deprecated: zoneType, fcmSenderId
 
-
 #### 버그 수정
 * [Console]
-	* 구매(IAP) > 아이템: 파일로 아이템 대량등록하면 중복으로 등록되는 문제 수정
+	* 구매(IAP) > 아이템: => 파일로 아이템을 대량 등록하면 중복으로 등록되는 문제 수정
 * [SDK] 2.18.2
-    * (Android) 5.0 ~ 6.0 OS 단말기에서 웹뷰 커스텀 스킴이 동작하지 않는 문제 수정
+    * (Android) 5.0~6.0 OS 단말기에서 웹뷰 커스텀 스킴이 동작하지 않는 문제 수정
 
 ### 2020. 12. 2.
 
