@@ -6,12 +6,17 @@ Gamebase Android SDK를 사용하려면 먼저 초기화를 진행해야 합니�
 
 Gamebase의 정상적인 동작을 위해 반드시 **Activity#onActivityResult(int, int, Intent)**에서 **Gamebase.onActivityResult(int, int, Intent)**를 호출해야 합니다.
 
-
 **API**
 
 ```java
 + (void)Gamebase.onActivityResult(int requestCode, int resultCode, Intent data);
 ```
+
+### Initialization Flow
+
+게임이 시작되면 Debug Mode 를 설정하고, Gamebase 를 초기화하여 Launching Status Code 에 따라 게임 진입여부를 결정하도록 아래 Flow 와 같이 구현하시면 됩니다.
+
+![initialization flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/initialization_flow_2.19.0.png)
 
 ### Configuration Settings
 

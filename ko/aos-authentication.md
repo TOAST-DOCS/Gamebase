@@ -6,8 +6,8 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
 
 * 게스트 이외의 Provider에 로그인하려면 해당 Provider AuthAdapter가 필요합니다.
 * AuthAdapter 및 3rd-Party Provider SDK에 대한 설정은 다음을 참고하시기 바랍니다.
-  [3rd-Party Provider SDK Guide](aos-started#3rd-party-provider-sdk-guide)
-
+    * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > Gradle](./aos-started/)
+    * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > Gamebase Console > 3rd-Party Provider SDK Guide](./aos-started/)
 
 ### Login Flow
 
@@ -17,11 +17,8 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
 
 위에서 설명한 로직은 다음과 같은 순서로 구현할 수 있습니다.
 
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![last provider login flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
+![idp login flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
 #### 1. 이전 로그인 유형으로 인증
 
@@ -252,7 +249,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 | keyname                                  | a use                                    | 값 종류                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | IdP 유형 설정                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.HANGAME<br>"payco" |
+| AuthProviderCredentialConstants.PROVIDER_NAME | IdP 유형 설정                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.HANGAME<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/>Google 인증 시에는 사용 안 함 |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Google 로그인 이후 획득할 수 있는 OTAC(one time authorization code) 입력 |                                          |
 
@@ -854,12 +851,6 @@ private static void removeMappingForFacebook(final Activity activity) {
 ## Gamebase User`s Information
 Gamebase로 인증 절차를 진행한 후, 앱을 제작할 때 필요한 정보를 얻을 수 있습니다.
 
-> <font color="red">[주의]</font><br/>
->
-> "Gamebase.loginForLastLoggedInProvider()" API 로 로그인한 경우에는 인증 정보를 가져올 수 없습니다.
->
-> 인증 정보가 필요하다면 "Gamebase.loginForLastLoggedInProvider()" 대신, 사용하고자 하는 IDPCode 와 동일한 {IDP_CODE} 를 파라미터로 하여 "Gamebase.login(activity, IDP_CODE, callback)" API 로 로그인 해야 정상적으로 인증정보를 획득할 수 있습니다.
-
 ### Get Authentication Information for Gamebase
 Gamebase에서 발급한 인증 정보를 가져올 수 있습니다.
 
@@ -885,32 +876,19 @@ String accessToken = Gamebase.getAccessToken();
 String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
 ```
 
-
 ### Get Authentication Information for External IdP
 
-외부 인증 SDK에서 액세스 토큰, 사용자 ID, Profile 등의 정보를 가져올 수 있습니다.
+* 외부 인증 IdP 의 액세스 토큰, 사용자 ID, Profile 등의 정보는 로그인 후 게임 서버에서 Gamebase Server API 를 호출하여 가져올 수 있습니다.
+    * [Game > Gamebase > API 가이드 > Member](./api-guide/#member)
 
-**API**
-
-```java
-+ (String)Gamebase.getAuthProviderUserID(String providerName);
-+ (String)Gamebase.getAuthProviderAccessToken(String providerName);
-+ (AuthProviderProfile)Gamebase.getAuthProviderProfile(String providerName);
-```
-
-**Example**
-
-```java
-// 유저 ID를 가져옵니다.
-String userId = Gamebase.getAuthProviderUserID(AuthProvider.FACEBOOK);
-
-// 액세스 토큰을 가져옵니다.
-String accessToken = Gamebase.getAuthProviderAccessToken(AuthProvider.FACEBOOK);
-
-// User Profile 정보를 가져옵니다.
-AuthProviderProfile profile = Gamebase.getAuthProviderProfile(AuthProvider.FACEBOOK);
-Map<String, Object> profileMap = profile.information;
-```
+> <font color="red">[주의]</font><br/>
+>
+> * 외부 IdP 의 인증 정보는 보안을 위해 게임 서버에서 호출할 것을 권장합니다.
+> * IdP 에 따라 액세스 토큰이 빠른 시간에 만료될 수 있습니다.
+>     * 예를 들어 Google 은 로그인 2시간 후에는 액세스 토큰이 만료되어 버립니다.
+>     * 사용자 정보가 필요하다면 로그인 후 바로 Gamebase Server API 를 호출하시기 바랍니다.
+> * "Gamebase.loginForLastLoggedInProvider()" API 로 로그인한 경우에는 인증 정보를 가져올 수 없습니다.
+>     * 사용자 정보가 필요하다면 "Gamebase.loginForLastLoggedInProvider()" 대신, 사용하고자 하는 IDPCode 와 동일한 {IDP_CODE} 를 파라미터로 하여 "Gamebase.login(activity, IDP_CODE, callback)" API 로 로그인 해야 합니다.
 
 ### Get Banned User Information
 

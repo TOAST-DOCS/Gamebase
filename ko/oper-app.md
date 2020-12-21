@@ -329,7 +329,8 @@ Naver Developers 사이트에서 신청하여 발급받은 {client_id} 및 {clie
 - Secret Key: {NAVER client_secret}
 - 추가정보: NAVER Application Name & iOS url scheme (json format)
 
-**Reference URL**<br />
+**Reference URL**
+
 - [NAVER Developers - 애플리케이션 등록](https://developers.naver.com/apps/#/register)
 - [NAVER Developers - 클라이언트 아이디와 클라이언트 시크릿 확인](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)
 
@@ -563,6 +564,47 @@ Gamebase 콘솔 **App**에서 Apple을 추가하면 기본으로 아래의 JSON�
 ![Set Service ID for Sign In with Apple JS](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_TOAST_01.png)
 
 
+#### 9. WEIBO
+
+##### Weibo Console
+
+1. Weibo Developers 사이트에서 신청하여 발급받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
+이때, 로그인 시 필요한 {scope} 또한 JSON String 형태로 추가 정보란에 입력해야 합니다.
+
+
+![gamebase_app_29_202012.png](https://static.toastoven.net/prod_gamebase/gamebase_app_29_202012.png)
+
+2. callback URL 란에 다음 값을 입력합니다.
+	* Authorization callback page : https://api.weibo.com/oauth2/default.html
+	* Cancel authorization callback page : https://api.weibo.com/oauth2/default.html
+
+
+**입력 필드**
+
+- ClientID: {App Key}
+- Secret Key: {App Secret}
+- 추가정보: scope (json format)
+
+
+**Additional Info Settings**
+
+* Scope
+
+Application 에서 필요로 하는 권한을 나타냅니다.
+Weibo 가이드 문서에 따라 기본값으로 모든 권한이 선언되어 있습니다.
+필요에 따라 추가/제거/변경하실 수 있습니다.
+
+* oauthApiUrl
+
+내부적으로 Weibo Open API 를 호출하기 위한 도메인 입니다.
+변경해서는 안됩니다.
+
+
+![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/gamebase_app_28_202012.png)
+
+
+**Reference URL**
+- [Weibo Developer](https://open.weibo.com/)
 
 
 
