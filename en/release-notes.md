@@ -79,90 +79,90 @@
 ### November 10, 2020
 
 #### More Features
-* Galaxy 스토어 추가: SDK 2.18.0
+* Added Galaxy Store: SDK 2.18.0
 
 #### Feature Updates
 * [SDK] 2.18.0
-    * (Android) TOAST SDK 업데이트: [Android(0.24.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0240-20201027)-GooglePlay Billing Library v.3.0.1 적용
-    * (Android) WebView SSL 보안경고 대응 처리 추가
-    * (iOS) iOS 13이상부터 제공되는 SceneDelegate 대응 API 추가
+    * (Android) TOAST SDK update: [Android(0.24.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0240-20201027) - Apply GooglePlay Billing Library v.3.0.1
+    * (Android) Added the response for WebView SSL security warnings
+    * (iOS) Added API that supports the SceneDelegate of iOS 13 or higher
 
 #### Bug Fixes  
 * [SDK] 2.18.1
-    * (Android) 2.18.0 에서 Google 결제 후 크래시가 발생하는 이슈 수정
+    * (Android) Fixed an issue where a crash would occur after a Google transaction is approved in 2.18.0
 
 ### October 27, 2020
 
 #### More Features
-* Unreal SDK 기능 추가: SDK 2.15.0
-    * 기존의 모든 이벤트 시스템을 통합하는 GamebaseEventHandler 추가
-        * ServerPush, Observer 기능을 포함하고 있고, 프로모션 결제 이벤트 및 푸시 이벤트 확인 가능
-    * API 추가
-    	* 상품 ID로 결제 요청하고 추가 정보(UserPayload)를 입력해 결제 완료 시 확인 가능한 결제 API 추가
-    	* 이미지 공지 표시: showImageNotices
-    	* Push 토큰 정보 확인: queryTokenInfo
-    * 푸시 토큰 등록 시 NotificationOption 설정으로 앱이 포그라운드(foreground) 상태에서도 푸시 알림을 받을 수 있도록 기능 추가
-    * WebViewConfiguration contentMode 설정 추가
+- Added the Unreal SDK feature: SDK 2.15.0
+    - Added GamebaseEventHandler that integrates all existing event systems
+        * It includes the ServerPush and Observer features and checks promotion transaction event and push event.
+    * Added API
+    	* Added an API that can be used to send a transaction request with product ID, enter additional information (UserPayload), and check them after the transaction is complete
+    	* Display image notification: showImageNotices
+    	* Check the Push token information: queryTokenInfo
+    * Added a feature that allows foreground apps to receive push notifications using the NotificationOption setting if push token is registered.
+    * Added the WebViewConfiguration contentMode setting
 
 #### Feature Updates
 * [SDK] 2.17.1
-    * (iOS) 특정 지표 전송 시 오류 메시지를 추가하여 전송: 푸시 등록에 실패 시, 게임 지표 전송 시
-    * (Unity) Unity 2017.2.5 지원
+    * (iOS) When sending a specific index, an error message is added to it: When push registration fails or when sending a game index
+    * (Unity) Supports Unity 2017.2.5
 * [SDK] 2.15.0
-    * (Unreal) TOAST SDK 업데이트: Android(0.23.0), iOS(0.26.0), Unity(0.21.0)  
+    * (Unreal) TOAST SDK update: Android(0.23.0), iOS(0.26.0), Unity(0.21.0)  
 
 #### Bug Fixes  
 * [Console]
-    * Analytics > 이용자 지표: 주간, 월간 평균 CCU 계산 로직 수정하여 비정상적으로 노출되는 문제 수정
-    * Push > 푸시: 제목을 입력하지 않고 제목 글자색을 검은색이 아닌 색으로 설정하면 제목에 'null'이 표시되는 문제 수정
-	* 쿠폰 > 쿠폰 발급: 발급된 쿠폰이 5만 개 이상인 경우 파일이 다운로드되지 않는 문제 수정
+    * Analytics > User Indexes: Fixed an issue where the weekly and monthly average CCU were displayed abnormally with their logic modified.
+    * Push > Push: Fixed an issue where null was displayed on the title when a non-black color was used without entering any text for the title.
+	* Coupon > Issue Coupon: Fixed an issue where the coupon file could not be downloaded when there were more than 50,000 coupons issued.
 * [SDK] 2.17.1
-    * (Unity) 이미지 공지와 웹뷰를 차례로 호출하면 뒤에 호출한 API가 동작하지 않는 오류 수정	
+    * (Unity) Fixed an issue where the latter API would not work when the image notification API and web view API were called in turn.
 * [SDK] 2.15.0    
-    * (Unreal) 결제 모듈에 ProGuard 선언이 누락된 오류 수정
+    * (Unreal) Fixed an issue where the ProGuard declaration was missing in the transaction module
 
 ### October 13, 2020
 
 ```
-한게임 인증 사용을 원하는 경우 고객센터로 미리 연락주세요.
+Contact our Customer Center if you want to use the Hangame authentication.
 ```
 
 #### More Features
-* Hangame IdP 인증 추가: SDK 2.17.0
+* Added Hangame IdP authentication: SDK 2.17.0
 
 #### Feature Updates
 * [SDK] 2.17.0
-	* (공통) 고객 센터 첨부 이미지 클릭 시 다운로드 지원
-	* (공통) TOAST SDK 업데이트: Android(0.23.2), Unity(0.21.2)
-	* (iOS) TCGBMember.regDate, TCGBMember.lastLoginDate의 타입을 long long으로 변경
-	* (iOS) 웹뷰에서 URL 및 타이틀 변경 시 타이틀을 재출력할 수 있도록 로직 변경
+	* (공통) Supports the download feature when a Customer Center attachment image is clicked
+	* (공통) TOAST SDK update: Android(0.23.2), Unity(0.21.2)
+	* (iOS) Changed the type of TCGBMember.regDate and TCGBMember.lastLoginDate to long long.
+	* (iOS) Changed the logic so that the title can be displayed again after changing URL and title in a web view
 
 #### Bug Fixes  
 * [SDK] 2.17.0
-	* (iOS) PAYCO 인증: lastLoggedInProvider 로그인 후 로그아웃 호출 시 로그아웃 콜백이 오지 않는 문제 수정
+	* (iOS) PAYCO authentication: Fixed an issue where the logout callback would not return when logout was called after lastLoggedInProvider login
 * [SDK] 2.17.1
-	* (Android) 2.17.0에서 ImageNotice API 호출 시 kotlinx-coroutine 모듈에서 크래시가 발생하는 문제 수정
+	* (Android) Fixed an issue where a crash would occur in the kotlinx-coroutine module when ImageNotice API is called in 2.17.0
 	
 ### September 22, 2020
 
 #### More Features
-* 고객센터 기능 추가
-	* [Console] 고객 센터 메뉴 오픈: 고객 문의 처리, FAQ/공지 사항 관리 
+* Added a feature to Customer Center
+	* [Console] The Customer Center menu is now available: To handle customer queries and manage FAQ/notifications 
 	* [SDK] 2.16.0
-		* (공통) API 추가(Gamebase.Contact.requestContactURL): 고객 센터 URL 리턴
-		* (공통) 고객 센터 API 에 userName 을 설정할 수 있도록 ContactConfiguration 파라메터 추가 
+		* (Common) Added API (Gamebase.Contact.requestContactURL): Returns Customer Center URL
+		* (Common) Added the ContactConfiguration parameter so userName can be configured for Customer Center API
 		
 #### Feature Updates
 * [Console] 
-	* Analytics 메뉴 공통: 국가별 필터 정렬 기준 변경(지표 내림차순 -> 국가 이름 오름차순)     
-    * Analytics > 매출지표: 스토어별 대시보드에 해당 스토어의 국가별 결제 금액 이외에 결제 금액 총합도 함께 표시 
+	* Analytics menu (common): Changed the way filters are sorted for each country (index descending -> name ascending)    
+    * Analytics > Sale index: Displays the total transaction amount as well as the transaction amount for each country for the country store in store-specific dashboards 
 
 ### September 16, 2020
 
 #### Feature Updates
 * [SDK] 2.15.1
-    * (iOS) TOAST SDK 업데이트: iOS(0.27.0)
-	* iOS 14 beta 변경 사항을 대응한 IAP SDK 신규 버전이 적용되었습니다. [TOAST SDK Release Notes](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0270-20200911)
+    * (iOS) TOAST SDK update: iOS(0.27.0)
+	* A new version of IAP SDK is applied to support the changes made to iOS 14 beta. [TOAST SDK Release Notes](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0270-20200911)
 
 ### September 15, 2020
 
