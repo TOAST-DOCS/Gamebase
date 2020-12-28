@@ -41,9 +41,9 @@ Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용�
 **상품** 탭에서 새 상품을 등록하거나 이미 등록한 상품을 관리할 수 있습니다.
 - (1) **등록** : 하나의 스토어 아이템 ID를 이용해 여러개의 상품을 등록할 수 있습니다
 - (2) **스토어 아이템 상태 변경** : 하나의 스토어 아이템 ID로 등록된 상품들의 사용 여부를 한번에 변경할 수 있습니다.
-- (3) **필터** : 스토어/스토어 아이템 ID/상품 ID 필터를 제공하여 검색을 편리하게 할 수 있습니다. 검색값이 없을 경우 모든 스토어의 상품 목록이 노출됩니다.
+- (3) **필터** : 사용여부, 스토어/스토어 아이템 ID/상품 ID, 상품 이름 필터를 제공하여 검색을 편리하게 할 수 있습니다. 검색값이 없을 경우 모든 스토어의 상품 목록이 노출됩니다.
 
-![gamebase_purchase_04_202006](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_04_202006.png)
+![gamebase_purchase_04_202006](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_04_202012.png)
 
 ### Register
 

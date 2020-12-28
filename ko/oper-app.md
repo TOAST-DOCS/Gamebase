@@ -43,7 +43,7 @@ TOAST 프로젝트 하나당 하나의 Gamebase 앱을 관리할 수 있으므�
 > 탈퇴 유예 기간동안에는 정상적으로 서비스 이용이 가능합니다.
 
 ### 서버 주소
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_02_202004.png)
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_02_202012.png)
 
 - 게임에서 게임 서버 주소(IP, URL 등)를 실시간으로 전달받아야 할 때 사용합니다.
 - 서버 주소를 설정하면 클라이언트 초기화 이후에 '런칭정보'에서 입력된 정보를 확인할 수 있습니다.
@@ -329,7 +329,8 @@ Naver Developers 사이트에서 신청하여 발급받은 {client_id} 및 {clie
 - Secret Key: {NAVER client_secret}
 - 추가정보: NAVER Application Name & iOS url scheme (json format)
 
-**Reference URL**<br />
+**Reference URL**
+
 - [NAVER Developers - 애플리케이션 등록](https://developers.naver.com/apps/#/register)
 - [NAVER Developers - 클라이언트 아이디와 클라이언트 시크릿 확인](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)
 
@@ -563,6 +564,47 @@ Gamebase 콘솔 **App**에서 Apple을 추가하면 기본으로 아래의 JSON�
 ![Set Service ID for Sign In with Apple JS](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_TOAST_01.png)
 
 
+#### 9. WEIBO
+
+##### Weibo Console
+
+1. Weibo Developers 사이트에서 신청하여 발급받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
+이때, 로그인 시 필요한 {scope} 또한 JSON String 형태로 추가 정보란에 입력해야 합니다.
+
+
+![gamebase_app_29_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_29_202012.png)
+
+2. callback URL 란에 다음 값을 입력합니다.
+	* Authorization callback page : https://api.weibo.com/oauth2/default.html
+	* Cancel authorization callback page : https://api.weibo.com/oauth2/default.html
+
+
+**입력 필드**
+
+- ClientID: {App Key}
+- Secret Key: {App Secret}
+- 추가정보: scope (json format)
+
+
+**Additional Info Settings**
+
+* Scope
+
+Application 에서 필요로 하는 권한을 나타냅니다.
+Weibo 가이드 문서에 따라 기본값으로 모든 권한이 선언되어 있습니다.
+필요에 따라 추가/제거/변경하실 수 있습니다.
+
+* oauthApiUrl
+
+내부적으로 Weibo Open API 를 호출하기 위한 도메인 입니다.
+변경해서는 안됩니다.
+
+
+![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_28_202012.png)
+
+
+**Reference URL**
+- [Weibo Developer](https://open.weibo.com/)
 
 
 
@@ -574,14 +616,14 @@ Gamebase 콘솔 **App**에서 Apple을 추가하면 기본으로 아래의 JSON�
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client1_1.2.png)
 현재 등록된 클라이언트 목록을 확인할 수 있습니다.
 운영체제별로 구분되어 보여지며 아이콘 내 숫자는 클라이언트 등록 시 입력한 버전을 의미합니다.
-아이콘 목록은 서비스 상태가 <font color="white" style="background-color:#F8BB28">테스트</font>, <font color="white" style="background-color:#FB8F37">심사중</font>, <font color="white" style="background-color:#88C637">서비스</font>, <font color="white" style="background-color:#2AB1A6">업데이트 권장(서비스중)</font>인 목록만 표시됩니다. 운영체제별 하단 오른쪽의 화살표를 클릭하면 <font color="white" style="background-color:#A1A1A1">업데이트 필수</font>, <font color="white" style="background-color:#CCCCCC">종료</font> 상태의 클라이언트 목록을 확인할 수 있습니다.
+아이콘 목록은 서비스 상태가 <font color="white" style="background-color:#eed14c">테스트</font>, <font color="white" style="background-color:#eba34b">베타 서비스</font>, <font color="white" style="background-color:#eb7e4b">심사중</font>, <font color="white" style="background-color:#88C637">서비스</font>, <font color="white" style="background-color:#2AB1A6">업데이트 권장(서비스중)</font>인 목록만 표시됩니다. 운영체제별 하단 오른쪽의 화살표를 클릭하면 <font color="white" style="background-color:#A1A1A1">업데이트 필수</font>, <font color="white" style="background-color:#CCCCCC">종료</font> 상태의 클라이언트 목록을 확인할 수 있습니다.
 아이콘 색깔을 서비스 상태별로 구분하여 한눈에 서비스 상태를 파악할 수 있습니다.
 
 ### Properties
 
 Gamebase Console에서 관리하는 클라이언트 등록 정보를 설명합니다.
 **클라이언트** 탭에서 **AOS 등록**, **iOS 등록** 버튼 등을 클릭하면 클라이언트 등록 화면이 나타납니다. 등록된 클라이언트의 입력값을 수정하거나 삭제하고 싶다면 아이콘 목록에서 아이콘을 클릭하거나 클라이언트 전체 목록에서 원하는 클라이언트를 선택하시면 됩니다.
-![gamebase_app_13_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_13_201901.png)
+![gamebase_app_13_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_13_202012.png)
 #### (1) 스토어
 (<font color="red">필수</font>) 클라이언트를 배포할 스토어를 선택합니다.
 운영체제별로 선택 가능한 스토어가 다릅니다.
@@ -590,9 +632,10 @@ Gamebase Console에서 관리하는 클라이언트 등록 정보를 설명합�
 게임에서 정한 규칙에 따라 문자열로 입력하면 됩니다.
 #### (3) 서비스 상태
 (<font color="red">필수</font>) 클라이언트의 서비스 상태를 선택합니다.
-상태는 <font color="white" style="background-color:#F8BB28">테스트</font>, <font color="white" style="background-color:#FB8F37">심사중</font>, <font color="white" style="background-color:#88C637">서비스</font>, <font color="white" style="background-color:#2AB1A6">업데이트 권장(서비스중)</font>, <font color="white" style="background-color:#A1A1A1">업데이트 필수</font>, <font color="white" style="background-color:#CCCCCC">종료</font> 이렇게 6가지입니다.
+상태는 <font color="white" style="background-color:#eed14c">테스트</font>, <font color="white" style="background-color:#eba34b">베타 서비스</font>, <font color="white" style="background-color:#eb7e4b">심사중</font>, <font color="white" style="background-color:#88C637">서비스</font>, <font color="white" style="background-color:#2AB1A6">업데이트 권장(서비스중)</font>, <font color="white" style="background-color:#A1A1A1">업데이트 필수</font>, <font color="white" style="background-color:#CCCCCC">종료</font> 이렇게 6가지입니다.
 
 - <font color="white" style="background-color:#F8BB28">테스트</font>: 내부 테스트
+- <font color="white" style="background-color:#eba34b">베타 서비스</font>: 서비스 서버가 아닌 별도의 베타 서버에 연결이 필요한 경우 선택합니다.
 - <font color="white" style="background-color:#FB8F37">심사중</font>: 스토어 심사 중
 ![gamebase_app_15_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_15_201812.png)
 
@@ -626,6 +669,9 @@ Gamebase Console에서 관리하는 클라이언트 등록 정보를 설명합�
 Gamebae SDK의 Debug Log 출력 여부를 콘솔에서 실시간으로 변경할 수 있습니다.
 설정되어 있지 않으면 기본적으로 Gamebase SDK 내부에 설정된 값을 우선으로 동작하고 Gamebase 콘솔에서 Debug Log 출력 여부를 설정할 수 있습니다.
 Gamebase SDK에 Debug Log가 'OFF' 상태이더라도 콘솔에서 'ON'으로 설정하면 단말기에 Gamebase Debug Log가 출력됩니다.
+
+#### (6) 메모
+해당 클라이언트에 대한 간단한 메모를 30자 내로 입력할 수 있습니다.
 
 ## Installed URL
 

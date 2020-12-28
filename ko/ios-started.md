@@ -37,6 +37,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | LINE 로그인을 지원 | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | AuthenticationServices.framework를 Optional로 설정 | iOS9 or later<br/>arm64 지원<br/> |
 |  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.5.1 | Hangame 로그인을 지원 | | iOS9 or later |
+|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weibo 로그인을 지원 |[LINK \[Go to Download\]](https://github.com/sinaweibosdk/weibo_ios_sdk/archive/3.2.7.zip) | iOS9 or later |
 | Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.27.1<br/> ToastGamebaseIAP 0.11.0 | 게임 내 결제를 지원 | Gamebase IAP 내에 포함 | iOS9 or later |
 | Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.27.1 | Push를 지원 | Gamebase Push 내에 포함 | iOS9 or later |
 
@@ -47,9 +48,8 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 > Required로 설정할 경우에는 iOS 11 이하 기기에서는 실행 직후 크래시가 발생합니다.
 > 
 > Gamebase SDK iOS 2.13.0 이상에서는 iOS 9 이상에서 Sign In with Apple 이 지원되며 추가로 Gamebase Console 에 Service ID를 설정해야합니다.
-> 
-<br/>
 
+<br/>
 
 > <font color="red">[주의]</font><br/>
 >
@@ -125,6 +125,7 @@ target 'SampleApplication' do
     pod 'GamebaseAuthGoogleAdapter'
     pod 'GamebaseAuthLineAdapter'
     pod 'GamebaseAuthAppleidAdapter'
+    pod 'GamebaseAuthWeiboAdapter'
     pod 'GamebasePushAdapter'
     pod 'GamebasePurchaseIAPAdapter'
 
@@ -164,6 +165,7 @@ end
 * [Twitter Developer's guide - Authentication](https://developer.twitter.com/en/docs/basics/authentication/overview)
 * [Line for developers](https://developers.line.biz/en/docs/ios-sdk/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/ios)
+* [Weibo for developers](https://github.com/sinaweibosdk/weibo_ios_sdk/blob/3.2.7/%E5%BE%AE%E5%8D%9AiOS%E5%B9%B3%E5%8F%B0SDK%E6%96%87%E6%A1%A3V3.2.7.pdf)
 
 ## API Reference
 

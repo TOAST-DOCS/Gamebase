@@ -200,6 +200,7 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 | Twitter     | GamebaseAuthProvider.TWITTER    | Android<br/>iOS |
 | Line        | GamebaseAuthProvider.LINE       | Android<br/>iOS |
 | HANGAME     | GamebaseAuthProvider.HANGAME    | Android<br/>iOS |
+| WEIBO       | GamebaseAuthProvider.WEIBO      | Android<br/>iOS |
 
 
 > 몇몇 IdP로 로그인할 때는 꼭 필요한 정보가 있습니다.<br/>

@@ -11,6 +11,11 @@ AppDelegate.h 등 Gamebase 기능을 초기화할 곳에 다음의 헤더 파일
 #import <Gamebase/Gamebase.h>
 ```
 
+### Initialization Flow
+
+게임이 시작되면 Debug Mode 를 설정하고, Gamebase 를 초기화하여 Launching Status Code 에 따라 게임 진입여부를 결정하도록 아래 Flow 와 같이 구현하시면 됩니다.
+
+![initialization flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/initialization_flow_2.19.0.png)
 
 ### Configuration Settings
 
@@ -141,6 +146,7 @@ Gamebase iOS SDK 초기화 설정에 입력한 앱 버전의 게임 상태 정�
 | IN_SERVICE_BY_QA_WHITE_LIST | 202  | 점검 중에는 서비스를 이용할 수 없지만 QA 단말기로 등록된 경우에는 점검과 상관없이 서비스에 접속해 테스트할 수 있습니다. |
 | IN_TEST                     | 203  | 테스트 중 |
 | IN_REVIEW                   | 204  | 심사 중 |
+| IN_BETA                     | 205  | 베타 서버 환경 |
 | REQUIRE_UPDATE              | 300  | 업데이트 필수                                  |
 | BLOCKED_USER                | 301  | 접속 차단으로 등록된 단말기(디바이스 키)로 서비스에 접속한 경우입니다. |
 | TERMINATED_SERVICE          | 302  | 서비스 종료                                   |
@@ -288,6 +294,11 @@ iOS의 앱 이벤트를 관리하려면 다음 **UIApplicationDelegate** 프로�
 > <font color="red">[주의]</font><br/>
 >
 > UIApplicationDelegate의 **application:openURL:options:**를 이미 재정의(overriding)했다면, **application:openURL:sourceApplication:annotation:**이 호출되지 않을 수 있습니다.
+>
+
+> <font color="red">[주의]</font><br/>
+>
+> WeiboAuthAdapter를 사용할 경우, **application:openURL:sourceApplication:annotation:**를 필수로 구현해야 합니다.
 >
 
 ```objectivec
