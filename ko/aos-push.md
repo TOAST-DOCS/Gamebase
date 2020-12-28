@@ -1,59 +1,5 @@
 ## Game > Gamebase > Android SDK 사용 가이드 > 푸시
 
-### Settings
-
-여기에서는 플랫폼별로 푸시 알림을 사용하기 위해 필요한 설정 방법을 알아보겠습니다.
-
-#### Register TOAST Cloud Console
-
-[Notification > Push > Console Guide](/Notification/Push/ko/console-guide/)를 참고해 콘솔을 설정합니다.
-
-#### Gradle
-
-* build.gradle에 사용할 모듈을 추가합니다.
-
-```groovy
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    
-    // >>> Gamebase Version
-    def GAMEBASE_SDK_VERSION = 'x.x.x'
-    
-    // >>> Gamebase - Select Push Adapter
-    implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
-}
-```
-
-#### Firebase
-
-* Gradle 빌드를 사용하는 경우
-    * Firebase 푸시를 사용하려면 아래 가이드에 따라 Firebase 설정을 완료해야 합니다.
-		* [TOAST > TOAST SDK 사용 가이드 > TOAST Push > Android > Firebase Cloud Messaging 설정](/TOAST/ko/toast-sdk/push-android/#firebase-cloud-messaging)
-* Unity 빌드인 경우
-    * 만일 Firebase Unity SDK Package 를 설치했다면 아래 명령어로 **generate_xml_from_google_services_json.exe** 파일을 실행하여 json 파일을 xml 파일로 변환시킬 수 있습니다.
-        ```
-        "{UnityProject}\Firebase\Editor\generate_xml_from_google_services_json.exe" -i "{JsonFilePath}\google-services.json" -o "{UnityProject}\Assets\Plugins\Android\res\values\google-services.xml" -p "{PackageName}"
-        ```
-    * Firebase Unity SDK Package 를 설치하지 않았다면, 'Firebase Console > 프로젝트 설정' 에서 google-services.json 파일을 다운로드 하여 아래 가이드에 따라 string resource(xml) 파일을 직접 만들어서 'Assets/Plugins/Android/res/values/' 폴더에 포함시켜야 합니다.
-        Firebase 서비스 연동에 따라서 google-services.json 파일의 내용은 달라질 수 있습니다.
-        ![Download google-services.json](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
-        * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
-        * 다음은 직접 제작한 string resource(xml) 파일의 예시입니다.
-
-```xml
-<!-- Assets/Plugins/Android/res/values/google-services-json.xml -->
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="firebase_database_url" translatable="false">https://gamebase-sample-00000000.firebaseio.com</string>
-    <string name="gcm_defaultSenderId" translatable="false">000000000000</string>
-    <string name="google_storage_bucket" translatable="false">gamebase-sample-00000000.appspot.com</string>
-    <string name="project_id" translatable="false">gamebase-sample-00000000</string>
-    <string name="google_api_key" translatable="false">AbCd_AbCd_AbCd_AbCd_AbCd_AbCd_AbCd</string>
-    <string name="google_app_id" translatable="false">1:000000000000:android:749cbe01c8ada279</string>
-    <string name="default_web_client_id" translatable="false">000000000000-abcdabcdabcdabcdabcdabcdabcd.apps.googleusercontent.com</string>
-</resources>
-```
-
 ### Register Push
 
 다음 API를 호출하여, TOAST Push에 해당 사용자를 등록합니다.<br/>
@@ -104,57 +50,14 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 #### Set Notification Options with AndroidManifest.xml
 
 알림 옵션은 AndroidManifest.xml 에 정의하여 설정할 수 있습니다.<br/>
-설정 가능한 값은 아래와 같습니다.
+설정 방법은 아래 가이드를 확인해주시기 바랍니다.
 
-| meta-data key | value type | description |
-| ------------- | ---------- | ----------- |
-| com.toast.sdk.push.notification.default_priority | int | 우선 순위.<br/>아래 5가지 값을 설정할 수 있습니다.<br/>NoticationComapt.PRIORITY_MIN : -2<br/> NoticationComapt.PRIORITY_LOW : -1<br/>NoticationComapt.PRIORITY_DEFAULT : 0<br/>NoticationComapt.PRIORITY_HIGH : 1<br/>NoticationComapt.PRIORITY_MAX : 2 |
-| com.toast.sdk.push.notification.default_background_color | int | 배경색. |
-| com.toast.sdk.push.notification.default_light_color | int | LED 색. |
-| com.toast.sdk.push.notification.default_light_on_ms | int | LED 불이 들어올 때의 시간. |
-| com.toast.sdk.push.notification.default_light_off_ms | int | LED 불이 나갈 때의 시간. |
-| com.toast.sdk.push.notification.default_small_icon | resource id | 작은 아이콘의 리소스 식별자. |
-| com.toast.sdk.push.notification.default_sound | String | 알림음 파일 이름.<br/>안드로이드 8.0 미만 OS 에서만 동작합니다.<br/>'res/raw' 폴더의 mp3, wav 파일명을 지정하면 알림음이 변경됩니다. |
-| com.toast.sdk.push.notification.default_vibrate_pattern | long[] | 진동의 패턴. |
-| com.toast.sdk.push.notification.badge_enabled | boolean | 배지 아이콘 사용 여부. |
-| com.toast.sdk.push.notification.foreground_enabled | boolean | 포그라운드 알림 사용 여부. |
-
-**Example**
-
-```xml
-<!-- Notification priority -->
-<meta-data android:name="com.toast.sdk.push.notification.default_priority"
-           android:value="1"/>
-<!-- Notification background color -->
-<meta-data android:name="com.toast.sdk.push.notification.default_background_color"
-           android:resource="@color/defaultNotificationColor"/>
-<!-- LED light -->
-<meta-data android:name="com.toast.sdk.push.notification.default_light_color"
-           android:value="#0000ff"/>
-<meta-data android:name="com.toast.sdk.push.notification.default_light_on_ms"
-           android:value="0"/>
-<meta-data android:name="com.toast.sdk.push.notification.default_light_off_ms"
-           android:value="500"/>
-<!-- Small icon -->
-<meta-data android:name="com.toast.sdk.push.notification.default_small_icon"
-           android:resource="@drawable/ic_notification"/>
-<!-- Sound -->
-<meta-data android:name="com.toast.sdk.push.notification.default_sound"
-           android:value="notification_sound"/>
-<!-- Vibrate pattern -->
-<meta-data android:name="com.toast.sdk.push.notification.default_vibrate_pattern"
-           android:resource="@array/default_vibrate_pattern"/>
-<!-- Use badge icon or not -->
-<meta-data android:name="com.toast.sdk.push.notification.badge_enabled"
-           android:value="true"/>
-<!-- Enable notification when application is foreground. -->
-<meta-data android:name="com.toast.sdk.push.notification.foreground_enabled"
-           android:value="false"/>
-```
+[Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Notification Options](./aos-started/)
 
 #### Set Notification Options with RegisterPush in Runtime
 
-registerPush API 호출시 GamebaseNotificationOptions 인자를 추가하여 알림 옵션을 설정할 수 있습니다.
+알림 옵션을 AndroidManifest.xml 에 정의하지 않고 런타임에 설정할 수도 있습니다. 또는 AndroidManifest.xml 에 정의한 값을 런타임에 변경할 수도 있습니다.
+registerPush API 호출시 GamebaseNotificationOptions 인자를 추가하여 알림 옵션을 설정합니다.
 GamebaseNotificationOptions.newBuilder() 의 인자로 Gamebase.Push.getNotificationOptions() 호출 결과를 전달하면, 현재의 알림 옵션으로 초기화 된 Builder 가 생성되므로, 필요한 값만 변경할 수 있습니다.<br/>
 설정 가능한 값은 아래와 같습니다.
 

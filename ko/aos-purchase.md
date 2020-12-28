@@ -4,124 +4,7 @@
 
 Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 많은 스토어의 인앱 결제를 연동할 수 있도록 돕습니다.
 
-### Settings
-
-#### 1. Store Console
-
-* 다음 스토어 콘솔 가이드를 참고하여 각 스토어에 앱을 등록하고 앱 키를 발급받습니다.
-	* [Game > Gamebase > 스토어 콘솔 가이드 > Google 콘솔 가이드](./console-google-guide)
-	* [Game > Gamebase > 스토어 콘솔 가이드 > ONEStore 콘솔 가이드](./console-onestore-guide)
-	* [Game > Gamebase > 스토어 콘솔 가이드 > GALAXY Store 콘솔 가이드](./console-galaxy-guide)
-
-#### 2. Register as Store's Tester
-
-* 결제 테스트를 위하여 스토어별로 다음과 같이 테스터로 등록합니다.
-    * Google
-        * [Android > 테스트 구매 설정](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
-    * ONE store
-        * [ONE store > 인앱결제 테스트](https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#%EC%9D%B8%EC%95%B1%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8)
-        * 반드시 인앱 정보 - 테스트 버튼으로 샌드박스를 원하는 단말기 전화번호를 등록해서 테스트해야 합니다.
-        * 테스트용 단말기는 USIM이 있어야 하고, 전화번호를 등록해야 합니다(MDN).
-        * **ONE store** 어플리케이션이 설치되어 있어야 합니다.
-    * GALAXY store
-        * [GALAXY store > 앱 > 등록한 앱 > 바이너리 > Beta Test > Tester 설정](https://seller.samsungapps.com/application)
-        * 삼성 단말기에서만 결제 테스트가 가능합니다.
-
-#### 3. Register Item
-
-* 아래 가이드를 참고하여 아이템을 등록합니다.
-    * [Game > Gamebase > 콘솔 사용 가이드 > 결제 > Register](./oper-purchase/#register_1)
-
-#### 4. Setting SDK
-
-* 사용하려는 마켓의 gamebase-adapter-purchase 모듈을 gradle 의존성에 추가합니다.
-
-```groovy
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    // >>> Gamebase Version
-    def GAMEBASE_SDK_VERSION = 'x.x.x'
-    
-    // >>> Gamebase - Select Purchase Adapter
-    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
-    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
-    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
-}
-```
-
-#### 5. Limitation
-
-##### GALAXY Store
-
-* 갤럭시 IAP SDK 의 minSdkVersion 은 18(OS 4.3) 이므로 이보다 작은 값을 설정하는 경우 빌드가 실패합니다.
-* 하지만 실제 결제를 위해서는 Checkout 서비스앱의 설치가 필요한데, Chekcout 서비스앱은 API 21(OS 5.0. Lollipop) 미만에서는 설치가 실패하므로 결제를 진행할 수 없습니다.
-
-#### 6. AndroidManifest.xml
-
-##### ONE Store
-
-* ONE store 는 전체 결제 화면과 팝업 결제 화면을 지원합니다.
-    * AndroidManifest.xml에 meta-data를 추가하여 전체 결제 화면("full") 또는 팝업 결제 화면("popup")을 선택할 수 있습니다.
-    * meta-data를 설정하지 않으면 기본값("full")이 적용됩니다.
-
-```xml
-<manifest>
-    ...
-    <application>
-    ...
-        <!-- [ONE store] Configurations begin -->
-        <!-- popup:팝업 결제 화면 / full:전체 결제 화면 -->
-        <meta-data
-            android:name="iap:view_option"
-            android:value="popup | full" />
-        <!-- [ONE store] Configurations end -->
-    ...
-    </application>
-</manifest>
-```
-
-| 결제 화면 | 설정 값 |
-| --- | --- |
-| 전체 결제 화면 | "full" |
-| 팝업 결제 화면 | "popup" |
-
-##### GALAXY Store
-
-* GALAXY store 는 테스트 결제 여부, 성공/실패시 다이얼로그 표시 여부를 변경할 수 있습니다.
-
-```xml
-<manifest>
-    ...
-    <application>
-    ...
-        <!-- [GALAXY store] Configurations start -->
-        <!-- OPERATION_MODE_TEST: 항상 성공 / OPERATION_MODE_TEST_FAILURE: 항상 실패 -->
-        <meta-data
-            android:name="com.toast.sdk.iap.galaxy.operation_mode"
-            android:value="OPERATION_MODE_TEST | OPERATION_MODE_TEST_FAILURE" />
-        <!-- 에러 다이얼로그 표시 -->
-        <meta-data
-            android:name="com.toast.sdk.iap.galaxy.error_dialog_enabled"
-            android:value="true" />
-        <!-- 결제 성공 다이얼로그 표시 -->
-        <meta-data
-            android:name="com.toast.sdk.iap.galaxy.purchase_success_dialog_enabled"
-            android:value="true" />
-        <!-- [GALAXY store] Configurations end -->
-    ...
-    </application>
-</manifest>
-```
-
-| meta-data key| 테스트 결제 결과 | 설정 값 |
-| --- | --- | --- |
-| com.toast.sdk.iap.galaxy.operation_mode<br/>**default** : NONE | 항상 성공 | OPERATION_MODE_TEST |
-| | 항상 실패 | OPERATION_MODE_TEST_FAILURE |
-| com.toast.sdk.iap.galaxy.error_dialog_enabled<br/>**default** : false | 에러 발생시 다이얼로그 팝업 표시 | true |
-| com.toast.sdk.iap.galaxy.purchase_success_dialog_enabled<br/>**default** : false | 결제 성공시 다이얼로그 팝업 표시 | true |
-
-#### 7. Initialization
+### Initialization
 
 * Gamebase 초기화 시 스토어 코드를 지정해야 합니다.
 * **STORE_CODE**는 다음 값 중에서 선택합니다.
@@ -140,8 +23,8 @@ Gamebase.initialize(activity, configuration, callback);
 
 ### Purchase Flow
 
-아이템 구매는 크게 결제 Flow 와 Consume Flow, 재처리 Flow 로 나누어 볼 수 있습니다.
-결제 Flow는 다음과 같은 순서로 구현하시기 바랍니다.
+아이템 구매는 크게 **결제 Flow** 와 **[Consume Flow](./aos-purchase/#consume-flow)**, **[재처리 Flow](./aos-purchase/#retry-transaction-flow)** 로 나누어 볼 수 있습니다.
+**결제 Flow**는 다음과 같은 순서로 구현하시기 바랍니다.
 
 ![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
@@ -151,14 +34,14 @@ Gamebase.initialize(activity, configuration, callback);
 
 ### Consume Flow
 
-미소비 결제 내역 목록에 값이 있으면 다음과 같은 순서로 Consume Flow 를 진행하시기 바랍니다.
+미소비 결제 내역 목록에 값이 있으면 다음과 같은 순서로 **Consume Flow** 를 진행하시기 바랍니다.
 
 > <font color="red">[주의]</font><br/>
 >
 > 아이템이 중복 지급되는 일이 발생하지 않도록, 게임 서버에서 반드시 중복 지급 여부를 체크하시기 바랍니다.
 >
 
-![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
+![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
 
 1. 게임 클라이언트가 게임 서버에 결제 아이템에 대한 consume(소비)을 요청합니다.
     * UserID, gamebaseProductId, paymentSeq, purchaseToken 을 전달합니다.
@@ -166,12 +49,14 @@ Gamebase.initialize(activity, configuration, callback);
     * 2-1. 아직 아이템을 지급하지 않았다면 UserID 에 gamebaseProductId 에 해당하는 아이템을 지급합니다.
     * 2-2. 아이템 지급 후 게임 DB 에 UserID, gamebaseProductId, paymentSeq, purchaseToken 을 저장하여 중복 지급 방지 또는 재지급을 할 수 있도록 합니다.
 3. 아이템 지급 여부와 무관하게 게임 서버는 Gamebase 서버의 consume(소비) API를 호출하여 아이템 지급을 완료합니다.
-    * [API 가이드 > Purchase(IAP) > Consume](./api-guide/#consume)
+    * [Game > Gamebase > API 가이드 > Purchase(IAP) > Consume](./api-guide/#consume)
 
 ### Retry Transaction Flow
 
+![retry transaction flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
+
 * 스토어 결제에는 성공했으나 오류가 발생해 정상 종료되지 못하는 경우가 있습니다.
-* **requestItemListOfNotConsumed**를 호출하여 재처리를 동작시켜 미지급된 아이템이 있으면 Consume Flow 를 진행하세요.
+* **requestItemListOfNotConsumed**를 호출하여 재처리를 동작시켜 미지급된 아이템이 있으면 [Consume Flow](./aos-purchase/#consume-flow) 를 진행하세요.
 * 재처리는 다음과 같은 시점에 호출할 것을 권장합니다.
     * 로그인 완료 후.
     * 결제 전.
