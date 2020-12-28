@@ -6,8 +6,8 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
 
 * 게스트 이외의 Provider에 로그인하려면 해당 Provider AuthAdapter가 필요합니다.
 * AuthAdapter 및 3rd-Party Provider SDK에 대한 설정은 다음을 참고하시기 바랍니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > Gradle](./aos-started/)
-    * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > Gamebase Console > 3rd-Party Provider SDK Guide](./aos-started/)
+    * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > Gradle](./aos-started/#gradle)
+    * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > Console > 3rd-Party Provider SDK Guide](./https://alpha-docs.toast.com/ko/Game/Gamebase/ko/aos-started/#console)
 
 ### Login Flow
 
@@ -445,8 +445,8 @@ private static void onWithdraw(final Activity activity) {
 * Gamebase 사용자 ID: 123bcabca
     * Google ID: aa
     * Facebook ID: bb
-    * Apple Game Center ID: cc
-    * Payco ID: dd
+    * AppleID ID: cc
+    * Twitter ID: dd
 * Gamebase 사용자 ID : 456abcabc
     * Google ID: ee
     * Google ID: ff **-> 이미 Google ee 계정이 연동 중이므로 Google 계정을 추가로 연동할 수 없습니다.**
@@ -878,8 +878,7 @@ String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
 
 ### Get Authentication Information for External IdP
 
-* 외부 인증 IdP 의 액세스 토큰, 사용자 ID, Profile 등의 정보는 로그인 후 게임 서버에서 Gamebase Server API 를 호출하여 가져올 수 있습니다.
-    * [Game > Gamebase > API 가이드 > Member](./api-guide/#member)
+외부 인증 SDK에서 액세스 토큰, 사용자 ID, Profile 등의 정보를 가져올 수 있습니다.
 
 > <font color="red">[주의]</font><br/>
 >
@@ -889,6 +888,28 @@ String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
 >     * 사용자 정보가 필요하다면 로그인 후 바로 Gamebase Server API 를 호출하시기 바랍니다.
 > * "Gamebase.loginForLastLoggedInProvider()" API 로 로그인한 경우에는 인증 정보를 가져올 수 없습니다.
 >     * 사용자 정보가 필요하다면 "Gamebase.loginForLastLoggedInProvider()" 대신, 사용하고자 하는 IDPCode 와 동일한 {IDP_CODE} 를 파라미터로 하여 "Gamebase.login(activity, IDP_CODE, callback)" API 로 로그인 해야 합니다.
+
+**API**
+
+```java
++ (String)Gamebase.getAuthProviderUserID(String providerName);
++ (String)Gamebase.getAuthProviderAccessToken(String providerName);
++ (AuthProviderProfile)Gamebase.getAuthProviderProfile(String providerName);
+```
+
+**Example**
+
+```java
+// 유저 ID를 가져옵니다.
+String userId = Gamebase.getAuthProviderUserID(AuthProvider.FACEBOOK);
+
+// 액세스 토큰을 가져옵니다.
+String accessToken = Gamebase.getAuthProviderAccessToken(AuthProvider.FACEBOOK);
+
+// User Profile 정보를 가져옵니다.
+AuthProviderProfile profile = Gamebase.getAuthProviderProfile(AuthProvider.FACEBOOK);
+Map<String, Object> profileMap = profile.information;
+```
 
 ### Get Banned User Information
 

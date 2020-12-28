@@ -572,7 +572,7 @@ Gamebase 콘솔 **App**에서 Apple을 추가하면 기본으로 아래의 JSON�
 이때, 로그인 시 필요한 {scope} 또한 JSON String 형태로 추가 정보란에 입력해야 합니다.
 
 
-![gamebase_app_29_202012.png](https://static.toastoven.net/prod_gamebase/gamebase_app_29_202012.png)
+![gamebase_app_29_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_29_202012.png)
 
 2. callback URL 란에 다음 값을 입력합니다.
 	* Authorization callback page : https://api.weibo.com/oauth2/default.html
@@ -600,7 +600,7 @@ Weibo 가이드 문서에 따라 기본값으로 모든 권한이 선언되어 �
 변경해서는 안됩니다.
 
 
-![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/gamebase_app_28_202012.png)
+![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_28_202012.png)
 
 
 **Reference URL**

@@ -6,14 +6,14 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 > [최소 사양]
 >
-> Android API 16 (JellyBean, OS 4.1) 이상
->   * Twitter Login 은 19(Kitkat, 4.4) 이상
->   * AppleID Login 은 19(Kitkat, 4.4) 이상
->   * GALAXY Store 는 21(Lollipop, 5.0) 이상
->       * 갤럭시 IAP SDK 의 minSdkVersion 은 18(OS 4.3) 이므로 이보다 작은 값을 설정하는 경우 빌드가 실패합니다.
->       * 하지만 실제 결제를 위해서는 Checkout 서비스앱의 설치가 필요한데, Chekcout 서비스앱은 API 21(OS 5.0. Lollipop) 미만에서는 설치가 실패하므로 결제를 진행할 수 없습니다.
-> Gradle Android Plugin 2.3.0 이상 <br/>
-> 개발 환경: Android Studio
+> * Android API 16 (JellyBean, OS 4.1) 이상
+>     * Twitter Login 은 19(Kitkat, 4.4) 이상
+>     * AppleID Login 은 19(Kitkat, 4.4) 이상
+>     * GALAXY Store 는 21(Lollipop, 5.0) 이상
+>         * 갤럭시 IAP SDK 의 minSdkVersion 은 18(OS 4.3) 이므로 이보다 작은 값을 설정하는 경우 빌드가 실패합니다.
+>         * 하지만 실제 결제를 위해서는 Checkout 서비스앱의 설치가 필요한데, Chekcout 서비스앱은 API 21(OS 5.0. Lollipop) 미만에서는 설치가 실패하므로 결제를 진행할 수 없습니다.
+> * Gradle Android Plugin 2.3.0 이상
+> * 개발 환경: Android Studio
 
 ## Setting
 
@@ -69,7 +69,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 * 사용할 Gamebase 버전, 사용할 인증, 결제, 푸시 모듈을 build.gradle 파일에 선언하세요.
 	* Gamebase 최신 버전은 [jCenter(LINK)](https://jcenter.bintray.com/com/toast/android/gamebase/gamebase-sdk/) 에서 확인할 수 있습니다.
-	* Gamebase 에서 의존하는 라이브러리 다운로드를 위해 `mavenCentral()` 저장소를 추가 해주세요.
+	* Gamebase 에서 의존하는 라이브러리 다운로드를 위해 **mavenCentral()** 저장소를 추가 해주세요.
 
 ```groovy
 repositories {
@@ -79,6 +79,9 @@ repositories {
 
     // >>> [Weibo IdP]
     maven { url 'https://dl.bintray.com/thelasterstar/maven/' }
+
+    // >>> [Hangame IdP]
+    maven { url 'Hangame IdP 설정 방법은 고객 센터로 문의 하시기 바랍니다.' }
 }
 
 android {
@@ -158,6 +161,22 @@ dependencies {
 
 ### AndroidManifest.xml
 
+#### Hangame IdP
+
+* Hangame IdP 정상 동작을 위한 AndroidManifest.xml 설정은 고객 센터로 문의 하시기 바랍니다.
+
+```xml
+<manifest ...>
+    <application ...>
+        ...
+        <!-- [Hangame] Configurations begin -->
+        <meta-data ... />
+        <!-- [Hangame] Configurations end -->
+        ...
+    </application>
+</manifest>
+```
+
 #### ONE Store
 
 * ONE store 는 전체 결제 화면과 팝업 결제 화면을 지원합니다.
@@ -168,14 +187,14 @@ dependencies {
 <manifest>
     ...
     <application>
-    ...
+        ...
         <!-- [ONE store] Configurations begin -->
         <!-- popup:팝업 결제 화면 / full:전체 결제 화면 -->
         <meta-data
             android:name="iap:view_option"
             android:value="popup | full" />
         <!-- [ONE store] Configurations end -->
-    ...
+        ...
     </application>
 </manifest>
 ```
@@ -193,7 +212,7 @@ dependencies {
 <manifest>
     ...
     <application>
-    ...
+        ...
         <!-- [GALAXY store] Configurations start -->
         <!-- OPERATION_MODE_TEST: 항상 성공 / OPERATION_MODE_TEST_FAILURE: 항상 실패 -->
         <meta-data
@@ -208,7 +227,7 @@ dependencies {
             android:name="com.toast.sdk.iap.galaxy.purchase_success_dialog_enabled"
             android:value="true" />
         <!-- [GALAXY store] Configurations end -->
-    ...
+        ...
     </application>
 </manifest>
 ```
@@ -275,10 +294,10 @@ dependencies {
 * Gamebase 에서 권장하는 flow 는 Sample Project 에도 동일하게 구현되어 있습니다.
     * Android Sample Project
         * 아래 링크의 GamebaseAndroidSDK/sample
-        * https://docs.toast.com/ko/Download/#game-gamebase 
+        * [https://docs.toast.com/ko/Download/#game-gamebase](https://docs.toast.com/ko/Download/#game-gamebase)
             * GamebaseManager.java 파일을 참고하시면 됩니다.
     * Unity Sample Project
-        * https://github.com/nhn/toast.gamebase.unity.sample
+        * [https://github.com/nhn/toast.gamebase.unity.sample](https://github.com/nhn/toast.gamebase.unity.sample)
 * 게임이 시작되었을 때 Gamebase 클라이언트 SDK 를 초기화 하고 로그인이 성공하면 결제 재처리가 시작되도록 구현하세요.
 
 ![overview flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.19.0.png)
@@ -291,10 +310,6 @@ dependencies {
 ## API Reference
 
 * API Reference는 SDK 내에 포함되어 있습니다.
-
-## Sample Codes
-
-* 빌드 및 실행 가능한 Sample Project는 [다운로드](https://docs.toast.com/ko/Download/) 페이지에서 배포되는 Gamebase Android SDK의 .zip 파일에 포함되어 있습니다.
 
 ## API Deprecate Governance
 
