@@ -1,5 +1,12 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.19.0
+
+### Android
+
+* Gamebase Android SDK 2.19.0 에서 Weibo IdP 로그인과 다른 IdP 로그인을 번갈아가며 호출하는 경우 크래쉬가 발생합니다.
+    * Weibo IdP 를 사용한다면 이슈가 수정된 Gamebase Android SDK 2.19.1 을 사용하시기 바랍니다.
+
 ## 2.18.2
 
 ### Android
@@ -23,7 +30,7 @@
 ### Android
 
 * Gamebase Android SDK 2.17.0 에서 Gamebase.ImageNotice.showImageNotices API 를 호출하면 크래쉬가 발생합니다.
-    * 이슈가 수정된 Gamebase Android SDK 2.17.1 을 사용하시기 바랍니다.
+    * 2.17.0 의 크래쉬 및 OS 5.0~6.0 에서 커스텀 스킴 이벤트가 동작하지 않는 이슈가 수정된 Gamebase Android SDK 2.17.4 를 사용하시기 바랍니다.
 
 ## 2.15.1
 

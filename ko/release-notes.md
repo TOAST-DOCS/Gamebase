@@ -21,6 +21,8 @@
 #### 버그 수정
 * [SDK] 2.19.0
     * (Unity) WebSocket에서 재시도 시 OutOfMemoryException이 발생하는 문제 수정
+* [SDK] 2.19.1
+	* (Android) Weibo 로그인 시도 후 다른 IdP로 로그인 시 크래시가 발생하는 문제 수정
 	
 ### 2020. 12. 15.
 
@@ -366,7 +368,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 	* Analytics 공통: 국가명이 길어질 경우 스크롤이 영역을 벗어나는 이슈 수정
 	* Analytics > 실시간 모니터링: 데이터 저장 중에 조회 요청시 지표가 0으로 보이는 현상 수정
 * [SDK] 2.8.1 
-	* (Android) 프로세스 재시작 이후 크래쉬가 발생할 수 있는 코드를 수정
+	* (Android) 프로세스 재시작 이후 크래시가 발생할 수 있는 코드를 수정
 	* (JavaScript) credentialInfo 로그인에서 Hangame IdP로 로그인이 안되는 문제를 수정
 	
 ### 2020. 03. 24.
@@ -521,9 +523,9 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 * [Console]
 	* 의미에 맞지 않는 일본어 문구 수정
 * [SDK] 2.6.1
-	* (Android)Gamebase.initialize() 호출 전에 Gamebase.login() 을 호출할 때 크래쉬가 발생하는 문제 수정
+	* (Android)Gamebase.initialize() 호출 전에 Gamebase.login() 을 호출할 때 크래시가 발생하는 문제 수정
 	* (Android)TOAST Analytics User Data 를 java 주소 값으로 잘못 전송하는 문제 수정
-	* (Android)IAP 상품을 활성화 시키지 않은 경우 발생하는 크래쉬 수정
+	* (Android)IAP 상품을 활성화 시키지 않은 경우 발생하는 크래시 수정
 	* (iOS)AddMapping(강제, Forcibly) 사용 시, 매핑이 되지 않는 문제 수정
 	* (iOS)Unity Plugin으로 PushConfiguration의 displayLanguageCode를 설정하지 않을 경우, NSNull 객체에 의하여 크래시가 발생하는 문제를 수정
 	
@@ -815,7 +817,7 @@ Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
 * [SDK] 2.2.2
 	* (Android)Gamebase 초기화 이전 TransferAccount API 호출시, 콜백이 오지 않는 이슈를 수정
 	* (iOS)showBlockingPopup을 NO로 설정 할 경우 Gamebase 초기화 콜백이 호출되지 않는 이슈를 수정
-	* (Unity)AddMappingForcibly API를 호출하면 크래쉬가 발생하여 수정
+	* (Unity)AddMappingForcibly API를 호출하면 크래시가 발생하여 수정
 
 ### 2019. 04. 02.
 
@@ -907,7 +909,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 		* IAP SDK를 1.5.2로 업데이트
 		* Client에서는 사용되지 않는 IAP TEST Store 제거
 		* 결제 재처리 로직(requestRetryTransaction)에서 데이터가 불완전할 때 호출이 실패하는 문제를 수정
-		* 크래쉬를 방지하기 위해 모든 IAP SDK 호출부에 예외 처리
+		* 크래시를 방지하기 위해 모든 IAP SDK 호출부에 예외 처리
 * Console
 	* 인증이 풀렸을 때 Rest API 요청에도 로그인페이지로 이동하도록 수정
 	* IAP Transaction 조회 필터 추가
