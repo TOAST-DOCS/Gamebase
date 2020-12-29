@@ -21,6 +21,8 @@
 #### Bug Fixes
 * [SDK] 2.19.0
     * (Unity) WebSocket에서 재시도 시 OutOfMemoryException이 발생하는 문제 수정
+* [SDK] 2.19.1
+	* (Android) Weibo 로그인 시도 후 다른 IdP로 로그인 시 크래시가 발생하는 문제 수정
 
 ### December 15, 2020
 
