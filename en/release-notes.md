@@ -27,34 +27,34 @@
 ### December 15, 2020
 
 #### More Features
-* Gamebase 고객센터 페이지 오픈 시 게임에서 정의한 extra data 전달: SDK 2.18.2
-	* [Console] 고객센터 > 고객 문의: 고객 문의 상세 조회 화면에서 추가로 등록한 extra data 확인 가능
+* When the Gamebase Customer Center page opens, game-defined extra data is delivered: SDK 2.18.2
+	* [Console] Extra data added can be checked in Customer Center > Customer Inquiry: Customer Inquiry Details
 * [SDK] 2.18.2
-	* (공통) 개발사 자체 고객센터 오픈 시 additionalURL 필드 추가
-	* (공통) 결제 아이템 정보에 지역화된 상품 정보 추가: localizedTitle, localizedDescription
+	* (Common) additionalURL field added for the case of a developer's own Customer Center being opened
+	* (Common) Localized product information added in the transaction item information: localizedTitle, localizedDescription
 
 #### Feature Updates
 * [Console]
-	* Analytics: 필터 검색 후 날짜 변경하여도 선택한 검색 조건이 유지되도록 개선
-	* Push > 푸시: Tencent Push 제거
-	* 구매(IAP) > 결제 정보: 환불 상태에서 영수증 검증 버튼 노출되지 않도록 변경
+	* Analytics: Improved to maintain the selected search condition even when the date is changed after filtered search
+	* Push > Push: Tencent Push removed
+	* Purchase (IAP) > Transaction information: Changed not to show the Check Receipt button in the refund state
 * [SDK] 2.18.2
-    * (공통) TOAST SDK 업데이트: [Android(0.24.2)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0242-20201124), [iOS(0.27.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-unity/#0213-20201124)
-	* (Android) 암호화 로직 보안 경고 해결을 위한 외부 SDK 업데이트: Payco Login SDK(1.5.3), Hangame ID SDK(1.3.2)
-	* (Android) Tencent Push 모듈 제거
-	* (Android) Gamebase Android SDK 2.6.0에서 deprecated된 함수 제거
+    * (Common) TOAST SDK update: [Android(0.24.2)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0242-20201124), [iOS(0.27.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-unity/#0213-20201124)
+	* (Android) External SDK update to resolve encryption logic security warnings: Payco Login SDK (1.5.3), Hangame ID SDK (1.3.2)
+	* (Android) Tencent Push module removed
+	* (Android) The deprecated function in Gamebase Android SDK 2.6.0 removed
 		* GamebaseConfiguration.Builder.setFCMSenderId()
 		* GamebaseConfiguration.Builder.setTencentAccessKey()
 		* GamebaseConfiguration.Builder.setTencentAccessId()
-	* (iOS) showWebView: 잘못된 URL을 전달했을 경우 에러 반환, 전달받은 URL은 인코딩하지 않고 그대로 사용
-	* (iOS) 대소문자 상관없이 커스텀 스킴이 동작하도록 변경
-	* (Unity) GamebaseRequest.GamebaseConfiguration 클래스의 필드 deprecated: zoneType, fcmSenderId
+	* (iOS) showWebView: Returns error when invalid URL is delivered, delivered URL is used as is without encoding
+	* (iOS) Changed to run the custom scheme regardless of letter case
+	* (Unity) The following fields of GamebaseRequest.GamebaseConfiguration class deprecated: zoneType, fcmSenderId
 
 #### Bug Fixes
 * [Console]
-	* 구매(IAP) > 아이템: => 파일로 아이템을 대량 등록하면 중복으로 등록되는 문제 수정
+	* Purchase (IAP) > item: Fixed the issue where duplicate items are registered when a batch of items is added using a file
 * [SDK] 2.18.2
-    * (Android) 5.0~6.0 OS 단말기에서 웹뷰 커스텀 스킴이 동작하지 않는 문제 수정
+    * (Android) Fixed the issue where WebView custom scheme does not run on a 5.0 - 6.0 OS device
 
 ### December 2, 2020
 
