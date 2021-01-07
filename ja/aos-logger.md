@@ -73,7 +73,6 @@ TOAST Logger SDKは、下記の5つのレベルのログを転送できます。
 ```java
 // Default
 Gamebase.Logger.debug("Message", userField);
-[TCGBLogger debug：@"Message"];
 
 // With userFields
 final Map<String, String> userField = new HashMap<>();
@@ -105,7 +104,7 @@ Gamebase.Logger.setUserField("KEY", "VALUE");
 
 ### Further Tasks after Sending Logs
 
-delegateを登録すると、ログ転送後に追加作業を進行できます。
+リスナー(listener)を登録すると、ログ転送後、追加作業を進行できます。
 
 **API**
 
