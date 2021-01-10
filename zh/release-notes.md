@@ -4,19 +4,19 @@
 
 #### More Features
 * [SDK] 2.19.0
-	* (공통) Weibo 인증 추가
-	* (Android) Sign In with Apple 인증 추가
+	* (Common) Weibo authentication added
+	* (Android) Sign-in with Apple authentication added
 	
 #### Feature Updates
 * [Console]
-	* 앱 > 앱: 서버 주소 관리에 베타 서비스 서버 추가 
-	* 앱 > 클라이언트: 클라이언트 상태에 베타 서비스 추가, 클라이언트 추가 정보 등록할 수 있도록 메모 기능 추가 
-	* 구매(IAP) > 상품: 검색 조건 추가 - 사용여부
-	* 구매(IAP) > 결제 정보: 결제 내역에 스토어 테스트 결제건 표시
-	* 구매(IAP) > 판매 현황 메뉴 종료: Analytics > 매출 지표와 기능이 통합되었습니다.
-	* Analytics > 이용 환경 > 설치 URL 메뉴 종료
+	* App > App: beta service server added to Manage Server Address
+	* App > Client: beta service added to Client Status, memo function added so that additional client information can be registered
+	* Purchase (IAP) > Product: search condition added - whether currently being used or not
+	* Purchase (IAP) > Payment Information: now store test payment is displayed in the payment history
+	* Purchase (IAP) > Terminate Sales Menu: Analytics > Sales Metrics and functions are integrated now.
+	* Analytics > Preferences > Terminate Installation URL Menu
 * [SDK] 2.19.0
-	* (공통) 론칭 상태 코드 추가: 베타 서비스(205)
+	* (Common) Launching status code added: beta service (205)
 
 #### Bug Fixes
 * [SDK] 2.19.0
@@ -60,23 +60,23 @@
 
 #### More Features
 * [Console] 
-	* Gamebase 권한 세분화 기능 추가: 24개
-	* Analytics > 그룹 지표: 프로젝트별 신규 가입자, 결제 금액 비교 그래프 추가    
-	* 멤버 > 회원: 하단에 고객센터 문의 내역 조회 탭 추가
-	* 쿠폰 > 쿠폰 발급: 발급된 쿠폰에 추가로 쿠폰을 발급할 수 있도록 쿠폰 추가 발급 기능 추가(1회 10만 개)
+	* Newly added subdivided Gamebase permission functions: 24
+	* Analytics > Group Metrics: new subscribers per project and payment amount comparison graph added
+	* Members > Members: View Customer Center Inquiry History tab added at the bottom
+	* Coupon > Issue Coupon: Issue Additional Coupons function added so that more coupons can be issued to an already issued coupon (100,000 at one time)
 	
 #### Feature Updates
 * [Console]
-    * Analytics > 실시간 모니터링: 전날 지표 대비 데이터가 상승, 하락했을 때 표시 색상 변경
-		* 상승: 파란색->빨간색, 하락: 빨간색->파란색
-	* Analytics > 매출 지표 > 결제 금액: 국가별로만 비교할 수 있던 매출 데이터를 스토어별, IdP 별로 데이터를 확인할 수 있도록 추가
-	* 운영 > 공지: 자세히 보기 링크에 고객센터 연결할 수 있도록 설정 추가
-	* 고객센터 > 고객 문의: 답변 발송 설정에 자동 번역 기능 추가
-	* 쿠폰 > 쿠폰 발급: 쿠폰 최초 발급 수량을 최대 5만 개에서 최대 100만 개로 증가
+	* Analytics > Live Monitoring: display color changes when there is a gain/loss in day-over-day metric data
+		* Increase: blue->red, decrease: red->blue
+	* Analytics > Sales Metrics > Payment Amount: Now sales data comparison can be viewed "per store" and "per IdP" in addition to the previous "per country"
+	* Operation > announcement: setting to move to Customer Center added in the Read More link
+	* Customer Center > Customer Inquiry: Auto Translation function added in the Send Reply settings
+	* Coupon > Issue Coupon: increased the initial coupon issuance quantity from 50,000 to 1,000,000
 
 #### Bug Fixes
 * [Console]
-    * 구매(IAP) > 결제 정보: 조회한 데이터가 많은 경우 파일을 다운로드하지 못하는 문제 수정
+    * Purchase (IAP) > Payment Information: fixed the issue where files cannot be downloaded when too much data is viewed
 
 ### November 10, 2020
 
