@@ -12,11 +12,18 @@ To execute Gamebase in Android, following system environment is required.
 
 ## Setting
 
-* Before applying Gamebase Android SDK, you need an App ID issued at the TOAST Cloud Console: select a project created in the TOAST Cloud Console and click **(+)Service** Game > Gamebase.
+* Before applying Gamebase Android SDK, you need an App ID issued at the TOAST Cloud Console: select a project created in the TOAST Cloud Console and click **(+)Service** **Game > Gamebase**.
 * Declare Gamebase version and authentication to use, and the payment and the push modules in the build.gradle file.
-	* Check the latest Gamebase version from the [Release Notes](./release-notes/).
+	* Find the latest Gamebase version at [jCenter(LINK)](https://jcenter.bintray.com/com/toast/android/gamebase/gamebase-sdk/).
+	* To download a library that depends on Gamebase, add the  `mavenCentral()`  storage. 
 
 ```groovy
+repositories {
+    jcenter()
+    mavenCentral()
+    ...
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -47,8 +54,8 @@ dependencies {
 * [Google APIs for Android](https://developers.google.com/android/guides/overview)
 * [Naver for developers](https://developers.naver.com/docs/login/android/)
 * [Twitter Android Developer's guide - Log in with Twitter](https://dev.twitter.com/web/sign-in/implementing)
-* [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/basics/authentication/overview/oauth)
-* [Line for developers](https://developers.line.me/en/docs/line-login/android/integrate-line-login/)
+* [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/basics/authentication/overview)
+* [Line for developers](https://developers.line.biz/en/docs/android-sdk/integrate-line-login/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/android)
 
 ## API Reference

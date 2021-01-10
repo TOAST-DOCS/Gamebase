@@ -36,7 +36,7 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 | 外部认证          | Android | iOS | Windows(based Unity) | Web(based JavaScript)    |
 | ----------------- | ------------ | ------------ | ------------ | ------------ |
 | Facebook          | O | O | O | O |
-| Sign In with Apple |  | O | | |
+| Sign In with Apple | O | O | | |
 | Apple Game Center |  | O | | |
 | Google            | O | O | O | O |
 | PAYCO             | O | O | O | O |
@@ -44,6 +44,7 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 | Twitter			| O | O | |  |
 | LINE				| O | O | O  | O  |
 | Hangame			| O | O | O  | O  |
+| Weibo | O  | O  | | |
 
 * **提供游客登录。**
 游客登录，玩家无需输入任何信息，即可直接登录并启动游戏。由于游客登录，是使用了Gamebase发放的ID，所以客户可以管理用户的游戏数据，游戏不论OAuth登录用户和游客登录用户，均可统一管理不用进行区分。
@@ -128,7 +129,6 @@ Gamebase基本上支持全球游戏，并提供以下功能：
 * 可以轻松的联动游戏中所需的TOAST服务。
   * Gamebase根据Gamebase用户ID提供封装(wrapping)的API。 因此，用户无需对每个服务的API进行单独调用。
   * [通知 > 推送](https://toast.com/service/notification/push) ：发送推送消息的综合通知服务
-  * [移动服务 > IAP](https://toast.com/service/mobile_service/iap) ：综合移动应用程序内结算服务
   * [游戏 > 排行榜](https://toast.com/service/game/leaderboard) ：大容量数据的实时排名服务
   * [安全 > AppGuard](https://toast.com/service/security/appguard) ：实时防止应用程序代码被篡改的服务
 
@@ -162,6 +162,8 @@ Gamebase基本上支持全球游戏，并提供以下功能：
 * [Android SDK 使用指南](./aos-started/)
 * [iOS SDK 使用指南](./ios-started/)
 * [Unity SDK 使用指南](./unity-started/)
+* [Unreal SDK 使用指南](./unreal-started/)
+* [JavaScript SDK 使用指南](./js-started/)
 
 ### 服务器端开发者指南
 
@@ -187,8 +189,5 @@ Gamebase基本上支持全球游戏，并提供以下功能：
 | [管理员] Maintenance | (操作)维护功能                               |                                          | [[确认维护](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- 登记或取消维护 |
 | [管理员] Notice      | (操作) 紧急公告功能 <br> -  游戏用户运行应用时，可以以弹出窗口的形式查看公告的功能 |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>-登记公告 |
 | [管理员] Ban         | (操作) 游戏用户的登记和解除禁用状态<br> - 游戏用户的登记和解除禁用状态 | [[Android](./aos-authentication/#get-banned-user-information)] [[iOS](./ios-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -确认禁用用户信息 |   [[게임 이용자의 이용정지 이력조회](./api-guide/#ban-histories)]                                       | [[Ban]](./oper-ban/#ban) <br/>-登记和解除禁用状态 |
-
-
-
 
 
