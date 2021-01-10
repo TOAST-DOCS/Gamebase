@@ -16,7 +16,7 @@ Gamebase의 정상적인 동작을 위해 반드시 **Activity#onActivityResult(
 
 게임이 시작되면 Debug Mode 를 설정하고, Gamebase 를 초기화하여 Launching Status Code 에 따라 게임 진입여부를 결정하도록 아래 Flow 와 같이 구현하시면 됩니다.
 
-![initialization flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/initialization_flow_2.19.0.png)
+![initialization flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/initialization_flow_2.19.0.png)
 
 ### Configuration Settings
 
@@ -66,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
 
         /**
          * Show gamebase debug message.
-         * set 'false' when build RELEASE.
+         *
+         * CAUTION!
+         * Set 'false' when build RELEASE.
          */
         Gamebase.setDebugMode(true);
 
@@ -77,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
         String appVersion = "1.0.0";
         String storeCode = "GG";
         GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(appId, appVersio, storeCode)
-                                            .enableLaunchingStatusPopup(true)
-                                            .build();
+                .enablePopup(true)
+                .build();
         /**
          * Gamebase Initialize.
          */
@@ -214,7 +216,7 @@ Gamebase Android SDK 초기화 설정에 입력한 앱 버전의 게임 상태 �
 | INSPECTING_ALL_SERVICES     | 304  | 전체 서비스 점검 중                              |
 | INTERNAL_SERVER_ERROR       | 500  | 내부 서버 오류                                 |
 
-[콘솔 가이드](/Game/Gamebase/ko/oper-app/#app)
+[Game > Gamebase > 콘솔 사용 가이드 > 앱 > App](./oper-app/#app)
 
 **1.2 App**
 
@@ -233,7 +235,7 @@ Gamebase 콘솔에 등록된 앱 정보입니다.
 * install: 설치 URL
 * idP: 인증 정보
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+[Game > Gamebase > 콘솔 사용 가이드 > 앱 > Client](./oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -245,7 +247,7 @@ Gamebase 콘솔에 등록된 점검 정보입니다.
 * endDate: 종료 시간
 * message: 점검 사유
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+[Game > Gamebase > 콘솔 사용 가이드 > 운영 > Maintenance](./oper-operation/#maintenance)
 
 **1.4 Notice**
 
@@ -255,7 +257,7 @@ Gamebase 콘솔에 등록된 공지 정보입니다.
 * title: 제목
 * url: 점검 URL
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+[Game > Gamebase > 콘솔 사용 가이드 > 운영 > Notice](./oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -274,7 +276,7 @@ TOAST 콘솔에 등록된 IAP 스토어 정보입니다.
 * name: App Name
 * storeCode: Store Code
 
-[콘솔 가이드](/Game/Gamebase/ko/oper-purchase/)
+[GGame > Gamebase > 콘솔 사용 가이드 > 결제](./oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -283,7 +285,7 @@ TOAST Launching 콘솔에서 사용자가 입력한 정보입니다.
 * 사용자가 입력한 값을 JSON string으로 전달합니다.
 * TOAST Launching 상세 설정은 아래 가이드를 참고하시기 바랍니다.
 
-[콘솔 가이드](/Game/Gamebase/ko/oper-management/#config)
+[Game > Gamebase > 콘솔 사용 가이드 > 관리 > Config](./oper-management/#config)
 
 
 ### Handling Unregistered Version

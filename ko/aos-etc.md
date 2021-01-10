@@ -165,7 +165,7 @@ public void getDisplayLanguageCodeInRuntime() {
 
 Gamebase에서 제공하는 기본 언어(ko, en, ja) 외 다른 언어를 사용하려면 gamebase-sdk-base.aar > res > raw에 있는 localizedstring.json 파일에 값을 추가해야 합니다.
 
-![localizedstring.json](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-etc_001_1.11.0.png)
+![localizedstring.json](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-etc_001_1.11.0.png)
 
 localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
@@ -269,7 +269,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 	2. USIM 국가 코드가 빈 값이라면 단말기 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
 	3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ' 를 리턴합니다.
 
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
+![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
 **API**
 
@@ -410,6 +410,9 @@ void processServerPush(String category, GamebaseEventServerPushData data) {
             * LaunchingStatus.IN_SERVICE: 200
             * LaunchingStatus.RECOMMEND_UPDATE: 201
             * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
+            * LaunchingStatus.IN_TEST: 203
+            * LaunchingStatus.IN_REVIEW: 204
+            * LaunchingStatus.IN_BETA: 205
             * LaunchingStatus.REQUIRE_UPDATE: 300
             * LaunchingStatus.BLOCKED_USER: 301
             * LaunchingStatus.TERMINATED_SERVICE: 302

@@ -129,7 +129,7 @@ WebView를 표시합니다.
 Gamebase.WebView.showWebView(activity, "http://www.toast.com");
 ```
 
-![Webview Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
+![Webview Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
 
 #### Custom WebView
 
@@ -254,7 +254,7 @@ showWebView(activity, urlString, configuration,
 + (void)Gamebase.Util.showAlertDialog(Activity activity, String title, String message);
 ```
 
-![Alert Dialog Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-002_1.0.0.png)
+![Alert Dialog Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-002_1.0.0.png)
 
 
 ### Alert Dialog with Listener
