@@ -150,7 +150,7 @@ Close currently displayed WebView by using the following API.
 
 ## Open External Browser
 
-Use the following API to open up external browsers. The URL delivered by parameters must be valid.  
+Use the following API to open external browsers. The URL sent by parameters must be valid. 
 
 ```objectivec
 // Open the url with Browser
@@ -163,15 +163,13 @@ Use the following API to open up external browsers. The URL delivered by paramet
 
 ## Alert
 
-Displays a system alert.<br/>
-Internally process UIAlertController for iOS 8 or higher and UIAlertView for below iOS 8 versions.<br/>
+Shows alerts on the system. <br/>
 
 #### Types of Alert
 1. Provides only one 'OK' button, and its click brings Completion.
 2. Provides only one 'OK' button, which does not provide Completion.
 
 ```objectivec
-
 // 1. Alert has completion
 - (void)showAlertWithCompletion:(id)sender {
     [TCGBUtil showAlertWithTitle:@"TITLE" message:@"MESSAGE" completion:^{
@@ -184,6 +182,34 @@ Internally process UIAlertController for iOS 8 or higher and UIAlertView for bel
     [TCGBUtil showAlertWithTitle:@"TITLE" message:@"MESSAGE"];
 }
 ```
+
+#### Types of ActionSheet
+1. ActionSheet is provided along with the **Cancel** button. 
+2. On **blocks**, user's AlerAction can be registered. 
+
+
+```objectivec
+// Create ActionSheet [OK, Detail, Cancel]
+- (void)showActionSheet {
+    NSMutableDictionary<NSString *, void(^)(UIAlertAction *)> *blocks = [NSMutableDictionary dictionary];
+    
+    void(^okActionHandler)(UIAlertAction *) = ^(UIAlertAction *action){
+        NSLog(@"OK");
+    };
+    void(^detailActionHandler)(UIAlertAction *) = ^(UIAlertAction *action){
+        NSLog(@"Detail");
+    };
+
+    // Add AlertAction(Title: "OK", Handler: okActionHandler)
+    [blocks setValue:okActionHandler forKey:@"OK"];
+
+    // Add AlertAction(Title: "Detail", Handler: detailActionHandler)
+    [blocks setValue:detailActionHandler forKey:@"Detail"];
+    
+    [TCGBUtil showActionSheetWithTitle:@"TITLE" message:@"MESSAGE" blocks:blocks];
+}
+```
+
 
 ## Toast
 

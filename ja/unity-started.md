@@ -1,4 +1,4 @@
-## Game > Gamebase > Unity SDK ご利用ガイド > はじめる
+﻿## Game > Gamebase > Unity SDK ご利用ガイド > はじめる
 
 Gamebase Unity SDKの使用環境及び初期設定について説明します。
 
@@ -8,10 +8,7 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 > 
 > Unity対応バージョン
 >
-> * Unity 2019.x : ~ 2019.2.9
-> * Unity 2018.x : ~ 2018.4.x(LTS)
-> * Unity 2017.x : ~ 2017.4.x(LTS)
-> * Unity 5.x : 5.6.6
+> * Unity 2017.4.16 ~ 2019.3.9
 > * 下位バージョンのUnityのサポートが必要な場合は[サポート](https://toast.com/support/inquiry)へお問い合わせください。
 
 #### Android
@@ -19,12 +16,6 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 >
 > 2019年8月1日から、Google Playに公開する新規アプリは64bitアーキテクチャをサポートする必要があります。
 > [Google Playポリシーおよび64bitをサポートするUnityバージョン確認](https://developer.android.com/distribute/best-practices/develop/64-bit#unity-developers)
->
-> <font color="red">[注意]</font>
-> Gamebase 2.6.0から、Android Target SDK 28に対応するためにSupport Library Versionが28.0.0に上がり、Unity 5、Unity 2017.1、Unity 2017.2ではビルドに失敗する問題が発生しました。
-> 該当のUnity Editorを使用している場合は、下記のUpgrade Guideに従ってgradle versionをアップデートすると、Androidのビルドが正常に進行できます。
-> もし、ビルドが困難な場合は[サポート](https://toast.com/support/inquiry)へお問い合わせください。
-> [Game > Gamebase > Upgrade Guide > 2.6.0 > Unity > Android Limitation](./upgrade-guide/#android-limitation)
 
 #### Supported Platforms
 
@@ -191,3 +182,4 @@ GamebaseでサポートしないAPIは、使用していないもの(deprecate)�
 		* ZZ : Hotfix
 
 * 最低5ヶ月経過
+

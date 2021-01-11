@@ -33,7 +33,7 @@ Following is the list of external authentication supported by Gamebase.
 | External Authentication             | Android | iOS | Windows(based Unity) | Web(based JavaScript)    |
 | ----------------- | ------------ | ------------ | ------------ | ------------ |
 | Facebook          | O | O | O | O |
-| Sign In with Apple |  | O | | |
+| Sign In with Apple | O  | O | | |
 | Apple Game Center |  | O | | |
 | Google            | O | O | O | O |
 | PAYCO             | O | O | O | O |
@@ -41,6 +41,7 @@ Following is the list of external authentication supported by Gamebase.
 | Twitter			| O | O | |  |
 | LINE				| O | O | O  | O  |
 | Hangame			| O | O | O  | O  |
+| Weibo			| O | O |   |  |
 
 * **Provides guest logins.**
   With guest login, users can log in and start a game without any authentication required. As Gamebase user ID is issued even to guest users, game data can be managed for all users, regardless of OAuth or guest login
@@ -160,6 +161,8 @@ Below shows the service structure of Gamebase with simple description
 * [iOS Developer's Guide](./ios-started/)
 * [Android Developer's Guide](./aos-started/)
 * [Unity Developer's Guide](./unity-started/)
+* [Unreal Developer's Guide](./unreal-started/)
+* [JavaScript Developer's Guide](./js-started/)
 
 ### Server Developer's Guide
 

@@ -63,8 +63,8 @@
 |                 | Android, UNITY<br/>IOS | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP<br/>TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403       | 현재 로그인되어 있는 IdP입니다.                      |
 | Logout          | Android, UNITY<br/>IOS | AUTH\_LOGOUT\_FAILED<br/>TCGB\_ERROR\_AUTH\_LOGOUT\_FAILED | 3501       | 로그아웃에 실패했습니다.                           |
 | Withdrawal      | Android, UNITY<br/>IOS | AUTH\_WITHDRAW\_FAILED<br/>TCGB\_ERROR\_AUTH\_WITHDRAW\_FAILED | 3601       | 탈퇴에 실패했습니다.                             |
-|                 | Android, UNITY<br/>IOS | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW<br/>TCGB\_ERROR\_AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 이미 임시 탈퇴중인 유저 입니다.                    |
-|                 | Android, UNITY<br/>IOS | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW<br/>TCGB\_ERROR\_AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 임시 탈퇴중인 유저가 아닙니다.                     |
+|                 | Android, UNITY<br/>IOS | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW<br/>TCGB\_ERROR\_AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 이미 임시 탈퇴를 요청한 유저 입니다.                    |
+|                 | Android, UNITY<br/>IOS | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW<br/>TCGB\_ERROR\_AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 임시 탈퇴를 요청한 유저가 아닙니다.                     |
 | Not Playable    | Android, UNITY<br/>IOS | AUTH\_NOT\_PLAYABLE<br/>TCGB\_ERROR\_AUTH\_NOT\_PLAYABLE | 3701       | 플레이할 수 없는 상태입니다(점검 또는 서비스 종료 등).        |
 | Auth(Unknown)   | Android, UNITY<br/>IOS | AUTH\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_AUTH\_UNKNOWN\_ERROR | 3999       | 알 수 없는 오류입니다(정의되지 않은 오류).           |
 | Purchase        | Android, UNITY<br/>IOS | PURCHASE\_NOT\_INITIALIZED<br/>TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED | 4001       | Gamebase PurchaseAdapter가 초기화되지 않았습니다.   |
@@ -113,6 +113,7 @@
 | Gateway | -4010202              | 잘못된 앱 ID가 호출됨 |
 |         | -4010203              | 유효하지 않은 액세스 토큰 |
 |         | -4010204              | 이용 정지/탈퇴/계정 유실 등 유효하지 않은 사용자 |
+|         | -4010208              | Gamebase Access Token 만료 혹은 IdP Access Token 만료 |
 |         | -4040201              | 호출한 API에 대한 TOAST 서비스가 활성화되어 있지 않을 때 <br/>- 예) Leaderboard 서비스를 사용하지 않는 상태에서 Gamebase를 통해 Leaderboard API를 호출할 때 <br/>혹은 Gamebase 자체가 활성화되어 있지 않을 때 |
 |         | -4040202              | 정의되어 있지 않은 API를 호출한 경우 |
 |         | -4120201              | 일부 제공되는 SANDBOX 시스템에서 실제 환경 서버 주소로 API 호출 (혹은 반대로 호출) <br/>- 해당 오류 발생시 서버 호출 주소 확인이 필요함 |

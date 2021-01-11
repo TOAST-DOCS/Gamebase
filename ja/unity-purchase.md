@@ -13,22 +13,40 @@ AndroidやiOSでアプリ内決済機能を設定する方法は、次のドキ�
 Unity Standaloneで決済を行うには、IapAdapterとWebViewAdapterを追加する必要があります。
 ![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-settingtool_iap_2.4.0.png)
 
+### Purchase Flow
 
-###  Purchase Flow
+アイテムの購入は大きく分けて決済フロー、消費フロー、再処理フローの3つがあります。
+決済フローは、次のような順序で実装してください。
 
-アイテムの購入は次のような手順で設計してください。<br/>
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
+1. 以前の決済が正常に終了せず、再処理が動作しない場合、決済が失敗します。そのため決済前に**RequestItemListOfNotConsumed**を呼び出して再処理を行い、未支給のアイテムがある場合はConsume Flowを進行します。
+2. ゲームクライアントではGamebase SDKの**RequestPurchase**を呼び出して決済を試行します。
+3. 決済が成功すると**RequestItemListOfNotConsumed**を呼び出して未消費決済履歴を確認した後、支給するアイテムが存在場合、Consume Flowを進行します。
 
-1. ゲームクライアントでは、Gamebase SDKの**RequestPurchase**を呼び出して決済を試みます。
-2. 決済が成功した場合、**RequestItemListOfNotConsumed**を呼び出して未消費決済の内訳を確認します。
-3. 返された未消費決済内訳リストに値がある場合、ゲームクライアントがゲームサーバーに決済アイテムに対するconsume(消費)をリクエストします。
-4. ゲームサーバーは、GamebaseのサーバーにAPI経由でconsume(消費)APIをリクエストします。[APIガイド](/Game/Gamebase/ja/api-guide/#wrapping-api)
-5. IAPサーバーからconsume(消費)APIの呼び出しに成功すると、ゲームサーバーがゲームクライアントにアイテムを配布します。
+### Consume Flow
 
-* ストア決済は成功しましたが、エラーが発生し正常に終了できない場合があります。ログイン完了後、未消費決済履歴を確認してください。<br/>
-	* ログインに成功すると、**RequestItemListOfNotConsumed**を呼び出して未消費決済履歴を確認します。
-	* 返された未消費決済履歴リストに値が存在する場合は、ゲームクライアントがゲームサーバーにconsume(消費)をリクエストしてアイテムを支給します。
+未消費決済履歴リストに値がある場合、次のような順序でConsume Flowを進行してください。
+
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.10.0.png)
+
+1. ゲームクライアントがゲームサーバーに決済アイテムのconsume(消費)をリクエストします。
+    * UserID、itemSeq、paymentSeq、purchaseTokenを伝達します。
+2. ゲームサーバーは、ゲームDBにすでに同じpaymentSeq、purchaseTokenでアイテムを支給した履歴があるかを確認します。
+    * 2-1まだアイテムを支給していない場合、UserIDにitemSeqに該当するアイテムを支給します。
+    * 2-2アイテム支給後、ゲームDBにUserID、itemSeq、paymentSeq、purchaseTokenを保存し、重複支給の有無を確認できるようにします。
+3. ゲームサーバーはGamebaseサーバーのconsume(消費) APIを呼び出してアイテムの支給を完了します。
+    * [APIガイド > Purchase(IAP) > Consume](./api-guide/#consume)
+
+### Retry Transaction Flow
+
+* ストア決済には成功したがエラーが発生して正常に終了しなかった場合があります。
+* **RequestItemListOfNotConsumed**を呼び出して再処理を行い、未支給のアイテムがある場合、Consume Flowを進行してください。
+* 再処理は次の時点で呼び出すことを推奨します。
+    * ログイン完了後
+    * 決済前
+    * ゲーム内ショップ(またはロビー)に移動した時
+    * ユーザープロフィールまたはメールボックスを確認した時
 
 ### Purchase Item
 
@@ -43,14 +61,18 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
+static void RequestPurchase(string gamebaseProductId, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
+static void RequestPurchase(string gamebaseProductId, string payload, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
+
+// Legacy API
 static void RequestPurchase(long itemSeq, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
 ```
 
 **Example**
 ```cs
-public void RequestPurchase(long itemSeq)
+public void RequestPurchase(string gamebaseProductId)
 {
-    Gamebase.Purchase.RequestPurchase(itemSeq, (purchasableReceipt, error) =>
+    Gamebase.Purchase.RequestPurchase(gamebaseProductId, (purchasableReceipt, error) =>
     {
         if (Gamebase.IsSuccess(error))
         {
@@ -69,9 +91,35 @@ public void RequestPurchase(long itemSeq)
         }
     });
 }
+
+
+public void RequestPurchase(string gamebaseProductId)
+{
+    string userPayload = "{\"description\":\"This is example\",\"channelId\":\"delta\",\"characterId\":\"abc\"}";
+    Gamebase.Purchase.RequestPurchase(gamebaseProductId, userPayload, (purchasableReceipt, error) =>
+    {
+        if (Gamebase.IsSuccess(error))
+        {
+            Debug.Log("Purchase succeeded.");
+            // userPayload value entered when calling API
+            string payload = purchasableReceipt.payload
+        }
+        else
+        {
+        	if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
+            {
+                Debug.Log("User canceled purchase.");
+            }
+            else
+            {
+            	Debug.Log(string.Format("Purchase failed. error is {0}", error));
+            }
+        }
+    });
+}  
 ```
 
-### Get a List of Purchasable Items
+### List Purchasable Items
 
 アイテムリストを照会したい場合、次のAPIを呼び出します。
 コールバックで返されるリストの中にはそれぞれ各アイテムの情報が含まれています。
@@ -106,10 +154,19 @@ public void RequestItemListPurchasable()
 
 
 
-### Get a List of Non-Consumed Items
+### List Non-Consumed Items
 
-アイテムを購入したものの、正常にアイテムが消費(送信、配布)されていない未消費決済の内訳をリクエストします。
-未決済の内訳がある場合は、ゲームサーバー(アイテムサーバー)にリクエストを出してアイテムを送信(配布)するように処理する必要があります。
+アイテムを購入したが、正常にアイテムが消費(配送、支給)されなかった未消費決済履歴をリクエストします。
+未消費決済履歴があある場合はゲームサーバー(アイテムサーバー)にリクエストして、アイテムを配送(支給)するように処理する必要があります。
+正常に決済が完了しなかった場合、再処理の役割も担うため、次の状況で呼び出してください。
+
+* ゲームユーザーに支給されなかったアイテムが残っているかを確認
+    * ログイン完了後
+    * ゲーム内ショップ(またはロビー)に移動した時
+    * ユーザープロフィールまたはメールボックスを確認した時
+* 再処理が必要なアイテムがあるかを確認
+    * 決済前
+    * 決済失敗後
 
 **API**
 
@@ -142,7 +199,7 @@ public void RequestItemListOfNotConsumed()
 }
 ```
 
-### Get the List of Actived Subscriptions
+### List Actived Subscriptions
 
 現在のユーザーIDで有効になっている定期購入リストを照会します。
 決済が完了した定期購入商品(自動更新型定期購入、自動更新型消費性定期購入商品)は、期間が終了するまで照会できます。 
@@ -197,81 +254,20 @@ public void RequestActivatedPurchasesSample()
 }
 ```
 
-### App Store Promotion IAP
+### Event by Promotion
 
-App Storeアプリでアイテムを購入できる機能を提供します。
-アイテム購入成功後、登録しておいた下記のハンドラを利用してアイテムを支給できます。
-
-プロモーションIAPは、App Store Connectで別途設定すると表示できます。
-
-> <font color="red">[注意]</font><br/>
->
-> iOS 11以上でのみ使用できます。
-> Xcode 9.0以上でビルドする必要があります。
-> Gamebase 1.13.0以上でサポートします(TOAST IAP SDK 1.6.0以上適用)。
-
-
-> <font color="red">[注意]</font><br/>
->
-> ログイン成功後にのみ呼び出すことができます。
-> ログイン成功後、他の決済APIより先に実行する必要があります。
-
-**API**
+プロモーション決済が完了すると、GamebaseEventHandlerを通してイベントを取得して処理できます。
+GamebaseEventHandlerでプロモーション決済イベントを処理する方法は、下記のガイドを参照してください。
+[Game > Gamebase > Unity SDK使用ガイド > ETC > Gamebase Event Handler](./unity-etc/#purchase-updated)
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#1D76DB; font-size：10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size：10pt">■</span> UNITY_ANDROID
 
-```cs
-static void SetPromotionIAPHandler(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
-```
-
-**Example**
-```cs
-public void SetPromotionIAPHandler()
-{
-    Gamebase.Purchase.SetPromotionIAPHandler((purchasableReceipt, error) => 
-    {
-        if (Gamebase.IsSuccess(error))
-        {
-            Debug.Log("Purchase succeeded.");
-        }
-        else
-        {
-            if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
-            {
-                Debug.Log("User canceled purchase.");
-            }
-            else
-            {
-            	Debug.Log(string.Format("Purchase failed. error is {0}", error));
-            }
-        }
-    });
-}
-```
-**Overview**
-
-* Apple Developer Overview : https://developer.apple.com/app-store/promoting-in-app-purchases/
-* Apple Developer Reference : https://help.apple.com/app-store-connect/#/deve3105860f
-
-**How to Test AppStore Promotion IAP**
-
-> `注意`
-> App Store Connectにアプリをアップロードし、TestFlightでアプリをインストールした後、テストできます。
-> 
-
-1. TestFlightでアプリをインストールします。
-2. 下記のようなURLスキーム(scheme)を呼び出し、テストを進行します。
-
-| URL Components | keyname | value |
-| --- | --- | --- |
-| scheme | itms-services | 固定値 |
-| host &amp; path | なし | なし |
-| queries | action | purchaseIntent |
-|		  | bundleId | アプリのbundeld identifier |
-|		  | productIdentifier | 購入アイテムのproduct identifier |
-
-例) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
+> <font color="red">[注意]</font><br/>
+>
+> iOSプロモーション決済を行うには、必ず下記のガイドに沿って設定してください。
+> [Game > Gamebase > iOS SDK使用ガイド > 決済 > Event by Promotion](./ios-purchase/#event-by-promotion)
 
 ### Error Handling
 
@@ -281,9 +277,12 @@ public void SetPromotionIAPHandler()
 | PURCHASE_USER_CANCELED                   | 4002       | ゲームユーザーがアイテムの購入をキャンセルしました。                 |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003 | 購入ロジックが完了していない状態でAPIが呼び出されました。|
 | PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 該当するストアのcashが足りないため決済することができません。            |
+| PURCHASE_INACTIVE_PRODUCT_ID             | 4005       | 該当商品が有効な状態ではありません。  |
+| PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | 存在しないGamebaseProductIDで決済をリクエストしました。 |
 | PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | このストアには対応しておりません。<br>選択可能なストアは、GG(Google)、TS(ONE store)、TESTです。|
 | PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAPライブラリーエラーです。<br>DetailCodeを確認してください。  |
 | PURCHASE_UNKNOWN_ERROR                   | 4999       | 定義されていない購入エラーです。<br>ログ全体を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。|
+
 
 * 全体のエラーコードは、次のドキュメントをご参考ください。
     * [エラーコード](./error-code/#client-sdk)
@@ -316,7 +315,7 @@ else
 ```
 
 * IAPのエラーコードは、次のドキュメントをご参考ください。
-    * [Mobile Service > IAP > エラーコード > Client APIエラータイプ](/Mobile%20Service/IAP/ja/error-code/#client-api)
+    * [TOAST > TOAST SDK使用ガイド > TOAST IAP > Unity > エラーコード](/TOAST/en/toast-sdk/iap-unity/#_17)
 
 
 

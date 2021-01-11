@@ -5,11 +5,21 @@
 
 > [INFO]
 >
-> 최소 사양: iOS 9 이상 또는 일부 IdP 지원 시 **하단 3rd Party Gamebase Auth Adapters 표 안의 Support iOS Version 항목을 참고**하세요. <br/>
-> iOS, iOS Simulator<br/>
-> Xcode 10 이상에서 빌드 가능 (일부 IdP용 SDK는 하단 표를 참고)
+> 최소 사양
+>
+> * 사용자 실행 환경 : iOS 9 이상
+> * 빌드 환경 : Xcode 11 (iOS 13 SDK) 이상
 >
 
+<br/>
+
+> <font color="red">[주의]</font><br/>
+>
+> 일부 IdP 지원 시 **하단 3rd Party Gamebase Auth Adapters 표 안의 Support iOS Version 항목을 참고**하세요.
+> AppStore 출시 시에는 반드시 Apple 버전 정책에 준수해야 합니다.
+>
+> * https://developer.apple.com/ios/submit/
+>
 
 ### Installation
 
@@ -28,7 +38,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 용도 | External SDK Download Link | Support iOS Version |
 | --- | --- | --- | --- | --- | --- |
 | Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.27.1 | Gamebase의 Interface 및 핵심 로직을 포함 | Gamebase 내에 포함 | iOS9 or later
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v7.1.1 | Facebook 로그인을 지원 | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS9 or later<br/>&<br/>Xcode 11 이상 |
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v7.1.1 | Facebook 로그인을 지원 | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS9 or later |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.4.0 | Payco 로그인을 지원 | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Naver 로그인을 지원 | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenter 로그인을 지원 |  | iOS9 or later |
@@ -86,16 +96,17 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
     * StoreKit.framework
     * AuthenicationServices.framework (Optional)
 
-![Link Binary With Libraries](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
+![Link Binary With Libraries](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
+
 * 4) **Gamebase iOS SDK 2.12.0 이상**을 사용할 경우 Facebook SDK가 업데이트 됨에 따라 추가 설정이 필요합니다.
     * **Accelerate.framework** 추가
     * 프로젝트 내부에 **빈 swift 파일** 추가 (프로젝트 내부에 swift 파일이 하나도 없을 경우)
 * 5) **Target > Build Settings > Linking > Other Linker Flags**에 **-ObjC**를 추가해야 합니다.
-![Other Linker Flags](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
+![Other Linker Flags](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
 * 6) **Target > Build Settings > Enable Bitcode**를 **No**로 설정합니다.
-![Enable Bitcode](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-007_1.0.0.png)
+![Enable Bitcode](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-007_1.0.0.png)
 * 7) NaverAuthAdapter를 사용하는 경우에는 NaverSDK에서 제공하는 **NaverThirdPartyLogin.framework** 파일을 **Target > General > Embedded Binaries**에 추가해야 합니다.
- ![Naver Embeded Binaries](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.7.0.png)
+ ![Naver Embeded Binaries](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.7.0.png)
 
 > [INFO]
 >

@@ -12,15 +12,18 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
 3. Register a Sandbox Tester account
 * Detail Guide for iTunes-Connect: [Apple Guide](https://help.apple.com/itunes-connect/developer/#/devb57be10e7)
 
-#### Register TOAST Console
-Set TOAST Gamebase Console as follows.
+#### Register at Gamebase Console
+See the following for the setup on Gamebase Console.
 
-1. Register a store to use at **Gamebase > Purchase (IAP) > App**.
+1. Go to **Gamebase > Purchase (IAP) > Store** and register a store. 
     * Store: Select **App Store**.
-2. Register an item at **Gamebase &gt; Purchase (IAP) &gt; Item**.
+2. On **Gamebase > Purchase(IAP) > Product**, register an item. 
+    * Product ID: Enter product ID to request for purchase.
+    * Product Name: Enter product name to show for purchase.
+    * Use: Decide whether to use item.
     * Store: Select **App Store**.
-    * Store Item ID: Enter a Product ID registered at iTunes-Connect.
-3. When item setting is completed, press **Save**.
+    * Store Item ID: Enter Product ID registered for iTunes-Connect.
+3. Press **Save**.
 
 #### Set Xcode Project
 1. Set **ON** for **Targets > Capabilities > In-App Purchase**.
@@ -36,39 +39,64 @@ Import the following header to ViewController to implement purchase API.
 
 ### Purchase Flow
 
-Item purchases should be implemented in the following order.<br/>
+Purchase of an item can be divided into Purchase Flow, Consume Flow, and Reprocess Flow.
+You may execute an item purchase in the following order:
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-1. Call **requestPurchaseWithItemSeq:viewController:completion:** of Gamebase SDK to purchase in a game client.
-2. After a successful purchase, call **requestItemListOfNotConsumedWithCompletion:** to check list of non-consumed purchases.
-3. If there is a value on the returned list, the game client sends a request to the game server to consume purchased items.
-4. The game server requests for Consume API to the Gamebase server via API.
-    [API Guide](/Game/Gamebase/en/api-guide/#wrapping-api)
-5. If the IAP server has successfully called Consume API, the game server provides the items to the game client.
+1. When a previous purchase has not been closed, purchase fails unless reprocessing runs. Therefore, call **requestItemListOfNotConsumedWithCompletion:** before payment so as to run reprocessing, and execute Consume Flow if there's any unsupplied item. 
+2. For the game client, call **requestPurchaseWithItemSeq:viewController:completion:** of Gamebase SDK to make a purchase.
+3. When a purchase has been successful, call **requestItemListOfNotConsumedWithCompletion:** and check history of non-consumable purchases; and if there's any item to supply, execute Consume Flow. 
 
+### Consume Flow
 
-A purchase at store may be successful but cannot be closed normally due to error. It is recommended to call each of the two APIs after login is completed, to initialize a reprocessing logic. <br/>
+If there's a value on the list of non-consumable purchases, execute Consume Flow in the following order:
 
-1. Request list of items that are not consumed
-    * When a login is successful, call **requestItemListOfNotConsumedWithCompletion:** to check list of non-consumed purchases.
-    * If the value is on the returned list, the game client sends a request to the game server to consume, so that items can be provided.
-2. Request to retry transaction
-    * When a login is successful, call **requestRetryTransactionWithCompletion:** to try to automatically reprocess the unprocessed.
-    * If there is a value on the returned successList, the game client sends a request to the game server to consume, so that items can be provided.
-    * If there is a value on the returned failList, send the value to the game server or Log & Crash to collect logs. Also send inquiry to  [**TOAST > Customer Center**](https://toast.com/support/inquiry)for the cause of reprocessing failure.
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.10.0.png)
 
-* Some cases end up with abnormal closure due to errors, although purchase was successful at store. Please check the list of non-consumed purchases after login.  <br/>
-	* When login is successful, call **requestItemListOfNotConsumedWithCompletion:** to check list of non-consumed purchases. 
-	* If the value is on the returned list, the game client sends a request to the game server to consume, so that items can be provided. 
+1. The game client requests for Consume of a purchase item on the game server. 
+    * Deliver UserID, itemSeq, paymentSeq, and purchaseToken.
+2. The game server tracks down the history of item supplies with same paymentSeq, or purchaseToken within game database.   
+    * 2-1 If not supplied yet, supply the item for itemSeq to UserID.
+    * 2-2 After item is provided, save UserID, itemSeq, paymentSeq, and purchaseToken to game database so as to check redundancy. 
+3. The game server calls Consume API to the Gamebase server to complete with item supply.
+    * [API Guide > Purchase (IAP) > Consume](./api-guide/#consume)
+
+### Retry Transaction Flow
+
+* Sometimes, a successful purchase at store ends up with failed closure, due to error. 
+* Call **requestItemListOfNotConsumedWithCompletion:** to run reprocessing and execute Consume Flow for any non-supplied items. 
+* It is recommended to call reprocessing in time for the following: 
+    * After login is completed
+    * Before payment 
+    * Entering store (or lobby) of a game
+    * Checking user profile or mailbox
 
 ### Purchase Item
 
-Call following API of an item to purchase by using itemSeq to send a purchase request.
+With gamebaseProductId of an item to purchase, call the following API to request for purchase.   <br/>The gamebaseProductId is generally same as the ID of item registered at store, but it could be changed on Gamebase console. 
+Additional information for the payload field remains at the **TCGBPurchasableReceipt.payload** field after a successful payment, and therefore, can be applied to many purposes. <br/>
+When a game user cancels purchase, the **TCGB_ERROR_PURCHASE_USER_CANCELED** is returned. Please process cancellation. 
+
+**API**
 
 ```objectivec
-- (void)purchasingItem:(long)itemSeq {
-    [TCGBPurchase requestPurchaseWithItemSeq:itemSeq viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
++ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId viewController:(UIViewController *)viewController completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
+
++ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId payload:(NSString *)payload viewController:(UIViewController *)viewController completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
+
+// Legacy API
++ (void)requestPurchaseWithItemSeq:(long)itemSeq viewController:(UIViewController *)viewController completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
+```
+
+**Example**
+
+```objectivec
+
+- (void)purchasingItem:(NSString *)gamebaseProductId {
+    NSString *userPayload = @"USER_PAYLOAD";
+
+    [TCGBPurchase requestPurchaseWithGamebaseProductId:gamebaseProductId viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Purchase Item Succeeded
         } else if (error.code == TCGB_ERROR_PURCHASE_USER_CANCELED) {
@@ -82,7 +110,7 @@ Call following API of an item to purchase by using itemSeq to send a purchase re
 
 
 
-### Get a List of Purchasable Items
+### List Purchasable Items
 
 To retrieve the list of items, call the following API. Information of each item is included in the array of callback return.
 
@@ -105,15 +133,19 @@ To retrieve the list of items, call the following API. Information of each item 
 ```
 
 
-### Get a List of Non-Consumed Items
+### List Non-Consumed Items
 
 Request for a list of non-consumed items, which have not been normally consumed (delivered, or provided) after purchase.<br/>
 In case of non-purchased items, ask the game server (item server) to proceed with item delivery (supply).
 
-* Make a call in the following two cases.
-    1. To confirm before an item is consumed after a successful purchase.
-    2. To check if there is any non-consumed item left after a login is successful.
-
+* When a purchase is not properly completed, reprocessing is also required; please call in time for the following: 
+    * See if there's any unsupplied items for a game user
+        * After login is completed 
+        * Entering store (or lobby) of a game 
+        * Checking user profile or mailbox
+    * See if there's any item in need of reprocessing
+        * Before purchase
+        * After failed purchase
 
 ```objectivec
 - (void)viewDidLoad {
@@ -129,7 +161,7 @@ In case of non-purchased items, ask the game server (item server) to proceed wit
 }
 ```
 
-### Get a List of Activated Subscriptions
+### List Activated Subscriptions
 
 Subscriptions that are paid up (e.g. auto-renewable subscription, auto-renewed consumable subscription) can be listed before they are expired. 
 With a same user ID, all purchased subscriptions from Android and iOS can be listed.
@@ -154,10 +186,10 @@ Based on the latest success of purchase, reprocessing is required by calling an 
 
 ### Restore Purchase
 
-Restore purchase list based on user's AppStore account and apply it to console. 
-Enable the feature when you cannot find or activate purchased subscriptions. 
-Restored purchases, including expired ones, are returned as results. 
-When there is non-applied purchase on the list of auto-renewed consumable subscriptions, you can get it from the list of non-consumed purchases after restoration. 
+List of purchases made by user's App Store account can be restored and applied to console. 
+This feature is useful when a purchased subscription cannot be queried nor activated. 
+Restored payment, including expired payment, is returned as result.
+In the case of auto-renewed consumable subscriptions, any missing purchases can be queried from the non-consumable purchase history after restoration is done. 
 
 
 ```objectivec
@@ -173,7 +205,7 @@ When there is non-applied purchase on the list of auto-renewed consumable subscr
 }
 ```
 
-### App Store Promotion IAP
+### Event by Promotion
 
 > `Caution`
 > It is available for iOS version 11 or later.
@@ -184,6 +216,14 @@ When there is non-applied purchase on the list of auto-renewed consumable subscr
 > `Caution`
 > It can be called only after a successful login.
 > After a successful login, it must be executed ahead of any other payment APIs.
+
+#### 사용시 주의 사항#### Caution for Usage
+If In-App Purchase (for App Store) is included to SDK, like Facebook SDK or Google AdMob SDK, and advance payment begins even before login to Gamebase, a payment popup may not show up. 
+
+* Solution 
+  * Facebook
+    * Facebook Console > Settings > Default Setting > Disable `Automatically log in-app events` 
+    * When Facebook authentication is not in use: `Exclude GamebaseAuthFacebookAdapter.framework file` and build
 
 
 #### Overview
@@ -231,19 +271,26 @@ The promotion IAP is displayed only when an additional setting is done in App St
 
 E.g.) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 
+#### Process Promotional Event with GamebaseEventHandler
+
+Promotional purchase events can also be handled via GamebaseEventHandler. 
+See the guide on how to process a promotional purchase event via GamebaseEventHandler. 
+[Game > Gamebase > User Guide for iOS SDK > ETC > Gamebase Event Handler](./ios-etc/#purchase-updated)
 
 ### Error Handling
 
-| Error                                    | Error Code | Description                              |
-| ---------------------------------------- | ---------- | ---------------------------------------- |
-| TCGB_ERROR_NOT_SUPPORTED                 | 10         | GamebaseAdapter is not included.<br/>If the domain of error object is "TCGB.Gamebase.TCGBPurchase", check if PurchaseAdapter exists. |
-| TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED  | 4001       | Gamebase PurchaseAdapter is not initialized.   |
-| TCGB\_ERROR\_PURCHASE\_USER\_CANCELED    | 4002       | Purchase is cancelled.                             |
-| TCGB\_ERROR\_PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003       | Previous purchase is not completed.                       |
-| TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH | 4004       | Cannot purchase due to shortage of cash of the store.             |
-| TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010       | The store is not supported. iOS supports "AS". |
-| TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201       | Error in IAP library.<br/>Check error.message. |
-| TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR    | 4999       | Unknown error in purchase.<br/>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry and we'll respond ASAP. |
+| Error                                                      | Error Code | Description                                                  |
+| ---------------------------------------------------------- | ---------- | ------------------------------------------------------------ |
+| TCGB_ERROR_NOT_SUPPORTED                                   | 10         | GamebaseAdapter is not included. <br/>If domain of the error object is "TCGB.Gamebase.TCGBPurchase", see if PurchaseAdapter exists. |
+| TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED                    | 4001       | Gamebase PurchaseAdapter has not been initialized.           |
+| TCGB\_ERROR\_PURCHASE\_USER\_CANCELED                      | 4002       | Purchase has been cancelled.                                 |
+| TCGB\_ERROR\_PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003       | Previous purchase has not been completed.                    |
+| TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH                   | 4004       | Unable to pay due to shortage of cash for the store.         |
+| TCGB\_ERROR\_PURCHASE\_INACTIVE\_PRODUCT\_ID               | 4005       | Product is not activated.                                    |
+| TCGB\_ERROR\_PURCHASE\_NOT\_EXIST\_PRODUCT\_ID             | 4006       | Requested for purchase with invalid GamebaseProductID.       |
+| TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET              | 4010       | Unsupported store. <br />iOS supports "AS".                  |
+| TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR            | 4201       | Error of IAP library.<br>Please check error.message.         |
+| TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR                      | 4999       | Undefined error of purchase. <br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we'll return at the earliest possible moment. 
 
 * Refer to the following document for the entire error code.
     * [Entire Error Codes](./error-code/#client-sdk)
@@ -265,6 +312,6 @@ NSString *moduleErrorMessage = moduleError.message;
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
-* For IAP error codes, refer to the document below.
-    * [Mobile Service > IAP > Error Code > Client API Error Type](/Mobile%20Service/IAP/en/error-code/#client-api)
+* See the guide for the IAP error codes.  
+    * [TOAST > User Guide for TOAST SDK > TOAST IAP > iOS > Error Codes](/TOAST/ko/toast-sdk/iap-ios/#_15)
 

@@ -1,5 +1,10 @@
-## Game > Gamebase > Console Guide > Purchase
+## Before Using Purchase Menu
+![gamebase_purchase_01_201812](http://static.toastoven.net/prod_gamebase/Console_IAP_Select_currency_1.0.png)
+To use the purchase menu, currency must be selected for purchase indicators. 
+Only the initial setting is available, and the Analytics sales indicators show in the currenty code as configured. 
+Please be cautious with your choice, since the currency code cannot be modified, once selected. 
 
+## Game > Gamebase > Console Guide > Purchase
 You can register information related to In-App Purchase (IAP) and retrieve details.
 In Gamebase, TOAST IAP service is provided.
 
@@ -31,83 +36,100 @@ Retrieve or modify detail information of registered stores on the list.
 - Click **Modify** to modify information such as app name, store app, and use or not, but not store App ID.
 - Click **Delete** to delete information: only for the stores that are Not in Use.
 
-## Item
+## Product
+Products for sales at store can be registered. 
+On the **Product** tab, you may register a new product or manage your products. 
 
-Register items to sell at each store.
-Register a new item on the **Store** tab, or manage registered stores. Items of all stores will show, and filtering is also available for each store.
+- (1) **Register**: With a store item ID, many items can be registered. 
+- (2) **Change Status for Store Items**: Status of products registered with a store item ID can be changed all at once.  
+- (3) **Filter**: Easy search is available with filters for stroe, store item ID, and product ID. Without a search value, all store produts are listed. 
 
-![gamebase_purchase_04_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_04_201812_en.png)
+![gamebase_purchase_04_202006](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_04_202006.png)
 
 ### Register
 
-Click **Register** on the **Store Information List** to register a new item.
+To register a new product, click **Register** on the **Product List** page. 
+#### 1. User-input Registration
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_05_202006.png)
 
-![gamebase_purchase_05_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_05_201812_en.png)
+* (1) **Product ID**: Enter product ID to request for purchase. Purchase API must be called from SDK with a product ID so as to purchase the corresponding product. 
+* (2) **Product Name**: Enter name to show for purchase. Purchase history as well as indicators can be listed by the name.   
+* (3) **Use**: Select whether to use a product. At the request of SDK for the list of products, those SDK that are selected as 'USE' only are listed. 
+* (4) **More Products**: To register more products, click **+** to add input lines.   
+* (5) **Store**: Select an external store to register. If there's none, first register a store at **Store**. 
+* (6) **Store Item ID**: Enter ID issued after store is registered. Registered product list for Gamebase shall be paid at the request of payment to each selected store. 
+* (7) **Store Item Type**: Select the type of product to register. For Google Play and App Store, items can be registered for subscription, and for other stores, only one-time item registratio is available.     
 
-* **Store**  Select an external store to register.  If it is not on the list, need to register the store first in the **Store** menu.
-* **Item Name** Enter the item information issued after store is registered.Can show the item name registered in the game.
-* **Store Item ID**Enter the name of an item to register.
-* **Use or Not**  Select whether to sell the item or not.
+#### 2. File-uploading Registration 
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_06_202006.png)
+
+* Products can be registered by uploading files. 
+* Up to 1,000 products can be registered at once. 
+* Be cautious with the input type, since a product may not be properly registered with invalid input type. 
+* Korean may not be saved properly if the file is not encoded in 'UTF-8'. 
+* When it fails to register files, you may download failed list from **Download** at the result popup. 
+
 
 ### Modify
 
-Retrieve or modify detail information of registered items on the list.
+Query details or change information of a registered product from the list. 
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_07_202006.png)
 
-![gamebase_purchase_06_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_06_201812_en.png)
-
-- Select each item on the Item List to retrieve detail information.
-- Click **Modify** to change information except store information and item sequence.
-- Click **Delete** to delete item information.
+- Select each item from the list to query details. 
+- Click **Modify** to change information, except Store, Item Number, and Product Type. 
+- Only **Product Name, Use, and Store Item ID** are modifiable, and the others cannot be changed. 
 
 ## Transactions
 
-Retrieve payment information.
+Payment information can be queried. 
+Select a search type in need and query payment information. 
+To query the list of payments, click **Download** on top right of the page. 
 
-![gamebase_purchase_07_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_07_201812_en.png)
-
-Retrieve payment information of choice, by using the search conditions as below.
-You can download the purchase history by clicking on the button in the top-right corner.
+### Properties
 
 #### Search conditions
-Different search items show depending on the selected search type.
+Each search type shows different search items.  
 
-##### (1) General Search
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_201911.png)
+##### (1) General Search 
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202006.png)
 
-With general search, you can query results that meet the following search conditions:
-- **Store**: Information of a store where payment has been made
-- **Date**: Time when user attempted to purchase
-- **Payment Sequence**: Original number to identify payments within Gamebase
-- **Item Sequence**: Number of an item a user purchased in an app (available on the 'Item' tab.)
-- **User ID**: ID of the paying user
-- **Sort Order**: Ascending or descending order by registration date
-- **Payment Status**: Status of payment
+Search is available by the following conditions: 
+- **Search Period**: A period when user attempted to purchase, in the ascending or descending order 
+- **Store**: Information of store to search 
+- **Store Item ID**: ID issued after store is registered 
+- **Item**: Select an item to search 
+- **User ID**: ID of paying user 
+- **Payment Status**: Status of payment to search 
 
-##### (2) Transaction ID Search
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_201911.png)
+##### (2) Search by Transaction ID 
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202006.png)
 
-Query is available with Transaction ID which is created with payment.
+Search is available by Transaction ID which is created upon payment. 
 
-##### (3) Receipt Search
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_201911.png)
-Query is available with receipt information paid on payment.
+##### (3) Search by Receipt 
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202006.png)
+You can also query by receipt provided with payment. 
+
 
 #### Search Results
-- **Transaction ID**: Original number to identify payments within Gamebase
-- **Store**: Information of a store where payment has been made
-- **User ID**: ID of a user who made payments
-- **Item Name**: Name of an item a user purchased in an app
-- **Price**: Price of an item a user purchased
-- **Currency**: Type of currency used to purchase
-- **Consume**: Whether a paid item has been provided or not
-- **Payment Status**: Current status of payment
-- **Store Reference Key**: Original payment number issued at a store
-- **Reservation Date**: Time when a user tried or completed purchasing
-- **Refund Date**: Time when a user item was refunded
+Following items can be found as search results: 
 
-### Changing Payment Status
+- **Transaction ID**: Original payment number in Gamebase
+- **Store**: Information of store for which payment was made 
+- **User ID**: ID of paying user 
+- **Product Name**: Name of product user purchased on the app 
+- **Product ID (Store Item ID)**: ID of product user purchased on the app and ID of store item paid at the store  
+- **Store Item Type**: Type of product user purchased on the app 
+- **Price/Currency Unit**: Price and currency unit of an item that user purchased
+- **Consumption Status**: If a paid item has been provided
+- **Payment Status**: Current status of payment process  
+- **Store Reference Key**: Original payment number issued at the store 
+- **Payment Reservation Time**: Time when user attempted for or completed with a purchase 
+- **Refund Time**: Time when user item was refunded 
+- **Extra Information**: Additional information delivered by SDK at the request of payment (developer payload)
 
-These are the types of payment status:
+#### Change of Payment Status 
+Find the status of payment information as searched.  
 
 - **Success**
   - Transaction Complete

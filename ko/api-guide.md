@@ -2,6 +2,8 @@
 
 ## 변경 사항
 - IAP(In App Purchase) API의 요청 파라미터 및 응답 결과에 새로운 항목이 추가 및 삭제 되었습니다.
+- Push Wrapping API가 추가 되었습니다.
+- Gamebase Access Token으로 로그인시에 사용된 IdP의 프로필 및 토큰 정보를 획득할 수 있는 "Get IdP Token and Profiles" API가 추가되었습니다.
 
 ## Advance Notice
 
@@ -108,7 +110,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | appId | String | TOAST 프로젝트 ID |
 | userId | String | 로그인한 사용자 아이디 |
-| accessToken | String | 로그인한 사용자에게 발급된 Access Token |
+| accessToken | String | 로그인한 사용자에게 발급된 Gamebase Access Token |
 
 **[Request Parameter]**
 
@@ -181,6 +183,77 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [오류 코드](./error-code/#server)
 
+<br/>
+#### Get IdP Token and Profiles
+
+클라이언트에서 "Login with IdP"로 로그인 성공시 발급된 Gamebase Access Token으로, 로그인에 사용된 IdP의 Access Token 및 Profiles 정보를 조회합니다.
+
+> [주의]
+> IdP의 Access Token 유효시간은 IdP 별로 모두 다르고 일반적으로 짧습니다.
+> 클라이언트에서 "Login as the Latest Login IdP"를 통해 로그인을 성공하고 이후 서버에서 해당 API를 호출한다면, 이미 IdP의 Access Token 이 만료되어, IdP 정보 획득에 실패 할수 있습니다.
+
+<br/>
+
+> [참고]
+> IdP의 Access Token 만으로 할 수 없는 IdP 들도 존재합니다.
+> ex) appleid : Access Token으로 Server to Server에서 가져올 수 있는 정보가 없다.
+
+<br/>
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}/idps/{idPCode}?accessToken={accessToken} |
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST 프로젝트 ID |
+| userId | String | 로그인한 사용자 아이디 |
+| idPCode | String | 사용자 인증 IdP 정보 <br>google, payco, facebook 등 |
+
+**[Request Parameter]**
+
+| Name | Type | Required |  Value |
+| --- | --- | --- | --- |
+| accessToken | String | mandatory | 로그인한 사용자에게 발급된 Gamebase Access Token |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "transactionId": "String",
+        "isSuccessful": true
+    },
+    "idPProfile": {
+        "sub": "String",
+        "name": "String",
+        "given_name": "String",
+        "locale": "ko",
+        "picture": "String"
+    },
+    "idPToken": {
+        "idPCode": "google",
+        "accessToken": "ya29.a0AfH6SMCF-MjD_-Eqi62Jm-51IPxnS6HpahqpxqbuaWZPXc68YMmW3sRdif4k7Dmp2Ppn1xzH-JQwPLDv4tMrDFAknG4m_lrHQt4J4En7DAG0bZV4z8uJZE1zYOXHp8"
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| idPProfile | Map<String, Object> | 로그인한 사용자가 사용한 IdP의 프로필<br>- IdP별로 모두 응답 형태(format)가 다르다 |
+| idPToken | Object | 로그인한 사용자가 사용한 IdP의 Access Token 정보 |
+| idPToken.idPCode | String | IdP code |
+| idPToken.accessToken | String | IdP Access Token |
 <br>
 <br>
 
@@ -1396,18 +1469,76 @@ Gamebase는 TOAST Leaderboard 서비스의 서버 API에 대해 **Wrapping** 기
 
 [Leaderboard Guide](/Game/Leaderboard/ko/api-guide/)
 
+<br/>
+
 ##### API 호출 예시
 
 ```
+GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
+
+Content-Type: application/json
+X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
+X-Secret-Key: IgsaAP
+```
+
+<br/>
+<br/>
+
+## Push
+
+Gamebase는 TOAST Push 서비스의 서버 API에 대해 **Wrapping** 기능을 제공합니다. Wrapping 기능을 사용하면 사용자 서버에서 일관된 인터페이스로 TOAST 서비스들을 사용할 수 있습니다.
+
+#### Wrapping API
+|    | API | Method | Wrapping URI | Push URI |
+| --- | --- | --- | --- | --- |
+| 메시지 | 발송 | POST | /tcgb-push/v1.3/apps/{appId}/messages | /push/v2.4/appkeys/{appkey}/messages |
+|   | 조회 | GET | /tcgb-push/v1.3/apps/{appId}/messages | /push/v2.4/appkeys/{appkey}/messages |
+|   | 발송 로그 조회 | GET | /tcgb-push/v1.3/apps/{appId}/logs/message | /push/v2.4/appkeys/{appkey}/logs/message |
+| 예약 메시지 | 발송 스케줄 생성 | POST | /tcgb-push/v1.3/apps/{appId}/schedules | /push/v2.4/appkeys/{appkey}/schedules |
+|   | 생성 | POST | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+|   | 목록 조회 | GET | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+|   | 단건 조회 | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id} | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id} |
+|   | 발송 완료 조회 | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id}/messages | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id}/messages |
+|   | 수정 | PUT | /tcgb-push/v1.3/apps/{appId}/reservations/{reservationId} | /push/v2.4/appkeys/{appkey}/reservations/{reservationId} |
+|   | 삭제 | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+
+**해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
+
+[Push Guide](/Notification/Push/ko/api-guide/)
+
+<br/>
+
+##### API 호출 예시
+
+```
+POST https://api-gamebase.cloud.toast.com/tcgb-push/v1.3/apps/{appId}/messages
+
 Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 X-Secret-Key: IgsaAP
 
-GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
+{
+    "target" : {
+        "type" : "UID",
+        "to": ["uid-1", "uid-2"]
+    },
+    "content" : {
+        "default" : {
+            "title": "title",
+            "body": "body"
+        }
+    },
+    "messageType" : "AD",
+    "contact": "1588-1588",
+    "removeGuide": "매뉴 > 설정",
+    "timeToLiveMinute": 1,
+    "provisionedResourceId": "id",
+    "adWordPosition": "TITLE"
+}
 ```
 
-<br>
-<br>
+<br/>
+<br/>
 
 ## Others
 

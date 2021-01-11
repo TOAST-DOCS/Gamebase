@@ -142,7 +142,7 @@ dependencies {
         ```
     * Firebase Unity SDK Package 를 설치하지 않았다면, 'Firebase Console > 프로젝트 설정' 에서 google-services.json 파일을 다운로드 하여 아래 가이드에 따라 string resource(xml) 파일을 직접 만들어서 'Assets/Plugins/Android/res/values/' 폴더에 포함시켜야 합니다.
         Firebase 서비스 연동에 따라서 google-services.json 파일의 내용은 달라질 수 있습니다.
-        ![Download google-services.json](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
+        ![Download google-services.json](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
         * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
         * 다음은 직접 제작한 string resource(xml) 파일의 예시입니다.
 
@@ -205,41 +205,6 @@ dependencies {
 | 전체 결제 화면 | "full" |
 | 팝업 결제 화면 | "popup" |
 
-#### GALAXY Store
-
-* GALAXY store 는 테스트 결제 여부, 성공/실패시 다이얼로그 표시 여부를 변경할 수 있습니다.
-
-```xml
-<manifest>
-    ...
-    <application>
-        ...
-        <!-- [GALAXY store] Configurations start -->
-        <!-- OPERATION_MODE_TEST: 항상 성공 / OPERATION_MODE_TEST_FAILURE: 항상 실패 -->
-        <meta-data
-            android:name="com.toast.sdk.iap.galaxy.operation_mode"
-            android:value="OPERATION_MODE_TEST | OPERATION_MODE_TEST_FAILURE" />
-        <!-- 에러 다이얼로그 표시 -->
-        <meta-data
-            android:name="com.toast.sdk.iap.galaxy.error_dialog_enabled"
-            android:value="true" />
-        <!-- 결제 성공 다이얼로그 표시 -->
-        <meta-data
-            android:name="com.toast.sdk.iap.galaxy.purchase_success_dialog_enabled"
-            android:value="true" />
-        <!-- [GALAXY store] Configurations end -->
-        ...
-    </application>
-</manifest>
-```
-
-| meta-data key| 테스트 결제 결과 | 설정 값 |
-| --- | --- | --- |
-| com.toast.sdk.iap.galaxy.operation_mode<br/>**default** : NONE | 항상 성공 | OPERATION_MODE_TEST |
-| | 항상 실패 | OPERATION_MODE_TEST_FAILURE |
-| com.toast.sdk.iap.galaxy.error_dialog_enabled<br/>**default** : false | 에러 발생시 다이얼로그 팝업 표시 | true |
-| com.toast.sdk.iap.galaxy.purchase_success_dialog_enabled<br/>**default** : false | 결제 성공시 다이얼로그 팝업 표시 | true |
-
 #### Notification Options
 
 * 다음과 같은 방법으로 알림 옵션을 설정할 수 있습니다.
@@ -301,7 +266,7 @@ dependencies {
         * [https://github.com/nhn/toast.gamebase.unity.sample](https://github.com/nhn/toast.gamebase.unity.sample)
 * 게임이 시작되었을 때 Gamebase 클라이언트 SDK 를 초기화 하고 로그인이 성공하면 결제 재처리가 시작되도록 구현하세요.
 
-![overview flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.19.0.png)
+![overview flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.19.0.png)
 
 * 상세 flow 는 다음 링크에서 확인할 수 있습니다.
     * [Game > Gamebase > Android SDK 사용 가이드 > 초기화 > Initialization Flow](./aos-initialization/#initialization-flow)

@@ -19,7 +19,7 @@ To initialize Gamebase, Gamebase setting can be modified with GamebaseConfigurat
 
 | API                                      | Mandatory (M) / Optional (O) | Description                              |
 | ---------------------------------------- | -------------------------- | ---------------------------------------- |
-| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | appId and appVersion must be passed to the GamebaseConfiguration.newBuilder as mandatory parameters and initialized. <br/><br/> **appId:** Enter an App ID issued from TOAST Cloud Project.<br/> **appVersion:** Update or maintenance status can be decided upon a game version. Specify a game version. <br/> **storeCode** refers to the store in which APK is deployed. Find each store code in the following guide. [Purchase - Initialization](./aos-purchase/#6-initialization) |
+| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | The GamebaseConfiguration.Builder object can be created with the newBuilder() function.<br/><br/> **appId:** Enter an App ID issued from TOAST Cloud Project.<br/> **appVersion:** Update or maintenance status can be decided upon a game version. Specify a game version. <br/> **storeCode** refers to the store in which APK is deployed. Find each store code in the following guide. [Purchase - Initialization](./aos-purchase/#6-initialization) |
 | build()                                  | **M**                      | Convert Builder completed with setting to a configuration object.<br/>Required for **Gamebase.initialize ()** API. |
 | enablePopup(boolean enable)              | O                          | **[UI]**<br/>When a game user cannot play games due to system maintenance or banned from use, reasons need to be displayed by pop-ups.<br/>If it is set **true** , Gamebase will automatically display information via pop-ups.<br/>**false** is set as default.<br/>When set to **false** , get information from launching results and display why user cannot play games by using customized UI. |
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>Depending on the launching results, when available to log in (mainly due to maintenance), you may decide whether to allow Gamebase to automatically display pop-ups.<br/>Works only when **enablePopup (true)** is on.<br/>**true** is set as default. |
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         /**
          * Show gamebase debug message.
-		 * set 'false' when build RELEASE.
+         * set 'false' when build RELEASE.
          */
         Gamebase.setDebugMode(true);
 
@@ -201,7 +201,7 @@ Refer to the table for status codes:
 | IN_TEST                     | 203  | Under test |
 | IN_REVIEW                   | 204  | Review in progress |
 | REQUIRE_UPDATE              | 300  | Update is required                                  |
-| BLOCKED_USER                | 301  | User whose access has been blocked |
+| BLOCKED_USER                | 301  | Accessed to service with a device (device key) blocked from access. |
 | TERMINATED_SERVICE          | 302  | Service has been terminated                                   |
 | INSPECTING_SERVICE          | 303  | Under maintenance now                                 |
 | INSPECTING_ALL_SERVICES     | 304  | Under maintenance for the whole service                              |
@@ -277,7 +277,58 @@ User-input information for TOAST launching console:
 [Console Guide](/Game/Gamebase/en/oper-management/#config)
 
 
+### Handling Unregistered Version
 
+By initializing GameClientVersion which is not registered on Gamebase console, error occurs like follows: **LAUNCHING_UNREGISTERED_CLIENT(2004)**.  
+Under enablePopup(true), or enableLaunchingStatusPopup(true), popup shows for a forced update, and the user could be linked to the market.  
+In case Gamebase popup is disabled, UI can be executed in the game by getting UpdateInfo from GamebaseException so that user can go to the market.  
+
+**VO**
+
+```java
+class UpdateInfo {
+    // URL for store installation to download the latest version 
+    String installUrl;
+    // User can find a message in the language set on device.
+    // When the language is 'en', the message shows like follows.
+    // 'This version is not supported. Please get the most updated version.'
+    String message;
+}
+```
+
+**API**
+
+```java
++ (UpdateInfo)UpdateInfo.from(GamebaseException exception);
+```
+
+**Example**
+
+```java
+Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
+    @Override
+    public void onCallback(final LaunchingInfo data, GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            // Gamebase initialization succeeded.
+        } else {
+            // Gamebase initialization failed.
+
+            UpdateInfo updateInfo = UpdateInfo.from(exception);
+            if (updateInfo != null) {
+                // Unregistered game client version.
+                // Open market url to update application.
+                updateInfo.installUrl; // Market URL.
+                updateInfo.message;    // Message from launching server.
+                return;
+            }
+
+            // Another initialization error.
+            ...
+        }
+        ...
+    }
+});
+```
 
 ### Error Handling
 

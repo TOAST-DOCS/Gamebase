@@ -9,7 +9,8 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 #### 1. Store Console
 
 * 次のIAPガイドをご参考の上、各ストアにアプリを登録してアプリケーションキーを発行してもらいます。
-* [Mobile Service > IAP > Console ご利用ガイド > Store interlocking information](/Mobile%20Service/IAP/ja/console-guide/#store-interlocking-information)
+	* [Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド](./console-google-guide)
+	* [Game > Gamebase > ストアコンソールガイド > ONEStoreコンソールガイド](./console-onestore-guide)
 
 #### 2. Register as Store's Tester
 
@@ -22,16 +23,27 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
         * テスト用の端末にはUSIMが必要であり、電話番号を登録しなければなりません(MDN)。
         * **ONE store**のアプリケーションがインストールされている必要があります。
 
-#### 3. TOAST IAPサービスの利用
+#### 3. Register Item
 
-* IAPガイドをご参考の上、IAPを設定し、アイテムを登録します。
-    * [Mobile Service > IAP > Console ご利用ガイド](/Mobile%20Service/IAP/ja/console-guide/)
+* 下記のガイドを参考にしてアイテムを登録します。
+    * [Game > Gamebase > コンソール使用ガイド > 決済 > Register](./oper-purchase/#register_1)
 
-#### 4. Download
+#### 4. Setting SDK
 
-* ダウンロードしたSDKの**gamebase-adapter-purchase-iap**フォルダをプロジェクトに追加します。
-    * ONE store 決済が不要な場合、**iap-onestore-x.x.x.aar**ファイルは削除してもかまいません。
-    * 逆に、ONE store決済を利用する場合は、上のjarファイルを必ずプロジェクトに含めてビルドする必要があります。
+* 使用するマーケットのgamebase-adapter-purchaseモジュールをgradle依存性に追加します。
+
+```groovy
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // >>> Gamebase Version
+    def GAMEBASE_SDK_VERSION = 'x.x.x'
+    
+    // >>> Gamebase - Select Purchase Adapter
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
+}
+```
 
 #### 5. AndroidManifest.xml(ONE store only)
 
@@ -43,7 +55,6 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
     <application>
     ...
         <!-- [ONE store] Configurations begin -->
-        <meta-data android:name="iap:api_version" android:value="4" /> <!--バージョン 16.XX.XXの場合、4を入力します。https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#iapapi_version-%EC%84%A4%EC%A0%95 -->
         <meta-data android:name="iap:plugin_mode" android:value="development" /> <!—development:開発モード / release:運営 -->
         <!-- [ONE store] Configurations end -->
     ...
@@ -53,10 +64,10 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 
 #### 6. Initialization
 
-* Gamebaseの初期化時、Store Codeを指定する必要があります。
+* Gamebaseの初期化時、ストアコードを指定する必要があります。
 * **STORE_CODE**は、次の値の中から選択します。
-    * GG: Google
-    * ONESTORE: ONE store
+    * GG：Google
+    * ONESTORE：ONEstore
 
 ```java
 String STORE_CODE = "GG";	// Google
@@ -64,50 +75,75 @@ String STORE_CODE = "GG";	// Google
 GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(APP_ID, APP_VERSION, STORE_CODE)
         .build();
 
-Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
-    @Override
-    public void onCallback(final LaunchingInfo data, GamebaseException exception) {
-        ...
-    }
-});
+Gamebase.initialize(activity, configuration, callback);
 ```
 
 ### Purchase Flow
 
-アイテムの購入は次のような手順で設計してください。<br/>
+アイテムの購入は大きく分けて決済フロー、消費フロー、再処理フローの3つがあります。
+決済フローは、次のような順序で実装してください。
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-1. ゲームクライアントでは、Gamebase SDKの**requestPurchase**を呼び出して決済を試みます。
-2. 決済に成功した場合、**requestItemListOfNotConsumed**を呼び出して未消費決済の内訳を確認します。
-3. 返された未消費決済内訳リストに値がある場合、ゲームクライアントがゲームサーバーに決済アイテムに対するconsume(消費)をリクエストします。
-4. ゲームサーバーは、GamebaseのサーバーにAPI経由でconsume(消費)APIをリクエストします。
-   [APIガイド](./api-guide/#wrapping-api)
-5. IAPサーバーからconsume(消費)APIの呼び出しに成功すると、ゲームサーバーがゲームクライアントにアイテムを配布します。
+1. 以前の決済が正常に終了せず、再処理が動作しない場合、決済に失敗します。そのため決済前に**requestItemListOfNotConsumed**を呼び出して再処理を行い、未支給のアイテムがある場合はConsume Flowを進行します。
+2. ゲームクライアントではGamebase SDKの**requestPurchase**を呼び出して決済を試行します。
+3. 決済に成功すると**requestItemListOfNotConsumed**を呼び出して未消費決済履歴を確認した後、支給するアイテムが存在する場合、Consume Flowを進行します。
 
-* ストア決済は成功しましたが、エラーが発生したたま正常に終了できない場合があります。ログイン完了後、未消費決済履歴を確認してください。<br/>
-    * ログインに成功した後、**requestItemListOfNotConsumed**を呼び出して未消費決済の内訳を確認します。
-    * 返された未消費決済内訳のリストに値が存在する場合、ゲームクライアントがゲームサーバーのconsume(消費)をリクエストしてアイテムを配布します。
-	
+### Consume Flow
+
+未消費決済履歴リストに値がある場合、次のような順序でConsume Flowを進行してください。
+
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.10.0.png)
+
+1. ゲームクライアントがゲームサーバーに決済アイテムのconsume(消費)をリクエストします。
+    * UserID、itemSeq、paymentSeq、purchaseTokenを伝達します。
+2. ゲームサーバーは、ゲームDBにすでに同じpaymentSeq、purchaseTokenでアイテムを支給した履歴があるかを確認します。
+    * 2-1まだアイテムを支給していない場合、UserIDにitemSeqに該当するアイテムを支給します。
+    * 2-2アイテム支給後、ゲームDBにUserID、itemSeq、paymentSeq、purchaseTokenを保存し、後で重複支給の有無を確認できるようにします。
+3. ゲームサーバーはGamebaseサーバーのconsume(消費) APIを呼び出してアイテムの支給を完了します。
+    * [APIガイド > Purchase(IAP) > Consume](./api-guide/#consume)
+
+### Retry Transaction Flow
+
+* ストア決済には成功したがエラーが発生して正常に終了しなかった場合があります。
+* **requestItemListOfNotConsumed**を呼び出して再処理を行い、未支給のアイテムがある場合、Consume Flowを進行してください。
+* 再処理は次の時点で呼び出すことを推奨します。
+    * ログイン完了後
+    * 決済前
+    * ゲーム内ショップ(またはロビー)に移動した時
+    * ユーザープロフィールまたはメールボックスを確認した時
+
 ### Purchase Item
 
-購入したいアイテムのitemSeqを利用して次のAPIを呼び出し、購入をリクエストします。<br/>
-ゲームユーザーが購入をキャンセルする場合、**GamebaseError.PURCHASE_USER_CANCELED**エラーが返されます。キャンセル処理を行ってください。
+購入するアイテムのgamebaseProductIdを利用して次のAPIを呼び出し、購入をリクエストします。<br/>
+gamebaseProductIdは一般的にはストアに登録したアイテムのIDと同じですが、Gamebaseコンソールで変更することもできます。
+payloadフィールドに入力した追加情報は決済成功後、**PurchasableReceipt.payload**フィールドに維持されるため、複数の用途で活用できます。<br/>
+ゲームユーザーが購入をキャンセルすると、**GamebaseError.PURCHASE_USER_CANCELED**エラーが返ります。
+キャンセル処理をしてください。
 
 **API**
 
 ```java
-+ (void)Gamebase.Purchase.requestPurchase(Activity activity, long itemSeq, GamebaseDataCallback<PurchasableReceipt> callback);
++ (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
+                                          @NonNull final String gamebaseProductId,
+                                          @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
++ (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
+                                          @NonNull final String gamebaseProductId,
+                                          @NonNull final String payload,
+                                          @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
+// Legacy API
++ (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
+                                          final long itemSeq,
+                                          @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
 ```
 
 **Example**
 
 ```java
-long itemSeq; // The itemSeq value can be got through the requestItemListPurchasable API.
-
-Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<PurchasableReceipt>() {
+String userPayload = "{\"description\":\"This is example\",\"channelId\":\"delta\",\"characterId\":\"abc\"}";
+Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, userPayload, new GamebaseDataCallback<PurchasableReceipt>() {
     @Override
-    public void onCallback(PurchasableReceipt data, GamebaseException exception) {
+    public void onCallback(PurchasableReceipt receipt, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
             // Succeeded.
         } else if(exception.getCode() == GamebaseError.PURCHASE_USER_CANCELED) {
@@ -119,7 +155,7 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 });
 ```
 
-### Get a List of Purchasable Items
+### List Purchasable Items
 
 アイテムリストを照会したい場合、次のAPIを呼び出します。コールバックで返される配列(array)の中にはそれぞれ各アイテムの情報が含まれています。
 
@@ -147,14 +183,18 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 });
 ```
 
-### Get a List of Non-Consumed Items
+### List Non-Consumed Items
 
-* まだ消費していない一回性商品(CONSUMABLE)と消費性定期購入商品(CONSUMABLE_AUTO_RENEWABLE)情報を照会します。<br/>
-未決済の内訳がある場合は、ゲームサーバー(アイテムサーバー)にリクエストを出してアイテムを送信(配布)するように処理する必要があります。
-
-* 次の二つの状況で呼び出してください。
-    1. 決済成功後、アイテム消費(consume)処理前に最終確認のために呼び出し
-    2. ログイン成功後、消費(consume)できなかったアイテムが残っていないか確認するために呼び出し
+* まだ消費していない一回性商品(CONSUMABLE)と消費性定期購入商品(CONSUMABLE_AUTO_RENEWABLE)情報を照会します。
+* 未決済の内訳がある場合は、ゲームサーバー(アイテムサーバー)にリクエストを出してアイテムを送信(配布)するように処理する必要があります。
+* 正常に決済が完了しなかった場合、再処理の役割もするため、次の状況で呼び出してください。
+    * ゲームユーザーに支給されなかったアイテムがあるかを確認
+    	* ログイン完了後
+    	* ゲーム内ショップ(またはロビー)に移動した時
+    	* ユーザープロフィールまたはメールボックスを確認した時
+    * 再処理が必要なアイテムがあるかを確認
+    	* 決済前
+    	* 決済失敗後
 
 **API**
 
@@ -180,11 +220,11 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 });
 ```
 
-### Get a List of Activated Subscriptions
+### List Activated Subscriptions
 
 現在のユーザーID基準で有効になっている定期購入リストを照会します。
-決済が完了した定期購入商品(自動更新型定期購入、自動更新型消費性定期購入商品)は期間が終了するまで照会できます。
-ユーザーIDが同じならAndroidとiOSで購入した定期購入商品が全て照会されます。
+決済が完了した定期購入商品(自動更新型定期購入、自動更新型消費性定期購入商品)は、有効期限が切れる前まで照会できます。
+ユーザーIDが同じ場合、AndroidとiOSで購入した定期購入商品が全て照会されます。
 
 > <font color="red">[注意]</font><br/>
 >
@@ -215,6 +255,12 @@ Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<L
 });
 ```
 
+### Event by Promotion
+
+プロモーション決済が完了すると、GamebaseEventHandlerを通してイベントを取得して処理できます。
+GamebaseEventHandlerでプロモーション決済イベントを処理する方法は、下記のガイドを参照してください。
+[Game > Gamebase > Android SDK使用ガイド > ETC > Gamebase Event Handler](./aos-etc/#purchase-updated)
+
 ### Error Handling
 
 | Error                                    | Error Code | Description                              |
@@ -223,7 +269,9 @@ Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<L
 | PURCHASE_USER_CANCELED                   | 4002       | ゲームユーザーがアイテムの購入をキャンセルしました。                |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 購入ロジックが完了していない状態でAPIが呼び出されました。    |
 | PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 該当するストアのcashが足りないため決済することができません。           |
-| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | このストアには対応していません。<br>選択可能なストアはGG(Google)、ONESTOREです。|
+| PURCHASE_INACTIVE_PRODUCT_ID             | 4005       | 該当商品が有効になっていません。  |
+| PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | 存在しないGamebaseProductIDで決済をリクエストしました。 |
+| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | このストアには対応していません。<br>選択可能なストアはGG(Google)、ONESTORE、GALAXYです。|
 | PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAPライブラリーエラーです。<br>DetailCodeを確認してください。  |
 | PURCHASE_UNKNOWN_ERROR                   | 4999       | 定義されていない購入エラーです。<br>ログ全体を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。|
 
@@ -232,7 +280,7 @@ Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<L
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* このエラーは、IAPモジュールで発生したエラーです。
+* このエラーは、TOAST IAP SDKで発生したエラーです。
 * IAPーエラーの詳細は次のように確認できます。
 
 ```java
@@ -261,6 +309,6 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 });
 ```
 
-* IAPのエラーコードは、次のドキュメントをご参考ください。
+* TOAST IAP SDKのエラーコードは、次のドキュメントをご参考ください。
     * [TOAST > TOAST SDK使用ガイド > TOAST IAP > Android > エラーコード](/TOAST/ja/toast-sdk/iap-android/#_24)
 

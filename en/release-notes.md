@@ -1,22 +1,35 @@
 ## Game > Gamebase > Release Notes
 
+### January 12, 2021 
+
+```
+Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다. 
+```
+
+#### More Features
+* [Console] 푸시 신규 메뉴 추가
+	* 통계: 푸시 발송, 수신, 토큰 등록 등의 푸시 통계를 확인
+	* 이벤트키: 푸시 발송 통계에 사용하는 이벤트 키를 관리
+	* 인증서: 푸시 발송에 사용하는 인증서를 관리
+	* 설정: 푸시 관련된 설정값을 관리
+
 ### December 29, 2020
 
 #### More Features
 * [SDK] 2.19.0
-	* (공통) Weibo 인증 추가
-	* (Android) Sign In with Apple 인증 추가
+	* (Common) Weibo authentication added
+	* (Android) Sign-in with Apple authentication added
 	
 #### Feature Updates
 * [Console]
-	* 앱 > 앱: 서버 주소 관리에 베타 서비스 서버 추가 
-	* 앱 > 클라이언트: 클라이언트 상태에 베타 서비스 추가, 클라이언트 추가 정보 등록할 수 있도록 메모 기능 추가 
-	* 구매(IAP) > 상품: 검색 조건 추가 - 사용여부
-	* 구매(IAP) > 결제 정보: 결제 내역에 스토어 테스트 결제건 표시
-	* 구매(IAP) > 판매 현황 메뉴 종료: Analytics > 매출 지표와 기능이 통합되었습니다.
-	* Analytics > 이용 환경 > 설치 URL 메뉴 종료
+	* App > App: beta service server added to Manage Server Address
+	* App > Client: beta service added to Client Status, memo function added so that additional client information can be registered
+	* Purchase (IAP) > Product: search condition added - whether currently being used or not
+	* Purchase (IAP) > Payment Information: now store test payment is displayed in the payment history
+	* Purchase (IAP) > Terminate Sales Menu: Analytics > Sales Metrics and functions are integrated now.
+	* Analytics > Preferences > Terminate Installation URL Menu
 * [SDK] 2.19.0
-	* (공통) 론칭 상태 코드 추가: 베타 서비스(205)
+	* (Common) Launching status code added: beta service (205)
 
 #### Bug Fixes
 * [SDK] 2.19.0
@@ -27,56 +40,56 @@
 ### December 15, 2020
 
 #### More Features
-* Gamebase 고객센터 페이지 오픈 시 게임에서 정의한 extra data 전달: SDK 2.18.2
-	* [Console] 고객센터 > 고객 문의: 고객 문의 상세 조회 화면에서 추가로 등록한 extra data 확인 가능
+* When the Gamebase Customer Center page opens, game-defined extra data is delivered: SDK 2.18.2
+	* [Console] Extra data added can be checked in Customer Center > Customer Inquiry: Customer Inquiry Details
 * [SDK] 2.18.2
-	* (공통) 개발사 자체 고객센터 오픈 시 additionalURL 필드 추가
-	* (공통) 결제 아이템 정보에 지역화된 상품 정보 추가: localizedTitle, localizedDescription
+	* (Common) additionalURL field added for the case of a developer's own Customer Center being opened
+	* (Common) Localized product information added in the transaction item information: localizedTitle, localizedDescription
 
 #### Feature Updates
 * [Console]
-	* Analytics: 필터 검색 후 날짜 변경하여도 선택한 검색 조건이 유지되도록 개선
-	* Push > 푸시: Tencent Push 제거
-	* 구매(IAP) > 결제 정보: 환불 상태에서 영수증 검증 버튼 노출되지 않도록 변경
+	* Analytics: Improved to maintain the selected search condition even when the date is changed after filtered search
+	* Push > Push: Tencent Push removed
+	* Purchase (IAP) > Transaction information: Changed not to show the Check Receipt button in the refund state
 * [SDK] 2.18.2
-    * (공통) TOAST SDK 업데이트: [Android(0.24.2)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0242-20201124), [iOS(0.27.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-unity/#0213-20201124)
-	* (Android) 암호화 로직 보안 경고 해결을 위한 외부 SDK 업데이트: Payco Login SDK(1.5.3), Hangame ID SDK(1.3.2)
-	* (Android) Tencent Push 모듈 제거
-	* (Android) Gamebase Android SDK 2.6.0에서 deprecated된 함수 제거
+    * (Common) TOAST SDK update: [Android(0.24.2)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0242-20201124), [iOS(0.27.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-unity/#0213-20201124)
+	* (Android) External SDK update to resolve encryption logic security warnings: Payco Login SDK (1.5.3), Hangame ID SDK (1.3.2)
+	* (Android) Tencent Push module removed
+	* (Android) The deprecated function in Gamebase Android SDK 2.6.0 removed
 		* GamebaseConfiguration.Builder.setFCMSenderId()
 		* GamebaseConfiguration.Builder.setTencentAccessKey()
 		* GamebaseConfiguration.Builder.setTencentAccessId()
-	* (iOS) showWebView: 잘못된 URL을 전달했을 경우 에러 반환, 전달받은 URL은 인코딩하지 않고 그대로 사용
-	* (iOS) 대소문자 상관없이 커스텀 스킴이 동작하도록 변경
-	* (Unity) GamebaseRequest.GamebaseConfiguration 클래스의 필드 deprecated: zoneType, fcmSenderId
+	* (iOS) showWebView: Returns error when invalid URL is delivered, delivered URL is used as is without encoding
+	* (iOS) Changed to run the custom scheme regardless of letter case
+	* (Unity) The following fields of GamebaseRequest.GamebaseConfiguration class deprecated: zoneType, fcmSenderId
 
 #### Bug Fixes
 * [Console]
-	* 구매(IAP) > 아이템: => 파일로 아이템을 대량 등록하면 중복으로 등록되는 문제 수정
+	* Purchase (IAP) > item: Fixed the issue where duplicate items are registered when a batch of items is added using a file
 * [SDK] 2.18.2
-    * (Android) 5.0~6.0 OS 단말기에서 웹뷰 커스텀 스킴이 동작하지 않는 문제 수정
+    * (Android) Fixed the issue where WebView custom scheme does not run on a 5.0 - 6.0 OS device
 
 ### December 2, 2020
 
 #### More Features
 * [Console] 
-	* Gamebase 권한 세분화 기능 추가: 24개
-	* Analytics > 그룹 지표: 프로젝트별 신규 가입자, 결제 금액 비교 그래프 추가    
-	* 멤버 > 회원: 하단에 고객센터 문의 내역 조회 탭 추가
-	* 쿠폰 > 쿠폰 발급: 발급된 쿠폰에 추가로 쿠폰을 발급할 수 있도록 쿠폰 추가 발급 기능 추가(1회 10만 개)
+	* Newly added subdivided Gamebase permission functions: 24
+	* Analytics > Group Metrics: new subscribers per project and payment amount comparison graph added
+	* Members > Members: View Customer Center Inquiry History tab added at the bottom
+	* Coupon > Issue Coupon: Issue Additional Coupons function added so that more coupons can be issued to an already issued coupon (100,000 at one time)
 	
 #### Feature Updates
 * [Console]
-    * Analytics > 실시간 모니터링: 전날 지표 대비 데이터가 상승, 하락했을 때 표시 색상 변경
-		* 상승: 파란색->빨간색, 하락: 빨간색->파란색
-	* Analytics > 매출 지표 > 결제 금액: 국가별로만 비교할 수 있던 매출 데이터를 스토어별, IdP 별로 데이터를 확인할 수 있도록 추가
-	* 운영 > 공지: 자세히 보기 링크에 고객센터 연결할 수 있도록 설정 추가
-	* 고객센터 > 고객 문의: 답변 발송 설정에 자동 번역 기능 추가
-	* 쿠폰 > 쿠폰 발급: 쿠폰 최초 발급 수량을 최대 5만 개에서 최대 100만 개로 증가
+	* Analytics > Live Monitoring: display color changes when there is a gain/loss in day-over-day metric data
+		* Increase: blue->red, decrease: red->blue
+	* Analytics > Sales Metrics > Payment Amount: Now sales data comparison can be viewed "per store" and "per IdP" in addition to the previous "per country"
+	* Operation > announcement: setting to move to Customer Center added in the Read More link
+	* Customer Center > Customer Inquiry: Auto Translation function added in the Send Reply settings
+	* Coupon > Issue Coupon: increased the initial coupon issuance quantity from 50,000 to 1,000,000
 
 #### Bug Fixes
 * [Console]
-    * 구매(IAP) > 결제 정보: 조회한 데이터가 많은 경우 파일을 다운로드하지 못하는 문제 수정
+    * Purchase (IAP) > Payment Information: fixed the issue where files cannot be downloaded when too much data is viewed
 
 ### November 10, 2020
 
