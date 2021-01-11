@@ -276,7 +276,7 @@ TOAST 콘솔에 등록된 IAP 스토어 정보입니다.
 * name: App Name
 * storeCode: Store Code
 
-[GGame > Gamebase > 콘솔 사용 가이드 > 결제](./oper-purchase/)
+[Game > Gamebase > 콘솔 사용 가이드 > 결제](./oper-purchase/)
 
 #### 4. tcLaunching
 

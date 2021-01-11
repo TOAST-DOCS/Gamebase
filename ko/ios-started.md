@@ -6,6 +6,7 @@
 > [INFO]
 >
 > 최소 사양
+>
 > * 사용자 실행 환경 : iOS 9 이상
 > * 빌드 환경 : Xcode 11 (iOS 13 SDK) 이상
 >
@@ -16,6 +17,7 @@
 >
 > 일부 IdP 지원 시 **하단 3rd Party Gamebase Auth Adapters 표 안의 Support iOS Version 항목을 참고**하세요.
 > AppStore 출시 시에는 반드시 Apple 버전 정책에 준수해야 합니다.
+>
 > * https://developer.apple.com/ios/submit/
 >
 
@@ -95,6 +97,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
     * AuthenicationServices.framework (Optional)
 
 ![Link Binary With Libraries](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
+
 * 4) **Gamebase iOS SDK 2.12.0 이상**을 사용할 경우 Facebook SDK가 업데이트 됨에 따라 추가 설정이 필요합니다.
     * **Accelerate.framework** 추가
     * 프로젝트 내부에 **빈 swift 파일** 추가 (프로젝트 내부에 swift 파일이 하나도 없을 경우)
