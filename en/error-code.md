@@ -11,8 +11,6 @@
 |                 | Android, UNITY<br/>IOS | USER_PERMISSION<br/>TCGB\_ERROR\_USER\_PERMISSION | 5          | User is not authorized.                               |
 |                 | Android, UNITY<br/>IOS | INVALID\_MEMBER<br/>TCGB\_ERROR\_INVALID\_MEMBER  | 6          | Request for invalid member.                              |
 |                 | Android, UNITY<br/>IOS | BANNED\_MEMBER<br/>TCGB\_ERROR\_BANNED\_MEMBER   | 7         | Named member has been banned.                                |
-|                 | Android, UNITY<br/>IOS | SAME\_REQUESTOR<br/>TCGB\_ERROR\_SAME\_REQUESTOR  | 8          | The issued TransferKey has been used on the same device.  |
-|                 | Android, UNITY<br/>IOS | NOT\_GUEST\_OR\_HAS\_OTHERS<br/>TCGB\_ERROR\_NOT\_GUEST\_OR\_HAS\_OTHERS | 9          | You have tried transferring with a non-guest account or the account is linked with a non-guest IdP. |
 |                 | Android, UNITY<br/>IOS | NOT_SUPPORTED<br/>TCGB\_ERROR\_NOT\_SUPPORTED | 10         | The function is not supported.                         |
 |                 | UNITY<br/>IOS      | NOT\_SUPPORTED\_ANDROID<br/>TCGB\_ERROR\_NOT\_SUPPORTED\_ANDROID | 11         | The function is not supported by Android.                |
 |                 | UNITY<br/>IOS      | NOT\_SUPPORTED\_IOS<br/>TCGB\_ERROR\_NOT\_SUPPORTED\_IOS | 12         | The function is not supported by iOS.                    |
@@ -77,53 +75,57 @@
 | Module  | Error Code            | Description                              |
 | ------- | --------------------- | ---------------------------------------- |
 | Common  | -4000001<br/>-4000006 | Called API with invalid parameter type. <br/>e.g) The parameter is declared in the int type, but API has been called with string-format data. |
-|         | -4000002<br/>-4000004 | Required parameter is missing or has no value.               |
-|         | -4000003              | Undefined value has been delivered to request body.          |
-|         | -4000005              | Required parameter is missing or called with an inappropriate value.      |
-|         | -4010001              | Called invalid App ID.                           |
-|         | -4010002              | Called invalid Appkey.                             |
-|         | -4010003              | Unauthenticated client called an API which requires authentication.     |
-|         | -4010004              | Called invalid secret key.               |
-|         | -4060001              | Set invalid content-type in the HTTP header.         |
-|         | -4060002              | A (deprecated) API version has been called                     |
+|         | -4000002<br/>-4000004<br/>-4000005 | Required parameter is missing or called with an inappropriate value. |
+|         | -4000003              | Undefined value has been delivered to request body. |
+|         | -4000007              | Unsupported API |
+|         | -4000008              | Exceeded parameter value length |
+|         | -4010001              | Called invalid App ID. |
+|         | -4010002              | Called invalid Appkey. |
+|         | -4010003              | Unauthenticated client called an API which requires authentication. |
+|         | -4010004              | Called invalid secret key. |
+|         | -4060001              | Set invalid content-type in the HTTP header. |
+|         | -4060002              | A (deprecated) API version has been called |
 |         | -4060003              | An unsupported API version has been called or an API version has been called with a wrong URI |
-|         | -4090001 ~ 4          | Error related with internal DB                            |
-|         | -4150001              | Delivered invalid json data format.                     |
-|         | -5000001 ~ 15         | Error in internal system                               |
-| Gateway | -4010202              | Called invalid App ID.                      |
-|         | -4010203              | Invalid access token                         |
-|         | -4010204              | Invalid user due to banning/withdrawal/missing account          |
+|         | -4090001 ~ 4          | Error related with internal DB |
+|         | -4150001              | Delivered invalid json data format. |
+|         | -5000001 ~ 15         | Error in internal system |
+| Gateway | -4010202              | Called invalid App ID. |
+|         | -4010203              | Invalid access token |
+|         | -4010204              | Invalid user due to banning/withdrawal/missing account |
 |         | -4040201              | TOAST Cloud for called API is not enabled. <br> e.g) When a Leaderboard API is called via Gamebase when the product is not used. <br/>Or, when Gamebase itself is not enabled. |
-|         | -4040202              | Called undefined API.                  |
-|         | -5000201 ~ 7          | Error in internal system of Gateway                   |
-| Member  | -4000402              | Entered invalid user ID.                      |
-|         | -4000403              | Requested for invalid member.                        |
+|         | -4040202              | Called undefined API. |
+|         | -5000201 ~ 8          | Error in internal system of Gateway |
+| Launching | -4040303            | 등록되지 않은 클라이언트 버전으로 초기화 요청일 때<br>콘솔에서 현재 등록된 클라이언트 버전 및 스토어 코드 확인이 필요함 |
+| Member  | -4000402              | Entered invalid user ID. |
+|         | -4000403              | Requested for invalid member. |
 |         | -4000404              | Requested for invalid authentication. |
 |         | -4000409              | Using TransferAccount information issued for device transfer on same device |
-|         | -4040401              | Requested for a member who does not exist or has withdrawn.              |
+|         | -4040401              | Requested for a member who does not exist or has withdrawn. |
 |         | -4040403              | Requested for invalid TransferAccount |
-|         | -4100402              | Used TransferAccount has been requested  |
-|         | -4100403              | Expired TransferAccount has been requested  |
-|         | -4100401              | Requested for a member who has withdrawn.                     |
-|         | -4220401              | User authentication data is not normal.                |
+|         | -4100402              | Requested for already used TransferAccount  |
+|         | -4100403              | Requested for expired TransferAccount |
+|         | -4100401              | Requested for a member who has withdrawn. |
+|         | -4220401              | User authentication data is not normal. |
 | IdP     | -4000901              | A (blocked) user has requested validation of TransferAccount |
 |         | -4040920              | The ID does not exist during TransferAccount verification |
 |         | -4000927              | The password is wrong during TransferAccount verification |
 |         | -4000920              | An error has occurred during internal password encryption. If this problem persists, please contact Customer Center. |
-|         | -4000921 ~ 2          | Internal error occurred while issuing TransferAccount. If error continues, contact Customer Center for inquiries.  |
+|         | -4000921 ~ 2          | Internal error occurred while issuing TransferAccount. If error continues, contact Customer Center for inquiries. |
 |         | -4000923              | To change password in the manual mode, enter the same characters as current password. |
 |         | -4000924              | Internal error. If this problem persists, please contact Customer Center. |
 |         | -4000925              | To change ID in the manual mode, enter current ID. |
-|         | -4000927              | Invalid password to validate TransferAccount  |
-|         | -4040920              | ID does not exist when validating TransferAccount  |
-|         | -5110920              | Error in TransferAccount issuance. If error continues, contact Customer Center for inquiries.  |
-| Coupon  | -100003               | Requested for invalid coupon code                    |
-|         | -100004               | Coupon code already manually expired at the request    |
-|         | -100005               | Coupon already used                                  |
-|         | -100006 ~ 10          | Coupon not in service period                        |
-|         | -100011               | Exceeded available coupon limits          |
+|         | -4000927              | Invalid password to validate TransferAccount |
+|         | -4040920              | ID does not exist when validating TransferAccount |
+|         | -5110920              | Error in TransferAccount issuance. If error continues, contact Customer Center for inquiries. |
+| Coupon  | -100002               | Invalid coupon code  <br>- User requested for Consume Coupon with invalid coupon codes <br>- Coupon registered on console is currently disabled <br>- Missing or called invalid store code, after store was specified on console |
+|         | -100004               | Coupon code already manually expired at the request |
+|         | -100005               | Coupon already used |
+|         | -100007               | Coupon not in service period |
+|         | -100011               | Exceeded available coupon limits |
 |         | -999999               | Internal error in the coupon system. If error continues, contact Customer Center for inquiries. |
-| IAP     | 5000                  | CONSUME FAILED                                 |
-|         | 5018                  | Payment already consumed                        |
-|         | 1100                  | Missing required parameter or sent invalid parameter      |
-|         | 9999                  | UNKNOWN ERROR                                  |
+| IAP     | 5000                  | CONSUME FAILED |
+|         | 5018                  | Payment already consumed |
+|         | 5032                  | Send invalid type of Json data |
+|         | 1100                  | Missing required parameter or sent invalid parameter |
+|         | 9999                  | UNKNOWN ERROR |
+|         | -4001002              | Invalid Gambase product |

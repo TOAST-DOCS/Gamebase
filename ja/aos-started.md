@@ -12,11 +12,18 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 
 ## Setting
 
-* Gamebase Android SDKを使用する前に、TOAST ConsoledからアプリIDを発行する必要があります。アプリIDを発行するためには、TOAST Consoleから**(+)サービス選択**をクリックし、Game > Gamebaseをクリックしてサービスを有効にします。
+* Gamebase Android SDKを使用する前に、TOAST ConsoledからアプリIDを発行する必要があります。アプリIDを発行するためには、TOAST Consoleから**(+)サービス選択**をクリックし、**Game > Gamebase**をクリックしてサービスを有効にします。
 * 使用するGamebaseバージョン、使用する認証、決済、プッシュモジュールをbuild.gradleファイルで宣言してください。
-	* Gamebase最新バージョンは[リリースノート](./release-notes/)で確認できます。
+	* Gamebaseの最新バージョンは[jCenter(LINK)](https://jcenter.bintray.com/com/toast/android/gamebase/gamebase-sdk/)で確認できます。
+	* Gamebaseで依存しているライブラリをダウンロードするには`mavenCentral()`保存場所を追加してください。
 
 ```groovy
+repositories {
+    jcenter()
+    mavenCentral()
+    ...
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -47,8 +54,8 @@ dependencies {
 * [Google APIs for Android](https://developers.google.com/android/guides/overview)
 * [Naver for developers](https://developers.naver.com/docs/login/android/)
 * [Twitter Android Developer's guide - Log in with Twitter](https://dev.twitter.com/web/sign-in/implementing)
-* [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/ja/docs/basics/authentication/overview/oauth)
-* [Line for developers](https://developers.line.me/ja/docs/line-login/android/integrate-line-login/)
+* [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/basics/authentication/overview)
+* [Line for developers](https://developers.line.biz/en/docs/android-sdk/integrate-line-login/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/android)
 
 ## API Reference
@@ -57,7 +64,7 @@ dependencies {
 
 ## Sample Codes
 
-* ビルドおよび実行が可能なSample Projectは[ダウンロード](https://docs.toast.com/ja/Download/)ページで配布しているGamebase Android SDKのZipファイルに含まれています。
+* ビルドおよび実行が可能なSample Projectは[ダウンロード](https://docs.toast.com/en/Download/)ページで配布しているGamebase Android SDKのZipファイルに含まれています。
 
 ## API Deprecate Governance
 

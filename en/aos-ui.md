@@ -22,8 +22,8 @@ Shows a WebView.<br/>
 **API**
 
 ```java
-+ (void)Gamebase.WebView.showWebView(Activity activity, 
-                String urlString, 
++ (void)Gamebase.WebView.showWebView(Activity activity,
+                String urlString,
                 GamebaseWebViewConfiguration configuration,
                 GamebaseCallback onCloseCallback,
                 List<String> schemeList,
@@ -33,25 +33,10 @@ Shows a WebView.<br/>
 **Example**
 
 ```java
-Gamebase.WebView.showWebView(activity, "http://www.toast.com",
-    new GamebaseWebViewConfiguration.Builder().build(),
-    new GamebaseCallback() {
-        @Override
-        public void onCallback(GamebaseException exception) {
-            Logger.d(TAG, "WebView is closed.");
-        }
-    }, schemeList,
-    new GamebaseDataCallback<String>() {
-        @Override
-        public void onCallback(String fullUrl, GamebaseException exception) {
-            Logger.d(TAG, "WebView Event occured. Event Url :" + fullUrl);
-        }
-    }
- );
+Gamebase.WebView.showWebView(activity, "http://www.toast.com");
 ```
 
 ![Webview Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
-
 
 #### Custom WebView
 
@@ -61,7 +46,6 @@ Can configure a customzed WebView by using GamebaseWebViewConfiguration.
 ```java
 GamebaseWebViewConfiguration configuration
         = new GamebaseWebViewConfiguration.Builder()
-            .setStyle(GamebaseWebViewStyle.BROWSER)
             .setTitleText("title")                              // Set Title
             .setScreenOrientation(ScreenOrientation.PORTRAIT)   // Set Screen Orientation
             .setNavigationBarColor(Color.RED)                   // Set Navigation Bar Color
@@ -70,12 +54,66 @@ GamebaseWebViewConfiguration configuration
             .setBackButtonImageResource(R.id.back_button)       // Set Back Button Image
             .setCloseButtonImageResource(R.id.close_button)     // Set Close Button Image
             .build();
-GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configuration);
+GamebaseWebView.showWebView(activity, "http://www.toast.com", configuration);
 ```
+
+#### Custom Schema
+
+With schema on the webpage loaded by Gamebase WebView, specific features become available or webpage can be changed. 
+
+##### Predefined Custom Schema
+
+Gamebase has the following schemas 
+
+| Schema     | Usage                            |
+| -------------------- | ------------------------------------- |
+| gamebase://dismiss   | Close WebView                    |
+| gamebase://goBack    | Go back to previous page on WebView |
+| gamebase://getUserId | Show ID of current logged-in user |
+
+#### User Custom Schema
+
+By specifying the name and block of a schema for Gamebase, features may be added in need.   
+
+```java
+GamebaseWebViewConfiguration configuration = new GamebaseWebViewConfiguration.Builder()
+        .setTitleText(title)
+        .build();
+List<String> schemeList = new ArrayList<>();
+schemeList.add("mygame://test");
+schemeList.add("mygame://opensomebrowser");
+schemeList.add("closemywebview://");
+showWebView(activity, urlString, configuration,
+        new GamebaseCallback() {
+            @Override
+            public void onCallback(GamebaseException exception) {
+                // When closed WebView, this callback will be called.
+            }
+        },
+        schemeList,
+        new GamebaseDataCallback<String>() {
+            @Override
+            public void onCallback(String fullUrl, GamebaseException exception) {
+                if (Gamebase.isSuccess(exception)) {
+                    if (fullUrl.contains("mygame://test")) {
+                        // Do something.
+                    } else if (fullUrl.contains("mygame://opensomebrowser")) {
+                        Gamebase.WebView.openWebBrowser(someUrl);
+                    } else if (fullUrl.contains("closemywebview://")) {
+                        // We will close webview.
+                        Gamebase.WebView.closeWebView(activity);
+                    }
+                } else {
+                    // Something went wrong.
+                }
+            }
+        });
+```
+
+#### GamebaseWebViewConfiguration
+
 | Method                                   | Values                              | Description    |
 | ---------------------------------------- | ----------------------------------- | -------------- |
-| setStyle(int style)                      | GamebaseWebViewStyle.BROWSER        | Browser-style WebView   |
-|                                          | GamebaseWebViewStyle.POPUP          | Pop-up-style WebView     |
 | setTitleText(String title)               | title                               | Title of WebView         |
 | setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | Portrait Mode          |
 |                                          | ScreenOrientation.LANDSCAPE         | Landscape Mode          |

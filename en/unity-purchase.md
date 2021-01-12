@@ -13,22 +13,40 @@ For Android and iOS IAP setting, refer to the below documents.<br/>
 To make payments at Unity Standalone, IapAdapter and WebViewAdapter must be added. 
 ![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-settingtool_iap_2.4.0.png)
 
+### Purchase Flow
 
-###  Purchase Flow
+Purchase of an item can be divided into Purchase Flow, Consume Flow, and Reprocess Flow.
+You may execute an item purchase in the following order: 
 
-Item purchases should be implemented in the following order.<br/>
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
+1. When a previous purchase has not been closed, purchase fails unless reprocessing runs. Therefore, call **RequestItemListOfNotConsumed** before payment so as to run reprocessing, and execute Consume Flow if there's any unsupplied item. 
+2. For the game client, call **RequestPurchase** of Gamebase SDK to make a purchase. 
+3. When a purchase has been successful, call **RequestItemListOfNotConsumed** and check history of non-consumable purchases; and if there's any item to supply, execute Consume Flow. 
 
-1. Call **RequestPurchase** of Gamebase SDK to purchase in a game client.
-2. After a successful purchase, call **RequestItemListOfNotConsumed** to check list of non-consumed purchases.
-3. If the value is on the returned list, the game client sends a request to the game server to consume purchased items.
-4. The game server request for Consume API to the Gamebase server via API. [API Guide](/Game/Gamebase/en/api-guide/#wrapping-api)
-5. If the IAP server has successfully called Consume API, the game server provides the items to the game client.
+### Consume Flow
 
-* Some cases end up with abnormal closure due to errors, although purchase was successful at store. Please check the list of non-consumed purchases after login.<br/>
-	* When a login is successful, call **requestItemListOfNotConsumed** to check the list of non-consumed purchases.
-	* If the value is on the returned list, the game client sends a request to the game server to consume, so that items can be provided.
+If there's a value on the list of non-consumable purchases, execute Consume Flow in the following order:
+
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.10.0.png)
+
+1. The game client requests for Consume of a purchase item on the game server. 
+    * Deliver UserID, itemSeq, paymentSeq, purchaseToken.
+2. The game server tracks down the history of item supplies with same paymentSeq, or purchaseToken within game database.  
+    * 2-1. If not supplied yet, supply the item for itemSeq to UserID.  
+    * 2-2. After item is provided, save UserID, itemSeq, paymentSeq, and purchaseToken to game database so as to check redundancy.  
+3. The game server calls Consume API to the Gamebase server to complete with item supply.
+    * [API Guide > Purchase (IAP) > Consume](./api-guide/#consume)
+
+### Retry Transaction Flow
+
+* Sometimes, a successful purchase at store ends up with failed closure, due to error. 
+* Call **RequestItemListOfNotConsumed** to run reprocessing and execute Consume Flow for any non-supplied items. 
+* It is recommended to call reprocessing in time for the following:
+    * After login is completed
+    * Before payment
+    * Entering store (or lobby) of a game
+    * Checking user profile or mailbox
 
 ### Purchase Item
 
@@ -42,14 +60,18 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
+static void RequestPurchase(string gamebaseProductId, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
+static void RequestPurchase(string gamebaseProductId, string payload, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
+
+// Legacy API
 static void RequestPurchase(long itemSeq, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
 ```
 
 **Example**
 ```cs
-public void RequestPurchase(long itemSeq)
+public void RequestPurchase(string gamebaseProductId)
 {
-    Gamebase.Purchase.RequestPurchase(itemSeq, (purchasableReceipt, error) =>
+    Gamebase.Purchase.RequestPurchase(gamebaseProductId, (purchasableReceipt, error) =>
     {
         if (Gamebase.IsSuccess(error))
         {
@@ -68,9 +90,35 @@ public void RequestPurchase(long itemSeq)
         }
     });
 }
+
+
+public void RequestPurchase(string gamebaseProductId)
+{
+    string userPayload = "{\"description\":\"This is example\",\"channelId\":\"delta\",\"characterId\":\"abc\"}";
+    Gamebase.Purchase.RequestPurchase(gamebaseProductId, userPayload, (purchasableReceipt, error) =>
+    {
+        if (Gamebase.IsSuccess(error))
+        {
+            Debug.Log("Purchase succeeded.");
+            // userPayload value entered when calling API
+            string payload = purchasableReceipt.payload
+        }
+        else
+        {
+        	if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
+            {
+                Debug.Log("User canceled purchase.");
+            }
+            else
+            {
+            	Debug.Log(string.Format("Purchase failed. error is {0}", error));
+            }
+        }
+    });
+}  
 ```
 
-### Get a List of Purchasable Items
+### List Purchasable Items
 
 To retrieve the list of items, call the following API. 
 Information of each item is included in the array of callback return.
@@ -105,10 +153,19 @@ public void RequestItemListPurchasable()
 
 
 
-### Get a List of Non-Consumed Items
+### List Non-Consumed Items
 
-Request for a list of non-consumed items, which have not been normally consumed (delivered, or provided) after purchase.
+Request for the list of non-consumed purchases, in which items were not properly consumed (delivered or supplied) after purchase.  
 In case of non-purchased items, ask the game server (item server) to proceed with item delivery (supply).
+When a purchase is not properly completed, reprocessing is also required; please call in time for the following: 
+
+* See if there's any unsupplied items for a game user 
+    * After login is completed
+    * Entering store (or lobby) of a game
+    * Checking user profile or mailbox
+* See if there's any item in need of reprocessing 
+    * Before purchase
+    * After failed purchase 
 
 **API**
 
@@ -141,7 +198,7 @@ public void RequestItemListOfNotConsumed()
 }
 ```
 
-### Get the List of Actived Subscriptions
+### List Actived Subscriptions
 
 List activated subscriptions for the current user ID. 
 Subscriptions that are paid up (e.g. auto-renewable subscription, auto-renewed consumable subscription) can be listed before they are expired.
@@ -196,81 +253,20 @@ public void RequestActivatedPurchasesSample()
 }
 ```
 
-### App Store Promotion IAP
+### Event by Promotion
 
-It provides the function to purchase items in the App Store apps.
-After a successful purchase of items, the items can be provided using the handler registered below.
-
-The promotion IAP can be displayed only after additional settings are made in App Store Connect.
-
-> <font color="red">[Caution]</font><br/>
->
-> It is available for iOS version 11 or later.
-> It must be built with Xcode 9.0 or later.
-> It is supported by Gamebase 1.13.0 or later(It is applicable to TOAST IAP SDK 1.6.0 or later).
-
-
-> <font color="red">[Caution]</font><br/>
->
-> It can be called only after a successful login.
-> After a successful login, it must be executed ahead of any other payment APIs.
-
-**API**
+When a promotional purchase is completed, get an event from GamebaseEventHandler to be processed. 
+See the guide on how to process a promotional purchase event via GamebaseEventHandler.
+[Game > Gamebase > User Guide for Unity SDK > ETC > Gamebase Event Handler](./unity-etc/#purchase-updated)
 
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
-```cs
-static void SetPromotionIAPHandler(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
-```
-
-**Example**
-```cs
-public void SetPromotionIAPHandler()
-{
-    Gamebase.Purchase.SetPromotionIAPHandler((purchasableReceipt, error) => 
-    {
-        if (Gamebase.IsSuccess(error))
-        {
-            Debug.Log("Purchase succeeded.");
-        }
-        else
-        {
-            if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
-            {
-                Debug.Log("User canceled purchase.");
-            }
-            else
-            {
-            	Debug.Log(string.Format("Purchase failed. error is {0}", error));
-            }
-        }
-    });
-}
-```
-**Overview**
-
-* Apple Developer Overview : https://developer.apple.com/app-store/promoting-in-app-purchases/
-* Apple Developer Reference : https://help.apple.com/app-store-connect/#/deve3105860f
-
-**How to Test AppStore Promotion IAP**
-
-> `Caution`
-> You can test your app after uploading it to the App Store Connect and installing the app with TestFlight.
+> <font color="red">[Caution]</font><br/>
 >
-
-1. Install the app with TestFlight.
-2. Call the following URL scheme (scheme) to proceed the test.
-
-| URL Components | keyname | value |
-| --- | --- | --- |
-| scheme | itms-services | Fixed value |
-| host &amp; path | None | None |
-| queries | action | purchaseIntent |
-|		  | bundleId | bundled identifier of the app |
-|		  | productIdentifier | product identifier of the purchased item |
-
-e.g.) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
+> To execute an iOS promotion purchase, make sure to follow the guide for a setup.
+> [Game > Gamebase > User Guide for iOS SDK > Purchase > Event by Promotion](./ios-purchase/#event-by-promotion)
 
 ### Error Handling
 
@@ -280,9 +276,12 @@ e.g.) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&prod
 | PURCHASE_USER_CANCELED | 4002 | Purchase is cancelled. |
 | PURCHASE_NOT_FINISHED\_PREVIOUS\_PURCHASING | 4003 | API has been called when a purchase logic is not completed. |
 | PURCHASE_NOT_ENOUGH_CASH | 4004 | Cannot purchase due to shortage of cash of the store. |
+| PURCHASE_INACTIVE_PRODUCT_ID             | 4005       | Product is not activated.   |
+| PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | Requested for purchase with invalid GamebaseProductID. |
 | PURCHASE_NOT_SUPPORTED_MARKET | 4010 | The store is not supported.<br>You can choose either GG (Google), TS (ONE Store), or TEST. |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR | 4201 | Error in IAP library.<br>Check DetailCode. |
 | PURCHASE_UNKNOWN_ERROR | 4999 | Unknown error in purchase.<br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we'll respond ASAP. |
+
 
 * Refer to the following document for the entire error code.
     * [Entire Error Codes](./error-code/#client-sdk)
@@ -315,7 +314,7 @@ else
 ```
 
 * For IAP error codes, refer to the document below.
-    * [Mobile Service > IAP > Error Code > Client API Error Typ](/Mobile%20Service/IAP/en/error-code/#client-api#client-api-errors)
+    * [TOAST > User Guide for TOAST SDK > TOAST IAP > Unity > Error Codes](/TOAST/en/toast-sdk/iap-unity/#_17)
 
 
 

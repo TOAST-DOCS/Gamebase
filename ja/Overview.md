@@ -33,13 +33,14 @@ Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカ�
 | 外部認証            | Android | iOS | Windows(based Unity) | Web(based JavaScript)    |
 | ----------------- | ------------ | ------------ | ------------ | ------------ |
 | Facebook          | O | O | O | O |
-| Sign In with Apple |  | O | | |
+| Sign In with Apple | O | O | | |
 | Apple Game Center |  | O | | |
 | Google            | O | O | O | O |
 | Twitter			| O | O | |  |
 | LINE				| O | O | O  | O  |
 | PAYCO             | O | O | O | O |
 | NAVER             | O | O | O | O |
+| Weibo             | O | O |  |  |
 
 * **ゲストログインを提供します。**
   ゲストログインを利用すれば、ユーザーは何も入力しなくてもすぐにゲームにログインして簡単にゲームを始めることができます。ゲストログインをするだけでもGamebaseのユーザーIDが発行されるため、ゲームはOAuthログインユーザーかゲストログインユーザーかに関係なく同じようにユーザーのゲームデータを管理することができます。
@@ -152,6 +153,8 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
 * [Android SDK ご利用ガイド](./aos-started/)
 * [iOS SDK ご利用ガイド](./ios-started/)
 * [Unity SDK ご利用ガイド](./unity-started/)
+* [Unreal SDK ご利用ガイド](./unreal-started/)
+* [JavaScript SDK ご利用ガイド](./js-started/)
 
 ### サーバー開発者向けガイド
 

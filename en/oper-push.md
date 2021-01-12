@@ -29,7 +29,7 @@ Select a push from the list of delivery history to find details of the sent push
 To register a new push, click **Register**.
 See Preview UI on the right to find values that are actually registered on console.
 
-![gamebase_push_04_201910](https://static.toastoven.net/prod_gamebase/gamebase_push_04_201910.png)
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_push_04_202004.png)
 ![gamebase_push_05_201910](https://static.toastoven.net/prod_gamebase/gamebase_push_05_201910.png)
 
 #### (1) Delivery Type
@@ -90,6 +90,7 @@ Enter external URL link or a file path for notification sound deployed within ap
 Enter push messages to show to user.
 
 A message can be registered in many languages, and for any other language users, default language is selected. To add a language, click **Add Messages** at the bottom. To add any other languages out of the list, contact [Customer Center](https://toast.com/support/inquiry).
+Click **Auto Translate to Default Language** and messages in default language are translated into a language set for each item. 
 
 > [Note]
 >
@@ -155,7 +156,7 @@ You can easily register by clicking the **Copy** button to use the registration 
 
 Click **Register** to register a new push.
 
-![gamebase_push_03_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_push_03_201812_en.png)
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_push_old_03_202004.png)
 
 #### (1) Message Type
 > [Note]
@@ -197,6 +198,7 @@ Select countries to send push messages to.
 #### (5) Message
 Enter push messages to show to users.
 Messages can be registered in many languages, and for users who speak other languages than registered, default language is displayed. To add a language, click **'+'** on the right. For other languages that are not on the list, contact  [Customer Center](https://toast.com/support/inquiry).
+Click **Auto Translate to Default Language** and messages in default language are translated into a language set for each item. 
 
 > [Note]
 > If push messages do not arrive on a device: in most cases,
@@ -252,4 +254,4 @@ To register with files, up to 1000 persons can be registered at once.
 
 ![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_11_201910.png)
 
-To delete a user, check the box on the left of the list and press Delete. 
+To delete a user, check the box on the left of the list and press Delete.

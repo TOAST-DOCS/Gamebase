@@ -19,7 +19,7 @@ Gamebaseを初期化するとき、GamebaseConfiguration.Builderの客体でGame
 
 | API                                      | Mandatory(M) / Optional(O) | Description                              |
 | ---------------------------------------- | -------------------------- | ---------------------------------------- |
-| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | GamebaseConfiguration.newBuilderにappIdとappVersionを必須パラメータとして渡して初期化する必要があります。<br/><br/> **appId**はTOAST Projectで発行したアプリIDを入力します。<br/> **appVersion**はアップデート、メンテナンスに該当するかどうかはゲームバージョンで判断します。ゲームバージョンを指定してください。 <br/> **storeCode**はAPKが配布されるストアを意味するコードです。次のガイドで各ストアのコードを確認できます。 [Purchase - Initialization](./aos-purchase/#6-initialization) |
+| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | GamebaseConfiguration.BuilderオブジェクトはnewBuilder()関数で作成できます。<br/><br/> **appId**はTOAST Projectで発行したアプリIDを入力します。<br/> **appVersion**はアップデート、メンテナンスに該当するかどうかはゲームバージョンで判断します。ゲームバージョンを指定してください。 <br/> **storeCode**はAPKが配布されるストアを意味するコードです。次のガイドで各ストアのコードを確認できます。 [Purchase - Initialization](./aos-purchase/#6-initialization) |
 | build()                                  | **M**                      | 設定を終えたBuilderをConfigurationの客体に変換します。<br/>**Gamebase.initialize()**APIで必要です。|
 | enablePopup(boolean enable)              | O                          | **[UI]**<br/>システムメンテナンス、利用制限(ban)などゲームユーザーがゲームをプレイすることができない状況の場合、ポップアップなどで理由を表示しなければならないときがあります。<br/>**true**に設定すれば、Gamebaseが該当する状況のとき、案内ポップアップを自動で表示します。<br/>デフォルトは**false**です。<br/>**false**状態では起動結果を通して情報を取得した後に直接UIを設計し、ゲームをプレイすることができない理由を表示してください。|
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>起動結果によりログインできない状態の場合(主にメンテナンス状態)、Gamebaseが自動でポップアップを表示するかどうかを変更することができます。<br/>**enablePopup(true)**の状態でのみ動作します。<br/>デフォルトは**true**です。|
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         /**
          * Show gamebase debug message.
-		 * set 'false' when build RELEASE.
+         * set 'false' when build RELEASE.
          */
         Gamebase.setDebugMode(true);
 
@@ -201,13 +201,13 @@ Gamebase Android SDKの初期化設定に入力したアプリバージョンの
 | IN_TEST                     | 203  | テスト中 |
 | IN_REVIEW                   | 204  | 審査中 |
 | REQUIRE_UPDATE              | 300  | アップデートが必ず必要です。                                |
-| BLOCKED_USER                | 301  | 接続ブロックに登録された端末(デバイスキー)でサービスに接続したケースです。|
+| BLOCKED_USER                | 301  | 接続遮断に登録された端末(デバイスキー)でサービスに接続した場合です。 |
 | TERMINATED_SERVICE          | 302  | サービスが終了しました。                                 |
 | INSPECTING_SERVICE          | 303  | サービスメンテナンス中です。                               |
 | INSPECTING_ALL_SERVICES     | 304  | 全体サービスメンテナンス中です。                            |
 | INTERNAL_SERVER_ERROR       | 500  | 内部サーバーエラーです。                               |
 
-[Console Guide](/Game/Gamebase/ja/oper-app/#app)
+[콘솔 가이드](/Game/Gamebase/en/oper-app/#app)
 
 **1.2 App**
 
@@ -224,7 +224,7 @@ Gamebase Consoleに登録されたアプリ情報です。
 * install：インストールURL
 * idP：認証情報
 
-[Console Guide](/Game/Gamebase/ja/oper-app/#client)
+[Console Guide](/Game/Gamebase/en/oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -236,7 +236,7 @@ Gamebase Consoleに登録されたメンテナンス情報です。
 * endDate：終了時間
 * message：メンテナンス理由
 
-[Console Guide](/Game/Gamebase/ja/oper-operation/#maintenance)
+[Console Guide](/Game/Gamebase/en/oper-operation/#maintenance)
 
 **1.4 Notice**
 
@@ -246,7 +246,7 @@ Gamebase Consoleに登録された告知情報です。
 * title：タイトル
 * url：メンテナンスURL
 
-[Console Guide](/Game/Gamebase/ja/oper-operation/#notice)
+[Console Guide](/Game/Gamebase/en/oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -264,8 +264,8 @@ TOAST Consoleに登録されたIAPストア情報です。
 * id: App ID
 * name: App Name
 * storeCode: Store Code
- 
-[Console Guide](/Game/Gamebase/ja/oper-purchase/)
+
+[콘솔 가이드](/Game/Gamebase/en/oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -274,10 +274,60 @@ TOAST Launching Consoleでユーザーが入力した情報です。
 * ユーザーが入力した値をJSON stringで伝達します。
 * TOAST Launchingの詳細設定は下記のガイドを参照してください。
  
-[Console Guide](/Game/Gamebase/ja/oper-management/#config)
+[Console Guide](/Game/Gamebase/en/oper-management/#config)
 
+### Handling Unregistered Version
 
+Gamebaseコンソールに登録されていないGameClientVersionを初期化すると**LAUNCHING_UNREGISTERED_CLIENT(2004)**エラーが発生します。
+enablePopup(true), enableLaunchingStatusPopup(true)状態の場合、強制アップデートポップアップが表示され、マーケットに移動します。
+Gamebaseポップアップを使用しない場合はUpdateInfoをGamebaseExceptionオブジェクトから取得してユーザーがマーケットに移動できるようにゲームで直接UIを実装できます。
 
+**VO**
+
+```java
+class UpdateInfo {
+    // 最新バージョンをダウンロードできるストアインストールURL
+    String installUrl;
+    // ユーザーに表示されるメッセージで、ユーザーの端末言語に合わせて伝達されます。
+    // 言語が「en」の場合、メッセージは下記のとおりです。
+    // 'The version is not supported. Please get the latest update version.'
+    String message;
+}
+```
+
+**API**
+
+```java
++ (UpdateInfo)UpdateInfo.from(GamebaseException exception);
+```
+
+**Example**
+
+```java
+Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
+    @Override
+    public void onCallback(final LaunchingInfo data, GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            // Gamebase initialization succeeded.
+        } else {
+            // Gamebase initialization failed.
+
+            UpdateInfo updateInfo = UpdateInfo.from(exception);
+            if (updateInfo != null) {
+                // Unregistered game client version.
+                // Open market url to update application.
+                updateInfo.installUrl; // Market URL.
+                updateInfo.message;    // Message from launching server.
+                return;
+            }
+
+            // Another initialization error.
+            ...
+        }
+        ...
+    }
+});
+```
 
 ### Error Handling
 

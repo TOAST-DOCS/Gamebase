@@ -39,7 +39,7 @@ The logic described above can be implemented in the following order:
     * If the error code is **SOCKET_ERROR (110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.loginForLastLoggedInProvider()** again or try again in a moment.
 * Banned game user
     * If the error code is **BANNED_MEMBER(7)**, the authentication has failed because the game user is banned.
-    * Check ban information with **Gamebase.getBanInfo ()** and notify the user with reasons for not being able to play.
+    * Check ban information with **BanInfo.from(exception)** and notify the user with reasons for not being able to play.
     * When **GamebaseConfiguration.Builder.enablePopup(true)** and **enableBanPopup(true)** are called during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
 * Other errors
     * As authentication with latest login type has failed, follow **3. Authenticate with Specified IdP**.
@@ -61,7 +61,7 @@ The logic described above can be implemented in the following order:
     * If the error code is **SOCKET_ERROR(110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.login(activity, idpType, callback)** again or try again in a moment.
 * Banned game user
     * If the error code is **BANNED_MEMBER(7)**, the authentication has failed due to banned game user.
-    * Check ban information with **Gamebase.getBanInfo()** and notify the user with reasons for not being able to play.
+    * Check ban information with **BanInfo.from(exception)** and notify the user with reasons for not being able to play.
     * When **GamebaseConfiguration.Builder.enablePopup(true)** and **enableBanPopup(true)** are called during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
 * Other errors
     * Notify that an error has occurred, and return to the state (mostly in title or login screen) in which user can select an authentication IdP type.
@@ -109,8 +109,8 @@ Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthTok
                 // Gamebase automatically displays a pop-up on banning.
                 //
                 // In order to implement a pop-up on banning to fit for Game UI
-                // Use Gamebase.getBanInfo() to find any ban information and notify the user with reasons for not being able to play game.
-                BanInfo banInfo = Gamebase.getBanInfo();
+                // Use BanInfo.from(exception) to find any ban information and notify the user with reasons for not being able to play game.
+                BanInfo banInfo = BanInfo.from(exception);
             } else {
                 // For other error cases, try to authenticate with a specified IDP.
                 Gamebase.login(activity, provider, logincallback);
@@ -166,8 +166,8 @@ private static void onLoginForGuest(final Activity activity) {
                     // Gamebase automatically displays a pop-up on banning.
                     //
                     // In order to implement a popup on banning to fit for Game UI
-                    // Use Gamebase.getBanInfo() to find any ban information and notify the user with reasons for not being able to play game.
-                    BanInfo banInfo = Gamebase.getBanInfo();
+                    // Use BanInfo.from(exception) to find any ban information and notify the user with reasons for not being able to play game.
+                    BanInfo banInfo = BanInfo.from(exception);
                 } else {
                     // Login failed
                     Log.e(TAG, "Login failed- "
@@ -190,6 +190,7 @@ You can find the types of IdP that can login, with **AuthProvider** class.
 
 ```java
 + (void)Gamebase.login(Activity activity, AuthProvider provider, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.login(Activity activity, AuthProvider provider, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
 ```
 
 **Example**
@@ -223,8 +224,8 @@ private static void onLoginForGoogle(final Activity activity) {
                     // Gamebase automatically displays a pop-up on banning.
                     //
                     // In order to implement a pop-up on banning to fit for Game UI
-                    // Use Gamebase.getBanInfo() to find any ban information and notify the user with reasons for not being able to play game.
-                    BanInfo banInfo = Gamebase.getBanInfo();
+                    // Use BanInfo.from(exception) to find any ban information and notify the user with reasons for not being able to play game.
+                    BanInfo banInfo = BanInfo.from(exception);
                 } else {
                     // Login failed
                     Log.e(TAG, "Login failed- "
@@ -302,8 +303,8 @@ private static void onLoginWithCredential(final Activity activity) {
                     // Gamebase automatically displays a pop-up on banning.
                     //
                     // In order to implement a banning pop-up to fit for Game UI
-                    // Use Gamebase.getBanInfo() to find any ban information and notify the user with reasons for not being able to play game.
-                    BanInfo banInfo = Gamebase.getBanInfo();
+                    // Use BanInfo.from(exception) to find any ban information and notify the user with reasons for not being able to play game.
+                    BanInfo banInfo = BanInfo.from(exception);
                 } else {
                     // Login failed
                     Log.e(TAG, "Login failed- "
@@ -494,14 +495,16 @@ Below is an example of mapping to Facebook.
 **API**
 
 ```java
-+ (void)Gamebase.addMapping(Activity activity, String providerName, null, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.addMapping(Activity activity, String providerName, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.addMapping(Activity activity, String providerName, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
 ```
 
 **Example**
 
 ```java
 private static void addMappingForFacebook(final Activity activity) {
-    Gamebase.addMapping(activity, AuthProvider.FACEBOOK, null, new GamebaseDataCallback<AuthToken>() {
+    String mappingProvider = AuthProvider.FACEBOOK;
+    Gamebase.addMapping(activity, mappingProvider, new GamebaseDataCallback<AuthToken>() {
         @Override
         public void onCallback(AuthToken result, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
@@ -533,7 +536,7 @@ private static void addMappingForFacebook(final Activity activity) {
                 final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
                 final String forcingMappingKey = ticket.forcingMappingKey;
 
-                Gamebase.addMappingForcibly(activity, credentialInfo, forcingMappingKey, new GamebaseDataCallback<AuthToken>() {
+                Gamebase.addMappingForcibly(activity, mappingProvider, forcingMappingKey, new GamebaseDataCallback<AuthToken>() {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException exception) {
                         ...
@@ -658,6 +661,7 @@ The following is an example of force mapping to Facebook:
 **API**
 
 ```java
++ (void)Gamebase.addMappingForcibly(Activity activity, String providerName, String forcingMappingKey, GamebaseDataCallback<AuthToken> callback);
 + (void)Gamebase.addMappingForcibly(Activity activity, String providerName, String forcingMappingKey, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
 ```
 
@@ -665,7 +669,8 @@ The following is an example of force mapping to Facebook:
 
 ```java
 private static void addMappingForciblyFacebook(final Activity activity) {
-    Gamebase.addMapping(activity, AuthProvider.FACEBOOK, null, new GamebaseDataCallback<AuthToken>() {
+    String mappingProvider = AuthProvider.FACEBOOK;
+    Gamebase.addMapping(activity, mappingProvider, new GamebaseDataCallback<AuthToken>() {
         @Override
         public void onCallback(AuthToken result, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
@@ -682,7 +687,7 @@ private static void addMappingForciblyFacebook(final Activity activity) {
                 final String forcingMappingKey = ticket.forcingMappingKey;
 
                 // Try force mapping.
-                Gamebase.addMappingForcibly(activity, AuthProvider.FACEBOOK, forcingMappingKey, null, new GamebaseDataCallback<AuthToken>() {
+                Gamebase.addMappingForcibly(activity, mappingProvider, forcingMappingKey, null, new GamebaseDataCallback<AuthToken>() {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException addMappingForciblyException) {
                         if (Gamebase.isSuccess(addMappingForciblyException)) {
@@ -690,7 +695,7 @@ private static void addMappingForciblyFacebook(final Activity activity) {
                             Log.d(TAG, "Add Mapping Forcibly successful");
                             String userId = Gamebase.getUserID();
                             return;
-                        }           
+                        }
 
                         // Failed to add force mapping
                         // Check the error code and resolve the error.
@@ -772,7 +777,7 @@ private static void addMappingForciblyFacebook(final Activity activity) {
                             Log.d(TAG, "Add Mapping Forcibly successful");
                             String userId = Gamebase.getUserID();
                             return;
-                        }           
+                        }
 
                         // Failed to add force mapping
                         // Check the error code and resolve the error.
@@ -858,7 +863,6 @@ Get authentication information issued by Gamebase.
 + (String)Gamebase.getUserID();
 + (String)Gamebase.getAccessToken();
 + (String)Gamebase.getLastLoggedInProvider();
-+ (BanInfo)Gamebase.getBanInfo();
 ```
 
 **Example**
@@ -873,9 +877,6 @@ String accessToken = Gamebase.getAccessToken();
 
 // Obtaining Last Logged In Provider
 String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
-
-// Obtaining Ban Information
-BanInfo banInfo = Gamebase.getBanInfo();
 ```
 
 
@@ -907,7 +908,7 @@ Map<String, Object> profileMap = profile.information;
 ### Get Banned User Information
 
 For users who are registered as banned in the Gamebase Console,
-information codes of restricted use will be displayed as below, when they try to log in. The ban information can be found by using the **Gamebase.getBanInfo()** method.
+information codes of restricted use will be displayed as below, when they try to log in. The ban information can be found by using the **BanInfo.from(exception)** method.
 
 * BANNED_MEMBER(7)
 
@@ -1009,16 +1010,16 @@ Gamebase.renewTransferAccount(autoConfig, new GamebaseDataCallback<TransferAccou
 });
 ```
 
-
-
-
 ### Transfer Guest Account to Another Device
 Transfers the account with TransferAccount issued with **issueTransfer** API.
 When account transfer is successful, a transfer completion message will be displayed from the device where TransferAccount has been issued and a new account will be created when a guest logs in.
 On the device where the account transfer was successfully made, the guest account from the previous device where TransferAccount was issued can still be used.
 
-> `Caution`
-> If account transfer is executed while logged in as a guest, the guest account logged in on the device will be lost.
+> <font color="red">[Caution]</font><br/>
+>
+> * If account transfer is executed while logged in as a guest, the guest account logged in on the device will be lost.
+> * When an invalid ID or password is entered consecutively, an error occurs like  **AUTH_TRANSFERACCOUNT_BLOCK(3042)** and the account transfer is blocked during a certain period. 
+> In such case, user can be notified by TransferAccountFailInfo, of how long the blockage will sustain, like below: 
 
 **API**
 
@@ -1031,15 +1032,180 @@ On the device where the account transfer was successfully made, the guest accoun
 ```java
 Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDataCallback<AuthToken>() {
     @Override
-    public void onCallback(final AuthToken authToken, final GamebaseException exception) {
+    public void onCallback(AuthToken authToken, GamebaseException exception) {
         if (!Gamebase.isSuccess(exception)) {
             // Transfering Account failed.
+            TransferAccountFailInfo failInfo = TransferAccountFailInfo.from(exception);
+            if (failInfo != null) {
+                // Transfering Account failed by entering the wrong id / pw multiple times.
+                // You can tell when the account transfer is blocked by the TransferAccountFailInfo.
+                String failedId = failInfo.id;
+                int failCount = failInfo.failCount;
+                Date blockedDate = new Date(failInfo.blockEndDate);
+                return;
+            }
+
+            // Transfering Account failed by another reason.
             return;
         }
+
         // Transfering Account success.
         // TODO: implements post login process
     }
 });
+```
+
+## TemporaryWithdrawal
+
+'Suspension of Withdrawal' is available. 
+At the request for a tempoary withdrawal, user can withdraw after certain period of suspension.  
+Suspension period can be changed from the console. 
+
+> <font color="red">[Caution]</font><br/>
+>
+> To suspend withdrawal, please do not use **Gamebase.withdraw()** API.
+> **Gamebase.withdraw()** API regards to immediate withdrawal from account. 
+
+After login, the withdrawal status of a user can be found with  AuthToken.getTemporaryWithdrawalInfo() API to see if the user is suspended from withdrawal.  
+
+### Request TemporaryWithdrawal
+
+Send a request for a temporary withdrawal. 
+After a certain period specified on console, user withdrawal is automatically processed.  
+
+**API**
+
+```java
++ (void)Gamebase.TemporaryWithdrawal.requestWithdrawal(@NonNull Activity activity,
+                                                       @Nullable GamebaseDataCallback<TemporaryWithdrawalInfo> callback);
+```
+
+**ErrorCode**
+
+|Error Code | Description |
+| --- | --- |
+| AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW(3602) | User is already under the process of temporary withdrawal.  |
+
+**Example**
+
+```java
+public static void testRequestWithdraw() {
+    Gamebase.TemporaryWithdrawal.requestWithdrawal(new GamebaseCallback() {
+        @Override
+        public void onCallback(TemporaryWithdrawalInfo data GamebaseException exception) {
+            if (!Gamebase.isSuccess(exception)) {
+                if (exception.getCode() == GamebaseError.AUTH_WITHDRAW_ALREADY_TEMPORARY_WITHDRAW) {
+                    // Already requested temporary withdrawal before.
+                } else {
+                    // Request temporary withdrawal failed.
+                    return;
+                }
+            }
+
+            // Request temporary withdrawal success.
+        }
+    });
+}
+```
+
+### Check TemporaryWithdrawal User
+
+Games enabling the suspension of withdrawal must always call AuthToken.getTemporaryWithdrawalInfo() API, after login; and if the result returns a valid  TemporaryWithdrawalInfo object, the user must be notified that withdrawal is underway.  
+
+**Example**
+
+```java
+public static void testLogin() {
+    Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
+        @Override
+        public void onCallback(AuthToken data, GamebaseException exception) {
+            if (!Gamebase.isSuccess(exception)) {
+                // Login failed
+                return;
+            }
+
+            // Check if user is requesting withdrawal
+            if (data.getTemporaryWithdrawalInfo() != null) {
+                // User is under temporary withdrawal
+                long gracePeriodDate = data.getTemporaryWithdrawalInfo().getGracePeriodDate();
+            } else {
+                // Login success.
+            }
+        }
+    });
+}
+```
+
+### Cancel TemporaryWithdrawal
+
+Cancel request for a withdrawal.   
+After withdrawal is completed and if the request has expired, withdrawal cannot be reverted.
+
+**API**
+
+```java
++ (void)Gamebase.TemporaryWithdrawal.cancelWithdrawal(@NonNull Activity activity,
+                                                      @Nullable GamebaseCallback callback);
+```
+
+**ErrorCode**
+
+|Error Code | Description |
+| --- | --- |
+| AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW(3603) | The user is not under temporary withdrawal. |
+
+**Example**
+
+```java
+public static void testCancelWithdraw() {
+    Gamebase.TemporaryWithdrawal.cancelWithdrawal(new GamebaseCallback() {
+        @Override
+        public void onCallback(final GamebaseException exception) {
+            if (!Gamebase.isSuccess(exception)) {
+                if (exception.getCode() == GamebaseError.AUTH_WITHDRAW_NOT_TEMPORARY_WITHDRAW) {
+                    // Never requested temporary withdrawal before.
+                } else {
+                    // Cancel temporary withdrawal failed.
+                    return;
+                }
+            }
+
+            // Cancel temporary withdrawal success.
+        }
+    });
+}
+```
+
+### Withdraw Immediately
+
+Withdraw immediately without considering the suspension period.  
+It runs the same as Gamebase.withdraw() API. 
+
+Since immediate withdrawal cannot be cancelled, it is recommended to be confirmed by the user several times.  
+
+**API**
+
+```java
++ (void)Gamebase.TemporaryWithdrawal.withdrawImmediately(@NonNull Activity activity,
+                                                         @Nullable GamebaseCallback callback);
+```
+
+**Example**
+
+```java
+public static void testWithdrawImmediately() {
+    Gamebase.TemporaryWithdrawal.withdrawImmediately(activity, new GamebaseCallback() {
+        @Override
+        public void onCallback(final GamebaseException exception) {
+            if (!Gamebase.isSuccess(exception)) {
+                // Withdraw failed.
+                return;
+            }
+
+            // Withdraw success.
+        }
+    });
+}
 ```
 
 ## Error Handling
@@ -1051,6 +1217,7 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 |                | AUTH\_USER\_CANCELED                     | 3001       | Login is cancelled.                          |
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | The authentication is not supported.                        |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | Named member does not exist or has withdrawn.                      |
+|                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | Failed to initialize external authentication library.  |
 |                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | Error in external authentication library. <br/>Check DetailCode and DetailMessage. |
 |                | AUTH_ALREADY_IN_PROGRESS_ERROR           | 3010       | The previous authentication process has not been completed. |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | The issued TransferAccount has been used on the same device. |
@@ -1083,6 +1250,8 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 |                | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP   | 3403       | Currently logged-in IdP.                      |
 | Logout         | AUTH\_LOGOUT\_FAILED                     | 3501       | Logout has failed.                            |
 | Withdrawal     | AUTH\_WITHDRAW\_FAILED                   | 3601       | Withdrawal has failed.                              |
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | The user is already under temporary withdrawal.              |
+|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | The user is not under temporary withdrawal.                 |
 | Not Playable   | AUTH\_NOT\_PLAYABLE                      | 3701       | Not playable (due to maintenance or service closed)         |
 | Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                     | 3999       | Unknown error (Undefined error)             |
 
@@ -1095,7 +1264,7 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 * Check the error code as below.
 
 ```java
-Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCallback<AuthToken>() {
+Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
     @Override
     public void onCallback(AuthToken data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
@@ -1112,7 +1281,7 @@ Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCa
                 // Third Party Detail Error Info
                 int moduleErrorCode = exception.getDetailCode();
                 String moduleErrorMessage = exception.getDetailMessage();
-                
+
                 ...
             }
         }

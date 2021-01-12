@@ -7,18 +7,19 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
 * 게스트 이외의 Provider에 로그인하려면 해당 Provider AuthAdapter가 필요합니다.
 * AuthAdapter 및 3rd-Party Provider SDK에 대한 설정은 다음을 참고하시기 바랍니다.
     * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > Gradle](./aos-started/#gradle)
-    * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > Console > 3rd-Party Provider SDK Guide](./https://alpha-docs.toast.com/ko/Game/Gamebase/ko/aos-started/#console)
+    * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > Console > 3rd-Party Provider SDK Guide](./aos-started/#console)
 
 ### Login Flow
 
 많은 게임이 타이틀 화면에 로그인을 구현합니다.
+
 * 앱을 설치하고 처음 실행했을 때 타이틀 화면에서 게임 유저가 어떤 IdP(identity provider)로 인증할지 선택할 수 있게 합니다.
 * 한 번 로그인한 후에는 IdP 선택 화면을 표시하지 않고 이전에 로그인한 IdP 유형으로 인증합니다.
 
 위에서 설명한 로직은 다음과 같은 순서로 구현할 수 있습니다.
 
-![last provider login flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
-![idp login flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
+![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
+![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
 #### 1. 이전 로그인 유형으로 인증
 
@@ -1087,7 +1088,7 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 
 |Error Code | Description |
 | --- | --- |
-| AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW(3602) | 이미 임시 탈퇴중인 유저 입니다. |
+| AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW(3602) | 이미 임시 탈퇴를 요청한 유저 입니다. |
 
 **Example**
 
@@ -1155,7 +1156,7 @@ public static void testLogin() {
 
 |Error Code | Description |
 | --- | --- |
-| AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW(3603) | 임시 탈퇴중인 유저가 아닙니다. |
+| AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW(3603) | 임시 탈퇴를 요청한 유저가 아닙니다. |
 
 **Example**
 
@@ -1253,8 +1254,8 @@ public static void testWithdrawImmediately() {
 |                | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP   | 3403       | 현재 로그인되어 있는 IdP입니다.                      |
 | Logout         | AUTH\_LOGOUT\_FAILED                     | 3501       | 로그아웃에 실패했습니다.                            |
 | Withdrawal     | AUTH\_WITHDRAW\_FAILED                   | 3601       | 탈퇴에 실패했습니다.                              |
-|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 이미 임시 탈퇴중인 유저 입니다.                    |
-|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 임시 탈퇴중인 유저가 아닙니다.                     |
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 이미 임시 탈퇴를 요청한 유저 입니다.                    |
+|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 임시 탈퇴를 요청한 유저가 아닙니다.                     |
 | Not Playable   | AUTH\_NOT\_PLAYABLE                      | 3701       | 플레이할 수 없는 상태입니다(점검 또는 서비스 종료 등).         |
 | Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                     | 3999       | 알수 없는 오류입니다.(정의되지 않은 오류입니다).             |
 

@@ -2,7 +2,7 @@
 
 To use Gamebase Unity SDK, initialization is required, and App ID and app version should be registered in the TOAST Console.
 
-### Inspector Settings
+### GamebaseConfiguration 
 
 Following settings are required for initialization.
 
@@ -10,12 +10,12 @@ Following settings are required for initialization.
 | -------------------------- | ------------------ | -------------------------- |
 | appID | ALL | M |
 | appVersion | ALL | M |
-| isDebugMode | ALL | O |
+| storeCode | ALL | M |
 | displayLanguageCode | ALL | O |
 | enablePopup | ALL | O |
 | enableLaunchingStatusPopup | ALL | O |
 | enableBanPopup | ALL | O |
-| storeCode | ALL | M |
+| enableKickoutPopup | ALL | O |
 | fcmSenderId | Android | O |
 | useWebview | Standalone | O |
 
@@ -31,25 +31,16 @@ Client version registered in TOAST.
 
 [Console Guide](/Game/Gamebase/en/oper-app/#client)
 
-#### 3. isDebugMode
+#### 3. storeCode
 
-Setting for Gamebase debug.
+Store information required to initialize In-App Purchase (IAP) of TOAST.
 
-* True: All Gamebase logs.
-* False: Warning and error logs.
-* Default: False
+| Store       | Code | Description  |
+| ----------- | ---- | ------------ |
+| App Store | AS | only iOS |
+| Google Play | GG | only Android |
+| One Store | ONESTORE | only Android |
 
-You can also perform the debug setting in the console and the values set in the console have priority.
-Please see the following guide to set in the console.
-
-* [Console 테스트 단말기 설정](./oper-app/#test-device)
-* [Console Client 설정](./oper-app/#client)
-
-To inquire about Gamebase, change the setting to True and send logs to [Customer Center](https://toast.com/support/inquiry) for a quick response.
-
-> <font color="red">[Caution]</font><br/>
->
-> When **releasing** a game, make sure to change **parameter** to **false**.
 
 #### 4. displayLanguageCode
 
@@ -79,15 +70,12 @@ This setting regards to applying default pop-ups provided by Gamebase, when the 
 
 * Default: True
 
-#### 8. storeCode
+#### 8. enableKickoutPopup
 
-Store information required to initialize In-App Purchase (IAP) of TOAST.
+The setting regards to enabling default Gamebase popups, when Kickout event is received by the Gamebase server. 
 
-| Store       | Code | Description  |
-| ----------- | ---- | ------------ |
-| App Store | AS | only iOS |
-| Google Play | GG | only Android |
-| One Store | ONESTORE | only Android |
+* Default: true
+
 
 #### 9. fcmSenderId
 
@@ -99,25 +87,9 @@ Sender ID to use FCM (Firebase Cloud Messaging).
 
 Set whether or not to log in to WebView on a (Standalone) platform.
 
-#### 11. GamebaseUnitySDKSettings
+### Initialize
 
-Settings described above can be modified at Inspector of the GamebaseUnitySDKSettings component.
-
-![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_003_1.12.0.png)
-
-### Initialize with Inspector Settings
-
-Gamebase Unity SDK can be initialized as follows:
-
-1. Create an empty game object.
-2. Add the GamebaseUnitySDKSettings.cs file as a component of the game object.
-3. Fill in the initialization setting at Inspector.
-4. Call Gamebase.Initialize (callback) API.
-
-> <font color="red">[Caution]</font><br/>
->
-> Keep note that if a created game object is deleted, a callback cannot be received after a call of Android or iOS API. <br/>
-> When it is deleted by mistake, "Do not destroy this gameObject in order to receive callback." error message will show.
+Initialize SDK.
 
 **API**
 
@@ -129,7 +101,7 @@ Supported Platforms
 <span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
-static void Initialize(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Launching.LaunchingInfo> callback)
+static void Initialize(GamebaseRequest.GamebaseConfiguration configuration, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Launching.LaunchingInfo> callback)
 ```
 
 **Example**
@@ -139,37 +111,82 @@ public class SampleInitialization
 {
     public void Initialize()
     {
-        Gamebase.Initialize((launchingInfo, error) =>
-        {
-            if (Gamebase.IsSuccess(error))
-            {
-                Debug.Log("Gamebase initialization is succeeded.");
+        var configuration = new GamebaseRequest.GamebaseConfiguration();
+        configuration.appID = "appID";
+        configuration.appVersion = "appVersion;"
+        configuration.displayLanguageCode = GamebaseDisplayLanguageCode.English;
+    #if UNITY_ANDROID
+        configuration.storeCode = GamebaseStoreCode.GOOGLE;
+    #elif UNITY_IOS
+        configuration.storeCode = GamebaseStoreCode.APPSTORE;
+    #elif UNITY_WEBGL
+        configuration.storeCode = GamebaseStoreCode.WEBGL;
+    #elif UNITY_STANDALONE
+        configuration.storeCode = GamebaseStoreCode.WINDOWS;
+    #else
+        configuration.storeCode = GamebaseStoreCode.WINDOWS;
+    #endif
 
-                if (IsPlayable(launchingInfo.launching.status.code))
+        Gamebase.Initialize(configuration, (launchingInfo, error) =>
+        {
+            if (Gamebase.IsSuccess(error) == true)
+            {
+                Debug.Log("Initialization succeeded.");
+
+                //Following notices are registered in the Gamebase Console
+                var notice = launchingInfo.launching.notice;
+                if (notice != null)
                 {
-                    Debug.Log("Playable");
+                    if (string.IsNullOrEmpty(notice.message) == false)
+                    {
+                        Debug.Log(string.Format("title:{0}", notice.title));
+                        Debug.Log(string.Format("message:{0}", notice.message));
+                        Debug.Log(string.Format("url:{0}", notice.url));
+                    }
+                }
+        
+                //Status information of game app version set in the Gamebase Unity SDK initialization.
+                var status = launchingInfo.launching.status;
+        
+                // Game status code (e.g. Under maintenance, Update is required, Service has been terminated)
+                // refer to GamebaseLaunchingStatus
+                if (status.code == GamebaseLaunchingStatus.IN_SERVICE)
+                {
+                    // Service is now normally provided.
                 }
                 else
                 {
-                    if (launchingInfo.launching.status.code == GamebaseLaunchingStatus.REQUIRE_UPDATE)
+                    switch (status.code)
                     {
-                        Debug.Log(string.Format("message:{0}", launchingInfo.launching.status.message));
+                        case GamebaseLaunchingStatus.RECOMMEND_UPDATE:
+                        {
+                            // Update is recommended.
+                            break;
+                        }
+                        // ... 
+                        case GamebaseLaunchingStatus.INTERNAL_SERVER_ERROR:
+                        {
+                            // Error in internal server.
+                            break;
+                        }
                     }
                 }
             }
             else
             {
-                Debug.Log(string.Format("Gamebase initialization is failed. error is {0}", error));
+                // Check the error code and handle the error appropriately.
+                Debug.Log(string.Format("Initialization failed. error is {0}", error));
+
+                if (error.code == GamebaseErrorCode.LAUNCHING_UNREGISTERED_CLIENT)
+                {
+                    GamebaseResponse.Launching.UpdateInfo updateInfo = GamebaseResponse.Launching.UpdateInfo.From(error);
+                    if (updateInfo != null)
+                    {
+                        // Update is require.
+                    }
+                }
             }
         });
-    }
-
-    private bool IsPlayable(int status)
-    {
-        if (status >= 200 && status < 300)
-            return true;
-
-        return false;
     }
 }
 ```
@@ -299,6 +316,89 @@ static GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
 public GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
 {
     return Gamebase.Launching.GetLaunchingInformations();
+}
+```
+
+### Handling Unregistered Version
+ 	 
+By initializing GameClientVersion which is not registered on Gamebase console, error occurs like follows: **LAUNCHING_UNREGISTERED_CLIENT(2004)**.  
+Under enablePopup(true), or enableLaunchingStatusPopup(true), popup shows for a forced update, and the user could be linked to the market.
+If Gamebase popup is disabled, updates like market URL can be obtained from the GamsebaseError object. 
+
+**VO**
+
+```cs
+public class UpdateInfo {
+	// URL for store installation to download the latest version.
+	string installUrl;
+    // 사User can find a message in the language set on device.
+    // When the language is 'ko', the message shows like follows.
+    // '지원하지 않는 버전입니다. 최신 버전으로 업데이트해 주세요.'
+    string message;
+}
+```
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+GamebaseResponse.Launching.UpdateInfo GamebaseResponse.Launching.UpdateInfo.From(GamebaseError error);
+```
+
+**Example**
+
+```cs
+public class SampleInitialization
+{
+    public void Initialize()
+    {
+        var configuration = new GamebaseRequest.GamebaseConfiguration();
+        configuration.appID = "appID";
+        configuration.appVersion = "appVersion;"
+        configuration.displayLanguageCode = GamebaseDisplayLanguageCode.English;
+    #if UNITY_ANDROID
+        configuration.storeCode = GamebaseStoreCode.GOOGLE;
+    #elif UNITY_IOS
+        configuration.storeCode = GamebaseStoreCode.APPSTORE;
+    #elif UNITY_WEBGL
+        configuration.storeCode = GamebaseStoreCode.WEBGL;
+    #elif UNITY_STANDALONE
+        configuration.storeCode = GamebaseStoreCode.WINDOWS;
+    #else
+        configuration.storeCode = GamebaseStoreCode.WINDOWS;
+    #endif
+
+        Gamebase.Initialize(configuration, (launchingInfo, error) =>
+        {
+            if (Gamebase.IsSuccess(error) == true)
+            {
+                // Gamebase initialization succeeded.
+            }
+            else
+            {
+                // Check the error code and handle the error appropriately.
+                Debug.Log(string.Format("Initialization failed. error is {0}", error));
+
+                if (error.code == GamebaseErrorCode.LAUNCHING_UNREGISTERED_CLIENT)
+                {
+                    GamebaseResponse.Launching.UpdateInfo updateInfo = GamebaseResponse.Launching.UpdateInfo.From(error);
+                    if (updateInfo != null)
+                    {
+                        // Unregistered game client version.
+                        // Open market url to update application.
+                        string installUrl = updateInfo.installUrl; // Market URL.
+                        string message updateInfo.message; // Message from launching server.
+                    }
+                }
+            }
+        });
+    }
 }
 ```
 

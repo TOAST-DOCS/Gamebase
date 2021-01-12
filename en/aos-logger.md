@@ -104,7 +104,7 @@ Gamebase.Logger.setUserField("KEY", "VALUE");
 
 ### Further Tasks after Sending Logs
 
-With delegate registration, further tasks can be executed after log delivery.
+With the listener registered, further tasks can be executed after log is sent.
 
 **API**
 

@@ -9,7 +9,8 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
 #### 1. Store Console
 
 * Refer to the IAP guide as below, to register an app to each store and get an Appkey.
-* [IAP > Store interlocking information](/Mobile%20Service/IAP/en/Store%20interlocking%20information/)
+	* [Game > Gamebase > Store Console Guide  > Google Console Guide](./console-google-guide)
+	* [Game > Gamebase > Store Console Guide > ONEStore Console Guide](./console-onestore-guide)
 
 #### 2. Register as Store's Tester
 
@@ -22,16 +23,27 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
         * A tester device requires USIM, with registered phone number (MDN).
         * Needs **ONE store** application installed.
 
-#### 3. Using TOAST IAP Service
+#### 3. Item Registration
 
-* Refer to the IAP guide to set and register IAP.
-    * [IAP > Getting Started](/Mobile%20Service/IAP/en/console-guide/)
+* See the guide to register items.
+    * [Game > Gamebase > Console User Guide > Purchase > Register](./oper-purchase/#register_1)
 
-#### 4. Download
+#### 4. Setting SDK
 
-* Add the **gamebase-adapter-purchase-iap** folder from downloaded SDK to your project.
-    * If ONE store purchase is not required, you may delete the **iap-onestore-x.x.x.aar** file.
-    * If you need ONE store purchase, the jar file above should be included to the project to build.
+* Add the gamebase-adapter-purchase module of the market to gradle dependency.
+
+```groovy
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // >>> Gamebase Version
+    def GAMEBASE_SDK_VERSION = 'x.x.x'
+    
+    // >>> Gamebase - Select Purchase Adapter
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
+}
+```
 
 #### 5. AndroidManifest.xml(ONE store only)
 
@@ -43,7 +55,6 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
     <application>
     ...
         <!-- [ONE store] Configurations begin -->
-        <meta-data android:name="iap:api_version" android:value="4" /> <!-- If the Version is 16.XX.XX, android:value should be "4". https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#iapapi_version-%EC%84%A4%EC%A0%95 -->
         <meta-data android:name="iap:plugin_mode" android:value="development" /> <!-- development / release -->
         <!-- [ONE store] Configurations end -->
     ...
@@ -53,10 +64,10 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
 
 #### 6. Initialization
 
-* The store code must be specified when a Gamebase is initialized.
-* Select a **STORE_CODE** among the following:
+* Store code must be specified to initialize Gamebase. 
+* Select **STORE_CODE** among the following:  
     * GG: Google
-    * ONESTORE: ONE store
+    * ONESTORE: OneStore
 
 ```java
 String STORE_CODE = "GG";	// Google
@@ -64,50 +75,75 @@ String STORE_CODE = "GG";	// Google
 GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(APP_ID, APP_VERSION, STORE_CODE)
         .build();
 
-Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
-    @Override
-    public void onCallback(final LaunchingInfo data, GamebaseException exception) {
-        ...
-    }
-});
+Gamebase.initialize(activity, configuration, callback);
 ```
 
 ### Purchase Flow
 
-Item purchases should be implemented in the following order.<br/>
+Purchase of an item can be divided into Purchase Flow, Consume Flow, and Reprocess Flow.  
+You may execute an item purchase in the following order: 
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-1. Call **requestPurchase** of Gamebase SDK to purchase in a game client.
-2. After a successful purchase, call **requestItemListOfNotConsumed** to check the list of non-consumed purchases.
-3. If there is a value on the returned list, the game client sends a request to the game server to consume purchased items.
-4. The game server requests for Consume API to the Gamebase server via API.
-   [API Guide](./api-guide/#wrapping-api)
-5. If the IAP server has successfully called Consume API, the game server provides the items to the game client.
+1. When a previous purchase has not been closed, purchase fails unless reprocessing runs. Therefore, call **requestItemListOfNotConsumed** before payment so as to run reprocessing, and execute Consume Flow if there's any unsupplied item. 
+2. For the game client, call **requestPurchase** of Gamebase SDK to make a purchase. 
+3. When a purchase has been successful, call **requestItemListOfNotConsumed** and check history of non-consumable purchases; and if there's any item to supply, execute Consume Flow. 
 
-* Some cases end up with abnormal closure due to errors, although purchase was successful at store. Please check the list of non-consumed purchases after login. <br/>
-    * When a login is successful, call **requestItemListOfNotConsumed** to check list of non-consumed purchases.
-    * If the value is on the returned list, the game client sends a request to the game server to consume, so that items can be provided.
+### Consume Flow
 
-### Purchase Item
+If there's a value on the list of non-consumable purchases, execute Consume Flow in the following order:
 
-Call following API of an item to purchase by using itemSeq to send a purchase request. <br/>
-When a game user cancels purchasing, the **GamebaseError.PURCHASE_USER_CANCELED** error will be returned. Please proceed with cancellation.
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.10.0.png)
+
+1. The game client requests for Consume of a purchase item on the game server. 
+    * Deliver UserID, itemSeq, paymentSeq, and purchaseToken.
+2. The game server tracks down the history of item supplies with same paymentSeq, or purchaseToken within game database.  
+    * 2-1 If not supplied yet, supply the item for itemSeq to UserID.   
+    * 2-2 After item is provided, save UserID, itemSeq, paymentSeq, and purchaseToken to game database so as to check redundancy.  
+3. The game server calls Consume API to the Gamebase server to complete with item supply.
+    * [API Guide > Purchase (IAP) > Consume](./api-guide/#consume)
+
+### Retry Transaction Flow
+
+* Sometimes, a successful purchase at store ends up with failed closure, due to error. 
+* Call **requestItemListOfNotConsumed** to run reprocessing and execute Consume Flow for any non-supplied items.
+* It is recommended to call reprocessing in time for the following: 
+    * After login is completed 
+    * Before payment 
+    * Entering store (or lobby) of a game 
+    * Checking user profile or mailbox 
+
+### Purchase Items
+
+With gamebaseProductId of an item to purchase, call the following API to request for purchase.<br/>
+The gamebaseProductId is generally same as the ID of item registered at store, but it could be changed on Gamebase console. 
+Additional information for the payload field remains at the **PurchasableReceipt.payload** field after a successful payment, and therefore, can be applied to many purposes.<br/>
+When a game user cancels purchase, the **GamebaseError.PURCHASE_USER_CANCELED** error is returned.
+Please process cancellation.
 
 **API**
 
 ```java
-+ (void)Gamebase.Purchase.requestPurchase(Activity activity, long itemSeq, GamebaseDataCallback<PurchasableReceipt> callback);
++ (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
+                                          @NonNull final String gamebaseProductId,
+                                          @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
++ (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
+                                          @NonNull final String gamebaseProductId,
+                                          @NonNull final String payload,
+                                          @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
+// Legacy API
++ (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
+                                          final long itemSeq,
+                                          @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
 ```
 
 **Example**
 
 ```java
-long itemSeq; // The itemSeq value can be got through the requestItemListPurchasable API.
-
-Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<PurchasableReceipt>() {
+String userPayload = "{\"description\":\"This is example\",\"channelId\":\"delta\",\"characterId\":\"abc\"}";
+Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, userPayload, new GamebaseDataCallback<PurchasableReceipt>() {
     @Override
-    public void onCallback(PurchasableReceipt data, GamebaseException exception) {
+    public void onCallback(PurchasableReceipt receipt, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
             // Succeeded.
         } else if(exception.getCode() == GamebaseError.PURCHASE_USER_CANCELED) {
@@ -149,12 +185,16 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 
 ### List Non-Consumed Items
 
-* List non-consumed consumables and consumable subscriptions (CONSUMABLE_AUTO_RENEWABLE). <br/>
-In case of non-purchased items, ask the game server (item server) to proceed with item delivery (supply).
-
-* Make a call in the following two cases.
-    1. To confirm before an item is consumed after a successful purchase
-    2. To check if there is any non-consumed item left after a login is successful
+* List non-consumed consumables and consumable subscriptions (CONSUMABLE_AUTO_RENEWABLE).
+* In case of non-purchased items, ask the game server (item server) to proceed with item delivery (supply).
+* When a purchase is not properly completed, reprocessing is also required; please call in time for the following: 
+    * See if there's any unsupplied items for a game user 
+    	* After login is completed 
+    	* Entering store (or lobby) of a game 
+    	* Checking user profile or mailbox
+    * See if there's any item in need of reprocessing 
+    	* Before purchase 
+    	*  After failed purchase 
 
 **API**
 
@@ -182,9 +222,9 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 
 ### List Activated Subscriptions
 
-List activated subscriptions for the current user ID.
-Subscriptions that are paid up (e.g. auto-renewable subscription, auto-renewed consumable subscription) can be listed before they are expired.
-With a same user ID, all purchased subscriptions from Android and iOS can be listed.
+List activated subscriptions for a current user ID. 
+Paid subscriptions (auto-renewable subscription, or auto-renewed consumable subscription) can be queried before they're expired. 
+Under a same user ID, both subscriptions for Android and iOS can be listed. 
 
 > <font color="red">[Caution]</font><br/>
 >
@@ -215,6 +255,12 @@ Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<L
 });
 ```
 
+### Promotional Events
+
+When a promotional purchase is completed, get an event from GamebaseEventHandler to be processed.  
+See the guide on how to process a promotional purchase event via GamebaseEventHandler.
+[Game > Gamebase > User Guide for Android SDK  > ETC > Gamebase Event Handler](./aos-etc/#purchase-updated)
+
 ### Error Handling
 
 | Error                                    | Error Code | Description                              |
@@ -223,7 +269,9 @@ Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<L
 | PURCHASE_USER_CANCELED                   | 4002       | Purchase is cancelled.                 |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | API has been called when a purchase logic is not completed.     |
 | PURCHASE_NOT_ENOUGH_CASH                 | 4004       | Cannot purchase due to shortage of cash of the store.             |
-| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | The store is not supported.<br>You can choose either GG (Google), ONESTORE. |
+| PURCHASE_INACTIVE_PRODUCT_ID             | 4005       | Product is not activated.  |
+| PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | Requested for purchase with invalid GamebaseProductID. |
+| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | The store is not supported.<br>You can choose either GG (Google), ONESTORE, GALAXY. |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | Error in IAP library.<br>Check detail codes.   |
 | PURCHASE_UNKNOWN_ERROR                   | 4999       | Unknown error in purchase.<br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we will respond ASAP. |
 
@@ -232,7 +280,7 @@ Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<L
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs at an IAP module.
+* Occurs at an TOAST IAP SDK.
 * Check the error code as below.
 
 ```java
@@ -261,6 +309,6 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 });
 ```
 
-* For IAP error codes, refer to the document below.
+* For TOAST IAP SDK error codes, refer to the document below.
     * [TOAST > TOAST SDK User Guide > TOAST IAP > Android > Error Codes](/TOAST/en/toast-sdk/iap-android/#_24)
 

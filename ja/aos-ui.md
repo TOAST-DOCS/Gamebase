@@ -22,8 +22,8 @@ WebViewを表示します。<br/>
 **API**
 
 ```java
-+ (void)Gamebase.WebView.showWebView(Activity activity, 
-                String urlString, 
++ (void)Gamebase.WebView.showWebView(Activity activity,
+                String urlString,
                 GamebaseWebViewConfiguration configuration,
                 GamebaseCallback onCloseCallback,
                 List<String> schemeList,
@@ -32,26 +32,11 @@ WebViewを表示します。<br/>
 
 **Example**
 
-```java	
-Gamebase.WebView.showWebView(activity, "http://www.toast.com",
-    new GamebaseWebViewConfiguration.Builder().build(),
-    new GamebaseCallback() {
-        @Override
-        public void onCallback(GamebaseException exception) {
-            Logger.d(TAG, "WebView is closed.");
-        }
-    }, schemeList,
-    new GamebaseDataCallback<String>() {
-        @Override
-        public void onCallback(String fullUrl, GamebaseException exception) {
-            Logger.d(TAG, "WebView Event occured. Event Url :" + fullUrl);
-        }
-    }
- );
+```java
+Gamebase.WebView.showWebView(activity, "http://www.toast.com");
 ```
 
 ![Webview Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
-
 
 #### Custom WebView
 
@@ -61,7 +46,6 @@ GamebaseWebViewConfigurationでユーザーが指定したWebViewを作成する
 ```java
 GamebaseWebViewConfiguration configuration
         = new GamebaseWebViewConfiguration.Builder()
-            .setStyle(GamebaseWebViewStyle.BROWSER)
             .setTitleText("title")                              // WebViewタイトルを設定
             .setScreenOrientation(ScreenOrientation.PORTRAIT)   // WebViewのスクリーン方向を設定
             .setNavigationBarColor(Color.RED)                   // ナビゲーションバーの色を設定
@@ -70,12 +54,66 @@ GamebaseWebViewConfiguration configuration
             .setBackButtonImageResource(R.id.back_button)       // 戻るボタンの画像を設定
             .setCloseButtonImageResource(R.id.close_button)     // 閉じるボタンの画像を設定
             .build();
-GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configuration);
+GamebaseWebView.showWebView(activity, "http://www.toast.com", configuration);
 ```
+
+#### Custom Scheme
+
+Gamebase WebViewでローディングしたWebページ内に、スキーマ(scheme)で特定機能を使用したり、Webページの内容を変更できます。
+
+##### Predefined Custom Scheme
+
+Gamebaseで指定しておいたスキーマです。
+
+| スキーマ         | 用途                                |
+| -------------------- | ------------------------------------- |
+| gamebase://dismiss   | WebViewを閉じる                       |
+| gamebase://goBack    | WebView前に戻る                   |
+| gamebase://getUserId | 現在ログインしているユーザーのIDを表示 |
+
+#### User Custom Scheme
+
+Gamebaseにスキーマ名とブロックを指定し、自由に機能を追加できます。
+
+```java
+GamebaseWebViewConfiguration configuration = new GamebaseWebViewConfiguration.Builder()
+        .setTitleText(title)
+        .build();
+List<String> schemeList = new ArrayList<>();
+schemeList.add("mygame://test");
+schemeList.add("mygame://opensomebrowser");
+schemeList.add("closemywebview://");
+showWebView(activity, urlString, configuration,
+        new GamebaseCallback() {
+            @Override
+            public void onCallback(GamebaseException exception) {
+                // When closed WebView, this callback will be called.
+            }
+        },
+        schemeList,
+        new GamebaseDataCallback<String>() {
+            @Override
+            public void onCallback(String fullUrl, GamebaseException exception) {
+                if (Gamebase.isSuccess(exception)) {
+                    if (fullUrl.contains("mygame://test")) {
+                        // Do something.
+                    } else if (fullUrl.contains("mygame://opensomebrowser")) {
+                        Gamebase.WebView.openWebBrowser(someUrl);
+                    } else if (fullUrl.contains("closemywebview://")) {
+                        // We will close webview.
+                        Gamebase.WebView.closeWebView(activity);
+                    }
+                } else {
+                    // Something went wrong.
+                }
+            }
+        });
+```
+
+#### GamebaseWebViewConfiguration
+
 | Method                                   | Values                              | Description    |
 | ---------------------------------------- | ----------------------------------- | -------------- |
-| setStyle(int style)                      | GamebaseWebViewStyle.BROWSER        | ブラウザスタイルのWebView   |
-|                                          | GamebaseWebViewStyle.POPUP          | ポップアップスタイルのWebView     |
 | setTitleText(String title)               | title                               | WebViewのタイトル         |
 | setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | 縦モード          |
 |                                          | ScreenOrientation.LANDSCAPE         | 横モード          |

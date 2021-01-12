@@ -18,8 +18,6 @@ Below describes environments and initial setting of Gamebase Unity SDK.
 > [See Google Play policy and Unity versions supporting 64 bits](https://developer.android.com/distribute/best-practices/develop/64-bit#unity-developers)
 
 
-
-
 #### Supported Platforms
 
 * iOS
@@ -187,3 +185,4 @@ A deprecated API can be deleted without any prior notice when the following cond
     - ZZ: Hotfix
 
 - Time elapse of at least five months
+

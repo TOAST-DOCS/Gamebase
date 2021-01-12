@@ -39,7 +39,7 @@ Gamebaseでは基本的にゲストログインに対応しています。
     * エラーコード**SOCKET_ERROR(110)**または**SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**Gamebase.loginForLastLoggedInProvider()**をもう一度呼び出したり、しばらくしてからもう一度試します。
 * 利用停止中のゲームユーザー
     * エラーコードが**BANNED_MEMBER(7)**の場合、利用停止中のゲームユーザーであるため認証に失敗したケースです。
-    * **Gamebase.getBanInfo()**で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由についてご案内ください。
+    * **BanInfo.from(exception)**で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由についてご案内ください。
     * Gamebaseを初期化する際に**GamebaseConfiguration.Builder.enablePopup(true)**及び**enableBanPopup(true)**を呼び出せば、Gamebaseが利用停止に関するポップアップを自動で表示します。
 * その他のエラー
     * 前回のログインタイプで認証に失敗しているため、**3. 指定されたIdPで認証**を進めてください。
@@ -61,7 +61,7 @@ Gamebaseでは基本的にゲストログインに対応しています。
     * エラーコードが**SOCKET_ERROR(110)**または**SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**Gamebase.login(activity, idpType, callback)**をもう一度呼び出したり、しばらくしてからもう一度試します。
 * 利用停止中のゲームユーザー
     * エラーコードが**BANNED_MEMBER(7)**の場合、利用停止中のゲームユーザーであるため認証に失敗したケースです。
-    * **Gamebase.getBanInfo()**で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由についてご案内ください。
+    * **BanInfo.from(exception)**で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由についてご案内ください。
     * Gamebaseを初期化する際に**GamebaseConfiguration.Builder.enablePopup(true)**及び**enableBanPopup(true)**を呼び出せば、Gamebaseが利用停止に関するポップアップを自動で表示します。
 * その他のエラー
     * エラーが発生したことをゲームユーザーに知らせ、ゲームユーザーが認証IdPのタイプを選択できる状態(主にタイトル画面またはログイン画面)に戻ります。
@@ -108,9 +108,9 @@ Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthTok
                 // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)を呼び出すと、
                 // Gamebaseが利用停止に関するポップアップを自動で表示します。
                 //
-                // Game UIに合わせて直接利用停止案内のポップアップを設計したい場合、Gamebase.getBanInfo()で
+                // Game UIに合わせて直接利用停止案内のポップアップを設計したい場合、BanInfo.from(exception)で
                 // 利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由を表示してください。
-                BanInfo banInfo = Gamebase.getBanInfo();
+                BanInfo banInfo = BanInfo.from(exception);
             } else {
                 // その他のエラーが発生した場合、指定されたIdPで認証を試みます。
                 Gamebase.login(activity, provider, logincallback);
@@ -165,9 +165,9 @@ private static void onLoginForGuest(final Activity activity) {
                     // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)を呼び出した場合
                     // Gamebaseが利用停止に関するポップアップを自動で表示します。
                     //
-                    // Game UIに合わせて直接利用停止案内のポップアップを設計したい場合、Gamebase.getBanInfo()で
+                    // Game UIに合わせて直接利用停止案内のポップアップを設計したい場合、BanInfo.from(exception)で
                     // 利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由を表示してください。
-                    BanInfo banInfo = Gamebase.getBanInfo();
+                    BanInfo banInfo = BanInfo.from(exception);
                 } else {
                     // ログイン失敗
                     Log.e(TAG, "Login failed- "
@@ -190,6 +190,7 @@ private static void onLoginForGuest(final Activity activity) {
 
 ```java
 + (void)Gamebase.login(Activity activity, AuthProvider provider, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.login(Activity activity, AuthProvider provider, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
 ```
 
 **Example**
@@ -222,9 +223,9 @@ private static void onLoginForGoogle(final Activity activity) {
                     // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)を呼び出した場合
                     // Gamebaseが利用停止に関するポップアップを自動で表示します。
                     //
-                    // Game UIに合わせて直接利用停止案内のポップアップを設計したい場合、Gamebase.getBanInfo()で
+                    // Game UIに合わせて直接利用停止案内のポップアップを設計したい場合、BanInfo.from(exception)で
                     // 利用制限情報を確認し、ユーザーに対しゲームプレイができない理由を表示してください。
-                    BanInfo banInfo = Gamebase.getBanInfo();
+                    BanInfo banInfo = BanInfo.from(exception);
                 } else {
                     // ログイン失敗
                     Log.e(TAG, "Login failed- "
@@ -301,9 +302,9 @@ private static void onLoginWithCredential(final Activity activity) {
                     // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)を呼び出した場合
                     // Gamebaseが利用停止に関するポップアップを自動で表示します。
                     //
-                    // Game UIに合わせて直接利用停止案内のポップアップを設計したい場合、Gamebase.getBanInfo()で
+                    // Game UIに合わせて直接利用停止案内のポップアップを設計したい場合、BanInfo.from(exception)で
                     // 利用制限情報を確認し、ユーザーに対しゲームプレイができない理由を表示してください。
-                    BanInfo banInfo = Gamebase.getBanInfo();
+                    BanInfo banInfo = BanInfo.from(exception);
                 } else {
                     // ログイン失敗
                     Log.e(TAG, "Login failed- "
@@ -494,14 +495,16 @@ private static void onWithdraw(final Activity activity) {
 **API**
 
 ```java
-+ (void)Gamebase.addMapping(Activity activity, String providerName, null, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.addMapping(Activity activity, String providerName, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.addMapping(Activity activity, String providerName, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
 ```
 
 **Example**
 
 ```java
 private static void addMappingForFacebook(final Activity activity) {
-    Gamebase.addMapping(activity, AuthProvider.FACEBOOK, null, new GamebaseDataCallback<AuthToken>() {
+    String mappingProvider = AuthProvider.FACEBOOK;
+    Gamebase.addMapping(activity, mappingProvider, new GamebaseDataCallback<AuthToken>() {
         @Override
         public void onCallback(AuthToken result, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
@@ -533,7 +536,7 @@ private static void addMappingForFacebook(final Activity activity) {
                 final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
                 final String forcingMappingKey = ticket.forcingMappingKey;
 
-                Gamebase.addMappingForcibly(activity, credentialInfo, forcingMappingKey, new GamebaseDataCallback<AuthToken>() {
+                Gamebase.addMappingForcibly(activity, mappingProvider, forcingMappingKey, new GamebaseDataCallback<AuthToken>() {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException exception) {
                         ...
@@ -658,6 +661,7 @@ private static void addMappingWithCredential(final Activity activity) {
 **API**
 
 ```java
++ (void)Gamebase.addMappingForcibly(Activity activity, String providerName, String forcingMappingKey, GamebaseDataCallback<AuthToken> callback);
 + (void)Gamebase.addMappingForcibly(Activity activity, String providerName, String forcingMappingKey, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
 ```
 
@@ -665,7 +669,8 @@ private static void addMappingWithCredential(final Activity activity) {
 
 ```java
 private static void addMappingForciblyFacebook(final Activity activity) {
-    Gamebase.addMapping(activity, AuthProvider.FACEBOOK, null, new GamebaseDataCallback<AuthToken>() {
+    String mappingProvider = AuthProvider.FACEBOOK;
+    Gamebase.addMapping(activity, mappingProvider, new GamebaseDataCallback<AuthToken>() {
         @Override
         public void onCallback(AuthToken result, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
@@ -682,7 +687,7 @@ private static void addMappingForciblyFacebook(final Activity activity) {
                 final String forcingMappingKey = ticket.forcingMappingKey;
 
                 // 強制マッピングを試行します。
-                Gamebase.addMappingForcibly(activity, AuthProvider.FACEBOOK, forcingMappingKey, null, new GamebaseDataCallback<AuthToken>() {
+                Gamebase.addMappingForcibly(activity, mappingProvider, forcingMappingKey, null, new GamebaseDataCallback<AuthToken>() {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException addMappingForciblyException) {
                         if (Gamebase.isSuccess(addMappingForciblyException)) {
@@ -858,7 +863,6 @@ Gamebaseから発行された認証情報を取得することができます。
 + (String)Gamebase.getUserID();
 + (String)Gamebase.getAccessToken();
 + (String)Gamebase.getLastLoggedInProvider();
-+ (BanInfo)Gamebase.getBanInfo();
 ```
 
 **Example**
@@ -873,9 +877,6 @@ String accessToken = Gamebase.getAccessToken();
 
 // Obtaining Last Logged In Provider
 String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
-
-// Obtaining Ban Information
-BanInfo banInfo = Gamebase.getBanInfo();
 ```
 
 
@@ -908,7 +909,7 @@ Map<String, Object> profileMap = profile.information;
 ### Get Banned User Information
 
 Gamebase Consoleで利用制限対象のゲームユーザーに登録された場合、
-ログインを試みると、次のような利用制限情報コードが表示されることがあります。**Gamebase.getBanInfo()**メソッドを利用して利用制限情報を確認することができます。
+ログインを試みると、次のような利用制限情報コードが表示されることがあります。**BanInfo.from(exception)**メソッドを利用して利用制限情報を確認することができます。
 
 * BANNED_MEMBER(7)
 
@@ -1010,16 +1011,16 @@ Gamebase.renewTransferAccount(autoConfig, new GamebaseDataCallback<TransferAccou
 });
 ```
 
-
-
-
 ### Transfer Guest Account to Another Device
 **issueTransfer**APIで発行したTransferAccountでアカウントを移行する機能です。
 アカウントの移行に成功した時、TransferAccountを発行した端末で移行完了メッセージが表示される場合があり、ゲストログインすると新規のアカウントが作成されます。
 アカウント移行が成功した端末では、TransferAccountを発行した端末のゲストアカウントを継続して使用できます。
 
-> <font color="red">[注意]</font><br/>
-> すでにゲストログインしている状態で移行すると、端末にログインしていたゲストアカウントは消滅します。
+> <font color="red">[Caution]</font><br/>
+>
+> * すでにゲストログインしている状態で移行すると、端末にログインしていたゲストアカウントは消滅します。
+> * 無効なIDやパスワードを連続して入力すると、**AUTH_TRANSFERACCOUNT_BLOCK(3042)**エラーが発生し、アカウント移行が一定時間できなくなります。
+> この場合は、下記の例のようにTransferAccountFailInfoの値でいつまでアカウント移行ができないかをユーザーに伝えることができます。
 
 **API**
 
@@ -1032,15 +1033,180 @@ Gamebase.renewTransferAccount(autoConfig, new GamebaseDataCallback<TransferAccou
 ```java
 Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDataCallback<AuthToken>() {
     @Override
-    public void onCallback(final AuthToken authToken, final GamebaseException exception) {
+    public void onCallback(AuthToken authToken, GamebaseException exception) {
         if (!Gamebase.isSuccess(exception)) {
             // Transfering Account failed.
+            TransferAccountFailInfo failInfo = TransferAccountFailInfo.from(exception);
+            if (failInfo != null) {
+                // Transfering Account failed by entering the wrong id / pw multiple times.
+                // You can tell when the account transfer is blocked by the TransferAccountFailInfo.
+                String failedId = failInfo.id;
+                int failCount = failInfo.failCount;
+                Date blockedDate = new Date(failInfo.blockEndDate);
+                return;
+            }
+
+            // Transfering Account failed by another reason.
             return;
         }
+
         // Transfering Account success.
         // TODO: implements post login process
     }
 });
+```
+
+## TemporaryWithdrawal
+
+退会猶予機能です。
+一時退会をリクエストして即時に退会が行われず、一定期間が過ぎると退会されます。
+猶予期間はコンソールで変更できます。
+
+> <font color="red">[注意]</font><br/>
+>
+> 退会猶予機能を使用する場合は**Gamebase.withdraw()**APIを使用しないでください。
+> **Gamebase.withdraw()**APIを使用するとアカウントを即時に退会させます。
+
+ログインに成功するとAuthToken.getTemporaryWithdrawalInfo() APIを呼び出して退会猶予状態のユーザーなのかを判断できます。
+
+### Request TemporaryWithdrawal
+
+一時退会をリクエストします。
+コンソールで設定した期間が過ぎると、自動的に退会が行われます。
+
+**API**
+
+```java
++ (void)Gamebase.TemporaryWithdrawal.requestWithdrawal(@NonNull Activity activity,
+                                                       @Nullable GamebaseDataCallback<TemporaryWithdrawalInfo> callback);
+```
+
+**ErrorCode**
+
+|Error Code | Description |
+| --- | --- |
+| AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW(3602) | すでに一時退会中のユーザーです。 |
+
+**Example**
+
+```java
+public static void testRequestWithdraw() {
+    Gamebase.TemporaryWithdrawal.requestWithdrawal(new GamebaseCallback() {
+        @Override
+        public void onCallback(TemporaryWithdrawalInfo data GamebaseException exception) {
+            if (!Gamebase.isSuccess(exception)) {
+                if (exception.getCode() == GamebaseError.AUTH_WITHDRAW_ALREADY_TEMPORARY_WITHDRAW) {
+                    // Already requested temporary withdrawal before.
+                } else {
+                    // Request temporary withdrawal failed.
+                    return;
+                }
+            }
+
+            // Request temporary withdrawal success.
+        }
+    });
+}
+```
+
+### Check TemporaryWithdrawal User
+
+退会猶予を使用するゲームはログイン後、常にAuthToken.getTemporaryWithdrawalInfo() APIを呼び出し、結果がnullではない有効なTemporaryWithdrawalInfoオブジェクトがリターンされた場合、該当ユーザーに退会進行中ということを伝える必要があります。
+
+**Example**
+
+```java
+public static void testLogin() {
+    Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
+        @Override
+        public void onCallback(AuthToken data, GamebaseException exception) {
+            if (!Gamebase.isSuccess(exception)) {
+                // Login failed
+                return;
+            }
+
+            // Check if user is requesting withdrawal
+            if (data.getTemporaryWithdrawalInfo() != null) {
+                // User is under temporary withdrawal
+                long gracePeriodDate = data.getTemporaryWithdrawalInfo().getGracePeriodDate();
+            } else {
+                // Login success.
+            }
+        }
+    });
+}
+```
+
+### Cancel TemporaryWithdrawal
+
+退会リクエストをキャンセルします。
+退会リクエスト後、猶予期間が過ぎて退会が完了した場合、キャンセルできません。
+
+**API**
+
+```java
++ (void)Gamebase.TemporaryWithdrawal.cancelWithdrawal(@NonNull Activity activity,
+                                                      @Nullable GamebaseCallback callback);
+```
+
+**ErrorCode**
+
+|Error Code | Description |
+| --- | --- |
+| AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW(3603) | 一時退会中のユーザーではありません。 |
+
+**Example**
+
+```java
+public static void testCancelWithdraw() {
+    Gamebase.TemporaryWithdrawal.cancelWithdrawal(new GamebaseCallback() {
+        @Override
+        public void onCallback(final GamebaseException exception) {
+            if (!Gamebase.isSuccess(exception)) {
+                if (exception.getCode() == GamebaseError.AUTH_WITHDRAW_NOT_TEMPORARY_WITHDRAW) {
+                    // Never requested temporary withdrawal before.
+                } else {
+                    // Cancel temporary withdrawal failed.
+                    return;
+                }
+            }
+
+            // Cancel temporary withdrawal success.
+        }
+    });
+}
+```
+
+### Withdraw Immediately
+
+退会猶予期間を無視して即時退会を進行します。
+実際の内部動作はGamebase.withdraw() APIと同じです。
+
+即時退会はキャンセルができないため、ユーザーに実行するかどうかをよく確認してください。
+
+**API**
+
+```java
++ (void)Gamebase.TemporaryWithdrawal.withdrawImmediately(@NonNull Activity activity,
+                                                         @Nullable GamebaseCallback callback);
+```
+
+**Example**
+
+```java
+public static void testWithdrawImmediately() {
+    Gamebase.TemporaryWithdrawal.withdrawImmediately(activity, new GamebaseCallback() {
+        @Override
+        public void onCallback(final GamebaseException exception) {
+            if (!Gamebase.isSuccess(exception)) {
+                // Withdraw failed.
+                return;
+            }
+
+            // Withdraw success.
+        }
+    });
+}
 ```
 
 ## Error Handling
@@ -1052,6 +1218,7 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 | Auth           | AUTH\_USER\_CANCELED                     | 3001       | ログインがキャンセルされました。                           |
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | この認証方式には対応しておりません。                      |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 退会されているか、存在しない会員です。                    |
+|                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | 外部認証ライブラリの初期化に失敗しました。 |
 |                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部認証ライブラリーエラーです。<br/> DetailCodeおよびDetailMessageを確認してください。  |
 |                | AUTH_ALREADY_IN_PROGRESS_ERROR           | 3010       | 移行認証プロセスが完了していません。 |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | 発行したTransferAccountを同じ端末で使用しました。 |
@@ -1084,6 +1251,8 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 |                | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP   | 3403       | 現在ログイン中のIdPです。                    |
 | Logout         | AUTH\_LOGOUT\_FAILED                     | 3501       | ログアウトに失敗しました。                           |
 | Withdrawal     | AUTH\_WITHDRAW\_FAILED                   | 3601       | 退会に失敗しました。                             |
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | すでに一時退会中のユーザーです。                    |
+|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 一時退会中のユーザーではありません。                     |
 | Not Playable   | AUTH\_NOT\_PLAYABLE                      | 3701       | プレイできない状態です(メンテナンスまたはサービス終了など)。        |
 | Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                     | 3999       | 不明なエラーです。(定義されていないエラーです)。            |
 
@@ -1096,7 +1265,7 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 * 外部ライブラリーエラーの詳細は次のように確認できます。
 
 ```java
-Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCallback<AuthToken>() {
+Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
     @Override
     public void onCallback(AuthToken data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
@@ -1113,7 +1282,7 @@ Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCa
                 // Third Party Detail Error Info
                 int moduleErrorCode = exception.getDetailCode();
                 String moduleErrorMessage = exception.getDetailMessage();
-                
+
                 ...
             }
         }
