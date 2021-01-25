@@ -1,5 +1,30 @@
 ## Game > Gamebase > 릴리스 노트
 
+### 2021. 01. 26.
+
+```
+푸시 > 푸시(구) 콘솔 메뉴 종료되었습니다.
+```
+
+#### 기능 추가
+* [Console] 
+	* 이용정지 > 앱가드: 조건 차단 기능 추가
+	* 구매(IAP) > 결제 어뷰징 모니터링: 애플 앱스토어 추가 
+* [SDK] 2.19.0
+	* (Unreal) SDK 배포: 2.16.0 ~ 2.19.0 누적된 내역 반영
+		* 고객센터 기능 추가	
+		* 인증 추가: Hangame, Weibo
+		* Galaxy 스토어 추가
+		* 결제 아이템 정보에 지역화된 상품 정보 추가: localizedTitle, localizedDescription
+		* Android 설정 툴 제공
+		* Unreal 4.26 지원
+
+#### 기능 개선/변경
+* [Console]
+	* 관리 > 권한: 매출 접근 권한 제거 [관련 공지 바로 가기](https://www.toast.com/kr/support/notice/detail/2101)
+* [SDK] 2.19.1
+	* (iOS) Weibo IdPAdapter 구조 변경	
+	
 ### 2021. 01. 12.
 
 ```
