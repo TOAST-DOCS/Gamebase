@@ -65,6 +65,8 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 * [Android SDK 使用指南 > 认证](./aos-authentication)
 * [iOS SDK 使用指南 > 认证](./ios-authentication)
 * [Unity SDK 使用指南 > 认证](./unity-authentication)
+* [Unreal SDK 使用指南 > 认证](./unreal-authentication)
+* [JavaScript SDK 使用指南 > 认证](./js-authentication)
 
 ### Payment
 
@@ -106,6 +108,8 @@ Launching信息可以在 Gamebase Console实时设定，SDK的初始化或 Launc
 * [Android SDK 使用指南 > 初始化 > Launching Status](./aos-initialization/#launching-status)
 * [iOS SDK 使用指南 > 初始化 > Launching Status](./ios-initialization/#launching-status)
 * [Unity SDK 使用指南 > 初始化 > Launching Information](./unity-initialization/#launching-information)
+* [Unreal SDK 使用指南 > 初始化 > Launching Status](./unreal-initialization/#launching-status)
+* [JavaScript SDK 使用指南 > 初始化 > Launching Information](./js-initialization/#launching-information)
 * [控制台使用指南> APP](./oper-app)：设置APP、客户端状态和安装URL
 * [控制台使用指南> 运营](./oper-operation)：维护、登记公告
 

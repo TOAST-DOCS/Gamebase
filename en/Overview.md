@@ -60,6 +60,8 @@ Following is the list of external authentication supported by Gamebase.
 * [Android Developer Guide > Auth](./aos-authentication)
 * [iOS Developer Guide > Auth](./ios-authentication)
 * [Unity Developer Guide > Auth](./unity-authentication)
+* [Unreal Developer Guide > Auth](./unreal-authentication)
+* [JavaScript Developer Guide > Auth](./js-authentication)
 
 ### Payment
 
@@ -86,6 +88,7 @@ Gamebase supports the following stores:
 * [Android Developer Guide > Payment](./aos-purchase/)
 * [iOS Developer Guide > Payment](./ios-purchase)
 * [Unity Developer Guide > Payment](./unity-purchase)
+* [Unreal Developer Guide > Payment](./unreal-purchase)
 
 ### Launching
 
@@ -106,6 +109,8 @@ Following information is provided by Gamebase for launching.
 * [Android Developer Guide > Launching Info](./aos-initialization/#launching-status)
 * [iOS Developer Guide > Launching Info](./ios-initialization/#launching-status)
 * [Unity Developer Guide > Launching Info](./unity-initialization/#launching-informations)
+* [Unreal Developer Guide > Launching Info](./unreal-initialization/#launching-status)
+* [JavaScript Developer Guide > Launching Info](./js-initialization/#launching-informations)
 * [Operator Guide > App Info(App, Client, Installed URL)](./oper-app): Set status of app and client, and installation URL
 * [Operator Guide > Operator(Maintenance,Notice)](./oper-operation): Register maintenance and notice
 
