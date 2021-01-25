@@ -54,6 +54,14 @@ Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカ�
 * **一人のゲームユーザーが複数の外部IdPを同時に使用することができるように、マッピング(mapping)機能を提供します。**
   例えば、Facebook認証を使用してゲームを利用しているユーザーがGoogle認証でも同じユーザーIDを使用することができるよう、マッピング機能を提供します。一つのユーザーIDにFacebookとGoogleの認証をマッピングすれば、ゲームユーザーは、あるデバイスではFacebook、他のデバイスではGoogleで認証してゲームをすることができます。
 
+#### 関連リンク
+
+* [Android SDK ご利用ガイド > 認証](./aos-authentication)
+* [iOS SDK ご利用ガイド > 認証](./ios-authentication)
+* [Unity SDK ご利用ガイド > 認証](./unity-authentication)
+* [Unreal SDK ご利用ガイド > 認証](./unreal-authentication)
+* [JavaScript SDK ご利用ガイド > 認証](./js-authentication)
+
 ### Payment
 
 ゲーム会社は開発したゲームを複数のストアにリリースすることで、少ない労力で収益を最大化することができます。Gamebaseは簡単に複数のストアの連携をサポートするため、主要ストアごとに決済連携仕様を学ぶ必要がありません。
@@ -62,6 +70,7 @@ Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカ�
 
 * Google Play Store
 * App Store
+* Galaxy Store
 * ONE Store
 * Facebook
 * Amazon
@@ -75,11 +84,12 @@ Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカ�
 * **ウェブコンソールでの多様な機能(決済履歴照会機能など)で、顧客からの問い合わせに円滑に対応できます。**
   ウェブコンソールでユーザーの決済履歴とアイテム支給状態の確認ができます。決済のキャンセルおよび不正行為対応も可能です。
 
-#### 関連リンク
+#### Reference
 
-* [Android SDK ご利用ガイド > 認証](./aos-authentication)
-* [iOS SDK ご利用ガイド > 認証](./ios-authentication)
-* [Unity SDK ご利用ガイド > 認証](./unity-authentication)
+* [Android SDK 사ご利用ガイド > 決済](./aos-purchase/)
+* [iOS SDK ご利用ガイド > 決済](./ios-purchase)
+* [Unity SDK ご利用ガイド > 決済](./unity-purchase)
+* [Unreal SDK ご利用ガイド > 決済](./unreal-purchase)
 
 ### ローンチ
 
@@ -100,6 +110,8 @@ Gamebaseで提供される起動情報は、次の通りです。
 * [Android SDK ご利用ガイド > 初期化 > Launching Status](./aos-initialization/#launching-status)
 * [iOS SDK ご利用ガイド > 初期化 > Launching Status](./ios-initialization/#launching-status)
 * [Unity SDK ご利用ガイド > 初期化 > Launching Information](./unity-initialization/#launching-information)
+* [Unreal SDK ご利用ガイド > 初期化 > Launching Information](./unreal-initialization/#launching-information)
+* [JavaScript SDK ご利用ガイド > 初期化 > Launching Information](./js-initialization/#launching-information)
 * [Console ご利用ガイド > アプリ](./oper-app)：アプリ、クライアントステータス及びインストールURLの設定
 * [Console ご利用ガイド > 運営](./oper-operation)：メンテナンス、お知らせ登録
 

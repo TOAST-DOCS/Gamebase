@@ -4,7 +4,7 @@
 
 ## Install: Developers
 
-### Gamebase SDK 설치 [\[바로가기\]](https://forward.nhn.com/2019/seoul/hands-on-labs/gamebase.install-with-setting-tool/)
+### Gamebase SDK 설치 [\[바로가기\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.install-with-setting-tool/)
 
 #### 초급 / 5분
 	
@@ -16,7 +16,7 @@
 
 ## Authentication: Developers
 
-### [Unity] Guest 인증 [\[바로가기\]](https://forward.nhn.com/2019/seoul/hands-on-labs/gamebase.guest-auth-on-unity/)
+### [Unity] Guest 인증 [\[바로가기\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.guest-auth-on-unity/)
 
 #### 초급/15분
 
@@ -27,7 +27,7 @@
 * Gamebase Guest Login
 * Gamebase Logout
 	
-### [Javascript] Guest 인증 [\[바로가기\]](https://forward.nhn.com/2019/seoul/hands-on-labs/gamebase.guest-auth-on-js/)
+### [Javascript] Guest 인증 [\[바로가기\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.guest-auth-on-js/)
 
 #### 초급/15분
 
@@ -35,7 +35,7 @@
 * Gamebase JavaScript 초기화
 * Gamebase Guest 인증
 	
-### [Unity] Google IdP 인증 [\[바로가기\]](https://forward.nhn.com/2019/seoul/hands-on-labs/gamebase.google-setting/)
+### [Unity] Google IdP 인증 [\[바로가기\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.google-setting/)
 
 #### 초급/30분
 

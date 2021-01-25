@@ -8,7 +8,7 @@ Gamebase Unreal SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 >
 > Unreal 지원 버전
 >
-> * UE 4.22 ~ UE 4.25
+> * UE 4.22 ~ UE 4.26
 > * 하위 버전의 Unreal 지원이 필요하면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
 
 #### Supported Platforms
@@ -44,40 +44,21 @@ Supported Platforms
 
 ### Android Settings
 
-* Plugins/Gamebase/Source/Gamebase/Gamebase_Android_UPL.xml
-    * 사용할 인증, 결제, 푸시 모듈 gradle 의존성을 추가합니다.
+1. 에디터의 메뉴 **Edit > Project Settings** 를 선택합니다.
+2. Project Settings 창에서 Plugin 카테고리에서 **Gamebase**를 선택합니다.
 
-```xml
-<buildGradleAdditions>
-    <insert>
-        dependencies {
-            // >>> Gamebase Version
-            def GAMEBASE_SDK_VERSION = 'x.x.x'
+![Unreal Project Settings - Android](http://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.19.0.png)
 
-            implementation "com.toast.android.gamebase:gamebase-sdk:$GAMEBASE_SDK_VERSION"
-            implementation "com.toast.android.gamebase:gamebase-sdk-base:$GAMEBASE_SDK_VERSION"
+* Android - Authentication
+    * 사용하려는 IdP를 활성화 합니다.
+    * Hangame IdP 사용 시 고객센터로 별도로 문의 바랍니다.
+* Android - Push
+    * 사용하려는 Push를 활성화 합니다.
+* Android - Purchase
+    * 사용할 스토어를 선택합니다.
+    * ONE Store
+        * View Option - 전체 결제 화면(Full)과 팝업 결제 화면(Popup) 중 선택합니다.
 
-            // >>> Gamebase - Add Auth Adapter (사용하려는 IdP에 맞게 gamebase-adapter-auth 모듈을 gradle 의존성에 추가합니다.)
-            //implementation "com.toast.android.gamebase:gamebase-adapter-auth-facebook:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-auth-google:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-auth-line:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-auth-naver:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-auth-payco:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-auth-twitter:$GAMEBASE_SDK_VERSION"
-
-            // >>> Gamebase - Select Purchase Adapter (사용하려는 마켓의 gamebase-adapter-purchase 모듈을 gradle 의존성에 추가합니다.)
-            //implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
-
-            // >>> Gamebase - Select Push Adapter (사용하려는 Push의 gamebase-adapter-push 모듈을 gradle 의존성에 추가합니다.)
-            //implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
-
-            // Add the TOAST Crash Reporter for NDK dependency
-            implementation 'com.toast.android:toast-crash-reporter-ndk:0.21.0'
-        }
-    </insert>
-</buildGradleAdditions>
-```
 
 #### Google Play 인증 및 결제가 되지 않는 문제
 
