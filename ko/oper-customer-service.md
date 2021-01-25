@@ -299,5 +299,6 @@ Text editor를 이용하여 자유롭게 입력이 가능하며 입력된 내용
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_14_202011.png)
 
 > [참고]
-> 발신 주소에 설정된 이메일이 SPF 레코드가 설정되지 않았을 경우에는 수신거부가 될 가능성이 있으므로 아래 값을 DNS의  TXT레코드에 먼저 등록 후 발신주소에 설정해 주셔야 합니다.
+> 발신 주소에 설정된 이메일이 SPF 레코드가 설정되지 않았을 경우에는 해당 메일이 스팸 처리 될 수 있습니다. 
+> 그러므로 반드시 아래의 값을 DNS의 TXT레코드에 먼저 등록 후 발신주소에 설정해 주셔야 합니다.
 > 추가 값 : v=spf1 include:_spfblocka.toast.com ~all
