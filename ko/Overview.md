@@ -12,9 +12,8 @@ Gamebase의 다양한 기능을 확인할 수 있도록 샘플앱을 제공하�
 개발자들은 샘플앱 코드를 확인하여 Gamebase 적용 방법을 손쉽게 확인할 수 있습니다.
 
 * [다운로드 페이지](https://github.com/nhn/toast.gamebase.unity.sample/releases)
-![Gamebase_sample_app](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_Sample_App.png)
-* QR코드를 이용하여 Sample App APK를 다운로드 할 수 있습니다.
-* 지원 플랫폼: Android OS
+![Gamebase_sample_app](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_Sample_App1.png)
+* QR코드를 이용하여 Sample App APK를 다운로드 할 수 있습니다.(지원 플랫폼: Android OS)
 
 ## Key Features
 
@@ -71,7 +70,8 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 * [Android SDK 사용 가이드 > 인증](./aos-authentication)
 * [iOS SDK 사용 가이드 > 인증](./ios-authentication)
 * [Unity SDK 사용 가이드 > 인증](./unity-authentication)
-
+* [Unreal SDK 사용 가이드 > 인증](./unreal-authentication)
+* [JavaScript SDK 사용 가이드 > 인증](./js-authentication)
 
 ### Payment
 
@@ -80,6 +80,7 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 다음은 Gamebase에서 지원하는 스토어 목록입니다.
 * Google Play
 * App Store
+* Galaxy Store
 * 원스토어
 * Facebook
 * Amazon
@@ -98,6 +99,7 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 * [Android SDK 사용 가이드 > 결제](./aos-purchase/)
 * [iOS SDK 사용 가이드 > 결제](./ios-purchase)
 * [Unity SDK 사용 가이드 > 결제](./unity-purchase)
+* [Unreal SDK 사용 가이드 > 결제](./unreal-purchase)
 
 ### Launching
 
@@ -118,6 +120,8 @@ Gamebase에서 제공되는 론칭 정보는 다음과 같습니다.
 * [Android SDK 사용 가이드 > 초기화 > Launching Status](./aos-initialization/#launching-status)
 * [iOS SDK 사용 가이드 > 초기화 > Launching Status](./ios-initialization/#launching-status)
 * [Unity SDK 사용 가이드 > 초기화 > Launching Information](./unity-initialization/#launching-information)
+* [Unreal SDK 사용 가이드 > 초기화 > Launching Information](./unreal-initialization/#launching-information)
+* [JavaScript SDK 사용 가이드 > 초기화 > Launching Information](./js-initialization/#launching-information)
 * [콘솔 사용 가이드 > 앱](./oper-app): 앱, 클라이언트 상태 및 설치 URL 설정
 * [콘솔 사용 가이드 > 운영](./oper-operation): 점검, 공지 등록
 

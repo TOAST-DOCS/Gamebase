@@ -276,7 +276,7 @@ void Sample::RequestActivatedPurchases()
 | PURCHASE_USER_CANCELED                   | 4002       | 게임 유저가 아이템 구매를 취소했습니다.                  |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003      | 구매 로직이 아직 완료되지 않은 상태에서 API가 호출되었습니다. |
 | PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 해당 스토어의 캐시가 부족해 결제할 수 없습니다.              |
-| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 GG(Google), ONESTORE입니다. |
+| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 AS(App Store), GG(Google), ONESTORE, GALAXY 입니다. |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAP 라이브러리 오류입니다.<br>DetailCode를 확인하세요.   |
 | PURCHASE_UNKNOWN_ERROR                   | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
