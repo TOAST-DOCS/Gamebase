@@ -119,7 +119,8 @@ TOAST에서 조직별로 제공되는 Online contact 상품을 사용하는 경�
 > 회원 연동 활성화: 활성화
 > 로그인 타입: GET 방식
 > Token 검증 URL: https://gamebase-web.cloud.toast.com/tcgb-web/v1.0/apps/{appId}/online-contact/login-status
->
+> **{appId}** 부분은 설정하고자 하는 Gamebase의 프로젝트 ID를 확인하신 후 해당 위치에 입력해주시면 됩니다.
+> 
 > 2) OC 조직 Key를 획득하여 OC 조직 Key항목에 입력
 > 전체 관리 -> 계약 서비스 현황 -> 조직 정보로 이동한 후 OC 조직 정보의 OC 조직 Key를 복사하여 Gamebase OC 조직 Key 항목에 입력 
 > ![gamebase_app_25_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_25_202102.png)

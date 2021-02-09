@@ -111,7 +111,7 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 q
 
 > <font color="red">[주의]</font><br/>
 >
-> 약관에 푸시 수신 동의 여부를 추가했다면, TCGBDataContainer 로부터 TCGBPushConfiguration 를 생성할 수 있습니다.
+> 약관에 푸시 수신 동의 여부를 추가했다면, TCGBDataContainer 로부터 TCGBPushConfiguration 을 생성할 수 있습니다.
 > TCGBPushConfiguration 이 nil 이 아니라면 **로그인 후에** [TCGBPush registerPushWithConfiguration:completion:] API 를 호출하세요.
 >
 
@@ -167,7 +167,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 > <font color="red">[주의]</font><br/>
 >
 > * TCGBTermsContentDetail.required 가 true 인 필수 항목은 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false 로 리턴됩니다.
->     * 필수 항목을 체크하지 않으면 약관 동의를 하지 않은 상태이므로 다음으로 진행할 수 없어 항상 해당 항목은 true 로 저장되기 때문입니다.
+>     * 필수 항목은 항상 true 로 저장될 수 밖에 없어서 저장하는 의미가 없기 때문입니다.
 > * 푸시 수신 동의 여부도 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false 로 리턴됩니다.
 >     * 유저의 푸시 수신 동의 여부는 [TCGBPush queryTokenInfoWithCompletion:] API 를 통해 확인하시기 바랍니다.
 > * 콘솔에서 '기본 약관 설정' 을 하지 않는 경우, 약관 언어와 다른 국가코드로 설정된 단말기에서 queryTerms API 를 호출하면 **TCGB_ERROR_UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** 에러가 발생합니다.
@@ -220,7 +220,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 | -------------------- | --------------------------------| ------------------- |
 | termsSeq             | int                             | 약관 전체 KEY.<br/>updateTerms API 호출 시 필요한 값입니다.          |
 | termsVersion         | String                          | 약관 버전.<br/>updateTerms API 호출 시 필요한 값입니다.              |
-| termsCountryType     | String                          | 약관 타입<br/> - KOREAN : 한국 약관 <br/> - GDPR : 유럽 약관 <br/> - ETC : 기타 약관         |
+| termsCountryType     | String                          | 약관 타입.<br/> - KOREAN : 한국 약관 <br/> - GDPR : 유럽 약관 <br/> - ETC : 기타 약관         |
 | contents             | Array< TCGBTermsContentDetail > | 약관 항목 정보          |
 
 
@@ -231,11 +231,11 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 | termsContentSeq      | int                   | 약관 항목 KEY         | 
 | name                 | String                | 약관 항목 이름         |
 | required             | BOOL                  | 필수 동의 여부         |
-| agreePush            | String                | 광고성 푸시 동의 여부 <br/> - NONE : 동의 안함 <br/> - ALL : 전체 동의 <br/> - DAY : 주간 푸시 동의<br/> - NIGHT : 야간 푸시 동의          |
+| agreePush            | String                | 광고성 푸시 동의 여부.<br/> - NONE : 동의 안함 <br/> - ALL : 전체 동의 <br/> - DAY : 주간 푸시 동의<br/> - NIGHT : 야간 푸시 동의          |
 | agreed               | BOOL                  | 해당 약관 항목에 대한 유저 동의 여부           |
-| node1DepthPosition   | int                   | 1단계 항목 노출 순서           |
-| node2DepthPosition   | int                   | 2단계 항목 노출 순서 <br/> 없을 경우 -1           |
-| detailPageUrl        | String                | 약관 자세히 보기 URL <br/> 설정되어 있지 않으면 필드 없음           |
+| node1DepthPosition   | int                   | 1단계 항목 노출 순서.           |
+| node2DepthPosition   | int                   | 2단계 항목 노출 순서.<br/> 없을 경우 -1           |
+| detailPageUrl        | String                | 약관 자세히 보기 URL.<br/> 설정되어 있지 않으면 필드 없음           |
 
 
 ### updateTerms
