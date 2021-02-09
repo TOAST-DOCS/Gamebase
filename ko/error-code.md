@@ -82,9 +82,16 @@
 | UI                | Android, UNITY<br/>IOS | UI\_IMAGE\_NOTICE\_TIMEOUT<br/>TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT | 6901       | 이미지 공지 표시 중 타임아웃이 발생했습니다.            |
 |               | Android, UNITY<br/>IOS | UI\_CONTACT\_FAIL\_INVALID\_URL<br/>TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 고객센터 웹뷰 URL 생성에 실패했습니다.            |
 |               | Android, UNITY<br/>IOS | UI\_CONTACT\_FAIL\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET<br/>TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 사용자 식별을 위한 임시 티켓 발급에 실패했습니다.            |
-|               | Android, UNITY | UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW | 6913       | 고객센터 웹뷰가 이미 열려 있습니다.            |
+|               | Android, UNITY<br/>IOS | UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE<br/>TCGB\_ERROR\_UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE | 6921       | 약관 정보가 콘솔에 등록되어 있지 않습니다. |
+|               | Android, UNITY<br/>IOS | UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY<br/>TCGB\_ERROR\_UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY | 6922       | 단말기 국가코드에 맞는 약관 정보가 콘솔에 등록되어 있지 않습니다. |
+|               | Android, UNITY<br/>IOS | UI\_TERMS\_UNREGISTERED\_SEQ<br/>TCGB\_ERROR\_UI\_TERMS\_UNREGISTERED\_SEQ | 6923       | 등록되지 않은 약관 Seq 값입니다.            |
+|               | Android, UNITY<br/>IOS | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR<br/>TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924       | 이전에 호출된 Terms API 가 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
+|               | Android, UNITY | UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925       | 약관 웹뷰가 아직 종료되지 않았는데 다시 호출되었습니다. |
 |               | Android, UNITY<br/>IOS | UI\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_UI\_UNKNOWN\_ERROR | 6999       | 알 수 없는 오류입니다(정의되지 않은 오류).            |
-| WebView         | UNITY                  | WEBVIEW\_UNKNOWN\_ERROR 								| 7999       | 웹뷰 호출시 알 수 없는 오류가 발생했습니다.(정의되지 않은 오류).            |
+| WebView         | Android, UNITY<br/>IOS | WEBVIEW\_INVALID\_URL<br/>TCGB\_ERROR\_WEBVIEW\_INVALID\_URL   		| 7001       | 잘못된 URL 입니다.            |
+|                 | Android, UNITY<br/>IOS | WEBVIEW\_TIMEOUT<br/>TCGB\_ERROR\_WEBVIEW\_TIMEOUT 	    	        | 7002       | 웹뷰 표시중 타임아웃이 발생했습니다.            |
+|                 | Android, UNITY<br/>IOS | WEBVIEW\_HTTP\_ERROR<br/>TCGB\_ERROR\_WEBVIEW\_HTTP\_ERROR 	     	| 7003       | HTTP 에러로 웹뷰 표시가 실패하였습니다.            |
+|                 | UNITY                  | WEBVIEW\_UNKNOWN\_ERROR 								| 7999       | 웹뷰 호출시 알 수 없는 오류가 발생했습니다.(정의되지 않은 오류).            |
 | Server          | Android, UNITY<br/>IOS | SERVER\_INTERNAL\_ERROR<br/>TCGB\_ERROR\_SERVER\_INTERNAL\_ERROR | 8001       | 서버 내부 오류                                 |
 |                 | Android, UNITY<br/>IOS | SERVER\_REMOTE\_SYSTEM\_ERROR<br/>TCGB\_ERROR\_SERVER\_REMOTE\_SYSTEM\_ERROR | 8002       | 서버에서 외부 연동 중 오류가 발생했습니다.                        |
 |                 | Android, UNITY<br/>IOS | SERVER\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_SERVER\_UNKNOWN\_ERROR | 8999       | 서버에서 알 수 없는 오류가 발생했습니다.                           |
