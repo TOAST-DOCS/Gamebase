@@ -192,7 +192,9 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 | Payco       | GamebaseAuthProvider.PAYCO      | Android<br/>iOS<br/>Standalone |
 | Naver       | GamebaseAuthProvider.NAVER      | Android<br/>iOS |
 | Twitter     | GamebaseAuthProvider.TWITTER    | Android<br/>iOS |
-| Line        | GamebaseAuthProvider.LINE       | Android |
+| Line        | GamebaseAuthProvider.LINE       | Android<br/>iOS |
+| HANGAME     | GamebaseAuthProvider.HANGAME    | Android<br/>iOS |
+| WEIBO       | GamebaseAuthProvider.WEIBO      | Android<br/>iOS |
 
 
 > IdPの中には、ログインする際に必ず必要な情報があるものがあります。<br/>
