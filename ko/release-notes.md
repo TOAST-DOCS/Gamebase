@@ -6,7 +6,7 @@
 * 공통약관 기능 추가
 	* [Console] 신규 메뉴 오픈: 앱 > 약관, 앱 > 약관 배포
 	* [SDK] 2.20.0
-		* (공통) 약관 웹뷰를 여는 API 추가
+		* (공통) 약관 WebView를 여는 API 추가
 		* (공통) 약관 리스트 및 유저별 동의 여부를 조회하는 API 추가
 		* (공통) 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
 
@@ -16,16 +16,16 @@
 	* (공통) 고객센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객센터가 표시되도록 변경
 	* (Unity) Warning 로그 제거
 	* (Unity) Standalone WebView에 CEF 2.1.2 업데이트
-		* URL의 길이가 2,048보다 길 경우 Crash가 발생하는 이슈 수정
+		* URL의 길이가 2,048보다 길 경우 크래시가 발생하는 이슈 수정
 		* Unity 2019에서 빌드 시 라이브러리 경로가 변경되어 PostProcessBuild 개선
 		* string 초기화를 하지 않아 간헐적으로 발생하는 오류 수정
-		* 게임베이스 웹뷰 사용중 웹뷰가 신을 이동한 이후에는 다시 열리지 않는 버그 수정
+		* Gamebase WebView 사용 중 WebView가 신(scene)을 이동한 이후에는 다시 열리지 않는 버그 수정
 
 #### 버그 수정
 * [SDK] 2.20.0
 	* (JavaScript) 콘솔에 고객센터 정보를 입력하지 않으면 초기화 시 오류가 발생하여 수정
 * [SDK] 2.19.1
-	* (Unreal) Unity Build 중 제외되는 파일이 생길 때 발생하는 컴파일 오류 수정
+	* (Unreal) Unity 빌드 중 제외되는 파일이 생길 때 발생하는 컴파일 오류 수정
 
 ### 2021. 01. 26.
 
@@ -824,7 +824,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
         * LevelUpData Class: userLevel, levelUpTime 파라미터가 필수로 변경 / 그 외 필드 삭제 [자세히보기 [Android](http://docs.toast.com/ko/Game/Gamebase/ko/aos-etc/#game-user-data-settings) / [iOS](http://docs.toast.com/ko/Game/Gamebase/ko/ios-etc/#game-user-data-settings) / [Unity](http://docs.toast.com/ko/Game/Gamebase/ko/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#game-user-data-settings)]
         * GameUserData Class: classId(게임유저의 직업) 필드 추가 [자세히보기 [Android](http://docs.toast.com/ko/Game/Gamebase/ko/aos-etc/#level-up-trace) / [iOS](http://docs.toast.com/ko/Game/Gamebase/ko/ios-etc/#level-up-trace) / [Unity](http://docs.toast.com/ko/Game/Gamebase/ko/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#level-up-trace)]
     * (Android)Naver SDK 버전 업데이트(v4.2.5): Naver SDK 버그 수정(Naver 로그인 도중에 앱 아이콘을 통해 앱을 재시작할 경우, Activity가 강제종료 되는 이슈로 인해 인증 프로세스가 중단되는 이슈가 해결)
-    * (Unity)StandaloneWebview가 32bit Build를 지원 (SDK 용량 53.6MB에서 99.2MB로 증가)
+    * (Unity)StandaloneWebview가 32bit 빌드를 지원 (SDK 용량 53.6MB에서 99.2MB로 증가)
 * [Server]
     * LTV 쿼리 수정 및 failover 로직 수정
 * [Console]
