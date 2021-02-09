@@ -103,40 +103,32 @@ Gamebase에서 제공하는 고객센터 기능을 사용하고자 할 때 설�
 * **기본 언어** : 지원 언어에서 선택한 항목 중 고객센터 내에서 기본으로 제공할 언어를 선택합니다.
 
 #### 3. TOAST 조직 상품(Online Contact)
-![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_21_202009.png)
+![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_21_202102.png)
 TOAST에서 조직별로 제공되는 Online contact 상품을 사용하는 경우 설정합니다.
 설정 항목은 아래와 같습니다.
 * **고객센터 URL** : TOAST Online Contact에서 제공되는 주소를 입력합니다. 해당정보는 TOAST Online Contact에 접속하여 확인할 수 있습니다.
 * **연락처** : 고객센터 연락처를 입력합니다. 이 정보는 Gamebase SDK를 통해 추가로 정보를 전달받을 수 있습니다.
-* **SSO 로그인 API Key** : TOAST Online Contact 고객센터 문의를 확인하기 위한 Key를 입력합니다. 해당정보를 입력하지 않을 경우 고객센터 페이지 내에서 인입된 문의를 확인할 수 없으므로 확인 후 입력해야 합니다. 자세한 연동 방법은 아래 참고내용을 보시고 연동해주시면 됩니다.
+* **OC 조직 Key** : TOAST Online Contact 고객센터 문의를 확인하기 위한 Key를 입력합니다. 해당정보를 입력하지 않을 경우 고객센터 페이지 내에서 인입된 문의를 확인할 수 없으므로 확인 후 입력해야 합니다. 자세한 연동 방법은 아래 참고내용을 보시고 연동해주시면 됩니다.
 > [참고] TOAST Online Contact와 Gamebase간의 연동
 > Gamebase내에서 TOAST Online Contact 연동하고자 할 경우 아래 과정에 따라 SSO 로그인 API Key를 발급받아 Gamebase내에 설정해주셔야 고객센터 서비스를 정상적으로 이용할 수 있습니다.
 > 고객센터의 안정적인 서비스 제공을 위해 아래 순서대로 참고하시어 진행 해주시기 바랍니다.
 >
-> 1) TOAST Online Contact에 SSO 등록하기
-> 전체 관리 -> SSO 로그인 -> 등록 버튼 클릭
-> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_22_202009.png)
+> 1) TOAST Online Contact에 회원 연동 방식 설정
+> 서비스 관리 -> 헬프센터 -> 회원 연동
+> ![gamebase_app_22_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_22_202102.png)
+> 회원 연동 활성화: 활성화
+> 로그인 타입: GET 방식
+> Token 검증 URL: https://gamebase-web.cloud.toast.com/tcgb-web/v1.0/apps/{appId}/online-contact/login-status
 >
-> 2) SSO 로그인 추가 정보 입력
-> SSO 로그인 명 : Gamebase SSO 인증(또는 해당하는 구별자 정보 입력)
-> 원격 로그인 URL : https://gamebase-web.cloud.toast.com/tcgb-web/v1.0/apps/{appId}/online-contact/login
-> 로그인 상태 URL : https://gamebase-web.cloud.toast.com/tcgb-web/v1.0/apps/{appId}/online-contact/login
-> **{appId}** 부분은 설정하고자 하는 Gamebase의 프로젝트 ID를 확인하신 후 해당 위치에 입력해주시면 됩니다.
-> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_23_202009.png)
+> 2) OC 조직 Key를 획득하여 OC 조직 Key항목에 입력
+> 전체 관리 -> 계약 서비스 현황 -> 조직 정보로 이동한 후 OC 조직 정보의 OC 조직 Key를 복사하여 Gamebase OC 조직 Key 항목에 입력 
+> ![gamebase_app_25_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_25_202102.png)
 >
-> 3) SSO 로그인 인증 활성화 및 등록한 SSO 선택
-> 서비스 관리 -> 인증 -> SSO로그인으로 이동한 후 SSO로그인 활성화 항목을 활성화로 선택 및 SSO 로그인 지정을 Gamebase SSO 인증으로 선택
-> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_24_202009.png)
->
-> 4) SSO 로그인 API Key를 획득하여 SSO 로그인 API Key항목에 입력
-> 전체 관리 -> SSO 로그인으로 이동하여 적혀있는 API Key를 복사하여 Gamebase SSO 로그인 API Key항목에 입력
-> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_25_202009.png)
->
-> 5) TOAST Online contact 고객센터 페이지 주소를 획득하여 고객센터 URL에 입력
+> 3) TOAST Online contact 고객센터 페이지 주소를 획득하여 고객센터 URL에 입력
 > 헬프센터 -> 하위메뉴 선택 -> 우측 위 헬프센터 바로가기 클릭
 > ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_26_202009.png)
 > 브라우저 상단에 표시된 주소를 Gamebase 고객센터 URL 항목에 입력
-> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_27_202009.png)
+> ![gamebase_app_27_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_27_202102.png)
 >
 
 ### Test Device
@@ -672,6 +664,85 @@ Gamebase SDK에 Debug Log가 'OFF' 상태이더라도 콘솔에서 'ON'으로 �
 
 #### (6) 메모
 해당 클라이언트에 대한 간단한 메모를 30자 내로 입력할 수 있습니다.
+
+## Terms Of Service
+게임에 보여줄 약관을 생성 및 구성을 설정합니다.
+![gamebase_app_30_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_30_202102.png)
+### (1) 생성된 약관 목록
+- **+** 버튼을 클릭하여 약관을 추가로 생성할 수 있습니다.
+![gamebase_app_31_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_31_202102.png)
+
+### (2) 약관의 국가 타입
+
+### (3) 약관의 대상 국가
+- 국가 타입이 기타 국가인 경우 대상 국가를 추가로 선택할 수 있습니다.
+
+### (4) 약관의 구성
+- 드래그 앤 드롭 방식으로 약관 항목의 순서를 지정할 수 있습니다.
+- 약관 항목은 상위 약관 5개, 하위 약관 5개 총 25개를 생성할 수 있습니다.
+
+### (5) 약관 항목 생성
+- 약관 항목 목록에서 약관 구성을 선택한 후, **추가** 버튼을 클릭하면 해당 약관의 하위 약관이 생성됩니다.
+- 하위 약관을 선택한 경우 약관을 생성할 수 없습니다.
+
+### (6) 선택한 약관의 상세 정보
+- 약관 명
+	- 약관을 관리하기 위한 약관 이름입니다.
+- 약관 동의
+	- 약관 동의 필수 여부입니다.
+- 상세 페이지
+	- 없음: 상세 페이지가 존재하지 않는 경우입니다.
+	- URL 입력: 상세 페이지의 URL을 설정할 수 있습니다.
+	- 직접 입력: 상세 페이지를 생성할 수 있습니다.
+![gamebase_app_32_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_32_202102.png)
+- 표시할 텍스트
+	- 게임에 표시할 텍스트입니다.
+	- **+** 버튼을 클릭하여 언어를 추가할 수 있습니다.
+	- 지원하지 않는 언어를 요청할 경우, 버튼에 체크된 언어를 기본으로 보여줍니다.
+- 푸시 동의
+	- 없음: 푸시 관련 동의가 아닌 경우입니다.
+	- 광고성 수신 동의: 광고성 푸시 수신 동의가 필요한 약관입니다.
+	- 광고성 야간 수신 동의: 광고성 야간 푸시 수신 동의가 필요한 약관입니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> 저장 버튼을 클릭하지 않으면 작성한 약관 내용이 적용되지 않습니다.
+> 저장시 현재 선택된 약관 상세 정보만 저장 됩니다.
+>
+
+
+## Terms Of Service Deploy
+
+게임에 표시할 약관 배포 및 배포 이력입니다.
+![gamebase_app_33_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_33_202102.png)
+
+### (1) 기본 약관 설정
+![gamebase_app_35_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_35_202102.png)
+
+- 생성한 약관 중 설정된 배포 국가 이외의 국가에서 접속할 경우 기본으로 노출될 약관을 선택합니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> 기본 약관은 설정하지 않을 수도 있습니다. 기본 약관이 설정되지 않았다면  배포된 국가 이외의 국가에서 접속시 약관이 노출 되지 않습니다.
+>
+
+### (2) 약관 목록
+
+- 현재 생성된 약관 목록입니다.
+
+### (3) 미리보기
+![gamebase_app_36_202102](https://static.toastoven.net/prod_gamebase//gamebase_app_36_202102.png)
+
+- 약관 목록에서 선택된 약관을 미리볼 수 있습니다.
+
+### (4) 약관 배포 및 배포 이력
+#### 배포
+- 약관 목록에서 선택된 약관을 배포할 수 있습니다.
+- 약관 재동의 체크 후 배포를 진행하면, 기존에 약관 동의를 받았던 유저에게도 새롭게 약관창이 노출 됩니다. 문구 등의 단순 수정시에는 약관 재동의를 체크 할 필요가 없습니다.
+
+#### 배포 이력
+![gamebase_app_34_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_34_202102.png)
+- 약관 목록에서 선택된 약관의 배포 이력입니다.
 
 ## Installed URL
 

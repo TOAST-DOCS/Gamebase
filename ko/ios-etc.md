@@ -691,7 +691,7 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 | ------------------------- | -------------- |
 | Developer customer center | X              |
 | Gamebase customer center  | △              |
-| TOAST Online Contact      | O              |
+| TOAST Online Contact      | △              |
 
 각 유형에 따라 Gamebase SDK 의 고객센터 API 는 다음 URL 을 사용합니다.
 
@@ -701,7 +701,7 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
     * 로그인 전 : 유저 정보가 **없는** 고객센터 URL.
     * 로그인 후 : 유저 정보가 포함된 고객센터 URL.
 * TOAST 조직 상품(Online Contact)
-    * 로그인 전 : TCGB_ERROR_NOT_LOGGED_IN(2) 에러 발생.
+    * 로그인 전 : 유저 정보가 **없는** 고객센터 URL.
     * 로그인 후 : 유저 정보가 포함된 고객센터 URL.
 
 #### Open Contact WebView
@@ -735,7 +735,6 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
 | Error                           | Error Code | Description                 |
 | ------------------------------- | ---------- | --------------------------- |
 | TCGB\_ERROR\_NOT\_INITIALIZED | 1       | Gamebase가 초기화되어 있지 않습니다. |
-| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2       | 고객센터 유형이 'TOAST Online Contact' 인데 로그인 전에 호출하였습니다. |
 | TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 고객센터 URL이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL** 을 확인하세요. |
 | TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 사용자 식별을 위한 임시 티켓 발급에 실패하였습니다. |
 
@@ -777,7 +776,6 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
 | Error                           | Error Code | Description                 |
 | ------------------------------- | ---------- | --------------------------- |
 | TCGB\_ERROR\_NOT\_INITIALIZED | 1       | Gamebase가 초기화되어 있지 않습니다. |
-| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2       | 고객센터 유형이 'TOAST Online Contact' 인데 로그인 전에 호출하였습니다. |
 | TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 고객센터 URL이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL** 을 확인하세요. |
 | TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 사용자 식별을 위한 임시 티켓 발급에 실패하였습니다. |
 
