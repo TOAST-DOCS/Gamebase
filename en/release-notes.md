@@ -1,30 +1,57 @@
 ## Game > Gamebase > Release Notes
 
+### February 9, 2021 
+
+#### More Features
+* 공통약관 기능 추가
+	* [Console] 신규 메뉴 오픈: 앱 > 약관, 앱 > 약관 배포
+	* [SDK] 2.20.0
+		* (공통) 약관 웹뷰를 여는 API 추가
+		* (공통) 약관 리스트 및 유저별 동의 여부를 조회하는 API 추가
+		* (공통) 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
+
+#### Feature Updates
+* [Console] 앱 > 클라이언트: 클라이언트 버전을 스토어별로 구분하여 표시하도록 화면 개선
+* [SDK] 2.20.0
+	* (공통) 고객센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객센터가 표시되도록 변경
+	* (Unity) Warning 로그 제거
+	* (Unity) Standalone WebView에 CEF 2.1.2 업데이트
+		* URL의 길이가 2,048보다 길 경우 Crash가 발생하는 이슈 수정
+		* Unity 2019에서 빌드 시 라이브러리 경로가 변경되어 PostProcessBuild 개선
+		* string 초기화를 하지 않아 간헐적으로 발생하는 오류 수정
+		* 게임베이스 웹뷰 사용중 웹뷰가 신을 이동한 이후에는 다시 열리지 않는 버그 수정
+
+#### Bug Fixes
+* [SDK] 2.20.0
+	* (JavaScript) 콘솔에 고객센터 정보를 입력하지 않으면 초기화 시 오류가 발생하여 수정
+* [SDK] 2.19.1
+	* (Unreal) Unity Build 중 제외되는 파일이 생길 때 발생하는 컴파일 오류 수정
+
 ### January 26, 2021 
 
 ```
-푸시 > 푸시(구) 콘솔 메뉴 기능이 제외되었습니다.
+Push > Push (Old) Console menu feature has been removed.
 ```
 
 #### More Features
 * [Console] 
-	* 이용 정지 > 앱가드: 조건 차단 기능 추가
-	* 구매(IAP) > 결제 어뷰징 모니터링: Apple App Store 추가 
+	* User Ban > AppGuard: Conditional Ban added
+	* Purchase (IAP) > Payment Abusing Monitoring: Apple App Store added 
 * [SDK] 2.19.0
-	* (Unreal) SDK 배포: 2.16.0 ~ 2.19.0 누적된 내역 반영
-		* [Android 설정 툴](https://docs.toast.com/ko/Game/Gamebase/ko/unreal-started/#android-settings) 제공: Gamebase_Android_UPL.xml 파일을 수정하는 대신 설정 툴을 사용바랍니다.
-		* 고객센터 기능 추가	
-		* 인증 추가: Hangame, Weibo
-		* Galaxy 스토어 추가
-		* 결제 아이템 정보에 지역화된 상품 정보 추가: localizedTitle, localizedDescription
-		* Android 설정 툴 제공
-		* Unreal 4.26 지원
+	* (Unreal) SDK distribution: accumulated features from 2.16.0 to 2.19.0 reflected
+		* [Android Settings Tool](https://docs.toast.com/ko/Game/Gamebase/ko/unreal-started/#android-settings) provided: please use this settings tool rather than modifying the Gamebase_Android_UPL.xml file.
+		* Customer Center feature added	
+		* Authentication for Hangame, Weibo added
+		* Galaxy Store added
+		* Localized product information added in the Paid Item information field: localizedTitle, localizedDescription
+		* Android settings tool provided
+		* Unreal 4.26 supported
 
 #### Feature Updates
 * [Console]
-	* 관리 > 권한: 매출 접근 권한 제거 [관련 공지 바로 가기](https://www.toast.com/kr/support/notice/detail/2101)
+	* Manage > Permissions: Sales Access Permissions removed [See the notice](https://www.toast.com/kr/support/notice/detail/2101)
 * [SDK] 2.19.1
-	* (iOS) Weibo IdPAdapter 구조 변경	
+	* (iOS) Weibo IdPAdapter structure changed	
 
 ### January 12, 2021 
 

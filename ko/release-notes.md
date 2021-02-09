@@ -1,5 +1,32 @@
 ## Game > Gamebase > 릴리스 노트
 
+### 2021. 02. 09.
+
+#### 기능 추가
+* 공통약관 기능 추가
+	* [Console] 신규 메뉴 오픈: 앱 > 약관, 앱 > 약관 배포
+	* [SDK] 2.20.0
+		* (공통) 약관 웹뷰를 여는 API 추가
+		* (공통) 약관 리스트 및 유저별 동의 여부를 조회하는 API 추가
+		* (공통) 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
+
+#### 기능 개선/변경
+* [Console] 앱 > 클라이언트: 클라이언트 버전을 스토어별로 구분하여 표시하도록 화면 개선
+* [SDK] 2.20.0
+	* (공통) 고객센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객센터가 표시되도록 변경
+	* (Unity) Warning 로그 제거
+	* (Unity) Standalone WebView에 CEF 2.1.2 업데이트
+		* URL의 길이가 2,048보다 길 경우 Crash가 발생하는 이슈 수정
+		* Unity 2019에서 빌드 시 라이브러리 경로가 변경되어 PostProcessBuild 개선
+		* string 초기화를 하지 않아 간헐적으로 발생하는 오류 수정
+		* 게임베이스 웹뷰 사용중 웹뷰가 신을 이동한 이후에는 다시 열리지 않는 버그 수정
+
+#### 버그 수정
+* [SDK] 2.20.0
+	* (JavaScript) 콘솔에 고객센터 정보를 입력하지 않으면 초기화 시 오류가 발생하여 수정
+* [SDK] 2.19.1
+	* (Unreal) Unity Build 중 제외되는 파일이 생길 때 발생하는 컴파일 오류 수정
+
 ### 2021. 01. 26.
 
 ```
@@ -580,7 +607,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 
 #### 버그 수정
 * [SDK] 2.6.1
-	* (Unity)iOS Plugin 파일이 Package에 누락되어 iOS 빌드시 에러가 발생하여 해당 파일을 추가: 'toast_sdk_wrap.m'
+	* (Unity)iOS Plugin 파일이 Package에 누락되어 iOS 빌드 시 에러가 발생하여 해당 파일을 추가: 'toast_sdk_wrap.m'
 	* (Unity)UnityEditor에서 Standalone 이외의 플랫폼으로 실행시 Store Code가 Empty로 입력되어 초기화에 실패하는 오류 수정
 	* (Unity)Initialize API 내부 zone type 처리 부분에서의 오류로 NullReferenceException 발생하던 오류 수정
 
