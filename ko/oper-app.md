@@ -102,18 +102,18 @@ Gamebase에서 제공하는 고객센터 기능을 사용하고자 할 때 설�
 * **지원 언어** : 고객센터 사용자에게 지원할 언어를 선택합니다. 프로젝트 자체 언어설정과는 별도로 설정되는 정보이며 현재는 한국어, 영어, 일본어, 중국어를 지원하고 있습니다. 이 설정에서 선택된 언어를 기반으로 Gamebase 고객센터 기능을 사용할 수 있습니다.
 * **기본 언어** : 지원 언어에서 선택한 항목 중 고객센터 내에서 기본으로 제공할 언어를 선택합니다.
 
-#### 3. TOAST 조직 상품(Online Contact)
+#### 3. NHN Cloud 조직 상품(Online Contact)
 ![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_21_202102.png)
-TOAST에서 조직별로 제공되는 Online contact 상품을 사용하는 경우 설정합니다.
+NHN Cloud에서 조직별로 제공되는 Online contact 상품을 사용하는 경우 설정합니다.
 설정 항목은 아래와 같습니다.
 * **고객센터 URL** : NHN Cloud Online Contact에서 제공되는 주소를 입력합니다. 해당정보는 NHN Cloud Online Contact에 접속하여 확인할 수 있습니다.
 * **연락처** : 고객센터 연락처를 입력합니다. 이 정보는 Gamebase SDK를 통해 추가로 정보를 전달받을 수 있습니다.
-* **OC 조직 Key** : TOAST Online Contact 고객센터 문의를 확인하기 위한 Key를 입력합니다. 해당정보를 입력하지 않을 경우 고객센터 페이지 내에서 인입된 문의를 확인할 수 없으므로 확인 후 입력해야 합니다. 자세한 연동 방법은 아래 참고내용을 보시고 연동해주시면 됩니다.
-> [참고] TOAST Online Contact와 Gamebase간의 연동
-> Gamebase내에서 TOAST Online Contact 연동하고자 할 경우 아래 과정에 따라 SSO 로그인 API Key를 발급받아 Gamebase내에 설정해주셔야 고객센터 서비스를 정상적으로 이용할 수 있습니다.
+* **OC 조직 Key** : NHN Cloud Online Contact 고객센터 문의를 확인하기 위한 Key를 입력합니다. 해당정보를 입력하지 않을 경우 고객센터 페이지 내에서 인입된 문의를 확인할 수 없으므로 확인 후 입력해야 합니다. 자세한 연동 방법은 아래 참고내용을 보시고 연동해주시면 됩니다.
+> [참고] NHN Cloud Online Contact와 Gamebase간의 연동
+> Gamebase내에서 NHN Cloud Online Contact 연동하고자 할 경우 아래 과정에 따라 SSO 로그인 API Key를 발급받아 Gamebase내에 설정해주셔야 고객센터 서비스를 정상적으로 이용할 수 있습니다.
 > 고객센터의 안정적인 서비스 제공을 위해 아래 순서대로 참고하시어 진행 해주시기 바랍니다.
 >
-> 1) TOAST Online Contact에 회원 연동 방식 설정
+> 1) NHN Cloud Online Contact에 회원 연동 방식 설정
 > 서비스 관리 -> 헬프센터 -> 회원 연동
 > ![gamebase_app_22_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_22_202102.png)
 > 회원 연동 활성화: 활성화
@@ -125,7 +125,7 @@ TOAST에서 조직별로 제공되는 Online contact 상품을 사용하는 경�
 > 전체 관리 -> 계약 서비스 현황 -> 조직 정보로 이동한 후 OC 조직 정보의 OC 조직 Key를 복사하여 Gamebase OC 조직 Key 항목에 입력 
 > ![gamebase_app_25_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_25_202102.png)
 >
-> 3) TOAST Online contact 고객센터 페이지 주소를 획득하여 고객센터 URL에 입력
+> 3) NHN Cloud Online contact 고객센터 페이지 주소를 획득하여 고객센터 URL에 입력
 > 헬프센터 -> 하위메뉴 선택 -> 우측 위 헬프센터 바로가기 클릭
 > ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_26_202009.png)
 > 브라우저 상단에 표시된 주소를 Gamebase 고객센터 URL 항목에 입력
@@ -206,7 +206,7 @@ Facebook 개발자 사이트에 등록한 앱의 {앱 아이디}와 {앱 시크�
 - [Facebook 권한](https://developers.facebook.com/docs/facebook-login/permissions/)
 
 ##### Android & iOS & Unity
-TOAST Console에서의 설정 외에 추가 설정은 없습니다.
+NHN Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 
 

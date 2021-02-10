@@ -691,7 +691,7 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 | ------------------------- | -------------- |
 | Developer customer center | X              |
 | Gamebase customer center  | △              |
-| TOAST Online Contact      | △              |
+| NHN Cloud Online Contact      | △              |
 
 각 유형에 따라 Gamebase SDK 의 고객센터 API 는 다음 URL 을 사용합니다.
 
@@ -700,7 +700,7 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 * Gamebase 제공 고객센터(Gamebase customer center)
     * 로그인 전 : 유저 정보가 **없는** 고객센터 URL.
     * 로그인 후 : 유저 정보가 포함된 고객센터 URL.
-* TOAST 조직 상품(Online Contact)
+* NHN Cloud 조직 상품(Online Contact)
     * 로그인 전 : 유저 정보가 **없는** 고객센터 URL.
     * 로그인 후 : 유저 정보가 포함된 고객센터 URL.
 
@@ -746,7 +746,7 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
         // A user close the contact web view.
     } else if (error.code == TCGB_ERROR_UI_CONTACT_FAIL_INVALID_URL) {
         // TODO: Gamebase Console Service Center URL is invalid.
-        // Please check the url field in the TOAST Gamebase Console.
+        // Please check the url field in the NHN Cloud Gamebase Console.
     } else {
         // TODO: Error occur when opening the contact web view.
     }
@@ -787,7 +787,7 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
         NSLog(@"ContactURL : %@", contactUrl);
     } else if (error.code == TCGB_ERROR_UI_CONTACT_FAIL_INVALID_URL) {
         // TODO: Gamebase Console Service Center URL is invalid.
-        // Please check the url field in the TOAST Gamebase Console.
+        // Please check the url field in the NHN Cloud Gamebase Console.
     } else {
         // TODO: Error occur when request contact url.
     }
