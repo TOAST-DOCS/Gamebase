@@ -12,7 +12,7 @@
 
 ## Setting
 
-* 在应用Gamebase Android SDK之前，您需要从TOAST Console获取App ID。获取应用App ID，请在TOAST Console上在单击**(+)服务**，然后点击Game > Gamebase以启用该服务。
+* 在应用Gamebase Android SDK之前，您需要从NHN Cloud Console获取App ID。获取应用App ID，请在NHN Cloud Console上在单击**(+)服务**，然后点击Game > Gamebase以启用该服务。
 * 请在build.gradle文件中声明要使用的Gamebase版本和要使用的验证、支付、推送模块。
 	* Gamebase最新版本可在 [版本说明](./release-notes/)中确认。
 

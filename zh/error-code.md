@@ -93,7 +93,7 @@
 | Gateway | -4010202              | 调用的APP ID无效                            |
 |         | -4010203              | 无效的访问令牌                           |
 |         | -4010204              | 禁用/退出（删除数据）/ 账户丢失等无效用户             |
-|         | -4040201              | 已调用API的TOAST服务未启用时 <br/>- 例) 在未启用Leaderboard服务的状态下，通过Gamebase调用了Leaderboard API时<br/>或Gamebase本身未启用时 |
+|         | -4040201              | 已调用API的NHN Cloud服务未启用时 <br/>- 例) 在未启用Leaderboard服务的状态下，通过Gamebase调用了Leaderboard API时<br/>或Gamebase本身未启用时 |
 |         | -4040202              | 调用了未定义的API时                   |
 |         | -4120201              | 在一些提供的SANDBOX 系统中，以实际环境的服务器地址进行API调用 (或者反向调用) <br/>- 如果出现错误，需确认服务器调用地址 |
 |         | -5000201 ~ 7          | Gateway内部系统错误                        |

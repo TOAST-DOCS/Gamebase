@@ -1,6 +1,6 @@
 ## Game > Gamebase > User Guide for Unreal SDK > Initialization 
 
-To use Unreal Gamebase SDK, initialization is required. In addition, app ID, and app version information must be registered on TOAST console. 
+To use Unreal Gamebase SDK, initialization is required. In addition, app ID, and app version information must be registered on NHN Cloud console. 
 
 ### Include Header File
 
@@ -39,7 +39,7 @@ Refers to Client Version registered on Gamebase Console.
 
 #### 3. storeCode
 
-Find store information as below, required to initialize TOAST In-App Purchase. 
+Find store information as below, required to initialize NHN Cloud In-App Purchase. 
 
 | Store       | Code | Description  |
 | ----------- | ---- | ------------ |
@@ -232,7 +232,7 @@ Information for notice registered on Gamebase Console.
 
 #### 2. tcProduct
 
-Refers to appkey of TOAST service associated with Gamebase.  
+Refers to appkey of NHN Cloud service associated with Gamebase.  
 
 * gamebase
 * tcLaunching
@@ -241,7 +241,7 @@ Refers to appkey of TOAST service associated with Gamebase.
 
 #### 3. tcIap
 
-Refers to IAP store information registered on TOAST Console. 
+Refers to IAP store information registered on NHN Cloud Console. 
 
 * id: App ID
 * name: App Name
@@ -251,10 +251,10 @@ Refers to IAP store information registered on TOAST Console.
 
 #### 4. tcLaunching
 
-User-input information on the console of TOAST Launching.  
+User-input information on the console of NHN Cloud Launching.  
 
 * Deliver user-input value to JSON string. 
-* Refer to the guide as below for detail setting of TOAST Launching.  
+* Refer to the guide as below for detail setting of NHN Cloud Launching.  
 
 [Console Guide](/Game/Gamebase/en/oper-management/#config)
 

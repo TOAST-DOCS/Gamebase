@@ -4,7 +4,7 @@
 
 ここではプラットフォームごとにPush通知を使用するために必要な設定方法についてご案内いたします。
 
-#### Register TOAST Cloud Console
+#### Register NHN Cloud Cloud Console
 
 [Notification > Push > Console Guide](/Notification/Push/ja/console-guide/)を参照してConsoleを設定します。
 
@@ -48,7 +48,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 * Gradleビルドを使用する場合
     * Firebaseプッシュを使用するには、下記のガイドに従ってFirebaseの設定を完了させる必要があります。
-		* [TOAST > TOAST SDK使用ガイド > TOAST Push > Android > Firebase Cloud Messaging設定](/toast-sdk/push-android/#firebase-cloud-messaging)
+		* [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud Push > Android > Firebase Cloud Messaging設定](/toast-sdk/push-android/#firebase-cloud-messaging)
 * Unityビルドの場合
     * 直接string resource(xml)ファイルを作成して、Assets/Plugins/Android/res/values/ フォルダに含める必要があります。
         * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
@@ -72,11 +72,11 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 #### Tencent
 
 * Tencentプッシュを使用するには、下記のガイドに従ってTencentの設定を完了させる必要があります。
-	* [TOAST > TOAST SDK使用ガイド > TOAST Push > Android > Tencent Push Notification設定](/toast-sdk/push-android/#tencent-push-notification)
+	* [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud Push > Android > Tencent Push Notification設定](/toast-sdk/push-android/#tencent-push-notification)
 
 ### Register Push
 
-次のAPIを呼び出してTOAST Pushに該当するユーザーを登録します。<br/>
+次のAPIを呼び出してNHN Cloud Pushに該当するユーザーを登録します。<br/>
 Pushの同意状態(enablePush)、Push型広告の同意状態(enableAdPush)、夜間のPush型広告の同意状態(enableAdNightPush)の値をユーザーから取得し、次のAPIを呼び出して登録を完了させます。
 
 **API**
@@ -145,7 +145,7 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | TOAST Pushライブラリーエラーです。<br>DetailCodeを確認してください。|
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | NHN Cloud Pushライブラリーエラーです。<br>DetailCodeを確認してください。|
 | PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 前回のPush APIの呼び出しが完了していません。<br>前回のPush APIのコールバックが実行された後、もう一度呼び出してください。|
 | PUSH_UNKNOWN_ERROR             | 5999       | 定義されていないPushエラーです。<br>ログ全体を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。|
 
@@ -154,8 +154,8 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* このエラーは、TOAST Pushライブラリーで発生したエラーです。
-* TOAST Push エラーの詳細は次のように確認できます。
+* このエラーは、NHN Cloud Pushライブラリーで発生したエラーです。
+* NHN Cloud Push エラーの詳細は次のように確認できます。
 
 ```java
 Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
@@ -183,14 +183,14 @@ Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
 });
 ```
 
-* TOAST Push SDKのエラーコードは次の通りです。
+* NHN Cloud Push SDKのエラーコードは次の通りです。
 
 | Error | Error Code | Description |
 | --- | --- | --- |
 | OK | 0 | API呼び出し成功 |
-| NOT_INITIALIZE | 100 | TOAST SDKまたはTOAST Push SDKが初期化されていない場合。 |
+| NOT_INITIALIZE | 100 | NHN Cloud SDKまたはNHN Cloud Push SDKが初期化されていない場合。 |
 | PROVIDER_SDK_ERROR | 101 | 外部SDK(Firebase, Tencent)でエラーが発生した場合。 |
 | USER_ID_NOT_REGISTERED | 102 | ログインしていない場合。 |
 | UNSUPPORTED_PUSH_TYPE | 103 | PushTypeの入力に誤りがあるか、プッシュライブラリがプロジェクトに含まれていない場合。 |
-| API_SERVER_ERROR | 104 | TOAST PushサーバーAPIの呼び出しに失敗した場合。 |
+| API_SERVER_ERROR | 104 | NHN Cloud PushサーバーAPIの呼び出しに失敗した場合。 |
 | TOKEN_NOT_REGISTERED | 105 | 内部にキャッシュされたPush Tokenが存在しない場合。 |

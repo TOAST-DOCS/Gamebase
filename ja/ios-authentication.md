@@ -140,7 +140,7 @@ IdPの中には、ログインする際に必ず必要な情報があるもの�
 例えば、Facebookログインを設計する場合、scopeなどを設定する必要があります。<br/>
 このような必須情報を設定することができるように**[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]**APIを提供します。<br/>
 パラメーターのadditionalInfoに必須情報をdictionary形式で入力してください。<br/>
-(パラメーター値がnilの場合、TOAST Consoleに登録したadditionalInfoの値が埋められます。パラメーター値がある場合、Consoleに登録してある値よりもこちらを優先してその値を上書きします。)
+(パラメーター値がnilの場合、NHN Cloud Consoleに登録したadditionalInfoの値が埋められます。パラメーター値がある場合、Consoleに登録してある値よりもこちらを優先してその値を上書きします。)
 
 
 > [参考]

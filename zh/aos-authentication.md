@@ -1060,7 +1060,7 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 |                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | 多次输入错误TransferAccount，账户转移功能锁定。|
 |                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | TransferAccount的ID无效。|
 |                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | TransferAccount的密码无效。|
-|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | 未设置TransferAccount。<br/> 请先在TOAST Gamebase控制台中设置。|
+|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | 未设置TransferAccount。<br/> 请先在NHN Cloud Gamebase控制台中设置。|
 |                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | 无TransferAccount。请先获得TransferAccount。|
 |                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | 已有TransferAccount。|
 |                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount已使用。|

@@ -191,7 +191,7 @@ Gamebase Consoleに登録された告知情報です。
 
 #### 2. tcProduct
 
-Gamebaseと連携したTOASTサービスのappKeyです。
+Gamebaseと連携したNHN CloudサービスのappKeyです。
 
 * gamebase
 * tcLaunching
@@ -200,7 +200,7 @@ Gamebaseと連携したTOASTサービスのappKeyです。
 
 #### 3. tcIap
 
-TOAST Consoleに登録されたIAPストア情報です。
+NHN Cloud Consoleに登録されたIAPストア情報です。
 
 * id：App ID
 * name：App Name
@@ -210,10 +210,10 @@ TOAST Consoleに登録されたIAPストア情報です。
 
 #### 4. tcLaunching
 
-TOAST Launching Consoleでユーザーが入力した情報です。
+NHN Cloud Launching Consoleでユーザーが入力した情報です。
 
 * ユーザーが入力した値をJSON stringで伝達します。
-* TOAST Launchingの詳細設定は下記のガイドを参照してください。
+* NHN Cloud Launchingの詳細設定は下記のガイドを参照してください。
  
 [Console Guide](/Game/Gamebase/ja/oper-management/#config)
 

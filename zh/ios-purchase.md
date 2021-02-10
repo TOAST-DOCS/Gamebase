@@ -12,8 +12,8 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 3. 注册您的Sandbox Tester帐户
 * Detail Guide for iTunes-Connect: [Apple Guide](https://help.apple.com/itunes-connect/developer/#/devb57be10e7)
 
-#### TOAST Console 登记
-应在TOAST Console中设置以下内容。
+#### NHN Cloud Console 登记
+应在NHN Cloud Console中设置以下内容。
 
 1. **Gamebase > Purchase(IAP) > APP**中添加使用的商店。
     * 商店:选择**App Store**。
@@ -136,7 +136,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 ### Reprocess Failed Purchase Transaction
 
-如果在商店付款成功，但因TOAST IAP服务器认证失败等原因未能正常付款的情况下，我们将尝试使用API重新处理。<br/>
+如果在商店付款成功，但因NHN Cloud IAP服务器认证失败等原因未能正常付款的情况下，我们将尝试使用API重新处理。<br/>
 最后，根据付款成功的历史记录，需要通过调用item配送(支付) 等的API 来进行处理。
 
 ```objectivec
@@ -178,7 +178,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 > `注意`
 > 仅适用于iOS 11或更高版本。
 > 需要在Xcode 9.0以上版本build。
-> Gamebase 1.13.0及更高版本支持。 (TOAST IAP SDK 1.6.0 以上适用)
+> Gamebase 1.13.0及更高版本支持。 (NHN Cloud IAP SDK 1.6.0 以上适用)
 
 
 > `注意`

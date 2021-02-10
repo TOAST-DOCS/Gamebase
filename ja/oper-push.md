@@ -4,7 +4,7 @@
 
 アプリユーザーにPush通知を送信することができます。
 
-Gamebaseでは、TOAST Pushサービスを使用してPush通知を送信します。
+Gamebaseでは、NHN Cloud Pushサービスを使用してPush通知を送信します。
 
 
 
@@ -428,7 +428,7 @@ Pushメッセージを送信する国家を選択します。
 
 
 
-TOAST Pushでプッシュ送信時に使用するタグ名を登録できます。
+NHN Cloud Pushでプッシュ送信時に使用するタグ名を登録できます。
 
 
 

@@ -2,7 +2,7 @@
 
 
 您可以向应用用户发送推送消息。
-Gamebase使用TOAST Push功能发送推送消息。
+Gamebase使用NHN Cloud Push功能发送推送消息。
 
 ## Push
 

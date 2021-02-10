@@ -10,7 +10,7 @@
 * 注册Keychain后，以 Personal Information Exchange (.p12) 格式导出生成的证书。
 * 导出(export)证书时设置密码。
 
-#### TOAST Console 登记
+#### NHN Cloud Console 登记
 * **Notification > Push > Certificate**中注册 **APNS Certificate**和 **APNS (Sandbox) Certificate**中生成的证书。
 * 使用制作上述认证书时设定的密码进行登记。
 
@@ -29,7 +29,7 @@
 
 ### Register Push
 
-调用以下API在TOAST Push注册该用户。<br/>
+调用以下API在NHN Cloud Push注册该用户。<br/>
 接受来自用户的推送协议（enablePush），广告推送协议（enableAdPush），夜间广告推送协议（enableAdNightPush）的值，并调用以下API完成注册。
 
 
@@ -95,13 +95,13 @@
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | TOAST Push库错误。<br>请确认DetailCode。 |
+| TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | NHN Cloud Push库错误。<br>请确认DetailCode。 |
 | TCGB_ERROR_PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 上一次的推送API调用未完成。<br>上一次的推送 API回调执行后请重新调用。|
 | TCGB_ERROR_PUSH_UNKNOWN_ERROR            | 5999       | 未知推送错误。<br>请将全部的Log上传到[客服中心](https://toast.com/support/inquiry)，我们会尽快回复。 |
 
 **TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* 这是在TOAST Push库中发生的错误。
+* 这是在NHN Cloud Push库中发生的错误。
 * 检查错误代码的方法如下。
 
 ```objectivec
@@ -114,7 +114,7 @@ NSString *moduleErrorMessage = moduleError.message;
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
-* TOAST Push错误代码如下。
+* NHN Cloud Push错误代码如下。
     
 | 错误代码 |  说明 |
 | --- | --- |

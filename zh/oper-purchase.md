@@ -1,7 +1,7 @@
 ## Game > Gamebase > 控制台使用指南 > IAP
 
 您可以注册应用程序内结算有关的信息并查看其历史记录。
-在Gamebase使用 TOAST IAP(In-App Purchase，应用程序内支付)服务。
+在Gamebase使用 NHN Cloud IAP(In-App Purchase，应用程序内支付)服务。
 
 ## Store
 

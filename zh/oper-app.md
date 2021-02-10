@@ -1,6 +1,6 @@
 ## Game > Gamebase > 控制台使用指南> APP
 
-在TOAST Console依次点击**Game > Gamebase > App**来设定APP的基本信息。
+在NHN Cloud Console依次点击**Game > Gamebase > App**来设定APP的基本信息。
 * **APP**：APP信息管理
 * **客户端**：管理状态信息及客户端版本
 * **安装URL**：管理每个APP商店的安装URL
@@ -9,7 +9,7 @@
 ## App
 
 如果启用Gamebaes服务，将自动创建应用程序，您只能修改该菜单中的注册信息。
-由于每个TOAST项目可以管理一个Gamebase应用程序，因此您无法添加或删除其他应用程序。如果禁用Gamebase服务，将删除应用程序中登记的信息。
+由于每个NHN Cloud项目可以管理一个Gamebase应用程序，因此您无法添加或删除其他应用程序。如果禁用Gamebase服务，将删除应用程序中登记的信息。
 有关各个项目的详细说明，请参考以下 **属性** 项目。
 
 ### Properties
@@ -92,7 +92,7 @@
 输入注册设备和设备密钥的**备注信息**后单击注册按钮则注册为测试设备。
 
 > [参考] 
-> 请在备注信息中输入用户易于查看的自定义名称。 例) iPhone 6 测试, Toast的iPad
+> 请在备注信息中输入用户易于查看的自定义名称。 例) iPhone 6 测试, NHN Cloud的iPad
 
 #### (3) 删除
 
@@ -130,7 +130,7 @@
 - [Facebook 权限](https://developers.facebook.com/docs/facebook-login/permissions/)
 
 ##### Android & iOS & Unity
-除了TOAST Console中的设置以外，没有其他设置。
+除了NHN Cloud Console中的设置以外，没有其他设置。
 
 
 #### 2. Google
@@ -156,7 +156,7 @@
 
 * 1.12.1或更低版本
 	* 需要设置AdditionalInfo
-		* **TOAST Console > Gamebase > App > 认证信息 > 备注信息 & Callback URL**的 **备注信息**中，您必须以JSON string的形式设置信息。
+		* **NHN Cloud Console > Gamebase > App > 认证信息 > 备注信息 & Callback URL**的 **备注信息**中，您必须以JSON string的形式设置信息。
 		*对于GOOGLE，您需要在iOS App中设定所需的**url_scheme_ios_only**信息。
 		* **url_scheme_ios_only**的值必须与Xcode的URL Scheme中注册的值的其中一个匹配。
 
@@ -195,7 +195,7 @@
 
 ##### Android & Unity
 - 需要设置AdditionalInfo
-    * **TOAST Console > Gamebase > App > 认证信息 > 备注信息**中，您必须以JSON string的形式设置信息。
+    * **NHN Cloud Console > Gamebase > App > 认证信息 > 备注信息**中，您必须以JSON string的形式设置信息。
     *对于PAYCO，需要设置PaycoSDK所需的**service_code**和**service_name**。
 
 * PAYCO添加认证信息输入示例
@@ -212,12 +212,12 @@
 >
 * 1.12.1或更低版本
 	* 需要设置AdditionalInfo.
-		* **TOAST Console > Gamebase > App > 认证信息 >备注信息**中， 您必须以JSON string的形式设置信息。
+		* **NHN Cloud Console > Gamebase > App > 认证信息 >备注信息**中， 您必须以JSON string的形式设置信息。
 		*对于PAYCO，您需要设置PaycoSDK所需的**service_code**和**service_name**
 
 * 1.12.2或更高版本
 	* 需要设定AdditionalInfo
-		* **TOAST Console > Gamebase > App > 认证信息 >备注信息**中， 您必须以JSON string的形式设置信息。
+		* **NHN Cloud Console > Gamebase > App > 认证信息 >备注信息**中， 您必须以JSON string的形式设置信息。
 		* 对于PAYCO，您需要设置PaycoSDK所需的**service_code**和**service_name**。
 	* 需要设定URL Scheme
 		***需要在XCode > Target > Info > URL Types**中添加 `tcgb.{Bundle ID}.payco`。
@@ -245,7 +245,7 @@
 - [NAVER开发者 - 检查客户端ID和客户端密钥](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)
 
 ##### Android & Unity
-* **TOAST Console > Gamebase > App > 认证信息 > 备注信息 & Callback URL**的 **备注信息**中，您必须以JSON string的形式设置信息。
+* **NHN Cloud Console > Gamebase > App > 认证信息 > 备注信息 & Callback URL**的 **备注信息**中，您必须以JSON string的形式设置信息。
 	* 对于NAVER，您需要设置**service_name**，它会在登录窗口上显示。
 ```json
 {"service_name"："Your Service Name" }
@@ -259,7 +259,7 @@
 >
 
 * 1.12.1或更低版本
-	* **TOAST Console > Gamebase > App > 认证信息 > 备注信息 & Callback URL**的 **备注信息**中，您必须以JSON string的形式设置信息。
+	* **NHN Cloud Console > Gamebase > App > 认证信息 > 备注信息 & Callback URL**的 **备注信息**中，您必须以JSON string的形式设置信息。
 		* 对于NAVER，您需要设置**service_name**，它会在登录窗口上显示。
 		* 您需要在iOS App中设定所需的**url_scheme_ios_only**信息。
 
@@ -275,7 +275,7 @@
 ![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
 * 1.12.2 或更高版本
-	* ** TOAST Console > Gamebase > App > 认证信息 > 备注信息 & Callback URL**的 **备注信息**中，您必须以JSON string的形式设置信息。
+	* ** NHN Cloud Console > Gamebase > App > 认证信息 > 备注信息 & Callback URL**的 **备注信息**中，您必须以JSON string的形式设置信息。
 
 		*对于NAVER，您需要设置**service_name**，它会在登录窗口上显示。
 
@@ -373,7 +373,7 @@
 ![DownloadPrivateKey](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid3_1.0.png)
 
 ##### Gamebase Console > App Settings
-[跳转至TOAST Console](https://console.toast.com/)
+[跳转至NHN Cloud Console](https://console.toast.com/)
 
 * Gamebase
 ![设置SecretKey](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
