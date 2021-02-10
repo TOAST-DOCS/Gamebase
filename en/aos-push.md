@@ -4,7 +4,7 @@
 
 This document describes how to set push notifications for each platform.
 
-#### Register TOAST Cloud Console
+#### Register NHN Cloud Cloud Console
 
 Set console in reference of [Notification > Push > Console Guide](/Notification/Push/en/console-guide/)
 
@@ -48,7 +48,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 * For Gradle Builds
     * To enable Firebase push, follow the guide to complete the Firebase setting.
-    	* [TOAST > TOAST SDK User Guide > TOAST Push > Android > Set Firebase Cloud Messaging](/TOAST/en/toast-sdk/push-android/#firebase-cloud-messaging)
+    	* [NHN Cloud > NHN Cloud SDK User Guide > NHN Cloud Push > Android > Set Firebase Cloud Messaging](/TOAST/en/toast-sdk/push-android/#firebase-cloud-messaging)
 * For a Unity build
     * You must create a string resource (xml) file by yourself and place it in the Assets/Plugins/Android/res/values/ folder.
         * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
@@ -72,11 +72,11 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 #### Tencent
 
 * To enable Tencent push, follow the guide and complete the Tencent setting. 
-	* [TOAST > TOAST SDK User Guide > TOAST Push > Android > Set Tencent Push Notification](/TOAST/en/toast-sdk/push-android/#tencent-push-notification)
+	* [NHN Cloud > NHN Cloud SDK User Guide > NHN Cloud Push > Android > Set Tencent Push Notification](/TOAST/en/toast-sdk/push-android/#tencent-push-notification)
 
 ### Register Push
 
-By calling API as below, a user can be registered to TOAST Cloud Push.<br/>
+By calling API as below, a user can be registered to NHN Cloud Cloud Push.<br/>
 With user's agreement to enablePush, enableAdPush, and enableAdNightPush, call following API to complete registration.
 
 **API**
@@ -145,7 +145,7 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | Error in TOAST Cloud Push library.<br>Please check DetailCode. |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | Error in NHN Cloud Cloud Push library.<br>Please check DetailCode. |
 | PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | Previous push API call has not been completed.<br>Please call again after the previous push API callback is executed. |
 | PUSH_UNKNOWN_ERROR             | 5999       | Unknown push error.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry), and we'll respond ASAP. |
 
@@ -154,7 +154,7 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs in the TOAST Cloud Push library.
+* Occurs in the NHN Cloud Cloud Push library.
 * Check the error code as below.
 
 ```java
@@ -183,14 +183,14 @@ Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
 });
 ```
 
-* The TOAST Push SDK error codes are as follows:
+* The NHN Cloud Push SDK error codes are as follows:
 
 | Error | Error Code | Description |
 | --- | --- | --- |
 | OK | 0 | API call is successful |
-| NOT_INITIALIZE | 100 | TOAST SDK or TOAST Push SDK is not initialized |
+| NOT_INITIALIZE | 100 | NHN Cloud SDK or NHN Cloud Push SDK is not initialized |
 | PROVIDER_SDK_ERROR | 101 | Error occurs from external SDK (Firebase or Tencent) |
 | USER_ID_NOT_REGISTERED | 102 | Not logged in |
 | UNSUPPORTED_PUSH_TYPE | 103 | PushType is invalid or push library is not included to a project |
-| API_SERVER_ERROR | 104 | TOAST Push server API call fails |
+| API_SERVER_ERROR | 104 | NHN Cloud Push server API call fails |
 | TOKEN_NOT_REGISTERED | 105 | Internally-cached push token does not exist |

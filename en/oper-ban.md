@@ -3,7 +3,7 @@
 Gamebase bans those game users who use apps inappropriately or abusively.
 When a banned user tries to log in again, or session is restored, a pop-up will be displayed to restrict game use.
 
-Can register banning either manually in the Gamebase Console or automatically with TOAST Cloud AppGuard by using registered patterns.
+Can register banning either manually in the Gamebase Console or automatically with NHN Cloud Cloud AppGuard by using registered patterns.
 
 Refer to [AppGuard](./ban/#appguard)on how to integrate AppGuard.
 
@@ -146,7 +146,7 @@ Can be registered in many languages, and for other language users, 'Default Lang
 ## AppGuard
 
 > <font color="red">[Note]</font>
-> This service is available only for TOAST Cloud AppGuard users.
+> This service is available only for NHN Cloud Cloud AppGuard users.
 
 ![gamebase_ban_09_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_09_201812_en.png)
 

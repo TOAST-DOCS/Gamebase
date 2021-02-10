@@ -348,7 +348,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 * Gamebase 서버에서 클라이언트 단말기로 보내는 메세지 입니다.
 * Gamebase 에서 지원하는 Server Push Type 은 다음과 같습니다.
 	* kTCGBServerPushAppKickout
-    	* TOAST Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
+    	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
     * kTCGBServerPushTransferKickout
     	* Guest 계정을 다른 단말기로 이전을 성공하게 되면 이전 단말기에서 킥아웃 메세지를 받게 됩니다.
 
@@ -677,9 +677,9 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 
 > [TIP]
 >
-> TOAST Contact 서비스와 연동해서 사용하면 보다 쉽고 편리하게 고객 문의에 대응할 수 있습니다.
-> 자세한 TOAST Contact 서비스 이용법은 아래 가이드를 참고하시기 바랍니다.
-> [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+> NHN Cloud Contact 서비스와 연동해서 사용하면 보다 쉽고 편리하게 고객 문의에 대응할 수 있습니다.
+> 자세한 NHN Cloud Contact 서비스 이용법은 아래 가이드를 참고하시기 바랍니다.
+> [NHN Cloud Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
 >
 
 #### Customer Service Type

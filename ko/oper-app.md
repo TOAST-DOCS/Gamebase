@@ -1,6 +1,6 @@
 ## Game > Gamebase > 콘솔 사용 가이드 > 앱
 
-TOAST Console에서 **Game > Gamebase > App**을 클릭하여 앱의 기본 정보를 설정할 수 있습니다.
+NHN Cloud Console에서 **Game > Gamebase > App**을 클릭하여 앱의 기본 정보를 설정할 수 있습니다.
 
 * **앱**: 앱 정보 관리
 * **클라이언트**: 클라이언트 버전과 상태 정보 관리
@@ -10,7 +10,7 @@ TOAST Console에서 **Game > Gamebase > App**을 클릭하여 앱의 기본 정�
 ## App
 
 Gamebase 서비스를 활성화하면 자동으로 앱이 생성되며 해당 메뉴에서는 등록된 정보의 수정만 가능합니다.
-TOAST 프로젝트 하나당 하나의 Gamebase 앱을 관리할 수 있으므로 앱을 추가로 등록하거나 삭제할 수는 없습니다. Gamebase 서비스를 비활성화 하시면 앱에 등록된 정보가 삭제됩니다.
+NHN Cloud 프로젝트 하나당 하나의 Gamebase 앱을 관리할 수 있으므로 앱을 추가로 등록하거나 삭제할 수는 없습니다. Gamebase 서비스를 비활성화 하시면 앱에 등록된 정보가 삭제됩니다.
 각 항목별 상세 설명은 아래 세부 항목을 참고합니다.
 
 ### 기본 정보
@@ -106,7 +106,7 @@ Gamebase에서 제공하는 고객센터 기능을 사용하고자 할 때 설�
 ![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_21_202102.png)
 TOAST에서 조직별로 제공되는 Online contact 상품을 사용하는 경우 설정합니다.
 설정 항목은 아래와 같습니다.
-* **고객센터 URL** : TOAST Online Contact에서 제공되는 주소를 입력합니다. 해당정보는 TOAST Online Contact에 접속하여 확인할 수 있습니다.
+* **고객센터 URL** : NHN Cloud Online Contact에서 제공되는 주소를 입력합니다. 해당정보는 NHN Cloud Online Contact에 접속하여 확인할 수 있습니다.
 * **연락처** : 고객센터 연락처를 입력합니다. 이 정보는 Gamebase SDK를 통해 추가로 정보를 전달받을 수 있습니다.
 * **OC 조직 Key** : TOAST Online Contact 고객센터 문의를 확인하기 위한 Key를 입력합니다. 해당정보를 입력하지 않을 경우 고객센터 페이지 내에서 인입된 문의를 확인할 수 없으므로 확인 후 입력해야 합니다. 자세한 연동 방법은 아래 참고내용을 보시고 연동해주시면 됩니다.
 > [참고] TOAST Online Contact와 Gamebase간의 연동
@@ -231,7 +231,7 @@ TOAST Console에서의 설정 외에 추가 설정은 없습니다.
 
 * 1.12.1 이하
 	* AdditionalInfo를 설정해야 합니다.
-		* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+		* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
 		* GOOGLE의 경우, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
 		* **url_scheme_ios_only**의 값은 Xcode의 URL Scheme에 등록된 값들 중 한개와 일치해야 합니다.
 
@@ -276,7 +276,7 @@ PAYCO Client ID를 신청해서 발급받은 {client_id} 및 {client_secret}을 
 
 ##### Android & Unity
 - AdditionalInfo를 설정해야 합니다.
-    * **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+    * **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
     * PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
 
 * PAYCO 추가 인증 정보 입력 예제
@@ -294,12 +294,12 @@ PAYCO Client ID를 신청해서 발급받은 {client_id} 및 {client_secret}을 
 
 * 1.12.1 이하
 	* AdditionalInfo를 설정해야 합니다.
-		* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+		* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
 		* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
 
 * 1.12.2 이상
 	* AdditionalInfo를 설정해야 합니다.
-		* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+		* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
 		* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
 	* URL Scheme를 설정해야 합니다.
 		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.payco`를 추가해야 합니다.
@@ -328,7 +328,7 @@ Naver Developers 사이트에서 신청하여 발급받은 {client_id} 및 {clie
 - [NAVER Developers - 클라이언트 아이디와 클라이언트 시크릿 확인](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)
 
 ##### Android & Unity
-* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야 합니다.
+* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야 합니다.
 	* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
 
 ```json
@@ -343,7 +343,7 @@ Naver Developers 사이트에서 신청하여 발급받은 {client_id} 및 {clie
 >
 
 * 1.12.1 이하
-	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+	* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
 		* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
 		* iOS 앱에서 필요한 정보인 **url_scheme_ios_only**를 추가로 설정해야 합니다.
 
@@ -351,7 +351,7 @@ Naver Developers 사이트에서 신청하여 발급받은 {client_id} 및 {clie
 		* **XCode > Target > Info > URL Types**
 
 * 1.12.2 이상
-	* **TOAST Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+	* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
 		* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
 
 	* URL Scheme를 설정해야 합니다.
@@ -458,7 +458,7 @@ Sign In with Apple 기능을 사용하려면 App Store Connect, Gamebase 콘솔,
 ![DownloadPrivateKey](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid3_1.0.png)
 
 ##### Gamebase Console > App Settings
-[TOAST Console 바로가기](https://console.toast.com/)
+[NHN Cloud Console 바로가기](https://console.toast.com/)
 
 * Gamebase
 ![SecretKey설정](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
@@ -547,7 +547,7 @@ Gamebase 콘솔 **App**에서 Apple을 추가하면 기본으로 아래의 JSON�
 ![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_07.png)
 
 
-**위에서 설정한 Service ID 를 TOAST Gamebase Console > Gamebase > 앱 > 인증 정보 > Apple > Service ID 에 입력합니다.***
+**위에서 설정한 Service ID 를 NHN Cloud Gamebase Console > Gamebase > 앱 > 인증 정보 > Apple > Service ID 에 입력합니다.***
 
 > <font color="red">[주의]</font><br/>
 >

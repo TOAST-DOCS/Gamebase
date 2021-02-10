@@ -15,7 +15,7 @@ Android나 iOS에서 푸시를 설정하는 방법은 다음 문서를 참고하
 
 ### Register Push
 
-다음 API를 호출하여, TOAST Push에 해당 사용자를 등록합니다.
+다음 API를 호출하여, NHN Cloud Push에 해당 사용자를 등록합니다.
 푸시 동의 여부(enablePush), 광고성 푸시 동의 여부(enableAdPush), 야간 광고성 푸시 동의 여부(enableAdNightPush)값을 사용자로부터 받아, 다음 API를 호출해 등록을 완료합니다.
 
 **API**
@@ -225,7 +225,7 @@ void Sample::SetSandboxMode(bool isSandbox)
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | TOAST Push 라이브러리 오류입니다.<br>DetailCode를 확인하세요. |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | NHN Cloud  Push 라이브러리 오류입니다.<br>DetailCode를 확인하세요. |
 | PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 이전 푸시 API 호출이 완료되지 않았습니다.<br>이전 푸시 API의 콜백이 실행된 이후에 다시 호출하세요. |
 | PUSH_UNKNOWN_ERROR             | 5999       | 정의되지 않은 푸시 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
@@ -234,7 +234,7 @@ void Sample::SetSandboxMode(bool isSandbox)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* 이 오류는 TOAST Push 라이브러리에서 발생한 오류입니다.
+* 이 오류는 NHN Cloud  Push 라이브러리에서 발생한 오류입니다.
 * 오류 코드를 확인하는 방법은 다음과 같습니다.
 
 ```cpp
@@ -256,6 +256,6 @@ else
 }
 ```
 
-* TOAST Push 오류 코드를 확인하시기 바랍니다.
+* NHN Cloud  Push 오류 코드를 확인하시기 바랍니다.
     * [Android](aos-push#error-handling)
     * [iOS](ios-push#error-handling)

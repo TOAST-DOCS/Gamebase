@@ -207,8 +207,8 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 > 예를 들어, Facebook 로그인을 구현하려면 scope 등을 설정해야 합니다.<br/>
 > 이러한 필수 정보들을 설정할 수 있게 static void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) API를 제공합니다.<br/>
 > additionalInfo 파라미터에 필수 정보들을 dictionary 형태로 입력하시면 됩니다.
-additionalInfo 값이 있을 경우에는 해당 값을 사용하고 없을 경우에는(null) TOAST Console에 등록된 값을 사용합니다.
-([TOAST Console에 additionalInfo 설정하기](./oper-app/#authentication-information))<br/>
+additionalInfo 값이 있을 경우에는 해당 값을 사용하고 없을 경우에는(null) NHN Cloud Console에 등록된 값을 사용합니다.
+([NHN Cloud Console에 additionalInfo 설정하기](./oper-app/#authentication-information))<br/>
 > Stansalone에서는 WebViewAdapter를 통해서 로그인을 지원하며 WebView가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
 
 
@@ -1267,7 +1267,7 @@ public void SampleWithdrawImmediately()
 |                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | 잘못된 TransferAccount를 여러번 입력하여 계정 이전 기능이 잠겼습니다. |
 |                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | TransferAccount의 ID가 유효하지 않습니다. |
 |                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | TransferAccount의 Password가 유효하지 않습니다. |
-|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccount 설정이 되어있지 않습니다. <br/> TOAST Gamebase Console에서 먼저 설정해주세요. |
+|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccount 설정이 되어있지 않습니다. <br/> NHN Cloud Gamebase Console에서 먼저 설정해주세요. |
 |                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccount가 존재하지 않습니다. TransferAccount를 먼저 발급받아주세요. |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccount가 이미 존재합니다. |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount가 이미 사용되었습니다. |

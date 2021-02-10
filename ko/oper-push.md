@@ -4,7 +4,7 @@
 
 앱 이용자에게 푸시 알림을 발송할 수 있습니다.
 
-Gamebase에서는 TOAST Push 서비스를 사용해 푸시 알림을 발송합니다.
+Gamebase에서는 NHN Cloud Push 서비스를 사용해 푸시 알림을 발송합니다.
 
 ## Push
 
@@ -224,7 +224,7 @@ Push에서 푸시 메시지를 발송할 때 사용할 이벤트키를 등록할
 
 ![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_06_201910.png)
 
-TOAST Push에서 푸시 메시지를 발송할 때 사용할 태그명을 등록할 수 있습니다.
+NHN Cloud Push에서 푸시 메시지를 발송할 때 사용할 태그명을 등록할 수 있습니다.
 
 
 
@@ -294,7 +294,7 @@ TOAST Push에서 푸시 메시지를 발송할 때 사용할 태그명을 등록
 
 ### 발송 내역 저장
 
-메시지 발송 내역을 TOAST Log & Crash Search에 저장하는 기능입니다.
+메시지 발송 내역을 NHN Cloud Log & Crash Search에 저장하는 기능입니다.
 
 * AppKey: Log & Crash Search 앱 키입니다.
 * Log Source: Gamebase에서 제공하는 PUSH API를 이용하여 발송한 PUSH 이력을 Log & Crash Search에서 검색할 수 있습니다.

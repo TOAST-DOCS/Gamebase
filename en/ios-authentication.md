@@ -141,7 +141,7 @@ There is information which must be included for login with some IdPs.<br/>
 For instance, scope must be set to implement a Facebook login.<br/>
 In order to set such necessary information, the **[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API is provided.<br/>
 You can enter those information to additionalInfo in the dictionary type.<br/>
-(When the parameter value is nil, the additionalInfo registered in the TOAST Console will be applied. Generally, the parameter value will take precedence over the value registered in the Console.)
+(When the parameter value is nil, the additionalInfo registered in the NHN Cloud Console will be applied. Generally, the parameter value will take precedence over the value registered in the Console.)
 
 
 > [Note]

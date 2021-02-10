@@ -39,7 +39,7 @@
 |                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_BLOCK<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_BLOCK | 3042 | 잘못된 TransferAccount를 여러번 입력하여 계정 이전 기능이 잠겼습니다. |
 |                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_INVALID\_ID<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_INVALID\_ID | 3043 | TransferAccount의 Id가 유효하지 않습니다. |
 |                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_INVALID\_PASSWORD<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_INVALID\_PASSWORD | 3044 | TransferAccount의 Password가 유효하지 않습니다. |
-|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_CONSOLE\_NO\_CONDITION<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_CONSOLE\_NO\_CONDITION | 3045 | TransferAccount 설정이 되어있지 않습니다. <br/> TOAST Gamebase Console에서 먼저 설정해주세요. |
+|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_CONSOLE\_NO\_CONDITION<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_CONSOLE\_NO\_CONDITION | 3045 | TransferAccount 설정이 되어있지 않습니다. <br/> NHN Cloud Gamebase Console에서 먼저 설정해주세요. |
 |                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_NOT\_EXIST<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_NOT\_EXIST | 3046 | TransferAccount가 존재하지 않습니다. TransferAccount를 먼저 발급받아주세요. |
 |                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_ALREADY\_EXIST\_ID<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_ALREADY\_EXIST\_ID | 3047 | TransferAccount가 이미 존재합니다. |
 |                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_ALREADY\_USED<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_ALREADY\_USED | 3048 | TransferAccount가 이미 사용되었습니다. |
@@ -121,7 +121,7 @@
 |         | -4010203              | 유효하지 않은 액세스 토큰 |
 |         | -4010204              | 이용 정지/탈퇴/계정 유실 등 유효하지 않은 사용자 |
 |         | -4010208              | Gamebase Access Token 만료 혹은 IdP Access Token 만료 |
-|         | -4040201              | 호출한 API에 대한 TOAST 서비스가 활성화되어 있지 않을 때 <br/>- 예) Leaderboard 서비스를 사용하지 않는 상태에서 Gamebase를 통해 Leaderboard API를 호출할 때 <br/>혹은 Gamebase 자체가 활성화되어 있지 않을 때 |
+|         | -4040201              | 호출한 API에 대한 NHN Cloud 서비스가 활성화되어 있지 않을 때 <br/>- 예) Leaderboard 서비스를 사용하지 않는 상태에서 Gamebase를 통해 Leaderboard API를 호출할 때 <br/>혹은 Gamebase 자체가 활성화되어 있지 않을 때 |
 |         | -4040202              | 정의되어 있지 않은 API를 호출한 경우 |
 |         | -4120201              | 일부 제공되는 SANDBOX 시스템에서 실제 환경 서버 주소로 API 호출 (혹은 반대로 호출) <br/>- 해당 오류 발생시 서버 호출 주소 확인이 필요함 |
 |         | -5000201 ~ 8          | Gateway 내부 시스템 오류 |
