@@ -7,7 +7,7 @@
 ## Game > Gamebase > Console ご利用ガイド > 決済
 
 アプリ内決済に関連する情報を登録し、内訳を照会することができます。
-Gamebaseでは、TOAST IAP(In-App Purchase、アプリ内決済)サービスを使用します。
+Gamebaseでは、NHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを使用します。
 
 ## Store
 

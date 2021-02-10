@@ -162,7 +162,7 @@ void Sample::ShowAlertEvent(const FString& title, const FString& message)
 }
 ```
 
-## Toast
+## NHN Cloud
 
 With the following API, it gets easy to display messages. 
 

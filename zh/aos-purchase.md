@@ -22,7 +22,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
         * 测试终端必须有USIM并需要注册电话号码(MDN)。
         * 需要安装**ONE store**。
 
-#### 3. 使用TOAST IAP服务
+#### 3. 使用NHN Cloud IAP服务
 
 * 请参考IAP指南以设置IAP并注册item。
     * [Mobile Service > IAP > 控制台使用指南](/Mobile%20Service/IAP/zh/console-guide/)
@@ -262,5 +262,5 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 ```
 
 * IAP错误代码，请参考以下文档。
-    * [TOAST > TOAST SDK使用指南 > TOAST IAP > Android > 错误代码](/TOAST/zh/toast-sdk/iap-android/#_24)
+    * [NHN Cloud > NHN Cloud SDK使用指南 > NHN Cloud IAP > Android > 错误代码](/TOAST/zh/toast-sdk/iap-android/#_24)
 

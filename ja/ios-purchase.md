@@ -169,7 +169,7 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
 
 ### Reprocess Failed Purchase Transaction
 
-ストアでは決済が正常に行われたものの、TOAST IAPサーバーの検証エラーなどにより正常に決済されていない場合は、APIを利用して再処理を試みます。<br/>
+ストアでは決済が正常に行われたものの、NHN Cloud IAPサーバーの検証エラーなどにより正常に決済されていない場合は、APIを利用して再処理を試みます。<br/>
 最後に、決済が成功した内訳を基にアイテム送信(配布)などのAPIを呼び出して処理する必要があります。
 
 ```objectivec
@@ -211,7 +211,7 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
 > `注意`
 > iOS 11以上でのみ使用できます。
 > Xcode 9.0以上でビルドする必要があります。
-> Gamebase 1.13.0以上でサポートします(TOAST IAP SDK 1.6.0以上適用)。
+> Gamebase 1.13.0以上でサポートします(NHN Cloud IAP SDK 1.6.0以上適用)。
 
 
 > `注意`
@@ -313,5 +313,5 @@ NSLog(@"TCGBError:%@", [tcgbError description]);
 ```
 
 * IAPエラーコードは、次の文書を参照してください。
-    * [TOAST > TOAST SDK使用ガイド > TOAST IAP > iOS > エラーコード](/TOAST/ko/toast-sdk/iap-ios/#_15)
+    * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > iOS > エラーコード](/TOAST/ko/toast-sdk/iap-ios/#_15)
 

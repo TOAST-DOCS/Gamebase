@@ -19,7 +19,7 @@
 
 | API                                      | Mandatory(M) / Optional(O) | Description                              |
 | ---------------------------------------- | -------------------------- | ---------------------------------------- |
-| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | 需要使用appId和appVersion，初始化gamebaseConfiguration.newBuilder初始化为必要的参数。<br/><br/> **appId**是TOAST Project发放的App的ID。<br/> **appVersion**用于判断游戏是处于服务状态、更新状态还是维护状态。请指定游戏版本。 <br/> **storeCode**是代表APK分配的商店的代码。以下指南中有对各商店代码的说明。 [Purchase - Initialization](./aos-purchase/#6-initialization) |
+| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | 需要使用appId和appVersion，初始化gamebaseConfiguration.newBuilder初始化为必要的参数。<br/><br/> **appId**是NHN Cloud Project发放的App的ID。<br/> **appVersion**用于判断游戏是处于服务状态、更新状态还是维护状态。请指定游戏版本。 <br/> **storeCode**是代表APK分配的商店的代码。以下指南中有对各商店代码的说明。 [Purchase - Initialization](./aos-purchase/#6-initialization) |
 | build()                                  | **M**                      | 将设置完的 Builder转换为Configuration对象。<br/>**Gamebase.initialize()** API要求。 |
 | enablePopup(boolean enable)              | O                          | **[UI]**<br/>因系统维护或设置禁用（ban）等原因，导致游戏用户无法玩游戏的状态下，有时需要通过弹出窗口显示原因。<br/>如果设置为**true**，Gamebase将在该情况下自动弹出窗口公告信息。<br/>默认值为 **false**。<br/>**false**的情况下，从Launching结果中获取信息，并使用自定义UI，显示用户无法玩游戏的原因。 |
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>根据Launching结果，可以更改Gamebase是否在无法登录时，自动显示弹出窗口（维护状态为主）。<br/>仅适用于**enablePopup(true)** 状态下。<br/>默认值为 **true**。 |
@@ -250,7 +250,7 @@ LaunchingInfo对象中包含Gamebase Console中设置的值及游戏状态等。
 
 #### 2. tcProduct
 
-是与Gamebase相关的TOAST服务的appKey。
+是与Gamebase相关的NHN Cloud服务的appKey。
 
 * gamebase
 * tcLaunching
@@ -259,7 +259,7 @@ LaunchingInfo对象中包含Gamebase Console中设置的值及游戏状态等。
 
 #### 3. tcIap
 
-是TOAST Console中创建的IAP商店信息。
+是NHN Cloud Console中创建的IAP商店信息。
 
 * id: App ID
 * name: App Name
@@ -269,10 +269,10 @@ LaunchingInfo对象中包含Gamebase Console中设置的值及游戏状态等。
 
 #### 4. tcLaunching
 
-是TOAST Launching Console中用户输入的信息
+是NHN Cloud Launching Console中用户输入的信息
 
 * 用户输入的值传至JSON string。
-* TOAST Launching具体设置请参考如下指南。
+* NHN Cloud Launching具体设置请参考如下指南。
  
 [Console Guide](/Game/Gamebase/zh/oper-management/#config)
 

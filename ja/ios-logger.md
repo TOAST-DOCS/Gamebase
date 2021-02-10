@@ -1,9 +1,9 @@
 ## Game > Gamebase > iOS SDK使用ガイド > Logger
 
-ここではiOSでTOAST Logger SDKを使用する方法を説明します。
+ここではiOSでNHN Cloud Logger SDKを使用する方法を説明します。
 
 ### Initialize
-Log & Crash Searchで発行したAppKeyでTOAST Logger SDKを初期化します。<br/>
+Log & Crash Searchで発行したAppKeyでNHN Cloud Logger SDKを初期化します。<br/>
 
 **API**
 
@@ -28,7 +28,7 @@ Log & Crash Searchで発行したAppKeyでTOAST Logger SDKを初期化します�
 ### Send Logs
 
 Log & Crash Serverにログを転送します。
-TOAST Logger SDKは、下記の5つのレベルのログを転送できます。
+NHN Cloud Logger SDKは、下記の5つのレベルのログを転送できます。
 
 * DEBUG
 * INFO

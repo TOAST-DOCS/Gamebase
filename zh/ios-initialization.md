@@ -191,7 +191,7 @@ Gamebase仅显示警告(warning)和错误日志。
 
 #### 2. tcProduct
 
-是与Gamebase相关的TOAST服务的appKey。
+是与Gamebase相关的NHN Cloud服务的appKey。
 
 * gamebase
 * tcLaunching
@@ -200,7 +200,7 @@ Gamebase仅显示警告(warning)和错误日志。
 
 #### 3. tcIap
 
-是TOAST Console中创建的IAP商店信息。
+是NHN Cloud Console中创建的IAP商店信息。
 
 * id: App ID
 * name: App Name
@@ -210,10 +210,10 @@ Gamebase仅显示警告(warning)和错误日志。
 
 #### 4. tcLaunching
 
-是TOAST Launching Console中用户输入的信息
+是NHN Cloud Launching Console中用户输入的信息
 
 * 用户输入的值传至JSON string。
-* TOAST Launching具体设置请参考如下指南。
+* NHN Cloud Launching具体设置请参考如下指南。
  
 [Console Guide](/Game/Gamebase/zh/oper-management/#config)
 

@@ -21,7 +21,7 @@ Gamebase Server API以RESTful类型提供如下API。 为了使用服务器API�
 
 #### AppId
 
-APP ID 可通过TOAST项目ID，在APP菜单页面中确认。
+APP ID 可通过NHN Cloud项目ID，在APP菜单页面中确认。
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
 #### SecretKey
@@ -106,7 +106,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 | userId | String | 登录用户ID |
 | accessToken | String | 发放给登录用户的访问令牌 |
 
@@ -198,7 +198,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 **[Request Parameter]**  
 
@@ -332,7 +332,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 | userId | String | 查询用户ID |
 
 **[Request Parameter]**
@@ -431,7 +431,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 **[Request Body]**
 
@@ -493,7 +493,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 
 **[Request Body]**
@@ -555,7 +555,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 
 **[Request Parameter]**
@@ -614,7 +614,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 
 **[Request Parameter]**
@@ -681,7 +681,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | pagingInfo.totalElements | int | 数据总数 |
 | pagingInfo.totalPages | int | 页面总数 |
 | result | Array[Object] | 查询的禁用历史记录 |
-| result.appId | String | 查询的禁用的TOAST项目ID |
+| result.appId | String | 查询的禁用的NHN Cloud项目ID |
 | result.banCaller | String | 禁用调用主体 |
 | result.banReason | String | 禁用原因 |
 | result.banType | String | 禁用类型。TEMPORARY or PERMANENT |
@@ -722,7 +722,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 
 **[Request Parameter]**
@@ -789,7 +789,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | pagingInfo.totalElements | int | 数据总数 |
 | pagingInfo.totalPages | int | 页面总数 |
 | result | Array[Object] | 查询的禁用历史记录 |
-| result.appId | String | 查询的禁用的TOAST项目ID |
+| result.appId | String | 查询的禁用的NHN Cloud项目ID |
 | result.banCaller | String | 禁用调用主体 |
 | result.banReason | String | 禁用原因 |
 | result.banType | String | 禁用类型。TEMPORARY or PERMANENT |
@@ -830,7 +830,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 
 **[Request Parameter]**
@@ -910,7 +910,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 **[Request Parameter]**
 
@@ -982,7 +982,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 | userId | String | 要使用优惠券的userId |
 | couponCode | String | 优惠券代码 |
 
@@ -1055,7 +1055,7 @@ Google Play Store, App Store, ONEStore等商店支付完成后，向用户提供
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 **[Request Parameter]**
 
@@ -1125,7 +1125,7 @@ Google Play Store, App Store, ONEStore等商店支付完成后，向用户提供
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 **[Request Parameter]**
 
@@ -1207,7 +1207,7 @@ Google Play Store, App Store, ONEStore等商店支付完成后，向用户提供
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 **[Request Parameter]**
 
@@ -1286,7 +1286,7 @@ Google Play Store, App Store, ONEStore等商店支付完成后，向用户提供
 
 ## Leaderboard
 
-Gamebase为TOAST Leaderboard服务的服务器API提供**Wrapping**功能。使用Wrapping 功能可在用户服务器上通过统一接口使用TOAST服务
+Gamebase为NHN Cloud Leaderboard服务的服务器API提供**Wrapping**功能。使用Wrapping 功能可在用户服务器上通过统一接口使用NHN Cloud服务
 
 
 #### Wrapping API

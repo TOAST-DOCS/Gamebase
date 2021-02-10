@@ -180,7 +180,7 @@ public void ShowAlertDialog()
 }
 ```
 
-## Toast
+## NHN Cloud
 
 Displays message easily, by using the following API.
 

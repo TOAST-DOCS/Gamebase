@@ -199,8 +199,8 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 > 例如，要实现Facebook登录，您需要设置scope等。<br/>
 > 为了设置这些信息，提供了static void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) API。<br/>
 > 可以用dictionary格式把信息输入到参数additionalInfo中。
-当参数值为nil时，它将填充在TOAST Console中注册的additionalInfo值。如果参数值存在，则覆盖在Console中注册的值。
-([在TOAST控制台中设置additionalInfo](./oper-app/#authentication-information))<br/>
+当参数值为nil时，它将填充在NHN Cloud Console中注册的additionalInfo值。如果参数值存在，则覆盖在Console中注册的值。
+([在NHN Cloud控制台中设置additionalInfo](./oper-app/#authentication-information))<br/>
 > Stansalone支持通过WebViewAdapter登录，并且在WebView打开时，不会阻止在UI中输入的Event。
 
 
@@ -1080,7 +1080,7 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 |                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | 多次输入错误TransferAccount，账户转移功能锁定。 |
 |                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | TransferAccount的ID无效。 |
 |                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | TransferAccount的密码无效。 |
-|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | 未设置TransferAccount。<br/> 请先在TOAST Gamebase Console中设置。 |
+|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | 未设置TransferAccount。<br/> 请先在NHN Cloud Gamebase Console中设置。 |
 |                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccount不存在。请先获得TransferAccount。 |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccount已存在。 |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount已使用。 |

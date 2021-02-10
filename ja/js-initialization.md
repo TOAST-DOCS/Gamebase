@@ -8,8 +8,8 @@ Gamebaseを初期化する時、GamebaseConfigurationオブジェクトでGameba
 
 | KEY                                                 | Mandatory(M) / Optional(O) | Description                              |
 | --------------------------------------------------- | -------------------------- | ---------------------------------------- |
-| appId: string                                       | **M**                      | TOAST Project IDです。入力は必須です。|
-| clientVersion: string                               | **M**                      | サービス中、メンテナンス、告知事項など、プレイできる状態かどうかをゲームバージョンを通して判断します。<br/> `TOAST Console > Gamebase > App > Client Version > WEB`のバージョンを入力してください。|
+| appId: string                                       | **M**                      | NHN Cloud Project IDです。入力は必須です。|
+| clientVersion: string                               | **M**                      | サービス中、メンテナンス、告知事項など、プレイできる状態かどうかをゲームバージョンを通して判断します。<br/> `NHN Cloud Console > Gamebase > App > Client Version > WEB`のバージョンを入力してください。|
 | enableDebugMode: boolean                            | O                          | Debug Modeを有効にできます。デバッグログは開発者コンソールに出力されます。<br/> デフォルト値は**false**です。|
 | uiConfiguration.enablePopup: boolean                | O                          | **[UI]**<br/>システムメンテナンス、利用制裁(ban)など、ゲームユーザーがゲームをプレイできない状況の時、ポップアップなどで理由を表示する必要がある場合があります。<br/> **true**に設定すると、Gamebaseが該当状況で情報ポップアップを自動的に表示します。<br/> デフォルト値は **false**です。<br/>**false**状態ではローンチ結果で情報を取得した後、独自にUIを実装してゲームをプレイできない理由を表示してください。|
 | uiConfiguration.enableLaunchingStatusPopup: boolean | O                          | **[UI]**<br/>ローンチ結果に応じてログインできない状態で(主にメンテナンス状態)、Gamebaseが自動的にポップアップを表示するかどうかを変更できます。<br/>**enablePopup(true)**状態でのみ動作します。<br/>デフォルト値は**true**です。|
