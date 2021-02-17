@@ -746,7 +746,7 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
         // A user close the contact web view.
     } else if (error.code == TCGB_ERROR_UI_CONTACT_FAIL_INVALID_URL) {
         // TODO: Gamebase Console Service Center URL is invalid.
-        // Please check the url field in the NHN Cloud Gamebase Console.
+        // Please check the url field in the TOAST Gamebase Console.
     } else {
         // TODO: Error occur when opening the contact web view.
     }
@@ -787,7 +787,7 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
         NSLog(@"ContactURL : %@", contactUrl);
     } else if (error.code == TCGB_ERROR_UI_CONTACT_FAIL_INVALID_URL) {
         // TODO: Gamebase Console Service Center URL is invalid.
-        // Please check the url field in the NHN Cloud Gamebase Console.
+        // Please check the url field in the TOAST Gamebase Console.
     } else {
         // TODO: Error occur when request contact url.
     }

@@ -4,7 +4,7 @@
 
 以下介绍如何为每个平台设置必要的推送通知。
 
-#### Register NHN Cloud Cloud Console
+#### Register NHN Cloud Console
 
 参考[Notification > Push > Console Guide](/Notification/Push/zh/console-guide/)设置Console。
 

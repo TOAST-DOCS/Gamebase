@@ -179,7 +179,7 @@ showWebView(activity, urlString, configuration,
 
 ## NHN Cloud
 
-次のAPIを使用して簡単に[Android トースト(NHN Cloud)](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)のメッセージを表示することができます。<br/>
+次のAPIを使用して簡単に[Android NHN Cloud](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)のメッセージを表示することができます。<br/>
 メッセージを表示する時間タイプのパラメーターはint形式であり、Android SDK NotificationManagerServiceクラスの定義に基づき、下の図の時間の間、表示されます。
 
 | 時間タイプ(int)         | 表示時間                     |

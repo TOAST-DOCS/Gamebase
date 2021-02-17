@@ -4,7 +4,7 @@
 
 This document describes how to set push notifications for each platform.
 
-#### Register NHN Cloud Cloud Console
+#### Register NHN Cloud Console
 
 Set console in reference of [Notification > Push > Console Guide](/Notification/Push/en/console-guide/)
 

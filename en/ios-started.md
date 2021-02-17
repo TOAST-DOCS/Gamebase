@@ -26,7 +26,7 @@ Then, include corresponding SDK files to a target of your project.
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage | External SDK Download Link | Support iOS Version |
 | --- | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework, Gamebase.bundle | NHN CloudSDK 0.19.3 | Includes interface and core logic of Gamebase | Included in Gamebase | iOS9 or later
+| Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.19.3 | Includes interface and core logic of Gamebase | Included in Gamebase | iOS9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v5.6.0 | Supports Facebook login | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS9 or later |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.3.2 | Supports Payco login | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Supports Naver login | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |
@@ -35,8 +35,8 @@ Then, include corresponding SDK files to a target of your project.
 |  | GamebaseAuthTwitterAdapter.framework | | Supports Twitter login | | iOS9 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | Supports LINE login | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | Set Optional for AuthenticationServices.framework | iOS13 or later |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework, NHN CloudIAP 0.19.8, NHN CloudGamebaseIAP 0.9.7 | Supports in-game purchase | Included in Gamebase IAP | iOS9 or later |
-| Gamebase Push | GamebasePushAdapter.framework | NHN CloudPush 0.19.3 | Supports Push | Included in Gamebase Push | iOS9 or later |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework, ToastIAP 0.19.8, ToastGamebaseIAP 0.9.7 | Supports in-game purchase | Included in Gamebase IAP | iOS9 or later |
+| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.19.3 | Supports Push | Included in Gamebase Push | iOS9 or later |
 
 
 > <font color="red">[Caution]</font><br/>

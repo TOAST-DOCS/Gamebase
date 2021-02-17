@@ -27,7 +27,7 @@ Gamebase可以通过以下方式安装。
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 目的 | External SDK Download Link | Support iOS Version |
 | --- | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework, Gamebase.bundle | NHN CloudSDK 0.19.3 | 包含Gamebase的Interface及核心逻辑 | 包含于Gamebase内 | iOS9 or later
+| Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.19.3 | 包含Gamebase的Interface及核心逻辑 | 包含于Gamebase内 | iOS9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v5.6.0 | 支持Facebook登录 | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS9 or later |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.3.2 | 支持Payco登录 | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | 支持Naver登录 | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |
@@ -36,8 +36,8 @@ Gamebase可以通过以下方式安装。
 |  | GamebaseAuthTwitterAdapter.framework | | 支持Twitter登录 | | iOS9 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | 支持LINE登录 | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | AuthenticationServices.framework设置为Optional | iOS13 or later |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework, NHN CloudIAP 0.19.8, NHN CloudGamebaseIAP 0.9.7 | 支持游戏内支付 | 包含于Gamebase IAP内 | iOS9 or later |
-| Gamebase Push | GamebasePushAdapter.framework | NHN CloudPush 0.19.3 | 支持Push | 包含于Gamebase Push内 | iOS9 or later |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework, ToastIAP 0.19.8, ToastGamebaseIAP 0.9.7 | 支持游戏内支付 | 包含于Gamebase IAP内 | iOS9 or later |
+| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.19.3 | 支持Push | 包含于Gamebase Push内 | iOS9 or later |
 
 
 > <font color="red">[注意]</font><br/>

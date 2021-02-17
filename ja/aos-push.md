@@ -4,7 +4,7 @@
 
 ここではプラットフォームごとにPush通知を使用するために必要な設定方法についてご案内いたします。
 
-#### Register NHN Cloud Cloud Console
+#### Register NHN Cloud Console
 
 [Notification > Push > Console Guide](/Notification/Push/ja/console-guide/)を参照してConsoleを設定します。
 

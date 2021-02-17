@@ -24,8 +24,9 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 ダウンロードした後、該当するSDKファイルをプロジェクトのtargetに含めなければなりません。
 
 **3rd Party SDK Download**
-
-| Gamebase | Gamebase.framework, Gamebase.bundle | NHN Cloud SDK 0.19.3 | GamebaseのInterfaceおよび核心ロジックを含む | Gamebase内に含まれる | iOS9 or later
+| Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage | External SDK Download Link | Support iOS Version |
+| --- | --- | --- | --- | --- | --- |
+| Gamebase | Gamebase.framework, Gamebase.bundle | Toast SDK 0.19.3 | GamebaseのInterfaceおよび核心ロジックを含む | Gamebase内に含まれる | iOS9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v5.6.0 | Facebookログインをサポート | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS9 or later |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.3.2 | Paycoログインをサポート | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Naverログインをサポート | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |
@@ -34,8 +35,8 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 |  | GamebaseAuthTwitterAdapter.framework | | Twitterログインをサポート | | iOS9 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | LINEログインをサポート | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | AuthenticationServices.frameworkをOptionalに設定 | iOS13 or later |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework, NHN CloudIAP 0.19.8, NHN CloudGamebaseIAP 0.9.7 | ゲーム内決済をサポート | Gamebase IAP内に含まれる | iOS9 or later |
-| Gamebase Push | GamebasePushAdapter.framework | NHN CloudPush 0.19.3 | Pushをサポート | Gamebase Push内に含まれる | iOS9 or later |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework, ToastIAP 0.19.8, ToastGamebaseIAP 0.9.7 | ゲーム内決済をサポート | Gamebase IAP内に含まれる | iOS9 or later |
+| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.19.3 | Pushをサポート | Gamebase Push内に含まれる | iOS9 or later |
 
 
 > <font color="red">[注意]</font><br/>
