@@ -92,7 +92,7 @@
 | Gateway | -4010202              | Called invalid App ID. |
 |         | -4010203              | Invalid access token |
 |         | -4010204              | Invalid user due to banning/withdrawal/missing account |
-|         | -4040201              | NHN Cloud Cloud for called API is not enabled. <br> e.g) When a Leaderboard API is called via Gamebase when the product is not used. <br/>Or, when Gamebase itself is not enabled. |
+|         | -4040201              | NHN Cloud for called API is not enabled. <br> e.g) When a Leaderboard API is called via Gamebase when the product is not used. <br/>Or, when Gamebase itself is not enabled. |
 |         | -4040202              | Called undefined API. |
 |         | -5000201 ~ 8          | Error in internal system of Gateway |
 | Launching | -4040303            | 등록되지 않은 클라이언트 버전으로 초기화 요청일 때<br>콘솔에서 현재 등록된 클라이언트 버전 및 스토어 코드 확인이 필요함 |

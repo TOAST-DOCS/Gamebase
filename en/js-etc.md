@@ -248,7 +248,7 @@ Server Push Types currently supported by Gamebase are as follows:
 You can check it in the **toast.GamebaseServerPushType** constant.
 
 * Kickout (Kickout)
-    * Go to Operation > Kickout in the TOAST Gamebase console and register Kickout ServerPush messages. Then, messages will be sent to all clients connected to Gamebase.
+    * Go to Operation > Kickout in the NHN Cloud Gamebase console and register Kickout ServerPush messages. Then, messages will be sent to all clients connected to Gamebase.
     * Type: toast.GamebaseServerPushType.APP_KICKOUT (= "appKickout")
 
 

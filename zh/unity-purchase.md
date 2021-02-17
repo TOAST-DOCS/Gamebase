@@ -207,7 +207,7 @@ public void RequestActivatedPurchasesSample()
 >
 > 仅适用于iOS 11或更高版本。
 > 需要在Xcode 9.0以上版本build。
-> Gamebase 1.13.0及更高版本支持。 (TOAST IAP SDK 1.6.0 以上适用)
+> Gamebase 1.13.0及更高版本支持。 (NHN Cloud IAP SDK 1.6.0 以上适用)
 
 
 > <font color="red">[注意]</font><br/>

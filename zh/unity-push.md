@@ -13,7 +13,7 @@
 
 ### Register Push
 
-调用以下API在TOAST Push注册该用户。
+调用以下API在NHN Cloud Push注册该用户。
 接受来自用户的推送协议(enablePush)，广告推送协议(enableAdPush)，夜间广告推送协议(enableAdNightPush)的值，并调用以下API完成注册。
 
 
