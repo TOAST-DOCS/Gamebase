@@ -110,7 +110,7 @@ Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다.
 	* Push > 푸시: Tencent Push 제거
 	* 구매(IAP) > 결제 정보: 환불 상태에서 영수증 검증 버튼 노출되지 않도록 변경
 * [SDK] 2.18.2
-    * (공통) NHN Cloud SDK 업데이트: [Android(0.24.2)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0242-20201124), [iOS(0.27.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-unity/#0213-20201124)
+    * (공통) TOAST SDK 업데이트: [Android(0.24.2)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0242-20201124), [iOS(0.27.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-unity/#0213-20201124)
 	* (Android) 암호화 로직 보안 경고 해결을 위한 외부 SDK 업데이트: Payco Login SDK(1.5.3), Hangame ID SDK(1.3.2)
 	* (Android) Tencent Push 모듈 제거
 	* (Android) Gamebase Android SDK 2.6.0에서 deprecated된 함수 제거
@@ -156,7 +156,7 @@ Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다.
 
 #### 기능 개선/변경
 * [SDK] 2.18.0
-    * (Android) NHN Cloud SDK 업데이트: [Android(0.24.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0240-20201027)-GooglePlay Billing Library v.3.0.1 적용
+    * (Android) TOAST SDK 업데이트: [Android(0.24.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0240-20201027)-GooglePlay Billing Library v.3.0.1 적용
     * (Android) WebView SSL 보안 경고 대응 처리 추가
     * (iOS) iOS 13 이상부터 제공되는 SceneDelegate 대응 API 추가
 
@@ -182,7 +182,7 @@ Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다.
     * (iOS) 특정 지표 전송 시 오류 메시지를 추가하여 전송: 푸시 등록에 실패 시, 게임 지표 전송 시
     * (Unity) Unity 2017.2.5 지원
 * [SDK] 2.15.0
-    * (Unreal) NHN Cloud SDK 업데이트: Android(0.23.0), iOS(0.26.0), Unity(0.21.0)    
+    * (Unreal) TOAST SDK 업데이트: Android(0.23.0), iOS(0.26.0), Unity(0.21.0)    
 
 #### 버그 수정
 * [Console]
@@ -207,7 +207,7 @@ Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다.
 #### 기능 개선/변경
 * [SDK] 2.17.0
     * (공통) 고객 센터 첨부 이미지 클릭 시 다운로드 지원
-    * (공통) NHN Cloud SDK 업데이트: Android(0.23.2), Unity(0.21.2)
+    * (공통) TOAST SDK 업데이트: Android(0.23.2), Unity(0.21.2)
     * (iOS) TCGBMember.regDate, TCGBMember.lastLoginDate의 타입을 long long으로 변경
     * (iOS) 웹뷰에서 URL 및 타이틀 변경 시 타이틀을 재출력할 수 있도록 로직 변경
 
@@ -235,8 +235,8 @@ Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다.
 
 #### 기능 개선/변경
 * [SDK] 2.15.1
-    * (iOS) NHN Cloud SDK 업데이트: iOS(0.27.0)
-	* iOS 14 beta 변경 사항을 대응한 IAP SDK 신규 버전이 적용되었습니다. [NHN Cloud SDK Release Notes](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0270-20200911)
+    * (iOS) TOAST SDK 업데이트: iOS(0.27.0)
+	* iOS 14 beta 변경 사항을 대응한 IAP SDK 신규 버전이 적용되었습니다. [TOAST SDK Release Notes](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0270-20200911)
 
 ### 2020. 09. 15.
 
@@ -272,7 +272,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 * [Console]
     * 푸시 > 푸시: 홍보성 푸시 알림 발송 시 발신자 연락처, 수신 철회 동의 방법을 입력하지 않아도 발송이 가능하도록 수정
 * [SDK] 2.15.0
-    * (공통) NHN Cloud SDK 업데이트: Android(0.23.0), iOS(0.26.0), Unity(0.21.0)
+    * (공통) TOAST SDK 업데이트: Android(0.23.0), iOS(0.26.0), Unity(0.21.0)
     * (iOS) 결제 payload의 null check 로직 추가
 * [SDK] 2.9.1
     * (Unreal) iOS Plugin 내부 Gamebase SDK for iOS 버전 업데이트(2.9.1)
@@ -337,7 +337,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
     * (iOS) Facebook SDK 업데이트(7.1.1)
     * (iOS) configuartion에 설정된 storeCode(default=AS)로 Gamebase 초기화 시도
     * (iOS) 콘텐츠를 로딩할 수 없는 웹뷰 출력 시 **닫기** 버튼이 없어 닫을 수 없는 문제 수정
-    * (Unity) NHN Cloud Unity SDK 업데이트(0.20.1.1)
+    * (Unity) TOAST Unity SDK 업데이트(0.20.1.1)
     
 ### 2020. 06. 23.
 
@@ -419,7 +419,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 		
 #### 기능 개선/변경
 * [SDK] 2.9.0
-	* (공통) NHN Cloud SDK 업데이트: Android(v0.21.0), iOS(v0.23.0), Unity(0.20.1)
+	* (공통) TOAST SDK 업데이트: Android(v0.21.0), iOS(v0.23.0), Unity(0.20.1)
 	* (공통) PAYCO Login SDK 업데이트: Android(v1.5.0), iOS(v1.4.0)
 * [Console]
 	* 전체 메뉴: 콘솔 버튼, 태그 디자인 수정
@@ -479,7 +479,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
     		- '테스트 결제 제외'로 설정하면 Analytics 매출 지표에서 테스트 결제는 모두 제외하고 보여줍니다. 
 		- 구매(IAP): 구매(IAP) 메뉴 최초 접근 시 결제 지표 통화 코드 설정 
 	- 최초 한 번만 설정 가능하며 Analytics 매출 지표에는 설정된 통화 코드로 지표가 표시됩니다.  
-  	- 모바일 콘솔(NHN Cloud 앱 포함)에 '데스크톱 보기' 기능 추가
+  	- 모바일 콘솔(TOAST 앱 포함)에 '데스크톱 보기' 기능 추가
 
 #### 기능 개선/변경
 
@@ -582,7 +582,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 * [Console]
 	* 구매 > 결제 정보 조회: 추가 정보 칼럼 추가
 * [SDK] 2.6.2
-	* (공통) NHN Cloud SDK 업데이트: Android(0.19.4), iOS(0.20.1), Unity(0.18.0)
+	* (공통) TOAST SDK 업데이트: Android(0.19.4), iOS(0.20.1), Unity(0.18.0)
 	* (iOS) Naver SDK 버전 업데이트(4.1.0)
 	
 ### 2019. 12. 10.
@@ -595,7 +595,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 	* 의미에 맞지 않는 일본어 문구 수정
 * [SDK] 2.6.1
 	* (Android)Gamebase.initialize() 호출 전에 Gamebase.login() 을 호출할 때 크래시가 발생하는 문제 수정
-	* (Android)NHN Cloud Analytics User Data 를 java 주소 값으로 잘못 전송하는 문제 수정
+	* (Android)TOAST Analytics User Data 를 java 주소 값으로 잘못 전송하는 문제 수정
 	* (Android)IAP 상품을 활성화 시키지 않은 경우 발생하는 크래시 수정
 	* (iOS)AddMapping(강제, Forcibly) 사용 시, 매핑이 되지 않는 문제 수정
 	* (iOS)Unity Plugin으로 PushConfiguration의 displayLanguageCode를 설정하지 않을 경우, NSNull 객체에 의하여 크래시가 발생하는 문제를 수정
@@ -606,7 +606,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 * [Console]
 	* 쿠폰 > 쿠폰발급: 세션 만료 후 쿠폰 다운로드 시 비정상적인 파일로 다운로드 되던 문제 수정
 	* Analytics > 실시간 모니터링 > 대시보드: 어제 데이터 0으로 노출되는 현상 수정
-	* NHN Cloud상품(IAP, Push, AppGuard 등) 관련 메뉴 접근 시 상품이 비활성화 된 경우 비활성화 페이지가 정상 노출되지 않던 문제 수정	
+	* TOAST상품(IAP, Push, AppGuard 등) 관련 메뉴 접근 시 상품이 비활성화 된 경우 비활성화 페이지가 정상 노출되지 않던 문제 수정	
 
 ### 2019. 11. 20.
 
@@ -642,7 +642,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 * Google 구독 결제 기능 추가
 	* [SDK] 2.6.0 Android
 * [SDK] 2.6.0
-	* (공통) 데이터를 Log&Crash 에 전송하여 각종 분석에 이용할 수 있도록 NHN Cloud Logger 추가
+	* (공통) 데이터를 Log&Crash 에 전송하여 각종 분석에 이용할 수 있도록 TOAST Logger 추가
 	* (iOS) Sign In with Apple 인증 추가
 	* (Android) Gamebase Android SDK 가 Bintray 를 통해 배포되므로 gradle 설정만으로 Gamebase 를 사용할 수 있음
 
@@ -795,7 +795,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 
 #### 기능 개선/변경
 * [SDK] 2.4.2
-	* (공통)LaunchingInfo에 JSON string 형식의 NHN Cloud Launching 정보를 추가
+	* (공통)LaunchingInfo에 JSON string 형식의 TOAST Launching 정보를 추가
 	* (iOS)LINE SDK 업데이트(v5.0.1)
 		* LINE Adpater의 최소 지원 OS 버전이 iOS 10으로 변경 
 		* LINE 앱을 통한 로그인 기능 추가
@@ -1269,7 +1269,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 		* Transfer Key 발급 API (IssueTransferKey)
 		* 발급된 TransferKey를 사용하여 계정 이전을 요청하는 API (RequestTransfer)
     - (console)회원메뉴의 매핑이력조회 탭에서 Transfer 이력 확인이 가능
-* 이용정지 등록시 사용자의 리더보드(랭킹) 데이터를 삭제할 수 있는 옵션 추가(NHN Cloud Leaderboard를 사용하는 경우에 한함)
+* 이용정지 등록시 사용자의 리더보드(랭킹) 데이터를 삭제할 수 있는 옵션 추가(TOAST Leaderboard를 사용하는 경우에 한함)
     - 이용정지 등록 메뉴를 이용하거나 App Guard 연동 페이지에서 사용 가능
 
 #### 버그 수정
@@ -1378,7 +1378,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 버그 수정
 * [SDK] 1.5.0
 	* (Unity)UnityEditor에서 Guest로그인이 되지 않는 현상 수정
-	* (Unity)NHN Cloud Console에 Facebook 인증 정보를 등록하지 않고 Gamebase.Login("facebook") API를 호출할 경우, KeyNotFoundException이 발생하여 방어코드 추가
+	* (Unity)TOAST Console에 Facebook 인증 정보를 등록하지 않고 Gamebase.Login("facebook") API를 호출할 경우, KeyNotFoundException이 발생하여 방어코드 추가
 
 
 ### 2017. 11. 30.
@@ -1526,4 +1526,4 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	* 하나의 User가 여러 개의 외부 IDP를 동시에 사용할 수 있도록 mapping기능을 제공
 	* 게임운영을 위한 게임 앱 상태관리, 점검, 긴급공지 등의 기능을 웹콘솔로 제공
 	* 실시간 운영지표 확인 가능한 웹콘솔 화면 제공
-	* NHN Cloud Cloud상품 연동 : PUSH, IAP
+	* TOAST Cloud상품 연동 : PUSH, IAP
