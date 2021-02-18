@@ -277,7 +277,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 Server Push Types currently supported by Gamebase are as follows: 
 
 * ServerPushEventMessage.Type.APP_KICKOUT (= "appKickout")
-    * Go to **Operation > Kickout**  in the TOAST Gamebase console and register Kickout ServerPush messages, and **APP_KICKOUT** messages are sent to all clients connected to Gamebase.
+    * Go to **Operation > Kickout**  in the NHN Cloud Gamebase console and register Kickout ServerPush messages, and **APP_KICKOUT** messages are sent to all clients connected to Gamebase.
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 
@@ -580,9 +580,9 @@ Gamebase provides features to respond to customer inquiries.
 
 > [TIP]
 >
-> By integrating with TOAST Contact, customer inquiries can be handled more at ease and convenience.
-> For more details on TOAST Contact, see the guide as below:
-> [TOAST Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
+> By integrating with NHN Cloud Contact, customer inquiries can be handled more at ease and convenience.
+> For more details on NHN Cloud Contact, see the guide as below:
+> [NHN Cloud Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
 >
 
 #### Open Contact WebView

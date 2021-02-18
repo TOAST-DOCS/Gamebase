@@ -280,7 +280,7 @@ GamebaseEventHandlerでプロモーション決済イベントを処理する方
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* このエラーは、TOAST IAP SDKで発生したエラーです。
+* このエラーは、NHN Cloud IAP SDKで発生したエラーです。
 * IAPーエラーの詳細は次のように確認できます。
 
 ```java
@@ -309,6 +309,6 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 });
 ```
 
-* TOAST IAP SDKのエラーコードは、次のドキュメントをご参考ください。
-    * [TOAST > TOAST SDK使用ガイド > TOAST IAP > Android > エラーコード](/TOAST/ja/toast-sdk/iap-android/#_24)
+* NHN Cloud IAP SDKのエラーコードは、次のドキュメントをご参考ください。
+    * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > Android > エラーコード](/TOAST/ja/toast-sdk/iap-android/#_24)
 

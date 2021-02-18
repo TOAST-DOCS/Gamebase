@@ -11,7 +11,7 @@ Authority of Gamebase Console can be managed.
 * Manage authority of Gamebase Console
   * **Access to sales status** : Access to **IAP** menu
   * **Access to management menu** : Access authority to other menu
-* To register a new member, go to **TOAST Console Page**.
+* To register a new member, go to **NHN Cloud Console Page**.
 * Cannot modify your own authority.
   
 
@@ -73,16 +73,16 @@ To change registered information, click **Modify**. You may click to **Delete** 
 
 ### Recipient List
 
-Alarm receivers can be configured. To register a new member, go to **TOAST Console > Project > Member Management**.
+Alarm receivers can be configured. To register a new member, go to **NHN Cloud Console > Project > Member Management**.
 ![gamebase_manage_07_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_manage_07_201812_en.png)
 Gamebase allows to send alarms via email or SMS.
-In both cases, subscription information to TOAST are used for delivery; alarms may not be sent properly if there is any wrong information in email address or number. To check mobile phone information, go to **My Account** of TOAST Cloud.
+In both cases, subscription information to NHN Cloud are used for delivery; alarms may not be sent properly if there is any wrong information in email address or number. To check mobile phone information, go to **My Account** of NHN Cloud Cloud.
 
 <br/>
 ## Config
 
-Integration between Gamebase and TOAST can be configured.
+Integration between Gamebase and NHN Cloud can be configured.
 
 ![gamebase_manage_08_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_manage_08_201812_en.png)
 
-You may set whether to receive information set in TOAST Launching all at once, when Gamebase Launching API is called. The function can be turned On or Off, only when you use the TOAST Launching service.
+You may set whether to receive information set in NHN Cloud Launching all at once, when Gamebase Launching API is called. The function can be turned On or Off, only when you use the NHN Cloud Launching service.

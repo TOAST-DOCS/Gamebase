@@ -1,11 +1,11 @@
 ## Game > Gamebase > Android SDK User Guide > Logger
 
-This document describes how to use TOAST Logger SDK on Android.
+This document describes how to use NHN Cloud Logger SDK on Android.
 
 ### Initialize
 
-Initialize TOAST Logger SDK with appkey issued from Log & Crash Search.<br/>
-To send crash logs, without a miss, occurring immediately with app execution, TOAST Logger must be initialized from **Application.onCreate()**.
+Initialize NHN Cloud Logger SDK with appkey issued from Log & Crash Search.<br/>
+To send crash logs, without a miss, occurring immediately with app execution, NHN Cloud Logger must be initialized from **Application.onCreate()**.
 
 **API**
 
@@ -34,7 +34,7 @@ public class MyApplication extends Application {
 ### Send Logs
 
 Send logs to Log & Crash Server.
-TOAST Logger SDK provides the following five level of logs to send:
+NHN Cloud Logger SDK provides the following five level of logs to send:
 
 * DEBUG
 * INFO

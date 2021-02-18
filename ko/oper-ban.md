@@ -3,7 +3,7 @@
 앱을 부당하게 사용하거나 어뷰징하는 게임 유저에 대해 앱 이용을 제한할 수 있는 이용 정지 기능을 제공합니다.
 이용이 정지된 게임 유저가 다시 로그인하거나 세션을 복구하는 경우에 이용 정지 팝업이 표시되어 게임 이용이 제한됩니다.
 
-이용 정지 등록은 Gamebase Console에서 수동으로 등록하거나 TOAST AppGuard를 사용하는 경우 패턴등록을 이용해 자동으로 등록할 수 있습니다.
+이용 정지 등록은 Gamebase Console에서 수동으로 등록하거나 NHN Cloud AppGuard를 사용하는 경우 패턴등록을 이용해 자동으로 등록할 수 있습니다.
 
 AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하시기 바랍니다.
 
@@ -150,7 +150,7 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 ## AppGuard
 
 > <font color="red">[중요]</font>
-> TOAST AppGuard 서비스를 사용하는 경우에만 이용할 수 있습니다.
+> NHN Cloud AppGuard 서비스를 사용하는 경우에만 이용할 수 있습니다.
 
 ![gamebase_ban_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_09_202101.png)
 

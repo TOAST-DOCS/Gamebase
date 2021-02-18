@@ -1,6 +1,6 @@
 ## Game > Gamebase > Unity SDK 사용 가이드 > 초기화
 
-Gamebase Unity SDK를 사용하려면 먼저 초기화를 진행해야 합니다. 또한 앱 ID, 앱 버전 정보가 TOAST Console에 반드시 등록돼 있어야 합니다.
+Gamebase Unity SDK를 사용하려면 먼저 초기화를 진행해야 합니다. 또한 앱 ID, 앱 버전 정보가 NHN Cloud Console에 반드시 등록돼 있어야 합니다.
 
 ### GamebaseConfiguration 
 
@@ -33,7 +33,7 @@ Gamebase Console에 등록한 클라이언트 버전입니다.
 
 #### 3. storeCode
 
-TOAST 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하기 위해 필요한 스토어 정보입니다.
+NHN Cloud 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하기 위해 필요한 스토어 정보입니다.
 
 | Store       | Code | Description  |
 | ----------- | ---- | ------------ |
@@ -319,7 +319,7 @@ Gamebase Console에 등록된 공지 정보입니다.
 
 #### 2. tcProduct
 
-Gamebase와 연계된 TOAST 서비스의 appKey입니다.
+Gamebase와 연계된 NHN Cloud 서비스의 appKey입니다.
 
 * gamebase
 * tcLaunching
@@ -328,7 +328,7 @@ Gamebase와 연계된 TOAST 서비스의 appKey입니다.
 
 #### 3. tcIap
 
-TOAST Console에 등록된 IAP 스토어 정보입니다.
+NHN Cloud Console에 등록된 IAP 스토어 정보입니다.
 
 * id: App ID
 * name: App Name
@@ -338,10 +338,10 @@ TOAST Console에 등록된 IAP 스토어 정보입니다.
 
 #### 4. tcLaunching
 
-TOAST Launching 콘솔에서 사용자가 입력한 정보입니다
+NHN Cloud Launching 콘솔에서 사용자가 입력한 정보입니다
 
 * 사용자가 입력한 값을 JSON string으로 전달합니다.
-* TOAST Launching 상세 설정은 아래 가이드를 참고하시기 바랍니다.
+* NHN Cloud Launching 상세 설정은 아래 가이드를 참고하시기 바랍니다.
  
 [Console Guide](/Game/Gamebase/ko/oper-management/#config)
 

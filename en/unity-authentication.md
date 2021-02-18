@@ -197,7 +197,7 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 > There is information which must be included for login with some IdPs.<br/>
 > For instance, scope must be set to implement a Facebook login.<br/>
 > In order to set such necessary information, static void Login (string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) API is provided.<br/>
-> You can enter those information to additionalInfo in the dictionary type. When the parameter value is null, the additionalInfo registered in the TOAST Console will be applied. Generally, the parameter value will take precedence over the value registered in the Console. ([Setting additionalInfo in TOAST Console](./oper-app/#authentication-information))<br/>
+> You can enter those information to additionalInfo in the dictionary type. When the parameter value is null, the additionalInfo registered in the NHN Cloud Console will be applied. Generally, the parameter value will take precedence over the value registered in the Console. ([Setting additionalInfo in NHN Cloud Console](./oper-app/#authentication-information))<br/>
 > (Standalone) supports login with WebViewAdapter and does not block events entered through UI when WebView is open.
 
 

@@ -13,7 +13,7 @@ For Android or iOS users, refer to the following documents:<br/>
 
 ### Register Push
 
-Register a user to TOAST Push by calling API as below.
+Register a user to NHN Cloud Push by calling API as below.
 With user&#39;s agreement to enablePush, enableAdPush, and enableAdNightPush, call following API to complete registration.
 
 
@@ -97,7 +97,7 @@ public void QueryPush()
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | Error in TOAST Push library.<br/>Please check DetailCode. |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | Error in NHN Cloud Push library.<br/>Please check DetailCode. |
 | PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | Previous Push API call is not completed.<br/>Please call again after the previous push API callback is executed.  |
 | PUSH_UNKNOWN_ERROR             | 5999       | Undefined push error.<br/>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry), and we'll respond ASAP. |
 
@@ -106,7 +106,7 @@ public void QueryPush()
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs in the TOAST Push library.
+* Occurs in the NHN Cloud Push library.
 * Check the error code as below:
 
 ```cs
@@ -131,7 +131,7 @@ else
 }
 ```
 
-* TOAST Push error codes are as follows:
+* NHN Cloud Push error codes are as follows:
     * [Android](aos-push#error-handling)<br/>
     * [iOS](ios-push#error-handling)
 

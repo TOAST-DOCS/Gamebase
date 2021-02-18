@@ -538,9 +538,9 @@ showWebView(activity, urlString, configuration,
                             DialogInterface.OnClickListener clickListener);
 ```
 
-## Toast
+## NHN Cloud
 
-다음 API를 사용하여 쉽게 [Android 토스트(toast)](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) 메시지를 표시할 수 있습니다.<br/>
+다음 API를 사용하여 쉽게 [Android 엔에이치엔 클라우드(NHN Cloud)](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) 메시지를 표시할 수 있습니다.<br/>
 메시지를 표시하는 시간 종류 파라미터는 int 형식이며, Android SDK NotificationManagerService 클래스의 정의에 따라 아래 표에 정리한 시간 동안 표시됩니다.
 
 | 시간 종류(int)         | 노출 시간                     |

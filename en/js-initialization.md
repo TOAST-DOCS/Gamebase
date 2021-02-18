@@ -8,8 +8,8 @@ When initializing Gamebase, you can change Gamebase settings using the GamebaseC
 
 | KEY                                                 | Mandatory (M) / Optional (O) | Description                              |
 | --------------------------------------------------- | -------------------------- | ---------------------------------------- |
-| appId: string| **M**                      | TOAST Project ID. It is a mandatory field. |
-| clientVersion: string| **M**                      | Determines the status (such as maintenance, in service, notice, and etc.), whether the game is playable or not, via the game version. <br/> `TOAST Console > Gamebase > App > Client Version > Enter the WEB version. |
+| appId: string| **M**                      | NHN Cloud Project ID. It is a mandatory field. |
+| clientVersion: string| **M**                      | Determines the status (such as maintenance, in service, notice, and etc.), whether the game is playable or not, via the game version. <br/> `NHN Cloud Console > Gamebase > App > Client Version > Enter the WEB version. |
 | enableDebugMode: boolean                            | O                          | Enables the Debug Mode. Debug log is displayed on the developer console. <br/> The default is **false**. |
 | uiConfiguration.enablePopup: boolean                | O                          | **[UI]**<br/>When a game user cannot play games due to system maintenance or (ban) from use, the reason needs to be explained using popups or any other means.<br/> If it is set to **true**, Gamebase will automatically display information via popups.<br/> The default value is **false**. When the value is set to <br/>**false**, get information from launching results and display why user cannot play games by using customized UI. |
 | uiConfiguration.enableLaunchingStatusPopup: boolean | O                          | **[UI]**<br/>When login is unavailable (mainly due to maintenance) depending on the launching results, you can decide whether to allow Gamebase to automatically display popups or not.<br/>**Works only when enablePopup(true)** is on.<br/>The default value is **true**. |

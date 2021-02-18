@@ -10,7 +10,7 @@ This document describes the process of creating Apple developer certificates req
 * Register a keychain and export the created certificate in the Personal Information Exchange (.p12) format.
 * To export certificates, set passwords.
 
-#### Register TOAST Console
+#### Register NHN Cloud Console
 * Go to **Notification > Push > Certificate** to register the certificate created above at **APNS Certificate** and **APNS (Sandbox) Certificate**.
 * Use the passwords set above to register.
 
@@ -29,7 +29,7 @@ Import the following header file to the ViewController you want to implement a p
 
 ### Register Push
 
-By calling API as below, a user can be registered to TOAST Push.<br/>
+By calling API as below, a user can be registered to NHN Cloud Push.<br/>
 With user's agreement to enablePush, enableAdPush, and enableAdNightPush, call following API to complete registration.
 
 
@@ -94,13 +94,13 @@ From **TCGBPushConfiguration** callback values, you can get user's value set.
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | Error in TOAST  Push library.<br>Please check DetailCode. |
+| TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | Error in NHN Cloud  Push library.<br>Please check DetailCode. |
 | TCGB_ERROR_PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | Previous PUSH API call is not completed.<br>Please call again after the previous push API callback is executed. |
 | TCGB_ERROR_PUSH_UNKNOWN_ERROR            | 5999       | Unknown push error.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry), and we'll respond ASAP. |
 
 **TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs in the TOAST Push library.
+* Occurs in the NHN Cloud Push library.
 * Check your error codes as below.
 
 ```objectivec
@@ -113,7 +113,7 @@ NSString *moduleErrorMessage = moduleError.message;
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
-* The TOAST Push error codes are as follows:
+* The NHN Cloud Push error codes are as follows:
     
 | Error Code |  Description |
 | --- | --- |

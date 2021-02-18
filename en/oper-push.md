@@ -1,7 +1,7 @@
 ## Game > Gamebase > Console Guide > Push
 
 You can send push notification to app users.
-In Gamebase, push notifications are provided by applying TOAST Cloud Push service.
+In Gamebase, push notifications are provided by applying NHN Cloud Cloud Push service.
 
 ## Push
 
@@ -216,7 +216,7 @@ With tags, users can be bound by particular criteria for delivery.
 
 ![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_06_201910.png)
 
-Tag names can be registered for push delivery at TOAST PUSH.
+Tag names can be registered for push delivery at NHN Cloud PUSH.
 
 
 

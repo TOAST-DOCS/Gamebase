@@ -51,7 +51,7 @@ Google Playコンソールと同一のアカウントでGoogle APIコンソー�
 ![[그림 2] OAuth クライアント生成 2](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_Oauth_ja.png)
 
 ##### 3. 作成後にポップアップウィンドウからクライアントID /クライアントシークレットをコピーする
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_Oauth_clientSecret_ja.png
+![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_Oauth_clientSecret_ja.png)
 
 ##### 4. [OAuth Playground](https://developers.google.com/oauthplayground/) > oauthplayground 設定 > Use your own OAuth credentials 使用
 ![[그림 4] OAuth クライアント生成 3](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_g_03.png)
@@ -133,7 +133,7 @@ OAuth 認証情報生成後、以下のガイドを参考にプロジェクト�
 4. [今移動]ボタンを押してウェブマスターセンターに移動します。
 5. ウェブマスターセンターでプロパティを合わせることをクリックします。
 6. [プロパティ追加]に https://api-iap.cloud.toast.com を入力します。
-7. ドメイン認証URLのhtmlファイル名をTOAST CONSOLEアプリの登録時に入力する。
+7. ドメイン認証URLのhtmlファイル名をNHN Cloud CONSOLEアプリの登録時に入力する。
     -> ex) https://api-iap.cloud.toast.com/googleabc.htmlの場合、googleabc.html入力
 8. [推奨方法] 下段の [ロボットではない] クリック後、[OK] をクリックします。
 9. 認証に成功すると最後のイメージと同じ画面が表示されます。 この画面が表示されないと購読決済を正常に使用できません。

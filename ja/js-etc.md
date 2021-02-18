@@ -248,7 +248,7 @@ toast.Gamebase.setDisplayLanguageTable(displayLanguageTable) {
 **toast.GamebaseServerPushType**定数で確認できます。
 
 * キックアウト(Kickout)
-    * TOAST Gamebaseコンソールの`Operation > Kickout`から、キックアウトServerPushメッセージを登録すると、Gamebaseと接続されたすべてのクライアントにメッセージを送信できます。
+    * NHN Cloud Gamebaseコンソールの`Operation > Kickout`から、キックアウトServerPushメッセージを登録すると、Gamebaseと接続されたすべてのクライアントにメッセージを送信できます。
     * Type: toast.GamebaseServerPushType.APP_KICKOUT (= "appKickout")
 
 

@@ -314,7 +314,7 @@ else
 ```
 
 * For IAP error codes, refer to the document below.
-    * [TOAST > User Guide for TOAST SDK > TOAST IAP > Unity > Error Codes](/TOAST/en/toast-sdk/iap-unity/#_17)
+    * [NHN Cloud > User Guide for NHN Cloud SDK > NHN Cloud IAP > Unity > Error Codes](/TOAST/en/toast-sdk/iap-unity/#_17)
 
 
 

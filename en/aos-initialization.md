@@ -19,7 +19,7 @@ To initialize Gamebase, Gamebase setting can be modified with GamebaseConfigurat
 
 | API                                      | Mandatory (M) / Optional (O) | Description                              |
 | ---------------------------------------- | -------------------------- | ---------------------------------------- |
-| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | The GamebaseConfiguration.Builder object can be created with the newBuilder() function.<br/><br/> **appId:** Enter an App ID issued from TOAST Cloud Project.<br/> **appVersion:** Update or maintenance status can be decided upon a game version. Specify a game version. <br/> **storeCode** refers to the store in which APK is deployed. Find each store code in the following guide. [Purchase - Initialization](./aos-purchase/#6-initialization) |
+| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | The GamebaseConfiguration.Builder object can be created with the newBuilder() function.<br/><br/> **appId:** Enter an App ID issued from NHN Cloud Cloud Project.<br/> **appVersion:** Update or maintenance status can be decided upon a game version. Specify a game version. <br/> **storeCode** refers to the store in which APK is deployed. Find each store code in the following guide. [Purchase - Initialization](./aos-purchase/#6-initialization) |
 | build()                                  | **M**                      | Convert Builder completed with setting to a configuration object.<br/>Required for **Gamebase.initialize ()** API. |
 | enablePopup(boolean enable)              | O                          | **[UI]**<br/>When a game user cannot play games due to system maintenance or banned from use, reasons need to be displayed by pop-ups.<br/>If it is set **true** , Gamebase will automatically display information via pop-ups.<br/>**false** is set as default.<br/>When set to **false** , get information from launching results and display why user cannot play games by using customized UI. |
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>Depending on the launching results, when available to log in (mainly due to maintenance), you may decide whether to allow Gamebase to automatically display pop-ups.<br/>Works only when **enablePopup (true)** is on.<br/>**true** is set as default. |
@@ -250,7 +250,7 @@ Notice information registered on Gamebase console:
 
 #### 2. tcProduct
 
-AppKey of TOAST linked to Gamebase:
+AppKey of NHN Cloud linked to Gamebase:
 
 * gamebase
 * tcLaunching
@@ -259,7 +259,7 @@ AppKey of TOAST linked to Gamebase:
 
 #### 3. tcIap
 
-IAP store information registered on TOAST console:
+IAP store information registered on NHN Cloud console:
 
 * id: App ID
 * name: App Name
@@ -269,10 +269,10 @@ IAP store information registered on TOAST console:
 
 #### 4. tcLaunching
 
-User-input information for TOAST launching console:
+User-input information for NHN Cloud launching console:
 
 * Send user-input values in JSON string.
-* For further details of TOAST Launching, see the guide as below:
+* For further details of NHN Cloud Launching, see the guide as below:
 
 [Console Guide](/Game/Gamebase/en/oper-management/#config)
 

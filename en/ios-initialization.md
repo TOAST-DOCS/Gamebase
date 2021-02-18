@@ -192,7 +192,7 @@ Notice information registered on Gamebase console:
 
 #### 2. tcProduct
 
-Appkey of TOAST linked to Gamebase: 
+Appkey of NHN Cloud linked to Gamebase: 
 
 * gamebase
 * tcLaunching
@@ -201,7 +201,7 @@ Appkey of TOAST linked to Gamebase:
 
 #### 3. tcIap
 
-IAP store information registered on TOAST console:
+IAP store information registered on NHN Cloud console:
 
 * id: App ID
 * name: App Name
@@ -211,10 +211,10 @@ IAP store information registered on TOAST console:
 
 #### 4. tcLaunching
 
-User-input information for TOAST launching console:
+User-input information for NHN Cloud launching console:
 
 * Send user-input values in JSON string.
-* For further details of TOAST Launching, see the guide as below:  
+* For further details of NHN Cloud Launching, see the guide as below:  
 
 [Console Guide](/Game/Gamebase/en/oper-management/#config)
 

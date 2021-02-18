@@ -138,7 +138,7 @@ Gamebase를 통하여 로그인을 처음 시도하거나, 로그인 정보(액�
 예를 들어, Facebook 로그인을 구현하려면 scope 등을 설정해야 합니다.<br/>
 이러한 필수 정보들을 설정할 수 있게 **[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API를 제공합니다.<br/>
 파라미터 additionalInfo에 필수 정보들을 dictionary 형태로 입력하시면 됩니다.<br/>
-(파라미터 값이 nil일 때는, TOAST Console에 등록한 additionalInfo 값으로 채워집니다. 파라미터 값이 있을 때는 Console에 등록해 놓은 값보다 우선시하여 값을 덮어쓰게 됩니다.)
+(파라미터 값이 nil일 때는, NHN Cloud Console에 등록한 additionalInfo 값으로 채워집니다. 파라미터 값이 있을 때는 Console에 등록해 놓은 값보다 우선시하여 값을 덮어쓰게 됩니다.)
 
 
 > [참고]

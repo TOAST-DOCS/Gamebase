@@ -137,9 +137,9 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 * **운영자의 현지 표준 시간대(local timezone)를 선택하여 손쉽게 시간 입력이 가능합니다.**
 	* 베트남에서 게임을 운영하는 경우, 베트남 표준 시간대(timezone)를 선택하여 베트남 시간 기준으로 입력할 수 있으므로, 한국 시간으로 변경하는 수고를 줄일 수 있습니다.
 
-### Using the other TOAST Service
+### Using the other NHN Cloud Service
 
-* 게임에서 필요한 TOAST 서비스를 보다 쉽게 연동할 수 있도록 돕습니다. 
+* 게임에서 필요한 NHN Cloud 서비스를 보다 쉽게 연동할 수 있도록 돕습니다. 
   * Gamebase 사용자 아이디로 각 서비스의 API를 사용할 수 있도록 Gamebase에서 래핑(wrapping)하여 API를 제공합니다. 따라서, 사용자는 별도 서비스의 API를 직접 호출할 필요가 없습니다.
   * [Notification > Push](https://toast.com/service/notification/push) : 푸시 메세지를 발송해 주는 통합 푸시 서비스  
   * [Game > Leaderboard](https://toast.com/service/game/leaderboard) : 실시간 대용량 랭킹 서비스
@@ -200,9 +200,9 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 | Withdraw              | 게임 탈퇴 <br> -  게임 이용자의 사용자 ID, 매핑 정보 등 모든 정보 삭제 | [[Android](./aos-authentication/#withdraw)] [[iOS](./ios-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
 | Mapping               | 하나의 사용자 ID에 여러 개의 IdP를 연동하는 기능           | [[Android](./aos-authentication/#mapping)] [[iOS](./ios-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |
 | Purchase(IAP)         | 인앱 결제  | [[Android](./aos-purchase/#purchase)] [[iOS](./ios-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- 아이템 등록](./oper-purchase/#item) <br> [- 결제 정보 조회](./oper-purchase/#transactions) |
-| Push                  | (TOAST 서비스 연동) <br> 푸시 메시지 전송 및 결과 확인 | [[Android](./aos-push/#push)] [[iOS](./ios-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- 실시간, 예약 푸시 발송 |
+| Push                  | (NHN Cloud 서비스 연동) <br> 푸시 메시지 전송 및 결과 확인 | [[Android](./aos-push/#push)] [[iOS](./ios-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- 실시간, 예약 푸시 발송 |
 | Leaderboard           | 실시간 대용량 랭킹 조회 및 등록 |                                          | [[API](./api-guide/#leaderboard)] |                                          |
-| Webview               | SDK에서 기본적인 WebView UI를 제공<br/>시스템 팝업, 토스트(toast) UI 제공 | [[Android](./aos-ui/#webview)] [[iOS](./ios-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
+| Webview               | SDK에서 기본적인 WebView UI를 제공<br/>시스템 팝업, 엔에이치엔 클라우드(NHN Cloud) UI 제공 | [[Android](./aos-ui/#webview)] [[iOS](./ios-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
 | [Operator] Maintenance | (운영) 점검 기능                               |                                          | [[점검 여부 확인](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- 점검 등록, 점검 해제 |
 | [Operator] Notice      | (운영) 긴급 공지 기능 <br> -  게임 이용자가 앱을 실행할 때 팝업 형태로 공지 확인 가능 |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>- 공지 등록 |
 | [Operator] Image Notice         | (운영) 이미지 공지 기능 <br> -  게임내 팝업 형태의 이미지 공지 노출 | [[Android](./aos-ui/#imagenotice)] [[iOS](./ios-ui/#imagenotice)] [[Unity](./unity-ui/#imagenotice)] <br/> - 이미지 공지 노출 |                             | [[Image Notice]](./oper-operation/#image-notice) <br/>- 이미지 공지 관리 |
@@ -213,8 +213,8 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 
 ## Console Role
 
-TOAST의 기본적인 멤버 정책과 권한에 대해서는 다음 가이드를 참고 하시기 바랍니다.
-* [TOAST > 콘솔 사용 가이드 > 멤버 관리](https://docs.toast.com/ko/TOAST/ko/console-guide/#_14)
+NHN Cloud의 기본적인 멤버 정책과 권한에 대해서는 다음 가이드를 참고 하시기 바랍니다.
+* [NHN Cloud > 콘솔 사용 가이드 > 멤버 관리](https://docs.toast.com/ko/TOAST/ko/console-guide/#_14)
 
 ### Manage Role
 

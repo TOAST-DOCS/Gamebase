@@ -19,7 +19,7 @@ Gamebaseを初期化するとき、GamebaseConfiguration.Builderの客体でGame
 
 | API                                      | Mandatory(M) / Optional(O) | Description                              |
 | ---------------------------------------- | -------------------------- | ---------------------------------------- |
-| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | GamebaseConfiguration.BuilderオブジェクトはnewBuilder()関数で作成できます。<br/><br/> **appId**はTOAST Projectで発行したアプリIDを入力します。<br/> **appVersion**はアップデート、メンテナンスに該当するかどうかはゲームバージョンで判断します。ゲームバージョンを指定してください。 <br/> **storeCode**はAPKが配布されるストアを意味するコードです。次のガイドで各ストアのコードを確認できます。 [Purchase - Initialization](./aos-purchase/#6-initialization) |
+| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | GamebaseConfiguration.BuilderオブジェクトはnewBuilder()関数で作成できます。<br/><br/> **appId**はNHN Cloud Projectで発行したアプリIDを入力します。<br/> **appVersion**はアップデート、メンテナンスに該当するかどうかはゲームバージョンで判断します。ゲームバージョンを指定してください。 <br/> **storeCode**はAPKが配布されるストアを意味するコードです。次のガイドで各ストアのコードを確認できます。 [Purchase - Initialization](./aos-purchase/#6-initialization) |
 | build()                                  | **M**                      | 設定を終えたBuilderをConfigurationの客体に変換します。<br/>**Gamebase.initialize()**APIで必要です。|
 | enablePopup(boolean enable)              | O                          | **[UI]**<br/>システムメンテナンス、利用制限(ban)などゲームユーザーがゲームをプレイすることができない状況の場合、ポップアップなどで理由を表示しなければならないときがあります。<br/>**true**に設定すれば、Gamebaseが該当する状況のとき、案内ポップアップを自動で表示します。<br/>デフォルトは**false**です。<br/>**false**状態では起動結果を通して情報を取得した後に直接UIを設計し、ゲームをプレイすることができない理由を表示してください。|
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>起動結果によりログインできない状態の場合(主にメンテナンス状態)、Gamebaseが自動でポップアップを表示するかどうかを変更することができます。<br/>**enablePopup(true)**の状態でのみ動作します。<br/>デフォルトは**true**です。|
@@ -250,7 +250,7 @@ Gamebase Consoleに登録された告知情報です。
 
 #### 2. tcProduct
 
-Gamebaseと連携したTOASTサービスのappKeyです。
+Gamebaseと連携したNHN CloudサービスのappKeyです。
 
 * gamebase
 * tcLaunching
@@ -259,7 +259,7 @@ Gamebaseと連携したTOASTサービスのappKeyです。
 
 #### 3. tcIap
 
-TOAST Consoleに登録されたIAPストア情報です。
+NHN Cloud Consoleに登録されたIAPストア情報です。
 
 * id: App ID
 * name: App Name
@@ -269,10 +269,10 @@ TOAST Consoleに登録されたIAPストア情報です。
 
 #### 4. tcLaunching
 
-TOAST Launching Consoleでユーザーが入力した情報です。
+NHN Cloud Launching Consoleでユーザーが入力した情報です。
 
 * ユーザーが入力した値をJSON stringで伝達します。
-* TOAST Launchingの詳細設定は下記のガイドを参照してください。
+* NHN Cloud Launchingの詳細設定は下記のガイドを参照してください。
  
 [Console Guide](/Game/Gamebase/en/oper-management/#config)
 

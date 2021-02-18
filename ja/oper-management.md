@@ -12,7 +12,7 @@ Gamebase Consoleの使用権限を管理することができます。
 * Gamebase Consoleの使用権限管理
   * **販売現状のアクセス権限**：**有料**メニューに対するアクセス権限
   * **管理メニューアクセス権限**：その他のメニューに対するアクセス権限
-* 新しいメンバーを登録したい場合、TOASTプロジェクトメンバー管理から追加する必要があります。
+* 新しいメンバーを登録したい場合、NHN Cloudプロジェクトメンバー管理から追加する必要があります。
 * 自分自身の権限は修正することができません。
   
 
@@ -70,16 +70,16 @@ Gamebaseで基本提供されるSMS/Email以外で別途通知を受け取るこ
 
 ### 受信者
 
-通知を受信するユーザーを設定することができます。新しいメンバーを登録したい場合はTOASTプロジェクトメンバー管理から追加しなければなりません。
+通知を受信するユーザーを設定することができます。新しいメンバーを登録したい場合はNHN Cloudプロジェクトメンバー管理から追加しなければなりません。
 ![gamebase_manage_07_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_manage_07_202004_ja.png)
 Gamebaseでは、EmailとSMSで通知を送信することができます。
-EmailとSMSはすべてTOASTの会員登録時に入力した情報を利用して送信され、Emailアドレスや番号を間違って登録した場合は、通知を受け取れないこともあります。携帯電話番号の情報は、TOASTの**自分の情報管理**ページから確認することができます。
+EmailとSMSはすべてNHN Cloudの会員登録時に入力した情報を利用して送信され、Emailアドレスや番号を間違って登録した場合は、通知を受け取れないこともあります。携帯電話番号の情報は、NHN Cloudの**自分の情報管理**ページから確認することができます。
 
 
 ## その他設定
 
-GamebaseとTOASTサービスの連携に関する設定をすることができます。
+GamebaseとNHN Cloudサービスの連携に関する設定をすることができます。
 
 ![gamebase_manage_08_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_manage_08_202004_ja.png)
 
-TOAST Launchingに設定した情報をGamebase Launching APIの呼び出し時に一緒に受け取るかどうかを設定することができます。TOAST Launchingサービスを使用する場合にのみ機能をOn・Offすることができます。
+NHN Cloud Launchingに設定した情報をGamebase Launching APIの呼び出し時に一緒に受け取るかどうかを設定することができます。NHN Cloud Launchingサービスを使用する場合にのみ機能をOn・Offすることができます。

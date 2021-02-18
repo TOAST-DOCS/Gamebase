@@ -1,6 +1,6 @@
 ## Game > Gamebase > Console Guide > App
 
-Go to the TOAST Cloud Console and click **Game > Gamebase > App**.
+Go to the NHN Cloud Cloud Console and click **Game > Gamebase > App**.
 
 * **App** : Manage app information
 * **Client** : Manage client version and status information
@@ -10,7 +10,7 @@ Go to the TOAST Cloud Console and click **Game > Gamebase > App**.
 ## App
 
 When Gamebase is activated, app is automatically created, and only registered information can be modified in each menu.
-Cannot register a new app or delete one, as each TOAST Cloud project can manage one Gamebase app. Deactivate Gamebase to delete the app.
+Cannot register a new app or delete one, as each NHN Cloud Cloud project can manage one Gamebase app. Deactivate Gamebase to delete the app.
 For details of each item, refer to **Properties** as below.
 
 ### Properties
@@ -88,7 +88,7 @@ Click **Register** to find a screen for registration of test devices: enter Devi
 Choose User ID  in Type, and enter User ID  and click Search, and the user login history will show. Select a Device Key to register as a test device,  enter **additional information**, and click Registration to complete registering the device key as test device.
 
 > [Note]
-> For additional information, enter user-defined names. e.g.) iPhone 6 Test, iPad of TOAST
+> For additional information, enter user-defined names. e.g.) iPhone 6 Test, iPad of NHN Cloud
 
 **(B)Register by Device Key**
 
@@ -104,7 +104,7 @@ To delete test devices, go to the test device screen, check the devices to delet
 ### Authentication Information
 
 #### 1. Facebook
-Enter {App ID} and {App Secret Code} of an app registered in the Facebook developer's site in the TOAST Cloud Gamebase Console.
+Enter {App ID} and {App Secret Code} of an app registered in the Facebook developer's site in the NHN Cloud Cloud Gamebase Console.
 Note that {Facebook Permission} which is required for a login should also be entered to Additional Info in the json string format.
 
 **Entry Fields**
@@ -131,7 +131,7 @@ Note that {Facebook Permission} which is required for a login should also be ent
 - [Facebook Permission](https://developers.facebook.com/docs/facebook-login/permissions/)
 
 ##### Android & iOS & Unity
-No further configuration needs to be done apart from TOAST console.
+No further configuration needs to be done apart from NHN Cloud console.
 
 #### 2. Google
 
@@ -154,7 +154,7 @@ No further configuration needs to be done apart from TOAST console.
 
 - 1.12.1 or under
   - Provide **AdditionalInfo**.
-    - You need to provide JSON string data in **TOAST Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
+    - You need to provide JSON string data in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
     - You need to provide **url_scheme_ios_only** from iOS application for Google.
     - **url_scheme_ios_only** should match with at least one of the URL Schemes in Xcode.
   - Add URL schemes.
@@ -172,7 +172,7 @@ No further configuration needs to be done apart from TOAST console.
 ![gamebase_app_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
 #### 3. Apple Game Center
-Enter Bundle ID registered on Apple Developer's Site in the TOAST Cloud Gamebase Console.
+Enter Bundle ID registered on Apple Developer's Site in the NHN Cloud Cloud Gamebase Console.
 
 **Entry Fields**<br />
 
@@ -187,7 +187,7 @@ Enter Bundle ID registered on Apple Developer's Site in the TOAST Cloud Gamebase
 - [Apple iTunes Connect](https://itunesconnect.apple.com/)
 
 #### 4. PAYCO
-Enter {client_id} and {client_secret} issued from PAYCO ID application in the TOAST Cloud Gamebase Console.
+Enter {client_id} and {client_secret} issued from PAYCO ID application in the NHN Cloud Cloud Gamebase Console.
 
 **Entry Fields**<br />
 
@@ -198,7 +198,7 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the TO
 ##### Android & Unity
 
 - Provide **AdditionalInfo**.
-  - You need to provide JSON string data in **TOAST Console > Gamebase > App > Authentication Information**.
+  - You need to provide JSON string data in **NHN Cloud Console > Gamebase > App > Authentication Information**.
   - You need to configure **service_code** and **service_name** that Payco SDK asks for.
 
 - PAYCO authentication configuration example
@@ -215,11 +215,11 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the TO
 
 - 1.12.1 or under
   - Provide **AdditionalInfo**.
-    - You need to provide JSON string data in **TOAST Console > Gamebase > App > Authentication Information**.
+    - You need to provide JSON string data in **NHN Cloud Console > Gamebase > App > Authentication Information**.
     - You need to configure **service_code** and **service_name** that Payco SDK asks for.
 - 1.12.2 or above
   - Provide **AdditionalInfo**.
-    - You need to provide JSON string data in **TOAST Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
+    - You need to provide JSON string data in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
     - You need to configure **service_code** and **service_name** that Payco SDK asks for.
   - Add URL schemes.
     - Add `tcgb.{Bundle ID}.payco` in **XCode > Target > Info > URL Types**.
@@ -249,7 +249,7 @@ You need to set **service_name** which will be displayed in sign in agreement wi
 - [NAVER Developers - Check Client IDs and Client Secrets](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)
 
 ##### Android & Unity
-* You need to provide JSON string data in **Additional Info** at **TOAST Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
+* You need to provide JSON string data in **Additional Info** at **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
 	* For NAVER, you need to set the app name **service_name** which will be displayed in login agreement window.
 
 ```json
@@ -263,13 +263,13 @@ You need to set **service_name** which will be displayed in sign in agreement wi
 > URL Scheme configuration method has changed in Gamebase iOS SDK Version 1.12.2. Please make sure to check the version and follow the instruction accordingly.
 
 - 1.12.1 or under
-  - You need to provide JSON string data in **TOAST Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
+  - You need to provide JSON string data in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
     - In case of NAVER, you need to provide **service_name** to be displayed in sign-in agreement window.
     - You need to provide **url_scheme_ios_only** for iOS.
   - Add URL Schemes.
     - **XCode > Target > Info > URL Types**
 - 1.12.2 or above
-  - You need to provide JSON string data in **TOAST Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
+  - You need to provide JSON string data in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
     - In case of NAVER, you need to provide **service_name** to be displayed in sign-in agreement window.
   - Add URL Schemes.
     - Add `tcgb.{Bundle ID}.naver` in **XCode > Target > Info > URL Types**.
@@ -380,7 +380,7 @@ To enable Sign In with Apple, setting is required for AppStore Connect, Gamebase
 ![DownloadPrivateKey](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid3_1.0.png)
 
 ##### Gamebase Console > App Settings
-[Direct link to TOAST Console](https://console.toast.com/)
+[Direct link to NHN Cloud Console](https://console.toast.com/)
 
 * Gamebase
 ![Set SecretKey Setting](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid4_1.0.png)

@@ -344,7 +344,7 @@ public static string GetCountryCode()
 現在GamebaseでサポートするServer Push Typeは次の通りです。
 
 * GamebaseServerPushType.APP_KICKOUT (= "appKickout")
-    * TOAST Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseと接続されたすべてのクライアントで**APP_KICKOUT**メッセージを受け取ることになります。
+    * NHN Cloud Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseと接続されたすべてのクライアントで**APP_KICKOUT**メッセージを受け取ることになります。
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 
@@ -676,9 +676,9 @@ Gamebaseは、顧客の問い合わせに対応するための機能を提供し
 
 > [TIP]
 >
-> TOAST Contactサービスと連携して使用すると、顧客からの問い合わせに簡単に対応できます。
-> 詳細はTOAST Contactサービスの利用ガイドを参照してください。
-> [TOAST Online Contact Guide](/Contact%20Center/ja/online-contact-overview/)
+> NHN Cloud Contactサービスと連携して使用すると、顧客からの問い合わせに簡単に対応できます。
+> 詳細はNHN Cloud Contactサービスの利用ガイドを参照してください。
+> [NHN Cloud Online Contact Guide](/Contact%20Center/ja/online-contact-overview/)
 
 #### Open Contact WebView
 

@@ -1,6 +1,6 @@
 ## Game > Gamebase > Unreal SDK使用ガイド > 初期化
 
-Gamebase Unreal SDKを使用するには、初期化を行う必要があります。またアプリID、アプリバージョン情報がTOAST Consoleに登録されている必要があります。
+Gamebase Unreal SDKを使用するには、初期化を行う必要があります。またアプリID、アプリバージョン情報がNHN Cloud Consoleに登録されている必要があります。
 
 ### Include Header File
 
@@ -39,7 +39,7 @@ Gamebase Consoleに登録したクライアントバージョンです。
 
 #### 3. storeCode
 
-TOAST統合アプリ内決済サービスであるIAP(In-App Purchase)を初期化するために必要なストア情報です。
+NHN Cloud統合アプリ内決済サービスであるIAP(In-App Purchase)を初期化するために必要なストア情報です。
 
 | Store       | Code | Description  |
 | ----------- | ---- | ------------ |
@@ -232,7 +232,7 @@ Gamebase Consoleに登録された告知情報です。
 
 #### 2. tcProduct
 
-Gamebaseと連携されたTOASTサービスのappKeyです。
+Gamebaseと連携されたNHN CloudサービスのappKeyです。
 
 * gamebase
 * tcLaunching
@@ -241,7 +241,7 @@ Gamebaseと連携されたTOASTサービスのappKeyです。
 
 #### 3. tcIap
 
-TOAST Consoleに登録されたIAPストア情報です。
+NHN Cloud Consoleに登録されたIAPストア情報です。
 
 * id： App ID
 * name： App Name
@@ -251,10 +251,10 @@ TOAST Consoleに登録されたIAPストア情報です。
 
 #### 4. tcLaunching
 
-TOAST Launchingコンソールでユーザーが入力した情報です。
+NHN Cloud Launchingコンソールでユーザーが入力した情報です。
 
 * ユーザーが入力した値をJSON stringで伝達します。
-* TOAST Launchingの詳細設定は、下記のガイドを参照してください。
+* NHN Cloud Launchingの詳細設定は、下記のガイドを参照してください。
  
 [Console Guide](/Game/Gamebase/ja/oper-management/#config)
 

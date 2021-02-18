@@ -19,7 +19,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 ### Console
 
-* Gamebase Android SDK를 사용하기 전에 TOAST Console에서 앱 아이디를 발급받아야 합니다. 앱 아이디를 발급받으려면 TOAST Console 에서 **(+)서비스 선택**을 클릭하여 **Game > Gamebase** 를 클릭하여 서비스를 활성화 합니다.
+* Gamebase Android SDK를 사용하기 전에 NHN Cloud Console에서 앱 아이디를 발급받아야 합니다. 앱 아이디를 발급받으려면 NHN Cloud Console 에서 **(+)서비스 선택**을 클릭하여 **Game > Gamebase** 를 클릭하여 서비스를 활성화 합니다.
 * 인증을 위해 IdP 콘솔에서 client id 를 발급받아 Gamebase 콘솔에 입력합니다.
     * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
     * 3rd-Party Provider SDK Guide
@@ -131,7 +131,7 @@ dependencies {
 
 * Android Studio 빌드인 경우
     * Firebase 푸시를 사용하려면 아래 가이드에 따라 Firebase 설정을 완료한 후 google-services.json 파일을 프로젝트에 포함시켜야 합니다.
-		* [TOAST > TOAST SDK 사용 가이드 > TOAST Push > Android > Firebase Cloud Messaging 설정](/TOAST/ko/toast-sdk/push-android/#firebase-cloud-messaging)
+		* [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud Push > Android > Firebase Cloud Messaging 설정](/TOAST/ko/toast-sdk/push-android/#firebase-cloud-messaging)
 * Unity 빌드인 경우
     * 만일 Firebase Unity SDK Package 를 설치했다면 아래 명령어로 **generate_xml_from_google_services_json.exe** 파일을 실행하여 json 파일을 xml 파일로 변환시킬 수 있습니다.
         ```

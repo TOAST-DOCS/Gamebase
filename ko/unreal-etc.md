@@ -332,7 +332,7 @@ void Sample::AddEventHandler()
 * Gamebase 서버에서 클라이언트 단말기로 보내는 메세지 입니다.
 * Gamebase 에서 지원하는 Server Push Type 은 다음과 같습니다.
     * GamebaseEventCategory::ServerPushAppKickOut
-        * TOAST Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
+        * NHN Cloud  Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
     * GamebaseEventCategory::ServerPushTransferKickout
         * Guest 계정을 다른 단말기로 이전을 성공하게 되면 이전 단말기에서 킥아웃 메세지를 받게 됩니다.
 
@@ -755,9 +755,9 @@ Gamebase 는 고객 문의 대응을 위한 기능을 제공합니다.
 
 > [TIP]
 >
-> TOAST Contact 서비스와 연동해서 사용하면 보다 쉽고 편리하게 고객 문의에 대응할 수 있습니다.
-> 자세한 TOAST Contact 서비스 이용법은 아래 가이드를 참고하시기 바랍니다.
-> [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+> NHN Cloud  Contact 서비스와 연동해서 사용하면 보다 쉽고 편리하게 고객 문의에 대응할 수 있습니다.
+> 자세한 NHN Cloud  Contact 서비스 이용법은 아래 가이드를 참고하시기 바랍니다.
+> [NHN Cloud  Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
 
 #### Customer Service Type
 
@@ -768,7 +768,7 @@ Gamebase 는 고객 문의 대응을 위한 기능을 제공합니다.
 | ------------------------- | -------------- |
 | Developer customer center | X              |
 | Gamebase customer center  | △             |
-| TOAST Online Contact      | O              |
+| NHN Cloud  Online Contact      | O              |
 
 각 유형에 따라 Gamebase SDK 의 고객센터 API 는 다음 URL 을 사용합니다.
 
@@ -777,7 +777,7 @@ Gamebase 는 고객 문의 대응을 위한 기능을 제공합니다.
 * Gamebase 제공 고객센터(Gamebase customer center)
     * 로그인 전 : 유저 정보가 **없는** 고객센터 URL.
     * 로그인 후 : 유저 정보가 포함된 고객센터 URL.
-* TOAST 조직 상품(Online Contact)
+* NHN Cloud  조직 상품(Online Contact)
     * 로그인 전 : NOT_LOGGED_IN(2) 에러가 발생.
     * 로그인 후 : 유저 정보가 포함된 고객센터 URL.
 
@@ -811,7 +811,7 @@ void OpenContact(const FGamebaseContactConfiguration& configuration, const FGame
 | Error Code | Description |
 | --- | --- |
 | NOT\_INITIALIZED(1)                                 | Gamebase.initialize 가 호출되지 않았습니다. |
-| NOT\_LOGGED\_IN(2)                                  | 고객센터 유형이 'TOAST OC' 인데 로그인 전에 호출하였습니다. |
+| NOT\_LOGGED\_IN(2)                                  | 고객센터 유형이 'NHN Cloud  OC' 인데 로그인 전에 호출하였습니다. |
 | UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 고객센터 URL 이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL** 을 확인하세요. |
 | UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 사용자 식별을 위한 임시 티켓 발급에 실패하였습니다. |
 | UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | 고객센터 웹뷰가 이미 표시중입니다. |
@@ -876,7 +876,7 @@ void RequestContactURL(const FGamebaseContactConfiguration& configuration, const
 | Error Code | Description |
 | --- | --- |
 | NOT\_INITIALIZED(1)                                 | Gamebase.initialize 가 호출되지 않았습니다. |
-| NOT\_LOGGED\_IN(2)                                  | 고객센터 유형이 'TOAST OC' 인데 로그인 전에 호출하였습니다. |
+| NOT\_LOGGED\_IN(2)                                  | 고객센터 유형이 'NHN Cloud  OC' 인데 로그인 전에 호출하였습니다. |
 | UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 고객센터 URL 이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL** 을 확인하세요. |
 | UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 사용자를 식별을 위한 임시 티켓 발급에 실패하였습니다. |
 

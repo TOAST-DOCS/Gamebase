@@ -14,7 +14,7 @@ The environment to use Gamebase JavaScript SDK is as follows:
 
 Download Gamebase JavaScript SDK file.
 
-Before using the Gamebase JavaScript SDK, you must get an app ID from the TOAST Console. To get an app ID, go to the TOAST Console and click **Select Service** > **Game> > Gamebase** to enable the service.
+Before using the Gamebase JavaScript SDK, you must get an app ID from the NHN Cloud Console. To get an app ID, go to the NHN Cloud Console and click **Select Service** > **Game> > Gamebase** to enable the service.
 
 #### Download
 From the following link, download the Gamebase JavaScript SDK. Unzip the downloaded ZIP file and then navigate to the project folder to apply.

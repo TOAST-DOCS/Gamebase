@@ -199,8 +199,8 @@ void Login(const FString& providerName, const UGamebaseJsonObject& additionalInf
 > 例えば、Facebookログインを実装するにはscopeなどを設定する必要があります。<br/>
 > このような必須情報を設定できるようにstatic void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) APIを提供します。<br/>
 > additionalInfoパラメータに必須情報などをdictionary形式で入力してください。
-additionalInfo値がある場合は、その値を使用し、ない場合は(null) TOAST Consoleに登録された値を使用します。
-([TOAST ConsoleにadditionalInfoを設定する](./oper-app/#authentication-information))<br/>
+additionalInfo値がある場合は、その値を使用し、ない場合は(null) NHN Cloud Consoleに登録された値を使用します。
+([NHN Cloud ConsoleにadditionalInfoを設定する](./oper-app/#authentication-information))<br/>
 > Standaloneでは、WebViewAdapterを通してログインをサポートし、WebViewが開かれている時はUIに入力されるEventをBlockingしません。
 
 **Example**
@@ -1215,7 +1215,7 @@ void Sample::WithdrawImmediately()
 |                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | 無効なTransferAccountを複数回入力したため、アカウント移行機能がロックされました。 |
 |                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | TransferAccountのIDが有効ではありません。 |
 |                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | TransferAccountのPasswordが有効ではありません。 |
-|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccountが設定されていません。<br/> TOAST Gamebase Consoleで先に設定してください。 |
+|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccountが設定されていません。<br/> NHN Cloud Gamebase Consoleで先に設定してください。 |
 |                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccountが存在しません。TransferAccountを先に発行してください。|
 |                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccountがすでに存在します。 |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccountがすでに使用されました。 |

@@ -4,7 +4,7 @@
 
 以下介绍如何为每个平台设置必要的推送通知。
 
-#### Register TOAST Cloud Console
+#### Register NHN Cloud Console
 
 参考[Notification > Push > Console Guide](/Notification/Push/zh/console-guide/)设置Console。
 
@@ -48,7 +48,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 * 使用Gradle build时
     * F为使用Firebase推送，应按照如下指南完成Firebase设置。
-		* [TOAST > TOAST SDK使用指南 > TOAST Push > Android > 设置Firebase Cloud Messaging](/toast-sdk/push-android/#firebase-cloud-messaging)
+		* [NHN Cloud > NHN Cloud SDK使用指南 > NHN Cloud Push > Android > 设置Firebase Cloud Messaging](/toast-sdk/push-android/#firebase-cloud-messaging)
 * 如果使用Unity build
     * 需要创建 string resource(xml) 文件，并将其包含在 Assets/Plugins/Android/res/values/文件夹中。
         * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
@@ -72,11 +72,11 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 #### Tencent
 
 * 为使用Tencent推送，应按照如下指南完成Tencent设置。
-	* [TOAST > TOAST SDK使用指南 > TOAST Push > Android > 设置Tencent Push Notification](/toast-sdk/push-android/#tencent-push-notification)
+	* [NHN Cloud > NHN Cloud SDK使用指南 > NHN Cloud Push > Android > 设置Tencent Push Notification](/toast-sdk/push-android/#tencent-push-notification)
 
 ### Register Push
 
-调用以下API在TOAST Push注册该用户。<br/>
+调用以下API在NHN Cloud Push注册该用户。<br/>
 接受来自用户的推送协议（enablePush），广告推送协议（enableAdPush），夜间广告推送协议（enableAdNightPush）的值，并调用以下API完成注册。
 
 **API**
@@ -145,7 +145,7 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | TOAST Push库错误。<br>请确认DetailCode。 |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | NHN Cloud Push库错误。<br>请确认DetailCode。 |
 | PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 上一次的推送API调用未完成。<br>上一次推送 API回调执行后请重新调用。 |
 | PUSH_UNKNOWN_ERROR             | 5999       | 未知推送错误。<br>请将全部的Log上传到[客服中心](https://toast.com/support/inquiry)，我们会尽快回复。 |
 
@@ -154,7 +154,7 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* 这是在TOAST Push库中发生的错误。
+* 这是在NHN Cloud Push库中发生的错误。
 * 检查错误代码的方法如下。
 
 ```java
@@ -183,14 +183,14 @@ Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
 });
 ```
 
-* TOAST Push SDK错误代码如下。
+* NHN Cloud Push SDK错误代码如下。
 
 | Error | Error Code | Description |
 | --- | --- | --- |
 | OK | 0 | 调用API成功 |
-| NOT_INITIALIZE | 100 | 未对TOAST SDK或TOAST Push SDK进行初始化时。 |
+| NOT_INITIALIZE | 100 | 未对NHN Cloud SDK或NHN Cloud Push SDK进行初始化时。 |
 | PROVIDER_SDK_ERROR | 101 | 外部SDK(Firebase, Tencent)发生错误时。 |
 | USER_ID_NOT_REGISTERED | 102 | 未登录时。 |
 | UNSUPPORTED_PUSH_TYPE | 103 | PushType输入错误或项目中不包含推送库。 |
-| API_SERVER_ERROR | 104 | 调用TOAST Push服务器API失败时 |
+| API_SERVER_ERROR | 104 | 调用NHN Cloud Push服务器API失败时 |
 | TOKEN_NOT_REGISTERED | 105 | 内部缓存的Push Token不存在时。 |

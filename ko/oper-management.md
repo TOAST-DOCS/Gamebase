@@ -11,7 +11,7 @@ Gamebase Console 사용 권한을 관리할 수 있습니다.
 
 * Gamebase Console 사용 권한 관리
   * **위클리 리포트 수신 권한** : **위클리 리포트** 수신에 대한 권한
-* 새 멤버를 등록하려면 TOAST 프로젝트 멤버관리에서 추가해야 합니다.
+* 새 멤버를 등록하려면 NHN Cloud 프로젝트 멤버관리에서 추가해야 합니다.
 * 자기 자신의 권한은 수정할 수 없습니다.
 
 
@@ -73,16 +73,16 @@ Gamebase에서 기본으로 제공되는 SMS/Email 외에 별도로 알람을 �
 
 ### Recipient List
 
-알람을 수신할 사용자를 설정할 수 있습니다. 새 맴버를 등록하려면 TOAST 프로젝트 멤버관리에서 추가해야  합니다.
+알람을 수신할 사용자를 설정할 수 있습니다. 새 맴버를 등록하려면 NHN Cloud 프로젝트 멤버관리에서 추가해야  합니다.
 ![gamebase_manage_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_07_201812.png)
 Gamebase에서는 이메일과 SMS로 알람을 전송할 수 있습니다.
-이메일과 SMS 모두 TOAST 가입할 때 입력한 정보를 이용하여 발송되며, 이메일 주소나 번호를 잘못 등록한 경우에는 알람을 받지 못할 수도 있습니다.휴대폰 번호 정보는 TOAST의 **내 정보 관리** 페이지에서 확인할 수 있습니다.
+이메일과 SMS 모두 NHN Cloud 가입할 때 입력한 정보를 이용하여 발송되며, 이메일 주소나 번호를 잘못 등록한 경우에는 알람을 받지 못할 수도 있습니다.휴대폰 번호 정보는 NHN Cloud의 **내 정보 관리** 페이지에서 확인할 수 있습니다.
 
 
 ## Config
 
-Gamebase와 TOAST 서비스의 연동 관련 설정을 할 수 있습니다.
+Gamebase와 NHN Cloud 서비스의 연동 관련 설정을 할 수 있습니다.
 
 ![gamebase_manage_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_08_201812.png)
 
-TOAST Launching에 설정한 정보를 Gamebase Launching API 호출 시에 함께 전달받을지를 설정할 수 있습니다. TOAST Launching 서비스를 사용하는 경우에만 기능을 On, Off할 수 있습니다.
+NHN Cloud Launching에 설정한 정보를 Gamebase Launching API 호출 시에 함께 전달받을지를 설정할 수 있습니다. NHN Cloud Launching 서비스를 사용하는 경우에만 기능을 On, Off할 수 있습니다.
