@@ -1,12 +1,7 @@
-## Game > Gamebase > API v1.2 Guide
+## Game > Gamebase > API v1.3 Guide
 
 ## Updates
-- Changed IAP API.
-- Added storeCode as required parameter to call Get Simple Launching API.
-- Added storeCode information of the maintenance target for the response result of Check Maintenance API.  
-- Added Validate TransferAccount API to verify TransferAccount that is published in advance and used for device transfer on a guest account.
-- Changed the date time of API response result frmo Epoch Time to ISO 8601 (ssXXX:mm:HH'T'dd-MM-yyyy).  regDate and lastLoginDate for response result of Token Authentication, Get Member, and Get Members API.
-- Added Exhaust Coupons API.
+- IAP(In App Purchase) New items have been added to or deleted from the request parameters and response results of API.
 
 ## Advance Notice
 
@@ -71,11 +66,11 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-    "header" : {
-    	"transactionId": "88a1ae42-6b1d-48c8-894e-54e97aca07fq",
-        "isSuccessful" : true,
+    "header": {
+        "transactionId": "88a1ae42-6b1d-48c8-894e-54e97aca07fq",
+        "isSuccessful": true,
         "resultCode": 0,
-        "resultMessage" : "Success."
+        "resultMessage": "Success."
     }
 }
 ```
@@ -87,6 +82,9 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | resultCode | int | Result code<br>0 for success; return error codes, for failure |
 | resultMessage | String | Result message  |
 
+<br>
+<br>
+
 ## Authentication
 
 #### Token Authentication
@@ -97,7 +95,7 @@ Authenticates an Access Token issued to a login user. If it is normal, return in
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}/tokens/{accessToken}?linkedIdP=false |
+| GET | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}/tokens/{accessToken}?linkedIdP=false |
 
 **[Request Header]**
 
@@ -121,39 +119,42 @@ Check common requirements.
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "String",
-    "isSuccessful": true
-  },
-  "linkedIdP": {
-    "idPCode": "String",
-    "idPId": "String"
-  },
-  "member": {
-    "userId": "String",
-    "valid": "Y",
-    "appId": "String",
-    "regDate": "2019-08-27T17:41:05+09:00",
-    "lastLoginDate": "2019-08-27T17:41:05+09:00",
-    "authList": [
-      {
-        "userId": "String",
-        "authSystem": "String",
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "String",
+        "isSuccessful": true
+    },
+    "linkedIdP": {
         "idPCode": "String",
-        "authKey": "String",
-        "regDate": "2019-08-27T17:41:05+09:00"
-      },
-      {
+        "idPId": "String"
+    },
+    "member": {
         "userId": "String",
-        "authSystem": "String",
-        "idPCode": "String",
-        "authKey": "String",
-        "regDate": "2019-08-27T17:41:05+09:00"
-      }
-    ]
-  }
+        "valid": "Y",
+        "appId": "String",
+        "regDate": "2019-08-27T17:41:05+09:00",
+        "lastLoginDate": "2019-08-27T17:41:05+09:00",
+        "authList": [
+            {
+                "userId": "String",
+                "authSystem": "String",
+                "idPCode": "String",
+                "authKey": "String",
+                "regDate": "2019-08-27T17:41:05+09:00"
+            },
+            {
+                "userId": "String",
+                "authSystem": "String",
+                "idPCode": "String",
+                "authKey": "String",
+                "regDate": "2019-08-27T17:41:05+09:00"
+            }
+        ],
+        "temporaryWithdrawal": {
+            "gracePeriodDate": "2020-04-18T09:12:01+09:00"
+        }
+    }
 }
 ```
 
@@ -171,12 +172,15 @@ Check common requirements.
 | authList[].authSystem | String | Authentication system internally used within Gamebase <br>User authentication system to be provided. |
 | authList[].idPCode | String | User-authenticated IdP information <br>e.g. Guest, PAYCO, and Facebook  |
 | authList[].authKey | String | User separator issued at authSystem  |
-
+| temporaryWithdrawal | Object | Information regarding pending withdrawal <br>Only "T" value provides valid |
+| temporaryWithdrawal.gracePeriodDate | String | Expiration time for pending withdrawal ISO 8601 |
 
 **[Error Code]**
 
 [Error Code](./error-code/#server)
 
+<br>
+<br>
 
 ## Launching
 
@@ -189,19 +193,19 @@ To check only if the current maintenance setting is enabled, use [Check Maintena
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-launching/v1.2/apps/{appId}/launching/simple |
+| GET | /tcgb-launching/v1.3/apps/{appId}/launching/simple |
 
 **[Request Header]**
 
 Check Common Factors
 
-**[Path Variable]**  
+**[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
 | appId | String | NHN Cloud Project ID |
 
-**[Request Parameter]**  
+**[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
@@ -209,7 +213,7 @@ Check Common Factors
 | storeCode | Enum | true | Store Code <br>- GG: Google<br>- ONESTORE<br>- AS: AppStore |
 | clientVersion | String | true | Client version |
 
-**[Response Body]**  
+**[Response Body]**
 
 ##### OK
 ```json
@@ -311,6 +315,7 @@ Check Common Factors
 | maintenance.message | String | Default maintenance reason message |
 
 <br>
+<br>
 
 ## Member
 
@@ -322,13 +327,11 @@ Retrieve detailed information of a single member.
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-member/v1.2/apps/{appId}/members/{userId} |
-
+| GET | /tcgb-member/v1.3/apps/{appId}/members/{userId} |
 
 **[Request Header]**
 
 Check common requirements.
-
 
 **[Path Variable]**
 
@@ -346,41 +349,44 @@ Check common requirements.
 **[Response Body]**
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "member": {
-    "userId": "String",
-    "valid": "Y",
-    "appId": "String",
-    "regDate": "2019-08-27T17:41:05+09:00",
-    "lastLoginDate": "2019-08-27T17:41:05+09:00",
-	"authList": [
-		  {
-			"userId": "String",
-			"authSystem": "String",
-			"idPCode": "String",
-			"authKey": "String",
-			"regDate": "2019-08-27T17:41:05+09:00"
-		  }
-		]
-	  },
-  "memberInfo": {
-    "deviceCountryCode": "String",
-    "usimCountryCode": "String",
-    "language": "String",
-    "osCode": "String",
-    "telecom": "String",
-    "storeCode": "String",
-    "network": "String",
-    "deviceModel": "String",
-    "osVersion": "String",
-    "sdkVersion": "String",
-    "clientVersion": "String"
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "member": {
+        "userId": "String",
+        "valid": "Y",
+        "appId": "String",
+        "regDate": "2019-08-27T17:41:05+09:00",
+        "lastLoginDate": "2019-08-27T17:41:05+09:00",
+        "authList": [
+            {
+                "userId": "String",
+                "authSystem": "String",
+                "idPCode": "String",
+                "authKey": "String",
+                "regDate": "2019-08-27T17:41:05+09:00"
+            }
+        ]
+    },
+    "temporaryWithdrawal": {
+        "gracePeriodDate": "2020-04-18T09:12:01+09:00"
+    },
+    "memberInfo": {
+        "deviceCountryCode": "String",
+        "usimCountryCode": "String",
+        "language": "String",
+        "osCode": "String",
+        "telecom": "String",
+        "storeCode": "String",
+        "network": "String",
+        "deviceModel": "String",
+        "osVersion": "String",
+        "sdkVersion": "String",
+        "clientVersion": "String"
+    }
 }
 ```
 
@@ -388,7 +394,7 @@ Check common requirements.
 | --- | --- | --- |
 | member | Object | Basic information of a retrieved user|
 | member.userId | String | User ID |
-| member.valid | Enum | Y: Normal user <br>D: Withdrawn user  <br>B: Banned user <br>M: Missing account|
+| member.valid | Enum | Y: Normal user <br>D: Withdrawn user  <br>B: Banned user <br>M: Missing account <br>T: User whose withdrawal request is pending |
 | member.appId | String | appId |
 | member.regDate | String | Time when a user created an account   |
 | member.lastLoginDate | String | Last login time <br>Not available for a first-time login user |
@@ -398,6 +404,8 @@ Check common requirements.
 | member.authList[].idPCode | String | User-authenticated IdP information <br>e.g. Guest, PAYCO, and Facebook |
 | member.authList[].authKey | String |  User separator issued at authSystem   |
 | member.authList[].regDate | String | Mapping time between IdP information with user account |
+| temporaryWithdrawal | Object | Information regarding pending withdrawal <br>Only "T" value provides valid |
+| temporaryWithdrawal.gracePeriodDate | String | Expiration time for pending withdrawal ISO 8601 |
 | memberInfo                   | Object        | Additional user information              |
 | memberInfo.deviceCountryCode | String        | Country code of user device              |
 | memberInfo.usmCountryCode    | String        | Country code of user USIM                |
@@ -415,6 +423,8 @@ Check common requirements.
 
 [Error Code](./error-code/#server)
 
+<br>
+
 #### Get Members
 
 Retrieves brief information about multiple members.
@@ -423,7 +433,7 @@ Retrieves brief information about multiple members.
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-member/v1.2/apps/{appId}/members |
+| POST | /tcgb-member/v1.3/apps/{appId}/members |
 
 **[Request Header]**
 
@@ -445,20 +455,20 @@ Check common requirements.
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "memberList": [
-    {
-		"userId": "String",
-		"valid": "Y",
-		"appId": "String",
-		"regDate": "2019-08-27T17:41:05+09:00"
-    }
-  ]
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "memberList": [
+        {
+            "userId": "String",
+            "valid": "Y",
+            "appId": "String",
+            "regDate": "2019-08-27T17:41:05+09:00"
+        }
+    ]
 }
 ```
 
@@ -466,7 +476,7 @@ Check common requirements.
 | --- | --- | --- |
 | memberList           | Array [Object] | Basic information of retrieved users     |
 | memberList[].userId  | String         | User ID                                  |
-| memberList[].valid   | Enum           | Y: Normal user <br>D: Withdrawn user <br>B: Banned user <br>M: Missing account |
+| memberList[].valid   | Enum           | Y: Normal user <br>D: Withdrawn user <br>B: Banned user <br>M: Missing account <br>T: User whose withdrawal request is pending |
 | memberList[].appId   | String         | appId                                    |
 | memberList[].regDate | String         | Time when a user created an account      |
 
@@ -475,6 +485,7 @@ Check common requirements.
 
 [Error Code](./error-code/#server)
 
+<br>
 
 #### Get IdP Information
 
@@ -484,19 +495,17 @@ Retrieve IdP information mapped with user ID.
 
 | Method | Type | URI |
 | --- | --- | --- |
-| POST | String | /tcgb-member/v1.2/apps/{appId}/auth/authKeys |
+| POST | String | /tcgb-member/v1.3/apps/{appId}/auth/authKeys |
 
 **[Request Header]**
 
 Check common requirements.
-
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
 | appId | String | NHN Cloud project ID |
-
 
 **[Request Body]**
 
@@ -508,23 +517,22 @@ Check common requirements.
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "result": {
-    "String": [
-      {
-        "authKey": "String",
-        "idPCode": "gbid",
-        "authSystem": "String"
-      }
-    ]
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "String": [
+            {
+                "authKey": "String",
+                "idPCode": "gbid",
+                "authSystem": "String"
+            }
+        ]
+    }
 }
-
 ```
 
 | Key | Type | Description |
@@ -538,6 +546,8 @@ Check common requirements.
 
 [Error Code](./error-code/#server)
 
+<br>
+
 #### Get UserId Information with Auth key
 
 Retrieve a user ID mapped to user authentication key.
@@ -546,8 +556,7 @@ Retrieve a user ID mapped to user authentication key.
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-member/v1.2/apps/{appId}/members/userIds/authKeys?authSystem={authSystem} |
-
+| POST | /tcgb-member/v1.3/apps/{appId}/members/userIds/authKeys?authSystem={authSystem} |
 
 **[Request Header]**
 
@@ -559,13 +568,11 @@ Check common requirements.
 | --- | --- | --- |
 | appId | String | NHN Cloud project ID |
 
-
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | authSystem | String | mandatory | Authentication system used internally within Gamebase <br>User authentication system to be provided  <br>Currently provides gbid |
-
 
 **[Request Body]**
 
@@ -577,15 +584,15 @@ Check common requirements.
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "result": {
-    "String": "String"
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "String": "String"
+    }
 }
 ```
 
@@ -597,6 +604,8 @@ Check common requirements.
 
 [Error Code](./error-code/#server)
 
+<br>
+
 #### Ban Histories
 
 Looks up users' ban history.
@@ -605,8 +614,7 @@ Looks up users' ban history.
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-member/v1.2/apps/{appId}/members/bans |
-
+| GET | /tcgb-member/v1.3/apps/{appId}/members/bans |
 
 **[Request Header]**
 
@@ -618,7 +626,6 @@ Check Common Factors
 | --- | --- | --- |
 | appId | String | NHN Cloud Project ID |
 
-
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
@@ -628,46 +635,45 @@ Check Common Factors
 | page | String | optional | Page to query about. Starting from 0 |
 | size | String | optional | Number of data per page |
 
-
 **[Response Body]**
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
     "pagingInfo": {
-      "first": true,
-      "last": true,
-      "numberOfElements": 0,
-      "page": 0,
-      "size": 0,
-      "totalElements": 0,
-      "totalPages": 0
+        "first": true,
+        "last": true,
+        "numberOfElements": 0,
+        "page": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0
     },
     "result": [
-      {
-        "appId": "String",
-        "banCaller": "CONSOLE",
-        "banReason": "String",
-        "banType": "TEMPORARY",
-        "beginDate": 0,
-        "endDate": 0,
-        "flags": "String",
-        "message": "String",
-        "name": "String",
-        "regUser": "String",
-        "releaseCaller": "CONSOLE",
-        "releaseDate": 0,
-        "releaseReason": "String",
-        "releaseUser": "String",
-        "seq": 0,
-        "templateCode": 0,
-        "userId": "String"
-      }
+        {
+            "appId": "String",
+            "banCaller": "CONSOLE",
+            "banReason": "String",
+            "banType": "TEMPORARY",
+            "beginDate": 0,
+            "endDate": 0,
+            "flags": "String",
+            "message": "String",
+            "name": "String",
+            "regUser": "String",
+            "releaseCaller": "CONSOLE",
+            "releaseDate": 0,
+            "releaseReason": "String",
+            "releaseUser": "String",
+            "seq": 0,
+            "templateCode": 0,
+            "userId": "String"
+        }
     ]
 }
 ```
@@ -705,6 +711,8 @@ Check Common Factors
 
 [Error code](./error-code/#server)
 
+<br>
+
 #### Ban Release Histories.
 
 Queries the user's unban history.
@@ -713,8 +721,7 @@ Queries the user's unban history.
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-member/v1.2/apps/{appId}/members/bans/release |
-
+| GET | /tcgb-member/v1.3/apps/{appId}/members/bans/release |
 
 **[Request Header]**
 
@@ -725,7 +732,6 @@ Check Common Factors
 | Name | Type | Value |
 | --- | --- | --- |
 | appId | String | NHN Cloud Project ID |
-|   |   |   |
 
 **[Request Parameter]**
 
@@ -736,46 +742,45 @@ Check Common Factors
 | page | String | optional | Page to query about. Starting from 0 |
 | size | String | optional | Number of data per page |
 
-
 **[Response Body]**
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
     "pagingInfo": {
-      "first": true,
-      "last": true,
-      "numberOfElements": 0,
-      "page": 0,
-      "size": 0,
-      "totalElements": 0,
-      "totalPages": 0
+        "first": true,
+        "last": true,
+        "numberOfElements": 0,
+        "page": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0
     },
     "result": [
-      {
-        "appId": "String",
-        "banCaller": "CONSOLE",
-        "banReason": "String",
-        "banType": "TEMPORARY",
-        "beginDate": 0,
-        "endDate": 0,
-        "flags": "String",
-        "message": "String",
-        "name": "String",
-        "regUser": "String",
-        "releaseCaller": "CONSOLE",
-        "releaseDate": 0,
-        "releaseReason": "String",
-        "releaseUser": "String",
-        "seq": 0,
-        "templateCode": 0,
-        "userId": "String"
-      }
+        {
+            "appId": "String",
+            "banCaller": "CONSOLE",
+            "banReason": "String",
+            "banType": "TEMPORARY",
+            "beginDate": 0,
+            "endDate": 0,
+            "flags": "String",
+            "message": "String",
+            "name": "String",
+            "regUser": "String",
+            "releaseCaller": "CONSOLE",
+            "releaseDate": 0,
+            "releaseReason": "String",
+            "releaseUser": "String",
+            "seq": 0,
+            "templateCode": 0,
+            "userId": "String"
+        }
     ]
 }
 ```
@@ -813,6 +818,8 @@ Check Common Factors
 
 [Error code](./error-code/#server)
 
+<br>
+
 #### Validate TransferAccount
 
 Validates the ID and password issued for transferring the guest account. For valid TransferAccount, return issued userID information.
@@ -821,8 +828,7 @@ Validates the ID and password issued for transferring the guest account. For val
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-gateway/v1.1.2/apps/{appId}/members/transfer-account |
-
+| POST | /tcgb-gateway/v1.3/apps/{appId}/members/transfer-account |
 
 **[Request Header]**
 
@@ -834,20 +840,18 @@ Check Common Factors
 | --- | --- | --- |
 | appId | String | NHN Cloud Project ID |
 
-
 **[Request Parameter]**
 
 None
-
 
 **[Request Body]**
 
 ```json
 {
-  "account": {
-    "id": "198704206255",
-    "password": "Zw548q7zE"
-  }
+    "account": {
+        "id": "198704206255",
+        "password": "Zw548q7zE"
+    }
 }
 ```
 
@@ -860,19 +864,19 @@ None
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "member": {
-    "userId": "String",
-    "valid": "Y",
-    "appId": "String",
-    "regDate": "2019-08-27T17:41:05+09:00",
-    "lastLoginDate": "2019-08-27T17:41:05+09:00"
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "member": {
+        "userId": "String",
+        "valid": "Y",
+        "appId": "String",
+        "regDate": "2019-08-27T17:41:05+09:00",
+        "lastLoginDate": "2019-08-27T17:41:05+09:00"
+    }
 }
 ```
 
@@ -880,7 +884,7 @@ None
 | --- | --- | --- |
 | member | Object | Basic information of the queried user |
 | member.userId | String | User ID |
-| member.valid | Enum | Y: Normal user <br>D: Withdrawn user <br>B: Banned user<br>M: Lost account|
+| member.valid | Enum | Y: Normal user <br>D: Withdrawn user <br>B: Banned user<br>M: Lost account <br>T: User whose withdrawal request is pending |
 | member.appId | String | App ID |
 | member.regDate | String | The time when the user created the account |
 | member.lastLoginDate | String | The last login time <br>The user who logged in for the first time has no value |
@@ -889,6 +893,60 @@ None
 
 [Error code](./error-code/#server)
 
+<br>
+
+#### Withdraw
+
+Withdraws (Deletes) a user account.
+
+> [Note]
+> If the account is withdrawn using the Withdraw Server API instead of the withdraw API of SDK, it needs to delete the cached data including tokens by calling the logout API of SDK after the withdrawal.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| DELETE | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}?regUser={regUser} |
+
+**[Request Header]**
+
+Checks common items
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud project ID |
+| userId | String | User ID who wants to withdraw their account |
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| regUser | String | mandatory | The system or user information of the entity that requested withdrawal <br> - The information can be viewed from Console > 'Withdrawal History' in the 'Member' page <br> - The withdrawal history can only be viewed by the withdrawn user |
+
+**[Request Body]**
+
+None
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    }
+}
+```
+
+**[Error Code]**
+
+[Error code] (./error-code/#server)
+
+<br>
 <br>
 
 ## Maintenance
@@ -901,7 +959,7 @@ Check whether maintenance is currently set.
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-launching/v1.2/apps/{appId}/maintenances/under-maintenance |
+| GET | /tcgb-launching/v1.3/apps/{appId}/maintenances/under-maintenance |
 
 **[Request Header]**
 
@@ -921,28 +979,28 @@ N/A
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "String",
-    "isSuccessful": true
-  },
-  "appId": "",
-  "underMaintenance": true,
-  "maintenances": [
-    {
-      "typeCode": "APP",
-      "beginDate": "2017-01-01T12:10:00+07:00",
-      "endDate": "2017-02-01T12:17:00+07:00",
-      "url": "http://url.info",
-      "message": "maintenance message",
-      "targetStores": [
-        "GG",
-        "AS",
-        "ONESTROE"
-      ]
-    }
-  ]
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "String",
+        "isSuccessful": true
+    },
+    "appId": "",
+    "underMaintenance": true,
+    "maintenances": [
+        {
+            "typeCode": "APP",
+            "beginDate": "2017-01-01T12:10:00+07:00",
+            "endDate": "2017-02-01T12:17:00+07:00",
+            "url": "http://url.info",
+            "message": "maintenance message",
+            "targetStores": [
+                "GG",
+                "AS",
+                "ONESTROE"
+            ]
+        }
+    ]
 }
 ```
 
@@ -955,17 +1013,18 @@ N/A
 | maintenances.endDate   | String  | End time of maintenance. ISO 8601        |
 | maintenances.url       | String  | Detailed maintenance URL                 |
 | maintenances.message   | String  | Maintenance message                      |
-| maintenances.targetStores | Array[Enum] | Storecode of a client for the maintenance setting of a particular client only <br>- GG: Google<br>- ONESTORE<br>- AS: AppStore |
+| maintenances.targetStores | Array[Enum] | Storecode of a client for the maintenance setting of a particular client only <br>- GG: Google<br>- ONESTORE: ONE store<br>- AS: AppStore |
 
 **[Error Code]**
 
 [Error Code](./error-code/#server)
 
 <br>
+<br>
 
 ## Coupon
 
-#### Validate and Consume Coupons
+#### Check Validation And Consume Coupon
 
 Validate published coupon code and change coupon status via console. For valid coupons, change to consume status and return item information to be paid as response result.
 
@@ -973,7 +1032,7 @@ Validate published coupon code and change coupon status via console. For valid c
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}/coupons/{couponCode} |
+| POST | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}/coupons/{couponCode}?storeCode={storeCode} |
 
 **[Request Header]**
 
@@ -989,7 +1048,9 @@ Check common issues
 
 **[Request Parameter]**
 
-N/A
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| storeCode | String | optional | If a coupon usable only at certain stores is issued from the console, the store code needs to be included<br>If it's usable at all stores, set the parameter to ALL or omit the parameter<br>- GG: Google<br>- ONESTORE: ONE store<br>- AS: AppStore |
 
 **[Response Body]**
 
@@ -1026,8 +1087,9 @@ N/A
 
 **[Error Code]**
 
-[Error Codes](./error-code/#server)
+[Error Code](./error-code/#server)
 
+<br>
 <br>
 
 ## Purchase (IAP)
@@ -1046,7 +1108,7 @@ Non-consumed purchases can be queried on SDK or server via Query Consume Non-Con
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-inapp/v1.2/apps/{appId}/consume |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/consume |
 
 **[Request Header]**
 
@@ -1066,8 +1128,8 @@ N/A
 
 ```json
 {
-  "paymentSeq": "2019091931571201",
-  "accessToken" : "90fD1bs1guXwY6aZ7rseEKYW_6gMCISjDASgten4MD6O7XZD7VRjZcs8OTm8lOQVFTegoY4WK78P2WQCMm7cx"
+    "paymentSeq": "2019091931571201",
+    "accessToken": "90fD1bs1guXwY6aZ7rseEKYW_6gMCISjDASgten4MD6O7XZD7VRjZcs8OTm8lOQVFTegoY4WK78P2WQCMm7cx"
 }
 ```
 
@@ -1079,20 +1141,22 @@ N/A
 > [Note]
 > When client calls requestPurchase API, the purchaseToken for response is used as accessToken
 
-
 **[Response Body]**
 
 ```json
 {
-   "header":{
+    "header": {
         "isSuccessful": true,
         "resultCode": 0,
         "resultMessage": "SUCCESS"
     },
-    "result":{
-        "price": 1500,
+    "result": {
+        "price": 1500.0,
         "currency": "KRW",
-        "productSeq": 12345
+        "productSeq": 1000292,
+        "marketId": "GG",
+        "gamebaseProductId": "tap_prod_001",
+        "payload": "additional info"
     }
 }
 ```
@@ -1103,10 +1167,21 @@ N/A
 | result.price | Float | Payment price |
 | result.currency  | String  | Payment currency |
 | result.productSeq | Long | Payment item number (original item number registered on console) |
+| result.marketId | String | Stroe code<br>GG: Google, AS: Apple, ONESTORE: ONE Store |
+| result.gamebaseProductId | String | Gamebase product ID<br>The value to be entered by user when registering products using the console |
+| result.payload | String | Additional information configured in SDK |
+
+> [Note]
+> The gamebaseProductId value exists in the response result according to the SDK version and payment API used by the client.
+
+> [Note]
+> In the game server, specified products (items) can be issued using the item number or store code together with the Gamebase product ID, but if multiple Gamebase products are registered with a single store item ID, the products need to be issued using the store code and Gamebase product ID.
 
 **[Error Code]**
 
-[Error Codes](./error-code/#server)
+[Error Code](./error-code/#server)
+
+<br>
 
 #### List Consumables
 
@@ -1116,7 +1191,7 @@ List non-consumed payment, which is not consumed even if paid up.
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-inapp/v1.2/apps/{appId}/consumable |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/consumable |
 
 **[Request Header]**
 
@@ -1136,42 +1211,46 @@ N/A
 
 ```json
 {
-  "marketId": "GG",
-  "userChannel" : "GF",
-  "userKey" : "QXG774PMRZMWR3BR"
+    "marketId": "GG",
+    "userId": "QXG774PMRZMWR3BR"
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | marketId | String | mandatory | Store code<br>GG: Google, AS: Apple, ONESTORE: One store |
-| userChannel | String | mandatory  | User channel<br>Currently not realized, with the `GF` setting at all times |
-| userKey | String | mandatory  | User ID |
+| userId | String | mandatory  | User ID |
 
 **[Response Body]**
 
 ```json
 {
-    "header":{
+    "header": {
         "isSuccessful": true,
         "resultCode": 0,
         "resultMessage": "success"
     },
-    "result":[
+    "result": [
         {
-            "paymentSeq": "2016122110023124",
-            "productSeq": 1000292,
+            "paymentSeq": "2020060210364966",
+            "productSeq": 1000312,
             "currency": "KRW",
-            "price": 1000,
-            "accessToken": "oJgM1EfDRjnQY7yqhWCUVgAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
+            "price": 2500.0,
+            "marketId": "AS",
+            "accessToken": "ja5SBJBfr7rYUdjFr6dRe7gKnkX0r7EKPvuK6CIUBBekc1rE9CVbMKVCNuw6ZtwmcpDRXrToR9l26NF9zub6ol",
+            "gamebaseProductId": "gamebase_prod_001",
+            "purchaseTime": "2020-06-02T13:38:56+09:00",
+            "payload": "additional info"
         },
-
         {
             "paymentSeq": "2016122110023125",
             "productSeq": 1000292,
             "currency": "KRW",
-            "price": 1000,
-            "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
+            "price": 1000.0,
+            "marketId": "AS",
+            "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ",
+            "gamebaseProductId": "gamebase_prod_002",
+            "purchaseTime": "2020-06-02T13:37:42+09:00"
         }
     ]
 }
@@ -1185,10 +1264,16 @@ N/A
 | result[].currency  | String  | Payment currency |
 | result[].price | Float | Payment price |
 | result[].accessToken | String | Payment authentication token |
+| result[].marketId | String | Stroe code |
+| result[].gamebaseProductId | String | Gamebase product ID<br>The value to be entered by user when registering a product using the console |
+| result[].purchaseTime | String | Time and date of payment |
+| result[].payload | String | Additional information configured in SDK |
 
 **[Error Code]**
 
-[Error Codes](./error-code/#server)
+[Error Code](./error-code/#server)
+
+<br>
 
 ### List Active Subscriptions
 
@@ -1198,7 +1283,7 @@ List payment of user's current subscriptions.
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-inapp/v1.2/apps/{appId}/active-subscriptions |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/active-subscriptions |
 
 **[Request Header]**
 
@@ -1218,10 +1303,9 @@ N/A
 
 ```json
 {
-  "marketId": "GG",
-  "packageName" : "com.toast.gamebase",
-  "userChannel" : "GF",
-  "userKey" : "QXG774PMRZMWR3BR"
+    "marketId": "GG",
+    "packageName": "com.toast.gamebase",
+    "userId": "QXG774PMRZMWR3BR"
 }
 ```
 
@@ -1229,82 +1313,81 @@ N/A
 | --- | --- | --- | --- |
 | marketId | String | mandatory | Store code<br>GG: Google, AS: Apple, ONESTORE: One store |
 | packageName | String | mandatory | packageName of the app registered on console |
-| userChannel | String | mandatory  | User channel <br>Currently not realized, with`GF` setting at all times |
-| userKey | String | mandatory  | User ID |
+| userId | String | mandatory  | User ID |
 
 **[Response Body]**
 
 ```json
 {
-  "header": {
-    "isSuccessful": true,
-    "resultCode": 0,
-    "resultMessage": "SUCCESS"
-  },
-  "result": [
-    {
-      "channel": "GF",
-      "userId": "string",
-      "paymentSeq": "2018102610330423",
-      "appId": "com.toast.gamebase",
-      "productId": "subs_p1w",
-      "productType": "AUTO_RENEWABLE",
-      "productSeq": 1002904,
-      "currency": "KRW",
-      "price": 1000,
-      "paymentId": "GPA.3375-2193-1175-57698",
-      "originalPaymentId": "GPA.3375-2193-1175-57698",
-      "purchaseTimeMillis": 1540522998289,
-      "expiryTimeMillis": 1541134994548
-    }
-  ]
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "result": [
+        {
+            "marketId": "GG",
+            "userId": "QXG774PMRZMWR3BR",
+            "paymentSeq": "2020052810364755",
+            "accessToken": "NczL3n4TumMF8n9oRR5l8zXDyMXRVjxSRks0Lk1Saob2A9rdAupqjZSrQ0-hb2GOSFwTx5uDDchH8EB-EkWGGQ",
+            "productSeq": 1001221,
+            "productId": "money_100",
+            "productType": "AUTO_RENEWABLE",
+            "paymentId": "GPA.3302-8679-7228-41195",
+            "price": 1000.0,
+            "currency": "KRW",
+            "gamebaseProductId": "gamebase_renewal_001",
+            "payload": "additional info",
+            "purchaseTime": "2020-06-02T13:38:56+09:00",
+            "expiryTime": "2020-06-02T13:48:56+09:00"
+        }
+    ]
 }
 ```
 
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Array[Object] | Basic payment information |
-| result[].channel  | String  | User channel 널 |
+| result[].marketId  | String  | Stroe Code  |
 | result[].userId  | String  | User ID |
 | result[].paymentSeq | String  | Payment number |
-| result[].appId | String  | Package name |
+| result[].accessToken | String | Payment validation token |
+| result[].productSeq | Long | Payment item number (original item number registered on console) |
 | result[].productId | String  | Identifier of product (item) registered at store |
 | result[].productType | String  | Product (item) type <br>Subscription: AUTO_RENEWABLE |
-| result[].productSeq | Long | Payment item number (original item number registered on console) |
 | result[].currency  | String  | Payment currency |
 | result[].price | Float | Payment price |
 | result[].paymentId | String | Recently updated store payment number |
-| result[].originalPaymentId | String | Initial store payment number |
-| result[].purchaseTimeMillis | Long | Recent updated time |
-| result[].expiryTimeMillis | Long | Subscription expiration time |
+| result[].gamebaseProductId | String | Gamebase product ID<br>The value to be entered by user when registering a product using the console |
+| result[].payload | String | Additional information configured in SDK |
+| result[].purchaseTime | String | Recent updated time |
+| result[].expiryTime | String | Subscription expiration time |
 
 **[Error Code]**
 
-[Error Codes](./error-code/#server)
+[Error Code](./error-code/#server)
 
+<br>
 <br>
 
 ## Leaderboard
 
 Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping, NHN Cloud products become available at a user server on a consistent interface.
 
-
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
-| Retrieve User Count Registered at Factor | GET    | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
-| Retrieve Score/Rank of a Single User     | GET    | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
-| Retrieve Scores/Ranks of Multiple Users  | POST   | /tcgb-leaderboard/v1.2/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
-| Retrieve Entire Scores/Ranks of Range    | GET    | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
-| Register Score of a Single User          | POST   | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
-| Register Score/ExtraData of a Single User | POST   | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
-| Register Scores of Multiple Users        | POST   | /tcgb-leaderboard/v1.2/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
-| Register Scores/ExtraData of Multiple Users | POST   | /tcgb-leaderboard/v1.2/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
-| Delete Leaderboard Information of a Single User | DELETE | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
-
+| Retrieve User Count Registered at Factor | GET    | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
+| Retrieve Score/Rank of a Single User     | GET    | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
+| Retrieve Scores/Ranks of Multiple Users  | POST   | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
+| Retrieve Entire Scores/Ranks of Range    | GET    | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
+| Register Score of a Single User          | POST   | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
+| Register Score/ExtraData of a Single User | POST   | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
+| Register Scores of Multiple Users        | POST   | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
+| Register Scores/ExtraData of Multiple Users | POST   | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
+| Delete Leaderboard Information of a Single User | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
 
 **For more information of the API, click the following link.**
-
 
 [Leaderboard Guide](/Game/Leaderboard/en/api-guide/)
 
@@ -1315,9 +1398,10 @@ Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 X-Secret-Key: IgsaAP
 
-GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/user-count
+GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
 ```
 
+<br>
 <br>
 
 ## Others
@@ -1331,24 +1415,23 @@ To inquire about causes of failure in API call, upload **API Call URL (with HTTP
 ##### Example of API Call
 
 ```
-GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.2/apps/C3JmSctU/maintenances/under-maintenance
+GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance
 ```
 
 ##### Result of Failed API Response
 
 ```json
 {
-  "header": {
-    "transactionId": "18a1ae42-6b1d-54c8-894e-54e97bca07fq",
-    "resultCode": -4010002,
-    "resultMessage": "Gamebase product appKey is invalid, appId:C3JmSctU",
-    "traceError": {
-      "trackingTime": 1489726350287,
-      "throwPoint": "gateway",
-      "uri": "/tcgb-launching/v1.2/apps/C3JmSctU/maintenances/under-maintenance"
-    },
-    "isSuccessful": false
-  }
+    "header": {
+        "transactionId": "18a1ae42-6b1d-54c8-894e-54e97bca07fq",
+        "resultCode": -4010002,
+        "resultMessage": "Gamebase product appKey is invalid, appId:C3JmSctU",
+        "traceError": {
+            "trackingTime": 1489726350287,
+            "throwPoint": "gateway",
+            "uri": "/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance"
+        },
+        "isSuccessful": false
+    }
 }
-
 ```

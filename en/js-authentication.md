@@ -23,7 +23,6 @@ The logic described above can be implemented in the following sequence.
         * Facebook('facebook')
         * PAYCO('payco')
         * NAVER('naver')
-        * Twitter('twitter')
         * Line('line')
 * **toast.Gamebase.login(providerName, (authToken, error) => { ... })** Calls the API.
 
@@ -54,7 +53,6 @@ The IdP types available for login are as follows:
 * Facebook('facebook')
 * PAYCO('payco')
 * NAVER('naver')
-* Twitter('twitter')
 * Line('line')
 
 > <font color="red">[Caution]</font><br/>
@@ -259,26 +257,151 @@ var banInfo = toast.Gamebase.getBanInfo();
 ```
 * BANNED_MEMBER (7)
 
+## TemporaryWithdrawal
+
+This is a 'pending withdrawal" feature.
+By requesting a temporary withdrawal, the account is not immediately withdrawn. Instead, it is withdrawn after a specific grace period.
+The grace period can be changed in the console.
+
+> 'Caution'
+>
+> Do not use **Gamebase.withdraw()** API if you're using the Pending Withdrawal feature.
+> The **Gamebase.withdraw()** API immediately withdraws accounts when used.
+
+If login is successful, AuthToken.member.temporaryWithdrawal can be used to determine if the user is in the status of pending withdrawal.
+
+### Request TemporaryWithdrawal
+
+Requests a temporary withdrawal.
+The account is automatically withdrawn after a specific grace period set in the console.
+
+**API**
+
+```js
+toast.Gamebase.TemporaryWithdrawal.requestWithdrawal(callback)
+```
+
+**Example**
+
+```js
+function requestWithdrawal() {
+    gamebase.TemporaryWithdrawal.requestWithdrawal(function (data, error) {
+        if (error) {
+            if (error.code == GamebaseConstant.AUTH_WITHDRAW_ALREADY_TEMPORARY_WITHDRAW) {
+                // Already requested temporary withdrawal before.
+            } else {
+                // Request temporary withdrawal failed.
+            }
+            return;
+        }
+        
+        // Request temporary withdrawal success.
+    });
+}
+```
+
+### Check TemporaryWithdrawal User
+
+For games using the Pending Withdrawal feature must notify its users that they are in grace period if AuthToken.member.temporaryWithdrawal is not null after login.
+
+**Example**
+
+```js
+function gamebaseLogin() {
+    toast.Gamebase.login('google', function (authToken, error) {
+        if (error) {
+            // Login failed
+            return;
+        }
+
+        if(authToken.member.temporaryWithdrawal != null) {    
+            // User is under temporary withdrawal    
+            var gracePeriodDate = authToken.member.temporaryWithdrawal.gracePeriodDate;            
+        } else {
+            // Login success.
+        }
+    });
+}
+```
+
+### Cancel TemporaryWithdrawal
+
+Cancels a withdrawal request.
+If the grace period is over and the withdrawal process is completed, it cannot be undone.
+
+**API**
+
+```js
+toast.Gamebase.TemporaryWithdrawal.cancelWithdrawal(callback)
+```
+**Example**
+
+```js
+function cancelWithdrawal() {
+    gamebase.TemporaryWithdrawal.cancelWithdrawal(function (error) {
+        if (error) {
+            if (error.code == GamebaseConstant.AUTH_WITHDRAW_NOT_TEMPORARY_WITHDRAW) {
+                // Never requested temporary withdrawal before.
+            } else {
+                // Cancel temporary withdrawal failed.
+            }
+            return;
+        }
+        
+        // Cancel temporary withdrawal success.
+    });
+}
+```
+
+### Withdraw Immediately
+
+Immediately withdraws the account, ignoring the grace period.
+The internal mechanics are the same as the Gamebase.withdraw() API.
+
+Instant withdrawal cannot be undone, so it is important to ask the user several times if they really want to execute the command.
+
+**API**
+
+```js
+toast.Gamebase.TemporaryWithdrawal.withdrawImmediately(callback)
+```
+
+**Example**
+
+```js
+function withdrawImmediately() {
+    gamebase.TemporaryWithdrawal.withdrawImmediately(function (error) {
+        if (error) {
+            // Withdraw failed.
+            return;
+        }
+        
+        // Withdraw success.
+    });
+}
+```
 
 ## Error Handling
-
 | Category       | Error                                                   | Error Code | Description                                                       |
 | -------------- | ------------------------------------------------------- | ---------- | ----------------------------------------------------------------- |
-| Auth           | INVALID\_MEMBER                                         | 6          | Request for invalid member.                                            |
-|                | BANNED\_MEMBER                                          | 7          | Named member has been banned.                                                     |
-|                | AUTH\_USER\_CANCELED                                    | 3001       | Login is cancelled.                                                |
-|                | AUTH\_NOT\_SUPPORTED\_PROVIDER                          | 3002       | The authentication is not supported.                                           |
-|                | AUTH\_NOT\_EXIST\_MEMBER                                | 3003       | The member does not exist or has already withdrawn.                                        |
-|                | AUTH_ALREADY_IN_PROGRESS_ERROR                          | 3010       | The previous authentication process has not been completed.                                   |
-| Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED                              | 3101       | Token login has failed.                                              |
-|                | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO                | 3102       | Invalid token information.  |
-|                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP      | 3103       | Invalid last login IdP information.                                      |
-| IDP Login      | AUTH\_IDP\_LOGIN\_FAILED                                | 3201       | IdP login has failed.                                              |
-|                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO                    | 3202       | Invalid IdP information.(The console has no information about the IdP.)           |
-| Logout         | AUTH\_LOGOUT\_FAILED                                    | 3501       | Logout has failed.                                                |
-| Withdrawal     | AUTH\_WITHDRAW\_FAILED                                  | 3601       | Withdrawal has failed.                                                   |
-| Not Playable   | AUTH\_NOT\_PLAYABLE                                     | 3701       | Not playable (due to maintenance or service closed).                        |
-| Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                                    | 3999       | Unknown error.(Undefined error).                             |
+| Auth           | INVALID\_MEMBER                                         | 6          | Invalid user request.                                            |
+|                | BANNED\_MEMBER                                          | 7          | The user is temporarily banned.                                                     |
+|                | AUTH\_USER\_CANCELED                                    | 3001       | Login has been canceled.                                                |
+|                | AUTH\_NOT\_SUPPORTED\_PROVIDER                          | 3002       | The authentication method is not supported.                                           | 
+|                | AUTH\_NOT\_EXIST\_MEMBER                                | 3003       | The member either does not exist or withdrew their account.                                        |
+|                | AUTH_ALREADY_IN_PROGRESS_ERROR                          | 3010       | The previous authentication process is not complete.                                   |
+| Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED                              | 3101       | Token login failed.                                              |
+|                | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO                | 3102       | Invalid token information.                                            |
+|                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP      | 3103       | No recent login IdP information.                                      |
+| IDP Login      | AUTH\_IDP\_LOGIN\_FAILED                                | 3201       | IdP login failed.                                              |
+|                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO                    | 3202       | Invalid IdP information. (The console has no information about the IdP.)           |
+| Logout         | AUTH\_LOGOUT\_FAILED                                    | 3501       | Failed to log out.                                                |
+| Withdrawal     | AUTH\_WITHDRAW\_FAILED                                  | 3601       | Failed to withdraw the account.                                                   |
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | The user is already in the status of temporary withdrawal.                    |
+|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | The user is not in the status of temporary withdrawal.                     |
+| Not Playable   | AUTH\_NOT\_PLAYABLE                                     | 3701       | The game is unavailable at the moment (for maintenance, service termination, or other reasons).                        |
+| Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                                    | 3999       | An unknown error occurred (undefined error).                             |
 
-* Refer to the following document for all error codes.
-    * [Entire Error Codes](./error-code/#client-sdk)
+* For the entire list of error codes, see the following document.
+    * [Entire Error Codes] (./error-code/#client-sdk)
+    

@@ -9,97 +9,128 @@ Go to the NHN Cloud Cloud Console and click **Game > Gamebase > App**.
 
 ## App
 
-When Gamebase is activated, app is automatically created, and only registered information can be modified in each menu.
-Cannot register a new app or delete one, as each NHN Cloud Cloud project can manage one Gamebase app. Deactivate Gamebase to delete the app.
-For details of each item, refer to **Properties** as below.
-
 ### Properties
+When the Gamebase service is activated, the app is automatically created and only the registered information can be edited from the menu.
+A NHN Cloud project can manage only one Gamebase app, you cannot register additional apps or delete exiting apps. When the Gamebase service is deactivated, the information registered in the app is deleted.
+For more detailed information on each item, see the details below:
 
-Describes app information managed by Gamebase Console.
+### Basic information
+![gamebase_app_01_202004] (https://static.toastoven.net/prod_gamebase/gamebase_app_01_202004.png)
 
-![gamebase_app_01_201812.png](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_01_201911.png)
-
-#### (1) Install URL
-Refers to short URL information to install and patch an app.
-Can manage apps that are distributed in many stores, with a short URL.
-For detailed operations and management, refer to the following link: [Manage Installation URL](./oper-app/#installed-url)
-
+#### (1) Installation URL
+Shortened URL information that can be used to install and promote the app.
+Even if there are multiple stores to which the app is deployed, you can manage them with a single URL.
+See the following link for more information on the operation and maintenance of this app. [Manage Installation URL] (./oper-app/#installed-url).
 > [Note]
-> Cannot modify URL, as it will be automatically created, once Gamebase is activated.
+> When Gamebase is activated, it is automatically created and cannot be changed.
 
-####(2) Server URL
-Applied when a game requires server address (such as IP, URL) in real time.
-When it is set, information can be checked on 'Launching Information' which is entered after client initialization.
-Server addresses for delivery can be set depending on the client status. For instance, if the client is under testing or inspection, server address set for each item shall go down on the initial launching information.
-Enter only when a game requires; otherwise, leave it empty.
-
-####(3) Customer Center Info
-Enter information such as email and phone number, other than Customer Center website.
-When a website is available, enter information in **Service Center** of **In-app URL**.
+#### (2) Customer Center contact
+Enter email and phone number that is not of the Customer Center page.
+If there is the Customer Center page, enter the information in the **Customer Center** of **In-app URL**.
 > [Note] <br/>
-> Information will be displayed on the detailed maintenance page provided by Gamebase.
+> The information entered is displayed on the detailed maintenance page provided by Gamebase.
 
-####(4) Authentication Information
-Can register, modify, or delete authentication information of IdP required for a login.
+#### (3) Whether to include test payments
+Decides whether or not to include test payment in the indexes when viewing the app's indexes.
+"Include Test Payments" is the default option and if you set it to "Exclude Test Payments", the test payments are excluded from the Analytics revenue indexes.
+> [Note 1]
+> Since the data always accumulate test payments and actual payments regardless of the index inclusion settings, the data collection result won't be affected whether or not test payments are displayed.
 
-Can set callback URL and additional information, as well as client ID of external authentication and a secret key.
-Click **+** button beside authentication information, to modify information.
-For more configuration details of each IdP, refer to [Authentication Information](#authentication-information).
+> [Note 2]
+> Test data is supported only by Google and AppStore. Other stores do not support test data.
+> The test index standard for each store is as follows:
+> * Google: The history of payments made by the test accounts registered with Google
+> * AppStore: The history of payments made in the sandbox environment
+
+#### (4) Period of Pending Withdrawal
+Set the grace period if you want to enable the Pending Withdrawal feature.
+The default is 7 days and it can be anywhere between 1 and 30 days.
 > [Note]
-> What is **Token Re-validation**?
-> Set whether to revalidate tokens for an external IdP when a client calls Latest Login API.
-> Select **No Validation** , and only internal tokens will be validated, without token revalidation of external IdPs.
-> Select **Always Validate** , and validity will be checked at all time, both for internal IdP tokens issued by Gamebase and external IdP tokens.
+> The services are available as usual during the grace period.
 
+### Server address
+![gamebase_app_01_202004] (https://static.toastoven.net/prod_gamebase/gamebase_app_02_202004.png)
 
-####(5) In-App URL
-Can modify URLs that are frequently used in an app via console in real time, without having to redistribute the client.
+- Used when the game needs to receive the server address (IP, URL, and others) in real time.
+- If you configure the server address, you can see the entered information in Launching Information after the client is initialized.
+- Server address can be configured according to the client's status and the server address can be checked in Launching Information.
+- Enter information only if required by the game; otherwise, leave it empty.
 
-- Terms of Use
-- Personal Information Consent
-- Punishment Provision
-- Service Center
+### Language settings
+![gamebase_app_01_202004] (https://static.toastoven.net/prod_gamebase/gamebase_app_03_202004.png)
+- You can specify the default language to display in advance in the multi-language setting in each menu.
+- The selected languages are displayed when displaying multiple languages and the default language is set as selected.
+- If you do not want to use it, leave it empty.
 
-Enter only when a game requires; otherwise, leave it empty.
-You can find your information setting in' Launching Information' after client initialization.
+### Authentication information
+![gamebase_app_01_202004] (https://static.toastoven.net/prod_gamebase/gamebase_app_04_202004.png)
+
+The authentication information of the IdP to be used when logging in to the app can be registered, edited, and deleted.
+
+Not only the client ID and secret key of external authentication but also the callback URL and additional information can be configured.
+Click the **+** button next to the authentication information to add information; click the **-** button to delete the information.
+See [Authentication Information] (#authentication-information) for more information on configuration per IdP.
+> [Note]
+> What is **Token Re-verification**?
+> Sets whether the token of an external IdP needs to be reverified when calling Latest Login API from the client.
+> If **Do Not Verified** is selected, only internal tokens are verified without verifying the tokens of external IdPs again.
+> If **Always Verify** is selected, not only the internal tokens issued by Gamebase but also external IdP tokens are verified every time.
+
+### In-app URL
+![gamebase_app_01_202004] (https://static.toastoven.net/prod_gamebase/gamebase_app_05_202004.png)
+You can edit URLs frequently used in the app in real time via Console without having to redeploy the client.
+
+- Terms and Conditions
+- Consent to Collection of Personal Information
+- User ban rules
+- Customer Center URL
+
+Enter information only if required by the game; otherwise, leave it empty.
+The configured information can be viewed in Launching Information after the client is initialized.
 
 ### Test Device
 
-![gamebase_app_02_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_02_201812_en.png)
-You can access games with a registered test device even when an app using Gamebase is under maintenance.
-To register a test device, **Device Key** is required: enter directly or search a **Game User ID**.
-Can even delete test devices that are no longer in use.
+![gamebase_app_02_201812.png] (http://static.toastoven.net/prod_gamebase/gamebase_app_02_201912.png)
+If it is registered as a test device, it can access the game as usual even when the app running Gamebase is under maintenance.
+You need to register **Device Key** or **IP** information to register a test device. You can register it by directly entering the information or retrieving **Game User ID**.
+Test devices can be managed by allowing them to be able to access the game even when it is under maintenance or configuring whether to display the debug log on each device.
+You can also delete test devices that you don't use anymore.
+Click the Access History button to check **Connected Time and Detailed Connection Log during Maintenance** via the device.
+![gamebase_app_02_201812.png] (http://static.toastoven.net/prod_gamebase/gamebase_app_09_201912.png)
 
 > [Note]
-> You can register test devices up to the maximum of 100.
+> Up to 100 test devices can be registered.
 
-#### (1) Retrieve
+#### (1) Search
 
-Check the list of test devices registered in an app. Enter search words in **Search** to find the devices that fit your search conditions.
+Can check all test devices registered with the app. Enter a keyword in the **Search** field to easily find test devices that match the keyword.
 
 #### (2) Register
 
-![gamebase_app_03_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_03_201812_en.png)
+Click the **Register** button on the Search screen to access the screen where test devices can be registered. Manually enter **Device Key** or search for **Game User ID** and register a test device.
 
-Click **Register** to find a screen for registration of test devices: enter Device Key directly or search a **game user ID** to register.
+![gamebase_app_02_201812.png] (http://static.toastoven.net/prod_gamebase/gamebase_app_10_201912.png)
+![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_11_201912.png)
 
-**(A) ** **Register by Game User ID**
+**(1) Register using Game User ID**
 
-Choose User ID  in Type, and enter User ID  and click Search, and the user login history will show. Select a Device Key to register as a test device,  enter **additional information**, and click Registration to complete registering the device key as test device.
+Select User ID for Type, enter a game user ID, and click the **Search** button and the log history of the user will be displayed at the bottom of the screen. Select the Device key of a device to register as a test device among the searched history, enter **Additional Information**, and click the **Register** button to register the Device key as the test device information.
+
+
+
+**(2) Register Using Device Key or IP**
+
+If you know the Device key or IP of the device you want to register, you can directly register it as a test device by selecting the type you want as your desired input method.
+Enter **Device Name**, debug log, and whether to ignore maintenance of the device that you want to register, and click the Register button to register it as a test device.
 
 > [Note]
-> For additional information, enter user-defined names. e.g.) iPhone 6 Test, iPad of NHN Cloud
-
-**(B)Register by Device Key**
-
-When you know the device key to register, select **Device Key** in Type to register the device.
-Enter Device Key and **additional information**, and click **Register** to complete registration.
+> Enter an easily recognizable nickname as the name of the device (e.g. iPhone 6 Test, NHN Cloud's iPad)
 
 #### (3) Delete
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_App3_4.0.png)
+![gamebase_app_02_201812.png] (http://static.toastoven.net/prod_gamebase/gamebase_app_12_201912.png)
 
-To delete test devices, go to the test device screen, check the devices to delete, and click **Delete** at the top left. Keep note that information cannot be restored, once deleted.
+Select the test device to delete on the Search Test Device screen and click the Delete button located at the top left of the screen to delete the test device information. Once deleted, the information cannot be recovered, so please make sure that it needs to be deleted before clicking the button.
 
 ### Authentication Information
 
@@ -112,7 +143,6 @@ Note that {Facebook Permission} which is required for a login should also be ent
 - Client ID: {AppID}
 - Secret Key: {App Secret Code}
 - Additional Info: Facebook Permission (json format)
-
 
 ![gamebase_app_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_04_201812.png)
 
@@ -310,13 +340,13 @@ You need to provide {Consumer Key} and {consumer Secret} acquired from Twitter A
  * 1.13.0 or earlier
 	* You don't need to set the URL scheme separately.
 
-* 1.14.0 or later
-	* Set the URL scheme.
-		* **tcgb.{Bundle ID}.twitter** must be added to **XCode > Target > Info > URL Types**.
+* Version 1.14.0 or later
+	* URL scheme must be set.
+		* **tcgb.{Bundle ID}.twitter** needs to be added to **XCode > Target > Info > URL Types**.
+    * Need to configure Apps > Target Project > App Details > Callback URL on the Developer site of Twitter.
+      * Add **tcgb.{Bundle ID}.twitter://**.
 
-* Example of entering the additional authentication information for Twitter
-
-![Twitter URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+![Twitter URL Types] (http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
 #### 7. LINE
 
@@ -385,7 +415,6 @@ To enable Sign In with Apple, setting is required for AppStore Connect, Gamebase
 * Gamebase
 ![Set SecretKey Setting](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
 
-
 ###### Setting Client ID
 > Set Bundle ID for the app.
 
@@ -399,7 +428,6 @@ To enable Sign In with Apple, setting is required for AppStore Connect, Gamebase
 ![SecretKey Setting](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
 
 Create the above value into JSON like the example as below.  
-
 
 ```json
 {
@@ -421,7 +449,6 @@ As of today (November of 2019), there are only two types of scope, such as `full
 
 ##### Xcode Project Settings
 > <font color="red">[Caution]</font><br/>Only Xcode 11 or higher versions allow 'Sign In with Apple' for the  buildup of projects.   
-
 
 1. Select Target > Signing & Capabilities,  and add Sign In with Apple.
 ![Capability_SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid8_1.0.png)
@@ -485,13 +512,18 @@ Enter character strings in accordance with rules of each game.
 >  <font color="red">[Caution] </font>
 >  When **both Update Required and Under Maintenance are set at the same time** , the service status becomes 'Update Required'.
 >  If you don't want to show the Update Required pop-up to user during maintenance, the service status should be changed to 'Update Required' after maintenance is completed.
+>  <font color="orange">[Note] </font>
+> Click the Update button to be redirected to each store address configured in the URL menu.
+> For example, if the client is set to App store and there is a setting related to App store in the Installation URL menu, the user is redirected to that address. If there is no setting configured in the Installation URL menu, the user is redirected to a common URL.
 
 - <font color="white" style="background-color:#CCCCCC">Close</font>: Service unavailable. <br/> To be selected for a version of closed service.<br />Gamebase provides the default pop-up as below.
 
 > [Note]
-> Setting Message for Service Status.
-> For **Update Recommended (In Service)**, **Update Required** , and **Service Closed** , messages can be set in multiple languages.
-> When a service status is selected, default messages are provided in five languages (Korean, English, Japanese, Chinese Simplified, and Chinese Traditional), and you can add a language or change messages.
+> Configure messages to be displayed according to service status
+> If the status is **Update Recommended (In service)**, **Update Required**, or **Exit**, you can set the message to be exposed to users in multiple languages.
+> If you select the service status, default messages are provided according to the language settings configured for the app, and if you want, more languages can be added or change the default message text.
+> If there are already settings for each language, those settings are used regardless of the app's language settings.
+> If there is no information in the app's language settings, the default messages are provided in 5 languages (Korean, English, Japanese, Simplified Chinese, and Traditional Chinese). These languages can be added or the text of the default message can be changed.
 > ![gamebase_app_18_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_18_201812_en.png)
 
 #### (4) Server URL
@@ -586,3 +618,27 @@ For verification of the issued device transfer, you can set the transfer count, 
 ![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_3.0.png)
 Once the initial settings are done, game users can disable the device transfer function only if they want. If they need to change the settings, they need to contact Customer Center.
 Click **Disable** to disable the function. In this case, all device transfer keys issued will be deleted. So be careful when you should determine whether to disable the function or not.
+
+## Analytics indicator
+The transfer index for stacking indexes in Analytics can be checked and configured.
+They are divided by user level (INT), world/server/channel, and class/profession. For user level, only the level items actually transferred to Analytics are displayed, for world/server/channel and class/profession items, only the items registered in this menu are stacked in Analytics as indexes.
+### By User Level (INT)
+Can check the level indexes transferred to the Analytics system.
+In this item, only search is available, without separate edits.
+![gamebase_app_20_201812.png] (https://static.toastoven.net/prod_gamebase/gamebase_analytics_indicator_01_202003.png)
+
+### Search by World/Server/Channel and Class/Profession
+Currently, you can check the transfer index configured for each item.
+If you do not want to stack the indexes for the items configured in the Search screen, you can delete previously registered items using the Delete button.
+Deleted items are not displayed as indexes in the Analytics menu. Be careful when deleting items, as the indexes of deleted items won't be stacked anymore.
+![gamebase_app_20_201812.png] (https://static.toastoven.net/prod_gamebase/gamebase_analytics_indicator_02_202003.png)
+
+### Register each World/Server/Channel and Class/Profession
+You can register new information that you want to stack in Analytics indexes.
+You can use the Add button below. **Up to 100 new items** can be registered.
+Only **those items displayed on the Index screen can be edited** among the previously registered data. If you want to delete them, you need to go to the Search screen and delete them there.
+![gamebase_app_20_201812.png] (https://static.toastoven.net/prod_gamebase/gamebase_analytics_indicator_03_202003.png)
+
+#### (1) ChannelId/ClassId: Enter the information of the separator to be stacked in Analytics. Enter the ID information you want to set when stacking indexes.
+#### (2) Display index screen: Type in text to display when displaying the index that was transferred to the ID entered as the first item. The information can be used to edit already registered indexes.
+#### (3) Delete: Only the items that are newly added can be deleted in the Register screen.

@@ -7,8 +7,8 @@
 - Added Validate TransferAccount API to verify TransferAccount that is published in advance and used for device transfer on a guest account.
 - Changed the date time of API response result frmo Epoch Time to ISO 8601 (ssXXX:mm:HH'T'dd-MM-yyyy). regDate and lastLoginDate for response result of Token Authentication, Get Member, and Get Members API.
 - Added Exhaust Coupons API.
-- Purchase(IAP)의 구매 가격(price) 데이터 타입이 가이드상에서 Long 으로 잘못 표기된 것을 Float 타입으로 변경하였습니다.
-- 탈퇴 유예 기능 추가에 따라 Token Authentication, Get Member API 응답 결과에 탈퇴 유예 상태인 사용자에 대한 정보가 추가 되었습니다.
+- Corrected the price data type of Purchase (IAP) from Long to Float.  
+- Added information of users who are suspended from withdrawal to the result of Token Authentication and Get Member API Response, as the feature of susepnsion of withdrawal has been added.
 
 ## Advance Notice
 
@@ -19,12 +19,12 @@ Gamebase Server API provides APIs as follows, in the RESTful format. Following i
 To call API, below address is needed, which is also available in the Gamebase Console.
 > https://api-gamebase.cloud.toast.com
 
-![image alt](https://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
+![image alt](./image/Server_Developers_Guide/pre_server_address_v1.2.png)
 
 #### AppId
 
 App ID, as a project ID of NHN Cloud, can be found on the **Project List** page of the Console.
-![image alt](https://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
+![image alt](./image/Server_Developers_Guide/pre_appId_v1.2.png)
 
 #### SecretKey
 
@@ -32,7 +32,7 @@ Secret Key, as a control access of API, can be found in the Gambase Console. It 
 > [Note]<br>
 > When a secret key is exposed and a wrong call is made, click **Create** to create a new secret key and replace the old one.
 
-![image alt](https://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
+![image alt](./image/Server_Developers_Guide/pre_secret_key_v1.2.png)
 
 #### TransactionId
 

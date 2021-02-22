@@ -17,14 +17,30 @@ Additional functions provided by Gamebase are described as below:
 
 
 ### Display Language
-* The display language can be changed into another language which is not set on a device. 
-* Gamebase displays messages which are included in a client or as received by a server.
-* With DisplayLanguage, messages are displayed in an appropriate language for the language code (ISO-639) set by the user. 
-* If necessary, language sets can be added as the user wants. The list of available language codes is as follows:
+
+Similar to the Maintenance popup, the language used by the device will be displayed as the Gamebase language.
+
+However, there are games that may use a language different from the device language with separate options.
+For example, if the language configured for the device is English and you changed the game language to Japanese, the language displayed will be still English, even though you might want to see Japanese on the Gamebase screen.
+
+For this, Gamebase provides a Display Language feature for applications that want to use a language that is not the language configured by the device for Gamebase.
+
+Gamebase displays its messages in the language set in Display Language.
+The language code entered for Display Language should be one of the codes listed in the table (**Types of language codes supported by Gamebase) below:
+
+> <font color="red">[Caution]</font><br/>
+>
+> * Use Display Language only when you want to change the language displayed in Gamebase to a language other than the one configured by the device.
+> * Display Language Code is a case-sensitive value in the form of ISO-639.
+> There could be a problem if it is configured as a value such as 'EN' or 'zh-cn'.
+> * If the value entered as Display Language Code does not exist in the table (**Types of language codes supported by Gamebase) below, Display Language Code is automatically set to English (en) by default.
 
 > [Note]
 >
-> Client messages of Gamebase include English(en), Korean(ko) and Japanese(ja) only.
+> * As the client messages of Gamebase include only English (en), Korean (ko), and Japanese (ja), if you try to set a language other than English (en), Korean (ko), or Japanese (ja), even though the language code might be listed in the table below, the value is automatically set to English (en) by default.
+> * You can manually add a language set that is not included in the Gamebase client.
+> See the **Add New Language Set** section.
+
 
 #### Types of Language Codes Supported by Gamebase 
 | Code | Name |
@@ -48,10 +64,6 @@ Additional functions provided by Gamebase are described as below:
 
 Each language code is defined in `TCGBConstants.h`.
 
-> `[Warning]`
->
-> Gamebase distinguishes the language code between the upper and lower case. 
-> For example, settings like 'EN' or 'zh-ch' may cause a problem. 
 
 ```objectivec
 #pragma mark - DisplayLanguageCode
@@ -256,184 +268,324 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 ```
 
 
+### Gamebase Event Handler
 
-### Server Push
-* Handles Server Push Messages from Gamebase server to a client device. 
-* Add ServerPushEvent Listener to Gamebase Client, and the user can handle messages; the added ServerPushEvent Listener can be deleted.
-
-
-#### Server Push Type
-Server Push Types currently supported by Gamebase are as follows: 
-
-* kTCGBServerPushNotificationTypeAppKickout (= "appKickout")
-    * Go to **Operation > Kickout**  in the NHN Cloud Gamebase console and register Kickout ServerPush messages, and **APP_KICKOUT** messages are sent to all clients connected to Gamebase.
-
-
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
-
-#### Add ServerPushEvent
-Use the API below, register ServerPushEvent to handle the push event triggered from the Gamebase Console and Gamebase server.
+* Gamebase can process all kinds of events in a single event system called **GamebaseEventHandler**.
+* GamebaseEventHandler can simply add or remove a Handler through the API below:
 
 **API**
 
+
 ```objectivec
-+ (void)addServerPushEvent:(void(^)(TCGBServerPushMessage *))handler;
++ (void)addEventHandler:(GamebaseEventHandler)handler;
++ (void)removeEventHandler:(GamebaseEventHandler)handler;
++ (void)removeAllEventHandler;
 ```
 
+**VO**
+
+```objectivec
+@interface TCGBGamebaseEventMessage : NSObject <TCGBValueObject>
+
+@property (nonatomic, strong, nonnull)  NSString* category;
+@property (nonatomic, strong, nullable) NSString* data;
+
+@end
+```
 
 **Example**
+
 ```objectivec
-- (void)wannaToReceiveServerPush {
-	void(^pushHandler)(TCGBServerPushMessage *) = ^(TCGBServerPushMessage *message) {
-        NSString* msg = [NSString stringWithFormat:@"[Sample] receive server push =>\ntype: %@\ndata: %@", message.type, message.data];
-        [self printLogAndShowAlertWithData:msg error:nil alertTitle:@"server push"];
-        
-        if ([message.type caseInsensitiveCompare:kTCGBServerPushNotificationTypeAppKickout] == NSOrderedSame) {
-        	// Logout
-            // Go to Main
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES
+            || [message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
+            TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gaembaseEventServerPushDataFromJsonString:message.data];
+            if (serverPushData != nil) {
+                //TODO: process server push
+            }
         }
-        else if ([message.type caseInsensitiveCompare:kTCGBServerPushNotificationTypeTransferKickout] == NSOrderedSame) {
-        	// Logout
-            // Go to Main
+        else if ([message.category isEqualToString:kTCGBObserverLaunching] == YES
+                 || [message.category isEqualToString:kTCGBObserverHeartbeat] == YES
+                 || [message.category isEqualToString:kTCGBObserverNetwork] == YES) {
+            TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
+            if (observerData != nil) {
+                //TODO: process observer
+            }
         }
-        else {
-        	...
+        else if ([message.category isEqualToString:kTCGBPurchaseUpdated] == YES) {
+            
+        }
+        else if ([message.category isEqualToString:kTCGBPushReceivedMessage] == YES) {
+            
+        }
+        else if ([message.category isEqualToString:kTCGBPushClickMessage] == YES) {
+            
+        }
+        else if ([message.category isEqualToString:kTCGBPushClickAction] == YES) {
+            
         }
     };
-    [TCGBGamebase addServerPushEvent:pushHandler];
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
+```
+
+* Category is defined in the GamebaseEventCategory class.
+* In general, events can be categorized as ServerPush, Observer, Purchase, or Push; TCGBGamebaseEventMessage.data can be converted into a VO in the ways shown in the table shown below for each Category.
+
+| Event type | GamebaseEventCategory | VO conversion method | Remarks |
+| --------- | --------------------- | ----------- | --- |
+| ServerPush | kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
+| Observer | kTCGBObserverLaunching<br>kTCGBObserverHeartbeat<br>kTCGBObserverNetwork | [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data] | \- |
+| Purchase - Promotion payment | kTCGBPurchaseUpdated | [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data] | \- |
+| Push - Message received | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
+| Push - Message clicked | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
+| Push - Action clicked | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | Operates when the RichMessage button is clicked. |
+
+#### Server Push
+
+* This is a message sent from the Gamebase server to the client's device.
+* The Server Push Types supported from Gamebase are as follows:
+	* kTCGBServerPushAppKickout
+    	* If you register a kickout ServerPush message in **Operation > Kickout** of the NHN Cloud Gamebase Console, then all clients connected to Gamebase will receive the kickout message.
+    * kTCGBServerPushTransferKickout
+    	* If the guest account is successfully transferred to another device, the previous device receives a kickout message.
+
+**Example**
+
+```objectivec
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        [self printLogAndShowAlertWithData:[message prettyJsonString] error:nil alertTitle:@"addEventHandler Result"];
+        if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES) {
+            TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
+            if (serverPushData != nil) {
+                //TODO: process server push
+            }
+        }
+        esle if ([message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
+            TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
+            if (serverPushData != nil) {
+                //TODO: process server push
+            }
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
 }
 
 ```
 
+#### Observer
 
-#### Remove ServerPushEvent
-Use the APIs below to delete ServerPushEvent registered in Gamebase. 
+* It is a system used to handle many different status-changing events in Gamebase.
+* The Observer Types supported by Gamebase are as follows:
+    * kTCGBObserverLaunching
+    	* It operates when the Launching status is changed, for instance when the server is under maintenance, or the maintenance is over, or a new version is deployed and update is required.
+    	* TCGBGamebaseEventObserverData.code: Indicates the TCGBLaunchingStatus value.
+            * IN_SERVICE: 200
+            * RECOMMEND_UPDATE: 201
+            * IN_SERVICE_BY_QA_WHITE_LIST: 202
+            * REQUIRE_UPDATE: 300
+            * BLOCKED_USER: 301
+            * TERMINATED_SERVICE: 302
+            * INSPECTING_SERVICE: 303
+            * INSPECTING_ALL_SERVICES: 304
+            * INTERNAL_SERVER_ERROR: 500
+    * kTCGBObserverHeartbeat
+    	* Operates when the status of a user account changes, for instance when the user account is deleted or banned.
+    	* TCGBGamebaseEventObserverData.code: Indicates the TCGBError value.
+            * TCGB_ERROR_INVALID_MEMBER: 6
+            * TCGB_ERROR_BANNED_MEMBER: 7
+    * kTCGBObserverNetwork
+    	* Can receive the information about the changes in the network.
+    	* Operates when the network is disconnected or connected, or switched from Wi-Fi to a cellular network.
+    	* TCGBGamebaseEventObserverData.code: Indicates the NetworkManager value.
+            * ReachabilityIsNotDefined = -100
+            * NotReachable = -1
+            * ReachableViaWWAN = 0
+            * ReachableViaWifi = 1
 
-**API**
+**VO**
+
 ```objectivec
-+ (void)removeServerPushEvent:(void(^)(TCGBServerPushMessage *))handler;
-+ (void)removeAllServerPushEvent;
+@interface TCGBGamebaseEventObserverData : NSObject <TCGBValueObject>
+
+@property (nonatomic, assign)           int64_t     code;
+@property (nonatomic, strong, nullable) NSString*   message;
+@property (nonatomic, strong, nullable) NSString*   extras;
 ```
 
 **Example**
+
 ```objectivec
-- (void)wannaToDiscardServerPush {
-	void(^pushHandler)(TCGBServerPushMessage *) = ^(TCGBServerPushMessage *message) {
-        NSString* msg = [NSString stringWithFormat:@"[Sample] receive server push =>\ntype: %@\ndata: %@", message.type, message.data];
-        [self printLogAndShowAlertWithData:msg error:nil alertTitle:@"server push"];
-    };
-    [TCGBGamebase removeServerPushEvent:pushHandler];
-}
-```
-
-
-
-
-
-### Observer
-* With Gamebase Observer, receive and process status change events of Gamebase.
-* Status change events : change of network type, change of launching status (change of status due to maintenance, and etc.), and change of heartbeat information (change of heartbeat information due to service suspension), and etc.
-
-
-
-#### Observer Type
-The Observer Types currently supported by Gamebase are as follows:
-
-* Change of Network Type
-    * Receive information on changes of a network. For instance, find a network type with the message.data[@"code"] value.
-    * Type: kTCGBObserverMessageTypeNetwork (= @"network")
-    * Code: Refer to the constant numbers declared in NetworkStatus. 
-        * NotReachable : -1
-        * ReachableViaWWAN : 0
-        * ReachableViaWifi : 1        
-        * ReachabilityIsNotDefined : -100
-* Change of Launching Status
-    * Occurs when there is a change in the launching status response which periodically checks application status. For example, events occur for maintenance, or update recommendations.
-    * Type : kTCGBObserverMessageTypeLaunching (= @"launching")
-    * Code : Refer to the constant numbers declared in TCGBLaunchingStatus.
-        * IN_SERVICE : 200
-        * RECOMMEND_UPDATE : 201
-        * IN_SERVICE_BY_QA_WHITE_LIST : 202
-        * REQUIRE_UPDATE : 300
-        * BLOCKED_USER : 301
-        * TERMINATED_SERVICE : 302
-        * INSPECTING_SERVICE : 303
-        * INSPECTING_ALL_SERVICES : 304
-        * INTERNAL_SERVER_ERROR : 500
-* Change of Heartbeat Information
-    * Occurs when there is a change in the heartbeat response which periodically maintains connection with the Gamebase server. For example, an event occurs for service suspension.
-    * Type : ObserverkTCGBObserverMessageTypeHeartbeat (= @"heartbeat")
-    * Code : Refer to the constant numbers declared in TCGBErrorCode.
-        * TCGB_ERROR_INVALID_MEMBER : 6
-        * TCGB_ERROR_BANNED_MEMBER : 7
-
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
-
-#### Add Observer
-Use the API below, register Observer to handle the status change events of Gamebase.
-
-**API**
-```objectivec
-+ (void)addObserver:(void(^)(TCGBObserverMessage *))handler;
-```
-
-**Example**
-```objectivec
-- (void)addObserver {
-    void(^observerHandler)(TCGBObserverMessage *) = ^(TCGBObserverMessage *message) {
-        NSString* msg = [NSString stringWithFormat:@"[Sample] receive from observer =>\ntype: %@\ndata: %@", message.type, message.data];
-        [self printLogAndShowAlertWithData:msg error:nil alertTitle:@"Observer"];
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        if ([message.category isEqualToString:kTCGBObserverLaunching] == YES) {
+            TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
+            if (observerData != nil) {
+                int launchingStatusCode = observerData.code;
+                NSString* launchingMessage = observerData.message;
+                switch (launchingStatusCode) {
+                    case IN_SERVICE:
+                    // Finished maintenance.
+                    break;
+                case INSPECTING_SERVICE:
+                case INSPECTING_ALL_SERVICES:
+                    // Under maintenance.
+                    break;
+                ...
+        }
+            }
+        }
+        else if ([message.category isEqualToString:kTCGBObserverHeartbeat] == YES) {
+            TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
+            int errorCode = observerData.code;
+            switch (errorCode) {
+            case TCGB_ERROR_INVALID_MEMBER:
+                // You can check the invalid user session in here.
+                // ex) After transferred account to another device.
+                break;
+            case TCGB_ERROR_BANNED_MEMBER:
+                // You can check the banned user session in here.
+                break;
+        }
+        }
+        else if ([message.category isEqualToString:kTCGBObserverNetwork] == YES) {
+            TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
+            NetworkStatus networkTypeCode = observerData.code;
             // You can check the changed network status in here.
-        if ([message.type caseInsensitiveCompare:kTCGBObserverMessageTypeNetwork] == NSOrderedSame) {
-            NSNumber* networkStatusNumber = message.data[@"code"];
-            NSInteger networkStatus = [networkStatusNumber integerValue];
-            // TODO: Check Netwokr Status by networkStatus.
-        }
-        else if ([message.type caseInsensitiveCompare:kTCGBObserverMessageTypeLaunching] == NSOrderedSame) {
-            // You can check the changed launching status in here.
-            NSNumber* launchingStatusNumber = message.data[@"code"];
-            NSInteger launchingStatus = [launchingStatusNumber integerValue];
-            // TODO: Check Launching Status by launchingStatus.
-        }
-        else if ([message.type caseInsensitiveCompare:kTCGBObserverMessageTypeHeartbeat] == NSOrderedSame) {
-        	// You can check the invalid user session in here.
-        	NSNumber* errorCodeNumber = message.data[@"code"];
-        	NSInteger errorCode = [errorCodeNumber integerValue];
-            if (errorCode == TCGB_ERROR_BANNED_MEMBER) {
-            	// TODO: Execute User Ban Proccess.
-			}
+            if (networkTypeCode == NotReachable || networkTypeCode == ReachabilityIsNotDefined) {
+                // Network disconnected.
+            } else {
+                // Network connected.
+            }
         }
     };
-
-    [TCGBGamebase addObserver:observerHandler];
+    
+    [TCGBGamebase addEventHandler:eventHandler];
 }
 ```
 
 
-#### Remove Observer
-Use the APIs below to delete Observer registered in Gamebase.
+#### Purchase Updated
 
-**API**
+* This event is triggered when a product is acquired by redeeming a promotion code.
+* Can acquire payment receipt information.
+
+**Example**
+
 ```objectivec
-+ (void)removeObserver:(void(^)(TCGBObserverMessage *))handler;
-+ (void)removeAllObserver;
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        TCGBPurchasableReceipt* receipt = [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data];
+        if (receipt != nil) {
+            // If user purchase item from appstore promoting iap
+            // this event will be occurred.
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
+```
+
+#### Purchase Updated
+
+* This event is triggered when a product is acquired by redeeming a promotion code.
+* Can acquire payment receipt information.
+
+**VO**
+
+```objectivec
+@interface TCGBPushMessage : NSObject <TCGBValueObject>
+
+@property (nonatomic, strong, nonnull) NSString* identifier;
+@property (nonatomic, strong, nullable) NSString* title;
+@property (nonatomic, strong, nullable) NSString* body;
+@property (nonatomic, strong, nonnull) NSString* extras;
+
+@end
 ```
 
 **Example**
 
 ```objectivec
-- (void)removeObserver {
-	void(^observerHandler)(TCGBObserverMessage *) = ^(TCGBObserverMessage *message) {
-    	...
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        if ([message.category isEqualToString:kTCGBPushReceivedMessage] == YES) {
+            TCGBPushMessage* pushMessage = [TCGBPushMessage pushMessageFromJsonString:message.data];
+            if (pusMessage != nil) {
+                //TODO: process 
+            }
+        }
     };
     
-    // Remove a Observer
-    [TCGBGamebase removeObserver:observerHandler];
-    
-    // Remove all Observers
-    [TCGBGamebase removeAllObserver];
+    [TCGBGamebase addEventHandler:eventHandler];
 }
 ```
+
+
+#### Push Click Message
+
+* This event is triggered when a received message is clicked.
+
+**Example**
+
+```objectivec
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        if ([message.category isEqualToString:kTCGBPushClickMessage] == YES) {
+            TCGBPushMessage* pushMessage = [TCGBPushMessage pushMessageFromJsonString:message.data];
+            if (pusMessage != nil) {
+                //TODO: process 
+            }
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
+```
+
+#### Push Click Action
+
+* This event is triggered when the button created by the Rich Message feature is clicked.
+* actionType provides the following:
+	* "OPEN_APP"
+	* "OPEN_URL"
+	* "REPLY"
+	* "DISMISS"
+
+**VO**
+
+```objectivec
+@interface TCGBPushAction : NSObject <TCGBValueObject>
+
+@property (nonatomic, strong, nonnull) NSString* actionType;
+@property (nonatomic, strong, nullable) TCGBPushMessage* message;
+@property (nonatomic, strong, nullable) NSString* userText;
+
+@end
+```
+
+**Example**
+
+```objectivec
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        if ([message.category isEqualToString:kTCGBPushClickAction] == YES) {
+            TCGBPushAction* pushMessage = [TCGBPushAction pushActionFromJsonString:message.data];
+            if (pushAction != nil) {
+                //TODO: process 
+            }
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
+```
+
+
 
 ### Analytics
 
@@ -464,12 +616,12 @@ Parameters required for calling the API are as follows:
 
 **GameUserData**
 
-| Name | Mandatory(M) / Optional(O) | type | Desc |
+| Name | Mandatory(M) / Optional(O) | Type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int | Describes the level of game user. |
-| channelId | O | String | Describes the channel. |
-| characterId | O | String | Describes the name of character. |
-| classId | O | String | Describes the occupation. |
+| userLevel | M | int | This field represents game user's level. |
+| channelId | O | String | This field represents channel. |
+| characterId | O | String | This field represents character name. |
+| classId | O | String | This field represents class. |
 
 
 **API**
@@ -497,13 +649,12 @@ Parameters required for calling the API are as follows:
 
 **LevelUpData**
 
-| Name | Mandatory (M) / Optional (O) | type | Desc |
+| Name | Mandatory (M) / Optional (O) | Type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int | Describes the level of game user. |
-| levelUpTime | M | long | Enter in Epoch Time</br>by the millisecond. |
+| userLevel | M | int | This field represents game user's level. |
+| levelUpTime | M | long | Enter in Epoch time.</br>The unit is milliseconds. |
 | channelId | O | string | |
 | characterId | O | string | |
-
 
 **API**
 
@@ -526,14 +677,14 @@ Gamebase provides features to respond to customer inquiries.
 
 > [TIP]
 >
-> By integrating with NHN Cloud Contact, customer inquiries can be handled more at ease and convenience. 
-> For more details on NHN Cloud Contact, see the guide as below: 
-> [NHN Cloud Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
+> Associate it with the NHN Cloud Contact service to easily respond to inquiries from customers.
+> See the guide below if you want to know how to use the NHN Cloud Contact service in detail.
+> [NHN Cloud Online Contact Guide] (/Contact%20Center/ko/online-contact-overview/)
 
 #### Open Contact WebView
 
-The webview for **Customer Center URL** can be displayed as on Gamebase Console. 
-Apply the same input values for **Gamebase Console > App > InApp URL > Service center**.
+This feature is used to represent the **Customer Center URL** WebView entered in the Gamebase Console.
+Uses the value entered from **Gamebase Console > App > InApp URL > Service Center**.
 
 **API**
 

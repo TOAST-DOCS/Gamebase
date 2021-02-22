@@ -5,9 +5,10 @@
 
 > [INFO]
 >
-> Minimum Specifications: Over iOS9 or iOS10, to support a part of IDP <br/>
+> Minimum specifications: iOS 9 or later or if some IdP are supported**, see Support iOS Version in the 3rd Party Gamebase Auth Adapters table below: <br/>
 > iOS, iOS Simulator
-> Build available for Xcode10 or higher versions
+> Can be built on Xcode 10 or later
+>
 
 
 ### Installation
@@ -26,32 +27,32 @@ Then, include corresponding SDK files to a target of your project.
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage | External SDK Download Link | Support iOS Version |
 | --- | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.19.3 | Includes interface and core logic of Gamebase | Included in Gamebase | iOS9 or later
+| Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.19.3 | Includes the interface and key logic of Gamebase | Included in Gamebase | iOS9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v5.6.0 | Supports Facebook login | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS9 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.3.2 | Supports Payco login | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS9 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.4.0 | Supports Payco login | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Supports Naver login | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |
-|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Supports Gamecenter login  |  | iOS9 or later |
+|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Supports Game Center login |  | iOS9 or later |
 |  | GamebaseAuthGoogleAdapter.framework | | Supports Google login | | iOS9 or later |
 |  | GamebaseAuthTwitterAdapter.framework | | Supports Twitter login | | iOS9 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | Supports LINE login | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS10 or later |
-|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | Set Optional for AuthenticationServices.framework | iOS13 or later |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework, ToastIAP 0.19.8, ToastGamebaseIAP 0.9.7 | Supports in-game purchase | Included in Gamebase IAP | iOS9 or later |
+|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | Set AuthenticationServices.framework to Optional | iOS13 or later |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework, ToastIAP 0.19.8, ToastGamebaseIAP 0.9.7 | Supports in-game purchase| Included in Gamebase IAP | iOS9 or later |
 | Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.19.3 | Supports Push | Included in Gamebase Push | iOS9 or later |
 
 
 > <font color="red">[Caution]</font><br/>
 >
-> Must set Optional forAuthenticationServices.framework which is required for Sign In with Apple.
-> When the setting is Required, crash may occur on iOS 11 or lower version devices, immediately after execution.
+> When adding the AuthenticationServices.framework required for Sign In with Apple, it must be set to Optional.
+> If it is set to Required, the devices running on iOS version 11 or earlier crashes immediately after launching the app.
 > 
 <br/>
 
 
 > <font color="red">[Caution]</font><br/>
 >
-> Gamebase Framework files that include **Adapter** in the name can be decided whether to be enabled in the project, and to use the Adapter Framework, external SDKs may be required as specified in the above table. 
-> For some authentication adapter, note the Support iOS version of the table. 
-> (If iOS 10 or higher Auth Adpater is included to a build, runtime crash shall occur on iOS9 or lower version.)
+> Those files that contain **Adapter** in their name among the Gamebase Framework files can be selected and determined whether they can be used in a project. To use the Adapter Framework, some of the SDKs listed in the table above may be needed.
+> For some Auth Adapters, be mindful of the supported iOS versions listed in the table above.
+> (If an Auth Adapter that supports iOS version 10 or later is included in the build, it crashes on iOS version 9 or earlier.)
 
 <br/>
 
@@ -125,9 +126,9 @@ end
 
 > [Note]
 >
-> Enter target name of the project for **target 'SampleApplication' do**.  <br/>
-> Any particular version can be specified, like **pod 'Gamebase', '2.6.0'**. Unless each pod has specific version, the latest version is to be set. <br/>
-> Optional application is available with a specific adapter. 
+> Enter the target name of the created project in the **target 'SampleApplication' do** part.<br/>
+> You can specify versions by writing in this way: **pod 'Gamebase', '2.6.0'**. If no version is specified in each pod, the newest version is used.<br/>
+> Only some specific Adapters can be selected and applied.
 > 
 
 
@@ -152,9 +153,9 @@ end
 
 * [Facebook for developers](https://developers.facebook.com/docs/ios)
 * [Naver for developers](https://developers.naver.com/docs/login/ios/)
-* [Twitter Developer's guide - Log in with Twitter](https://dev.twitter.com/web/sign-in/implementing)
-* [Twitter Developer's guide - Authentication](https://developer.twitter.com/en/docs/basics/authentication/overview/oauth)
-* [Line for developers](https://developers.line.me/en/docs/line-login/ios/integrate-line-login/)
+* [Twitter Developer's guide - Log in with Twitter](https://developer.twitter.com/en/docs/basics/authentication/guides/log-in-with-twitter)
+* [Twitter Developer's guide - Authentication](https://developer.twitter.com/en/docs/basics/authentication/overview)
+* [Line for developers](https://developers.line.biz/en/docs/ios-sdk/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/ios)
 
 ## API Reference

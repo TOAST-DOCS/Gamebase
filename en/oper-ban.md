@@ -33,7 +33,7 @@ Retrieve the list of game users who are banned/released from banning, as search 
 > [Note]
 > By using a multi-language template, messages can be easily displayed to users in a language of choice, while the template can be reused.
 > Requires more than one registered template to register banning.
-> Refer to [Template](./ban/#template) to register a template.
+> Refer to [Template](./oper-ban/#template) to register a template.
 
 **Search Results**
 
@@ -54,9 +54,6 @@ Retrieve the list of game users who are banned/released from banning, as search 
 
 > [Note]
 > Click **Download Files** and save search results in CSV files.
-
-
-
 ### Register Ban
 
 Can register banning by clicking **Register** on the Retrieve Ban page.
@@ -76,7 +73,6 @@ Enter a Gamebase user ID to register banning. Multiple users can be registered a
 
 #### (2) Period
 Set a banning period for a game user. Banning will be applied from the moment of registration.
-
 - **Permanent**: Select to ban permanently.
 - **Specify Period**: Enter how long to ban by day and hour. Can expect banned period with **anticipated expiration time**.
 
@@ -91,7 +87,7 @@ A multi-language template to display messages is supported for users and allow e
 > <font color="red">[Note]</font>
 > Can register banning, only when a template of displayed message is registered.
 > If a template has not been registered, first go to **Template** of **BAN** to register a template.
-> Refer to [Template](./ban/#template)on how to register a template.
+> Refer to [Template](./ban/#template) on how to register a template.
 
 #### (5) Delete Leaderboard records
 
@@ -112,7 +108,6 @@ Enter a Gamebase user ID to release banning. Multiple users can be registered at
 
 - **User Input**: Directly enter a user ID to register and press **Enter** or click **Add.** As validity is checked for user IDs, invalid user IDs cannot be entered.
 - **Batch Registration**: Can upload CSV files only, and an example file can be downloaded from the Console page. Up to 10,000 persons can be registered by batch at once.
-
 ![gamebase_ban_06_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_06_201812_en.png)
 
 
@@ -134,7 +129,7 @@ Can register a new template, or modify registered templates, but cannot delete t
 - The Message tab will show messages in 'Default Language' registered in Template.
 
 ### Register Template
-![gamebase_ban_08_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_08_201812_en.png)
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_ban_08_202004.png)
 
 #### (1) Name
 Enter a name of template to show on the list to register banning.
@@ -142,11 +137,12 @@ Enter a name of template to show on the list to register banning.
 #### (2) Message
 Enter messages for banned users.
 Can be registered in many languages, and for other language users, 'Default Language' will show. To add a language, click **+** on the right, and if there's any other languages you want on the list, contact [Customer Center](https://toast.com/support/inquiry).
+Click **Auto Translate to Default Language** and messages in default language are translated into a language set for each item.   
 
 ## AppGuard
 
 > <font color="red">[Note]</font>
-> This service is available only for NHN Cloud Cloud AppGuard users.
+> This service is available only for NHN Cloud AppGuard users.
 
 ![gamebase_ban_09_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_09_201812_en.png)
 
@@ -156,4 +152,3 @@ Can be registered in many languages, and for other language users, 'Default Lang
 
 > [Note]
 > In case banning is automatically registered due to AppGuard integration, 'AppGuard' will be registered at a result page.
-

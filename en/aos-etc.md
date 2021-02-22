@@ -17,14 +17,28 @@ Additional functions provided by Gamebase are described as below:
 
 ### Display Language
 
-* The display language can be changed into another language which is not set on a device.
-* Gamebase displays messages which are included in a client or as received by a server.
-* With DisplayLanguage, messages are displayed in an appropriate language for the language code (ISO-639) set by the user.
-* If necessary, language sets can be added as the user wants. The list of available language codes is as follows:
+Similar to the Maintenance popup, the language used by the device will be displayed as the Gamebase language.
+
+However, there are games that may use a language different from the device language with separate options.
+For example, if the language configured for the device is English and you changed the game language to Japanese, the language displayed will be still English, even though you might want to see Japanese on the Gamebase screen.
+
+For this, Gamebase provides a Display Language feature for applications that want to use a language that is not the language configured by the device for Gamebase.
+
+Gamebase displays its messages in the language set in Display Language.
+The language code entered for Display Language should be one of the codes listed in the table (**Types of language codes supported by Gamebase) below:
+
+> <font color="red">[Caution]</font><br/>
+>
+> * Use Display Language only when you want to change the language displayed in Gamebase to a language other than the one configured by the device.
+> * Display Language Code is a case-sensitive value in the form of ISO-639.
+> There could be a problem if it is configured as a value such as 'EN' or 'zh-cn'.
+> * If the value entered as Display Language Code does not exist in the table (**Types of language codes supported by Gamebase) below, Display Language Code is automatically set to English (en) by default.
 
 > [Note]
 >
-> Client messages of Gamebase include English(en), Korean(ko) and Japanese(ja) only. 
+> * As the client messages of Gamebase include only English (en), Korean (ko), and Japanese (ja), if you try to set a language other than English (en), Korean (ko), or Japanese (ja), even though the language code might be listed in the table below, the value is automatically set to English (en) by default.
+> * You can manually add a language set that is not included in the Gamebase client.
+> See the **Add New Language Set** section.
 
 #### Types of Language Codes Supported by Gamebase
 
@@ -48,11 +62,6 @@ Additional functions provided by Gamebase are described as below:
 | zh-TW | Chinese-Traditional |
 
 Each language code is defined in the `DisplayLanguage` class.
-
-> <font color="red">[Warning]</font><br/>
->
-> Gamebase distinguishes the language code between the upper and lower case. 
-> For example, settings like 'EN' or 'zh-ch' may cause a problem. 
 
 ```cs
 package com.toast.android.gamebase.base.ui;
@@ -268,223 +277,396 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 + (String)Gamebase.getCountryCode()
 ```
 
-### Server Push
-* Handles Server Push Messages from Gamebase server to a client device. 
-* Add ServerPushEvent Listener to Gamebase Client, and the user can handle messages; the added ServerPushEvent Listener can be deleted.
+### Gamebase Event Handler
 
-
-#### Server Push Type
-Server Push Types currently supported by Gamebase are as follows: 
-
-* ServerPushEventMessage.Type.APP_KICKOUT (= "appKickout")
-    * Go to **Operation > Kickout**  in the NHN Cloud Gamebase console and register Kickout ServerPush messages, and **APP_KICKOUT** messages are sent to all clients connected to Gamebase.
-
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
-
-#### Add ServerPushEvent
-Use the API below, register ServerPushEvent to handle the push event triggered from the Gamebase Console and Gamebase server. 
+* Gamebase can process all kinds of events in a single event system called **GamebaseEventHandler**.
+* GamebaseEventHandler can simply add or remove a Listener through the API below:
 
 **API**
 
 ```java
-+ (void)Gamebase.addServerPushEvent(ServerPushEvent serverPushEvent);
++ (void)Gamebase.addEventHandler(GamebaseEventHandler handler);
++ (void)Gamebase.removeEventHandler(GamebaseEventHandler handler);
++ (void)Gamebase.removeAllEventHandler();
+```
+
+**VO**
+
+```java
+class GamebaseEventMessage {
+	// Represents the type of an event.
+    // The value of the GamebaseEventCategory class is assigned.
+    @NonNull
+    final public String category;
+
+    // JSON String data that can be converted into a VO that is appropriate for each category.
+    @Nullable
+    final public String data;
+}
 ```
 
 **Example**
 
 ```java
-public class MyServerPushEventManager {
-    private ServerPushEvent mServerPushEvent = new ServerPushEvent() {
+void eventHandlerSample(Activity activity) {
+    Gamebase.addEventHandler(new GamebaseEventHandler() {
         @Override
-        public void onReceive(ServerPushEventMessage message) {
-            if (message.type.equals(ServerPushEventMessage.Type.APP_KICKOUT)) {
-                // Logout
-                // Go to Main
-            } else if (message.type.equals(ServerPushEventMessage.Type.TRANSFER_KICKOUT)) {
-                // Logout
-                // Go to Main
-            } else {
-                ...
+        public void onReceive(@NonNull GamebaseEventMessage message) {
+            switch (message.category) {
+                case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
+                case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
+                    GamebaseEventServerPushData serverPushData = GamebaseEventServerPushData.from(message.data);
+                    if (serverPushData != null) {
+                        processServerPush(activity, message.category, serverPushData);
+                    }
+                    break;
+                case GamebaseEventCategory.OBSERVER_LAUNCHING:
+                case GamebaseEventCategory.OBSERVER_HEARTBEAT:
+                case GamebaseEventCategory.OBSERVER_NETWORK:
+                    GamebaseEventObserverData observerData = GamebaseEventObserverData.from(message.data);
+                    if (observerData != null) {
+                        processObserver(activity, message.category, observerData);
+                    }
+                    break;
+                case GamebaseEventCategory.PURCHASE_UPDATED:
+                    ...
+                case GamebaseEventCategory.PUSH_RECEIVED_MESSAGE:
+                    ...
+                case GamebaseEventCategory.PUSH_CLICK_MESSAGE:
+                    ...
+                case GamebaseEventCategory.PUSH_CLICK_ACTION:
+                    ...
+                default:
+                    ...
             }
         }
-    };
-
-    private void addServerPushEvent() {
-        Gamebase.addServerPushEvent(mServerPushEvent);
-    }
-    ...
+    });
 }
 ```
 
+* Category is defined in the GamebaseEventCategory class.
+* In general, events can be categorized as ServerPush, Observer, Purchase, or Push; GamebaseEventMessage.data can be converted into a VO in the ways shown in the table shown below for each Category.
 
-#### Remove ServerPushEvent
-Use the APIs below to delete ServerPushEvent registered in Gamebase. 
+| Event type | GamebaseEventCategory | VO conversion method | Remarks |
+| --------- | --------------------- | ----------- | --- |
+| ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseEventServerPushData.from(message.data) | \- |
+| Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseEventObserverData.from(message.data) | \- |
+| Purchase - Promotion payment | GamebaseEventCategory.PURCHASE_UPDATED | PurchasableReceipt.from(message.data) | \- |
+| Push - Message received | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | PushMessage.from(message.data) | Checks whether or not a message was received in the Foreground using the **isForeground** value. |
+| Push - Message clicked | GamebaseEventCategory.PUSH_CLICK_MESSAGE | PushMessage.from(message.data) | The **isForeground** value does not exist. |
+| Push - Action clicked | GamebaseEventCategory.PUSH_CLICK_ACTION | PushAction.from(message.data) | Operates when the RichMessage button is clicked. |
 
-**API**
+#### Server Push
 
-```java
-+ (void)Gamebase.removeServerPusEvent(ServerPushEvent serverPushEvent);
-+ (void)Gamebase.removeAllServerPusEvent();
-```
+* This is a message sent from the Gamebase server to the client's device.
+* The Server Push Types supported from Gamebase are as follows:
+	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
+    	* If you register a kickout ServerPush message in **Operation > Kickout** of the TOAST Gamebase Console, then all clients connected to Gamebase will receive the kickout message.
+    * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
+    	* If the guest account is successfully transferred to another device, the previous device receives a kickout message.
 
 **Example**
 
 ```java
-public class MyServerPushEventManager {
-    ...
-    private void removeServerPushEvent() {
-        Gamebase.removeServerPusEvent(mServerPushEvent);
-    }
-
-    private void removeAllServerPushEvent() {
-        Gamebase.removeAllServerPushEvent();
-    }
-    ...
-}
-```
-
-
-
-
-
-### Observer
-* With Gamebase Observer, receive and process status change events of Gamebase. 
-* Status change events : change of network type, change of launching status (change of status due to maintenance, and etc.), and change of heartbeat information (change of heartbeat information due to service suspension), and etc.
-
-
-#### Observer Type
-The Observer Types currently supported by Gamebase are as follows:
-
-* Change of Network Type
-    * Receive information on changes of a network. For instance, find a network type with the ObserverMessage.data.get("code") value. 
-    * Type: ObserverMessage.Type.NETWORK (= "network")
-    * Code: Refer to the constant numbers declared in NetworkManager. 
-        * NetworkManager.TYPE_NOT : -1
-        * NetworkManager.TYPE_MOBILE : 0
-        * NetworkManager.TYPE_WIFI : 1        
-        * NetworkManager.TYPE_ANY : 2
-* Change of Launching Status 
-    * Occurs when there is a change in the launching status response which periodically checks application status. For example, events occur for maintenance, or update recommendations. 
-    * Type: ObserverMessage.Type.LAUNCHING (= "launching")
-    * Code: Refer to the constant numbers declared in LaunchingStatus. 
-        * LaunchingStatus.IN_SERVICE : 200
-        * LaunchingStatus.RECOMMEND_UPDATE : 201
-        * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST : 202
-        * LaunchingStatus.REQUIRE_UPDATE : 300
-        * LaunchingStatus.BLOCKED_USER : 301
-        * LaunchingStatus.TERMINATED_SERVICE : 302
-        * LaunchingStatus.INSPECTING_SERVICE : 303
-        * LaunchingStatus.INSPECTING_ALL_SERVICES : 304
-        * LaunchingStatus.INTERNAL_SERVER_ERROR : 500
-* Change of Heartbeat Information 
-    * Occurs when there is a change in the heartbeat response which periodically maintains connection with the Gamebase server. For example, an event occurs for service suspension. 
-    * Type: ObserverMessage.Type.HEARTBEAT (= "heartbeat")
-    * Code: Refer to the constant numbers declared in GamebaseError.
-        * GamebaseError.INVALID_MEMBER: 6
-        * GamebaseError.BANNED_MEMBER: 7
-
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
-
-#### Add Observer
-Use the API below, register Observer to handle the status change events of Gamebase.
-
-**API**
-
-```java
-+ (void)Gamebase.addObserver(Observer observer);
-```
-
-**Example**
-
-```java
-public class MyObserverManager {
-    private Observer mGamebaseObserver = new Observer() {
+void eventHandlerSample(Activity activity) {
+    Gamebase.addEventHandler(new GamebaseEventHandler() {
         @Override
-        public void onUpdate(ObserverMessage message) {
-            String typeOfMessage = message.type;
-            Map<String, Object> dataMap = message.data;
-
-            if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.LAUNCHING)) {
-                int code = Integer.parseInt(dataMap.get("code"));
-                String messageString = (String) dataMap.get("message");
-                Log.d(TAG, "Update launching status to " + code + ", " + messageString);
-
-                // You can check the changed launching status in here.
-                switch (code) {
-                    case LaunchingStatus.IN_SERVICE:
-                        ...
-                        break;
-                    case LaunchingStatus.RECOMMEND_UPDATE:
-                        ...
-                        break;
-                    case ...
-                        break;
+        public void onReceive(@NonNull GamebaseEventMessage message) {
+            switch (message.category) {
+                case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
+                case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
+                    GamebaseEventServerPushData serverPushData = GamebaseEventServerPushData.from(message.data);
+                    if (serverPushData != null) {
+                        processServerPush(activity, message.category, serverPushData);
+                    }
+                    break;
+                default:
                     ...
-                }
-            } else if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.HEARTBEAT)) {
-                int code = Integer.parseInt(dataMap.get("code"));
-                Log.d(TAG, "Heartbeat changing : " + dataMap);
-
-                switch (code) {
-                    case GamebaseError.INVALID_MEMBER:
-                        // You can check the invalid user session in here.
-                        ...
-                        break;
-                    case GamebaseError.BANNED_MEMBER:
-                        // You can check the banned user session in here.
-                        ...
-                        break;
-                }
-            } else if (typeOfMessage.equalsIgnoreCase(ObserverMessage.Type.NETWORK)) {
-                int code = Integer.parseInt(dataMap.get("code"));
-                Log.d(TAG, "Network changing : " + dataMap);
-
-                // You can check the changed network status in here.
-                if (code == NetworkManager.TYPE_NOT) {
-                    ...
-                } else {
-                    ...
-                }
-            } else {
-                ...
             }
         }
-    };
+    });
+}
 
-    private void addObserver() {
-        Gamebase.addObserver(mGamebaseObserver);
+void processServerPush(String category, GamebaseEventServerPushData data) {
+    if (category.equals(GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT)) {
+        // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+        // Return to title and initialize Gamebase again.
+    } else if (category.equals(GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT)) {
+        // If the user wants to move the guest account to another device,
+        // if the account transfer is successful,
+        // the login of the previous device is released,
+        // so go back to the title and try to log in again.
     }
-    ...
 }
 ```
 
+#### Observer
 
-#### Remove Observer
-Use the APIs below to delete Observer registered in Gamebase. 
+* It is a system used to handle many different status-changing events in Gamebase.
+* The Observer Types supported by Gamebase are as follows:
+    * GamebaseEventCategory.OBSERVER_LAUNCHING
+    	* It operates when the Launching status is changed, for instance when the server is under maintenance, or the maintenance is over, or a new version is deployed and update is required.
+    	* GamebaseEventObserverData.code: Indicates the LaunchingStatus value.
+            * LaunchingStatus.IN_SERVICE: 200
+            * LaunchingStatus.RECOMMEND_UPDATE: 201
+            * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
+            * LaunchingStatus.REQUIRE_UPDATE: 300
+            * LaunchingStatus.BLOCKED_USER: 301
+            * LaunchingStatus.TERMINATED_SERVICE: 302
+            * LaunchingStatus.INSPECTING_SERVICE: 303
+            * LaunchingStatus.INSPECTING_ALL_SERVICES: 304
+            * LaunchingStatus.INTERNAL_SERVER_ERROR: 500
+    * GamebaseEventCategory.OBSERVER_HEARTBEAT
+    	* Operates when the status of a user account changes, for instance when the user account is deleted or banned.
+    	* GamebaseEventObserverData.code: Indicates the GamebaseError value.
+            * GamebaseError.INVALID_MEMBER: 6
+            * GamebaseError.BANNED_MEMBER: 7
+    * GamebaseEventCategory.OBSERVER_NETWORK
+    	* Can receive the information about the changes in the network.
+    	* Operates when the network is disconnected or connected, or switched from Wi-Fi to a cellular network.
+    	* GamebaseEventObserverData.code: Indicates the NetworkManager value.
+            * NetworkManager.TYPE_NOT: -1
+            * NetworkManager.TYPE_MOBILE: 0
+            * NetworkManager.TYPE_WIFI: 1
+            * NetworkManager.TYPE_ANY: 2
 
-**API**
+**VO**
 
 ```java
-+ (void)Gamebase.removeObserver(Observer observer);
-+ (void)Gamebase.removeAllObserver();
+class GamebaseEventObserverData {
+	// This information represents the status value.
+    public int code;
+
+    // This information shows the message about status.
+    @Nullable
+    public String message;
+
+    // A reserved field for additional information.
+    @Nullable
+    public String extras;
+}
 ```
 
 **Example**
 
 ```java
-public class MyObserverManager {
-    ...
-    private void removeObserver() {
-        Gamebase.removeObserver(mGamebaseObserver);
-    }
+void eventHandlerSample(Activity activity) {
+    Gamebase.addEventHandler(new GamebaseEventHandler() {
+        @Override
+        public void onReceive(@NonNull GamebaseEventMessage message) {
+            switch (message.category) {
+                case GamebaseEventCategory.OBSERVER_LAUNCHING:
+                case GamebaseEventCategory.OBSERVER_HEARTBEAT:
+                case GamebaseEventCategory.OBSERVER_NETWORK:
+                    GamebaseEventObserverData observerData = GamebaseEventObserverData.from(message.data);
+                    if (observerData != null) {
+                        processObserver(activity, message.category, observerData);
+                    }
+                    break;
+                default:
+                    ...
+            }
+        }
+    });
+}
 
-    private void removeAllObserver() {
-        Gamebase.removeAllObserver();
+void processObserver(String category, GamebaseEventObserverData data) {
+    if (category.equals(GamebaseEventCategory.OBSERVER_LAUNCHING)) {
+        int launchingStatusCode = data.code;
+        String launchingMessage = data.message;
+        switch (launchingStatusCode) {
+            case LaunchingStatus.IN_SERVICE:
+                // Finished maintenance.
+                break;
+            case LaunchingStatus.INSPECTING_SERVICE:
+            case LaunchingStatus.INSPECTING_ALL_SERVICES:
+                // Under maintenance.
+                break;
+            ...
+        }
+    } else if (category.equals(GamebaseEventCategory.OBSERVER_HEARTBEAT)) {
+        int errorCode = data.code;
+        switch (errorCode) {
+            case GamebaseError.INVALID_MEMBER:
+                // You can check the invalid user session in here.
+                // ex) After transferred account to another device.
+                break;
+            case GamebaseError.BANNED_MEMBER:
+                // You can check the banned user session in here.
+                break;
+        }
+    } else if (category.equals(GamebaseEventCategory.OBSERVER_NETWORK)) {
+        int networkTypeCode = data.code;
+        // You can check the changed network status in here.
+        if (networkTypeCode == NetworkManager.TYPE_NOT) {
+            // Network disconnected.
+        } else {
+            // Network connected.
+        }
     }
-    ...
 }
 ```
 
+
+#### Purchase Updated
+
+* This event is triggered when a product is acquired by redeeming a promotion code.
+* Can acquire payment receipt information.
+
+**Example**
+
+```java
+void eventHandlerSample(Activity activity) {
+    Gamebase.addEventHandler(new GamebaseEventHandler() {
+        @Override
+        public void onReceive(@NonNull GamebaseEventMessage message) {
+            switch (message.category) {
+                case GamebaseEventCategory.PURCHASE_UPDATED:
+                    PurchasableReceipt receipt = PurchasableReceipt.from(message.data);
+                    if (receipt != null) {
+                        // If the user got item by 'Promotion Code',
+                        // this event will be occurred.
+                    }
+                    break;
+                default:
+                    ...
+            }
+        }
+    });
+}
+```
+
+#### Push Received Message
+
+* This event is triggered when a push message is received.
+* Can determine whether the message is received in the foreground through the **isForeground** field or in the background.
+* You can also acquire custom information that was sent along with push by converting the extras field to JSON.
+
+**VO**
+
+```java
+class PushMessage {
+	// The unique ID of a message.
+    @NonNull
+    public String id;
+
+    // The title of the push message.
+    @Nullable
+    public String title;
+
+    // The body of the push message.
+    @Nullable
+    public String body;
+
+    // You can check all information by converting them to JSONObject.
+    @NonNull
+    public String extras;
+}
+```
+
+**Example**
+
+```java
+void eventHandlerSample(Activity activity) {
+    Gamebase.addEventHandler(new GamebaseEventHandler() {
+        @Override
+        public void onReceive(@NonNull GamebaseEventMessage message) {
+            switch (message.category) {
+                case GamebaseEventCategory.PUSH_RECEIVED_MESSAGE:
+                    PushMessage pushMessage = PushMessage.from(message.data);
+                    if (pushMessage != null) {
+                        // When you received push message.
+                        try {
+                            JSONObject json = new JSONObject(pushMessage.extras);
+                            // There is 'isForeground' information.
+                            boolean isForeground = json.getBoolean("isForeground");
+                            Object customValue = json.get("YourCustomKey");
+                        } catch (Exception e) {}
+                    }
+                    break;
+                default:
+                    ...
+            }
+        }
+    });
+}
+```
+
+#### Push Click Message
+
+* This event is triggered when a received message is clicked.
+* Unlike GamebaseEventCategory.PUSH_RECEIVED_MESSAGE, there is no **isForeground** field.
+
+**Example**
+
+```java
+void eventHandlerSample(Activity activity) {
+    Gamebase.addEventHandler(new GamebaseEventHandler() {
+        @Override
+        public void onReceive(@NonNull GamebaseEventMessage message) {
+            switch (message.category) {
+                case GamebaseEventCategory.PUSH_CLICK_MESSAGE:
+                    PushMessage clickedMessage = PushMessage.from(message.data);
+                    if (clickedMessage != null) {
+                        // When you clicked push message.
+                    }
+                    break;
+                default:
+                    ...
+            }
+        }
+    });
+}
+```
+
+#### Push Click Action
+
+* This event is triggered when the button created by the Rich Message feature is clicked.
+* actionType provides the following:
+	* "OPEN_APP"
+	* "OPEN_URL"
+	* "REPLY"
+	* "DISMISS"
+
+**VO**
+
+```java
+class PushAction {
+	// Button action type.
+    @NonNull
+    public String actionType;
+
+	// PushMessage data.
+    @NonNull
+    public PushMessage message;
+
+	// User text typed in Push console.
+    @Nullable
+    public String userText;
+}
+```
+
+**Example**
+
+```java
+void eventHandlerSample(Activity activity) {
+    Gamebase.addEventHandler(new GamebaseEventHandler() {
+        @Override
+        public void onReceive(@NonNull GamebaseEventMessage message) {
+            switch (message.category) {
+                case GamebaseEventCategory.PUSH_CLICK_ACTION:
+                    PushAction pushAction = PushAction.from(message.data);
+                    if (pushAction != null) {
+                        // When you clicked action button by 'Rich Message'.
+                    }
+                    break;
+                default:
+                    ...
+            }
+        }
+    });
+}
+```
 
 ### Analytics
 

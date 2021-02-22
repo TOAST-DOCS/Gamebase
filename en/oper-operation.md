@@ -29,7 +29,7 @@ Default maintenance page of Gamebase (with cause and time of maintenance)
 
 Click **Register** under the **Maintenance** tab, to register maintenance.
 
-![gamebase_op_04_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_op_04_201812_en.png)
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_op_04_202004.png)
 
 >  <font color="red">[Caution] </font>When **Update Required and Maintenance are set at the same time** , the service status becomes 'Update Required'.
 >  If you don't want to show the Update Required pop-up to user during maintenance, the service status should be changed to 'Update Required' after maintenance is completed.
@@ -55,7 +55,7 @@ For a timezone, 'UTC+09:00' is selected as default, and maintenance can be regis
 Choose one, out of **Gamebase Page (Webview)**, **Custom Page HTML (Webview)**, and **External Link**, with different input windows displayed for each item.
 Below describe additional input items for each page: click **Preview** to check your input messages.
 
-##### 1) Gamebase Page (Webview)
+##### 4-1) Gamebase Page (Webview)
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_2.0.png)
 This default maintenance page displays information entered by operator on the Webview page of Gamebase.
 It is Useful when there is no additional maintenance page.
@@ -64,15 +64,13 @@ Enter in many languages, including English, Japanese, and Chinese, and one of th
 For users speaking other languages than registered, the 'default language' shall be applied. Click **+**on the right to add more languages, and if your option is not available, contact [Customer Center](https://alpha.toast.com/support/inquiry).
 Click **Preview** to check the screen in 'default language'.
 
-##### 2) Custom Page HTML (Webview)
+##### 4-2) Custom Page HTML (Webview)
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_3.0.png)
 The maintenance page is entered in HTML type by operator and provided to users.
 Preview page is supported as well, based on HTML tag inputs.
 Useful in making a maintenance page type as wanted.
-> [Note]
-> HTML pages shall be available after February 2018.
 
-##### 3) External Link
+##### 4-3) External Link
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_4.1.png)
 If you own a maintenance page or template, the maintenance page can be linked to URL.
 Preview of the URL to connect is also supported.
@@ -83,6 +81,10 @@ Maintenance parameters are as follows: all delivered with URL encoded.
 - timezone: Standard time zone selected for maintenance registration. e.g) Delivery value for UTC+0: +09:00
 - beginDate:  Start time entered for maintenance registration
 - endDate:  End time entered for maintenance registration.
+
+#### (5) Popup Messages 
+Set a message to show for maintenance. 
+Click **Auto Translate to Default Language** and messages in default language are translated into a language set for each item. 
 
 ### Modify Maintenance
 
@@ -105,13 +107,11 @@ Status of notice is classified into three as below.
 ### Register Notice
 
 Click 'Register' on the main screen to register notices.
-
-![gamebase_op_07_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_op_07_201812_en.png)
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_op_07_202004.png)
 
 #### (1) Target
 
 Select a target to show notification.
-
 - All Games: When maintenance is required for all client version.
 - Some Clients: When only a particular client version requires maintenance. Click 'Select a Version' to show the list of client versions registered in the client menu.
   **Example of selecting particular clients**
@@ -144,17 +144,15 @@ For a timezone, 'UTC+09:00' is provided as default, and maintenance can be regis
 Enter notice messages to show to users.
 Can register many languages, for those who speak other languages than registered, a default language will show.
 To add a language, click **+** on the right, and if a language you want is not on the list, contact [Customer Center](https://toast.com/support/inquiry)to add as required.
-
+Click **Auto Translate to Default Language** and messages in default language are translated into a language set for each item. 
 
 #### (6) Bottom Button Type
 Specify a type of button to show at the bottom of a notice pop-up.
 
 - Close : Show Close button only.
   Click 'Close' to close a pop-up and play games.
-
 - Close + More: Show 'Close' and 'More'.
   Click 'More' and the link entered in the console opens on WebView.
-
 
 #### Example of a Notice Pop-up
 Close (left), Close+More (right)
@@ -165,4 +163,3 @@ Close (left), Close+More (right)
 Can check, modify, and delete details of notification.
 Input items are same as registration, and Delete button is provided to delete a notice.
 To register a notice again with similar content, you may copy and paste for an easy registration.
-

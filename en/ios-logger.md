@@ -12,14 +12,13 @@ Initialize NHN Cloud Logger SDK with appkey issued from Log & Crash Search.
 ```
 
 **Example**
-
 ```objectivec
 - (void)initializeSample {
-    TCGBLoggerConfiguration *configuration = [TCGBLoggerConfiguration configurationWithAppKey:@"2BvA3gGZHyPMQYzk"];
+    TCGBLoggerConfiguration *configuration = [TCGBLoggerConfiguration configurationWithAppKey:@"YOUR_APP_KEY"];
 
 // Default value of enableCrashReport is YES
 // You can set NO if you don't want use a crash report feature.
-//    TCGBLoggerConfiguration *configuration = [TCGBLoggerConfiguration configurationWithAppKey:@"2BvA3gGZHyPMQYzk" enableCrashReporter:NO];
+//    TCGBLoggerConfiguration *configuration = [TCGBLoggerConfiguration configurationWithAppKey:@"YOUR_APP_KEY" enableCrashReporter:NO];
 
     [TCGBLogger initializeWithConfiguration:configuration];
 }
@@ -101,7 +100,7 @@ With user-defined field setting, set values are delivered to a server along with
 
 ### Further Tasks after Sending Logs
 
-With delegate registration, further tasks can be executed after log delivery. 
+Additional tasks are available after logs are sent if a delegate is registered.
 
 **API**
 

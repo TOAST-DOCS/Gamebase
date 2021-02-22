@@ -31,14 +31,28 @@ static string GetDeviceLanguageCode()
 
 ### Display Language
 
-* The display language on the Gamebase UI and SystemDialog can be changed into another language, which is not set on a device, as the user wants. 
-* Gamebase displays messages which are included in a client or as received by a server. 
-* With DisplayLanguage, messages are displayed in an appropriate language for the language code (ISO-639) set by the user. 
-* If necessary, language sets can be added as the user wants. The list of available language codes is as follows.
+Similar to the Maintenance popup, the language used by the device will be displayed as the Gamebase language.
+
+However, there are games that may use a language different from the device language with separate options.
+For example, if the language configured for the device is English and you changed the game language to Japanese, the language displayed will be still English, even though you might want to see Japanese on the Gamebase screen.
+
+For this, Gamebase provides a Display Language feature for applications that want to use a language that is not the language configured by the device for Gamebase.
+
+Gamebase displays its messages in the language set in Display Language.
+The language code entered for Display Language should be one of the codes listed in the table (**Types of language codes supported by Gamebase) below:
+
+> <font color="red">[Caution]</font><br/>
+>
+> * Use Display Language only when you want to change the language displayed in Gamebase to a language other than the one configured by the device.
+> * Display Language Code is a case-sensitive value in the form of ISO-639.
+> There could be a problem if it is configured as a value such as 'EN' or 'zh-cn'.
+> * If the value entered as Display Language Code does not exist in the table (**Types of language codes supported by Gamebase) below, Display Language Code is automatically set to English (en) by default.
 
 > [Note]
 >
-> Client messages of Gamebase include English(en), Korean(ko) and Japanese(ja) only.
+> * As the client messages of Gamebase include only English (en), Korean (ko), and Japanese (ja), if you try to set a language other than English (en), Korean (ko), or Japanese (ja), even though the language code might be listed in the table below, the value is automatically set to English (en) by default.
+> * You can manually add a language set that is not included in the Gamebase client.
+> See the **Add New Language Set** section.
 
 #### Types of Language Codes Supported by Gamebase
 
@@ -62,11 +76,6 @@ static string GetDeviceLanguageCode()
 | zh-TW | Chinese-Traditional |
 
 Each language code is defined in `GamebaseDisplayLanguageCode`.
-
-> `[Warning]`
->
-> Gamebase distinguishes the language code between the upper and lower case. 
-> For example, settings like 'EN' or 'zh-ch' may cause a problem. 
 
 ```cs
 namespace Toast.Gamebase
@@ -317,11 +326,6 @@ static string GetCountryCodeOfDevice()
 >
 > In case of Editor on Mac or WebGL, the country code is returned based on the [Application.systemLanguage](https://docs.unity3d.com/ScriptReference/SystemLanguage.html) value.<br/>For example, when Application.systemLanguage == SystemLanguage.Korean, 'KR' is returned.
 
-
-
-
-
-
 **API**
 
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
@@ -334,26 +338,13 @@ static string GetCountryCodeOfDevice()
 public static string GetCountryCode()
 ```
 
-### Server Push
+### Gamebase Event Handler
 
-* Handles Server Push Messages from Gamebase server to a client device. 
-* Add ServerPushEvent Listener to Gamebase Client, and the user can handle messages; the added ServerPushEvent Listener can be deleted.
-
-
-#### Server Push Type
-Server Push Types currently supported by Gamebase are as follows:
-
-* GamebaseServerPushType.APP_KICKOUT (= "appKickout")
-    * Go to **Operation > Kickout**  in the NHN Cloud Gamebase console and register Kickout ServerPush messages, and **APP_KICKOUT** messages are sent to all clients connected to Gamebase.
-
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
-
-#### Add ServerPushEvent
-Use the API below, register ServerPushEvent to handle the push event triggered from the Gamebase Console and Gamebase server.
+* Gamebase can process all kinds of events in a single event system called **GamebaseEventHandler**.
+* GamebaseEventHandler can simply add or remove a Listener through the API below:
 
 **API**
 
-Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
@@ -361,31 +352,396 @@ Supported Platforms
 <span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
-static void AddServerPushEvent(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent)
+public static void Gamebase.AddEventHandler(GamebaseCallback.DataDelegate<GamebaseResponse.Event.GamebaseEventMessage> eventHandler);
+public static void Gamebase.RemoveEventHandler(GamebaseCallback.DataDelegate<GamebaseResponse.Event.GamebaseEventMessage> eventHandler);
+public static void Gamebase.RemoveAllEventHandler();
+```
+
+**VO**
+
+```cs
+public class GamebaseEventMessage 
+{
+	// Represents the type of an event.
+    // The value of the GamebaseEventCategory class is assigned.
+    public string category;
+
+    // JSON String data that can be converted into a VO that is appropriate for each category.
+    public string data;
+}
 ```
 
 **Example**
 
 ```cs
-public void AddServerPushEvent()
+public void AddEventHandlerSample()
 {
-    Gamebase.AddServerPushEvent(ServerPushEventHandler);
+    Gamebase.AddEventHandler(GamebaseObserverHandler);
 }
 
-private void ServerPushEventHandler(GamebaseResponse.SDK.ServerPushMessage message)
+private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
-    switch(message.type)
+    switch (message.category)
     {
-        case GamebaseServerPushType.APP_KICKOUT:
+        case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
+        case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
             {
-                // Logout
-                // Go to Main
+                GamebaseResponse.Event.GamebaseEventServerPushData serverPushData = GamebaseResponse.Event.GamebaseEventServerPushData.From(message.data);
+                if (serverPushData != null)
+                {
+                    CheckServerPush(message.category, serverPushData);
+                }
                 break;
             }
-        case GamebaseServerPushType.TRANSFER_KICKOUT:
+        case GamebaseEventCategory.OBSERVER_LAUNCHING:
             {
-                // Logout
-                // Go to Main
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                if(observerData != null)
+                {
+                    CheckLaunchingStatus(observerData);
+                }
+                break;
+            }
+        case GamebaseEventCategory.OBSERVER_NETWORK:
+            {
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                if (observerData != null)
+                {
+                    CheckNetwork(observerData);
+                }
+                break;
+            }
+        case GamebaseEventCategory.OBSERVER_HEARTBEAT:
+            {
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                if (observerData != null)
+                {
+                    CheckHeartbeat(observerData);
+                }
+                break;
+            }
+        case GamebaseEventCategory.OBSERVER_WEBVIEW:
+            {
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                if (observerData != null)
+                {
+                    CheckWebView(observerData);
+                }
+                break;
+            }
+        case GamebaseEventCategory.OBSERVER_INTROSPECT:
+            {
+                // Introspect error
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                int errorCode = observerData.code;
+                string errorMessage = observerData.message;
+                break;
+            }
+        case GamebaseEventCategory.PURCHASE_UPDATED:
+            {
+                GamebaseResponse.Event.PurchasableReceipt purchasableReceipt = GamebaseResponse.Event.PurchasableReceipt.From(message.data);
+                if (purchasableReceipt != null)
+                {
+                    // If the user got item by 'Promotion Code',
+                    // this event will be occurred.
+                }
+                break;
+            }
+        case GamebaseEventCategory.PUSH_RECEIVED_MESSAGE:
+            {
+                GamebaseResponse.Event.PushMessage pushMessage = GamebaseResponse.Event.PushMessage.From(message.data);
+                if (pushMessage != null)
+                {
+                    // When you received push message.
+                    
+                    Dictionary<string, object> extras = Toast.Gamebase.LitJson.JsonMapper.ToObject<Dictionary<string, object>>(pushMessage.extras);
+                    // There is 'isForeground' information.
+                    if (extras.ContainsKey("isForeground") == true)
+                    {
+                        bool isForeground = (bool)extras["isForeground"];
+                    }
+                }
+                break;
+            }
+        case GamebaseEventCategory.PUSH_CLICK_MESSAGE:
+            {
+                GamebaseResponse.Event.PushMessage pushMessage = GamebaseResponse.Event.PushMessage.From(message.data);
+                if (pushMessage != null)
+                {
+                    // When you clicked push message.
+                }
+                break;
+            }
+        case GamebaseEventCategory.PUSH_CLICK_ACTION:
+            {
+                GamebaseResponse.Event.PushAction pushAction = GamebaseResponse.Event.PushAction.From(message.data);
+                if (pushAction != null)
+                {
+                    // When you clicked action button by 'Rich Message'.
+                }
+                break;
+            }
+    }
+}
+```
+
+* Category is defined in the GamebaseEventCategory class.
+* In general, events can be categorized as ServerPush, Observer, Purchase, or Push; GamebaseEventMessage.data can be converted into a VO in the ways shown in the table shown below for each Category.
+
+| Event type | GamebaseEventCategory | VO conversion method | Remarks |
+| --------- | --------------------- | ----------- | --- |
+| ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
+| Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseResponse.Event.GamebaseEventObserverData.from(message.data) | \- |
+| Purchase - Promotion payment | GamebaseEventCategory.PURCHASE_UPDATED | GamebaseResponse.Event.PurchasableReceipt.from(message.data) | \- |
+| Push - Message received | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | Checks whether or not a message was received in the Foreground using the **isForeground** value. ||
+| Push - Message clicked | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | The **isForeground** value does not exist. |
+| Push - Action clicked | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | Operates when the RichMessage button is clicked. |
+
+#### Server Push
+
+* This is a message sent from the Gamebase server to the client's device.
+* The Server Push Types supported from Gamebase are as follows:
+	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
+    	* If you register a kickout ServerPush message in **Operation > Kickout** of the NHN Cloud Gamebase Console, then all clients connected to Gamebase will receive the kickout message.
+    * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
+    	* If the guest account is successfully transferred to another device, the previous device receives a kickout message.
+
+**Example**
+
+```cs
+public void AddEventHandlerSample()
+{
+    Gamebase.AddEventHandler(GamebaseObserverHandler);
+}
+
+private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+{
+    switch (message.category)
+    {
+        case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
+        case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
+            {
+                GamebaseResponse.Event.GamebaseEventServerPushData serverPushData = GamebaseResponse.Event.GamebaseEventServerPushData.From(message.data);
+                if (serverPushData != null)
+                {
+                    CheckServerPush(message.category, serverPushData);
+                }
+                break;
+            }
+        default:
+            {
+                break;
+            }
+    }
+}
+
+void CheckServerPush(string category, GamebaseResponse.Event.GamebaseEventServerPushData data)
+{
+    if (category.Equals(GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT) == true)
+    {
+        // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+        // Return to title and initialize Gamebase again.
+    }
+    else if (category.Equals(GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT) == true)
+    {
+        // If the user wants to move the guest account to another device,
+        // if the account transfer is successful,
+        // the login of the previous device is released,
+        // so go back to the title and try to log in again.
+    }
+}
+```
+
+#### Observer
+
+* It is a system used to handle many different status-changing events in Gamebase.
+* The Observer Types supported by Gamebase are as follows:
+    * GamebaseEventCategory.OBSERVER_LAUNCHING
+    	* It operates when the Launching status is changed, for instance when the server is under maintenance, or the maintenance is over, or a new version is deployed and update is required.
+    	* GamebaseEventObserverData.code: Indicates the LaunchingStatus value.
+            * LaunchingStatus.IN_SERVICE: 200
+            * LaunchingStatus.RECOMMEND_UPDATE: 201
+            * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
+            * LaunchingStatus.REQUIRE_UPDATE: 300
+            * LaunchingStatus.BLOCKED_USER: 301
+            * LaunchingStatus.TERMINATED_SERVICE: 302
+            * LaunchingStatus.INSPECTING_SERVICE: 303
+            * LaunchingStatus.INSPECTING_ALL_SERVICES: 304
+            * LaunchingStatus.INTERNAL_SERVER_ERROR: 500
+    * GamebaseEventCategory.OBSERVER_HEARTBEAT
+    	* Operates when the status of a user account changes, for instance when the user account is deleted or banned.
+    	* GamebaseEventObserverData.code: Indicates the GamebaseError value.
+            * GamebaseError.INVALID_MEMBER: 6
+            * GamebaseError.BANNED_MEMBER: 7
+    * GamebaseEventCategory.OBSERVER_NETWORK
+    	* Can receive the information about the changes in the network.
+    	* Operates when the network is disconnected or connected, or switched from Wi-Fi to a cellular network.
+    	* GamebaseEventObserverData.code: Indicates the NetworkManager value.
+            * NetworkManager.TYPE_NOT: -1
+            * NetworkManager.TYPE_MOBILE: 0
+            * NetworkManager.TYPE_WIFI: 1
+            * NetworkManager.TYPE_ANY: 2
+    * GamebaseEventCategory.OBSERVER_WEBVIEW
+        * Operates when opening or closing the WebView on Standalone.
+            * GamebaseWebViewEventType.OPENED: 1
+            * GamebaseWebViewEventType.CLOSED: 2
+    * GamebaseEventCategory.OBSERVER_INTROSPECT
+        * Operates when logged in from Standalone/WebGL and fails to extend the session.
+
+**VO**
+
+```cs
+public class GamebaseEventObserverData 
+{
+	// This information represents the status value.
+    public int code;
+
+    // This information shows the message about status.
+    public string message;
+
+    // A reserved field for additional information.
+    public string extras;
+}
+```
+
+**Example**
+
+```cs
+public void AddEventHandlerSample()
+{
+    Gamebase.AddEventHandler(GamebaseObserverHandler);
+}
+
+private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+{
+    switch (message.category)
+    {
+        case GamebaseEventCategory.OBSERVER_LAUNCHING:
+            {
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                if(observerData != null)
+                {
+                    CheckLaunchingStatus(observerData);
+                }
+                break;
+            }
+        case GamebaseEventCategory.OBSERVER_NETWORK:
+            {
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                if (observerData != null)
+                {
+                    CheckNetwork(observerData);
+                }
+                break;
+            }
+        case GamebaseEventCategory.OBSERVER_HEARTBEAT:
+            {
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                if (observerData != null)
+                {
+                    CheckHeartbeat(observerData);
+                }
+                break;
+            }
+        case GamebaseEventCategory.OBSERVER_WEBVIEW:
+            {
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                if (observerData != null)
+                {
+                    CheckWebView(observerData);
+                }
+                break;
+            }
+        case GamebaseEventCategory.OBSERVER_INTROSPECT:
+            {
+                // Introspect error
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                int errorCode = observerData.code;
+                string errorMessage = observerData.message;
+                break;
+            }
+        default:
+            {
+                break;
+            }
+    }
+}
+
+private void CheckLaunchingStatus(GamebaseResponse.Event.GamebaseEventObserverData observerData)
+{
+    switch (observerData.code)
+    {
+        case GamebaseLaunchingStatus.IN_SERVICE:
+            {
+                // Service is now normally provided.
+                break;
+            }
+        // ... 
+        case GamebaseLaunchingStatus.INTERNAL_SERVER_ERROR:
+            {
+                // Error in internal server.
+                break;
+            }
+    }
+}
+
+private void CheckNetwork(GamebaseResponse.Event.GamebaseEventObserverData observerData)
+{
+    switch ((GamebaseNetworkType)observerData.code)
+    {
+        case GamebaseNetworkType.TYPE_NOT:
+            {
+                // Network disconnected
+                break;
+            }
+        case GamebaseNetworkType.TYPE_MOBILE:
+            {
+                // Network connected
+                break;
+            }
+        case GamebaseNetworkType.TYPE_WIFI:
+            {
+                // Network connected
+                break;
+            }
+        case GamebaseNetworkType.TYPE_ANY:
+            {
+                // Network connected
+                break;
+            }
+    }
+}
+
+private void CheckHeartbeat(GamebaseResponse.Event.GamebaseEventObserverData observerData)
+{
+    switch (observerData.code)
+    {
+        case GamebaseErrorCode.INVALID_MEMBER:
+            {
+                // You should to write the code necessary in game. (End the session.)
+                break;
+            }
+        case GamebaseErrorCode.BANNED_MEMBER:
+            {
+                // The ban information can be found by using the GetBanInfo API.
+                // Show kickout message to user and need kickout in game.
+                break;
+            }
+    }
+}
+
+private void CheckWebView(GamebaseResponse.Event.GamebaseEventObserverData observerData)
+{
+    switch (observerData.code)
+    {
+        case GamebaseWebViewEventType.OPENED:
+            {
+                // Webview open
+                break;
+            }
+        case GamebaseWebViewEventType.CLOSED:
+            {
+                // Webview close
                 break;
             }
     }
@@ -393,178 +749,187 @@ private void ServerPushEventHandler(GamebaseResponse.SDK.ServerPushMessage messa
 ```
 
 
-#### Remove ServerPushEvent
-Delete ServerPushEvent registered in Gamebase.  
+#### Purchase Updated
 
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-
-```cs
-static void RemoveServerPushEvent(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent)
-static void RemoveAllServerPushEvent()
-```
+* This event is triggered when a product is acquired by redeeming a promotion code.
+* Can acquire payment receipt information.
 
 **Example**
 
 ```cs
-public void RemoveServerPushEvent(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent)
+public void AddEventHandlerSample()
 {
-    Gamebase.RemoveServerPushEvent(serverPushEvent);
+    Gamebase.AddEventHandler(GamebaseObserverHandler);
 }
 
-public void RemoveAllServerPushEvent()
+private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
-    Gamebase.RemoveAllServerPushEvent();
-}
-```
-
-### Observer
-* With Gamebase Observer, receive and process status change events of Gamebase.
-* Status change events : change of network type, change of launching status (change of status due to maintenance, and etc.), and change of heartbeat information (change of heartbeat information due to service suspension), and etc.
-
-
-#### Observer Type
-The Observer Types currently supported by Gamebase are as follows:
-
-* Change of Network Type
-    * Receive information on changes of a network.
-    * Type: GamebaseObserverType.NETWORK (= "network")
-    * Code: Refer to the constant numbers declared in GamebaseNetworkType.
-        * GamebaseNetworkType.TYPE_NOT: -1
-        * GamebaseNetworkType.TYPE_MOBILE: 0
-        * GamebaseNetworkType.TYPE_WIFI: 1
-        * GamebaseNetworkType.TYPE_ANY: 2
-* Change of Launching Status
-    * Occurs when there is a change in the launching status response which periodically checks application status. For example, events occur for maintenance, or update recommendations.
-    * Type: GamebaseObserverType.LAUNCHING (= "launching")
-    * Code: Refer to the constant numbers declared in GamebaseLaunchingStatus.
-        * GamebaseLaunchingStatus.IN_SERVICE: 200
-        * GamebaseLaunchingStatus.RECOMMEND_UPDATE: 201
-        * GamebaseLaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
-        * GamebaseLaunchingStatus.REQUIRE_UPDATE: 300
-        * GamebaseLaunchingStatus.BLOCKED_USER: 301
-        * GamebaseLaunchingStatus.TERMINATED_SERVICE: 302
-        * GamebaseLaunchingStatus.INSPECTING_SERVICE: 303
-        * GamebaseLaunchingStatus.INSPECTING_ALL_SERVICES: 304
-        * GamebaseLaunchingStatus.INTERNAL_SERVER_ERROR: 500
-* Change of Heartbeat Information
-    * Occurs when there is a change in the heartbeat response which periodically maintains connection with the Gamebase server. For example, an event occurs for service suspension.
-    * Type: GamebaseObserverType.HEARTBEAT (= "heartbeat")
-    * Code: Refer to the constant numbers declared in GamebaseErrorCode.
-        * GamebaseErrorCode.INVALID_MEMBER: 6
-        * GamebaseErrorCode.BANNED_MEMBER: 7
-
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
-
-#### Add Observer
-Use the API below, register Observer to handle the status change events of Gamebase.
-
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-
-```cs
-static void AddObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer)
-```
-
-**Example**
-
-```cs
-public void AddObserver()
-{
-    Gamebase.AddObserver(ObserverHandler);
-}
-
-private void ObserverHandler(GamebaseResponse.SDK.ObserverMessage observerMessage)
-{
-    switch (observerMessage.type)
+    switch (message.category)
     {
-        // Launching
-        case GamebaseObserverType.LAUNCHING:
+        case GamebaseEventCategory.PURCHASE_UPDATED:
             {
-                CheckLaunchingStatus(observerMessage.data);
+                GamebaseResponse.Event.PurchasableReceipt purchasableReceipt = GamebaseResponse.Event.PurchasableReceipt.From(message.data);
+                if (purchasableReceipt != null)
+                {
+                    // If the user got item by 'Promotion Code',
+                    // this event will be occurred.
+                }
                 break;
             }
-        // Heartbeat
-        case GamebaseObserverType.HEARTBEAT:
+        default:
             {
-                CheckHeartbeat(observerMessage.data);
-                break;
-            }
-        // Network
-        case GamebaseObserverType.NETWORK:
-            {
-                CheckNetworkStatus(observerMessage.data);
                 break;
             }
     }
 }
-
-private void CheckLaunchingStatus(Dictionary<string, object> data)
-{
-    // Code : Refer to GamebaseLaunchingStatus.
-    int code        = (int)data["code"];
-
-    // Message
-    string message  = (string)data["message"];
-}
-
-private void CheckHeartbeat(Dictionary<string, object> data)
-{
-    // Code : GamebaseErrorCode.INVALID_MEMBER, GamebaseErrorCode.BANNED_MEMBER
-    int code = (int)data["code"];
-}
-
-private void CheckNetworkStatus(Dictionary<string, object> data)
-{
-    // Code: Refer to GamebaseNetworkType.
-    int code        = (int)data["code"];
-
-    // Message
-    string message  = (string)data["message"];
-}
 ```
 
+#### Push Received Message
 
-#### Remove Observer
-Delete Observer registered in Gamebase.
+* This event is triggered when a push message is received.
+* Can determine whether the message is received in the foreground through the **isForeground** field or in the background.
+* You can also acquire custom information that was sent along with push by converting the extras field to JSON.
 
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+**VO**
 
 ```cs
-static void RemoveObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer)
-static void RemoveAllObserver()
+public class PushMessage 
+{
+	// The unique ID of a message.
+    public string id;
+
+    // The title of the push message.
+    public string title;
+
+    // The body of the push message.
+    public string body;
+
+    // You can check all information by converting them to JSONObject.
+    public string extras;
+}
 ```
 
 **Example**
 
 ```cs
-public void RemoveObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer)
+public void AddEventHandlerSample()
 {
-    Gamebase.RemoveObserver(observer);
+    Gamebase.AddEventHandler(GamebaseObserverHandler);
 }
 
-public void RemoveAllObserver()
+private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
-    Gamebase.RemoveAllObserver();
+    switch (message.category)
+    {
+        case GamebaseEventCategory.PUSH_RECEIVED_MESSAGE:
+            {
+                GamebaseResponse.Event.PushMessage pushMessage = GamebaseResponse.Event.PushMessage.From(message.data);
+                if (pushMessage != null)
+                {
+                    // When you received push message.
+                    
+                    Dictionary<string, object> extras = Toast.Gamebase.LitJson.JsonMapper.ToObject<Dictionary<string, object>>(pushMessage.extras);
+                    // There is 'isForeground' information.
+                    if (extras.ContainsKey("isForeground") == true)
+                    {
+                        bool isForeground = (bool)extras["isForeground"];
+                    }
+                }
+                break;
+            }
+        default:
+            {
+                break;
+            }
+    }
+}
+```
+
+#### Push Click Message
+
+* This event is triggered when a received message is clicked.
+* Unlike GamebaseEventCategory.PUSH_RECEIVED_MESSAGE, there is no **isForeground** field.
+
+**Example**
+
+```cs
+public void AddEventHandlerSample()
+{
+    Gamebase.AddEventHandler(GamebaseObserverHandler);
+}
+
+private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+{
+    switch (message.category)
+    {
+        case GamebaseEventCategory.PUSH_CLICK_MESSAGE:
+            {
+                GamebaseResponse.Event.PushMessage pushMessage = GamebaseResponse.Event.PushMessage.From(message.data);
+                if (pushMessage != null)
+                {
+                    // When you clicked push message.
+                }
+                break;
+            }
+        default:
+            {
+                break;
+            }
+    }
+}
+```
+
+#### Push Click Action
+
+* This event is triggered when the button created by the Rich Message feature is clicked.
+* actionType provides the following:
+	* "OPEN_APP"
+	* "OPEN_URL"
+	* "REPLY"
+	* "DISMISS"
+
+**VO**
+
+```cs
+class PushAction 
+{
+	// Button action type.
+    public string actionType;
+
+	// PushMessage data.
+    public PushMessage message;
+
+	// User text typed in Push console.
+    public string userText;
+}
+```
+
+**Example**
+
+```cs
+public void AddEventHandlerSample()
+{
+    Gamebase.AddEventHandler(GamebaseObserverHandler);
+}
+
+private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+{
+    switch (message.category)
+    {    
+        case GamebaseEventCategory.PUSH_CLICK_ACTION:
+            {
+                GamebaseResponse.Event.PushAction pushAction = GamebaseResponse.Event.PushAction.From(message.data);
+                if (pushAction != null)
+                {
+                    // When you clicked action button by 'Rich Message'.
+                }
+                break;
+            }
+        default:
+            {
+                break;
+            }
+    }
 }
 ```
 
@@ -677,9 +1042,9 @@ Gamebase provides features to respond to customer inquiries.
 
 > [TIP]
 >
-> By integrating with TOAST Contact, customer inquiries can be handled more at ease and convenience. 
-> For more details on TOAST Contact, see the guide as below: 
-> [TOAST Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
+> By integrating with NHN Cloud Contact, customer inquiries can be handled more at ease and convenience. 
+> For more details on NHN Cloud Contact, see the guide as below: 
+> [NHN Cloud Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
 
 #### Open Contact WebView
 
@@ -715,7 +1080,7 @@ public void SampleOpenContact()
             if (error.code == GamebaseErrorCode.WEBVIEW_INVALID_URL)
             {
                 // Gamebase Console Service Center URL is invalid.
-                // Please check the url field in the TOAST Gamebase Console.
+                // Please check the url field in the NHN Cloud Gamebase Console.
                 var launchingInfo = Gamebase.Launching.GetLaunchingInformations();
                 Debug.Log(string.Format("csUrl:{0}", launchingInfo.launching.app.relatedUrls.csUrl));
             }

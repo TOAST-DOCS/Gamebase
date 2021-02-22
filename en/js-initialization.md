@@ -21,8 +21,8 @@ When initializing Gamebase, you can change Gamebase settings using the GamebaseC
 #### GamebaseConfiguration Example
 ```javascript
 var gamebaseConfiguration = {
-    appId: 'T0asTC1oud',    // TOAST Console Project ID
-    clientVersion: '1.0.0', // TOAST Console Gamebase App Client Version
+    appId: 'T0asTC1oud',    // NHN Cloud Console Project ID
+    clientVersion: '1.0.0', // NHN Cloud Console Gamebase App Client Version
     enableDebugMode: true,  // Note: Do not turn it on in production mode.
     uiConfiguration: {
         enablePopup: true,  // Default is false. If you want to use the Gamebase UI, please turn it on.
@@ -61,8 +61,8 @@ To turn on system logs for development reference, call **toast.Gamebase.setDebug
 ```js
 function gamebaseInitialize() {
     var gamebaseConfiguration = {
-        appId: 'T0asTC1oud',    // TOAST Console Project ID
-        clientVersion: '1.0.0', // TOAST Console Gamebase App Client Version
+        appId: 'T0asTC1oud',    // NHN Cloud Console Project ID
+        clientVersion: '1.0.0', // NHN Cloud Console Gamebase App Client Version
         enableDebugMode: true,  // Note: Do not turn it on in production mode.
         uiConfiguration: {
             enablePopup: true,  // Default is false. If you want to use the Gamebase UI, please turn it on.
@@ -75,7 +75,7 @@ function gamebaseInitialize() {
     toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error) {
         if (error) {
             // If initialization fails, you cannot use Gamebase SDK.
-            // Make sure that settings of appId, clientVersion, and TOAST Console have been correctly set.
+            // Make sure that settings of appId, clientVersion, and NHN Cloud Console have been correctly set.
             console.log('Gamebase initialization failed');
             console.log(error);
             return;
@@ -100,9 +100,10 @@ function gamebaseInitialize() {
 }
 ```
 
-### Launching Status
+### Launching Information
 
-You can check the launching result by call toast.Gamebase.initialize.
+The launch status can be checked by looking at the result of calling toast.Gamebase.initialize.
+
 ```js
 toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error) {
     if (error) {
@@ -114,18 +115,125 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 });
 ```
 
-### Launching Status Code
+The LaunchingInfo object can be acquired even after the initialization using toast.Gamebase.Launching.getLaunchingInformations() API.
+
+**API**
+
+```js
++ (LaunchingInfo)Gamebase.Launching.getLaunchingInformations();
+```
+The LaunchingInfo object contains game status and settings configured in Gamebase Console.
+
+
+#### 1. Launching
+
+Gamebase launching information.
+
+**1.1 Status**
+
+The game status information of the app version used when initializing Gamebase JavaScript SDK.
+
+* code: Game status code (under maintenance, update required, service terminated, etc.)
+* message: Game status message
+
+See the table below for status code:
+
+#### Launching Status Code
 
 | Status                      | Code | Description                              |
 | --------------------------- | ---- | ---------------------------------------- |
-| IN_SERVICE                  | 200  | OK                                 |
+| IN_SERVICE                  | 200  | Normal service status                                 |
 | RECOMMEND_UPDATE            | 201  | Update recommended                                  |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202  | Under maintenance, services are unavailable. However, if users have registered using QA devices, they can access the services for QA testing. |
-| IN_TEST                     | 203  | Under test |
-| IN_REVIEW                   | 204  | Review in progress |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202  | The service is unavailable during maintenance, but if it is registered using a QA device, it can access the service and perform test regardless of maintenance period. |
+| IN_TEST                     | 203  | Testing |
+| IN_REVIEW                   | 204  | Reviewing |
 | REQUIRE_UPDATE              | 300  | Update required                                  |
-| BLOCKED_USER                | 301  | User whose access has been blocked, when the user has accessed the services using (device key). |
+| BLOCKED_USER                | 301  | Accessed the service using the device of a blocked user (device key). |
 | TERMINATED_SERVICE          | 302  | Service terminated                                   |
-| INSPECTING_SERVICE          | 303  | Under maintenance                                 |
-| INSPECTING_ALL_SERVICES     | 304  | Whole service under maintenance                              |
+| INSPECTING_SERVICE          | 303  | Service in maintenance                                 |
+| INSPECTING_ALL_SERVICES     | 304  | All services in maintenance                              |
 | INTERNAL_SERVER_ERROR       | 500  | Internal server error                                 |
+
+[Console Guide] (/Game/Gamebase/ko/oper-app/#app)
+
+**1.2 App**
+
+App information registered in the Gamebase Console.
+
+* accessInfo
+    * serverAddress: Server address
+    * csInfo: Customer Center information
+* relatedUrls
+    * termsUrl: Terms and Conditions
+    * personalInfoCollectionUrl: Personal information collection agreement
+    * punishRuleUrl: User ban rules
+    * csUrl: Customer Center
+* install: Installation URL
+* idP: Authentication information
+
+[Console Guide] (/Game/Gamebase/ko/oper-app/#client)
+
+**1.3 Maintenance**
+
+Maintenance information registered in the Gamebase Console.
+
+* url: Maintenance page URL
+* timezone: Timezone
+* beginDate: Start time
+* endDate: End time
+* message: Reason for maintenance
+
+[Console Guide] (/Game/Gamebase/ko/oper-operation/#maintenance)
+
+**1.4 Notice**
+
+Notification information registered in the Gamebase Console.
+
+* message: Message
+* title: Title
+* url: Maintenance URL
+
+[Console Guide] (/Game/Gamebase/ko/oper-operation/#notice)
+
+#### 2. tcProduct
+
+The appKey of the NHN Cloud service associated with Gamebase.
+
+* gamebase
+* tcLaunching
+* iap
+* push
+
+#### 3. tcIap
+
+The IAP store information registered in the NHN Cloud Console.
+
+* id: App ID
+* name: App Name
+* storeCode: Store Code
+ 
+[Console Guide] (/Game/Gamebase/ko/oper-purchase/)
+
+#### 4. tcLaunching
+
+Launching information registered in the NHN Cloud Console.
+
+* The value entered by users in Console is sent as a JSON string.
+ 
+[Console Guide] (/Game/Gamebase/ko/oper-management/#config)
+
+
+### Error Handling
+
+| Error                        | Error Code | Description                |
+| ---------------------------- | ---------- | -------------------------- |
+| NOT_INITIALIZED              | 1          | Gamebase is not initialized. |
+| NOT_LOGGED_IN                | 2          | Requires login.            |
+| INVALID_PARAMETER            | 3          | Invalid parameter.           |
+| INVALID_JSON_FORMAT          | 4          | JSON format error.          |
+| USER_PERMISSION              | 5          | No permissions.               |
+| NOT_SUPPORTED                | 10         | The feature is not supported.        |
+
+
+* For the entire list of error codes, see the following document.
+    * [Error Code] (./error-code/#client-sdk)

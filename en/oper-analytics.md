@@ -130,25 +130,62 @@ By opting for the exclusion of withdrawer on the same day of subscription, you c
 * Exclusion of withdrawer on the same day of subscription: Calculate by excluding those users who subscribed and withdrew on the same day 
     * New Users = Subscriber - Withdrawer on the same day of subscription
       e.g.) Out of 100 new users on January 1st, 20 withdrew on January 1st: then, the number of actual new users is calculated at 80 (100-20).
+      
+### LTV
+![gamebase_analytics_06_201912_1_ltv] (https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_201912_1_ltv.png)
+
+LTV is an index representing the expected annual revenue from a single user in the selected user group.
+
+LTV chart is provided per country/OS/date, and in the table below, you can see the details such as LTV, accumulated NRU, accumulated PU, accumulated amount of payment, etc.
+
+#### Estimation Method
+As LTV estimation method, Gamebase uses the ARPU accumulated over 365 days after the registration. 
+
+#### User Group Conditions
+The user group conditions are as follows:
+
+* Signed-up date
+* Country
+* OS
+
+#### Restricted Conditions
+There are restrictions for accurate estimation of LTV.
+
+* The number of user group members must be 1,000 or higher.
+* The PU (Payment User) of the user group must be 30 or higher.
+* The most recent signed-up date must be more than 7 days.
+
+### Life Cycle
+![gamebase_analytics_06_202002_1_lifeCycle] (https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202002_1_lifeCycle.png)
+
+Life Cycle is an index used to check the trend of daily active users since the first inflow of users. Data is retained for up to 3 years.
+
+* Daily Active Users (DAU): The number of active users who logged in at least once on a daily basis based on memberno.
+* Maximum Concurrent Users (MCU): The number of concurrent users during the period between 0:00 and 24:00. The greatest value from the CCU values every minute is aggregated on a daily basis.
+* Newly Registered Users (NRU): Newly registered users. The user whose login log is collected for the first time between 0:00 and 24:00 (based on memberno)
+* Withdrawn Users: Users who withdrew their account. Users whose memberno is deleted during the period between 00:00 and 24:00
+* Users who registered and withdrew on the same day: Users who deleted their account on the same day they signed up for the service
+* Average CCU: The average CCU during the selected duration
+* Average playtime - Avg. Playtime (/DAU): The average playtime during the retrieved duration (Sum of playtime of DAU/DAU)      
 
 ### Frequency7
 
-![gamebase_analytics_06_202003_1_frequency](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202003_1_frequency.png)
+![gamebase_analytics_06_202003_1_frequency] (https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202003_1_frequency.png)
 
-Frequency 7 provides the number and rate of weekly visits of DAU. It helps to identify the flow and loyalty for a game.
+The Frequency7 index provides information about weekly visitor and ratio of DAU. It can be used to see immersion, loyalty, and other information at a glance.
 
-Frequency 7 is comprised of the three criteria as below.
+Frequency7 is divided into the following three categories:
 
-* Number of Visits: Total number of visits for 7 days
-* Number of Consecutive Visits: Number of consecutive visits for 7 days, including the day
-* Maximum Number of Consecutive Visits: Maximum number of consecutive visits for 7 days
+* Number of visits: The number of visits for 7 days
+* Number of consecutive visits: The number of consecutive visits for 7 days (including the date)
+* Number of maximum consecutive visits: The number of maximum consecutive visits for 7 days
 
-Examples of calculation by the above three criteria are like follows. 
-As of March 7, a user visited on March 1, 2, 3, 6, and 7, and the number of visits are calculated by each criteria. 
+Let's see an example of the three calculation models mentioned above: 
+If there is a user who visited the site on March 1, 2, 3, 6, and 7, as of March 7, the number of visits is as follows:
 
-* Total Number of Visits: 5 days (March 1, 2, 3, 6, and 7)
-* Number of Consecutive Visits: 2 days (March 6 and 7)
-* Maximum Number of Consecutive Visits: 3 days (March 1, 2, and 3)
+* Total number of visits: 5 days (March 1, 2, 3, 6, and 7)
+* Number of consecutive visits: 2 days (March 6 and 7)
+* Number of maximum consecutive visits: 3 days (March 1, 2, and 3)
 
 ## Sales Indicators 
 ### Purchase Amount 
@@ -242,9 +279,9 @@ Statistical indicators for an installation URL call are available.
 * Share by Browser (all accumulated): Shows the rate of URL call counts on each browser. 
 * Share by Platform (all accumulated): Shows the rate of installation URL call counts on each platform 
 
-## Transfer
+## Transmission
 
-The **Transfer Indicator** tab is available when indicators are sent via API on a game. 
+The **Transmission Indicator** tab is available when indicators are sent via API on a game. 
 There are three types of transfer indicators as below: 
 
 * User Level: Access and sales data are available by user level. 
@@ -253,10 +290,10 @@ There are three types of transfer indicators as below:
 
 > [Note] 
 >
-> Only previously registered information of world/server/channel and class/occupations will be processed for analytics.
-> Refer to the following document for registration.
+> World/server/channel, class/profession are processed only pre-registered information.
+> See the following document to learn how to register.
 >
-> - [App > Analytics Indicator](./oper-app/#analytics-indicator)
+> - [App > Analytics Indicator] (./oper-app/#analytics-indicator)
 
 ### Concurrent Status
 
