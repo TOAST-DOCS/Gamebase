@@ -139,9 +139,9 @@ GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configura
                             DialogInterface.OnClickListener clickListener);
 ```
 
-## NHN Cloud
+## Toast
 
-可以使用以下API轻松显示 [Android NHN Cloud](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) 消息。<br/>
+可以使用以下API轻松显示 [Android toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) 消息。<br/>
 用于显示信息的时间类型参数是int型，并根据Android SDK NotificationManagerService类的定义，可显示的时间如下表。
 
 | 时间类型(int)         | 显示时间                     |

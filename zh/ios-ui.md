@@ -184,9 +184,9 @@ iOS 8或更高版本上可以运行的UIAlertControlle，和iOS 8以下的版本
 }
 ```
 
-## NHN Cloud
+## Toast
 
-可以使用以下API轻松显示 [Android NHN Cloud](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)消息。<br/>
+可以使用以下API轻松显示 [Android toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)消息。<br/>
 可以设置简单的消息和显示的时间。
 
 ```objectivec

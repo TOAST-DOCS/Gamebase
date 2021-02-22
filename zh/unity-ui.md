@@ -181,7 +181,7 @@ public void ShowAlertDialog()
 }
 ```
 
-## NHN Cloud
+## Toast
 
 可以使用以下API轻松显示消息。
 

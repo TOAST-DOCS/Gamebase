@@ -210,9 +210,9 @@ Gamebaseにスキーム名とブロックを指定し、任意の機能を追加
 ```
 
 
-## NHN Cloud
+## Toast
 
-次のAPIを使用して簡単に[Android NHN Cloud](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)のメッセージを表示することができます。<br/>
+次のAPIを使用して簡単に[Android toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)のメッセージを表示することができます。<br/>
 簡単なメッセージと表示される時間を設定することができます。
 
 ```objectivec
