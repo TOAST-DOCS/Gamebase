@@ -173,7 +173,7 @@ end
 * [Facebook for developers](https://developers.facebook.com/docs/ios)
 * [Naver for developers](https://developers.naver.com/docs/login/ios/)
 * [Twitter Developer's guide - Log in with Twitter](https://developer.twitter.com/en/docs/basics/authentication/guides/log-in-with-twitter)
-* [Twitter Developer's guide - Authentication](https://developer.twitter.com/en/docs/basics/authentication/overview)
+* [Twitter Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
 * [Line for developers](https://developers.line.biz/en/docs/ios-sdk/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/ios)
 * [Weibo for developers](https://github.com/sinaweibosdk/weibo_ios_sdk/blob/3.2.7/%E5%BE%AE%E5%8D%9AiOS%E5%B9%B3%E5%8F%B0SDK%E6%96%87%E6%A1%A3V3.2.7.pdf)
