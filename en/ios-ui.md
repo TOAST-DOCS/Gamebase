@@ -211,9 +211,9 @@ Shows alerts on the system. <br/>
 ```
 
 
-## NHN Cloud
+## Toast
 
-Displays [Android NHN Cloud](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) messages, by using the following API.<br/>
+Displays [Android 토스트(toast)](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) messages, by using the following API.<br/>
 Simple messages with display time can be set.
 
 ```objectivec
