@@ -213,7 +213,7 @@ Shows alerts on the system. <br/>
 
 ## Toast
 
-Displays [Android 토스트(toast)](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) messages, by using the following API.<br/>
+Displays [Android Toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) messages, by using the following API.<br/>
 Simple messages with display time can be set.
 
 ```objectivec

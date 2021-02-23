@@ -179,7 +179,7 @@ Use the following API to receive callbacks on processing results after an alert 
 
 ## Toast
 
-Displays [Android 토스트(toast)](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) messages, by using the following API.<br/>
+Displays [Android Toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) messages, by using the following API.<br/>
 The type of time parameter to display message is provided in int format and will be displayed during time as below, as the Android SDK NotificationManagerService class is defined.
 
 | Type of Time (int)         | Display Time                     |
