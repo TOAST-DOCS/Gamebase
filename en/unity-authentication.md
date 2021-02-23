@@ -1,4 +1,4 @@
-## Game > Gamebase > Unity Developer's Guide > Authentication
+﻿## Game > Gamebase > Unity Developer's Guide > Authentication
 
 ## Login
 
@@ -39,7 +39,7 @@ The logic described in the above can be implemented in the following order.
     * If the error code is **SOCKET_ERROR (110)** or **SOCKET_RESPONSE_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.LoginForLastLoggedInProvider()** again, or try again in a moment.
 * Banned game user
     * When the error code is found as **BANNED_MEMBER(7)** , authentication has failed because the user is banned from the game.
-    * Check ban information with **Gamebase.GetBanInfo()** and notify the user with reasons for not being able to play.
+    * Check the reason for ban using **GamebaseResponse.Auth.BanInfo.From(GamebaseError error)** and inform the game user why they cannot play the game.
     * When **GamebaseConfiguration.enablePopup** and **GamebaseConfiguration.enableBanPopup** are set as true during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
 * Other errors
     * Authentication with latest login type has failed. Follow **3. Authenticate with Specified IdP**.
@@ -61,7 +61,7 @@ The logic described in the above can be implemented in the following order.
     * If the error code is **SOCKET_ERROR (110)** or **SOCKET_RESPONSE_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.LoginForLastLoggedInProvider()** again, or try again in a minute.
 * Banned game user
     * When the error code is found as **BANNED_MEMBER(7)**, authentication has failed because the user is banned from the game.
-    * Check ban information with **Gamebase.GetBanInfo()** and notify the user with reasons for not being able to play.
+    * Check the reason for ban using **GamebaseResponse.Auth.BanInfo.From(GamebaseError error)** and inform the game user why they cannot play the game.
     * When **GamebaseConfiguration.enablePopup** and **GamebaseConfiguration.enableBanPopup** are set as true during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
 * Other errors
     * Notify that an error has occurred, and return to the state (mostly in title or login screen) in which user can select an authentication IdP type.
@@ -95,31 +95,24 @@ public void LoginForLastLoggedInProvider()
         }
         else
         {
+            // Check the error code and handle the error appropriately.
+            Debug.Log(string.Format("Login failed. error is {0}", error));
         	if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
             {
             	Debug.Log(string.Format("Retry LoginForLastLoggedInProvider or notify an error message to the user. : {0}", error.message));
             }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
             else
             {
                 Debug.Log("Try to login using a specifec IdP");
-                Login("ProviderName");
+                Gamebase.Login("ProviderName", (authToken, error) => {});
             }
-        }
-    });
-}
-
-public void Login(string providerName)
-{
-    Gamebase.Login(providerName, (authToken, error) =>
-    {
-        if (Gamebase.IsSuccess(error))
-        {
-            string userId = authToken.member.userId;
-            Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
-        }
-        else
-        {
-            Debug.Log(string.Format("Login failed. error is {0}", error));
         }
     });
 }
@@ -158,7 +151,19 @@ public void Login()
         }
         else
         {
+            // Check the error code and handle the error appropriately.
         	Debug.Log(string.Format("Login failed. error is {0}", error));
+            if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+            {
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
         }
     });
 }
@@ -187,11 +192,12 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 | --------    | ------------------------------- | ---------------- |
 | Google      | GamebaseAuthProvider.GOOGLE     | Android<br/>iOS<br/>Standalone |
 | Game Center | GamebaseAuthProvider.GAMECENTER | iOS |
+| Apple ID    | GamebaseAuthProvider.AppleId    | iOS |
 | Facebook    | GamebaseAuthProvider.FACEBOOK   | Android<br/>iOS<br/>Standalone |
 | Payco       | GamebaseAuthProvider.PAYCO      | Android<br/>iOS<br/>Standalone |
 | Naver       | GamebaseAuthProvider.NAVER      | Android<br/>iOS |
 | Twitter     | GamebaseAuthProvider.TWITTER    | Android<br/>iOS |
-| Line        | GamebaseAuthProvider.LINE       | Android |
+| Line        | GamebaseAuthProvider.LINE       | Android<br/>iOS |
 
 
 > There is information which must be included for login with some IdPs.<br/>
@@ -221,23 +227,52 @@ public void Login()
         }
         else
         {
+            // Check the error code and handle the error appropriately.
         	Debug.Log(string.Format("Login failed. error is {0}", error));
+            if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+            {
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
         }
     });
 }
 
-public void Login(string providerName, Dictionary<string, object> additionalInfo)
+public void LoginWithAdditionalInfo()
 {
-    Gamebase.Login(providerName, additionalInfo, (authToken, error) =>
+    var additionalInfo = new Dictionary<string, object>
     {
-        if (Gamebase.IsSuccess(error))
-        {
+        { "key", "value" }
+    };
+
+    Gamebase.Login(GamebaseAuthProvider.FACEBOOK, additionalInfo, (authToken, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {            
             string userId = authToken.member.userId;
             Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
         }
         else
         {
+            // Check the error code and handle the error appropriately.
             Debug.Log(string.Format("Login failed. error is {0}", error));
+            if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+            {
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
         }
     });
 }
@@ -251,7 +286,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | Keyname | Usage | Value Type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Enter One Time Authorization Code (OTAC) which can be obtained after Google login. |                                          |
 
@@ -298,14 +333,27 @@ public void LoginWithCredential()
     
     Gamebase.Login(credentialInfo, (authToken, error) =>
     {
-    	if (Gamebase.IsSuccess(error))
+    	if (Gamebase.IsSuccess(error) == true)
         {
-        	string userId = authToken.member.userId;
-        	Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
+            
+            string userId = authToken.member.userId;
+            Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
         }
         else
         {
+            // Check the error code and handle the error appropriately.
         	Debug.Log(string.Format("Login failed. error is {0}", error));
+            if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+            {
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
         }
     });
 }
@@ -357,7 +405,7 @@ public void Logout()
 
 ## Withdraw
 
-로그인 상태에서 탈퇴를 시도합니다.
+Attempts account withdrawal while logged in.
 
 * When a user is successfully withdrawn, the user's data interfaced with a login IdP will be deleted.
 * The user can log in with the IdP again, and a new user's data will be created.
@@ -499,7 +547,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | keyname | Usage | Value Type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | Set authentication information (access token) received after login IdP |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Enter One Time Authorization Code (OTAC) which can be obtained after Google login. |                                          |
 
@@ -580,8 +628,8 @@ public void AddMappingForcibly(string idPName)
             // First, call the addMapping API to try mapping to an already linked account and get ForcingMappingTicket as follows.
             if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
             {
-                // Use the MakeForcingMappingTicket() method of the ForcingMappingTicket class to obtain the ForcingMappingTicket instance.
-                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.MakeForcingMappingTicket(error);
+                // Gets the ForcingMappingTicket instance using the From() method of the ForcingMappingTicket class.
+                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
 
                 // Try force mapping.
                 Gamebase.AddMappingForcibly(idPName, forcingMappingTicket.forcingMappingKey, (authTokenForcibly, errorForcibly) =>
@@ -617,7 +665,7 @@ This interface allows you to perform authentication in the game with the SDK pro
 
 | keyname | a use | Value type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP type setting                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP type setting                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | Set the authentication information (access token) received after IdP login.<br/>It is not used for Google authentication. |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Set the authentication information (Authorization Code) received after login with Google |                                        |
 
@@ -656,8 +704,8 @@ public void AddMappingForcibly(Dictionary<string, object> credential)
             // First, call the addMapping API to try mapping to an already linked account and get ForcingMappingTicket as follows.
             if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
             {
-                // Use the MakeForcingMappingTicket() method of the ForcingMappingTicket class to obtain the ForcingMappingTicket instance.
-                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.MakeForcingMappingTicket(error);
+                // Gets the ForcingMappingTicket instance using the From() method of the ForcingMappingTicket class.
+                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
 
                 // Try force mapping.
                 Gamebase.AddMappingForcibly(credential, forcingMappingTicket.forcingMappingKey, (authTokenForcibly, errorForcibly) =>
@@ -898,31 +946,12 @@ public void GetAuthProviderProfile(string providerName)
 }
 ```
 
-### Get Banned User Infomation
+### Get Banned User Information
 
-For a banned user registered at Gamebase Console,
-restricted use of information code (**BANNED_MEMBER(7)**) can be displayed as below, when trying login. The ban information can be found by using the API as below.
+If a user is registered while being banned in Gamebase Console,
+the user will see the following usage restriction code when attempting to log in to the game. The **GamebaseResponse.Auth.BanInfo.from(GamebaseError error)** method can be used to check the ban information.
 
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-
-```cs
-static GamebaseResponse.Auth.BanInfo GetBanInfo()
-```
-
-**Example**
-```cs
-public void GetBanInfo()
-{
-    GamebaseResponse.Auth.BanInfo banInfo = Gamebase.GetBanInfo();
-}
-```
+* BANNED_MEMBER(7)
 
 ## TransferAccount
 Issues a key to transfer the guest account to another device.
@@ -1036,6 +1065,8 @@ On the device where the account transfer was successfully made, the guest accoun
 
 > <font color="red">[Caution]</font><br/>
 > If account transfer is made while logged in to the guest account, the guest account will be lost.
+> * If incorrect id/password is attempted multiple times, an **AUTH_TRANSFERACCOUNT_BLOCK(3042)** error occurs and the account migration is blocked for a certain period of time.
+> In this case, you can inform the user how long the account migration will be banned through the TransferAccountFailInfo value as shown below.
 
 **API**
 
@@ -1057,7 +1088,158 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
         }
         else
         {
-            // Transfering Account failed.
+            // Check the error code and handle the error appropriately.
+            if (error.code == GamebaseErrorCode.AUTH_TRANSFERACCOUNT_BLOCK)
+            {
+                GamebaseResponse.Auth.TransferAccountFailInfo transferAccountFailInfo = GamebaseResponse.Auth.TransferAccountFailInfo.From(error);
+                if (transferAccountFailInfo != null)
+                {
+                    // Transfering Account failed by entering the wrong id / pw multiple times.
+                    // You can tell when the account transfer is blocked by the TransferAccountFailInfo.
+                    string failId = transferAccountFailInfo.id;
+                    int failCount = transferAccountFailInfo.failCount;
+                    DateTime dateTime = new DateTime(transferAccountFailInfo.blockEndDate);
+                }
+            }
+        }
+    });
+}
+```
+
+## TemporaryWithdrawal
+
+This is a 'pending withdrawal" feature.
+By requesting a temporary withdrawal, the account is not immediately withdrawn. Instead, it is withdrawn after a specific grace period.
+The grace period can be changed in the console.
+
+> 'Caution'
+>
+> Do not use **Gamebase.Withdraw()** API if you're using the Pending Withdrawal feature.
+> The **Gamebase.Withdraw()** API immediately withdraws accounts when used.
+
+If login is successful, AuthToken.member.temporaryWithdrawal can be used to determine if the user is in the status of pending withdrawal.
+
+### Request TemporaryWithdrawal
+
+Requests a temporary withdrawal.
+The account is automatically withdrawn after a specific grace period set in the console.
+
+**API**
+
+```cs
+public static void RequestWithdrawal(GamebaseCallback.GamebaseDelegate<GamebaseResponse.TemporaryWithdrawalInfo> callback)
+```
+
+**Example**
+
+```cs
+public void SampleRequestWithdrawal()
+{
+    Gamebase.TemporaryWithdrawal.RequestWithdrawal((data, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            long gracePeriodDate = data.gracePeriodDate;
+            Debug.Log(string.Format("RequestWithdrawal succeeded. The date when you can withdraw your withdrawal is {0}", gracePeriodDate));
+        }
+        else
+        {
+            Debug.Log(string.Format("RequestWithdrawal failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### Check TemporaryWithdrawal User
+
+For games using the Pending Withdrawal feature must notify its users that they are in grace period if AuthToken.member.temporaryWithdrawal is not null after login.
+
+**Example**
+
+```cs
+public void LoginSample()
+{
+    Gamebase.Login(GamebaseAuthProvider.XXX, (authToken, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            if(authToken.member.temporaryWithdrawal != null)
+            {
+                long gracePeriodDate = authToken.member.temporaryWithdrawal.gracePeriodDate;
+                Debug.Log(string.Format("User is under temporary withdrawa. GracePeriodDate : {0}", error));
+            }            
+            else
+            {
+                string userId = authToken.member.userId;            
+                Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
+            }
+        }
+        else
+        {
+            // Check the error code and handle the error appropriately.            
+            Debug.Log(string.Format("Login failed. error is {0}", error));
+        }
+    });
+}
+
+```
+
+### Cancel TemporaryWithdrawal
+
+Cancels a withdrawal request.
+If the grace period is over and the withdrawal process is completed, it cannot be undone.
+
+**API**
+
+```cs
+static void CancelWithdrawal(GamebaseCallback.ErrorDelegate callback)
+```
+**Example**
+
+```cs
+public void SampleCancelWithdrawal()
+{
+    Gamebase.TemporaryWithdrawal.CancelWithdrawal((error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            Debug.Log("CancelWithdrawal succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("CancelWithdrawal failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### Withdraw Immediately
+
+Immediately withdraws the account, ignoring the grace period.
+The internal mechanics are the same as the Gamebase.Withdraw() API.
+
+Instant withdrawal cannot be undone, so it is important to ask the user several times if they really want to execute the command.
+
+**API**
+
+```cs
+static void WithdrawImmediately(GamebaseCallback.ErrorDelegate callback)
+```
+
+**Example**
+
+```cs
+public void SampleWithdrawImmediately()
+{
+    Gamebase.TemporaryWithdrawal.WithdrawImmediately((error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            Debug.Log("WithdrawImmediately succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("SampleWithdrawImmediately failed. error:{0}", error));
         }
     });
 }
@@ -1072,6 +1254,7 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 |      | AUTH_USER_CANCELED | 3001 | Login is cancelled. |
 |      | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | The authentication is not supported. |
 |      | AUTH_NOT_EXIST_MEMBER | 3003 | Named member does not exist or has withdrawn. |
+|  | AUTH_EXTERNAL_LIBRARY_INITIALIZATION_ERROR | 3006 | Failed to initialize the external authentication library. |
 |      | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | Error in external authentication library. <br/>Check DetailCode and DetailMessage. |
 |  | AUTH_ALREADY_IN_PROGRESS_ERROR | 3010 | Previous authentication process is not complete.
 | TransferKey | SAME\_REQUESTOR | 8 | The issued TransferKey has been used on the same device. |
@@ -1080,7 +1263,7 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 |                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | You have entered a wrong TransferAccount several times, so the account transfer function has been locked. |
 |                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | Invalid TransferAccount ID. |
 |                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | Invalid TransferAccount Password. |
-|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccount has not been set. <br/> Please set it on the TOAST Gamebase console first. |
+|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccount has not been set. <br/> Please set it on the NHN Cloud Gamebase console first. |
 |                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccount does not exist. Please issue TransferAccount first. |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccount exists. |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount has already been used. |
@@ -1104,6 +1287,8 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 |                | AUTH_REMOVE_MAPPING_LOGGED_IN_IDP | 3403 | Currently logged-in IDP |
 | Logout | AUTH_LOGOUT_FAILED | 3501 | Logout has failed. |
 | Withdrawal | AUTH_WITHDRAW_FAILED | 3601 | Withdrawal has failed. |
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | The user is already in the status of temporary withdrawal.                    |
+|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | The user is not in the status of temporary withdrawal.                     |
 | Not Playable | AUTH_NOT_PLAYABLE | 3701 | Not playable (due to maintenance or service closed) |
 | Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | Unknown error (Undefined error) |
 
@@ -1112,13 +1297,13 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs in TOAST external authentication library.
+* Occurs in NHN Cloud external authentication library.
 * Check the error code as below:
 
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
 
-if (Gamebase.IsSuccess(gamebaseError))
+if (Gamebase.IsSuccess(gamebaseError) == true)
 {
     // succeeded
 }

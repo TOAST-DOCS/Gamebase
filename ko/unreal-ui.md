@@ -236,7 +236,7 @@ void Sample::ShowAlertEvent(const FString& title, const FString& message)
 }
 ```
 
-## NHN Cloud 
+## Toast
 
 다음 API를 사용하여 쉽게 메시지를 표시할 수 있습니다.
 

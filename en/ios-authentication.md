@@ -29,12 +29,11 @@ In many games, login is implemented on a title page.
 
 The logic described in the above can be implemented in the following order.
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
+![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
 ![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_006_1.10.0.png)
 
 #### 1. Authenticate with Latest Login Type
 
@@ -46,16 +45,17 @@ The logic described in the above can be implemented in the following order.
 * Congratulations! Successfully authenticated
 * Get a user ID with **[TCGBGamebase userID]** to implement a game logic.
 
-#### 1-2. When Authentication is Failed
+#### 1-2. When Authentication Fails
 
 * Network error
-    * If the error code is **TCGB_ERROR_SOCKET_ERROR (110)** or **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]** again or try again in a moment.
-* Banned game user
-    * If the error code is **TCGB_ERRO_AUTH\_BANNED_MEMBER (3005)**, the authentication has failed due to banned game user.
-    * Check ban information with **[TCGBGamebase banInfo]** and notify the user with reasons for not being able to play.
-    * When **[TCGBConfiguration enablePopup:YES]** and **[TCGBConfiguration enableBanPopup:YES]** are called during initialization, Gamebase will automatically display a pop-up on banning.
+    * If the error code is either **TCGB_ERROR_SOCKET_ERROR(110)** or **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**, authentication failed because of a temporary network problem. In this case, call **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]** again or try authenticating later.
+* Banned game users
+    * If the error code is **TCGB_ERROR_BANNED_MEMBER(7)**, authentication failed because the user has been banned.
+    * Check the ban information with **[TCGBBanInfo banInfoFromError:error]** and inform the game user why they cannot play the game.
+    * If **[TCGBConfiguration enablePopup:YES]** and **[TCGBConfiguration enableBanPopup:YES]** are called when initializing Gamebase, Gamebase automatically displays a popup explaining the ban.
 * Other errors
-    * Authentication with latest login type has failed. Follow **3. Authenticate with Specified IdP**.
+    * Authentication failed because of the previous login type. Proceed with **3. Authenticate with the specified IdP**.
+
 
 #### 2. Authenticate with Specified IdP
 
@@ -68,16 +68,16 @@ The logic described in the above can be implemented in the following order.
 * Congratulations! Successfully authenticated.
 * Get a user ID with **[TCGBGamebase userID]** to implement a game logic.
 
-#### 2-2. When Authentication is Failed
+### 2-2. When Authentication Fails
 
 * Network error
-    * If the error code is **TCGB_ERROR_SOCKET_ERROR (110)** or **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT (101)**, the authentication has failed due to temporary network problem, so call **[TCGBGamebase loginWithType:viewController:completion:]** again or try again in a moment.
-* Banned game user
-    * If the error code is **TCGB_ERROR_AUTH_BANNED_MEMBER (3005)**, the authentication has failed due to banned game user.
-    * Check ban information with **[TCGBGamebase banInfo]** and notify the user with reasons for not being able to play.
-    * When **[TCGBConfiguration enablePopup:YES]** and **[TCGBConfiguration enableBanPopup:YES]** are called during initialization, Gamebase will automatically display a pop-up on banning.
+    * If the error code is either **TCGB_ERROR_SOCKET_ERROR(110)** or **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**, authentication failed because of a temporary network problem. In this case, call **[TCGBGamebase loginWithType:viewController:completion:]** again or try authenticating later.
+* Banned game users
+    * If the error code is **TCGB_ERROR_BANNED_MEMBER(7)**, authentication failed because the user has been banned.
+    * Check the ban information with **[TCGBBanInfo banInfoFromError:error]** and inform the game user why they cannot play the game.
+    * If **[TCGBConfiguration enablePopup:YES]** and **[TCGBConfiguration enableBanPopup:YES]** are called when initializing Gamebase, Gamebase automatically displays a popup explaining the ban.
 * Other errors
-    * Notify that an error has occurred, and return to the state (mostly in title or login screen) in which user can select an authentication IdP type.
+    * Informs users of an error and returns them to the state where they can select an authentication IdP type (usually title screen or login screen).
 
 ### Login as the Latest Login IdP
 
@@ -91,7 +91,7 @@ Note that a login should be implemented for the IdP.
 
 ```objectivec
 - (void)automaticLogin {
-    [TCGBGamebase loginForLastLoggedInProviderWithViewController:self completion:^(TCGBAuthToken *authToken, TCGBError *error){
+    [TCGBGamebase loginForLastLoggedInProviderWithViewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error){
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             NSLog(@"Login is succeeded.");
             //TODO: 1. Do you want.
@@ -151,10 +151,10 @@ You can enter those information to additionalInfo in the dictionary type.<br/>
 
 ```objectivec
 - (void)loginPaycoButtonClick {
-    [TCGBGamebase loginWithType:kTCGBAuthPayco viewController:self completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+    [TCGBGamebase loginWithType:kTCGBAuthPayco viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Login Succeeded
-            NSString *userId = [authToken.tcgbMember.userId];
+            NSString *userId = [authToken.tcgbMember userId];
         } else {
             // To Login Failed
         }
@@ -178,7 +178,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | keyname                                  | Usage                          | Value Type                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, payco, iosgamecenter, naver, google, twitter |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, payco, iosgamecenter, naver, google, twitter, line, appleid |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                                |
 
 
@@ -231,7 +231,7 @@ Following shows a log-out example code with a click of the log-out button.
 
 ```objectivec
 - (void)authLogout {
-    [TCGBGamebase logoutWithViewController:self completion:^(TCGBError *error) {
+    [TCGBGamebase logoutWithViewController:topViewController completion:^(TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Logout Succeeded
         } else {
@@ -267,7 +267,7 @@ Following shows an exemplary withdrawal code with a click of the withdraw button
 
 ```objectivec
 - (void)authWithdrawal {
-    [TCGBGamebase withdrawWithViewController:self completion:^(TCGBError *error) {
+    [TCGBGamebase withdrawWithViewController:topViewController completion:^(TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Withdrawal Succeeded
         } else {
@@ -382,7 +382,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | keyname                                  | Usage                          | Value Type                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, payco, iosgamecenter, naver, google, twitter |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, payco, iosgamecenter, naver, google, twitter, line, appleid |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                                |
 
 
@@ -444,7 +444,7 @@ The following is an example of force mapping to Facebook:
         }
         else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
             NSLog(@"Already mapped to other member");
-            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketWithError:error];
+            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketFromError:error];
             [TCGBGamebase addMappingForciblyWithType:ticket.idPCode forcingMappingKey:ticket.forcingMappingKey viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
                 if ([TCGBGamebase isSuccessWithError:error]) {
                     // Mapping success.
@@ -509,7 +509,7 @@ The following is an example of force mapping to Facebook:
         }
         else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
             NSLog(@"Already mapped to other member");
-            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketWithError:error];
+            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketFromError:error];
             [TCGBGamebase addMappingWithCredential:credentialInfo forcingMappingKey:ticket.forcingMappingKey viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
                 if ([TCGBGamebase isSuccessWithError:error]) {
                     // Mapping success.
@@ -534,7 +534,7 @@ If IdP mapping is not removed, error will occur.<br/>
 After mapping is removed, Gamebase processes logout of the IdP.
 
 ```objectivec
-[TCGBGamebase removeMappingWithType:@"facebook" viewController:self completion:^(TCGBError *error) {
+[TCGBGamebase removeMappingWithType:@"facebook" viewController:topViewController completion:^(TCGBError *error) {
     if ([TCGBGamebase isSuccessWithError:error] == YES) {
         // To Remove Mapping Succeeded
     } else {
@@ -559,7 +559,7 @@ Process authentication with Gamebase, in order to get information required to cr
 >
 > Cannot import authentication information when you're logged in with "[TCGBGamebase loginForLastLoggedInProvider]" API.
 >
-> To obtain authentication information, log in with "[TCGBGamebase loginWithType:IDP_CODE viewController: self-completion: completion];" API with {IDP_CODE} parameter, which is same as IDPCode to use, instead of "[TCGBGamebase loginForLastLoggedInProvider]".
+> If authentication information is needed, log in using the "[TCGBGamebase loginWithType:IDP_CODE viewController:topViewController completion:completion];" API, using the {IDP_CODE} parameter that is same as that of the IDPCode to be used, instead of "[TCGBGamebase loginForLastLoggedInProvider]".
 
 ### Get Authentication Information for Gamebase
 Get authentication information issued by Gamebase.
@@ -573,9 +573,6 @@ NSString* gamebaseAccessToken = [TCGBGamebase accessToken];
 
 // Obtaining Last Logged In Provider
 NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
-
-// Obtaining Ban Information
-TCGBBanInfo* banInfo = [TCGBGamebase banInfo];
 ```
 
 
@@ -598,8 +595,8 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 
 ### Get Banned User Information
 
-For users who are registered banned in the Gamebase Console,
-information codes of restricted use will be displayed as below, when they try to log in. The ban information can be found by using the **[TCGBGamebase banInfo]** method.
+If a user is registered while being banned in Gamebase Console,
+the user will see the following usage restriction code when attempting to log in to the game. Ban information can be checked using the **[TCGBBanInfo banInfoFromError:error]** method.
 
 * TCGB_ERROR_BANNED_MEMBER
 
@@ -696,8 +693,12 @@ Transfers the account with TransferAccount issued with **issueTransfer** API.
 When account transfer is successful, a transfer completion message will be displayed from the device where TransferAccount has been issued and a new account will be created when a guest logs in.
 On the device where the account transfer was successfully made, the guest account from the previous device where TransferAccount was issued can still be used.
 
-> `Caution`
-> If account transfer is made while logged in to the guest account, the guest account will be lost.
+> 'Caution'
+> If migration succeeds while already logged in as a guest, the guest account logged in to the device will be lost.
+> If incorrect id/password is attempted multiple times, an **AUTH_TRANSFERACCOUNT_BLOCK(3042)** error occurs and the account migration is blocked for a certain period of time.
+> In this case, you can inform the user how long the account migration will be banned through the TCGBTransferAccountFailInfo value as shown below:
+
+
 
 **API**
 
@@ -710,9 +711,170 @@ On the device where the account transfer was successfully made, the guest accoun
 ```objectivec
  - (void)transferOtherDevice {
     [TCGBGamebase transferAccountWithIdPLoginWithAccountId:@"1Aie0198" accountPassword:@"1Aie0199" completion:^(TCGBAuthToken* authToken, TCGBError* error) {
-        NSLog(@"Transfered => %@,\nerror => %@", [authToken description], [error description]);
+       if (error.code == TCGB_ERROR_AUTH_TRANSFERACCOUNT_BLOCK) {
+            // Transfering Account failed.
+            TCGBTransferAccountFailInfo* failInfo = [TCGBTransferAccountFailInfo transferAccountFailInfoFrom:error];
+            if (failInfo == nil) {
+                // Transfering Account failed by entering the wrong id / pw multiple times.
+                // You can tell when the account transfer is blocked by the TransferAccountFailInfo.
+
+                NSString *failedId = failInfo.accountId;
+                NSInteger failCount = failInfo.failCount;
+                NSDate *blockedDate = [NSDate dateTimeIntervalSince1970:(failInfo.blockEndDate / 1000.0)];
+                return;
+            }
+            // Transfering Account failed by another reason.
+            return;  
+        }
+        // Transfering Account success.
+        // TODO: implements post login process
     }];
  }
+```
+
+
+
+## TemporaryWithdrawal
+
+This is a 'pending withdrawal" feature.
+By requesting a temporary withdrawal, the account is not immediately withdrawn. Instead, it is withdrawn after a specific grace period.
+The grace period can be changed in the console.
+
+> 'Caution'
+>
+> Do not use **[TCGBGamebase withdrawWithViewController:completion:]** API if you're using the Pending Withdrawal feature.
+> The **[TCGBGamebase withdrawWithViewController:completion:]** API immediately withdraws accounts when used.
+
+If login is successful, the AuthToken.getTemporaryWithdrawalInfo() API can be called to determine if the user is in the status of pending withdrawal.
+
+### Request TemporaryWithdrawal
+
+Requests a temporary withdrawal.
+The account is automatically withdrawn after a specific grace period set in the console.
+
+**API**
+
+```objectivec
++ (void)withdrawWithViewController:(UIViewController *)viewController completion:(WithdrawCompletion)completion;
+```
+
+**ErrorCode**
+
+|Error Code | Description |
+| --- | --- |
+| TCGB\_ERROR\_AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW(3602) | The user is already in the status of temporary withdrawal. |
+
+**Example**
+
+```objectivec
+- (void)testRequestWithdraw {
+    TCGBGamebase requestTemporaryWithdrawalWithViewController:parentViewController completion:^(TCGBTemporaryWithdrawalInfo *info, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == NO) {
+            if (error.code == TCGB_ERROR_AUTH_WITHDRAW_ALREADY_TEMPORARY_WITHDRAW) {
+                // Already requested temporary withdrawal before.
+            }
+            else {
+                // Request temporary withdrawal failed.
+                return;
+            }
+        }
+
+        // Request temporary withdrawal success.
+    }];
+}
+```
+
+### Check TemporaryWithdrawal User
+
+For games using the Pending Withdrawal feature must notify their users that they are in grace period if **TCGBAuthToken.tcgbMember.temporaryWithdrawal** is used and it returns a valid TemporaryWithdrawalInfo object instead of null.
+
+**Example**
+
+
+```objectivec
+- (void)testLogin {
+    [TCGBGamebase loginWithType:@"appleid" viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == NO) {
+            // Login failed
+            return;
+        }
+
+        // Check if user is requesting withdrawal
+        if (authToken.tcgbMember.temporaryWithdrawal != nil) {
+            // User is under temporary withdrawal
+            long gradePeriod = authToken.tcgbMember.temporaryWithdrawal.gracePeriodDate;
+        }
+        else {
+            // Login Success
+        }
+    }];
+}
+```
+
+### Cancel TemporaryWithdrawal
+
+Cancels a withdrawal request.
+If the grace period is over and the withdrawal process is completed, it cannot be undone.
+
+**API**
+
+```objectivec
++ (void)cancelTemporaryWithdrawalWithViewController:(UIViewController *)viewController completion:(WithdrawCompletion)completion;
+```
+
+**ErrorCode**
+
+|Error Code | Description |
+| --- | --- |
+| TCGB\_ERROR\_AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW(3603) | The user is not in the status of temporary withdrawal. |
+
+**Example**
+
+```objectivec
+- (void)testCancelWithdraw {
+    [TCGBGamebase cancelTemporaryWithdrawalWithViewController:parentViewController completion:^(TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == NO) {
+            if (error.code == TCGB_ERROR_AUTH_WITHDRAW_NOT_TEMPORARY_WITHDRAW) {
+                // Never requested temporary withdrawal before.
+            }
+            else {
+                // Cancel temporary withdrawal failed.
+                return
+            }
+        }
+
+        // Cancel temporary withdrawal success.
+    }];
+}
+```
+
+### Withdraw Immediately
+
+Immediately withdraws the account, ignoring the grace period.
+The internal mechanics are the same as the **[TCGBGamebase withdrawWithViewController:completion:]** API.
+
+Instant withdrawal cannot be undone, so it is important to ask the user several times if they really want to execute the command.
+
+**API**
+
+```objectivec
++ (void)withdrawImmediatelyWithViewController:(UIViewController *)viewController completion:(WithdrawCompletion)completion;
+```
+
+
+**Example**
+
+```objectivec
+- (void)testWithdrawImmediately {
+    [TCGBGamebase withdrawImmediatelyWithViewController:parentViewController completion:^(TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == NO) {
+            // withdraw failed.
+            return;
+        }
+
+        // Withdraw success.
+    }];
+}
 ```
 
 
@@ -720,37 +882,38 @@ On the device where the account transfer was successfully made, the guest accoun
 
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
-| Auth           | TCGB\_ERROR\_INVALID\_MEMBER             | 6          | Request for invalid member.                        |
-|                | TCGB\_ERROR\_BANNED\_MEMBER              | 7          | Named member has been banned.                               |
-|                | TCGB\_ERROR\_AUTH\_USER\_CANCELED        | 3001       | Login is cancelled.                            |
-|                | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | The authentication is not supported.                        |
-|                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | Named member does not exist or has withdrawn.                      |
-|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | Error in external authentication library. <br/> Check DetailCode and DetailMessage. |
-| Auth (Login)   | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED  | 3101       | Token login has failed.                          |
+| Auth           | TCGB\_ERROR\_INVALID\_MEMBER             | 6          | Invalid member request.                        |
+|                | TCGB\_ERROR\_BANNED\_MEMBER              | 7          | The member is temporarily banned.                               |
+|                | TCGB\_ERROR\_AUTH\_USER\_CANCELED        | 3001       | Login has been canceled.                            |
+|                | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | The authentication method is not supported.                        |
+|                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | The member either does not exist or withdrew their account.                      |
+|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR    | 3006       | Failed to initialize the external authentication library.                      |
+|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | An external authentication library error. <br/> Please check DetailCode and DetailMessage. |
+| Auth (Login)   | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED  | 3101       | Token login failed.                          |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | Invalid token information.                        |
-|                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | Invalid last login IdP information.                   |
-| IdP Login      | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED    | 3201       | IdP login has failed.                        |
-|                | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO | 3202       | IdP information is invalid. (The IdP information is unavailable in console.) |
-| Add Mapping    | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FAILED  | 3301       | Add mapping has failed.                           |
-|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | Already mapped to another member.                      |
-|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | Already mapped to same IdP.                     |
-|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO | 3304       | Invalid IDP information.(IDP information does not exist in the Console.) |
-|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_CANNOT\_ADD\_GUEST\_IDP | 3305  | Mapping with guest IdP is unavailable. |
-| Remove Mapping | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_FAILED | 3401       | Remove mapping has failed.                           |
-|                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | Cannot delete last mapped IDP.                |
-|                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403       | Currently logged-in IDP.                     |
-| Logout         | TCGB\_ERROR\_AUTH\_LOGOUT\_FAILED        | 3501       | Logout has failed.                            |
-| Withdrawal     | TCGB\_ERROR\_AUTH\_WITHDRAW\_FAILED      | 3601       | Withdrawal has failed.                              |
-| Not Playable   | TCGB\_ERROR\_AUTH\_NOT\_PLAYABLE         | 3701       | Not playable.(due to maintenance or service closed).        |
-| Auth(Unknown)  | TCGB\_ERROR\_AUTH\_UNKNOWN\_ERROR        | 3999       | Unknown error(Undefined error)            |
+|                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | No recent login IdP information.                   |
+| IdP Login      | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED    | 3201       | IdP login failed.                        |
+|                | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO | 3202       | Invalid IdP information. (The console has no information about the IdP.) |
+| Add Mapping    | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FAILED  | 3301       | Additional mapping failed.                           |
+|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | Already mapped to a different member.                      |
+|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | Already mapped to the same IdP.                     |
+|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO | 3304       | Invalid IdP information. (The console has no information about the IdP.) |
+|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_CANNOT\_ADD\_GUEST\_IDP | 3305  | AddMapping is unavailable with the guest IdP. |
+| Remove Mapping | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_FAILED | 3401       | Failed to delete mapping.                           |
+|                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | The last mapped IdP cannot be deleted.                |
+|                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403       | The IdP is currently logged in.                     |
+| Logout         | TCGB\_ERROR\_AUTH\_LOGOUT\_FAILED        | 3501       | Failed to log out.                            |
+| Withdrawal     | TCGB\_ERROR\_AUTH\_WITHDRAW\_FAILED      | 3601       | Failed to withdraw the account.                              |
+|                | TCGB\_ERROR\_AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | The user is already in the status of temporary withdrawal.                    |
+|                | TCGB\_ERROR\_AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | The user is not in the status of temporary withdrawal.                     |
+| Not Playable   | TCGB\_ERROR\_AUTH\_NOT\_PLAYABLE         | 3701       | The game is unavailable at the moment (for maintenance, service termination, or other reasons).        |
+| Auth(Unknown)  | TCGB\_ERROR\_AUTH\_UNKNOWN\_ERROR        | 3999       | An unknown error occurred (undefined error).            |
 
 
 
 
-
-* Refer to the following document for the entire error codes.
-    - [Entire Error Codes](./error-code/#client-sdk)
-
+* For the entire list of error codes, see the following document.
+    - [Error Code] (./error-code/#client-sdk)
 
 
 **TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR**
