@@ -11,8 +11,6 @@ IdP is not used for signing in or out, but serves as a unique identifier provide
 
 Detailed information of searched users are displayed in the above, while history data such as login, mapping, purchase, ban, and playtime are shown under, as taps.
 
-
-
 ### Detail Information
 ![gamebase_member_01_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_01_201812_en.png)
 
@@ -32,8 +30,7 @@ Detailed information of searched users are displayed in the above, while history
 ![gamebase_member_02_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_02_201812_en.png)
 
 You can change user account status to these below:
-
-- **OK**: You can change to Banned or Withdrawn status. When the account is withdrawn, all the information is lost and can't be recovered. 
+- **OK**: You can change to Banned or Withdrawn status. When the account is withdrawn, all the information is lost and can't be recovered.
 - **Banned**: You can lift a ban on the account.
 - **Withdrawn**: 'Modify Status' button won't be shown.
 
@@ -47,13 +44,13 @@ In Gamebase, many external IdPs can be integrated. In short, a user can log in b
 
 #### Mapping
 You can map the user's IdP to other account.
-This only works if the target account status is OK. 
+This only works if the target account status is OK.
  *Press the button pointing to the right to map the IdP*.
  You can revoke the change - as long as you didn't press the 'Add Mapping' button - by pressing the subtract button.
  *When a guest account is mapped to an IdP, the guest information will be lost*.
  When the account has only one IdP bound but it's mapped to other account, the account status will change to **Lost** and it can't be used anymore.
 
- ##### Mapping Example
+##### Mapping Example
 
 ![gamebase_member_03_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_03_201812_en.png)
 
@@ -146,8 +143,8 @@ Can search by date, and history data can be retrieved up to 1 month (30 days).
 
 ### Withdraw History
 ![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
-Displays a withdrawal history if the searched user is a withdrawn user.
-This menu is displayed only when searching for withdrawn game users, which allows you to check the withdrawal path of the user.
+
+Retrieve withdraw log of a searched user by date.
 
 ## Transfer account
 This is available only when the **device transfer** function is used. [Enable the device transfer function](./oper-app/#transfer-account)
@@ -168,7 +165,7 @@ You can check the history of issue and verification of the device transfer key f
 You can retrieve the history of keys issued to game users.
 By default, the last issued key is selected. If you select another key, you can check the history of that key.
 
-### Device transfer reissuance
+### Reissuance Transfer account
 
 Click the **Reissue** button to reissue the device transfer key. The previous key cannot be used when a new one is reissued.
 

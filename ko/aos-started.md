@@ -27,7 +27,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
         * [Google APIs for Android](https://developers.google.com/android/guides/overview)
         * [Naver for developers](https://developers.naver.com/docs/login/android/)
         * [Twitter Android Developer's guide - Log in with Twitter](https://dev.twitter.com/web/sign-in/implementing)
-        * [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/basics/authentication/overview)
+        * [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
         * [Line for developers](https://developers.line.biz/en/docs/android-sdk/integrate-line-login/)
         * [Payco Login SDK for developers](https://developers.payco.com/guide/development/apply/android)
         * [Sign in with Apple JS guide](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js)

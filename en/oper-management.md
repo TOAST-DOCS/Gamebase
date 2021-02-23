@@ -11,9 +11,9 @@ Authority of Gamebase Console can be managed.
 * Manage authority of Gamebase Console
   * **Access to sales status** : Access to **IAP** menu
   * **Access to management menu** : Access authority to other menu
+  * **Role of Downloading All Members**: Role to download information of **All Project Members** 
 * To register a new member, go to **NHN Cloud Console Page**.
 * Cannot modify your own authority.
-  
 
 ## Alarm
 

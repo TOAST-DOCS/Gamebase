@@ -149,19 +149,19 @@ Refer to the table for status codes:
 | INTERNAL_SERVER_ERROR       | 500  | Error of internal server.                                 |
 
 
-[Console Guide](/Game/Gamebase/en/oper-app/#app)
+[Console Guide](/Game/Gamebase/ko/oper-app/#app)
 
 **1.2 App**
 
-App information registered on Gamebase console:
+This is information about apps registered in the Gamebase Console.
 
 * accessInfo
     * serverAddress: Server address
-    * csInfo: Customer center information
+    * csInfo: Customer Center information
 * relatedUrls
-    * termsUrl: Terms of Service
-    * personalInfoCollectionUrl: Consent to Personal Information
-    * punishRuleUrl: Ban Regulation 
+    * termsUrl: Terms and Conditions
+    * personalInfoCollectionUrl: Personal information collection agreement
+    * punishRuleUrl: User ban rules
     * csUrl: Customer Center
 * install: Installation URL
 * idP: Authentication information
@@ -170,7 +170,7 @@ App information registered on Gamebase console:
 
 **1.3 Maintenance**
 
-Maintenance information registered on Gamebase Console.
+This is information about maintenance registered in the Gamebase Console.
 
 * url: URL for maintenance page
 * timezone: Standard time zone (timezone)
@@ -182,7 +182,7 @@ Maintenance information registered on Gamebase Console.
 
 **1.4 Notice**
 
-Notice information registered on Gamebase console:
+This is information about notification registered in the Gamebase Console.
 
 * message: Message
 * title: Title
@@ -192,7 +192,7 @@ Notice information registered on Gamebase console:
 
 #### 2. tcProduct
 
-Appkey of NHN Cloud linked to Gamebase: 
+The appKey of the TOAST service associated with Gamebase.
 
 * gamebase
 * tcLaunching
@@ -201,7 +201,7 @@ Appkey of NHN Cloud linked to Gamebase:
 
 #### 3. tcIap
 
-IAP store information registered on NHN Cloud console:
+This is information about IAP stores registered in the TOAST console.
 
 * id: App ID
 * name: App Name
@@ -211,16 +211,66 @@ IAP store information registered on NHN Cloud console:
 
 #### 4. tcLaunching
 
-User-input information for NHN Cloud launching console:
+The information users entered in the TOAST Launching Console.
 
-* Send user-input values in JSON string.
-* For further details of NHN Cloud Launching, see the guide as below:  
+* The value entered by users is sent as a JSON string.
+* See the guide below for the detailed TOAST Launching settings.
 
 [Console Guide](/Game/Gamebase/en/oper-management/#config)
 
 
+### Handling Unregistered Version
+      
+If GameClientVersion that is not registered in the Gamebase Console is initialized, the **LAUNCHING_UNREGISTERED_CLIENT(2004)** error occurs.
+In the enablePopup(true), enableLaunchingStatusPopup(true) status, it forces the update popup to be displayed and users can move to the market.
+If the Gamebase popup is not used, the related UI can be manually implemented so users can move to the market by acquiring UpdateInfo from the TCGBError object.
+
+**VO**
+
+```objectivec
+@interface TCGBUpdateInfo : NSObject
+
+// Store installation URL that can download the latest version.
+@property (nonatomic, strong, nullable) NSString* installUrl;
+
+// A message that is exposed to users; it is delivered in the language set by the user's device.
+// The message is as below if the language is 'en.'
+// 'The version is not supported. Please get the latest update version.'
+@property (nonatomic, strong, nullable) NSString* message;
+
+@end
+```
 
 
+**API**
+
+```objectivec
++ (nullable TCGBUpdateInfo *)updateInfoFromError:(nonnull TCGBError *)error;
+```
+
+
+**Example**
+
+```objectivec
+- (void)initializeGamebase {
+    TCGBConfiguration* config = [TCGBConfiguration configurationWithAppID:@"YOUR_APP_ID" appVersion:@"YOUR_APP_VERSION" zoneType:@"YOUR_ZONE_TYPE"];
+    [TCGBGamebase initializeWithConfiguration:config completion:^(id launchingData, TCGBError *result) {
+
+        if (result == nil) {
+            // Gamebase initialization succeeded.
+        } else {
+            // Gamebase initialization failed.
+            TCGBUpdateInfo* updateInfo = [TCGBUpdateInfo updateInfoFromError:result];
+            if (updateInfo) {
+                // Unregistered game client version.
+                // Open market url to update application.
+                NSLog(@"UpdateInfo after initialize => \n%@", [updateInfo prettyJsonString]);
+            }
+        
+        }
+    }];
+}
+```
 
 ## Lifecycle Event
 

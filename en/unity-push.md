@@ -53,6 +53,29 @@ public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNig
 }
 ```
 
+#### Setting for APNS Sandbox
+* Enable the SandboxMode, and push messages can be registered and sent via APNS Sandbox. 
+* Sending from Console
+    * Select **iOS Sandbox** from **Target** of the Push menu, and send.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+public static void SetSandboxMode(bool isSandbox)
+```
+
+**Example**
+
+```cs
+public void SetSandboxModeSample()
+{
+    Gamebase.Push.SetSandboxMode(true);
+}
+```
+
 ### Request Push Settings
 
 To retrieve user's push setting, apply API as below.
