@@ -82,7 +82,7 @@ Setting Tool is provided to install Gamebase SDK with more at ease.
 6. Select a module for each platform.
     * For Authentication, integration with an ID Provider (IdP), like Google, is supported.
     * For Push, FCM(Firebase), Tencent and APNS Push services are supported.
-    * For Purchase, In-App Purchase (IAP) of TOAST is provided.
+    * For Purchase, In-App Purchase (IAP) of NHN Cloud is provided.
 7. Click [Settings] and install SDK.
 
 #### Delete SDK

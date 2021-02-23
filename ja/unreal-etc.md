@@ -248,7 +248,7 @@ FString GetCountryCode() const;
 現在GamebaseでサポートするServer Push Typeは次のとおりです。
 
 * GamebaseServerPushType::AppKickout (= "appKickout")
-    * TOAST Gamebaseコンソールの**Operation > Kickout**からキックアウトServerPushメッセージを登録すると、Gamebaseと接続されたすべてのクライアントから**APP_KICKOUT**メッセージを受け取ります。
+    * NHN Cloud Gamebaseコンソールの**Operation > Kickout**からキックアウトServerPushメッセージを登録すると、Gamebaseと接続されたすべてのクライアントから**APP_KICKOUT**メッセージを受け取ります。
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 
@@ -523,9 +523,9 @@ Gamebaseは、顧客からの問い合わせに対応するための機能を提
 
 > [TIP]
 >
-> TOAST Contactサービスと連携して使用すると、より簡単に顧客からの問い合わせに対応できます。
-> 詳しいTOAST Contactサービス利用方法は、下記のガイドを参照してください。
-> [TOAST Online Contact Guide](/Contact%20Center/ja/online-contact-overview/)
+> NHN Cloud Contactサービスと連携して使用すると、より簡単に顧客からの問い合わせに対応できます。
+> 詳しいNHN Cloud Contactサービス利用方法は、下記のガイドを参照してください。
+> [NHN Cloud Online Contact Guide](/Contact%20Center/ja/online-contact-overview/)
 
 #### Open Contact WebView
 

@@ -1,11 +1,11 @@
 ## Game > Gamebase > Android SDK使用指南 > Logger
 
-下面将了解在Android中使用TOAST Logger SDK的方法。
+下面将了解在Android中使用NHN Cloud Logger SDK的方法。
 
 ### Initialize
 
-利用从Log & Crash Search获得的AppKey对TOAST Logger SDK进行初始化。<br/>
-为了毫无遗漏地传输运行应用程序时发生的崩溃日志，需要在**Application.onCreate()**中对TOAST Logger进行初始化。
+利用从Log & Crash Search获得的AppKey对NHN Cloud Logger SDK进行初始化。<br/>
+为了毫无遗漏地传输运行应用程序时发生的崩溃日志，需要在**Application.onCreate()**中对NHN Cloud Logger进行初始化。
 
 **API**
 
@@ -34,7 +34,7 @@ public class MyApplication extends Application {
 ### Send Logs
 
 通过Log & Crash Server传输日志
-TOAST Logger SDK可传输如下五种级别的日志。
+NHN Cloud Logger SDK可传输如下五种级别的日志。
 
 * DEBUG
 * INFO

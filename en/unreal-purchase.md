@@ -226,7 +226,7 @@ The promotion IAP can be made public by separate configuration at App Store Conn
 >
 > Available only on iOS 11 or higher. 
 > Build is required only for Xcode 9.0 or higher. 
-> Supported on Gamebase 1.13.0 or higher. (with TOAST IAP SDK 1.6.0 or higher)
+> Supported on Gamebase 1.13.0 or higher. (with NHN Cloud IAP SDK 1.6.0 or higher)
 
 
 > <font color="red">[Caution]</font><br/>
@@ -336,7 +336,7 @@ else
 ```
 
 * For IAP error codes, see the following document as reference.
-    * [TOAST > User Guide for TOAST SDK > TOAST IAP > Unity > Error Codes](/TOAST/en/toast-sdk/iap-unity/#_17)
+    * [NHN Cloud > User Guide for NHN Cloud SDK > NHN Cloud IAP > Unity > Error Codes](/TOAST/en/toast-sdk/iap-unity/#_17)
 
 
 

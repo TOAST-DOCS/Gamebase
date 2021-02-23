@@ -250,7 +250,7 @@ var accessToken = toast.Gamebase.getAccessToken();
 ```
 
 ### Get Banned User Information
-If you are registered as a banned game user in the TOAST Gamebase console,
+If you are registered as a banned game user in the NHN Cloud Gamebase console,
 the following ban information code will be displayed when you try to log in. You can check the ban information with the **toast.Gamebase.getBanInfo()** method.
 
 ```js

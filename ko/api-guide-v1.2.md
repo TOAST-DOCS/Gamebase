@@ -24,7 +24,7 @@ API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주�
 
 #### AppId
 
-앱 ID는 TOAST 프로젝트 ID로 앱 메뉴 화면에서 확인할 수 있습니다.
+앱 ID는 NHN Cloud 프로젝트 ID로 앱 메뉴 화면에서 확인할 수 있습니다.
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
 #### SecretKey
@@ -113,7 +113,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | NHN Cloud 프로젝트 ID |
 | userId | String | 로그인한 사용자 아이디 |
 | accessToken | String | 로그인한 사용자에게 발급된 Access Token |
 
@@ -212,7 +212,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | NHN Cloud 프로젝트 ID |
 
 **[Request Parameter]**
 
@@ -346,7 +346,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | NHN Cloud 프로젝트 ID |
 | userId | String | 조회 대상 사용자 ID |
 
 **[Request Parameter]**
@@ -452,7 +452,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | NHN Cloud 프로젝트 ID |
 
 **[Request Body]**
 
@@ -514,7 +514,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | NHN Cloud 프로젝트 ID |
 
 **[Request Body]**
 
@@ -576,7 +576,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | NHN Cloud 프로젝트 ID |
 
 **[Request Parameter]**
 
@@ -632,7 +632,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | NHN Cloud 프로젝트 ID |
 
 **[Request Parameter]**
 
@@ -697,7 +697,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | pagingInfo.totalElements | int | 전체 데이터 수 |
 | pagingInfo.totalPages | int | 전체 페이징 수 |
 | result | Array[Object] | 조회된 이용 정지 내역 |
-| result.appId | String | 조회된 이용 정지 의 TOAST 프로젝트 ID |
+| result.appId | String | 조회된 이용 정지 의 NHN Cloud 프로젝트 ID |
 | result.banCaller | String | 이용 정지 호출 주체 |
 | result.banReason | String | 이용 정지 사유 |
 | result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
@@ -739,7 +739,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | NHN Cloud 프로젝트 ID |
 
 **[Request Parameter]**
 
@@ -804,7 +804,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | pagingInfo.totalElements | int | 전체 데이터 수 |
 | pagingInfo.totalPages | int | 전체 페이징 수 |
 | result | Array[Object] | 조회된 이용 정지 정보 |
-| result.appId | String | 조회된 이용 정지 의 TOAST 프로젝트 ID |
+| result.appId | String | 조회된 이용 정지 의 NHN Cloud 프로젝트 ID |
 | result.banCaller | String | 이용 정지 호출 주체 |
 | result.banReason | String | 이용 정지 사유 |
 | result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
@@ -846,7 +846,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | NHN Cloud 프로젝트 ID |
 
 **[Request Parameter]**
 
@@ -924,7 +924,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | NHN Cloud 프로젝트 ID |
 | userId | String | 탈퇴 대상 사용자 ID |
 
 **[Request Parameter]**
@@ -977,7 +977,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | NHN Cloud 프로젝트 ID |
 
 **[Request Parameter]**
 
@@ -1050,7 +1050,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | NHN Cloud 프로젝트 ID |
 | userId | String | 쿠폰을 사용할 userId |
 | couponCode | String | 쿠폰 코드 |
 
@@ -1130,7 +1130,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | NHN Cloud 프로젝트 ID |
 
 **[Request Parameter]**
 
@@ -1202,7 +1202,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | NHN Cloud 프로젝트 ID |
 
 **[Request Parameter]**
 
@@ -1285,7 +1285,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | NHN Cloud 프로젝트 ID |
 
 **[Request Parameter]**
 
@@ -1365,7 +1365,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 ## Leaderboard
 
-Gamebase는 TOAST Leaderboard 서비스의 서버 API에 대해 **Wrapping** 기능을 제공합니다. Wrapping 기능을 사용하면 사용자 서버에서 일관된 인터페이스로 TOAST 서비스들을 사용할 수 있습니다.
+Gamebase는 NHN Cloud Leaderboard 서비스의 서버 API에 대해 **Wrapping** 기능을 제공합니다. Wrapping 기능을 사용하면 사용자 서버에서 일관된 인터페이스로 NHN Cloud 서비스들을 사용할 수 있습니다.
 
 
 #### Wrapping API

@@ -1,6 +1,6 @@
 ## Game > Gamebase > Unity Developer's Guide > Initialization
 
-To use Gamebase Unity SDK, initialization is required, and App ID and app version should be registered in the TOAST Console.
+To use Gamebase Unity SDK, initialization is required, and App ID and app version should be registered in the NHN Cloud Console.
 
 ### GamebaseConfiguration 
 
@@ -21,19 +21,19 @@ Following settings are required for initialization.
 
 #### 1. App ID
 
-Project ID registered in TOAST.
+Project ID registered in NHN Cloud.
 
 [Console Guide](/Game/Gamebase/en/oper-app/#app)
 
 #### 2. appVersion
 
-Client version registered in TOAST.
+Client version registered in NHN Cloud.
 
 [Console Guide](/Game/Gamebase/en/oper-app/#client)
 
 #### 3. storeCode
 
-Store information required to initialize In-App Purchase (IAP) of TOAST.
+Store information required to initialize In-App Purchase (IAP) of NHN Cloud.
 
 | Store       | Code | Description  |
 | ----------- | ---- | ------------ |
@@ -194,7 +194,7 @@ public class SampleInitialization
 ### Launching Information
 
 When Gamebase Unity SDK is initialized by using Initialize API, LaunchingInfo object results will be delievered.
-This LaunchingInfo object contains settings of the TOAST Gamebase Console and game status.
+This LaunchingInfo object contains settings of the NHN Cloud Gamebase Console and game status.
 
 #### 1. Launching
 
@@ -228,7 +228,7 @@ For game status codes, refer to the table below.
 
 **1.2 App**
 
-App information registered in the TOAST Console.
+App information registered in the NHN Cloud Console.
 
 * accessInfo
     * serverAddress: Address of the server
@@ -245,7 +245,7 @@ App information registered in the TOAST Console.
 
 **1.3 Maintenance**
 
-Maintenance information registered in the TOAST Console is as follows.
+Maintenance information registered in the NHN Cloud Console is as follows.
 
 * url: Maintenance page url
 * timezone: Standard timezone (timezone)
@@ -267,7 +267,7 @@ Following notices are registered in the Gamebase Console.
 
 #### 2. tcProduct
 
-Appkey of TOAST Products linked to Gamebase.
+Appkey of NHN Cloud Products linked to Gamebase.
 
 * gamebase
 * tcLaunching
@@ -276,7 +276,7 @@ Appkey of TOAST Products linked to Gamebase.
 
 #### 3. tcIap
 
-IAP store information registered in the TOAST Console.
+IAP store information registered in the NHN Cloud Console.
 
 * id: App ID
 * name: App Name
@@ -286,10 +286,10 @@ IAP store information registered in the TOAST Console.
 
 #### 4. tcLaunching
 
-Refers to user-input information on TOAST Launching Console.  
+Refers to user-input information on NHN Cloud Launching Console.  
 
 * Deliver user-input values via JSON string. 
-* For detail setting of TOAST Launching, see the guide as below. 
+* For detail setting of NHN Cloud Launching, see the guide as below. 
  
 [Console Guide](/Game/Gamebase/en/oper-management/#config)
 

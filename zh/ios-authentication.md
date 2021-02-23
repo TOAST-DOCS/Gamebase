@@ -139,7 +139,7 @@ Gamebase默认支持Guest登录。
 例如，要实现Facebook登录，您需要设置scope等。<br/>
 为了设置这些信息，提供了 **[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API。<br/>
 可以用dictionary格式把信息输入到参数additionalInfo中。<br/>
-（当参数值为nil时，它将填充在TOAST Console中注册的additionalInfo值。如果参数值存在，则覆盖在Console中注册的值。）
+（当参数值为nil时，它将填充在NHN Cloud Console中注册的additionalInfo值。如果参数值存在，则覆盖在Console中注册的值。）
 
 
 > [参考]

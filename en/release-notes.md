@@ -2,30 +2,35 @@
 
 ### February 9, 2021 
 
+### February 9, 2021
+
 #### More Features
-* 공통약관 기능 추가
-	* [Console] 신규 메뉴 오픈: 앱 > 약관, 앱 > 약관 배포
-	* [SDK] 2.20.0
-		* (공통) 약관 웹뷰를 여는 API 추가
-		* (공통) 약관 리스트 및 유저별 동의 여부를 조회하는 API 추가
-		* (공통) 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
+
+- Common Terms and Conditions feature added
+  - [Console] New menu opened: App > Terms and Conditions, App > Terms and Conditions Deployment
+  - [SDK] 2.20.0
+    - (Common) Added API to open WebView of Terms and Conditions
+    - (Common) Added API to view the list of Terms and Conditions and agreement status of each user
+    - (Common) Added API to save agreement status of each user in Gamebase server
 
 #### Feature Updates
-* [Console] 앱 > 클라이언트: 클라이언트 버전을 스토어별로 구분하여 표시하도록 화면 개선
-* [SDK] 2.20.0
-	* (공통) 고객센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객센터가 표시되도록 변경
-	* (Unity) Warning 로그 제거
-	* (Unity) Standalone WebView에 CEF 2.1.2 업데이트
-		* URL의 길이가 2,048보다 길 경우 크래시가 발생하는 이슈 수정
-		* Unity 2019에서 빌드 시 라이브러리 경로가 변경되어 PostProcessBuild 개선
-		* string 초기화를 하지 않아 간헐적으로 발생하는 오류 수정
-		* Gamebase WebView 사용 중 WebView가 신(scene)을 이동한 이후에는 다시 열리지 않는 버그 수정
+
+- [Console] App > Client: Updated screen to represent client versions according to stores
+- [SDK] 2.20.0
+  - (Common) Made changes to display Customer Center without login if Customer Center type is TOAST Online Contact
+  - (Unity) Warning log removed
+  - (Unity) Updated CEF 2.1.2 to Standalone WebView
+    - Modified issue of crash occurrence in cases where URL length is longer than 2,048
+    - Updated PostProcessBuild by changing library path when building in Unity 2019
+    - Modified an occasional error which occurs when string is not initialized
+    - Fixed a bug where WebView does not open after a scene is moved while using Gamebase
 
 #### Bug Fixes
-* [SDK] 2.20.0
-	* (JavaScript) 콘솔에 고객센터 정보를 입력하지 않으면 초기화 시 오류가 발생하여 수정
-* [SDK] 2.19.1
-	* (Unreal) Unity 빌드 중 제외되는 파일이 생길 때 발생하는 컴파일 오류 수정
+
+- [SDK] 2.20.0
+  - (JavaScript) Modified issue of error occurrence during initialization if Customer Center information is not entered in console
+- [SDK] 2.19.1
+  - (Unreal) Modified a compile error that occurs when files are excluded from Unity build
 
 ### January 26, 2021 
 

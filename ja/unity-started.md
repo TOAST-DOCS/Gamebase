@@ -80,7 +80,7 @@ Gamebase SDKを手軽にインストールすることができるように、Se
 6. プラットフォームごとに使用するモジュールを選択します。
     * Authenticationは、Googleと同じID Provider(以下、IDP)との連携に対応しています。
     * Pushは、FCM(Firebase)、Tencent Push、APNS Pushサービスに対応しています。
-    * Pruchaseは、TOASTの決済サービスであるIAP(In-App Purchase)を使用して決済に対応しています。
+    * Pruchaseは、NHN Cloudの決済サービスであるIAP(In-App Purchase)を使用して決済に対応しています。
 7. [Settings]ボタンをクリックしてSDKをインストールします。
 
 #### SDK削除

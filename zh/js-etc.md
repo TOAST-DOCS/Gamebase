@@ -248,7 +248,7 @@ toast.Gamebase.setDisplayLanguageTable(displayLanguageTable) {
 可在**toast.GamebaseServerPushType**常数中确认。
 
 * 踢出(Kickout)
-    * 若在TOAST Gamebase控制台的`Operation > Kickout`中注册踢出ServerPush信息，则可向与Gamebase连接的所有客户发送信息。
+    * 若在NHN Cloud Gamebase控制台的`Operation > Kickout`中注册踢出ServerPush信息，则可向与Gamebase连接的所有客户发送信息。
     * Type:toast.GamebaseServerPushType.APP_KICKOUT (= "appKickout")
 
 

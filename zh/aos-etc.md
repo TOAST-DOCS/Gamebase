@@ -277,7 +277,7 @@ localizedstring.json中定义的格式如下。
 目前，Gamebase支持的Server Push Type如下。
 
 * ServerPushEventMessage.Type.APP_KICKOUT (= "appKickout")
-    * 如果在TOAST Gamebase控制台的 **Operation > Kickout** 中注册kickout ServerPush消息，与Gamebase连接的所有客户端的将收到 **APP_KICKOUT** 消息。
+    * 如果在NHN Cloud Gamebase控制台的 **Operation > Kickout** 中注册kickout ServerPush消息，与Gamebase连接的所有客户端的将收到 **APP_KICKOUT** 消息。
 
 ![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
 
@@ -580,9 +580,9 @@ Gamebase提供用于应对客户咨询的功能。
 
 > [TIP]
 >
-> 若与TOAST Contact商品关联使用，则可更加轻松方便地应对顾客咨询。
-> 详细的TOAST Contact商品使用，请参考如下指南。
-> [TOAST Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
+> 若与NHN Cloud Contact商品关联使用，则可更加轻松方便地应对顾客咨询。
+> 详细的NHN Cloud Contact商品使用，请参考如下指南。
+> [NHN Cloud Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
 >
 
 #### Open Contact WebView

@@ -13,7 +13,7 @@ AndroidやiOSでPushを設定する方法は、次のドキュメントをご参
 
 ### Register Push
 
-次のAPIを呼び出してTOAST Pushに該当するユーザーを登録します。
+次のAPIを呼び出してNHN Cloud Pushに該当するユーザーを登録します。
 Pushの同意状態(enablePush)、Push型広告の同意状態(enableAdPush)、夜間のPush型広告の同意状態(enableAdNightPush)の値をユーザーから取得し、次のAPIを呼び出して登録を完了させます。
 
 
@@ -97,7 +97,7 @@ public void QueryPush()
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | TOAST Pushライブラリーエラーです。<br>DetailCodeを確認してください。|
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | NHN Cloud Pushライブラリーエラーです。<br>DetailCodeを確認してください。|
 | PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | 前回のPush APIの呼び出しが完了していません。<br> 前回のPush APIのコールバックが実行された後、もう一度呼び出してください。|
 | PUSH_UNKNOWN_ERROR             | 5999       | 定義されていないPushエラーです。<br>ログ全体を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。|
 
@@ -106,7 +106,7 @@ public void QueryPush()
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* このエラーは、TOAST Pushライブラリーで発生したエラーです。
+* このエラーは、NHN Cloud Pushライブラリーで発生したエラーです。
 * エラーコードは次のように確認できます。
 
 ```cs
@@ -131,7 +131,7 @@ else
 }
 ```
 
-* TOAST Pushのエラーコードを確認してください。
+* NHN Cloud Pushのエラーコードを確認してください。
     * [Android](aos-push#error-handling)<br/>
     * [iOS](ios-push#error-handling)
 

@@ -1,9 +1,9 @@
 ## Game > Gamebase > iOS SDK User Guide > Logger
 
-This document describes how to use TOAST Logger SDK on iOS. 
+This document describes how to use NHN Cloud Logger SDK on iOS. 
 
 ### Initialize
-Initialize TOAST Logger SDK with appkey issued from Log & Crash Search. 
+Initialize NHN Cloud Logger SDK with appkey issued from Log & Crash Search. 
 
 **API**
 
@@ -28,7 +28,7 @@ Initialize TOAST Logger SDK with appkey issued from Log & Crash Search.
 ### Send Logs
 
 Send logs to Log & Crash Server. 
-TOAST Logger SDK provides the following five level of logs to send:
+NHN Cloud Logger SDK provides the following five level of logs to send:
 
 * DEBUG
 * INFO

@@ -3,7 +3,7 @@
 提供禁用功能，限制不当使用应用或玩游戏的用户。
 当被禁用的用户再次登录或恢复会话时，将显示禁止使用弹窗以限制游戏的使用。
 
-可以在Gamebase Console中手动添加禁用，如果您使用的是TOAST AppGuard，也可以使用添加模板来自动添加禁用。
+可以在Gamebase Console中手动添加禁用，如果您使用的是NHN Cloud AppGuard，也可以使用添加模板来自动添加禁用。
 
 AppGuard的联动方法 ，请参考[AppGuard](./oper-ban/#appguard)。
 
@@ -142,7 +142,7 @@ AppGuard的联动方法 ，请参考[AppGuard](./oper-ban/#appguard)。
 ## AppGuard
 
 > <font color="red">[重要]</font>
-> 仅在使用TOAST AppGuard服务时可用。
+> 仅在使用NHN Cloud AppGuard服务时可用。
 
 ![gamebase_ban_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_09_201812.png)
 

@@ -199,7 +199,7 @@ Gamebase 콘솔에 등록된 공지 정보입니다.
 
 #### 2. tcProduct
 
-Gamebase와 연계된 TOAST 서비스의 앱키입니다.
+Gamebase와 연계된 NHN Cloud 서비스의 앱키입니다.
 
 * gamebase
 * tcLaunching
@@ -208,7 +208,7 @@ Gamebase와 연계된 TOAST 서비스의 앱키입니다.
 
 #### 3. tcIap
 
-TOAST 콘솔에 등록된 IAP 스토어 정보입니다.
+NHN Cloud 콘솔에 등록된 IAP 스토어 정보입니다.
 
 * id: App ID
 * name: App Name
@@ -218,10 +218,10 @@ TOAST 콘솔에 등록된 IAP 스토어 정보입니다.
 
 #### 4. tcLaunching
 
-TOAST Launching Console에서 사용자가 입력한 정보입니다.
+NHN Cloud Launching Console에서 사용자가 입력한 정보입니다.
 
 * 사용자가 입력한 값을 JSON string으로 전달합니다.
-* TOAST Launching 상세 설정은 아래 가이드를 참고하시기 바랍니다.
+* NHN Cloud Launching 상세 설정은 아래 가이드를 참고하시기 바랍니다.
 
 [콘솔 가이드](/Game/Gamebase/ko/oper-management/#config)
 

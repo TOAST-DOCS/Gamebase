@@ -199,8 +199,8 @@ void Login(const FString& providerName, const UGamebaseJsonObject& additionalInf
 > For instance, to log in to Facebook, the setting for scope is needed. <br/>
 > To configure such required information, API for static void Login (string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) is provided. <br/>
 > You may enter information for the additionalInfo parameter in the format of dictionary.  
-When there's available value for additionalInfo, use it; otherwise (null), apply default value registered on TOAST Console.   
-([Setting additionalInfo for TOAST Console](./oper-app/#authentication-information))<br/>
+When there's available value for additionalInfo, use it; otherwise (null), apply default value registered on NHN Cloud Console.   
+([Setting additionalInfo for NHN Cloud Console](./oper-app/#authentication-information))<br/>
 > Standalone supports a login via WebViewAdapter and does not block event input via UIs when WebView is open. 
 
 **Example**
@@ -1214,7 +1214,7 @@ void Sample::WithdrawImmediately()
 |                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | Account transfer is locked due to many inputs of invalid TransferAccount. |
 |                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | TransferAccount ID is invalid. |
 |                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | TransferAccount password is invalid. |
-|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccount is not set up. <br/> Please enable it first on TOAST Gamebase Console.  |
+|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccount is not set up. <br/> Please enable it first on NHN Cloud Gamebase Console.  |
 |                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccount does not exist. Please get TransferAccount issued.  |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccount already exists. |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount has already been used. |

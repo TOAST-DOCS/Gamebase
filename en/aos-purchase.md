@@ -280,7 +280,7 @@ See the guide on how to process a promotional purchase event via GamebaseEventHa
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs at an TOAST IAP SDK.
+* Occurs at an NHN Cloud IAP SDK.
 * Check the error code as below.
 
 ```java
@@ -309,6 +309,6 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 });
 ```
 
-* For TOAST IAP SDK error codes, refer to the document below.
-    * [TOAST > TOAST SDK User Guide > TOAST IAP > Android > Error Codes](/TOAST/en/toast-sdk/iap-android/#_24)
+* For NHN Cloud IAP SDK error codes, refer to the document below.
+    * [NHN Cloud > NHN Cloud SDK User Guide > NHN Cloud IAP > Android > Error Codes](/TOAST/en/toast-sdk/iap-android/#_24)
 

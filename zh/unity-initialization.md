@@ -1,6 +1,6 @@
 ## Game > Gamebase > Unity SDK使用指南 > 初始化
 
-如需使用Gamebase Unity SDK，必须先执行初始化。此外，还需在TOAST控制台中注册APP ID、APP版本信息。
+如需使用Gamebase Unity SDK，必须先执行初始化。此外，还需在NHN Cloud控制台中注册APP ID、APP版本信息。
 
 ### Inspector Settings
 
@@ -81,7 +81,7 @@ LaunchingStatus请参考下面Launching段落下面的State, Code部分。
 
 #### 8. storeCode
 
-为初始化TOAST应用程序内结算服务IAP(In-App Purchase)而所需的商店信息。
+为初始化NHN Cloud应用程序内结算服务IAP(In-App Purchase)而所需的商店信息。
 
 | Store       | Code | Description  |
 | ----------- | ---- | ------------ |
@@ -250,7 +250,7 @@ Gamebase Console中注册的APP信息。
 
 #### 2. tcProduct
 
-与Gamebase关联的TOAST服务的appKey。
+与Gamebase关联的NHN Cloud服务的appKey。
 
 * gamebase
 * tcLaunching
@@ -259,7 +259,7 @@ Gamebase Console中注册的APP信息。
 
 #### 3. tcIap
 
-在TOAST Console中登记的IAP商店信息。
+在NHN Cloud Console中登记的IAP商店信息。
 
 * id: App ID
 * name: App Name
@@ -269,10 +269,10 @@ Gamebase Console中注册的APP信息。
 
 #### 4. tcLaunching
 
-是TOAST Launching Console中用户输入的信息
+是NHN Cloud Launching Console中用户输入的信息
 
 * 用户输入的值传至JSON string。
-* TOAST Launching具体设置请参考如下指南。
+* NHN Cloud Launching具体设置请参考如下指南。
  
 [Console Guide](/Game/Gamebase/zh/oper-management/#config)
 

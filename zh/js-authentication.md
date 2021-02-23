@@ -250,7 +250,7 @@ var accessToken = toast.Gamebase.getAccessToken();
 ```
 
 ### Get Banned User Information
-以禁用的用户注册TOAST Gamebase控制台时，
+以禁用的用户注册NHN Cloud Gamebase控制台时，
 若尝试登录，显示如下限制使用信息代码。可使用**toast.Gamebase.getBanInfo()**方法确认禁用信息。
 
 ```js

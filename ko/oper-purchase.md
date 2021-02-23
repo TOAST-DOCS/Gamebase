@@ -7,7 +7,7 @@ IAP 메뉴를 이용하려면 결제 지표를 위한 통화를 먼저 선택해
 ## Game > Gamebase > 콘솔 사용 가이드 > 결제
 
 인앱 결제와 관련된 정보를 등록하고 내역을 조회할 수 있습니다.
-Gamebase에서는 TOAST IAP(In-App Purchase, 인앱 결제) 서비스를 사용합니다.
+Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사용합니다.
 
 ## Store
 

@@ -6,7 +6,7 @@ Please be cautious with your choice, since the currency code cannot be modified,
 
 ## Game > Gamebase > Console Guide > Purchase
 You can register information related to In-App Purchase (IAP) and retrieve details.
-In Gamebase, TOAST IAP service is provided.
+In Gamebase, NHN Cloud IAP service is provided.
 
 ## Store
 

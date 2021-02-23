@@ -220,7 +220,7 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 
 > `주의`
 > iOS 11 이상에서만 사용할 수 있습니다.
-> Gamebase 1.13.0 이상에서 지원합니다. (TOAST IAP SDK 1.6.0 이상적용)
+> Gamebase 1.13.0 이상에서 지원합니다. (NHN Cloud IAP SDK 1.6.0 이상적용)
 
 
 > `주의`
@@ -322,5 +322,5 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
 * IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [TOAST > TOAST SDK 사용 가이드 > TOAST IAP > iOS > 에러 코드](/TOAST/ko/toast-sdk/iap-ios/#_15)
+    * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > iOS > 에러 코드](/TOAST/ko/toast-sdk/iap-ios/#_15)
 

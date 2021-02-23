@@ -10,7 +10,7 @@
 * Keychainを登録した後、作成された認証書をPersonal Information Exchange(.p12)形式でエクスポートします(export)。
 * 認証書をエクスポート(export)するときに、パスワードを設定します。
 
-#### TOAST Consoleの登録
+#### NHN Cloud Consoleの登録
 * **Notification > Push > Certificate**で**APNS Certificate**と**APNS (Sandbox) Certificate**に上で作成した認証書を登録します。
 * 上の認証書を作成する際に設定したパスワードを使用して登録します。
 
@@ -29,7 +29,7 @@ Push APIを設計するViewControllerに次のヘッダーファイルを持っ�
 
 ### Register Push
 
-次のAPIを呼び出してTOAST Pushに該当するユーザーを登録します。<br/>
+次のAPIを呼び出してNHN Cloud Pushに該当するユーザーを登録します。<br/>
 Pushの同意状態(enablePush)、Push型広告の同意状態(enableAdPush)、夜間のPush型広告の同意状態(enableAdNightPush)の値をユーザーから取得し、次のAPIを呼び出して登録を完了させます。
 
 
@@ -95,13 +95,13 @@ Pushメニューの**対象**から**iOS Sandbox**を選択した後に送信し
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | TOAST Pushライブラリーエラーです。<br>DetailCodeを確認してください。|
+| TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | NHN Cloud Pushライブラリーエラーです。<br>DetailCodeを確認してください。|
 | TCGB_ERROR_PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 前回のPush APIの呼び出しが完了していません。<br>前回のPush APIのコールバックが実行された後、もう一度呼び出してください。|
 | TCGB_ERROR_PUSH_UNKNOWN_ERROR            | 5999       | 定義されていないPushエラーです。<br>ログ全体を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。|
 
 **TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* このエラーは、TOAST Pushライブラリーで発生したエラーです。
+* このエラーは、NHN Cloud Pushライブラリーで発生したエラーです。
 * エラーコードの確認は、次の通りです。
 
 ```objectivec
@@ -114,7 +114,7 @@ NSString *moduleErrorMessage = moduleError.message;
 NSLog(@"TCGBError:%@", [tcgbError description]);
 ```
 
-* TOAST Pushのエラーコードは次の通りです。
+* NHN Cloud Pushのエラーコードは次の通りです。
 
 | エラーコード | 説明 |
 | --- | --- |

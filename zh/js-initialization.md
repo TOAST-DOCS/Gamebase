@@ -8,8 +8,8 @@
 
 | KEY                                                 | Mandatory(M) / Optional(O) | Description                              |
 | --------------------------------------------------- | -------------------------- | ---------------------------------------- |
-| appId:string                                       | **M**                      | 为TOAST Project ID。必须输入。|
-| clientVersion:string                               | **M**                      | 通过游戏版本确认是否为正在服务、检查、通知事项等可以玩游戏的状态。<br/> 请输入`TOAST Console > Gamebase > App > Client Version > WEB`的版本。|
+| appId:string                                       | **M**                      | 为NHN Cloud Project ID。必须输入。|
+| clientVersion:string                               | **M**                      | 通过游戏版本确认是否为正在服务、检查、通知事项等可以玩游戏的状态。<br/> 请输入`NHN Cloud Console > Gamebase > App > Client Version > WEB`的版本。|
 | enableDebugMode:boolean                            | O                          | 可启用Debug Mode。调试日志输出至开发者控制台。<br/> 默认值为**false**。|
 | uiConfiguration.enablePopup:boolean                | O                          | 在**[UI]**<br/>系统检查、禁用(ban)等游戏用户无法玩游戏的情况下，有时应利用弹出窗口等显示原因。<br/> 若设置为**true**，Gamebase在相应情况下自动显示信息弹出窗口。<br/> 默认值为**false**。<br/>在**false**状态下，请通过推出结果获得信息后实现自主UI，显示无法玩游戏的原因。|
 | uiConfiguration.enableLaunchingStatusPopup:boolean | O                          | 由于**[UI]**<br/>推出结果无法登录的状态下（主要为检查状态），可更改Gamebase是否自动显示弹出窗口。<br/>仅在**enablePopup(true)**状态下运行。<br/>默认值为**true**。|

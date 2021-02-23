@@ -80,7 +80,7 @@ Supported Platforms
 6. 选择各平台使用的模块。
     * 认证支持与Google等ID Provider(以下简称IDP)关联。
     * Push支持FCM(Firebase), Tencent, APNS Push服务。
-    * Purchase支持使用TOAST支付服务IAP(In-App Purchase)结算。
+    * Purchase支持使用NHN Cloud支付服务IAP(In-App Purchase)结算。
 7. 点击[Settings]按钮安装SDK。
 
 #### 删除SDK

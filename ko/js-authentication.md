@@ -257,7 +257,7 @@ var accessToken = toast.Gamebase.getAccessToken();
 ```
 
 ### Get Banned User Information
-TOAST Gamebase Console에 제재된 게임 이용자로 등록될 경우,
+NHN Cloud Gamebase Console에 제재된 게임 이용자로 등록될 경우,
 로그인을 시도하면 아래와 같은 이용 제한 정보 코드가 표시됩니다. **toast.Gamebase.getBanInfo()** 메서드를 이용해 제재 정보를 확인할 수 있습니다.
 
 ```js

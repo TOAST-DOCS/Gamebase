@@ -23,7 +23,7 @@ To call API, below address is needed, which is also available in the Gamebase Co
 
 #### AppId
 
-App ID, as a project ID of TOAST, can be found on the **Project List** page of the Console.
+App ID, as a project ID of NHN Cloud, can be found on the **Project List** page of the Console.
 ![image alt](https://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
 #### SecretKey
@@ -112,7 +112,7 @@ Check common requirements.
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST project ID  |
+| appId | String | NHN Cloud project ID  |
 | userId | String | ID of a login user  |
 | accessToken | String |Access Token issued to a login user |
 
@@ -211,7 +211,7 @@ Check Common Factors
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST Project ID |
+| appId | String | NHN Cloud Project ID |
 
 **[Request Parameter]**  
 
@@ -347,7 +347,7 @@ Check common requirements.
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String |  TOAST project ID |
+| appId | String |  NHN Cloud project ID |
 | userId | String | User ID to retrieve |
 
 **[Request Parameter]**
@@ -453,7 +453,7 @@ Check common requirements.
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST project ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Body]**
 
@@ -514,7 +514,7 @@ Check common requirements.
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST project ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Body]**
 
@@ -575,7 +575,7 @@ Check common requirements.
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST project ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Parameter]**
 
@@ -633,7 +633,7 @@ Check Common Factors
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST Project ID |
+| appId | String | NHN Cloud Project ID |
 
 **[Request Parameter]**
 
@@ -698,7 +698,7 @@ Check Common Factors
 | pagingInfo.totalElements | int | Total number of data |
 | pagingInfo.totalPages | int | Total number of pages |
 | result | Array[Object] | Queried ban history details |
-| result.appId | String | TOAST Project ID of the queried ban |
+| result.appId | String | NHN Cloud Project ID of the queried ban |
 | result.banCaller | String | Subject of calling ban |
 | result.banReason | String | Reason of ban |
 | result.banType | String | Type of ban TEMPORARY or PERMANENT |
@@ -740,7 +740,7 @@ Check Common Factors
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST Project ID |
+| appId | String | NHN Cloud Project ID |
 
 **[Request Parameter]**
 
@@ -805,7 +805,7 @@ Check Common Factors
 | pagingInfo.totalElements | int | Total number of data |
 | pagingInfo.totalPages | int | Total number of pages |
 | result | Array[Object] | Queried ban information |
-| result.appId | String | TOAST Project ID of the queried ban |
+| result.appId | String | NHN Cloud Project ID of the queried ban |
 | result.banCaller | String | Subject of calling ban |
 | result.banReason | String | Reason of ban |
 | result.banType | String | Type of ban TEMPORARY or PERMANENT |
@@ -847,7 +847,7 @@ Check Common Factors
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST Project ID |
+| appId | String | NHN Cloud Project ID |
 
 **[Request Parameter]**
 
@@ -925,7 +925,7 @@ None
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST 프로젝트 ID |
+| appId | String | NHN Cloud 프로젝트 ID |
 | userId | String | 탈퇴 대상 사용자 ID |
 
 **[Request Parameter]**
@@ -978,7 +978,7 @@ Check common requirements.
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST project ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Parameter]**
 
@@ -1051,7 +1051,7 @@ Check common issues
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST project ID |
+| appId | String | NHN Cloud project ID |
 | userId | String | User ID to use coupons |
 | couponCode | String | Coupon code |
 
@@ -1127,7 +1127,7 @@ Check common issues
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST project ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Parameter]**
 
@@ -1198,7 +1198,7 @@ List non-consumed payment, which is not consumed even if paid up.
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | 	TOAST project ID |
+| appId | String | 	NHN Cloud project ID |
 
 **[Request Parameter]**
 
@@ -1281,7 +1281,7 @@ Check common issues
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST project ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Parameter]**
 
@@ -1360,7 +1360,7 @@ N/A
 
 ## Leaderboard
 
-Gamebase provides Wrapping to server API of TOAST Leaderboard. With Wrapping, TOAST products become available at a user server on a consistent interface.
+Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping, NHN Cloud products become available at a user server on a consistent interface.
 
 
 #### Wrapping API

@@ -15,7 +15,7 @@ To call API, below address is needed, which is also available in the Gamebase Co
 
 #### AppId
 
-App ID, as a project ID of TOAST, can be found on the **Project List** page of the Console.
+App ID, as a project ID of NHN Cloud, can be found on the **Project List** page of the Console.
 ![image alt](https://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
 #### SecretKey
@@ -101,7 +101,7 @@ Check common requirements.
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST project ID  |
+| appId | String | NHN Cloud project ID  |
 | userId | String | ID of a login user  |
 | accessToken | String |Access Token issued to a login user |
 
@@ -192,7 +192,7 @@ Check Common Factors
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST Project ID |
+| appId | String | NHN Cloud Project ID |
 
 **[Request Parameter]**  
 
@@ -326,7 +326,7 @@ Check common requirements.
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String |  TOAST project ID |
+| appId | String |  NHN Cloud project ID |
 | userId | String | User ID to retrieve |
 
 **[Request Parameter]**
@@ -425,7 +425,7 @@ Check common requirements.
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST project ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Body]**
 
@@ -487,7 +487,7 @@ Check common requirements.
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST project ID |
+| appId | String | NHN Cloud project ID |
 
 
 **[Request Body]**
@@ -549,7 +549,7 @@ Check common requirements.
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST project ID |
+| appId | String | NHN Cloud project ID |
 
 
 **[Request Parameter]**
@@ -607,7 +607,7 @@ Check Common Factors
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST Project ID |
+| appId | String | NHN Cloud Project ID |
 
 
 **[Request Parameter]**
@@ -674,7 +674,7 @@ Check Common Factors
 | pagingInfo.totalElements | int | Total number of data |
 | pagingInfo.totalPages | int | Total number of pages |
 | result | Array[Object] | Queried ban history details |
-| result.appId | String | TOAST Project ID of the queried ban |
+| result.appId | String | NHN Cloud Project ID of the queried ban |
 | result.banCaller | String | Subject of calling ban |
 | result.banReason | String | Reason of ban |
 | result.banType | String | Type of ban TEMPORARY or PERMANENT |
@@ -715,7 +715,7 @@ Check Common Factors
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST Project ID |
+| appId | String | NHN Cloud Project ID |
 
 **[Request Parameter]**
 
@@ -780,7 +780,7 @@ Check Common Factors
 | pagingInfo.totalElements | int | Total number of data |
 | pagingInfo.totalPages | int | Total number of pages |
 | result | Array[Object] | Queried ban information |
-| result.appId | String | TOAST Project ID of the queried ban |
+| result.appId | String | NHN Cloud Project ID of the queried ban |
 | result.banCaller | String | Subject of calling ban |
 | result.banReason | String | Reason of ban |
 | result.banType | String | Type of ban TEMPORARY or PERMANENT |
@@ -826,7 +826,7 @@ Check common requirements.
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST project ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Parameter]**
 
@@ -874,7 +874,7 @@ N/A
 
 ## Purchase(IAP)
 
-Gamebase provides **Wrapping** to Server API of TOAST IAP. With Wrapping, TOAST products become available at a user server on a consistent interface.
+Gamebase provides **Wrapping** to Server API of NHN Cloud IAP. With Wrapping, NHN Cloud products become available at a user server on a consistent interface.
 
 #### Wrapping API
 
@@ -900,7 +900,7 @@ POST https://api-gamebase.cloud.toast.com/tcgb-inapp/v1.0/apps/{appId}/consume/{
 
 ## Leaderboard
 
-Gamebase provides Wrapping to server API of TOAST Leaderboard. With Wrapping, TOAST products become available at a user server on a consistent interface.
+Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping, NHN Cloud products become available at a user server on a consistent interface.
 
 
 #### Wrapping API

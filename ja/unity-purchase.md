@@ -315,7 +315,7 @@ else
 ```
 
 * IAPのエラーコードは、次のドキュメントをご参考ください。
-    * [TOAST > TOAST SDK使用ガイド > TOAST IAP > Unity > エラーコード](/TOAST/en/toast-sdk/iap-unity/#_17)
+    * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > Unity > エラーコード](/TOAST/en/toast-sdk/iap-unity/#_17)
 
 
 

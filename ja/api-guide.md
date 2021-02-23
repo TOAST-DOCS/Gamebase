@@ -21,7 +21,7 @@ APIを呼び出すためのサーバーアドレスは、次の通りです。�
 
 #### AppId
 
-アプリIDとはTOASTプロジェクトのIDのことであり、アプリメニューの画面から確認することができます。
+アプリIDとはNHN CloudプロジェクトのIDのことであり、アプリメニューの画面から確認することができます。
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
 #### SecretKey
@@ -109,7 +109,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトのID |
+| appId | String | NHN CloudプロジェクトのID |
 | userId | String | ログインしたユーザーのID |
 | accessToken | String | ログインしたユーザーに発行されたAccess Token |
 
@@ -201,7 +201,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトID |
+| appId | String | NHN CloudプロジェクトID |
 
 **[Request Parameter]**  
 
@@ -338,7 +338,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトのID |
+| appId | String | NHN CloudプロジェクトのID |
 | userId | String | 照会対象のユーザーID |
 
 **[Request Parameter]**
@@ -438,7 +438,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトのID |
+| appId | String | NHN CloudプロジェクトのID |
 
 **[Request Body]**
 
@@ -500,7 +500,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトのID |
+| appId | String | NHN CloudプロジェクトのID |
 
 
 **[Request Body]**
@@ -563,7 +563,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトのID |
+| appId | String | NHN CloudプロジェクトのID |
 
 
 **[Request Parameter]**
@@ -622,7 +622,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトID |
+| appId | String | NHN CloudプロジェクトID |
 
 
 **[Request Parameter]**
@@ -689,7 +689,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | pagingInfo.totalElements | int | 総データ数 |
 | pagingInfo.totalPages | int | 総ページ数 |
 | result | Array[Object] | 照会された利用停止内訳 |
-| result.appId | String | 照会された利用停止のTOASTプロジェクトID |
+| result.appId | String | 照会された利用停止のNHN CloudプロジェクトID |
 | result.banCaller | String | 利用停止指示者 |
 | result.banReason | String | 利用停止理由 |
 | result.banType | String | 利用停止タイプ。TEMPORARYまたはPERMANENT |
@@ -730,7 +730,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトID |
+| appId | String | NHN CloudプロジェクトID |
 
 
 **[Request Parameter]**
@@ -797,7 +797,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | pagingInfo.totalElements | int | 総データ数 |
 | pagingInfo.totalPages | int | 総ページ数 |
 | result | Array[Object] | 照会された利用停止情報 |
-| result.appId | String | 照会された利用停止のTOASTプロジェクトID |
+| result.appId | String | 照会された利用停止のNHN CloudプロジェクトID |
 | result.banCaller | String | 利用停止指示者 |
 | result.banReason | String | 利用停止理由 |
 | result.banType | String | 利用停止タイプ。TEMPORARYまたはPERMANENT |
@@ -838,7 +838,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトID |
+| appId | String | NHN CloudプロジェクトID |
 
 
 **[Request Parameter]**
@@ -917,7 +917,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトのID |
+| appId | String | NHN CloudプロジェクトのID |
 
 
 **[Request Parameter]**
@@ -990,7 +990,7 @@ Consoleを通して発行されたクーポンコードに対して、有効性�
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトID |
+| appId | String | NHN CloudプロジェクトID |
 | userId | String | クーポンを使用するuserId |
 | couponCode | String | クーポンコード |
 
@@ -1063,7 +1063,7 @@ Google Play Store、App Store、ONEStoreなどでストア決済が完了後、�
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトID |
+| appId | String | NHN CloudプロジェクトID |
 
 **[Request Parameter]**
 
@@ -1133,7 +1133,7 @@ Google Play Store、App Store、ONEStoreなどでストア決済が完了後、�
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトID |
+| appId | String | NHN CloudプロジェクトID |
 
 **[Request Parameter]**
 
@@ -1215,7 +1215,7 @@ Google Play Store、App Store、ONEStoreなどでストア決済が完了後、�
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトID |
+| appId | String | NHN CloudプロジェクトID |
 
 **[Request Parameter]**
 
@@ -1294,7 +1294,7 @@ Google Play Store、App Store、ONEStoreなどでストア決済が完了後、�
 
 ## Leaderboard
 
-Gamebaseは、TOAST LeaderboardサービスのサーバーAPIに対して**Wrapping**機能を提供します。Wrapping機能を使用すれば、ユーザーサーバーにおいて一貫したインターフェースでTOASTサービスを使用することができます。
+Gamebaseは、NHN Cloud LeaderboardサービスのサーバーAPIに対して**Wrapping**機能を提供します。Wrapping機能を使用すれば、ユーザーサーバーにおいて一貫したインターフェースでNHN Cloudサービスを使用することができます。
 
 
 #### Wrapping API

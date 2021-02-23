@@ -168,7 +168,7 @@ With a same user ID, all purchased subscriptions from Android and iOS can be lis
 
 ### Reprocess Failed Purchase Transaction
 
-In case a purchase is not normally completed after a successful purchase at a store due to failure of authentication of TOAST IAP server, try to reprocess by using API. <br/>
+In case a purchase is not normally completed after a successful purchase at a store due to failure of authentication of NHN Cloud IAP server, try to reprocess by using API. <br/>
 Based on the latest success of purchase, reprocessing is required by calling an API for item delivery (supply).
 
 ```objectivec
@@ -210,7 +210,7 @@ In the case of auto-renewed consumable subscriptions, any missing purchases can 
 > `Caution`
 > It is available for iOS version 11 or later.
 > It must be built with Xcode 9.0 or later.
-> It is supported by Gamebase 1.13.0 or later(It is applicable to TOAST IAP SDK 1.6.0 or later).
+> It is supported by Gamebase 1.13.0 or later(It is applicable to NHN Cloud IAP SDK 1.6.0 or later).
 
 
 > `Caution`
@@ -313,5 +313,5 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
 * See the guide for the IAP error codes.  
-    * [TOAST > User Guide for TOAST SDK > TOAST IAP > iOS > Error Codes](/TOAST/ko/toast-sdk/iap-ios/#_15)
+    * [NHN Cloud > User Guide for NHN Cloud SDK > NHN Cloud IAP > iOS > Error Codes](/TOAST/ko/toast-sdk/iap-ios/#_15)
 

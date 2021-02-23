@@ -24,8 +24,9 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 ダウンロードした後、該当するSDKファイルをプロジェクトのtargetに含めなければなりません。
 
 **3rd Party SDK Download**
-
-| Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.19.3 | GamebaseのInterfaceおよび核心ロジックを含む | Gamebase内に含まれる | iOS9 or later
+| Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage | External SDK Download Link | Support iOS Version |
+| --- | --- | --- | --- | --- | --- |
+| Gamebase | Gamebase.framework, Gamebase.bundle | Toast SDK 0.19.3 | GamebaseのInterfaceおよび核心ロジックを含む | Gamebase内に含まれる | iOS9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v5.6.0 | Facebookログインをサポート | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS9 or later |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.3.2 | Paycoログインをサポート | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Naverログインをサポート | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |

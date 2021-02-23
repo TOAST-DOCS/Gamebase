@@ -530,9 +530,9 @@ Gamebase에 스키마 이름과 블록을 지정해 원하는 기능을 추가�
 ```
 
 
-## Toast
+## NHN Cloud
 
-다음 API를 사용하여 쉽게 [Android 토스트(toast)](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) 메시지를 표시할 수 있습니다.<br/>
+다음 API를 사용하여 쉽게 [Android 엔에이치엔 클라우드(NHN Cloud)](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) 메시지를 표시할 수 있습니다.<br/>
 간단한 메시지와 표시되는 시간을 설정할 수 있습니다.
 
 ```objectivec
