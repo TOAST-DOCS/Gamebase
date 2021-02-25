@@ -12,7 +12,7 @@ To execute Gamebase in Android, following system environment is required.
 
 ## Setting
 
-* Before applying Gamebase Android SDK, you need an App ID issued at the NHN Cloud Cloud Console: select a project created in the NHN Cloud Cloud Console and click **(+)Service** **Game > Gamebase**.
+* Before applying Gamebase Android SDK, you need an App ID issued at the NHN Cloud Console: select a project created in the NHN Cloud Console and click **(+)Service** **Game > Gamebase**.
 * Declare Gamebase version and authentication to use, and the payment and the push modules in the build.gradle file.
 	* Find the latest Gamebase version at [jCenter(LINK)](https://jcenter.bintray.com/com/toast/android/gamebase/gamebase-sdk/).
 	* To download a library that depends on Gamebase, add the  `mavenCentral()`  storage. 

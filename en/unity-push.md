@@ -14,7 +14,7 @@ For Android or iOS users, refer to the following documents:<br/>
 ### Register Push
 
 Register a user to NHN Cloud Push by calling API as below.
-With user&#39;s agreement to enablePush, enableAdPush, and enableAdNightPush, call following API to complete registration.
+With user's agreement to enablePush, enableAdPush, and enableAdNightPush, call following API to complete registration.
 
 
 **API**

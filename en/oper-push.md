@@ -1,7 +1,7 @@
 ## Game > Gamebase > Console Guide > Push
 
 You can send push notification to app users.
-In Gamebase, push notifications are provided by applying NHN Cloud Cloud Push service.
+In Gamebase, push notifications are provided by applying NHN Cloud Push service.
 
 ## Push
 

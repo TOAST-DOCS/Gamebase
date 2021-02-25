@@ -1,6 +1,6 @@
 ## Game > Gamebase > Console Guide > App
 
-Go to the NHN Cloud Cloud Console and click **Game > Gamebase > App**.
+Go to the NHN Cloud Console and click **Game > Gamebase > App**.
 
 * **App** : Manage app information
 * **Client** : Manage client version and status information
@@ -135,7 +135,7 @@ Select the test device to delete on the Search Test Device screen and click the 
 ### Authentication Information
 
 #### 1. Facebook
-Enter {App ID} and {App Secret Code} of an app registered in the Facebook developer's site in the NHN Cloud Cloud Gamebase Console.
+Enter {App ID} and {App Secret Code} of an app registered in the Facebook developer's site in the NHN Cloud Gamebase Console.
 Note that {Facebook Permission} which is required for a login should also be entered to Additional Info in the json string format.
 
 **Entry Fields**
@@ -202,7 +202,7 @@ No further configuration needs to be done apart from NHN Cloud console.
 ![gamebase_app_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
 #### 3. Apple Game Center
-Enter Bundle ID registered on Apple Developer's Site in the NHN Cloud Cloud Gamebase Console.
+Enter Bundle ID registered on Apple Developer's Site in the NHN Cloud Gamebase Console.
 
 **Entry Fields**<br />
 
@@ -217,7 +217,7 @@ Enter Bundle ID registered on Apple Developer's Site in the NHN Cloud Cloud Game
 - [Apple iTunes Connect](https://itunesconnect.apple.com/)
 
 #### 4. PAYCO
-Enter {client_id} and {client_secret} issued from PAYCO ID application in the NHN Cloud Cloud Gamebase Console.
+Enter {client_id} and {client_secret} issued from PAYCO ID application in the NHN Cloud Gamebase Console.
 
 **Entry Fields**<br />
 

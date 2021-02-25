@@ -3,7 +3,7 @@
 Gamebase bans those game users who use apps inappropriately or abusively.
 When a banned user tries to log in again, or session is restored, a pop-up will be displayed to restrict game use.
 
-Can register banning either manually in the Gamebase Console or automatically with NHN Cloud Cloud AppGuard by using registered patterns.
+Can register banning either manually in the Gamebase Console or automatically with NHN Cloud AppGuard by using registered patterns.
 
 Refer to [AppGuard](./ban/#appguard)on how to integrate AppGuard.
 

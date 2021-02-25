@@ -1,9 +1,9 @@
 ## Game > Gamebase > Unreal SDK使用ガイド > Logger
 
-ここではUnrealからTOAST Logger SDKを使用する方法を説明します。
+ここではUnrealからNHN Cloud Logger SDKを使用する方法を説明します。
 
 ### Initialize
-Log & Crash Searchで発行されたAppKeyで、TOAST Logger SDKを初期化します。
+Log & Crash Searchで発行されたAppKeyで、NHN Cloud Logger SDKを初期化します。
 
 **API**
 
@@ -26,7 +26,7 @@ void Sample::InitializeLogger()
 
 ### Send Logs
 Log & Crash Serverへログを転送します。
-TOAST Logger SDKは、下記5つのレベルのログを転送できます。 
+NHN Cloud Logger SDKは、下記5つのレベルのログを転送できます。 
 * DEBUG
 * INFO
 * WARN
