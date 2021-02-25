@@ -212,7 +212,7 @@ Gamebaseにスキーム名とブロックを指定し、任意の機能を追加
 
 ## Toast
 
-次のAPIを使用して簡単に[Android toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)のメッセージを表示することができます。<br/>
+次のAPIを使用して簡単に[Android 토스트(toast)](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)のメッセージを表示することができます。<br/>
 簡単なメッセージと表示される時間を設定することができます。
 
 ```objectivec

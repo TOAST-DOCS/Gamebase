@@ -8,8 +8,8 @@ Gamebase를 초기화할 때, GamebaseConfiguration 객체로 Gamebase 설정을
 
 | KEY                                                 | Mandatory(M) / Optional(O) | Description                              |
 | --------------------------------------------------- | -------------------------- | ---------------------------------------- |
-| appId: string                                       | **M**                      | NHN Cloud  Project ID 입니다. 필수적으로 입력해야합니다. |
-| clientVersion: string                               | **M**                      | 서비스 중, 점검, 공지사항 등 Playable한 상태인지를 게임 버전을 통해 판단합니다. <br/> `NHN Cloud  Console > Gamebase > App > Client Version > WEB`의 버전을 입력해주세요. |
+| appId: string                                       | **M**                      | NHN Cloud Project ID 입니다. 필수적으로 입력해야합니다. |
+| clientVersion: string                               | **M**                      | 서비스 중, 점검, 공지사항 등 Playable한 상태인지를 게임 버전을 통해 판단합니다. <br/> `NHN Cloud Console > Gamebase > App > Client Version > WEB`의 버전을 입력해주세요. |
 | enableDebugMode: boolean                            | O                          | DebugMode를 활성화 할 수 있습니다. Debug log는 개발자 콘솔에 출력됩니다. <br/> 기본값은 **false** 입니다. |
 | uiConfiguration.enablePopup: boolean                | O                          | **[UI]**<br/>시스템 점검, 이용 제재(ban) 등 게임 이용자가 게임을 플레이할 수 없는 상황에서 팝업 등으로 사유를 표시해야 할 때가 있습니다. <br/> **true**로 설정하면 Gamebase가 해당 상황에서 정보 팝업을 자동으로 표시합니다. <br/> 기본값은 **false**입니다.<br/>**false** 상태에서는 론칭 결과를 통해 정보를 획득한 후 자체 UI를 구현해 게임을 플레이할 수 없는 이유를 표시해 주시기 바랍니다. |
 | uiConfiguration.enableLaunchingStatusPopup: boolean | O                          | **[UI]**<br/>론칭 결과에 따라 로그인할 수 없는 상태에서(주로 점검 상태) Gamebase가 자동으로 팝업을 표시할지 여부를 변경할 수 있습니다. <br/>**enablePopup(true)** 상태에서만 동작합니다.<br/>기본값은 **true**입니다. |
@@ -197,7 +197,7 @@ Gamebase Console에 등록된 공지 정보입니다.
 
 #### 2. tcProduct
 
-Gamebase와 연계된 NHN Cloud  서비스의 appKey입니다.
+Gamebase와 연계된 NHN Cloud 서비스의 appKey입니다.
 
 * gamebase
 * tcLaunching
@@ -206,7 +206,7 @@ Gamebase와 연계된 NHN Cloud  서비스의 appKey입니다.
 
 #### 3. tcIap
 
-NHN Cloud  Console에 등록된 IAP 스토어 정보입니다.
+NHN Cloud Console에 등록된 IAP 스토어 정보입니다.
 
 * id: App ID
 * name: App Name
@@ -216,7 +216,7 @@ NHN Cloud  Console에 등록된 IAP 스토어 정보입니다.
 
 #### 4. tcLaunching
 
-NHN Cloud  Console에 등록된 Launching 정보입니다
+NHN Cloud Console에 등록된 Launching 정보입니다
 
 * 사용자가 Console에 입력한 값을 JSON string으로 전달합니다.
  
