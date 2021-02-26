@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > Unity SDK ご利用ガイド > はじめる
+## Game > Gamebase > Unity SDK ご利用ガイド > はじめる
 
 Gamebase Unity SDKの使用環境及び初期設定について説明します。
 
