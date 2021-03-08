@@ -567,9 +567,9 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 **[Method, URI]**
 
-| Method | Type | URI |
-| --- | --- | --- |
-| POST | String | /tcgb-member/v1.3/apps/{appId}/auth/authKeys |
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-member/v1.3/apps/{appId}/auth/authKeys |
 
 **[Request Header]**
 
@@ -680,6 +680,61 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 <br>
 
+#### Get UserId Information with IdP Id
+
+IdP ID로 매핑된 사용자 ID 정보를 조회합니니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-gateway/v1.3/apps/{appId}/idps/{idPCode}/members |
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud 프로젝트 ID |
+| idPCode | String | IdP 정보 <br>- payco, google, facebook, iosgamecenter, appleid, twitter, hangame |
+
+**[Request Body]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| idPIdList | Array[String] | mandatory | 조회 대상 사용자의 IdP ID  ["idPId", "idPId", "idPId",...] <br> 조회 대상 리스트 크기는 최대 300 |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "idPId": "userId",
+        "idPId": "userId",
+        "idPId": "userId"
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Map<String, String> | 조회된 사용자의 ID 정보 <br>- IdP ID가 key, Gamebase userId 가 value<br>- 조회 요청한 IdP ID를 가지는 userId 정보가 없을 경우 응답 결과에 존재하지 않습니다. |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+<br>
+
 #### Ban Histories
 
 사용자 이용 정지 이력을 조회합니다.
@@ -763,7 +818,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | pagingInfo.totalElements | int | 전체 데이터 수 |
 | pagingInfo.totalPages | int | 전체 페이징 수 |
 | result | Array[Object] | 조회된 이용 정지 내역 |
-| result.appId | String | 조회된 이용 정지 의 NHN Cloud 프로젝트 ID |
+| result.appId | String | 조회된 이용 정지의 NHN Cloud 프로젝트 ID |
 | result.banCaller | String | 이용 정지 호출 주체 |
 | result.banReason | String | 이용 정지 사유 |
 | result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
@@ -870,7 +925,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | pagingInfo.totalElements | int | 전체 데이터 수 |
 | pagingInfo.totalPages | int | 전체 페이징 수 |
 | result | Array[Object] | 조회된 이용 정지 정보 |
-| result.appId | String | 조회된 이용 정지 의 NHN Cloud 프로젝트 ID |
+| result.appId | String | 조회된 이용 정지의 NHN Cloud 프로젝트 ID |
 | result.banCaller | String | 이용 정지 호출 주체 |
 | result.banReason | String | 이용 정지 사유 |
 | result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |

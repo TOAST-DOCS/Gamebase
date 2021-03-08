@@ -14,7 +14,7 @@ Gamebase JavaScript SDK를 사용하기 위한 환경은 다음과 같습니다.
 
 Gamebase JavaScript SDK 파일을 다운로드합니다.
 
-Gamebase JavaScript SDK를 사용하기 전에 NHN Cloud Console에서 앱 아이디를 발급받아야 합니다. 앱 아이디를 발급받으려면 NHN Cloud Console에서 **(+)서비스 선택**을 클릭하여 Game > Gamebase를 클릭하여 서비스를 활성화 합니다.
+Gamebase JavaScript SDK를 사용하기 전에 NHN Cloud Console에서 앱 아이디를 발급받아야 합니다. 앱 아이디를 발급받으려면 NHN Cloud  Console에서 **(+)서비스 선택**을 클릭하여 Game > Gamebase를 클릭하여 서비스를 활성화 합니다.
 
 #### Download
 아래의 링크에서 Gamebase JavaScript SDK를 다운로드 받습니다. 이후, 다운로드 받은 zip 파일의 압축을 해제하여, 적용할 프로젝트의 폴더로 이동합니다.

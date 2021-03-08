@@ -811,7 +811,7 @@ void OpenContact(const FGamebaseContactConfiguration& configuration, const FGame
 | Error Code | Description |
 | --- | --- |
 | NOT\_INITIALIZED(1)                                 | Gamebase.initialize 가 호출되지 않았습니다. |
-| NOT\_LOGGED\_IN(2)                                  | 고객센터 유형이 'NHN Cloud OC' 인데 로그인 전에 호출하였습니다. |
+| NOT\_LOGGED\_IN(2)                                  | 고객센터 유형이 'NHN Cloud  OC' 인데 로그인 전에 호출하였습니다. |
 | UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 고객센터 URL 이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL** 을 확인하세요. |
 | UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 사용자 식별을 위한 임시 티켓 발급에 실패하였습니다. |
 | UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | 고객센터 웹뷰가 이미 표시중입니다. |
@@ -876,7 +876,7 @@ void RequestContactURL(const FGamebaseContactConfiguration& configuration, const
 | Error Code | Description |
 | --- | --- |
 | NOT\_INITIALIZED(1)                                 | Gamebase.initialize 가 호출되지 않았습니다. |
-| NOT\_LOGGED\_IN(2)                                  | 고객센터 유형이 'NHN Cloud OC' 인데 로그인 전에 호출하였습니다. |
+| NOT\_LOGGED\_IN(2)                                  | 고객센터 유형이 'NHN Cloud  OC' 인데 로그인 전에 호출하였습니다. |
 | UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 고객센터 URL 이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL** 을 확인하세요. |
 | UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 사용자를 식별을 위한 임시 티켓 발급에 실패하였습니다. |
 
