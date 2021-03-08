@@ -1,20 +1,30 @@
 ## Game > Gamebase > Release Notes
 
+### March 09, 2021 
+
+#### More Features
+* [Console] 앱 > 약관: GDPR 약관 추가
+* [Server API] IdP ID로 Gamebase user ID를 획득하는 API 추가 
+
+#### Feature Updates
+* [SDK] 2.20.1
+	* (iOS) iOS 14에 대응하여 IDFA 획득 로직 수정: info.plist에 NSUserTrackingUsageDescription 필드 추가
+
 ### February 23, 2021 
 
 #### More Features
 * [Console] 
-	* 운영 > 킥아웃: 클라이언트 버전별로 킥아웃이 가능하도록 기능 추가
-	* 구매(IAP) > 스토어: Google Play 스토어의 일회성 영수증 검증 단계를 설정할 수 있도록 기능 추가
+	* Operation > Kickout: Added a feature to enable kickout for each client version
+	* Purchase (IAP) > Store: Added a feature to set one-time receipt verification phase for Google Play store
 
 #### Bug Fixes
 * [SDK] 2.20.1
-	* (Android) push-fcm 모듈 초기화 중 크래시가 발생할 수 있는 로직을 수정
+	* (Android) Fixed a logic that could cause the push-fcm module to crash during initialization
 
 ### February 15, 2021 
 
 #### Bug Fixes
-* [Console] 구매(IAP) > 결제 내역: 파일 다운로드 시 상품 이름이 잘못 노출되는 오류 수정
+* [Console] Purchase (IAP) > Payment History: Fixed an error displaying wrong item name on file download
 
 ### February 9, 2021 
 

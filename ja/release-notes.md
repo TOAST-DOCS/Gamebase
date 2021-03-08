@@ -1,5 +1,15 @@
 ## Game > Gamebase > リリースノート
 
+### 2021. 03. 09.
+
+#### 機能追加
+* [Console] 앱 > 약관: GDPR 약관 추가
+* [Server API] IdP ID로 Gamebase user ID를 획득하는 API 추가 
+
+#### 機能改善/変更
+* [SDK] 2.20.1
+	* (iOS) iOS 14에 대응하여 IDFA 획득 로직 수정: info.plist에 NSUserTrackingUsageDescription 필드 추가
+
 ### 2021. 02. 23.
 
 #### 機能追加

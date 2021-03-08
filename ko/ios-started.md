@@ -95,6 +95,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
     * GameKit.framework
     * StoreKit.framework
     * AuthenicationServices.framework (Optional)
+    * AppTrackingTransparency.framework (Optional)
 
 ![Link Binary With Libraries](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
 

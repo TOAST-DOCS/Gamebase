@@ -9,6 +9,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 > * Android API 16 (JellyBean, OS 4.1) 이상
 >     * Twitter Login 은 19(Kitkat, 4.4) 이상
 >     * AppleID Login 은 19(Kitkat, 4.4) 이상
+>     * Weibo Login 은 19(Kitkat, 4.4) 이상
 >     * GALAXY Store 는 21(Lollipop, 5.0) 이상
 >         * 갤럭시 IAP SDK 의 minSdkVersion 은 18(OS 4.3) 이므로 이보다 작은 값을 설정하는 경우 빌드가 실패합니다.
 >         * 하지만 실제 결제를 위해서는 Checkout 서비스앱의 설치가 필요한데, Chekcout 서비스앱은 API 21(OS 5.0. Lollipop) 미만에서는 설치가 실패하므로 결제를 진행할 수 없습니다.
@@ -173,6 +174,35 @@ dependencies {
         ...
     </application>
 </manifest>
+```
+
+#### Weibo IdP
+
+* Weibo IdP 가 정상 동작 하기 위해서는 **application** 태그에 **android:networkSecurityConfig** attribute 를 추가하고, weibo, sina 관련 URL 을 선언한 xml 파일 이름을 설정해야 합니다.
+
+```xml
+<application android:networkSecurityConfig="@xml/my_network_security_config"
+    ...>
+    ...
+</application>
+```
+
+* res/xml/my_network_security_config.xml
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <!-- Weibo SDK start -->
+        <domain includeSubdomains="true">sina.cn</domain>
+        <domain includeSubdomains="true">weibo.cn</domain>
+        <domain includeSubdomains="true">weibo.com</domain>
+        <domain includeSubdomains="true">sinaimg.cn</domain>
+        <domain includeSubdomains="true">sinajs.cn</domain>
+        <domain includeSubdomains="true">sina.com.cn</domain>
+        <!-- Weibo SDK end -->
+    </domain-config>
+</network-security-config>
 ```
 
 #### ONE Store
