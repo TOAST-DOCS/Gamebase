@@ -1,10 +1,10 @@
 ## Game > Gamebase > 릴리스 노트
 
-### 2021. 03. 08.
+### 2021. 03. 09.
 
 #### 기능 추가
 * [Console] 앱 > 약관: GDPR 약관 추가
-* [Server API] IdP Id로 Gamebase user ID를 획득하는 API 추가 
+* [Server API] IdP ID로 Gamebase user ID를 획득하는 API 추가 
 
 #### 기능 개선/변경
 * [SDK] 2.20.1
