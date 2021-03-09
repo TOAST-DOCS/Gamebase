@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > Unity SDK ご利用ガイド > 認証
+## Game > Gamebase > Unity SDK ご利用ガイド > 認証
 
 ## Login
 

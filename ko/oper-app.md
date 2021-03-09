@@ -248,6 +248,9 @@ NHN Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 { "url_scheme_ios_only": "Your URL Schemes" }
 ```
 
+![gamebase_auth_google_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_google_console_01.png)
+
+
 ![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
 #### 3. Apple Game Center
@@ -310,6 +313,8 @@ PAYCO Client ID를 신청해서 발급받은 {client_id} 및 {client_secret}을 
 { "service_code": "HANGAME", "service_name": "Your Service Name" }
 ```
 
+![gamebase_auth_payco_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_payco_console_01.png)
+
 ![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
 #### 5.NAVER
@@ -362,6 +367,8 @@ Naver Developers 사이트에서 신청하여 발급받은 {client_id} 및 {clie
 ```json
 { "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
 ```
+
+![gamebase_auth_naver_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_naver_console_01.png)
 
 ![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
