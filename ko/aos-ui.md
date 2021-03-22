@@ -150,9 +150,10 @@ public void showTermsView(final Activity activity,
         @Override
         public void onCallback(GamebaseDataContainer container, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
-                // Save the PushConfiguration and use it for Gamebase.Push.registerPush()
+                // If the 'PushConfiguration' is not null,
+                // save the 'PushConfiguration' and use it for Gamebase.Push.registerPush()
                 // after Gamebase.login().
-                PushConfiguration savedPushConfiguration = PushConfiguration.from(container);
+                @Nullable PushConfiguration savedPushConfiguration = PushConfiguration.from(container);
             } else {
                 new Thread(new Runnable() {
                     @Override
@@ -170,7 +171,9 @@ public void showTermsView(final Activity activity,
 
 public void afterLogin(Activity activity) {
     // Call registerPush with saved PushConfiguration.
-    Gamebase.Push.registerPush(activity, savedPushConfiguration, new GamebaseCallback() {...});
+    if (savedPushConfiguration != null) {
+        Gamebase.Push.registerPush(activity, savedPushConfiguration, new GamebaseCallback() {...});
+    }
 }
 ```
 

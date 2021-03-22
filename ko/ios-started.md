@@ -8,7 +8,7 @@
 > 최소 사양
 >
 > * 사용자 실행 환경 : iOS 9 이상
-> * 빌드 환경 : Xcode 11 (iOS 13 SDK) 이상
+> * 빌드 환경 : Xcode 12 (iOS 14 SDK) 이상
 >
 
 <br/>
@@ -38,7 +38,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 용도 | External SDK Download Link | Support iOS Version |
 | --- | --- | --- | --- | --- | --- |
 | Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.27.1 | Gamebase의 Interface 및 핵심 로직을 포함 | Gamebase 내에 포함 | iOS9 or later
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v7.1.1 | Facebook 로그인을 지원 | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS9 or later |
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.1.0 | Facebook 로그인을 지원 | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS9 or later |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.4.0 | Payco 로그인을 지원 | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Naver 로그인을 지원 | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenter 로그인을 지원 |  | iOS9 or later |
