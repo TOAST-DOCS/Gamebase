@@ -4,59 +4,13 @@
 
 Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的应用内结算。
 
-### Settings
+### Initialization
 
-#### 1. Store Console
-
-* 请参考以下IAP指南，在每个商店添加您的应用并获取应用密钥。
-* [Mobile Service > IAP > 控制台使用指南 > Store interlocking information](/Mobil e%20Service/IAP/zh/console-guide/#store-interlocking-information)
-
-#### 2. 注册Store的测试账户
-
-* 为了进行付费测试，请按以下方式添加每个商店的测试人员。
-    * Google
-        * [Android > 测试购买设置](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
-    * ONE store
-        * [ONE store > INAPP应用内结算测试](https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#%EC%9D%B8%EC%95%B1%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8)
-        * 必须使用应用内信息 - 通过测试按钮注册想要沙盒的终端电话号码进行测试。
-        * 测试终端必须有USIM并需要注册电话号码(MDN)。
-        * 需要安装**ONE store**。
-
-#### 3. 使用NHN Cloud IAP服务
-
-* 请参考IAP指南以设置IAP并注册item。
-    * [Mobile Service > IAP > 控制台使用指南](/Mobile%20Service/IAP/zh/console-guide/)
-
-#### 4. 下载
-
-* 将下载的SDK的 **gamebase-adapter-purchase-iap** 文件夹添加到项目中。
-    * 如果您不需要ONE store 付款，则可以删除 **iap-onestore-x.x.x.aar** 文件。
-    * 相反，如果您需要ONE store付款，上述jar文件必须内置到项目中。
-
-#### 5. AndroidManifest.xml(仅ONE store)
-
-* 要使用ONE商店，您需要添加以下设置：
-
-```xml
-<manifest>
-    ...
-    <application>
-    ...
-        <!-- [ONE store] Configurations begin -->
-        <meta-data android:name="iap:api_version" android:value="4" /> <!-- 对于版本16.XX.XX，输入4. https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#iapapi_version-%EC%84%A4%EC%A0%95 -->
-        <meta-data android:name="iap:plugin_mode" android:value="development" /> <!-- development:开发模式 / release:运营 -->
-        <!-- [ONE store] Configurations end -->
-    ...
-    </application>
-</manifest>
-```
-
-#### 6. 初始化
-
-* 初始化Gamebase时应指定Store Code。
-* **STORE_CODE**从以下值中选择。
-    * GG: Google
-    * ONESTORE: ONE store
+* 初始化Gamebase时，需要指定STORE_CODE。
+* 请您在以下值中选择STORE_CODE。 
+    * GG: Google Store
+    * ONESTORE: ONE Store
+    * GALAXY: Galaxy Store
 
 ```java
 String STORE_CODE = "GG";	// Google
@@ -64,50 +18,83 @@ String STORE_CODE = "GG";	// Google
 GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(APP_ID, APP_VERSION, STORE_CODE)
         .build();
 
-Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
-    @Override
-    public void onCallback(final LaunchingInfo data, GamebaseException exception) {
-        ...
-    }
-});
+Gamebase.initialize(activity, configuration, callback);
 ```
 
 ### Purchase Flow
 
-请按以下顺序实现商品购买。<br/>
+道具购买程序大体分为**结算Flow**、**[Consume Flow](./aos-purchase/#consume-flow)**及**[Retry Transaction Flow](./aos-purchase/#retry-transaction-flow)**。
+请按以下顺序实现**结算Flow**。
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
+![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-1. 游戏客户端通过从Gamebase SDK调用 **requestPurchase**进行付款。
-2. 如果付款成功，请调用 **requestItemListOfNotConsumed**查看未消费结算明细。
-3. 如果返还的未消费结算明细列表中存在值，游戏客户端向游戏服务器请求对游戏付款商品的consume（消费）。
-4. 游戏服务器通过Gamebase server的API请求 consume(消费)API。
-   [API 指南](./api-guide/#wrapping-api)
-5. 如果在IAP服务器上consume(消费)API调用成功，则游戏服务器向游戏客户端支付item。
+1. 未能正常结束上一次支付时，若不进行‘’支付再处理”则将导致支付失败。因此支付前应调用**requestItemListOfNotConsumed**进行‘’支付再处理”，
+   如果存在未提供的道具则进行Consume Flow。
+2. 游戏客户端通过从Gamebase SDK调用**requestPurchase**进行付款。 
+3. 如果付款成功，请调用requestItemListOfNotConsumed查看未消费结算明细。若存在未提供的道具，则进行Consume Flow。
 
-* 商店支付成功，但存在发生错误而未能正常结束的情况。完成登录后请确认未消费支付明细。 <br/>
-    * 如果登录成功，请调用 **requestItemListOfNotConsumed**以检查您的未消费结算明细。
-    * 如果返还的未消费结算明细列表中存在值，则游戏客户端向游戏服务器请求consume(消费)并支付item。
+### Consume Flow
+
+如果返还的未消费结算明细列表中存在值，请按以下顺序进行**Consume Flow**。
+
+> <font color="red">[注意]</font><br/>
+>
+> 为了防止重复提供道具，必须要求游戏服务器确认是否重复提供道具。
+>
+
+![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
+
+1. 游戏客户端向游戏服务器请求consume（消费）。
+    * 传送UserID、gamebaseProductId、paymentSeq、purchaseToken。
+2. 游戏服务器在游戏DB中查询是否存在以同样的paymentSeq提供道具的履历。
+    * 2-1. 若存在未提供道具，则向UserID提供以gamebaseProductId购买的道具。
+    * 2-2. 提供后在游戏DB保存UserID, gamebaseProductId, paymentSeq, purchaseToken，必要时进行‘’支付再处理”或防止重复提供。
+3. 游戏服务器通过调用Gamebase服务器的consume（消费）API提供道具。此时无需考虑是否已经提供道具。
+    * [Game > Gamebase > API指南 > Purchase(IAP) > Consume](./api-guide/#consume)
+
+### Retry Transaction Flow
+
+![retry transaction flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
+
+* 商店支付已成功，但因出现错误无法正常终止时，
+* 请调用**requestItemListOfNotConsumed**进行‘’支付再处理”。若存在尚未提供的道具，则进行[Consume Flow](./aos-purchase/#consume-flow)。
+* 请在下列情况下进行‘’支付再处理”。
+    * 完成登录后
+    * 支付之前
+    * 进入游戏内商店（或 Lobby）时
+    * 查询用户简介或邮箱时
 
 ### Purchase Item
 
-使用想要购买商品的itemSeq调用以下API并请求购买。<br/>
-如果游戏用户取消购买，将返还**GamebaseError.PURCHASE_USER_CANCELED** 错误。请取消处理。
+使用想要购买商品的gamebaseProductId调用以下API请求购买。<br/>
+gamebaseProductId与在商店注册的道具id相同，但可在Gamebase Console中更改。
+支付后在payload field中输入的附加信息（会一直留在**PurchasableReceipt.payload**field）用于多种用途。<br/>
+用户取消购买时，返还**GamebaseError.PURCHASE_USER_CANCELED**错误代码。
+请进行取消处理。
 
 **API**
 
 ```java
-+ (void)Gamebase.Purchase.requestPurchase(Activity activity, long itemSeq, GamebaseDataCallback<PurchasableReceipt> callback);
++ (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
+                                          @NonNull final String gamebaseProductId,
+                                          @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
++ (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
+                                          @NonNull final String gamebaseProductId,
+                                          @NonNull final String payload,
+                                          @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
+// Legacy API
++ (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
+                                          final long itemSeq,
+                                          @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
 ```
 
 **示例**
 
 ```java
-long itemSeq; // The itemSeq value can be got through the requestItemListPurchasable API.
-
-Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<PurchasableReceipt>() {
+String userPayload = "{\"description\":\"This is example\",\"channelId\":\"delta\",\"characterId\":\"abc\"}";
+Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, userPayload, new GamebaseDataCallback<PurchasableReceipt>() {
     @Override
-    public void onCallback(PurchasableReceipt data, GamebaseException exception) {
+    public void onCallback(PurchasableReceipt receipt, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
             // Succeeded.
         } else if(exception.getCode() == GamebaseError.PURCHASE_USER_CANCELED) {
@@ -149,12 +136,16 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 
 ### List Non-Consumed Items
 
-* 查询尚未消费的一次性商品(CONSUMABLE)与消费性订阅商品(CONSUMABLE_AUTO_RENEWABLE) 信息。<br/>
-如果有未完成的商品，您必须要求游戏服务器（item服务器）处理配送item（支付）。
-
-* 请在以下两种情况下调用。
-    1. 成功付款后，为了在处理item消费(consume)前进行最终确认而调用。
-    2. 登录成功后，为了确认是否还存在未消费(consume)的item而调用。
+* 查询尚未消费的一次性商品(CONSUMABLE)与消费性订阅商品(CONSUMABLE_AUTO_RENEWABLE) 信息。
+* 如果有未完成的商品，您必须要求游戏服务器（item服务器）处理配送item（支付）。
+* 未完成支付时，可进行‘’支付再处理”。请在下列情况下调用。
+    * 查询是否存在未提供的道具。
+    	* 完成登录后 
+    	* 进入游戏内商店（或 Lobby） 时
+    	* 查询用户简介或邮箱时
+    * 查询需要进行‘’支付再处理”的道具
+    	* 支付之前
+    	* 支付失败后
 
 **API**
 
@@ -184,7 +175,7 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 
 以当前用户ID为准查询激活的订阅列表。
 完成支付的订阅商品（自动更新型订阅、自动更新型消费性订阅商品）到期前可一直查询。 
-若用户ID相同，同时查询在Android和iOS中购买的订阅商品。
+若用户ID相同，可同时查询在Android和iOS中购买的订阅商品。
 
 > <font color="red">[注意]</font><br/>
 >
@@ -215,6 +206,12 @@ Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<L
 });
 ```
 
+### Event by Promotion
+
+完成Promotion支付后，可通过GamebaseEventHandler接收Event并进行处理。 
+关于使用GamebaseEventHandler处理Promotion支付Event的方法，请参考如下指南。
+[Game > Gamebase > Android SDK 使用指南 > ETC > Gamebase Event Handler](./aos-etc/#purchase-updated) 
+
 ### Error Handling
 
 | Error                                    | Error Code | Description                              |
@@ -223,7 +220,9 @@ Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<L
 | PURCHASE_USER_CANCELED                   | 4002       | 游戏用户已取消购买商品。                 |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 尚未完成购买逻辑的情况下已调用API。    |
 | PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 该商店的余额不足，无法结算。           |
-| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 不支持的商店.<br>可选择的商店是 GG(Google), ONESTORE。 |
+| PURCHASE_INACTIVE_PRODUCT_ID             | 4005       | 此商品为非激活状态 |
+| PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | 请求支付的GamebaseProductID不存在 |
+| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 不支持的商店.<br>可选择的商店是 GG(Google), ONESTORE, GALAXY。 |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAP库错误。<br>请确认DetailCode。   |
 | PURCHASE_UNKNOWN_ERROR                   | 4999       | 未知的购买错误。<br>请将完整的Log上传到 [客服中心](https://toast.com/support/inquiry)，我们会尽快回复。 |
 
@@ -232,11 +231,11 @@ Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<L
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* 这是在IAP模块中发生的错误。
+* 这是在TOAST IAP SDK模块中发生的错误。
 * 检查错误代码的方法如下。
 
 ```java
-Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<PurchasableReceipt>() {
+Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataCallback<PurchasableReceipt>() {
     @Override
     public void onCallback(PurchasableReceipt data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
@@ -261,6 +260,6 @@ Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<Pu
 });
 ```
 
-* IAP错误代码，请参考以下文档。
-    * [NHN Cloud > NHN Cloud SDK使用指南 > NHN Cloud IAP > Android > 错误代码](/TOAST/zh/toast-sdk/iap-android/#_24)
+* TOAST IAP SDK错误代码，请参考以下文档。
+    * [TOAST > TOAST SDK使用指南 > TOAST IAP > Android > 错误代码](/TOAST/zh/toast-sdk/iap-android/#_24)
 
