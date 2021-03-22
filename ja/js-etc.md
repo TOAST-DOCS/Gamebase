@@ -6,14 +6,28 @@ Gamebaseでサポートする付加機能を説明します。
 
 ### Display Language
 
-* Gamebaseで表示する言語(Gamebase内蔵UIに表示されるテキスト)を、端末に設定された言語(device language)ではない別の言語に変更できます。
-* Gamebaseは、クライアントに含まれているメッセージや、サーバーから受信したメッセージを表示します。
-* Display Languageを設定すると、ユーザーが設定した言語コード(ISO-639)に適した言語でメッセージを表示します。
-* 自由に言語セットを追加できます。追加できる言語コードは次の通りです。
+メンテナンスポップアップなどでGamebaseが表示する言語は、端末に設定された言語と同じです。
+
+しかしゲームで表示する言語を、端末に設定した言語ではなく、別のオプションで変更できるゲームがあります。
+例えば、端末に設定された言語は英語ですが、ゲーム表示言語を日本語に変更した場合、 Gamebaseで表示する言語も日本語に変更したいですが、Gamebaseが表示する言語は端末に設定された言語の英語が表示されます。
+
+このように`端末に設定された言語ではなく、他の言語でGamebaseのメッセージを表示したい`アプリケーションのためにGamebaseは`Display Language`という機能を提供します。
+
+GamebaseはDisplay Languageで設定した言語でGamebaseのメッセージを表示します。
+Display Languageに入力する言語コードは、以下の表(**Gamebaseでサポートする言語コードの種類**)で指定したコードだけを使用できます。
+
+> <font color="red">[注意]</font><br/>
+>
+> * Display Languageは、端末設定言語と関係なくGamebaseの表示言語を変更したい場合にのみ使用してください。
+> * Display Language CodeはISO-639形式の値で、大文字/小文字を区別します。
+> 'EN'または'zh-cn'と設定すると問題が発生する場合があります。
+> * もしDisplay Language Codeに入力した値が以下の表(**Gamebaseでサポートする言語コードの種類**)に存在しない場合、Display Langauge Codeは自動的にデフォルト値の英語(en)が指定されます。
 
 > [参考]
 >
-> Gamebaseのクライアントメッセージは、英語(en)、韓国語(ko)、日本語(ja)のみ含まれています。
+> * Gamebaseのクライアントメッセージは英語(en)、韓国語(ko)、日本語(ja)のみ含んでいるため、下記の表に存在する言語コードであっても、英語(en)、韓国語(ko)、日本語(ja)以外の言語を指定するとデフォルト値の英語(en)に自動設定されます。
+> * Gamebaseのクライアントに含まれていない言語セットは直接追加できます。
+> **新規言語セット追加**項目を参照してください。
 
 #### Gamebaseでサポートする言語コードの種類
 
@@ -42,6 +56,7 @@ Gamebaseでサポートする付加機能を説明します。
 >
 > Gamebaseでサポートする言語コードは大文字/小文字を区別します。
 > 'EN'または'zh-cn'と設定すると、問題が発生する場合があります。
+
 
 ```js
 var toast.GamebaseDisplayLanguage.DefaultCode = {
@@ -236,224 +251,179 @@ toast.Gamebase.setDisplayLanguageTable(displayLanguageTable) {
 2. Gamebaseの初期化時、端末に設定されている言語コードがlocalized stringに定義されているかを確認します。(この値は初期化後、端末に設定されている言語を変更しても維持されます。)
 3. Display Languageのデフォルト値である`en`が自動的に設定されます。
 
-### Server Push
-* Gamebaseサーバーからクライアント端末にWebSocketを利用して送信するServer Push Messageを処理できます。
-* GamebaseクライアントでServerPushEvent Listenerを追加すると、該当メッセージをユーザーが受信して処理でき、追加されたServerPushEvent Listenerを削除できます。
 
-#### Flow
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
+### Gamebase Event Handler
 
-#### Server Push Type
-現在GamebaseでサポートするServer Push Typeは次の通りです。
-**toast.GamebaseServerPushType**定数で確認できます。
-
-* キックアウト(Kickout)
-    * NHN Cloud Gamebaseコンソールの`Operation > Kickout`から、キックアウトServerPushメッセージを登録すると、Gamebaseと接続されたすべてのクライアントにメッセージを送信できます。
-    * Type: toast.GamebaseServerPushType.APP_KICKOUT (= "appKickout")
-
-
-#### Add ServerPushEvent
-GamebaseクライアントにServerPushEventを登録し、GamebaseコンソールおよびGamebaseサーバーで発行されたPushイベントを処理できます。
+* Gamebaseは各種イベントを**GamebaseEventHandler**という1つのイベントシステムで全て処理できます。
+* GamebaseEventHandlerは下記のAPIを利用して簡単にListenerを追加/削除できます。
 
 **API**
 
-```js
-toast.Gamebase.addServerPushEvent((serverPushEvent) => { ... });
+```cs
+toast.Gamebase..addEventHandler(eventHandler);
+toast.Gamebase..removeEventHandler(eventHandler);
+toast.Gamebase..removeAllEventHandler();
 ```
 
 **Example**
 
-```js
-var serverPushEvent = (event) => {
-    var type = event.type;
-    var data = event.data;
-
-    if (type === toast.GamebaseServerPushType.APP_KICKOUT) {
-        console.log('User is kicked out.');
-    } else {
-        console.log('Unknown server push event is arrived');
-        console.log(event);
+```javascript
+toast.Gamebase.addEventHandler((message) => {
+    const category = message.category;
+    const data = message.data;
+    switch (category) {
+        case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
+            // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+            // Return to title and initialize Gamebase again.
+            break;
+        case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
+            // If the user wants to move the guest account to another device,
+            // if the account transfer is successful,
+            // the login of the previous device is released,
+            // so go back to the title and try to log in again.
+            break;
+        case GamebaseEventCategory.OBSERVER_LAUNCHING:
+            checkLaunchingStatus(JSON.parse(message.data));
+            break;
+        case GamebaseEventCategory.OBSERVER_NETWORK:
+            checkNetworkStatus(JSON.parse(message.data));
+            break;
+        case GamebaseEventCategory.OBSERVER_HEARTBEAT:
+            checkHeartbeat(JSON.parse(message.data));
+            break;
+        case GamebaseEventCategory.OBSERVER_INTROSPECT:
+            // Introspect error
+            var observerData = JSON.parse(message.data);
+            var errorCode = observerData.code;
+            var errorMessage = observerData.message;
+            break;
     }
-};
-
-function addServerPush() {
-    toast.Gamebase.addServerPushEvent(serverPushEvent);
-}
+});
 ```
 
+* CategoryはGamebaseEventCategoryクラスに定義されています。
 
-#### Remove ServerPushEvent
-Gamebaseに登録されたServerPushEventを削除できます。
 
-**API**
+#### Server Push
 
-```js
-toast.Gamebase.removeServerPushEvent(serverPushEvent);
-toast.Gamebase.removeAllServerPushEvent();
-```
+* Gamebaseサーバーからクライアント端末へ送信するメッセージです。
+* GamebaseでサポートするServer Push Typeは次の通りです。
+	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
+    	* TOAST Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseに接続されたすべてのクライアントでキックアウトメッセージを受信します。
+    * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
+    	* Guestアカウントを他の端末へ移行すると、以前の端末でキックアウトメッセージを受信します。
 
 **Example**
 
-```js
-function removeServerPush() {
-    toast.Gamebase.removeServerPushEvent(serverPushEvent);
-}
-
-function removeAllServerPush() {
-    toast.Gamebase.removeAllServerPushEvent();
-}
-```
-
-
-
-
-
-### Observer
-* Gamebase ObserverでGamebaseの各種ステータス変動イベントを受け取って処理できます。
-* ステータス変動イベント：ネットワークタイプ変動、Launchingステータス変動(メンテナンスなどによるステータス変動)、Heartbeat情報変動(ユーザー利用停止などによるHeartbeat情報変動)など
-
-#### Flow
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
-
-#### Observer Type
-現在GamebaseでサポートするObserver Typeは次の通りです。
-**toast.GamebaseObserverType**定数で確認できます。
-
-* Networkタイプ変動
-    * ネットワーク変動事項情報を受け取れます。例えばObserverMessage.data.get("code")の値でNetwork Typeを知ることができます。
-    * Type: toast.GamebaseObserverType.NETWORK (= "network")
-    * Code:**toast.GamebaseNetworkType**に宣言された定数は次の通りです。
-        * toast.GamebaseNetworkType.TYPE_NOT: -1
-        * toast.GamebaseNetworkType.TYPE_MOBILE: 0
-        * toast.GamebaseNetworkType.TYPE_WIFI: 1
-        * toast.GamebaseNetworkType.TYPE_ANY: 2
-* Launchingステータス変動
-    * 周期的にアプリケーションステータスを確認するLaunching Status responseに変動がある時に発生します。例えば、メンテナンス、サービス終了などによるイベントがあります。
-    * Type: toast.GamebaseObserverType.LAUNCHING (= "launching")
-    * Code:**toast.GamebaseLaunchingStatus**に宣言された定数は次の通りです。
-        * toast.GamebaseLaunchingStatus.IN_SERVICE: 200
-        * toast.GamebaseLaunchingStatus.RECOMMEND_UPDATE: 201
-        * toast.GamebaseLaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
-        * toast.GamebaseLaunchingStatus.REQUIRE_UPDATE: 300
-        * toast.GamebaseLaunchingStatus.BLOCKED_USER: 301
-        * toast.GamebaseLaunchingStatus.TERMINATED_SERVICE: 302
-        * toast.GamebaseLaunchingStatus.INSPECTING_SERVICE: 303
-        * toast.GamebaseLaunchingStatus.INSPECTING_ALL_SERVICES: 304
-        * toast.GamebaseLaunchingStatus.INTERNAL_SERVER_ERROR: 500
-* Heartbeat情報変動
-    * 周期的にGamebaseサーバーと接続を維持するHeartbeat responseに変動がある時に発生します。例えば、ユーザーが利用停止になった時、正常に'ログイン接続'ができないため、ユーザー利用停止イベントが発生します。
-    * Type: toast.GamebaseObserverType.HEARTBEAT (= "heartbeat")
-    * Code:**toast.GamebaseConstant**に宣言された定数を参照します。
-        * toast.GamebaseConstant.BANNED_MEMBER: 7
-
-
-#### Add Observer
-GamebaseクライアントにObserverを登録し、各種ステータス変動イベントを処理できます。
-
-**API**
-
-```js
-var observerEvent = (event) => {
-    var type = event.type;
-    var data = event.data;
-
-    if (type === toast.GamebaseServerPushType.APP_KICKOUT) {
-        console.log('User is kicked out.');
-    } else {
-        console.log('Unknown server push event is arrived');
-        console.log(event);
+```javascript
+toast.Gamebase.addEventHandler((message) => {
+    const category = message.category;
+    const data = message.data;
+    switch (category) {
+        case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
+            // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+            // Return to title and initialize Gamebase again.
+            break;
+        case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
+            // If the user wants to move the guest account to another device,
+            // if the account transfer is successful,
+            // the login of the previous device is released,
+            // so go back to the title and try to log in again.
+            break;
+        default:
+            break;
     }
-};
-toast.Gamebase.addObserver(observerEvent);
+});
 ```
+
+#### Observer
+
+* Gamebase Gamebaseの各種状態変動イベントを処理するシステムです。
+* GamebaseでサポートするObserver Typeは次の通りです。
+    * GamebaseEventCategory.OBSERVER_LAUNCHING
+    	* メンテナンスが開始または終了した場合、新しいバージョンが配布されてアップデートが必要な場合など、Launching状態が変更された時に動作します。
+    	* GamebaseEventObserverData.code : LaunchingStatus値を意味します。
+            * LaunchingStatus.IN_SERVICE: 200
+            * LaunchingStatus.RECOMMEND_UPDATE: 201
+            * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
+            * LaunchingStatus.REQUIRE_UPDATE: 300
+            * LaunchingStatus.BLOCKED_USER: 301
+            * LaunchingStatus.TERMINATED_SERVICE: 302
+            * LaunchingStatus.INSPECTING_SERVICE: 303
+            * LaunchingStatus.INSPECTING_ALL_SERVICES: 304
+            * LaunchingStatus.INTERNAL_SERVER_ERROR: 500
+    * GamebaseEventCategory.OBSERVER_HEARTBEAT
+    	* 退会処理や利用停止により、ユーザーアカウントの状態が変わった時に動作します。
+    	* GamebaseEventObserverData.code : GamebaseError値を意味します。
+            * GamebaseError.INVALID_MEMBER: 6
+            * GamebaseError.BANNED_MEMBER: 7
+    * GamebaseEventCategory.OBSERVER_NETWORK
+    	* ネットワーク変動事項情報を受け取れます。
+    	* ネットワークが切断されたり、接続された時、またはWi-FiからCellularネットワークに変更された時に動作します。
+    	* GamebaseEventObserverData.code : NetworkManager値を意味します。
+            * NetworkManager.TYPE_NOT: -1
+            * NetworkManager.TYPE_MOBILE: 0
+            * NetworkManager.TYPE_WIFI: 1
+            * NetworkManager.TYPE_ANY: 2
+    * GamebaseEventCategory.OBSERVER_INTROSPECT
+        * Standalone/WebGLでログイン後、セッションの延長に失敗した時に動作します。
 
 **Example**
 
-```js
-function addObserver() {
-    toast.Gamebase.addObserver(observerEvent);
-}
-
-var observerEvent = (event) => {
-    var typeOfEvent = event.type;
-    var data = event.data;
-
-    if (typeOfEvent === toast.GamebaseObserverType.NETWORK) {
-        checkNetworkStatus(data);
-    } else if (typeOfEvent === toast.GamebaseObserverType.HEARTBEAT) {
-        checkHeartbeat(data);
-    } else if (typeOfEvent === toast.GamebaseObserverType.LAUNCHING) {
-        checkLaunchingStatus(data);
+```javascript
+toast.Gamebase.addEventHandler((message) => {
+    const category = message.category;
+    const data = message.data;
+    switch (category) {        
+        case GamebaseEventCategory.OBSERVER_LAUNCHING:
+            checkLaunchingStatus(JSON.parse(message.data));
+            break;
+        case GamebaseEventCategory.OBSERVER_NETWORK:
+            checkNetworkStatus(JSON.parse(message.data));
+            break;
+        case GamebaseEventCategory.OBSERVER_HEARTBEAT:
+            checkHeartbeat(JSON.parse(message.data));
+            break;
+        case GamebaseEventCategory.OBSERVER_INTROSPECT:
+            // Introspect error
+            var observerData = JSON.parse(message.data);
+            var errorCode = observerData.code;
+            var errorMessage = observerData.message;
+            break;
+        default:
+            break;
     }
-};
+});
 
 function checkLaunchingStatus(data) {
-    var code = data.code;       // Code : toast.GamebaseLaunchingStatus
-    var message = data.message;
-
-    console.log(message);
-
+    var code = data.code;
     var isPlayable = toast.GamebaseLaunching.isPlayable(code);
     if (isPlayable) {
-        console.log('The Game is playable');
+        // 'The Game is playable'
     } else {
-        console.log('The Game is not playable');
+        // 'The Game is not playable'
     }
 }
 
 function checkHeartbeat(data) {
-    // Code : toast.GamebaseConstant.INVALID_MEMBER, toast.GamebaseConstant.BANNED_MEMBER
     var code = data.code;
-    var message = data.message;
-
-    console.log('Heartbeat status is changed.');
-    console.log(message);
-
     if (code === toast.GamebaseConstant.INVALID_MEMBER) {
-        console.log('This user is an invalid member.');
-        console.log('Maybe the user was withdrawn or has a trouble with his/her account.');
+        // You should to write the code necessary in game. (End the session.)
     } else if (code === toast.GamebaseConstant.BANNED_MEMBER) {
-        console.log('This user is banned.');
+        // The ban information can be found by using the GetBanInfo API.
+        // Show kickout message to user and need kickout in game.
     } else {
         console.log('Heartbeat code: ' + code);
     }
 }
 
 function checkNetworkStatus(data) {
-    var code = data.code;       // Code: toast.GamebaseNetworkType
-    var message = data.message;
-
-    console.log('Network status is changed.');
-    console.log(message);
-
+    var code = data.code;
     if (code === toast.GamebaseNetworkType.TYPE_NOT) {
-        console.log('Network is unreachable.');
+        // Network disconnected
     } else {
-        console.log('Network is rechable.');
+        // Network connected
     }
-}
-```
-
-
-#### Remove Observer
-Gamebaseに登録されたObserverを削除できます。
-
-**API**
-
-```js
-toast.Gamebase.removeObserver(observerEvent);
-toast.Gamebase.removeAllObserver();
-```
-
-**Example**
-
-```js
-function removeObserver() {
-    toast.Gamebase.removeObserver(observerEvent);
-}
-
-function removeAllObserver() {
-    toast.Gamebase.removeAllObserver();
 }
 ```
 

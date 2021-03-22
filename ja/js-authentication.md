@@ -1,4 +1,4 @@
-## Game > Gamebase > JavaScript SDK 사용 가이드 > 인증
+## Game > Gamebase > JavaScript SDK使用ガイド > 認証
 
 ## Login
 Gamebaseでは、ゲストログインをデフォルトでサポートします。
@@ -23,7 +23,6 @@ Gamebaseでは、ゲストログインをデフォルトでサポートします
         * Facebook('facebook')
         * PAYCO('payco')
         * NAVER('naver')
-        * Twitter('twitter')
         * Line('line')
 * **toast.Gamebase.login(providerName, (authToken, error) => { ... })**APIを呼び出します。
 
@@ -247,7 +246,7 @@ var accessToken = toast.Gamebase.getAccessToken();
 ```
 
 ### Get Banned User Information
-NHN Cloud Gamebaseコンソールに、制裁されたゲームユーザーとして登録された場合、
+TOAST Gamebaseコンソールに、制裁されたゲームユーザーとして登録された場合、
 ログインを試行すると、下記のような利用制限情報コードが表示されます。**toast.Gamebase.getBanInfo()**メソッドを利用して制裁情報を確認できます。
 
 ```js
@@ -256,26 +255,151 @@ var banInfo = toast.Gamebase.getBanInfo();
 ```
 * BANNED_MEMBER (7)
 
+## TemporaryWithdrawal
+
+「退会猶予」機能です。
+一時退会をリクエストして即時に退会が行われずに一定期間の猶予期間が過ぎると、退会が行われます。
+猶予期間はコンソールで変更できます。
+
+> `注意`
+>
+> 退会猶予機能を使用する場合には**Gamebase.withdraw()**APIを使用しないでください。
+> **Gamebase.withdraw()**APIは即時にアカウントを退会します。
+
+ログインが成功すると、AuthToken.member.temporaryWithdrawalで退会猶予状態のユーザーかを判断できます。
+
+### Request TemporaryWithdrawal
+
+一時退会をリクエストします。
+コンソールに指定した期間が過ぎると自動的に退会進行が完了します。
+
+**API**
+
+```js
+toast.Gamebase.TemporaryWithdrawal.requestWithdrawal(callback)
+```
+
+**Example**
+
+```js
+function requestWithdrawal() {
+    gamebase.TemporaryWithdrawal.requestWithdrawal(function (data, error) {
+        if (error) {
+            if (error.code == GamebaseConstant.AUTH_WITHDRAW_ALREADY_TEMPORARY_WITHDRAW) {
+                // Already requested temporary withdrawal before.
+            } else {
+                // Request temporary withdrawal failed.
+            }
+            return;
+        }
+        
+        // Request temporary withdrawal success.
+    });
+}
+```
+
+### Check TemporaryWithdrawal User
+
+退会猶予を使用するゲームは、AuthToken.member.temporaryWithdrawalがnullではない場合、ログイン後に常に該当ユーザーに退会進行中であることを伝える必要があります。
+
+**Example**
+
+```js
+function gamebaseLogin() {
+    toast.Gamebase.login('google', function (authToken, error) {
+        if (error) {
+            // Login failed
+            return;
+        }
+
+        if(authToken.member.temporaryWithdrawal != null) {    
+            // User is under temporary withdrawal    
+            var gracePeriodDate = authToken.member.temporaryWithdrawal.gracePeriodDate;            
+        } else {
+            // Login success.
+        }
+    });
+}
+```
+
+### Cancel TemporaryWithdrawal
+
+退会リクエストをキャンセルします。
+退会リクエストした後、期間が満了して退会が完了すると、キャンセルができません。
+
+**API**
+
+```js
+toast.Gamebase.TemporaryWithdrawal.cancelWithdrawal(callback)
+```
+**Example**
+
+```js
+function cancelWithdrawal() {
+    gamebase.TemporaryWithdrawal.cancelWithdrawal(function (error) {
+        if (error) {
+            if (error.code == GamebaseConstant.AUTH_WITHDRAW_NOT_TEMPORARY_WITHDRAW) {
+                // Never requested temporary withdrawal before.
+            } else {
+                // Cancel temporary withdrawal failed.
+            }
+            return;
+        }
+        
+        // Cancel temporary withdrawal success.
+    });
+}
+```
+
+### Withdraw Immediately
+
+退会猶予期間を無視して、即時退会を進行します。
+実際の内部動作はGamebase.withdraw() APIと同じです。
+
+即時退会はキャンセルできないため、実行するかどうかをユーザーによく確認してください。
+
+**API**
+
+```js
+toast.Gamebase.TemporaryWithdrawal.withdrawImmediately(callback)
+```
+
+**Example**
+
+```js
+function withdrawImmediately() {
+    gamebase.TemporaryWithdrawal.withdrawImmediately(function (error) {
+        if (error) {
+            // Withdraw failed.
+            return;
+        }
+        
+        // Withdraw success.
+    });
+}
+```
 
 ## Error Handling
 
 | Category       | Error                                                   | Error Code | Description                                                       |
 | -------------- | ------------------------------------------------------- | ---------- | ----------------------------------------------------------------- |
-| Auth           | INVALID\_MEMBER                                         | 6          | 無効な会員のリクエストです。                                            |
-|                | BANNED\_MEMBER                                          | 7          | 制裁された会員です。                                                     |
+| Auth           | INVALID\_MEMBER                                         | 6          | 無効な会員へのリクエストです。                                            |
+|                | BANNED\_MEMBER                                          | 7          | 制裁中の会員です。                                                     |
 |                | AUTH\_USER\_CANCELED                                    | 3001       | ログインがキャンセルされました。                                                |
-|                | AUTH\_NOT\_SUPPORTED\_PROVIDER                          | 3002       | サポートしない認証方式です。                                           |
+|                | AUTH\_NOT\_SUPPORTED\_PROVIDER                          | 3002       | サポートしていない認証方式です。                                           | 
 |                | AUTH\_NOT\_EXIST\_MEMBER                                | 3003       | 存在しないか、退会した会員です。                                        |
-|                | AUTH_ALREADY_IN_PROGRESS_ERROR                          | 3010       | 移行認証プロセスが完了していません。                                   |
-| Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED                              | 3101       | トークンログインに失敗しました。                                              |
+|                | AUTH_ALREADY_IN_PROGRESS_ERROR                          | 3010       | 以前の認証プロセスが完了していません。                                   |
+| Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED                              | 3101       | トークンのログインに失敗しました。                                              |
 |                | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO                | 3102       | トークン情報が有効ではありません。                                            |
-|                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP      | 3103       | 最近ログインしたIdP情報がありません。                                     |
+|                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP      | 3103       | 最近ログインしたIdP情報がありません。                                      |
 | IDP Login      | AUTH\_IDP\_LOGIN\_FAILED                                | 3201       | IdPログインに失敗しました。                                              |
-|                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO                    | 3202       | IdP情報が有効ではありません。(コンソールに該当IdP情報がありません。)           |
+|                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO                    | 3202       | IdP情報が有効ではありません。 (Consoleに該当IdP情報がありません。)           |
 | Logout         | AUTH\_LOGOUT\_FAILED                                    | 3501       | ログアウトに失敗しました。                                                |
 | Withdrawal     | AUTH\_WITHDRAW\_FAILED                                  | 3601       | 退会に失敗しました。                                                   |
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | すでに一時退会中のユーザーです。                    |
+|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 一時退会中のユーザーではありません。                     |
 | Not Playable   | AUTH\_NOT\_PLAYABLE                                     | 3701       | プレイできない状態です(メンテナンスまたはサービス終了など)。                        |
 | Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                                    | 3999       | 不明なエラーです。(定義されていないエラーです)。                             |
 
-* エラーコードの一覧は、次の文書を参照してください。
+* エラーコードは次の文書を参照してください。
     * [Entire Error Codes](./error-code/#client-sdk)

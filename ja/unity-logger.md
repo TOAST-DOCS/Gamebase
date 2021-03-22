@@ -1,9 +1,9 @@
-## Game > Gamebase > Unity SDK 사용 가이드 > Logger
+## Game > Gamebase > Unity SDK使用ガイド > Logger
 
-여기에서는 Unity에서 NHN Cloud Logger SDK를 사용하는 방법을 알아 보겠습니다.
+ここではUnityでTOAST Logger SDKを使用する方法を説明します。
 
 ### Initialize
-Log & Crash Search에서 발급받은 AppKey로  NHN Cloud Logger SDK를 초기화 합니다
+Log & Crash Searchで発行されたAppKeyでTOAST Logger SDKを初期化します。
 
 **API**
 
@@ -29,15 +29,15 @@ public static void InitializeSample()
 ```
 
 ### Send Logs
-Log & Crash Server로 로그를 전송합니다
-NHN Cloud Logger SDK는 아래 다섯 가지 레벨의 로그를 전송할 수 있습니다. 
+Log & Crash Serverへログを送信します。
+TOAST Logger SDKは、次の5つのレベルのログを送信できます。 
 * DEBUG
 * INFO
 * WARN
 * ERROR
 * FATAL
 
-로그 레벨은 다음과 같습니다.
+ログレベルは次の通りです。
 * DEBUG > INFO > WARN > ERROR > FATAL
 
 **API**
@@ -125,8 +125,8 @@ public void FatalSample()
 ```
 
 ### Set User-Defined Fields
-원하는 사용자 정의 필드를 설정합니다. 
-사용자 정의 필드를 설정하면 로그 전송 API를 호출할 때마다 설정한 값을 로그와 함께 서버로 전송합니다.
+任意のユーザー定義フィールドを設定します。 
+ユーザー定義フィールドを設定すると、ログ転送APIを呼び出すたびに、設定した値をログと一緒にサーバーに送信します。
 
 **API**
 
@@ -149,7 +149,7 @@ public void SetUserFieldSample()
 ```
 
 ### Further Tasks after Sending Logs
-리스너를 등록하면 로그 전송 후 추가 작업을 진행할 수 있습니다.
+リスナーを登録すると、ログ送信後に追加作業を実行できます。
 
 **API**
 
@@ -196,13 +196,13 @@ public void SetLoggerListenerSample()
 ```
 
 ### Specifications for SetCrashListener API
-유니티를 이용하다보면 수집을 원하지 않는 예외 로그 혹은 크래시 로그들이 수집될 수 있습니다.
-NHN Cloud Logger SDK는 수집을 원하지 않는 크래시 로그를 필터링 하는 기능을 지원합니다.
-crashFilter의 return값이 true이면 로그는 필터링 됩니다.
+Unityを利用していると、収集を望まない例外ログやクラッシュログが収集されることがあります。
+TOAST Logger SDKは、収集を望まないクラッシュログをフィルタリングする機能をサポートします。
+crashFilterのreturn値がtrueの場合、ログはフィルタリングされます。
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> 해당 기능은 유니티 예외에 한정된 기능입니다.
+> この機能はUnityの例外に限定した機能です。
 
 **API**
 

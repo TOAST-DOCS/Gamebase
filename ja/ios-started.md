@@ -5,9 +5,9 @@
 
 > [INFO]
 >
-> 要件：iOS9以上、または一部IDPサポート時、iOS10以上<br/>
+> 最小要件：iOS 9以上。一部のIdPをサポートする時は**下の3rd Party Gamebase Auth Adapters表内のSupport iOS Version項目を参照**してください。<br/>
 > iOS、iOS Simulator
-> Xcode10以上でビルド可能
+> Xcode 10以上でビルド可能
 >
 
 
@@ -24,11 +24,12 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 ダウンロードした後、該当するSDKファイルをプロジェクトのtargetに含めなければなりません。
 
 **3rd Party SDK Download**
+
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage | External SDK Download Link | Support iOS Version |
 | --- | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework, Gamebase.bundle | Toast SDK 0.19.3 | GamebaseのInterfaceおよび核心ロジックを含む | Gamebase内に含まれる | iOS9 or later
+| Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.19.3 | GamebaseのInterfaceおよびコアロジックを含む | Gamebase内に含む | iOS9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v5.6.0 | Facebookログインをサポート | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS9 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.3.2 | Paycoログインをサポート | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS9 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.4.0 | Paycoログインをサポート | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Naverログインをサポート | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenterログインをサポート |  | iOS9 or later |
 |  | GamebaseAuthGoogleAdapter.framework | | Googleログインをサポート | | iOS9 or later |
@@ -41,17 +42,17 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 
 > <font color="red">[注意]</font><br/>
 >
-> Sign In with Appleに必要なAuthenticationServices.frameworkを追加する場合は、必ずOptionalに設定する必要があります。
-> Requiredに設定した場合は、iOS 11以下の端末では実行直後にクラッシュが発生します。
+> Sign In with Appleに必要なAuthenticationServices.frameworkを追加する場合は必ずOptionalに設定する必要があります。
+> Requiredに設定すると、iOS 11以下の端末では実行直後にクラッシュが発生します。
 > 
 <br/>
 
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> Gamebase Frameworkのファイルのうち、名前に**Adapter**が含まれるファイルはプロジェクト内で使用するかどうかを任意で決定することができ、該当Adapter Frameworkを使用するには上記の表に記載された外部SDKが必要な場合があります。
-> 一部認証Adpaterの場合は、上の表にあるSupport iOS Versionに注意してください。
-> (サポートバージョンがiOS10以上のAuth Adpaterをビルドに含めた時、iOS9以下ではruntime Crashが発生します)
+> Gamebase Frameworkファイルの名前に**Adapter**が含まれているファイルは選択してプロジェクト内で使用するかどうかを決定することができます。該当のAdapter Frameworkを使用するには上の表に明示された外部SDKが必要な場合があります。
+> 一部の認証Adapterの場合は、上の表にあるサポートするiOSバージョンに注意してください。
+> (サポートバージョンがiOS 10以上のAuth Adpaterをビルドに含めるとiOS 9以下ではランタイムクラッシュが発生します。)
 
 <br/>
 
@@ -152,9 +153,9 @@ end
 
 * [Facebook for developers](https://developers.facebook.com/docs/ios)
 * [Naver for developers](https://developers.naver.com/docs/login/ios/)
-* [Twitter Developer's guide - Log in with Twitter](https://dev.twitter.com/web/sign-in/implementing)
-* [Twitter Developer's guide - Authentication](https://developer.twitter.com/ja/docs/basics/authentication/overview/oauth)
-* [Line for developers](https://developers.line.me/ja/docs/line-login/ios/integrate-line-login/)
+* [Twitter Developer's guide - Log in with Twitter](https://developer.twitter.com/en/docs/basics/authentication/guides/log-in-with-twitter)
+* [Twitter Developer's guide - Authentication](https://developer.twitter.com/en/docs/basics/authentication/overview)
+* [Line for developers](https://developers.line.biz/en/docs/ios-sdk/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/ios)
 
 ## API Reference
