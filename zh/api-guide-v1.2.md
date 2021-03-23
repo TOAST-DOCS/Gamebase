@@ -1,12 +1,15 @@
 ## Game > Gamebase > API v1.2指南
 
-## 변경 사항
-- IAP API가 변경 되었습니다.
-- Get Simple Launching API 호출 시 필수 파라미터로 storeCode가 추가 되었습니다.
-- Check Maintenance API 응답 결과에 점검 대상에 대한 storeCode 정보가 추가 되었습니다.
-- GUEST 계정에 대한 단말기 이전에 사용되는 TransferAccount에 대해, 사전에 발급된 TransferAccount를 검증 할 수 있는 Validate TransferAccount API가 추가 되었습니다.
-- API 응답결과의 date 타입이 Epoch time 에서 ISO 8601 형식(yyyy-MM-dd'T'HH:mm:ssXXX)으로 변경되었습니다. Token Authentication, Get Member, Get Members API 응답 결과의 regDate, lastLoginDate 항목
-- 쿠폰 소진 API가 추가 되었습니다.
+## 更改事项
+- IAP API已更改。
+- 调用Get Simple Launching API时,已添加必需的参数storeCode。
+- 已在Check Maintenance API响应结果中添加检查对象相关storeCode信息。
+- 对于迁移GUEST账号相关终端机使用的TransferAccount，添加可验证提前发放的TransferAccount的Validate TransferAccount API。
+- API响应结果的date类型从Epoch time更改为ISO 8601格式(yyyy-MM-dd’T’HH:mm:ssXXX)。Token Authentication, Get Member, Get Members API响应结果的regDate, lastLoginDate项目
+- 已添加优惠券耗尽的API。
+- 已添加用户退出API。
+- 将”在指南中错误标记为Long的Purchase(IAP)购买价格(price)数据类型”更改为"Float类型"。
+- 通过添加预约退出功能，在Token Authentication、Get Member API响应结果中也添加已预约退出的用户信息。 
 
 ## Advance Notice
 
@@ -21,7 +24,7 @@ Gamebase Server API以RESTful类型提供如下API。 为了使用服务器API�
 
 #### AppId
 
-APP ID 可通过NHN Cloud项目ID，在APP菜单页面中确认。
+APP ID 可通过TOAST项目ID，在APP菜单页面中确认。
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
 #### SecretKey
@@ -87,11 +90,18 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | resultCode | int | 响应代码<br>成功时为0，失败时返还错误代码 |
 | resultMessage | String | 响应消息 |
 
+<br>
+<br>
+
+<br>
+<br>
+
 ## Authentication
 
 #### 令牌认证
 
 检查发给登录用户的访问令牌是否有效。如果访问令牌运行正常，则返回该用户的信息。
+
 **[Method, URI]**
 
 | Method | URI |
@@ -106,7 +116,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | TOAST项目ID |
 | userId | String | 登录用户ID |
 | accessToken | String | 发放给登录用户的访问令牌 |
 
@@ -120,39 +130,42 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "String",
-    "isSuccessful": true
-  },
-  "linkedIdP": {
-    "idPCode": "String",
-    "idPId": "String"
-  },
-  "member": {
-    "userId": "String",
-    "valid": "Y",
-    "appId": "String",
-    "regDate": "2019-08-27T17:41:05+09:00",
-    "lastLoginDate": "2019-08-27T17:41:05+09:00",
-    "authList": [
-      {
-        "userId": "String",
-        "authSystem": "String",
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "String",
+        "isSuccessful": true
+    },
+    "linkedIdP": {
         "idPCode": "String",
-        "authKey": "String",
-        "regDate": "2019-08-27T17:41:05+09:00"
-      },
-      {
+        "idPId": "String"
+    },
+    "member": {
         "userId": "String",
-        "authSystem": "String",
-        "idPCode": "String",
-        "authKey": "String",
-        "regDate": "2019-08-27T17:41:05+09:00"
-      }
-    ]
-  }
+        "valid": "Y",
+        "appId": "String",
+        "regDate": "2019-08-27T17:41:05+09:00",
+        "lastLoginDate": "2019-08-27T17:41:05+09:00",
+        "authList": [
+            {
+                "userId": "String",
+                "authSystem": "String",
+                "idPCode": "String",
+                "authKey": "String",
+                "regDate": "2019-08-27T17:41:05+09:00"
+            },
+            {
+                "userId": "String",
+                "authSystem": "String",
+                "idPCode": "String",
+                "authKey": "String",
+                "regDate": "2019-08-27T17:41:05+09:00"
+            }
+        ],
+        "temporaryWithdrawal": {
+            "gracePeriodDate": "2020-04-18T09:12:01+09:00"
+        }
+    }
 }
 ```
 
@@ -170,25 +183,28 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | authList[].authSystem | String | Gamebase内部使用的认证系统 <br>预计将会支持用户认证系统 |
 | authList[].idPCode | String | 用户认证IdP信息 <br>guest, payco, facebook等 |
 | authList[].authKey | String | authSystem发放的用户区分值 |
-
+| temporaryWithdrawal | Object | 탈퇴 유예 관련 정보 <br>valid 가 "T" 값에서만 제공 |
+| temporaryWithdrawal.gracePeriodDate | String | 탈퇴 유예 만료 시간 ISO 8601 |
 
 **[Error Code]**
 
 [错误代码](./error-code/#server)
 
+<br>
+<br>
+
 ## Launching
 
 #### Get Simple Launching
 
-Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 설정 정보 및 현재 점검 상태/시간/ 메시지 등 클라이언트 앱 기동시 제공되는 Launching 정보들에 대해 서버에서 간략히 확인할수 있습니다.
-현재 점검 설정 여부 만을 확인하고 싶다면, [Check Maintenance] API를 사용하면 됩니다.
+可以简单确认在Console设置的服务器地址、安装URL及当前维护状态时的维护时间、消息等启动客户端时提供的Launching信息。
+若仅欲确认当前是否设置检查，使用[Check Maintenance] API即可。
 
 **[Method, URI]**
 
 | Method | URI |
 | --- | --- |
 | GET | /tcgb-launching/v1.2/apps/{appId}/launching/simple |
-
 
 **[Request Header]**
 
@@ -198,13 +214,14 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | TOAST项目ID |
 
 **[Request Parameter]**  
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | osCode | OsCode | true | OS代码 <br>AOS, IOS, WEB, WINDOWS |
+| storeCode | Enum | true | 스토어 코드 <br>- GG: Google<br>- ONESTORE<br>- AS: AppStore |
 | clientVersion | String | true | 客户端版本 |
 
 **[Response Body]**  
@@ -309,6 +326,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | maintenance.message | String | default维护原因消息 |
 
 <br>
+<br>
 
 ## Member
 
@@ -322,17 +340,15 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | --- | --- |
 | GET | /tcgb-member/v1.2/apps/{appId}/members/{userId} |
 
-
 **[Request Header]**
 
 确认共通事项
-
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | TOAST项目ID |
 | userId | String | 查询用户ID |
 
 **[Request Parameter]**
@@ -344,41 +360,44 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 **[Response Body]**
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "member": {
-    "userId": "String",
-    "valid": "Y",
-    "appId": "String",
-    "regDate": "2019-08-27T17:41:05+09:00",
-    "lastLoginDate": "2019-08-27T17:41:05+09:00",
-	"authList": [
-		  {
-			"userId": "String",
-			"authSystem": "String",
-			"idPCode": "String",
-			"authKey": "String",
-			"regDate": "2019-08-27T17:41:05+09:00"
-		  }
-		]
-	  },
-  "memberInfo": {
-    "deviceCountryCode": "String",
-    "usimCountryCode": "String",
-    "language": "String",
-    "osCode": "String",
-    "telecom": "String",
-    "storeCode": "String",
-    "network": "String",
-    "deviceModel": "String",
-    "osVersion": "String",
-    "sdkVersion": "String",
-    "clientVersion": "String"
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "member": {
+        "userId": "String",
+        "valid": "Y",
+        "appId": "String",
+        "regDate": "2019-08-27T17:41:05+09:00",
+        "lastLoginDate": "2019-08-27T17:41:05+09:00",
+        "authList": [
+            {
+                "userId": "String",
+                "authSystem": "String",
+                "idPCode": "String",
+                "authKey": "String",
+                "regDate": "2019-08-27T17:41:05+09:00"
+            }
+        ]
+    },
+    "temporaryWithdrawal": {
+        "gracePeriodDate": "2020-04-18T09:12:01+09:00"
+    },
+    "memberInfo": {
+        "deviceCountryCode": "String",
+        "usimCountryCode": "String",
+        "language": "String",
+        "osCode": "String",
+        "telecom": "String",
+        "storeCode": "String",
+        "network": "String",
+        "deviceModel": "String",
+        "osVersion": "String",
+        "sdkVersion": "String",
+        "clientVersion": "String"
+    }
 }
 ```
 
@@ -386,7 +405,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | --- | --- | --- |
 | member | Object | 被查询用户的基本信息 |
 | member.userId | String | 用户ID |
-| member.valid | Enum | Y：正常用户 <br>D: 已退出的用户 <br>B：禁用的用户 <br>M：丢失的账户|
+| member.valid | Enum | Y：正常用户 <br>D: 已退出的用户 <br>B：禁用的用户 <br>M：丢失的账户 <br>T: 탈퇴 유예 상태인 사용자 |
 | member.appId | String | appId |
 | member.regDate | String | 用户创建账户的时间 |
 | member.lastLoginDate | String | 上一次登录的时间 <br>第一次登录的用户没有此值 |
@@ -413,6 +432,10 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 [错误代码](./error-code/#server)
 
+<br>
+
+<br>
+
 #### Get Members
 
 简单查询多个用户信息。
@@ -431,7 +454,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | TOAST项目ID |
 
 **[Request Body]**
 
@@ -443,20 +466,20 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "memberList": [
-    {
-		"userId": "String",
-		"valid": "Y",
-		"appId": "String",
-		"regDate": "2019-08-27T17:41:05+09:00"
-    }
-  ]
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "memberList": [
+        {
+            "userId": "String",
+            "valid": "Y",
+            "appId": "String",
+            "regDate": "2019-08-27T17:41:05+09:00"
+        }
+    ]
 }
 ```
 
@@ -464,15 +487,15 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | --- | --- | --- |
 | memberList | Array[Object] | 被查询用户的基本信息 |
 | memberList[].userId | String | 用户ID |
-| memberList[].valid | Enum | Y：正常用户 <br>D: 已退出的用户 <br>B：禁用的用户 <br>M：丢失的账户|
+| memberList[].valid | Enum | Y：正常用户 <br>D: 已退出的用户 <br>B：禁用的用户 <br>M：丢失的账户 <br>T: 탈퇴 유예 상태인 사용자 |
 | memberList[].appId | String | appId |
 | memberList[].regDate | String | 用户创建账户的时间 |
-
 
 **[Error Code]**
 
 [错误代码](./error-code/#server)
 
+<br>
 
 #### 获取 IdP 信息
 
@@ -488,13 +511,11 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 确认共同事项
 
-
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
-
+| appId | String | TOAST项目ID |
 
 **[Request Body]**
 
@@ -506,23 +527,22 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "result": {
-    "String": [
-      {
-        "authKey": "String",
-        "idPCode": "gbid",
-        "authSystem": "String"
-      }
-    ]
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "String": [
+            {
+                "authKey": "String",
+                "idPCode": "gbid",
+                "authSystem": "String"
+            }
+        ]
+    }
 }
-
 ```
 
 | Key | Type | Description |
@@ -536,6 +556,8 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 [错误代码](./error-code/#server)
 
+<br>
+
 #### 使用认证密钥获取User ID信息
 
 查询与用户认证密钥映射的ID。
@@ -546,7 +568,6 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | --- | --- |
 | POST | /tcgb-member/v1.2/apps/{appId}/members/userIds/authKeys?authSystem={authSystem} |
 
-
 **[Request Header]**
 
 确认共通事项
@@ -555,15 +576,13 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
-
+| appId | String | TOAST 프로젝트 ID |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | authSystem | String | mandatory | Gamebase内部使用的认证系统，预计将会支持用户认证系统，目前是gbid |
-
 
 **[Request Body]**
 
@@ -575,15 +594,15 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "result": {
-    "String": "String"
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "String": "String"
+    }
 }
 ```
 
@@ -595,6 +614,8 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 [错误代码](./error-code/#server)
 
+<br>
+
 #### 禁用历史记录
 
 查询用户禁用历史记录。
@@ -605,7 +626,6 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | --- | --- |
 | GET | /tcgb-member/v1.2/apps/{appId}/members/bans |
 
-
 **[Request Header]**
 
 确认共通事项
@@ -614,8 +634,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
-
+| appId | String | TOAST项目ID |
 
 **[Request Parameter]**
 
@@ -626,46 +645,45 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | page | String | optional | 要查询的页面。从0开始 |
 | size | String | optional | 每页的数据数量 |
 
-
 **[Response Body]**
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
     "pagingInfo": {
-      "first": true,
-      "last": true,
-      "numberOfElements": 0,
-      "page": 0,
-      "size": 0,
-      "totalElements": 0,
-      "totalPages": 0
+        "first": true,
+        "last": true,
+        "numberOfElements": 0,
+        "page": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0
     },
     "result": [
-      {
-        "appId": "String",
-        "banCaller": "CONSOLE",
-        "banReason": "String",
-        "banType": "TEMPORARY",
-        "beginDate": 0,
-        "endDate": 0,
-        "flags": "String",
-        "message": "String",
-        "name": "String",
-        "regUser": "String",
-        "releaseCaller": "CONSOLE",
-        "releaseDate": 0,
-        "releaseReason": "String",
-        "releaseUser": "String",
-        "seq": 0,
-        "templateCode": 0,
-        "userId": "String"
-      }
+        {
+            "appId": "String",
+            "banCaller": "CONSOLE",
+            "banReason": "String",
+            "banType": "TEMPORARY",
+            "beginDate": 0,
+            "endDate": 0,
+            "flags": "String",
+            "message": "String",
+            "name": "String",
+            "regUser": "String",
+            "releaseCaller": "CONSOLE",
+            "releaseDate": 0,
+            "releaseReason": "String",
+            "releaseUser": "String",
+            "seq": 0,
+            "templateCode": 0,
+            "userId": "String"
+        }
     ]
 }
 ```
@@ -681,7 +699,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | pagingInfo.totalElements | int | 数据总数 |
 | pagingInfo.totalPages | int | 页面总数 |
 | result | Array[Object] | 查询的禁用历史记录 |
-| result.appId | String | 查询的禁用的NHN Cloud项目ID |
+| result.appId | String | 查询的禁用的TOAST项目ID |
 | result.banCaller | String | 禁用调用主体 |
 | result.banReason | String | 禁用原因 |
 | result.banType | String | 禁用类型。TEMPORARY or PERMANENT |
@@ -703,6 +721,8 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 [错误代码](./error-code/#server)
 
+<br>
+
 #### 解除禁用历史记录
 
 查询用户禁用解除历史记录。
@@ -713,7 +733,6 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | --- | --- |
 | GET | /tcgb-member/v1.2/apps/{appId}/members/bans/release |
 
-
 **[Request Header]**
 
 确认共通事项
@@ -722,8 +741,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
-
+| appId | String | TOAST项目ID |
 
 **[Request Parameter]**
 
@@ -734,46 +752,45 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | page | String | optional | 要查询的页面。从0开始 |
 | size | String | optional | 每页的数据数量 |
 
-
 **[Response Body]**
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
     "pagingInfo": {
-      "first": true,
-      "last": true,
-      "numberOfElements": 0,
-      "page": 0,
-      "size": 0,
-      "totalElements": 0,
-      "totalPages": 0
+        "first": true,
+        "last": true,
+        "numberOfElements": 0,
+        "page": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0
     },
     "result": [
-      {
-        "appId": "String",
-        "banCaller": "CONSOLE",
-        "banReason": "String",
-        "banType": "TEMPORARY",
-        "beginDate": 0,
-        "endDate": 0,
-        "flags": "String",
-        "message": "String",
-        "name": "String",
-        "regUser": "String",
-        "releaseCaller": "CONSOLE",
-        "releaseDate": 0,
-        "releaseReason": "String",
-        "releaseUser": "String",
-        "seq": 0,
-        "templateCode": 0,
-        "userId": "String"
-      }
+        {
+            "appId": "String",
+            "banCaller": "CONSOLE",
+            "banReason": "String",
+            "banType": "TEMPORARY",
+            "beginDate": 0,
+            "endDate": 0,
+            "flags": "String",
+            "message": "String",
+            "name": "String",
+            "regUser": "String",
+            "releaseCaller": "CONSOLE",
+            "releaseDate": 0,
+            "releaseReason": "String",
+            "releaseUser": "String",
+            "seq": 0,
+            "templateCode": 0,
+            "userId": "String"
+        }
     ]
 }
 ```
@@ -789,7 +806,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | pagingInfo.totalElements | int | 数据总数 |
 | pagingInfo.totalPages | int | 页面总数 |
 | result | Array[Object] | 查询的禁用历史记录 |
-| result.appId | String | 查询的禁用的NHN Cloud项目ID |
+| result.appId | String | 查询的禁用的TOAST项目ID |
 | result.banCaller | String | 禁用调用主体 |
 | result.banReason | String | 禁用原因 |
 | result.banType | String | 禁用类型。TEMPORARY or PERMANENT |
@@ -811,16 +828,18 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 [错误代码](./error-code/#server)
 
+<br>
+<br>
+
 #### Validate TransferAccount
 
-检查为转移访客账户获得的ID及密码的有效性。유효한 TransferAccount인 경우 발급 받은 userId 정보를 리턴합니다.
+检查为转移访客账户获得的ID及密码的有效性。为有效的TransferAccount时，返回获得的userId信息。
 
 **[Method, URI]**
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-gateway/v1.1.2/apps/{appId}/members/transfer-account |
-
+| POST | /tcgb-gateway/v1.2/apps/{appId}/members/transfer-account |
 
 **[Request Header]**
 
@@ -830,22 +849,20 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
-
+| appId | String | TOAST项目ID |
 
 **[Request Parameter]**
 
 无
 
-
-# Request Body
+**[Request Body]**
 
 ```json
 {
-  "account": {
-    "id": "198704206255",
-    "password": "Zw548q7zE"
-  }
+    "account": {
+        "id": "198704206255",
+        "password": "Zw548q7zE"
+    }
 }
 ```
 
@@ -854,23 +871,23 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | account.id | String | 要进行有效性验证的ID |
 | account.password | String | 要进行有效性验证的密码 |
 
-# Response Body
+**[Response Body]**
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "member": {
-    "userId": "String",
-    "valid": "Y",
-    "appId": "String",
-    "regDate": "2019-08-27T17:41:05+09:00",
-    "lastLoginDate": "2019-08-27T17:41:05+09:00"
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "member": {
+        "userId": "String",
+        "valid": "Y",
+        "appId": "String",
+        "regDate": "2019-08-27T17:41:05+09:00",
+        "lastLoginDate": "2019-08-27T17:41:05+09:00"
+    }
 }
 ```
 
@@ -887,7 +904,61 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 [错误代码](./error-code/#server)
 
+<br>
+<br>
 
+#### Withdraw
+
+사용자 계정을 탈퇴 처리합니다.
+
+> [참고]
+> SDK의 탈퇴 API를 사용하지 않고 서버 탈퇴 API를 사용하여 계정 탈퇴를 구현한 경우, 클라이언트에서는 탈퇴 성공 후 SDK의 logout API를 호출하여 캐시되어 있는 토큰 등의 데이터 삭제가 필요하다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| DELETE | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}?regUser={regUser} |
+
+**[Request Header]**
+
+确认通用事项
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST项目ID |
+| userId | String | 탈퇴 대상 사용자 ID |
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| regUser | String | mandatory | 탈퇴를 요청한 시스템 혹은 사용자 정보 <br> - 해당 정보는 Console > '멤버' 페이지의 '탈퇴 이력' 화면에서 확인 가능 <br> - 탈퇴 이력 화면은 탈퇴된 이용자 조회시에만 노출됨 |
+
+**[Request Body]**
+
+无
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    }
+}
+```
+
+**[Error Code]**
+
+[错误代码](./error-code/#server)
+
+<br>
 <br>
 
 ## Maintenance
@@ -910,7 +981,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | TOAST项目ID |
 
 **[Request Parameter]**
 
@@ -920,28 +991,28 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "String",
-    "isSuccessful": true
-  },
-  "appId": "",
-  "underMaintenance": true,
-  "maintenances": [
-    {
-      "typeCode": "APP",
-      "beginDate": "2017-01-01T12:10:00+07:00",
-      "endDate": "2017-02-01T12:17:00+07:00",
-      "url": "http://url.info",
-      "message": "maintenance message",
-      "targetStores": [
-        "GG",
-        "AS",
-        "ONESTROE"
-      ]
-    }
-  ]
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "String",
+        "isSuccessful": true
+    },
+    "appId": "",
+    "underMaintenance": true,
+    "maintenances": [
+        {
+            "typeCode": "APP",
+            "beginDate": "2017-01-01T12:10:00+07:00",
+            "endDate": "2017-02-01T12:17:00+07:00",
+            "url": "http://url.info",
+            "message": "maintenance message",
+            "targetStores": [
+                "GG",
+                "AS",
+                "ONESTROE"
+            ]
+        }
+    ]
 }
 ```
 
@@ -954,41 +1025,44 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | maintenances.endDate | String | 维护结束时间。ISO 8601 |
 | maintenances.url | String | 详细维护URL |
 | maintenances.message | String | 维护消息 |
-| maintenances.targetStores | Array[Enum] | 특정 클라이언트에 대해서만 점검 설정시, 점검 설정된 클라이언트의 스토어코드<br>- GG: Google<br>- ONESTORE<br>- AS: AppStore |
+| maintenances.targetStores | Array[Enum] | 仅对特定客户设置检查时，设置检查的客户的商店代码<br>- GG: Google<br>- ONESTORE<br>- AS: AppStore |
 
 **[Error Code]**
 
 [错误代码](./error-code/#server)
 
 <br>
+<br>
 
 ## Coupon
 
 #### Check Validation And Consume Coupon
 
-Console을 통해 발급된 쿠폰 코드에 대해 유효성 검증 및 쿠폰 상태를 변경 합니다. 유효한 쿠폰인 경우 소비 상태로 변경을 하고, 응답 결과로 지급할 아이템 정보를 리턴합니다.
+对于通过Console获得的优惠券代码，验证有效性并更改优惠券状态。为有效的优惠券时，更改为消费状态，作为响应结果，返回支付的道具信息。
 
 **[Method, URI]**
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}/coupons/{couponCode} |
+| POST | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}/coupons/{couponCode}?storeCode={storeCode} |
 
 **[Request Header]**
 
-공통 사항 확인
+确认通用事项
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud 프로젝트 ID |
-| userId | String | 쿠폰을 사용할 userId |
-| couponCode | String | 쿠폰 코드 |
+| appId | String | TOAST项目ID |
+| userId | String | 要使用优惠券的userId |
+| couponCode | String | 优惠券代码 |
 
 **[Request Parameter]**
 
-없음
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| storeCode | String | optional | 콘솔에서 특정 스토어만 사용 가능하도록 쿠폰을 발급 받았다면, 스토어 코드를 전달해야 함<br>전체 스토어인 경우 ALL 또는 파라미터 생략<br>- GG: Google<br>- ONESTORE: ONE store<br>- AS: AppStore |
 
 **[Response Body]**
 
@@ -1017,29 +1091,34 @@ Console을 통해 발급된 쿠폰 코드에 대해 유효성 검증 및 쿠폰 
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Object | 쿠폰 정보 |
-| result.title | String | 쿠폰 이름 |
-| result.benefits | Array[Object] | 지급할 아이템 정보 |
-| result.benefits.itemId | String | 아이템 ID |
-| result.benefits.amount | Integer | 아이템 개수 |
+| result | Object | 优惠券信息 |
+| result.title | String | 优惠券名 |
+| result.benefits | Array[Object] | 要支付的道具信息 |
+| result.benefits.itemId | String | 道具ID |
+| result.benefits.amount | Integer | 道具个数 |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[错误代码](./error-code/#server)
 
+<br>
 <br>
 
 ## Purchase(IAP)
 
 #### Consume
 
-Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 유저에게 아이템을 지급하기 전에 결제를 소비 할 것을 알려야 합니다. 결제 1건당 1번만 결제소비 가능하며, 결제의 상태가 정상이 아니면 소비되지 않습니다.
-(결재 소비가 완료 되었다면 유저의 결제 및 아이템 지급이 정상적으로 완료 되었다고 판단)
-
-소비 (Consume) 하지 않은 결제내역은 SDK 및 서버의 미소비 결제 내역조회 API를 통해 조회할 수 있습니다. 참고로 아이템 등록시 상품 유형이 일회성(CONSUMABLE)인 아이템 결제건에 대해서만 consume 처리 됩니다.
+Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완료되었다면 유저에게 아이템 지급 및 서버 내부적으로 이력을 기록한 후에, Gmaebase에 결제를 소비를 알립니다. 결제 1건당 1번만 결제를 소비할 수 있으며 결제 상태가 정상이 아니면 소비되지 않습니다.
 
 > [참고]
-> 결제 1건당 1번 소비 가능하며, 결제소비 하지 않은 결제는 IAP에서 아이템을 지급하지 않은 것으로 간주합니다.
+> 상품 등록 시 상품 유형이 일회성(CONSUMABLE)인 아이템 결제에 대해서만 소비(consume) 처리됩니다.
+> 결제 1건당 1번 소비 가능하며, 결제 소비를 하지 않은 결제는 IAP에서는 아이템을 지급하지 않은 것으로 간주합니다.
+
+소비(consume)하지 않은 결제 내역은 SDK 및 서버의 미소비 결제 내역 조회 API를 통해 조회할 수 있습니다. API를 통해 미소비 결재 내역이 존재하더라고, 게임서버 내부적으로 아이템 지급에 대한 이력을 가지고 있다면 게임 서버 내부 지급 이력을 우선으로 판단하면 됩니다.
+(네트워크 장애 등으로 API timeout이 발생하면 Gamebase에서는 지급 완료 처리가 되었지만, API 응답 실패로 게임 서버에서는 실제로 유저에게는 아이템 지급이 안될 수 있음)
+
+> [참고]
+> 게임 내부적으로 아이템 지급 이력을 모두 관리할 수 없다면 해당 API의 request timeout을 10초 이상으로 하고, API timout 발생시 만이라도 이력을 기록하여 중복 지급 혹은 미지급 이슈에 대한 방안이 필요함
 
 **[Method, URI]**
 
@@ -1049,67 +1128,68 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 **[Request Header]**
 
-공통 사항 확인
+确认通用事项
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud 프로젝트 ID |
+| appId | String | TOAST项目ID |
 
 **[Request Parameter]**
 
-없음
+无
 
 **[Request Body]**
 
 ```json
 {
-  "paymentSeq": "2019091931571201",
-  "accessToken" : "90fD1bs1guXwY6aZ7rseEKYW_6gMCISjDASgten4MD6O7XZD7VRjZcs8OTm8lOQVFTegoY4WK78P2WQCMm7cx"
+    "paymentSeq": "2019091931571201",
+    "accessToken": "90fD1bs1guXwY6aZ7rseEKYW_6gMCISjDASgten4MD6O7XZD7VRjZcs8OTm8lOQVFTegoY4WK78P2WQCMm7cx"
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| paymentSeq | String | mandatory | 결제 번호 |
-| accessToken | String | mandatory  | 결제 인증 토큰 (로그인 인증 토큰이 아님)  |
+| paymentSeq | String | mandatory | 支付编号 |
+| accessToken | String | mandatory  | 支付验证令牌（非登录验证令牌） |
 
-> [참고]
-> 클라이언트에서 requestPurchase API 호출시 응답으로 오는 purchaseToken 값이 accessToken으로 사용
-
+> [参考]
+> 客户调用requestPurchase API时响应的purchaseToken值作为accessToken使用
 
 **[Response Body]**
 
 ```json
 {
-   "header":{
+    "header": {
         "isSuccessful": true,
         "resultCode": 0,
         "resultMessage": "SUCCESS"
     },
-    "result":{
-        "price": 1500,
+    "result": {
+        "price": 1500.0,
         "currency": "KRW",
-        "productSeq": 12345
+        "productSeq": 1000292
     }
 }
 ```
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Object | 결제 기본 정보 |
-| result.price | Long | 결제 가격 |
-| result.currency  | String  | 결제 통화  |
-| result.productSeq | Long | 결제 아이템 번호 (console에 등록된 아이템 고유 번호) |
+| result | Object | 支付基本信息 |
+| result.price | Float | 支付价格 |
+| result.currency  | String  | 支付货币  |
+| result.productSeq | Long | 支付道具编号（console中注册的道具固有编号）|
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[错误代码](./error-code/#server)
 
-#### Get Consumable List
+<br>
 
-결제가 완료되었지만 아직 소비(Consume)되지 않은, 미소비 결제내역을 조회할 수 있습니다.
+#### List Consumables
+
+可查询完成支付但尚未消费(Consume)的未消费支付明细。
 
 **[Method, URI]**
 
@@ -1119,57 +1199,56 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 **[Request Header]**
 
-공통 사항 확인
+确认通用事项
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud 프로젝트 ID |
+| appId | String | TOAST项目ID |
 
 **[Request Parameter]**
 
-없음
+无
 
 **[Request Body]**
 
 ```json
 {
-  "marketId": "GG",
-  "userChannel" : "GF",
-  "userKey" : "QXG774PMRZMWR3BR"
+    "marketId": "GG",
+    "userChannel": "GF",
+    "userKey": "QXG774PMRZMWR3BR"
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | 스토어코드<br>GG : Google, AS : Apple, ONESTORE : 원스토어 |
-| userChannel | String | mandatory  | 유저 채널<br>현재는 미구현 상태로 항상 `GF` 값을 설정  |
-| userKey | String | mandatory  | 유저 ID  |
+| marketId | String | mandatory | 商店代码<br>GG : Google, AS : Apple, ONESTORE : ONE store |
+| userChannel | String | mandatory  | 用户通道<br>当前总是以未实现状态设置“GF”值  |
+| userKey | String | mandatory  | 用户ID |
 
 **[Response Body]**
 
 ```json
 {
-    "header":{
+    "header": {
         "isSuccessful": true,
         "resultCode": 0,
         "resultMessage": "success"
     },
-    "result":[
+    "result": [
         {
             "paymentSeq": "2016122110023124",
             "productSeq": 1000292,
             "currency": "KRW",
-            "price": 1000,
+            "price": 1000.0,
             "accessToken": "oJgM1EfDRjnQY7yqhWCUVgAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
         },
-
         {
             "paymentSeq": "2016122110023125",
             "productSeq": 1000292,
             "currency": "KRW",
-            "price": 1000,
+            "price": 1000.0,
             "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
         }
     ]
@@ -1178,20 +1257,22 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Array[Object] | 결제 기본 정보 |
-| result[].paymentSeq | String  |  결제 번호 |
-| result[].productSeq | Long | 결제 아이템 번호 (console에 등록된 아이템 고유 번호) |
-| result[].currency  | String  | 결제 통화  |
-| result[].price | Long | 결제 가격 |
-| result[].accessToken | String | 결제 인증 토큰 |
+| result | Array[Object] | 支付基本信息 |
+| result[].paymentSeq | String | 支付编号 |
+| result[].productSeq | Long | 	支付道具编号（console中注册的道具固有编号）|
+| result[].currency  | String  | 支付货币 |
+| result[].price | Float | 支付价格 |
+| result[].accessToken | String | 支付验证令牌 |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[错误代码](./error-code/#server)
 
-### Get ActiveSubscription List
+<br>
 
-유저가 현재 구독중인 결제를 조회 할 수 있습니다.
+### List Active Subscriptions
+
+可查询用户当前订阅的支付。
 
 **[Method, URI]**
 
@@ -1201,81 +1282,81 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 
 **[Request Header]**
 
-공통 사항 확인
+确认通用事项
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud 프로젝트 ID |
+| appId | String | TOAST项目ID |
 
 **[Request Parameter]**
 
-없음
+无
 
 **[Request Body]**
 
 ```json
 {
-  "marketId": "GG",
-  "packageName" : "com.toast.gamebase",
-  "userChannel" : "GF",
-  "userKey" : "QXG774PMRZMWR3BR"
+    "marketId": "GG",
+    "packageName": "com.toast.gamebase",
+    "userChannel": "GF",
+    "userKey": "QXG774PMRZMWR3BR"
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | 스토어코드<br>GG : Google, AS : Apple, ONESTORE : 원스토어 |
-| packageName | String | mandatory | 콘솔에 등록한 앱의 packageName |
-| userChannel | String | mandatory  | 유저 채널<br>현재는 미구현 상태로 항상 `GF` 값을 설정  |
-| userKey | String | mandatory  | 유저 ID  |
+| marketId | String | mandatory | 	商店代码<br>GG : Google, AS : Apple, ONESTORE : ONE Store |
+| packageName | String | mandatory | 控制台中注册的应用程序的packageName |
+| userChannel | String | mandatory | 用户通道<br>当前总是以未实现状态设置“GF”值 |
+| userKey | String | mandatory | 用户ID |
 
 **[Response Body]**
 
 ```json
 {
-  "header": {
-    "isSuccessful": true,
-    "resultCode": 0,
-    "resultMessage": "SUCCESS"
-  },
-  "result": [
-    {
-      "channel": "GF",
-      "userId": "string",
-      "paymentSeq": "2018102610330423",
-      "appId": "com.toast.gamebase",
-      "productId": "subs_p1w",
-      "productType": "AUTO_RENEWABLE",
-      "productSeq": 1002904,
-      "currency": "KRW",
-      "price": 1000,
-      "paymentId": "GPA.3375-2193-1175-57698",
-      "originalPaymentId": "GPA.3375-2193-1175-57698",
-      "purchaseTimeMillis": 1540522998289,
-      "expiryTimeMillis": 1541134994548
-    }
-  ]
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "result": [
+        {
+            "channel": "GF",
+            "userId": "string",
+            "paymentSeq": "2018102610330423",
+            "appId": "com.toast.gamebase",
+            "productId": "subs_p1w",
+            "productType": "AUTO_RENEWABLE",
+            "productSeq": 1002904,
+            "currency": "KRW",
+            "price": 1000.0,
+            "paymentId": "GPA.3375-2193-1175-57698",
+            "originalPaymentId": "GPA.3375-2193-1175-57698",
+            "purchaseTimeMillis": 1540522998289,
+            "expiryTimeMillis": 1541134994548
+        }
+    ]
 }
 ```
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Array[Object] | 결제 기본 정보 |
-| result[].channel  | String  | 유저 채널  |
-| result[].userId  | String  | 유저 ID  |
-| result[].paymentSeq | String  |  결제 번호 |
-| result[].appId | String  |  패키지 이름 |
-| result[].productId | String  |  스토어에 등록된 상품(아이템) 식별자 |
-| result[].productType | String  |  상품(아이템) 타입<br>구독: AUTO_RENEWABLE |
-| result[].productSeq | Long | 결제 아이템 번호 (console에 등록된 아이템 고유 번호) |
-| result[].currency  | String  | 결제 통화  |
-| result[].price | Long | 결제 가격 |
-| result[].paymentId | String | 최근 갱신된 스토어 결제 번호 |
-| result[].originalPaymentId | String | 최초 스토어 결제 번호 |
-| result[].purchaseTimeMillis | Long | 최근 갱신된 시간 |
-| result[].expiryTimeMillis | Long | 구독 만료 시간 |
+| result | Array[Object] | 支付基本信息 |
+| result[].channel  | String | 用户通道  |
+| result[].userId  | String | 用户ID |
+| result[].paymentSeq | String | 支付编号 |
+| result[].appId | String | 套装名 |
+| result[].productId | String | 商店注册的商品（道具）标识符 |
+| result[].productType | String | 商品（道具）类型<br>订阅： AUTO_RENEWABLE |
+| result[].productSeq | Long | 支付道具编号（console中注册的道具固有编号 |
+| result[].currency  | String | 支付货币 |
+| result[].price | Long | 支付价格 |
+| result[].paymentId | String | 最近更新的商店支付编号 |
+| result[].originalPaymentId | String | 最初商店支付编号 |
+| result[].purchaseTimeMillis | Long | 最近更新的时间 |
+| result[].expiryTimeMillis | Long | 订阅到期时间 |
 
 
 **[Error Code]**
@@ -1283,11 +1364,11 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 완료된 후에 
 [오류 코드](./error-code/#server)
 
 <br>
+<br>
 
 ## Leaderboard
 
-Gamebase为NHN Cloud Leaderboard服务的服务器API提供**Wrapping**功能。使用Wrapping 功能可在用户服务器上通过统一接口使用NHN Cloud服务
-
+Gamebase为TOAST Leaderboard服务的服务器API提供**Wrapping**功能。使用Wrapping 功能可在用户服务器上通过统一接口使用TOAST服务
 
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
@@ -1305,8 +1386,7 @@ Gamebase为NHN Cloud Leaderboard服务的服务器API提供**Wrapping**功能。
 
 **有关API的详细说明，请参考以下链接。**
 
-
-[Leaderboard Guide](/Game/Leaderboard/zh/api-guide/)
+[Leaderboard Guide](/Game/Leaderboard/ko/api-guide/)
 
 ##### API调用示例
 
@@ -1318,13 +1398,14 @@ X-Secret-Key: IgsaAP
 GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/user-count
 ```
 
+<br>
+<br>
+
 ## Others
 
 ### Support
 
 如需咨询API调用失败原因，请将 **API调用URL(如有HTTP body将HTTP body一同)及响应结果**发送到 [客服中心](https://toast.com/support/inquiry)，我们会尽快回复。
-
-
 
 ##### API调用示例
 
@@ -1336,17 +1417,16 @@ GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.2/apps/C3JmSctU/maint
 
 ```json
 {
-  "header": {
-    "transactionId": "18a1ae42-6b1d-54c8-894e-54e97bca07fq",
-    "resultCode": -4010002,
-    "resultMessage": "Gamebase product appKey is invalid, appId:C3JmSctU",
-    "traceError": {
-      "trackingTime": 1489726350287,
-      "throwPoint": "gateway",
-      "uri": "/tcgb-launching/v1.2/apps/C3JmSctU/maintenances/under-maintenance"
-    },
-    "isSuccessful": false
-  }
+    "header": {
+        "transactionId": "18a1ae42-6b1d-54c8-894e-54e97bca07fq",
+        "resultCode": -4010002,
+        "resultMessage": "Gamebase product appKey is invalid, appId:C3JmSctU",
+        "traceError": {
+            "trackingTime": 1489726350287,
+            "throwPoint": "gateway",
+            "uri": "/tcgb-launching/v1.2/apps/C3JmSctU/maintenances/under-maintenance"
+        },
+        "isSuccessful": false
+    }
 }
-
 ```

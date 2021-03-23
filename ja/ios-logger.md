@@ -12,14 +12,13 @@ Log & Crash Searchで発行したAppKeyでNHN Cloud Logger SDKを初期化しま
 ```
 
 **Example**
-
 ```objectivec
 - (void)initializeSample {
-    TCGBLoggerConfiguration *configuration = [TCGBLoggerConfiguration configurationWithAppKey：@"2BvA3gGZHyPMQYzk"];
+    TCGBLoggerConfiguration *configuration = [TCGBLoggerConfiguration configurationWithAppKey:@"YOUR_APP_KEY"];
 
 // Default value of enableCrashReport is YES
 // You can set NO if you don't want use a crash report feature.
-//    TCGBLoggerConfiguration *configuration = [TCGBLoggerConfiguration configurationWithAppKey：@"2BvA3gGZHyPMQYzk" enableCrashReporter：NO];
+//    TCGBLoggerConfiguration *configuration = [TCGBLoggerConfiguration configurationWithAppKey:@"YOUR_APP_KEY" enableCrashReporter:NO];
 
     [TCGBLogger initializeWithConfiguration：configuration];
 }
@@ -101,7 +100,7 @@ NHN Cloud Logger SDKは、下記の5つのレベルのログを転送できま�
 
 ### Further Tasks after Sending Logs
 
-delegateを登録すると、ログ転送後に追加作業を進行できます。
+デリゲート(delegate)を登録すると、ログを送信した後に追加作業を進行できます。
 
 **API**
 

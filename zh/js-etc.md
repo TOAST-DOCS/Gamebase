@@ -6,14 +6,29 @@
 
 ### Display Language
 
-* 可将Gamebase中显示的语言（Gamebase内置UI显示的文本）更改为与终端机设置的语言(device language)不同的语言。
-* Gamebase显示包含于客户的信息或显示从服务器接收的信息。
-* 若设置Display Language，可以用符合用户设置的语言代码(ISO-639)的语种来显示信息。
-* 可添加需要的语言集合。可添加的语言代码如下。
+
+Gamebase显示终端机设置的语言。 
+
+但有些游戏允许通过额外选项更改终端机设置的语言。
+若终端机设置的默认语言是英语，则需将游戏的显示语言转换为日语时，即使您要将Gamebase的显示语言也转换为日语，Gamebase仍显示终端机设置的默认语言（en）。 
+
+因此Gamebase向需要以终端机设置的语言之外的其他语言显示Gamebase消息的应用程序，提供”Display Language“功能。
+
+Gamebase显示消息时，以设置为Display Language的语言显示。 
+在Display Language中输入语言代码时，只能使用以下列表中（**Gamebase支持的语言代码种类**）指定的代码。
+
+> <font color="red">[注意]</font><br/>
+>
+> * 无论终端机设置的语言如何，只需要更改Gamebase显示语言时使用Display Language Gamebase功能。  
+> * Display Language Code为区分大小写的ISO-639形态的值。
+> 若按”EN”或”zh-cn”进行设置，可能出现问题。
+> * 若输入的Display Language Code值不在以下列表时（**Gamebase支持的语言代码的种类**）, 则将Display Langauge Code自动设置为默认语言（en）。
 
 > [参考]
 >
-> Gamebase的客户信息仅包含英文(en)、韩文(ko)、日文(ja)。
+> * 因Gamebase客户端消息中仅包含英语（en）、韩语（ko）、日语（ja），即使是下列表指定的语言代码，指定英语（en）、韩语（ko）、日语（ja）之外的语言时，也将设置为默认语言(en)。
+> * 可以直接添加未注册在Gamebase客户端的语言集合。
+> 请参考**添加新语言集合**项目。
 
 #### Gamebase支持的语言代码类型
 
@@ -37,11 +52,6 @@
 | zh-TW    | Chinese-Traditional       |
 
 该语言代码在`toast.GamebaseDisplayLanguage.DefaultCode`常数中定义。
-
-> `[注意]`
->
-> Gamebase支持的语言代码区分大小写。
-> 若按‘EN’或’zh-cn’进行设置，可能出现问题。
 
 ```js
 var toast.GamebaseDisplayLanguage.DefaultCode = {
@@ -236,224 +246,177 @@ toast.Gamebase.setDisplayLanguageTable(displayLanguageTable) {
 2.Gamebase初始化时，确认终端机设置的语言代码是否定义于localized string。（该值初始化后，即使更改终端机设置的语言也会保留。）
 3.Display Language的默认值`en`自动设置。
 
-### Server Push
-* 可以处理Gamebase服务器中利用WebSocket向客户终端机发送的Server Push Message。
-* 若在Gamebase客户中添加ServerPushEvent Listener，用户可接收该信息并处理，添加的ServerPushEvent Listener可删除。
+### Gamebase Event Handler
 
-#### Flow
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
-
-#### Server Push Type
-当前Gamebase支持的Server Push Type如下。
-可在**toast.GamebaseServerPushType**常数中确认。
-
-* 踢出(Kickout)
-    * 若在NHN Cloud Gamebase控制台的`Operation > Kickout`中注册踢出ServerPush信息，则可向与Gamebase连接的所有客户发送信息。
-    * Type:toast.GamebaseServerPushType.APP_KICKOUT (= "appKickout")
-
-
-#### Add ServerPushEvent
-可向Gamebase客户注册ServerPushEvent，处理Gamebase控制台及Gamebase服务器发送的Push事件。
+* Gamebase通过**GamebaseEventHandler**事件系统处理所有事件。
+* GamebaseEventHandler通过以下API简单添加或删除Listener。
 
 - API：
 
 ```js
-toast.Gamebase.addServerPushEvent((serverPushEvent) => { ...});
+toast.Gamebase..addEventHandler((event) => { ...});
+toast.Gamebase..removeEventHandler((event) => { ...});
+toast.Gamebase..removeAllEventHandler();
 ```
 
 **Example**
 
-```js
-var serverPushEvent = (event) => {
-    var type = event.type;
-    var data = event.data;
-
-    if (type === toast.GamebaseServerPushType.APP_KICKOUT) {
-        console.log('User is kicked out.');
-    } else {
-        console.log('Unknown server push event is arrived');
-        console.log(event);
+```javascript
+toast.Gamebase.addEventHandler((message) => {
+    const category = message.category;
+    const data = message.data;
+    switch (category) {
+        case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
+            // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+            // Return to title and initialize Gamebase again.
+            break;
+        case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
+            // If the user wants to move the guest account to another device,
+            // if the account transfer is successful,
+            // the login of the previous device is released,
+            // so go back to the title and try to log in again.
+            break;
+        case GamebaseEventCategory.OBSERVER_LAUNCHING:
+            checkLaunchingStatus(JSON.parse(message.data));
+            break;
+        case GamebaseEventCategory.OBSERVER_NETWORK:
+            checkNetworkStatus(JSON.parse(message.data));
+            break;
+        case GamebaseEventCategory.OBSERVER_HEARTBEAT:
+            checkHeartbeat(JSON.parse(message.data));
+            break;
+        case GamebaseEventCategory.OBSERVER_INTROSPECT:
+            // Introspect error
+            var observerData = JSON.parse(message.data);
+            var errorCode = observerData.code;
+            var errorMessage = observerData.message;
+            break;
     }
-};
-
-function addServerPush() {
-    toast.Gamebase.addServerPushEvent(serverPushEvent);
-}
+});
 ```
 
+* Category在GamebaseEventCategory类中定义。
 
-#### Remove ServerPushEvent
-可删除向Gamebase注册的ServerPushEvent。
+#### Server Push
 
-- API：
-
-```js
-toast.Gamebase.removeServerPushEvent(serverPushEvent);
-toast.Gamebase.removeAllServerPushEvent();
-```
+* 从Gamebase服务器向客户端终端机发送的消息如下。
+* Gamebase支持的Server Push Type如下。
+	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
+    	* 如果在TOAST Gamebase控制台**Operation > Kickout**中注册Kickout ServerPush消息，则从与Gamebase连接的所有客户端接收Kickout消息。
+    * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
+    	* 将Guest账号成功转移到其他终端机时，从转移之前的终端机接收Kickout消息。
 
 **Example**
 
 ```js
-function removeServerPush() {
-    toast.Gamebase.removeServerPushEvent(serverPushEvent);
-}
-
-function removeAllServerPush() {
-    toast.Gamebase.removeAllServerPushEvent();
-}
-```
-
-
-
-
-
-### Observer
-* 可利用Gamebase Observer接收并处理Gamebase的各种状态变动事件。
-* 状态变动事件：网络类型变动、Launching状态变动（检查等导致的状态变动）、Heartbeat信息变动（用户停止使用等导致的Heartbeat信息变动）等
-
-#### Flow
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
-
-#### Observer Type
-当前Gamebase支持的Observer Type如下。
-可在**toast.GamebaseObserverType**常数中确认。
-
-* Network类型变动
-    * 可接收网络变动事项信息。例如，可通过ObserverMessage.data.get(”code”)的值了解Network Type。
-    * Type:toast.GamebaseObserverType.NETWORK (= "network")
-    * Code:参考**toast.GamebaseNetworkType**宣布的常数。
-        * toast.GamebaseNetworkType.TYPE_NOT:-1
-        * toast.GamebaseNetworkType.TYPE_MOBILE:0
-        * toast.GamebaseNetworkType.TYPE_WIFI:1
-        * toast.GamebaseNetworkType.TYPE_ANY:2
-* Launching状态变动
-    * 周期性确认应用程序状态的Launching Status response存在变动时发生。例如，存在因检查、服务结束等导致的事件。
-    * Type:toast.GamebaseObserverType.LAUNCHING (= "launching")
-    * Code:参考**toast.GamebaseLaunchingStatus**宣布的常数。
-        * toast.GamebaseLaunchingStatus.IN_SERVICE:200
-        * toast.GamebaseLaunchingStatus.RECOMMEND_UPDATE:201
-        * toast.GamebaseLaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST:202
-        * toast.GamebaseLaunchingStatus.REQUIRE_UPDATE:300
-        * toast.GamebaseLaunchingStatus.BLOCKED_USER:301
-        * toast.GamebaseLaunchingStatus.TERMINATED_SERVICE:302
-        * toast.GamebaseLaunchingStatus.INSPECTING_SERVICE:303
-        * toast.GamebaseLaunchingStatus.INSPECTING_ALL_SERVICES:304
-        * toast.GamebaseLaunchingStatus.INTERNAL_SERVER_ERROR:500
-* Heartbeat信息变动
-    * 周期性与Gamebase服务器保持连接的Heartbeat response存在变动时发生。例如，用户被停止使用时，无法正常’登录连接’，因此发生用户停止使用事件。
-    * Type:toast.GamebaseObserverType.HEARTBEAT (= "heartbeat")
-    * Code:参考**toast.GamebaseConstant**宣布的常数。
-        * toast.GamebaseConstant.BANNED_MEMBER:7
-
-
-#### Add Observer
-可向Gamebase客户注册Observer，处理各种状态变动事件。
-
-- API：
-
-```js
-var observerEvent = (event) => {
-    var type = event.type;
-    var data = event.data;
-
-    if (type === toast.GamebaseServerPushType.APP_KICKOUT) {
-        console.log('User is kicked out.');
-    } else {
-        console.log('Unknown server push event is arrived');
-        console.log(event);
+toast.Gamebase.addEventHandler((message) => {
+    const category = message.category;
+    const data = message.data;
+    switch (category) {
+        case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
+            // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+            // Return to title and initialize Gamebase again.
+            break;
+        case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
+            // If the user wants to move the guest account to another device,
+            // if the account transfer is successful,
+            // the login of the previous device is released,
+            // so go back to the title and try to log in again.
+            break;
+        default:
+            break;
     }
-};
-toast.Gamebase.addObserver(observerEvent);
+});
 ```
+
+#### Observer
+
+* 是处理Gamebase的各状态变动事件的系统。
+* Gamebase支持的Observer Type如下。
+    * GamebaseEventCategory.OBSERVER_LAUNCHING
+    	* 当开始或结束维护、发布新版本必须进行更新等Launching状态出现变动时运行。
+    	* GamebaseEventObserverData.code : 为LaunchingStatus值。
+            * LaunchingStatus.IN_SERVICE: 200
+            * LaunchingStatus.RECOMMEND_UPDATE: 201
+            * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
+            * LaunchingStatus.REQUIRE_UPDATE: 300
+            * LaunchingStatus.BLOCKED_USER: 301
+            * LaunchingStatus.TERMINATED_SERVICE: 302
+            * LaunchingStatus.INSPECTING_SERVICE: 303
+            * LaunchingStatus.INSPECTING_ALL_SERVICES: 304
+            * LaunchingStatus.INTERNAL_SERVER_ERROR: 500
+    * GamebaseEventCategory.OBSERVER_HEARTBEAT
+    	* 已被退出或禁用，用户账户状态出现变动时运行。
+    	* GamebaseEventObserverData.code : 为GamebaseError值。
+            * GamebaseError.INVALID_MEMBER: 6
+            * GamebaseError.BANNED_MEMBER: 7
+    * GamebaseEventCategory.OBSERVER_NETWORK
+    	* 可接收网络变动信息。
+    	* 网络被连接或断开、从Wifi转为Cellular网络时运行。
+    	* GamebaseEventObserverData.code : 为NetworkManager值。
+            * NetworkManager.TYPE_NOT: -1
+            * NetworkManager.TYPE_MOBILE: 0
+            * NetworkManager.TYPE_WIFI: 1
+            * NetworkManager.TYPE_ANY: 2
+    * GamebaseEventCategory.OBSERVER_INTROSPECT
+        * 在Standalone/WebGL上进行登录后，session延长失败时运行。
 
 **Example**
 
-```js
-function addObserver() {
-    toast.Gamebase.addObserver(observerEvent);
-}
-
-var observerEvent = (event) => {
-    var typeOfEvent = event.type;
-    var data = event.data;
-
-    if (typeOfEvent === toast.GamebaseObserverType.NETWORK) {
-        checkNetworkStatus(data);
-    } else if (typeOfEvent === toast.GamebaseObserverType.HEARTBEAT) {
-        checkHeartbeat(data);
-    } else if (typeOfEvent === toast.GamebaseObserverType.LAUNCHING) {
-        checkLaunchingStatus(data);
+```javascript
+toast.Gamebase.addEventHandler((message) => {
+    const category = message.category;
+    const data = message.data;
+    switch (category) {        
+        case GamebaseEventCategory.OBSERVER_LAUNCHING:
+            checkLaunchingStatus(JSON.parse(message.data));
+            break;
+        case GamebaseEventCategory.OBSERVER_NETWORK:
+            checkNetworkStatus(JSON.parse(message.data));
+            break;
+        case GamebaseEventCategory.OBSERVER_HEARTBEAT:
+            checkHeartbeat(JSON.parse(message.data));
+            break;
+        case GamebaseEventCategory.OBSERVER_INTROSPECT:
+            // Introspect error
+            var observerData = JSON.parse(message.data);
+            var errorCode = observerData.code;
+            var errorMessage = observerData.message;
+            break;
+        default:
+            break;
     }
-};
+});
 
 function checkLaunchingStatus(data) {
-    var code = data.code;       // Code : toast.GamebaseLaunchingStatus
-    var message = data.message;
-
-    console.log(message);
-
+    var code = data.code;
     var isPlayable = toast.GamebaseLaunching.isPlayable(code);
     if (isPlayable) {
-        console.log('The Game is playable');
+        // 'The Game is playable'
     } else {
-        console.log('The Game is not playable');
+        // 'The Game is not playable'
     }
 }
 
 function checkHeartbeat(data) {
-    // Code : toast.GamebaseConstant.INVALID_MEMBER, toast.GamebaseConstant.BANNED_MEMBER
     var code = data.code;
-    var message = data.message;
-
-    console.log('Heartbeat status is changed.');
-    console.log(message);
-
     if (code === toast.GamebaseConstant.INVALID_MEMBER) {
-        console.log('This user is an invalid member.');
-        console.log('Maybe the user was withdrawn or has a trouble with his/her account.');
+        // You should to write the code necessary in game. (End the session.)
     } else if (code === toast.GamebaseConstant.BANNED_MEMBER) {
-        console.log('This user is banned.');
+        // The ban information can be found by using the GetBanInfo API.
+        // Show kickout message to user and need kickout in game.
     } else {
         console.log('Heartbeat code:' + code);
     }
 }
 
 function checkNetworkStatus(data) {
-    var code = data.code;       // Code:toast.GamebaseNetworkType
-    var message = data.message;
-
-    console.log('Network status is changed.');
-    console.log(message);
-
+    var code = data.code;
     if (code === toast.GamebaseNetworkType.TYPE_NOT) {
-        console.log('Network is unreachable.');
+        // Network disconnected
     } else {
-        console.log('Network is rechable.');
+        // Network connected
     }
-}
-```
-
-
-#### Remove Observer
-可删除向Gamebase注册的Observer。
-
-- API：
-
-```js
-toast.Gamebase.removeObserver(observerEvent);
-toast.Gamebase.removeAllObserver();
-```
-
-**Example**
-
-```js
-function removeObserver() {
-    toast.Gamebase.removeObserver(observerEvent);
-}
-
-function removeAllObserver() {
-    toast.Gamebase.removeAllObserver();
 }
 ```
 
@@ -490,9 +453,10 @@ Analytics控制台使用方法请参考如下指南。
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | number |  |
-| channelId | O | string |  |
-| characterId | O | string |  |
+| userLevel | M | number | 是显示游戏用户级别的字段。 |
+| channelId | O | string | 是显示通道的字段。 |
+| characterId | O | string | 是显示角色名的字段。 |
+| characterClassId | O | string | 是显示职业的字段。 |
 
 - API：
 
@@ -530,10 +494,10 @@ function setGameUserData(userLevel, channelId, characterId) {
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc	|
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | number |  |
-| levelUpTime | O | number | 按Epoch Time输入。</br>按Millisecond单位输入。|
-| channelId | O | string |  |
-| characterId | O | string |  |
+| userLevel | M | number | 是显示游戏用户级别的字段。 |
+| levelUpTime | O | number | Enter Epoch Time</br>in millisecond. |
+| channelId | O | string | 是显示角色名的字段。 |
+| characterId | O | string | 是显示职业的字段。 |
 
 - API：
 

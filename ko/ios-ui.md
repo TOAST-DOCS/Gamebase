@@ -148,11 +148,21 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 q
         // Called when the entire termsView is closed.
         NSLog(@"TermsView closed");
 
-        // Save Push Configuration and use it for registerPush after login.
-        TCGBPushConfiguration *configuraiton = [TCGBPushConfiguration fromDataContainer:dataContainer];
+        // If the TCGBPushConfiguration is not null, 
+        // save TCGBPushConfiguration and use it for registerPush after login.
+        TCGBPushConfiguration *savedPushConfiguraiton = [TCGBPushConfiguration fromDataContainer:dataContainer];
     };
 
     [TCGBTerms showTermsViewWithViewController:self completion:completion];
+}
+
+- (void)afterLogin {
+    // Call registerPush with saved TCGBPushConfiguration.
+    if (savedPushConfiguration != nil) {
+        [TCGBPush registerPushWithPushConfiguration:savedPushConfiguration completion:^(TCGBError* error) {
+            ...
+        }];
+    }
 }
 ```
 

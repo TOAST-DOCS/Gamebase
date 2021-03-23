@@ -238,10 +238,6 @@ NHN Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 	* URL Schemes를 설정해야 합니다.
 		* **XCode > Target > Info > URL Types**
 
-* 1.12.2 이상
-	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.google`를 추가해야 합니다.
-
 * GOOGLE 추가 인증 정보 입력 예제
 
 ```json
@@ -249,6 +245,11 @@ NHN Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 ```
 
 ![gamebase_auth_google_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_google_console_01.png)
+
+
+* 1.12.2 이상
+	* URL Scheme를 설정해야 합니다.
+		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.google`를 추가해야 합니다.
 
 
 ![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
@@ -300,13 +301,6 @@ PAYCO Client ID를 신청해서 발급받은 {client_id} 및 {client_secret}을 
 		* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
 		* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
 
-* 1.12.2 이상
-	* AdditionalInfo를 설정해야 합니다.
-		* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-		* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
-	* URL Scheme를 설정해야 합니다.
-		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.payco`를 추가해야 합니다.
-
 * PAYCO 추가 인증 정보 입력 예제
 
 ```json
@@ -314,6 +308,14 @@ PAYCO Client ID를 신청해서 발급받은 {client_id} 및 {client_secret}을 
 ```
 
 ![gamebase_auth_payco_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_payco_console_01.png)
+
+* 1.12.2 이상
+	* AdditionalInfo를 설정해야 합니다.
+		* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+		* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
+	* URL Scheme를 설정해야 합니다.
+		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.payco`를 추가해야 합니다.
+
 
 ![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
@@ -355,6 +357,12 @@ Naver Developers 사이트에서 신청하여 발급받은 {client_id} 및 {clie
 	* URL Schemes를 설정해야 합니다.
 		* **XCode > Target > Info > URL Types**
 
+```json
+{ "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
+```
+
+![gamebase_auth_naver_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_naver_console_01.png)
+
 * 1.12.2 이상
 	* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
 		* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
@@ -363,12 +371,6 @@ Naver Developers 사이트에서 신청하여 발급받은 {client_id} 및 {clie
 		* **XCode > Target > Info > URL Types**에 `tcgb.{Bundle ID}.naver`를 추가해야 합니다.
 
 * NAVER 추가 인증 정보 입력 예제
-
-```json
-{ "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
-```
-
-![gamebase_auth_naver_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_naver_console_01.png)
 
 ![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 

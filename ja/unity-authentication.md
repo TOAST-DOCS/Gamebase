@@ -1,4 +1,4 @@
-## Game > Gamebase > Unity SDK ご利用ガイド > 認証
+﻿## Game > Gamebase > Unity SDK ご利用ガイド > 認証
 
 ## Login
 
@@ -40,7 +40,7 @@ Gamebaseでは基本的にゲストログインに対応しています。<br/>
     * エラーコードが**SOCKET_ERROR(110)**または**SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**Gamebase.LoginForLastLoggedInProvider()**をもう一度呼び出したり、しばらくしてからもう一度試します。
 * 利用停止中のゲームユーザー
     * エラーコードが**BANNED_MEMBER(7)**の場合、利用停止ゲームユーザーのため認証に失敗したということです。
-    * **Gamebase.GetBanInfo()**で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由についてご案内ください。
+    * **GamebaseResponse.Auth.BanInfo.From(GamebaseError error)**で制裁情報を確認し、ゲームユーザーにゲームをプレイできない理由を伝えてください。
     * Gamebaseを初期化する際に**GamebaseConfiguration.enablePopup**及び**GamebaseConfiguration.enableBanPopup**の値をtrueすると、Gamebaseが利用停止に関するポップアップを自動で表示します。
 * その他のエラー
     * 前回のログインタイプで認証に失敗しました。**'3. 指定されたIdPで認証'**を進めます。
@@ -62,7 +62,7 @@ Gamebaseでは基本的にゲストログインに対応しています。<br/>
     * エラーコードが**SOCKET_ERROR(110)**または**SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**Gamebase.Login(providerName, callback)**をもう一度呼び出したり、しばらくしてからもう一度試します。
 * 利用停止中のゲームユーザー
     * エラーコードが**BANNED_MEMBER(7)**の場合、利用停止ゲームユーザーのため認証に失敗したということです。
-    * **Gamebase.GetBanInfo()**で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由について知らせてください。
+    * **GamebaseResponse.Auth.BanInfo.From(GamebaseError error)**で制裁情報を確認し、ゲームユーザーにゲームをプレイできない理由を伝えてください。
     * Gamebaseを初期化する際に**GamebaseConfiguration.enablePopup**及び**GamebaseConfiguration.enableBanPopup**の値をtrueすると、Gamebaseが利用停止に関するポップアップを自動で表示します。
 * その他のエラー
     * エラーが発生したことをゲームユーザーに知らせ、ゲームユーザーが認証IdPのタイプを選択できる状態(主にタイトル画面またはログイン画面)に戻ります。
@@ -96,31 +96,24 @@ public void LoginForLastLoggedInProvider()
         }
         else
         {
+            // Check the error code and handle the error appropriately.
+            Debug.Log(string.Format("Login failed. error is {0}", error));
         	if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
             {
             	Debug.Log(string.Format("Retry LoginForLastLoggedInProvider or notify an error message to the user. : {0}", error.message));
             }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
             else
             {
                 Debug.Log("Try to login using a specifec IdP");
-                Login("ProviderName");
+                Gamebase.Login("ProviderName", (authToken, error) => {});
             }
-        }
-    });
-}
-
-public void Login(string providerName)
-{
-    Gamebase.Login(providerName, (authToken, error) =>
-    {
-        if (Gamebase.IsSuccess(error))
-        {
-            string userId = authToken.member.userId;
-            Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
-        }
-        else
-        {
-            Debug.Log(string.Format("Login failed. error is {0}", error));
         }
     });
 }
@@ -159,7 +152,19 @@ public void Login()
         }
         else
         {
+            // Check the error code and handle the error appropriately.
         	Debug.Log(string.Format("Login failed. error is {0}", error));
+            if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+            {
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
         }
     });
 }
@@ -188,19 +193,18 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 | --------    | ------------------------------- | ---------------- |
 | Google      | GamebaseAuthProvider.GOOGLE     | Android<br/>iOS<br/>Standalone |
 | Game Center | GamebaseAuthProvider.GAMECENTER | iOS |
+| Apple ID    | GamebaseAuthProvider.AppleId    | iOS |
 | Facebook    | GamebaseAuthProvider.FACEBOOK   | Android<br/>iOS<br/>Standalone |
 | Payco       | GamebaseAuthProvider.PAYCO      | Android<br/>iOS<br/>Standalone |
 | Naver       | GamebaseAuthProvider.NAVER      | Android<br/>iOS |
 | Twitter     | GamebaseAuthProvider.TWITTER    | Android<br/>iOS |
 | Line        | GamebaseAuthProvider.LINE       | Android<br/>iOS |
-| HANGAME     | GamebaseAuthProvider.HANGAME    | Android<br/>iOS |
-| WEIBO       | GamebaseAuthProvider.WEIBO      | Android<br/>iOS |
 
 
 > IdPの中には、ログインする際に必ず必要な情報があるものがあります。<br/>
 > 例えば、Facebookログインを設計する場合、scopeなどを設定する必要があります。<br/>
 > このような必須情報を設定することができるようにstatic void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)APIを提供します。<br/>
-> パラメーターのadditionalInfoに必須情報をdictionary形式で入力してください。パラメーター値がの場合、NHN Cloud Consoleに登録したadditionalInfoの値が埋められます。パラメーター値がある場合、Consoleに登録に登録してある値よりもこちらを優先してその値を上書きします。([NHN Cloud ConsoleにadditionalInfoを設定する](./oper-app/#authentication-information))<br/>
+> パラメーターのadditionalInfoに必須情報をdictionary形式で入力してください。パラメーター値がの場合、TOAST Consoleに登録したadditionalInfoの値が埋められます。パラメーター値がある場合、Consoleに登録に登録してある値よりもこちらを優先してその値を上書きします。([TOAST ConsoleにadditionalInfoを設定する](./oper-app/#authentication-information))<br/>
 > スタンドアローン(standalone)では、WebViewAdapterでログインをサポートし、WebViewが開かれている時は、UIで入力されるイベントをブロッキング(blocking)しません。
 
 
@@ -224,23 +228,52 @@ public void Login()
         }
         else
         {
+            // Check the error code and handle the error appropriately.
         	Debug.Log(string.Format("Login failed. error is {0}", error));
+            if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+            {
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
         }
     });
 }
 
-public void Login(string providerName, Dictionary<string, object> additionalInfo)
+public void LoginWithAdditionalInfo()
 {
-    Gamebase.Login(providerName, additionalInfo, (authToken, error) =>
+    var additionalInfo = new Dictionary<string, object>
     {
-        if (Gamebase.IsSuccess(error))
-        {
+        { "key", "value" }
+    };
+
+    Gamebase.Login(GamebaseAuthProvider.FACEBOOK, additionalInfo, (authToken, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {            
             string userId = authToken.member.userId;
             Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
         }
         else
         {
+            // Check the error code and handle the error appropriately.
             Debug.Log(string.Format("Login failed. error is {0}", error));
+            if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+            {
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
         }
     });
 }
@@ -254,7 +287,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 | keyname | a use | 値の種類 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdPタイプ設定                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | IdPタイプ設定                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)の設定<br/>Google認証の場合は使用しない |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Googleログイン後に取得できるOTAC(one time authorization code)の入力 |                                          |
 
@@ -301,14 +334,27 @@ public void LoginWithCredential()
     
     Gamebase.Login(credentialInfo, (authToken, error) =>
     {
-    	if (Gamebase.IsSuccess(error))
+    	if (Gamebase.IsSuccess(error) == true)
         {
-        	string userId = authToken.member.userId;
-        	Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
+            
+            string userId = authToken.member.userId;
+            Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
         }
         else
         {
+            // Check the error code and handle the error appropriately.
         	Debug.Log(string.Format("Login failed. error is {0}", error));
+            if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+            {
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
         }
     });
 }
@@ -501,7 +547,7 @@ public void AddMapping(string providerName)
 
 | keyname | a use | 値の種類 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdPタイプの設定                            | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | IdPタイプの設定                            | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)設定<br/>Google認証の場合は使用しない |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Googleログイン後に取得できるOTAC(one time authorization code)を入力 |                                          |
 
@@ -583,8 +629,8 @@ public void AddMappingForcibly(string idPName)
             // まずaddMapping APIを呼び出し、すでに連携されているアカウントでマッピングを試行し、次のようにForcingMappingTicketを取得できます。
             if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
             {
-                // ForcingMappingTicketクラスのMakeForcingMappingTicket()メソッドを利用して、ForcingMappingTicketインスタンスを取得します。
-                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.MakeForcingMappingTicket(error);
+                // ForcingMappingTicketクラスのFrom()メソッドを利用してForcingMappingTicketインスタンスを取得します。
+                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
 
                 // 強制マッピングを試行します。
                 Gamebase.AddMappingForcibly(idPName, forcingMappingTicket.forcingMappingKey, (authTokenForcibly, errorForcibly) =>
@@ -620,7 +666,7 @@ public void AddMappingForcibly(string idPName)
 
 | keyname | a use | 値種類 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdPタイプ設定                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | IdPタイプ設定                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)設定<br/>Google認証時には使用しない |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Googleログイン後に取得した認証情報(Authorization Code)設定 |                                        |
 
@@ -659,8 +705,8 @@ public void AddMappingForcibly(Dictionary<string, object> credential)
             // まずaddMapping APIを呼び出し、すでに連携されているアカウントでマッピングを試行し、次のようにForcingMappingTicketを取得できます。
             if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
             {
-                // ForcingMappingTicketクラスのMakeForcingMappingTicket()メソッドを利用して、ForcingMappingTicketインスタンスを取得します。
-                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.MakeForcingMappingTicket(error);
+                // ForcingMappingTicketクラスのFrom()メソッドを利用してForcingMappingTicketインスタンスを取得します。
+                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
 
                 // 強制マッピングを試行します。
                 Gamebase.AddMappingForcibly(credential, forcingMappingTicket.forcingMappingKey, (authTokenForcibly, errorForcibly) =>
@@ -900,31 +946,12 @@ public void GetAuthProviderProfile(string providerName)
 }
 ```
 
-### Get Banned User Infomation
+### Get Banned User Information
 
-Gamebase Consoleで利用制限対象のゲームユーザーに登録された場合、
-ログインを試みると、利用制限情報コード(**BANNED_MEMBER(7)**)が表示されることがあり、次のAPIを利用して利用制限情報を確認することができます。
+Gamebase Consoleに制裁中のゲームユーザーと登録されている場合、
+ログインを試行すると下記のような利用制限情報コードが表示されることがあります。**GamebaseResponse.Auth.BanInfo.from(GamebaseError error)**メソッドを利用して制裁情報を確認できます。
 
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-
-```cs
-static GamebaseResponse.Auth.BanInfo GetBanInfo()
-```
-
-**Example**
-```cs
-public void GetBanInfo()
-{
-    GamebaseResponse.Auth.BanInfo banInfo = Gamebase.GetBanInfo();
-}
-```
+* BANNED_MEMBER(7)
 
 ## TransferAccount
 ゲストアカウントを他の端末に移行するためのキーを発行する機能です。
@@ -1038,6 +1065,8 @@ public void RenewTransferAccountManualIdPassword(string accountId, string accoun
 
 > <font color="red">[注意]</font><br/>
 > ゲストでログインした状態でアカウントを移行すると、ゲストアカウントは消滅します。
+> * 誤ったid/passwordを連続して入力すると、**AUTH_TRANSFERACCOUNT_BLOCK(3042)**エラーが発生し、アカウント移行が一定時間できなくなります。
+> この場合は、次の例のようにTransferAccountFailInfo値を利用して、いつまでアカウント移行ができないかをユーザーに伝えることができます。
 
 **API**
 
@@ -1059,7 +1088,162 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
         }
         else
         {
-            // Transfering Account failed.
+            // Check the error code and handle the error appropriately.
+            if (error.code == GamebaseErrorCode.AUTH_TRANSFERACCOUNT_BLOCK)
+            {
+                GamebaseResponse.Auth.TransferAccountFailInfo transferAccountFailInfo = GamebaseResponse.Auth.TransferAccountFailInfo.From(error);
+                if (transferAccountFailInfo != null)
+                {
+                    // Transfering Account failed by entering the wrong id / pw multiple times.
+                    // You can tell when the account transfer is blocked by the TransferAccountFailInfo.
+                    string failId = transferAccountFailInfo.id;
+                    int failCount = transferAccountFailInfo.failCount;
+                    DateTime dateTime = new DateTime(transferAccountFailInfo.blockEndDate);
+                }
+            }
+        }
+    });
+}
+```
+
+## TemporaryWithdrawal
+
+「退会猶予」機能です。
+一時退会をリクエストして即時に退会が行われずに一定期間の猶予期間が過ぎると、退会が行われます。
+猶予期間はコンソールで変更できます。
+
+> `注意`
+>
+> 退会猶予機能を使用する場合には**Gamebase.withdraw()**APIを使用しないでください。
+> **Gamebase.withdraw()**APIは即時にアカウントを退会します。
+
+ログインが成功すると、AuthToken.member.temporaryWithdrawalで退会猶予状態のユーザーかを判断できます。
+
+### Request TemporaryWithdrawal
+
+一時退会をリクエストします。
+コンソールに指定した期間が過ぎると自動的に退会進行が完了します。
+
+> 退会猶予機能を使用する場合には**Gamebase.withdraw()**APIを使用しないでください。
+
+**API**
+
+```cs
+public static void RequestWithdrawal(GamebaseCallback.GamebaseDelegate<GamebaseResponse.TemporaryWithdrawalInfo> callback)
+```
+
+**Example**
+
+```cs
+public void SampleRequestWithdrawal()
+{
+    Gamebase.TemporaryWithdrawal.RequestWithdrawal((data, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            long gracePeriodDate = data.gracePeriodDate;
+            Debug.Log(string.Format("RequestWithdrawal succeeded. The date when you can withdraw your withdrawal is {0}", gracePeriodDate));
+        }
+        else
+        {
+            Debug.Log(string.Format("RequestWithdrawal failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### Check TemporaryWithdrawal User
+
+退会猶予を使用するゲームは、AuthToken.member.temporaryWithdrawalがnullではない場合、ログイン後に常に該当ユーザーに退会進行中であることを伝える必要があります。
+
+**Example**
+
+```cs
+public void LoginSample()
+{
+    Gamebase.Login(GamebaseAuthProvider.XXX, (authToken, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            if(authToken.member.temporaryWithdrawal != null)
+            {
+                long gracePeriodDate = authToken.member.temporaryWithdrawal.gracePeriodDate;
+                Debug.Log(string.Format("User is under temporary withdrawa. GracePeriodDate : {0}", error));
+            }            
+            else
+            {
+                string userId = authToken.member.userId;            
+                Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
+            }
+        }
+        else
+        {
+            // Check the error code and handle the error appropriately.            
+            Debug.Log(string.Format("Login failed. error is {0}", error));
+        }
+    });
+}
+
+```
+
+### Cancel TemporaryWithdrawal
+
+退会リクエストをキャンセルします。
+退会リクエストした後、期間が満了して退会が完了すると、キャンセルができません。
+
+> 退会猶予機能を使用する場合には**Gamebase.withdraw()**APIを使用しないでください。
+
+**API**
+
+```cs
+static void CancelWithdrawal(GamebaseCallback.ErrorDelegate callback)
+```
+**Example**
+
+```cs
+public void SampleCancelWithdrawal()
+{
+    Gamebase.TemporaryWithdrawal.CancelWithdrawal((error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            Debug.Log("CancelWithdrawal succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("CancelWithdrawal failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### Withdraw Immediately
+
+退会猶予期間を無視して、即時退会を進行します。
+実際の内部動作はGamebase.withdraw() APIと同じです。
+
+即時退会はキャンセルできないため、実行するかどうかをユーザーによく確認してください。
+
+**API**
+
+```cs
+static void WithdrawImmediately(GamebaseCallback.ErrorDelegate callback)
+```
+
+**Example**
+
+```cs
+public void SampleWithdrawImmediately()
+{
+    Gamebase.TemporaryWithdrawal.WithdrawImmediately((error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            Debug.Log("WithdrawImmediately succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("SampleWithdrawImmediately failed. error:{0}", error));
         }
     });
 }
@@ -1074,6 +1258,7 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 |      | AUTH_USER_CANCELED | 3001 | ログインがキャンセルされました。|
 |      | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | この認証方式には対応しておりません。|
 |      | AUTH_NOT_EXIST_MEMBER | 3003 | 退会されているか、存在しない会員です。|
+|  | AUTH_EXTERNAL_LIBRARY_INITIALIZATION_ERROR | 3006 | 外部認証ライブラリの初期化に失敗しました。 |
 |      | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 外部認証ライブラリーエラーです。<br/> DetailCodeおよびDetailMessageを確認してください。|
 |  | AUTH_ALREADY_IN_PROGRESS_ERROR | 3010 | 以前の認証プロセスが完了しませんでした。
 | TransferKey | SAME\_REQUESTOR | 8 | 発行したTransferKeyを同じ端末で使用しました。 |
@@ -1082,7 +1267,7 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 |                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | 無効なTransferAccountを複数回入力したため、アカウント移行機能がロックされました。 |
 |                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | TransferAccountのIDが有効ではありません。 |
 |                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | TransferAccountのパスワードが有効ではありません。 |
-|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccountが設定されていません。<br/>先にNHN Cloud Gamebaseコンソールで設定してください。 |
+|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccountが設定されていません。<br/>先にTOAST Gamebaseコンソールで設定してください。 |
 |                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccountが存在しません。TransferAccountを先に発行してください。 |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccountがすでに存在します。 |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccountは使われています。 |
@@ -1106,6 +1291,8 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 |                | AUTH_REMOVE_MAPPING_LOGGED_IN\_IDP | 3403 | 現在ログイン中のIdPです。|
 | Logout | AUTH_LOGOUT_FAILED | 3501 | ログアウトに失敗しました。|
 | Withdrawal | AUTH_WITHDRAW_FAILED | 3601 | 退会に失敗しました。|
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | すでに一時退会中のユーザーです。                    |
+|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 一時退会中のユーザーではありません。                     |   
 | Not Playable | AUTH_NOT_PLAYABLE | 3701 | プレイできない状態です。(メンテナンスまたはサービス終了など) |
 | Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | 不明なエラーです。(定義されていないエラーです。) |
 
@@ -1120,7 +1307,7 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
 
-if (Gamebase.IsSuccess(gamebaseError))
+if (Gamebase.IsSuccess(gamebaseError) == true)
 {
     // succeeded
 }

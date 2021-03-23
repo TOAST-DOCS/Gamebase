@@ -1,14 +1,23 @@
 ## Game > Gamebase > リリースノート
 
+
+### 2021. 03. 23.
+
+#### 機能改善/変更
+* [Console] 회원 > 다운로드: 하나의 파일에 저장되는 데이터 수 개선(5만 -> 50만)
+* [SDK] 2.20.2
+	* (iOS) Facebook iOS SDK 업데이트 (9.1.0)
+	* (iOS) 특정 경우에 GamebaseAuthFacebookAdapter에서 openURL delegate가 호출되지 않았던 이슈 수정
+
 ### 2021. 03. 09.
 
 #### 機能追加
-* [Console] 앱 > 약관: GDPR 약관 추가
-* [Server API] IdP ID로 Gamebase user ID를 획득하는 API 추가 
+* [Console]アプリ > 約款：GDPRの約款を追加
+* [Server API] IdP IDでGamebase user IDを取得するAPIを追加 
 
 #### 機能改善/変更
 * [SDK] 2.20.1
-	* (iOS) iOS 14에 대응하여 IDFA 획득 로직 수정: info.plist에 NSUserTrackingUsageDescription 필드 추가
+	* (iOS) iOS 14に対応し、IDFA取得ロジックを修正：info.plistにNSUserTrackingUsageDescriptionフィールドを追加
 
 ### 2021. 02. 23.
 

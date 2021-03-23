@@ -48,13 +48,13 @@ AdditionalInfoに対する説明は下の**Gamebaseで対応しているIdP**の
 #### 1-2. 認証に失敗した場合
 
 * ネットワークエラー
-    * エラーコードが**TCGB_ERROR_SOCKET_ERROR(110)**または**TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**をもう一度呼び出したり、しばらくしてからもう一度試します。
-* 利用停止中のゲームユーザー
-    * エラーコードが**TCGB_ERROR_AUTH_BANNED_MEMBER(3005)**の場合、利用停止中のゲームユーザーであるため認証に失敗したケースです。
-    * **[TCGBGamebase banInfo]**で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由について知らせてください。
-    * Gamebaseを初期化する際に**[TCGBConfiguration enablePopup:YES]**及び**[TCGBConfiguration enableBanPopup:YES]**を呼び出せば、Gamebaseが利用停止に関するポップアップを自動で表示します。
+    * エラーコードが**TCGB_ERROR_SOCKET_ERROR(110)**または **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題で認証が失敗したということです。**[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**をもう一度呼び出すか、しばらくしてから再試行します。
+* 利用停止ゲームユーザー
+    * エラーコードが**TCGB_ERROR_BANNED_MEMBER(7)**の場合、利用停止ゲームユーザーのため認証に失敗したということです。
+    * **[TCGBBanInfo banInfoFromError:error]**で制裁情報を確認して、ゲームユーザーにゲームをプレイできない理由を伝えてください。
+    * Gamebase初期化時に **[TCGBConfiguration enablePopup:YES]**および **[TCGBConfiguration enableBanPopup:YES]**を呼び出すと、Gamebaseが利用停止に関するポップアップを自動的に表示します。
 * その他のエラー
-    * 前回のログインタイプで認証に失敗しました。**3. 指定されたIdPで認証**を進めます。
+    * 以前のログインタイプでの認証が失敗しました。**3. 指定されたIdPで認証**を進行します。
 
 #### 2. 指定されたIdPで認証
 
@@ -70,13 +70,13 @@ AdditionalInfoに対する説明は下の**Gamebaseで対応しているIdP**の
 #### 2-2. 認証に失敗した場合
 
 * ネットワークエラー
-    * エラーコードが**TCGB_ERROR_SOCKET_ERROR(110)**または**TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**[TCGBGamebase loginWithType:viewController:completion:]**をもう一度呼び出したり、しばらくしてからもう一度試します。
-* 利用停止中のゲームユーザー
-    * エラーコードが**TCGB_ERROR_AUTH_BANNED_MEMBER(3005)**の場合、利用停止中のゲームユーザーであるため認証に失敗したケースです。
-    * **[TCGBGamebase banInfo]** で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由について知らせてください。
-    * Gamebaseを初期化する際に**[TCGBConfiguration enablePopup:YES]**及び**[TCGBConfiguration enableBanPopup:YES]**を呼び出せば、Gamebaseが利用停止に関するポップアップを自動で表示します。
+    * エラーコードが**TCGB_ERROR_SOCKET_ERROR(110)**または **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワークの問題で認証に失敗したということです。**[TCGBGamebase loginWithType:viewController:completion:]**をもう一度呼び出すか、しばらくしてから再試行します。
+* 利用停止ゲームユーザー
+    * エラーコードが**TCGB_ERROR_BANNED_MEMBER(7)**の場合、利用停止ゲームユーザーのため認証に失敗したということです。
+    * **[TCGBBanInfo banInfoFromError:error]**で制裁情報を確認して、ゲームユーザーにゲームをプレイできない理由を伝えてください。
+    * Gamebase初期化時に **[TCGBConfiguration enablePopup:YES]**および **[TCGBConfiguration enableBanPopup:YES]**を呼び出すと、Gamebaseが利用停止に関するポップアップを自動的に表示します。
 * その他のエラー
-    * エラーが発生したことをゲームユーザーに知らせ、ゲームユーザーが認証IdPのタイプを選択できる状態(主にタイトル画面またはログイン画面)に戻ります。
+    * エラーが発生したことをゲームユーザーに伝え、ゲームユーザーが認証IdPタイプを選択できる状態(主にタイトル画面またはログイン画面)へ戻ります。
 
 ### Login as the Latest Login IdP
 
@@ -90,7 +90,7 @@ AdditionalInfoに対する説明は下の**Gamebaseで対応しているIdP**の
 
 ```objectivec
 - (void)automaticLogin {
-    [TCGBGamebase loginForLastLoggedInProviderWithViewController:self completion:^(TCGBAuthToken *authToken, TCGBError *error){
+    [TCGBGamebase loginForLastLoggedInProviderWithViewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error){
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             NSLog(@"Login is succeeded.");
             //TODO: 1. Do you want.
@@ -140,7 +140,7 @@ IdPの中には、ログインする際に必ず必要な情報があるもの�
 例えば、Facebookログインを設計する場合、scopeなどを設定する必要があります。<br/>
 このような必須情報を設定することができるように**[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]**APIを提供します。<br/>
 パラメーターのadditionalInfoに必須情報をdictionary形式で入力してください。<br/>
-(パラメーター値がnilの場合、NHN Cloud Consoleに登録したadditionalInfoの値が埋められます。パラメーター値がある場合、Consoleに登録してある値よりもこちらを優先してその値を上書きします。)
+(パラメーター値がnilの場合、TOAST Consoleに登録したadditionalInfoの値が埋められます。パラメーター値がある場合、Consoleに登録してある値よりもこちらを優先してその値を上書きします。)
 
 
 > [参考]
@@ -150,10 +150,10 @@ IdPの中には、ログインする際に必ず必要な情報があるもの�
 
 ```objectivec
 - (void)loginPaycoButtonClick {
-    [TCGBGamebase loginWithType:kTCGBAuthPayco viewController:self completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+    [TCGBGamebase loginWithType:kTCGBAuthPayco viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Login Succeeded
-            NSString *userId = [authToken.tcgbMember.userId];
+            NSString *userId = [authToken.tcgbMember userId];
         } else {
             // To Login Failed
         }
@@ -231,7 +231,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 ```objectivec
 - (void)authLogout {
-    [TCGBGamebase logoutWithViewController:self completion:^(TCGBError *error) {
+    [TCGBGamebase logoutWithViewController:topViewController completion:^(TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Logout Succeeded
         } else {
@@ -267,7 +267,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 ```objectivec
 - (void)authWithdrawal {
-    [TCGBGamebase withdrawWithViewController:self completion:^(TCGBError *error) {
+    [TCGBGamebase withdrawWithViewController:topViewController completion:^(TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Withdrawal Succeeded
         } else {
@@ -443,7 +443,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
         }
         else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
             NSLog(@"Already mapped to other member");
-            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketWithError:error];
+            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketFromError:error];
             [TCGBGamebase addMappingForciblyWithType:ticket.idPCode forcingMappingKey:ticket.forcingMappingKey viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
                 if ([TCGBGamebase isSuccessWithError:error]) {
                     // Mapping success.
@@ -508,7 +508,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
         }
         else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
             NSLog(@"Already mapped to other member");
-            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketWithError:error];
+            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketFromError:error];
             [TCGBGamebase addMappingWithCredential:credentialInfo forcingMappingKey:ticket.forcingMappingKey viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
                 if ([TCGBGamebase isSuccessWithError:error]) {
                     // Mapping success.
@@ -533,7 +533,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 連携を解除した後は、Gamebase内部で該当するIdPに対するログアウト処理を行います。
 
 ```objectivec
-[TCGBGamebase removeMappingWithType:@"facebook" viewController:self completion:^(TCGBError *error) {
+[TCGBGamebase removeMappingWithType:@"facebook" viewController:topViewController completion:^(TCGBError *error) {
     if ([TCGBGamebase isSuccessWithError:error] == YES) {
         // To Remove Mapping Succeeded
     } else {
@@ -558,7 +558,7 @@ Gamebaseで認証フローを進めた後、アプリを制作する際に必要
 >
 > "[TCGBGamebase loginForLastLoggedInProvider]"APIでログインした場合、認証情報を取得することができません。
 >
-> 認証情報が必要な場合、"[TCGBGamebase loginForLastLoggedInProvider]"の代わりに使用したいIDPCodeと同じ{IDP_CODE}をパラメーターとし、"[TCGBGamebase loginWithType:IDP_CODE viewController:self completion:completion];"APIでログインしないと認証情報を正常に取得することができません。
+> 認証情報が必要な場合、"[TCGBGamebase loginForLastLoggedInProvider]"の代わりに、使用したいIDPCodeと同じ{IDP_CODE}をパラメータにして"[TCGBGamebase loginWithType:IDP_CODE viewController:topViewController completion:completion];" APIでログインすると、正常に認証情報を取得できます。
 
 ### Get Authentication Information for Gamebase
 Gamebaseから発行された認証情報を取得することができます。
@@ -572,9 +572,6 @@ NSString* gamebaseAccessToken = [TCGBGamebase accessToken];
 
 // Obtaining Last Logged In Provider
 NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
-
-// Obtaining Ban Information
-TCGBBanInfo* banInfo = [TCGBGamebase banInfo];
 ```
 
 
@@ -597,8 +594,8 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 
 ### Get Banned User Information
 
-Gamebase Consoleで利用制限対象のゲームユーザーに登録された場合、
-ログインを試みると、次のような利用制限情報コードが表示されることがあります。**[TCGBGamebase banInfo]**メソッドを利用して利用制限情報を確認することができます。
+Gamebase Consoleに制裁されたゲームユーザーとして登録されている場合、
+ログインを試行すると、以下のような利用制限情報コードが表示されることがあります。**[TCGBBanInfo banInfoFromError:error]**メソッドを利用して制裁情報を確認できます。
 
 * TCGB_ERROR_BANNED_MEMBER
 
@@ -696,7 +693,11 @@ Gamebase Consoleで利用制限対象のゲームユーザーに登録された�
 アカウント移行が成功した端末では、TransferAccountを発行した端末のゲストアカウントを継続して使用できます。
 
 > `注意`
-> ゲストでログインした状態でアカウントを移行すると、ゲストアカウントは消滅します。
+> ゲストログインしている状態で移行が成功すると、端末にログインしていたゲストアカウントは消失します。
+> 無効なid/passwordを連続して入力すると**AUTH_TRANSFERACCOUNT_BLOCK(3042)**エラーが発生し、アカウント移行が一定時間できなくなります。
+> この場合は以下の例のようにTCGBTransferAccountFailInfo値を利用して、いつまでアカウント移行ができないのかをユーザーに伝えることができます。
+
+
 
 **API**
 
@@ -709,9 +710,171 @@ Gamebase Consoleで利用制限対象のゲームユーザーに登録された�
 ```objectivec
  - (void)transferOtherDevice {
     [TCGBGamebase transferAccountWithIdPLoginWithAccountId:@"1Aie0198" accountPassword:@"1Aie0199" completion:^(TCGBAuthToken* authToken, TCGBError* error) {
-        NSLog(@"Transfered => %@,\nerror => %@", [authToken description], [error description]);
+       if (error.code == TCGB_ERROR_AUTH_TRANSFERACCOUNT_BLOCK) {
+            // Transfering Account failed.
+            TCGBTransferAccountFailInfo* failInfo = [TCGBTransferAccountFailInfo transferAccountFailInfoFrom:error];
+            if (failInfo == nil) {
+                // Transfering Account failed by entering the wrong id / pw multiple times.
+                // You can tell when the account transfer is blocked by the TransferAccountFailInfo.
+
+                NSString *failedId = failInfo.accountId;
+                NSInteger failCount = failInfo.failCount;
+                NSDate *blockedDate = [NSDate dateTimeIntervalSince1970:(failInfo.blockEndDate / 1000.0)];
+                return;
+            }
+            // Transfering Account failed by another reason.
+            return;  
+        }
+        // Transfering Account success.
+        // TODO: implements post login process
     }];
  }
+```
+
+
+
+## TemporaryWithdrawal
+
+「退会猶予」機能です。
+一時退会をリクエストして即時に退会が行われずに一定期間の猶予期間が過ぎると、退会が行われます。
+猶予期間はコンソールで変更できます。
+
+> `注意`
+>
+> 退会猶予機能を使用する場合には**[TCGBGamebase withdrawWithViewController:completion:]**APIを使用しないでください。
+> **[TCGBGamebase withdrawWithViewController:completion:]**APIは即時にアカウントを退会します。
+
+ログインが成功すると、AuthToken.getTemporaryWithdrawalInfo() APIを呼び出して退会猶予状態のユーザーかを判断できます。
+
+### Request TemporaryWithdrawal
+
+一時退会をリクエストします。
+コンソールに指定した期間が過ぎると自動的に退会進行が完了します。
+
+**API**
+
+```objectivec
++ (void)withdrawWithViewController:(UIViewController *)viewController completion:(WithdrawCompletion)completion;
+```
+
+**ErrorCode**
+
+|Error Code | Description |
+| --- | --- |
+| TCGB\_ERROR\_AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW(3602) | すでに一時退会中のユーザーです。 |
+
+**Example**
+
+```objectivec
+- (void)testRequestWithdraw {
+    TCGBGamebase requestTemporaryWithdrawalWithViewController:parentViewController completion:^(TCGBTemporaryWithdrawalInfo *info, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == NO) {
+            if (error.code == TCGB_ERROR_AUTH_WITHDRAW_ALREADY_TEMPORARY_WITHDRAW) {
+                // Already requested temporary withdrawal before.
+            }
+            else {
+                // Request temporary withdrawal failed.
+                return;
+            }
+        }
+
+        // Request temporary withdrawal success.
+    }];
+}
+```
+
+### Check TemporaryWithdrawal User
+
+退会猶予を使用するゲームはログイン後に常に**TCGBAuthToken.tcgbMember.temporaryWithdrawal**を使用し、結果がnullではない有効なTemporaryWithdrawalInfoオブジェクトを返す場合、該当ユーザーに退会進行中であることを伝える必要があります。
+
+**Example**
+
+
+```objectivec
+- (void)testLogin {
+    [TCGBGamebase loginWithType:@"appleid" viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == NO) {
+            // Login failed
+            return;
+        }
+
+        // Check if user is requesting withdrawal
+        if (authToken.tcgbMember.temporaryWithdrawal != nil) {
+            // User is under temporary withdrawal
+            long gradePeriod = authToken.tcgbMember.temporaryWithdrawal.gracePeriodDate;
+        }
+        else {
+            // Login Success
+        }
+    }];
+}
+```
+
+
+### Cancel TemporaryWithdrawal
+
+退会リクエストをキャンセルします。
+退会リクエストした後、期間が満了して退会が完了すると、キャンセルができません。
+
+**API**
+
+```objectivec
++ (void)cancelTemporaryWithdrawalWithViewController:(UIViewController *)viewController completion:(WithdrawCompletion)completion;
+```
+
+**ErrorCode**
+
+|Error Code | Description |
+| --- | --- |
+| TCGB\_ERROR\_AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW(3603) | 一時退会中のユーザーではありません。 |
+
+**Example**
+
+```objectivec
+- (void)testCancelWithdraw {
+    [TCGBGamebase cancelTemporaryWithdrawalWithViewController:parentViewController completion:^(TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == NO) {
+            if (error.code == TCGB_ERROR_AUTH_WITHDRAW_NOT_TEMPORARY_WITHDRAW) {
+                // Never requested temporary withdrawal before.
+            }
+            else {
+                // Cancel temporary withdrawal failed.
+                return
+            }
+        }
+
+        // Cancel temporary withdrawal success.
+    }];
+}
+```
+
+### Withdraw Immediately
+
+退会猶予期間を無視して、即時退会を進行します。
+実際の内部動作は**[TCGBGamebase withdrawWithViewController:completion:]**APIと同じです。
+
+即時退会はキャンセルできないため、実行するかどうかをユーザーによく確認してください。
+
+**API**
+
+```objectivec
++ (void)withdrawImmediatelyWithViewController:(UIViewController *)viewController completion:(WithdrawCompletion)completion;
+```
+
+
+**Example**
+
+```objectivec
+- (void)testWithdrawImmediately {
+    [TCGBGamebase withdrawImmediatelyWithViewController:parentViewController completion:^(TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == NO) {
+            // withdraw failed.
+            return;
+        }
+
+        // Withdraw success.
+    }];
+}
 ```
 
 
@@ -719,35 +882,37 @@ Gamebase Consoleで利用制限対象のゲームユーザーに登録された�
 
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
-| Auth           | TCGB\_ERROR\_INVALID\_MEMBER             | 6          | 正しくない会員に対するリクエストです。                        |
-|                | TCGB\_ERROR\_BANNED\_MEMBER              | 7          | 利用制限対象の会員です。                               |
-|                | TCGB\_ERROR\_AUTH\_USER\_CANCELED        | 3001       | ログインがキャンセルされました。                           |
-|                | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | この認証方式には対応しておりません。                      |
-|                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | 退会されているか、存在しない会員です。                    |
-|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 外部認証ライブラリーエラーです。 <br/> DetailCodeおよびDetailMessageを確認してください。 |
-| Auth (Login)   | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED  | 3101       |トークンログインに失敗しました。                         |
-|                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       |トークン情報が有効ではありません。                       |
-|                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 最近ログインしたIdPの情報がありません。                  |
-| IdP Login      | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED    | 3201       | IdPログインに失敗しました。                       |
-|                | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO | 3202       | IdP情報が有効ではありません。(Consoleに該当するIdPの情報がありません。) |
-| Add Mapping    | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FAILED  | 3301       | マッピング追加に失敗しました。                          |
-|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | 既に他のメンバーにマッピングされています。                     |
-|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | 既に同じIdPにマッピングされています。                    |
-|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO | 3304       | IdP情報が有効ではありません。(Consoleに該当するIdPの情報がありません。) |
+| Auth           | TCGB\_ERROR\_INVALID\_MEMBER             | 6          | 無効な会員へのリクエストです。                        |
+|                | TCGB\_ERROR\_BANNED\_MEMBER              | 7          | 制裁中の会員です。                               |
+|                | TCGB\_ERROR\_AUTH\_USER\_CANCELED        | 3001       | ログインがキャンセルされました。                            |
+|                | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | サポートしていない認証方式です。                        |
+|                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | 存在しないか、退会した会員です。                      |
+|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR    | 3006       | 外部認証ライブラリの初期化に失敗しました。                      |
+|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 外部認証ライブラリエラーです。<br/> DetailCodeおよびDetailMessageを確認してください。  |
+| Auth (Login)   | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED  | 3101       | トークンのログインに失敗しました。                          |
+|                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | トークン情報が有効ではありません。                        |
+|                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 最近ログインしたIdP情報がありません。                   |
+| IdP Login      | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED    | 3201       | IdPログインに失敗しました。                        |
+|                | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO | 3202       | IdP情報が有効ではありません。 (Consoleに該当IdP情報がありません。) |
+| Add Mapping    | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FAILED  | 3301       | マッピングの追加に失敗しました。                           |
+|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | すでに他のメンバーにマッピングされています。                      |
+|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | すでに同じIdPにマッピングされています。                     |
+|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO | 3304       | IdP情報が有効ではありません。 (Consoleに該当IdP情報がありません。) |
 |                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_CANNOT\_ADD\_GUEST\_IDP | 3305  | ゲストIdPではAddMappingができません。 |
-| Remove Mapping | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_FAILED | 3401       | マッピング削除に失敗しました。                          |
-|                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | 最後にマッピングされたIdPは、削除することができません。              |
-|                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403       | 現在ログイン中のIdP です。                   |
-| Logout         | TCGB\_ERROR\_AUTH\_LOGOUT\_FAILED        | 3501       | ログアウトに失敗しました。                           |
-| Withdrawal     | TCGB\_ERROR\_AUTH\_WITHDRAW\_FAILED      | 3601       | 退会に失敗しました。                             |
-| Not Playable   | TCGB\_ERROR\_AUTH\_NOT\_PLAYABLE         | 3701       | プレイできない状態です(メンテナンスまたはサービス終了など)。       |
-| Auth(Unknown)  | TCGB\_ERROR\_AUTH\_UNKNOWN\_ERROR        | 3999       | 不明なエラーです。(定義されていないエラーです。)            |
+| Remove Mapping | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_FAILED | 3401       | マッピングの削除に失敗しました。                           |
+|                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | 最後にマッピングされたIdPは削除できません。                |
+|                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403       | 現在ログインしているIdPです。                     |
+| Logout         | TCGB\_ERROR\_AUTH\_LOGOUT\_FAILED        | 3501       | ログアウトに失敗しました。                            |
+| Withdrawal     | TCGB\_ERROR\_AUTH\_WITHDRAW\_FAILED      | 3601       | 退会に失敗しました。                              |
+|                | TCGB\_ERROR\_AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | すでに一時退会中のユーザーです。                    |
+|                | TCGB\_ERROR\_AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 一時退会中のユーザーではありません。                     |
+| Not Playable   | TCGB\_ERROR\_AUTH\_NOT\_PLAYABLE         | 3701       | プレイできない状態です(メンテナンスまたはサービス終了など)。        |
+| Auth(Unknown)  | TCGB\_ERROR\_AUTH\_UNKNOWN\_ERROR        | 3999       | 不明なエラーです。 (定義されていないエラーです。)            |
 
 
 
 
-
-* 全体のエラーコードは、次のドキュメントをご参考ください。
+* エラーコードは次の文書を参照してください。
     - [エラーコード](./error-code/#client-sdk)
 
 

@@ -148,50 +148,50 @@ Gamebase iOS SDKの初期化設定に入力したアプリバージョンのゲ�
 | INSPECTING_ALL_SERVICES     | 304  | 全体サービスをメンテナンス中です。                             |
 | INTERNAL_SERVER_ERROR       | 500  | 内部サーバーエラーです。                                |
 
-[Console Guide](/Game/Gamebase/ja/oper-app/#app)
+[Console Guide](/Game/Gamebase/ko/oper-app/#app)
 
 **1.2 App**
 
-Gamebase Consoleに登録されたアプリ情報です。
+Gamebaseコンソールに登録されたアプリ情報です。
 
 * accessInfo
-    * serverAddress：サーバーアドレス
-    * csInfo：サポート情報
+    * serverAddress： Server address
+    * csInfo： Customer center information
 * relatedUrls
-    * termsUrl：利用規約
+    * termsUrl：利用約款
     * personalInfoCollectionUrl：個人情報同意
     * punishRuleUrl：利用停止規定
-    * csUrl：サポート
+    * csUrl ：サポート
 * install：インストールURL
 * idP：認証情報
 
-[Console Guide](/Game/Gamebase/ja/oper-app/#client)
+[コンソールガイド](/Game/Gamebase/ko/oper-app/#client)
 
 **1.3 Maintenance**
 
-Gamebase Consoleに登録されたメンテナンス情報です。
+Gamebaseコンソールに登録されたメンテナンス情報です。
 
-* url：メンテナンスページURL
-* timezone：標準時間帯(timezone)
-* beginDate：開始時間
-* endDate：終了時間
-* message：メンテナンス理由
+* url: URL for maintenance page
+* timezone: Standard time zone (timezone)
+* beginDate: Start time
+* endDate: End time
+* message: Cause of maintenance
 
-[Console Guide](/Game/Gamebase/ja/oper-operation/#maintenance)
+[コンソールガイド](/Game/Gamebase/ko/oper-operation/#maintenance)
 
 **1.4 Notice**
 
-Gamebase Consoleに登録された告知情報です。
+Gamebaseコンソールに登録された告知情報です。
 
-* message：メッセージ
-* title：タイトル
-* url：メンテナンスURL
+* message: Message
+* title: Title
+* url: Maintenance URL
 
-[Console Guide](/Game/Gamebase/ja/oper-operation/#notice)
+[コンソールガイド](/Game/Gamebase/ko/oper-operation/#notice)
 
 #### 2. tcProduct
 
-Gamebaseと連携したNHN CloudサービスのappKeyです。
+Gamebaseと連携したTOASTサービスのアプリケーションキーです。
 
 * gamebase
 * tcLaunching
@@ -200,26 +200,76 @@ Gamebaseと連携したNHN CloudサービスのappKeyです。
 
 #### 3. tcIap
 
-NHN Cloud Consoleに登録されたIAPストア情報です。
+TOASTコンソールに登録されたIAPストア情報です。
 
-* id：App ID
-* name：App Name
-* storeCode：Store Code
- 
-[Console Guide](/Game/Gamebase/ja/oper-purchase/)
+* id: App ID
+* name: App Name
+* storeCode: Store Code
+
+[コンソールガイド](/Game/Gamebase/ko/oper-purchase/)
 
 #### 4. tcLaunching
 
-NHN Cloud Launching Consoleでユーザーが入力した情報です。
+TOAST Launching Consoleでユーザーが入力した情報です。
 
-* ユーザーが入力した値をJSON stringで伝達します。
-* NHN Cloud Launchingの詳細設定は下記のガイドを参照してください。
- 
-[Console Guide](/Game/Gamebase/ja/oper-management/#config)
+* ユーザーが入力した値をJSON stringで渡します。
+* TOAST Launching詳細設定は、次のガイドを参照してください。
 
-
+[コンソールガイド](/Game/Gamebase/ko/oper-management/#config)
 
 
+### Handling Unregistered Version
+      
+Gamebaseコンソールに登録されていないGameClientVersionを初期化すると、**LAUNCHING_UNREGISTERED_CLIENT(2004)**エラーが発生します。
+enablePopup(true)、enableLaunchingStatusPopup(true)状態の場合、強制アップデートポップアップが表示され、マーケットへ移動する場合があります。
+Gamebaseポップアップを使用していない場合はUpdateInfoをTCGBErrorオブジェクトから取得し、ユーザーがマーケットへ移動できるようにゲームで直接UIを実装できます。
+
+**VO**
+
+```objectivec
+@interface TCGBUpdateInfo : NSObject
+
+// 最新バージョンをダウンロードできるストアインストールURL.
+@property (nonatomic, strong, nullable) NSString* installUrl;
+
+// ユーザーに表示できるメッセージで、ユーザーの端末言語に合わせて伝達されます。
+// 言語が「en」の場合、メッセージは次の通りです。
+// 'The version is not supported. Please get the latest update version.'
+@property (nonatomic, strong, nullable) NSString* message;
+
+@end
+```
+
+
+**API**
+
+```objectivec
++ (nullable TCGBUpdateInfo *)updateInfoFromError:(nonnull TCGBError *)error;
+```
+
+
+**Example**
+
+```objectivec
+- (void)initializeGamebase {
+    TCGBConfiguration* config = [TCGBConfiguration configurationWithAppID:@"YOUR_APP_ID" appVersion:@"YOUR_APP_VERSION" zoneType:@"YOUR_ZONE_TYPE"];
+    [TCGBGamebase initializeWithConfiguration:config completion:^(id launchingData, TCGBError *result) {
+
+        if (result == nil) {
+            // Gamebase initialization succeeded.
+        } else {
+            // Gamebase initialization failed.
+            TCGBUpdateInfo* updateInfo = [TCGBUpdateInfo updateInfoFromError:result];
+            if (updateInfo) {
+                // Unregistered game client version.
+                // Open market url to update application.
+                NSLog(@"UpdateInfo after initialize => \n%@", [updateInfo prettyJsonString]);
+            }
+        
+        }
+    }];
+}
+```
 
 ## Lifecycle Event
 
