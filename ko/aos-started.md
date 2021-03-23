@@ -71,6 +71,9 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 ```groovy
 repositories {
+    //  >>> For the 'kotlin-gradle-plugin'
+    maven { url "https://plugins.gradle.org/m2/" }
+
     jcenter()
     mavenCentral()
     ...
@@ -132,7 +135,7 @@ dependencies {
 
 * Android Studio 빌드인 경우
     * Firebase 푸시를 사용하려면 아래 가이드에 따라 Firebase 설정을 완료한 후 google-services.json 파일을 프로젝트에 포함시켜야 합니다.
-		* [NHN Cloud > TOAST SDK 사용 가이드 > TOAST Push > Android > Firebase Cloud Messaging 설정](/TOAST/ko/toast-sdk/push-android/#firebase-cloud-messaging)
+		* [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud Push > Android > Firebase Cloud Messaging 설정](/TOAST/ko/toast-sdk/push-android/#firebase-cloud-messaging)
 * Unity 빌드인 경우
     * 만일 Firebase Unity SDK Package 를 설치했다면 아래 명령어로 **generate_xml_from_google_services_json.exe** 파일을 실행하여 json 파일을 xml 파일로 변환시킬 수 있습니다.
         ```
@@ -159,6 +162,50 @@ dependencies {
 ```
 
 ### AndroidManifest.xml
+
+#### Facebook IdP
+
+* targetSdkVersion 을 30 이상으로 설정하는 경우, **queries** 태그 선언이 필요합니다.
+    * 그렇지 않으면 Android 11 이상의 단말기에서는 Facebook 앱이 설치되어 있더라도 빠른 로그인(Express login)이 아닌, ID/PW 를 직접 입력해야 하는 웹로그인 창이 뜨게 됩니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> * 'queries' 태그는 Gradle 5.6.4 이상 버전에서만 빌드가 가능합니다.
+>     * 그러므로 IDE 에서 Gradle 5.6.4 이상이 지원되지 않는 환경에서는 targetSdkVersion 을 29 이하로 설정해야 Android 11 이상의 단말기에서도 빠른 로그인이 가능합니다.
+> * Gradle 5.6.4 이상 버전이 적용된 IDE 는 다음과 같습니다.
+>     * Android Studio : 3.6.1 이상
+>     * Unity : 2020.1 이상
+>     * Unreal : 지원 불가
+
+```xml
+<!-- [Facebook] Configurations begin -->
+<queries>
+    <package android:name="com.facebook.katana" />
+</queries>
+<!-- [Facebook] Configurations end -->
+```
+
+#### Payco IdP
+
+* targetSdkVersion 을 30 이상으로 설정하는 경우, **queries** 태그 선언이 필요합니다.
+    * 그렇지 않으면 Android 11 이상의 단말기에서는 Payco 앱이 설치되어 있더라도 간편한 앱로그인이 아닌, ID/PW 를 직접 입력해야 하는 웹로그인 창이 뜨게 됩니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> * 'queries' 태그는 Gradle 5.6.4 이상 버전에서만 빌드가 가능합니다.
+>     * 그러므로 IDE 에서 Gradle 5.6.4 이상이 지원되지 않는 환경에서는 targetSdkVersion 을 29 이하로 설정해야 Android 11 이상의 단말기에서도 앱로그인이 가능합니다.
+> * Gradle 5.6.4 이상 버전이 적용된 IDE 는 다음과 같습니다.
+>     * Android Studio : 3.6.1 이상
+>     * Unity : 2020.1 이상
+>     * Unreal : 지원 불가
+
+```xml
+<!-- [Payco] Configurations begin -->
+<queries>
+    <package android:name="com.nhnent.payapp" />
+</queries>
+<!-- [Payco] Configurations end -->
+```
 
 #### Hangame IdP
 
@@ -207,6 +254,31 @@ dependencies {
 
 #### ONE Store
 
+* targetSdkVersion 을 30 이상으로 설정하는 경우, 반드시 **queries** 태그 선언이 필요합니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> * 'queries' 태그는 Gradle 5.6.4 이상 버전에서만 빌드가 가능합니다.
+>     * 그러므로 IDE 에서 Gradle 5.6.4 이상이 지원되지 않는 환경에서는 targetSdkVersion 을 29 이하로 설정해야 합니다.
+> * Gradle 5.6.4 이상 버전이 적용된 IDE 는 다음과 같습니다.
+>     * Android Studio : 3.6.1 이상
+>     * Unity : 2020.1 이상
+>     * Unreal : 지원 불가
+
+```xml
+<!-- [ONE store] Configurations begin -->
+<queries>
+    <intent>
+        <action android:name="com.onestore.ipc.iap.IapService.ACTION" />
+    </intent>
+    <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="onestore" />
+    </intent>
+</queries>
+<!-- [ONE store] Configurations end -->
+```
+
 * ONE store 는 전체 결제 화면과 팝업 결제 화면을 지원합니다.
     * AndroidManifest.xml에 meta-data를 추가하여 전체 결제 화면("full") 또는 팝업 결제 화면("popup")을 선택할 수 있습니다.
     * meta-data를 설정하지 않으면 기본값("full")이 적용됩니다.
@@ -231,6 +303,28 @@ dependencies {
 | --- | --- |
 | 전체 결제 화면 | "full" |
 | 팝업 결제 화면 | "popup" |
+
+
+#### Galaxy Store
+
+* targetSdkVersion 을 30 이상으로 설정하는 경우, 반드시 **queries** 태그 선언이 필요합니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> * 'queries' 태그는 Gradle 5.6.4 이상 버전에서만 빌드가 가능합니다.
+>     * 그러므로 IDE 에서 Gradle 5.6.4 이상이 지원되지 않는 환경에서는 targetSdkVersion 을 29 이하로 설정해야 합니다.
+> * Gradle 5.6.4 이상 버전이 적용된 IDE 는 다음과 같습니다.
+>     * Android Studio : 3.6.1 이상
+>     * Unity : 2020.1 이상
+>     * Unreal : 지원 불가
+
+```xml
+<!-- [Galaxy store] Configurations begin -->
+<queries>
+    <package android:name="com.sec.android.app.samsungapps" />
+</queries>
+<!-- [Galaxy store] Configurations end -->
+```
 
 #### Notification Options
 

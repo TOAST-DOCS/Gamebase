@@ -1507,6 +1507,11 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 Gamebase는 NHN Cloud Leaderboard 서비스의 서버 API에 대해 **Wrapping** 기능을 제공합니다. Wrapping 기능을 사용하면 사용자 서버에서 일관된 인터페이스로 NHN Cloud 서비스들을 사용할 수 있습니다.
 
+> [참고]
+> Gamebase를 활성화 하면 Leaderboard Appkey 설정 없이 Gamebase Wrapping API를 호출하여 Leaderboard 기능을 사용할 수 있습니다.
+
+<br>
+
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
@@ -1523,6 +1528,8 @@ Gamebase는 NHN Cloud Leaderboard 서비스의 서버 API에 대해 **Wrapping**
 | 단일 사용자 Leaderboard정보 삭제 | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
 
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
+Gamebase Wrapping API와 매핑된 NHN Cloud Leaderboard API 스펙은 아래 가이드를 참고하세요.
+Leaderboard Appkey 설정 없이 Gamebase Appkey를 이용해서 Gamebase Wrapping API를 호출하시면 됩니다.
 
 [Leaderboard Guide](/Game/Leaderboard/ko/api-guide/)
 
@@ -1545,6 +1552,12 @@ X-Secret-Key: IgsaAP
 
 Gamebase는 NHN Cloud Push 서비스의 서버 API에 대해 **Wrapping** 기능을 제공합니다. Wrapping 기능을 사용하면 사용자 서버에서 일관된 인터페이스로 NHN Cloud 서비스들을 사용할 수 있습니다.
 
+> [참고]
+> Gamebase를 활성화 하면 Push Appkey 설정 없이 Gamebase Wrapping API를 호출하여 Push 기능을 사용할 수 있습니다.
+
+
+<br>
+
 #### Wrapping API
 |    | API | Method | Wrapping URI | Push URI |
 | --- | --- | --- | --- | --- |
@@ -1560,6 +1573,8 @@ Gamebase는 NHN Cloud Push 서비스의 서버 API에 대해 **Wrapping** 기능
 |   | 삭제 | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
 
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
+Gamebase Wrapping API와 매핑된 NHN Cloud Push API 스펙은 아래 가이드를 참고하세요.
+Push Appkey 설정 없이 Gamebase Appkey를 이용해서 Gamebase Wrapping API를 호출하시면 됩니다.
 
 [Push Guide](/Notification/Push/ko/api-guide/)
 
