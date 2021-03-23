@@ -21,8 +21,8 @@
 #### GamebaseConfiguration Example
 ```javascript
 var gamebaseConfiguration = {
-    appId:'T0asTC1oud',    // TOAST Console Project ID
-    clientVersion:'1.0.0', // TOAST Console Gamebase App Client Version
+    appId:'T0asTC1oud',    // NHN Cloud Console Project ID
+    clientVersion:'1.0.0', // NHN Cloud Console Gamebase App Client Version
     enableDebugMode:true,  // Note:Do not turn it on in production mode.
     uiConfiguration:{
         enablePopup:true,  // Default is false.If you want to use the Gamebase UI, please turn it on.
@@ -49,7 +49,8 @@ var gamebaseConfiguration = {
 若欲打开开发中可以参考的系统日志，请调用**toast.Gamebase.setDebugMode(true)**。
 > <font color="red">[注意]</font><br/>
 >
-> **发布**游戏时必须从源代码中删除调用setDebugMode或将参数更改为false。
+> 게임을 **릴리스**할 때는 반드시 소스 코드에서 setDebugMode 호출을 제거하거나 파라미터를 false로 바꿔야합니다.
+>
 
 
 
@@ -61,8 +62,8 @@ var gamebaseConfiguration = {
 ```js
 function gamebaseInitialize() {
     var gamebaseConfiguration = {
-        appId:'T0asTC1oud',    // TOAST Console Project ID
-        clientVersion:'1.0.0', // TOAST Console Gamebase App Client Version
+        appId:'T0asTC1oud',    // NHN Cloud Console Project ID
+        clientVersion:'1.0.0', // NHN Cloud Console Gamebase App Client Version
         enableDebugMode:true,  // Note:Do not turn it on in production mode.
         uiConfiguration:{
             enablePopup:true,  // Default is false.If you want to use the Gamebase UI, please turn it on.
@@ -75,7 +76,7 @@ function gamebaseInitialize() {
     toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error) {
         if (error) {
             // 若初始化失败，则不可使用Gamebase SDK。
-            // 请确认是否正常输入了appId、clientVersion及TOAST控制台的设置。
+            // 请确认是否正常输入了appId、clientVersion及NHN Cloud控制台的设置。
             console.log('Gamebase initialization failed');
             console.log(error);
             return;
@@ -100,9 +101,10 @@ function gamebaseInitialize() {
 }
 ```
 
-### Launching Status
+### Launching Information
 
-可通过toast.Gamebase.initialize调用结果确认推出状态。
+通过调用toast.Gamebase.initialize可以确认推出状态。
+
 ```js
 toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error) {
     if (error) {
@@ -114,18 +116,125 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 });
 ```
 
-### Launching Status Code
+通过调用"toast.Gamebase.Launching.getLaunchingInformations()" API，初始化之后可获取LaunchingInfo对象。
+
+**API**
+
+```java
++ (LaunchingInfo)Gamebase.Launching.getLaunchingInformations();
+```
+在LaunchingInfo对象中存在Gamebase Console中设置的多个值和游戏状态等信息。
+
+
+#### 1. Launching
+
+为Gamebase推出信息。
+
+**1.1 Status**
+是在Gamebase JavaScript SDK初始化设置中输入的App版本游戏状态信息。
+
+* code : 游戏状态代码(维护中、必须更新、终止服务等)
+* message : 游戏状态消息
+
+关于状态代码，请参考以下列表。
+
+#### Launching Status Code
 
 | Status                      | Code | Description                              |
 | --------------------------- | ---- | ---------------------------------------- |
-| IN_SERVICE                  | 200  | 正在正常服务                                 |
-| RECOMMEND_UPDATE            | 201  | 建议升级                                  |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202  | 检查中无法使用服务，但以QA终端机注册时，无论是否检查，都可访问服务进行测试。|
+| IN_SERVICE                  | 200  | 正常服务中                             |
+| RECOMMEND_UPDATE            | 201  | 推荐更新                                 |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202  | 维护期间该服务不可用，但如果登记为测试设备，则无论维护如何，都可以连接和测试该服务。|
 | IN_TEST                     | 203  | 正在测试 |
 | IN_REVIEW                   | 204  | 正在审查 |
-| REQUIRE_UPDATE              | 300  | 必须升级                                  |
-| BLOCKED_USER                | 301  | 因访问断开，利用注册的终端机（设备密钥）访问服务的情况。|
-| TERMINATED_SERVICE          | 302  | 服务结束                                   |
-| INSPECTING_SERVICE          | 303  | 正在检查服务                                 |
-| INSPECTING_ALL_SERVICES     | 304  | 正在检查所有服务                             |
+| IN_BETA                     | 205  | Beta服务器环境  |
+| REQUIRE_UPDATE              | 300  | 强制更新                                |
+| BLOCKED_USER                | 301  | 访问权限已被禁用的用户。|
+| TERMINATED_SERVICE          | 302  | 终止服务                                  |
+| INSPECTING_SERVICE          | 303  | 服务正在维护中                             |
+| INSPECTING_ALL_SERVICES     | 304  | 所有服务正在维护中                              |
 | INTERNAL_SERVER_ERROR       | 500  | 内部服务器错误                                 |
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+
+**1.2 App**
+
+是在Gamebase Console中注册的App信息。
+
+* accessInfo
+    * serverAddress : 服务器地址
+    * csInfo : 客服中心信息
+* relatedUrls
+    * termsUr l : 服务条款
+    * personalInfoCollectionUrl : 个人隐私协议
+    * punishRuleUr l: 禁用条款
+    * csUrl : 客服中心
+* install : 安装URL
+* idP : 认证信息
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+
+**1.3 Maintenance**
+
+是在Gamebase Console中注册的维护信息。
+
+* url: 维护页面URL
+* timezone: 标准时区
+* beginDate: 开始时间
+* endDate: 终止时间
+* message: 维护原因
+
+[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+
+**1.4 Notice**
+
+是在Gamebase Console中注册的公告信息。
+
+* message: 消息
+* title: 标题
+* url: 维护URL
+
+[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+
+#### 2. tcProduct
+
+是与Gamebase连接的NHN Cloud服务appKey。
+
+* gamebase
+* tcLaunching
+* iap
+* push
+
+#### 3. tcIap
+
+是在NHN Cloud Console中注册的IAP商店信息。
+
+* id: App ID
+* name: App Name
+* storeCode: Store Code
+ 
+[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+
+#### 4. tcLaunching
+
+是在NHN Cloud Console中注册的Launching信息。
+
+* 以JSON string传送用户在Console中输入的值。
+ 
+[Console Guide](/Game/Gamebase/ko/oper-management/#config)
+
+
+### Error Handling
+
+| Error                        | Error Code | Description                |
+| ---------------------------- | ---------- | -------------------------- |
+| NOT_INITIALIZED              | 1          | 未初始化Gamebase |
+| NOT_LOGGED_IN                | 2          | 需要登录            |
+| INVALID_PARAMETER            | 3          | 错误参数           |
+| INVALID_JSON_FORMAT          | 4          | JSON格式错误          |
+| USER_PERMISSION              | 5          | 没有权限               |
+| NOT_SUPPORTED                | 10         | 不支持的功能        |
+
+
+* 所有错误代码，请参考以下文档。
+    * [错误代码](./error-code/#client-sdk)

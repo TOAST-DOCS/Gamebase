@@ -6,8 +6,8 @@ Gamebase默认支持Guest登录。
 
 * 使用游客以外的Provider登录，需要Provider AuthAdapter。
 * AuthAdapter和第三方提供的SDK设置，请参考以下内容。
-  [第三方提供的SDK指南](aos-started#3rd-party-provider-sdk-guide)
-
+    * [Game > Gamebase > Android SDK 使用指南 > 开始 > Setting > Gradle](./aos-started/#gradle)
+    * [Game > Gamebase > Android SDK 使用指南 > 开始 > Setting > Console > 第三方提供的SDK指南](./aos-started/#console)
 
 ### Login Flow
 
@@ -17,11 +17,8 @@ Gamebase默认支持Guest登录。
 
 上述逻辑可以按以下顺序实现。
 
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![last provider login flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
+![idp login flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
 #### 1. 按上一次的登录类型认证
 
@@ -39,10 +36,10 @@ Gamebase默认支持Guest登录。
     * 由于突发的网络问题，认证失败，错误代码为 **SOCKET_ERROR(110)** 或 **SOCKET_RESPONSE_TIMEOUT(101)**。需要重新调用**Gamebase.loginForLastLoggedInProvider()**，或稍后再试。
 * 禁用游戏用户。
     * 由于用户是禁用状态，认证失败，错误代码为**BANNED_MEMBER(7)**。
-    * 请使用**Gamebase.getBanInfo()**确认制裁信息，并告知游戏用户无法进行游戏的原因。
+    * 请使用**BanInfo.from(exception)**确认制裁信息，并告知游戏用户无法进行游戏的原因。
     * 初始化Gamebase 时调用**GamebaseConfiguration.Builder.enablePopup(true)** 和**enableBanPopup(true)**，Gamebase会自动弹出禁用的窗口。
 * 其他错误
-    * 因为使用上一次的登录类型认证失败，请进行**3.使用指定的IdP进行认证**。
+    * 因为使用上一次的登录类型认证失败，请进行**2.使用指定的IdP进行认证**。
 
 #### 2. 使用指定的IdP进行认证
 
@@ -61,7 +58,7 @@ Gamebase默认支持Guest登录。
     * 由于突发的网络问题，认证失败，错误代码为 **SOCKET_ERROR(110)**或**SOCKET_RESPONSE_TIMEOUT(101)**，需要重新调用 **Gamebase.login(activity, idpType, callback)**或稍后再试。
 * 禁用游戏用户。
     * 由于用户是禁用状态，认证失败，错误代码为**BANNED_MEMBER(7)**。
-    * 请使用**Gamebase.getBanInfo()**确认制裁信息，并告知游戏用户无法进行游戏的原因。
+    * 请使用**BanInfo.from(exception)**确认制裁信息，并告知游戏用户无法进行游戏的原因。
     * 初始化Gamebase 时调用**GamebaseConfiguration.Builder.enablePopup(true)** 和 **enableBanPopup(true)**，Gamebase会自动弹出禁用窗口。
 * 其他错误
 	* 通知游戏用户发生了错误，并返回到游戏用户可以选择认证IdP类型的页面（通常是标题页面或登录页面）。
@@ -108,9 +105,9 @@ Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthTok
                 // 如果调用GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)
                 // Gamebase自动弹出禁用窗口。
                 //
-                // 如果要根据游戏UI实现禁用弹出窗口，请使用Gamebase.getBanInfo()
+                // 如果要根据游戏UI实现禁用弹出窗口，请使用BanInfo.from(exception)
                 // 确认制裁信息并告知游戏用户无法进行游戏的原因。
-                BanInfo banInfo = Gamebase.getBanInfo();
+                BanInfo banInfo = BanInfo.from(exception);
             } else {
                 // 如果发生其他错误，则尝试使用指定的IdP进行认证。
                 Gamebase.login(activity, provider, logincallback);
@@ -165,9 +162,9 @@ private static void onLoginForGuest(final Activity activity) {
                     // 如果调用GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)
                     // Gamebase自动弹出禁用窗口。
                     //
-                    //如果要根据游戏UI实现禁用弹出窗口，请使用Gamebase.getBanInfo()
+                    //如果要根据游戏UI实现禁用弹出窗口，请使用BanInfo.from(exception)
                     // 确认制裁信息并告知游戏用户无法进行游戏的原因。
-                    BanInfo banInfo = Gamebase.getBanInfo();
+                    BanInfo banInfo = BanInfo.from(exception);
                 } else {
                     // 登录失败
                     Log.e(TAG, "Login failed- "
@@ -180,16 +177,23 @@ private static void onLoginForGuest(final Activity activity) {
 }
 ```
 
-
+ {@line:180}
 ### Login with IdP
 
 以下是允许您使用特定IdP登录的示例代码。<br/>
 您可以在** AuthProvider **类中确认可以登录的IdP类型。
 
+> <font color="red">[注意]</font><br/>
+>
+> 因PAYCO IdP（为认证模块）在检测中出现错误，常被误认为第三方结算模块，iOS审核总被拒，
+> 不再提供AuthProvider.PAYCO的常数。
+> 您要将"payco"字符串作为参数传送。 
+
 **API**
 
 ```java
 + (void)Gamebase.login(Activity activity, AuthProvider provider, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.login(Activity activity, AuthProvider provider, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
 ```
 
 **示例**
@@ -222,9 +226,9 @@ private static void onLoginForGoogle(final Activity activity) {
                     // 如果调用GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)
                     // Gamebase自动弹出禁用窗口
                     //
-                    //如果要根据游戏UI实现禁用弹出窗口，请使用Gamebase.getBanInfo()
+                    //如果要根据游戏UI实现禁用弹出窗口，请使用BanInfo.from(exception)
                     // 确认制裁信息并告知游戏用户无法进行游戏的原因。
-                    BanInfo banInfo = Gamebase.getBanInfo();
+                    BanInfo banInfo = BanInfo.from(exception);
                 } else {
                     // 登录失败
                     Log.e(TAG, "Login failed- "
@@ -245,7 +249,7 @@ private static void onLoginForGoogle(final Activity activity) {
 
 | keyname                                  | a use                                    | 值类型                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP 类型                               | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
+| AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP 类型                               | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.HANGAME<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）<br/>不用于Google认证|                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | 输入登录Google后可以获取的OTAC(一次性验证码) |                                          |
 
@@ -301,9 +305,9 @@ private static void onLoginWithCredential(final Activity activity) {
                     // 如果调用GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)
                     // Gamebase自动弹出禁用窗口。
                     //
-                    // 如果要根据游戏UI实现禁用弹出窗口，请使用Gamebase.getBanInfo()
+                    // 如果要根据游戏UI实现禁用弹出窗口，请使用BanInfo.from(exception)
                     // 确认制裁信息并告知游戏用户无法进行游戏的原因
-                    BanInfo banInfo = Gamebase.getBanInfo();
+                    BanInfo banInfo = BanInfo.from(exception);
                 } else {
                     // 登录失败
                     Log.e(TAG, "Login failed- "
@@ -441,8 +445,8 @@ private static void onWithdraw(final Activity activity) {
 * Gamebase 用户ID: 123bcabca
     * Google ID: aa
     * Facebook ID: bb
-    * Apple Game Center ID: cc
-    * Payco ID: dd
+    * AppleID ID: cc
+    * Twitter ID: dd
 * Gamebase 用户 ID : 456abcabc
     * Google ID: ee
     * Google ID: ff **-> 由于您已关联Google ee帐户，因此无法添加其他Google帐户。**
@@ -494,14 +498,16 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 **API**
 
 ```java
-+ (void)Gamebase.addMapping(Activity activity, String providerName, null, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.addMapping(Activity activity, String providerName, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.addMapping(Activity activity, String providerName, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
 ```
 
 **示例**
 
 ```java
 private static void addMappingForFacebook(final Activity activity) {
-    Gamebase.addMapping(activity, AuthProvider.FACEBOOK, null, new GamebaseDataCallback<AuthToken>() {
+    String mappingProvider = AuthProvider.FACEBOOK;
+    Gamebase.addMapping(activity, mappingProvider, new GamebaseDataCallback<AuthToken>() {
         @Override
         public void onCallback(AuthToken result, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
@@ -533,7 +539,7 @@ private static void addMappingForFacebook(final Activity activity) {
                 final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
                 final String forcingMappingKey = ticket.forcingMappingKey;
 
-                Gamebase.addMappingForcibly(activity, credentialInfo, forcingMappingKey, new GamebaseDataCallback<AuthToken>() {
+                Gamebase.addMappingForcibly(activity, mappingProvider, forcingMappingKey, new GamebaseDataCallback<AuthToken>() {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException exception) {
                         ...
@@ -658,6 +664,7 @@ private static void addMappingWithCredential(final Activity activity) {
 **API**
 
 ```java
++ (void)Gamebase.addMappingForcibly(Activity activity, String providerName, String forcingMappingKey, GamebaseDataCallback<AuthToken> callback);
 + (void)Gamebase.addMappingForcibly(Activity activity, String providerName, String forcingMappingKey, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
 ```
 
@@ -665,7 +672,8 @@ private static void addMappingWithCredential(final Activity activity) {
 
 ```java
 private static void addMappingForciblyFacebook(final Activity activity) {
-    Gamebase.addMapping(activity, AuthProvider.FACEBOOK, null, new GamebaseDataCallback<AuthToken>() {
+    String mappingProvider = AuthProvider.FACEBOOK;
+    Gamebase.addMapping(activity, mappingProvider, new GamebaseDataCallback<AuthToken>() {
         @Override
         public void onCallback(AuthToken result, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
@@ -682,7 +690,7 @@ private static void addMappingForciblyFacebook(final Activity activity) {
                 final String forcingMappingKey = ticket.forcingMappingKey;
 
                 // 尝试强制映射。
-                Gamebase.addMappingForcibly(activity, AuthProvider.FACEBOOK, forcingMappingKey, null, new GamebaseDataCallback<AuthToken>() {
+                Gamebase.addMappingForcibly(activity, mappingProvider, forcingMappingKey, null, new GamebaseDataCallback<AuthToken>() {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException addMappingForciblyException) {
                         if (Gamebase.isSuccess(addMappingForciblyException)) {
@@ -715,7 +723,7 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 
 | keyname                                            | a use                                                        | 值类型                                                      |
 | -------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| AuthProviderCredentialConstants.PROVIDER_NAME      | 设置IdP类型                                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
+| AuthProviderCredentialConstants.PROVIDER_NAME      | 设置IdP类型                                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN       | 设置登录IdP后获得的验证信息（访问令牌）<br/>在Google验证时不使用 |                                                              |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | 输入登录Google后可获得的OTOC(one time authorization code) |                                                              |
 
@@ -843,12 +851,6 @@ private static void removeMappingForFacebook(final Activity activity) {
 ## Gamebase User`s Information
 在使用Gamebase完成认证过程后，制作App时可获取到所需的信息。
 
-> <font color="red">[注意]</font><br/>
->
-> 如果您使用"Gamebase.loginForLastLoggedInProvider()" API登录，则无法获取认证信息。
->
-> 如果需要认证信息，代替“Gamebase.loginForLastLoggedInProvider”使用IDPCode和同一个{IDP_CODE}作为参数，来使用“Gamebase.login(activity, IDP_CODE, callback)” API登录，才可以获取到正常的认证信息。
-
 ### Get Authentication Information for Gamebase
 可以获取Gamebase发行的认证信息。
 
@@ -858,7 +860,6 @@ private static void removeMappingForFacebook(final Activity activity) {
 + (String)Gamebase.getUserID();
 + (String)Gamebase.getAccessToken();
 + (String)Gamebase.getLastLoggedInProvider();
-+ (BanInfo)Gamebase.getBanInfo();
 ```
 
 **示例**
@@ -873,15 +874,16 @@ String accessToken = Gamebase.getAccessToken();
 
 // Obtaining Last Logged In Provider
 String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
-
-// Obtaining Ban Information
-BanInfo banInfo = Gamebase.getBanInfo();
 ```
-
 
 ### Get Authentication Information for External IdP
 
 从外部认证SDK，可获取访问令牌、用户ID、Profile等信息。
+
+> <font color="red">[注意]</font><br/>
+>
+> * 如果您使用"Gamebase.loginForLastLoggedInProvider()" API登录，则无法获取认证信息。
+>     * 如果需要认证信息，代替“Gamebase.loginForLastLoggedInProvider”使用IDPCode和同一个{IDP_CODE}作为参数，来使用“Gamebase.login(activity, IDP_CODE, callback)” API登录，才可以获取到正常的认证信息。
 
 **API**
 
@@ -908,7 +910,7 @@ Map<String, Object> profileMap = profile.information;
 ### Get Banned User Information
 
 如果在Gamebase Console中登记为受到制裁的游戏用户，当该用户尝试登录时，
-可能会看到以下限制信息代码。您可以使用**Gamebase.getBanInfo()**方法，确认制裁信息。
+可能会看到以下限制信息代码。您可以使用**BanInfo.from(exception)**方法，确认制裁信息。
 
 * BANNED_MEMBER(7)
 
@@ -1010,16 +1012,16 @@ Gamebase.renewTransferAccount(autoConfig, new GamebaseDataCallback<TransferAccou
 });
 ```
 
-
-
-
 ### Transfer Guest Account to Another Device
 向从**issueTransfer** API获得的TransferAccount转移账户的功能。
 账户转移成功时获得TransferAccount的终端机可显示转移完成信息，访客登录时创建新的账户。
 在账户转移成功的终端机中可继续使用获得TransferAccount的终端机的账户信息。
 
-> `注意`
-> 如果在游客登录状态下转移成功，原设备中登录过的游客信息将丢失。
+> <font color="red">[注意]</font><br/>
+>
+> * 如果在游客登录状态下转移成功，原设备中登录过的游客信息将丢失。
+> * 如果连续输入不正确的id/password，则出现**AUTH_TRANSFERACCOUNT_BLOCK(3042)**错误，暂时封禁账号转移。
+> 在上述情况下，根据以下示例，可通过使用TransferAccountFailInfo值，提示用户账号被封，过多久才能再转移账号。
 
 **API**
 
@@ -1032,15 +1034,197 @@ Gamebase.renewTransferAccount(autoConfig, new GamebaseDataCallback<TransferAccou
 ```java
 Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDataCallback<AuthToken>() {
     @Override
-    public void onCallback(final AuthToken authToken, final GamebaseException exception) {
+    public void onCallback(AuthToken authToken, GamebaseException exception) {
         if (!Gamebase.isSuccess(exception)) {
             // Transfering Account failed.
+            TransferAccountFailInfo failInfo = TransferAccountFailInfo.from(exception);
+            if (failInfo != null) {
+                // Transfering Account failed by entering the wrong id / pw multiple times.
+                // You can tell when the account transfer is blocked by the TransferAccountFailInfo.
+                String failedId = failInfo.id;
+                int failCount = failInfo.failCount;
+                Date blockedDate = new Date(failInfo.blockEndDate);
+                return;
+            }
+
+            // Transfering Account failed by another reason.
             return;
         }
+
         // Transfering Account success.
         // TODO: implements post login process
     }
 });
+```
+
+### Withdraw Immediately
+
+为立即退出功能。无论预约时间如何，需要进行立即退出处理。 
+实际内置运行与Gamebase.withdraw() API相同。
+
+立即退出后无法取消，因此需要提示用户是否继续执行。
+
+## Error Handling
+
+| Category       | Error                                    | Error Code | Description                              |
+| -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
+|                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | 第三方认证库初始化失败 |
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 用户已临时退出                    |
+|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 用户未临时退出                     |
+{@line:end}
+
+## TemporaryWithdrawal
+
+为”预约退出”功能。
+如果请求临时退出，在控制台中注册的预约时间到了会自动退出。 
+可以在控制台中修改预约时间。
+
+> ”注意”
+>
+> 使用预约退出功能时，不应调用**Gamebase.withdraw()** API。
+> 调用**Gamebase.withdraw()** API，可立即退出。
+
+登录成功后可通过调用AuthToken.getTemporaryWithdrawalInfo() API判断是否是预约退出的用户。 
+
+### Request TemporaryWithdrawal
+
+### Request TemporaryWithdrawal
+
+为预约退出请求。
+在控制台中注册的预约时间到了会自动退出。 
+
+**API**
+
+```java
++ (void)Gamebase.TemporaryWithdrawal.requestWithdrawal(@NonNull Activity activity,
+                                                       @Nullable GamebaseDataCallback<TemporaryWithdrawalInfo> callback);
+```
+
+**ErrorCode**
+
+|Error Code | Description |
+| --- | --- |
+| AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW(3602) | 用户已临时退出 |
+
+**Example**
+
+```java
+public static void testRequestWithdraw() {
+    Gamebase.TemporaryWithdrawal.requestWithdrawal(new GamebaseCallback() {
+        @Override
+        public void onCallback(TemporaryWithdrawalInfo data GamebaseException exception) {
+            if (!Gamebase.isSuccess(exception)) {
+                if (exception.getCode() == GamebaseError.AUTH_WITHDRAW_ALREADY_TEMPORARY_WITHDRAW) {
+                    // Already requested temporary withdrawal before.
+                } else {
+                    // Request temporary withdrawal failed.
+                    return;
+                }
+            }
+
+            // Request temporary withdrawal success.
+        }
+    });
+}
+```
+### Check TemporaryWithdrawal User
+
+在使用预约退出功能的游戏内登录时，若调用AuthToken.getTemporaryWithdrawalInfo() API获得的返还结果不是”null”，是有效的TemporaryWithdrawalInfo对象，则需提示用户正在进行退出处理。
+
+**Example**
+
+```java
+public static void testLogin() {
+    Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
+        @Override
+        public void onCallback(AuthToken data, GamebaseException exception) {
+            if (!Gamebase.isSuccess(exception)) {
+                // Login failed
+                return;
+            }
+
+            // Check if user is requesting withdrawal
+            if (data.getTemporaryWithdrawalInfo() != null) {
+                // User is under temporary withdrawal
+                long gracePeriodDate = data.getTemporaryWithdrawalInfo().getGracePeriodDate();
+            } else {
+                // Login success.
+            }
+        }
+    });
+}
+```
+
+### Cancel TemporaryWithdrawal
+
+为取消退出请求的功能。
+超过期限已退出后，无法取消。
+
+**API**
+
+```java
++ (void)Gamebase.TemporaryWithdrawal.cancelWithdrawal(@NonNull Activity activity,
+                                                      @Nullable GamebaseCallback callback);
+```
+
+**ErrorCode**
+
+|Error Code | Description |
+| --- | --- |
+| AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW(3603) | 用户未临时退出 |
+
+**Example**
+
+```java
+public static void testCancelWithdraw() {
+    Gamebase.TemporaryWithdrawal.cancelWithdrawal(new GamebaseCallback() {
+        @Override
+        public void onCallback(final GamebaseException exception) {
+            if (!Gamebase.isSuccess(exception)) {
+                if (exception.getCode() == GamebaseError.AUTH_WITHDRAW_NOT_TEMPORARY_WITHDRAW) {
+                    // Never requested temporary withdrawal before.
+                } else {
+                    // Cancel temporary withdrawal failed.
+                    return;
+                }
+            }
+
+            // Cancel temporary withdrawal success.
+        }
+    });
+}
+```
+
+### Withdraw Immediately
+
+为立即退出功能。无论预约时间如何，需要进行立即退出处理。 
+实际内置运行与Gamebase.withdraw() API相同。
+
+立即退出后无法取消，因此需要提示用户是否继续执行。
+
+**API**
+
+```java
++ (void)Gamebase.TemporaryWithdrawal.withdrawImmediately(@NonNull Activity activity,
+                                                         @Nullable GamebaseCallback callback);
+```
+
+**Example**
+
+```java
+public static void testWithdrawImmediately() {
+    Gamebase.TemporaryWithdrawal.withdrawImmediately(activity, new GamebaseCallback() {
+        @Override
+        public void onCallback(final GamebaseException exception) {
+            if (!Gamebase.isSuccess(exception)) {
+                // Withdraw failed.
+                return;
+            }
+
+            // Withdraw success.
+        }
+    });
+}
 ```
 
 ## Error Handling
@@ -1052,6 +1236,7 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 |                | AUTH\_USER\_CANCELED                     | 3001       | 登录信息已被取消 。                           |
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | 不支持的认证方式 。                  |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 不存在或已退出（删除数据）的用户。               |
+|                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | 第三方认证库初始化失败 |
 |                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部认证库错误。<br/>请确认DetailCode和DetailMessage。  |
 |                | AUTH_ALREADY_IN_PROGRESS_ERROR           | 3010       | 之前的认证过程未完成。 |
 | TransferKey    | SAME\_REQUESTOR                          | 8          | 在同一台设备上使用了相同的TransferKey。 |
@@ -1060,7 +1245,7 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 |                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | 多次输入错误TransferAccount，账户转移功能锁定。|
 |                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | TransferAccount的ID无效。|
 |                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | TransferAccount的密码无效。|
-|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | 未设置TransferAccount。<br/> 请先在NHN Cloud Gamebase控制台中设置。|
+|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | 未设置TransferAccount。<br/> 请先在TOAST Gamebase控制台中设置。|
 |                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | 无TransferAccount。请先获得TransferAccount。|
 |                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | 已有TransferAccount。|
 |                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount已使用。|
@@ -1083,7 +1268,9 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 |                | AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | 无法解除最后映射（Mapping）的IdP。                |
 |                | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP   | 3403       | 当前登录的IdP。                      |
 | Logout         | AUTH\_LOGOUT\_FAILED                     | 3501       | 退出登录失败。                           |
-| Withdrawal     | AUTH\_WITHDRAW\_FAILED                   | 3601       | 退出（删除数据）失败。                            |
+| Withdrawal     | AUTH\_WITHDRAW\_FAILED                   | 3601       | 退出（删除数据）失败。                 |
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 用户已临时退出                     |
+|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 用户未临时退出                     |
 | Not Playable   | AUTH\_NOT\_PLAYABLE                      | 3701       | 无法玩游戏的状态(维护或已下线等)。         |
 | Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                     | 3999       | 未知错误(未定义的错误)。             |
 
@@ -1096,7 +1283,7 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 * 确认错误代码方式如下。
 
 ```java
-Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCallback<AuthToken>() {
+Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
     @Override
     public void onCallback(AuthToken data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
@@ -1113,7 +1300,7 @@ Gamebase.login(activity, AuthProvider.GOOGLE, additionalInfo, new GamebaseDataCa
                 // Third Party Detail Error Info
                 int moduleErrorCode = exception.getDetailCode();
                 String moduleErrorMessage = exception.getDetailMessage();
-                
+
                 ...
             }
         }

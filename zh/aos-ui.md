@@ -1,5 +1,98 @@
 ## Game > Gamebase > Android SDK使用指南 > UI
 
+## ImageNotice
+
+向用户提示在控制台中注册的ImageNotice。
+
+![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-001.png)
+
+### Show ImageNotices
+
+显示ImageNotice。
+
+#### Required参数
+* Activity : 为显示ImageNotice的活动。
+
+#### Optional参数
+* ImageNoticeConfiguration : 使用ImageNoticeConfiguration更改ImageNotice的布局。
+* GamebaseCallback : 关闭ImageNotice时通过回调通知用户。 
+* GamebaseDataCallback : 点击Image时, 将设置在控制台的payload作为回调通知。 
+
+**API**
+
+```java
++ (void)Gamebase.ImageNotice.showImageNotices(@NonNull Activity activity,
+                                              @Nullable GamebaseCallback onCloseCallback);
++ (void)Gamebase.ImageNotice.showImageNotices(@NonNull Activity activity,
+                                              @Nullable ImageNoticeConfiguration configuration,
+                                              @Nullable GamebaseCallback onCloseCallback,
+                                              @Nullable GamebaseDataCallback<String> onEvent);
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1) | 未调用Gamebase.initialize |
+| UI\_IMAGE\_NOTICE\_TIMEOUT(6901) | 显示ImageNotice弹窗时，因超时强制关闭所有弹窗。|
+
+**Example**
+
+```java
+Gamebase.ImageNotice.showImageNotices(getActivity(), null,
+    new GamebaseCallback(){
+        @Override
+        public void onCallback(GamebaseException exception) {
+        	// Called when the entire imageNotice is closed.
+            ...
+        }
+    },
+    new GamebaseDataCallback<String>() {
+        @Override
+        public void onCallback(String payload, GamebaseException exception) {
+        	// Called when custom event occurred.
+            ...
+        }
+    });
+```
+
+### Custom ImageNotices
+
+将自定义设置ImageNotice显示在界面上。
+使用ImageNoticeConfiguration可创建自定义设置ImageNotice。
+
+**Example**
+
+```java
+ImageNoticeConfiguration configuration = ImageNoticeConfiguration.newBuilder()
+		.setBackgroundColor("#FFFF0000")		// Red
+        .setTimeout(10000L)						// 10000ms == 10s
+        .enableAutoCloseByCustomScheme(false)
+        .build();
+Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
+```
+
+#### ImageNoticeConfiguration
+
+| API | Mandatory(M) / Optional(O) | Description |
+| --- | --- | --- |
+| newBuilder() | **M** | 使用newBuilder()函数可以生成ImageNoticeConfiguration对象。 |
+| build() | **M** | 将设置完的Builder转换为Configuration对象。 |
+| setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | ImageNotice背景颜色<br>使用String参数时，调用转换为android.graphics.Color.parseColor(String) API的值。<br>**default** : #80000000 |
+| setTimeout(long timeoutMs) | O | ImageNotice最大加载时间(单位 : millisecond)<br>**default** : 5000L (5s) |
+| enableAutoCloseByCustomScheme(boolean enable) | O | 出现custom scheme event时，判断是否应强制关闭ImageNotice。<br>**default** : true |
+
+
+### Close ImageNotices
+
+通过调用closeImageNotices API，可以关闭所有的ImageNotice。
+
+**API**
+
+```java
++ (void)Gamebase.ImageNotice.closeImageNotices(@NonNull Activity activity);
+```
+
 ## WebView
 
 Gamebase支持基本的WebView。
@@ -7,7 +100,7 @@ Gamebase支持基本的WebView。
 
 ### Show WebView
 
-显示WebView。<br/>
+显示WebView。
 
 ##### Required 参数
 * activity：显示WebView的活动。
@@ -22,8 +115,8 @@ Gamebase支持基本的WebView。
 **API**
 
 ```java
-+ (void)Gamebase.WebView.showWebView(Activity activity, 
-                String urlString, 
++ (void)Gamebase.WebView.showWebView(Activity activity,
+                String urlString,
                 GamebaseWebViewConfiguration configuration,
                 GamebaseCallback onCloseCallback,
                 List<String> schemeList,
@@ -33,25 +126,10 @@ Gamebase支持基本的WebView。
 **示例**
 
 ```java
-Gamebase.WebView.showWebView(activity, "http://www.toast.com",
-    new GamebaseWebViewConfiguration.Builder().build(),
-    new GamebaseCallback() {
-        @Override
-        public void onCallback(GamebaseException exception) {
-            Logger.d(TAG, "WebView is closed.");
-        }
-    }, schemeList,
-    new GamebaseDataCallback<String>() {
-        @Override
-        public void onCallback(String fullUrl, GamebaseException exception) {
-            Logger.d(TAG, "WebView Event occured. Event Url :" + fullUrl);
-        }
-    }
- );
+Gamebase.WebView.showWebView(activity, "http://www.toast.com");
 ```
 
 ![Webview Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
-
 
 #### 自定义WebView
 
@@ -61,7 +139,6 @@ Gamebase.WebView.showWebView(activity, "http://www.toast.com",
 ```java
 GamebaseWebViewConfiguration configuration
         = new GamebaseWebViewConfiguration.Builder()
-            .setStyle(GamebaseWebViewStyle.BROWSER)
             .setTitleText("title")                              // 设置WebView标题
             .setScreenOrientation(ScreenOrientation.PORTRAIT)   // 设置WebView页面方向
             .setNavigationBarColor(Color.RED)                   // 设置导航栏的颜色
@@ -70,12 +147,67 @@ GamebaseWebViewConfiguration configuration
             .setBackButtonImageResource(R.id.back_button)       // 设置返回按钮图标
             .setCloseButtonImageResource(R.id.close_button)     // 设置关闭按钮图标
             .build();
-GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configuration);
+GamebaseWebView.showWebView(activity, "http://www.toast.com", configuration);
 ```
+
+#### Custom Scheme
+
+使用在Gamebase WebView加载的网页内scheme，可使用某特定功能或更改网页内容。
+
+##### Predefined Custom Scheme
+
+为Gamebase指定的scheme。
+
+| scheme               | 용도                                  |
+| -------------------- | ------------------------------------- |
+| gamebase://dismiss   | 关闭WebView                          |
+| gamebase://goback    | 返回上一页                 |
+| gamebase://getuserid | 查看当前登录的用户ID |
+| gamebase://openbrowser?link={URLEncodedURL} | 用外部浏览器打开link参数的URL。<br>URLEncodedURL : 使用外部浏览器将要打开的URL。<br>需要对URL进行解码。 |
+
+#### User Custom Scheme
+
+直接设置SchemeList，当URL匹配时处理Event。
+
+```java
+GamebaseWebViewConfiguration configuration = new GamebaseWebViewConfiguration.Builder()
+        .setTitleText(title)
+        .build();
+List<String> schemeList = new ArrayList<>();
+schemeList.add("mygame://test");
+schemeList.add("mygame://opensomebrowser");
+schemeList.add("closemywebview://");
+showWebView(activity, urlString, configuration,
+        new GamebaseCallback() {
+            @Override
+            public void onCallback(GamebaseException exception) {
+                // When closed WebView, this callback will be called.
+            }
+        },
+        schemeList,
+        new GamebaseDataCallback<String>() {
+            @Override
+            public void onCallback(String fullUrl, GamebaseException exception) {
+                if (Gamebase.isSuccess(exception)) {
+                    if (fullUrl.contains("mygame://test")) {
+                        // Do something.
+                    } else if (fullUrl.contains("mygame://opensomebrowser")) {
+                        Gamebase.WebView.openWebBrowser(someUrl);
+                    } else if (fullUrl.contains("closemywebview://")) {
+                        // We will close webview.
+                        Gamebase.WebView.closeWebView(activity);
+                    }
+                } else {
+                    // Something went wrong.
+                }
+            }
+        });
+```
+
+#### GamebaseWebViewConfiguration
+
 | Method                                   | Values                              | Description    |
 | ---------------------------------------- | ----------------------------------- | -------------- |
-| setStyle(int style)                      | GamebaseWebViewStyle.BROWSER        | 浏览器风格的WebView   |
-|                                          | GamebaseWebViewStyle.POPUP          | 弹出窗口风格的WebView     |
 | setTitleText(String title)               | title                               | WebView标题        |
 | setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | 纵向模式         |
 |                                          | ScreenOrientation.LANDSCAPE         | 横向模式         |
@@ -141,7 +273,7 @@ GamebaseWebView.showWebView(MainActivity.this, "http://www.toast.com", configura
 
 ## Toast
 
-可以使用以下API轻松显示 [Android 토스트(toast)](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) 消息。<br/>
+可以使用以下API轻松显示 [Android toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) 消息。<br/>
 用于显示信息的时间类型参数是int型，并根据Android SDK NotificationManagerService类的定义，可显示的时间如下表。
 
 | 时间类型(int)         | 显示时间                     |

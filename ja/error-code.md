@@ -30,11 +30,19 @@
 | Auth            | Android, UNITY<br/>IOS | AUTH\_USER\_CANCELED<br/>TCGB\_ERROR\_AUTH\_USER\_CANCELED | 3001       | ログインがキャンセルされました。                           |
 |                 | Android, UNITY<br/>IOS | AUTH\_NOT\_SUPPORTED\_PROVIDER<br/>TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | この認証方式には対応しておりません。                      |
 |                 | Android, UNITY<br/>IOS | AUTH\_NOT\_EXIST\_MEMBER<br/>TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER | 3003       | 退会されているか、存在しない会員です。                    |
+|                 | Android, UNITY<br/>IOS | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR<br/>TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006       | 外部認証ライブラリの初期化に失敗しました。                       |
 |                 | Android, UNITY<br/>IOS | AUTH\_EXTERNAL\_LIBRARY\_ERROR<br/>TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 外部認証ライブラリーエラーです。                     |
 |                 | Android, UNITY<br/>IOS | AUTH_ALREADY_IN_PROGRESS_ERROR<br/>TCGB_ERROR_AUTH_ALREADY_IN_PROGRESS_ERROR | 3010       | 移行認証プロセスが完了しませんでした。                 |
-|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERKEY\_EXPIRED<br/>TCGB\_ERROR\_AUTH\_TRANSFERKEY\_EXPIRED | 3031       | TransferKeyの有効期限が切れました。  |
-|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERKEY\_CONSUMED<br/>TCGB\_ERROR\_AUTH\_TRANSFERKEY\_CONSUMED| 3032       | TransferKeyはすでに使われています。 |
-|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERKEY\_NOT\_EXIST<br/>TCGB\_ERROR\_AUTH\_TRANSFERKEY\_NOT\_EXIST | 3033       | TransferKeyが有効ではありません。 |
+| TransferAccount | Android, UNITY<br/>IOS | SAME\_REQUESTOR<br/>TCGB\_ERROR\_SAME\_REQUESTOR  | 8          | 発行したTransferKeyを同じ端末で使用しました。  |
+|                 | Android, UNITY<br/>IOS | NOT\_GUEST\_OR\_HAS\_OTHERS<br/>TCGB\_ERROR\_NOT\_GUEST\_OR\_HAS\_OTHERS | 9          | ゲストではないアカウントから移行しようとしたか、アカウントにゲスト以外のIdPが連携されています。 |
+|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_EXPIRED<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_EXPIRED | 3041 | TransferAccountの有効期限が切れました。 |
+|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_BLOCK<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_BLOCK | 3042 | 無効なTransferAccountを複数回入力してアカウント移行機能がロックされました。 |
+|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_INVALID\_ID<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_INVALID\_ID | 3043 | TransferAccountのIdが有効ではありません。 |
+|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_INVALID\_PASSWORD<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_INVALID\_PASSWORD | 3044 | TransferAccountのPasswordが有効ではありません。 |
+|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_CONSOLE\_NO\_CONDITION<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_CONSOLE\_NO\_CONDITION | 3045 | TransferAccount設定ができていません。<br/> TOAST Gamebase Consoleで先に設定してください。 |
+|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_NOT\_EXIST<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_NOT\_EXIST | 3046 | TransferAccountが存在しません。 TransferAccountを先に発行してください。 |
+|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_ALREADY\_EXIST\_ID<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_ALREADY\_EXIST\_ID | 3047 | TransferAccountがすでに存在します。 |
+|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_ALREADY\_USED<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_ALREADY\_USED | 3048 | TransferAccountがすでに使用されました。 |
 | Auth (Login)    | Android, UNITY<br/>IOS | AUTH\_TOKEN\_LOGIN\_FAILED<br/>TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED | 3101       |トークンログインに失敗しました。                        |
 |                 | Android, UNITY<br/>IOS | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO<br/>TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       |トークン情報が有効ではありません。                       |
 |                 | Android, UNITY<br/>IOS | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP<br/>TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 最近ログインしたIdPの情報がありません。                  |
@@ -45,17 +53,26 @@
 |                 | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | 既に同じIdPにマッピングされています。                     |
 |                 | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO | 3304       | IdP情報が有効でありません(Consoleに該当するIdPの情報がありません)。|
 |                 | Android, UNITY<br/>IOS | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP<br/>TCGB_ERROR_AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP | 3305       | Guest IdPではAddMappingができません。 |
+| Add Mapping Forcibly | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_FORCIBLY\_NOT\_EXIST\_KEY<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FORCIBLY\_NOT\_EXIST\_KEY | 3311       | 強制マッピングキー(ForcingMappingKey)が存在しません。<br/>ForcingMappingTicketをもう一度確認してください。 |
+|                      | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_FORCIBLY\_ALREADY\_USED\_KEY<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FORCIBLY\_ALREADY\_USED\_KEY | 3312       | 強制マッピングキー(ForcingMappingKey)が使用済です。 |
+|                      | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_FORCIBLY\_EXPIRED\_KEY<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FORCIBLY\_EXPIRED\_KEY | 3313       | 強制マッピングキー(ForcingMappingKey)の有効期限が切れました。 |
+|                      | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_FORCIBLY\_DIFFERENT\_IDP<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FORCIBLY\_DIFFERENT\_IDP | 3314       | 強制マッピングキー(ForcingMappingKey)が別のIdPに使用されました。<br/>発行されたForcingMappingKeyは同じIdPに強制マッピングを試行するのに使用されます。 |
+|                      | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_FORCIBLY\_DIFFERENT\_AUTHKEY<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FORCIBLY\_DIFFERENT\_AUTHKEY | 3315       | 強制マッピングキー(ForcingMappingKey)が別のアカウントに使用されました。<br/>発行されたForcingMappingKeyは同じIdPおよびアカウントに強制マッピングを試行するのに使用されます。 |
 | Remove Mapping  | Android, UNITY<br/>IOS | AUTH\_REMOVE\_MAPPING\_FAILED<br/>TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_FAILED | 3401       | マッピング削除に失敗しました。                         |
 |                 | Android, UNITY<br/>IOS | AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP<br/>TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | 最後にマッピングされたIdPは削除することができません。              |
 |                 | Android, UNITY<br/>IOS | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP<br/>TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403       | 現在ログイン中のIdPです。                    |
 | Logout          | Android, UNITY<br/>IOS | AUTH\_LOGOUT\_FAILED<br/>TCGB\_ERROR\_AUTH\_LOGOUT\_FAILED | 3501       | ログアウトに失敗しました。                          |
 | Withdrawal      | Android, UNITY<br/>IOS | AUTH\_WITHDRAW\_FAILED<br/>TCGB\_ERROR\_AUTH\_WITHDRAW\_FAILED | 3601       | 退会に失敗しました。                            |
+|                 | Android, UNITY<br/>IOS | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW<br/>TCGB\_ERROR\_AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | すでに一時退会中のユーザーです。                    |
+|                 | Android, UNITY<br/>IOS | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW<br/>TCGB\_ERROR\_AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 一時退会中のユーザーではありません。                     |
 | Not Playable    | Android, UNITY<br/>IOS | AUTH\_NOT\_PLAYABLE<br/>TCGB\_ERROR\_AUTH\_NOT\_PLAYABLE | 3701       | プレイできない状態です(メンテナンスまたはサービス終了など)。       |
 | Auth(Unknown)   | Android, UNITY<br/>IOS | AUTH\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_AUTH\_UNKNOWN\_ERROR | 3999       | 不明なエラーです(定義されていないエラー)。          |
 | Purchase        | Android, UNITY<br/>IOS | PURCHASE\_NOT\_INITIALIZED<br/>TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED | 4001       | Gamebase PurchaseAdapterが初期化されていませんでした。  |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_USER\_CANCELED<br/>TCGB\_ERROR\_PURCHASE\_USER\_CANCELED | 4002       | 購入がキャンセルされました。                            |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING<br/>TCGB\_ERROR\_PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003       | 前回の購入が完了していません。                      |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_NOT\_ENOUGH\_CASH<br/>TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH | 4004       | 該当するストアのcashが足りないため決済することができません。           |
+|                 | Android, UNITY<br/>IOS | PURCHASE\_INACTIVE\_PRODUCT\_ID<br/>TCGB\_ERROR\_PURCHASE\_INACTIVE\_PRODUCT\_ID | 4005       | 該当商品が有効な状態ではありません。  |
+|                 | Android, UNITY<br/>IOS | PURCHASE\_NOT\_EXIST\_PRODUCT\_ID<br/>TCGB\_ERROR\_PURCHASE\_NOT\_EXIST\_PRODUCT\_ID | 4006       | 存在しないGamebaseProductIDで決済をリクエストしました。 |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_NOT\_SUPPORTED\_MARKET<br/>TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010       | このストアには対応しておりません。                        |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_EXTERNAL\_LIBRARY\_ERROR<br/>TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201       | 外部IAPライブラリーのエラーです。                    |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR | 4999       | 不明な購入エラーです。                         |
@@ -75,52 +92,55 @@
 | Module  | Error Code            | Description                              |
 | ------- | --------------------- | ---------------------------------------- |
 | Common  | -4000001<br/>-4000006 | 正しくないパラメータータイプでのAPI呼び出し <br/>例) パラメーターはintタイプで宣言されているが、stringタイプのデータでAPIが呼び出されている |
-|         | -4000002<br/>-4000004 | 必須パラメーターが抜けていたり、値がないとき                  |
-|         | -4000003              | Request bodyに定義されていない値が転送された場合          |
-|         | -4000005              | 必須パラメーターが抜けていたり、適切でない値で呼び出されたとき          |
-|         | -4010001              | 正しくないアプリIDが呼び出されたとき                            |
-|         | -4010002              | 正しくないアプリキーが呼び出されたとき                             |
-|         | -4010003              | 認証されていないクライアントから認証が必要なAPIを呼び出した場合      |
-|         | -4010004              | 正しくないシークレットキー(secret key)が呼び出されたとき                |
-|         | -4060001              | HTTPのヘッダーにContent-Typeを間違って設定したとき             |
-|         | -4060002              | 使用していない(depreated) APIバージョンを呼び出し                     |
+|         | -4000002<br/>-4000004<br/>-4000005 | 必須パラメーターが抜けていたり、適切でない値で呼び出されたとき |
+|         | -4000003              | Request bodyに定義されていない値が転送された場合 |
+|         | -4000007              | 더 이상 지원되지 않는 API 버전을 호출 |
+|         | -4000008              | 파라미터 길이가 초과됨 |
+|         | -4010001              | 正しくないアプリIDが呼び出されたとき |
+|         | -4010002              | 正しくないアプリキーが呼び出されたとき |
+|         | -4010003              | 認証されていないクライアントから認証が必要なAPIを呼び出した場合 |
+|         | -4010004              | 正しくないシークレットキー(secret key)が呼び出されたとき |
+|         | -4060001              | HTTPのヘッダーにContent-Typeを間違って設定したとき |
+|         | -4060002              | 使用していない(depreated) APIバージョンを呼び出し |
 |         | -4060003              | サポートされていないAPIバージョンを呼び出したか、無効なURIで呼び出した時 |
-|         | -4090001 ~ 4          |内部DB関連のエラー                              |
-|         | -4150001              | 正しくない形式のJSONデータを転送                      |
-|         | -5000001 ~ 15         |内部システムエラー                                |
-| Gateway | -4010202              | 正しくないアプリIDが呼び出されたとき                            |
-|         | -4010203              | 有効でないアクセストークン                           |
-|         | -4010204              | 利用停止/退会/アカウント流出など、有効でないユーザー            |
-|         | -4040201              | 呼び出したAPIに対し、NHN Cloudサービスが有効になっていないとき <br/>例) Leaderboardサービスを使用していない状態でGamebaseを通じてLeaderboardAPIを呼び出したとき、<br/>またはGamebaseそのものが有効になっていない場合 |
-|         | -4040202              | 定義されていないAPIを呼び出した場合                   |
+|         | -4090001 ~ 4          |内部DB関連のエラー |
+|         | -4150001              | 正しくない形式のJSONデータを転送 |
+|         | -5000001 ~ 15         |内部システムエラー |
+| Gateway | -4010202              | 正しくないアプリIDが呼び出されたとき |
+|         | -4010203              | 有効でないアクセストークン |
+|         | -4010204              | 利用停止/退会/アカウント流出など、有効でないユーザー |
+|         | -4040201              | 呼び出したAPIに対し、TOASTサービスが有効になっていないとき <br/>例) Leaderboardサービスを使用していない状態でGamebaseを通じてLeaderboardAPIを呼び出したとき、<br/>またはGamebaseそのものが有効になっていない場合 |
+|         | -4040202              | 定義されていないAPIを呼び出した場合 |
 |         | -4120201              | 一部提供されるSANDBOXシステムから実際の環境サーバーアドレスでAPI呼び出し(または反対に呼び出し) <br/>- 該当エラー発生時は、サーバー呼び出しアドレスを確認する必要がある |
-|         | -5000201 ~ 7          | Gateway内部システムエラー                        |
-| Member  | -4000402              |ユーザーIDを間違って入力したとき                        |
-|         | -4000403              | 正しくない会員をリクエストしたとき                         |
+|         | -5000201 ~ 8          | Gateway内部システムエラー |
+| Member  | -4000402              |ユーザーIDを間違って入力したとき |
+|         | -4000403              | 正しくない会員をリクエストしたとき |
 |         | -4000404              | 正しくないAuthをリクエストしたとき |
 |         | -4000409              | 端末移行のために発行されたTransferAccount情報を同じ端末で使用 |
-|         | -4040401              | 退会されているか、存在しない会員をリクエストしたとき                |
+|         | -4040401              | 退会されているか、存在しない会員をリクエストしたとき |
 |         | -4040403              | 存在しないTransferAccountに対するリクエストの時 |
-|         | -4100402              | 이미 사용된 TransferAccount 요청일 때  |
-|         | -4100403              | 유효 기간이 만료된 TransferAccount 의 요청일 때  |
-|         | -4100401              | 既に退会した会員をリクエストしたとき                      |
-|         | -4220401              |ユーザーAuthデータが正常でないとき                 |
-| IdP     | -4000901              | Block 된 게임 유저가 TransferAccount 검증 요청한 경우 |
-|         | -4000920              | 내부에서 PASSWORD 암호화시 오류 발생. 계속 발생시 고객센터를 통해 문의 필요 |
+|         | -4100402              | すでに使用済のTransferAccountリクエストの時  |
+|         | -4100403              | 有効期限が切れたTransferAccountのリクエストの時 |
+|         | -4100401              | 既に退会した会員をリクエストしたとき |
+|         | -4220401              |ユーザーAuthデータが正常でないとき |
+| IdP     | -4000901              | 遮断(block)されたゲームユーザーがTransferAccount検証をリクエストした場合 |
+|         | -4000920              | 内部でパスワードを暗号化する時にエラー発生。繰り返し発生する場合はサポートへ問い合わせ |
 |         | -4000921 ～ 2          | TransferAccount発行時、内部エラー発生。繰り返し発生する場合はサポートへ問い合わせ必要 |
 |         | -4000923              | マニュアル(MANUAL)方式でPASSWORDを変更しようとする時、現在のPASSWORDと同じ文字列を入力 |
-|         | -4000924              | Internal error. If this problem persists, please contact Customer Center. |
+|         | -4000924              | 内部エラー。繰り返し発生する場合はサポートへ問い合わせ |
 |         | -4000925              | マニュアル(MANUAL)方式でIDを変更しようとする時、現在使用中のIDを入力 |
 |         | -4000927              | TransferAccountの有効性を検証時、 PASSWORDが間違っていた時 |
 |         | -4040920              | TransferAccountの有効性を検証時、IDが存在しない時 |
 |         | -5110920              | TransferAccount発行システムエラー。繰り返し発生する場合はサポートへ問い合わせ必要 |
-| Coupon  | -100003               | 無効なクーポンコードをリクエストした場合                 |
-|         | -100004               | リクエストにより手動ですでに終了処理したクーポンコード  |
-|         | -100005               | すでに使用されたクーポン                              |
-|         | -100006 ～ 10          | クーポン使用期間ではない場合                     |
-|         | -100011               | クーポンを使用できる制限数を超過した場合        |
+| Coupon  | -100002               | 有効ではないクーポンコード<br>- ユーザーが無効なクーポンコードでクーポンの消費をリクエストした<br>- コンソールで登録されたクーポンの状態が無効になっている<br>- コンソールでストア指定後、ストアコード省略または無効なストアコードで呼び出し |
+|         | -100004               | リクエストにより手動ですでに終了処理したクーポンコード |
+|         | -100005               | すでに使用されたクーポン |
+|         | -100007          | クーポン使用期間ではない場合 |
+|         | -100011               | クーポンを使用できる制限数を超過した場合 |
 |         | -999999               | クーポンシステム内部エラー。繰り返し発生する場合はサポートへ問い合わせ必要 |
-| IAP     | 5000                  | CONSUME FAILED                                 |
-|         | 5018                  | すでに消費を行った決済                      |
-|         | 1100                  | 必須パラメータが省略、または無効なパラメータを伝達      |
-|         | 9999                  | UNKNOWN ERROR                                  |
+| IAP     | 5000                  | CONSUME FAILED |
+|         | 5018                  | すでに消費を行った決済 |
+|         | 1100                  | 必須パラメータが省略、または無効なパラメータを伝達 |
+|         | 5032                  | 無効な形式のJSONデータを伝達 |
+|         | 9999                  | UNKNOWN ERROR |
+|         | -4001002              | 有効ではないGamebase商品 |

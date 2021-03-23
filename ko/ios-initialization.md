@@ -296,7 +296,6 @@ iOS의 앱 이벤트를 관리하려면 다음 **UIApplicationDelegate** 프로�
 > UIApplicationDelegate의 **application:openURL:options:**를 이미 재정의(overriding)했다면, **application:openURL:sourceApplication:annotation:**이 호출되지 않을 수 있습니다.
 >
 
-<br/>
 
 > <font color="red">[주의]</font><br/>
 >

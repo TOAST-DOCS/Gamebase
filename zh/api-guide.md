@@ -1,12 +1,7 @@
-## Game > Gamebase > API v1.2指南
+## Game > Gamebase > API v1.3指南
 
 ## 更改事项
-- IAP API已更改。
-- 调用Get Simple Launching API时,已添加必需的参数storeCode。
-- 已在Check Maintenance API响应结果中添加检查对象相关storeCode信息。
-- 对于迁移GUEST账号相关终端机使用的TransferAccount，添加可验证提前发放的TransferAccount的Validate TransferAccount API。
-- API响应结果的date类型从Epoch time更改为ISO 8601格式(yyyy-MM-dd’T’HH:mm:ssXXX)。Token Authentication, Get Member, Get Members API响应结果的regDate, lastLoginDate项目
-- 已添加优惠券耗尽的API。
+- 在IAP(In App Purchase)API的请求参数和响应结果中已添加并删除新的项目。
 
 ## Advance Notice
 
@@ -21,7 +16,8 @@ Gamebase Server API以RESTful类型提供如下API。 为了使用服务器API�
 
 #### AppId
 
-APP ID 可通过NHN Cloud项目ID，在APP菜单页面中确认。
+APP ID 可通过TOAST项目ID，在APP菜单页面中确认。
+
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
 #### SecretKey
@@ -87,16 +83,20 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | resultCode | int | 响应代码<br>成功时为0，失败时返还错误代码 |
 | resultMessage | String | 响应消息 |
 
+<br>
+<br>
+
 ## Authentication
 
 #### 令牌认证
 
 检查发给登录用户的访问令牌是否有效。如果访问令牌运行正常，则返回该用户的信息。
+
 **[Method, URI]**
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}/tokens/{accessToken}?linkedIdP=false |
+| GET | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}/tokens/{accessToken}?linkedIdP=false |
 
 **[Request Header]**
 
@@ -106,7 +106,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | TOAST项目ID |
 | userId | String | 登录用户ID |
 | accessToken | String | 发放给登录用户的访问令牌 |
 
@@ -120,39 +120,42 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "String",
-    "isSuccessful": true
-  },
-  "linkedIdP": {
-    "idPCode": "String",
-    "idPId": "String"
-  },
-  "member": {
-    "userId": "String",
-    "valid": "Y",
-    "appId": "String",
-    "regDate": "2019-08-27T17:41:05+09:00",
-    "lastLoginDate": "2019-08-27T17:41:05+09:00",
-    "authList": [
-      {
-        "userId": "String",
-        "authSystem": "String",
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "String",
+        "isSuccessful": true
+    },
+    "linkedIdP": {
         "idPCode": "String",
-        "authKey": "String",
-        "regDate": "2019-08-27T17:41:05+09:00"
-      },
-      {
+        "idPId": "String"
+    },
+    "member": {
         "userId": "String",
-        "authSystem": "String",
-        "idPCode": "String",
-        "authKey": "String",
-        "regDate": "2019-08-27T17:41:05+09:00"
-      }
-    ]
-  }
+        "valid": "Y",
+        "appId": "String",
+        "regDate": "2019-08-27T17:41:05+09:00",
+        "lastLoginDate": "2019-08-27T17:41:05+09:00",
+        "authList": [
+            {
+                "userId": "String",
+                "authSystem": "String",
+                "idPCode": "String",
+                "authKey": "String",
+                "regDate": "2019-08-27T17:41:05+09:00"
+            },
+            {
+                "userId": "String",
+                "authSystem": "String",
+                "idPCode": "String",
+                "authKey": "String",
+                "regDate": "2019-08-27T17:41:05+09:00"
+            }
+        ],
+        "temporaryWithdrawal": {
+            "gracePeriodDate": "2020-04-18T09:12:01+09:00"
+        }
+    }
 }
 ```
 
@@ -170,11 +173,15 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | authList[].authSystem | String | Gamebase内部使用的认证系统 <br>预计将会支持用户认证系统 |
 | authList[].idPCode | String | 用户认证IdP信息 <br>guest, payco, facebook等 |
 | authList[].authKey | String | authSystem发放的用户区分值 |
-
+| temporaryWithdrawal | Object | 预约退出信息 <br>仅在valid为"T"值时提供 |
+| temporaryWithdrawal.gracePeriodDate | String | 预约退出的到期时间ISO 8601 |
 
 **[Error Code]**
 
 [错误代码](./error-code/#server)
+
+<br>
+<br>
 
 ## Launching
 
@@ -187,27 +194,27 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-launching/v1.2/apps/{appId}/launching/simple |
-
+| GET | /tcgb-launching/v1.3/apps/{appId}/launching/simple |
 
 **[Request Header]**
 
 确认共通事项
 
-**[Path Variable]**  
+**[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | TOAST项目ID |
 
-**[Request Parameter]**  
+**[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | osCode | OsCode | true | OS代码 <br>AOS, IOS, WEB, WINDOWS |
+| storeCode | Enum | true | store代码 <br>- GG: Google<br>- ONESTORE: ONE store<br>- AS: AppStore |
 | clientVersion | String | true | 客户端版本 |
 
-**[Response Body]**  
+**[Response Body]**
 
 ##### 正常
 ```json
@@ -309,6 +316,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | maintenance.message | String | default维护原因消息 |
 
 <br>
+<br>
 
 ## Member
 
@@ -320,19 +328,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-member/v1.2/apps/{appId}/members/{userId} |
-
+| GET | /tcgb-member/v1.3/apps/{appId}/members/{userId} |
 
 **[Request Header]**
 
 确认共通事项
 
-
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | TOAST项目ID |
 | userId | String | 查询用户ID |
 
 **[Request Parameter]**
@@ -344,41 +350,44 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 **[Response Body]**
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "member": {
-    "userId": "String",
-    "valid": "Y",
-    "appId": "String",
-    "regDate": "2019-08-27T17:41:05+09:00",
-    "lastLoginDate": "2019-08-27T17:41:05+09:00",
-	"authList": [
-		  {
-			"userId": "String",
-			"authSystem": "String",
-			"idPCode": "String",
-			"authKey": "String",
-			"regDate": "2019-08-27T17:41:05+09:00"
-		  }
-		]
-	  },
-  "memberInfo": {
-    "deviceCountryCode": "String",
-    "usimCountryCode": "String",
-    "language": "String",
-    "osCode": "String",
-    "telecom": "String",
-    "storeCode": "String",
-    "network": "String",
-    "deviceModel": "String",
-    "osVersion": "String",
-    "sdkVersion": "String",
-    "clientVersion": "String"
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "member": {
+        "userId": "String",
+        "valid": "Y",
+        "appId": "String",
+        "regDate": "2019-08-27T17:41:05+09:00",
+        "lastLoginDate": "2019-08-27T17:41:05+09:00",
+        "authList": [
+            {
+                "userId": "String",
+                "authSystem": "String",
+                "idPCode": "String",
+                "authKey": "String",
+                "regDate": "2019-08-27T17:41:05+09:00"
+            }
+        ]
+    },
+    "temporaryWithdrawal": {
+        "gracePeriodDate": "2020-04-18T09:12:01+09:00"
+    },
+    "memberInfo": {
+        "deviceCountryCode": "String",
+        "usimCountryCode": "String",
+        "language": "String",
+        "osCode": "String",
+        "telecom": "String",
+        "storeCode": "String",
+        "network": "String",
+        "deviceModel": "String",
+        "osVersion": "String",
+        "sdkVersion": "String",
+        "clientVersion": "String"
+    }
 }
 ```
 
@@ -386,7 +395,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | member | Object | 被查询用户的基本信息 |
 | member.userId | String | 用户ID |
-| member.valid | Enum | Y：正常用户 <br>D: 已退出的用户 <br>B：禁用的用户 <br>M：丢失的账户|
+| member.valid | Enum | Y：正常用户 <br>D: 已退出的用户 <br>B：禁用的用户 <br>M：丢失的账户 <br>T: 用户已预约退出 |
 | member.appId | String | appId |
 | member.regDate | String | 用户创建账户的时间 |
 | member.lastLoginDate | String | 上一次登录的时间 <br>第一次登录的用户没有此值 |
@@ -413,6 +422,9 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [错误代码](./error-code/#server)
 
+<br>
+<br>
+
 #### Get Members
 
 简单查询多个用户信息。
@@ -421,7 +433,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-member/v1.2/apps/{appId}/members |
+| POST | /tcgb-member/v1.3/apps/{appId}/members |
 
 **[Request Header]**
 
@@ -431,7 +443,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | TOAST项目ID |
 
 **[Request Body]**
 
@@ -443,20 +455,20 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "memberList": [
-    {
-		"userId": "String",
-		"valid": "Y",
-		"appId": "String",
-		"regDate": "2019-08-27T17:41:05+09:00"
-    }
-  ]
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "memberList": [
+        {
+            "userId": "String",
+            "valid": "Y",
+            "appId": "String",
+            "regDate": "2019-08-27T17:41:05+09:00"
+        }
+    ]
 }
 ```
 
@@ -464,15 +476,15 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | memberList | Array[Object] | 被查询用户的基本信息 |
 | memberList[].userId | String | 用户ID |
-| memberList[].valid | Enum | Y：正常用户 <br>D: 已退出的用户 <br>B：禁用的用户 <br>M：丢失的账户|
+| memberList[].valid | Enum | Y：正常用户 <br>D: 已退出的用户 <br>B：禁用的用户 <br>M：丢失的账户 <br>T: 用户已预约退出 |
 | memberList[].appId | String | appId |
 | memberList[].regDate | String | 用户创建账户的时间 |
-
 
 **[Error Code]**
 
 [错误代码](./error-code/#server)
 
+<br>
 
 #### 获取 IdP 信息
 
@@ -482,19 +494,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | Type | URI |
 | --- | --- | --- |
-| POST | String | /tcgb-member/v1.2/apps/{appId}/auth/authKeys |
+| POST | String | /tcgb-member/v1.3/apps/{appId}/auth/authKeys |
 
 **[Request Header]**
 
 确认共同事项
 
-
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
-
+| appId | String | TOAST项目ID |
 
 **[Request Body]**
 
@@ -506,23 +516,22 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "result": {
-    "String": [
-      {
-        "authKey": "String",
-        "idPCode": "gbid",
-        "authSystem": "String"
-      }
-    ]
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "String": [
+            {
+                "authKey": "String",
+                "idPCode": "gbid",
+                "authSystem": "String"
+            }
+        ]
+    }
 }
-
 ```
 
 | Key | Type | Description |
@@ -536,6 +545,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [错误代码](./error-code/#server)
 
+<br>
+
 #### 使用认证密钥获取User ID信息
 
 查询与用户认证密钥映射的ID。
@@ -544,8 +555,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-member/v1.2/apps/{appId}/members/userIds/authKeys?authSystem={authSystem} |
-
+| POST | /tcgb-member/v1.3/apps/{appId}/members/userIds/authKeys?authSystem={authSystem} |
 
 **[Request Header]**
 
@@ -555,15 +565,13 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
-
+| appId | String | TOAST项目ID |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | authSystem | String | mandatory | Gamebase内部使用的认证系统，预计将会支持用户认证系统，目前是gbid |
-
 
 **[Request Body]**
 
@@ -575,15 +583,15 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "result": {
-    "String": "String"
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "String": "String"
+    }
 }
 ```
 
@@ -595,6 +603,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [错误代码](./error-code/#server)
 
+<br>
+
 #### 禁用历史记录
 
 查询用户禁用历史记录。
@@ -603,8 +613,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-member/v1.2/apps/{appId}/members/bans |
-
+| GET | /tcgb-member/v1.3/apps/{appId}/members/bans |
 
 **[Request Header]**
 
@@ -614,8 +623,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
-
+| appId | String | TOAST项目ID |
 
 **[Request Parameter]**
 
@@ -626,46 +634,45 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | page | String | optional | 要查询的页面。从0开始 |
 | size | String | optional | 每页的数据数量 |
 
-
 **[Response Body]**
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
     "pagingInfo": {
-      "first": true,
-      "last": true,
-      "numberOfElements": 0,
-      "page": 0,
-      "size": 0,
-      "totalElements": 0,
-      "totalPages": 0
+        "first": true,
+        "last": true,
+        "numberOfElements": 0,
+        "page": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0
     },
     "result": [
-      {
-        "appId": "String",
-        "banCaller": "CONSOLE",
-        "banReason": "String",
-        "banType": "TEMPORARY",
-        "beginDate": 0,
-        "endDate": 0,
-        "flags": "String",
-        "message": "String",
-        "name": "String",
-        "regUser": "String",
-        "releaseCaller": "CONSOLE",
-        "releaseDate": 0,
-        "releaseReason": "String",
-        "releaseUser": "String",
-        "seq": 0,
-        "templateCode": 0,
-        "userId": "String"
-      }
+        {
+            "appId": "String",
+            "banCaller": "CONSOLE",
+            "banReason": "String",
+            "banType": "TEMPORARY",
+            "beginDate": 0,
+            "endDate": 0,
+            "flags": "String",
+            "message": "String",
+            "name": "String",
+            "regUser": "String",
+            "releaseCaller": "CONSOLE",
+            "releaseDate": 0,
+            "releaseReason": "String",
+            "releaseUser": "String",
+            "seq": 0,
+            "templateCode": 0,
+            "userId": "String"
+        }
     ]
 }
 ```
@@ -681,7 +688,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | pagingInfo.totalElements | int | 数据总数 |
 | pagingInfo.totalPages | int | 页面总数 |
 | result | Array[Object] | 查询的禁用历史记录 |
-| result.appId | String | 查询的禁用的NHN Cloud项目ID |
+| result.appId | String | 查询的禁用的TOAST项目ID |
 | result.banCaller | String | 禁用调用主体 |
 | result.banReason | String | 禁用原因 |
 | result.banType | String | 禁用类型。TEMPORARY or PERMANENT |
@@ -703,6 +710,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [错误代码](./error-code/#server)
 
+<br>
+
 #### 解除禁用历史记录
 
 查询用户禁用解除历史记录。
@@ -711,8 +720,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-member/v1.2/apps/{appId}/members/bans/release |
-
+| GET | /tcgb-member/v1.3/apps/{appId}/members/bans/release |
 
 **[Request Header]**
 
@@ -722,8 +730,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
-
+| appId | String | TOAST项目ID |
 
 **[Request Parameter]**
 
@@ -734,46 +741,45 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | page | String | optional | 要查询的页面。从0开始 |
 | size | String | optional | 每页的数据数量 |
 
-
 **[Response Body]**
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
     "pagingInfo": {
-      "first": true,
-      "last": true,
-      "numberOfElements": 0,
-      "page": 0,
-      "size": 0,
-      "totalElements": 0,
-      "totalPages": 0
+        "first": true,
+        "last": true,
+        "numberOfElements": 0,
+        "page": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0
     },
     "result": [
-      {
-        "appId": "String",
-        "banCaller": "CONSOLE",
-        "banReason": "String",
-        "banType": "TEMPORARY",
-        "beginDate": 0,
-        "endDate": 0,
-        "flags": "String",
-        "message": "String",
-        "name": "String",
-        "regUser": "String",
-        "releaseCaller": "CONSOLE",
-        "releaseDate": 0,
-        "releaseReason": "String",
-        "releaseUser": "String",
-        "seq": 0,
-        "templateCode": 0,
-        "userId": "String"
-      }
+        {
+            "appId": "String",
+            "banCaller": "CONSOLE",
+            "banReason": "String",
+            "banType": "TEMPORARY",
+            "beginDate": 0,
+            "endDate": 0,
+            "flags": "String",
+            "message": "String",
+            "name": "String",
+            "regUser": "String",
+            "releaseCaller": "CONSOLE",
+            "releaseDate": 0,
+            "releaseReason": "String",
+            "releaseUser": "String",
+            "seq": 0,
+            "templateCode": 0,
+            "userId": "String"
+        }
     ]
 }
 ```
@@ -789,7 +795,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | pagingInfo.totalElements | int | 数据总数 |
 | pagingInfo.totalPages | int | 页面总数 |
 | result | Array[Object] | 查询的禁用历史记录 |
-| result.appId | String | 查询的禁用的NHN Cloud项目ID |
+| result.appId | String | 查询的禁用的TOAST项目ID |
 | result.banCaller | String | 禁用调用主体 |
 | result.banReason | String | 禁用原因 |
 | result.banType | String | 禁用类型。TEMPORARY or PERMANENT |
@@ -811,6 +817,9 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [错误代码](./error-code/#server)
 
+<br>
+<br>
+
 #### Validate TransferAccount
 
 检查为转移访客账户获得的ID及密码的有效性。为有效的TransferAccount时，返回获得的userId信息。
@@ -819,8 +828,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-gateway/v1.1.2/apps/{appId}/members/transfer-account |
-
+| POST | /tcgb-gateway/v1.3/apps/{appId}/members/transfer-account |
 
 **[Request Header]**
 
@@ -830,22 +838,20 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
-
+| appId | String | TOAST项目ID |
 
 **[Request Parameter]**
 
 无
 
-
-# Request Body
+**[Request Body]**
 
 ```json
 {
-  "account": {
-    "id": "198704206255",
-    "password": "Zw548q7zE"
-  }
+    "account": {
+        "id": "198704206255",
+        "password": "Zw548q7zE"
+    }
 }
 ```
 
@@ -854,23 +860,23 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | account.id | String | 要进行有效性验证的ID |
 | account.password | String | 要进行有效性验证的密码 |
 
-# Response Body
+**[Response Body]**
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "member": {
-    "userId": "String",
-    "valid": "Y",
-    "appId": "String",
-    "regDate": "2019-08-27T17:41:05+09:00",
-    "lastLoginDate": "2019-08-27T17:41:05+09:00"
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "member": {
+        "userId": "String",
+        "valid": "Y",
+        "appId": "String",
+        "regDate": "2019-08-27T17:41:05+09:00",
+        "lastLoginDate": "2019-08-27T17:41:05+09:00"
+    }
 }
 ```
 
@@ -878,7 +884,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | member | Object | 查询的用户的基本信息 |
 | member.userId | String | 用户ID |
-| member.valid | Enum | Y:正常用户<br>D：注销的用户<br>B：停止使用的用户<br>M：丢失的账户|
+| member.valid | Enum | Y:正常用户<br>D：注销的用户<br>B：停止使用的用户<br>M：丢失的账户<br>T : 用户已预约退出 |
 | member.appId | String | 应用程序ID |
 | member.regDate | String | 用户创建账户的时间 |
 | member.lastLoginDate | String | 最后一次登录的时间 <br>初次登录的用户无相应值 |
@@ -887,7 +893,61 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [错误代码](./error-code/#server)
 
+<br>
+<br>
 
+#### Withdraw
+
+用户账号将被删除。
+
+> [参考]
+> 调用服务器退出API进行账号退出处理时，若成功退出，则需通过客户端调用SDK的logout API删除令牌等的数据。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| DELETE | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}?regUser={regUser} |
+
+**[Request Header]**
+
+确认通用事项
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | TOAST项目ID |
+| userId | String | 需要进行退出处理的用户ID |
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| regUser | String | mandatory | 请求退出的系统或用户信息<br> - 此信息可以在Console > ”member”页面的”退出履历”页面上确认。 |
+
+**[Request Body]**
+
+无
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    }
+}
+```
+
+**[Error Code]**
+
+[错误代码](./error-code/#server)
+
+<br>
 <br>
 
 ## Maintenance
@@ -900,7 +960,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-launching/v1.2/apps/{appId}/maintenances/under-maintenance |
+| GET | /tcgb-launching/v1.3/apps/{appId}/maintenances/under-maintenance |
 
 **[Request Header]**
 
@@ -910,7 +970,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | TOAST项目ID |
 
 **[Request Parameter]**
 
@@ -920,28 +980,28 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "String",
-    "isSuccessful": true
-  },
-  "appId": "",
-  "underMaintenance": true,
-  "maintenances": [
-    {
-      "typeCode": "APP",
-      "beginDate": "2017-01-01T12:10:00+07:00",
-      "endDate": "2017-02-01T12:17:00+07:00",
-      "url": "http://url.info",
-      "message": "maintenance message",
-      "targetStores": [
-        "GG",
-        "AS",
-        "ONESTROE"
-      ]
-    }
-  ]
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "String",
+        "isSuccessful": true
+    },
+    "appId": "",
+    "underMaintenance": true,
+    "maintenances": [
+        {
+            "typeCode": "APP",
+            "beginDate": "2017-01-01T12:10:00+07:00",
+            "endDate": "2017-02-01T12:17:00+07:00",
+            "url": "http://url.info",
+            "message": "maintenance message",
+            "targetStores": [
+                "GG",
+                "AS",
+                "ONESTROE"
+            ]
+        }
+    ]
 }
 ```
 
@@ -954,12 +1014,13 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | maintenances.endDate | String | 维护结束时间。ISO 8601 |
 | maintenances.url | String | 详细维护URL |
 | maintenances.message | String | 维护消息 |
-| maintenances.targetStores | Array[Enum] | 仅对特定客户设置检查时，设置检查的客户的商店代码<br>- GG: Google<br>- ONESTORE<br>- AS: AppStore |
+| maintenances.targetStores | Array[Enum] | 仅对特定客户设置检查时，设置检查的客户的商店代码<br>- GG: Google<br>- ONESTORE: ONE store<br>- AS: AppStore |
 
 **[Error Code]**
 
 [错误代码](./error-code/#server)
 
+<br>
 <br>
 
 ## Coupon
@@ -972,7 +1033,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}/coupons/{couponCode} |
+| POST | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}/coupons/{couponCode}?storeCode={storeCode} |
 
 **[Request Header]**
 
@@ -982,13 +1043,15 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | TOAST项目ID |
 | userId | String | 要使用优惠券的userId |
 | couponCode | String | 优惠券代码 |
 
 **[Request Parameter]**
 
-无
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| storeCode | String | optional | 若获取的优惠券只能在指定的商店使用，则需传送商店代码。<br>如果是所有的商店，”ALL”或省略参数。<br>- GG: Google<br>- ONESTORE: ONE store<br>- AS: AppStore |
 
 **[Response Body]**
 
@@ -1028,24 +1091,29 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 [错误代码](./error-code/#server)
 
 <br>
+<br>
 
 ## Purchase(IAP)
 
 #### Consume
 
-Google Play Store, App Store, ONEStore等商店支付完成后，向用户提供道具前，应告知将支付消费。1项支付仅可进行1次支付消费，若支付的状态非正常，则不消费。
-（支付消费完成后，判断为用户的支付及道具提供正常完成）
-
-未消费(Consume)的支付明细可通过SDK及服务器的未消费支付明细查询API查询。作为参考，注册道具时，仅对商品类型为一次性(CONSUMABLE)的道具支付进行consume处理。
+若已完成Google Play Store, App Store, ONEStore支付，则需向用户提供道具并将履历注册在服务器后通知Gmaebase。1项支付仅可进行1次支付消费，若支付的状态非正常，则不消费。
 
 > [参考]
+> 注册商品时，仅对商品类型为一次性（CONSUMABLE）的道具支付进行消费（consume）处理。
 > 1项支付可进行1次消费，未进行支付消费的支付视为IAP未提供道具。
+
+可通过调用SDK及服务器的未消费支付明细API查看未消费（consume）支付明细。即使存在未消费支付明细，也要将游戏服务器的履历作为判断基准。
+（若因网络故障出现API timeout， 即使Gamebase已提供道具，则会出现因API响应失败游戏服务器未向用户提供道具的情况。)
+
+> [参考]
+> 如果游戏未能管理所有的（提供道具的）履历，则需将该API的request timeout设置为10秒以上，至少在出现API timout时注册履历，防止出现重复提供或未提供错误。
 
 **[Method, URI]**
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-inapp/v1.2/apps/{appId}/consume |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/consume |
 
 **[Request Header]**
 
@@ -1055,7 +1123,7 @@ Google Play Store, App Store, ONEStore等商店支付完成后，向用户提供
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | TOAST项目ID |
 
 **[Request Parameter]**
 
@@ -1065,8 +1133,8 @@ Google Play Store, App Store, ONEStore等商店支付完成后，向用户提供
 
 ```json
 {
-  "paymentSeq": "2019091931571201",
-  "accessToken" : "90fD1bs1guXwY6aZ7rseEKYW_6gMCISjDASgten4MD6O7XZD7VRjZcs8OTm8lOQVFTegoY4WK78P2WQCMm7cx"
+    "paymentSeq": "2019091931571201",
+    "accessToken": "90fD1bs1guXwY6aZ7rseEKYW_6gMCISjDASgten4MD6O7XZD7VRjZcs8OTm8lOQVFTegoY4WK78P2WQCMm7cx"
 }
 ```
 
@@ -1078,20 +1146,22 @@ Google Play Store, App Store, ONEStore等商店支付完成后，向用户提供
 > [参考]
 > 客户调用requestPurchase API时响应的purchaseToken值作为accessToken使用
 
-
 **[Response Body]**
 
 ```json
 {
-   "header":{
+    "header": {
         "isSuccessful": true,
         "resultCode": 0,
         "resultMessage": "SUCCESS"
     },
-    "result":{
-        "price": 1500,
+    "result": {
+        "price": 1500.0,
         "currency": "KRW",
-        "productSeq": 12345
+        "productSeq": 1000292,
+        "marketId": "GG",
+        "gamebaseProductId": "tap_prod_001",
+        "payload": "additional info"
     }
 }
 ```
@@ -1099,15 +1169,26 @@ Google Play Store, App Store, ONEStore等商店支付完成后，向用户提供
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Object | 支付基本信息 |
-| result.price | Long | 支付价格 |
+| result.price | Float | 支付价格 |
 | result.currency  | String  | 支付货币  |
 | result.productSeq | Long | 支付道具编号（console中注册的道具固有编号）|
+| result.marketId | String | store代码<br>GG: Google, AS: Apple, ONESTORE: ONE store |
+| result.gamebaseProductId | String | Gamebase商品ID<br>用户在控制台中注册商品时的用户输入值 |
+| result.payload | String | 在SDK中设置的附加信息 |
+
+> [参考]
+> 根据客户端使用的SDK版本及支付API，在响应结果中存在或不存在gamebaseProductId值。
+
+> [参考]
+> 游戏服务器端按照道具号码、商店代码及Gamebase商品ID提供商品（道具）， 但若对1个商店道具ID注册N个Gamebase商品时，应按照商店代码和Gamebase商品ID提供商品。
 
 **[Error Code]**
 
 [错误代码](./error-code/#server)
 
-#### Get Consumable List
+<br>
+
+#### List Consumables
 
 可查询完成支付但尚未消费(Consume)的未消费支付明细。
 
@@ -1115,7 +1196,7 @@ Google Play Store, App Store, ONEStore等商店支付完成后，向用户提供
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-inapp/v1.2/apps/{appId}/consumable |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/consumable |
 
 **[Request Header]**
 
@@ -1125,7 +1206,7 @@ Google Play Store, App Store, ONEStore等商店支付完成后，向用户提供
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | TOAST项目ID |
 
 **[Request Parameter]**
 
@@ -1135,42 +1216,46 @@ Google Play Store, App Store, ONEStore等商店支付完成后，向用户提供
 
 ```json
 {
-  "marketId": "GG",
-  "userChannel" : "GF",
-  "userKey" : "QXG774PMRZMWR3BR"
+    "marketId": "GG",
+    "userId": "QXG774PMRZMWR3BR"
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | 商店代码<br>GG : Google, AS : Apple, ONESTORE : One Store |
-| userChannel | String | mandatory  | 用户通道<br>当前总是以未实现状态设置“GF”值  |
-| userKey | String | mandatory  | 用户ID  |
+| marketId | String | mandatory | 商店代码<br>GG : Google, AS : Apple, ONESTORE : One store |
+| userId | String | mandatory  | 用户ID  |
 
 **[Response Body]**
 
 ```json
 {
-    "header":{
+    "header": {
         "isSuccessful": true,
         "resultCode": 0,
         "resultMessage": "success"
     },
-    "result":[
+    "result": [
         {
-            "paymentSeq": "2016122110023124",
-            "productSeq": 1000292,
+            "paymentSeq": "2020060210364966",
+            "productSeq": 1000312,
             "currency": "KRW",
-            "price": 1000,
-            "accessToken": "oJgM1EfDRjnQY7yqhWCUVgAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
+            "price": 2500.0,
+            "marketId": "AS",
+            "accessToken": "ja5SBJBfr7rYUdjFr6dRe7gKnkX0r7EKPvuK6CIUBBekc1rE9CVbMKVCNuw6ZtwmcpDRXrToR9l26NF9zub6ol",
+            "gamebaseProductId": "gamebase_prod_001",
+            "purchaseTime": "2020-06-02T13:38:56+09:00",
+            "payload": "additional info"
         },
-
         {
             "paymentSeq": "2016122110023125",
             "productSeq": 1000292,
             "currency": "KRW",
-            "price": 1000,
-            "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
+            "price": 1000.0,
+            "marketId": "AS",
+            "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ",
+            "gamebaseProductId": "gamebase_prod_002",
+            "purchaseTime": "2020-06-02T13:37:42+09:00"
         }
     ]
 }
@@ -1182,14 +1267,20 @@ Google Play Store, App Store, ONEStore等商店支付完成后，向用户提供
 | result[].paymentSeq | String  |  支付编号 |
 | result[].productSeq | Long | 支付道具编号（console中注册的道具固有编号）|
 | result[].currency  | String  | 支付货币  |
-| result[].price | Long | 支付价格 |
+| result[].price | Float | 支付价格 |
 | result[].accessToken | String | 支付验证令牌 |
+| result[].marketId | String | store代码 |
+| result[].gamebaseProductId | String | Gamebase商品ID<br>在控制台中注册商品时的用户输入值 |
+| result[].purchaseTime | String | 결제 발생 일시 |
+| result[].payload | String | SDK에서 설정한 추가 정보 |
 
 **[Error Code]**
 
 [错误代码](./error-code/#server)
 
-### Get ActiveSubscription List
+<br>
+
+### List Active Subscriptions
 
 可查询用户当前订阅的支付。
 
@@ -1197,7 +1288,7 @@ Google Play Store, App Store, ONEStore等商店支付完成后，向用户提供
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-inapp/v1.2/apps/{appId}/active-subscriptions |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/active-subscriptions |
 
 **[Request Header]**
 
@@ -1207,7 +1298,7 @@ Google Play Store, App Store, ONEStore等商店支付完成后，向用户提供
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | TOAST项目ID |
 
 **[Request Parameter]**
 
@@ -1217,10 +1308,9 @@ Google Play Store, App Store, ONEStore等商店支付完成后，向用户提供
 
 ```json
 {
-  "marketId": "GG",
-  "packageName" : "com.toast.gamebase",
-  "userChannel" : "GF",
-  "userKey" : "QXG774PMRZMWR3BR"
+    "marketId": "GG",
+    "packageName": "com.toast.gamebase",
+    "userId": "QXG774PMRZMWR3BR"
 }
 ```
 
@@ -1228,85 +1318,83 @@ Google Play Store, App Store, ONEStore等商店支付完成后，向用户提供
 | --- | --- | --- | --- |
 | marketId | String | mandatory | 商店代码<br>GG : Google, AS : Apple, ONESTORE : One Store |
 | packageName | String | mandatory | 控制台中注册的应用程序的packageName |
-| userChannel | String | mandatory  | 用户通道<br>当前总是以未实现状态设置“GF”值  |
-| userKey | String | mandatory  | 用户ID  |
+| userId | String | mandatory  | 用户ID  |
 
 **[Response Body]**
 
 ```json
 {
-  "header": {
-    "isSuccessful": true,
-    "resultCode": 0,
-    "resultMessage": "SUCCESS"
-  },
-  "result": [
-    {
-      "channel": "GF",
-      "userId": "string",
-      "paymentSeq": "2018102610330423",
-      "appId": "com.toast.gamebase",
-      "productId": "subs_p1w",
-      "productType": "AUTO_RENEWABLE",
-      "productSeq": 1002904,
-      "currency": "KRW",
-      "price": 1000,
-      "paymentId": "GPA.3375-2193-1175-57698",
-      "originalPaymentId": "GPA.3375-2193-1175-57698",
-      "purchaseTimeMillis": 1540522998289,
-      "expiryTimeMillis": 1541134994548
-    }
-  ]
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "result": [
+        {
+            "marketId": "GG",
+            "userId": "QXG774PMRZMWR3BR",
+            "paymentSeq": "2020052810364755",
+            "accessToken": "NczL3n4TumMF8n9oRR5l8zXDyMXRVjxSRks0Lk1Saob2A9rdAupqjZSrQ0-hb2GOSFwTx5uDDchH8EB-EkWGGQ",
+            "productSeq": 1001221,
+            "productId": "money_100",
+            "productType": "AUTO_RENEWABLE",
+            "paymentId": "GPA.3302-8679-7228-41195",
+            "price": 1000.0,
+            "currency": "KRW",
+            "gamebaseProductId": "gamebase_renewal_001",
+            "payload" : "additional info",
+            "purchaseTime": "2020-06-02T13:38:56+09:00",
+            "expiryTime": "2020-06-02T13:48:56+09:00"
+        }
+    ]
 }
 ```
 
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Array[Object] | 支付基本信息 |
-| result[].channel  | String  | 用户通道  |
+| result[].marketId  | String  | 商店代码  |
 | result[].userId  | String  | 用户ID  |
 | result[].paymentSeq | String  |  支付编号 |
-| result[].appId | String  |  套装名 |
+| result[].accessToken | String | 결제 인증 토큰 |
+| result[].productSeq | Long | 支付道具编号（console中注册的道具固有编号）|
 | result[].productId | String  |  商店注册的商品（道具）标识符 |
 | result[].productType | String  |  商品（道具）类型<br>订阅： AUTO_RENEWABLE |
-| result[].productSeq | Long | 支付道具编号（console中注册的道具固有编号）|
 | result[].currency  | String  | 支付货币  |
-| result[].price | Long | 支付价格 |
+| result[].price | Float | 支付价格 |
 | result[].paymentId | String | 最近更新的商店支付编号 |
-| result[].originalPaymentId | String | 最初商店支付编号 |
-| result[].purchaseTimeMillis | Long | 最近更新的时间 |
-| result[].expiryTimeMillis | Long | 订阅到期时间 |
-
+| result[].gamebaseProductId | String | Gamebase商品ID<br>在控制台中注册商品时的用户输入值 |
+| result[].payload | String | SDK에서 설정한 추가 정보 |
+| result[].purchaseTime | String | 最近更新的时间 |
+| result[].expiryTime | String | 订阅到期时间 |
 
 **[Error Code]**
 
 [错误代码](./error-code/#server)
 
 <br>
+<br>
 
 ## Leaderboard
 
-Gamebase为NHN Cloud Leaderboard服务的服务器API提供**Wrapping**功能。使用Wrapping 功能可在用户服务器上通过统一接口使用NHN Cloud服务
-
+Gamebase为TOAST Leaderboard服务的服务器API提供**Wrapping**功能。使用Wrapping 功能可在用户服务器上通过统一接口使用TOAST服务
 
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
-| 查询Factor中的注册用户数 | GET | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
-| 查询单个用户分数/排名 | GET | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
-| 查询多个用户分数/排名 | POST | /tcgb-leaderboard/v1.2/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
-| 查询一定范围的整体分数/排名 | GET | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
-| 登录单个用户分数 | POST | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
-| 登录单个用户分数/ExtraData | POST | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
-| 登录多个用户分数 | POST | /tcgb-leaderboard/v1.2/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
-| 登录多个用户分数/ExtraData | POST | /tcgb-leaderboard/v1.2/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
-| 删除单个用户Leaderboard信息 | DELETE | /tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
-
+| 查询Factor中的注册用户数 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
+| 查询单个用户分数/排名 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
+| 查询多个用户分数/排名 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
+| 查询一定范围的整体分数/排名 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
+| 登录单个用户分数 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
+| 登录单个用户分数/ExtraData | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
+| 登录多个用户分数 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
+| 登录多个用户分数/ExtraData | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
+| 删除单个用户Leaderboard信息 | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
 
 **有关API的详细说明，请参考以下链接。**
 
-
-[Leaderboard Guide](/Game/Leaderboard/zh/api-guide/)
+[Leaderboard Guide](/Game/Leaderboard/ko/api-guide/)
 
 ##### API调用示例
 
@@ -1315,8 +1403,11 @@ Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 X-Secret-Key: IgsaAP
 
-GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/user-count
+GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
 ```
+
+<br>
+<br>
 
 ## Others
 
@@ -1324,29 +1415,26 @@ GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.2/apps/{appId}/fact
 
 如需咨询API调用失败原因，请将 **API调用URL(如有HTTP body将HTTP body一同)及响应结果**发送到 [客服中心](https://toast.com/support/inquiry)，我们会尽快回复。
 
-
-
 ##### API调用示例
 
 ```
-GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.2/apps/C3JmSctU/maintenances/under-maintenance
+GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance
 ```
 
 ##### API失败响应结果
 
 ```json
 {
-  "header": {
-    "transactionId": "18a1ae42-6b1d-54c8-894e-54e97bca07fq",
-    "resultCode": -4010002,
-    "resultMessage": "Gamebase product appKey is invalid, appId:C3JmSctU",
-    "traceError": {
-      "trackingTime": 1489726350287,
-      "throwPoint": "gateway",
-      "uri": "/tcgb-launching/v1.2/apps/C3JmSctU/maintenances/under-maintenance"
-    },
-    "isSuccessful": false
-  }
+    "header": {
+        "transactionId": "18a1ae42-6b1d-54c8-894e-54e97bca07fq",
+        "resultCode": -4010002,
+        "resultMessage": "Gamebase product appKey is invalid, appId:C3JmSctU",
+        "traceError": {
+            "trackingTime": 1489726350287,
+            "throwPoint": "gateway",
+            "uri": "/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance"
+        },
+        "isSuccessful": false
+    }
 }
-
 ```

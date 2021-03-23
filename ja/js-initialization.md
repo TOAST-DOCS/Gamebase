@@ -129,3 +129,141 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 | INSPECTING_SERVICE          | 303  | サービスメンテナンス中                           |
 | INSPECTING_ALL_SERVICES     | 304  | 全体サービスメンテナンス中                        |
 | INTERNAL_SERVER_ERROR       | 500  | 内部サーバーエラー                           |
+
+### Launching Information
+
+toast.Gamebase.initialize呼び出し結果でローンチ状態を確認できます。
+
+```js
+toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error) {
+    if (error) {
+        console.log(error);
+        return;
+    }
+
+	var statusCode = launchingInfo.launching.status.code;
+});
+```
+
+`toast.Gamebase.Launching.getLaunchingInformations()`APIを利用すると、初期化後にもLaunchingInfoオブジェクトを取得できます。
+
+**API**
+
+```js
++ (LaunchingInfo)Gamebase.Launching.getLaunchingInformations();
+```
+LaunchingInfoオブジェクトにはGamebase Consoleに設定した値とゲーム状態などが含まれています。
+
+
+#### 1. Launching
+
+Gamebaseローンチ情報です。
+
+**1.1 Status**
+
+Gamebase JavaScript SDK初期化設定に入力したアプリバージョンのゲーム状態情報です。
+
+* code：ゲームステータスコード(メンテナンス中、アップデート必須、サービス終了など)
+* message：ゲーム状態メッセージ
+
+ステータスコードは下記の表を参照してください。
+
+#### Launching Status Code
+
+| Status                      | Code | Description                              |
+| --------------------------- | ---- | ---------------------------------------- |
+| IN_SERVICE                  | 200  | 正常サービス中                            |
+| RECOMMEND_UPDATE            | 201  | アップデート推奨                             |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202  | メンテナンス中はサービスを利用できませんが、QA端末として登録された場合はメンテナンスに関係なくサービスに接続してテストできます。 |
+| IN_TEST                     | 203  | テスト中 |
+| IN_REVIEW                   | 204  | 審査中 |
+| REQUIRE_UPDATE              | 300  | アップデート必須                             |
+| BLOCKED_USER                | 301  | 接続遮断に登録された端末(デバイスキー)でサービスに接続した場合です。 |
+| TERMINATED_SERVICE          | 302  | サービス終了                              |
+| INSPECTING_SERVICE          | 303  | サービスメンテナンス中                            |
+| INSPECTING_ALL_SERVICES     | 304  | 全サービスメンテナンス中                         |
+| INTERNAL_SERVER_ERROR       | 500  | 内部サーバーエラー                            |
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+
+**1.2 App**
+
+Gamebase Consoleに登録されたアプリ情報です。
+
+* accessInfo
+    * serverAddress：サーバーアドレス
+    * csInfo：サポート情報
+* relatedUrls
+    * termsUrl：利用約款
+    * personalInfoCollectionUrl：個人情報同意
+    * punishRuleUrl：利用停止規定
+    * csUrl：サポート
+* install：インストールURL
+* idP：認証情報
+
+[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+
+**1.3 Maintenance**
+
+Gamebase Consoleに登録されたメンテナンス情報です。
+
+* url：メンテナンスページURL
+* timezone：標準時間帯(timezone)
+* beginDate：開始時間
+* endDate：終了時間
+* message：メンテナンス理由
+
+[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+
+**1.4 Notice**
+
+Gamebase Consoleに登録された告知情報です。
+
+* message：メッセージ
+* title：タイトル
+* url：メンテナンスURL
+
+[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+
+#### 2. tcProduct
+
+Gamebaseと連携したTOASTサービスのappKeyです。
+
+* gamebase
+* tcLaunching
+* iap
+* push
+
+#### 3. tcIap
+
+TOAST Consoleに登録されたIAPストア情報です。
+
+* id: App ID
+* name: App Name
+* storeCode: Store Code
+ 
+[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+
+#### 4. tcLaunching
+
+TOAST Consoleに登録されたLaunching情報です。
+
+* ユーザーがConsoleに入力した値をJSON stringで渡します。
+ 
+[Console Guide](/Game/Gamebase/ko/oper-management/#config)
+
+
+### Error Handling
+
+| Error                        | Error Code | Description                |
+| ---------------------------- | ---------- | -------------------------- |
+| NOT_INITIALIZED              | 1          | Gamebaseが初期化されていません。 |
+| NOT_LOGGED_IN                | 2          | ログインが必要です。            |
+| INVALID_PARAMETER            | 3          | 無効なパラメータです。           |
+| INVALID_JSON_FORMAT          | 4          | JSONフォーマットエラーです。          |
+| USER_PERMISSION              | 5          | 権限がありません。               |
+| NOT_SUPPORTED                | 10         | サポートしていない機能です。        |
+
+
+* エラーコードは次の文書を参照してください。
+    * [エラーコード](./error-code/#client-sdk)
