@@ -310,7 +310,7 @@ function requestWithdrawal() {
 
 ### Check TemporaryWithdrawal User
 
-在使用预约退出功能的游戏内进行登录时，若AuthToken.member.temporaryWithdrawal不是null，则需提示用户正在退出中。 
+登录使用预约退出功能的游戏时，若AuthToken.member.temporaryWithdrawal不是null，则需提示用户正在进行退出处理。
 
 **Example**
 

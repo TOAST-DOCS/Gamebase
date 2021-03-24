@@ -198,7 +198,7 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 
 #### 2. tcProduct
 
-是与Gamebase连接的NHN Cloud服务appKey。
+是与Gamebase相关的NHN Cloud服务appKey。
 
 * gamebase
 * tcLaunching
@@ -219,7 +219,7 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 
 是在NHN Cloud Console中注册的Launching信息。
 
-* 以JSON string传送用户在Console中输入的值。
+* 以JSON string格式传送用户在Console中输入的值。
  
 [Console Guide](/Game/Gamebase/ko/oper-management/#config)
 

@@ -14,7 +14,7 @@ Gamebase显示终端机设置的语言。
 
 因此Gamebase向需要以终端机设置的语言之外的其他语言显示Gamebase消息的应用程序，提供”Display Language“功能。
 
-Gamebase显示消息时，以设置为Display Language的语言显示。 
+Gamebase显示消息时，显示注册为Display Language的语言。 
 在Display Language中输入语言代码时，只能使用以下列表中（**Gamebase支持的语言代码种类**）指定的代码。
 
 > <font color="red">[注意]</font><br/>
