@@ -46,7 +46,7 @@ Gamebase.initialize(activity, configuration, callback);
 
 1. 游戏客户端向游戏服务器请求consume（消费）。
     * 传送UserID、gamebaseProductId、paymentSeq、purchaseToken。
-2. 游戏服务器在游戏DB中查询是否存在以同样的paymentSeq提供道具的履历。
+2. 游戏服务器在游戏DB中查询是否存在以同样的paymentSeq提供道具的历史记录。
     * 2-1. 若存在未提供道具，则向UserID提供以gamebaseProductId购买的道具。
     * 2-2. 提供后在游戏DB保存UserID, gamebaseProductId, paymentSeq, purchaseToken，必要时进行‘’支付再处理”或防止重复提供。
 3. 游戏服务器通过调用Gamebase服务器的consume（消费）API提供道具。此时无需考虑是否已经提供道具。

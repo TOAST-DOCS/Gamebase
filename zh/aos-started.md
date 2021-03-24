@@ -81,7 +81,7 @@ repositories {
     maven { url 'https://dl.bintray.com/thelasterstar/maven/' }
 
     // >>> [Hangame IdP]
-    maven { ”关于url Hangame IdP的设置方法，请询问客服中心” }
+    maven { ”关于url Hangame IdP的设置方法，请向客服提问咨询。” }
 }
 
 android {
@@ -164,7 +164,7 @@ dependencies {
 
 #### Hangame IdP
 
-* 关于通过在AndroidManifest.xml文件中声明使用Hangame IdP方法，请询问客服中心。
+* 关于通过在AndroidManifest.xml文件中声明，使用Hangame IdP方法，请向客服提问咨询。
 
 ```xml
 <manifest ...>
