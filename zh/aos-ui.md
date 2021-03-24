@@ -158,7 +158,7 @@ GamebaseWebView.showWebView(activity, "http://www.toast.com", configuration);
 
 为Gamebase指定的scheme。
 
-| scheme               | 용도                                  |
+| scheme               | 用途                                  |
 | -------------------- | ------------------------------------- |
 | gamebase://dismiss   | 关闭WebView                          |
 | gamebase://goback    | 返回上一页                 |
