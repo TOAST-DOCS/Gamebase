@@ -17,26 +17,26 @@
 
 ### Display Language
 
-Gamebase显示终端机设置的语言。
+正如弹出框显示语言，Gamebase也显示终端机设置的语言。
 
 但有些游戏允许通过额外选项更改终端机设置的语言。
-若终端机设置的默认语言是英语，则需将游戏的显示语言转换为日语时，即使要将Gamebase的显示语言也转换为日语，Gamebase仍显示终端机设置的默认语言（en）。
+终端机设置的默认语言是英语，但需将游戏的显示语言转换为日语时，即使要将Gamebase的显示语言也转换为日语，Gamebase仍显示终端机设置的默认语言（en）。
 
 因此Gamebase向需以终端机设置语言之外的其他语言显示Gamebase消息的应用程序，提供”Display Language“功能。
 
-Gamebase显示消息时，以设置为Display Language的语言显示。
+Gamebase显示消息时，按照注册为Display Language的语言显示消息。
 在Display Language输入语言代码时，只能使用以下列表中（**Gamebase支持的语言代码种类**）指定的代码。
 
 > <font color="red">[注意]</font><br/>
 >
-> * 无论终端机设置的语言如何，需要更改Gamebase显示的语言时使用Display Language Gamebase功能。
+> * 无论终端机设置的语言如何，只需要更改Gamebase显示的语言时使用Display Language Gamebase功能。
 > * Display Language Code是区分大小写的ISO-639形态的值。
 > 若按”EN"或"zh-cn"进行设置，可能出现问题。
 > * 若输入的Display Language Code值不在以下列表时（**Gamebase支持的语言代码种类**）, 则将Display Langauge Code自动设置为默认语言(en)。
 
 > [参考]
 >
-> * 因Gamebase客户端消息中仅包含英语（en）、韩语（ko）、日语（ja），即使是下列表指定的语言代码，指定英语（en）、韩语（ko）、日语（ja）之外的语言时，也将设置为默认语言(en)。
+> * 因Gamebase客户端消息中仅包含英语（en）、韩语（ko）、日语（ja），即使是下列表指定的语言代码，指定英语（en）、韩语（ko）、日语（ja）之外的语言时，也将自动设置为默认语言(en)。
 > * 可以直接添加未注册在Gamebase客户端的语言集合。
 > 请参考**添加新语言集合**项目。
 
@@ -348,7 +348,7 @@ void eventHandlerSample(Activity activity) {
 ```
 
 * Category在GamebaseEventCategory类中定义。
-* 事件大体分为ServerPush, Observer, Purchase, Push, 并按照各Category, 将GamebaseEventMessage.data以如下列表的方式，转换为VO。 
+* 事件大体分为ServerPush、Observer、Purchase、Push，并按照各Category, 按如下列表的方式，将GamebaseEventMessage.data转换为VO。
 
 | Event种类 | GamebaseEventCategory | VO转换方法 | 备注 |
 | --------- | --------------------- | ----------- | --- |
@@ -423,13 +423,13 @@ void processServerPush(String category, GamebaseEventServerPushData data) {
             * LaunchingStatus.INSPECTING_ALL_SERVICES: 304
             * LaunchingStatus.INTERNAL_SERVER_ERROR: 500
     * GamebaseEventCategory.OBSERVER_HEARTBEAT
-    	* 当因已被退出或禁用，用户账号状态出现变化时运行。
+    	* 当因已被退出或禁用、用户账号状态出现变化时启动。
     	* GamebaseEventObserverData.code : 为GamebaseError值。
             * GamebaseError.INVALID_MEMBER: 6
             * GamebaseError.BANNED_MEMBER: 7
     * GamebaseEventCategory.OBSERVER_NETWORK
     	* 可以接收网络变动信息。
-    	* 当网络断开或被连接时、从Wifi转为Cellular网络时运行。
+    	* 当网络断开或被连接时、从Wifi转为Cellular网络时启动。
         * GamebaseEventObserverData.code : 为NetworkManager值。
             * NetworkManager.TYPE_NOT: -1
             * NetworkManager.TYPE_MOBILE: 0
@@ -855,7 +855,7 @@ Gamebase.Contact.openContact(activity, new GamebaseCallback() {
 
 > <font color="red">[注意]</font><br/>
 >
-> 询问客服中心时可能需要添附文件。
+> 向客服中心提问时可能需要添附文件。
 > 为此，需要在运行时从用户获得有关相机拍照或Storage存储的权限。 
 > [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
 >

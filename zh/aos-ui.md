@@ -152,13 +152,13 @@ GamebaseWebView.showWebView(activity, "http://www.toast.com", configuration);
 
 #### Custom Scheme
 
-使用在Gamebase WebView加载的网页内scheme，可使用某特定功能或更改网页内容。
+使用在Gamebase WebView加载的网页内scheme，可使用某个特定功能或更改网页内容。。
 
 ##### Predefined Custom Scheme
 
 为Gamebase指定的scheme。
 
-| scheme               | 용도                                  |
+| scheme               | 用途                                  |
 | -------------------- | ------------------------------------- |
 | gamebase://dismiss   | 关闭WebView                          |
 | gamebase://goback    | 返回上一页                 |

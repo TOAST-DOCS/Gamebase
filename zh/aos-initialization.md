@@ -288,8 +288,8 @@ LaunchingInfo对象中包含Gamebase Console中设置的值及游戏状态等。
 ### Handling Unregistered Version
 
 如果初始化未注册在Gamebase Console上的GameClientVersion，则出现**LAUNCHING_UNREGISTERED_CLIENT(2004)**错误信息。
-如果是enablePopup(true), enableLaunchingStatusPopup(true)状态，则弹出强制更新窗口并跳转到商店。
-不使用Gamebase弹窗，可以从GamebaseException对象得到UpdateInfo，实现使用户跳转到商店的UI。
+如果是enablePopup(true)、enableLaunchingStatusPopup(true)状态，则弹出强制更新窗口并可跳转到商店。
+若不使用Gamebase弹窗，则可从GamebaseException对象获取UpdateInfo创建UI，允许用户跳转到商店。
 
 **VO**
 
@@ -297,7 +297,7 @@ LaunchingInfo对象中包含Gamebase Console中设置的值及游戏状态等。
 class UpdateInfo {
     // 为可下载最新版本的”安装商店URL”。
     String installUrl;
-    // 按用户终端机设置的语言给用户显示信息。
+    // 按用户终端机设置的语言向用户显示信息。
     // 语言为”en”时，提示以下消息。 
     // 'The version is not supported. Please get the latest update version.‘
     String message;
@@ -342,14 +342,14 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 | Error                        | Error Code | Description                |
 | ---------------------------- | ---------- | -------------------------- |
-| NOT_INITIALIZED              | 1          | Gamebase未初始化。 |
-| NOT_LOGGED_IN                | 2          | 需要登录。            |
-| INVALID_PARAMETER            | 3          | 无效的参数。          |
-| INVALID_JSON_FORMAT          | 4          | JSON格式错误。         |
-| USER_PERMISSION              | 5          | 无权限。               |
-| NOT_SUPPORTED                | 10         | 不支持此功能。       |
-| NOT_SUPPORTED_ANDROID        | 11         | Android不支持此功能。|
-| ANDROID_ACTIVEAPP_NOT_CALLED | 32         | 未调用activeApp API。|
+| NOT_INITIALIZED              | 1          | Gamebase未初始化 |
+| NOT_LOGGED_IN                | 2          | 需要登录            |
+| INVALID_PARAMETER            | 3          | 是无效的参数          |
+| INVALID_JSON_FORMAT          | 4          | JSON格式错误         |
+| USER_PERMISSION              | 5          | 无权限              |
+| NOT_SUPPORTED                | 10         | 不支持此功能       |
+| NOT_SUPPORTED_ANDROID        | 11         | Android不支持此功能 |
+| ANDROID_ACTIVEAPP_NOT_CALLED | 32         | 未调用activeApp API |
 
 
 * 所有错误代码，请参考以下文档。

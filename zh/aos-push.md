@@ -106,7 +106,7 @@ Gamebase.Push.registerPush(activity, pushConfiguration, notificationOptions, new
 #### Get NotificationOptions
 
 通过调用Get NotificationOptions，注册推送时可获取之前设置的通知选项值。
-可以获取（包括在AndroidManifest.xml文件中定义的值和在运行时更改的值）当中最新设置值。
+可以获取（包括在AndroidManifest.xml文件中定义的值和在运行时更改的值）最新设置值。
 
 **API**
 

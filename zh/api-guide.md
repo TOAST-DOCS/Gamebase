@@ -1271,8 +1271,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | result[].accessToken | String | 支付验证令牌 |
 | result[].marketId | String | store代码 |
 | result[].gamebaseProductId | String | Gamebase商品ID<br>在控制台中注册商品时的用户输入值 |
-| result[].purchaseTime | String | 결제 발생 일시 |
-| result[].payload | String | SDK에서 설정한 추가 정보 |
+| result[].purchaseTime | String | 支付日期 |
+| result[].payload | String | 在SDK中设置的附加信息 |
 
 **[Error Code]**
 
@@ -1356,7 +1356,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | result[].marketId  | String  | 商店代码  |
 | result[].userId  | String  | 用户ID  |
 | result[].paymentSeq | String  |  支付编号 |
-| result[].accessToken | String | 결제 인증 토큰 |
+| result[].accessToken | String | 支付验证令牌 |
 | result[].productSeq | Long | 支付道具编号（console中注册的道具固有编号）|
 | result[].productId | String  |  商店注册的商品（道具）标识符 |
 | result[].productType | String  |  商品（道具）类型<br>订阅： AUTO_RENEWABLE |
@@ -1364,7 +1364,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | result[].price | Float | 支付价格 |
 | result[].paymentId | String | 最近更新的商店支付编号 |
 | result[].gamebaseProductId | String | Gamebase商品ID<br>在控制台中注册商品时的用户输入值 |
-| result[].payload | String | SDK에서 설정한 추가 정보 |
+| result[].payload | String | 在SDK中设置的附加信息 |
 | result[].purchaseTime | String | 最近更新的时间 |
 | result[].expiryTime | String | 订阅到期时间 |
 

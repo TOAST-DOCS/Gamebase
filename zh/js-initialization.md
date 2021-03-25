@@ -49,7 +49,7 @@ var gamebaseConfiguration = {
 若欲打开开发中可以参考的系统日志，请调用**toast.Gamebase.setDebugMode(true)**。
 > <font color="red">[注意]</font><br/>
 >
-> 게임을 **릴리스**할 때는 반드시 소스 코드에서 setDebugMode 호출을 제거하거나 파라미터를 false로 바꿔야합니다.
+> **发布**游戏时，应将参数设置为false或不调用setDebugMode API。
 >
 
 
@@ -198,7 +198,7 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 
 #### 2. tcProduct
 
-是与Gamebase连接的NHN Cloud服务appKey。
+是与Gamebase相关的NHN Cloud服务appKey。
 
 * gamebase
 * tcLaunching
@@ -219,7 +219,7 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 
 是在NHN Cloud Console中注册的Launching信息。
 
-* 以JSON string传送用户在Console中输入的值。
+* 以JSON string格式传送用户在Console中输入的值。
  
 [Console Guide](/Game/Gamebase/ko/oper-management/#config)
 

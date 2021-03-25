@@ -3,10 +3,10 @@
 ### March 23, 2021 
 
 #### Feature Updates
-* [Console] 회원 > 다운로드: 하나의 파일에 저장되는 데이터 수 개선(5만 -> 50만)
+* [Console] Member > Download: Increased the size of data stored in a file (from 50,000 to > 500,000)
 * [SDK] 2.20.2
-	* (iOS) Facebook iOS SDK 업데이트 (9.1.0)
-	* (iOS) 특정 경우에 GamebaseAuthFacebookAdapter에서 openURL delegate가 호출되지 않았던 이슈 수정
+	* (iOS) Facebook iOS SDK updated (9.1.0)
+	* (iOS) Fixed an issue of failing to call openURL delegate from GamebaseAuthFacebookAdapter in certain cases
 
 ### March 09, 2021 
 
