@@ -4,7 +4,7 @@
 
 #### 機能改善/変更
 * [SDK] 2.20.2
-	* (Android) Google Play 스토어의 Android 11 단말기에서의 결제 오류가 해결된 Billing Client 3.0.3 버전으로 업데이트
+	* (Android) Google PlayストアのAndroid 11端末での決済エラーが解決したBilling Client 3.0.3バージョンにアップデート
 
 ### 2021. 03. 23.
 
