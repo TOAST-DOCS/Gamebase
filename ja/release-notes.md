@@ -1,5 +1,10 @@
 ## Game > Gamebase > リリースノート
 
+### 2021. 03. 30.
+
+#### 機能改善/変更
+* [SDK] 2.20.2
+	* (Android) Google PlayストアのAndroid 11端末での決済エラーが解決したBilling Client 3.0.3バージョンにアップデート
 
 ### 2021. 03. 23.
 
