@@ -1,5 +1,27 @@
 ## Game > Gamebase > Release Notes
 
+### April 13, 2021 
+
+#### More Features
+* [SDK] 2.21.0
+	* (공통) Hangame 일본 인증 추가 	
+
+#### Feature Updates
+* [Console] 
+	* 회원 > 멤버: 푸시 토큰 조회 시 광고성 수신 동의, 야간 광고 수신 여부가 ture인 경우 수신한 일자도 함께 노출되도록 개선 
+	* 구매(IAP) > 결제정보: 추가 정보 표시되는 팝업창에 문자열이 줄 바꿈 되어 보이도록 개선
+	* 구매(IAP) > 결제 어뷰징 모니터링
+		* 1시간으로 고정되어 있던 자동 제재 감기 기간을 사용자가 입력(1시간~48시간)할 수 있도록 개선
+		* AND 조건만 설정 가능하던 건수, 금액 자동 제재 조건 입력을 OR 조건도 입력할 수 있도록 개선
+* [SDK] 2.21.0	
+	* (Android) 외부 SDK 업데이트: Facebook Android SDK(6.5.1), Line Android SDK(5.4.0)
+	* (iOS) bitcode 지원이 가능하도록 변경
+	* (iOS) showWebView 호출 시, 닫기 버튼을 가장 먼저 화면에 표시되도록 수정
+	
+#### Bug Fixes
+* [SDK] 2.21.0
+	* (Android) Proguard 를 적용한 빌드에서 결제 API 호출시 크래시가 발생하는 오류 수정
+
 ### March 30, 2021 
 
 #### Feature Updates
