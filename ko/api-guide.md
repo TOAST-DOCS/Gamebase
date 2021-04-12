@@ -4,6 +4,7 @@
 - IAP(In App Purchase) API의 요청 파라미터 및 응답 결과에 새로운 항목이 추가 및 삭제 되었습니다.
 - Push Wrapping API가 추가 되었습니다.
 - Gamebase Access Token으로 로그인시에 사용된 IdP의 프로필 및 토큰 정보를 획득할 수 있는 "Get IdP Token and Profiles" API가 추가되었습니다.
+- IdP Id로 매핑된 Gamebase userId 를 획득하는 "Get UserId Information with IdP Id" API가 추가되었습니다.
 
 ## Advance Notice
 
@@ -177,7 +178,6 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | authList[].authKey | String | authSystem에서 IdP Id 별로 발급된 사용자 구분 값 |
 | temporaryWithdrawal | Object | 탈퇴 유예 관련 정보 <br>valid 가 "T" 값에서만 제공 |
 | temporaryWithdrawal.gracePeriodDate | String | 탈퇴 유예 만료 시간 ISO 8601 |
-
 
 **[Error Code]**
 
@@ -388,6 +388,10 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | maintenance.url | String | 점검 URL |
 | maintenance.reason | String | 점검 사유 |
 | maintenance.message | String | default 점검 사유 메시지 |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
 
 <br>
 <br>
@@ -1528,8 +1532,8 @@ Gamebase는 NHN Cloud Leaderboard 서비스의 서버 API에 대해 **Wrapping**
 | 단일 사용자 Leaderboard정보 삭제 | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
 
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
-Gamebase Wrapping API와 매핑된 NHN Cloud Leaderboard API 스펙은 아래 가이드를 참고하세요.
-Leaderboard Appkey 설정 없이 Gamebase Appkey를 이용해서 Gamebase Wrapping API를 호출하시면 됩니다.
+Gamebase Wrapping API와 매핑된 Leaderboard API 스펙은 아래 가이드를 참고하세요.
+Leaderboard Appkey 설정 없이 Gamebase AppId 및 SecretKey를 이용해서 Gamebase Wrapping Leaderboard API를 호출하시면 됩니다.
 
 [Leaderboard Guide](/Game/Leaderboard/ko/api-guide/)
 
@@ -1573,8 +1577,8 @@ Gamebase는 NHN Cloud Push 서비스의 서버 API에 대해 **Wrapping** 기능
 |   | 삭제 | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
 
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
-Gamebase Wrapping API와 매핑된 NHN Cloud Push API 스펙은 아래 가이드를 참고하세요.
-Push Appkey 설정 없이 Gamebase Appkey를 이용해서 Gamebase Wrapping API를 호출하시면 됩니다.
+Gamebase Wrapping API와 매핑된 Push API 스펙은 아래 가이드를 참고하세요.
+Push Appkey 설정 없이 Gamebase AppId 및 SecretKey를 이용해서 Gamebase Wrapping Push API를 호출하시면 됩니다.
 
 [Push Guide](/Notification/Push/ko/api-guide/)
 

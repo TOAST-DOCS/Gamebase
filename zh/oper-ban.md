@@ -3,7 +3,7 @@
 提供禁用功能，限制不当使用应用或玩游戏的用户。
 当被禁用的用户再次登录或恢复会话时，将显示禁止使用弹窗以限制游戏的使用。
 
-可以在Gamebase Console中手动添加禁用，如果您使用的是NHN Cloud AppGuard，也可以使用添加模板来自动添加禁用。
+可以在Gamebase Console中手动添加禁用，如果您使用的是TOAST AppGuard，也可以使用添加模板来自动添加禁用。
 
 AppGuard的联动方法 ，请参考[AppGuard](./oper-ban/#appguard)。
 
@@ -43,7 +43,7 @@ AppGuard的联动方法 ，请参考[AppGuard](./oper-ban/#appguard)。
 - **添加人/添加日期**: 添加禁用的管理员/添加禁用的日期
 - **解除原因**: 解除禁用时管理员登记的原因。其原因不会向用户显示，只能通过操作记录确认。
 - **解除注册人/解除注册日期**: 解除禁用的管理员账户/解除禁用日期
-- **解除**: 处于禁用状态的用户将显示**解除禁用**键，当点击该按钮，会弹出一个用于输入解除禁用原因的页面。您可以输入解除原因并点击**保存**按钮解除禁用。 
+- **解除**: 处于禁用状态的用户将显示**解除禁用**键，当点击该按钮，会弹出一个用于输入解除禁用原因的页面。您可以输入解除原因并点击**保存**按钮解除禁用。
 - **状态**
   - <font color="white" style="background-color:#FB8F37">禁用</font>：游戏用户目前无法使用该应用
   - <font color="white" style="background-color:#A1A1A1">禁用（到期）</font>：游戏用户禁用时间已到期，但尚未登录。 用户重新登录时，游戏用户的状态被更改为解除禁用（到期）
@@ -91,7 +91,7 @@ AppGuard的联动方法 ，请参考[AppGuard](./oper-ban/#appguard)。
 
 #### (5)删除Leaderboard
 设置是否在添加禁用时删除用户的 Leader board 。
-选择后，添加时将从Leader board 删除用户的数据<font color="red">请注意，删除后该数据将无法恢复。</font> 
+选择后，添加时将从Leader board 删除用户的数据<font color="red">请注意，删除后该数据将无法恢复。</font>
 
 ### Release Ban
 
@@ -112,7 +112,7 @@ AppGuard的联动方法 ，请参考[AppGuard](./oper-ban/#appguard)。
 
 > [参考]
 > 如果批量添加失败，将出现提示。您可以通过点击提示页面中的**Download**按钮下载添加失败的用户列表文件。
-> > ![gamebase_ban_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_04_201812.png)
+> ![gamebase_ban_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_04_201812.png)
 
 ## Template
 提供模板轻松以多种语言输入消息显示给用户。 选择预先创建的模板。
@@ -129,7 +129,7 @@ AppGuard的联动方法 ，请参考[AppGuard](./oper-ban/#appguard)。
 - 在模板列表页面中，公布消息显示创建模板时作为“默认语言”输入的消息。
 
 ### Register Template
-![gamebase_ban_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_08_201812.png)
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_ban_08_202004.png)
 
 #### (1) 名称
 输入禁用在列表中显示的模板的名称。
@@ -138,11 +138,12 @@ AppGuard的联动方法 ，请参考[AppGuard](./oper-ban/#appguard)。
 输入向用户显示的禁用消息。
 您可以使用多种语言，对于使用您输入语言之外的其他语言的用户，将显示为“默认语言”选择的语言。
 点击右侧的** + **按钮可以添加语言，如果没有所需的语言，可以通过联系[客户中心](https://toast.com/support/inquiry)将其添加。
+选择“翻译”按键，可将默认语言翻译成设置的语言。
 
 ## AppGuard
 
 > <font color="red">[重要]</font>
-> 仅在使用NHN Cloud AppGuard服务时可用。
+> 仅在使用TOAST AppGuard服务时可用。
 
 ![gamebase_ban_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_09_201812.png)
 

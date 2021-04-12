@@ -17,7 +17,7 @@
 
 ### Display Language
 
-正如弹出框显示语言，Gamebase也显示终端机设置的语言。
+正如游戏维护弹窗显示语言，Gamebase也显示终端机设置的语言。
 
 但有些游戏允许通过额外选项更改终端机设置的语言。
 终端机设置的默认语言是英语，但需将游戏的显示语言转换为日语时，即使要将Gamebase的显示语言也转换为日语，Gamebase仍显示终端机设置的默认语言（en）。
@@ -828,7 +828,7 @@ Gamebase SDK客服中心API根据类型使用如下URL。
 | Error Code | Description |
 | --- | --- |
 | NOT\_INITIALIZED(1)                                 | 未调用Gamebase.initialize |
-| NOT\_LOGGED\_IN(2)                                  | 客服中心类型为“TOAST OC“时，登录前已调用ContactConfiguration函数。 |
+| NOT\_LOGGED\_IN(2)                                  | 客服中心类型为“TOAST OC“时，登录前已调用了ContactConfiguration函数。 |
 | UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 客服中心URL不存在<br>  |
 | UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 识别用户的临时ticket发放失败 |
 | UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | 已显示客服中心WebView |
@@ -880,7 +880,7 @@ Gamebase.Contact.openContact(activity, new GamebaseCallback() {
 | Error Code | Description |
 | --- | --- |
 | NOT\_INITIALIZED(1)                                 | 未调用Gamebase.initialize。 |
-| NOT\_LOGGED\_IN(2)                                  | 客服中心的类型为'TOAST OC'时，登录前已调用ContactConfiguration函数。 |
+| NOT\_LOGGED\_IN(2)                                  | 客服中心的类型为'TOAST OC'时，登录前已调用了ContactConfiguration函数。 |
 | UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 客服中心URL不存在。<br>请确认Gamebase控制台的**客服中心URL**。 |
 | UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) |  识别用户的临时ticket发放失败。 |
 
