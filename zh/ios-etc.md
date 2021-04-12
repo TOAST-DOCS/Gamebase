@@ -17,15 +17,28 @@
 
 
 ### Display Language
-* 可以将Gamebase显示的语言更改为设备上设置的语言以外的语言。
-*  Gamebase显示客户端中包含的信息或从服务器接收的信息。
-* 如果设置DisplayLanguage，将以用户设置的语言代码（ISO-639）的语言显示信息。
-* 可以添加所需的语言。 以下是可以添加的语言代码：
+
+正如游戏维护弹窗显示语言，Gamebase也显示终端机设置的语言。
+
+但有些游戏允许通过额外选项更改终端机设置的语言。
+终端机设置的默认语言是英语，但需将游戏的显示语言转换为日语时，即使要将Gamebase的显示语言也转换为日语，Gamebase仍显示终端机设置的默认语言（en）。
+因此Gamebase向需以终端机设置语言之外的其他语言显示Gamebase消息的应用程序，提供”Display Language“功能。 
+
+Gamebase显示消息时，按照注册为Display Language的语言显示消息。
+在Display Language输入语言代码时，只能使用以下列表中（**Gamebase支持的语言代码种类**）指定的代码。
+
+> <font color="red">[注意]</font><br/>
+>
+> * 无论终端机设置的语言如何，只需要更改Gamebase显示的语言时使用Display Language Gamebase功能。
+> * Display Language Code是区分大小写的ISO-639形态的值。 
+> 若按”EN"或"zh-cn"进行设置，可能出现问题。
+> * 若输入的Display Language Code值不在以下列表时（**Gamebase支持的语言代码种类**）, 则将Display Langauge Code自动设置为默认语言(en)。
 
 > [参考]
 >
-> Gamebase中的客户端信息仅包括英语（en）和韩语（ko）。
-
+> * 因Gamebase客户端消息中仅包含英语（en）、韩语（ko）、日语（ja），即使是下列表指定的语言代码，指定英语（en）、韩语（ko）、日语（ja）之外的语言时，也将自动设置为默认语言(en)。
+> * 可以直接添加未注册在Gamebase客户端的语言集合。
+> **请参考**添加新语言集合**项目。
 
 #### Gamebase支持的语言代码种类。
 | Code | Name |
@@ -49,10 +62,6 @@
 
 相应的语言代码在“TCGBConstants.h”类中定义。
 
-> `[注意]`
->
-> Gamebase支持的语言代码区分大小写。
-> 将其设置为“EN”或“zh-cn”可能会出现问题。
 
 ```objectivec
 #pragma mark - DisplayLanguageCode
@@ -257,184 +266,324 @@ localizedstring.json中定义的格式如下。
 ```
 
 
+### Gamebase Event Handler
 
-### Server Push
-* 可以处理从Gamebase服务器发送到客户端设备的 Server Push Message。
-* 在Gamebase客户端上添加ServerPushEvent Listener允许用户接收和处理信息，可以删除添加的ServerPushEvent Listener。
-
-
-#### Server Push类型
-目前，Gamebase支持的Server Push类型如下。
-
-* kTCGBServerPushNotificationTypeAppKickout (= "appKickout")
-    * 如果在NHN Cloud Gamebase控制台的`Operation > Kickout`中注册kickout ServerPush消息，与Gamebase连接的所有客户端的将收到`APP_KICKOUT`消息。
-
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
-
-#### 注册 ServerPushEvent
-可以在Gamebase Client中注册ServerPushEvent来处理Gamebase Console和Gamebase服务器发出的Push事件。
+* Gamebase通过**GamebaseEventHandler**事件系统处理所有的事件。
+* GamebaseEventHandler通过以下API简单添加或删除Handler。 
 
 **API**
 
 ```objectivec
-+ (void)addServerPushEvent:(void(^)(TCGBServerPushMessage *))handler;
++ (void)addEventHandler:(GamebaseEventHandler)handler;
++ (void)removeEventHandler:(GamebaseEventHandler)handler;
++ (void)removeAllEventHandler;
 ```
 
+**VO**
 
-**示例**
 ```objectivec
-- (void)wannaToReceiveServerPush {
-	void(^pushHandler)(TCGBServerPushMessage *) = ^(TCGBServerPushMessage *message) {
-        NSString* msg = [NSString stringWithFormat:@"[Sample] receive server push =>\ntype: %@\ndata: %@", message.type, message.data];
-        [self printLogAndShowAlertWithData:msg error:nil alertTitle:@"server push"];
-        
-        if ([message.type caseInsensitiveCompare:kTCGBServerPushNotificationTypeAppKickout] == NSOrderedSame) {
-        	// Logout
-            // Go to Main
+@interface TCGBGamebaseEventMessage : NSObject <TCGBValueObject>
+
+@property (nonatomic, strong, nonnull)  NSString* category;
+@property (nonatomic, strong, nullable) NSString* data;
+
+@end
+```
+
+**Example**
+
+```objectivec
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES
+            || [message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
+            TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gaembaseEventServerPushDataFromJsonString:message.data];
+            if (serverPushData != nil) {
+                //TODO: process server push
+            }
         }
-        else if ([message.type caseInsensitiveCompare:kTCGBServerPushNotificationTypeTransferKickout] == NSOrderedSame) {
-        	// Logout
-            // Go to Main
+        else if ([message.category isEqualToString:kTCGBObserverLaunching] == YES
+                 || [message.category isEqualToString:kTCGBObserverHeartbeat] == YES
+                 || [message.category isEqualToString:kTCGBObserverNetwork] == YES) {
+            TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
+            if (observerData != nil) {
+                //TODO: process observer
+            }
         }
-        else {
-        	...
+        else if ([message.category isEqualToString:kTCGBPurchaseUpdated] == YES) {
+            
+        }
+        else if ([message.category isEqualToString:kTCGBPushReceivedMessage] == YES) {
+            
+        }
+        else if ([message.category isEqualToString:kTCGBPushClickMessage] == YES) {
+            
+        }
+        else if ([message.category isEqualToString:kTCGBPushClickAction] == YES) {
+            
         }
     };
-    [TCGBGamebase addServerPushEvent:pushHandler];
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
+```
+
+* Category在GamebaseEventCategory类中定义。
+* 事件大体分为ServerPush、Observer、Purchase、Push，并按照各Category, 按如下列表的方式，将GamebaseEventMessage.data转换为VO。
+
+| Event种类 | GamebaseEventCategory | VO转换方法 | 备注 |
+| --------- | --------------------- | ----------- | --- |
+| ServerPush | kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
+| Observer | kTCGBObserverLaunching<br>kTCGBObserverHeartbeat<br>kTCGBObserverNetwork | [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data] | \- |
+| Purchase - Promotion支付 | kTCGBPurchaseUpdated | [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data] | \- |
+| Push - 接收消息 | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
+| Push - - 点击消息 | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
+| Push - 动态点击 | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | 如果点击RichMessage按键则运行。|
+
+#### Server Push
+
+* 为从Gamebase服务器向客户端终端机传送的消息。
+* Gamebase支持的Server Push Type如下。
+	* kTCGBServerPushAppKickout
+    	* 如果在TOAST Gamebase控制台**Operation > Kickout**中注册Kickout ServerPush消息，则从与Gamebase连接的所有客户端接收Kickout消息。
+    * kTCGBServerPushTransferKickout
+    	* 将Guest账号成功转移到其他终端机时，从转移之前的终端机接收Kickout消息。
+
+**Example**
+
+```objectivec
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        [self printLogAndShowAlertWithData:[message prettyJsonString] error:nil alertTitle:@"addEventHandler Result"];
+        if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES) {
+            TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
+            if (serverPushData != nil) {
+                //TODO: process server push
+            }
+        }
+        esle if ([message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
+            TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
+            if (serverPushData != nil) {
+                //TODO: process server push
+            }
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
 }
 
 ```
 
+#### Observer
 
-#### 删除 ServerPushEvent
-可以使用以下API删除在Gamebase注册的 ServerPushEvent。
+* 是处理Gamebase各状态的变动事件的系统。 
+* Gamebase支持的Observer Type如下。
+    * kTCGBObserverLaunching
+    	* 当维护开始、结束时或发布新版本必须进行更新等Launching状态出现变动时启动。
+    	* TCGBGamebaseEventObserverData.code : 为TCGBLaunchingStatus值。
+            * IN_SERVICE: 200
+            * RECOMMEND_UPDATE: 201
+            * IN_SERVICE_BY_QA_WHITE_LIST: 202
+            * REQUIRE_UPDATE: 300
+            * BLOCKED_USER: 301
+            * TERMINATED_SERVICE: 302
+            * INSPECTING_SERVICE: 303
+            * INSPECTING_ALL_SERVICES: 304
+            * INTERNAL_SERVER_ERROR: 500
+    * kTCGBObserverHeartbeat
+    	* 当因已被退出或禁用、用户账号状态出现变化时启动。
+    	* TCGBGamebaseEventObserverData.code : 为TCGBError值。 
+            * TCGB_ERROR_INVALID_MEMBER: 6
+            * TCGB_ERROR_BANNED_MEMBER: 7
+    * kTCGBObserverNetwork
+    	* 可以接收网络变动信息。 
+    	* 当网络断开或被连接时、从Wifi转为Cellular网络时启动。
+    	* TCGBGamebaseEventObserverData.code : 为NetworkManager值。
+            * ReachabilityIsNotDefined = -100
+            * NotReachable = -1
+            * ReachableViaWWAN = 0
+            * ReachableViaWifi = 1
 
-**API**
+**VO**
+
 ```objectivec
-+ (void)removeServerPushEvent:(void(^)(TCGBServerPushMessage *))handler;
-+ (void)removeAllServerPushEvent;
+@interface TCGBGamebaseEventObserverData : NSObject <TCGBValueObject>
+
+@property (nonatomic, assign)           int64_t     code;
+@property (nonatomic, strong, nullable) NSString*   message;
+@property (nonatomic, strong, nullable) NSString*   extras;
 ```
 
-**示例**
+**Example**
+
 ```objectivec
-- (void)wannaToDiscardServerPush {
-	void(^pushHandler)(TCGBServerPushMessage *) = ^(TCGBServerPushMessage *message) {
-        NSString* msg = [NSString stringWithFormat:@"[Sample] receive server push =>\ntype: %@\ndata: %@", message.type, message.data];
-        [self printLogAndShowAlertWithData:msg error:nil alertTitle:@"server push"];
-    };
-    [TCGBGamebase removeServerPushEvent:pushHandler];
-}
-```
-
-
-
-
-
-### Observer
-* Gamebase Observer允许接收并处理Gamebase的各种状态变动事件。
-* 状态变动事件：网络类型变动，Launching状态变动(由于维护等引起的状态变动)，Heartbeat信息变动(用户禁用而导致Heartbeat信息变动）等。
-
-
-
-#### Observer类型
-Gamebase目前支持的 Observer类型如下。
-
-* Network 类型变动
-    * 可以接收网络变动信息。例如，可以用 ObserverMessage.data.get("code") 值获取 Network Type。
-    * Type : kTCGBObserverMessageTypeNetwork (= @"network")
-    * Code : 请参考NetworkStatus中声明的常量。
-        * NotReachable : -1
-        * ReachableViaWWAN : 0
-        * ReachableViaWifi : 1        
-        * ReachabilityIsNotDefined : -100
-* Launching 状态变动
-    * 当定期检查应用程序状态的Launching Status response发生变动时触发。例如，有维或推荐更新等产生的事件。
-    * Type : kTCGBObserverMessageTypeLaunching (= @"launching")
-    * Code : 请参考TCGBLaunchingStatus中声明的常量。
-        * IN_SERVICE : 200
-        * RECOMMEND_UPDATE : 201
-        * IN_SERVICE_BY_QA_WHITE_LIST : 202
-        * REQUIRE_UPDATE : 300
-        * BLOCKED_USER : 301
-        * TERMINATED_SERVICE : 302
-        * INSPECTING_SERVICE : 303
-        * INSPECTING_ALL_SERVICES : 304
-        * INTERNAL_SERVER_ERROR : 500
-* Heartbeat 信息变动
-    * 定期与Gamebase服务器保持连接的Heartbeat response发生变动时触发。例如，由用户禁用引起的事件。
-    * Type : ObserverkTCGBObserverMessageTypeHeartbeat (= @"heartbeat")
-    * Code : 请参考TCGBErrorCode 中声明的常量
-        * TCGB_ERROR_INVALID_MEMBER : 6
-        * TCGB_ERROR_BANNED_MEMBER : 7
-
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
-
-#### 注册 Observer
-可以在Gamebase Client上注册Observer来处理各种状态变动事件。
-
-**API**
-```objectivec
-+ (void)addObserver:(void(^)(TCGBObserverMessage *))handler;
-```
-
-**示例**
-```objectivec
-- (void)addObserver {
-    void(^observerHandler)(TCGBObserverMessage *) = ^(TCGBObserverMessage *message) {
-        NSString* msg = [NSString stringWithFormat:@"[Sample] receive from observer =>\ntype: %@\ndata: %@", message.type, message.data];
-        [self printLogAndShowAlertWithData:msg error:nil alertTitle:@"Observer"];
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        if ([message.category isEqualToString:kTCGBObserverLaunching] == YES) {
+            TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
+            if (observerData != nil) {
+                int launchingStatusCode = observerData.code;
+                NSString* launchingMessage = observerData.message;
+                switch (launchingStatusCode) {
+                    case IN_SERVICE:
+                    // Finished maintenance.
+                    break;
+                case INSPECTING_SERVICE:
+                case INSPECTING_ALL_SERVICES:
+                    // Under maintenance.
+                    break;
+                ...
+        }
+            }
+        }
+        else if ([message.category isEqualToString:kTCGBObserverHeartbeat] == YES) {
+            TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
+            int errorCode = observerData.code;
+            switch (errorCode) {
+            case TCGB_ERROR_INVALID_MEMBER:
+                // You can check the invalid user session in here.
+                // ex) After transferred account to another device.
+                break;
+            case TCGB_ERROR_BANNED_MEMBER:
+                // You can check the banned user session in here.
+                break;
+        }
+        }
+        else if ([message.category isEqualToString:kTCGBObserverNetwork] == YES) {
+            TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
+            NetworkStatus networkTypeCode = observerData.code;
             // You can check the changed network status in here.
-        if ([message.type caseInsensitiveCompare:kTCGBObserverMessageTypeNetwork] == NSOrderedSame) {
-            NSNumber* networkStatusNumber = message.data[@"code"];
-            NSInteger networkStatus = [networkStatusNumber integerValue];
-            // TODO: Check Netwokr Status by networkStatus.
-        }
-        else if ([message.type caseInsensitiveCompare:kTCGBObserverMessageTypeLaunching] == NSOrderedSame) {
-            // You can check the changed launching status in here.
-            NSNumber* launchingStatusNumber = message.data[@"code"];
-            NSInteger launchingStatus = [launchingStatusNumber integerValue];
-            // TODO: Check Launching Status by launchingStatus.
-        }
-        else if ([message.type caseInsensitiveCompare:kTCGBObserverMessageTypeHeartbeat] == NSOrderedSame) {
-        	// You can check the invalid user session in here.
-        	NSNumber* errorCodeNumber = message.data[@"code"];
-        	NSInteger errorCode = [errorCodeNumber integerValue];
-            if (errorCode == TCGB_ERROR_BANNED_MEMBER) {
-            	// TODO: Execute User Ban Proccess.
-			}
+            if (networkTypeCode == NotReachable || networkTypeCode == ReachabilityIsNotDefined) {
+                // Network disconnected.
+            } else {
+                // Network connected.
+            }
         }
     };
-
-    [TCGBGamebase addObserver:observerHandler];
+    
+    [TCGBGamebase addEventHandler:eventHandler];
 }
 ```
 
 
-#### 删除 Observer
-可以删除在Gamebase中注册的Observer。
- 
-**API**
+#### Purchase Updated
+
+* * 是输入Promotion代码获取商品时出现的事件。
+* 可以获取结算票据信息。
+
+**Example**
+
 ```objectivec
-+ (void)removeObserver:(void(^)(TCGBObserverMessage *))handler;
-+ (void)removeAllObserver;
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        TCGBPurchasableReceipt* receipt = [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data];
+        if (receipt != nil) {
+            // If user purchase item from appstore promoting iap
+            // this event will be occurred.
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
+```
+
+#### Push Received Message
+
+* 是接收Push消息时出现的事件。
+* 通过将extras字段转换为JSON，可获取发送Push时传送的自定义信息。
+
+
+**VO**
+
+```objectivec
+@interface TCGBPushMessage : NSObject <TCGBValueObject>
+
+@property (nonatomic, strong, nonnull) NSString* identifier;
+@property (nonatomic, strong, nullable) NSString* title;
+@property (nonatomic, strong, nullable) NSString* body;
+@property (nonatomic, strong, nonnull) NSString* extras;
+
+@end
+```
+
+**Example**
+
+```objectivec
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        if ([message.category isEqualToString:kTCGBPushReceivedMessage] == YES) {
+            TCGBPushMessage* pushMessage = [TCGBPushMessage pushMessageFromJsonString:message.data];
+            if (pusMessage != nil) {
+                //TODO: process 
+            }
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
+```
+
+#### Push Click Message
+
+* 是点击”已接收的Push消息”时出现的事件。
+
+**Example**
+
+```objectivec
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        if ([message.category isEqualToString:kTCGBPushClickMessage] == YES) {
+            TCGBPushMessage* pushMessage = [TCGBPushMessage pushMessageFromJsonString:message.data];
+            if (pusMessage != nil) {
+                //TODO: process 
+            }
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
+```
+
+#### Push Click Action
+
+* 是通过Rich Message功能，点击生成按钮时出现的事件。
+* actionType中存在以下值。
+	* "OPEN_APP"
+	* "OPEN_URL"
+	* "REPLY"
+	* "DISMISS"
+
+**VO**
+
+```objectivec
+@interface TCGBPushAction : NSObject <TCGBValueObject>
+
+@property (nonatomic, strong, nonnull) NSString* actionType;
+@property (nonatomic, strong, nullable) TCGBPushMessage* message;
+@property (nonatomic, strong, nullable) NSString* userText;
+
+@end
 ```
 
 **示例**
 
 ```objectivec
-- (void)removeObserver {
-	void(^observerHandler)(TCGBObserverMessage *) = ^(TCGBObserverMessage *message) {
-    	...
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        if ([message.category isEqualToString:kTCGBPushClickAction] == YES) {
+            TCGBPushAction* pushMessage = [TCGBPushAction pushActionFromJsonString:message.data];
+            if (pushAction != nil) {
+                //TODO: process 
+            }
+        }
     };
     
-    // Remove a Observer
-    [TCGBGamebase removeObserver:observerHandler];
-    
-    // Remove all Observers
-    [TCGBGamebase removeAllObserver];
+    [TCGBGamebase addEventHandler:eventHandler];
 }
 ```
 
+
+ 
 ### Analytics
 
 可将游戏指标传送至Gamebase服务器。
@@ -466,10 +615,10 @@ Analytics控制台使用方法请参考如下指南。
 
 | Name | Mandatory(M) / Optional(O) | type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int | 是显示游戏用户级别的字段。 |
-| channelId | O | String | 是显示通道的字段。 |
-| characterId | O | String | 是显示角色名的字段。 |
-| classId | O | String | 是显示职业的字段。 |
+| userLevel | M | int | 是显示游戏用户级别的字段。|
+| channelId | O | String | 是显示通道的字段。|
+| characterId | O | String | 是显示角色名的字段。|
+| classId | O | String | 是显示职业的字段。|
 
 
 **API**
@@ -497,12 +646,12 @@ Analytics控制台使用方法请参考如下指南。
 
 **LevelUpData**
 
-  | Name | Mandatory (M) / Optional (O) | type | Desc |
-  | -------------------------- | -------------------------- | ---- | ---- |
-  | userLevel | M | int | 是显示游戏用户级别的字段。 |
-  | levelUpTime | M | long | 按Epoch Time输入。</br>按Millisecond单位输入。 |
-  | channelId | O | string | |
-  | characterId | O | string | |
+| Name | Mandatory (M) / Optional (O) | type | Desc |
+| -------------------------- | -------------------------- | ---- | ---- |
+| userLevel | M | int | 是显示游戏用户级别的字段。|
+| levelUpTime | M | long | 按Epoch time输入。</br>按Millisecond(ms)单位输入。|
+| channelId | O | string | |
+| characterId | O | string | |
 
 **API**
 
@@ -525,33 +674,118 @@ Gamebase提供用于应对客户咨询的功能。
 
 > [TIP]
 >
-> 若与NHN Cloud Contact商品关联使用，则可更加轻松方便地应对顾客咨询。
-> 详细的NHN Cloud Contact商品使用，请参考如下指南。
-> [NHN Cloud Online Contact Guide](/Contact%20Center/zh/online-contact-overview/)
->
+> 如果与TOAST Contact服务联动使用，则可更加轻松方便地应对顾客咨询。
+> 详细的TOAST Contact服务使用，请参考如下指南。
+> [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+
+#### Customer Service Type
+
+**Gamebase控制台 > App > InApp URL > 您可以从以下的Service center**客户服务当中选择一个类型。
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
+
+| Customer Service Type     | Required Login |
+| ------------------------- | -------------- |
+| Developer customer center | X              |
+| Gamebase customer center  | △              |
+| TOAST Online Contact      | O              |
+
+Gamebase SDK的客户服务API按各类型使用如下URL。
+
+* 开发公司自建客户服务(Developer customer center)
+    * 在**客户服务URL**中输入的URL
+* Gamebase提供的客户服务(Gamebase customer center)
+    * 登录前 : **不包含**用户信息的客户服务URL
+    * 登录后 : 包含用户信息的客户服务URL
+* TOAST组织服务(Online Contact)
+    * 登录前 : 出现TCGB_ERROR_NOT_LOGGED_IN(2)错误
+    * 登录后 : 包含用户信息的客户服务URL
 
 #### Open Contact WebView
 
-可弹出Gamebase Console中输入的**客服中心URL**页面的功能。
-使用**Gamebase Console > App > InApp URL > Service center**中输入的值。
+是显示在Gamebase控制台中输入的**客户服务URL** Webview的功能。
+可通过TCGBContactConfiguration向URL传送附加信息。 
+
+**TCGBContactConfiguration**
+
+| Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
+| ------------- | ------------- | ---------------------------------- | ------------------ |
+| userName      | O             | string                             | 用户名(nickname)<br>**default** : nil    | 
+| additionalURL | O             | string                             | 是添加在开发公司自建客户服务URL后面的附加URL。<br>只能在客户服务类型为”CUSTOM”时使用。<br>**default** : nil    |
+| extraData     | O             | dictionary<string, string>         | 客户服务open时传送开发公司需要的extra data。<br>**default** : nil    | 
 
 **API**
 
 ```objectivec
-+ (void)openContactWithViewController:(UIViewController *)viewController completion:(void(^)(TCGBError *error))completion;
++ (void)openContactWithViewController:(UIViewController *)viewController 
+                           completion:(void(^)(TCGBError *error))completion;
+
++ (void)openContactWithViewController:(UIViewController *)viewController
+                        configuration:(TCGBContactConfiguration *)configuration
+                           completion:(void(^)(TCGBError *error))completion;
 ```
+
+**Error Code**
+
+| Error                           | Error Code | Description                 |
+| ------------------------------- | ---------- | --------------------------- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1       | 未调用Gamebase |
+| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2       | 客户服务的类型为”TOAST Online Contact”时，登录前已调用了函数。|
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 客户服务URL不存在。<br>请确认Gamebase控制台中的**客户服务URL**。|
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 识别用户的临时ticket发放失败 |
 
 **Example**
 
 ```objectivec
-[TCGBContact openContactWithViewController:parentViewController completion:^(TCGBError *error) {
-    if (error != NULL && error.code == TCGB_ERROR_WEBVIEW_INVALID_URL) { // 7001
-        // TODO: Gamebase Console Service Center URL is invalid.
-        //  Please check the url field in the TOAST Gamebase Console.
-    } else if (error != NULL) {
-        // TODO: Error occur when opening the contact web view.
-    } else {
+[TCGBContact openContactWithViewController:self completion:^(TCGBError *error) {
+    if ([TCGBGamebase isSuccessWithError:error] == YES) {
         // A user close the contact web view.
+    } else if (error.code == TCGB_ERROR_UI_CONTACT_FAIL_INVALID_URL) {
+        // TODO: Gamebase Console Service Center URL is invalid.
+        // Please check the url field in the TOAST Gamebase Console.
+    } else {
+        // TODO: Error occur when opening the contact web view.
+    }
+}];
+```
+
+> <font color="red">[注意]</font><br/>
+> 
+> 向客服提问咨询时，为了添附文件可能要允许访问相机或相册权限。
+> 请在info.plist设置”Privacy - Camera Usage Description“、”Privacy - Photo Library Usage Description”。 
+
+#### Request Contact URL
+
+可以获取显示客户服务Webview时使用的URL。
+
+**API**
+
+```objectivec
++ (void)requestContactURLWithCompletion:(void(^)(NSString *contactUrl, TCGBError *error))completion;
+
++ (void)requestContactURLWithConfiguration:(TCGBContactConfiguration *)configuration
+                                completion:(void(^)(NSString *contactUrl, TCGBError *error))completion;
+```
+
+**Error Code**
+
+| Error                           | Error Code | Description                 |
+| ------------------------------- | ---------- | --------------------------- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1       | 未调用Gamebase |
+| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2       | 客户服务的类型为”TOAST Online Contact”时，登录前已调用了函数。|
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 客服中心URL不存在。<br>请确认Gamebase控制台中的**客户服务URL**。|
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 识别用户的临时ticket发放失败 |
+
+**Example**
+
+```objectivec
+[TCGBContact requestContactURLWithCompletion^(NSString *contactUrl, TCGBError *error){
+    if ([TCGBGamebase isSuccessWithError:error] == YES) {
+        NSLog(@"ContactURL : %@", contactUrl);
+    } else if (error.code == TCGB_ERROR_UI_CONTACT_FAIL_INVALID_URL) {
+        // TODO: Gamebase Console Service Center URL is invalid.
+        // Please check the url field in the TOAST Gamebase Console.
+    } else {
+        // TODO: Error occur when request contact url.
     }
 }];
 ```

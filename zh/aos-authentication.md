@@ -1059,7 +1059,7 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 
 ### Withdraw Immediately
 
-为立即退出功能。无论预约时间如何，需要进行立即退出处理。 
+无论预约退出时间的设置状态如何，立即退出。 
 实际内置运行与Gamebase.withdraw() API相同。
 
 立即退出后无法取消，因此需要提示用户是否继续执行。
@@ -1076,22 +1076,20 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 ## TemporaryWithdrawal
 
 为”预约退出”功能。
-如果请求临时退出，在控制台中注册的预约时间到了会自动退出。 
+由于请求了临时退出，不立即退出，预约时期过后退出。 
 可以在控制台中修改预约时间。
 
 > ”注意”
 >
 > 使用预约退出功能时，不应调用**Gamebase.withdraw()** API。
-> 调用**Gamebase.withdraw()** API，可立即退出。
+> 通过调用**Gamebase.withdraw()** API，可立即退出。
 
 登录成功后可通过调用AuthToken.getTemporaryWithdrawalInfo() API判断是否是预约退出的用户。 
 
 ### Request TemporaryWithdrawal
 
-### Request TemporaryWithdrawal
-
-为预约退出请求。
-在控制台中注册的预约时间到了会自动退出。 
+请求预约退出。
+在控制台中指定的预约时间过后，自动完成退出处理。
 
 **API**
 
@@ -1129,7 +1127,7 @@ public static void testRequestWithdraw() {
 ```
 ### Check TemporaryWithdrawal User
 
-在使用预约退出功能的游戏内登录时，若调用AuthToken.getTemporaryWithdrawalInfo() API获得的返还结果不是”null”，是有效的TemporaryWithdrawalInfo对象，则需提示用户正在进行退出处理。
+如果用户登录使用预约退出功能的游戏，您需要调用**TCGBAuthToken.tcgbMember.temporaryWithdrawal**API，若返还的结果不为null，为有效的TemporaryWithdrawalInfo对象时，需要通知用户正在进行退出。
 
 **Example**
 
@@ -1157,8 +1155,8 @@ public static void testLogin() {
 
 ### Cancel TemporaryWithdrawal
 
-为取消退出请求的功能。
-超过期限已退出后，无法取消。
+取消退出请求。
+若预约退出时间到期，则无法退出。
 
 **API**
 
@@ -1197,7 +1195,7 @@ public static void testCancelWithdraw() {
 
 ### Withdraw Immediately
 
-为立即退出功能。无论预约时间如何，需要进行立即退出处理。 
+无论预约退出时期的设置状态如何，立即退出。 
 实际内置运行与Gamebase.withdraw() API相同。
 
 立即退出后无法取消，因此需要提示用户是否继续执行。
@@ -1231,14 +1229,14 @@ public static void testWithdrawImmediately() {
 
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
-| Auth           | INVALID\_MEMBER                          | 6          | 无效的用户请求。                   |
-|                | BANNED\_MEMBER                           | 7          | 被制裁的用户。                               |
+| Auth           | INVALID\_MEMBER                          | 6          | 无效的用户请求                   |
+|                | BANNED\_MEMBER                           | 7          | 被制裁的用户                               |
 |                | AUTH\_USER\_CANCELED                     | 3001       | 登录信息已被取消 。                           |
-|                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | 不支持的认证方式 。                  |
-|                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 不存在或已退出（删除数据）的用户。               |
+|                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | 是不支持的认证方式 。                  |
+|                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 是不存在或已退出（删除数据）的用户。               |
 |                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | 第三方认证库初始化失败 |
-|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部认证库错误。<br/>请确认DetailCode和DetailMessage。  |
-|                | AUTH_ALREADY_IN_PROGRESS_ERROR           | 3010       | 之前的认证过程未完成。 |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部认证库错误<br/>请确认DetailCode和DetailMessage。  |
+|                | AUTH_ALREADY_IN_PROGRESS_ERROR           | 3010       | 未完成之前的认证过程。 |
 | TransferKey    | SAME\_REQUESTOR                          | 8          | 在同一台设备上使用了相同的TransferKey。 |
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 非游客帐户尝试了转移或帐户已关联了游客以外的IDP。|
 |                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccount的有效期已结束。|
@@ -1249,30 +1247,30 @@ public static void testWithdrawImmediately() {
 |                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | 无TransferAccount。请先获得TransferAccount。|
 |                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | 已有TransferAccount。|
 |                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount已使用。|
-| Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED               | 3101       | 令牌登录失败。                          |
-|                | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | 无效的令牌信息 。                       |
-|                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 无近期登录的IdP信息。                   |
-| IdP Login      | AUTH\_IDP\_LOGIN\_FAILED                 | 3201       | IdP登录失败。                         |
-|                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO     | 3202       | 无效的IdP信息。（Console中没有此IdP信息）。 |
-| Add Mapping    | AUTH\_ADD\_MAPPING\_FAILED               | 3301       | 添加映射（Mapping）失败。                           |
+| Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED               | 3101       | 令牌登录失败                          |
+|                | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | 无效的令牌信息                      |
+|                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 无近期登录的IdP信息                   |
+| IdP Login      | AUTH\_IDP\_LOGIN\_FAILED                 | 3201       | IdP登录失败                         |
+|                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO     | 3202       | 无效的IdP信息（Console中没有此IdP信息） |
+| Add Mapping    | AUTH\_ADD\_MAPPING\_FAILED               | 3301       | 添加映射（Mapping）失败                           |
 |                | AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | 已经与其他帐户映射（Mapping）。                    |
 |                | AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       |  已映射（Mapping）到相同的IdP。                   |
-|                | AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO   | 3304       | 无效的IdP信息。（Console中没有此IdP信息）。 |
+|                | AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO   | 3304       | 无效的IdP信息（Console中没有此IdP信息） |
 |                | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP    | 3305       | 游客IDP无法进行AddMapping。 |
-| Add Mapping Forcibly | AUTH_ADD_MAPPING_FORCIBLY_NOT_EXIST_KEY         | 3311       | 无强制映射密钥(ForcingMappingKey)。<br/>请再次确认ForcingMappingTicket。|
-|                      | AUTH_ADD_MAPPING_FORCIBLY_ALREADY_USED_KEY      | 3312       | 强制映射密钥(ForcingMappingKey)已使用。|
+| Add Mapping Forcibly | AUTH_ADD_MAPPING_FORCIBLY_NOT_EXIST_KEY         | 3311       | 无强制映射密钥(ForcingMappingKey)<br/>请再次确认ForcingMappingTicket。|
+|                      | AUTH_ADD_MAPPING_FORCIBLY_ALREADY_USED_KEY      | 3312       | 已使用强制映射密钥(ForcingMappingKey)。|
 |                      | AUTH_ADD_MAPPING_FORCIBLY_EXPIRED_KEY           | 3313       | 强制映射密钥(ForcingMappingKey)的有效期已结束。|
 |                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_IDP         | 3314       | 强制映射密钥(ForcingMappingKey)已在其他IdP中使用。<br/>获得的ForcingMappingKey用于尝试相同IdP强制映射。|
 |                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_AUTHKEY     | 3315       | 强制映射密钥(ForcingMappingKey)已用于其他账户。<br/>获得的ForcingMappingKey用于尝试相同IdP及账户强制映射。|
-| Remove Mapping | AUTH\_REMOVE\_MAPPING\_FAILED            | 3401       | 解除映射（Mapping）失败。                           |
+| Remove Mapping | AUTH\_REMOVE\_MAPPING\_FAILED            | 3401       | 解除映射（Mapping）失败                           |
 |                | AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | 无法解除最后映射（Mapping）的IdP。                |
-|                | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP   | 3403       | 当前登录的IdP。                      |
-| Logout         | AUTH\_LOGOUT\_FAILED                     | 3501       | 退出登录失败。                           |
-| Withdrawal     | AUTH\_WITHDRAW\_FAILED                   | 3601       | 退出（删除数据）失败。                 |
+|                | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP   | 3403       | 当前登录的IdP                      |
+| Logout         | AUTH\_LOGOUT\_FAILED                     | 3501       | 退出登录失败                           |
+| Withdrawal     | AUTH\_WITHDRAW\_FAILED                   | 3601       | 退出（删除数据）失败                 |
 |                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 用户已临时退出                     |
 |                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 用户未临时退出                     |
-| Not Playable   | AUTH\_NOT\_PLAYABLE                      | 3701       | 无法玩游戏的状态(维护或已下线等)。         |
-| Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                     | 3999       | 未知错误(未定义的错误)。             |
+| Not Playable   | AUTH\_NOT\_PLAYABLE                      | 3701       | 是无法玩游戏的状态(维护或已下线等)。         |
+| Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                     | 3999       | 未知错误(未定义的错误)             |
 
 * 所有错误代码，请参考以下文档。
     * [Entire Error Codes](./error-code/#client-sdk)

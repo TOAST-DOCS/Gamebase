@@ -35,21 +35,21 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 
 **3rd Party SDK Download**
 
-| Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 용도 | External SDK Download Link | Support iOS Version |
-| --- | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.27.1 | Gamebase의 Interface 및 핵심 로직을 포함 | Gamebase 내에 포함 | iOS9 or later
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.1.0 | Facebook 로그인을 지원 | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS9 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.4.0 | Payco 로그인을 지원 | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS9 or later |
-|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Naver 로그인을 지원 | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |
-|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenter 로그인을 지원 |  | iOS9 or later |
-|  | GamebaseAuthGoogleAdapter.framework | | Google 로그인을 지원 | | iOS9 or later |
-|  | GamebaseAuthTwitterAdapter.framework | | Twitter 로그인을 지원 | | iOS9 or later |
-|  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | LINE 로그인을 지원 | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS10 or later |
-|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | AuthenticationServices.framework를 Optional로 설정 | iOS9 or later<br/>arm64 지원<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.5.1 | Hangame 로그인을 지원 | | iOS9 or later |
-|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weibo 로그인을 지원 |[LINK \[Go to Download\]](https://github.com/sinaweibosdk/weibo_ios_sdk/archive/3.2.7.zip) | iOS9 or later |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.27.1<br/> ToastGamebaseIAP 0.11.0 | 게임 내 결제를 지원 | Gamebase IAP 내에 포함 | iOS9 or later |
-| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.27.1 | Push를 지원 | Gamebase Push 내에 포함 | iOS9 or later |
+| Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 용도  | Support iOS Version |
+| --- | --- | --- | --- | --- |
+| Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.27.1 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS9 or later
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.1.0 | Facebook 로그인을 지원 | iOS9 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.4.0 | Payco 로그인을 지원 | iOS9 or later |
+|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Naver 로그인을 지원 | iOS9 or later |
+|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenter 로그인을 지원 | iOS9 or later |
+|  | GamebaseAuthGoogleAdapter.framework | | Google 로그인을 지원 | iOS9 or later |
+|  | GamebaseAuthTwitterAdapter.framework | | Twitter 로그인을 지원 | iOS9 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | LINE 로그인을 지원 | iOS10 or later |
+|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS9 or later<br/>arm64 지원<br/> |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.5.1 | Hangame 로그인을 지원 | iOS9 or later |
+|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weibo 로그인을 지원 | iOS9 or later |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.27.1<br/> ToastGamebaseIAP 0.11.0 | 게임 내 결제를 지원 | iOS9 or later |
+| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.27.1 | Push를 지원 | iOS9 or later |
 
 
 > <font color="red">[주의]</font><br/>
@@ -104,9 +104,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
     * 프로젝트 내부에 **빈 swift 파일** 추가 (프로젝트 내부에 swift 파일이 하나도 없을 경우)
 * 5) **Target > Build Settings > Linking > Other Linker Flags**에 **-ObjC**를 추가해야 합니다.
 ![Other Linker Flags](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
-* 6) **Target > Build Settings > Enable Bitcode**를 **No**로 설정합니다.
-![Enable Bitcode](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-007_1.0.0.png)
-* 7) NaverAuthAdapter를 사용하는 경우에는 NaverSDK에서 제공하는 **NaverThirdPartyLogin.framework** 파일을 **Target > General > Embedded Binaries**에 추가해야 합니다.
+* 6) NaverAuthAdapter를 사용하는 경우에는 NaverSDK에서 제공하는 **NaverThirdPartyLogin.framework** 파일을 **Target > General > Embedded Binaries**에 추가해야 합니다.
  ![Naver Embeded Binaries](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.7.0.png)
 
 > [INFO]

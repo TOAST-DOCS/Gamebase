@@ -9,7 +9,7 @@ Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 >
 > Unity 지원 버전
 >
-> * 2017.4.16 ~ 2020.1.8
+> * 2017.4.16 ~ 2020.2.1
 > * 하위 버전의 Unity 지원이 필요하면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
 
 #### Android
@@ -83,6 +83,15 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
     * Push는 FCM(Firebase), APNS Push 서비스를 지원합니다.
     * Pruchase는 NHN Cloud 결제 서비스인 IAP(In-App Purchase)를 사용하여 결제를 지원합니다.
 7. [Settings] 버튼 클릭해서 SDK를 설치합니다.
+
+
+#### SDK 업데이트
+1. Menu > Tools > Gamebase > SDKSettings > Setting Tool을 실행합니다.
+	* v1.0.1 이하 : Menu > Gamebase > SDKSettings > Setting Tool
+2. [Download SDK] 버튼 클릭해서 최신 SDK를 다운로드 합니다.
+3. [Settings] 버튼 클릭해서 SDK를 설치합니다.
+    * 기존에 선택한 플랫폼별 모듈은 변경이 가능합니다
+
 
 #### SDK 삭제
 1. Menu > Tools > Gamebase > SDKSettings > Setting Tool을 실행합니다.

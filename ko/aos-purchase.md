@@ -105,6 +105,133 @@ Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, userPayload, new 
 });
 ```
 
+**VO**
+
+```java
+class PurchasableReceipt {
+    // 구매한 아이템의 상품 ID 입니다.
+    @Nullable
+    String gamebaseProductId;
+    
+    // Gamebase.Purchase.requestPurchase API 호출시 payload 로 전달했던 값입니다.
+    //
+    // 이 필드는 예를 들어 동일한 User ID 로 구매 했음에도 게임 채널, 캐릭터 등에 따라
+    // 상품 구매 및 지급을 구분하고자 하는 경우 등
+    // 게임에서 필요로 하는 다양한 추가 정보를 담기 위한 목적으로 활용할 수 있습니다.
+    @Nullable
+    String payload;
+    
+    // 구매한 상품의 가격 입니다.
+    float price;
+    
+    // 통화 코드 입니다.
+    @NonNull
+    String currency;
+    
+    // 결제 식별자입니다.
+    // purchaseToken 과 함께 'Consume' 서버 API 를 호출하는데 사용하는 중요한 정보입니다.
+    //
+    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // 주의 : Consume API 는 게임 서버에서 호출하세요!
+    @NonNull
+    String paymentSeq;
+    
+    // 결제 식별자입니다.
+    // paymentSeq 와 함께 'Consume' 서버 API 를 호출하는데 사용하는 중요한 정보입니다.
+    // Consume API 에서는 'accessToken' 라는 이름의 파라메터로 전달해야 합니다.
+    //
+    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // 주의 : Consume API 는 게임 서버에서 호출하세요!
+    @Nullable
+    String purchaseToken;
+    
+    // Google, Apple 과 같이 스토어 콘솔에 등록된 상품 ID 입니다.
+    @NonNull
+    String marketItemId;
+    
+    // 상품 타입으로, 다음 값들이 올 수 있습니다.
+    // * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객센터로 문의하세요.
+    // * CONSUMABLE : 소비성 상품.
+    // * AUTO_RENEWABLE : 구독형 상품.
+    // * CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
+    @NonNull
+    String productType;
+    
+    // 상품을 구매했던 User ID.
+    // 상품을 구매하지 않은 User ID 로 로그인 한다면 구매한 아이템을 획득할 수 없습니다.
+    @NonNull
+    String userId;
+    
+    // 스토어의 결제 식별자 입니다.
+    @Nullable
+    String paymentId;
+    
+    // 상품을 구매했던 시각입니다.(epoch time)
+    long purchaseTime;
+    
+    // 구독이 종료되는 시각입니다.(epoch time)
+    long expiryTime;
+    
+    // Google 결제시 사용되는 값으로, 다음 값들이 올 수 있습니다.
+    // 하지만 Google 서버에서 장애가 발생하여 Gamebase 결제 서버에서 일시적으로 검증 로직을 끄는 경우에는
+    // null 로만 리턴되므로 항상 유효한 값을 보장하지는 않음에 주의하시기 바랍니다.
+    // * null : 일반 결제
+    // * Test : 테스트 결제
+    // * Promo : Promotion 결제
+    @Nullable
+    String purchaseType;
+    
+    // 구독 상품은 갱신 될때마다 paymentId 가 변경됩니다.
+    // 이 필드는 맨 처음 구독 상품을 결제 했을때의 paymentId 를 알려줍니다.
+    // 스토어에 따라, 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로
+    // 항상 유효한 값을 보장하지는 않습니다.
+    @Nullable
+    String originalPaymentId;
+    
+    // itemSeq 로 상품을 구매하는 Legacy API용 식별자 입니다.
+    long itemSeq;
+}
+```
+
+**Response Example**
+
+```json
+{
+    "gamebaseProductId": "my_product_001",
+    "payload": "UserPayload:!@#...",
+    "price": 1000.0,
+    "currency": "KRW",
+    "paymentSeq": "2021032510000001",
+    "purchaseToken": "5U_NVCLKSDFKLJJ...",
+    "marketItemId": "my_product_001",
+    "productType": "CONSUMABLE",
+    "userId": "AS@123456ABCDEFGHIJ",
+    "paymentId": "GPA.1111-2222-3333-44444",
+    "purchaseTime": 1616649225531,
+    "expiryTime": 0,
+    "itemSeq": 1000001
+}
+```
+```json
+{
+    "gamebaseProductId": "my_subcription_product_001",
+    "payload": "MyData:{\"1234\":\"5678\"}",
+    "price": 1000.0,
+    "currency": "KRW",
+    "paymentSeq": "2021032510000001",
+    "purchaseToken": "5U_NVCLKKLJLSDG...",
+    "marketItemId": "my_subcription_product_001",
+    "productType": "CONSUMABLE_AUTO_RENEWABLE",
+    "userId": "AS@123456ABCDEFGHIJ",
+    "paymentId": "GPA.1111-2222-3333-56789",
+    "purchaseTime": 1617069916128,
+    "expiryTime": 1617070323784,
+    "purchaseType": "Test",
+    "originalPaymentId": "GPA.1111-2222-3333-56789",
+    "itemSeq": 1000002
+}
+```
+
 ### List Purchasable Items
 
 아이템 목록을 조회하려면 다음 API를 호출합니다. 콜백으로 반환되는 배열(array) 안에는 각 아이템들에 대한 정보가 담겨 있습니다.
@@ -131,6 +258,76 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
         }
     }
 });
+```
+
+**VO**
+
+```java
+class PurchasableItem {
+    // Gamebase 콘솔에 등록된 상품 ID 입니다.
+    // Gamebase.Purchase.requestPurchase API 로 상품을 구매할때 사용됩니다.
+    @Nullable
+    String gamebaseProductId;
+    
+    // 상품의 가격 입니다.
+    float price;
+    
+    // 통화 코드 입니다.
+    @Nullable
+    String currency;
+    
+    // Gamebase 콘솔에 등록된 상품 이름입니다.
+    @Nullable
+    String itemName;
+    
+    // Google, Apple 과 같이 스토어 콘솔에 등록된 상품 ID 입니다.
+    @NonNull
+    String marketItemId;
+    
+    // 상품 타입으로, 다음 값들이 올 수 있습니다.
+    // * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객센터로 문의하세요.
+    // * CONSUMABLE : 소비성 상품.
+    // * AUTORENEWABLE : 구독형 상품.
+    // * CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
+    @NonNull
+    String productType;
+    
+    // 통화 기호가 포함된 현지화 된 가격 정보입니다.
+    @Nullable
+    String localizedPrice;
+    
+    // 스토어 콘솔에 등록된 현지화된 상품 이름 입니다.
+    @Nullable
+    String localizedTitle;
+    
+    // 스토어 콘솔에 등록된 현지화된 상품 설명 입니다.
+    @Nullable
+    String localizedDescription;
+    
+    // Gamebase 콘솔에서 해당 상품의 '사용 여부'를 나타냅니다.
+    boolean isActive;
+    
+    // itemSeq 로 상품을 구매하는 Legacy API용 식별자 입니다.
+    long itemSeq;
+}
+```
+
+**Response Example**
+
+```json
+{
+    "gamebaseProductId": "my_product_001",
+    "price": 1000.0,
+    "currency": "KRW",
+    "itemName": "Consumable product for test",
+    "marketItemId": "my_product_001",
+    "productType": "CONSUMABLE",
+    "localizedPrice": "₩1,000",
+    "localizedTitle": "TEST PRODUCT 001",
+    "localizedDescription": "Product for test 001",
+    "isActive": true,
+    "itemSeq": 1000001
+}
 ```
 
 ### List Non-Consumed Items
@@ -229,7 +426,7 @@ GamebaseEventHandler 로 프로모션 결제 이벤트를 처리하는 방법은
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* 이 오류는 TOAST IAP SDK 에서 발생한 오류입니다.
+* 이 오류는 NHN Cloud IAP SDK 에서 발생한 오류입니다.
 * 오류 코드를 확인하는 방법은 다음과 같습니다.
 
 ```java
@@ -258,6 +455,6 @@ Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataC
 });
 ```
 
-* TOAST IAP SDK 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [NHN Cloud > TOAST SDK 사용 가이드 > TOAST IAP > Android > 오류 코드](/TOAST/ko/toast-sdk/iap-android/#_24)
+* NHN Cloud IAP SDK 오류 코드는 다음 문서를 참고하시기 바랍니다.
+    * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > Android > 오류 코드](/TOAST/ko/toast-sdk/iap-android/#_24)
 
