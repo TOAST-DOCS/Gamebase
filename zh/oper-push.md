@@ -2,12 +2,11 @@
 
 
 您可以向应用用户发送推送消息。
-Gamebase使用NHN Cloud Push功能发送推送消息。
+Gamebase使用TOAST Push功能发送推送消息。
 
 ## Push
-
 > <font color="red">[重要]</font><br/>
-> 
+>
 > 正在服务的游戏应用**Gamebase SDK 2.6.0以上**版本时使用的菜单。
 
 可确认发送推送的历史和创建的推送预约列表。
@@ -15,7 +14,6 @@ Gamebase使用NHN Cloud Push功能发送推送消息。
 ![gamebase_push_01_201910](https://static.toastoven.net/prod_gamebase/gamebase_push_01_201910.png)
 
 ### Registered List
-
 在预约列表中选择推送，可确认推送的预计发送时间及创建信息，单击**取消传输**按钮，可取消预约发送件，或单击**复制**按钮，可利用创建的推送的创建信息新建推送。
 
 ### Send History
@@ -31,7 +29,7 @@ Gamebase使用NHN Cloud Push功能发送推送消息。
 若欲创建新推送，单击**注册**按钮。
 可以通过右侧的预览UI确认控制台中注册的值在实际终端机中如何显示。
 
-![gamebase_push_04_201910](https://static.toastoven.net/prod_gamebase/gamebase_push_04_201910.png)
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_push_04_202004.png)
 ![gamebase_push_05_201910](https://static.toastoven.net/prod_gamebase/gamebase_push_05_201910.png)
 
 #### (1) 发送类型
@@ -61,21 +59,14 @@ Gamebase使用NHN Cloud Push功能发送推送消息。
   输入欲添加的国家名，自动完成输入。若无欲输入的国家，请联系[客服中心](https://toast.com/support/inquiry)。
 
 > [参考]
-> 
+>
 > 国家判断标准
 > 以用户的**USIM国家代码**为准进行判断，无USIM时，以为终端机设置的国家为准显示推送信息。
 
-#### (4) 提示音（可选项目）
-
-可设置终端机接收推送时播放的提示音。
-单击**添加提示音**按钮，可设置提示音，若不设置，则播放默认提示音。
-输入外部URL链接或应用程序中内置的提示音文件路径。
-
-
-#### (5) 信息类型
+#### (4) 信息类型
 
 > [参考]
-> 
+>
 > 为遵守韩国的“信息通信网法”而提供的功能。
 > 发送推送时，若不是信息性信息，应以“（广告）”开始信息，信息中应含有联系方式及取消接收方法。
 
@@ -84,30 +75,37 @@ Gamebase使用NHN Cloud Push功能发送推送消息。
 
 
 > <font color="red">[重要]</font><br/>
-> 
-> 选择**宣传性**后在输入信息中输入“（广告）”语句时，“（广告）”语句会重复，因此请注意。 
+>
+> 选择**宣传性**后在输入信息中输入“（广告）”语句时，“（广告）”语句会重复，因此请注意。
 
-#### (6) 发送信息
-
+#### (5) 发送信息
 输入向用户显示的推送信息。
 
 信息可利用多种语言输入，对于使用输入的语种以外语种的用户，以选择为默认语种的语种显示。若欲添加语种，单击下端的**添加信息**按钮。若欲添加列表中没有的语种，请联系[客服中心](https://toast.com/support/inquiry)。
 
 > [参考]
-> 
-> 发送了推送信息，但终端机未收到信息时
-> 大部分情况下是未注册用户的推送令牌。请确认是否已注册用户的推送令牌。 
-> 在平台上注册推送令牌的方法请参考以下文件。
 >
-> - [Android > Register Push](./aos-push/#2-register-push) 
-> - [iOS > Register Push](./ios-push/#2-register-push) 
-> - [Unity > Register Push](./unity-push/#2-register-push) 
+> 发送了推送信息，但终端机未收到信息时
+> 大部分情况下是未注册用户的推送令牌。请确认是否已注册用户的推送令牌。
+> 在平台上注册推送令牌的方法请参考以下文件。
+选择“翻译”按键，可将默认语言翻译成设置的语言。
+>
+> - [Android > Register Push](./aos-push/#2-register-push)
+> - [iOS > Register Push](./ios-push/#2-register-push)
+> - [Unity > Register Push](./unity-push/#2-register-push)
 
-#### (7) 信息文字颜色(Only Android)
+
+#### (6) 信息文字颜色(Only Android)
 
 对于Android，可指定终端机中显示的推送信息的文字颜色。
 可分别指定标题和内容的颜色，可在文字颜色选择窗口中选择颜色或直接输入RGB Hex值指定颜色。
 选择的文字颜色可通过右侧的预览界面确认。
+
+#### (7) 提示音（可选项目）
+
+可设置终端机接收推送时播放的提示音。
+单击**添加提示音**按钮，可设置提示音，若不设置，则播放默认提示音。
+输入外部URL链接或应用程序中内置的提示音文件路径。
 
 #### (8) 大图标(Only Android)
 
@@ -134,8 +132,10 @@ Gamebase使用NHN Cloud Push功能发送推送消息。
 
 可添加接收Android推送时执行的媒体。
 目前Android中仅可设置**IMAGE**项目，可输入欲连接的外部URL或内部文件路径。
+
 ## Push(Old)
 您可以通过Gamebase确认已发送的推送记录和预约发送列表。
+
 ![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_01_201812.png)
 推送计划明细里的列表可以在**Push Details**中取消发送。
 
@@ -150,12 +150,11 @@ Gamebase使用NHN Cloud Push功能发送推送消息。
 通过单击**复制**按钮，可以利用已发推送的信息轻松创建推送。
 ![gamebase_push_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_02_201812.png)
 
-阿
 ### Register Push
 
 要创建新的Push，请单击**创建**按钮。
 
-![gamebase_push_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_03_201812.png)
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_push_old_03_202004.png)
 
 #### (1) 消息类型
 > [参考]
@@ -197,6 +196,8 @@ Gamebase使用NHN Cloud Push功能发送推送消息。
 #### (5) 推送消息
 输入要显示给用户的推送消息。
 输入的消息可以使用多种语言，对于使用您输入语言以外的其他语言的用户，将选择默认语言作为显示语言. 单击右侧的 **+** 按钮可以添加语言。如果没有所需语言，您可以通过[用户中心](https://toast.com/support/inquiry)与我们联系，添加新语言。
+选择“翻译”按键，可将默认语言翻译成设置的语言。
+
 
 > [参考]
 > 发出了推送消息，但设备上没有收到信息时
@@ -215,9 +216,7 @@ Gamebase使用NHN Cloud Push功能发送推送消息。
 
 ![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_06_201910.png)
 
-可注册NHN Cloud Push发送推送时使用的标签名。
-
-
+可注册TOAST Push发送推送时使用的标签名。
 
 ### Tag register
 
@@ -246,8 +245,6 @@ Gamebase使用NHN Cloud Push功能发送推送消息。
 按注册按钮，弹出如上注册弹出窗口，可直接输入ID或通过文件注册输入。
 
 欲利用文件注册进行注册时，一次最多可注册1000人。
-
-
 
 #### 删除用户
 

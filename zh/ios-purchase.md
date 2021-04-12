@@ -12,14 +12,18 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 3. 注册您的Sandbox Tester帐户
 * Detail Guide for iTunes-Connect: [Apple Guide](https://help.apple.com/itunes-connect/developer/#/devb57be10e7)
 
-#### NHN Cloud Console 登记
-应在NHN Cloud Console中设置以下内容。
+#### Gamebase Console设置
 
-1. **Gamebase > Purchase(IAP) > APP**中添加使用的商店。
-    * 商店:选择**App Store**。
-2. **Gamebase > Purchase(IAP) > item**中添加商品。
-    * 商店: 选择**App Store**。
-    * 商店项目ID: 输入在iTunes-Connect中登记的Product ID。
+您需要在Gamebase Console中设置的内容如下。
+
+1. 在**Gamebase > Purchase(IAP) > 商店**中注册使用的商店。  
+    * 商店 : 选择**App Store**。
+2. 在**Gamebase > Purchase(IAP) > 商品**中注册商品。
+    * 商品ID : 输入请求支付时使用的商品ID。
+    * 商品名称 : 输入付款时显示的商品名称。
+    * 使用与否 : 选择是否使用道具。
+    * 商店 : 选择**App Store**。
+    * 商店道具ID : 输入在iTunes-Connect中注册的Product ID。
 3. 设置完商品后，请点击**保存**。
 
 #### Xcode Project 设置
@@ -36,38 +40,78 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 ### Purchase Flow
 
-请按以下顺序实现购买商品。<br/>
+购买商品的程序大体分为结算Flow、Consume Flow及”支付再处理”Flow。
+请按以下顺序实现结算Flow。
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
+![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-1. 游戏客户端通过从Gamebase SDK 调用**requestPurchaseWithItemSeq:viewController:completion:**进行付款。
-2. 如果付款成功，请调用 **requestItemListOfNotConsumedWithCompletion:**查看未消费结算明细。
-3. 如果返还的未消费结算明细列表中存在值，游戏客户端向游戏服务器请求对游戏付款商品的consume（消费）。
-4. 游戏服务器通过Gamebase server的API请求 consume(消费)API 。
-    [API 指南](./api-guide/#wrapping-api)
-5. 如果在IAP服务器上consume(消费)API调用成功，则游戏服务器向游戏客户端支付item。
+1. 未能正常结束上一次支付时，若不进行‘’支付再处理”则将导致支付失败。因此支付前应调用**requestItemListOfNotConsumedWithCompletion:**启动‘’支付再处理”，若存在未提供的道具则进行Consume Flow。
+2. 游戏客户端通过从Gamebase SDK调用**requestPurchaseWithGamebaseProductId:viewController:completion:**进行付款。 
+3. 如果付款成功，请调用**requestItemListOfNotConsumedWithCompletion:**查看未消费结算明细。若存在未提供的道具，则进行Consume Flow。
 
-商店付款成功，但发生错误无法正常结束的情况下，请登录后调用以下两个API执行重试逻辑。 <br/>
+### Consume Flow
 
-1. 未处理的商品配送请求
-* 如果登录成功，请调用 **requestItemListOfNotConsumedWithCompletion:** 以检查您的未消费结算明细。
-    *如果返还的未消费结算明细列表中存在值，则游戏客户端向游戏服务器请求consume(消费)并支付item。
-2. 尝试重新处理付款错误
-    * 如果登录成功，请调用 **requestRetryTransactionWithCompletion:** 以自动尝试重新处理未处理的明细。
-    * 如果被返回的 successList 中存在值，则游戏客户端向游戏服务器请求consume(消费)并支付item。
-    *  如果被返回的failList中存在值，请通过游戏服务器或 Log & Crash 传输来获取数据, 可以通过, [客服中心](https://toast.com/support/inquiry)咨询重新处理失败原因。
+如果未消费结算明细列表中存在值，请按以下顺序进行**Consume Flow**。
 
-* 商店支付成功，但存在发生错误而未能正常结束的情况。完成登录后请确认未消费支付明细。<br/>
-	* 若登录成功，调用**requestItemListOfNotConsumedWithCompletion:**确认未消费支付明细。
-	* 若返回的未消费支付明细列表中存在值，游戏客户向游戏服务器申请consume（消费），提供道具。
+> <font color="red">[注意]</font><br/>
+>
+> 为了防止重复提供道具，必须要求游戏服务器确认是否重复提供道具。
+>
+
+![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
+
+1. 游戏客户向游戏服务器请求consume（消费）。
+    * 传送UserID、gamebaseProductId、paymentSeq、purchaseToken。
+2. 游戏服务器在游戏DB中查询是否存在以同样的paymentSeq提供道具的历史记录。
+    * 2-1. 若存在未提供道具，则向UserID提供使用gamebaseProductId购买的商品。
+    * 2-2. 提供后在游戏DB保存UserID、gamebaseProductId、paymentSeq、purchaseToken，必要时进行‘’支付再处理”或防止重复提供。
+3. 游戏服务器通过调用Gamebase服务器的consume（消费）API提供道具。此时无需考虑是否已经提供道具。
+    * [Game > Gamebase > API指南 > Purchase(IAP) > Consume](./api-guide/#consume)
+
+### Retry Transaction Flow
+
+![retry transaction flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
+
+* 商店支付已成功，但因出现错误无法正常终止时，
+* 请调用**requestItemListOfNotConsumedWithCompletion:**进行‘’支付再处理”。若存在尚未提供的道具，则进行[Consume Flow](./aos-purchase/#consume-flow)。
+* 请在下列情况下进行‘’支付再处理”。
+    * 完成登录后
+    * 支付之前
+    * 进入游戏内商店（或 Lobby） 时
+    * 查询用户简介或邮箱时
 
 ### Purchase Item
 
-使用想要购买商品的itemSeq调用以下API并请求购买。
+使用想要购买商品的gamebaseProductId，调用以下API申请购买。<br/>
+gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在Gamebase控制台中进行修改。完成支付后，在payload字段中输入的附加信息将会一直留在**TCGBPurchasableReceipt.payload**字段，因此可用于多种用途。<br/>
+游戏用户取消购买时，返还**TCGB_ERROR_PURCHASE_USER_CANCELED**错误。请进行取消处理。
+
+**API**
 
 ```objectivec
-- (void)purchasingItem:(long)itemSeq {
-    [TCGBPurchase requestPurchaseWithItemSeq:itemSeq viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
++ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId 
+                              viewController:(UIViewController *)viewController
+                                  completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
+
++ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId 
+                                     payload:(NSString *)payload 
+                              viewController:(UIViewController *)viewController 
+                                  completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
+
+// Legacy API
++ (void)requestPurchaseWithItemSeq:(long)itemSeq 
+                    viewController:(UIViewController *)viewController 
+                        completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
+```
+
+**Example**
+
+```objectivec
+- (void)purchasingItem:(NSString *)gamebaseProductId {
+    NSString *userPayload = @"USER_PAYLOAD";
+
+    [TCGBPurchase requestPurchaseWithGamebaseProductId:gamebaseProductId payload:userPayload viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
+        NSString *receivedPayload = purchasableReceipt.payload;
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Purchase Item Succeeded
         } else if (error.code == TCGB_ERROR_PURCHASE_USER_CANCELED) {
@@ -81,7 +125,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 
 
-### Get a List of Purchasable Items
+### List Purchasable Items
 
 要查询商品列表，请调用以下API。回调返还的数组(array)包含各item的信息。
 
@@ -104,15 +148,19 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 ```
 
 
-### Get a List of Non-Consumed Items
+### List Non-Consumed Items
 
 请求已购买了商品，却没有正常消费（发送，提供）item的未消费结算明细。<br/>
 如果有未完成的商品，您必须要求游戏服务器（item服务器）处理配送item（支付）。
 
-* 请在以下两种情况下调用。
-    1. 成功付款后，为了在处理item消费(consume)前进行最终确认而调用。
-    2. 登录成功后，为了确认是否还存在未消费(consume)的item而调用。
-
+* 未完成支付时，可进行‘’支付再处理”。请在下列情况下调用。
+    * 查询是否存在未提供的道具
+        * 完成登录后
+        * 进入游戏内商店（或 Lobby） 时
+        * 查询用户简介或邮箱时
+    * 查询需要进行‘’支付再处理”的道具
+        * 支付之前
+        * 支付失败后
 
 ```objectivec
 - (void)viewDidLoad {
@@ -128,7 +176,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 }
 ```
 
-### Get a List of Activated Subscriptions
+### List Activated Subscriptions
 
 以当前用户ID为准查询激活的订阅列表。
 完成支付的订阅商品（自动更新型订阅、自动更新型消费性订阅商品）到期前可一直查询。
@@ -136,7 +184,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 ### Reprocess Failed Purchase Transaction
 
-如果在商店付款成功，但因NHN Cloud IAP服务器认证失败等原因未能正常付款的情况下，我们将尝试使用API重新处理。<br/>
+如果在商店付款成功，但因TOAST IAP服务器认证失败等原因未能正常付款的情况下，我们将尝试使用API重新处理。<br/>
 最后，根据付款成功的历史记录，需要通过调用item配送(支付) 等的API 来进行处理。
 
 ```objectivec
@@ -154,11 +202,10 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 ### Restore Purchase
 
-以利用用户的AppStore账号购买的明细为准，恢复购买明细，反映在控制台中。
-购买的订阅商品查询不到或者未激活时使用。
-包括完成的支付项，恢复的支付项作为结果返回。
-对于自动更新型消费性订阅商品，存在未反映的购买明细时，恢复后可在未消费购买明细中查询。
-
+利用用户的AppStore账号，以购买明细为准恢复购买明细后，将其注册在控制台中。
+查询不到购买的订阅商品或未激活时使用。
+完成的支付件、恢复的支付件都返还为结果。
+如果存在未注册的自动更新型消费性订阅商品购买明细时，恢复之后可以在未消费购买明细中进行查询。
 
 ```objectivec
 - (void)viewDidLoad {
@@ -173,22 +220,29 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 }
 ```
 
-### App Store Promotion IAP
+### Event by Promotion
 
 > `注意`
 > 仅适用于iOS 11或更高版本。
 > 需要在Xcode 9.0以上版本build。
-> Gamebase 1.13.0及更高版本支持。 (NHN Cloud IAP SDK 1.6.0 以上适用)
+> Gamebase 1.13.0及更高版本支持。 (TOAST IAP SDK 1.6.0 以上适用)
 
 
 > `注意`
 > 只能在成功登录后调用。
 > 成功登录后，必须在任何其他支付API之前执行。
 
+#### 使用时的注意事项
+正像Facebook SDK和Google AdMob SDK，在SDK内有In App Purchase (AppStore支付)功能时，如果要在进行Gamebase Login之前提前尝试支付， 则可能不显示付款弹窗。
 
-#### 概述
-* Apple Developer Overview : https://developer.apple.com/app-store/promoting-in-app-purchases/
-* Apple Developer Reference : https://help.apple.com/app-store-connect/#/deve3105860f
+* 解决方法
+  * Facebook
+    * Facebook Console > 设置 > 默认设置 > 禁用‘’将应用程序内事件自动Logging（推荐）"功能
+    * 如果不使用Facebook认证功能 : 排除”GamebaseAuthFacebookAdapter.framework文件‘’后创建。
+
+#### Overview
+* Apple Developer Overview : [https://developer.apple.com/app-store/promoting-in-app-purchases/](https://developer.apple.com/app-store/promoting-in-app-purchases/)
+* Apple Developer Reference : [https://help.apple.com/app-store-connect/#/deve3105860f](https://help.apple.com/app-store-connect/#/deve3105860f)
 
 
 提供从AppStore应用程序内购买商品的功能。
@@ -231,24 +285,29 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 示例) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 
+#### Process Promotion Event with GamebaseEventHandler
+
+通过GamebaseEventHandler也可处理Promotion支付事件。
+有关通过GamebaseEventHandler处理Promotion支付事件的方法，请参考如下指南。
+[Game > Gamebase > iOS SDK使用指南 > ETC > Gamebase Event Handler](./ios-etc/#purchase-updated)
 
 ### Error Handling
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| TCGB_ERROR_NOT_SUPPORTED                 | 10         | 不包含GamebaseAdapter。<br/>如果Error对象的域是 "TCGB.Gamebase.TCGBPurchase"，请确认PurchaseAdapter是否存在。 |
-| TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED  | 4001       | Gamebase PurchaseAdapter未初始化。   |
-| TCGB\_ERROR\_PURCHASE\_USER\_CANCELED    | 4002       | 游戏用户已取消购买商品。                             |
-| TCGB\_ERROR\_PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003       | 之前的购买未完成。                       |
-| TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH | 4004       | 该商店的余额不足，无法结算。            |
-| TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010       | 不支持的商店。 iOS支持的商店是 "AS" 。 |
-| TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201       | IAP库错误。<br>请确认error.message。 |
-| TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR    | 4999       | 未知的购买错误。<br>请将完整的Log上传到 [客服中心](https://toast.com/support/inquiry)，我们会尽快回复。|
+| TCGB_ERROR_NOT_SUPPORTED                 | 10         | 未包含GamebaseAdapter<br/>Error对象的域名为"TCGB.Gamebase.TCGBPurchase"时，请确认是否存在PurchaseAdapter。|
+| TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED  | 4001       | 未初始化Gamebase PurchaseAdapter |
+| TCGB\_ERROR\_PURCHASE\_USER\_CANCELED    | 4002       | 取消了购买。                             |
+| TCGB\_ERROR\_PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003       | 您未完成上一次的购买。                       |
+| TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH | 4004       | 因该商店的现金不足，无法进行结算。             |
+| TCGB\_ERROR\_PURCHASE\_INACTIVE\_PRODUCT\_ID | 4005       | 是未激活商品。             |
+| TCGB\_ERROR\_PURCHASE\_NOT\_EXIST\_PRODUCT\_ID | 4006       | 您使用不存在的GamebaseProductID请求了支付。             |
+| TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010       | 是不支持的商店。iOS支持的商店是"AS"。 |
+| TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201       | 是IAP库错误。<br>请确认error.message。|
+| TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR    | 4999       | 是未定义的购买错误。<br>将所有日志上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。|
 
 * 所有错误代码，请参考以下文档。
     * [错误代码](./error-code/#client-sdk)
-
-
 
 **TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
@@ -265,7 +324,6 @@ NSString *moduleErrorMessage = moduleError.message;
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
-* IAP错误代码，请参考以下文档。
-    * [Mobile Service > IAP > 错误代码 > Client API 错误类型](/Mobile%20Service/IAP/zh/error-code/#client-api)
-
+* 关于IAP错误代码，请参考以下文件。
+    * [TOAST > TOAST SDK使用指南 > TOAST IAP > iOS > 错误代码](/TOAST/ko/toast-sdk/iap-ios/#_15)
 

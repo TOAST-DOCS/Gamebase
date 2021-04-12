@@ -2,21 +2,21 @@
 
 ## ImageNotice
 
-向用户提示在控制台中注册的ImageNotice。
+通过在控制台中注册图片，向用户发送推送图片通知。
 
 ![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-001.png)
 
 ### Show ImageNotices
 
-显示ImageNotice。
+将图片通知显示在页面上。
 
 #### Required参数
-* Activity : 为显示ImageNotice的活动。
+* Activity : 为显示图片通知的活动。
 
 #### Optional参数
-* ImageNoticeConfiguration : 使用ImageNoticeConfiguration更改ImageNotice的布局。
-* GamebaseCallback : 关闭ImageNotice时通过回调通知用户。 
-* GamebaseDataCallback : 点击Image时, 将设置在控制台的payload作为回调通知。 
+* ImageNoticeConfiguration : 使用ImageNoticeConfiguration可更改图片通知的布局。
+* GamebaseCallback : 关闭图片通知时通过回调通知用户。
+* GamebaseDataCallback : 点击图片时, 将设置在控制台的payload作为回调通知。
 
 **API**
 
@@ -34,7 +34,7 @@
 | Error Code | Description |
 | --- | --- |
 | NOT\_INITIALIZED(1) | 未调用Gamebase.initialize |
-| UI\_IMAGE\_NOTICE\_TIMEOUT(6901) | 显示ImageNotice弹窗时，因超时强制关闭所有弹窗。|
+| UI\_IMAGE\_NOTICE\_TIMEOUT(6901) | 显示图片通知弹窗时，因出现超时错误强制关闭所有弹窗。|
 
 **Example**
 
@@ -58,8 +58,8 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), null,
 
 ### Custom ImageNotices
 
-将自定义设置ImageNotice显示在界面上。
-使用ImageNoticeConfiguration可创建自定义设置ImageNotice。
+将自定义图片通知显示在页面上。
+使用ImageNoticeConfiguration可创建自定义图片通知。
 
 **Example**
 
@@ -80,12 +80,12 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 | build() | **M** | 将设置完的Builder转换为Configuration对象。 |
 | setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | ImageNotice背景颜色<br>使用String参数时，调用转换为android.graphics.Color.parseColor(String) API的值。<br>**default** : #80000000 |
 | setTimeout(long timeoutMs) | O | ImageNotice最大加载时间(单位 : millisecond)<br>**default** : 5000L (5s) |
-| enableAutoCloseByCustomScheme(boolean enable) | O | 出现custom scheme event时，判断是否应强制关闭ImageNotice。<br>**default** : true |
+| enableAutoCloseByCustomScheme(boolean enable) | O | 出现custom scheme event时，判断是否应强制关闭图片通知。<br>**default** : true |
 
 
 ### Close ImageNotices
 
-通过调用closeImageNotices API，可以关闭所有的ImageNotice。
+通过调用closeImageNotices API，可以关闭所有的图片通知。
 
 **API**
 
@@ -158,7 +158,7 @@ GamebaseWebView.showWebView(activity, "http://www.toast.com", configuration);
 
 为Gamebase指定的scheme。
 
-| scheme               | 用途                                  |
+| scheme               | 용도                                  |
 | -------------------- | ------------------------------------- |
 | gamebase://dismiss   | 关闭WebView                          |
 | gamebase://goback    | 返回上一页                 |
