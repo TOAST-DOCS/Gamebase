@@ -331,7 +331,7 @@ dependencies {
 ### Android 11
 
 * Android 11 은 빌드시 미리 선언된 어플리케이션이 아니면 다른 어플리케이션이 실행되지 않습니다.
-    * https://developer.android.com/about/versions/11/privacy/package-visibility
+    * [https://developer.android.com/about/versions/11/privacy/package-visibility](https://developer.android.com/about/versions/11/privacy/package-visibility)
 * 이를 위해 targetSdkVersion 을 30 이상으로 설정하는 경우에는 반드시 AndroidManifest.xml 에 **queries** 태그를 통해 허용할 어플리케이션을 미리 선언해두어야 합니다.
 
 > <font color="red">[주의]</font><br/>
