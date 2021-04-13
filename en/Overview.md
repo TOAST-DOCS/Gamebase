@@ -1,6 +1,6 @@
 ## Game > Gamebase > Overview
 
-Gamebase is a strongly recommended service as it embraces a decade's operational knowhow of NHN Entertainment, which is the leading game platform provider. 
+Gamebase is a strongly recommended service as it embraces a decade's operational knowhow of NHN, which is the leading game platform provider. 
 It only takes Gamebase SDK to make easy use of common game services.  
 
 ![Gamebase_summary](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_01_201903_en.png)
