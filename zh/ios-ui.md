@@ -162,9 +162,9 @@ Gamebase支持基本WebView。<br/>
 
 | scheme               | 作用                     |
 | -------------------- | ---------------------- |
-| gamebase://dismiss   | WebView 닫기             |
-| gamebase://goback    | WebView 뒤로 가기          |
-| gamebase://getuserid | 현재 로그인돼 있는 사용자의 아이디 표시 |
+| gamebase://dismiss   | 关闭WebView             |
+| gamebase://goback    | 返回上一页          |
+| gamebase://getuserid | 查看当前登录的用户ID |
 | gamebase://openbrowser?link={URLEncodedURL} | 使用外部浏览器打开link参数的URL。<br/>URLEncodedURL : 使用外部浏览器要打开的URL。<br/>要对URL进行解码。|
 
 
