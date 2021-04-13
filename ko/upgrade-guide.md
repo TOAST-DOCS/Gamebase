@@ -2,6 +2,20 @@
 
 ## 2.21.0
 
+### Android
+
+* Maven Repository
+    * jCenter 가 일반 사용자를 위한 서비스를 종료하여 ( [https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/](https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/) ) 더 이상 새로운 빌드는 업로드는 할 수 없게 되었습니다.(jCenter 의 접근 또한 2022 년 2월 1일에 종료됩니다.)
+    * 그래서 Gamebase Android SDK 2.21.0 부터는 **jcenter()** 가 아닌 **mavenCentral()** 에서만 배포가 되므로 gradle repository 에 mavenCentral 을 추가하세요.
+
+```groovy
+repositories {
+    // >>> For Gamebase SDK
+    mavenCentral()
+    ...
+}
+```
+
 * Line IdP
     * Line SDK 업데이트로 인해 아래와 같이 Gradle 에 **JavaVersion.VERSION_1_8** 설정을 하지 않으면 빌드가 실패합니다.
     * Line SDK 내부에 **android:allowBackup="false"** 로 선언되어 있어 어플리케이션 빌드시 Manifest merger 에서 fail 이 발생할 수 있습니다. 이렇게 빌드가 실패한다면 다음과 같이 application 태그에 **tools:replace="android:allowBackup"** 선언을 추가하시기 바랍니다.
