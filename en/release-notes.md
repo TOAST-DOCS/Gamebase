@@ -4,23 +4,23 @@
 
 #### More Features
 * [SDK] 2.21.0
-	* (공통) Hangame 일본 인증 추가 	
+	* (Common) Japanese authentication for Hangame added.	
 
 #### Feature Updates
 * [Console] 
-	* 회원 > 멤버: 푸시 토큰 조회 시 광고성 수신 동의, 야간 광고 수신 여부가 ture인 경우 수신한 일자도 함께 표시되도록 개선 
-	* 구매(IAP) > 결제 정보: 추가 정보 표시되는 팝업 창에 문자열이 줄 바꿈 되어 보이도록 개선
-	* 구매(IAP) > 결제 어뷰징 모니터링
-		* 1시간으로 고정되어 있던 자동 제재 감지 기간을 사용자가 입력(1시간~48시간)할 수 있도록 개선
-		* AND 조건만 설정 가능하던 건수, 금액 자동 제재 조건 입력을 OR 조건도 입력할 수 있도록 개선
+	* Member > Member: Improved system to display the opt in date if opt in for advertising and opt in for night-time advertising are both true when viewing the push token 
+	* Purchase (IAP) > Payment Information: Updated strings on the pop-up window for additional information to be displayed with line breaks
+	* Purchase (IAP) > Payment Abusing Monitoring
+		* Updated automatic restriction detection period which was fixed to one hour is now customizable by users (1 hour to 48 hours)
+		* Updated automatic restriction condition input of numbers and prices that only allowed AND condition to also allow OR condition
 * [SDK] 2.21.0	
-	* (Android) 외부 SDK 업데이트: Facebook Android SDK(6.5.1), Line Android SDK(5.4.0)
-	* (iOS) bitcode 지원이 가능하도록 변경
-	* (iOS) showWebView 호출 시, 닫기 버튼을 가장 먼저 화면에 표시되도록 수정
+	* (Android) External SDK update: Facebook Android SDK (6.5.1), Line Android SDK (5.4.0)
+	* (iOS) Changed the system to support bitcode.
+	* (iOS) Modified the system to display the Close button first when calling showWebView
 	
 #### Bug Fixes
 * [SDK] 2.21.0
-	* (Android) Proguard를 적용한 빌드에서 결제 API 호출 시 크래시가 발생하는 오류 수정
+	* (Android) Fixed a crashing error caused when calling payment API on build with Proguard applied.
 
 ### March 30, 2021 
 
