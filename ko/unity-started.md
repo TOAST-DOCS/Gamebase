@@ -171,7 +171,6 @@ Lifecycle 관리를 위해 "com.toast.android.gamebase.activity.GamebaseMainActi
 > <font color="red">[주의]</font>
 >
 > * Unity 2019.3 이상 주의 사항
->     * PROJECT > Unity-iPhone > Enable Bitcode 를 No로 설정 합니다
 >     * TARGETS > UnityFramework 에 iOS SDK 설정을 추가 합니다.
 >
 

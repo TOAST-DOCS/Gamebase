@@ -4,6 +4,8 @@
 
 ### Android
 
+* Gamebase Android SDK 2.21.0 은 잘못된 빌드가 배포된 적이 있어, 새 빌드로 교체되기 전에 로컬 Gradle 을 Sync 했다면 모든 Gamebase API 에서 크래시가 발생할 수 있습니다.
+    * 정상적으로 배포된 Gamebase Android SDK 2.21.1 을 사용하시기 바랍니다.
 * Maven Repository
     * jCenter 가 일반 사용자를 위한 서비스를 종료하여 ( [https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/](https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/) ) 더 이상 새로운 빌드는 업로드는 할 수 없게 되었습니다.(jCenter 의 접근 또한 2022 년 2월 1일에 종료됩니다.)
     * 그래서 Gamebase Android SDK 2.21.0 부터는 **jcenter()** 가 아닌 **mavenCentral()** 에서만 배포가 되므로 gradle repository 에 mavenCentral 을 추가하세요.
@@ -16,9 +18,10 @@ repositories {
 }
 ```
 
-* Line IdP
-    * Line SDK 업데이트로 인해 아래와 같이 Gradle 에 **JavaVersion.VERSION_1_8** 설정을 하지 않으면 빌드가 실패합니다.
-    * Line SDK 내부에 **android:allowBackup="false"** 로 선언되어 있어 어플리케이션 빌드시 Manifest merger 에서 fail 이 발생할 수 있습니다. 이렇게 빌드가 실패한다면 다음과 같이 application 태그에 **tools:replace="android:allowBackup"** 선언을 추가하시기 바랍니다.
+#### Line IdP
+
+* Line IdP 를 사용하는 경우, Line SDK 업데이트로 인해 아래와 같이 Gradle 에 **JavaVersion.VERSION_1_8** 설정을 하지 않으면 빌드가 실패합니다.
+* Line IdP 를 사용하는 경우, Line SDK 내부에 **android:allowBackup="false"** 로 선언되어 있어 어플리케이션 빌드시 Manifest merger 에서 fail 이 발생할 수 있습니다. 이렇게 빌드가 실패한다면 다음과 같이 application 태그에 **tools:replace="android:allowBackup"** 선언을 추가하시기 바랍니다.
 
 ```groovy
 android {
@@ -37,9 +40,16 @@ android {
       ... >
 ```
 
+### iOS
+
+* Gamebase iOS SDK 2.21.0 에서 bitcode 를 사용할 경우 에러가 발생합니다.
+    * bitcode 사용을 원하시는 경우엔 Gamebase iOS SDK 2.21.1 을 사용하시기 바랍니다.
+
 ## 2.20.2
 
 ### iOS
+
+#### Facebook IdP
 
 * Gamebase iOS SDK 2.20.2 에서 Facebook SDK가 9.1.0으로 업데이트 되었습니다. 
     * Facebook SDK에 추가 설정이 필요하게 되어 info.plist에 아래의 값을 추가해주시기 바랍니다. 설정하지 않을 경우 크래쉬가 발생할 수 있습니다.
@@ -50,6 +60,8 @@ android {
 ## 2.19.0
 
 ### Android
+
+#### Weibo IdP
 
 * Gamebase Android SDK 2.19.0 에서 Weibo IdP 로그인과 다른 IdP 로그인을 번갈아가며 호출하는 경우 크래쉬가 발생합니다.
     * Weibo IdP 를 사용한다면 이슈가 수정된 Gamebase Android SDK 2.19.1 을 사용하시기 바랍니다.
@@ -68,6 +80,8 @@ android {
 ## 2.18.0
 
 ### Android
+
+#### Purchase Google
 
 * Gamebase Android SDK 2.18.0 에서 Google 아이템 결제를 호출하면 크래쉬가 발생합니다.
     * 이슈가 수정된 Gamebase Android SDK 2.18.1 을 사용하시기 바랍니다.
@@ -89,8 +103,10 @@ android {
 
 ### Android
 
+#### Purchase Google
+
 * **gamebase-adapter-purchase-google** 을 사용한다면 Gamebase SDK 2.15.0 미만 버전에서 2.15.0 이상으로 업그레이드 하는 경우 반드시 **이전 버전의 Game Client Version 을 업데이트 필수** 로 설정해야 합니다.
-	* Google Billing Client 모듈이 업데이트 되어, 여러개의 단말기에서 서로 다른 Billing Client 버전이 적용된 상태에서 아이템을 구매하는 경우 오류가 발생했을때 재처리에 문제가 생길 수 있기 때문입니다.
+    * Google Billing Client 모듈이 업데이트 되어, 여러개의 단말기에서 서로 다른 Billing Client 버전이 적용된 상태에서 아이템을 구매하는 경우 오류가 발생했을때 재처리에 문제가 생길 수 있기 때문입니다.
 
 ## 2.6.0
 
