@@ -1,5 +1,12 @@
 ## Game > Gamebase > Release Notes
 
+### April 19, 2021 
+
+#### Bug Fixes
+* [SDK] 2.21.1
+	* (Android) Hangame third 로그인을 Payco로 진행 중 취소 시 크래시가 발생하는 문제 수정
+	* (iOS) bitcode 지원 가능하도록 설정하여도 설정값이 반영이 안 되는 문제 수정
+
 ### April 13, 2021 
 
 #### More Features
