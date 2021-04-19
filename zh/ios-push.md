@@ -88,7 +88,7 @@
 
 在APNS Sandbox环境下，为了正常启动Push功能，需要开启SandboxMode。 
 
-* 클라이언트 설정 방법
+* 客户端SDK设置方法
 
 ```objectivec
 - (void)didLoginSucceeded {
