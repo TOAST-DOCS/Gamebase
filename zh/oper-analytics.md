@@ -295,12 +295,12 @@ Frequency7的标准可分为以下3个项目。
 * 世界/服务器/渠道：可按世界/服务器/渠道确认访问及销售信息User IdUser Id。
 * 类别/职业：可按类别/职业确认访问及销售信息。
 
-> [참고] 
+> [参考]
 >
-> 월드/서버/채널, 클래스/직업은 사전에 등록된 정보만 처리 합니다.
-> 등록 방법은 다음 문서를 참고하시기 바랍니다
+> 只对提前注册的世界/服务器/渠道、类/职业信息进行处理。
+> 关于注册方法，请参考以下文档。
 >
-> - [앱 > Analytics Indicator](./oper-app/#analytics-indicator)
+> - [应用程序 > Analytics Indicator](./oper-app/#analytics-indicator)
 
 ### Concurrent Status
 
