@@ -1,112 +1,43 @@
-## Game > Gamebase > 릴리스 노트
+## Game > Gamebase > 릴리스 노트 > Android
 
-### 2021. 03. 30.
-
-#### 기능 개선/변경
-* [SDK] 2.20.2
-	* (Android) Google Play 스토어의 Android 11 단말기에서의 결제 오류가 해결된 Billing Client 3.0.3 버전으로 업데이트
-
-### 2021. 03. 23.
-
-#### 기능 개선/변경
-* [Console] 회원 > 다운로드: 하나의 파일에 저장되는 데이터 수 개선(5만 -> 50만)
-* [SDK] 2.20.2
-	* (iOS) Facebook iOS SDK 업데이트 (9.1.0)
-	* (iOS) 특정 경우에 GamebaseAuthFacebookAdapter에서 openURL delegate가 호출되지 않았던 이슈 수정
-
-### 2021. 03. 09.
-
-#### 기능 추가
-* [Console] 앱 > 약관: GDPR 약관 추가
-* [Server API] IdP ID로 Gamebase user ID를 획득하는 API 추가 
-
-#### 기능 개선/변경
-* [SDK] 2.20.1
-	* (iOS) iOS 14에 대응하여 IDFA 획득 로직 수정: info.plist에 NSUserTrackingUsageDescription 필드 추가
-
-### 2021. 02. 23.
-
-#### 기능 추가
-* [Console] 
-	* 운영 > 킥아웃: 클라이언트 버전별로 킥아웃이 가능하도록 기능 추가
-	* 구매(IAP) > 스토어: Google Play 스토어의 일회성 영수증 검증 단계를 설정할 수 있도록 기능 추가
-	
-#### 버그 수정
-* [SDK] 2.20.1
-	* (Android) push-fcm 모듈 초기화 중 크래시가 발생할 수 있는 로직을 수정
-
-### 2021. 02. 15.
+### 2.21.1(2021.04.19) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.1/GamebaseSDK-Android.zip)
 
 #### 버그 수정
-* [Console] 구매(IAP) > 결제 내역: 파일 다운로드 시 상품 이름이 잘못 노출되는 오류 수정
+* Hangame 로그인을 PAYCO로 진행하다 취소하면 크래시가 발생하는 문제 수정
 
-### 2021. 02. 09.
+### 2.21.0(2021.04.13) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+* Hangame 일본 인증 추가 	
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: Facebook Android SDK(6.5.1), Line Android SDK(5.4.0)
+
+#### 버그 수정
+* Proguard를 적용한 빌드에서 결제 API 호출 시 크래시가 발생하는 오류 수정
+
+### 2.20.2(2021.03.30) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.2/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* Google Play 스토어의 Android 11 단말기에서의 결제 오류가 해결된 Billing Client 3.0.3 버전으로 업데이트
+
+### 2.20.1(2021.02.23) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.1/GamebaseSDK-Android.zip)
+
+#### 버그 수정
+* push-fcm 모듈 초기화 중 크래시가 발생할 수 있는 로직을 수정
+
+### 2.20.0(2021.02.09) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * 공통약관 기능 추가
-	* [Console] 신규 메뉴 오픈: 앱 > 약관, 앱 > 약관 배포
-	* [SDK] 2.20.0
-		* (공통) 약관 WebView를 여는 API 추가
-		* (공통) 약관 리스트 및 유저별 동의 여부를 조회하는 API 추가
-		* (공통) 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
+	* 약관 WebView를 여는 API 추가
+	* 약관 리스트 및 유저별 동의 여부를 조회하는 API 추가
+	* 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
 
 #### 기능 개선/변경
-* [Console] 앱 > 클라이언트: 클라이언트 버전을 스토어별로 구분하여 표시하도록 화면 개선
-* [SDK] 2.20.0
-	* (공통) 고객센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객센터가 표시되도록 변경
-	* (Unity) Warning 로그 제거
-	* (Unity) Standalone WebView에 CEF 2.1.2 업데이트
-		* URL의 길이가 2,048보다 길 경우 크래시가 발생하는 이슈 수정
-		* Unity 2019에서 빌드 시 라이브러리 경로가 변경되어 PostProcessBuild 개선
-		* string 초기화를 하지 않아 간헐적으로 발생하는 오류 수정
-		* Gamebase WebView 사용 중 WebView가 신(scene)을 이동한 이후에는 다시 열리지 않는 버그 수정
+* 고객센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객센터가 표시되도록 변경
 
-#### 버그 수정
-* [SDK] 2.20.0
-	* (JavaScript) 콘솔에 고객센터 정보를 입력하지 않으면 초기화 시 오류가 발생하여 수정
-* [SDK] 2.19.1
-	* (Unreal) Unity 빌드 중 제외되는 파일이 생길 때 발생하는 컴파일 오류 수정
-
-### 2021. 01. 26.
-
-```
-푸시 > 푸시(구) 콘솔 메뉴 기능이 제외되었습니다.
-```
-
-#### 기능 추가
-* [Console] 
-	* 이용 정지 > 앱가드: 조건 차단 기능 추가
-	* 구매(IAP) > 결제 어뷰징 모니터링: Apple App Store 추가 
-* [SDK] 2.19.0
-	* (Unreal) SDK 배포: 2.16.0 ~ 2.19.0 누적된 내역 반영
-		* [Android 설정 툴](https://docs.toast.com/ko/Game/Gamebase/ko/unreal-started/#android-settings) 제공: Gamebase_Android_UPL.xml 파일을 수정하는 대신 설정 툴을 사용바랍니다.
-		* 고객센터 기능 추가	
-		* 인증 추가: Hangame, Weibo
-		* Galaxy 스토어 추가
-		* 결제 아이템 정보에 지역화된 상품 정보 추가: localizedTitle, localizedDescription
-		* Android 설정 툴 제공
-		* Unreal 4.26 지원
-
-#### 기능 개선/변경
-* [Console]
-	* 관리 > 권한: 매출 접근 권한 제거 [관련 공지 바로 가기](https://www.toast.com/kr/support/notice/detail/2101)
-* [SDK] 2.19.1
-	* (iOS) Weibo IdPAdapter 구조 변경	
-
-### 2021. 01. 12.
-
-```
-Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다. 
-```
-
-#### 기능 추가
-* [Console] 푸시 신규 메뉴 추가
-	* 통계: 푸시 발송, 수신, 토큰 등록 등의 푸시 통계를 확인
-	* 이벤트 키: 푸시 발송 통계에 사용하는 이벤트 키를 관리
-	* 인증서: 푸시 발송에 사용하는 인증서를 관리
-	* 설정: 푸시 관련된 설정값을 관리
-	
-### 2020. 12. 29.
+### 2020. 12. 29. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.1/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * [SDK] 2.19.0
@@ -130,7 +61,7 @@ Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다.
 * [SDK] 2.19.1
 	* (Android) Weibo 로그인 시도 후 다른 IdP로 로그인 시 크래시가 발생하는 문제 수정
 	
-### 2020. 12. 15.
+### 2020. 12. 15. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.18.2/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * Gamebase 고객센터 페이지 오픈 시 게임에서 정의한 extra data 전달: SDK 2.18.2
@@ -162,7 +93,7 @@ Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다.
 * [SDK] 2.18.2
     * (Android) 5.0~6.0 OS 단말기에서 웹뷰 커스텀 스킴이 동작하지 않는 문제 수정
 
-### 2020. 12. 2.
+### 2020. 12. 2. 
 
 #### 기능 추가
 * [Console] 
@@ -184,7 +115,7 @@ Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다.
 * [Console]
     * 구매(IAP) > 결제 정보: 조회한 데이터가 많은 경우 파일을 다운로드하지 못하는 문제 수정
 
-### 2020. 11. 10.
+### 2020. 11. 10. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.18.1/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * Galaxy 스토어 추가: SDK 2.18.0
@@ -199,7 +130,7 @@ Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다.
 * [SDK] 2.18.1
     * (Android) 2.18.0 에서 Google 결제 후 크래시가 발생하는 문제 수정
 
-### 2020. 10. 27.
+### 2020. 10. 27. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.17.1/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * Unreal SDK 기능 추가: SDK 2.15.0
@@ -230,7 +161,7 @@ Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다.
     * (Unreal) 결제 모듈에 ProGuard 선언이 누락된 오류 수정
 
 
-### 2020. 10. 13.
+### 2020. 10. 13. 
 
 ```
 한게임 인증 사용을 원하는 경우 고객센터로 미리 연락주세요.
@@ -252,21 +183,21 @@ Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다.
 * [SDK] 2.17.1
     * (Android) 2.17.0에서 ImageNotice API 호출 시 kotlinx-coroutine 모듈에서 크래시가 발생하는 문제 수정
 	
-### 2020. 09. 22.
+### 2020. 09. 22. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.16.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * 고객센터 기능 추가
     * [Console] 고객 센터 메뉴 오픈: 고객 문의 처리, FAQ/공지 사항 관리 
     * [SDK] 2.16.0
-	* (공통) API 추가(Gamebase.Contact.requestContactURL): 고객 센터 URL 리턴
-	* (공통) 고객 센터 API 에 userName 을 설정할 수 있도록 ContactConfiguration 파라미터 추가 
+		* (공통) API 추가(Gamebase.Contact.requestContactURL): 고객 센터 URL 리턴
+		* (공통) 고객 센터 API 에 userName 을 설정할 수 있도록 ContactConfiguration 파라미터 추가 
 		
 #### 기능 개선/변경
 * [Console] 
     * Analytics 메뉴 공통: 국가별 필터 정렬 기준 변경(지표 내림차순 -> 국가 이름 오름차순)     
     * Analytics > 매출지표: 스토어별 대시보드에 해당 스토어의 국가별 결제 금액 이외에 결제 금액 총합도 함께 표시 
 
-### 2020. 09. 16.
+### 2020. 09. 16. 
 
 #### 기능 개선/변경
 * [SDK] 2.15.1
@@ -283,7 +214,7 @@ Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다.
 * [Console]
     * 구매(IAP) > 결제 정보: 영수증 검증 표시가 제대로 되지 않던 문제 수정
 
-### 2020. 08. 25.
+### 2020. 08. 25. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.15.0/GamebaseSDK-Android.zip)
 
 ```
 Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 되었습니다.
@@ -323,7 +254,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 * [Console]
     * Analytics 전체 메뉴: 엑셀 다운로드가 되지 않는 문제 수정
 
-### 2020. 08. 11.
+### 2020. 08. 11. 
 
 #### 기능 개선/변경
 * [Console]
@@ -334,7 +265,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 * [Server]
     * 쿠폰 소진 API의 오류 코드 추가: 쿠폰 코드에 영문, 숫자 이외의 값을 입력한 경우(Error Code:-4000205)
 
-### 2020. 07. 28.
+### 2020. 07. 28. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.13.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * [Console]
@@ -356,7 +287,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
     * (Android) 웹뷰 종료 시 종료 콜백에서 ANDROID_ACTIVITY_DESTROYED(31) 오류가 반환되는 문제 수정
     * (Android) 결제 모듈에 ProGuard 선언이 누락된 오류 수정
     
-### 2020. 07. 14.
+### 2020. 07. 14. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.12.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * 이미지 공지: 표시 기간과 우선순위에 따라 게임 내 이미지 팝업 표시
@@ -374,7 +305,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
     * (iOS) 콘텐츠를 로딩할 수 없는 웹뷰 출력 시 **닫기** 버튼이 없어 닫을 수 없는 문제 수정
     * (Unity) TOAST Unity SDK 업데이트(0.20.1.1)
     
-### 2020. 06. 23.
+### 2020. 06. 23. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.11.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * [SDK] 2.11.0
@@ -384,7 +315,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 * [Console] 
 	* 구매(IAP) > 상품: 스토어 아이템 ID에 여러 개의 Gamebase 상품을 등록해 관리할 수 있도록 개선
 
-### 2020. 06. 09.
+### 2020. 06. 09. 
 
 #### 기능 개선/변경
 * [Console] 
@@ -400,7 +331,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 	* (Unity) iOS Plugin에서 ViewController가 설정되지 않아 로그인 호출 시 실패하는 문제 수정
 	* (JavaScript) 초기화 시 StoreCode를 입력하지 않으면 오류가 발생하는 문제 수정
 
-### 2020. 05. 26.
+### 2020. 05. 26. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.10.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * [Console] 
@@ -418,7 +349,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 		* Webview 생성 시, 간헐적으로 NullReferenceException이 발생하는 오류를 개선
 	* (Unity) GamebaseErrorCode에 소켓 연결에 관한 에러 코드 추가: SOCKET_CONNECTION_TIMEOUT, SOCKET_CONNECTION_FAIL
 
-### 2020. 05. 12.
+### 2020. 05. 12. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.9.1/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * [SDK] 2.9.0
@@ -443,7 +374,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 		* 이슈 발생 버전: v2.8.0 이상	
 		* 이슈가 있는 플랫폼: Standalone, WebGL, Editor
 		
-### 2020. 04. 28.
+### 2020. 04. 28. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.9.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * 탈퇴 유예 기능
@@ -461,7 +392,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 	* 운영 > 점검, 운영 > 공지, 푸시: 다국어 자동 번역 기능 지원
 	* 멤버 > 회원: 탈퇴 유예 유저의 회원 조회 시 유예 만료 기간을 추가로 표시
 
-### 2020. 04. 14.
+### 2020. 04. 14. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.8.1/GamebaseSDK-Android.zip)
 
 #### 기능 개선/변경
 * [Console] 
@@ -477,7 +408,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 	* (Android) 프로세스 재시작 이후 크래시가 발생할 수 있는 코드를 수정
 	* (JavaScript) credentialInfo 로그인에서 Hangame IdP로 로그인이 안되는 문제를 수정
 	
-### 2020. 03. 24.
+### 2020. 03. 24. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.8.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * [Console] 
@@ -505,7 +436,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 		* 차트 툴 팁에 통화가 원(KRW)으로 고정되어 노출되어 앱에서 설정한 통화로 보이도록 수정
 		* 월별 조회시 2월 지표가 노출안되는 이슈 수정
 		
-### 2020. 03. 10.
+### 2020. 03. 10. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.7.2/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 
@@ -540,7 +471,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 - [Console] 
   	- Analytics: 통화 코드가 코인성인 경우 매출 지표가 '0'으로 표시되는 문제 해결
 
-### 2020. 02. 25.
+### 2020. 02. 25. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.7.1/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * [Console] 
@@ -548,7 +479,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 	
 #### 기능 개선/변경
 * [SDK] 2.7.1
-	* (Common) Guest로 Login 후 GetAuthProviderUserID 호출하면 값을 반환하도록 수정
+	* (공통) Guest로 Login 후 GetAuthProviderUserID 호출하면 값을 반환하도록 수정
 * [Console]
 	* 앱 > 앱: 동일한 클라이언트 버전 삭제 이후 재등록 시 알림 로직 추가
 	* 구매(IAP) > Item: 등록 시 구독 상품 등록을 위한 등록 필드값 추가(App Store - Shared secret,Google store - Domain authentication File Names)
@@ -578,7 +509,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 * [Console]
 	* Analytics: 일본어로 언어 변경 시 통화가 '엔(JPY)'으로 표시되던 것을 '원(KRW)'으로 표시되도록 수정
 
-### 2020. 01. 21.
+### 2020. 01. 21. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.7.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * [SDK] 2.7.0
@@ -593,7 +524,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 * [Console]
 	* Analytics: 유저 세션 만료 시 로그인 페이지로 리디렉트되지 않는 현상 수정
 
-### 2020. 01. 14.
+### 2020. 01. 14. 
 
 #### 기능 추가
 * [서버 API] 사용자 탈퇴 API 추가
@@ -608,7 +539,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 * [SDK] 2.6.3
 	* (Unity) Login(CredentialInfo) API 호출 시 오류가 발생하여 수정
 	
-### 2019. 12. 24.
+### 2019. 12. 24. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.6.2/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * 쿠폰 > 쿠폰 발급: 키워드 쿠폰 기능 추가
@@ -620,7 +551,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 	* (공통) TOAST SDK 업데이트: Android(0.19.4), iOS(0.20.1), Unity(0.18.0)
 	* (iOS) Naver SDK 버전 업데이트(4.1.0)
 	
-### 2019. 12. 10.
+### 2019. 12. 10. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.6.1/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * 앱 > 앱: 점검 중 QA 테스트 단말기 등록시 IP 로도 등록할 수 있는 기능 추가	
@@ -658,7 +589,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 	* Gamebase v2.6.0 업데이트 시, 파일이 정상적으로 변경되지 않는 오류 수정
 
 
-### 2019. 11. 12.
+### 2019. 11. 12. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.6.0/GamebaseSDK-Android.zip)
 
 ```
 Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
@@ -689,14 +620,14 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 	* 앱 > 앱: 서버 주소를 서비스 상태별(테스트, 심사중, 서비스)로 입력 받을 수 있도록 변경
 	* 구매(IAP) > 결제 정보: 검색 조건 선택하여 검색할 수 있도록 UI 변경
 
-### 2019. 10. 29.
+### 2019. 10. 29. 
 
 #### 기능 개선/변경
 * [Console]
 	* Analytics: 파이 차트 툴팁 변경
 	* Analytics > 실시간 모니터링: Push 발송 대상 추가 작업
 
-### 2019. 10. 15.
+### 2019. 10. 15. 
 
 #### 기능 개선/변경
 * [SDK] 2.5.2
@@ -741,7 +672,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 	* (iOS) GamebasePushAdapter에서 사용중인 TCPushSDK를 1.7.0으로 업데이트
 		* TCPushSDK가 Static Library에서 Framework 파일로 변경되었으므로 프로젝트에 TCPushSDK.framework를 추가해야 합니다.
 	
-### 2019. 08. 27.
+### 2019. 08. 27. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.5.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * [SDK] 2.5.0
@@ -763,13 +694,13 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 	* Script 파일의 위치를 Editor 폴더 아래로 이동하여 빌드 오류를 해결
 	* Mac OS에서 Multilanguage에 Language 파일의 전체 경로를 지정하면 동작하지 않던 문제 수정
 
-### 2019. 07. 23.
+### 2019. 07. 23. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.4.4/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * [Console]
 	* 멤버 > 다운로드 신규 메뉴 오픈: 가입일, 마지막 로그인 시간 기준으로 게임 유저 목록을 조회하고 파일로 다운로드할 수 있음
 
-#### 기능 개선/변경
+#### 기능 개선/변경 
 * [Console] 모바일
 	* 점검, 푸시 등록과 수정 가능
 * [SDK] 2.4.4
@@ -815,7 +746,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 * [SDK] Setting Tool 1.4.1
 	* GamebaseSettingTool 실행시 기존 설정 정보를 가져오지 못하는 오류가 발생하여 수정
 
-### 2019. 06. 25.
+### 2019. 06. 25. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.4.2/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * 전송 지표 기능 추가
@@ -846,7 +777,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 * [SDK] 2.4.1
 	* (iOS)Analytics 지표 전송 시 일부 파라미터가 누락 되어 지표가 제대로 출력되지 않는 버그 수정
 	
-### 2019. 05. 28.
+### 2019. 05. 28. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.4.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * HANGAME mix 일본결제 추가
@@ -870,7 +801,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 * [Console]
     * LTV Grid ComplexColumns 지원 및 엑셀 다운로드 지원
 
-### 2019. 05. 16.
+### 2019. 05. 16. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.3.1/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * [Console]
@@ -893,7 +824,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 	* 회원: 구매 이력에서 영수증 검증이 되지 않던 문제 수정
 	* Kickout: 조회 요청시 인증체크 추가하여 비정상 동작하던 이슈 수정
 	
-### 2019. 04. 23.
+### 2019. 04. 23. 
 
 ```
 Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
@@ -910,7 +841,7 @@ Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
 	* (Android)최근 로그인한 Provider로 로그인 및 웹소켓 응답 실패를 받았을 경우(Timeout, network disable 등) AuthToken을 삭제 처리하지 않도록 수정
 	* (Android)IdP로그인 시 AuthAdapter 내부에서 발생하는 MemoryLeak을 수정
 
-### 2019. 04. 11.
+### 2019. 04. 11. 
 
 #### 기능 개선/변경
 * [SDK] 2.2.2

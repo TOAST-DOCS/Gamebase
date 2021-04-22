@@ -1,71 +1,45 @@
-## Game > Gamebase > 릴리스 노트
+## Game > Gamebase > 릴리스 노트 > Console
 
-### 2021. 03. 30.
+### 2021. 04. 13.
 
 #### 기능 개선/변경
-* [SDK] 2.20.2
-	* (Android) Google Play 스토어의 Android 11 단말기에서의 결제 오류가 해결된 Billing Client 3.0.3 버전으로 업데이트
+* 회원 > 멤버: 푸시 토큰 조회 시 광고성 수신 동의, 야간 광고 수신 여부가 ture인 경우 수신한 일자도 함께 표시되도록 개선 
+* 구매(IAP) > 결제 정보: 추가 정보 표시되는 팝업 창에 문자열이 줄 바꿈 되어 보이도록 개선
+* 구매(IAP) > 결제 어뷰징 모니터링
+	* 1시간으로 고정되어 있던 자동 제재 감지 기간을 사용자가 입력(1시간~48시간)할 수 있도록 개선
+	* AND 조건만 설정 가능하던 건수, 금액 자동 제재 조건 입력을 OR 조건도 입력할 수 있도록 개선
 
 ### 2021. 03. 23.
 
 #### 기능 개선/변경
-* [Console] 회원 > 다운로드: 하나의 파일에 저장되는 데이터 수 개선(5만 -> 50만)
-* [SDK] 2.20.2
-	* (iOS) Facebook iOS SDK 업데이트 (9.1.0)
-	* (iOS) 특정 경우에 GamebaseAuthFacebookAdapter에서 openURL delegate가 호출되지 않았던 이슈 수정
+* 회원 > 다운로드: 하나의 파일에 저장되는 데이터 수 개선(5만 -> 50만)
 
 ### 2021. 03. 09.
 
 #### 기능 추가
-* [Console] 앱 > 약관: GDPR 약관 추가
-* [Server API] IdP ID로 Gamebase user ID를 획득하는 API 추가 
+* 앱 > 약관: GDPR 약관 추가
 
-#### 기능 개선/변경
-* [SDK] 2.20.1
-	* (iOS) iOS 14에 대응하여 IDFA 획득 로직 수정: info.plist에 NSUserTrackingUsageDescription 필드 추가
 
 ### 2021. 02. 23.
 
 #### 기능 추가
-* [Console] 
-	* 운영 > 킥아웃: 클라이언트 버전별로 킥아웃이 가능하도록 기능 추가
-	* 구매(IAP) > 스토어: Google Play 스토어의 일회성 영수증 검증 단계를 설정할 수 있도록 기능 추가
-	
-#### 버그 수정
-* [SDK] 2.20.1
-	* (Android) push-fcm 모듈 초기화 중 크래시가 발생할 수 있는 로직을 수정
+* 운영 > 킥아웃: 클라이언트 버전별로 킥아웃이 가능하도록 기능 추가
+* 구매(IAP) > 스토어: Google Play 스토어의 일회성 영수증 검증 단계를 설정할 수 있도록 기능 추가
 
 ### 2021. 02. 15.
 
 #### 버그 수정
-* [Console] 구매(IAP) > 결제 내역: 파일 다운로드 시 상품 이름이 잘못 노출되는 오류 수정
+* 구매(IAP) > 결제 내역: 파일 다운로드 시 상품 이름이 잘못 노출되는 오류 수정
 
 ### 2021. 02. 09.
 
 #### 기능 추가
-* 공통약관 기능 추가
-	* [Console] 신규 메뉴 오픈: 앱 > 약관, 앱 > 약관 배포
-	* [SDK] 2.20.0
-		* (공통) 약관 WebView를 여는 API 추가
-		* (공통) 약관 리스트 및 유저별 동의 여부를 조회하는 API 추가
-		* (공통) 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
-
+* 공통약관 신규 메뉴 오픈
+	* 앱 > 약관
+	* 앱 > 약관 배포
+	
 #### 기능 개선/변경
-* [Console] 앱 > 클라이언트: 클라이언트 버전을 스토어별로 구분하여 표시하도록 화면 개선
-* [SDK] 2.20.0
-	* (공통) 고객센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객센터가 표시되도록 변경
-	* (Unity) Warning 로그 제거
-	* (Unity) Standalone WebView에 CEF 2.1.2 업데이트
-		* URL의 길이가 2,048보다 길 경우 크래시가 발생하는 이슈 수정
-		* Unity 2019에서 빌드 시 라이브러리 경로가 변경되어 PostProcessBuild 개선
-		* string 초기화를 하지 않아 간헐적으로 발생하는 오류 수정
-		* Gamebase WebView 사용 중 WebView가 신(scene)을 이동한 이후에는 다시 열리지 않는 버그 수정
-
-#### 버그 수정
-* [SDK] 2.20.0
-	* (JavaScript) 콘솔에 고객센터 정보를 입력하지 않으면 초기화 시 오류가 발생하여 수정
-* [SDK] 2.19.1
-	* (Unreal) Unity 빌드 중 제외되는 파일이 생길 때 발생하는 컴파일 오류 수정
+* 앱 > 클라이언트: 클라이언트 버전을 스토어별로 구분하여 표시하도록 화면 개선
 
 ### 2021. 01. 26.
 
@@ -74,33 +48,16 @@
 ```
 
 #### 기능 추가
-* [Console] 
-	* 이용 정지 > 앱가드: 조건 차단 기능 추가
-	* 구매(IAP) > 결제 어뷰징 모니터링: Apple App Store 추가 
-* [SDK] 2.19.0
-	* (Unreal) SDK 배포: 2.16.0 ~ 2.19.0 누적된 내역 반영
-		* [Android 설정 툴](https://docs.toast.com/ko/Game/Gamebase/ko/unreal-started/#android-settings) 제공: Gamebase_Android_UPL.xml 파일을 수정하는 대신 설정 툴을 사용바랍니다.
-		* 고객센터 기능 추가	
-		* 인증 추가: Hangame, Weibo
-		* Galaxy 스토어 추가
-		* 결제 아이템 정보에 지역화된 상품 정보 추가: localizedTitle, localizedDescription
-		* Android 설정 툴 제공
-		* Unreal 4.26 지원
+* 이용 정지 > 앱가드: 조건 차단 기능 추가
+* 구매(IAP) > 결제 어뷰징 모니터링: Apple App Store 추가 
 
 #### 기능 개선/변경
-* [Console]
-	* 관리 > 권한: 매출 접근 권한 제거 [관련 공지 바로 가기](https://www.toast.com/kr/support/notice/detail/2101)
-* [SDK] 2.19.1
-	* (iOS) Weibo IdPAdapter 구조 변경	
+* 관리 > 권한: 매출 접근 권한 제거 [관련 공지 바로 가기](https://www.toast.com/kr/support/notice/detail/2101)
 
 ### 2021. 01. 12.
 
-```
-Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다. 
-```
-
 #### 기능 추가
-* [Console] 푸시 신규 메뉴 추가
+* 푸시 신규 메뉴 추가
 	* 통계: 푸시 발송, 수신, 토큰 등록 등의 푸시 통계를 확인
 	* 이벤트 키: 푸시 발송 통계에 사용하는 이벤트 키를 관리
 	* 인증서: 푸시 발송에 사용하는 인증서를 관리
