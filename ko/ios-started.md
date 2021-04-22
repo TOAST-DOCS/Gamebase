@@ -1,6 +1,6 @@
 ## Game > Gamebase > iOS SDK 사용 가이드 > 시작하기
 
-### Environments
+## Environments
 
 
 > [INFO]
@@ -21,24 +21,24 @@
 > * https://developer.apple.com/ios/submit/
 >
 
-### Installation
+## Setting
 
 Gamebase는 아래와 같은 방법으로 설정이 가능합니다.
 
-#### Download
+### Download
 
 * [Download Gamebase iOS SDK](/Download/#game-gamebase)
 
-Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<br/>
+Gamebase.framework 및 필요한 adapter 들을 다운로드 받습니다.<br/>
 또한 각 IdP의 인증을 하기위한 SDK파일들을 다운로드 받아야합니다. 해당 IdP의 로그인을 사용할 때만 포함하면 됩니다.<br/>
 다운로드한 뒤, 해당 SDK파일을 프로젝트의 target에 포함시켜야 합니다.
 
-**3rd Party SDK Download**
+**Gamebase iOS SDK Components**
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 용도  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.27.1 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS9 or later
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.1.0 | Facebook 로그인을 지원 | iOS9 or later |
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.27.1 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS9 or later
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Facebook 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.4.0 | Payco 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Naver 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenter 로그인을 지원 | iOS9 or later |
@@ -75,7 +75,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 > 각 IdP에서 제공하는 외부 SDK에 대한 설정은 각 IdP의 가이드 문서를 참고하시길 바랍니다.
 >
 
-#### Xcode Settings
+### Xcode Settings
 
 압축을 풀면, 다음과 같이 Gamebase.framework 등의 SDK를 볼 수 있습니다.
 
@@ -113,7 +113,7 @@ Gamebase.framework.zip 및 필요한 adapter 들을 다운로드 받습니다.<b
 > 따라서 이 옵션을 설정하지 않았을 때에 **selector not recognized**와 같은 오류가 Runtime 상에서 발생할 수 있습니다.
 >
 
-#### CocoaPods Settings
+### CocoaPods Settings
 
 Gamebase iOS SDK는 CocoaPods를 통해서도 설정할 수 있습니다.
 
@@ -165,6 +165,107 @@ end
 > 더 자세한 CocoaPods 사용법에 대해서는 [CocoaPods Guide](https://guides.cocoapods.org/)의 [Using CocoaPods](https://guides.cocoapods.org/using/index.html) 페이지를 참고하시길 바랍니다.
 >
 >
+
+### IdP Settings
+
+> <font color="red">[주의]</font><br/>
+>
+> * NHN Cloud Console 에서 새 프로젝트를 생성하여 Gamebase 서비스를 활성화 하였는지 꼭 확인하세요.
+> * 각 IdP 콘솔에서 Client ID 를 발급받아 Gamebase 콘솔에 입력하였는지 꼭 확인하세요.
+
+* 인증을 위해 IdP 콘솔에서 Client ID 를 발급받아 Gamebase 콘솔에 입력합니다.
+    * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
+* Gaembase iOS SDK 는 각 IdP 별로 추가 설정이 필요합니다.
+
+#### Google
+
+* URL Scheme 를 설정해야 합니다.
+    * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.google**를 추가해야 합니다.
+
+* Gamebase iOS SDK 1.12.1 이하는 추가 설정이 필요합니다.
+    * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy-)
+
+#### Payco
+
+* URL Scheme 를 설정해야 합니다.
+    * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.payco**를 추가해야 합니다.
+
+#### Naver
+
+* URL Scheme 를 설정해야 합니다.
+    * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.naver**를 추가해야 합니다.
+
+* Gamebase iOS SDK 1.12.1 이하는 추가 설정이 필요합니다.
+    * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy-)
+
+#### Twitter
+
+* URL Scheme 를 설정해야 합니다.
+    * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.twitter**를 추가해야 합니다.
+* Twitter 의 Developer 사이트의 Apps > 대상 프로젝트 > App Details > Callback URL 항목을 설정해야 합니다.
+    *  **tcgb.{Bundle ID}.twitter://** 를 추가합니다.
+
+#### Line
+
+* URL Scheme 를 설정해야 합니다.
+	* **Xcode > Target > Info > URL Types**에 **line3rdp.{App Bundle ID}**를 추가해야 합니다.
+
+* Info.plist 파일을 설정해야합니다.
+	* LINE에서 발급받은 ChannelID를 설정합니다.
+	```
+	<key>LineSDKConfig</key>
+	<dict>
+    	<key>ChannelID</key>
+    	<string>{Issued LINE ChannleID}</string>
+	</dict>
+	```
+	* ATS 설정을 위하여 Scheme 를 등록합니다.
+	```
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+    	<string>lineauth</string>
+    	<string>line3rdp.{App Bundle ID}</string>
+	</array>
+	```
+* LINE Login 을 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다. (인증 필요)
+* [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
+
+### IdP Settings (Legacy)
+
+**Google**
+* Gamebase iOS SDK 1.12.1 이하
+    * AdditionalInfo 를 설정해야 합니다.
+        * **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+        * Google 의 경우, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
+        * **url_scheme_ios_only**의 값은 Xcode의 URL Scheme에 등록된 값들 중 한개와 일치해야 합니다.
+
+    * URL Scheme 를 설정해야 합니다.
+        * **Xcode > Target > Info > URL Types**
+
+* Google 추가 인증 정보 입력 예제
+
+```json
+{ "url_scheme_ios_only": "Your URL Scheme" }
+```
+
+![gamebase_auth_google_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_google_console_01.png)
+
+
+**Naver**
+
+* Gamebase iOS SDK 1.12.1 이하
+	* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+		* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
+		* iOS 앱에서 필요한 정보인 **url_scheme_ios_only**를 추가로 설정해야 합니다.
+
+	* URL Scheme 를 설정해야 합니다.
+		* **Xcode > Target > Info > URL Types**
+
+```json
+{ "url_scheme_ios_only": "Your URL Scheme", "service_name": "Your Service Name" }
+```
+
+![gamebase_auth_naver_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_naver_console_01.png)
 
 ## 3rd-Party Provider SDK Guide
 
