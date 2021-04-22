@@ -1,42 +1,41 @@
-## Game > Gamebase > Release Notes > Server API
+## Game > Gamebase > 릴리스 노트 > Server API
 
-### March 09, 2021 
+### 2021. 03. 09.
 
-#### More Features
-* Added an API that can be used to acquire Gamebase user ID with IdP ID 
+#### 기능 추가
+* IdP ID로 Gamebase user ID를 획득하는 API 추가 
 
-### August 11, 2020
+### 2020. 08. 11.
 
-#### Feature Updates
-* Added error code for Coupon Expired API: When a coupon code includes a value other than English or numbers (Error Code:-4000205)
+#### 기능 개선/변경
+* 쿠폰 소진 API의 오류 코드 추가: 쿠폰 코드에 영문, 숫자 이외의 값을 입력한 경우(Error Code:-4000205)
 
-### February 11, 2020
+### 2020. 02. 11.
 
-#### Feature Updates
-* Added validation for the regUser length when Withdraw API is called 
+#### 기능 개선/변경
+* 탈퇴 API 호출 시 regUser 길이에 대한 유효성 검사(validation) 추가
 
-### January 14, 2020
+### 2020. 01. 14.
 
-#### More Features
-* Added Withdraw Users API
+#### 기능 추가
+* 사용자 탈퇴 API 추가
 	
-### November 12, 2019 
+### 2019. 11. 12.
 
-#### More Features 
-* Coupon Service Newly Open: Create and manage coupons in large quantity 
-	* Find coupons and add Consume API 
+#### 기능 추가
+* 쿠폰 서비스 신규 오픈: 쿠폰을 대량으로 생성하고 관리하는 기능	
+	* 쿠폰 확인 및 소비 API 추가
 	
-### May 28, 2019 
+### 2019. 05. 28.
 
-#### Feature Updates
-* Modified LTV queries and the failover logic 
+#### 기능 개선/변경
+* LTV 쿼리 수정 및 failover 로직 수정
 
 ### 2019. 03. 26.
 
 #### 기능 추가
 * TransferAccount 기능 추가: guest 사용자가 매핑없이 최대 2개의 키를 이용하여 새로운 기기로 이전할 수 있는 기능
-	- (Server API)
-		* 발급된 TransferAccount의 ID/PW 검증하는 서버 API (validateTransferAccount)
+	* 발급된 TransferAccount의 ID/PW 검증하는 서버 API (validateTransferAccount)
 
 ### 2018. 06. 26.
 
@@ -53,7 +52,6 @@
 #### 기능 개선/변경
 * [IAP](./api-guide/#purchaseiap) API 연동 : 아이템 조회, 미소비내역 조회
 * checkAccessToken API 응답 결과에, 로그인 시 사용된 IdP 관련 정보 포함하는 스펙 추가
-
 
 ### 2017. 03. 21.
 
