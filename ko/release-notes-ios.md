@@ -1,5 +1,13 @@
 ## Game > Gamebase > 릴리스 노트 > iOS
 
+### 2.21.2(2021.04.27) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.2/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* Facebook iOS SDK 업데이트 (9.2.0)
+
+#### 버그 수정
+* 아카이브 빌드 시 bitcode 관련 오류가 발생하는 이슈 수정
+
 ### 2.21.1(2021.04.19) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.1/GamebaseSDK-iOS.zip)
 
 #### 버그 수정

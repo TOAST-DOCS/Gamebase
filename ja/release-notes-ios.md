@@ -1,18 +1,26 @@
 ## Game > Gamebase > リリースノート > iOS
 
+### 2.21.2(2021.04.27) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.2/GamebaseSDK-iOS.zip)
+
+#### 機能改善/変更
+* Facebook iOS SDK 업데이트 (9.2.0)
+
+#### バグ修正 
+* 아카이브 빌드 시 bitcode 관련 오류가 발생하는 이슈 수정
+
 ### 2.21.1(2021.04.19) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.1/GamebaseSDK-iOS.zip)
 
 #### バグ修正
-* bitcode를 지원 가능하도록 설정해도 설정값이 반영되지 않는 문제 수정
+* bitcodeをサポートできるように 設定しても設定値が反映されない問題を修正
 
 ### 2.21.0(2021.04.13) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.0/GamebaseSDK-iOS.zip)
 
 #### 機能追加
-* Hangame 일본 인증 추가 	
+* Hangame日本認証を追加
 
 #### 機能改善/変更
-* bitcode 지원이 가능하도록 변경
-* showWebView 호출 시, 닫기 버튼을 가장 먼저 화면에 표시되도록 수정
+* bitcodeをサポートできるように変更
+* showWebView呼び出し時、閉じるボタンが最初に画面に表示されるように修正
 
 ### 2.20.2(2021.03.23) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.2/GamebaseSDK-iOS.zip)
 

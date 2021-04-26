@@ -3,18 +3,18 @@
 ### 2.21.1(2021.04.19) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.1/GamebaseSDK-Android.zip)
 
 #### バグ修正
-* Hangame 로그인을 PAYCO로 진행하다 취소하면 크래시가 발생하는 문제 수정
+* HangameログインをPAYCOで進行中にキャンセルするとクラッシュが発生する問題を修正
 
 ### 2.21.0(2021.04.13) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.0/GamebaseSDK-Android.zip)
 
 #### 機能追加
-* Hangame 일본 인증 추가 	
+* Hangame日本認証を追加
 
 #### 機能改善/変更
-* 외부 SDK 업데이트: Facebook Android SDK(6.5.1), Line Android SDK(5.4.0)
+* 外部SDKアップデート：Facebook Android SDK(6.5.1)、Line Android SDK(5.4.0)
 	
 #### バグ修正 
-* Proguard를 적용한 빌드에서 결제 API 호출 시 크래시가 발생하는 오류 수정
+* Proguardを適用したビルドで決済APIを呼び出すとクラッシュが発生するエラーを修正
 
 ### 2.20.2(2021.03.30) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.2/GamebaseSDK-Android.zip)
 
