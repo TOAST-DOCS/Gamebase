@@ -3,7 +3,7 @@
 ### 2.21.0(2021.04.13) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.0/GamebaseSDK-Unity.zip)
 
 #### 機能追加
-* Hangame 일본 인증 추가 	
+* Hangame日本認証を追加
 
 ### 2.20.0(2021.02.09) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.0/GamebaseSDK-Unity.zip)
 
