@@ -3,7 +3,7 @@
 ### 2.21.1(2021.04.19) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.1/GamebaseSDK-iOS.zip)
 
 #### Bug Fixes
-* bitcode를 지원 가능하도록 설정해도 설정값이 반영되지 않는 문제 수정
+* Fixed an issue where the setting is not properly reflected even if it is set to support bitcode
 
 ### 2.21.0(2021.04.13) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.0/GamebaseSDK-iOS.zip)
 
