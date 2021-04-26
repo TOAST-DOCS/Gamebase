@@ -4,8 +4,8 @@
 
 #### Bug Fixes
 * [SDK] 2.21.1
-	* (Android) Hangame 로그인을 PAYCO로 진행하다 취소하면 크래시가 발생하는 문제 수정
-	* (iOS) bitcode를 지원 가능하도록 설정해도 설정값이 반영되지 않는 문제 수정
+	* (Android) Fixed an issue where the system crashes when canceling Hangame login via PAYCO
+	* (iOS) Fixed an issue where the setting is not properly reflected even if it is set to support bitcode
 
 ### April 13, 2021 
 

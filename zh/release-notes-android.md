@@ -3,7 +3,7 @@
 ### 2.21.1(2021.04.19) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.1/GamebaseSDK-Android.zip)
 
 #### Bug Fixes
-* Hangame 로그인을 PAYCO로 진행하다 취소하면 크래시가 발생하는 문제 수정
+* Fixed an issue where the system crashes when canceling Hangame login via PAYCO
 
 ### 2.21.0(2021.04.13) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.0/GamebaseSDK-Android.zip)
 
