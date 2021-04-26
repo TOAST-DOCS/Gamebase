@@ -4,7 +4,7 @@
 充满信心地为您推荐拥有游戏平台领先企业NHN的10年经验的Gamebase。
 只要应用Gamebase SDK，即可轻松地使用游戏中所需的常规服务。
 
-![Gamebase_summary](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_01_202104_en.png)
+![Gamebase_summary](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_01_20210426_en.png)
 
 ## 主要功能
 
