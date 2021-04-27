@@ -233,15 +233,14 @@ end
 ### IdP Settings (Legacy)
 
 **Google**
+
 * Gamebase iOS SDK 1.12.1 이하
     * AdditionalInfo 를 설정해야 합니다.
         * **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
         * Google 의 경우, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
         * **url_scheme_ios_only**의 값은 Xcode의 URL Scheme에 등록된 값들 중 한개와 일치해야 합니다.
-
     * URL Scheme 를 설정해야 합니다.
         * **Xcode > Target > Info > URL Types**
-
 * Google 추가 인증 정보 입력 예제
 
 ```json
