@@ -10,30 +10,53 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 * [Android Purchase Settings](aos-purchase#settings)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
-为在Unity Standalone中进行支付，必须添加IapAdapter与WebViewAdapter。
-![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-settingtool_iap_2.4.0.png)
+Unity Standalone에서 결제하려면 IapAdapter와 WebViewAdapter를 반드시 추가해야 합니다.
+![GamebaseUnitySDKSettins Inspector](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-settingtool_iap_2.4.0.png)
 
+### Purchase Flow
 
-###  Purchase Flow
+购买  道具的程序大体分为Flow、Consume Flow及‘’支付再处理”Flow。
+请按以下顺序实现结算Flow。
 
-请按以下顺序实现商品购买。<br/>
+![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_1.5.0.png)
+1. 未正常结束上一次支付时，若不进行‘’支付再处理”则将导致支付失败。因此支付前应调用**RequestItemListOfNotConsumed**进行‘’支付再处理”， 若存在未提供的道具则进行Consume Flow。
+2. 游戏客户端通过从Gamebase SDK调用**RequestPurchase**尝试支付。 
+3. 如果付款成功，请调用**RequestItemListOfNotConsumed**查看未消费结算明细。若存在未提供的道具，则进行Consume Flow。
 
-1. 游戏客户端通过从Gamebase SDK调用**RequestPurchase**进行付款。
-2. 如果付款成功，请调用**RequestItemListOfNotConsumed**查看未消费结算明细。
-3. 如果返还的未消费结算明细列表中存在值，游戏客户端向游戏服务器请求对游戏付款商品的consume（消费）。
-4. 游戏服务器通过Gamebase server的API请求 consume(消费)API。 [API 指南](/Game/Gamebase/zh/api-guide/#wrapping-api)
-5. 如果在IAP服务器上consume(消费)API调用成功，则游戏服务器向游戏客户端支付item。
+### Consume Flow
 
-* 商店支付成功，但存在发生错误而未能正常结束的情况。完成登录后请确认未消费支付明细。<br/>
-	* 若登录成功，调用**RequestItemListOfNotConsumed**确认未消费支付明细。
-	* 若返回的未消费支付明细列表中存在值，游戏客户向游戏服务器申请consume（消费），提供道具。
+如果返还的未消费结算明细列表中存在值，请按以下顺序进行Consume Flow。
+
+> <font color="red">[注意]</font><br/>
+>
+> 为了防止重复提供道具，必须通过游戏服务器确认是否重复提供道具。 
+>
+
+![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
+
+1. 游戏客户端向游戏服务器请求consume（消费）。
+    * 传送UserID、gamebaseProductId、paymentSeq、purchaseToken。
+2. 游戏服务器查看在游戏DB中是否存在以同样的paymentSeq提供道具的历史记录。
+    * 2-1. 若存在未提供道具，则需向UserID提供使用gamebaseProductId购买的道具。
+    * 2-2. 提供道具后在游戏DB保存UserID、gamebaseProductId、paymentSeq、purchaseToken，必要时进行‘’支付再处理”或防止重复提供。
+3. 游戏服务器通过调用Gamebase服务器的consume(消费)API提供道具。这时不考虑是否已提供道具。
+    * [API指南 > Purchase(IAP) > Consume](./api-guide/#consume)
+
+### Retry Transaction Flow
+
+* 商店支付已成功，但因出现错误无法正常终止时，
+* 请调用**RequestItemListOfNotConsumed**进行‘’支付再处理”。若存在尚未提供的道具，则进行Consume Flow。
+* 请在下列情况下进行‘’支付再处理”。
+    * 完成登录后
+    * 支付之前
+    * 进入游戏内商店（或 Lobby）时
+    * 查询用户简介或邮箱时
 
 ### Purchase Item
 
-使用想要购买商品的itemSeq调用以下API并请求购。
-如果游戏用户取消购买，将返还**PURCHASE_USER_CANCELED**错误。
+使用想要购买商品的gamebaseProductId调用以下API请求购买。
+用户取消购买时，返还**PURCHASE_USER_CANCELED**错误。
 
 **API**
 
@@ -42,14 +65,18 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
+static void RequestPurchase(string gamebaseProductId, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
+static void RequestPurchase(string gamebaseProductId, string payload, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
+
+// Legacy API
 static void RequestPurchase(long itemSeq, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
 ```
 
 **示例**
 ```cs
-public void RequestPurchase(long itemSeq)
+public void RequestPurchase(string gamebaseProductId)
 {
-    Gamebase.Purchase.RequestPurchase(itemSeq, (purchasableReceipt, error) =>
+    Gamebase.Purchase.RequestPurchase(gamebaseProductId, (purchasableReceipt, error) =>
     {
         if (Gamebase.IsSuccess(error))
         {
@@ -68,9 +95,35 @@ public void RequestPurchase(long itemSeq)
         }
     });
 }
+
+
+public void RequestPurchase(string gamebaseProductId)
+{
+    string userPayload = "{\"description\":\"This is example\",\"channelId\":\"delta\",\"characterId\":\"abc\"}";
+    Gamebase.Purchase.RequestPurchase(gamebaseProductId, userPayload, (purchasableReceipt, error) =>
+    {
+        if (Gamebase.IsSuccess(error))
+        {
+            Debug.Log("Purchase succeeded.");
+            // userPayload value entered when calling API
+            string payload = purchasableReceipt.payload
+        }
+        else
+        {
+        	if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
+            {
+                Debug.Log("User canceled purchase.");
+            }
+            else
+            {
+            	Debug.Log(string.Format("Purchase failed. error is {0}", error));
+            }
+        }
+    });
+}  
 ```
 
-### Get a List of Purchasable Items
+### List Purchasable Items
 
 要查询商品列表，请调用以下API。 
 回调返还的数组(array)包含各item的信息。
@@ -105,10 +158,18 @@ public void RequestItemListPurchasable()
 
 
 
-### Get a List of Non-Consumed Items
+### List Non-Consumed Items
 
-请求已购买了商品，却没有正常消费（发送，提供）item的未消费结算明细。
-如果有未完成的商品，您必须要求游戏服务器（item服务器）处理配送item（支付）。
+请求已购买了道具, 但未能消费(配送、支付)道具未消费结算明细。
+如果有未完成的商品，必须要求游戏服务器（item 服务器）处理配送item（支付）。
+未能完成支付时，也起到‘’支付再处理”的作用。可在下列情况下调用该函数。
+* 查看是否存在未向用户提供的道具
+    * 完成登录后
+    * 进入游戏内商店（或 Lobby）时
+    * 查看用户简介或邮箱时
+* 查看需要进行‘’支付再处理”的道具
+    * 支付之前   
+    * 支付失败后
 
 **API**
 
@@ -141,7 +202,7 @@ public void RequestItemListOfNotConsumed()
 }
 ```
 
-### Get the List of Actived Subscriptions
+### List Actived Subscriptions
 
 以当前用户ID为准查询激活的订阅列表。
 完成支付的订阅商品（自动更新型订阅、自动更新型消费性订阅商品）到期前可一直查询。
@@ -174,7 +235,7 @@ public void RequestActivatedPurchasesSample()
             foreach (GamebaseResponse.Purchase.PurchasableReceipt purchasableReceipt in purchasableReceiptList)
             {
                 var message = new StringBuilder();
-                message.AppendLine(string.Format("itemSeq:{0}", purchasableReceipt.itemSeq));
+                message.AppendLine(string.Format("gamebaseProductId:{0}", purchasableReceipt.gamebaseProductId));
                 message.AppendLine(string.Format("price:{0}", purchasableReceipt.price));
                 message.AppendLine(string.Format("currency:{0}", purchasableReceipt.currency));
                 
@@ -196,93 +257,34 @@ public void RequestActivatedPurchasesSample()
 }
 ```
 
-### App Store Promotion IAP
+### Event by Promotion
 
-提供从AppStore应用程序内购买商品的功能。
-购买商品成功后，通过以下登记的处理程序进行item支付。
-
-促销 IAP需在AppStore Connect中另行设置才能显示。
-
-> <font color="red">[注意]</font><br/>
->
-> 仅适用于iOS 11或更高版本。
-> 需要在Xcode 9.0以上版本build。
-> Gamebase 1.13.0及更高版本支持。 (NHN Cloud IAP SDK 1.6.0 以上适用)
-
-
-> <font color="red">[注意]</font><br/>
->
-> 只能在成功登录后调用。
-> 成功登录后，必须在任何其他支付API之前执行。
-
-**API**
+完成Promotion支付后，可通过GamebaseEventHandler接收Event并进行处理。 
+关于使用GamebaseEventHandler处理Promotion支付Event的方法，请参考如下指南。
+[Game > Gamebase > Unity SDK使用指南 > ETC > Gamebase Event Handler](./unity-etc/#purchase-updated)
 
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
-```cs
-static void SetPromotionIAPHandler(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
-```
-
-**示例**
-```cs
-public void SetPromotionIAPHandler()
-{
-    Gamebase.Purchase.SetPromotionIAPHandler((purchasableReceipt, error) => 
-    {
-        if (Gamebase.IsSuccess(error))
-        {
-            Debug.Log("Purchase succeeded.");
-        }
-        else
-        {
-            if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
-            {
-                Debug.Log("User canceled purchase.");
-            }
-            else
-            {
-            	Debug.Log(string.Format("Purchase failed. error is {0}", error));
-            }
-        }
-    });
-}
-```
-**Overview**
-
-* Apple Developer Overview : https://developer.apple.com/app-store/promoting-in-app-purchases/
-* Apple Developer Reference : https://help.apple.com/app-store-connect/#/deve3105860f
-
-**How to Test AppStore Promotion IAP**
-
-> `注意`
-> 将应用程序上传到App Store Connect后，可以通过TestFlight安装应用程序后对其进行测试。
-> 
-
-1. 用TestFlight安装App。
-2. 调用以下URL Scheme进行测试。
-
-| URL Components | keyname | value |
-| --- | --- | --- |
-| scheme | itms-services | 固定值 |
-| host &amp; path | 无 | 无 |
-| queries | action | purchaseIntent |
-|		  | bundleId | APP的 bundeld identifier |
-|		  | productIdentifier | 购买商品的 product identifier  |
-
-示例) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
+> <font color="red">[注意]</font><br/>
+>
+> 关于iOS Promotion付款方式，请参考如下指南。 
+> [Game > Gamebase > iOS SDK使用指南 > IAP > Event by Promotion](./ios-purchase/#event-by-promotion)
 
 ### Error Handling
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| PURCHASE_NOT_INITIALIZED                 | 4001       | 模块未初始化。<br>请确认是否将gamebase-adapter-purchase-IAP模块添加到项目中。 |
-| PURCHASE_USER_CANCELED                   | 4002       | 游戏用户已取消购买商品。                  |
-| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003 | 之前的购买逻辑未完成的情况下调用了API。 |
-| PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 该商店的余额不足，无法结算。              |
-| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 不支持的商店。<br>可选择的商店为GG(Google), TS(ONE store), TEST。 |
+| PURCHASE_NOT_INITIALIZED                 | 4001       | Purchase 模块未初始化。请确认是否将<br>gamebase-adapter-purchase-IAP 模块添加到项目中。 |
+| PURCHASE_USER_CANCELED                   | 4002       | 游戏用户已取消购买商品。                 |
+| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 尚未完成购买逻辑的情况下已调用API。    |
+| PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 该商店的余额不足，无法结算。           |
+| PURCHASE_INACTIVE_PRODUCT_ID             | 4005       | 此商品为非激活状态 |
+| PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | 请求支付的GamebaseProductID不存在 |
+| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 不支持的商店.<br>可选择的商店是 GG(Google), ONESTORE, GALAXY。 |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAP库错误。<br>请确认DetailCode。   |
-| PURCHASE_UNKNOWN_ERROR                   | 4999       | 未知购买错误。<br>请将完整的Log上传到 [客服中心](https://toast.com/support/inquiry)，我们会尽快回复。 |
+| PURCHASE_UNKNOWN_ERROR                   | 4999       | 未知的购买错误。<br>请将完整的Log上传到 [客服中心](https://toast.com/support/inquiry)，我们会尽快回复。 |
 
 * 所有错误代码，请参考以下文档。
     * [错误代码](./error-code/#client-sdk)
@@ -315,7 +317,7 @@ else
 ```
 
 * IAP错误代码，请参考以下文档。
-    * [Mobile Service > IAP > 错误代码 > Client API错误类型](/Mobile%20Service/IAP/zh/error-code/#client-api)
+    * [TOAST > TOAST SDK使用指南 > TOAST IAP > Unity > 错误代码](/TOAST/zh/toast-sdk/iap-unity/#_17)
 
 
 

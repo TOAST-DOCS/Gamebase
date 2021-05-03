@@ -838,7 +838,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 
 ### Withdraw Immediately
 
-无论预约退出时期的设置状态如何，将会立即退出。
+无论预约退出时期的设置状态如何，都立即退出。
 实际的内置启动与**[TCGBGamebase withdrawWithViewController:completion:]** API相同。
 
 无法取消立即退出，因此要反复提示用户是否继续执行。

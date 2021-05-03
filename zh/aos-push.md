@@ -65,7 +65,7 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 | enableForeground      | boolean      | App为Foreground状态时是否允许推送通知<br/>**default**: false  |
 | enableBadge           | boolean      | 是否使用Badge图标<br/>**default**: true |
 | setPriority           | int          | 推送通知的优先顺序-可以设置如下5个值。.<br/>NoticationComapt.PRIORITY_MIN : -2<br/> NoticationComapt.PRIORITY_LOW : -1<br/>NoticationComapt.PRIORITY_DEFAULT : 0<br/>NoticationComapt.PRIORITY_HIGH : 1<br/>NoticationComapt.PRIORITY_MAX : 2<br/>**default**: NoticationComapt.HIGH |
-| setSmallIconName         | String       | 手机顶端状态栏的通知提示小图标文件名称<br/>-如果尚未设置时，则使用APP图标。<br/>**default**: null |
+| setSmallIconName         | String       | 手机顶端状态栏的通知提示小图标文件名称<br/>-如果不设置，则使用APP图标。<br/>**default**: null |
 | setSoundFileName      | String       | 提示音文件名称-仅在Android 8.0以下的OS运行。<br/>如果指定”res/raw”文件夹的mp3、wav文件名称，则可更改提示音。<br/>**default**: null |
 
 **示例**
@@ -168,7 +168,7 @@ Gamebase.Push.queryTokenInfo(activity, new GamebaseDataCallback<PushConfiguratio
 | -----------------| --------| ------------------------- |
 | pushEnabled      | boolean | 是否允许显示推送通知          |
 | adAgreement      | boolean | 是否同意接收广告性推送通知      |
-| adAgreementNight | boolean | 是否允许在夜间推送广告  |
+| adAgreementNight | boolean | 是否允许在夜间显示广告性推送通知  |
 
 ### Error Handling
 

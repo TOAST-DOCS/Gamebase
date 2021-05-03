@@ -27,7 +27,7 @@
 
 ### Send Logs
 
-通过Log & Crash服务器传输日志。
+将日志传输到Log & Crash服务器。
 TOAST Logger SDK可传输如下五种级别的日志。
 
 * DEBUG

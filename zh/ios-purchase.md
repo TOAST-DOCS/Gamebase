@@ -55,17 +55,17 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 > <font color="red">[注意]</font><br/>
 >
-> 为了防止重复提供道具，必须要求游戏服务器确认是否重复提供道具。
+> 为了防止重复提供道具，必须通过游戏服务器确认是否重复提供道具。
 >
 
 ![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
 
 1. 游戏客户向游戏服务器请求consume（消费）。
     * 传送UserID、gamebaseProductId、paymentSeq、purchaseToken。
-2. 游戏服务器在游戏DB中查询是否存在以同样的paymentSeq提供道具的历史记录。
-    * 2-1. 若存在未提供道具，则向UserID提供使用gamebaseProductId购买的商品。
-    * 2-2. 提供后在游戏DB保存UserID、gamebaseProductId、paymentSeq、purchaseToken，必要时进行‘’支付再处理”或防止重复提供。
-3. 游戏服务器通过调用Gamebase服务器的consume（消费）API提供道具。此时无需考虑是否已经提供道具。
+2. 游戏服务器查看在游戏DB中是否存在以同样的paymentSeq提供道具的历史记录。
+    * 2-1. 若存在未提供道具，则需向UserID提供使用gamebaseProductId购买的商品。
+    * 2-2. 提供道具后在游戏DB保存UserID、gamebaseProductId、paymentSeq、purchaseToken，必要时进行‘’支付再处理”或防止重复提供。
+3. 游戏服务器通过调用Gamebase服务器的consume（消费）API提供道具。这时不考虑是否已提供道具。
     * [Game > Gamebase > API指南 > Purchase(IAP) > Consume](./api-guide/#consume)
 
 ### Retry Transaction Flow
@@ -74,7 +74,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 * 商店支付已成功，但因出现错误无法正常终止时，
 * 请调用**requestItemListOfNotConsumedWithCompletion:**进行‘’支付再处理”。若存在尚未提供的道具，则进行[Consume Flow](./aos-purchase/#consume-flow)。
-* 请在下列情况下进行‘’支付再处理”。
+* 建议在以下情况下调用‘’支付再处理”。
     * 完成登录后
     * 支付之前
     * 进入游戏内商店（或 Lobby） 时
@@ -153,12 +153,12 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在G
 请求已购买了商品，却没有正常消费（发送，提供）item的未消费结算明细。<br/>
 如果有未完成的商品，您必须要求游戏服务器（item服务器）处理配送item（支付）。
 
-* 未完成支付时，可进行‘’支付再处理”。请在下列情况下调用。
-    * 查询是否存在未提供的道具
+* 未能完成支付时，也起到‘’支付再处理”的作用。可在下列情况下调用该函数。
+    * 查看是否存在未提供的道具
         * 完成登录后
         * 进入游戏内商店（或 Lobby） 时
         * 查询用户简介或邮箱时
-    * 查询需要进行‘’支付再处理”的道具
+    * 查看需要进行‘’支付再处理”的道具
         * 支付之前
         * 支付失败后
 
