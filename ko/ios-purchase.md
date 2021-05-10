@@ -346,8 +346,8 @@ Facebook SDK, Google AdMob SDK 와 같이 SDK 내에 In App Purchase (AppStore �
 
 * 해결 방법
   * Facebook
-    * Facebook Console > 설정 > 기본 설정 > `앱 내 이벤트를 자동으로 로깅(권장)` 기능을 비활성화
-    * Facebook 인증 기능을 사용하지 않을 경우 : `GamebaseAuthFacebookAdapter.framework 파일을 제외`시킨 후 빌드
+    * Facebook Console > 설정 > 기본 설정 > **앱 내 이벤트를 자동으로 로깅(권장)** 기능을 비활성화
+    * Facebook 인증 기능을 사용하지 않을 경우 : **GamebaseAuthFacebookAdapter.framework 파일을 제외** 시킨 후 빌드
 
 
 #### Overview

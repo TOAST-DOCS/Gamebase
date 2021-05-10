@@ -29,7 +29,7 @@ Gamebase는 아래와 같은 방법으로 설정이 가능합니다.
 
 * [Download Gamebase iOS SDK](/Download/#game-gamebase)
 
-Gamebase.framework 및 필요한 adapter 들을 다운로드 받습니다.<br/>
+Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 또한 각 IdP의 인증을 하기위한 SDK파일들을 다운로드 받아야합니다. 해당 IdP의 로그인을 사용할 때만 포함하면 됩니다.<br/>
 다운로드한 뒤, 해당 SDK파일을 프로젝트의 target에 포함시켜야 합니다.
 
@@ -94,7 +94,7 @@ Gamebase.framework 및 필요한 adapter 들을 다운로드 받습니다.<br/>
     * ImageIO.framework
     * GameKit.framework
     * StoreKit.framework
-    * AuthenicationServices.framework (Optional)
+    * AuthenticationServices.framework (Optional)
     * AppTrackingTransparency.framework (Optional)
 
 ![Link Binary With Libraries](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
@@ -183,7 +183,7 @@ end
     * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.google**를 추가해야 합니다.
 
 * Gamebase iOS SDK 1.12.1 이하는 추가 설정이 필요합니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy-)
+    * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
 #### Payco
 
@@ -196,7 +196,7 @@ end
     * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.naver**를 추가해야 합니다.
 
 * Gamebase iOS SDK 1.12.1 이하는 추가 설정이 필요합니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy-)
+    * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
 #### Twitter
 
@@ -235,8 +235,7 @@ end
 **Google**
 
 * Gamebase iOS SDK 1.12.1 이하
-    * AdditionalInfo 를 설정해야 합니다.
-        * **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+    * **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
         * Google 의 경우, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
         * **url_scheme_ios_only**의 값은 Xcode의 URL Scheme에 등록된 값들 중 한개와 일치해야 합니다.
     * URL Scheme 를 설정해야 합니다.
@@ -256,9 +255,9 @@ end
 	* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
 		* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
 		* iOS 앱에서 필요한 정보인 **url_scheme_ios_only**를 추가로 설정해야 합니다.
-
 	* URL Scheme 를 설정해야 합니다.
 		* **Xcode > Target > Info > URL Types**
+* Naver 추가 인증 정보 입력 예제
 
 ```json
 { "url_scheme_ios_only": "Your URL Scheme", "service_name": "Your Service Name" }
