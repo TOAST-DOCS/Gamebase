@@ -338,11 +338,11 @@ localizedstring.json中定义的格式如下。
 | Purchase - Promotion支付 | kTCGBPurchaseUpdated | [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data] | \- |
 | Push - 接收消息 | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
 | Push - - 点击消息 | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
-| Push - 动态点击 | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | 如果点击RichMessage按键则运行。|
+| Push - 动态点击 | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | 点击RichMessage按键时启动。|
 
 #### Server Push
 
-* 为从Gamebase服务器向客户端终端机传送的消息。
+* 是从Gamebase服务器向客户端终端机传送的消息。
 * Gamebase支持的Server Push Type如下。
 	* kTCGBServerPushAppKickout
     	* 如果在TOAST Gamebase控制台**Operation > Kickout**中注册Kickout ServerPush消息，则从与Gamebase连接的所有客户端接收Kickout消息。

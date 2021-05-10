@@ -1,7 +1,12 @@
+## 使用IAP菜单之前
+![gamebase_purchase_01_201812](http://static.toastoven.net/prod_gamebase/Console_IAP_Select_currency_1.0.png)
+要使用IAP菜单，必须先要从销售指标选项卡中选择一种货币。
+将设置的货币代码显示在Analytics销售指标中（只能设置一次）。
+
 ## Game > Gamebase > 控制台使用指南 > IAP
 
 您可以注册应用程序内结算有关的信息并查看其历史记录。
-在Gamebase使用 NHN Cloud IAP(In-App Purchase，应用程序内支付)服务。
+在Gamebase使用 TOAST IAP(In-App Purchase，应用程序内支付)服务。
 
 ## Store
 
@@ -28,93 +33,109 @@
 - 点击**编辑** 按钮可以编辑应用程序名称、商店应用程序和可用性信息，但Store App ID除外。
 - 点击**删除** 按钮可以删除商店信息。但，只能删除未使用的商店。
 
-## Item
+## Product
+可以注册商店的销售产品。
+可通过使用**产品**选项卡，注册新的商品或管理以前注册的商品。
+- (1) **注册** : 使用一个商店道具ID可以注册多个产品。 
+- (2) **更改商店商品状态** : 通过修改一次，可更改使用一个商店商品ID注册的产品的“使用与否”。
+- (3) **过滤** : 通过提供”是否使用”、”商店/商店道具ID/产品ID”、”产品名称过滤”功能，可使搜索变得更方便。若不存在搜索的值，则显示所有商店的产品列表。
 
-您可以添加在商店中出售的item。
-您可以在** Item ** 标签中添加新item或管理已添加的item。默认情况下，将显示所有商店的item，并且还可以使用各商店的筛选功能。
-
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_04_201911.png)
+![gamebase_purchase_04_202006](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_04_202006.png)
 
 ### Register
+若需注册新商品，点击**道具列表**页面上的**注册**按钮。
+#### 1. 通过直接输入进行注册的方法  
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_05_202006.png) 
 
-要添加新item，请点击**商店信息列表**页面上的** 添加 **按钮。
-![gamebase_purchase_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_05_201812.png)
+* (1) **产品ID** : 输入请求支付时要使用的产品ID。使用该ID通过SDK调用购买API，则可购买输入的产品。
+* (2) **产品名称** : 输入进行支付的产品名称。可以以输入的内容为准查询结算明细，并在指标中显示相关产品名称。
+* (3) **是否使用** : 选择是否使用产品。通过SDK请求产品列表时，只将“是否使用”选项设为”USE”的商品传送到产品列表中。 
+* (4) **添加产品** : 通过添加产品时选择**+**按键，可添加商品输入框。
+* (5) **商店** : 选择需要注册的外部商店。若不存在要注册的商店，则需在**商店**菜单中先注册商店。 
+* (6) **商店道具ID** : 注册商店后，输入获取的ID信息。当在所选的商店对在Gamebase商品中注册的列表请求支付时，基于在该部分输入的内容进行结算。
+* (7) **商店道具类别** : 选择要注册的产品类别。可以在Google play, App store注册订阅商品。如果选择Google play, App store之外的其他商店，将视为为一次性道具。
 
-* **商店** 选择要添加的外部商店。如果没有您要添加的商店，请先在**商店**菜单上添加商店。
-* **item名称** 输入您在添加商店后收到的商品信息。使用游戏中添加的item名称在app中显示。
-* **商店商品ID** 输入您要添加的item名称。
-* **使用与否** 选择是否出售该item。
+#### 2. 通过上载文件进行注册的方法
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_06_202006.png)
+
+* 通过上载文件可注册商品。 
+* 通过上载文件注册商品时，一次最多只能注册1,000个商品。 
+* 若输入形式不正确，则不能注册商品。因此输入时需要注意形式。
+* 如果文件的编码形式不是”UTF-8”，则无法使用韩语键盘，因此需要注意。
+* 若文件注册失败，则可通过结果窗口的**下载**按钮下载失败的列表后确认。
+
 
 ### Modify
 
-您可以在查询列表中查询已添加item的详细信息或更改信息。
-![gamebase_purchase_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_06_201812.png)
-- 在查询列表中选择各item，则可以查询已添加item的详细信息。
-- 点击**编辑** 按钮可以更改除商店和 item以外的信息。
-- 点击**删除** 按钮可以删除item信息。
+可以查看或修改在查询列表中注册的商品的详细信息。 
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_07_202006.png)
+- 在查询列表中选择道具时，可以查看注册的道具的详细信息。
+- 通过点击**修改**按键，可修改商店、产品编号及产品类别之外的其他信息。 
+- 可以对**产品名称**、**是否使用**、**商店道具ID**等项目进行修改。但其他项目无法更改，因此注册时需要注意。
 
 ## Transactions
 
-可以查询结算信息。
-원하는 검색 유형을 선택하여 원하는 결제 정보를 편리하게 조회할 수 있습니다.
-결제 내역 조회 결과는 오른쪽 상단의 **다운로드** 버튼을 클릭해 언제든지 다운로드할 수 있습니다.
+可以查询付款信息。
+可通过选择搜索条件，简单查看所需的付款信息。
+通过点击右上端的**下载**按键，可以下载结算明细的查询结果。 
+
+### Properties
 
 #### Search conditions
 按照选择的搜索类型显示不同的搜索项目。
 
 ##### (1) 一般搜索
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_201911.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202006.png)
 
-一般搜索的情况下，可查询满足如下搜索条件项目的结果。
-- **商店**：支付的商店信息
-- **日期**：用户尝试购买的时间
-- **支付编号**：Gamebase中可区别支付的固有编号
-- **道具编号**：用户在应用程序中购买的实际道具编号（道具编号可在“道具”标签确认。）
-- **用户ID**：支付的用户ID
-- **排列顺序**：以注册日期为准升序、降序排列
-- **支付状态**：以支付状态为准搜索
+可以搜索符合下列搜索条件的结果。
+- **搜索日期** : 用户尝试购买的时间（通过使用右边的降序/升序项目选择排列）
+- **商店** : 要搜索的商店信息
+- **商店道具ID** : 注册商店后获取的ID信息
+- **产品** : 选择要搜索的商品。
+- **用户ID** : 支付的用户ID
+- **支付状态** : 将要搜索的支付状态基准
 
-##### (2) 搜索Trnasaction ID
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_201911.png)
+##### (2) 搜索Transaction ID
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202006.png)
 
-可通过支付后生成的Transaction ID查询。
+可以利用付款时生成的Transaction ID进行查询。 
 
 ##### (3) 搜索发票
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_201911.png)
-可利用支付时提供的发票信息查询。
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202006.png)
+可利用支付时提供的发票信息进行查询。 
 
 #### 搜索结果
-- **Transaction ID**: 用于区分Gamebase内支付的唯一编号
-- **商店**: 已付款的商店信息
-- **用户 ID**: 付款的用户ID
-- **item名称**: 用户在APP内购买的实际item名称
-- **价格**: 用户购买的item价格
-- **货币**: 用户购买时使用的货币类型
-- **消费状态**: 付款项目是否已付款
-- **付款状态**: 目前的付款进度
-- **Store Reference Key**: 商店发行的付款唯一编号
-- **付款日期**: 用户尝试购买或完成购买的时间
-- **退还日期**: 用户退还item的时间
+以下为查询结果项目。
+- **Transaction ID** : 可在Gamebase内区分    的固有编号
+- **商店** : 支付的商店信息
+- **用户ID** : 支付的用户ID
+- **产品名称** : 用户在应用程序内购买的实际商品名称
+- **产品ID(商店道具ID)** : 用户在应用程序内购买的实际商品ID和在商店进行支付的商店道具ID
+- **商店道具类别** : 用户在应用程序内购买的实际道具类别
+- **价格/货币单位** : 用户购买的道具价格及货币单位
+- **消费状态** : 是否提供支付完的道具
+- **支付状态** : 结算程序的当前进行状态
+- **Store Reference Key** : 商店发布的结算固有编号
+- **预约支付日期** : 用户尝试或完成购买的时间
+- **退款日期** : 用户退款的时间
+- **追加信息** : 通过SDK请求支付时传送的追加信息(Developer payload)
 
 #### 变更付款状态
-查询付款信息的状态如下所示。
-
-- **Success**
-	- 完成付款
-    - 这意味着付款流程已正常完成。
-    - 可以变更为Refund状态。
-- **Reserved**
-	- 正在进行付款
-	- 这意味着通过商店付款不再进行或尚未进行验证
-	- 可以变更为Success, Refund状态
-- **Failure**
-	- 付款验证失败
-	- 这意味着在商店付款过程中验证失败。
-	- 可以变更为Success, Refund状态。
-- **Refund**
-	- 完成退款
-	- 管理员已在商店中手动处理,是否准许退还请求。
+搜索的付款信息的各状态如下所示。
+- **完成付款(Success)**
+    - 表示已正常完成付款流程。
+    - 可以更改为Refund状态。
+- **完成支付预约(Reserved)**
+	- 表示不再进行商店内付款或未进行结算验证
+	- 可以更改为Success, Refund状态。
+- **支付验证失败(Failure)**
+	- 表示在商店付款过程中验证失败。
+	- 可以更改为Success, Refund状态。 
+- **完成退款(Refund)**
+	- 表示管理员手动处理“在商店是否准许退还请求”。
 	- 无法更改为其他付款状态。
+- **取消支付(UserClose)** 
+	- 用户取消支付的状态
 
 ##### Success 变更
 ![gamebase_purchase_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_201812.png)
@@ -202,8 +223,8 @@
     * **退款次数**：输入属于滥用的退款次数。
     * **退款金额**：输入属于滥用的退款金额。
 * **设置自动制裁信息**  
-    * 输入向用户显示的停止使用信息。 
+    * 输入向用户显示的停止使用信息。
     * 以多国语言输入向用户显示的信息，提供模板，以便再次使用。选择提前注册的模板注册。
-* **删除排行榜** 
+* **删除排行榜**
     * 设置自动制裁时相应游戏用户的Leaderboard数据是否也一同删除。
     * 选择后注册，则应用自动制裁时，排行榜中游戏用户的数据被删除，<font color="red">相应数据无法恢复，</font>因此应注意。

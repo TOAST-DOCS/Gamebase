@@ -6,7 +6,7 @@
 * Facebook iOS SDK updated (9.2.0)
 
 #### Bug Fixes
-* 아카이브 빌드 시 bitcode 관련 오류가 발생하는 이슈 수정
+* Fixed an issue where a bitcode error occurs when building an archive
 
 ### 2.21.1(2021.04.19) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.1/GamebaseSDK-iOS.zip)
 

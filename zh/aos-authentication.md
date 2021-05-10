@@ -1127,7 +1127,7 @@ public static void testRequestWithdraw() {
 ```
 ### Check TemporaryWithdrawal User
 
-如果用户登录使用预约退出功能的游戏，您需要调用**TCGBAuthToken.tcgbMember.temporaryWithdrawal**API，若返还的结果不为null，为有效的TemporaryWithdrawalInfo对象时，需要通知用户正在进行退出。
+如果用户登录使用预约退出功能的游戏，您需要调用**TCGBAuthToken.tcgbMember.temporaryWithdrawal**API，若返还的结果不为null，为有效的TemporaryWithdrawalInfo对象时，则需通知用户正在进行退出。
 
 **Example**
 
@@ -1195,7 +1195,7 @@ public static void testCancelWithdraw() {
 
 ### Withdraw Immediately
 
-无论预约退出时期的设置状态如何，立即退出。 
+无论预约退出时期的设置状态如何，都立即退出。 
 实际内置运行与Gamebase.withdraw() API相同。
 
 立即退出后无法取消，因此需要提示用户是否继续执行。

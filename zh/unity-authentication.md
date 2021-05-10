@@ -40,10 +40,10 @@ Gamebase默认支持访客登录。<br/>
     * 由于突发的网络问题，认证失败，错误代码为**SOCKET_ERROR(110)**或**SOCKET_RESPONSE_TIMEOUT(101)**。需要重新调用**Gamebase.LoginForLastLoggedInProvider()**，或稍后再试。
 * 禁用游戏用户
     * 错误代码为**BANNED_MEMBER(7)**时，为停止使用游戏用户，因此验证失败。
-    * 请使用**Gamebase.GetBanInfo()**确认制裁信息，并告知游戏用户无法进行游戏的原因。
-    * 初始化Gamebase 时将**GamebaseConfiguration.enablePopup**和**GamebaseConfiguration.enableBanPopup** 的值设置为**true**，Gamebase会自动弹出禁用窗口。
+    * 请使用**BanInfo.from(exception)**确认制裁信息，并告知游戏用户无法进行游戏的原因。
+    * 初始化Gamebase 时调用**GamebaseConfiguration.Builder.enablePopup(true)** 和**enableBanPopup(true)**，Gamebase会自动弹出禁用的窗口。
 * 其他错误
-    * 因为使用上一次的登录类型认证失败，请进行**'3. 使用指定的IdP进行认证**。
+    * 因为使用上一次的登录类型认证失败，请进行**2.使用指定的IdP进行认证**。
 
 #### 2. 使用指定的Idp进行认证
 
@@ -62,10 +62,10 @@ Gamebase默认支持访客登录。<br/>
     * 由于突发的网络问题，认证失败，错误代码为**SOCKET_ERROR(110)**或**SOCKET_RESPONSE_TIMEOUT(101)**，需要重新调用**Gamebase.Login(providerName, callback)**或稍后再试。
 * 禁用游戏用户
     * 错误代码为**BANNED_MEMBER(7)**时，为停止使用游戏用户，因此验证失败。
-    * 请使用**Gamebase.GetBanInfo()**确认制裁信息，并告知游戏用户无法进行游戏的原因。
-    * 初始化Gamebase 时将**GamebaseConfiguration.enablePopup** 和**GamebaseConfiguration.enableBanPopup**的值设置为**true**，Gamebase会自动弹出禁用窗口。
+    * 请使用**BanInfo.from(exception)**确认制裁信息，并告知游戏用户无法进行游戏的原因。
+    * 初始化Gamebase 时调用**GamebaseConfiguration.Builder.enablePopup(true)** 和 **enableBanPopup(true)**，Gamebase会自动弹出禁用窗口。
 * 其他错误
-    * 通知游戏用户发生了错误，并返回到游戏用户可以选择认证IdP类型的页面（通常是标题页面或登录页面）。
+	* 通知游戏用户发生了错误，并返回到游戏用户可以选择认证IdP类型的页面（通常是标题页面或登录页面）。
 
 ### Login as the Latest Login IdP
 
@@ -96,31 +96,24 @@ public void LoginForLastLoggedInProvider()
         }
         else
         {
+            // Check the error code and handle the error appropriately.
+            Debug.Log(string.Format("Login failed. error is {0}", error));
         	if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
             {
             	Debug.Log(string.Format("Retry LoginForLastLoggedInProvider or notify an error message to the user. : {0}", error.message));
             }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
             else
             {
                 Debug.Log("Try to login using a specifec IdP");
-                Login("ProviderName");
+                Gamebase.Login("ProviderName", (authToken, error) => {});
             }
-        }
-    });
-}
-
-public void Login(string providerName)
-{
-    Gamebase.Login(providerName, (authToken, error) =>
-    {
-        if (Gamebase.IsSuccess(error))
-        {
-            string userId = authToken.member.userId;
-            Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
-        }
-        else
-        {
-            Debug.Log(string.Format("Login failed. error is {0}", error));
         }
     });
 }
@@ -159,7 +152,19 @@ public void Login()
         }
         else
         {
+            // Check the error code and handle the error appropriately.
         	Debug.Log(string.Format("Login failed. error is {0}", error));
+            if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+            {
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
         }
     });
 }
@@ -188,19 +193,22 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 | --------    | ------------------------------- | ---------------- |
 | Google      | GamebaseAuthProvider.GOOGLE     | Android<br/>iOS<br/>Standalone |
 | Game Center | GamebaseAuthProvider.GAMECENTER | iOS |
+| Apple ID    | GamebaseAuthProvider.APPLEID    | iOS |
 | Facebook    | GamebaseAuthProvider.FACEBOOK   | Android<br/>iOS<br/>Standalone |
 | Payco       | GamebaseAuthProvider.PAYCO      | Android<br/>iOS<br/>Standalone |
 | Naver       | GamebaseAuthProvider.NAVER      | Android<br/>iOS |
 | Twitter     | GamebaseAuthProvider.TWITTER    | Android<br/>iOS |
-| Line        | GamebaseAuthProvider.LINE       | Android |
+| Line        | GamebaseAuthProvider.LINE       | Android<br/>iOS |
+| HANGAME     | GamebaseAuthProvider.HANGAME    | Android<br/>iOS |
+| WEIBO       | GamebaseAuthProvider.WEIBO      | Android<br/>iOS |
 
 
 > 个别IdP登录，需要一些特定信息。<br/>
 > 例如，要实现Facebook登录，您需要设置scope等。<br/>
 > 为了设置这些信息，提供了static void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) API。<br/>
 > 可以用dictionary格式把信息输入到参数additionalInfo中。
-当参数值为nil时，它将填充在NHN Cloud Console中注册的additionalInfo值。如果参数值存在，则覆盖在Console中注册的值。
-([在NHN Cloud控制台中设置additionalInfo](./oper-app/#authentication-information))<br/>
+当参数值为nil时，它将填充在TOAST Console中注册的additionalInfo值。如果参数值存在，则覆盖在Console中注册的值。
+([在TOAST控制台中设置additionalInfo](./oper-app/#authentication-information))<br/>
 > Stansalone支持通过WebViewAdapter登录，并且在WebView打开时，不会阻止在UI中输入的Event。
 
 
@@ -224,23 +232,52 @@ public void Login()
         }
         else
         {
+            // Check the error code and handle the error appropriately.
         	Debug.Log(string.Format("Login failed. error is {0}", error));
+            if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+            {
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
         }
     });
 }
 
-public void Login(string providerName, Dictionary<string, object> additionalInfo)
+public void LoginWithAdditionalInfo()
 {
-    Gamebase.Login(providerName, additionalInfo, (authToken, error) =>
+    var additionalInfo = new Dictionary<string, object>
     {
-        if (Gamebase.IsSuccess(error))
-        {
+        { "key", "value" }
+    };
+
+    Gamebase.Login(GamebaseAuthProvider.FACEBOOK, additionalInfo, (authToken, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {            
             string userId = authToken.member.userId;
             Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
         }
         else
         {
+            // Check the error code and handle the error appropriately.
             Debug.Log(string.Format("Login failed. error is {0}", error));
+            if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+            {
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
         }
     });
 }
@@ -254,7 +291,7 @@ public void Login(string providerName, Dictionary<string, object> additionalInfo
 
 | keyname | a use | 值类型 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | 设定IdP类型                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | 设定IdP类型                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）<br/>不用于Google认证 |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 输入登录Google后可以获取的认证码(Authorization Code)  |                                          |
 
@@ -301,14 +338,27 @@ public void LoginWithCredential()
     
     Gamebase.Login(credentialInfo, (authToken, error) =>
     {
-    	if (Gamebase.IsSuccess(error))
+    	if (Gamebase.IsSuccess(error) == true)
         {
-        	string userId = authToken.member.userId;
-        	Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
+            
+            string userId = authToken.member.userId;
+            Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
         }
         else
         {
+            // Check the error code and handle the error appropriately.
         	Debug.Log(string.Format("Login failed. error is {0}", error));
+            if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+            {
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
         }
     });
 }
@@ -500,7 +550,7 @@ public void AddMapping(string providerName)
 
 | keyname | a use | 值类型 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | 设定IdP类型                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | 设定IdP类型                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）<br/>不用于Google认证 |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 输入登录Google 后可以获取的认证码(Authorization Code) |                                          |
 
@@ -582,8 +632,8 @@ public void AddMappingForcibly(string idPName)
             // 首先调用addMapping API，尝试以已关联的账户映射，如下可获得ForcingMappingTicket。
             if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
             {
-                // 利用ForcingMappingTicket类的MakeForcingMappingTicket()方法获得ForcingMappingTicket实例。
-                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.MakeForcingMappingTicket(error);
+                // ForcingMappingTicket 클래스의 From() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
+                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
 
                 // 尝试强制映射。
                 Gamebase.AddMappingForcibly(idPName, forcingMappingTicket.forcingMappingKey, (authTokenForcibly, errorForcibly) =>
@@ -619,7 +669,7 @@ public void AddMappingForcibly(string idPName)
 
 | keyname | a use | 值类型 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | 设置IdP类型                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | 设置IdP类型                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置登录IdP后获得的验证信息（访问令牌）<br/>在Google验证时不使用 |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 设置登录Google后获得的验证信息(Authorization Code) |                                        |
 
@@ -658,8 +708,8 @@ public void AddMappingForcibly(Dictionary<string, object> credential)
             // 首先调用addMapping API并尝试以已关联的账户映射，如下可获得ForcingMappingTicket。
             if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
             {
-                // 利用ForcingMappingTicket类的MakeForcingMappingTicket()方法获得ForcingMappingTicket实例。
-                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.MakeForcingMappingTicket(error);
+                // ForcingMappingTicket 클래스의 From() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
+                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
 
                 // 尝试强制映射。
                 Gamebase.AddMappingForcibly(credential, forcingMappingTicket.forcingMappingKey, (authTokenForcibly, errorForcibly) =>
@@ -900,31 +950,12 @@ public void GetAuthProviderProfile(string providerName)
 }
 ```
 
-### Get Banned User Infomation
+### Get Banned User Information
 
-如果在Gamebase Console中登记为受到制裁的游戏用户，当该用户尝试登录时，
-可能会看到以下限制信息代码。您可以使用(**BANNED_MEMBER(7)**) 方法，确认制裁信息。
+Gamebase Console에 제재된 게임 유저로 등록될 경우,
+로그인을 시도하면 아래와 같은 이용 제한 정보 코드가 표시될 수 있습니다. **GamebaseResponse.Auth.BanInfo.from(GamebaseError error)** 메서드를 이용해 제재 정보를 확인할 수 있습니다.
 
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-
-```cs
-static GamebaseResponse.Auth.BanInfo GetBanInfo()
-```
-
-**示例**
-```cs
-public void GetBanInfo()
-{
-    GamebaseResponse.Auth.BanInfo banInfo = Gamebase.GetBanInfo();
-}
-```
+* BANNED_MEMBER(7)
 
 ## TransferAccount
 获得将访客账户转移至其他终端机的密钥的功能。
@@ -1035,7 +1066,10 @@ public void RenewTransferAccountManualIdPassword(string accountId, string accoun
 在账户转移成功的终端机中可继续使用获得TransferAccount的终端机的账户信息。
 
 > <font color="red">[注意]</font><br/>
-> 以访客登录的状态转移账户，访客账户将丢失。
+> * 若以访客登录的状态转移账户，访客账户将丢失。
+> * 如果连续输入不正确的id/password，则出现**AUTH_TRANSFERACCOUNT_BLOCK(3042)**错误，而暂时封禁账号转移。
+> 在上述情况下，根据以下示例，通过使用TransferAccountFailInfo值，可提示用户账号被封，而过多久才能再转移账号。
+
 
 **API**
 
@@ -1057,7 +1091,158 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
         }
         else
         {
-            // Transfering Account failed.
+            // Check the error code and handle the error appropriately.
+            if (error.code == GamebaseErrorCode.AUTH_TRANSFERACCOUNT_BLOCK)
+            {
+                GamebaseResponse.Auth.TransferAccountFailInfo transferAccountFailInfo = GamebaseResponse.Auth.TransferAccountFailInfo.From(error);
+                if (transferAccountFailInfo != null)
+                {
+                    // Transfering Account failed by entering the wrong id / pw multiple times.
+                    // You can tell when the account transfer is blocked by the TransferAccountFailInfo.
+                    string failId = transferAccountFailInfo.id;
+                    int failCount = transferAccountFailInfo.failCount;
+                    DateTime dateTime = new DateTime(transferAccountFailInfo.blockEndDate);
+                }
+            }
+        }
+    });
+}
+```
+
+## TemporaryWithdrawal
+
+是”预约退出”功能。
+由于请求了临时退出，不立即退出，预约时期过后退出。
+可以在控制台中修改预约时间。
+
+> <font color="red">[注意]</font><br/>
+>
+> 使用预约退出功能时，不应调用****Gamebase.Withdraw()** API。
+> 通过调用**Gamebase.Withdraw()** API，可立即退出。
+
+登录成功后，可通过调用AuthToken.member.temporaryWithdrawal判断是否是预约退出的用户。
+
+### Request TemporaryWithdrawal
+
+请求临时退出。
+在控制台中指定的预约时间过后，自动完成退出处理。
+
+**API**
+
+```cs
+public static void RequestWithdrawal(GamebaseCallback.GamebaseDelegate<GamebaseResponse.TemporaryWithdrawalInfo> callback)
+```
+
+**Example**
+
+```cs
+public void SampleRequestWithdrawal()
+{
+    Gamebase.TemporaryWithdrawal.RequestWithdrawal((data, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            long gracePeriodDate = data.gracePeriodDate;
+            Debug.Log(string.Format("RequestWithdrawal succeeded. The date when you can withdraw your withdrawal is {0}", gracePeriodDate));
+        }
+        else
+        {
+            Debug.Log(string.Format("RequestWithdrawal failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### Check TemporaryWithdrawal User
+
+如果用户登录使用预约退出功能的游戏，您需要调用AuthToken.member.temporaryWithdrawal，若返还的结果不为null，则需通知用户正在进行退出。
+
+**Example**
+
+```cs
+public void LoginSample()
+{
+    Gamebase.Login(GamebaseAuthProvider.XXX, (authToken, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            if(authToken.member.temporaryWithdrawal != null)
+            {
+                long gracePeriodDate = authToken.member.temporaryWithdrawal.gracePeriodDate;
+                Debug.Log(string.Format("User is under temporary withdrawa. GracePeriodDate : {0}", error));
+            }            
+            else
+            {
+                string userId = authToken.member.userId;            
+                Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
+            }
+        }
+        else
+        {
+            // Check the error code and handle the error appropriately.            
+            Debug.Log(string.Format("Login failed. error is {0}", error));
+        }
+    });
+}
+
+```
+
+### Cancel TemporaryWithdrawal
+
+取消退出请求。
+若预约退出时间到期，则无法退出。
+
+**API**
+
+```cs
+static void CancelWithdrawal(GamebaseCallback.ErrorDelegate callback)
+```
+**Example**
+
+```cs
+public void SampleCancelWithdrawal()
+{
+    Gamebase.TemporaryWithdrawal.CancelWithdrawal((error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            Debug.Log("CancelWithdrawal succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("CancelWithdrawal failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### Withdraw Immediately
+
+无论预约退出时期的设置状态如何，都立即退出。
+实际内置运行与Gamebase.Withdraw() API相同。
+
+立即退出后无法取消，因此需要提示用户是否继续执行。
+
+**API**
+
+```cs
+static void WithdrawImmediately(GamebaseCallback.ErrorDelegate callback)
+```
+
+**Example**
+
+```cs
+public void SampleWithdrawImmediately()
+{
+    Gamebase.TemporaryWithdrawal.WithdrawImmediately((error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            Debug.Log("WithdrawImmediately succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("SampleWithdrawImmediately failed. error:{0}", error));
         }
     });
 }
@@ -1072,6 +1257,7 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 |  | AUTH_USER_CANCELED | 3001 | 登录信息已被取消。 |
 |  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | 不支持的认证方式。 |
 |  | AUTH_NOT_EXIST_MEMBER | 3003 | 不存在或已退出（删除数据）的用户。 |
+|  | AUTH_EXTERNAL_LIBRARY_INITIALIZATION_ERROR | 3006 | 第三方认证库初始化失败 |
 |  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 外部认证库错误。 <br/> 请确认DetailCode和DetailMessage。  |
 |  | AUTH_ALREADY_IN_PROGRESS_ERROR | 3010 | 之前的验证流程未完成。
 | TransferKey | SAME\_REQUESTOR | 8 | 在同一台设备上使用了相同的TransferKey。 |
@@ -1080,7 +1266,7 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 |                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | 多次输入错误TransferAccount，账户转移功能锁定。 |
 |                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | TransferAccount的ID无效。 |
 |                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | TransferAccount的密码无效。 |
-|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | 未设置TransferAccount。<br/> 请先在NHN Cloud Gamebase Console中设置。 |
+|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | 未设置TransferAccount。<br/> 请先在TOAST Gamebase Console中设置。 |
 |                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccount不存在。请先获得TransferAccount。 |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccount已存在。 |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount已使用。 |
@@ -1104,6 +1290,8 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 |  | AUTH_REMOVE_MAPPING_LOGGED_IN\_IDP | 3403 | 当前登录的IdP。 |
 | Logout | AUTH_LOGOUT_FAILED | 3501 | 退出登录失败。 |
 | Withdrawal | AUTH_WITHDRAW_FAILED | 3601 | 退出（删除数据）失败。 |
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 用户已临时退出                    |
+|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 用户未临时退出                    |
 | Not Playable | AUTH_NOT_PLAYABLE | 3701 | 无法玩游戏的状态(维护或已下线等)。 |
 | Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | 未知错误(未定义的错误)。 |
 
@@ -1118,7 +1306,7 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
 
-if (Gamebase.IsSuccess(gamebaseError))
+if (Gamebase.IsSuccess(gamebaseError) == true)
 {
     // succeeded
 }
@@ -1126,13 +1314,15 @@ else
 {
     Debug.Log(string.Format("code:{0}, message:{1}", gamebaseError.code, gamebaseError.message));
 
-    GamebaseError moduleError = gamebaseError.error; // GamebaseError.error object from external module
-    if (null != moduleError)
+    if (gamebaseError.code == GamebaseErrorCode.AUTH_EXTERNAL_LIBRARY_ERROR) 
     {
-        int moduleErrorCode = moduleError.code;
-        string moduleErrorMessage = moduleError.message;
-
-        Debug.Log(string.Format("moduleErrorCode:{0}, moduleErrorMessage:{1}", moduleErrorCode, moduleErrorMessage));
+        GamebaseError moduleError = gamebaseError.error; // GamebaseError.error object from external module
+        if (null != moduleError)
+        {
+            int moduleErrorCode = moduleError.code;
+            string moduleErrorMessage = moduleError.message;        
+            Debug.Log(string.Format("moduleErrorCode:{0}, moduleErrorMessage:{1}", moduleErrorCode, moduleErrorMessage));
+        }
     }
 }
 ```

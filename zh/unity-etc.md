@@ -30,14 +30,28 @@ static string GetDeviceLanguageCode()
 
 ### Display Language
 
-* 可以将Gamebase提供的UI及SystemDialog显示的语言更改为设备上设置的语言以外的语言。
-* Gamebase显示客户端中包含的信息或从服务器接收的信息。
-* 如果设置DisplayLanguage，将以用户设置的语言代码（ISO-639）的语言显示信息。
-* 可以添加所需的语言。 以下是可以添加的语言代码。
+正如游戏维护弹窗显示语言，Gamebase也显示终端机设置的语言。
+
+但有些游戏允许通过额外选项更改终端机设置的语言。
+终端机设置的默认语言是英语，但需将游戏的显示语言转换为日语时，即使要将Gamebase的显示语言也转换为日语，Gamebase仍显示终端机设置的默认语言（en）。
+
+因此Gamebase向需以终端机设置语言之外的其他语言显示Gamebase消息的应用程序，提供”Display Language“功能。 
+
+Gamebase显示消息时，按照注册为Display Language的语言显示消息。
+在Display Language输入语言代码时，只能使用以下列表中（**Gamebase支持的语言代码种类**）指定的代码。
+
+> <font color="red">[注意]</font><br/>
+>
+> * 无论终端机设置的语言如何，只需要更改Gamebase显示的语言时使用Display Language Gamebase功能。
+> * Display Language Code是区分大小写的ISO-639形态的值。
+> 若按”EN"或"zh-cn"进行设置，可能出现问题。
+> * 若输入的Display Language Code值不在以下列表时（**Gamebase支持的语言代码种类**）, 则将Display Langauge Code自动设置为默认语言(en)。
 
 > [参考]
 >
-> Gamebase的客户信息仅包含英文(en)、韩文(ko)、日文(ja)。
+> * 因Gamebase客户端消息中仅包含英语（en）、韩语（ko）、日语（ja），即使是下列表指定的语言代码，指定英语（en）、韩语（ko）、日语（ja）之外的语言时，也将自动设置为默认语言(en)。
+> * 可以直接添加未注册在Gamebase客户端的语言集合。
+> 请参考**添加新语言集合**项目。 
 
 #### Gamebase支持的语言代码种类
 
@@ -61,11 +75,6 @@ static string GetDeviceLanguageCode()
 | zh-TW | Chinese-Traditional |
 
 相应的语言代码在`GamebaseDisplayLanguageCode`类中定义。
-
-> <font color="red">[注意]</font>
->
-> Gamebase支持的语言代码区分大小写。
-> 将其设置为'EN'或'zh-cn'可能会出现问题。
 
 ```cs
 namespace Toast.Gamebase
@@ -316,11 +325,6 @@ static string GetCountryCodeOfDevice()
 >
 > Editor on Mac、WebGL参考[Application.systemLanguage](https://docs.unity3d.com/ScriptReference/SystemLanguage.html)值返回国家代码。<br/>例如，为Application.systemLanguage == SystemLanguage.Korean时返回’KR’。
 
-
-
-
-
-
 **API**
 
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
@@ -333,26 +337,13 @@ static string GetCountryCodeOfDevice()
 public static string GetCountryCode()
 ```
 
-### Server Push
+### Gamebase Event Handler
 
-* 可以处理从Gamebase服务器发送到客户端设备的Server Push Message。
-* 在Gamebase客户端上添加ServerPushEvent Listener允许用户接收和处理信息，可以删除添加的ServerPushEvent Listener。
-
-
-#### Server Push类型
-目前，Gamebase支持的Server Push Type如下。
-
-* GamebaseServerPushType.APP_KICKOUT (= "appKickout")
-    * 如果在NHN Cloud Gamebase控制台的`Operation > Kickout`中注册ServerPush 消息，与Gamebase连接的所有客户端的将收到`APP_KICKOUT`消息。
-
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
-
-#### 注册ServerPushEvent
-可以在Gamebase Client中注册ServerPushEvent来处理Gamebase Console和 Gamebase服务器发出的Push事件。
+* Gamebase通过**GamebaseEventHandler**事件系统处理所有的事件。
+* GamebaseEventHandler通过以下API简单添加或删除Listener 。
 
 **API**
 
-Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
@@ -360,31 +351,397 @@ Supported Platforms
 <span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
-static void AddServerPushEvent(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent)
+public static void Gamebase.AddEventHandler(GamebaseCallback.DataDelegate<GamebaseResponse.Event.GamebaseEventMessage> eventHandler);
+public static void Gamebase.RemoveEventHandler(GamebaseCallback.DataDelegate<GamebaseResponse.Event.GamebaseEventMessage> eventHandler);
+public static void Gamebase.RemoveAllEventHandler();
+```
+
+**VO**
+
+```cs
+public class GamebaseEventMessage 
+{
+	// 显示Event种类。
+    // 分配GamebaseEventCategory类中定义的值。
+    public string category;
+
+    // 是可转换为符合category的VO的JSON String数据。
+     public string data;
+}
 ```
 
 **示例**
 
 ```cs
-public void AddServerPushEvent()
+public void AddEventHandlerSample()
 {
-    Gamebase.AddServerPushEvent(ServerPushEventHandler);
+    Gamebase.AddEventHandler(GamebaseObserverHandler);
 }
 
-private void ServerPushEventHandler(GamebaseResponse.SDK.ServerPushMessage message)
+private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
-    switch(message.type)
+    switch (message.category)
     {
-        case GamebaseServerPushType.APP_KICKOUT:
+        case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
+        case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
             {
-                // Logout
-                // Go to Main
+                GamebaseResponse.Event.GamebaseEventServerPushData serverPushData = GamebaseResponse.Event.GamebaseEventServerPushData.From(message.data);
+                if (serverPushData != null)
+                {
+                    CheckServerPush(message.category, serverPushData);
+                }
                 break;
             }
-        case GamebaseServerPushType.TRANSFER_KICKOUT:
+        case GamebaseEventCategory.OBSERVER_LAUNCHING:
             {
-                // Logout
-                // Go to Main
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                if(observerData != null)
+                {
+                    CheckLaunchingStatus(observerData);
+                }
+                break;
+            }
+        case GamebaseEventCategory.OBSERVER_NETWORK:
+            {
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                if (observerData != null)
+                {
+                    CheckNetwork(observerData);
+                }
+                break;
+            }
+        case GamebaseEventCategory.OBSERVER_HEARTBEAT:
+            {
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                if (observerData != null)
+                {
+                    CheckHeartbeat(observerData);
+                }
+                break;
+            }
+        case GamebaseEventCategory.OBSERVER_WEBVIEW:
+            {
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                if (observerData != null)
+                {
+                    CheckWebView(observerData);
+                }
+                break;
+            }
+        case GamebaseEventCategory.OBSERVER_INTROSPECT:
+            {
+                // Introspect error
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                int errorCode = observerData.code;
+                string errorMessage = observerData.message;
+                break;
+            }
+        case GamebaseEventCategory.PURCHASE_UPDATED:
+            {
+                GamebaseResponse.Event.PurchasableReceipt purchasableReceipt = GamebaseResponse.Event.PurchasableReceipt.From(message.data);
+                if (purchasableReceipt != null)
+                {
+                    // If the user got item by 'Promotion Code',
+                    // this event will be occurred.
+                }
+                break;
+            }
+        case GamebaseEventCategory.PUSH_RECEIVED_MESSAGE:
+            {
+                GamebaseResponse.Event.PushMessage pushMessage = GamebaseResponse.Event.PushMessage.From(message.data);
+                if (pushMessage != null)
+                {
+                    // When you received push message.
+                    
+                    Dictionary<string, object> extras = Toast.Gamebase.LitJson.JsonMapper.ToObject<Dictionary<string, object>>(pushMessage.extras);
+                    // There is 'isForeground' information.
+                    if (extras.ContainsKey("isForeground") == true)
+                    {
+                        bool isForeground = (bool)extras["isForeground"];
+                    }
+                }
+                break;
+            }
+        case GamebaseEventCategory.PUSH_CLICK_MESSAGE:
+            {
+                GamebaseResponse.Event.PushMessage pushMessage = GamebaseResponse.Event.PushMessage.From(message.data);
+                if (pushMessage != null)
+                {
+                    // When you clicked push message.
+                }
+                break;
+            }
+        case GamebaseEventCategory.PUSH_CLICK_ACTION:
+            {
+                GamebaseResponse.Event.PushAction pushAction = GamebaseResponse.Event.PushAction.From(message.data);
+                if (pushAction != null)
+                {
+                    // When you clicked action button by 'Rich Message'.
+                }
+                break;
+            }
+    }
+}
+```
+
+* Category在GamebaseEventCategory类中定义。
+* 事件大体分为ServerPush、Observer、Purchase、Push，并按照各Category, 按如下列表的方式将GamebaseEventMessage.data转换为VO。
+
+
+| Event种类 | GamebaseEventCategory | VO转换方法 | 备注 |
+| --------- | --------------------- | ----------- | --- |
+| ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
+| Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseResponse.Event.GamebaseEventObserverData.from(message.data) | \- |
+| Purchase - Promotion支付 | GamebaseEventCategory.PURCHASE_UPDATED | GamebaseResponse.Event.PurchasableReceipt.from(message.data) | \- |
+| Push - 接收消息 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | 通过**isForeground**值，可以确认是否是在Foreground状态接收的消息。|
+| Push - 点击消息 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | 不存在**isForeground**值。|
+| Push - 动态点击 | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | 点击RichMessage按键时启动。|
+
+#### Server Push
+
+* 是从Gamebase服务器向客户端终端机传送的消息。 
+* Gamebase支持的Server Push Type如下。
+	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
+    	* 如果在TOAST Gamebase控制台**Operation > Kickout**中注册 Kickout ServerPush消息，则从与Gamebase连接的所有客户端接收Kickout消息。
+    * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
+    	* 将Guest账号成功转移到其他终端机时，从转移之前的终端机接收Kickout消息。
+
+**示例**
+
+```cs
+public void AddEventHandlerSample()
+{
+    Gamebase.AddEventHandler(GamebaseObserverHandler);
+}
+
+private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+{
+    switch (message.category)
+    {
+        case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
+        case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
+            {
+                GamebaseResponse.Event.GamebaseEventServerPushData serverPushData = GamebaseResponse.Event.GamebaseEventServerPushData.From(message.data);
+                if (serverPushData != null)
+                {
+                    CheckServerPush(message.category, serverPushData);
+                }
+                break;
+            }
+        default:
+            {
+                break;
+            }
+    }
+}
+
+void CheckServerPush(string category, GamebaseResponse.Event.GamebaseEventServerPushData data)
+{
+    if (category.Equals(GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT) == true)
+    {
+        // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+        // Return to title and initialize Gamebase again.
+    }
+    else if (category.Equals(GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT) == true)
+    {
+        // If the user wants to move the guest account to another device,
+        // if the account transfer is successful,
+        // the login of the previous device is released,
+        // so go back to the title and try to log in again.
+    }
+}
+```
+
+#### Observer
+
+* 是处理Gamebase各状态的变动事件的系统。 
+* Gamebase支持的Observer Type如下。
+    * GamebaseEventCategory.OBSERVER_LAUNCHING
+    	* 当维护开始、结束时或发布新版本必须进行更新等Launching状态出现变动时启动。
+    	* GamebaseEventObserverData.code : 为LaunchingStatus值。 
+            * LaunchingStatus.IN_SERVICE: 200
+            * LaunchingStatus.RECOMMEND_UPDATE: 201
+            * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
+            * LaunchingStatus.REQUIRE_UPDATE: 300
+            * LaunchingStatus.BLOCKED_USER: 301
+            * LaunchingStatus.TERMINATED_SERVICE: 302
+            * LaunchingStatus.INSPECTING_SERVICE: 303
+            * LaunchingStatus.INSPECTING_ALL_SERVICES: 304
+            * LaunchingStatus.INTERNAL_SERVER_ERROR: 500
+    * GamebaseEventCategory.OBSERVER_HEARTBEAT
+    	* 当因已被退出或禁用、用户账号状态出现变化时启动。
+    	* GamebaseEventObserverData.code : 为GamebaseError值。
+            * GamebaseError.INVALID_MEMBER: 6
+            * GamebaseError.BANNED_MEMBER: 7
+    * GamebaseEventCategory.OBSERVER_NETWORK
+    	* 可以接收网络变动信息。 
+    	* 当网络断开或被连接时、从Wifi转为Cellular网络时启动。
+    	* GamebaseEventObserverData.code : 为NetworkManager值。
+            * NetworkManager.TYPE_NOT: -1
+            * NetworkManager.TYPE_MOBILE: 0
+            * NetworkManager.TYPE_WIFI: 1
+            * NetworkManager.TYPE_ANY: 2
+    * GamebaseEventCategory.OBSERVER_WEBVIEW
+        * 在Standalone中打开或关闭Webview时启动。 
+            * GamebaseWebViewEventType.OPENED: 1
+            * GamebaseWebViewEventType.CLOSED: 2
+    * GamebaseEventCategory.OBSERVER_INTROSPECT
+        * 登录Standalone/WebGL后延长session失败时启动。
+
+**VO**
+
+```cs
+public class GamebaseEventObserverData 
+{
+	// 为显示状态值的信息。
+    public int code;
+
+    // 为描述状态的message信息。 
+    public string message;
+
+    // 为用于附加信息的保留字段。
+    public string extras;
+}
+```
+
+**示例**
+
+```cs
+public void AddEventHandlerSample()
+{
+    Gamebase.AddEventHandler(GamebaseObserverHandler);
+}
+
+private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+{
+    switch (message.category)
+    {
+        case GamebaseEventCategory.OBSERVER_LAUNCHING:
+            {
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                if(observerData != null)
+                {
+                    CheckLaunchingStatus(observerData);
+                }
+                break;
+            }
+        case GamebaseEventCategory.OBSERVER_NETWORK:
+            {
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                if (observerData != null)
+                {
+                    CheckNetwork(observerData);
+                }
+                break;
+            }
+        case GamebaseEventCategory.OBSERVER_HEARTBEAT:
+            {
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                if (observerData != null)
+                {
+                    CheckHeartbeat(observerData);
+                }
+                break;
+            }
+        case GamebaseEventCategory.OBSERVER_WEBVIEW:
+            {
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                if (observerData != null)
+                {
+                    CheckWebView(observerData);
+                }
+                break;
+            }
+        case GamebaseEventCategory.OBSERVER_INTROSPECT:
+            {
+                // Introspect error
+                GamebaseResponse.Event.GamebaseEventObserverData observerData = GamebaseResponse.Event.GamebaseEventObserverData.From(message.data);
+                int errorCode = observerData.code;
+                string errorMessage = observerData.message;
+                break;
+            }
+        default:
+            {
+                break;
+            }
+    }
+}
+
+private void CheckLaunchingStatus(GamebaseResponse.Event.GamebaseEventObserverData observerData)
+{
+    switch (observerData.code)
+    {
+        case GamebaseLaunchingStatus.IN_SERVICE:
+            {
+                // Service is now normally provided.
+                break;
+            }
+        // ... 
+        case GamebaseLaunchingStatus.INTERNAL_SERVER_ERROR:
+            {
+                // Error in internal server.
+                break;
+            }
+    }
+}
+
+private void CheckNetwork(GamebaseResponse.Event.GamebaseEventObserverData observerData)
+{
+    switch ((GamebaseNetworkType)observerData.code)
+    {
+        case GamebaseNetworkType.TYPE_NOT:
+            {
+                // Network disconnected
+                break;
+            }
+        case GamebaseNetworkType.TYPE_MOBILE:
+            {
+                // Network connected
+                break;
+            }
+        case GamebaseNetworkType.TYPE_WIFI:
+            {
+                // Network connected
+                break;
+            }
+        case GamebaseNetworkType.TYPE_ANY:
+            {
+                // Network connected
+                break;
+            }
+    }
+}
+
+private void CheckHeartbeat(GamebaseResponse.Event.GamebaseEventObserverData observerData)
+{
+    switch (observerData.code)
+    {
+        case GamebaseErrorCode.INVALID_MEMBER:
+            {
+                // You should to write the code necessary in game. (End the session.)
+                break;
+            }
+        case GamebaseErrorCode.BANNED_MEMBER:
+            {
+                // The ban information can be found by using the GetBanInfo API.
+                // Show kickout message to user and need kickout in game.
+                break;
+            }
+    }
+}
+
+private void CheckWebView(GamebaseResponse.Event.GamebaseEventObserverData observerData)
+{
+    switch (observerData.code)
+    {
+        case GamebaseWebViewEventType.OPENED:
+            {
+                // Webview open
+                break;
+            }
+        case GamebaseWebViewEventType.CLOSED:
+            {
+                // Webview close
                 break;
             }
     }
@@ -392,178 +749,187 @@ private void ServerPushEventHandler(GamebaseResponse.SDK.ServerPushMessage messa
 ```
 
 
-#### 删除 ServerPushEvent
-可以删除在Gamebase注册的 ServerPushEvent。
+#### Purchase Updated
 
-**API**
+* 是通过输入Promotion代码获取商品时出现的事件。 
+* 可以获取结算票据信息。
 
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+**Example**
 
 ```cs
-static void RemoveServerPushEvent(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent)
-static void RemoveAllServerPushEvent()
-```
-
-**示例**
-
-```cs
-public void RemoveServerPushEvent(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ServerPushMessage> serverPushEvent)
+public void AddEventHandlerSample()
 {
-    Gamebase.RemoveServerPushEvent(serverPushEvent);
+    Gamebase.AddEventHandler(GamebaseObserverHandler);
 }
 
-public void RemoveAllServerPushEvent()
+private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
-    Gamebase.RemoveAllServerPushEvent();
-}
-```
-
-### Observer
-* Gamebase Observer允许接收并处理Gamebase的各种状态变动事件。
-* 状态变动事件：网络类型变动，Launching状态变动(由于维护等引起的状态变动)，Heartbeat信息变动(用户禁用而导致Heartbeat信息变动）等。
-
-
-#### Observer Type
-Gamebase目前支持的 Observer类型如下。
-
-* Network类型变动
-    * 可以接收网络变动信息。
-    * Type: GamebaseObserverType.NETWORK (= "network")
-    * Code: 请参考GamebaseNetworkType中声明的常量。
-        * GamebaseNetworkType.TYPE_NOT: -1
-        * GamebaseNetworkType.TYPE_MOBILE: 0
-        * GamebaseNetworkType.TYPE_WIFI: 1
-        * GamebaseNetworkType.TYPE_ANY: 2
-* Launching状态变动
-    * 当定期检查应用程序状态的Launching Status response有变动时发生触发。例如，有维护或推荐更新等产生的事件。
-    * Type: GamebaseObserverType.LAUNCHING (= "launching")
-    * Code: 请参考在GamebaseLaunchingStatus中声明的常量。
-        * GamebaseLaunchingStatus.IN_SERVICE: 200
-        * GamebaseLaunchingStatus.RECOMMEND_UPDATE: 201
-        * GamebaseLaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
-        * GamebaseLaunchingStatus.REQUIRE_UPDATE: 300
-        * GamebaseLaunchingStatus.BLOCKED_USER: 301
-        * GamebaseLaunchingStatus.TERMINATED_SERVICE: 302
-        * GamebaseLaunchingStatus.INSPECTING_SERVICE: 303
-        * GamebaseLaunchingStatus.INSPECTING_ALL_SERVICES: 304
-        * GamebaseLaunchingStatus.INTERNAL_SERVER_ERROR: 500
-* Heartbeat信息变动
-    * 定期与Gamebase服务器保持连接的Heartbeat response有变动时发生触发。例如，由用户禁用引起的事件。
-    * Type: GamebaseObserverType.HEARTBEAT (= "heartbeat")
-    * Code: 请参考GamebaseErrorCode中声明的常量。
-        * GamebaseErrorCode.INVALID_MEMBER: 6
-        * GamebaseErrorCode.BANNED_MEMBER: 7
-
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
-
-#### 注册Observer
-可以在Gamebase Client上注册Observer来处理各种状态变动事件。
-
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-
-```cs
-static void AddObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer)
-```
-
-**示例**
-
-```cs
-public void AddObserver()
-{
-    Gamebase.AddObserver(ObserverHandler);
-}
-
-private void ObserverHandler(GamebaseResponse.SDK.ObserverMessage observerMessage)
-{
-    switch (observerMessage.type)
+    switch (message.category)
     {
-        // Launching
-        case GamebaseObserverType.LAUNCHING:
+        case GamebaseEventCategory.PURCHASE_UPDATED:
             {
-                CheckLaunchingStatus(observerMessage.data);
+                GamebaseResponse.Event.PurchasableReceipt purchasableReceipt = GamebaseResponse.Event.PurchasableReceipt.From(message.data);
+                if (purchasableReceipt != null)
+                {
+                    // If the user got item by 'Promotion Code',
+                    // this event will be occurred.
+                }
                 break;
             }
-        // Heartbeat
-        case GamebaseObserverType.HEARTBEAT:
+        default:
             {
-                CheckHeartbeat(observerMessage.data);
-                break;
-            }
-        // Network
-        case GamebaseObserverType.NETWORK:
-            {
-                CheckNetworkStatus(observerMessage.data);
                 break;
             }
     }
 }
+```
 
-private void CheckLaunchingStatus(Dictionary<string, object> data)
+#### Push Received Message
+
+* 是Push消息到达时出现的事件。
+* 通过**isForeground**字段可区分是在Foreground状态还是在Backgroud状态接收的消息。 
+* 通过将extras字段转换为JSON，可获取发送Push时传送的自定义信息。
+
+**VO**
+
+```cs
+public class PushMessage 
 {
-    // Code : Refer to GamebaseLaunchingStatus.
-    int code        = (int)data["code"];
+	// 为消息的固有id。
+    public string id;
 
-    // Message
-    string message  = (string)data["message"];
-}
+    // 为Push消息的标题。
+    public string title;
+	
+    // 为Push消息的身体。
+    public string body;
 
-private void CheckHeartbeat(Dictionary<string, object> data)
-{
-    // Code : GamebaseErrorCode.INVALID_MEMBER, GamebaseErrorCode.BANNED_MEMBER
-    int code = (int)data["code"];
-}
-
-private void CheckNetworkStatus(Dictionary<string, object> data)
-{
-    // Code: Refer to GamebaseNetworkType.
-    int code        = (int)data["code"];
-
-    // Message
-    string message  = (string)data["message"];
+    // 通过转换为JSONObject，可确认所有的信息。
+    public string extras;
 }
 ```
 
-
-#### 删除 Observer
-可以删除在Gamebase中注册的Observer。
-
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+**Example**
 
 ```cs
-static void RemoveObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer)
-static void RemoveAllObserver()
+public void AddEventHandlerSample()
+{
+    Gamebase.AddEventHandler(GamebaseObserverHandler);
+}
+
+private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+{
+    switch (message.category)
+    {
+        case GamebaseEventCategory.PUSH_RECEIVED_MESSAGE:
+            {
+                GamebaseResponse.Event.PushMessage pushMessage = GamebaseResponse.Event.PushMessage.From(message.data);
+                if (pushMessage != null)
+                {
+                    // When you received push message.
+                    
+                    Dictionary<string, object> extras = Toast.Gamebase.LitJson.JsonMapper.ToObject<Dictionary<string, object>>(pushMessage.extras);
+                    // There is 'isForeground' information.
+                    if (extras.ContainsKey("isForeground") == true)
+                    {
+                        bool isForeground = (bool)extras["isForeground"];
+                    }
+                }
+                break;
+            }
+        default:
+            {
+                break;
+            }
+    }
+}
+```
+
+#### Push Click Message
+
+* 是点击”已接收的Push消息”时出现的事件。
+* 与”GamebaseEventCategory.PUSH_RECEIVED_MESSAGE”不同，不存在**isForeground** field。
+
+**Example**
+
+```cs
+public void AddEventHandlerSample()
+{
+    Gamebase.AddEventHandler(GamebaseObserverHandler);
+}
+
+private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+{
+    switch (message.category)
+    {
+        case GamebaseEventCategory.PUSH_CLICK_MESSAGE:
+            {
+                GamebaseResponse.Event.PushMessage pushMessage = GamebaseResponse.Event.PushMessage.From(message.data);
+                if (pushMessage != null)
+                {
+                    // When you clicked push message.
+                }
+                break;
+            }
+        default:
+            {
+                break;
+            }
+    }
+}
+```
+
+#### Push Click Action
+
+* 是通过Rich Message功能，点击生成的按钮时出现的事件。
+* actionType中存在以下值。
+	* "OPEN_APP"
+	* "OPEN_URL"
+	* "REPLY"
+	* "DISMISS"
+
+**VO**
+
+```cs
+class PushAction 
+{
+	// 为ButtonAction种类。 
+    public string actionType;
+
+	// 为PushMessage数据。
+    public PushMessage message;
+
+	// 为在Push控制台中输入的用户文本。
+    public string userText;
+}
 ```
 
 **示例**
 
 ```cs
-public void RemoveObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer)
+public void AddEventHandlerSample()
 {
-    Gamebase.RemoveObserver(observer);
+    Gamebase.AddEventHandler(GamebaseObserverHandler);
 }
 
-public void RemoveAllObserver()
+private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
-    Gamebase.RemoveAllObserver();
+    switch (message.category)
+    {    
+        case GamebaseEventCategory.PUSH_CLICK_ACTION:
+            {
+                GamebaseResponse.Event.PushAction pushAction = GamebaseResponse.Event.PushAction.From(message.data);
+                if (pushAction != null)
+                {
+                    // When you clicked action button by 'Rich Message'.
+                }
+                break;
+            }
+        default:
+            {
+                break;
+            }
+    }
 }
 ```
 
@@ -677,25 +1043,67 @@ Gamebase提供用于应对客户咨询的功能。
 
 > [TIP]
 >
-> 与NHN Cloud Contact商品关联使用，则可更加轻松方便地应对顾客咨询。
-> NHN Cloud Contact商品使用，请参考如下指南。
-> [NHN Cloud Online Contact Guide](/Contact%20Center/zh/online-contact-overview/)
+> 与TOAST Contact商品关联使用，则可更加轻松方便地应对顾客咨询。
+> TOAST Contact商品使用，请参考如下指南。
+> [TOAST Online Contact Guide](/Contact%20Center/zh/online-contact-overview/)
+
+#### Customer Service Type
+
+**Gamebase控制台 > App > InApp URL > Service center**当中选择如下3个客户服务类型中的一个。
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
+
+| Customer Service Type     | Required Login |
+| ------------------------- | -------------- |
+| Developer customer center | X              |
+| Gamebase customer center  | △             |
+| TOAST Online Contact      | O              |
+
+Gamebase SDK的客户服务API根据各类型使用如下URL。
+
+* 开发公司自建客户服务(Developer customer center)
+    * 在**客户服务URL**输入的URL
+* Gamebase提供的客户服务(Gamebase customer center)
+    * 登录前 : **不包含**用户信息的客户服务URL
+    * 登录后 : 包含用户信息的客户服务URL
+* TOAST组织服务(Online Contact)
+    * 登录前 : 出现NOT_LOGGED_IN(2)错误。
+    * 登录后 : 包含用户信息的客户服务URL
 
 #### Open Contact WebView
 
-可弹出Gamebase Console中输入的**客服中心URL**页面的功能。
+显示客户服务WebView。
+根据客户服务类型选择URL。
+可通过ContactConfiguration向URL传送附加信息。
 
-* 使用**Gamebase Console > App > InApp URL > Service center**中输入的值。
+**GamebaseRequest.Contact.Configuration**
+
+| Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
+| ------------- | ------------- | ---------------------------------- | ------------------ |
+| userName      | O             | string                             | 用户名(nickname)<br>**default** : null    |
+| additionalURL | O             | string                             | 添加在开发公司自建客户服务URL后面的附加URL<br>**default** : null    |
+| extraData     | O             | dictionary<string, string>         | 客户服务开始服务时传送开发公司所需的extra data。<br>**default** : null    |
 
 **API**
 
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
-static void OpenContact(GamebaseCallback.ErrorDelegate callback)
+static void OpenContact(GamebaseCallback.ErrorDelegate callback);
+static void OpenContact(GamebaseRequest.Contact.Configuration configuration, GamebaseCallback.ErrorDelegate callback);
 ```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | 未调用Gamebase.initialize。|
+| NOT\_LOGGED\_IN(2)                                  | 客户服务的类型为”TOAST OC”时，登录前已调用ContactConfiguration函数。 |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 客户服务URL不存在。<br>请确认Gamebase控制台的**客户服务URL**。|
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 识别用户的临时ticket发放失败 |
+| UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | 已显示客户服务WebView。|
 
 **Example**
 
@@ -706,19 +1114,85 @@ public void SampleOpenContact()
     {
         if (Gamebase.IsSuccess(error) == true)
         {
-            Debug.Log("OpenContact succeeded.");
+            // A user close the contact web view.
         }
-        else
+        else if (error.code == GamebaseErrorCode.UI_CONTACT_FAIL_INVALID_URL)  // 6911
         {
-            Debug.Log(string.Format("OpenContact failed. error:{0}", error));
+            // TODO: Gamebase Console Service Center URL is invalid.
+            // Please check the url field in the TOAST Gamebase Console.
+        } 
+        else if (error.code == GamebaseErrorCode.UI_CONTACT_FAIL_ANDROID_DUPLICATED_VIEW) // 6913
+        { 
+            // The customer center web view is already opened.
+        } 
+        else 
+        {
+            // An error occur when opening the contact web view.
+        }
+    });
+}
+```
 
-            if (error.code == GamebaseErrorCode.WEBVIEW_INVALID_URL)
-            {
-                // Gamebase Console Service Center URL is invalid.
-                // Please check the url field in the TOAST Gamebase Console.
-                var launchingInfo = Gamebase.Launching.GetLaunchingInformations();
-                Debug.Log(string.Format("csUrl:{0}", launchingInfo.launching.app.relatedUrls.csUrl));
-            }
+> <font color="red">[注意]</font>
+>
+> 联系客服时，您可能需要添附文件。
+> 为此，需要在运行时从用户获得有关相机拍照或Storage存储的权限。 
+>
+> Android用户
+>
+> * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
+>
+> * 如果您是Unity用户，请参考如下指南执行上述程序 。
+> [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
+>
+> iOS用户
+>
+> 请在* info.plist中设置”Privacy - Camera Usage Description”、”Privacy - Photo Library Usage Description”。
+
+#### Request Contact URL
+
+返还显示客户服务WebView时使用的URL。
+
+**API**
+
+```cs
+static void RequestContactURL(GamebaseCallback.GamebaseDelegate<string> callback);
+static void RequestContactURL(GamebaseRequest.Contact.Configuration configuration, GamebaseCallback.GamebaseDelegate<string> callback);
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | 未调用Gamebase.initialize。|
+| NOT\_LOGGED\_IN(2)                                  | 客户服务的类型为”TOAST OC”时，登录前已调用ContactConfiguration函数。|
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 客户服务URL不存在。<br>请确认Gamebase控制台的**客户服务URL**。|
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 识别用户的临时ticket发放失败 |
+
+**Example**
+
+``` cs
+public void SampleRequestContactURL()
+{
+    var configuration = new GamebaseRequest.Contact.Configuration()
+                            {
+                                userName = "User Name"
+                            };
+
+    Gamebase.Contact.RequestContactURL(configuration, (url, error) => 
+    {
+        if (Gamebase.IsSuccess(error) == true) 
+        {
+            // Open webview with 'contactUrl'
+        } 
+        else if (error.code == GamebaseErrorCode.UI_CONTACT_FAIL_INVALID_URL) // 6911
+        { 
+            // TODO: Gamebase Console Service Center URL is invalid.
+            // Please check the url field in the TOAST Gamebase Console.
+        } 
+        else 
+        {
+            // An error occur when requesting the contact web view url.
         }
     });
 }

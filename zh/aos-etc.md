@@ -348,7 +348,7 @@ void eventHandlerSample(Activity activity) {
 ```
 
 * Category在GamebaseEventCategory类中定义。
-* 事件大体分为ServerPush、Observer、Purchase、Push，并按照各Category, 按如下列表的方式，将GamebaseEventMessage.data转换为VO。
+* 事件大体分为ServerPush、Observer、Purchase、Push，并按照各Category, 按如下列表的方式将GamebaseEventMessage.data转换为VO。
 
 | Event种类 | GamebaseEventCategory | VO转换方法 | 备注 |
 | --------- | --------------------- | ----------- | --- |
@@ -357,11 +357,11 @@ void eventHandlerSample(Activity activity) {
 | Purchase - Promotion支付 | GamebaseEventCategory.PURCHASE_UPDATED | PurchasableReceipt.from(message.data) | \- |
 | Push - 接收消息 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | PushMessage.from(message.data) | 通过**isForeground**值，可以确认是否是在Foreground状态接收的消息。 |
 | Push - 点击消息 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | PushMessage.from(message.data) | 不存在**isForeground**值。 |
-| Push - 动态点击 | GamebaseEventCategory.PUSH_CLICK_ACTION | PushAction.from(message.data) | 如果点击RichMessage按键则运行。 |
+| Push - 动态点击 | GamebaseEventCategory.PUSH_CLICK_ACTION | PushAction.from(message.data) |  点击RichMessage按键时启动。|
 
 #### Server Push
 
-* 为从Gamebase服务器向客户端终端机传送的消息。 
+* 是从Gamebase服务器向客户端终端机传送的消息。 
 * Gamebase支持的Server Push Type如下。 
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
     	* 如果在TOAST Gamebase控制台**Operation > Kickout**中注册Kickout ServerPush消息，则从与Gamebase连接的所有客户端接收Kickout消息。
@@ -516,7 +516,7 @@ void processObserver(String category, GamebaseEventObserverData data) {
 
 #### Purchase Updated
 
-* 为输入Promotion代码获取商品时出现的事件。
+* 是输入Promotion代码获取商品时出现的事件。
 * 可以获取结算票据信息。
 
 **Example**
@@ -544,7 +544,7 @@ void eventHandlerSample(Activity activity) {
 
 #### Push Received Message
 
-* 为接收Push消息时出现的事件。
+* 是接收Push消息时出现的事件。
 * 通过**isForeground**字段可区分是在Foreground状态还是在Backgroud状态接收的消息。 
 * 通过将extras字段转换为JSON，可获取发送Push时传送的自定义信息。
 
@@ -600,7 +600,7 @@ void eventHandlerSample(Activity activity) {
 
 #### Push Click Message
 
-* 为点击”已接收的Push消息”时出现的事件。
+* 是点击”已接收的Push消息”时出现的事件。
 * 与”GamebaseEventCategory.PUSH_RECEIVED_MESSAGE”不同，不存在**isForeground** field。
 
 **Example**
@@ -627,7 +627,7 @@ void eventHandlerSample(Activity activity) {
 
 #### Push Click Action
 
-* 为通过Rich Message功能，点击生成按钮时出现的事件。
+* 是通过Rich Message功能，点击生成按钮时出现的事件。
 * actionType中存在以下值。
 	* "OPEN_APP"
 	* "OPEN_URL"
@@ -774,7 +774,7 @@ Gamebase提供用于应对客户咨询的功能。
 
 #### Customer Service Type
 
-从**Gamebase控制台 > App > InApp URL > Service center**当中选择如下3个客服中心类型中的一个。
+从**Gamebase控制台 > App > InApp URL > Service center**当中选择如下3个客户服务类型中的一个。
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
 
 | Customer Service Type     | Required Login |
@@ -783,21 +783,21 @@ Gamebase提供用于应对客户咨询的功能。
 | Gamebase customer center  | △             |
 | TOAST Online Contact      | O              |
 
-Gamebase SDK客服中心API根据类型使用如下URL。
+Gamebase SDK客户服务API根据类型使用如下URL。
 
-* 开发公司自建客服中心(Developer customer center)
-    * 在**客服中心URL**输入的URL。
-* Gamebase提供的客服中心(Gamebase customer center)
-    * 登录前 : **不包含**用户信息的客服中心URL。
-    * 登录后 : 包含用户信息的客服中心URL。
+* 开发公司自建客户服务(Developer customer center)
+    * 在**客户服务URL**输入的URL。
+* Gamebase提供的客户服务(Gamebase customer center)
+    * 登录前 : **不包含**用户信息的客户服务URL。
+    * 登录后 : 包含用户信息的客户服务URL。
 * TOAST组织服务(Online Contact)
     * 登录前 : 出现NOT_LOGGED_IN(2)错误。
-    * 登录后 : 包含用户信息的客服中心URL。
+    * 登录后 : 包含用户信息的客户服务URL。
 
 #### Open Contact WebView
 
-显示客服中心WebView。
-根据客服中心类型选择URL。 
+显示客户服务WebView。
+根据客户服务类型选择URL。 
 可通过ContactConfiguration向URL传送附加信息。 
 
 **ContactConfiguration**
@@ -807,8 +807,8 @@ Gamebase SDK客服中心API根据类型使用如下URL。
 | newBuilder() | **M** | 可通过newBuilder()函数生成ContactConfiguration对象。 |
 | build() | **M** | 将设置完的Builder转换为Configuration对象。 |
 | setUserName(String userName) | O | 需传送用户名(nickname)时使用。<br>是在TOAST组织服务(Online Contact)类型使用的字段。<br>**default** : null |
-| setAdditionalURL(String additionalURL) | O | 是添加在开发公司客服中心URL后面的附加URL。<br>只能在客服中心类型为”CUSTOM”时使用。<br>**default** : null |
-| setExtraData(Map<String, Object> extraData) | O | 客服中心服务开始后传送开发公司需要的extra data。<br>**default** : EmptyMap |
+| setAdditionalURL(String additionalURL) | O | 是添加在开发公司客户服务URL后面的附加URL。<br>只能在客户服务类型为”CUSTOM”时使用。<br>**default** : null |
+| setExtraData(Map<String, Object> extraData) | O | 客户服务开始服务后传送开发公司需要的extra data。<br>**default** : EmptyMap |
 
 **API**
 
@@ -827,11 +827,11 @@ Gamebase SDK客服中心API根据类型使用如下URL。
 | --- | --- |
 | Error Code | Description |
 | --- | --- |
-| NOT\_INITIALIZED(1)                                 | 未调用Gamebase.initialize |
-| NOT\_LOGGED\_IN(2)                                  | 客服中心类型为“TOAST OC“时，登录前已调用了ContactConfiguration函数。 |
-| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 客服中心URL不存在<br>  |
+| NOT\_INITIALIZED(1)                                 | 未调用Gamebase.initialize。|
+| NOT\_LOGGED\_IN(2)                                  | 客户服务类型为“TOAST OC“时，登录前已调用了ContactConfiguration函数。 |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 客户服务URL不存在。<br>  |
 | UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 识别用户的临时ticket发放失败 |
-| UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | 已显示客服中心WebView |
+| UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | 已显示客户服务WebView。|
 
 **Example**
 
@@ -855,16 +855,16 @@ Gamebase.Contact.openContact(activity, new GamebaseCallback() {
 
 > <font color="red">[注意]</font><br/>
 >
-> 向客服中心提问时可能需要添附文件。
+> 联系客户服务时，可能需要添附文件。
 > 为此，需要在运行时从用户获得有关相机拍照或Storage存储的权限。 
 > [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
 >
-> Unity用户请通过参考如下指南执行上述程序 。
+> 如果是Unity用户，请通过参考如下指南执行上述程序 。
 > [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
 
 #### Request Contact URL
 
-返还显示客服中心WebView时使用的URL。
+返还显示客户服务WebView时使用的URL。
 
 **API**
 
@@ -880,9 +880,9 @@ Gamebase.Contact.openContact(activity, new GamebaseCallback() {
 | Error Code | Description |
 | --- | --- |
 | NOT\_INITIALIZED(1)                                 | 未调用Gamebase.initialize。 |
-| NOT\_LOGGED\_IN(2)                                  | 客服中心的类型为'TOAST OC'时，登录前已调用了ContactConfiguration函数。 |
-| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 客服中心URL不存在。<br>请确认Gamebase控制台的**客服中心URL**。 |
-| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) |  识别用户的临时ticket发放失败。 |
+| NOT\_LOGGED\_IN(2)                                  | 客户服务类型为'TOAST OC'时，登录前已调用了ContactConfiguration函数。 |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 客户服务URL不存在。<br>请确认Gamebase控制台的**客户服务URL**。 |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) |  识别用户的临时ticket发放失败 |
 
 **Example**
 

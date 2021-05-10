@@ -120,7 +120,7 @@ launchingInformations API를 이용하면 초기화 이후에도 LaunchingInfo �
 ```objectivec
 #import <Gamebase/Gamebase.h>
 
-+ NSDictionary* launchingInfo = [TCGBLaunching laucnhingInformations];
+NSDictionary* launchingInfo = [TCGBLaunching launchingInformations];
 ```
 
 
