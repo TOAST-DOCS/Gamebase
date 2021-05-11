@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > Unity SDK使用指南 > 开始
+## Game > Gamebase > Unity SDK 사용 가이드 > 시작하기
 
 以下说明Gamebase Unity SDK使用环境和初始设置。
 
@@ -6,10 +6,10 @@
 
 > [参考] 
 >
-> Unity 支持版本
-> 
-> * Unity 2017.4.16 ~ 2019.3.9
-> * 若需要支持下级版本的Unity，请咨询[客服中心](https://toast.com/support/inquiry)。
+> Unity 지원 버전
+>
+> * 2017.4.16 ~ 2020.1.8
+> * 하위 버전의 Unity 지원이 필요하면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
 
 #### Android
 > <font color="red">[注意]</font>
@@ -77,11 +77,11 @@ Supported Platforms
 5. 选择所需平台。
     * Android
     * iOS
-6. 选择各平台使用的模块。
-    * 认证支持与Google等ID Provider(以下简称IDP)关联。
-    * Push支持FCM(Firebase), Tencent, APNS Push服务。
-    * Purchase支持使用NHN Cloud支付服务IAP(In-App Purchase)结算。
-7. 点击[Settings]按钮安装SDK。
+6. 각 플랫폼별 사용할 모듈을 선택합니다.
+    * Authentication은 Google 과 같은 ID Provider(이하 IDP)와의 연동을 지원합니다.
+    * Push는 FCM(Firebase), APNS Push 서비스를 지원합니다.
+    * Pruchase는 TOAST 결제 서비스인 IAP(In-App Purchase)를 사용하여 결제를 지원합니다.
+7. [Settings] 버튼 클릭해서 SDK를 설치합니다.
 
 #### 删除SDK
 1. 运行Menu > Tools > Gamebase > SDKSettings > Setting Tool。
@@ -159,12 +159,16 @@ Supported Platforms
 
 ### iOS Settings
 
-1. 在Unity项目里进行iOS Build。
-2. 在创建的XCode项目中添加设置。
+> <font color="red">[注意]</font>
+>
+> * Unity 2019.3以上注意事项
+>     * 将PROJECT > Unity-iPhone > Enable Bitcode设置为No。
+>     * 在TARGETS > UnityFramework中添加iOS SDK设置。
+>
 
-有关iOS SDK的设置，请参考下面的指南。
-
-* [iOS SDK设置链接](./ios-started)
+1. Unity 프로젝트에서 iOS 빌드를 진행합니다.
+2. 생성된 XCode 프로젝트에 설정을 추가 합니다.       
+    * [iOS SDK 설정 가이드](./ios-started)
 
 ## API Reference
 
@@ -182,3 +186,4 @@ Gamebase不再支持的API，进行Deprecate处理。
 		* ZZ : Hotfix
 
 * 至少5个月
+

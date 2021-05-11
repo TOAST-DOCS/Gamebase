@@ -1,8 +1,8 @@
 ## Game > Gamebase > Unity SDK使用指南 > 初始化
 
-如需使用Gamebase Unity SDK，必须先执行初始化。此外，还需在NHN Cloud控制台中注册APP ID、APP版本信息。
+如需使用Gamebase Unity SDK，必须先执行初始化。此外，还需在TOAST控制台中注册APP ID、APP版本信息。
 
-### Inspector Settings
+### GamebaseConfiguration 
 
 初始化所需的设置如下。
 
@@ -10,12 +10,12 @@
 | -------------------------- | ------------------ | -------------------------- |
 | appID | ALL | M |
 | appVersion | ALL | M |
-| isDebugMode | ALL | O |
+| storeCode | ALL | M |
 | displayLanguageCode | ALL | O |
 | enablePopup | ALL | O |
 | enableLaunchingStatusPopup | ALL | O |
 | enableBanPopup | ALL | O |
-| storeCode | ALL | M |
+| enableKickoutPopup | ALL | O |
 | fcmSenderId | Android | O |
 | useWebview | Standalone | O |
 
@@ -31,25 +31,18 @@
 
 [Console Guide](/Game/Gamebase/zh/oper-app/#client)
 
-#### 3. isDebugMode
+#### 3. storeCode
 
-Gamebase Debug的设置。
+为初始化TOAST应用程序内结算服务IAP(In-App Purchase)而所需的商店信息。
 
-* true：输出Gamebase的所有日志。
-* false：输出Warning、Error日志。
-* 默认值：false
-
-调试设置也可在控制台进行，优先考虑在控制台中设置的值。
-控制台设置方法请参考如下指南。
-
-* [控制台测试终端机设置](./oper-app/#test-device)
-* [控制台客户设置](./oper-app/#client)
-
-如需咨询Gamebase，请将该设置更改为true，并将日志发送到[客服中心 ](https://toast.com/support/inquiry)，我们会尽快回复。
-
-> <font color="red">[注意]</font><br/>
->
-> 如需**RELEASE** 游戏，务必将该设置更改为**false**。
+| Store       | Code | Description  |
+| ----------- | ---- | ------------ |
+| App Store | AS | only iOS |
+| Google Play | GG | only Android |
+| ONE Store | ONESTORE | only Android |
+| GALAXY Store | GALAXY | only Android |
+| Windows | WIN | only Unity Standalone |
+| Web | WEB | only Unity WebGL and JavaScript |
 
 #### 4. displayLanguageCode
 
@@ -79,15 +72,12 @@ LaunchingStatus请参考下面Launching段落下面的State, Code部分。
 
 * 默认值: true
 
-#### 8. storeCode
+#### 8. enableKickoutPopup
 
-为初始化NHN Cloud应用程序内结算服务IAP(In-App Purchase)而所需的商店信息。
+当Gamebase服务器接收到Kickout事件时，通过此设置可使用Gamebase默认弹窗。
 
-| Store       | Code | Description  |
-| ----------- | ---- | ------------ |
-| App Store | AS | only iOS |
-| Google Play | GG | only Android |
-| One Store | ONESTORE | only Android |
+* 默认值 : true
+
 
 #### 9. fcmSenderId
 
@@ -99,25 +89,19 @@ LaunchingStatus请参考下面Launching段落下面的State, Code部分。
 
 此设置为是否在Standalone平台上通过WebView进行登录的设置。
 
-#### 11. GamebaseUnitySDKSettings
-
-上述的设置可以在GamebaseUnitySDKSettings组件的Inspector中进行更改。
-
-![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_003_1.12.0.png)
-
-### Initialize with Inspector Settings
-
-Gamebase Unity SDK初始化方法如下。
-
-1. 创建空的游戏对象。
-2. 将GamebaseUnitySDKSettings.cs文件添加为已创建的游戏对象的组件。
-3. 在Inspector中输入初始化设置。
-4. 调用Gamebase.Initialize(callback) API。
+### Debug Mode
+* Gamebase仅显示警告(warning)和错误日志。 
+* 如果要打开系统日志进行开发，请调用**Gamebase.SetDebugMode(true)**。
 
 > <font color="red">[注意]</font><br/>
 >
-> 请注意，如删除了已创建的游戏对象，则在调用Android, iOS API 后无法接收回调。 <br/>
-> 如被意外删除，则显示提示"Do not destroy this gameObject in order to receive callback."。
+> 当**发布**游戏时，请务必从源代码中删除SetDebugMode调用，或者将参数更改为false之后再打包。
+
+可在Console中设置Debug，而在Console中设置的值的优先权最高。
+关于Console的设置方法，请参考如下指南。
+
+* [Console测试终端机的设置](./oper-app/#test-device)
+* [Console Client的设置](./oper-app/#client)
 
 **API**
 
@@ -129,7 +113,33 @@ Supported Platforms
 <span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
-static void Initialize(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Launching.LaunchingInfo> callback)
+static void SetDebugMode(bool isDebugMode)
+```
+
+**Example**
+
+```cs
+public void SetDebugModeSample(bool isDebugMode)
+{
+    Gamebase.SetDebugMode(isDebugMode);
+}
+```
+
+### Initialize
+
+需要初始化SDK。
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void Initialize(GamebaseRequest.GamebaseConfiguration configuration, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Launching.LaunchingInfo> callback)
 ```
 
 **示例**
@@ -139,37 +149,94 @@ public class SampleInitialization
 {
     public void Initialize()
     {
-        Gamebase.Initialize((launchingInfo, error) =>
-        {
-            if (Gamebase.IsSuccess(error))
-            {
-                Debug.Log("Gamebase initialization is succeeded.");
+        /**
+         * Show gamebase debug message.
+         * set 'false' when build RELEASE.
+         */
+        Gamebase.SetDebugMode(true);
 
-                if (IsPlayable(launchingInfo.launching.status.code))
+        /**
+         * Gamebase Configuration.
+         */
+        var configuration = new GamebaseRequest.GamebaseConfiguration();
+        configuration.appID = "appID";
+        configuration.appVersion = "appVersion;"
+        configuration.displayLanguageCode = GamebaseDisplayLanguageCode.English;
+    #if UNITY_ANDROID
+        configuration.storeCode = GamebaseStoreCode.GOOGLE;
+    #elif UNITY_IOS
+        configuration.storeCode = GamebaseStoreCode.APPSTORE;
+    #elif UNITY_WEBGL
+        configuration.storeCode = GamebaseStoreCode.WEBGL;
+    #elif UNITY_STANDALONE
+        configuration.storeCode = GamebaseStoreCode.WINDOWS;
+    #else
+        configuration.storeCode = GamebaseStoreCode.WINDOWS;
+    #endif
+
+        /**
+         * Gamebase Initialize.
+         */
+        Gamebase.Initialize(configuration, (launchingInfo, error) =>
+        {
+            if (Gamebase.IsSuccess(error) == true)
+            {
+                Debug.Log("Initialization succeeded.");
+
+                //Following notices are registered in the Gamebase Console
+                var notice = launchingInfo.launching.notice;
+                if (notice != null)
                 {
-                    Debug.Log("Playable");
+                    if (string.IsNullOrEmpty(notice.message) == false)
+                    {
+                        Debug.Log(string.Format("title:{0}", notice.title));
+                        Debug.Log(string.Format("message:{0}", notice.message));
+                        Debug.Log(string.Format("url:{0}", notice.url));
+                    }
+                }
+        
+                //Status information of game app version set in the Gamebase Unity SDK initialization.
+                var status = launchingInfo.launching.status;
+        
+                // Game status code (e.g. Under maintenance, Update is required, Service has been terminated)
+                // refer to GamebaseLaunchingStatus
+                if (status.code == GamebaseLaunchingStatus.IN_SERVICE)
+                {
+                    // Service is now normally provided.
                 }
                 else
                 {
-                    if (launchingInfo.launching.status.code == GamebaseLaunchingStatus.REQUIRE_UPDATE)
+                    switch (status.code)
                     {
-                        Debug.Log(string.Format("message:{0}", launchingInfo.launching.status.message));
+                        case GamebaseLaunchingStatus.RECOMMEND_UPDATE:
+                        {
+                            // Update is recommended.
+                            break;
+                        }
+                        // ... 
+                        case GamebaseLaunchingStatus.INTERNAL_SERVER_ERROR:
+                        {
+                            // Error in internal server.
+                            break;
+                        }
                     }
                 }
             }
             else
             {
-                Debug.Log(string.Format("Gamebase initialization is failed. error is {0}", error));
+                // Check the error code and handle the error appropriately.
+                Debug.Log(string.Format("Initialization failed. error is {0}", error));
+
+                if (error.code == GamebaseErrorCode.LAUNCHING_UNREGISTERED_CLIENT)
+                {
+                    GamebaseResponse.Launching.UpdateInfo updateInfo = GamebaseResponse.Launching.UpdateInfo.From(error);
+                    if (updateInfo != null)
+                    {
+                        // Update is require.
+                    }
+                }
             }
         });
-    }
-
-    private bool IsPlayable(int status)
-    {
-        if (status >= 200 && status < 300)
-            return true;
-
-        return false;
     }
 }
 ```
@@ -193,38 +260,40 @@ Gamebase Unity SDK初始化设置是输入的APP版本的游戏状态信息。
 有关状态代码，请参考下表。
 
 | 状态                      | Code | 描述                                    |
-| --------------------------- | ----------- | ---------------------------------------- |
-| IN_SERVICE | 200 | 正常服务中 |
-| RECOMMEND_UPDATE | 201 | 推荐更新 |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202         | 维护期间该服务不可用，但如果登记为测试设备，则无论维护如何，都可以连接和测试该服务。 |
+| --------------------------- | ---- | ---------------------------------------- |
+| IN_SERVICE                  | 200  | 正常服务中                             |
+| RECOMMEND_UPDATE            | 201  | 推荐更新                                 |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202  | 维护期间该服务不可用，但如果登记为测试设备，则无论维护如何，都可以连接和测试该服务。|
 | IN_TEST                     | 203  | 正在测试 |
 | IN_REVIEW                   | 204  | 正在审查 |
-| REQUIRE_UPDATE | 300 | 强制更新 |
-| BLOCKED_USER                | 301         | 访问权限已被禁用的用户。 |
-| TERMINATED_SERVICE          | 302         | 终止服务                                   |
-| INSPECTING_SERVICE          | 303         | 服务正在维护中                                 |
-| INSPECTING_ALL_SERVICES     | 304         | 所有服务正在维护中                              |
-| INTERNAL_SERVER_ERROR       | 500         | 内部服务器出错                                 |
+| IN_BETA                     | 205  | Beta服务器环境  |
+| REQUIRE_UPDATE              | 300  | 强制更新                                |
+| BLOCKED_USER                | 301  | 访问权限已被禁用的用户。|
+| TERMINATED_SERVICE          | 302  | 终止服务                                  |
+| INSPECTING_SERVICE          | 303  | 服务正在维护中                             |
+| INSPECTING_ALL_SERVICES     | 304  | 所有服务正在维护中                              |
+| INTERNAL_SERVER_ERROR       | 500  | 内部服务器错误                                 |
 
-[Console Guide](/Game/Gamebase/zh/oper-app/#app)
-
+[Game > Gamebase > 控制台使用指南> APP > App](./oper-app/#app)
 
 **1.2 App**
 
 Gamebase Console中注册的APP信息。
 
 * accessInfo
-    * serverAddress：服务器地址
-    * csInfo：客服中心信息
+    * serverAddress: 服务器地址
+* customerService
+    * accessInfo : 客服中心信息
+    * type : 客服中心的类型
+    * url : 客服中心URL
 * relatedUrls
-    * termsUrl：使用条款
-    * personalInfoCollectionUrl：隐私条款
-    * punishRuleUrl: 禁用规定
-    * csUrl : 客服中心
+    * termsUrl: 使用条款
+    * personalInfoCollectionUrl: 同意个人信息
+    * punishRuleUrl: 停止使用规定
 * install: 安装URL
-* idP: 认证信息
+* idP: 验证信息
 
-[Console Guide](/Game/Gamebase/zh/oper-app/#client)
+[Game > Gamebase > 控制台使用指南> APP > Client](./oper-app/#client)
 
 **1.3维护**
 
@@ -236,7 +305,7 @@ Gamebase Console中注册的APP信息。
 * endDate：结束时间
 * message：维护理由
 
-[Console Guide](/Game/Gamebase/zh/oper-operation/#maintenance)
+[Game > Gamebase > 控制台使用指南 > 运营 > Maintenance](./oper-operation/#maintenance)
 
 **1.4 公告**
 
@@ -246,11 +315,11 @@ Gamebase Console中注册的APP信息。
 * title：标题
 * url：维护URL
 
-[Console Guide](/Game/Gamebase/zh/oper-operation/#notice)
+[Game > Gamebase > 控制台使用指南 > 运营 > Notice](./oper-operation/#notice)
 
 #### 2. tcProduct
 
-与Gamebase关联的NHN Cloud服务的appKey。
+与Gamebase关联的TOAST服务的appKey。
 
 * gamebase
 * tcLaunching
@@ -259,22 +328,22 @@ Gamebase Console中注册的APP信息。
 
 #### 3. tcIap
 
-在NHN Cloud Console中登记的IAP商店信息。
+在TOAST Console中登记的IAP商店信息。
 
 * id: App ID
 * name: App Name
 * storeCode: Store Code
  
-[Console Guide](/Game/Gamebase/zh/oper-purchase/)
+[Game > Gamebase > 控制台使用指南 > IAP](./oper-purchase/)
 
 #### 4. tcLaunching
 
-是NHN Cloud Launching Console中用户输入的信息
+是TOAST Launching Console中用户输入的信息
 
 * 用户输入的值传至JSON string。
-* NHN Cloud Launching具体设置请参考如下指南。
+* TOAST Launching具体设置请参考如下指南。
  
-[Console Guide](/Game/Gamebase/zh/oper-management/#config)
+[Game > Gamebase > 操控台使用指南 > 管理 > Config](./oper-management/#config)
 
 ### Get Launching Information
 
@@ -299,6 +368,89 @@ static GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
 public GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
 {
     return Gamebase.Launching.GetLaunchingInformations();
+}
+```
+
+### Handling Unregistered Version
+ 	 
+初始化未在Gamebase控制台中注册的GameClientVersion时，将出现**LAUNCHING_UNREGISTERED_CLIENT(2004)**错误。
+如果是enablePopup(true), enableLaunchingStatusPopup(true)状态，则显示强制更新弹窗，并可跳转到商店。
+若不使用Gamebase弹窗，则可从GamebaseError对象获取商店URL等的Update信息。 
+
+**VO**
+
+```cs
+public class UpdateInfo {
+	// 是可以下载最新版本的”安装商店的URL”。
+	string installUrl;
+    // 按用户终端机设置的语言向用户显示信息。
+    // 语言为”ko”时，提示以下消息。
+    // ”是不支持的版本。请更新至最新版本。”
+    string message;
+}
+```
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+GamebaseResponse.Launching.UpdateInfo GamebaseResponse.Launching.UpdateInfo.From(GamebaseError error);
+```
+
+**Example**
+
+```cs
+public class SampleInitialization
+{
+    public void Initialize()
+    {
+        var configuration = new GamebaseRequest.GamebaseConfiguration();
+        configuration.appID = "appID";
+        configuration.appVersion = "appVersion;"
+        configuration.displayLanguageCode = GamebaseDisplayLanguageCode.English;
+    #if UNITY_ANDROID
+        configuration.storeCode = GamebaseStoreCode.GOOGLE;
+    #elif UNITY_IOS
+        configuration.storeCode = GamebaseStoreCode.APPSTORE;
+    #elif UNITY_WEBGL
+        configuration.storeCode = GamebaseStoreCode.WEBGL;
+    #elif UNITY_STANDALONE
+        configuration.storeCode = GamebaseStoreCode.WINDOWS;
+    #else
+        configuration.storeCode = GamebaseStoreCode.WINDOWS;
+    #endif
+
+        Gamebase.Initialize(configuration, (launchingInfo, error) =>
+        {
+            if (Gamebase.IsSuccess(error) == true)
+            {
+                // Gamebase initialization succeeded.
+            }
+            else
+            {
+                // Check the error code and handle the error appropriately.
+                Debug.Log(string.Format("Initialization failed. error is {0}", error));
+
+                if (error.code == GamebaseErrorCode.LAUNCHING_UNREGISTERED_CLIENT)
+                {
+                    GamebaseResponse.Launching.UpdateInfo updateInfo = GamebaseResponse.Launching.UpdateInfo.From(error);
+                    if (updateInfo != null)
+                    {
+                        // Unregistered game client version.
+                        // Open market url to update application.
+                        string installUrl = updateInfo.installUrl; // Market URL.
+                        string message updateInfo.message; // Message from launching server.
+                    }
+                }
+            }
+        });
+    }
 }
 ```
 

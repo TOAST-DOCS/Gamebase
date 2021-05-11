@@ -96,9 +96,9 @@ SDK调用与登录相关的API时会添加历史记录。
 * **IdP**: Mapping IdP信息
 * **日期**: IdP ID和 Gamebase ID Mapping 映射操作的时间
 * **Type**: Mapping 操作的详细信息
-  - AAM: 添加 Mapping 
-  - ARM: 删除 Mapping 
-  - AFR: 强制删除 Mapping 
+  - AAM: 添加 Mapping
+  - ARM: 删除 Mapping
+  - AFR: 强制删除 Mapping
   - GMG: 创建guest帐户
   - OMG: 创建IdP 账户
 
@@ -143,16 +143,8 @@ SDK调用与登录相关的API时会添加历史记录。
 您可以输入要查看的日期，可以查看的最长日期为一个月（30天）。
 
 ### Withdraw History
-
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
+![image alt](https://static.toastoven.net/prod_gamebase/gamebase_member_11_202006.png)
 如果查询的用户是退出的用户，则会显示退出记录。
-只有在您查询退出用户时才会显示此菜单，可以查询用户退出的方式。
-
-
-### Withdraw History
-![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
-검색한 사용자가 탈퇴한 사용자라면 탈퇴 이력을 보여줍니다.
-이 메뉴는 탈퇴한 게임 유저를 검색할 경우에만 나타나며 게임 유저의 탈퇴 경로를 확인할 수 있습니다.
 
 ## Transfer account
 
@@ -174,8 +166,9 @@ SDK调用与登录相关的API时会添加历史记录。
 默认选择最近一次发放的密钥，若选择其他密钥，可查询所选密钥的历史。
 
 ### 重新发放终端机转移
-![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_TransferAccount_Renewal1_1.0.png)
 单击**重新发放**按钮，可重新发放新的终端机转移密钥。若重新发放，之前发放的密钥无法继续使用。
+![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_TransferAccount_Renewal1_1.0.png)
+
 - **重新发放ID、密码**: ID、密码全部重新发放。
 - **重新发放密码**：ID仍使用之前发放的ID，仅重新发放密码。
 

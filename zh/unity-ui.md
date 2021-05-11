@@ -1,5 +1,105 @@
 ## Game > Gamebase > Unity SDK使用指南 > UI
 
+## ImageNotice
+
+通过在控制台中注册图片，可以向用户显示公告。
+
+![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-001.png)
+
+### Show ImageNotices
+
+将图片通知显示在页面上。
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+
+```cs
+static void ShowImageNotices(GamebaseRequest.ImageNotice.Configuration configuration, GamebaseCallback.ErrorDelegate closeCallback, GamebaseCallback.GamebaseDelegate<string> eventCallback = null)
+```
+
+**Example**
+
+```cs
+public void ShowImageNotices()
+{
+    Gamebase.ImageNotice.ShowImageNotices(
+        null,
+        (error) =>
+        {
+            // Called when the entire imageNotice is closed.
+            ...
+            
+        },
+        (scheme, error) =>
+        {
+            // Called when custom event occurred.
+            ...
+        });        
+}
+```
+
+### Custom ImageNotices
+
+将自定义图片通知显示在页面上。
+通过使用GamebaseRequest.ImageNotice.Configuration可创建自定义图片通知。
+
+**Example**
+
+```cs
+public void ShowImageNotices(int colorR = 0 , int colorG = 0, int colorB = 0, int colorA = 128, long timeOut = 5000)
+{
+    GamebaseRequest.ImageNotice.Configuration configuration = new GamebaseRequest.ImageNotice.Configuration();
+    configuration.colorR = colorR;
+    configuration.colorG = colorG;
+    configuration.colorB = colorB;
+    configuration.colorA = colorA;
+    configuration.timeOut = timeOut;
+
+    Gamebase.ImageNotice.ShowImageNotices(
+        configuration,
+        (error) =>
+        {
+            // Called when the entire imageNotice is closed.
+            ...
+            
+        },
+        (scheme, error) =>
+        {
+            // Called when custom event occurred.
+            ...
+        });        
+}
+```
+
+#### GamebaseRequest.ImageNotice.Configuration
+
+| Parameter                              | Values                                   | Description        |
+| -------------------------------------- | ---------------------------------------- | ------------------ |
+| colorR                   | 0~255                                    | Navigation Bar 颜色R            |
+| colorG                   | 0~255                                    | Navigation Bar 颜色G                |
+| colorB                   | 0~255                                    | Navigation Bar 颜色B                |
+| colorA                   | 0~255                                    | Navigation Bar 颜色Alpha                |
+| timeoutMS                | long        | 图片通知的最大加载时间(单位 : millisecond)<br/>**default** : 5000                     |
+
+### Close ImageNotices
+
+通过调用closeImageNotices API，可以关闭当前显示的所有图片通知。
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+
+```cs
+static void CloseImageNotices()
+```
+
 ## Webview
 
 ### Show WebView
@@ -26,7 +126,7 @@ Supported Platforms
 static void ShowWebView(string url, GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
 ```
 
-> Stansalone支持通过WebViewAdapter登录，并且在WebView打开时，不会阻止在UI中输入的Event。
+> Standalone에서는 WebViewAdapter를 통해서 WebView를 지원하며 WebView가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
 
 **示例**
 ```cs
@@ -63,20 +163,28 @@ public void ShowWebView()
 
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | string                                   | WebView的标题                 |
-| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 不明 |
-|                          | GamebaseScreenOrientation.PORTRAIT       | 纵向模式                       |
+| title                    | string                                   | WebView标题                 |
+| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 미지정 |
+|                          | GamebaseScreenOrientation.PORTRAIT       | 纵向模式                      |
 |                          | GamebaseScreenOrientation.LANDSCAPE      | 横向模式                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 横向旋转180度              |
-| colorR                   | 0~255                                    | 导航栏颜色Alpha            |
-| colorG                   | 0~255                                    | 导航栏颜色R                 |
-| colorB                   | 0~255                                    | 导航栏颜色G                |
-| colorA                   | 0~255                                    | 导航栏颜色B                |
+|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 将横向模式旋转180度             |
+| contentMode              | GamebaseWebViewContentMode.RECOMMENDED        | 현재 플랫폼 추천 브라우저    |
+|                          | GamebaseWebViewContentMode.MOBILE             | 모바일 브라우저            |
+|                          | GamebaseWebViewContentMode.DESKTOP            | 데스크탑 브라우저          |
+| colorR                   | 0~255                                    | 내비게이션 바 색상 R            |
+| colorG                   | 0~255                                    | 내비게이션 바 색상 G                |
+| colorB                   | 0~255                                    | 내비게이션 바 색상 B                |
+| colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha                |
 | buttonVisible            | true or false                            | 返回按钮有效或无效          |
 | barHeight                | height                                   | 导航栏高度                 |
-| backButtonImageResource  | ID of resource                           | 返回按钮图标                |
-| closeButtonImageResource | ID of resource | 关闭按钮图标 |
-| url | "http://" or "https://" or "file://" | Web URL |
+| backButtonImageResource  | ID of resource                           | 返回按钮的图标              |
+| closeButtonImageResource | ID of resource | 关闭按钮的图标 |
+| url | "http://" or "https://" or "file://" | 웹 URL |
+
+> [TIP]
+>
+> iPadOS 13以上WebView基本上是桌面模式。
+> 通过contentMode =”GamebaseWebViewContentMode.MOBILE”，可以转换为移动模式。
 
 #### Predefined Custom Scheme
 
@@ -218,6 +326,7 @@ public void ShowToast(string message, GamebaseUIToastType type)
 
 | Error              | Error Code | Description                 |
 | ------------------ | ---------- | --------------------------- |
+| UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | 이미지 공지 표시 중 타임아웃이 발생했습니다. |
 | UI\_UNKNOWN\_ERROR | 6999       | 未知错误(未定义的错误)。 |
 
 * 所有错误代码，请参考以下文档。

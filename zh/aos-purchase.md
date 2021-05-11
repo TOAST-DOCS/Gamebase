@@ -23,7 +23,7 @@ Gamebase.initialize(activity, configuration, callback);
 
 ### Purchase Flow
 
-道具购买程序大体分为**结算Flow**、**[Consume Flow](./aos-purchase/#consume-flow)**及**[Retry Transaction Flow](./aos-purchase/#retry-transaction-flow)**。
+购买道具的程序大体分为**结算Flow**、**[Consume Flow](./aos-purchase/#consume-flow)**及**[Retry Transaction Flow](./aos-purchase/#retry-transaction-flow)**。
 请按以下顺序实现**结算Flow**。
 
 ![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
@@ -39,17 +39,17 @@ Gamebase.initialize(activity, configuration, callback);
 
 > <font color="red">[注意]</font><br/>
 >
-> 为了防止重复提供道具，必须要求游戏服务器确认是否重复提供道具。
+> 为了防止重复提供道具，必须通过游戏服务器确认是否重复提供道具。
 >
 
 ![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
 
 1. 游戏客户端向游戏服务器请求consume（消费）。
     * 传送UserID、gamebaseProductId、paymentSeq、purchaseToken。
-2. 游戏服务器在游戏DB中查询是否存在以同样的paymentSeq提供道具的历史记录。
-    * 2-1. 若存在未提供道具，则向UserID提供以gamebaseProductId购买的道具。
-    * 2-2. 提供后在游戏DB保存UserID, gamebaseProductId, paymentSeq, purchaseToken，必要时进行‘’支付再处理”或防止重复提供。
-3. 游戏服务器通过调用Gamebase服务器的consume（消费）API提供道具。此时无需考虑是否已经提供道具。
+2. 游戏服务器查看在游戏DB中是否存在以同样的paymentSeq提供道具的历史记录。
+    * 2-1. 若存在未提供道具，则需向UserID提供以gamebaseProductId购买的道具。
+    * 2-2. 提供道具后在游戏DB保存UserID、gamebaseProductId、paymentSeq、purchaseToken，必要时进行‘’支付再处理”或防止重复提供。
+3. 游戏服务器通过调用Gamebase服务器的consume（消费）API提供道具。这时不考虑是否已提供道具。
     * [Game > Gamebase > API指南 > Purchase(IAP) > Consume](./api-guide/#consume)
 
 ### Retry Transaction Flow
@@ -58,7 +58,7 @@ Gamebase.initialize(activity, configuration, callback);
 
 * 商店支付已成功，但因出现错误无法正常终止时，
 * 请调用**requestItemListOfNotConsumed**进行‘’支付再处理”。若存在尚未提供的道具，则进行[Consume Flow](./aos-purchase/#consume-flow)。
-* 请在下列情况下进行‘’支付再处理”。
+* 建议在以下情况下调用‘’支付再处理”。
     * 完成登录后
     * 支付之前
     * 进入游戏内商店（或 Lobby）时
@@ -68,7 +68,7 @@ Gamebase.initialize(activity, configuration, callback);
 
 使用想要购买商品的gamebaseProductId调用以下API请求购买。<br/>
 gamebaseProductId与在商店注册的道具id相同，但可在Gamebase Console中更改。
-支付后在payload field中输入的附加信息（会一直留在**PurchasableReceipt.payload**field）用于多种用途。<br/>
+支付后在payload field中输入的附加信息（将会一直留在**PurchasableReceipt.payload**field）可用于多种用途。<br/>
 用户取消购买时，返还**GamebaseError.PURCHASE_USER_CANCELED**错误代码。
 请进行取消处理。
 
@@ -138,12 +138,12 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 
 * 查询尚未消费的一次性商品(CONSUMABLE)与消费性订阅商品(CONSUMABLE_AUTO_RENEWABLE) 信息。
 * 如果有未完成的商品，您必须要求游戏服务器（item服务器）处理配送item（支付）。
-* 未完成支付时，可进行‘’支付再处理”。请在下列情况下调用。
-    * 查询是否存在未提供的道具。
+* 未能完成支付时，也起到‘’支付再处理”的作用。可在下列情况下调用该函数。
+    * 查看是否存在未提供的道具。
     	* 完成登录后 
     	* 进入游戏内商店（或 Lobby） 时
     	* 查询用户简介或邮箱时
-    * 查询需要进行‘’支付再处理”的道具
+    * 查看需要进行‘’支付再处理”的道具。
     	* 支付之前
     	* 支付失败后
 

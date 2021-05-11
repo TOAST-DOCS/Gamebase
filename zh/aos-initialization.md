@@ -295,7 +295,7 @@ LaunchingInfo对象中包含Gamebase Console中设置的值及游戏状态等。
 
 ```java
 class UpdateInfo {
-    // 为可下载最新版本的”安装商店URL”。
+    // 是可下载最新版本的”安装商店URL”。
     String installUrl;
     // 按用户终端机设置的语言向用户显示信息。
     // 语言为”en”时，提示以下消息。 

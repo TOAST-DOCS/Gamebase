@@ -921,6 +921,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 
 **TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR**
+
 * 이 오류는 각 IdP의 SDK에서 발생한 오류입니다.
 * 오류 코드 확인은 다음과 같이 확인하실 수 있습니다.
 
