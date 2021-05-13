@@ -74,7 +74,7 @@
 > 如果选择**不验证**，则仅验证内部令牌，不重新验证外部IdP的令牌。
 > 如果选择**始终验证**，将始终验证Gamebase发布的内部令牌以及外部IdP令牌。
 
-### 인앱 URL
+### In-App URL
 ![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_05_202009.png)
 可以通过控制台实时修改应用程序内最常用的URL，而不需要重新发布客户端。
 
@@ -97,7 +97,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 * **客户服务URL** : 输入您使用的开发公司自建客户服务地址。
 * **电话号码** : 输入客户服务的电话号码。可以通过Gamebase SDK接收值。
 
-#### 2. Gamebase 제공 고객센터
+#### 2. Gamebase提供的客户服务
 ![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_20_202009.png)
 若欲使用Gamebase提供的客户服务时使用。
 需要设置的项目如下。
@@ -492,8 +492,8 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 ```
 
 ##### Xcode Project Settings
-> <font color="red">[주의]</font><br/>
-> Xcode 11 이상에서만 **Sign In with Apple** 기능을 사용하는 프로젝트를 빌드할 수 있습니다.
+> <font color="red">[注意]</font><br/>
+> 只能在Xcode 11以上创建使用**Sign In with Apple**功能的项目。
 
 1. 选择Target > Signing & Capabilities > 添加Sign In with Apple项目。
 ![Capability_SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid8_1.0.png)
