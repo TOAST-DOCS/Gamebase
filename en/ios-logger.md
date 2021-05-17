@@ -1,9 +1,9 @@
 ## Game > Gamebase > iOS SDK User Guide > Logger
 
-This document describes how to use NHN Cloud Logger SDK on iOS. 
+Here, we will learn how to use NHN Cloud Logger SDK in iOS.
 
 ### Initialize
-Initialize NHN Cloud Logger SDK with appkey issued from Log & Crash Search. 
+Initialize NHN Cloud Logger SDK using the app key issued via Log & Crash Search.
 
 **API**
 
@@ -26,8 +26,8 @@ Initialize NHN Cloud Logger SDK with appkey issued from Log & Crash Search.
 
 ### Send Logs
 
-Send logs to Log & Crash Server. 
-NHN Cloud Logger SDK provides the following five level of logs to send:
+Sends logs to Log & Crash Server.
+NHN Cloud Logger SDK can send five different levels of logs listed below:
 
 * DEBUG
 * INFO

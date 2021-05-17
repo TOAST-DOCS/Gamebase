@@ -179,8 +179,8 @@ Check common requirements.
 | authList[].authSystem | String | Authentication system internally used within Gamebase <br>User authentication system to be provided. |
 | authList[].idPCode | String | User-authenticated IdP information <br>e.g. Guest, PAYCO, and Facebook  |
 | authList[].authKey | String | User separator issued at authSystem  |
-| temporaryWithdrawal | Object | 탈퇴 유예 관련 정보 <br>valid 가 "T" 값에서만 제공 |
-| temporaryWithdrawal.gracePeriodDate | String | 탈퇴 유예 만료 시간 ISO 8601 |
+| temporaryWithdrawal | Object | Information regarding pending withdrawal <br>Only "T" value provides valid |
+| temporaryWithdrawal.gracePeriodDate | String | Expiration time for pending withdrawal ISO 8601 |
 
 
 **[Error Code]**
@@ -337,11 +337,9 @@ Retrieve detailed information of a single member.
 | --- | --- |
 | GET | /tcgb-member/v1.2/apps/{appId}/members/{userId} |
 
-
 **[Request Header]**
 
 Check common requirements.
-
 
 **[Path Variable]**
 
@@ -414,8 +412,8 @@ Check common requirements.
 | member.authList[].idPCode | String | User-authenticated IdP information <br>e.g. Guest, PAYCO, and Facebook |
 | member.authList[].authKey | String |  User separator issued at authSystem   |
 | member.authList[].regDate | String | Mapping time between IdP information with user account |
-| temporaryWithdrawal | Object | 탈퇴 유예 관련 정보 <br>valid 가 "T" 값에서만 제공 |
-| temporaryWithdrawal.gracePeriodDate | String | 탈퇴 유예 만료 시간 ISO 8601 |
+| temporaryWithdrawal | Object | Information regarding pending withdrawal <br>Only "T" value provides valid |
+| temporaryWithdrawal.gracePeriodDate | String | Expiration time for pending withdrawal ISO 8601 |
 | memberInfo                   | Object        | Additional user information              |
 | memberInfo.deviceCountryCode | String        | Country code of user device              |
 | memberInfo.usmCountryCode    | String        | Country code of user USIM                |
@@ -906,37 +904,37 @@ None
 
 #### Withdraw
 
-사용자 계정을 탈퇴 처리합니다.
+Withdraws (Deletes) a user account.
 
-> [참고]
-> SDK의 탈퇴 API를 사용하지 않고 서버 탈퇴 API를 사용하여 계정 탈퇴를 구현한 경우, 클라이언트에서는 탈퇴 성공 후 SDK의 logout API를 호출하여 캐시되어 있는 토큰 등의 데이터 삭제가 필요하다.
+> [Note]
+> If the account is withdrawn using the Withdraw Server API instead of the withdraw API of SDK, it needs to delete the cached data including tokens by calling the logout API of SDK after the withdrawal.
 
 **[Method, URI]**
 
 | Method | URI |
 | --- | --- |
-| DELETE | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}?regUser={regUser} |
+| DELETE | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}?regUser={regUser} |
 
 **[Request Header]**
 
-공통 사항 확인
+Checks common items
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud 프로젝트 ID |
-| userId | String | 탈퇴 대상 사용자 ID |
+| appId | String | NHN Cloud project ID |
+| userId | String | User ID who wants to withdraw their account |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| regUser | String | mandatory | 탈퇴를 요청한 시스템 혹은 사용자 정보 <br> - 해당 정보는 Console > '멤버' 페이지의 '탈퇴 이력' 화면에서 확인 가능 <br> - 탈퇴 이력 화면은 탈퇴된 이용자 조회시에만 노출됨 |
+| regUser | String | mandatory | The system or user information of the entity that requested withdrawal <br> - The information can be viewed from Console > 'Withdrawal History' in the 'Member' page <br> - The withdrawal history can only be viewed by the withdrawn user |
 
 **[Request Body]**
 
-없음
+None
 
 **[Response Body]**
 
@@ -953,7 +951,7 @@ None
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[Error code](./error-code/#server)
 
 <br>
 <br>
@@ -1059,7 +1057,7 @@ Check common issues
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| storeCode | String | optional | 콘솔에서 특정 스토어만 사용 가능하도록 쿠폰을 발급 받았다면, 스토어 코드를 전달해야 함<br>전체 스토어인 경우 ALL 또는 파라미터 생략<br>- GG: Google<br>- ONESTORE: ONE store<br>- AS: AppStore |
+| storeCode | String | optional | If a coupon usable only at certain stores is issued from the console, the store code needs to be included<br>If it's usable at all stores, set the parameter to ALL or omit the parameter<br>- GG: Google<br>- ONESTORE: ONE store<br>- AS: AppStore |
 
 **[Response Body]**
 
@@ -1362,7 +1360,6 @@ N/A
 
 Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping, NHN Cloud products become available at a user server on a consistent interface.
 
-
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
@@ -1413,17 +1410,16 @@ GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.2/apps/C3JmSctU/maint
 
 ```json
 {
-  "header": {
-    "transactionId": "18a1ae42-6b1d-54c8-894e-54e97bca07fq",
-    "resultCode": -4010002,
-    "resultMessage": "Gamebase product appKey is invalid, appId:C3JmSctU",
-    "traceError": {
-      "trackingTime": 1489726350287,
-      "throwPoint": "gateway",
-      "uri": "/tcgb-launching/v1.2/apps/C3JmSctU/maintenances/under-maintenance"
-    },
-    "isSuccessful": false
-  }
+    "header": {
+        "transactionId": "18a1ae42-6b1d-54c8-894e-54e97bca07fq",
+        "resultCode": -4010002,
+        "resultMessage": "Gamebase product appKey is invalid, appId:C3JmSctU",
+        "traceError": {
+            "trackingTime": 1489726350287,
+            "throwPoint": "gateway",
+            "uri": "/tcgb-launching/v1.2/apps/C3JmSctU/maintenances/under-maintenance"
+        },
+        "isSuccessful": false
+    }
 }
-
 ```

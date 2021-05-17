@@ -3,6 +3,24 @@
 ## Additional Features
 Additional functions provided by Gamebase are described as below:
 
+### IDFA
+
+* Returns the ad identifier value of the device.
+
+**API**
+
+```objectivec
++ (NSString *)idfa;
+```
+
+> <font color="red">[Caution]</font><br/>
+>
+> For iOS 14 or later, user permission must be required when requesting the IDFA value.
+> When asking for user permission, the text to prompt must be set in info.plist.
+> Please set 'Privacy - Tracking Usage Description' in info.plist.
+
+
+
 
 ### Device Language
 
@@ -204,7 +222,7 @@ To add another language, add `"${language code}":{"key":"value"}` to the localiz
     ...
     "launching_service_closed_title": "サービス終了"
   },
-  "${언어코드}": {
+  "${Language code}": {
       "common_ok_button": "...",
       ...
   }
@@ -259,7 +277,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 	2. If the country code in the USIM is empty, checks the country code of the device. If a value exists, returns the value without any further verification.
 	3. 'ZZ' is returned when the country code values of USIM and device are empty.
 
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
+![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
 **API**
 
@@ -586,7 +604,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 ```
 
 
-
+ 
 ### Analytics
 
 The game index can be transferred to the Gamebase server.
@@ -681,28 +699,115 @@ Gamebase provides features to respond to customer inquiries.
 > See the guide below if you want to know how to use the NHN Cloud Contact service in detail.
 > [NHN Cloud Online Contact Guide] (/Contact%20Center/ko/online-contact-overview/)
 
+#### Customer Service Type
+
+In the **Gamebase Console > App > InApp URL > Service Center**, you can choose from three different types of Customer Centers.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
+
+| Customer Service Type     | Required Login |
+| ------------------------- | -------------- |
+| Developer customer center | X              |
+| Gamebase customer center  | △              |
+| NHN Cloud Online Contact      | △              |
+
+Gamebase SDK's Customer Center API uses the following URLs based on the type:
+
+* Developer's Customer Center
+    * URL specified in the **Customer Center URL** field.
+* Gamebase's Customer Center
+    * Before login: Customer Center URL **without** user information.
+    * After login: Customer Center URL with user information.
+* NHN Cloud organization product (Online Contact)
+    * Before login: Customer Center URL **without** user information.
+    * After login: Customer Center URL with user information.
+
 #### Open Contact WebView
 
 This feature is used to represent the **Customer Center URL** WebView entered in the Gamebase Console.
-Uses the value entered from **Gamebase Console > App > InApp URL > Service Center**.
+You can pass the additional information to the URL using TCGBContactConfiguration.
+
+
+**TCGBContactConfiguration**
+
+| Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
+| ------------- | ------------- | ---------------------------------- | ------------------ |
+| userName      | O             | string                             | User name (nickname)<br>**default** : nil    |
+| additionalURL | O             | string                             | Additional URL appended after the developer's own customer center URL<br>Use it only if the customer center type is `CUSTOM`<br>**default** : nil    |
+| extraData     | O             | dictionary<string, string>         | Passes the extra data wanted by the developer when opening the customer<br>**default** : nil    |
+
 
 **API**
 
 ```objectivec
-+ (void)openContactWithViewController:(UIViewController *)viewController completion:(void(^)(TCGBError *error))completion;
++ (void)openContactWithViewController:(UIViewController *)viewController 
+                           completion:(void(^)(TCGBError *error))completion;
+
++ (void)openContactWithViewController:(UIViewController *)viewController
+                        configuration:(TCGBContactConfiguration *)configuration
+                           completion:(void(^)(TCGBError *error))completion;
 ```
+
+**Error Code**
+
+| Error                           | Error Code | Description                 |
+| ------------------------------- | ---------- | --------------------------- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1       | Gamebase not initialized. |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | The Customer Center URL does not exist.<br>Check the **Customer Center URL** of the Gamebase Console. |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | Failed to issue a temporary ticket for user identification. |
 
 **Example**
 
 ```objectivec
-[TCGBContact openContactWithViewController:parentViewController completion:^(TCGBError *error) {
-    if (error != NULL && error.code == TCGB_ERROR_WEBVIEW_INVALID_URL) { // 7001
-        // TODO: Gamebase Console Service Center URL is invalid.
-        //  Please check the url field in the NHN Cloud Gamebase Console.
-    } else if (error != NULL) {
-        // TODO: Error occur when opening the contact web view.
-    } else {
+[TCGBContact openContactWithViewController:self completion:^(TCGBError *error) {
+    if ([TCGBGamebase isSuccessWithError:error] == YES) {
         // A user close the contact web view.
+    } else if (error.code == TCGB_ERROR_UI_CONTACT_FAIL_INVALID_URL) {
+        // TODO: Gamebase Console Service Center URL is invalid.
+        // Please check the url field in the TOAST Gamebase Console.
+    } else {
+        // TODO: Error occur when opening the contact web view.
     }
 }];
 ```
+
+> <font color="red">[Caution]</font><br/>
+>
+> When contacting the Customer Center, access to camera or album may be required for file attachment.
+> Please set 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description' in info.plist.
+
+#### Request Contact URL
+
+Can get the URL used for displaying the Customer Center WebView.
+
+**API**
+
+```objectivec
++ (void)requestContactURLWithCompletion:(void(^)(NSString *contactUrl, TCGBError *error))completion;
+
++ (void)requestContactURLWithConfiguration:(TCGBContactConfiguration *)configuration
+                                completion:(void(^)(NSString *contactUrl, TCGBError *error))completion;
+```
+
+**Error Code**
+
+| Error                           | Error Code | Description                 |
+| ------------------------------- | ---------- | --------------------------- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1       | Gamebase not initialized. |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | The Customer Center URL does not exist.<br>Check the **Customer Center URL** of the Gamebase Console. |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | Failed to issue a temporary ticket for user identification. |
+
+**Example**
+
+```objectivec
+[TCGBContact requestContactURLWithCompletion^(NSString *contactUrl, TCGBError *error){
+    if ([TCGBGamebase isSuccessWithError:error] == YES) {
+        NSLog(@"ContactURL : %@", contactUrl);
+    } else if (error.code == TCGB_ERROR_UI_CONTACT_FAIL_INVALID_URL) {
+        // TODO: Gamebase Console Service Center URL is invalid.
+        // Please check the url field in the TOAST Gamebase Console.
+    } else {
+        // TODO: Error occur when request contact url.
+    }
+}];
+```
+

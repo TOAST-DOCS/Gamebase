@@ -6,12 +6,17 @@ To use Gamebase Android SDK, initialization is required.
 
 For normal operations of Gamebase, make sure to call **Gamebase.onActivityResult(int, int, Intent)** from **Activity#onActivityResult(int, int, Intent)**.
 
-
 **API**
 
 ```java
 + (void)Gamebase.onActivityResult(int requestCode, int resultCode, Intent data);
 ```
+
+### Initialization Flow
+
+When the game starts, enable the Debug Mode and re 설정하고, Gamebase 를 초기화하여 Launching Status Code 에 따라 게임 진입여부를 결정하도록 아래 Flow 와 같이 구현하시면 됩니다.
+
+![initialization flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/initialization_flow_2.19.0.png)
 
 ### Configuration Settings
 
@@ -61,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
 
         /**
          * Show gamebase debug message.
-         * set 'false' when build RELEASE.
+         *
+         * CAUTION!
+         * Set 'false' when build RELEASE.
          */
         Gamebase.setDebugMode(true);
 
@@ -72,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
         String appVersion = "1.0.0";
         String storeCode = "GG";
         GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(appId, appVersio, storeCode)
-                                            .enableLaunchingStatusPopup(true)
-                                            .build();
+                .enablePopup(true)
+                .build();
         /**
          * Gamebase Initialize.
          */
@@ -132,6 +139,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
                 case LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST:
                 case LaunchingStatus.IN_TEST:
                 case LaunchingStatus.IN_REVIEW:
+                case LaunchingStatus.IN_BETA:
                     Log.d(TAG, "You logged in because you are developer.");
                     break;
                 case LaunchingStatus.REQUIRE_UPDATE:
@@ -200,6 +208,7 @@ Refer to the table for status codes:
 | IN_SERVICE_BY_QA_WHITE_LIST | 202  | Under maintenance now but QA user service is available. |
 | IN_TEST                     | 203  | Under test |
 | IN_REVIEW                   | 204  | Review in progress |
+| IN_BETA                     | 205  | Beta server environment |
 | REQUIRE_UPDATE              | 300  | Update is required                                  |
 | BLOCKED_USER                | 301  | Accessed to service with a device (device key) blocked from access. |
 | TERMINATED_SERVICE          | 302  | Service has been terminated                                   |
@@ -215,16 +224,18 @@ App information registered on Gamebase console.
 
 * accessInfo
     * serverAddress: Server address
-    * csInfo: Customer center information
+* customerService
+    * accessInfo : Customer center information
+    * type : customer center type
+    * url : Customer Center
 * relatedUrls
     * termsUrl: Terms of Service
     * personalInfoCollectionUrl: Consent to Personal Information
     * punishRuleUrl: Ban Regulation
-    * csUrl: Customer Center
 * install: Installation URL
 * idP: Authentication information
 
-[Console Guide](/Game/Gamebase/en/oper-app/#client)
+[Game > Gamebase > Console User Guide > App > Client](./oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -236,7 +247,7 @@ Maintenance information registered on Gamebase Console:
 * endDate: End time
 * message: Cause of maintenance
 
-[Console Guide](/Game/Gamebase/en/oper-operation/#maintenance)
+[Game > Gamebase > Console User Guide > Operation > Maintenance](./oper-operation/#maintenance)
 
 **1.4 Notice**
 
@@ -246,7 +257,7 @@ Notice information registered on Gamebase console:
 * title: Title
 * url: Maintenance URL
 
-[Console Guide](/Game/Gamebase/en/oper-operation/#notice)
+[Game > Gamebase > Console User Guide > Operation > Notice](./oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -265,7 +276,7 @@ IAP store information registered on NHN Cloud console:
 * name: App Name
 * storeCode: Store Code
 
-[Console Guide](/Game/Gamebase/en/oper-purchase/)
+[Game > Gamebase > Console User Guide > Payment](./oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -274,8 +285,7 @@ User-input information for NHN Cloud launching console:
 * Send user-input values in JSON string.
 * For further details of NHN Cloud Launching, see the guide as below:
 
-[Console Guide](/Game/Gamebase/en/oper-management/#config)
-
+[Game > Gamebase > Console User Guide > Management > Config](./oper-management/#config)
 
 ### Handling Unregistered Version
 

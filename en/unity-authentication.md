@@ -192,12 +192,14 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 | --------    | ------------------------------- | ---------------- |
 | Google      | GamebaseAuthProvider.GOOGLE     | Android<br/>iOS<br/>Standalone |
 | Game Center | GamebaseAuthProvider.GAMECENTER | iOS |
-| Apple ID    | GamebaseAuthProvider.AppleId    | iOS |
+| Apple ID    | GamebaseAuthProvider.APPLEID    | iOS |
 | Facebook    | GamebaseAuthProvider.FACEBOOK   | Android<br/>iOS<br/>Standalone |
 | Payco       | GamebaseAuthProvider.PAYCO      | Android<br/>iOS<br/>Standalone |
 | Naver       | GamebaseAuthProvider.NAVER      | Android<br/>iOS |
 | Twitter     | GamebaseAuthProvider.TWITTER    | Android<br/>iOS |
 | Line        | GamebaseAuthProvider.LINE       | Android<br/>iOS |
+| HANGAME     | GamebaseAuthProvider.HANGAME    | Android<br/>iOS |
+| WEIBO       | GamebaseAuthProvider.WEIBO      | Android<br/>iOS |
 
 
 > There is information which must be included for login with some IdPs.<br/>
@@ -1311,13 +1313,15 @@ else
 {
     Debug.Log(string.Format("code:{0}, message:{1}", gamebaseError.code, gamebaseError.message));
 
-    GamebaseError moduleError = gamebaseError.error; // GamebaseError.error object from external module
-    if (null != moduleError)
+    if (gamebaseError.code == GamebaseErrorCode.AUTH_EXTERNAL_LIBRARY_ERROR) 
     {
-        int moduleErrorCode = moduleError.code;
-        string moduleErrorMessage = moduleError.message;
-
-        Debug.Log(string.Format("moduleErrorCode:{0}, moduleErrorMessage:{1}", moduleErrorCode, moduleErrorMessage));
+        GamebaseError moduleError = gamebaseError.error; // GamebaseError.error object from external module
+        if (null != moduleError)
+        {
+            int moduleErrorCode = moduleError.code;
+            string moduleErrorMessage = moduleError.message;        
+            Debug.Log(string.Format("moduleErrorCode:{0}, moduleErrorMessage:{1}", moduleErrorCode, moduleErrorMessage));
+        }
     }
 }
 ```

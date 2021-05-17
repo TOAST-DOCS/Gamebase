@@ -4,16 +4,12 @@ You can manage search authority on Gamebase games, set alarm delivery, and retri
 
 ## Authorization
 
-Authority of Gamebase Console can be managed.
-
-![gamebase_manage_01_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_manage_01_201812_en.png)
-
-* Manage authority of Gamebase Console
-  * **Access to sales status** : Access to **IAP** menu
-  * **Access to management menu** : Access authority to other menu
-  * **Role of Downloading All Members**: Role to download information of **All Project Members** 
-* To register a new member, go to **NHN Cloud Console Page**.
-* Cannot modify your own authority.
+You can manage the Gamebase Console access permission.
+![gamebase_manage_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_manage_01_202101.png)
+* Manage Gamebase Console access permission
+  * **Permission to receive weekly reports** : Permission for receiving **weekly reports**
+* To register a new member, they must be added in Manage Members menu of the NHN Cloud project.
+* One's own permission cannot be changed.
 
 ## Alarm
 
@@ -73,16 +69,16 @@ To change registered information, click **Modify**. You may click to **Delete** 
 
 ### Recipient List
 
-Alarm receivers can be configured. To register a new member, go to **NHN Cloud Console > Project > Member Management**.
-![gamebase_manage_07_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_manage_07_201812_en.png)
-Gamebase allows to send alarms via email or SMS.
-In both cases, subscription information to NHN Cloud are used for delivery; alarms may not be sent properly if there is any wrong information in email address or number. To check mobile phone information, go to **My Account** of NHN Cloud Cloud.
+You can set the user to receive notifications. To register a new member, they must be added in Manage Members menu of the NHN Cloud  project.
+![gamebase_manage_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_07_201812.png)
+In Gamebase, you can use the email or SMS to send the notification.
+Both emails and SMS are sent out using the information that was entered when joining NHN Cloud, and member who registered invalid email address or phone number may not receive the notification. The mobile phone number is found in the **Manage My Information** page of the NHN Cloud.
 
-<br/>
+
 ## Config
 
-Integration between Gamebase and NHN Cloud can be configured.
+You can set the integration between Gamebase and NHN Cloud service.
 
-![gamebase_manage_08_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_manage_08_201812_en.png)
+![gamebase_manage_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_08_201812.png)
 
-You may set whether to receive information set in NHN Cloud Launching all at once, when Gamebase Launching API is called. The function can be turned On or Off, only when you use the NHN Cloud Launching service.
+You can choose to receive the information that was set in the NHN Cloud Launching when calling the Gamebase Launching API. Only the users of the NHN Cloud Launching service can toggle the function to On or Off.

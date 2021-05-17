@@ -1,4 +1,4 @@
-## Game > Gamebase > Unity SDK 사용 가이드 > Logger
+## Game > Gamebase > Unity Developer's Guide > Logger
 
 Here, we will explain how to use NHN Cloud Logger SDK in Unity.
 

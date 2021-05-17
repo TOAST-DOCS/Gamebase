@@ -16,6 +16,7 @@ Gamebase JavaScript SDKファイルをダウンロードします。
 
 Gamebase JavaScript SDKを使用する前に、NHN Cloud ConsoleでアプリIDを発行する必要があります。アプリIDを発行するには、NHN Cloud Consoleで**サービス選択**をクリックし、**Game > Gamebase**をクリックしてサービスを有効にします。
 
+
 #### Download
 下記のリンクからGamebase JavaScript SDKをダウンロードします。その後、ダウンロードしたZIPファイルを解凍し、適用するプロジェクトのフォルダに移動させます。
 * [Gamebase JavaScript SDKダウンロード](/Download/#game-gamebase)

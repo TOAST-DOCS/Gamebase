@@ -39,7 +39,10 @@ Store information required to initialize In-App Purchase (IAP) of NHN Cloud.
 | ----------- | ---- | ------------ |
 | App Store | AS | only iOS |
 | Google Play | GG | only Android |
-| One Store | ONESTORE | only Android |
+| ONE Store | ONESTORE | only Android |
+| GALAXY Store | GALAXY | only Android |
+| Windows | WIN | only Unity Standalone |
+| Web | WEB | only Unity WebGL and JavaScript |
 
 
 #### 4. displayLanguageCode
@@ -87,6 +90,41 @@ Sender ID to use FCM (Firebase Cloud Messaging).
 
 Set whether or not to log in to WebView on a (Standalone) platform.
 
+* Gamebase only displays the (warning) and error log.
+* To turn on system logs for development reference, call **Gamebase.SetDebugMode(true)**.
+
+> <font color="red">[Caution]</font><br/>
+>
+> Before **releasing** a game, make sure to delete SetDebugMode call from the source code or change the parameter to false before building.
+
+Debug setting is also available in the Console, and this setting in the Console takes precedence over the other.
+To find out how to set up the Console, see the following guide.
+
+* [Setting Console test device](./oper-app/#test-device)
+* [Setting Console Client](./oper-app/#client)
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void SetDebugMode(bool isDebugMode)
+```
+
+**Example**
+
+```cs
+public void SetDebugModeSample(bool isDebugMode)
+{
+    Gamebase.SetDebugMode(isDebugMode);
+}
+```
+
 ### Initialize
 
 Initialize SDK.
@@ -111,6 +149,15 @@ public class SampleInitialization
 {
     public void Initialize()
     {
+        /**
+         * Show gamebase debug message.
+         * set 'false' when build RELEASE.
+         */
+        Gamebase.SetDebugMode(true);
+
+        /**
+         * Gamebase Configuration.
+         */
         var configuration = new GamebaseRequest.GamebaseConfiguration();
         configuration.appID = "appID";
         configuration.appVersion = "appVersion;"
@@ -127,6 +174,9 @@ public class SampleInitialization
         configuration.storeCode = GamebaseStoreCode.WINDOWS;
     #endif
 
+        /**
+         * Gamebase Initialize.
+         */
         Gamebase.Initialize(configuration, (launchingInfo, error) =>
         {
             if (Gamebase.IsSuccess(error) == true)
@@ -224,7 +274,6 @@ For game status codes, refer to the table below.
 | INTERNAL_SERVER_ERROR | 500 | Error of internal server |
 
 [Console Guide](/Game/Gamebase/en/oper-app/#app)
-
 
 **1.2 App**
 
@@ -333,7 +382,7 @@ public class UpdateInfo {
 	string installUrl;
     // 사User can find a message in the language set on device.
     // When the language is 'ko', the message shows like follows.
-    // '지원하지 않는 버전입니다. 최신 버전으로 업데이트해 주세요.'
+    // 'This version is not supported. Please update to the latest version.'
     string message;
 }
 ```

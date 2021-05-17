@@ -4,9 +4,11 @@ To use the purchase menu, currency must be selected for purchase indicators.
 Only the initial setting is available, and the Analytics sales indicators show in the currenty code as configured. 
 Please be cautious with your choice, since the currency code cannot be modified, once selected. 
 
-## Game > Gamebase > Console Guide > Purchase
-You can register information related to In-App Purchase (IAP) and retrieve details.
-In Gamebase, NHN Cloud IAP service is provided.
+## Game > Gamebase > Console User Guide > Payment
+
+You can register in-app purchase information and view the history.
+Gamebase uses NHN Cloud IAP (In-App Purchase) service.
+
 
 ## Store
 
@@ -26,6 +28,11 @@ Click **Register** on the **Store Information List** to register a new store.
 * **Store App ID**   Enter information issued by store.
 * **Use or Not**  Select whether to use the store or not.
 
+> [Note] Validation of receipts from Google Play Store
+>
+> When Google's receipt validation system experiences failure, you can use the Gamebase's internal signature validation to properly process the payment by setting the **Receipt validation settings for onetime products** to 1-step validation.
+> 2-step validation is always performed for subscription products regardless of the setting.
+
 ### Modify
 
 Retrieve or modify detail information of registered stores on the list.
@@ -37,14 +44,14 @@ Retrieve or modify detail information of registered stores on the list.
 - Click **Delete** to delete information: only for the stores that are Not in Use.
 
 ## Product
-Products for sales at store can be registered. 
-On the **Product** tab, you may register a new product or manage your products. 
 
-- (1) **Register**: With a store item ID, many items can be registered. 
-- (2) **Change Status for Store Items**: Status of products registered with a store item ID can be changed all at once.  
-- (3) **Filter**: Easy search is available with filters for stroe, store item ID, and product ID. Without a search value, all store produts are listed. 
+You can register products to sell at the store.
+In the **Product** tab, you can register a new product or manage the registered products.
+- (1) **Register** : You can use a single Store Item ID to register multiple products.
+- (2) **Change store item status** : You can use a single Store Item ID to change whether to use the registered products all at once.
+- (3) **Filter** : Provides filters for usage, store/store item ID/product ID, product name to allow easy search. When there is no search value, the list of products from all stores is displayed.
 
-![gamebase_purchase_04_202006](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_04_202006.png)
+![gamebase_purchase_04_202006](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_04_202012.png)
 
 ### Register
 
@@ -108,45 +115,43 @@ Search is available by Transaction ID which is created upon payment.
 
 ##### (3) Search by Receipt 
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202006.png)
-You can also query by receipt provided with payment. 
+
+You can view the results using the receipt issued during the payment.
 
 
-#### Search Results
-Following items can be found as search results: 
+#### Search results
+The search results are as follows:
 
-- **Transaction ID**: Original payment number in Gamebase
-- **Store**: Information of store for which payment was made 
-- **User ID**: ID of paying user 
-- **Product Name**: Name of product user purchased on the app 
-- **Product ID (Store Item ID)**: ID of product user purchased on the app and ID of store item paid at the store  
-- **Store Item Type**: Type of product user purchased on the app 
-- **Price/Currency Unit**: Price and currency unit of an item that user purchased
-- **Consumption Status**: If a paid item has been provided
-- **Payment Status**: Current status of payment process  
-- **Store Reference Key**: Original payment number issued at the store 
-- **Payment Reservation Time**: Time when user attempted for or completed with a purchase 
-- **Refund Time**: Time when user item was refunded 
-- **Extra Information**: Additional information delivered by SDK at the request of payment (developer payload)
+- **Transaction ID**: Unique number for identifying payments within Gamebase
+- **Store**: Information about the store where the payment has been made
+- **User ID**: User ID that made the payment
+- **Product name**: The name of the actual product that user purchased in app
+- **Product ID (Store item ID)**: The actual ID of the product purchased by the user in app, and the ID of the store to which the actual payment has been made
+- **Store item type**: Type of the actual product that was purchased by the user in app
+- **Price/monetary unit**: The price and monetary unit of the item purchased by the user
+- **Consume status**: Whether the paid item has been provided
+- **Payment status**: The current progress of the payment
+- **Store Reference Key**: Unique payment number issued by the store
+- **Scheduled payment date**: The time of purchase attempt or completion
+- **Refund date**: The time when the user's item was refunded
+- **Additional information**: Additional information delivered by SDK when the payment was requested (Developer payload)
 
-#### Change of Payment Status 
-Find the status of payment information as searched.  
-
-- **Success**
-  - Transaction Complete
-    - This means that transaction was done successfully.
-    - The status can be changed to Refund
-- **Reserved**
-  - Transaction in Progress
-  - This means that the transaction through the store hasn't been done or verified yet.
-  - The status can be changed to Success or Refund.
-- **Failure**
-  - Transaction Verification Failed
-  - The verification process after the transaction resulted in an error from the store.
-  - The status can be changed to Success or Refund.
-- **Refund**
-  - Refund Complete
-  - The admin has manually changed the payment status after the refund process in the store.
-  - The status can't be changed to other status.
+#### Change payment status
+The status of the searched payment information is as follows:
+- **Purchase successful (Success)**
+    - Payment has successfully been made.
+    - Can be changed to the Refund status.
+- **Ready to make purchase (Reserved)**
+	- No longer proceeding with payment through the store, or did not proceed with purchase validation.
+	- Can be changed to Success or Refund status.
+- **Failed to validate payment (Failure)**
+	- Payment has been proceeded through the store, but an error occurred during payment validation.
+	- Can be changed to Success or Refund status.
+- **Refund successful (Refund)**
+	- The administrator manually updated the refund status in the store.
+	- Cannot be changed to any other payment status.
+- **Canceling during the payment process (UserClose)** 
+	- User has withdrawn the payment
 
 #### Changing to Success
 
@@ -155,7 +160,6 @@ Find the status of payment information as searched.
 In order to proceed, you need to provide **Receipt Number, Value, and Currency**.
 
 #### Changing to Refund
-
 ![gamebase_purchase_09_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_09_201812_en.png)
 
 No additional information is required. Once it has been changed to Refund status, it's set for good.

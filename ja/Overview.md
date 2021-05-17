@@ -5,6 +5,17 @@ Gamebase SDKを適用すれば、ゲームに必要な共通サービスを簡�
 
 ![Gamebase_summary](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_01_201903_jp.png)
 
+
+## Gamebase Sample App
+
+Gamebaseのさまざまな機能を確認できるようにサンプルアプリを提供しています。
+サンプルアプリを利用してゲームアプリでGamebaseが提供する機能を確認し、どのような方式で動作するのかを予測できます。
+開発者者はサンプルアプリコードを確認してGamebaseの適用方法を簡単に確認できます。
+
+* [ダウンロードページ](https://github.com/nhn/toast.gamebase.unity.sample/releases)
+![Gamebase_sample_app](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_Sample_App1.png)
+* QRコードを利用してSample App APKをダウンロードできます。(サポートプラットフォーム：Android OS)
+
 ## 主要機能
 
 ### Gamebaseアナリティクス
@@ -33,14 +44,15 @@ Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカ�
 | 外部認証            | Android | iOS | Windows(based Unity) | Web(based JavaScript)    |
 | ----------------- | ------------ | ------------ | ------------ | ------------ |
 | Facebook          | O | O | O | O |
-| Sign In with Apple | O | O | | |
+| Sign In with Apple | O  | O | | |
 | Apple Game Center |  | O | | |
 | Google            | O | O | O | O |
 | Twitter			| O | O | |  |
 | LINE				| O | O | O  | O  |
 | PAYCO             | O | O | O | O |
 | NAVER             | O | O | O | O |
-| Weibo             | O | O |  |  |
+| Hangame			| O | O | O  | O  |
+| Weibo | O  | O  | | |
 
 * **ゲストログインを提供します。**
   ゲストログインを利用すれば、ユーザーは何も入力しなくてもすぐにゲームにログインして簡単にゲームを始めることができます。ゲストログインをするだけでもGamebaseのユーザーIDが発行されるため、ゲームはOAuthログインユーザーかゲストログインユーザーかに関係なく同じようにユーザーのゲームデータを管理することができます。
@@ -54,13 +66,13 @@ Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカ�
 * **一人のゲームユーザーが複数の外部IdPを同時に使用することができるように、マッピング(mapping)機能を提供します。**
   例えば、Facebook認証を使用してゲームを利用しているユーザーがGoogle認証でも同じユーザーIDを使用することができるよう、マッピング機能を提供します。一つのユーザーIDにFacebookとGoogleの認証をマッピングすれば、ゲームユーザーは、あるデバイスではFacebook、他のデバイスではGoogleで認証してゲームをすることができます。
 
-#### 関連リンク
+#### Reference
 
-* [Android SDK ご利用ガイド > 認証](./aos-authentication)
-* [iOS SDK ご利用ガイド > 認証](./ios-authentication)
-* [Unity SDK ご利用ガイド > 認証](./unity-authentication)
-* [Unreal SDK ご利用ガイド > 認証](./unreal-authentication)
-* [JavaScript SDK ご利用ガイド > 認証](./js-authentication)
+* [Android SDK使用ガイド > 認証](./aos-authentication)
+* [iOS SDK使用ガイド > 認証](./ios-authentication)
+* [Unity SDK使用ガイド > 認証](./unity-authentication)
+* [Unreal SDK使用ガイド > 認証](./unreal-authentication)
+* [JavaScript SDK使用ガイド > 認証](./js-authentication)
 
 ### Payment
 
@@ -84,12 +96,12 @@ Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカ�
 * **ウェブコンソールでの多様な機能(決済履歴照会機能など)で、顧客からの問い合わせに円滑に対応できます。**
   ウェブコンソールでユーザーの決済履歴とアイテム支給状態の確認ができます。決済のキャンセルおよび不正行為対応も可能です。
 
-#### Reference
+#### 関連リンク
 
-* [Android SDK 사ご利用ガイド > 決済](./aos-purchase/)
-* [iOS SDK ご利用ガイド > 決済](./ios-purchase)
-* [Unity SDK ご利用ガイド > 決済](./unity-purchase)
-* [Unreal SDK ご利用ガイド > 決済](./unreal-purchase)
+* [Android SDK使用ガイド > 認証](./aos-purchase)
+* [iOS SDK使用ガイド > 認証](./ios-purchase)
+* [Unity SDK使用ガイド > 認証](./unity-purchase)
+* [Unreal SDK使用ガイド > 認証](./unreal-purchase)
 
 ### ローンチ
 
@@ -107,14 +119,13 @@ Gamebaseで提供される起動情報は、次の通りです。
 
 #### 関連リンク
 
-* [Android SDK ご利用ガイド > 初期化 > Launching Status](./aos-initialization/#launching-status)
-* [iOS SDK ご利用ガイド > 初期化 > Launching Status](./ios-initialization/#launching-status)
-* [Unity SDK ご利用ガイド > 初期化 > Launching Information](./unity-initialization/#launching-information)
-* [Unreal SDK ご利用ガイド > 初期化 > Launching Information](./unreal-initialization/#launching-information)
-* [JavaScript SDK ご利用ガイド > 初期化 > Launching Information](./js-initialization/#launching-information)
-* [Console ご利用ガイド > アプリ](./oper-app)：アプリ、クライアントステータス及びインストールURLの設定
-* [Console ご利用ガイド > 運営](./oper-operation)：メンテナンス、お知らせ登録
-
+* [Android SDK使用ガイド > 初期化 > Launching Information](./aos-initialization/#launching-information)
+* [iOS SDK使用ガイド > 初期化 > Launching Information](./ios-initialization/#launching-information)
+* [Unity SDK使用ガイド > 初期化 > Launching Information](./unity-initialization/#launching-information)
+* [Unreal SDK使用ガイド > 初期化 > Launching Information](./unreal-initialization/#launching-information)
+* [JavaScript SDK使用ガイド > 初期化 > Launching Information](./js-initialization/#launching-information)
+* [コンソール使用ガイド > アプリ](./oper-app)：アプリ、クライアントステータス及びインストールURLの設定
+* [コンソール使用ガイド > 運営](./oper-operation)：メンテナンス、お知らせ登録
 
 ### グローバル展開への適応
 
@@ -129,13 +140,14 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
 
 ### 他のNHN Cloudサービスとの連携
 
-* ゲームで必要なNHN Cloudサービスをより簡単に連携できるようにサポートします。 
+* ゲームで必要なTOASTサービスをより簡単に連携できるようにサポートします。 
   * GamebaseのユーザーIDで各サービスのAPIを使用することができるようにGamebaseでラッピング(wrapping)してAPIを提供します。したがってユーザーは、サービスのAPIを直接呼び出す必要がありません。
   * [Notification > Push](https://toast.com/service/notification/push)：Pushメッセージを送信してくれる統合Pushサービス  
   * [Game > Leaderboard](https://toast.com/service/game/leaderboard)：リアルタイムの大容量ランキングサービス
   * [Security > AppGuard](https://toast.com/service/security/appguard)：リアルタイムでアプリケーションのコード操作を防止するサービス
 
 ## 用語一覧
+
 次は、Gamebaseのサービス用語をまとめたものです。
 
 | 用語      | 説明                                      |
@@ -148,6 +160,7 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
 | IdPログイン| 外部IdPログイン(Facebook、Googleなど)           |
 
 ## サービス構造
+
 以下は、Gamebaseのサービス構造と簡単な説明です。
 ![論理構成図](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_201903_en.png)
 
@@ -162,11 +175,11 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
 
 ### クライアントアプリ開発者向けガイド
 
-* [Android SDK ご利用ガイド](./aos-started/)
-* [iOS SDK ご利用ガイド](./ios-started/)
-* [Unity SDK ご利用ガイド](./unity-started/)
-* [Unreal SDK ご利用ガイド](./unreal-started/)
-* [JavaScript SDK ご利用ガイド](./js-started/)
+* [Android SDK使用ガイド](./aos-started/)
+* [iOS SDK使用ガイド](./ios-started/)
+* [Unity SDK使用ガイド](./unity-started/)
+* [Unreal SDK使用ガイド](./unreal-started/)
+* [JavaScript SDK使用ガイド](./js-started/)
 
 ### サーバー開発者向けガイド
 
@@ -180,15 +193,95 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
 
 | 機能名               | 詳細                             | クライアント                                   | サーバー                                 | コンソール                                 |
 | --------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| Analytics                  | リアルタイム指標, 売上指標, 利用者指標, バランシング指標 | [[Android](./aos-etc/#analytics)] [[iOS](./ios-etc/#analytics)] [[Unity](./unity-etc/#analytics)] |                                          | [[Analytics]](./oper-analytics)  ||
 | Login                 | ゲスト、サードパーティ認証に対応  <br> - [対応IdP](./Overview/#authentication) |  [[Android](./aos-authentication/#login)] [[iOS](./ios-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[トークン検証](./api-guide/#token-authentication)] <br> [[会員照会](./api-guide/#get-member)] | [[App] > 認証情報設定](./oper-app/#authentication-information) <br> [[Member] > 会員照会](./oper-member/#member) <br> - 基本情報、ログイン履歴、プレイ時間、決済履歴など |
 | Logout                | ログアウト                                    | [[Android](./aos-authentication/#logout)]  [[iOS](./ios-authentication/#logout)] [[Unity](./unity-authentication/#logout)] |                                          |                                          |
 | Withdraw              | ゲーム退会 <br> -  ゲームユーザーのユーザーID、マッピング情報などすべての情報を削除 | [[Android](./aos-authentication/#withdraw)] [[iOS](./ios-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
 | Mapping               | 一つのユーザーIDに複数のIdPを連携する機能           | [[Android](./aos-authentication/#mapping)] [[iOS](./ios-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |                                          |
-| Analytics                  | リアルタイム指標, 売上指標, 利用者指標, バランシング指標 | [[Android](./aos-etc/#analytics)] [[iOS](./ios-etc/#analytics)] [[Unity](./unity-etc/#analytics)] |                                          | [[Analytics]](./oper-analytics)  ||
-| Purchase(IAP)         | (NHN Cloudサービスの連携) <br> アプリ内決済  | [[Android](./aos-purchase/#purchase)] [[iOS](./ios-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- アイテム登録](./oper-purchase/#item) <br> [- 決済情報の照会](./oper-purchase/#transactions) |
-| Push                  | (NHN Cloudサービスの連携) <br> Pushメッセージの送信及び結果の確認 | [[Android](./aos-push/#push)] [[iOS](./ios-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- リアルタイム、予約Push送信 |
-| Leaderboard           | (NHN Cloudサービスの連携) <br> リアルタイムの大容量ランキング照会及び登録 |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
-| Webview               | SDKで基本的なWebView UIを提供<br/>システムポップアップ、Toast UIを提供 | [[Android](./aos-ui/#webview)] [[iOS](./ios-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
+| Purchase(IAP)         | (TOASTサービスの連携) <br> アプリ内決済  | [[Android](./aos-purchase/#purchase)] [[iOS](./ios-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- アイテム登録](./oper-purchase/#item) <br> [- 決済情報の照会](./oper-purchase/#transactions) |
+| Push                  | (TOASTサービスの連携) <br> Pushメッセージの送信及び結果の確認 | [[Android](./aos-push/#push)] [[iOS](./ios-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- リアルタイム、予約Push送信 |
+| Leaderboard           | (TOASTサービスの連携) <br> リアルタイムの大容量ランキング照会及び登録 |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
+| Webview               | SDKで基本的なWebView UIを提供<br/>システムポップアップ、トースト(toast) UIを提供 | [[Android](./aos-ui/#webview)] [[iOS](./ios-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
 | [Operator] Maintenance | (運営)メンテナンス機能                               |                                          | [[メンテナンス有無の確認](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- メンテナンス登録、メンテナンス解除 |
 | [Operator] Notice      | (運営)緊急のお知らせ機能 <br> -  ゲームユーザーがアプリを起動する際にポップアップ形式でお知らせの確認が可能 |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>-お知らせ登録 |
-| [Operator] Ban         | (運営)ゲームユーザー利用停止の登録及び解除 <br> -  ゲームユーザー利用停止の登録及び解除 | [[Android](./aos-authentication/#get-banned-user-information)] [[iOS](./ios-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -利用停止中のゲームユーザー情報の確認 |       [[ゲーム利用者の利用停止履歴照会](./api-guide/#ban-histories)]                                         | [[Ban]](./oper-ban/#ban) <br/>-利用停止の登録及び解除 |
+| [Operator] Image Notice         | (運営)イメージ告知機能 <br> - ゲーム内ポップアップ形式のイメージ告知表示 | [[Android](./aos-ui/#imagenotice)] [[iOS](./ios-ui/#imagenotice)] [[Unity](./unity-ui/#imagenotice)] <br/> - イメージ告知表示 |                             | [[Image Notice]](./oper-operation/#image-notice) <br/>- イメージ告知管理 |
+| [Operator] Ban         | (Operational) Register/Release banned game users <br> -  Register/Release banned game users | [[iOS](./ios-authentication/#get-banned-user-information)][[Android](./aos-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -Check information of banned users |   [[Retrieving the ban history of game users](./api-guide/#ban-histories)                                       | [[Ban]](./oper-ban/#ban) <br/>-Register and Release Ban |
+| [Operator] Coupon         | (運営)クーポン管理<br>- 発行、履歴照会 |  |                                      [[クーポン有効性検証およびクーポン状態変更](./api-guide/#coupon)  | [[Coupon]](./oper-coupon) <br/>- クーポン発行 |
+| [Operator] Customer Service         | (運営) 1:1お問い合わせ受付および処理 <br> -  FAQ、告知事項管理 | [[Android](./aos-etc/#contact)] [[iOS](./ios-etc/#contact)] [[Unity](./unity-etc/#contact)] <br/> - サポートWebページをWebビューで表示 |                                        | [[Customer Service]](./oper-customer-service) <br/>- サポートお問い合わせ処理<br>- FAQ/告知管理 |
+
+## Console Role
+
+NHN Cloudの基本的なメンバーポリシーと権限については、次のガイドを参考にしてください。
+* [NHN Cloud > コンソール使用ガイド > メンバー管理](https://docs.toast.com/ja/TOAST/ja/console-guide/#_13)
+
+### Manage Role
+
+**Console > プロジェクト設定 > メンバー管理**
+プロジェクト設定画面でTOAST会員を追加したり、会員に個別に権限を付与できます。1人の会員に複数の権限を付与できます。
+![プロジェクト権限](http://static.toastoven.net/prod_gamebase/Overview/overview_project_role_01_20201123.png)
+
+**Console > プロジェクト設定 > 権限グループ管理**
+運営上の便宜上、頻繁に使用する権限は*権限グループ*に登録してTOAST会員に権限グループ単位で権限を付与できます。
+![プロジェクト権限グループ](http://static.toastoven.net/prod_gamebase/Overview/overview_project_role_02_20201123.png)
+
+**Console > 組織設定 > プロジェクト共通権限グループ設定**
+組織管理画面で組織内のプロジェクトで共通で使用する権限グループを管理できます。
+![組織権限グループ](http://static.toastoven.net/prod_gamebase/Overview/overview_company_role_01_20201123.png)
+
+### Gamebaseで提供する権限リスト
+
+| サービス | 権限 | 説明 |
+| --- | --- | --- |
+| Gamebase | ADMIN | **全画面のアクセスおよび制御**<br>GamebaseサービスCreate(作成)、Read(読み取り)、Update(更新)、Delete(削除) |
+| Gamebase | ANALYTICS VIEWER - ALL | すべての指標Read(読み取り)<br>指標結果のExcelファイルダウンロード可能 |
+| Gamebase | ANALYTICS VIEWER - EXCLUDING SALES | 売上を除くすべての指標Read(読み取り) |
+| Gamebase | ANALYTICS VIEWER - ONLY REAL-TIME | リアルタイム指標Read(読み取り) |
+| Gamebase | APP ADMIN | APPメニューCreate(作成)、Read(読み取り)、Update(更新)、Delete(削除) |
+| Gamebase | APP VIEWER | APPメニューRead(読み取り) |
+| Gamebase | BAN ADMIN | 利用停止メニューCreate(作成)、Read(読み取り)、Update(更新)、Delete(削除) |
+| Gamebase | BAN VIEWER | 利用停止メニューRead(読み取り) |
+| Gamebase | COUPON ADMIN | クーポンメニューCreate(作成)、Read(読み取り)、Update(更新)、Delete(削除) |
+| Gamebase | COUPON VIEWER | クーポンメニューRead(読み取り) |
+| Gamebase | CS ADMIN | サポートメニューCreate(作成)、Read(読み取り)、Update(更新)、Delete(削除) |
+| Gamebase | CS INQUIRY SUPPORT | サポートお問い合わせメニューRead(読み取り)、Update(更新)およびメンバーメニューRead(読み取り) |
+| Gamebase | IAP ADMIN | 購入メニューCreate(作成)、Read(読み取り)、Update(更新)、Delete(削除) |
+| Gamebase | IAP VIEWER | 購入メニューRead(読み取り) |
+| Gamebase | LEADERBOARD ADMIN | リーダーボードメニューCreate(作成)、Read(読み取り)、Update(更新)、Delete(削除) |
+| Gamebase | LEADERBOARD VIEWER | リーダーボードメニューRead(読み取り) |
+| Gamebase | MANAGEMENT ADMIN | 管理メニューCreate(作成)、Read(読み取り)、Update(更新)、Delete(削除) |
+| Gamebase | MEMBER ADMIN | メンバーメニューCreate(作成)、Read(読み取り)、Update(更新)、Delete(削除) |
+| Gamebase | MEMBER VIEWER | メンバーメニューRead(読み取り) |
+| Gamebase | MEMBER FILE DOWNLOAD | メンバーメニューRead(読み取り)およびメンバーファイルダウンロード |
+| Gamebase | OPERATION ADMIN | 運営メニューCreate(作成)、Read(読み取り)、Update(更新)、Delete(削除) |
+| Gamebase | OPERATION VIEWER | 運営メニューRead(読み取り) |
+| Gamebase | PUSH ADMIN | プッシュメニューCreate(作成)、Read(読み取り)、Update(更新)、Delete(削除) |
+| Gamebase | PUSH VIEWER | プッシュメニューRead(読み取り) |
+
+* プロジェクトで頻繁に使用する権限グループを作成して権限を管理する例です。ゲームで必要に応じて適切な権限グループを作成して管理できます。
+
+| サービス | 権限 | 管理者/事業 | 開発 | CS |
+| --- | --- | --- | --- | --- | 
+| Gamebase | ADMIN | ● | | |
+| Gamebase | ANALYTICS VIEWER - ALL |  |  | |
+| Gamebase | ANALYTICS VIEWER - EXCLUDING SALES |   |  | |
+| Gamebase | ANALYTICS VIEWER - ONLY REAL-TIME |  | ● | |
+| Gamebase | APP ADMIN | |  ● | |
+| Gamebase | APP VIEWER | |  | |
+| Gamebase | BAN ADMIN | |  ● | ●|
+| Gamebase | BAN VIEWER | |  | |
+| Gamebase | COUPON ADMIN | | ● | |
+| Gamebase | COUPON VIEWER | |  |● |
+| Gamebase | CS ADMIN | |  | |
+| Gamebase | CS INQUIRY SUPPORT | |  | ● |
+| Gamebase | IAP ADMIN | | ● | |
+| Gamebase | IAP VIEWER | |  |● |
+| Gamebase | LEADERBOARD ADMIN || ● | | 
+| Gamebase | LEADERBOARD VIEWER | |  | |
+| Gamebase | MANAGEMENT ADMIN | | ● | |
+| Gamebase | MEMBER ADMIN | | ● | ● |
+| Gamebase | MEMBER VIEWER | |  |  |
+| Gamebase | MEMBER FILE DOWNLOAD | |  | |
+| Gamebase | OPERATION ADMIN | | ● | |
+| Gamebase | OPERATION VIEWER | |  |● |
+| Gamebase | PUSH ADMIN | | ● | |
+| Gamebase | PUSH VIEWER | |  | ● |

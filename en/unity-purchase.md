@@ -11,14 +11,14 @@ For Android and iOS IAP setting, refer to the below documents.<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
 To make payments at Unity Standalone, IapAdapter and WebViewAdapter must be added. 
-![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-settingtool_iap_2.4.0.png)
+![GamebaseUnitySDKSettins Inspector](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-settingtool_iap_2.4.0.png)
 
 ### Purchase Flow
 
 Purchase of an item can be divided into Purchase Flow, Consume Flow, and Reprocess Flow.
 You may execute an item purchase in the following order: 
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
+![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
 1. When a previous purchase has not been closed, purchase fails unless reprocessing runs. Therefore, call **RequestItemListOfNotConsumed** before payment so as to run reprocessing, and execute Consume Flow if there's any unsupplied item. 
 2. For the game client, call **RequestPurchase** of Gamebase SDK to make a purchase. 
@@ -28,7 +28,12 @@ You may execute an item purchase in the following order:
 
 If there's a value on the list of non-consumable purchases, execute Consume Flow in the following order:
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.10.0.png)
+> <font color="red">[주의]</font><br/>
+>
+To prevent the multiple issuance of the same purchased item, always check the game server for issuance history of items.
+>
+
+![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
 
 1. The game client requests for Consume of a purchase item on the game server. 
     * Deliver UserID, itemSeq, paymentSeq, purchaseToken.
@@ -231,7 +236,7 @@ public void RequestActivatedPurchasesSample()
             foreach (GamebaseResponse.Purchase.PurchasableReceipt purchasableReceipt in purchasableReceiptList)
             {
                 var message = new StringBuilder();
-                message.AppendLine(string.Format("itemSeq:{0}", purchasableReceipt.itemSeq));
+                message.AppendLine(string.Format("gamebaseProductId:{0}", purchasableReceipt.gamebaseProductId));
                 message.AppendLine(string.Format("price:{0}", purchasableReceipt.price));
                 message.AppendLine(string.Format("currency:{0}", purchasableReceipt.currency));
                 
@@ -282,9 +287,9 @@ Supported Platforms
 | PURCHASE_EXTERNAL_LIBRARY_ERROR | 4201 | Error in IAP library.<br>Check DetailCode. |
 | PURCHASE_UNKNOWN_ERROR | 4999 | Unknown error in purchase.<br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we'll respond ASAP. |
 
-
 * Refer to the following document for the entire error code.
     * [Entire Error Codes](./error-code/#client-sdk)
+
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
@@ -315,8 +320,3 @@ else
 
 * For IAP error codes, refer to the document below.
     * [NHN Cloud > User Guide for NHN Cloud SDK > NHN Cloud IAP > Unity > Error Codes](/TOAST/en/toast-sdk/iap-unity/#_17)
-
-
-
-
-

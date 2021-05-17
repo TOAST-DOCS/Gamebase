@@ -7,6 +7,8 @@
 - GUESTアカウントの端末移行に使用するTransferAccountに対して、事前に発行されたTransferAccountを検証できるValidate TransferAccount APIが追加されました。
 - APIレスポンス結果のdateタイプがEpoch timeからISO 8601形式(yyyy-MM-dd'T'HH：mm：ssXXX)に変更されました。Token Authentication、Get Member、Get Members APIのレスポンス結果のregDate、lastLoginDate項目
 - クーポン消費APIが追加されました。
+- Purchase(IAP)の購入価格(price)データタイプがガイドに誤ってLongと表記されていた部分をFloatタイプに変更しました。
+- 退会猶予機能追加に伴い、Token Authentication、Get Member APIレスポンス結果に退会猶予状態のユーザー情報を追加しました。
 
 ## Advance Notice
 
@@ -71,11 +73,11 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-    "header"：{
-    	"transactionId"："88a1ae42-6b1d-48c8-894e-54e97aca07fq",
-        "isSuccessful"：true,
-        "resultCode"：0,
-        "resultMessage"："Success."
+    "header": {
+        "transactionId": "88a1ae42-6b1d-48c8-894e-54e97aca07fq",
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "Success."
     }
 }
 ```
@@ -87,6 +89,8 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | resultCode | int | レスポンスコード<br>成功すると0、失敗するとエラーコードを返す |
 | resultMessage | String | レスポンスメッセージ |
 
+<br>
+<br>
 
 ## Authentication
 
@@ -103,7 +107,6 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 **[Request Header]**
 
 共通事項確認
-<br>
 
 **[Path Variable]**
 
@@ -123,39 +126,42 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-  "header"：{
-    "transactionId"："String",
-    "resultCode"：0,
-    "resultMessage"："String",
-    "isSuccessful"：true
-  },
-  "linkedIdP"：{
-    "idPCode"："String",
-    "idPId"："String"
-  },
-  "member"：{
-    "userId"："String",
-    "valid"："Y",
-    "appId"："String",
-    "regDate"："2019-08-27T17:41:05+09:00",
-    "lastLoginDate"："2019-08-27T17:41:05+09:00",
-    "authList"：[
-      {
-        "userId"："String",
-        "authSystem"："String",
-        "idPCode"："String",
-        "authKey"："String",
-        "regDate"："2019-08-27T17:41:05+09:00"
-      },
-      {
-        "userId"："String",
-        "authSystem"："String",
-        "idPCode"："String",
-        "authKey"："String",
-        "regDate"："2019-08-27T17:41:05+09:00"
-      }
-    ]
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "String",
+        "isSuccessful": true
+    },
+    "linkedIdP": {
+        "idPCode": "String",
+        "idPId": "String"
+    },
+    "member": {
+        "userId": "String",
+        "valid": "Y",
+        "appId": "String",
+        "regDate": "2019-08-27T17:41:05+09:00",
+        "lastLoginDate": "2019-08-27T17:41:05+09:00",
+        "authList": [
+            {
+                "userId": "String",
+                "authSystem": "String",
+                "idPCode": "String",
+                "authKey": "String",
+                "regDate": "2019-08-27T17:41:05+09:00"
+            },
+            {
+                "userId": "String",
+                "authSystem": "String",
+                "idPCode": "String",
+                "authKey": "String",
+                "regDate": "2019-08-27T17:41:05+09:00"
+            }
+        ],
+        "temporaryWithdrawal": {
+            "gracePeriodDate": "2020-04-18T09:12:01+09:00"
+        }
+    }
 }
 ```
 
@@ -173,11 +179,15 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | authList[].authSystem | String | Gamebase内部で使用される認証システム<br>今後、ユーザー認証システムを実装する予定 |
 | authList[].idPCode | String |ユーザー認証IdP情報<br>guest、payco、facebookなど |
 | authList[].authKey | String | authSystemから発行されたユーザーを区別する値 |
-
+| temporaryWithdrawal | Object | 退会猶予関連情報 <br>validが"T"値でのみ提供 |
+| temporaryWithdrawal.gracePeriodDate | String | 退会猶予満了時間ISO 8601 |
 
 **[Error Code]**
 
 [エラーコード](./error-code/#server)
+
+<br>
+<br>
 
 ## Launching
 
@@ -191,7 +201,6 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Method | URI |
 | --- | --- |
 | GET | /tcgb-launching/v1.2/apps/{appId}/launching/simple |
-
 
 **[Request Header]**
 
@@ -208,6 +217,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | osCode | OsCode | true | OSコード <br>AOS、IOS、WEB、WINDOWS |
+| storeCode | Enum | true | アプリストアコード <br>- GG: Google<br>- ONESTORE: ONE store<br>- AS: AppStore |
 | clientVersion | String | true | クライアントバージョン |
 
 **[Response Body]**  
@@ -316,6 +326,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 [エラーコード](./error-code/#server)
 
 <br>
+<br>
 
 ## Member
 
@@ -328,7 +339,6 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Method | URI |
 | --- | --- |
 | GET | /tcgb-member/v1.2/apps/{appId}/members/{userId} |
-
 
 **[Request Header]**
 
@@ -350,41 +360,44 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 **[Response Body]**
 ```json
 {
-  "header"：{
-    "transactionId"："String",
-    "resultCode"：0,
-    "resultMessage"："SUCCESS",
-    "isSuccessful"：true
-  },
-  "member"：{
-    "userId"："String",
-    "valid"："Y",
-    "appId"："String",
-    "regDate": "2019-08-27T17:41:05+09:00",
-    "lastLoginDate"："2019-08-27T17:41:05+09:00",
-	"authList"：[
-		  {
-			"userId"："String",
-			"authSystem"："String",
-			"idPCode"："String",
-			"authKey"："String",
-			"regDate"："2019-08-27T17:41:05+09:00"
-		  }
-		]
-	  },
-  "memberInfo"：{
-    "deviceCountryCode"："String",
-    "usimCountryCode"："String",
-    "language"："String",
-    "osCode"："String",
-    "telecom"："String",
-    "storeCode"："String",
-    "network"："String",
-    "deviceModel"："String",
-    "osVersion"："String",
-    "sdkVersion"："String",
-    "clientVersion"："String"
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "member": {
+        "userId": "String",
+        "valid": "Y",
+        "appId": "String",
+        "regDate": "2019-08-27T17:41:05+09:00",
+        "lastLoginDate": "2019-08-27T17:41:05+09:00",
+        "authList": [
+            {
+                "userId": "String",
+                "authSystem": "String",
+                "idPCode": "String",
+                "authKey": "String",
+                "regDate": "2019-08-27T17:41:05+09:00"
+            }
+        ]
+    },
+    "temporaryWithdrawal": {
+        "gracePeriodDate": "2020-04-18T09:12:01+09:00"
+    },
+    "memberInfo": {
+        "deviceCountryCode": "String",
+        "usimCountryCode": "String",
+        "language": "String",
+        "osCode": "String",
+        "telecom": "String",
+        "storeCode": "String",
+        "network": "String",
+        "deviceModel": "String",
+        "osVersion": "String",
+        "sdkVersion": "String",
+        "clientVersion": "String"
+    }
 }
 ```
 
@@ -402,6 +415,8 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | member.authList[].idPCode | String |ユーザー認証IdP情報 <br>guest、payco、facebookなど |
 | member.authList[].authKey | String | authSystemから発行された、ユーザーを区別する値 |
 | member.authList[].regDate | String | IdP情報がユーザーアカウントとマッピングされた時間 |
+| temporaryWithdrawal | Object | 탈퇴 유예 관련 정보 <br>valid 가 "T" 값에서만 제공 |
+| temporaryWithdrawal.gracePeriodDate | String | 탈퇴 유예 만료 시간 ISO 8601 |
 | memberInfo | Object | ユーザーに対する付加情報 |
 | memberInfo.deviceCountryCode | String |ユーザー端末の国家設定 |
 | memberInfo.usmCountryCode | String |ユーザーUSIMの国家コード|
@@ -419,6 +434,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [エラーコード](./error-code/#server)
 
+<br>
 
 #### Get members
 
@@ -450,20 +466,20 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-  "header"：{
-    "transactionId"："String",
-    "resultCode"：0,
-    "resultMessage"："SUCCESS",
-    "isSuccessful"：true
-  },
-  "memberList"：[
-    {
-		"userId"："String",
-		"valid"："Y",
-		"appId"："String",
-		"regDate"："2019-08-27T17:41:05+09:00"
-    }
-  ]
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "memberList": [
+        {
+            "userId": "String",
+            "valid": "Y",
+            "appId": "String",
+            "regDate": "2019-08-27T17:41:05+09:00"
+        }
+    ]
 }
 ```
 
@@ -471,10 +487,9 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | memberList | Array[Object] | 照会されたユーザーの基本情報 |
 | memberList[].userId | String |ユーザーID |
-| memberList[].valid | Enum | Y：正常なユーザー<br>D：退会したユーザー<br>B：利用停止中のユーザー<br>M：流出したアカウント |
+| memberList[].valid | Enum | Y：正常なユーザー<br>D：退会したユーザー<br>B：利用停止中のユーザー<br>M：流出したアカウント<br>T: 탈퇴 유예 상태인 사용자 |
 | memberList[].appId | String | appId |
 | memberList[].regDate | String | ユーザーがアカウントを作成した時間 |
-
 
 **[Error Code]**
 
@@ -502,7 +517,6 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | appId | String | NHN CloudプロジェクトのID |
 
-
 **[Request Body]**
 
 | Name | Type | Required | Value |
@@ -513,23 +527,22 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-  "header"：{
-    "transactionId"："String",
-    "resultCode"：0,
-    "resultMessage"："SUCCESS",
-    "isSuccessful"：true
-  },
-  "result"：{
-    "String"：[
-      {
-        "authKey"："String",
-        "idPCode"："gbid",
-        "authSystem"："String"
-      }
-    ]
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "String": [
+            {
+                "authKey": "String",
+                "idPCode": "gbid",
+                "authSystem": "String"
+            }
+        ]
+    }
 }
-
 ```
 
 | Key | Type | Description |
@@ -543,7 +556,9 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [エラーコード](./error-code/#server)
 
-#### Get userId infomation with auth key
+<br>
+
+#### Get UserId Information with Auth key
 
 ユーザー認証キーにマッピングされたユーザーIDを照会します。
 
@@ -553,11 +568,9 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- |
 | POST | /tcgb-member/v1.2/apps/{appId}/members/userIds/authKeys?authSystem={authSystem} |
 
-
 **[Request Header]**
 
 共通事項確認
-
 
 **[Path Variable]**
 
@@ -565,13 +578,11 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | appId | String | NHN CloudプロジェクトのID |
 
-
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | authSystem | String | mandatory | Gamebase内部で使用される認証システム<br>今後ユーザー認証システム実装予定 <br>現在はgbid |
-
 
 **[Request Body]**
 
@@ -583,15 +594,15 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-  "header"：{
-    "transactionId"："String",
-    "resultCode"：0,
-    "resultMessage"："SUCCESS",
-    "isSuccessful"：true
-  },
-  "result"：{
-    "String"："String"
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "String": "String"
+    }
 }
 ```
 
@@ -603,6 +614,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [エラーコード](./error-code/#server)
 
+<br>
 
 #### Ban Histories
 
@@ -624,7 +636,6 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | appId | String | NHN CloudプロジェクトID |
 
-
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
@@ -634,46 +645,45 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | page | String | optional | 照会するページ。0から開始 |
 | size | String | optional | 1ページ当たりのデータ数 |
 
-
 **[Response Body]**
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
     "pagingInfo": {
-      "first": true,
-      "last": true,
-      "numberOfElements": 0,
-      "page": 0,
-      "size": 0,
-      "totalElements": 0,
-      "totalPages": 0
+        "first": true,
+        "last": true,
+        "numberOfElements": 0,
+        "page": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0
     },
     "result": [
-      {
-        "appId": "String",
-        "banCaller": "CONSOLE",
-        "banReason": "String",
-        "banType": "TEMPORARY",
-        "beginDate": 0,
-        "endDate": 0,
-        "flags": "String",
-        "message": "String",
-        "name": "String",
-        "regUser": "String",
-        "releaseCaller": "CONSOLE",
-        "releaseDate": 0,
-        "releaseReason": "String",
-        "releaseUser": "String",
-        "seq": 0,
-        "templateCode": 0,
-        "userId": "String"
-      }
+        {
+            "appId": "String",
+            "banCaller": "CONSOLE",
+            "banReason": "String",
+            "banType": "TEMPORARY",
+            "beginDate": 0,
+            "endDate": 0,
+            "flags": "String",
+            "message": "String",
+            "name": "String",
+            "regUser": "String",
+            "releaseCaller": "CONSOLE",
+            "releaseDate": 0,
+            "releaseReason": "String",
+            "releaseUser": "String",
+            "seq": 0,
+            "templateCode": 0,
+            "userId": "String"
+        }
     ]
 }
 ```
@@ -711,6 +721,8 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [エラーコード](./error-code/#server)
 
+<br>
+
 #### Ban Release Histories.
 
 ユーザー利用停止解除履歴を照会します。
@@ -720,7 +732,6 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Method | URI |
 | --- | --- |
 | GET | /tcgb-member/v1.2/apps/{appId}/members/bans/release |
-
 
 **[Request Header]**
 
@@ -732,7 +743,6 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | appId | String | NHN CloudプロジェクトID |
 
-
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
@@ -742,46 +752,45 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | page | String | optional | 照会するページ。0から開始 |
 | size | String | optional | 1ページ当たりのデータ数 |
 
-
 **[Response Body]**
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
     "pagingInfo": {
-      "first": true,
-      "last": true,
-      "numberOfElements": 0,
-      "page": 0,
-      "size": 0,
-      "totalElements": 0,
-      "totalPages": 0
+        "first": true,
+        "last": true,
+        "numberOfElements": 0,
+        "page": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0
     },
     "result": [
-      {
-        "appId": "String",
-        "banCaller": "CONSOLE",
-        "banReason": "String",
-        "banType": "TEMPORARY",
-        "beginDate": 0,
-        "endDate": 0,
-        "flags": "String",
-        "message": "String",
-        "name": "String",
-        "regUser": "String",
-        "releaseCaller": "CONSOLE",
-        "releaseDate": 0,
-        "releaseReason": "String",
-        "releaseUser": "String",
-        "seq": 0,
-        "templateCode": 0,
-        "userId": "String"
-      }
+        {
+            "appId": "String",
+            "banCaller": "CONSOLE",
+            "banReason": "String",
+            "banType": "TEMPORARY",
+            "beginDate": 0,
+            "endDate": 0,
+            "flags": "String",
+            "message": "String",
+            "name": "String",
+            "regUser": "String",
+            "releaseCaller": "CONSOLE",
+            "releaseDate": 0,
+            "releaseReason": "String",
+            "releaseUser": "String",
+            "seq": 0,
+            "templateCode": 0,
+            "userId": "String"
+        }
     ]
 }
 ```
@@ -819,6 +828,8 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [エラーコード](./error-code/#server)
 
+<br>
+
 #### Validate TransferAccount
 
 ゲストアカウントを移行するために、すでに発行されているIDおよびパスワードの有効性をチェックします。有効なTransferAccountの場合、発行されたuserId情報を返します。
@@ -827,8 +838,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-gateway/v1.1.2/apps/{appId}/members/transfer-account |
-
+| POST | /tcgb-gateway/v1.2/apps/{appId}/members/transfer-account |
 
 **[Request Header]**
 
@@ -840,7 +850,6 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | appId | String | NHN CloudプロジェクトID |
 
-
 **[Request Parameter]**
 
 なし
@@ -849,10 +858,10 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-  "account": {
-    "id": "198704206255",
-    "password": "Zw548q7zE"
-  }
+    "account": {
+        "id": "198704206255",
+        "password": "Zw548q7zE"
+    }
 }
 ```
 
@@ -865,19 +874,19 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "SUCCESS",
-    "isSuccessful": true
-  },
-  "member": {
-    "userId": "String",
-    "valid": "Y",
-    "appId": "String",
-    "regDate": "2019-08-27T17:41:05+09:00",
-    "lastLoginDate": "2019-08-27T17:41:05+09:00"
-  }
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "member": {
+        "userId": "String",
+        "valid": "Y",
+        "appId": "String",
+        "regDate": "2019-08-27T17:41:05+09:00",
+        "lastLoginDate": "2019-08-27T17:41:05+09:00"
+    }
 }
 ```
 
@@ -896,6 +905,60 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 <br>
 
+#### Withdraw
+
+ユーザーアカウントを退会処理します。
+
+> [参考]
+> SDKの退会APIを使用せず、サーバー退会APIを使用してアカウント退会を実装した場合、クライアントでは退会成功後にSDKのlogout APIを呼び出してキャッシュされているトークンなどのデータを削除する必要がある。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| DELETE | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}?regUser={regUser} |
+
+**[Request Header]**
+
+共通事項確認
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN CloudプロジェクトID |
+| userId | String | 退会対象ユーザーID |
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| regUser | String | mandatory | 退会をリクエストしたシステムまたはユーザー情報 <br> - この情報はConsole > 「メンバー」ページの「退会履歴」画面で確認可能 <br> - 退会履歴画面は退会した利用者の照会時にのみ表示される |
+
+**[Request Body]**
+
+なし
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    }
+}
+```
+
+**[Error Code]**
+
+[エラーコード](./error-code/#server)
+
+<br>
+<br>
+
 ## Maintenance
 
 #### Check Under Maintenance
@@ -912,13 +975,11 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 共通事項確認
 
-
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
 | appId | String | NHN CloudプロジェクトのID |
-
 
 **[Request Parameter]**
 
@@ -928,28 +989,28 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-  "header": {
-    "transactionId": "String",
-    "resultCode": 0,
-    "resultMessage": "String",
-    "isSuccessful": true
-  },
-  "appId": "",
-  "underMaintenance": true,
-  "maintenances": [
-    {
-      "typeCode": "APP",
-      "beginDate": "2017-01-01T12:10:00+07:00",
-      "endDate": "2017-02-01T12:17:00+07:00",
-      "url": "http://url.info",
-      "message": "maintenance message",
-      "targetStores": [
-        "GG",
-        "AS",
-        "ONESTROE"
-      ]
-    }
-  ]
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "String",
+        "isSuccessful": true
+    },
+    "appId": "",
+    "underMaintenance": true,
+    "maintenances": [
+        {
+            "typeCode": "APP",
+            "beginDate": "2017-01-01T12:10:00+07:00",
+            "endDate": "2017-02-01T12:17:00+07:00",
+            "url": "http://url.info",
+            "message": "maintenance message",
+            "targetStores": [
+                "GG",
+                "AS",
+                "ONESTROE"
+            ]
+        }
+    ]
 }
 ```
 
@@ -969,6 +1030,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 [エラーコード](./error-code/#server)
 
 <br>
+<br>
 
 ## Coupon
 
@@ -980,7 +1042,7 @@ Consoleを通して発行されたクーポンコードに対して、有効性�
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}/coupons/{couponCode} |
+| POST | /tcgb-gateway/v1.2/apps/{appId}/members/{userId}/coupons/{couponCode}?storeCode={storeCode} |
 
 **[Request Header]**
 
@@ -996,27 +1058,29 @@ Consoleを通して発行されたクーポンコードに対して、有効性�
 
 **[Request Parameter]**
 
-なし
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| storeCode | String | optional | コンソールで特定ストアのみ使用できるようにクーポンを受け取った場合、ストアコードを渡す必要がある<br>全てのストアの場合、ALLまたはパラメータ省略<br>- GG：Google<br>- ONESTORE：ONE store<br>- AS：AppStore |
 
 **[Response Body]**
 
 ```json
 {
-    "header"： {
-        "resultCode"： 0,
-        "resultMessage"： "SUCCESS",
-        "isSuccessful"： true
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
     },
-    "result"： {
-        "title"： "Coupon Title",
-        "benefits"： [
+    "result": {
+        "title": "Coupon Title",
+        "benefits": [
             {
-                "itemId"： "heart",
-                "amount"： 10
+                "itemId": "heart",
+                "amount": 10
             },
             {
-                "itemId"： "diamond",
-                "amount"： 20
+                "itemId": "diamond",
+                "amount": 20
             }
         ]
     }
@@ -1035,6 +1099,7 @@ Consoleを通して発行されたクーポンコードに対して、有効性�
 
 [エラーコード](./error-code/#server)
 
+<br>
 <br>
 
 ## Purchase(IAP)
@@ -1073,8 +1138,8 @@ Google Play Store、App Store、ONEStoreなどでストア決済が完了後、�
 
 ```json
 {
-  "paymentSeq"： "2019091931571201",
-  "accessToken" ： "90fD1bs1guXwY6aZ7rseEKYW_6gMCISjDASgten4MD6O7XZD7VRjZcs8OTm8lOQVFTegoY4WK78P2WQCMm7cx"
+    "paymentSeq": "2019091931571201",
+    "accessToken": "90fD1bs1guXwY6aZ7rseEKYW_6gMCISjDASgten4MD6O7XZD7VRjZcs8OTm8lOQVFTegoY4WK78P2WQCMm7cx"
 }
 ```
 
@@ -1086,20 +1151,19 @@ Google Play Store、App Store、ONEStoreなどでストア決済が完了後、�
 > [参考]
 > クライアントでrequestPurchase APIを呼び出した時、返されたpurchaseTokenの値がaccessTokenに使用
 
-
 **[Response Body]**
 
 ```json
 {
-   "header"：{
-        "isSuccessful"： true,
-        "resultCode"： 0,
-        "resultMessage"： "SUCCESS"
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
     },
-    "result"：{
-        "price"： 1500,
-        "currency"： "KRW",
-        "productSeq"： 12345
+    "result": {
+        "price": 1500.0,
+        "currency": "KRW",
+        "productSeq": 1000292
     }
 }
 ```
@@ -1107,7 +1171,7 @@ Google Play Store、App Store、ONEStoreなどでストア決済が完了後、�
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Object | 決済基本情報 |
-| result.price | Long | 決済価格 |
+| result.price | Float | 決済価格 |
 | result.currency  | String  | 決済通貨 |
 | result.productSeq | Long | 決済アイテム番号(consoleに登録されたアイテム固有番号) |
 
@@ -1115,7 +1179,9 @@ Google Play Store、App Store、ONEStoreなどでストア決済が完了後、�
 
 [エラーコード](./error-code/#server)
 
-#### Get Consumable List
+<br>
+
+#### List Consumables
 
 決済が完了したが、まだ消費(Consume)していない未消費決済履歴を照会できます。
 
@@ -1143,9 +1209,9 @@ Google Play Store、App Store、ONEStoreなどでストア決済が完了後、�
 
 ```json
 {
-  "marketId"： "GG",
-  "userChannel" ： "GF",
-  "userKey" ： "QXG774PMRZMWR3BR"
+    "marketId": "GG",
+    "userChannel": "GF",
+    "userKey": "QXG774PMRZMWR3BR"
 }
 ```
 
@@ -1159,26 +1225,25 @@ Google Play Store、App Store、ONEStoreなどでストア決済が完了後、�
 
 ```json
 {
-    "header"：{
-        "isSuccessful"： true,
-        "resultCode"： 0,
-        "resultMessage"： "success"
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "success"
     },
-    "result"：[
+    "result": [
         {
-            "paymentSeq"： "2016122110023124",
-            "productSeq"： 1000292,
-            "currency"： "KRW",
-            "price"： 1000,
-            "accessToken"： "oJgM1EfDRjnQY7yqhWCUVgAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
+            "paymentSeq": "2016122110023124",
+            "productSeq": 1000292,
+            "currency": "KRW",
+            "price": 1000.0,
+            "accessToken": "oJgM1EfDRjnQY7yqhWCUVgAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
         },
-
         {
-            "paymentSeq"： "2016122110023125",
-            "productSeq"： 1000292,
-            "currency"： "KRW",
-            "price"： 1000,
-            "accessToken"： "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
+            "paymentSeq": "2016122110023125",
+            "productSeq": 1000292,
+            "currency": "KRW",
+            "price": 1000.0,
+            "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ"
         }
     ]
 }
@@ -1190,14 +1255,16 @@ Google Play Store、App Store、ONEStoreなどでストア決済が完了後、�
 | result[].paymentSeq | String  | 決済番号 |
 | result[].productSeq | Long | 決済アイテム番号(consoleに登録されたアイテム固有番号) |
 | result[].currency  | String  | 決済通貨 |
-| result[].price | Long | 決済価格 |
+| result[].price | Float | 決済価格 |
 | result[].accessToken | String | 決済認証トークン |
 
 **[Error Code]**
 
 [エラーコード](./error-code/#server)
 
-### Get ActiveSubscription List
+<br>
+
+### List Active Subscriptions
 
 ユーザーが現在定期購入中の決済を照会できます。
 
@@ -1225,10 +1292,10 @@ Google Play Store、App Store、ONEStoreなどでストア決済が完了後、�
 
 ```json
 {
-  "marketId"： "GG",
-  "packageName" ： "com.toast.gamebase",
-  "userChannel" ： "GF",
-  "userKey" ： "QXG774PMRZMWR3BR"
+    "marketId": "GG",
+    "packageName": "com.toast.gamebase",
+    "userChannel": "GF",
+    "userKey": "QXG774PMRZMWR3BR"
 }
 ```
 
@@ -1243,28 +1310,28 @@ Google Play Store、App Store、ONEStoreなどでストア決済が完了後、�
 
 ```json
 {
-  "header"： {
-    "isSuccessful"： true,
-    "resultCode"： 0,
-    "resultMessage"： "SUCCESS"
-  },
-  "result"： [
-    {
-      "channel"： "GF",
-      "userId"： "string",
-      "paymentSeq"： "2018102610330423",
-      "appId"： "com.toast.gamebase",
-      "productId"： "subs_p1w",
-      "productType"： "AUTO_RENEWABLE",
-      "productSeq"： 1002904,
-      "currency"： "KRW",
-      "price"： 1000,
-      "paymentId"： "GPA.3375-2193-1175-57698",
-      "originalPaymentId"： "GPA.3375-2193-1175-57698",
-      "purchaseTimeMillis"： 1540522998289,
-      "expiryTimeMillis"： 1541134994548
-    }
-  ]
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "result": [
+        {
+            "channel": "GF",
+            "userId": "string",
+            "paymentSeq": "2018102610330423",
+            "appId": "com.toast.gamebase",
+            "productId": "subs_p1w",
+            "productType": "AUTO_RENEWABLE",
+            "productSeq": 1002904,
+            "currency": "KRW",
+            "price": 1000.0,
+            "paymentId": "GPA.3375-2193-1175-57698",
+            "originalPaymentId": "GPA.3375-2193-1175-57698",
+            "purchaseTimeMillis": 1540522998289,
+            "expiryTimeMillis": 1541134994548
+        }
+    ]
 }
 ```
 
@@ -1279,23 +1346,21 @@ Google Play Store、App Store、ONEStoreなどでストア決済が完了後、�
 | result[].productType | String  | 商品(アイテム)タイプ<br>定期購入： AUTO_RENEWABLE |
 | result[].productSeq | Long | 決済アイテム番号(consoleに登録されたアイテム固有番号) |
 | result[].currency  | String  | 決済通貨 |
-| result[].price | Long | 決済価格 |
+| result[].price | Float | 決済価格 |
 | result[].paymentId | String | 最近更新されたストア決済番号 |
 | result[].originalPaymentId | String | 最初のストア決済番号 |
 | result[].purchaseTimeMillis | Long | 最近更新された時間 |
 | result[].expiryTimeMillis | Long | 定期購入終了時間 |
 
-
 **[Error Code]**
-
 [エラーコード](./error-code/#server)
 
+<br>
 <br>
 
 ## Leaderboard
 
 Gamebaseは、NHN Cloud LeaderboardサービスのサーバーAPIに対して**Wrapping**機能を提供します。Wrapping機能を使用すれば、ユーザーサーバーにおいて一貫したインターフェースでNHN Cloudサービスを使用することができます。
-
 
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
@@ -1326,6 +1391,8 @@ X-Secret-Key：IgsaAP
 GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.2/apps/{appId}/factors/{factor}/user-count
 ```
 
+<br>
+<br>
 
 ## Etc
 
@@ -1345,17 +1412,16 @@ GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.2/apps/C3JmSctU/maint
 
 ```json
 {
-  "header"：{
-    "transactionId"："18a1ae42-6b1d-54c8-894e-54e97bca07fq",
-    "resultCode"：-4010002,
-    "resultMessage"："Gamebase product appKey is invalid, appId:C3JmSctU",
-    "traceError"：{
-      "trackingTime"：1489726350287,
-      "throwPoint"："gateway",
-      "uri"："/tcgb-launching/v1.2/apps/C3JmSctU/maintenances/under-maintenance"
-    },
-    "isSuccessful"：false
-  }
+    "header": {
+        "transactionId": "18a1ae42-6b1d-54c8-894e-54e97bca07fq",
+        "resultCode": -4010002,
+        "resultMessage": "Gamebase product appKey is invalid, appId:C3JmSctU",
+        "traceError": {
+            "trackingTime": 1489726350287,
+            "throwPoint": "gateway",
+            "uri": "/tcgb-launching/v1.2/apps/C3JmSctU/maintenances/under-maintenance"
+        },
+        "isSuccessful": false
+    }
 }
-
 ```

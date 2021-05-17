@@ -11,6 +11,11 @@ AppDelegate.hなどGamebase機能を初期化する場所に次のヘッダー�
 #import <Gamebase/Gamebase.h>
 ```
 
+### Initialization Flow
+
+ゲームが始まったらDebug Modeを設定し、Gamebaseを初期化して、Launching Status Codeに従ってゲームに進入可否を決定するように、以下のフローのように実装してください。
+
+![initialization flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/initialization_flow_2.19.0.png)
 
 ### Configuration Settings
 
@@ -141,6 +146,7 @@ Gamebase iOS SDKの初期化設定に入力したアプリバージョンのゲ�
 | IN_SERVICE_BY_QA_WHITE_LIST | 202  | メンテナンス中にはサービスを利用することができませんが、QA端末として登録されている場合はメンテナンスに関係なくサービスに接続してテストすることができます。|
 | IN_TEST                     | 203  | テスト中 |
 | IN_REVIEW                   | 204  | 審査中 |
+| IN_BETA                     | 205  | ベータサーバー環境 |
 | REQUIRE_UPDATE              | 300  | アップデートが必ず必要です。                                 |
 | BLOCKED_USER                | 301  | 接続ブロックに登録された端末(デバイスキー)でサービスに接続したケースです。|
 | TERMINATED_SERVICE          | 302  | サービスが終了しました。                                  |
@@ -155,13 +161,15 @@ Gamebase iOS SDKの初期化設定に入力したアプリバージョンのゲ�
 Gamebaseコンソールに登録されたアプリ情報です。
 
 * accessInfo
-    * serverAddress： Server address
-    * csInfo： Customer center information
+    * serverAddress：サーバーアドレス
+* customerService
+    * accessInfo ：サポートの連絡先
+    * type：サポートタイプ
+    * url ：サポートURL
 * relatedUrls
     * termsUrl：利用約款
     * personalInfoCollectionUrl：個人情報同意
     * punishRuleUrl：利用停止規定
-    * csUrl ：サポート
 * install：インストールURL
 * idP：認証情報
 
@@ -191,7 +199,7 @@ Gamebaseコンソールに登録された告知情報です。
 
 #### 2. tcProduct
 
-Gamebaseと連携したTOASTサービスのアプリケーションキーです。
+Gamebaseと連携したNHN Cloudサービスのアプリケーションキーです。
 
 * gamebase
 * tcLaunching
@@ -200,7 +208,7 @@ Gamebaseと連携したTOASTサービスのアプリケーションキーです�
 
 #### 3. tcIap
 
-TOASTコンソールに登録されたIAPストア情報です。
+NHN Cloudコンソールに登録されたIAPストア情報です。
 
 * id: App ID
 * name: App Name
@@ -210,10 +218,10 @@ TOASTコンソールに登録されたIAPストア情報です。
 
 #### 4. tcLaunching
 
-TOAST Launching Consoleでユーザーが入力した情報です。
+NHN Cloud Launching Consoleでユーザーが入力した情報です。
 
 * ユーザーが入力した値をJSON stringで渡します。
-* TOAST Launching詳細設定は、次のガイドを参照してください。
+* NHN Cloud Launching詳細設定は、次のガイドを参照してください。
 
 [コンソールガイド](/Game/Gamebase/ko/oper-management/#config)
 
@@ -275,6 +283,11 @@ Gamebaseポップアップを使用していない場合はUpdateInfoをTCGBErro
 
 iOSのアプリイベントを管理したい場合、次の**UIApplicationDelegate**プロトコルを設計します。
 
+> <font color="red">[注意]</font><br/>
+>
+> SceneDelegate(iOS 13以上)を使用している場合は、**UISceneDelegate**プロトコルを実装する必要があります。
+>
+
 ### OpenURL Event
 **application:openURL:sourceApplication:annotation:**メソッドを呼び出してアプリケーションの外部URL Openの試みをGamebaseに知らせなければなりません。Gamebaseでは、各Idpの認証用SDKに該当する値を送り、必要な動作をするように知らせます。
 
@@ -283,11 +296,28 @@ iOSのアプリイベントを管理したい場合、次の**UIApplicationDeleg
 > UIApplicationDelegateの**application:openURL:options:**を既に再定義した場合、**application:openURL:sourceApplication:annotation:**が呼び出されなことがあります。
 >
 
+
+> <font color="red">[注意]</font><br/>
+>
+> WeiboAuthAdapterを使用する場合、 **application:openURL:sourceApplication:annotation:**を必ず実装する必要があります。
+>
+
 ```objectivec
+// AppDelegate.m
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [TCGBGamebase application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 ```
+
+SceneDelegate(iOS 13以上)を使用する場合は、**scene:openURLContexts:**メソッドを呼び出す必要があります。
+
+```objectivec
+// SceneDelegate.m
+- (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts {
+    [TCGBGamebase scene:scene openURLContexts:URLContexts];
+}
+```
+
 
 ### DidBecomeActive Event
 **applicationDidBecomeActive:**メソッドを呼び出してアプリを有効にするかどうかをGamebaseに知らせなければなりません。Gamebaseでは、各Idpの認証用SDKに該当する値を送り、必要な動作をするように知らせます。
@@ -295,8 +325,18 @@ iOSのアプリイベントを管理したい場合、次の**UIApplicationDeleg
 
 
 ```objectivec
+// AppDelegate.m
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [TCGBGamebase applicationDidBecomeActive:application];
+}
+```
+
+SceneDelegate(iOS 13以上)を使用する場合は、**sceneDidBecomeActive:**メソッドを呼び出す必要があります。
+
+```objectivec
+// SceneDelegate.m
+- (void)sceneDidBecomeActive:(UIScene *)scene {
+    [TCGBGamebase sceneDidBecomeActive:scene];
 }
 ```
 
@@ -305,8 +345,18 @@ iOSのアプリイベントを管理したい場合、次の**UIApplicationDeleg
 
 
 ```objectivec
+// AppDelegate.m
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     [TCGBGamebase applicationDidEnterBackground:application];
+}
+```
+
+SceneDelegate(iOS 13以上)を使用する場合は、**sceneDidEnterBackground:**メソッドを呼び出す必要があります。
+
+```objectivec
+// SceneDelegate.m
+- (void)sceneDidEnterBackground:(UIScene *)scene {
+    [TCGBGamebase sceneDidEnterBackground:scene];
 }
 ```
 
@@ -314,11 +364,20 @@ iOSのアプリイベントを管理したい場合、次の**UIApplicationDeleg
 **applicationWillEnterForeground**メソッドを呼び出してGamebaseにアプリがフォアグラウンド(foreground)に切り替わるということを知らせる必要があります。
 
 ```objectivec
+// AppDelegate.m
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     [TCGBGamebase applicationWillEnterForeground:application];
 }
 ```
 
+SceneDelegate(iOS 13以上)を使用する場合は、**sceneWillEnterForeground:**メソッドを呼び出す必要があります。
+
+```objectivec
+// SceneDelegate.m
+- (void)sceneWillEnterForeground:(UIScene *)scene {
+    [TCGBGamebase sceneWillEnterForeground:scene];
+}
+```
 
 ### Error Handling
 

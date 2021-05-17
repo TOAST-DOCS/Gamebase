@@ -10,15 +10,17 @@ AndroidやiOSでアプリ内決済機能を設定する方法は、次のドキ�
 * [Android Purchase Settings](aos-purchase#settings)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
+
 Unity Standaloneで決済を行うには、IapAdapterとWebViewAdapterを追加する必要があります。
-![GamebaseUnitySDKSettins Inspector](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-settingtool_iap_2.4.0.png)
+![GamebaseUnitySDKSettins Inspector](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-settingtool_iap_2.4.0.png)
+
 
 ### Purchase Flow
 
 アイテムの購入は大きく分けて決済フロー、消費フロー、再処理フローの3つがあります。
 決済フローは、次のような順序で実装してください。
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
+![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
 1. 以前の決済が正常に終了せず、再処理が動作しない場合、決済が失敗します。そのため決済前に**RequestItemListOfNotConsumed**を呼び出して再処理を行い、未支給のアイテムがある場合はConsume Flowを進行します。
 2. ゲームクライアントではGamebase SDKの**RequestPurchase**を呼び出して決済を試行します。
@@ -28,7 +30,12 @@ Unity Standaloneで決済を行うには、IapAdapterとWebViewAdapterを追加�
 
 未消費決済履歴リストに値がある場合、次のような順序でConsume Flowを進行してください。
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.10.0.png)
+> <font color="red">[주의]</font><br/>
+>
+> アイテムの重複支給が発生しないように、ゲームサーバーで必ず重複支給の有無をチェックしてください。
+>
+
+![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
 
 1. ゲームクライアントがゲームサーバーに決済アイテムのconsume(消費)をリクエストします。
     * UserID、itemSeq、paymentSeq、purchaseTokenを伝達します。
@@ -37,6 +44,7 @@ Unity Standaloneで決済を行うには、IapAdapterとWebViewAdapterを追加�
     * 2-2アイテム支給後、ゲームDBにUserID、itemSeq、paymentSeq、purchaseTokenを保存し、重複支給の有無を確認できるようにします。
 3. ゲームサーバーはGamebaseサーバーのconsume(消費) APIを呼び出してアイテムの支給を完了します。
     * [APIガイド > Purchase(IAP) > Consume](./api-guide/#consume)
+
 
 ### Retry Transaction Flow
 
@@ -232,7 +240,7 @@ public void RequestActivatedPurchasesSample()
             foreach (GamebaseResponse.Purchase.PurchasableReceipt purchasableReceipt in purchasableReceiptList)
             {
                 var message = new StringBuilder();
-                message.AppendLine(string.Format("itemSeq:{0}", purchasableReceipt.itemSeq));
+                message.AppendLine(string.Format("gamebaseProductId:{0}", purchasableReceipt.gamebaseProductId));
                 message.AppendLine(string.Format("price:{0}", purchasableReceipt.price));
                 message.AppendLine(string.Format("currency:{0}", purchasableReceipt.currency));
                 
@@ -316,8 +324,3 @@ else
 
 * IAPのエラーコードは、次のドキュメントをご参考ください。
     * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > Unity > エラーコード](/TOAST/en/toast-sdk/iap-unity/#_17)
-
-
-
-
-
