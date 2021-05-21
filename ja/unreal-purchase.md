@@ -19,32 +19,49 @@ AndroidまたはiOSでアプリ内決済機能を設定する方法は、次の�
 
 ###  Purchase Flow
 
-アイテムの購入は、次の順序で実装してください。<br/>
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.6.2.png)
+アイテムの購入は大きく分けて決済フロー、消費フロー、再処理フローの3つがあります。
+決済フローは、次のような順序で実装してください。
 
+![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-1. ゲームクライアントではGamebase SDKの **RequestPurchase**を呼び出して決済を試行します。
-2. 決済が成功すると**RequestItemListOfNotConsumed**を呼び出して未消費決済内訳を確認します。
-3. 返された未消費決済内訳リストに値がある場合、ゲームクライアントがゲームサーバーに決済アイテムのconsume(消費)をリクエストします。
-	* UserID、itemSeq、paymentSeq、purchaseTokenを伝達します。
-4. ゲームサーバーは、ゲームDBにすでに同じpaymentSeq、purchaseTokenへアイテムを支給した履歴があるかを確認します。
-	* 4-1. まだアイテムを支給していない場合、UserIDにitemSeqに該当するアイテムを支給します。
-    * 4-2. アイテム支給後、ゲームDBにUserID、itemSeq、paymentSeq、purchaseTokenを保存して、後で重複支給を確認できるようにします。
-5. ゲームサーバーは、APIを通してGamebaseサーバーにconsume(消費) APIをリクエストします。
-	* [APIガイド](./api-guide/#consume)
+1. 以前の決済が正常に終了せず、再処理が動作しない場合、決済が失敗します。そのため決済前に**RequestItemListOfNotConsumed**を呼び出して再処理を行い、未支給のアイテムがある場合はConsume Flowを進行します。
+2. ゲームクライアントではGamebase SDKの**RequestPurchase**を呼び出して決済を試行します。
+3. 決済が成功すると**RequestItemListOfNotConsumed**を呼び出して未消費決済履歴を確認した後、支給するアイテムが存在場合、Consume Flowを進行します。
 
-<br/>
+### Consume Flow
 
-* ストア決済には成功したがエラーが発生して正常終了できない場合があります。ログイン完了後、未消費決済内訳を確認してください。
-	* ログインに成功すると、**RequestItemListOfNotConsumed**を呼び出して未消費決済内訳を確認します。
-	* 返された未消費決済内訳リストに値がある場合、ゲームクライアントがゲームサーバーにconsume(消費)をリクエストしてアイテムを支給します。
+未消費決済履歴リストに値がある場合、次のような順序でConsume Flowを進行してください。
+
+> <font color="red">[注意]</font><br/>
+>
+> アイテムの重複支給が発生しないように、ゲームサーバーで必ず重複支給の有無をチェックしてください。
+>
+
+![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
+
+1. ゲームクライアントがゲームサーバーに決済アイテムのconsume(消費)をリクエストします。
+    * UserID、itemSeq、paymentSeq、purchaseTokenを伝達します。
+2. ゲームサーバーは、ゲームDBにすでに同じpaymentSeq、purchaseTokenでアイテムを支給した履歴があるかを確認します。
+    * 2-1まだアイテムを支給していない場合、UserIDにitemSeqに該当するアイテムを支給します。
+    * 2-2アイテム支給後、ゲームDBにUserID、itemSeq、paymentSeq、purchaseTokenを保存し、重複支給の有無を確認できるようにします。
+3. ゲームサーバーはGamebaseサーバーのconsume(消費) APIを呼び出してアイテムの支給を完了します。
+    * [APIガイド > Purchase(IAP) > Consume](./api-guide/#consume)
+
+### Retry Transaction Flow
+
+* ストア決済には成功したがエラーが発生して正常に終了しなかった場合があります。
+* **RequestItemListOfNotConsumed**を呼び出して再処理を行い、未支給のアイテムがある場合、Consume Flowを進行してください。
+* 再処理は次の時点で呼び出すことを推奨します。
+    * ログイン完了後
+    * 決済前
+    * ゲーム内ショップ(またはロビー)に移動した時
+    * ユーザープロフィールまたはメールボックスを確認した時
 
 ### Purchase Item
 
-購入するアイテムのitemSeqを利用して、次のAPIを呼び出して購入をリクエストします。
-ゲームユーザーが購入をキャンセルする場合 **PURCHASE_USER_CANCELED**エラーが返されます。
-
+購入したいアイテムのitemSeqを利用して次のAPIを呼び出し、購入をリクエストします。
+ゲームユーザーが購入をキャンセルする場合、**PURCHASE_USER_CANCELED**エラーが返されます。
 
 **API**
 
@@ -53,20 +70,25 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
+void RequestPurchase(const FString& gamebaseProductId, const FGamebasePurchasableReceiptDelegate& onCallback);
+void RequestPurchase(const FString& gamebaseProductId, const FString& payload, const FGamebasePurchasableReceiptDelegate& onCallback);
+
+// Legacy API
 void RequestPurchase(int64 itemSeq, const FGamebasePurchasableReceiptDelegate& onCallback);
 ```
 
 **Example**
 ```cpp
-void Sample::RequestPurchaseSample(int64 itemSeq)
+void Sample::RequestPurchase(const FString& gamebaseProductId)
 {
-    IGamebase::Get().GetPurchase().RequestPurchase(itemSeq, FGamebasePurchasableReceiptDelegate::CreateLambda(
+    IGamebase::Get().GetPurchase().RequestPurchase(gamebaseProductId, FGamebasePurchasableReceiptDelegate::CreateLambda(
         [](const FGamebasePurchasableReceipt* purchasableReceipt, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase succeeded. (itemSeq= %ld, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
-                purchasableReceipt->itemSeq, purchasableReceipt->price, *purchasableReceipt->currency, *purchasableReceipt->paymentSeq, *purchasableReceipt->purchaseToken);
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase succeeded. (gamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
+                *purchasableReceipt->gamebaseProductId, purchasableReceipt->price, *purchasableReceipt->currency,
+                *purchasableReceipt->paymentSeq, *purchasableReceipt->purchaseToken);
         }
         else
         {
@@ -76,9 +98,40 @@ void Sample::RequestPurchaseSample(int64 itemSeq)
             }
             else
             {
+                // Check the error code and handle the error appropriately.
                 UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase failed. (error: %d)"), error->code);
             }
-            
+
+        }
+    }));
+}
+
+void Sample::RequestPurchaseWithPayload(const FString& gamebaseProductId)
+{
+    FString userPayload = TEXT("{\"description\":\"This is example\",\"channelId\":\"delta\",\"characterId\":\"abc\"}");
+    
+    IGamebase::Get().GetPurchase().RequestPurchase(gamebaseProductId, userPayload, FGamebasePurchasableReceiptDelegate::CreateLambda(
+        [](const FGamebasePurchasableReceipt* purchasableReceipt, const FGamebaseError* error)
+    {
+        if (Gamebase::IsSuccess(error))
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase succeeded. (gamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
+                *purchasableReceipt->gamebaseProductId, purchasableReceipt->price, *purchasableReceipt->currency,
+                *purchasableReceipt->paymentSeq, *purchasableReceipt->purchaseToken);
+
+            FString payload = purchasableReceipt->payload;
+        }
+        else
+        {
+            if (error->code == GamebaseErrorCode::PURCHASE_USER_CANCELED)
+            {
+                UE_LOG(GamebaseTestResults, Display, TEXT("User canceled purchase."));
+            }
+            else
+            {
+                // Check the error code and handle the error appropriately.
+                UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase failed. (error: %d)"), error->code);
+            }
         }
     }));
 }
@@ -112,8 +165,8 @@ void Sample::RequestItemListPurchasable()
 
             for (const FGamebasePurchasableItem& purchasableItem : *purchasableItemList)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT(" - itemSeq= %ld, price= %f, itemName= %s, itemName= %s, marketItemId= %s"),
-                    purchasableItem.itemSeq, purchasableItem.price, *purchasableItem.currency, *purchasableItem.itemName, *purchasableItem.marketItemId);
+                UE_LOG(GamebaseTestResults, Display, TEXT(" - gamebaseProductId= %s, price= %f, itemName= %s, itemName= %s, marketItemId= %s"),
+                    *purchasableItem.gamebaseProductId, purchasableItem.price, *purchasableItem.currency, *purchasableItem.itemName, *purchasableItem.marketItemId);
             }
         }
         else
@@ -157,8 +210,8 @@ void Sample::RequestItemListOfNotConsumed()
 
             for (const FGamebasePurchasableItem& purchasableItem : *purchasableItemList)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT(" - itemSeq= %ld, price= %f, itemName= %s, itemName= %s, marketItemId= %s"),
-                    purchasableItem.itemSeq, purchasableItem.price, *purchasableItem.currency, *purchasableItem.itemName, *purchasableItem.marketItemId);
+                UE_LOG(GamebaseTestResults, Display, TEXT(" - gamebaseProductId= %s, price= %f, itemName= %s, itemName= %s, marketItemId= %s"),
+                    *purchasableReceipt.gamebaseProductId, purchasableItem.price, *purchasableItem.currency, *purchasableItem.itemName, *purchasableItem.marketItemId);
             }
         }
         else
@@ -191,7 +244,6 @@ void RequestActivatedPurchases(const FGamebasePurchasableReceiptListDelegate& on
 
 **Example**
 ```cpp
-
 void Sample::RequestActivatedPurchases()
 {
     IGamebase::Get().GetPurchase().RequestActivatedPurchases(FGamebasePurchasableReceiptListDelegate::CreateLambda(
@@ -203,8 +255,8 @@ void Sample::RequestActivatedPurchases()
 
             for (const FGamebasePurchasableReceipt& purchasableReceipt : *purchasableReceiptList)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT(" - itemSeq= %ld, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s"),
-                    purchasableReceipt.itemSeq, purchasableReceipt.price, *purchasableReceipt.currency, *purchasableReceipt.paymentSeq, *purchasableReceipt.purchaseToken);
+                UE_LOG(GamebaseTestResults, Display, TEXT(" - gamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s"),
+                    *purchasableReceipt.gamebaseProductId, purchasableReceipt.price, *purchasableReceipt.currency, *purchasableReceipt.paymentSeq, *purchasableReceipt.purchaseToken);
             }
         }
         else
@@ -215,86 +267,6 @@ void Sample::RequestActivatedPurchases()
 }
 ```
 
-### App Store Promotion IAP
-
-App Storeアプリ内でアイテムを購入できる機能を提供します。
-アイテム購入成功後、下記の登録しておいたハンドラを通して、アイテムを支給できます。
-
-プロモーションIAPは、App Store Connectで別途の設定が完了していると表示できます。
-
-> <font color="red">[注意]</font><br/>
->
-> iOS 11以上でのみ使用できます。
-> Xcode 9.0以上でビルドする必要があります。
-> Gamebase 1.13.0以上でサポートします。 (NHN Cloud IAP SDK 1.6.0以上適用)
-
-
-> <font color="red">[注意]</font><br/>
->
-> ログイン成功後にのみ呼び出せます。
-> ログイン成功後、他の決済APIより先に実行される必要があります。
-
-> <font color="red">[注意]</font><br/>
->
-> Facebook SDK使用時、App Dashboard > Settings > Basicページで`Log In-App Events Automatically (Recommended)`設定を有効にすると、該当機能が正常に作動しないので注意してください。
-
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
-
-```cpp
-void SetPromotionIAPHandler(const FGamebasePurchasableReceiptDelegate& onCallback);
-```
-
-**Example**
-```cpp
-void Sample::SetPromotionIAPHandler()
-{
-    IGamebase::Get().GetPurchase().SetPromotionIAPHandler(FGamebasePurchasableReceiptDelegate::CreateLambda([](const FGamebasePurchasableReceipt* purchasableReceipt, const FGamebaseError* error)
-    {
-        if (Gamebase::IsSuccess(error))
-        {
-            UE_LOG(GamebaseTestResults, Display, TEXT("SetPromotionIAPHandler succeeded. (itemSeq= %ld, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
-                purchasableReceipt->itemSeq, purchasableReceipt->price, *purchasableReceipt->currency, *purchasableReceipt->paymentSeq, *purchasableReceipt->purchaseToken);
-        }
-        else
-        {
-            if (error->code == GamebaseErrorCode::PURCHASE_USER_CANCELED)
-            {
-                Debug.Log("User canceled purchase.");
-            }
-            else
-            {
-                UE_LOG(GamebaseTestResults, Display, TEXT("SetPromotionIAPHandler failed. (error: %d)"), error->code);
-            }
-        }
-    }));
-}
-```
-**Overview**
-
-* Apple Developer Overview : https://developer.apple.com/app-store/promoting-in-app-purchases/
-* Apple Developer Reference : https://help.apple.com/app-store-connect/#/deve3105860f
-
-**How to Test AppStore Promotion IAP**
-
-> `注意`
-> App Store Connectにアプリをアップロードした後、TestFlightを通してアプリをインストールして、テストを進行できます。
-> 
-
-1. TestFlightでAppをインストールします。
-2. 下記のようにURL Schemeを呼び出して、テストを進行します。
-
-| URL Components | keyname | value |
-| --- | --- | --- |
-| scheme | itms-services | 固定値 |
-| host &amp; path | なし | なし |
-| queries | action | purchaseIntent |
-|		  | bundleId | アプリのbundeld identifier |
-|		  | productIdentifier | 購入アイテムのproduct identifier |
-
-例) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 
 ### Error Handling
 
@@ -304,7 +276,9 @@ void Sample::SetPromotionIAPHandler()
 | PURCHASE_USER_CANCELED                   | 4002       | ゲームユーザーがアイテムの購入をキャンセルしました。                  |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003      | 購入ロジックがまだ完了していない状態で APIが呼び出されました。 |
 | PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 該当ストアのキャッシュが不足しているため決済できません。              |
-| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | サポートしないストアです。<br>選択可能なストアはGG(Google)、ONESTOREです。 |
+| PURCHASE_INACTIVE_PRODUCT_ID             | 4005       | 該当商品が有効な状態ではありません。  |
+| PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | 存在しないGamebaseProductIDで決済をリクエストしました。 |
+| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | Unsupported store. <br> 選択できるストアはAS(App Store)、GG(Google)、ONESTORE、GALAXYです。 |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAPライブラリエラーです。<br>DetailCodeを確認してください。   |
 | PURCHASE_UNKNOWN_ERROR                   | 4999       | 定義されていない購入エラーです。<br>全てのログを[サポート](https://toast.com/support/inquiry)へご送付ください。迅速に対応いたします。
 
@@ -334,6 +308,3 @@ else
     }
 }
 ```
-
-* IAPエラーコードは、次の文書を参照してください。
-    * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > Unity > エラーコード](/TOAST/ja/toast-sdk/iap-unity/#_17)

@@ -173,6 +173,7 @@ void Sample::Login()
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -193,6 +194,8 @@ void Login(const FString& providerName, const UGamebaseJsonObject& additionalInf
 | Naver       | GamebaseAuthProvider::Naver      | Android<br/>iOS |
 | Twitter     | GamebaseAuthProvider::Twitter    | Android<br/>iOS |
 | Line        | GamebaseAuthProvider::Line       | Android<br/>iOS |
+| HANGAME     | GamebaseAuthProvider::Hangame    | Android<br/>iOS |
+| WEIBO       | GamebaseAuthProvider::Weibo      | Android<br/>iOS |
 
 
 > いくつかのIdPでログインする時は、必須の情報があります。<br/>
@@ -200,8 +203,7 @@ void Login(const FString& providerName, const UGamebaseJsonObject& additionalInf
 > このような必須情報を設定できるようにstatic void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) APIを提供します。<br/>
 > additionalInfoパラメータに必須情報などをdictionary形式で入力してください。
 additionalInfo値がある場合は、その値を使用し、ない場合は(null) NHN Cloud Consoleに登録された値を使用します。
-([NHN Cloud ConsoleにadditionalInfoを設定する](./oper-app/#authentication-information))<br/>
-> Standaloneでは、WebViewAdapterを通してログインをサポートし、WebViewが開かれている時はUIに入力されるEventをBlockingしません。
+([NHN Cloud ConsoleにadditionalInfoを設定する](./oper-app/#authentication-information))
 
 **Example**
 
@@ -279,6 +281,7 @@ IdPで提供するSDKを使用して、ゲームで直接認証した後、発�
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -327,6 +330,7 @@ void Sample::LoginWithCredential()
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 <span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
@@ -366,6 +370,7 @@ void Sample::Logout()
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 <span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
@@ -461,6 +466,7 @@ Mappingは、単純にIdP連携のみ追加します。
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -514,6 +520,7 @@ void Sample::AddMapping(const FString& providerName)
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -605,7 +612,7 @@ void Sample::AddMappingForcibly(const FString& providerName)
             }
             else
             {
-                        // エラーコードを確認し、適切な処理を行います。
+                // エラーコードを確認し、適切な処理を行います。
                 UE_LOG(GamebaseTestResults, Display, TEXT("AddMapping failed."));
             }
         }
@@ -691,14 +698,14 @@ void Sample::AddMappingForcibly()
                     }
                     else
                     {
-                                // エラーコードを確認し、適切な処理を行います。
+                        // エラーコードを確認し、適切な処理を行います。
                         UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly failed. (errorCode: %d, errorMessage: %s)"), error->code, *error->message);
                     }
                 }));
             }
             else
             {
-                        // エラーコードを確認し、適切な処理を行います。
+                // エラーコードを確認し、適切な処理を行います。
                 UE_LOG(GamebaseTestResults, Display, TEXT("AddMapping failed."));
             }
         }
@@ -715,6 +722,7 @@ void Sample::AddMappingForcibly()
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -748,6 +756,7 @@ void Sample::RemoveMapping(const FString& providerName)
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -774,7 +783,6 @@ void Sample::GetAuthMappingList()
 Gamebaseを通して認証手順を進行した後、アプリを製作する時に必要な情報を取得できます。
 
 ### Get Authentication Information for Gamebase
-Gamebaseを通して認証手順を進行した後、アプリを製作する時に必要な情報を取得できます。
 
 #### UserID
 
@@ -782,6 +790,7 @@ Gamebaseで発行したUserIDを取得できます。
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -804,6 +813,7 @@ Gamebaseで発行したアクセストークンを取得できます。
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -826,6 +836,7 @@ Gamebaseで最後にログインに成功したProviderNameを取得できます
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -852,6 +863,7 @@ void Sample::GetLastLoggedInProvider()
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -875,6 +887,7 @@ void Sample::GetLastLoggedInProvider(const FString& providerName)z
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -897,6 +910,7 @@ void Sample::GetAuthProviderAccessToken(const FString& providerName)
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -995,8 +1009,7 @@ void Sample::QueryTransferAccount()
 
 ### Renew TransferAccount
 発行されたTransferAccountInfo情報を更新します。
-方法は「自動更新」と「手動更新」があり、「Passwordのみ更新」、「IDとPasswordを更新」などの設定をして
-TransferAccountInfo情報を更新できます。
+方法は「自動更新」と「手動更新」があり、「Passwordのみ更新」、「IDとPasswordを更新」などの設定をしてTransferAccountInfo情報を更新できます。
 
 ```cpp
 void RenewTransferAccount(const FGamebaseTransferAccountRenewConfiguration& configuration, const FGamebaseTransferAccountDelegate& onCallback);
@@ -1263,10 +1276,13 @@ else
 {
     UE_LOG(GamebaseTestResults, Display, TEXT("code: %d, message: %s"), error->code, *error->message);
 
-    GamebaseInnerError* moduleError = gamebaseError.error; // GamebaseError.error object from external module
-    if (moduleError.code != GamebaseErrorCode::SUCCESS)
+    if (error->code == GamebaseErrorCode::AUTH_EXTERNAL_LIBRARY_ERROR)
     {
-        UE_LOG(GamebaseTestResults, Display, TEXT("moduleErrorCode: %d, moduleErrorMessage: %s"), moduleError->code, *moduleError->message);
+        FGamebaseErrorInner moduleError = error->error;
+        if (moduleError.code != GamebaseErrorCode::SUCCESS)
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("moduleErrorCode: %d, moduleErrorMessage: %s"), moduleError.code, *moduleError.message);
+        }
     }
 }
 ```

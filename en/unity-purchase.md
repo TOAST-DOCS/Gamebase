@@ -28,7 +28,7 @@ You may execute an item purchase in the following order:
 
 If there's a value on the list of non-consumable purchases, execute Consume Flow in the following order:
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
 To prevent the multiple issuance of the same purchased item, always check the game server for issuance history of items.
 >

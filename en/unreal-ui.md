@@ -1,5 +1,72 @@
 ## Game > Gamebase > User Guide for Unreal SDK > UI
 
+## ImageNotice
+
+You can pop up a notice to users after registering an image to the console.
+
+![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-002.png)
+
+### Show ImageNotices
+
+Show the image notice on the screen.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+
+```cpp
+void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback);
+void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback, const FGamebaseImageNoticeEventDelegate& onEventCallback);
+```
+
+**Example**
+
+```cpp
+void Sample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 colorA, int64 timeOut)
+{
+    FGamebaseImageNoticeConfiguration configuration{ colorR, colorG, colorB, colorA, timeOut };
+
+    IGamebase::Get().GetImageNotice().ShowImageNotices(configuration,
+        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) {
+            // Called when the entire imageNotice is closed.
+            ...
+        }),
+        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* error) {
+            // Called when custom event occurred.
+            ...
+        })
+    );
+}
+```
+
+#### FGamebaseImageNoticeConfiguration
+
+| Parameter                              | Values                                   | Description        |
+| -------------------------------------- | ---------------------------------------- | ------------------ |
+| colorR                   | 0 - 255                                    | Navigation bar color R            |
+| colorG                   | 0 - 255                                    | Navigation bar color G                |
+| colorB                   | 0 - 255                                    | Navigation bar color B                |
+| colorA                   | 0 - 255                                    | Navigation bar color Alpha                |
+| timeOut                  | int64        | Image notice max loading time (in millisecond)<br/>**default**: 5000                     |
+
+
+### Close ImageNotices
+
+You can call the closeImageNotices API to terminate all image notices currently being displayed.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+
+```cpp
+void CloseImageNotices();
+```
+
+
 ## Webview
 
 ### Show WebView
@@ -23,7 +90,6 @@ Supported Platforms
 
 ```cpp
 void ShowWebView(const FString& url, const FGamebaseWebViewConfiguration& configuration, FGamebaseErrorDelegate& onCloseCallback, const TArray<FString>& schemeList, const FGamebaseSchemeEventDelegate& onSchemeEvent);
-static void ShowWebView(string url, GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
 ```
 
 **Example**
@@ -53,24 +119,32 @@ void Sample::ShowWebView(const FString& url)
 ```
 
 
-#### GamebaseWebViewConfiguration
+#### FGamebaseWebViewConfiguration
 
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | string                                   | Title of WebView                 |
-| orientation              | GamebaseScreenOrientation::UNSPECIFIED    | Unspecified |
-|                          | GamebaseScreenOrientation::PORTRAIT       | Portrait Mode                       |
-|                          | GamebaseScreenOrientation::LANDSCAPE      | Landscape Mode                      |
-|                          | GamebaseScreenOrientation::LANDSCAPE_REVERSE | Rotate portrait mode 180 degrees              |
-| colorR                   | 0~255                                    | Color alpha of navigation bar            |
-| colorG                   | 0~255                                    | Color R of navigation bar                |
-| colorB                   | 0~255                                    | Color G of navigation bar                |
-| colorA                   | 0~255                                    | Color B of navigation bar                |
-| buttonVisible            | true or false                            | Activate or deactivate the back button           |
+| title                    | FString                                   | Title of WebView                  |
+| orientation              | GamebaseScreenOrientation::Unspecified    | Unspecified |
+|                          | GamebaseScreenOrientation::Portrait       | Portrait Mode                       |
+|                          | GamebaseScreenOrientation::Landscape      | Landscape Mode                       |
+|                          | GamebaseScreenOrientation::LandscapeReverse | Rotate portrait mode 180 degrees            |
+| contentMode              | GamebaseWebViewContentMode::Recommended        | Browser recommended by the current platform    |
+|                          | GamebaseWebViewContentMode::Mobile             | Mobile browser            |
+|                          | GamebaseWebViewContentMode::Desktop            | Desktop browser          |
+| colorR                   | 0~255                                    | Color R of navigation bar            |
+| colorG                   | 0~255                                    | Color G of navigation bar                |
+| colorB                   | 0~255                                    | Color B of navigation bar                |
+| colorA                   | 0~255                                    | Color alpha of navigation bar                |
+| buttonVisible            | true or false                            | Activate or deactivate the back button          |
 | barHeight                | height                                   | Height of navigation bar                  |
-| backButtonImageResource  | ID of resource                           | The back button image                     |
-| closeButtonImageResource | ID of resource | The close button image  |
+| backButtonImageResource  | ID of resource                           | The back button image                |
+| closeButtonImageResource | ID of resource | The close button image |
 | url | "http://" or "https://" or "file://" | Web URL |
+
+> [TIP]
+>
+> In iPadOS 13 or later, WebView is the default desktop mode.
+> You can use the contentMode =`GamebaseWebViewContentMode.MOBILE` setting to switch to the mobile mode.
 
 #### Predefined Custom Scheme
 
@@ -79,9 +153,9 @@ Refers to the scheme specified by Gamebase.
 | Scheme | Usage |
 | ----------------------------- | ------------------------------ |
 | gamebase://dismiss | Close WebView  |
-| gamebase://goBack | Go Back of WebView |
-| gamebase://getUserId          | Show user ID of the currently logged-in game user  |
 | gamebase://getMaintenanceInfo | Show maintenance on WebPage  |
+| gamebase://getUserId          | Show user ID of the currently logged-in game user  |
+| gamebase://goBack | Go Back of WebView |
 
 
 ### Close WebView
@@ -188,6 +262,7 @@ void Sample::ShowToast(const FString& message, EGamebaseToastExposureTime exposu
 
 | Error              | Error Code | Description                 |
 | ------------------ | ---------- | --------------------------- |
+| UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | Timed out while displaying image notice. |
 | UI\_UNKNOWN\_ERROR | 6999       | Unknown (undefined) error.  |
 
 * See the following document for the entire error codes. 

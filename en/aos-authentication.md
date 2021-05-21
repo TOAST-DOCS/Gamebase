@@ -448,7 +448,7 @@ Below shows an example.<br/><br/>
     * Facebook ID: bb
     * AppleID ID: cc
     * Twitter ID: dd
-* Gamebase 사용자 ID : 456abcabc
+* Gamebase User ID : 456abcabc
     * Google ID: ee
     * Google ID: ff **-> As the Google ee account is integrated, no additional Google account can be integrated.**
 

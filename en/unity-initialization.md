@@ -380,7 +380,7 @@ If Gamebase popup is disabled, updates like market URL can be obtained from the 
 public class UpdateInfo {
 	// URL for store installation to download the latest version.
 	string installUrl;
-    // 사User can find a message in the language set on device.
+    // User can find a message in the language set on device.
     // When the language is 'ko', the message shows like follows.
     // 'This version is not supported. Please update to the latest version.'
     string message;

@@ -14,7 +14,7 @@ For normal operations of Gamebase, make sure to call **Gamebase.onActivityResult
 
 ### Initialization Flow
 
-When the game starts, enable the Debug Mode and re 설정하고, Gamebase 를 초기화하여 Launching Status Code 에 따라 게임 진입여부를 결정하도록 아래 Flow 와 같이 구현하시면 됩니다.
+When the game starts, enable the Debug Mode and reset the Gamebase to implement the flow as shown below so that entering the game will be determined based on the Launching Status Code.
 
 ![initialization flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/initialization_flow_2.19.0.png)
 

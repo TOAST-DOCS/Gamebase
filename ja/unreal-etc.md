@@ -239,21 +239,12 @@ FString GetCountryCodeOfDevice() const;
 FString GetCountryCode() const;
 ```
 
-### Server Push
-* Gamebaseサーバーからクライアント端末に送るServer Push Messageを処理できます。
-* GamebaseクライアントでServerPushEvent Listenerを追加すると、該当メッセージをユーザーが受け取って処理できます。また、追加されたServerPushEvent Listenerを削除できます。
+### Gamebase Event Handler
 
+* Gamebaseは各種イベントを**GamebaseEventHandler**という1つのイベントシステムで全て処理できます。
+* GamebaseEventHandlerは以下のAPIを利用して簡単にListenerを追加/削除できます。
 
-#### Server Push Type
-現在GamebaseでサポートするServer Push Typeは次のとおりです。
-
-* GamebaseServerPushType::AppKickout (= "appKickout")
-    * NHN Cloud Gamebaseコンソールの**Operation > Kickout**からキックアウトServerPushメッセージを登録すると、Gamebaseと接続されたすべてのクライアントから**APP_KICKOUT**メッセージを受け取ります。
-
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
-
-#### Add ServerPushEvent
-Gamebase ClientにServerPushEventを登録してGamebase ConsoleおよびGamebaseサーバーで発行されたPushイベントを処理できます。
+* GamebaseEventHandlerは下記のAPIを利用して簡単にHandlerを追加/削除できます。
 
 **API**
 
@@ -261,169 +252,411 @@ Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
+```cs
+FDelegateHandle AddHandler(const FGamebaseEventDelegate::FDelegate& onCallback);
+void RemoveHandler(const FDelegateHandle& handle);
+void RemoveAllHandler();
+```
+
+**VO**
+
 ```cpp
-FDelegateHandle AddServerPushEvent(const FGamebaseServerPushDelegate::FDelegate& event);
+struct GAMEBASE_API FGamebaseEventMessage
+{
+	// Eventの種類を表します。
+    // GamebaseEventCategoryクラスの値が割り当てられます。
+    FString category;
+
+    // 各categoryに合ったVOに変換できるJSON Stringデータです。
+    FString data;
+};
 ```
 
 **Example**
 
 ```cpp
-void Sample::AddServerPushEvent()
+void Sample::AddEventHandler()
 {
-    FDelegateHandle handle = IGamebase::Get().AddServerPushEvent(FGamebaseServerPushDelegate::FDelegate::CreateLambda([=](const FGamebaseServerPushMessage& message)
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
     {
-        if (message.type.Equals(GamebaseServerPushType::AppKickout))
+        if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
+            message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
         {
-            // Logout
-            // Go to Main
+            auto serverPushData = FGamebaseEventServerPushData::From(message.data);
         }
-        else if (message.type.Equals(GamebaseServerPushType::TransferKickout))
+        else if (message.category.Equals(GamebaseEventCategory::ObserverLaunching))
         {
-            // Logout
-            // Go to Main
+            auto observerData = FGamebaseEventObserverData::From(message.data);
+        }
+        else if (message.category.Equals(GamebaseEventCategory::ObserverNetwork))
+        {
+            auto observerData = FGamebaseEventObserverData::From(message.data);
+        }
+        else if (message.category.Equals(GamebaseEventCategory::ObserverHeartbeat))
+        {
+            auto observerData = FGamebaseEventObserverData::From(message.data);
+        }
+        else if (message.category.Equals(GamebaseEventCategory::PurchaseUpdated))
+        {
+            auto purchasableReceipt = FGamebaseEventPurchasableReceipt::From(message.data);
+        }
+        else if (message.category.Equals(GamebaseEventCategory::PushReceivedMessage))
+        {
+            auto pushMessage = FGamebaseEventPushMessage::From(message.data);
+        }
+        else if (message.category.Equals(GamebaseEventCategory::PushClickMessage))
+        {
+            auto pushMessage = FGamebaseEventPushMessage::From(message.data);
+        }
+        else if (message.category.Equals(GamebaseEventCategory::PushClickAction))
+        {
+            auto pushAction = FGamebaseEventPushAction::From(message.data);
+        }
+    }));
+}
+```
+* CategoryはGamebaseEventCategoryクラスに定義されています。
+* イベントは大きくServerPush、Observer、Purchase、Pushに分けられ、各Categoryに基づいて、GamebaseEventMessage.dataを次の表のような方法でVOに変換できます。
+
+
+| Event種類 | GamebaseEventCategory | VO変換方法 | 備考 |
+| --------- | --------------------- | ----------- | --- |
+| ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(message.data) | \- |
+| Observer | GamebaseEventCategory::ObserverLaunching<br>GamebaseEventCategory::ObserverNetwork<br>GamebaseEventCategory::ObserverHeartbeat | FGamebaseEventObserverData::From(message.data) | \- |
+| Purchase - プロモーション決済 | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(message.data) | \- |
+| Push - メッセージ受信 | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(message.data) | **isForeground**値を使用してForegroundでメッセージを受信したかどうかを確認できます。 |
+| Push - メッセージクリック | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) | **isForeground**値がありません。 |
+| Push - アクションクリック | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(message.data) | RichMessageボタンを押すと動作します。 |
+
+
+#### Server Push
+
+* Gamebaseサーバーからクライアント端末へ送信するメッセージです。
+* GamebaseでサポートするServer Push Typeは次の通りです。
+    * GamebaseEventCategory::ServerPushAppKickOut
+    	* NHN Cloud Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseに接続されたすべてのクライアントでキックアウトメッセージを受信します。
+    * GamebaseEventCategory::ServerPushTransferKickout
+    	* Guestアカウントを他の端末へ移行すると、以前の端末でキックアウトメッセージを受信します。
+
+**Example**
+
+```cpp
+void Sample::AddEventHandler()
+{
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    {
+        if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
+            message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
+        {
+            auto serverPushData = FGamebaseEventServerPushData::From(message.data);
+            if (serverPushData.IsVaild())
+            {
+                CheckServerPush(message.category, *serverPushData);
+            }
+        }
+    }));
+}
+
+void Sample::CheckServerPush(const FString& category, const FGamebaseEventServerPushData& data)
+{
+    if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut))
+    {
+        // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+        // Return to title and initialize Gamebase again.
+    }
+    else if (message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
+    {
+        // If the user wants to move the guest account to another device,
+        // if the account transfer is successful,
+        // the login of the previous device is released,
+        // so go back to the title and try to log in again.
+    }
+}
+```
+
+#### Observer
+
+* Gamebase Gamebaseの各種状態変動イベントを処理するシステムです。
+* GamebaseでサポートするObserver Typeは次の通りです。
+    * GamebaseEventCategory::ObserverLaunching
+    	* メンテナンスが開始または終了した場合、新しいバージョンが配布されてアップデートが必要な場合など、Launching状態が変更された時に動作します。
+        * GamebaseEventObserverData.code : LaunchingStatus値を意味します。
+            * GamebaseLaunchingStatus::IN_SERVICE: 200
+            * GamebaseLaunchingStatus::RECOMMEND_UPDATE: 201
+            * GamebaseLaunchingStatus::IN_SERVICE_BY_QA_WHITE_LIST: 202
+            * GamebaseLaunchingStatus::REQUIRE_UPDATE: 300
+            * GamebaseLaunchingStatus::BLOCKED_USER: 301
+            * GamebaseLaunchingStatus::TERMINATED_SERVICE: 302
+            * GamebaseLaunchingStatus::INSPECTING_SERVICE: 303
+            * GamebaseLaunchingStatus::INSPECTING_ALL_SERVICES: 304
+            * GamebaseLaunchingStatus::INTERNAL_SERVER_ERROR: 500
+    * GamebaseEventCategory::ObserverHeartbeat
+    	* 退会処理や利用停止により、ユーザーアカウントの状態が変わった時に動作します。
+        * GamebaseEventObserverData.code : GamebaseError値を意味します。
+            * GamebaseErrorCode::INVALID_MEMBER: 6
+            * GamebaseErrorCode::BANNED_MEMBER: 7
+    * GamebaseEventCategory::ObserverNetwork
+    	* ネットワーク変動事項情報を受け取れます。
+    	* ネットワークが切断されたり、接続された時、またはWi-FiからCellularネットワークに変更された時に動作します。
+        * GamebaseEventObserverData.code : NetworkManager値を意味します。
+            * EGamebaseNetworkType::Not: 255
+            * EGamebaseNetworkType::Mobile: 0
+            * EGamebaseNetworkType::Wifi: 1
+            * EGamebaseNetworkType::Any: 2
+
+**VO**
+
+```cpp
+struct GAMEBASE_API FGamebaseEventObserverData
+{
+	// 状態値を表す情報です。
+    int32 code;
+
+    // 状態に関連するメッセージ情報です。
+    FString message;
+
+    // 追加情報用の予備フィールドです。
+    FString extras;
+}
+```
+
+**Example**
+
+```cpp
+void Sample::AddEventHandler()
+{
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    {
+        if (message.category.Equals(GamebaseEventCategory::ObserverLaunching))
+        {
+            auto observerData = FGamebaseEventObserverData::From(message.data);
+            if (observerData.IsVaild())
+            {
+                CheckLaunchingStatus(*observerData);
+            }
+        }
+        else if (message.category.Equals(GamebaseEventCategory::ObserverNetwork))
+        {
+            auto observerData = FGamebaseEventObserverData::From(message.data);
+            if (observerData.IsVaild())
+            {
+                CheckNetwork(*observerData);
+            }
+        }
+        else if (message.category.Equals(GamebaseEventCategory::ObserverHeartbeat))
+        {
+            auto observerData = FGamebaseEventObserverData::From(message.data);
+            if (observerData.IsVaild())
+            {
+                CheckHeartbeat(*observerData);
+            }
+        }
+    }));
+}
+
+void Sample::CheckLaunchingStatus(const FGamebaseEventObserverData& data)
+{
+    switch (data.code)
+    {
+        case GamebaseLaunchingStatus::IN_SERVICE:
+            {
+                // Service is now normally provided.
+                break;
+            }
+        // ... 
+        case GamebaseLaunchingStatus::INTERNAL_SERVER_ERROR:
+            {
+                // Error in internal server.
+                break;
+            }
+    }
+}
+
+void Sample::CheckNetwork(const FGamebaseEventObserverData& data)
+{
+    switch ((GamebaseNetworkType)data.code)
+    {
+        case EGamebaseNetworkType::Not:
+            {
+                // Network disconnected
+                break;
+            }
+        case EGamebaseNetworkType::Mobile:
+            {
+                // Network connected
+                break;
+            }
+        case EGamebaseNetworkType::Wifi:
+            {
+                // Network connected
+                break;
+            }
+        case EGamebaseNetworkType::Any:
+            {
+                // Network connected
+                break;
+            }
+    }
+}
+
+void Sample::CheckHeartbeat(const FGamebaseEventObserverData& data)
+{
+    switch (data.code)
+    {
+        case EGGamebaseErrorCode::INVALID_MEMBER:
+            {
+                // You should to write the code necessary in game. (End the session.)
+                break;
+            }
+        case EGGamebaseErrorCode::BANNED_MEMBER:
+            {
+                // The ban information can be found by using the GetBanInfo API.
+                // Show kickout message to user and need kickout in game.
+                break;
+            }
+    }
+}
+```
+
+#### Purchase Updated
+
+* Promotionコードを入力して商品を獲得した場合に発生するイベントです。
+* 決済領収書情報を取得できます。
+
+**Example**
+
+```cpp
+void Sample::AddEventHandler()
+{
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    {
+        if (message.category.Equals(GamebaseEventCategory::PurchaseUpdated))
+        {
+            auto purchasableReceipt = FGamebaseEventPurchasableReceipt::From(message.data);
+            if (purchasableReceipt.IsVaild())
+            {
+                // If the user got item by 'Promotion Code',
+                // this event will be occurred.
+            }
         }
     }));
 }
 ```
 
 
-#### Remove ServerPushEvent
-Gamebaseに登録されたServerPushEventを削除できます。
+#### Push Received Message
 
-**API**
+* Pushメッセージが到着した時に発生するイベントです。
+* **isForeground**フィールドを利用してフォアグラウンドでメッセージを受信したのか、バックグラウンドでメッセージを受信したのかを区別できます。
+* extrasフィールドをJSONに変換して、Push送信時に送信されたカスタム情報を取得することもできます。
 
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+**VO**
 
 ```cpp
-void RemoveServerPushEvent(const FDelegateHandle& handle);
-void RemoveAllServerPushEventerPushEvent();
+struct FGamebaseEventPushMessage
+{
+	// メッセージ固有のidです。
+    FString id;
+
+    // Pushメッセージタイトルです。
+    FString title;
+
+    // Pushメッセージ本文内容です。
+    FString body;
+
+    // JSONObjectに変換してすべての情報を確認できます。
+    FString extras;
+};
 ```
 
 **Example**
 
 ```cpp
-void Sample::RemoveServerPushEvent(const FDelegateHandle& handle)
+void Sample::AddEventHandler()
 {
-    IGamebase::Get().RemoveServerPushEvent(handle);
-}
-
-void Sample::RemoveAllServerPushEvent()
-{
-    IGamebase::Get().RemoveAllServerPushEvent();
-}
-```
-
-### Observer
-* Gamebase ObserverでGamebaseの各種状態変動イベントを取得して処理できます。
-* 状態変動イベント：ネットワークタイプ変動、Launching状態変動(メンテナンスなどによる状態変動)、Heartbeat情報変動(ユーザー利用停止などによるHeartbeat情報変動)など
-
-#### Observer Type
-現在GamebaseでサポートするObserver Typeは次のとおりです。
-
-* Networkタイプ変動
-    * ネットワーク変動事項情報を取得できます。
-    * Type: GamebaseObserverType::Network (= "network")
-    * Code: GamebaseNetworkTypeに宣言された定数を参照します。
-        * GamebaseNetworkType::TYPE_NOT: 255
-        * GamebaseNetworkType::TYPE_MOBILE: 0
-        * GamebaseNetworkType::TYPE_WIFI: 1
-        * GamebaseNetworkType::TYPE_ANY: 2
-* Launching状態変動
-    * 周期的にアプリケーションの状態を確認するLaunching Status responseに変動がある時に発生します。例えば、メンテナンス、アップデート推奨などによるイベントがあります。
-    * Type: GamebaseObserverType::Launching (= "launching")
-    * Code: GamebaseLaunchingStatusに宣言された定数を参照します。
-        * GamebaseLaunchingStatus::IN_SERVICE: 200
-        * GamebaseLaunchingStatus::RECOMMEND_UPDATE: 201
-        * GamebaseLaunchingStatus::IN_SERVICE_BY_QA_WHITE_LIST: 202
-        * GamebaseLaunchingStatus::REQUIRE_UPDATE: 300
-        * GamebaseLaunchingStatus::BLOCKED_USER: 301
-        * GamebaseLaunchingStatus::TERMINATED_SERVICE: 302
-        * GamebaseLaunchingStatus::INSPECTING_SERVICE: 303
-        * GamebaseLaunchingStatus::INSPECTING_ALL_SERVICES: 304
-        * GamebaseLaunchingStatus::INTERNAL_SERVER_ERROR: 500
-* Heartbeat情報変動
-    * 周期的にGamebaseサーバーと接続を維持するHeartbeat responseに変動がある時に発生します。例えば、ユーザー利用停止によるイベントがあります。
-    * Type: GamebaseObserverType::Heartbeat (= "heartbeat")
-    * Code: GamebaseErrorCodeに宣言された定数を参照します。
-        * GamebaseErrorCode::INVALID_MEMBER: 6
-        * GamebaseErrorCode::BANNED_MEMBER: 7
-
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
-
-#### Add Observer
-Gamebase ClientにObserverを登録して各種状態変動イベントを処理できます。
-
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
-
-```cpp
-static void AddObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer)
-```
-
-**Example**
-
-```cpp
-void Sample::AddObserver()
-{
-    FDelegateHandle handle = IGamebase::Get().AddObserver(FGamebaseObserverDelegate::FDelegate::CreateLambda([=](const FGamebaseObserverMessage& message)
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
     {
-        if (message.type.Equals(GamebaseObserverType::Network))
+        if (message.category.Equals(GamebaseEventCategory::PushReceivedMessage))
         {
-            // Code : Refer to GamebaseLaunchingStatus.
-            int code        = (int)data["code"];
-
-            // Message
-            string message  = (string)data["message"];
-        }
-        else if (message.type.Equals(GamebaseObserverType::Launching))
-        {
-            // Code: Refer to GamebaseNetworkType.
-            int code        = (int)data["code"];
-
-            // Message
-            string message  = (string)data["message"];
-        }
-        else if (message.type.Equals(GamebaseObserverType::Heartbeat))
-        {
-            // Code : GamebaseErrorCode.INVALID_MEMBER, GamebaseErrorCode.BANNED_MEMBER
-            int code = (int)data["code"];
+            auto pushMessage = FGamebaseEventPushMessage::From(message.data);
+            if (pushMessage.IsVaild())
+            {
+                // When you clicked push message.
+            }
         }
     }));
 }
 ```
 
-#### Remove Observer
-Gamebaseに登録されたObserverを削除できます。
+#### Push Click Message
 
-**API**
+* 受信したPushメッセージをクリックした時に発生するイベントです。
+* 'GamebaseEventCategory.PUSH_RECEIVED_MESSAGE'とは異なり、**isForeground**フィールドが存在しません。
 
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+**Example**
 
 ```cpp
-void RemoveObserver(const FDelegateHandle& handle);
-void RemoveAllObserver();
+void Sample::AddEventHandler()
+{
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    {
+        if (message.category.Equals(GamebaseEventCategory::PushClickMessage))
+        {
+            auto pushMessage = FGamebaseEventPushMessage::From(message.data);
+            if (pushMessage.IsVaild())
+            {
+                // When you clicked push message.
+            }
+        }
+    }));
+}
+```
+
+
+#### Push Click Action
+
+* Rich Message機能を利用して作成したボタンをクリックした時に発生するイベントです。
+* actionTypeは、次の項目が提供されます。
+	* "OPEN_APP"
+	* "OPEN_URL"
+	* "REPLY"
+	* "DISMISS"
+
+**VO**
+
+```cpp
+struct FGamebaseEventPushAction
+{
+	// ボタンアクション種類です。
+    FString actionType;
+
+	// PushMessageデータです。
+    FGamebaseEventPushMessage message;
+
+	// Pushコンソールで入力したユーザーテキストです。
+    FString userText;
+};
 ```
 
 **Example**
 
 ```cpp
-void Sample::RemoveObserver(const FDelegateHandle& handle)
+void Sample::AddEventHandler()
 {
-    IGamebase::Get().RemoveObserver(handle);
-}
-
-void Sample::RemoveAllObserver()
-{
-    IGamebase::Get().RemoveAllObserver();
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    {
+        if (message.category.Equals(GamebaseEventCategory::PushClickAction))
+        {
+            auto pushAction = FGamebaseEventPushAction::From(message.data);
+            if (pushAction.IsVaild())
+            {
+                // When you clicked action button by 'Rich Message'.
+            }
+        }
+    }));
 }
 ```
+
 
 ### Analytics
 
@@ -454,14 +687,14 @@ Analytics Consoleの使用方法は、下記のガイドを参照してくださ
 
 APIの呼び出しに必要なパラメータは下記のとおりです。
 
-**GameUserData**
+**FGamebaseAnalyticsUserData**
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int | ゲームユーザーレベルを表すフィールドです。 |
-| channelId | O | string | チャンネルを表すフィールドです。 |
-| characterId | O | string | キャラクター名を表すフィールドです。 |
-| characterClassId | O | string | 職業を表すフィールドです。 |
+| userLevel | M | int32 | ゲームユーザーレベルを表すフィールドです。 |
+| channelId | O | FString | チャンネルを表すフィールドです。 |
+| characterId | O | FString | キャラクター名を表すフィールドです。 |
+| characterClassId | O | FString | 職業を表すフィールドです。 |
 
 **API**
 
@@ -492,10 +725,10 @@ APIの呼び出しに必要なパラメータは下記の通りです。
 
 **LevelUpData**
 
-| Name                       | Mandatory(M) / Optional(O) | type | Desc	|
+| Name                       | Mandatory(M) / Optional(O) | type | Desc    |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int | ゲームユーザーレベルを表すフィールドです。 |
-| levelUpTime | M | long | Epoch Timeで入力します。</br>Millisecond単位で入力します。 |
+| userLevel | M | int32 | ゲームユーザーレベルを表すフィールドです。 |
+| levelUpTime | M | int64 | Epoch Timeで入力します。</br>Millisecond単位で入力します。 |
 
 **API**
 
@@ -527,11 +760,41 @@ Gamebaseは、顧客からの問い合わせに対応するための機能を提
 > 詳しいNHN Cloud Contactサービス利用方法は、下記のガイドを参照してください。
 > [NHN Cloud Online Contact Guide](/Contact%20Center/ja/online-contact-overview/)
 
+#### Customer Service Type
+
+**Gamebaseコンソール > App > InApp URL > Service center**では、以下の3つのタイプのサポートを選択できます。
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
+
+| Customer Service Type     | Required Login |
+| ------------------------- | -------------- |
+| Developer customer center | X              |
+| Gamebase customer center  | △             |
+| NHN Cloud  Online Contact      | O              |
+
+タイプに応じてGamebase SDKのサポートAPIは次のURLを使用します。
+
+* 開発会社独自のサポート(Developer customer center)
+    * **サポートURL**に入力したURL.
+* Gamebase提供サポート(Gamebase customer center)
+    * ログイン前：ユーザー情報が**ない**サポートURL。
+    * ログイン後：ユーザー情報が含まれたサポートURL。
+* NHN Cloud組織商品(Online Contact)
+    * ログイン前：NOT_LOGGED_IN(2)エラーが発生。
+    * ログイン後：ユーザー情報が含まれたサポートURL。
+
 #### Open Contact WebView
 
-Gamebaseコンソールに入力した**サポートURL**Webビューを表示する機能です。
+サポートWebビューを表示します。
+URLはサポートタイプに基づいて決定されます。
+ContactConfigurationでURLに追加情報を伝達できます。
 
-* **Gamebaseコンソール > App > InApp URL > Service center**に入力した値が使用されます。
+**FGamebaseContactConfiguration**
+
+| Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
+| ------------- | ------------- | ---------------------------------- | ------------------ |
+| userName      | O             | FString                            | ユーザー名前(ニックネーム) <br>**default** : ""   |
+| additionalURL | O             | FString                            | 開発会社独自のサポートURLの後ろにつく追加のURL <br>**default** : ""    |
+| extraData     | O             | TMap<FString, FString>             | 開発会社が任意のextra dataをサポートオープン時に伝達<br>**default** : EmptyMap |
 
 **API**
 
@@ -541,7 +804,18 @@ Supported Platforms
 
 ```cpp
 void OpenContact(const FGamebaseErrorDelegate& onCloseCallback);
+void OpenContact(const FGamebaseContactConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback);
 ```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initializeが呼び出されませんでした。 |
+| NOT\_LOGGED\_IN(2)                                  | サポートタイプが'NHN Cloud  OC'なのにログイン前に呼び出しました。 |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | サポートURLが存在しません。<br>Gamebaseコンソールの**サポートURL**を確認してください。 |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | ユーザーを識別するための臨時チケットの発行に失敗しました。 |
+| UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | サポートWebビューがすでに表示中です。 |
 
 **Example**
 
@@ -561,11 +835,78 @@ void Sample::OpenContact()
             if (error->code == GamebaseErrorCode::WEBVIEW_INVALID_URL)
             {
                 // Gamebase Console Service Center URL is invalid.
-                // Please check the url field in the TOAST Gamebase Console.
+                // Please check the url field in the NHN Cloud Gamebase Console.
                 auto launchingInfo = IGamebase::Get().GetLaunching().GetLaunchingInformations();
-                Debug.Log(string.Format("csUrl:{0}", launchingInfo->launching.app.relatedUrls.csUrl));
+                UE_LOG(GamebaseTestResults, Display, TEXT("csUrl: %s"), *launchingInfo->launching.app.relatedUrls.csUrl);
             }
+        }
+    }));
+}
+```
 
+> <font color="red">[注意]</font><br/>
+>
+> サポートへお問い合わせする時、ファイルの添付が必要な場合があります。
+> そのため、ユーザーからカメラ撮影やStorage保存の権限をランタイムに取得する必要があります。
+>
+> Androidユーザー
+>
+> * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
+>
+> * Unrealの場合エンジンに内蔵されている **Android Runtime Permission**プラグインを有効にした後、以下のAPI Referenceを確認して必要な権限を取得してください。
+> [Unreal API Reference : AndroidPermission](https://docs.unrealengine.com/en-US/API/Plugins/AndroidPermission/index.html)
+>
+> iOSユーザー
+>
+> * info.plistに'Privacy - Camera Usage Description'、'Privacy - Photo Library Usage Description'の設定を行ってください。
+
+#### Request Contact URL
+
+サポートのWebビューを表示するのに使用されるURLを返します。
+
+**API**
+
+```cs
+void RequestContactURL(const FGamebaseContactUrlDelegate& onCallback);
+void RequestContactURL(const FGamebaseContactConfiguration& configuration, const FGamebaseContactUrlDelegate& onCallback);
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initializeが呼び出されませんでした。 |
+| NOT\_LOGGED\_IN(2)                                  | サポートタイプが'NHN Cloud  OC'なのにログイン前に呼び出しました。 |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | サポートURLが存在しません。<br>Gamebaseコンソールの**サポートURL**を確認してください。 |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | ユーザーを識別するための臨時チケットの発行に失敗しました。 |
+
+**Example**
+
+``` cs
+void Sample::RequestContactURL(const FString& userName)
+{
+    FGamebaseContactConfiguration configuration{ userName };
+
+    IGamebase::Get().GetContact().RequestContactURL(configuration, FGamebaseContactUrlDelegate::CreateLambda([=](FString url, const FGamebaseError* error)
+    {
+        if (Gamebase::IsSuccess(error))
+        {
+            // Open webview with 'contactUrl'
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestContactURL succeeded. (url = %s)"), *url);
+        }
+        else
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestContactURL failed. (errorCode: %d, errorMessage: %s)"), error->code, *error->message);
+
+            if (error->code == GamebaseErrorCode::UI_CONTACT_FAIL_INVALID_URL)
+            {
+                // Gamebase Console Service Center URL is invalid.
+                // Please check the url field in the NHN Cloud Gamebase Console.
+            }
+            else
+            {
+                // An error occur when requesting the contact web view url.
+            }
         }
     }));
 }

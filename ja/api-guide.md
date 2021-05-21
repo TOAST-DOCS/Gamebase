@@ -1613,7 +1613,7 @@ X-Secret-Key: IgsaAP
     },
     "messageType" : "AD",
     "contact": "1588-1588",
-    "removeGuide": "매뉴 > 설정",
+    "removeGuide": "Menu > Setting",
     "timeToLiveMinute": 1,
     "provisionedResourceId": "id",
     "adWordPosition": "TITLE"

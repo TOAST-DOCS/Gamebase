@@ -8,7 +8,7 @@ This document describes the environment and initial setting to enable Unreal Gam
 >
 > Support Versions for Unreal 
 >
-> * UE 4.24
+> * UE 4.22 ~ UE 4.26
 > * To get a lower-version support for Unreal, please contact [Customer Center](https://toast.com/support/inquiry).
 
 #### Supported Platforms
@@ -44,56 +44,39 @@ Supported Platforms
 
 ### Android Settings
 
-* Plugins/Gamebase/Source/Gamebase/Gamebase_Android_UPL.xml
-    * Add gradle dependency for the authentication, payment, or push module to use.  
+1. Select **Edit > Project Settings** from the editor menu.
+2. In the Project Settings window, under Plugin category, select **Gamebase**.
 
-```xml
-<buildGradleAdditions>
-    <insert>
-        dependencies {
-            // >>> Gamebase Version
-            def GAMEBASE_SDK_VERSION = 'x.x.x'
+![Unreal Project Settings - Android](http://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.19.0.png)
 
-            implementation "com.toast.android.gamebase:gamebase-sdk:$GAMEBASE_SDK_VERSION"
-            implementation "com.toast.android.gamebase:gamebase-sdk-base:$GAMEBASE_SDK_VERSION"
+* Android - Authentication
+    * Activate the IdP to use.
+    * To use Hangame IdP, please contact our Customer Center.
+* Android - Push
+    * Activate the Push to use.
+* Android - Purchase
+    * Select the store to use.
+    * ONE Store
+        * Select View Option - Full payment screen (Full) or Payment popup window (Popup).
 
-            // >>> Gamebase - Add Auth Adapter (Add the gamebase-adapter-auth module of each IdP for the gradle dependency.)
-            //implementation "com.toast.android.gamebase:gamebase-adapter-auth-facebook:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-auth-google:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-auth-line:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-auth-naver:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-auth-payco:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-auth-twitter:$GAMEBASE_SDK_VERSION"
 
-            // >>> Gamebase - Select Purchase Adapter (Add the gamebase-adapter-purchase module of the market to use for the gradle dependency.)
-            //implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
+#### An issue where Google Play authentication and payment does not complete
 
-            // >>> Gamebase - Select Push Adapter (Add the gamebase-adapter-purchase module of the push to use for the gradle dependency.)
-            //implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-push-tencent:$GAMEBASE_SDK_VERSION"
-
-            // Add the TOAST Crash Reporter for NDK dependency
-            implementation 'com.toast.android:toast-crash-reporter-ndk:0.21.0'
-        }
-    </insert>
-</buildGradleAdditions>
-```
-
-#### Unavailability of Authentication and Payment for Google Play 
-
-To authenticate and pay for Google Play, distribution must be configured. 
-For more details, see the document as below: 
+Processing the authentication and payment for the Google Play service requires Distribution settings.
+To find out more, see the following document. 
 
 * [Signing Projects for Release](https://docs.unrealengine.com/en-US/Platforms/Mobile/Android/DistributionSigning/index.html)
 
 ### iOS Settings
 
-To enable Gamebase SDK for Unreal, download UE4 source codes. 
-See below for relevant guides. 
+To use the Gamebase SDK for Unreal, `UE4 Github source code` has to be used, and the Github account must be linked after joining the Epic games in order to expose the UnrealEngine repository.
+See below for relevant guides.  
 
 * [Downloading Unreal Engine Source Code](https://docs.unrealengine.com/en-US/GettingStarted/DownloadingUnrealEngine/index.html)
 * [Getting up and running](https://github.com/EpicGames/UnrealEngine#getting-up-and-running)
+
+>`!Important`
+> If you ignore this process, the following guide link does not properly work and the Gamebase SDK for Unreal will become unavailable.
 
 #### Sign in with Apple
 
@@ -111,23 +94,75 @@ Authorization failed: Error Domain=AKAuthenticationError Code=-7026 "(null)"
 Since UE4(4.24.3) does not support the feature, below codes must be added above line 196 of the following file.  [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs).
 
 ```cs
-Text.AppendLine("\t<key>com.apple.developer.applesignin</key>");
-Text.AppendLine("\t<array>");
-Text.AppendLine("\t\t<string>Default</string>");
-Text.AppendLine("\t</array>");
+// AS-IS
+if (bRemoteNotificationsSupported)
+{
+    Text.AppendLine("\t<key>aps-environment</key>");
+    Text.AppendLine(string.Format("\t<string>{0}</string>", bForDistribution ? "production" : "development"));
+}
+
+// TO-BE
+if (bRemoteNotificationsSupported)
+{
+    Text.AppendLine("\t<key>aps-environment</key>");
+    Text.AppendLine(string.Format("\t<string>{0}</string>", bForDistribution ? "production" : "development"));
+    Text.AppendLine("\t<key>com.apple.developer.applesignin</key>");
+    Text.AppendLine("\t<array>");
+    Text.AppendLine("\t\t<string>Default</string>");
+    Text.AppendLine("\t</array>");
+}
 ```
 
 #### Remote Notification
 
-To enable Gamebase Push, go to Project Settings > Platforms > iOS and activate Enable Remote Notifications Support. (available only on Github sources)
+1. To enable Gamebase Remote Notification, go to **Project Settings > Platforms > iOS** and activate **Enable Remote Notifications Support**. (available only on Github sources)
+2. To receive the Foreground push notification, the code shown below must be removed from the [Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp) file, or
+    ```objectivec
+    - (void)userNotificationCenter:(UNUserNotificationCenter *)center
+        willPresentNotification:(UNNotification *)notification
+            withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
+    {
+        // Received notification while app is in the foreground
+        HandleReceivedNotification(notification);
+        
+        completionHandler(UNNotificationPresentationOptionNone);
+    }
+    ```
+
+    modify it as follows:
+
+    ```objectivec
+    // AS-IS
+    completionHandler(UNNotificationPresentationOptionNone);
+
+    // TO-BE
+    completionHandler(UNNotificationPresentationOptionAlert);
+    ```
+
+#### Rich Push Notification
+
+Cannot use the Rich Push Notification function due to the following issues:
+
+* Unreal does not provide any methods for adding the [Notification Service Extension](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension?language=objc) to the project.
+    * [Create NHN Cloud Push Notification Service Extension](https://docs.toast.com/en/TOAST/en/toast-sdk/push-ios/#notification-service-extension)
 
 #### Error in Unreal Builds due to Warning Messages of iOS SDK
 
-If a warning message from iOS SDK is converted as error for Unreal build, leading into failure in the buildup, handle the clang compile option code in line 269 of the following file as footnotes: [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs).
+If a warning message from iOS SDK is converted as error for Unreal build, leading into failure in the buildup, handle the clang compile option code of the following file as footnotes: [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs)
 
 ```cs
 // Result += " -Wall -Werror";
 ```
+
+#### PLCrashReporter
+
+There is an issue where the device using the architecture cannot get the memory address because the PLCrashReporter used by UE4 does not support the `arm64e` architecture.
+
+Game developers using the crash analysis of the NHN Cloud Log & Crash Search must refer to the following guide to modify the UE4 internal PLCrashReporter:
+
+1. Unzip the GamebaseSDK-Unreal/Source/Gamebase/ThirdParty/IOS/GamebaseSDK-iOS/externals/plcrashreporter.zip file.
+2. Replace the file and header file of the UE4 internal PLCrashReporter with the unzipped file.
+    * Engine/Source/ThirdParty/PLCrashReporter/plcrashreporter-master-xxxxxxx
 
 ## API Deprecate Governance
 

@@ -30,7 +30,7 @@ Unity Standaloneで決済を行うには、IapAdapterとWebViewAdapterを追加�
 
 未消費決済履歴リストに値がある場合、次のような順序でConsume Flowを進行してください。
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
 > アイテムの重複支給が発生しないように、ゲームサーバーで必ず重複支給の有無をチェックしてください。
 >
