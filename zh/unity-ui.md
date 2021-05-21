@@ -126,7 +126,7 @@ Supported Platforms
 static void ShowWebView(string url, GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
 ```
 
-> Standalone에서는 WebViewAdapter를 통해서 WebView를 지원하며 WebView가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
+> 在Standalone中通过WebViewAdapter支持WebView。当WebView被打开时，不对输入为UI的Event进行Blocking。
 
 **示例**
 ```cs
@@ -164,22 +164,22 @@ public void ShowWebView()
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
 | title                    | string                                   | WebView标题                 |
-| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 미지정 |
+| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 未指定 |
 |                          | GamebaseScreenOrientation.PORTRAIT       | 纵向模式                      |
 |                          | GamebaseScreenOrientation.LANDSCAPE      | 横向模式                       |
 |                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 将横向模式旋转180度             |
-| contentMode              | GamebaseWebViewContentMode.RECOMMENDED        | 현재 플랫폼 추천 브라우저    |
-|                          | GamebaseWebViewContentMode.MOBILE             | 모바일 브라우저            |
-|                          | GamebaseWebViewContentMode.DESKTOP            | 데스크탑 브라우저          |
-| colorR                   | 0~255                                    | 내비게이션 바 색상 R            |
-| colorG                   | 0~255                                    | 내비게이션 바 색상 G                |
-| colorB                   | 0~255                                    | 내비게이션 바 색상 B                |
-| colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha                |
+| contentMode              | GamebaseWebViewContentMode.RECOMMENDED        | 当前平台推荐的浏览器 |
+|                          | GamebaseWebViewContentMode.MOBILE             | 移动浏览器            |
+|                          | GamebaseWebViewContentMode.DESKTOP            | 桌面浏览器          |
+| colorR                   | 0~255                                    | Navigation Bar颜色R            |
+| colorG                   | 0~255                                    | Navigation Bar颜色G                |
+| colorB                   | 0~255                                    | Navigation Bar颜色B                |
+| colorA                   | 0~255                                    | Navigation Bar颜色Alpha                |
 | buttonVisible            | true or false                            | 返回按钮有效或无效          |
 | barHeight                | height                                   | 导航栏高度                 |
 | backButtonImageResource  | ID of resource                           | 返回按钮的图标              |
 | closeButtonImageResource | ID of resource | 关闭按钮的图标 |
-| url | "http://" or "https://" or "file://" | 웹 URL |
+| url | "http://" or "https://" or "file://" | Web URL |
 
 > [TIP]
 >
@@ -326,8 +326,8 @@ public void ShowToast(string message, GamebaseUIToastType type)
 
 | Error              | Error Code | Description                 |
 | ------------------ | ---------- | --------------------------- |
-| UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | 이미지 공지 표시 중 타임아웃이 발생했습니다. |
-| UI\_UNKNOWN\_ERROR | 6999       | 未知错误(未定义的错误)。 |
+| UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | 显示图片通知时出现超时错误。|
+| UI\_UNKNOWN\_ERROR | 6999       | 未知错误(未定义的错误) |
 
 * 所有错误代码，请参考以下文档。
     * [错误代码](./error-code/#client-sdk)

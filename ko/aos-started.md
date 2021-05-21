@@ -77,7 +77,9 @@ repositories {
     ...
 
     // >>> [Weibo IdP]
-    maven { url 'https://dl.bintray.com/thelasterstar/maven/' }
+    // Download weibo sdk from here:
+    // https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/2019SDK/aar
+    flatDir { dirs 'The directory containing weibo sdk.' }
 
     // >>> [Hangame IdP]
     maven { url 'Hangame IdP 설정 방법은 고객 센터로 문의 하시기 바랍니다.' }
@@ -113,6 +115,9 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-line:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-payco:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
+
+    // >>> [Weibo IdP]
+    implementation (name: 'openDefault-10.10.0', ext: 'aar')
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Purchase Adapter

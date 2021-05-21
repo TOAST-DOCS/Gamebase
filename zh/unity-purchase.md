@@ -10,7 +10,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 * [Android Purchase Settings](aos-purchase#settings)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
-Unity Standalone에서 결제하려면 IapAdapter와 WebViewAdapter를 반드시 추가해야 합니다.
+如果需要在Unity Standalone中进行结算，必须添加IapAdapter和WebViewAdapter。
 ![GamebaseUnitySDKSettins Inspector](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-settingtool_iap_2.4.0.png)
 
 ### Purchase Flow
