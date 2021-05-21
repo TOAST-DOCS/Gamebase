@@ -1,5 +1,72 @@
 ## Game > Gamebase > Unreal SDK使用ガイド > UI
 
+## ImageNotice
+
+コンソールにイメージを登録した後、ユーザーに告知を表示できます。
+
+![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-002.png)
+
+### Show ImageNotices
+
+イメージ告知を画面に表示します。
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+
+```cpp
+void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback);
+void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback, const FGamebaseImageNoticeEventDelegate& onEventCallback);
+```
+
+**Example**
+
+```cpp
+void Sample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 colorA, int64 timeOut)
+{
+    FGamebaseImageNoticeConfiguration configuration{ colorR, colorG, colorB, colorA, timeOut };
+
+    IGamebase::Get().GetImageNotice().ShowImageNotices(configuration,
+        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) {
+            // Called when the entire imageNotice is closed.
+            ...
+        }),
+        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* error) {
+            // Called when custom event occurred.
+            ...
+        })
+    );
+}
+```
+
+#### FGamebaseImageNoticeConfiguration
+
+| Parameter                              | Values                                   | Description        |
+| -------------------------------------- | ---------------------------------------- | ------------------ |
+| colorR                   | 0～255                                    | ナビゲーションバーの色R            |
+| colorG                   | 0～255                                    | ナビゲーションバーの色G                |
+| colorB                   | 0～255                                    | ナビゲーションバーの色B                |
+| colorA                   | 0～255                                    | ナビゲーションバーの色Alpha                |
+| timeOut                  | int64        | イメージ告知最大ローディング時間(単位: millisecond)<br/>**default**: 5000                     |
+
+
+### Close ImageNotices
+
+closeImageNotices APIを呼び出して現在表示中のイメージ告知を全て終了できます。
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+
+```cpp
+void CloseImageNotices();
+```
+
+
 ## Webview
 
 ### Show WebView
@@ -23,7 +90,6 @@ Supported Platforms
 
 ```cpp
 void ShowWebView(const FString& url, const FGamebaseWebViewConfiguration& configuration, FGamebaseErrorDelegate& onCloseCallback, const TArray<FString>& schemeList, const FGamebaseSchemeEventDelegate& onSchemeEvent);
-static void ShowWebView(string url, GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
 ```
 
 **Example**
@@ -53,24 +119,33 @@ void Sample::ShowWebView(const FString& url)
 ```
 
 
-#### GamebaseWebViewConfiguration
+#### FGamebaseWebViewConfiguration
 
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | string                                   | WebViewのタイトル               |
-| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 未指定 |
-|                          | GamebaseScreenOrientation.PORTRAIT       | 縦モード                     |
-|                          | GamebaseScreenOrientation.LANDSCAPE      | 横モード                     |
-|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 横モードを180度回転              |
-| colorR                   | 0～255                                    | ナビゲーションバーの色相Alpha            |
-| colorG                   | 0～255                                    | ナビゲーションバーの色相R                |
-| colorB                   | 0～255                                    | ナビゲーションバーの色相G                |
-| colorA                   | 0～255                                    | ナビゲーションバーの色相B                |
+| title                    | FString                                   | WebViewのタイトル               |
+| orientation              | GamebaseScreenOrientation::Unspecified   | 未指定 |
+|                          | GamebaseScreenOrientation::Portrait      | 縦モード                     |
+|                          | GamebaseScreenOrientation::Landscape     | 横モード                     |
+|                          | GamebaseScreenOrientation::LandscapeReverse | 横モードを180度回転              |
+| contentMode              | GamebaseWebViewContentMode::Recommended        | 現在のプラットフォームの推薦ブラウザ |
+|                          | GamebaseWebViewContentMode::Mobile             | モバイルブラウザ         |
+|                          | GamebaseWebViewContentMode::Desktop            | デスクトップブラウザ       |
+| colorR                   | 0～255                                    | ナビゲーションバーの色相R            |
+| colorG                   | 0～255                                    | ナビゲーションバーの色相G                |
+| colorB                   | 0～255                                    | ナビゲーションバーの色相B                |
+| colorA                   | 0～255                                    | ナビゲーションバーの色相Alpha                |
 | buttonVisible            | true or false                            | 戻るボタン有効/無効          |
 | barHeight                | height                                   | ナビゲーションバーの高さ                  |
 | backButtonImageResource  | ID of resource                           | 戻るボタンのイメージ              |
 | closeButtonImageResource | ID of resource | 閉じるボタンのイメージ |
 | url | "http://" or "https://" or "file://" | Web URL |
+
+
+> [TIP]
+>
+> iPadOS 13以上でWebViewは基本的にデスクトップモードです。
+> contentMode =`GamebaseWebViewContentMode.MOBILE`設定でモバイルモードに変更できます。
 
 #### Predefined Custom Scheme
 
@@ -79,9 +154,9 @@ Gamebaseで指定しておいたSchemeです。
 | scheme | 用途 |
 | ----------------------------- | ------------------------------ |
 | gamebase://dismiss | WebViewを閉じる |
-| gamebase://goBack | WebView戻る |
-| gamebase://getUserId          | 現在ログインしているゲームユーザーのユーザーIDを表示 |
 | gamebase://getMaintenanceInfo | メンテナンス内容をWebPageに表示 |
+| gamebase://getUserId          | 現在ログインしているゲームユーザーのユーザーIDを表示 |
+| gamebase://goBack | WebView戻る |
 
 
 ### Close WebView
@@ -188,6 +263,7 @@ void Sample::ShowToast(const FString& message, EGamebaseToastExposureTime exposu
 
 | Error              | Error Code | Description                 |
 | ------------------ | ---------- | --------------------------- |
+| UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | イメージ告知の表示中タイムアウトが発生しました。 |
 | UI\_UNKNOWN\_ERROR | 6999       | 不明なエラーです(定義されていないエラーです)。 |
 
 * エラーコードの一覧は、次の文書を参照してください。

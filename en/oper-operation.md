@@ -2,8 +2,10 @@
 
 This menu provides functions that are required for an app operation.
 
-* Maintenance: Manage app maintenance
-* Notice: Manage urgent pop-up notices for game users
+* (Maintenance): Manage app maintenance
+* (Notice): Manage urgent notices by showing a popup window to game users
+* (Image notice): Manage image notices which is provided as an image to game users
+* (Kick out): Disconnect the app user
 
 ## Maintenance
 
@@ -31,46 +33,48 @@ Click **Register** under the **Maintenance** tab, to register maintenance.
 
 ![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_op_04_202004.png)
 
->  <font color="red">[Caution] </font>When **Update Required and Maintenance are set at the same time** , the service status becomes 'Update Required'.
->  If you don't want to show the Update Required pop-up to user during maintenance, the service status should be changed to 'Update Required' after maintenance is completed.
+>  <font color="red">[Caution] </font><br/>
+>  
+> If **Update Required and Maintenance are both enabled**, the service status becomes 'Update Required'.
+>  If you do not want to show a popup about required updates to users during the maintenance, the service status must be changed to 'Update Required' after the maintenance.
 
 #### (1) Target
-Select a target of maintenance.
+Select the maintenance target.
 
-- All Games : When maintenance is required for all client versions.
-- Some Clients: When only a particular client version requires maintenance. Click 'Select a Version' to show the list of client versions registered in the client menu.
-  **[Example of selecting particular clients]**
-  Can select All for client's status and each store; select a client version for maintenance and press OK.
-  ![gamebase_op_05_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812_en.png)
+- Entire game : Select it when maintenance is required for all client versions.
+- Some clients : Select it when maintenance is required only for certain client versions. Click the 'Select version' button to display the list of the client versions registered from the client menu.
+  **[Example of selecting Some clients]**
+  Select All is possible by client status and by store. Just select the client version to perform maintenance, and click the Confirm button.
+![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
 
 #### (2) Reason
-Provide reasons for maintenance simply.
-This message is not shown to game users.
+Enter the reason why the maintenance is needed.
+This information is not exposed to game users. You just need to enter a brief explanation as to why you registered the maintenance.
 
 #### (3) Time
-Set time of maintenance.
-For a timezone, 'UTC+09:00' is selected as default, and maintenance can be registered by selecting a timezone of a serviced country.
+Set when to conduct the maintenance.
+As for timezone, 'UTC+09:00' is selected by default, and you can also register maintenance by selecting the timezone of the country you are providing service to.
 
-#### (4) Maintenance Page
-Choose one, out of **Gamebase Page (Webview)**, **Custom Page HTML (Webview)**, and **External Link**, with different input windows displayed for each item.
-Below describe additional input items for each page: click **Preview** to check your input messages.
+#### (4) Maintenance page
+Set the type of the maintenance page which will be shown to users.
+You can choose **Page provided by Gamebase (WebView)**, **Custom HTML (WebView)**, or **External page**, and the input window is different for each item.
+The following are the extra input fields for each item. You can click **Preview** to see what was entered.
 
-##### 4-1) Gamebase Page (Webview)
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_2.0.png)
-This default maintenance page displays information entered by operator on the Webview page of Gamebase.
-It is Useful when there is no additional maintenance page.
-Enter **messages to show** to users when maintenance is underway.
-Enter in many languages, including English, Japanese, and Chinese, and one of the registered languages is set as the 'default language'.
-For users speaking other languages than registered, the 'default language' shall be applied. Click **+**on the right to add more languages, and if your option is not available, contact [Customer Center](https://alpha.toast.com/support/inquiry).
-Click **Preview** to check the screen in 'default language'.
+##### 4-1) Page provided by Gamebase(WebView)
+A default type maintenance page which displays the information that was entered by the operator in the WebView page provided by Gamebase.
+It can be useful when there is no separate maintenance page.
+In the **Exposed Message** field, enter the message to be shown to the users during maintenance.
+The message can also be entered in other languages such as Korean, Japanese, and Chinese, and the chosen language becomes the 'default language'.
+For users who do not have the matching language among the registered messages, the one selected as the 'Default Language' is displayed. You can click the **+** button on the right to add a language. If the language you are looking for is not available, please contact our [Customer Center](https://toast.com/support/inquiry) to request a new language.
+Click **Preview** to see the Preview screen in the 'Default Language'.
 
-##### 4-2) Custom Page HTML (Webview)
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_3.0.png)
-The maintenance page is entered in HTML type by operator and provided to users.
-Preview page is supported as well, based on HTML tag inputs.
-Useful in making a maintenance page type as wanted.
+##### 4-2) HTML provided by users (WebView)
+The operator directly fills out the maintenance page in HTML format and provides it to users.
+The preview page is also supported based on the entered HTML tags.
+This is useful when creating the maintenance page format you want.
 
-##### 4-3) External Link
+##### 4-3) External page
+
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_4.1.png)
 If you own a maintenance page or template, the maintenance page can be linked to URL.
 Preview of the URL to connect is also supported.
@@ -106,8 +110,9 @@ Status of notice is classified into three as below.
 
 ### Register Notice
 
-Click 'Register' on the main screen to register notices.
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_op_07_202004.png)
+Clicking the 'Register' button on the main screen of Notice redirects you to the screen where you can register a notice.
+
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_op_07_202011.png)
 
 #### (1) Target
 
@@ -146,20 +151,149 @@ Can register many languages, for those who speak other languages than registered
 To add a language, click **+** on the right, and if a language you want is not on the list, contact [Customer Center](https://toast.com/support/inquiry)to add as required.
 Click **Auto Translate to Default Language** and messages in default language are translated into a language set for each item. 
 
-#### (6) Bottom Button Type
-Specify a type of button to show at the bottom of a notice pop-up.
+#### (6) bottom button type
+Specify the type of the buttons which will be exposed at the bottom of the notice popup.
+- Close: Expose the Close button only.
+  Click the 'Close' button to close the popup and continue the game.
 
-- Close : Show Close button only.
-  Click 'Close' to close a pop-up and play games.
-- Close + More: Show 'Close' and 'More'.
-  Click 'More' and the link entered in the console opens on WebView.
+- Close+Read more: Expose the 'Close' and 'Read more' buttons.
+  - Enter Manually: When the user clicks the 'Read More' button, the link that was entered in the console opens in WebView.
+  - Connect to Customer Center: When set to Customer Center Provided by Gamebase, the customer center opens in WebView when the user clicks the 'Read more' button.
+
 
 #### Example of a Notice Pop-up
 Close (left), Close+More (right)
 ![gamebase_op_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_08_201812.png)
 
-### Modify Notice
+You can read, edit, or delete the details of the registered notice.
+By default, the input items are identical to those of the registration screen. You can also delete the notice by clicking the 'Delete' button if the notice has been entered incorrectly.
+If you want reregister the maintenance with similar details, you can use the copy function to easily register the notice.
 
-Can check, modify, and delete details of notification.
-Input items are same as registration, and Delete button is provided to delete a notice.
-To register a notice again with similar content, you may copy and paste for an easy registration.
+## Image notice
+
+![gamebase_image_notice_01_202007](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_image_notice_01_202007.png)
+
+You can easily provide the notice as an image within the game by registering the image into the console.
+The list of the current notices is exposed at the top of the list, and the list of the completed notices is displayed separately at the bottom.
+The exposure sequence can be set by directly moving the row in the list of the current notices, and when you call the Exposure API in the game, the image registered at the top is exposed first. You can expose up to 5 notice images during the same period.
+
+#### properties
+What's displayed on each item is as follows:
+
+- **Notice image**: Shows the thumbnail of the image which is to be actually exposed. The registered image is deleted 14 days after completion. Once deleted, the thumbnails will show a default image.
+- **Reason**: Shows a brief description about the registered image notice. What is entered here is not exposed in the actual image notice.
+- **Time of exposure**: Displays the time when the notice becomes exposed. When enabled, it shows the time and timezone information selected during registration.
+- **Time of exposure (+09:00)**: Changes the time (when the notice is exposed) into Korea Standard Time (+09:00) before displaying it.
+- **Modified date**: Shows the time when the notice was most recently modified.
+- **Click rate (%)**: Shows simple statistics about how many times the image notice has been displayed within the game and how many times it has actually been clicked. It shows the value against the total percentage, and you can see the graph on daily impressions and clicks during the exposure period by clicking the 'Confirm' button.
+- **Status** : Shows the display status as follows.
+![gamebase_image_notice_02_202007](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_image_notice_02_202007.png)
+
+```
+(1) To be exposed: The image notice is expected to be exposed
+(2) Currently exposed: The image notice is currently being exposed
+(3) Finished: The exposure has ended
+```
+
+### Register Image notice
+
+You can register the image notice by selecting the **Register** button from the **Image Notice** list.
+![gamebase_image_notice_03_202007](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_image_notice_03_202007.png)
+
+#### (1) Target
+
+Select the target to expose the image notice to.
+
+- Entire game : Select it when exposure is required for all client versions.
+- Some clients : Select it when exposure is required only for certain client versions. Click the 'Select version' button to display the list of the client versions registered from the client menu.
+  **Example of selecting Some clients**
+  Select All is possible by client status and by store. Just select the client version to expose, and click the Confirm button.
+![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
+
+
+#### (2) Target country
+Select the country to expose the notice to.
+
+- All countries : Exposed to all game users
+- Some countries : Exposed to users from the selected countries only
+  Entering the country code that you want to add will autocomplete the spelling. If you cannot find the particular country code, please contact our [Customer Center](https://toast.com/support/inquiry).
+
+> [Note]
+>
+> Criteria for determining the country
+> This is determined based on the criteria of **USIM** country code. If there is no USIM, the notice is exposed based on the country setting of the **device**.
+
+
+#### (3) Reason
+Enter the reason why the image notice has been registered.
+The input information is not exposed to the game user, and you just need to enter brief information for administrative use.
+
+#### (4) Time of exposure
+Set the time when the registered image will be exposed within the game.
+As for timezone, 'UTC+09:00' is selected by default, and you can also register maintenance by selecting the timezone of the country you are providing service to.
+
+#### (5) Image click action
+Set the action to process when the game user clicks the image notice.
+The following settings are available:
+
+- **Open URL**: Enter the URL to be redirected to. After clicking the URL, it opens in a new WebView. The image notice window does not close automatically.
+- **Payload**: Pass the input data to the client. You can use the received value to move to the in-game screen or process a particular event. The image notice that was opened after clicking it will be terminated
+- **No action**: Clicking the image notice does not trigger any particular action.
+
+> [Note]
+>
+> To use a certain **http** URL for the **Open URL** menu, a declaration for domain exclusion must be added to the Android build.
+> If not, the page is exposed abnormally on the device running Android 9.0 or later due to basic restrictions to the OS.
+
+
+#### (6) Image
+Register the image to expose within the game.
+You can set the image that you want to expose per language, and the image is exposed according to the language of the device.
+Registrable file formats are JEPG, JPG, and PNG, and the maximum size is 10 MB.
+Recommended image size is 1200x900 (Landscape) and 900x1200 (Portrait). It maintains the aspect ratio of the image to display the entire image, but if the width or height is too long, the image can be cropped when displayed.
+You can see the original image by clicking the preview image.
+
+> [Note]
+>
+> The uploaded image is automatically deleted 14 days after the exposure date of the image notice ends.
+
+#### (7) Popup color theme
+You can set the WebView theme for when the image notice is exposed.
+You can select and save **Dark Mode** or **Light Mode** as the theme, and the default setting is the **Dark Mode**.
+
+- Dark mode: Grey bottom bar
+- Light mode: White bottom bar
+
+### Modify Image notice
+
+You can read, edit, or delete the details of the registered images notice.
+You can also register the image from the Edit screen again to replace the previous image, and edit the time and target to expose the image notice.
+If you want to register the notice image again with the similar details to the already registered image notice, you can use the copy function to register by uploading a new image only.
+
+
+## Kick Out
+If you need to disconnect users for reasons such as game maintenance, you can easily do so in the console.
+You can see the kickout history and kickout registrations at a glance.
+![gamebase_op_09_202102](https://static.toastoven.net/prod_gamebase/gamebase_op_09_202102.png)
+
+### Register Kick Out
+
+Clicking the **Register** button on the **Kickout** tab redirects you to the screen where you can register a kickout.
+
+![gamebase_op_10_202102](https://static.toastoven.net/prod_gamebase/gamebase_op_10_202102.png)
+
+### (1) Target to process
+Select the target client to kick out.
+- Entire client : Select it when kickout is required for all client versions.
+- Some clients : Select it when kickout is required only for certain client versions. Click the 'Select Version' button to display the list of the client versions registered from the client menu.
+  **[Example of selecting Some clients]**
+  Select All is possible by client status and by store. Just select the client version to perform maintenance, and click the Confirm button.
+![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
+
+### (2) Reason
+The maximum length of kickout reason is 100 characters.
+This information is not exposed to the game user. You just need to enter a brief explanation as to why you registered the kickout.
+
+### (3) Message
+A kickout message to expose to users.
+If you select 'Auto-translate to default language', the message is translated based on what was entered in the default language and fill out the message using the appropriate language set for each one.

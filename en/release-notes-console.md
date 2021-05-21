@@ -1,5 +1,10 @@
 ## Game > Gamebase > Release Notes > Console
 
+### May 11, 2021 
+
+#### Feature Updates
+* App > App: Improved the view so that users can group and edit apps by feature
+
 ### April 13, 2021 
 
 #### Feature Updates

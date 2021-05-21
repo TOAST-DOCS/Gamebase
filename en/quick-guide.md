@@ -1,43 +1,44 @@
 ## Game > Gamebase > Quick Guide
 
-A Step-By-Step Quick Guide is available to get to know Gamebase easily.
+단계별로 따라하면서 손쉽게 Gamebase 기능을 익히실 수 있도록 Quick Guide를 준비하였습니다.
 
 ## Install: Developers
 
-### Gamebase SDK Installation [\[link\]](https://forward.nhn.com/2019/seoul/hands-on-labs/gamebase.install-with-setting-tool/)
+### Gamebase SDK 설치 [\[바로가기\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.install-with-setting-tool/)
 
-#### Beginners / 5mins
-
-* Seeting Tool Installation
-* Gamebase SDK Download using Setting Tool
-* Gamebase SDK Installation using Setting Tool
-* Gamebase SDK Deletion using Setting Tool
-* Setting Tool Update
+#### 초급 / 5분
+	
+* Setting Tool 설치
+* Setting Tool을 이용해서 Gamebase SDK 다운로드
+* Setting Tool을 이용해서 Gamebase SDK 설치
+* Settign Tool을 이용해서 Gamebase SDK 삭제
+* Setting Tool 업데이트
 
 ## Authentication: Developers
 
-### [Unity] Guest Authentication [\[link\]](https://forward.nhn.com/2019/seoul/hands-on-labs/gamebase.guest-auth-on-unity/)
+### [Unity] Guest 인증 [\[바로가기\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.guest-auth-on-unity/)
 
-#### Beginners / 15mins
+#### 초급/15분
 
-* Project Creation in Gamebase Console
-* Gamebase SDK Installation using Gamebase Seeting Tool
-* Gamebase Configuration from Unity Project
+* Gamebase console에서 프로젝트 생성하기
+* Gamebase Setting Tool을 이용해서 Gamebase SDK 설치하기
+* Unity 프로젝트에서 Gamebase 설정하기
 * Gamebase Initialize
 * Gamebase Guest Login
 * Gamebase Logout
+	
+### [Javascript] Guest 인증 [\[바로가기\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.guest-auth-on-js/)
 
-### [Javascript] Guest Authentication [\[link\]](https://forward.nhn.com/2019/seoul/hands-on-labs/gamebase.guest-auth-on-js/)
+#### 초급/15분
 
-#### Beginners / 15mins
+* Gamebase JavaScript 초기 설정
+* Gamebase JavaScript 초기화
+* Gamebase Guest 인증
+	
+### [Unity] Google IdP 인증 [\[바로가기\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.google-setting/)
 
-* Gamebase JavaScript Initial Setup
-* Gamebase JavaScript Initialize
-* Gamebase Guest Authentication
+#### 초급/30분
 
-### [Unity] Google IdP Authentication [\[link\]](https://forward.nhn.com/2019/seoul/hands-on-labs/gamebase.google-setting/)
+* Google Play Console 설정하기
+* Gamebase Console에서 인증정보 추가하기
 
-#### Beginners / 15mins
-
-* Google Play Console Configuration
-* Register Authentication Information from Gamebase Console

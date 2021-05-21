@@ -10,15 +10,19 @@ This document describes the process of creating Apple developer certificates req
 * Register a keychain and export the created certificate in the Personal Information Exchange (.p12) format.
 * To export certificates, set passwords.
 
-#### Register NHN Cloud Console
-* Go to **Notification > Push > Certificate** to register the certificate created above at **APNS Certificate** and **APNS (Sandbox) Certificate**.
-* Use the passwords set above to register.
+#### Registering NHN Cloud Console
+* Go to **Notification > Push > Certificate** and register the certificate that was created from above to **APNS Certificate** and **APNS (Sandbox) Certificate**.
+* The password you used to create the above certificate will be used for registration.
 
-#### Set XCode Project
-* Set **ON** for **Targets > Capabilities > Push Notifications**.
-* Open .entitlements file, which has been automatically created, to set an appropriate value of **APS Environment**.
-    * **development** : Sandbox APNS
-    * **production** : APNS
+#### Implementing Notification Service Extension
+* For tasks such as collecting inbound indicators and setting the notification sound, see [NHN Cloud Push Guide](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-ios/#notification-service-extension) to implement the **Notification Service Extension** for the application.
+
+
+#### Setting up XCode Project
+* Go to **Targets > Capabilities > Push Notifications** and set it to **ON**.
+* Open the .entitlements file automatically created, and set the value of the **APS Environment** key to an appropriate value.
+    * **development**: Sandbox APNS
+    * **production**:  APNS
 
 #### Import Header File
 Import the following header file to the ViewController you want to implement a push API.
@@ -29,8 +33,8 @@ Import the following header file to the ViewController you want to implement a p
 
 ### Register Push
 
-By calling API as below, a user can be registered to NHN Cloud Push.<br/>
-With user's agreement to enablePush, enableAdPush, and enableAdNightPush, call following API to complete registration.
+Call the following API to register the user for NHN Cloud Push.<br/>
+Get the values of Accept push (enablePush), Accept advertisement push (enableAdPush), and Accept night advertisement push (enableAdNightPush) from the user, and call the following API to complete the registration.
 
 
 ```objectivec
@@ -52,10 +56,39 @@ With user's agreement to enablePush, enableAdPush, and enableAdNightPush, call f
 }
 ```
 
+When registering the user for the NHN Cloud Push, the notification option can be set using the TCGBNotificationOptions object.<Mb>
+Get the values of Enable foreground push (foregroundEnabled), Enable badge (badgeEnabled), and Enable notification sound (soundEnabled) from the user. Then you can call the following API to set the notification option.
+
+```objectivec
+- (void)didLoginSucceeded {
+    BOOL enablePush;
+    BOOL enableAdPush;
+    BOOL enableAdNightPush;
+
+    BOOL foregroundEnabled;
+    BOOL badgeEnabled;
+    BOOL soundEnabled;
+
+    // You should receive the above values to the logged-in user.
+    
+    TCGBPushConfiguration* pushConfig = [TCGBPushConfiguration pushConfigurationWithPushEnable:enablePush ADAgreement:enableAdPush ADAgreementNight:enableAdNightPush];
+    
+    TCGBNotificationOptions* options = [TCGBNotificationOptions notificationOptionsWithForegroundEnabled:foregroundEnabled badgeEnabled:badgeEnabled soundEnabled:soundEnabled];
+
+    [TCGBPush registerPushWithPushConfiguration:pushConfig notificationOptions:options completion:^(TCGBError* error) {
+        if (error != nil) {
+            // To Register Push Failed.
+        }
+    }];
+    // You should receive the above values to the logged-in user.
+}
+```
+
 #### Setting for APNS Sandbox
 
-With SandboxMode, push can be registered to be delivered to APNS Sandbox.
-* How to register push with APNS Sandbox mode
+By turning on the SandboxMode, it can be registered so that the push will be sent with the APNS Sandbox.
+
+* How to set the client
 
 ```objectivec
 - (void)didLoginSucceeded {
@@ -67,34 +100,86 @@ With SandboxMode, push can be registered to be delivered to APNS Sandbox.
 ```
 
 * Send push from Console
+
 Select **iOS Sandbox** as the **Target** from the Push menu and send push.
 
-### Request Push Settings
+#### Get NotificationOptions
 
-To retrieve user's push setting, apply API as below.<br/>
-From **TCGBPushConfiguration** callback values, you can get user's value set.
+Retrieve the notification option value which was set when registering for the push notification.
 
 ```objectivec
 - (void)didLoginSucceeded {
-    [TCGBPush queryPushWithCompletion:^(TCGBPushConfiguration *configuration, TCGBError *error) {
+    TCGBNotificationOptions *options = [TCGBPush notificationOptions];
+
+    if (options == nil) {
+        // You need to login and call the registerPush API first.
+    }
+}
+```
+
+#### TCGBNotificationOptions
+
+| Parameter             | Values       | Description        |
+| --------------------  | ------------ | ------------------ |
+| foregroundEnabled     | YES or NO    | Expose the notification when the app is in the foreground<br/>**default**: NO           |
+| badgeEnabled          | YES or NO    | Enable badge icon<br/>**default**: YES           |
+| soundEnabled          | YES or NO    | Enable notification sound<br/>**default**: YES           |
+
+
+> [Note]
+>
+> foregroundEnabled option can be changed at runtime.
+> badgeEnabled and soundEnabled options are applied only when registerPush API gets called for the first time, and any changes to them at runtime are not guaranteed.
+>
+
+
+### Request Push Settings
+
+To view the push settings of the user, the following API is used.<br/>
+You can get the push info registered with the TCGBPushTokenInfo value which comes as callback.
+
+```objectivec
+- (void)didLoginSucceeded {
+    [TCGBPush queryTokenInfoWithCompletion:^(TCGBPushTokenInfo *tokenInfo, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == NO) {
-            // To Request Push Configuration Failed.
+            // To Request Push Token Info Failed.
         }
 
-        BOOL enablePush = configuration.pushEnabled;
-        BOOL enableAdPush = configuration.ADAgreement;
-        BOOL enableAdNightPush = configuration.ADAgreementNight;
-
+        NSString *pushType = tokenInfo.pushType;
+        NSString *token = tokenInfo.token;
+        ...
         // You can handle these variables.
     }];
 }
 ```
 
+#### TCGBPushTokenInfo
+
+| Parameter                              | Values                           | Description                        |
+| -------------------------------------- | -------------------------------- | ---------------------------------- |
+| pushType                               | string                           | Push token type                       |
+| token                                  | string                           | Token                                |
+| userId                                 | string                           | User ID                         |
+| deviceCountryCode                      | string                           | Country code                            |
+| timezone                               | string                           | Standard timezone                            |
+| registeredDateTime                     | string                           | Token update time                      |
+| languageCode                           | string                           | Language settings                             |
+| sandbox                                | YES or NO                        | Checks if the token is registered in the sandbox environment       |
+| agreement                              | TCGBPushAgreement                | Opt in                         |
+
+#### TCGBPushAgreement
+
+| Parameter                              | Values                            | Description               |
+| -------------------------------------- | --------------------------------- | ------------------------- |
+| pushEnabled                            | YES or NO                         | Opt in to display notifications           |
+| ADAgreement                            | YES or NO                         | Opt in to display advertisement notifications      |
+| ADAgreementNight                       | YES or NO                         | Opt in to display night advertisement notifications  |
+
 ### Error Handling
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | Error in NHN Cloud  Push library.<br>Please check DetailCode. |
+| TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | Error in NHN Cloud Push library.<br>Please check DetailCode. |
 | TCGB_ERROR_PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | Previous PUSH API call is not completed.<br>Please call again after the previous push API callback is executed. |
 | TCGB_ERROR_PUSH_UNKNOWN_ERROR            | 5999       | Unknown push error.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry), and we'll respond ASAP. |
 

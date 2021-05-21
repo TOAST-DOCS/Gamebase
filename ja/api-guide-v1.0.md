@@ -20,6 +20,7 @@ APIを呼び出すためのサーバーアドレスは、次の通りです。�
 #### AppId
 
 アプリIDとはNHN CloudプロジェクトのIDのことであり、アプリメニューの画面から確認することができます。
+
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
 <br>
@@ -612,9 +613,6 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [エラーコード](./error-code/#server)
 
-
-#### Ban Histories
-
 #### Ban Histories
 
 ユーザー利用停止履歴を照会します。
@@ -856,7 +854,6 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | appId | String | NHN CloudプロジェクトのID |
 
-
 **[Request Parameter]**
 
 なし
@@ -905,7 +902,6 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 Gamebaseは、NHN Cloud IAPサービスのサーバーAPIに対して**Wrapping**機能を提供します。Wrapping機能を使用すれば、ユーザーサーバーにおいて一貫したインターフェースでNHN Cloudサービスを使用することができます。
 
-
 #### Wrapping API
 
 | API | Method | Wrapping URI | IAP URI |
@@ -935,7 +931,6 @@ POST https://api-gamebase.cloud.toast.com/tcgb-inapp/v1.0/apps/{appId}/consume/{
 ## Leaderboard
 
 Gamebaseは、NHN Cloud LeaderboardサービスのサーバーAPIに対して**Wrapping**機能を提供します。Wrapping機能を使用すれば、ユーザーサーバーにおいて一貫したインターフェースでNHN Cloudサービスを使用することができます。
-
 
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |

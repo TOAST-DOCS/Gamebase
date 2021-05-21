@@ -5,9 +5,9 @@
 
 Gamebaseでは基本的にゲストログインに対応しています。
 
-- ゲスト以外のProviderでログインするためには、該当するProvider AuthAdapterが必要です。
-- AuthAdapter及び3rd-Party Provider SDKの設定は、次をご参考ください。
-    - [3rd-Party Provider SDK Guide](ios-started#3rd-party-provider-sdk-guide)
+- ゲスト以外のProviderにログインするには該当のProvider AuthAdapterが必要です。
+- AuthAdapterおよび3rd-Party Provider SDKの設定は、次を参照してください。
+    - [Game > Gamebase > iOS SDK使用ガイド > 始める > 3rd-Party Provider SDK Guide](ios-started#3rd-party-provider-sdk-guide)
 
 ログインを試みるIdPごとにadditionalInfoのパラメーターを入力しなければならない場合があります。<br/>
 AdditionalInfoに対する説明は下の**Gamebaseで対応しているIdP**の説明をご参考ください。
@@ -23,17 +23,15 @@ AdditionalInfoに対する説明は下の**Gamebaseで対応しているIdP**の
 
 ### Login Flow
 
-多くのゲームがタイトル画面にログインを設計しています。
-* アプリをインストールして初めて起動したとき、タイトル画面からゲームユーザーがどのIdP(identity provider)で認証するか選択できるようにします。
-* 一度ログインした後は、IdP選択画面を表示せずに、前回ログインしたIdPタイプで認証します。
+多くのゲームが、タイトル画面でログインを実装します。
+
+* アプリをインストールし、最初に起動した時、タイトル画面でゲームユーザーがどのIdP(identity provider)で認証するかを選択できるようにします。
+* 一度ログインした後は、IdP選択画面を表示せず、以前にログインしたIdPタイプで認証します。
 
 上述したロジックは、次のような手順で設計することができます。
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
+![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
 #### 1. 前回のログインタイプで認証
 
@@ -48,13 +46,13 @@ AdditionalInfoに対する説明は下の**Gamebaseで対応しているIdP**の
 #### 1-2. 認証に失敗した場合
 
 * ネットワークエラー
-    * エラーコードが**TCGB_ERROR_SOCKET_ERROR(110)**または **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題で認証が失敗したということです。**[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**をもう一度呼び出すか、しばらくしてから再試行します。
+    * エラーコードが **TCGB_ERROR_SOCKET_ERROR(110)**または **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワークの問題で認証が失敗したということなので**[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**を再度呼び出すか、しばらくしてから再度試行します。
 * 利用停止ゲームユーザー
     * エラーコードが**TCGB_ERROR_BANNED_MEMBER(7)**の場合、利用停止ゲームユーザーのため認証に失敗したということです。
-    * **[TCGBBanInfo banInfoFromError:error]**で制裁情報を確認して、ゲームユーザーにゲームをプレイできない理由を伝えてください。
-    * Gamebase初期化時に **[TCGBConfiguration enablePopup:YES]**および **[TCGBConfiguration enableBanPopup:YES]**を呼び出すと、Gamebaseが利用停止に関するポップアップを自動的に表示します。
+    * **[TCGBBanInfo banInfoFromError:error]**で制裁情報を確認してゲームユーザーにゲームをプレイできない理由を伝えてください。
+    * Gamebaseの初期化時、**[TCGBConfiguration enablePopup:YES]** および**[TCGBConfiguration enableBanPopup:YES]**を呼び出すと、Gamebaseが利用停止に関するポップアップを自動的に表示します。
 * その他のエラー
-    * 以前のログインタイプでの認証が失敗しました。**3. 指定されたIdPで認証**を進行します。
+    * 以前のログインタイプでの認証が失敗しました。**「2. 指定されたIdPで認証」**を行います。
 
 #### 2. 指定されたIdPで認証
 
@@ -136,11 +134,11 @@ Gamebaseを通じてログインを初めて試みたり、ログイン情報(�
 ただし、IdPのアクセストークンは、各IdPが提供するSDKが管理します。<br/>
 
 <br/><br/>
-IdPの中には、ログインする際に必ず必要な情報があるものがあります。<br/>
-例えば、Facebookログインを設計する場合、scopeなどを設定する必要があります。<br/>
-このような必須情報を設定することができるように**[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]**APIを提供します。<br/>
-パラメーターのadditionalInfoに必須情報をdictionary形式で入力してください。<br/>
-(パラメーター値がnilの場合、TOAST Consoleに登録したadditionalInfoの値が埋められます。パラメーター値がある場合、Consoleに登録してある値よりもこちらを優先してその値を上書きします。)
+いくつかのIdPでログインする時に必ず必要な情報があります。<br/>
+例えば、Facebookログインを実装するにはscopeなどを設定する必要があります。<br/>
+このような必須情報を設定できるように**[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]**APIを提供します。<br/>
+パラメータadditionalInfoに必須情報をdictionary形式で入力してください。<br/>
+(パラメータ値がnilの時は、NHN Cloud Consoleに登録したadditionalInfo値で設定されますパラメータ値がある時はConsoleに登録しておいた値より優先視して値を上書きします。)
 
 
 > [参考]
@@ -149,8 +147,8 @@ IdPの中には、ログインする際に必ず必要な情報があるもの�
 >
 
 ```objectivec
-- (void)loginPaycoButtonClick {
-    [TCGBGamebase loginWithType:kTCGBAuthPayco viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+- (void)loginFacebookButtonClick {
+    [TCGBGamebase loginWithType:kTCGBAuthFacebook viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Login Succeeded
             NSString *userId = [authToken.tcgbMember userId];
@@ -177,7 +175,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 | keyname                                  | a use                          | 値の種類                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdPタイプの設定                      | facebook, payco, iosgamecenter, naver, google, twitter, line, appleid |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdPタイプの設定                      | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdPログイン後に取得した認証情報(アクセストークン)設定 |                                |
 
 
@@ -200,7 +198,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 #import "TCGBConstants.h"
 
 - (void)authLoginWithCredential {
-    NSDictionary *credentialDic = @{ kTCGBAuthLoginWithCredentialProviderNameKeyname: @"facebook", kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"ここにfacebook SDKで発行したAccess Tokenを入力してください" };
+    NSDictionary *credentialDic = @{ kTCGBAuthLoginWithCredentialProviderNameKeyname: kTCGBAuthFacebook, kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"ここにfacebook SDKで発行したAccess Tokenを入力してください" };
     [TCGBGamebase loginWithCredential:credentialDic viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         NSLog([authToken description]);
     }];
@@ -293,7 +291,6 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
     * Google ID:aa
     * Facebook ID:bb
     * AppleGameCenter ID:cc
-    * Payco ID:dd
 * GamebaseユーザーID:456abcabc
     * Google ID:ee
     * Google ID:ff **-> すでにGoogleのeeアカウントに連携されているため、Googleアカウントを追加で連携させることができません。**
@@ -321,15 +318,15 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 #### 2-2. マッピングに失敗した場合
 
 * ネットワークエラー
-    * エラーコードが**TCGB_ERROR_SOCKET_ERROR(110)**または**TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**[TCGBGamebase addMappingWithType:viewController:completion:]**をもう一度呼び出したり、しばらくしてからもう一度試します。
-* 既に他のアカウントに連携している場合に発生するエラー
-    * エラーコードが**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**の場合、マッピングしようとしているIdPのアカウントが既に他のアカウントに連携しているという意味です。連携済みのアカウントを解除したい場合、該当するアカウントでログインしてから**[TCGBGamebase withdrawWithViewController:completion:]**を呼び出して退会したり、**[TCGBGamebase removeMappingWithType:viewController:completion:]**を呼び出して連携を解除した後、もう一度マッピングを試みてください。
-* 既に同じIdPアカウントに連携されている場合に発生するエラー
-	* エラーコードが**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**の場合、マッピングしようとしているIdPと同じ種類のアカウントが既に連携しているという意味です。
-	* Gamebaseのマッピングは、IdP一つにつき一つのアカウントのみ連携させることができます。例えば、既にPAYCOアカウントに連携している場合は、これ以上PAYCOアカウントを追加することができません。
-	* 同じIdPの他のアカウントを連携させるためには、**[TCGBGamebase removeMappingWithType:viewController:completion:]**を呼び出して連携を解除してからもう一度マッピングを試みてください。
+    * エラーコードが**TCGB_ERROR_SOCKET_ERROR(110)**または **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワークの問題で認証が失敗したということなので、**[TCGBGamebase addMappingWithType:viewController:completion:]**を再度呼び出すか、しばらくしてから再度試行します。
+* すでに他のアカウントに連携中の時に発生するエラー
+    * エラーコードが **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**の場合、マッピングしようとしているIdPのアカウントがすでに他のアカウントに連動中という意味です。すでに連動しているアカウントを解除するには、該当アカウントでログインして **[TCGBGamebase withdrawWithViewController:completion:]**を呼び出して退会するか、**[TCGBGamebase removeMappingWithType:viewController:completion:]**を呼び出して連動を解除した後、再度マッピングを行ってください。
+* すでに同じIdPアカウントに連携している時に発生するエラー
+	* エラーコードが**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**の場合、マッピングしようとしているIdPと同じ種類のアカウントがすでに連携中という意味です。
+	* Gamebaseマッピングは、1つのIdPにつき1つのアカウントのみ連携可能です。例えばGoogleアカウントにすでに連携中の場合は、Googleアカウントを追加できません。
+	* 同じIdPの他のアカウントを連携するには、**[TCGBGamebase removeMappingWithType:viewController:completion:]**を呼び出して連携を解除した後、再度マッピングを行ってください。
 * その他のエラー
-    * マッピングに失敗しました。
+    * マッピングが失敗しました。
 
 ### Import Header file into View Controller
 
@@ -349,7 +346,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 ```objectivec
 - (void)authAddMapping {
-    [TCGBGamebase addMappingWithType:@"facebook" viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+    [TCGBGamebase addMappingWithType:kTCGBAuthFacebook viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
                      NSLog(@"AddMapping is succeeded.");
                  }
@@ -381,7 +378,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 | keyname                                  | a use                          | 値の種類                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdPタイプの設定                      | facebook, payco, iosgamecenter, naver, google, twitter, line, appleid |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdPタイプの設定                      | facebook, iosgamecenter, naver, google, twitter, line, appleid |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdPログイン後に取得した認証情報(アクセストークン)設定 |                                |
 
 
@@ -406,7 +403,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
  
          NSString* facebookAccessToken = @"feijla;feij;fdklvda;hfihsdfeuipivaipef/131fcusp";
          NSMutableDictionary* credentialInfo = [NSMutableDictionary dictionary];
-         credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = @"facebook";
+         credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = kTCGBAuthFacebook;
          credentialInfo[kTCGBAuthLoginWithCredentialAccessTokenKeyname] = facebookAccessToken;
  
          [TCGBGamebase addMappingWithCredential:credentialInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
@@ -434,7 +431,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 ```objectivec
 - (void)authAddMapping {
-    [TCGBGamebase addMappingWithType:@"facebook" viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+    [TCGBGamebase addMappingWithType:kTCGBAuthFacebook viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             NSLog(@"AddMapping is succeeded.");
         }
@@ -472,7 +469,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 | keyname                                  | a use                          | 値種類                       |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdPタイプ設定                  | facebook, payco, iosgamecenter, naver, google, twitter |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdPタイプ設定                  | facebook, iosgamecenter, naver, google, twitter |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdPログイン後に取得した認証情報(アクセストークン)設定 |                                           |
 
 > [参考]
@@ -496,7 +493,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
     
     NSString* facebookAccessToken = @"feijla;feij;fdklvda;hfihsdfeuipivaipef/131fcusp";
     NSMutableDictionary* credentialInfo = [NSMutableDictionary dictionary];
-    credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = @"facebook";
+    credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = kTCGBAuthFacebook;
     credentialInfo[kTCGBAuthLoginWithCredentialAccessTokenKeyname] = facebookAccessToken;
     
     [TCGBGamebase addMappingWithCredential:credentialInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
@@ -533,7 +530,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 連携を解除した後は、Gamebase内部で該当するIdPに対するログアウト処理を行います。
 
 ```objectivec
-[TCGBGamebase removeMappingWithType:@"facebook" viewController:topViewController completion:^(TCGBError *error) {
+[TCGBGamebase removeMappingWithType:kTCGBAuthFacebook viewController:topViewController completion:^(TCGBError *error) {
     if ([TCGBGamebase isSuccessWithError:error] == YES) {
         // To Remove Mapping Succeeded
     } else {
@@ -583,14 +580,19 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 // Example for obtaining ID Provider's Authentication Information
 
 // Obtaining Facebook UserID
-NSString *userID = [TCGBGamebase authProviderUserIDWithIDPCode:@"facebook"];
+NSString *userID = [TCGBGamebase authProviderUserIDWithIDPCode:kTCGBAuthFacebook];
 
 // Obtaining Facebook AccessToken
-NSString *accessTokenOfIDP = [TCGBGamebase authProviderAccessTokenWithIDPCode:@"facebook"];
+NSString *accessTokenOfIDP = [TCGBGamebase authProviderAccessTokenWithIDPCode:kTCGBAuthFacebook];
 
 // Obtaining Facebook Profile
-TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWithIDPCode:@"facebook"];
+TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWithIDPCode:kTCGBAuthFacebook];
 ```
+
+> <font color="red">[注意]</font><br/>
+>
+> iOS 12以下のappleidログインの場合、認証情報を照会できません。
+>
 
 ### Get Banned User Information
 
@@ -608,10 +610,10 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 このキーを**TransferAccountInfo**と呼びます。
 発行されたTransferAccountInfoは、他の端末で**requestTransferAccount**APIを呼び出してアカウントを移行できます。
 
-> `注意`
+> <font color="red">[注意]</font><br/>
 > TransferAccountInfoは、ゲストログイン状態でのみ発行できます。
 > TransferAccountInfoを利用したアカウント移行は、ゲストログイン状態またはログインされていない状態でのみ可能です。
-> ログインしたゲストアカウントがすでに他の外部IdP(Google、Facebook、PAYCOなど)アカウントとマッピングされている場合、アカウント移行がサポートされません。
+> ログインしたゲストアカウントがすでに他の外部IdP(Google、Facebook など)アカウントとマッピングされている場合、アカウント移行がサポートされません。
 
 ### Issue TransferAccount
 ゲストアカウントを移行するためにTransferAccountInfoを発行します。
@@ -692,10 +694,11 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 アカウントの移行に成功した時、TransferAccountを発行した端末から移行完了メッセージが表示される場合があり、ゲストログインすると新規のアカウントが作成されます。
 アカウント移行が成功した端末では、TransferAccountを発行した端末のゲストアカウントを継続して使用できます。
 
-> `注意`
-> ゲストログインしている状態で移行が成功すると、端末にログインしていたゲストアカウントは消失します。
-> 無効なid/passwordを連続して入力すると**AUTH_TRANSFERACCOUNT_BLOCK(3042)**エラーが発生し、アカウント移行が一定時間できなくなります。
-> この場合は以下の例のようにTCGBTransferAccountFailInfo値を利用して、いつまでアカウント移行ができないのかをユーザーに伝えることができます。
+> <font color="red">[注意]</font><br/>
+>
+> すでにゲストログインしている状態で移行が成功すると、端末にログインしていたゲストアカウントは消失します。
+> 間違ったid/passwordを連続して入力した場合、**AUTH_TRANSFERACCOUNT_BLOCK(3042)**エラーが発生して、アカウント移行が一定時間できなくなります。
+> この場合は、以下の例のように、TCGBTransferAccountFailInfo値を利用して、いつまでアカウント移行ができないのかをユーザーに伝えることができます。
 
 
 
@@ -739,7 +742,7 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 一時退会をリクエストして即時に退会が行われずに一定期間の猶予期間が過ぎると、退会が行われます。
 猶予期間はコンソールで変更できます。
 
-> `注意`
+> <font color="red">[注意]</font><br/>
 >
 > 退会猶予機能を使用する場合には**[TCGBGamebase withdrawWithViewController:completion:]**APIを使用しないでください。
 > **[TCGBGamebase withdrawWithViewController:completion:]**APIは即時にアカウントを退会します。

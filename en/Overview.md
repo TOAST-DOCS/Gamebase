@@ -1,9 +1,19 @@
 ## Game > Gamebase > Overview
 
-Gamebase is a strongly recommended service as it embraces a decade's operational knowhow of NHN, which is the leading game platform provider. 
+Gamebase is a strongly recommended service as it embraces a decade's operational knowhow of NHN Entertainment, which is the leading game platform provider. 
 It only takes Gamebase SDK to make easy use of common game services.  
 
-![Gamebase_summary](https://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_01_20210426_en.png)
+![Gamebase_summary](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_01_201903_en.png)
+
+## Gamebase Sample App
+
+We are providing sample apps to help you test out the various features of Gamebase.
+With the sample apps, you can test the Gamebase features in your game app and predict how they work.
+Developers can check the sample app code to easily find out how to apply Gamebase.
+
+* [Download page](https://github.com/nhn/toast.gamebase.unity.sample/releases)
+![Gamebase_sample_app](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_Sample_App1.png)
+* You can use a QR code to download the Sample App APK.(Supported platform: Android OS)
 
 ## Key Features
 
@@ -41,7 +51,10 @@ Following is the list of external authentication supported by Gamebase.
 | Twitter			| O | O | |  |
 | LINE				| O | O | O  | O  |
 | Hangame			| O | O | O  | O  |
-| Weibo			| O | O |   |  |
+| Weibo				| O | O |   |   |
+
+> [Note] List of China stores supporting authentication and payment (50 or so) 
+> RedBean(红豆), Lenovo(联想), PPS(爱奇艺), Downjoy(当乐), PPTV(PPTV), Mftnn(4399), Coolpad(酷派), Amigo(金立),Mzw(拇指玩), Sogou(搜狗), AppChina(应用汇), Pengyouwan(朋友玩), Guopan(果盘), Gfan(机锋), Mumayi(木蚂蚁), Hmpay(海马玩), Toutidao(今日头条), Bilibili(bilibili), Mi(小米), Uc(UC), Badu(百度), And360(360), Oppo(OPPO), JiuMeng(九玩(手盟)), BukaSdk(布卡), Moge(摩格(乐游)), StarGame(口袋巴士(星游)), Letv(乐视), Tt(TT语音), Papa(啪啪), NoxPay(夜神模拟器), XiaoBens(笨手机), DouYou(逗游), Ungame(搞趣网), Hanfeng(汉风), QiGuo(七果(七匣子)), SinaV2(新浪v2), XiaoQiV2(新小七), btgame01(乐嗨嗨), ccgame(虫虫游戏), LingDong(灵动), KuaiKan(快看), DouYu(斗鱼), MiFengFanLi(蜜蜂), KaopuRB(靠谱助手), VivoRB(Vivo), BluestacksRB(蓝蝶), HwGamesRB(新华为), XinDong(心动)
 
 * **Provides guest logins.**
   With guest login, users can log in and start a game without any authentication required. As Gamebase user ID is issued even to guest users, game data can be managed for all users, regardless of OAuth or guest login
@@ -70,6 +83,7 @@ Game companies can enjoy maximum profits with less efforts by releasing already 
 Gamebase supports the following stores: 
 * Google Play Store
 * App Store
+* Galaxy Store
 * ONE Store
 * Facebook
 * Amazon
@@ -106,14 +120,14 @@ Following information is provided by Gamebase for launching.
 
 #### Reference
 
+<<<<<<< HEAD
 * [Android Developer Guide > Launching Info](./aos-initialization/#launching-status)
 * [iOS Developer Guide > Launching Info](./ios-initialization/#launching-status)
 * [Unity Developer Guide > Launching Info](./unity-initialization/#launching-informations)
-* [Unreal Developer Guide > Launching Info](./unreal-initialization/#launching-status)
-* [JavaScript Developer Guide > Launching Info](./js-initialization/#launching-informations)
+* [Unreal Developer Guide > Launching Info](./unreal-initialization/#launching-information)
+* [JavaScript Developer Guide > Launching Info](./js-initialization/#launching-information)
 * [Operator Guide > App Info(App, Client, Installed URL)](./oper-app): Set status of app and client, and installation URL
 * [Operator Guide > Operator(Maintenance,Notice)](./oper-operation): Register maintenance and notice
-
 
 ### For Global
 
@@ -126,12 +140,11 @@ Gamebase basically supports global games, and provides following functions to th
 * Selects operator's local time zone to enter time at ease.
   * If a game is run in Vietnam, Vietnam’s time zone can be selected and entered, with no need to convert to Korean time.
 
-### Other NHN Cloud Services
+### Using the other NHN Cloud Service
 
-* Supports easier interfaces to NHN Cloud service that a game requires.
+* Supports easier interfaces to TOAST service that a game requires.
   * Gamebase provides wrapped APIs on the basis of Gamebase User IDs. Therefore, users don't need to make separate calls to each service's API.
-  * [Notification > PUSH](http://www.toast.com/service/notification) : Integrated push service to send push messages
-  * [Common > IAP](http://www.toast.com/service/iap) : Integrated In-App Purchase service
+  * [Notification > PUSH](http://www.toast.com/service/notification) : Integrated push service to send push messages  
   * [Game > Leaderboard](http://www.toast.com/service/leaderboard) : Real-time large-capacity ranking service
   * [Security > AppGuard](https://cloud.toast.com/service/security) : Prevents code manipulation of applications in real time
 
@@ -163,11 +176,13 @@ Below shows the service structure of Gamebase with simple description
 
 ### Client Developer's Guide
 
+
 * [iOS Developer's Guide](./ios-started/)
 * [Android Developer's Guide](./aos-started/)
 * [Unity Developer's Guide](./unity-started/)
 * [Unreal Developer's Guide](./unreal-started/)
 * [JavaScript Developer's Guide](./js-started/)
+
 
 ### Server Developer's Guide
 
@@ -181,16 +196,95 @@ Below shows the service structure of Gamebase with simple description
 
 | Feature               | Description                              | Client                                   | Server                                   | Console                                  |
 | --------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| Analytics                  | - Real-time Indicators<br>- Sales Indicators<br>- User Indicators<br>- Balancing Indicators | [[Android](./aos-etc/#analytics)] [[iOS](./ios-etc/#analytics)] [[Unity](./unity-etc/#analytics)] |                                          | [[Analytics]](./oper-analytics)   ||
 | Login                 | Support Guest and 3rd Party authentication<br/>- [Supported IdPs](./Overview/#authentication) | [[iOS](./ios-authentication/#login)] [[Android](./aos-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[Token Authentication](./api-guide/#token-authentication)] <br> [[Retrieve Member](./api-guide/#get-member)] | [[App] > Setting Authentication Information](./oper-app/#authentication-information) <br> [[Member] > Retrieve](./oper-member/#member) <br> - Basic information, login history, playtime, purchase history, and etc. |
 | Logout                | Logout                                     | [[iOS](./ios-authentication/#logout)] [[Android](./aos-authentication/#logout)] [[Unity](./unity-authentication/#logout)] |                                          |                                          |
 | Withdraw              | Withdraw from a game<br/> - Delete all information of a game user, including user ID and mapping information | [[iOS](./ios-authentication/#withdraw)] [[Android](./aos-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
 | Mapping               | Integrate one user ID to many IdPs           | [[iOS](./ios-authentication/#mapping)] [[Android](./aos-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |                                          |
-| Analytics                  | - Real-time Indicators<br>- Sales Indicators<br>- User Indicators<br>- Balancing Indicators | [[Android](./aos-etc/#analytics)] [[iOS](./ios-etc/#analytics)] [[Unity](./unity-etc/#analytics)] |                                          | [[Analytics]](./oper-analytics)   ||
-| Purchase(IAP)         | (NHN Cloud Integration) <br/> InApp Purchase <br/>- Supported stores: Google and App Store | [[iOS](./ios-purchase/#purchase)] [[Android](./aos-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- Register Items](./oper-purchase/#item) <br> [- Retrieve Transaction](./oper-purchase/#transactions) |
-| Push                  | (NHN Cloud Integration) <br>Send push messages and check results | [[iOS](./ios-push/#push)] [[Android](./aos-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- Real-time delivery |
-| Leaderboard           | (NHN Cloud Integration)<br> Retrieve and register real-time ranking of large-capacity data |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
-| Webview               | SDK provides default WebView UI<br/>Provides both system pop-up and toast UI | [[iOS](./ios-ui/#webview)] [[Android](./aos-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
+| Purchase(IAP)         | (TOAST Integration) <br/> InApp Purchase <br/>- Supported stores: Google and App Store | [[iOS](./ios-purchase/#purchase)] [[Android](./aos-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- Register Items](./oper-purchase/#item) <br> [- Retrieve Transaction](./oper-purchase/#transactions) |
+| Push                  | (TOAST Integration) <br>Send push messages and check results | [[iOS](./ios-push/#push)] [[Android](./aos-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- Real-time delivery |
+| Leaderboard           | (TOAST Integration)<br> Retrieve and register real-time ranking of large-capacity data |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
+| Webview               | SDK provides default WebView UI<br/>Provides both system pop-up and TOAST UI | [[iOS](./ios-ui/#webview)] [[Android](./aos-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
 | [Operator] Maintenance | (Operational)  Maintenance                               |                                          | [[Check for Maintenance](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- Register or cancel maintenance |
 | [Operator] Notice      | (Operational) Urgent Notification <br> -  In pop-ups while user is executing an app |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>-Register Notice |
+{@line210}| [Operator] Image Notice         | (Operation) Image Notice function <br> -  Exposes the image notice in in-game popup format | [[Android](./aos-ui/#imagenotice)] [[iOS](./ios-ui/#imagenotice)] [[Unity](./unity-ui/#imagenotice)] <br/> - Expose image notice |                             | [[Image Notice]](./oper-operation/#image-notice) <br/>- Manage image notice |
 | [Operator] Ban         | (Operational) Register/Release banned game users <br> -  Register/Release banned game users | [[iOS](./ios-authentication/#get-banned-user-information)][[Android](./aos-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -Check information of banned users |   [[Retrieving the ban history of game users](./api-guide/#ban-histories)                                       | [[Ban]](./oper-ban/#ban) <br/>-Register and Release Ban |
+| [Operator] Coupon         | (Operation) Manage coupon<br>- issue, view history |  |                                      [[Validate coupon and change coupon status](./api-guide/#coupon)  | [[Coupon]](./oper-coupon) <br/>- Issue coupon | | [Operator] Customer Service         | (Operation) Receive and process 1:1 inquiry <br> -  Manage FAQ and notices | [[Android](./aos-etc/#contact)] [[iOS](./ios-etc/#contact)] [[Unity](./unity-etc/#contact)] <br/> - Display the Customer Center web page in WebView |                                        | [[Customer Service]](./oper-customer-service) <br/>- Process inquiries sent to customer center<br>- Manage FAQ/notices |
+
+## Console Role
+
+As for the standard member policy and permission for NHN Cloud, see the following guide.
+* [NHN Cloud > Console User Guide > Manage Members](https://docs.toast.com/en/TOAST/en/console-guide/#manage-members)
+
+### Manage Role
+
+**Console > Project Settings > Manage Members**
+On the Project Settings screen, you can add Toast members, or grant permissions to registered members individually. Multiple permissions can be granted to a single member.
+![Project Permission](http://static.toastoven.net/prod_gamebase/Overview/overview_project_role_01_20201123.png)
+
+**Console > Project Settings > Manage Group Permission**
+For the ease of operation, group permission can be granted to a Toast member by registering frequently used permissions as *group permission*.
+![Project Permission Group](http://static.toastoven.net/prod_gamebase/Overview/overview_project_role_02_20201123.png)
+
+**Console > Organization Settings > Project Common Permission Group Settings**
+On the Organization Admin screen, you can manage the permission group commonly used in the project within the organization.
+![Organization Permission Group](http://static.toastoven.net/prod_gamebase/Overview/overview_company_role_01_20201123.png)
+
+### Permissions list provided by Gamebase
+
+| Services | Permission | Description |
+| --- | --- | --- |
+| Gamebase | ADMIN | **Full screen access and control**<br>Create/Read/Update/Delete Gamebase service |
+| Gamebase | ANALYTICS VIEWER - ALL | Read all indexes()<br>Can download the index results in Excel file |
+| Gamebase | ANALYTICS VIEWER - EXCLUDING SALES | Read all indexes except for sales |
+| Gamebase | ANALYTICS VIEWER - ONLY REAL-TIME | Read real-time indexes |
+| Gamebase | APP ADMIN | Create/Read/Update/Delete APP menu |
+| Gamebase | APP VIEWER | Read APP menu |
+| Gamebase | BAN ADMIN | Create/Read/Update/Delete User Ban menu |
+| Gamebase | BAN VIEWER | Read User Ban menu |
+| Gamebase | COUPON ADMIN | Create/Read/Update/Delete Coupon menu |
+| Gamebase | COUPON VIEWER | Read Coupon menu |
+| Gamebase | CS ADMIN | Create/Read/Update/Delete Customer Center menu |
+| Gamebase | CS INQUIRY SUPPORT | Read/Update Customer Center inquiry menu and Read Member menu |
+| Gamebase | IAP ADMIN | Create/Read/Update/Delete Purchase menu |
+| Gamebase | IAP VIEWER | Read Purchase menu |
+| Gamebase | LEADERBOARD ADMIN | Create/Read/Update/Delete Leaderboard menu |
+| Gamebase | LEADERBOARD VIEWER | Read Leaderboard menu |
+| Gamebase | MANAGEMENT ADMIN | Create/Read/Update/Delete Management menu |
+| Gamebase | MEMBER ADMIN | Create/Read/Update/Delete Member menu |
+| Gamebase | MEMBER VIEWER | Read Member menu |
+| Gamebase | MEMBER FILE DOWNLOAD | Read Member menu and download Member files |
+| Gamebase | OPERATION ADMIN | Create/Read/Update/Delete Operation menu |
+| Gamebase | OPERATION VIEWER | Read Operation menu |
+| Gamebase | PUSH ADMIN | Create/Read/Update/Delete Push menu |
+| Gamebase | PUSH VIEWER | Read Push menu |
+
+* This is an example of managing the permissions by creating a frequently used permission group in the project. You can create and manage an appropriate permission group as necessary in the game.
+
+| Services | Permission | Administrator/Business | Development | CS |
+| --- | --- | --- | --- | --- | 
+| Gamebase | ADMIN | ● | | |
+| Gamebase | ANALYTICS VIEWER - ALL |  |  | |
+| Gamebase | ANALYTICS VIEWER - EXCLUDING SALES |   |  | |
+| Gamebase | ANALYTICS VIEWER - ONLY REAL-TIME |  | ● | |
+| Gamebase | APP ADMIN | |  ● | |
+| Gamebase | APP VIEWER | |  | |
+| Gamebase | BAN ADMIN | |  ● | ●|
+| Gamebase | BAN VIEWER | |  | |
+| Gamebase | COUPON ADMIN | | ● | |
+| Gamebase | COUPON VIEWER | |  |● |
+| Gamebase | CS ADMIN | |  | |
+| Gamebase | CS INQUIRY SUPPORT | |  | ● |
+| Gamebase | IAP ADMIN | | ● | |
+| Gamebase | IAP VIEWER | |  |● |
+| Gamebase | LEADERBOARD ADMIN || ● | | 
+| Gamebase | LEADERBOARD VIEWER | |  | |
+| Gamebase | MANAGEMENT ADMIN | | ● | |
+| Gamebase | MEMBER ADMIN | | ● | ● |
+| Gamebase | MEMBER VIEWER | |  |  |
+| Gamebase | MEMBER FILE DOWNLOAD | |  | |
+| Gamebase | OPERATION ADMIN | | ● | |
+| Gamebase | OPERATION VIEWER | |  |● |
+| Gamebase | PUSH ADMIN | | ● | |
+| Gamebase | PUSH VIEWER | |  | ● |
 

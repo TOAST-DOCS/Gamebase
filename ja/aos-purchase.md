@@ -62,12 +62,13 @@ dependencies {
 </manifest>
 ```
 
-#### 6. Initialization
+### Initialization
 
 * Gamebaseの初期化時、ストアコードを指定する必要があります。
 * **STORE_CODE**は、次の値の中から選択します。
     * GG：Google
     * ONESTORE：ONEstore
+    * GALAXY: Galaxy Store
 
 ```java
 String STORE_CODE = "GG";	// Google
@@ -80,10 +81,10 @@ Gamebase.initialize(activity, configuration, callback);
 
 ### Purchase Flow
 
-アイテムの購入は大きく分けて決済フロー、消費フロー、再処理フローの3つがあります。
-決済フローは、次のような順序で実装してください。
+アイテムの購入は大きく分けて**決済フロー**、**[消費フロー](./aos-purchase/#consume-flow)**、**[再処理フロー](./aos-purchase/#retry-transaction-flow)**の3つがあります。
+**決済フロー**は、次のような順序で実装してください。
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
+![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
 1. 以前の決済が正常に終了せず、再処理が動作しない場合、決済に失敗します。そのため決済前に**requestItemListOfNotConsumed**を呼び出して再処理を行い、未支給のアイテムがある場合はConsume Flowを進行します。
 2. ゲームクライアントではGamebase SDKの**requestPurchase**を呼び出して決済を試行します。
@@ -91,22 +92,29 @@ Gamebase.initialize(activity, configuration, callback);
 
 ### Consume Flow
 
-未消費決済履歴リストに値がある場合、次のような順序でConsume Flowを進行してください。
+未消費決済履歴リストに値がある場合、次のような順序で**Consume Flow**を進行してください。
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.10.0.png)
+> <font color="red">[注意]</font><br/>
+>
+> アイテムの重複支給が発生しないように、ゲームサーバーで必ず重複支給の有無をチェックしてください。
+>
+
+![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
 
 1. ゲームクライアントがゲームサーバーに決済アイテムのconsume(消費)をリクエストします。
-    * UserID、itemSeq、paymentSeq、purchaseTokenを伝達します。
-2. ゲームサーバーは、ゲームDBにすでに同じpaymentSeq、purchaseTokenでアイテムを支給した履歴があるかを確認します。
-    * 2-1まだアイテムを支給していない場合、UserIDにitemSeqに該当するアイテムを支給します。
-    * 2-2アイテム支給後、ゲームDBにUserID、itemSeq、paymentSeq、purchaseTokenを保存し、後で重複支給の有無を確認できるようにします。
+    * UserID、gamebaseProductId、paymentSeq、purchaseTokenを伝達します。
+2. ゲームサーバーは、ゲームDBにすでに同じpaymentSeqでアイテムを支給した履歴があるかを確認します。
+    * 2-1まだアイテムを支給していない場合、UserIDにgamebaseProductIdに該当するアイテムを支給します。
+    * 2-2アイテム支給後、ゲームDBにUserID、gamebaseProductId、paymentSeq、purchaseTokenを保存し、後で重複支給の有無を確認できるようにします。
 3. ゲームサーバーはGamebaseサーバーのconsume(消費) APIを呼び出してアイテムの支給を完了します。
-    * [APIガイド > Purchase(IAP) > Consume](./api-guide/#consume)
+    * [Game > Gamebase > APIガイド > Purchase(IAP) > Consume](./api-guide/#consume)
 
 ### Retry Transaction Flow
 
+![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
+
 * ストア決済には成功したがエラーが発生して正常に終了しなかった場合があります。
-* **requestItemListOfNotConsumed**を呼び出して再処理を行い、未支給のアイテムがある場合、Consume Flowを進行してください。
+* **requestItemListOfNotConsumed**を呼び出して再処理を行い、未支給のアイテムがある場合、[Consume Flow](./aos-purchase/#consume-flow)を進行してください。
 * 再処理は次の時点で呼び出すことを推奨します。
     * ログイン完了後
     * 決済前
@@ -268,7 +276,6 @@ GamebaseEventHandlerでプロモーション決済イベントを処理する方
 | PURCHASE_NOT_INITIALIZED                 | 4001       | Purchaseモジュールが初期化されていません。<br>gamebase-adapter-purchase-IAPモジュールをプロジェクトに追加したか確認してください。|
 | PURCHASE_USER_CANCELED                   | 4002       | ゲームユーザーがアイテムの購入をキャンセルしました。                |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 購入ロジックが完了していない状態でAPIが呼び出されました。    |
-| PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 該当するストアのcashが足りないため決済することができません。           |
 | PURCHASE_INACTIVE_PRODUCT_ID             | 4005       | 該当商品が有効になっていません。  |
 | PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | 存在しないGamebaseProductIDで決済をリクエストしました。 |
 | PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | このストアには対応していません。<br>選択可能なストアはGG(Google)、ONESTORE、GALAXYです。|
@@ -284,7 +291,7 @@ GamebaseEventHandlerでプロモーション決済イベントを処理する方
 * IAPーエラーの詳細は次のように確認できます。
 
 ```java
-Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<PurchasableReceipt>() {
+Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataCallback<PurchasableReceipt>() {
     @Override
     public void onCallback(PurchasableReceipt data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {

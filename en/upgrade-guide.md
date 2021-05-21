@@ -1,5 +1,60 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.20.2
+
+### iOS
+
+* In Gamebase iOS SDK 2.20.2, Facebook SDK has been updated to 9.1.0. 
+    * Now the Facebook SDK needs additional settings, so please add the following value to the info.plist. If not, the system might crash.
+        * FacebookAutoLogAppEventsEnabled
+        * FacebookAdvertiserIDCollectionEnabled
+* To find out more, see the [Facebook iOS SDK Guide](https://developers.facebook.com/docs/app-events/getting-started-app-events-ios).
+
+## 2.19.0
+
+### Android
+
+* Alternating the call between Weibo IdP login and another IdP login in Gamebase Android SDK 2.19.0 will lead to a crash.
+    * If the Weibo IdP is being used, please use Gamebase Android SDK 2.19.1 where the issue has been fixed.
+
+## 2.18.2
+
+### Android
+
+#### Removed APIs
+
+* In Gamebase Android SDK 2.6.0, the following features were removed after being deprecated.
+    * **GamebaseConfiguration.Builder.setFCMSenderId()**
+    * **GamebaseConfiguration.Builder.setTencentAccessKey()**
+    * **GamebaseConfiguration.Builder.setTencentAccessId()**
+
+## 2.18.0
+
+### Android
+
+* Calling the Google item payment in Gamebase Android SDK 2.18.0 causes a crash.
+    * Please use the Gamebase Android SDK 2.18.1 where the issue has been fixed.
+
+## 2.17.0
+
+### Android
+
+* Calling Gamebase.ImageNotice.showImageNotices API in Gamebase Android SDK 2.17.0 causes a crash.
+    * Please use Gamebase Android SDK 2.17.4 where the crash issues from 2.17.0 and custom scheme event failure from OS 5.0 - 6.0 have been fixed.
+
+## 2.15.1
+
+### iOS
+
+* If the type **GamebaseEventCategory** defined by the SDK is used in place of the NSString, it has to be updated to **TCGBGamebaseEventCategory**.
+
+## 2.15.0
+
+### Android
+
+* If **gamebase-adapter-purchase-google** is being used, the previous Game Client Version must be set to **Update to the latest version required** if the Gamebase SDK version earlier than 2.15.0 is to be upgraded to 2.15.0 or later.
+	* The Google Billing Client module has been updated. Because of this, when purchasing an item while different billing client versions have been applied to multiple devices, any resultant error could lead to a reprocessing problem.
+
 ## 2.6.0
 
 ### Unity
@@ -90,10 +145,6 @@ android {
     }
 }
 ```
-
-### iOS
-
-* No special steps are required.
 
 ## 2.4.4
 

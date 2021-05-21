@@ -165,7 +165,7 @@ public void getDisplayLanguageCodeInRuntime() {
 
 Gamebaseで提供するデフォルト言語(ko、en、ja)以外に他の言語を使用しなければならない場合、gamebase-sdk-base.aar > res > rawにあるlocalizedstring.jsonファイルに値を追加しなければなりません。
 
-![localizedstring.json](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-etc_001_1.11.0.png)
+![localizedstring.json](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-etc_001_1.11.0.png)
 
 localizedstring.jsonに定義されている形式は、次の通りです。
 
@@ -269,7 +269,7 @@ localizedstring.jsonに定義されている形式は、次の通りです。
 	2. USIM国コードが空の値の場合は端末国コードを確認し、値があれば別途確認しないでそのまま返します。
 	3. USIM、端末国コードがどちらも空の値の場合は、'ZZ'を返します。
 
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
+![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
 **API**
 
@@ -361,7 +361,7 @@ void eventHandlerSample(Activity activity) {
 * Gamebaseサーバーからクライアント端末へ送信するメッセージです。
 * GamebaseでサポートするServer Push Typeは次の通りです。
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
-    	* TOAST Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseに接続されたすべてのクライアントでキックアウトメッセージを受信します。
+    	* NHN Cloud Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseに接続されたすべてのクライアントでキックアウトメッセージを受信します。
     * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
     	* Guestアカウントを他の端末へ移行すると、以前の端末でキックアウトメッセージを受信します。
 
@@ -410,6 +410,9 @@ void processServerPush(String category, GamebaseEventServerPushData data) {
             * LaunchingStatus.IN_SERVICE: 200
             * LaunchingStatus.RECOMMEND_UPDATE: 201
             * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
+            * LaunchingStatus.IN_TEST: 203
+            * LaunchingStatus.IN_REVIEW: 204
+            * LaunchingStatus.IN_BETA: 205
             * LaunchingStatus.REQUIRE_UPDATE: 300
             * LaunchingStatus.BLOCKED_USER: 301
             * LaunchingStatus.TERMINATED_SERVICE: 302
@@ -755,7 +758,6 @@ public void onLevelUp(int userLevel, long levelUpTime) {
 }
 ```
 
-
 ### Contact
 
 Gamebaseでは顧客からの問い合わせに対応するための機能を提供します。
@@ -764,36 +766,134 @@ Gamebaseでは顧客からの問い合わせに対応するための機能を提
 >
 > NHN Cloud Contactサービスと連携して使用すると、簡単に顧客からの問い合わせに対応できます。
 > 詳細はNHN Cloud Contactサービスの利用ガイドを参照してください。
-> [NHN Cloud Online Contact Guide](/Contact%20Center/ja/online-contact-overview/)
+> [NHN Cloud Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
 >
+
+#### Customer Service Type
+
+**Gamebaseコンソール > App > InApp URL > Service center**では、次のように3つのタイプのサポートを選択できます。
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
+
+| Customer Service Type     | Required Login |
+| ------------------------- | -------------- |
+| Developer customer center | X              |
+| Gamebase customer center  | △             |
+| NHN Cloud Online Contact      | △              |
+
+タイプに応じてGamebase SDKのサポートAPIは次のURLを使用します。
+
+* 開発会社独自のサポート(Developer customer center)
+    * **サポートURL**に入力したURL.
+* Gamebase提供サポート(Gamebase customer center)
+    * ログイン前：ユーザー情報が**ない**サポートURL。
+    * ログイン後：ユーザー情報が含まれたサポートURL。
+* NHN Cloud組織商品(Online Contact)
+    * ログイン前：ユーザー情報が**ない**サポートURL。
+    * ログイン後：ユーザー情報が含まれたサポートURL。
 
 #### Open Contact WebView
 
-Gamebase Consoleに入力した**サポートURL**をWebビューで表示する機能です。
-**Gamebase Console > App > InApp URL > Service center**に入力した値が使用されます。
+サポートWebビューを表示します。
+URLはサポートタイプに基づいて決定されます。
+ContactConfigurationでURLに追加情報を伝達できます。
+
+**ContactConfiguration**
+
+| API | Mandatory(M) / Optional(O) | Description |
+| --- | --- | --- |
+| newBuilder() | **M** | ContactConfigurationオブジェクトはnewBuilder()関数で作成できます。 |
+| build() | **M** | 設定を終えたBuilderをConfigurationオブジェクトに変換します。 |
+| setUserName(String userName) | O | ユーザー名(ニックネーム)を伝達したい時に使用します。<br>NHN Cloud組織商品(Online Contact)タイプで使用するフィールドです。<br>**default** : null |
+| setAdditionalURL(String additionalURL) | O | 開発会社の独自サポートURLの後ろにつく追加のURLです。<br>サポートタイプが`CUSTOM`の場合にのみ使用してください。<br>**default** : null |
+| setExtraData(Map<String, Object> extraData) | O | 任意のextra dataをサポートのオープン時に伝達します。<br>**default** : EmptyMap |
 
 **API**
 
 ```java
-Gamebase.Contact.openContact(Activity activity, GamebaseCallback callback);
++ (void)Gamebase.Contact.openContact(@NonNull  final Activity activity,
+                                     @Nullable final GamebaseCallback onCloseCallback);
+
++ (void)Gamebase.Contact.openContact(@NonNull  final Activity activity,
+                                     @NonNull  final ContactConfiguration configuration,
+                                     @Nullable final GamebaseCallback onCloseCallback);
 ```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initializeが呼び出されませんでした。 |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | サポートURLが存在しません。<br>Gamebaseコンソールの**サポートURL**を確認してください。 |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | ユーザーを識別するための臨時チケットの発行に失敗しました。 |
+| UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | サポートWebビューがすでに表示中です。 |
 
 **Example**
 
 ``` java
-public void openContact(Activity activity) {
-    Gamebase.Contact.openContact(activity, new GamebaseCallback() {
-        @Override
-        public void onCallback(GamebaseException exception) {
-            if (exception != null && exception.code == WEBVIEW_INVALID_URL) { // 7001
-                // TODO: Gamebase Console Service Center URL is invalid.
-                //  Please check the url field in the TOAST Gamebase Console.
-            } else if (exception != null) {
-                // TODO: Error occur when opening the contact web view.
-            } else {
-                // A user close the contact web view.
-            }
+Gamebase.Contact.openContact(activity, new GamebaseCallback() {
+    @Override
+    public void onCallback(GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            // A user close the contact web view.
+        } else if (exception.code == UI_CONTACT_FAIL_INVALID_URL) { // 6911
+            // TODO: Gamebase Console Service Center URL is invalid.
+            // Please check the url field in the TOAST Gamebase Console.
+        } else if (exception.code == UI_CONTACT_FAIL_ANDROID_DUPLICATED_VIEW) { // 6913
+            // The customer center web view is already opened.
+        } else {
+            // An error occur when opening the contact web view.
         }
-    });
-}
+    }
+});
+```
+
+> <font color="red">[注意]</font><br/>
+>
+> サポートへお問い合わせする時、ファイルの添付が必要な場合があります。
+> そのため、ユーザーからカメラ撮影やStorage保存の権限をランタイムに取得する必要があります。
+> [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
+>
+> Unityユーザーは、以下のガイドを参照して実装できます。
+> [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
+
+#### Request Contact URL
+
+サポートのWebビューを表示するのに使用されるURLを返します。
+
+**API**
+
+```java
++ (void)Gamebase.Contact.requestContactURL(@NonNull final GamebaseDataCallback<String> callback);
+
++ (void)Gamebase.Contact.requestContactURL(@NonNull final ContactConfiguration configuration,
+                                           @NonNull final GamebaseDataCallback<String> callback);
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initializeが呼び出されませんでした。 |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | サポートURLが存在しません。<br>Gamebaseコンソールの**サポートURL**を確認してください。 |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | ユーザーを識別するための臨時チケットの発行に失敗しました。 |
+
+**Example**
+
+``` java
+ContactConfiguration configuration = ContactConfiguration.newBuilder()
+        .setUserName(userName)
+        .build();
+Gamebase.Contact.requestContactURL(configuration, new GamebaseDataCallback<String>() {
+    @Override
+    public void onCallback(String contactUrl, GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            // Open webview with 'contactUrl'
+        } else if (exception.code == UI_CONTACT_FAIL_INVALID_URL) { // 6911
+            // TODO: Gamebase Console Service Center URL is invalid.
+            // Please check the url field in the TOAST Gamebase Console.
+        } else {
+            // An error occur when requesting the contact web view url.
+        }
+    }
+});
 ```

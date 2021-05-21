@@ -138,21 +138,21 @@ LTV is an index representing the expected annual revenue from a single user in t
 
 LTV chart is provided per country/OS/date, and in the table below, you can see the details such as LTV, accumulated NRU, accumulated PU, accumulated amount of payment, etc.
 
-#### Estimation Method
+#### Estimation method
 As LTV estimation method, Gamebase uses the ARPU accumulated over 365 days after the registration. 
 
-#### User Group Conditions
+#### User group conditions
 The user group conditions are as follows:
 
 * Signed-up date
 * Country
 * OS
 
-#### Restricted Conditions
-There are restrictions for accurate estimation of LTV.
+#### Restriction conditions
+The following restrictions are applied for accurate estimation of LTV:
 
-* The number of user group members must be 1,000 or higher.
-* The PU (Payment User) of the user group must be 30 or higher.
+* The number of user group members must be 1,000 or more.
+* The number of PU (Payment Users) of the user group must be 30 or more.
 * The most recent signed-up date must be more than 7 days.
 
 ### Life Cycle
@@ -160,13 +160,13 @@ There are restrictions for accurate estimation of LTV.
 
 Life Cycle is an index used to check the trend of daily active users since the first inflow of users. Data is retained for up to 3 years.
 
-* Daily Active Users (DAU): The number of active users who logged in at least once on a daily basis based on memberno.
-* Maximum Concurrent Users (MCU): The number of concurrent users during the period between 0:00 and 24:00. The greatest value from the CCU values every minute is aggregated on a daily basis.
+* Daily Active Users (DAU): The number of active users who logged in at least once on a daily basis based on memberno
+* Maximum Concurrent Users (MCU): The number of concurrent users during the period between 0:00 and 24:00. The highest value among the CCU values every minute is aggregated on a daily basis
 * Newly Registered Users (NRU): Newly registered users. The user whose login log is collected for the first time between 0:00 and 24:00 (based on memberno)
 * Withdrawn Users: Users who withdrew their account. Users whose memberno is deleted during the period between 00:00 and 24:00
 * Users who registered and withdrew on the same day: Users who deleted their account on the same day they signed up for the service
 * Average CCU: The average CCU during the selected duration
-* Average playtime - Avg. Playtime (/DAU): The average playtime during the retrieved duration (Sum of playtime of DAU/DAU)      
+* Average playtime - Avg.Playtime(/DAU): The average playtime during the retrieved duration (Sum of playtime of DAU/DAU)      
 
 ### Frequency7
 
@@ -176,15 +176,15 @@ The Frequency7 index provides information about weekly visitor and ratio of DAU.
 
 Frequency7 is divided into the following three categories:
 
-* Number of visits: The number of visits for 7 days
-* Number of consecutive visits: The number of consecutive visits for 7 days (including the date)
-* Number of maximum consecutive visits: The number of maximum consecutive visits for 7 days
+* Number of visits: The number of visits in 7 days
+* Number of consecutive visits: The number of consecutive visits in 7 days (including the date)
+* Number of maximum consecutive visits: The number of maximum consecutive visits in 7 days
 
 Let's see an example of the three calculation models mentioned above: 
 If there is a user who visited the site on March 1, 2, 3, 6, and 7, as of March 7, the number of visits is as follows:
 
 * Total number of visits: 5 days (March 1, 2, 3, 6, and 7)
-* Number of consecutive visits: 2 days (March 6 and 7)
+* Number of consecutive visits: 2 days (March 6-7)
 * Number of maximum consecutive visits: 3 days (March 1, 2, and 3)
 
 ## Sales Indicators 
@@ -293,7 +293,7 @@ There are three types of transfer indicators as below:
 > World/server/channel, class/profession are processed only pre-registered information.
 > See the following document to learn how to register.
 >
-> - [App > Analytics Indicator] (./oper-app/#analytics-indicator)
+> - [App > Analytics Indicator](./oper-app/#analytics-indicator)
 
 ### Concurrent Status
 

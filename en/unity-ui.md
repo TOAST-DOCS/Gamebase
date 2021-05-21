@@ -1,5 +1,349 @@
 ## Game > Gamebase > Unity Developer's Guide > UI
 
+## ImageNotice
+
+You can pop up a notice to users after registering an image to the console.
+
+![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-002.png)
+
+### Show ImageNotices
+
+Show the image notice on the screen.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+
+```cs
+static void ShowImageNotices(GamebaseRequest.ImageNotice.Configuration configuration, GamebaseCallback.ErrorDelegate closeCallback, GamebaseCallback.GamebaseDelegate<string> eventCallback = null)
+```
+
+**Example**
+
+```cs
+public void ShowImageNotices()
+{
+    Gamebase.ImageNotice.ShowImageNotices(
+        null,
+        (error) =>
+        {
+            // Called when the entire imageNotice is closed.
+            ...
+            
+        },
+        (scheme, error) =>
+        {
+            // Called when custom event occurred.
+            ...
+        });        
+}
+```
+
+### Custom ImageNotices
+
+Pops up a customized image notice on the screen.
+You can use GamebaseRequest.ImageNotice.Configuration to create the customized image notice.
+
+**Example**
+
+```cs
+public void ShowImageNotices(int colorR = 0 , int colorG = 0, int colorB = 0, int colorA = 128, long timeOut = 5000)
+{
+    GamebaseRequest.ImageNotice.Configuration configuration = new GamebaseRequest.ImageNotice.Configuration();
+    configuration.colorR = colorR;
+    configuration.colorG = colorG;
+    configuration.colorB = colorB;
+    configuration.colorA = colorA;
+    configuration.timeOut = timeOut;
+
+    Gamebase.ImageNotice.ShowImageNotices(
+        configuration,
+        (error) =>
+        {
+            // Called when the entire imageNotice is closed.
+            ...
+            
+        },
+        (scheme, error) =>
+        {
+            // Called when custom event occurred.
+            ...
+        });        
+}
+```
+
+#### GamebaseRequest.ImageNotice.Configuration
+
+| Parameter                              | Values                                   | Description        |
+| -------------------------------------- | ---------------------------------------- | ------------------ |
+| colorR                   | 0 - 255                                    | Navigation bar color R            |
+| colorG                   | 0 - 255                                    | Navigation bar color G                |
+| colorB                   | 0 - 255                                    | Navigation bar color B                |
+| colorA                   | 0 - 255                                    | Navigation bar color Alpha                |
+| timeoutMS                | long        | Image notice max loading time (in millisecond)<br/>**default**: 5000                     |
+
+
+### Close ImageNotices
+
+You can call the closeImageNotices API to terminate all image notices currently being displayed.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+
+```cs
+static void CloseImageNotices()
+```
+
+## Terms
+
+Shows the Terms and Conditions specified in the Gamebase Console.
+
+![TermsView Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/termsView-guide-ui-001_2.20.0.png)
+
+ShowTermsView API displays the terms and conditions window in WebView.
+If you want to create your own terms and conditions window appropriate for the Game UI, call the QueryTerms API to load the terms and conditions set in the Gamebase console.
+If users agree to the terms and conditions, please use the UpdateTerms API to send the user consent of each item to the Gamebase server.
+
+### ShowTermsView
+
+Shows the terms and conditions window on the screen.
+If users agree to the terms and conditions, register the user consent data in the server.
+If users agree to the terms and conditions, calling the ShowTermsView API again will immediately return the success callback without displaying the terms and conditions window.
+However, if the Terms and Conditions reconsent requirement has been changed to **Required**, the terms and conditions window is displayed until users agree again to the terms and conditions.
+
+> <font color="red">[Caution]</font><br/>
+>
+> If you added the optional field of push notification acceptance in the terms and conditions, you can create GamebaseResponse.Push.PushConfiguration from GamebaseResponse.DataContainer.
+> If GamebaseResponse.Push.PushConfiguration is not null, call the Gamebase.Push.RegisterPush API **after login**.
+>
+
+#### Optional parameter
+
+* callback : Uses a callback to inform the user when the terms and conditions window closes after agreeing to it. The GamebaseResponse.DataContainer object which comes as a callback can be converted to GamebaseResponse.Push.PushConfiguration. The converted object can be used in the Gamebase.Push.RegisterPush API after login.
+
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+```cs
+static void ShowTermsView(GamebaseCallback.GamebaseDelegate<GamebaseResponse.DataContainer> callback)
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1) | Gamebase not initialized. |
+| LAUNCHING\_SERVER\_ERROR(2001) | This error occurs when the items downloaded from the launching server does not have any information about the terms and conditions.<br/>This is not a usual case, and you should contact the Gamebase personnel. |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | The Terms API called previously has not been completed yet.<br/>Please try again later. |
+| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW(6925) | Unfinished terms & conditions WebView has been called again. |
+| WEBVIEW\_TIMEOUT(7002) | Timed out while displaying the terms and conditions WebView. |
+| WEBVIEW\_HTTP\_ERROR(7003) | HTTP has occurred while the terms and conditions WebView is open. |
+
+**Example**
+
+```cs
+public void SampleShowTermsView()
+{
+    Gamebase.Terms.ShowTermsView((data, error) => 
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            Debug.Log("ShowTermsView succeeded.");
+            GamebaseResponse.Push.PushConfiguration pushConfiguration = GamebaseResponse.Push.PushConfiguration.From(data)
+        }
+        else
+        {
+            Debug.Log(string.Format("ShowTermsView failed. error:{0}", error));
+        }
+    });
+}
+```
+
+
+### QueryTerms
+
+Gamebase displays the terms and conditions with a simple WebView.
+If you want to create the terms and conditions appropriate for the game UI, call the QueryTerms API to download the terms and conditions information set in the Gamebase Console for later use.
+
+Calling it after login also lets you see if the game user has agreed to the terms and conditions.
+
+> <font color="red">[Caution]</font><br/>
+>
+> * The required items with GamebaseResponse.Terms.ContentDetail.required set to true are not stored in the Gamebase server; therefore, false is always returned for the agreed value.
+>     * It is because there is no point in storing the required items since they are always stored as true.
+> * The user consent for receiving the push notification is not stored in the Gamebase server either; therefore, the agreed value is always returned as false.
+>     * To see if the user has agreed to receive push, please check the Gamebase.Push.QueryPush API.
+> * If you do not touch the 'Terms and Conditions settings' in the console, **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** error occurs when you call the queryTerms API from the device with the country code different from the terms and conditions language.
+>     * If you complete the 'Terms and Conditions settings' in the console or if **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** error occurs, please make sure the terms and conditions are not displayed.
+
+#### Required parameter
+* callback : Uses a callback to inform the user about the API call result. With the GamebaseResponse.Terms.QueryTermsResult that comes as callback, you can acquire the terms and conditions information set in the console.
+ 
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+```cs
+static void QueryTerms(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Terms.QueryTermsResult> callback)
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1) | Gamebase not initialized. |
+| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE(6921) | Terms & conditions information is not registered with the console. |
+| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY(6922) | Terms & conditions appropriate for the device's country code is not registered with the console. |
+
+**Example**
+
+```cs
+public void SampleQueryTerms()
+{
+    Gamebase.Terms.QueryTerms((data, error) => 
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            Debug.Log("QueryTerms succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("QueryTerms failed. error:{0}", error));
+        }
+    });
+}
+```
+
+#### GamebaseResponse.Terms.QueryTermsResult
+
+| Parameter            | Values                          | Description         |
+| -------------------- | --------------------------------| ------------------- |
+| termsSeq             | int                             | KEY for the entire terms and conditions.<br/>This value is required when calling updateTerms API.          |
+| termsVersion         | string                          | T&C version.<br/>This value is required when calling updateTerms API.              |
+| termsCountryType     | string                          | Terms and conditions type.<br/> - KOREAN : Korean terms and conditions <br/> - GDPR : European terms and conditions <br/> - ETC : Other countries' terms and conditions         |
+| contents             | List< ContentDetail > | Terms and conditions info          |
+
+
+#### GamebaseResponse.Terms.ContentDetail
+
+| Parameter            | Values                | Description         |
+| -------------------- | ----------------------| ------------------- |
+| termsContentSeq      | int                   | T&C KEY         | 
+| name                 | string                | T&C Name         |
+| required             | bool                  | Whether agreement is required         |
+| agreePush            | string                | Whether to accept advertisement push.<br/> - NONE : Do not accept <br/> - ALL : Accept all <br/> - DAY : Accept push notification during daytime<br/> - NIGHT : Accept push notification during night time          |
+| agreed               | bool                  | User's consent to the terms and conditions           |
+| node1DepthPosition   | int                   | Primary item exposure sequence.           |
+| node2DepthPosition   | int                   | Secondary item exposure sequence.<br/> If none, -1           |
+| detailPageUrl        | string                | URL for the full terms and conditions.<br/> If none, null. |
+
+
+### UpdateTerms
+
+If the UI has been created manually with the terms and conditions info downloaded from the QueryTerms API,
+please use the UpdateTerms API to send the game user's agreement history to the Gamebase server.
+
+It can be used to terminate the agreement to optional terms and conditions as well as to revise the agreed T&C clauses.
+
+
+> <font color="red">[Caution]</font><br/>
+>
+> Push accept status is not stored in the Gamebase server.
+> Push accept status should be stored by calling the Gamebase.Push.RegisterPush API **after login**.
+>
+
+#### Required parameter
+* configuration : Information of optional T&C of users who will be registered on the server.
+ 
+#### Optional parameter
+
+* callback : Registers information on the optional terms and conditions, and uses the callback to inform the user.
+
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+```cs
+static void UpdateTerms(GamebaseRequest.Terms.UpdateTermsConfiguration configuration, GamebaseCallback.ErrorDelegate callback)
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1) | Gamebase not initialized. |
+| UI\_TERMS\_UNREGISTERED\_SEQ(6923) | Unregistered terms and conditions Seq value has been set. |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | The Terms API called previously has not been completed yet.<br/>Please try again later. |
+
+
+**Example**
+
+```cs
+public void SampleUpdateTerms()
+{            
+    List<GamebaseRequest.Terms.Content> list = new List<GamebaseRequest.Terms.Content>();
+    list.Add(new GamebaseRequest.Terms.Content()
+    {
+        termsContentSeq = 0,
+        agreed = true
+    });
+    
+    Gamebase.Terms.UpdateTerms(
+        new GamebaseRequest.Terms.UpdateTermsConfiguration()
+        {
+            termsSeq = 0,
+            termsVersion = "1.0.0",
+            contents = list
+        }
+        ,
+        (error) =>
+        {
+            if (Gamebase.IsSuccess(error) == true)
+            {
+                Debug.Log("UpdateTerms succeeded.");
+            }
+            else
+            {
+                Debug.Log(string.Format("UpdateTerms failed. error:{0}", error));
+            }
+        });
+}
+```
+
+
+#### GamebaseRequest.Terms.UpdateTermsConfiguration
+
+| Parameter            | Mandatory(M) / Optional(O) | Values                    | Description         |
+| -------------------- | -------------------------- | ------------------------- | ------------------- |
+| termsVersion         | **M**                      | string                    | T&C version.<br/>The queryTerms API must be called to pass the downloaded value.   |
+| termsSeq             | **M**                      | int                       | KEY for the entire terms and conditions.<br/>The queryTerms API must be called to pass the downloaded value.             |
+| contents             | **M**                      | List< Content > | Info on whether user agrees to the optional terms and conditions  |
+
+#### GamebaseRequest.Terms.Content
+
+| Parameter            | Mandatory(M) / Optional(O) | Values             | Description         |
+| -------------------- | -------------------------- | ------------------ | ------------------- |
+| termsContentSeq      | **M**                      | int                | KEY for optional terms and conditions      |
+| agreed               | **M**                      | bool               | Info on whether user agrees to optional terms and conditions  |
+
+
 ## Webview
 
 ### Show WebView
@@ -68,6 +412,9 @@ public void ShowWebView()
 |                          | GamebaseScreenOrientation.PORTRAIT       | Portrait Mode                      |
 |                          | GamebaseScreenOrientation.LANDSCAPE      | Landscape Mode                       |
 |                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | Reverse Landscape              |
+| contentMode              | GamebaseWebViewContentMode.RECOMMENDED        | Browser recommended by the current platform    |
+|                          | GamebaseWebViewContentMode.MOBILE             | Mobile browser            |
+|                          | GamebaseWebViewContentMode.DESKTOP            | Desktop browser          |
 | colorR                   | 0~255                                    | Color of Navigation Bar: Alpha            |
 | colorG                   | 0~255                                    | Color of Navigation Bar: R                 |
 | colorB                   | 0~255                                    | Color of Navigation Bar: G               |
@@ -78,17 +425,10 @@ public void ShowWebView()
 | closeButtonImageResource | ID of resource | Image of Close Button |
 | url | "http://" or "https://" or "file://" | Web URL |
 
-#### Predefined Custom Scheme
-
-Gamebase has specified following schemes.
-
-| scheme | Usage |
-| ----------------------------- | ------------------------------ |
-| gamebase://dismiss | Close WebView |
-| gamebase://goBack | Go back from WebView |
-| gamebase://getUserId          | Show ID of a user who is currently logged-in |
-| gamebase://getMaintenanceInfo | Display maintenance information on WebPage |
-
+> [TIP]
+>
+> In iPadOS 13 or later, WebView is the default desktop mode.
+> You can use the contentMode =`GamebaseWebViewContentMode.MOBILE` setting to switch to the mobile mode.
 
 ### Close WebView
 
@@ -217,6 +557,7 @@ public void ShowToast(string message, GamebaseUIToastType type)
 
 | Error              | Error Code | Description                 |
 | ------------------ | ---------- | --------------------------- |
+| UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | Timed out while displaying image notice. |
 | UI\_UNKNOWN\_ERROR | 6999       | Unknown error (Undefined error). |
 
 * Refer to the following document for the entire error codes.

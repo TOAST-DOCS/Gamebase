@@ -1,88 +1,20 @@
 ## Game > Gamebase > Android SDK ご利用ガイド > Push
 
-### Settings
-
-ここではプラットフォームごとにPush通知を使用するために必要な設定方法についてご案内いたします。
-
-#### Register NHN Cloud Console
-
-[Notification > Push > Console Guide](/Notification/Push/ja/console-guide/)を参照してConsoleを設定します。
-
-#### Gradle
-
-* build.gradleに使用するモジュールを追加します。
-
-```groovy
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    
-    // >>> Gamebase Version
-    def GAMEBASE_SDK_VERSION = 'x.x.x'
-    
-    // >>> Gamebase - Select Push Adapter
-    implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
-    implementation "com.toast.android.gamebase:gamebase-adapter-push-tencent:$GAMEBASE_SDK_VERSION"
-}
-```
-
-* プッシュモジュールはFCM(Firebase Cloud Messaging)とTencentのどちらか1つを追加する必要がありますが、テスト目的で複数のモジュールを追加した場合はGamebase.initializeで使用するPushTypeを選択することもできます。
-    * PushProvider.Type.FCM ： "FCM"
-    * PushProvider.Type.TENCENT ： "TENCENT"
-
-```java
-String PUSH_TYPE = PushProvider.Type.FCM;	// Firebase Cloud Messaging
-
-GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(APP_ID, APP_VERSION, STORE_CODE)
-		.setPushType(PUSH_TYPE)
-        .build();
-
-Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
-    @Override
-    public void onCallback(final LaunchingInfo data, GamebaseException exception) {
-        ...
-    }
-});
-```
-
-#### Firebase
-
-* Gradleビルドを使用する場合
-    * Firebaseプッシュを使用するには、下記のガイドに従ってFirebaseの設定を完了させる必要があります。
-		* [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud Push > Android > Firebase Cloud Messaging設定](/toast-sdk/push-android/#firebase-cloud-messaging)
-* Unityビルドの場合
-    * 直接string resource(xml)ファイルを作成して、Assets/Plugins/Android/res/values/ フォルダに含める必要があります。
-        * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
-        * 次は、string resourceファイルの例です。
-            ```
-            <!-- Assets/Plugins/Android/res/values/google-services-json.xml -->
-            <?xml version="1.0" encoding="utf-8"?>
-            <resources>
-            <string name="default_web_client_id" translatable="false">000000000000-abcdabcdabcdabcdabcdabcdabcd.apps.googleusercontent.com</string>
-            <string name="gcm_defaultSenderId" translatable="false">000000000000</string>
-            <string name="firebase_database_url" translatable="false">https://tap-development-00000000.firebaseio.com</string>
-            <string name="google_app_id" translatable="false">1:000000000000:android:749cbe01c8ada279</string>
-            <string name="google_api_key" translatable="false">AbCd_AbCd_AbCd_AbCd_AbCd_AbCd_AbCd</string>
-            <string name="google_storage_bucket" translatable="false">tap-development-00000000.appspot.com</string>
-            </resources>
-            ```
-        * string resource(xml)ファイルで設定する各値は、**Firebase Console > プロジェクト設定**をクリックし、**google-services.json**ファイルをダウンロードして確認できます。
-            Firebaseサービス連携に応じて、google-services.jsonファイルの内容は変わる場合があります。
-            ![Download google-services.json](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
-
-#### Tencent
-
-* Tencentプッシュを使用するには、下記のガイドに従ってTencentの設定を完了させる必要があります。
-	* [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud Push > Android > Tencent Push Notification設定](/toast-sdk/push-android/#tencent-push-notification)
-
 ### Register Push
 
-次のAPIを呼び出してNHN Cloud Pushに該当するユーザーを登録します。<br/>
-Pushの同意状態(enablePush)、Push型広告の同意状態(enableAdPush)、夜間のPush型広告の同意状態(enableAdNightPush)の値をユーザーから取得し、次のAPIを呼び出して登録を完了させます。
+次のAPIを呼び出して、 NHN Cloud Pushに該当ユーザーを登録します。<br/>
+プッシュ同意有無(enablePush)、広告性プッシュ同意有無(enableAdPush)、夜間広告性プッシュ同意有無(enableAdNightPush)値をユーザーから取得し、次のAPIを呼び出して登録を完了します。
 
 **API**
 
 ```java
-+ (void)Gamebase.Push.registerPush(Activity activity, PushConfiguration configuration, GamebaseCallback callback);
++ (void)Gamebase.Push.registerPush(@NonNull Activity activity,
+                                   @NonNull PushConfiguration configuration,
+                                   @NonNull GamebaseCallback callback);
++ (void)Gamebase.Push.registerPush(@NonNull Activity activity,
+                                   @NonNull PushConfiguration configuration,
+                                   @NonNull GamebaseNotificationOptions notificationOptions,
+                                   @NonNull GamebaseCallback callback);
 ```
 
 **Example**
@@ -92,7 +24,11 @@ boolean enablePush;
 boolean enableAdPush;
 boolean enableAdNightPush;
 
-PushConfiguration configuration = new PushConfiguration(enablePush, enableAdPush, enableAdNightPush);
+PushConfiguration configuration = PushConfiguration.newBuilder()
+        .enablePush(enablePush)
+        .enableAdAgreement(enableAdPush)
+        .enableAdAgreementNight(enableAdNightPush)
+        .build();
 
 Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
     @Override
@@ -101,45 +37,139 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
             // Succeeded.
         } else {
             // Failed.
-            Log.e(TAG, "Register push failed- "
-                    + "errorCode: " + exception.getCode()
-                    + "errorMessage: " + exception.getMessage());
         }
     }
 });
+```
+
+### Notification Options
+
+* 端末に表示する通知をどのような形式で表示するかをNotification Optionsで変更できます。
+* Notification Optionsは、AndroidManifest.xmlに設定したり、ランタイムにregisterPush APIを呼び出して変更できます。
+
+#### Set Notification Options with AndroidManifest.xml
+
+通知オプションは、AndroidManifest.xmlに定義して設定できます。<br/>
+設定方法は、以下のガイドを確認してください。
+
+[Game > Gamebase > Android SDK使用ガイド > 始める > Setting > AndroidManifest.xml > Notification Options](./aos-started/)
+
+#### Set Notification Options with RegisterPush in Runtime
+
+通知オプションをAndroidManifest.xmlに定義しないで、ランタイムに設定することもできます。またはAndroidManifest.xmlに定義した値をランタイムに変更することもできます。
+registerPush APIを呼び出す時、GamebaseNotificationOptionsの引数を追加して通知オプションを設定します。
+GamebaseNotificationOptions.newBuilder()の引数にGamebase.Push.getNotificationOptions()の呼び出し結果を渡すと、現在の通知オプションで初期化されたBuilderが作成されるため、必要な値のみ変更できます。<br/>
+設定可能な値は次のとおりです。
+
+| API                   | Parameter       | Description        |
+| --------------------  | ------------ | ------------------ |
+| enableForeground      | boolean      | アプリがフォアグラウンド状態の時の通知表示有無<br/>**default**: false |
+| enableBadge           | boolean      | バッジアイコン使用有無<br/>**default**: true |
+| setPriority           | int          | 通知の優先順位。以下の5つの値を設定できます。<br/>NoticationComapt.PRIORITY_MIN : -2<br/> NoticationComapt.PRIORITY_LOW : -1<br/>NoticationComapt.PRIORITY_DEFAULT : 0<br/>NoticationComapt.PRIORITY_HIGH : 1<br/>NoticationComapt.PRIORITY_MAX : 2<br/>**default**: NoticationComapt.HIGH |
+| setSmallIconName         | String       | 通知用の小さなアイコンファイル名。<br/>設定しない場合、アプリアイコンが使用されます。<br/>**default**: null |
+| setSoundFileName      | String       | 通知音ファイル名。Android 8.0未満のOSでのみ動作します。<br/>「res/raw」フォルダのmp3、wavファイル名を指定すると、通知音が変更されます。<br/>**default**: null |
+
+**Example**
+
+```java
+boolean enableForeground;
+boolean enableBadge;
+// NotificationCompat.PRIORITY_MIN     : -2
+// NotificationCompat.PRIORITY_LOW     : -1
+// NotificationCompat.PRIORITY_DEFAULT :  0
+// NotificationCompat.PRIORITY_HIGH    :  1
+// NotificationCompat.PRIORITY_MAX     :  2
+int priority;
+String smallIconName;
+String soundFileName;
+
+GamebaseNotificationOptions currentOptions = Gamebase.Push.getNotificationOptions(activity);
+GamebaseNotificationOptions notificationOptions = GamebaseNotificationOptions.newBuilder(currentOptions)
+        .enableForeground(enableForeground)
+        .enableBadge(enableBadge)
+        .setPriority(priority)
+        .setSmallIconName(smallIconName)
+        .setSoundFileName(soundFileName)
+        .build();
+
+Gamebase.Push.registerPush(activity, pushConfiguration, notificationOptions, new GamebaseCallback() {
+    @Override
+    public void onCallback(GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            // Succeeded.
+        } else {
+            // Failed.
+        }
+    }
+});
+```
+
+#### Get NotificationOptions
+
+プッシュを登録する時、既に設定している通知オプション値を取得します。
+AndroidManifest.xmlに設定した値とランタイムに変更された値を含め、最も新しい設定を取得します。
+
+**API**
+
+```java
++ (GamebaseNotificationOptions)Gamebase.Push.getNotificationOptions(@NonNull Context context);
 ```
 
 ### Request Push Settings
 
 ユーザーのPush設定を照会するために、次のAPIを利用します。<br/>
-コールバックによるPushConfigurationの値からユーザー設定値を取得することができます。
+コールバックによるGamebasePushTokenInfoの値からユーザー設定値を取得することができます。
 
 **API**
 
 ```java
-+ (void)Gamebase.Push.registerPush(Activity activity, GamebaseDataCallback<PushConfiguration> callback);
++ (void)Gamebase.Push.queryTokenInfo(@NonNull Activity activity,
+                                     @NonNull GamebaseDataCallback<GamebasePushTokenInfo> callback);
+
+// Legacy API
++ (void)Gamebase.Push.queryPush(@NonNull Activity activity,
+                                @NonNull GamebaseDataCallback<PushConfiguration> callback);
 ```
 
 **Example**
 
 ```java
-Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() {
+Gamebase.Push.queryTokenInfo(activity, new GamebaseDataCallback<PushConfiguration>() {
     @Override
-    public void onCallback(PushConfiguration data, GamebaseException exception) {
+    public void onCallback(GamebasePushTokenInfo data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
             // Succeeded.
-            boolean enablePush = data.pushEnabled;
-            boolean enableAdPush = data.adAgreement;
-            boolean enableAdNightPush = data.adAgreementNight;
+            boolean enablePush = data.agreement.pushEnabled;
+            boolean enableAdPush = data.agreement.adAgreement;
+            boolean enableAdNightPush = data.agreement.adAgreementNight;
+            String token = data.token;
         } else {
             // Failed.
-            Log.e(TAG, "Query push failed- "
-                    + "errorCode: " + exception.getCode()
-                    + "errorMessage: " + exception.getMessage());
         }
     }
 });
 ```
+
+#### GamebasePushTokenInfo
+
+| Parameter           | Values                | Description         |
+| --------------------| ----------------------| ------------------- |
+| pushType            | String                | Pushトークンタイプ    |
+| token               | String                | トークン              |
+| userId              | String                | ユーザーID         |
+| deviceCountryCode   | String                | 国コード        |
+| timezone            | String                | 標準時間帯        |
+| registeredDateTime  | String                | トークンアップデート時間 |
+| languageCode        | String                | 言語設定         |
+| agreement           | GamebasePushAgreement | 受信同意有無      |
+
+#### GamebasePushAgreement
+
+| Parameter        | Values  | Description               |
+| -----------------| --------| ------------------------- |
+| pushEnabled      | boolean | 通知表示同意有無         |
+| adAgreement      | boolean | 広告性通知表示同意有無    |
+| adAgreementNight | boolean | 夜間広告性通知表示同意有無 |
 
 ### Error Handling
 
@@ -155,7 +185,7 @@ Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
 * このエラーは、NHN Cloud Pushライブラリーで発生したエラーです。
-* NHN Cloud Push エラーの詳細は次のように確認できます。
+* エラーの詳細は次のように確認できます。
 
 ```java
 Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {

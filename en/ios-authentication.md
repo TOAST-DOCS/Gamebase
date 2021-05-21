@@ -5,9 +5,9 @@
 
 Gamebase supports guest logins by default.
 
-- To log into providers other than guest, a matching Provider AuthAdapter is required.
-- For setting of AuthAdapter and 3rd-Party Provider SDK, refer to the following.
-    - [3rd-Party Provider SDK Guide](ios-started#3rd-party-provider-sdk-guide)
+- To log in to a provider other than the guest, the corresponding Provider AuthAdapter is required.
+- For AuthAdapter and 3rd-Party Provider SDK settings, see the following.
+    - [Game > Gamebase > iOS SDK User Guide > Getting Started > 3rd-Party Provider SDK Guide](ios-started#3rd-party-provider-sdk-guide)
 
 In some cases, additionalInfo parameter is required for IdP trying a login.
 For more details about AdditionalInfo, refer to **IdPs supported by Gamebase** below.
@@ -23,17 +23,15 @@ Import the following header file to the ViewController to implement a login.
 
 ### Login Flow
 
-In many games, login is implemented on a title page.
-* Allow a game user to decide which IdP to authenticate on a title screen, when an app is implemented for the first time after installed.
-* After initial login, the IdP selection screen does not show and authentication is made with the latest logged-in IdP.
+In most games, login is implemented on the title screen.
+
+* Ensures game users are able to select which IdP (identity provider) to use for authentication in the title screen when installing and running the app for the first time.
+* Once you log in, the authentication is done via IdP type which was previously logged in without displaying the IdP selection screen.
 
 The logic described in the above can be implemented in the following order.
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
+![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
 #### 1. Authenticate with Latest Login Type
 
@@ -48,13 +46,13 @@ The logic described in the above can be implemented in the following order.
 #### 1-2. When Authentication Fails
 
 * Network error
-    * If the error code is either **TCGB_ERROR_SOCKET_ERROR(110)** or **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**, authentication failed because of a temporary network problem. In this case, call **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]** again or try authenticating later.
-* Banned game users
-    * If the error code is **TCGB_ERROR_BANNED_MEMBER(7)**, authentication failed because the user has been banned.
-    * Check the ban information with **[TCGBBanInfo banInfoFromError:error]** and inform the game user why they cannot play the game.
-    * If **[TCGBConfiguration enablePopup:YES]** and **[TCGBConfiguration enableBanPopup:YES]** are called when initializing Gamebase, Gamebase automatically displays a popup explaining the ban.
+    * If the error code is **TCGB_ERROR_SOCKET_ERROR(110)** or **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**, it means the authentication failed due to temporary network issues, so call **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]** again or try again later.
+* Banned game user
+    * If the error code is **TCGB_ERROR_BANNED_MEMBER(7)**, the authentication failed because the game user has been banned.
+    * Check the ban information with **[TCGBBanInfo banInfoFromError:error]** and inform the game user why he cannot play the game.
+    * If **[TCGBConfiguration enablePopup:YES]** and **[TCGBConfiguration enableBanPopup:YES]** are called when initializing Gamebase, Gamebase automatically displays a popup explaining the reason for user ban.
 * Other errors
-    * Authentication failed because of the previous login type. Proceed with **3. Authenticate with the specified IdP**.
+    * Authentication with the previous login type has failed. **'2. Authenticate with the designated IdP'**.
 
 
 #### 2. Authenticate with Specified IdP
@@ -137,11 +135,11 @@ When a login is successful, Gamebase access token is saved at a local storage; t
 However, access token of each IdP is managed by SDK of each IdP.<br/>
 
 <br/><br/>
-There is information which must be included for login with some IdPs.<br/>
-For instance, scope must be set to implement a Facebook login.<br/>
-In order to set such necessary information, the **[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API is provided.<br/>
-You can enter those information to additionalInfo in the dictionary type.<br/>
-(When the parameter value is nil, the additionalInfo registered in the NHN Cloud Console will be applied. Generally, the parameter value will take precedence over the value registered in the Console.)
+To log in with some IdPs, certain information is required.<br/>
+For example, scope needs to be set when implementing Facebook login.<br/>
+To be able to set the required information, **[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API is provided.<br/>
+Enter the required information into the parameter additionalInfo in the form of the dictionary.<br/>
+(If the parameter value is nil, it is filled with the additionalInfo value registered in the NHN Cloud Console. If there is a parameter value, it takes precedence and overwrites the value registered in the Console.)
 
 
 > [Note]
@@ -150,8 +148,8 @@ You can enter those information to additionalInfo in the dictionary type.<br/>
 >
 
 ```objectivec
-- (void)loginPaycoButtonClick {
-    [TCGBGamebase loginWithType:kTCGBAuthPayco viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+- (void)loginFacebookButtonClick {
+    [TCGBGamebase loginWithType:kTCGBAuthFacebook viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Login Succeeded
             NSString *userId = [authToken.tcgbMember userId];
@@ -178,7 +176,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | keyname                                  | Usage                          | Value Type                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, payco, iosgamecenter, naver, google, twitter, line, appleid |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                                |
 
 
@@ -200,7 +198,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 #import "TCGBConstants.h"
 
 - (void)authLoginWithCredential {
-    NSDictionary *credentialDic = @{ kTCGBAuthLoginWithCredentialProviderNameKeyname: @"facebook", kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"Enter the Access Token issued by the Facebook SDK here" };
+    NSDictionary *credentialDic = @{ kTCGBAuthLoginWithCredentialProviderNameKeyname: kTCGBAuthFacebook, kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"Enter the Access Token issued by the Facebook SDK here" };
     [TCGBGamebase loginWithCredential:credentialDic viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         NSLog([authToken description]);
     }];
@@ -294,7 +292,6 @@ Below shows an example.<br/><br/>
     * Google ID: aa
     * Facebook ID: bb
     * AppleGameCenter ID: cc
-    * Payco ID: dd
 * Gamebase UserID: 456abcabc
     * Google ID: ee
     * Google ID: ff **-> As the Google ee account is integrated, no additional Google account can be integrated.**
@@ -322,15 +319,15 @@ Call **[TCGBGamebase addMappingWithType:viewController:completion:]** to try map
 #### 2-2. When mapping is failed
 
 * Network error
-    * If the error code is **TCGB_ERROR_SOCKET_ERROR(110)** or **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**, the authentication has failed due to a temporary network problem, so call **[TCGBGamebase addMappingWithType:viewController:completion:]** again or try again in a moment.
-* Error of integration to another account
-    * If the error code is **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**, the IdP account to map has been already integrated to another account.To remove the integrated account, log in the account and call **[TCGBGamebase withdrawWithViewController:completion:]** to withdraw, or call **[TCGBGamebase removeMappingWithType:viewController:completion:]** to remove integration and try mapping again.
-* Error of integration to a same IdP account
-    * If the error code is **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**, a same type of account to the IdP has already been integrated.
-    * Gamebase mapping allows only one account of integration to an IdP. For example, if your account is already integrated to a PAYCO account, no other PAYCO account can be added.
-    * To integrate another account of a same IdP, call **[TCGBGamebase removeMappingWithType:viewController:completion:]** to remove integration and try mapping again.
-* Other Errors
-    * Mapping has failed.
+    * If the error code is **TCGB_ERROR_SOCKET_ERROR(110)** or **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**, it means the authentication failed due to temporary network issues, so call **[TCGBGamebase addMappingWithType:viewController:completion:]** again or try again later.
+* Error that occurs when linked to another account
+    * If the error code is **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**, it means the account of the IdP to map is already linked to another account. To remove the linked account, login with that account to call **[TCGBGamebase withdrawWithViewController:completion:]** to withdraw or call **[TCGBGamebase removeMappingWithType:viewController:completion:]** to remove the link and try mapping again.
+* Error that occurs due to linking with the same IdP account
+	* If the error code is **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**, it means the IdP to map is already linked to the account of the same type.
+	* Gamebase mapping can only be linked to one account per IdP. For example, if it is already linked to a Google account, no other Google account can be added anymore.
+	* To link another account of the same IdP, call **[TCGBGamebase removeMappingWithType:viewController:completion:]** to remove the link and try mapping again.
+* Other errors
+    * Mapping attempt failed.
 
 ### Import Header file into View Controller
 
@@ -350,7 +347,7 @@ Below is an example of mapping to Facebook.
 
 ```objectivec
 - (void)authAddMapping {
-    [TCGBGamebase addMappingWithType:@"facebook" viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+    [TCGBGamebase addMappingWithType:kTCGBAuthFacebook viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
                      NSLog(@"AddMapping is succeeded.");
                  }
@@ -382,7 +379,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | keyname                                  | Usage                          | Value Type                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, payco, iosgamecenter, naver, google, twitter, line, appleid |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, iosgamecenter, naver, google, twitter, line, appleid |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                                |
 
 
@@ -407,7 +404,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
  
          NSString* facebookAccessToken = @"feijla;feij;fdklvda;hfihsdfeuipivaipef/131fcusp";
          NSMutableDictionary* credentialInfo = [NSMutableDictionary dictionary];
-         credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = @"facebook";
+         credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = kTCGBAuthFacebook;
          credentialInfo[kTCGBAuthLoginWithCredentialAccessTokenKeyname] = facebookAccessToken;
  
          [TCGBGamebase addMappingWithCredential:credentialInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
@@ -435,7 +432,7 @@ The following is an example of force mapping to Facebook:
 
 ```objectivec
 - (void)authAddMapping {
-    [TCGBGamebase addMappingWithType:@"facebook" viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+    [TCGBGamebase addMappingWithType:kTCGBAuthFacebook viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             NSLog(@"AddMapping is succeeded.");
         }
@@ -473,7 +470,7 @@ This interface allows you to perform authentication in the game with the SDK pro
 
 | keyname                                  | a use                          | Value type                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP type setting                      | facebook, payco, iosgamecenter, naver, google, twitter |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP type setting                      | facebook, iosgamecenter, naver, google, twitter |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set the authentication information (access token) received after login to IdP |                                           |
 
 > [Note]
@@ -497,7 +494,7 @@ The following is an example of force mapping to Facebook:
     
     NSString* facebookAccessToken = @"feijla;feij;fdklvda;hfihsdfeuipivaipef/131fcusp";
     NSMutableDictionary* credentialInfo = [NSMutableDictionary dictionary];
-    credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = @"facebook";
+    credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = kTCGBAuthFacebook;
     credentialInfo[kTCGBAuthLoginWithCredentialAccessTokenKeyname] = facebookAccessToken;
     
     [TCGBGamebase addMappingWithCredential:credentialInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
@@ -534,7 +531,7 @@ If IdP mapping is not removed, error will occur.<br/>
 After mapping is removed, Gamebase processes logout of the IdP.
 
 ```objectivec
-[TCGBGamebase removeMappingWithType:@"facebook" viewController:topViewController completion:^(TCGBError *error) {
+[TCGBGamebase removeMappingWithType:kTCGBAuthFacebook viewController:topViewController completion:^(TCGBError *error) {
     if ([TCGBGamebase isSuccessWithError:error] == YES) {
         // To Remove Mapping Succeeded
     } else {
@@ -584,14 +581,19 @@ Get access token, User ID, and profiles from externally authenticated SDK.
 // Example for obtaining ID Provider's Authentication Information
 
 // Obtaining Facebook UserID
-NSString *userID = [TCGBGamebase authProviderUserIDWithIDPCode:@"facebook"];
+NSString *userID = [TCGBGamebase authProviderUserIDWithIDPCode:kTCGBAuthFacebook];
 
 // Obtaining Facebook AccessToken
-NSString *accessTokenOfIDP = [TCGBGamebase authProviderAccessTokenWithIDPCode:@"facebook"];
+NSString *accessTokenOfIDP = [TCGBGamebase authProviderAccessTokenWithIDPCode:kTCGBAuthFacebook];
 
 // Obtaining Facebook Profile
-TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWithIDPCode:@"facebook"];
+TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWithIDPCode:kTCGBAuthFacebook];
 ```
+
+> <font color="red">[Caution]</font><br/>
+>
+> For appleid login using iOS 12 or earlier, the authentication information cannot be viewed.
+>
 
 ### Get Banned User Information
 
@@ -609,10 +611,10 @@ Issues a key to transfer the guest account to another device.
 This key is called **TransferAccountInfo**.
 The issued TransferAccountInfo calls the **requestTransferAccount** API from another device to transfer the account.
 
-> `Caution`
+> <font color="red">[Caution]</font><br/>
 > The TransferAccountInfo key can be issued while the guest account is logged in.
 > Transfer of guest account using TransferAccountInfo is allowed only when logged in to a guest account or not logged in.
-> If the logged-in guest account has already been mapped to an IdP ((Google, Facebook, PAYCO, etc.)) account, account transfer is not supported.
+> If the logged-in guest account has already been mapped to an IdP ((Google, Facebook etc.)) account, account transfer is not supported.
 
 ### Issue TransferAccount
 Issues TransferAccountInfo to transfer the guest account.
@@ -693,10 +695,11 @@ Transfers the account with TransferAccount issued with **issueTransfer** API.
 When account transfer is successful, a transfer completion message will be displayed from the device where TransferAccount has been issued and a new account will be created when a guest logs in.
 On the device where the account transfer was successfully made, the guest account from the previous device where TransferAccount was issued can still be used.
 
-> 'Caution'
+> <font color="red">[Caution]</font><br/>
+>
 > If migration succeeds while already logged in as a guest, the guest account logged in to the device will be lost.
 > If incorrect id/password is attempted multiple times, an **AUTH_TRANSFERACCOUNT_BLOCK(3042)** error occurs and the account migration is blocked for a certain period of time.
-> In this case, you can inform the user how long the account migration will be banned through the TCGBTransferAccountFailInfo value as shown below:
+> In this case, you can inform the user how long the account migration will be banned through the TCGBTransferAccountFailInfo as shown below.
 
 
 
@@ -740,7 +743,7 @@ This is a 'pending withdrawal" feature.
 By requesting a temporary withdrawal, the account is not immediately withdrawn. Instead, it is withdrawn after a specific grace period.
 The grace period can be changed in the console.
 
-> 'Caution'
+> <font color="red">[Caution]</font><br/>
 >
 > Do not use **[TCGBGamebase withdrawWithViewController:completion:]** API if you're using the Pending Withdrawal feature.
 > The **[TCGBGamebase withdrawWithViewController:completion:]** API immediately withdraws accounts when used.

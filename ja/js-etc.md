@@ -309,7 +309,7 @@ toast.Gamebase.addEventHandler((message) => {
 * Gamebaseサーバーからクライアント端末へ送信するメッセージです。
 * GamebaseでサポートするServer Push Typeは次の通りです。
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
-    	* TOAST Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseに接続されたすべてのクライアントでキックアウトメッセージを受信します。
+    	* NHN Cloud Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseに接続されたすべてのクライアントでキックアウトメッセージを受信します。
     * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
     	* Guestアカウントを他の端末へ移行すると、以前の端末でキックアウトメッセージを受信します。
 

@@ -193,19 +193,22 @@ static void Login(string providerName, Dictionary<string, object> additionalInfo
 | --------    | ------------------------------- | ---------------- |
 | Google      | GamebaseAuthProvider.GOOGLE     | Android<br/>iOS<br/>Standalone |
 | Game Center | GamebaseAuthProvider.GAMECENTER | iOS |
-| Apple ID    | GamebaseAuthProvider.AppleId    | iOS |
+| Apple ID    | GamebaseAuthProvider.APPLEID    | iOS |
 | Facebook    | GamebaseAuthProvider.FACEBOOK   | Android<br/>iOS<br/>Standalone |
 | Payco       | GamebaseAuthProvider.PAYCO      | Android<br/>iOS<br/>Standalone |
 | Naver       | GamebaseAuthProvider.NAVER      | Android<br/>iOS |
 | Twitter     | GamebaseAuthProvider.TWITTER    | Android<br/>iOS |
 | Line        | GamebaseAuthProvider.LINE       | Android<br/>iOS |
+| HANGAME     | GamebaseAuthProvider.HANGAME    | Android<br/>iOS |
+| WEIBO       | GamebaseAuthProvider.WEIBO      | Android<br/>iOS |
 
 
 > IdPの中には、ログインする際に必ず必要な情報があるものがあります。<br/>
 > 例えば、Facebookログインを設計する場合、scopeなどを設定する必要があります。<br/>
 > このような必須情報を設定することができるようにstatic void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)APIを提供します。<br/>
-> パラメーターのadditionalInfoに必須情報をdictionary形式で入力してください。パラメーター値がの場合、TOAST Consoleに登録したadditionalInfoの値が埋められます。パラメーター値がある場合、Consoleに登録に登録してある値よりもこちらを優先してその値を上書きします。([TOAST ConsoleにadditionalInfoを設定する](./oper-app/#authentication-information))<br/>
+> パラメーターのadditionalInfoに必須情報をdictionary形式で入力してください。パラメーター値がの場合、NHN Cloud Consoleに登録したadditionalInfoの値が埋められます。パラメーター値がある場合、Consoleに登録に登録してある値よりもこちらを優先してその値を上書きします。([NHN Cloud ConsoleにadditionalInfoを設定する](./oper-app/#authentication-information))<br/>
 > スタンドアローン(standalone)では、WebViewAdapterでログインをサポートし、WebViewが開かれている時は、UIで入力されるイベントをブロッキング(blocking)しません。
+
 
 
 Standalone WebViewAdapterを使用してログインするには、IdP開発者サイトで下記のCallbackURLを設定する必要があります。
@@ -1267,7 +1270,7 @@ public void SampleWithdrawImmediately()
 |                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | 無効なTransferAccountを複数回入力したため、アカウント移行機能がロックされました。 |
 |                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | TransferAccountのIDが有効ではありません。 |
 |                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | TransferAccountのパスワードが有効ではありません。 |
-|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccountが設定されていません。<br/>先にTOAST Gamebaseコンソールで設定してください。 |
+|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccountが設定されていません。<br/>先にNHN Cloud Gamebaseコンソールで設定してください。 |
 |                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccountが存在しません。TransferAccountを先に発行してください。 |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccountがすでに存在します。 |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccountは使われています。 |
@@ -1299,6 +1302,7 @@ public void SampleWithdrawImmediately()
 * 全体のエラーコードは、次のドキュメントをご参考ください。
     * [エラーコード](./error-code/#client-sdk)
 
+
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
 * このエラーは、外部認証ライブラリーで発生したエラーです。
@@ -1315,13 +1319,15 @@ else
 {
     Debug.Log(string.Format("code:{0}, message:{1}", gamebaseError.code, gamebaseError.message));
 
-    GamebaseError moduleError = gamebaseError.error; // GamebaseError.error object from external module
-    if (null != moduleError)
+    if (gamebaseError.code == GamebaseErrorCode.AUTH_EXTERNAL_LIBRARY_ERROR) 
     {
-        int moduleErrorCode = moduleError.code;
-        string moduleErrorMessage = moduleError.message;
-
-        Debug.Log(string.Format("moduleErrorCode:{0}, moduleErrorMessage:{1}", moduleErrorCode, moduleErrorMessage));
+        GamebaseError moduleError = gamebaseError.error; // GamebaseError.error object from external module
+        if (null != moduleError)
+        {
+            int moduleErrorCode = moduleError.code;
+            string moduleErrorMessage = moduleError.message;        
+            Debug.Log(string.Format("moduleErrorCode:{0}, moduleErrorMessage:{1}", moduleErrorCode, moduleErrorMessage));
+        }
     }
 }
 ```

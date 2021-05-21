@@ -42,35 +42,42 @@ Import the following header to ViewController to implement purchase API.
 Purchase of an item can be divided into Purchase Flow, Consume Flow, and Reprocess Flow.
 You may execute an item purchase in the following order:
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
+![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-1. When a previous purchase has not been closed, purchase fails unless reprocessing runs. Therefore, call **requestItemListOfNotConsumedWithCompletion:** before payment so as to run reprocessing, and execute Consume Flow if there's any unsupplied item. 
-2. For the game client, call **requestPurchaseWithItemSeq:viewController:completion:** of Gamebase SDK to make a purchase.
-3. When a purchase has been successful, call **requestItemListOfNotConsumedWithCompletion:** and check history of non-consumable purchases; and if there's any item to supply, execute Consume Flow. 
+1. If the previous payment has not properly been completed, the payment will fail when the reprocessing starts. Therefore, you should call **requestItemListOfNotConsumedWithCompletion:** to trigger reprocessing before payment, so as to perform Consume Flow if there are items not issued yet.
+2. In the game client, call **requestPurchaseWithGamebaseProductId:viewController:completion:** of Gamebase SDK to attempt payment.
+3. If the payment has successfully been made, call **requestItemListOfNotConsumedWithCompletion:** to check the consumable purchases history. If there are items to be provided, perform Consume Flow.
 
 ### Consume Flow
 
 If there's a value on the list of non-consumable purchases, execute Consume Flow in the following order:
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.10.0.png)
+> <font color="red">[Caution]</font><br/>
+>
+> To prevent the multiple issuance of the same purchased item, always check the game server for issuance history of items.
+>
 
-1. The game client requests for Consume of a purchase item on the game server. 
-    * Deliver UserID, itemSeq, paymentSeq, and purchaseToken.
-2. The game server tracks down the history of item supplies with same paymentSeq, or purchaseToken within game database.   
-    * 2-1 If not supplied yet, supply the item for itemSeq to UserID.
-    * 2-2 After item is provided, save UserID, itemSeq, paymentSeq, and purchaseToken to game database so as to check redundancy. 
-3. The game server calls Consume API to the Gamebase server to complete with item supply.
-    * [API Guide > Purchase (IAP) > Consume](./api-guide/#consume)
+![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
+
+1. The game client requests the game server to consume the purchased items.
+    * UserID, gamebaseProductId, paymentSeq, and purchaseToken are passed.
+2. Game server checks the game DB to see if there is any history of the items being issued with the identical paymentSeq.
+    * 2-1. If the item has not been issued yet, issue the item belonging to the gamebaseProductId to the UserID.
+    * 2-2. After issuing the item, save the UserID, gamebaseProductId, paymentSeq, and purchaseToken in the game DB to prevent provisioning or to allow reprovisioning.
+3. Regardless of the item issuance, the game server should call Consume API from the Gamebase server to complete the item issuance.
+    * [Game > Gamebase > API Guide > Purchase (IAP) > Consume](./api-guide/#consume)
 
 ### Retry Transaction Flow
 
-* Sometimes, a successful purchase at store ends up with failed closure, due to error. 
-* Call **requestItemListOfNotConsumedWithCompletion:** to run reprocessing and execute Consume Flow for any non-supplied items. 
-* It is recommended to call reprocessing in time for the following: 
-    * After login is completed
-    * Before payment 
-    * Entering store (or lobby) of a game
-    * Checking user profile or mailbox
+![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
+
+* There are cases where the store purchase has successfully been made but the process was not properly completed due to errors.
+*If there are items not issued yet, call **requestItemListOfNotConsumedWithCompletion:** to trigger reprocessing to finish [Consume Flow](./ios-purchase/#consume-flow).
+* It is recommended to call reprocessing:
+    * after login.
+    * before payment.
+    * when entering the in-game store (or lobby).
+    * when checking the user profile or mailbox.
 
 ### Purchase Item
 
@@ -81,22 +88,29 @@ When a game user cancels purchase, the **TCGB_ERROR_PURCHASE_USER_CANCELED** is 
 **API**
 
 ```objectivec
-+ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId viewController:(UIViewController *)viewController completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
++ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId 
+                              viewController:(UIViewController *)viewController
+                                  completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
 
-+ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId payload:(NSString *)payload viewController:(UIViewController *)viewController completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
++ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId 
+                                     payload:(NSString *)payload 
+                              viewController:(UIViewController *)viewController 
+                                  completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
 
 // Legacy API
-+ (void)requestPurchaseWithItemSeq:(long)itemSeq viewController:(UIViewController *)viewController completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
++ (void)requestPurchaseWithItemSeq:(long)itemSeq 
+                    viewController:(UIViewController *)viewController 
+                        completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
 ```
 
 **Example**
 
 ```objectivec
-
 - (void)purchasingItem:(NSString *)gamebaseProductId {
     NSString *userPayload = @"USER_PAYLOAD";
 
-    [TCGBPurchase requestPurchaseWithGamebaseProductId:gamebaseProductId viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
+    [TCGBPurchase requestPurchaseWithGamebaseProductId:gamebaseProductId payload:userPayload viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
+        NSString *receivedPayload = purchasableReceipt.payload;
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Purchase Item Succeeded
         } else if (error.code == TCGB_ERROR_PURCHASE_USER_CANCELED) {
@@ -168,7 +182,7 @@ With a same user ID, all purchased subscriptions from Android and iOS can be lis
 
 ### Reprocess Failed Purchase Transaction
 
-In case a purchase is not normally completed after a successful purchase at a store due to failure of authentication of NHN Cloud IAP server, try to reprocess by using API. <br/>
+In case a purchase is not normally completed after a successful purchase at a store due to failure of authentication of TOAST IAP server, try to reprocess by using API. <br/>
 Based on the latest success of purchase, reprocessing is required by calling an API for item delivery (supply).
 
 ```objectivec
@@ -209,15 +223,14 @@ In the case of auto-renewed consumable subscriptions, any missing purchases can 
 
 > `Caution`
 > It is available for iOS version 11 or later.
-> It must be built with Xcode 9.0 or later.
-> It is supported by Gamebase 1.13.0 or later(It is applicable to NHN Cloud IAP SDK 1.6.0 or later).
+> Supported in Gamebase 1.13.0 or later. (NHN Cloud IAP SDK 1.6.0 or later applied)
 
 
 > `Caution`
 > It can be called only after a successful login.
 > After a successful login, it must be executed ahead of any other payment APIs.
 
-#### 사용시 주의 사항#### Caution for Usage
+#### Caution for Usage
 If In-App Purchase (for App Store) is included to SDK, like Facebook SDK or Google AdMob SDK, and advance payment begins even before login to Gamebase, a payment popup may not show up. 
 
 * Solution 
@@ -227,8 +240,8 @@ If In-App Purchase (for App Store) is included to SDK, like Facebook SDK or Goog
 
 
 #### Overview
-* Apple Developer Overview : https://developer.apple.com/app-store/promoting-in-app-purchases/
-* Apple Developer Reference : https://help.apple.com/app-store-connect/#/deve3105860f
+* Apple Developer Overview : [https://developer.apple.com/app-store/promoting-in-app-purchases/](https://developer.apple.com/app-store/promoting-in-app-purchases/)
+* Apple Developer Reference : [https://help.apple.com/app-store-connect/#/deve3105860f](https://help.apple.com/app-store-connect/#/deve3105860f)
 
 
 It provides a function to purchase in-app items from App Store apps.
@@ -313,5 +326,5 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
 * See the guide for the IAP error codes.  
-    * [NHN Cloud > User Guide for NHN Cloud SDK > NHN Cloud IAP > iOS > Error Codes](/TOAST/ko/toast-sdk/iap-ios/#_15)
+    * [NHN Cloud > User Guide for NHN CLoud SDK > NHN Cloud IAP > iOS > Error Codes](/TOAST/ko/toast-sdk/iap-ios/#_15)
 

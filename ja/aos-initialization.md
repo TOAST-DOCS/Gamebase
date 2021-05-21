@@ -6,12 +6,17 @@ Gamebase Android SDKを使用するためには、まず初期化を行う必要
 
 Gamebaseが正常に動作するよう、必ず**Activity#onActivityResult(int, int, Intent)**から**Gamebase.onActivityResult(int, int, Intent)**を呼び出します。
 
-
 **API**
 
 ```java
 + (void)Gamebase.onActivityResult(int requestCode, int resultCode, Intent data);
 ```
+
+### Initialization Flow
+
+ゲームが始まったらDebug Modeを設定し、Gamebaseを初期化して、Launching Status Codeに従ってゲームに進入可否を決定するように、以下のフローのように実装してください。
+
+![initialization flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/initialization_flow_2.19.0.png)
 
 ### Configuration Settings
 
@@ -61,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
 
         /**
          * Show gamebase debug message.
-         * set 'false' when build RELEASE.
+         *
+         * CAUTION!
+         * Set 'false' when build RELEASE.
          */
         Gamebase.setDebugMode(true);
 
@@ -72,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
         String appVersion = "1.0.0";
         String storeCode = "GG";
         GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(appId, appVersio, storeCode)
-                                            .enableLaunchingStatusPopup(true)
-                                            .build();
+                .enablePopup(true)
+                .build();
         /**
          * Gamebase Initialize.
          */
@@ -132,6 +139,7 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
                 case LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST:
                 case LaunchingStatus.IN_TEST:
                 case LaunchingStatus.IN_REVIEW:
+                case LaunchingStatus.IN_BETA:
                     Log.d(TAG, "You logged in because you are developer.");
                     break;
                 case LaunchingStatus.REQUIRE_UPDATE:
@@ -200,6 +208,7 @@ Gamebase Android SDKの初期化設定に入力したアプリバージョンの
 | IN_SERVICE_BY_QA_WHITE_LIST | 202  | メンテナンス中にはサービスを利用することができませんが、QA端末として登録されている場合はメンテナンスに関係なくサービスに接続してテストすることができます。|
 | IN_TEST                     | 203  | テスト中 |
 | IN_REVIEW                   | 204  | 審査中 |
+| IN_BETA                     | 205  | ベータサーバー環境 |
 | REQUIRE_UPDATE              | 300  | アップデートが必ず必要です。                                |
 | BLOCKED_USER                | 301  | 接続遮断に登録された端末(デバイスキー)でサービスに接続した場合です。 |
 | TERMINATED_SERVICE          | 302  | サービスが終了しました。                                 |
@@ -207,7 +216,7 @@ Gamebase Android SDKの初期化設定に入力したアプリバージョンの
 | INSPECTING_ALL_SERVICES     | 304  | 全体サービスメンテナンス中です。                            |
 | INTERNAL_SERVER_ERROR       | 500  | 内部サーバーエラーです。                               |
 
-[콘솔 가이드](/Game/Gamebase/en/oper-app/#app)
+[コンソールガイド](/Game/Gamebase/ja/oper-app/#app)
 
 **1.2 App**
 
@@ -215,16 +224,18 @@ Gamebase Consoleに登録されたアプリ情報です。
 
 * accessInfo
     * serverAddress：サーバーアドレス
-    * csInfo：サポート情報
+* customerService
+    * accessInfo : サポート情報
+    * type：サポートタイプ
+    * url : サポート URL
 * relatedUrls
     * termsUrl：利用規約
     * personalInfoCollectionUrl：個人情報同意
     * punishRuleUrl：利用停止規定
-    * csUrl：サポート
 * install：インストールURL
 * idP：認証情報
 
-[Console Guide](/Game/Gamebase/en/oper-app/#client)
+[Game > Gamebase > コンソール使用ガイド > アプリ > Client](./oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -236,7 +247,7 @@ Gamebase Consoleに登録されたメンテナンス情報です。
 * endDate：終了時間
 * message：メンテナンス理由
 
-[Console Guide](/Game/Gamebase/en/oper-operation/#maintenance)
+[Game > Gamebase > コンソール使用ガイド > 運営 > Maintenance](./oper-operation/#maintenance)
 
 **1.4 Notice**
 
@@ -246,7 +257,7 @@ Gamebase Consoleに登録された告知情報です。
 * title：タイトル
 * url：メンテナンスURL
 
-[Console Guide](/Game/Gamebase/en/oper-operation/#notice)
+[Game > Gamebase > コンソール使用ガイド > 運営 > Notice](./oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -265,16 +276,16 @@ NHN Cloud Consoleに登録されたIAPストア情報です。
 * name: App Name
 * storeCode: Store Code
 
-[콘솔 가이드](/Game/Gamebase/en/oper-purchase/)
+[Game > Gamebase > コンソール使用ガイド > 決済](./oper-purchase/)
 
 #### 4. tcLaunching
 
-NHN Cloud Launching Consoleでユーザーが入力した情報です。
+TNHN Cloud Launching Consoleでユーザーが入力した情報です。
 
 * ユーザーが入力した値をJSON stringで伝達します。
 * NHN Cloud Launchingの詳細設定は下記のガイドを参照してください。
  
-[Console Guide](/Game/Gamebase/en/oper-management/#config)
+[Game > Gamebase > コンソール使用ガイド > 管理 > Config](./oper-management/#config)
 
 ### Handling Unregistered Version
 

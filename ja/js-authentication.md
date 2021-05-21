@@ -6,13 +6,15 @@ Gamebaseでは、ゲストログインをデフォルトでサポートします
 
 
 ### Login Flow
-多くのゲームがタイトル画面にログインを実装します。
-* ゲーム初期タイトル画面で、どのIdPで認証するかを選択できるようにします。
+多くのゲームがタイトル画面にログインを設計しています。
 
-上で説明したロジックは、次のような順序で実装できます。
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
+* アプリをインストールして初めて起動したとき、タイトル画面からゲームユーザーがどのIdP(identity provider)で認証を行うか選択できるようにします。
+* 一度ログインした後はIdP選択画面を表示せずに、前回ログインしたIdPタイプで認証します。
+
+上述したロジックは、次のような手順で設計することができます。
+
+![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
+![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
 #### 1. 指定されたIdPで認証
 
@@ -60,6 +62,14 @@ Gamebaseでは、ゲストログインをデフォルトでサポートします
 > Gamebaseでは、認証のために'ポップアップ'を利用します。'ポップアップ'が許可されていない場合は、'ログイン試行'中の状態で継続して待機することがあります。
 > 事前に'認証前にポップアップを許可してください'という文言を表示し、ユーザーが煩わしさを感じないようにする必要があります。
 >
+> Facebookの接続可能ブラウザポリシー変更に伴い
+> IEブラウザでFacebookにログイン時、Edgeブラウザに強制的に切り替わります。
+> 従って、Facebookでログインする場合、Chrome、Edgeブラウザを利用して接続する必要があります。
+> ただし、やむを得ずIEブラウザからFacebookログインをしなければならない場合は、
+> 以下のような方法でEdgeブラウザに強制的に切り替わることを防いで利用することはできるので参考にしてください。
+> 1. Edgeブラウザの設定に接続します。
+> 2. 設定画面メニューから「規定のブラウザ」を選択します。
+> 3. Internet Explorer互換性モードを「オフ」に変更します。
 
 ```js
 toast.Gamebase.login(providerName, (authToken, error) => { ... });
@@ -246,7 +256,8 @@ var accessToken = toast.Gamebase.getAccessToken();
 ```
 
 ### Get Banned User Information
-TOAST Gamebaseコンソールに、制裁されたゲームユーザーとして登録された場合、
+
+Gamebaseコンソールに、制裁されたゲームユーザーとして登録された場合、
 ログインを試行すると、下記のような利用制限情報コードが表示されます。**toast.Gamebase.getBanInfo()**メソッドを利用して制裁情報を確認できます。
 
 ```js

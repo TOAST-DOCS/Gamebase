@@ -42,35 +42,42 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 アイテムの購入は大きく分けて決済フロー、消費フロー、再処理フローの3つがあります。
 決済フローは、次のような順序で実装してください。
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
+![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-1. 以前の決済が正常に終了せず、再処理が動作しない場合、決済が失敗します。そのため決済前に**requestItemListOfNotConsumedWithCompletion:**を呼び出して再処理を行い、未支給のアイテムがある場合はConsume Flowを進行します。
-2. ゲームクライアントではGamebase SDKの **requestPurchaseWithItemSeq:viewController:completion:**を呼び出して決済を試行します。
-3. 決済が成功すると **requestItemListOfNotConsumedWithCompletion:**を呼び出して未消費決済履歴を確認した後、支給するアイテムが存在する場合、Consume Flowを進行します。
+1. 以前の決済が正常に終了していない場合、再処理が動作しなければ決済が失敗します。そのため決済前に**requestItemListOfNotConsumedWithCompletion:**を呼び出して再処理を動作させ、未支給のアイテムがあればConsume Flowを進行します。
+2. ゲームクライアントではGamebase SDKの**requestPurchaseWithGamebaseProductId:viewController:completion:**を呼び出して決済を試行します。
+3. 決済が成功したら**requestItemListOfNotConsumedWithCompletion:**を呼び出して未消費決済履歴を確認した後、支給するアイテムが存在すればConsume Flowを進行します。
 
 ### Consume Flow
 
 未消費決済履歴リストに値がある場合、次のような順序でConsume Flowを進行してください。
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.10.0.png)
+> <font color="red">[注意]</font><br/>
+>
+> アイテムが重複支給されることがないように、ゲームサーバーで必ず重複支給有無をチェックしてください。
+>
+
+![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
 
 1. ゲームクライアントがゲームサーバーに決済アイテムのconsume(消費)をリクエストします。
-    * UserID、itemSeq、paymentSeq、purchaseTokenを伝達します。
-2. ゲームサーバーは、ゲームDBにすでに同じpaymentSeq、purchaseTokenでアイテムを支給した履歴があるかを確認します。
-    * 2-1まだアイテムを支給していない場合、UserIDにitemSeqに該当するアイテムを支給します。
-    * 2-2アイテム支給後、ゲームDBにUserID、itemSeq、paymentSeq、purchaseTokenを保存し、後で重複支給の有無を確認できるようにします。
-3. ゲームサーバーはGamebaseサーバーのconsume(消費) APIを呼び出してアイテムの支給を完了します。
-    * [APIガイド > Purchase(IAP) > Consume](./api-guide/#consume)
+    * UserID, gamebaseProductId, paymentSeq, purchaseTokenを伝達します。
+2. ゲームサーバーは、ゲームDBにすでに同じpaymentSeqでアイテムを支給した履歴があるかを確認します。
+    * 2-1. まだアイテムを支給していなければUserIDにgamebaseProductIdに該当するアイテムを支給します。
+    * 2-2. アイテム支給後、ゲームDBにUserID、gamebaseProductId、paymentSeq、purchaseTokenを保存して重複支給防止または再支給ができるようにします。
+3. アイテム支給有無に関係なく、ゲームサーバーはGamebaseサーバーのconsume(消費) APIを呼び出してアイテムの支給を完了します。
+    * [Game > Gamebase > APIガイド > Purchase(IAP) > Consume](./api-guide/#consume)
 
 ### Retry Transaction Flow
 
-* ストア決済には成功したがエラーが発生して正常に終了しなかった場合があります。
-* **requestItemListOfNotConsumedWithCompletion:**を呼び出して再処理を行い、未支給のアイテムがある場合、Consume Flowを進行してください。
-* 再処理は次の時点で呼び出すことを推奨します。
-    * ログイン完了後
-    * 決済前
-    * ゲーム内ショップ(またはロビー)に移動した時
-    * ユーザープロフィールまたはメールボックスの確認時
+![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
+
+* ストア決済には成功したがエラーが発生して正常終了できない場合があります。
+* **requestItemListOfNotConsumedWithCompletion:**を呼び出して再処理を動作させ、未支給アイテムがあれば[Consume Flow](./ios-purchase/#consume-flow)を進行してください。
+* 再処理は、次のようなタイミングで呼び出すことを推奨します。
+    * ログイン完了後。
+    * 決済前。
+    * ゲーム内商店(またはロビー)進入時。
+    * ユーザープロフィールまたはメールボックスの確認時。
 
 ### Purchase Item
 
@@ -81,22 +88,29 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
 **API**
 
 ```objectivec
-+ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId viewController:(UIViewController *)viewController completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
++ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId 
+                              viewController:(UIViewController *)viewController
+                                  completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
 
-+ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId payload:(NSString *)payload viewController:(UIViewController *)viewController completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
++ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId 
+                                     payload:(NSString *)payload 
+                              viewController:(UIViewController *)viewController 
+                                  completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
 
 // Legacy API
-+ (void)requestPurchaseWithItemSeq:(long)itemSeq viewController:(UIViewController *)viewController completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
++ (void)requestPurchaseWithItemSeq:(long)itemSeq 
+                    viewController:(UIViewController *)viewController 
+                        completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
 ```
 
 **Example**
 
 ```objectivec
-
 - (void)purchasingItem:(NSString *)gamebaseProductId {
     NSString *userPayload = @"USER_PAYLOAD";
 
-    [TCGBPurchase requestPurchaseWithGamebaseProductId:gamebaseProductId viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
+    [TCGBPurchase requestPurchaseWithGamebaseProductId:gamebaseProductId payload:userPayload viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
+        NSString *receivedPayload = purchasableReceipt.payload;
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Purchase Item Succeeded
         } else if (error.code == TCGB_ERROR_PURCHASE_USER_CANCELED) {
@@ -169,7 +183,7 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
 
 ### Reprocess Failed Purchase Transaction
 
-ストアでは決済が正常に行われたものの、NHN Cloud IAPサーバーの検証エラーなどにより正常に決済されていない場合は、APIを利用して再処理を試みます。<br/>
+ストアでは決済が正常に行われたものの、TOAST IAPサーバーの検証エラーなどにより正常に決済されていない場合は、APIを利用して再処理を試みます。<br/>
 最後に、決済が成功した内訳を基にアイテム送信(配布)などのAPIを呼び出して処理する必要があります。
 
 ```objectivec
@@ -210,8 +224,7 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
 
 > `注意`
 > iOS 11以上でのみ使用できます。
-> Xcode 9.0以上でビルドする必要があります。
-> Gamebase 1.13.0以上でサポートします(NHN Cloud IAP SDK 1.6.0以上適用)。
+> Gamebase 1.13.0以上でサポートします。(NHN Cloud IAP SDK 1.6.0以上適用)
 
 
 > `注意`
@@ -228,8 +241,8 @@ Facebook SDK、Google AdMob SDKなどのように、SDK内にIn App Purchase(App
 
 
 #### Overview
-* Apple Developer Overview : https://developer.apple.com/app-store/promoting-in-app-purchases/
-* Apple Developer Reference : https://help.apple.com/app-store-connect/#/deve3105860f
+* Apple Developer Overview : [https://developer.apple.com/app-store/promoting-in-app-purchases/](https://developer.apple.com/app-store/promoting-in-app-purchases/)
+* Apple Developer Reference : [https://help.apple.com/app-store-connect/#/deve3105860f](https://help.apple.com/app-store-connect/#/deve3105860f)
 
 
 App Storeアプリ内でアイテムを購入できる機能を提供します。

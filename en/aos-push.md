@@ -1,88 +1,20 @@
 ## Game > Gamebase > Android Developer's Guide > Push
 
-### Settings
-
-This document describes how to set push notifications for each platform.
-
-#### Register NHN Cloud Console
-
-Set console in reference of [Notification > Push > Console Guide](/Notification/Push/en/console-guide/)
-
-#### Gradle
-
-* Add a module for build.gradle.
-
-```groovy
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    
-    // >>> Gamebase Version
-    def GAMEBASE_SDK_VERSION = 'x.x.x'
-    
-    // >>> Gamebase - Select Push Adapter
-    implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
-    implementation "com.toast.android.gamebase:gamebase-adapter-push-tencent:$GAMEBASE_SDK_VERSION"
-}
-```
-
-* For a push module, either Firebase Cloud Messaging (FCM) or Tencent must be added. However, if a multiple number of modules are added for testing purpose, you may choose a PushType to be used for Gamebase.initialize.
-    * PushProvider.Type.FCM : "FCM"
-    * PushProvider.Type.TENCENT : "TENCENT"
-
-```java
-String PUSH_TYPE = PushProvider.Type.FCM;	// Firebase Cloud Messaging
-
-GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(APP_ID, APP_VERSION, STORE_CODE)
-		.setPushType(PUSH_TYPE)
-        .build();
-
-Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
-    @Override
-    public void onCallback(final LaunchingInfo data, GamebaseException exception) {
-        ...
-    }
-});
-```
-
-#### Firebase
-
-* For Gradle Builds
-    * To enable Firebase push, follow the guide to complete the Firebase setting.
-    	* [NHN Cloud > NHN Cloud SDK User Guide > NHN Cloud Push > Android > Set Firebase Cloud Messaging](/TOAST/en/toast-sdk/push-android/#firebase-cloud-messaging)
-* For a Unity build
-    * You must create a string resource (xml) file by yourself and place it in the Assets/Plugins/Android/res/values/ folder.
-        * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
-        * Below is an example of a string resource file.
-            ```
-            <!-- Assets/Plugins/Android/res/values/google-services-json.xml -->
-            <?xml version="1.0" encoding="utf-8"?>
-            <resources>
-            <string name="default_web_client_id" translatable="false">000000000000-abcdabcdabcdabcdabcdabcdabcd.apps.googleusercontent.com</string>
-            <string name="gcm_defaultSenderId" translatable="false">000000000000</string>
-            <string name="firebase_database_url" translatable="false">https://tap-development-00000000.firebaseio.com</string>
-            <string name="google_app_id" translatable="false">1:000000000000:android:749cbe01c8ada279</string>
-            <string name="google_api_key" translatable="false">AbCd_AbCd_AbCd_AbCd_AbCd_AbCd_AbCd</string>
-            <string name="google_storage_bucket" translatable="false">tap-development-00000000.appspot.com</string>
-            </resources>
-            ```
-        * You can view each of values set in the string resource (xml) file by clicking **Firebase Console > Project Setting** and download the **google-services.json** file.
-            Depending on the Firebase service link, the contents of the google-services.json file may vary.
-            ![Download google-services.json](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
-
-#### Tencent
-
-* To enable Tencent push, follow the guide and complete the Tencent setting. 
-	* [NHN Cloud > NHN Cloud SDK User Guide > NHN Cloud Push > Android > Set Tencent Push Notification](/TOAST/en/toast-sdk/push-android/#tencent-push-notification)
-
 ### Register Push
 
-By calling API as below, a user can be registered to NHN Cloud Push.<br/>
-With user's agreement to enablePush, enableAdPush, and enableAdNightPush, call following API to complete registration.
+Call the following API to register the user for NHN Cloud Push.<br/>
+Get the values of Accept push (enablePush), Accept advertisement push (enableAdPush), and Accept night advertisement push (enableAdNightPush) from the user, and call the following API to complete the registration.
 
 **API**
 
 ```java
-+ (void)Gamebase.Push.registerPush(Activity activity, PushConfiguration configuration, GamebaseCallback callback);
++ (void)Gamebase.Push.registerPush(@NonNull Activity activity,
+                                   @NonNull PushConfiguration configuration,
+                                   @NonNull GamebaseCallback callback);
++ (void)Gamebase.Push.registerPush(@NonNull Activity activity,
+                                   @NonNull PushConfiguration configuration,
+                                   @NonNull GamebaseNotificationOptions notificationOptions,
+                                   @NonNull GamebaseCallback callback);
 ```
 
 **Example**
@@ -92,7 +24,11 @@ boolean enablePush;
 boolean enableAdPush;
 boolean enableAdNightPush;
 
-PushConfiguration configuration = new PushConfiguration(enablePush, enableAdPush, enableAdNightPush);
+PushConfiguration configuration = PushConfiguration.newBuilder()
+        .enablePush(enablePush)
+        .enableAdAgreement(enableAdPush)
+        .enableAdAgreementNight(enableAdNightPush)
+        .build();
 
 Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
     @Override
@@ -101,45 +37,139 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
             // Succeeded.
         } else {
             // Failed.
-            Log.e(TAG, "Register push failed- "
-                    + "errorCode: " + exception.getCode()
-                    + "errorMessage: " + exception.getMessage());
         }
     }
 });
+```
+
+### Notification Options
+
+* You can use the Notification Options to change how the notification will be displayed in the device.
+* Notification Options can be changed by setting it to AndroidManifest.xml or calling the registerPush API at runtime.
+
+#### Set Notification Options with AndroidManifest.xml
+
+Notification options can be set by defining them to AndroidManifest.xml.<br/>
+To find out how to set the options, see the following guide:
+
+[Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > Notification Options](./aos-started/)
+
+#### Set Notification Options with RegisterPush in Runtime
+
+You can also set the notification options at runtime without defining them in AndroidManifest.xml, or you can change the value set in AndroidManifest.xml at runtime as well.
+When calling the registerPush API, add the GamebaseNotificationOptions argument to set the notification options.
+If you pass the call results for the Gamebase.Push.getNotificationOptions() with the argument of the GamebaseNotificationOptions.newBuilder(), the builder initialized with the current notification options is created. Thus, you can just change the necessary values.<br/>
+The following settings are available:
+
+| API                   | Parameter       | Description        |
+| --------------------  | ------------ | ------------------ |
+| enableForeground      | boolean      | Expose the notifications when the app is in the foreground status<br/>**default**: false |
+| enableBadge           | boolean      | Use the badge icon<br/>**default**: true |
+| setPriority           | int          | Notification priority. You can set the following five values:<br/>NoticationComapt.PRIORITY_MIN : -2<br/> NoticationComapt.PRIORITY_LOW : -1<br/>NoticationComapt.PRIORITY_DEFAULT : 0<br/>NoticationComapt.PRIORITY_HIGH : 1<br/>NoticationComapt.PRIORITY_MAX : 2<br/>**default**: NoticationComapt.HIGH |
+| setSmallIconName         | String       | Small icon file name for notification.<br/>If disabled, app icon is used.<br/>**default**: null |
+| setSoundFileName      | String       | Notification sound file name. Works only in AOS 8.0 or earlier.<br/>The notification sound will change as you specify the .mp3 or .wav file name in the 'res/raw' folder.<br/>**default**: null |
+
+**Example**
+
+```java
+boolean enableForeground;
+boolean enableBadge;
+// NotificationCompat.PRIORITY_MIN     : -2
+// NotificationCompat.PRIORITY_LOW     : -1
+// NotificationCompat.PRIORITY_DEFAULT :  0
+// NotificationCompat.PRIORITY_HIGH    :  1
+// NotificationCompat.PRIORITY_MAX     :  2
+int priority;
+String smallIconName;
+String soundFileName;
+
+GamebaseNotificationOptions currentOptions = Gamebase.Push.getNotificationOptions(activity);
+GamebaseNotificationOptions notificationOptions = GamebaseNotificationOptions.newBuilder(currentOptions)
+        .enableForeground(enableForeground)
+        .enableBadge(enableBadge)
+        .setPriority(priority)
+        .setSmallIconName(smallIconName)
+        .setSoundFileName(soundFileName)
+        .build();
+
+Gamebase.Push.registerPush(activity, pushConfiguration, notificationOptions, new GamebaseCallback() {
+    @Override
+    public void onCallback(GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            // Succeeded.
+        } else {
+            // Failed.
+        }
+    }
+});
+```
+
+#### Get NotificationOptions
+
+Retrieves the notification options value which was set previously when registering the push notification.
+Retrieves the most recent settings by including the value set in AndroidManifest.xml and the value which was changed at runtime.
+
+**API**
+
+```java
++ (GamebaseNotificationOptions)Gamebase.Push.getNotificationOptions(@NonNull Context context);
 ```
 
 ### Request Push Settings
 
 To retrieve user's push setting, apply API as below. <br/>
-From PushConfiguration callback values, you can get user's value set.
+From GamebasePushTokenInfo callback values, you can get user's value set.
 
 **API**
 
 ```java
-+ (void)Gamebase.Push.registerPush(Activity activity, GamebaseDataCallback<PushConfiguration> callback);
++ (void)Gamebase.Push.queryTokenInfo(@NonNull Activity activity,
+                                     @NonNull GamebaseDataCallback<GamebasePushTokenInfo> callback);
+
+// Legacy API
++ (void)Gamebase.Push.queryPush(@NonNull Activity activity,
+                                @NonNull GamebaseDataCallback<PushConfiguration> callback);
 ```
 
 **Example**
 
 ```java
-Gamebase.Push.queryPush(activity, new GamebaseDataCallback<PushConfiguration>() {
+Gamebase.Push.queryTokenInfo(activity, new GamebaseDataCallback<PushConfiguration>() {
     @Override
-    public void onCallback(PushConfiguration data, GamebaseException exception) {
+    public void onCallback(GamebasePushTokenInfo data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
             // Succeeded.
-            boolean enablePush = data.pushEnabled;
-            boolean enableAdPush = data.adAgreement;
-            boolean enableAdNightPush = data.adAgreementNight;
+            boolean enablePush = data.agreement.pushEnabled;
+            boolean enableAdPush = data.agreement.adAgreement;
+            boolean enableAdNightPush = data.agreement.adAgreementNight;
+            String token = data.token;
         } else {
             // Failed.
-            Log.e(TAG, "Query push failed- "
-                    + "errorCode: " + exception.getCode()
-                    + "errorMessage: " + exception.getMessage());
         }
     }
 });
 ```
+
+#### GamebasePushTokenInfo
+
+| Parameter           | Values                | Description         |
+| --------------------| ----------------------| ------------------- |
+| pushType            | String                | Push token type       |
+| token               | String                | Token                 |
+| userId              | String                | User ID         |
+| deviceCountryCode   | String                | Country code           |
+| timezone            | String                | Standard timezone           |
+| registeredDateTime  | String                | Token update time    |
+| languageCode        | String                | Language settings            |
+| agreement           | GamebasePushAgreement | Opt in        |
+
+#### GamebasePushAgreement
+
+| Parameter        | Values  | Description               |
+| -----------------| --------| ------------------------- |
+| pushEnabled      | boolean | Opt in to display notifications           |
+| adAgreement      | boolean | Opt in to display advertisement notifications      |
+| adAgreementNight | boolean | Opt in to display night advertisement notifications  |
 
 ### Error Handling
 

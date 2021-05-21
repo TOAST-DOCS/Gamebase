@@ -11,6 +11,11 @@ Get the following header file to where Gamebase functions will be initialized, s
 #import <Gamebase/Gamebase.h>
 ```
 
+### Initialization Flow
+
+When the game starts, enable the Debug Mode and reset the Gamebase to implement the flow as shown below so that entering the game will be determined based on the Launching Status Code.
+
+![initialization flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/initialization_flow_2.19.0.png)
 
 ### Configuration Settings
 
@@ -141,6 +146,7 @@ Refer to the table for status codes:
 | IN_SERVICE_BY_QA_WHITE_LIST | 202  | Under maintenance now but QA user service is available. |
 | IN_TEST                     | 203  | Under test |
 | IN_REVIEW                   | 204  | Review in progress |
+| IN_BETA                     | 205  | Beta server environment |
 | REQUIRE_UPDATE              | 300  | Update is required.                                  |
 | BLOCKED_USER                | 301  | User whose access has been blocked. |
 | TERMINATED_SERVICE          | 302  | Service has been terminated.                                   |
@@ -156,17 +162,19 @@ Refer to the table for status codes:
 This is information about apps registered in the Gamebase Console.
 
 * accessInfo
-    * serverAddress: Server address
-    * csInfo: Customer Center information
+    * serverAddress: server address
+* customerService
+    * accessInfo : Customer Center contact
+    * type : Customer Center type
+    * url : Customer Center URL
 * relatedUrls
     * termsUrl: Terms and Conditions
-    * personalInfoCollectionUrl: Personal information collection agreement
-    * punishRuleUrl: User ban rules
-    * csUrl: Customer Center
-* install: Installation URL
-* idP: Authentication information
+    * personalInfoCollectionUrl: privacy agreement
+    * punishRuleUrl: user ban rules
+* install: installation URL
+* idP: authentication information
 
-[Console Guide](/Game/Gamebase/en/oper-app/#client)
+[Console Guide] (/Game/Gamebase/ko/oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -178,7 +186,7 @@ This is information about maintenance registered in the Gamebase Console.
 * endDate: End time
 * message: Cause of maintenance
 
-[Console Guide](/Game/Gamebase/en/oper-operation/#maintenance)
+[Console Guide] (/Game/Gamebase/ko/oper-operation/#maintenance)
 
 **1.4 Notice**
 
@@ -188,11 +196,11 @@ This is information about notification registered in the Gamebase Console.
 * title: Title
 * url: Maintenance URL
 
-[Console Guide](/Game/Gamebase/en/oper-operation/#notice)
+[Console Guide] (/Game/Gamebase/ko/oper-operation/#notice)
 
 #### 2. tcProduct
 
-The appKey of the TOAST service associated with Gamebase.
+The appKey of the NHN Cloud service associated with Gamebase.
 
 * gamebase
 * tcLaunching
@@ -201,22 +209,22 @@ The appKey of the TOAST service associated with Gamebase.
 
 #### 3. tcIap
 
-This is information about IAP stores registered in the TOAST console.
+This is information about IAP stores registered in the NHN Cloud console.
 
 * id: App ID
 * name: App Name
 * storeCode: Store Code
 
-[Console Guide](/Game/Gamebase/en/oper-purchase/)
+[Console Guide] (/Game/Gamebase/ko/oper-purchase/)
 
 #### 4. tcLaunching
 
-The information users entered in the TOAST Launching Console.
+The information users entered in the NHN Cloud Launching Console.
 
 * The value entered by users is sent as a JSON string.
-* See the guide below for the detailed TOAST Launching settings.
+* See the guide below for the detailed NHN Cloud Launching settings.
 
-[Console Guide](/Game/Gamebase/en/oper-management/#config)
+[Console Guide] (/Game/Gamebase/ko/oper-management/#config)
 
 
 ### Handling Unregistered Version
@@ -276,6 +284,11 @@ If the Gamebase popup is not used, the related UI can be manually implemented so
 
 To manage iOS app events, implement the following **UIApplicationDelegate** protocol.
 
+> <font color="red">[Caution]</font><br/>
+>
+> If you are using SceneDelegate (iOS 13 or later), **UISceneDelegate** protocol must be implemented.
+>
+
 ### OpenURL Event
 Call **application:openURL:sourceApplication:annotation:** method to notify Gamebase when application's external URL was tried to be open. Gamebase will deliver a corresponding value to authentication SDK of each IdP to make it operate as required.
 
@@ -284,11 +297,28 @@ Call **application:openURL:sourceApplication:annotation:** method to notify Game
 > If **application:openURL:options:** of UIApplicationDelegate has been already overriden, call of **application:openURL:sourceApplication:annotation:** may not work.
 >
 
+
+> <font color="red">[Caution]</font><br/>
+>
+> When using the WeiboAuthAdapter, the implementation of **application:openURL:sourceApplication:annotation:** is mandatory.
+>
+
 ```objectivec
+// AppDelegate.m
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [TCGBGamebase application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 ```
+
+If you are using SceneDelegate (iOS 13 or later), **scene:openURLContexts:** method must be called.
+
+```objectivec
+// SceneDelegate.m
+- (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts {
+    [TCGBGamebase scene:scene openURLContexts:URLContexts];
+}
+```
+
 
 ### DidBecomeActive Event
 Call **applicationDidBecomeActive:** method to notify Gamebase whether an app has been activated or not. Gamebase delivers a corresponding value to authentication SDK of each IdP to make it operate as required.
@@ -296,8 +326,18 @@ Call **applicationDidBecomeActive:** method to notify Gamebase whether an app ha
 
 
 ```objectivec
+// AppDelegate.m
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [TCGBGamebase applicationDidBecomeActive:application];
+}
+```
+
+If you are using SceneDelegate (iOS 13 or later), **sceneDidBecomeActive:** method must be called.
+
+```objectivec
+// SceneDelegate.m
+- (void)sceneDidBecomeActive:(UIScene *)scene {
+    [TCGBGamebase sceneDidBecomeActive:scene];
 }
 ```
 
@@ -306,8 +346,18 @@ Call **applicationDidEnterBackground**, to notify Gamebase that an app will be c
 
 
 ```objectivec
+// AppDelegate.m
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     [TCGBGamebase applicationDidEnterBackground:application];
+}
+```
+
+If you are using SceneDelegate (iOS 13 or later), **sceneDidEnterBackground:** method must be called.
+
+```objectivec
+// SceneDelegate.m
+- (void)sceneDidEnterBackground:(UIScene *)scene {
+    [TCGBGamebase sceneDidEnterBackground:scene];
 }
 ```
 
@@ -315,11 +365,20 @@ Call **applicationDidEnterBackground**, to notify Gamebase that an app will be c
 Call **applicationWillEnterForeground**, to notify Gamebase that an app will be converted to foreground.
 
 ```objectivec
+// AppDelegate.m
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     [TCGBGamebase applicationWillEnterForeground:application];
 }
 ```
 
+If you are using SceneDelegate (iOS 13 or later), **sceneWillEnterForeground:** method must be called.
+
+```objectivec
+// SceneDelegate.m
+- (void)sceneWillEnterForeground:(UIScene *)scene {
+    [TCGBGamebase sceneWillEnterForeground:scene];
+}
+```
 
 ### Error Handling
 

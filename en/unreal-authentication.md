@@ -43,7 +43,7 @@ The above login can be implemented in the following order:
     * Check information with **FGamebaseBanInfo::From API** to notify game user of why game play is unavailable. 
     * For Gamebase initialization, set true for **FGamebaseConfiguration.enablePopup** and **FGamebaseConfiguration.enableBanPopup**, and Gamebase automatically loads the popup on the ban. 
 * Other Erros 
-    * Authentication failed with the previous login type. Execute **'3. Authenticate with Specified IdP'**.
+    * Authentication failed with the previous login type. Execute **'2. Authenticate with Specified IdP'**.
 
 #### 2. Authenticate with Specified IdP
 
@@ -173,6 +173,7 @@ Following codes are login examples with particular IdP.
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -193,6 +194,8 @@ void Login(const FString& providerName, const UGamebaseJsonObject& additionalInf
 | Naver       | GamebaseAuthProvider::Naver      | Android<br/>iOS |
 | Twitter     | GamebaseAuthProvider::Twitter    | Android<br/>iOS |
 | Line        | GamebaseAuthProvider::Line       | Android<br/>iOS |
+| HANGAME     | GamebaseAuthProvider::Hangame    | Android<br/>iOS |
+| WEIBO       | GamebaseAuthProvider::Weibo      | Android<br/>iOS |
 
 
 > Some IdP logins require particular information. <br/>
@@ -200,8 +203,7 @@ void Login(const FString& providerName, const UGamebaseJsonObject& additionalInf
 > To configure such required information, API for static void Login (string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) is provided. <br/>
 > You may enter information for the additionalInfo parameter in the format of dictionary.  
 When there's available value for additionalInfo, use it; otherwise (null), apply default value registered on NHN Cloud Console.   
-([Setting additionalInfo for NHN Cloud Console](./oper-app/#authentication-information))<br/>
-> Standalone supports a login via WebViewAdapter and does not block event input via UIs when WebView is open. 
+([Setting additionalInfo for NHN Cloud Console](./oper-app/#authentication-information))
 
 **Example**
 
@@ -279,6 +281,7 @@ This interface allows login to Gamebase with SDKs provided by IdP and authentica
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -320,6 +323,7 @@ void Sample::LoginWithCredential()
 [Console Guide](./oper-app/#authentication-information)
 
 ## Logout
+
 Attempt to log out from login IdP. In most cases, the logout button is located on the setting page of a game, to be clicked for execution. 
 Even with a successful logout, game user's data remains. 
 When it is successfully logged out, authentication records with IdP are removed, and therefore, popup will show to enter ID and password for the next login attempt. <br/><br/>
@@ -327,6 +331,7 @@ When it is successfully logged out, authentication records with IdP are removed,
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 <span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
@@ -366,6 +371,7 @@ Attempt to withdraw while it is logged in.
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 <span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
@@ -461,6 +467,7 @@ Mapping simply adds IdP integration.
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -514,6 +521,7 @@ This interface allows to authenticate with SDK provided by IdP of a game to enab
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -615,6 +623,7 @@ void Sample::AddMappingForcibly(const FString& providerName)
 
 
 ### Add Mapping Forcibly with Credential
+
 When there's an account which is already mapped to a particular IdP, attempt to **Force Mapping**. 
 To attempt a **Force Mapping**, you need `ForcingMappingTicket` acquired from AddMpping API. 
 
@@ -715,6 +724,7 @@ After mapping is removed, log out from the IdP within Gamebase.
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -748,6 +758,7 @@ Return the list of IdPs mapped with user ID. <br/>
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -774,7 +785,6 @@ void Sample::GetAuthMappingList()
 Execute authentication via Gamebase, to obtain information required to produce an app. 
 
 ### Get Authentication Information for Gamebase
-Execute authentication via Gamebase, to obtain information required to produce an app. 
 
 #### UserID
 
@@ -782,6 +792,7 @@ Get UserID issued from Gamebase.
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -804,6 +815,7 @@ Get access token issued from Gamebase.
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -826,6 +838,7 @@ Get ProviderName that was successful with the last login from Gamebase.
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -852,6 +865,7 @@ Get user ID from externally authenticated SDK.
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -875,6 +889,7 @@ Get access token from externally authenticated SDK.
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -897,6 +912,7 @@ Get profile from externally authenticated SDK.
 **API**
 
 Supported Platforms
+
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
@@ -1262,10 +1278,13 @@ else
 {
     UE_LOG(GamebaseTestResults, Display, TEXT("code: %d, message: %s"), error->code, *error->message);
 
-    GamebaseInnerError* moduleError = gamebaseError.error; // GamebaseError.error object from external module
-    if (moduleError.code != GamebaseErrorCode::SUCCESS)
+    if (error->code == GamebaseErrorCode::AUTH_EXTERNAL_LIBRARY_ERROR)
     {
-        UE_LOG(GamebaseTestResults, Display, TEXT("moduleErrorCode: %d, moduleErrorMessage: %s"), moduleError->code, *moduleError->message);
+        FGamebaseErrorInner moduleError = error->error;
+        if (moduleError.code != GamebaseErrorCode::SUCCESS)
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("moduleErrorCode: %d, moduleErrorMessage: %s"), moduleError.code, *moduleError.message);
+        }
     }
 }
 ```

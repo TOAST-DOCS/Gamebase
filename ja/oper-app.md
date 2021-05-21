@@ -1,6 +1,6 @@
 ## Game > Gamebase > Console ご利用ガイド > アプリ
 
-TOAST Consoleで **Game > Gamebase > App**をクリックしてアプリの基本情報を設定することができます。
+NHN Cloud Consoleで **Game > Gamebase > App**をクリックしてアプリの基本情報を設定することができます。
 
 * **アプリ**：アプリ情報管理
 * **クライアント**：クライアントバージョンとステータス情報管理
@@ -8,32 +8,26 @@ TOAST Consoleで **Game > Gamebase > App**をクリックしてアプリの基�
 
 ## App
 
-### Properties
-Gamebaseサービスを有効化すると、自動的にアプリが作成され、該当メニューでは登録された情報の修正のみ行えます。
-TOASTプロジェクト1つにつき、1つのGamebaseアプリを管理できるため、アプリを追加で登録したり削除することはできません。Gamebaseサービスを無効にすると、アプリに登録された情報が削除されます。
-各項目の詳細説明は次の項目を参考にしてください。
+Gamebaseサービスを有効化すると、自動的にアプリが作成され、該当メニューでは登録された情報の修正のみ可能です。
+NHN Cloudプロジェクト1つにつき1つのGamebaseアプリを管理することができるため、アプリを追加で登録したり削除することはできません。Gamebaseサービスを無効化すると、アプリに登録された情報が削除されます。
+各項目の詳細説明は、以下の詳細項目を参照してください。
 
 ### 基本情報
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_01_202004.png)
+![gamebase_app_01_202009](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_01_202009.png)
 
 #### (1)インストールURL
 アプリのインストールと広報に利用できる短縮URL情報です。
-アプリが配布されたストアが複数の場合も1つの短縮URLで管理できます。
+アプリが配布されたストアが複数の場合でも、1つの短縮URLで管理できます。
 詳細な動作および管理方法は、次のリンクを参照してください。[インストールURL管理](./oper-app/#installed-url)
+
 > [参考]
-> Gamebaseを有効にすると自動的に作成されるため変更はできません。
+> Gamebaseを有効にすると自動的に作成されるため、変更はできません。
 
-#### (2)サポート連絡先
-サポートページのほか、メール、電話番号などの情報を入力します。
-サポートページがある場合は以下の**アプリ内URL**の**サポート**に情報を入力します。
-> [参考] <br/>
-> 入力された情報はGamebaseが提供するメンテナンス詳細ページに表示されます。
-
-#### (3)テスト決済を含めるかどうか
-アプリの指標を見る時、テスト決済も指標に含めるかどうかを選択します。
-基本設定は「テスト決済を含める」に設定されており、「テスト決済を除く」に設定すると、Analytics売上指標からテスト決済は全て除外されて表示されます。
+#### (2)テスト決済を含めるかどうか
+アプリの指標を表示する時、テスト決済も指標に含めるかどうかを選択します。
+デフォルト設定は「テスト決済を含める」に設定されており、「テスト決済を除外」に設定すると、Analytics売上指標からテスト決済は全て除外して表示されます。
 > [参考1]
-> テスト決済と実際の決済データは、指標表示設定に関係なく常に記録しているため、テスト決済の表示設定を変更しても実際のデータ収集には影響がありません。
+> 指標表示設定に関係なく、データはテスト決済と実際の決済を常に記録しているため、テスト決済の表示はいつ変更しても実際のデータ収集には影響がありません。
 
 > [参考2]
 > テストデータはGoogleおよびAppStoreのみサポートしており、他のストアはサポートしません。
@@ -41,14 +35,14 @@ TOASTプロジェクト1つにつき、1つのGamebaseアプリを管理でき�
 > * Google：Googleコンソールに登録したテストアカウントを利用して決済を行った履歴
 > * AppStore：Sandbox環境でテスト決済を行った履歴
 
-#### (4)退会猶予期間
+#### (3)退会猶予期間
 アプリの退会猶予機能を使用したい場合、退会を猶予する期間を設定します。
 基本設定は「7日」に設定されていて、1日～30日まで設定できます。
 > [参考]
 > 退会猶予期間中は正常にサービスが利用できます。
 
 ### サーバーアドレス
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_02_202004.png)
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_02_202012.png)
 
 - ゲームでゲームサーバーアドレス(IP、URLなど)をリアルタイムで受け取る必要がある時に使用します。
 - サーバーアドレスを設定すると、クライアントの初期化後に「ローンチ情報」で入力された情報を確認できます。
@@ -76,16 +70,66 @@ TOASTプロジェクト1つにつき、1つのGamebaseアプリを管理でき�
 > **常に検証**を選択すると、Gamebaseで発行した内部トークンだけでなく、外部IdPトークンも常に有効性を検証します。
 
 ### アプリ内URL
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_05_202004.png)
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_05_202009.png)
 クライアントの再配布を行わずに、アプリ内でよく使用するURLをConsoleを利用してリアルタイムで修正できます。
 
 - 利用約款
 - 個人情報同意
 - 利用停止規定
-- サポートURL
 
 ゲームで必要な場合にのみ入力し、そうでない場合には空白にしてください。
 設定した情報は、クライアント初期化後に「ローンチ情報」で確認できます。
+
+### サポート
+サポート関連の設定を進行できます。
+現在Gamebaseでは3つのサポート形式を提供しており、選択したサポートタイプごとに設定できる項目が異なります。
+サポートタイプ別の設定は以下の通りです。
+
+#### 1. 開発会社独自のサポート
+![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_19_202009.png)
+開発会社で独自にサポートを使用している場合に設定します。
+設定項目は以下の通りです。
+* **サポートURL** ：現在提供または使用している開発会社独自のサポートアドレスを入力します。
+* **連絡先**：サポートの連絡先を入力します。この情報はGamebase SDKを介して追加で情報を受け取ることができます。
+
+#### 2. Gamebase提供のサポート
+![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_20_202009.png)
+Gamebaseで提供するサポート機能を使用したい時に設定します。
+設定項目は以下の通りです。
+* **サポートURL** ：顧客からのお問い合わせを受けるページ情報を提供します。このURLはGamebase提供サポートを選択する場合は自動的に作成され、このURLから顧客のお問い合わせを別のWebページを介して受信できます。
+* **連絡先**：サポートの連絡先を入力します。この情報はGamebase SDKを介して追加で情報を受け取ることができます。
+* **サポート言語**：サポートユーザーにサポートする言語を選択します。プロジェクト自体の言語設定とは別に設定される情報で、現在は韓国語、英語、日本語、中国語をサポートしています。この設定で選択された言語を元にGamebaseのサポート機能を使用できます。
+* **基本言語**：サポート言語で選択した項目のうち、サポート内でデフォルトで提供する言語を選択します。
+
+#### 3. NHN Cloud組織商品(Online Contact)
+![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_21_202102.png)
+NHN Cloudで組織ごとに提供されるOnline contact商品を使用する場合に設定します。
+設定項目は以下の通りです。
+* **サポートURL**：NHN Cloud Online Contactで提供されるアドレスを入力します。この情報はNHN Cloud Online Contactに接続して確認できます。
+* **連絡先**：サポートの連絡先を入力します。この情報はGamebase SDKを介して追加で情報を受け取ることができます。
+* **OC組織Key** : NHN Cloud Online Contactサポートのお問い合わせを確認するためのKeyを入力します。この情報を入力しない場合、サポートページ内で入信したお問い合わせを確認することができないため、確認後に入力する必要があります。詳細な連携方法は、以下の内容を参照してください。
+> [参考] NHN Cloud Online ContactとGamebase間の連携
+> Gamebase内でNHN Cloud Online Contactと連携する場合、次のプロセスに従ってSSOログインAPI Keyを発行してGamebase内に設定すると、サポートサービスを正常に利用できます。
+> サポートの安定的なサービスを提供するために、以下の順序通りに進行してください。
+>
+> 1) NHN Cloud Online Contactに会員連携方式設定
+> サービス管理 -> ヘルプセンター -> 会員連携
+> ![gamebase_app_22_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_22_202102.png)
+> 会員連携有効化：有効化
+> ログインタイプ：GET方式
+> Token検証URL: https://gamebase-web.cloud.toast.com/tcgb-web/v1.0/apps/{appId}/online-contact/login-status
+> **{appId}**部分は、設定したいGamebaseのプロジェクトIDを確認した後、入力してください。
+> 
+> 2) OC組織Keyを取得してOC組織Key項目に入力
+> 全体管理 -> 契約サービス状況 -> 組織情報に移動した後、OC組織情報のOC組織KeyをコピーしてGamebase OC組織Key項目に入力
+> ![gamebase_app_25_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_25_202102.png)
+>
+> 3) NHN Cloud Online contactサポートページアドレスを取得してサポートURLに入力
+> ヘルプセンター -> 下位メニュー選択 -> 右上の「ヘルプセンター」をクリック
+> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_26_202009.png)
+> ブラウザ上部に表示されたアドレスをGamebaseサポートURL項目に入力
+> ![gamebase_app_27_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_27_202102.png)
+>
 
 ### Test Device
 
@@ -159,7 +203,7 @@ Facebookの開発サイトに登録したアプリの{アプリID}と{アプリ�
 - [Facebookの権限](https://developers.facebook.com/docs/facebook-login/permissions/)
 
 ##### Android & iOS & Unity
-TOAST Consoleでの設定の他に追加設定はありません。
+NHN Cloud Consoleでの設定の他に追加設定はありません。
 
 
 
@@ -184,12 +228,12 @@ TOAST Consoleでの設定の他に追加設定はありません。
 
 * 1.12.1以下
 	* AdditionalInfoを設定する必要があります。
-		* **TOAST Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON string形式の情報を設定する必要があります。
-		* GOOGLEの場合、iOSアプリで必要な情報**url_scheme_ios_only**を設定する必要があります。
-		* **url_scheme_ios_only**の値は、XcodeのURLスキームに登録された値のいずれか1つと一致する必要があります。
+		* **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目にJSON string形式の情報を設定する必要があります。
+		* GOOGLEの場合、iOSアプリで必要な情報**url_scheme_ios_only**の設定が必要です。
+		* **url_scheme_ios_only**の値はXcodeのURL Schemeに登録された値のうち1つと一致する必要があります。
 
-	* URLスキームsを設定する必要があります。
-		* **XCode > Target > Info > URL Types**
+	* URL Schemesを設定する必要があります。
+		* **XCode > Target > Info > URL Types**に**tcgb.{Bundle ID}.twitter**を追加する必要があります。
 
 * 1.12.2以上
 	* URLスキームを設定する必要があります。
@@ -228,7 +272,7 @@ PAYCO Client IDを申請して発行された{client_id}及び{client_secret}を
 
 ##### Android & Unity
 - AdditionalInfoを設定する必要があります。
-    * **TOAST Console > Gamebase > App > 認証情報 > 追加情報**項目に、JSON string形式の情報を設定する必要があります。
+    * **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報**項目に、JSON string形式の情報を設定する必要があります。
     * PAYCOの場合、PaycoSDKで要求する**service_code**と**service_name**を設定する必要があります。
 
 * PAYCO追加認証情報の入力例
@@ -246,21 +290,24 @@ PAYCO Client IDを申請して発行された{client_id}及び{client_secret}を
 
 * 1.12.1以下
 	* AdditionalInfoを設定する必要があります。
-		* **TOAST Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON string形式の情報を設定する必要があります。
+		* **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報**項目にJSON string形式の情報を設定する必要があります。
 		* PAYCOの場合、PaycoSDKで要求する**service_code**と**service_name**を設定する必要があります。
-
-* 1.12.2以上
-	* AdditionalInfoを設定する必要があります。
-		* **TOAST Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON string形式の情報を設定する必要があります。
-		* PAYCOの場合、PaycoSDKで要求する**service_code**と**service_name**を設定する必要があります。
-	* URLスキームを設定する必要があります。
-		* **XCode > Target > Info > URL Types**に`tcgb.{Bundle ID}.payco`を追加する必要があります。
 
 * PAYCO追加認証情報の入力例
 
 ```json
 { "service_code": "HANGAME", "service_name": "Your Service Name" }
 ```
+
+![gamebase_auth_payco_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_payco_console_01.png)
+
+* 1.12.2以上
+	* AdditionalInfoを設定する必要があります。
+		* **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報**項目にJSON string形式の情報を設定する必要があります。
+		* PAYCOの場合、PaycoSDKで要求する**service_code**と**service_name**を設定する必要があります。
+	* URL Schemeを設定する必要があります。
+		* **XCode > Target > Info > URL Types**に`tcgb.{Bundle ID}.payco`を追加する必要があります。
+
 
 ![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
@@ -274,12 +321,12 @@ NAVER Developersサイトで申請して発行された{client_id}及び{client_
 - Secret Key：{NAVER client_secret}
 - 追加情報：NAVER Application Name & iOS URLスキーム(json format)
 
-**Reference URL**<br />
+**Reference URL**
 - [NAVER Developers - アプリケーション登録](https://developers.naver.com/apps/#/register)
 - [NAVER Developers - クライアントIDとクライアントシークレットの確認](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)
 
 ##### Android & Unity
-* **TOAST Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON String形式の情報を設定する必要があります。
+* **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON String形式の情報を設定する必要があります。
 	* NAVERの場合、ログイン同意ウィンドウに表示するアプリ名である**service_name**を設定する必要があります。
 
 ```json
@@ -294,17 +341,15 @@ NAVER Developersサイトで申請して発行された{client_id}及び{client_
 >
 
 * 1.12.1以下
-	* **TOAST Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON String形式の情報を設定する必要があります。
+	* **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON String形式の情報を設定する必要があります。
 		* NAVERの場合、ログイン同意ウィンドウに表示するアプリ名である**service_name**を設定する必要があります。
 		* iOSアプリで必要な情報の**url_scheme_ios_only**を追加で設定する必要があります。
-
 	* URLスキームsを設定する必要があります。
 		* **XCode > Target > Info > URL Types**
 
 * 1.12.2以上
-	* **TOAST Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON String形式の情報を設定する必要があります。
+	* **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON String形式の情報を設定する必要があります。
 		* NAVERの場合、ログイン同意ウィンドウに表示するアプリ名である**service_name**を設定する必要があります。
-
 	* URLスキームを設定する必要があります。
 		* **XCode > Target > Info > URL Types**に`tcgb.{Bundle ID}.naver`を追加する必要があります。
 
@@ -313,7 +358,6 @@ NAVER Developersサイトで申請して発行された{client_id}及び{client_
 ```json
 { "url_scheme_ios_only": "Your URLスキームs", "service_name": "Your Service Name" }
 ```
-
 ![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
 #### 6. Twitter
@@ -407,7 +451,7 @@ Sign In with Apple機能を使用するには、AppStore Connect、Gamebase Cons
 ![DownloadPrivateKey](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid3_1.0.png)
 
 ##### Gamebase Console > App Settings
-[TOAST Consoleへ](https://console.toast.com/)
+[NHN Cloud Consoleへ](https://console.toast.com/)
 
 * Gamebase
 ![SecretKey設定](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
@@ -445,82 +489,247 @@ Gamebase Console > AppでAppleを追加すると、基本値に下記のJSON値�
 
 ##### Xcode Project Settings
 > <font color="red">[注意]</font><br/>
-> Xcode 11以上でのみ`Sign In with Apple`機能を使用するプロジェクトをビルドできます。
+>
+> Xcode 11以上でのみ**Sign In with Apple**機能を使用するプロジェクトをビルドできます。
 
 1. Target選択 > Signing & Capabilities > Sign In with Apple項目を追加します。
 ![Capability_SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid8_1.0.png)
 2. Target選択 > Build Phases > Link Binary With Libraries > Authentication.frameworkを**Optional**で追加します。
 ![AuthenticationServices.framework](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid9_1.0.png)
-    - ```注意```: OptionalではなくRequiredに設定されている場合、iOS 11以下の端末ではアプリ実行時にruntime crashが発生します。
+
+> <font color="red">[注意]</font><br/>
+> OptionalではなくRequiredに設定されている場合、iOS 12以下の端末ではアプリ実行時にランタイムクラッシュが発生します。
+
+
+##### iOS 12バージョン以下をサポートするための設定(Sign In with Apple JS)
+
+> <font color="red">[注意]</font><br/>
+>
+> Gamebase SDK iOS 2.13.0以上のバージョンでは、iOS 12以下のバージョンでのWebViewを利用したSign In with Apple機能を使用できます。
+>
+> 2.13.0以前バージョンを使用していたゲームの場合でも、下の**iOS 12バージョン以下をサポートするための設定**を参考にして既存プロジェクトを設定し、
+>
+> Gambase SDK iOS 2.13.0以上を適用すると、iOS 12以下のバージョンでSign In with Apple機能を使用できます。
+
+
+* iOS 12以下のバージョンでSign In with Appleを使用するには、Sign In with Apple JSを使用して、Webページからログインする必要があります。
+* Apple IDログインWebページでは、Appleアカウントとパスワードを入力してログインできます。
+
+**以下の手順に従って、Apple開発者サイトから新しいService IDを登録する必要があります。**
+
+1. Service IDを追加<br/>
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_01.png)
+2. Service IDとして使用する識別子を設定(一般的にはbundle ID + **.区分する文字列**)<br/>
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_02.png)
+3. 登録されたService IDを確認後、修正<br/>
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_03.png)
+4. 下部のSign In with Apple項目のConfigureを押す<br/>
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_04.png)
+5. Primary App IDを設定(既にSign In with Appleを使用していた場合は、該当アプリのBundle IDを設定)<br/>
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_05.png)
+6. Apple IDで認証した後、認証情報を受けとるCallback URLを設定<br/>
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_06.png)
+7. 設定して保存<br/>
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_07.png)
+
+
+**上で設定したService IDをNHN Cloud Gamebase Console > Gamebase > アプリ > 認証情報 > Apple > Service IDに入力します。***
+
+> <font color="red">[注意]</font><br/>
+>
+> Sign In with Appleが設定されていない場合は、残りの項目も設定が必要です。
+
+1. Apple開発者サイトで、設定したService IDを以下のようにService ID項目に追加します。(既にSign In with Apple設定値がある場合は、他の値は変更する必要がありません。)
+![Set Service ID for Sign In with Apple JS](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_TOAST_01.png)
+
+
+#### 9. WEIBO
+
+##### Weibo Console
+
+1. Weibo Developersサイトで申請して発行された{client_id}および{client_secret}をGamebase Consoleに入力します。
+この時、ログイン時に必要な{scope}またはJSON String形式で追加情報欄に入力する必要があります。
+
+
+![gamebase_app_29_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_29_202012.png)
+
+2. callback URL欄に次の値を入力します。
+	* Authorization callback page : https://api.weibo.com/oauth2/default.html
+	* Cancel authorization callback page : https://api.weibo.com/oauth2/default.html
+
+
+**入力フィールド**
+
+ -  ClientID：{App Key}
+ -  Secret Key：{App Secret}
+ - 追加情報：scope（json format）
+
+
+**Additional Info Settings**
+
+* Scope
+
+Applicationで必要とする権限を表します。
+Weiboガイド文書に従ってデフォルトですべての権限が宣言されています。
+必要に応じて追加/削除/変更できます。
+
+* oauthApiUrl
+
+内部的にWeibo Open APIを呼び出すためのドメインです。
+変更してはいけません。
+
+
+![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_28_202012.png)
+
+
+**Reference URL**
+- [Weibo Developer](https://open.weibo.com/)
+
 
 ## Client
 
 クライアント情報をOS(iOS、Android、Unity WebGL、Unity Standalone)、バージョンごとに管理することができます。
 
 ### Client List
-![gamebase_app_12_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_app_12_202004_ja.png)
-現在登録されているクライアントのリストを確認することができます。
-OSごとに分かれて表示され、アイコンにある数字は、クライアントを登録する際に入力したバージョンを意味します。
-アイコンリストは、サービス状態が<font color="white" style="background-color:#F8BB28">テスト</font>、<font color="white" style="background-color:#FB8F37">審査中</font>、<font color="white" style="background-color:#88C637">サービス</font>、<font color="white" style="background-color:#2AB1A6">アップデートお勧め(サービス中)</font>のリストのみ表示されます。各OS右下の矢印をクリックすると<font color="white" style="background-color:#A1A1A1">アップデート必須</font>、<font color="white" style="background-color:#CCCCCC">終了</font>状態のクライアントリストを確認することができます。
-アイコンカラーがサービス状態ごとに区分されていて、一目でサービスの状態を把握することができます。
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client1_1.2.png)
+現在登録されたクライアントリストを確認できます。
+OSごとに区分されて表示され、アイコン内の数字はクライアント登録時に入力したバージョンを意味します。
+アイコンリストはサービス状態が <font color="white" style="background-color:#eed14c">テスト</font>、<font color="white" style="background-color:#eba34b">ベータサービス</font>、<font color="white" style="background-color:#eb7e4b">審査中</font>、<font color="white" style="background-color:#88C637">サービス</font>、<font color="white" style="background-color:#2AB1A6">アップデート推奨(サービス中)</font>のリストのみ表示されます。OS別の右下にある矢印をクリックすると<font color="white" style="background-color:#A1A1A1">アップデート必須</font>、<font color="white" style="background-color:#CCCCCC">終了</font> 状態のクライアントリストを確認できます。
+アイコンの色をサービス状態で区分して、ひと目でサービスの状態を把握できます。
 
 ### Properties
 
-Gamebase Consoleから管理するクライアント登録情報について説明します。
-**クライアント**のタブから**AOS登録**、**iOS登録**ボタンなどをクリックすると、クライアント登録画面が表示されます。登録されたクライアントの入力値を修正したり削除したい場合、アイコンリストからアイコンをクリックしたり、クライアント全体のリストから修正したり削除したいクライアントを選択してください。
-![gamebase_app_13_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_app_13_202004_ja.png)
-#### (1) ストア
-(<font color="red">必須</font>)クライアントをリリースするストアを選択します。
-OSごとに選択可能なストアが異なります。
-#### (2) ゲームバージョン
-(<font color="red">必須</font>) クライアントバージョンを入力します。
-ゲームで決めたルールに沿って文字列で入力してください。
-#### (3) サービス状態
-(<font color="red">必須</font>) クライアントのサービス状態を選択します。
-状態は、<font color="white" style="background-color:#F8BB28">テスト</font>、<font color="white" style="background-color:#FB8F37">審査中</font>、<font color="white" style="background-color:#88C637">サービス</font>、<font color="white" style="background-color:#2AB1A6">アップデートお勧め(サービス中)</font>、<font color="white" style="background-color:#A1A1A1">アップデート必須</font>、<font color="white" style="background-color:#CCCCCC">終了</font>の6つです。
+Gamebase Consoleで管理するクライアント登録情報を説明します。
+**クライアント**タブで**AOS登録**、**iOS登録**ボタンなどを押すと、クライアント登録画面が表示されます。登録されたクライアントの入力値を修正または削除したい場合は、アイコンリストからアイコンを押すか、クライアント全体リストからクライアントを選択してください。
+![gamebase_app_13_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_13_202012.png)
+#### (1)ストア
+(<font color="red">必須</font>)クライアントを配布するストアを選択します。
+OSごとに選択できるストアが異なります。
+#### (2)ゲームバージョン
+(<font color="red">必須</font>)クライアントバージョンを入力します。
+ゲームで定めたルールに従って文字列で入力してください。
+#### (3)サービス状態
+(<font color="red">必須</font>)クライアントのサービス状態を選択します。
+状態は <font color="white" style="background-color:#eed14c">テスト</font>, <font color="white" style="background-color:#eba34b">ベータサービス</font>, <font color="white" style="background-color:#eb7e4b">審査中</font>, <font color="white" style="background-color:#88C637">サービス</font>, <font color="white" style="background-color:#2AB1A6">アップデート推奨(サービス中)</font>, <font color="white" style="background-color:#A1A1A1">アップデート必須</font>, <font color="white" style="background-color:#CCCCCC">終了</font>の6つです。
 
 - <font color="white" style="background-color:#F8BB28">テスト</font>：内部テスト
-- <font color="white" style="background-color:#FB8F37">審査中</font>：ストア審査中。安定化指標を追加で設定することができます。
+- <font color="white" style="background-color:#eba34b">ベータサービス</font>：サービスサーバーではない別のベータサーバーに接続が必要な場合に選択します。
+- <font color="white" style="background-color:#FB8F37">審査中</font>：ストア審査中
 ![gamebase_app_15_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_15_201812.png)
 
-> [参考]
-> 「安定化指標」とは？<br/>
-> Gamebase内部でGamebase APIを呼び出す際に渡す指標ログです。
-> サービス状態が「審査中」のときに安定化指標を有効にすると、審査中にGamebase内部で問題が発生した場合に比べ、より簡単に問題を確認することができます。
-> Gamebase Consoleからリアルタイムで安定化指標を使用するかどうかとログレベルを設定することができます。
+- <font color="white" style="background-color:#88C637">サービス中</font>：正常サービス
+- <font color="white" style="background-color:#2AB1A6">アップデート推奨(サービス中)</font>：正常サービス。 <br/>より安定的なバージョンを使用するように誘導するためにポップアップを表示します。<br/>新しいバージョンをダウンロードして利用するように誘導しますが、ユーザーが望む場合は、現在のバージョンで継続してサービスを利用できます。<br />以下は「アップデート推奨(サービス中)」状態の時にGamebase SDKがデフォルトで提供するポップアップです。
 
-- <font color="white" style="background-color:#88C637">サービス中</font>：サービスが正常に動作しています。
-- <font color="white" style="background-color:#2AB1A6">アップデートお勧め(サービス中)</font>：サービスが正常に動作しています。                               <br/>より安定的なバージョンを使用するように誘導するためにポップアップを表示します。新しいバージョンをダウンロードして利用するように誘導しますが、ユーザーが希望する場合、現在のバージョンでも引き続きサービスを利用することができます。<br />下は、「アップデートを推奨します。(サービス中)」の状態のときにGamebase SDKで基本的に提供するポップアップです。
+- <font color="white" style="background-color:#A1A1A1">アップデート必須</font>：サービス不可。<br/>現在ゲームでサービスをサポートしないバージョンのため、最新バージョンインストール案内ポップアップを表示します。<br />以下は「アップデート必須」状態の時にGamebase SDKがデフォルトで提供するポップアップです。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_updateRecommended_1.0.png)
-- <font color="white" style="background-color:#A1A1A1">アップデート必須</font>：サービスできません。<br/>現在ゲームでサービスに対応していないバージョンで、最新バージョンのインストールを案内するポップアップを表示します。<br />下は、「アップデートが必ず必要です。」の状態のときにGamebase SDKで基本的に提供するポップアップです。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_updateRequired_1.1.png)
 >  <font color="red">[注意] </font>
->  **アップデートが必ず必要な場合とメンテナンスが同時に設定**されている場合、サービス状態は、「アップデートが必ず必要です。」になります。
->  メンテナンス中にユーザーに対し「アップデートが必ず必要です。」のポップアップを表示したくない場合、メンテナンス完了後にサービス状態を「アップデートが必ず必要です。」に変更する必要があります。
+>  **アップデート必須とメンテナンスが同時に設定**されている場合、サービス状態は「アップデート必須」になります。
+> メンテナンス進行中に、ユーザーにアップデート必須ポップアップを表示したくない場合は、メンテナンス完了後にサービスの状態を「アップデート必須」に変更する必要があります。
 >  <font color="orange">[参考] </font>
 > アップデートボタンを押すと、インストールURLメニューで設定したそれぞれのストアアドレスに接続されます。
 > 例えばクライアントがApp storeに設定されていて、インストールURLメニューでApp store関連設定が存在する場合、設定したアドレスに移動し、インストールURLメニューに設定されていない場合は共通(Common) URLに接続されます。
->  
-- <font color="white" style="background-color:#CCCCCC">終了</font>：サービスできません。<br/> サービスが終了されたバージョンの場合に選択します。<br />下は、「終了」の状態のときにGamebase SDKで基本的に提供するポップアップです。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_ended_1.0.png)
+
+- <font color="white" style="background-color:#CCCCCC">終了</font>：サービス不可。<br/>サービスが終了したバージョンの場合に選択します。<br />以下は、「終了」状態の時にGamebase SDKがデフォルトで提供するポップアップです。
 
 > [参考]
-> サービス状態に基づいて表示するメッセージ設定
+> サービスの状態に基づいて表示するメッセージ設定
 > **アップデート推奨(サービス中)**、**アップデート必須**、**終了**状態の場合、ユーザーに表示する案内メッセージを多言語で設定できます。
 > サービス状態を選択すると、アプリに設定されている言語設定情報に基づいて各状態に合った基本メッセージが提供されます。言語を追加したり基本メッセージの文言を変更することもできます。
 > 以前に各状態で設定した各言語の設定がある場合は、アプリの言語設定情報に関係なく以前に登録した内容を呼び出して表示されます。
 > アプリの言語設定に設定された情報がない場合、5個(韓国語、英語、日本語、簡体字、繁体字)の言語で基本メッセージが提供されます。言語を追加したり基本メッセージの文言を変更することもできます。
-> ![gamebase_app_18_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_app_18_202004_ja.png)
+> ![gamebase_app_18_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_18_202004.png)
 
-#### (4) サーバーアドレス
+#### (4)サーバーアドレス
 クライアントで利用するサーバーアドレス(IP、URL)を入力します。
-**アプリ**タブでサーバーアドレスを入力するとすべてのクライアントに適用されるため、クライアントごとに他のサーバーアドレスを使用したい場合にのみサーバーアドレスを入力します。
+**アプリ**タブでサーバーアドレスを入力すると、すべてのクライアントに適用されるため、クライアントごとに別にサーバーアドレスを使用したい時のみサーバーアドレスを入力します。
 
 #### (5) Debug log
 Gamebae SDKのDebug Logを出力するかどうかを、コンソールでリアルタイムに変更できます。
 設定されていない場合は、基本的にGamebase SDK内部に設定された値で動作し、GamebaseコンソールでDebug Logを出力するかどうかを設定できます。
 Gamebase SDKのDebug Logが'OFF'状態でも、コンソールで'ON'に設定すれば端末にGamebase Debug Logが出力されます
+
+#### (6)メモ
+該当クライアントの簡単なメモを30文字以内で入力できます。
+
+## Terms Of Service
+ゲームに表示する約款を作成し、構成を設定します。
+![gamebase_app_30_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_30_202102.png)
+### (1)作成された約款リスト
+- **+**ボタンを押して約款を追加で作成できます。
+![gamebase_app_31_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_31_202102.png)
+
+### (2)約款の国タイプ
+
+### (3)約款の対象国
+- 国タイプがその他の国の場合、対象国を追加で選択できます。
+
+### (4)約款の構成
+- ドラッグアンドドロップ方式で、約款項目の順序を指定できます。
+- 約款項目は上位約款5個、下位約款5個、合計25個を作成できます。
+
+### (5)約款項目作成
+- 約款項目リストから約款構成を選択した後、**追加**ボタンを押すと、その約款の下位約款が作成されます。
+- 下位約款を選択した場合、約款を作成できません。
+
+### (6)選択した約款の詳細情報
+- 約款名
+	- 約款を管理するための約款名です。
+- 約款同意
+	- 約款の同意が必須かどうかです。
+- 詳細ページ
+	- なし：詳細ページが存在しない場合です。
+	- URL入力：詳細ページのURLを設定できます。
+	- 直接入力：詳細ページを作成できます。
+![gamebase_app_32_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_32_202102.png)
+- 表示するテキスト
+	- ゲームに表示するテキストです。
+	- **+**ボタンを押して言語を追加できます。
+	- サポートしない言語をリクエストする場合、チェックされた言語をデフォルトで表示します。
+- プッシュ同意
+	- なし：プッシュ関連の同意ではない場合です。
+	- 広告性受信同意：広告性プッシュの受信同意が必要な約款です。
+	- 広告性夜間受信同意：広告性夜間プッシュ受信の同意が必要な約款です。
+
+> <font color="red">[注意]</font><br/>
+>
+> 保存ボタンを押さなければ作成した約款の内容が適用されません。
+> 保存時、現在選択されている約款詳細情報のみ保存されます。
+>
+
+
+## Terms Of Service Deploy
+
+ゲームに表示する約款配布および配布履歴です。
+![gamebase_app_33_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_33_202102.png)
+
+### (1)基本約款設定
+![gamebase_app_35_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_35_202102.png)
+
+- 作成した約款のうち、設定された配布国以外の国から接続する場合、デフォルトで表示される約款を選択します。
+
+> <font color="red">[注意]</font><br/>
+>
+> 基本約款は設定しない場合もあります。基本約款が設定されていない場合、配布された国以外の国からの接続時、約款が表示されません。
+>
+
+### (2)約款リスト
+
+- 現在作成されている約款リストです。
+
+### (3)プレビュー
+![gamebase_app_36_202102](https://static.toastoven.net/prod_gamebase//gamebase_app_36_202102.png)
+
+- 約款リストから選択した約款をプレビューできます。
+
+### (4)約款配布および配布履歴
+#### 配布
+- 約款リストから選択した約款を配布できます。
+- 「約款の再同意」にチェックした後に配布を行うと、既に約款に同意したユーザーにも新たに約款ウィンドウが表示されます。文言などの単純な修正の際は「約款の再同意」をチェックする必要がありません。
+
+#### 配布履歴
+![gamebase_app_34_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_34_202102.png)
+- 約款リストから選択した約款の配布履歴です。
 
 ## Installed URL
 
