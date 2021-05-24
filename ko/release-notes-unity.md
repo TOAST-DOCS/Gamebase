@@ -1,5 +1,10 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
+### 2.22.0(2021.05.25) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST Unity SDK(0.22.0)
+
 ### 2.21.0(2021.04.13) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.0/GamebaseSDK-Unity.zip)
 
 #### 기능 추가
