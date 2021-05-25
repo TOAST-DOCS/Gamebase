@@ -1,13 +1,13 @@
 ## Game > Gamebase > リリースノート > Android
 
-### 2.22.0(2021.05.25) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-Android.zip)
+### 2.22.0(2021.05.25) [SDKダウンロード](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-Android.zip)
 
 #### 機能改善/変更
-* 외부 SDK 업데이트: TOAST Android SDK(0.25.0), Hangame Android SDK(1.4.0)
+* 外部SDKアップデート：TOAST Android SDK(0.25.0)、Hangame Android SDK(1.4.0)
 
 #### バグ修正
-* 로그아웃 후 다른 유저 ID로 로그인했을 때 간헐적으로 Google Play 스토어 결제가 성공했음에도 실패가 반환되는 오류 수정
-* 앱 패키지 명에 대문자가 포함된 경우 Sign In with Apple 로그인이 실패하는 오류 수정
+* ログアウトした後、他のユーザーIDでログインした時、Google Playストア決済が成功しても、失敗が返されるエラーを修正
+* アプリパッケージ名に大文字が含まれている場合、Sign In with Appleログインが失敗するエラーを修正
 
 ### 2.21.1(2021.04.19) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.1/GamebaseSDK-Android.zip)
 
