@@ -47,7 +47,6 @@ DAU、MCU、NRU、CCU AVGの現状をグラフで確認することができま�
 * 日付ごとのインストールURL呼び出し数の変化グラフ
 * ブラウザごとの占有率：Internet Explorer、Chromeなど
 * プラットフォームごとの占有率：Android、iOSなど
-  
 
 ## Statistics
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Statistics1_1.2.png)

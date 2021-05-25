@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > Unity Developer's Guide > Getting Started
+## Game > Gamebase > Unity Developer's Guide > Getting Started
 
 Below describes environments and initial setting of Gamebase Unity SDK.
 
@@ -8,7 +8,7 @@ Below describes environments and initial setting of Gamebase Unity SDK.
 > 
 > Unity support version
 > 
-> * Unity 2017.4.16 ~ 2019.3.9
+> * 2017.4.16 ~ 2020.1.8
 > * To be supported by a lower-version Unity, contact [Customer Center](https://toast.com/support/inquiry).
 
 #### Android
@@ -162,12 +162,16 @@ To manage lifecycle, set "com.toast.gamebase.activity.GamebaseMainActivity" as t
 
 ### iOS Settings
 
-1. Execute iOS build in a Unity project.
-2. Add settings to a new XCode project.
+> <font color="red">[Caution]</font>
+>
+> * Caution for Unity 2019.3 or later
+>     * Go to PROJECT > Unity-iPhone > Enable Bitcode and set it to No
+>     * Go to TARGETS > UnityFramework and add iOS SDK setting.
+>
 
-For setting of iOS SDK, refer to the guide as below.
-
-* [Link to iOS SDK Setting](./ios-started)
+1. Perform iOS build in the Unity project.
+2. Add the setting to the created XCode project.       
+    * [iOS SDK Settings Guide](./ios-started)
 
 ## API Reference
 

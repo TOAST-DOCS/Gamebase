@@ -6,13 +6,16 @@ To use other IdPs (identity providers, such as Google, Facebook, Line, NAVER, Tw
 
 
 ### Login Flow
-In most games, login is implemented on the title screen.
-* This allows you to select an IdP to be used for authentication on the initial title screen of the game.
 
-The logic described above can be implemented in the following sequence.
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
+In many games, login is implemented on a title page.
+
+* Allow a game user to decide which IdP to authenticate on a title screen, when an app is implemented for the first time after it is installed.
+* After initial login, the IdP selection screen does not show and authentication is made with the latest logged-in IdP.
+
+The logic described above can be implemented in the following order:
+
+![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
+![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
 #### 1. Authenticate with the specified IdP
 
@@ -60,6 +63,14 @@ The IdP types available for login are as follows:
 > 'Popup' is used for authentication in the Gamebase. If 'popup' is not allowed, the user may have to keep waiting in the 'trying to log in' state.
 > A message such as 'Please allow popup for the authentication step' should be displayed in advance for convenient user experience.
 >
+> Facebook has changed its policy regarding accessible browsers. 
+> This is causing forced transition to Edge browser when logging in with Facebook in the IE browser.
+> Thus, Chrome or Edge browser must be used when logging in with Facebook.
+> However, if you somehow have to use IE browser for Facebook login,
+> follow the below steps to prevent forced transition to Edge browser:
+> 1. Access the Edge browser settings.
+> 2. From the settings screen menu, select "Default Browser".
+> 3. Change the Internet Explorer Compatibility to "Never".
 
 ```js
 toast.Gamebase.login(providerName, (authToken, error) => { ... });

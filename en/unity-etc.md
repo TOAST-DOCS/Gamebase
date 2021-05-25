@@ -1042,25 +1042,66 @@ Gamebase provides features to respond to customer inquiries.
 
 > [TIP]
 >
-> By integrating with NHN Cloud Contact, customer inquiries can be handled more at ease and convenience. 
-> For more details on NHN Cloud Contact, see the guide as below: 
-> [NHN Cloud Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
+> Associate it with the NHN Cloud Contact service to easily respond to inquiries from customers.
+> See the guide below if you want to know how to use the NHN Cloud Contact service in detail.
+> [NHN Cloud Online Contact Guide] (/Contact%20Center/ko/online-contact-overview/)
+
+#### Customer Service Type
+
+In the **Gamebase Console > App > InApp URL > Service Center**, you can choose from three different types of Customer Centers.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
+
+| Customer Service Type     | Required Login |
+| ------------------------- | -------------- |
+| Developer customer center | X              |
+| Gamebase customer center  | △             |
+| NHN Cloud Online Contact      | △              |
+
+Gamebase SDK's Customer Center API uses the following URLs based on the type:
+
+* Developer's Customer Center
+    * URL specified in the **Customer Center URL** field.
+* Gamebase's Customer Center
+    * Before login: Customer Center URL **without** user information.
+    * After login: Customer Center URL with user information.
+* NHN Cloud organization product (Online Contact)
+    * Before login: Customer Center URL **without** user information.
+    * After login: Customer Center URL with user information.
 
 #### Open Contact WebView
 
-The webview for **Customer Center URL** can be displayed as on Gamebase Console.  
+Displays the Customer Center WebView.
+URL is determined by the customer center type.
+You can pass the additional information to the URL using ContactConfiguration.
 
-* Apply the same input values for **Gamebase Console > App > InApp URL > Service center**.
+**GamebaseRequest.Contact.Configuration**
+
+| Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
+| ------------- | ------------- | ---------------------------------- | ------------------ |
+| userName      | O             | string                             | User name (nickname)<br>**default** : null    |
+| additionalURL | O             | string                             | Additional URL which is appended after the developer's own customer center URL<br>**default** : null    |
+| extraData     | O             | dictionary<string, string>         | Passes the extra data wanted by the developer when opening the customer<br>**default** : null    |
 
 **API**
 
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
-static void OpenContact(GamebaseCallback.ErrorDelegate callback)
+static void OpenContact(GamebaseCallback.ErrorDelegate callback);
+static void OpenContact(GamebaseRequest.Contact.Configuration configuration, GamebaseCallback.ErrorDelegate callback);
 ```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initialize has not been called. |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | The Customer Center URL does not exist.<br>Check the **Customer Center URL** of the Gamebase Console. |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | Failed to issue a temporary ticket for user identification. |
+| UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | The Customer Center WebView is already being displayed. |
 
 **Example**
 
@@ -1071,19 +1112,84 @@ public void SampleOpenContact()
     {
         if (Gamebase.IsSuccess(error) == true)
         {
-            Debug.Log("OpenContact succeeded.");
+            // A user close the contact web view.
         }
-        else
+        else if (error.code == GamebaseErrorCode.UI_CONTACT_FAIL_INVALID_URL)  // 6911
         {
-            Debug.Log(string.Format("OpenContact failed. error:{0}", error));
+            // TODO: Gamebase Console Service Center URL is invalid.
+            // Please check the url field in the NHN Cloud Gamebase Console.
+        } 
+        else if (error.code == GamebaseErrorCode.UI_CONTACT_FAIL_ANDROID_DUPLICATED_VIEW) // 6913
+        { 
+            // The customer center web view is already opened.
+        } 
+        else 
+        {
+            // An error occur when opening the contact web view.
+        }
+    });
+}
+```
 
-            if (error.code == GamebaseErrorCode.WEBVIEW_INVALID_URL)
-            {
-                // Gamebase Console Service Center URL is invalid.
-                // Please check the url field in the NHN Cloud Gamebase Console.
-                var launchingInfo = Gamebase.Launching.GetLaunchingInformations();
-                Debug.Log(string.Format("csUrl:{0}", launchingInfo.launching.app.relatedUrls.csUrl));
-            }
+> <font color="red">[Caution]</font><br/>
+>
+> Contacting the Customer Center may require file attachment.
+> To do so, permissions for using the camera or using the storage must be acquired from the user at runtime.
+>
+> Android user
+>
+> * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
+>
+> * Unity users can implement this by referring to the following guide.
+> [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
+>
+> iOS user
+>
+> * Please set 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description' in info.plist.
+
+#### Request Contact URL
+
+Returns the URL used for displaying the Customer Center WebView.
+
+**API**
+
+```cs
+static void RequestContactURL(GamebaseCallback.GamebaseDelegate<string> callback);
+static void RequestContactURL(GamebaseRequest.Contact.Configuration configuration, GamebaseCallback.GamebaseDelegate<string> callback);
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initialize has not been called. |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | The Customer Center URL does not exist.<br>Check the **Customer Center URL** of the Gamebase Console. |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | Failed to issue a temporary ticket for user identification. |
+
+**Example**
+
+``` cs
+public void SampleRequestContactURL()
+{
+    var configuration = new GamebaseRequest.Contact.Configuration()
+                            {
+                                userName = "User Name"
+                            };
+
+    Gamebase.Contact.RequestContactURL(configuration, (url, error) => 
+    {
+        if (Gamebase.IsSuccess(error) == true) 
+        {
+            // Open webview with 'contactUrl'
+        } 
+        else if (error.code == GamebaseErrorCode.UI_CONTACT_FAIL_INVALID_URL) // 6911
+        { 
+            // TODO: Gamebase Console Service Center URL is invalid.
+            // Please check the url field in the NHN Cloud Gamebase Console.
+        } 
+        else 
+        {
+            // An error occur when requesting the contact web view url.
         }
     });
 }

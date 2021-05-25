@@ -3,32 +3,36 @@
 Coupons to be deployed to game users can be created in bulk and managed for game operations.  
 
 ## Publish Coupons
-You can publish or query coupons for the app.
+You can issue or search for coupons which can be used within the app.
 
-### Search
-Query history of published coupons according to search conditions.
+### Search Coupon publish
+Searches for coupon issuance history that matches the search conditions.
 ![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/gamebase_coupon_01_201912.png)
-**Search Conditions**
 
-- **Status**: (Required) Current status of the coupon: choose from All/Activate/Deactivate.
-- **Valid Period**: (Required) List available coupons during a selected period.
-- **Coupon Name**: Search by registered coupon name.
+**Search conditions**
 
-**Search Results**
+- **Status**: (required) You can select the current progress for the coupon (all, activated, inactivated).
+- **Expiration date:**: (required) Searches for the list of coupons available for use during the selected period.
+- **Coupon name**: Searches by registered coupon name.
 
-- **Coupon Name**: Name of a published coupon
-- **Coupon Type**: Type of a published coupon
-- **Supplied Item**: Name of registered item when published: for a multiple number of items, show one representative and n counts.
-- **Store**: Stores where coupons are available.
-- **Use/Publish**: Total amount of coupons used/published
-- **Valid Period**: Valid period of a coupon
-- **Published Date**: Date and time information of a published coupon
-- **Coupon Usage History**: Go to page to query usage history of a published coupon
-- **Download **: Download the list of detail coupon codes of published coupons
-- **Supplied Item**: Show if a published coupon can be registered or not
+**Search results**
 
-### Publish
-To publish, click Register on the query page of Publish Coupons.
+- **Coupon name**: Name of the issued coupon
+- **Coupon type**: Type of the issued coupon
+- **Issued item**: Name of the item registered upon issuance; if there are multiple items, they are displayed as 'Main item and N other(s)'
+- **Store**: Information of the store where you can use the coupon
+- **Use/Issue**: A total number of the issued coupons that were used/a total number of issuance
+- **Expiration date:**: Expiration date of the coupon
+- **Date and time of issuance**: Information about when the coupon was issued
+- **Coupon use history**: Switches to the screen where you can search for the use history of the issued coupon
+- **Download**: Downloads the detailed codes list for the issued coupon
+- **Provided item**: Shows whether the issued coupon can be registered
+
+### Publish coupon
+
+You can click the **Register** button on the coupon Issuance search screen to proceed with the coupon issuance
+
+
 ![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/gamebase_coupon_02_201912.png)
 
 #### (1) Coupon Type
@@ -49,20 +53,23 @@ Select a store to use published coupons.
 Currently, you can get **General** coupons only, and more times are to be added to get coupons from each store.
 
 #### (5) Valid Period
-Set active period of using published coupons.  
+Sets the period during which you can use the issued coupon
 
-#### (6) Published Count
-Set the number of coupon codes to be created.
-UP to 50 thousand coupon codes can be created with a single request.
+#### 6. Number of issuance
 
-#### (7) Available Count per User
-Set the maximum number of published coupons a user can use.
-The maximum number is 100, and with 0, unlimited usage is available.
+Sets the number of coupon codes to generate during issuance.
+Up to one million coupon codes can be created per request.
 
-#### (8) Item
-Enter information of items to be provided for coupon code registration.
-Select an item to provide and enter count of it on the right.
-To register an item, it must be registered first on the coupon item menu.
+#### 7. Number of coupons allowed per user
+
+Sets the max number of coupons allowed per user.
+Can be set to max value of 99. To make it unlimited, set it to  0.
+
+#### 8. Item
+
+Enter the item information to provide when the coupon code is redeemed.
+Select the item to issue, and enter the quantity on the right.
+You have to register the item in the Coupon Item menu first to be able to select it.
 
 
 > [Note]
@@ -71,9 +78,9 @@ To register an item, it must be registered first on the coupon item menu.
 
 ### Update Coupons
 
-To update information of already published coupon, press Update on Detail information.
-It is impossible to edit already published coupon code type; to get a new type of coupon, register new coupon information.
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_coupon_03_202003.png)
+To change the information about the issued coupon, click the **Modify** button in the Details.
+Since a coupon code type already issued cannot be edited, you must register new issuance information if you want to issue a new coupon type.
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_03_202011.png)
 
 #### (1) Coupon Name
 Enter name of a coupon along with the purpose.
@@ -100,11 +107,11 @@ Provides a feature that directly sends coupons to users using issued coupon info
 ![gamebase_ban_01_201812] (https://static.toastoven.net/prod_gamebase/gamebase_coupon_04_202003.png)
 ##### (1) Send type: Select the send type. Supports MMS/SMS. For MMS, you also need to enter the title to send it.
 
-#### (2) Select template: If you registered a template from the NHN Cloud SMS service, you can select and send that template. If you do not have any template registered, you do not have to select any.
+#### (2) Select template: If you registered a template from the TOAST Cloud SMS service, you can select and send that template. If you do not have any template registered, you do not have to select any.
 
 ##### (3) Advertisement: Select whether the SMS will be tagged as an advertisement. Remember that an advertisement must include an '(Ad) [Opt Out for Free]' string to be sent as an SMS.
 
-##### (4) Send number: Select the send number registered for NHN Cloud SMS. This number is presented as a sender number to the recipient.
+##### (4) Send number: Select the send number registered for TOAST Cloud SMS. This number is presented as a sender number to the recipient.
 
 ##### (5) Send type: Can select between Instant and Scheduled. If it is Instant, SMS is sent immediately after the button is clicked. If it is Scheduled, SMS is sent at the time you specified.
 
@@ -112,7 +119,7 @@ Provides a feature that directly sends coupons to users using issued coupon info
 
 ##### (7) Body: Enter the full body text to send. The ##code## character string is the one replaced with a coupon. If this character string is not included, the coupon won't be sent.
 
-##### (8) Call block number: Select the call block number registered for NHN Cloud SMS. If you want to send an advertisement, you need to specify that it is an advertisement. Since options on the Send screen are references visible to users, they need to be carefully written.
+##### (8) Call block number: Select the call block number registered for TOAST Cloud SMS. If you want to send an advertisement, you need to specify that it is an advertisement. Since options on the Send screen are references visible to users, they need to be carefully written.
 
 ##### (9) Receiver number: Register recipients using the target of the SMS. It can be either **number** or **number/coupon**. If only numbers are entered, they are sent in the order of their number.
 
@@ -122,10 +129,13 @@ Provides a feature that directly sends coupons to users using issued coupon info
 >
 > Regarding coupon item registration, see [Coupon Item](./oper-coupon/#Coupon Item).
 
+#### 7. Issue additional coupons
+If the coupon type is serial, you can receive up to 100 (100,000 at a time) additional coupons (including the initially issued quantity).
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_11_202011.png)
 
-#### 7. Coupon statistics
+#### 8. Coupon statistics
 SMS send history can be viewed at the bottom of the coupon issue details screen. The statistics related to issuing coupons can be viewed and the file can be downloaded.
-![gamebase_ban_01_201812] (https://static.toastoven.net/prod_gamebase/gamebase_coupon_05_202006.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_coupon_05_202006.png)
 
 The send statistics of SMS that actually sent to users can be checked via requested statistics. You can also download the detailed results by clicking the Request Download button on the right.
 The status after requesting download is as follows:

@@ -3,6 +3,24 @@
 ## Additional Features
 Gamebaseで対応している付加機能について説明します。
 
+### IDFA
+
+* 端末の広告識別子値をリターンします。
+
+**API**
+
+```objectivec
++ (NSString *)idfa;
+```
+
+> <font color="red">[注意]</font><br/>
+>
+> iOS 14から、IDFA値をリクエストする時、ユーザー権限を取得する必要があります。
+> ユーザー権限をリクエストする時に表示させる文言をinfo.plistに設定する必要があります。
+> info.plistに「Privacy - Tracking Usage Description」の設定を行ってください。
+
+
+
 
 ### Device Language
 
@@ -260,7 +278,7 @@ localizedstring.jsonに定義されている形式は、次の通りです。
  2. USIM国コードが空の値の場合は端末国コードを確認し、値があれば追加確認を行わずにそのまま返します。
 	3. USIM、端末国コードがどちらも空の値の場合は、'ZZ'を返します。
 
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
+![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
 **API**
 
@@ -348,7 +366,7 @@ localizedstring.jsonに定義されている形式は、次の通りです。
 * Gamebaseサーバーからクライアント端末へ送信するメッセージです。
 * GamebaseでサポートするServer Push Typeは次の通りです。
 	* kTCGBServerPushAppKickout
-    	* TOAST Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseに接続されたすべてのクライアントでキックアウトメッセージを受信します。
+    	* NHN Cloud Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseに接続されたすべてのクライアントでキックアウトメッセージを受信します。
     * kTCGBServerPushTransferKickout
     	* Guestアカウントを他の端末へ移行すると、以前の端末でキックアウトメッセージを受信します。
 
@@ -586,7 +604,7 @@ localizedstring.jsonに定義されている形式は、次の通りです。
 ```
 
 
-
+ 
 ### Analytics
 
 ゲーム指標をGamebaseサーバーに伝送できます。
@@ -679,32 +697,119 @@ Gamebaseでは顧客からの問い合わせに対応するための機能を提
 
 > [TIP]
 >
-> TOAST Contactサービスと連動して使用すると、より簡単に顧客からのお問い合わせに対応できます。
-> 詳細なTOAST Contactサービスの利用方法は以下のガイドを参照してください。
-> [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+> NHN Cloud Contactサービスと連動して使用すると、より簡単に顧客からのお問い合わせに対応できます。
+> 詳細なNHN Cloud Contactサービスの利用方法は以下のガイドを参照してください。
+> [NHN Cloud Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+
+#### Customer Service Type
+
+**Gamebaseコンソール > App > InApp URL > Service center** では、以下のように3つのタイプのサポートを選択できます。
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
+
+| Customer Service Type     | Required Login |
+| ------------------------- | -------------- |
+| Developer customer center | X              |
+| Gamebase customer center  | △              |
+| NHN Cloud Online Contact      | △              |
+
+各タイプに応じて、Gamebase SDKのサポートAPIは次のURLを使用します。
+
+* 開発会社独自のサポート(Developer customer center)
+    * **サポートURL**に入力したURL.
+* Gamebase提供のサポート(Gamebase customer center)
+    * ログイン前：ユーザー情報が**ない**サポートURL。
+    * ログイン後：ユーザー情報が含まれたサポートURL。
+* NHN Cloud組織商品(Online Contact)
+    * ログイン前：ユーザー情報が**ない**サポートURL.
+    * ログイン後：ユーザー情報が含まれたサポートURL。
 
 #### Open Contact WebView
 
-Gamebaseコンソールに入力した**サポートURL**Webビューを表示できる機能です。
-**Gamebaseコンソール > App > InApp URL > Service center**に入力した値が使用されます。
+Gamebaseコンソールに入力した**サポートURL** Webビューを表示できる機能です。
+TCGBContactConfigurationでURLに追加情報を伝達できます。
+
+
+**TCGBContactConfiguration**
+
+| Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
+| ------------- | ------------- | ---------------------------------- | ------------------ |
+| userName      | O             | string                             | ユーザー名前(ニックネーム)<br>**default** : nil    |
+| additionalURL | O             | string                             | 開発会社独自のサポートURLの後ろにつく追加のURL<br>サポートタイプが`CUSTOM`の場合にのみ使用<br>**default** : nil    |
+| extraData     | O             | dictionary<string, string>         | 開発会社が任意のextra dataをサポートオープン時に伝達<br>**default** : nil    |
+
 
 **API**
 
 ```objectivec
-+ (void)openContactWithViewController:(UIViewController *)viewController completion:(void(^)(TCGBError *error))completion;
++ (void)openContactWithViewController:(UIViewController *)viewController 
+                           completion:(void(^)(TCGBError *error))completion;
+
++ (void)openContactWithViewController:(UIViewController *)viewController
+                        configuration:(TCGBContactConfiguration *)configuration
+                           completion:(void(^)(TCGBError *error))completion;
 ```
+
+**Error Code**
+
+| Error                           | Error Code | Description                 |
+| ------------------------------- | ---------- | --------------------------- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1       | Gamebaseが初期化されていません。 |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | サポートURLが存在しません。<br>Gamebaseコンソールの**サポートURL**を確認してください。 |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | ユーザーを識別するための臨時チケットの発行に失敗しました。 |
 
 **Example**
 
 ```objectivec
-[TCGBContact openContactWithViewController:parentViewController completion:^(TCGBError *error) {
-    if (error != NULL && error.code == TCGB_ERROR_WEBVIEW_INVALID_URL) { // 7001
-        // TODO: Gamebase Console Service Center URL is invalid.
-        //  Please check the url field in the TOAST Gamebase Console.
-    } else if (error != NULL) {
-        // TODO: Error occur when opening the contact web view.
-    } else {
+[TCGBContact openContactWithViewController:self completion:^(TCGBError *error) {
+    if ([TCGBGamebase isSuccessWithError:error] == YES) {
         // A user close the contact web view.
+    } else if (error.code == TCGB_ERROR_UI_CONTACT_FAIL_INVALID_URL) {
+        // TODO: Gamebase Console Service Center URL is invalid.
+        // Please check the url field in the TOAST Gamebase Console.
+    } else {
+        // TODO: Error occur when opening the contact web view.
     }
 }];
 ```
+
+> <font color="red">[注意]</font><br/>
+>
+> サポートへのお問い合わせの際、ファイルを添付するために、カメラまたはアルバムへのアクセスが必要な場合があります。
+> info.plistに'Privacy - Camera Usage Description'、'Privacy - Photo Library Usage Description'の設定を行ってください。
+
+#### Request Contact URL
+
+サポートWebビューを表示するのに使用されるURLを取得できます。
+
+**API**
+
+```objectivec
++ (void)requestContactURLWithCompletion:(void(^)(NSString *contactUrl, TCGBError *error))completion;
+
++ (void)requestContactURLWithConfiguration:(TCGBContactConfiguration *)configuration
+                                completion:(void(^)(NSString *contactUrl, TCGBError *error))completion;
+```
+
+**Error Code**
+
+| Error                           | Error Code | Description                 |
+| ------------------------------- | ---------- | --------------------------- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1       | Gamebaseが初期化されていません。 |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | サポートURLが存在しません。<br>Gamebaseコンソールの**サポートURL**を確認してください。 |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | ユーザーを識別するための臨時チケットの発行に失敗しました。 |
+
+**Example**
+
+```objectivec
+[TCGBContact requestContactURLWithCompletion^(NSString *contactUrl, TCGBError *error){
+    if ([TCGBGamebase isSuccessWithError:error] == YES) {
+        NSLog(@"ContactURL : %@", contactUrl);
+    } else if (error.code == TCGB_ERROR_UI_CONTACT_FAIL_INVALID_URL) {
+        // TODO: Gamebase Console Service Center URL is invalid.
+        // Please check the url field in the TOAST Gamebase Console.
+    } else {
+        // TODO: Error occur when request contact url.
+    }
+}];
+```
+

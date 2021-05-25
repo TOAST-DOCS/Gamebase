@@ -505,7 +505,7 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 * Gamebaseサーバーからクライアント端末へ送信するメッセージです。
 * GamebaseでサポートするServer Push Typeは次の通りです。
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
-    	* TOAST Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseに接続されたすべてのクライアントでキックアウトメッセージを受信します。
+    	* NHN Cloud Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseに接続されたすべてのクライアントでキックアウトメッセージを受信します。
     * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
     	* Guestアカウントを他の端末へ移行すると、以前の端末でキックアウトメッセージを受信します。
 
@@ -1048,21 +1048,62 @@ Gamebaseは、顧客の問い合わせに対応するための機能を提供し
 > 詳細はNHN Cloud Contactサービスの利用ガイドを参照してください。
 > [NHN Cloud Online Contact Guide](/Contact%20Center/ja/online-contact-overview/)
 
+#### Customer Service Type
+
+**Gamebaseコンソール > App > InApp URL > Service center**では、以下の3つのタイプのサポートを選択できます。
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
+
+| Customer Service Type     | Required Login |
+| ------------------------- | -------------- |
+| Developer customer center | X              |
+| Gamebase customer center  | △             |
+| NHN Cloud Online Contact      | △              |
+
+タイプに応じてGamebase SDKのサポートAPIは次のURLを使用します。
+
+* 開発会社独自のサポート(Developer customer center)
+    * **サポートURL**に入力したURL.
+* Gamebase提供サポート(Gamebase customer center)
+    * ログイン前：ユーザー情報が**ない**サポートURL。
+    * ログイン後：ユーザー情報が含まれたサポートURL。
+* NHN Cloud組織商品(Online Contact)
+    * ログイン前：ユーザー情報が**ない**サポートURL。
+    * ログイン後：ユーザー情報が含まれたサポートURL。
+
 #### Open Contact WebView
 
-Gamebase Consoleに入力した**サポートURL**をWebビューで表示する機能です。
+サポートWebビューを表示します。
+URLはサポートタイプに基づいて決定されます。
+ContactConfigurationでURLに追加情報を伝達できます。
 
-**Gamebase Console > App > InApp URL > Service center**に入力した値が使用されます。
+**GamebaseRequest.Contact.Configuration**
+
+| Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
+| ------------- | ------------- | ---------------------------------- | ------------------ |
+| userName      | O             | string                             | ユーザー名(ニックネーム)<br>**default** : null    |
+| additionalURL | O             | string                             | 開発会社独自のサポートURLの後ろにつく追加のURL<br>**default** : null    |
+| extraData     | O             | dictionary<string, string>         | 開発会社が任意のextra dataをサポートオープン時に伝達<br>**default** : null    |
 
 **API**
 
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
-static void OpenContact(GamebaseCallback.ErrorDelegate callback)
+static void OpenContact(GamebaseCallback.ErrorDelegate callback);
+static void OpenContact(GamebaseRequest.Contact.Configuration configuration, GamebaseCallback.ErrorDelegate callback);
 ```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initializeが呼び出されませんでした。 |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | サポートURLが存在しません。<br>Gamebaseコンソールの**サポートURL**を確認してください。 |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | ユーザーを識別するための臨時チケットの発行に失敗しました。 |
+| UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | サポートWebビューがすでに表示中です。 |
 
 **Example**
 
@@ -1073,19 +1114,84 @@ public void SampleOpenContact()
     {
         if (Gamebase.IsSuccess(error) == true)
         {
-            Debug.Log("OpenContact succeeded.");
+            // A user close the contact web view.
         }
-        else
+        else if (error.code == GamebaseErrorCode.UI_CONTACT_FAIL_INVALID_URL)  // 6911
         {
-            Debug.Log(string.Format("OpenContact failed. error:{0}", error));
+            // TODO: Gamebase Console Service Center URL is invalid.
+            // Please check the url field in the NHN Cloud Gamebase Console.
+        } 
+        else if (error.code == GamebaseErrorCode.UI_CONTACT_FAIL_ANDROID_DUPLICATED_VIEW) // 6913
+        { 
+            // The customer center web view is already opened.
+        } 
+        else 
+        {
+            // An error occur when opening the contact web view.
+        }
+    });
+}
+```
 
-            if (error.code == GamebaseErrorCode.WEBVIEW_INVALID_URL)
-            {
-                // Gamebase Console Service Center URL is invalid.
-                // Please check the url field in the TOAST Gamebase Console.
-                var launchingInfo = Gamebase.Launching.GetLaunchingInformations();
-                Debug.Log(string.Format("csUrl:{0}", launchingInfo.launching.app.relatedUrls.csUrl));
-            }
+> <font color="red">[注意]</font><br/>
+>
+> サポートへお問い合わせする時、ファイルの添付が必要な場合があります。
+> そのため、ユーザーからカメラ撮影やStorage保存の権限をランタイムに取得する必要があります。
+>
+> Androidユーザー
+>
+> * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
+>
+> * Unityユーザーは、以下のガイドを参照して実装できます。
+> [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
+>
+> iOSユーザー
+>
+> * info.plistに'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description'を設定してください。
+
+#### Request Contact URL
+
+サポートWebビューを表示するのに使用されるURLをリターンします。
+
+**API**
+
+```cs
+static void RequestContactURL(GamebaseCallback.GamebaseDelegate<string> callback);
+static void RequestContactURL(GamebaseRequest.Contact.Configuration configuration, GamebaseCallback.GamebaseDelegate<string> callback);
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initializeが呼び出されませんでした。 |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | サポートURLが存在しません。<br>Gamebaseコンソールの**サポートURL**を確認してください。 |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | ユーザーを識別するための臨時チケットの発行に失敗しました。 |
+
+**Example**
+
+``` cs
+public void SampleRequestContactURL()
+{
+    var configuration = new GamebaseRequest.Contact.Configuration()
+                            {
+                                userName = "User Name"
+                            };
+
+    Gamebase.Contact.RequestContactURL(configuration, (url, error) => 
+    {
+        if (Gamebase.IsSuccess(error) == true) 
+        {
+            // Open webview with 'contactUrl'
+        } 
+        else if (error.code == GamebaseErrorCode.UI_CONTACT_FAIL_INVALID_URL) // 6911
+        { 
+            // TODO: Gamebase Console Service Center URL is invalid.
+            // Please check the url field in the NHN Cloud Gamebase Console.
+        } 
+        else 
+        {
+            // An error occur when requesting the contact web view url.
         }
     });
 }

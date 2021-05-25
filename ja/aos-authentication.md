@@ -6,22 +6,20 @@ Gamebaseでは基本的にゲストログインに対応しています。
 
 * ゲスト以外のProviderでログインするためには、該当するProvider AuthAdapterが必要です。
 * AuthAdapter及び3rd-Party Provider SDKの設定は、次をご参考ください。
-  [3rd-Party Provider SDK Guide](aos-started#3rd-party-provider-sdk-guide)
-
+    * [Game > Gamebase > Android SDK使用ガイド > 始める > Setting > Gradle](./aos-started/#gradle)
+    * [Game > Gamebase > Android SDK使用ガイド > 始める > Setting > Console > 3rd-Party Provider SDK Guide](./aos-started/#console)
 
 ### Login Flow
 
 多くのゲームがタイトル画面にログインを設計しています。
+
 * アプリをインストールして初めて起動したとき、タイトル画面からゲームユーザーがどのIdP(identity provider)で認証を行うか選択できるようにします。
 * 一度ログインした後はIdP選択画面を表示せずに、前回ログインしたIdPタイプで認証します。
 
 上述したロジックは、次のような手順で設計することができます。
 
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
+![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
 #### 1. 前回のログインタイプで認証
 
@@ -42,7 +40,7 @@ Gamebaseでは基本的にゲストログインに対応しています。
     * **BanInfo.from(exception)**で利用制限情報を確認し、ゲームユーザーに対しゲームプレイができない理由についてご案内ください。
     * Gamebaseを初期化する際に**GamebaseConfiguration.Builder.enablePopup(true)**及び**enableBanPopup(true)**を呼び出せば、Gamebaseが利用停止に関するポップアップを自動で表示します。
 * その他のエラー
-    * 前回のログインタイプで認証に失敗しているため、**3. 指定されたIdPで認証**を進めてください。
+    * 前回のログインタイプで認証に失敗しているため、**'2. 指定されたIdPで認証'**を進めてください。
 
 #### 2. 指定されたIdPで認証
 
@@ -184,7 +182,13 @@ private static void onLoginForGuest(final Activity activity) {
 ### Login with IdP
 
 次は特定のIdPでログインできるようにするコード例です。<br/>
-ログイン可能なIdPのタイプは、**AuthProvider **クラスから確認することができます。
+ログイン可能なIdPのタイプは、**AuthProvider**クラスから確認することができます。
+
+> <font color="red">[注意]</font><br/>
+>
+> PAYCO IdPは、iOSで認証モジュールであるにもかかわらず、外部決済と誤認されてリジェクトされるケースが発生して
+> AuthProvider.PAYCOの定数を提供しなくなったため、
+> "payco"という文字列を直接パラメータとして渡す必要があります。
 
 **API**
 
@@ -246,7 +250,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 | keyname                                  | a use                                    | 値の種類                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | IdPタイプの設定                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
+| AuthProviderCredentialConstants.PROVIDER_NAME | IdPタイプの設定                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.HANGAME<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)の設定<br/>Google認証の場合は使用しない |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Googleログイン後に取得できるOTAC(one time authorization code)の入力 |                                          |
 
@@ -442,8 +446,8 @@ private static void onWithdraw(final Activity activity) {
 * GamebaseユーザーID：123bcabca
     * Google ID：aa
     * Facebook ID：bb
-    * Apple Game Center ID：cc
-    * Payco ID：dd
+    * AppleID ID: cc
+    * Twitter ID: dd
 * GamebaseユーザーID：456abcabc
     * Google ID：ee
     * Google ID：ff **-> すでにGoogleのeeアカウントに連携されているため、Googleアカウントを追加で連携させることができません。**
@@ -567,7 +571,7 @@ private static void addMappingForFacebook(final Activity activity) {
 
 | keyname                                  | a use                                    | 値の種類                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | IdPタイプの設定                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
+| AuthProviderCredentialConstants.PROVIDER_NAME | IdPタイプの設定                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)の設定<br/>Google認証の場合は使用しない  |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Googleログイン後に取得できるOTOC(one time authorization code)の入力 |                                          |
 
@@ -720,7 +724,7 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 
 | keyname                                  | a use                                    | 値種類                                 |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | IdPタイプ設定                            | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
+| AuthProviderCredentialConstants.PROVIDER_NAME | IdPタイプ設定                            | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)設定。<br/>Google認証時には使用しない。 |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Googleログイン後に取得できるOTOC(one time authorization code)入力 |                                          |
 
@@ -848,12 +852,6 @@ private static void removeMappingForFacebook(final Activity activity) {
 ## Gamebase User`s Information
 Gamebaseで認証フローを進めた後、アプリを制作する際に必要な情報を取得することができます。
 
-> <font color="red">[注意]</font><br/>
->
-> "Gamebase.loginForLastLoggedInProvider()"APIでログインした場合、認証情報を取得することができません。
->
-> 認証情報が必要な場合、"Gamebase.loginForLastLoggedInProvider()"の代わりに使用したいIDPCodeと同じ{IDP_CODE}をパラメーターとし、"Gamebase.login(activity, IDP_CODE, callback)"APIでログインしないと認証情報を正常に取得することができません。
-
 ### Get Authentication Information for Gamebase
 Gamebaseから発行された認証情報を取得することができます。
 
@@ -879,10 +877,14 @@ String accessToken = Gamebase.getAccessToken();
 String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
 ```
 
-
 ### Get Authentication Information for External IdP
 
 外部の認証SDKでアクセストークン、ユーザーID、Profileなどの情報を取得することができます。
+
+> <font color="red">[注意]</font><br/>
+>
+> * "Gamebase.loginForLastLoggedInProvider()" APIでログインした場合には、認証情報を取得できません。
+>     * ユーザー情報が必要な場合は、"Gamebase.loginForLastLoggedInProvider()"の代わりに、使用したいIDPCodeと同じ{IDP_CODE}をパラメータにして"Gamebase.login(activity, IDP_CODE, callback)"APIでログインする必要があります。
 
 **API**
 
@@ -1227,7 +1229,7 @@ public static void testWithdrawImmediately() {
 |                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | 無効なTransferAccountを複数回入力したため、アカウント移行機能がロックされました。 |
 |                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | TransferAccountのIDが有効ではありません。 |
 |                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | TransferAccountのパスワードが有効ではありません。 |
-|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccountが設定されていません。<br/>先にNHN Cloud Gamebaseコンソールで設定してください。 |
+|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccountが設定されていません。<br/>先にTOAST Gamebaseコンソールで設定してください。 |
 |                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccountがありません。先にTransferAccountを発行してください。 |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccountがすでに存在します。 |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccountはすでに使われています。 |

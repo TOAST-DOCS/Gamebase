@@ -62,12 +62,13 @@ dependencies {
 </manifest>
 ```
 
-#### 6. Initialization
+### Initialization
 
 * Store code must be specified to initialize Gamebase. 
 * Select **STORE_CODE** among the following:  
     * GG: Google
     * ONESTORE: OneStore
+    * GALAXY: Galaxy Store
 
 ```java
 String STORE_CODE = "GG";	// Google
@@ -80,10 +81,10 @@ Gamebase.initialize(activity, configuration, callback);
 
 ### Purchase Flow
 
-Purchase of an item can be divided into Purchase Flow, Consume Flow, and Reprocess Flow.  
+Purchase of an item can be divided into **Purchase Flow**, **[Consume Flow](./aos-purchase/#consume-flow)**, and **[Reprocess Flow](./aos-purchase/#retry-transaction-flow)**.  
 You may execute an item purchase in the following order: 
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
+![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
 1. When a previous purchase has not been closed, purchase fails unless reprocessing runs. Therefore, call **requestItemListOfNotConsumed** before payment so as to run reprocessing, and execute Consume Flow if there's any unsupplied item. 
 2. For the game client, call **requestPurchase** of Gamebase SDK to make a purchase. 
@@ -91,22 +92,29 @@ You may execute an item purchase in the following order:
 
 ### Consume Flow
 
-If there's a value on the list of non-consumable purchases, execute Consume Flow in the following order:
+If there's a value on the list of non-consumable purchases, execute **Consume Flow** in the following order:
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.10.0.png)
+> <font color="red">[Caution]</font><br/>
+>
+> To prevent the multiple issuance of the same purchased item, always check the game server for issuance history of items.
+>
+
+![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
 
 1. The game client requests for Consume of a purchase item on the game server. 
-    * Deliver UserID, itemSeq, paymentSeq, and purchaseToken.
-2. The game server tracks down the history of item supplies with same paymentSeq, or purchaseToken within game database.  
-    * 2-1 If not supplied yet, supply the item for itemSeq to UserID.   
-    * 2-2 After item is provided, save UserID, itemSeq, paymentSeq, and purchaseToken to game database so as to check redundancy.  
+    * Deliver UserID, gamebaseProductId, paymentSeq, and purchaseToken.
+2. The game server tracks down the history of item supplies with same paymentSeq within game database.  
+    * 2-1 If not supplied yet, supply the item for gamebaseProductId to UserID.   
+    * 2-2 After item is provided, save UserID, gamebaseProductId, paymentSeq, and purchaseToken to game database so as to check redundancy.  
 3. The game server calls Consume API to the Gamebase server to complete with item supply.
-    * [API Guide > Purchase (IAP) > Consume](./api-guide/#consume)
+    * [Game > Gamebase > API Guide > Purchase (IAP) > Consume](./api-guide/#consume)
 
 ### Retry Transaction Flow
 
+![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
+
 * Sometimes, a successful purchase at store ends up with failed closure, due to error. 
-* Call **requestItemListOfNotConsumed** to run reprocessing and execute Consume Flow for any non-supplied items.
+* Call **requestItemListOfNotConsumed** to run reprocessing and execute [Consume Flow](./aos-purchase/#consume-flow) for any non-supplied items.
 * It is recommended to call reprocessing in time for the following: 
     * After login is completed 
     * Before payment 
@@ -268,7 +276,6 @@ See the guide on how to process a promotional purchase event via GamebaseEventHa
 | PURCHASE_NOT_INITIALIZED                 | 4001       | The purchase module is not initialized.<br>Check if the gamebase-adapter-purchase-IAP module has been added to the project. |
 | PURCHASE_USER_CANCELED                   | 4002       | Purchase is cancelled.                 |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | API has been called when a purchase logic is not completed.     |
-| PURCHASE_NOT_ENOUGH_CASH                 | 4004       | Cannot purchase due to shortage of cash of the store.             |
 | PURCHASE_INACTIVE_PRODUCT_ID             | 4005       | Product is not activated.  |
 | PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | Requested for purchase with invalid GamebaseProductID. |
 | PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | The store is not supported.<br>You can choose either GG (Google), ONESTORE, GALAXY. |
@@ -284,7 +291,7 @@ See the guide on how to process a promotional purchase event via GamebaseEventHa
 * Check the error code as below.
 
 ```java
-Gamebase.Purchase.requestPurchase(activity, itemSeq, new GamebaseDataCallback<PurchasableReceipt>() {
+Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataCallback<PurchasableReceipt>() {
     @Override
     public void onCallback(PurchasableReceipt data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {

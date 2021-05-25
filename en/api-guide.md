@@ -2,6 +2,9 @@
 
 ## Updates
 - IAP(In App Purchase) New items have been added to or deleted from the request parameters and response results of API.
+- Added Push Wrapping API.
+- Added the "Get IdP Token and Profiles" API capable of acquiring the profile and token info of the IdP used for logging in with the Gamebase Access Token.
+- Added the "Get UserId Information with IdP Id" API which acquires the Gamebase userId mapped with IdP Id.
 
 ## Advance Notice
 
@@ -17,7 +20,8 @@ To call API, below address is needed, which is also available in the Gamebase Co
 #### AppId
 
 App ID, as a project ID of NHN Cloud, can be found on the **Project List** page of the Console.
-![image alt](https://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
+
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
 #### SecretKey
 
@@ -174,6 +178,82 @@ Check common requirements.
 | authList[].authKey | String | User separator issued at authSystem  |
 | temporaryWithdrawal | Object | Information regarding pending withdrawal <br>Only "T" value provides valid |
 | temporaryWithdrawal.gracePeriodDate | String | Expiration time for pending withdrawal ISO 8601 |
+
+**[Error Code]**
+
+[Error Code](./error-code/#server)
+
+<br/>
+#### Get IdP Token and Profiles
+
+Gamebase Access Token which is issued upon successful login with "Login with IdP" from the client side. It views the Access Token and Profiles information of the IdP used for login.
+
+> [Caution]
+> IdP's Access Token expiration date varies by IdP, and they are usually short.
+> If you successfully log in with "Login as the Latest Login IdP" from the client and call the API from the server, you may not be able to acquire IdP info because IdP's Access Token has been expired.
+
+<br/>
+
+> [Note]
+> There are also IdPs that are unable to acquire info with the IdP's Access Token only.
+> e.g. appleid / iosgamecenter : there are no information you can retrieve from Server to Server with Access Token.
+
+<br/>
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}/idps/{idPCode}?accessToken={accessToken} |
+
+**[Request Header]**
+
+Checks common items
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud project ID |
+| userId | String | ID of the logged-in user |
+| idPCode | String | User authentication IdP info <br>google, payco, facebook, etc. |
+
+**[Request Parameter]**
+
+| Name | Type | Required |  Value |
+| --- | --- | --- | --- |
+| accessToken | String | mandatory | Gamebase Access Token issued to the logged-in user |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "transactionId": "String",
+        "isSuccessful": true
+    },
+    "idPProfile": {
+        "sub": "String",
+        "name": "String",
+        "given_name": "String",
+        "locale": "ko",
+        "picture": "String"
+    },
+    "idPToken": {
+        "idPCode": "google",
+        "accessToken": "ya29.a0AfH6SMCF-MjD_-Eqi62Jm-51IPxnS6HpahqpxqbuaWZPXc68YMmW3sRdif4k7Dmp2Ppn1xzH-JQwPLDv4tMrDFAknG4m_lrHQt4J4En7DAG0bZV4z8uJZE1zYOXHp8"
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| idPProfile | Map<String, Object> | IdP's profile used by the logged-in user<br>- All response formats vary depending on the IdP |
+| idPToken | Object | IdP's Access Token info used by the logged-in user |
+| idPToken.idPCode | String | IdP code |
+| idPToken.accessToken | String | IdP Access Token |
 
 **[Error Code]**
 
@@ -480,7 +560,6 @@ Check common requirements.
 | memberList[].appId   | String         | appId                                    |
 | memberList[].regDate | String         | Time when a user created an account      |
 
-
 **[Error Code]**
 
 [Error Code](./error-code/#server)
@@ -493,9 +572,9 @@ Retrieve IdP information mapped with user ID.
 
 **[Method, URI]**
 
-| Method | Type | URI |
-| --- | --- | --- |
-| POST | String | /tcgb-member/v1.3/apps/{appId}/auth/authKeys |
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-member/v1.3/apps/{appId}/auth/authKeys |
 
 **[Request Header]**
 
@@ -603,6 +682,61 @@ Check common requirements.
 **[Error Code]**
 
 [Error Code](./error-code/#server)
+
+<br>
+
+#### Get UserId Information with IdP Id
+
+Views the information of user ID mapped with IdP ID.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-gateway/v1.3/apps/{appId}/idps/{idPCode}/members |
+
+**[Request Header]**
+
+Check common requirements.
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud project ID |
+| idPCode | String | IdP info <br>- payco, google, facebook, iosgamecenter, appleid, twitter, hangame |
+
+**[Request Body]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| idPIdList | Array[String] | mandatory | IdP ID of users to be searched for  ["idPId", "idPId", "idPId",...] <br> Max size of the list to be searched is 300 |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "idPId": "userId",
+        "idPId": "userId",
+        "idPId": "userId"
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Map<String, String> | ID info of the viewed users <br>- IdP ID is the key, and Gamebase userId is the value<br>- If the userID info containing the IdP ID requested for view does not exist, it won't be available in the response result. |
+
+**[Error Code]**
+
+[Error code](./error-code/#server)
 
 <br>
 
@@ -944,7 +1078,7 @@ None
 
 **[Error Code]**
 
-[Error code] (./error-code/#server)
+[Error code](./error-code/#server)
 
 <br>
 <br>
@@ -1096,13 +1230,17 @@ Check common issues
 
 #### Consume
 
-After purchase is completed at each store, such as Google Play Store, App Store, and ONEStore, users must be notified to consume such purchase before item is provided. Consume only once per purchase, but if purchase state is not normal, it cannot be consumed.    
-(If purchase is consumed, user's purchase and item supply is deemed to have been complete.)
-
-Non-consumed purchases can be queried on SDK or server via Query Consume Non-Consumed Purchases API. Note that only consumable items can be consumed when registering items.  
+If the store payment (Google Play Store, App Store, ONEStore, etc.) has successfully been made, it issues the purchased items to the user, records the purchase history in the server, and then informs the Gamebase of the payment consumption. You can consume payment only once per payment, and the payment is not consumed if the payment status is not normal.
 
 > [Note]
-> Consume once per purchase, and non-consumed purchases are considered that no item has been provided by IAP.
+> Only the item payment with the product type CONSUMABLE at the time of registration will be consumed.
+> Can consume once per payment, and IAP regards any payment without consumption as not issuing the purchased item.
+
+Unconsumed payment history can be viewed through SDK and View Unconsumed Payment History API. Even if the unconsumed payment history exists through the API, the provisioning history within the game server becomes the priority if the game server has the history about the item provisioning.
+(If API timeout occurs due to network failure or some other problems, it can be processed as having issued the items from Gamebase whereas the items might not be issued to the actual user in the game server due to API response failure)
+
+> [Note]
+> If the game cannot manage all item issuance history internally, at least set the API request timeout to 10 sec or longer and record the history at the time of API timeout as safety measures to resolve issues regarding repeated/failed issuance of items
 
 **[Method, URI]**
 
@@ -1374,6 +1512,11 @@ N/A
 
 Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping, NHN Cloud products become available at a user server on a consistent interface.
 
+> [Note]
+> Once the Gamebase is activated, you can call Gamebase Wrapping API to use the Leaderboard function without setting the Leaderboard Appkey.
+
+<br>
+
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
@@ -1381,6 +1524,8 @@ Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping
 | Retrieve Score/Rank of a Single User     | GET    | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
 | Retrieve Scores/Ranks of Multiple Users  | POST   | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
 | Retrieve Entire Scores/Ranks of Range    | GET    | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
+| Search for users in certain ranks | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| Search for the rank of certain users, and search for the rank of top- & low-rank users | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} | /leaderboard/v2.0/appkeys/{appkey}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} |
 | Register Score of a Single User          | POST   | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
 | Register Score/ExtraData of a Single User | POST   | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
 | Register Scores of Multiple Users        | POST   | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
@@ -1388,21 +1533,89 @@ Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping
 | Delete Leaderboard Information of a Single User | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
 
 **For more information of the API, click the following link.**
+To find out about Leaderboard API specs mapped with Gamebase Wrapping API, see the following guide.
+Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Leaderboard API without setting the Leaderboard Appkey.
 
 [Leaderboard Guide](/Game/Leaderboard/en/api-guide/)
+
+<br/>
 
 ##### Example of API Call
 
 ```
+GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
+
+Content-Type: application/json
+X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
+X-Secret-Key: IgsaAP
+```
+
+<br/>
+<br/>
+
+## Push
+
+Gamebase provides **Wrapping** function for the Server API of the NHN Cloud Push service. By using the Wrapping function, you can use the NHN Cloud services on the user server with consistent interfaces.
+
+> [Note]
+> Once the Gamebase is activated, you can call the Gamebase Wrapping API to use the Push function without setting the Push Appkey.
+
+<br>
+
+#### Wrapping API
+|    | API | Method | Wrapping URI | Push URI |
+| --- | --- | --- | --- | --- |
+| Message | Send | POST | /tcgb-push/v1.3/apps/{appId}/messages | /push/v2.4/appkeys/{appkey}/messages |
+|   | View | GET | /tcgb-push/v1.3/apps/{appId}/messages | /push/v2.4/appkeys/{appkey}/messages |
+|   | View sent log | GET | /tcgb-push/v1.3/apps/{appId}/logs/message | /push/v2.4/appkeys/{appkey}/logs/message |
+| Scheduled message | Create send schedule | POST | /tcgb-push/v1.3/apps/{appId}/schedules | /push/v2.4/appkeys/{appkey}/schedules |
+|   | Create | POST | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+|   | View list | GET | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+|   | View a single item | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id} | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id} |
+|   | View sent ones | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id}/messages | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id}/messages |
+|   | Modify | PUT | /tcgb-push/v1.3/apps/{appId}/reservations/{reservationId} | /push/v2.4/appkeys/{appkey}/reservations/{reservationId} |
+|   | Delete | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+
+
+**For more information of the API, click the following link.**
+To find out about the Push API spec mapped with Gamebase Wrapping API, see the following guide.
+Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Push API without setting the Push Appkey.
+
+[Push Guide](/Notification/Push/en/api-guide/)
+
+<br/>
+
+##### Example of API Call
+
+```
+POST https://api-gamebase.cloud.toast.com/tcgb-push/v1.3/apps/{appId}/messages
+
 Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 X-Secret-Key: IgsaAP
 
-GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
+{
+    "target" : {
+        "type" : "UID",
+        "to": ["uid-1", "uid-2"]
+    },
+    "content" : {
+        "default" : {
+            "title": "title",
+            "body": "body"
+        }
+    },
+    "messageType" : "AD",
+    "contact": "1588-1588",
+    "removeGuide": "매뉴 > 설정",
+    "timeToLiveMinute": 1,
+    "provisionedResourceId": "id",
+    "adWordPosition": "TITLE"
+}
 ```
 
-<br>
-<br>
+<br/>
+<br/>
 
 ## Others
 

@@ -2,6 +2,7 @@
 ![gamebase_purchase_01_201812](http://static.toastoven.net/prod_gamebase/Console_IAP_Select_currency_1.0.png)
 要使用IAP菜单，必须先要从销售指标选项卡中选择一种货币。
 将设置的货币代码显示在Analytics销售指标中（只能设置一次）。
+一旦选择，货币代码将无法更改，请慎重选择。
 
 ## Game > Gamebase > 控制台使用指南 > IAP
 

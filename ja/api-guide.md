@@ -1,7 +1,10 @@
-## Game > Gamebase > API v1.3 가이드
+## Game > Gamebase > API v1.3ガイド
 
 ## 変更事項
 - IAP(In App Purchase) APIのリクエストパラメータおよびレスポンス結果に新しい項目が追加および削除されました。
+- Push Wrapping APIが追加されました。
+- Gamebase Access Tokenでログインする時に使用されたIdPのプロフィールおよびトークン情報を取得できる"Get IdP Token and Profiles" APIが追加されました。
+- IdP IdでマッピングされたGamebase userIdを取得する"Get UserId Information with IdP Id" APIが追加されました。
 
 ## Advance Notice
 
@@ -16,7 +19,7 @@ APIを呼び出すためのサーバーアドレスは、次の通りです。�
 
 #### AppId
 
-アプリIDとはTOASTプロジェクトのIDのことであり、アプリメニューの画面から確認することができます。
+アプリIDとはNHN CloudプロジェクトのIDのことであり、アプリメニューの画面から確認することができます。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
@@ -106,7 +109,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトのID |
+| appId | String | NHN CloudプロジェクトのID |
 | userId | String | ログインしたユーザーのID |
 | accessToken | String | ログインしたユーザーに発行されたAccess Token |
 
@@ -180,6 +183,84 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [エラーコード](./error-code/#server)
 
+
+<br/>
+
+#### Get IdP Token and Profiles
+
+クライアントから"Login with IdP"でログインが成功した時に発行されたGamebase Access Tokenです。ログインに使用されたIdPのAccess TokenおよびProfiles情報を照会します。
+
+> [注意]
+> IdPのAccess Token有効時間はIdPごとに全て異なり、一般的に短いです。
+> クライアントから"Login as the Latest Login IdP"を利用してログインに成功し、その後サーバーで該当APIを呼び出す場合、すでにIdPのAccess Tokenが期限切れになり、IdP情報の取得に失敗することがあります。
+
+<br/>
+
+> [参考]
+> IdPのAccess Tokenだけで情報を取得できないIdPも存在します。
+> ex) appleid / iosgamecenter : Access TokenでServer to Serverから取得できる情報がありません。
+
+<br/>
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}/idps/{idPCode}?accessToken={accessToken} |
+
+**[Request Header]**
+
+共通事項確認
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN CloudプロジェクトID |
+| userId | String | ログインしたユーザーID |
+| idPCode | String | ユーザー認証IdP情報 <br>google、payco、facebookなど |
+
+**[Request Parameter]**
+
+| Name | Type | Required |  Value |
+| --- | --- | --- | --- |
+| accessToken | String | mandatory | ログインしたユーザーに発行されたGamebase Access Token |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "transactionId": "String",
+        "isSuccessful": true
+    },
+    "idPProfile": {
+        "sub": "String",
+        "name": "String",
+        "given_name": "String",
+        "locale": "ko",
+        "picture": "String"
+    },
+    "idPToken": {
+        "idPCode": "google",
+        "accessToken": "ya29.a0AfH6SMCF-MjD_-Eqi62Jm-51IPxnS6HpahqpxqbuaWZPXc68YMmW3sRdif4k7Dmp2Ppn1xzH-JQwPLDv4tMrDFAknG4m_lrHQt4J4En7DAG0bZV4z8uJZE1zYOXHp8"
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| idPProfile | Map<String, Object> | ログインしたユーザーが使用したIdPのプロフィール<br>- IdPごとに全てのレスポンス形式(format)が異なる |
+| idPToken | Object | ログインしたユーザーが使用したIdPのAccess Token情報 |
+| idPToken.idPCode | String | IdP code |
+| idPToken.accessToken | String | IdP Access Token |
+
+**[Error Code]**
+
+[エラーコード](./error-code/#server)
+
 <br>
 <br>
 
@@ -204,7 +285,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトID |
+| appId | String | NHN CloudプロジェクトID |
 
 **[Request Parameter]**
 
@@ -342,7 +423,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトのID |
+| appId | String | NHN CloudプロジェクトのID |
 | userId | String | 照会対象のユーザーID |
 
 **[Request Parameter]**
@@ -430,7 +511,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 <br>
 
-#### Get members
+#### Get Members
 
 複数の会員情報を簡素化して照会します。
 
@@ -448,7 +529,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトのID |
+| appId | String | NHN CloudプロジェクトのID |
 
 **[Request Body]**
 
@@ -497,9 +578,9 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Method, URI]**
 
-| Method | Type | URI |
-| --- | --- | --- |
-| POST | String | /tcgb-member/v1.3/apps/{appId}/auth/authKeys |
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-member/v1.3/apps/{appId}/auth/authKeys |
 
 **[Request Header]**
 
@@ -509,7 +590,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトのID |
+| appId | String | NHN CloudプロジェクトのID |
 
 **[Request Body]**
 
@@ -570,7 +651,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトのID |
+| appId | String | NHN CloudプロジェクトのID |
 
 **[Request Parameter]**
 
@@ -610,6 +691,61 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 <br>
 
+#### Get UserId Information with IdP Id
+
+IdP IDでマッピングされたユーザーID情報を照会します。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-gateway/v1.3/apps/{appId}/idps/{idPCode}/members |
+
+**[Request Header]**
+
+Check common requirements.
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud project ID |
+| idPCode | String | IdP情報 <br>- payco, google, facebook, iosgamecenter, appleid, twitter, hangame |
+
+**[Request Body]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| idPIdList | Array[String] | mandatory | 照会対象ユーザーのIdP ID  ["idPId", "idPId", "idPId",...] <br> 照会対象リストサイズは最大300 |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "idPId": "userId",
+        "idPId": "userId",
+        "idPId": "userId"
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Map<String, String> | 照会されたユーザーのID情報 <br>- IdP IDがkey、Gamebase userIdがvalue<br>- 照会リクエストしたIdP IDを持つuserId情報がない場合はレスポンス結果に存在しません。 |
+
+**[Error Code]**
+
+[エラーコード](./error-code/#server)
+
+<br>
+
 #### Ban Histories
 
 ユーザー利用停止履歴を照会します。
@@ -628,7 +764,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトID |
+| appId | String | NHN CloudプロジェクトID |
 
 **[Request Parameter]**
 
@@ -693,7 +829,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | pagingInfo.totalElements | int | 総データ数 |
 | pagingInfo.totalPages | int | 総ページ数 |
 | result | Array[Object] | 照会された利用停止内訳 |
-| result.appId | String | 照会された利用停止のTOASTプロジェクトID |
+| result.appId | String | 照会された利用停止のNHN CloudプロジェクトID |
 | result.banCaller | String | 利用停止指示者 |
 | result.banReason | String | 利用停止理由 |
 | result.banType | String | 利用停止タイプ。TEMPORARYまたはPERMANENT |
@@ -735,7 +871,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトID |
+| appId | String | NHN CloudプロジェクトID |
 
 **[Request Parameter]**
 
@@ -800,7 +936,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | pagingInfo.totalElements | int | 総データ数 |
 | pagingInfo.totalPages | int | 総ページ数 |
 | result | Array[Object] | 照会された利用停止情報 |
-| result.appId | String | 照会された利用停止のTOASTプロジェクトID |
+| result.appId | String | 照会された利用停止のNHN CloudプロジェクトID |
 | result.banCaller | String | 利用停止指示者 |
 | result.banReason | String | 利用停止理由 |
 | result.banType | String | 利用停止タイプ。TEMPORARYまたはPERMANENT |
@@ -842,7 +978,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトID |
+| appId | String | NHN CloudプロジェクトID |
 
 **[Request Parameter]**
 
@@ -921,7 +1057,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトID |
+| appId | String | NHN CloudプロジェクトID |
 | userId | String | 退会対象ユーザーID |
 
 **[Request Parameter]**
@@ -949,7 +1085,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Error Code]**
 
-[Error code](./error-code/#server)
+[エラーコード](./error-code/#server)
 
 <br>
 <br>
@@ -974,7 +1110,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトのID |
+| appId | String | NHN CloudプロジェクトのID |
 
 **[Request Parameter]**
 
@@ -1037,7 +1173,7 @@ Consoleを通して発行されたクーポンコードに対して、有効性�
 
 | Method | URI |
 | --- | --- |
-| POST | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}/coupons/{couponCode} |
+| POST | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}/coupons/{couponCode}?storeCode={storeCode} |
 
 **[Request Header]**
 
@@ -1047,7 +1183,7 @@ Consoleを通して発行されたクーポンコードに対して、有効性�
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトID |
+| appId | String | NHN CloudプロジェクトID |
 | userId | String | クーポンを使用するuserId |
 | couponCode | String | クーポンコード |
 
@@ -1097,17 +1233,21 @@ Consoleを通して発行されたクーポンコードに対して、有効性�
 <br>
 <br>
 
-## Purchase(IAP)
+## Purchase (IAP)
 
 #### Consume
 
-Google Play Store、App Store、ONEStoreなどでストア決済が完了後、ユーザーにアイテムを支給する前に決済することを知らせる必要があります。決済1件当たり、1回のみ決済可能で、決済の状態が正常でない場合は消費しません。
-(決済が完了した場合、ユーザーの決済およびアイテム支給が正常に完了したと判断)
-
-消費(Consume)しない決済履歴はSDKおよびサーバーの未消費決済履歴照会APIで照会できます。またアイテム登録時、商品タイプが一回性(CONSUMABLE)のアイテム決済についてのみ消費処理されます。
+Google Play Store、App Store、ONEStoreなどのストア決済が正常に完了した場合、ユーザーにアイテムを支給し、サーバー内部的に履歴を記録した後、Gmaebaseに決済消費を伝えます。決済1件につき1回のみ決済を消費することができ、決済の状態が正常でない場合は消費されません。
 
 > [参考]
-> 決済1件当たり1回消費可能で、決済しなかった決済はIAPでアイテムを支給しなかったものと見なします。
+> 商品登録時、商品タイプが消費(CONSUMABLE)のアイテム決済に対してのみ消費(consume)処理されます。
+> 決済1件につき1回消費可能で、決済消費を行っていない決済はIAPではアイテムを支給していないものとみなします。
+
+消費(consume)していない決済は、SDKおよびサーバーの未消費決済履歴照会APIで照会できます。 APIでは未消費決済履歴が存在していても、ゲームサーバー内部にアイテム支給履歴がある場合は、ゲームサーバー内部支給履歴を優先的に判断してください。
+(ネットワーク障害などでAPI timeoutが発生した場合、Gamebaseでは支給完了処理されているが、APIレスポンス失敗でゲームサーバーでは実際にユーザーにはアイテム支給がされない場合がある)
+
+> [参考]
+> ゲーム内部的にアイテム支給履歴を全て管理できない場合は、該当APIのrequest timeoutを10秒以上にしてAPI timout発生時だけでも履歴を記録して重複支給または未支給問題への対策が必要。
 
 **[Method, URI]**
 
@@ -1123,7 +1263,7 @@ Google Play Store、App Store、ONEStoreなどでストア決済が完了後、�
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトID |
+| appId | String | NHN CloudプロジェクトID |
 
 **[Request Parameter]**
 
@@ -1206,7 +1346,7 @@ Google Play Store、App Store、ONEStoreなどでストア決済が完了後、�
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトID |
+| appId | String | NHN CloudプロジェクトID |
 
 **[Request Parameter]**
 
@@ -1298,7 +1438,7 @@ Google Play Store、App Store、ONEStoreなどでストア決済が完了後、�
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOASTプロジェクトID |
+| appId | String | NHN CloudプロジェクトID |
 
 **[Request Parameter]**
 
@@ -1376,7 +1516,12 @@ Google Play Store、App Store、ONEStoreなどでストア決済が完了後、�
 
 ## Leaderboard
 
-Gamebaseは、TOAST LeaderboardサービスのサーバーAPIに対して**Wrapping**機能を提供します。Wrapping機能を使用すれば、ユーザーサーバーにおいて一貫したインターフェースでTOASTサービスを使用することができます。
+Gamebaseは、NHN Cloud LeaderboardサービスのサーバーAPIに対して**Wrapping**機能を提供します。Wrapping機能を使用すれば、ユーザーサーバーにおいて一貫したインターフェースでNHN Cloudサービスを使用することができます。
+
+> [参考]
+> Gamebaseを有効化すると、Leaderboard Appkey設定を行わずにGamebase Wrapping APIを呼び出してLeaderboard機能を使用できます。
+
+<br>
 
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
@@ -1385,30 +1530,98 @@ Gamebaseは、TOAST LeaderboardサービスのサーバーAPIに対して**Wrapp
 | 単一ユーザーのスコア/ランキングを照会 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
 | 複数のユーザーのスコア/ランキングを照会 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
 | 一定範囲の全体スコア/ランキングを照会 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
+| 特定順位のユーザーを検索 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| 特定ユーザーの順位および上位、下位ユーザーの順位検索 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} | /leaderboard/v2.0/appkeys/{appkey}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} |
 | 単一ユーザーのスコアを登録 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
 | 単一ユーザーのスコア/ExtraDataを登録 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
 | 複数のユーザーのスコアを登録 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
 | 複数のユーザーのスコア/ExtraDataを登録 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
 | 単一ユーザーのLeaderboardの情報を削除 | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
 
-
 **該当するAPIに対する詳細説明は、次のリンクをご参考ください。**
+Gamebase Wrapping APIとマッピングされたLeaderboard APIのスペックは、以下のガイドを参考にしてください。
+Leaderboard Appkeyを設定しないで、Gamebase AppIdおよびSecretKeyを利用してGamebase Wrapping Leaderboard APIを呼び出してください。
 
-<br>
-[Game > Leaderboard > APIガイド](/Game/Leaderboard/ja/api-guide/)
+[Leaderboard APIガイド](/Game/Leaderboard/ja/api-guide/)
+
+<br/>
 
 ##### API呼び出し例
 
 ```
-Content-Type：application/json
-X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
-X-Secret-Key：IgsaAP
-
 GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
+
+Content-Type: application/json
+X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
+X-Secret-Key: IgsaAP
 ```
 
+<br/>
+<br/>
+
+## Push
+
+Gamebaseは、NHN Cloud PushサービスのサーバーAPIで**Wrapping**機能を提供します。Wrapping機能を使用すると、ユーザーサーバーで一貫したインターフェイスでNHN Cloudサービスを使用できます。
+
+> [参考]
+> Gamebaseを有効化すると、Push Appkeyの設定を行わずにGamebase Wrapping APIを呼び出してPush機能を使用できます。
+
 <br>
-<br>
+
+#### Wrapping API
+|    | API | Method | Wrapping URI | Push URI |
+| --- | --- | --- | --- | --- |
+| メッセージ | 送信 | POST | /tcgb-push/v1.3/apps/{appId}/messages | /push/v2.4/appkeys/{appkey}/messages |
+|   | 照会 | GET | /tcgb-push/v1.3/apps/{appId}/messages | /push/v2.4/appkeys/{appkey}/messages |
+|   | 送信ログ照会 | GET | /tcgb-push/v1.3/apps/{appId}/logs/message | /push/v2.4/appkeys/{appkey}/logs/message |
+| 予約メッセージ | 送信スケジュール作成 | POST | /tcgb-push/v1.3/apps/{appId}/schedules | /push/v2.4/appkeys/{appkey}/schedules |
+|   | 作成 | POST | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+|   | リスト照会 | GET | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+|   | 1件照会 | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id} | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id} |
+|   | 送信完了照会 | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id}/messages | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id}/messages |
+|   | 修正 | PUT | /tcgb-push/v1.3/apps/{appId}/reservations/{reservationId} | /push/v2.4/appkeys/{appkey}/reservations/{reservationId} |
+|   | 削除 | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+
+
+**For more information of the API, click the following link.**
+Gamebase Wrapping APIとマッピングされたPush APIのスペックは、以下のガイドを参照してください。
+Push Appkeyの設定を行わずに、Gamebase AppIdおよびSecretKeyを利用してGamebase Wrapping Push APIを呼び出してください。
+
+[Push Guide](/Notification/Push/en/api-guide/)
+
+<br/>
+
+##### API呼び出し例
+
+```
+POST https://api-gamebase.cloud.toast.com/tcgb-push/v1.3/apps/{appId}/messages
+
+Content-Type: application/json
+X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
+X-Secret-Key: IgsaAP
+
+{
+    "target" : {
+        "type" : "UID",
+        "to": ["uid-1", "uid-2"]
+    },
+    "content" : {
+        "default" : {
+            "title": "title",
+            "body": "body"
+        }
+    },
+    "messageType" : "AD",
+    "contact": "1588-1588",
+    "removeGuide": "Menu > Setting",
+    "timeToLiveMinute": 1,
+    "provisionedResourceId": "id",
+    "adWordPosition": "TITLE"
+}
+```
+
+<br/>
+<br/>
 
 ## Etc
 

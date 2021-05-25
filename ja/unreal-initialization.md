@@ -1,6 +1,6 @@
 ## Game > Gamebase > Unreal SDK使用ガイド > 初期化
 
-Gamebase Unreal SDKを使用するには、初期化を行う必要があります。またアプリID、アプリバージョン情報がNHN Cloud Consoleに登録されている必要があります。
+Gamebase Unreal SDKを使用するには、初期化を行う必要があります。またアプリID、アプリバージョン情報がTOAST Consoleに登録されている必要があります。
 
 ### Include Header File
 
@@ -10,7 +10,7 @@ Gamebase APIを使用するには、次のヘッダファイルをインクル�
 #include "Gamebase.h"
 ```
 
-### GamebaseConfiguration 
+### FGamebaseConfiguration 
 
 初期化時に必要な設定は下記の通りです。
 
@@ -38,7 +38,6 @@ Gamebase Consoleに登録したクライアントバージョンです。
 [Console Guide](/Game/Gamebase/ja/oper-app/#client)
 
 #### 3. storeCode
-
 NHN Cloud統合アプリ内決済サービスであるIAP(In-App Purchase)を初期化するために必要なストア情報です。
 
 | Store       | Code | Description  |
@@ -46,6 +45,7 @@ NHN Cloud統合アプリ内決済サービスであるIAP(In-App Purchase)を初
 | App Store | AS | only iOS |
 | Google Play | GG | only Android |
 | One Store | ONESTORE | only Android |
+| Galaxy Store | GALAXY | only Android |
 
 #### 4. displayLanguageCode
 
@@ -80,6 +80,43 @@ LaunchingStatusは、下記Launching項目下のState、Code部分を参照し�
 Gamebase ServerからKickoutイベントを受け取った場合、Gamebaseで提供する基本ポップアップを使用するかどうかの設定です。
 
 * デフォルト値：true
+
+
+### Debug Mode
+
+* Gamebaseは警告(warning)とエラーログのみを表示します。
+* 開発の参考にできるシステムログをオンにするには、**IGamebase::Get().SetDebugMode(true)**を呼び出してください。
+
+> <font color="red">[注意]</font><br/>
+>
+> ゲームを**リリース**する時は、必ずソースコードからSetDebugModeの呼び出しを削除するか、パラメータをfalseに変更してビルドしてください。
+
+デバッグ設定はConsoleでも行えます。Consoleで設定された値を優先視します。
+Console設定方法は、以下のガイドを参考にしてください。
+
+* [Consoleテスト端末設定](./oper-app/#test-device)
+* [Console Client設定](./oper-app/#client)
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
+
+```cpp
+void SetDebugMode(bool isDebugMode);
+```
+
+**Example**
+
+```cpp
+void Sample::SetDebugMode(bool isDebugMode)
+{
+    IGamebase::Get().SetDebugMode(isDebugMode);
+}
+```
+
 
 ### Initialize
 
@@ -177,12 +214,13 @@ Gamebase Unreal SDK初期化設定に入力したアプリバージョンのゲ�
 
 | Status                      | Status Code | Description                                    |
 | --------------------------- | ----------- | ---------------------------------------- |
-| IN_SERVICE | 200 | 正常サービス中 |
-| RECOMMEND_UPDATE | 201 | アップグレード推奨 |
+| IN_SERVICE                  | 200         | 正常サービス中 |
+| RECOMMEND_UPDATE            | 201         | アップグレード推奨 |
 | IN_SERVICE_BY_QA_WHITE_LIST | 202         | メンテナンス中はサービスを利用できませんが、QA端末に登録されている場合はメンテナンスに関係なくサービスに接続してテストできます。 |
-| IN_TEST                     | 203  | テスト中 |
-| IN_REVIEW                   | 204  | 審査中 |
-| REQUIRE_UPDATE | 300 | アップグレード必須 |
+| IN_TEST                     | 203         | テスト中 |
+| IN_REVIEW                   | 204         | 審査中 |
+| IN_BETA                     | 205         | ベータサーバー環境 |
+| REQUIRE_UPDATE              | 300         | アップグレード必須 |
 | BLOCKED_USER                | 301         | 接続遮断に登録された端末(デバイスキー)でサービスに接続した場合です。 |
 | TERMINATED_SERVICE          | 302         | サービス終了                                |
 | INSPECTING_SERVICE          | 303         | サービスメンテナンス中                              |
@@ -197,13 +235,15 @@ Gamebase Consoleに登録されたアプリ情報です。
 
 * accessInfo
     * serverAddress：サーバーアドレス
-    * csInfo：サポート情報
+* customerService
+    * accessInfo : サポート情報
+    * type：サポートタイプ
+    * url : ：サポートURL
 * relatedUrls
-    * termsUrl：利用約款
-    * personalInfoCollectionUrl：個人情報同意
-    * punishRuleUrl：利用停止規定
-    * csUrl ：サポート
-* install：インストールURL
+    * termsUrl: 利用約款
+    * personalInfoCollectionUrl: 個人情報同意
+    * punishRuleUrl: 利用停止規定
+* install: インストールURL
 * idP：認証情報
 
 [Console Guide](/Game/Gamebase/ja/oper-app/#client)
@@ -232,7 +272,7 @@ Gamebase Consoleに登録された告知情報です。
 
 #### 2. tcProduct
 
-Gamebaseと連携されたNHN CloudサービスのappKeyです。
+Gamebaseと連携されたTOASTサービスのappKeyです。
 
 * gamebase
 * tcLaunching

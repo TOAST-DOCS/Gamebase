@@ -3,7 +3,7 @@
 Gamebase bans those game users who use apps inappropriately or abusively.
 When a banned user tries to log in again, or session is restored, a pop-up will be displayed to restrict game use.
 
-Can register banning either manually in the Gamebase Console or automatically with NHN Cloud AppGuard by using registered patterns.
+Can register banning either manually in the Gamebase Console or automatically with NHN Cloud Cloud AppGuard by using registered patterns.
 
 Refer to [AppGuard](./ban/#appguard)on how to integrate AppGuard.
 
@@ -142,13 +142,16 @@ Click **Auto Translate to Default Language** and messages in default language ar
 ## AppGuard
 
 > <font color="red">[Note]</font>
-> This service is available only for NHN Cloud AppGuard users.
+> This service is available only for TOAST Cloud AppGuard users.
 
 ![gamebase_ban_09_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_09_201812_en.png)
 
-- **Integration Status**: To be enabled only when users who are detected or sanctioned by AppGuard need to be automatically registered as Gamebase banned users.
-- To **Ban Automatically** by detection/sanction type, select **ON** , enter 'User Messages' and **Range** , and click **Save**.
-- You can choose whether to delete the leaderboard records automatically or not.
+- **Linking**: Enable this if you want to automatically register the users detected or restricted by AppGuard as Gamebase-banned users.
+-Select **Ban Immediately** for the automatic ban of the detection/restriction type you want to **ban permanently** and enter the 'User exposed message' and **Ban period**. Then, click the **Save** button to apply.
+-Select **Ban Conditionally** for the automatic ban of the detection/restriction type you want to **Ban Conditionally**, enter the detection period and frequency, and then click **Save** button to apply.
+  - Ban by the conditional ban is performed once a day at midnight.
+  - If detection period and detection frequency for tampering are set to 5 and 3, respectively
+  - If a user's tampering activity is detected 3 times during the period of January 14-18, user ban will be registered on January 19 at midnight.
 
 > [Note]
 > In case banning is automatically registered due to AppGuard integration, 'AppGuard' will be registered at a result page.

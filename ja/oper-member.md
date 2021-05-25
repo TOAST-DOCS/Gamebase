@@ -1,34 +1,33 @@
-## Game > Gamebase > コンソール使用ガイド > ユーザー
+## Game > Gamebase > Console ご利用ガイド > 会員
 
 ゲームにログインした会員情報を照会します。
 
-
-## 会員
+## Search Member
 
 User IDを入力すると、会員情報を検索することができます。
-ユーザーIDは、初めてログインする際にGamebaseが自動的に発行するユーザー識別子です。送信時に混乱を防ぐため、韓国語の発音で同じ発音となる文字を取り除き、「ABCDFGHJKLMNPQRSTWXYZ1346789」だけを使用しています。
+ユーザーIDは、初めてログインする際にGamebaseが自動的に発行するユーザー識別子です。送信時に混乱を防ぐため、同じ発音の文字を取り除き、「ABCDFGHJKLMNPQRSTWXYZ1346789」だけを使用しています。
 IdP IDはIdPで提供するID情報で、ログイン時に入力する情報ではなく、IdP内の固有識別子を意味します。したがって、IdP ID項目で検索する場合は検索情報の入力に注意してください。
 
 検索されたユーザーの詳細情報を上の方に表示し、ログイン、マッピング、決済、利用停止、プレイ時間などの履歴は下の方にタブ形式で表示されます。
 
 
-### 会員情報
-![gamebase_member_01_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_member_01_202004_ja.png)
+### Detail Information
+![gamebase_member_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_01_201812.png)
 
-**ユーザー **
+**User **
 
 - **ユーザID**：GamebaseのユーザーID
-- **国コード**：ユーザー端末のUSIMの国家コードで、取得に失敗した場合は'ZZ'で表記されます。端末に設定されている国家コードを確認したい場合、下の**ログイン履歴**から確認してください。
-- **最終ログイン時刻**：ユーザーが最後にログインした時間
-- **登録年月日**：ユーザーが始めてログインした時間
+- **国家コード(USIM)**：ユーザー端末のUSIMの国家コードで、取得に失敗した場合は'ZZ'で表記されます。端末に設定されている国家コードを確認したい場合、下の**ログイン履歴**から確認してください。
+- **最終ログイン時間**：ユーザーが最後にログインした時間
+- **登録日**：ユーザーが始めてログインした時間
 - **アカウント状態**
   - **正常**：正常なユーザー。**利用停止**ボタンをクリックして手動で利用停止状態に変更することができます。
   - **利用停止**：アビュージングなどにより利用停止(ban)状態となったユーザー。**利用停止解除**ボタンをクリックすると、手動で利用停止を解除することができます。
   - **退会**：退会したユーザー
-- **Push追加情報**: プッシュトークンの照会ができます。
+- **푸시 토큰**: 유저의 푸시 토큰 정보 조회.
 
-#### アカウント状態の変更
-![gamebase_member_02_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_member_02_202004_ja.png)
+#### アカウント状態変更
+![gamebase_member_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_02_201812.png)
 
 照会したゲームユーザーのアカウント状態を変更できる機能です。
 各状態から、以下のように状態を変更できます。
@@ -36,7 +35,7 @@ IdP IDはIdPで提供するID情報で、ログイン時に入力する情報で
 - **利用停止**：利用停止解除ができません。
 - **退会**：該当ボタンが表示されません。
 
-**IdP **
+**Identity Provider **
 
 Gamebaseでは、複数の外部IdPを連動することができます。つまり、ユーザーが一つのユーザーIDにFacebook、Googleの二つのIdPを登録してログインすることができます。SDKから**Login using a specific IdP**や**Add Mapping**APIを呼び出す際にIdPが登録されます。
 
@@ -44,7 +43,7 @@ Gamebaseでは、複数の外部IdPを連動することができます。つま
 - **Idp ID**：外部IdPが提供するID(Facebook no、PAYCO IDなど)
 - **登録日**：ユーザーが初めて該当するIdPを登録した時間
 
-#### マッピングの追加
+#### マッピング追加
 
 照会したゲームユーザーのIdP情報を追加できる機能です。
 接続するIdPを持っているゲームユーザーの情報が**正常**の時のみ、マッピング追加作業を行えます。
@@ -53,9 +52,9 @@ Gamebaseでは、複数の外部IdPを連動することができます。つま
 * ゲームユーザーがゲスト情報のみ持っている時は、新しいIdP情報が追加され、既存のゲスト情報は消滅するため注意してください。
 * 提供ユーザーのIdP情報が1つの時は、作業を行うと提供ユーザー情報が**消滅**状態に変更されて二度と使用できないため、よく確認してください。
 ##### 提供例
-![gamebase_member_03_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_member_03_202004_ja.png)
+![gamebase_member_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_03_201812.png)
 
-#### マッピングの解除
+#### マッピング解除
 多重マッピングしたアカウントは、リクエストに応じてIdP情報の連携を解除できます。
 各々のアカウントは、少なくとも1個の接続情報が存在する必要があるため、2個以上の接続情報がある時のみボタンが有効になります。
 * ボタンをクリックすると、下記のように接続したIdP情報と共に**マッピング解除**ボタンが表示されます。
@@ -65,30 +64,30 @@ Gamebaseでは、複数の外部IdPを連動することができます。つま
 * **解除**ボタンをクリックすると、下記のように最終確認ウィンドウが表示されるので、IdP情報を確認します。**確認**ボタンをクリックすると、マッピングが解除されます。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_RemoveMapping_2.0.png)
 
-### 接続履歴
-![gamebase_member_05_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_member_05_202004_ja.png)
+### Login History
+![gamebase_member_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_05_201812.png)
 
 照会したユーザーのログイン内訳を照会します。
 初めて照会するときは、直近1日分が照会され、照会したい日付をもう一度入力して照会することもできます。ただし、直近3ヶ月間(90日)の履歴のみ提供します。
 SDKからログイン関連のAPIを呼び出すとき、履歴が追加されます。
 
-- **Date**：ユーザーがアプリにログインした時間
-- **Type**：ユーザーログイン時に使用した認証タイプ(IdP Login/Guestなど)。括弧の中の情報は、実際に使用されたIdProviderの情報。
+- **Login Date**：ユーザーがアプリにログインした時間
+- **Login Type**：ユーザーログイン時に使用した認証タイプ(IdP Login/Guestなど)。括弧の中の情報は、実際に使用されたIdProviderの情報。
 - **OS / Ver**：ユーザーログイン時に使用したOS(IOS/Android/WebGLなど)及び該当するOSのバージョン情報
 - **Device model**：ユーザーがアプリにログインする際に使用したデバイスのモデル名
 - **Device Key**：ユーザーログイン時に使用したデバイスが保有している固有識別値(Android:Android id、iOS:IDFV)
-- **Device Country**：ユーザーログイン時にデバイスに設定されている国家コード
-- **USIM Country**：ユーザーログイン時にUSIMカードに設定されている国家コード
+- **Device Country Code**：ユーザーログイン時にデバイスに設定されている国家コード
+- **USIM Country Code**：ユーザーログイン時にUSIMカードに設定されている国家コード
 - **Telecom**：ユーザーログイン時に利用した通信キャリア情報
 - **Network**：ユーザーログイン時に使用したネットワークタイプ(Wi-Fi/3G/LTEなど)
-- **Language**：ユーザーログイン時に端末に設定されている言語コード情報
-- **Store**：ユーザーがアプリをダウンロードしたストア情報
-- **Client Ver**：アプリをダウンロードした当時のクライアントバージョン情報
-- **Gamebase SDK Ver**：アプリに使用されたGamebase SDKのバージョン情報
+- **Language Code**：ユーザーログイン時に端末に設定されている言語コード情報
+- **Store Code**：ユーザーがアプリをダウンロードしたストア情報
+- **Client Version**：アプリをダウンロードした当時のクライアントバージョン情報
+- **Gamebase SDK Version**：アプリに使用されたGamebase SDKのバージョン情報
 - **etc**：その他、ログイン時に使用された上記項目以外の情報
 
-### IDマッピング履歴
-![gamebase_member_06_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_member_06_202004_ja.png)
+### Mapping History
+![gamebase_member_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_06_201812.png)
 照会したユーザーのマッピング、マッピング解除履歴を照会します。直近3ヶ月(90日)間の履歴がすべて表示されます。
 
 - **IdP ID**：IdPログイン時に使用されるID情報
@@ -102,10 +101,10 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
   - OMG：IdPアカウント作成
 
 マッピングされたIdP履歴をクリックした場合、該当IdPを基準にGamebase IDにマッピングされた履歴を表示します。
-![gamebase_member_07_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_member_07_202004_ja.png)
+![gamebase_member_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_07_201812.png)
 
-### 購入履歴
-![gamebase_member_08_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_member_08_202004_ja.png)
+### Purchase History
+![gamebase_member_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_08_201812.png)
 照会したユーザーの商品購入内訳を照会します。
 照会したい日付を入力して照会することができ、最大1ヶ月(30日)まで照会可能です。
 
@@ -120,8 +119,8 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 - **決済予約日時**：ユーザーが購入を試行または完了した時間
 - **払戻日時**：ユーザーのアイテムが払い戻された時間
 
-### 利用停止履歴
-![gamebase_member_09_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_member_09_202004_ja.png)
+### Ban History
+![gamebase_member_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_09_201812.png)
 
 照会したユーザーの利用停止内訳を照会することができます。
 照会したい日付を入力して照会することができ、最大1ヶ月(30日)まで照会可能です。
@@ -134,16 +133,17 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 - **解除理由**：運営者が利用停止の解除を行う際に入力した実際の解除理由
 - **解除登録者/解除登録日**：利用停止を解除した運営者/システム情報及び日時
 
-### プレイ時間
-![gamebase_member_10_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_member_10_202004_ja.png)
+### Playtime
+![gamebase_member_10_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_10_201812.png)
 照会したユーザーがゲームをプレイした時間を日付ごとに照会します。
 照会したい日付を入力して照会することができ、最大1ヶ月(30日)まで照会可能です。
 
-### クーポンの使用履歴
-![gamebase_member_11_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_member_11_202004_ja.png)
-照会したユーザーが使用したクーポン履歴を表示します。
+### Withdraw History
+![image alt](https://static.toastoven.net/prod_gamebase/gamebase_member_11_202006.png)
+照会したユーザーが退会したゲームユーザーの場合、退会履歴を表示します。
+このメニューは、退会したゲームユーザーを照会する場合にのみ表示され、ゲームユーザーの退会経路を照会できます。
 
-## 端末移行
+## Transfer account
 **端末移行**機能を使用する場合にのみ使用できます。[端末移行機能の有効化](./oper-app/#transfer-account)
 ゲームユーザーの端末移行キーの発行および検証履歴を確認できます。遮断されたキーの遮断解除や、有効期限が切れたキーの再発行ができます。
 
@@ -162,7 +162,7 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 デフォルトで最後に発行されたキーが選択されていて、他のキーを選択すると、選択したキーの履歴を照会できます。
 
 ### 端末移行キーの再発行
-![gamebase_member_13_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_member_13_202004_ja.png)
+![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_TransferAccount_Renewal1_1.0.png)
 **再発行**ボタンをクリックすると、新しい端末移行キーを再発行できます。再発行すると、以前に発行されたキーは使用できません。
 - **ID、パスワード再発行**：ID、パスワードを再発行します。
 - **パスワード再発行**：IDは以前に発行されたIDをそのまま使用し、パスワードのみ再発行します。

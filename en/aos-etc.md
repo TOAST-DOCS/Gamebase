@@ -165,7 +165,7 @@ public void getDisplayLanguageCodeInRuntime() {
 
 To use another language in addition to default Gamebase languages (en, ko, ja), go to gamebase-sdk-base.aar > res > raw and add a value to the localizedstring.json file.
 
-![localizedstring.json](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-etc_001_1.11.0.png)
+![localizedstring.json](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-etc_001_1.11.0.png)
 
 The localizedstring.json has a format defined as below: 
 
@@ -269,7 +269,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 	2. If the country code in the USIM is empty, checks the country code of the device. If a value exists, returns the value without any separate verification.
 	3. 'ZZ' is returned when the country code values of USIM and device are empty.
 
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
+![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
 **API**
 
@@ -361,7 +361,7 @@ void eventHandlerSample(Activity activity) {
 * This is a message sent from the Gamebase server to the client's device.
 * The Server Push Types supported from Gamebase are as follows:
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
-    	* If you register a kickout ServerPush message in **Operation > Kickout** of the TOAST Gamebase Console, then all clients connected to Gamebase will receive the kickout message.
+    	* If you register a kickout ServerPush message in **Operation > Kickout** of the NHN Cloud Gamebase Console, then all clients connected to Gamebase will receive the kickout message.
     * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
     	* If the guest account is successfully transferred to another device, the previous device receives a kickout message.
 
@@ -410,6 +410,9 @@ void processServerPush(String category, GamebaseEventServerPushData data) {
             * LaunchingStatus.IN_SERVICE: 200
             * LaunchingStatus.RECOMMEND_UPDATE: 201
             * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
+            * LaunchingStatus.IN_TEST: 203
+            * LaunchingStatus.IN_REVIEW: 204
+            * LaunchingStatus.IN_BETA: 205
             * LaunchingStatus.REQUIRE_UPDATE: 300
             * LaunchingStatus.BLOCKED_USER: 301
             * LaunchingStatus.TERMINATED_SERVICE: 302
@@ -755,7 +758,6 @@ public void onLevelUp(int userLevel, long levelUpTime) {
 }
 ```
 
-
 ### Contact
 
 Gamebase provides features to respond to customer inquiries.
@@ -767,33 +769,131 @@ Gamebase provides features to respond to customer inquiries.
 > [NHN Cloud Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
 >
 
+#### Customer Service Type
+
+In the **Gamebase Console > App > InApp URL > Service Center**, you can choose from three different types of Customer Centers.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
+
+| Customer Service Type     | Required Login |
+| ------------------------- | -------------- |
+| Developer customer center | X              |
+| Gamebase customer center  | △             |
+| NHN Cloud Online Contact      | △              |
+
+Gamebase SDK's Customer Center API uses the following URLs based on the type:
+
+* Developer's Customer Center
+    * URL specified in the **Customer Center URL** field.
+* Gamebase's Customer Center
+    * Before login: Customer Center URL **without** user information.
+    * After login: Customer Center URL with user information.
+* NHN Cloud organization product (Online Contact)
+    * Before login: Customer Center URL **without** user information.
+    * After login: Customer Center URL with user information.
+
 #### Open Contact WebView
 
-The webview for **Customer Center URL** can be displayed as on Gamebase Console.
-Apply the same input values for **Gamebase Console > App > InApp URL > Service center**.
+Displays the Customer Center WebView.
+URL is determined by the customer center type.
+You can pass the additional information to the URL using ContactConfiguration.
+
+**ContactConfiguration**
+
+| API | Mandatory(M) / Optional(O) | Description |
+| --- | --- | --- |
+| newBuilder() | **M** | ContactConfiguration object can be created with the newBuilder() function. |
+| build() | **M** | Converts the configured builder into a Configuration object. |
+| setUserName(String userName) | O | Used to pass the user name (nickname).<br>It is a field used for the NHN Cloud organization product (Online Contact) type.<br>**default** : null |
+| setAdditionalURL(String additionalURL) | O | Additional URL which is appended after the developer's own customer center URL.<br>Use it only if the customer center type is `CUSTOM`.<br>**default** : null |
+| setExtraData(Map<String, Object> extraData) | O | Passes the extra data wanted by the developer at the opening of the customer center.<br>**default** : EmptyMap |
 
 **API**
 
 ```java
-Gamebase.Contact.openContact(Activity activity, GamebaseCallback callback);
++ (void)Gamebase.Contact.openContact(@NonNull  final Activity activity,
+                                     @Nullable final GamebaseCallback onCloseCallback);
+
++ (void)Gamebase.Contact.openContact(@NonNull  final Activity activity,
+                                     @NonNull  final ContactConfiguration configuration,
+                                     @Nullable final GamebaseCallback onCloseCallback);
 ```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initialize has not been called. |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | The Customer Center URL does not exist.<br>Check the **Customer Center URL** of the Gamebase Console. |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | Failed to issue a temporary ticket for user identification. |
+| UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | The Customer Center WebView is already being displayed. |
 
 **Example**
 
 ``` java
-public void openContact(Activity activity) {
-    Gamebase.Contact.openContact(activity, new GamebaseCallback() {
-        @Override
-        public void onCallback(GamebaseException exception) {
-            if (exception != null && exception.code == WEBVIEW_INVALID_URL) { // 7001
-                // TODO: Gamebase Console Service Center URL is invalid.
-                //  Please check the url field in the TOAST Gamebase Console.
-            } else if (exception != null) {
-                // TODO: Error occur when opening the contact web view.
-            } else {
-                // A user close the contact web view.
-            }
+Gamebase.Contact.openContact(activity, new GamebaseCallback() {
+    @Override
+    public void onCallback(GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            // A user close the contact web view.
+        } else if (exception.code == UI_CONTACT_FAIL_INVALID_URL) { // 6911
+            // TODO: Gamebase Console Service Center URL is invalid.
+            // Please check the url field in the TOAST Gamebase Console.
+        } else if (exception.code == UI_CONTACT_FAIL_ANDROID_DUPLICATED_VIEW) { // 6913
+            // The customer center web view is already opened.
+        } else {
+            // An error occur when opening the contact web view.
         }
-    });
-}
+    }
+});
+```
+
+> <font color="red">[Caution]</font><br/>
+>
+> Contacting the Customer Center may require file attachment.
+> To do so, permissions for using the camera or using the storage must be acquired from the user at runtime.
+> [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
+>
+> Unity users can implement this by referring to the following guide.
+> [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
+
+#### Request Contact URL
+
+Returns the URL used for displaying the Customer Center WebView.
+
+**API**
+
+```java
++ (void)Gamebase.Contact.requestContactURL(@NonNull final GamebaseDataCallback<String> callback);
+
++ (void)Gamebase.Contact.requestContactURL(@NonNull final ContactConfiguration configuration,
+                                           @NonNull final GamebaseDataCallback<String> callback);
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initialize has not been called. |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | The Customer Center URL does not exist.<br>Check the **Customer Center URL** of the Gamebase Console. |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | Failed to issue a temporary ticket for user identification. |
+
+**Example**
+
+``` java
+ContactConfiguration configuration = ContactConfiguration.newBuilder()
+        .setUserName(userName)
+        .build();
+Gamebase.Contact.requestContactURL(configuration, new GamebaseDataCallback<String>() {
+    @Override
+    public void onCallback(String contactUrl, GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            // Open webview with 'contactUrl'
+        } else if (exception.code == UI_CONTACT_FAIL_INVALID_URL) { // 6911
+            // TODO: Gamebase Console Service Center URL is invalid.
+            // Please check the url field in the TOAST Gamebase Console.
+        } else {
+            // An error occur when requesting the contact web view url.
+        }
+    }
+});
 ```

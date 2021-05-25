@@ -239,21 +239,10 @@ FString GetCountryCodeOfDevice() const;
 FString GetCountryCode() const;
 ```
 
-### Server Push
-* The Gamebase server can process Server Push Messages sent onto a client device. 
-* Add ServerPushEvent Listener to Gamebase client, and the user may receive to process the message and may delete the added ServerPushEvent Listener.
+### Gamebase Event Handler
 
-
-#### Server Push Type
-Gamebase currently supports the following server push type: 
-
-* GamebaseServerPushType::AppKickout (= "appKickout")
-    * When a kickout ServerPush message is registered at **Operation > Kickout** on a NHN Cloud Gamebase console, and you'll receive **APP_KICKOUT** message on all clients connected to Gamebase. 
-
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/serverpush_flow_001_1.11.0.png)
-
-#### Add ServerPushEvent
-By registering ServerPushEvent for Gamebase Client, push events issued by Gamebase console or server can be processed. 
+* Gamebase can process all kinds of events in a single event system called **GamebaseEventHandler**.
+* GamebaseEventHandler can simply add or remove a Listener through the API below:
 
 **API**
 
@@ -261,169 +250,411 @@ Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
+```cs
+FDelegateHandle AddHandler(const FGamebaseEventDelegate::FDelegate& onCallback);
+void RemoveHandler(const FDelegateHandle& handle);
+void RemoveAllHandler();
+```
+
+**VO**
+
 ```cpp
-FDelegateHandle AddServerPushEvent(const FGamebaseServerPushDelegate::FDelegate& event);
+struct GAMEBASE_API FGamebaseEventMessage
+{
+	// Represents the type of an event.
+    // The value of the GamebaseEventCategory class is assigned.
+    FString category;
+
+    // JSON String data that can be converted into a VO that is appropriate for each category.
+    FString data;
+};
 ```
 
 **Example**
 
 ```cpp
-void Sample::AddServerPushEvent()
+void Sample::AddEventHandler()
 {
-    FDelegateHandle handle = IGamebase::Get().AddServerPushEvent(FGamebaseServerPushDelegate::FDelegate::CreateLambda([=](const FGamebaseServerPushMessage& message)
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
     {
-        if (message.type.Equals(GamebaseServerPushType::AppKickout))
+        if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
+            message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
         {
-            // Logout
-            // Go to Main
+            auto serverPushData = FGamebaseEventServerPushData::From(message.data);
         }
-        else if (message.type.Equals(GamebaseServerPushType::TransferKickout))
+        else if (message.category.Equals(GamebaseEventCategory::ObserverLaunching))
         {
-            // Logout
-            // Go to Main
+            auto observerData = FGamebaseEventObserverData::From(message.data);
+        }
+        else if (message.category.Equals(GamebaseEventCategory::ObserverNetwork))
+        {
+            auto observerData = FGamebaseEventObserverData::From(message.data);
+        }
+        else if (message.category.Equals(GamebaseEventCategory::ObserverHeartbeat))
+        {
+            auto observerData = FGamebaseEventObserverData::From(message.data);
+        }
+        else if (message.category.Equals(GamebaseEventCategory::PurchaseUpdated))
+        {
+            auto purchasableReceipt = FGamebaseEventPurchasableReceipt::From(message.data);
+        }
+        else if (message.category.Equals(GamebaseEventCategory::PushReceivedMessage))
+        {
+            auto pushMessage = FGamebaseEventPushMessage::From(message.data);
+        }
+        else if (message.category.Equals(GamebaseEventCategory::PushClickMessage))
+        {
+            auto pushMessage = FGamebaseEventPushMessage::From(message.data);
+        }
+        else if (message.category.Equals(GamebaseEventCategory::PushClickAction))
+        {
+            auto pushAction = FGamebaseEventPushAction::From(message.data);
+        }
+    }));
+}
+```
+
+* Category is defined in the GamebaseEventCategory class.
+* In general, events can be categorized as ServerPush, Observer, Purchase, or Push; GamebaseEventMessage.data can be converted into a VO in the ways shown in the table shown below for each Category.
+
+| Event type | GamebaseEventCategory | VO conversion method | Remarks |
+| --------- | --------------------- | ----------- | --- |
+| ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(message.data) | \- |
+| Observer | GamebaseEventCategory::ObserverLaunching<br>GamebaseEventCategory::ObserverNetwork<br>GamebaseEventCategory::ObserverHeartbeat | FGamebaseEventObserverData::From(message.data) | \- |
+| Purchase - Promotion payment | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(message.data) | \- |
+| Push - Message received | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(message.data) | Checks whether or not a message was received in the Foreground using the **isForeground** value. |
+| Push - Message clicked | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) | The **isForeground** value does not exist. |
+| Push - Action clicked | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(message.data) | Operates when the RichMessage button is clicked. |
+
+
+#### Server Push
+
+* This is a message sent from the Gamebase server to the client's device.
+* The Server Push Types supported from Gamebase are as follows:
+    * GamebaseEventCategory::ServerPushAppKickOut
+    	* If you register a kickout ServerPush message in **Operation > Kickout** of the NHN Cloud Gamebase Console, then all clients connected to Gamebase will receive the kickout message.
+    * GamebaseEventCategory::ServerPushTransferKickout
+    	* If the guest account is successfully transferred to another device, the previous device receives a kickout message.
+
+**Example**
+
+```cpp
+void Sample::AddEventHandler()
+{
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    {
+        if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
+            message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
+        {
+            auto serverPushData = FGamebaseEventServerPushData::From(message.data);
+            if (serverPushData.IsVaild())
+            {
+                CheckServerPush(message.category, *serverPushData);
+            }
+        }
+    }));
+}
+
+void Sample::CheckServerPush(const FString& category, const FGamebaseEventServerPushData& data)
+{
+    if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut))
+    {
+        // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+        // Return to title and initialize Gamebase again.
+    }
+    else if (message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
+    {
+        // If the user wants to move the guest account to another device,
+        // if the account transfer is successful,
+        // the login of the previous device is released,
+        // so go back to the title and try to log in again.
+    }
+}
+```
+
+#### Observer
+
+* It is a system used to handle many different status-changing events in Gamebase.
+* The Observer Types supported by Gamebase are as follows:
+    * GamebaseEventCategory::ObserverLaunching
+    	* It operates when the Launching status is changed, for instance when the server is under maintenance, or the maintenance is over, or a new version is deployed and update is required.
+        * GamebaseEventObserverData.code : Indicates the LaunchingStatus value.
+            * GamebaseLaunchingStatus::IN_SERVICE: 200
+            * GamebaseLaunchingStatus::RECOMMEND_UPDATE: 201
+            * GamebaseLaunchingStatus::IN_SERVICE_BY_QA_WHITE_LIST: 202
+            * GamebaseLaunchingStatus::REQUIRE_UPDATE: 300
+            * GamebaseLaunchingStatus::BLOCKED_USER: 301
+            * GamebaseLaunchingStatus::TERMINATED_SERVICE: 302
+            * GamebaseLaunchingStatus::INSPECTING_SERVICE: 303
+            * GamebaseLaunchingStatus::INSPECTING_ALL_SERVICES: 304
+            * GamebaseLaunchingStatus::INTERNAL_SERVER_ERROR: 500
+    * GamebaseEventCategory::ObserverHeartbeat
+    	* Operates when the status of a user account changes, for instance when the user account is deleted or banned.
+        * GamebaseEventObserverData.code : Indicates the GamebaseError value.
+            * GamebaseErrorCode::INVALID_MEMBER: 6
+            * GamebaseErrorCode::BANNED_MEMBER: 7
+    * GamebaseEventCategory::ObserverNetwork
+    	* Can receive the information about the changes in the network.
+    	* Operates when the network is disconnected or connected, or switched from Wi-Fi to a cellular network.
+        * GamebaseEventObserverData.code : Indicates the NetworkManager value.
+            * EGamebaseNetworkType::Not: 255
+            * EGamebaseNetworkType::Mobile: 0
+            * EGamebaseNetworkType::Wifi: 1
+            * EGamebaseNetworkType::Any: 2
+
+**VO**
+
+```cpp
+struct GAMEBASE_API FGamebaseEventObserverData
+{
+	// This information represents the status value.
+    int32 code;
+
+    // This information shows the message about status.
+    FString message;
+
+    // A reserved field for additional information.
+    FString extras;
+}
+```
+
+**Example**
+
+```cpp
+void Sample::AddEventHandler()
+{
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    {
+        if (message.category.Equals(GamebaseEventCategory::ObserverLaunching))
+        {
+            auto observerData = FGamebaseEventObserverData::From(message.data);
+            if (observerData.IsVaild())
+            {
+                CheckLaunchingStatus(*observerData);
+            }
+        }
+        else if (message.category.Equals(GamebaseEventCategory::ObserverNetwork))
+        {
+            auto observerData = FGamebaseEventObserverData::From(message.data);
+            if (observerData.IsVaild())
+            {
+                CheckNetwork(*observerData);
+            }
+        }
+        else if (message.category.Equals(GamebaseEventCategory::ObserverHeartbeat))
+        {
+            auto observerData = FGamebaseEventObserverData::From(message.data);
+            if (observerData.IsVaild())
+            {
+                CheckHeartbeat(*observerData);
+            }
+        }
+    }));
+}
+
+void Sample::CheckLaunchingStatus(const FGamebaseEventObserverData& data)
+{
+    switch (data.code)
+    {
+        case GamebaseLaunchingStatus::IN_SERVICE:
+            {
+                // Service is now normally provided.
+                break;
+            }
+        // ... 
+        case GamebaseLaunchingStatus::INTERNAL_SERVER_ERROR:
+            {
+                // Error in internal server.
+                break;
+            }
+    }
+}
+
+void Sample::CheckNetwork(const FGamebaseEventObserverData& data)
+{
+    switch ((GamebaseNetworkType)data.code)
+    {
+        case EGamebaseNetworkType::Not:
+            {
+                // Network disconnected
+                break;
+            }
+        case EGamebaseNetworkType::Mobile:
+            {
+                // Network connected
+                break;
+            }
+        case EGamebaseNetworkType::Wifi:
+            {
+                // Network connected
+                break;
+            }
+        case EGamebaseNetworkType::Any:
+            {
+                // Network connected
+                break;
+            }
+    }
+}
+
+void Sample::CheckHeartbeat(const FGamebaseEventObserverData& data)
+{
+    switch (data.code)
+    {
+        case EGGamebaseErrorCode::INVALID_MEMBER:
+            {
+                // You should to write the code necessary in game. (End the session.)
+                break;
+            }
+        case EGGamebaseErrorCode::BANNED_MEMBER:
+            {
+                // The ban information can be found by using the GetBanInfo API.
+                // Show kickout message to user and need kickout in game.
+                break;
+            }
+    }
+}
+```
+
+#### Purchase Updated
+
+* This event is triggered when a product is acquired by redeeming a promotion code.
+* Can acquire payment receipt information.
+
+**Example**
+
+```cpp
+void Sample::AddEventHandler()
+{
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    {
+        if (message.category.Equals(GamebaseEventCategory::PurchaseUpdated))
+        {
+            auto purchasableReceipt = FGamebaseEventPurchasableReceipt::From(message.data);
+            if (purchasableReceipt.IsVaild())
+            {
+                // If the user got item by 'Promotion Code',
+                // this event will be occurred.
+            }
         }
     }));
 }
 ```
 
 
-#### Remove ServerPushEvent
-You can delete ServerPushEvent registered at Gamebase. 
+#### Push Received Message
 
-**API**
+* This event is triggered when a push message is received.
+* Can determine whether the message is received in the foreground through the **isForeground** field or in the background.
+* You can also acquire custom information that was sent along with push by converting the extras field to JSON.
 
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+**VO**
 
 ```cpp
-void RemoveServerPushEvent(const FDelegateHandle& handle);
-void RemoveAllServerPushEventerPushEvent();
+struct FGamebaseEventPushMessage
+{
+	// The unique ID of a message.
+    FString id;
+
+    // The title of the push message.
+    FString title;
+
+    // The body of the push message.
+    FString body;
+
+    // You can check all information by converting them to JSONObject.
+    FString extras;
+};
 ```
 
 **Example**
 
 ```cpp
-void Sample::RemoveServerPushEvent(const FDelegateHandle& handle)
+void Sample::AddEventHandler()
 {
-    IGamebase::Get().RemoveServerPushEvent(handle);
-}
-
-void Sample::RemoveAllServerPushEvent()
-{
-    IGamebase::Get().RemoveAllServerPushEvent();
-}
-```
-
-### Observer
-* With Gamebase Observer, Gamebase status change events can be delivered and processed. 
-* Status Change Events: Change of network type, launching status (due to maintenance, and etc.), or heartbeat information (e.g. change of heartbeat information due to user banned), and others 
-
-#### Observer Type
-Gamebase supports the following observer types: 
-
-* Change of Network Types 
-    * You can get information on network changes. 
-    * Type: GamebaseObserverType::Network (= "network")
-    * Code: See constant value declared at each GamebaseNetworkType. 
-        * GamebaseNetworkType::TYPE_NOT: 255
-        * GamebaseNetworkType::TYPE_MOBILE: 0
-        * GamebaseNetworkType::TYPE_WIFI: 1
-        * GamebaseNetworkType::TYPE_ANY: 2
-* Change of Launching Status 
-    * Occurs when there is a change in the Launching Status Response which periodically checks application status. For instance, event occurrences due to maintenance, or update recommendation. 
-    * Type: GamebaseObserverType::Launching (= "launching")
-    * Code: See constant value declared at each GamebaseLaunchingStatus.
-        * GamebaseLaunchingStatus::IN_SERVICE: 200
-        * GamebaseLaunchingStatus::RECOMMEND_UPDATE: 201
-        * GamebaseLaunchingStatus::IN_SERVICE_BY_QA_WHITE_LIST: 202
-        * GamebaseLaunchingStatus::REQUIRE_UPDATE: 300
-        * GamebaseLaunchingStatus::BLOCKED_USER: 301
-        * GamebaseLaunchingStatus::TERMINATED_SERVICE: 302
-        * GamebaseLaunchingStatus::INSPECTING_SERVICE: 303
-        * GamebaseLaunchingStatus::INSPECTING_ALL_SERVICES: 304
-        * GamebaseLaunchingStatus::INTERNAL_SERVER_ERROR: 500
-* Change of Heartbeat Information 
-    * Occurs when there is change in the heartbeat response which periodically stays connected to Gamebase server. For instance, event occurrence due to banning on user. 
-    * Type: GamebaseObserverType::Heartbeat (= "heartbeat")
-    * Code: See constant value declared at each GamebaseErrorCode.
-        * GamebaseErrorCode::INVALID_MEMBER: 6
-        * GamebaseErrorCode::BANNED_MEMBER: 7
-
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/observer_flow_001_1.11.0.png)
-
-#### Add Observer
-By registering an observer at the Gamebase client, status change events can be processed. 
-
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
-
-```cpp
-static void AddObserver(GamebaseCallback.DataDelegate<GamebaseResponse.SDK.ObserverMessage> observer)
-```
-
-**Example**
-
-```cpp
-void Sample::AddObserver()
-{
-    FDelegateHandle handle = IGamebase::Get().AddObserver(FGamebaseObserverDelegate::FDelegate::CreateLambda([=](const FGamebaseObserverMessage& message)
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
     {
-        if (message.type.Equals(GamebaseObserverType::Network))
+        if (message.category.Equals(GamebaseEventCategory::PushReceivedMessage))
         {
-            // Code : Refer to GamebaseLaunchingStatus.
-            int code        = (int)data["code"];
-
-            // Message
-            string message  = (string)data["message"];
-        }
-        else if (message.type.Equals(GamebaseObserverType::Launching))
-        {
-            // Code: Refer to GamebaseNetworkType.
-            int code        = (int)data["code"];
-
-            // Message
-            string message  = (string)data["message"];
-        }
-        else if (message.type.Equals(GamebaseObserverType::Heartbeat))
-        {
-            // Code : GamebaseErrorCode.INVALID_MEMBER, GamebaseErrorCode.BANNED_MEMBER
-            int code = (int)data["code"];
+            auto pushMessage = FGamebaseEventPushMessage::From(message.data);
+            if (pushMessage.IsVaild())
+            {
+                // When you clicked push message.
+            }
         }
     }));
 }
 ```
 
-#### Remove Observer
-Oberservers registered at Gamebase can be removed. 
+#### Push Click Message
 
-**API**
+* This event is triggered when a received message is clicked.
+* Unlike GamebaseEventCategory.PUSH_RECEIVED_MESSAGE, there is no **isForeground** field.
 
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+**Example**
 
 ```cpp
-void RemoveObserver(const FDelegateHandle& handle);
-void RemoveAllObserver();
+void Sample::AddEventHandler()
+{
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    {
+        if (message.category.Equals(GamebaseEventCategory::PushClickMessage))
+        {
+            auto pushMessage = FGamebaseEventPushMessage::From(message.data);
+            if (pushMessage.IsVaild())
+            {
+                // When you clicked push message.
+            }
+        }
+    }));
+}
+```
+
+
+#### Push Click Action
+
+* This event is triggered when the button created by the Rich Message feature is clicked.
+* actionType provides the following:
+	* "OPEN_APP"
+	* "OPEN_URL"
+	* "REPLY"
+	* "DISMISS"
+
+**VO**
+
+```cpp
+struct FGamebaseEventPushAction
+{
+	// Button action type.
+    FString actionType;
+
+	// PushMessage data.
+    FGamebaseEventPushMessage message;
+
+	// User text typed in Push console.
+    FString userText;
+};
 ```
 
 **Example**
 
 ```cpp
-void Sample::RemoveObserver(const FDelegateHandle& handle)
+void Sample::AddEventHandler()
 {
-    IGamebase::Get().RemoveObserver(handle);
-}
-
-void Sample::RemoveAllObserver()
-{
-    IGamebase::Get().RemoveAllObserver();
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    {
+        if (message.category.Equals(GamebaseEventCategory::PushClickAction))
+        {
+            auto pushAction = FGamebaseEventPushAction::From(message.data);
+            if (pushAction.IsVaild())
+            {
+                // When you clicked action button by 'Rich Message'.
+            }
+        }
+    }));
 }
 ```
+
 
 ### Analytics
 
@@ -454,14 +685,14 @@ Level information of a game user can be delivered to indicators, after a user lo
 
 Following parameters are required to call APIs:  
 
-**GameUserData**
+**FGamebaseAnalyticsUserData**
 
 | Name                       | Mandatory(M) / Optional(O) | Type | Desc. |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int | Refers to the level of a game user. |
-| channelId | O | string | Indicates a channel. |
-| characterId | O | string | Refers to the name of a character. |
-| characterClassId | O | string | Indicates an occupation. |
+| userLevel | M | int32 | Refers to the level of a game user. |
+| channelId | O | FString | Indicates a channel. |
+| characterId | O | FString | Refers to the name of a character. |
+| characterClassId | O | FString | Indicates an occupation. |
 
 **API**
 
@@ -494,8 +725,8 @@ Following paratemers are required to call APIs:
 
 | Name                       | Mandatory(M) / Optional(O) | Type | Desc.	|
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int | Refers to the level of a game user. |
-| levelUpTime | M | long | Enter by Epoch Time.</br> Enter by the millisecond. |
+| userLevel | M | int32 | Refers to the level of a game user. |
+| levelUpTime | M | int64 | Enter by Epoch Time.</br> Enter by the millisecond. |
 
 **API**
 
@@ -527,11 +758,41 @@ Gamebase provides features for customer response.
 > For more details on NHN Cloud Contact, see the guide as below: 
 > [NHN Cloud Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
 
+#### Customer Service Type
+
+In the **Gamebase Console > App > InApp URL > Service Center**, you can choose from three different types of Customer Centers.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
+
+| Customer Service Type     | Required Login |
+| ------------------------- | -------------- |
+| Developer customer center | X              |
+| Gamebase customer center  | △             |
+| NHN Cloud  Online Contact      | O              |
+
+Gamebase SDK's Customer Center API uses the following URLs based on the type:
+
+* Developer's Customer Center
+    * URL specified in the **Customer Center URL** field.
+* Gamebase's Customer Center
+    * Before login: Customer Center URL **without** user information.
+    * After login: Customer Center URL with user information.
+* NHN Cloud  organization product (Online Contact)
+    * Before login : NOT_LOGGED_IN(2) error has occurred.
+    * After login: Customer Center URL with user information.
+
 #### Open Contact WebView
 
-Shows the webview of **Customer Center URL** entered on Gamebase console. 
+Displays the Customer Center WebView.
+URL is determined by the customer center type.
+You can pass the additional information to the URL using ContactConfiguration.
 
-* Value is applied same as **Gamebase Console > App > InApp URL > Service Center**.
+**FGamebaseContactConfiguration**
+
+| Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
+| ------------- | ------------- | ---------------------------------- | ------------------ |
+| userName      | O             | FString                            | User name (nickname) <br>**default** : ""   |
+| additionalURL | O             | FString                            | Additional URL which is appended after the developer's own customer center URL <br>**default** : ""    |
+| extraData     | O             | TMap<FString, FString>             | Passes the extra data wanted by the developer when opening the customer<br>**default** : EmptyMap |
 
 **API**
 
@@ -541,7 +802,18 @@ Supported Platforms
 
 ```cpp
 void OpenContact(const FGamebaseErrorDelegate& onCloseCallback);
+void OpenContact(const FGamebaseContactConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback);
 ```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initialize has not been called. |
+| NOT\_LOGGED\_IN(2)                                  | The customer center type is 'NHN Cloud  OC', and it was called before login. |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | The Customer Center URL does not exist.<br>Check the **Customer Center URL** of the Gamebase Console. |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | Failed to issue a temporary ticket for user identification. |
+| UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | The Customer Center WebView is already being displayed. |
 
 **Example**
 
@@ -561,11 +833,79 @@ void Sample::OpenContact()
             if (error->code == GamebaseErrorCode::WEBVIEW_INVALID_URL)
             {
                 // Gamebase Console Service Center URL is invalid.
-                // Please check the url field in the TOAST Gamebase Console.
+                // Please check the url field in the NHN Cloud Gamebase Console.
                 auto launchingInfo = IGamebase::Get().GetLaunching().GetLaunchingInformations();
-                Debug.Log(string.Format("csUrl:{0}", launchingInfo->launching.app.relatedUrls.csUrl));
+                UE_LOG(GamebaseTestResults, Display, TEXT("csUrl: %s"), *launchingInfo->launching.app.relatedUrls.csUrl);
             }
+        }
+    }));
+}
+```
 
+
+> <font color="red">[Caution]</font><br/>
+>
+> Contacting the Customer Center may require file attachment.
+> To do so, permissions for using the camera or using the storage must be acquired from the user at runtime.
+>
+> Android user
+>
+> * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
+>
+> * For Unreal, activate the built-in **Android Runtime Permission** plugin in the engine, and then refer to the following API Reference to acquire necessary permissions.
+> [Unreal API Reference : AndroidPermission](https://docs.unrealengine.com/en-US/API/Plugins/AndroidPermission/index.html)
+>
+> iOS user
+>
+> * Please set 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description' in info.plist.
+
+#### Request Contact URL
+
+Returns the URL used for displaying the Customer Center WebView.
+
+**API**
+
+```cs
+void RequestContactURL(const FGamebaseContactUrlDelegate& onCallback);
+void RequestContactURL(const FGamebaseContactConfiguration& configuration, const FGamebaseContactUrlDelegate& onCallback);
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initialize has not been called. |
+| NOT\_LOGGED\_IN(2)                                  | The customer center type is 'NHN Cloud  OC', and it was called before login. |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | The Customer Center URL does not exist.<br>Check the **Customer Center URL** of the Gamebase Console. |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | Failed to issue a temporary ticket for user identification. |
+
+**Example**
+
+``` cs
+void Sample::RequestContactURL(const FString& userName)
+{
+    FGamebaseContactConfiguration configuration{ userName };
+
+    IGamebase::Get().GetContact().RequestContactURL(configuration, FGamebaseContactUrlDelegate::CreateLambda([=](FString url, const FGamebaseError* error)
+    {
+        if (Gamebase::IsSuccess(error))
+        {
+            // Open webview with 'contactUrl'
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestContactURL succeeded. (url = %s)"), *url);
+        }
+        else
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestContactURL failed. (errorCode: %d, errorMessage: %s)"), error->code, *error->message);
+
+            if (error->code == GamebaseErrorCode::UI_CONTACT_FAIL_INVALID_URL)
+            {
+                // Gamebase Console Service Center URL is invalid.
+                // Please check the url field in the NHN Cloud Gamebase Console.
+            }
+            else
+            {
+                // An error occur when requesting the contact web view url.
+            }
         }
     }));
 }

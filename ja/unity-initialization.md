@@ -39,7 +39,10 @@ NHN Cloudの統合アプリ内決済サービスであるIAP(In-App Purchase)を
 | ----------- | ---- | ------------ |
 | App Store | AS | only iOS |
 | Google Play | GG | only Android |
-| One Store | ONESTORE | only Android |
+| ONE Store | ONESTORE | only Android |
+| GALAXY Store | GALAXY | only Android |
+| Windows | WIN | only Unity Standalone |
+| Web | WEB | only Unity WebGL and JavaScript |
 
 #### 4. displayLanguageCode
 
@@ -86,6 +89,42 @@ Firebase Messaging(FCM)を使用するためのSender IDです。
 
 スタンドアローン(standalone)プラットフォームで、WebViewでログインするかどうかに対する設定です。
 
+### Debug Mode
+* Gamebaseは警告(warning)とエラーログだけを表示します。
+* 開発の参考にできるシステムログをオンにするには、**Gamebase.SetDebugMode(true)**を呼び出してください。
+
+> <font color="red">[注意]</font><br/>
+>
+> ゲームを**リリース**する時は、必ずソースコードからSetDebugModeの呼び出しを削除するか、パラメータをfalseに変更してビルドしてください。
+
+デバッグ設定はConsoleでも行えます。Consoleで設定された値を優先視します。
+Console設定方法は、以下のガイドを参考にしてください。
+
+* [Consoleテスト端末設定](./oper-app/#test-device)
+* [Console Client設定](./oper-app/#client)
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static void SetDebugMode(bool isDebugMode)
+```
+
+**Example**
+
+```cs
+public void SetDebugModeSample(bool isDebugMode)
+{
+    Gamebase.SetDebugMode(isDebugMode);
+}
+```
+
 ### Initialize
 
 SDKを初期化します。
@@ -110,6 +149,15 @@ public class SampleInitialization
 {
     public void Initialize()
     {
+        /**
+         * Show gamebase debug message.
+         * set 'false' when build RELEASE.
+         */
+        Gamebase.SetDebugMode(true);
+
+        /**
+         * Gamebase Configuration.
+         */
         var configuration = new GamebaseRequest.GamebaseConfiguration();
         configuration.appID = "appID";
         configuration.appVersion = "appVersion;"
@@ -126,6 +174,9 @@ public class SampleInitialization
         configuration.storeCode = GamebaseStoreCode.WINDOWS;
     #endif
 
+        /**
+         * Gamebase Initialize.
+         */
         Gamebase.Initialize(configuration, (launchingInfo, error) =>
         {
             if (Gamebase.IsSuccess(error) == true)
@@ -275,7 +326,7 @@ Gamebaseと連携しているNHN CloudサービスのappKeyです。
 
 #### 3. tcIap
 
-NHN Cloud Consoleに登録されたIAPストアの情報です。
+**NHN Cloud** Consoleに登録されたIAPストアの情報です。
 
 * id:App ID
 * name:App Name
@@ -332,7 +383,7 @@ public class UpdateInfo {
 	string installUrl;
     // ユーザーに表示されるメッセージで、ユーザーの端末言語に合わせて伝達されます。
     // 言語が「ja」の場合、メッセージは下記のとおりです。
-    // 「サポートしないバージョンです。最新バージョンにアップデートしてください。」
+    // 'サポートしないバージョンです。最新バージョンへアップデートしてください。'
     string message;
 }
 ```

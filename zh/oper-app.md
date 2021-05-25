@@ -74,7 +74,7 @@
 > 如果选择**不验证**，则仅验证内部令牌，不重新验证外部IdP的令牌。
 > 如果选择**始终验证**，将始终验证Gamebase发布的内部令牌以及外部IdP令牌。
 
-### 인앱 URL
+### In-App URL
 ![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_05_202009.png)
 可以通过控制台实时修改应用程序内最常用的URL，而不需要重新发布客户端。
 
@@ -97,7 +97,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 * **客户服务URL** : 输入您使用的开发公司自建客户服务地址。
 * **电话号码** : 输入客户服务的电话号码。可以通过Gamebase SDK接收值。
 
-#### 2. Gamebase 제공 고객센터
+#### 2. Gamebase提供的客户服务
 ![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_20_202009.png)
 若欲使用Gamebase提供的客户服务时使用。
 需要设置的项目如下。
@@ -457,7 +457,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 [跳转至TOAST Console](https://console.toast.com/)
 
 * Gamebase
-![SecretKey설정](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
+![SecretKey设置](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
 
 ###### Client ID Settings
 > 设置应用程序的Bundle ID。
@@ -467,9 +467,9 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 
 * “teamId”：设置开发者账号右上方的值。
 * “keyId”：Certificates, Identifiers & Profiles > Keys > 勾选Sign In with Apple，设置创建的值。
-![SecretKey설정](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
+![SecretKey设置](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
 * “privateKey”：设置在上面的Keys中创建密钥同时创建的PrivateKey文件的内容。（打开下载的文件，如下方截屏所示，使用红色矩形部分的值。）
-![SecretKey설정](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
+![SecretKey设置](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
 
 如下方示例所示，将上面的值创建为JSON，进行设置。
 
@@ -492,8 +492,8 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 ```
 
 ##### Xcode Project Settings
-> <font color="red">[주의]</font><br/>
-> Xcode 11 이상에서만 **Sign In with Apple** 기능을 사용하는 프로젝트를 빌드할 수 있습니다.
+> <font color="red">[注意]</font><br/>
+> 只能在Xcode 11以上创建使用**Sign In with Apple**功能的项目。
 
 1. 选择Target > Signing & Capabilities > 添加Sign In with Apple项目。
 ![Capability_SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid8_1.0.png)
@@ -647,8 +647,8 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 若未设置，默认优先运行Gamebase SDK内部设置的值，可在Gamebase控制台设置是否输出Debug Log。
 即使Gamebase SDK中Debug Log为’OFF’状态，若在控制台中设置为’ON’，也将向终端机输出Gamebase Debug Log。
 
-#### (6) 메모
-해당 클라이언트에 대한 간단한 메모를 30자 내로 입력할 수 있습니다.
+#### (6) Memo
+可以在30个字符内输入有关客户端的简短的Memo。
 
 ## Installed URL
 

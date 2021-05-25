@@ -6,22 +6,20 @@ Gamebase supports Guest logins by default.
 
 * To log in a Provider other than Guest, a matching Provider AuthAdapter is required.
 * For setting of AuthAdapter and 3rd-Party Provider SDK, refer to
-  [3rd-Party Provider SDK Guide](./aos-started#3rd-party-provider-sdk-guide)
-
+    * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > Gradle](./aos-started/#gradle)
+    * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > Console > 3rd-Party Provider SDK Guide](./aos-started/#console)
 
 ### Login Flow
 
 In many games, login is implemented on a title page.
+
 * Allow a game user to decide which IdP to authenticate on a title screen, when an app is implemented for the first time after it is installed.
 * After initial login, the IdP selection screen does not show and authentication is made with the latest logged-in IdP.
 
 The logic described above can be implemented in the following order:
 
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
-![auth flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
+![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
 #### 1. Authenticate with Latest Login Type
 
@@ -42,7 +40,7 @@ The logic described above can be implemented in the following order:
     * Check ban information with **BanInfo.from(exception)** and notify the user with reasons for not being able to play.
     * When **GamebaseConfiguration.Builder.enablePopup(true)** and **enableBanPopup(true)** are called during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
 * Other errors
-    * As authentication with latest login type has failed, follow **3. Authenticate with Specified IdP**.
+    * As authentication with latest login type has failed, follow **'2. Authenticate with Specified IdP'**.
 
 #### 2. Authenticate with Specified IdP
 
@@ -186,6 +184,12 @@ private static void onLoginForGuest(final Activity activity) {
 Following is a login example with a specific IdP.<br/>
 You can find the types of IdP that can login, with **AuthProvider** class.
 
+> <font color="red">[Caution]</font><br/>
+>
+> Even though PAYCO IdP is a certified module, it is sometimes rejected by iOS as it is falsely detected as an external transaction
+> and we are no longer providing the constant of the AuthProvider.PAYCO.,
+> the string called "payco" should be directly passed to the parameter.
+
 **API**
 
 ```java
@@ -246,7 +250,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | Keyname | Usage | Value Type |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
+| AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.HANGAME<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter One Time Authorization (OTAC) which can be obtained after Google login. |                                          |
 
@@ -442,8 +446,8 @@ Below shows an example.<br/><br/>
 * Gamebase User ID: 123bcabca
     * Google ID: aa
     * Facebook ID: bb
-    * Apple Game Center ID: cc
-    * Payco ID: dd
+    * AppleID ID: cc
+    * Twitter ID: dd
 * Gamebase User ID : 456abcabc
     * Google ID: ee
     * Google ID: ff **-> As the Google ee account is integrated, no additional Google account can be integrated.**
@@ -567,7 +571,7 @@ This interface can be used for Gamebase AddMapping by an access token issued by 
 
 | Keyname                                  | Usage                                    | Value Type                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
+| AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter One Time Authorization (OTAC) which can be obtained after Google login. |                                          |
 
@@ -720,7 +724,7 @@ This interface allows you to perform authentication in the game with the SDK pro
 
 | keyname                                  | a use                                    | Value type                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | IdP type setting                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
+| AuthProviderCredentialConstants.PROVIDER_NAME | IdP type setting                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | Set the authentication information (access token) received after IdP login.<br/>It is not used for Google authentication. |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter the OTOC (one-time authorization code) which can be obtained after Google login. |                                          |
 
@@ -848,12 +852,6 @@ private static void removeMappingForFacebook(final Activity activity) {
 ## Gamebase User`s Information
 Process authentication with Gamebase, in order to get information required to create an app.
 
-> <font color="red">[Caution]</font><br/>
->
-> Cannot obtain authentication information when you&#39;re logged in with "Gamebase.loginForLastLoggedInProvider()" API.
->
-> To obtain authentication information, log in with "Gamebase.login (activity, IDP_CODE, callback)" API with {IDP_CODE} parameter, which is same as IDPCode to use, instead of "Gamebase.loginForLastLoggedInProvider()".
-
 ### Get Authentication Information for Gamebase
 Get authentication information issued by Gamebase.
 
@@ -879,10 +877,14 @@ String accessToken = Gamebase.getAccessToken();
 String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
 ```
 
-
 ### Get Authentication Information for External IdP
 
 Get access token, User ID, and profiles from externally authenticated SDK.
+
+> <font color="red">[Caution]</font><br/>
+>
+> * When logged in with the "Gamebase.loginForLastLoggedInProvider()" API, the authentication info cannot be retrieved.
+>     * If you need the user info, instead of "Gamebase.loginForLastLoggedInProvider()", use the {IDP_CODE} identical to the IDPCode that you want to use as the parameter to log in as the "Gamebase.login(activity, IDP_CODE, callback)" API.
 
 **API**
 
@@ -1226,7 +1228,7 @@ public static void testWithdrawImmediately() {
 |                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | You have entered a wrong TransferAccount several times, so the account transfer function has been locked. |
 |                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | Invalid TransferAccount ID. |
 |                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | Invalid TransferAccount Password. |
-|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccount has not been set. <br/> Please set it on the NHN Cloud Gamebase console first. |
+|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccount has not been set. <br/> Please set it on the TOAST Gamebase console first. |
 |                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | No TransferAccount found. Please issue TransferAccount first. |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccount already exists. |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount has already been used. |

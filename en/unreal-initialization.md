@@ -1,6 +1,6 @@
 ## Game > Gamebase > User Guide for Unreal SDK > Initialization 
 
-To use Unreal Gamebase SDK, initialization is required. In addition, app ID, and app version information must be registered on NHN Cloud console. 
+To use Unreal Gamebase SDK, initialization is required. In addition, app ID, and app version information must be registered on NHN Cloud Console. 
 
 ### Include Header File
 
@@ -10,7 +10,7 @@ To enable Gamebase API, import the following header file.
 #include "Gamebase.h"
 ```
 
-### GamebaseConfiguration 
+### FGamebaseConfiguration 
 
 Following settings are required for initialization. 
 
@@ -46,6 +46,7 @@ Find store information as below, required to initialize NHN Cloud In-App Purchas
 | App Store | AS | only iOS |
 | Google Play | GG | only Android |
 | One Store | ONESTORE | only Android |
+| Galaxy Store | GALAXY | only Android |
 
 #### 4. displayLanguageCode
 
@@ -81,6 +82,43 @@ This setting regards to using default Gamebase popups, when a kickout event is r
 
 * Default: true
 
+
+### Debug Mode
+
+* Gamebase only displays the warning and error log.
+* To turn on system logs for development reference, please call **IGamebase::Get().SetDebugMode(true)**.
+
+> <font color="red">[Caution]</font><br/>
+>
+> Before **releasing** a game, make sure to delete SetDebugMode call from the source code or change the parameter to false before building.
+
+Debug setting is also available in the Console, and this setting in the Console takes precedence over the other.
+To find out how to set up the Console, see the following guide.
+
+* [Setting Console test device](./oper-app/#test-device)
+* [Setting Console Client](./oper-app/#client)
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
+
+```cpp
+void SetDebugMode(bool isDebugMode);
+```
+
+**Example**
+
+```cpp
+void Sample::SetDebugMode(bool isDebugMode)
+{
+    IGamebase::Get().SetDebugMode(isDebugMode);
+}
+```
+
+
 ### Initialize
 
 Initialize SDKs. 
@@ -113,7 +151,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
             auto notice = launchingInfo->launching.notice;
             if (notice != null)
             {
-                if (string.IsNullOrEmpty(notice.message) == false)
+                if (FString.IsNullOrEmpty(notice.message) == false)
                 {
                     UE_LOG(GamebaseTestResults, Display, TEXT("title: %s"), notice.title);
                     UE_LOG(GamebaseTestResults, Display, TEXT("message: %s"), notice.message);
@@ -177,12 +215,13 @@ See the below table for status codes:
 
 | Status                      | Status Code | Description                                    |
 | --------------------------- | ----------- | ---------------------------------------- |
-| IN_SERVICE | 200 | Under normal service |
-| RECOMMEND_UPDATE | 201 | Upgrade is recommended |
+| IN_SERVICE                  | 200         | Under normal service |
+| RECOMMEND_UPDATE            | 201         | Upgrade is recommended |
 | IN_SERVICE_BY_QA_WHITE_LIST | 202         | Service is unavailable during maintenance; but on QA device, access to service is allowed for testing, regardless of maintenance. |
-| IN_TEST                     | 203  | Under testing  |
-| IN_REVIEW                   | 204  | Under review  |
-| REQUIRE_UPDATE | 300 | Upgrade is required  |
+| IN_TEST                     | 203         | Under testing  |
+| IN_REVIEW                   | 204         | Under review  |
+| IN_BETA                     | 205         | Beta server environment |
+| REQUIRE_UPDATE              | 300         | Upgrade is required  |
 | BLOCKED_USER                | 301         | Service is accessed on device (device key) which is registered to be blocked from access. |
 | TERMINATED_SERVICE          | 302         | Service is closed                                   |
 | INSPECTING_SERVICE          | 303         | Service under maintenance                                |
@@ -195,16 +234,18 @@ See the below table for status codes:
 
 Refers to app information registered on Gamebase Console. 
 
-* accessInfo
-    * serverAddress: Server address 
-    * csInfo: Customer center information
+* idP: Authentication information 
+    * serverAddress: Server address
+* customerService
+    * accessInfo : Customer center information
+    * type : customer center type
+    * url : Customer Center
 * relatedUrls
     * termsUrl: Terms of Service  
     * personalInfoCollectionUrl: Consent to Personal Information 
-    * punishRuleUrl: Punishment regulations 
-    * csUrl : Customer Center 
+    * punishRuleUrl: Punishment regulations
 * install: Installation URL
-* idP: Authentication information 
+* idP: ID Provider
 
 [Console Guide](/Game/Gamebase/en/oper-app/#client)
 

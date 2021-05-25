@@ -1,5 +1,18 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.22.0(2021.05.25) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-iOS.zip)
+
+#### Feature Updates
+* 외부 SDK 업데이트: TOAST iOS SDK(0.27.2), Hangame iOS SDK(1.6.0)
+
+### 2.21.2(2021.04.27) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.2/GamebaseSDK-iOS.zip)
+
+#### Feature Updates
+* Facebook iOS SDK updated (9.2.0)
+
+#### Bug Fixes
+* Fixed an issue where a bitcode error occurs when building an archive
+
 ### 2.21.1(2021.04.19) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.1/GamebaseSDK-iOS.zip)
 
 #### Bug Fixes

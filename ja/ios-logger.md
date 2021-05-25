@@ -3,7 +3,7 @@
 ここではiOSでNHN Cloud Logger SDKを使用する方法を説明します。
 
 ### Initialize
-Log & Crash Searchで発行したAppKeyでNHN Cloud Logger SDKを初期化します。<br/>
+Log & Crash Searchで発行されたアプリケーションキーでNHN Cloud Logger SDKを初期化します。
 
 **API**
 
@@ -26,8 +26,8 @@ Log & Crash Searchで発行したAppKeyでNHN Cloud Logger SDKを初期化しま
 
 ### Send Logs
 
-Log & Crash Serverにログを転送します。
-NHN Cloud Logger SDKは、下記の5つのレベルのログを転送できます。
+Log & Crashサーバーにログを送信します。
+NHN Cloud Logger SDKは、次の5つのレベルのログを送信できます。
 
 * DEBUG
 * INFO

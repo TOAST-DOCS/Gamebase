@@ -1,9 +1,9 @@
 ## Game > Gamebase > Unity SDK使用ガイド > Logger
 
-ここではUnityでTOAST Logger SDKを使用する方法を説明します。
+ここではUnityでNHN Cloud Logger SDKを使用する方法を説明します。
 
 ### Initialize
-Log & Crash Searchで発行されたAppKeyでTOAST Logger SDKを初期化します。
+Log & Crash Searchで発行されたAppKeyでNHN Cloud Logger SDKを初期化します。
 
 **API**
 
@@ -30,7 +30,7 @@ public static void InitializeSample()
 
 ### Send Logs
 Log & Crash Serverへログを送信します。
-TOAST Logger SDKは、次の5つのレベルのログを送信できます。 
+NHN Cloud Logger SDKは、次の5つのレベルのログを送信できます。 
 * DEBUG
 * INFO
 * WARN
@@ -197,7 +197,7 @@ public void SetLoggerListenerSample()
 
 ### Specifications for SetCrashListener API
 Unityを利用していると、収集を望まない例外ログやクラッシュログが収集されることがあります。
-TOAST Logger SDKは、収集を望まないクラッシュログをフィルタリングする機能をサポートします。
+NHN Cloud Logger SDKは、収集を望まないクラッシュログをフィルタリングする機能をサポートします。
 crashFilterのreturn値がtrueの場合、ログはフィルタリングされます。
 
 > <font color="red">[注意]</font><br/>

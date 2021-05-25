@@ -1,92 +1,135 @@
 ## Game > Gamebase > Console Guide > App
 
-Go to the NHN Cloud Console and click **Game > Gamebase > App**.
+Go to the NHN Cloud Cloud Console and click **Game > Gamebase > App**.
 
 * **App** : Manage app information
 * **Client** : Manage client version and status information
 * **Install URL** : Manage installation URL of each app store
 
-
 ## App
 
-### Properties
 When the Gamebase service is activated, the app is automatically created and only the registered information can be edited from the menu.
-A NHN Cloud project can manage only one Gamebase app, you cannot register additional apps or delete exiting apps. When the Gamebase service is deactivated, the information registered in the app is deleted.
+Since only one Gamebase app can be managed per NHN Cloud project, you cannot register additional apps or delete exiting apps. When the Gamebase service is deactivated, the information registered in the app is deleted.
 For more detailed information on each item, see the details below:
 
 ### Basic information
-![gamebase_app_01_202004] (https://static.toastoven.net/prod_gamebase/gamebase_app_01_202004.png)
+![gamebase_app_01_202009](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_01_202009.png)
 
 #### (1) Installation URL
 Shortened URL information that can be used to install and promote the app.
 Even if there are multiple stores to which the app is deployed, you can manage them with a single URL.
-See the following link for more information on the operation and maintenance of this app. [Manage Installation URL] (./oper-app/#installed-url).
+See the following link for more information on the operation and maintenance of this app. [Manage installation URL](./oper-app/#installed-url)
+
 > [Note]
 > When Gamebase is activated, it is automatically created and cannot be changed.
 
-#### (2) Customer Center contact
-Enter email and phone number that is not of the Customer Center page.
-If there is the Customer Center page, enter the information in the **Customer Center** of **In-app URL**.
-> [Note] <br/>
-> The information entered is displayed on the detailed maintenance page provided by Gamebase.
-
-#### (3) Whether to include test payments
+#### (2) Whether to include test payments
 Decides whether or not to include test payment in the indexes when viewing the app's indexes.
 "Include Test Payments" is the default option and if you set it to "Exclude Test Payments", the test payments are excluded from the Analytics revenue indexes.
-> [Note 1]
+> [Note1]
 > Since the data always accumulate test payments and actual payments regardless of the index inclusion settings, the data collection result won't be affected whether or not test payments are displayed.
 
-> [Note 2]
+> [Note2]
 > Test data is supported only by Google and AppStore. Other stores do not support test data.
 > The test index standard for each store is as follows:
 > * Google: The history of payments made by the test accounts registered with Google
 > * AppStore: The history of payments made in the sandbox environment
 
-#### (4) Period of Pending Withdrawal
+#### (3) Period of Pending Withdrawal
 Set the grace period if you want to enable the Pending Withdrawal feature.
 The default is 7 days and it can be anywhere between 1 and 30 days.
 > [Note]
 > The services are available as usual during the grace period.
 
 ### Server address
-![gamebase_app_01_202004] (https://static.toastoven.net/prod_gamebase/gamebase_app_02_202004.png)
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_02_202012.png)
 
-- Used when the game needs to receive the server address (IP, URL, and others) in real time.
+- Used when the game needs to receive the server address (e.g. IP, URL) in real time.
 - If you configure the server address, you can see the entered information in Launching Information after the client is initialized.
 - Server address can be configured according to the client's status and the server address can be checked in Launching Information.
 - Enter information only if required by the game; otherwise, leave it empty.
 
 ### Language settings
-![gamebase_app_01_202004] (https://static.toastoven.net/prod_gamebase/gamebase_app_03_202004.png)
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_03_202004.png)
 - You can specify the default language to display in advance in the multi-language setting in each menu.
 - The selected languages are displayed when displaying multiple languages and the default language is set as selected.
 - If you do not want to use it, leave it empty.
 
-### Authentication information
-![gamebase_app_01_202004] (https://static.toastoven.net/prod_gamebase/gamebase_app_04_202004.png)
+###  Authentication information
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_04_202004.png)
 
 The authentication information of the IdP to be used when logging in to the app can be registered, edited, and deleted.
 
 Not only the client ID and secret key of external authentication but also the callback URL and additional information can be configured.
 Click the **+** button next to the authentication information to add information; click the **-** button to delete the information.
-See [Authentication Information] (#authentication-information) for more information on configuration per IdP.
+See [Authentication Information](#authentication-information) for more information on configuration per IdP.
 > [Note]
-> What is **Token Re-verification**?
-> Sets whether the token of an external IdP needs to be reverified when calling Latest Login API from the client.
-> If **Do Not Verified** is selected, only internal tokens are verified without verifying the tokens of external IdPs again.
-> If **Always Verify** is selected, not only the internal tokens issued by Gamebase but also external IdP tokens are verified every time.
+> What is **Token Revalidation**?
+> Sets whether the token of an external IdP needs to be revalidated when calling Latest Login API from the client.
+> If **Do Not Verify** is selected, only internal tokens are validated without revalidating the token of the external IdP.
+> If **Always Verify** is selected, not only the internal tokens issued by Gamebase but also external IdP tokens are validated every time.
 
 ### In-app URL
-![gamebase_app_01_202004] (https://static.toastoven.net/prod_gamebase/gamebase_app_05_202004.png)
+![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_05_202009.png)
 You can edit URLs frequently used in the app in real time via Console without having to redeploy the client.
 
 - Terms and Conditions
 - Consent to Collection of Personal Information
-- User ban rules
-- Customer Center URL
+- User Ban Rules
 
 Enter information only if required by the game; otherwise, leave it empty.
 The configured information can be viewed in Launching Information after the client is initialized.
+
+### Customer Center
+You can perform the customer center settings.
+As of now, Gamebase provides 3 types of customer center formats, and the items you can configure vary depending on the type you selected.
+The following are the settings for each customer center type:
+
+#### 1. Developer's Own Customer Center
+![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_19_202009.png)
+Set this when the developer uses its own customer center.
+The options to be set are as follows:
+* **Customer Center URL** : Enter developer's own customer center address which is currently being provided or used.
+* **Contact** : Enter the customer center contact information. Additional information can be received through the Gamebase SDK.
+
+#### 2. Customer Center Provided by Gamebase
+![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_20_202009.png)
+Set this when you want to use the customer center feature provided by Gamebase.
+The options to be set are as follows:
+* **Customer Center URL** : Provides the page info where you can receive customer inquiries. This URL is automatically created when selecting the Customer Center Provided by Gamebase, and you can receive the customer inquiry through a separate web page by using this URL.
+* **Contact** : Enter the customer center contact information. Additional information can be received through the Gamebase SDK.
+* **Supported language** : Select the language supported for the customer center users. This setting is separate from the project language setting, and Korean, English, Japanese, and Chinese are available for now. You can use the Customer Center Provided by Gamebase features based on the language selected here.
+* **Default language** : From the list of the selected support languages, select the default one.
+
+#### 3. NHN Cloud organization product (Online Contact)
+![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_21_202102.png)
+Set this to use online contact products provided by each organization within NHN Cloud.
+The options to be set are as follows:
+* **Customer Center URL** : Enter the address provided by NHN Cloud Online Contact. You can see this info by accessing the NHN Cloud Online Contact
+* **Contact** : Enter the customer center contact information. Additional information can be received through the Gamebase SDK.
+* **OC organization Key** : Enter the key for checking the NHN Cloud Online Contact Customer Center inquiries. If you do not enter this info, you cannot find the inquiries received within the customer center page. To find out how to link it, see the following section:
+> [Note] Linking NHN Cloud Online Contact to Gamebase
+> For linking NHN Cloud Online Contact within Gamebase, you must follow the following procedure to acquire the SSO login API Key and set it within the Gamebase in order to use the customer center service properly.
+> For the customer center to provide stable service, please follow the below steps in the correct order:
+>
+> 1) Set the method of linking members to the NHN Cloud Online Contact
+> Service Management -> Help Center -> Link Member
+> ![gamebase_app_22_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_22_202102.png)
+> Enable member linking: Enable
+> Login type: GET method
+> Token validation URL: https://gamebase-web.cloud.toast.com/tcgb-web/v1.0/apps/{appId}/online-contact/login-status
+> For the **{appId}** field, check the project ID of Gamebase and enter it in the field.
+> 
+> 2) Acquire the OC organization Key and enter it in the OC organization Key field.
+> Full Administration -> Contract service status -> Go to the organization info, copy the OC organization key of the OC organization info, and then enter it in the Gamebase OC organization Key field 
+> ![gamebase_app_25_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_25_202102.png)
+>
+> 3) Acquire the NHN Cloud Online Contact Customer Center site address, and enter it in the Customer Center URL field
+> Help Center -> Select the submenu -> Click the shortcut for help center at the top right
+> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_26_202009.png)
+> Enter the address shown at the top of the browser in the Gamebase Customer Center URL field
+> ![gamebase_app_27_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_27_202102.png)
+>
 
 ### Test Device
 
@@ -124,7 +167,7 @@ If you know the Device key or IP of the device you want to register, you can dir
 Enter **Device Name**, debug log, and whether to ignore maintenance of the device that you want to register, and click the Register button to register it as a test device.
 
 > [Note]
-> Enter an easily recognizable nickname as the name of the device (e.g. iPhone 6 Test, NHN Cloud's iPad)
+> Enter an easily recognizable nickname as the name of the device (e.g. iPhone 6 Test, TOAST's iPad)
 
 #### (3) Delete
 
@@ -135,7 +178,7 @@ Select the test device to delete on the Search Test Device screen and click the 
 ### Authentication Information
 
 #### 1. Facebook
-Enter {App ID} and {App Secret Code} of an app registered in the Facebook developer's site in the NHN Cloud Gamebase Console.
+Enter {App ID} and {App Secret Code} of an app registered in the Facebook developer's site in the TOAST Cloud Gamebase Console.
 Note that {Facebook Permission} which is required for a login should also be entered to Additional Info in the json string format.
 
 **Entry Fields**
@@ -182,27 +225,24 @@ No further configuration needs to be done apart from NHN Cloud console.
 > URL Scheme configuration method has changed in Gamebase iOS SDK Version 1.12.2. Please make sure to check the version and follow the instruction accordingly.
 >
 
-- 1.12.1 or under
-  - Provide **AdditionalInfo**.
-    - You need to provide JSON string data in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
-    - You need to provide **url_scheme_ios_only** from iOS application for Google.
-    - **url_scheme_ios_only** should match with at least one of the URL Schemes in Xcode.
-  - Add URL schemes.
-    - **XCode > Target > Info > URL Types**
-- 1.12.2 or above
-  - Add URL schemes.
-    - Add `tcgb.{Bundle ID}.google` in **XCode > Target > Info > URL Types**.
+* 1.12.1 or earlier
+	* AdditionalInfo must be set.
+		* You need to provide JSON string data in **Additional Info** at **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
+		* For GOOGLE, you need to set **url_scheme_ios_only** required for iOS apps.
+		* The value of **url_scheme_ios_only** must match one of the values registered for the URL Scheme of Xcode.
 
-- - Google authentication configuration example
+	* URL Schemes must be set.
+		* **XCode > Target > Info > URL Types**
+
+* Example of entering the additional authentication information for GOOGLE
 
 ```json
 { "url_scheme_ios_only": "Your URL Schemes" }
 ```
-
-![gamebase_app_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
+![gamebase_auth_google_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_google_console_01.png)
 
 #### 3. Apple Game Center
-Enter Bundle ID registered on Apple Developer's Site in the NHN Cloud Gamebase Console.
+Enter Bundle ID registered on Apple Developer's Site in the TOAST Cloud Gamebase Console.
 
 **Entry Fields**<br />
 
@@ -217,7 +257,7 @@ Enter Bundle ID registered on Apple Developer's Site in the NHN Cloud Gamebase C
 - [Apple iTunes Connect](https://itunesconnect.apple.com/)
 
 #### 4. PAYCO
-Enter {client_id} and {client_secret} issued from PAYCO ID application in the NHN Cloud Gamebase Console.
+Enter {client_id} and {client_secret} issued from PAYCO ID application in the TOAST Cloud Gamebase Console.
 
 **Entry Fields**<br />
 
@@ -243,24 +283,23 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the NH
 >
 > URL Scheme configuration method has changed in Gamebase iOS SDK Version 1.12.2. Please make sure to check the version and follow the instruction accordingly.
 
-- 1.12.1 or under
-  - Provide **AdditionalInfo**.
-    - You need to provide JSON string data in **NHN Cloud Console > Gamebase > App > Authentication Information**.
-    - You need to configure **service_code** and **service_name** that Payco SDK asks for.
-- 1.12.2 or above
-  - Provide **AdditionalInfo**.
-    - You need to provide JSON string data in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
-    - You need to configure **service_code** and **service_name** that Payco SDK asks for.
-  - Add URL schemes.
-    - Add `tcgb.{Bundle ID}.payco` in **XCode > Target > Info > URL Types**.
+- 1.12.1 or earlier
+  - AdditionalInfo must be set.
+	- You need to provide JSON string data at **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info**.
+	- For PAYCO, set **service_code** and **service_name** required by PaycoSDK.
+- 1.12.2 or later
+  - AdditionalInfo must be set.
+	- You need to provide JSON string data at **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info**.
+	- For PAYCO, set **service_code** and **service_name** required by PaycoSDK.
+  - URL Scheme must be set.
+	- You need to go to **XCode > Target > Info > URL Types** and add `tcgb.{Bundle ID}.payco`.
 
-- - PAYCO authentication configuration example
+* Example of entering the additional authentication information for PAYCO
 
 ```json
 { "service_code": "HANGAME", "service_name": "Your Service Name" }
 ```
-
-![gamebase_app_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
+![gamebase_auth_payco_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_payco_console_01.png)
 
 
 #### 5.NAVER
@@ -312,6 +351,7 @@ You need to set **service_name** which will be displayed in sign in agreement wi
 
 ![gamebase_app_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
+
 #### 6. Twitter
 
 You need to provide {Consumer Key} and {consumer Secret} acquired from Twitter Applicaiton Management Website.
@@ -346,7 +386,7 @@ You need to provide {Consumer Key} and {consumer Secret} acquired from Twitter A
     * Need to configure Apps > Target Project > App Details > Callback URL on the Developer site of Twitter.
       * Add **tcgb.{Bundle ID}.twitter://**.
 
-![Twitter URL Types] (http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+![Twitter URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
 #### 7. LINE
 
@@ -448,13 +488,103 @@ As of today (November of 2019), there are only two types of scope, such as `full
 ```
 
 ##### Xcode Project Settings
-> <font color="red">[Caution]</font><br/>Only Xcode 11 or higher versions allow 'Sign In with Apple' for the  buildup of projects.   
+> <font color="red">[Caution]</font><br/>
+>
+> The version must be Xcode 11 or later in order to build a project that uses the **Sign In with Apple** feature.
 
 1. Select Target > Signing & Capabilities,  and add Sign In with Apple.
 ![Capability_SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid8_1.0.png)
 2. Select Target > Build Phases > Link Binary With Libraries, and add Authentication.framework as **Optional**.
 ![AuthenticationServices.framework](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid9_1.0.png)
-    - ```Caution```: If the setting is not Optional but Required, you may encounter runtime crash on iOS 11 or lower-version devices.
+
+> <font color="red">[Caution]</font><br/>
+> If this is set to Optional instead of Required, the app crashes at runtime for any device running iOS 12 or earlier.
+
+
+##### Settings for supporting iOS 12 or earlier (Sign In with Apple JS)
+
+> <font color="red">[Caution]</font><br/>
+>
+> In Gamebase SDK iOS 2.13.0 or later, the Sign In with Apple feature can be used by utilizing WebView on iOS 12 or earlier.
+>
+> Even for a game that runs on a version earlier than Gamebase SDK iOS 2.13.0, by referring to the **Settings for supporting iOS 12 or earlier** to configure the previous project
+>
+> and applying Gamebase SDK iOS 2.13.0 or later, Sign In with Apple feature can be used on iOS 12 or earlier.
+
+
+* To use Sign In with Apple on iOS 12 or earlier, Sign In with Apple JS must be used to log in through the web page.
+* In the Apple ID login web page, you can enter the Apple account and password to log in.
+
+**You must follow the below procedure to register a new Service ID in the Apple developer site.**
+
+1. Add Service ID<br/>
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_01.png)
+2. Set the identifier to use as the Service ID (usually bundle ID + **.string to sort**)<br/>
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_02.png)
+3. Check the registered Service ID and modify it<br/>
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_03.png)
+4. Click Configure for the Sign In with Apple at the bottom<br/>
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_04.png)
+5. Set the Primary App ID (If Sign In with Apple is already being used, set the bundle ID of that app)<br/>
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_05.png)
+6. Authenticate with the Apple ID, and set the Callback URL to receive the authentication info<br/>
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_06.png)
+7. Set up and save<br/>
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_07.png)
+
+
+**Go to NHN Cloud Gamebase Console > Gamebase > App > Authentication Information > Apple > Service ID, and enter the service ID from above.***
+
+> <font color="red">[Caution]</font><br/>
+>
+> If Sign In with Apple is not previously set up, you need to set up the rest as well.
+
+1. Add the Service ID you registered with the Apple developer site in the Service ID field here as follows: (If there is already a setting for Sign In with Apple, no need to change other values.)
+![Set Service ID for Sign In with Apple JS](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_TOAST_01.png)
+
+
+#### 9. WEIBO
+
+##### Weibo Console
+
+1. Enter {client_id} and {client_secret} issued by Weibo Developers site in the Gamebase Console.
+{scope}, which is required for logging in, also needs to be entered in the Additional Info field as a JSON string.
+
+
+![gamebase_app_29_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_29_202012.png)
+
+2. In the callback URL field, enter the following:
+	* Authorization callback page : https://api.weibo.com/oauth2/default.html
+	* Cancel authorization callback page : https://api.weibo.com/oauth2/default.html
+
+
+**Input field**
+
+- ClientID: {App Key}
+- Secret Key: {App Secret}
+- Additional Info: scope (json format)
+
+
+**Additional Info Settings**
+
+* Scope
+
+Indicates the permission required by the application.
+All permissions have been declared as default as per the Weibo guide document.
+You can add/remove/change them as necessary.
+
+* oauthApiUrl
+
+This is a domain for calling the Weibo Open API internally.
+You should not change this.
+
+
+![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_28_202012.png)
+
+
+**Reference URL**
+- [Weibo Developer](https://open.weibo.com/)
+
 
 
 ## Client
@@ -463,77 +593,144 @@ Can manage client information by operating system (iOS, Android, Unity WebGL, or
 
 ### Client List
 
-![gamebase_app_12_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_12_201812_en.png)
-
-Can check the list of currently-registered clients by operating system.
-The number of icon indicates the version entered when registering a client.
-The icon list shows service status, such as <font color="white" style="background-color:#F8BB28">Test</font>, <font color="white" style="background-color:#FB8F37">Review</font>, <font color="white" style="background-color:#88C637">Service</font>, <font color="white" style="background-color:#2AB1A6">Update Recommended(in service)</font>only. Click the arrow key at the bottom right to check the list of clients, in such status as, <font color="white" style="background-color:#A1A1A1">Update required</font>, <font color="white" style="background-color:#CCCCCC">Close</font>.
-The color of an icon helps identify service status at a glance.
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client1_1.2.png)
+You can see the list of currently registered clients.
+They are sorted by OS, and the number in the icon indicates the version entered when registering the client.
+Only the icon list shows only the following service statuses: <font color="white" style="background-color:#eed14c">Test</font>, <font color="white" style="background-color:#eba34b">Beta service</font>, <font color="white" style="background-color:#eb7e4b">Review in progress</font>, <font color="white" style="background-color:#88C637">Service</font>, and <font color="white" style="background-color:#2AB1A6">Update recommended (In service)</font>. If you click the arrow at the bottom right of each OS, you can see the list of clients in the following statuses: <font color="white" style="background-color:#A1A1A1">Update required</font>, and <font color="white" style="background-color:#CCCCCC">Service terminated</font>.
+You can see the service status at a glance thanks to the distinguished icon color per service status.
 
 ### Properties
 
-Describes client registration information managed by the Gamebase Console.
-In the **Client** tab, click **Register AOS** , **Register iOS** and a screen for client registration will show. To modify or delete client's entry value, click an icon from the icon list or select a client from the entire list.
-
-![gamebase_app_13_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_13_201812_en.png)
-
+Explains about the client registration information managed by the Gamebase Console.
+If you click buttons such as **Register AOS**, and **Register iOS** on the **Client** tab, the client registration screen appears. If you want to edit or delete the input value of the registered client, click the icon from the icons list or select the client you want from all clients list.
+![gamebase_app_13_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_13_202012.png)
 #### (1) Store
+(<font color="red">Required</font>) Select the store to deploy the client.
+The store you can select varies by OS.
+#### (2) Game version
+(<font color="red">Required</font>) Enter the client version.
+You just need to enter the string according to the rules set forth by the game.
+#### (3) Service status
+(<font color="red">Required</font>) Select the service status of the client.
+There are 6 service statuses: <font color="white" style="background-color:#eed14c">Test</font>, <font color="white" style="background-color:#eba34b">Beta service</font>, <font color="white" style="background-color:#eb7e4b">Review in progress</font>, <font color="white" style="background-color:#88C637">Service</font>, <font color="white" style="background-color:#2AB1A6">Update recommended (In service)</font>, <font color="white" style="background-color:#A1A1A1">Updated required</font>, and <font color="white" style="background-color:#CCCCCC">Service terminated</font>.
 
-(<font color="red">Required</font>) Select a store to distribute a client.
-Each operating system has a different store.
+- <font color="white" style="background-color:#F8BB28">Test</font>: Internal test
+- <font color="white" style="background-color:#eba34b">Beta service</font>: Select this when you need to connect to a separate beta server instead of the service server.
+- <font color="white" style="background-color:#FB8F37">Review in progress</font>: The store is being reviewed
+![gamebase_app_15_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_15_201812.png)
 
-#### (2) Client Version
+- <font color="white" style="background-color:#88C637">In service</font>: Normal service
+- <font color="white" style="background-color:#2AB1A6">Update recommended (In service)</font>: Normal service. <br/>Pops up a window to prompt users to use the more stable version. <br/>Encourages users to download the latest version, but users can also continue to use the current version of the service.<br />The following is the standard popup provided by Gamebase SDK when the service status is 'Update recommended (In service)'.
 
-(<font color="red">Required</font>) Enter a client version.
-Enter character strings in accordance with rules of each game.
-
-#### (3) Service Status
-
-(<font color="red">Required</font>) Select a service status of a client, out of 6:
-<font color="white" style="background-color:#F8BB28">Test</font>, <font color="white" style="background-color:#FB8F37">Review</font>, <font color="white" style="background-color:#88C637">Service</font>, <font color="white" style="background-color:#2AB1A6">Update Recommended(in service)</font>, <font color="white" style="background-color:#A1A1A1">Update required</font>, <font color="white" style="background-color:#CCCCCC">Close</font>.
-
-- <font color="white" style="background-color:#F8BB28">Test</font>: Internal test is underway
-- <font color="white" style="background-color:#FB8F37">Review</font>: Store is under evaluation. Can add setting of Stabilization Index.
-  ![gamebase_app_14_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_14_201812_en.png)
-
-> [Note]
-> What is 'Stabilization Index'?<br/>
-> It is an indicator log to call a Gamebase API within Gamebase.
-> When it is activated during 'Test', the indicator helps detect problems more at ease when an issue arises in Gamebase.
-> Its use can be set in the Gamebase Console in real time, along with the log level.
-
-![gamebase_app_15_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_15_201812.png)
-
-- <font color="white" style="background-color:#88C637">Service</font>: Service is normally provided
-- <font color="white" style="background-color:#2AB1A6">Update Recommended (In Service)</font>: Service is normally provided. <br/>Pop-up will show to lead into more stable versions. Although downloading a newer version is recommended, users can continue playing games with a current version.<br />Gamebase provides the default pop-up as below.
-
-- <font color="white" style="background-color:#A1A1A1">Update Required</font>: Service is unavailable. <br/>As the current version is not supported by game, a pop-up will show to update app.<br />Gamebase provides the default pop-up as below.
+- <font color="white" style="background-color:#A1A1A1">Update required</font>: Service unavailable. <br/>The game currently does not support the service, so instead it displays a popup to prompt users to install the latest version.<br />The following is the standard popup provided by Gamebase SDK when the service status is 'Update Required'.
 
 >  <font color="red">[Caution] </font>
->  When **both Update Required and Under Maintenance are set at the same time** , the service status becomes 'Update Required'.
->  If you don't want to show the Update Required pop-up to user during maintenance, the service status should be changed to 'Update Required' after maintenance is completed.
+>If **Update Required and Maintenance are both enabled**, the service status becomes 'Update Required'.
+>  If you do not want to show a popup about required updates to users during the maintenance, the service status must be changed to 'Update Required' after the maintenance.
 >  <font color="orange">[Note] </font>
-> Click the Update button to be redirected to each store address configured in the URL menu.
-> For example, if the client is set to App store and there is a setting related to App store in the Installation URL menu, the user is redirected to that address. If there is no setting configured in the Installation URL menu, the user is redirected to a common URL.
+>  Clicking the Update button redirects the user to each store address configured for the installation URL menu.
+>  For example, if the client is set to App store and there is a setting related to App store in the Installation URL menu, the user is redirected to that address. If there is no setting configured in the Installation URL menu, the user is redirected to the common URL.
 
-- <font color="white" style="background-color:#CCCCCC">Close</font>: Service unavailable. <br/> To be selected for a version of closed service.<br />Gamebase provides the default pop-up as below.
+- <font color="white" style="background-color:#CCCCCC">Service terminated</font>: Service unavailable. <br/> Select this if the service is no longer available.<br />The following is the standard popup provided by Gamebase SDK when the service status is 'Service terminated'.
 
 > [Note]
 > Configure messages to be displayed according to service status
-> If the status is **Update Recommended (In service)**, **Update Required**, or **Exit**, you can set the message to be exposed to users in multiple languages.
+> For **Update recommended (In service)**, **Update required**, or **Service terminated** status, you can set the message to be exposed to users in multiple languages.
 > If you select the service status, default messages are provided according to the language settings configured for the app, and if you want, more languages can be added or change the default message text.
 > If there are already settings for each language, those settings are used regardless of the app's language settings.
 > If there is no information in the app's language settings, the default messages are provided in 5 languages (Korean, English, Japanese, Simplified Chinese, and Traditional Chinese). These languages can be added or the text of the default message can be changed.
-> ![gamebase_app_18_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_18_201812_en.png)
+> ![gamebase_app_18_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_18_202004.png)
 
-#### (4) Server URL
-Enter a server URL (IP, URL) that a client will use.
-A server URL entered in the **App** tab will be applied for all clients; enter only when each client has a different server URL.
+#### (4) Server address
+Enter the server address (IP, URL) to be used by client.
+If you enter the server address in the **App** tab, it is applied to all clients. So enter the server address only when you want to use a different server address per client.
 
 #### (5) Debug log
 You can change whether to display debug logs of Gamebase SDK in the console in real time.
 If it is not set, the default value set in the Gamebase SDK will be used. You can set whether to display debug logs in the console or not.
 Even if the debug log is 'OFF' in the Gamebase SDK, the Gamebase debug logs are displayed on the device if you set debug log to 'ON' for the console.
+
+#### (6) Memo
+You can write a brief memo about the client in no more than 30 characters.
+
+## Terms Of Service
+Create and configure the terms and conditions to display within the game.
+![gamebase_app_30_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_30_202102.png)
+### (1) Created terms and conditions list
+You can click the - **+** button to create another terms and conditions.
+![gamebase_app_31_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_31_202102.png)
+
+### (2) Terms and conditions country type
+
+### (3) Target country of the terms and conditions
+- If the country type is Other, you can additional select the target country.
+
+### (4) Terms and conditions configuration
+- You can specify the sequence of the terms and conditions by dragging & dropping.
+- A total of 25 terms and conditions can be created (5 high-level T&C and 5 low-level T&C).
+
+### (5) Create terms and conditions
+- In the terms and conditions list, select the terms and conditions configuration you want and click the **Add** button to create the low-level terms and conditions.
+- If a low-level terms and conditions is selected, you cannot create terms and conditions.
+
+### (6) Details of the selected terms and conditions
+- Terms and conditions name
+	- Name for managing the terms and conditions.
+- Terms and conditions agreement
+	- Consent to terms and conditions.
+- Details page
+	- None: Details page does not exist.
+	- Enter URL: Sets URL for Details page.
+	- Enter Manually: Creates a Details page.
+![gamebase_app_32_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_32_202102.png)
+- Text to display
+	- Text to display in the game.
+	- **+** button allows you to add a language.
+	- If an unavailable language is requested, it shows the checked language on the button by default.
+- Accept push
+	- None: Not a consent to the push.
+	- Opt in advertising: Terms and conditions which require advertising push notification opt-in.
+	- Opt in night advertising: Terms and conditions which require night advertising push notification opt-in.
+
+> <font color="red">[Caution]</font><br/>
+>
+> If you do not click the Save button, the terms and conditions that you wrote won't be applied.
+> Saves only the currently selected terms and conditions details.
+>
+
+
+## Terms Of Service Deploy
+
+The distribute terms and conditions and distribution history to display in game.
+![gamebase_app_33_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_33_202102.png)
+
+### (1) Default terms and conditions settings
+![gamebase_app_35_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_35_202102.png)
+
+- Select the terms and conditions to expose by default if accessed from a country without distributed terms and conditions.
+
+> <font color="red">[Caution]</font><br/>
+>
+> You may not set the default terms and conditions if you do not want. If the default terms and conditions are not set,  the terms and conditions are not exposed when accessed from outside the distributed country.
+>
+
+### (2) Terms and conditions list
+
+- List of the currently created terms and conditions.
+
+### (3) Preview
+![gamebase_app_36_202102](https://static.toastoven.net/prod_gamebase//gamebase_app_36_202102.png)
+
+- You can preview the terms and conditions selected from the list of terms and conditions.
+
+### (4) Terms and conditions distribution and distribution history
+#### Distribution
+- You can distribute the selected terms and conditions from the terms and conditions list.
+- If you proceed with distributing after checking 'Agree again to Terms and Conditions', new terms and conditions are exposed to the users who have previously consented to the terms and conditions. For a simple revision, such as some word changes, checking the Agree again to Terms and Conditions box is unnecessary.
+
+#### Distribution history
+![gamebase_app_34_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_34_202102.png)
+- Distribution history of the terms and conditions selected from the list of terms and conditions.
 
 ## Installed URL
 
