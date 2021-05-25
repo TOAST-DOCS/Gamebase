@@ -1,9 +1,14 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
-### 2.21.0(2021.04.13) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.0/GamebaseSDK-Unity.zip)
+### 2.22.0(2021.05.25) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST Unity SDK(0.22.0)
+
+### 2.21.0(2021.04.13) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.0/GamebaseSDK-Unity.zip)
 
 #### 기능 추가
-* Hangame 일본 인증 추가 	
+* 인증 추가: 일본 한게임(Hange)
 
 ### 2.20.0(2021.02.09) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.0/GamebaseSDK-Unity.zip)
 
