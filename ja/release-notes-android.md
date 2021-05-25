@@ -1,6 +1,6 @@
 ## Game > Gamebase > リリースノート > Android
 
-### 2.22.0(2021.05.25) [SDKダウンロード](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-Android.zip)
+### 2.22.0(2021.05.25) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-Android.zip)
 
 #### 機能改善/変更
 * 外部SDKアップデート：TOAST Android SDK(0.25.0)、Hangame Android SDK(1.4.0)
