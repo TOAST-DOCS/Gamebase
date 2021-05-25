@@ -457,7 +457,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 [跳转至TOAST Console](https://console.toast.com/)
 
 * Gamebase
-![SecretKey설정](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
+![SecretKey设置](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
 
 ###### Client ID Settings
 > 设置应用程序的Bundle ID。
@@ -467,9 +467,9 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 
 * “teamId”：设置开发者账号右上方的值。
 * “keyId”：Certificates, Identifiers & Profiles > Keys > 勾选Sign In with Apple，设置创建的值。
-![SecretKey설정](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
+![SecretKey设置](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
 * “privateKey”：设置在上面的Keys中创建密钥同时创建的PrivateKey文件的内容。（打开下载的文件，如下方截屏所示，使用红色矩形部分的值。）
-![SecretKey설정](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
+![SecretKey设置](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
 
 如下方示例所示，将上面的值创建为JSON，进行设置。
 
@@ -647,8 +647,8 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 若未设置，默认优先运行Gamebase SDK内部设置的值，可在Gamebase控制台设置是否输出Debug Log。
 即使Gamebase SDK中Debug Log为’OFF’状态，若在控制台中设置为’ON’，也将向终端机输出Gamebase Debug Log。
 
-#### (6) 메모
-해당 클라이언트에 대한 간단한 메모를 30자 내로 입력할 수 있습니다.
+#### (6) Memo
+可以在30个字符内输入有关客户端的简短的Memo。
 
 ## Installed URL
 

@@ -632,7 +632,7 @@ public void AddMappingForcibly(string idPName)
             // 首先调用addMapping API，尝试以已关联的账户映射，如下可获得ForcingMappingTicket。
             if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
             {
-                // ForcingMappingTicket 클래스의 From() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
+                // 过利用ForcingMappingTicket类的From()方法获取ForcingMappingTicket实例。
                 GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
 
                 // 尝试强制映射。
@@ -708,7 +708,7 @@ public void AddMappingForcibly(Dictionary<string, object> credential)
             // 首先调用addMapping API并尝试以已关联的账户映射，如下可获得ForcingMappingTicket。
             if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
             {
-                // ForcingMappingTicket 클래스의 From() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
+                // 通过利用ForcingMappingTicket类的From()方法获取ForcingMappingTicket实例。
                 GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
 
                 // 尝试强制映射。
@@ -952,8 +952,8 @@ public void GetAuthProviderProfile(string providerName)
 
 ### Get Banned User Information
 
-Gamebase Console에 제재된 게임 유저로 등록될 경우,
-로그인을 시도하면 아래와 같은 이용 제한 정보 코드가 표시될 수 있습니다. **GamebaseResponse.Auth.BanInfo.from(GamebaseError error)** 메서드를 이용해 제재 정보를 확인할 수 있습니다.
+如果在Gamebase Console中已注册为被禁的游戏用户时，
+当尝试登录时，可能会看到如下所示的禁止信息代码。利用**GamebaseResponse.Auth.BanInfo.from(GamebaseError error)**方法可以确认禁止信息。
 
 * BANNED_MEMBER(7)
 

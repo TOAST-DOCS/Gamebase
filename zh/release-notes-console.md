@@ -1,9 +1,14 @@
 ## Game > Gamebase > Release Notes > Console
 
+### May 25, 2021 
+
+#### Feature Updates
+* 구매(IAP) > 아이템: 스토어 아이템의 상태 변경시 하위 상품 ID 정보도 확인할 수 있도록 기능 추가
+
 ### May 11, 2021 
 
 #### Feature Updates
-* 앱 > 앱: 기능별로 묶어서 수정할 수 있도록 화면 개선
+* App > App: Improved the view so that users can group and edit apps by feature
 
 ### April 13, 2021 
 

@@ -77,25 +77,12 @@ repositories {
     ...
 
     // >>> [Weibo IdP]
-    maven { url 'https://dl.bintray.com/thelasterstar/maven/' }
+    // Download weibo sdk from here:
+    // https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/2019SDK/aar
+    flatDir { dirs 'The directory containing weibo sdk.' }
 
     // >>> [Hangame IdP]
     maven { url 'Hangame IdP 설정 방법은 고객 센터로 문의 하시기 바랍니다.' }
-}
-
-android {
-    compileOptions {
-        // >>> [Line IdP]
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    defaultConfig {
-        // >>> [Weibo IdP]
-        ndk {
-            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
-        }
-    }
 }
 
 dependencies {
@@ -113,6 +100,9 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-line:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-payco:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
+
+    // >>> [Weibo IdP]
+    implementation (name: 'openDefault-10.10.0', ext: 'aar')
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Purchase Adapter
@@ -122,6 +112,41 @@ dependencies {
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
+}
+
+android {
+    compileOptions {
+        // >>> [Line IdP]
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        // >>> [Weibo IdP]
+        ndk {
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+        }
+    }
+    
+    // >>> If your AGP(Android Gradle Plugin) version is lower than 3.4.0,
+    //     the build will fail due to duplicate META-INF resources.
+    //     In this case, please add the following declaration.
+    packagingOptions {
+        // >>> Avoid duplication of 'coroutines.pro' from kotlinx-coroutines
+        exclude 'META-INF/proguard/coroutines.pro'
+
+        // >>> Avoid duplication of 'LICENSE.txt' from jackson
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+    }
 }
 ```
 
