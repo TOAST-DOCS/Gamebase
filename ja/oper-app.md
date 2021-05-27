@@ -220,32 +220,8 @@ NHN Cloud Consoleでの設定の他に追加設定はありません。
 	* https://id-gamebase.toast.com/oauth/callback
 
 ##### iOS
+* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP Settings > Google](./ios-started/#google)
 
-> <font color="red">[注意]</font><br/>
->
-> Gamebase iOS SDK 1.12.2バージョンで、URLスキームの設定方法が変更されました。使用SDKバージョンに合ったガイドを確認して設定してください。
->
-
-* 1.12.1以下
-	* AdditionalInfoを設定する必要があります。
-		* **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目にJSON string形式の情報を設定する必要があります。
-		* GOOGLEの場合、iOSアプリで必要な情報**url_scheme_ios_only**の設定が必要です。
-		* **url_scheme_ios_only**の値はXcodeのURL Schemeに登録された値のうち1つと一致する必要があります。
-
-	* URL Schemesを設定する必要があります。
-		* **XCode > Target > Info > URL Types**に**tcgb.{Bundle ID}.twitter**を追加する必要があります。
-
-* 1.12.2以上
-	* URLスキームを設定する必要があります。
-		* **XCode > Target > Info > URL Types**に`tcgb.{Bundle ID}.google`を追加する必要があります。
-
-* GOOGLE追加認証情報の入力例
-
-```json
-{ "url_scheme_ios_only": "Your URL Schemes" }
-```
-
-![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
 #### 3. Apple Game Center
 Appleの開発者サイトに登録されたBundleIDをGamebase Consoleに入力します。
@@ -270,10 +246,10 @@ PAYCO Client IDを申請して発行された{client_id}及び{client_secret}を
 - Secret Key：{Payco client_secret}
 - 追加情報：Payco Service & Service Name (JSON format)
 
-##### Android & Unity
-- AdditionalInfoを設定する必要があります。
-    * **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報**項目に、JSON string形式の情報を設定する必要があります。
-    * PAYCOの場合、PaycoSDKで要求する**service_code**と**service_name**を設定する必要があります。
+##### Additional Info Settings
+
+* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
 
 * PAYCO追加認証情報の入力例
 
@@ -282,83 +258,33 @@ PAYCO Client IDを申請して発行された{client_id}及び{client_secret}を
 ```
 
 ##### iOS
-
-> <font color="red">[注意]</font><br/>
->
-> Gamebase iOS SDK 1.12.2バージョンでURLスキームの設定方法が変更されました。使用SDKバージョンに合ったガイドを参照してください。
->
-
-* 1.12.1以下
-	* AdditionalInfoを設定する必要があります。
-		* **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報**項目にJSON string形式の情報を設定する必要があります。
-		* PAYCOの場合、PaycoSDKで要求する**service_code**と**service_name**を設定する必要があります。
-
-* PAYCO追加認証情報の入力例
-
-```json
-{ "service_code": "HANGAME", "service_name": "Your Service Name" }
-```
-
-![gamebase_auth_payco_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_payco_console_01.png)
-
-* 1.12.2以上
-	* AdditionalInfoを設定する必要があります。
-		* **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報**項目にJSON string形式の情報を設定する必要があります。
-		* PAYCOの場合、PaycoSDKで要求する**service_code**と**service_name**を設定する必要があります。
-	* URL Schemeを設定する必要があります。
-		* **XCode > Target > Info > URL Types**に`tcgb.{Bundle ID}.payco`を追加する必要があります。
-
-
-![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
+* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Payco](./ios-started/#payco)
 
 #### 5.NAVER
-NAVER Developersサイトで申請して発行された{client_id}及び{client_secret}をGamebase Consoleに入力します。
-この時、ログイン同意ウィンドウで表示するアプリケーション名である**service_name**を設定する必要があり、iOSの場合はさらに**url_scheme_ios_only**値をJSON String形式で追加情報欄に入力する必要があります。
+Naver Developers 사이트에서 신청하여 발급받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
+이때, 로그인 동의 창에서 표시할 애플리케이션 이름인 **service_name** 을 설정해야 합니다.
 
 **入力フィールド**<br />
 
-- Client ID：{NAVER client_id}
-- Secret Key：{NAVER client_secret}
-- 追加情報：NAVER Application Name & iOS URLスキーム(json format)
+- Client ID: {NAVER client_id}
+- Secret Key: {NAVER client_secret}
+- 추가정보: NAVER Application Name (json format)
 
 **Reference URL**
 - [NAVER Developers - アプリケーション登録](https://developers.naver.com/apps/#/register)
 - [NAVER Developers - クライアントIDとクライアントシークレットの確認](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)
 
-##### Android & Unity
-* **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON String形式の情報を設定する必要があります。
-	* NAVERの場合、ログイン同意ウィンドウに表示するアプリ名である**service_name**を設定する必要があります。
+##### Additional Info Settings
+
+* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야 합니다.
+* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
 
 ```json
 {"service_name": "Your Service Name" }
 ```
 
 ##### iOS
-
-> <font color="red">[注意]</font><br/>
->
-> Gamebase iOS SDK 1.12.2バージョンでURLスキームの設定方法が変更されました。使用SDKバージョンに合ったガイドを参照してください。
->
-
-* 1.12.1以下
-	* **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON String形式の情報を設定する必要があります。
-		* NAVERの場合、ログイン同意ウィンドウに表示するアプリ名である**service_name**を設定する必要があります。
-		* iOSアプリで必要な情報の**url_scheme_ios_only**を追加で設定する必要があります。
-	* URLスキームsを設定する必要があります。
-		* **XCode > Target > Info > URL Types**
-
-* 1.12.2以上
-	* **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目に、JSON String形式の情報を設定する必要があります。
-		* NAVERの場合、ログイン同意ウィンドウに表示するアプリ名である**service_name**を設定する必要があります。
-	* URLスキームを設定する必要があります。
-		* **XCode > Target > Info > URL Types**に`tcgb.{Bundle ID}.naver`を追加する必要があります。
-
-* NAVER追加認証情報の入力例
-
-```json
-{ "url_scheme_ios_only": "Your URLスキームs", "service_name": "Your Service Name" }
-```
-![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
+* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Naver](./ios-started/#naver)
 
 #### 6. Twitter
 Twitter Application Managementサイトでアプリを登録して発行した{Consumer Key}および{Consumer Secret}をGamebase Consoleに入力します。
@@ -380,21 +306,8 @@ Twitter Application Managementサイトでアプリを登録して発行した{C
  > すなわち、Android 4.4以上(KitKat、API Level 19)の端末でのみTwitterログインを使用できます。
 
 ##### iOS
+* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Twitter](./ios-started/#twitter)
 
- > <font color="red">[注意]</font><br/>
- >
- > Gamebase iOS SDK 1.14.0バージョンでURLスキームの設定方法が変更されました。使用SDKバージョンに合ったガイドを参照してください。
- >
-
-* 1.13.0以下
-	* 別途URLスキームを設定する必要はありません。
-
-* 1.14.0以上
-	* URLスキームを設定する必要があります。
-		* **XCode > Target > Info > URL Types**に**tcgb.{Bundle ID}.twitter**を追加する必要があります。
-    * TwitterのDeveloperサイトのApps > 対象プロジェクト > App Details > Callback URL項目を設定する必要があります。
-      *  **tcgb.{Bundle ID}.twitter://**を追加します。
-![Twitter URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
 
 #### 7. LINE
 
@@ -407,31 +320,7 @@ Twitter Application Managementサイトでアプリを登録して発行した{C
 - [LINE Developer Console](https://developers.line.me/console/)
 
 ##### iOS
-LINE Login機能を使用するには、Xcodeに追加設定を行う必要があります。
-- URLスキームsを設定する必要があります。
-
-  * **XCode > Target > Info > URL Types**に**line3rdp.{App Bundle ID}**を追加する必要があります。
-
-- Info.plistファイルを設定する必要があります。
-	* LINEで発行したChannelIDを設定します。
-	```
-	<key>LineSDKConfig</key>
-	<dict>
-    	<key>ChannelID</key>
-    	<string>{Issued LINE ChannleID}</string>
-	</dict>
-	```
-	* ATS設定のためにschemeを登録します。
-	```
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-    	<string>lineauth</string>
-    	<string>line3rdp.{App Bundle ID}</string>
-	</array>
-	```
-- LINE Loginを使用するためのプロジェクト設定は、次のリンクを参照してください。(認証必要)
-* [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
-
+* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Line](./ios-started/#line)
 
 #### 8. Sign In with Apple
 Sign In with Apple機能を使用するには、AppStore Connect、Gamebase Console、そしてXcodeの設定が必要です。

@@ -9,6 +9,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 > * Android API 16 (JellyBean, 4.1)以上
 >     * Twitter Loginは19(Kitkat, 4.4)以上
 >     * AppleID Loginは19(Kitkat, 4.4)以上
+>     * Line Loginは17(Kitkat, 4.2)以上
 >     * Weibo Loginは19(Kitkat, 4.4)以上
 >     * GALAXY Storeは21(Lollipop, 5.0)以上
 >         * ギャラクシーIAP SDKのminSdkVersionは18(OS 4.3)のため、これより小さい値を設定する場合、ビルドが失敗します。
@@ -20,27 +21,22 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 
 ### Console
 
+> <font color="red">[주의]</font><br/>
+>
+> * NHN Cloud Console 에서 새 프로젝트를 생성하여 Gamebase 서비스를 활성화 하였는지 꼭 확인하세요.
+> * 각 IdP 콘솔에서 Client ID 를 발급받아 Gamebase 콘솔에 입력하였는지 꼭 확인하세요.
+
 * Gamebase Android SDKを使用する前に、NHN Cloud ConsoleからアプリIDを発行する必要があります。アプリIDを発行するためには、NHN Cloud Consoleから**(+)サービス選択**をクリックし、**Game > Gamebase**をクリックしてサービスを有効にします。
 * 認証するためにIdPコンソールでclient idを発行し、Gamebaseコンソールに入力します。
     * [Game > Gamebase > コンソール使用ガイド > アプリ > Authentication Information](./oper-app/#authentication-information)
-    * 3rd-Party Provider SDK Guide
-        * [Facebook for developers](https://developers.facebook.com/docs/android)
-        * [Google APIs for Android](https://developers.google.com/android/guides/overview)
-        * [Naver for developers](https://developers.naver.com/docs/login/android/)
-        * [Twitter Android Developer's guide - Log in with Twitter](https://dev.twitter.com/web/sign-in/implementing)
-        * [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
-        * [Line for developers](https://developers.line.biz/en/docs/android-sdk/integrate-line-login/)
-        * [Payco Login SDK for developers](https://developers.payco.com/guide/development/apply/android)
-        * [Sign in with Apple JS guide](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js)
-        * [Weibo for developers](https://github.com/sinaweibosdk/weibo_android_sdk/blob/master/2019SDK/文档)
 * アイテムを購入するためにStoreコンソールでアプリ情報を登録してGamebase > 購入(IAP)コンソールに入力します。
 	* [Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド](./console-google-guide)
 	* [Game > Gamebase > ストアコンソールガイド > ONEStoreコンソールガイド](./console-onestore-guide)
 	* [Game > Gamebase > ストアコンソールガイド > GALAXY Storeコンソールガイド](./console-galaxy-guide)
     * 以下のガイドを参考にしてアイテムを登録します。
         * [Game > Gamebase > コンソール使用ガイド > 決済 > Register](./oper-purchase/#register_1)
-* プッシュ通知を行うためにプッシュ通知サービス証明書をNotification > Push > 証明書コンソールに入力します。
-    * [Notification > Push > Console Guide](/Notification/Push/ko/console-guide/)
+* プッシュ通知を行うためにプッシュ通知サービス証明書をGamebase > Push > 証明書コンソールに入力します。
+    * [Game > Gamebase > Console ご利用ガイド > Push > Authentication > Authentication register](./oper-push/#authentication-register)
 * 新しいGamebaseプロジェクトが作成されたのでAppVersionとStoreCodeを登録する必要があります。
     * 次のガイドに従って新しいクライアントバージョンを登録してください。
     * [Game > Gamebase > コンソール使用ガイド > アプリ > Client > Client List](./oper-app/#client-list)
@@ -66,31 +62,30 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 ### Gradle
 
 * 使用するGamebaseバージョン、使用する認証、決済、プッシュモジュールをbuild.gradleファイルで宣言してください。
-	* Gamebaseの最新バージョンは[Maven(LINK)](https://repo1.maven.org/maven2/com/toast/android/gamebase/gamebase-sdk/)で確認できます。
-	* Gamebaseで依存しているライブラリをダウンロードするには`mavenCentral()`保存場所を追加してください。
+	* Gamebaseの最新バージョンは[Maven Central(LINK)](https://repo1.maven.org/maven2/com/toast/android/gamebase/gamebase-sdk/)で確認できます。
+	* `mavenCentral()`保存場所を追加してください。
+    * Android Studio 에서 빌드하는 경우, kotlin-gradle-plugin 을 위해  **'maven { url "https://plugins.gradle.org/m2/" }'** 저장소를 추가할 필요가 있습니다.
 
 ```groovy
 repositories {
+    // >>> For Gamebase SDK
     mavenCentral()
+    
+    //  >>> For the 'kotlin-gradle-plugin'
+    maven { url "https://plugins.gradle.org/m2/" }
+
     ...
     
     //  >>> For the 'kotlin-gradle-plugin'
     maven { url "https://plugins.gradle.org/m2/" }
 
     // >>> [Weibo IdP]
-    maven { url 'https://dl.bintray.com/thelasterstar/maven/' }
+    // Download weibo sdk from here:
+    // https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/2019SDK/aar
+    flatDir { dirs 'The directory containing weibo sdk.' }
 
     // >>> [Hangame IdP]
     maven { url 'Hangame IdPの設定方法は、サポートへお問い合わせください。' }
-}
-
-android {
-    defaultConfig {
-        // >>> [Weibo IdP]
-        ndk {
-            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
-        }
-    }
 }
 
 dependencies {
@@ -108,6 +103,9 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-line:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-payco:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
+
+    // >>> [Weibo IdP]
+    implementation (name: 'openDefault-10.10.0', ext: 'aar')
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Purchase Adapter
@@ -117,6 +115,41 @@ dependencies {
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
+}
+
+android {
+    compileOptions {
+        // >>> [Line IdP]
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        // >>> [Weibo IdP]
+        ndk {
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+        }
+    }
+    
+    // >>> If your AGP(Android Gradle Plugin) version is lower than 3.4.0,
+    //     the build will fail due to duplicate META-INF resources.
+    //     In this case, please add the following declaration.
+    packagingOptions {
+        // >>> Avoid duplication of 'coroutines.pro' from kotlinx-coroutines
+        exclude 'META-INF/proguard/coroutines.pro'
+
+        // >>> Avoid duplication of 'LICENSE.txt' from jackson
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+    }
 }
 ```
 
@@ -155,7 +188,7 @@ dependencies {
     <string name="google_storage_bucket" translatable="false">gamebase-sample-00000000.appspot.com</string>
     <string name="project_id" translatable="false">gamebase-sample-00000000</string>
     <string name="google_api_key" translatable="false">AbCd_AbCd_AbCd_AbCd_AbCd_AbCd_AbCd</string>
-    <string name="google_app_id" translatable="false">1:000000000000:android:749cbe01c8ada279</string>
+    <string name="google_app_id" translatable="false">1:000000000000:android:abcd0123abcd0123</string>
     <string name="default_web_client_id" translatable="false">000000000000-abcdabcdabcdabcdabcdabcdabcd.apps.googleusercontent.com</string>
 </resources>
 ```
@@ -164,46 +197,41 @@ dependencies {
 
 #### Facebook IdP
 
-* targetSdkVersionを30以上に設定する場合、**queries**タグの宣言が必要です。
-    * そうしなかった場合、Android 11以上の端末ではFacebookアプリがインストールされていても、エクスプレスログイン(Express login)ではなく、ID/PWを直接入力するWebログインウィンドウが表示されます。
+* Facebook SDK 초기화를 위해 App ID 를 선언합니다.
+    * 해당 값을 직접 선언하는 것 보다는 아래 예시와 같이 resources 를 참조하도록 설정하는 것이 좋습니다.
+    * Gamebase SDK 가 내부적으로 Facebook SDK 초기화 함수를 호출하고 있으므로 현재는 필수 설정은 아닙니다.
 
-> <font color="red">[注意]</font><br/>
->
-> * 「queries」タグは、Gradle 5.6.4以上のバージョンでのみビルドが可能です。
->     * そのため、IDEでGradle 5.6.4以上がサポートされない環境では、targetSdkVersionを29以下に設定した時のみAndroid 11以上の端末でもエクスプレスログインが可能です。
-> * Gradle 5.6.4以上のバージョンが適用されたIDEは次のとおりです。
->     * Android Studio : 3.6.1以上
->     * Unity：2020.1以上
->     * Unreal：サポート不可
+**AndroidManifest.xml**
 
 ```xml
-<!-- [Facebook] Configurations begin -->
-<queries>
-    <package android:name="com.facebook.katana" />
-</queries>
-<!-- [Facebook] Configurations end -->
+<manifest ...>
+    <application ...>
+        ...
+        <!-- [Facebook] Configurations begin -->
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id" />
+        <!-- [Facebook] Configurations end -->
+        ...
+    </application>
+</manifest>
 ```
 
-#### Payco IdP
-
-* targetSdkVersionを30以上に設定する場合、**queries**タグの宣言が必要です。
-    *そうしなかった場合、Android 11以上の端末ではPaycoアプリがインストールされていても、簡単なアプリログインではなく、ID/PWを直接入力するWebログインウィンドウが表示されます。
-
-> <font color="red">[注意]</font><br/>
->
-> * 「queries」タグはGradle 5.6.4以上のバージョンでのみビルドが可能です。
->     * そのため、IDEでGradle 5.6.4以上がサポートされない環境では、targetSdkVersionを29以下に設定した時のみAndroid 11以上の端末でもアプリログインが可能です。
-> * Gradle 5.6.4以上のバージョンが適用されたIDEは次のとおりです。
->     * Android Studio ： 3.6.1以上
->     * Unity ： 2020.1以上
->     * Unreal ：サポート不可
+**res/values/strings.xml**
 
 ```xml
-<!-- [Payco] Configurations begin -->
-<queries>
-    <package android:name="com.nhnent.payapp" />
-</queries>
-<!-- [Payco] Configurations end -->
+<resources>
+    <!-- [Facebook] Facebook APP ID -->
+    <string name="facebook_app_id">123456789012345</string>
+</resources>
+```
+
+#### Line IdP
+
+* Line SDK 내부에 **android:allowBackup="false"** 로 선언되어 있어 어플리케이션 빌드시 Manifest merger 에서 fail 이 발생할 수 있습니다. 이렇게 빌드가 실패한다면 다음과 같이 application 태그에 **tools:replace="android:allowBackup"** 선언을 추가하시기 바랍니다.
+
+```xml
+<application
+      tools:replace="android:allowBackup"
+      ... >
 ```
 
 #### Hangame IdP
@@ -253,31 +281,6 @@ dependencies {
 
 #### ONE Store
 
-* targetSdkVersionを30以上に設定する場合、必ず**queries**タグの宣言が必要です。
-
-> <font color="red">[注意]</font><br/>
->
-> * 「queries」タグは、Gradle 5.6.4以上のバージョンでのみビルドが可能です。
->     * そのため、IDEでGradle 5.6.4以上がサポートされない環境では、targetSdkVersionを29以下に設定する必要があります。
-> * Gradle 5.6.4以上のバージョンが適用されたIDEは次のとおりです。
->     * Android Studio ： 3.6.1以上
->     * Unity ： 2020.1以上
->     * Unreal：サポート不可
-
-```xml
-<!-- [ONE store] Configurations begin -->
-<queries>
-    <intent>
-        <action android:name="com.onestore.ipc.iap.IapService.ACTION" />
-    </intent>
-    <intent>
-        <action android:name="android.intent.action.VIEW" />
-        <data android:scheme="onestore" />
-    </intent>
-</queries>
-<!-- [ONE store] Configurations end -->
-```
-
 * ONE storeは、全体決済画面とポップアップ決済画面をサポートします。
     * AndroidManifest.xmlにmeta-dataを追加して全体決済画面("full")またはポップアップ決済画面("popup")を選択できます。
     * meta-dataを設定しない場合はデフォルト値("full")が適用されます。
@@ -302,28 +305,6 @@ dependencies {
 | --- | --- |
 | 全体決済画面 | "full" |
 | ポップアップ決済画面 | "popup" |
-
-
-#### Galaxy Store
-
-* targetSdkVersionを30以上に設定する場合は、必ず**queries**タグの宣言が必要です。
-
-> <font color="red">[注意]</font><br/>
->
-> * 「queries」タグは、Gradle 5.6.4以上のバージョンでのみビルドが可能です。
->     * そのため、IDEでGradle 5.6.4以上がサポートされない環境では、targetSdkVersionを29以下に設定する必要があります。
-> * Gradle 5.6.4以上のバージョンが適用されたIDEは次のとおりです。
->     * Android Studio ： 3.6.1以上
->     * Unity：2020.1以上
->     * Unreal：サポート不可
-
-```xml
-<!-- [Galaxy store] Configurations begin -->
-<queries>
-    <package android:name="com.sec.android.app.samsungapps" />
-</queries>
-<!-- [Galaxy store] Configurations end -->
-```
 
 #### Notification Options
 
@@ -375,6 +356,68 @@ dependencies {
 | com.toast.sdk.push.notification.badge_enabled | boolean | バッジアイコンの使用有無。 |
 | com.toast.sdk.push.notification.foreground_enabled | boolean | フォアグラウンド通知の使用有無。 |
 
+### Android 11
+
+* Android 11 은 빌드시 미리 선언된 어플리케이션이 아니면 다른 어플리케이션이 실행되지 않습니다.
+    * [https://developer.android.com/about/versions/11/privacy/package-visibility](https://developer.android.com/about/versions/11/privacy/package-visibility)
+* 이를 위해 targetSdkVersion 을 30 이상으로 설정하는 경우에는 반드시 AndroidManifest.xml 에 **queries** 태그를 통해 허용할 어플리케이션을 미리 선언해두어야 합니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> * 'queries' 태그는 Gradle 5.6.4 이상 버전에서만 빌드가 가능합니다.
+>     * 그러므로 IDE 에서 Gradle 5.6.4 이상이 지원되지 않는 환경에서는 targetSdkVersion 을 29 이하로 설정해야 합니다.
+> * Gradle 5.6.4 이상 버전이 적용된 IDE 는 다음과 같습니다.
+>     * Android Studio : 3.6.1 이상
+>     * Unity : 2020.1 이상
+>     * Unreal : 지원 불가
+
+```xml
+<queries>
+    <!-- [Facebook] Configurations begin -->
+    <package android:name="com.facebook.katana" />
+    <!-- [Facebook] Configurations end -->
+
+    <!-- [Payco/Hangame] Configurations begin -->
+    <package android:name="com.nhnent.payapp" />
+    <!-- [Payco/Hangame] Configurations end -->
+
+    <!-- [Line] Configurations begin -->
+    <package android:name="jp.naver.line.android" />
+    <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="https" />
+    </intent>
+    <!-- [Line] Configurations end -->
+
+    <!-- [ONE store] Configurations begin -->
+    <intent>
+        <action android:name="com.onestore.ipc.iap.IapService.ACTION" />
+    </intent>
+    <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="onestore" />
+    </intent>
+    <!-- [ONE store] Configurations end -->
+
+    <!-- [Galaxy store] Configurations begin -->
+    <package android:name="com.sec.android.app.samsungapps" />
+    <!-- [Galaxy store] Configurations end -->
+</queries>
+```
+
+### Proguard
+
+* Gamebase 2.21.0 미만 버전은 Proguard 적용시 Proguard Rule 에 다음 선언을 추가하지 않으면 결제 API 호출시 크래쉬가 발생합니다.
+    * Gamebase 2.21.0 버전에서 수정되었습니다.
+
+```
+# ---------------------- [Gamebase TOAST IAP] defines start ----------------------
+# For using reflection
+-keep class com.toast.android.toastgb.iap.ToastGbStoreCode { *; }
+# ---------------------- [Gamebase TOAST IAP] defines end ----------------------
+```
+
 ## Recommended Flow
 
 * Gamebaseで推奨するflowは、Sample Projectにも同じように実装されています。
@@ -392,6 +435,18 @@ dependencies {
     * [Game > Gamebase > Android SDK使用ガイド > 初期化 > Initialization Flow](./aos-initialization/#initialization-flow)
     * [Game > Gamebase > Android SDK使用ガイド > 認証 > Login Flow](./aos-authentication/#login-flow)
     * [Game > Gamebase > Android SDK使用ガイド > 決済 > Retry Transaction Flow](./aos-purchase/#retry-transaction-flow)
+
+## 3rd-Party Provider SDK Guide
+
+* [Facebook for developers](https://developers.facebook.com/docs/android)
+* [Google APIs for Android](https://developers.google.com/android/guides/overview)
+* [Naver for developers](https://developers.naver.com/docs/login/android/)
+* [Twitter Android Developer's guide - Log in with Twitter](https://dev.twitter.com/web/sign-in/implementing)
+* [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
+* [Line for developers](https://developers.line.biz/en/docs/android-sdk/integrate-line-login/)
+* [Payco Login SDK for developers](https://developers.payco.com/guide/development/apply/android)
+* [Sign in with Apple JS guide](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js)
+* [Weibo for developers](https://github.com/sinaweibosdk/weibo_android_sdk/blob/master/2019SDK/文档)
 
 ## API Reference
 

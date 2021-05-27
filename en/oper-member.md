@@ -16,15 +16,17 @@ Detailed information of searched users are displayed in the above, while history
 
 **User **
 
-- **User ID**: Gamebase User ID
-- **Country (USIM)**: USIM country code of a user device. When it fails to collect, it shows '**ZZ**'. Go to **Login History** below to check the country code of your device.
-- **Latest Login Date**: The last time a user logged in.
-- **Registration Date**: The first time a user logged in.
-- **Account Status**
-  - **OK**: Normal users. Click **Ban** to manually change status.
-  - **Banned**: Users who are banned from abusive acts. Click **Release Ban** to manually change status.
-  - **Withdraw**: Users who have withdrawn.
-- **Push Token**: Shows push token details.
+- **유저 ID**: Gamebase 사용자 아이디
+- **국가코드(USIM)**: 사용자 단말기의 USIM 국가 코드로 수집에 실패하면 'ZZ'로 표기됩니다. 단말기에 설정된 국가 코드를 확인하고 싶다면 하단의 **로그인 이력**에서 확인하세요.
+- **마지막 로그인 시간**: 사용자가 가장 마지막에 로그인한 시간
+- **가입일**: 사용자가 최초로 로그인한 시간
+- **계정 상태**
+  - **정상**: 정상 사용자.
+  - **이용정지**: 어뷰징 등으로 이용 정지(ban)된 사용자. 우측 상단의 계정 상태 변경 메뉴를 통해 이용정지를 해제할 수 있습니다.
+  - **탈퇴**: 탈퇴한 사용자.
+- **푸시 부가정보 조회**: 게임 유저의 푸시 토큰 및 태그 정보 조회.
+![gamebase_member_12_202104](https://static.toastoven.net/prod_gamebase/gamebase_member_12_202104.png)
+
 
 #### Changing Account Status
 ![gamebase_member_02_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_02_201812_en.png)

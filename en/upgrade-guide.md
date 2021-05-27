@@ -1,8 +1,62 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.21.2
+
+### iOS
+
+* Gamebase iOS SDK 2.21.1 에서 bitcode 를 활성화 한 후에 **아카이브 빌드**를 하면 에러가 발생합니다.
+    * bitcode 사용을 원하시는 경우엔 위 이슈가 해결된 Gamebase iOS SDK 2.21.2 를 사용하시기 바랍니다.
+
+## 2.21.0
+
+### Android
+
+* Gamebase Android SDK 2.21.0 은 jCenter 에는 잘못된 빌드가 배포되어, **jcenter()** 를 **mavenCentral()** 보다 먼저 선언 했다면 모든 Gamebase API 에서 크래시가 발생할 수 있습니다.
+    * 정상적으로 배포된 Gamebase Android SDK 2.21.1 을 사용하시거나 **mavenCentral()** 을 **jcenter()** 보다 먼저 선언하시기 바랍니다.
+* Maven Repository
+    * jCenter 가 일반 사용자를 위한 서비스를 종료하여 ( [https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/](https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/) ) 더 이상 새로운 빌드는 업로드는 할 수 없게 되었습니다.(jCenter 의 접근 또한 2022 년 2월 1일에 종료됩니다.)
+    * 그래서 Gamebase Android SDK 2.21.0 부터는 **jcenter()** 가 아닌 **mavenCentral()** 에서만 배포가 되므로 gradle repository 에 mavenCentral 을 추가하세요.
+
+```groovy
+repositories {
+    // >>> For Gamebase SDK
+    mavenCentral()
+    ...
+}
+```
+
+#### Line IdP
+
+* Line IdP 를 사용하는 경우, Line SDK 업데이트로 인해 아래와 같이 Gradle 에 **JavaVersion.VERSION_1_8** 설정을 하지 않으면 빌드가 실패합니다.
+* Line IdP 를 사용하는 경우, Line SDK 내부에 **android:allowBackup="false"** 로 선언되어 있어 어플리케이션 빌드시 Manifest merger 에서 fail 이 발생할 수 있습니다. 이렇게 빌드가 실패한다면 다음과 같이 application 태그에 **tools:replace="android:allowBackup"** 선언을 추가하시기 바랍니다.
+
+```groovy
+android {
+    compileOptions {
+        // >>> [Line IdP]
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    
+}
+```
+
+```xml
+<application
+      tools:replace="android:allowBackup"
+      ... >
+```
+
+### iOS
+
+* Gamebase iOS SDK 2.21.0 에서 bitcode 를 사용할 경우 에러가 발생합니다.
+    * bitcode 사용을 원하시는 경우엔 Gamebase iOS SDK 2.21.1 을 사용하시기 바랍니다.
+
 ## 2.20.2
 
 ### iOS
+
+#### Facebook IdP
 
 * In Gamebase iOS SDK 2.20.2, Facebook SDK has been updated to 9.1.0. 
     * Now the Facebook SDK needs additional settings, so please add the following value to the info.plist. If not, the system might crash.
@@ -13,6 +67,8 @@
 ## 2.19.0
 
 ### Android
+
+#### Weibo IdP
 
 * Alternating the call between Weibo IdP login and another IdP login in Gamebase Android SDK 2.19.0 will lead to a crash.
     * If the Weibo IdP is being used, please use Gamebase Android SDK 2.19.1 where the issue has been fixed.
@@ -31,6 +87,8 @@
 ## 2.18.0
 
 ### Android
+
+#### Purchase Google
 
 * Calling the Google item payment in Gamebase Android SDK 2.18.0 causes a crash.
     * Please use the Gamebase Android SDK 2.18.1 where the issue has been fixed.
@@ -51,6 +109,8 @@
 ## 2.15.0
 
 ### Android
+
+#### Purchase Google
 
 * If **gamebase-adapter-purchase-google** is being used, the previous Game Client Version must be set to **Update to the latest version required** if the Gamebase SDK version earlier than 2.15.0 is to be upgraded to 2.15.0 or later.
 	* The Google Billing Client module has been updated. Because of this, when purchasing an item while different billing client versions have been applied to multiple devices, any resultant error could lead to a reprocessing problem.

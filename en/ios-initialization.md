@@ -120,7 +120,7 @@ With the launchingInformations API, you can get the LaunchingInfo object after i
 ```objectivec
 #import <Gamebase/Gamebase.h>
 
-+ NSDictionary* launchingInfo = [TCGBLaunching laucnhingInformations];
+NSDictionary* launchingInfo = [TCGBLaunching launchingInformations];
 ```
 
 

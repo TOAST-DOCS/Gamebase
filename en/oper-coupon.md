@@ -125,9 +125,13 @@ Provides a feature that directly sends coupons to users using issued coupon info
 
 ##### (10) Test: You can test sending an SMS based on the entered form. Enter the recipient's number and click the Send button to send the test SMS to that number. We recommend you to test send an SMS in advance to see if everything looks all right.
 
-> [Note]
+> [참고1]
 >
-> Regarding coupon item registration, see [Coupon Item](./oper-coupon/#Coupon Item).
+> 쿠폰 아이템을 등록하는 방법은 [Coupon Item](./oper-coupon/#coupon-item)을 참고하시기 바랍니다.
+> 
+> [참고2]
+>
+> 쿠폰 발송은 SMS 상품을 활성화 해야 사용할 수 있습니다.
 
 #### 7. Issue additional coupons
 If the coupon type is serial, you can receive up to 100 (100,000 at a time) additional coupons (including the initially issued quantity).

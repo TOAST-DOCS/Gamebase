@@ -1,46 +1,50 @@
-## Game > Gamebase > Store 設定ガイド > Apple 設定ガイド
+## Game > Gamebase > 스토어 콘솔 가이드 > Apple 콘솔 가이드
 
-Apple購読商品の決済を使用するには,App Store Connectでsecret key生成およびNotification url設定が必要です。
-Secret KeyはIAPアプリ情報に登録します。
-Apple一般商品決済は特別な設定が必要でありません。
+Apple 구독 상품 결제를 사용하려면 App Store Connect에서 secret key 생성 및 Notification url 설정이 필요합니다.
+Secret Key는 IAP 앱 정보에 등록합니다.
+Apple 일반 상품 결제는 특별한 설정이 필요하지 않습니다.
 
-> 参考
+> 참고
 > https://help.apple.com/app-store-connect/#/devf341c0f01
 
-## shared secret key 生成下期
+## shared secret key 생성하기
 ```
-shared secret keyはすべてのアプリに共通したマスターキーで生成でき,アプリ別に生成することもできます。
-secret keyをIAPアプリ情報に登録します。
+shared secret key은 모든 앱에 공통인 마스터키로 생성할 수 있고 앱 별로 생성할 수도 있습니다.
+secret key를 IAP 앱 정보에 등록합니다.
 ```
 
-### master shared secret key 生成下期
+### master shared secret key
 ```
 1. App Store Connect
-2. Click [My Apps] 
-3. Click [Master Shared Secret]
+2. [My Apps] 클릭
+3. [Master Shared Secret] 클릭
 ```
 ![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-shared-key-1.png)
 
-### App-specific shared secret key
+<br>
+
+### 앱 별 shared secret key
 ```
 1. App Store Connect
-2. Click [My Apps]  > Click App>  Click [Features] in toolbar
-3. Click [App-Specific Shared Secret]
+2. [My Apps] 클릭 > 생성 하려는 [앱] 클릭 > toolbar에서 [Features] 클릭
+3. [App-Specific Shared Secret] 클릭
 ```
 ![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-shared-key-2.png)
 
 
-### IAPアプリ情報にshared secret key入力する。
+### IAP 앱 정보에 shared secret key 입력하기
 ```
-1. IAP Console > App > choose ios APP
-2. Apple Shared Secret 入力
+1. Gamebase > 구매(IAP) > 스토어 메뉴에서 등록된 App store 정보 선택
+2. Apple Shared Secret 입력
 ```
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-edit.png)
+![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-edit-gamebase.png)
 
-## Notification url 登録する
+
+
+## Notification url 등록하기
 ```
-1. App Store Connect > My Apps > App information> General
-2. 購読状態URL にIAP urlを登録します。
+1. App Store Connect > 나의 앱 > 앱 정보 > 일반 정보 
+2. 구독 상태 URL 에 IAP url을 등록합니다.
 - URL : https://api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/AS
 - {YOUR_PACKAGE_NAME} : app bundle id
 ```

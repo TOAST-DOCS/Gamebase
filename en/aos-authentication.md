@@ -879,33 +879,17 @@ String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
 
 ### Get Authentication Information for External IdP
 
-Get access token, User ID, and profiles from externally authenticated SDK.
+* 외부 인증 IdP 의 액세스 토큰, 사용자 ID, Profile 등의 정보는 로그인 후 게임 서버에서 Gamebase Server API 를 호출하여 가져올 수 있습니다.
+    * [Game > Gamebase > API 가이드 > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
 
 > <font color="red">[Caution]</font><br/>
 >
+> * 외부 IdP 의 인증 정보는 보안을 위해 게임 서버에서 호출할 것을 권장합니다.
+> * IdP 에 따라 액세스 토큰이 빠른 시간에 만료될 수 있습니다.
+>     * 예를 들어 Google 은 로그인 2시간 후에는 액세스 토큰이 만료되어 버립니다.
+>     * 사용자 정보가 필요하다면 로그인 후 바로 Gamebase Server API 를 호출하시기 바랍니다.
 > * When logged in with the "Gamebase.loginForLastLoggedInProvider()" API, the authentication info cannot be retrieved.
 >     * If you need the user info, instead of "Gamebase.loginForLastLoggedInProvider()", use the {IDP_CODE} identical to the IDPCode that you want to use as the parameter to log in as the "Gamebase.login(activity, IDP_CODE, callback)" API.
-
-**API**
-
-```java
-+ (String)Gamebase.getAuthProviderUserID(String providerName);
-+ (String)Gamebase.getAuthProviderAccessToken(String providerName);
-+ (AuthProviderProfile)Gamebase.getAuthProviderProfile(String providerName);
-```
-
-**Example**
-
-```java
-String userId = Gamebase.getAuthProviderUserID(AuthProvider.FACEBOOK);
-
-// Get AccessToken.
-String accessToken = Gamebase.getAuthProviderAccessToken(AuthProvider.FACEBOOK);
-
-// Get User Profile.
-AuthProviderProfile profile = Gamebase.getAuthProviderProfile(AuthProvider.FACEBOOK);
-Map<String, Object> profileMap = profile.information;
-```
 
 ### Get Banned User Information
 

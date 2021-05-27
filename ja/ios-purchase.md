@@ -122,6 +122,71 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
 }
 ```
 
+**VO**
+
+```objectivec
+@interface TCGBPurchasableReceipt : NSObject
+
+// 구매한 아이템의 상품 ID
+@property (nonatomic, strong) NSString *gamebaseProductId;
+
+// 구매한 상품의 가격
+@property (assign)            float price;
+
+// 통화 코드
+@property (nonatomic, strong) NSString *currency;
+
+// 결제 식별자
+// purchaseToken 과 함께 'Consume' 서버 API 를 호출하는데 사용
+// Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+// 주의 : Consume API 는 게임 서버에서 호출하세요!
+@property (nonatomic, strong) NSString *paymentSeq;
+
+// 결제 식별자
+// paymentSeq 와 함께 'Consume' 서버 API 를 호출하는데 사용
+// Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+// 주의 : Consume API 는 게임 서버에서 호출하세요!
+@property (nonatomic, strong) NSString *purchaseToken;
+
+// Apple 스토어 콘솔에 등록된 상품 ID
+@property (nonatomic, strong) NSString *marketItemId;
+
+// 상품 타입
+// UNKNOWN : 인식 불가능한 타입. Gamebase SDK를 업데이트하거나 Gamebase 고객센터로 문의하세요.
+// CONSUMABLE : 소비성 상품
+// AUTO_RENEWABLE : 구독성 상품
+// CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'
+@property (nonatomic, strong) NSString *productType;
+
+// 상품을 구매한 User ID
+// 상품을 구매하지 않은 User ID 로 로그인 한다면 구매한 아이템을 획득할 수 없습니다.
+@property (nonatomic, strong) NSString *userId;
+
+// 스토어의 결제 식별자
+@property (nonatomic, strong) NSString *paymentId;
+
+// 구독이 종료되는 시각 (epoch time)
+@property (nonatomic, assign) long expiryTime;
+
+// 상품 구매 시간 (epoch time)
+@property (nonatomic, assign) long purchaseTime;
+
+// requestPurchase API 호출 시 payload 로 전달했던 값
+// 이 필드는 예를 들어 동일한 User ID 로 구매 했음에도 게임 채널, 캐릭터 등에 따라 상품 구매 및 지급을 구분하고자 하는 경우 등
+// 게임에서 필요로 하는 다양한 추가 정보를 담기 위한 목적으로 활용할 수 있습니다.
+@property (nonatomic, strong) NSString *payload;
+
+// 구독 상품은 갱실 될때마다 paymentId 가 변경됩니다.
+// 이 필드는 맨 처음 구독 상품을 결제 했을 때의 paymentId 를 알려줍니다.
+// 스토어에 따라, 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로 항상 유요한 값을 보장하지는 않습니다.
+@property (nonatomic, strong) NSString *originalPaymentId;
+
+// itemSeq 로 상품을 구매하는 Lecacy API 용 식별자
+@property (assign)            long itemSeq;
+
+@end
+```
+
 
 
 ### List Purchasable Items
@@ -146,6 +211,55 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
 }
 ```
 
+
+**VO**
+
+```objectivec
+@interface TCGBPurchasableItem : NSObject
+
+// Gamebase 콘솔에 등록된 상품 ID
+// requestPurchase API 로 상품을 구매할 때 사용
+@property (nonatomic, strong) NSString *gamebaseProductId;
+
+// 상품 가격
+@property (assign) float price;
+
+// 통화 코드
+@property (nonatomic, strong) NSString *currency;
+
+// Gamebase 콘솔에 등록된 상품 이름
+@property (nonatomic, strong) NSString *itemName;
+
+// 스토어 코드 ("AS")
+@property (nonatomic, strong) NSString *marketId;
+
+// Apple 스토어 콘솔에 등록된 상품 ID
+@property (nonatomic, strong) NSString *marketItemId;
+
+// 상품 타입
+// UNKNOWN : 인식 불가능한 타입. Gamebase SDK를 업데이트하거나 Gamebase 고객센터로 문의하세요.
+// CONSUMABLE : 소비성 상품
+// AUTO_RENEWABLE : 구독성 상품
+// CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'
+@property (nonatomic, strong) NSString *productType;
+
+// 통화 기호가 포함된 현지화 된 가격 정보
+@property (nonatomic, strong) NSString *localizedPrice;
+
+// 스토어 콘솔에 등록된 현지화된 상품 이름
+@property (nonatomic, strong) NSString *localizedTitle;
+
+// 스토어 콘솔에 등록된 현지화된 상품 설명
+@property (nonatomic, strong) NSString *localizedDescription;
+
+// Gamebase 콘솔에서 해당 상품의 '사용 여부'
+@property (nonatomic, assign, getter=isActive) BOOL active;
+
+// itemSeq로 상품을 구매하는 Lecacy API 용 아이템 식별자
+@property (assign) long itemSeq;
+
+@end
+```
 
 ### List Non-Consumed Items
 
@@ -236,8 +350,8 @@ Facebook SDK、Google AdMob SDKなどのように、SDK内にIn App Purchase(App
 
 * 解決方法
   * Facebook
-    * Facebook Console > 設定 > 基本設定 > `アプリ内イベントを自動的にロギング(推奨)`機能を無効化
-    * Facebook認証機能を使用しない場合：`GamebaseAuthFacebookAdapter.frameworkファイルを除外`した後にビルド
+    * Facebook Console > 설정 > 기본 설정 > **앱 내 이벤트를 자동으로 로깅(권장)** 기능을 비활성화
+    * Facebook 인증 기능을 사용하지 않을 경우 : **GamebaseAuthFacebookAdapter.framework 파일을 제외** 시킨 후 빌드
 
 
 #### Overview
