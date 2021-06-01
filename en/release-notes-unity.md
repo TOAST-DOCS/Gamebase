@@ -2,7 +2,7 @@
 
 ### 2.22.0(2021.05.25) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
+#### Feature Updates
 * Updated the external SDK: TOAST Unity SDK(0.22.0)
 
 ### 2.21.0(2021.04.13) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.0/GamebaseSDK-Unity.zip)
