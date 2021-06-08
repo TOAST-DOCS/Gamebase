@@ -86,12 +86,12 @@ Gamebase SDKを手軽にインストールすることができるように、Se
 7. [Settings]ボタンをクリックしてSDKをインストールします。
 
 
-#### SDK 업데이트
-1. Menu > Tools > Gamebase > SDKSettings > Setting Tool을 실행합니다.
-	* v1.0.1 이하 : Menu > Gamebase > SDKSettings > Setting Tool
-2. [Download SDK] 버튼 클릭해서 최신 SDK를 다운로드 합니다.
-3. [Settings] 버튼 클릭해서 SDK를 설치합니다.
-    * 기존에 선택한 플랫폼별 모듈은 변경이 가능합니다
+#### SDKアップデート
+1. Menu > Tools > Gamebase > SDKSettings > Setting Toolを実行します。
+	* v1.0.1以下：Menu > Gamebase > SDKSettings > Setting Tool
+2. [Download SDK]ボタンをクリックして最新SDKをダウンロードします。
+3. [Settings]ボタンクリックしてSDKをインストールします。
+    * 既に選択したプラットフォーム別モジュールは変更が可能です。
 
 
 #### SDK削除
@@ -196,4 +196,3 @@ GamebaseでサポートしないAPIは、使用していないもの(deprecate)�
 		* ZZ : Hotfix
 
 * 最低5ヶ月経過
-
