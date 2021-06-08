@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > iOS SDK ご利用ガイド > 初期化
+## Game > Gamebase > iOS SDK ご利用ガイド > 初期化
 
 Gamebase iOS SDKを使用するためには、まず初期化を行う必要があります。
 
@@ -395,4 +395,3 @@ SceneDelegate(iOS 13以上)を使用する場合は、**sceneWillEnterForeground
 
 * 全体のエラーコードは、次のドキュメントをご参考ください。
     * [エラーコード](./error-code/#client-sdk)
-
