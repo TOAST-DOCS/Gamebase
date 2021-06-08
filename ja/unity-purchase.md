@@ -132,94 +132,94 @@ public void RequestPurchase(string gamebaseProductId)
 public class PurchasableReceipt
 {
     /// <summary>
-    /// 구매한 아이템의 상품 ID 입니다.
+    /// 購入したアイテムの商品IDです。
     /// </summary>
     public string gamebaseProductId;
 
     /// <summary>
-    /// itemSeq 로 상품을 구매하는 Legacy API용 식별자 입니다.
+    /// itemSeqで商品を購入するLegacy API用の識別子です。
     /// </summary>
     public long itemSeq;
 
     /// <summary>
-    /// 구매한 상품의 가격 입니다.
+    /// 購入した商品の価格です。
     /// </summary>
     public float price;
 
     /// <summary>
-    /// 통화 코드 입니다.
+    /// 通貨コードです。
     /// </summary>
     public string currency;
 
     /// <summary>
-    /// 결제 식별자입니다.
-    /// purchaseToken 과 함께 'Consume' 서버 API 를 호출하는데 사용하는 중요한 정보입니다.
+    /// 決済識別子です。
+    /// purchaseTokenと一緒にConsumeサーバーAPIを呼び出すのに使用する重要な情報です。
     ///    
-    /// 주의 : Consume API 는 게임 서버에서 호출하세요!
+    /// 注意：Consume APIは、ゲームサーバーで呼び出してください！
     /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
     /// </summary>
     public string paymentSeq;
 
     /// <summary>
-    /// 결제 식별자입니다.
-    /// paymentSeq 와 함께 'Consume' 서버 API 를 호출하는데 사용하는 중요한 정보입니다.
-    /// Consume API 에서는 'accessToken' 라는 이름의 파라메터로 전달해야 합니다.
+    /// 決済識別子です。
+    /// paymentSeqと一緒にConsumeサーバーAPIを呼び出すために使用する重要な情報です。
+    /// Consume APIでは「accessToken」という名前のパラメータで渡す必要があります。
     ///    
-    /// 주의 : Consume API 는 게임 서버에서 호출하세요!
+    /// 注意：Consume APIは、ゲームサーバーで呼び出してください！
     /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
     /// </summary>
     public string purchaseToken;
 
     /// <summary>
-    /// Google, Apple 과 같이 스토어 콘솔에 등록된 상품 ID 입니다.
+    /// Google、Appleのようにストアコンソールに登録された商品IDです。
     /// </summary>
     public string marketItemId;
 
     /// <summary>
-    /// 상품 타입으로, 다음 값들이 올 수 있습니다.
-    /// * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객센터로 문의하세요.
-    /// * CONSUMABLE : 소비성 상품.
-    /// * AUTO_RENEWABLE : 구독형 상품.
-    /// * CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
+    /// 商品タイプです。次の値を使用できます。
+    /// * UNKNOWN：認識できないタイプ。Gamebase SDKをアップデートするか、Gamebaseサポートへお問い合わせください。
+    /// * CONSUMABLE：消費性商品。
+    /// * AUTO_RENEWABLE：購読型商品。
+    /// * CONSUMABLE_AUTO_RENEWABLE：購読型商品を購入したユーザーに、定期的に消費が可能な商品を支給したい場合に使われる「消費が可能な購読商品」。
     /// <para/><see cref="GamebasePurchase.ProductType"/>
     /// </summary>
     public string productType;
 
     /// <summary>
-    /// 상품을 구매했던 User ID.
-    /// 상품을 구매하지 않은 User ID 로 로그인 한다면 구매한 아이템을 획득할 수 없습니다.
+    /// 商品を購入したUser ID。
+    /// 商品を購入していないUser IDでログインした場合、購入したアイテムを獲得できません。
     /// </summary>
     public string userId;
 
     /// <summary>
-    /// 스토어의 결제 식별자 입니다.
+    /// ストアの決済識別子です。
     /// </summary>
     public string paymentId;
 
     /// <summary>
-    /// 구독 상품은 갱신 될때마다 paymentId 가 변경됩니다.
-    /// 이 필드는 맨 처음 구독 상품을 결제 했을때의 paymentId 를 알려줍니다.
-    /// 스토어에 따라, 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로
-    /// 항상 유효한 값을 보장하지는 않습니다.
+    /// 購読商品は更新されるごとにpaymentIdが変更されます。
+    /// このフィールドは最初に購読商品を決済した時のpaymentIdを伝えます。
+    /// ストアによっては、決済サーバーの状態に応じた値が存在しない場合があるため
+    /// 常に有効な値を保障するわけではありません。
     /// </summary>
     public string originalPaymentId;
 
     /// <summary>
-    /// 상품을 구매했던 시각입니다.(epoch time)
+    /// 商品を購入した時刻です。(epoch time)
     /// </summary>
     public long purchaseTime;
 
     /// <summary>
-    /// 구독이 종료되는 시각입니다.(epoch time)
+    /// 購読が終了する時刻です。(epoch time)
     /// </summary>
     public long expiryTime;
 
     /// <summary>
-    /// Gamebase.Purchase.requestPurchase API 호출시 payload 로 전달했던 값입니다.
+    /// Gamebase.Purchase.requestPurchase API呼び出し時にpayloadで渡された値です。
     ///
-    /// 이 필드는 예를 들어 동일한 User ID 로 구매 했음에도 게임 채널, 캐릭터 등에 따라
-    /// 상품 구매 및 지급을 구분하고자 하는 경우 등
-    /// 게임에서 필요로 하는 다양한 추가 정보를 담기 위한 목적으로 활용할 수 있습니다.
+    /// このフィールドは例えば同じUser IDで購入したがゲームチャンネル、キャラクターなどに応じて
+    /// 商品の購入および支給を区分したい場合など
+    /// ゲームで必要とするさまざまな追加情報を入れる目的で活用できます。
     /// </summary>
     public string payload;
 }
@@ -263,63 +263,63 @@ public void RequestItemListPurchasable()
 public class PurchasableItem
 {
     /// <summary>
-    /// Gamebase 콘솔에 등록된 상품 ID 입니다.
-    /// Gamebase.Purchase.requestPurchase API 로 상품을 구매할때 사용됩니다.
+    /// Gamebaseコンソールに登録された商品IDです。
+    /// Gamebase.Purchase.requestPurchase APIで商品を購入する時に使用されます。
     /// </summary>
     public string gamebaseProductId;
 
     /// <summary>
-    /// itemSeq 로 상품을 구매하는 Legacy API용 식별자 입니다.
+    /// itemSeqで商品を購入するLegacy API用の識別子です。
     /// </summary>
     public long itemSeq;
 
     /// <summary>
-    /// 상품의 가격 입니다.
+    /// 商品の価格です。
     /// </summary>
     public float price;
 
     /// <summary>
-    /// 통화 코드 입니다.
+    /// 通貨コードです。
     /// </summary>
     public string currency;
 
     /// <summary>
-    /// Gamebase 콘솔에 등록된 상품 이름입니다.
+    /// Gamebaseコンソールに登録されている商品名です。
     /// </summary>
     public string itemName;
 
     /// <summary>
-    /// Google, Apple 과 같이 스토어 콘솔에 등록된 상품 ID 입니다.
+    /// Google、Appleのようにストアコンソールに登録された商品IDです。
     /// </summary>
     public string marketItemId;
 
     /// <summary>
-    /// 상품 타입으로, 다음 값들이 올 수 있습니다.
-    /// * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객센터로 문의하세요.
-    /// * CONSUMABLE : 소비성 상품.
-    /// * AUTORENEWABLE : 구독형 상품.
-    /// * CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
+    /// 商品タイプです。次の値を使用できます。
+    /// * UNKNOWN：認識できないタイプ。Gamebase SDKをアップデートするか、Gamebaseサポートへお問い合わせください。
+    /// * CONSUMABLE：消費性商品。
+    /// * AUTORENEWABLE：購読型商品。
+    /// * CONSUMABLE_AUTO_RENEWABLE：購読型商品を購入したユーザーに、定期的に消費が可能な商品を支給したい場合に使われる「消費が可能な購読商品」。
     /// <para/><see cref="GamebasePurchase.ProductType"/>
     /// </summary>
     public string productType;
 
     /// <summary>
-    /// 통화 기호가 포함된 현지화 된 가격 정보입니다.
+    /// 通貨記号が含まれるローカライズされた価格情報です。
     /// </summary>
     public string localizedPrice;
 
     /// <summary>
-    /// 스토어 콘솔에 등록된 현지화된 상품 이름 입니다.
+    /// ストアコンソールに登録されているローカライズされた商品名です。
     /// </summary>
     public string localizedTitle;
 
     /// <summary>
-    /// 스토어 콘솔에 등록된 현지화된 상품 설명 입니다.
+    /// ストアコンソールに登録されているローカライズされた商品説明です。
     /// </summary>
     public string localizedDescription;
 
     /// <summary>
-    /// Gamebase 콘솔에서 해당 상품의 '사용 여부'를 나타냅니다.
+    /// Gamebaseコンソールで該当商品の「使用有無」を表します。
     /// </summary>
     public bool isActive;
 }
