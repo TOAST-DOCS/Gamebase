@@ -220,7 +220,7 @@ NHN Cloud Consoleでの設定の他に追加設定はありません。
 	* https://id-gamebase.toast.com/oauth/callback
 
 ##### iOS
-* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP Settings > Google](./ios-started/#google)
+* [Gamebase > iOS SDK使用ガイド > 始める > IdP Settings > Google](./ios-started/#google)
 
 
 #### 3. Apple Game Center
@@ -248,8 +248,8 @@ PAYCO Client IDを申請して発行された{client_id}及び{client_secret}を
 
 ##### Additional Info Settings
 
-* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
+* **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報**項目にJSON string形式の情報を設定する必要があります。
+* PAYCOの場合、PaycoSDKで要求する**service_code**と **service_name**を設定する必要があります。
 
 * PAYCO追加認証情報の入力例
 
@@ -258,17 +258,17 @@ PAYCO Client IDを申請して発行された{client_id}及び{client_secret}を
 ```
 
 ##### iOS
-* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Payco](./ios-started/#payco)
+* [Gamebase > iOS SDK使用ガイド > 始める > IdP settings > Payco](./ios-started/#payco)
 
 #### 5.NAVER
-Naver Developers 사이트에서 신청하여 발급받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
-이때, 로그인 동의 창에서 표시할 애플리케이션 이름인 **service_name** 을 설정해야 합니다.
+Naver Developersサイトで申請して発行された{client_id}および{client_secret}をGamebase Consoleに入力します。
+この時、ログイン同意ウィンドウで表示するアプリケーション名である**service_name**を設定する必要があります。
 
 **入力フィールド**<br />
 
 - Client ID: {NAVER client_id}
 - Secret Key: {NAVER client_secret}
-- 추가정보: NAVER Application Name (json format)
+- 追加情報：NAVER Application Name (json format)
 
 **Reference URL**
 - [NAVER Developers - アプリケーション登録](https://developers.naver.com/apps/#/register)
@@ -276,15 +276,15 @@ Naver Developers 사이트에서 신청하여 발급받은 {client_id} 및 {clie
 
 ##### Additional Info Settings
 
-* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야 합니다.
-* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
+* **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目にJSON String形式の情報を設定する必要があります。
+* NAVERの場合、ログイン同意ウィンドウに表示するアプリ名である**service_name**を設定する必要があります。
 
 ```json
 {"service_name": "Your Service Name" }
 ```
 
 ##### iOS
-* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Naver](./ios-started/#naver)
+* [Gamebase > iOS SDK使用ガイド > 始める > IdP settings > Naver](./ios-started/#naver)
 
 #### 6. Twitter
 Twitter Application Managementサイトでアプリを登録して発行した{Consumer Key}および{Consumer Secret}をGamebase Consoleに入力します。
@@ -306,7 +306,7 @@ Twitter Application Managementサイトでアプリを登録して発行した{C
  > すなわち、Android 4.4以上(KitKat、API Level 19)の端末でのみTwitterログインを使用できます。
 
 ##### iOS
-* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Twitter](./ios-started/#twitter)
+* [Gamebase > iOS SDK使用ガイド > 始める > IdP settings > Twitter](./ios-started/#twitter)
 
 
 #### 7. LINE
@@ -320,7 +320,7 @@ Twitter Application Managementサイトでアプリを登録して発行した{C
 - [LINE Developer Console](https://developers.line.me/console/)
 
 ##### iOS
-* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Line](./ios-started/#line)
+* [Gamebase > iOS SDK使用ガイド > 始める > IdP settings > Line](./ios-started/#line)
 
 #### 8. Sign In with Apple
 Sign In with Apple機能を使用するには、AppStore Connect、Gamebase Console、そしてXcodeの設定が必要です。
