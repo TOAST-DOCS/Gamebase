@@ -402,7 +402,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[エラーコード](./error-code/#server)
 
 <br>
 <br>
