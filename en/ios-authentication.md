@@ -575,17 +575,17 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 
 ### Get Authentication Information for External IdP
 
-* 외부 인증 IdP 의 액세스 토큰, 사용자 ID, Profile 등의 정보는 로그인 후 게임 서버에서 Gamebase Server API 를 호출하여 가져올 수 있습니다.
-    * [Game > Gamebase > API 가이드 > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
+* Information such as access token, user ID, and profile of an external authentication IdP can be gotten by calling Gamebase Server API after login.
+    * [Game > Gamebase > API Guide > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> * 외부 IdP 의 인증 정보는 보안을 위해 게임 서버에서 호출할 것을 권장합니다.
-> * IdP 에 따라 액세스 토큰이 빠른 시간에 만료될 수 있습니다.
->     * 예를 들어 Google 은 로그인 2시간 후에는 액세스 토큰이 만료되어 버립니다.
->     * 사용자 정보가 필요하다면 로그인 후 바로 Gamebase Server API 를 호출하시기 바랍니다.
-> * "[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]" API 로 로그인한 경우에는 인증 정보를 가져올 수 없습니다.
->     * 사용자 정보가 필요하다면 "[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]" 대신, 사용하고자 하는 IDPCode 와 동일한 {IDP_CODE} 를 파라미터로 하여 "[TCGBGamebase loginWithType:viewController:completion:]" API 로 로그인 해야 합니다.
+> * For security reasons, it is recommended to call the authentication information of an external IdP from the game server.
+> * Access token may expire relatively sooner depending on the IdP.
+>     * For example, the access token of Google will expire within 2 hours from the time of login.
+>     * If you need user information, it is recommended to call Gamebase Server API immediately after login.
+> * "[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]" API is used to log in, authentication information cannot be retrieved.
+>     * If you need user information, log in with "[TCGBGamebase loginWithType:viewController:completion:]" API using the same {IDP_CODE} parameter as the IDPCode to be used instead of "[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]".
 
 > <font color="red">[Caution]</font><br/>
 >
