@@ -167,86 +167,87 @@ Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, userPayload, new 
 
 ```java
 class PurchasableReceipt {
-    // 구매한 아이템의 상품 ID 입니다.
+    // The product ID of a purchased item.
     @Nullable
     String gamebaseProductId;
     
-    // Gamebase.Purchase.requestPurchase API 호출시 payload 로 전달했던 값입니다.
+    // It is the value passed to payload when calling Gamebase.Purchase.requestPurchase API.
     //
-    // 이 필드는 예를 들어 동일한 User ID 로 구매 했음에도 게임 채널, 캐릭터 등에 따라
-    // 상품 구매 및 지급을 구분하고자 하는 경우 등
-    // 게임에서 필요로 하는 다양한 추가 정보를 담기 위한 목적으로 활용할 수 있습니다.
+    // It is the value passed to payload when calling Gamebase.Purchase.requestPurchase API.
+    // This field can be used to hold a variety of additional information.
+    // For example, this field can be used to separately handle purchase and provision
+    // of the products purchased using the same user ID and sort them by game channel or character.
     @Nullable
     String payload;
     
-    // 구매한 상품의 가격 입니다.
+    // Price of purchased product.
     float price;
     
-    // 통화 코드 입니다.
+    // Currency code.
     @NonNull
     String currency;
     
-    // 결제 식별자입니다.
-    // purchaseToken 과 함께 'Consume' 서버 API 를 호출하는데 사용하는 중요한 정보입니다.
+    // Payment identifier.
+    // This is an important piece of information used to call 'Consume' Server API with purchaseToken.
     //
     // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
-    // 주의 : Consume API 는 게임 서버에서 호출하세요!
+    // aution: Call Consume API from game server!
     @NonNull
     String paymentSeq;
     
-    // 결제 식별자입니다.
-    // paymentSeq 와 함께 'Consume' 서버 API 를 호출하는데 사용하는 중요한 정보입니다.
+    // Payment identifier.
+    // This is an important piece of information used to call 'Consume' server API with paymentSeq.
     // Consume API 에서는 'accessToken' 라는 이름의 파라메터로 전달해야 합니다.
     //
     // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
-    // 주의 : Consume API 는 게임 서버에서 호출하세요!
+    // In Consume API, the parameter must be named 'accessToken' to be passed.
     @Nullable
     String purchaseToken;
     
-    // Google, Apple 과 같이 스토어 콘솔에 등록된 상품 ID 입니다.
+    // This product ID is registered to the console of stores such as Google and Apple.
     @NonNull
     String marketItemId;
     
-    // 상품 타입으로, 다음 값들이 올 수 있습니다.
-    // * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객센터로 문의하세요.
-    // * CONSUMABLE : 소비성 상품.
-    // * AUTO_RENEWABLE : 구독형 상품.
-    // * CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
+    // This is a product type that can have the following values:
+    // * UNKNOWN : An unknown type. Either update Gamebase SDK or contact Gamebase Customer Center.
+    // * CONSUMABLE : A consumable product.
+    // * AUTO_RENEWABLE : A subscription product.
+    // * CONSUMABLE_AUTO_RENEWABLE : This 'consumable subscription product' is used when providing a subscribed user a subscription product that can be consumed periodically.
     @NonNull
     String productType;
     
-    // 상품을 구매했던 User ID.
-    // 상품을 구매하지 않은 User ID 로 로그인 한다면 구매한 아이템을 획득할 수 없습니다.
+    // This is a user ID with which a product is purchased.
+    // If a user logs in with a user ID that is not used to purchase a product, the user cannot obtain the product they purchased.
     @NonNull
     String userId;
     
-    // 스토어의 결제 식별자 입니다.
+    // The payment identifier of a store.
     @Nullable
     String paymentId;
     
-    // 상품을 구매했던 시각입니다.(epoch time)
+    // The time when the product was purchased.(epoch time)
     long purchaseTime;
     
-    // 구독이 종료되는 시각입니다.(epoch time)
+    // The time when the subscription expires.(epoch time)
     long expiryTime;
     
-    // Google 결제시 사용되는 값으로, 다음 값들이 올 수 있습니다.
-    // 하지만 Google 서버에서 장애가 발생하여 Gamebase 결제 서버에서 일시적으로 검증 로직을 끄는 경우에는
-    // null 로만 리턴되므로 항상 유효한 값을 보장하지는 않음에 주의하시기 바랍니다.
-    // * null : 일반 결제
-    // * Test : 테스트 결제
-    // * Promo : Promotion 결제
+    // This value is used when making a purchase on Google, which can have the following values.
+    // However, if the verification logic is temporarily disabled by Gamebase payment server due to error on Google server,
+    // it returns only null, so please remember that it does not guarantee a valid return value at all times.
+    // * null : Normal payment
+    // * Test : Test payment
+    // * Promo : Promotion payment
     @Nullable
     String purchaseType;
     
-    // 구독 상품은 갱신 될때마다 paymentId 가 변경됩니다.
-    // 이 필드는 맨 처음 구독 상품을 결제 했을때의 paymentId 를 알려줍니다.
-    // 스토어에 따라, 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로
-    // 항상 유효한 값을 보장하지는 않습니다.
+    // paymentId is changed whenever product subscription is renewed.
+    // This field shows the paymentId that was used when a subscription product was first purchased.
+    // This value does not guarantee to be always valid, as it can have no value
+    // depending on the store from which the user made a purchase and the status of the payment server.
     @Nullable
     String originalPaymentId;
     
-    // itemSeq 로 상품을 구매하는 Legacy API용 식별자 입니다.
+    // An identifier for Legacy API that purchases products with itemSeq.
     long itemSeq;
 }
 ```
@@ -322,50 +323,50 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 
 ```java
 class PurchasableItem {
-    // Gamebase 콘솔에 등록된 상품 ID 입니다.
-    // Gamebase.Purchase.requestPurchase API 로 상품을 구매할때 사용됩니다.
+    // The product ID that is registered with the Gamebase console.
+    // This is used when a product is purchased using Gamebase.Purchase.requestPurchase API.
     @Nullable
     String gamebaseProductId;
     
-    // 상품의 가격 입니다.
+    // Product price.
     float price;
     
-    // 통화 코드 입니다.
+    // Currency code.
     @Nullable
     String currency;
     
-    // Gamebase 콘솔에 등록된 상품 이름입니다.
+    // The name of a product registered with the Gamebase console.
     @Nullable
     String itemName;
     
-    // Google, Apple 과 같이 스토어 콘솔에 등록된 상품 ID 입니다.
+    // This product ID is registered to the console of stores such as Google and Apple.
     @NonNull
     String marketItemId;
     
-    // 상품 타입으로, 다음 값들이 올 수 있습니다.
-    // * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객센터로 문의하세요.
-    // * CONSUMABLE : 소비성 상품.
-    // * AUTORENEWABLE : 구독형 상품.
-    // * CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
+    // This is a product type that can have the following values:
+    // * UNKNOWN : An unknown type. Either update Gamebase SDK or contact Gamebase Customer Center.
+    // * CONSUMABLE : A consumable product.
+    // * AUTORENEWABLE : A subscription product.
+    // * CONSUMABLE_AUTO_RENEWABLE : This 'consumable subscription product' is used when providing a subscribed user a subscription product that can be consumed periodically.
     @NonNull
     String productType;
     
-    // 통화 기호가 포함된 현지화 된 가격 정보입니다.
+    // Localized price information with currency symbol.
     @Nullable
     String localizedPrice;
     
-    // 스토어 콘솔에 등록된 현지화된 상품 이름 입니다.
+    // The name of a localized product registered with the store console.
     @Nullable
     String localizedTitle;
     
-    // 스토어 콘솔에 등록된 현지화된 상품 설명 입니다.
+    // The description of a localized product registered with the store console.
     @Nullable
     String localizedDescription;
     
-    // Gamebase 콘솔에서 해당 상품의 '사용 여부'를 나타냅니다.
+    // Shows whether the product is 'used or not' in the Gamebase.
     boolean isActive;
     
-    // itemSeq 로 상품을 구매하는 Legacy API용 식별자 입니다.
+    // An identifier for Legacy API that purchases products with itemSeq.
     long itemSeq;
 }
 ```
