@@ -1,5 +1,10 @@
 ## Game > Gamebase > 릴리스 노트 > iOS
 
+### 2.23.0(2021.06.14) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST iOS SDK(0.28.0), ToastGamebaseIAP SDK(0.12.0)
+
 ### 2.22.0(2021.05.25) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경
@@ -611,7 +616,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 	* Gamebase v2.6.0 업데이트 시, 파일이 정상적으로 변경되지 않는 오류 수정
 
 
-### 2019. 11. 12. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.6.0/GamebaseSDK-iOS.zip)
+### 2019. 11. 12. 
 
 ```
 Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
@@ -649,7 +654,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 	* Analytics: 파이 차트 툴팁 변경
 	* Analytics > 실시간 모니터링: Push 발송 대상 추가 작업
 
-### 2019. 10. 15. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.5.2/GamebaseSDK-iOS.zip)
+### 2019. 10. 15. 
 
 #### 기능 개선/변경
 * [SDK] 2.5.2
@@ -681,7 +686,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 		* Datepicker 선택시 키보드가 활성화 되는 현상 수정
 		* Analytics: ARPPU항목에 NRU 값이 노출되던 현상 수정
 	
-### 2019. 09. 10. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.5.1/GamebaseSDK-iOS.zip)
+### 2019. 09. 10. 
 
 #### 기능 추가
 * [Console]
