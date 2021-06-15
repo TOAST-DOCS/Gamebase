@@ -123,6 +123,104 @@ public void RequestPurchase(string gamebaseProductId)
 }  
 ```
 
+**VO**
+```cs
+public class PurchasableReceipt
+{
+    /// <summary>
+    /// The product ID of a purchased item.
+    /// </summary>
+    public string gamebaseProductId;
+
+    /// <summary>
+    /// An identifier for Legacy API that purchases products with itemSeq.
+    /// </summary>
+    public long itemSeq;
+
+    /// <summary>
+    /// The price of purchased product.
+    /// </summary>
+    public float price;
+
+    /// <summary>
+    /// Currency code.
+    /// </summary>
+    public string currency;
+
+    /// <summary>
+    /// Payment identifier.
+    /// This is an important piece of information used to call 'Consume' server API with purchaseToken.
+    ///    
+    /// Caution: Call Consume API from game server!
+    /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
+    /// </summary>
+    public string paymentSeq;
+
+    /// <summary>
+    /// Payment identifier.
+    /// This is an important piece of information used to call 'Consume' server API with paymentSeq.
+    /// In Consume API, the parameter must be named 'accessToken' to be passed.
+    ///    
+    /// Caution: Call Consume API from game server!
+    /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
+    /// </summary>
+    public string purchaseToken;
+
+    /// <summary>
+    /// The product ID that is registered to store console such as Google or Apple.
+    /// </summary>
+    public string marketItemId;
+
+    /// <summary>
+    /// The product type which can have the following values:
+    /// * UNKNOWN: An unknown type. Either update Gamebase SDK or contact Gamebase Customer Center.
+    /// * CONSUMABLE: A consumable product.
+    /// * AUTO_RENEWABLE: A subscription product.
+    /// * CONSUMABLE_AUTO_RENEWABLE: This 'consumable subscription product' is used when providing a subscribed user a subscription product that can be consumed periodically.
+    /// <para/><see cref="GamebasePurchase.ProductType"/>
+    /// </summary>
+    public string productType;
+
+    /// <summary>
+    /// This is a user ID with which a product is purchased.
+    /// If a user logs in with a user ID that is not used to purchase a product, the user cannot obtain the product they purchased.
+    /// </summary>
+    public string userId;
+
+    /// <summary>
+    /// The payment identifier of a store.
+    /// </summary>
+    public string paymentId;
+
+    /// <summary>
+    /// paymentId is changed whenever product subscription is renewed.
+    /// This field shows the paymentId that was used when a subscription product was first purchased.
+    /// This value does not guarantee to be always valid, as it can have no value depending on the store
+    /// the user made a purchase and the status of the payment server.
+    /// </summary>
+    public string originalPaymentId;
+
+    /// <summary>
+    /// The time when the product was purchased.(epoch time)
+    /// </summary>
+    public long purchaseTime;
+
+    /// <summary>
+    /// The time when the subscription expires.(epoch time)
+    /// </summary>
+    public long expiryTime;
+
+    /// <summary>
+    /// It is the value passed to payload when calling Gamebase.Purchase.requestPurchase API.
+    ///
+    /// This field can be used to hold a variety of additional information.
+    /// For example, this field can be used to separately handle purchase
+    /// and provision of the products purchased using the same user ID and sort them by game channel or character.
+    /// </summary>
+    public string payload;
+}
+```
+
 ### List Purchasable Items
 
 To retrieve the list of items, call the following API. 
@@ -156,7 +254,72 @@ public void RequestItemListPurchasable()
 }
 ```
 
+**VO**
+```cs
+public class PurchasableItem
+{
+    /// <summary>
+    /// The product ID that is registered with the Gamebase console.
+    /// Used when a product is purchased using Gamebase.Purchase.requestPurchase API.
+    /// </summary>
+    public string gamebaseProductId;
 
+    /// <summary>
+    /// An identifier for Legacy API that purchases products with itemSeq.
+    /// </summary>
+    public long itemSeq;
+
+    /// <summary>
+    /// The price of a product.
+    /// </summary>
+    public float price;
+
+    /// <summary>
+    /// Currency code.
+    /// </summary>
+    public string currency;
+
+    /// <summary>
+    /// The name of a product registered in the Gamebase console.
+    /// </summary>
+    public string itemName;
+
+    /// <summary>
+    /// The product ID that is registered to store console such as Google or Apple.
+    /// </summary>
+    public string marketItemId;
+
+    /// <summary>
+    /// The product type which can have the following values:
+    /// * UNKNOWN: An unknown type. Either update Gamebase SDK or contact Gamebase Customer Center.
+    /// * CONSUMABLE: A consumable product.
+    /// * AUTORENEWABLE: A subscription product.
+    /// * CONSUMABLE_AUTO_RENEWABLE: This 'consumable subscription product' is used when providing a subscribed user a subscription product that can be consumed periodically.
+    /// <para/><see cref="GamebasePurchase.ProductType"/>
+    /// </summary>
+    public string productType;
+
+    /// <summary>
+    /// Localized price information with currency symbol.
+    /// </summary>
+    public string localizedPrice;
+
+    /// <summary>
+    /// The name of a localized product registered with the store console.
+    /// </summary>
+    public string localizedTitle;
+
+    /// <summary>
+    /// The description of a localized product registered with the store console.
+    /// </summary>
+    public string localizedDescription;
+
+    /// <summary>
+    /// Shows whether the product is 'used or not' in the Gamebase.
+    /// </summary>
+    public bool isActive;
+}
+```
 
 ### List Non-Consumed Items
 

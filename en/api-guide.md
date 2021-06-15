@@ -394,6 +394,10 @@ Check Common Factors
 | maintenance.reason | String | Maintenance reason |
 | maintenance.message | String | Default maintenance reason message |
 
+**[Error Code]**
+
+[Error code](./error-code/#server)](./error-code/#server)
+
 <br>
 <br>
 
@@ -1607,7 +1611,7 @@ X-Secret-Key: IgsaAP
     },
     "messageType" : "AD",
     "contact": "1588-1588",
-    "removeGuide": "매뉴 > 설정",
+    "removeGuide": "Menu > Setting",
     "timeToLiveMinute": 1,
     "provisionedResourceId": "id",
     "adWordPosition": "TITLE"

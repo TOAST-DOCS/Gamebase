@@ -125,9 +125,13 @@ Provides a feature that directly sends coupons to users using issued coupon info
 
 ##### (10) Test: You can test sending an SMS based on the entered form. Enter the recipient's number and click the Send button to send the test SMS to that number. We recommend you to test send an SMS in advance to see if everything looks all right.
 
-> [Note]
+> [Note1]
 >
-> Regarding coupon item registration, see [Coupon Item](./oper-coupon/#Coupon Item).
+> Refer to [Coupon Item](./oper-coupon/#coupon-item) to see how to register coupon items.
+> 
+> [Note2]
+>
+> SMS products must be enabled to be able to issue coupons.
 
 #### 7. Issue additional coupons
 If the coupon type is serial, you can receive up to 100 (100,000 at a time) additional coupons (including the initially issued quantity).

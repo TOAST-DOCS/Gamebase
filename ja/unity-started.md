@@ -9,7 +9,7 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 > 
 > Unity対応バージョン
 >
-> * 2017.4.16 ~ 2020.1.8
+> * 2017.4.16 ~ 2020.2.1
 > * 下位バージョンのUnityのサポートが必要な場合は[サポート](https://toast.com/support/inquiry)へお問い合わせください。
 
 
@@ -84,6 +84,14 @@ Gamebase SDKを手軽にインストールすることができるように、Se
     * Pushは、FCM(Firebase)、Tencent Push、APNS Pushサービスに対応しています。
     * Pruchaseは、NHN Cloudの決済サービスであるIAP(In-App Purchase)を使用して決済に対応しています。
 7. [Settings]ボタンをクリックしてSDKをインストールします。
+
+
+#### SDKアップデート
+1. Menu > Tools > Gamebase > SDKSettings > Setting Toolを実行します。
+	* v1.0.1以下：Menu > Gamebase > SDKSettings > Setting Tool
+2. [Download SDK]ボタンをクリックして最新SDKをダウンロードします。
+3. [Settings]ボタンクリックしてSDKをインストールします。
+    * 既に選択したプラットフォーム別モジュールは変更が可能です。
 
 
 #### SDK削除
@@ -165,7 +173,6 @@ Lifecycle管理のために"com.toast.gamebase.activity.GamebaseMainActivity"を
 > <font color="red">[注意]</font>
 >
 > * Unity 2019.3以上の注意事項
->     * PROJECT > Unity-iPhone > Enable BitcodeをNoに設定します。
 >     * TARGETS > UnityFrameworkにiOS SDK設定を追加します。
 >
 
@@ -189,4 +196,3 @@ GamebaseでサポートしないAPIは、使用していないもの(deprecate)�
 		* ZZ : Hotfix
 
 * 最低5ヶ月経過
-

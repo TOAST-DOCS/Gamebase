@@ -163,6 +163,134 @@ Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, userPayload, new 
 });
 ```
 
+**VO**
+
+```java
+class PurchasableReceipt {
+    // The product ID of a purchased item.
+    @Nullable
+    String gamebaseProductId;
+    
+    // It is the value passed to payload when calling Gamebase.Purchase.requestPurchase API.
+    //
+    // It is the value passed to payload when calling Gamebase.Purchase.requestPurchase API.
+    // This field can be used to hold a variety of additional information.
+    // For example, this field can be used to separately handle purchase and provision
+    // of the products purchased using the same user ID and sort them by game channel or character.
+    @Nullable
+    String payload;
+    
+    // Price of purchased product.
+    float price;
+    
+    // Currency code.
+    @NonNull
+    String currency;
+    
+    // Payment identifier.
+    // This is an important piece of information used to call 'Consume' Server API with purchaseToken.
+    //
+    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // aution: Call Consume API from game server!
+    @NonNull
+    String paymentSeq;
+    
+    // Payment identifier.
+    // This is an important piece of information used to call 'Consume' server API with paymentSeq.
+    // Consume API 에서는 'accessToken' 라는 이름의 파라메터로 전달해야 합니다.
+    //
+    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // In Consume API, the parameter must be named 'accessToken' to be passed.
+    @Nullable
+    String purchaseToken;
+    
+    // This product ID is registered to the console of stores such as Google and Apple.
+    @NonNull
+    String marketItemId;
+    
+    // This is a product type that can have the following values:
+    // * UNKNOWN : An unknown type. Either update Gamebase SDK or contact Gamebase Customer Center.
+    // * CONSUMABLE : A consumable product.
+    // * AUTO_RENEWABLE : A subscription product.
+    // * CONSUMABLE_AUTO_RENEWABLE : This 'consumable subscription product' is used when providing a subscribed user a subscription product that can be consumed periodically.
+    @NonNull
+    String productType;
+    
+    // This is a user ID with which a product is purchased.
+    // If a user logs in with a user ID that is not used to purchase a product, the user cannot obtain the product they purchased.
+    @NonNull
+    String userId;
+    
+    // The payment identifier of a store.
+    @Nullable
+    String paymentId;
+    
+    // The time when the product was purchased.(epoch time)
+    long purchaseTime;
+    
+    // The time when the subscription expires.(epoch time)
+    long expiryTime;
+    
+    // This value is used when making a purchase on Google, which can have the following values.
+    // However, if the verification logic is temporarily disabled by Gamebase payment server due to error on Google server,
+    // it returns only null, so please remember that it does not guarantee a valid return value at all times.
+    // * null : Normal payment
+    // * Test : Test payment
+    // * Promo : Promotion payment
+    @Nullable
+    String purchaseType;
+    
+    // paymentId is changed whenever product subscription is renewed.
+    // This field shows the paymentId that was used when a subscription product was first purchased.
+    // This value does not guarantee to be always valid, as it can have no value
+    // depending on the store from which the user made a purchase and the status of the payment server.
+    @Nullable
+    String originalPaymentId;
+    
+    // An identifier for Legacy API that purchases products with itemSeq.
+    long itemSeq;
+}
+```
+
+**Response Example**
+
+```json
+{
+    "gamebaseProductId": "my_product_001",
+    "payload": "UserPayload:!@#...",
+    "price": 1000.0,
+    "currency": "KRW",
+    "paymentSeq": "2021032510000001",
+    "purchaseToken": "5U_NVCLKSDFKLJJ...",
+    "marketItemId": "my_product_001",
+    "productType": "CONSUMABLE",
+    "userId": "AS@123456ABCDEFGHIJ",
+    "paymentId": "GPA.1111-2222-3333-44444",
+    "purchaseTime": 1616649225531,
+    "expiryTime": 0,
+    "itemSeq": 1000001
+}
+```
+```json
+{
+    "gamebaseProductId": "my_subcription_product_001",
+    "payload": "MyData:{\"1234\":\"5678\"}",
+    "price": 1000.0,
+    "currency": "KRW",
+    "paymentSeq": "2021032510000001",
+    "purchaseToken": "5U_NVCLKKLJLSDG...",
+    "marketItemId": "my_subcription_product_001",
+    "productType": "CONSUMABLE_AUTO_RENEWABLE",
+    "userId": "AS@123456ABCDEFGHIJ",
+    "paymentId": "GPA.1111-2222-3333-56789",
+    "purchaseTime": 1617069916128,
+    "expiryTime": 1617070323784,
+    "purchaseType": "Test",
+    "originalPaymentId": "GPA.1111-2222-3333-56789",
+    "itemSeq": 1000002
+}
+```
+
 ### List Purchasable Items
 
 To retrieve the list of items, call the following API. Information of each item is included in the array of callback return.
@@ -189,6 +317,76 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
         }
     }
 });
+```
+
+**VO**
+
+```java
+class PurchasableItem {
+    // The product ID that is registered with the Gamebase console.
+    // This is used when a product is purchased using Gamebase.Purchase.requestPurchase API.
+    @Nullable
+    String gamebaseProductId;
+    
+    // Product price.
+    float price;
+    
+    // Currency code.
+    @Nullable
+    String currency;
+    
+    // The name of a product registered with the Gamebase console.
+    @Nullable
+    String itemName;
+    
+    // This product ID is registered to the console of stores such as Google and Apple.
+    @NonNull
+    String marketItemId;
+    
+    // This is a product type that can have the following values:
+    // * UNKNOWN : An unknown type. Either update Gamebase SDK or contact Gamebase Customer Center.
+    // * CONSUMABLE : A consumable product.
+    // * AUTORENEWABLE : A subscription product.
+    // * CONSUMABLE_AUTO_RENEWABLE : This 'consumable subscription product' is used when providing a subscribed user a subscription product that can be consumed periodically.
+    @NonNull
+    String productType;
+    
+    // Localized price information with currency symbol.
+    @Nullable
+    String localizedPrice;
+    
+    // The name of a localized product registered with the store console.
+    @Nullable
+    String localizedTitle;
+    
+    // The description of a localized product registered with the store console.
+    @Nullable
+    String localizedDescription;
+    
+    // Shows whether the product is 'used or not' in the Gamebase.
+    boolean isActive;
+    
+    // An identifier for Legacy API that purchases products with itemSeq.
+    long itemSeq;
+}
+```
+
+**Response Example**
+
+```json
+{
+    "gamebaseProductId": "my_product_001",
+    "price": 1000.0,
+    "currency": "KRW",
+    "itemName": "Consumable product for test",
+    "marketItemId": "my_product_001",
+    "productType": "CONSUMABLE",
+    "localizedPrice": "₩1,000",
+    "localizedTitle": "TEST PRODUCT 001",
+    "localizedDescription": "Product for test 001",
+    "isActive": true,
+    "itemSeq": 1000001
+}
 ```
 
 ### List Non-Consumed Items
