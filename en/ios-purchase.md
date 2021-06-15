@@ -122,6 +122,71 @@ When a game user cancels purchase, the **TCGB_ERROR_PURCHASE_USER_CANCELED** is 
 }
 ```
 
+**VO**
+
+```objectivec
+@interface TCGBPurchasableReceipt : NSObject
+
+// The product ID of a purchased item.
+@property (nonatomic, strong) NSString *gamebaseProductId;
+
+// Price of purchased product
+@property (assign)            float price;
+
+// Currency code
+@property (nonatomic, strong) NSString *currency;
+
+// Payment identifier
+// This is an important piece of information used to call 'Consume' server API with purchaseToken
+// Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+// Caution : Call Consume API from game server!
+@property (nonatomic, strong) NSString *paymentSeq;
+
+// Payment identifier
+// Used to call 'Consume' server API with paymentSeq
+// Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+// Caution : Call Consume API from game server!
+@property (nonatomic, strong) NSString *purchaseToken;
+
+// The product ID registered with Apple Store console
+@property (nonatomic, strong) NSString *marketItemId;
+
+// Product type
+// UNKNOWN : An unknown type. Either update Gamebase SDK or contact Gamebase Customer Center.
+// CONSUMABLE : A consumable product.
+// AUTO_RENEWABLE : A subscription product
+// CONSUMABLE_AUTO_RENEWABLE : This 'consumable subscription product' is used when providing a subscribed user a subscription product that can be consumed periodically.
+@property (nonatomic, strong) NSString *productType;
+
+// This is a user ID with which a product is purchased
+// If a user logs in with a user ID that is not used to purchase a product, the user cannot obtain the product they purchased.
+@property (nonatomic, strong) NSString *userId;
+
+// The payment identifier of a store
+@property (nonatomic, strong) NSString *paymentId;
+
+// The time when the subscription expires (epoch time)
+@property (nonatomic, assign) long expiryTime;
+
+// The time when the product was purchased (epoch time)
+@property (nonatomic, assign) long purchaseTime;
+
+// It is the value passed to payload when calling the requestPurchase API
+// This field can be used to hold a variety of additional information. For example, this field can be used to separately handle purchase
+// of the products purchased using the same user ID and sort them by game channel or character.
+@property (nonatomic, strong) NSString *payload;
+
+// paymentId is changed whenever product subscription is renewed.
+// This field shows the paymentId that was used when a subscription product was first purchased.
+// This value does not guarantee to be always valid, as it can have no value depending on the store the user made a purchase and the status of the payment server.
+@property (nonatomic, strong) NSString *originalPaymentId;
+
+// An identifier for Legacy API that purchases products with itemSeq
+@property (assign)            long itemSeq;
+
+@end
+```
+
 
 
 ### List Purchasable Items
@@ -146,6 +211,54 @@ To retrieve the list of items, call the following API. Information of each item 
 }
 ```
 
+
+**VO**
+
+```objectivec
+@interface TCGBPurchasableItem : NSObject
+
+// The product ID that is registered with the Gamebase console
+// Used when purchasing a product with requestPurchase API
+@property (nonatomic, strong) NSString *gamebaseProductId;
+
+// Product price
+@property (assign) float price;
+
+// Currency code
+@property (nonatomic, strong) NSString *currency;
+
+// The product name registered with the Gamebase console
+@property (nonatomic, strong) NSString *itemName;
+
+// Store code ("AS")
+@property (nonatomic, strong) NSString *marketId;
+
+// The product ID registered with Apple Store console
+@property (nonatomic, strong) NSString *marketItemId;
+
+// Product type
+// UNKNOWN: An unknown type. Either update Gamebase SDK or contact Gamebase Customer Center.
+// CONSUMABLE: A consumable product.
+// AUTO_RENEWABLE: A subscription product
+// CONSUMABLE_AUTO_RENEWABLE: This 'consumable subscription product' is used when providing a subscribed user a subscription product that can be consumed periodically.
+
+//  Localized price information with currency symbol
+@property (nonatomic, strong) NSString *localizedPrice;
+
+// The name of a localized product registered with the store console
+@property (nonatomic, strong) NSString *localizedTitle;
+
+// The description of a localized product registered with the store console
+@property (nonatomic, strong) NSString *localizedDescription;
+
+// Determines whether the product is used in the Gamebase console or not
+@property (nonatomic, assign, getter=isActive) BOOL active;
+
+// An item identifier for Legacy API that purchases products with itemSeq
+@property (assign) long itemSeq;
+
+@end
+```
 
 ### List Non-Consumed Items
 
@@ -235,8 +348,8 @@ If In-App Purchase (for App Store) is included to SDK, like Facebook SDK or Goog
 
 * Solution 
   * Facebook
-    * Facebook Console > Settings > Default Setting > Disable `Automatically log in-app events` 
-    * When Facebook authentication is not in use: `Exclude GamebaseAuthFacebookAdapter.framework file` and build
+    * Facebook Console > Setting > Default Setting > Disable the **Automatically Log In-App Events (Recommended)** feature
+    * When the Facebook authentication feature is not used: **Exclude the GamebaseAuthFacebookAdapter.framework file** and build
 
 
 #### Overview

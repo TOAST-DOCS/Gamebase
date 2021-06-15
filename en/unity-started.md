@@ -8,7 +8,7 @@ Below describes environments and initial setting of Gamebase Unity SDK.
 > 
 > Unity support version
 > 
-> * 2017.4.16 ~ 2020.1.8
+> * 2017.4.16 ~ 2020.2.1
 > * To be supported by a lower-version Unity, contact [Customer Center](https://toast.com/support/inquiry).
 
 #### Android
@@ -84,6 +84,13 @@ Setting Tool is provided to install Gamebase SDK with more at ease.
     * For Push, FCM(Firebase), Tencent and APNS Push services are supported.
     * For Purchase, In-App Purchase (IAP) of NHN Cloud is provided.
 7. Click [Settings] and install SDK.
+
+#### SDK 업데이트
+1. Run Menu > Tools > Gamebase > SDKSettings > Setting Tool.
+	* v1.0.1 or earlier: Menu > Gamebase > SDKSettings > Setting Tool
+2. Click the [Download SDK] button to download the latest SDK.
+3. Click the [Settings] button to install the SDK.
+    * Previously selected modules per platform can be changed.
 
 #### Delete SDK
 1. Execute Menu > Tools > Gamebase > SDKSettings > Setting Tool.
@@ -165,7 +172,6 @@ To manage lifecycle, set "com.toast.gamebase.activity.GamebaseMainActivity" as t
 > <font color="red">[Caution]</font>
 >
 > * Caution for Unity 2019.3 or later
->     * Go to PROJECT > Unity-iPhone > Enable Bitcode and set it to No
 >     * Go to TARGETS > UnityFramework and add iOS SDK setting.
 >
 

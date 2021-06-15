@@ -17,11 +17,8 @@ In many games, login is implemented on a title page.
 
 The logic described in the above can be implemented in the following order.
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
+![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
 #### 1. Authenticate with Latest Login Type
 
@@ -120,9 +117,10 @@ public void LoginForLastLoggedInProvider()
 
 ### Login with GUEST
 
-Gamebase supports Guest logins.
-Create an only key of device to try to log in Gamebase.
-As the device key may be initialized and account may be deleted, it is recommended to use IdP for a Guest login.
+Gamebase supports Guest logins. 
+
+* Create an only key of device to try to log in Gamebase. 
+* As the device key may be initialized and account may be deleted, it is recommended to use IdP for a Guest login.
 
 **API**
 
@@ -171,7 +169,24 @@ public void Login()
 
 ### Login with IdP
 
-Following is a login example with a specific IdP.
+Following is a login example with a specific IdP. 
+For more information on IdP types that can be used to log in, refer to the **GamebaseAuthProvider** class.
+
+> [Notes]
+>
+> Some IdPs require additional information when logging in.
+> The static void Login(string providerName, Dictionary additionalInfo, and GamebaseCallback.GamebaseDelegate callback) APIs are provided to configure these additional information.
+>Enter the required information into the additionalInfo parameter in the form of the dictionary.
+>> If additionalInfo has a value, use that value. If null, use the value registered in [NHN Cloud Console](./oper-app/#authentication-information).
+
+
+> <font color="red">[Caution]</font><br/>
+>
+> In Standalone, login is supported through WebViewAdapter. It does not block events entered via UI when WebView is open.
+>
+> To log in using Standalone WebViewAdapter, the CallbackURL below must be configured on the IdP Developer website.
+> - https://id-gamebase.toast.com/oauth/callback
+>
 
 **API**
 
@@ -180,40 +195,10 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
-
 ```cs
 static void Login(string providerName, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 static void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 ```
-
-**providerName**
-
-| Provider    | Define                          | Support Platform | 
-| --------    | ------------------------------- | ---------------- |
-| Google      | GamebaseAuthProvider.GOOGLE     | Android<br/>iOS<br/>Standalone |
-| Game Center | GamebaseAuthProvider.GAMECENTER | iOS |
-| Apple ID    | GamebaseAuthProvider.APPLEID    | iOS |
-| Facebook    | GamebaseAuthProvider.FACEBOOK   | Android<br/>iOS<br/>Standalone |
-| Payco       | GamebaseAuthProvider.PAYCO      | Android<br/>iOS<br/>Standalone |
-| Naver       | GamebaseAuthProvider.NAVER      | Android<br/>iOS |
-| Twitter     | GamebaseAuthProvider.TWITTER    | Android<br/>iOS |
-| Line        | GamebaseAuthProvider.LINE       | Android<br/>iOS |
-| HANGAME     | GamebaseAuthProvider.HANGAME    | Android<br/>iOS |
-| WEIBO       | GamebaseAuthProvider.WEIBO      | Android<br/>iOS |
-
-
-> There is information which must be included for login with some IdPs.<br/>
-> For instance, scope must be set to implement a Facebook login.<br/>
-> In order to set such necessary information, static void Login (string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) API is provided.<br/>
-> You can enter those information to additionalInfo in the dictionary type. When the parameter value is null, the additionalInfo registered in the NHN Cloud Console will be applied. Generally, the parameter value will take precedence over the value registered in the Console. ([Setting additionalInfo in NHN Cloud Console](./oper-app/#authentication-information))<br/>
-> (Standalone) supports login with WebViewAdapter and does not block events entered through UI when WebView is open.
-
-
-To log in with Standalone WebViewAdapter, set the following CallbackURL in the IdP developer site.
-
-* https://alpha-id-gamebase.toast.com/oauth/callback
-* https://beta-id-gamebase.toast.com/oauth/callback
-* https://id-gamebase.toast.com/oauth/callback
 
 **Example**
 
@@ -361,10 +346,6 @@ public void LoginWithCredential()
 }
 ```
 
-### Authentication Additional Information Settings
-
-[Console Guide](./oper-app/#authentication-information)
-
 ## Logout
 
 Try to log out from logged-in IdP. In many cases, the logout button is located on the game configuration screen.
@@ -413,6 +394,11 @@ Attempts account withdrawal while logged in.
 * The user can log in with the IdP again, and a new user's data will be created.
 * It means user's withdrawal from Gamebase, not from IdP account.
 * After a successful withdrawal, a log-out from IdP will be tried.
+
+> <font color="red">[Caution]</font><br/>
+>
+> If multiple IdPs are linked, all IdP linkages will be unlinked and the game user data in Gamebase will be deleted.
+>
 
 **API**
 

@@ -361,12 +361,24 @@ android {
 
 > <font color="red">[주의]</font><br/>
 >
-> * 'queries' 태그는 Gradle 5.6.4 이상 버전에서만 빌드가 가능합니다.
->     * 그러므로 IDE 에서 Gradle 5.6.4 이상이 지원되지 않는 환경에서는 targetSdkVersion 을 29 이하로 설정해야 합니다.
-> * Gradle 5.6.4 이상 버전이 적용된 IDE 는 다음과 같습니다.
->     * Android Studio : 3.6.1 이상
->     * Unity : 2020.1 이상
->     * Unreal : 지원 불가
+> * 'queries' 태그는 기존 Android Gradle Plugin(AGP) 에서는 인식하지 못하여 빌드가 실패합니다.
+> * 아래 가이드 및 표를 참고로 하여 'queries' 태그 빌드가 가능한 AGP 버전으로 업그레이드 하시기 바랍니다.
+>     * [https://android-developers.googleblog.com/2020/07/preparing-your-build-for-package-visibility-in-android-11.html](https://android-developers.googleblog.com/2020/07/preparing-your-build-for-package-visibility-in-android-11.html)
+>     * AGP 3.2.* 이하의 버전을 사용한다면 3.3.3 이상으로 업그레이드 해야 합니다.
+>     * AGP 4.1.0 이상의 버전을 사용한다면 AGP 업그레이드는 하지 않아도 무방합니다.
+
+| If you are using<br>the Android Gradle<br>plugin version... | ...upgrade to: | Unity Editor |
+| --- | --- | --- |
+| 4.1.* | N/A (no upgrade needed)| \- |
+| 4.0.* | 4.0.1 | \- |
+| 3.6.* | 3.6.4 | 2020.1 ~ |
+| 3.5.* | 3.5.4 | \- |
+| 3.4.* | 3.4.3 | 2018.4.4 ~<br>2019.1.7 ~ |
+| 3.3.* | 3.3.3 | \- |
+| 3.2.* | Not supported | 2017.4.17 ~<br>2018.3 ~ 2018.4.3<br>2019.1.0 ~ 2019.1.6 |
+| 3.0.* | Not supported | 2018.2 |
+| 2.3.* | Not supported | 2017.3 ~ 2017.4.16<br>2018.1 |
+| 2.1.* | Not supported | Unity 5<br>2017.1 ~ 2017.2 |
 
 ```xml
 <queries>

@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > Unity SDK ご利用ガイド > 認証
+## Game > Gamebase > Unity SDK ご利用ガイド > 認証
 
 ## Login
 
@@ -18,11 +18,8 @@ Gamebaseでは基本的にゲストログインに対応しています。<br/>
 
 上述したロジックは、次のような手順で設計することができます。
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
+![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
 #### 1. 前回のログインタイプで認証
 
@@ -122,8 +119,9 @@ public void LoginForLastLoggedInProvider()
 ### Login with GUEST
 
 Gamebaseは、ゲストログインに対応しています。
-デバイス固有のキーを作成し、Gamebaseに対しログインを試みます。
-ゲストログインはデバイスキーが初期化されることがあり、デバイスキーを初期化する場合はアカウントが削除されることがあるため、IdPを使ったログイン方式を推奨します。
+
+* デバイス固有のキーを作成し、Gamebaseに対しログインを試みます。
+* ゲストログインはデバイスキーが初期化されることがあり、デバイスキーを初期化する場合はアカウントが削除されることがあるため、IdPを使ったログイン方式を推奨します。
 
 **API**
 
@@ -173,6 +171,23 @@ public void Login()
 ### Login with IdP
 
 次は特定のIdPでログインできるようにするコード例です
+ログインできるIdPタイプは**GamebaseAuthProvider**クラスで確認できます。
+
+> [参考]
+>
+> ログインする時、追加情報を必要とするIdPもあります。
+> このような追加情報を設定できるようにstatic void Login(string providerName, Dictionary additionalInfo, GamebaseCallback.GamebaseDelegate callback) APIを提供します。
+>additionalInfoパラメータに必須情報をdictionary形式で入力してください。
+>additionalInfo値がある場合はその値を使用し、nullの場合は[NHN Cloud Console](./oper-app/#authentication-information)に登録された値を使用します。
+
+
+> <font color="red">[注意]</font><br/>
+>
+> StandaloneではWebViewAdapterを通してログインをサポートし、WebViewが開かれている時、UIに入力されるEventをBlockingしません。
+>
+> Standalone WebViewAdapterを使用してログインを行うにはIdP開発者サイトで以下のCallbackURLを設定する必要があります。
+> - https://id-gamebase.toast.com/oauth/callback
+>
 
 **API**
 
@@ -181,41 +196,10 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
-
 ```cs
 static void Login(string providerName, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 static void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 ```
-
-**providerName**
-
-| Provider    | Define                          | Support Platform | 
-| --------    | ------------------------------- | ---------------- |
-| Google      | GamebaseAuthProvider.GOOGLE     | Android<br/>iOS<br/>Standalone |
-| Game Center | GamebaseAuthProvider.GAMECENTER | iOS |
-| Apple ID    | GamebaseAuthProvider.APPLEID    | iOS |
-| Facebook    | GamebaseAuthProvider.FACEBOOK   | Android<br/>iOS<br/>Standalone |
-| Payco       | GamebaseAuthProvider.PAYCO      | Android<br/>iOS<br/>Standalone |
-| Naver       | GamebaseAuthProvider.NAVER      | Android<br/>iOS |
-| Twitter     | GamebaseAuthProvider.TWITTER    | Android<br/>iOS |
-| Line        | GamebaseAuthProvider.LINE       | Android<br/>iOS |
-| HANGAME     | GamebaseAuthProvider.HANGAME    | Android<br/>iOS |
-| WEIBO       | GamebaseAuthProvider.WEIBO      | Android<br/>iOS |
-
-
-> IdPの中には、ログインする際に必ず必要な情報があるものがあります。<br/>
-> 例えば、Facebookログインを設計する場合、scopeなどを設定する必要があります。<br/>
-> このような必須情報を設定することができるようにstatic void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)APIを提供します。<br/>
-> パラメーターのadditionalInfoに必須情報をdictionary形式で入力してください。パラメーター値がの場合、NHN Cloud Consoleに登録したadditionalInfoの値が埋められます。パラメーター値がある場合、Consoleに登録に登録してある値よりもこちらを優先してその値を上書きします。([NHN Cloud ConsoleにadditionalInfoを設定する](./oper-app/#authentication-information))<br/>
-> スタンドアローン(standalone)では、WebViewAdapterでログインをサポートし、WebViewが開かれている時は、UIで入力されるイベントをブロッキング(blocking)しません。
-
-
-
-Standalone WebViewAdapterを使用してログインするには、IdP開発者サイトで下記のCallbackURLを設定する必要があります。
-
-* https://alpha-id-gamebase.toast.com/oauth/callback
-* https://beta-id-gamebase.toast.com/oauth/callback
-* https://id-gamebase.toast.com/oauth/callback
 
 **Example**
 
@@ -363,10 +347,6 @@ public void LoginWithCredential()
 }
 ```
 
-### Authentication Additional Information Settings
-
-[Console Guide](./oper-app/#authentication-information)
-
 ## Logout
 
 ログインされたIdPからのログアウトを試みます。主にゲームの設定画面にログアウトボタンを設け、ボタンをクリックすると実行されるように設計するケースが多いです。
@@ -414,6 +394,11 @@ public void Logout()
 * 該当するIdPでもう一度ログインすることができ、新しいゲームユーザーデータを作成します。
 * Gamebaseからの退会を意味するもので、IdPアカウントからの退会を意味するものではありません。
 * 退会に成功すると、IdPログアウトを試みます。
+
+> <font color="red">[注意]</font><br/>
+>
+> 複数のIdPを連動中の場合、すべてのIdP連動が解除され、Gamebaseゲームユーザーデータが削除されます。
+>
 
 **API**
 
