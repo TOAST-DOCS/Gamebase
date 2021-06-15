@@ -879,15 +879,15 @@ String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
 
 ### Get Authentication Information for External IdP
 
-* 외부 인증 IdP 의 액세스 토큰, 사용자 ID, Profile 등의 정보는 로그인 후 게임 서버에서 Gamebase Server API 를 호출하여 가져올 수 있습니다.
-    * [Game > Gamebase > API 가이드 > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
+* Information such as access token, user ID, and profile of an external authentication IdP can be gotten by calling Gamebase Server API after login.
+    * [Game > Gamebase > API Guide > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
 
 > <font color="red">[Caution]</font><br/>
 >
-> * 외부 IdP 의 인증 정보는 보안을 위해 게임 서버에서 호출할 것을 권장합니다.
-> * IdP 에 따라 액세스 토큰이 빠른 시간에 만료될 수 있습니다.
->     * 예를 들어 Google 은 로그인 2시간 후에는 액세스 토큰이 만료되어 버립니다.
->     * 사용자 정보가 필요하다면 로그인 후 바로 Gamebase Server API 를 호출하시기 바랍니다.
+> * For security reasons, it is recommended to call the authentication information of an external IdP from the game server.
+> * Access token may expire relatively sooner depending on the IdP.
+>     * For example, the access token of Google will expire within 2 hours from the time of login.
+>     * If you need user information, it is recommended to call Gamebase Server API immediately after login.
 > * When logged in with the "Gamebase.loginForLastLoggedInProvider()" API, the authentication info cannot be retrieved.
 >     * If you need the user info, instead of "Gamebase.loginForLastLoggedInProvider()", use the {IDP_CODE} identical to the IDPCode that you want to use as the parameter to log in as the "Gamebase.login(activity, IDP_CODE, callback)" API.
 
