@@ -4,18 +4,18 @@
 
 ### iOS
 
-* Gamebase iOS SDK 2.21.1 에서 bitcode 를 활성화 한 후에 **아카이브 빌드**를 하면 에러가 발생합니다.
-    * bitcode 사용을 원하시는 경우엔 위 이슈가 해결된 Gamebase iOS SDK 2.21.2 를 사용하시기 바랍니다.
+* If you enable bitcode and **archive build** in Gamebase iOS SDK 2.21.1, error occurs.
+    * If you want to use bitcode, use Gamebase iOS SDK 2.21.2 to avoid any associated error.
 
 ## 2.21.0
 
 ### Android
 
-* Gamebase Android SDK 2.21.0 은 jCenter 에는 잘못된 빌드가 배포되어, **jcenter()** 를 **mavenCentral()** 보다 먼저 선언 했다면 모든 Gamebase API 에서 크래시가 발생할 수 있습니다.
-    * 정상적으로 배포된 Gamebase Android SDK 2.21.1 을 사용하시거나 **mavenCentral()** 을 **jcenter()** 보다 먼저 선언하시기 바랍니다.
+* If a wrong jCenter build is deployed so that **jcenter()** was declared before **mavenCentral()** was declared in Gamebase Android SDK 2.21.0, all Gamebase APIs might crash.
+    * In this case, use a properly deployed Gamebase Android SDK 2.21.1 or declare **mavenCentral()** ahead of **jcenter()**.
 * Maven Repository
-    * jCenter 가 일반 사용자를 위한 서비스를 종료하여 ( [https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/](https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/) ) 더 이상 새로운 빌드는 업로드는 할 수 없게 되었습니다.(jCenter 의 접근 또한 2022 년 2월 1일에 종료됩니다.)
-    * 그래서 Gamebase Android SDK 2.21.0 부터는 **jcenter()** 가 아닌 **mavenCentral()** 에서만 배포가 되므로 gradle repository 에 mavenCentral 을 추가하세요.
+    * As jCenter stopped providing services to individual users, ( [https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/](https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/) ) new builds can no longer be uploaded.(Users will not be able to access jCenter starting from February 1st, 2022.)
+    * For this reason, since Gamebase Android SDK 2.21.0 and later versions will be deployed only to **mavenCentral()** and not to **jcenter()**, please add mavenCentral to gradle repository.
 
 ```groovy
 repositories {
@@ -27,9 +27,8 @@ repositories {
 
 #### Line IdP
 
-* Line IdP 를 사용하는 경우, Line SDK 업데이트로 인해 아래와 같이 Gradle 에 **JavaVersion.VERSION_1_8** 설정을 하지 않으면 빌드가 실패합니다.
-* Line IdP 를 사용하는 경우, Line SDK 내부에 **android:allowBackup="false"** 로 선언되어 있어 어플리케이션 빌드시 Manifest merger 에서 fail 이 발생할 수 있습니다. 이렇게 빌드가 실패한다면 다음과 같이 application 태그에 **tools:replace="android:allowBackup"** 선언을 추가하시기 바랍니다.
-
+* If you are using Line IdP, due to the Line SDK update, you must configure **JavaVersion.VERSION_1_8** in Gradle to succeed the build.
+* If you are using Line IdP, a fail may occur in Manifest merger when building an application because **android:allowBackup="false"** is declared in Line SDK. If a build fails for this reason, declare **tools:replace="android:allowBackup"** in the application tag.
 ```groovy
 android {
     compileOptions {
@@ -49,8 +48,8 @@ android {
 
 ### iOS
 
-* Gamebase iOS SDK 2.21.0 에서 bitcode 를 사용할 경우 에러가 발생합니다.
-    * bitcode 사용을 원하시는 경우엔 Gamebase iOS SDK 2.21.1 을 사용하시기 바랍니다.
+* Error occurs when using bitcode in Gamebase iOS SDK 2.21.0.
+    * If you want to use bitcode, use Gamebase iOS SDK 2.21.1 instead.
 
 ## 2.20.2
 
