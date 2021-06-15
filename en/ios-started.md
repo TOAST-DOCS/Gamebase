@@ -104,7 +104,7 @@ By decompression, following SDKs will show, including Gamebase.framework.
     * Add an **empty swift file** within the project (When there are not any swift files within the project)
 * 5) Go to **Target > Build Settings > Linking > Other Linker Flags** and add **-ObjC**.
 ![Other Linker Flags](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
-* 6) NaverAuthAdapter를 사용하는 경우에는 NaverSDK에서 제공하는 **NaverThirdPartyLogin.framework** 파일을 **Target > General > Embedded Binaries**에 추가해야 합니다.
+* 6) When using NaverAuthAdapter, **NaverThirdPartyLogin.framework** file provided by NaverSDK should be added to **Target > General > Embedded Binaries**.
  ![Naver Embeded Binaries](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.7.0.png)
 
 > [INFO]
@@ -156,8 +156,8 @@ end
 > If you do not use the latest Gamebase version, some adapter may not be available.
 >
 
-* 5) Podfile 작성이 완료되면 **pod install** 또는 **pod update** 명령어를 실행해 Gamebase를 설치합니다.
-* 6) 설치가 완료되면 **프로젝트명.xcworkspace** 파일이 생성됩니다. 이후부터는 생성된 **xcworkspace** 파일을 통해 개발을 진행합니다.
+* 5) Install Gamebase using the **pod install** or **pod update** command after Podfile is written.
+* 6) A **[project name].xcworkspace** file will be created when the installation is complete. From this point on, product is developed using the created **xcworkspace** file.
 
 
 > [Note]
@@ -168,50 +168,50 @@ end
 
 ### IdP Settings
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> * NHN Cloud Console 에서 새 프로젝트를 생성하여 Gamebase 서비스를 활성화 하였는지 꼭 확인하세요.
-> * 각 IdP 콘솔에서 Client ID 를 발급받아 Gamebase 콘솔에 입력하였는지 꼭 확인하세요.
+> * Make sure that Gamebase service is enabled by creating a new project from NHN Cloud Console.
+> * Make sure that Client ID is issued by each IdP console and the IDs are entered in the Gamebase console.
 
-* 인증을 위해 IdP 콘솔에서 Client ID 를 발급받아 Gamebase 콘솔에 입력합니다.
-    * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
-* Gaembase iOS SDK 는 각 IdP 별로 추가 설정이 필요합니다.
+* For verification, get Client ID from the IdP and enter it in the Gamebase console.
+    * [Game > Gamebase > Console User Guide > App > Authentication Information](./oper-app/#authentication-information)
+* Gamebase iOS SDK requires an additional, separate setting per IdP.
 
 #### Google
 
-* URL Scheme 를 설정해야 합니다.
-    * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.google**를 추가해야 합니다.
+* URL Scheme must be configured.
+    * Go to **Xcode > Target > Info > URL Types**and add **tcgb.{Bundle ID}.google**
 
-* Gamebase iOS SDK 1.12.1 이하는 추가 설정이 필요합니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
+* An additional setting is required for Gamebase iOS SDK 1.12.1 or earlier versions.
+    * [Game > Gamebase > iOS SDK User Guide > Getting Started > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
 #### Payco
 
-* URL Scheme 를 설정해야 합니다.
-    * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.payco**를 추가해야 합니다.
+* URL Scheme must be configured.
+    * Go to **Xcode > Target > Info > URL Types**and add **tcgb.{Bundle ID}.payco**
 
 #### Naver
 
-* URL Scheme 를 설정해야 합니다.
-    * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.naver**를 추가해야 합니다.
+* URL Scheme must be configured.
+    * Go to **Xcode > Target > Info > URL Types**and add **tcgb.{Bundle ID}.naver**
 
-* Gamebase iOS SDK 1.12.1 이하는 추가 설정이 필요합니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
+* An additional setting is required for Gamebase iOS SDK 1.12.1 or earlier versions.
+    * [Game > Gamebase > iOS SDK User Guide > Getting Started > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
 #### Twitter
 
-* URL Scheme 를 설정해야 합니다.
-    * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.twitter**를 추가해야 합니다.
-* Twitter 의 Developer 사이트의 Apps > 대상 프로젝트 > App Details > Callback URL 항목을 설정해야 합니다.
-    *  **tcgb.{Bundle ID}.twitter://** 를 추가합니다.
+* URL Scheme must be configured.
+    * Go to **Xcode > Target > Info > URL Types**and add **tcgb.{Bundle ID}.twitter**
+* Need to configure Apps > Target Project > App Details > Callback URL on the Developer site of Twitter.
+    *  Add **tcgb.{Bundle ID}.twitter://**.
 
 #### Line
 
-* URL Scheme 를 설정해야 합니다.
-	* **Xcode > Target > Info > URL Types**에 **line3rdp.{App Bundle ID}**를 추가해야 합니다.
+* URL Scheme must be configured.
+	* Go to **Xcode > Target > Info > URL Types**and add **line3rdp.{App Bundle ID}**
 
-* Info.plist 파일을 설정해야합니다.
-	* LINE에서 발급받은 ChannelID를 설정합니다.
+* The Info.plist file needs to be configured.
+	* Configure the ChannelID issued by LINE.
 	```
 	<key>LineSDKConfig</key>
 	<dict>
@@ -219,7 +219,7 @@ end
     	<string>{Issued LINE ChannleID}</string>
 	</dict>
 	```
-	* ATS 설정을 위하여 Scheme 를 등록합니다.
+	* Register Scheme to configure ATS.
 	```
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
@@ -227,7 +227,7 @@ end
     	<string>line3rdp.{App Bundle ID}</string>
 	</array>
 	```
-* LINE Login 을 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다. (인증 필요)
+* Refer to the following link to see how to configure a project to use LINE Login. (Authentication required)
 * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
 
 ### IdP Settings (Legacy)
@@ -235,12 +235,12 @@ end
 **Google**
 
 * Gamebase iOS SDK 1.12.1 이하
-    * **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-        * Google 의 경우, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
-        * **url_scheme_ios_only**의 값은 Xcode의 URL Scheme에 등록된 값들 중 한개와 일치해야 합니다.
-    * URL Scheme 를 설정해야 합니다.
+    * You need to provide JSON string-type data in the **Additional Info** field in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
+        * For Google, you need to set **url_scheme_ios_only** required for iOS apps.
+        * The value of **url_scheme_ios_only** must match one of the values registered for the URL Scheme of Xcode.
+    * URL Scheme must be configured.
         * **Xcode > Target > Info > URL Types**
-* Google 추가 인증 정보 입력 예제
+* Example of entering the additional authentication information for Google
 
 ```json
 { "url_scheme_ios_only": "Your URL Scheme" }
@@ -251,13 +251,13 @@ end
 
 **Naver**
 
-* Gamebase iOS SDK 1.12.1 이하
-	* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
-		* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
-		* iOS 앱에서 필요한 정보인 **url_scheme_ios_only**를 추가로 설정해야 합니다.
-	* URL Scheme 를 설정해야 합니다.
+* Gamebase iOS SDK 1.12.1 or earlier versions
+	* You need to provide JSON String-type data in the **Additional Info** field in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
+		* For Naver, **service_name**, which is the app name to be displayed on the Agree to Login window, needs to be configured.
+		* **url_scheme_ios_only**, information needed by iOS apps, needs to be configured as well.
+	* URL Scheme must be configured.
 		* **Xcode > Target > Info > URL Types**
-* Naver 추가 인증 정보 입력 예제
+* Example of entering the additional authentication information for Naver
 
 ```json
 { "url_scheme_ios_only": "Your URL Scheme", "service_name": "Your Service Name" }
