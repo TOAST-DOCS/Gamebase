@@ -219,7 +219,7 @@ No further configuration needs to be done apart from NHN Cloud console.
    - https://id-gamebase.toast.com/oauth/callback
 
 ##### iOS
-* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP Settings > Google](./ios-started/#google)
+* [Gamebase > iOS SDK User Guide > Getting Started > IdP Settings > Google](./ios-started/#google)
 
 
 #### 3. Apple Game Center
@@ -248,8 +248,8 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the TO
 
 ##### Additional Info Settings
 
-* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
+* You need to provide JSON string data at **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info**.
+* For PAYCO, set **service_code** and **service_name** required by PaycoSDK.
 
 * Example of entering the additional authentication information for PAYCO
 
@@ -258,11 +258,11 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the TO
 ```
 
 ##### iOS
-* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Payco](./ios-started/#payco)
+* [Gamebase > iOS SDK User Guide > Getting Started > IdP Settings > Payco](./ios-started/#payco)
 
 #### 5.NAVER
-Naver Developers 사이트에서 신청하여 발급받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
-이때, 로그인 동의 창에서 표시할 애플리케이션 이름인 **service_name** 을 설정해야 합니다.
+Enter {client_id} and {client_secret} issued by the Naver Developers website in the Gamebase Console.
+Here, **service_name**, which is the name of an application to be displayed in the Agree to Login window, needs to be configured.
 
 Enter {client_id} and {client_secret} you requested and acquired from NAVER Developers website into the Gamebase console.
 You need to set **service_name** which will be displayed in sign in agreement window. In case of iOS, you need to provide additional **url_scheme_ios_only** field in JSON String format.
@@ -271,7 +271,7 @@ You need to set **service_name** which will be displayed in sign in agreement wi
 
 - Client ID: {NAVER client_id}
 - Secret Key: {NAVER client_secret}
-- 추가정보: NAVER Application Name (json format)
+- Additional information: NAVER Application Name (json format)
 
 **Reference URL**<br />
 - [NAVER Developers - Register Applications](https://developers.naver.com/apps/#/register)
@@ -279,15 +279,15 @@ You need to set **service_name** which will be displayed in sign in agreement wi
 
 ##### Additional Info Settings
 
-* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야 합니다.
-* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
+* You need to provide JSON String-type data in the **Additional Info** field in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
+* For Naver, **service_name**, which is the app name to be displayed on the Agree to Login window, needs to be configured.
 
 ```json
 {"service_name": "Your Service Name" }
 ```
 
 ##### iOS
-* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Naver](./ios-started/#naver)
+* [Gamebase > iOS SDK User Guide > Getting Started > IdP settings > Naver](./ios-started/#naver)
 
 #### 6. Twitter
 
@@ -309,7 +309,7 @@ You need to provide {Consumer Key} and {consumer Secret} acquired from Twitter A
 > In short, only Android 4.4 and higher devices (KitKat, API Level 19) allow logins to Twitter.
 
 ##### iOS
-* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Twitter](./ios-started/#twitter)
+* [Gamebase > iOS SDK User Guide > Getting Started > IdP settings > Twitter](./ios-started/#twitter)
 
 
 #### 7. LINE
@@ -324,7 +324,7 @@ You need to provide {Consumer Key} and {consumer Secret} acquired from Twitter A
 - [LINE Developer Console](https://developers.line.me/console/)
 
 ##### iOS
-* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Line](./ios-started/#line)
+* [Gamebase > iOS SDK User Guide > Getting Started > IdP settings > Line](./ios-started/#line)
 
 #### 8. Sign In with Apple
 To enable Sign In with Apple, setting is required for AppStore Connect, Gamebase Console and Xcode.
