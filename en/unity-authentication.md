@@ -170,21 +170,21 @@ public void Login()
 ### Login with IdP
 
 Following is a login example with a specific IdP. 
-로그인할 수 있는 IdP 유형은 **GamebaseAuthProvider** 클래스에서 확인할 수 있습니다.
+For more information on IdP types that can be used to log in, refer to the **GamebaseAuthProvider** class.
 
-> [참고]
+> [Notes]
 >
-> 로그인할 때 추가정보를 필요로 하는 IdP도 있습니다.
-> 이러한 추가 정보들을 설정할 수 있게 static void Login(string providerName, Dictionary additionalInfo, GamebaseCallback.GamebaseDelegate callback) API를 제공합니다.
->additionalInfo 파라미터에 필수 정보들을 dictionary 형태로 입력하시면 됩니다.
->additionalInfo 값이 있을 경우에는 해당 값을 사용하고 null 일 경우에는 [NHN Cloud Console](./oper-app/#authentication-information)에 등록된 값을 사용합니다.
+> Some IdPs require additional information when logging in.
+> The static void Login(string providerName, Dictionary additionalInfo, and GamebaseCallback.GamebaseDelegate callback) APIs are provided to configure these additional information.
+>Enter the required information into the additionalInfo parameter in the form of the dictionary.
+>> If additionalInfo has a value, use that value. If null, use the value registered in [NHN Cloud Console](./oper-app/#authentication-information).
 
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> Standalone에서는 WebViewAdapter를 통해서 로그인을 지원하며 WebView가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
+> In Standalone, login is supported through WebViewAdapter. It does not block events entered via UI when WebView is open.
 >
-> Standalone WebViewAdapter를 사용하여 로그인을 하기 위해서는 IdP 개발자 사이트에서 아래 CallbackURL을 설정 하여야 합니다.
+> To log in using Standalone WebViewAdapter, the CallbackURL below must be configured on the IdP Developer website.
 > - https://id-gamebase.toast.com/oauth/callback
 >
 
@@ -395,9 +395,9 @@ Attempts account withdrawal while logged in.
 * It means user's withdrawal from Gamebase, not from IdP account.
 * After a successful withdrawal, a log-out from IdP will be tried.
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 여러 IdP를 연동 중인 경우 모든 IdP 연동이 해제되고 Gamebase 게임 유저 데이터가 삭제됩니다.
+> If multiple IdPs are linked, all IdP linkages will be unlinked and the game user data in Gamebase will be deleted.
 >
 
 **API**
