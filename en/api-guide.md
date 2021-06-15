@@ -396,7 +396,7 @@ Check Common Factors
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[Error code](./error-code/#server)](./error-code/#server)
 
 <br>
 <br>
