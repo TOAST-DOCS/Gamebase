@@ -21,10 +21,10 @@ To execute Gamebase in Android, following system environment is required.
 
 ### Console
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> * NHN Cloud Console 에서 새 프로젝트를 생성하여 Gamebase 서비스를 활성화 하였는지 꼭 확인하세요.
-> * 각 IdP 콘솔에서 Client ID 를 발급받아 Gamebase 콘솔에 입력하였는지 꼭 확인하세요.
+> * Make sure that Gamebase service is enabled by creating a new project from NHN Cloud Console.
+> * Make sure that Client ID is issued by each IdP console and the IDs are entered in the Gamebase console.
 
 * Before applying Gamebase Android SDK, you need an App ID issued at the NHN Cloud Console: select a project created in the NHN Cloud Console and click **(+)Service** **Game > Gamebase**.
 * For authentication, get the client id from the IdP and enter it in the Gamebase console.
@@ -64,7 +64,7 @@ To execute Gamebase in Android, following system environment is required.
 * Declare Gamebase version and authentication to use, and the payment and the push modules in the build.gradle file.
 	* Find the latest Gamebase version at [Maven Central(LINK)](https://repo1.maven.org/maven2/com/toast/android/gamebase/gamebase-sdk/).
 	* Add the  `mavenCentral()`  storage. 
-    * Android Studio 에서 빌드하는 경우, kotlin-gradle-plugin 을 위해  **'maven { url "https://plugins.gradle.org/m2/" }'** 저장소를 추가할 필요가 있습니다.
+    * 저장소를 추가할 필요가 있습니다. When building on Android Studio, the  **'maven { url "https://plugins.gradle.org/m2/" }'** storage needs to be added for the kotlin-gradle-plugin.
 
 ```groovy
 repositories {
@@ -197,9 +197,9 @@ android {
 
 #### Facebook IdP
 
-* Facebook SDK 초기화를 위해 App ID 를 선언합니다.
-    * 해당 값을 직접 선언하는 것 보다는 아래 예시와 같이 resources 를 참조하도록 설정하는 것이 좋습니다.
-    * Gamebase SDK 가 내부적으로 Facebook SDK 초기화 함수를 호출하고 있으므로 현재는 필수 설정은 아닙니다.
+* Declares App ID to initialize Facebook SDK.
+    * It is better to configure so that the value refers to resources rather than directly declaring it.
+    * This setting is not required at the moment as Gamebase SDK internally calls a function to initialize Facebook SDK.
 
 **AndroidManifest.xml**
 
@@ -226,7 +226,7 @@ android {
 
 #### Line IdP
 
-* Line SDK 내부에 **android:allowBackup="false"** 로 선언되어 있어 어플리케이션 빌드시 Manifest merger 에서 fail 이 발생할 수 있습니다. 이렇게 빌드가 실패한다면 다음과 같이 application 태그에 **tools:replace="android:allowBackup"** 선언을 추가하시기 바랍니다.
+* As **android:allowBackup="false"** is declared in Line SDK, Manifest merger might fail while building the application. If a build fails in this way, add **tools:replace="android:allowBackup"** declaration to the application tag.
 
 ```xml
 <application
@@ -358,18 +358,18 @@ android {
 
 ### Android 11
 
-* Android 11 은 빌드시 미리 선언된 어플리케이션이 아니면 다른 어플리케이션이 실행되지 않습니다.
+* When building on Android 11, no other applications will run unless pre-declared.
     * [https://developer.android.com/about/versions/11/privacy/package-visibility](https://developer.android.com/about/versions/11/privacy/package-visibility)
-* 이를 위해 targetSdkVersion 을 30 이상으로 설정하는 경우에는 반드시 AndroidManifest.xml 에 **queries** 태그를 통해 허용할 어플리케이션을 미리 선언해두어야 합니다.
+* When configuring targetSdkVersion to a number equal to or greater than 30 to circumvent this problem, the application to approved must be declared in AndroidManifest.xml using the **queries** tag.
 
 > <font color="red">[주의]</font><br/>
 >
-> * 'queries' 태그는 Gradle 5.6.4 이상 버전에서만 빌드가 가능합니다.
->     * 그러므로 IDE 에서 Gradle 5.6.4 이상이 지원되지 않는 환경에서는 targetSdkVersion 을 29 이하로 설정해야 합니다.
-> * Gradle 5.6.4 이상 버전이 적용된 IDE 는 다음과 같습니다.
->     * Android Studio : 3.6.1 이상
->     * Unity : 2020.1 이상
->     * Unreal : 지원 불가
+> * 'queries' tag can be built only in Gradle 5.6.4 or later
+>     * So in the environment of IDE where Gradle 5.6.4 or later is not supported, targetSdkVersion must be set to 29 or less.
+> * The following is the IDE where Gradle 5.6.4 or later is applied.
+>     * Android Studio : 3.6.1 or later
+>     * Unity : 2020.1 or later
+>     * Unreal : Not supported
 
 ```xml
 <queries>
@@ -408,8 +408,8 @@ android {
 
 ### Proguard
 
-* Gamebase 2.21.0 미만 버전은 Proguard 적용시 Proguard Rule 에 다음 선언을 추가하지 않으면 결제 API 호출시 크래쉬가 발생합니다.
-    * Gamebase 2.21.0 버전에서 수정되었습니다.
+* For Gamebase versions earlier than 2.21.0, calling Payment API without adding a declaration at the end of Proguard Rule when applying Proguard would result in a crash.
+    * This issue has been fixed in Gamebase 2.21.0 version.
 
 ```
 # ---------------------- [Gamebase TOAST IAP] defines start ----------------------
