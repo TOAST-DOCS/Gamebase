@@ -336,10 +336,10 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 > iOS 11 이상에서만 사용할 수 있습니다.
 > Gamebase 1.13.0 이상에서 지원합니다. (NHN Cloud IAP SDK 1.6.0 이상적용)
 
+프로모션 결제 이벤트는 GamebaseEventHandler 를 통해 처리할 수 있습니다.
+GamebaseEventHandler 로 프로모션 결제 이벤트를 처리하는 방법은 아래 가이드를 확인하세요.
+[Game > Gamebase > iOS SDK 사용 가이드 > ETC > Gamebase Event Handler](./ios-etc/#purchase-updated)
 
-> `주의`
-> 로그인 성공 이후에만 호출 할 수 있습니다.
-> 로그인 성공 후, 다른 결제 API보다 먼저 실행되어야 합니다.
 
 #### 사용시 주의 사항
 Facebook SDK, Google AdMob SDK 와 같이 SDK 내에 In App Purchase (AppStore 결제) 기능이 있는 경우에는 Gamebase Login 을 하기 전에 사전결제를 시작할 경우에는 정상적으로 결제창이 나타나지 않을 수 있습니다.
@@ -361,20 +361,6 @@ App Store 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니
 프로모션 IAP는 App Store Connect 에서 별도의 설정이 되어야 노출이 가능합니다.
 
 
-```objectivec
-- (void)didSuccessLogin {
-	[TCGBPurchase setPromotionIAPHandler:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
-    	if ([TCGBGamebase isSuccessWithError:error] == YES) {
-            // To Purchase Item Succeeded
-        } else if (error.code == TCGB_ERROR_PURCHASE_USER_CANCELED) {
-            // User Canceled Purchasing Item
-        } else if (error) {
-            // To Purchase Item Failed cause of the error
-        }
-    }];
-}
-```
-
 #### How to Test App Store Promotion IAP
 
 > `주의`
@@ -393,12 +379,6 @@ App Store 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니
 | | productIdentifier | 구매 아이템의 product identifier |
 
 예제) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
-
-#### Process Promotion Event with GamebaseEventHandler
-
-프로모션 결제 이벤트는 GamebaseEventHandler 를 통해서도 처리할 수 있습니다.
-GamebaseEventHandler 로 프로모션 결제 이벤트를 처리하는 방법은 아래 가이드를 확인하세요.
-[Game > Gamebase > iOS SDK 사용 가이드 > ETC > Gamebase Event Handler](./ios-etc/#purchase-updated)
 
 ### Error Handling
 
