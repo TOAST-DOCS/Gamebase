@@ -1,5 +1,15 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
+### 2.23.0(2021.06.14) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST Unity SDK(0.22.1)
+* Unity 2020.2 이후 버전에서 발생하는 Warning 제거
+* Standalone과 Unity Editor에서 초기화 속도 개선
+
+#### 버그 수정
+* 약관 동의를 했음에도 ShowTermsView API 호출하면 PushConfiguration 결과가 null이 아닌 문제 수정
+
 ### 2.22.0(2021.05.25) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-Unity.zip)
 
 #### 기능 개선/변경
@@ -25,7 +35,7 @@
 	* URL의 길이가 2,048보다 길 경우 크래시가 발생하는 이슈 수정
 	* Unity 2019에서 빌드 시 라이브러리 경로가 변경되어 PostProcessBuild 개선
 	* string 초기화를 하지 않아 간헐적으로 발생하는 오류 수정
-	* Gamebase WebView 사용 중 WebView가 신(scene)을 이동한 이후에는 다시 열리지 않는 버그 수정
+	* Gamebase WebView 사용 중 WebView가 신(scene)을 이동한 이후에는 다시 열리지 않는 문제 수정
 
 ### 2020. 12. 29. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.0/GamebaseSDK-Unity.zip)
 
@@ -814,7 +824,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 	* 회원: 구매 이력에서 영수증 검증이 되지 않던 문제 수정
 	* Kickout: 조회 요청시 인증체크 추가하여 비정상 동작하던 이슈 수정
 	
-### 2019. 04. 23. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.3.0/GamebaseSDK-Unity.zip)
+### 2019. 04. 23. 
 
 ```
 Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
