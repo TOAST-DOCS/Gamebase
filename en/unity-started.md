@@ -86,11 +86,11 @@ Setting Tool is provided to install Gamebase SDK with more at ease.
 7. Click [Settings] and install SDK.
 
 #### SDK 업데이트
-1. Menu > Tools > Gamebase > SDKSettings > Setting Tool을 실행합니다.
-	* v1.0.1 이하 : Menu > Gamebase > SDKSettings > Setting Tool
-2. [Download SDK] 버튼 클릭해서 최신 SDK를 다운로드 합니다.
-3. [Settings] 버튼 클릭해서 SDK를 설치합니다.
-    * 기존에 선택한 플랫폼별 모듈은 변경이 가능합니다
+1. Run Menu > Tools > Gamebase > SDKSettings > Setting Tool.
+	* v1.0.1 or earlier: Menu > Gamebase > SDKSettings > Setting Tool
+2. Click the [Download SDK] button to download the latest SDK.
+3. Click the [Settings] button to install the SDK.
+    * Previously selected modules per platform can be changed.
 
 #### Delete SDK
 1. Execute Menu > Tools > Gamebase > SDKSettings > Setting Tool.
