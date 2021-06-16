@@ -1,6 +1,6 @@
 ## Game > Gamebase > iOS Developer's Guide > Getting Started
 
-### Environments
+## Environments
 
 
 > [INFO]
@@ -21,11 +21,11 @@
 > * https://developer.apple.com/ios/submit/
 >
 
-### Installation
+## Setting
 
 Gamebase can be setup as below.
 
-#### Download
+### Download
 
 * [Download Gamebase iOS SDK](/Download/#game-gamebase)
 
@@ -33,23 +33,23 @@ Download Gamebase.framework.zip and required adapters.<br/>
 Also download SDK files to authenticate each IdP, which are required only for a login.<br/>
 Then, include corresponding SDK files to a target of your project.
 
-**3rd Party SDK Download**
+**Gamebase iOS SDK Components**
 
-| Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage | External SDK Download Link | Support iOS Version |
-| --- | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.27.1 | Includes the interface and key logic of Gamebase | Included in Gamebase | iOS9 or later
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.1.0 | Supports Facebook login | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS9 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.4.0 | Supports Payco login | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS9 or later |
-|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Supports Naver login | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |
-|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Supports Game Center login |  | iOS9 or later |
-|  | GamebaseAuthGoogleAdapter.framework | | Supports Google login | | iOS9 or later |
-|  | GamebaseAuthTwitterAdapter.framework | | Supports Twitter login | | iOS9 or later |
-|  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | Supports LINE login | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS10 or later |
-|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | Set AuthenticationServices.framework to Optional | iOS13 or later |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.5.1 | Supports Hangame login | | iOS9 or later |
-|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Supports Weibo login |[LINK \[Go to Download\]](https://github.com/sinaweibosdk/weibo_ios_sdk/archive/3.2.7.zip) | iOS9 or later |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework, ToastIAP 0.27.1, ToastGamebaseIAP 0.11.0 | Supports in-game purchase| Included in Gamebase IAP | iOS9 or later |
-| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.27.1 | Supports Push | Included in Gamebase Push | iOS9 or later |
+| Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage  | Support iOS Version |
+| --- | --- | --- | --- | --- |
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.27.2 | Includes the interface and key logic of Gamebase | iOS9 or later
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Supports Facebook login | iOS9 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.4.0 | Supports Payco login | iOS9 or later |
+|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Supports Naver login | iOS9 or later |
+|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Supports Game Center login | iOS9 or later |
+|  | GamebaseAuthGoogleAdapter.framework | | Supports Google login | iOS9 or later |
+|  | GamebaseAuthTwitterAdapter.framework | | Supports Twitter login | iOS9 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | Supports Line login | iOS10 or later |
+|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS9 or later<br/>arm64 지원<br/> |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.0 | Supports Hangame login | iOS9 or later |
+|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Supports Weibo login | iOS9 or later |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.27.2<br/> ToastGamebaseIAP 0.11.0 | Supports in-game purchase | iOS9 or later |
+| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.27.2 | Supports Push | iOS9 or later |
 
 
 > <font color="red">[Caution]</font><br/>
@@ -75,7 +75,7 @@ Then, include corresponding SDK files to a target of your project.
 > For setting of external SDKs which each IdP provides, refer to each IdP guide.
 >
 
-#### Xcode Settings
+### Xcode Settings
 
 By decompression, following SDKs will show, including Gamebase.framework.
 
@@ -104,9 +104,7 @@ By decompression, following SDKs will show, including Gamebase.framework.
     * Add an **empty swift file** within the project (When there are not any swift files within the project)
 * 5) Go to **Target > Build Settings > Linking > Other Linker Flags** and add **-ObjC**.
 ![Other Linker Flags](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
-* 6) Go to **Target > Build Settings > Enable Bitcode** and select **No**.
-![Enable Bitcode](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-007_1.0.0.png)
-* 7) When using the NaverAuthAdapter, **NaverThirdPartyLogin.framework** file provided by NaverSDK should be added to **Target > General > Embedded Binaries**.
+* 6) When using NaverAuthAdapter, **NaverThirdPartyLogin.framework** file provided by NaverSDK should be added to **Target > General > Embedded Binaries**.
  ![Naver Embeded Binaries](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.7.0.png)
 
 > [INFO]
@@ -115,14 +113,14 @@ By decompression, following SDKs will show, including Gamebase.framework.
 > Therefore, if this option is not set, an error like **selector not recognized** may occur during runtime.
 >
 
-#### CocoaPods Settings
+### CocoaPods Settings
 
 You can set the Gamebase iOS SDK with CocoaPods.
 
-1. Execute Xcode to create a project.
-2. Execute the terminal to navigate to the directory of the project where CocoaPods will be applied.
-3. Execute the **pod init** command to create **Podfile**.
-4. Open the created **Podfile** with the editor and enter the following.
+* 1) Execute Xcode to create a project.
+* 2) Execute the terminal to navigate to the directory of the project where CocoaPods will be applied.
+* 3) Execute the **pod init** command to create **Podfile**.
+* 4) Open the created **Podfile** with the editor and enter the following.
 
 ```ruby
 platform :ios, '10.0'
@@ -158,16 +156,114 @@ end
 > If you do not use the latest Gamebase version, some adapter may not be available.
 >
 
-5. After completing writing the Podfile, execute **pod install** or **pod update** command to install Gamebase.
-6. After installation is complete, the file **project_name.xcworkspace** is created. From now on, use the created **xcworkspace** file for development.
-7. **Set Target > Build Settings > Enable Bitcode** to **No**.
-![Enable Bitcode](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-007_1.0.0.png)
+* 5) Install Gamebase using the **pod install** or **pod update** command after Podfile is written.
+* 6) A **[project name].xcworkspace** file will be created when the installation is complete. From this point on, product is developed using the created **xcworkspace** file.
+
 
 > [Note]
 >
 > For more detailed information on how to use CocoaPods, see [Using CocoaPods](https://guides.cocoapods.org/using/index.html) at [CocoaPods Guide](https://guides.cocoapods.org/).
 >
 >
+
+### IdP Settings
+
+> <font color="red">[Caution]</font><br/>
+>
+> * Make sure that Gamebase service is enabled by creating a new project from NHN Cloud Console.
+> * Make sure that Client ID is issued by each IdP console and the IDs are entered in the Gamebase console.
+
+* For verification, get Client ID from the IdP and enter it in the Gamebase console.
+    * [Game > Gamebase > Console User Guide > App > Authentication Information](./oper-app/#authentication-information)
+* Gamebase iOS SDK requires an additional, separate setting per IdP.
+
+#### Google
+
+* URL Scheme must be configured.
+    * Go to **Xcode > Target > Info > URL Types**and add **tcgb.{Bundle ID}.google**
+
+* An additional setting is required for Gamebase iOS SDK 1.12.1 or earlier versions.
+    * [Game > Gamebase > iOS SDK User Guide > Getting Started > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
+
+#### Payco
+
+* URL Scheme must be configured.
+    * Go to **Xcode > Target > Info > URL Types**and add **tcgb.{Bundle ID}.payco**
+
+#### Naver
+
+* URL Scheme must be configured.
+    * Go to **Xcode > Target > Info > URL Types**and add **tcgb.{Bundle ID}.naver**
+
+* An additional setting is required for Gamebase iOS SDK 1.12.1 or earlier versions.
+    * [Game > Gamebase > iOS SDK User Guide > Getting Started > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
+
+#### Twitter
+
+* URL Scheme must be configured.
+    * Go to **Xcode > Target > Info > URL Types**and add **tcgb.{Bundle ID}.twitter**
+* Need to configure Apps > Target Project > App Details > Callback URL on the Developer site of Twitter.
+    *  Add **tcgb.{Bundle ID}.twitter://**.
+
+#### Line
+
+* URL Scheme must be configured.
+	* Go to **Xcode > Target > Info > URL Types**and add **line3rdp.{App Bundle ID}**
+
+* The Info.plist file needs to be configured.
+	* Configure the ChannelID issued by LINE.
+	```
+	<key>LineSDKConfig</key>
+	<dict>
+    	<key>ChannelID</key>
+    	<string>{Issued LINE ChannleID}</string>
+	</dict>
+	```
+	* Register Scheme to configure ATS.
+	```
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+    	<string>lineauth</string>
+    	<string>line3rdp.{App Bundle ID}</string>
+	</array>
+	```
+* Refer to the following link to see how to configure a project to use LINE Login. (Authentication required)
+* [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
+
+### IdP Settings (Legacy)
+
+**Google**
+
+* Gamebase iOS SDK 1.12.1 이하
+    * You need to provide JSON string-type data in the **Additional Info** field in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
+        * For Google, you need to set **url_scheme_ios_only** required for iOS apps.
+        * The value of **url_scheme_ios_only** must match one of the values registered for the URL Scheme of Xcode.
+    * URL Scheme must be configured.
+        * **Xcode > Target > Info > URL Types**
+* Example of entering the additional authentication information for Google
+
+```json
+{ "url_scheme_ios_only": "Your URL Scheme" }
+```
+
+![gamebase_auth_google_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_google_console_01.png)
+
+
+**Naver**
+
+* Gamebase iOS SDK 1.12.1 or earlier versions
+	* You need to provide JSON String-type data in the **Additional Info** field in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
+		* For Naver, **service_name**, which is the app name to be displayed on the Agree to Login window, needs to be configured.
+		* **url_scheme_ios_only**, information needed by iOS apps, needs to be configured as well.
+	* URL Scheme must be configured.
+		* **Xcode > Target > Info > URL Types**
+* Example of entering the additional authentication information for Naver
+
+```json
+{ "url_scheme_ios_only": "Your URL Scheme", "service_name": "Your Service Name" }
+```
+
+![gamebase_auth_naver_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_naver_console_01.png)
 
 ## 3rd-Party Provider SDK Guide
 

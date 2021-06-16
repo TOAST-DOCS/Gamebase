@@ -163,6 +163,133 @@ Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, userPayload, new 
 });
 ```
 
+**VO**
+
+```java
+class PurchasableReceipt {
+    // 購入したアイテムの商品IDです。
+    @Nullable
+    String gamebaseProductId;
+    
+    // Gamebase.Purchase.requestPurchase API呼び出し時にpayloadで渡された値です。
+    //
+    // このフィールドは例えば同じUser IDで購入したがゲームチャンネル、キャラクターなどに応じて
+    // 商品の購入および支給を区分したい場合など
+    // ゲームで必要とするさまざまな追加情報を入れる目的で活用できます。
+    @Nullable
+    String payload;
+    
+    // 購入した商品の価格です。
+    float price;
+    
+    // 通貨コードです。
+    @NonNull
+    String currency;
+    
+    // 決済識別子です。
+    // purchaseTokenと一緒にConsumeサーバーAPIを呼び出すのに使用する重要な情報です。
+    //
+    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // 注意：Consume APIは、ゲームサーバーで呼び出してください！
+    @NonNull
+    String paymentSeq;
+    
+    // 決済識別子です。
+    // paymentSeqと一緒にConsumeサーバーAPIを呼び出すのに使用する重要な情報です。
+    // Consume APIでは「accessToken」という名前のパラメータで渡す必要があります。
+    //
+    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // 注意：Consume APIは、ゲームサーバーで呼び出してください！
+    @Nullable
+    String purchaseToken;
+    
+    // Google、Appleのようにストアコンソールに登録された商品IDです。
+    @NonNull
+    String marketItemId;
+    
+    // 商品タイプです。次の値を使用できます。
+    // * UNKNOWN：認識できないタイプ。Gamebase SDKをアップデートするか、Gamebaseサポートへお問い合わせください。
+    // * CONSUMABLE：消費性商品。
+    // * AUTO_RENEWABLE：購読型商品。
+    // * CONSUMABLE_AUTO_RENEWABLE：購読型商品を購入したユーザーに、定期的に消費が可能な商品を支給したい場合に使われる「消費が可能な購読商品」。
+    @NonNull
+    String productType;
+    
+    // 商品を購入したUser ID。
+    // 商品を購入していないUser IDでログインした場合、購入したアイテムを獲得できません。
+    @NonNull
+    String userId;
+    
+    // ストアの決済識別子です。
+    @Nullable
+    String paymentId;
+    
+    // 商品を購入した時刻です。(epoch time)
+    long purchaseTime;
+    
+    // 購読が終了する時刻です。(epoch time)
+    long expiryTime;
+    
+    // Google決済時に使用される値。次の値を使用できます。
+    // しかしGoogleサーバーで障害が発生してGamebase決済サーバーで一時的に検証ロジックをオフにする場合は
+    // nullを返すため、常に有効な値を保障しないことに注意してください。
+    // * null：一般決済
+    // * Test：テスト決済
+    // * Promo：Promotion決済
+    @Nullable
+    String purchaseType;
+    
+    // 購読商品は更新されるごとにpaymentIdが変更されます。
+    // このフィールドは最初に購読商品を決済した時のpaymentIdを伝えます。
+    // ストアによっては、決済サーバーの状態に応じた値が存在しない場合があるため
+    // 常に有効な値を保障するわけではありません。
+    @Nullable
+    String originalPaymentId;
+    
+    // itemSeqで商品を購入するLegacy API用の識別子です。
+    long itemSeq;
+}
+```
+
+**Response Example**
+
+```json
+{
+    "gamebaseProductId": "my_product_001",
+    "payload": "UserPayload:!@#...",
+    "price": 1000.0,
+    "currency": "KRW",
+    "paymentSeq": "2021032510000001",
+    "purchaseToken": "5U_NVCLKSDFKLJJ...",
+    "marketItemId": "my_product_001",
+    "productType": "CONSUMABLE",
+    "userId": "AS@123456ABCDEFGHIJ",
+    "paymentId": "GPA.1111-2222-3333-44444",
+    "purchaseTime": 1616649225531,
+    "expiryTime": 0,
+    "itemSeq": 1000001
+}
+```
+```json
+{
+    "gamebaseProductId": "my_subcription_product_001",
+    "payload": "MyData:{\"1234\":\"5678\"}",
+    "price": 1000.0,
+    "currency": "KRW",
+    "paymentSeq": "2021032510000001",
+    "purchaseToken": "5U_NVCLKKLJLSDG...",
+    "marketItemId": "my_subcription_product_001",
+    "productType": "CONSUMABLE_AUTO_RENEWABLE",
+    "userId": "AS@123456ABCDEFGHIJ",
+    "paymentId": "GPA.1111-2222-3333-56789",
+    "purchaseTime": 1617069916128,
+    "expiryTime": 1617070323784,
+    "purchaseType": "Test",
+    "originalPaymentId": "GPA.1111-2222-3333-56789",
+    "itemSeq": 1000002
+}
+```
+
 ### List Purchasable Items
 
 アイテムリストを照会したい場合、次のAPIを呼び出します。コールバックで返される配列(array)の中にはそれぞれ各アイテムの情報が含まれています。
@@ -189,6 +316,76 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
         }
     }
 });
+```
+
+**VO**
+
+```java
+class PurchasableItem {
+    // Gamebaseコンソールに登録された商品IDです。
+    // Gamebase.Purchase.requestPurchase APIで商品を購入する時に使用されます。
+    @Nullable
+    String gamebaseProductId;
+    
+    // 商品の価格です。
+    float price;
+    
+    // 通貨コードです。
+    @Nullable
+    String currency;
+    
+    // Gamebaseコンソールに登録されている商品名です。
+    @Nullable
+    String itemName;
+    
+    // Google、Appleのようにストアコンソールに登録された商品IDです。
+    @NonNull
+    String marketItemId;
+    
+    // 商品タイプです。次の値を使用できます。
+    // * UNKNOWN：認識できないタイプ。Gamebase SDKをアップデートするか、Gamebaseサポートへお問い合わせください。
+    // * CONSUMABLE：消費性商品。
+    // * AUTORENEWABLE：購読型商品。
+    // * CONSUMABLE_AUTO_RENEWABLE：購読型商品を購入したユーザーに定期的に消費が可能な商品を支給したい場合に使われる「消費が可能な購読商品」。
+    @NonNull
+    String productType;
+    
+    // 通貨記号が含まれるローカライズされた価格情報です。
+    @Nullable
+    String localizedPrice;
+    
+    // ストアコンソールに登録されているローカライズされた商品名です。
+    @Nullable
+    String localizedTitle;
+    
+    // ストアコンソールに登録されているローカライズされた商品説明です。
+    @Nullable
+    String localizedDescription;
+    
+    // Gamebaseコンソールで該当商品の「使用有無」を表します。
+    boolean isActive;
+    
+    // itemSeqで商品を購入するLegacy API用の識別子です。
+    long itemSeq;
+}
+```
+
+**Response Example**
+
+```json
+{
+    "gamebaseProductId": "my_product_001",
+    "price": 1000.0,
+    "currency": "KRW",
+    "itemName": "Consumable product for test",
+    "marketItemId": "my_product_001",
+    "productType": "CONSUMABLE",
+    "localizedPrice": "₩1,000",
+    "localizedTitle": "TEST PRODUCT 001",
+    "localizedDescription": "Product for test 001",
+    "isActive": true,
+    "itemSeq": 1000001
+}
 ```
 
 ### List Non-Consumed Items
@@ -318,4 +515,3 @@ Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataC
 
 * NHN Cloud IAP SDKのエラーコードは、次のドキュメントをご参考ください。
     * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > Android > エラーコード](/TOAST/ja/toast-sdk/iap-android/#_24)
-

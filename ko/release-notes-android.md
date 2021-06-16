@@ -1,5 +1,10 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.23.0(2021.06.14) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-Android.zip)
+
+#### 버그 수정
+* 이용 정지 자세히보기 웹뷰의 제목이 표시되지 않는 문제 수정
+
 ### 2.22.0(2021.05.25) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-Android.zip)
 
 #### 기능 개선/변경
@@ -7,7 +12,7 @@
 
 #### 버그 수정
 * 로그아웃 후 다른 유저 ID로 로그인했을 때 간헐적으로 Google Play 스토어 결제가 성공했음에도 실패가 반환되는 오류 수정
-* 앱 패키지 명에 대문자가 포함된 경우 Sign In with Apple 로그인이 실패하는 오류 수정
+* 앱 패키지 이름에 대문자가 포함된 경우 Sign In with Apple 로그인이 실패하는 오류 수정
 
 ### 2.21.1(2021.04.19) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.1/GamebaseSDK-Android.zip)
 
@@ -786,7 +791,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 * [SDK] 2.4.1
 	* (iOS)Analytics 지표 전송 시 일부 파라미터가 누락 되어 지표가 제대로 출력되지 않는 버그 수정
 	
-### 2019. 05. 28. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.4.0/GamebaseSDK-Android.zip)
+### 2019. 05. 28. 
 
 #### 기능 추가
 * HANGAME mix 일본결제 추가
@@ -810,7 +815,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 * [Console]
     * LTV Grid ComplexColumns 지원 및 엑셀 다운로드 지원
 
-### 2019. 05. 16. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.3.1/GamebaseSDK-Android.zip)
+### 2019. 05. 16. 
 
 #### 기능 추가
 * [Console]

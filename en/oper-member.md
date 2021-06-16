@@ -16,15 +16,17 @@ Detailed information of searched users are displayed in the above, while history
 
 **User **
 
-- **User ID**: Gamebase User ID
-- **Country (USIM)**: USIM country code of a user device. When it fails to collect, it shows '**ZZ**'. Go to **Login History** below to check the country code of your device.
-- **Latest Login Date**: The last time a user logged in.
-- **Registration Date**: The first time a user logged in.
-- **Account Status**
-  - **OK**: Normal users. Click **Ban** to manually change status.
-  - **Banned**: Users who are banned from abusive acts. Click **Release Ban** to manually change status.
-  - **Withdraw**: Users who have withdrawn.
-- **Push Token**: Shows push token details.
+- **User ID**: Gamebase user ID
+- **Country code(USIM)**: If it fails to retrieve USIM country code from the user's device, it will display 'ZZ.' To check the country code configured for your device, see the **Login History** shown below.
+- **Last login time**: The last time the user logged in.
+- **Sign-up date**: The first time the user logged in.
+- **Account status**
+  - **Normal**: A normal user.
+  - **Banned**: A user who is (banned) for abusing others. The admin can lift the ban via Change Account Status menu on top right of the screen.
+  - **Withdrawn**: A withdrawn user.
+- **Retrieve push additional information**: Retrieves the push tokens and tag information of a game user.
+![gamebase_member_12_202104](https://static.toastoven.net/prod_gamebase/gamebase_member_12_202104.png)
+
 
 #### Changing Account Status
 ![gamebase_member_02_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_02_201812_en.png)

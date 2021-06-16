@@ -1,6 +1,6 @@
 ## Game > Gamebase > iOS SDK ご利用ガイド > はじめる
 
-### Environments
+## Environments
 
 
 > [INFO]
@@ -21,11 +21,11 @@
 > * https://developer.apple.com/ios/submit/
 >
 
-### Installation
+## Setting
 
 Gamebaseは、次のような方法で設定できます。
 
-#### Download
+### Download
 
 * [Download Gamebase iOS SDK](/Download/#game-gamebase)
 
@@ -33,23 +33,23 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 また、各IdPの認証をするためのSDKファイルをダウンロードする必要があります。該当するIdPのログインを使用するときにだけ含めれば問題ありません。<br/>
 ダウンロードした後、該当するSDKファイルをプロジェクトのtargetに含めなければなりません。
 
-**3rd Party SDK Download**
+**Gamebase iOS SDK Components**
 
-| Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage | External SDK Download Link | Support iOS Version |
-| --- | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework, Gamebase.bundle | ToastSDK 0.27.1 | GamebaseのInterfaceおよびコアロジックを含む | Gamebase内に含む | iOS9 or later
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.1.0 | Facebookログインをサポート | [LINK \[Go to Download\]](https://developers.facebook.com/docs/ios/downloads) | iOS9 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.4.0 | Paycoログインをサポート | [LINK \[Go to Download\]](https://developers.payco.com/guide/sdk/download) | iOS9 or later |
-|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Naverログインをサポート | [LINK \[Go to Download\]](https://developers.naver.com/docs/login/sdks/) | iOS9 or later |
-|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenterログインをサポート |  | iOS9 or later |
-|  | GamebaseAuthGoogleAdapter.framework | | Googleログインをサポート | | iOS9 or later |
-|  | GamebaseAuthTwitterAdapter.framework | | Twitterログインをサポート | | iOS9 or later |
-|  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | LINEログインをサポート | [LINK \[Go to Download\]](https://github.com/line/line-sdk-starter-ios-v2) | iOS10 or later |
-|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | AuthenticationServices.frameworkをOptionalに設定 | iOS13 or later |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.5.1 | Hangameログインをサポート | | iOS9 or later |
-|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weiboログインをサポート |[LINK \[Go to Download\]](https://github.com/sinaweibosdk/weibo_ios_sdk/archive/3.2.7.zip) | iOS9 or later |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework, ToastIAP 0.27.1, ToastGamebaseIAP 0.11.0 | ゲーム内決済をサポート | Gamebase IAP内に含まれる | iOS9 or later |
-| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.27.1 | Pushをサポート | Gamebase Push内に含まれる | iOS9 or later |
+| Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage  | Support iOS Version |
+| --- | --- | --- | --- | --- |
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.27.2 | GamebaseのInterfaceおよびコアロジックを含む | iOS9 or later
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Facebookログインをサポート | iOS9 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.4.0 | Paycoログインをサポート | iOS9 or later |
+|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Naverログインをサポート | iOS9 or later |
+|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenterログインをサポート | iOS9 or later |
+|  | GamebaseAuthGoogleAdapter.framework | | Googleログインをサポート | iOS9 or later |
+|  | GamebaseAuthTwitterAdapter.framework | | Twitterログインをサポート | iOS9 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | LINEログインをサポート | iOS10 or later |
+|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS9 or later<br/>arm64サポート<br/> |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.0 | Hangameログインをサポート | iOS9 or later |
+|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weiboログインをサポート | iOS9 or later |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.27.2<br/> ToastGamebaseIAP 0.11.0 | ゲーム内決済をサポート | iOS9 or later |
+| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.27.2 | Pushをサポート | iOS9 or later |
 
 
 > <font color="red">[注意]</font><br/>
@@ -75,7 +75,7 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 > 各IdPが提供する外部SDKに対する設定は、各IdPのガイドドキュメントをご参考ください。
 >
 
-#### Xcode Settings
+### Xcode Settings
 
 解凍すると、次のようにGamebase.frameworkなどのSDKを確認することができます。
 
@@ -104,9 +104,7 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
     * プロジェクト内部に**空のswiftファイル**追加(プロジェクト内部にswiftファイルが1つもない場合)
 * 5) **Target > Build Settings > Linking > Other Linker Flags**に**-ObjC**を追加する必要があります。
 ![Other Linker Flags](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
-* 6) **Target > Build Settings > Enable Bitcode**を **No**に設定します。
-![Enable Bitcode](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-007_1.0.0.png)
-* 7) NaverAuthAdapterを使用する場合には、NaverSDKで提供する **NaverThirdPartyLogin.framework**ファイルを**Target > General > Embedded Binaries**に追加する必要があります。
+* 6) NaverAuthAdapterを使用する場合にはNaverSDKで提供する**NaverThirdPartyLogin.framework**ファイルを**Target > General > Embedded Binaries**に追加する必要があります。
  ![Naver Embeded Binaries](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.7.0.png)
 
 > [INFO]
@@ -115,14 +113,14 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 > このオプションを設定しない場合、**selector not recognized**のようなエラーがRuntime上で発生することがあります。
 >
 
-#### CocoaPods Settings
+### CocoaPods Settings
 
 Gamebase iOS SDKは、CocoaPodsを使用して設定できます。
 
-1. Xcodeを実行し、プロジェクトを作成します。
-2. Terminalを実行し、CocoaPodsを適用するプロジェクトのディレクトリに移動します。
-3. **pod init**コマンドを実行し、**Podfile**を作成します。
-4. 作成された**Podfile**をエディタで開き、次のような内容を作成します。
+* 1) Xcodeを実行し、プロジェクトを作成します。
+* 2) Terminalを実行し、CocoaPodsを適用するプロジェクトのディレクトリに移動します。
+* 3) **pod init**コマンドを実行し、**Podfile**を作成します。
+* 4) 作成された**Podfile**をエディタで開き、次のような内容を作成します。
 
 ```ruby
 platform :ios, '10.0'
@@ -158,16 +156,114 @@ end
 > Gamebase最新バージョンを使用しない場合、一部のAdapterを使用できないことがあります。
 >
 
-5. Podfileの作成が完了したら、**pod install**または**pod update**コマンドを実行してGamebaseをインストールします。
-6. インストールが完了したら、**プロジェクト名.xcworkspace**ファイルが作成されます。以降は作成された**xcworkspace**ファイルを使用して開発を行います。
-7. **Target > Build Settings > Enable Bitcode**を**No**に設定します。
-![Enable Bitcode](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-007_1.0.0.png)
+* 5) Podfileの作成が完了したら**pod install**または**pod update**コマンドを実行してGamebaseをインストールします。
+* 6)インストールが完了したら**プロジェクト名.xcworkspace**ファイルが作成されます。その後は作成された**xcworkspace**ファイルを利用して開発を行います。
+
 
 > [参考]
 >
 > 詳細なCocoaPods使用方法は、[CocoaPods Guide](https://guides.cocoapods.org/)の[Using CocoaPods](https://guides.cocoapods.org/using/index.html)ページを参照してください。
 >
 >
+
+### IdP Settings
+
+> <font color="red">[注意]</font><br/>
+>
+> * NHN Cloud Consoleで新しいプロジェクトを作成してGamebaseサービスが有効になっていることを必ず確認してください。
+> * 各IdPのコンソールでClient IDを発行してGamebaseコンソールに入力していることを必ず確認してください。
+
+* 認証のためにIdPコンソールでClient IDを発行してGamebaseコンソールに入力します。
+    * [Game > Gamebase > コンソール使用ガイド > アプリ > Authentication Information](./oper-app/#authentication-information)
+* Gaembase iOS SDKは、IdPごとに追加設定を行う必要があります。
+
+#### Google
+
+* URL Schemeを設定する必要があります。
+    * **Xcode > Target > Info > URL Types**に**tcgb.{Bundle ID}.google**を追加する必要があります。
+
+* Gamebase iOS SDK 1.12.1以下は追加設定が必要です。
+    * [Game > Gamebase > iOS SDK使用ガイド > 始める > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
+
+#### Payco
+
+* URL Schemeを設定する必要があります。
+    * **Xcode > Target > Info > URL Types**に**tcgb.{Bundle ID}.payco**を追加する必要があります。
+
+#### Naver
+
+* URL Schemeを設定する必要があります。
+    * **Xcode > Target > Info > URL Types**に**tcgb.{Bundle ID}.naver**を追加する必要があります。
+
+* Gamebase iOS SDK 1.12.1以下は追加設定が必要です。
+    * [Game > Gamebase > iOS SDK使用ガイド > 始める > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
+
+#### Twitter
+
+* URL Schemeを設定する必要があります。
+    * **Xcode > Target > Info > URL Types**に**tcgb.{Bundle ID}.twitter**を追加する必要があります。
+* TwitterのDeveloperサイトのApps > 対象プロジェクト > App Details > Callback URL項目を設定する必要があります。
+    *  **tcgb.{Bundle ID}.twitter://**を追加します。
+
+#### Line
+
+* URL Schemeを設定する必要があります。
+	* **Xcode > Target > Info > URL Types**に**line3rdp.{App Bundle ID}**を追加する必要があります。
+
+* Info.plistファイルを設定する必要があります。
+	* LINEで発行されたChannelIDを設定します。
+	```
+	<key>LineSDKConfig</key>
+	<dict>
+    	<key>ChannelID</key>
+    	<string>{Issued LINE ChannleID}</string>
+	</dict>
+	```
+	* ATS設定を行うためにSchemeを登録します。
+	```
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+    	<string>lineauth</string>
+    	<string>line3rdp.{App Bundle ID}</string>
+	</array>
+	```
+* LINE Loginを使用するためのプロジェクト設定は次のリンクを参照します。(認証必要)
+* [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
+
+### IdP Settings (Legacy)
+
+**Google**
+
+* Gamebase iOS SDK 1.12.1以下
+    * **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目にJSON string形式の情報を設定する必要があります。
+        * Googleの場合、iOSアプリで必要な情報**url_scheme_ios_only**の設定が必要です。
+        * **url_scheme_ios_only**の値はXcodeのURL Schemeに登録された値のいずれか1つと一致する必要があります。
+    * URL Schemeを設定する必要があります。
+        * **Xcode > Target > Info > URL Types**
+* Google追加認証情報の入力例
+
+```json
+{ "url_scheme_ios_only": "Your URL Scheme" }
+```
+
+![gamebase_auth_google_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_google_console_01.png)
+
+
+**Naver**
+
+* Gamebase iOS SDK 1.12.1以下
+	* **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目にJSON String形式の情報を設定する必要があります。
+		* NAVERの場合、ログイン同意ウィンドウに表示するアプリ名である**service_name**を設定する必要があります。
+		* iOSアプリで必要な情報である**url_scheme_ios_only**を追加で設定する必要があります。
+	* URL Schemeを設定する必要があります。
+		* **Xcode > Target > Info > URL Types**
+* Naver追加認証情報の入力例
+
+```json
+{ "url_scheme_ios_only": "Your URL Scheme", "service_name": "Your Service Name" }
+```
+
+![gamebase_auth_naver_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_naver_console_01.png)
 
 ## 3rd-Party Provider SDK Guide
 

@@ -574,20 +574,17 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 
 ### Get Authentication Information for External IdP
 
-外部の認証SDKからアクセストークン、ユーザーID、プロファイルなどの情報を取得することができます。
+* 外部認証IdPのアクセストークン、ユーザーID、Profileなどの情報はログイン後、ゲームサーバーでGamebase Server APIを呼び出して取得できます。
+    * [Game > Gamebase > APIガイド > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
 
-```objectivec
-// Example for obtaining ID Provider's Authentication Information
-
-// Obtaining Facebook UserID
-NSString *userID = [TCGBGamebase authProviderUserIDWithIDPCode:kTCGBAuthFacebook];
-
-// Obtaining Facebook AccessToken
-NSString *accessTokenOfIDP = [TCGBGamebase authProviderAccessTokenWithIDPCode:kTCGBAuthFacebook];
-
-// Obtaining Facebook Profile
-TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWithIDPCode:kTCGBAuthFacebook];
-```
+> <font color="red">[注意]</font><br/>
+>
+> * 外部IdPの認証情報はセキュリティのためにゲームサーバーで呼び出すことを推奨します。
+> * IdPによってはアクセストークンの有効期限が短い場合があります。
+>     * 例えばGoogleは、ログインしてから2時間後にはアクセストークンの有効期限が切れます。
+>     * ユーザー情報が必要な場合は、ログイン後すぐにGamebase Server APIを呼び出してください。
+> * "[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]" APIでログインした場合は認証情報を取得できません。
+>     * ユーザー情報が必要な場合は、"[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]"の代わりに使用したいIDPCodeと同じ{IDP_CODE}をパラメータにして"[TCGBGamebase loginWithType:viewController:completion:]"APIでログインする必要があります。
 
 > <font color="red">[注意]</font><br/>
 >
@@ -920,6 +917,7 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 
 
 **TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR**
+
 * このエラーは、各IdPのSDKで発生したエラーです。
 * エラーコードの確認は、次の通りです。
 
@@ -934,4 +932,3 @@ NSString *moduleErrorMessage = moduleError.message;
 // If you use **description** method, you can get entire information of this object by JSON Format
 NSLog(@"TCGBError:%@", [tcgbError description]);
 ```
-

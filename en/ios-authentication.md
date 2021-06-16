@@ -575,20 +575,17 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 
 ### Get Authentication Information for External IdP
 
-Get access token, User ID, and profiles from externally authenticated SDK.
+* Information such as access token, user ID, and profile of an external authentication IdP can be gotten by calling Gamebase Server API after login.
+    * [Game > Gamebase > API Guide > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
 
-```objectivec
-// Example for obtaining ID Provider's Authentication Information
-
-// Obtaining Facebook UserID
-NSString *userID = [TCGBGamebase authProviderUserIDWithIDPCode:kTCGBAuthFacebook];
-
-// Obtaining Facebook AccessToken
-NSString *accessTokenOfIDP = [TCGBGamebase authProviderAccessTokenWithIDPCode:kTCGBAuthFacebook];
-
-// Obtaining Facebook Profile
-TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWithIDPCode:kTCGBAuthFacebook];
-```
+> <font color="red">[Caution]</font><br/>
+>
+> * For security reasons, it is recommended to call the authentication information of an external IdP from the game server.
+> * Access token may expire relatively sooner depending on the IdP.
+>     * For example, the access token of Google will expire within 2 hours from the time of login.
+>     * If you need user information, it is recommended to call Gamebase Server API immediately after login.
+> * "[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]" API is used to log in, authentication information cannot be retrieved.
+>     * If you need user information, log in with "[TCGBGamebase loginWithType:viewController:completion:]" API using the same {IDP_CODE} parameter as the IDPCode to be used instead of "[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]".
 
 > <font color="red">[Caution]</font><br/>
 >
@@ -920,6 +917,7 @@ Instant withdrawal cannot be undone, so it is important to ask the user several 
 
 
 **TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR**
+
 * Occurs in each IdP SDK.
 * Can check error codes as follows.
 

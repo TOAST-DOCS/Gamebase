@@ -1,8 +1,61 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.21.2
+
+### iOS
+
+* If you enable bitcode and **archive build** in Gamebase iOS SDK 2.21.1, error occurs.
+    * If you want to use bitcode, use Gamebase iOS SDK 2.21.2 to avoid any associated error.
+
+## 2.21.0
+
+### Android
+
+* If a wrong jCenter build is deployed so that **jcenter()** was declared before **mavenCentral()** was declared in Gamebase Android SDK 2.21.0, all Gamebase APIs might crash.
+    * In this case, use a properly deployed Gamebase Android SDK 2.21.1 or declare **mavenCentral()** ahead of **jcenter()**.
+* Maven Repository
+    * As jCenter stopped providing services to individual users, ( [https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/](https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/) ) new builds can no longer be uploaded.(Users will not be able to access jCenter starting from February 1st, 2022.)
+    * For this reason, since Gamebase Android SDK 2.21.0 and later versions will be deployed only to **mavenCentral()** and not to **jcenter()**, please add mavenCentral to gradle repository.
+
+```groovy
+repositories {
+    // >>> For Gamebase SDK
+    mavenCentral()
+    ...
+}
+```
+
+#### Line IdP
+
+* If you are using Line IdP, due to the Line SDK update, you must configure **JavaVersion.VERSION_1_8** in Gradle to succeed the build.
+* If you are using Line IdP, a fail may occur in Manifest merger when building an application because **android:allowBackup="false"** is declared in Line SDK. If a build fails for this reason, declare **tools:replace="android:allowBackup"** in the application tag.
+```groovy
+android {
+    compileOptions {
+        // >>> [Line IdP]
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    
+}
+```
+
+```xml
+<application
+      tools:replace="android:allowBackup"
+      ... >
+```
+
+### iOS
+
+* Error occurs when using bitcode in Gamebase iOS SDK 2.21.0.
+    * If you want to use bitcode, use Gamebase iOS SDK 2.21.1 instead.
+
 ## 2.20.2
 
 ### iOS
+
+#### Facebook IdP
 
 * In Gamebase iOS SDK 2.20.2, Facebook SDK has been updated to 9.1.0. 
     * Now the Facebook SDK needs additional settings, so please add the following value to the info.plist. If not, the system might crash.
@@ -13,6 +66,8 @@
 ## 2.19.0
 
 ### Android
+
+#### Weibo IdP
 
 * Alternating the call between Weibo IdP login and another IdP login in Gamebase Android SDK 2.19.0 will lead to a crash.
     * If the Weibo IdP is being used, please use Gamebase Android SDK 2.19.1 where the issue has been fixed.
@@ -31,6 +86,8 @@
 ## 2.18.0
 
 ### Android
+
+#### Purchase Google
 
 * Calling the Google item payment in Gamebase Android SDK 2.18.0 causes a crash.
     * Please use the Gamebase Android SDK 2.18.1 where the issue has been fixed.
@@ -51,6 +108,8 @@
 ## 2.15.0
 
 ### Android
+
+#### Purchase Google
 
 * If **gamebase-adapter-purchase-google** is being used, the previous Game Client Version must be set to **Update to the latest version required** if the Gamebase SDK version earlier than 2.15.0 is to be upgraded to 2.15.0 or later.
 	* The Google Billing Client module has been updated. Because of this, when purchasing an item while different billing client versions have been applied to multiple devices, any resultant error could lead to a reprocessing problem.

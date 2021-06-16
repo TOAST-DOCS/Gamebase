@@ -6,7 +6,7 @@
 
 Android나 iOS에서 푸시를 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
 
-* [Android Push Settings](aos-push#settings)
+* [Android Push Settings](aos-started/#firebase-notification)
     * Firebase 푸시를 사용한다면 아래 가이드를 참고 바랍니다.
         * 해당 가이드에서 Unity 빌드인 경우는 Unreal의 경우도 동일하게 설정이 필요합니다.
             * Android 빌드 시 res/values/google-services-json.xml 파일이 포함되어야 하므로 가이드를 참고하여 작성합니다.
