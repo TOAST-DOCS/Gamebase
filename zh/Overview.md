@@ -76,6 +76,7 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 
 * Google Play Store
 * App Store
+* Galaxy Store
 * ONE Store
 * Facebook
 * Amazon
@@ -88,6 +89,13 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
   提供谷歌商店和应用程序商店提供的订阅功能，可向用户销售月商品。游戏中无需另行实现即可轻松使用谷歌的促销功能。外部商店添加的功能今后也将在游戏库中作为添加功能提供。
 * **利用网页控制台的各种功能（支付明细查询功能等）可顺利应对顾客咨询。**
   在网页控制台可确认用户的支付明细及道具提供状态，还可应对取消支付及滥用。
+
+#### 参考
+
+* [Android SDK 使用指南 > 结算](./aos-purchase)
+* [iOS SDK 使用指南 > 结算](./ios-purchase)
+* [Unity SDK 使用指南 > 结算](./unity-purchase)
+* [Unreal SDK 使用指南 > 结算](./unreal-purchase)
 
 ### Launching
 
@@ -175,23 +183,102 @@ Gamebase基本上支持全球游戏，并提供以下功能：
 
 ### 管理员指南
 
-* [控制台使用指南](./oper-operating-indicator/)
+* [控制台使用指南](./oper-analytics/)
 
 ## 功能指南
 
 | 功能               | 描述                              | 客户端                                   | 服务器端                                   | 控制台                                  |
 | --------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| Analytics                  | 实时指标, 销售指标, 用户指标, 平衡指标 | [[Android](./aos-etc/#analytics)] [[iOS](./ios-etc/#analytics)] [[Unity](./unity-etc/#analytics)] |                                          | [[Analytics]](./oper-analytics)  ||
 | Login                 | 游客，支持第三方认证  <br> - [支持的 IdP](./Overview/#authentication) |  [[Android](./aos-authentication/#login)] [[iOS](./ios-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[令牌验证](./api-guide/#token-authentication)] <br> [[查询用户](./api-guide/#get-member)] | [[App] > 设置认证信息](./oper-app/#authentication-information) <br> [[Member] >查询用户 ](./oper-member/#member) <br> - 基本信息，登录历史，在线时间，付款记录等|
 | Logout                | 退出登录                                 | [[Android](./aos-authentication/#logout)]  [[iOS](./ios-authentication/#logout)] [[Unity](./unity-authentication/#logout)] |                                          |                                          |
 | Withdraw              | 退出游戏 <br> -  删除游戏用户的用户ID，浏览记录等所有信息 | [[Android](./aos-authentication/#withdraw)] [[iOS](./ios-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
 | Mapping               | 一个游戏用户ID映射多个IdP的功能        | [[Android](./aos-authentication/#mapping)] [[iOS](./ios-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |                                          |
-| Analytics                  | 实时指标, 销售指标, 用户指标, 平衡指标 | [[Android](./aos-etc/#analytics)] [[iOS](./ios-etc/#analytics)] [[Unity](./unity-etc/#analytics)] |                                          | [[Analytics]](./oper-analytics)  ||
-| Purchase(IAP)         | (NHN Cloud联动服务) <br> 应用内结算| [[Android](./aos-purchase/#purchase)] [[iOS](./ios-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- 注册商品](./oper-purchase/#item) <br> [- 查询结算信息](./oper-purchase/#transactions) |
-| 推送                  | (NHN Cloud 连动服务) <br> 推送消息及确认结果 | [[Android](./aos-push/#push)] [[iOS](./ios-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- 实时、预约推送消息 |
-| 排行榜           | (NHN Cloud联动服务) <br> 查询及注册大容量数据的实时排名 |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
-| Webview               |SDK提供默认的WebView UI<br/>提供系统弹出窗口和Toast UI | [[Android](./aos-ui/#webview)] [[iOS](./ios-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
+| Purchase(IAP)         | (TOAST联动服务) <br> 应用内结算| [[Android](./aos-purchase/#purchase)] [[iOS](./ios-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- 注册商品](./oper-purchase/#item) <br> [- 查询结算信息](./oper-purchase/#transactions) |
+| 推送                  | (TOAST 连动服务) <br> 推送消息及确认结果 | [[Android](./aos-push/#push)] [[iOS](./ios-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- 实时、预约推送消息 |
+| 排行榜           | (TOAST联动服务) <br> 查询及注册大容量数据的实时排名 |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
+| Webview               |SDK提供默认的WebView UI<br/>提供系统弹出窗口和TOAST UI | [[Android](./aos-ui/#webview)] [[iOS](./ios-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
 | [管理员] Maintenance | (操作)维护功能                               |                                          | [[确认维护](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- 登记或取消维护 |
 | [管理员] Notice      | (操作) 紧急公告功能 <br> -  游戏用户运行应用时，可以以弹出窗口的形式查看公告的功能 |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>-登记公告 |
-| [管理员] Ban         | (操作) 游戏用户的登记和解除禁用状态<br> - 游戏用户的登记和解除禁用状态 | [[Android](./aos-authentication/#get-banned-user-information)] [[iOS](./ios-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -确认禁用用户信息 |   [[게임 이용자의 이용정지 이력조회](./api-guide/#ban-histories)]                                       | [[Ban]](./oper-ban/#ban) <br/>-登记和解除禁用状态 |
+| [管理员] Image Notice         | (运营)图片通知功能 <br> -  在游戏内显示弹窗形式的图片通知 | [[Android](./aos-ui/#imagenotice)] [[iOS](./ios-ui/#imagenotice)] [[Unity](./unity-ui/#imagenotice)] <br/> - 显示图片通知 |                             | [[Image Notice]](./oper-operation/#image-notice) <br/>- 管理图片通知 |
+| [管理员] Ban         | (操作) 游戏用户的登记和解除禁用状态<br> - 游戏用户的登记和解除禁用状态 | [[Android](./aos-authentication/#get-banned-user-information)] [[iOS](./ios-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -确认禁用用户信息 |   [[查询用户禁用历史记录](./api-guide/#_6)]                                       | [[Ban]](./oper-ban/#ban) <br/>-登记和解除禁用状态 |
+| [管理员] Coupon         | (运营)管理优惠券<br>- 查看发布历史 |  |                                      [[验证优惠券有效性/更改优惠券状态](./api-guide/#coupon)  | [[Coupon]](./oper-coupon) <br/>- 发布优惠券 |
+| [管理员] Customer Service         | (运营)接收并处理1:1咨询 <br> -  管理FAQ/公告 | [[Android](./aos-etc/#contact)] [[iOS](./ios-etc/#contact)] [[Unity](./unity-etc/#contact)] <br/> - 通过Webview显示客户服务网页 |                                        | [[Customer Service]](./oper-customer-service) <br/>- 处理客户服务咨询<br>- 管理FAQ/公告 |
+
+## Console Role
+
+关于TOAST的基本成员政策和权限，请参考以下指南。
+* [TOAST > 控制台使用指南 > 管理成员](https://docs.toast.com/zh/TOAST/zh/console-guide/#_14)
+
+### Manage Role
+
+**Console > 设置项目 > 管理成员**  
+可以在”设置项目”页面上添加TOAST成员或给注册的成员授予权限。可以给一个成员授予多个权限。    
+![项目权限](http://static.toastoven.net/prod_gamebase/Overview/overview_project_role_01_20201123.png)
+
+**Console > 设置项目 > 管理权限组**
+为了运营上的方便，可以将经常使用的权限注册为*权限组*，以权限组为单位授予TOAST成员权限 。
+![项目权限组](http://static.toastoven.net/prod_gamebase/Overview/overview_project_role_02_20201123.png)
+
+**Console > 设置组织 > 设置项目共同权限组**
+在”组织管理页面”上可对组织内的项目共同使用的权限组进行管理。 
+![项目权限组](http://static.toastoven.net/prod_gamebase/Overview/overview_company_role_01_20201123.png)
+
+### Gamebase提供的权限列表
+
+| 服务 | 权限 | 描述 |
+| --- | --- | --- |
+| Gamebase | ADMIN | **访问并控制全屏**<br>Gamebase服务 Create(创建)、Read(读取)、Update(修改)、Delete(删除) |
+| Gamebase | ANALYTICS VIEWER - ALL | 所有指标 Read(读取)<br>可以下载指标结果的Excel文件。|
+| Gamebase | ANALYTICS VIEWER - EXCLUDING SALES | 除销售以外的所有指标 Read(读取) |
+| Gamebase | ANALYTICS VIEWER - ONLY REAL-TIME | 实时指标 Read(读取) |
+| Gamebase | APP ADMIN | APP菜单 Create(创建)、Read(读取)、Update(修改)、Delete(删除) |
+| Gamebase | APP VIEWER | APP菜单 Read(读取) |
+| Gamebase | BAN ADMIN | 禁止使用菜单 Create(创建)、Read(读取)、Update(修改)、Delete(删除) |
+| Gamebase | BAN VIEWER | 禁止使用菜单 Read(读取) |
+| Gamebase | COUPON ADMIN | 优惠券菜单 Create(创建)、Read(读取)、Update(修改)、Delete(删除) |
+| Gamebase | COUPON VIEWER | 优惠券菜单 Read(读取) |
+| Gamebase | CS ADMIN | 客户服务菜单 Create(创建)、Read(读取)、Update(修改)、Delete(删除) |
+| Gamebase | CS INQUIRY SUPPORT | 客户服务咨询菜单 Read(读取)、Update(修改)及成员菜单 Read(读取) |
+| Gamebase | IAP ADMIN | 购买菜单 Create(创建)、Read(读取)、Update(修改)、Delete(删除) |
+| Gamebase | IAP VIEWER | 购买菜单 Read(读取) |
+| Gamebase | LEADERBOARD ADMIN | Leaderboard菜单 Create(创建)、Read(读取)、Update(修改)、Delete(删除) |
+| Gamebase | LEADERBOARD VIEWER | Leaderboard菜单 Read(读取) |
+| Gamebase | MANAGEMENT ADMIN | 管理菜单 Create(创建)、Read(读取)、Update(修改)、Delete(删除) |
+| Gamebase | MEMBER ADMIN | 成员菜单 Create(创建)、Read(读取)、Update(修改)、Delete(删除) |
+| Gamebase | MEMBER VIEWER | 成员菜单 Read(读取) |
+| Gamebase | MEMBER FILE DOWNLOAD | 成员菜单 Read(读取)及成员文件下载 |
+| Gamebase | OPERATION ADMIN | 运营菜单 Create(创建)、Read(读取)、Update(修改)、Delete(删除) |
+| Gamebase | OPERATION VIEWER | 运营菜单 Read(读取) |
+| Gamebase | PUSH ADMIN | 推送菜单 Create(创建)、Read(读取)、Update(修改)、Delete(删除) |
+| Gamebase | PUSH VIEWER | 推送菜单 Read(读取) |
 
 
+* 是通过创建项目中经常使用的权限组来管理权限的示例。如果在游戏中需要，可通过创建适当的权限组来进行管理。 
+
+| 服务 | 权限 | 管理员/事业 | 开发 | CS |
+| --- | --- | --- | --- | --- | 
+| Gamebase | ADMIN | ● | | |
+| Gamebase | ANALYTICS VIEWER - ALL |  |  | |
+| Gamebase | ANALYTICS VIEWER - EXCLUDING SALES |   |  | |
+| Gamebase | ANALYTICS VIEWER - ONLY REAL-TIME |  | ● | |
+| Gamebase | APP ADMIN | |  ● | |
+| Gamebase | APP VIEWER | |  | |
+| Gamebase | BAN ADMIN | |  ● | ●|
+| Gamebase | BAN VIEWER | |  | |
+| Gamebase | COUPON ADMIN | | ● | |
+| Gamebase | COUPON VIEWER | |  |● |
+| Gamebase | CS ADMIN | |  | |
+| Gamebase | CS INQUIRY SUPPORT | |  | ● |
+| Gamebase | IAP ADMIN | | ● | |
+| Gamebase | IAP VIEWER | |  |● |
+| Gamebase | LEADERBOARD ADMIN || ● | | 
+| Gamebase | LEADERBOARD VIEWER | |  | |
+| Gamebase | MANAGEMENT ADMIN | | ● | |
+| Gamebase | MEMBER ADMIN | | ● | ● |
+| Gamebase | MEMBER VIEWER | |  |  |
+| Gamebase | MEMBER FILE DOWNLOAD | |  | |
+| Gamebase | OPERATION ADMIN | | ● | |
+| Gamebase | OPERATION VIEWER | |  |● |
+| Gamebase | PUSH ADMIN | | ● | |
+| Gamebase | PUSH VIEWER | |  | ● |

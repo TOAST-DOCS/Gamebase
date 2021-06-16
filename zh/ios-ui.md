@@ -2,7 +2,7 @@
 
 ## ImageNotice
 
-通过在控制台中注册图片，向用户发送推送图片通知。
+通过在控制台中注册图片，向用户推送图片通知。
 
 ![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-001.png)
 
@@ -14,7 +14,7 @@
 * viewController : 为显示图片通知的ViewController。
  
 #### Optional参数 
-* configuration : 使用TCGBImageNoticeConfiguration可更改背景色等的图片通知设置。
+* configuration : 通过使用TCGBImageNoticeConfiguration可更改背景色等的图片通知设置。
 * closeCompletion : 关闭图片通知时通过回调通知用户。
 * schemeEvent : 点击图片时, 将设置在控制台的payload作为回调通知。 
 
