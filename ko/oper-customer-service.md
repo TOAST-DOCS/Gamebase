@@ -70,7 +70,7 @@ FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 �
 
 검색 조건에 맞는 고객 문의 내역을 검색합니다.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_01_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_01_202106.png)
 
 **검색 조건**
 
@@ -78,6 +78,7 @@ FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 �
 - **접수 유형**: (필수) 고객 문의시 유저가 선택한 접수 유형 항목을 선택합니다. 접수 / 처리 완료 항목이 존재합니다.
 - **접수 기간**: (필수)선택한 기간동안 인입된 문의를 조회합니다.
 - **유저 ID**: 특정 유저의 문의를 검색하고자 할 경우 해당 유저ID를 입력합니다.
+- **문의 제목**: 특정 제목의 문의를 검색하고자 할 경우 해당 문의 제목을 입력합니다.
 
 **검색 결과**
 
@@ -88,7 +89,7 @@ FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 �
 - **상태**: 인입된 문의의 현재 처리 상태
 
 #### 1. 접수 유형 관리
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_02_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_02_202106.png)
 
 유저가 문의 등록시 선택할 수 있는 접수 유형 항목을 관리할 수 있습니다.
 지원하는 언어별로 등록이 가능하며 항목별 최대 글자수는 20자입니다.
@@ -97,7 +98,7 @@ FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 �
 > 지원 언어 선택 현황은 앱 - 고객센터 설정에서 확인할 수 있습니다.
 
 #### 2. 답변 발송 설정
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202011.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202106.png)
 
 문의에 대한 처리가 완료되었을 경우 유저에게 Push 메시지를 통해 알림을 발송하고자 할 경우에 해당 기능을 설정할 수 있습니다.
 사용하고자 할 경우에 상단에 발송여부를 체크하면 유저에게 처리완료 시 완료 Push알람이 함께 전송됩니다.
@@ -108,22 +109,24 @@ FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 �
 
 ### Inquiry details
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_03_202009.png)
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_04_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_03_202106.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_04_202106.png)
 
 유저에게 인입된 문의에 대하여 상세내용 확인 및 해당 문의에 대한 처리를 진행할 수 있습니다.
+문의를 처리한 후 유저가 추가로 문의를 할 수 있습니다.
+문의를 처리한 후에 **처리 완료** 버튼을 클릭하여 문의 상태를 처리 완료 상태로 변경할 수 있으며, 처리 완료 상태의 문의에는 유저가 더이상 문의를 남길 수 없습니다.
 
 템플릿을 선택할 경우 고객센터 - 답변 템플릿 메뉴에서 설정한 템플릿 내용을 답변에서 바로 사용할 수 있으며 템플릿 내용 외에 Text editor를 이용하여 원하시는 모양대로 답변을 만들어 유저에게 전달할 수 있습니다.
 유저 문의 답변시 파일첨부가 필요할 경우 최대 10MB 이내의 파일을 5개까지 첨부하여 유저에게 전달가능합니다.
 이후 처리하기가 완료될 경우 문의 인입시 등록된 email을 통해 담당자가 작성한 내용이 유저에게 전달됩니다.
 이 때 답변 발송 항목을 통해 문의 처리 완료 시 해당 유저에게 Push알람이 전송되는지에 대한 여부를 확인할 수 있습니다.
 > [참고]
-> ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_06_202011.png)
+> ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_06_202106.png)
 > 로그인된 유저가 문의를 등록했을 경우 해당 유저에 대한 정보가 한 화면에 조회되어 확인할 수 있습니다.
 > 기존 회원 메뉴에서 사용했던 기능과 동일하게 유저정보가 조회되므로 유저 문의대응시 필요한 정보를 한화면에서 편리하게 확인하실 수 있습니다.
 
 #### 1. 답변 발송 설정
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202106.png)
 
 문의에 대한 처리가 완료되었을 경우 유저에게 Push 메시지를 통해 알림을 발송하고자 할 경우에 해당 기능을 설정할 수 있습니다.
 사용하고자 할 경우에 상단에 발송여부를 체크하면 유저에게 처리완료 시 완료 Push알람이 함께 전송됩니다.
@@ -144,7 +147,7 @@ FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 �
 
 등록되어 있는 FAQ 항목에 대하여 검색할 수 있습니다.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_07_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_07_202106.png)
 
 **검색 조건**
 
@@ -162,7 +165,7 @@ FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 �
 - **상태**: FAQ가 현재 표시되고 있는지 여부를 보여줍니다. 노출 중 / 비노출 상태가 있습니다.
 
 #### FAQ 유형 관리
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_09_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_09_202106.png)
 
 FAQ 등록 또는 수정시 선택할 수 있는 유형을 관리할 수 있습니다.
 지원하는 언어별로 등록이 가능하며 항목별 최대 글자수는 20자입니다.
@@ -174,7 +177,7 @@ FAQ 등록 또는 수정시 선택할 수 있는 유형을 관리할 수 있습�
 FAQ를 등록하거나 또는 기존에 등록된 FAQ정보를 수정할 수 있습니다.
 등록 또는 수정 시 변경할 수 있는 항목은 모두 동일합니다.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_08_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_08_202106.png)
 
 #### 1. 상태
 등록 또는 수정하고자 하는 FAQ의 노출 상태를 선택합니다.
@@ -205,7 +208,7 @@ Text Editor를 통해 원하는 형태로 답변을 입력할 수 있으며 해�
 
 등록되어 있는 공지사항 목록에 대하여 검색할 수 있습니다.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_10_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_10_202106.png)
 
 **검색 조건**
 
@@ -223,7 +226,7 @@ Text Editor를 통해 원하는 형태로 답변을 입력할 수 있으며 해�
 - **상태**: 공지사항의 현재 진행여부 보여줍니다. 예정 / 노출 중 / 종료 상태가 있습니다.
 
 #### 말머리 관리
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_11_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_11_202106.png)
 
 공지사항 등록 또는 수정시 선택할 수 있는 말머리를 관리할 수 있습니다.
 지원하는 언어별로 등록이 가능하며 항목별 최대 글자수는 20자입니다.
@@ -235,8 +238,7 @@ Text Editor를 통해 원하는 형태로 답변을 입력할 수 있으며 해�
 새로운 공지사항을 등록하거나 기존에 등록된 공지사항 정보를 수정할 수 있습니다.
 등록 또는 수정 시 변경할 수 있는 항목은 모두 동일합니다.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_15_202009.png)
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_16_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_15_202106.png)
 
 #### 1. 노출일
 공지사항을 노출하고자 하는 기간을 설정합니다.
@@ -270,7 +272,7 @@ Text Editor를 통해 원하는 형태로 답변을 입력할 수 있으며 해�
 
 ### Search Template
 현재 등록된 템플릿 리스트를 표시하며, 우측 상단에 검색어를 입력하여 현재 등록된 템플릿을 검색할 수 있습니다.
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_12_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_12_202106.png)
 
 **결과**
 - **템플릿명**: 문의 처리시에 템플릿 항목에 노출되어 선택할 수 있는 템플릿명입니다.
@@ -281,7 +283,7 @@ Text Editor를 통해 원하는 형태로 답변을 입력할 수 있으며 해�
 답변 템플릿을 새롭게 등록하거나 기존에 등록된 답변 템플릿 정보를 수정할 수 있습니다.
 등록 또는 수정 시 변경할 수 있는 항목은 모두 동일합니다.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_13_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_13_202106.png)
 
 #### 1. 템플릿명
 문의 처리시에 템플릿 선택항목에 노출될 템플릿명을 입력합니다.
@@ -296,7 +298,7 @@ Text editor를 이용하여 자유롭게 입력이 가능하며 입력된 내용
 
 테스트 발송 기능이 제공되며 해당 기능을 통해 현재 입력한 템플릿을 이용하여 실제 유저에게 어떤 형태로 전송되는지 미리 확인할 수 있습니다.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_14_202011.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_14_202106.png)
 
 > [참고]
 > 발신 주소에 설정된 이메일이 SPF 레코드가 설정되지 않았을 경우에는 해당 메일이 스팸 처리 될 수 있습니다. 
