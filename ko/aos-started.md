@@ -76,11 +76,6 @@ repositories {
 
     ...
 
-    // >>> [Weibo IdP]
-    // Download weibo sdk from here:
-    // https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/2019SDK/aar
-    flatDir { dirs 'The directory containing weibo sdk.' }
-
     // >>> [Hangame IdP]
     maven { url 'Hangame IdP 설정 방법은 고객 센터로 문의 하시기 바랍니다.' }
 }
@@ -102,7 +97,7 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
 
     // >>> [Weibo IdP]
-    implementation (name: 'openDefault-10.10.0', ext: 'aar')
+    implementation "io.github.sinaweibosdk:core:11.6.0@aar"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Purchase Adapter
@@ -150,14 +145,6 @@ android {
 }
 ```
 
-### NDK Library
-
-#### Weibo IdP
-
-* 다음 경로에서 Weibo so 라이브러리를 복사하여 app/src/main/jniLibs 폴더에 추가해야 합니다.
-    * [https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/so](https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/so)
-    * 필요한 플랫폼만 사용하면 됩니다.
-
 ### Resources
 
 #### Firebase Notification
@@ -189,6 +176,9 @@ android {
     <string name="default_web_client_id" translatable="false">000000000000-abcdabcdabcdabcdabcdabcdabcd.apps.googleusercontent.com</string>
 </resources>
 ```
+
+* Unreal 빌드인 경우 Gamebase Unreal SDK 에서 빈 google-service-json.xml 파일을 포함하여 배포하고 있으니 해당 게임 정보에 맞는 값으로 변경하시기 바랍니다.
+    * 만일 EasyFirebase 와 같이, 비슷한 형태의 xml 을 자동 생성해주는 Content 가 있을 경우, 리소스 중복에 의해 빌드 에러가 발생할 수 있습니다. 이때는 google-service-json.xml 파일을 제거하시면 됩니다.
 
 ### AndroidManifest.xml
 
@@ -381,38 +371,58 @@ android {
 | 2.1.* | Not supported | Unity 5<br>2017.1 ~ 2017.2 |
 
 ```xml
-<queries>
-    <!-- [Facebook] Configurations begin -->
-    <package android:name="com.facebook.katana" />
-    <!-- [Facebook] Configurations end -->
+<manifest>
+    <!-- [Android11] settings start -->
+    <queries>
+        <!-- [All SDK] AppToWeb Authenthcation support start -->
+        <package android:name="com.android.chrome" />
+        <package android:name="com.chrome.beta" />
+        <package android:name="com.chrome.dev" />
+        <package android:name="com.sec.android.app.sbrowser" />
+        <!-- [All SDK] AppToWeb Authenthcation support end -->
+        
+        <!-- [Facebook] Configurations begin -->
+        <package android:name="com.facebook.katana" />
+        <!-- [Facebook] Configurations end -->
 
-    <!-- [Payco/Hangame] Configurations begin -->
-    <package android:name="com.nhnent.payapp" />
-    <!-- [Payco/Hangame] Configurations end -->
+        <!-- [Payco/Hangame] Configurations begin -->
+        <package android:name="com.nhnent.payapp" />
+        <!-- [Payco/Hangame] Configurations end -->
 
-    <!-- [Line] Configurations begin -->
-    <package android:name="jp.naver.line.android" />
-    <intent>
-        <action android:name="android.intent.action.VIEW" />
-        <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="https" />
-    </intent>
-    <!-- [Line] Configurations end -->
+        <!-- [Line] Configurations begin -->
+        <package android:name="jp.naver.line.android" />
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" />
+        </intent>
+        <!-- [Line] Configurations end -->
+        
+        <!-- [Naver] Configurations begin -->
+        <package android:name="com.nhn.android.search" />
+        <!-- [Naver] Configurations end -->
+        
+        <!-- [Weibo] Configurations begin -->
+        <package android:name="com.weico.international" />
+        <package android:name="com.sina.weibo" />
+        <!-- [Weibo] Configurations end -->
 
-    <!-- [ONE store] Configurations begin -->
-    <intent>
-        <action android:name="com.onestore.ipc.iap.IapService.ACTION" />
-    </intent>
-    <intent>
-        <action android:name="android.intent.action.VIEW" />
-        <data android:scheme="onestore" />
-    </intent>
-    <!-- [ONE store] Configurations end -->
+        <!-- [ONE store] Configurations begin -->
+        <intent>
+            <action android:name="com.onestore.ipc.iap.IapService.ACTION" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="onestore" />
+        </intent>
+        <!-- [ONE store] Configurations end -->
 
-    <!-- [Galaxy store] Configurations begin -->
-    <package android:name="com.sec.android.app.samsungapps" />
-    <!-- [Galaxy store] Configurations end -->
-</queries>
+        <!-- [Galaxy store] Configurations begin -->
+        <package android:name="com.sec.android.app.samsungapps" />
+        <!-- [Galaxy store] Configurations end -->
+    </queries>
+    <!-- [Android11] settings end -->
+</manifest>
 ```
 
 ### Proguard
