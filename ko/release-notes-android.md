@@ -1,5 +1,11 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.24.0(2021.06.29) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 내부 런칭 URL 변경
+* SDK 첨부 문서에 잘못 작성된 문구 수정
+
 ### 2.23.0(2021.06.14) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-Android.zip)
 
 #### 버그 수정
@@ -791,7 +797,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 * [SDK] 2.4.1
 	* (iOS)Analytics 지표 전송 시 일부 파라미터가 누락 되어 지표가 제대로 출력되지 않는 버그 수정
 	
-### 2019. 05. 28. 
+### 2019. 05. 28. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.4.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * HANGAME mix 일본결제 추가
@@ -815,7 +821,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 * [Console]
     * LTV Grid ComplexColumns 지원 및 엑셀 다운로드 지원
 
-### 2019. 05. 16. 
+### 2019. 05. 16. [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.3.1/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * [Console]
