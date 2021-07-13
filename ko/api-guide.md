@@ -1519,21 +1519,26 @@ Gamebase는 NHN Cloud Leaderboard 서비스의 서버 API에 대해 **Wrapping**
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
-| Factor에 등록된 사용자 수 조회 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
-| 단일 사용자 점수/순위 조회 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
-| 다수 사용자 점수/순위 조회 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
-| 일정 범위의 전체 점수/순위 조회 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
-| 특정 순위의 유저들을 검색 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
-| 특정 유저의 순위 및 상위, 하위 유저들의 순위 검색 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} | /leaderboard/v2.0/appkeys/{appkey}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} |
-| 단일 사용자 점수 등록 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
-| 단일 사용자 점수/ExtraData 등록 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
-| 다수 사용자 점수 등록 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
-| 다수 사용자 점수/ExtraData 등록 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
-| 단일 사용자 Leaderboard정보 삭제 | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| Factor에 등록된 사용자 수 조회<br>- Get user count in factor | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
+| Factor 전체 수 검색<br>- Get total factor count | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factor-count | /leaderboard/v2.0/appkeys/{appKey}/factor-count |
+| Factor 정보 조회<br>- Get factor info<br>- Get multiple factor info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors | /leaderboard/v2.0/appkeys/{appKey}/factors |
+| 단일 사용자 점수/순위 조회<br>- Get single user info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
+| 다수 사용자 점수/순위 조회<br>- Get multiple user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
+| 일정 범위의 전체 점수/순위 조회<br>- Get multiple user info by range | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
+| 특정 순위의 유저들을 검색<br>- Get selected rank user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| 특정 유저의 순위 및 상위, 하위 유저들의 순위 검색<br>- Get multiple user info by pivot user | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} | /leaderboard/v2.0/appkeys/{appkey}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} |
+| 단일 사용자 점수 등록<br>- Set single user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
+| 단일 사용자 점수/ExtraData 등록<br>- Set single user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
+| 다수 사용자 점수 등록<br>- Set multiple user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
+| 다수 사용자 점수/ExtraData 등록<br>- Set multiple user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
+| 사용자 Leaderboard 정보 삭제<br>- Delete single user info<br>- Delete multiple user info | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+
+<br/>
 
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
 Gamebase Wrapping API와 매핑된 Leaderboard API 스펙은 아래 가이드를 참고하세요.
 Leaderboard Appkey 설정 없이 Gamebase AppId 및 SecretKey를 이용해서 Gamebase Wrapping Leaderboard API를 호출하시면 됩니다.
+
 
 [Leaderboard Guide](/Game/Leaderboard/ko/api-guide/)
 
@@ -1576,9 +1581,15 @@ Gamebase는 NHN Cloud Push 서비스의 서버 API에 대해 **Wrapping** 기능
 |   | 수정 | PUT | /tcgb-push/v1.3/apps/{appId}/reservations/{reservationId} | /push/v2.4/appkeys/{appkey}/reservations/{reservationId} |
 |   | 삭제 | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
 
+<br/>
+
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
 Gamebase Wrapping API와 매핑된 Push API 스펙은 아래 가이드를 참고하세요.
 Push Appkey 설정 없이 Gamebase AppId 및 SecretKey를 이용해서 Gamebase Wrapping Push API를 호출하시면 됩니다.
+
+> [참고]
+> Push 가이드에 존재하는 uid 값은 gamebase userId 값을 사용하시면 됩니다. 클라이언트 SDK에서 푸시 토큰 등록 시 유저 식별자는 gamebase userId로 등록이 되어 있습니다.
+> 한 명의 유저가 다수의 단말기에서 모두 푸시 수신을 허용하였다면, 다수의 단말기에서 모두 푸시를 수신하게 됩니다.
 
 [Push Guide](/Notification/Push/ko/api-guide/)
 
@@ -1596,7 +1607,7 @@ X-Secret-Key: IgsaAP
 {
     "target" : {
         "type" : "UID",
-        "to": ["uid-1", "uid-2"]
+        "to": ["gamebase userId-1", "gamebase userId-2"]
     },
     "content" : {
         "default" : {
@@ -1606,7 +1617,7 @@ X-Secret-Key: IgsaAP
     },
     "messageType" : "AD",
     "contact": "1588-1588",
-    "removeGuide": "매뉴 > 설정",
+    "removeGuide": "메뉴 > 설정",
     "timeToLiveMinute": 1,
     "provisionedResourceId": "id",
     "adWordPosition": "TITLE"
