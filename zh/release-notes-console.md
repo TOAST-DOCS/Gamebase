@@ -1,9 +1,14 @@
 ## Game > Gamebase > Release Notes > Console
 
+### July 13, 2021 
+
+#### More Features
+* 모바일 신규 메뉴 오픈: Retention  
+
 ### May 25, 2021 
 
 #### Feature Updates
-* 구매(IAP) > 아이템: 스토어 아이템의 상태 변경시 하위 상품 ID 정보도 확인할 수 있도록 기능 추가
+* Purchase(IAP) > Item: Added a feature of allowing users to confirm low-level ID information when changing status of store Item
 
 ### May 11, 2021 
 
@@ -672,14 +677,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 	* More Features: Downloading game resources, integrating Leaderboard and TAA indicators, transferring devices, and forced mapping 
 	* Updates: Added ServerPush listeners and detection of observer maintenance  
 	* Renewed games 
-		
-#### Bug Fixes 
-* [Console]	
-	* Management > Authority: Fixed failed modification of authority 
-	* For Mobile 
-		* Fixed the issue of keyword enabled by selecting Datepicker 
-		* Analytics: Fixed the issue of NRU value exposed for ARPPU 
-		
+
 ### September 24, 2019 
 
 #### Feature Updates 

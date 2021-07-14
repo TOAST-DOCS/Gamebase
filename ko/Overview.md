@@ -140,7 +140,7 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 ### Using the other NHN Cloud Service
 
 * 게임에서 필요한 NHN Cloud 서비스를 보다 쉽게 연동할 수 있도록 돕습니다. 
-  * Gamebase 사용자 아이디로 각 서비스의 API를 사용할 수 있도록 Gamebase에서 래핑(wrapping)하여 API를 제공합니다. 따라서, 사용자는 별도 서비스의 API를 직접 호출할 필요가 없습니다.
+  * **Gamebase 사용자 아이디**로 각 서비스의 API를 사용할 수 있도록 Gamebase에서 래핑(wrapping)하여 API를 제공합니다. 따라서, 사용자는 별도 서비스의 API를 직접 호출할 필요가 없습니다. **Gamebase 유저 ID**로 푸시를 보내거나 랭킹 순위 등록이 가능합니다.
   * [Notification > Push](https://toast.com/service/notification/push) : 푸시 메세지를 발송해 주는 통합 푸시 서비스  
   * [Game > Leaderboard](https://toast.com/service/game/leaderboard) : 실시간 대용량 랭킹 서비스
   * [Security > AppGuard](https://toast.com/service/security/appguard) : 실시간으로 애플리케이션의 코드 조작을 방지하는 서비스
