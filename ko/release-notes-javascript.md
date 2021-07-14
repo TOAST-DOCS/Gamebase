@@ -1,6 +1,6 @@
 ## Game > Gamebase > 릴리스 노트 > JavaScript
 
-### 2.20.0(2021.02.09) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.0/GamebaseSDK-JavaScript.zip)
+### 2.19.1(2021.02.09) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.1/GamebaseSDK-JavaScript.zip)
 
 #### 기능 추가
 * 공통약관 기능 추가
