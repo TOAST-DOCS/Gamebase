@@ -1,5 +1,18 @@
 ## Game > Gamebase > リリースノート > iOS
 
+### 2.24.0(2021.06.29) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-iOS.zip)
+
+#### 機能改善/変更
+* 内部ローンチURL変更
+
+#### バグ修正
+* 約款詳細表示後、約款ポップアップが閉じないバグを修正
+
+### 2.23.0(2021.06.14) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-iOS.zip)
+
+#### 機能改善/変更
+* 外部SDKアップデート: TOAST iOS SDK(0.28.0), ToastGamebaseIAP SDK(0.12.0)
+
 ### 2.22.0(2021.05.25) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-iOS.zip)
 
 #### 機能改善/変更
