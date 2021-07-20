@@ -153,14 +153,6 @@ android {
 }
 ```
 
-### NDK Library
-
-#### Weibo IdP
-
-* You need to copy Weibo so library from the following path and add it in app/src/main/jniLibs folder.
-    * [https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/so](https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/so)
-    * Just use only necessary platforms.
-
 ### Resources
 
 #### Firebase Notification
@@ -192,6 +184,9 @@ android {
     <string name="default_web_client_id" translatable="false">000000000000-abcdabcdabcdabcdabcdabcdabcd.apps.googleusercontent.com</string>
 </resources>
 ```
+
+* In the case of Unreal build, it is distributed by Gamebase Unreal SDK which included empty google-service-json.xml files, so please change it to the appropriate value for the game information.
+    * If there is Content automatically creating xml in a similar form like EasyFirebase, there may be a build error due to resource duplication. At this time, remove the google-service-json.xml file.
 
 ### AndroidManifest.xml
 
@@ -364,46 +359,78 @@ android {
 
 > <font color="red">[주의]</font><br/>
 >
-> * 'queries' tag can be built only in Gradle 5.6.4 or later
->     * So in the environment of IDE where Gradle 5.6.4 or later is not supported, targetSdkVersion must be set to 29 or less.
-> * The following is the IDE where Gradle 5.6.4 or later is applied.
->     * Android Studio : 3.6.1 or later
->     * Unity : 2020.1 or later
->     * Unreal : Not supported
+> * “queries” tag cannot be recognized by the existing Android Gradle Plugin(AGP), so the build fails.
+> * Refer to the guide and table below and upgrade to the AGP version, which allows “queries” tag build.
+>     * [https://android-developers.googleblog.com/2020/07/preparing-your-build-for-package-visibility-in-android-11.html](https://android-developers.googleblog.com/2020/07/preparing-your-build-for-package-visibility-in-android-11.html)
+>     * If using a version lower than AGP 3.2.*, it needs to be upgraded to 3.3.3 or higher.
+>     * If using a version higher than AGP 4.1.0, the AGP does not need to be upgraded. 
+
+| If you are using<br>the Android Gradle<br>plugin version... | ...upgrade to: | Unity Editor |
+| --- | --- | --- |
+| 4.1.* | N/A (no upgrade needed)| \- |
+| 4.0.* | 4.0.1 | \- |
+| 3.6.* | 3.6.4 | 2020.1 ~ |
+| 3.5.* | 3.5.4 | \- |
+| 3.4.* | 3.4.3 | 2018.4.4 ~<br>2019.1.7 ~ |
+| 3.3.* | 3.3.3 | \- |
+| 3.2.* | Not supported | 2017.4.17 ~<br>2018.3 ~ 2018.4.3<br>2019.1.0 ~ 2019.1.6 |
+| 3.0.* | Not supported | 2018.2 |
+| 2.3.* | Not supported | 2017.3 ~ 2017.4.16<br>2018.1 |
+| 2.1.* | Not supported | Unity 5<br>2017.1 ~ 2017.2 |
 
 ```xml
-<queries>
-    <!-- [Facebook] Configurations begin -->
-    <package android:name="com.facebook.katana" />
-    <!-- [Facebook] Configurations end -->
+<manifest>
+    <!-- [Android11] settings start -->
+    <queries>
+        <!-- [All SDK] AppToWeb Authenthcation support start -->
+        <package android:name="com.android.chrome" />
+        <package android:name="com.chrome.beta" />
+        <package android:name="com.chrome.dev" />
+        <package android:name="com.sec.android.app.sbrowser" />
+        <!-- [All SDK] AppToWeb Authenthcation support end -->
 
-    <!-- [Payco/Hangame] Configurations begin -->
-    <package android:name="com.nhnent.payapp" />
-    <!-- [Payco/Hangame] Configurations end -->
+        <!-- [Facebook] Configurations begin -->
+        <package android:name="com.facebook.katana" />
+        <!-- [Facebook] Configurations end -->
 
-    <!-- [Line] Configurations begin -->
-    <package android:name="jp.naver.line.android" />
-    <intent>
-        <action android:name="android.intent.action.VIEW" />
-        <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="https" />
-    </intent>
-    <!-- [Line] Configurations end -->
+        <!-- [Payco/Hangame] Configurations begin -->
+        <package android:name="com.nhnent.payapp" />
+        <!-- [Payco/Hangame] Configurations end -->
 
-    <!-- [ONE store] Configurations begin -->
-    <intent>
-        <action android:name="com.onestore.ipc.iap.IapService.ACTION" />
-    </intent>
-    <intent>
-        <action android:name="android.intent.action.VIEW" />
-        <data android:scheme="onestore" />
-    </intent>
-    <!-- [ONE store] Configurations end -->
+        <!-- [Line] Configurations begin -->
+        <package android:name="jp.naver.line.android" />
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" />
+        </intent>
+        <!-- [Line] Configurations end -->
 
-    <!-- [Galaxy store] Configurations begin -->
-    <package android:name="com.sec.android.app.samsungapps" />
-    <!-- [Galaxy store] Configurations end -->
-</queries>
+        <!-- [Naver] Configurations begin -->
+        <package android:name="com.nhn.android.search" />
+        <!-- [Naver] Configurations end -->
+
+        <!-- [Weibo] Configurations begin -->
+        <package android:name="com.weico.international" />
+        <package android:name="com.sina.weibo" />
+        <!-- [Weibo] Configurations end -->
+
+        <!-- [ONE store] Configurations begin -->
+        <intent>
+            <action android:name="com.onestore.ipc.iap.IapService.ACTION" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="onestore" />
+        </intent>
+        <!-- [ONE store] Configurations end -->
+
+        <!-- [Galaxy store] Configurations begin -->
+        <package android:name="com.sec.android.app.samsungapps" />
+        <!-- [Galaxy store] Configurations end -->
+    </queries>
+    <!-- [Android11] settings end -->
+</manifest>
 ```
 
 ### Proguard
