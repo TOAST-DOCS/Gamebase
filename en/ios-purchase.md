@@ -338,10 +338,10 @@ In the case of auto-renewed consumable subscriptions, any missing purchases can 
 > It is available for iOS version 11 or later.
 > Supported in Gamebase 1.13.0 or later. (NHN Cloud IAP SDK 1.6.0 or later applied)
 
+The promotion payment can be processed through GamebaseEventHandler.
+Please refer to the guide below for how to process the promotion payment with GamebaseEventHandler.
+[Game > Gamebase > iOS SDK user guide > ETC > Gamebase Event Handler](./ios-etc/#purchase-updated)
 
-> `Caution`
-> It can be called only after a successful login.
-> After a successful login, it must be executed ahead of any other payment APIs.
 
 #### Caution for Usage
 If In-App Purchase (for App Store) is included to SDK, like Facebook SDK or Google AdMob SDK, and advance payment begins even before login to Gamebase, a payment popup may not show up. 
@@ -361,21 +361,6 @@ It provides a function to purchase in-app items from App Store apps.
 After a successful purchase of items, the items can be delivered using the handler listed below.
 
 The promotion IAP is displayed only when an additional setting is done in App Store Connect.
-
-
-```objectivec
-- (void)didSuccessLogin {
-	[TCGBPurchase setPromotionIAPHandler:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
-    	if ([TCGBGamebase isSuccessWithError:error] == YES) {
-            // To Purchase Item Succeeded
-        } else if (error.code == TCGB_ERROR_PURCHASE_USER_CANCELED) {
-            // User Canceled Purchasing Item
-        } else if (error) {
-            // To Purchase Item Failed cause of the error
-        }
-    }];
-}
-```
 
 
 #### How to Test App Store Promotion IAP
