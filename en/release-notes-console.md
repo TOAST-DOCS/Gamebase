@@ -3,7 +3,7 @@
 ### June 29, 2021 
 
 #### Bug Fixes
-* Analytics > 대시보드: 다운로드받은 엑셀 파일의 PU 누적값에 중복 PU가 포함되는 버그 수정
+* Analytics > Dashboard: Fixed a bug where the PU accumulation value of the downloaded Excel file included duplicate PUs
 
 ### May 25, 2021 
 
