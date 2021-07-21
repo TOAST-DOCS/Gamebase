@@ -1,17 +1,17 @@
 ## Game > Gamebase > Release Notes > iOS
 
-### 2.24.0(2021.06.29) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-iOS.zip)
+### 2.24.0(2021.06.29) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 내부 런칭 URL 변경
+#### Feature Updates
+* Change the internal launch URL
 
-#### 버그 수정
-* 약관 상세보기 후 약관 팝업이 안닫히는 버그 수정
+#### Bug Fixes
+* Fixed a bug where the terms pop-up did not close after viewing the terms and conditions details
 
-### 2.23.0(2021.06.14) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-iOS.zip)
+### 2.23.0(2021.06.14) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST iOS SDK(0.28.0), ToastGamebaseIAP SDK(0.12.0)
+#### Feature Updates
+* Updated the external SDK: TOAST iOS SDK(0.28.0), ToastGamebaseIAP SDK(0.12.0)
 
 ### 2.22.0(2021.05.25) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-iOS.zip)
 
