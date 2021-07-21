@@ -3,17 +3,17 @@
 ### 2.24.0(2021.06.29) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-Unity.zip)
 
 #### Feature Updates
-* 내부 런칭 URL 변경
+* Change the internal launch URL
 
 ### 2.23.0(2021.06.14) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-Unity.zip)
 
 #### Feature Updates
-* 외부 SDK 업데이트: TOAST Unity SDK(0.22.1)
-* Unity 2020.2 이후 버전에서 발생하는 Warning 제거
-* Standalone과 Unity Editor에서 초기화 속도 개선
+* External SDK Update: TOAST Unity SDK(0.22.1)
+* Removed warnings from Unity 2020.2 or later
+* Improved initialization speed in Standalone and Unity Editor
 
 #### Bug Fixes
-* 약관 동의를 했음에도 ShowTermsView API 호출하면 PushConfiguration 결과가 null이 아닌 문제 수정
+* Fixed a problem where the PushConfiguration result is not null when ShowTermsView API is called even after agreeing to the terms
 
 ### 2.22.0(2021.05.25) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-Unity.zip)
 
