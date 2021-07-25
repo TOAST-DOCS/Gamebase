@@ -3,7 +3,7 @@
 ### July 13, 2021 
 
 #### More Features
-* 모바일 신규 메뉴 오픈: Retention  
+* New mobile menu open: Retention    
 
 ### May 25, 2021 
 
