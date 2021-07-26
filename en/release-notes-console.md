@@ -1,5 +1,10 @@
 ## Game > Gamebase > Release Notes > Console
 
+### July 13, 2021 
+
+#### More Features
+* New mobile menu open: Retention    
+
 ### June 29, 2021 
 
 #### Bug Fixes

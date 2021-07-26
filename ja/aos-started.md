@@ -70,14 +70,8 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 repositories {
     // >>> For Gamebase SDK
     mavenCentral()
-    
-    //  >>> For the 'kotlin-gradle-plugin'
-    maven { url "https://plugins.gradle.org/m2/" }
 
     ...
-    
-    //  >>> For the 'kotlin-gradle-plugin'
-    maven { url "https://plugins.gradle.org/m2/" }
 
     // >>> [Hangame IdP]
     maven { url 'Hangame IdPの設定方法は、サポートへお問い合わせください。' }
@@ -98,9 +92,6 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-line:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-payco:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
-
-    // >>> [Weibo IdP]
-    implementation "io.github.sinaweibosdk:core:11.6.0@aar"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Purchase Adapter
@@ -122,7 +113,7 @@ android {
     defaultConfig {
         // >>> [Weibo IdP]
         ndk {
-            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+            abiFilters 'armeabi' // , 'armeabi-v7a', 'arm64-v8a'
         }
     }
     
