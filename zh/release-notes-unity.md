@@ -1,9 +1,24 @@
 ## Game > Gamebase > Release Notes > Unity
 
-### 2.22.0(2021.05.25) [SDK 다운로드](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-Unity.zip)
+### 2.24.0(2021.06.29) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Unity SDK(0.22.0)
+#### Feature Updates
+* Change the internal launch URL
+
+### 2.23.0(2021.06.14) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-Unity.zip)
+
+#### Feature Updates
+* External SDK Update: TOAST Unity SDK(0.22.1)
+* Removed warnings from Unity 2020.2 or later
+* Improved initialization speed in Standalone and Unity Editor
+
+#### Bug Fixes
+* Fixed a problem where the PushConfiguration result is not null when ShowTermsView API is called even after agreeing to the terms
+
+### 2.22.0(2021.05.25) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-Unity.zip)
+
+#### Feature Updates
+* Updated the external SDK: TOAST Unity SDK(0.22.0)
 
 ### 2.21.0(2021.04.13) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.0/GamebaseSDK-Unity.zip)
 

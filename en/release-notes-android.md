@@ -1,5 +1,16 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.24.0(2021.06.29) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-Android.zip)
+
+#### Feature Updates
+* Change the internal launch URL
+* Fixed incorrect wording in SDK attachments
+
+### 2.23.0(2021.06.14) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-Android.zip)
+
+#### Bug Fixes
+* Fixed the issue of the title of the suspended view details web view not being displayed
+
 ### 2.22.0(2021.05.25) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-Android.zip)
 
 #### Feature Updates
@@ -750,7 +761,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 * [SDK] Setting Tool 1.4.1
 	* Fixed the error in uploading existing setting data when GamebaseSettingTool was executed
 
-### June 25, 2019 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.4.2/GamebaseSDK-Android.zip)
+### June 25, 2019 
 
 #### Feature Added 
 * More Transfer Indicators 
@@ -781,7 +792,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 * [SDK] 2.4.1
 	* (iOS) Fixed the error in output of indicators due to missing of partial parameters during transfer of Analyticis indicators 
 	
-### May 28, 2019 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.4.0/GamebaseSDK-Android.zip)
+### May 28, 2019 
 
 #### Feature Updates 
 * Purchase for HANGAME mix Available for Japan 
@@ -809,7 +820,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 
     * Support available for LTV Grid ComplexColumns and excel downloading 
 
-### 2019.05.16 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.3.1/GamebaseSDK-Android.zip)
+### 2019.05.16 
 
 #### 기능 추가
 * [Console]
