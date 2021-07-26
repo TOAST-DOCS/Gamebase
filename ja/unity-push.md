@@ -7,7 +7,7 @@
 
 AndroidやiOSでPushを設定する方法は、次のドキュメントをご参考ください。<br/>
 
-* [Android Push Settings](aos-push#settings)<br/>
+* [Android Push Settings](aos-started/#firebase-notification)<br/>
 * [iOS Push Settings](ios-push#settings)
 
 

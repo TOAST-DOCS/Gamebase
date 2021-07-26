@@ -1524,21 +1524,26 @@ Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
-| Retrieve User Count Registered at Factor | GET    | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
-| Retrieve Score/Rank of a Single User     | GET    | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
-| Retrieve Scores/Ranks of Multiple Users  | POST   | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
-| Retrieve Entire Scores/Ranks of Range    | GET    | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
-| Search for users in certain ranks | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
-| Search for the rank of certain users, and search for the rank of top- & low-rank users | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} | /leaderboard/v2.0/appkeys/{appkey}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} |
-| Register Score of a Single User          | POST   | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
-| Register Score/ExtraData of a Single User | POST   | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
-| Register Scores of Multiple Users        | POST   | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
-| Register Scores/ExtraData of Multiple Users | POST   | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
-| Delete Leaderboard Information of a Single User | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| Get user count in factor<br>- Get user count in factor | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
+| Get total factor count <br>- Get total factor count | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factor-count | /leaderboard/v2.0/appkeys/{appKey}/factor-count |
+| Get factor info<br>- Get factor info<br>- Get multiple factor info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors | /leaderboard/v2.0/appkeys/{appKey}/factors |
+| Get single user info (score/ranking)<br>- Get single user info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
+| Get multiple user info (score/ranking)<br>- Get multiple user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
+| Get the entire info (score/ranking) by range<br>- Get multiple user info by range | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
+| Get selected rank user info<br>- Get selected rank user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| Get ranking of a specific user or upper and lower users<br>- Get multiple user info by pivot user | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} | /leaderboard/v2.0/appkeys/{appkey}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} |
+| Set single user score<br>- Set single user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
+| Set single user score with extra data<br>- Set single user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
+| Set multiple user score<br>- Set multiple user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
+| Set multiple user score with extra data<br>- Set multiple user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
+| Delete user leaderboard information<br>- Delete single user info<br>- Delete multiple user info | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+
+<br/>
 
 **For more information of the API, click the following link.**
 To find out about Leaderboard API specs mapped with Gamebase Wrapping API, see the following guide.
 Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Leaderboard API without setting the Leaderboard Appkey.
+
 
 [Leaderboard Guide](/Game/Leaderboard/en/api-guide/)
 
@@ -1580,10 +1585,15 @@ Gamebase provides **Wrapping** function for the Server API of the NHN Cloud Push
 |   | Modify | PUT | /tcgb-push/v1.3/apps/{appId}/reservations/{reservationId} | /push/v2.4/appkeys/{appkey}/reservations/{reservationId} |
 |   | Delete | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
 
+<br/>
 
 **For more information of the API, click the following link.**
 To find out about the Push API spec mapped with Gamebase Wrapping API, see the following guide.
 Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Push API without setting the Push Appkey.
+
+> [Notes]
+> User can use the gamebase userId value for the uid value exists in Push guide. When registering push token in client SDK, the user identifier is registered as gamebase userId.
+> When a single user allows all push notifications on multiple devices, the user will receive all pushes on multiple devices.
 
 [Push Guide](/Notification/Push/en/api-guide/)
 
@@ -1601,7 +1611,7 @@ X-Secret-Key: IgsaAP
 {
     "target" : {
         "type" : "UID",
-        "to": ["uid-1", "uid-2"]
+        "to": ["gamebase userId-1", "gamebase userId-2"]
     },
     "content" : {
         "default" : {

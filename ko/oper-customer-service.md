@@ -70,7 +70,7 @@ FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 �
 
 검색 조건에 맞는 고객 문의 내역을 검색합니다.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_01_202106.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_01_202107.png)
 
 **검색 조건**
 
@@ -87,6 +87,10 @@ FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 �
 - **접수일**: 유저의 문의 등록 일시
 - **처리일**: 담당자가 인입된 문의를 처리한 일시
 - **상태**: 인입된 문의의 현재 처리 상태
+    - 접수: 유저가 문의를 등록한 상태입니다. 기존 문의 글에 추가 문의를 남겨도 접수 상태로 변경됩니다.
+    - 보류: 담당자가 답변을 남길 때, 보류로 작성한 상태입니다. 추가로 확인이 필요한 경우 사용됩니다.
+    - 해결: 담당자가 답변을 남길 때, 해결로 작성한 상태입니다. 문의가 해결된 상태입니다.
+    - 완료: 담당자가 완료 처리 혹은 해결된 문의가 2주 지나면 자동으로 완료 상태가 됩니다.
 
 #### 1. 접수 유형 관리
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_02_202106.png)
@@ -109,8 +113,7 @@ FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 �
 
 ### Inquiry details
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_03_202106.png)
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_04_202106.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/gamebase_customer_inquiry_03_202107.png)
 
 유저에게 인입된 문의에 대하여 상세내용 확인 및 해당 문의에 대한 처리를 진행할 수 있습니다.
 문의를 처리한 후 유저가 추가로 문의를 할 수 있습니다.
@@ -121,8 +124,9 @@ FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 �
 이후 처리하기가 완료될 경우 문의 인입시 등록된 email을 통해 담당자가 작성한 내용이 유저에게 전달됩니다.
 이 때 답변 발송 항목을 통해 문의 처리 완료 시 해당 유저에게 Push알람이 전송되는지에 대한 여부를 확인할 수 있습니다.
 > [참고]
-> ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_06_202106.png)
+> ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/gamebase_customer_inquiry_06_202107.png)
 > 로그인된 유저가 문의를 등록했을 경우 해당 유저에 대한 정보가 한 화면에 조회되어 확인할 수 있습니다.
+> 우측 X 버튼을 클릭하여 창을 닫을 수 있으며, 유저 ID를 클릭시 다시 노출됩니다.
 > 기존 회원 메뉴에서 사용했던 기능과 동일하게 유저정보가 조회되므로 유저 문의대응시 필요한 정보를 한화면에서 편리하게 확인하실 수 있습니다.
 
 #### 1. 답변 발송 설정

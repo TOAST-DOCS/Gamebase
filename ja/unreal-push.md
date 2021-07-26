@@ -6,7 +6,7 @@
 
 AndroidやiOSでプッシュを設定する方法は、次の文書を参照してください。<br/>
 
-* [Android Push Settings](aos-push#settings)
+* [Android Push Settings](aos-started/#firebase-notification)
     * Firebaseプッシュを使用する時は、下記のガイドを参照してください。
         * 該当ガイドでUnityビルドの場合はUnrealの場合も同じように設定する必要があります。
             * Androidビルド時、res/values/google-services-json.xmlファイルが含まれている必要があるため、ガイドを参照して作成します。

@@ -254,12 +254,17 @@ Import the following header file to the ViewController to implement withdrawal.
 
 ### Widthdraw API
 
-Below shows an example of how a game user withdraws while logged-in.<br/><br/>
+Attempts account withdrawal while logged in.
 
-* When a user is successfully withdrawn, the user's data interfaced with a login IdP will be deleted.
-* The user can log in with the IdP again, and a new user's data will be created.
+* Upon successful withdrawal
+  * The game user’s data of the IdP logged in will be deleted.
+  * You can login again with the IdP. A new game user’s data will be created.
+  * All linked IdPs will be logged out.
 * It means user's withdrawal from Gamebase, not from IdP account.
-* After a successful withdrawal, a log-out from IdP will be tried.
+> <font color="red">[Caution]</font><br/>
+>
+> If multiple IdPs are linked, all IdP linkages will be unlinked and the user data in Gamebase will be deleted.
+>
 
 Following shows an exemplary withdrawal code with a click of the withdraw button.
 

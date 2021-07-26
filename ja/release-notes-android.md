@@ -1,5 +1,16 @@
 ## Game > Gamebase > リリースノート > Android
 
+### 2.24.0(2021.06.29) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-Android.zip)
+
+#### 機能改善/変更
+* 内部ローンチURL変更
+* SDK添付文書に誤って作成された文言を修正
+
+### 2.23.0(2021.06.14) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-Android.zip)
+
+#### バグ修正
+* 利用停止詳細表示Webビューのタイトルが表示されない問題を修正
+
 ### 2.22.0(2021.05.25) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-Android.zip)
 
 #### 機能改善/変更

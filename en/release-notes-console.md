@@ -3,7 +3,12 @@
 ### July 13, 2021 
 
 #### More Features
-* 모바일 신규 메뉴 오픈: Retention  
+* New mobile menu open: Retention    
+
+### June 29, 2021 
+
+#### Bug Fixes
+* Analytics > Dashboard: Fixed a bug where the PU accumulation value of the downloaded Excel file included duplicate PUs
 
 ### May 25, 2021 
 
@@ -677,7 +682,14 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 	* More Features: Downloading game resources, integrating Leaderboard and TAA indicators, transferring devices, and forced mapping 
 	* Updates: Added ServerPush listeners and detection of observer maintenance  
 	* Renewed games 
-
+		
+#### Bug Fixes 
+* [Console]	
+	* Management > Authority: Fixed failed modification of authority 
+	* For Mobile 
+		* Fixed the issue of keyword enabled by selecting Datepicker 
+		* Analytics: Fixed the issue of NRU value exposed for ARPPU 
+		
 ### September 24, 2019 
 
 #### Feature Updates 

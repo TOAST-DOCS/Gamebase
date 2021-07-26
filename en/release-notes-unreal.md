@@ -1,5 +1,11 @@
 ## Game > Gamebase > Release Notes
 
+### 2.19.2(2021.06.29) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.2/GamebaseSDK-Unreal.zip)
+
+#### Bug Fixes
+* Fixed a crash that occurs when the Close button is clicked while onEventCallback is not registered when calling the Image Notification ShowImageNotices API
+* Android setting tools -  Fixed a problem where Enable Hangame and Enable Weibo did not work properly
+
 ### 2.19.1(2021.02.09) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.1/GamebaseSDK-Unreal.zip)
 
 #### Bug Fixes

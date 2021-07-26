@@ -10,7 +10,7 @@
 
 検索条件にマッチしたクーポン発行履歴を検索します。
 
-![gamebase_ban_01_201812](http://static.toastoven.net/prod_gamebase/gamebase_coupon_01_201912.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_01_202106.png)
 
 **検索条件**
 
@@ -34,7 +34,7 @@
 ### Publish coupon
 
 クーポン発行検索画面で**登録**ボタンを押すとクーポンを発行できます。
-![gamebase_coupon_02_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_coupon_02_202004_ja.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_02_202106.png)
 
 #### (1)クーポンタイプ
 発行するクーポンのタイプを設定できます。
@@ -83,7 +83,7 @@
 発行したクーポン情報を修正するには詳細情報で**修正**ボタンをクリックします。
 発行済みのクーポンコードのタイプは修正できないため、新しいタイプのクーポンを発行するには発行情報を新たに登録する必要があります。
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_03_202011.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_03_202106.png)
 
 #### (1)クーポン名
 発行したクーポンの目的を把握できるクーポン名を入力します。
@@ -107,7 +107,7 @@
 #### (6)クーポン送信
 発行されたクーポン情報を利用してユーザーに直接クーポンを送信できる機能を提供します。
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_coupon_04_202003.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_04_202106.png)
 ##### (1)送信タイプ：送信タイプを選択します。 MMS/SMSをサポートし、MMSの場合はタイトルを追加で入力して送信する必要があります。
 
 ##### (2)テンプレート選択：NHN Cloud Cloud SMSサービスでテンプレートを登録している場合は、テンプレートを選択して送信できます。登録されたテンプレートがない場合は選択する必要がありません。
@@ -138,7 +138,8 @@
 
 #### 7. クーポン追加発行
 クーポンタイプがシリアルの場合、1回10万個ずつ、最大100個まで(初期発行数を含めて)追加で発行できます。
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_11_202011.png)
+
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_05_202106.png)
 
 #### 8. クーポン統計
 クーポン発行詳細情報画面の下部でSMS送信履歴を照会することができ、送信に関連する統計の照会およびファイルダウンロードが行えます。
@@ -156,15 +157,16 @@
 
 ### クーポンコード別照会
 クーポンコードを直接入力して、使用履歴を照会できます。
-![gamebase_coupon_04_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_coupon_04_202004_ja.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_06_202106.png)
 
 ### ユーザーID別照会
 ユーザーIDから該当ユーザーがクーポンを使用した履歴を照会できます。
-![gamebase_coupon_05_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_coupon_05_202004_ja.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_07_202106.png)
 
 ### クーポン名照会
 クーポン名およびその他の検索条件で使用履歴を照会できます。
-![gamebase_coupon_06_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_coupon_06_202004_ja.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_08_202106.png)
+
 (1) **クーポン名**：クーポン発行メニューから、発行したクーポンを選択できます。
 (2) **使用有無**：使用有無を選択して照会できる機能を提供します。現在は使用したクーポンのみ照会可能で、今後は別の状態の検索条件も提供する予定です。
 (3) **クーポン使用日**：期間を設定して該当期間に使用したクーポンのみを照会できる機能を提供します。
@@ -175,14 +177,15 @@
 ### クーポンアイテム照会
 登録されたクーポンアイテムの内訳を照会できます。
 フィルタを使い、アイテムID/アイテム名で検索することもできます。
-![gamebase_coupon_07_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_coupon_07_202004_ja.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_09_202106.png)
 
 ### クーポンアイテムの登録
 クーポンコード使用時に支給するアイテムを登録します。
 アイテムは1件ずつ入力するか、ファイルを通して登録できます。
 
 #### 1件登録
-![gamebase_coupon_08_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_coupon_08_202004_ja.png)
+
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_10_202106.png)
 
 ##### (1)アイテムID
 アプリ内に登録されたアイテムの固有IDを入力します。クーポンコード使用時、ここに入力された情報が実際のサーバーに結果データとして伝達されます。そのため、アイテムを提供することができるサーバーで区別することができる固有のアイテムIDを入力する必要があります。
@@ -193,7 +196,7 @@
 
 #### ファイルアップロード
 
-![gamebase_coupon_09_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_coupon_09_202004_ja.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_11_202106.png)
 一度に大量に登録したい時は、ファイルを利用して登録できます。
 ファイルを利用して登録する場合は、一度に最大10,000件まで登録することができます。テンプレートファイルをダウンロードした後、該当の形式に合わせて作成したものをアップロードすると、正常にファイルを利用してアイテム登録作業を行うことができます。
 
@@ -204,7 +207,7 @@
 >
 > アイテムID情報は変更できないため、アイテムIDを間違えた場合は、新しいアイテムIDで再度登録する必要があります。
 
-![gamebase_coupon_10_202004_ja](http://static.toastoven.net/prod_gamebase/gamebase_coupon_10_202004_ja.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_12_202106.png)
 
 #### (1)アイテム名
 区別することができるアイテム名を入力します。

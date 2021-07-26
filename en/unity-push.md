@@ -7,7 +7,7 @@ This document describes how to set push notifications for each platform.
 
 For Android or iOS users, refer to the following documents:<br/>
 
-* [Android Push Settings](aos-push#settings)<br/>
+* [Android Push Settings](aos-started/#firebase-notification)<br/>
 * [iOS Push Settings](ios-push#settings)
 
 

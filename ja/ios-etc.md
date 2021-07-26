@@ -318,7 +318,7 @@ localizedstring.jsonに定義されている形式は、次の通りです。
     void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
         if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES
             || [message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
-            TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gaembaseEventServerPushDataFromJsonString:message.data];
+            TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
             if (serverPushData != nil) {
                 //TODO: process server push
             }
