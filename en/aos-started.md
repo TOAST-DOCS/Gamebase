@@ -79,11 +79,6 @@ repositories {
     //  >>> For the 'kotlin-gradle-plugin'
     maven { url "https://plugins.gradle.org/m2/" }
 
-    // >>> [Weibo IdP]
-    // Download weibo sdk from here:
-    // https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/2019SDK/aar
-    flatDir { dirs 'The directory containing weibo sdk.' }
-
     // >>> [Hangame IdP]
     maven { url 'To learn how to set the Hangame IdP, please contact our Customer Center.' }
 }
@@ -105,7 +100,7 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
 
     // >>> [Weibo IdP]
-    implementation (name: 'openDefault-10.10.0', ext: 'aar')
+    implementation "io.github.sinaweibosdk:core:11.6.0@aar"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Purchase Adapter

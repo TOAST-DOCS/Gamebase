@@ -6,7 +6,7 @@ This document describes setting requirements to enable push notifications on eac
 
 Regarding push settings on Android or iOS, see the following documents. <br/>
 
-* [Android Push Settings](aos-push#settings)
+* [Android Push Settings](aos-started/#firebase-notification)
     * For a Firebase push, read the guide as below.
         * In the guide, Unity build setting must be applied the same for Unreal.  
             * For Android buildup, see the guide as reference so as to include the res/values/google-services-json.xml file. 

@@ -382,12 +382,6 @@ The promotion IAP is displayed only when an additional setting is done in App St
 
 E.g.) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 
-#### Process Promotional Event with GamebaseEventHandler
-
-Promotional purchase events can also be handled via GamebaseEventHandler. 
-See the guide on how to process a promotional purchase event via GamebaseEventHandler. 
-[Game > Gamebase > User Guide for iOS SDK > ETC > Gamebase Event Handler](./ios-etc/#purchase-updated)
-
 ### Error Handling
 
 | Error                                                      | Error Code | Description                                                  |

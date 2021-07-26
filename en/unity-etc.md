@@ -691,22 +691,14 @@ private void CheckNetwork(GamebaseResponse.Event.GamebaseEventObserverData obser
     {
         case GamebaseNetworkType.TYPE_NOT:
             {
-                // Network disconnected
+                // Network disconnected.
                 break;
             }
         case GamebaseNetworkType.TYPE_MOBILE:
-            {
-                // Network connected
-                break;
-            }
         case GamebaseNetworkType.TYPE_WIFI:
-            {
-                // Network connected
-                break;
-            }
         case GamebaseNetworkType.TYPE_ANY:
             {
-                // Network connected
+                // Network connected.
                 break;
             }
     }
@@ -718,13 +710,13 @@ private void CheckHeartbeat(GamebaseResponse.Event.GamebaseEventObserverData obs
     {
         case GamebaseErrorCode.INVALID_MEMBER:
             {
-                // You should to write the code necessary in game. (End the session.)
+                // You can check the invalid user session in here.
+                // ex) After transferred account to another device.
                 break;
             }
         case GamebaseErrorCode.BANNED_MEMBER:
             {
-                // The ban information can be found by using the GetBanInfo API.
-                // Show kickout message to user and need kickout in game.
+				// You can check the banned user session in here.
                 break;
             }
     }
@@ -736,12 +728,12 @@ private void CheckWebView(GamebaseResponse.Event.GamebaseEventObserverData obser
     {
         case GamebaseWebViewEventType.OPENED:
             {
-                // Webview open
+                // Webview opened.
                 break;
             }
         case GamebaseWebViewEventType.CLOSED:
             {
-                // Webview close
+                // Webview closed.
                 break;
             }
     }
