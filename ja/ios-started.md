@@ -49,7 +49,7 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 |  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.0 | Hangameログインをサポート | iOS9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weiboログインをサポート | iOS9 or later |
 | Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.28.0<br/> ToastGamebaseIAP 0.12.0 | ゲーム内決済をサポート | iOS9 or later |
-| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.27.2 | Pushをサポート | iOS9 or later |
+| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.28.0 | Pushをサポート | iOS9 or later |
 
 
 > <font color="red">[注意]</font><br/>
