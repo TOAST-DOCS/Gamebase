@@ -14,7 +14,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 >     * GALAXY Store 는 21(Lollipop, 5.0) 이상
 >         * 갤럭시 IAP SDK 의 minSdkVersion 은 18(OS 4.3) 이므로 이보다 작은 값을 설정하는 경우 빌드가 실패합니다.
 >         * 하지만 실제 결제를 위해서는 Checkout 서비스앱의 설치가 필요한데, Chekcout 서비스앱은 API 21(OS 5.0. Lollipop) 미만에서는 설치가 실패하므로 결제를 진행할 수 없습니다.
-> * Gradle Android Plugin 2.3.0 이상
+> * Android Gradle Plugin 3.2.0 이상
 > * 개발 환경: Android Studio
 
 ## Setting
@@ -61,10 +61,47 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 ### Gradle
 
+#### Using AndroidX
+
+* AndroidX 사용 선언을 빌드 설정에 추가하세요.
+    * Android Studio
+        ```groovy
+        # gradle.properties
+        # >>> [AndroidX]
+        android.useAndroidX=true
+        android.enableJetifier=true
+        ```
+    * Unity 2019.2 이하
+        ```groovy
+        // mainTemplate.gradle
+        ([rootProject] + (rootProject.subprojects as List)).each {
+            ext {
+                it.setProperty("android.useAndroidX", true)
+                it.setProperty("android.enableJetifier", true)
+            }
+        }
+        ```
+    * Unity 2019.3 이상
+        ```groovy
+        // gradleTemplate.properties
+        android.useAndroidX=true
+        android.enableJetifier=true
+        ```
+    * Unreal
+        ```xml
+        <gradleProperties>    
+          <insert>      
+            android.useAndroidX=true      
+            android.enableJetifier=true    
+          </insert>  
+        </gradleProperties>
+        ```
+
+#### Define Adapters
+
 * 사용할 Gamebase 버전, 사용할 인증, 결제, 푸시 모듈을 build.gradle 파일에 선언하세요.
 	* Gamebase 최신 버전은 [Maven Central(LINK)](https://repo1.maven.org/maven2/com/toast/android/gamebase/gamebase-sdk/) 에서 확인할 수 있습니다.
 	* **mavenCentral()** 저장소를 추가하세요.
-    * Android Studio 에서 빌드하는 경우, kotlin-gradle-plugin 을 위해  **'maven { url "https://plugins.gradle.org/m2/" }'** 저장소를 추가할 필요가 있습니다.
 
 ```groovy
 repositories {
@@ -105,7 +142,7 @@ dependencies {
 
 android {
     compileOptions {
-        // >>> [Line IdP]
+        // >>> [AndroidX]
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -115,26 +152,6 @@ android {
         ndk {
             abiFilters 'armeabi' // , 'armeabi-v7a', 'arm64-v8a'
         }
-    }
-    
-    // >>> If your AGP(Android Gradle Plugin) version is lower than 3.4.0,
-    //     the build will fail due to duplicate META-INF resources.
-    //     In this case, please add the following declaration.
-    packagingOptions {
-        // >>> Avoid duplication of 'coroutines.pro' from kotlinx-coroutines
-        exclude 'META-INF/proguard/coroutines.pro'
-
-        // >>> Avoid duplication of 'LICENSE.txt' from jackson
-        exclude 'META-INF/DEPENDENCIES.txt'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/notice.txt'
-        exclude 'META-INF/license.txt'
-        exclude 'META-INF/dependencies.txt'
-        exclude 'META-INF/LGPL2.1'
     }
 }
 ```
