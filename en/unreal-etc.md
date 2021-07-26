@@ -476,22 +476,14 @@ void Sample::CheckNetwork(const FGamebaseEventObserverData& data)
     {
         case EGamebaseNetworkType::Not:
             {
-                // Network disconnected
+                // Network disconnected.
                 break;
             }
         case EGamebaseNetworkType::Mobile:
-            {
-                // Network connected
-                break;
-            }
         case EGamebaseNetworkType::Wifi:
-            {
-                // Network connected
-                break;
-            }
         case EGamebaseNetworkType::Any:
             {
-                // Network connected
+                // Network connected.
                 break;
             }
     }
@@ -503,13 +495,13 @@ void Sample::CheckHeartbeat(const FGamebaseEventObserverData& data)
     {
         case EGGamebaseErrorCode::INVALID_MEMBER:
             {
-                // You should to write the code necessary in game. (End the session.)
+                // You can check the invalid user session in here.
+                // ex) After transferred account to another device.
                 break;
             }
         case EGGamebaseErrorCode::BANNED_MEMBER:
             {
-                // The ban information can be found by using the GetBanInfo API.
-                // Show kickout message to user and need kickout in game.
+                // You can check the banned user session in here.
                 break;
             }
     }

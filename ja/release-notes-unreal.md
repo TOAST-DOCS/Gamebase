@@ -1,5 +1,11 @@
 ## Game > Gamebase > リリースノート > Unreal
 
+### 2.19.2(2021.06.29) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.2/GamebaseSDK-Unreal.zip)
+
+#### バグ修正 
+* イメージ告知ShowImageNotices API呼び出し時にonEventCallbackを登録していない場合、閉じるボタンを押した時にクラッシュが発生する問題を修正
+* Android設定ツール - Enable Hangame、Enable Weiboが正常に動作しない問題を修正
+
 ### 2.19.1(2021.02.09) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.1/GamebaseSDK-Unreal.zip)
 
 #### バグ修正 

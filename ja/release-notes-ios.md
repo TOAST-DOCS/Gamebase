@@ -1,5 +1,18 @@
 ## Game > Gamebase > リリースノート > iOS
 
+### 2.24.0(2021.06.29) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-iOS.zip)
+
+#### 機能改善/変更
+* 内部ローンチURL変更
+
+#### バグ修正
+* 約款詳細表示後、約款ポップアップが閉じないバグを修正
+
+### 2.23.0(2021.06.14) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-iOS.zip)
+
+#### 機能改善/変更
+* 外部SDKアップデート: TOAST iOS SDK(0.28.0), ToastGamebaseIAP SDK(0.12.0)
+
 ### 2.22.0(2021.05.25) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-iOS.zip)
 
 #### 機能改善/変更
@@ -660,14 +673,6 @@ Gamebase SDK 2.6.0未満バージョンから2.6.0にアップグレードする
 	* 機能追加：ゲームリソースのダウンロード、 Leaderboard、TAA指標連携、端末移行機能、強制マッピング機能
 	* 改善/変更：ServerPushリスナーを追加、 Observerメンテナンス中かどうかの検知を追加
 	* ゲームリニューアル
-		
-
-#### バグ修正
-* [Console]	
-	* 管理 > 権限：権限の修正が正常にできない問題を修正
-	* モバイル
-		* Datepicker選択時、キーボードが有効化される現象を修正
-		* Analytics：ARPPU項目にNRU値が表示される現象を修正
 	
 ### 2019. 09. 24.
 

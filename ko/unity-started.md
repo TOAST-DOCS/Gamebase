@@ -9,7 +9,7 @@ Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 >
 > Unity 지원 버전
 >
-> * 2017.4.16 ~ 2021.1.11
+> * 2018.4.0 ~ 2021.1.15
 > * 하위 버전의 Unity 지원이 필요하면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
 
 #### Android
@@ -145,6 +145,8 @@ Lifecycle 관리를 위해 "com.toast.android.gamebase.activity.GamebaseMainActi
 > AndroidPlugin 개발에도 GamebaseMainActivity를 상속받아 만들어야 합니다. <br/>
 > GamebaseMainActivity는 GamebasePlugin.jar에 포함되어 있습니다. <br/>
 > launchMode는 singleTask로 해야 합니다.(Unity 기본 Activity도 singleTask로 고정됩니다.) 그렇지 않을 경우 앱을 처음 시작할 때 크래시가 발생할 수 있습니다.
+>
+> 해당 Lifecycle을 변경 시에는 Project Settings > Settings for Android > Publish Settings > Build > Custom Main Manifest를 활성화 하여 해당 AndroidManifest.xml에 수정해야 합니다.
 
 ```xml
 <manifest>

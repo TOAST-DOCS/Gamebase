@@ -361,12 +361,18 @@ void Sample::Logout()
 
 
 ## Withdraw
-Attempt to withdraw while it is logged in. 
+Attempts account withdrawal while logged in.
 
-* When it is successfully withdrawn, game user's data integrated with logged IdP will be removed. 
-* It is available to log in again with the IdP, which creates data of a new game user.   
-* Withdrawing from Gamebase does not mean withdrwaing from an IdP account. 
-* When it is successfully withdrawn, logout from IdP is attempted. 
+* Upon successful withdrawal
+  * The game user’s data of the IdP logged in will be deleted.
+  * You can login again with the IdP. A new game user’s data will be created.
+  * All linked IdPs will be logged out.
+* It means user's withdrawal from Gamebase, not from IdP account.
+
+> <font color="red">[Caution]</font><br/>
+>
+> If multiple IdPs are linked, all IdP linkages will be unlinked and the user data in Gamebase will be deleted.
+>
 
 **API**
 

@@ -1,9 +1,22 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.24.0(2021.06.29) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-iOS.zip)
+
+#### Feature Updates
+* Change the internal launch URL
+
+#### Bug Fixes
+* Fixed a bug where the terms pop-up did not close after viewing the terms and conditions details
+
+### 2.23.0(2021.06.14) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-iOS.zip)
+
+#### Feature Updates
+* Updated the external SDK: TOAST iOS SDK(0.28.0), ToastGamebaseIAP SDK(0.12.0)
+
 ### 2.22.0(2021.05.25) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-iOS.zip)
 
 #### Feature Updates
-* 외부 SDK 업데이트: TOAST iOS SDK(0.27.2), Hangame iOS SDK(1.6.0)
+* Updated the external SDK: TOAST iOS SDK(0.27.2), Hangame iOS SDK(1.6.0)
 
 ### 2.21.2(2021.04.27) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.2/GamebaseSDK-iOS.zip)
 
@@ -649,7 +662,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
   * Analytics > Real-time Monitoring: More targets for push delivery 
 
 
-### October 15, 2019 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.5.2/GamebaseSDK-iOS.zip)
+### October 15, 2019 
 
 #### Feature Updates 
 * [SDK] 2.5.2 
@@ -680,7 +693,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 		* Fixed the issue of keyword enabled by selecting Datepicker 
 		* Analytics: Fixed the issue of NRU value exposed for ARPPU 
 		
-### September 10, 2019 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.5.1/GamebaseSDK-iOS.zip)
+### September 10, 2019 
 
 #### More Features
 * [Console]

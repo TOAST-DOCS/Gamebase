@@ -377,16 +377,17 @@ private static void onLogout(final Activity activity) {
 
 ## Withdraw
 
-Below shows an example of how a game user withdraws while logged-in.<br/><br/>
+Attempts account withdrawal while logged in.
 
-* When a user is successfully withdrawn, the user's data interfaced with a login IdP will be deleted.
-* The user can log in with the IdP again, and a new user's data will be created.
+* Upon successful withdrawal
+  * The game user’s data of the IdP logged in will be deleted.
+  * You can login again with the IdP. A new game user’s data will be created.
+  * All linked IdPs will be logged out.
 * It means user's withdrawal from Gamebase, not from IdP account.
-* After a successful withdrawal, a logout from IdP will be tried.
 
 > <font color="red">[Caution]</font><br/>
 >
-> When a user has many interfaced IdPs, all IdP interfaces will be removed and user data of Gamebase will be deleted.
+> If multiple IdPs are linked, all IdP linkages will be unlinked and the user data in Gamebase will be deleted.
 >
 
 **API**

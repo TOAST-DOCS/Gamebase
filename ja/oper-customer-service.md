@@ -70,7 +70,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 
 検索条件に合った顧客お問い合わせ履歴を検索します。
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_01_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_01_202106.png)
 
 **検索条件**
 
@@ -78,6 +78,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 - **受付タイプ**：(必須)お問い合わせの際にユーザーが選択した受付タイプ項目を選択します。受付 / 処理完了項目が存在します。
 - **受付期間**：(必須)選択した期間に入信したお問い合わせを照会します。
 - **ユーザーID**：特定ユーザーのお問い合わせを検索したい場合にユーザーIDを入力します。
+- **お問い合わせタイトル**：特定タイトルのお問い合わせを検索したい場合は、そのお問い合わせタイトルを入力します
 
 **検索結果**
 
@@ -88,7 +89,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 - **状態**：入信したお問い合わせの現在の処理状態
 
 #### 1. 受付タイプ管理
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_02_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_02_202106.png)
 
 ユーザーがお問い合わせの登録時に選択できる受付タイプ項目を管理できます。
 サポートする言語ごとに登録が可能で、各項目の最大文字数は20文字です。
@@ -97,7 +98,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 > サポート言語選択状況は、アプリ - サポート設定で確認できます。
 
 #### 2. 返信送信設定
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202011.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202106.png)
 
 お問い合わせに対する処理が完了した場合、ユーザーにPushメッセージで通知を送信したい場合にこの機能を設定できます。
 使用したい場合は、上部にある「送信」をチェックすると、処理完了時、ユーザーに完了Pushアラームが送信されます。
@@ -108,22 +109,24 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 
 ### Inquiry details
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_03_202009.png)
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_04_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_03_202106.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_04_202106.png)
 
 ユーザーからのお問い合わせの詳細内容確認し、お問い合わせの処理を行うことができます。
+お問い合わせを処理した後、ユーザーが追加でお問い合わを行うことができます。
+お問い合わせを処理した後に**処理完了**ボタンをクリックしてお問い合わせ状態を処理完了状態に変更できます。処理完了状態のお問い合わせにはユーザーがお問い合わせを行うことはできません。
 
 テンプレートを選択する場合、サポート - 返信テンプレートメニューで設定したテンプレートの内容を返信ですぐに使用できます。テンプレートの内容の他にText editorを利用して自由に返信を作成してユーザーに伝達できます。
 ユーザーへの返信の際、ファイルの添付が必要な場合、最大10MB以内のファイルを5個まで添付してユーザーに伝達できます。
 以降の処理が完了した場合、お問い合わせの際に登録したemailへ担当者が作成した内容がユーザーに送信されます。
 この時、返信項目を利用してお問い合わせ処理を完了時、該当ユーザーにPushアラームが送信されるかどうかを確認できます。
 > [参考]
-> ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_06_202011.png)
+> ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_06_202106.png)
 > ログインしたユーザーがお問い合わせを登録した場合、該当ユーザーの情報が一画面で照会されて確認できます。
 > 既存会員メニューで使用していた機能と同じようにユーザー情報が照会されるため、ユーザーお問い合わせ対応時に必要な情報を一画面で便利に確認できます。
 
 #### 1. 返信送信設定
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202106.png)
 
 お問い合わせの処理が完了した時、ユーザーにPushメッセージを利用して通知を送信したい場合に、この機能を設定できます。
 使用したい場合は、上部にある「送信」をチェックすると、処理完了時、ユーザーに完了Pushアラームが送信されます。
@@ -144,7 +147,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 
 登録されているFAQ項目を検索できます。
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_07_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_07_202106.png)
 
 **検索条件**
 
@@ -162,7 +165,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 - **状態**：FAQが現在表示されているかどうかを表示します。表示中 / 非表示状態があります。
 
 #### FAQタイプ管理
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_09_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_09_202106.png)
 
 FAQ登録または修正時に選択できるタイプを管理できます。
 サポートする言語ごとに登録が可能で、各項目の最大文字数は20文字です。
@@ -174,7 +177,7 @@ FAQ登録または修正時に選択できるタイプを管理できます。
 FAQを登録したり、既に登録されているFAQ情報を修正できます。
 登録または修正時に変更できる項目は全て同じです。
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_08_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_08_202106.png)
 
 #### 1. 状態
 登録または修正するFAQの表示状態を選択します。
@@ -205,7 +208,7 @@ Text Editorを利用して自由な形式で返答を入力することができ
 
 登録されている告知事項リストを検索できます。
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_10_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_10_202106.png)
 
 **検索条件**
 
@@ -223,7 +226,7 @@ Text Editorを利用して自由な形式で返答を入力することができ
 - **状態**：告知事項の現在の状態を表示します。予定 / 表示中 / 終了状態があります。
 
 #### 頭文言管理
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_11_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_11_202106.png)
 
 告知事項の登録または修正時に選択できる頭文言を管理できます。
 サポートする言語ごとに登録が可能で、各項目の最大文字数は20文字です。
@@ -235,8 +238,7 @@ Text Editorを利用して自由な形式で返答を入力することができ
 新しい告知事項を登録したり、既に登録されている告知事項情報を修正できます。
 登録または修正時に変更できる項目は全て同じです。
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_15_202009.png)
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_16_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_15_202106.png)
 
 #### 1. 表示日
 告知事項を表示したい期間を設定します。
@@ -270,7 +272,7 @@ Text Editorを利用して自由な形式で返答を入力することができ
 
 ### Search Template
 現在登録されているテンプレートリストを表示し、右上に検索ワードを入力して現在登録されているテンプレートを検索できます。
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_12_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_12_202106.png)
 
 **結果**
 - **テンプレート名**：お問い合わせの処理k時にテンプレート項目に表示され、選択できるテンプレート名です。
@@ -281,7 +283,7 @@ Text Editorを利用して自由な形式で返答を入力することができ
 返答テンプレートを新たに登録したり、登録されている返答テンプレート情報を修正できます。
 登録または修正時に変更できる項目は全て同じです。
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_13_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_13_202106.png)
 
 #### 1. テンプレート名
 お問い合わせを処理する時に、テンプレート選択項目に表示されるテンプレート名を入力します。
@@ -296,7 +298,7 @@ Text editorを利用して自由に入力でき、入力された内容がその
 
 テスト送信機能が提供され、この機能を利用して現在入力したテンプレートを利用してユーザーにどのような形式で送信されるのかを事前に確認できます。
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_14_202011.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_14_202106.png)
 
 > [参考]
 > 発信アドレスに設定されたメールがSPFレコードが設定されていない場合は、メールがスパム処理されることがあります。 

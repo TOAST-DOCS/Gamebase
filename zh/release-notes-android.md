@@ -1,13 +1,24 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.24.0(2021.06.29) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-Android.zip)
+
+#### Feature Updates
+* Change the internal launch URL
+* Fixed incorrect wording in SDK attachments
+
+### 2.23.0(2021.06.14) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-Android.zip)
+
+#### Bug Fixes
+* Fixed the issue of the title of the suspended view details web view not being displayed
+
 ### 2.22.0(2021.05.25) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-Android.zip)
 
 #### Feature Updates
-* 외부 SDK 업데이트: TOAST Android SDK(0.25.0), Hangame Android SDK(1.4.0)
+* Updated the external SDK: TOAST Android SDK(0.25.0), Hangame Android SDK(1.4.0)
 
 #### Bug Fixes
-* 로그아웃 후 다른 유저 ID로 로그인했을 때 간헐적으로 Google Play 스토어 결제가 성공했음에도 실패가 반환되는 오류 수정
-* 앱 패키지 명에 대문자가 포함된 경우 Sign In with Apple 로그인이 실패하는 오류 수정
+* The following error has been fixed: When a user logs out and logs in again with another user ID, a payment at Google Play Store is successful but the return value is sometimes "Failed."
+* The following error has been fixed: When the name of an app package contains a capital letter, the "Sign In with Apple" log-in fails.
 
 ### 2.21.1(2021.04.19) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.1/GamebaseSDK-Android.zip)
 
@@ -750,7 +761,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 * [SDK] Setting Tool 1.4.1
 	* Fixed the error in uploading existing setting data when GamebaseSettingTool was executed
 
-### June 25, 2019 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.4.2/GamebaseSDK-Android.zip)
+### June 25, 2019 
 
 #### Feature Added 
 * More Transfer Indicators 
@@ -781,7 +792,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 * [SDK] 2.4.1
 	* (iOS) Fixed the error in output of indicators due to missing of partial parameters during transfer of Analyticis indicators 
 	
-### May 28, 2019 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.4.0/GamebaseSDK-Android.zip)
+### May 28, 2019 
 
 #### Feature Updates 
 * Purchase for HANGAME mix Available for Japan 
@@ -809,7 +820,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 
     * Support available for LTV Grid ComplexColumns and excel downloading 
 
-### 2019.05.16 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.3.1/GamebaseSDK-Android.zip)
+### 2019.05.16 
 
 #### 기능 추가
 * [Console]

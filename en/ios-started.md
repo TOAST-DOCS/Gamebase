@@ -37,7 +37,7 @@ Then, include corresponding SDK files to a target of your project.
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.27.2 | Includes the interface and key logic of Gamebase | iOS9 or later
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.28.0 | Includes the interface and key logic of Gamebase | iOS9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Supports Facebook login | iOS9 or later |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.4.0 | Supports Payco login | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.0.10 | Supports Naver login | iOS9 or later |
@@ -48,8 +48,8 @@ Then, include corresponding SDK files to a target of your project.
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS9 or later<br/>arm64 지원<br/> |
 |  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.0 | Supports Hangame login | iOS9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Supports Weibo login | iOS9 or later |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.27.2<br/> ToastGamebaseIAP 0.11.0 | Supports in-game purchase | iOS9 or later |
-| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.27.2 | Supports Push | iOS9 or later |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.28.0<br/> ToastGamebaseIAP 0.12.0 | Supports in-game purchase | iOS9 or later |
+| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.28.0 | Supports Push | iOS9 or later |
 
 
 > <font color="red">[Caution]</font><br/>

@@ -70,7 +70,7 @@ You can also set the submission types necessary to register a user inquiry, and 
 
 Searches for the customer inquiry that matches the search conditions.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_01_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_01_202106.png)
 
 **Search conditions**
 
@@ -78,6 +78,7 @@ Searches for the customer inquiry that matches the search conditions.
 - **Submission type**: (required) Selects the submission type selected by the user upon user inquiry. There are Submit/Completed items.
 - **Submission period**: (required) Shows the inquiries received during the selected period.
 - **User ID**: Enter the user ID if you want to search for an inquiry made by a particular user.
+- **Inquiry Title**: Enter the inquiry title to search for an inquiry with a specific title.
 
 **Search results**
 
@@ -88,7 +89,7 @@ Searches for the customer inquiry that matches the search conditions.
 - **Status**: Current status of the received inquiry
 
 #### 1. Manage submission type
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_02_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_02_202106.png)
 
 You can manage the submission type which can be selected by users when registering inquiries.
 These can be registered in any of the supported languages, and the maximum length is 20 characters for each type.
@@ -97,7 +98,7 @@ The list is shown to the user in the order of appearance, and this order can be 
 > The currently selected supported language can be checked in App - Customer Center settings.
 
 #### 2. Send reply settings
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202011.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202106.png)
 
 You can enable this function when you want to send the Push message to the user when the inquiry has been processed.
 If you decide to use it, check Send at the top to also send the completion push notification to the user when the inquiry has been processed.
@@ -108,22 +109,24 @@ As for the global service, you can additionally register the language you want a
 
 ### Inquiry details
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_03_202009.png)
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_04_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_03_202106.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_04_202106.png)
 
 You can check details and process inquiries regarding the inquiries sent by users.
+After processing the inquiry, the user can make additional inquiries.
+After processing the inquiry, click the **Complete** button to change the inquiry status to Processed. User can no longer leave an inquiry when they have been Processed.
 
 If you decided to use a template, you can use a template content configured in the Customer Center - Reply Template menu right for the reply. You can also use the Text Editor in addition to the template to customize your answer to the user.
 If you need to attach files when answering the user inquiry, you can attach up to 5 files (under 10 MB).
 And when the inquiry has been processed, the answer written by the customer representative is sent to the user's email address which was entered by the user to submit the inquiry.
 At this point, you can check if the push notification is being sent to the user when the inquiry has been processed by checking the items with the reply sent.
 > [Note]
-> ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_06_202011.png)
+> ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_06_202106.png)
 > If a logged-in user registered the inquiry, the information about the user is displayed in a single view.
 > The user information is viewed as similar to the functions from the previous member menu, you can easily check the necessary information when having to respond to the user inquiry.
 
 #### 1. Send Reply settings
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202106.png)
 
 You can enable this function when you want to send the Push message to the user when the inquiry has been processed.
 If you decide to use it, check Send at the top to also send the completion push notification to the user when the inquiry has been processed.
@@ -144,7 +147,7 @@ You can manage the FAQ provided by the customer center page.
 
 You can search the registered FAQs.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_07_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_07_202106.png)
 
 **Search conditions**
 
@@ -162,7 +165,7 @@ You can search the registered FAQs.
 - **Status**: Shows whether FAQ is currently being displayed. It is either Exposed or Not exposed.
 
 #### Manage FAQ type
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_09_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_09_202106.png)
 
 You can manage the type available for selection when registering or modifying the FAQ.
 These can be registered in any of the supported languages, and the maximum length is 20 characters for each type.
@@ -174,7 +177,7 @@ The list is shown in the order of appearance, and this order can be changed with
 You can register an FAQ or modify the info of an FAQ that is already registered.
 What can be changed during registration or modification is the same.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_08_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_08_202106.png)
 
 #### 1. Status
 Selects the exposure status of the FAQ you want to register or modify.
@@ -205,7 +208,7 @@ You can manage the notices to be provided by the customer center page.
 
 You can search the registered notices list.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_10_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_10_202106.png)
 
 **Search conditions**
 
@@ -223,7 +226,7 @@ You can search the registered notices list.
 - **Status**: Shows the current progress of the notice. You can select one from To Be Exposed / Currently Exposed / Finished.
 
 #### Manage Header
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_11_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_11_202106.png)
 
 You can manage the header which can be selected when registering or modifying the notice.
 These can be registered in any of the supported languages, and the maximum length is 20 characters for each type.
@@ -235,8 +238,7 @@ The list is shown in the order of appearance, and this order can be changed with
 You can register a new notice or modify the notice information which has already been registered.
 What can be changed during registration or modification is the same.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_15_202009.png)
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_16_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_15_202106.png)
 
 #### 1. Date of exposure
 Set the period to expose the notice.
@@ -270,7 +272,7 @@ To reduce repetitive typing of the same text while processing customer inquiries
 
 ### Search Template
 It shows the list of the currently registered templates, and you can enter the search term in the upper-right corner to search for the currently registered template.
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_12_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_12_202106.png)
 
 **Results**
 - **Template name**: Name of the template which is exposed in the template list for selection when processing user inquiries.
@@ -281,7 +283,7 @@ It shows the list of the currently registered templates, and you can enter the s
 You can register a new reply template or modify the information of the previously registered reply template.
 What can be changed during registration or modification is the same.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_13_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_13_202106.png)
 
 #### 1. Template name
 Enter the name of the template which will be exposed in the template list when processing user inquiries.
@@ -296,7 +298,7 @@ A default template is provided when initially activated, and you can edit it as 
 
 Test sending function is provided, which can be utilized for using the currently entered template to preview how it is being sent to the actual user.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_14_202011.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_14_202106.png)
 
 > [Note]
 > If the email in the sender address does not have any SPF record setup, the email can be considered spam. 

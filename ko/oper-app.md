@@ -94,7 +94,7 @@ Idp별 자세한 설정 방법은 [Authentication Information](#authentication-i
 * **연락처** : 고객센터 연락처를 입력합니다. 이 정보는 Gamebase SDK를 통해 추가로 정보를 전달받을 수 있습니다.
 
 #### 2. Gamebase 제공 고객센터
-![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_20_202009.png)
+![gamebase_app_20_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_20_202009.png)
 Gamebase에서 제공하는 고객센터 기능을 사용하고자 할 때 설정합니다.
 설정 항목은 아래와 같습니다.
 * **고객센터 URL** : 고객에게 문의를 인입받을 수 있는 페이지 정보를 제공합니다. 해당 URL은 Gamebase 제공 고객센터를 선택할 경우 자동으로 생성되며 이 URL을 통해 고객의 문의를 별도의 웹페이지를 통해 전달받을 수 있습니다.
@@ -103,7 +103,7 @@ Gamebase에서 제공하는 고객센터 기능을 사용하고자 할 때 설�
 * **기본 언어** : 지원 언어에서 선택한 항목 중 고객센터 내에서 기본으로 제공할 언어를 선택합니다.
 
 #### 3. NHN Cloud 조직 상품(Online Contact)
-![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_21_202102.png)
+![gamebase_app_21_202107.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_21_202107.png)
 NHN Cloud에서 조직별로 제공되는 Online contact 상품을 사용하는 경우 설정합니다.
 설정 항목은 아래와 같습니다.
 * **고객센터 URL** : NHN Cloud Online Contact에서 제공되는 주소를 입력합니다. 해당정보는 NHN Cloud Online Contact에 접속하여 확인할 수 있습니다.
@@ -127,20 +127,20 @@ NHN Cloud에서 조직별로 제공되는 Online contact 상품을 사용하는 
 >
 > 3) NHN Cloud Online contact 고객센터 페이지 주소를 획득하여 고객센터 URL에 입력
 > 헬프센터 -> 하위메뉴 선택 -> 우측 위 헬프센터 바로가기 클릭
-> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_26_202009.png)
+> ![gamebase_app_26_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_26_202009.png)
 > 브라우저 상단에 표시된 주소를 Gamebase 고객센터 URL 항목에 입력
 > ![gamebase_app_27_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_27_202102.png)
 >
 
 ### Test Device
 
-![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_02_201912.png)
+![gamebase_app_02_201912.png](http://static.toastoven.net/prod_gamebase/gamebase_app_02_201912.png)
 테스트 단말기로 등록되면 Gamebase를 사용하는 앱이 점검 중이어도 정상적으로 게임에 접근할 수 있습니다.
 테스트 단말기를 등록하려면 **Device Key** 또는 **IP** 정보를 등록해야 합니다. 직접 입력하거나 **게임유저 ID**를 조회하여 등록할 수 있습니다.
 점검시 게임플레이가 가능할 수 있도록 하거나 단말기별 Debug Log 출력 여부를 설정하여 테스트 단말기를 관리할 수 있습니다.
 더 이상 사용하지 않는 테스트 단말기를 삭제할 수도 있습니다.
 접속 이력 확인버튼을 누르면 해당 기기를 통한 **점검이 진행되는 동안의 접속 시간 및 상세 접속 로그**를 확인할 수 있습니다.
-![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_09_201912.png)
+![gamebase_app_09_201912.png](http://static.toastoven.net/prod_gamebase/gamebase_app_09_201912.png)
 
 > [참고]
 > 테스트 단말기는 최대 100개까지만 등록할 수 있습니다.
@@ -153,8 +153,8 @@ NHN Cloud에서 조직별로 제공되는 Online contact 상품을 사용하는 
 
 조회 화면에서 **등록** 버튼을 클릭하면 테스트 단말기를 등록할 수 있는 화면이 나타납니다. **Device Key**를 직접 입력하거나 **게임유저 ID**를 검색해 테스트 단말기를 등록할 수 있습니다.
 
-![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_10_201912.png)
-![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_11_201912.png)
+![gamebase_app_10_201912.png](http://static.toastoven.net/prod_gamebase/gamebase_app_10_201912.png)
+![gamebase_app_11_202107.png](http://static.toastoven.net/prod_gamebase/gamebase_app_11_202107.png)
 
 **(1) 게임유저 ID를 통한 등록**
 
@@ -172,7 +172,7 @@ NHN Cloud에서 조직별로 제공되는 Online contact 상품을 사용하는 
 
 #### (3) 삭제
 
-![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_12_201912.png)
+![gamebase_app_12_201912.png](http://static.toastoven.net/prod_gamebase/gamebase_app_12_201912.png)
 
 테스트 단말기 조회 화면에서 삭제하고자 하는 테스트 단말기를 체크한 후 왼쪽 위의 삭제 버튼을 클릭하면 테스트 단말기 정보가 삭제됩니다. 삭제된 정보는 복구할 수 없으므로 삭제 전에 다시 한번 확인한 후 삭제하시기 바랍니다.
 
