@@ -3,6 +3,24 @@
 ## Additional Features
 以下描述Gamebase支持的附加功能。
 
+### IDFA
+
+* 返还终端机的广告标识符值。 
+
+**API**
+
+```objectivec
++ (NSString *)idfa;
+```
+
+> <font color="red">[注意]</font><br/>
+>
+> 如果在iOS 14以上版本上请求IDFA值，则需要获得用户权限。
+> 需要设定用户权限时，在info.plist中设定您要显示的内容。 
+> 请在info.plist中设定”Privacy - Tracking Usage Description”。
+
+
+
 
 ### Device Language
 
@@ -84,9 +102,9 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 ```
 
 
-#### 在Gamebase初始化时设置显示语言 
+#### 初始化Gamebase时设定显示语言 
 
-在Gamebase初始化时可以设置显示语言。
+初始化Gamebase时可以设定显示语言。
 
 **API**
 
@@ -114,9 +132,9 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
     }
 ```
 
-#### 设置显示语言
+#### 设定显示语言
 
-Gamebase初始化时可更改输入的 Display Language。
+初始化Gamebase时可更改输入的Display Language。
 
 **API**
 
@@ -132,9 +150,9 @@ Gamebase初始化时可更改输入的 Display Language。
 }
 ```
 
-#### 查看显示语言
+#### 查询显示语言
 
-可以查询当前使用的显示语言。
+可以查看当前使用的显示语言。
 
 **API**
 
@@ -153,9 +171,9 @@ Gamebase初始化时可更改输入的 Display Language。
 
 #### 添加新语言集
 
-如果要使用Gamebase提供的默认语言(ko, en)外其他语言，将值添加到Gamebase.bundle 文件的 Resource文件夹中 **localizedstring.json** 文件。
+如果要使用Gamebase提供的默认语言(ko, en)以外的其他语言，将值添加到Gamebase.bundle文件的Resource文件夹中的**localizedstring.json**文件。
 
-localizedstring.json中定义的格式如下。
+在localizedstring.json中定义的格式如下。
 
 ```json
 {
@@ -180,7 +198,7 @@ localizedstring.json中定义的格式如下。
 }
 ```
 
-如果需要添加另一种语言集，可在localizedstring.json文件中添加 `"${语言代码}":{"key":"value"}` 形式的值。
+如果需要添加另一种语言集，可在localizedstring.json文件中添加”"${语言代码}":{"key":"value"}”形式的值。
 
 ```json
 {
@@ -209,15 +227,15 @@ localizedstring.json中定义的格式如下。
 }
 ```
 
-如果在上述JSON文件的格式"${语言代码}":{ }中缺少 key，则会自动输入`在设备上设置的语言`或`en`。
+如果在上述JSON文件的格式"${语言代码}":{ }中缺少key，则会自动输入在设备上设置的语言或”en”。
 
 #### 显示语言优先级
 
 通过初始化或SetDisplayLanguageCode API设置的Display Language时，最终应用的Display Language可以与输入的值不同。
 
 1. 确认输入的languageCode是否在localizedstring.json文件中定义。
-2. 初始化Gamebase时，确认在localizedstring.json文件中定义了设备上设置的语言代码（即使在初始化后更改了设备上设置的语言，此值也将保留）。
-3. 自动设置Display Language的默认值为`en`。
+2. 初始化Gamebase时，确认在localizedstring.json文件中是否定义了设备上设置的语言代码（即使在初始化后更改了设备上设置的语言，此值也将保留）。
+3. 自动设置Display Language的默认值为”en”。
 
 
 ### Country Code
@@ -229,7 +247,7 @@ localizedstring.json中定义的格式如下。
 
 * 返回USIM中记录的国家代码。
 * 即使USIM中记录的是错误的国家代码也将不进行补充确认就直接返回。
-* 若值为空，则返回’ZZ’。
+* 若值为空，则返回”ZZ”。
 
 **API**
 
@@ -255,9 +273,9 @@ localizedstring.json中定义的格式如下。
 * country API按照如下顺序运行。
     1.确认USIM中记录的国家代码，若存在值，则直接返回，不另行确认。
     2.若USIM国家代码为空值，确认终端机国家代码，若存在值，则直接返回，不另行确认。
-    3.若USIM、终端机国家代码均为空值，则返回’ZZ’。
+    3.若USIM、终端机国家代码均为空值，则返回”ZZ”。
 
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
+![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
 **API**
 
@@ -329,7 +347,7 @@ localizedstring.json中定义的格式如下。
 ```
 
 * Category在GamebaseEventCategory类中定义。
-* 事件大体分为ServerPush、Observer、Purchase、Push，并按照各Category, 按如下列表的方式，将GamebaseEventMessage.data转换为VO。
+* 事件大体分为ServerPush、Observer、Purchase及Push，并按各Category, 按如下列表的方式，将GamebaseEventMessage.data转换为VO。
 
 | Event种类 | GamebaseEventCategory | VO转换方法 | 备注 |
 | --------- | --------------------- | ----------- | --- |
@@ -345,9 +363,9 @@ localizedstring.json中定义的格式如下。
 * 是从Gamebase服务器向客户端终端机传送的消息。
 * Gamebase支持的Server Push Type如下。
 	* kTCGBServerPushAppKickout
-    	* 如果在TOAST Gamebase控制台**Operation > Kickout**中注册Kickout ServerPush消息，则从与Gamebase连接的所有客户端接收Kickout消息。
+    	* 如果在NHN Cloud Gamebase控制台**Operation > Kickout**中注册Kickout ServerPush消息，则从与Gamebase连接的所有客户端接收Kickout消息。
     * kTCGBServerPushTransferKickout
-    	* 将Guest账号成功转移到其他终端机时，从转移之前的终端机接收Kickout消息。
+    	* Guest账号成功转移到其他终端机时，将会从转移之前的终端机接收Kickout消息。
 
 **Example**
 
@@ -586,23 +604,23 @@ localizedstring.json中定义的格式如下。
  
 ### Analytics
 
-可将游戏指标传送至Gamebase服务器。
+可将游戏指标传送到Gamebase服务器。
 
 > <font color="red">[注意]</font><br/>
 >
-> Gamebase Analytics支持的所有API登录后可调用。
+> 登录后可调用Gamebase Analytics支持的所有API。
 
 > [TIP]
 >
 > 调用TCGBPurchase的requestPurchaseWithItemSeq:viewController:completion API付款或调用setPromotionIAPHandler完成促销付款后，自动传送指标。
 
-Analytics控制台使用方法请参考如下指南。
+Analytics控制台使用方法，请参考如下指南。
 
 - [Analytics控制台](./oper-analytics)
 
 #### Game User Data Settings
 
-登录游戏后游戏用户级别信息可作为指标传送。
+登录游戏后，可将游戏用户级别信息作为指标传送。
 
 > <font color="red">[注意]</font><br/>
 >
@@ -640,7 +658,7 @@ Analytics控制台使用方法请参考如下指南。
 
 #### Level Up Trace
 
-升级后游戏用户级别信息可作为指标传送。
+升级后可将游戏用户级别信息作为指标传送。
 
 调用API所需的参数如下。
 
@@ -670,39 +688,39 @@ Analytics控制台使用方法请参考如下指南。
 
 ### Contact
 
-Gamebase提供用于应对客户咨询的功能。
+Gamebase提供应对客户咨询的功能。
 
 > [TIP]
 >
-> 如果与TOAST Contact服务联动使用，则可更加轻松方便地应对顾客咨询。
-> 详细的TOAST Contact服务使用，请参考如下指南。
-> [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+> 如果与NHN Cloud Contact服务联动使用，则可更加轻松方便地应对客户咨询。
+> 详细的NHN Cloud Contact服务使用，请参考如下指南。
+> [NHN Cloud Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
 
 #### Customer Service Type
 
-**Gamebase控制台 > App > InApp URL > 您可以从以下的Service center**客户服务当中选择一个类型。
+**Gamebase控制台 > App > InApp URL > 您可从以下Service center**客户服务类型当中选择一个类型。
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
 
 | Customer Service Type     | Required Login |
 | ------------------------- | -------------- |
 | Developer customer center | X              |
 | Gamebase customer center  | △              |
-| TOAST Online Contact      | O              |
+| NHN Cloud Online Contact      | △              |
 
-Gamebase SDK的客户服务API按各类型使用如下URL。
+Gamebase SDK的客户服务API根据类型使用以下URL。
 
 * 开发公司自建客户服务(Developer customer center)
-    * 在**客户服务URL**中输入的URL
+    * 在**客户服务URL**中输入的URL。
 * Gamebase提供的客户服务(Gamebase customer center)
-    * 登录前 : **不包含**用户信息的客户服务URL
-    * 登录后 : 包含用户信息的客户服务URL
-* TOAST组织服务(Online Contact)
-    * 登录前 : 出现TCGB_ERROR_NOT_LOGGED_IN(2)错误
-    * 登录后 : 包含用户信息的客户服务URL
+    * 登录前 : **不包含**用户信息的客户服务URL。
+    * 登录后 : 包含用户信息的客户服务URL。
+* NHN Cloud组织服务(Online Contact)
+    * 登录前 : **不包含**用户信息的客户服务URL。
+    * 登录后 : 包含用户信息的客户服务URL。
 
 #### Open Contact WebView
 
-是显示在Gamebase控制台中输入的**客户服务URL** Webview的功能。
+是显示Gamebase控制台中输入的**客户服务URL**Webview的功能。
 可通过TCGBContactConfiguration向URL传送附加信息。 
 
 **TCGBContactConfiguration**
@@ -728,8 +746,8 @@ Gamebase SDK的客户服务API按各类型使用如下URL。
 
 | Error                           | Error Code | Description                 |
 | ------------------------------- | ---------- | --------------------------- |
-| TCGB\_ERROR\_NOT\_INITIALIZED | 1       | 未调用Gamebase |
-| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2       | 客户服务的类型为”TOAST Online Contact”时，登录前已调用了函数。|
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1       | 未调用Gamebase。|
+| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2       | 客户服务的类型为”NHN Cloud Online Contact”时，登录前已调用了函数。|
 | TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 客户服务URL不存在。<br>请确认Gamebase控制台中的**客户服务URL**。|
 | TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 识别用户的临时ticket发放失败 |
 
@@ -750,7 +768,7 @@ Gamebase SDK的客户服务API按各类型使用如下URL。
 
 > <font color="red">[注意]</font><br/>
 > 
-> 向客服提问咨询时，为了添附文件可能要允许访问相机或相册权限。
+> 向客服提问咨询时，为了添附文件可能需要允许访问相机或相册权限。
 > 请在info.plist设置”Privacy - Camera Usage Description“、”Privacy - Photo Library Usage Description”。 
 
 #### Request Contact URL
@@ -770,8 +788,8 @@ Gamebase SDK的客户服务API按各类型使用如下URL。
 
 | Error                           | Error Code | Description                 |
 | ------------------------------- | ---------- | --------------------------- |
-| TCGB\_ERROR\_NOT\_INITIALIZED | 1       | 未调用Gamebase |
-| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2       | 客户服务的类型为”TOAST Online Contact”时，登录前已调用了函数。|
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1       | 未调用Gamebase。|
+| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2       | 客户服务的类型为”NHN Cloud Online Contact”时，登录前已调用了函数。|
 | TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 客服中心URL不存在。<br>请确认Gamebase控制台中的**客户服务URL**。|
 | TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 识别用户的临时ticket发放失败 |
 

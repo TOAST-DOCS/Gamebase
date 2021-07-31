@@ -8,7 +8,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 #### Apple iTunes-Connect
 1. 上传测试版APP build进行测试
-2. In-App Purchases 商品登记及批准
+2. In-App Purchases商品登记及批准
 3. 注册您的Sandbox Tester帐户
 * Detail Guide for iTunes-Connect: [Apple Guide](https://help.apple.com/itunes-connect/developer/#/devb57be10e7)
 
@@ -26,7 +26,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
     * 商店道具ID : 输入在iTunes-Connect中注册的Product ID。
 3. 设置完商品后，请点击**保存**。
 
-#### Xcode Project 设置
+#### Xcode Project设置
 1. **Targets > Capabilities > In-App Purchase**设置为**ON**。
 2. 根据需要设置**Targets > General > Identity** 的Bundle Identifier, Version和Build的值。
 
@@ -70,7 +70,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 ### Retry Transaction Flow
 
-![retry transaction flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
+![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
 * 商店支付已成功，但因出现错误无法正常终止时，
 * 请调用**requestItemListOfNotConsumedWithCompletion:**进行‘’支付再处理”。若存在尚未提供的道具，则进行[Consume Flow](./aos-purchase/#consume-flow)。
@@ -123,6 +123,71 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在G
 }
 ```
 
+**VO**
+
+```objectivec
+@interface TCGBPurchasableReceipt : NSObject
+
+// 是购买的道具的产品ID。
+@property (nonatomic, strong) NSString *gamebaseProductId;
+
+// 是购买的商品的价格。
+@property (assign) float price;
+
+// 为货币代码。
+@property (nonatomic, strong) NSString *currency;
+
+// 为结算标识符。
+// 调用”Consume”服务器API时，与purchaseToken一起使用。
+// Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+// 注意 : 只能通过游戏服务器调用Consume API!
+@property (nonatomic, strong) NSString *paymentSeq;
+
+// 为结算标识符。
+// 调用”Consume”服务器API时，与paymentSeq一起使用。
+// Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+// 注意 : 只能通过游戏服务器调用Consume API!
+@property (nonatomic, strong) NSString *purchaseToken;
+
+// 是在Apple商店控制台中注册的商品ID。
+@property (nonatomic, strong) NSString *marketItemId;
+
+// 商品类型
+// UNKNOWN : 无法识别类型/请更新Gamebase SDK或联系Gamebase客户服务。
+// CONSUMABLE : 消费型商品
+// AUTO_RENEWABLE : 订阅型商品
+// CONSUMABLE_AUTO_RENEWABLE : 指需要向购买订购商品的用户定期提供可消费商品时使用的“可消费订购商品”。
+@property (nonatomic, strong) NSString *productType;
+
+// 是购买商品的User ID。
+// 如果使用没有购买商品的User ID登录，则无法获取购买的道具。
+@property (nonatomic, strong) NSString *userId;
+
+// 为商店的结算标识符。
+@property (nonatomic, strong) NSString *paymentId;
+
+// 为订阅结束的时间(epoch time)。
+@property (nonatomic, assign) long expiryTime;
+
+// 为购买商品的时间(epoch time)。
+@property (nonatomic, assign) long purchaseTime;
+
+// 是调用requestPurchase API时，作为payload传送的值。
+// 使用相同的User ID进行了购买，但仍然需要根据游戏频道、游戏角色等区分商品购买和支付，
+// 即，当需要添加游戏中的各种附加信息时，可使用此字段。
+@property (nonatomic, strong) NSString *payload;
+
+// 当订购商品被更新时，paymentId将也会被修改。
+// 通过此字段可以确认第一次进行订阅商品结算时的paymentId。 
+// 根据商店类型、结算服务器状态，可能不存在值，因此不能保证始终是有效值。
+@property (nonatomic, strong) NSString *originalPaymentId;
+
+// 是通过itemSeq购买商品的Lecacy API专用标识符。
+@property (assign)            long itemSeq;
+
+@end
+```
+
 
 
 ### List Purchasable Items
@@ -147,6 +212,55 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在G
 }
 ```
 
+
+**VO**
+
+```objectivec
+@interface TCGBPurchasableItem : NSObject
+
+// 为在Gamebase控制台中注册的商品ID。
+// 通过调用requestPurchase API购买商品时使用。
+@property (nonatomic, strong) NSString *gamebaseProductId;
+
+// 为商品价格。
+@property (assign) float price;
+
+// 为货币代码。
+@property (nonatomic, strong) NSString *currency;
+
+// 在Gamebase控制台中注册的商品名称。
+@property (nonatomic, strong) NSString *itemName;
+
+// 为商店代码("AS")。
+@property (nonatomic, strong) NSString *marketId;
+
+// 是在Apple商店控制台中注册的商品ID。
+@property (nonatomic, strong) NSString *marketItemId;
+
+// 商品类型
+// UNKNOWN : 无法识别类型/请更新Gamebase SDK或联系Gamebase客户服务。
+// CONSUMABLE : 消费型商品
+// AUTO_RENEWABLE : 订阅型商品
+// CONSUMABLE_AUTO_RENEWABLE : 指需要向购买订购商品的用户定期提供可消费商品时使用的“可消费订购商品”。
+@property (nonatomic, strong) NSString *productType;
+
+// 是包含货币符号的当地价格信息。
+@property (nonatomic, strong) NSString *localizedPrice;
+
+// 是在商店控制台中注册的当地商品名称。
+@property (nonatomic, strong) NSString *localizedTitle;
+
+// 是在商店控制台中注册的当地商品说明。
+@property (nonatomic, strong) NSString *localizedDescription;
+
+// 在Gamebase控制台中的相关商品的”使用与否"。
+@property (nonatomic, assign, getter=isActive) BOOL active;
+
+// 是通过itemSeq购买商品的Lecacy API专用道具标识符。
+@property (assign) long itemSeq;
+
+@end
+```
 
 ### List Non-Consumed Items
 
@@ -185,7 +299,7 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在G
 ### Reprocess Failed Purchase Transaction
 
 如果在商店付款成功，但因TOAST IAP服务器认证失败等原因未能正常付款的情况下，我们将尝试使用API重新处理。<br/>
-最后，根据付款成功的历史记录，需要通过调用item配送(支付) 等的API 来进行处理。
+最后，根据付款成功的历史记录，需要通过调用item配送(支付) 等的API来进行处理。
 
 ```objectivec
 - (void)viewDidLoad {
@@ -222,23 +336,23 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在G
 
 ### Event by Promotion
 
-> `注意`
-> 仅适用于iOS 11或更高版本。
-> 需要在Xcode 9.0以上版本build。
-> Gamebase 1.13.0及更高版本支持。 (TOAST IAP SDK 1.6.0 以上适用)
+> ”注意”
+> 只能在iOS 11以上版本上使用。
+> 仅在Gamebase 1.13.0以上版本上支持。(适用NHN Cloud IAP SDK 1.6.0以上)
 
+可通过GamebaseEventHandler处理Promotion结算事件。
+关于通过GamebaseEventHandler处理Promotion结算事件的方法，请参考以下指南。
+[Game > Gamebase > iOS SDK使用指南 > ETC > Gamebase Event Handler](./ios-etc/#purchase-updated)
 
-> `注意`
-> 只能在成功登录后调用。
-> 成功登录后，必须在任何其他支付API之前执行。
 
 #### 使用时的注意事项
 正像Facebook SDK和Google AdMob SDK，在SDK内有In App Purchase (AppStore支付)功能时，如果要在进行Gamebase Login之前提前尝试支付， 则可能不显示付款弹窗。
 
 * 解决方法
   * Facebook
-    * Facebook Console > 设置 > 默认设置 > 禁用‘’将应用程序内事件自动Logging（推荐）"功能
-    * 如果不使用Facebook认证功能 : 排除”GamebaseAuthFacebookAdapter.framework文件‘’后创建。
+    * Facebook Console > 设置 > 默认设置 > 关闭**应用程序内事件自动日志(推荐)**功能。
+    * 不使用Facebook认证功能时 : 排除**GamebaseAuthFacebookAdapter.framework文件**后打包。
+
 
 #### Overview
 * Apple Developer Overview : [https://developer.apple.com/app-store/promoting-in-app-purchases/](https://developer.apple.com/app-store/promoting-in-app-purchases/)
@@ -248,23 +362,10 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在G
 提供从AppStore应用程序内购买商品的功能。
 购买商品成功后，通过以下登记的处理程序进行item支付。
 
-促销 IAP需在AppStore Connect中另行设置才能显示。
+促销IAP需在AppStore Connect中另行设置才能显示。
 
 
-```objectivec
-- (void)didSuccessLogin {
-	[TCGBPurchase setPromotionIAPHandler:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
-    	if ([TCGBGamebase isSuccessWithError:error] == YES) {
-            // To Purchase Item Succeeded
-        } else if (error.code == TCGB_ERROR_PURCHASE_USER_CANCELED) {
-            // User Canceled Purchasing Item
-        } else if (error) {
-            // To Purchase Item Failed cause of the error
-        }
-    }];
-}
-```
-
+#### How to Test App Store Promotion IAP
 
 #### 如何测试AppStore Promotion IAP
 
@@ -281,22 +382,16 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在G
 | host &amp; path | 无 | 无 |
 | queries | action | purchaseIntent |
 | | bundleId | APP的 bundeld identifier |
-| | productIdentifier | 购买商品的 product identifier |
+| | productIdentifier | 购买商品的product identifier |
 
 示例) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
-
-#### Process Promotion Event with GamebaseEventHandler
-
-通过GamebaseEventHandler也可处理Promotion支付事件。
-有关通过GamebaseEventHandler处理Promotion支付事件的方法，请参考如下指南。
-[Game > Gamebase > iOS SDK使用指南 > ETC > Gamebase Event Handler](./ios-etc/#purchase-updated)
 
 ### Error Handling
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| TCGB_ERROR_NOT_SUPPORTED                 | 10         | 未包含GamebaseAdapter<br/>Error对象的域名为"TCGB.Gamebase.TCGBPurchase"时，请确认是否存在PurchaseAdapter。|
-| TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED  | 4001       | 未初始化Gamebase PurchaseAdapter |
+| TCGB_ERROR_NOT_SUPPORTED                 | 10         | 未包含GamebaseAdapter。<br/>Error对象的域名为"TCGB.Gamebase.TCGBPurchase"时，请确认是否存在PurchaseAdapter。|
+| TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED  | 4001       | 未初始化Gamebase PurchaseAdapter。|
 | TCGB\_ERROR\_PURCHASE\_USER\_CANCELED    | 4002       | 取消了购买。                             |
 | TCGB\_ERROR\_PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003       | 您未完成上一次的购买。                       |
 | TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH | 4004       | 因该商店的现金不足，无法进行结算。             |
@@ -311,8 +406,8 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在G
 
 **TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* 这是在IAP模块中的错误.
-* 检查错误代码的方法如下.
+* 这是在IAP模块中的错误。
+* 检查错误代码的方法如下。
 
 ```objectivec
 TCGBError *tcgbError = error; // TCGBError object via callback
@@ -325,5 +420,5 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
 * 关于IAP错误代码，请参考以下文件。
-    * [TOAST > TOAST SDK使用指南 > TOAST IAP > iOS > 错误代码](/TOAST/ko/toast-sdk/iap-ios/#_15)
+    * [NHN Cloud > NHN Cloud SDK使用指南 > NHN Cloud IAP > iOS > 错误代码](/TOAST/ko/toast-sdk/iap-ios/#_15)
 

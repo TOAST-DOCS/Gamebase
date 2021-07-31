@@ -14,7 +14,6 @@ Gamebase默认支持Guest登录。
 
 
 ### Import Header File
-
 在ViewController中，导入要实现登录的以下头文件。
 
 ```objectivec
@@ -24,23 +23,24 @@ Gamebase默认支持Guest登录。
 ### Login Flow
 
 多数游戏在标题页上实现登录。
+
 * 当App首次安装和启动时，游戏用户可以在标题页选择要进行的IdP(identity provider)类型。
 * 登录过一次后，您将不会看到IdP选择画面，将使用之前登录的IdP类型进行认证。
 
 上述逻辑可以按以下顺序实现。
 
-![last provider login flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
-![idp login flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
+![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
+![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
 #### 1. 按上一次的登录类型认证
 
 * 如果存在已做过的认证的记录，则尝试进行认证，不需要输入ID和密码。
-* 调用 **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**。
+* 调用**[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**。
 
 #### 1-1. 如果认证成功
 
 * 恭喜！ 认证成功。
-* 可以使用 **[TCGBGamebase userID]** 获取用户ID并实现游戏逻辑。
+* 可以使用**[TCGBGamebase userID]**获取用户ID并实现游戏逻辑。
 
 #### 1-2. 如果认证失败
 
@@ -57,7 +57,7 @@ Gamebase默认支持Guest登录。
 
 * 通过直接指定IdP类型来尝试进行认证。
     * 可认证的类型在**TCGBConstants.h**文件的**TCGBAuthIdPs**类中声明。
-* 调用 **[TCGBGamebase loginWithType:viewController:completion:]** API。
+* 调用**[TCGBGamebase loginWithType:viewController:completion:]**API。
 
 #### 2-1. 如果认证成功
 
@@ -79,7 +79,7 @@ Gamebase默认支持Guest登录。
 
 点击特定IdP的登录按钮时，将执行以下登录API。<br/>
 尝试使用最近登录的IdP登录。如果该登录的令牌已过期，或者令牌认证失败，则返回失败。<br/>
-此时，须实现对该IdP的登录。
+此时，必须实现对该IdP的登录。
 
 
 
@@ -124,9 +124,9 @@ Gamebase默认支持Guest登录。
 
 ### Login with IdP
 
-如果要调用特定的IdP登录，可以调用 **[TCGBGamebase loginWithType:viewController:completion:]**方法。<br/>
+如果要调用特定的IdP登录，可以调用**[TCGBGamebase loginWithType:viewController:completion:]**方法。<br/>
 如果是第一次尝试通过Gamebase登录，或者登录信息（访问令牌）已过期，则可以尝试使用此API登录。<br/>
-作为登录的结果，可以使用 **(TCGBError *)error**对象来确定是否成功。<br/>
+作为登录的结果，可以使用**(TCGBError *)error**对象来确定是否成功。<br/>
 您还可以使用**TCGBAuthToken**对象来获取如用ID等用户信息和令牌信息。<br/>
 如果登录成功，Gamebase访问令牌将存储在Local Storage中，并在调用loginForLastLoggedInProviderWithViewController:completion:方法后，可以应用存储的访问令牌。<br/>
 但是，IdP的访问令牌是由每个IdP提供的SDK管理。<br/>
@@ -134,9 +134,9 @@ Gamebase默认支持Guest登录。
 <br/><br/>
 个别IdP登录，需要一些特定信息。<br/>
 例如，要实现Facebook登录，您需要设置scope等。<br/>
-为了设置这些信息，提供了 **[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API。<br/>
+为了设置这些信息，提供了**[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API。<br/>
 可以用dictionary格式把信息输入到参数additionalInfo中。<br/>
-（当参数值为nil时，它将填充在TOAST Console中注册的additionalInfo值。如果参数值存在，则覆盖在Console中注册的值。）
+（当参数值为nil时，它将填充在NHN Cloud Console中注册的additionalInfo值。如果参数值存在，则覆盖在Console中注册的值。）
 
 
 > [参考]
@@ -162,7 +162,7 @@ Gamebase默认支持Guest登录。
 
 ### Login with Credential
 
-是通过IdP提供的SDK在游戏中进行认证后，并使用获取到的访问令牌，登录到Gamebase的接口。
+是通过IdP提供的SDK，在游戏中进行认证后，并使用获取到的访问令牌，登录到Gamebase的接口。
 
 
 
@@ -174,7 +174,7 @@ Gamebase默认支持Guest登录。
 | keyname                                  | a use                          | 值类型                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | 设定IdP类型                     | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname |设置登录IdP后收到的认证信息（访问令牌） |                                |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname |设定登录IdP后收到的认证信息（访问令牌）。|                                |
 
 
 
@@ -197,7 +197,7 @@ Gamebase默认支持Guest登录。
 #import "TCGBConstants.h"
 
 - (void)authLoginWithCredential {
-    NSDictionary *credentialDic = @{ kTCGBAuthLoginWithCredentialProviderNameKeyname: kTCGBAuthFacebook, kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"此处输入来自 facebook SDK的Access Token" };    
+    NSDictionary *credentialDic = @{ kTCGBAuthLoginWithCredentialProviderNameKeyname: kTCGBAuthFacebook, kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"此处输入来自facebook SDK的Access Token" };    
 
     [TCGBGamebase loginWithCredential:credentialDic viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         NSLog([authToken description]);
@@ -287,11 +287,11 @@ Gamebase默认支持Guest登录。
 例如，如果您已经关联了Google帐户，则无法添加其他Google帐户。<br/>
 以下是帐户关联的示例。<br/><br/>
 
-* Gamebase 用户 ID: 123bcabca
+* Gamebase用户 ID: 123bcabca
     * Google ID: aa
     * Facebook ID: bb
     * AppleGameCenter ID: cc
-* Gamebase 用户 ID: 456abcabc
+* Gamebase用户 ID: 456abcabc
     * Google ID: ee
     * Google ID: ff **-> 由于您已关联Google ee帐户，因此无法添加其他Google帐户。**
 
@@ -307,7 +307,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 #### 2. 映射（Mapping）
 
-调用 **[TCGBGamebase addMappingWithType:viewController:completion:]** 尝试进行映射（Mapping）。
+调用**[TCGBGamebase addMappingWithType:viewController:completion:]**尝试进行映射（Mapping）。
 
 #### 2-1. 如果映射（Mapping）成功
 
@@ -377,7 +377,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 | keyname                                  | a use                          | 值类型                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | 设定IdP类型                     | facebook, iosgamecenter, naver, google, twitter, line, appleid |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname | 设置登录IdP后收到的认证信息（访问令牌） |                                |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname | 设定登录IdP后收到的认证信息（访问令牌）。|                                |
 
 
 
@@ -424,7 +424,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 ### Add Mapping Forcibly
 若特定IdP有已映射的账户，尝试**强制**映射。
-尝试**强制映射**时需要从AddMapping API获得的`ForcingMappingTicket`。
+尝试**强制映射**时需要从AddMapping API获得的”ForcingMappingTicket”。
 
 如下为对Facebook尝试强制映射的范例。
 
@@ -459,7 +459,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 ### Add Mapping Forcibly with Credential
 若特定IdP有已映射的账户，尝试**强制**映射。
-尝试**强制映射**时需要从AddMapping API获得的`ForcingMappingTicket`。
+尝试**强制映射**时需要从AddMapping API获得的”ForcingMappingTicket”。
 
 游戏中先直接以IdP提供的SDK进行验证，并可利用发放的访问令牌等调用Gamebase AddMappingForcibly的接口。
 
@@ -469,11 +469,11 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 | keyname                                  | a use                          | 值类型                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | 设置IdP类型                      | facebook, iosgamecenter, naver, google, twitter |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname | 设置登录IdP后获得的验证信息（访问令牌） |                                           |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname | 设定登录IdP后获得的验证信息（访问令牌）。|                                           |
 
 > [参考]
 >
-> 游戏中必须使用外部服务（Facebook等）的固有功能时可能需要。
+> 游戏中必须使用外部服务（Facebook等）的固有功能时，可能需要它。
 >
 
 <br/>
@@ -525,7 +525,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 ### Remove Mapping API
 
 解除特定IdP的关联。 <br/>
-如果您要解除关联的IdP是 **唯一的IdP**，则会返回失败。<br/>
+如果您要解除关联的IdP是 **唯一的IdP**，则会返还失败。<br/>
 解除关联之后，Gamebase将该IdP退出登录。
 
 ```objectivec
@@ -548,13 +548,13 @@ NSArray* authMappingList = [TCGBGamebase authMappingList];
 
 
 ## Gamebase Users`s Information
-在使用Gamebase完成认证过程后，制作App时可获取到所需的信息。
+在使用Gamebase完成认证过程后，制作App时可获取到您所需要的信息。
 
 > <font color="red">[注意]</font><br/>
 >
 > 如果您使用“[TCGBGamebase loginForLastLoggedInProvider]”API登录，则无法获取认证信息。
 >
-> 如果需要认证信息，代替"[TCGBGamebase loginForLastLoggedInProvider]"，使用IDPCode和同一个{IDP_CODE}作为参数，来使用"[TCGBGamebase loginWithType:IDP_CODE viewController:topViewController completion:completion];" API登录，才可以获取到正常的认证信息。
+> 如果需要认证信息，使用IDPCode和同一个{IDP_CODE}作为参数（不是使用"[TCGBGamebase loginForLastLoggedInProvider]"），调用"[TCGBGamebase loginWithType:IDP_CODE viewController:topViewController completion:completion];" API登录，才可获取正确的认证信息。
 
 ### Get Authentication Information for Gamebase
 可以获取Gamebase发行的认证信息。
@@ -572,20 +572,22 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 
 ### Get Authentication Information for External IdP
 
-从外部认证SDK，可获取访问令牌、用户ID、Profile等信息。
+* 登录后，通过游戏服务器调用Gamebase Server API，可获取外部认证IdP的访问令牌、用户ID及Profile等信息。
+    * [Game > Gamebase > API指南 > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
 
-```objectivec
-// Example for obtaining ID Provider's Authentication Information
+> <font color="red">[注意]</font><br/>
+>   
+> * 为了安全起见，建议通过游戏服务器调用外部IdP的认证信息。
+> * 根据IdP访问令牌类型，可能会很快过期。
+>     * 例如，登录Google过2小时后，访问令牌将会过期。
+>     * 如果您需要用户信息，登录后，请直接调用Gamebase Server API。
+> * 如果调用"[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]" API登录，则无法接收认证信息。
+>     * 如需用户信息，需要通过与IDPCode相同的{IDP_CODE}作为参数，调用"[TCGBGamebase loginWithType:viewController:completion:]" API登录，而不是"[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]"。
 
-// Obtaining Facebook UserID
-NSString *userID = [TCGBGamebase authProviderUserIDWithIDPCode:kTCGBAuthFacebook];
-
-// Obtaining Facebook AccessToken
-NSString *accessTokenOfIDP = [TCGBGamebase authProviderAccessTokenWithIDPCode:kTCGBAuthFacebook];
-
-// Obtaining Facebook Profile
-TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWithIDPCode:kTCGBAuthFacebook];
-```
+> <font color="red">[注意]</font><br/>
+>
+> 在iOS 12上使用appleid登录时，无法查看认证信息。
+>
 
 ### Get Banned User Information
 
@@ -686,7 +688,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 > 
 > 若以访客登录的状态转移账户，访客账户将丢失。
 > 若连续输入错误的id/password，将发生**AUTH_TRANSFERACCOUNT_BLOCK(3042)**错误，账户被暂时禁用。 
-> 此时，如下面的例子所示，通过调用TCGBTransferAccountFailInfo值通知用户账户转移被阻止多长时间。 
+> 如果出现上述错误，如下例子所示，可通过调用TCGBTransferAccountFailInfo值通知用户账户转移将被阻止多长时间。 
 
 
 **API**
@@ -774,7 +776,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 
 ### Check TemporaryWithdrawal User
 
-如果用户登录使用预约退出功能的游戏，您需要调用**TCGBAuthToken.tcgbMember.temporaryWithdrawal**API，若返还的结果不为null，为有效的TemporaryWithdrawalInfo对象时，需要通知用户正在进行退出处理。
+如果用户登录使用预约退出功能的游戏，您需要调用**TCGBAuthToken.tcgbMember.temporaryWithdrawal**API，若返回的结果不为null，为有效的TemporaryWithdrawalInfo对象时，需要通知用户正在进行退出处理。
 
 **Example**
 
@@ -886,7 +888,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 |                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | 已关联了其他成员。                      |
 |                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | 已关联了相同类型的IdP。                     |
 |                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO | 3304       | 是无效的IdP信息 (在Console中不存在该IdP信息)。 |
-|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_CANNOT\_ADD\_GUEST\_IDP | 3305  | 用客户IdP无法进行AddMapping |
+|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_CANNOT\_ADD\_GUEST\_IDP | 3305  | 用客户IdP无法进行AddMapping。|
 | Remove Mapping | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_FAILED | 3401       | 映射删除失败                           |
 |                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | 最后关联的IdP无法删除。                |
 |                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403       | 是已登录的IdP。                     |
@@ -902,6 +904,7 @@ TCGBAuthProviderProfile *providerProfile = [TCGBGamebase authProviderProfileWith
 
 
 **TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR**
+
 * 该错误为各IdP的SDK中发生的错误。
 * 确认错误代码方式如下。
 
