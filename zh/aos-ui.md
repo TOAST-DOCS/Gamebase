@@ -2,9 +2,9 @@
 
 ## ImageNotice
 
-通过在控制台中注册图片，向用户发送推送图片通知。
+通过在控制台中注册图片，向用户推送图片通知。
 
-![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-001.png)
+![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-002.png)
 
 ### Show ImageNotices
 
@@ -33,7 +33,7 @@
 
 | Error Code | Description |
 | --- | --- |
-| NOT\_INITIALIZED(1) | 未调用Gamebase.initialize |
+| NOT\_INITIALIZED(1) | 未调用Gamebase.initialize。|
 | UI\_IMAGE\_NOTICE\_TIMEOUT(6901) | 显示图片通知弹窗时，因出现超时错误强制关闭所有弹窗。|
 
 **Example**
@@ -76,8 +76,8 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 
 | API | Mandatory(M) / Optional(O) | Description |
 | --- | --- | --- |
-| newBuilder() | **M** | 使用newBuilder()函数可以生成ImageNoticeConfiguration对象。 |
-| build() | **M** | 将设置完的Builder转换为Configuration对象。 |
+| newBuilder() | **M** | 使用newBuilder()函数，可以生成ImageNoticeConfiguration对象。 |
+| build() | **M** | 将设置的Builder转换为Configuration对象。 |
 | setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | ImageNotice背景颜色<br>使用String参数时，调用转换为android.graphics.Color.parseColor(String) API的值。<br>**default** : #80000000 |
 | setTimeout(long timeoutMs) | O | ImageNotice最大加载时间(单位 : millisecond)<br>**default** : 5000L (5s) |
 | enableAutoCloseByCustomScheme(boolean enable) | O | 出现custom scheme event时，判断是否应强制关闭图片通知。<br>**default** : true |
@@ -93,6 +93,275 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 + (void)Gamebase.ImageNotice.closeImageNotices(@NonNull Activity activity);
 ```
 
+## Terms
+
+显示在Gamebase控制台中注册的条款。
+
+![TermsView Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/termsView-guide-ui-001_2.20.0.png)
+
+调用showTermsView API，通过Webview显示条款窗口。
+如果需要直接创建符合Game UI的条款窗口，可通过调用queryTerms API来显示Gamebase控制台中注册的条款项目。
+如果用户已同意，则将各项目的”同意与否”通过updateTerms API传送到Gamebase服务器。
+
+### showTermsView
+
+在页面中显示条款窗口。
+用户同意条款后，将”同意与否”注册在服务器中。
+如果已同意条款，即使再调用showTermsView API，也不显示条款窗口，而立即返还”成功回调”。
+但如果将Gamebase控制台中的”重新同意条款”项目修改为**必须**，用户再次同意条款之前，会一直显示条款窗口。
+
+> <font color="red">[注意]</font><br/>
+>
+> 如果在条款中添加”是否接收推送”，则可从GamebaseDataContainer构造PushConfiguration。 
+> 若PushConfiguration不为null，**登录后**，请调用Gamebase.Push.registerPush API。
+
+#### Required参数
+
+* Activity : 是显示条款窗口的Activity。
+ 
+#### Optional参数
+
+* GamebaseDataCallback : 同意条款后，关闭条款窗时通过回调通知用户。如果将通过回调获取的GamebaseDataContainer对象转换为PushConfiguration，登录后可用于调用Gamebase.Push.registerPush API。
+
+**API**
+
+```java
++ (void)Gamebase.Terms.showTermsView(@NonNull Activity activity,
+                                     @Nullable GamebaseDataCallback<GamebaseDataContainer> callback);
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1) | 未初始化Gamebase。|
+| LAUNCHING\_SERVER\_ERROR(2001) | 是启动服务器返还的项目中不包含相关条款内容时出现的错误。<br/>出现该问题时，请联系Gamebase负责人员。|
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 上一次调用的Terms API未完成。<br/>请稍后再试。|
+| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW(6925) | 条款Webview未关闭的状态下再次被调用。|
+| WEBVIEW\_TIMEOUT(7002) | 显示条款Webview时出现超时错误。|
+| WEBVIEW\_HTTP\_ERROR(7003) | 打开条款Webview时出现HTTP错误。|
+
+**Example**
+
+```java
+public void showTermsView(final Activity activity,
+                          final GamebaseDataCallback<GamebaseDataContainer> callback) {
+    Gamebase.Terms.showTermsView(activity, new GamebaseDataCallback<GamebaseDataContainer>() {
+        @Override
+        public void onCallback(GamebaseDataContainer container, GamebaseException exception) {
+            if (Gamebase.isSuccess(exception)) {
+                // If the 'PushConfiguration' is not null,
+                // save the 'PushConfiguration' and use it for Gamebase.Push.registerPush()
+                // after Gamebase.login().
+                @Nullable PushConfiguration savedPushConfiguration = PushConfiguration.from(container);
+            } else {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Wait for a while and try again.
+                        try { Thread.sleep(2000); }
+                        catch (Exception ignored) {}
+                        showTermsView(activity, callback);
+                    }
+                }).start();
+            }
+        }
+    });
+}
+
+public void afterLogin(Activity activity) {
+    // Call registerPush with saved PushConfiguration.
+    if (savedPushConfiguration != null) {
+        Gamebase.Push.registerPush(activity, savedPushConfiguration, new GamebaseCallback() {...});
+    }
+}
+```
+
+### queryTerms
+
+Gamebase通过Webview，以简单形式显示条款。
+如果要直接制作符合游戏UI的条款，通过调用queryTerms API，则可使用Gamebase控制台返还的条款信息。
+
+如果登录后调用，则可确认游戏用户是否同意条款。
+
+> <font color="red">[注意]</font><br/>
+>
+> * 因Gamebase服务器不保存GamebaseTermsContentDetail.getRequired()为true的必要项目，agreed值将始终以false返回。
+>     * 这是因为必要项目将始终保存为true，不需要保存。
+> * 因”是否接收推送”没有被存储在gamebase服务器中，agreed值将始终以false返回。  
+>     * 如需查看”是否接收推送”，请调用Gamebase.Push.queryTokenInfo API。
+> * 如果控制台中未设置”基本条款”，使用与条款语言不同的国家代码在设置的终端上调用queryterms API，则将出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误。
+>     * 在控制台中设置”基本条款”或出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误时，请不要显示条款。
+
+#### Required参数
+
+* Activity : 是调用API时的最上级Activity。
+* GamebaseDataCallback : 通过回调通知用户API的调用结果。通过作为回调返回的GamebaseQueryTermsResult，可获取在控制台中设置的条款信息。 
+
+**API**
+
+```java
++ (void)Gamebase.Terms.queryTerms(@NonNull Activity activity,
+                                  @NonNull GamebaseDataCallback<GamebaseQueryTermsResult> callback);
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1) | 未初始化Gamebase。|
+| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE(6921) | 在控制台中不存在条款信息。|
+| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY(6922) | 在控制台中不存在符合终端机国家代码的条款信息。|
+
+**Example**
+
+```java
+Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsResult>() {
+    @Override
+    public void onCallback(GamebaseQueryTermsResult result, GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            // Succeeded.
+            final int termsSeq = result.getTermsSeq();
+            final String termsVersion = result.getTermsVersion();
+            final String termsCountryType = result.getTermsCountryType();
+            final List<GamebaseTermsContentDetail> contents = result.getContents();
+        } else if (exception.getCode() == GamebaseError.UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY) {
+            // Another country device.
+            // Pass the 'terms and conditions' step.
+        } else {
+            // Failed.
+        }
+    }
+});
+```
+
+#### GamebaseQueryTermsResult
+
+| API            | Values                          | Description         |
+| -------------------- | --------------------------------| ------------------- |
+| getTermsSeq             | int                             | 所有条款KEY<br/>是调用updateTerms API时的必须值。          |
+| getTermsVersion         | String                          | 条款版本<br/>是调用updateTerms API时的必须值。             |
+| getTermsCountryType     | String                          | 条款类型<br/> - KOREAN : 韩国条款<br/> - GDPR : 欧洲条款<br/> - ETC : 其他国家 |
+| getContents             | List<GamebaseTermsContentDetail> | 各条款的详细信息 | 
+
+#### GamebaseTermsContentDetail
+
+| API            | Values                | Description         |
+| -------------------- | ----------------------| ------------------- |
+| getTermsContentSeq      | int                   | 条款项目KEY         | 
+| getName                 | String                | 条款项目名称         |
+| getRequired             | boolean                  | 是否要必须同意         |
+| getAgreePush            | String                | 是否同意接收广告性推送<br/> - NONE : 不同意。<br/> - ALL : 全部同意。<br/> - DAY : 同意白天接收推送。<br/> - NIGHT : 同意夜间接收推送。         |
+| getAgreed               | boolean                  | 用户是否同意相关条款项目<br/> - 登录前始终会是false。<br/> - 推送项目始终会是false。|
+| getNode1DepthPosition   | int                   | 第1阶段项目的显示顺序           |
+| getNode2DepthPosition   | int                   | 第2阶段项目的显示顺序<br/> 没有时 -1           |
+| getDetailPageUrl        | String                | 详细查看条款的URL<br/> 没有时 -null |
+
+### updateTerms
+
+如果使用通过queryTerms API获取的条款信息直接创建了UI，
+请将游戏用户同意条款的记录通过updateTerms API传送到Gamebase服务器。
+
+不仅可用于取消”同意可选择条款”，也可用于修改同意条款的记录。 
+
+> <font color="red">[注意]</font><br/>
+>
+> Gamebase服务器基本上不保存”是否同意接收推送”。
+> **登录后**，请通过调用Gamebase.Push.registerPush API保存”是否同意接收推送”。
+
+#### Required参数
+
+* Activity : 是调用API时的最上级Activity。
+* GamebaseUpdateTermsConfiguration : 是将要在服务器中注册的用户的可选择条款信息。
+
+#### Optional参数
+
+* GamebaseCallback : 在服务器中注册可选择条款信息后，通过回调通知用户。
+
+**API**
+
+```java
++ (void)Gamebase.Terms.updateTerms(@NonNull Activity activity,
+                                   @NonNull GamebaseUpdateTermsConfiguration configuration,
+                                   @Nullable GamebaseCallback callback);
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1) | 未初始化Gamebase。|
+| UI\_TERMS\_UNREGISTERED\_SEQ(6923) | 设置了未注册的条款Seq值。|
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 上一次调用的Terms API未完成。<br/>请稍后再试。|
+
+**Example**
+
+```java
+Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsResult>() {
+    @Override
+    public void onCallback(GamebaseQueryTermsResult result, GamebaseException queryTermsException) {
+        if (Gamebase.isSuccess(queryTermsException)) {
+            // Succeeded to query terms.
+            final int termsSeq = result.getTermsSeq();
+            final String termsVersion = result.getTermsVersion();
+            final List<GamebaseTermsContent> contents = new ArrayList<>();
+            for (GamebaseTermsContentDetail detail : result.getContents()) {
+                GamebaseTermsContent content = GamebaseTermsContent.from(detail);
+                // TODO: Change agree value what you want.
+                content.setAgreed(agreeOrNot);
+                contents.add(content);
+            }
+
+            final GamebaseUpdateTermsConfiguration configuration =
+                    GamebaseUpdateTermsConfiguration.newBuilder(termsSeq, termsVersion, contents)
+                            .build();
+            Gamebase.Terms.updateTerms(activity, configuration, new GamebaseCallback() {
+                @Override
+                public void onCallback(GamebaseException updateTermsException) {
+                    if (Gamebase.isSuccess(updateTermsException)) {
+                        // Succeeded to update terms.
+                    } else {
+                        // Failed to update terms.
+                    }
+                }
+            });
+        } else {
+            // Failed to query terms.
+        }
+    }
+});
+```
+
+#### GamebaseUpdateTermsConfiguration
+
+**Builder**
+
+| API                  | Description         |
+| -------------------- | ------------------- |
+| newBuilder(String termsVersion, int termsSeq, List<GamebaseTermsContent> contents) | 为了生成Configuration对象，创建Builder。|
+| build() | 将创建完的Builder，变换为Configuration对象。|
+
+| Parameter            | Mandatory(M) / Optional(O) | Type                    | Description         |
+| -------------------- | -------------------------- | ------------------------- | ------------------- |
+| termsSeq             | **M**                      | int                       | 所有条款KEY<br/>需要传送调用queryTerms API时获取的值。             |
+| termsVersion         | **M**                      | String                    | 条款版本<br/>通过调用queryTerms API，需要传送获取的值。 |
+| contents             | **M**                      | List<GamebaseTermsContent> | 用户同意可选择条款的信息 |
+
+#### GamebaseTermsContent
+
+**Constructor**
+
+| API                  | Description         |
+| -------------------- | ------------------- |
+| GamebaseTermsContent(int termsContentSeq, boolean agreed) | 是GamebaseTermsContent构造器。|
+| from(GamebaseTermsContentDetail) | 是从GamebaseTermsContentDetail对象构造GamebaseTermsContent对象的工厂方法模式。|
+| setAgreed(boolean) | 相关对象的agreed值将被修改。|
+
+| Parameter            | Mandatory(M) / Optional(O) | Values             | Description         |
+| -------------------- | -------------------------- | ------------------ | ------------------- |
+| termsContentSeq      | **M**                      | int                | 可选择条款项目KEY      |
+| agreed               | **M**                      | boolean            | 可选择条款项目的同意与否 |
+
 ## WebView
 
 Gamebase支持基本的WebView。
@@ -102,13 +371,13 @@ Gamebase支持基本的WebView。
 
 显示WebView。
 
-##### Required 参数
-* activity：显示WebView的活动。
+##### Required参数
+* activity：显示WebView活动。
 * url：作为参数发送的url必须是有效值。
 
 ##### 可选参数
 * configuration：可以使用GamebaseWebViewConfiguration更改WebView的布局。
-* GamebaseCallback：WebView关闭时通过回调通知用户。
+* GamebaseCallback：关闭时WebView通过回调通知用户。
 * schemeList：指定用户想要接收的自定义SchemeList。
 * GamebaseDataCallback：用schemeList指定的包含自定义Scheme的url，作为回调通知。
 
@@ -126,10 +395,10 @@ Gamebase支持基本的WebView。
 **示例**
 
 ```java
-Gamebase.WebView.showWebView(activity, "http://www.toast.com");
+Gamebase.WebView.showWebView(activity, "https://www.toast.com");
 ```
 
-![Webview Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
+![Webview Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
 
 #### 自定义WebView
 
@@ -147,23 +416,24 @@ GamebaseWebViewConfiguration configuration
             .setBackButtonImageResource(R.id.back_button)       // 设置返回按钮图标
             .setCloseButtonImageResource(R.id.close_button)     // 设置关闭按钮图标
             .build();
-GamebaseWebView.showWebView(activity, "http://www.toast.com", configuration);
+GamebaseWebView.showWebView(activity, "https://www.toast.com", configuration);
 ```
 
 #### Custom Scheme
 
-使用在Gamebase WebView加载的网页内scheme，可使用某个特定功能或更改网页内容。。
+使用在Gamebase WebView加载的网页内scheme，可使用某个特定功能或更改网页内容。
 
 ##### Predefined Custom Scheme
 
 为Gamebase指定的scheme。
 
-| scheme               | 作用                                  |
+| scheme               | 描述                                  |
 | -------------------- | ------------------------------------- |
-| gamebase://dismiss   | 关闭WebView                          |
-| gamebase://goback    | 返回上一页                 |
-| gamebase://getuserid | 查看当前登录的用户ID |
-| gamebase://openbrowser?link={URLEncodedURL} | 用外部浏览器打开link参数的URL。<br>URLEncodedURL : 使用外部浏览器将要打开的URL。<br>需要对URL进行解码。 |
+| gamebase://dismiss   | 关闭WebView。                         |
+| gamebase://goback    | 返回上一页。                |
+| gamebase://getuserid | 查看当前登录的用户ID。|
+| gamebase://showwebview?link={URLEncodedURL} | 通过WebView打开link参数的URL。<br>URLEncodedURL : 将通过WebView要打开的URL。<br>URL需要解码。 |
+| gamebase://openbrowser?link={URLEncodedURL} | 用外部浏览器打开link参数的URL。<br>URLEncodedURL : 使用外部浏览器要打开的URL。<br>URL需要解码。 |
 
 #### User Custom Scheme
 
@@ -220,7 +490,7 @@ showWebView(activity, urlString, configuration,
 
 
 ### Close WebView
-通过以下API，可以关闭正在显示的WebView。
+通过以下API，可以关闭当前显示的WebView。
 
 **API**
 
@@ -254,7 +524,7 @@ showWebView(activity, urlString, configuration,
 + (void)Gamebase.Util.showAlertDialog(Activity activity, String title, String message);
 ```
 
-![Alert Dialog Example](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-002_1.0.0.png)
+![Alert Dialog Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-002_1.0.0.png)
 
 
 ### Alert Dialog with Listener
@@ -273,7 +543,7 @@ showWebView(activity, urlString, configuration,
 
 ## Toast
 
-可以使用以下API轻松显示 [Android toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) 消息。<br/>
+可以使用以下API轻松显示 [Android toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)消息。<br/>
 用于显示信息的时间类型参数是int型，并根据Android SDK NotificationManagerService类的定义，可显示的时间如下表。
 
 | 时间类型(int)         | 显示时间                     |
