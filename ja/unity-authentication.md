@@ -857,82 +857,17 @@ public void GetLastLoggedInProvider()
 
 ### Get Authentication Information for External IdP
 
-外部の認証SDKからアクセストークン、ユーザーID、Profileなどの認証情報を取得することができます。
+* 外部認証IdPのアクセストークン、ユーザーID、Profileなどの情報はログイン後、ゲームサーバーでGamebase Server APIを呼び出して取得できます。
+    * [Game > Gamebase > APIガイド > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
 
-#### UserID
-
-外部認証SDKからユーザーIDを取得することができます。
-
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-
-```cs
-static string GetAuthProviderUserID()
-```
-
-**Example**
-
-```cs
-public void GetAuthProviderUserID(string providerName)
-{
-    string authProviderUserID = Gamebase.GetAuthProviderUserID(providerName);
-}
-```
-
-#### AccessToken
-
-外部の認証SDKからアクセストークンを取得することができます。
-
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-
-```cs
-static string GetAuthProviderAccessToken(string providerName)
-```
-
-**Example**
-```cs
-public void GetAuthProviderAccessToken(string providerName)
-{
-    string authProviderAccessToken = Gamebase.GetAuthProviderAccessToken(providerName);
-}
-```
-
-#### Profile
-
-外部の認証SDKからProfileを取得することができます。
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-
-```cs
-static GamebaseResponse.Auth.AuthProviderProfile GetAuthProviderProfile(string providerName)
-```
-
-**Example**
-```cs
-public void GetAuthProviderProfile(string providerName)
-{
-    GamebaseRequest.AuthProviderProfile profile = Gamebase.GetAuthProviderProfile(providerName);
-}
-```
+> <font color="red">[注意]</font><br/>
+>
+> * 外部IdPの認証情報はセキュリティのためにゲームサーバーで呼び出すことを推奨します。
+> * IdPによってはアクセストークンの有効期限が短い場合があります。
+>     * 例えばGoogleはログインしてから2時間後にはアクセストークンの有効期限が切れます。
+>     * ユーザー情報が必要な場合はログイン後、すぐにGamebase Server APIを呼び出してください。
+> * "Gamebase.LoginForLastLoggedInProvider()" APIでログインした場合には認証情報を取得できません。
+>     * ユーザー情報が必要な場合は"Gamebase.LoginForLastLoggedInProvider()"の代わりに、使用したいIDPCodeと同じ{IDP_CODE}をパラメータにして"Gamebase.Login(IDP_CODE, callback)" APIでログインする必要があります。
 
 ### Get Banned User Information
 
