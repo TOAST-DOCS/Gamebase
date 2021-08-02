@@ -861,85 +861,17 @@ void Sample::GetLastLoggedInProvider()
 
 ### Get Authentication Information for External IdP
 
-外部認証SDKからアクセストークン、ユーザーID、Profileなどの認証情報を取得できます。
+* 外部認証IdPのアクセストークン、ユーザーID、Profileなどの情報はログイン後、ゲームサーバーでGamebase Server APIを呼び出して取得できます。
+    * [Game > Gamebase > APIガイド > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
 
-#### UserID
-
-外部認証SDKからユーザーIDを取得できます。
-
-**API**
-
-Supported Platforms
-
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
-
-```cpp
-FString GetAuthProviderUserID(const FString& providerName) const;
-```
-
-**Example**
-
-```cpp
-void Sample::GetLastLoggedInProvider(const FString& providerName)z
-{
-    FString authProviderUserID = IGamebase::Get().GetAuthProviderUserID(GetProviderName(providerName));
-}
-```
-
-#### AccessToken
-
-外部認証SDKからアクセストークンを取得できます。
-
-**API**
-
-Supported Platforms
-
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
-
-```cpp
-FString GetAuthProviderAccessToken(const FString& providerName) const;
-```
-
-**Example**
-```cpp
-void Sample::GetAuthProviderAccessToken(const FString& providerName)
-{
-    FString authProviderAccessToken = IGamebase::Get().GetAuthProviderAccessToken(providerName);
-}
-```
-
-#### Profile
-
-外部認証SDKからProfileを取得できます。
-
-**API**
-
-Supported Platforms
-
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
-
-```cpp
-const FGamebaseAuthProviderProfilePtr GetAuthProviderProfile(const FString& providerName) const;
-```
-
-**Example**
-```cpp
-void Sample::GetAuthProviderProfile(const FString& providerName)
-{
-    auto authProviderProfile = IGamebase::Get().GetAuthProviderProfile(providerName);
-    if (authProviderProfile.IsValid())
-    {
-        UE_LOG(GamebaseTestResults, Display, TEXT("GetAuthProviderProfile: %s"), *authProviderProfile->information->EncodeJson());
-    }
-    else
-    {
-        UE_LOG(GamebaseTestResults, Display, TEXT("Not auth provider profile."));
-    }
-}
-```
+> <font color="red">[注意]</font><br/>
+>
+> * 外部IdPの認証情報はセキュリティのためにゲームサーバーで呼び出すことを推奨します。
+> * IdPによってはアクセストークンの有効期限が短い場合があります。
+>     * 例えばGoogleはログインしてから2時間後にはアクセストークンの有効期限が切れます。
+>     * ユーザー情報が必要な場合はログイン後、すぐにGamebase Server APIを呼び出してください。
+> * "Gamebase.LoginForLastLoggedInProvider()" APIでログインした場合には認証情報を取得できません。
+>     * ユーザー情報が必要な場合は"Gamebase.LoginForLastLoggedInProvider()"の代わりに、使用したいIDPCodeと同じ{IDP_CODE}をパラメータにして"Gamebase.Login(IDP_CODE, callback)" APIでログインする必要があります。
 
 ### Get Banned User Infomation
 
