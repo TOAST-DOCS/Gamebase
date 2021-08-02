@@ -386,18 +386,19 @@ App Storeアプリ内でアイテムを購入できる機能を提供します�
 
 ### Error Handling
 
-| Error                                                      | Error Code | Description                                                  |
-| ---------------------------------------------------------- | ---------- | ------------------------------------------------------------ |
-| TCGB_ERROR_NOT_SUPPORTED                                   | 10         | GamebaseAdapterが含まれていません。<br/>Errorオブジェクトのドメインが"TCGB.Gamebase.TCGBPurchase"の場合、 PurchaseAdapterの存在有無を確認してください。 |
-| TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED                    | 4001       | Gamebase PurchaseAdapterが初期化されていません。            |
-| TCGB\_ERROR\_PURCHASE\_USER\_CANCELED                      | 4002       | 購入がキャンセルされました。                                       |
-| TCGB\_ERROR\_PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003       | 以前の購入が完了していません。                             |
-| TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH                   | 4004       | 該当ストアのキャッシュが足りないため決済できません。              |
-| TCGB\_ERROR\_PURCHASE\_INACTIVE\_PRODUCT\_ID               | 4005       | 該当商品が有効になっていません。                          |
-| TCGB\_ERROR\_PURCHASE\_NOT\_EXIST\_PRODUCT\_ID             | 4006       | 存在しないGamebaseProductIDで決済をリクエストしました。       |
-| TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET              | 4010       | サポートしないストアです。 iOSのサポート可能なストアは"AS"です。 |
-| TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR            | 4201       | IAPライブラリエラーです。<br>error.messageを確認してください。    |
-| TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR                      | 4999       | 定義されていない購入エラーです。<br>全てのログを[サポート](https://toast.com/support/inquiry)へお伝えください。内容を確認後、早急にご返信させて頂きます。 |
+| Error                                                | Error Code | Description                              |
+| ---------------------------------------------------- | ---------- | ---------------------------------------- |
+| TCGB_ERROR_NOT_SUPPORTED                             | 10         | GamebaseAdapterが含まれていません。<br/>Errorオブジェクトのドメインが"TCGB.Gamebase.TCGBPurchase"の場合、 PurchaseAdapterの存在有無を確認してください。 |
+| TCGB_ERROR_PURCHASE_NOT_INITIALIZED                  | 4001       | Gamebase PurchaseAdapterが初期化されていません。            |
+| TCGB_ERROR_PURCHASE_USER_CANCELED                    | 4002       | 購入がキャンセルされました。                                       |
+| TCGB_ERROR_PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 以前の購入が完了していません。                             |
+| TCGB_ERROR_PURCHASE_NOT_ENOUGH_CASH                  | 4004       | 該当ストアのキャッシュが足りないため決済できません。              |
+| TCGB_ERROR_PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | 該当商品が有効になっていません。                          |
+| TCGB_ERROR_PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 存在しないGamebaseProductIDで決済をリクエストしました。       |
+| TCGB_ERROR_PURCHASE_LIMIT_EXCEEDED                   | 4007       | 月の購入限度を超過しました。             |
+| TCGB_ERROR_PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | サポートしないストアです。 iOSのサポート可能なストアは"AS"です。 |
+| TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | IAPライブラリエラーです。<br>error.messageを確認してください。    |
+| TCGB_ERROR_PURCHASE_UNKNOWN_ERROR                    | 4999       | 定義されていない購入エラーです。<br>全てのログを[サポート](https://toast.com/support/inquiry)へお伝えください。内容を確認後、早急にご返信させて頂きます。 |
 
 * 全体のエラーコードは、次のドキュメントをご参考ください。
     * [エラーコード](./error-code/#client-sdk)
