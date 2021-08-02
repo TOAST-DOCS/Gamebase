@@ -1,5 +1,103 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.25.0
+
+### Android
+
+#### Changed Minimum Support Version
+
+* 最小サポートAndroid Gradle Plugin(AGP)バージョンが2.3.0から3.2.0に変更されました。
+    * しかしtargetSdkVersionを30以上に設定する場合、Android 11端末に対応するためにはAGP 3.3.3以上が必要です。
+        * 次の文書を参照してください。
+        * [Game > Gamebase > Android SDK使用ガイド > 始める > Setting > Android 11](./aos-started/#android-11)
+* 下位バージョンのAGPサポートが必要な場合は[サポート](https://toast.com/support/inquiry)へお問い合わせください。
+
+#### AndroidX
+
+* Android Support Library依存性がAndroidXに変更されたため、Gradleに次の変更事項を適用してください。
+
+* gradle.propertiesファイルにAndroidXに対応していないライブラリのためのマイグレーション宣言を追加してください。
+
+```groovy
+# >>> [AndroidX]
+android.useAndroidX=true
+android.enableJetifier=true
+```
+
+* build.gradleファイルに最新AndroidXのためのJava 8ビルド設定を追加してください。
+
+```groovy
+android {
+    compileOptions {
+        // >>> [AndroidX]
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+```
+
+#### Line IdP
+
+* Line IdPを使用する場合、Line SDK内部に**&lt;queries&gt;**タグが存在するため、AGPのバージョンによってはビルドが失敗することがあります。
+    * 次のガイドを参考にして「queries」タグビルドが可能なAGPバージョンにアップグレードしてください。
+    * [Game > Gamebase > Android SDK使用ガイド > 始める > Setting > Android 11](./aos-started/#android-11)
+* Line IdPを使用する場合、Line SDK内部に**android:allowBackup="false"**が宣言されており、アプリケーションビルド時にManifest mergerでfailが発生することがあります。ビルドが失敗する場合は、次のようにapplicationタグに**tools:replace="android:allowBackup"**宣言を追加してください。
+
+```xml
+<application
+      tools:replace="android:allowBackup"
+      ... >
+```
+
+### iOS
+
+* Sign In with AppleのASAuthorizationErrorUnknownエラーが発生した場合、 TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERROR (3009)エラーをリターンするように変更されました。
+
+### Unity
+
+#### Changed Minimum Support Version
+
+* 最小サポートUnityバージョンが2017.4.16から2018.4.0に変更されました。
+* 下位バージョンのUnityサポートが必要な場合は[サポート](https://toast.com/support/inquiry)へお問い合わせください。
+
+#### AndroidX Build
+
+* Gamebase Android SDKのAndroidX移行により、Androidビルド時に次の宣言を追加してください。
+* 2019.3未満
+
+```groovy
+// mainTemplate.gradle
+([rootProject] + (rootProject.subprojects as List)).each {
+    ext {
+        it.setProperty("android.useAndroidX", true)
+        it.setProperty("android.enableJetifier", true)
+    }
+}
+```
+
+* 2019.3以上
+
+```groovy
+// gradleTemplate.properties
+android.useAndroidX=true
+android.enableJetifier=true
+```
+
+### Unreal
+
+#### AndroidX Build
+
+* Gamebase Android SDKのAndroidX移行によりAndroidビルド時にUPLに次の宣言を追加してください。
+
+```xml
+<gradleProperties>    
+  <insert>      
+    android.useAndroidX=true      
+    android.enableJetifier=true    
+  </insert>  
+</gradleProperties>
+```
+
 ## 2.21.2
 
 ### iOS
@@ -28,7 +126,6 @@ repositories {
 #### Line IdP
 
 * Line IdPを使用する場合、Line SDKのアップデートにより以下のようにGradleに**JavaVersion.VERSION_1_8**を設定していない場合はビルドが失敗します。
-* Line IdPを使用する場合、Line SDK内部に**android:allowBackup="false"**と宣言されており、アプリケーションビルド時にManifest mergerでfailが発生することがあります。ビルドが失敗した場合は、次のようにapplicationタグに**tools:replace="android:allowBackup"**宣言を追加してください。
 
 ```groovy
 android {
@@ -37,14 +134,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    
 }
-```
-
-```xml
-<application
-      tools:replace="android:allowBackup"
-      ... >
 ```
 
 ### iOS
