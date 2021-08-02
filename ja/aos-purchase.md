@@ -468,16 +468,17 @@ GamebaseEventHandlerでプロモーション決済イベントを処理する方
 
 ### Error Handling
 
-| Error                                    | Error Code | Description                              |
-| ---------------------------------------- | ---------- | ---------------------------------------- |
-| PURCHASE_NOT_INITIALIZED                 | 4001       | Purchaseモジュールが初期化されていません。<br>gamebase-adapter-purchase-IAPモジュールをプロジェクトに追加したか確認してください。|
-| PURCHASE_USER_CANCELED                   | 4002       | ゲームユーザーがアイテムの購入をキャンセルしました。                |
+| Error                                     | Error Code | Description                              |
+| ----------------------------------------- | ---------- | ---------------------------------------- |
+| PURCHASE_NOT_INITIALIZED                  | 4001       | Purchaseモジュールが初期化されていません。<br>gamebase-adapter-purchase-IAPモジュールをプロジェクトに追加したか確認してください。|
+| PURCHASE_USER_CANCELED                    | 4002       | ゲームユーザーがアイテムの購入をキャンセルしました。                |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 購入ロジックが完了していない状態でAPIが呼び出されました。    |
-| PURCHASE_INACTIVE_PRODUCT_ID             | 4005       | 該当商品が有効になっていません。  |
-| PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | 存在しないGamebaseProductIDで決済をリクエストしました。 |
-| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | このストアには対応していません。<br>選択可能なストアはGG(Google)、ONESTORE、GALAXYです。|
-| PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAPライブラリーエラーです。<br>DetailCodeを確認してください。  |
-| PURCHASE_UNKNOWN_ERROR                   | 4999       | 定義されていない購入エラーです。<br>ログ全体を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。|
+| PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | 該当商品が有効になっていません。  |
+| PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 存在しないGamebaseProductIDで決済をリクエストしました。 |
+| PURCHASE_LIMIT_EXCEEDED                   | 4007       | 月の購入限度を超過しました。             |
+| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | このストアには対応していません。<br>選択可能なストアはGG(Google)、ONESTORE、GALAXYです。|
+| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | IAPライブラリーエラーです。<br>DetailCodeを確認してください。  |
+| PURCHASE_UNKNOWN_ERROR                    | 4999       | 定義されていない購入エラーです。<br>ログ全体を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。|
 
 * 全体のエラーコードは、次のドキュメントをご参考ください。
     * [エラーコード](./error-code/#client-sdk)
