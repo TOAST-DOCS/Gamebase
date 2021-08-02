@@ -14,7 +14,7 @@ To execute Gamebase in Android, following system environment is required.
 >     * For GALAXY Store, 21 (Lollipop, 5.0) or later
 >         * Since minSdkVersion of the GALAXY IAP SDK is 18 (OS 4.3), the build will fail when the set value is smaller than this.
 >         * Checkout service app must be installed for actual payment, but Checkout service app will not be installed if it is lower than API 21(OS 5.0. Lollipop). In this case, the payment will not be processed.
-> * Gradle Android Plugin 2.3.0 or higher
+> * Android Gradle Plugin 2.3.0 or higher
 > * Development Environment: Android Studio
 
 ## Setting
@@ -60,6 +60,44 @@ To execute Gamebase in Android, following system environment is required.
         * Payment test is available only on Samsung devices.
 
 ### Gradle
+
+#### Using AndroidX
+
+* Add the terms of use for AndroidX to build settings.
+    * Android Studio
+        ```groovy
+        # gradle.properties
+        # >>> [AndroidX]
+        android.useAndroidX=true
+        android.enableJetifier=true
+        ```
+    * Unity 2019.2 or earlier
+        ```groovy
+        // mainTemplate.gradle
+        ([rootProject] + (rootProject.subprojects as List)).each {
+            ext {
+                it.setProperty("android.useAndroidX", true)
+                it.setProperty("android.enableJetifier", true)
+            }
+        }
+        ```
+    * Unity 2019.3 or later
+        ```groovy
+        // gradleTemplate.properties
+        android.useAndroidX=true
+        android.enableJetifier=true
+        ```
+    * Unreal
+        ```xml
+        <gradleProperties>    
+          <insert>      
+            android.useAndroidX=true      
+            android.enableJetifier=true    
+          </insert>  
+        </gradleProperties>
+        ```
+
+#### Define Adapters
 
 * Declare Gamebase version and authentication to use, and the payment and the push modules in the build.gradle file.
 	* Find the latest Gamebase version at [Maven Central(LINK)](https://repo1.maven.org/maven2/com/toast/android/gamebase/gamebase-sdk/).
