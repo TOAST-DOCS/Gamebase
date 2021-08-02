@@ -862,85 +862,17 @@ void Sample::GetLastLoggedInProvider()
 
 ### Get Authentication Information for External IdP
 
-Get authentication information, such as access token, User ID, and profile from externally authenticated SDK. 
+* Information such as access token, user ID, and profile of an external authentication IdP can be received by calling the Gamebase Server API after login.
+    * [Game > Gamebase > API 가이드 > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
 
-#### UserID
-
-Get user ID from externally authenticated SDK.
-
-**API**
-
-Supported Platforms
-
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
-
-```cpp
-FString GetAuthProviderUserID(const FString& providerName) const;
-```
-
-**Example**
-
-```cpp
-void Sample::GetLastLoggedInProvider(const FString& providerName)z
-{
-    FString authProviderUserID = IGamebase::Get().GetAuthProviderUserID(GetProviderName(providerName));
-}
-```
-
-#### AccessToken
-
-Get access token from externally authenticated SDK.  
-
-**API**
-
-Supported Platforms
-
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
-
-```cpp
-FString GetAuthProviderAccessToken(const FString& providerName) const;
-```
-
-**Example**
-```cpp
-void Sample::GetAuthProviderAccessToken(const FString& providerName)
-{
-    FString authProviderAccessToken = IGamebase::Get().GetAuthProviderAccessToken(providerName);
-}
-```
-
-#### Profile
-
-Get profile from externally authenticated SDK. 
-
-**API**
-
-Supported Platforms
-
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
-
-```cpp
-const FGamebaseAuthProviderProfilePtr GetAuthProviderProfile(const FString& providerName) const;
-```
-
-**Example**
-```cpp
-void Sample::GetAuthProviderProfile(const FString& providerName)
-{
-    auto authProviderProfile = IGamebase::Get().GetAuthProviderProfile(providerName);
-    if (authProviderProfile.IsValid())
-    {
-        UE_LOG(GamebaseTestResults, Display, TEXT("GetAuthProviderProfile: %s"), *authProviderProfile->information->EncodeJson());
-    }
-    else
-    {
-        UE_LOG(GamebaseTestResults, Display, TEXT("Not auth provider profile."));
-    }
-}
-```
+> <font color="red">[Caution]</font><br/>
+>
+> * For security reasons, it is recommended that you call the authentication information of an external IdP from the game server.
+* Access token may expire relatively sooner depending on the IdP.
+>     * For example, the access token of Google will expire within 2 hours from the time of login.
+>     * If you need user information, it is recommended that you call the Gamebase Server API immediately after login.
+> * When logged in with the "Gamebase.LoginForLastLoggedInProvider()” API, the authentication info cannot be retrieved.
+>     * If you need the user info, instead of "Gamebase.LoginForLastLoggedInProvider()” , use the {IDP_CODE} identical to the IDPCode that you want to use as the parameter to log in as the "Gamebase.Login(IDP_CODE, callback)" API.
 
 ### Get Banned User Information
 
