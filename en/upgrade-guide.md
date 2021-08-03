@@ -39,7 +39,7 @@ android {
 #### Line IdP
 
 * When using the Line IdP, the build may fail depending on the AGP version as there is a **&lt;queries&gt;** tag inside the Line SDK
-    * 다음 가이드를 참고하여 'queries' 태그 빌드가 가능한 AGP 버전으로 업그레이드 하시기 바랍니다.
+    * Please refer to the following guide to upgrade to the AGP version that can build the 'queries' tag.
     * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > Android 11](./aos-started/#android-11)
 * If you are using Line IdP, an error may occur in Manifest merger when building an application because **android:allowBackup="false"** is declared in Line SDK. If a build fails for this reason, declare **tools:replace="android:allowBackup"** in the application tag.
 
