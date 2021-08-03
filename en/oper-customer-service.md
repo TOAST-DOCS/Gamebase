@@ -70,7 +70,7 @@ You can also set the submission types necessary to register a user inquiry, and 
 
 Searches for the customer inquiry that matches the search conditions.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_01_202106.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_01_202107.png)
 
 **Search conditions**
 
@@ -87,6 +87,10 @@ Searches for the customer inquiry that matches the search conditions.
 - **Submit date**: Date and time user registered the inquiry
 - **Processed date**: Date and time when the customer representative processed the received inquiry
 - **Status**: Current status of the received inquiry
+    - Received: The user has registered an inquiry. Status changed to Received even if leaving an additional inquiry to the previous inquiry
+    - Pending: The person in charge has left a reply as Pending. Used when additional confirmation is required.
+    - Resolved: The person in charge has left a reply as Resolved. The inquiry has been resolved.
+    - Completed: The status becomes Completed automatically when completed or two weeks have passed after being resolved by the person in charge.
 
 #### 1. Manage submission type
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_02_202106.png)
@@ -109,8 +113,7 @@ As for the global service, you can additionally register the language you want a
 
 ### Inquiry details
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_03_202106.png)
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_04_202106.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/gamebase_customer_inquiry_03_202107.png)
 
 You can check details and process inquiries regarding the inquiries sent by users.
 After processing the inquiry, the user can make additional inquiries.
@@ -121,8 +124,9 @@ If you need to attach files when answering the user inquiry, you can attach up t
 And when the inquiry has been processed, the answer written by the customer representative is sent to the user's email address which was entered by the user to submit the inquiry.
 At this point, you can check if the push notification is being sent to the user when the inquiry has been processed by checking the items with the reply sent.
 > [Note]
-> ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_06_202106.png)
+> ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/gamebase_customer_inquiry_06_202107.png)
 > If a logged-in user registered the inquiry, the information about the user is displayed in a single view.
+> You can close the window by clicking the X button on the right. The window will reopen when you click the user ID.
 > The user information is viewed as similar to the functions from the previous member menu, you can easily check the necessary information when having to respond to the user inquiry.
 
 #### 1. Send Reply settings

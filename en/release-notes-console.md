@@ -1,4 +1,15 @@
 ## Game > Gamebase > Release Notes > Console
+### July 27, 2021
+
+#### Feature Updates
+* Customer Center > Customer Inquiry
+	* Improved to leave multiple answers when handling customer inquiries.
+	* Improved to allow users to leave additional inquiries after leaving an initial inquiry.
+	*  Add Status: To be used when needing additional confirmation after pending-replied.
+* Purchase(IAP) > Payment Abusing Monitoring: Improved to display the user status in multiple languages in the payment history by user section.
+
+#### Bug Fixes
+* Coupon > Issue Coupon: Fixed an error where statistical data was omitted when sending coupon through SMS.
 
 ### July 13, 2021 
 

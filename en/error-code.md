@@ -73,6 +73,7 @@
 |                 | UNITY                  | PURCHASE\_NOT\_ENOUGH\_CASH                                        | 4004       | Cannot purchase due to shortage of cash of the store.             |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_INACTIVE\_PRODUCT\_ID<br/>TCGB\_ERROR\_PURCHASE\_INACTIVE\_PRODUCT\_ID | 4005       | The status of the product is not active. |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_NOT\_EXIST\_PRODUCT\_ID<br/>TCGB\_ERROR\_PURCHASE\_NOT\_EXIST\_PRODUCT\_ID | 4006       | Payment is requested with a non-existent GamebaseProductID. |
+|                 | Android, UNITY<br/>IOS | PURCHASE\_LIMIT\_EXCEEDED<br/>TCGB\_ERROR\_PURCHASE\_LIMIT\_EXCEEDED | 4007       | You have exceeded your monthly purchase limit. |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_NOT\_SUPPORTED\_MARKET<br/>TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010       | The store is not supported.                         |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_EXTERNAL\_LIBRARY\_ERROR<br/>TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201       | Error in external IAP library                   |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR | 4999       | Unknown error in purchase                         |

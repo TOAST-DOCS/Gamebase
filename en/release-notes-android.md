@@ -1,6 +1,30 @@
 ## Game > Gamebase > Release Notes > Android
 
-### 2.24.0(2021.06.29) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-Android.zip)
+### 2.25.0 (2021.07.27)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.25.0/GamebaseSDK-Android.zip)
+
+#### More Features
+* Add monthly payment limit feature
+    * If the monthly payment limit is exceeded, **a PURCHASE_LIMIT_EXCEEDED(4007)** error occurs.
+
+#### Feature Updates
+* Change the dependency of Android Support Library to AndroidX
+* Guarantee the PushConfiguration object in the terms and conditions with Push notification items
+    * The PushConfiguration to be created as the result of calling Gamebase.Terms.showTermsView API was null if user did not agree to receive push notifications in the terms of UI. It has now changed so that the PushConfiguration object is always returned if there is a Push notification item in the terms and conditions.
+    * When user rejects push notifications, the PushConfiguration object is created as (consent to push notifications = false, consent to advertisement push notifications = false, consent to push notifications for advertisements at night = false).
+    * The PushConfiguration is null when there is no Push notification item in the terms and conditions.
+* External SDK Update
+    * TOAST Android SDK(0.26.0)
+    * Kotlin(1.5.21)
+    * Google Play Services Auth(19.0.0)
+    * Facebook Android SDK(11.1.0)
+    * Naver Android SDK(4.4.1)
+    * Line Android SDK(5.6.2)
+    * Weibo Android SDK(11.6.0)
+* Fixed a crash that occurred when logging in to Weibo.
+
+### 2.24.0 (2021.06.29) 
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-Android.zip)
 
 #### Feature Updates
 * Change the internal launch URL

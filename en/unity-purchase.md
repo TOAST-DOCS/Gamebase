@@ -438,17 +438,18 @@ Supported Platforms
 
 ### Error Handling
 
-| Error                                    | Error Code | Description                              |
-| ---------------------------------------- | ---------- | ---------------------------------------- |
-| PURCHASE_NOT_INITIALIZED | 4001 | The purchase module is not initialized.<br>Check if the gamebase-adapter-purchase-IAP module has been added to project. |
-| PURCHASE_USER_CANCELED | 4002 | Purchase is cancelled. |
-| PURCHASE_NOT_FINISHED\_PREVIOUS\_PURCHASING | 4003 | API has been called when a purchase logic is not completed. |
-| PURCHASE_NOT_ENOUGH_CASH | 4004 | Cannot purchase due to shortage of cash of the store. |
-| PURCHASE_INACTIVE_PRODUCT_ID             | 4005       | Product is not activated.   |
-| PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | Requested for purchase with invalid GamebaseProductID. |
-| PURCHASE_NOT_SUPPORTED_MARKET | 4010 | The store is not supported.<br>You can choose either GG (Google), TS (ONE Store), or TEST. |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR | 4201 | Error in IAP library.<br>Check DetailCode. |
-| PURCHASE_UNKNOWN_ERROR | 4999 | Unknown error in purchase.<br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we'll respond ASAP. |
+| Error                                       | Error Code | Description                              |
+| ------------------------------------------- | ---------- | ---------------------------------------- |
+| PURCHASE_NOT_INITIALIZED                    | 4001       | The purchase module is not initialized.<br>Check if the gamebase-adapter-purchase-IAP module has been added to project. |
+| PURCHASE_USER_CANCELED                      | 4002       | Purchase is cancelled. |
+| PURCHASE_NOT_FINISHED\_PREVIOUS\_PURCHASING | 4003       | API has been called when a purchase logic is not completed. |
+| PURCHASE_NOT_ENOUGH_CASH                    | 4004       | Cannot purchase due to shortage of cash of the store. |
+| PURCHASE_INACTIVE_PRODUCT_ID                | 4005       | Product is not activated.   |
+| PURCHASE_NOT_EXIST_PRODUCT_ID               | 4006       | Requested for purchase with invalid GamebaseProductID. |
+| PURCHASE_LIMIT_EXCEEDED                     | 4007       | 월 구매 한도를 초과했습니다.             |
+| PURCHASE_NOT_SUPPORTED_MARKET               | 4010       | The store is not supported.<br>You can choose either GG (Google), TS (ONE Store), or TEST. |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR             | 4201       | Error in IAP library.<br>Check DetailCode. |
+| PURCHASE_UNKNOWN_ERROR                      | 4999       | Unknown error in purchase.<br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we'll respond ASAP. |
 
 * Refer to the following document for the entire error code.
     * [Entire Error Codes](./error-code/#client-sdk)
