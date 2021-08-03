@@ -857,33 +857,18 @@ public void GetLastLoggedInProvider()
 
 ### Get Authentication Information for External IdP
 
-Get access token, User ID, and profiles from externally authenticated SDK.
+* Information such as access token, user ID, and profile of an external authentication IdP can be received by calling the Gamebase Server API after login.
+    * [Game > Gamebase > API Guide > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
 
-#### UserID
+> <font color="red">[Caution]</font><br/>
+>
+> * For security reasons, it is recommended that you call the authentication information of an external IdP from the game server.
+* Access token may expire relatively sooner depending on the IdP.
+>     * For example, the access token of Google will expire within 2 hours from the time of login.
+>     * If you need user information, it is recommended that you call the Gamebase Server API immediately after login.
+> * When logged in with the "Gamebase.LoginForLastLoggedInProvider()” API, the authentication info cannot be retrieved.
+>     * If you need the user info, instead of "Gamebase.LoginForLastLoggedInProvider()” , use the {IDP_CODE} identical to the IDPCode that you want to use as the parameter to log in as the "Gamebase.Login(IDP_CODE, callback)" API.
 
-Get User ID from externally authenticated SDK.
-
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-
-```cs
-static string GetAuthProviderUserID()
-```
-
-**Example**
-
-```cs
-public void GetAuthProviderUserID(string providerName)
-{
-    string authProviderUserID = Gamebase.GetAuthProviderUserID(providerName);
-}
-```
 
 #### AccessToken
 

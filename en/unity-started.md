@@ -8,7 +8,7 @@ Below describes environments and initial setting of Gamebase Unity SDK.
 > 
 > Unity support version
 > 
-> * 2017.4.16 ~ 2021.1.11
+> * 2017.4.0 ~ 2021.1.15
 > * To be supported by a lower-version Unity, contact [Customer Center](https://toast.com/support/inquiry).
 
 #### Android
@@ -145,6 +145,8 @@ To manage lifecycle, set "com.toast.gamebase.activity.GamebaseMainActivity" as t
 > AndroidPlugin should be developed in inheritance of GamebaseMainActivity. <br/>
 > GamebaseMainActivity is included to GamebasePlugin.jar. <br/>
 > The launchMode should be a singleTask (Unity&'s default activity will also be fixed as singleTask). Otherwise, crash may occur when an app starts.
+> 
+> To change the Lifecycle, you need to activate Project Settings > Settings for Android > Publish Settings > Build > Custom Main Manifest and edit the AndroidManifest.xml.
 
 
 ```xml
