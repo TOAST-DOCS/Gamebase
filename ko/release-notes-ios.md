@@ -22,10 +22,10 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경
-* 내부 런칭 URL 변경
+* 내부 론칭 URL 변경
 
 #### 버그 수정
-* 약관 상세보기 후 약관 팝업이 안닫히는 버그 수정
+* 약관 상세 보기 후 약관 새 창이 닫히지 않는 버그 수정
 
 ### 2.23.0 (2021.06.14) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-iOS.zip)
