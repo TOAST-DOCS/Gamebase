@@ -11,7 +11,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-Unity.zip)
 
 #### 기능 개선/변경
-* 내부 런칭 URL 변경
+* 내부 론칭 URL 변경
 
 ### 2.23.0 (2021.06.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-Unity.zip)
@@ -830,7 +830,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 개선/변경
 * [SDK] 1.1.2 업데이트
-    * 게임런칭시 점검, 긴급공지 팝업 개선
+    * 게임 론칭시 점검, 긴급공지 팝업 개선
     * Unity Plugin 디버그로그 추가 및 익셉션 상세처리
 
 ### 1.1.0 (2017.03.21)
