@@ -32,11 +32,11 @@ Display Language 에 입력하는 언어 코드는 반드시 아래의 표(**Gam
 > * Display Language 는 단말기 설정 언어와 무관하게 Gamebase 의 표시 언어를 변경하고 싶은 경우에만 사용하시기 바랍니다.
 > * Display Language Code 는 ISO-639 형태의 값으로, 대소문자를 구분합니다.
 > 'EN'이나 'zh-cn'과 같이 설정하면 문제가 발생할 수 있습니다.
-> * 만일 Display Language Code 로 입력한 값이 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 존재하지 않는다면, Display Langauge Code 는 자동으로 기본값인 영어(en)로 지정됩니다.
+> * 만일 Display Language Code 로 입력한 값이 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 존재하지 않는다면, Display Langauge Code 는 Gamebase 콘솔에서 설정한 기본 언어로 지정됩니다.
+>     * 만일 Gamebase 콘솔에서 언어 설정을 하지 않았다면 영어(en)가 기본 언어로 설정됩니다.
 
 > [참고]
 >
-> * Gamebase의 클라이언트 메시지는 영어(en), 한글(ko), 일본어(ja)만 포함하고 있으므로 아래의 표에 존재하는 언어 코드라 할지라도 영어(en), 한글(ko), 일본어(ja) 이외의 언어를 지정하면 기본값인 영어(en)로 자동 설정됩니다.
 > * Gamebase의 클라이언트에 포함되어 있지 않은 언어셋은 직접 추가할 수 있습니다.
 > **신규 언어셋 추가** 항목을 참조하시기 바랍니다.
 
@@ -163,7 +163,7 @@ public void getDisplayLanguageCodeInRuntime() {
 
 #### 신규 언어셋 추가
 
-Gamebase에서 제공하는 기본 언어(ko, en, ja) 외 다른 언어를 사용하려면 gamebase-sdk-base.aar > res > raw에 있는 localizedstring.json 파일에 값을 추가해야 합니다.
+Gamebase에서 제공하는 기본 언어(ko, en, ja, zh-CN, zh-TW, th) 외 다른 언어를 추가하려면 프로젝트의 res > raw 폴더에 localizedstring.json 파일을 추가하면 됩니다.
 
 ![localizedstring.json](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-etc_001_1.11.0.png)
 
@@ -189,10 +189,32 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
     ...
     "launching_service_closed_title": "サービス終了"
   },
+  "zh-CN": {
+    "common_ok_button": "确定",
+    "common_cancel_button": "取消",
+    ...
+    "launching_service_closed_title": "关闭服务"
+  },
+  "zh-TW": {
+    "common_ok_button": "好",
+    "common_cancel_button": "取消",
+    ...
+    "launching_service_closed_title": "服務關閉"
+  },
+  "th": {
+    "common_ok_button": "ยืนยัน",
+    "common_cancel_button": "ยกเลิก",
+    ...
+    "launching_service_closed_title": "ปิดให้บริการ"
+  },
+  "de": {},
+  "es": {},
+  ...
+  "ms": {}
 }
 ```
 
-다른 언어셋을 추가해야 할 경우에는 localizedstring.json 파일에 `"${언어 코드}":{"key":"value"}` 형태로 값을 추가하면 됩니다.
+다른 언어셋을 추가해야 할 경우에는 localizedstring.json 파일의 해당 언어 코드에 `"key":"value"` 형태로 값을 추가하면 됩니다.
 
 ```json
 {
@@ -202,34 +224,28 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
     ...
     "launching_service_closed_title": "Service Closed"
   },
-  "ko": {
-    "common_ok_button": "확인",
-    "common_cancel_button": "취소",
+  ...
+  "vi": {
+    "common_ok_button": "value",
+    "common_cancel_button": "value",
     ...
-    "launching_service_closed_title": "서비스 종료"
+    "launching_service_closed_title": "value"
   },
-  "ja": {
-    "common_ok_button": "確認",
-    "common_cancel_button": "キャンセル",
-    ...
-    "launching_service_closed_title": "サービス終了"
-  },
-  "${언어코드}": {
-      "common_ok_button": "...",
-      ...
-  }
+  ...
+  "ms": {}
 }
 ```
 
-위 JSON 형식에서 "${언어코드}":{ } 내부에 key가 누락될 경우에는 `단말기에 설정된 언어` 또는 `en`이 자동으로 입력됩니다.
+위 JSON 형식에서 "${언어코드}":{ } 내부에 key가 누락될 경우에는 `단말기에 설정된 언어` 나 `Gamebase 콘솔에서 지정된 기본 언어`, 또는 `en`이 자동으로 입력됩니다.
 
 #### Display Language 우선순위
 
 초기화 및 SetDisplayLanguageCode API를 통해 Display Language를 설정할 경우, 최종 적용되는 Display Language는 입력한 값과 다르게 적용될 수 있습니다.
 
 1. 입력된 languageCode가 localizedstring.json 파일에 정의되어 있는지 확인합니다.
-2. Gamebase 초기화 시, 단말기에 설정된 언어코드가 localizedstring.json 파일에 정의되어 있는지 확인합니다.(이 값은 초기화 이후, 단말기에 설정된 언어를 변경하더라도 유지됩니다.)
-3. Display Language의 기본값인 `en`이 자동으로 설정됩니다.
+2. 1번이 실패했다면 Gamebase 초기화 시, 단말기에 설정된 언어코드가 localizedstring.json 파일에 정의되어 있는지 확인합니다.(이 값은 초기화 이후, 단말기에 설정된 언어를 변경하더라도 유지됩니다.)
+3. 2번이 실패했다면 Gamebase 콘솔에 설정된 기본 언어가 설정됩니다.
+4. Gamebase 콘솔에 언어 설정이 없다면 `en`이 기본값으로 설정됩니다.
 
 ### Country Code
 
