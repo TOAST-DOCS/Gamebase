@@ -160,6 +160,9 @@ public void SampleShowTermsView()
         if (Gamebase.IsSuccess(error) == true)
         {
             Debug.Log("ShowTermsView succeeded.");
+            
+            // If the 'PushConfiguration' is not null,
+            // save the 'PushConfiguration' and use it for Gamebase.Push.RegisterPush() after Gamebase.Login().
             GamebaseResponse.Push.PushConfiguration pushConfiguration = GamebaseResponse.Push.PushConfiguration.From(data)
         }
         else
