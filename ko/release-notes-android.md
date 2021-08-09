@@ -25,7 +25,7 @@
 
 #### 버그 수정
 * Push 언어 설정이 개선되었습니다.
-    * Push 언어 설정은 별다른 보조 처리가 없이 단말기의 언어코드를 그대로 적용되어, Push 콘솔에서 전송한 메세지의 언어코드가 일치하지 않는 문제가 있었으므로, 이를 Display Language Code 설정과 통합함으로써 해결하였습니다.
+    * Push 언어 설정은 별다른 보조 처리가 없이 단말기의 언어코드를 그대로 적용되어, Push 콘솔에서 전송한 메세지의 언어코드가 일치하지 않는 문제를 수정하였습니다.
 
 ### 2.25.0 (2021.07.27)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.25.0/GamebaseSDK-Android.zip)

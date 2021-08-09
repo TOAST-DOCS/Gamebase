@@ -236,8 +236,6 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-위 JSON 형식에서 "${언어코드}":{ } 내부에 key가 누락될 경우에는 `단말기에 설정된 언어` 나 `Gamebase 콘솔에서 지정된 기본 언어`, 또는 `en`이 자동으로 입력됩니다.
-
 #### Display Language 우선순위
 
 초기화 및 SetDisplayLanguageCode API를 통해 Display Language를 설정할 경우, 최종 적용되는 Display Language는 입력한 값과 다르게 적용될 수 있습니다.
