@@ -4,10 +4,6 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Unity.zip)
 
 #### 기능 개선/변경
-* Display Language 기능이 개선되었습니다.
-    * Display Language 언어셋에 중국어 간체(zh-CN), 중국어 번체(zh-TW), 태국어(th)가 추가되었습니다.
-    * 기본 언어코드가 **en** 이었으나, Gamebase 콘솔에서 설정한 기본언어가 반영되도록 개선하였습니다.
-        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > 언어 설정](./oper-app/#_3)
 * ShowTermsView API 호출 후 생성할 수 있는 PushConfiguration 객체의 생성 기준이 다음과 같이 변경되었습니다.
     * 변경 전
         * 약관 항목중에 **Push 수신** 항목이 존재하는 경우에만 null 이 아닌 유효한 PushConfiguration 이 리턴되었습니다.
