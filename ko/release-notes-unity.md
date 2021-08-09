@@ -1,9 +1,40 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
+### 2.26.0 (2021.08.10)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* Display Language 기능이 개선되었습니다.
+    * Display Language 언어셋에 중국어 간체(zh-CN), 중국어 번체(zh-TW), 태국어(th)가 추가되었습니다.
+    * 기본 언어코드가 **en** 이었으나, Gamebase 콘솔에서 설정한 기본언어가 반영되도록 개선하였습니다.
+        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > 언어 설정](./oper-app/#_3)
+* ShowTermsView API 호출 후 생성할 수 있는 PushConfiguration 객체의 생성 기준이 다음과 같이 변경되었습니다.
+    * 변경 전
+        * 약관 항목중에 **Push 수신** 항목이 존재하는 경우에만 null 이 아닌 유효한 PushConfiguration 이 리턴되었습니다.
+        * 유저가 주간, 야간 홍보성 Push 수신에 모두 거부한 경우 PushConfiguration.pushEnabled 는 false 로 생성되었습니다.
+    * 변경 후
+        * 약관 UI 가 표시되었다면 항상 null 이 아닌 유효한 PushConfiguration 이 리턴됩니다.
+        * ShowTermsView 가 리턴하는 PushConfiguration 객체의 pushEnabled 값은 항상 true 입니다.
+    * 변경되지 않고 동일한 점
+        * 이미 약관에 동의하여 약관 UI 가 표시되지 않았다면 PushConfiguration 은 null 로 리턴됩니다.
+
+#### 버그 수정
+* Push 언어 설정이 개선되었습니다.
+    * Push 언어 설정은 별다른 보조 처리가 없이 단말기의 언어코드를 그대로 적용되어, Push 콘솔에서 전송한 메세지의 언어코드가 일치하지 않는 문제를 수정하였습니다.
+
+
 ### 2.25.0 (2021.07.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.25.0/GamebaseSDK-Unity.zip)
 
+#### 기능 추가
+* 월 결제 한도 기능 추가
+    * 월 결제 한도를 넘는 경우 **PURCHASE_LIMIT_EXCEEDED(4007)** 에러가 발생합니다.
+
 #### 기능 개선/변경
+* Push 항목이 존재하는 약관에서 PushConfiguration 객체 보장
+    * 약관 UI 에서 Push 수신 동의를 하지 않을 경우 Gamebase.Terms.ShowTermsView API 호출 결과로 생성되는 PushConfiguration 이 null 이었으나, 약관에 Push 항목이 존재한다면 PushConfiguration 객체가 항상 리턴되도록 변경되었습니다.
+    * Push 수신 거부시 PushConfiguration 객체는 (푸시 동의 여부 = false, 광고성 푸시 동의 여부 = false, 야간 광고성 푸시 동의 여부 = false) 로 생성됩니다.
+    * 약관에 Push 항목이 존재하지 않는다면 PushConfiguration 객체는 null 입니다.
 * Unity 최소지원 버전 변경: 2018.4.0f1
 * 외부 SDK 업데이트: TOAST Unity SDK(0.23.0)
 
