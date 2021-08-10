@@ -1,4 +1,26 @@
 ## Game > Gamebase > Release Notes > Console
+
+### August 10, 2021
+
+#### Feature Updates
+* Analytics > Real-time Monitoring > Real-time CCU
+    * Fixed the graph of change in the number of concurrent connected users (CCU) to GMT+9 timezone
+* Push > Push Registration
+	* Added the feature of deleting all entered messages
+* Customer Center > Customer Inquiry > Send Reply Settings
+	* Improved to expose all languages selected in App > Language Settings > Supported Language, if Send Reply is not set up
+* Coupon > Issue Coupon
+	* Modified the notification message about the number of coupons issued
+
+#### Bug Fixes
+* App > Terms and Conditions
+	* Fixed the error of some country names not being displayed in Preview Terms and Conditions
+* Purchase (IAP) > Store
+	* Fixed the error of no alarm message popping up even though this is a required value
+* Members > Members
+	* Changed the text in the popup window when looking for a non-existing member
+
+
 ### July 27, 2021
 
 #### Feature Updates
