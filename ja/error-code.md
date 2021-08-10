@@ -73,6 +73,7 @@
 |                 | UNITY                  | PURCHASE\_NOT\_ENOUGH\_CASH                                        | 4004       | 該当するストアのcashが足りないため決済することができません。           |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_INACTIVE\_PRODUCT\_ID<br/>TCGB\_ERROR\_PURCHASE\_INACTIVE\_PRODUCT\_ID | 4005       | 該当商品が有効な状態ではありません。  |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_NOT\_EXIST\_PRODUCT\_ID<br/>TCGB\_ERROR\_PURCHASE\_NOT\_EXIST\_PRODUCT\_ID | 4006       | 存在しないGamebaseProductIDで決済をリクエストしました。 |
+|                 | Android, UNITY<br/>IOS | PURCHASE\_LIMIT\_EXCEEDED<br/>TCGB\_ERROR\_PURCHASE\_LIMIT\_EXCEEDED | 4007       | 月の購入限度を超過しました。 |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_NOT\_SUPPORTED\_MARKET<br/>TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010       | このストアには対応しておりません。                        |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_EXTERNAL\_LIBRARY\_ERROR<br/>TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201       | 外部IAPライブラリーのエラーです。                    |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR | 4999       | 不明な購入エラーです。                         |

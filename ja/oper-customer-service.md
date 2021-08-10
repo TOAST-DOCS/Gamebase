@@ -70,7 +70,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 
 検索条件に合った顧客お問い合わせ履歴を検索します。
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_01_202106.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_01_202107.png)
 
 **検索条件**
 
@@ -87,6 +87,10 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 - **受付日**：ユーザーのお問い合わせ登録日時
 - **処理日**：担当者が入信したお問い合わせを処理した日付
 - **状態**：入信したお問い合わせの現在の処理状態
+    - 受付：ユーザーがお問い合わせを登録した状態です。既存のお問い合わせに追加のお問い合わせを残しても受付状態に変更されます。
+    - 保留：担当者が返答を残す時、保留にした状態です。追加の確認が必要な場合に使用されます。
+    - 解決：お問い合わせが解決した状態です。
+    - 完了：担当者が完了処理または解決したお問い合わせが2週間経過すると自動的に完了状態になります。
 
 #### 1. 受付タイプ管理
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_02_202106.png)
@@ -109,8 +113,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 
 ### Inquiry details
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_03_202106.png)
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_04_202106.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/gamebase_customer_inquiry_03_202107.png)
 
 ユーザーからのお問い合わせの詳細内容確認し、お問い合わせの処理を行うことができます。
 お問い合わせを処理した後、ユーザーが追加でお問い合わを行うことができます。
@@ -121,8 +124,9 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 以降の処理が完了した場合、お問い合わせの際に登録したemailへ担当者が作成した内容がユーザーに送信されます。
 この時、返信項目を利用してお問い合わせ処理を完了時、該当ユーザーにPushアラームが送信されるかどうかを確認できます。
 > [参考]
-> ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_06_202106.png)
+> ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/gamebase_customer_inquiry_06_202107.png)
 > ログインしたユーザーがお問い合わせを登録した場合、該当ユーザーの情報が一画面で照会されて確認できます。
+> 右側Xボタンをクリックしてウィンドウを閉じることができます。ユーザーIDをクリックするともう一度表示されます。
 > 既存会員メニューで使用していた機能と同じようにユーザー情報が照会されるため、ユーザーお問い合わせ対応時に必要な情報を一画面で便利に確認できます。
 
 #### 1. 返信送信設定

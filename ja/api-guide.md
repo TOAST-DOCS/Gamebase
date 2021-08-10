@@ -1530,21 +1530,26 @@ Gamebaseは、NHN Cloud LeaderboardサービスのサーバーAPIに対して**W
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
-| Factorに登録されたユーザー数を照会 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
-| 単一ユーザーのスコア/ランキングを照会 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
-| 複数のユーザーのスコア/ランキングを照会 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
-| 一定範囲の全体スコア/ランキングを照会 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
-| 特定順位のユーザーを検索 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
-| 特定ユーザーの順位および上位、下位ユーザーの順位検索 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} | /leaderboard/v2.0/appkeys/{appkey}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} |
-| 単一ユーザーのスコアを登録 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
-| 単一ユーザーのスコア/ExtraDataを登録 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
-| 複数のユーザーのスコアを登録 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
-| 複数のユーザーのスコア/ExtraDataを登録 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
-| 単一ユーザーのLeaderboardの情報を削除 | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| Factorに登録されたユーザー数を照会<br>- Get user count in factor | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
+| Factor全体数検索<br>- Get total factor count | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factor-count | /leaderboard/v2.0/appkeys/{appKey}/factor-count |
+| Factor情報照会<br>- Get factor info<br>- Get multiple factor info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors | /leaderboard/v2.0/appkeys/{appKey}/factors |
+| 単一ユーザーのスコア/ランキングを照会<br>- Get single user info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
+| 複数のユーザーのスコア/ランキングを照会<br>- Get multiple user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
+| 一定範囲の全体スコア/ランキングを照会<br>- Get multiple user info by range | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
+| 特定順位のユーザーを検索<br>- Get selected rank user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| 特定ユーザーの順位および上位、下位ユーザーの順位検索<br>- Get multiple user info by pivot user | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} | /leaderboard/v2.0/appkeys/{appkey}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} |
+| 単一ユーザーのスコアを登録<br>- Set single user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
+| 単一ユーザーのスコア/ExtraDataを登録<br>- Set single user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
+| 複数のユーザーのスコアを登録<br>- Set multiple user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
+| 複数のユーザーのスコア/ExtraDataを登録<br>- Set multiple user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
+| ユーザーLeaderboard情報を削除<br>- Delete single user info<br>- Delete multiple user info | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+
+<br/>
 
 **該当するAPIに対する詳細説明は、次のリンクをご参考ください。**
 Gamebase Wrapping APIとマッピングされたLeaderboard APIのスペックは、以下のガイドを参考にしてください。
 Leaderboard Appkeyを設定しないで、Gamebase AppIdおよびSecretKeyを利用してGamebase Wrapping Leaderboard APIを呼び出してください。
+
 
 [Leaderboard APIガイド](/Game/Leaderboard/ja/api-guide/)
 
@@ -1586,12 +1591,17 @@ Gamebaseは、NHN Cloud PushサービスのサーバーAPIで**Wrapping**機能�
 |   | 修正 | PUT | /tcgb-push/v1.3/apps/{appId}/reservations/{reservationId} | /push/v2.4/appkeys/{appkey}/reservations/{reservationId} |
 |   | 削除 | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
 
+<br/>
 
 **For more information of the API, click the following link.**
 Gamebase Wrapping APIとマッピングされたPush APIのスペックは、以下のガイドを参照してください。
 Push Appkeyの設定を行わずに、Gamebase AppIdおよびSecretKeyを利用してGamebase Wrapping Push APIを呼び出してください。
 
 [Push Guide](/Notification/Push/en/api-guide/)
+
+> [参考]
+> Pushガイドに存在するuid値はgamebase userId値を使用してください。クライアントSDKでプッシュトークン登録時、ユーザー識別子はgamebase userIdに登録されています。
+> 1人のユーザーが複数の端末でプッシュ受信を許可した場合、複数の端末でプッシュを受信します。
 
 <br/>
 
@@ -1607,7 +1617,7 @@ X-Secret-Key: IgsaAP
 {
     "target" : {
         "type" : "UID",
-        "to": ["uid-1", "uid-2"]
+        "to": ["gamebase userId-1", "gamebase userId-2"]
     },
     "content" : {
         "default" : {

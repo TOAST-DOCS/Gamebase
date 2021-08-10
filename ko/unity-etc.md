@@ -256,8 +256,6 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-위 JSON 형식에서 "${언어코드}":{ } 내부에 key가 누락될 경우에는 `단말기에 설정된 언어` 또는 `en`이 자동으로 입력됩니다.
-
 Unity Android, iOS 플랫폼에서의 신규 언어셋 추가 방법은 아래 가이드를 참고하십시오.
 
 * [Android 신규 언어셋 추가](./aos-etc#display-language)

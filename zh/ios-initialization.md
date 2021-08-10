@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > iOS SDK 使用指南 > 初始化
+## Game > Gamebase > iOS SDK 使用指南 > 初始化
 
 在使用Gamebase iOS SDK之前，必须先执行初始化。
 
@@ -15,7 +15,7 @@
 
 当游戏开始时设置Debug Mode， 初始化Gamebase之后，根据Launching Status Code判断是否进入游戏。具体的Flow如下。 
 
-![initialization flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/initialization_flow_2.19.0.png)
+![initialization flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/initialization_flow_2.19.0.png)
 
 ### Configuration Settings
 
@@ -37,21 +37,21 @@ Gamebase仅显示警告(warning)和错误日志。
 >
 > 当**发布**游戏时，请务必从源代码中删除setDebugMode调用，或者将参数更改为false之后再打包。
 
-调试设置也可在控制台进行，优先考虑在控制台中设置的值。
-控制台设置方法请参考如下指南。
+调试设置也可在控制台中进行，优先考虑在控制台中设置的值。
+关于控制台设置方法，请参考如下指南。
 
-* [控制台测试终端机设置](./oper-app/#test-device)
-* [控制台客户设置](./oper-app/#client)
+* [控制台测试终端机设定](./oper-app/#test-device)
+* [控制台客户设定](./oper-app/#client)
 
 
 
 ### Initialize
-**application:didFinishLaunchingWithOptions:**方法中按以下方式进行初始化。
+**application:didFinishLaunchingWithOptions:**方法中，按以下方式进行初始化。
 
 
 > <font color="red">[注意]</font><br/>
 >
-> 为了初始化Gamebase，调用的**initializeWithConfiguration:launchOptions:completion:** 方法，也可以在**application:didFinishLaunchingWithOptions:** 之外进行调用。
+> 为了初始化Gamebase，调用的**initializeWithConfiguration:launchOptions:completion:**方法，也可以在**application:didFinishLaunchingWithOptions:**之外进行调用。
 
 
 <br/>
@@ -89,8 +89,8 @@ Gamebase仅显示警告(warning)和错误日志。
 
 ### Launching Information
 
-可以通过调用Gamebase #initialize来确认Launching状态。<br/>
-应在Gamebase初始化后调用Launching状态。
+可以通过调用Gamebase#initialize来确认Launching状态。<br/>
+要先初始化Gamebase后调用Launching状态。
 
 ```objectivec
 - (void)myMethodAfterGamebaseInitialized {
@@ -120,13 +120,13 @@ Gamebase仅显示警告(warning)和错误日志。
 ```objectivec
 #import <Gamebase/Gamebase.h>
 
-+ NSDictionary* launchingInfo = [TCGBLaunching laucnhingInformations];
+NSDictionary* launchingInfo = [TCGBLaunching launchingInformations];
 ```
 
 
 #### 1. Launching
 
-是Gamebase启动信息。
+是Gamebase的启动信息。
 
 **1.1 Status**
 
@@ -135,7 +135,7 @@ Gamebase仅显示警告(warning)和错误日志。
 * code: 游戏状态代码（正在检查、必须升级、结束服务等）
 * message: 游戏状态信息
 
-状态代码请参考下表。
+状态代码请参考以下表。
 
 ##### Launching Status Code
 
@@ -180,11 +180,11 @@ Gamebase仅显示警告(warning)和错误日志。
 
 是Gamebase Console中创建的维护信息。
 
-* url: 检查页面URL
-* timezone: 标准时间段(timezone)
-* beginDate: 开始时间
-* endDate: 结束时间
-* message: 检查原因
+* url : 检查页面URL
+* timezone : 标准时间段(timezone)
+* beginDate : 开始时间
+* endDate : 结束时间
+* message : 检查原因
 
 [控制台指南](/Game/Gamebase/ko/oper-operation/#maintenance)
 
@@ -200,7 +200,7 @@ Gamebase仅显示警告(warning)和错误日志。
 
 #### 2. tcProduct
 
-是与Gamebase相关的TOAST服务的appKey。
+是与Gamebase相关的NHN Cloud服务的appKey。
 
 * gamebase
 * tcLaunching
@@ -209,7 +209,7 @@ Gamebase仅显示警告(warning)和错误日志。
 
 #### 3. tcIap
 
-是TOAST中创建的IAP商店信息。
+是NHN Cloud中创建的IAP商店信息。
 
 * id: App ID
 * name: App Name
@@ -219,18 +219,18 @@ Gamebase仅显示警告(warning)和错误日志。
 
 #### 4. tcLaunching
 
-是TOAST Launching Console中用户输入的信息。
+是用户在NHN Cloud Launching Console中输入的信息。
 
 * 以JSON string格式传送用户输入的值。
-* 有关TOAST Launching的具体设置方法，请参考如下指南。
+* 有关NHN Cloud Launching的具体设置方法，请参考以下指南。
 
 [控制台指南](/Game/Gamebase/ko/oper-management/#config)
 
 ### Handling Unregistered Version
 
-对未在Gamebase控制台中注册的GameClientVersion进行初始化时，出现**LAUNCHING_UNREGISTERED_CLIENT(2004)**错误。
-如果是enablePopup(true), enableLaunchingStatusPopup(true)状态，则会弹出强制更新窗口，并可跳转到商店。
-如果不使用Gamebase弹窗，您可通过TCGBError对象获取UpdateInfo，在游戏中直接创建UI, 使得用户直接跳转到商店。
+对在Gamebase控制台中未注册的GameClientVersion进行初始化时，将会出现**LAUNCHING_UNREGISTERED_CLIENT(2004)**错误。
+如果是enablePopup(true), enableLaunchingStatusPopup(true)状态，则会弹出强制更新窗口，并可以跳转到商店。
+如果不使用Gamebase弹窗，您可通过TCGBError对象获取UpdateInfo，在游戏中直接创建UI, 使用户直接跳转到商店。
 
 
 **VO**
@@ -293,8 +293,9 @@ Gamebase仅显示警告(warning)和错误日志。
 
 > <font color="red">[注意]</font><br/>
 >
-> 如果已经覆盖(overriding)了UIApplicationDelegate的 **application:openURL:options:**，则可能无法调用**application:openURL:sourceApplication:annotation:**。
+> 如果已经覆盖(overriding)了UIApplicationDelegate的**application:openURL:options:**，则可能无法调用**application:openURL:sourceApplication:annotation:**。
 >
+
 
 > <font color="red">[注意]</font><br/>
 >
@@ -340,7 +341,7 @@ Gamebase仅显示警告(warning)和错误日志。
 ```
 
 ### DidEnterBackground Event
-需要通过调用**applicationDidEnterBackground** 方法，将App切换到后台告知Gamebase。
+需要通过调用**applicationDidEnterBackground**方法，将App切换到后台告知Gamebase。
 
 
 ```objectivec
@@ -382,10 +383,10 @@ Gamebase仅显示警告(warning)和错误日志。
 
 | Error                              | Error Code | Description            |
 | ---------------------------------- | ---------- | ---------------------- |
-| TCGB\_ERROR\_NOT\_INITIALIZED      | 1          | Gamebase未初始化。 |
+| TCGB\_ERROR\_NOT\_INITIALIZED      | 1          | 未初始化Gamebase。 |
 | TCGB\_ERROR\_NOT\_LOGGED\_IN       | 2          | 需要登录。           |
-| TCGB\_ERROR\_INVALID\_PARAMETER    | 3          | 无效的参数。          |
-| TCGB\_ERROR\_INVALID\_JSON\_FORMAT | 4          | JSON格式错误。       |
+| TCGB\_ERROR\_INVALID\_PARAMETER    | 3          | 是无效的参数。          |
+| TCGB\_ERROR\_INVALID\_JSON\_FORMAT | 4          | 为JSON格式错误。       |
 | TCGB\_ERROR\_USER\_PERMISSION      | 5          | 无权限。              |
 | TCGB\_ERROR\_NOT\_SUPPORTED        | 10         | 不支持此功能。        |
 | TCGB\_ERROR\_NOT\_SUPPORTED\_IOS   | 12         | iOS不支持此功能。   |

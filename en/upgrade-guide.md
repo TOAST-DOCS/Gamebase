@@ -1,5 +1,103 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.25.0
+
+### Android
+
+#### Changed Minimum Support Version
+
+* The minimum Android Gradle Plugin(AGP) version has changed from 2.3.0 to 3.2.0 .
+    * AGP 3.3.3 or higher is required to support Android 11 terminals when setting the targetSdkVersion to 30 or higher.
+        * Refer to the following document.
+        * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > Android 11](./aos-started/#android-11)
+* Please contact [Customer Service]( https://toast.com/support/inquiry) if you need support for an earlier version of AGP.
+
+#### AndroidX
+
+* Please apply the following changes to Gradle since the dependency of the Android Support Library has been changed to AndroidX.
+
+* Add migration declarations for libraries that do not support AndroidX in the gradle.properties file.
+
+```groovy
+# >>> [AndroidX]
+android.useAndroidX=true
+android.enableJetifier=true
+```
+
+* Add Java 8 build settings for the latest AndroidX to the build.gradle file.
+
+```groovy
+android {
+    compileOptions {
+        // >>> [AndroidX]
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+```
+
+#### Line IdP
+
+* When using the Line IdP, the build may fail depending on the AGP version as there is a **&lt;queries&gt;** tag inside the Line SDK
+    * Please refer to the following guide to upgrade to the AGP version that can build the 'queries' tag.
+    * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > Android 11](./aos-started/#android-11)
+* If you are using Line IdP, an error may occur in Manifest merger when building an application because **android:allowBackup="false"** is declared in Line SDK. If a build fails for this reason, declare **tools:replace="android:allowBackup"** in the application tag.
+
+```xml
+<application
+      tools:replace="android:allowBackup"
+      ... >
+```
+
+### iOS
+
+* Changed to return TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERROR (3009) error when an ASAuthorizationErrorUnknown error occurs in Sign In with an Apple OS.
+
+### Unity
+
+#### Changed Minimum Support Version
+
+* The minimum Unity version changed from April 16, 2017 to April 0, 2018.
+* Please contact [Customer Service]( https://toast.com/support/inquiry) if you need support for an older version of Unity.
+
+#### AndroidX Build
+
+* Please add the following declaration when building Android due to AndroidX migration of the Gamebase Android SDK.
+* 2019.3 or earlier
+
+```groovy
+// mainTemplate.gradle
+([rootProject] + (rootProject.subprojects as List)).each {
+    ext {
+        it.setProperty("android.useAndroidX", true)
+        it.setProperty("android.enableJetifier", true)
+    }
+}
+```
+
+* 2019.3 or later
+
+```groovy
+// gradleTemplate.properties
+android.useAndroidX=true
+android.enableJetifier=true
+```
+
+### Unreal
+
+#### AndroidX Build
+
+* Please add the following declaration to UPL when building Android due to AndroidX migration of the Gamebase Android SDK.
+
+```xml
+<gradleProperties>    
+  <insert>      
+    android.useAndroidX=true      
+    android.enableJetifier=true    
+  </insert>  
+</gradleProperties>
+```
+
 ## 2.21.2
 
 ### iOS

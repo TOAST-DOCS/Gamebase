@@ -111,8 +111,10 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 q
 
 > <font color="red">[주의]</font><br/>
 >
-> 약관에 푸시 수신 동의 여부를 추가했다면, TCGBDataContainer 로부터 TCGBPushConfiguration 을 생성할 수 있습니다.
-> TCGBPushConfiguration 이 nil 이 아니라면 **로그인 후에** [TCGBPush registerPushWithConfiguration:completion:] API 를 호출하세요.
+> * 약관에 푸시 수신 동의 여부를 추가했다면, TCGBDataContainer 로부터 TCGBPushConfiguration 을 생성할 수 있습니다.
+> * PushConfiguration 은 약관창이 표시되지 않은 경우에는 nil 입니다.(약관창이 표시되었다면 항상 유효한 객체가 리턴됩니다.) 
+> * PushConfiguration.pushEnabled 값은 항상 true 입니다. 
+> * TCGBPushConfiguration 이 nil 이 아니라면 **로그인 후에** [TCGBPush registerPushWithConfiguration:completion:] API 를 호출하세요.
 >
 
 #### Required 파라미터

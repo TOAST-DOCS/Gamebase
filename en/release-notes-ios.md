@@ -1,6 +1,25 @@
 ## Game > Gamebase > Release Notes > iOS
 
-### 2.24.0(2021.06.29) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-iOS.zip)
+### 2.25.0 (2021.07.27) 
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.25.0/GamebaseSDK-iOS.zip)
+
+#### More Features
+* Added monthly payment limit feature.
+    * If the monthly payment limit is exceeded, **a PURCHASE_LIMIT_EXCEEDED(4007)** error occurs.
+
+#### Feature Updates
+* Guaranteed the PushConfiguration object in the terms and conditions with Push notification items.
+    * The TCGBPushConfiguration to be created as the result of calling Gamebase.Terms.showTermsView API was null if user did not agreed to receive push notifications in the terms of use. It has now changed so that the TCGBPushConfiguration object is always returned if there is a push notification item in the terms and conditions.
+    * When user rejects receiving push notifications, the TCGBPushConfiguration object is created as (consent to push notifications = false, consent to advertisement push notifications = false, consent to push notifications for advertisements at night = false).
+    * The TCGBPushConfiguration is null when there is no Push notification item in the terms and conditions.
+* External SDK Update: TOAST iOS SDK(0.29.0)
+* Changed to return TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERROR error when an ASAuthorizationErrorUnknown error occurs in Sign In with an Apple OS.
+
+#### Bug Fixes
+* Fixed a bug where the value of TCGBPushConfiguration and TCGBPushTokenInfo registered through registerPush were different
+
+### 2.24.0 (2021.06.29) 
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-iOS.zip)
 
 #### Feature Updates
 * Change the internal launch URL

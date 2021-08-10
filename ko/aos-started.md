@@ -188,8 +188,8 @@ android {
 </resources>
 ```
 
-* Unreal 빌드인 경우 Gamebase Unreal SDK 에서 빈 google-service-json.xml 파일을 포함하여 배포하고 있으니 해당 게임 정보에 맞는 값으로 변경하시기 바랍니다.
-    * 만일 EasyFirebase 와 같이, 비슷한 형태의 xml 을 자동 생성해주는 Content 가 있을 경우, 리소스 중복에 의해 빌드 에러가 발생할 수 있습니다. 이때는 google-service-json.xml 파일을 제거하시면 됩니다.
+* Unreal 빌드인 경우 Gamebase Unreal SDK에서 빈 google-service-json.xml 파일을 포함해 배포하고 있으니 해당 게임 정보에 맞는 값으로 변경하시기 바랍니다.
+    * 만일 EasyFirebase와 같이 비슷한 형태의 XML을 자동으로 생성해 주는 Content가 있을 경우, 리소스 중복에 의해 빌드 에러가 발생할 수 있습니다. 이때는 google-service-json.xml 파일을 제거하면 됩니다.
 
 ### AndroidManifest.xml
 
@@ -362,10 +362,10 @@ android {
 
 > <font color="red">[주의]</font><br/>
 >
-> * 'queries' 태그는 기존 Android Gradle Plugin(AGP) 에서는 인식하지 못하여 빌드가 실패합니다.
-> * 아래 가이드 및 표를 참고로 하여 'queries' 태그 빌드가 가능한 AGP 버전으로 업그레이드 하시기 바랍니다.
+> * 'queries' 태그는 기존 Android Gradle Plugin(AGP)에서는 인식하지 못하여 빌드가 실패합니다.
+> * 아래 가이드 및 표를 참고해 'queries' 태그 빌드가 가능한 AGP 버전으로 업그레이드하시기 바랍니다.
 >     * [https://android-developers.googleblog.com/2020/07/preparing-your-build-for-package-visibility-in-android-11.html](https://android-developers.googleblog.com/2020/07/preparing-your-build-for-package-visibility-in-android-11.html)
->     * AGP 3.2.* 이하의 버전을 사용한다면 3.3.3 이상으로 업그레이드 해야 합니다.
+>     * AGP 3.2.* 이하의 버전을 사용한다면 3.3.3 이상으로 업그레이드해야 합니다.
 >     * AGP 4.1.0 이상의 버전을 사용한다면 AGP 업그레이드는 하지 않아도 무방합니다.
 
 | If you are using<br>the Android Gradle<br>plugin version... | ...upgrade to: | Unity Editor |

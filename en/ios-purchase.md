@@ -393,6 +393,7 @@ E.g.) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&prod
 | TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH                   | 4004       | Unable to pay due to shortage of cash for the store.         |
 | TCGB\_ERROR\_PURCHASE\_INACTIVE\_PRODUCT\_ID               | 4005       | Product is not activated.                                    |
 | TCGB\_ERROR\_PURCHASE\_NOT\_EXIST\_PRODUCT\_ID             | 4006       | Requested for purchase with invalid GamebaseProductID.       |
+| TCGB_ERROR_PURCHASE_LIMIT_EXCEEDED                         | 4007       | You have exceeded your monthly purchase limit.               |
 | TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET              | 4010       | Unsupported store. <br />iOS supports "AS".                  |
 | TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR            | 4201       | Error of IAP library.<br>Please check error.message.         |
 | TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR                      | 4999       | Undefined error of purchase. <br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we'll return at the earliest possible moment. 

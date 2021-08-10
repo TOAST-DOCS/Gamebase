@@ -4,7 +4,7 @@
 
 通过在控制台中注册图片，向用户推送图片通知。
 
-![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-001.png)
+![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-002.png)
 
 ### Show ImageNotices
 
@@ -85,8 +85,242 @@
 
 | Error Code | Description |
 | --- | --- |
-| TCGB\_ERROR\_NOT\_INITIALIZED(1) | 未初始化Gamebase |
+| TCGB\_ERROR\_NOT\_INITIALIZED(1) | 未初始化Gamebase。|
 | TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT(6901) | 提示图片通知弹窗时，因发生超时错误，要强制关闭所有的弹窗。|
+
+
+
+## Terms
+
+在Gamebase控制台中显示注册的条款。 
+
+![TermsView Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/termsView-guide-ui-001_2.20.0.png)
+
+调用showTermsView API显示条款窗时，通过Webview显示。 
+如果要创建符合Game UI的条款窗，可通过调用queryTerms API显示Gamebase控制台中注册的条款项目。
+若用户已同意条款，请将各项目的”同意与否"通过调用updateTerms API传送到Gamebase服务器。 
+
+### showTermsView
+
+在页面显示条款窗。
+用户已同意条款时，在服务器中注册”同意与否“。
+如果已同意条款，即使重新调用showTermsView API，也不显示条款窗，而直接返还“成功回调”。
+但，如果在Gamebase控制台中将”重新同意条款”项目更改为**必须**，用户再次同意条款之前一直显示条款窗。
+
+> <font color="red">[注意]</font><br/>
+>
+> 如果在条款中添加了”是否同意接收推送”，可从TCGBDataContainer生成TCGBPushConfiguration。
+> 若TCGBPushConfiguration不为nil，则**登录后**调用[TCGBPush registerPushWithConfiguration:completion:] API。
+>
+
+#### Required参数
+* viewController : 是显示条款窗的ViewController。 
+ 
+#### Optional参数
+
+* completion : 同意条款后关闭条款窗时，通过回调通知用户。可将作为回调返回的TCGBDataContainer对象变换为TCGBPushConfiguration，登录后用于调用registerPush API。
+
+**API**
+
+```objectivec
++ (void)showTermsViewWithViewController:(UIViewController *)viewController
+                             completion:(nullable void (^)(TCGBDataContainer * _Nullable dataContainer, TCGBError * _Nullable error))completion;
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| TCGB\_ERROR\_NOT\_INITIALIZED(1) | 未初始化Gamebase。|
+| TCGB\_ERROR\_LAUNCHING\_SERVER\_ERROR(2001) | 是从启动服务器返还的项目不包含相关条款内容时出现的错误。<br/>出现该问题时，请联系Gamebase负责人员。|
+| TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 上一次调用的Terms API未完成。<br/>请稍后再试。|
+| TCGB\_ERROR\_WEBVIEW\_TIMEOUT(7002) | 显示条款Webview时出现超时错误。|
+| TCGB\_ERROR\_WEBVIEW\_HTTP\_ERROR(7003) | 打开条款Webview时出现HTTP错误。|
+
+**Example**
+
+```objectivec
+- (void)showTermsView {
+    void(^completion)(TCGBDataContainer *, TCGBError *) = ^(TCGBDataContainer *dataContainer, TCGBError *error) {
+        // Called when the entire termsView is closed.
+        NSLog(@"TermsView closed");
+
+        // If the TCGBPushConfiguration is not null, 
+        // save TCGBPushConfiguration and use it for registerPush after login.
+        TCGBPushConfiguration *savedPushConfiguraiton = [TCGBPushConfiguration fromDataContainer:dataContainer];
+    };
+
+    [TCGBTerms showTermsViewWithViewController:self completion:completion];
+}
+
+- (void)afterLogin {
+    // Call registerPush with saved TCGBPushConfiguration.
+    if (savedPushConfiguration != nil) {
+        [TCGBPush registerPushWithPushConfiguration:savedPushConfiguration completion:^(TCGBError* error) {
+            ...
+        }];
+    }
+}
+```
+
+
+### queryTerms
+
+Gamebase通过Webview，以简单形式显示条款。 
+如果要创建符合游戏UI的条款窗，可通过调用queryTerms API，获取在Gamebase控制台中注册的条款信息后使用。
+
+如果登录后调用，则可确认游戏用户是否同意条款。 
+
+> <font color="red">[注意]</font><br/>
+>
+> * 因Gamebase服务器不保存TCGBTermsContentDetail.required为true的必要项目，agreed值将始终返回为false。 
+>     * 这是因为必要项目将始终保存为true，不需要保存。
+> * 因”是否接收推送”没有被存储在gamebase服务器中，agreed值将始终返回为false。
+>     * 如需查看用户”是否接收推送”，请调用[TCGBPush queryTokenInfoWithCompletion:] API 。 
+> * 如果在控制台中未设置”基本条款”的状态下，使用与条款语言不同的国家代码在设置的终端机上调用queryTerms API，则将出现**TCGB_ERROR_UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误
+>     * 在控制台中设置”基本条款”或出现**TCGB_ERROR_UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误时，请不要显示条款。
+
+#### Required参数
+* viewController : 是最上级的ViewController。
+* completion : 通过回调通知用户API的调用结果。通过作为回调被返回的TCGBQueryTermsResult，可获取在控制台中设置的条款信息。
+  
+
+**API**
+
+```objectivec
++ (void)queryTermsWithViewController:(UIViewController *)viewController
+                          completion:(void (^)(TCGBQueryTermsResult * _Nullable queryTermsResult, TCGBError * _Nullable error))completion;
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| TCGB\_ERROR\_NOT\_INITIALIZED(1) | 未初始化Gamebase。|
+| TCGB\_ERROR\_UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE(6921) | 在控制台中未注册条款信息。|
+| TCGB\_ERROR\_UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY(6922) | 在控制台中未注册符合终端机国家代码的条款信息。|
+
+**Example**
+
+```objectivec
+- (void)queryTerms {
+    void(^completion)(TCGBQueryTermsResult *, TCGBError *) = ^(TCGBQueryTermsResult *queryTermsResult, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
+            int termsSeq = queryTermsResult.termsSeq;
+            NSString *termsVersion = queryTermsResult.termsVersion;
+            ...    
+        } else if (error.code == TCGB_ERROR_UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY) {
+            // Another country device.
+            // Pass the 'terms and contidions' step
+        } else {
+            // QueryTerms API Failed.
+        }
+    };
+
+    [TCGBTerms queryTermsWithViewController:self completion:completion];
+}
+```
+
+#### TCGBQueryTermsResult
+
+| Parameter            | Values                          | Description         |
+| -------------------- | --------------------------------| ------------------- |
+| termsSeq             | int                             | 所有条款KEY<br/>是调用updateTerms API时的必须值。         |
+| termsVersion         | String                          | 条款版本<br/>是调用updateTerms API时的必须值。              |
+| termsCountryType     | String                          | 条款类型<br/> - KOREAN : 韩国条款 <br/> - GDPR : 欧洲条款 <br/> - ETC : 其他条款         |
+| contents             | Array< TCGBTermsContentDetail > | 条款项目信息          |
+
+
+#### TCGBTermsContentDetail
+
+| Parameter            | Values                | Description         |
+| -------------------- | ----------------------| ------------------- |
+| termsContentSeq      | int                   | 条款项目KEY         | 
+| name                 | String                | 条款项目名称         |
+| required             | BOOL                  | 是否必须同意         |
+| agreePush            | String                | 是否同意接收广告性推送通知<br/> - NONE : 不同意。<br/> - ALL : 全部同意。<br/> - DAY : 同意白天接收推送通知。<br/> - NIGHT : 同意夜间接收推送通知。          |
+| agreed               | BOOL                  | 用户是否同意相关条款项目            |
+| node1DepthPosition   | int                   | 显示第1阶段项目的顺序             |
+| node2DepthPosition   | int                   | 显示第2阶段项目的顺序<br/> 没有时 -1           |
+| detailPageUrl        | String                | 详细查看条款URL<br/> 未设置时没有字段。           |
+
+
+### updateTerms
+
+如果使用调用queryTerms API后被返回的条款信息创建了UI，
+请将游戏用户同意条款的记录通过updateTerms API传送到Gamebase服务器。
+
+不仅可用于取消”可选条款同意”，也可用于修改同意条款的记录。
+ 
+
+> <font color="red">[注意]</font><br/>
+>
+> Gamebase服务器基本上不保存”是否同意接收推送”。
+> 当保存”是否同意接收推送时，**登录后**通过调用[TCGBPush registerPushWithConfiguration:completion:] API来保存。
+>
+
+#### Required参数
+* viewController : 是最上级ViewController。
+* configuration : 是将要在服务器中注册的用户的可选条款信息。
+ 
+#### Optional参数
+
+* completion : 在服务器中注册可选条款信息后，通过回调通知用户。
+
+
+**API**
+
+```objectivec
++ (void)updateTermsWithViewController:(UIViewController *)viewController
+                        configuration:(TCGBUpdateTermsConfiguration *)configuration
+                           completion:(nullable void (^)(TCGBError * _Nullable error))completion;
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| TCGB\_ERROR\_NOT\_INITIALIZED(1) | 未初始化Gamebase。|
+| TCGB\_ERROR\_UI\_TERMS\_UNREGISTERED\_SEQ(6923) | 设置了未注册的条款Seq值。|
+| TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 上一次调用的Terms API未完成。<br/>请稍后再试。|
+
+
+**Example**
+
+```objectivec
+- (void)updateTerms {
+    void(^completion)(TCGBError *) = ^(TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == NO) {
+            // UpdateTerms API Failed.
+        }
+    };
+
+    TCGBTermsContent *termsContent = [TCGBTermsContent termsContentWithTermsContentSeq:12 agreed:YES];
+
+    NSMutableArray *contents = [NSMutableArray array];
+    [contents addObject:termsContent];
+
+    TCGBUpdateTermsConfiguration *configuration = [TCGBUpdateTermsConfiguration configurationWithTermsVersion:@"1.2.3" termsSeq:1 contents:contents];
+
+    [TCGBTerms updateTermsWithViewController:self configuration:configuration completion:completion];
+}
+```
+
+
+#### TCGBUpdateTermsConfiguration
+
+| Parameter            | Mandatory(M) / Optional(O) | Values                    | Description         |
+| -------------------- | -------------------------- | ------------------------- | ------------------- |
+| termsVersion         | **M**                      | String                    | 条款版本<br/>需要传送调用queryTerms API时获取的值。   |
+| termsSeq             | **M**                      | int                       | 所有条款KEY<br/>通过调用queryTerms API，需要传送获取的值。              |
+| contents             | **M**                      | Array< TCGBTermsContent > | 用户同意可选条款的信息 |
+
+#### TCGBTermsContent
+
+| Parameter            | Mandatory(M) / Optional(O) | Values             | Description         |
+| -------------------- | -------------------------- | ------------------ | ------------------- |
+| termsContentSeq      | **M**                      | int                | 可选条款项目KEY      |
+| agreed               | **M**                      | BOOL               | 是否同意可选条款项目 |
 
 ## WebView
 
@@ -97,7 +331,7 @@ Gamebase支持基本WebView。<br/>
 
 显示WebView。<br/>
 
-##### Required 参数
+##### Required参数
 * url : 作为参数发送的url必须是有效值。
 * viewController : View Controller用于显示WebView。
 
@@ -154,25 +388,26 @@ Gamebase支持基本WebView。<br/>
 
 #### Custom Scheme 
 
-您可以用amebase WebView加载的网页中利用scheme使用某些功能或更改网页内容。
+可在通过Gamebase WebView加载的网页上通过scheme使用某些功能或更改网页内容。
 
 ##### Predefined Custom Scheme
 
 在Gamebase中指定的架构。<br/>
 
-| scheme               | 作用                     |
+| scheme               | 描述                   |
 | -------------------- | ---------------------- |
-| gamebase://dismiss   | 关闭WebView             |
-| gamebase://goback    | 返回上一页          |
-| gamebase://getuserid | 查看当前登录的用户ID |
-| gamebase://openbrowser?link={URLEncodedURL} | 使用外部浏览器打开link参数的URL。<br/>URLEncodedURL : 使用外部浏览器要打开的URL。<br/>要对URL进行解码。|
+| gamebase://dismiss   | 关闭WebView。            |
+| gamebase://goback    | 返回上一页。         |
+| gamebase://getuserid | 查看当前登录的用户ID。|
+| gamebase://showwebview?link={URLEncodedURL} | 用link参数的URL打开WebView。<br>URLEncodedURL : 通过WebView要打开的URL。<br>URL需要解码。|
+| gamebase://openbrowser?link={URLEncodedURL} | 使用外部浏览器打开link参数的URL。<br/>URLEncodedURL : 使用外部浏览器要打开的URL。<br/>URL需要解码。|
 
 
 
 
 #### User Custom Scheme
 
-您可以通过在Gamebase中指定模式名称和块来添加所需的功能。
+可在Gamebase中指定scheme名称和block来添加所需的功能。
 
 
 ```objectivec
@@ -228,7 +463,7 @@ Gamebase支持基本WebView。<br/>
 
 
 ### Close WebView
-通过以下API，可以关闭正在显示的WebView。
+通过以下API，可以关闭当前显示的WebView。
 
 ```objectivec
 // Close the gamebase web view
@@ -240,7 +475,7 @@ Gamebase支持基本WebView。<br/>
 
 ## Open External Browser
 
-可通过调用以下API打开外部浏览器。传送到参数的URL应该为有效的值。 
+可通过调用以下API打开外部浏览器。传送到参数的URL应该为有效值。 
 
 ```objectivec
 // Open the url with Browser
@@ -253,7 +488,7 @@ Gamebase支持基本WebView。<br/>
 
 ## Alert
 
-无法显示系统通知
+无法显示系统通知。
 
 #### Types of Alert
 1. 只提供一个“确定”按钮，单击确定按钮将调用completion。
@@ -303,7 +538,7 @@ Gamebase支持基本WebView。<br/>
 ## Toast
 
 可以使用以下API轻松显示 [Android toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)消息。<br/>
-可以设置简单的消息和显示的时间。
+可以设置简单的消息和显示时间。
 
 ```objectivec
 - (void)showToastMessage:(id)sender {
