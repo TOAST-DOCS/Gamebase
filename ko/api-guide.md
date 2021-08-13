@@ -526,9 +526,13 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 **[Request Body]**
 
+```json
+["userId", "userId", "userId"]
+```
+
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| userIdList | Array[String] | mandatory | 조회 대상 사용자 ID <br>  ["userId", "userId", "userId",...]|
+| userIdList | Array[String] | mandatory | 조회 대상 사용자 ID |
 
 **[Response Body]**
 
@@ -587,9 +591,13 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 **[Request Body]**
 
+```json
+["userId", "userId", "userId"]
+```
+
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| userIdList | Array[String] | mandatory | 조회 대상 사용자 ID  ["userId", "userId", "userId",...]|
+| userIdList | Array[String] | mandatory | 조회 대상 사용자 ID |
 
 **[Response Body]**
 
@@ -654,9 +662,13 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 **[Request Body]**
 
+```json
+["authKey", "authKey", "authKey"]
+```
+
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| authKeyList | Array[String] | mandatory | authSystem에서 발급된 authKey ["authKey", "authKey", "authKey",...]|
+| authKeyList | Array[String] | mandatory | authSystem에서 발급된 authKey |
 
 **[Response Body]**
 
@@ -707,9 +719,13 @@ IdP ID로 매핑된 사용자 ID 정보를 조회합니니다.
 
 **[Request Body]**
 
+```json
+["idPId", "idPId", "idPId"]
+```
+
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| idPIdList | Array[String] | mandatory | 조회 대상 사용자의 IdP ID  ["idPId", "idPId", "idPId",...] <br> 조회 대상 리스트 크기는 최대 300 |
+| idPIdList | Array[String] | mandatory | 조회 대상 사용자의 IdP ID <br> 조회 대상 리스트 크기는 최대 300 |
 
 **[Response Body]**
 
