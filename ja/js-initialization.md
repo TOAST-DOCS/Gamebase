@@ -147,6 +147,13 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 
 `toast.Gamebase.Launching.getLaunchingInformations()`APIを利用すると、初期化後にもLaunchingInfoオブジェクトを取得できます。
 
+> <font color="red">[注意]</font><br/>
+>
+> **toast.Gamebase.Launching.getLaunchingInformations()** APIは、リアルタイムでサーバーから情報を取得する非同期APIではありません。
+> 2分毎にアップデートされるキャッシュ情報を返すめ、リアルタイムで現在のメンテナンス状況を判断する用途には適していません。
+> このような場合にはLaunching Status Codeが変更されれ時にイベントが動作するGamebaseEventHandlerを活用してください。
+> [Game > Gamebase > Javascript SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Observer](./js-etc/#observer)
+
 **API**
 
 ```js
