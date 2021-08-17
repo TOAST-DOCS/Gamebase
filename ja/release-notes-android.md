@@ -1,5 +1,31 @@
 ## Game > Gamebase > リリースノート > Android
 
+### 2.26.0 (2021.08.10)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Android.zip)
+
+#### 機能改善/変更
+* Display Language機能が改善されました。
+    * これまでは言語セットを追加するためにgamebase-sdk-base-version.aarファイルを直接修正する必要がありました。
+        * それがプロジェクトのres/rawフォルダにlocalizedstring.jsonファイルを追加する方法に変わりました。
+    * これまではUnityガイドのDisplay Language言語セットの追加方法はAndroidに適用できませんでした。
+        * それをUnityガイドにしたがってlocalizedstring.jsonファイルを追加してもAndroidビルドに反映されるように改善しました。
+        * [Game > Gamebase > Unity SDK使用ガイド > ETC > Additional Features > Display Language > 新規言語セット追加](./unity-etc/#_1)
+    * Display Language言語セットに中国語簡体字(zh-CN)、中国語繁体字(zh-TW)、タイ語(th)が追加されました。
+    * デフォルトの言語コードが**en**でしたが、Gamebaseコンソールで設定したデフォルトの言語が反映されるように改善しました。
+        * [Game > Gamebase > コンソール使用ガイド > アプリ > App > 言語設定](./oper-app/#_3)
+* showTermsView API呼び出し後に作成することができるPushConfigurationオブジェクトの作成基準が次のように変更されました。
+    * 変更前
+        * 約款項目中に**Push受信**項目が存在する場合にのみnullではなく有効なPushConfigurationが返されました。
+        * ユーザーが昼間、夜間広告性Push受信に全て拒否した場合、PushConfiguration.pushEnabledはfalseで作成されました。
+    * 変更後
+        * 約款UIが表示されている場合、常にnullではない有効なPushConfigurationが返されます。
+        * showTermsViewが返すPushConfigurationオブジェクトのpushEnabled値は常にtrueです。
+    * 変更されない点
+        * すでに約款に同意して約款UIが表示されない場合はPushConfigurationはnullで返されます。
+
+#### バグ修正
+* Push言語設定は特別な補助処理なしで端末の言語コードがそのまま適用され、Pushコンソールから送信したメッセージの言語コードが一致しない問題を修正しました。
+
 ### 2.25.0 (2021.07.27)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.25.0/GamebaseSDK-Android.zip)
 
@@ -689,8 +715,3 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
     * ゲーム運営のためのゲームアプリ状態管理、メンテナンス、緊急告知などの機能をWebコンソールで提供
     * リアルタイムに運営指標を確認できるWebコンソール画面を提供
     * TOAST Cloudサービスと連携：PUSH、IAP
-
-
-
-
-
