@@ -2,8 +2,9 @@
 
 ## 2.26.0
 
-* 해당 버전을 사용 시에는 `Assets/Gamebase/Toast/IAP/Plugins` 를 직접 삭제하신 후 사용하시길 바랍니다.
+### Unity
 
+* 해당 버전을 사용 시에는 `Assets/Gamebase/Toast/IAP/Plugins` 를 직접 삭제하신 후 사용하시길 바랍니다.
 
 ## 2.25.0
 
