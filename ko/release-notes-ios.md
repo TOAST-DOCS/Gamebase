@@ -1,5 +1,12 @@
 ## Game > Gamebase > 릴리스 노트 > iOS
 
+### 2.27.0 (2021.08.24) 
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* PAYCO iOS SDK 업데이트 (1.5.0)
+    * PAYCO 앱이 없는 경우 기존 수동 로그인만 가능했던 부분에서 Safari 에 로그인이 되어 있다면 간편로그인 기능을 사용할 수 있도록 변경되었습니다.
+
 ### 2.26.0 (2021.08.10) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-iOS.zip)
 

@@ -39,7 +39,7 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 | --- | --- | --- | --- | --- |
 | Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.29.0 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Facebook 로그인을 지원 | iOS9 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.4.0 | Payco 로그인을 지원 | iOS9 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.0 | Payco 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | Naver 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenter 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthGoogleAdapter.framework | | Google 로그인을 지원 | iOS9 or later |
@@ -175,7 +175,7 @@ end
 
 * 인증을 위해 IdP 콘솔에서 Client ID 를 발급받아 Gamebase 콘솔에 입력합니다.
     * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
-* Gaembase iOS SDK 는 각 IdP 별로 추가 설정이 필요합니다.
+* Gamebase iOS SDK 는 각 IdP 별로 추가 설정이 필요합니다.
 
 #### Google
 
