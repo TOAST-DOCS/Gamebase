@@ -90,14 +90,14 @@ The following are the settings for each customer center type:
 Set this when the developer uses its own customer center.
 The options to be set are as follows:
 * **Customer Center URL** : Enter developer's own customer center address which is currently being provided or used.
-* **Contact** : Enter the customer center contact information. Additional information can be received through the Gamebase SDK.
+* **Contact** : Enter the Customer Center contact information. This information will be delivered via the Gamebase SDK.
 
 #### 2. Customer Center Provided by Gamebase
 ![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_20_202009.png)
 Set this when you want to use the customer center feature provided by Gamebase.
 The options to be set are as follows:
 * **Customer Center URL** : Provides the page info where you can receive customer inquiries. This URL is automatically created when selecting the Customer Center Provided by Gamebase, and you can receive the customer inquiry through a separate web page by using this URL.
-* **Contact** : Enter the customer center contact information. Additional information can be received through the Gamebase SDK.
+* **Contact** : Enter the Customer Center contact information. This information will be delivered via the Gamebase SDK.
 * **Supported language** : Select the language supported for the customer center users. This setting is separate from the project language setting, and Korean, English, Japanese, and Chinese are available for now. You can use the Customer Center Provided by Gamebase features based on the language selected here.
 * **Default language** : From the list of the selected support languages, select the default one.
 
