@@ -196,7 +196,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 > [참고]
 > IdP의 Access Token 만으로 정보를 획득 할 수 없는 IdP 들도 존재합니다.
-> ex) appleid / iosgamecenter : Access Token으로 Server to Server에서 가져올 수 있는 정보가 없다.
+> ex) appleid / iosgamecenter / kakaogame : Access Token으로 Server to Server에서 가져올 수 있는 정보가 없다.
 
 <br/>
 
