@@ -531,9 +531,13 @@ Check common requirements.
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| userIdList | Array[String] | mandatory | User ID to retrieve <br>  ["userId", "userId", "userId",...]|
+```json
+["userId", "userId", "userId"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | User ID to retrieve |
 
 **[Response Body]**
 
@@ -592,9 +596,13 @@ Check common requirements.
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| userIdList | Array[String] | mandatory |  User ID to retrieve <br>  ["userId", "userId", "userId",...] |
+```json
+["userId", "userId", "userId"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | User ID to retrieve |
 
 **[Response Body]**
 
@@ -659,9 +667,13 @@ Check common requirements.
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| authKeyList | Array[String] | mandatory | authKey issued at authSystem <br> ["authKey", "authKey", "authKey",...]|
+```json
+["authKey", "authKey", "authKey"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | authKey issued at authSystem |
 
 **[Response Body]**
 
@@ -712,9 +724,13 @@ Check common requirements.
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| idPIdList | Array[String] | mandatory | IdP ID of users to be searched for  ["idPId", "idPId", "idPId",...] <br> Max size of the list to be searched is 300 |
+```json
+["idPId", "idPId", "idPId"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | IdP ID of users <br> Max size of the list to be searched is 300 |
 
 **[Response Body]**
 
