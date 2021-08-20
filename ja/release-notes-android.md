@@ -1,5 +1,12 @@
 ## Game > Gamebase > リリースノート > Android
 
+### 2.27.0 (2021.08.24)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST Android SDK(0.27.0)
+* ONE Store V16 스토어 추가
+
 ### 2.26.0 (2021.08.10)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Android.zip)
 
