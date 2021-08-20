@@ -115,6 +115,13 @@ Gamebase初期化の呼び出し結果により起動状態を確認すること
 
 launchingInformations APIを利用すると、初期化後もLaunchingInfoオブジェクトを取得できます。
 
+> <font color="red">[注意]</font><br/>
+>
+> launchingInformations APIは、リアルタイムでサーバーから情報を取得する非同期APIではありません。
+> 2分毎にアップデートされるキャッシュ情報を返すため、リアルタイムで現在のメンテナンス状況を判断する用途には適していません。
+> このような場合にはLaunching Status Codeが変更されれ時にイベントが動作するGamebaseEventHandlerを活用してください。
+> [Game > Gamebase > iOS SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Observer](./ios-etc/#observer)
+
 **API**
 
 ```objectivec

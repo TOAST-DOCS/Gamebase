@@ -1,9 +1,38 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.26.0 (2021.08.10)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Unity.zip)
+
+#### 機能改善/変更
+* Display Language機能が改善されました。
+    * Display Language言語セットに中国語簡体字(zh-CN)、中国語繁体字(zh-TW)、タイ語(th)が追加されました。
+* showTermsView API呼び出し後に作成することができるPushConfigurationオブジェクトの作成基準が次のように変更されました。
+    * 変更前
+        * 約款項目中に**Push受信**項目が存在する場合にのみnullではなく有効なPushConfigurationが返されました。
+        * ユーザーが昼間、夜間広告性Push受信に全て拒否した場合、PushConfiguration.pushEnabledはfalseで作成されました。
+    * 変更後
+        * 約款UIが表示されている場合、常にnullではない有効なPushConfigurationが返されます。
+        * showTermsViewが返すPushConfigurationオブジェクトのpushEnabled値は常にtrueです。
+    * 変更されない点
+        * すでに約款に同意して約款UIが表示されない場合はPushConfigurationはnullで返されます。
+
+#### バグ修正
+* Push言語設定は特別な補助処理なしで端末の言語コードがそのまま適用され、Pushコンソールから送信したメッセージの言語コードが一致しない問題を修正しました。
+
+
 ### 2.25.0 (2021.07.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.25.0/GamebaseSDK-Unity.zip)
 
+#### 機能追加
+* 月決済限度機能を追加
+    * 月決済限度を超える場合、**PURCHASE_LIMIT_EXCEEDED(4007)**エラーが発生します。
+
 #### 機能改善/変更
+* Push項目が存在する約款でPushConfigurationオブジェクト保障
+    * 約款UIでPush受信に同意しない場合、Gamebase.Terms.ShowTermsView API呼び出し結果として作成されるPushConfigurationがnullでしたが、約款にPush項目が存在すればPushConfigurationオブジェクトが常に返されるように変更しました。
+    * Push受信を拒否した時、PushConfigurationオブジェクトは(プッシュ同意有無= false、広告性プッシュ同意有無= false、夜間広告性プッシュ同意有無= false)で作成されます。
+    * 約款にPush項目が存在しない場合、PushConfigurationオブジェクトはnullです。
+
 * Unity最小サポートバージョン変更：2018.4.0f1
 * 外部SDKアップデート: TOAST Unity SDK(0.23.0)
 
