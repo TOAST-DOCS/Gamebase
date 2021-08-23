@@ -183,8 +183,8 @@ Contact our Customer Center if you want to use the Hangame authentication.
 
 #### Feature Updates
 * [SDK] 2.17.0
-	* (공통) Supports the download feature when a Customer Center attachment image is clicked
-	* (공통) TOAST SDK update: Android(0.23.2), Unity(0.21.2)
+	* (Common) Supports the download feature when a Customer Center attachment image is clicked
+	* (Common) TOAST SDK update: Android(0.23.2), Unity(0.21.2)
 	* (iOS) Changed the type of TCGBMember.regDate and TCGBMember.lastLoginDate to long long.
 	* (iOS) Changed the logic so that the title can be displayed again after changing URL and title in a web view
 
@@ -298,7 +298,7 @@ you may encounter an issue during reprocessing if a different billing client ver
 		* Fixed infrequent error of NullReferenceException while Webview is created 
     * (Unity) GamebaseErrorCode에 소켓 연결에 관한 에러 코드 추가: SOCKET_CONNECTION_TIMEOUT, SOCKET_CONNECTION_FAIL
 
-#### 버그 수정
+#### Bug Fixes
 * [SDK] 2.9.1
     * (Andoird) 매핑 이후 지표 레벨이 null이 되어 결제 지표에 정상적으로 반영되지 않는 오류 수정
     * (iOS) unreal 엔진에서 빌드 하면, warning을 빌드 오류로 판정해서 빌드가 안되는 부분을 수정
