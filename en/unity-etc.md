@@ -254,9 +254,7 @@ To add another language, add `"${language code}":{"key":"value"}` to the localiz
       ...
   }
 }
-```
-
-If key is missing from inside of "${language code}":{ } of the json format above, `Language Set on Device` or `en` will be automatically entered. 
+``` 
 
 Refer to the guides below to learn how to add new language sets for Unity Android and  iOS platforms.
 
