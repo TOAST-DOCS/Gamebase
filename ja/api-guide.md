@@ -537,9 +537,13 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| userIdList | Array[String] | mandatory | 照会対象のユーザーID<br>  ["userId", "userId", "userId",...]|
+```json
+["userId", "userId", "userId"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | 照会対象のユーザーID|
 
 **[Response Body]**
 
@@ -598,9 +602,13 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| userIdList | Array[String] | mandatory | 照会対象のユーザーID<br>  ["userId", "userId", "userId",...]|
+```json
+["userId", "userId", "userId"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | 照会対象のユーザーID |
 
 **[Response Body]**
 
@@ -665,9 +673,13 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| authKeyList | Array[String] | mandatory | authSystemから発行されたauthKey<br> ["authKey", "authKey", "authKey",...]|
+```json
+["authKey", "authKey", "authKey"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | authSystemから発行されたauthKey |
 
 **[Response Body]**
 
@@ -718,9 +730,13 @@ Check common requirements.
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| idPIdList | Array[String] | mandatory | 照会対象ユーザーのIdP ID  ["idPId", "idPId", "idPId",...] <br> 照会対象リストサイズは最大300 |
+```json
+["idPId", "idPId", "idPId"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | 照会対象ユーザーのIdP ID <br> 照会対象リストサイズは最大300 |
 
 **[Response Body]**
 
