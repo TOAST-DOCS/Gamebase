@@ -3,9 +3,9 @@
 ### 2.27.0 (2021.08.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.27.1)
-* ONE Store V16 스토어 추가
+#### 機能改善/変更
+* 外部SDKアップデート：TOAST Android SDK(0.27.1)
+* ONE Store V16ストア追加
 
 ### 2.26.0 (2021.08.10)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Android.zip)
@@ -230,11 +230,11 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 ### 2.13.0 (2020.07.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.13.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
+#### 機能改善/変更
 * [SDK] 2.13.0
     * (Android)イメージ告知のポップアップイメージ比率計算ロジックを修正
 
-#### 버그 수정
+#### バグ修正
 * [SDK] 2.13.0
     * (Android) Webビュー終了時、終了コールバックからANDROID_ACTIVITY_DESTROYED(31)エラーが返る問題を修正
     * (Android)決済モジュールにProGuard宣言が抜けていた問題を修正
