@@ -254,7 +254,7 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the TO
 * Example of entering the additional authentication information for PAYCO
 
 ```json
-{ "service_code": "FRIENDS", "service_name": "Your Service Name" }
+{ "service_code": "Your Service Code", "service_name": "Your Service Name" }
 ```
 
 ##### iOS

@@ -280,7 +280,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 * PAYCO添加认证信息输入示例
 
 ```json
-{ "service_code"："FRIENDS", "service_name"："Your Service Name" }
+{ "service_code"："Your Service Code", "service_name"："Your Service Name" }
 ```
 
 ##### iOS
