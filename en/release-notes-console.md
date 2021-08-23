@@ -1,5 +1,15 @@
 ## Game > Gamebase > Release Notes > Console
 
+### August 24, 2021
+
+#### Feature Updates
+* Customer Center > Customer Inquiry
+	* Added the inquiry history in the customer information at the bottom
+* Purchase (IAP)
+	* For the initial currency setting, a base currency is displayed according to the language selected in NHN Cloud
+* (Mobile) Analytics
+	* Added a link to PC screen view
+
 ### August 10, 2021
 
 #### Feature Updates
