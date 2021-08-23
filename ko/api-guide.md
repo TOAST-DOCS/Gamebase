@@ -196,7 +196,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 > [참고]
 > IdP의 Access Token 만으로 정보를 획득 할 수 없는 IdP 들도 존재합니다.
-> ex) appleid / iosgamecenter : Access Token으로 Server to Server에서 가져올 수 있는 정보가 없다.
+> ex) appleid / iosgamecenter / kakaogame : Access Token으로 Server to Server에서 가져올 수 있는 정보가 없다.
 
 <br/>
 
@@ -526,9 +526,13 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| userIdList | Array[String] | mandatory | 조회 대상 사용자 ID <br>  ["userId", "userId", "userId",...]|
+```json
+["userId", "userId", "userId"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | 조회 대상 사용자 ID |
 
 **[Response Body]**
 
@@ -587,9 +591,13 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| userIdList | Array[String] | mandatory | 조회 대상 사용자 ID  ["userId", "userId", "userId",...]|
+```json
+["userId", "userId", "userId"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | 조회 대상 사용자 ID |
 
 **[Response Body]**
 
@@ -654,9 +662,13 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| authKeyList | Array[String] | mandatory | authSystem에서 발급된 authKey ["authKey", "authKey", "authKey",...]|
+```json
+["authKey", "authKey", "authKey"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | authSystem에서 발급된 authKey |
 
 **[Response Body]**
 
@@ -707,9 +719,13 @@ IdP ID로 매핑된 사용자 ID 정보를 조회합니니다.
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| idPIdList | Array[String] | mandatory | 조회 대상 사용자의 IdP ID  ["idPId", "idPId", "idPId",...] <br> 조회 대상 리스트 크기는 최대 300 |
+```json
+["idPId", "idPId", "idPId"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | 조회 대상 사용자의 IdP ID <br> 조회 대상 리스트 크기는 최대 300 |
 
 **[Response Body]**
 
