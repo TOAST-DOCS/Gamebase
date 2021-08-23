@@ -254,7 +254,7 @@ PAYCO Client IDを申請して発行された{client_id}及び{client_secret}を
 * PAYCO追加認証情報の入力例
 
 ```json
-{ "service_code": "HANGAME", "service_name": "Your Service Name" }
+{ "service_code": "FRIENDS", "service_name": "Your Service Name" }
 ```
 
 ##### iOS
