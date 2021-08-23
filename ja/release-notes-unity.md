@@ -112,8 +112,6 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.18.2/GamebaseSDK-Unity.zip)
 
 #### 機能追加
-* Gamebaseサポートページオープン時、ゲームで定義したextra data伝達：SDK 2.18.2
-	* [Console]サポート > 顧客お問い合わせ：顧客お問い合わせ詳細照会画面において追加で登録したextra dataを確認可能
 * [SDK] 2.18.2
 	* (共通)開発会社が独自のサポートをオープンする時、additionalURLフィールドを追加
 	* (共通)決済アイテム情報にローカライズされた商品情報を追加：localizedTitle, localizedDescription
@@ -195,8 +193,7 @@
 	* (iOS) PAYCO認証：lastLoggedInProviderログイン後、ログアウトを呼び出した時、ログアウトコールバックが来ない問題を修正
 * [SDK] 2.17.1
 	* (Android) 2.17.0でImageNotice APIを呼び出した時、kotlinx-coroutineモジュールでクラッシュが発生する問題を修正
-	
-	
+
 ### 2.16.0 (2020.09.22)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.16.0/GamebaseSDK-Unity.zip)
 
@@ -228,10 +225,6 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 * [SDK] 2.15.0
     * (共通) TOAST SDKアップデート: Android(0.23.0)、iOS(0.26.0)、Unity(0.21.0)
     * (iOS)決済payloadのnull checkロジック追加
-
-#### バグ修正
-* [Console]
-    * プッシュ > プッシュ：プッシュ通知の繰り返し送信の際、時間情報が入力されたタイムゾーンに関係なく無条件UTC+9で計算されて送信される問題を修正
 
 ### 2.14.0 (2020.08.11)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.14.0/GamebaseSDK-Unity.zip)
@@ -345,19 +338,19 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.7.2/GamebaseSDK-Unity.zip)
 
 #### 機能改善/変更
-- [SDK] 2.7.2 
-  	- (Unity) FacebookAdapter改善 
-    		- v7.9.4～v7.18.1バージョンまで互換性テスト
-    		- Null例外処理 
-  	- (Unity) StandaloneWebviewAdapterを改善 
-    		- Webページをテスクチャ(texture)でエクスポート追加
-    		- マルチWebビューをサポート 
-    		- Cookie削除オプションを追加 
-    		- テクスチャ(texture)のサイズ調節をサポート 
-		- スクロールバー表示/非表示をサポート 
-    		- ページロード完了通知 
-    		- 透明背景をサポート 
-  	- (Unity)エディタでAndroid/iOSプラットフォームを選択してInitialize APIを呼び出すとエラーが発生する問題を修正
+* [SDK] 2.7.2 
+  	* (Unity) FacebookAdapter改善 
+    		* v7.9.4～v7.18.1バージョンまで互換性テスト
+    		* Null例外処理 
+  	* (Unity) StandaloneWebviewAdapterを改善 
+    		* Webページをテスクチャ(texture)でエクスポート追加
+    		* マルチWebビューをサポート 
+    		* Cookie削除オプションを追加 
+    		* テクスチャ(texture)のサイズ調節をサポート 
+		* スクロールバー表示/非表示をサポート 
+    		* ページロード完了通知 
+    		* 透明背景をサポート 
+  	* (Unity)エディタでAndroid/iOSプラットフォームを選択してInitialize APIを呼び出すとエラーが発生する問題を修正
 
 ### 2.7.0 (2020.01.21)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.7.0/GamebaseSDK-Unity.zip)
@@ -545,16 +538,13 @@ Gamebaseを使用すると、10数個の中国ストアと連携が可能です�
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.2.0/GamebaseSDK-Unity.zip)
 #### 機能追加
 * TransferAccount機能追加：ゲストユーザーがマッピングを行わずに最大2個のキーを利用して新しい端末に移行できる機能
-    - (SDK共通)追加されたAPI 
+    * (SDK共通)追加されたAPI 
 		* TransferAccountInfo発行API (issueTransferAccount)
 		* 発行されたTransferAccountInfoを使用して、アカウント移行をリクエストするAPI (transferAccountWithIdPLogin)
 		* 発行されたTransferAccountInfoを確認するAPI (queryTransferAccount)
-		* すでに発行されたTransferAccountInfoを更新するAPI (renewTransferAccount)		
-	- (Server API)
-		* 発行されたTransferAccountのID/PWを検証するサーバーAPI (validateTransferAccount)
-    - (console)会員メニューのマッピング履歴照会タブで、Transfer履歴の確認が可能
+		* すでに発行されたTransferAccountInfoを更新するAPI (renewTransferAccount
 * 強制マッピング機能を追加：すでに他のアカウントに連携しているIdPアカウントをマッピングできる機能
-	- (SDK共通)追加されたAPI 
+	* (SDK共通)追加されたAPI 
 		* 強制マッピングするAPI (addMappingForcibly)
 
 #### 機能改善/変更
@@ -572,7 +562,6 @@ Gamebaseを使用すると、10数個の中国ストアと連携が可能です�
 	* (共通)TransferKey API削除
 		* issueTransferKey：TransferKey発行
 		* requestTransfer：TransferKey検証
-		
 
 ### 2.0.0 (2019.01.29)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.0.0/GamebaseSDK-Unity.zip)
@@ -612,38 +601,15 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 	* (iOS)Payco SDKのバージョンを1.2.4にアップデート
 	* (Unity)GamebaseSDKSettingオブジェクトがあるシーンに戻る場合、オブジェクトが重複して生成されないように改善
 	* Remove API：Webview、Network、Launching
-		* (Android)5個
-			- (void)Gamebase.WebView.showWebBrowser(Activity, String)
-			- (void)Gamebase.Network.addOnChangedListener(NetworkManager.OnChangedListener)
-			- (void)Gamebase.Network.removeOnChangedListener(NetworkManager.OnChangedListener)
-			- (void)Gamebase.Launching.addOnUpdatedListener(LaunchingOnUpdateListener)
-			- (void)Gamebase.Launching.removeOnUpdatedListener(LaunchingOnUpdateListener)
-		* (iOS)9個
-			- [TCGBUtil showToastWithMessage:duration:]
-			- [TCGBWebView showWebBrowserWithURL:viewController:]
-			- [TCGBWebView showWebViewWithURL:viewController:configuration:]
-			- [TCGBLaunching addObserverOnChangedStatusNotification:]
-			- [TCGBLaunching removeObserverOnChangedStatusNotification:]
-			- [TCGBLaunching addUpdateStatusNotification]
-			- [TCGBLaunching removeUpdateStatusNotification]
-			- [TCGBNetwork addObserverOnChangedNetworkStatusWithHandler:]
-			- [TCGBNetwork removeObserverOnChangedNetworkStatusWithHandler:]
-		* (Unity)7個
-			- ShowWebBrowser(string url)
-			- ShowWebView(GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration)
-			- ShowToast(string message, int duration)
-			- AddUpdateStatusListener(GamebaseCallback.DataDelegate< GamebaseResponse.Launching.LaunchingStatus> callback)
-			- RemoveUpdateStatusListener(GamebaseCallback.DataDelegate< GamebaseResponse.Launching.LaunchingStatus> callback)
-			- AddOnChangedStatusListener(GamebaseCallback.DataDelegate< GamebaseNetworkType> callback)
-			- RemoveOnChangedStatusListener(GamebaseCallback.DataDelegate< GamebaseNetworkType> callback)
-	* Deprecated  API 
-		* (Android)2個
-			- (void)Gamebase.WebView.showWebView(Activity, String)
-			- (void)Gamebase.WebView.showWebView(Activity, String, GamebaseWebViewConfiguration)
-		* (iOS)1個
-			- [TCGBGamebase languageCode]
-		* (Unity)1個
-			- GetLanguageCode()
+		* ShowWebBrowser(string url)
+		* ShowWebView(GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration)
+		* ShowToast(string message, int duration)
+		* AddUpdateStatusListener(GamebaseCallback.DataDelegate< GamebaseResponse.Launching.LaunchingStatus> callback)
+		* RemoveUpdateStatusListener(GamebaseCallback.DataDelegate< GamebaseResponse.Launching.LaunchingStatus> callback)
+		* AddOnChangedStatusListener(GamebaseCallback.DataDelegate< GamebaseNetworkType> callback)
+		* RemoveOnChangedStatusListener(GamebaseCallback.DataDelegate< GamebaseNetworkType> callback)
+	* Deprecated API 
+		* GetLanguageCode()
 * [SDK] Setting Tool
 	* ポップアップおよびUI改善
 	
@@ -753,27 +719,25 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 		* パス：Assets/Gamebase/Scripts/Adapter => Assets/Gamebase/Adapter
 		* 誤字：Adapater → Adapter	
 
-
 ### 1.9.0 (2018.05.18)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.9.0/GamebaseSDK-Unity.zip)
 
 #### 機能改善/変更
 * [SDK] 1.9.0
 	* Unity SDK(1.9.0) Google Adapterを新規バージョン(1.6.2)に変更して再配布
-    	- 5/3配布されたUnity SDK(1.9.0)に適用されたGoogle Adapterを最新バージョンに変更(1.6.1→1.6.2)
+    	* 5/3配布されたUnity SDK(1.9.0)に適用されたGoogle Adapterを最新バージョンに変更(1.6.1→1.6.2)
   
 ### 1.9.0 (2018.05.03)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.9.0/GamebaseSDK-Unity.zip)
 
 #### 機能追加
 * Transfer機能追加
-    - ゲストユーザーがマッピングを行わずに新しい端末に移行できる機能
-    - (SDK共通)追加されたAPI 
+    * ゲストユーザーがマッピングを行わずに新しい端末に移行できる機能
+    * (SDK共通)追加されたAPI 
 		* Transfer Key発行API (IssueTransferKey)
 		* 発行されたTransferKeyを使用して、アカウント移行をリクエストするAPI (RequestTransfer)
-    - (console)会員メニューのマッピング履歴照会タブでTransfer履歴の確認が可能
 * 利用停止の登録時、ユーザーのリーダーボード(ランキング)データを削除できるオプションを追加(TOAST Leaderboardを使用する場合に限る)
-    - 利用停止登録メニューまたは、App Guard連携ページで使用可能
+    * 利用停止登録メニューまたは、App Guard連携ページで使用可能
 
 #### バグ修正
 * [SDK] 1.9.0
@@ -793,14 +757,13 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 
 #### 機能追加
 * Kick out機能追加
-    - 現在ゲーム中の全ユーザーの接続を切る機能(メンテナンスの時、ゲームで全ユーザーの接続を切りたい時に使用できる)
-    - (console)メニュー追加
-    - (SDK共通)kick outイベントを受け取れるAPIを追加
+    * 現在ゲーム中の全ユーザーの接続を切る機能(メンテナンスの時、ゲームで全ユーザーの接続を切りたい時に使用できる)
+    * (SDK共通)kick outイベントを受け取れるAPIを追加
 * メンテナンスWebページに、ユーザーがConsoleで入力したHTMLページを使用できるように機能を改善
-    - 以前は、Gamebaseで提供するWebページや外部Webページ接続のみ可能だった
-    - Webサーバーがない場合でも、メンテナンスページをユーザーが望む形式で作成できる。
+    * 以前は、Gamebaseで提供するWebページや外部Webページ接続のみ可能だった
+    * Webサーバーがない場合でも、メンテナンスページをユーザーが望む形式で作成できる。
 * Observer機能の開発およびAPI追加
-    - (SDK共通)メンテナンスなど、アプリ状態/ネットワーク状態/ゲームユーザー状態(利用停止)変更事項に対するListenerを、Observerの登録を通して一括処理できるAPIを追加
+    * (SDK共通)メンテナンスなど、アプリ状態/ネットワーク状態/ゲームユーザー状態(利用停止)変更事項に対するListenerを、Observerの登録を通して一括処理できるAPIを追加
 
 #### 機能改善/変更
 * [SDK] 1.8.0
@@ -911,7 +874,6 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 
 ### 1.1.0 (2017.03.21)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.0/GamebaseSDK-Unity.zip)
-
 
 #### 機能改善/変更
 * [SDK] 1.1.0アップデート
