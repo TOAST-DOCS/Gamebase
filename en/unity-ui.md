@@ -159,15 +159,15 @@ public void SampleShowTermsView()
     {
         if (Gamebase.IsSuccess(error) == true)
         {
+                                
+            // If the 'PushConfiguration' is not null,
+            // save the 'PushConfiguration' and use it for Gamebase.Push.RegisterPush() after Gamebase.Login().
             Debug.Log("ShowTermsView succeeded.");
-            GamebaseResponse.Push.PushConfiguration pushConfiguration = GamebaseResponse.Push.PushConfiguration.From(data)
+            GamebaseResponse.Push.PushConfiguration pushConfiguration = GamebaseResponse.Push.PushConfiguration.From(data);
         }
         else
         {
             Debug.Log(string.Format("ShowTermsView failed. error:{0}", error));
-                        
-            // If the 'PushConfiguration' is not null,
-            // save the 'PushConfiguration' and use it for Gamebase.Push.RegisterPush() after Gamebase.Login().
         }
     });
 }
