@@ -111,8 +111,10 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
 
 > <font color="red">[Caution]</font><br/>
 >
-> If you added the optional field of push notification acceptance in the terms and conditions, you can create TCGBPushConfiguration from TCGBDataContainer.
-> If TCGBPushConfiguration is not nil, call the [TCGBPush registerPushWithConfiguration:completion:] API **after login**.
+> * If you have added user consent for receiving push notification in the terms and conditions, you can create a TCGBPushConfiguration from TCGBDataContainer.
+> * PushConfiguration is nil if the terms and conditions window is not displayed. (If the terms and conditions window is displayed, a valid object is always returned.)
+> * PushConfiguration.pushEnabled value is always true.
+> * If TCGBPushConfiguration is not nil, call [TCGBPush registerPushWithConfiguration:completion:] **after login**.
 >
 
 #### Required parameter
