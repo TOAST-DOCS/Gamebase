@@ -120,9 +120,9 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
 
 > <font color="red">[Caution]</font><br/>
 >
-> If you added the optional field of push notification acceptance in the terms and conditions, you can create GamebaseResponse.Push.PushConfiguration from GamebaseResponse.DataContainer.
-> If GamebaseResponse.Push.PushConfiguration is not null, call the Gamebase.Push.RegisterPush API **after login**.
->
+> * PushConfiguration is null if the terms and conditions window is not displayed. (If the terms and conditions window is displayed, a valid object is always returned.)
+> * PushConfiguration.pushEnabled value is always true.
+> * If PushConfiguration is not null, call Gamebase.Push.registerPush API **after login**.
 
 #### Optional parameter
 
@@ -165,6 +165,9 @@ public void SampleShowTermsView()
         else
         {
             Debug.Log(string.Format("ShowTermsView failed. error:{0}", error));
+                        
+            // If the 'PushConfiguration' is not null,
+            // save the 'PushConfiguration' and use it for Gamebase.Push.RegisterPush() after Gamebase.Login().
         }
     });
 }
