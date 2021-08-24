@@ -112,8 +112,10 @@ However, if the "Agree again to Terms and Conditions" item has been switched to 
 
 > <font color="red">[Caution]</font><br/>
 >
-> If you added the optional field of push notification acceptance in the terms and conditions, you can create PushConfiguration from GamebaseDataContainer.
-> If PushConfiguration is not null, call the Gamebase.Push.registerPush API **after login**.
+> * If you have added user consent for receiving push notification in the terms and conditions, you can create a PushConfiguration from GamebaseDataContainer.
+* PushConfiguration is null if the terms and conditions window is not displayed. (If the terms and conditions window is displayed, a valid object is always returned.)
+* PushConfiguration.pushEnabled value is always true.
+* If PushConfiguration is not null, call Gamebase.Push.registerPush API **after login**.
 
 #### Required parameter
 

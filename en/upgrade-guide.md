@@ -1,5 +1,11 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.26.0
+
+### Unity
+
+* If you're using this version, you need to manually delete `Assets/Gamebase/Toast/IAP/Plugins` before use.
+
 ## 2.25.0
 
 ### Android
@@ -54,6 +60,8 @@ android {
 * Changed to return TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERROR (3009) error when an ASAuthorizationErrorUnknown error occurs in Sign In with an Apple OS.
 
 ### Unity
+
+* If you're using this version, you need to manually delete `Assets/Gamebase/Toast/IAP/Plugins` before use.
 
 #### Changed Minimum Support Version
 

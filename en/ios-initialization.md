@@ -249,6 +249,12 @@ If the Gamebase popup is not used, the related UI can be manually implemented so
 @end
 ```
 
+> <font color="red">[Caution]</font><br/>
+>
+> The launchingInformations API is not an asynchronous API that retrieves information from the server in real time.
+> It returns cached information updated every 2 minutes, so it is not suitable for real-time checking of the current status.
+> In that case, use GamebaseEventHandler, which triggers an event when the Launching Status Code is changed.
+> [Game > Gamebase > iOS SDK User Guide  > ETC > Additional Features > Gamebase Event Handler > Observer](./ios-etc/#observer)
 
 **API**
 

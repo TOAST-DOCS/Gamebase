@@ -447,9 +447,13 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| userIdList | Array[String] | mandatory | 查询对象用户ID <br>  ["userId", "userId", "userId",...]|
+```json
+["userId", "userId", "userId"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | 查询对象用户ID |
 
 **[Response Body]**
 
@@ -508,9 +512,13 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| userIdList | Array[String] | mandatory | 查询对象用户ID  ["userId", "userId", "userId",...]|
+```json
+["userId", "userId", "userId"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | 查询对象用户ID |
 
 **[Response Body]**
 
@@ -575,9 +583,13 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| authKeyList | Array[String] | mandatory | authSystem发放的authKey ["authKey", "authKey", "authKey",...]|
+```json
+["authKey", "authKey", "authKey"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | authSystem发放的authKey |
 
 **[Response Body]**
 

@@ -347,6 +347,13 @@ NHN Cloud Launching Consoleでユーザーが入力した情報です。
 
 GetLaunchingInformations APIを利用すると、Initialize後もLaunchingInfoオブジェクトを取得できます。
 
+> <font color="red">[注意]</font><br/>
+>
+> GetLaunchingInformations APIは、リアルタイムでサーバーから情報を取得する非同期APIではありません。
+> 2分毎にアップデートされるキャッシュ情報を返すめ、リアルタイムで現在のメンテナンス状況を判断する用途には適していません。
+> このような場合にはLaunching Status Codeが変更されれ時にイベントが動作するGamebaseEventHandlerを活用してください。
+> [Game > Gamebase > Unity SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Observer](./unity-etc/#observer)
+
 **API**
 
 Supported Platforms

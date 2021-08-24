@@ -1,5 +1,11 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.26.0
+
+### Unity
+
+* 該当バージョンを使用する時は`Assets/Gamebase/Toast/IAP/Plugins`を直接削除してから使用してください。
+
 ## 2.25.0
 
 ### Android
@@ -54,6 +60,8 @@ android {
 * Sign In with AppleのASAuthorizationErrorUnknownエラーが発生した場合、 TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERROR (3009)エラーをリターンするように変更されました。
 
 ### Unity
+
+* 該当バージョンを使用する時は`Assets/Gamebase/Toast/IAP/Plugins`を直接削除してから使用してください。
 
 #### Changed Minimum Support Version
 

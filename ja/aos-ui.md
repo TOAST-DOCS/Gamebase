@@ -112,8 +112,10 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 
 > <font color="red">[注意]</font><br/>
 >
-> 約款にプッシュ受信同意有無を追加した場合は、GamebaseDataContainerからPushConfigurationを作成できます。
-> PushConfigurationがnullではない場合、**ログイン後に**Gamebase.Push.registerPush APIを呼び出してください。
+> * 約款にプッシュ受信同意有無を追加した場合は、GamebaseDataContainerからPushConfigurationを作成できます。
+> * PushConfigurationは、約款ウィンドウが表示されていない場合はnullです。(約款ウィンドウが表示されていれば常に有効なオブジェクトが返されます。)
+> * PushConfiguration.pushEnabled値は常にtrueです。
+> * PushConfigurationがnullではない場合、**ログイン後に**Gamebase.Push.registerPush APIを呼び出してください。
 
 #### Requiredパラメータ
 

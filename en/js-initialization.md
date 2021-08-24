@@ -117,6 +117,13 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 
 The LaunchingInfo object can be acquired even after the initialization using toast.Gamebase.Launching.getLaunchingInformations() API.
 
+> <font color="red">[Caution]</font><br/>
+>
+> The **toast.Gamebase.Launching.getLaunchingInformations()** is not an asynchronous API that retrieves information from the server in real time.
+> It returns cached information updated every 2 minutes, so it is not suitable for real-time checking of the current status.
+> In that case, use GamebaseEventHandler, which triggers an event when the Launching Status Code is changed.
+> [Game > Gamebase > Javascript SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Observer](./js-etc/#observer)
+
 **API**
 
 ```js

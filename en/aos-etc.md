@@ -32,7 +32,8 @@ The language code entered for Display Language should be one of the codes listed
 > * Use Display Language only when you want to change the language displayed in Gamebase to a language other than the one configured by the device.
 > * Display Language Code is a case-sensitive value in the form of ISO-639.
 > There could be a problem if it is configured as a value such as 'EN' or 'zh-cn'.
-> * If the value entered as Display Language Code does not exist in the table (**Types of language codes supported by Gamebase) below, Display Language Code is automatically set to English (en) by default.
+> * If the value entered for Display Language Code does not exist in the table below (**Types of Language Codes Supported by Gamebase**), Display Language Code is set to the default language set in the Gamebase console.
+>     * If the language is not set in the Gamebase console, English (en) is set as the default language.
 
 > [Note]
 >
@@ -163,7 +164,7 @@ public void getDisplayLanguageCodeInRuntime() {
 
 #### Add New Language Sets 
 
-To use another language in addition to default Gamebase languages (en, ko, ja), go to gamebase-sdk-base.aar > res > raw and add a value to the localizedstring.json file.
+To add a language other than the default language provided by Gamebase (ko, en, ja, zh-CN, zh-TW, th), you can add a localizedstring.json file to the res > raw folder of the project.
 
 ![localizedstring.json](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-etc_001_1.11.0.png)
 
@@ -189,10 +190,32 @@ The localizedstring.json has a format defined as below:
     ...
     "launching_service_closed_title": "サービス終了"
   },
+    "zh-CN": {
+    "common_ok_button": "确定",
+    "common_cancel_button": "取消",
+    ...
+    "launching_service_closed_title": "关闭服务"
+  },
+  "zh-TW": {
+    "common_ok_button": "好",
+    "common_cancel_button": "取消",
+    ...
+    "launching_service_closed_title": "服務關閉"
+  },
+  "th": {
+    "common_ok_button": "ยืนยัน",
+    "common_cancel_button": "ยกเลิก",
+    ...
+    "launching_service_closed_title": "ปิดให้บริการ"
+  },
+  "de": {},
+  "es": {},
+  ...
+  "ms": {}
 }
 ```
 
-To add another language, add `"${language code}":{"key":"value"}` to the localizedstring.json file. 
+If you need to add another language set, you can add a value in the form of `"key":"value"` to the corresponding language code in the localizedstring.json file.
 
 ```json
 {
@@ -202,34 +225,25 @@ To add another language, add `"${language code}":{"key":"value"}` to the localiz
     ...
     "launching_service_closed_title": "Service Closed"
   },
-  "ko": {
-    "common_ok_button": "확인",
-    "common_cancel_button": "취소",
+    "vi": {
+    "common_ok_button": "value",
+    "common_cancel_button": "value",
     ...
-    "launching_service_closed_title": "서비스 종료"
+   "launching_service_closed_title": "value"
   },
-  "ja": {
-    "common_ok_button": "確認",
-    "common_cancel_button": "キャンセル",
-    ...
-    "launching_service_closed_title": "サービス終了"
-  },
-  "${language code}": {
-      "common_ok_button": "...",
-      ...
-  }
+   ...
+  "ms": {}
 }
 ```
-
-If key is missing from inside of "${language code}":{ } of the json format above, `Languages Set on Device` or `en` will be automatically entered.
 
 #### Priority in Display Language
 
 If Display Language is set via initialization and SetDisplayLanguageCode API, the final application may be different from what has been entered. 
 
 1. Check if the languageCode you enter is defined in the localizedstring.json file.
-2. See if, during Gamebase initialization, the language code set on the device is defined in the localizedstring.json file. (This value shall maintain even if the language set on device changes after initialization.)
-3.  `en`, which is the default value of Display Language, is automatically set.
+2. If step 1 fails, check if the language code set in the device is defined in the localizedstring.json file during the initialization of Gamebase. (This value is maintained even if the language set in the device is changed after initialization.)
+3. If step 2 fails, the default language set in the Gamebase console is set as the Display Language.
+4. If there is no language set in the Gamebase console, `en` is set as the default value.
 
 ### Country Code
 

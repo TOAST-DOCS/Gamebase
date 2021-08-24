@@ -303,6 +303,13 @@ User-input information on the console of NHN Cloud Launching.
 
 With GetLaunchingInformations API, you can get LaunchingInfo object even after initialization. 
 
+> <font color="red">[Caution]</font><br/>
+>
+> The getLaunchingInformations API is not an asynchronous API that retrieves information from the server in real time.
+> It returns cached information updated every 2 minutes, so it is not suitable for real-time checking of the current status.
+> In that case, use GamebaseEventHandler, which triggers an event when the Launching Status Code is changed.
+> [Game > Gamebase > Unreal SDK User Guide  > ETC > Additional Features > Gamebase Event Handler > Observer](./unreal-etc/#observer)
+
 **API**
 
 Supported Platforms
