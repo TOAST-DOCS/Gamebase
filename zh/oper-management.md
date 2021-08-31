@@ -4,15 +4,14 @@
 
 ## Authorization
 
-可以管理Gamebase Console的使用权限。
-![gamebase_manage_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_manage_01_202003.png)
+可以对Gamebase Console使用权限进行管理。 
+![gamebase_manage_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_manage_01_202101.png)
 
 * Gamebase Console使用权限管理
-  * **销售情况的访问权限**：**付费** 菜单的访问权限
-  * **管理菜单的访问权限**：其他菜单的访问权限
-  * 可以下载**全体成员的下载权限** : **项目的全体成员**信息的权限。
-* 要注册新成员，您必须将其添加到TOAST项目成员管理中。
-* 您无法修改自己的权限。
+  * **接收周报的权限** : 是否接收**周报**的权限
+* 如需注册新成员，要在NHN Cloud项目成员管理中进行添加。 
+* 不能修改自己的权限。
+
 
 ## Alarm
 
@@ -72,15 +71,16 @@
 
 ### Recipient List
 
-设定接收报警的用户。要注册新成员，您必须将其添加到TOAST项目成员管理中。
+可以设定接收通知的用户。如需注册新成员，在NHN Cloud项目成员管理中进行添加。 
 ![gamebase_manage_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_07_201812.png)
-Gamebase可以通过电子邮件和SMS发送报警。
-使用您在注册TOAST时输入的信息发送电子邮件和SMS，如果输入了错误的电子邮件地址或电话号码，则有可能收不到报警。可以在TOAST**我的信息管理** 页面中确认电话号码信息。
+可在Gamebase中通过电子邮件和SMS传送通知。
+利用加入NHN Cloud时输入的信息发送电子邮件和SMS。为了使用户正常接收通知，应输入正确的邮件地址或号码。请在NHN Cloud中的**我的信息管理**页面上确认手机号码信息。
+
 
 ## Config
 
-您可以进行Gamebase和TOAST服务之间的联动相关设置。
+可以设置与Gamebase和NHN Cloud服务联动相关的设置。 
 
 ![gamebase_manage_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_08_201812.png)
 
-您可以设置是否在调用 Gamebase Launching API时一并获取在TOAST Launching中设置的信息。 只有在使用TOAST Launching服务时才能打开或关闭此功能。
+调用Gamebase Launching API时可以设置是否要一起接收在NHN Cloud Launching中设置的信息。只能在使用NHN Cloud Launching服务时开启或关闭功能。 

@@ -6,33 +6,38 @@
 
 ## Game > Gamebase > 控制台使用指南 > IAP
 
-您可以注册应用程序内结算有关的信息并查看其历史记录。
-在Gamebase使用 TOAST IAP(In-App Purchase，应用程序内支付)服务。
+可以注册应用程序内结算信息并查看其记录。 
+Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 
 ## Store
 
-为了在游戏内销售商品，添加应用商店。
-您可以在**Store** 选项卡中的**商店信息列表**中添加新商店或管理已添加的商店。
+为了在游戏内销售商品，需要添加应用商店。
+您可以在**Store**选项卡中的**商店信息列表**中添加新商店或管理已添加的商店。
 ![gamebase_purchase_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_01_201812.png)
 
 ### Register
 
-添加新商店，请点击**商店信息列表**页面上的**添加**按钮。
+如果要添加新商店，请点击**商店信息列表**页面上的**添加**按钮。
 ![gamebase_purchase_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_02_201812.png)
 
-* **商店**  选择要添加的外部商店，如果没有需要添加的商店，请联系 [客服中心](https://toast.com/support/inquiry)。
+* **商店** 选择要添加的外部商店，如果没有需要添加的商店，请联系[客户服务](https://toast.com/support/inquiry)。
 * **App 名称** 输入要添加的游戏名称。
 * **Store App ID** 输入从商店获取的信息。
-* **使用与否**  选择是否使用商店。
+* **使用与否** 选择是否使用商店。
 
+> [参考] Google Play Store的发票验证
+>
+> 谷歌发票验证系统出现故障时，如果将**一次性商品的发票验证设定**设为第一阶段，则可通过Gamebase内标签验证来进行结算。
+> 不管设置值为多少，始终对订购产品执行两个阶段的验证。
+ 
 ### Modify
 
-您可以在查询列表中查询已添加商店的详细信息或更改信息。
+您可以在查询列表中查看已添加商店的详细信息并更改信息。
 
 ![gamebase_purchase_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_03_201812.png)
-- 在查询目录中选择已添加的商店来查询详细信息。
-- 点击**编辑** 按钮可以编辑应用程序名称、商店应用程序和可用性信息，但Store App ID除外。
-- 点击**删除** 按钮可以删除商店信息。但，只能删除未使用的商店。
+- 在查询目录中选择已添加的商店来查看详细信息。
+- 点击**编辑**按钮可以编辑应用程序名称、商店应用程序和可用性信息，但Store App ID除外。
+- 点击**删除**按钮可以删除商店信息。但只能删除未使用的商店。
 
 ## Product
 可以注册商店的销售产品。
@@ -45,7 +50,7 @@
 
 ### Register
 若需注册新商品，点击**道具列表**页面上的**注册**按钮。
-#### 1. 通过直接输入进行注册的方法  
+#### 1. 通过直接输入注册的方法  
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_05_202006.png) 
 
 * (1) **产品ID** : 输入请求支付时要使用的产品ID。使用该ID通过SDK调用购买API，则可购买输入的产品。
@@ -56,12 +61,12 @@
 * (6) **商店道具ID** : 注册商店后，输入获取的ID信息。当在所选的商店对在Gamebase商品中注册的列表请求支付时，基于在该部分输入的内容进行结算。
 * (7) **商店道具类别** : 选择要注册的产品类别。可以在Google play, App store注册订阅商品。如果选择Google play, App store之外的其他商店，将视为为一次性道具。
 
-#### 2. 通过上载文件进行注册的方法
+#### 2. 通过上载文件注册的方法
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_06_202006.png)
 
 * 通过上载文件可注册商品。 
-* 通过上载文件注册商品时，一次最多只能注册1,000个商品。 
-* 若输入形式不正确，则不能注册商品。因此输入时需要注意形式。
+* 上载文件注册商品时，一次最多只能注册1,000个商品。 
+* 若输入形式不正确，则不能注册商品。因此需要注意输入形式。
 * 如果文件的编码形式不是”UTF-8”，则无法使用韩语键盘，因此需要注意。
 * 若文件注册失败，则可通过结果窗口的**下载**按钮下载失败的列表后确认。
 
@@ -77,8 +82,8 @@
 ## Transactions
 
 可以查询付款信息。
-可通过选择搜索条件，简单查看所需的付款信息。
-通过点击右上端的**下载**按键，可以下载结算明细的查询结果。 
+通过选择搜索条件，可简单查看所需的付款信息。
+通过点击右上端的**下载**按键，可下载结算明细的查询结果。 
 
 ### Properties
 
@@ -107,7 +112,7 @@
 
 #### 搜索结果
 以下为查询结果项目。
-- **Transaction ID** : 可在Gamebase内区分    的固有编号
+- **Transaction ID** : 可在Gamebase内区分的固有编号
 - **商店** : 支付的商店信息
 - **用户ID** : 支付的用户ID
 - **产品名称** : 用户在应用程序内购买的实际商品名称
@@ -128,21 +133,21 @@
     - 可以更改为Refund状态。
 - **完成支付预约(Reserved)**
 	- 表示不再进行商店内付款或未进行结算验证
-	- 可以更改为Success, Refund状态。
+	- 可以更改为Success、Refund状态。
 - **支付验证失败(Failure)**
 	- 表示在商店付款过程中验证失败。
-	- 可以更改为Success, Refund状态。 
+	- 可以更改为Success、Refund状态。 
 - **完成退款(Refund)**
 	- 表示管理员手动处理“在商店是否准许退还请求”。
 	- 无法更改为其他付款状态。
 - **取消支付(UserClose)** 
 	- 用户取消支付的状态
 
-##### Success 变更
+##### Success变更
 ![gamebase_purchase_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_201812.png)
 您可以通过输入付款时收到的**发票编号**, **价格**, **货币**信息来更改状态。
 
-##### Refund 变更
+##### Refund变更
 ![gamebase_purchase_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_09_201812.png)
 不必输入其他追加信息，确认状态后选择变更即可。
 您更改的付款信息无法再次更改，因此需要仔细检查信息。
