@@ -175,7 +175,7 @@ end
 
 * 인증을 위해 IdP 콘솔에서 Client ID 를 발급받아 Gamebase 콘솔에 입력합니다.
     * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
-* Gamebase iOS SDK 는 각 IdP 별로 추가 설정이 필요합니다.
+* Gamebase iOS SDK는 각 IdP별로 추가 설정이 필요합니다.
 
 #### Google
 
