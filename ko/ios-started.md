@@ -230,6 +230,11 @@ end
 * LINE Login 을 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다. (인증 필요)
 * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
 
+#### Weibo
+
+* AppDelegate 의 `application:openURL:sourceApplication:annotation:`을 필수로 구현해야 합니다.
+    * [Game > Gamebase > iOS SDK 사용 가이드 > 초기화 > OpenURL Event](./ios-initialization/#openurl-event)
+
 ### IdP Settings (Legacy)
 
 **Google**
