@@ -820,7 +820,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 ### Cancel TemporaryWithdrawal
 
-탈퇴를 요청을 취소합니다.
+탈퇴 요청을 취소합니다.
 탈퇴 요청 후 기간이 만료되어 탈퇴가 완료되면 취소가 불가능합니다.
 
 **API**
