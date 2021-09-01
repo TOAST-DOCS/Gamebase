@@ -1196,6 +1196,51 @@ public static void testWithdrawImmediately() {
 }
 ```
 
+## GraceBan
+
+* '결제 어뷰징 자동 해제' 기능입니다.
+* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 AuthToken.getGraceBanInfo() API 를 호출하여, 결과가 null 이 아닌 유효한 GraceBanInfo 객체를 리턴한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
+    * 결제 어뷰징 자동 해제 기능에서 설정한 기간 내에 결제 어뷰징 자동 해제 조건을 모두 만족하면 정상플레이가 가능해집니다.
+    * 기간 내에 조건을 충족하지 못하면 이용 정지 상태로 돌아갑니다.
+
+**Example**
+
+```java
+public static void testLogin() {
+    Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
+        @Override
+        public void onCallback(AuthToken token, GamebaseException exception) {
+            if (!Gamebase.isSuccess(exception)) {
+                // Login failed
+                return;
+            }
+
+            // Check if user is under grace ban
+            if (token.getGraceBanInfo() != null) {
+                GraceBanInfo graceBanInfo = token.getGraceBanInfo();
+                long gracePeriodDate = graceBanInfo.getGracePeriodDate();
+                String message = graceBanInfo.getMessage();
+                if (graceBanInfo.getPaymentStatus() != null) {
+                    GraceBanInfo.PaymentStatus paymentStatus = graceBanInfo.getPaymentStatus();
+                    double paymentStatusAmount = paymentStatus.getAmount();
+                    int paymentStatusCount = paymentStatus.getCount();
+                }
+                if (graceBanInfo.releaseRuleCondition() != null) {
+                    GraceBanInfo.ReleaseRuleCondition releaseRuleCondition = graceBanInfo.releaseRuleCondition();
+                    double releaseRuleConditionAmount = releaseRuleCondition.getAmount();
+                    int releaseRuleConditionCount = releaseRuleCondition.getCount();
+                    String releaseRuleConditionCurrency = releaseRuleCondition.currency();
+                    Strinig releaseRuleConditionType = releaseRuleCondition.conditionType(); // AND, OR
+                }
+                // Guide the user through the UI how to finish the grace ban status.
+            } else {
+                // Login success.
+            }
+        }
+    });
+}
+```
+
 ## Error Handling
 
 | Category       | Error                                    | Error Code | Description                              |
