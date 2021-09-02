@@ -774,7 +774,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 ```objectivec
 - (void)testRequestWithdraw {
-    TCGBGamebase requestTemporaryWithdrawalWithViewController:parentViewController completion:^(TCGBTemporaryWithdrawalInfo *info, TCGBError *error) {
+    [TCGBGamebase requestTemporaryWithdrawalWithViewController:parentViewController completion:^(TCGBTemporaryWithdrawalInfo *info, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == NO) {
             if (error.code == TCGB_ERROR_AUTH_WITHDRAW_ALREADY_TEMPORARY_WITHDRAW) {
                 // Already requested temporary withdrawal before.
@@ -884,6 +884,48 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 }
 ```
 
+## GraceBan
+
+* '결제 어뷰징 자동 해제' 기능입니다.
+* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 TCGBAuthToken.tcgbMember.graceBanInfo의 결과가 null이 아닌 유효한 TCGBGraceBanInfo 객체를 리턴한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
+    * 결제 어뷰징 자동 해제 기능에서 설정한 기간 내에 결제 어뷰징 자동 해제 조건을 모두 만족하면 정상플레이가 가능해집니다.
+    * 기간 내에 조건을 충족하지 못하면 이용 정지 상태로 돌아갑니다.
+
+**Example**
+
+```objectivec
+- (void)testGraceBanInfo {
+    [TCGBGamebase loginWithType:kTCGBAuthAppleID viewController:viewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == NO) {
+            // Login failed
+            return;
+        }
+        
+        // Check if user is under grace ban
+        if (authToken.tcgbMember.graceBanInfo != nil) {
+            TCGBGraceBanInfo *graceBanInfo = authToken.tcgbMember.graceBanInfo;
+            long long gracePeriodDate = graceBanInfo.gracePeriodDate;
+            NSString *message = graceBanInfo.message;
+            if (graceBanInfo.paymentStatus != nil) {
+                TCGBPaymentStatus *paymentStatus = graceBanInfo.paymentStatus;
+                double paymentStatusAmount = paymentStatus.amount;
+                int paymentStatusCount = paymentStatus.count;
+            }
+            if (graceBanInfo.releaseRuleCondition != nil) {
+                TCGBReleaseRuleCondition *releaseRuleCondition = graceBanInfo.releaseRuleCondition;
+                double releaseRuleConditionAmount = releaseRuleCondition.amount;
+                int releaseRuleConditionCount = releaseRuleCondition.count;
+                NSString *releaseRuleConditionCurrency = releaseRuleCondition.currency;
+                NSString *releaseRuleConditionType = releaseRuleCondition.conditionType;
+            }
+            // Guide the user through the UI how to finish the grace ban status.
+        }
+        else {
+            // Login Success
+        }
+    }];
+}
+```
 
 ## Error Handling
 
