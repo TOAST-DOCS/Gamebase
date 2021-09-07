@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-Android.zip)
 
 #### 기능 개선/변경
-* 외부 SDK 업데이트: PAYCO Android SDK(1.5.5), Hangame Android SDK(1.4.1)
+* 외부 SDK 업데이트: PAYCO Android SDK(1.5.5), Hangame Android SDK(1.4.1), Weibo Android SDK(11.8.1)
 * 에뮬레이터, 루팅 단말기에서 웹뷰가 정상적으로 표시되지 않을때 재시도를 추가하여, 웹뷰가 정상적으로 표시되도록 개선하였습니다.
     * 대상은 웹뷰로 동작하는 이미지공지, 고객센터, 공통약관이 해당됩니다.
 * Weibo IdP 인증을 개선하여 안정성을 향상시켰습니다.
