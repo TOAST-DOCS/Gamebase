@@ -14,7 +14,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 용도 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.27.1<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 Interface 및 핵심 로직을 포함 | API 16 (JellyBean, OS 4.1) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.27.1<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.5<br>okhttp-3.12.3<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 Interface 및 핵심 로직을 포함 | API 16 (JellyBean, OS 4.1) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Google 로그인을 지원 | - |
