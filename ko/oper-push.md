@@ -192,7 +192,7 @@ Android 푸시 메시지 수신 시에 실행되는 미디어를 추가할 수 �
 
 ### 수신 설정
 선택된 기간 동안의 수신 설정 관련 통계를 보여줍니다.
-![gamebase_push_14_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_14_202101.png)
+![gamebase_push_14_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_14_202109.png)
 
 |구분|정보성|광고성|야간 광고성|
 |------|:---:|:---:|:---:|
