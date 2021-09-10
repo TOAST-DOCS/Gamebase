@@ -6,7 +6,7 @@
 ## Search Member
 
 您可以通过输入用户ID / IdP ID来搜索会员信息。
-用户ID(User ID)是Gamebase首次登录时自动发放的用户标识。 为了减少同音字符造成的混淆，仅使用“ABCDFGHJKLMNPQRSTWXYZ1346789”字符。
+用户ID(User ID)是Gamebase首次登录时自动发放的用户标识。为了减少同音字符造成的混淆，仅使用“ABCDFGHJKLMNPQRSTWXYZ1346789”字符。
 IdP ID是Id Provider提供的ID信息，这意味着Id Provider中的唯一标识符，而不是登录时输入的信息。 因此，如果要按IDP ID项搜索，请在输入搜索信息时注意。
 
 搜索到的用户的详细信息显示在顶部，登录、映射、付款、禁用和游戏时间等历史记录显示在底部的选项卡中。
@@ -31,7 +31,7 @@ IdP ID是Id Provider提供的ID信息，这意味着Id Provider中的唯一标�
 
 **Identity Provider **
 
-Gamebase允许多个外部IdP协同工作。 换句话说，用户可以通过使用一个用户ID注册Facebook和Google 两个IDP来登录。 SDK在调用 **Login using a specific IdP**或'**Add Mapping** API时注册IdP。
+Gamebase允许多个外部IdP协同工作。 换句话说，用户可以通过使用一个用户ID注册Facebook和Google两个IDP来登录。SDK在调用**Login using a specific IdP**或'**Add Mapping** API时注册IdP。
 
 - **IdP** : 外部 IdP(guest, Facebook, PAYCO, Google 等)
 - **Idp ID** : 外部IdP提供的ID(Facebook no, PAYCO ID等)
@@ -67,10 +67,10 @@ Gamebase允许多个外部IdP协同工作。 换句话说，用户可以通过�
 SDK调用与登录相关的API时会添加历史记录。
 
 - **Login Date** : 用户登录应用程序的时间
-- **Login Type** : 用户登录的身份验证类型（IdP Login/Guest等）。 括号内的信息是实际使用的IdProvider信息。
+- **Login Type** : 用户登录的身份验证类型（IdP Login/Guest等）。括号内的信息是实际使用的IdProvider信息。
 - **OS / Ver** : 用户登录的OS（IOS / Android / WebGL等）和OS的版本信息
 - **Device model** : 登录应用程序的设备型号名称
-- **Device Key** : 登录用户的设备的唯一标识值（Android：Android ID，iOS：IDFV）。
+- **Device Key** : 登录用户的设备的唯一标识值（Android：Android ID，iOS：IDFV）
 - **Device Country Code** : 用户登录时在设备上设置的国家代码
 - **USIM Country Code** : 用户登录时在USIM卡上设置的国家代码
 - **Telecom** : 用户登录时使用的运营商信息
@@ -79,7 +79,7 @@ SDK调用与登录相关的API时会添加历史记录。
 - **Store Code** : 用户下载应用的商店信息
 - **Client Version** : 应用下载时的客户端版本信息
 - **Gamebase SDK Version** : APP使用的Gamebase SDK版本信息
-- **etc**: 登录时使用的除上述项之外的其他信息
+- **etc** : 登录时使用的除上述项之外的其他信息
 
 ### Mapping History
 ![gamebase_member_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_06_201812.png)
@@ -88,11 +88,11 @@ SDK调用与登录相关的API时会添加历史记录。
 
 * **IdP ID** : 登录IdP时使用的ID信息
 * **IdP** : Mapping IdP信息
-* **日期** : IdP ID和 Gamebase ID Mapping 映射操作的时间
-* **Type** : Mapping 操作的详细信息
-  - AAM : 添加 Mapping
-  - ARM : 删除 Mapping
-  - AFR : 强制删除 Mapping
+* **日期** : IdP ID和 Gamebase ID Mapping映射操作的时间
+* **Type** : Mapping操作的详细信息
+  - AAM : 添加Mapping
+  - ARM : 删除Mapping
+  - AFR : 强制删除Mapping
   - GMG : 创建guest帐户
   - OMG : 创建IdP 账户
 
@@ -163,7 +163,7 @@ SDK调用与登录相关的API时会添加历史记录。
 单击**重新发放**按钮，可重新发放新的终端机转移密钥。若重新发放，之前发放的密钥无法继续使用。
 ![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_TransferAccount_Renewal1_1.0.png)
 
-- **重新发放ID、密码**: ID、密码全部重新发放。
+- **重新发放ID、密码** : ID、密码全部重新发放。
 - **重新发放密码**：ID仍使用之前发放的ID，仅重新发放密码。
 
 #### 重新发放时注意事项

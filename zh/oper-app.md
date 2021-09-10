@@ -21,8 +21,8 @@
 ![gamebase_app_01_202009](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_01_202009.png)
 
 #### (1) 安装URL
-简捷URL可用于APP安装和宣传。
-如果APP已发布到多个应用商店，可以使用一个简捷URL进行管理。
+简捷URL可用于App安装和宣传。
+如果App已发布到多个应用商店，可以使用一个简捷URL进行管理。
 详细的操作及管理方法，请参考以下链接[安装URL管理]。(./oper-app/#installed-url)
 
 > [参考]
@@ -95,7 +95,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 ![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_19_202009.png)
 若欲使用开发公司自建客户服务，请进行设置。
 需要设置的项目如下。
-* **客户服务URL** : 输入要 使用的开发公司自建客户服务地址。
+* **客户服务URL** : 输入要使用的开发公司自建客户服务地址。
 * **电话号码** : 输入客户服务的电话号码。可以通过Gamebase SDK接收值。
 
 #### 2. Gamebase提供的客户服务
@@ -117,7 +117,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 * **OC组织Key** : 输入确认NHN Cloud Online Contact客户服务咨询时使用的Key。若不输入该信息，则不能看到客户服务网页上的客户咨询，因此必须输入。关于详细联动方法，请参考以下内容。
 > [参考] NHN Cloud Online Contact和Gamebase之间的联动
 > 如果要在Gamebase内与NHN Cloud Online Contact联动，按照以下程序，获取SSO登录API Key后，在Gamebase内设定才能使用客户服务。
-> 为了客户服务的稳定提供，请按照以下顺序顺序。
+> 为了客户服务的稳定提供，请按照以下顺序进行。
 >
 > 1) 在NHN Cloud Online Contact中设置成员联动的方式
 > 服务管理 -> 帮助中心 -> 成员联动
@@ -128,7 +128,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 > 确认需要使用的Gamebase的项目ID ，在**{appId}**中输入。 
 > 
 > 2) 获取OC组织Key，在OC组织Key项目中输入。 
-> 全局管理 -> 合同服务现状 -> 移动到组织信息后，复制OC组织信息的OC组织Key后，在Gamebase OC组织Key项目中输入。  
+> 全局管理 -> 合同服务现状 -> 移动到组织信息，复制OC组织信息的OC组织Key后，在Gamebase OC组织Key项目中输入。  
 > ![gamebase_app_25_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_25_202102.png)
 >
 > 3) 获取NHN Cloud Online contact客户服务网页地址后，在客户服务URL中输入。 
@@ -167,7 +167,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 输入您要注册的终端机的 **终端机名称**、“Debug Log及‘’维护与否”后点击注册按键，则可注册测试终端机。
 
 > [参考]
-> 请在备注信息中输入用户易于查看的自定义名称。 例) iPhone 6 测试, Toast的iPad
+> 请在备注信息中输入用户易于查看的自定义名称。 例) iPhone 6 测试、Toast的iPad
 
 #### (3) 删除
 
@@ -241,7 +241,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 
 
 #### 4. PAYCO
-在Gamebase Console中输入申请PAYCO Client ID后获取的 {client_id} 和 {client_secret}。
+在Gamebase Console中输入申请PAYCO Client ID后获取的{client_id}和{client_secret}。
 
 **输入字段**<br />
 
@@ -264,7 +264,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 * [Gamebase > iOS SDK使用指南 > 开始 > IdP settings > Payco](./ios-started/#payco)
 
 #### 5.NAVER
-在Gamebase Console中输入在Naver Developers网站上申请后获取的{client_id} 和 {client_secret}。
+在Gamebase Console中输入在Naver Developers网站上申请后获取的{client_id}和{client_secret}。
 此时，需要设定将要显示在同意登录的窗口上的应用程序名称**service_name**。 
 
 **输入字段**
@@ -283,14 +283,14 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 * 如果是NAVER，需要设定将要显示在同意登录的窗口上的应用程序名称**service_name**。
 
 ```json
-{"service_name"："Your Service Name" }
+{"service_name"："Your Service Name"}
 ```
 
 ##### iOS
 * [Gamebase > iOS SDK使用指南 > 开始 > IdP settings > Naver](./ios-started/#naver)
 
 * 1.12.2或更高版本
-	* ** TOAST Console > Gamebase > App > 认证信息 > 备注信息 & Callback URL**的 **备注信息**中，您必须以JSON string的格式设置信息。
+	* ** TOAST Console > Gamebase > App > 认证信息 > 备注信息 & Callback URL**的**备注信息**中，您必须以JSON string的格式设置信息。
 
 		*对于NAVER，您需要设置**service_name**，它会在登录窗口上显示。
 
@@ -299,7 +299,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 
 
 #### 6. Twitter
- 在Gamebase Console中输入在Twitter Application Management网站申请发放的 {Consumer Key}和{Consumer Secret}。
+ 在Gamebase Console中输入在Twitter Application Management网站申请发放的{Consumer Key}和{Consumer Secret}。
 
 **输入字段**
 
@@ -547,7 +547,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 即使Gamebase SDK中Debug Log为”OFF”状态，若在控制台中设置为”ON”，也将向终端机输出Gamebase Debug Log。
 
 #### (6) Memo
-可以在30个字符内输入与客户端相关的简短的Memo。
+输入与客户端相关的简短的Memo(最多只能输入30个字符)。
 
 ## Terms Of Service
 设置游戏的布局并创建条款。
@@ -638,12 +638,12 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 用户在PC或移动设备中单击快捷URL，利用用户终端机信息（设备、操作系统、商店等）重定向至输入的网站。
 若无商店信息或移动至商店失败，移动至”COMMON”中设置的URL。
 
-_[示例1] 单击在Android手机上收到的安装URL
-**(Device:mobile,OS:Android,Store:无)** 时，会转到Android上默认商店的移动网址。如果默认商店是“Google Play”，会转到“Google Play”移动设备中设置的网址。
+_[示例1] 单击在Android手机上收到的安装URL。
+**(Device:mobile,OS:Android,Store:无)**时，会转到Android上默认商店的移动网址。如果默认商店是“Google Play”，会转到“Google Play”移动设备中设置的网址。
 _[例示2] 如果从“One Store”下载应用程序的用户，在进行游戏中弹出“强制更新”窗口，点击了“立即更新”按钮，
 **(Device:mobile,OS:Android,Store:One Store)**会转到“One Store”移动设备设置的URL(One Store移动安装页面)。<br/>
 _[例示3] 如果在PC上输入安装URL
-**(Device:PC,OS:Windows,Store:无)** 时，会转到COMMON PC上设置的URL。
+**(Device:PC,OS:Windows,Store:无)** ，会转到COMMON PC上设置的URL。
 
 ### Properties
 
@@ -652,7 +652,7 @@ _[例示3] 如果在PC上输入安装URL
 ![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_20_201812.png)
 
 - 可以为PC和移动设备单独设置每个项。如果您不需要区分PC和移动设备，则可以输入相同的值。
-- 如果在列表中没有所需的商店，可以通过联系[客服中心](https://toast.com/support/inquiry)来添加。
+- 如果在列表中没有所需的商店，可以通过联系[客户服务](https://toast.com/support/inquiry)来添加。
 
 #### (1) Common
 设置没有商店信息或商店重定向失败时要连接的地址。
