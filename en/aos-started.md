@@ -2,20 +2,34 @@
 
 ## Environments
 
-To execute Gamebase in Android, following system environment is required.
+To execute Gamebase in Android, the following system environment is required.
 
 > [Minimum Specifications]
 >
-> * Android API 16 (JellyBean, 4.1) or higher
->     * For Twitter Login, 19 (Kitkat, 4.4) or later
->     * For AppleID Login, 19 (Kitkat, 4.4) or later
->     * For Line Login, 17(Kitkat, 4.2) or later
->     * For Weibo Login, 19 (Kitkat, 4.4) or later
->     * For GALAXY Store, 21 (Lollipop, 5.0) or later
->         * Since minSdkVersion of the GALAXY IAP SDK is 18 (OS 4.3), the build will fail when the set value is smaller than this.
->         * Checkout service app must be installed for actual payment, but Checkout service app will not be installed if it is lower than API 21(OS 5.0. Lollipop). In this case, the payment will not be processed.
-> * Android Gradle Plugin 3.2.0 or higher
-> * Development Environment: Android Studio
+> * User execution environment: Android API 16 (JellyBean, OS 4.1) or higher
+> * Build environment: Android Gradle Plugin 3.2.0 or higher
+> * Development environment: Android Studio
+
+### Dependencies
+
+| Gamebase SDK | Gamebase Adapter | External SDK | Purpose | minSdkVersion |
+| --- | --- | --- | --- | --- |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.27.1<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.5<br>okhttp-3.12.3<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include interface and core logic of Gamebase | API 16 (JellyBean, OS 4.1) |
+| Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | API 19 (Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | Support Facebook login | - |
+|  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Support Google login | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.4.1 | Support Hangame login | - |
+|  | gamebase-adapter-auth-line | linesdk-5.6.2 | Support Line login | API 17 (Kitkat, OS 4.2) |
+|  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Support Naver login | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.5 | Support Payco login | - |
+|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Support Twitter login | API 19 (Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | Support Weibo login | API 19 (Kitkat, OS 4.4) |
+| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.16.0<br>toast-iap-core | Support in-app purchase | - |
+|  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | Support Galaxy Store | API 21 (Lollipop, OS 5.0)<br>Although minSdkVersion of Galaxy IAP SDK is 18,<br>the minSdkVersion of Checkout service app that must be installed<br>for actual purchase is 21. |
+|  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Support Google Store | - |
+|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | Support ONE Store | - |
+| Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Support push notifications | - |
+|  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Support Firebase Notification | - |
 
 ## Setting
 
@@ -360,7 +374,7 @@ android {
     * [https://developer.android.com/about/versions/11/privacy/package-visibility](https://developer.android.com/about/versions/11/privacy/package-visibility)
 * When configuring targetSdkVersion to a number equal to or greater than 30 to circumvent this problem, the application to approved must be declared in AndroidManifest.xml using the **queries** tag.
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
 > * “queries” tag cannot be recognized by the existing Android Gradle Plugin(AGP), so the build fails.
 > * Refer to the guide and table below and upgrade to the AGP version, which allows “queries” tag build.
