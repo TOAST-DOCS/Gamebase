@@ -1,13 +1,26 @@
 ## Game > Gamebase > 릴리스 노트 > iOS
 
-### 2.27.0 (2021.08.24) 
+### 2.27.1 (2021.09.14)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* PAYCO iOS SDK 업데이트 (1.5.1)
+    * 인증 플로우 및 UI 개선
+* Hangame iOS SDK 업데이트 (1.6.1)
+    * 본인인증에서 에러 상황 발생 시 콜백 호출 안되는 이슈 수정
+    * iOS 15 beta에서 내비게이션바가 깨지는 이슈 수정
+
+#### 버그 수정
+* 이미 약관에 동의하여 약관 UI가 표시되지 않을 경우, PushConfiguration가 nil로 리턴되지 않는 이슈를 수정했습니다.
+
+### 2.27.0 (2021.08.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경
 * PAYCO iOS SDK 업데이트 (1.5.0)
-    * PAYCO 앱이 없는 경우 기존 수동 로그인만 가능했던 부분에서 Safari에 로그인이 되어 있다면 간편로그인 기능을 사용할 수 있도록 변경되었습니다.
+    * PAYCO 앱이 없을 때 이전에는 수동 로그인만 가능했으나, Safari에 로그인돼 있다면 간편 로그인 기능을 사용할 수 있도록 변경되었습니다.
 
-### 2.26.0 (2021.08.10) 
+### 2.26.0 (2021.08.10)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경
@@ -30,7 +43,7 @@
 #### 버그 수정
 * Push 언어 설정은 별다른 보조 처리가 없이 단말기의 언어코드를 그대로 적용되어, Push 콘솔에서 전송한 메시지의 언어코드가 일치하지 않는 문제를 수정하였습니다.
 
-### 2.25.0 (2021.07.27) 
+### 2.25.0 (2021.07.27)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.25.0/GamebaseSDK-iOS.zip)
 
 #### 기능 추가
@@ -48,7 +61,7 @@
 #### 버그 수정
 * registerPush 를 통해 등록한 TCGBPushConfiguration 값과 TCGBPushTokenInfo 값이 달라지게 되는 버그 수정
 
-### 2.24.0 (2021.06.29) 
+### 2.24.0 (2021.06.29)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경
@@ -57,19 +70,19 @@
 #### 버그 수정
 * 약관 상세 보기 후 약관 새 창이 닫히지 않는 버그 수정
 
-### 2.23.0 (2021.06.14) 
+### 2.23.0 (2021.06.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트: TOAST iOS SDK(0.28.0), ToastGamebaseIAP SDK(0.12.0)
 
-### 2.22.0 (2021.05.25) 
+### 2.22.0 (2021.05.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트: TOAST iOS SDK(0.27.2), Hangame iOS SDK(1.6.0)
 
-### 2.21.2 (2021.04.27) 
+### 2.21.2 (2021.04.27)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.2/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경
@@ -78,13 +91,13 @@
 #### 버그 수정
 * 아카이브 빌드 시 bitcode 관련 오류가 발생하는 이슈 수정
 
-### 2.21.1 (2021.04.19) 
+### 2.21.1 (2021.04.19)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.1/GamebaseSDK-iOS.zip)
 
 #### 버그 수정
 * bitcode를 지원 가능하도록 설정해도 설정값이 반영되지 않는 문제 수정
 
-### 2.21.0 (2021.04.13) 
+### 2.21.0 (2021.04.13)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.0/GamebaseSDK-iOS.zip)
 
 #### 기능 추가
@@ -94,20 +107,20 @@
 * bitcode 지원이 가능하도록 변경
 * showWebView 호출 시, 닫기 버튼을 가장 먼저 화면에 표시되도록 수정
 
-### 2.20.2 (2021.03.23) 
+### 2.20.2 (2021.03.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.2/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경
 * Facebook iOS SDK 업데이트 (9.1.0)
 * 특정 경우에 GamebaseAuthFacebookAdapter에서 openURL delegate가 호출되지 않았던 이슈 수정
 
-### 2.20.1 (2021.03.09) 
+### 2.20.1 (2021.03.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.1/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경
 * iOS 14에 대응하여 IDFA 획득 로직 수정: info.plist에 NSUserTrackingUsageDescription 필드 추가
 
-### 2.20.0 (2021.02.09) 
+### 2.20.0 (2021.02.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.0/GamebaseSDK-iOS.zip)
 
 * 공통약관 기능 추가
@@ -118,7 +131,7 @@
 #### 기능 개선/변경
 * 고객센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객센터가 표시되도록 변경
 
-### 2.19.1 (2021.01.26) 
+### 2.19.1 (2021.01.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.1/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경

@@ -13,8 +13,8 @@
 * Fixed a bug where the Chinese text was not displayed in the maintenance pop-up.
 
 #### Changes per Platform
-* [Gamebase Android SDK 2.27.1](./release-notes-android/2271-20210914)
-* [Gamebase iOS SDK 2.27.1](./release-notes-ios/2271-20210914)
+* [Gamebase Android SDK 2.27.1](./release-notes-android/#2271-20210914)
+* [Gamebase iOS SDK 2.27.1](./release-notes-ios/#2271-20210914)
 
 ### 2.27.0 (2021.08.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-Unity.zip)
