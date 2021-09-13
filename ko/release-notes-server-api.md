@@ -4,7 +4,7 @@
 
 #### 버그 수정
 * Leaderboard Wrapping API 수정
-	* 다수 사용자 점수/ExtraData 등록 API의 매핑이 잘못된 오류 수정
+	* '다수 사용자 점수/ExtraData 등록' API의 매핑이 잘못된 오류 수정
 
 ### 2021. 03. 09.
 
