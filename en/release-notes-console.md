@@ -4,14 +4,19 @@
 
 #### Feature Updates
 * Push > Statistics > Inbound settings
-	* Changed the text related to inbound settings statistics
+	* Changed the text related to inbound settings statistics.
 * Customer Center
-	* Added a template feature where users can enter details depending on an inquiry type
-	* Added an internationalization feature to the customer inquiry reply template
+	* Added a template feature where users can enter details depending on an inquiry type.
+	* Added an internationalization feature to the customer inquiry reply template.
+* Analytics
+    * Added a feature to provide MCU/ACU data when a filter is selected.
+        * MCU data is provided from August 11.
+* Analytics > Real-Time Monitoring > Concurrent Users
+	* Added a feature to provide push notifications scheduling history.
 
 #### Bug Fixes
 * Customer Center > Customer Inquiry
-	* Fixed an error where a wrong calendar is exposed when the user selects submission period dates
+	* Fixed an error where a wrong calendar is exposed when the user selects submission period dates.
 
 ### August 24, 2021
 
