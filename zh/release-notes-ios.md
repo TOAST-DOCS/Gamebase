@@ -3,15 +3,15 @@
 ### 2.27.1 (2021.09.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* PAYCO iOS SDK 업데이트 (1.5.1)
-    * 인증 플로우 및 UI 개선
-* Hangame iOS SDK 업데이트 (1.6.1)
-    * 본인인증에서 에러 상황 발생 시 콜백 호출 안되는 이슈 수정
-    * iOS 15 beta에서 내비게이션바가 깨지는 이슈 수정
+#### Feature Updates
+* PAYCO iOS SDK update (1.5.1)
+     * Improved authentication flow and UI.
+* Hangame iOS SDK update (1.6.1)
+     * Fixed an issue where callback could not be called when an error situation occurred in personal verification.
+     * Fixed an issue where the navigation bar appears broken in iOS 15 beta.
 
-#### 버그 수정
-* 이미 약관에 동의하여 약관 UI가 표시되지 않을 경우, PushConfiguration가 nil로 리턴되지 않는 이슈를 수정했습니다.
+#### Bug Fixes
+* Fixed an issue where PushConfiguration is not returned as nil when the terms and conditions UI is not displayed because the user have already agreed to the terms.
 
 ### 2.27.0 (2021.08.24) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-iOS.zip)

@@ -3,16 +3,16 @@
 ### 2.27.1 (2021.09.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* Display Language 기능이 개선되었습니다.
-    * 기본 언어코드가 **en** 이었으나, Gamebase 콘솔에서 설정한 기본언어가 반영되도록 개선하였습니다.
-        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > 언어 설정](./oper-app/#_3)
+#### Feature Updates
+* Improved the Display Language feature.
+     * So far, the default language code was **en**. It has been improved to reflect the default language set in the Gamebase console.
+         * [Game > Gamebase > Console User Guide > App > App > Language Settings](./oper-app/#_3)
 
-#### 버그 수정
-* '등록되지 않은 게임 버전' 에러 팝업이 영어로만 표시되는 버그를 수정하였습니다.
-* 점검 팝업에 중국어가 표시되지 않는 버그를 수정하였습니다.
+#### Bug Fixes
+* Fixed a bug where the 'Unregistered Game Version' error pop-up was displayed only in English.
+* Fixed a bug where the Chinese text was not displayed in the maintenance pop-up.
 
-#### 플랫폼 별 변경 사항
+#### Changes per Platform
 * [Gamebase Android SDK 2.27.1](./release-notes-android/#2271-20210914)
 * [Gamebase iOS SDK 2.27.1](./release-notes-ios/#2271-20210914)
 
