@@ -192,7 +192,14 @@ Android 푸시 메시지 수신 시에 실행되는 미디어를 추가할 수 �
 
 ### 수신 설정
 선택된 기간 동안의 수신 설정 관련 통계를 보여줍니다.
-![gamebase_push_14_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_14_202101.png)
+![gamebase_push_14_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_14_202109.png)
+
+|구분|정보성|광고성|야간 광고성|
+|------|:---:|:---:|:---:|
+|전체 동의| O | O | O |
+|전체 거부| | | |
+|정보성 동의, 광고 전체 거부| O | | |
+|정보성 및 광고 주간 동의, 야간 거부| O | O | |
 
 ## Event Key
 푸시 발송 통계에 사용하는 이벤트키를 관리할 수 있습니다.
