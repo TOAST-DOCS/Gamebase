@@ -774,7 +774,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 ```objectivec
 - (void)testRequestWithdraw {
-    TCGBGamebase requestTemporaryWithdrawalWithViewController:parentViewController completion:^(TCGBTemporaryWithdrawalInfo *info, TCGBError *error) {
+    [TCGBGamebase requestTemporaryWithdrawalWithViewController:parentViewController completion:^(TCGBTemporaryWithdrawalInfo *info, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == NO) {
             if (error.code == TCGB_ERROR_AUTH_WITHDRAW_ALREADY_TEMPORARY_WITHDRAW) {
                 // Already requested temporary withdrawal before.
@@ -792,7 +792,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 ### Check TemporaryWithdrawal User
 
-탈퇴 유예를 사용하는 게임은 로그인 후 항상 **TCGBAuthToken.tcgbMember.temporaryWithdrawal** 를 사용하여하여, 결과가 null 이 아닌 유효한 TemporaryWithdrawalInfo 객체를 리턴한다면 해당 유저에게 탈퇴 진행중이라는 사실을 알려주어야 합니다.
+탈퇴 유예를 사용하는 게임은 로그인 후 항상 **TCGBAuthToken.tcgbMember.temporaryWithdrawal** 를 사용하여, 결과가 null 이 아닌 유효한 TemporaryWithdrawalInfo 객체를 리턴한다면 해당 유저에게 탈퇴 진행중이라는 사실을 알려주어야 합니다.
 
 **Example**
 
@@ -820,7 +820,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 ### Cancel TemporaryWithdrawal
 
-탈퇴를 요청을 취소합니다.
+탈퇴 요청을 취소합니다.
 탈퇴 요청 후 기간이 만료되어 탈퇴가 완료되면 취소가 불가능합니다.
 
 **API**
@@ -883,7 +883,6 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
     }];
 }
 ```
-
 
 ## Error Handling
 

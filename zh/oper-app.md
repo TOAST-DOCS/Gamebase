@@ -1,54 +1,55 @@
 ## Game > Gamebase > 控制台使用指南> APP
 
-在TOAST Console依次点击**Game > Gamebase > App**来设定APP的基本信息。
-* **APP**：APP信息管理
-* **客户端**：管理状态信息及客户端版本
-* **安装URL**：管理每个APP商店的安装URL
+通过点击**Game > Gamebase > App**，在NHN Cloud Console中可设定应用程序的基本信息。
+
+* **应用程序** : 应用程序信息管理
+* **客户端** : 客户端版本和状态信息管理
+* **安装URL** : 应用程序内各商店的安装URL管理
 
 ## App
 
-如果启用Gamebaes服务，将自动创建应用程序，您只能修改该菜单中的注册信息。
+如果启用Gamebaes服务，将自动创建应用程序。您只能修改该菜单中的注册信息。
 由于每个TOAST项目可以管理一个Gamebase应用程序，因此您无法添加或删除其他应用程序。如果禁用Gamebase服务，将删除应用程序中登记的信息。
-有关各个项目的详细说明，请参考以下 **属性** 项目。
+有关各个项目的详细说明，请参考以下**属性**项目。
 
 ### Properties
-启用Gamebase服务时，将自动创建应用程序。在应用程序菜单中，您只能修改注册的信息。
-由于每个TOAST项目仅能管理一个Gamebase应用程序，因此无法添加或删除其他应用程序。如果禁用Gamebase服务，将删除应用程序中登记的信息。  
+如果启用Gamebase服务，将自动创建应用程序。在应用程序菜单中，您只能修改注册的信息。
+由于每个NHN Cloud项目仅能管理一个Gamebase应用程序，因此无法添加或删除其他应用程序。如果禁用Gamebase服务，将删除应用程序中登记的信息。  
 关于各个项目的详细说明，请参考以下属性项目。
 
 ### 基本信息
 ![gamebase_app_01_202009](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_01_202009.png)
 
 #### (1) 安装URL
-简捷URL可用于APP安装和宣传。
-如果APP已发布到多个应用商店，可以使用一个简捷URL进行管理。
-详细的操作及管理方法，请参考以下链接 [安装URL 管理]。(./oper-app/#installed-url)
+简捷URL可用于App安装和宣传。
+如果App已发布到多个应用商店，可以使用一个简捷URL进行管理。
+详细的操作及管理方法，请参考以下链接[安装URL管理]。(./oper-app/#installed-url)
 
 > [参考]
 > 如果启动Gamebase，它将自动创建，无法更改。
 
 #### (2) 是否包含测试付款                                 
 查看App指标时，请选择是否包含测试付款。
-默认选项已设为"包含测试付款"。如果选为"测试付款不包括"，当显示指标时，将从Analytics销售指标中筛选所有测试付款。
+默认选项已设为"包含测试付款"。如果选择"测试付款不包括"，当显示指标时，对Analytics销售指标进行筛选，不显示测试付款。
 > [参考1]
 > 无论指标的设置状态如何，因数据始终累积测试支付件和实际的支付件，即使更改测试付款的显示与否，也不影响到实际的数据搜集。
 
 > [参考2]
 > 测试数据只支持Google和AppStore。
 > 各商店的测试指标的标准如下。
-> * Google : 使用在Google控制台中注册的测试账户进行付款的历史记录
-> * AppStore : 在Sandbox环境下进行测试付款的历史记录
+> * Google : 通过使用Google控制台中注册的测试账户进行付款的历史记录。
+> * AppStore : 在Sandbox环境下进行测试付款的历史记录。
 
 #### (3) 预约退出时期
 若欲使用App的”预约退出‘’功能，请设置预约退出的时间。
-默认选项已设为”7天”，而可以选择1到30天之间的任何时间。
+默认选项设为”7天”。可以选择1到30天之间的任何时间。
 > [参考]
 > 在预约退出时期也可使用服务。
 
 ### 服务器地址
 ![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_02_202012.png)
 
-- 当需要在游戏中不断接收游戏服务器地址（IP, URL等）时使用。
+- 需要在游戏中不断接收游戏服务器地址（IP, URL等）时使用此地址。
 - 设置服务器地址，初始化客户端后，可在“推出信息”中确认输入的信息。
 - 可以按客户端的各状态设置服务器地址，并在推出信息中查看服务器地址。
 - 仅在游戏需要时输入，否则留空。
@@ -66,7 +67,7 @@
 登录gamebase时，可以注册、编辑或删除IdP的认证信息。
 
 可以设置外部认证的客户端ID、密钥（secret key）、回调URL及附加信息。
-可以通过单击认证信息旁边的 + 按钮来添加信息，也可单击 - 按钮删除信息。
+可以通过单击认证信息旁边的”+"按钮来添加信息，也可单击"-"按钮删除信息。
 关于Idp详细的设置方法，请参考[Authentication Information](#authentication-information)。
 > [参考]
 > 什么是令牌再验证?
@@ -92,61 +93,55 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 
 #### 1. 开发公司自建客户服务
 ![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_19_202009.png)
-若欲使用开发公司提供的自建客户服务时进行设置。
+若欲使用开发公司自建客户服务，请进行设置。
 需要设置的项目如下。
-* **客户服务URL** : 输入您使用的开发公司自建客户服务地址。
+* **客户服务URL** : 输入要使用的开发公司自建客户服务地址。
 * **电话号码** : 输入客户服务的电话号码。可以通过Gamebase SDK接收值。
 
 #### 2. Gamebase提供的客户服务
 ![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_20_202009.png)
-若欲使用Gamebase提供的客户服务时使用。
-需要设置的项目如下。
-* **客户服务URL** : 提供可接收来自用户的1:1咨询的页面信息。选择‘’Gamebase提供的客户服务‘’时将自动生成URL，并通过该URL在另一个网页上可接收用户的1:1咨询。
-* **电话号码** : 输入客户服务的电话号码。可以通过Gamebase SDK接收值。
-* **支持语言** : 选择要支持的语言（这与项目本身的语言设置不同）。支持语言为韩语、英语、日语、汉语。可以从设置中选择使用Gamebase客户服务时要使用的语言。
-* **默认语言** : 在支持语言选项中选择客户服务内提供的默认语言。 
 
-#### 3. TOAST组织服务(Online Contact)
-![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_21_202009.png)
-若欲使用TOAST组织提供的Online contact服务时进行设置。 
+若欲使用Gamebase提供的客户服务功能，请进行设置。 
 需要设置的项目如下。
-* **客户服务URL** : 输入TOAST Online Contact提供的地址。此信息可通过TOAST Online Contact确认。
-* **电话号码** : 输入客户服务电话号码。可以通过Gamebase SDK接收值。 
-* **SSO登录API Key** : 输入需要确认TOAST Online Contact客户服务1:1咨询时使用的Key。可以通过Gamebase SDK接收值。若不输入此信息，则不能确认客户的咨询内容，因此必须要输入。关于具体的联动方法，请参考以下内容。
-> [参考] TOAST Online Contact与Gamebase间的联动
-> 如果要使Gamebase与TOAST Online Contact互相联动，则需按以下程序获取SSO登录API Key，并在Gamebase内进行设置才能使用服务。
-> 为了提供更可靠的客户服务，请参考以下程序。
+* **客户服务URL** : 提供从客户接收1:1咨询的页面信息。如果选择Gamebase提供的客户服务，将创建URL，而通过该URL，在单独的页面上可接收客户咨询。
+* **电话号码** : 输入客户服务电话号码。此信息可通过Gamebase SDK获取。
+* **支持语言** : 选择客户服务支持的语言。此信息是与项目的语言设置分开设置的信息，而正在支持韩语、英语、日语及汉语。根据在此设置中选择的语言，可使用Gamebase客户服务功能。
+* **默认语言** : 在支持语言选项中选择要在客户中心作为默认语言提供的语言。
+
+#### 3. NHN Cloud组织服务(Online Contact) 
+![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_21_202102.png)
+如需使用NHN Cloud按组织提供的Online contact商品，请进行设置。
+需要设置的项目如下。
+* **客户服务URL** : 输入NHN Cloud Online Contact提供的地址。此信息可通过连接到NHN Cloud Online Contact来确认。
+* **电话号码** : 输入客户服务电话号码。此信息可通过Gamebase SDK获取。
+* **OC组织Key** : 输入确认NHN Cloud Online Contact客户服务咨询时使用的Key。若不输入该信息，则不能看到客户服务网页上的客户咨询，因此必须输入。关于详细联动方法，请参考以下内容。
+> [参考] NHN Cloud Online Contact和Gamebase之间的联动
+> 如果要在Gamebase内与NHN Cloud Online Contact联动，按照以下程序，获取SSO登录API Key后，在Gamebase内设定才能使用客户服务。
+> 为了客户服务的稳定提供，请按照以下顺序进行。
 >
-> 1) 在TOAST Online Contact中注册SSO
-> 全局管理 -> SSO登录 -> 点击注册按钮
-> ![gamebase_app_02_201812.png](https://   static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_22_202009.png)
+> 1) 在NHN Cloud Online Contact中设置成员联动的方式
+> 服务管理 -> 帮助中心 -> 成员联动
+> ![gamebase_app_22_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_22_202102.png)
+> 启用成员联动 : 启用
+> 登录类型 : GET方式 
+> Token验证URL : https://gamebase-web.cloud.toast.com/tcgb-web/v1.0/apps/{appId}/online-contact/login-status
+> 确认需要使用的Gamebase的项目ID ，在**{appId}**中输入。 
+> 
+> 2) 获取OC组织Key，在OC组织Key项目中输入。 
+> 全局管理 -> 合同服务现状 -> 移动到组织信息，复制OC组织信息的OC组织Key后，在Gamebase OC组织Key项目中输入。  
+> ![gamebase_app_25_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_25_202102.png)
 >
-> 2) 输入‘’SSO登录”的备注信息 
-> SSO登录名 : Gamebase SSO认证(或输入相关标识符信息)
-> 远程登录URL : https://gamebase-web.cloud.toast.com/tcgb-web/v1.0/apps/{appId}/online-contact/login
-> 登录状态URL : https://gamebase-web.cloud.toast.com/tcgb-web/v1.0/apps/{appId}/online-contact/login
-> 确认Gamebase项目ID后，在**{appId}**部分中输入。
-> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_23_202009.png)
->
-> 3) 启用SSO登录认证并选择注册的SSO 
-> 服务管理 -> 认证 -> 移动至SSO登录后，将”启用SSO登录"选为激活，并将”指定SSO登录”选为”Gamebase SSO认证”。
-> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_24_202009.png)
->
-> 4) 获取SSO登录API Key之后，在SSO登录API Key输入框中输入。
-> 全局管理 -> 移动至SSO登录页面，复制页面上的API Key，在Gamebase SSO登录API Key输入框中输入。
-> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_25_202009.png)
->
-> 5) 获取TOAST Online contact客户服务页面地址后，在客户服务URL中输入该地址。
-> Help Center -> 选择子菜单 -> 点击右上方的”返回Help Center‘’。 
+> 3) 获取NHN Cloud Online contact客户服务网页地址后，在客户服务URL中输入。 
+> 帮助中心 -> 选择子菜单 -> 点击右上角的"跳转到帮助中心”
 > ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_26_202009.png)
-> 在Gamebase客户服务URL输入框中输入在浏览器上端显示的地址。
-> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_27_202009.png)
+> 将显示在浏览器上端的地址，在Gamebase客户服务URL项目中输入。
+> ![gamebase_app_27_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_27_202102.png)
 >
 
 ### Test Device
 ![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_02_201912.png)
 一旦注册为测试终端，即使使用Gamebase的应用程序正在进行维护，也可进入游戏。
-若要设置测试终端机，则应注册**Device Key**或**IP**信息。进行注册时，可以直接输入或查看**游戏用户ID**。
+若要设置测试终端机，则应注册**Device Key**或**IP**信息。进行注册时，可以直接输入或查看**游戏用户ID**。 
 可以通过允许用户玩游戏或设置每个终端机的‘’Debug Log输出与否”来管理测试终端机。
 可以删除不需要的测试终端。
 若点击”连接记录”按钮，则可通过相关机器确认**进行维护时的连接时间和详细的连接日志**。
@@ -172,19 +167,19 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 输入您要注册的终端机的 **终端机名称**、“Debug Log及‘’维护与否”后点击注册按键，则可注册测试终端机。
 
 > [参考]
-> 请在备注信息中输入用户易于查看的自定义名称。 例) iPhone 6 测试, Toast的iPad
+> 请在备注信息中输入用户易于查看的自定义名称。 例) iPhone 6 测试、Toast的iPad
 
 #### (3) 删除
 
 ![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_12_201912.png)
 
-在测试设备查询页面上确认要删除的测试设备后，单击左上角的删除按钮，则删除测试设备信息。信息删除后无法恢复，请删除前仔细确认。
+在测试设备查询页面上确认要删除的测试设备后，单击左上角的删除按钮，则删除测试设备信息。删除信息后无法恢复，请删除前必须确认。
 
 ### Authentication Information
 
 #### 1. Facebook
-在Gamebase Console输入，您在Facebook开发者网站上注册的{App ID}和{App Secret Code}
-此时，还需要以JSON String的形式在备注信息栏中输入登录时所需的{Facebook Permission}。
+在Gamebase Console输入，您在Facebook开发者网站上注册的{App ID}和{App Secret Code}。
+此时，还需要以JSON String格式在备注信息栏中输入登录时使用的{Facebook Permission}。
 
 **输入字段**
 
@@ -202,14 +197,14 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 ```
 
 ![gamebase_app_05_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_05_201812.png)
-
+ 
 **Reference URL**<br />
 
 - [Facebook 开发者网站](https://developers.facebook.com/)
 - [Facebook 权限](https://developers.facebook.com/docs/facebook-login/permissions/)
 
 ##### Android & iOS & Unity
-除了TOAST Console中的设置以外，没有其他设置。
+除了NHN Cloud Console中的设置以外，没有其他设置。
 
 
 #### 2. Google
@@ -217,7 +212,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 ##### Google Cloud Console
 
 ![gamebase_app_06_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_06_201812.png)
-1. 为了进行Google认证，必须从Google Cloud Console获取 **Web Application Client ID**，并将其输入到Gamebase Console。
+1. 为了进行Google认证，必须从Google Cloud Console获取**Web Application Client ID**，并将其在Gamebase Console中输入。
 	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-001_1.11.0.png)
 	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-002_1.11.0.png)
 2. 在“授权重定向URI”字段中，输入以下值。
@@ -227,29 +222,11 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-003_1.11.0.png)
 
 ##### iOS
+* [Gamebase > iOS SDK使用指南 > 开始 > IdP Settings > Google](./ios-started/#google)
 
-> <font color="red">[注意]</font><br/>
->
-> Gamebase iOS SDK 1.12.2版本中 URL Scheme的设置方法已变更，请确认相应SDK版本指南后，进行设置。
->
-
-* 1.12.1或更低版本
-	* 需要设置AdditionalInfo
-		* **TOAST Console > Gamebase > App > 认证信息 > 备注信息 & Callback URL**的 **备注信息**中，您必须以JSON string的形式设置信息。
-		*对于GOOGLE，您需要在iOS App中设定所需的**url_scheme_ios_only**信息。
-		* **url_scheme_ios_only**的值必须与Xcode的URL Scheme中注册的值的其中一个匹配。
-
-    *需要设置URL Scheme
-        * **XCode > Target > Info > URL Types**
-
-```json
-{ "url_scheme_ios_only"："Your URL Schemes" }
-```
-
-![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
 
 #### 3. Apple游戏中心
-在Gamebase Console上，输入Apple 开发者网站上注册的BundleID。
+在Gamebase Console中输入Apple开发者网站上注册的BundleID。
 
 **输入字段**<br />
 
@@ -264,106 +241,65 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 
 
 #### 4. PAYCO
-在Gamebase Console上输入，申请PAYCO Client ID发放的 {client_id} 和 {client_secret}。
+在Gamebase Console中输入申请PAYCO Client ID后获取的{client_id}和{client_secret}。
 
 **输入字段**<br />
 
 - ClientID：{Payco client_id}
 - Secret Key：{Payco client_secret}
-- 备注信息：Payco Service & Service Name (JSON format)
+- 追加信息：Payco Service & Service Name (JSON format)
 
-##### Android & Unity
-- 需要设置AdditionalInfo
-    * **TOAST Console > Gamebase > App > 认证信息 > 备注信息**中，您必须以JSON string的形式设置信息。
-    *对于PAYCO，需要设置PaycoSDK所需的**service_code**和**service_name**。
+##### Additional Info Settings
 
-* PAYCO添加认证信息输入示例
+* 需要在**NHN Cloud Console > Gamebase > App > 认证信息 > 追加信息**项目中输入JSON string格式的信息。 
+* 如果是PAYCO，需要设定PaycoSDK要求的**service_code**和**service_name**。
 
-```json
-{ "service_code"："Your Service Code", "service_name"："Your Service Name" }
-```
-
-##### iOS
-
-> <font color="red">[注意]</font><br/>
->
-> 在Gamebase iOS SDK 1.12.2版本中 URL Scheme的设置方法已变更，请确认相应SDK版本指南后，进行设置。
->
-* 1.12.1或更低版本
-	* 需要设置AdditionalInfo.
-		* **TOAST Console > Gamebase > App > 认证信息 >备注信息**中， 您必须以JSON string的形式设置信息。
-		*对于PAYCO，您需要设置PaycoSDK所需的**service_code**和**service_name**
-
-* 1.12.2或更高版本
-	* 需要设定AdditionalInfo
-		* **TOAST Console > Gamebase > App > 认证信息 >备注信息**中， 您必须以JSON string的形式设置信息。
-		* 对于PAYCO，您需要设置PaycoSDK所需的**service_code**和**service_name**。
-	* 需要设定URL Scheme
-		***需要在XCode > Target > Info > URL Types**中添加 `tcgb.{Bundle ID}.payco`。
-
-* PAYCO添加认证信息示例
+* 输入PAYCO追加认证信息的示例 
 
 ```json
 { "service_code": "HANGAME", "service_name": "Your Service Name" }
 ```
 
-![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
+##### iOS
+* [Gamebase > iOS SDK使用指南 > 开始 > IdP settings > Payco](./ios-started/#payco)
 
 #### 5.NAVER
- 在Gamebase Console上，输入在Naver开发者网站上申请发放的{client_id} 及 {client_secret}。
-此时，您需要要置** service_name **，它会在登录窗口上显示。在iOS中，** url_scheme_ios_only **的值，应以JSON string的形式，添加到备注信息字段中。
+在Gamebase Console中输入在Naver Developers网站上申请后获取的{client_id}和{client_secret}。
+此时，需要设定将要显示在同意登录的窗口上的应用程序名称**service_name**。 
 
 **输入字段**
 
-- Client ID：{NAVER client_id}
-- Secret Key：{NAVER client_secret}
-- 附加信息：NAVER Application Name & iOS url scheme (json format)
+- Client ID : {NAVER client_id}
+- Secret Key : {NAVER client_secret}
+- 追加信息 : NAVER Application Name (json format)
 
 **Reference URL**<br />
-- [NAVER开发者 –申请注册](https://developers.naver.com/apps/#/register)
+- [NAVER开发者 - 申请注册](https://developers.naver.com/apps/#/register)
 - [NAVER开发者 - 检查客户端ID和客户端密钥](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)
 
-##### Android & Unity
-* **TOAST Console > Gamebase > App > 认证信息 > 备注信息 & Callback URL**的 **备注信息**中，您必须以JSON string的形式设置信息。
-	* 对于NAVER，您需要设置**service_name**，它会在登录窗口上显示。
+##### Additional Info Settings
+
+* 需要在**NHN Cloud Console > Gamebase > App > 认证信息 > 备注信息 & Callback URL**的**备注信息**项目设定JSON String格式的信息。 
+* 如果是NAVER，需要设定将要显示在同意登录的窗口上的应用程序名称**service_name**。
+
 ```json
-{"service_name"："Your Service Name" }
+{"service_name"："Your Service Name"}
 ```
 
 ##### iOS
+* [Gamebase > iOS SDK使用指南 > 开始 > IdP settings > Naver](./ios-started/#naver)
 
-> <font color="red">[注意]</font><br/>
->
-> 在Gamebase iOS SDK 1.12.版本中URL Scheme的设置方法已变更，请确认相应SDK版本指南后，进行设置。
->
-
-* 1.12.1或更低版本
-	* **TOAST Console > Gamebase > App > 认证信息 > 备注信息 & Callback URL**的 **备注信息**中，您必须以JSON string的形式设置信息。
-		* 对于NAVER，您需要设置**service_name**，它会在登录窗口上显示。
-		* 您需要在iOS App中设定所需的**url_scheme_ios_only**信息。
-
-	*需要设置URL Schemes
-		* **XCode > Target > Info > URL Types**
-
-* NAVER添加认证信息例示
-
-```json
-{ "url_scheme_ios_only": "Your URL Schemes", "service_name": "Your Service Name" }
-```
-
-![gamebase_app_07_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_07_201812.png)
-
-* 1.12.2 或更高版本
-	* ** TOAST Console > Gamebase > App > 认证信息 > 备注信息 & Callback URL**的 **备注信息**中，您必须以JSON string的形式设置信息。
+* 1.12.2或更高版本
+	* ** TOAST Console > Gamebase > App > 认证信息 > 备注信息 & Callback URL**的**备注信息**中，您必须以JSON string的格式设置信息。
 
 		*对于NAVER，您需要设置**service_name**，它会在登录窗口上显示。
 
 	* 需要设置URL Scheme
-		* **需要在XCode > Target > Info > URL Types**添加 `tcgb.{Bundle ID}.naver`
+		* **需要在XCode > Target > Info > URL Types**添加”tcgb.{Bundle ID}.naver”。
 
 
 #### 6. Twitter
- 在Gamebase Console上，输入在Twitter Application Management网站申请发放的 {Consumer Key}及 {Consumer Secret}。
+ 在Gamebase Console中输入在Twitter Application Management网站申请发放的{Consumer Key}和{Consumer Secret}。
 
 **输入字段**
 
@@ -382,27 +318,10 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 > 即，仅Android 4.4以上(KitKat, API Level 19)的设备可使用Twitter登录。
 
 ##### iOS
-
-> <font color="red">[注意]</font><br/>
->
-> Gamebase iOS SDK 1.14.0版本中URL方案的设置方法已更改。请参考符合所用SDK版本的指南。
->
-
-* 1.13.0以下
-	* 可以不另行设置URL方案。
-
-* 1.14.0以上
-	* 需要设置URL Schema。
-		* 需要在**XCode > Target > Info > URL Types**中添加**tcgb.{Bundle ID}.twitter**。
-    * 需要设置Twitter的Developer网页的Apps > 项目 > App Details > Callback URL。
-      *  请添加**tcgb.{Bundle ID}.twitter://**。
-
-* Twitter附加验证信息输入示例
-
-![Twitter URL Types](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-auth-001_1.7.0.png)
+* [Gamebase > iOS SDK使用指南 > 开始 > IdP settings > Twitter](./ios-started/#twitter)
 
 #### 7. LINE
-
+ 
 **输入字段**
 - Client ID：{LINE Channel ID}
 - Secret Key：{LINE Channel Secret}
@@ -412,62 +331,42 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 - [LINE Developer Console](https://developers.line.me/console/)
 
 ##### iOS
-要使用LINE登录功能，Xcode中需要其他设置。
-- 需要设置URL Schemes.
-	* **需要在XCode > Target > Info > URL Types**添加‘line3rdp.{App Bundle ID}’。
 
-- 您需要设置Info.plist文件。
-	* 设置LINE发放的ChannelID。
-	```xml
-	<key>LineSDKConfig</key>
-	<dict>
-    	<key>ChannelID</key>
-    	<string>{Issued LINE ChannleID}</string>
-	</dict>
-	```
-	* 为了设置ATS，登记scheme。
-	```xml
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-    	<string>lineauth</string>
-    	<string>line3rdp.{App Bundle ID}</string>
-	</array>
-	```
-- 有关项目设置，请参考以下链接以使用LINE登录。 （需要验证）
-* [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
+* [Gamebase > iOS SDK使用指南 > 开始 > IdP settings > Line](./ios-started/#line)
+
 
 #### 8. Sign In with Apple
-为使用Sign In with Apple功能，需要对AppStore Connect、Gamebase Console及Xcode进行设置。
+为了使用Sign In with Apple功能，需要在AppStore Connect、Gamebase Console及Xcode中进行设置。
 
 ##### AppStore Connect Settings
-* [Certificates, Identifiers & Profiles \> 跳转至Keys](https://developer.apple.com/account/resources/authkeys/list)
+* [Certificates, Identifiers & Profiles \> 跳转到Keys](https://developer.apple.com/account/resources/authkeys/list)
 
 ###### Certificates, Identifiers & Profiles > Keys > 添加(+)
 1. 选择“Sign In with Apple”复选框并进行设置。
 ![Check SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid0_1.0.png)
 2. 选择要使用“Sign in with Apple”的Bundle ID。
 ![ChooseAPrimaryAppID](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid1_1.0.png)
-3. 下载<span style="color:#e11d21">Privatekey</span>后保管，确认生成的<span style="color:#e11d21">Key ID</span>。
+3. 下载<span style="color:#e11d21">Privatekey</span>后保管，并确认生成的<span style="color:#e11d21">Key ID</span>。
 ![DownloadPrivateKey](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid2_1.0.png)
-4. Certificates, Identifiers & Profiles > Identifiers > 选择对象应用程序 > 激活“Sign In with Apple”。
+4. Certificates, Identifiers & Profiles > Identifiers > 选择对象应用程序 > 启用“Sign In with Apple”。
     * 设置为“Enable as a primary App ID”。
 ![DownloadPrivateKey](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid3_1.0.png)
 
 ##### Gamebase Console > App Settings
-[跳转至TOAST Console](https://console.toast.com/)
+[跳转到NHN Cloud Console](https://console.toast.com/)
 
 * Gamebase
-![SecretKey设置](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
+![设置SecretKey](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
 
 ###### Client ID Settings
 > 设置应用程序的Bundle ID。
 
 ###### Secret Key Settings
-> 利用在Apple Developer Account设置中获得的值(**TeamID**, **KeyID**, **PrivateKey**)创建JSON字符串并进行设置。
+> 利用在Apple Developer Account设置中获得的值(**TeamID**、**KeyID**、**PrivateKey**)创建JSON字符串并进行设置。
 
 * “teamId”：设置开发者账号右上方的值。
 * “keyId”：Certificates, Identifiers & Profiles > Keys > 勾选Sign In with Apple，设置创建的值。
-![SecretKey设置](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
+![设置SecretKey](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
 * “privateKey”：设置在上面的Keys中创建密钥同时创建的PrivateKey文件的内容。（打开下载的文件，如下方截屏所示，使用红色矩形部分的值。）
 ![SecretKey设置](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
 
@@ -477,7 +376,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 {
     "teamId":"2UH5Cxxxx",
     "keyId":"3C3FXYxxxx",
-    "privateKey":"MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBA.. 中间省略“
+    "privateKey":"MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBA..中间省略“
 }
 ```
 
@@ -491,16 +390,16 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 { "authorization_scope":["full_name", "email"] }
 ```
 
-##### Xcode Project Settings
+#####  
 > <font color="red">[注意]</font><br/>
-> 只能在Xcode 11以上创建使用**Sign In with Apple**功能的项目。
+> 只能在Xcode 11以上版本上创建使用**Sign In with Apple**功能的项目。
 
-1. 选择Target > Signing & Capabilities > 添加Sign In with Apple项目。
+1. 选择Target > 在Signing & Capabilities > 中添加Sign In with Apple项目。
 ![Capability_SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid8_1.0.png)
-2. 选择Target > Build Phases > Link Binary With Libraries > 将Authentication.framework添加为**Optional**。
+2. 选择Target > 在Build Phases > Link Binary With Libraries > 中将Authentication.framework添加为**Optional**。
 ![AuthenticationServices.framework](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid9_1.0.png)
 > <font color="red">[注意]</font><br/>
-> 如果设置为Required，而不是Optional，在iOS 12以下终端机上启动App时将出现运行时冲击。
+> 如果设置为Required，而不是Optional，在iOS 12以下版本的终端机上启动App时，将出现运行时冲击。
 
 
 ##### 支持iOS 12以下版本的设置(Sign In with Apple JS)
@@ -509,12 +408,12 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 > 
 在Gamebase iOS SDK 2.13.0以上版本上，可通过iOS 12以下的WebView使用Sign In with Apple功能。 
 > 
-> 即使是使用2.13.0以前版本的游戏，也要在设置以前项目时参考以下**支持iOS 12以下版本的设置**。
+> 即使使用低于2.13.0版本的游戏，也要设置以前的项目时参考如下**支持iOS 12以下版本的设置**。
 >
 > 若适用Gambase SDK iOS 2.13.0以上版本, 则可以在iOS 12以下版本上使用Sign In with Apple功能。
 
 
-* 为了在iOS 12以下版本使用Sign In with Apple功能，需要利用Sign In with Apple JS功能进行登录。
+* 为了在iOS 12以下版本使用Sign In with Apple功能，需要利用Sign In with Apple JS功能登录。
 * 登录时应在Apple ID登录网页上输入Apple帐户和密码。
 
 **按照以下程序，可以在Apple开发人员网页上注册新的Service ID。**
@@ -534,11 +433,11 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 7. 设置后保存。<br/>
 ![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_07.png)
 
-**在TOAST Gamebase Console > Gamebase > APP > 认证信息 > Apple > Service ID中输入在述程序中使用的Service ID。***
+**在TOAST Gamebase Console > Gamebase > APP > 认证信息 > Apple > Service ID中输入在上述程序中使用过的Service ID。***
 
 > <font color="red">[注意]</font><br/>
 >
-> 如果还尚未设置Sign In with Apple，则还要设置其他的项目。
+> 如果还尚未设置Sign In with Apple，则还要设置其他项目。
 
 1. 按以下方式，将在Apple开发人员网页上设置的Service ID添加在Service ID项目中。(若已有Sign In with Apple设定值，则不需要更改其他值。)
 ![Set Service ID for Sign In with Apple JS](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_TOAST_01.png)
@@ -553,7 +452,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 
 ![gamebase_app_29_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_29_202012.png)
 
-2. 请在callback URL栏里输入以下值。 
+2. 请在callback URL栏中输入以下值。 
 	* Authorization callback page : https://api.weibo.com/oauth2/default.html
 	* Cancel authorization callback page : https://api.weibo.com/oauth2/default.html
 
@@ -568,13 +467,13 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 * Scope
 
 显示Application所需的权限。 
-根据Weibo指南所有权限已声明为默认值。
+根据Weibo指南，所有权限已声明为默认值。
 如果需要时可以添加、删除或修改。
 
 * oauthApiUrl
 
 是通过Gambase SDK调用Weibo Open API时使用的域名。
-因此不应更改。 
+因此不应该更改。 
 
 ![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_28_202012.png)
 
@@ -585,26 +484,26 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 
 ## Client
 
-客户端信息可以通过系统(iOS, Android, Unity WebGL, Unity Standalone)和版本进行管理。
+可根据运营体系(iOS, Android, Unity WebGL, Unity Standalone)和版本管理客户端信息。
 
 ### Client List
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client1_1.2.png)
-您可以看到当前注册的客户端列表。
-按系统区分表示，而图标中的数字表示注册客户端时输入的版本。 
+您可以查看当前注册的客户端列表。
+按系统区分表示，而图标中的数字表示的是注册客户端时输入的版本。 
 图标列表中仅显示服务状态为<font  color="white" style="background-color:#eed14c">测试</font>、<font color="white" style="background-color:#eba34b">Beta Service</font>、<font color="white" style="background-color:#eb7e4b">审核中</font>、<font color="white" style="background-color:#88C637">服务</font>、<font color="white" style="background-color:#2AB1A6">推荐更新(服务中)</font>。通过点击每个运营体系右下端的箭头符号，可确认<font color="white" style="background-color:#A1A1A1">必须更新</font>、<font color="white" style="background-color:#CCCCCC">终止</font>的客户端列表。
 图标颜色可以根据服务状态进行分类，因此可以一目了然地掌握服务状态。
 
 ### Properties
 
-以下描述在Gamebase Console管理的客户端注册信息。 
-在客户端选项卡中，单击 AOS注册、iOS注册按钮时，将显示注册客户端页面。如果要修改或删除已注册客户端的输入值，请单击图标列表中的图标，或从客户端的整个列表中选择所需的客户端即可。
+以下描述Gamebase Console管理的客户端注册信息。 
+在客户端选项卡中，单击 AOS注册、iOS注册按钮时，将显示注册客户端页面。如果要修改或删除注册的客户端输入值，请单击图标列表中的图标，或从客户端的整个列表中选择所需的客户端。
 ![gamebase_app_13_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_13_202012.png)
 #### (1) 商店
-(<font color="red">必须</font>) 选择要发布客户端的商店。
+(<font color="red">必须</font>) 选择将要发布客户端的商店。
 每个系统都有不同的商店。
 #### (2) 游戏版本
 (<font color="red">必须</font>) 输入客户端版本。
-可以根据游戏上设置的规则输入字符串。
+可根据游戏上设置的规则输入字符串。
 #### (3) 服务状态
 (<font color="red">必须</font>) 选择客户端的服务状态。
 各状态分别为<font color="white" style="background-color:#eed14c">测试</font>、<font color="white" style="background-color:#eba34b">Beta Service</font>、<font color="white" style="background-color:#eb7e4b">审核中</font>、<font color="white" style="background-color:#88C637">服务</font>、<font color="white" style="background-color:#2AB1A6">推荐更新(服务中)</font>、<font color="white" style="background-color:#A1A1A1">必须更新</font>、<font color="white" style="background-color:#CCCCCC">终止</font>等共6种。
@@ -615,66 +514,145 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 ![gamebase_app_15_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_15_201812.png)
 
 - <font color="white" style="background-color:#88C637">服务中</font>：正常服务。
-- <font color="white" style="background-color:#2AB1A6">推荐更新(服务中)</font>：正常服务。<br/>显示弹出窗口以建议您使用更新的版本。虽然建议下载新版本，但用户仍然可以使用当前版本。<br />下面是“推荐更新（服务中心）”状态时，Gamebase SDK中默认弹出的窗口。
+- <font color="white" style="background-color:#2AB1A6">推荐更新(服务中)</font>：正常服务。<br/>显示弹出窗口以建议您使用新版本。虽然建议下载新版本，但用户仍然可使用当前的版本。<br />如下是“推荐更新（服务中心）”状态时，Gamebase SDK中的默认弹窗。
 
-- <font color="white" style="background-color:#A1A1A1">强制更新</font>：服务不可用。<br/>当前版本已经不能继续使用，提示必须安装最新版本。<br />下面是“强制更新”状态时，Gamebase SDK中默认弹出的窗口。
+- <font color="white" style="background-color:#A1A1A1">强制更新</font>：服务不可用。<br/>当前版本已经不能继续使用，提示必须安装最新版本。<br />下面是“强制更新”状态时，Gamebase SDK中的默认弹窗。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_updateRequired_1.1.png)
 >  <font color="red">[注意] </font>
->  如果**同时设置强制更新和维护**，则服务状态变为“强制更新”。
->  如果不希望在维护过程中向用户弹出“强制更新”的窗口，则应在维护结束后将服务状态改为“强制更新”。
+>  如果是**同时设置强制更新和维护**，服务状态变为“强制更新”。
+>  如果不希望在维护过程中向用户显示“强制更新”窗口，则应在维护结束后将服务状态改为“强制更新”。
 
 >  <font color="orange">[参考] </font>
 >  点击更新按键时，将移动到”设置URL菜单”上设置的各商店地址。
->  例如，如果客户端已被设置为App store，而在‘’设置URL菜单”中存在与App store相关的设置，将会移动到注册的地址。若在”设置URL菜单”中不存在该设置时，将移动到共同(Common) URL。
+>  例如，如果客户端已被设置为App store，而在‘’设置URL菜单”中存在与App store有关的设置，将会移动到注册的地址。若在”设置URL菜单”中不存在此设置时，将移动到共同(Common) URL。
 
-- <font color="white" style="background-color:#CCCCCC">已下线</font>：服务不可用。<br/>如果版本已下线不再对外服务时，请选择此项。<br />下面是“已下线”状态时，Gamebase SDK中默认弹出的窗口。
+- <font color="white" style="background-color:#CCCCCC">已下线</font>：服务不可用。<br/>如果版本已下线不再对外服务时，请选择此项。<br />如下是“已下线”状态时，Gamebase SDK中的默认弹窗。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_ended_1.0.png)
 
 > [参考]
 > 按照服务状态设置要显示的消息。
-> 如果各状态为**推荐更新(服务中)**、**必须更新**、**终止**，则可通过多国语言设置注册消息。
+> 如果各状态为**推荐更新(服务中)**、**必须更新**或**终止**，则可通过多国语言设置注册消息。
 > 选择服务状态时，按照在App中设置的语言信息提供符合各状态的默认消息。如果需要时，可以添加语言或修改默认消息的内容。
-> 如果以前已按照各状态注册‘’语言类别设置"时，无论应用程序的语言设置信息状态如何，将显示以前注册的内容。   
+> 如果以前已按照各状态注册‘’语言类别设置"，无论应用程序的语言设置信息状态如何，将显示以前注册的内容。   
 > 在应用程序的语言设置中不存在设置信息时，可以以5种(韩语、英语、日语、汉语简体及繁体)语言提供默认消息。如果需要时，可以添加语言或修改默认消息的内容。
 > ![gamebase_app_18_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_18_202004.png)
 
 #### (4) 服务器地址
 输入客户端要使用的服务器地址（IP，URL）。
-在** App **选项卡中输入的服务器地址适用于所有客户端，因此仅当您要为每个客户端使用不同的服务器地址时才输入服务器地址。
+在**App**选项卡中输入的服务器地址适用于所有客户端，因此只有当您要为每个客户端使用不同的服务器地址时才要输入服务器地址。
 
 #### (5) Debug log
-可在控制台中实时更改是否输出Gamebae SDK的Debug Log。
+可在控制台中实时更改是否输出Gamebase SDK的Debug Log。
 若未设置，默认优先运行Gamebase SDK内部设置的值，可在Gamebase控制台设置是否输出Debug Log。
-即使Gamebase SDK中Debug Log为’OFF’状态，若在控制台中设置为’ON’，也将向终端机输出Gamebase Debug Log。
+即使Gamebase SDK中Debug Log为”OFF”状态，若在控制台中设置为”ON”，也将向终端机输出Gamebase Debug Log。
 
 #### (6) Memo
-可以在30个字符内输入有关客户端的简短的Memo。
+输入与客户端相关的简短的Memo(最多只能输入30个字符)。
+
+## Terms Of Service
+设置游戏的布局并创建条款。
+![gamebase_app_30_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_30_202102.png)
+### (1) 创建的条款目录
+- 通过单机**+**按钮，可创建更多条款。
+![gamebase_app_31_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_31_202102.png)
+
+### (2) 条款的国家类型
+
+### (3) 条款的对象国家
+- 国家类型为其他国家时，可以再选择其他的国家。
+
+### (4) 条款的构成
+- 通过鼠标拖放，可指定条款项目的顺序。
+- 总共可以创建25个条款和条件项，5个上限条款和5个子项。
+
+### (5) 创建条款
+- 在条款项目列表中选择条款构成后，通过点击**添加**按钮来创建相关条款的子项。
+- 选择子项时，不能创建条款。
+
+### (6) 所选条款的详细信息
+- 条款名
+	- 是管理条款时用的条款名称。
+- 同意条款
+	- 是否必须同意。
+- 详细页面
+	- 没有 : 详细页面不存在。
+	- 输入URL : 可以设定详细页面的URL。
+	- 直接输入 : 可以创建详细页面。
+![gamebase_app_32_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_32_202102.png)
+- 显示的文本 
+	- 是要在游戏中显示的文本。
+	- 通过单机**+**按钮来添加语言。
+	- 如果请求不支持的语言，显示按钮的默认选项。
+- 同意推送
+	- 没有 : 与同意推送无关。
+	- 是否同意广告性推送 : 是需要同意推送广告性通知的条款。
+	- 是否在夜间同意推送广告性通知 : 是需要同意夜间推送广告性通知的条款。
+
+> <font color="red">[注意]</font><br/>
+>
+> 如果不点击”保存”按钮，则不能适用创建的条款内容。
+> 仅保存当前选定的条款详细信息。
+>
+
+
+## Terms Of Service Deploy
+
+是将在游戏中显示的条款的发布和发布的历史记录。
+![gamebase_app_33_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_33_202102.png)
+
+### (1) 默认条款的设定
+![gamebase_app_35_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_35_202102.png)
+
+- 创建的条款中，如果在设置的发布国家之外的国家连接时，选择显示为默认条款的选项。
+
+> <font color="red">[注意]</font><br/>
+>
+> 有可能未设定默认条款。如果默认条款未被设置，您在发布的国家之外的其他国家连接时，则不显示条款。
+>
+
+### (2) 条款列表
+
+- 是当前创建的条款列表。
+
+### (3) 预览
+![gamebase_app_36_202102](https://static.toastoven.net/prod_gamebase//gamebase_app_36_202102.png)
+
+- 可以在条款列表中预览所选的条款。
+
+### (4) 条款的发布和发布历史记录
+#### 发布
+- 可以在条款列表中发布所选的条款。 
+- 当勾选”重新同意条款”后进行发布时，向已同意条款的用户也重新显示条款窗。
+
+#### 发布历史记录
+![gamebase_app_34_202102](https://static.toastoven.net/prod_gamebase/gameba se_app_34_202102.png)
+- 是在条款列表中所选的条款的发布历史记录。 
 
 ## Installed URL
 
-管理用于安装游戏的商店URL信息。
+管理安装游戏时使用的商店URL信息。
 
 ![gamebase_app_19_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_19_201812_en.png)
 
-客户状态为<font color="white" style="background-color:#2AB1A6">建议升级（正在服务）</font>或<font color="white" style="background-color:#A1A1A1">必须升级</font>时，设置各商店提供的地址的值。
+客户状态为<font color="white" style="background-color:#2AB1A6">推荐升级（正在服务）</font>或<font color="white" style="background-color:#A1A1A1">必须升级</font>时，设置各商店提供的地址的值。
 用户在PC或移动设备中单击快捷URL，利用用户终端机信息（设备、操作系统、商店等）重定向至输入的网站。
-若无商店信息或移动至商店失败，移动至‘COMMON’中设置的URL。
+若无商店信息或移动至商店失败，移动至”COMMON”中设置的URL。
 
-_[示例1] 单击在Android手机上收到的安装URL
-**(Device:mobile,OS:Android,Store:无)** 时，会转到Android上默认商店的移动网址。如果默认商店是“Google Play”，会转到“Google Play”移动设备中设置的网址。
-_[例示2] 如果从“One Store”下载应用程序的用户，在进行游戏中弹出“强制更新”窗口，点击了“立即更新”按钮
-**(Device:mobile,OS:Android,Store:One Store)** 会转到“One Store”移动设备设置的URL(One Store移动安装页面)<br/>
+_[示例1] 单击在Android手机上收到的安装URL。
+**(Device:mobile,OS:Android,Store:无)**时，会转到Android上默认商店的移动网址。如果默认商店是“Google Play”，会转到“Google Play”移动设备中设置的网址。
+_[例示2] 如果从“One Store”下载应用程序的用户，在进行游戏中弹出“强制更新”窗口，点击了“立即更新”按钮，
+**(Device:mobile,OS:Android,Store:One Store)**会转到“One Store”移动设备设置的URL(One Store移动安装页面)。<br/>
 _[例示3] 如果在PC上输入安装URL
-**(Device:PC,OS:Windows,Store:无)** 时，会转到COMMON PC上设置的URL
+**(Device:PC,OS:Windows,Store:无)** ，会转到COMMON PC上设置的URL。
 
 ### Properties
 
-要更改输入的安装URL信息，请单击**修改**按钮。
+若需更改输入的安装URL信息，请单击**修改**按钮。
 
 ![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_20_201812.png)
 
--  可以为PC和移动设备单独设置每个项。如果您不需要区分PC和移动设备，则可以输入相同的值。
-- 如果在列表中没有所需的商店，可以通过联系[客服中心](https://toast.com/support/inquiry) 将其添加。
+- 可以为PC和移动设备单独设置每个项。如果您不需要区分PC和移动设备，则可以输入相同的值。
+- 如果在列表中没有所需的商店，可以通过联系[客户服务](https://toast.com/support/inquiry)来添加。
 
 #### (1) Common
 设置没有商店信息或商店重定向失败时要连接的地址。
@@ -685,7 +663,7 @@ _[例示3] 如果在PC上输入安装URL
 #### (3) iOS
 设置iOS用户在运行安装URL时要连接的地址。
 #### (4) Standalone
-在Standalone提供的应用中设置要连接的地址。 Standalone仅适用于PC，因此只需设置PC即可。
+在Standalone提供的应用程序中设置要连接的地址。Standalone仅适用于PC，因此只需设置PC即可。
 
 ## Transfer account
 作为访客登录的游戏用户不与其他ID提供者关联，提供可在其他终端机上继续玩游戏的功能。
@@ -716,7 +694,7 @@ _[例示3] 如果在PC上输入安装URL
 - **数字+小写字母（最小长度：10）**：发放仅由数字和小写字母的组合构成的密码。发放的密码的最小长度为10个字符。
 - **数字+大写字母（最小长度：10）**：发放仅由数字和大写字母的组合构成的ID。发放的密码的最小长度为10个字符。
 - **数字+小写字母+大写字母（最小长度：9）**：发放仅由数字、小写字母、大写字母的组合构成的ID。发放的密码的最小长度为9个字符。
-- **小写字母+大写字母（最小长度：9）**：发放仅由小写字母和大写字母的组合构成的ID。发放的密码的最小长度为9个字符。
+- **小写字母+大写字母（最小长度：9）**：发放仅由小写字母和大写字母组合构成的ID。发放的密码的最小长度为9个字符。
 
 #### 验证
 设置发放的终端机转移密钥的验证条件。
@@ -727,29 +705,28 @@ _[例示3] 如果在PC上输入安装URL
 6.**阻止基准次数**：选择**失败时是否阻止再次验证**时显示。验证失败达到输入的次数时阻止账户。应设置为1次以上。
 7.**阻止时间**：设置账户阻止多久后可重新尝试验证。从**永远阻止**、**指定时间**中选择一项。若选择**指定时间**，可指定希望阻止的小时和分钟。
 
-
 #### 初始设置完成后
 ![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_3.0.png)
-初始设置完成后，游戏用户仅可进行终端机转移功能的禁用，若需要更改设置，请咨询客服中心。
+初始设置完成后，游戏用户仅可进行终端机转移功能的禁用，若需要更改设置，请联系客户服务。
 单击**不使用**按钮可禁用功能，由于原本发放的终端机转移密钥会全部删除，因此启用后应慎重选择是否禁用。
 
 ## Analytics indicator
-可以确认或设置用于在Analytics中累积指标的”传送指标"。
-按照用户级别(INT)、世界/服务器/渠道、类/职业进行分类。当显示用户级别时，只显示传送到实际Analytics的级别项目。在世界/服务器/渠道、类/职业类别项目中，只将在该菜单中注册的项目累积成Analytics的指标。
+可以确认或设置在Analytics中累积指标时用的”传送指标"。
+按照用户级别(INT)、世界/服务器/渠道、类/职业进行分类。当显示用户级别时，只显示传送到实际Analytics的级别项目。在世界/服务器/渠道、类/职业类别项目中，只将在此菜单中注册的项目累积成Analytics的指标。
 ### 用户级别(INT)类别
 可以确认传送到Analytics系统的级别指标项目。
 只能对相关项目进行查询，而无法修改。
 ![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_analytics_indicator_01_202003.png)
 
 ### 查询世界/服务器/渠道、类/职业类别 
-可以确认按项目类别设置的传送指标项目。
-可通过点击查询页面上的删除按钮，按项目类别进行删除。
+可以确认根据项目类别设置的传送指标项目。
+可通过单机查询页面上的删除按钮，按项目类别进行删除。
 一旦删除，**Analytics菜单不显示此项目**，并不累积被删除的项目，因此删除时要注意。
 ![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_analytics_indicator_02_202003.png)
 
 ### 注册世界/服务器/渠道、类/职业类别  
 可以注册想要累积成Analytics指标的信息。
-可通过点击下端的添加按钮进行注册。可以注册**全项目最多100个**新的项目。
+可通过点击下端的添加按钮进行注册。可以注册**全项目最多100个**新项目。
 在注册页面上，对以前注册的数据**只提供修改功能**。如果想要删除，需要返回查询页面进行删除。 
 ![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_analytics_indicator_03_202003.png)
 
