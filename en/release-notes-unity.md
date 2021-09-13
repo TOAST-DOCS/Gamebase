@@ -1,10 +1,26 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.27.1 (2021.09.14)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-Unity.zip)
+
+#### Feature Updates
+* Improved the Display Language feature.
+     * So far, the default language code was **en**. It has been improved to reflect the default language set in the Gamebase console.
+         * [Game > Gamebase > Console User Guide > App > App > Language Settings](./oper-app/#_3)
+
+#### Bug Fixes
+* Fixed a bug where the 'Unregistered Game Version' error pop-up was displayed only in English.
+* Fixed a bug where the Chinese text was not displayed in the maintenance pop-up.
+
+#### Changes per Platform
+* [Gamebase Android SDK 2.27.1](./release-notes-android/2271-20210914)
+* [Gamebase iOS SDK 2.27.1](./release-notes-ios/2271-20210914)
+
 ### 2.27.0 (2021.08.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-Unity.zip)
 
 #### Feature Updates
-* Updated the external SDK: TOAST Android SDK (0.27.1)
+* Updated the external SDK: TOAST Unity SDK (0.27.1)
 * Added ONE Store V16 store
 
 #### Bug Fixes
