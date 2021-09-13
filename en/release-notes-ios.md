@@ -3,24 +3,24 @@
 ### 2.27.1 (2021.09.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* PAYCO iOS SDK 업데이트 (1.5.1)
-    * 인증 플로우 및 UI 개선
-* Hangame iOS SDK 업데이트 (1.6.1)
-    * 본인인증에서 에러 상황 발생 시 콜백 호출 안되는 이슈 수정
-    * iOS 15 beta에서 내비게이션바가 깨지는 이슈 수정
+#### Feature Updates
+* PAYCO iOS SDK update (1.5.1)
+     * Improved authentication flow and UI.
+* Hangame iOS SDK update (1.6.1)
+     * Fixed an issue where callback could not be called when an error situation occurred in personal verification.
+     * Fixed an issue where the navigation bar appears broken in iOS 15 beta.
 
-#### 버그 수정
-* 이미 약관에 동의하여 약관 UI가 표시되지 않을 경우, PushConfiguration가 nil로 리턴되지 않는 이슈를 수정했습니다.
+#### Bug Fixes
+* Fixed an issue where PushConfiguration is not returned as nil when the terms and conditions UI is not displayed because the user have already agreed to the terms.
 
-### 2.27.0 (2021.08.24) 
+### 2.27.0 (2021.08.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-iOS.zip)
 
 #### Feature Updates
 * Updated PAYCO iOS SDK (1.5.0)
     * So far, only manual login was supported when the PAYCO app is not available. It has been changed so that the quick login feature can be used when the user is logged-in on Safari.
 
-### 2.26.0 (2021.08.10) 
+### 2.26.0 (2021.08.10)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-iOS.zip)
 
 #### Feature Updates
@@ -43,7 +43,7 @@
 #### Bug Fixes
 * Fixed an issue where the language code of the message sent from the Push console does not match because the language code of the device is applied to the Push notification language setting without any extra processing.
 
-### 2.25.0 (2021.07.27) 
+### 2.25.0 (2021.07.27)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.25.0/GamebaseSDK-iOS.zip)
 
 #### More Features
@@ -61,7 +61,7 @@
 #### Bug Fixes
 * Fixed a bug where the value of TCGBPushConfiguration and TCGBPushTokenInfo registered through registerPush were different
 
-### 2.24.0 (2021.06.29) 
+### 2.24.0 (2021.06.29)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-iOS.zip)
 
 #### Feature Updates
@@ -70,19 +70,19 @@
 #### Bug Fixes
 * Fixed a bug where the terms pop-up did not close after viewing the terms and conditions details
 
-### 2.23.0(2021.06.14) 
+### 2.23.0(2021.06.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-iOS.zip)
 
 #### Feature Updates
 * Updated the external SDK: TOAST iOS SDK(0.28.0), ToastGamebaseIAP SDK(0.12.0)
 
-### 2.22.0 (2021.05.25) 
+### 2.22.0 (2021.05.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-iOS.zip)
 
 #### Feature Updates
 * Updated the external SDK: TOAST iOS SDK(0.27.2), Hangame iOS SDK(1.6.0)
 
-### 2.21.2 (2021.04.27) 
+### 2.21.2 (2021.04.27)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.2/GamebaseSDK-iOS.zip)
 
 #### Feature Updates
@@ -91,13 +91,13 @@
 #### Bug Fixes
 * Fixed an issue where a bitcode error occurs when building an archive
 
-### 2.21.1 (2021.04.19) 
+### 2.21.1 (2021.04.19)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.1/GamebaseSDK-iOS.zip)
 
 #### Bug Fixes
 * Fixed an issue where the setting is not properly reflected even if it is set to support bitcode
 
-### 2.21.0 (2021.04.13) 
+### 2.21.0 (2021.04.13)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.0/GamebaseSDK-iOS.zip)
 
 #### More Features
@@ -107,20 +107,20 @@
 * Changed the system to support bitcode.
 * Modified the system to display the Close button first when calling showWebView
 
-### 2.20.2 (2021.03.23) 
+### 2.20.2 (2021.03.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.2/GamebaseSDK-iOS.zip)
 
 #### Feature Updates
 * Facebook iOS SDK updated (9.1.0)
 * Fixed an issue of failing to call openURL delegate from GamebaseAuthFacebookAdapter in certain cases
 
-### 2.20.1 (2021.03.09) 
+### 2.20.1 (2021.03.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.1/GamebaseSDK-iOS.zip)
 
 #### Feature Updates
 * Edited the IDFA acquisition logic in response to iOS 14: added the NSUserTrackingUsageDescription field to info.plist
 
-### 2.20.0 (2021.02.09) 
+### 2.20.0 (2021.02.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.0/GamebaseSDK-iOS.zip)
 
 #### More Features
@@ -132,7 +132,7 @@
 #### Feature Updates
 * Changed to display the Customer Center without login if the Customer Center type is TOAST organization product (Online Contact).
 
-### 2.19.1 (2021.01.26) 
+### 2.19.1 (2021.01.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.1/GamebaseSDK-iOS.zip)
 
 #### Feature Updates
