@@ -10,9 +10,6 @@ For Android and iOS IAP setting, refer to the below documents.<br/>
 * [Android Purchase Settings](aos-purchase#settings)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
-To make payments at Unity Standalone, IapAdapter and WebViewAdapter must be added. 
-![GamebaseUnitySDKSettins Inspector](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-settingtool_iap_2.4.0.png)
-
 ### Purchase Flow
 
 Purchase of an item can be divided into Purchase Flow, Consume Flow, and Reprocess Flow.
