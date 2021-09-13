@@ -1,5 +1,18 @@
 ## Game > Gamebase > Release Notes > Console
 
+### September 14, 2021
+
+#### Feature Updates
+* Push > Statistics > Inbound settings
+	* Changed the text related to inbound settings statistics
+* Customer Center
+	* Added a template feature where users can enter details depending on an inquiry type
+	* Added an internationalization feature to the customer inquiry reply template
+
+#### Bug Fixes
+* Customer Center > Customer Inquiry
+	* Fixed an error where a wrong calendar is exposed when the user selects submission period dates
+
 ### August 24, 2021
 
 #### Feature Updates
