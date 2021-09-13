@@ -12,6 +12,10 @@
 * '등록되지 않은 게임 버전' 에러 팝업이 영어로만 표시되는 버그를 수정하였습니다.
 * 점검 팝업에 중국어가 표시되지 않는 버그를 수정하였습니다.
 
+#### 플랫폼 별 변경 사항
+* [Gamebase Android SDK 2.27.1](./release-notes-android/2271-20210914)
+* [Gamebase iOS SDK 2.27.1](./release-notes-ios/2271-20210914)
+
 ### 2.27.0 (2021.08.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-Unity.zip)
 
