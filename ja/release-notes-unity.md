@@ -6,7 +6,7 @@
 #### 기능 개선/변경
 * Display Language 기능이 개선되었습니다.
     * 기본 언어코드가 **en** 이었으나, Gamebase 콘솔에서 설정한 기본언어가 반영되도록 개선하였습니다.
-        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > 언어 설정](./oper-app/#_3)
+        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > 언어 설정](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
 
 #### 버그 수정
 * '등록되지 않은 게임 버전' 에러 팝업이 영어로만 표시되는 버그를 수정하였습니다.

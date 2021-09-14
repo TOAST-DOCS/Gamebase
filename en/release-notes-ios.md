@@ -29,7 +29,7 @@
         * It has been improved so that you can add a localizedstring.json file to Copy Bundle Resources of Xcode project.
     * Simplified Chinese (zh-CN), Traditional Chinese (zh-TW), and Thai (th) have been added to the Display Language language set.
     * The default language code was **en**, but it has been improved to reflect the default language set in the Gamebase console.
-        * [Game > Gamebase > Console User Guide > App > App > Language settings](./oper-app/#_3)
+        * [Game > Gamebase > Console User Guide > App > App > Language settings](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
 * Changed the creation criteria of the PushConfiguration object that can be created after calling the showTermsView API as follows.
     * Before change
         * A valid non-nil PushConfiguration was returned only when **Receive Push Notification** item exists in the terms and conditions.

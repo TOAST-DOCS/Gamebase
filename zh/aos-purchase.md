@@ -261,5 +261,5 @@ Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataC
 ```
 
 * TOAST IAP SDK错误代码，请参考以下文档。
-    * [TOAST > TOAST SDK使用指南 > TOAST IAP > Android > 错误代码](/TOAST/zh/toast-sdk/iap-android/#_24)
+    * [TOAST > TOAST SDK使用指南 > TOAST IAP > Android > 错误代码](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-android/#error-codes)
 
