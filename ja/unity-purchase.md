@@ -10,11 +10,6 @@ AndroidやiOSでアプリ内決済機能を設定する方法は、次のドキ�
 * [Android Purchase Settings](aos-purchase#settings)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
-
-Unity Standaloneで決済を行うには、IapAdapterとWebViewAdapterを追加する必要があります。
-![GamebaseUnitySDKSettins Inspector](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-settingtool_iap_2.4.0.png)
-
-
 ### Purchase Flow
 
 アイテムの購入は大きく分けて決済フロー、消費フロー、再処理フローの3つがあります。

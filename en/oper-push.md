@@ -188,7 +188,14 @@ Shows the statistics on token registration and deletion based on the user's sele
 
 ### Inbound settings
 Shows the inbound settings statistics during the selected period.
-![gamebase_push_14_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_14_202101.png)
+![gamebase_push_14_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_14_202109.png)
+
+|Type|Information|Advertisement|Night-time Advertisement|
+|------|:---:|:---:|:---:|
+|Accept all| O | O | O |
+|Reject all| | | |
+|Accept information, reject all advertisements| O | | |
+|Accept information and daytime advertisement, reject night-time advertisement| O | O | |
 
 ## Event Key
 You can manage the event key used for push send statistics.

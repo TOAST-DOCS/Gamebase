@@ -1,5 +1,20 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.27.1 (2021.09.14)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-Android.zip)
+
+#### Feature Updates
+* External SDK update: PAYCO Android SDK (1.5.5), Hangame Android SDK (1.4.1), Weibo Android SDK (11.8.1)
+* Added a retry logic when the webview is not displayed normally in the emulator or rooted terminal, so that the webview is displayed normally.
+    * This applies to image notification, customer center, and common terms and conditions that run as a webview.
+* Improved stability by improving Weibo IdP authentication.
+    * Added exception handling, waiting, and retry logic to an API that is a synchronous API but actually operates asynchronously and generates an error.
+
+#### Bug Fixes
+* Fixed a bug where the 'Unregistered Game Version' error pop-up was displayed only in English.
+* Fixed a bug where the Chinese text was not displayed in the maintenance pop-up.
+* Fixed a bug where, if [Credential Login](./aos-authentication/#login-with-credential) is performed, [Login as the Latest Login IdP](./aos-authentication/#login-as-the-latest-login-idp ) call always fails.
+
 ### 2.27.0 (2021.08.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-Android.zip)
 

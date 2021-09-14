@@ -1,5 +1,18 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.27.1 (2021.09.14)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-iOS.zip)
+
+#### Feature Updates
+* PAYCO iOS SDK update (1.5.1)
+     * Improved authentication flow and UI.
+* Hangame iOS SDK update (1.6.1)
+     * Fixed an issue where callback could not be called when an error situation occurred in personal verification.
+     * Fixed an issue where the navigation bar appears broken in iOS 15 beta.
+
+#### Bug Fixes
+* Fixed an issue where PushConfiguration is not returned as nil when the terms and conditions UI is not displayed because the user have already agreed to the terms.
+
 ### 2.27.0 (2021.08.24) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-iOS.zip)
 
