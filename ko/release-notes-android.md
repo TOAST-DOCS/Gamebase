@@ -31,10 +31,10 @@
         * 이제 프로젝트의 res/raw 폴더에 localizedstring.json 파일을 추가하면 되도록 개선하였습니다.
     * 지금까지는 Unity 가이드의 Display Language 언어셋 추가 방법은 Android에 적용할 수 없었습니다.
         * 이제 Unity 가이드에 따라 localizedstring.json 파일을 추가하더라도 Android 빌드에 반영되도록 개선하였습니다.
-        * [Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Display Language > 신규 언어셋 추가](./unity-etc/#_1)
+        * [Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Display Language > 신규 언어셋 추가](https://docs.toast.com/en/Game/Gamebase/en/unity-etc/#add-new-language-sets)
     * Display Language 언어셋에 중국어 간체(zh-CN), 중국어 번체(zh-TW), 태국어(th)가 추가되었습니다.
     * 기본 언어코드가 **en** 이었으나, Gamebase 콘솔에서 설정한 기본언어가 반영되도록 개선하였습니다.
-        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > 언어 설정](./oper-app/#_3)
+        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > 언어 설정](/Game/Gamebase/en/oper-app/#language-settings)
 * showTermsView API 호출 후 생성할 수 있는 PushConfiguration 객체의 생성 기준이 다음과 같이 변경되었습니다.
     * 변경 전
         * 약관 항목 중에 **Push 수신** 항목이 존재하는 경우에만 null이 아닌 유효한 PushConfiguration이 리턴되었습니다.

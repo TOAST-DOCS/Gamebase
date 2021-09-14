@@ -31,10 +31,10 @@
         * それがプロジェクトのres/rawフォルダにlocalizedstring.jsonファイルを追加する方法に変わりました。
     * これまではUnityガイドのDisplay Language言語セットの追加方法はAndroidに適用できませんでした。
         * それをUnityガイドにしたがってlocalizedstring.jsonファイルを追加してもAndroidビルドに反映されるように改善しました。
-        * [Game > Gamebase > Unity SDK使用ガイド > ETC > Additional Features > Display Language > 新規言語セット追加](./unity-etc/#_1)
+        * [Game > Gamebase > Unity SDK使用ガイド > ETC > Additional Features > Display Language > 新規言語セット追加](https://docs.toast.com/en/Game/Gamebase/en/unity-etc/#add-new-language-sets)
     * Display Language言語セットに中国語簡体字(zh-CN)、中国語繁体字(zh-TW)、タイ語(th)が追加されました。
     * デフォルトの言語コードが**en**でしたが、Gamebaseコンソールで設定したデフォルトの言語が反映されるように改善しました。
-        * [Game > Gamebase > コンソール使用ガイド > アプリ > App > 言語設定](./oper-app/#_3)
+        * [Game > Gamebase > コンソール使用ガイド > アプリ > App > 言語設定](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
 * showTermsView API呼び出し後に作成することができるPushConfigurationオブジェクトの作成基準が次のように変更されました。
     * 変更前
         * 約款項目中に**Push受信**項目が存在する場合にのみnullではなく有効なPushConfigurationが返されました。

@@ -457,5 +457,5 @@ Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataC
 ```
 
 * NHN Cloud IAP SDK 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > Android > 오류 코드](/TOAST/ko/toast-sdk/iap-android/#_24)
+    * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > Android > 오류 코드](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-android/#error-codes)
 

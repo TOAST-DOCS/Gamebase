@@ -314,7 +314,7 @@ else
 ```
 
 * IAP错误代码，请参考以下文档。
-    * [TOAST > TOAST SDK使用指南 > TOAST IAP > Unity > 错误代码](/TOAST/zh/toast-sdk/iap-unity/#_17)
+    * [TOAST > TOAST SDK使用指南 > TOAST IAP > Unity > 错误代码](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-unity/#error-code)
 
 
 

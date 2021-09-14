@@ -31,10 +31,10 @@
         * It has been improved so that you can add the localizedstring.json file to the res/raw folder of the project.
     * Until now, the method of adding the Display Language language set in the Unity guide could not be applied to Android.
         * It has been improved so that the information is reflected in the Android build even if a localizedstring.json file is added, according to the Unity guide.
-        * [Game > Gamebase > Unity SDK User Guide > Notes > Additional Features > Display Language > Add New Language Sets](./unity-etc/#_1)
+        * [Game > Gamebase > Unity SDK User Guide > Notes > Additional Features > Display Language > Add New Language Sets](https://docs.toast.com/en/Game/Gamebase/en/unity-etc/#add-new-language-sets)
     * Simplified Chinese (zh-CN), Traditional Chinese (zh-TW), and Thai (th) have been added to the Display Language language set.
     * The default language code was **en**, but it has been improved to reflect the default language set in the Gamebase console.
-        * [Game > Gamebase > Console User Guide > App > App > Language settings](./oper-app/#_3)
+        * [Game > Gamebase > Console User Guide > App > App > Language settings](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
 * Changed the creation criteria of the PushConfiguration object that can be created after calling the showTermsView API as follows.
     * Before change
         * A valid non-null PushConfiguration was returned only when **Receive Push Notification** item exists in the terms and conditions.

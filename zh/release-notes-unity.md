@@ -6,7 +6,7 @@
 #### Feature Updates
 * Improved the Display Language feature.
      * So far, the default language code was **en**. It has been improved to reflect the default language set in the Gamebase console.
-         * [Game > Gamebase > Console User Guide > App > App > Language Settings](./oper-app/#_3)
+         * [Game > Gamebase > Console User Guide > App > App > Language Settings](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
 
 #### Bug Fixes
 * Fixed a bug where the 'Unregistered Game Version' error pop-up was displayed only in English.
