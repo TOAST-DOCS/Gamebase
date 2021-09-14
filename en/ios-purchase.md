@@ -419,5 +419,5 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
 * See the guide for the IAP error codes.  
-    * [NHN Cloud > User Guide for NHN CLoud SDK > NHN Cloud IAP > iOS > Error Codes](/TOAST/ko/toast-sdk/iap-ios/#_15)
+    * [NHN Cloud > User Guide for NHN CLoud SDK > NHN Cloud IAP > iOS > Error Codes](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-ios/#error-codes)
 
