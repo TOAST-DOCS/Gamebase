@@ -232,7 +232,7 @@ end
 
 #### Weibo
 
-* AppDelegate 의 `application:openURL:sourceApplication:annotation:`을 필수로 구현해야 합니다.
+* AppDelegate 의 **application:openURL:sourceApplication:annotation:**을 필수로 구현해야 합니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 초기화 > OpenURL Event](./ios-initialization/#openurl-event)
 
 ### IdP Settings (Legacy)
