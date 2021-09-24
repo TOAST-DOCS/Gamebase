@@ -4,6 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-iOS.zip)
 
 #### 기능 추가
+* Kakaogame 인증 추가
 * '결제 어뷰징 자동 해제' 기능이 추가되었습니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 인증 > GraceBan](./ios-authentication/#graceban)
     * 결제 어뷰징 자동 해제 기능은 결제 어뷰징 자동 제재로 이용 정지가 되어야 할 사용자가 이용 정지 유예 상태 후 이용 정지가 되도록 합니다.

@@ -48,6 +48,7 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS9 or later<br/>arm64 지원<br/> |
 |  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.1 | Hangame 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weibo 로그인을 지원 | iOS9 or later |
+|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.11.5 | Kakao 로그인을 지원 | iOS11 or later |
 | Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.29.0<br/> ToastGamebaseIAP 0.12.0 | 게임 내 결제를 지원 | iOS9 or later |
 | Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.29.0 | Push를 지원 | iOS9 or later |
 
@@ -139,6 +140,9 @@ target 'SampleApplication' do
     pod 'GamebasePushAdapter'
     pod 'GamebasePurchaseIAPAdapter'
 
+    # 다음 모듈의 사용 방법은 고객 센터로 문의하시기 바랍니다.
+    pod 'GamebaseAuthHangameAdapter'
+    pod 'GamebaseAuthKakaogameAdapter'
 end
 ```
 
