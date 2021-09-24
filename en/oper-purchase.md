@@ -172,9 +172,11 @@ No additional information is required. Once it has been changed to Refund status
 
 ## Monitor Abusive Payments
 
-Abusive payment information can be queried and banned.
+결제 어뷰징 정보를 조회하고 자동 제재/해제 설정을 할 수 있습니다.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing1_1.0.png)
+### 환불 이력 조회
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing1_1.3_en.png)
 
 Payment and refund information can be queried by search conditions as below.
 Click **Download** on top right to download payment and refund list at any time.
@@ -185,6 +187,7 @@ Click **Download** on top right to download payment and refund list at any time.
 - **User ID**: ID of the paying user
 - **Refund Count**: Refund count of the user: queried more than input value.
 - **Refund Amount**: Refund amount of the user: queried more than input amount.
+- **스토어**: 환불한 스토어
 
 #### Search Results
 - **User ID**: ID of the paying user
@@ -198,9 +201,9 @@ Click **Download** on top right to download payment and refund list at any time.
 - **Purchase Count (Recent 3 months)**: Purchase count of the user during the last three months
 - **Purchase Amount (Recent 3 months)**: Purchase amount of the user during the last three months
 - **Status**:  Current status of the user
-- **Manual Lockdown**: Ban or service lockdown depending on the user status
+- **상태 변경**: Ban or service lockdown depending on the user status
 
-#### Manual Lockdown
+#### 상태 변경
 ![gamebase_member_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_02_201812.png)
 
 The feature allows to change status of the game user's account.
@@ -208,13 +211,14 @@ Each status is available for change like below:
 
 - **Normal**: Can be changed to ban or withdrawal. Please note that, once withdrawn, user's account information cannot be reverted.  
 - **Ban**: Ban can be released.
+- **이용 정지 유예**: 이용 정지 상태로 변경할 수 있습니다.
 - **Withdrawal**: The button does not show.
 
 #### Check Purchase List
 
 With the click of a user ID on the list, purchase details during search period can be queried.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing2_1.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing2_1.3_en.png)
 
 #### Purchase History
 - **Reserved Purchase Date**: Time when user attempted or completed with a purchase
@@ -226,15 +230,51 @@ With the click of a user ID on the list, purchase details during search period c
 - **Currency**: Type of currency used by the user for purchase
 - **Payment Status**: Current status of payment
 
+### 결제 어뷰징 자동 해제 이력 조회
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing5_1.3_en.png)
+
+아래 검색 조건을 이용해 원하는 결제 어뷰징 자동 해제 사용자 정보를 검색할 수 있습니다.
+
+#### 검색 조건
+- **검색 기간**: 이용 정지 유예가 시작된 시간 기준으로 조회됩니다.
+- **유저 ID**: 이용 정지 유예 사용자 ID
+- **결제 건수**: 이용 정지 유예 기간 중에 사용자가 결제한 횟수로 입력한 횟수 이상이 조회됩니다.
+- **결제 금액**: 이용 정지 유예 기간 중에 사용자가 결제한 금액으로, 입력한 금액 이상이 조회됩니다.
+
+#### 검색 결과
+- **유저 ID**: 이용 정지 유예 사용자 ID
+- **이용 정지 유예 기간**: 이용 정지 유예 시작 및 종료 시간
+- **결제 횟수(해제 조건)**: 이용 정지 해제를 위해서 결제해야할 전체 횟수
+- **결제 금액(해제 조건)**: 이용 정지 해제를 위해서 결제해야할 전체 금액
+- **해제 조건 충족**: 해제 조건을 충족하기 위한 조건(AND, OR)
+- **결제 건수(유예 기간)**: 이용 정지 유예 기간 중에 사용자가 결제한 전체 누적 횟수
+- **결제 금액(유예 기간)**: 이용 정지 유예 기간 중에 사용자가 결제한 전체 금액
+
+#### 결제 내역 확인
+
+검색된 목록에서 유저 ID를 클릭하면 검색 기간의 결제 상세 내역을 조회할 수 있습니다.
+(단, 결제 내역이 없는 유저는 비활성화됩니다.)
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing6_1.3_en.png)
+
+#### 결제 내역
+- **결제 일시**:
+- **Transaction ID**: Gamebase 내에서 결제를 구별할 수 있는 고유 번호
+- **스토어**: 결제된 스토어 정보
+- **유저 ID**: 결제한 사용자 ID
+- **스토어 아이템 ID**: 사용자가 앱에서 구입한 실제 스토어 아이템 ID
+- **결제 금액**: 사용자가 결제한 금액
+
 #### Auto Lockdown for Abusive Payment
 
 Click **Enable** to enable the auto lockdown setting, and enter value.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing3_1.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing3_1.3_en.png)
 
 #### Setting Information
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing4_1.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing4_1.3_en.png)
 
 * **Ban Period**  Enter the ban period to be applied for auto lockdown.
     * **Permanent Ban**: To be selected for a permanent ban.
@@ -248,3 +288,22 @@ Click **Enable** to enable the auto lockdown setting, and enter value.
 * **Deleting Leaderboard**
     * Set whether to delete Leaderboard of the game user as well, along with auto-lockdown.
     * With registration, game user's data is to be deleted from the leaderboard, and note that <font color="red">such data cannot be recovered</font>.
+
+#### 결제 어뷰징 자동 해제 설정
+
+자동 해제 설정을 사용하려면 **사용** 버튼을 클릭해 설정 값을 입력합니다.
+자동 해제 설정을 활성화하기 위해서는 자동 제재 설정이 반드시 <font color="red">활성화</font>되어야 합니다.
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing7_1.3_en.png)
+
+#### 설정 정보
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing8_1.3_en.png)
+
+* **이용 정지 일시 해제 기간**: 자동 해제 적용 시 이용 정지 유예 기간을 입력합니다.
+* **이용 정지 해제 조건 설정**: 자동 해제에 필요한 조건을 설정합니다. 최소 1개 이상 설정해야 합니다.
+    * **결제 건수**: 자동 해제를 위해 결제해야할 건수를 입력합니다.
+    * **결제 금액**: 자동 해제를 위해 결제해야할 금액을 입력합니다.
+* **이용 정지 해제 메시지**
+    * 사용자에게 표시할 이용 정지 해제 메시지를 입력합니다.
+    * 사용자에게 표시할 메시지를 다국어로 입력하여 손쉽게 재사용할 수 있도록 템플릿을 제공합니다. 미리 등록한 템플릿을 선택해 등록합니다.
