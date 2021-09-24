@@ -168,11 +168,9 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 
 ## Payment abusing monitoring
 
-결제 어뷰징 정보를 조회하고 자동 제재/해제 설정을 할 수 있습니다.
+決済に関する不正行為情報を照会して制裁できます。
 
-### 환불 이력 조회
-
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing1_1.3_jp.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing1_1.0.png)
 
 下記の検索条件を利用して決済および返金情報を照会できます。
 決済および返金履歴は、右上の**ダウンロード**ボタンをクリックしていつでもダウンロードできます。
@@ -182,7 +180,6 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 - **ユーザーID**：決済したユーザーID
 - **返金件数**：ユーザーが返金を受けた回数。入力した回数以上が照会されます。
 - **返金金額**：ユーザーが返金を受けた金額。入力した金額以上が照会されます。
-- **스토어**: 환불한 스토어
 
 #### 検索結果
 - **ユーザーID**：決済したユーザーID
@@ -196,23 +193,22 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 - **決済件数(過去3か月)**：ユーザーが過去3か月間に決済した回数
 - **決済金額(過去3か月)**：ユーザーが過去3か月に決済した金額
 - **状態**：ユーザーの現在状態
-- **상태 변경**：ユーザーの状態に応じて利用停止または停止解除
+- **手動制裁**：ユーザーの状態に応じて利用停止または停止解除
 
-#### 상태 변경
+#### 手動制裁
 ![gamebase_member_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_02_201812.png)
 
 照会したゲームユーザーのアカウント状態を変更することができる機能です。
 各状態からは、次のように変更できます。
 - **正常**：利用停止、退会状態に変更できます。退会させると該当アカウントの情報を復元できないため、処理前によく確認してください。
 - **利用停止**：利用停止の解除を行うことができます。
-- **이용 정지 유예**: 이용 정지 상태로 변경할 수 있습니다.
 - **退会**：該当ボタンが表示されません。
 
 #### 決済履歴の確認
 
 検索されたリストからユーザーIDをクリックすると、検索期間の決済詳細履歴を照会できます。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing2_1.3_jp.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing2_1.0.png)
 
 #### 決済履歴
 - **決済予約日時**：ユーザーが購入を試行または完了した時間
@@ -224,51 +220,15 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 - **通貨単位**：ユーザーが購入時に使用した通貨の種類
 - **決済状態**：決済の現在進行状態
 
-### 결제 어뷰징 자동 해제 이력 조회
-
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing5_1.3_jp.png)
-
-아래 검색 조건을 이용해 원하는 결제 어뷰징 자동 해제 사용자 정보를 검색할 수 있습니다.
-
-#### 검색 조건
-- **검색 기간**: 이용 정지 유예가 시작된 시간 기준으로 조회됩니다.
-- **유저 ID**: 이용 정지 유예 사용자 ID
-- **결제 건수**: 이용 정지 유예 기간 중에 사용자가 결제한 횟수로 입력한 횟수 이상이 조회됩니다.
-- **결제 금액**: 이용 정지 유예 기간 중에 사용자가 결제한 금액으로, 입력한 금액 이상이 조회됩니다.
-
-#### 검색 결과
-- **유저 ID**: 이용 정지 유예 사용자 ID
-- **이용 정지 유예 기간**: 이용 정지 유예 시작 및 종료 시간
-- **결제 횟수(해제 조건)**: 이용 정지 해제를 위해서 결제해야할 전체 횟수
-- **결제 금액(해제 조건)**: 이용 정지 해제를 위해서 결제해야할 전체 금액
-- **해제 조건 충족**: 해제 조건을 충족하기 위한 조건(AND, OR)
-- **결제 건수(유예 기간)**: 이용 정지 유예 기간 중에 사용자가 결제한 전체 누적 횟수
-- **결제 금액(유예 기간)**: 이용 정지 유예 기간 중에 사용자가 결제한 전체 금액
-
-#### 결제 내역 확인
-
-검색된 목록에서 유저 ID를 클릭하면 검색 기간의 결제 상세 내역을 조회할 수 있습니다.
-(단, 결제 내역이 없는 유저는 비활성화됩니다.)
-
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing6_1.3_jp.png)
-
-#### 결제 내역
-- **결제 일시**:
-- **Transaction ID**: Gamebase 내에서 결제를 구별할 수 있는 고유 번호
-- **스토어**: 결제된 스토어 정보
-- **유저 ID**: 결제한 사용자 ID
-- **스토어 아이템 ID**: 사용자가 앱에서 구입한 실제 스토어 아이템 ID
-- **결제 금액**: 사용자가 결제한 금액
-
 #### 決済に関する不正行為の自動制裁設定
 
 自動制裁設定を使用するには、**使用**ボタンをクリックして設定値を入力します。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing3_1.3_jp.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing3_1.0.png)
 
 #### 設定情報
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing4_1.3_jp.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing4_1.0.png)
 
 * **利用停止期間**自動制裁適用時の利用停止期間を入力します。
     * **永久停止**：永久に利用を停止する時に選択します。
@@ -282,22 +242,3 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 * **リーダーボードの削除**
     * 自動制裁を行う時、該当ゲームユーザーのLeaderboardデータも同時に削除するかどうかを設定します。
     * 選択して登録すると、自動制裁適用時にリーダーボードからゲームユーザーのデータが削除されます。<font color="red">該当データは復旧できないため、</font> 注意が必要です。
-
-#### 결제 어뷰징 자동 해제 설정
-
-자동 해제 설정을 사용하려면 **사용** 버튼을 클릭해 설정 값을 입력합니다.
-자동 해제 설정을 활성화하기 위해서는 자동 제재 설정이 반드시 <font color="red">활성화</font>되어야 합니다.
-
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing7_1.3_jp.png)
-
-#### 설정 정보
-
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing8_1.3_jp.png)
-
-* **이용 정지 일시 해제 기간**: 자동 해제 적용 시 이용 정지 유예 기간을 입력합니다.
-* **이용 정지 해제 조건 설정**: 자동 해제에 필요한 조건을 설정합니다. 최소 1개 이상 설정해야 합니다.
-    * **결제 건수**: 자동 해제를 위해 결제해야할 건수를 입력합니다.
-    * **결제 금액**: 자동 해제를 위해 결제해야할 금액을 입력합니다.
-* **이용 정지 해제 메시지**
-    * 사용자에게 표시할 이용 정지 해제 메시지를 입력합니다.
-    * 사용자에게 표시할 메시지를 다국어로 입력하여 손쉽게 재사용할 수 있도록 템플릿을 제공합니다. 미리 등록한 템플릿을 선택해 등록합니다.
