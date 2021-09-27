@@ -114,6 +114,15 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 > 따라서 이 옵션을 설정하지 않았을 때에 **selector not recognized**와 같은 오류가 Runtime 상에서 발생할 수 있습니다.
 >
 
+<br/>
+
+> <font color="red">[주의]</font><br/>
+>
+> * Unity(2019.3 이상) 빌드할 경우, Gamebase iOS SDK를 **UnityFramework** 타겟에만 import 해줍니다.
+> * Unity 빌드를 하게 되면 Xcode 프로젝트 타겟에 **Unity-iPhone**, **UnityFramework**가 생깁니다.
+> * 각 타겟에 Gamebase iOS SDK를 중복해서 import 할 경우, 동작에 문제가 있을 수 있으니 유의해야 합니다.
+> 
+
 ### CocoaPods Settings
 
 Gamebase iOS SDK는 CocoaPods를 통해서도 설정할 수 있습니다.
