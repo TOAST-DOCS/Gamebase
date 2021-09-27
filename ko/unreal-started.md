@@ -67,6 +67,39 @@ Google Play 서비스에 인증과 결제를 진행하려면 Distribution 설정
 
 * [Signing Projects for Release](https://docs.unrealengine.com/en-US/Platforms/Mobile/Android/DistributionSigning/index.html)
 
+#### AndroidX 적용
+
+* Gamebase Android SDK 2.25.0 부터 AndroidX가 도입되어 [UPL(Unreal Plugin Language)](https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Mobile/UnrealPluginLanguage/) 파일에 아래 설정을 추가해야 합니다.
+
+```xml
+<gradleProperties>    
+  <insert>
+    android.useAndroidX=true      
+    android.enableJetifier=true    
+  </insert>  
+</gradleProperties>
+```
+
+#### multidex 적용
+
+* Gamebase Unreal SDK 2.26.0 부터 Gamebase 내부에서 설정하던 multidex 관련 내용이 제거되었으므로, [UPL(Unreal Plugin Language)](https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Mobile/UnrealPluginLanguage/) 파일에 아래 설정을 추가해야 합니다.
+
+```xml
+<buildGradleAdditions>
+  <insert>
+  android {
+    defaultConfig {
+      multiDexEnabled true
+    }
+  }
+  </insert>
+</buildGradleAdditions>
+
+<androidManifestUpdates>
+    <addAttribute tag="application" name="android:name" value="androidx.multidex.MultiDexApplication"/>
+</androidManifestUpdates>
+```
+
 ### iOS Settings
 
 Gamebase SDK for Unreal을 사용하려면 `UE4 Github 소스 코드`를 사용해야 하며, Epic games 회원 가입 후 Github 계정을 연결해야 UnrealEngine repository가 노출됩니다.
