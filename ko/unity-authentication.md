@@ -1189,70 +1189,33 @@ public void Login()
             return;
         }
 
-
-
-    	if (Gamebase.IsSuccess(error))
+        // Check if user is under grace ban
+        GamebaseResponse.Common.Member.GraceBanInfo graceBanInfo = authToken.member.graceBan;
+        if (graceBanInfo != null)
         {
-        	string userId = authToken.member.userId;
-        	Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
+            string periodDate = string.Format("{0:yyyy/MM/dd HH:mm:ss}", 
+                new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(graceBanInfo.gracePeriodDate));
+            string message = graceBanInfo.message;
+            
+            GamebaseResponse.Common.Member.GraceBanInfo.ReleaseRuleCondition releaseRuleCondition = graceBanInfo.releaseRuleCondition;
+            if (releaseRuleCondition != null)
+            {
+                // condition type : "AND", "OR"
+                string releaseRule = string.Format("{0}{1} {2} {3}time(s)", releaseRuleCondition.amount,
+                    releaseRuleCondition.currency, releaseRuleCondition.conditionType, releaseRuleCondition.count);
+            }
 
+            GamebaseResponse.Common.Member.GraceBanInfo.PaymentStatus paymentStatus = graceBanInfo.paymentStatus;
+            if (paymentStatus != null) {
+                String paidAmount = paymentStatus.amount + paymentStatus.currency;
+                String paidCount = paymentStatus.count + "time(s)";
+            }
 
+            // Guide the user through the UI how to finish the grace ban status.
         }
         else
         {
-            // Check the error code and handle the error appropriately.
-        	Debug.Log(string.Format("Login failed. error is {0}", error));
-            if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
-            {
-            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
-            }
-            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
-            {
-                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
-                if (banInfo != null)
-                {
-                }
-            }
-        }
-    });
-}
-public static void testLogin() {
-    Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
-        @Override
-        public void onCallback(AuthToken token, GamebaseException exception) {
-            if (!Gamebase.isSuccess(exception)) {
-                // Login failed
-                return;
-            }
-
-            // Check if user is under grace ban
-            GamebaseResponse.Common.Member.GraceBanInfo graceBanInfo = authToken.member.graceBan;
-            if (graceBanInfo != null)
-            {
-                string periodDate = string.Format("{0:yyyy/MM/dd HH:mm:ss}", 
-                    new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(graceBanInfo.gracePeriodDate));
-                string message = graceBanInfo.message;
-                
-                GamebaseResponse.Common.Member.GraceBanInfo.ReleaseRuleCondition releaseRuleCondition = graceBanInfo.releaseRuleCondition;
-                if (releaseRuleCondition != null)
-                {
-                    // condition type : "AND", "OR"
-                    string releaseRule = string.Format("{0}{1} {2} {3}time(s)", releaseRuleCondition.amount,
-                        releaseRuleCondition.currency, releaseRuleCondition.conditionType, releaseRuleCondition.count);
-                }
-
-                GamebaseResponse.Common.Member.GraceBanInfo.PaymentStatus paymentStatus = graceBanInfo.paymentStatus;
-                if (paymentStatus != null) {
-                    String paidAmount = paymentStatus.amount + paymentStatus.currency;
-                    String paidCount = paymentStatus.count + "time(s)";
-                }
-
-                // Guide the user through the UI how to finish the grace ban status.
-            }
-            else
-            {
-                // Login success.
-            }
+            // Login success.
         }
     });
 }
