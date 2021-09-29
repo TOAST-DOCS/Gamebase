@@ -1,5 +1,19 @@
 ## Game > Gamebase > Release Notes > Console
 
+### September 28, 2021
+
+#### Feature Updates
+* Purchase (IAP) > Payment Abusing Monitoring
+    * Added an automatic release feature for payment abusing.
+* Purchase (IAP) > Store
+    * ONE store SDK v16 support.
+
+#### Bug Fixes
+* Purchase (IAP) > Product
+    * Fixed an error where, when registering items with a file, the items are registered incorrectly if there is multiple store information.
+* Push > Push
+    * Fixed an error where message sending fails when setting the text color for messages that have only content without a subject.
+
 ### September 14, 2021
 
 #### Feature Updates
@@ -148,21 +162,12 @@ Push > Push (Old) Console menu feature has been removed.
 	* (Android) Sign-in with Apple authentication added
 
 #### Feature Updates
-* [Console]
-	* App > App: beta service server added to Manage Server Address
-	* App > Client: beta service added to Client Status, memo function added so that additional client information can be registered
-	* Purchase (IAP) > Product: search condition added - whether currently being used or not
-	* Purchase (IAP) > Payment Information: now store test payment is displayed in the payment history
-	* Purchase (IAP) > Terminate Sales Menu: Analytics > Sales Metrics and functions are integrated now.
-	* Analytics > Preferences > Terminate Installation URL Menu
-* [SDK] 2.19.0
-	* (Common) Launching status code added: beta service (205)
-
-#### Bug Fixes
-* [SDK] 2.19.0
-    * (Unity) WebSocket에서 재시도 시 OutOfMemoryException이 발생하는 문제 수정
-* [SDK] 2.19.1
-	* (Android) Weibo 로그인 시도 후 다른 IdP로 로그인 시 크래시가 발생하는 문제 수정
+* App > App: beta service server added to Manage Server Address
+* App > Client: beta service added to Client Status, memo function added so that additional client information can be registered
+* Purchase (IAP) > Product: search condition added - whether currently being used or not
+* Purchase (IAP) > Payment Information: now store test payment is displayed in the payment history
+* Purchase (IAP) > Terminate Sales Menu: Analytics > Sales Metrics and functions are integrated now.
+* Analytics > Preferences > Terminate Installation URL Menu
 
 ### December 15, 2020
 
