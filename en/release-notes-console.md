@@ -1,5 +1,19 @@
 ## Game > Gamebase > Release Notes > Console
 
+### September 28, 2021
+
+#### Feature Updates
+* Purchase (IAP) > Payment Abusing Monitoring
+    * Added an automatic release feature for payment abusing.
+* Purchase (IAP) > Store
+    * ONE store SDK v16 support.
+
+#### Bug Fixes
+* Purchase (IAP) > Product
+    * Fixed an error where, when registering items with a file, the items are registered incorrectly if there is multiple store information.
+* Push > Push
+    * Fixed an error where message sending fails when setting the text color for messages that have only content without a subject.
+
 ### September 14, 2021
 
 #### Feature Updates
@@ -53,7 +67,7 @@
 * Customer Center > Customer Inquiry
 	* Improved to leave multiple answers when handling customer inquiries.
 	* Improved to allow users to leave additional inquiries after leaving an initial inquiry.
-	*  Add Status: To be used when needing additional confirmation after pending-replied.
+	* Added Status: To be used when needing additional confirmation after pending-replied.
 * Purchase(IAP) > Payment Abusing Monitoring: Improved to display the user status in multiple languages in the payment history by user section.
 
 #### Bug Fixes
@@ -62,7 +76,7 @@
 ### July 13, 2021
 
 #### More Features
-* New mobile menu open: Retention    
+* New mobile menu open: Retention
 
 ### June 29, 2021
 
