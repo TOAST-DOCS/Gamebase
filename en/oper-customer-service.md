@@ -33,6 +33,10 @@ When you open the customer center page after setting the game nickname as additi
 5. Inquiry: Write the contents of the inquiry. The maximum character length is 1,000 characters.
 6. Attachment: Register the attachment if you have any. Up to 5 files (under 10 MB) can be attached.
 
+> [Note] 
+> When selecting a inquiry type, if a template is set for the inquiry type, the inquiry content is automatically filled with the template content.
+> Template setting can be performed in [Customer Center > Customer Inquiry > Manage inquiry type](./oper-customer-service/#inquiry).
+
 #### (2) My Inquiries
 
 Logging in and accessing the customer center web page is required to activate **My Inquiries** button. Click the button to go to the screen where users can view the history of their previous inquiries.
@@ -70,7 +74,7 @@ You can also set the submission types necessary to register a user inquiry, and 
 
 Searches for the customer inquiry that matches the search conditions.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_01_202107.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_01_202109.png)
 
 **Search conditions**
 
@@ -92,12 +96,13 @@ Searches for the customer inquiry that matches the search conditions.
     - Resolved: The person in charge has left a reply as Resolved. The inquiry has been resolved.
     - Completed: The status becomes Completed automatically when completed or two weeks have passed after being resolved by the person in charge.
 
-#### 1. Manage submission type
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_02_202106.png)
+#### 1. Manage inquiry type
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_02_202109.png)
 
 You can manage the submission type which can be selected by users when registering inquiries.
 These can be registered in any of the supported languages, and the maximum length is 20 characters for each type.
 The list is shown to the user in the order of appearance, and this order can be changed within the list by dragging & dropping.
+By selecting a template registered in **Customer Center > Templates**, you can enable customers to fill out the information necessary for inquiry response when they create inquiries.
 > [Note]
 > The currently selected supported language can be checked in App - Customer Center settings.
 
@@ -273,6 +278,7 @@ The attachments are exposed with the notice, and can be downloaded by clicking o
 ## Answer template
 
 To reduce repetitive typing of the same text while processing customer inquiries, this function provides a template to process the inquiry.
+In addition, this feature supports templates for each inquiry type so that customers can fill out necessary information when they create inquiries.
 
 ### Search Template
 It shows the list of the currently registered templates, and you can enter the search term in the upper-right corner to search for the currently registered template.
@@ -287,12 +293,17 @@ It shows the list of the currently registered templates, and you can enter the s
 You can register a new reply template or modify the information of the previously registered reply template.
 What can be changed during registration or modification is the same.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_13_202106.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_13_202109.png)
 
-#### 1. Template name
+#### 1. Classification
+- **Inquiry Processing**: The default answer message for customer inquiry.
+- **Inquiry Type**: The message exposed for the user inquiry input by default.
+
+#### 2. Template name
 Enter the name of the template which will be exposed in the template list when processing user inquiries.
+If the classification is Inquiry Type, this is the template name exposed in the inquiry type management.
 
-#### 2. Body
+#### 3. Body
 Enter the body text to fill the template upon the selection of the template while processing the inquiry.
 You can freely use the text editor to fill out the template, and this text will be applied as is when selecting the template while processing the inquiry.
 

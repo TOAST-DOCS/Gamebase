@@ -1,10 +1,10 @@
 ## Before Using Purchase Menu
 ![gamebase_purchase_01_201812](http://static.toastoven.net/prod_gamebase/Console_IAP_Select_currency_1.0.png)
-To use the purchase menu, currency must be selected for purchase indicators. 
-Only the initial setting is available, and the Analytics sales indicators show in the currenty code as configured. 
+To use the purchase menu, currency must be selected for purchase metrics. 
+It can be set only once initially, and the Analytics sales metrics show in the currency code as configured. 
 Please be cautious with your choice, since the currency code cannot be modified, once selected. 
 
-## Game > Gamebase > Console User Guide > Payment
+## Game > Gamebase > Console User Guide > Purchase
 
 You can register in-app purchase information and view the history.
 Gamebase uses NHN Cloud IAP (In-App Purchase) service.
@@ -30,7 +30,7 @@ Click **Register** on the **Store Information List** to register a new store.
 
 > [Note] Validation of receipts from Google Play Store
 >
-> When Google's receipt validation system experiences failure, you can use the Gamebase's internal signature validation to properly process the payment by setting the **Receipt validation settings for onetime products** to 1-step validation.
+> When Google's receipt validation system experiences failure, you can use the Gamebase's internal signature validation to properly process the purchase by setting the **Receipt validation settings for onetime products** to 1-step validation.
 > 2-step validation is always performed for subscription products regardless of the setting.
 
 ### Modify
@@ -60,12 +60,12 @@ To register a new product, click **Register** on the **Product List** page.
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_05_202006.png)
 
 * (1) **Product ID**: Enter product ID to request for purchase. Purchase API must be called from SDK with a product ID so as to purchase the corresponding product. 
-* (2) **Product Name**: Enter name to show for purchase. Purchase history as well as indicators can be listed by the name.   
+* (2) **Product Name**: Enter name to show for purchase. Purchase history as well as metrics can be listed by the name.   
 * (3) **Use**: Select whether to use a product. At the request of SDK for the list of products, those SDK that are selected as 'USE' only are listed. 
 * (4) **More Products**: To register more products, click **+** to add input lines.   
 * (5) **Store**: Select an external store to register. If there's none, first register a store at **Store**. 
-* (6) **Store Item ID**: Enter ID issued after store is registered. Registered product list for Gamebase shall be paid at the request of payment to each selected store. 
-* (7) **Store Item Type**: Select the type of product to register. For Google Play and App Store, items can be registered for subscription, and for other stores, only one-time item registratio is available.     
+* (6) **Store Item ID**: Enter ID issued after store is registered. The item registered in the Gamebase product list is purchased using this information at the request of purchase to the selected store. 
+* (7) **Store Item Type**: Select the type of product to register. For Google Play and App Store, items can be registered for subscription, and for other stores, only one-time item registration is available.     
 
 #### 2. File-uploading Registration 
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_06_202006.png)
@@ -88,9 +88,9 @@ Query details or change information of a registered product from the list.
 
 ## Transactions
 
-Payment information can be queried. 
-Select a search type in need and query payment information. 
-To query the list of payments, click **Download** on top right of the page. 
+Purchase information can be queried. 
+Select a search type in need and query purchase information. 
+To query the list of purchases, click **Download** on top right of the page. 
 
 ### Properties
 
@@ -105,53 +105,53 @@ Search is available by the following conditions:
 - **Store**: Information of store to search 
 - **Store Item ID**: ID issued after store is registered 
 - **Item**: Select an item to search 
-- **User ID**: ID of paying user 
-- **Payment Status**: Status of payment to search 
+- **User ID**: User ID that made the purchase 
+- **Purchase Status**: Status of purchase to search 
 
 ##### (2) Search by Transaction ID 
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202006.png)
 
-Search is available by Transaction ID which is created upon payment. 
+Search is available by Transaction ID which is created upon purchase. 
 
 ##### (3) Search by Receipt 
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202006.png)
 
-You can view the results using the receipt issued during the payment.
+You can view the results using the receipt issued during the purchase.
 
 
 #### Search results
 The search results are as follows:
 
-- **Transaction ID**: Unique number for identifying payments within Gamebase
-- **Store**: Information about the store where the payment has been made
-- **User ID**: User ID that made the payment
+- **Transaction ID**: Unique number for identifying purchases within Gamebase
+- **Store**: Information about the store where the purchase has been made
+- **User ID**: User ID that made the purchase
 - **Product name**: The name of the actual product that user purchased in app
-- **Product ID (Store item ID)**: The actual ID of the product purchased by the user in app, and the ID of the store to which the actual payment has been made
+- **Product ID (Store item ID)**: The actual ID of the product purchased by the user in app, and the ID of the store to which the actual purchase has been made
 - **Store item type**: Type of the actual product that was purchased by the user in app
 - **Price/monetary unit**: The price and monetary unit of the item purchased by the user
-- **Consume status**: Whether the paid item has been provided
-- **Payment status**: The current progress of the payment
-- **Store Reference Key**: Unique payment number issued by the store
-- **Scheduled payment date**: The time of purchase attempt or completion
+- **Consume status**: Whether the purchased item has been provided
+- **Purchase status**: The current status of the purchase
+- **Store Reference Key**: Unique purchase number issued by the store
+- **Scheduled purchase date**: The time of purchase attempt or completion
 - **Refund date**: The time when the user's item was refunded
-- **Additional information**: Additional information delivered by SDK when the payment was requested (Developer payload)
+- **Additional information**: Additional information delivered by SDK when the purchase was requested (Developer payload)
 
-#### Change payment status
-The status of the searched payment information is as follows:
+#### Change purchase status
+The status of the searched purchase information is as follows:
 - **Purchase successful (Success)**
-    - Payment has successfully been made.
+    - Purchase has been made successfully.
     - Can be changed to the Refund status.
 - **Ready to make purchase (Reserved)**
-	- No longer proceeding with payment through the store, or did not proceed with purchase validation.
+	- No longer proceeding with purchase through the store, or did not proceed with purchase validation.
 	- Can be changed to Success or Refund status.
-- **Failed to validate payment (Failure)**
-	- Payment has been proceeded through the store, but an error occurred during payment validation.
+- **Failed to validate purchase (Failure)**
+	- The store proceeded with the purchase, but an error occurred during purchase validation.
 	- Can be changed to Success or Refund status.
 - **Refund successful (Refund)**
 	- The administrator manually updated the refund status in the store.
-	- Cannot be changed to any other payment status.
-- **Canceling during the payment process (UserClose)** 
-	- User has withdrawn the payment
+	- Cannot be changed to any other purchase status.
+- **Canceling during the purchase process (UserClose)** 
+	- User has withdrawn the purchase
 
 #### Changing to Success
 
@@ -170,81 +170,140 @@ No additional information is required. Once it has been changed to Refund status
 * You can see the results of comparing each field. The response value is provided in JSON format, so you can directly check the data if needed.
 * For now, only App Store transactions can be validated.
 
-## Monitor Abusive Payments
+## Monitor Purchase Abuse
 
-Abusive payment information can be queried and banned.
+You can view purchase abuse information and set automatic lockdown/release.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing1_1.0.png)
+### Query Refund History
 
-Payment and refund information can be queried by search conditions as below.
-Click **Download** on top right to download payment and refund list at any time.
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing1_1.3_en.png)
+
+Purchase and refund information can be queried by search conditions as below.
+Click **Download** on top right to download purchase and refund list at any time.
 
 #### Search Conditions
 
 - **Refund Date**: Time when a user item was refunded
-- **User ID**: ID of the paying user
-- **Refund Count**: Refund count of the user: queried more than input value.
-- **Refund Amount**: Refund amount of the user: queried more than input amount.
+- **User ID**: User ID that made the purchase
+- **Refund Count**: Refund count of the user. Only the items with count higher than input value are queried.
+- **Refund Amount**: Refund amount of the user. Only the items with amount higher than input amount are queried.
+- **Store**: The store where refund was made
 
 #### Search Results
-- **User ID**: ID of the paying user
-- **Store**: Information of a store where payment has been made
+- **User ID**: User ID that made the purchase
+- **Store**: Information of a store where purchase has been made
 - **Refund Count**: Refund count of the user
 - **Refund Amount**: Refund amount of the user
 - **Purchase Count (Query Period)**: Purchase count of the user during query period
-- **Purchase Amount (Query Period)**: Paid amount of the user during query period
+- **Purchase Amount (Query Period)**: Purchase amount of the user during query period
 - **Purchase Count (Accumulated)**: Total accumulated purchase count of the user
 - **Purchase Amount (Accumulated)**: Total purchase amount of the user
 - **Purchase Count (Recent 3 months)**: Purchase count of the user during the last three months
 - **Purchase Amount (Recent 3 months)**: Purchase amount of the user during the last three months
 - **Status**:  Current status of the user
-- **Manual Lockdown**: Ban or service lockdown depending on the user status
+- **Change Status**: Ban or release depending on the user status
 
-#### Manual Lockdown
+#### Change Status
 ![gamebase_member_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_02_201812.png)
 
 The feature allows to change status of the game user's account.
 Each status is available for change like below:
 
-- **Normal**: Can be changed to ban or withdrawal. Please note that, once withdrawn, user's account information cannot be reverted.  
+- **Normal**: Can be changed to ban or withdrawal status. Please note that, once withdrawn, user's account information cannot be reverted.  
 - **Ban**: Ban can be released.
-- **Withdrawal**: The button does not show.
+- **Ban Suspended**: Can be changed to ban status.
+- **Withdrawal**: The button is not displayed, because the status cannot be changed.
 
-#### Check Purchase List
+#### Check Purchase History
 
-With the click of a user ID on the list, purchase details during search period can be queried.
+You can query detailed purchase history during the search period by clicking a user ID on the list.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing2_1.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing2_1.3_en.png)
 
 #### Purchase History
 - **Reserved Purchase Date**: Time when user attempted or completed with a purchase
 - **Refund Date**: Time when a user item was refunded
-- **Transaction ID**: Original number to identify payments within Gamebase
-- **Store**:  Information of a store where payment has been made
+- **Transaction ID**: Unique number to identify purchases within Gamebase
+- **Store**: Information of a store where purchase has been made
 - **Item Name**: Name of actual item which the user purchased from the app
 - **Price**: Price of item purchased by the user
 - **Currency**: Type of currency used by the user for purchase
-- **Payment Status**: Current status of payment
+- **Purchase Status**: Current status of purchase
 
-#### Auto Lockdown for Abusive Payment
+### Query the History of Automatic Release for Purchase Abuse
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing5_1.3_en.png)
+
+You can search for user information on automatic release for purchase abuse by using the following search conditions.
+
+#### Search Conditions
+- **Search Period**: Query is performed based on the time when ban suspension started.
+- **User ID**: User ID for ban suspension
+- **Purchase Count**: The number of purchases made by the user during the ban suspension period. Only the items with count higher than input value are queried.
+- **Purchase Amount**: The purchase amount of the user during the ban suspension period. Only the items with amount higher than input amount are queried.
+
+#### Search Results
+- **User ID**: User ID for ban suspension
+- **Ban Suspension Period**: Ban suspension start and end time
+- **Purchase Count (Release Condition)**: Total number of purchases required to release ban
+- **Purchase Amount (Release Condition)**: The total amount to purchase to release ban
+- **Release Conditions Satisfying**: Conditions (AND, OR) to satisfy the release condition
+- **Purchase Count (Suspension Period)**: Total accumulated number of purchases made by the user during the ban suspension period
+- **Purchase Amount (Suspension Period)**: Total amount purchased by the user during the ban suspension period
+
+#### Check Purchase History
+
+You can query detailed purchase history during the search period by clicking a user ID on the list.
+(Note that users without purchase history shows up as inactivated.)
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing6_1.3_en.png)
+
+#### Purchase History
+- **Purchase Date**
+- **Transaction ID**: Unique number to identify purchases within Gamebase
+- **Store**: Information of a store where purchase has been made
+- **User ID**: User ID that made the purchase
+- **Store Item ID**: Actual store item ID that the user purchased in the app
+- **Purchase Amount**: Amount of purchase
+
+#### Set Automatic Lockdown for Purchase Abuse
 
 Click **Enable** to enable the auto lockdown setting, and enter value.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing3_1.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing3_1.3_en.png)
 
 #### Setting Information
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing4_1.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing4_1.3_en.png)
 
 * **Ban Period**  Enter the ban period to be applied for auto lockdown.
     * **Permanent Ban**: To be selected for a permanent ban.
     * **Temporary Ban**: Enter period for a temporary ban (days).  
-* **Setting Conditions for Auto Lockdown** Users that meet set conditions are automatically locked down. At least one setting is required.
+* **Setting Conditions for Automatic Lockdown** Users that meet set conditions are automatically locked down. At least one setting is required.
     * **Refund Count**: Enter refund count due to abusive acts.
     * **Refund Amount**: Enter refund amount due to abusive acts.
-* **Setting Messages for Auto Lockdown**  
+* **Setting Messages for Automatic Lockdown**  
     * Enter a ban message to show to users.
     * Enter messages in multiple languages on a template to allow easy re-use. Select and register a pre-registered template.
 * **Deleting Leaderboard**
     * Set whether to delete Leaderboard of the game user as well, along with auto-lockdown.
     * With registration, game user's data is to be deleted from the leaderboard, and note that <font color="red">such data cannot be recovered</font>.
+
+#### Set Automatic Release for Purchase Abuse
+
+To use the automatic release setting, click the **Use** button and enter the setting value.
+To enable the automatic release setting, the automatic lockdown setting must be <font color="red">enabled</font>.
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing7_1.3_en.png)
+
+#### Setting Information
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing8_1.3_en.png)
+
+* **Temporary ban release period**: Enter the ban suspension period when automatic released is applied.
+* **Set the conditions for releasing the ban**: Set the conditions required for automatic release. At least one field must be set.
+     * **Purchase Count**: Enter the number of purchases for automatic release.
+     * **Purchase Amount**: Enter the amount to purchase for automatic release.
+* **Ban release message**
+     * Enter a ban release message to be displayed to the user.
+     * Templates with messages to be displayed to users entered in multiple languages are provided so that users can easily reuse the message. Select a pre-registered template and register the template.
