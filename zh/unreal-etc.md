@@ -121,7 +121,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 
 #### Set Display Language
 
-初始化Gamebase时可以更改已输入的Display Language。
+初始化Gamebase时可更改已输入的Display Language。
 
 **API**
 
@@ -331,7 +331,7 @@ void Sample::AddEventHandler()
 * 是从Gamebase服务器向客户端终端机传送的消息。 
 * Gamebase支持的Server Push Type如下。
     * GamebaseEventCategory::ServerPushAppKickOut
-        * 通过在TOAST Gamebase控制台的**Operation > Kickout**注册Kickout ServerPush消息，将从与Gamebase连接的所有客户端接收Kickout消息。
+        * 通过在NHN Cloud Gamebase控制台的**Operation > Kickout**注册Kickout ServerPush消息，将从与Gamebase连接的所有客户端接收Kickout消息。
     * GamebaseEventCategory::ServerPushTransferKickout
         * 将Guest账户成功转移至其他终端机时，从以前的终端机接收Kickout消息。
 
@@ -754,15 +754,48 @@ Gamebase提供回复客户咨询的功能。
 
 > [TIP]
 >
-> 若与TOAST Contact服务联动后使用，则可更方便地应对客户咨询。
-> 有关详细的TOAST Contact服务使用方法，请参考以下指南。
-> [TOAST Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+> 若与NHN Cloud Contact服务联动后使用，则可更容易应对客户咨询。
+> 有关详细的NHN Cloud Contact服务使用方法，请参考以下指南。
+> [NHN Cloud Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+
+
+#### Customer Service Type
+
+**在Gamebase控制台 > App > InApp URL > Service center**中可以选择以下3个类型中的一个客户服务。
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
+
+| Customer Service Type     | Required Login |
+| ------------------------- | -------------- |
+| Developer customer center | X              |
+| Gamebase customer center  | △             |
+| NHN Cloud  Online Contact      | O              |
+
+Gamebase SDK的客户服务API根据各类型使用如下URL。
+
+* 开发公司自建客户服务(Developer customer center)
+    * 在**客户服务URL**输入的URL
+* Gamebase提供的客户服务(Gamebase customer center)
+    * 登录前 : **不包含**用户信息的客户服务URL
+    * 登录后 : 包含用户信息的客户服务URL
+* NHN Cloud组织服务(Online Contact)
+    * 登录前 : **不包含**用户信息的客户服务URL
+    * 登录后 : 包含用户信息的客户服务URL
+
 
 #### Open Contact WebView
 
-是显示在Gamebase控制台中输入的**客户服务URL** WebView的功能。
 
-* 使用**Gamebase控制台 > App > InApp URL > Service center**中输入的值。 
+显示客户服务WebView。
+根据客户服务类型选择URL。
+可通过ContactConfiguration向URL传送附加信息。
+
+**FGamebaseContactConfiguration**
+
+| Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
+| ------------- | ------------- | ---------------------------------- | ------------------ |
+| userName      | O             | FString                            | 用户名(nickname) <br>**default** : ""   |
+| additionalURL | O             | FString                              在开发公司客户服务URL后面添加的附加URL<br>**default** : ""    |
+| extraData     | O             | TMap<FString, FString>             | 开始客户服务时传送开发公司需要的extra data。<br>**default** : EmptyMap |
 
 **API**
 
@@ -772,7 +805,18 @@ Supported Platforms
 
 ```cpp
 void OpenContact(const FGamebaseErrorDelegate& onCloseCallback);
+void OpenContact(const FGamebaseContactConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback);
 ```
+
+**ErrorCode**
+
+| Error Code | Description |                     
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | 未调用Gamebase.initialize。|
+| NOT\_LOGGED\_IN(2)                                  | 客户服务类型为“NHN Cloud  OC”， 但在登录之前被调用了。 |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 客户服务URL不存在。<br>请确认Gamebase控制台中的**客户服务URL**。|
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 识别用户的临时发票发布失败 |
+| UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | 已经显示客户服务WebView。|
 
 **Example**
 
@@ -795,6 +839,75 @@ void Sample::OpenContact()
                 // Please check the url field in the TOAST Gamebase Console.
                 auto launchingInfo = IGamebase::Get().GetLaunching().GetLaunchingInformations();
                 UE_LOG(GamebaseTestResults, Display, TEXT("csUrl: %s"), *launchingInfo->launching.app.relatedUrls.csUrl);
+            }
+        }
+    }));
+}
+```
+
+
+> <font color="red">[注意]</font><br/>
+>
+> 在客户服务注册咨询时可能需要附加文件。 
+> 为此，需要在运行时从用户获取拍照和Storage储存权限。
+>
+> Android用户
+>
+> * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
+>
+> * 使用Unreal时，通过启用内置于引擎中的**Android Runtime Permission**plug-in，确认以下API Reference后，在获取所需的权限时参考。 
+> [Unreal API Reference : AndroidPermission](https://docs.unrealengine.com/en-US/API/Plugins/AndroidPermission/index.html)
+>
+> iOS用户
+>
+> * 请在info.plist中设置”Privacy - Camera Usage Description”和”Privacy - Photo Library Usage Description”。 
+
+#### Request Contact URL
+
+返还显示客户服务WebView时使用的URL。 
+
+**API**
+
+```cs
+void RequestContactURL(const FGamebaseContactUrlDelegate& onCallback);
+void RequestContactURL(const FGamebaseContactConfiguration& configuration, const FGamebaseContactUrlDelegate& onCallback);
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_INITIALIZED(1)                                 | 未调用Gamebase.initialize。|
+| NOT\_LOGGED\_IN(2)                                  | 客户服务类型为“NHN Cloud  OC”，但在登录之前被调用了。|
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 客户服务URL不存在。<br>请确认Gamebase控制台中的**客户服务URL**。|
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 识别用户的临时发票发放失败 |
+
+**Example**
+
+``` cs
+void Sample::RequestContactURL(const FString& userName)
+{
+    FGamebaseContactConfiguration configuration{ userName };
+
+    IGamebase::Get().GetContact().RequestContactURL(configuration, FGamebaseContactUrlDelegate::CreateLambda([=](FString url, const FGamebaseError* error)
+    {
+        if (Gamebase::IsSuccess(error))
+        {
+            // Open webview with 'contactUrl'
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestContactURL succeeded. (url = %s)"), *url);
+        }
+        else
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestContactURL failed. (errorCode: %d, errorMessage: %s)"), error->code, *error->message);
+
+            if (error->code == GamebaseErrorCode::UI_CONTACT_FAIL_INVALID_URL)
+            {
+                // Gamebase Console Service Center URL is invalid.
+                // Please check the url field in the TOAST Gamebase Console.
+            }
+            else
+            {
+                // An error occur when requesting the contact web view url.
             }
         }
     }));

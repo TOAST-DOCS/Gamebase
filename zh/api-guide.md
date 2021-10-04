@@ -2,10 +2,13 @@
 
 ## 更改事项
 - 在IAP(In App Purchase)API的请求参数和响应结果中已添加并删除新的项目。
+- 已添加Push Wrapping API。
+- 添加了使用Gamebase Access Token可获取登录时使用的IdP Profiles和令牌信息的"Get IdP Token and Profiles" API。
+- 添加了用IdP Id获取进行映射的Gamebase userId的"Get UserId Information with IdP Id" API。
 
 ## Advance Notice
 
-Gamebase Server API以RESTful类型提供如下API。 为了使用服务器API，应了解以下信息。
+Gamebase Server API以RESTful类型提供如下API。为了使用服务器API，应了解以下信息。
 
 #### 服务器地址
 
@@ -16,13 +19,13 @@ Gamebase Server API以RESTful类型提供如下API。 为了使用服务器API�
 
 #### AppId
 
-APP ID 可通过TOAST项目ID，在APP菜单页面中确认。
+APP ID可通过NHN Cloud项目ID，在APP菜单页面中确认。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
 #### SecretKey
 
-密钥(secret key)是API的访问控制方法，可在 Gamebase Console进行确认。调用Server API时，在HTTP标头中将密钥设置为必须。
+密钥(secret key)是API的访问控制方法，可在Gamebase Console进行确认。调用Server API时，在HTTP标头中将密钥设置为必须。
 > [参考]
 > 如果密钥被泄露发生了无效调用，则可以通过点击**创建**按钮创建新密钥后使用新秘钥。
 
@@ -30,7 +33,7 @@ APP ID 可通过TOAST项目ID，在APP菜单页面中确认。
 
 #### TransactionId
 
-为了支持调用API的服务器内部管理API请求，提供TransactionId功能。调用API的服务器发送HTTP请求时，在Head中设置Transaction ID，Gamebase服务器也将在响应HTTP Header和响应结果的Response Body Header中设置TransactionId发送结果给调用API的服务器。
+作为调用API的服务器内部管理API请求，提供TransactionId功能。调用API的服务器发送HTTP请求时，在Head中设置Transaction ID，Gamebase服务器也将在响应HTTP Header和响应结果的Response Body Header中设置TransactionId发送结果给调用API的服务器。
 
 ## Common
 
@@ -44,9 +47,9 @@ API调用时在HTTP Header中设置以下项目。
 | X-Secret-Key | mandatory |参考SecretKey说明 |
 | X-TCGB-Transaction-Id | optional | 参考TransactionId说明 |
 
-#### API 响应
+#### API响应
 
-传递**HTTP 200 OK**以响应所有API请求。 可以通过Response Body的Header项目来判断API请求是否成功。
+传递**HTTP 200 OK**以响应所有API请求。可以通过Response Body的Header项目来判断API请求是否成功。
 
 **[Request]**
 
@@ -78,7 +81,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| transactionId | String | API请求时在HTTP Header设定的值。<br>如果不传递此值，则返回Gamebase内部生成的值 |
+| transactionId | String | API请求时在HTTP Header设定的值。<br>如果不传递此值，则返回Gamebase内部生成的值。|
 | isSuccessful | boolean | 成功与否 |
 | resultCode | int | 响应代码<br>成功时为0，失败时返还错误代码 |
 | resultMessage | String | 响应消息 |
@@ -106,7 +109,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 | userId | String | 登录用户ID |
 | accessToken | String | 发放给登录用户的访问令牌 |
 
@@ -114,7 +117,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| linkedIdP | boolean | optional | 是否包含获取true or false (默认值为false) 访问令牌时使用的IdP相关信息 |
+| linkedIdP | boolean | optional | 是否包含获取true or false (默认值为false) 访问令牌时使用的IdP相关信息。|
 
 **[Response Body]**
 
@@ -164,22 +167,93 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | linkedIdP | Object | 登录用户使用的IdP信息 |
 | linkedIdP.idPCode | String | IdP信息 <br>guest, payco, facebook等 |
 | linkedIdP.idPId | String | IdP ID |
-| member.userId | String | 用户 ID |
-| member.lastLoginDate | String | 上一次登录的时间 <br>第一次登录的用户没有此值 |
+| member.userId | String | 用户ID |
+| member.lastLoginDate | String | 上一次登录的时间 <br>第一次登录的用户没有此值。|
 | member.appId | String | appId |
-| member.valid | String | 登录成功的用户的值为"Y" <br>(有关其他值的说明请参考成员API) |
+| member.valid | String | 登录成功的用户的值为"Y"。<br>(有关其他值的说明请参考成员API。) |
 | member.regDate | String | 用户创建账户的时间 |
 | authList | Array[Object] | 用户认证IdP相关信息 |
 | authList[].authSystem | String | Gamebase内部使用的认证系统 <br>预计将会支持用户认证系统 |
 | authList[].idPCode | String | 用户认证IdP信息 <br>guest, payco, facebook等 |
 | authList[].authKey | String | authSystem发放的用户区分值 |
-| temporaryWithdrawal | Object | 预约退出信息 <br>仅在valid为"T"值时提供 |
+| temporaryWithdrawal | Object | 预约退出信息 <br>仅在valid为"T"值时提供。|
 | temporaryWithdrawal.gracePeriodDate | String | 预约退出的到期时间ISO 8601 |
 
 **[Error Code]**
 
 [错误代码](./error-code/#server)
 
+<br/>
+#### Get IdP Token and Profiles
+
+是在客户端通过"Login with IdP"登录时发放的Gamebase Access Token。使用此令牌可查看登录时使用的IdP Access Token和Profiles信息。 
+
+> [注意]
+> 按照各IdP类别，IdP的Access Token有效时间都不同，而且一般很短。
+> 在客户端通过"Login as the Latest Login IdP"登录成功后，通过服务器调用相关API时，因IdP的Access Token已过期，有可能无法获取IdP信息。 
+
+<br/>
+
+> [参考]
+> 如果只用IdP的Access Token，有些IdP无法获取信息。
+> ex) appleid / iosgamecenter : 不存在使用Access Token，通过Server to Server可获取的信息。 
+
+<br/>
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}/idps/{idPCode}?accessToken={accessToken} |
+
+**[Request Header]**
+
+确认共通事项
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud项目ID |
+| userId | String | 登录用户ID |
+| idPCode | String | 用户认证IdP信息 <br>google、payco、facebook等 |
+
+**[Request Parameter]**
+
+| Name | Type | Required |  Value |
+| --- | --- | --- | --- |
+| accessToken | String | mandatory | 发放给登录用户的Gamebase Access Token | 
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "transactionId": "String",
+        "isSuccessful": true
+    },
+    "idPProfile": {
+        "sub": "String",
+        "name": "String",
+        "given_name": "String",
+        "locale": "ko",
+        "picture": "String"
+    },
+    "idPToken": {
+        "idPCode": "google",
+        "accessToken": "ya29.a0AfH6SMCF-MjD_-Eqi62Jm-51IPxnS6HpahqpxqbuaWZPXc68YMmW3sRdif4k7Dmp2Ppn1xzH-JQwPLDv4tMrDFAknG4m_lrHQt4J4En7DAG0bZV4z8uJZE1zYOXHp8"
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| idPProfile | Map<String, Object> | 登录用户使用过的IdP Profiles <br>- 每个IdP的响应格式(format)都不同。|
+| idPToken | Object | 登录用户使用过的IdP的Access Token信息 |
+| idPToken.idPCode | String | IdP code |
+| idPToken.accessToken | String | IdP Access Token |
 <br>
 <br>
 
@@ -204,7 +278,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 **[Request Parameter]**
 
@@ -293,27 +367,31 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Key | Type | Description |
 | --- | --- | --- |
 | status | Object | 表示当前客户端状态的信息 |
-| status.code | int | 客户端状态代码 <br><br>正常：200 <br>推荐更新：201, 强制更新：300 <br>服务终止: 302 <br>维护中：303 |
+| status.code | int | 客户端状态代码 <br><br>正常：200 <br>推荐更新：201、强制更新：300 <br>服务终止 : 302 <br>维护中：303 |
 | status.message | String | 客户端状态消息 |
 | app | Object | App信息 |
-| app.storeCode | String | 应用商店代码 <br>"GG", "AS" 等 |
+| app.storeCode | String | 应用商店代码 <br>"GG"、"AS" 等 |
 | app.accessInfo | Object | 在控制台应用页面中设置的信息 |
-| app.accessInfo.serverAddress | String | 服务器地址<br>在客户端设置的服务地址的优先级高。 <br>如果未设置客户端服务器地址时，将传递应用页面中设置的服务器地址。 |
-| app.accessInfo.csInfo | String | 客服中心信息 |
+| app.accessInfo.serverAddress | String | 服务器地址<br>在客户端设置的服务地址的优先级高。<br>如果未设置客户端服务器地址时，将传递应用页面中设置的服务器地址。|
+| app.accessInfo.csInfo | String | 客户服务信息 |
 | app.relatedUrls | Object | 要在应用内使用的应用内URL |
 | app.relatedUrls.termsUrl | String | 使用条款 |
-| app.relatedUrls.csUrl| String | 客服中心 |
+| app.relatedUrls.csUrl| String | 客户服务 |
 | app.relatedUrls.punishRuleUrl | String | 禁用规定 |
 | app.relatedUrls.personalInfoCollectionUrl | String | 个人信息同意 |
 | app.install | Object | 应用设置信息 |
 | app.install.url | String | 安装URL |
 | maintenance | Object | 维护信息 |
-| maintenance.typeCode | String | 维护类型代码 <br>维护全部：'SYSTEM', 按应用维护：'APP' |
-| maintenance.beginDate | Date | 维护开始时间 ISO 8601 |
-| maintenance.endDate | Date | 维护结束时间 ISO 8601 |
+| maintenance.typeCode | String | 维护类型代码 <br>维护全部：”SYSTEM”, 按应用维护：”APP” |
+| maintenance.beginDate | Date | 维护开始时间ISO 8601 |
+| maintenance.endDate | Date | 维护结束时间ISO 8601 |
 | maintenance.url | String | 维护URL |
 | maintenance.reason | String | 维护原因 |
 | maintenance.message | String | default维护原因消息 |
+
+**[Error Code]**
+
+[错误代码](./error-code/#server)
 
 <br>
 <br>
@@ -338,7 +416,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 | userId | String | 查询用户ID |
 
 **[Request Parameter]**
@@ -395,10 +473,10 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | member | Object | 被查询用户的基本信息 |
 | member.userId | String | 用户ID |
-| member.valid | Enum | Y：正常用户 <br>D: 已退出的用户 <br>B：禁用的用户 <br>M：丢失的账户 <br>T: 用户已预约退出 |
+| member.valid | Enum | Y：正常用户 <br>D : 已退出的用户 <br>B：禁用的用户 <br>M：丢失的账户 <br>T : 用户已预约退出 |
 | member.appId | String | appId |
 | member.regDate | String | 用户创建账户的时间 |
-| member.lastLoginDate | String | 上一次登录的时间 <br>第一次登录的用户没有此值 |
+| member.lastLoginDate | String | 上一次登录的时间 <br>第一次登录的用户没有此值。|
 | member.authList | Array[Object] | 用户认证IdP相关信息 |
 | member.authList[].userId | String | 用户ID |
 | member.authList[].authSystem | String | Gamebase内部使用的认证系统 <br>预计将会支持用户认证系统 |
@@ -412,7 +490,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | memberInfo.osCode | String | 用户设备的OS类型 |
 | memberInfo.telecom | String | 运营商 |
 | memberInfo.storeCode | String | store代码 |
-| memberInfo.network | String | 网络环境 <br>3g, WiFi等|
+| memberInfo.network | String | 网络环境 <br>3g、WiFi等|
 | memberInfo.deviceModel | String | 用户设备的型号名称 |
 | memberInfo.osVersion | String | 用户设备的OS版本 |
 | memberInfo.sdkVersion | String | SDK版本 |
@@ -429,7 +507,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 简单查询多个用户信息。
 
-**[Method, URI]**
+**[Method、URI]**
 
 | Method | URI |
 | --- | --- |
@@ -443,17 +521,13 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 **[Request Body]**
 
-```json
-["userId", "userId", "userId"]
-```
-
-| Type | Required | Value |
-| --- | --- | --- |
-| Array[String] | mandatory | 查询对象用户ID |
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| userIdList | Array[String] | mandatory | 查询对象用户ID <br>  ["userId"、"userId"、"userId",...]|
 
 **[Response Body]**
 
@@ -480,7 +554,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | memberList | Array[Object] | 被查询用户的基本信息 |
 | memberList[].userId | String | 用户ID |
-| memberList[].valid | Enum | Y：正常用户 <br>D: 已退出的用户 <br>B：禁用的用户 <br>M：丢失的账户 <br>T: 用户已预约退出 |
+| memberList[].valid | Enum | Y：正常用户 <br>D : 已退出的用户 <br>B：禁用的用户 <br>M：丢失的账户 <br>T : 用户已预约退出 |
 | memberList[].appId | String | appId |
 | memberList[].regDate | String | 用户创建账户的时间 |
 
@@ -490,35 +564,31 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 <br>
 
-#### 获取 IdP 信息
+#### 获取IdP信息
 
 查询与用户ID映射的IdP信息。
 
 **[Method, URI]**
 
-| Method | Type | URI |
-| --- | --- | --- |
-| POST | String | /tcgb-member/v1.3/apps/{appId}/auth/authKeys |
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-member/v1.3/apps/{appId}/auth/authKeys |
 
 **[Request Header]**
 
-确认共同事项
+确认共通事项
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 **[Request Body]**
 
-```json
-["userId", "userId", "userId"]
-```
-
-| Type | Required | Value |
-| --- | --- | --- |
-| Array[String] | mandatory | 查询对象用户ID |
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| userIdList | Array[String] | mandatory | 查询对象用户ID  ["userId"、"userId"、"userId"、...]|
 
 **[Response Body]**
 
@@ -544,9 +614,9 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Array[Object] | 被查询用户的基本信息 <br> userId为key，IdP信息为value的object|
+| result | Array[Object] | 被查询用户的基本信息 <br> userId为key，IdP信息为value的object |
 | authkey | String | authSystem发放的用户区分值 |
-| IdPCode | String | 用户认证IdP信息 <br>guest, payco, facebook等 |
+| IdPCode | String | 用户认证IdP信息 <br>guest、payco、facebook等 |
 | authSystem | String | Gamebase内部使用的认证系统 <br>预计将会提供用户认证系统 |
 
 **[Error Code]**
@@ -573,23 +643,19 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| authSystem | String | mandatory | Gamebase内部使用的认证系统，预计将会支持用户认证系统，目前是gbid |
+| authSystem | String | mandatory | Gamebase内部使用的认证系统，预计将会支持用户认证系统，目前是gbid。|
 
 **[Request Body]**
 
-```json
-["authKey", "authKey", "authKey"]
-```
-
-| Type | Required | Value |
-| --- | --- | --- |
-| Array[String] | mandatory | authSystem发放的authKey |
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| authKeyList | Array[String] | mandatory | authSystem发放的authKey ["authKey"、"authKey"、"authKey",...]|
 
 **[Response Body]**
 
@@ -609,7 +675,62 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Array[Object] | 被查询用户的基本信息authKey为key，用户Id为value的object|
+| result | Array[Object] | 被查询用户的基本信息authKey为key，用户Id为value的object |
+
+**[Error Code]**
+
+[错误代码](./error-code/#server)
+
+<br>
+
+#### Get UserId Information with IdP Id
+
+查看使用IdP ID映射的用户ID信息。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-gateway/v1.3/apps/{appId}/idps/{idPCode}/members |
+
+**[Request Header]**
+
+确认共通事项
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud项目ID |
+| idPCode | String | IdP信息 <br>- payco、google、facebook、iosgamecenter、appleid、twitter、hangame |
+
+**[Request Body]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| idPIdList | Array[String] | mandatory | 查询对象用户的IdP ID ["idPId"、"idPId"、"idPId"、...] <br> 查询对象列表的最大尺寸为300。|
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "idPId": "userId",
+        "idPId": "userId",
+        "idPId": "userId"
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Map<String, String> | 被查询的用户的ID信息<br>- IdP ID为key，Gamebase userId为value<br>- 如果不存在包含请求查询的IdP ID的userId信息，则在响应结果中不存在。|
 
 **[Error Code]**
 
@@ -635,14 +756,14 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | begin | String | mandatory | 禁用历史记录查询开始时间 (ISO 8601标准时间，需要UTF-8 Encoding) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | mandatory |禁用历史记录查询结束时间 (ISO 8601标准时间，需要UTF-8 Encoding) <br>begin ~ end期间被禁用，则在查询结果中存在 |
+| end | String | mandatory |禁用历史记录查询结束时间 (ISO 8601标准时间，需要UTF-8 Encoding) <br>begin ~ end期间被禁用，则在查询结果中存在。|
 | page | String | optional | 要查询的页面。从0开始 |
 | size | String | optional | 每页的数据数量 |
 
@@ -692,26 +813,26 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Key | Type | Description |
 | --- | --- | --- |
 | pagingInfo | Object | 查询的页面信息 |
-| pagingInfo.first | boolean | 如果是第一页，则为true |
-| pagingInfo.last | boolean | 如果是最后一页，则为true |
+| pagingInfo.first | boolean | 如果是第一页，则为true。|
+| pagingInfo.last | boolean | 如果是最后一页，则为true。|
 | pagingInfo.numberOfElements | int | 数据总数 |
 | pagingInfo.page | int | 页面编号 |
 | pagingInfo.size | int | 每页的数据数量 |
 | pagingInfo.totalElements | int | 数据总数 |
 | pagingInfo.totalPages | int | 页面总数 |
 | result | Array[Object] | 查询的禁用历史记录 |
-| result.appId | String | 查询的禁用的TOAST项目ID |
+| result.appId | String | 查询的禁用的NHN Cloud项目ID |
 | result.banCaller | String | 禁用调用主体 |
 | result.banReason | String | 禁用原因 |
-| result.banType | String | 禁用类型。TEMPORARY or PERMANENT |
-| result.beginDate | String | 禁用开始时间。 ISO 8601标准时间 |
-| result.endDate | String | 禁用结束时间。ISO 8601标准时间 |
-| result.flags | String | 如果在控制台添加禁用时选择了Leaderboard删除，则返还“Leaderboard” |
+| result.banType | String | 禁用类型 TEMPORARY or PERMANENT |
+| result.beginDate | String | 禁用开始时间 ISO 8601标准时间 |
+| result.endDate | String | 禁用结束时间 ISO 8601标准时间 |
+| result.flags | String | 如果在控制台添加禁用时选择了Leaderboard删除，则返还“Leaderboard”。|
 | result.message | String | 禁用消息 |
 | result.name | String | 在控制台添加的模板名称 |
 | result.regUser | String | 禁用添加者 |
 | result.releaseCaller | String | 禁用解除主体 |
-| result.releaseDate | String | 禁用解除时间。ISO 8601标准时间 |
+| result.releaseDate | String | 禁用解除时间 ISO 8601标准时间 |
 | result.releaseReason | String | 禁用解除原因 |
 | result.releaseUser | String | 禁用解除添加者 |
 | result.seq | Long | 禁用历史记录顺序 |
@@ -742,15 +863,15 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | begin | String | mandatory | 禁用解除历史记录查询开始时间 (ISO 8601标准时间，需要UTF-8 Encoding) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | mandatory | 禁用解除历史记录查询结束时间 (ISO 8601标准时间， 需要UTF-8 Encoding) <br>begin ~ end期间禁用解除，则在查询结果中存在 |
-| page | String | optional | 要查询的页面。从0开始 |
+| end | String | mandatory | 禁用解除历史记录查询结束时间 (ISO 8601标准时间， 需要UTF-8 Encoding) <br>begin ~ end期间禁用解除，则在查询结果中存在。|
+| page | String | optional | 要查询的页面。从0开始。|
 | size | String | optional | 每页的数据数量 |
 
 **[Response Body]**
@@ -799,26 +920,26 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Key | Type | Description |
 | --- | --- | --- |
 | pagingInfo | Object | 查询的页面信息 |
-| pagingInfo.first | boolean | 如果是第一页，则为true |
-| pagingInfo.last | boolean | 如果是最后一页，则为true |
+| pagingInfo.first | boolean | 如果是第一页，则为true。|
+| pagingInfo.last | boolean | 如果是最后一页，则为true。|
 | pagingInfo.numberOfElements | int | 数据总数 |
 | pagingInfo.page | int | 页面编号 |
 | pagingInfo.size | int | 每页的数据数量 |
 | pagingInfo.totalElements | int | 数据总数 |
 | pagingInfo.totalPages | int | 页面总数 |
 | result | Array[Object] | 查询的禁用历史记录 |
-| result.appId | String | 查询的禁用的TOAST项目ID |
+| result.appId | String | 查询的禁用的NHN Cloud项目ID |
 | result.banCaller | String | 禁用调用主体 |
 | result.banReason | String | 禁用原因 |
-| result.banType | String | 禁用类型。TEMPORARY or PERMANENT |
-| result.beginDate | String | 禁用开始时间。 ISO 8601标准时间 |
-| result.endDate | String | 禁用结束时间。ISO 8601标准时间 |
-| result.flags | String | 如果在控制台登录禁用时选择了Leaderboard删除，则返还“Leaderboard” |
+| result.banType | String | 禁用类型 TEMPORARY or PERMANENT |
+| result.beginDate | String | 禁用开始时间 ISO 8601标准时间 |
+| result.endDate | String | 禁用结束时间 ISO 8601标准时间 |
+| result.flags | String | 如果在控制台登录禁用时选择了Leaderboard删除，则返还“Leaderboard”。|
 | result.message | String | 禁用消息 |
 | result.name | String | 在控制台注册的模板名称 |
 | result.regUser | String |禁用添加者 |
 | result.releaseCaller | String | 禁用解除主题 |
-| result.releaseDate | String | 禁用解除时间。ISO 8601标准时间 |
+| result.releaseDate | String | 禁用解除时间 ISO 8601标准时间 |
 | result.releaseReason | String | 禁用解除原因 |
 | result.releaseUser | String | 禁用解除添加者 |
 | result.seq | Long | 禁用历史记录顺序 |
@@ -835,7 +956,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 #### Validate TransferAccount
 
 检查为转移访客账户获得的ID及密码的有效性。为有效的TransferAccount时，返回获得的userId信息。
-
+ 
 **[Method, URI]**
 
 | Method | URI |
@@ -850,7 +971,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 **[Request Parameter]**
 
@@ -896,7 +1017,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | member | Object | 查询的用户的基本信息 |
 | member.userId | String | 用户ID |
-| member.valid | Enum | Y:正常用户<br>D：注销的用户<br>B：停止使用的用户<br>M：丢失的账户<br>T : 用户已预约退出 |
+| member.valid | Enum | Y : 正常用户<br>D：注销的用户<br>B：停止使用的用户<br>M：丢失的账户<br>T : 用户已预约退出 |
 | member.appId | String | 应用程序ID |
 | member.regDate | String | 用户创建账户的时间 |
 | member.lastLoginDate | String | 最后一次登录的时间 <br>初次登录的用户无相应值 |
@@ -913,7 +1034,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 用户账号将被删除。
 
 > [参考]
-> 调用服务器退出API进行账号退出处理时，若成功退出，则需通过客户端调用SDK的logout API删除令牌等的数据。
+> 调用服务器退出API进行账号退出处理时，若成功退出，则需通过客户端调用SDK的logout API删除令牌等数据。
 
 **[Method, URI]**
 
@@ -929,14 +1050,14 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 | userId | String | 需要进行退出处理的用户ID |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| regUser | String | mandatory | 请求退出的系统或用户信息<br> - 此信息可以在Console > ”member”页面的”退出履历”页面上确认。 |
+| regUser | String | mandatory | 请求退出的系统或用户信息<br> - 此信息可以在Console > ”member”页面的”退出履历”页面上确认。|
 
 **[Request Body]**
 
@@ -982,7 +1103,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 **[Request Parameter]**
 
@@ -1021,12 +1142,12 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | underMaintenance | boolean | 是否设置了当前维护 |
 | maintenances | Object | 如果已设置维护，维护基本信息 |
-| maintenances.typeCode | Enum | APP：游戏中设置的维护 <br>SYSTEM: Gamebase系统中设置的维护 |
-| maintenances.beginDate | String | 维护开始时间。ISO 8601 |
-| maintenances.endDate | String | 维护结束时间。ISO 8601 |
+| maintenances.typeCode | Enum | APP：游戏中设置的维护 <br>SYSTEM : Gamebase系统中设置的维护 |
+| maintenances.beginDate | String | 维护开始时间 ISO 8601 |
+| maintenances.endDate | String | 维护结束时间 ISO 8601 |
 | maintenances.url | String | 详细维护URL |
 | maintenances.message | String | 维护消息 |
-| maintenances.targetStores | Array[Enum] | 仅对特定客户设置检查时，设置检查的客户的商店代码<br>- GG: Google<br>- ONESTORE: ONE store<br>- AS: AppStore |
+| maintenances.targetStores | Array[Enum] | 仅对特定客户设置检查时，设置检查的客户的商店代码<br>- GG : Google<br>- ONESTORE : ONE store<br>- AS : AppStore |
 
 **[Error Code]**
 
@@ -1055,7 +1176,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 | userId | String | 要使用优惠券的userId |
 | couponCode | String | 优惠券代码 |
 
@@ -1063,7 +1184,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| storeCode | String | optional | 若获取的优惠券只能在指定的商店使用，则需传送商店代码。<br>如果是所有的商店，”ALL”或省略参数。<br>- GG: Google<br>- ONESTORE: ONE store<br>- AS: AppStore |
+| storeCode | String | optional | 若获取的优惠券只能在指定的商店使用，则需传送商店代码。<br>如果是所有的商店，”ALL”或省略参数。<br>- GG : Google<br>- ONESTORE : ONE store<br>- AS : AppStore |
 
 **[Response Body]**
 
@@ -1109,17 +1230,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 #### Consume
 
-若已完成Google Play Store, App Store, ONEStore支付，则需向用户提供道具并将履历注册在服务器后通知Gmaebase。1项支付仅可进行1次支付消费，若支付的状态非正常，则不消费。
+若已完成Google Play Store、App Store、ONEStore支付，则需向用户提供道具并将履历注册在服务器后通知Gmaebase。1项支付仅可进行1次支付消费，若支付的状态非正常，则不消费。
 
 > [参考]
 > 注册商品时，仅对商品类型为一次性（CONSUMABLE）的道具支付进行消费（consume）处理。
-> 1项支付可进行1次消费，未进行支付消费的支付视为IAP未提供道具。
+> 1项支付可进行1次消费，未进行支付消费的支付视为IAP尚未提供道具。
 
 可通过调用SDK及服务器的未消费支付明细API查看未消费（consume）支付明细。即使存在未消费支付明细，也要将游戏服务器的履历作为判断基准。
-（若因网络故障出现API timeout， 即使Gamebase已提供道具，则会出现因API响应失败游戏服务器未向用户提供道具的情况。)
+（若因网络故障出现API timeout， 即使Gamebase已提供道具，则会出现因API响应失败游戏服务器无法向用户提供道具的情况。)
 
 > [参考]
-> 如果游戏未能管理所有的（提供道具的）履历，则需将该API的request timeout设置为10秒以上，至少在出现API timout时注册履历，防止出现重复提供或未提供错误。
+> 如果游戏未能管理所有的（提供道具的）历史记录，则需将该API的request timeout设置为10秒以上，至少在出现API timout时注册历史记录，防止出现重复提供或没提供等错误。
 
 **[Method, URI]**
 
@@ -1135,7 +1256,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 **[Request Parameter]**
 
@@ -1156,7 +1277,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | accessToken | String | mandatory  | 支付验证令牌（非登录验证令牌） |
 
 > [参考]
-> 客户调用requestPurchase API时响应的purchaseToken值作为accessToken使用
+> 客户调用requestPurchase API时响应的purchaseToken值作为accessToken使用。
 
 **[Response Body]**
 
@@ -1184,7 +1305,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | result.price | Float | 支付价格 |
 | result.currency  | String  | 支付货币  |
 | result.productSeq | Long | 支付道具编号（console中注册的道具固有编号）|
-| result.marketId | String | store代码<br>GG: Google, AS: Apple, ONESTORE: ONE store |
+| result.marketId | String | store代码<br>GG : Google, AS : Apple，ONESTORE : ONE store |
 | result.gamebaseProductId | String | Gamebase商品ID<br>用户在控制台中注册商品时的用户输入值 |
 | result.payload | String | 在SDK中设置的附加信息 |
 
@@ -1218,7 +1339,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 **[Request Parameter]**
 
@@ -1276,7 +1397,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Array[Object] | 支付基本信息 |
-| result[].paymentSeq | String  |  支付编号 |
+| result[].paymentSeq | String  | 支付编号 |
 | result[].productSeq | Long | 支付道具编号（console中注册的道具固有编号）|
 | result[].currency  | String  | 支付货币  |
 | result[].price | Float | 支付价格 |
@@ -1310,7 +1431,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | TOAST项目ID |
+| appId | String | NHN Cloud项目ID |
 
 **[Request Parameter]**
 
@@ -1365,13 +1486,13 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Array[Object] | 支付基本信息 |
-| result[].marketId  | String  | 商店代码  |
-| result[].userId  | String  | 用户ID  |
-| result[].paymentSeq | String  |  支付编号 |
+| result[].marketId  | String  | 商店代码 |
+| result[].userId  | String  | 用户ID |
+| result[].paymentSeq | String  | 支付编号 |
 | result[].accessToken | String | 支付验证令牌 |
 | result[].productSeq | Long | 支付道具编号（console中注册的道具固有编号）|
-| result[].productId | String  |  商店注册的商品（道具）标识符 |
-| result[].productType | String  |  商品（道具）类型<br>订阅： AUTO_RENEWABLE |
+| result[].productId | String  | 商店注册的商品（道具）标识符 |
+| result[].productType | String  | 商品（道具）类型<br>订阅：AUTO_RENEWABLE |
 | result[].currency  | String  | 支付货币  |
 | result[].price | Float | 支付价格 |
 | result[].paymentId | String | 最近更新的商店支付编号 |
@@ -1389,7 +1510,12 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ## Leaderboard
 
-Gamebase为TOAST Leaderboard服务的服务器API提供**Wrapping**功能。使用Wrapping 功能可在用户服务器上通过统一接口使用TOAST服务
+Gamebase为NHN Cloud Leaderboard服务的服务器API提供**Wrapping**功能。使用Wrapping功能可在用户服务器上通过统一接口来使用NHN Cloud服务。
+
+> [参考]
+> 如果启用Gamebase，即使不设置Leaderboard Appkey，也可通过调用Gamebase Wrapping API来使用Leaderboard功能。 
+
+<br>
 
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
@@ -1398,6 +1524,8 @@ Gamebase为TOAST Leaderboard服务的服务器API提供**Wrapping**功能。使�
 | 查询单个用户分数/排名 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
 | 查询多个用户分数/排名 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
 | 查询一定范围的整体分数/排名 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
+| 查询指定顺序的用户 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| 查询指定用户的顺序和上级、下级用户的顺序 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} | /leaderboard/v2.0/appkeys/{appkey}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} |
 | 登录单个用户分数 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
 | 登录单个用户分数/ExtraData | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
 | 登录多个用户分数 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
@@ -1405,27 +1533,95 @@ Gamebase为TOAST Leaderboard服务的服务器API提供**Wrapping**功能。使�
 | 删除单个用户Leaderboard信息 | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
 
 **有关API的详细说明，请参考以下链接。**
+关于与Gamebase Wrapping API进行映射的Leaderboard API Spec，请参考以下指南。
+即使不设置Leaderboard Appkey，也可使用Gamebase AppId和SecretKey调用Gamebase Wrapping Leaderboard API。
 
 [Leaderboard Guide](/Game/Leaderboard/ko/api-guide/)
+
+<br/>
 
 ##### API调用示例
 
 ```
+GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
+
+Content-Type: application/json
+X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
+X-Secret-Key: IgsaAP
+```
+
+<br/>
+<br/>
+
+## Push
+
+Gamebase为NHN Cloud Push服务的服务器API提供**Wrapping**功能。如果使用Wrapping功能，可通过用户服务器的单一的统合界面来使用NHN Cloud服务。
+
+> [参考]
+> 如果启用Gamebase，即使不设置Push Appkey，也可通过调用Gamebase Wrapping API使用Push功能。 
+
+
+<br>
+
+#### Wrapping API
+|    | API | Method | Wrapping URI | Push URI |
+| --- | --- | --- | --- | --- |
+| 消息 | 发送 | POST | /tcgb-push/v1.3/apps/{appId}/messages | /push/v2.4/appkeys/{appkey}/messages |
+|   | 查询 | GET | /tcgb-push/v1.3/apps/{appId}/messages | /push/v2.4/appkeys/{appkey}/messages |
+|   | 查询发送日志 | GET | /tcgb-push/v1.3/apps/{appId}/logs/message | /push/v2.4/appkeys/{appkey}/logs/message |
+| 预约的消息 | 生成发送日程 | POST | /tcgb-push/v1.3/apps/{appId}/schedules | /push/v2.4/appkeys/{appkey}/schedules |
+|   | 生成 | POST | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+|   | 查询列表 | GET | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+|   | 查询单件 | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id} | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id} |
+|   | 查询成功发送 | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id}/messages | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id}/messages |
+|   | 更改 | PUT | /tcgb-push/v1.3/apps/{appId}/reservations/{reservationId} | /push/v2.4/appkeys/{appkey}/reservations/{reservationId} |
+|   | 删除 | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+
+**有关相关API的详细说明，请参考以下链接。**
+关于与Gamebase Wrapping API进行映射的Push API Spec，请参考以下指南。
+即使不设置Push Appkey，也可使用Gamebase AppId和SecretKey调用Gamebase Wrapping Push API。   
+
+[Push Guide](/Notification/Push/zh/api-guide/)
+
+<br/>
+
+##### API调用示例
+
+```
+POST https://api-gamebase.cloud.toast.com/tcgb-push/v1.3/apps/{appId}/messages
+
 Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 X-Secret-Key: IgsaAP
 
-GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
+{
+    "target" : {
+        "type" : "UID",
+        "to": ["uid-1", "uid-2"]
+    },
+    "content" : {
+        "default" : {
+            "title": "title",
+            "body": "body"
+        }
+    },
+    "messageType" : "AD",
+    "contact": "1588-1588",
+    "removeGuide": "Menu > Setting",
+    "timeToLiveMinute": 1,
+    "provisionedResourceId": "id",
+    "adWordPosition": "TITLE"
+}
 ```
 
-<br>
-<br>
+<br/>
+<br/>
 
 ## Others
 
 ### Support
 
-如需咨询API调用失败原因，请将 **API调用URL(如有HTTP body将HTTP body一同)及响应结果**发送到 [客服中心](https://toast.com/support/inquiry)，我们会尽快回复。
+如需咨询API调用失败原因，请将**API调用URL(如有HTTP body将HTTP body一同)及响应结果**发送到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。
 
 ##### API调用示例
 

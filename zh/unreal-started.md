@@ -8,7 +8,7 @@
 >
 > Unreal支持版本
 >
-> * UE 4.22 ~ UE 4.25
+> * UE 4.22 ~ UE 4.26
 > * 如果需要比上述版本更低的Unreal版本，请联系[客户服务](https://toast.com/support/inquiry)。
 
 #### Supported Platforms
@@ -44,40 +44,21 @@ Supported Platforms
 
 ### Android Settings
 
-* Plugins/Gamebase/Source/Gamebase/Gamebase_Android_UPL.xml
-    * 添加要使用的认证、结算、推送模块的gradle依赖性。 
+1. 选择编辑器菜单**Edit > Project Settings**。
+2. 在Project Settings窗选择Plugin类别中的**Gamebase**。
 
-```xml
-<buildGradleAdditions>
-    <insert>
-        dependencies {
-            // >>> Gamebase Version
-            def GAMEBASE_SDK_VERSION = 'x.x.x'
+![Unreal Project Settings - Android](http://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.19.0.png)
 
-            implementation "com.toast.android.gamebase:gamebase-sdk:$GAMEBASE_SDK_VERSION"
-            implementation "com.toast.android.gamebase:gamebase-sdk-base:$GAMEBASE_SDK_VERSION"
+* Android - Authentication
+    * 启用要使用的IdP。
+    * 使用Hangame IdP时，请咨询客服。
+* Android - Push
+    * 启用要使用的Push。
+* Android - Purchase
+    * 选择要使用的商店。
+    * ONE Store
+        * View Option - 在结算页面(Full)和结算弹窗(Popup)当中选择。 
 
-            // >>> Gamebase - Add Auth Adapter (按照要使用的IdP，将gamebase-adapter-auth模块添加到gradle依赖性中。)
-            //implementation "com.toast.android.gamebase:gamebase-adapter-auth-facebook:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-auth-google:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-auth-line:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-auth-naver:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-auth-payco:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-auth-twitter:$GAMEBASE_SDK_VERSION"
-
-            // >>> Gamebase - Select Purchase Adapter (将要使用的商店的gamebase-adapter-purchase模块添加到gradle依赖性中。)
-            //implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
-            //implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
-
-            // >>> Gamebase - Select Push Adapter (将要使用的Push的gamebase-adapter-push模块添加到gradle依赖性中。)
-            //implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
-
-            // Add the TOAST Crash Reporter for NDK dependency
-            implementation 'com.toast.android:toast-crash-reporter-ndk:0.21.0'
-        }
-    </insert>
-</buildGradleAdditions>
-```
 
 #### Google Play认证及未完成的结算
 
@@ -164,7 +145,7 @@ if (bRemoteNotificationsSupported)
 因出现以下问题不能使用Rich Push Notification功能。
 
 * Unreal不提供在项目中可添加[Notification Service Extension](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension?language=objc)的方法。
-    * [创建TOAST Push Notification Service Extension](https://docs.toast.com/en/TOAST/en/toast-sdk/push-ios/#notification-service-extension)
+    * [创建NHN Cloud Push Notification Service Extension](https://docs.toast.com/en/TOAST/en/toast-sdk/push-ios/#notification-service-extension)
 
 #### iOS SDK的Warning消息导致Unreal打包错误
 
@@ -178,7 +159,7 @@ if (bRemoteNotificationsSupported)
 
 因UE4中使用的PLCrashReporter不支持”arm64e”architecture，出现未能从使用该architecture的设备获取存储器地址值的问题。
 
-在TOAST Log & Crash Search中使用Crash分析的游戏开发公司应参考以下指南更改UE4内部PLCrashReporter。
+在NHN Cloud Log & Crash Search中使用Crash分析的游戏开发公司应参考以下指南更改UE4内部PLCrashReporter。
 
 1. 需要解压GamebaseSDK-Unreal/Source/Gamebase/ThirdParty/IOS/GamebaseSDK-iOS/externals/plcrashreporter.zip文件。
 2. 将UE4内部PLCrashReporter的a文件和header文件换成解压缩的文件。
