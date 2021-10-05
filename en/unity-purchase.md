@@ -312,7 +312,7 @@ public class PurchasableItem
     public string localizedDescription;
 
     /// <summary>
-    /// Shows whether the product is 'used or not' in the Gamebase.
+    /// Shows whether the product is 'used or not' in the Gamebase console.
     /// </summary>
     public bool isActive;
 }
@@ -363,7 +363,7 @@ public void RequestItemListOfNotConsumed()
 }
 ```
 
-### List Actived Subscriptions
+### List Activated Subscriptions
 
 List activated subscriptions for the current user ID. 
 Subscriptions that are paid up (e.g. auto-renewable subscription, auto-renewed consumable subscription) can be listed before they are expired.
@@ -437,16 +437,16 @@ Supported Platforms
 
 | Error                                       | Error Code | Description                              |
 | ------------------------------------------- | ---------- | ---------------------------------------- |
-| PURCHASE_NOT_INITIALIZED                    | 4001       | The purchase module is not initialized.<br>Check if the gamebase-adapter-purchase-IAP module has been added to project. |
-| PURCHASE_USER_CANCELED                      | 4002       | Purchase is cancelled. |
+| PURCHASE_NOT_INITIALIZED                    | 4001       | The purchase module has not been initialized.<br>Check if the gamebase-adapter-purchase-IAP module has been added to project. |
+| PURCHASE_USER_CANCELED                      | 4002       | Purchase has been cancelled. |
 | PURCHASE_NOT_FINISHED\_PREVIOUS\_PURCHASING | 4003       | API has been called when a purchase logic is not completed. |
 | PURCHASE_NOT_ENOUGH_CASH                    | 4004       | Cannot purchase due to shortage of cash of the store. |
 | PURCHASE_INACTIVE_PRODUCT_ID                | 4005       | Product is not activated.   |
 | PURCHASE_NOT_EXIST_PRODUCT_ID               | 4006       | Requested for purchase with invalid GamebaseProductID. |
 | PURCHASE_LIMIT_EXCEEDED                     | 4007       | You have exceeded your monthly purchase limit.              |
-| PURCHASE_NOT_SUPPORTED_MARKET               | 4010       | The store is not supported.<br>You can choose either GG (Google), TS (ONE Store), or TEST. |
+| PURCHASE_NOT_SUPPORTED_MARKET               | 4010       | The store is not supported.<br>The stores you can select are AS (App Store), GG (Google), ONESTORE, and GALAXY. |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR             | 4201       | Error in IAP library.<br>Check DetailCode. |
-| PURCHASE_UNKNOWN_ERROR                      | 4999       | Unknown error in purchase.<br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we'll respond ASAP. |
+| PURCHASE_UNKNOWN_ERROR                      | 4999       | Unknown error in purchase.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry) and we'll reply at the earliest possible moment. |
 
 * Refer to the following document for the entire error code.
     * [Entire Error Codes](./error-code/#client-sdk)

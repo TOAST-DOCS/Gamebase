@@ -126,7 +126,7 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
 
 #### Optional parameter
 
-* callback : Uses a callback to inform the user when the terms and conditions window closes after agreeing to it. The GamebaseResponse.DataContainer object which comes as a callback can be converted to GamebaseResponse.Push.PushConfiguration. The converted object can be used in the Gamebase.Push.RegisterPush API after login.
+* callback: Uses a callback to inform the user when the terms and conditions window closes after agreeing to it. The GamebaseResponse.DataContainer object which comes as a callback can be converted to GamebaseResponse.Push.PushConfiguration. The converted object can be used in the Gamebase.Push.RegisterPush API after login.
 
 
 **API**
@@ -148,7 +148,7 @@ static void ShowTermsView(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Dat
 | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | The Terms API called previously has not been completed yet.<br/>Please try again later. |
 | UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW(6925) | Unfinished terms & conditions WebView has been called again. |
 | WEBVIEW\_TIMEOUT(7002) | Timed out while displaying the terms and conditions WebView. |
-| WEBVIEW\_HTTP\_ERROR(7003) | HTTP has occurred while the terms and conditions WebView is open. |
+| WEBVIEW\_HTTP\_ERROR(7003) | An HTTP error has occurred while opening the terms and conditions WebView. |
 
 **Example**
 
@@ -186,12 +186,12 @@ Calling it after login also lets you see if the game user has agreed to the term
 > * The required items with GamebaseResponse.Terms.ContentDetail.required set to true are not stored in the Gamebase server; therefore, false is always returned for the agreed value.
 >     * It is because there is no point in storing the required items since they are always stored as true.
 > * The user consent for receiving the push notification is not stored in the Gamebase server either; therefore, the agreed value is always returned as false.
->     * To see if the user has agreed to receive push, please check the Gamebase.Push.QueryPush API.
+>     * To see if the user has agreed to receive push, use the Gamebase.Push.QueryPush API.
 > * If you do not touch the 'Terms and Conditions settings' in the console, **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** error occurs when you call the queryTerms API from the device with the country code different from the terms and conditions language.
 >     * If you complete the 'Terms and Conditions settings' in the console or if **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** error occurs, please make sure the terms and conditions are not displayed.
 
 #### Required parameter
-* callback : Uses a callback to inform the user about the API call result. With the GamebaseResponse.Terms.QueryTermsResult that comes as callback, you can acquire the terms and conditions information set in the console.
+* callback: Uses a callback to inform the user about the API call result. With the GamebaseResponse.Terms.QueryTermsResult that comes as callback, you can acquire the terms and conditions information set in the console.
  
 
 **API**
@@ -237,7 +237,7 @@ public void SampleQueryTerms()
 | -------------------- | --------------------------------| ------------------- |
 | termsSeq             | int                             | KEY for the entire terms and conditions.<br/>This value is required when calling updateTerms API.          |
 | termsVersion         | string                          | T&C version.<br/>This value is required when calling updateTerms API.              |
-| termsCountryType     | string                          | Terms and conditions type.<br/> - KOREAN : Korean terms and conditions <br/> - GDPR : European terms and conditions <br/> - ETC : Other countries' terms and conditions         |
+| termsCountryType     | string                          | Terms and conditions type.<br/> - KOREAN: Korean terms and conditions <br/> - GDPR: European terms and conditions <br/> - ETC: Other countries' terms and conditions         |
 | contents             | List< ContentDetail > | Terms and conditions info          |
 
 
@@ -248,7 +248,7 @@ public void SampleQueryTerms()
 | termsContentSeq      | int                   | T&C KEY         | 
 | name                 | string                | T&C Name         |
 | required             | bool                  | Whether agreement is required         |
-| agreePush            | string                | Whether to accept advertisement push.<br/> - NONE : Do not accept <br/> - ALL : Accept all <br/> - DAY : Accept push notification during daytime<br/> - NIGHT : Accept push notification during night time          |
+| agreePush            | string                | Whether to accept advertisement push.<br/> - NONE: Do not accept <br/> - ALL: Accept all <br/> - DAY: Accept push notification during daytime<br/> - NIGHT: Accept push notification during night time          |
 | agreed               | bool                  | User's consent to the terms and conditions           |
 | node1DepthPosition   | int                   | Primary item exposure sequence.           |
 | node2DepthPosition   | int                   | Secondary item exposure sequence.<br/> If none, -1           |
@@ -270,11 +270,11 @@ It can be used to terminate the agreement to optional terms and conditions as we
 >
 
 #### Required parameter
-* configuration : Information of optional T&C of users who will be registered on the server.
+* configuration: Information of optional T&C of users who will be registered on the server.
  
 #### Optional parameter
 
-* callback : Registers information on the optional terms and conditions, and uses the callback to inform the user.
+* callback: Registers the information of optional terms and conditions on the server, and uses the callback to inform the user.
 
 
 **API**

@@ -67,6 +67,39 @@ To find out more, see the following document.
 
 * [Signing Projects for Release](https://docs.unrealengine.com/en-US/Platforms/Mobile/Android/DistributionSigning/index.html)
 
+#### Enable AndroidX
+
+* From Gamebase Android SDK 2.25.0, AndroidX has been introduced. Therefore, you must add the following setting to the [UPL (Unreal Plugin Language)](https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Mobile/UnrealPluginLanguage/) file.
+
+```xml
+<gradleProperties>    
+  <insert>
+    android.useAndroidX=true      
+    android.enableJetifier=true    
+  </insert>  
+</gradleProperties>
+```
+
+#### Enable multidex
+
+* From Gamebase Unreal SDK 2.26.0, the multidex-related setting within Gamebase has been removed. Therefore, you must add the following setting to the [UPL (Unreal Plugin Language)](https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Mobile/UnrealPluginLanguage/) file.
+
+```xml
+<buildGradleAdditions>
+  <insert>
+  android {
+    defaultConfig {
+      multiDexEnabled true
+    }
+  }
+  </insert>
+</buildGradleAdditions>
+
+<androidManifestUpdates>
+    <addAttribute tag="application" name="android:name" value="androidx.multidex.MultiDexApplication"/>
+</androidManifestUpdates>
+```
+
 ### iOS Settings
 
 To use the Gamebase SDK for Unreal, `UE4 Github source code` has to be used, and the Github account must be linked after joining the Epic games in order to expose the UnrealEngine repository.
