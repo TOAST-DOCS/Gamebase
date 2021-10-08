@@ -1,5 +1,17 @@
 ## Game > Gamebase > Release Notes > Console
 
+### October 12, 2021
+
+#### Feature Updates
+* Push > Statistics > Send/Receive, Receive Settings
+	* Changed the file download format to CSV.
+* Coupon > History, Coupon publish list
+	* Changed the file download format to CSV.
+
+#### Bug Fixes
+* Analytics > User Indicators > Life Cycle
+	* Fixed a bug where the withdrawn user indicator is displayed as 0 on the day of registration.
+	
 ### September 28, 2021
 
 #### Feature Updates
@@ -1168,7 +1180,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 버그수정
 * [SDK] 1.13.0
 	* (Android)NaverCafe SDK와의 충돌로 Naver 로그인시 발생하던 오류 해결
-	* (Unity)Unity 2017.2 이상 버전에서 Editor Play Mode 종료 시 websocke close 처리에서 발생하던 오류 수정
+	* (Unity)Unity 2017.2 이상 버전에서 Editor Play Mode 종료 시 websocket close 처리에서 발생하던 오류 수정
 * Console
 	* App : 정보 수정시 삭제버튼 뒤의 내용이 잘리는 현상 수정
 
