@@ -12,6 +12,7 @@
     * If the user does not satisfy the conditions within the period, the user is banned.
 * Games that use the purchase abuse automatic release function must always call the AuthToken.getGraceBanInfo() API after login. If a valid GraceBanInfo object that is not null is returned, the user must be informed of the ban release conditions, period, etc.
     * In-game access control for users who are in ban suspension status must be handled by the game.
+* Added a feature to display a wait icon while waiting for a login response.
 
 #### Feature Updates
 * External SDK update: PAYCO Android SDK(1.5.6)
@@ -296,7 +297,7 @@ you may encounter an issue during reprocessing if a different billing client ver
 
 #### Bug Fixes
 * [SDK] 2.9.1
-	* (Andoird) Fixed an error in which an indicator level becomes null after mapped and does not show properly on the purchase indicator  
+	* (Androird) Fixed an error in which an indicator level becomes null after mapped and does not show properly on the purchase indicator  
 	* (iOS) Fixed the inavailability of a build on an unreal engine since warning is considered as a build error 
 
 ### 2.9.0 (April 28, 2020)
