@@ -1,12 +1,77 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.21.2
+
+### iOS
+
+* 如果在Gamebase iOS SDK 2.21.1中启用bitcode后进行**archive build**，则将出现错误。
+    * 使用bitcode时，请使用已解决上述问题的Gamebase iOS SDK 2.21.2。
+
+## 2.21.0
+
+### Android
+
+* 因向jCenter发布的Gamebase Android SDK 2.21.0打包出现错误，如果声明**mavenCentral()**之前先声明**jcenter()**，则将在所有的Gamebase API出现崩溃。 
+    * 请使用正常发布的Gamebase Android SDK 2.21.1或声明**jcenter（）之前先声明**mavenCentral（）**。
+* Maven Repository
+    * 因jCenter停止向一般用户提供服务([https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/](https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/) )，无法再上载新版本。(对jCenter的访问也将于2022年2月1日结束。)
+    * 从Gamebase Android SDK 2.21.0以上版本开始只在**mavenCentral()**发布，而不在**jcenter()**发布，因此需要在gradle repository中添加mavenCentral。
+
+```groovy
+repositories {
+    // >>> For Gamebase SDK
+    mavenCentral()
+    ...
+}
+```
+
+#### Line IdP
+
+* 使用Line IdP时，当Line SDK被更新时，若不在Gradle中设置**JavaVersion.VERSION_1_8**，则将导致打包失败。(请参考以下示例。)
+* 使用Line IdP时，因在Line SDK中声明为**android:allowBackup="false"**，应用程序打包时可能在Manifest merger出现fail。如果打包失败，请参考以下示例，将tools:replace=“android:allowBackup”在应用程序标签中声明。 
+
+```groovy
+android {
+    compileOptions {
+        // >>> [Line IdP]
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8 
+    }
+    
+}
+```
+
+```xml
+<application
+      tools:replace="android:allowBackup"
+      ... >
+```
+
+### iOS
+
+* 如果在Gamebase iOS SDK 2.21.0上使用bitcode，则将出现错误。 
+    * 如果要使用bitcode，请使用Gamebase iOS SDK 2.21.1。
+
+## 2.20.2
+ 
+### iOS
+
+#### Facebook IdP
+
+* 在Gamebase iOS SDK 2.20.2上Facebook SDK已更新至9.1.0。
+    * 需要对Facebook SDK进行额外的设置，请在info.plist中添加以下值。如果不进行设置，则将导致崩溃。
+        * FacebookAutoLogAppEventsEnabled
+        * FacebookAdvertiserIDCollectionEnabled
+* 关于详细信息，请参考[Facebook iOS SDK指南](https://developers.facebook.com/docs/app-events/getting-started-app-events-ios)。
+
 ## 2.19.0
 
 ### Android
 
+#### Weibo IdP
+
 * 若在Gamebase Android SDK 2.19.0中交替使用Weibo IdP登录和其他IdP登录，则将发生崩溃。
     * 如果需要用Weibo IdP，请使用已解决上述问题的Gamebase Android SDK 2.19.1。
-
 
 ## 2.18.2
 
@@ -23,6 +88,8 @@
 
 ### Android
 
+#### Purchase Google
+
 * 如果在Gamebase Android SDK 2.18.0中调用Google道具支付，则将发生崩溃。 
     * 如果需要用Weibo IdP，请使用已解决上述问题的Gamebase Android SDK 2.18.1。
 
@@ -31,7 +98,7 @@
 ### Android
 
 * 若在Gamebase Android SDK 2.17.0中调用Gamebase.ImageNotice.showImageNotices API，则将发生崩溃。
-    * 请使用已解决在2.17.0中发生崩溃或Custom Scheme Event在OS 5.0~6.0中不正常启动等问题的Gamebase Android SDK 2.17.4。
+    * 请使用已解决2.17.0中发生崩溃或在OS 5.0~6.0中Custom Scheme Event不正常启动等问题的Gamebase Android SDK 2.17.4。
  
 ## 2.15.1
 
@@ -43,8 +110,10 @@
 
 ### Android
 
+#### Purchase Google
+
 * 使用**gamebase-adapter-purchase-google**时，若要将Gamebase SDK 2.15.0以下版本升级到2.15.0以上版本，则必须将**以前版本的Game Client Version设置为“必须更新”**。 
-	* 若不更新，当更新Google Billing Client模块儿，在不同的Billing Client版本被适用于多个终端机的情况下，进行道具购买出现错误时，“支付在处理”的过程中将出现问题。
+	* 因为Google Billing Client模块儿被更新，使不同的Billing Client版本适用于多个终端机的情况下，如果购买道具时出现错误，进行“支付在处理”时将出现问题。
 
 ## 2.6.0
 
@@ -76,8 +145,8 @@ buildscript {
 
 #### Firebase推送
 
-* 使用 Firebase Cloud Messaging 时，要将从 Firebase Console 中下载的 google-services.json 文件转换为 xml 资源，并添加到项目中才能成功收到推送。
-    * 使用 Gamebase 2.5.0 以前的旧版本时，没有 xml 资源的情况下也可收到推送，但使用 Gamebase 2.6.0 以上版本时必须要有 xml 资源才能收到。
+* 使用Firebase Cloud Messaging时，要将从Firebase Console中下载的google-services.json文件转换为xml资源，并添加到项目中才能成功收到推送。
+    * 使用Gamebase 2.5.0以前的旧版本时，没有xml资源的情况下也可收到推送，但使用Gamebase 2.6.0以上版本时必须要有xml资源才能收到。
 * 请参考以下实施指南。
     * [\[Game > Gamebase > Android SDK 使用指南 > push > Settings > Firebase\]](./aos-push/#firebase)
 
@@ -122,7 +191,7 @@ buildscript {
     * 自Gamebase Android SDK 2.6.0以上起，发送推送信息时，应通过Gamebase控制台的**推送**选项卡的菜单发送。
         * 若低于Gamebase Android SDK 2.6.0，应从Gamebase控制台的**推送（旧）**选项卡发送推送。
     * GamebaseConfiguration.Builder.setFCMSenderId()现在不调用也无妨。
-    * 调用GamebaseConfiguration.Builder.setTencentAccessKey(), GamebaseConfiguration.Builder.setTencentAccessId()时，应清除API调用，并在build.gradle中如下声明。
+    * 调用GamebaseConfiguration.Builder.setTencentAccessKey()、 GamebaseConfiguration.Builder.setTencentAccessId()时，应清除API调用，并在build.gradle中如下声明。
 
 ```groovy
 android {
