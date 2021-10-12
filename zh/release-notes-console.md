@@ -1,5 +1,17 @@
 ## Game > Gamebase > Release Notes > Console
 
+### October 12, 2021
+
+#### Feature Updates
+* Push > Statistics > Send/Receive, Receive Settings
+	* Changed the file download format to CSV.
+* Coupon > History, Coupon publish list
+	* Changed the file download format to CSV.
+
+#### Bug Fixes
+* Analytics > User Indicators > Life Cycle
+	* Fixed a bug where the withdrawn user indicator is displayed as 0 on the day of registration.
+
 ### September 28, 2021
 
 #### Feature Updates
