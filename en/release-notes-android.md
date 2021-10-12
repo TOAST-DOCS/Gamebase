@@ -297,7 +297,7 @@ you may encounter an issue during reprocessing if a different billing client ver
 
 #### Bug Fixes
 * [SDK] 2.9.1
-	* (Androird) Fixed an error in which an indicator level becomes null after mapped and does not show properly on the purchase indicator  
+	* (Android) Fixed an error in which an indicator level becomes null after mapped and does not show properly on the purchase indicator  
 	* (iOS) Fixed the inavailability of a build on an unreal engine since warning is considered as a build error 
 
 ### 2.9.0 (April 28, 2020)
