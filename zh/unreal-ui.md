@@ -4,7 +4,7 @@
 
 通过在控制台中注册图片，向用户推送图片通知。
 
-![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-001.png)
+![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-002.png)
 
 ### Show ImageNotices
 
@@ -144,7 +144,7 @@ void Sample::ShowWebView(const FString& url)
 > [TIP]
 >
 > iPadOS 13以上中的WebView基本上是桌面模式。
-> 通过contentMode =`GamebaseWebViewContentMode.MOBILE` 设置可以更改移动模式。
+> 通过contentMode = ”GamebaseWebViewContentMode.MOBILE”设置可以更改移动模式。
 
 #### Predefined Custom Scheme
 
@@ -262,6 +262,7 @@ void Sample::ShowToast(const FString& message, EGamebaseToastExposureTime exposu
 
 | Error              | Error Code | Description                 |
 | ------------------ | ---------- | --------------------------- |
+| UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | 显示图片通知时出现了超时错误。|
 | UI\_UNKNOWN\_ERROR | 6999       | 是未知错误(是未定义的错误)。|
 
 * 关于所有错误代码，请参考以下文档。 
