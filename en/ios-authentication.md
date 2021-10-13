@@ -176,7 +176,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | keyname                                  | Usage                          | Value Type                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                                |
 
 
@@ -882,6 +882,52 @@ Instant withdrawal cannot be undone, so it is important to ask the user several 
 }
 ```
 
+## GraceBan
+
+* This is a 'purchase abuse automatic release' function.
+    * The purchase abuse automatic release function allows users who should be banned due to purchase abuse automatic lockdown to be banned after ban suspension status.
+    * When a user is in ban suspension status, if the user satisfies all of the release conditions within the set period of time, the user will be able to play normally.
+    * If the user does not satisfy the conditions within the period, the user is banned.
+* Games that use the purchase abuse automatic release function must always check the value of TCGBAuthToken.tcgbMember.graceBanInfo after login. If a valid TCGBGraceBanInfo object that is not null is returned, the user must be informed of the ban release conditions, period, etc.
+    * In-game access control for users who are in ban suspension status must be handled by the game.
+
+**Example**
+
+```objectivec
+- (void)testGraceBanInfo {
+    [TCGBGamebase loginWithType:kTCGBAuthAppleID viewController:viewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == NO) {
+            // Login failed
+            return;
+        }
+        
+        // Check if user is under grace ban
+        if (authToken.tcgbMember.graceBanInfo != nil) {
+            TCGBGraceBanInfo *graceBanInfo = authToken.tcgbMember.graceBanInfo;
+            // gracePeriodDate : epoch time in milliseconds
+            long long gracePeriodDate = graceBanInfo.gracePeriodDate;
+            NSString *message = [graceBanInfo.message stringByRemovingPercentEncoding];
+            if (graceBanInfo.paymentStatus != nil) {
+                TCGBPaymentStatus *paymentStatus = graceBanInfo.paymentStatus;
+                double paymentStatusAmount = paymentStatus.amount;
+                int paymentStatusCount = paymentStatus.count;
+            }
+            if (graceBanInfo.releaseRuleCondition != nil) {
+                TCGBReleaseRuleCondition *releaseRuleCondition = graceBanInfo.releaseRuleCondition;
+                double releaseRuleConditionAmount = releaseRuleCondition.amount;
+                int releaseRuleConditionCount = releaseRuleCondition.count;
+                NSString *releaseRuleConditionCurrency = releaseRuleCondition.currency;
+                // condition type : "AND", "OR"
+                NSString *releaseRuleConditionType = releaseRuleCondition.conditionType;
+            }
+            // Guide the user through the UI how to finish the grace ban status.
+        }
+        else {
+            // Login Success
+        }
+    }];
+}
+```
 
 ## Error Handling
 

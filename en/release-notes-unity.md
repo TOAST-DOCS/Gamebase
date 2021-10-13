@@ -3,17 +3,17 @@
 ### 2.28.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* Kakaogame 인증 추가
-* '결제 어뷰징 자동 해제' 기능이 추가되었습니다.
-    * [Game > Gamebase > Unity SDK 사용 가이드 > 인증 > GraceBan](./unity-authentication/#graceban)
-    * 결제 어뷰징 자동 해제 기능은 결제 어뷰징 자동 제재로 이용 정지가 되어야 할 사용자가 이용 정지 유예 상태 후 이용 정지가 되도록 합니다.
-    * 이용 정지 유예 상태일 경우 설정한 기간 내에 해제 조건을 모두 만족하면 정상플레이가 가능해집니다.
-    * 기간 내에 조건을 충족하지 못하면 이용 정지가 됩니다.
-* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 AuthToken.getGraceBanInfo() API 값을 확인하고, null이 아닌 유효한 GraceBanInfo 객체를 리턴한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
-    * 이용 정지 유예 상태인 유저의 게임 내 접근 제어는 게임에서 처리하셔야 합니다.
+#### Added Features
+* Added Kakaogame authentication
+* Added a 'purchase abuse automatic release' function.
+    * [Game > Gamebase > Unity SDK User Guide > Authentication > GraceBan](./unity-authentication/#graceban)
+    * The purchase abuse automatic release function allows users who should be banned due to purchase abuse automatic lockdown to be banned after ban suspension status.
+    * When a user is in ban suspension status, if the user satisfies all of the release conditions within the set period of time, the user will be able to play normally.
+    * If the user does not satisfy the conditions within the period, the user is banned.
+* Games that use the purchase abuse automatic release function must always call the AuthToken.getGraceBanInfo() API after login. If a valid GraceBanInfo object that is not null is returned, the user must be informed of the ban release conditions, period, etc.
+    * In-game access control for users who are in ban suspension status must be handled by the game.
 
-#### 플랫폼 별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.28.0](./release-notes-android/#2280-20210928)
 * [Gamebase iOS SDK 2.28.0](./release-notes-ios/#2280-20210928)
 
@@ -29,7 +29,7 @@
 * Fixed a bug where the 'Unregistered Game Version' error pop-up was displayed only in English.
 * Fixed a bug where the Chinese text was not displayed in the maintenance pop-up.
 
-#### Changes per Platform
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.27.1](./release-notes-android/#2271-20210914)
 * [Gamebase iOS SDK 2.27.1](./release-notes-ios/#2271-20210914)
 

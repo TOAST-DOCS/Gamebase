@@ -18,11 +18,8 @@ Many games allow login execution on the title page.
 
 The above login can be implemented in the following order: 
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
+![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
 #### 1. Authenticate with Previous Login Type 
 
@@ -120,8 +117,9 @@ void Sample::LoginForLastLoggedInProvider()
 ### Login with GUEST
 
 Gamebase supports guest login. 
-Create a unique key of device to try a login to Gamebase. 
-With guest login, device key might be initialized, which may cause your account to be deleted; therefore, it is recommended to use IdP for a login. 
+
+* Create a unique key of device to try a login to Gamebase. 
+* With guest login, device key might be initialized, which may cause your account to be deleted; therefore, it is recommended to use IdP for a login. 
 
 **API**
 
@@ -169,6 +167,14 @@ void Sample::Login()
 ### Login with IdP
 
 Following codes are login examples with particular IdP. 
+The types of IdPs that can be used for login can be found in the **GamebaseAuthProvider** class.
+
+> [Note]
+>
+> Some IdPs require additional information for login.
+> To set these additional information, void Login(const FString& providerName, const UGamebaseJsonObject& additionalInfo, const FGamebaseAuthTokenDelegate& onCallback) API is provided.
+> You can input required information in the additionalInfo parameter in the form of a dictionary.
+> If additionalInfo is available, it is used. If it is null, the value registered in [NHN Cloud Console](./oper-app/#authentication-information) is used.
 
 **API**
 
@@ -181,29 +187,6 @@ Supported Platforms
 void Login(const FString& providerName, const FGamebaseAuthTokenDelegate& onCallback);
 void Login(const FString& providerName, const UGamebaseJsonObject& additionalInfo, const FGamebaseAuthTokenDelegate& onCallback);
 ```
-
-**providerName**
-
-| Provider    | Define                          | Support Platform | 
-| --------    | ------------------------------- | ---------------- |
-| Google      | GamebaseAuthProvider::Google     | Android<br/>iOS |
-| Game Center | GamebaseAuthProvider::GameCenter | iOS |
-| Apple ID    | GamebaseAuthProvider::AppleId    | iOS |
-| Facebook    | GamebaseAuthProvider::Facebook   | Android<br/>iOS |
-| Payco       | GamebaseAuthProvider::Payco      | Android<br/>iOS |
-| Naver       | GamebaseAuthProvider::Naver      | Android<br/>iOS |
-| Twitter     | GamebaseAuthProvider::Twitter    | Android<br/>iOS |
-| Line        | GamebaseAuthProvider::Line       | Android<br/>iOS |
-| HANGAME     | GamebaseAuthProvider::Hangame    | Android<br/>iOS |
-| WEIBO       | GamebaseAuthProvider::Weibo      | Android<br/>iOS |
-
-
-> Some IdP logins require particular information. <br/>
-> For instance, to log in to Facebook, the setting for scope is needed. <br/>
-> To configure such required information, API for static void Login (string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) is provided. <br/>
-> You may enter information for the additionalInfo parameter in the format of dictionary.  
-When there's available value for additionalInfo, use it; otherwise (null), apply default value registered on NHN Cloud Console.   
-([Setting additionalInfo for NHN Cloud Console](./oper-app/#authentication-information))
 
 **Example**
 
@@ -318,9 +301,6 @@ void Sample::LoginWithCredential()
 }
 ```
 
-### Authentication of Additional Information Settings
-
-[Console Guide](./oper-app/#authentication-information)
 
 ## Logout
 

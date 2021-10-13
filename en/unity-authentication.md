@@ -273,7 +273,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | Keyname | Usage | Value Type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid, hangame, weibo, kakaogame |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Enter One Time Authorization Code (OTAC) which can be obtained after Google login. |                                          |
 
@@ -1218,6 +1218,61 @@ public void SampleWithdrawImmediately()
     });
 }
 ```
+
+## GraceBan
+
+* This is a 'purchase abuse automatic release' function.
+    * The purchase abuse automatic release function allows users who should be banned due to purchase abuse automatic lockdown to be banned after ban suspension status.
+    * When a user is in ban suspension status, if the user satisfies all of the release conditions within the set period of time, the user will be able to play normally.
+    * If the user does not satisfy the conditions within the period, the user is banned.
+* Games that use the purchase abuse automatic release function must always call the AuthToken.getGraceBanInfo() API after login. If a valid GraceBanInfo object that is not null is returned, the user must be informed of the ban release conditions, period, etc.
+    * In-game access control for users who are in ban suspension status must be handled by the game.
+
+**Example**
+
+```cs
+public void Login()
+{
+	Gamebase.Login(GamebaseAuthProvider.GUEST, (authToken, error) =>
+    {
+    	if (Gamebase.IsSuccess(error) == false)
+        {
+            // Login failed
+            return;
+        }
+
+        // Check if user is under grace ban
+        GamebaseResponse.Common.Member.GraceBanInfo graceBanInfo = authToken.member.graceBan;
+        if (graceBanInfo != null)
+        {
+            string periodDate = string.Format("{0:yyyy/MM/dd HH:mm:ss}", 
+                new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(graceBanInfo.gracePeriodDate));
+            string message = graceBanInfo.message;
+            
+            GamebaseResponse.Common.Member.GraceBanInfo.ReleaseRuleCondition releaseRuleCondition = graceBanInfo.releaseRuleCondition;
+            if (releaseRuleCondition != null)
+            {
+                // condition type : "AND", "OR"
+                string releaseRule = string.Format("{0}{1} {2} {3}time(s)", releaseRuleCondition.amount,
+                    releaseRuleCondition.currency, releaseRuleCondition.conditionType, releaseRuleCondition.count);
+            }
+
+            GamebaseResponse.Common.Member.GraceBanInfo.PaymentStatus paymentStatus = graceBanInfo.paymentStatus;
+            if (paymentStatus != null) {
+                String paidAmount = paymentStatus.amount + paymentStatus.currency;
+                String paidCount = paymentStatus.count + "time(s)";
+            }
+
+            // Guide the user through the UI how to finish the grace ban status.
+        }
+        else
+        {
+            // Login success.
+        }
+    });
+}
+```
+
 
 ## Error Handling
 
