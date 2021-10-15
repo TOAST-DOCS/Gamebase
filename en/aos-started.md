@@ -399,6 +399,15 @@ android {
         <package android:name="com.nhnent.payapp" />
         <!-- [Payco/Hangame] Configurations end -->
 
+        <!-- [Hangame] Configurations begin -->
+        <package android:name="com.nhn.hangameotp" />
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <category android:name="android.intent.category.BROWSABLE"/>
+            <data android:scheme="hangameotp" />
+        </intent>
+        <!-- [Hangame] Configurations end -->
+
         <!-- [Line] Configurations begin -->
         <package android:name="jp.naver.line.android" />
         <intent>
