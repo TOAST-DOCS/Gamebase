@@ -773,7 +773,7 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 
 ```objectivec
 - (void)testRequestWithdraw {
-    TCGBGamebase requestTemporaryWithdrawalWithViewController:parentViewController completion:^(TCGBTemporaryWithdrawalInfo *info, TCGBError *error) {
+    [TCGBGamebase requestTemporaryWithdrawalWithViewController:parentViewController completion:^(TCGBTemporaryWithdrawalInfo *info, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == NO) {
             if (error.code == TCGB_ERROR_AUTH_WITHDRAW_ALREADY_TEMPORARY_WITHDRAW) {
                 // Already requested temporary withdrawal before.
@@ -882,7 +882,6 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
     }];
 }
 ```
-
 
 ## Error Handling
 
