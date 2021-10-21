@@ -3,33 +3,33 @@
 ### 2.28.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* Kakaogame 인증 추가
-* '결제 어뷰징 자동 해제' 기능이 추가되었습니다.
-    * [Game > Gamebase > Unity SDK 사용 가이드 > 인증 > GraceBan](./unity-authentication/#graceban)
-    * 결제 어뷰징 자동 해제 기능은 결제 어뷰징 자동 제재로 이용 정지가 되어야 할 사용자가 이용 정지 유예 상태 후 이용 정지가 되도록 합니다.
-    * 이용 정지 유예 상태일 경우 설정한 기간 내에 해제 조건을 모두 만족하면 정상플레이가 가능해집니다.
-    * 기간 내에 조건을 충족하지 못하면 이용 정지가 됩니다.
-* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 AuthToken.getGraceBanInfo() API 값을 확인하고, null이 아닌 유효한 GraceBanInfo 객체를 리턴한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
-    * 이용 정지 유예 상태인 유저의 게임 내 접근 제어는 게임에서 처리하셔야 합니다.
+#### 機能追加
+* Kakaogame認証追加
+* 「決済アビューズ自動解除」機能が追加されました。
+    * [Game > Gamebase > Unity SDK使用ガイド > 認証 > GraceBan](./unity-authentication/#graceban)
+    * 決済アビューズ自動解除機能は、決済アビューズ自動制裁で利用停止にならなければいけないユーザーが利用停止猶予状態後、利用停止になるようにします。
+    * 利用停止猶予状態の場合、設定した期間内に解除条件を全て満たすと正常にプレイが可能になります。
+    * 期間内に条件を満たせなかった場合、利用停止になります。
+* 決済アビューズ自動解除機能を使用するゲームはログイン後、常にAuthToken.getGraceBanInfo() API値を確認し、nullではない有効なGraceBanInfoオブジェクトを返した場合、該当ユーザーに利用停止解除条件、期間などを案内する必要があります。
+    * 利用停止猶予状態のユーザーのゲーム内アクセス制御はゲームで処理する必要があります。
 
-#### 플랫폼 별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.28.0](./release-notes-android/#2280-20210928)
 * [Gamebase iOS SDK 2.28.0](./release-notes-ios/#2280-20210928)
 
 ### 2.27.1 (2021.09.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* Display Language 기능이 개선되었습니다.
-    * 기본 언어코드가 **en** 이었으나, Gamebase 콘솔에서 설정한 기본언어가 반영되도록 개선하였습니다.
-        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > 언어 설정](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
+#### 機能改善/変更
+* Display Language機能が改善されました。
+    * 基本言語コードが**en**でしたが、Gamebaseコンソールで設定した基本言語が反映されるように改善しました。
+        * [Game > Gamebase > コンソール使用ガイド > アプリ > App > 言語設定](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
 
-#### 버그 수정
-* '등록되지 않은 게임 버전' 에러 팝업이 영어로만 표시되는 버그를 수정하였습니다.
-* 점검 팝업에 중국어가 표시되지 않는 버그를 수정하였습니다.
+#### バグ修正
+* 「登録されていないゲームバージョン」エラーポップアップが英語でのみ表示されるバグを修正しました。
+* メンテナンスポップアップに中国語が表示されないバグを修正しました。
 
-#### 플랫폼 별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.27.1](./release-notes-android/#2271-20210914)
 * [Gamebase iOS SDK 2.27.1](./release-notes-ios/#2271-20210914)
 
@@ -498,8 +498,8 @@ Gamebase SDK 2.6.0未満バージョンから2.6.0にアップグレードする
 
 #### バグ修正
 * [SDK] 2.4.3
-	* (Unity)iOS와 Android로 빌드시 AddMappingForcibly API 가 동작하지 않는 오류 수정
-	* (Unity)RequestRetryTransaction API 호출시 iOSPlugin에서 JSON 파싱 오류가 있어 수정
+	* (Unity)iOSとAndroidでビルド時、AddMappingForcibly APIが動作しないエラーを修正
+	* (Unity)RequestRetryTransaction APIの呼び出し時、iOSPluginでJSON解析エラーを修正
 	
 ### 2019.06.27
 
