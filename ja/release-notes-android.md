@@ -3,34 +3,34 @@
 ### 2.28.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* Kakaogame 인증 추가
-* '결제 어뷰징 자동 해제' 기능이 추가되었습니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > 인증 > GraceBan](./aos-authentication/#graceban)
-    * 결제 어뷰징 자동 해제 기능은 결제 어뷰징 자동 제재로 이용 정지가 되어야 할 사용자가 이용 정지 유예 상태 후 이용 정지가 되도록 합니다.
-    * 이용 정지 유예 상태일 경우 설정한 기간 내에 해제 조건을 모두 만족하면 정상플레이가 가능해집니다.
-    * 기간 내에 조건을 충족하지 못하면 이용 정지가 됩니다.
-* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 AuthToken.getGraceBanInfo() API 값을 확인하고, null이 아닌 유효한 GraceBanInfo 객체를 리턴한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
-    * 이용 정지 유예 상태인 유저의 게임 내 접근 제어는 게임에서 처리하셔야 합니다.
-* 로그인 응답 대기중에 대기 아이콘이 표시됩니다.
+#### 機能追加
+* Kakaogame認証を追加
+* 「決済アビューズ自動解除」機能が追加されました。
+    * [Game > Gamebase > Android SDK使用ガイド > 認証 > GraceBan](./aos-authentication/#graceban)
+    * 決済アビューズ自動解除機能は、決済アビューズ自動制裁で利用停止にならなければいけないユーザーが利用停止猶予状態後、利用停止になるようにします。
+    * 利用停止猶予状態の場合、設定した期間内に解除条件を全て満たすと正常にプレイが可能になります。
+    * 期間内に条件を満たせなかった場合、利用停止になります。
+* 決済アビューズ自動解除機能を使用するゲームはログイン後、常にAuthToken.getGraceBanInfo() API値を確認し、nullではない有効なGraceBanInfoオブジェクトを返した場合、該当ユーザーに利用停止解除条件、期間などを案内する必要があります。
+    * 利用停止猶予状態のユーザーのゲーム内アクセス制御はゲームで処理する必要があります。
+* ログインレスポンス待機中に待機アイコンが表示されます。
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: PAYCO Android SDK(1.5.6)
+#### 機能改善/変更
+* 外部SDKアップデート：PAYCO Android SDK(1.5.6)
 
 ### 2.27.1 (2021.09.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: PAYCO Android SDK(1.5.5), Hangame Android SDK(1.4.1), Weibo Android SDK(11.8.1)
-* 에뮬레이터, 루팅 단말기에서 웹뷰가 정상적으로 표시되지 않을때 재시도를 추가하여, 웹뷰가 정상적으로 표시되도록 개선하였습니다.
-    * 대상은 웹뷰로 동작하는 이미지공지, 고객센터, 공통약관이 해당됩니다.
-* Weibo IdP 인증을 개선하여 안정성을 향상시켰습니다.
-    * 동기 API 이지만 실제로는 비동기로 동작하여 에러를 발생시키는 API에 예외 처리, 대기, 재시도 등을 추가였습니다.
+#### 機能改善/変更
+* 外部SDKアップデート: PAYCO Android SDK(1.5.5), Hangame Android SDK(1.4.1), Weibo Android SDK(11.8.1)
+* エミュレータ、ルート化端末でWebビューが正常に表示されない時、再試行を追加して、Webビューが正常に表示されるように改善しました。
+    * 対象はWebビューで動作する画像告知、サポート、共通約款です。
+* Weibo IdP認証を改善して安定性が向上しました。
+    * 同期APIですが、実際には非同期で動作してエラーを発生させるAPIに例外処理、待機、再試行などを追加しました。
 
-#### 버그 수정
-* '등록되지 않은 게임 버전' 에러 팝업이 영어로만 표시되는 버그를 수정하였습니다.
-* 점검 팝업에 중국어가 표시되지 않는 버그를 수정하였습니다.
-* [Credential Login](./aos-authentication/#login-with-credential) 을 한 경우, [Login as the Latest Login IdP](./aos-authentication/#login-as-the-latest-login-idp) 호출이 항상 실패하는 버그를 수정하였습니다.
+#### バグ修正
+* 「登録されていないゲームバージョン」エラーポップアップが英語でのみ表示されるバグを修正しました。
+* メンテナンスポップアップに中国語が表示されないバグを修正しました。
+* [Credential Login](./aos-authentication/#login-with-credential)を行った場合、 [Login as the Latest Login IdP](./aos-authentication/#login-as-the-latest-login-idp)呼び出しが常に失敗するバグを修正しました。
 
 ### 2.27.0 (2021.08.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-Android.zip)
@@ -338,8 +338,8 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 
 #### 機能改善/変更
 * [SDK] 2.7.2 
-      * Gamebase 초기화중 ToastLogger 초기화 부분에서 크래쉬가 발생할 수 있는 코드를 수정
-      * 서버 버전을 v1.2.1 로 업데이트 하였습니다.
+      * Gamebaseの初期化中にToastLoggerの初期化部分でクラッシュが発生するコードを修正
+      * サーバーバージョンをv1.2.1にアップデートしました。
 
 ### 2.7.1 (2020.02.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.7.1/GamebaseSDK-Android.zip)
