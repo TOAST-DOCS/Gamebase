@@ -6,16 +6,29 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 
 > [最小仕様]
 >
-> * Android API 16 (JellyBean, 4.1)以上
->     * Twitter Loginは19(Kitkat, 4.4)以上
->     * AppleID Loginは19(Kitkat, 4.4)以上
->     * Line Loginは17(Kitkat, 4.2)以上
->     * Weibo Loginは19(Kitkat, 4.4)以上
->     * GALAXY Storeは21(Lollipop, 5.0)以上
->         * ギャラクシーIAP SDKのminSdkVersionは18(OS 4.3)のため、これより小さい値を設定する場合、ビルドが失敗します。
->         * しかし、実際に決済を行うにはCheckoutサービスアプリのインストールが必要ですが、ChekcoutサービスアプリはAPI 21(OS 5.0. Lollipop)未満ではインストールが失敗するため、決済を進行できません。
-> * Android Gradle Plugin 3.2.0以上
-> * 開発環境:Android Studio
+> * 使用者実行環境：Android API 16 (JellyBean, OS 4.1)以上
+> * ビルド環境：Android Gradle Plugin 3.2.0以上
+> * 開発環境：Android Studio
+### Dependencies
+
+| Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
+| --- | --- | --- | --- | --- |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.27.1<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.5<br>okhttp-3.12.3<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | GamebaseのInterfaceおよびコアロジックを含む | API 16 (JellyBean, OS 4.1) |
+| Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Appleログインをサポート | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | Facebookログインをサポート | - |
+|  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Googleログインをサポート | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.4.1 | Hangameログインをサポート | - |
+|  | gamebase-adapter-auth-line | linesdk-5.6.2 | LINEログインをサポート | API 17(Kitkat, OS 4.2) |
+|  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Naverログインをサポート | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.5 | Paycoログインをサポート | - |
+|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitterログインをサポート | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | Weiboログインをサポート | API 19(Kitkat, OS 4.4) |
+| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.16.0<br>toast-iap-core | ゲーム内決済をサポート | - |
+|  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | Galaxy Storeをサポート | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDKのminSdkVersionは18ですが、<br>実際の決済のためにインストールしなければいけないCheckoutサービスアプリの<br>minSdkVersionは21です。 |
+|  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Google Storeをサポート | - |
+|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | ONE Storeをサポート | - |
+| Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Pushをサポート | - |
+|  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Firebase Notificationをサポート | - |
 
 ## Setting
 
