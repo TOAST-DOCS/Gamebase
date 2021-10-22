@@ -18,11 +18,8 @@ Gamebaseではゲストログインをデフォルトでサポートします。
 
 上で説明したロジックは、次のような順序で実装できます。
 
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_2.6.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_002_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_005_1.10.0.png)
+![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
+![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
 #### 1. 以前のログインタイプで認証
 
@@ -120,8 +117,9 @@ void Sample::LoginForLastLoggedInProvider()
 ### Login with GUEST
 
 Gamebaseはゲストログインをサポートします。
-デバイスの唯一のキーを作成してGamebaseにログインを試行します。
-ゲストログインは、デバイスキーが初期化される場合があり、デバイスキーの初期化時にアカウントが削除される場合があるため、IdPを活用したログイン方式を推奨します。
+
+* デバイスの唯一のキーを作成してGamebaseにログインを試行します。
+* ゲストログインは、デバイスキーが初期化されることがあり、デバイスキーの初期化時にアカウントが削除される場合があるため、IdPを活用したログイン方式を推奨します。
 
 **API**
 
@@ -169,6 +167,14 @@ void Sample::Login()
 ### Login with IdP
 
 次は、特定IdPでログインできるようにするサンプルコードです。
+ログインすることができるIdPタイプは **GamebaseAuthProvider**クラスで確認できます。
+
+> [参考]
+>
+> ログインする時に追加情報を必要とするIdPもあります。
+> このような追加情報を設定できるようにvoid Login(const FString& providerName, const UGamebaseJsonObject& additionalInfo, const FGamebaseAuthTokenDelegate& onCallback) APIを提供します。
+>additionalInfoパラメータに必須情報をdictionary形式で入力してください。
+>additionalInfo値がある場合にはその値を使用し、nullの場合には[NHN Cloud Console](./oper-app/#authentication-information)に登録された値を使用します。
 
 **API**
 
@@ -181,29 +187,6 @@ Supported Platforms
 void Login(const FString& providerName, const FGamebaseAuthTokenDelegate& onCallback);
 void Login(const FString& providerName, const UGamebaseJsonObject& additionalInfo, const FGamebaseAuthTokenDelegate& onCallback);
 ```
-
-**providerName**
-
-| Provider    | Define                          | Support Platform | 
-| --------    | ------------------------------- | ---------------- |
-| Google      | GamebaseAuthProvider::Google     | Android<br/>iOS |
-| Game Center | GamebaseAuthProvider::GameCenter | iOS |
-| Apple ID    | GamebaseAuthProvider::AppleId    | iOS |
-| Facebook    | GamebaseAuthProvider::Facebook   | Android<br/>iOS |
-| Payco       | GamebaseAuthProvider::Payco      | Android<br/>iOS |
-| Naver       | GamebaseAuthProvider::Naver      | Android<br/>iOS |
-| Twitter     | GamebaseAuthProvider::Twitter    | Android<br/>iOS |
-| Line        | GamebaseAuthProvider::Line       | Android<br/>iOS |
-| HANGAME     | GamebaseAuthProvider::Hangame    | Android<br/>iOS |
-| WEIBO       | GamebaseAuthProvider::Weibo      | Android<br/>iOS |
-
-
-> いくつかのIdPでログインする時は、必須の情報があります。<br/>
-> 例えば、Facebookログインを実装するにはscopeなどを設定する必要があります。<br/>
-> このような必須情報を設定できるようにstatic void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) APIを提供します。<br/>
-> additionalInfoパラメータに必須情報などをdictionary形式で入力してください。
-additionalInfo値がある場合は、その値を使用し、ない場合は(null) NHN Cloud Consoleに登録された値を使用します。
-([NHN Cloud ConsoleにadditionalInfoを設定する](./oper-app/#authentication-information))
 
 **Example**
 
@@ -318,9 +301,6 @@ void Sample::LoginWithCredential()
 }
 ```
 
-### Authentication Additional Information Settings
-
-[Console Guide](./oper-app/#authentication-information)
 
 ## Logout
 ログインしたIdPからログアウトを試行します。主にゲームの設定画面にログアウトボタンを設置し、ボタンをクリックすると実行されるように実装する場合が多いです。
