@@ -160,16 +160,16 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
 
 // 商品を購入したUser ID
 // 商品を購入していないUser IDでログインした場合、購入したアイテムを獲得できません。
-@property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong, nullable) NSString *paymentId;
 
 // ストアの決済識別子
-@property (nonatomic, strong) NSString *paymentId;
+@property (nonatomic, strong, nullable) NSString *paymentId;
 
 // 購読が終了する時刻(epoch time)
-@property (nonatomic, assign) long expiryTime;
+@property (nonatomic, strong, nullable) NSString *payload;
 
 // 商品購入時間(epoch time)
-@property (nonatomic, assign) long purchaseTime;
+@property (nonatomic, strong, nullable) NSString *originalPaymentId;
 
 // requestPurchase API呼び出し時にpayloadに渡された値
 // このフィールドは例えば同じUser IDで購入したがゲームチャンネル、キャラクターなどに応じて商品の購入および支給を区分したい場合など
