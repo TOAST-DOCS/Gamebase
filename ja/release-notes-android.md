@@ -17,23 +17,6 @@
 #### 機能改善/変更
 * 外部SDKアップデート：PAYCO Android SDK(1.5.6)
 
-### 2.28.0 (2021.09.28)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-Android.zip)
-
-#### 機能追加
-* Kakaogame認証を追加
-* 「決済アビューズ自動解除」機能が追加されました。
-    * [Game > Gamebase > Android SDK使用ガイド > 認証 > GraceBan](./aos-authentication/#graceban)
-    * 決済アビューズ自動解除機能は、決済アビューズ自動制裁で利用停止にならなければいけないユーザーが利用停止猶予状態後、利用停止になるようにします。
-    * 利用停止猶予状態の場合、設定した期間内に解除条件を全て満たすと正常にプレイが可能になります。
-    * 期間内に条件を満たせなかった場合、利用停止になります。
-* 決済アビューズ自動解除機能を使用するゲームはログイン後、常にAuthToken.getGraceBanInfo() API値を確認し、nullではない有効なGraceBanInfoオブジェクトを返した場合、該当ユーザーに利用停止解除条件、期間などを案内する必要があります。
-    * 利用停止猶予状態のユーザーのゲーム内アクセス制御はゲームで処理する必要があります。
-* ログインレスポンス待機中に待機アイコンが表示されます。
-
-#### 機能改善/変更
-* 外部SDKアップデート：PAYCO Android SDK(1.5.6)
-
 ### 2.27.1 (2021.09.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-Android.zip)
 
