@@ -175,7 +175,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 | keyname                                  | a use                          | 値の種類                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdPタイプの設定                      | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdPタイプの設定                    | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdPログイン後に取得した認証情報(アクセストークン)設定 |                                |
 
 
@@ -879,6 +879,53 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
         }
 
         // Withdraw success.
+    }];
+}
+```
+
+## GraceBan
+
+* 「決済アビューズ自動解除」機能です。
+    * 決済アビューズ自動解除機能は、決済アビューズ自動制裁で利用停止にならなければいけないユーザーが利用停止猶予状態後、利用停止になるようにします。
+    * 利用停止猶予状態の場合、設定した期間内に解除条件を全て満たすと正常にプレイが可能になります。
+    * 期間内に条件を満たせなかった場合、利用停止になります。
+* 決済アビューズ自動解除機能を使用するゲームはログイン後、常にTCGBAuthToken.tcgbMember.graceBanInfo値を確認し、nullではない有効なTCGBGraceBanInfoオブジェクトを返した場合、該当ユーザーに利用停止解除条件、期間などを案内する必要があります。
+    * 利用停止猶予状態のユーザーのゲーム内アクセス制御はゲームで処理する必要があります。
+
+**Example**
+
+```objectivec
+- (void)testGraceBanInfo {
+    [TCGBGamebase loginWithType:kTCGBAuthAppleID viewController:viewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == NO) {
+            // Login failed
+            return;
+        }
+        
+        // Check if user is under grace ban
+        if (authToken.tcgbMember.graceBanInfo != nil) {
+            TCGBGraceBanInfo *graceBanInfo = authToken.tcgbMember.graceBanInfo;
+            // gracePeriodDate : epoch time in milliseconds
+            long long gracePeriodDate = graceBanInfo.gracePeriodDate;
+            NSString *message = [graceBanInfo.message stringByRemovingPercentEncoding];
+            if (graceBanInfo.paymentStatus != nil) {
+                TCGBPaymentStatus *paymentStatus = graceBanInfo.paymentStatus;
+                double paymentStatusAmount = paymentStatus.amount;
+                int paymentStatusCount = paymentStatus.count;
+            }
+            if (graceBanInfo.releaseRuleCondition != nil) {
+                TCGBReleaseRuleCondition *releaseRuleCondition = graceBanInfo.releaseRuleCondition;
+                double releaseRuleConditionAmount = releaseRuleCondition.amount;
+                int releaseRuleConditionCount = releaseRuleCondition.count;
+                NSString *releaseRuleConditionCurrency = releaseRuleCondition.currency;
+                // condition type : "AND", "OR"
+                NSString *releaseRuleConditionType = releaseRuleCondition.conditionType;
+            }
+            // Guide the user through the UI how to finish the grace ban status.
+        }
+        else {
+            // Login Success
+        }
     }];
 }
 ```
