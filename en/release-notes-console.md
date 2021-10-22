@@ -1,48 +1,56 @@
 ## Game > Gamebase > Release Notes > Console
 
+### October 26, 2021
+
+#### Feature Updates
+* Analytics
+	* Changed the file download format to .csv and .xlsx
+* Operation > Kickout
+	* Added a feature to copy kickout details
+
 ### October 12, 2021
 
 #### Feature Updates
 * Push > Statistics > Send/Receive, Receive Settings
-	* Changed the file download format to CSV.
+	* Changed the file download format to .csv
 * Coupon > History, Coupon publish list
-	* Changed the file download format to CSV.
+	* Changed the file download format to .csv
 
 #### Bug Fixes
 * Analytics > User Indicators > Life Cycle
-	* Fixed a bug where the withdrawn user indicator is displayed as 0 on the day of registration.
+	* Fixed a bug where the withdrawn user indicator is displayed as 0 on the day of registration
 	
 ### September 28, 2021
 
 #### Feature Updates
 * Purchase (IAP) > Payment Abusing Monitoring
-    * Added an automatic release feature for payment abusing.
+    * Added an automatic release feature for payment abusing
 * Purchase (IAP) > Store
-    * ONE store SDK v16 support.
+    * ONE store SDK v16 support
 
 #### Bug Fixes
 * Purchase (IAP) > Product
-    * Fixed an error where, when registering items with a file, the items are registered incorrectly if there is multiple store information.
+    * Fixed an error where, when registering items with a file, the items are registered incorrectly if there is multiple store information
 * Push > Push
-    * Fixed an error where message sending fails when setting the text color for messages that have only content without a subject.
+    * Fixed an error where message sending fails when setting the text color for messages that have only content without a subject
 
 ### September 14, 2021
 
 #### Feature Updates
 * Push > Statistics > Inbound settings
-	* Changed the text related to inbound settings statistics.
+	* Changed the text related to inbound settings statistics
 * Customer Center
-	* Added a template feature where users can enter details depending on an inquiry type.
-	* Added an internationalization feature to the customer inquiry reply template.
+	* Added a template feature where users can enter details depending on an inquiry type
+	* Added an internationalization feature to the customer inquiry reply template
 * Analytics
-    * Added a feature to provide MCU/ACU data when a filter is selected.
-        * MCU data is provided from August 11.
+    * Added a feature to provide MCU/ACU data when a filter is selected
+        * MCU data is provided from August 11
 * Analytics > Real-Time Monitoring > Concurrent Users
-	* Added a feature to provide push notifications scheduling history.
+	* Added a feature to provide push notifications scheduling history
 
 #### Bug Fixes
 * Customer Center > Customer Inquiry
-	* Fixed an error where a wrong calendar is exposed when the user selects submission period dates.
+	* Fixed an error where a wrong calendar is exposed when the user selects submission period dates
 
 ### August 24, 2021
 
