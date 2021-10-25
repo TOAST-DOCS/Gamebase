@@ -97,8 +97,8 @@ GameのUIに合った約款ウィンドウを直接製作したい場合には�
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
 void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
@@ -162,8 +162,8 @@ Gamebaseは、単純な形式のWebビューで約款を表示します。
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cs
 void QueryTerms(const FGamebaseQueryTermsResultDelegate& onCallback);
@@ -245,8 +245,8 @@ QueryTerms APIで取得した約款情報でUIを直接製作した場合、
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
 void UpdateTerms(const FGamebaseUpdateTermsConfiguration& configuration, const FGamebaseErrorDelegate onCallback);
