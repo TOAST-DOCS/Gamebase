@@ -11,12 +11,12 @@ You can pop up a notice to users after registering an image to the console.
 Show the image notice on the screen.
 
 #### Required parameter
-* viewController : ViewController where the image notice is displayed.
+* viewController: ViewController where the image notice is displayed.
  
 #### Optional parameter
-* configuration : Can change the image notice settings (e.g. background color) with TCGBImageNoticeConfiguration.
-* closeCompletion : Informs the user with callback when the entire image notice ends.
-* schemeEvent : Informs the payload which is registered in the console as callback when clicking the image.
+* configuration: Can change the image notice settings (e.g. background color) with TCGBImageNoticeConfiguration.
+* closeCompletion: Informs the user with callback when the entire image notice ends.
+* schemeEvent: Informs the payload which is registered in the console as callback when clicking the image.
 
 
 ```objectivec
@@ -118,11 +118,11 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
 >
 
 #### Required parameter
-* viewController : The terms and conditions window is exposed in ViewController.
+* viewController: The terms and conditions window is exposed in ViewController.
  
 #### Optional parameter
 
-* completion : Uses a callback to inform the user when the terms and conditions window closes after agreeing to it. The TCGBDataContainer object which comes as callback can be converted to TCGBPushConfiguration. The converted object can be used in the registerPush API after login.
+* completion: Uses a callback to inform the user when the terms and conditions window closes after agreeing to it. The TCGBDataContainer object which comes as callback can be converted to TCGBPushConfiguration. The converted object can be used in the registerPush API after login.
 
 
 **API**
@@ -140,7 +140,7 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
 | TCGB\_ERROR\_LAUNCHING\_SERVER\_ERROR(2001) | This error occurs when the items downloaded from the launching server does not have any information about the terms and conditions.<br/>This is not a usual case, and you should contact the Gamebase personnel. |
 | TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | The Terms API called previously has not been completed yet.<br/>Please try again later. |
 | TCGB\_ERROR\_WEBVIEW\_TIMEOUT(7002) | Timed out while displaying the terms and conditions WebView. |
-| TCGB\_ERROR\_WEBVIEW\_HTTP\_ERROR(7003) | HTTP has occurred while the terms and conditions WebView is open. |
+| TCGB\_ERROR\_WEBVIEW\_HTTP\_ERROR(7003) | An HTTP error has occurred while opening the terms and conditions WebView. |
 
 **Example**
 
@@ -186,8 +186,8 @@ Calling it after login also lets you see if the game user has agreed to the term
 >     * If you complete the 'Terms and Conditions settings' in the console or if **TCGB_ERROR_UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** error occurs, please make sure the terms and conditions are not displayed.
 
 #### Required parameter
-* viewController : The top-level ViewController.
-* completion : Uses a callback to inform users about the API call result. With the TCGBQueryTermsResult that comes as callback, you can acquire the terms and conditions information set in the console.
+* viewController: The top-level ViewController.
+* completion: Uses a callback to inform users about the API call result. With the TCGBQueryTermsResult that comes as callback, you can acquire the terms and conditions information set in the console.
  
 
 **API**
@@ -232,7 +232,7 @@ Calling it after login also lets you see if the game user has agreed to the term
 | -------------------- | --------------------------------| ------------------- |
 | termsSeq             | int                             | KEY for the entire terms and conditions.<br/>This value is required when calling updateTerms API.          |
 | termsVersion         | String                          | T&C version.<br/>This value is required when calling updateTerms API.              |
-| termsCountryType     | String                          | Terms and conditions type.<br/> - KOREAN : Korean terms and conditions <br/> - GDPR : European terms and conditions <br/> - ETC : Other countries' terms and conditions         |
+| termsCountryType     | String                          | Terms and conditions type.<br/> - KOREAN: Korean terms and conditions <br/> - GDPR: European terms and conditions <br/> - ETC: Other countries' terms and conditions         |
 | contents             | Array< TCGBTermsContentDetail > | Terms and conditions info          |
 
 
@@ -243,7 +243,7 @@ Calling it after login also lets you see if the game user has agreed to the term
 | termsContentSeq      | int                   | T&C KEY         | 
 | name                 | String                | T&C Name         |
 | required             | BOOL                  | Whether agreement is required         |
-| agreePush            | String                | Whether to accept advertisement push.<br/> - NONE : Do not accept <br/> - ALL : Accept all <br/> - DAY : Accept push notification during daytime<br/> - NIGHT : Accept push notification during night time          |
+| agreePush            | String                | Whether to accept advertisement push.<br/> - NONE: Do not accept <br/> - ALL: Accept all <br/> - DAY: Accept push notification during daytime<br/> - NIGHT: Accept push notification during night time          |
 | agreed               | BOOL                  | User's consent to the terms and conditions           |
 | node1DepthPosition   | int                   | Primary item exposure sequence.           |
 | node2DepthPosition   | int                   | Secondary item exposure sequence.<br/> If none, -1           |
@@ -265,12 +265,12 @@ It can be used to terminate the agreement to optional terms and conditions as we
 >
 
 #### Required parameter
-* viewController : The top-level ViewController.
-* configuration : Information of optional T&C of users who will be registered on the server.
+* viewController: The top-level ViewController.
+* configuration: Information of optional T&C of users who will be registered on the server.
 
 #### Optional parameter
 
-* completion : Registers information on the optional terms and conditions, and notifies user with a callback.
+* completion: Registers the information of optional terms and conditions on the server, and notifies user with a callback.
 
 
 **API**
@@ -337,14 +337,14 @@ WebView-related resources (images, html, and others) are included to Gamebase.bu
 Shows a WebView.<br/>
 
 ##### Required Parameters
-* url : The url delivered as a parameter should be valid.
-* viewController : WebView is displayed on the View Controller.
+* url: The url delivered as a parameter should be valid.
+* viewController: WebView is displayed on the View Controller.
 
 ##### Optional Parameters
-* configuration : Changes WebView layout by using TCGBWebViewConfiguration.
-* closeCompletion : Notifies users with a callback when a WebView is closed.
-* schemeList : Specifies the list of customized schemes a user wants.
-* schemeEvent : Notifies url including customized scheme specified by the schemeList with a callback.
+* configuration: Changes WebView layout by using TCGBWebViewConfiguration.
+* closeCompletion: Notifies users with a callback when a WebView is closed.
+* schemeList: Specifies the list of customized schemes a user wants.
+* schemeEvent: Notifies url including customized scheme specified by the schemeList with a callback.
 
 
 ```objectivec
@@ -407,8 +407,8 @@ Gamebase has specified following schemes.<br/>
 | gamebase://dismiss   | Close WebView             |
 | gamebase://goback    | Go back from WebView          |
 | gamebase://getuserid | Show ID of a user who is currently logged-in |
-| gamebase://showwebview?link={URLEncodedURL} | Open the URL of the link parameter with the WebView.<br>URLEncodedURL : Column URL with the WebView.<br>Requires URL decoding. |
-| gamebase://openbrowser?link={URLEncodedURL} | Open the URL of the link parameter with an external browser.<br/>URLEncodedURL : Column URL with the WebView.<br/>Requires URL decoding. |
+| gamebase://showwebview?link={URLEncodedURL} | Open the URL of the link parameter with the WebView.<br>URLEncodedURL: Column URL with the WebView.<br>Requires URL decoding. |
+| gamebase://openbrowser?link={URLEncodedURL} | Open the URL of the link parameter with an external browser.<br/>URLEncodedURL: Column URL with the WebView.<br/>Requires URL decoding. |
 
 
 

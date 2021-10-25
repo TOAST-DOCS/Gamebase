@@ -16,6 +16,12 @@
 
 * If you're using this version, you need to manually delete `Assets/Gamebase/Toast/IAP/Plugins` before use.
 
+### Unreal
+
+* The multidex setting has been removed from Gamebase. To enable multidex, see the following guide.
+    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > Installation > Android Settings > Enable multidex](./unreal-started/#android-settings)
+
+
 ## 2.25.0
 
 ### Android

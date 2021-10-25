@@ -250,7 +250,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | Keyname | Usage | Value Type |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.HANGAME<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>"payco" |
+| AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.HANGAME<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter One Time Authorization (OTAC) which can be obtained after Google login. |                                          |
 
@@ -1045,7 +1045,7 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 ## TemporaryWithdrawal
 
 'Suspension of Withdrawal' is available. 
-At the request for a tempoary withdrawal, user can withdraw after certain period of suspension.  
+At the request for a temporary withdrawal, user can withdraw after certain period of suspension.  
 Suspension period can be changed from the console. 
 
 > <font color="red">[Caution]</font><br/>
@@ -1190,6 +1190,56 @@ public static void testWithdrawImmediately() {
             }
 
             // Withdraw success.
+        }
+    });
+}
+```
+
+## GraceBan
+
+* This is a 'purchase abuse automatic release' function.
+    * The purchase abuse automatic release function allows users who should be banned due to purchase abuse automatic lockdown to be banned after ban suspension status.
+    * When a user is in ban suspension status, if the user satisfies all of the release conditions within the set period of time, the user will be able to play normally.
+    * If the user does not satisfy the conditions within the period, the user is banned.
+* Games that use the purchase abuse automatic release function must always call the AuthToken.getGraceBanInfo() API after login. If a valid GraceBanInfo object that is not null is returned, the user must be informed of the ban release conditions, period, etc.
+    * In-game access control for users who are in ban suspension status must be handled by the game.
+
+**Example**
+
+```java
+public static void testLogin() {
+    Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
+        @Override
+        public void onCallback(AuthToken token, GamebaseException exception) {
+            if (!Gamebase.isSuccess(exception)) {
+                // Login failed
+                return;
+            }
+
+            // Check if user is under grace ban
+            GraceBanInfo graceBanInfo = token.getGraceBanInfo();
+            if (graceBanInfo != null) {
+                String periodDate = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault())
+                        .format(new Date(graceBanInfo.getGracePeriodDate()));
+                String message = URLDecoder.decode(graceBanInfo.getMessage(), "utf-8");
+                GraceBanInfo.ReleaseRuleCondition releaseRuleCondition =
+                            graceBanInfo.releaseRuleCondition();
+                GraceBanInfo.PaymentStatus paymentStatus = graceBanInfo.getPaymentStatus();
+                if (releaseRuleCondition != null) {
+                    // condition type : "AND", "OR"
+                    String releaseRule = releaseRuleCondition.getAmount() +
+                            releaseRuleCondition.getCurrency() +
+                            " " + releaseRuleCondition.getConditionType() + " " +
+                            releaseRuleCondition.getCount() + "time(s)";
+                }
+                if (paymentStatus != null) {
+                    String paidAmount = paymentStatus.getAmount() + paymentStatus.getCurrency();
+                    String paidCount = paymentStatus.getCount() + "time(s)";
+                }
+                // Guide the user through the UI how to finish the grace ban status.
+            } else {
+                // Login success.
+            }
         }
     });
 }

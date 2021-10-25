@@ -1,20 +1,11 @@
 ## Game > Gamebase > Upgrade Guide
 
-## 2.27.0
-
-### iOS
-
-#### ImageNotice
-
-* Unity에서 이미지 공지가 출력되지 않는 이슈를 수정했습니다.
-    * Gamebase iOS SDK 2.27.0 미만을 사용하실 경우, Unity에서 이미지 공지가 출력되지 않을 수 있습니다.
-    * 이미지 공지를 사용하실 경우엔, Gamebase iOS SDK 2.27.0 이상을 사용하시기 바랍니다.
-
 ## 2.26.0
 
 ### Unity
 
-* 해당 버전을 사용 시에는 `Assets/Gamebase/Toast/IAP/Plugins` 를 직접 삭제하신 후 사용하시길 바랍니다.
+* 해당 버전을 사용 시에는 **Assets/Gamebase/Toast/IAP/Plugins** 를 직접 삭제하신 후 사용하시길 바랍니다.
+    * Gamebase Unity SDK 2.27.0 이상 버전이 적용된 경우에는 삭제하실 필요가 없습니다.
 
 ### Unreal
 
@@ -77,7 +68,8 @@ android {
 
 ### Unity
 
-* 해당 버전을 사용 시에는 `Assets/Gamebase/Toast/IAP/Plugins` 를 직접 삭제하신 후 사용하시길 바랍니다.
+* 해당 버전을 사용 시에는 **Assets/Gamebase/Toast/IAP/Plugins** 를 직접 삭제하신 후 사용하시길 바랍니다.
+    * Gamebase Unity SDK 2.27.0 이상 버전이 적용된 경우에는 삭제하실 필요가 없습니다.
 
 #### Changed Minimum Support Version
 
