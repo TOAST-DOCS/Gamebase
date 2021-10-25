@@ -1196,13 +1196,16 @@ public static void testWithdrawImmediately() {
 ```
 
 ## GraceBan
+
 * 「決済アビューズ自動解除」機能です。
     * 決済アビューズ自動解除機能は、決済アビューズ自動制裁で利用停止にならなければいけないユーザーが利用停止猶予状態後、利用停止になるようにします。
     * 利用停止猶予状態の場合、設定した期間内に解除条件を全て満たすと正常にプレイが可能になります。
     * 期間内に条件を満たせなかった場合、利用停止になります。
 * 決済アビューズ自動解除機能を使用するゲームはログイン後、常にAuthToken.getGraceBanInfo() APIを呼び出して結果がnullではない有効なGraceBanInfoオブジェクトを返した場合、該当ユーザーに利用停止解除条件、期間などを案内する必要があります。
     * 利用停止猶予状態のユーザーのゲーム内アクセス制御はゲームで処理する必要があります。
+
 **Example**
+
 ```java
 public static void testLogin() {
     Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
@@ -1212,6 +1215,7 @@ public static void testLogin() {
                 // Login failed
                 return;
             }
+
             // Check if user is under grace ban
             GraceBanInfo graceBanInfo = token.getGraceBanInfo();
             if (graceBanInfo != null) {
