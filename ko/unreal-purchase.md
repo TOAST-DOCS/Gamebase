@@ -137,6 +137,92 @@ void Sample::RequestPurchaseWithPayload(const FString& gamebaseProductId)
 }
 ```
 
+**VO**
+
+```cpp
+USTRUCT()
+struct FGamebasePurchasableReceipt
+{
+    GENERATED_USTRUCT_BODY()
+    
+    // 구매한 아이템의 상품 ID 입니다.
+    UPROPERTY()
+    FString gamebaseProductId;
+
+    // itemSeq 로 상품을 구매하는 Legacy API용 식별자 입니다.
+    UPROPERTY()
+    int64 itemSeq;
+
+    // 구매한 상품의 가격 입니다.
+    UPROPERTY()
+    float price;
+
+    // 통화 코드 입니다.
+    UPROPERTY()
+    FString currency;
+
+    // 결제 식별자입니다.
+    // purchaseToken 과 함께 'Consume' 서버 API 를 호출하는데 사용하는 중요한 정보입니다.
+    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // 주의 : Consume API 는 게임 서버에서 호출하세요! 
+    UPROPERTY()
+    FString paymentSeq;
+
+    // 결제 식별자입니다.
+    // paymentSeq 와 함께 'Consume' 서버 API 를 호출하는데 사용하는 중요한 정보입니다.
+    // Consume API 에서는 'accessToken' 라는 이름의 파라메터로 전달해야 합니다.
+    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // 주의 : Consume API 는 게임 서버에서 호출하세요! 
+    UPROPERTY()
+    FString purchaseToken;
+
+    // Google, Apple 과 같이 스토어 콘솔에 등록된 상품 ID 입니다.
+    UPROPERTY()
+    FString marketItemId;
+
+    // 상품 타입으로, 다음 값들이 올 수 있습니다.
+    // * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객센터로 문의하세요.
+    // * CONSUMABLE : 소비성 상품.
+    // * AUTO_RENEWABLE : 구독형 상품.
+    // * CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
+    UPROPERTY()
+    FString productType;
+
+    // 상품을 구매했던 User ID.
+    // 상품을 구매하지 않은 User ID 로 로그인 한다면 구매한 아이템을 획득할 수 없습니다.
+    UPROPERTY()
+    FString userId;
+
+    // 스토어의 결제 식별자 입니다.
+    UPROPERTY()
+    FString paymentId;
+
+    // 구독 상품은 갱신 될때마다 paymentId 가 변경됩니다.
+    // 이 필드는 맨 처음 구독 상품을 결제 했을때의 paymentId 를 알려줍니다.
+    // 스토어에 따라, 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로
+    // 항상 유효한 값을 보장하지는 않습니다.
+    UPROPERTY()
+    FString originalPaymentId;
+    
+    // 상품을 구매했던 시각입니다.(epoch time)
+    UPROPERTY()
+    int64 purchaseTime;
+    
+    // 구독이 종료되는 시각입니다.(epoch time)
+    UPROPERTY()
+    int64 expiryTime;
+
+    // Gamebase.Purchase.requestPurchase API 호출시 payload 로 전달했던 값입니다.
+    //
+    // 이 필드는 예를 들어 동일한 User ID 로 구매 했음에도 게임 채널, 캐릭터 등에 따라
+    // 상품 구매 및 지급을 구분하고자 하는 경우 등
+    // 게임에서 필요로 하는 다양한 추가 정보를 담기 위한 목적으로 활용할 수 있습니다.
+    UPROPERTY()
+    FString payload;
+};
+```
+
+
 ### List Purchasable Items
 
 아이템 목록을 조회하려면 다음 API를 호출합니다. 
@@ -177,6 +263,64 @@ void Sample::RequestItemListPurchasable()
 }
 ```
 
+**VO**
+
+```cpp
+USTRUCT()
+struct FGamebasePurchasableItem
+{
+    GENERATED_USTRUCT_BODY()
+    
+    // Gamebase 콘솔에 등록된 상품 ID 입니다.
+    // Gamebase.Purchase.requestPurchase API 로 상품을 구매할때 사용됩니다.
+    UPROPERTY()
+    FString gamebaseProductId;
+
+    // itemSeq 로 상품을 구매하는 Legacy API용 식별자 입니다.
+    UPROPERTY()
+    int64 itemSeq;
+
+    // 상품의 가격 입니다.
+    UPROPERTY()
+    float price;
+
+    // 통화 코드 입니다.
+    UPROPERTY()
+    FString currency;
+
+    // Gamebase 콘솔에 등록된 상품 이름입니다.
+    UPROPERTY()
+    FString itemName;
+
+    // Google, Apple 과 같이 스토어 콘솔에 등록된 상품 ID 입니다.
+    UPROPERTY()
+    FString marketItemId;
+
+    // 상품 타입으로, 다음 값들이 올 수 있습니다.
+    // * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객센터로 문의하세요.
+    // * CONSUMABLE : 소비성 상품.
+    // * AUTORENEWABLE : 구독형 상품.
+    // * CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
+    UPROPERTY()
+    FString productType;
+    
+    // 통화 기호가 포함된 현지화 된 가격 정보입니다.
+    UPROPERTY()
+    FString localizedPrice;
+    
+    // 스토어 콘솔에 등록된 현지화된 상품 이름 입니다.
+    UPROPERTY()
+    FString localizedTitle;
+
+    // 스토어 콘솔에 등록된 현지화된 상품 설명 입니다.
+    UPROPERTY()
+    FString localizedDescription;
+
+    // Gamebase 콘솔에서 해당 상품의 '사용 여부'를 나타냅니다.
+    UPROPERTY()
+    bool isActive;
+};
+```
 
 
 ### List Non-Consumed Items
@@ -270,15 +414,18 @@ void Sample::RequestActivatedPurchases()
 
 ### Error Handling
 
-| Error                                    | Error Code | Description                              |
-| ---------------------------------------- | ---------- | ---------------------------------------- |
-| PURCHASE_NOT_INITIALIZED                 | 4001       | Purchase 모듈이 초기화되지 않았습니다.<br>gamebase-adapter-purchase-IAP 모듈을 프로젝트에 추가했는지 확인해 주세요. |
-| PURCHASE_USER_CANCELED                   | 4002       | 게임 유저가 아이템 구매를 취소했습니다.                  |
-| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003      | 구매 로직이 아직 완료되지 않은 상태에서 API가 호출되었습니다. |
-| PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 해당 스토어의 캐시가 부족해 결제할 수 없습니다.              |
-| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 AS(App Store), GG(Google), ONESTORE, GALAXY 입니다. |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAP 라이브러리 오류입니다.<br>DetailCode를 확인하세요.   |
-| PURCHASE_UNKNOWN_ERROR                   | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
+| Error                                     | Error Code | Description                              |
+| ----------------------------------------- | ---------- | ---------------------------------------- |
+| PURCHASE_NOT_INITIALIZED                  | 4001       | Purchase 모듈이 초기화되지 않았습니다.<br>gamebase-adapter-purchase-IAP 모듈을 프로젝트에 추가했는지 확인해 주세요. |
+| PURCHASE_USER_CANCELED                    | 4002       | 게임 유저가 아이템 구매를 취소하였습니다.                  |
+| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 구매 로직이 아직 완료되지 않은 상태에서 API가 호출되었습니다. |
+| PURCHASE_NOT_ENOUGH_CASH                  | 4004       | 해당 스토어의 캐시가 부족해 결제할 수 없습니다.              |
+| PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | 해당 상품이 활성화 상태가 아닙니다.  |
+| PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 존재하지 않는 GamebaseProductID 로 결제를 요청하였습니다. |
+| PURCHASE_LIMIT_EXCEEDED                   | 4007       | 월 구매 한도를 초과했습니다.             |
+| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 AS(App Store), GG(Google), ONESTORE, GALAXY 입니다. |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | IAP 라이브러리 오류입니다.<br>DetailCode를 확인하세요.   |
+| PURCHASE_UNKNOWN_ERROR                    | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
     * [오류 코드](./error-code/#client-sdk)
@@ -308,7 +455,7 @@ else
 ```
 
 * IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > Unity > 오류 코드](/TOAST/ko/toast-sdk/iap-unity/#_17)
+    * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > Unity > 오류 코드](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-unity/#error-code)
 
 
 

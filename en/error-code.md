@@ -12,14 +12,14 @@
 |                 | Android, UNITY<br/>IOS | INVALID\_MEMBER<br/>TCGB\_ERROR\_INVALID\_MEMBER  | 6          | Request for invalid member.                              |
 |                 | Android, UNITY<br/>IOS | BANNED\_MEMBER<br/>TCGB\_ERROR\_BANNED\_MEMBER   | 7         | Named member has been banned.                                |
 |                 | Android, UNITY<br/>IOS | NOT_SUPPORTED<br/>TCGB\_ERROR\_NOT\_SUPPORTED | 10         | The function is not supported.                         |
-|                 | UNITY<br/>IOS      | NOT\_SUPPORTED\_ANDROID<br/>TCGB\_ERROR\_NOT\_SUPPORTED\_ANDROID | 11         | The function is not supported by Android.                |
-|                 | UNITY<br/>IOS      | NOT\_SUPPORTED\_IOS<br/>TCGB\_ERROR\_NOT\_SUPPORTED\_IOS | 12         | The function is not supported by iOS.                    |
-|                 | UNITY              | NOT\_SUPPORTED\_UNITY\_EDITOR            | 13         | The function is not supported by Editor.                 |
-|                 | UNITY              | NOT\_SUPPORTED\_UNITY\_STANDALONE        | 14         | The function is not supported by Standalone.              |
-|                 | UNITY              | NOT\_SUPPORTED\_UNITY\_WEBGL             | 15         | The function is not supported by WebGL.               |
-|                 | Android            | ANDROID\_ACTIVITY\_DESTROYED             | 31         | Activity was terminated by force.                       |
-|                 | Android            | ANDROID\_ACTIVEAPP\_NOT\_CALLED          | 32         | The activeApp API has not been called.                 |
-|                 | IOS                | IOS_GAMECENTER_DENIED                    | 51         | Gamecenter login has been denied.                 |
+|                 | UNITY<br/>IOS          | NOT\_SUPPORTED\_ANDROID<br/>TCGB\_ERROR\_NOT\_SUPPORTED\_ANDROID | 11         | The function is not supported by Android.                |
+|                 | UNITY<br/>IOS          | NOT\_SUPPORTED\_IOS<br/>TCGB\_ERROR\_NOT\_SUPPORTED\_IOS | 12         | The function is not supported by iOS.                    |
+|                 | UNITY                  | NOT\_SUPPORTED\_UNITY\_EDITOR            | 13         | The function is not supported by Editor.                 |
+|                 | UNITY                  | NOT\_SUPPORTED\_UNITY\_STANDALONE        | 14         | The function is not supported by Standalone.              |
+|                 | UNITY                  | NOT\_SUPPORTED\_UNITY\_WEBGL             | 15         | The function is not supported by WebGL.               |
+|                 | Android                | ANDROID\_ACTIVITY\_DESTROYED             | 31         | Activity was terminated by force.                       |
+|                 | Android                | ANDROID\_ACTIVEAPP\_NOT\_CALLED          | 32         | The activeApp API has not been called.                 |
+|                 | IOS                    | IOS_GAMECENTER_DENIED                    | 51         | Gamecenter login has been denied.                 |
 | Network(Socket) | Android, UNITY<br/>IOS | SOCKET\_RESPONSE\_TIMEOUT<br/>TCGB\_ERROR\_SOCKET\_RESPONSE\_TIMEOUT | 101        | There is no response due to bad network connection.              |
 |                 | Android, UNITY<br/>IOS | SOCKET_ERROR<br/>TCGB\_ERROR\_SOCKET\_ERROR | 110        | Socket error                                  |
 |                 | Android, UNITY<br/>IOS | UNKNOWN_ERROR<br/>TCGB\_ERROR\_UNKNOWN\_ERROR | 999        | Unknown socket error                          |
@@ -67,8 +67,8 @@
 |                 | Android, UNITY<br/>IOS | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW<br/>TCGB\_ERROR\_AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | The user is not in the process of temporary withdrawal. |
 | Not Playable    | Android, UNITY<br/>IOS | AUTH\_NOT\_PLAYABLE<br/>TCGB\_ERROR\_AUTH\_NOT\_PLAYABLE | 3701       | Not playable(due to maintenance or service closed)        |
 | Auth(Unknown)   | Android, UNITY<br/>IOS | AUTH\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_AUTH\_UNKNOWN\_ERROR | 3999       | Unknown error(Undefined error)           |
-| Purchase        | Android, UNITY<br/>IOS | PURCHASE\_NOT\_INITIALIZED<br/>TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED | 4001       | Gamebase PurchaseAdapter is not initialized.   |
-|                 | Android, UNITY<br/>IOS | PURCHASE\_USER\_CANCELED<br/>TCGB\_ERROR\_PURCHASE\_USER\_CANCELED | 4002       | Purchase is cancelled.                           |
+| Purchase        | Android, UNITY<br/>IOS | PURCHASE\_NOT\_INITIALIZED<br/>TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED | 4001       | Gamebase PurchaseAdapter has not been initialized.   |
+|                 | Android, UNITY<br/>IOS | PURCHASE\_USER\_CANCELED<br/>TCGB\_ERROR\_PURCHASE\_USER\_CANCELED | 4002       | Purchase has been cancelled.                           |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING<br/>TCGB\_ERROR\_PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003       | Previous purchase is not completed.                      |
 |                 | UNITY                  | PURCHASE\_NOT\_ENOUGH\_CASH                                        | 4004       | Cannot purchase due to shortage of cash of the store.             |
 |                 | Android, UNITY<br/>IOS | PURCHASE\_INACTIVE\_PRODUCT\_ID<br/>TCGB\_ERROR\_PURCHASE\_INACTIVE\_PRODUCT\_ID | 4005       | The status of the product is not active. |
@@ -91,6 +91,7 @@
 | WebView         | Android, UNITY<br/>IOS | WEBVIEW\_INVALID\_URL<br/>TCGB\_ERROR\_WEBVIEW\_INVALID\_URL   		| 7001       | Invalid URL.            |
 |                 | Android, UNITY<br/>IOS | WEBVIEW\_TIMEOUT<br/>TCGB\_ERROR\_WEBVIEW\_TIMEOUT 	    	        | 7002       | Timed out while displaying WebView.            |
 |                 | Android, UNITY<br/>IOS | WEBVIEW\_HTTP\_ERROR<br/>TCGB\_ERROR\_WEBVIEW\_HTTP\_ERROR 	     	| 7003       | Failed to display WebView due to an HTTP error.            |
+|                 | Android, UNITY         | WEBVIEW\_OPENED\_NEW\_BROWSER\_BEFORE\_CLOSE                           | 7004       | A new webview was displayed before closing the browser type webview. |
 |                 | UNITY                  | WEBVIEW\_UNKNOWN\_ERROR 								| 7999       | An unknown error has occurred while calling the WebView (Undefined error).            |
 | Server          | Android, UNITY<br/>IOS | SERVER\_INTERNAL\_ERROR<br/>TCGB\_ERROR\_SERVER\_INTERNAL\_ERROR | 8001       | Error in internal server                               |
 |                 | Android, UNITY<br/>IOS | SERVER\_REMOTE\_SYSTEM\_ERROR<br/>TCGB\_ERROR\_SERVER\_REMOTE\_SYSTEM\_ERROR | 8002       | Error occurred in server during remote integration.                     |

@@ -39,15 +39,16 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 | --- | --- | --- | --- | --- |
 | Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.29.0 | GamebaseのInterfaceおよびコアロジックを含む | iOS9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Facebookログインをサポート | iOS9 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.0 | Paycoログインをサポート | iOS9 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.2 | Paycoログインをサポート | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | Naverログインをサポート | iOS9 or later |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenterログインをサポート | iOS9 or later |
 |  | GamebaseAuthGoogleAdapter.framework | | Googleログインをサポート | iOS9 or later |
 |  | GamebaseAuthTwitterAdapter.framework | | Twitterログインをサポート | iOS9 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | LINEログインをサポート | iOS10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS9 or later<br/>arm64サポート<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.0 | Hangameログインをサポート | iOS9 or later |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.1 | Hangameログインをサポート | iOS9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weiboログインをサポート | iOS9 or later |
+|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.11.5 | Kakaoログインをサポート | iOS11 or later |
 | Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.29.0<br/> ToastGamebaseIAP 0.12.0 | ゲーム内決済をサポート | iOS9 or later |
 | Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.29.0 | Pushをサポート | iOS9 or later |
 
@@ -113,6 +114,15 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 > このオプションを設定しない場合、**selector not recognized**のようなエラーがRuntime上で発生することがあります。
 >
 
+<br/>
+
+> <font color="red">[注意]</font><br/>
+>
+> * Unity(2019.3以上)をビルドする場合、 Gamebase iOS SDKを**UnityFramework**ターゲットにのみimportします。
+> * Unityビルドを行うと、Xcodeプロジェクトのターゲットに**Unity-iPhone**、**UnityFramework**が生じます。
+> * 各ターゲットにGamebase iOS SDKを重複してimportすると、動作に問題が生じることがあるため、注意する必要があります。
+> 
+
 ### CocoaPods Settings
 
 Gamebase iOS SDKは、CocoaPodsを使用して設定できます。
@@ -139,6 +149,9 @@ target 'SampleApplication' do
     pod 'GamebasePushAdapter'
     pod 'GamebasePurchaseIAPAdapter'
 
+    # 次のモジュールの使用方法はサポートへお問い合わせください。
+    pod 'GamebaseAuthHangameAdapter'
+    pod 'GamebaseAuthKakaogameAdapter'
 end
 ```
 
@@ -229,6 +242,11 @@ end
 	```
 * LINE Loginを使用するためのプロジェクト設定は次のリンクを参照します。(認証必要)
 * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
+
+#### Weibo
+
+* AppDelegateの**application:openURL:sourceApplication:annotation:**を必ず実装する必要があります。
+    * [Game > Gamebase > iOS SDK使用ガイド > 初期化 > OpenURL Event](./ios-initialization/#openurl-event)
 
 ### IdP Settings (Legacy)
 

@@ -1,10 +1,26 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.27.0
+
+### iOS
+
+#### ImageNotice
+
+* Fixed an issue where image notifications were not displayed in Unity.
+     * If you are using a version lower than Gamebase iOS SDK 2.27.0, image notifications may not be displayed in Unity.
+     * When using image notifications, use Gamebase iOS SDK 2.27.0 or higher.
+
 ## 2.26.0
 
 ### Unity
 
 * If you're using this version, you need to manually delete `Assets/Gamebase/Toast/IAP/Plugins` before use.
+
+### Unreal
+
+* The multidex setting has been removed from Gamebase. To enable multidex, see the following guide.
+    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > Installation > Android Settings > Enable multidex](./unreal-started/#android-settings)
+
 
 ## 2.25.0
 

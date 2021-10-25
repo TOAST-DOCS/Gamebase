@@ -11,12 +11,12 @@ You can pop up a notice to users after registering an image to the console.
 Show the image notice on the screen.
 
 #### Required parameter
-* Activity : An activity where the image notice is exposed.
+* Activity: An activity where the image notice is exposed.
 
 #### Optional parameter
-* ImageNoticeConfiguration : Can change the image notice settings.
-* GamebaseCallback : Informs the user with callback when the entire image notice is terminated.
-* GamebaseDataCallback : Informs the payload which is registered in the console as callback.
+* ImageNoticeConfiguration: Can change the image notice settings.
+* GamebaseCallback: Informs the user with callback when the entire image notice is terminated.
+* GamebaseDataCallback: Informs the payload which is registered in the console as callback.
 
 **API**
 
@@ -78,9 +78,9 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 | --- | --- | --- |
 | newBuilder() | **M** | ImageNoticeConfiguration object can be created using the newBuilder() function. |
 | build() | **M** | Converts the configured builder into a Configuration object. |
-| setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | Image notice background color.<br>This string uses a value converted into android.graphics.Color.parseColor(String) API.<br>**default** : #80000000 |
-| setTimeout(long timeoutMs) | O | Max time to load an image notice (in millisec)<br>**default** : 5000L (5s) |
-| enableAutoCloseByCustomScheme(boolean enable) | O | Determine whether to force shutdown the image notice when a custom scheme event occurs.<br>**default** : true |
+| setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | Image notice background color.<br>This string uses a value converted into android.graphics.Color.parseColor(String) API.<br>**default**: #80000000 |
+| setTimeout(long timeoutMs) | O | Max time to load an image notice (in millisec)<br>**default**: 5000L (5s) |
+| enableAutoCloseByCustomScheme(boolean enable) | O | Determine whether to force shutdown the image notice when a custom scheme event occurs.<br>**default**: true |
 
 
 ### Close ImageNotices
@@ -119,11 +119,11 @@ However, if the "Agree again to Terms and Conditions" item has been switched to 
 
 #### Required parameter
 
-* Activity : An activity that prompts the terms and conditions window.
+* Activity: An activity that prompts the terms and conditions window.
  
 #### Optional parameter
 
-* GamebaseDataCallback : Uses a callback to inform the user when the terms and conditions window closes after agreeing to it. The GamebaseDataContainer object which comes as a callback can be converted to PushConfiguration. The converted object can be used in the Gamebase.Push.registerPush API after login.
+* GamebaseDataCallback: Uses a callback to inform the user when the terms and conditions window closes after agreeing to it. The GamebaseDataContainer object which comes as a callback can be converted to PushConfiguration. The converted object can be used in the Gamebase.Push.registerPush API after login.
 
 **API**
 
@@ -141,7 +141,7 @@ However, if the "Agree again to Terms and Conditions" item has been switched to 
 | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | The Terms API called previously has not been completed yet.<br/>Please try again later. |
 | UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW(6925) | Unfinished terms & conditions WebView has been called again. |
 | WEBVIEW\_TIMEOUT(7002) | Timed out while displaying the terms and conditions WebView. |
-| WEBVIEW\_HTTP\_ERROR(7003) | HTTP has occurred while the terms and conditions WebView is open. |
+| WEBVIEW\_HTTP\_ERROR(7003) | An HTTP error has occurred while opening the terms and conditions WebView. |
 
 **Example**
 
@@ -197,8 +197,8 @@ Calling it after login also lets you see if the game user has agreed to the term
 
 #### Required parameter
 
-* Activity : A top level activity at the time of API call.
-* GamebaseDataCallback : Uses a callback to inform users about the API call result. With the GamebaseQueryTermsResult that comes as callback, you can acquire the terms and conditions information set in the console.
+* Activity: A top level activity at the time of API call.
+* GamebaseDataCallback: Uses a callback to inform users about the API call result. With the GamebaseQueryTermsResult that comes as callback, you can acquire the terms and conditions information set in the console.
 
 **API**
 
@@ -243,7 +243,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | -------------------- | --------------------------------| ------------------- |
 | getTermsSeq             | int                             | KEY for the entire terms and conditions.<br/>This value is required when calling updateTerms API.          |
 | getTermsVersion         | String                          | T&C version.<br/>This value is required when calling updateTerms API.              |
-| getTermsCountryType     | String                          | Terms and conditions type.<br/> - KOREAN : Korean T&C <br/> - GDPR : European T&C <br/> - ETC : Other countries |
+| getTermsCountryType     | String                          | Terms and conditions type.<br/> - KOREAN: Korean T&C <br/> - GDPR: European T&C <br/> - ETC: Other countries |
 | getContents             | List<GamebaseTermsContentDetail> | Details of each T&C |
 
 #### GamebaseTermsContentDetail
@@ -253,7 +253,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | getTermsContentSeq      | int                   | T&C KEY         | 
 | getName                 | String                | T&C Name         |
 | getRequired             | boolean                  | Whether agreement is required         |
-| getAgreePush            | String                | Whether to accept advertisement push.<br/> - NONE : Do not accept <br/> - ALL : Accept all <br/> - DAY : Accept push notification during daytime<br/> - NIGHT : Accept push notification during night time          |
+| getAgreePush            | String                | Whether to accept advertisement push.<br/> - NONE: Do not accept <br/> - ALL: Accept all <br/> - DAY: Accept push notification during daytime<br/> - NIGHT: Accept push notification during night time          |
 | getAgreed               | boolean                  | Whether users agree to the T&C.<br/> - Always false before login.<br/> - Always false for push items. |
 | getNode1DepthPosition   | int                   | Primary item exposure sequence.           |
 | getNode2DepthPosition   | int                   | Secondary item exposure sequence.<br/> If none, -1           |
@@ -273,12 +273,12 @@ It can be used to terminate the agreement to optional terms and conditions as we
 
 #### Required parameter
 
-* Activity : A top level activity at the time of API call.
-* GamebaseUpdateTermsConfiguration : Information of optional T&C of users who will be registered on the server.
+* Activity: A top level activity at the time of API call.
+* GamebaseUpdateTermsConfiguration: Information of optional T&C of users who will be registered on the server.
 
 #### Optional parameter
 
-* GamebaseCallback : Registers information on the optional terms and conditions, and notifies user with a callback.
+* GamebaseCallback: Registers the information of optional terms and conditions on the server, and notifies user with a callback.
 
 **API**
 
@@ -374,8 +374,8 @@ Gamebase supports a default WebView.
 Shows a WebView.
 
 ##### Required Parameters
-* activity : Shows WebView.
-* url : The url delivered as a parameter should be valid.
+* activity: Shows WebView.
+* url: The url delivered as a parameter should be valid.
 
 ##### Optional Parameters
 * configuration: Changes WebView layout by using GamebaseWebViewConfiguration.
@@ -434,8 +434,8 @@ Gamebase has the following schemas
 | gamebase://dismiss   | Close WebView                    |
 | gamebase://goBack    | Go back to previous page on WebView |
 | gamebase://getUserId | Show ID of current logged-in user |
-| gamebase://showwebview?link={URLEncodedURL} | Open the URL of the link parameter with the WebView.<br>URLEncodedURL : Column URL with the WebView.<br>Requires URL decoding. |
-| gamebase://openbrowser?link={URLEncodedURL} | Open the URL of the link parameter with an external browser.<br>URLEncodedURL : Column URL with the WebView.<br>Requires URL decoding. |
+| gamebase://showwebview?link={URLEncodedURL} | Open the URL of the link parameter with the WebView.<br>URLEncodedURL: Column URL with the WebView.<br>Requires URL decoding. |
+| gamebase://openbrowser?link={URLEncodedURL} | Open the URL of the link parameter with an external browser.<br>URLEncodedURL: Column URL with the WebView.<br>Requires URL decoding. |
 
 #### User Custom Schema
 

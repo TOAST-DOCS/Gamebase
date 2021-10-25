@@ -163,7 +163,7 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 @property (nonatomic, strong) NSString *userId;
 
 // 스토어의 결제 식별자
-@property (nonatomic, strong) NSString *paymentId;
+@property (nonatomic, strong, nullable) NSString *paymentId;
 
 // 구독이 종료되는 시각 (epoch time)
 @property (nonatomic, assign) long expiryTime;
@@ -174,12 +174,12 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 // requestPurchase API 호출 시 payload 로 전달했던 값
 // 이 필드는 예를 들어 동일한 User ID 로 구매 했음에도 게임 채널, 캐릭터 등에 따라 상품 구매 및 지급을 구분하고자 하는 경우 등
 // 게임에서 필요로 하는 다양한 추가 정보를 담기 위한 목적으로 활용할 수 있습니다.
-@property (nonatomic, strong) NSString *payload;
+@property (nonatomic, strong, nullable) NSString *payload;
 
 // 구독 상품은 갱실 될때마다 paymentId 가 변경됩니다.
 // 이 필드는 맨 처음 구독 상품을 결제 했을 때의 paymentId 를 알려줍니다.
 // 스토어에 따라, 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로 항상 유요한 값을 보장하지는 않습니다.
-@property (nonatomic, strong) NSString *originalPaymentId;
+@property (nonatomic, strong, nullable) NSString *originalPaymentId;
 
 // itemSeq 로 상품을 구매하는 Lecacy API 용 식별자
 @property (assign)            long itemSeq;
@@ -417,5 +417,5 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
 * IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > iOS > 에러 코드](/TOAST/ko/toast-sdk/iap-ios/#_15)
+    * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > iOS > 에러 코드](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-ios/#error-codes)
 

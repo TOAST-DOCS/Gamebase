@@ -10,9 +10,6 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 * [Android Purchase Settings](aos-purchase#settings)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
-Unity Standalone에서 결제하려면 IapAdapter와 WebViewAdapter를 반드시 추가해야 합니다.
-![GamebaseUnitySDKSettins Inspector](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-settingtool_iap_2.4.0.png)
-
 ### Purchase Flow
 
 아이템 구매는 크게 결제 Flow 와 Consume Flow, 재처리 Flow 로 나누어 볼 수 있습니다.
@@ -482,7 +479,7 @@ else
 ```
 
 * IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > Unity > 오류 코드](/TOAST/ko/toast-sdk/iap-unity/#_17)
+    * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > Unity > 오류 코드](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-unity/#error-code)
 
 
 

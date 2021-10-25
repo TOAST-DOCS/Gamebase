@@ -1,9 +1,15 @@
 ## Game > Gamebase > Release Notes > Server API
 
-### March 09, 2021 
+### September 14, 2021
+
+#### Bug Fixes
+* Modified Leaderboard Wrapping API
+	* Fixed an error where mapping of Register Scores/ExtraData of Multiple Users API is wrong.
+
+### March 09, 2021
 
 #### More Features
-* Added an API that can be used to acquire Gamebase user ID with IdP ID 
+* Added an API that can be used to acquire Gamebase user ID with IdP ID
 
 ### August 11, 2020
 
@@ -13,23 +19,23 @@
 ### February 11, 2020
 
 #### Feature Updates
-* Added validation for the regUser length when Withdraw API is called 
+* Added validation for the regUser length when Withdraw API is called
 
 ### January 14, 2020
 
 #### More Features
 * Added Withdraw Users API
-	
-### November 12, 2019 
 
-#### More Features 
-* Coupon Service Newly Open: Create and manage coupons in large quantity 
-	* Find coupons and add Consume API 
-	
-### May 28, 2019 
+### November 12, 2019
+
+#### More Features
+* Coupon Service Newly Open: Create and manage coupons in large quantity
+	* Find coupons and add Consume API
+
+### May 28, 2019
 
 #### Feature Updates
-* Modified LTV queries and the failover logic 
+* Modified LTV queries and the failover logic
 
 ### 2019. 03. 26.
 
@@ -42,7 +48,7 @@
 
 #### 기능 추가
 * getSimpleLaunching : 클라이언트 앱 기동시 제공되는 Launching 정보 확인용 API
-	
+
 ### 2017. 11. 30.
 
 #### 기능 개선/변경

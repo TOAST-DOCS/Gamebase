@@ -1,9 +1,16 @@
 ## Game > Gamebase > リリースノート > Server API
 
+### 2021. 09. 14.
+
+
+#### バグ修正
+* Leaderboard Wrapping API修正
+	* 「複数のユーザースコア/ExtraData登録」APIのマッピングエラーを修正
+
 ### 2021. 03. 09.
 
 #### 機能追加
-* IdP IDでGamebase user IDを取得するAPIを追加 
+* IdP IDでGamebase user IDを取得するAPIを追加
     
 ### 2020. 08. 11.
 

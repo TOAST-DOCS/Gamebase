@@ -137,6 +137,92 @@ void Sample::RequestPurchaseWithPayload(const FString& gamebaseProductId)
 }
 ```
 
+**VO**
+
+```cpp
+USTRUCT()
+struct FGamebasePurchasableReceipt
+{
+    GENERATED_USTRUCT_BODY()
+    
+    // The product ID of a purchased item.
+    UPROPERTY()
+    FString gamebaseProductId;
+
+    // An identifier for Legacy API that purchases products with itemSeq.
+    UPROPERTY()
+    int64 itemSeq;
+
+    // The price of purchased product.
+    UPROPERTY()
+    float price;
+
+    // Currency code.
+    UPROPERTY()
+    FString currency;
+
+    // Payment identifier.
+    // This is an important piece of information used to call 'Consume' server API with purchaseToken.
+    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // Caution: Call Consume API from game server!
+    UPROPERTY()
+    FString paymentSeq;
+
+    // Payment identifier.
+    // This is an important piece of information used to call 'Consume' server API with paymentSeq.
+    // In Consume API, the parameter must be named 'accessToken' to be passed.
+    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // Caution: Call Consume API from game server!
+    UPROPERTY()
+    FString purchaseToken;
+
+    // The product ID that is registered to store console such as Google or Apple.
+    UPROPERTY()
+    FString marketItemId;
+
+    // The product type which can have the following values:
+    // * UNKNOWN: An unknown type. Either update Gamebase SDK or contact Gamebase Customer Center.
+    // * CONSUMABLE: A consumable product.
+    // * AUTO_RENEWABLE: A subscription product.
+    // * CONSUMABLE_AUTO_RENEWABLE: This 'consumable subscription product' is used when providing a subscribed user a subscription product that can be consumed periodically.
+    UPROPERTY()
+    FString productType;
+
+    // This is a user ID with which a product is purchased.
+    // If a user logs in with a user ID that is not used to purchase a product, the user cannot obtain the product they purchased.
+    UPROPERTY()
+    FString userId;
+
+    // The payment identifier of a store.
+    UPROPERTY()
+    FString paymentId;
+
+    // paymentId is changed whenever product subscription is renewed.
+    // This field shows the paymentId that was used when a subscription product was first purchased.
+    // This value does not guarantee to be always valid, as it can have no value depending on the store
+    // the user made a purchase and the status of the payment server.
+    UPROPERTY()
+    FString originalPaymentId;
+    
+    // The time when the product was purchased.(epoch time)
+    UPROPERTY()
+    int64 purchaseTime;
+    
+    // The time when the subscription expires.(epoch time)
+    UPROPERTY()
+    int64 expiryTime;
+
+    // It is the value passed to payload when calling Gamebase.Purchase.requestPurchase API.
+    //
+    // This field can be used to hold a variety of additional information.
+    // For example, this field can be used to separately handle purchase
+    // and provision of the products purchased using the same user ID and sort them by game channel or character.
+    UPROPERTY()
+    FString payload;
+};
+```
+
+
 ### List Purchasable Items
 
 To query the list of items, call the following API: 
@@ -177,9 +263,67 @@ void Sample::RequestItemListPurchasable()
 }
 ```
 
+**VO**
+
+```cpp
+USTRUCT()
+struct FGamebasePurchasableItem
+{
+    GENERATED_USTRUCT_BODY()
+    
+    // The product ID that is registered with the Gamebase console.
+    // Used when a product is purchased using Gamebase.Purchase.requestPurchase API.
+    UPROPERTY()
+    FString gamebaseProductId;
+
+    // An identifier for Legacy API that purchases products with itemSeq.
+    UPROPERTY()
+    int64 itemSeq;
+
+    // The price of a product.
+    UPROPERTY()
+    float price;
+
+    // Currency code.
+    UPROPERTY()
+    FString currency;
+
+    // The name of a product registered in the Gamebase console.
+    UPROPERTY()
+    FString itemName;
+
+    // The product ID that is registered to store console such as Google or Apple.
+    UPROPERTY()
+    FString marketItemId;
+
+    // The product type which can have the following values:
+    // * UNKNOWN: An unknown type. Either update Gamebase SDK or contact Gamebase Customer Center.
+    // * CONSUMABLE: A consumable product.
+    // * AUTO_RENEWABLE: A subscription product.
+    // * CONSUMABLE_AUTO_RENEWABLE: This 'consumable subscription product' is used when providing a subscribed user a subscription product that can be consumed periodically.
+    UPROPERTY()
+    FString productType;
+    
+    // Localized price information with currency symbol.
+    UPROPERTY()
+    FString localizedPrice;
+    
+    // The name of a localized product registered with the store console.
+    UPROPERTY()
+    FString localizedTitle;
+
+    // The description of a localized product registered with the store console.
+    UPROPERTY()
+    FString localizedDescription;
+
+    // Shows whether the product is 'used or not' in the Gamebase console.
+    UPROPERTY()
+    bool isActive;
+};
+```
 
 
-### List Non-Consumables
+### List Non-Consumed Items
 
 Send a request for non-consumable purchases of which items have not been normally consumed (delivered or paid) even after purchased. 
 When there's a non-consumable purchase, send a request to the game server (item server) so as to deliver (pay) items. 
@@ -222,7 +366,7 @@ void Sample::RequestItemListOfNotConsumed()
 }
 ```
 
-### List Actived Subscriptions
+### List Activated Subscriptions
 
 Query the list of activated subscriptions of a current user ID. 
 Paid subscriptions (auto-renewal subscription, or auto-renewal consumable subscription products) can be queried until they are expired. 
@@ -269,17 +413,18 @@ void Sample::RequestActivatedPurchases()
 
 ### Error Handling
 
-| Error                                    | Error Code | Description                              |
-| ---------------------------------------- | ---------- | ---------------------------------------- |
-| PURCHASE_NOT_INITIALIZED                 | 4001       | Purchase module has not been initialized. <br> Check if the gamebase-adapter-purchase-IAP module has been added to project. |
-| PURCHASE_USER_CANCELED                   | 4002       | Game user cancelled purchase of an item.                   |
-| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003      | Called API while the purchase logic was not completed.  |
-| PURCHASE_NOT_ENOUGH_CASH                 | 4004       | Cannot pay due to shortage of cash of the store.              |
-| PURCHASE_INACTIVE_PRODUCT_ID             | 4005       | Product is not activated.   |
-| PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | Requested for purchase with invalid GamebaseProductID. |
-| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | Unsupported store. <br> The stores you can select are AS (App Store), GG (Google), ONESTORE, and GALAXY. |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | Error in IAP library. <br> Check DetailCode.   |
-| PURCHASE_UNKNOWN_ERROR                   | 4999       | Undefined purchase error. <br> Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry) and we'll reply at the earliest possible moment. |
+| Error                                       | Error Code | Description                              |
+| ------------------------------------------- | ---------- | ---------------------------------------- |
+| PURCHASE_NOT_INITIALIZED                    | 4001       | The purchase module has not been initialized.<br>Check if the gamebase-adapter-purchase-IAP module has been added to project. |
+| PURCHASE_USER_CANCELED                      | 4002       | Purchase has been cancelled. |
+| PURCHASE_NOT_FINISHED\_PREVIOUS\_PURCHASING | 4003       | API has been called when a purchase logic is not completed. |
+| PURCHASE_NOT_ENOUGH_CASH                    | 4004       | Cannot purchase due to shortage of cash of the store. |
+| PURCHASE_INACTIVE_PRODUCT_ID                | 4005       | Product is not activated.   |
+| PURCHASE_NOT_EXIST_PRODUCT_ID               | 4006       | Requested for purchase with invalid GamebaseProductID. |
+| PURCHASE_LIMIT_EXCEEDED                     | 4007       | You have exceeded your monthly purchase limit.              |
+| PURCHASE_NOT_SUPPORTED_MARKET               | 4010       | The store is not supported.<br>The stores you can select are AS (App Store), GG (Google), ONESTORE, and GALAXY. |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR             | 4201       | Error in IAP library.<br>Check DetailCode. |
+| PURCHASE_UNKNOWN_ERROR                      | 4999       | Unknown error in purchase.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry) and we'll reply at the earliest possible moment. |
 
 * See the following document for the entire error codes. 
     * [Error Codes](./error-code/#client-sdk)
@@ -307,3 +452,6 @@ else
     }
 }
 ```
+
+* For IAP error codes, refer to the document below.
+    * [NHN Cloud > User Guide for NHN Cloud SDK > NHN Cloud IAP > Unity > Error Codes](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-unity/#error-code)

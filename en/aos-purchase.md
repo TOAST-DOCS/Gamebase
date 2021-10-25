@@ -197,7 +197,7 @@ class PurchasableReceipt {
     
     // Payment identifier.
     // This is an important piece of information used to call 'Consume' server API with paymentSeq.
-    // Consume API 에서는 'accessToken' 라는 이름의 파라메터로 전달해야 합니다.
+    // In Consume API, the parameter must be named 'accessToken' to be passed.
     //
     // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // In Consume API, the parameter must be named 'accessToken' to be passed.
@@ -363,7 +363,7 @@ class PurchasableItem {
     @Nullable
     String localizedDescription;
     
-    // Shows whether the product is 'used or not' in the Gamebase.
+    // Shows whether the product is 'used or not' in the Gamebase console.
     boolean isActive;
     
     // An identifier for Legacy API that purchases products with itemSeq.
@@ -471,15 +471,15 @@ See the guide on how to process a promotional purchase event via GamebaseEventHa
 
 | Error                                     | Error Code | Description                              |
 | ----------------------------------------- | ---------- | ---------------------------------------- |
-| PURCHASE_NOT_INITIALIZED                  | 4001       | The purchase module is not initialized.<br>Check if the gamebase-adapter-purchase-IAP module has been added to the project. |
-| PURCHASE_USER_CANCELED                    | 4002       | Purchase is cancelled.                 |
+| PURCHASE_NOT_INITIALIZED                  | 4001       | The purchase module has not been initialized.<br>Check if the gamebase-adapter-purchase-IAP module has been added to the project. |
+| PURCHASE_USER_CANCELED                    | 4002       | Purchase has been cancelled.                 |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | API has been called when a purchase logic is not completed.     |
 | PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | Product is not activated.  |
 | PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | Requested for purchase with invalid GamebaseProductID. |
-| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | The store is not supported.<br>You can choose either GG (Google), ONESTORE, GALAXY. |
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | You have exceeded your monthly purchase limit.             |
+| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | The store is not supported.<br>You can choose either GG (Google), ONESTORE, or GALAXY. |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | Error in IAP library.<br>Check detail codes.   |
-| PURCHASE_UNKNOWN_ERROR                    | 4999       | Unknown error in purchase.<br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we will respond ASAP. |
+| PURCHASE_UNKNOWN_ERROR                    | 4999       | Unknown error in purchase.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry) and we'll reply at the earliest possible moment. |
 
 * Refer to the following document for the entire error code.
     * [Entire Error Codes](./error-codes#client-sdk)
@@ -516,5 +516,5 @@ Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataC
 ```
 
 * For NHN Cloud IAP SDK error codes, refer to the document below.
-    * [NHN Cloud > NHN Cloud SDK User Guide > NHN Cloud IAP > Android > Error Codes](/TOAST/en/toast-sdk/iap-android/#_24)
+    * [NHN Cloud > NHN Cloud SDK User Guide > NHN Cloud IAP > Android > Error Codes](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-android/#error-codes)
 

@@ -1,6 +1,21 @@
 ## Game > Gamebase > Release Notes
 
-### 2.19.2(2021.06.29) [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.2/GamebaseSDK-Unreal.zip)
+### 2.26.0 (2021.09.28)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Unreal.zip)
+
+#### Added Features
+* Added a common Terms and Conditions feature
+	* Added an API that opens the Terms and Conditions webview
+	* Added an API that views the Terms and Conditions list and agreement status per user
+	* Added an API that stores the user agreement data on the Gamebase server
+
+#### Feature Updates
+* Changed to display the Customer Center without login if the Customer Center type is TOAST organization product (Online Contact).
+* Changed the internal launching URL
+* Removed Android multidex-related setting from Gamebase
+
+### 2.19.2(2021.06.29) 
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.2/GamebaseSDK-Unreal.zip)
 
 #### Bug Fixes
 * Fixed a crash that occurs when the Close button is clicked while onEventCallback is not registered when calling the Image Notification ShowImageNotices API

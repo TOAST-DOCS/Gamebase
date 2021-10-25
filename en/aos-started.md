@@ -2,20 +2,35 @@
 
 ## Environments
 
-To execute Gamebase in Android, following system environment is required.
+To execute Gamebase in Android, the following system environment is required.
 
 > [Minimum Specifications]
 >
-> * Android API 16 (JellyBean, 4.1) or higher
->     * For Twitter Login, 19 (Kitkat, 4.4) or later
->     * For AppleID Login, 19 (Kitkat, 4.4) or later
->     * For Line Login, 17(Kitkat, 4.2) or later
->     * For Weibo Login, 19 (Kitkat, 4.4) or later
->     * For GALAXY Store, 21 (Lollipop, 5.0) or later
->         * Since minSdkVersion of the GALAXY IAP SDK is 18 (OS 4.3), the build will fail when the set value is smaller than this.
->         * Checkout service app must be installed for actual payment, but Checkout service app will not be installed if it is lower than API 21(OS 5.0. Lollipop). In this case, the payment will not be processed.
-> * Android Gradle Plugin 3.2.0 or higher
-> * Development Environment: Android Studio
+> * User execution environment: Android API 16 (JellyBean, OS 4.1) or higher
+> * Build environment: Android Gradle Plugin 3.2.0 or higher
+> * Development environment: Android Studio
+
+### Dependencies
+
+| Gamebase SDK | Gamebase Adapter | External SDK | Purpose | minSdkVersion |
+| --- | --- | --- | --- | --- |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.27.1<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include interface and core logic of Gamebase | API 16 (JellyBean, OS 4.1) |
+| Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | API 19 (Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | Support Facebook login | - |
+|  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Support Google login | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.4.1 | Support Hangame login | - |
+|  | gamebase-adapter-auth-line | linesdk-5.6.2 | Support Line login | API 17 (Kitkat, OS 4.2) |
+|  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Support Naver login | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.6 | Support Payco login | - |
+|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Support Twitter login | API 19 (Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | Support Weibo login | API 19 (Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 21(Lollipop, OS 5.0) |
+| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.16.0<br>toast-iap-core | Support in-app purchase | - |
+|  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | Support Galaxy Store | API 21 (Lollipop, OS 5.0)<br>Although minSdkVersion of Galaxy IAP SDK is 18, the minSdkVersion of Checkout service app that must be installed for actual purchase is 21. |
+|  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Support Google Store | - |
+|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | Support ONE Store | - |
+| Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Support push notifications | - |
+|  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Support Firebase Notification | - |
 
 ## Setting
 
@@ -107,11 +122,7 @@ To execute Gamebase in Android, following system environment is required.
 repositories {
     // >>> For Gamebase SDK
     mavenCentral()
-	
     ...
-
-    // >>> [Hangame IdP]
-    maven { url 'To learn how to set the Hangame IdP, please contact our Customer Center.' }
 }
 
 dependencies {
@@ -128,7 +139,6 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-naver:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-line:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-payco:$GAMEBASE_SDK_VERSION"
-    implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Purchase Adapter
@@ -138,6 +148,11 @@ dependencies {
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
+    
+    // >>> Regarding how to use the following modules, please contact the Customer Center.
+    implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-auth-kakaogame:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v16:$GAMEBASE_SDK_VERSION"
 }
 
 android {
@@ -230,22 +245,6 @@ android {
 <application
       tools:replace="android:allowBackup"
       ... >
-```
-
-#### Hangame IdP
-
-* As for AndroidManifest.xml settings for proper operation of Hangame IdP, please contact our Customer Center.
-
-```xml
-<manifest ...>
-    <application ...>
-        ...
-        <!-- [Hangame] Configurations begin -->
-        <meta-data ... />
-        <!-- [Hangame] Configurations end -->
-        ...
-    </application>
-</manifest>
 ```
 
 #### Weibo IdP
@@ -360,7 +359,7 @@ android {
     * [https://developer.android.com/about/versions/11/privacy/package-visibility](https://developer.android.com/about/versions/11/privacy/package-visibility)
 * When configuring targetSdkVersion to a number equal to or greater than 30 to circumvent this problem, the application to approved must be declared in AndroidManifest.xml using the **queries** tag.
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
 > * “queries” tag cannot be recognized by the existing Android Gradle Plugin(AGP), so the build fails.
 > * Refer to the guide and table below and upgrade to the AGP version, which allows “queries” tag build.
@@ -399,6 +398,19 @@ android {
         <!-- [Payco/Hangame] Configurations begin -->
         <package android:name="com.nhnent.payapp" />
         <!-- [Payco/Hangame] Configurations end -->
+
+        <!-- [Hangame] Configurations begin -->
+        <package android:name="com.nhn.hangameotp" />
+        <package android:name="com.sci.siren24.ipin" />
+        <package android:name="kr.co.samsungcard.mpocket" />
+        <package android:name="com.lcacApp" />
+        <package android:name="com.shcard.smartpay" />
+        <package android:name="com.hyundaicard.appcard" />
+        <package android:name="com.kbcard.cxh.appcard" />
+        <package android:name="com.hanaskcard.paycla" />
+        <package android:name="kvp.jjy.MispAndroid320" />
+        <package android:name="nh.smart.nhallonepay" />
+        <!-- [Hangame] Configurations end -->
 
         <!-- [Line] Configurations begin -->
         <package android:name="jp.naver.line.android" />
@@ -477,6 +489,7 @@ android {
 * [Payco Login SDK for developers](https://developers.payco.com/guide/development/apply/android)
 * [Sign in with Apple JS guide](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js)
 * [Weibo for developers](https://github.com/sinaweibosdk/weibo_android_sdk/blob/master/2019SDK/文档)
+* [Kakaogame SDK Guide for Channeling](https://tech-wiki.kakaogames.com/display/SDK/Kakaogame+SDK+Guide+for+Channeling)
 
 ## API Reference
 

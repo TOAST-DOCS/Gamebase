@@ -1,4 +1,4 @@
-﻿
+
 ## Game > Gamebase > Unity SDK 사용 가이드 > 시작하기
 
 Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
@@ -9,7 +9,7 @@ Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 >
 > Unity 지원 버전
 >
-> * 2018.4.0 ~ 2021.1.16
+> * 2018.4.0 ~ 2021.1.22
 > * 하위 버전의 Unity 지원이 필요하면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
 
 #### Android
@@ -142,11 +142,16 @@ Lifecycle 관리를 위해 "com.toast.android.gamebase.activity.GamebaseMainActi
 
 > <font color="red">[주의]</font>
 >
-> AndroidPlugin 개발에도 GamebaseMainActivity를 상속받아 만들어야 합니다. <br/>
-> GamebaseMainActivity는 GamebasePlugin.jar에 포함되어 있습니다. <br/>
+> AndroidPlugin 개발에도 GamebaseMainActivity를 상속받아 만들어야 합니다.
+> GamebaseMainActivity는 GamebasePlugin.jar에 포함되어 있습니다.
 > launchMode는 singleTask로 해야 합니다.(Unity 기본 Activity도 singleTask로 고정됩니다.) 그렇지 않을 경우 앱을 처음 시작할 때 크래시가 발생할 수 있습니다.
 >
 > 해당 Lifecycle을 변경 시에는 Project Settings > Settings for Android > Publish Settings > Build > Custom Main Manifest를 활성화 하여 해당 AndroidManifest.xml에 수정해야 합니다.
+
+> <font color="red">[주의]</font>
+> 
+> Android의 targetSdkVersion을 31 이상으로 설정하는 경우, intent-filter가 존재하는 태그에는 반드시 android:exported 특성을 선언해야 합니다.
+> Gamebase에서 Lifecycle을 관리하기 위해 제공하는 **GamebaseMainActivity**를 MainActivity로 설정할 때에도 특성에 **android:exported="true"** 가 추가되어야 합니다.
 
 ```xml
 <manifest>
@@ -156,7 +161,8 @@ Lifecycle 관리를 위해 "com.toast.android.gamebase.activity.GamebaseMainActi
     	<activity android:name="com.toast.android.gamebase.activity.GamebaseMainActivity"
         	android:launchMode="singleTask"
         	android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:exported="true">
             <intent-filter>
             	<action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

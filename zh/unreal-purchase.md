@@ -276,7 +276,7 @@ void Sample::RequestActivatedPurchases()
 | PURCHASE_USER_CANCELED                   | 4002       | 游戏用户取消购买道具。                  |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003      | 未完成购买逻辑的状态下调用了API。|
 | PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 因该商店的现金不足，无法进行结算。              |
-| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 是不支持的商店。<br>可以选择的商店为GG(Google)和ONESTORE。|
+| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 是不支持的商店。<br>可以选择的商店为AS(App Store)、GG(Google)、ONESTORE、GALAXY。|
 | PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | 是IAP库错误。<br>请确认DetailCode。  |
 | PURCHASE_UNKNOWN_ERROR                   | 4999       | 是未定义的购买错误。<br>请将所有日志上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。|
 
@@ -308,7 +308,7 @@ else
 ```
 
 * 关于IAP错误代码，请参考以下文档。 
-    * [TOAST > TOAST SDK使用指南 > TOAST IAP > Unity > 错误代码](/TOAST/ko/toast-sdk/iap-unity/#_17)
+    * [NHN Cloud > NHN Cloud SDK使用指南 > NHN Cloud IAP > Unity > 错误代码](/TOAST/ko/toast-sdk/iap-unity/#_17)
 
 
 

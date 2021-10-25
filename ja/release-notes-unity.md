@@ -1,5 +1,45 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.28.1 (2021.10.26)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.1/GamebaseSDK-Unity.zip)
+
+#### 버그 수정
+* (Android) DisplayLanguage 설정을 하지 않을 경우, 잘못된 값으로 설정되는 문제가 수정되었습니다.
+* (Standalone) 이전 프레임에서 시간이 오래 걸릴 경우 발생하는 Timeout 오류가 수정되었습니다.
+
+### 2.28.0 (2021.09.28)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-Unity.zip)
+
+#### 機能追加
+* Kakaogame認証追加
+* 「決済アビューズ自動解除」機能が追加されました。
+    * [Game > Gamebase > Unity SDK使用ガイド > 認証 > GraceBan](./unity-authentication/#graceban)
+    * 決済アビューズ自動解除機能は、決済アビューズ自動制裁で利用停止にならなければいけないユーザーが利用停止猶予状態後、利用停止になるようにします。
+    * 利用停止猶予状態の場合、設定した期間内に解除条件を全て満たすと正常にプレイが可能になります。
+    * 期間内に条件を満たせなかった場合、利用停止になります。
+* 決済アビューズ自動解除機能を使用するゲームはログイン後、常にAuthToken.getGraceBanInfo() API値を確認し、nullではない有効なGraceBanInfoオブジェクトを返した場合、該当ユーザーに利用停止解除条件、期間などを案内する必要があります。
+    * 利用停止猶予状態のユーザーのゲーム内アクセス制御はゲームで処理する必要があります。
+
+#### プラットフォーム別の変更事項
+* [Gamebase Android SDK 2.28.0](./release-notes-android/#2280-20210928)
+* [Gamebase iOS SDK 2.28.0](./release-notes-ios/#2280-20210928)
+
+### 2.27.1 (2021.09.14)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-Unity.zip)
+
+#### 機能改善/変更
+* Display Language機能が改善されました。
+    * 基本言語コードが**en**でしたが、Gamebaseコンソールで設定した基本言語が反映されるように改善しました。
+        * [Game > Gamebase > コンソール使用ガイド > アプリ > App > 言語設定](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
+
+#### バグ修正
+* 「登録されていないゲームバージョン」エラーポップアップが英語でのみ表示されるバグを修正しました。
+* メンテナンスポップアップに中国語が表示されないバグを修正しました。
+
+#### プラットフォーム別の変更事項
+* [Gamebase Android SDK 2.27.1](./release-notes-android/#2271-20210914)
+* [Gamebase iOS SDK 2.27.1](./release-notes-ios/#2271-20210914)
+
 ### 2.27.0 (2021.08.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-Unity.zip)
 
@@ -465,8 +505,8 @@ Gamebase SDK 2.6.0未満バージョンから2.6.0にアップグレードする
 
 #### バグ修正
 * [SDK] 2.4.3
-	* (Unity)iOS와 Android로 빌드시 AddMappingForcibly API 가 동작하지 않는 오류 수정
-	* (Unity)RequestRetryTransaction API 호출시 iOSPlugin에서 JSON 파싱 오류가 있어 수정
+	* (Unity)iOSとAndroidでビルド時、AddMappingForcibly APIが動作しないエラーを修正
+	* (Unity)RequestRetryTransaction APIの呼び出し時、iOSPluginでJSON解析エラーを修正
 	
 ### 2019.06.27
 

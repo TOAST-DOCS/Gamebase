@@ -10,9 +10,6 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 * [Android Purchase Settings](aos-purchase#settings)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
-如果需要在Unity Standalone中进行结算，必须添加IapAdapter和WebViewAdapter。
-![GamebaseUnitySDKSettins Inspector](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-settingtool_iap_2.4.0.png)
-
 ### Purchase Flow
 
 购买  道具的程序大体分为Flow、Consume Flow及‘’支付再处理”Flow。
@@ -317,7 +314,7 @@ else
 ```
 
 * IAP错误代码，请参考以下文档。
-    * [TOAST > TOAST SDK使用指南 > TOAST IAP > Unity > 错误代码](/TOAST/zh/toast-sdk/iap-unity/#_17)
+    * [TOAST > TOAST SDK使用指南 > TOAST IAP > Unity > 错误代码](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-unity/#error-code)
 
 
 

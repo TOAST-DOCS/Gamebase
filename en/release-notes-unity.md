@@ -1,10 +1,50 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.28.1 (2021.10.26)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.1/GamebaseSDK-Unity.zip)
+
+#### 버그 수정
+* (Android) DisplayLanguage 설정을 하지 않을 경우, 잘못된 값으로 설정되는 문제가 수정되었습니다.
+* (Standalone) 이전 프레임에서 시간이 오래 걸릴 경우 발생하는 Timeout 오류가 수정되었습니다.
+
+### 2.28.0 (2021.09.28)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-Unity.zip)
+
+#### Added Features
+* Added Kakaogame authentication
+* Added a 'purchase abuse automatic release' function.
+    * [Game > Gamebase > Unity SDK User Guide > Authentication > GraceBan](./unity-authentication/#graceban)
+    * The purchase abuse automatic release function allows users who should be banned due to purchase abuse automatic lockdown to be banned after ban suspension status.
+    * When a user is in ban suspension status, if the user satisfies all of the release conditions within the set period of time, the user will be able to play normally.
+    * If the user does not satisfy the conditions within the period, the user is banned.
+* Games that use the purchase abuse automatic release function must always call the AuthToken.getGraceBanInfo() API after login. If a valid GraceBanInfo object that is not null is returned, the user must be informed of the ban release conditions, period, etc.
+    * In-game access control for users who are in ban suspension status must be handled by the game.
+
+#### Platform-specific Changes
+* [Gamebase Android SDK 2.28.0](./release-notes-android/#2280-20210928)
+* [Gamebase iOS SDK 2.28.0](./release-notes-ios/#2280-20210928)
+
+### 2.27.1 (2021.09.14)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-Unity.zip)
+
+#### Feature Updates
+* Improved the Display Language feature.
+     * So far, the default language code was **en**. It has been improved to reflect the default language set in the Gamebase console.
+         * [Game > Gamebase > Console User Guide > App > App > Language Settings](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
+
+#### Bug Fixes
+* Fixed a bug where the 'Unregistered Game Version' error pop-up was displayed only in English.
+* Fixed a bug where the Chinese text was not displayed in the maintenance pop-up.
+
+#### Platform-specific Changes
+* [Gamebase Android SDK 2.27.1](./release-notes-android/#2271-20210914)
+* [Gamebase iOS SDK 2.27.1](./release-notes-ios/#2271-20210914)
+
 ### 2.27.0 (2021.08.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-Unity.zip)
 
 #### Feature Updates
-* Updated the external SDK: TOAST Android SDK (0.27.1)
+* Updated the external SDK: TOAST Unity SDK (0.27.1)
 * Added ONE Store V16 store
 
 #### Bug Fixes

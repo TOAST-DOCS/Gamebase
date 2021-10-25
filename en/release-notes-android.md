@@ -1,5 +1,37 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.28.0 (2021.09.28)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-Android.zip)
+
+#### Added Features
+* Added Kakaogame authentication
+* Added a 'purchase abuse automatic release' function.
+    * [Game > Gamebase > Android SDK User Guide > Authentication > GraceBan](./aos-authentication/#graceban)
+    * The purchase abuse automatic release function allows users who should be banned due to purchase abuse automatic lockdown to be banned after ban suspension status.
+    * When a user is in ban suspension status, if the user satisfies all of the release conditions within the set period of time, the user will be able to play normally.
+    * If the user does not satisfy the conditions within the period, the user is banned.
+* Games that use the purchase abuse automatic release function must always call the AuthToken.getGraceBanInfo() API after login. If a valid GraceBanInfo object that is not null is returned, the user must be informed of the ban release conditions, period, etc.
+    * In-game access control for users who are in ban suspension status must be handled by the game.
+* Added a feature to display a wait icon while waiting for a login response.
+
+#### Feature Updates
+* External SDK update: PAYCO Android SDK(1.5.6)
+
+### 2.27.1 (2021.09.14)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-Android.zip)
+
+#### Feature Updates
+* External SDK update: PAYCO Android SDK (1.5.5), Hangame Android SDK (1.4.1), Weibo Android SDK (11.8.1)
+* Added a retry logic when the webview is not displayed normally in the emulator or rooted terminal, so that the webview is displayed normally.
+    * This applies to image notification, customer center, and common terms and conditions that run as a webview.
+* Improved stability by improving Weibo IdP authentication.
+    * Added exception handling, waiting, and retry logic to an API that is a synchronous API but actually operates asynchronously and generates an error.
+
+#### Bug Fixes
+* Fixed a bug where the 'Unregistered Game Version' error pop-up was displayed only in English.
+* Fixed a bug where the Chinese text was not displayed in the maintenance pop-up.
+* Fixed a bug where, if [Credential Login](./aos-authentication/#login-with-credential) is performed, [Login as the Latest Login IdP](./aos-authentication/#login-as-the-latest-login-idp ) call always fails.
+
 ### 2.27.0 (2021.08.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-Android.zip)
 
@@ -16,10 +48,10 @@
         * It has been improved so that you can add the localizedstring.json file to the res/raw folder of the project.
     * Until now, the method of adding the Display Language language set in the Unity guide could not be applied to Android.
         * It has been improved so that the information is reflected in the Android build even if a localizedstring.json file is added, according to the Unity guide.
-        * [Game > Gamebase > Unity SDK User Guide > Notes > Additional Features > Display Language > Add New Language Sets](./unity-etc/#_1)
+        * [Game > Gamebase > Unity SDK User Guide > Notes > Additional Features > Display Language > Add New Language Sets](https://docs.toast.com/en/Game/Gamebase/en/unity-etc/#add-new-language-sets)
     * Simplified Chinese (zh-CN), Traditional Chinese (zh-TW), and Thai (th) have been added to the Display Language language set.
     * The default language code was **en**, but it has been improved to reflect the default language set in the Gamebase console.
-        * [Game > Gamebase > Console User Guide > App > App > Language settings](./oper-app/#_3)
+        * [Game > Gamebase > Console User Guide > App > App > Language settings](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
 * Changed the creation criteria of the PushConfiguration object that can be created after calling the showTermsView API as follows.
     * Before change
         * A valid non-null PushConfiguration was returned only when **Receive Push Notification** item exists in the terms and conditions.
@@ -265,7 +297,7 @@ you may encounter an issue during reprocessing if a different billing client ver
 
 #### Bug Fixes
 * [SDK] 2.9.1
-	* (Andoird) Fixed an error in which an indicator level becomes null after mapped and does not show properly on the purchase indicator  
+	* (Android) Fixed an error in which an indicator level becomes null after mapped and does not show properly on the purchase indicator  
 	* (iOS) Fixed the inavailability of a build on an unreal engine since warning is considered as a build error 
 
 ### 2.9.0 (April 28, 2020)

@@ -175,7 +175,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 | keyname                                  | a use                          | 값 종류                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정 |                                |
 
 
@@ -774,7 +774,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 ```objectivec
 - (void)testRequestWithdraw {
-    TCGBGamebase requestTemporaryWithdrawalWithViewController:parentViewController completion:^(TCGBTemporaryWithdrawalInfo *info, TCGBError *error) {
+    [TCGBGamebase requestTemporaryWithdrawalWithViewController:parentViewController completion:^(TCGBTemporaryWithdrawalInfo *info, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == NO) {
             if (error.code == TCGB_ERROR_AUTH_WITHDRAW_ALREADY_TEMPORARY_WITHDRAW) {
                 // Already requested temporary withdrawal before.
@@ -792,7 +792,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 ### Check TemporaryWithdrawal User
 
-탈퇴 유예를 사용하는 게임은 로그인 후 항상 **TCGBAuthToken.tcgbMember.temporaryWithdrawal** 를 사용하여하여, 결과가 null 이 아닌 유효한 TemporaryWithdrawalInfo 객체를 리턴한다면 해당 유저에게 탈퇴 진행중이라는 사실을 알려주어야 합니다.
+탈퇴 유예를 사용하는 게임은 로그인 후 항상 **TCGBAuthToken.tcgbMember.temporaryWithdrawal** 를 사용하여, 결과가 null 이 아닌 유효한 TemporaryWithdrawalInfo 객체를 리턴한다면 해당 유저에게 탈퇴 진행중이라는 사실을 알려주어야 합니다.
 
 **Example**
 
@@ -820,7 +820,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 ### Cancel TemporaryWithdrawal
 
-탈퇴를 요청을 취소합니다.
+탈퇴 요청을 취소합니다.
 탈퇴 요청 후 기간이 만료되어 탈퇴가 완료되면 취소가 불가능합니다.
 
 **API**
@@ -884,6 +884,52 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 }
 ```
 
+## GraceBan
+
+* '결제 어뷰징 자동 해제' 기능입니다.
+    * 결제 어뷰징 자동 해제 기능은 결제 어뷰징 자동 제재로 이용 정지가 되어야 할 사용자가 이용 정지 유예 상태 후 이용 정지가 되도록 합니다.
+    * 이용 정지 유예 상태일 경우 설정한 기간 내에 해제 조건을 모두 만족하면 정상플레이가 가능해집니다.
+    * 기간 내에 조건을 충족하지 못하면 이용 정지가 됩니다.
+* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 TCGBAuthToken.tcgbMember.graceBanInfo 값을 확인하고, null이 아닌 유효한 TCGBGraceBanInfo 객체를 리턴한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
+    * 이용 정지 유예 상태인 유저의 게임 내 접근 제어는 게임에서 처리하셔야 합니다.
+
+**Example**
+
+```objectivec
+- (void)testGraceBanInfo {
+    [TCGBGamebase loginWithType:kTCGBAuthAppleID viewController:viewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == NO) {
+            // Login failed
+            return;
+        }
+        
+        // Check if user is under grace ban
+        if (authToken.tcgbMember.graceBanInfo != nil) {
+            TCGBGraceBanInfo *graceBanInfo = authToken.tcgbMember.graceBanInfo;
+            // gracePeriodDate : epoch time in milliseconds
+            long long gracePeriodDate = graceBanInfo.gracePeriodDate;
+            NSString *message = [graceBanInfo.message stringByRemovingPercentEncoding];
+            if (graceBanInfo.paymentStatus != nil) {
+                TCGBPaymentStatus *paymentStatus = graceBanInfo.paymentStatus;
+                double paymentStatusAmount = paymentStatus.amount;
+                int paymentStatusCount = paymentStatus.count;
+            }
+            if (graceBanInfo.releaseRuleCondition != nil) {
+                TCGBReleaseRuleCondition *releaseRuleCondition = graceBanInfo.releaseRuleCondition;
+                double releaseRuleConditionAmount = releaseRuleCondition.amount;
+                int releaseRuleConditionCount = releaseRuleCondition.count;
+                NSString *releaseRuleConditionCurrency = releaseRuleCondition.currency;
+                // condition type : "AND", "OR"
+                NSString *releaseRuleConditionType = releaseRuleCondition.conditionType;
+            }
+            // Guide the user through the UI how to finish the grace ban status.
+        }
+        else {
+            // Login Success
+        }
+    }];
+}
+```
 
 ## Error Handling
 

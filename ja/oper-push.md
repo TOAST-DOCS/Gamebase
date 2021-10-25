@@ -188,7 +188,14 @@ Androidプッシュメッセージの受信時に実行されるメディアを�
 
 ### 受信設定
 選択された期間の受信設定関連統計を表示します。
-![gamebase_push_14_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_14_202101.png)
+![gamebase_push_14_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_14_202109.png)
+
+|区分|情報性|広告性|夜間広告性|
+|------|:---:|:---:|:---:|
+|全て同意| O | O | O |
+|全て拒否| | | |
+|情報性同意、広告全て拒否| O | | |
+|情報性および広告昼間同意、夜間拒否| O | O | |
 
 ## Event Key
 プッシュ送信統計に使用するイベントキーを管理できます。

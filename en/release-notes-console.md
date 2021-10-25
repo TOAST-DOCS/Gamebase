@@ -1,5 +1,57 @@
 ## Game > Gamebase > Release Notes > Console
 
+### October 26, 2021
+
+#### Feature Updates
+* Analytics
+	* Changed the file download format to .csv and .xlsx
+* Operation > Kickout
+	* Added a feature to copy kickout details
+
+### October 12, 2021
+
+#### Feature Updates
+* Push > Statistics > Send/Receive, Receive Settings
+	* Changed the file download format to .csv
+* Coupon > History, Coupon publish list
+	* Changed the file download format to .csv
+
+#### Bug Fixes
+* Analytics > User Indicators > Life Cycle
+	* Fixed a bug where the withdrawn user indicator is displayed as 0 on the day of registration
+	
+### September 28, 2021
+
+#### Feature Updates
+* Purchase (IAP) > Payment Abusing Monitoring
+    * Added an automatic release feature for payment abusing
+* Purchase (IAP) > Store
+    * ONE store SDK v16 support
+
+#### Bug Fixes
+* Purchase (IAP) > Product
+    * Fixed an error where, when registering items with a file, the items are registered incorrectly if there is multiple store information
+* Push > Push
+    * Fixed an error where message sending fails when setting the text color for messages that have only content without a subject
+
+### September 14, 2021
+
+#### Feature Updates
+* Push > Statistics > Inbound settings
+	* Changed the text related to inbound settings statistics
+* Customer Center
+	* Added a template feature where users can enter details depending on an inquiry type
+	* Added an internationalization feature to the customer inquiry reply template
+* Analytics
+    * Added a feature to provide MCU/ACU data when a filter is selected
+        * MCU data is provided from August 11
+* Analytics > Real-Time Monitoring > Concurrent Users
+	* Added a feature to provide push notifications scheduling history
+
+#### Bug Fixes
+* Customer Center > Customer Inquiry
+	* Fixed an error where a wrong calendar is exposed when the user selects submission period dates
+
 ### August 24, 2021
 
 #### Feature Updates
@@ -35,7 +87,7 @@
 * Customer Center > Customer Inquiry
 	* Improved to leave multiple answers when handling customer inquiries.
 	* Improved to allow users to leave additional inquiries after leaving an initial inquiry.
-	*  Add Status: To be used when needing additional confirmation after pending-replied.
+	* Added Status: To be used when needing additional confirmation after pending-replied.
 * Purchase(IAP) > Payment Abusing Monitoring: Improved to display the user status in multiple languages in the payment history by user section.
 
 #### Bug Fixes
@@ -44,7 +96,7 @@
 ### July 13, 2021
 
 #### More Features
-* New mobile menu open: Retention    
+* New mobile menu open: Retention
 
 ### June 29, 2021
 
@@ -130,21 +182,12 @@ Push > Push (Old) Console menu feature has been removed.
 	* (Android) Sign-in with Apple authentication added
 
 #### Feature Updates
-* [Console]
-	* App > App: beta service server added to Manage Server Address
-	* App > Client: beta service added to Client Status, memo function added so that additional client information can be registered
-	* Purchase (IAP) > Product: search condition added - whether currently being used or not
-	* Purchase (IAP) > Payment Information: now store test payment is displayed in the payment history
-	* Purchase (IAP) > Terminate Sales Menu: Analytics > Sales Metrics and functions are integrated now.
-	* Analytics > Preferences > Terminate Installation URL Menu
-* [SDK] 2.19.0
-	* (Common) Launching status code added: beta service (205)
-
-#### Bug Fixes
-* [SDK] 2.19.0
-    * (Unity) WebSocket에서 재시도 시 OutOfMemoryException이 발생하는 문제 수정
-* [SDK] 2.19.1
-	* (Android) Weibo 로그인 시도 후 다른 IdP로 로그인 시 크래시가 발생하는 문제 수정
+* App > App: beta service server added to Manage Server Address
+* App > Client: beta service added to Client Status, memo function added so that additional client information can be registered
+* Purchase (IAP) > Product: search condition added - whether currently being used or not
+* Purchase (IAP) > Payment Information: now store test payment is displayed in the payment history
+* Purchase (IAP) > Terminate Sales Menu: Analytics > Sales Metrics and functions are integrated now.
+* Analytics > Preferences > Terminate Installation URL Menu
 
 ### December 15, 2020
 
@@ -1145,7 +1188,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 버그수정
 * [SDK] 1.13.0
 	* (Android)NaverCafe SDK와의 충돌로 Naver 로그인시 발생하던 오류 해결
-	* (Unity)Unity 2017.2 이상 버전에서 Editor Play Mode 종료 시 websocke close 처리에서 발생하던 오류 수정
+	* (Unity)Unity 2017.2 이상 버전에서 Editor Play Mode 종료 시 websocket close 처리에서 발생하던 오류 수정
 * Console
 	* App : 정보 수정시 삭제버튼 뒤의 내용이 잘리는 현상 수정
 

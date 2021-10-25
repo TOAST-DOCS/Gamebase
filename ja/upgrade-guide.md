@@ -1,10 +1,26 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.27.0
+
+### iOS
+
+#### ImageNotice
+
+* Unityで画像告知が表示されない問題を修正しました。
+    * Gamebase iOS SDK 2.27.0未満を使用する場合、Unityで画像告知が表示されないことがあります。
+    * 画像告知を使用する場合は、Gamebase iOS SDK 2.27.0以上を使用してください。
+
 ## 2.26.0
 
 ### Unity
 
 * 該当バージョンを使用する時は`Assets/Gamebase/Toast/IAP/Plugins`を直接削除してから使用してください。
+
+### Unreal
+
+* Gamebaseでmultidex設定が削除されました。設定するには以下のガイドを参照してください。
+    * [Game > Gamebase > Unreal SDK使用ガイド > はじめる > Installation > Android Settings > multidex適用](./unreal-started/#android-settings)
+
 
 ## 2.25.0
 

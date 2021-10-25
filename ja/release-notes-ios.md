@@ -1,12 +1,46 @@
 ## Game > Gamebase > リリースノート > iOS
 
+### 2.28.0 (2021.09.28)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-iOS.zip)
+
+#### 機能追加
+* Kakaogame認証を追加
+* 「決済アビューズ自動解除」機能が追加されました。
+    * [Game > Gamebase > iOS SDK使用ガイド > 認証 > GraceBan](./ios-authentication/#graceban)
+    * 決済アビューズ自動解除機能は、決済アビューズ自動制裁で利用停止にならなければいけないユーザーが利用停止猶予状態後、利用停止になるようにします。
+    * 利用停止猶予状態の場合、設定した期間内に解除条件を全て満たすと正常にプレイが可能になります。
+    * 期間内に条件を満たせなかった場合、利用停止になります。
+* 決済アビューズ自動解除機能を使用するゲームはログイン後、常にTCGBAuthToken.tcgbMember.graceBanInfo値を確認し、nullではない有効なTCGBGraceBanInfoオブジェクトを返した場合、該当ユーザーに利用停止解除条件、期間などを案内する必要があります。
+    * 利用停止猶予状態のユーザーのゲーム内アクセス制御はゲームで処理する必要があります。
+
+#### 機能改善/変更
+* PAYCO iOS SDKアップデート(1.5.2)
+
+### 2.27.1 (2021.09.14)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-iOS.zip)
+
+#### 機能改善/変更
+* PAYCO iOS SDKアップデート(1.5.1)
+    * 認証フローおよびUI改善
+* Hangame iOS SDKアップデート(1.6.1)
+    * 本人認証でエラーが発生した時、コールバックの呼び出しができないイシューを修正
+    * iOS 15 betaでナビゲーションバーが正常に表示されないイシューを修正
+
+#### バグ修正
+* すでに約款に同意して約款UIが表示されない場合、 PushConfigurationがnilでリターンされないイシューを修正しました。
+
 ### 2.27.0 (2021.08.24) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-iOS.zip)
 
 #### 機能改善/変更
 * PAYCO iOS SDKアップデート(1.5.0)
-    * PAYCOアプリがない場合、従来の手動ログインのみ可能だった部分で Safariにログインしていた場合、簡単ログイン機能を使用できるように変更しました。
+    * PAYCOアプリがない時、以前は手動ログインのみ可能でしたが、Safariにログインしている場合は、簡単ログイン機能を使用できるようにしました。
 
+#### 버그 수정
+* Unity에서 이미지 공지가 출력되지 않는 이슈를 수정했습니다.
+    * Gamebase iOS SDK 2.27.0 미만을 사용하실 경우, Unity에서 이미지 공지가 출력되지 않을 수 있습니다.
+    * 이미지 공지를 사용하실 경우엔, Gamebase iOS SDK 2.27.0 이상을 사용하시기 바랍니다.
+    
 ### 2.26.0 (2021.08.10) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-iOS.zip)
 
@@ -16,7 +50,7 @@
         * それをXcodeプロジェクトのCopy Bundle Resourcesにlocalizedstring.jsonファイルを追加する方法に変更しました。
     * Display Language言語セットに中国語簡体字(zh-CN)、中国語繁体字(zh-TW)、タイ語(th)が追加されました。
     * デフォルトの言語コードが**en**でしたが、Gamebaseコンソールで設定したデフォルトの言語が反映されるように改善しました。
-        * [Game > Gamebase > コンソール使用ガイド > アプリ > App > 言語設定](./oper-app/#_3)
+        * [Game > Gamebase > コンソール使用ガイド > アプリ > App > 言語設定](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
 * showTermsView API呼び出し後に作成することができるPushConfigurationオブジェクトの作成基準が次のように変更されました。
     * 変更前
         * 約款項目中に**Push受信**項目が存在する場合にのみnilではなく有効なPushConfigurationが返されました。

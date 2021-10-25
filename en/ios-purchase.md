@@ -163,7 +163,7 @@ When a game user cancels purchase, the **TCGB_ERROR_PURCHASE_USER_CANCELED** is 
 @property (nonatomic, strong) NSString *userId;
 
 // The payment identifier of a store
-@property (nonatomic, strong) NSString *paymentId;
+@property (nonatomic, strong, nullable) NSString *paymentId;
 
 // The time when the subscription expires (epoch time)
 @property (nonatomic, assign) long expiryTime;
@@ -174,12 +174,12 @@ When a game user cancels purchase, the **TCGB_ERROR_PURCHASE_USER_CANCELED** is 
 // It is the value passed to payload when calling the requestPurchase API
 // This field can be used to hold a variety of additional information. For example, this field can be used to separately handle purchase
 // of the products purchased using the same user ID and sort them by game channel or character.
-@property (nonatomic, strong) NSString *payload;
+@property (nonatomic, strong, nullable) NSString *payload;
 
 // paymentId is changed whenever product subscription is renewed.
 // This field shows the paymentId that was used when a subscription product was first purchased.
 // This value does not guarantee to be always valid, as it can have no value depending on the store the user made a purchase and the status of the payment server.
-@property (nonatomic, strong) NSString *originalPaymentId;
+@property (nonatomic, strong, nullable) NSString *originalPaymentId;
 
 // An identifier for Legacy API that purchases products with itemSeq
 @property (assign)            long itemSeq;
@@ -390,13 +390,13 @@ E.g.) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&prod
 | TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED                    | 4001       | Gamebase PurchaseAdapter has not been initialized.           |
 | TCGB\_ERROR\_PURCHASE\_USER\_CANCELED                      | 4002       | Purchase has been cancelled.                                 |
 | TCGB\_ERROR\_PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003       | Previous purchase has not been completed.                    |
-| TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH                   | 4004       | Unable to pay due to shortage of cash for the store.         |
+| TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH                   | 4004       | Unable to purchase due to shortage of cash for the store.         |
 | TCGB\_ERROR\_PURCHASE\_INACTIVE\_PRODUCT\_ID               | 4005       | Product is not activated.                                    |
 | TCGB\_ERROR\_PURCHASE\_NOT\_EXIST\_PRODUCT\_ID             | 4006       | Requested for purchase with invalid GamebaseProductID.       |
 | TCGB_ERROR_PURCHASE_LIMIT_EXCEEDED                         | 4007       | You have exceeded your monthly purchase limit.               |
-| TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET              | 4010       | Unsupported store. <br />iOS supports "AS".                  |
-| TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR            | 4201       | Error of IAP library.<br>Please check error.message.         |
-| TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR                      | 4999       | Undefined error of purchase. <br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we'll return at the earliest possible moment. 
+| TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET              | 4010       | The store is not supported.<br />iOS supports "AS".                  |
+| TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR            | 4201       | Error in IAP library.<br>Please check error.message.         |
+| TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR                      | 4999       | Unknown error in purchase.<br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we'll return at the earliest possible moment. 
 
 * Refer to the following document for the entire error code.
     * [Entire Error Codes](./error-code/#client-sdk)
@@ -419,5 +419,5 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
 * See the guide for the IAP error codes.  
-    * [NHN Cloud > User Guide for NHN CLoud SDK > NHN Cloud IAP > iOS > Error Codes](/TOAST/ko/toast-sdk/iap-ios/#_15)
+    * [NHN Cloud > User Guide for NHN CLoud SDK > NHN Cloud IAP > iOS > Error Codes](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-ios/#error-codes)
 

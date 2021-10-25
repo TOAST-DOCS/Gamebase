@@ -39,15 +39,16 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 | --- | --- | --- | --- | --- |
 | Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.29.0 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Facebook 로그인을 지원 | iOS9 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.0 | Payco 로그인을 지원 | iOS9 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.2 | Payco 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | Naver 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenter 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthGoogleAdapter.framework | | Google 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthTwitterAdapter.framework | | Twitter 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | LINE 로그인을 지원 | iOS10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS9 or later<br/>arm64 지원<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.0 | Hangame 로그인을 지원 | iOS9 or later |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.1 | Hangame 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weibo 로그인을 지원 | iOS9 or later |
+|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.11.5 | Kakao 로그인을 지원 | iOS11 or later |
 | Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.29.0<br/> ToastGamebaseIAP 0.12.0 | 게임 내 결제를 지원 | iOS9 or later |
 | Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.29.0 | Push를 지원 | iOS9 or later |
 
@@ -113,6 +114,15 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 > 따라서 이 옵션을 설정하지 않았을 때에 **selector not recognized**와 같은 오류가 Runtime 상에서 발생할 수 있습니다.
 >
 
+<br/>
+
+> <font color="red">[주의]</font><br/>
+>
+> * Unity(2019.3 이상) 빌드할 경우, Gamebase iOS SDK를 **UnityFramework** 타겟에만 import 해줍니다.
+> * Unity 빌드를 하게 되면 Xcode 프로젝트 타겟에 **Unity-iPhone**, **UnityFramework**가 생깁니다.
+> * 각 타겟에 Gamebase iOS SDK를 중복해서 import 할 경우, 동작에 문제가 있을 수 있으니 유의해야 합니다.
+> 
+
 ### CocoaPods Settings
 
 Gamebase iOS SDK는 CocoaPods를 통해서도 설정할 수 있습니다.
@@ -139,6 +149,9 @@ target 'SampleApplication' do
     pod 'GamebasePushAdapter'
     pod 'GamebasePurchaseIAPAdapter'
 
+    # 다음 모듈의 사용 방법은 고객 센터로 문의하시기 바랍니다.
+    pod 'GamebaseAuthHangameAdapter'
+    pod 'GamebaseAuthKakaogameAdapter'
 end
 ```
 
@@ -175,7 +188,7 @@ end
 
 * 인증을 위해 IdP 콘솔에서 Client ID 를 발급받아 Gamebase 콘솔에 입력합니다.
     * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
-* Gamebase iOS SDK 는 각 IdP 별로 추가 설정이 필요합니다.
+* Gamebase iOS SDK는 각 IdP별로 추가 설정이 필요합니다.
 
 #### Google
 
@@ -229,6 +242,11 @@ end
 	```
 * LINE Login 을 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다. (인증 필요)
 * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
+
+#### Weibo
+
+* AppDelegate 의 **application:openURL:sourceApplication:annotation:**을 필수로 구현해야 합니다.
+    * [Game > Gamebase > iOS SDK 사용 가이드 > 초기화 > OpenURL Event](./ios-initialization/#openurl-event)
 
 ### IdP Settings (Legacy)
 

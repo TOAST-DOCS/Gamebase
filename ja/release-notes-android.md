@@ -1,5 +1,37 @@
 ## Game > Gamebase > リリースノート > Android
 
+### 2.28.0 (2021.09.28)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-Android.zip)
+
+#### 機能追加
+* Kakaogame認証を追加
+* 「決済アビューズ自動解除」機能が追加されました。
+    * [Game > Gamebase > Android SDK使用ガイド > 認証 > GraceBan](./aos-authentication/#graceban)
+    * 決済アビューズ自動解除機能は、決済アビューズ自動制裁で利用停止にならなければいけないユーザーが利用停止猶予状態後、利用停止になるようにします。
+    * 利用停止猶予状態の場合、設定した期間内に解除条件を全て満たすと正常にプレイが可能になります。
+    * 期間内に条件を満たせなかった場合、利用停止になります。
+* 決済アビューズ自動解除機能を使用するゲームはログイン後、常にAuthToken.getGraceBanInfo() API値を確認し、nullではない有効なGraceBanInfoオブジェクトを返した場合、該当ユーザーに利用停止解除条件、期間などを案内する必要があります。
+    * 利用停止猶予状態のユーザーのゲーム内アクセス制御はゲームで処理する必要があります。
+* ログインレスポンス待機中に待機アイコンが表示されます。
+
+#### 機能改善/変更
+* 外部SDKアップデート：PAYCO Android SDK(1.5.6)
+
+### 2.27.1 (2021.09.14)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-Android.zip)
+
+#### 機能改善/変更
+* 外部SDKアップデート：PAYCO Android SDK(1.5.5), Hangame Android SDK(1.4.1), Weibo Android SDK(11.8.1)
+* エミュレータ、ルート化端末でWebビューが正常に表示されない時、再試行を追加して、Webビューが正常に表示されるように改善しました。
+    * 対象はWebビューで動作する画像告知、サポート、共通約款です。
+* Weibo IdP認証を改善して安定性が向上しました。
+    * 同期APIですが、実際には非同期で動作してエラーを発生させるAPIに例外処理、待機、再試行などを追加しました。
+
+#### バグ修正
+* 「登録されていないゲームバージョン」エラーポップアップが英語でのみ表示されるバグを修正しました。
+* メンテナンスポップアップに中国語が表示されないバグを修正しました。
+* [Credential Login](./aos-authentication/#login-with-credential)を行った場合、 [Login as the Latest Login IdP](./aos-authentication/#login-as-the-latest-login-idp)呼び出しが常に失敗するバグを修正しました。
+
 ### 2.27.0 (2021.08.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-Android.zip)
 
@@ -16,10 +48,10 @@
         * それがプロジェクトのres/rawフォルダにlocalizedstring.jsonファイルを追加する方法に変わりました。
     * これまではUnityガイドのDisplay Language言語セットの追加方法はAndroidに適用できませんでした。
         * それをUnityガイドにしたがってlocalizedstring.jsonファイルを追加してもAndroidビルドに反映されるように改善しました。
-        * [Game > Gamebase > Unity SDK使用ガイド > ETC > Additional Features > Display Language > 新規言語セット追加](./unity-etc/#_1)
+        * [Game > Gamebase > Unity SDK使用ガイド > ETC > Additional Features > Display Language > 新規言語セット追加](https://docs.toast.com/en/Game/Gamebase/en/unity-etc/#add-new-language-sets)
     * Display Language言語セットに中国語簡体字(zh-CN)、中国語繁体字(zh-TW)、タイ語(th)が追加されました。
     * デフォルトの言語コードが**en**でしたが、Gamebaseコンソールで設定したデフォルトの言語が反映されるように改善しました。
-        * [Game > Gamebase > コンソール使用ガイド > アプリ > App > 言語設定](./oper-app/#_3)
+        * [Game > Gamebase > コンソール使用ガイド > アプリ > App > 言語設定](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
 * showTermsView API呼び出し後に作成することができるPushConfigurationオブジェクトの作成基準が次のように変更されました。
     * 変更前
         * 約款項目中に**Push受信**項目が存在する場合にのみnullではなく有効なPushConfigurationが返されました。
@@ -306,8 +338,8 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 
 #### 機能改善/変更
 * [SDK] 2.7.2 
-      * Gamebase 초기화중 ToastLogger 초기화 부분에서 크래쉬가 발생할 수 있는 코드를 수정
-      * 서버 버전을 v1.2.1 로 업데이트 하였습니다.
+      * Gamebaseの初期化中にToastLoggerの初期化部分でクラッシュが発生するコードを修正
+      * サーバーバージョンをv1.2.1にアップデートしました。
 
 ### 2.7.1 (2020.02.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.7.1/GamebaseSDK-Android.zip)

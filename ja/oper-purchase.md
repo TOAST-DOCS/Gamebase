@@ -166,20 +166,23 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 * 各フィールドを比較した結果を確認できます。ストアから受け取ったレスポンス値をJSON形式で提供するため、必要な場合はデータを直接確認できます。
 * 現在はApp Store決済のみ検証できます。
 
-## Payment abusing monitoring
+## 決済アビューズモニタリング
 
-決済に関する不正行為情報を照会して制裁できます。
+決済に関する不正行為情報を照会して自動制裁/解除を設定することができます。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing1_1.0.png)
+### 返金履歴照会
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing1_1.3_ko.png)
 
 下記の検索条件を利用して決済および返金情報を照会できます。
 決済および返金履歴は、右上の**ダウンロード**ボタンをクリックしていつでもダウンロードできます。
-#### 検索条件
 
+#### 検索条件
 - **返金日時**：返金処理された時間
 - **ユーザーID**：決済したユーザーID
 - **返金件数**：ユーザーが返金を受けた回数。入力した回数以上が照会されます。
 - **返金金額**：ユーザーが返金を受けた金額。入力した金額以上が照会されます。
+- **ストア**：返金したストア
 
 #### 検索結果
 - **ユーザーID**：決済したユーザーID
@@ -193,15 +196,16 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 - **決済件数(過去3か月)**：ユーザーが過去3か月間に決済した回数
 - **決済金額(過去3か月)**：ユーザーが過去3か月に決済した金額
 - **状態**：ユーザーの現在状態
-- **手動制裁**：ユーザーの状態に応じて利用停止または停止解除
+- **状態変更**：ユーザーの状態に応じて利用停止または停止解除
 
-#### 手動制裁
+#### 状態変更
 ![gamebase_member_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_02_201812.png)
 
 照会したゲームユーザーのアカウント状態を変更することができる機能です。
 各状態からは、次のように変更できます。
 - **正常**：利用停止、退会状態に変更できます。退会させると該当アカウントの情報を復元できないため、処理前によく確認してください。
 - **利用停止**：利用停止の解除を行うことができます。
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing2_1.3_ko.png)
 - **退会**：該当ボタンが表示されません。
 
 #### 決済履歴の確認
@@ -220,15 +224,51 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 - **通貨単位**：ユーザーが購入時に使用した通貨の種類
 - **決済状態**：決済の現在進行状態
 
+### 決済アビューズ自動解除履歴照会
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing5_1.3_ko.png)
+
+以下の検索条件を利用して決済アビューズ自動解除ユーザー情報を検索できます。
+
+#### 検索条件
+- **検索期間**：利用停止猶予が始まった時間を基準に照会されます。
+- **ユーザーID**：利用停止猶予ユーザーID
+- **決済件数**：利用停止猶予期間中にユーザーが決済した回数です。入力した回数以上が照会されます。
+- **決済金額**：利用停止猶予期間中にユーザーが決済した金額です。入力した金額以上が照会されます。
+
+#### 検索結果
+- **ユーザーID**：利用停止猶予ユーザーID
+- **利用停止猶予期間**：利用停止猶予開始および終了時間
+- **決済回数(解除条件)**：利用停止を解除するために決済しなければならない総回数
+- **決済金額(解除条件)**：利用停止を解除するために決済しなければならない総額
+- **解除条件を満たす**：解除条件を満たすための条件(AND、OR)
+- **決済件数(猶予期間)**：利用停止猶予期間中にユーザーが決済した総累積回数
+- **決済金額(猶予期間)**：利用停止猶予期間中にユーザーが決済した総額
+
+#### 決済履歴確認
+
+検索されたリストでユーザーIDをクリックすると、検索期間の決済詳細履歴を照会できます。
+(ただし、決済履歴がないユーザーはクリックできません。)
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing6_1.3_ko.png)
+
+#### 決済履歴
+- **決済日時**：
+- **Transaction ID**：Gamebase内で決済を区別することができる固有の番号
+- **ストア**：決済されたストア情報
+- **ユーザーID**：決済したユーザーID
+- **ストアアイテムID**：ユーザーがアプリで購入した実際のストアアイテムID
+- **決済金額**：ユーザーが決済した金額
+
 #### 決済に関する不正行為の自動制裁設定
 
 自動制裁設定を使用するには、**使用**ボタンをクリックして設定値を入力します。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing3_1.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing3_1.3_ko.png)
 
 #### 設定情報
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing4_1.0.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing4_1.3_ko.png)
 
 * **利用停止期間**自動制裁適用時の利用停止期間を入力します。
     * **永久停止**：永久に利用を停止する時に選択します。
@@ -242,3 +282,22 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 * **リーダーボードの削除**
     * 自動制裁を行う時、該当ゲームユーザーのLeaderboardデータも同時に削除するかどうかを設定します。
     * 選択して登録すると、自動制裁適用時にリーダーボードからゲームユーザーのデータが削除されます。<font color="red">該当データは復旧できないため、</font> 注意が必要です。
+
+#### 決済アビューズ自動解除設定
+
+自動解除設定を使用するには**使用**ボタンをクリックして設定値を入力します。
+自動解除設定を有効にするには、自動制裁設定が<font color="red">有効</font>になっている必要があります。
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing7_1.3_ko.png)
+
+#### 設定情報
+
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing8_1.3_ko.png)
+
+* **利用停止日時解除期間**：自動解除の適用時、利用停止猶予期間を入力します。
+* **利用停止解除条件設定**：自動解除に必要な条件を設定します。1つ以上設定する必要があります。
+    * **決済件数**：自動解除のために決済しなければならない件数を入力します。
+    * **決済金額**：自動解除のために決済しなければならない金額を入力します。
+* **利用停止解除メッセージ**
+    * ユーザーに表示する利用停止解除メッセージを入力します。
+    * ユーザーに表示するメッセージを多言語で入力して簡単に再使用できるようにテンプレートを提供します。あらかじめ登録したテンプレートを選択して登録します。
