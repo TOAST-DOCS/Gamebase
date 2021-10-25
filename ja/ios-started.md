@@ -245,7 +245,7 @@ end
 
 #### Weibo
 
-* AppDelegateの`application:openURL:sourceApplication:annotation:`を必ず実装する必要があります。
+* AppDelegateの**application:openURL:sourceApplication:annotation:**を必ず実装する必要があります。
     * [Game > Gamebase > iOS SDK使用ガイド > 初期化 > OpenURL Event](./ios-initialization/#openurl-event)
 
 ### IdP Settings (Legacy)
