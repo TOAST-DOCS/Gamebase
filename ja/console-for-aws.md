@@ -1,86 +1,91 @@
 ## Game > Gamebase > Console for AWS
 
-AWS marketplace를 통해 회원가입을 한 사용자가 로그인하는 콘솔의 기본적인 설정과 사용 방법을 안내합니다.
+AWS marketplaceを介して会員登録を行ったユーザーがログインするまでのコンソールの基本設定と使用方法を説明します。
+Gamebase for AWSのコンソール
+は、以下のような機能を提供しています。
+*プロジェクト、サービス管理
+*サービスを利用する会員の管理
 
-Gamebase for AWS 의 콘솔은 아래와 같은 기능을 제공합니다.
-* 프로젝트, 서비스 관리
-* 서비스를 이용하는 회원 관리
+## クイックガイド
 
-## 퀵가이드
+コンソールから提供している基本機能についてクイックガイドです。
 
-콘솔에서 제공하는 기본 기능에 대한 퀵 가이드입니다.
+![Gamebase-for-aws_quick-guide](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_quick-guide-01-202108-ja.png)
+![Gamebase-for-aws_quick-guide](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_quick-guide-02-202108-ja.png)
+![Gamebase-for-aws_quick-guide](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_quick-guide-03-202108-ja.png)
+![Gamebase-for-aws_quick-guide](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_quick-guide-04-202108-ja.png)
 
-![Gamebase-for-aws_quick-guide](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_quick-guide-01-202108.png)
-![Gamebase-for-aws_quick-guide](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_quick-guide-02-202108.png)
-![Gamebase-for-aws_quick-guide](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_quick-guide-03-202108.png)
-![Gamebase-for-aws_quick-guide](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_quick-guide-04-202108.png)
+## プロジェクトの管理
 
-## 프로젝트 관리
+Gamebaseはプロジェクト単位で利用が可能で、これに従って課金を行います。
 
-Gamebase는 프로젝트 단위로 이용하여, 이에 따라 과금합니다.
-
-### 프로젝트 생성
-
-* aws 구독페이지를 통해 가입한 관리자 회원만 프로젝트를 생성, 수정, 삭제 할 수 있습니다.
-* 프로젝트 이름과 설명을 입력하면 프로젝트의 ID는 자동으로 생성됩니다.
-* 프로젝트를 생성하면 Gamebase 서비스는 자동으로 활성화 됩니다.
-* 프로젝트 생성 후 협업이 필요한 경우 프로젝트 멤버로 일반 회원을 추가할 수 있습니다.
-
-![Gamebase-for-aws_project-create](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_project-01-202108.png)
-![Gamebase-for-aws_project-create](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_project-02-202108.png)
-
-1. **+새프로젝트** 버튼을 클릭하여 프로젝트를 생성합니다.
-2. **프로젝트 이름**과 **프로젝트 설명**을 입력합니다.
-3. **확인** 버튼을 클릭하여 프로젝트를 생성합니다.
-4. 프로젝트가 생성되면 메뉴에 프로젝트 이름이 표시됩니다.
-5. **대시보드** 화면에서 프로젝트 정보를 확인합니다.
+### プロジェクト生成
+* Aws marketplaceのページを介して登録した管理者ユーザーのみプロジェクトを作成·修正·削除が可能です。
+* プロジェクト名と説明を入力すると、プロジェクトのIDは自動的に作成されます。
+* プロジェクトを作成するとGamebaseサービスは自動的に有効化されます。
+* プロジェクト作成後に提携が必要な場合は、プロジェクトメンバーとして一般会員を追加できます
 
 
-### 프로젝트 편집
+![Gamebase-for-aws_project-create](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_project-01-202108-ja.png)
+![Gamebase-for-aws_project-create](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_project-02-202108-ja.png)
 
-* 프로젝트 상세 화면의 우측 상단의 **편집** 버튼을 클릭하면 프로젝트 편집 화면이 표시됩니다.
-* 편집 화면에서는 프로젝트 정보의 수정 및 삭제, 이용중인 서비스의 비활성화가 가능합니다.
-* 프로젝트 이름과 설명은 수정 가능하나 프로젝트 ID는 수정이 불가능합니다.
-* 프로젝트에서 이용 중인 서비스가 없을 경우에 프로젝트 삭제가 가능합니다.
-* 프로젝트 삭제 시, 프로젝트의 모든 리소스는 삭제되며 복원이 불가능합니다.
+1.	+「新プロジェクト」ボタンをクリックしてプロジェクトを作成します。
+2.	「プロジェクト名」と「プロジェクト説明」を入力します。
+3.	「確認」ボタンをクリックしてプロジェクトを作成します。
+4.	プロジェクトが作成されると、メニューにプロジェクト名が表示されます。
+5.	「ダッシュボード」画面でプロジェクト情報を確認します。
+
+### プロジェクト編集
+
+プロジェクト詳細画面の右上の編集ボタンをクリックすると、プロジェクト編集画面が表示されます。
+* 編集画面ではプロジェクト情報の修正·削除、利用中のサービスの無効化が可能です。
+* プロジェクト名と説明は修正であるが、プロジェクトIDは修正不可です。
+* プロジェクトで利用中のサービスがない場合はプロジェクトの削除は可能です。
+* プロジェクトを削除すると、プロジェクトのリソースはすべて削除され復旧は不可能です。
 	
-### 프로젝트 변경
+### プロジェクト変更
 
-* 상단의 프로젝트 이름을 클릭하면 등록된 프로젝트 목록을 확인할 수 있습니다.
+* 上部にあるプロジェクト名をクリックすると、登録されたプロジェクトリストを確認できます。
 
 
-## 회원 
+## 会員 
 
-| 구분     | 관리자 | 일반 | 
+| 区分     | 管理者 | 一般 | 
 | ------ | ------------ | ------------ | 
-| 정의     | 프로젝트 관리 | 서비스 이용만 가능 | 
-| 등록 방법 | aws marketplace 구독 페이지를 통해 가입  | 관리자가 콘솔에서 생성한 회원 | 
-| 권한 | - 프로젝트 관리: 생성/수정/삭제<br>- 일반 회원 관리 | 권한이 부여된 서비스 콘솔에만 접근 | 
+| 定義     | プロジェクトの管理 | 該当サービスのみ利用可能 | 
+| 登録方法 | aws marketplace 購読ページを介して加入  | 管理者のコンソールから作成した会員 | 
+| 권한 | - プロジェクトの管理: 生成/修正/削除<br>- 一般会員管理
+ | 権限が付与されているコンソールのみアクセス可能 | 
 
-### 프로젝트에 일반 회원 추가하기
+### プロジェクトへ一般会員追加
 
-아래의 순서로 콘솔에 접근할 수 있는 일반 회원을 추가할 수 있습니다.
-#### 1. 일반 회원 추가하기
+以下の手順でコンソールにアクセスできる一般会員を追加することが可能です。
 
-![Gamebase-for-aws_create-ID](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_member-01-202108.png)
+#### 1. 一般会員を追加
 
-1. **이름 > 일반/그룹 관리** 클릭하면 일반 회원 관리 페이지가 표시됩니다.
-2. **+회원 추가** 버튼을 클릭합니다.
-3. ID, 이름, 메일을 입력하면 입력한 메일로 **비밀번호 설정 확인 메일**이 발송됩니다.
-4. 전달받은 메일을 이용하여 비밀번호를 변경하면 추가된 ID로 로그인이 가능합니다.
+![Gamebase-for-aws_create-ID](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_member-01-202108-ja.png)
 
-#### 2. 프로젝트 멤버로 추가
+1.	**名前 > 一般グループ管理**をクリックすると、一般会員管理ページが表示されます。
+2.	**+会員追加**ボタンをクリックします。
+3.	ID、氏名、メールを入力すると、入力したメールアドレスにパスワード設定確認のメールが送信されます。
+4.	受信したメールを利用してパスワードを変更すると、追加されたIDでログインが可能になります。
 
-![Gamebase-for-aws_project-member](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_member-02-202108.png)
-1. 프로젝트 대시보드 화면에서 **+프로젝트 멤버 추가** 버튼을 클릭합니다.
-2. 1에서 추가한 일반 회원 ID를 입력하고 그룹 권한을 부여하며 현재 프로젝트에 접근이 가능합니다.
 
-### 그룹 권한 관리
+#### 2. プロジェクトメンバーに追加
 
-일반 회원의 서비스 콘솔 접근 권한을 관리할 수 있습니다.
-**이름 > 일반/그룹 관리** 클릭하여 권한 그룹 관리 페이지에서 권한 그룹의 생성, 수정, 삭제가 가능합니다.
+![Gamebase-for-aws_project-member](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_member-02-202108-ja.png)
 
-![Gamebase-for-aws_project-member](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_member-03-202108.png)
-1. 추가하고자 하는 그룹명을 입력하고 **추가** 버튼을 클릭합니다.
-2. 추가된 그룹명을 선택하면 화면의 오른쪽에 그룹의 권한을 수정할 수 있는 화면이 표시됩니다.
-3. 그룹 수정 화면에서 서비스 메뉴별로 Read, ALL 권한 부여가 가능합니다. 부여하고자 하는 권한 체크후 저장 버튼을 클릭합니다.
+1.	プロジェクトのダッシュボード画面で+プロジェクトメンバー追加ボタンをクリックします。
+2.	1で追加した一般会員IDを入力して、グループ権限を付与し、現在のプロジェクトにアクセスすることができます。
+
+
+### グループの権限管理
+
+一般会員のサービスコンソールへのアクセス権限を管理できます。
+**名前 > 一般/グループ管理**をクリックして、既存グループの管理ページにて権限グループの作成、修正、削除が可能です。
+
+![Gamebase-for-aws_project-member](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_member-03-202108-ja.png)
+1. 追加しようとするグループ名を入力し、「追加」ボタンをクリックします。 
+2. 追加されたグループ名を選択すると、画面の右側にグループの権限を修正できる画面が表示されます。 
+3. グループ修正画面でサービスメニュー別にRead、ALLの権限付与が可能です。 付与しようとする権限をチェックし、保存ボタンをクリックします。
+
