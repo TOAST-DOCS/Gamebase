@@ -10,10 +10,10 @@ Gamebase for AWS 의 콘솔은 아래와 같은 기능을 제공합니다.
 
 콘솔에서 제공하는 기본 기능에 대한 퀵 가이드입니다.
 
-![Gamebase-for-aws_quick-guide](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_quick-guide-01-202108.png)
-![Gamebase-for-aws_quick-guide](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_quick-guide-02-202108.png)
-![Gamebase-for-aws_quick-guide](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_quick-guide-03-202108.png)
-![Gamebase-for-aws_quick-guide](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_quick-guide-04-202108.png)
+![Gamebase-for-aws_quick-guide](http://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_quick-guide-01-202108)
+![Gamebase-for-aws_quick-guide](http://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_quick-guide-02-202108)
+![Gamebase-for-aws_quick-guide](http://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_quick-guide-03-202108)
+![Gamebase-for-aws_quick-guide](http://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_quick-guide-04-202108)
 
 ## 프로젝트 관리
 
@@ -26,8 +26,8 @@ Gamebase는 프로젝트 단위로 이용하여, 이에 따라 과금합니다.
 * 프로젝트를 생성하면 Gamebase 서비스는 자동으로 활성화 됩니다.
 * 프로젝트 생성 후 협업이 필요한 경우 프로젝트 멤버로 일반 회원을 추가할 수 있습니다.
 
-![Gamebase-for-aws_project-create](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_project-01-202108.png)
-![Gamebase-for-aws_project-create](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_project-02-202108.png)
+![Gamebase-for-aws_project-create](http://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_project-01-202108)
+![Gamebase-for-aws_project-create](http://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_project-02-202108)
 
 1. **+새프로젝트** 버튼을 클릭하여 프로젝트를 생성합니다.
 2. **프로젝트 이름**과 **프로젝트 설명**을 입력합니다.
@@ -62,7 +62,7 @@ Gamebase는 프로젝트 단위로 이용하여, 이에 따라 과금합니다.
 아래의 순서로 콘솔에 접근할 수 있는 일반 회원을 추가할 수 있습니다.
 #### 1. 일반 회원 추가하기
 
-![Gamebase-for-aws_create-ID](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_member-01-202108.png)
+![Gamebase-for-aws_create-ID](http://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_member-01-202108)
 
 1. **이름 > 일반/그룹 관리** 클릭하면 일반 회원 관리 페이지가 표시됩니다.
 2. **+회원 추가** 버튼을 클릭합니다.
@@ -71,7 +71,7 @@ Gamebase는 프로젝트 단위로 이용하여, 이에 따라 과금합니다.
 
 #### 2. 프로젝트 멤버로 추가
 
-![Gamebase-for-aws_project-member](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_member-02-202108.png)
+![Gamebase-for-aws_project-member](http://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_member-02-202108)
 1. 프로젝트 대시보드 화면에서 **+프로젝트 멤버 추가** 버튼을 클릭합니다.
 2. 1에서 추가한 일반 회원 ID를 입력하고 그룹 권한을 부여하며 현재 프로젝트에 접근이 가능합니다.
 
@@ -80,7 +80,7 @@ Gamebase는 프로젝트 단위로 이용하여, 이에 따라 과금합니다.
 일반 회원의 서비스 콘솔 접근 권한을 관리할 수 있습니다.
 **이름 > 일반/그룹 관리** 클릭하여 권한 그룹 관리 페이지에서 권한 그룹의 생성, 수정, 삭제가 가능합니다.
 
-![Gamebase-for-aws_project-member](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_member-03-202108.png)
+![Gamebase-for-aws_project-member](http://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_member-03-202108)
 1. 추가하고자 하는 그룹명을 입력하고 **추가** 버튼을 클릭합니다.
 2. 추가된 그룹명을 선택하면 화면의 오른쪽에 그룹의 권한을 수정할 수 있는 화면이 표시됩니다.
 3. 그룹 수정 화면에서 서비스 메뉴별로 Read, ALL 권한 부여가 가능합니다. 부여하고자 하는 권한 체크후 저장 버튼을 클릭합니다.
