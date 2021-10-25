@@ -9,6 +9,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 > * 使用者実行環境：Android API 16 (JellyBean, OS 4.1)以上
 > * ビルド環境：Android Gradle Plugin 3.2.0以上
 > * 開発環境：Android Studio
+
 ### Dependencies
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
