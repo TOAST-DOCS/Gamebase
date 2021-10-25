@@ -125,6 +125,7 @@ void Sample::ShowTermsView()
             if (Gamebase::IsSuccess(error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView succeeded."));
+                
                 // If the 'FGamebasePushConfiguration' is not null,
                 // save the 'FGamebasePushConfiguration' and use it for IGamebase::Get().GetPush().RegisterPush() after IGamebase::Get().Login().
                 const auto pushConfiguration = FGamebasePushConfiguration::From(dataContainer);

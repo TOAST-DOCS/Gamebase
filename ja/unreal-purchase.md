@@ -148,21 +148,26 @@ struct FGamebasePurchasableReceipt
     // 購入したアイテムの商品IDです。
     UPROPERTY()
     FString gamebaseProductId;
+
     // itemSeqで商品を購入するLegacy API用の識別子です。
     UPROPERTY()
     int64 itemSeq;
+
     // 購入した商品の価格です。
     UPROPERTY()
     float price;
+
     // 通貨コードです。
     UPROPERTY()
     FString currency;
+
     // 決済識別子です。
     // purchaseTokenと一緒に「Consume」サーバーAPIを呼び出すのに使用する重要な情報です。
     // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // 注意：Consume APIはゲームサーバーで呼び出してください！
     UPROPERTY()
     FString paymentSeq;
+
     // 決済識別子です。
     // paymentSeqと一緒に「Consume」サーバーAPIを呼び出すのに使用する重要な情報です。
     // Consume APIでは「accessToken」という名前のパラメータで伝達する必要があります。
@@ -170,9 +175,11 @@ struct FGamebasePurchasableReceipt
     // 注意：Consume APIはゲームサーバーで呼び出してください！
     UPROPERTY()
     FString purchaseToken;
+
     // Google、Appleなどのストアコンソールに登録された商品IDです。
     UPROPERTY()
     FString marketItemId;
+
     // 次のような商品タイプがあります。
     // * UNKNOWN：認識できないタイプ。 Gamebase SDKをアップデートするか、Gamebaseサポートへお問い合わせください。
     // * CONSUMABLE：消費性商品。
@@ -180,13 +187,16 @@ struct FGamebasePurchasableReceipt
     // * CONSUMABLE_AUTO_RENEWABLE：サブスクリプション型の商品を購入したユーザーに、定期的に消費が可能な商品を支給したい場合に使用される「消費が可能なサブスクリプション商品」。
     UPROPERTY()
     FString productType;
+
     // 商品を購入したUser ID
     // 商品を購入していないUser IDでログインした場合、購入したアイテムを獲得できません。
     UPROPERTY()
     FString userId;
+
     // ストアの決済識別子です。
     UPROPERTY()
     FString paymentId;
+
     // サブスクリプション商品は更新するごとにpaymentIdが変更されます。
     // このフィールドは、初めてサブスクリプション商品を決済した時のpaymentIdを伝えます。
     // ストアや、決済サーバーの状態によって値が存在しない場合があるため
@@ -264,21 +274,27 @@ struct FGamebasePurchasableItem
     // Gamebase.Purchase.requestPurchase APIで商品を購入する時に使用されます。
     UPROPERTY()
     FString gamebaseProductId;
+
     // itemSeqで商品を購入するLegacy API用の識別子です。
     UPROPERTY()
     int64 itemSeq;
+
     // 商品の価格です。
     UPROPERTY()
     float price;
+
     // 通貨コードです。
     UPROPERTY()
     FString currency;
+
     // Gamebaseコンソールに登録された商品名です。
     UPROPERTY()
     FString itemName;
+
     // Google、Appleなどのストアコンソールに登録された商品IDです。
     UPROPERTY()
     FString marketItemId;
+
     // 次のような商品タイプがあります。
     // * UNKNOWN：認識できないタイプ。 Gamebase SDKをアップデートするか、Gamebaseサポートへお問い合わせください。
     // * CONSUMABLE：消費性商品。
@@ -294,9 +310,11 @@ struct FGamebasePurchasableItem
     // ストアコンソールに登録されたローカライズされた商品名です。
     UPROPERTY()
     FString localizedTitle;
+
     // ストアコンソールに登録されたローカライズされた商品説明です。
     UPROPERTY()
     FString localizedDescription;
+    
     // Gamebaseコンソールで該当商品の「使用状態」を表します。
     UPROPERTY()
     bool isActive;
