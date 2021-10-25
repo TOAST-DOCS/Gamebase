@@ -6,7 +6,17 @@
 
 ![Gamebase_summary](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_01_20210426_en.png)
 
-## 主要功能
+## Gamebase Sample App
+
+提供一个示例应用程序，以便可以尝试使用Gamebase的各种功能。
+通过使用示例应用程序，可在游戏应用程序内尝试Gamebase提供的功能，并提前掌握应用程序的运行方式。 
+开发人员通过查询示例应用程序代码，可轻松查看Gamebase的适用方法。
+
+* [下载页面](https://github.com/nhn/toast.gamebase.unity.sample/releases)
+![Gamebase_sample_app](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_Sample_App1.png)
+* 可通过使用QR代码下载Sample App APK。(支持的平台 : Android OS)
+
+## Key Features
 
 ### Gamebase Analytics
 
@@ -60,7 +70,7 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 * **提供映射（Mapping）功能，使一名游戏用户可以同时使用多个外部IDP。**
     例如，使用Facebook认证的游戏用户，也可以通过Google认证来使用相同用户ID。如果将Facebook和Gogle认证映射到一个游戏用户ID上，游戏用户就可在某个机器上使用Facebook认证,在其它机器上使用Google认证进行游戏。
 
-#### 参考
+#### Reference
 
 * [Android SDK 使用指南 > 认证](./aos-authentication)
 * [iOS SDK 使用指南 > 认证](./ios-authentication)
@@ -90,7 +100,7 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 * **利用网页控制台的各种功能（支付明细查询功能等）可顺利应对顾客咨询。**
   在网页控制台可确认用户的支付明细及道具提供状态，还可应对取消支付及滥用。
 
-#### 参考
+#### Reference
 
 * [Android SDK 使用指南 > 结算](./aos-purchase)
 * [iOS SDK 使用指南 > 结算](./ios-purchase)
@@ -111,7 +121,7 @@ Launching信息可以在 Gamebase Console实时设定，SDK的初始化或 Launc
 * 认证信息
 * 游戏内URL清单
 
-#### 参考
+#### Reference
 
 * [Android SDK 使用指南 > 初始化 > Launching Status](./aos-initialization/#launching-status)
 * [iOS SDK 使用指南 > 初始化 > Launching Status](./ios-initialization/#launching-status)
