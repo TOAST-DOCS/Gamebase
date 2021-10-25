@@ -382,38 +382,71 @@ android {
 | 2.1.* | Not supported | Unity 5<br>2017.1 ~ 2017.2 |
 
 ```xml
-<queries>
-    <!-- [Facebook] Configurations begin -->
-    <package android:name="com.facebook.katana" />
-    <!-- [Facebook] Configurations end -->
+<manifest>
+    <!-- [Android11] settings start -->
+    <queries>
+        <!-- [All SDK] AppToWeb Authenthcation support start -->
+        <package android:name="com.android.chrome" />
+        <package android:name="com.chrome.beta" />
+        <package android:name="com.chrome.dev" />
+        <package android:name="com.sec.android.app.sbrowser" />
+        <!-- [All SDK] AppToWeb Authenthcation support end -->
+        
+        <!-- [Facebook] Configurations begin -->
+        <package android:name="com.facebook.katana" />
+        <!-- [Facebook] Configurations end -->
 
-    <!-- [Payco/Hangame] Configurations begin -->
-    <package android:name="com.nhnent.payapp" />
-    <!-- [Payco/Hangame] Configurations end -->
+        <!-- [Payco/Hangame] Configurations begin -->
+        <package android:name="com.nhnent.payapp" />
+        <!-- [Payco/Hangame] Configurations end -->
 
-    <!-- [Line] Configurations begin -->
-    <package android:name="jp.naver.line.android" />
-    <intent>
-        <action android:name="android.intent.action.VIEW" />
-        <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="https" />
-    </intent>
-    <!-- [Line] Configurations end -->
+        <!-- [Hangame] Configurations begin -->
+        <package android:name="com.nhn.hangameotp" />
+        <package android:name="com.sci.siren24.ipin" />
+        <package android:name="kr.co.samsungcard.mpocket" />
+        <package android:name="com.lcacApp" />
+        <package android:name="com.shcard.smartpay" />
+        <package android:name="com.hyundaicard.appcard" />
+        <package android:name="com.kbcard.cxh.appcard" />
+        <package android:name="com.hanaskcard.paycla" />
+        <package android:name="kvp.jjy.MispAndroid320" />
+        <package android:name="nh.smart.nhallonepay" />
+        <!-- [Hangame] Configurations end -->
 
-    <!-- [ONE store] Configurations begin -->
-    <intent>
-        <action android:name="com.onestore.ipc.iap.IapService.ACTION" />
-    </intent>
-    <intent>
-        <action android:name="android.intent.action.VIEW" />
-        <data android:scheme="onestore" />
-    </intent>
-    <!-- [ONE store] Configurations end -->
+        <!-- [Line] Configurations begin -->
+        <package android:name="jp.naver.line.android" />
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" />
+        </intent>
+        <!-- [Line] Configurations end -->
+        
+        <!-- [Naver] Configurations begin -->
+        <package android:name="com.nhn.android.search" />
+        <!-- [Naver] Configurations end -->
+        
+        <!-- [Weibo] Configurations begin -->
+        <package android:name="com.weico.international" />
+        <package android:name="com.sina.weibo" />
+        <!-- [Weibo] Configurations end -->
 
-    <!-- [Galaxy store] Configurations begin -->
-    <package android:name="com.sec.android.app.samsungapps" />
-    <!-- [Galaxy store] Configurations end -->
-</queries>
+        <!-- [ONE store] Configurations begin -->
+        <intent>
+            <action android:name="com.onestore.ipc.iap.IapService.ACTION" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="onestore" />
+        </intent>
+        <!-- [ONE store] Configurations end -->
+
+        <!-- [Galaxy store] Configurations begin -->
+        <package android:name="com.sec.android.app.samsungapps" />
+        <!-- [Galaxy store] Configurations end -->
+    </queries>
+    <!-- [Android11] settings end -->
+</manifest>
 ```
 
 ### Proguard
