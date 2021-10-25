@@ -151,7 +151,7 @@ Lifecycle 관리를 위해 "com.toast.android.gamebase.activity.GamebaseMainActi
 > <font color="red">[주의]</font>
 > 
 > Android의 targetSdkVersion을 31 이상으로 설정하는 경우, intent-filter가 존재하는 태그에는 반드시 android:exported 특성을 선언해야 합니다.
-> Gamebase에서 Lifecycle을 관리하기 위해 제공하는 **GamebaseMainActivity**를 MainActivity로 설정할 때에도 특성에 **android:exported="true"** 가 추가되어야 합니다.
+> Gamebase에서 Lifecycle을 관리하기 위해 제공하는 **GamebaseMainActivity**를 MainActivity로 설정할 때에도 특성에 **android:exported="true"**가 추가되어야 합니다.
 
 ```xml
 <manifest>

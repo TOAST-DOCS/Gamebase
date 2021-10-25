@@ -4,8 +4,8 @@
 
 ### Unity
 
-* 해당 버전을 사용 시에는 **Assets/Gamebase/Toast/IAP/Plugins** 를 직접 삭제하신 후 사용하시길 바랍니다.
-    * Gamebase Unity SDK 2.27.0 이상 버전이 적용된 경우에는 삭제하실 필요가 없습니다.
+* 해당 버전을 사용 시에는 **Assets/Gamebase/Toast/IAP/Plugins**를 직접 삭제한 후 사용하시기 바랍니다.
+    * Gamebase Unity SDK 2.27.0 이상 버전이 적용된 경우에는 삭제할 필요가 없습니다.
 
 ### Unreal
 
@@ -68,8 +68,8 @@ android {
 
 ### Unity
 
-* 해당 버전을 사용 시에는 **Assets/Gamebase/Toast/IAP/Plugins** 를 직접 삭제하신 후 사용하시길 바랍니다.
-    * Gamebase Unity SDK 2.27.0 이상 버전이 적용된 경우에는 삭제하실 필요가 없습니다.
+* 해당 버전을 사용 시에는 **Assets/Gamebase/Toast/IAP/Plugins**를 직접 삭제한 후 사용하시기 바랍니다.
+    * Gamebase Unity SDK 2.27.0 이상 버전이 적용된 경우에는 삭제할 필요가 없습니다.
 
 #### Changed Minimum Support Version
 
