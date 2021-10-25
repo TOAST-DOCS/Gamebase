@@ -250,7 +250,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 | keyname                                  | a use                                    | 値の種類                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | IdPタイプの設定                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.HANGAME<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>"payco" |
+| AuthProviderCredentialConstants.PROVIDER_NAME | IdPタイプの設定                              | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.HANGAME<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)の設定<br/>Google認証の場合は使用しない |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Googleログイン後に取得できるOTAC(one time authorization code)の入力 |                                          |
 
@@ -1190,6 +1190,56 @@ public static void testWithdrawImmediately() {
             }
 
             // Withdraw success.
+        }
+    });
+}
+```
+
+## GraceBan
+
+* 「決済アビューズ自動解除」機能です。
+    * 決済アビューズ自動解除機能は、決済アビューズ自動制裁で利用停止にならなければいけないユーザーが利用停止猶予状態後、利用停止になるようにします。
+    * 利用停止猶予状態の場合、設定した期間内に解除条件を全て満たすと正常にプレイが可能になります。
+    * 期間内に条件を満たせなかった場合、利用停止になります。
+* 決済アビューズ自動解除機能を使用するゲームはログイン後、常にAuthToken.getGraceBanInfo() APIを呼び出して結果がnullではない有効なGraceBanInfoオブジェクトを返した場合、該当ユーザーに利用停止解除条件、期間などを案内する必要があります。
+    * 利用停止猶予状態のユーザーのゲーム内アクセス制御はゲームで処理する必要があります。
+
+**Example**
+
+```java
+public static void testLogin() {
+    Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
+        @Override
+        public void onCallback(AuthToken token, GamebaseException exception) {
+            if (!Gamebase.isSuccess(exception)) {
+                // Login failed
+                return;
+            }
+
+            // Check if user is under grace ban
+            GraceBanInfo graceBanInfo = token.getGraceBanInfo();
+            if (graceBanInfo != null) {
+                String periodDate = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault())
+                        .format(new Date(graceBanInfo.getGracePeriodDate()));
+                String message = URLDecoder.decode(graceBanInfo.getMessage(), "utf-8");
+                GraceBanInfo.ReleaseRuleCondition releaseRuleCondition =
+                            graceBanInfo.releaseRuleCondition();
+                GraceBanInfo.PaymentStatus paymentStatus = graceBanInfo.getPaymentStatus();
+                if (releaseRuleCondition != null) {
+                    // condition type : "AND", "OR"
+                    String releaseRule = releaseRuleCondition.getAmount() +
+                            releaseRuleCondition.getCurrency() +
+                            " " + releaseRuleCondition.getConditionType() + " " +
+                            releaseRuleCondition.getCount() + "time(s)";
+                }
+                if (paymentStatus != null) {
+                    String paidAmount = paymentStatus.getAmount() + paymentStatus.getCurrency();
+                    String paidCount = paymentStatus.getCount() + "time(s)";
+                }
+                // Guide the user through the UI how to finish the grace ban status.
+            } else {
+                // Login success.
+            }
         }
     });
 }

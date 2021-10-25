@@ -12,14 +12,14 @@
 |                 | Android, UNITY<br/>IOS | INVALID\_MEMBER<br/>TCGB\_ERROR\_INVALID\_MEMBER  | 6          | 正しくない会員に対するリクエストです。                              |
 |                 | Android, UNITY<br/>IOS | BANNED\_MEMBER<br/>TCGB\_ERROR\_BANNED\_MEMBER   | 7         | 利用制限対象の会員です。                                |
 |                 | Android, UNITY<br/>IOS | NOT_SUPPORTED<br/>TCGB\_ERROR\_NOT\_SUPPORTED | 10         | この機能には対応しておりません。                         |
-|                 | UNITY<br/>IOS      | NOT\_SUPPORTED\_ANDROID<br/>TCGB\_ERROR\_NOT\_SUPPORTED\_ANDROID | 11         | この機能はAndroidには対応しておりません。               |
-|                 | UNITY<br/>IOS      | NOT\_SUPPORTED\_IOS<br/>TCGB\_ERROR\_NOT\_SUPPORTED\_IOS | 12         | この機能はiOSには対応しておりません。                   |
-|                 | UNITY              | NOT\_SUPPORTED\_UNITY\_EDITOR            | 13         | この機能はEditorには対応しておりません。                |
-|                 | UNITY              | NOT\_SUPPORTED\_UNITY\_STANDALONE        | 14         | この機能はStandaloneには対応しておりません。            |
-|                 | UNITY              | NOT\_SUPPORTED\_UNITY\_WEBGL             | 15         | この機能はWebGLには対応しておりません。                 |
-|                 | Android            | ANDROID\_ACTIVITY\_DESTROYED             | 31         | Activityが強制終了しました。                       |
-|                 | Android            | ANDROID\_ACTIVEAPP\_NOT\_CALLED          | 32         | activeApp APIが呼び出されませんでした。                 |
-|                 | IOS                | IOS_GAMECENTER_DENIED                    | 51         | Gamecenterログインが拒否されました。                 |
+|                 | UNITY<br/>IOS          | NOT\_SUPPORTED\_ANDROID<br/>TCGB\_ERROR\_NOT\_SUPPORTED\_ANDROID | 11         | この機能はAndroidには対応しておりません。               |
+|                 | UNITY<br/>IOS          | NOT\_SUPPORTED\_IOS<br/>TCGB\_ERROR\_NOT\_SUPPORTED\_IOS | 12         | この機能はiOSには対応しておりません。                   |
+|                 | UNITY                  | NOT\_SUPPORTED\_UNITY\_EDITOR            | 13         | この機能はEditorには対応しておりません。                |
+|                 | UNITY                  | NOT\_SUPPORTED\_UNITY\_STANDALONE        | 14         | この機能はStandaloneには対応しておりません。            |
+|                 | UNITY                  | NOT\_SUPPORTED\_UNITY\_WEBGL             | 15         | この機能はWebGLには対応しておりません。                 |
+|                 | Android                | ANDROID\_ACTIVITY\_DESTROYED             | 31         | Activityが強制終了しました。                       |
+|                 | Android                | ANDROID\_ACTIVEAPP\_NOT\_CALLED          | 32         | activeApp APIが呼び出されませんでした。                 |
+|                 | IOS                    | IOS_GAMECENTER_DENIED                    | 51         | Gamecenterログインが拒否されました。                 |
 | Network(Socket) | Android, UNITY<br/>IOS | SOCKET\_RESPONSE\_TIMEOUT<br/>TCGB\_ERROR\_SOCKET\_RESPONSE\_TIMEOUT | 101        | ネットワーク状態が不安定なため、レスポンスがありません。                |
 |                 | Android, UNITY<br/>IOS | SOCKET_ERROR<br/>TCGB\_ERROR\_SOCKET\_ERROR | 110        | ソケットエラーです。                                  |
 |                 | Android, UNITY<br/>IOS | UNKNOWN_ERROR<br/>TCGB\_ERROR\_UNKNOWN\_ERROR | 999        | ソケットの不明なエラーです。                           |
@@ -80,7 +80,7 @@
 | Push            | Android, UNITY<br/>IOS | PUSH\_EXTERNAL\_LIBRARY\_ERROR<br/>TCGB\_ERROR\_PUSH\_EXTERNAL\_LIBRARY\_ERROR | 5101       | 外部ライブラリーのエラーです。                        |
 |                 | Android, UNITY<br/>IOS | PUSH\_ALREADY\_IN\_PROGRESS\_ERROR<br/>TCGB\_ERROR\_PUSH\_ALREADY\_IN\_PROGRESS\_ERROR | 5102       | 前回のPush APIの呼び出しが完了していません。             |
 |                 | Android, UNITY<br/>IOS | PUSH\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_PUSH\_UNKNOWN\_ERROR | 5999       | 不明なPushエラーです(定義されていないPushエラー)。     |
-| UI              | Android, UNITY<br/>IOS | UI\_IMAGE\_NOTICE\_TIMEOUT<br/>TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT | 6901       | イメージ告知の表示中にタイムアウトが発生しました。            |
+| UI              | Android, UNITY<br/>IOS | UI\_IMAGE\_NOTICE\_TIMEOUT<br/>TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT | 6901       | 画像告知の表示中にタイムアウトが発生しました。            |
 |                 | Android, UNITY<br/>IOS | UI\_CONTACT\_FAIL\_INVALID\_URL<br/>TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | サポートWebビューURLの作成に失敗しました。            |
 |                 | Android, UNITY<br/>IOS | UI\_CONTACT\_FAIL\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET<br/>TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | ユーザーを識別するための臨時チケットの発行に失敗しました。            |
 |                 | Android, UNITY<br/>IOS | UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE<br/>TCGB\_ERROR\_UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE | 6921       | 約款情報がコンソールに登録されていません。 |
@@ -88,9 +88,11 @@
 |                 | Android, UNITY<br/>IOS | UI\_TERMS\_UNREGISTERED\_SEQ<br/>TCGB\_ERROR\_UI\_TERMS\_UNREGISTERED\_SEQ | 6923       | 登録されていない約款Seq値です。            |
 |                 | Android, UNITY<br/>IOS | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR<br/>TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924       | 以前に呼び出されたTerms APIがまだ完了していません。<br/>しばらくしてから再度お試しください。 |
 |                 | Android, UNITY         | UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925       | 約款Webビューがまだ終了していないのに、再び呼び出されました。 |
-| WebView         | Android, UNITY<br/>IOS | WEBVIEW\_INVALID\_URL<br/>TCGB\_ERROR\_WEBVIEW\_INVALID\_URL   		| 7001       | 無効なURLです。            |
-|                 | Android, UNITY<br/>IOS | WEBVIEW\_TIMEOUT<br/>TCGB\_ERROR\_WEBVIEW\_TIMEOUT 	    	        | 7002       | Webビューの表示中にタイムアウトが発生しました。            |
-|                 | Android, UNITY<br/>IOS | WEBVIEW\_HTTP\_ERROR<br/>TCGB\_ERROR\_WEBVIEW\_HTTP\_ERROR 	     	| 7003       | HTTPエラーでWebビューの表示が失敗しました。            |
+|                 | Android, UNITY<br/>IOS | UI\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_UI\_UNKNOWN\_ERROR | 6999       | 不明なエラーです(定義されていないエラー)。            |
+| WebView         | Android, UNITY<br/>IOS | WEBVIEW\_INVALID\_URL<br/>TCGB\_ERROR\_WEBVIEW\_INVALID\_URL           | 7001       | 無効なURLです。            |
+|                 | Android, UNITY<br/>IOS | WEBVIEW\_TIMEOUT<br/>TCGB\_ERROR\_WEBVIEW\_TIMEOUT                     | 7002       | Webビューの表示中にタイムアウトが発生しました。            |
+|                 | Android, UNITY<br/>IOS | WEBVIEW\_HTTP\_ERROR<br/>TCGB\_ERROR\_WEBVIEW\_HTTP\_ERROR 	        | 7003       | HTTPエラーでWebビューの表示が失敗しました。            |
+|                 | Android, UNITY         | WEBVIEW\_OPENED\_NEW\_BROWSER\_BEFORE\_CLOSE                           | 7004       | Browser形式のWebビューを終了する前に、新しいWebビューを表示しました。 |
 |                 | UNITY                  | WEBVIEW\_UNKNOWN\_ERROR 								| 7999       | Webビューの呼び出し時に不明なエラーが発生しました。(定義されていないエラー).            |
 | Server          | Android, UNITY<br/>IOS | SERVER\_INTERNAL\_ERROR<br/>TCGB\_ERROR\_SERVER\_INTERNAL\_ERROR | 8001       | サーバー内部エラー                                 |
 |                 | Android, UNITY<br/>IOS | SERVER\_REMOTE\_SYSTEM\_ERROR<br/>TCGB\_ERROR\_SERVER\_REMOTE\_SYSTEM\_ERROR | 8002       | サーバーで外部連携中にエラーが発生しました。                       |

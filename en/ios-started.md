@@ -39,15 +39,16 @@ Then, include corresponding SDK files to a target of your project.
 | --- | --- | --- | --- | --- |
 | Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.29.0 | Includes the interface and key logic of Gamebase | iOS9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Supports Facebook login | iOS9 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.1 | Supports Payco login | iOS9 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.2 | Supports Payco login | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | Supports Naver login | iOS9 or later |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Supports Game Center login | iOS9 or later |
 |  | GamebaseAuthGoogleAdapter.framework | | Supports Google login | iOS9 or later |
 |  | GamebaseAuthTwitterAdapter.framework | | Supports Twitter login | iOS9 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | Supports Line login | iOS10 or later |
-|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS9 or later<br/>arm64 지원<br/> |
+|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS9 or later<br/>arm64 support<br/> |
 |  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.1 | Supports Hangame login | iOS9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Supports Weibo login | iOS9 or later |
+|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.11.5 | Supports Kakao login | iOS11 or later |
 | Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.29.0<br/> ToastGamebaseIAP 0.12.0 | Supports in-game purchase | iOS9 or later |
 | Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.29.0 | Supports Push | iOS9 or later |
 
@@ -113,6 +114,15 @@ By decompression, following SDKs will show, including Gamebase.framework.
 > Therefore, if this option is not set, an error like **selector not recognized** may occur during runtime.
 >
 
+<br/>
+
+> <font color="red">[Caution]</font><br/>
+>
+> * When building with Unity (2019.3 or later), import the Gamebase iOS SDK only to the **UnityFramework** target.
+> * When you run Unity build, **Unity-iPhone** and **UnityFramework** are created in the Xcode project target.
+> * Note that there may be problems with operation if you import the Gamebase iOS SDK in duplicate for each target.
+> 
+
 ### CocoaPods Settings
 
 You can set the Gamebase iOS SDK with CocoaPods.
@@ -139,6 +149,9 @@ target 'SampleApplication' do
     pod 'GamebasePushAdapter'
     pod 'GamebasePurchaseIAPAdapter'
 
+    # Regarding how to use the following modules, please contact the Customer Center.
+    pod 'GamebaseAuthHangameAdapter'
+    pod 'GamebaseAuthKakaogameAdapter'
 end
 ```
 
@@ -232,7 +245,7 @@ end
 
 #### Weibo
 
-* You must implement `application:openURL:sourceApplication:annotation:` of AppDelegate.
+* You must implement **application:openURL:sourceApplication:annotation:** of AppDelegate.
     * [Game > Gamebase > iOS SDK User Guide > Initialization > OpenURL Event](./ios-initialization/#openurl-event)
 
 ### IdP Settings (Legacy)

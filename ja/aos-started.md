@@ -6,16 +6,31 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 
 > [最小仕様]
 >
-> * Android API 16 (JellyBean, 4.1)以上
->     * Twitter Loginは19(Kitkat, 4.4)以上
->     * AppleID Loginは19(Kitkat, 4.4)以上
->     * Line Loginは17(Kitkat, 4.2)以上
->     * Weibo Loginは19(Kitkat, 4.4)以上
->     * GALAXY Storeは21(Lollipop, 5.0)以上
->         * ギャラクシーIAP SDKのminSdkVersionは18(OS 4.3)のため、これより小さい値を設定する場合、ビルドが失敗します。
->         * しかし、実際に決済を行うにはCheckoutサービスアプリのインストールが必要ですが、ChekcoutサービスアプリはAPI 21(OS 5.0. Lollipop)未満ではインストールが失敗するため、決済を進行できません。
-> * Android Gradle Plugin 3.2.0以上
-> * 開発環境:Android Studio
+> * 使用者実行環境：Android API 16 (JellyBean, OS 4.1)以上
+> * ビルド環境：Android Gradle Plugin 3.2.0以上
+> * 開発環境：Android Studio
+
+### Dependencies
+
+| Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
+| --- | --- | --- | --- | --- |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.27.1<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | GamebaseのInterfaceおよびコアロジックを含む | API 16 (JellyBean, OS 4.1) |
+| Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Appleログインをサポート | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | Facebookログインをサポート | - |
+|  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Googleログインをサポート | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.4.1 | Hangameログインをサポート | - |
+|  | gamebase-adapter-auth-line | linesdk-5.6.2 | LINEログインをサポート | API 17(Kitkat, OS 4.2) |
+|  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Naverログインをサポート | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.6 | Paycoログインをサポート | - |
+|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitterログインをサポート | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | Weiboログインをサポート | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Kakaoログインをサポート | API 21(Lollipop, OS 5.0) |
+| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.16.0<br>toast-iap-core | ゲーム内決済をサポート | - |
+|  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | Galaxy Storeをサポート | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDKのminSdkVersionは18ですが、<br>実際の決済のためにインストールしなければいけないCheckoutサービスアプリの<br>minSdkVersionは21です。 |
+|  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Google Storeをサポート | - |
+|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | ONE Storeをサポート | - |
+| Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Pushをサポート | - |
+|  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Firebase Notificationをサポート | - |
 
 ## Setting
 
@@ -107,11 +122,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 repositories {
     // >>> For Gamebase SDK
     mavenCentral()
-
     ...
-
-    // >>> [Hangame IdP]
-    maven { url 'Hangame IdPの設定方法は、サポートへお問い合わせください。' }
 }
 
 dependencies {
@@ -128,7 +139,6 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-naver:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-line:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-payco:$GAMEBASE_SDK_VERSION"
-    implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Purchase Adapter
@@ -138,6 +148,11 @@ dependencies {
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
+
+    // >>> 次のモジュールの使用方法はサポートへお問い合わせください。
+    implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-auth-kakaogame:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v16:$GAMEBASE_SDK_VERSION"
 }
 
 android {
@@ -231,22 +246,6 @@ android {
 <application
       tools:replace="android:allowBackup"
       ... >
-```
-
-#### Hangame IdP
-
-* Hangame IdPが正常に動作するためのAndroidManifest.xmlの設定は、サポートへお問い合わせください。
-
-```xml
-<manifest ...>
-    <application ...>
-        ...
-        <!-- [Hangame] Configurations begin -->
-        <meta-data ... />
-        <!-- [Hangame] Configurations end -->
-        ...
-    </application>
-</manifest>
 ```
 
 #### Weibo IdP
@@ -400,6 +399,19 @@ android {
         <package android:name="com.nhnent.payapp" />
         <!-- [Payco/Hangame] Configurations end -->
 
+        <!-- [Hangame] Configurations begin -->
+        <package android:name="com.nhn.hangameotp" />
+        <package android:name="com.sci.siren24.ipin" />
+        <package android:name="kr.co.samsungcard.mpocket" />
+        <package android:name="com.lcacApp" />
+        <package android:name="com.shcard.smartpay" />
+        <package android:name="com.hyundaicard.appcard" />
+        <package android:name="com.kbcard.cxh.appcard" />
+        <package android:name="com.hanaskcard.paycla" />
+        <package android:name="kvp.jjy.MispAndroid320" />
+        <package android:name="nh.smart.nhallonepay" />
+        <!-- [Hangame] Configurations end -->
+
         <!-- [Line] Configurations begin -->
         <package android:name="jp.naver.line.android" />
         <intent>
@@ -477,6 +489,7 @@ android {
 * [Payco Login SDK for developers](https://developers.payco.com/guide/development/apply/android)
 * [Sign in with Apple JS guide](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js)
 * [Weibo for developers](https://github.com/sinaweibosdk/weibo_android_sdk/blob/master/2019SDK/文档)
+* [Kakaogame SDK Guide for Channeling](https://tech-wiki.kakaogames.com/display/SDK/Kakaogame+SDK+Guide+for+Channeling)
 
 ## API Reference
 

@@ -399,6 +399,19 @@ android {
         <package android:name="com.nhnent.payapp" />
         <!-- [Payco/Hangame] Configurations end -->
 
+        <!-- [Hangame] Configurations begin -->
+        <package android:name="com.nhn.hangameotp" />
+        <package android:name="com.sci.siren24.ipin" />
+        <package android:name="kr.co.samsungcard.mpocket" />
+        <package android:name="com.lcacApp" />
+        <package android:name="com.shcard.smartpay" />
+        <package android:name="com.hyundaicard.appcard" />
+        <package android:name="com.kbcard.cxh.appcard" />
+        <package android:name="com.hanaskcard.paycla" />
+        <package android:name="kvp.jjy.MispAndroid320" />
+        <package android:name="nh.smart.nhallonepay" />
+        <!-- [Hangame] Configurations end -->
+
         <!-- [Line] Configurations begin -->
         <package android:name="jp.naver.line.android" />
         <intent>

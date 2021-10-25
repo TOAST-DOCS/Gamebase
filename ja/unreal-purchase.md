@@ -137,6 +137,91 @@ void Sample::RequestPurchaseWithPayload(const FString& gamebaseProductId)
 }
 ```
 
+**VO**
+
+```cpp
+USTRUCT()
+struct FGamebasePurchasableReceipt
+{
+    GENERATED_USTRUCT_BODY()
+    
+    // 購入したアイテムの商品IDです。
+    UPROPERTY()
+    FString gamebaseProductId;
+
+    // itemSeqで商品を購入するLegacy API用の識別子です。
+    UPROPERTY()
+    int64 itemSeq;
+
+    // 購入した商品の価格です。
+    UPROPERTY()
+    float price;
+
+    // 通貨コードです。
+    UPROPERTY()
+    FString currency;
+
+    // 決済識別子です。
+    // purchaseTokenと一緒に「Consume」サーバーAPIを呼び出すのに使用する重要な情報です。
+    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // 注意：Consume APIはゲームサーバーで呼び出してください！
+    UPROPERTY()
+    FString paymentSeq;
+
+    // 決済識別子です。
+    // paymentSeqと一緒に「Consume」サーバーAPIを呼び出すのに使用する重要な情報です。
+    // Consume APIでは「accessToken」という名前のパラメータで伝達する必要があります。
+    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // 注意：Consume APIはゲームサーバーで呼び出してください！
+    UPROPERTY()
+    FString purchaseToken;
+
+    // Google、Appleなどのストアコンソールに登録された商品IDです。
+    UPROPERTY()
+    FString marketItemId;
+
+    // 次のような商品タイプがあります。
+    // * UNKNOWN：認識できないタイプ。 Gamebase SDKをアップデートするか、Gamebaseサポートへお問い合わせください。
+    // * CONSUMABLE：消費性商品。
+    // * AUTO_RENEWABLE：サブスクリプション型の商品。
+    // * CONSUMABLE_AUTO_RENEWABLE：サブスクリプション型の商品を購入したユーザーに、定期的に消費が可能な商品を支給したい場合に使用される「消費が可能なサブスクリプション商品」。
+    UPROPERTY()
+    FString productType;
+
+    // 商品を購入したUser ID
+    // 商品を購入していないUser IDでログインした場合、購入したアイテムを獲得できません。
+    UPROPERTY()
+    FString userId;
+
+    // ストアの決済識別子です。
+    UPROPERTY()
+    FString paymentId;
+
+    // サブスクリプション商品は更新するごとにpaymentIdが変更されます。
+    // このフィールドは、初めてサブスクリプション商品を決済した時のpaymentIdを伝えます。
+    // ストアや、決済サーバーの状態によって値が存在しない場合があるため
+    // 常に有効な値を保障するわけではありません。
+    UPROPERTY()
+    FString originalPaymentId;
+    
+    // 商品を購入した時刻です。(epoch time)
+    UPROPERTY()
+    int64 purchaseTime;
+    
+    // 購読が終了する時刻です。(epoch time)
+    UPROPERTY()
+    int64 expiryTime;
+    // Gamebase.Purchase.requestPurchase APIの呼び出し時にpayloadに伝達した値です。
+    //
+    // このフィールドは、例えば同じUser IDで購入したがゲームチャンネル、キャラクターなどに応じて
+    // 商品購入および支給を区分したい場合など
+    // ゲームで必要とするさまざまな追加情報を入れる目的で活用できます。
+    UPROPERTY()
+    FString payload;
+};
+```
+
+
 ### List Purchasable Items
 
 アイテムリストを照会するには、次のAPIを呼び出します。 
@@ -177,6 +262,64 @@ void Sample::RequestItemListPurchasable()
 }
 ```
 
+**VO**
+
+```cpp
+USTRUCT()
+struct FGamebasePurchasableItem
+{
+    GENERATED_USTRUCT_BODY()
+    
+    // Gamebaseコンソールに登録された商品IDです。
+    // Gamebase.Purchase.requestPurchase APIで商品を購入する時に使用されます。
+    UPROPERTY()
+    FString gamebaseProductId;
+
+    // itemSeqで商品を購入するLegacy API用の識別子です。
+    UPROPERTY()
+    int64 itemSeq;
+
+    // 商品の価格です。
+    UPROPERTY()
+    float price;
+
+    // 通貨コードです。
+    UPROPERTY()
+    FString currency;
+
+    // Gamebaseコンソールに登録された商品名です。
+    UPROPERTY()
+    FString itemName;
+
+    // Google、Appleなどのストアコンソールに登録された商品IDです。
+    UPROPERTY()
+    FString marketItemId;
+
+    // 次のような商品タイプがあります。
+    // * UNKNOWN：認識できないタイプ。 Gamebase SDKをアップデートするか、Gamebaseサポートへお問い合わせください。
+    // * CONSUMABLE：消費性商品。
+    // * AUTORENEWABLE：サブスクリプション型の商品。
+    // * CONSUMABLE_AUTO_RENEWABLE：サブスクリプション型の商品を購入したユーザーに、定期的に消費が可能な商品を支給したい場合に使用される「消費が可能なサブスクリプション商品」。
+    UPROPERTY()
+    FString productType;
+    
+    // 通貨記号が含まれたローカライズされた価格情報です。
+    UPROPERTY()
+    FString localizedPrice;
+    
+    // ストアコンソールに登録されたローカライズされた商品名です。
+    UPROPERTY()
+    FString localizedTitle;
+
+    // ストアコンソールに登録されたローカライズされた商品説明です。
+    UPROPERTY()
+    FString localizedDescription;
+    
+    // Gamebaseコンソールで該当商品の「使用状態」を表します。
+    UPROPERTY()
+    bool isActive;
+};
+```
 
 
 ### Get a List of Non-Consumed Items
@@ -270,18 +413,18 @@ void Sample::RequestActivatedPurchases()
 
 ### Error Handling
 
-| Error                                    | Error Code | Description                              |
-| ---------------------------------------- | ---------- | ---------------------------------------- |
-| PURCHASE_NOT_INITIALIZED                 | 4001       | Purchaseモジュールが初期化されませんでした。<br>gamebase-adapter-purchase-IAPモジュールをプロジェクトに追加したかを確認してください。 |
-| PURCHASE_USER_CANCELED                   | 4002       | ゲームユーザーがアイテムの購入をキャンセルしました。                  |
-| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003      | 購入ロジックがまだ完了していない状態で APIが呼び出されました。 |
-| PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 該当ストアのキャッシュが不足しているため決済できません。              |
-| PURCHASE_INACTIVE_PRODUCT_ID             | 4005       | 該当商品が有効な状態ではありません。  |
-| PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | 存在しないGamebaseProductIDで決済をリクエストしました。 |
-| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | Unsupported store. <br> 選択できるストアはAS(App Store)、GG(Google)、ONESTORE、GALAXYです。 |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAPライブラリエラーです。<br>DetailCodeを確認してください。   |
-| PURCHASE_UNKNOWN_ERROR                   | 4999       | 定義されていない購入エラーです。<br>全てのログを[サポート](https://toast.com/support/inquiry)へご送付ください。迅速に対応いたします。
-
+| Error                                     | Error Code | Description                              |
+| ----------------------------------------- | ---------- | ---------------------------------------- |
+| PURCHASE_NOT_INITIALIZED                  | 4001       | Purchaseモジュールが初期化されませんでした。<br>gamebase-adapter-purchase-IAPモジュールをプロジェクトに追加したかを確認してください。 |
+| PURCHASE_USER_CANCELED                    | 4002       | ゲームユーザーがアイテムの購入をキャンセルしました。                  |
+| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 購入ロジックがまだ完了していない状態でAPIが呼び出されました。 |
+| PURCHASE_NOT_ENOUGH_CASH                  | 4004       | 該当ストアのキャッシュが不足しているため決済できません。              |
+| PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | 該当商品が有効な状態ではありません。  |
+| PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 存在しないGamebaseProductIDで決済をリクエストしました。 |
+| PURCHASE_LIMIT_EXCEEDED                   | 4007       | 月購入限度を超過しました。             |
+| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | サポートしないストアです。<br>選択できるストアはAS(App Store)、GG(Google)、ONESTORE、GALAXYです。 |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | IAPライブラリエラーです。<br>DetailCodeを確認してください。   |
+| PURCHASE_UNKNOWN_ERROR                    | 4999       | 定義されていない購入エラーです。<br>全てのログを[サポート](https://toast.com/support/inquiry)へご送付ください。迅速に対応いたします。
 * エラーコードの一覧は、次の文書を参照してください。
     * [エラーコード](./error-code/#client-sdk)
 

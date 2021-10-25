@@ -3,39 +3,44 @@
 ### 2.28.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* Kakaogame 인증 추가
-* '결제 어뷰징 자동 해제' 기능이 추가되었습니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > 인증 > GraceBan](./ios-authentication/#graceban)
-    * 결제 어뷰징 자동 해제 기능은 결제 어뷰징 자동 제재로 이용 정지가 되어야 할 사용자가 이용 정지 유예 상태 후 이용 정지가 되도록 합니다.
-    * 이용 정지 유예 상태일 경우 설정한 기간 내에 해제 조건을 모두 만족하면 정상플레이가 가능해집니다.
-    * 기간 내에 조건을 충족하지 못하면 이용 정지가 됩니다.
-* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 TCGBAuthToken.tcgbMember.graceBanInfo 값을 확인하고, null이 아닌 유효한 TCGBGraceBanInfo 객체를 리턴한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
-    * 이용 정지 유예 상태인 유저의 게임 내 접근 제어는 게임에서 처리하셔야 합니다.
+#### 機能追加
+* Kakaogame認証を追加
+* 「決済アビューズ自動解除」機能が追加されました。
+    * [Game > Gamebase > iOS SDK使用ガイド > 認証 > GraceBan](./ios-authentication/#graceban)
+    * 決済アビューズ自動解除機能は、決済アビューズ自動制裁で利用停止にならなければいけないユーザーが利用停止猶予状態後、利用停止になるようにします。
+    * 利用停止猶予状態の場合、設定した期間内に解除条件を全て満たすと正常にプレイが可能になります。
+    * 期間内に条件を満たせなかった場合、利用停止になります。
+* 決済アビューズ自動解除機能を使用するゲームはログイン後、常にTCGBAuthToken.tcgbMember.graceBanInfo値を確認し、nullではない有効なTCGBGraceBanInfoオブジェクトを返した場合、該当ユーザーに利用停止解除条件、期間などを案内する必要があります。
+    * 利用停止猶予状態のユーザーのゲーム内アクセス制御はゲームで処理する必要があります。
 
-#### 기능 개선/변경
-* PAYCO iOS SDK 업데이트 (1.5.2)
+#### 機能改善/変更
+* PAYCO iOS SDKアップデート(1.5.2)
 
 ### 2.27.1 (2021.09.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* PAYCO iOS SDK 업데이트 (1.5.1)
-    * 인증 플로우 및 UI 개선
-* Hangame iOS SDK 업데이트 (1.6.1)
-    * 본인인증에서 에러 상황 발생 시 콜백 호출 안되는 이슈 수정
-    * iOS 15 beta에서 내비게이션바가 깨지는 이슈 수정
+#### 機能改善/変更
+* PAYCO iOS SDKアップデート(1.5.1)
+    * 認証フローおよびUI改善
+* Hangame iOS SDKアップデート(1.6.1)
+    * 本人認証でエラーが発生した時、コールバックの呼び出しができないイシューを修正
+    * iOS 15 betaでナビゲーションバーが正常に表示されないイシューを修正
 
-#### 버그 수정
-* 이미 약관에 동의하여 약관 UI가 표시되지 않을 경우, PushConfiguration가 nil로 리턴되지 않는 이슈를 수정했습니다.
+#### バグ修正
+* すでに約款に同意して約款UIが表示されない場合、 PushConfigurationがnilでリターンされないイシューを修正しました。
 
 ### 2.27.0 (2021.08.24) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-iOS.zip)
 
 #### 機能改善/変更
 * PAYCO iOS SDKアップデート(1.5.0)
-    * PAYCOアプリがない場合、従来の手動ログインのみ可能だった部分で Safariにログインしていた場合、簡単ログイン機能を使用できるように変更しました。
+    * PAYCOアプリがない時、以前は手動ログインのみ可能でしたが、Safariにログインしている場合は、簡単ログイン機能を使用できるようにしました。
 
+#### 버그 수정
+* Unity에서 이미지 공지가 출력되지 않는 이슈를 수정했습니다.
+    * Gamebase iOS SDK 2.27.0 미만을 사용하실 경우, Unity에서 이미지 공지가 출력되지 않을 수 있습니다.
+    * 이미지 공지를 사용하실 경우엔, Gamebase iOS SDK 2.27.0 이상을 사용하시기 바랍니다.
+    
 ### 2.26.0 (2021.08.10) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-iOS.zip)
 
