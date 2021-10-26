@@ -1,20 +1,11 @@
 ## Game > Gamebase > Upgrade Guide
 
-## 2.27.0
-
-### iOS
-
-#### ImageNotice
-
-* Fixed an issue where image notifications were not displayed in Unity.
-     * If you are using a version lower than Gamebase iOS SDK 2.27.0, image notifications may not be displayed in Unity.
-     * When using image notifications, use Gamebase iOS SDK 2.27.0 or higher.
-
 ## 2.26.0
 
 ### Unity
 
-* If you're using this version, you need to manually delete `Assets/Gamebase/Toast/IAP/Plugins` before use.
+* If you're using this version, you need to manually delete **Assets/Gamebase/Toast/IAP/Plugins** before use.
+    * If Gamebase Unity SDK 2.27.0 or higher is applied, you do not need to delete it.
 
 ### Unreal
 
@@ -77,7 +68,8 @@ android {
 
 ### Unity
 
-* If you're using this version, you need to manually delete `Assets/Gamebase/Toast/IAP/Plugins` before use.
+* If you're using this version, you need to manually delete **Assets/Gamebase/Toast/IAP/Plugins** before use.
+    * If Gamebase Unity SDK 2.27.0 or higher is applied, you do not need to delete it.
 
 #### Changed Minimum Support Version
 
