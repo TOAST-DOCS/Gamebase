@@ -143,11 +143,16 @@ Lifecycle管理のために"com.toast.gamebase.activity.GamebaseMainActivity"を
 
 > <font color="red">[注意]</font>
 >
-> AndroidPluginを開発する際にもGamebaseMainActivityを受け継いで制作しなければなりません。<br/>
-> GamebaseMainActivityは、GamebasePlugin.jarに含まれています。 <br/>
+> AndroidPluginを開発する際にもGamebaseMainActivityを受け継いで制作しなければなりません。
+> GamebaseMainActivityは、GamebasePlugin.jarに含まれています。 
 > launchModeは、singleTaskにする必要があります。(Unityの基本ActivityもsingleTaskで固定されます。) そうでない場合、アプリを初めて始める際にクラッシュが発生することがあります。
 >
 > 該当Lifecycleを変更する時はProject Settings > Settings for Android > Publish Settings > Build > Custom Main Manifestを有効にして該当AndroidManifest.xmlに修正する必要があります。
+
+> <font color="red">[注意]</font>
+> 
+> AndroidのtargetSdkVersionを31以上に設定する場合、intent-filterが存在するタグには必ずandroid:exported特性を宣言する必要があります。
+> GamebaseでLifecycleを管理するために提供する**GamebaseMainActivity**をMainActivityに設定する時にも特性に**android:exported="true"**が追加されている必要があります。
 
 
 ```xml
@@ -159,6 +164,7 @@ Lifecycle管理のために"com.toast.gamebase.activity.GamebaseMainActivity"を
         	android:launchMode="singleTask"
         	android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name">
+            android:exported="true">
             <intent-filter>
             	<action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
