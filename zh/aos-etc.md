@@ -30,14 +30,14 @@ Gamebase显示消息时，按照注册为Display Language的语言显示消息�
 > <font color="red">[注意]</font><br/>
 >
 > * 无论终端机设置的语言如何，只需要更改Gamebase显示的语言时使用Display Language Gamebase功能。
-> * Display Language Code是区分大小写的ISO-639形态的值。
+> * 显示Display Language Code时要以ISO-639格式显示，并要区分英文字母的大小写。
 > 若按”EN"或"zh-cn"进行设置，可能出现问题。
-> * 若输入的Display Language Code值不在以下列表时（**Gamebase支持的语言代码种类**）, 则将Display Langauge Code自动设置为默认语言(en)。
+> * 若输入的Display Language Code值不在以下列表时（**Gamebase支持的语言代码种类**）, Display Langauge Code将会设置为Gamebase控制台中设置的默认语言。 
+>     * 如果未在Gamebase控制台中设置需要使用的语言集，则会自动设置为英语(en)。  
 
 > [参考]
 >
-> * 因Gamebase客户端消息中仅包含英语（en）、韩语（ko）、日语（ja），即使是下列表指定的语言代码，指定英语（en）、韩语（ko）、日语（ja）之外的语言时，也将自动设置为默认语言(en)。
-> * 可以直接添加未注册在Gamebase客户端的语言集合。
+> * 可以直接添加Gamebase客户端不包括的语言集。
 > 请参考**添加新语言集合**项目。
 
 #### Gamebase支持的语言代码种类。
@@ -61,7 +61,7 @@ Gamebase显示消息时，按照注册为Display Language的语言显示消息�
 | zh-CN | Chinese-Simplified |
 | zh-TW | Chinese-Traditional |
 
-相应的语言代码在 `DisplayLanguage` 类中定义。
+相应的语言代码在`DisplayLanguage`类中定义。
 
 ```cs
 package com.toast.android.gamebase.base.ui;
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
 #### 设置显示语言
 
-Gamebase初始化时可更改输入的 Display Language。
+Gamebase初始化时可更改输入的Display Language。
 
 **API**
 
@@ -163,7 +163,7 @@ public void getDisplayLanguageCodeInRuntime() {
 
 #### 添加新语言集
 
-如果要使用Gamebase提供的默认语言(ko, en, ja)外的其他语言， 需要在gamebase-sdk-base.aar > res > raw的 localizedstring.json 文件中添加值。
+如果要使用Gamebase提供的默认语言(ko, en, ja, zh-CN, zh-TW, th)以外的其他语言，则在项目中的res > raw文件夹中添加localizedstring.json文件即可。 
 
 ![localizedstring.json](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-etc_001_1.11.0.png)
 
@@ -189,10 +189,32 @@ localizedstring.json中定义的格式如下。
     ...
     "launching_service_closed_title": "サービス終了"
   },
+  "zh-CN": {
+    "common_ok_button": "确定",
+    "common_cancel_button": "取消",
+    ...
+    "launching_service_closed_title": "关闭服务"
+  },
+  "zh-TW": {
+    "common_ok_button": "好",
+    "common_cancel_button": "取消",
+    ...
+    "launching_service_closed_title": "服務關閉"
+  },
+  "th": {
+    "common_ok_button": "ยืนยัน",
+    "common_cancel_button": "ยกเลิก",
+    ...
+    "launching_service_closed_title": "ปิดให้บริการ"
+  },
+  "de": {},
+  "es": {},
+  ...
+  "ms": {}
 }
 ```
 
-如果需要添加另一种语言集，可在localizedstring.json文件中添加 `"${语言代码}"：{"key"："value"}` 形式的值。
+如果需要添加其他语言集，则在localizedstring.json文件的相应语言代码中以“"key":"value"”的形式添加值。
 
 ```json
 {
@@ -202,34 +224,26 @@ localizedstring.json中定义的格式如下。
     ...
     "launching_service_closed_title": "Service Closed"
   },
-  "ko": {
-    "common_ok_button": "확인",
-    "common_cancel_button": "취소",
+  ...
+  "vi": {
+    "common_ok_button": "value",
+    "common_cancel_button": "value",
     ...
-    "launching_service_closed_title": "서비스 종료"
+    "launching_service_closed_title": "value"
   },
-  "ja": {
-    "common_ok_button": "確認",
-    "common_cancel_button": "キャンセル",
-    ...
-    "launching_service_closed_title": "サービス終了"
-  },
-  "${语言代码}": {
-      "common_ok_button": "...",
-      ...
-  }
+  ...
+  "ms": {}
 }
 ```
 
-如果在上述JSON文件的格式 "${语言代码}":{ } 中缺少 key，则会自动输入`在设备上设置的语言`或`en`。
+#### Display Language的优先顺序
 
-#### 显示语言优先级
+通过初始化或使用SetDisplayLanguageCode API设置Display Language时，最终应用的Display Language可以与输入的值不同。
 
-通过初始化或SetDisplayLanguageCode API设置Display Language时，最终应用的Display Language可以与输入的值不同。
-
-1. 确认输入的languageCode是否在localizedstring.json文件中定义。
-2. 初始化Gamebase时，确认是否在localizedstring.json文件中定义了设备上设置的语言代码（即使在初始化后更改了设备上设置的语言，此值也将保留）。
-3. 自动设置Display Language的默认值为`en`。
+1. 确认是否在localizedstring.json文件中定义输入的languageCode。
+2. 如果1号失败，初始化Gamebase时确认是否已在localizedstring.json文件中定义设备上设置的语言代码。（即使初始化后更改设备上设置的语言，此值也将会被保留。）
+3. 如果2号失败，则将显示Gamebase控制台中设置的默认语言。
+4. 如果未在Gamebase控制台中设置语言，默认语言将会设置为“en”。
 
 ### Country Code
 
@@ -239,7 +253,7 @@ localizedstring.json中定义的格式如下。
 #### USIM Country Code
 
 * 返回USIM中记录的国家代码。
-* 即使USIM中记录的是错误的国家代码也将不进行确认就直接返回，。
+* 即使USIM中记录的是错误的国家代码也将不进行确认就直接返回。
 * 若值为空，则返回’ZZ’。
 
 **API**
@@ -251,14 +265,14 @@ localizedstring.json中定义的格式如下。
 #### Device Country Code
 
 * 从OS接收的终端机国家代码直接返回，不另行确认。
-* 终端机国家代码根据’语言’设置，由OS自动决定。
+* 终端机国家代码根据”语言”设置，由OS自动决定。
 * 注册多种语言时，以优先权最高的语言决定国家代码。
-* 若值为空，则返回’ZZ’。
+* 若值为空，则返回”ZZ”。
 
 **API**
 
-```java
-+ (String)Gamebase.getCountryCodeOfDevice()
+```java              
++ (String)Gamebase.getCountryCodeOfDevice()                     
 ```
 
 #### Intergrated Country Code
@@ -409,7 +423,7 @@ void processServerPush(String category, GamebaseEventServerPushData data) {
 * Gamebase支持的Observer Type如下。 
     * GamebaseEventCategory.OBSERVER_LAUNCHING
     	* 当维护开始、结束时或发布新版本必须进行更新等Launching状态出现变动时运行。
-    	* GamebaseEventObserverData.code : 为LaunchingStatus值。 
+    	* GamebaseEventObserverData.code: 为LaunchingStatus值。 
             * LaunchingStatus.IN_SERVICE: 200
             * LaunchingStatus.RECOMMEND_UPDATE: 201
             * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
@@ -424,13 +438,13 @@ void processServerPush(String category, GamebaseEventServerPushData data) {
             * LaunchingStatus.INTERNAL_SERVER_ERROR: 500
     * GamebaseEventCategory.OBSERVER_HEARTBEAT
     	* 当因已被退出或禁用、用户账号状态出现变化时启动。
-    	* GamebaseEventObserverData.code : 为GamebaseError值。
+    	* GamebaseEventObserverData.code: 为GamebaseError值。
             * GamebaseError.INVALID_MEMBER: 6
             * GamebaseError.BANNED_MEMBER: 7
     * GamebaseEventCategory.OBSERVER_NETWORK
     	* 可以接收网络变动信息。
     	* 当网络断开或被连接时、从Wifi转为Cellular网络时启动。
-        * GamebaseEventObserverData.code : 为NetworkManager值。
+        * GamebaseEventObserverData.code: 为NetworkManager值。
             * NetworkManager.TYPE_NOT: -1
             * NetworkManager.TYPE_MOBILE: 0
             * NetworkManager.TYPE_WIFI: 1
@@ -882,7 +896,7 @@ Gamebase.Contact.openContact(activity, new GamebaseCallback() {
 | NOT\_INITIALIZED(1)                                 | 未调用Gamebase.initialize。 |
 | NOT\_LOGGED\_IN(2)                                  | 客户服务类型为'TOAST OC'时，登录前已调用了ContactConfiguration函数。 |
 | UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 客户服务URL不存在。<br>请确认Gamebase控制台的**客户服务URL**。 |
-| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) |  识别用户的临时ticket发放失败 |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 识别用户的临时ticket发放失败 |
 
 **Example**
 

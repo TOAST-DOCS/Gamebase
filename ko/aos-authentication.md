@@ -905,7 +905,7 @@ Gamebase Console에 제재된 게임 유저로 등록될 경우,
 이 키를 **TransferAccountInfo** 라고 부릅니다.
 발급받은 TransferAccountInfo는 다른 단말기에서 **requestTransferAccount** API를 호출하여 계정 이전을 할 수 있습니다.
 
-> `주의`
+> <font color="red">[주의]</font><br/>
 > TransferAccountInfo의 발급은 게스트 로그인 상태에서만 발급이 가능합니다.
 > TransferAccountInfo를 이용한 계정 이전은 게스트 로그인 상태 또는 로그인되어 있지 않은 상태에서만 가능합니다.
 > 로그인한 게스트 계정이 이미 다른 외부 IdP (Google, Facebook, Payco 등) 계정과 매핑이 되어 있다면 계정 이전이 지원되지 않습니다.

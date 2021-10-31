@@ -214,17 +214,18 @@ Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<L
 
 ### Error Handling
 
-| Error                                    | Error Code | Description                              |
-| ---------------------------------------- | ---------- | ---------------------------------------- |
-| PURCHASE_NOT_INITIALIZED                 | 4001       | Purchase 模块未初始化。请确认是否将<br>gamebase-adapter-purchase-IAP 模块添加到项目中。 |
-| PURCHASE_USER_CANCELED                   | 4002       | 游戏用户已取消购买商品。                 |
+| Error                                     | Error Code | Description                              |
+| ----------------------------------------- | ---------- | ---------------------------------------- |
+| PURCHASE_NOT_INITIALIZED                  | 4001       | Purchase模块未初始化。请确认是否将<br>gamebase-adapter-purchase-IAP模块添加到项目中。 |
+| PURCHASE_USER_CANCELED                    | 4002       | 游戏用户已取消购买商品。                 |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 尚未完成购买逻辑的情况下已调用API。    |
-| PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 该商店的余额不足，无法结算。           |
-| PURCHASE_INACTIVE_PRODUCT_ID             | 4005       | 此商品为非激活状态 |
-| PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | 请求支付的GamebaseProductID不存在 |
-| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 不支持的商店.<br>可选择的商店是 GG(Google), ONESTORE, GALAXY。 |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAP库错误。<br>请确认DetailCode。   |
-| PURCHASE_UNKNOWN_ERROR                   | 4999       | 未知的购买错误。<br>请将完整的Log上传到 [客服中心](https://toast.com/support/inquiry)，我们会尽快回复。 |
+| PURCHASE_NOT_ENOUGH_CASH                  | 4004       | 该商店的余额不足，无法结算。           |
+| PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | 此商品为非激活状态。 |
+| PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 请求支付的GamebaseProductID不存在。 |
+| PURCHASE_LIMIT_EXCEEDED                   | 4007       | 超过了一个月购买限额。             |
+| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 不支持的商店<br>可选择的商店是GG(Google)、ONESTORE及GALAXY。 |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | IAP库错误<br>请确认DetailCode。   |
+| PURCHASE_UNKNOWN_ERROR                    | 4999       | 未知的购买错误<br>请将完整的Log上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。 |
 
 * 所有错误代码，请参考以下文档。
     * [错误代码](./error-code/#client-sdk)
@@ -261,5 +262,5 @@ Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataC
 ```
 
 * TOAST IAP SDK错误代码，请参考以下文档。
-    * [TOAST > TOAST SDK使用指南 > TOAST IAP > Android > 错误代码](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-android/#error-codes)
+    * [NHN Cloud > NHN Cloud SDK使用指南 > NHN Cloud IAP > Android > 错误代码](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-android/#error-codes)
 

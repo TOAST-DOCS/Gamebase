@@ -1,18 +1,18 @@
-## Game > Gamebase > Release Notes
+## Game > Gamebase > Release Notes > Unreal
 
 ### 2.26.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
-* 공통약관 기능 추가
-    * 약관 WebView를 여는 API 추가
-    * 약관 리스트 및 유저별 동의 여부를 조회하는 API 추가
-    * 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
+#### 添加功能
+* 添加共同条款功能
+    * 添加打开条款WebView的API。
+    * 添加查询”条款列表”和”用户是否同意”API。
+    * 添加将”用户是否同意条款”保存在Gamebase服务器的API。
 
-#### 기능 개선/변경
-* 고객센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객센터가 표시되도록 변경
-* 내부 론칭 URL 변경
-* Gamebase에서 Android multidex 적용 제거
+#### 改善/修复功能
+* 客户服务类型为TOAST组织服务(Online Contact)时，即使不登录，也显示客户服务。
+* 更改内部Launching URL 
+* 从Gamebase中删除Android multidex适用。
 
 ### 2.19.2(2021.06.29) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.2/GamebaseSDK-Unreal.zip)

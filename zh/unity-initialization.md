@@ -349,6 +349,13 @@ Gamebase Console中注册的APP信息。
 
 使用GetLaunchingInformations API，Initialize之后也可获取LaunchingInfo对象。
 
+> <font color="red">[注意]</font><br/>
+>
+> GetLaunchingInformations API不是从服务器实时获取信息的异步API。
+> 因每两分钟返还被更新的现金信息，不适合实时判断当前是否维护。
+> 在这种情况下，请使用Launching Status Code被更改时启动事件的GamebaseEventHandler。
+> [Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Observer](./unity-etc/#observer)
+
 **API**
 
 Supported Platforms
@@ -458,7 +465,7 @@ public class SampleInitialization
 
 | Error                              | Error Code | 描述            |
 | ---------------------------------- | ---------- | ---------------------- |
-| NOT\_INITIALIZED      | 1          | Gamebase未初始化。 |
+| NOT\_INITIALIZED      | 1          | 未初始化Gamebase。 |
 | NOT\_LOGGED\_IN       | 2          | 需要登录。            |
 | INVALID\_PARAMETER    | 3          | 无效的参数。           |
 | INVALID\_JSON\_FORMAT | 4          | JSON格式错误。         |
