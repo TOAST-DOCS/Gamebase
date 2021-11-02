@@ -123,7 +123,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
     android.enableD8.desugaring=true
     android.enableIncrementalDesugaring=false
     ```
-* Unity 의 경우 Editor 버전이 2018.4.3 이하이거나, 2019.1.6 이하인 경우 이에 해당됩니다.(AGP 버전이 3.2.0)
+* Unity의 경우 Editor 버전이 2018.4.3 이하이거나, 2019.1.6 이하인 경우 이에 해당됩니다.(AGP 버전이 3.2.0)
     ```groovy
     // mainTemplate.gradle
     ([rootProject] + (rootProject.subprojects as List)).each {
