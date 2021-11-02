@@ -49,6 +49,17 @@ android {
 }
 ```
 
+#### Under AGP 3.4.0
+
+* Android Gradle Plugin 버전이 3.4.0 미만인 경우 빌드가 실패하므로 gradle.properties 파일에 다음 선언이 필요합니다.
+
+```groovy
+# gradle.properties
+# >>> Fix for AGP under 3.4.0
+android.enableD8.desugaring=true
+android.enableIncrementalDesugaring=false
+```
+
 #### Line IdP
 
 * Line IdP 를 사용하는 경우, Line SDK 내부에 **&lt;queries&gt;** 태그가 존재하여 AGP 버전에 따라서는 빌드가 실패할 수 있습니다.
@@ -97,6 +108,21 @@ android {
 // gradleTemplate.properties
 android.useAndroidX=true
 android.enableJetifier=true
+```
+
+#### Under AGP 3.4.0
+
+* Unity Editor 버전이 2018.4.3 이하이거나 2019.1.6 이하인 경우, AGP 버전이 낮아서(3.2.0) 빌드가 실패하므로 다음 선언을 추가하세요.
+
+```groovy
+// mainTemplate.gradle
+([rootProject] + (rootProject.subprojects as List)).each {
+    ext {
+        // >>> Fix for AGP under 3.4.0
+        it.setProperty("android.enableD8.desugaring", true)
+        it.setProperty("android.enableIncrementalDesugaring", false)
+    }
+}
 ```
 
 ### Unreal
