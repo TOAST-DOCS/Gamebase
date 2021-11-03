@@ -67,7 +67,7 @@ Display Language 에 입력하는 언어 코드는 반드시 아래의 표(**Gam
 | de | German |
 | en |English  |
 | es | Spanish |
-| fi | Finish |
+| fi | Finnish |
 | fr | French |
 | id | Indonesian |
 | it | Italian |
@@ -89,7 +89,7 @@ Display Language 에 입력하는 언어 코드는 반드시 아래의 표(**Gam
 extern NSString* const kTCGBDisplayLanguageCodeGerman;
 extern NSString* const kTCGBDisplayLanguageCodeEnglish;
 extern NSString* const kTCGBDisplayLanguageCodeSpanish;
-extern NSString* const kTCGBDisplayLanguageCodeFinish;
+extern NSString* const kTCGBDisplayLanguageCodeFinnish;
 extern NSString* const kTCGBDisplayLanguageCodeFrench;
 extern NSString* const kTCGBDisplayLanguageCodeIndonesian;
 extern NSString* const kTCGBDisplayLanguageCodeItalian;

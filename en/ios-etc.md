@@ -67,7 +67,7 @@ The language code entered for Display Language should be one of the codes listed
 | de | German |
 | en |English  |
 | es | Spanish |
-| fi | Finish |
+| fi | Finnish |
 | fr | French |
 | id | Indonesian |
 | it | Italian |
@@ -89,7 +89,7 @@ Each language code is defined in `TCGBConstants.h`.
 extern NSString* const kTCGBDisplayLanguageCodeGerman;
 extern NSString* const kTCGBDisplayLanguageCodeEnglish;
 extern NSString* const kTCGBDisplayLanguageCodeSpanish;
-extern NSString* const kTCGBDisplayLanguageCodeFinish;
+extern NSString* const kTCGBDisplayLanguageCodeFinnish;
 extern NSString* const kTCGBDisplayLanguageCodeFrench;
 extern NSString* const kTCGBDisplayLanguageCodeIndonesian;
 extern NSString* const kTCGBDisplayLanguageCodeItalian;
