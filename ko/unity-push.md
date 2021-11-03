@@ -21,7 +21,7 @@ Android나 iOS에서 푸시를 설정하는 방법은 다음 문서를 참고하
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS<br/>
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
@@ -117,7 +117,7 @@ public void RegisterPushSample(bool pushEnabled, bool adAgreement, bool adAgreem
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS<br/>
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
@@ -149,7 +149,7 @@ public void GetNotificationOptionsSample()
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS<br/>
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
