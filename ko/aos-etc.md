@@ -47,7 +47,7 @@ Display Language 에 입력하는 언어 코드는 반드시 아래의 표(**Gam
 | de | German |
 | en |English  |
 | es | Spanish |
-| fi | Finish |
+| fi | Finnish |
 | fr | French |
 | id | Indonesian |
 | it | Italian |
@@ -68,21 +68,22 @@ package com.toast.android.gamebase.base.ui;
 
 public class DisplayLanguage {
     public static class Code {
-        public static final String German             = "de";
-        public static final String English            = "en";
-        public static final String Spanish            = "es";
-        public static final String Finish             = "fi";
-        public static final String French             = "fr";
-        public static final String Indonesian         = "id";
-        public static final String Italian            = "it";
-        public static final String Japanese           = "ja";
-        public static final String Korean             = "ko";
-        public static final String Portuguese         = "pt";
-        public static final String Russian            = "ru";
-        public static final String Thai               = "th";
-        public static final String Vietnamese         = "vi";
-        public static final String Malay              = "ms";
-        public static final String Chinese_Simplified = "zh-CN";
+        public static final String German              = "de";
+        public static final String English             = "en";
+        public static final String Spanish             = "es";
+        public static final String Finnish             = "fi";
+        public static final String French              = "fr";
+        public static final String Indonesian          = "id";
+        public static final String Italian             = "it";
+        public static final String Japanese            = "ja";
+        public static final String Korean              = "ko";
+        public static final String Portuguese          = "pt";
+        public static final String Russian             = "ru";
+        public static final String Thai                = "th";
+        public static final String Vietnamese          = "vi";
+        public static final String Malay               = "ms";
+        public static final String Chinese_Simplified  = "zh-CN";
+        public static final String Chinese_Traditional = "zh-TW";
     }
     ...
 }
