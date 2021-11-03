@@ -452,12 +452,14 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
                 {
                     // When you received push message.
                     
+#if !UNITY_EDITOR && UNITY_ANDROID
                     Dictionary<string, object> extras = Toast.Gamebase.LitJson.JsonMapper.ToObject<Dictionary<string, object>>(pushMessage.extras);
-                    // There is 'isForeground' information.
+                    // For Android, there is 'isForeground' information.
                     if (extras.ContainsKey("isForeground") == true)
                     {
                         bool isForeground = (bool)extras["isForeground"];
                     }
+#endif
                 }
                 break;
             }
@@ -491,9 +493,10 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 | ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
 | Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseResponse.Event.GamebaseEventObserverData.from(message.data) | \- |
 | Purchase - 프로모션 결제 | GamebaseEventCategory.PURCHASE_UPDATED | GamebaseResponse.Event.PurchasableReceipt.from(message.data) | \- |
-| Push - 메세지 수신 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | **isForeground** 값을 통해 Foreground 에서 메세지를 수신했는지 여부를 확인할 수 있습니다. |
-| Push - 메세지 클릭 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | **isForeground** 값이 없습니다. |
+| Push - 메세지 수신 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | **Android**에서는 **isForeground** 값을 통해 Foreground 에서 메세지를 수신했는지 여부를 확인할 수 있습니다. |
+| Push - 메세지 클릭 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
 | Push - 액션 클릭 | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | RichMessage 버튼 클릭시 동작합니다. |
+
 
 #### Server Push
 
@@ -817,13 +820,15 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
                 if (pushMessage != null)
                 {
                     // When you received push message.
-                    
+
+#if !UNITY_EDITOR && UNITY_ANDROID
                     Dictionary<string, object> extras = Toast.Gamebase.LitJson.JsonMapper.ToObject<Dictionary<string, object>>(pushMessage.extras);
-                    // There is 'isForeground' information.
+                    // For Android, there is 'isForeground' information.
                     if (extras.ContainsKey("isForeground") == true)
                     {
                         bool isForeground = (bool)extras["isForeground"];
                     }
+#endif
                 }
                 break;
             }
