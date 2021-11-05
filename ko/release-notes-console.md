@@ -4,7 +4,7 @@
 
 #### 기능 개선/변경
 * 앱 > 설치 URL
-	* 신규로 생성되는 Gamebase에 대해 제공되는 ShortURL의 도메인이 변경됨 (https://nh.nu)
+	* 신규로 생성되는 Gamebase에 대해 제공되는 ShortURL의 도메인이 https://nh.nu로 변경됨
 
 #### 버그 수정
 * 운영 > 점검
