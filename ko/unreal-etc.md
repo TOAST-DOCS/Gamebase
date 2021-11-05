@@ -322,8 +322,8 @@ void Sample::AddEventHandler()
 | ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(message.data) | \- |
 | Observer | GamebaseEventCategory::ObserverLaunching<br>GamebaseEventCategory::ObserverNetwork<br>GamebaseEventCategory::ObserverHeartbeat | FGamebaseEventObserverData::From(message.data) | \- |
 | Purchase - 프로모션 결제 | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(message.data) | \- |
-| Push - 메세지 수신 | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(message.data) | **isForeground** 값을 통해 Foreground 에서 메세지를 수신했는지 여부를 확인할 수 있습니다. |
-| Push - 메세지 클릭 | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) | **isForeground** 값이 없습니다. |
+| Push - 메세지 수신 | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(message.data) |  |
+| Push - 메세지 클릭 | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) |  |
 | Push - 액션 클릭 | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(message.data) | RichMessage 버튼 클릭시 동작합니다. |
 
 
@@ -537,8 +537,8 @@ void Sample::AddEventHandler()
 #### Push Received Message
 
 * Push 메세지가 도착했을때 발생하는 이벤트 입니다.
-* **isForeground** 필드를 통해 포그라운드에서 메세지를 수신했는지, 백그라운드에서 메세지를 수신했는지 구분할 수 있습니다.
-* extras 필드를 JSON 으로 변환하여, Push 발송시 전송했던 커스텀 정보를 얻을 수도 있습니다.
+* extras 필드를 JSON으로 변환하여, Push 발송 시 전송했던 커스텀 정보를 얻을 수도 있습니다.
+    * **Android**에서는 **isForeground** 필드를 통해 포그라운드에서 메세지를 수신했는지, 백그라운드에서 메세지를 수신했는지 구분할 수 있습니다.
 
 **VO**
 
@@ -554,7 +554,7 @@ struct FGamebaseEventPushMessage
     // Push 메세지 본문 내용 입니다.
     FString body;
 
-    // JSONObject 로 변환하여 모든 정보를 확인할 수 있습니다.
+    // JSON 형식으로 Push 발송 시 전송했던 커스텀 정보를 확인할 수 있습니다.
     FString extras;
 };
 ```
@@ -572,6 +572,10 @@ void Sample::AddEventHandler()
             if (pushMessage.IsVaild())
             {
                 // When you clicked push message.
+
+                // By converting the extras field of the push message to JSON,
+                // you can get the custom information added by the user when sending the push.
+                // (For Android, an 'isForeground' field is included so that you can check if received in the foreground state.)
             }
         }
     }));
@@ -581,7 +585,7 @@ void Sample::AddEventHandler()
 #### Push Click Message
 
 * 수신한 Push 메세지를 클릭했을때 발생하는 이벤트 입니다.
-* 'GamebaseEventCategory::PUSH_RECEIVED_MESSAGE' 와는 다르게 **isForeground** 필드가 존재하지 않습니다.
+* 'GamebaseEventCategory::PushReceivedMessage' 와는 다르게 Android에서 extras 필드에 **isForeground** 정보가 존재하지 않습니다.
 
 **Example**
 
