@@ -61,7 +61,7 @@ Display Language 에 입력하는 언어 코드는 반드시 아래의 표(**Gam
 | de | German |
 | en |English  |
 | es | Spanish |
-| fi | Finish |
+| fi | Finnish |
 | fr | French |
 | id | Indonesian |
 | it | Italian |
@@ -85,7 +85,7 @@ namespace Toast.Gamebase
         public const string German = "de";
         public const string English = "en";
         public const string Spanish = "es";
-        public const string Finish = "fi";
+        public const string Finnish = "fi";
         public const string French = "fr";
         public const string Indonesian = "id";
         public const string Italian = "it";

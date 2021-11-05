@@ -37,7 +37,7 @@ FString GetDeviceLanguageCode() const;
 | de | German |
 | en |English  |
 | es | Spanish |
-| fi | Finish |
+| fi | Finnish |
 | fr | French |
 | id | Indonesian |
 | it | Italian |
@@ -64,7 +64,7 @@ namespace GamebaseDisplayLanguageCode
     static const FString German(TEXT("de"));
     static const FString English(TEXT("en"));
     static const FString Spanish(TEXT("es"));
-    static const FString Finish(TEXT("fi"));
+    static const FString Finnish(TEXT("fi"));
     static const FString French(TEXT("fr"));
     static const FString Indonesian(TEXT("id"));
     static const FString Italian(TEXT("it"));
