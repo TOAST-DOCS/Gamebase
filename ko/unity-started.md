@@ -116,10 +116,12 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
 > <font color="red">[주의]</font>
 >
 > EDM4U가 없을 경우에는 Gamebase SDK for Android, iOS 설정이 되지 않습니다.<br/>
-> EDM4U의 resolve를 실행하기 전, **Build Settings** 창에서 Switch Platform 버튼을 클릭하여 빌드 하려는 플랫폼으로 전환이 되어 있어야 합니다. Android 플랫폼이 선택되어 있다면 **Player Settings > Publishing Settings**에서 Custom Gradle Template을 체크를 선택하여 mainTemplate.gradle 파일을 생성해야 합니다.
+> EDM4U의 resolve를 실행하기 전, **Build Settings** 창에서 Switch Platform 버튼을 클릭하여 빌드 하려는 플랫폼으로 전환이 되어 있어야 합니다. Android 플랫폼이 선택되어 있다면 **Player Settings > Publishing Settings**에서 Custom Gradle Template을 활성화하여 mainTemplate.gradle 파일을 생성해야 합니다.<br/>
+> `Unity 2019.3 이상` 사용 시, **Player Settings > Publishing Settings**에서 Custom Gradle Properties Template을 활성화하여 gradleTemplate.properties 파일을 생성해야 합니다.
 
 
 #### SDK 업데이트
+
 1. 상단 메뉴 > **Tools > NhnCloud > Gamebase > SettingTool > Settings**를 선택합니다.
 2. **SDK Download** 항목에서 [Gamebase SDK] 버튼을 클릭해서 최신 SDK를 다운로드합니다.
     * 이미 최신 SDK가 다운로드되어 있을 경우에는 해당 버튼이 비활성화됩니다.
@@ -128,13 +130,14 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
 
 
 #### SDK 삭제
+
 1. 상단 메뉴 > **Tools > NhnCloud > Gamebase > SettingTool > Settings**를 선택합니다.
 2. [Remove] 버튼 클릭해서 설치된 SDK를 삭제합니다.
 
 > [참고]
 > 
 > Setting Tool에서 예기치 못한 오류가 발생할 경우, 창을 닫고 재실행하시기 바랍니다. <br/>
-> 재실행하여도 오류가 해결되지 않을 경우, **Assets/NhnCloud/GamebaseTools/SettingTool/Editor/Scripts**에서 SettingToolWindow.cs 파일을 열고, ShowWindow 메서드에서 SettingTool.SetDebugMode(true); 코드를 주석 해제 후, 로그를 전달해 주시기 바랍니다.<br/>
+> 재실행하여도 오류가 해결되지 않을 경우, **Assets/NhnCloud/GamebaseTools/SettingTool/Editor/Scripts**에서 SettingToolWindow.cs 파일을 열고, ShowWindow 메서드에서 SettingTool.SetDebugMode(true); 코드를 주석 해제 후, 로그를 전달해 주시기 바랍니다.<br/><br/>
 > Unity Facebook Authentication을 사용하는 경우, Facebook Unity SDK는 별도로 다운로드해야 합니다. [Go to Download](https://developers.facebook.com/docs/unity/)<br/>
 > Unity Facebook Authentication에서 지원하는 Facebook Unity SDK 버전은 같이 제공되는 README 파일을 참고하시기 바랍니다. <br/>
 
