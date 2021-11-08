@@ -93,7 +93,7 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
     * Explode AARs: 비활성화
     * Patch mainTemplate.gradle: 활성화
     * Use Jetifier: 활성화
-    * ![Android Resolver Settings](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-edm4u-settings-1_2.0.0.png)
+    * ![Android Resolver Settings](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-edm4u-settings-1_2.0.0.png)
 
 #### SDK 설치
 
@@ -159,14 +159,14 @@ Setting Tool의 업데이트가 필요한 경우 Setting Tool에서 업데이트
 * SDK 다운로드 제한
 	* 기존에 다운로드 된 SDK를 이용하여 설치, 삭제 가능
 
-![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-1_1.13.0.png)
+![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-1_1.13.0.png)
 
 #### 선택 업데이트
 
 * 업데이트 선택
 * SDK 다운로드 가능
 
-![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-2_1.13.0.png)
+![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-2_1.13.0.png)
 
 ### Android Lifecycle
 
