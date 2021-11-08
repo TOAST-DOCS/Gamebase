@@ -37,7 +37,7 @@ Gamebase显示消息时，显示注册为Display Language的语言。
 | de       | German                    |
 | en       | English                   |
 | es       | Spanish                   |
-| fi       | Finish                    |
+| fi       | Finnish                    |
 | fr       | French                    |
 | id       | Indonesian                |
 | it       | Italian                   |
@@ -58,7 +58,7 @@ var toast.GamebaseDisplayLanguage.DefaultCode = {
     German:'de',
     English:'en',
     Spanish:'es',
-    Finish:'fi',
+    Finnish:'fi',
     French:'fr',
     Indonesian:'id',
     Italian:'it',

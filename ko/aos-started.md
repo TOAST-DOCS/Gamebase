@@ -14,7 +14,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 용도 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.27.1<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 Interface 및 핵심 로직을 포함 | API 16 (JellyBean, OS 4.1) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.27.4<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 Interface 및 핵심 로직을 포함 | API 16 (JellyBean, OS 4.1) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Google 로그인을 지원 | - |
@@ -28,7 +28,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 | Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.16.0<br>toast-iap-core | 게임 내 결제를 지원 | - |
 |  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | Galaxy Store를 지원 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK 의 minSdkVersion 은 18이지만, 실제 결제를 위해 설치해야 하는 Checkout 서비스앱의 minSdkVersion 은 21입니다. |
 |  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Google Store를 지원 | - |
-|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | ONE Store를 지원 | - |
+|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | ONE Store v17을 지원<br>현재 v19는 지원 불가 | - |
 | Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Push를 지원 | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Firebase Notification을 지원 | - |
 
@@ -47,6 +47,9 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 * 아이템 구매를 위해 Store 콘솔에서 앱 정보를 등록하여 Gamebase > 구매(IAP) 콘솔에 입력합니다.
 	* [Game > Gamebase > 스토어 콘솔 가이드 > Google 콘솔 가이드](./console-google-guide)
 	* [Game > Gamebase > 스토어 콘솔 가이드 > ONEStore 콘솔 가이드](./console-onestore-guide)
+        * ONE Store는 현재 v17만 지원합니다.
+        * ONE Store에서 앱을 생성할때 v19로 생성하지 않도록 주의하시기 바랍니다.
+        * ONE Storev19 지원은 검토중인 단계입니다.
 	* [Game > Gamebase > 스토어 콘솔 가이드 > GALAXY Store 콘솔 가이드](./console-galaxy-guide)
     * 아래 가이드를 참고하여 아이템을 등록합니다.
         * [Game > Gamebase > 콘솔 사용 가이드 > 결제 > Register](./oper-purchase/#register_1)
@@ -91,14 +94,16 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
         // mainTemplate.gradle
         ([rootProject] + (rootProject.subprojects as List)).each {
             ext {
+                // >>> [AndroidX]
                 it.setProperty("android.useAndroidX", true)
                 it.setProperty("android.enableJetifier", true)
             }
         }
         ```
     * Unity 2019.3 이상
-        ```groovy
-        // gradleTemplate.properties
+        ```
+        # gradleTemplate.properties
+        # >>> [AndroidX]
         android.useAndroidX=true
         android.enableJetifier=true
         ```
@@ -111,6 +116,27 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
           </insert>  
         </gradleProperties>
         ```
+        
+#### Under AGP 3.4.0
+
+* Android Gradle Plugin 버전이 3.4.0 미만인 경우 빌드가 실패하므로 다음 선언이 필요합니다.
+    ```groovy
+    # gradle.properties
+    # >>> Fix for AGP under 3.4.0
+    android.enableD8.desugaring=true
+    android.enableIncrementalDesugaring=false
+    ```
+* Unity의 경우 Editor 버전이 2018.4.3 이하이거나, 2019.1.6 이하인 경우 이에 해당됩니다.(AGP 버전이 3.2.0)
+    ```groovy
+    // mainTemplate.gradle
+    ([rootProject] + (rootProject.subprojects as List)).each {
+        ext {
+            // >>> Fix for AGP under 3.4.0
+            it.setProperty("android.enableD8.desugaring", true)
+            it.setProperty("android.enableIncrementalDesugaring", false)
+        }
+    }
+    ```
 
 #### Define Adapters
 
@@ -143,6 +169,7 @@ dependencies {
 
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
+    // >>> ONE Store는 v17만 사용 가능하고 v19는 현재 지원하지 않습니다.
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
 
