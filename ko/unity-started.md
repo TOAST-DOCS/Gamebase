@@ -88,12 +88,22 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
     * [EDM4U Github](https://github.com/googlesamples/unity-jar-resolver)에서 EDM4U를 다운로드 후, 설치해야 합니다.
     * EDM4U가 없을 경우에는 Gamebase SDK for Android, iOS 설정이 되지 않습니다.
     * Facebook, GPGS SDK, Firebase와 같이 EDM4U를 이미 포함하고 있는 SDK를 사용할 경우에는 EDM4U를 다운로드하지 않아도 됩니다.
-3. Android 플랫폼을 서비스할 경우, 상단 메뉴 > **Assets > External Dependency Manager > Android Resolver > Settings**를 선택하여 Android Resolver Settings 창을 열고 아래와 같이 설정하십시오.
+3. Android 플랫폼을 서비스할 경우에는 상단 메뉴 > **Assets > External Dependency Manager > Android Resolver > Settings**를 선택하여 Android Resolver Settings 창을 열고 아래와 같이 설정하십시오.
     * Enable Auto-Resolution: 비활성화
     * Explode AARs: 비활성화
     * Patch mainTemplate.gradle: 활성화
     * Use Jetifier: 활성화
     * ![Android Resolver Settings](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-edm4u-settings-1_2.0.0.png)
+4. iOS 플랫폼을 서비스할 경우에는 상단 메뉴 > **Assets > External Dependency Manager > iOS Resolver > Settings**를 선택하여 iOS Resolver Settings 창을 열고 아래와 같이 설정하십시오.
+    * Use Shell to Execute Cocoapod Tool: 비활성화
+        * 해당 기능이 비활성화되지 않으면 Unity에서 iOS 빌드 시, xcworkspace가 생성되지 않는 오류가 발생합니다. (CocoaPods 1.11.x 버그)
+        * 해당 기능을 활성화해야 하는 사용자는 아래 2가지 방법 중 하나로 오류를 해결하십시오.
+            * CocoaPods 1.10.x 버전 설치합니다.
+            * Unity에서 생성한 Xcode 프로젝트에서 **pod install**을 직접 호출합니다.
+
+> <font color="red">[주의]</font>
+>
+> iOS 플랫폼을 서비스할 경우에는 CocoaPods가 설치되어 있어야 하며, CocoaPods 설치 및 자세한 설명은 [cocoapods.org](https://cocoapods.org/)를 참고하십시오.
 
 #### SDK 설치
 
