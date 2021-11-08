@@ -112,8 +112,10 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 
 > <font color="red">[注意]</font><br/>
 >
-> 如果在条款中添加”是否接收推送”，则可从GamebaseDataContainer构造PushConfiguration。 
-> 若PushConfiguration不为null，**登录后**，请调用Gamebase.Push.registerPush API。
+> * 如果在条款中添加”是否接收推送”，则可从GamebaseDataContainer构造PushConfiguration。
+> * 未显示条款时，PushConfiguration为null。(如果显示了条款窗，则始终返还有效的对象。)
+> * PushConfiguration.pushEnabled值始终为true。 
+> * 若PushConfiguration不为null，**登录后**，请调用Gamebase.Push.registerPush API。
 
 #### Required参数
 
@@ -568,7 +570,7 @@ showWebView(activity, urlString, configuration,
 
 * 将自定义的页面设置为维护页面。
     * 在AndroidManifest.xml中， 以com.gamebase.maintenance.detail.url为键值，设置元数据。
-    * 可以输入.html文件或URL作为android：value值。
+    * 可以输入.html文件或URL作为android：value值
 
 ```xml
 <meta-data
@@ -580,7 +582,7 @@ showWebView(activity, urlString, configuration,
 
 | Error              | Error Code | 描述                  |
 | ------------------ | ---------- | ---------------------------- |
-| UI\_UNKNOWN\_ERROR | 6999       | 未知错误(未定义的错误)。 |
+| UI\_UNKNOWN\_ERROR | 6999       | 未知错误(未定义的错误) |
 
 * 所有错误代码，请参考以下文档。
     * [错误代码](./error-code/#client-sdk)

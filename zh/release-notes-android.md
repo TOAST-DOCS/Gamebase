@@ -1,69 +1,87 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.29.0 (2021.11.09)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+* Google 로그인시 Scope를 선언할 수 있는 기능을 추가하였습니다.
+    * https://developers.google.com/identity/protocols/oauth2/scopes
+    * Scope로 `email`을 추가하면 프로필에서 Email 정보 획득이 가능합니다.
+    * Scope는 Gamebase Console의 AdditionalInfo에 다음과 같이 설정하면 로그인이 자동으로 설정됩니다.
+
+```
+{"scope":["email","myscope1","myscope2",...]}
+```
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST Android SDK(0.27.4)
+* DisplayLanguage 가이드 문서에서만 안내되고, 실제로 SDK에는 포함되어 있지 않았던 DisplayLanguage.Code 클래스를 추가하였습니다.
+    * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Display Language > Gamebase에서 지원하는 언어코드의 종류](https://docs.toast.com/en/Game/Gamebase/en/aos-etc/#types-of-language-codes-supported-by-gamebase)
+
 ### 2.28.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* Kakaogame 인증 추가
-* '결제 어뷰징 자동 해제' 기능이 추가되었습니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > 인증 > GraceBan](./aos-authentication/#graceban)
-    * 결제 어뷰징 자동 해제 기능은 결제 어뷰징 자동 제재로 이용 정지가 되어야 할 사용자가 이용 정지 유예 상태 후 이용 정지가 되도록 합니다.
-    * 이용 정지 유예 상태일 경우 설정한 기간 내에 해제 조건을 모두 만족하면 정상플레이가 가능해집니다.
-    * 기간 내에 조건을 충족하지 못하면 이용 정지가 됩니다.
-* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 AuthToken.getGraceBanInfo() API 값을 확인하고, null이 아닌 유효한 GraceBanInfo 객체를 리턴한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
-    * 이용 정지 유예 상태인 유저의 게임 내 접근 제어는 게임에서 처리하셔야 합니다.
-* 로그인 응답 대기중에 대기 아이콘이 표시됩니다.
+#### 添加功能
+* 添加Kakaogame认证
+* ”结算Abusing自动解除”功能已被添加。 
+    * [Game > Gamebase > Android SDK使用指南 > 认证 > GraceBan](./aos-authentication/#graceban)
+    * 结算Abusing自动解除功能是当存在需通过”结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。
+    * 如果为”预约禁用”状态，在设定的时期内满足解除条件，则可正常玩游戏。
+    * 若在所定的时期内未能满足条件，则会被禁用。
+* 登录使用结算Abusing自动解除功能的游戏后，始终要确认AuthToken.getGraceBanInfo() API值，如果返还GraceBanInfo对象，而不返还null，要向相关用户通知禁用解除条件、时期等。
+    * 当需要控制处于预约禁用状态的用户进入游戏时，要在游戏中进行处理。
+* 等待登录响应时，显示等待图标。  
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: PAYCO Android SDK(1.5.6)
+#### 改善/修复功能 
+* 外部SDK升级 : PAYCO Android SDK(1.5.6)  
+  
+### 2.27.1 (2021.09.14) 
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-Android.zip)   
 
-### 2.27.1 (2021.09.14)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-Android.zip)
+#### 改善/修复功能
+* 外部SDK升级 : PAYCO Android SDK(1.5.5), Hangame Android SDK(1.4.1), Weibo Android SDK(11.8.1)
+* 通过反复重试，改善了模拟器和Rooting terminal不正常显示Webview的问题。
+    * 对象包括通过Webview启动的图片通知，客户服务和共同条款。
+* 通过改善Weibo IdP认证，提高了稳定性。
+    * Gamebase对实际上是同步API，但启动为异步API而导致错误的API添加了意外处理、等待、重试等的辅助处理。  
 
-#### Feature Updates
-* External SDK update: PAYCO Android SDK (1.5.5), Hangame Android SDK (1.4.1), Weibo Android SDK (11.8.1)
-* Added a retry logic when the webview is not displayed normally in the emulator or rooted terminal, so that the webview is displayed normally.
-    * This applies to image notification, customer center, and common terms and conditions that run as a webview.
-* Improved stability by improving Weibo IdP authentication.
-    * Added exception handling, waiting, and retry logic to an API that is a synchronous API but actually operates asynchronously and generates an error.
-
-#### Bug Fixes
-* Fixed a bug where the 'Unregistered Game Version' error pop-up was displayed only in English.
-* Fixed a bug where the Chinese text was not displayed in the maintenance pop-up.
-* Fixed a bug where, if [Credential Login](./aos-authentication/#login-with-credential) is performed, [Login as the Latest Login IdP](./aos-authentication/#login-as-the-latest-login-idp ) call always fails.
+#### 修改错误
+* 已修改只用英语显示”未注册的游戏版本”错误弹窗的问题。 
+* 已修改维护弹窗不显示汉语的错误。
+* 已修改当进行[Credential Login](./aos-authentication/#login-with-credential)时，[Login as the Latest Login IdP](./aos-authentication/#login-as-the-latest-login-idp)调用失败的错误。 
 
 ### 2.27.0 (2021.08.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-Android.zip)
 
-#### Feature Updates
-* Updated the external SDK: TOAST Android SDK (0.27.1)
-* Added ONE Store V16 store
+#### 改善/修复功能
+* 外部SDK升级 : TOAST Android SDK(0.27.1)
+* 添加ONE Store V16商店
 
 ### 2.26.0 (2021.08.10)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Android.zip)
 
-#### Feature Updates
-* Improved the Display Language feature.
-    * Until now, you had to manually edit the gamebase-sdk-base-version.aar file to add the language set.
-        * It has been improved so that you can add the localizedstring.json file to the res/raw folder of the project.
-    * Until now, the method of adding the Display Language language set in the Unity guide could not be applied to Android.
-        * It has been improved so that the information is reflected in the Android build even if a localizedstring.json file is added, according to the Unity guide.
-        * [Game > Gamebase > Unity SDK User Guide > Notes > Additional Features > Display Language > Add New Language Sets](https://docs.toast.com/en/Game/Gamebase/en/unity-etc/#add-new-language-sets)
-    * Simplified Chinese (zh-CN), Traditional Chinese (zh-TW), and Thai (th) have been added to the Display Language language set.
-    * The default language code was **en**, but it has been improved to reflect the default language set in the Gamebase console.
-        * [Game > Gamebase > Console User Guide > App > App > Language settings](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
-* Changed the creation criteria of the PushConfiguration object that can be created after calling the showTermsView API as follows.
-    * Before change
-        * A valid non-null PushConfiguration was returned only when **Receive Push Notification** item exists in the terms and conditions.
-        * PushConfiguration.pushEnabled was created as false when the user declines to receive both daytime and nighttime promotional push notifications.
-    * After change
-        * A valid non-null PushConfiguration is always returned if the terms and conditions UI was displayed.
-        * The pushEnabled value of the PushConfiguration object returned by showTermsView is always true.
-    * Same point without change
-        * PushConfiguration is returned as null if the user has already agreed to the terms and conditions and the terms and conditions UI was not displayed.
+#### 改善/修复功能
+* Display Language功能已被改善。
+    * 以前为了添加语言集，必须直接修改gamebase-sdk-base-version.aar文件。
+        * 但经过功能改善，将localizedstring.json文件放入res/raw文件夹里就可添加语言了。
+    * 以前未能将Unity指南的Display Language语言集添加方法适用于Android。
+        * 但经过功能改善，按照Unity指南添加localizedstring.json文件时，可将其方法适用于Android打包了。
+        * [Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Display Language > 添加新语言集](https://docs.toast.com/en/Game/Gamebase/en/unity-etc/#add-new-language-sets)
+    * 在Display Language语言集中添加了汉语简体(zh-CN)、汉语繁体(zh-TW)及泰国语(th)。
+    * 默认语言代码为**en**，但经过改善已可适用Gamebase控制台中设置的默认语言。
+        * [Game > Gamebase > 控制台使用指南 > 应用程序 > App > 语言设置](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
+* 调用showTermsView API后，可创建PushConfiguration对象的基准被更改为；
+    * 修改前
+        * 仅当在条款项目中存在**接收Push**项目时，才返还有效的PushConfiguration，而不返还null。
+        * 用户拒绝在白天和夜间接收广告性Push时，PushConfiguration.pushEnabled将会创建为false。
+    * 修改后
+        * 如果显示了条款UI，将返还有效的PushConfiguration，而不始终返还null。
+        * showTermsView返还的PushConfiguration对象的pushEnabled值始终为true。
+    * 未修改项目
+        * 若因已同意条款，条款UI未被显示时，PushConfiguration将会返回为null。
 
-#### Bug Fixes
-* Fixed an issue where the language code of the message sent from the Push console does not match because the language code of the device is applied to the Push notification language setting without any extra processing.
+#### 修改错误
+* 已修改因终端机的语言代码和Push控制台中的语言代码不一致，而导致未能正常设置Push语言的问题。
 
 ### 2.25.0 (2021.07.27)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.25.0/GamebaseSDK-Android.zip)

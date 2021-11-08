@@ -1,44 +1,43 @@
 ## Game > Gamebase > Quick Guide
 
-단계별로 따라하면서 손쉽게 Gamebase 기능을 익히실 수 있도록 Quick Guide를 준비하였습니다.
+手順を追って簡単にGamebase機能を身につけられるよう、Quick Guideをご用意しました
 
 ## Install: Developers
 
-### Gamebase SDK 설치 [\[바로가기\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.install-with-setting-tool/)
+### Gamebase SDKのインストール [\[リンク参照\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.install-with-setting-tool/)
 
-#### 초급 / 5분
-	
-* Setting Tool 설치
-* Setting Tool을 이용해서 Gamebase SDK 다운로드
-* Setting Tool을 이용해서 Gamebase SDK 설치
-* Settign Tool을 이용해서 Gamebase SDK 삭제
-* Setting Tool 업데이트
+#### 初心者 / 5分
+
+* Setting Toolのインストール
+* Setting Toolを利用しGamebase SDKをダウンロード
+* Setting Toolを利用しGamebase SDKをインストール
+* Settign Toolを利用しGamebase SDKを削除
+* Setting Toolをアップデート
 
 ## Authentication: Developers
 
-### [Unity] Guest 인증 [\[바로가기\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.guest-auth-on-unity/)
+### [Unity] Guest Authentication [\[リンク参照\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.guest-auth-on-unity/)
 
-#### 초급/15분
+#### 初心者 / 15分
 
-* Gamebase console에서 프로젝트 생성하기
-* Gamebase Setting Tool을 이용해서 Gamebase SDK 설치하기
-* Unity 프로젝트에서 Gamebase 설정하기
-* Gamebase Initialize
-* Gamebase Guest Login
-* Gamebase Logout
-	
-### [Javascript] Guest 인증 [\[바로가기\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.guest-auth-on-js/)
+* Gamebase コンソールでプロジェクトを作成
+* Gamebase Seeting Toolを利用しGamebase SDK をインストール
+* UnityプロジェクトよりGamebaseを設定する
+* Gamebaseを初期化
+* Gamebase ゲストログイン
+* Gamebase ログアウト
 
-#### 초급/15분
+### [Javascript] Guest Authentication [\[lリンク参照\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.guest-auth-on-js/)
 
-* Gamebase JavaScript 초기 설정
-* Gamebase JavaScript 초기화
-* Gamebase Guest 인증
-	
-### [Unity] Google IdP 인증 [\[바로가기\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.google-setting/)
+#### 初心者 / 15分
 
-#### 초급/30분
+* Gamebase JavaScriptの初期設定
+* Gamebase JavaScriptの初期化
+* Gamebase のゲスト認証
 
-* Google Play Console 설정하기
-* Gamebase Console에서 인증정보 추가하기
+### [Unity] Google IdP Authentication [\[リンク参照\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.google-setting/)
 
+#### 初心者 / 30分
+
+* Google Play Consoleを設定する
+* Gamebase Consoleより認証情報を追加する

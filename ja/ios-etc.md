@@ -67,7 +67,7 @@ Display Languageに入力する言語コードは、以下の表(**Gamebaseで�
 | de | German |
 | en |English  |
 | es | Spanish |
-| fi | Finish |
+| fi | Finnish |
 | fr | French |
 | id | Indonesian |
 | it | Italian |
@@ -89,7 +89,7 @@ Display Languageに入力する言語コードは、以下の表(**Gamebaseで�
 extern NSString* const kTCGBDisplayLanguageCodeGerman;
 extern NSString* const kTCGBDisplayLanguageCodeEnglish;
 extern NSString* const kTCGBDisplayLanguageCodeSpanish;
-extern NSString* const kTCGBDisplayLanguageCodeFinish;
+extern NSString* const kTCGBDisplayLanguageCodeFinnish;
 extern NSString* const kTCGBDisplayLanguageCodeFrench;
 extern NSString* const kTCGBDisplayLanguageCodeIndonesian;
 extern NSString* const kTCGBDisplayLanguageCodeItalian;

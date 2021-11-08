@@ -4,7 +4,7 @@ A Step-By-Step Quick Guide is available to get to know Gamebase easily.
 
 ## Install: Developers
 
-### Gamebase SDK Installation [\[link\]](https://forward.nhn.com/2019/seoul/hands-on-labs/gamebase.install-with-setting-tool/)
+### Gamebase SDK Installation [\[link\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.install-with-setting-tool/)
 
 #### Beginners / 5mins
 
@@ -16,7 +16,7 @@ A Step-By-Step Quick Guide is available to get to know Gamebase easily.
 
 ## Authentication: Developers
 
-### [Unity] Guest Authentication [\[link\]](https://forward.nhn.com/2019/seoul/hands-on-labs/gamebase.guest-auth-on-unity/)
+### [Unity] Guest Authentication [\[link\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.guest-auth-on-unity/)
 
 #### Beginners / 15mins
 
@@ -27,7 +27,7 @@ A Step-By-Step Quick Guide is available to get to know Gamebase easily.
 * Gamebase Guest Login
 * Gamebase Logout
 
-### [Javascript] Guest Authentication [\[link\]](https://forward.nhn.com/2019/seoul/hands-on-labs/gamebase.guest-auth-on-js/)
+### [Javascript] Guest Authentication [\[link\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.guest-auth-on-js/)
 
 #### Beginners / 15mins
 
@@ -35,9 +35,9 @@ A Step-By-Step Quick Guide is available to get to know Gamebase easily.
 * Gamebase JavaScript Initialize
 * Gamebase Guest Authentication
 
-### [Unity] Google IdP Authentication [\[link\]](https://forward.nhn.com/2019/seoul/hands-on-labs/gamebase.google-setting/)
+### [Unity] Google IdP Authentication [\[link\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.google-setting/)
 
-#### Beginners / 15mins
+#### Beginners / 30mins
 
 * Google Play Console Configuration
 * Register Authentication Information from Gamebase Console

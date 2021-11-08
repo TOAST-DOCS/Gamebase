@@ -1,68 +1,73 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.29.0 (2021.11.09)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST iOS SDK(0.29.1), ToastGamebaseIAP SDK(0.12.1)
+* 콘솔에 등록한 점검 및 공지 자세히 보기의 URL을 인코딩 하지 않고 화면에 출력하도록 변경되었습니다.
+
+#### 버그 수정
+* TCGBPushMessage.extras를 json 파싱 할 때 에러가 발생하는 버그를 수정하였습니다.
+
 ### 2.28.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* Kakaogame 인증 추가
-* '결제 어뷰징 자동 해제' 기능이 추가되었습니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > 인증 > GraceBan](./ios-authentication/#graceban)
-    * 결제 어뷰징 자동 해제 기능은 결제 어뷰징 자동 제재로 이용 정지가 되어야 할 사용자가 이용 정지 유예 상태 후 이용 정지가 되도록 합니다.
-    * 이용 정지 유예 상태일 경우 설정한 기간 내에 해제 조건을 모두 만족하면 정상플레이가 가능해집니다.
-    * 기간 내에 조건을 충족하지 못하면 이용 정지가 됩니다.
-* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 TCGBAuthToken.tcgbMember.graceBanInfo 값을 확인하고, null이 아닌 유효한 TCGBGraceBanInfo 객체를 리턴한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
-    * 이용 정지 유예 상태인 유저의 게임 내 접근 제어는 게임에서 처리하셔야 합니다.
+#### 添加功能
+* 添加Kakaogame认证
+* ”结算Abusing自动解除”功能已被添加。 
+    * [Game > Gamebase > iOS SDK使用指南 > 认证 > GraceBan](./ios-authentication/#graceban)
+    * 结算Abusing自动解除功能是当存在需通过”结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。
+    * 如果为”预约禁用”状态，在设定的时期内满足解除条件，则可正常玩游戏。
+    * 若在所定的时期内未能满足条件，则会被禁用。
+* 登录使用结算Abusing自动解除功能的游戏后，始终要确认TCGBAuthToken.tcgbMember.graceBanInfo值，如果返还TCGBGraceBanInfo对象，而不返还null，要向相关用户通知禁用解除条件、时期等。
+    * 当需要控制处于预约禁用状态的用户进入游戏时，要在游戏中进行处理。
 
-#### 기능 개선/변경
-* PAYCO iOS SDK 업데이트 (1.5.2)
+#### 改善/修复功能
+* PAYCO iOS SDK升级(1.5.2) 
 
 ### 2.27.1 (2021.09.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-iOS.zip)
 
-#### Feature Updates
-* PAYCO iOS SDK update (1.5.1)
-     * Improved authentication flow and UI.
-* Hangame iOS SDK update (1.6.1)
-     * Fixed an issue where callback could not be called when an error situation occurred in personal verification.
-     * Fixed an issue where the navigation bar appears broken in iOS 15 beta.
+#### 改善/修复功能
+* PAYCO iOS SDK升级(1.5.1)
+    * 验证流程和UI的改善
+* Hangame iOS SDK升级(1.6.1)
+    * 已修改在身份验证阶段发生错误时未能调用回调的问题。
+    * 已修改在iOS 15 beta上导航条断开的问题。
 
-#### Bug Fixes
-* Fixed an issue where PushConfiguration is not returned as nil when the terms and conditions UI is not displayed because the user have already agreed to the terms.
+#### 修改错误
+* 已经修改了因已同意条款，pushconfiguration未能返回为nil的问题。
 
-### 2.27.0 (2021.08.24) 
+### 2.27.0 (2021.08.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-iOS.zip)
 
-#### Feature Updates
-* Updated PAYCO iOS SDK (1.5.0)
-    * So far, only manual login was supported when the PAYCO app is not available. It has been changed so that the quick login feature can be used when the user is logged-in on Safari.
+#### 改善/修复功能
+* PAYCO iOS SDK升级(1.5.0)
+    * 以前，如果不能使用PAYCO应用程序，则只能手动登录。但目前若已登录到Safari，则可使用“简单登录”功能。
 
-#### 버그 수정
-* Unity에서 이미지 공지가 출력되지 않는 이슈를 수정했습니다.
-    * Gamebase iOS SDK 2.27.0 미만을 사용하실 경우, Unity에서 이미지 공지가 출력되지 않을 수 있습니다.
-    * 이미지 공지를 사용하실 경우엔, Gamebase iOS SDK 2.27.0 이상을 사용하시기 바랍니다.
-    
-### 2.26.0 (2021.08.10) 
+### 2.26.0 (2021.08.10)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-iOS.zip)
 
-#### Feature Updates
-* Improved the Display Language feature.
-    * Until now, you had to manually edit the Gamebase.bundle file to add the language set.
-        * It has been improved so that you can add a localizedstring.json file to Copy Bundle Resources of Xcode project.
-    * Simplified Chinese (zh-CN), Traditional Chinese (zh-TW), and Thai (th) have been added to the Display Language language set.
-    * The default language code was **en**, but it has been improved to reflect the default language set in the Gamebase console.
-        * [Game > Gamebase > Console User Guide > App > App > Language settings](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
-* Changed the creation criteria of the PushConfiguration object that can be created after calling the showTermsView API as follows.
-    * Before change
-        * A valid non-nil PushConfiguration was returned only when **Receive Push Notification** item exists in the terms and conditions.
-        * PushConfiguration.pushEnabled was created as false when the user declines to receive both daytime and nighttime promotional push notifications.
-    * After change
-        * A valid non-nil PushConfiguration is always returned if the terms and conditions UI was displayed.
-        * The pushEnabled value of the PushConfiguration object returned by showTermsView is always true.
-    * Same point without change
-        * PushConfiguration is returned as nil if the user has already agreed to the terms and conditions and the terms and conditions UI was not displayed.
+#### 改善/修复功能
+* Display Language功能已被改善。
+    * 为了添加语言集，以前必须直接修改Gamebase.bundle里的文件。
+        * 但经过功能改善，将localizedstring.json文件添加到Xcode项目的Copy Bundle Resources中就可添加语言。
+    * 在Display Language语言集中添加了汉语简体(zh-CN)、汉语繁体(zh-TW)及泰国语(th)。
+    * 默认语言代码为**en**，但经过改善已可适用Gamebase控制台中设置的默认语言。
+        * [Game > Gamebase > 控制台使用指南 > 应用程序 > App > 语言设置](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
+* 调用showTermsView API后，可创建PushConfiguration对象的基准被更改为；
+    * 修改前
+        * 仅当在条款项目中存在**接收Push**项目时，才返还有效的PushConfiguration，而不返还nil。
+        * 如果用户拒绝在白天和夜间接收广告性Push，PushConfiguration.pushEnabled则会创建为false。
+    * 修改后
+        * 如果显示了条款UI，将返还有效的PushConfiguration，而不始终返还nil。
+        * showTermsView返还的PushConfiguration对象的pushEnabled值始终为true。
+    * 修改错误
+        * 若因已同意条款，未显示条款UI时，PushConfiguration将会返还为nil。
 
-#### Bug Fixes
-* Fixed an issue where the language code of the message sent from the Push console does not match because the language code of the device is applied to the Push notification language setting without any extra processing.
+#### 修改错误
+* 已修改因终端机的语言代码和Push控制台中的语言代码不一致，而导致未能正常设置Push语言的问题。
 
 ### 2.25.0 (2021.07.27) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.25.0/GamebaseSDK-iOS.zip)

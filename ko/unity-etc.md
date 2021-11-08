@@ -61,7 +61,7 @@ Display Language 에 입력하는 언어 코드는 반드시 아래의 표(**Gam
 | de | German |
 | en |English  |
 | es | Spanish |
-| fi | Finish |
+| fi | Finnish |
 | fr | French |
 | id | Indonesian |
 | it | Italian |
@@ -85,7 +85,7 @@ namespace Toast.Gamebase
         public const string German = "de";
         public const string English = "en";
         public const string Spanish = "es";
-        public const string Finish = "fi";
+        public const string Finnish = "fi";
         public const string French = "fr";
         public const string Indonesian = "id";
         public const string Italian = "it";
@@ -452,12 +452,9 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
                 {
                     // When you received push message.
                     
-                    Dictionary<string, object> extras = Toast.Gamebase.LitJson.JsonMapper.ToObject<Dictionary<string, object>>(pushMessage.extras);
-                    // There is 'isForeground' information.
-                    if (extras.ContainsKey("isForeground") == true)
-                    {
-                        bool isForeground = (bool)extras["isForeground"];
-                    }
+                    // By converting the extras field of the push message to JSON,
+                    // you can get the custom information added by the user when sending the push.
+                    // (For Android, an 'isForeground' field is included so that you can check if received in the foreground state.)
                 }
                 break;
             }
@@ -491,9 +488,10 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 | ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
 | Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseResponse.Event.GamebaseEventObserverData.from(message.data) | \- |
 | Purchase - 프로모션 결제 | GamebaseEventCategory.PURCHASE_UPDATED | GamebaseResponse.Event.PurchasableReceipt.from(message.data) | \- |
-| Push - 메세지 수신 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | **isForeground** 값을 통해 Foreground 에서 메세지를 수신했는지 여부를 확인할 수 있습니다. |
-| Push - 메세지 클릭 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | **isForeground** 값이 없습니다. |
+| Push - 메세지 수신 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
+| Push - 메세지 클릭 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
 | Push - 액션 클릭 | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | RichMessage 버튼 클릭시 동작합니다. |
+
 
 #### Server Push
 
@@ -777,8 +775,8 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 #### Push Received Message
 
 * Push 메세지가 도착했을때 발생하는 이벤트 입니다.
-* **isForeground** 필드를 통해 포그라운드에서 메세지를 수신했는지, 백그라운드에서 메세지를 수신했는지 구분할 수 있습니다.
-* extras 필드를 JSON 으로 변환하여, Push 발송시 전송했던 커스텀 정보를 얻을 수도 있습니다.
+* extras 필드를 JSON으로 변환하여, Push 발송 시 전송했던 커스텀 정보를 얻을 수도 있습니다.
+    * **Android**에서는 **isForeground** 필드를 통해 포그라운드에서 메세지를 수신했는지, 백그라운드에서 메세지를 수신했는지 구분할 수 있습니다.
 
 **VO**
 
@@ -794,7 +792,7 @@ public class PushMessage
     // Push 메세지 본문 내용 입니다.
     public string body;
 
-    // JSONObject 로 변환하여 모든 정보를 확인할 수 있습니다.
+    // JSON 형식으로 Push 발송 시 전송했던 커스텀 정보를 확인할 수 있습니다.
     public string extras;
 }
 ```
@@ -817,13 +815,10 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
                 if (pushMessage != null)
                 {
                     // When you received push message.
-                    
-                    Dictionary<string, object> extras = Toast.Gamebase.LitJson.JsonMapper.ToObject<Dictionary<string, object>>(pushMessage.extras);
-                    // There is 'isForeground' information.
-                    if (extras.ContainsKey("isForeground") == true)
-                    {
-                        bool isForeground = (bool)extras["isForeground"];
-                    }
+
+                    // By converting the extras field of the push message to JSON,
+                    // you can get the custom information added by the user when sending the push.
+                    // (For Android, an 'isForeground' field is included so that you can check if received in the foreground state.
                 }
                 break;
             }
@@ -838,7 +833,7 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 #### Push Click Message
 
 * 수신한 Push 메세지를 클릭했을때 발생하는 이벤트 입니다.
-* 'GamebaseEventCategory.PUSH_RECEIVED_MESSAGE' 와는 다르게 **isForeground** 필드가 존재하지 않습니다.
+* 'GamebaseEventCategory.PUSH_RECEIVED_MESSAGE' 와는 다르게 Android에서 extras 필드에 **isForeground** 정보가 존재하지 않습니다.
 
 **Example**
 

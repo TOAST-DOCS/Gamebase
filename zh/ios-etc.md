@@ -64,7 +64,7 @@ Gamebase显示消息时，按照注册为Display Language的语言显示消息�
 | de | German |
 | en |English  |
 | es | Spanish |
-| fi | Finish |
+| fi | Finnish |
 | fr | French |
 | id | Indonesian |
 | it | Italian |
@@ -86,7 +86,7 @@ Gamebase显示消息时，按照注册为Display Language的语言显示消息�
 extern NSString* const kTCGBDisplayLanguageCodeGerman;
 extern NSString* const kTCGBDisplayLanguageCodeEnglish;
 extern NSString* const kTCGBDisplayLanguageCodeSpanish;
-extern NSString* const kTCGBDisplayLanguageCodeFinish;
+extern NSString* const kTCGBDisplayLanguageCodeFinnish;
 extern NSString* const kTCGBDisplayLanguageCodeFrench;
 extern NSString* const kTCGBDisplayLanguageCodeIndonesian;
 extern NSString* const kTCGBDisplayLanguageCodeItalian;

@@ -1,3 +1,4 @@
+
 ## Game > Gamebase > Unity Developer's Guide > Getting Started
 
 This guide describes the environments and initial setting of Gamebase Unity SDK.
@@ -139,15 +140,18 @@ Depending on the update type, some functions provided by Setting Tool may be lim
 To manage lifecycle, set "com.toast.gamebase.activity.GamebaseMainActivity" as the MainActivity.
 "com.toast.gamebase.activity.GamebaseMainActivity" has been inherited from "com.unity3d.player.UnityPlayerNativeActivity".
 
-
 > <font color="red">[Caution]</font>
 >
-> AndroidPlugin should be developed in inheritance of GamebaseMainActivity. <br/>
-> GamebaseMainActivity is included to GamebasePlugin.jar. <br/>
+> AndroidPlugin should be developed in inheritance of GamebaseMainActivity.
+> GamebaseMainActivity is included to GamebasePlugin.jar.
 > The launchMode should be a singleTask (Unity&'s default activity will also be fixed as singleTask). Otherwise, crash may occur when an app starts.
 > 
 > To change the Lifecycle, you need to activate Project Settings > Settings for Android > Publish Settings > Build > Custom Main Manifest and edit the AndroidManifest.xml.
 
+> <font color="red">[Caution]</font>
+> 
+> When setting Android's targetSdkVersion to 31 or higher, you must declare the android:exported attribute in the tag where the intent-filter exists.
+> Even when setting **GamebaseMainActivity**, which is provided by Gamebase to manage lifecycle, as MainActivity, **android:exported="true"** must be added to the attribute.
 
 ```xml
 <manifest>
@@ -157,7 +161,8 @@ To manage lifecycle, set "com.toast.gamebase.activity.GamebaseMainActivity" as t
     	<activity android:name="com.toast.android.gamebase.activity.GamebaseMainActivity"
         	android:launchMode="singleTask"
         	android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:exported="true">
             <intent-filter>
             	<action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

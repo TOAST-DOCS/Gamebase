@@ -1,11 +1,21 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.29.0 (2021.11.09)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST Unity SDK(0.23.5)
+
+#### 플랫폼 별 변경 사항
+* [Gamebase Android SDK 2.29.0](./release-notes-android/#2290-20211109)
+* [Gamebase iOS SDK 2.29.0](./release-notes-ios/#2290-2021109)
+
 ### 2.28.1 (2021.10.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.1/GamebaseSDK-Unity.zip)
 
-#### 버그 수정
-* (Android) DisplayLanguage 설정을 하지 않을 경우, 잘못된 값으로 설정되는 문제가 수정되었습니다.
-* (Standalone) 이전 프레임에서 시간이 오래 걸릴 경우 발생하는 Timeout 오류가 수정되었습니다.
+#### バグ修正
+* (Android) DisplayLanguageを設定していない場合、誤った値に設定される問題が修正されました。
+* (Standalone)前のフレームで時間がかかる場合に発生するTimeoutエラーが修正されました。
 
 ### 2.28.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-Unity.zip)
