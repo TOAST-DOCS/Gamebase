@@ -98,7 +98,7 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
     * Use Shell to Execute Cocoapod Tool: 비활성화
         * 해당 기능이 비활성화되지 않으면 Unity에서 iOS 빌드 시, xcworkspace가 생성되지 않는 오류가 발생합니다. (CocoaPods 1.11.x 버그)
         * 해당 기능을 활성화해야 하는 사용자는 아래 2가지 방법 중 하나로 오류를 해결하십시오.
-            * CocoaPods 1.10.x 버전 설치합니다.
+            * CocoaPods 1.10.x 버전을 설치합니다.
             * Unity에서 생성한 Xcode 프로젝트에서 **pod install**을 직접 호출합니다.
 
 > <font color="red">[주의]</font>
