@@ -1,5 +1,15 @@
 ## Game > Gamebase > Release Notes > Console
 
+### November 9, 2021
+
+#### Feature Updates
+* App > Install URL
+	* The domain of the ShortURL provided for the newly created Gamebase has been changed to https://nh.nu
+
+#### Bug Fixes
+* Operation > Maintenance
+	* Fixed an error where the preview was displayed incorrectly when registering custom page HTML (Webview) maintenance
+
 ### October 26, 2021
 
 #### Feature Updates
