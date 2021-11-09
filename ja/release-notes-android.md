@@ -5,7 +5,7 @@
 
 #### 기능 추가
 * Google 로그인시 Scope를 선언할 수 있는 기능을 추가하였습니다.
-    * https://developers.google.com/identity/protocols/oauth2/scopes
+    * [https://developers.google.com/identity/protocols/oauth2/scopes](https://developers.google.com/identity/protocols/oauth2/scopes)
     * Scope로 **email**을 추가하면 프로필에서 Email 정보 획득이 가능합니다.
     * Scope는 Gamebase Console의 AdditionalInfo에 다음과 같이 설정하면 로그인시 자동으로 설정됩니다.
 
