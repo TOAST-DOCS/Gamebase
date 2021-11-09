@@ -4,7 +4,7 @@
 
 #### 機能改善/変更
 * アプリ > インストールURL
-	* 新規で作成されるGamebaseに提供されるShortURLのドメインがhttps://nh.nuに変更
+	* 新規で作成されるGamebaseに提供されるShortURLのドメインがhttps://nh.nu に変更
 
 #### バグ修正
 * 運営 > メンテナンス
