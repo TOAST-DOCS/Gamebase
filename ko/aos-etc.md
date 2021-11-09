@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         String appVersion = "1.0.0";
         GamebaseConfiguration configuration = new GamebaseConfiguration.Builder(appId, appVersion)
                                 .enableLaunchingStatusPopup(true)
-                                .setDisplayLanguageCode("en")
+                                .setDisplayLanguageCode(DisplayLanguage.Code.English)
                                 .build();
         
         Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingInfo>() {
