@@ -291,9 +291,9 @@ public void LoginWithAdditionalInfo()
 
 | keyname | a use | 值类型 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | 设定IdP类型                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）<br/>不用于Google认证 |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 输入登录Google后可以获取的认证码(Authorization Code)  |                                          |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | 设定IdP类型                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid, hangame, weibo, kakaogame |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）。<br/>不用于Google认证。 |                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 输入登录Google后可以获取的认证码(Authorization Code)。 |                                          |
 
 > [TIP]
 >
@@ -370,7 +370,7 @@ public void LoginWithCredential()
 
 ## Logout
 
-尝试从登录中的IdP退出。 通常，在游戏的设置画面有退出登录（退出账号）按钮，然后点击该按钮执行。
+尝试从登录中的IdP退出。通常，在游戏的设置画面有退出登录（退出账号）按钮，然后点击该按钮执行。
 即使退出登录成功，也会保留游戏用户数据。
 如果退出登录成功，将会删除IDP认证记录，则下次登录时将显示ID和密码输入窗口。<br/><br/>
 
@@ -406,15 +406,19 @@ public void Logout()
 }
 ```
 
-
-
 ## Withdraw
 在登录状态尝试退出（删除数据）。
 
-* 如果退出（删除数据）成功，则将删除与登录的IdP账户相关联的游戏用户数据。
-* 您可以使用该IdP重新登录并生成新的游戏用户数据。
-* 这意味着退出Gamebase，并不是退出IdP帐户。
-* 成功退出（删除数据）时，也将退出IdP登录。
+* 成功退出时 
+  * 登录IdP的游戏用户数据将会被删除。 
+  * 可使用IdP重新登录，并创建新的游戏用户数据。
+  * 所有连接的IdP都将注销。
+* 表示退出Gamebase，并不表示IdP账户的退出。 
+
+> <font color="red">[注意]</font><br/>
+>
+> 多个IdP被连接时，将解除所有IdP的连接，并删除Gamebase用户数据。 
+>
 
 **API**
 
@@ -551,8 +555,8 @@ public void AddMapping(string providerName)
 | keyname | a use | 值类型 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
 | GamebaseAuthProviderCredential.PROVIDER_NAME | 设定IdP类型                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）<br/>不用于Google认证 |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 输入登录Google 后可以获取的认证码(Authorization Code) |                                          |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）。<br/>不用于Google认证。 |                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 输入登录Google 后可以获取的认证码(Authorization Code)。 |                                          |
 
 > [TIP]
 >
@@ -670,8 +674,8 @@ public void AddMappingForcibly(string idPName)
 | keyname | a use | 值类型 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
 | GamebaseAuthProviderCredential.PROVIDER_NAME | 设置IdP类型                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置登录IdP后获得的验证信息（访问令牌）<br/>在Google验证时不使用 |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 设置登录Google后获得的验证信息(Authorization Code) |                                        |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置登录IdP后获得的验证信息（访问令牌）。<br/>在Google验证时不使用。 |                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 设置登录Google后获得的验证信息(Authorization Code)。 |                                        |
 
 > [TIP]
 >
@@ -872,83 +876,17 @@ public void GetLastLoggedInProvider()
 
 ### Get Authentication Information for External IdP
 
-从外部认证SDK，可获取访问令牌、用户ID、Profile等信息。
+* 登录后，可通过游戏服务器调用Gamebase Server API来获取外部认证IdP的访问令牌、用户ID、Profile等信息。 
+    * [Game > Gamebase > API指南 > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
 
-#### UserID
-
-可以从外部认证SDK获取用户ID。
-
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-
-```cs
-static string GetAuthProviderUserID()
-```
-
-**示例**
-
-```cs
-public void GetAuthProviderUserID(string providerName)
-{
-    string authProviderUserID = Gamebase.GetAuthProviderUserID(providerName);
-}
-```
-
-#### AccessToken
-
-可以从外部认证SDK获取访问令牌。
-
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-
-```cs
-static string GetAuthProviderAccessToken(string providerName)
-```
-
-**示例**
-```cs
-public void GetAuthProviderAccessToken(string providerName)
-{
-    string authProviderAccessToken = Gamebase.GetAuthProviderAccessToken(providerName);
-}
-```
-
-#### Profile
-
-可以从外部认证SDK获取Profile。
-
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-
-```cs
-static GamebaseResponse.Auth.AuthProviderProfile GetAuthProviderProfile(string providerName)
-```
-
-**示例**
-```cs
-public void GetAuthProviderProfile(string providerName)
-{
-    GamebaseRequest.AuthProviderProfile profile = Gamebase.GetAuthProviderProfile(providerName);
-}
-```
+> <font color="red">[注意]</font><br/>
+>
+> * 为了安全起见，建议通过游戏服务器调用外部IdP的认证信息。
+> * 根据IDP类型，访问令牌可能很快过期。
+>     * 例如，登录Google后过2小时，访问令牌将过期。
+>     * 如果需要用户信息，登录后，请立即调用Gamebase Server API。
+> * 若使用"Gamebase.LoginForLastLoggedInProvider()" API登录时，则不能获取认证信息。 
+>     * 如果需要用户信息，通过将与要使用的IDPCode相同的{IDP_CODE}作为参数，而不将"Gamebase.LoginForLastLoggedInProvider()"作为参数，来调用"Gamebase.Login(IDP_CODE, callback)" API进行登录。
 
 ### Get Banned User Information
 
@@ -1244,21 +1182,76 @@ public void SampleWithdrawImmediately()
         {
             Debug.Log(string.Format("SampleWithdrawImmediately failed. error:{0}", error));
         }
+    }); 
+}
+```
+
+## GraceBan
+
+* 是”结算Abusing自动解除”功能。
+    * 结算Abusing自动解除功能是当存在需通过”结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。
+    * 如果为”预约禁用”状态，在设定的时期内满足解除条件，则可正常玩游戏。
+    * 若在所定的时期内未能满足条件，则会被禁用。
+* 登录使用结算Abusing自动解除功能的游戏后，始终要确认AuthToken.getGraceBanInfo() API值，如果返还GraceBanInfo对象，而不返还null，要向相关用户通知禁用解除条件、时期等。
+    * 当需要控制处于预约禁用状态的用户进入游戏时，要在游戏中进行处理。
+
+**Example**
+
+```cs
+public void Login()
+{
+	Gamebase.Login(GamebaseAuthProvider.GUEST, (authToken, error) =>
+    {
+    	if (Gamebase.IsSuccess(error) == false)
+        {
+            // Login failed
+            return;
+        }
+
+        // Check if user is under grace ban
+        GamebaseResponse.Common.Member.GraceBanInfo graceBanInfo = authToken.member.graceBan;
+        if (graceBanInfo != null)
+        {
+            string periodDate = string.Format("{0:yyyy/MM/dd HH:mm:ss}", 
+                new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(graceBanInfo.gracePeriodDate));
+            string message = graceBanInfo.message;
+            
+            GamebaseResponse.Common.Member.GraceBanInfo.ReleaseRuleCondition releaseRuleCondition = graceBanInfo.releaseRuleCondition;
+            if (releaseRuleCondition != null)
+            {
+                // condition type : "AND", "OR"
+                string releaseRule = string.Format("{0}{1} {2} {3}time(s)", releaseRuleCondition.amount,
+                    releaseRuleCondition.currency, releaseRuleCondition.conditionType, releaseRuleCondition.count);
+            }
+
+            GamebaseResponse.Common.Member.GraceBanInfo.PaymentStatus paymentStatus = graceBanInfo.paymentStatus;
+            if (paymentStatus != null) {
+                String paidAmount = paymentStatus.amount + paymentStatus.currency;
+                String paidCount = paymentStatus.count + "time(s)";
+            }
+
+            // Guide the user through the UI how to finish the grace ban status.
+        }
+        else
+        {
+            // Login success.
+        }
     });
 }
 ```
+
 
 ## Error Handling
 
 | Category | Error | Error Code | Description |
 | --- | --- | --- | --- |
-| Auth | INVALID_MEMBER | 6 | 无效的用户请求。 |
-|  | BANNED_MEMBER | 7 | 被制裁的用户。 |
+| Auth | INVALID_MEMBER | 6 | 无效的用户请求 |
+|  | BANNED_MEMBER | 7 | 被制裁的用户 |
 |  | AUTH_USER_CANCELED | 3001 | 登录信息已被取消。 |
-|  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | 不支持的认证方式。 |
-|  | AUTH_NOT_EXIST_MEMBER | 3003 | 不存在或已退出（删除数据）的用户。 |
+|  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | 是不支持的认证方式。 |
+|  | AUTH_NOT_EXIST_MEMBER | 3003 | 是不存在或已退出（删除数据）的用户。 |
 |  | AUTH_EXTERNAL_LIBRARY_INITIALIZATION_ERROR | 3006 | 第三方认证库初始化失败 |
-|  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 外部认证库错误。 <br/> 请确认DetailCode和DetailMessage。  |
+|  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 外部认证库错误 <br/> 请确认DetailCode和DetailMessage。  |
 |  | AUTH_ALREADY_IN_PROGRESS_ERROR | 3010 | 之前的验证流程未完成。
 | TransferKey | SAME\_REQUESTOR | 8 | 在同一台设备上使用了相同的TransferKey。 |
 |  | NOT\_GUEST\_OR\_HAS\_OTHERS | 9 | 非游客帐户尝试了转移或帐户已关联了游客以外的IDP。 |
@@ -1270,30 +1263,30 @@ public void SampleWithdrawImmediately()
 |                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccount不存在。请先获得TransferAccount。 |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccount已存在。 |
 |                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount已使用。 |
-| Auth (Login) | AUTH_TOKEN_LOGIN_FAILED | 3101 | 令牌登录失败。 |
-|  | AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | 无效的令牌信息。 |
-|  | AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | 无近期登录的IdP信息。 |
-| IdP Login | AUTH_IDP_LOGIN_FAILED | 3201 | IdP登录失败。 |
-|  | AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3202 | 无效的 IdP信息。 (Console中没有此IdP信息。) |
-| Add Mapping | AUTH_ADD_MAPPING_FAILED | 3301 | 添加映射（Mapping）失败。 |
+| Auth (Login) | AUTH_TOKEN_LOGIN_FAILED | 3101 | 令牌登录失败 |
+|  | AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | 无效的令牌信息 |
+|  | AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | 无近期登录的IdP信息 |
+| IdP Login | AUTH_IDP_LOGIN_FAILED | 3201 | IdP登录失败 |
+|  | AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3202 | 无效的 IdP信息 (Console中没有此IdP信息。) |
+| Add Mapping | AUTH_ADD_MAPPING_FAILED | 3301 | 添加映射（Mapping）失败 |
 |  | AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | 已与其他账户映射（Mapping）。 |
 |  | AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | 已映射（Mapping）到相同的IdP。 |
-|  | AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | 无效的IdP信息（Console中没有此IdP信息）。 |
+|  | AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | 无效的IdP信息（Console中没有此IdP信息。） |
 |                | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP    | 3305       | 利用Guest IdP无法AddMapping。 |
 | Add Mapping Forcibly | AUTH_ADD_MAPPING_FORCIBLY_NOT_EXIST_KEY         | 3311       | 强制映射密钥(ForcingMappingKey)不存在。<br/>请再次确认ForcingMappingTicket。 |
 |                      | AUTH_ADD_MAPPING_FORCIBLY_ALREADY_USED_KEY      | 3312       | 强制映射密钥(ForcingMappingKey)已使用。 |
 |                      | AUTH_ADD_MAPPING_FORCIBLY_EXPIRED_KEY           | 3313       | 强制映射密钥(ForcingMappingKey)的有效期已结束。 |
 |                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_IDP         | 3314       | 强制映射密钥(ForcingMappingKey)已在其他IdP中使用。<br/>获得的ForcingMappingKey用于尝试相同IdP强制映射。 |
 |                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_AUTHKEY     | 3315       | 强制映射密钥(ForcingMappingKey)已用于其他账户。<br/>获得的ForcingMappingKey用于尝试相同IdP及账户强制映射。 |
-| Remove Mapping | AUTH_REMOVE_MAPPING_FAILED | 3401 | 解除映射（Mapping）失败。 |
+| Remove Mapping | AUTH_REMOVE_MAPPING_FAILED | 3401 | 解除映射（Mapping）失败 |
 |  | AUTH_REMOVE_MAPPING_LAST_MAPPED\_IDP | 3402 | 无法解除最后映射（Mapping）的IdP。 |
-|  | AUTH_REMOVE_MAPPING_LOGGED_IN\_IDP | 3403 | 当前登录的IdP。 |
-| Logout | AUTH_LOGOUT_FAILED | 3501 | 退出登录失败。 |
-| Withdrawal | AUTH_WITHDRAW_FAILED | 3601 | 退出（删除数据）失败。 |
-|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 用户已临时退出                    |
-|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 用户未临时退出                    |
-| Not Playable | AUTH_NOT_PLAYABLE | 3701 | 无法玩游戏的状态(维护或已下线等)。 |
-| Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | 未知错误(未定义的错误)。 |
+|  | AUTH_REMOVE_MAPPING_LOGGED_IN\_IDP | 3403 | 是当前登录的IdP。 |
+| Logout | AUTH_LOGOUT_FAILED | 3501 | 退出登录失败 |
+| Withdrawal | AUTH_WITHDRAW_FAILED | 3601 | 退出（删除数据）失败 |
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 用户已临时退出。                    |
+|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 用户未临时退出。                    |
+| Not Playable | AUTH_NOT_PLAYABLE | 3701 | 无法玩游戏的状态(维护或已下线等) |
+| Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | 未知错误(未定义的错误) |
 
 * 所有错误代码，请参考以下文档。
     * [错误代码](./error-code/#client-sdk)

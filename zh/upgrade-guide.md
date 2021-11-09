@@ -1,5 +1,126 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.27.0
+
+### iOS
+
+#### ImageNotice
+
+* 已修改在Unity中未能显示图片通知的问题。
+    * 如果使用低于Gamebase iOS SDK 2.27.0的版本，有可能在Unity中看不到图片通知。 
+    * 如果要使用图片通知，请使用Gamebase iOS SDK 2.27.0以上版本。 
+
+## 2.26.0
+
+### Unity
+
+* 使用相关版本时，请直接删除”Assets/Gamebase/Toast/IAP/Plugins”后使用。
+
+### Unreal
+
+* 在Gamebase中multidex设置已被删除。如果要设置，请参考以下指南。
+    * [Game > Gamebase > Unreal SDK使用指南 > 开始 > Installation > Android Settings > 适用multidex](./unreal-started/#android-settings)
+
+
+## 2.25.0
+
+### Android
+
+#### Changed Minimum Support Version
+
+* 支持的最低Android Gradle Plugin(AGP)版本从2.3.0已升级至3.2.0。
+    * 但将targetSdkVersion设置为30以上时，若要支持Android 11终端机，则需AGP 3.3.3以上版本。
+        * 请参考以下文件。
+        * [Game > Gamebase > Android SDK使用指南 > 开始 > Setting > Android 11](./aos-started/#android-11)
+* 如果需要低版本的AGP支持，请联系[客户服务](https://toast.com/support/inquiry)。
+
+#### AndroidX
+
+* Android Support Library的依赖已被更改为AndroidX，请将该修改项目适用于Gradle中。
+
+* 为不支持AndroidX的库，请在gradle.properties文件中添加以下迁移声明。
+
+```groovy
+# >>> [AndroidX]
+android.useAndroidX=true
+android.enableJetifier=true
+```
+
+* 为最新AndroidX版本，请在build.gradle文件中添加Java 8打包设置。 
+
+```groovy
+android {
+    compileOptions {
+        // >>> [AndroidX]
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+```
+
+#### Line IdP
+
+* 使用Line IdP时，因在Line SDK内存在**&lt;queries&gt;**标签，根据AGP版本可能出现打包失败。 
+    * 请参考以下指南，请升级为可进行”queries”标签打包的AGP版本。 
+    * [Game > Gamebase > Android SDK使用指南 > 开始 > Setting > Android 11](./aos-started/#android-11)
+* 使用Line IdP时，因在Line SDK内已被声明为**android:allowBackup="false"**，应用程序打包时有可能在Manifest merger中出现fail。如果打包失败，请按照以下示例，在application标签中添加**tools:replace="android:allowBackup"**声明。
+```xml 
+<application
+      tools:replace="android:allowBackup"
+      ... >
+```
+
+### iOS
+
+* 更改为出现Sign In with Apple的ASAuthorizationErrorUnknown错误时，返回TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERROR (3009)错误。 
+
+### Unity
+
+ * 使用相关版本时，请直接删除”Assets/Gamebase/Toast/IAP/Plugins”后使用。
+
+#### Changed Minimum Support Version
+
+* 支持的最低Unity版本从2017.4.16已升级至2018.4.0。
+* 如果需要低版本的Unity支持，请联系[客户服务](https://toast.com/support/inquiry)。
+
+#### AndroidX Build
+
+* 因Gamebase Android SDK的AndroidX迁移，进行Android打包时需要添加以下声明。 
+* 低于2019.3
+
+```groovy
+// mainTemplate.gradle
+([rootProject] + (rootProject.subprojects as List)).each {
+    ext {
+        it.setProperty("android.useAndroidX", true)
+        it.setProperty("android.enableJetifier", true)
+    }
+}
+```
+
+* 2019.3以上
+
+```groovy
+// gradleTemplate.properties
+android.useAndroidX=true
+android.enableJetifier=true
+```
+
+### Unreal
+
+#### AndroidX Build
+
+* 因Gamebase Android SDK的AndroidX迁移，进行Android打包时需要在UPL添加以下声明。
+
+```xml
+<gradleProperties>    
+  <insert>      
+    android.useAndroidX=true      
+    android.enableJetifier=true    
+  </insert>  
+</gradleProperties>
+```
+
 ## 2.21.2
 
 ### iOS
@@ -27,8 +148,7 @@ repositories {
 
 #### Line IdP
 
-* 使用Line IdP时，当Line SDK被更新时，若不在Gradle中设置**JavaVersion.VERSION_1_8**，则将导致打包失败。(请参考以下示例。)
-* 使用Line IdP时，因在Line SDK中声明为**android:allowBackup="false"**，应用程序打包时可能在Manifest merger出现fail。如果打包失败，请参考以下示例，将tools:replace=“android:allowBackup”在应用程序标签中声明。 
+* 使用Line IdP时，当Line SDK被更新时，若不在Gradle中设置**JavaVersion.VERSION_1_8**，则将导致打包失败(请参考以下示例)。
 
 ```groovy
 android {
@@ -37,14 +157,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8 
     }
-    
 }
-```
-
-```xml
-<application
-      tools:replace="android:allowBackup"
-      ... >
 ```
 
 ### iOS

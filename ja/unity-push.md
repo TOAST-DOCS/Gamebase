@@ -100,7 +100,7 @@ public void RegisterPushSample(bool pushEnabled, bool adAgreement, bool adAgreem
         priority = GamebaseNotificationPriority.HIGH
     };
 
-    Gamebase.Push.RegisterPush(configuration, (error) =>
+    Gamebase.Push.RegisterPush(configuration, notificationOptions, (error) =>
     {
         if (Gamebase.IsSuccess(error) == true)
         {

@@ -249,8 +249,8 @@ private static void onLoginForGoogle(final Activity activity) {
 
 | keyname                                  | a use                                    | 值类型                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP 类型                               | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.HANGAME<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>"payco" |
-| AuthProviderCredentialConstants.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）<br/>不用于Google认证|                                          |
+| AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP 类型                               | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.HANGAME<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
+| AuthProviderCredentialConstants.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）<br/>不用于Google认证 |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | 输入登录Google后可以获取的OTAC(一次性验证码) |                                          |
 
 > [参考]
@@ -376,16 +376,17 @@ private static void onLogout(final Activity activity) {
 
 ## Withdraw
 
-以下是游戏用户登录状态下，“退出（删除数据）”的示例代码。<br/><br/>
+登录后，尝试退出。
 
-* 如果退出（删除数据）成功，则将删除与登录的IdP账户相关联的游戏用户数据。
-* 您可以使用该IdP重新登录并生成新的游戏用户数据。
-* 这意味着退出Gamebase，并不是退出IdP帐户。
-* 成功退出（删除数据）时，也将退出IdP登录。
+* 成功退出时
+  * 登录IdP的游戏用户数据将会被删除。
+  * 但可通过此IdP重新登录，并生成新的游戏用户数据。
+  * 所有连接的IdP都将注销。
+* 表示退出Gamebase，而不表示退出IdP账户。 
 
 > <font color="red">[注意]</font><br/>
 >
-> 如果您正在使用多个IdP，则所有IdP都将被解除关联，Gamebase用户数据将被删除。
+> 如果多个IdP在连接时，所有IdP联动将被解除，Gamebase用户数据将被删除。
 >
 
 **API**
@@ -571,8 +572,8 @@ private static void addMappingForFacebook(final Activity activity) {
 | keyname                                  | a use                                    | 值类型                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP类型                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
-| AuthProviderCredentialConstants.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）<br/>不用于Google认证|                                          |
-| AuthProviderCredentialConstants.AUTHORIZATION_CODE |输入登录Google后可以获取的OTOC(一次性验证码)|                                          |
+| AuthProviderCredentialConstants.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）。<br/>不用于Google认证。|                                          |
+| AuthProviderCredentialConstants.AUTHORIZATION_CODE |输入登录Google后可以获取的OTOC(一次性验证码)。|                                          |
 
 > [参考]
 >
@@ -920,7 +921,7 @@ Map<String, Object> profileMap = profile.information;
 该密钥称为**TransferAccountInfo**。
 获得的TransferAccountInfo可从其他终端机调用**requestTransferAccount** API，并转移账户。
 
-> `注意`
+> <font color="red">[注意]</font><br/>
 > TransferAccountInfo仅在访客登录状态下可获得。
 > 使用TransferAccountInfo的账户转移仅可在访客登录状态或未登录状态下实现。
 > 若登录的访客账户已与其他外部IdP（Google、Facebook、PAYCO等）映射，则不支持账户转移。
@@ -1220,6 +1221,56 @@ public static void testWithdrawImmediately() {
             }
 
             // Withdraw success.
+        }
+    });
+}
+```
+
+## GraceBan
+
+* 是”结算Abusing自动解除”功能。   
+    * 结算Abusing自动解除功能是当存在需通过”结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。  
+    * 在“禁用预约”状态下，若在设定的时期内满足所有的解除条件，则可正常玩游戏。
+    * 如果在所定的时期内未能满足条件，则将禁止使用。
+* 如果是使用结算Abusing自动解除功能的游戏，每当登录时要调用AuthToken.getGraceBanInfo() API，若返还结果为有效的GraceBanInfo对象，而不为null，则需通知相应用户解除禁用的条件、时期等。
+    * 如需控制处于禁用预约状态的用户进入游戏，需要在游戏中进行处理。
+
+**Example**
+
+```java
+public static void testLogin() {
+    Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
+        @Override
+        public void onCallback(AuthToken token, GamebaseException exception) {
+            if (!Gamebase.isSuccess(exception)) {
+                // Login failed
+                return;
+            }
+
+            // Check if user is under grace ban
+            GraceBanInfo graceBanInfo = token.getGraceBanInfo();
+            if (graceBanInfo != null) {
+                String periodDate = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault())
+                        .format(new Date(graceBanInfo.getGracePeriodDate()));
+                String message = URLDecoder.decode(graceBanInfo.getMessage(), "utf-8");
+                GraceBanInfo.ReleaseRuleCondition releaseRuleCondition =
+                            graceBanInfo.releaseRuleCondition();
+                GraceBanInfo.PaymentStatus paymentStatus = graceBanInfo.getPaymentStatus();
+                if (releaseRuleCondition != null) {
+                    // condition type : "AND", "OR"
+                    String releaseRule = releaseRuleCondition.getAmount() +
+                            releaseRuleCondition.getCurrency() +
+                            " " + releaseRuleCondition.getConditionType() + " " +
+                            releaseRuleCondition.getCount() + "time(s)";
+                }
+                if (paymentStatus != null) {
+                    String paidAmount = paymentStatus.getAmount() + paymentStatus.getCurrency();
+                    String paidCount = paymentStatus.getCount() + "time(s)";
+                }
+                // Guide the user through the UI how to finish the grace ban status.
+            } else {
+                // Login success.
+            }
         }
     });
 }

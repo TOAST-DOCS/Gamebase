@@ -35,7 +35,7 @@ The language code entered for Display Language should be one of the codes listed
 | de       | German                    |
 | en       | English                   |
 | es       | Spanish                   |
-| fi       | Finish                    |
+| fi       | Finnish                    |
 | fr       | French                    |
 | id       | Indonesian                |
 | it       | Italian                   |
@@ -56,7 +56,7 @@ var toast.GamebaseDisplayLanguage.DefaultCode = {
     German: 'de',
     English: 'en',
     Spanish: 'es',
-    Finish: 'fi',
+    Finnish: 'fi',
     French: 'fr',
     Indonesian: 'id',
     Italian: 'it',

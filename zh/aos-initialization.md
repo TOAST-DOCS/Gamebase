@@ -175,12 +175,19 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 使用getLaunchingInformations API，允许在初始化后获取LaunchingInfo对象。
 
+> <font color="red">[注意]</font><br/>
+>
+> getLaunchingInformations() API不是实时从服务器获取信息的异步API。
+> 因每两分钟返还被更新的现金信息，不适合实时判断当前是否维护。
+> 在这种情况下，请使用Launching Status Code被更改时启动事件的GamebaseEventHandler。
+> [Game > Gamebase > Android SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Observer](./aos-etc/#observer)
+
 **API**
 
 ```java
 + (LaunchingInfo)Gamebase.Launching.getLaunchingInformations();
 ```
-LaunchingInfo对象中包含Gamebase Console中设置的值及游戏状态等。
+LaunchingInfo对象中包含Gamebase Console中设置的值和游戏状态等。
 
 
 #### 1. Launching
@@ -207,7 +214,7 @@ LaunchingInfo对象中包含Gamebase Console中设置的值及游戏状态等。
 | IN_REVIEW                   | 204  | 正在审查 |
 | IN_BETA                     | 205  | Beta服务器环境  |
 | REQUIRE_UPDATE              | 300  | 强制更新                                |
-| BLOCKED_USER                | 301  | 访问权限已被禁用的用户。|
+| BLOCKED_USER                | 301  | 访问权限已被禁用的用户 |
 | TERMINATED_SERVICE          | 302  | 终止服务                                  |
 | INSPECTING_SERVICE          | 303  | 服务正在维护中                             |
 | INSPECTING_ALL_SERVICES     | 304  | 所有服务正在维护中                              |
@@ -342,14 +349,14 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 | Error                        | Error Code | Description                |
 | ---------------------------- | ---------- | -------------------------- |
-| NOT_INITIALIZED              | 1          | Gamebase未初始化 |
-| NOT_LOGGED_IN                | 2          | 需要登录            |
-| INVALID_PARAMETER            | 3          | 是无效的参数          |
+| NOT_INITIALIZED              | 1          | 未初始化Gamebase。 |
+| NOT_LOGGED_IN                | 2          | 需要登录。            |
+| INVALID_PARAMETER            | 3          | 是无效的参数。          |
 | INVALID_JSON_FORMAT          | 4          | JSON格式错误         |
 | USER_PERMISSION              | 5          | 无权限              |
-| NOT_SUPPORTED                | 10         | 不支持此功能       |
-| NOT_SUPPORTED_ANDROID        | 11         | Android不支持此功能 |
-| ANDROID_ACTIVEAPP_NOT_CALLED | 32         | 未调用activeApp API |
+| NOT_SUPPORTED                | 10         | 不支持此功能。       |
+| NOT_SUPPORTED_ANDROID        | 11         | Android不支持此功能。 |
+| ANDROID_ACTIVEAPP_NOT_CALLED | 32         | 未调用activeApp API。 |
 
 
 * 所有错误代码，请参考以下文档。

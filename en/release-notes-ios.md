@@ -1,5 +1,15 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.29.0 (2021.11.09)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST iOS SDK(0.29.1), ToastGamebaseIAP SDK(0.12.1)
+* 콘솔에 등록한 점검 및 공지 자세히 보기의 URL을 인코딩 하지 않고 화면에 출력하도록 변경되었습니다.
+
+#### 버그 수정
+* TCGBPushMessage.extras를 json 파싱 할 때 에러가 발생하는 버그를 수정하였습니다.
+
 ### 2.28.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-iOS.zip)
 
@@ -36,11 +46,12 @@
 * Updated PAYCO iOS SDK (1.5.0)
     * So far, only manual login was supported when the PAYCO app is not available. It has been changed so that the quick login feature can be used when the user is logged-in on Safari.
 
-#### 버그 수정
-* Unity에서 이미지 공지가 출력되지 않는 이슈를 수정했습니다.
-    * Gamebase iOS SDK 2.27.0 미만을 사용하실 경우, Unity에서 이미지 공지가 출력되지 않을 수 있습니다.
-    * 이미지 공지를 사용하실 경우엔, Gamebase iOS SDK 2.27.0 이상을 사용하시기 바랍니다.
-    
+#### Bug Fixes
+* Fixed an issue where image notices were not displayed in Unity.
+    * If you are using a version lower than Gamebase iOS SDK 2.27.0, image notices may not be displayed in Unity.
+    * When using image notices, use Gamebase iOS SDK 2.27.0 or higher.
+
+
 ### 2.26.0 (2021.08.10)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-iOS.zip)
 
