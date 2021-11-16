@@ -18,7 +18,7 @@
 * 수신 지표 수집, 알림음 설정 등을 위해서는 [NHN Cloud Push 가이드](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-ios/#notification-service-extension)를 참고하여 어플리케이션에 **Notification Service Extension**을 구현해야 합니다.
 
 
-#### XCode Project 설정
+#### Xcode Project 설정
 * **Targets > Capabilities > Push Notifications **항목을 **ON**으로 설정합니다.
 * 자동으로 생성된 .entitlements 파일을 열어서, **APS Environment** 키의 값을 알맞은 값으로 설정합니다.
     * **development**: Sandbox APNS
