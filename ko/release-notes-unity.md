@@ -6,12 +6,12 @@
 #### 기능 개선/변경
 * 외부 SDK 업데이트: TOAST Unity SDK(0.23.5)
 * [SDK] Setting Tool
-    * v2.0.0이 새로이 배포되었습니다.
+    * v2.0.0이 새로 배포되었습니다.
     * 기존 SettingTool을 완전히 삭제한 후 재설치해야 합니다.
     * 변경된 내용 및 사용 방법은 아래 가이드를 확인하십시오.
         * https://docs.toast.com/ko/Game/Gamebase/ko/unity-started/#specification-of-setting-tool 
 
-#### 플랫폼 별 변경 사항
+#### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.29.0](./release-notes-android/#2290-20211109)
 * [Gamebase iOS SDK 2.29.0](./release-notes-ios/#2290-2021109)
 
@@ -36,7 +36,7 @@
 * 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 AuthToken.getGraceBanInfo() API 값을 확인하고, null이 아닌 유효한 GraceBanInfo 객체를 리턴한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
     * 이용 정지 유예 상태인 유저의 게임 내 접근 제어는 게임에서 처리하셔야 합니다.
 
-#### 플랫폼 별 변경 사항
+#### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.28.0](./release-notes-android/#2280-20210928)
 * [Gamebase iOS SDK 2.28.0](./release-notes-ios/#2280-20210928)
 
@@ -52,7 +52,7 @@
 * '등록되지 않은 게임 버전' 에러 팝업이 영어로만 표시되는 버그를 수정하였습니다.
 * 점검 팝업에 중국어가 표시되지 않는 버그를 수정하였습니다.
 
-#### 플랫폼 별 변경 사항
+#### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.27.1](./release-notes-android/#2271-20210914)
 * [Gamebase iOS SDK 2.27.1](./release-notes-ios/#2271-20210914)
 
