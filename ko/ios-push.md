@@ -36,6 +36,10 @@
 다음 API를 호출하여, NHN Cloud Push에 해당 사용자를 등록합니다.<br/>
 푸시 동의 여부(enablePush), 광고성 푸시 동의 여부(enableAdPush), 야간 광고성 푸시 동의 여부(enableAdNightPush) 값을 사용자로부터 받아, 다음의 API 호출을 통해 등록을 완료합니다.
 
+> <font color="red">[주의]</font><br/>
+>
+> 푸시 토큰이 언제 만료될지 모르기 때문에, 로그인 이후에는 항상 registerPush API를 호출하는 것을 권장합니다.
+>
 
 ```objectivec
 - (void)didLoginSucceeded {
@@ -52,7 +56,6 @@
             // To Register Push Failed.
         }
     }];
-
 }
 ```
 
