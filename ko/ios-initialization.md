@@ -295,6 +295,16 @@ iOS의 앱 이벤트를 관리하려면 다음 **UIApplicationDelegate** 프로�
 > SceneDelegate(iOS 13 이상)을 사용한다면, **UISceneDelegate** 프로토콜을 구현해야 합니다.
 >
 
+### DidFinishLaunching Event
+**application:didFinishLaunchingWithOptions:** 메서드를 호출하여, Gamebase에 앱이 시작되었음을 알려줘야 합니다.
+
+```objectivec
+// AppDelegate.m
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    return [TCGBGamebase application:application didFinishLaunchingWithOptions:launchOptions];
+}
+```
+
 ### OpenURL Event
 **application:openURL:sourceApplication:annotation:** 메서드를 호출하여, 어플리케이션의 외부 URL Open 시도를 Gamebase에 알려주어야 합니다. Gamebase에서는 각 Idp의 인증용 SDK에 해당 값을 전달하여, 필요한 동작을 하도록 알려줍니다.
 
