@@ -490,7 +490,7 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 | Purchase - 프로모션 결제 | GamebaseEventCategory.PURCHASE_UPDATED | GamebaseResponse.Event.PurchasableReceipt.from(message.data) | \- |
 | Push - 메세지 수신 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
 | Push - 메세지 클릭 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
-| Push - 액션 클릭 | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | RichMessage 버튼 클릭시 동작합니다. |
+| Push - 액션 클릭 | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | RichMessage 버튼 클릭 시 동작합니다. |
 
 
 #### Server Push
@@ -833,7 +833,7 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 #### Push Click Message
 
 * 수신한 Push 메세지를 클릭했을때 발생하는 이벤트 입니다.
-* 'GamebaseEventCategory.PUSH_RECEIVED_MESSAGE' 와는 다르게 Android에서 extras 필드에 **isForeground** 정보가 존재하지 않습니다.
+* 'GamebaseEventCategory.PUSH_RECEIVED_MESSAGE'와는 다르게 Android에서 extras 필드에 **isForeground** 정보가 존재하지 않습니다.
 
 **Example**
 

@@ -73,8 +73,8 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
 
 ### Using the Setting Tool
 
-* Gamebase SettingTool **v2.0.0**이 새로이 배포되었습니다. 
-    * 기존 v1.5.0 와는 호환이 되지 않으니, 완전히 제거 후 v2.0.0 이상을 사용하십시오.
+* Gamebase SettingTool **v2.0.0**이 새로 배포되었습니다. 
+    * 기존 v1.5.0과는 호환이 되지 않으니, 완전히 제거 후 v2.0.0 이상을 사용하십시오.
 
 **AS-IS**
 
@@ -126,7 +126,7 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
 > <font color="red">[주의]</font>
 >
 > EDM4U가 없을 경우에는 Gamebase SDK for Android, iOS 설정이 되지 않습니다.<br/>
-> EDM4U의 resolve를 실행하기 전, **Build Settings** 창에서 Switch Platform 버튼을 클릭하여 빌드 하려는 플랫폼으로 전환이 되어 있어야 합니다. Android 플랫폼이 선택되어 있다면 **Player Settings > Publishing Settings**에서 Custom Gradle Template을 활성화하여 mainTemplate.gradle 파일을 생성해야 합니다.<br/>
+> EDM4U의 resolve를 실행하기 전, **Build Settings** 창에서 Switch Platform 버튼을 클릭하여 빌드하려는 플랫폼으로 전환이 되어 있어야 합니다. Android 플랫폼이 선택되어 있다면 **Player Settings > Publishing Settings**에서 Custom Gradle Template을 활성화하여 mainTemplate.gradle 파일을 생성해야 합니다.<br/>
 > `Unity 2019.3 이상` 사용 시, **Player Settings > Publishing Settings**에서 Custom Gradle Properties Template을 활성화하여 gradleTemplate.properties 파일을 생성해야 합니다.
 
 
