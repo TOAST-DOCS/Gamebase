@@ -1,5 +1,27 @@
 ## Game > Gamebase > Android SDK 사용 가이드 > 푸시
 
+### Settings
+
+#### Android Notification Icon
+
+푸시 알림이 도착했을때 표시되는 아이콘은, 기본 상태에서는 앱 아이콘이 사용됩니다.
+
+하지만 Android의 푸시 아이콘은 알파 영역을 적용한 단색 이미지를 사용해야 올바르게 표시됩니다.
+[매터리얼 디자인 가이드 - Android Notification \[LINK\]](https://material.io/design/platform-guidance/android-notifications.html#anatomy-of-a-notification)
+
+단말기 해상도 별로 아이콘 사이즈도 정해져 있으므로 다음을 참고하여 푸시 아이콘을 준비하시기 바랍니다.
+* MDPI - 24 x 24  (drawable-mdpi)
+* HDPI - 36 x 36  (drawable-hdpi)
+* XHDPI - 48 x 48  (drawable-xhdpi)
+* XXHDPI - 72 x 72  (drawable-xxhdpi)
+* XXXHDPI - 96 x 96  (drawable-xxxhdpi)
+
+푸시 아이콘 파일 이름에 공백, 영어 대문자, 특수문자는 피해야 합니다.
+
+그리고 다음 Notification Options 가이드를 참고하여 **default_small_icon**(AndroidManifest.xml) 또는 **setSmallIconName**(API)을 설정해야 합니다.
+[Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
+[Game > Gamebase > Android SDK 사용 가이드 > 푸시 > Notification Options > Set Notification Options with RegisterPush in Runtime](./aos-push/#set-notification-options-with-registerpush-in-runtime)
+
 ### Register Push
 
 다음 API를 호출하여, NHN Cloud Push에 해당 사용자를 등록합니다.<br/>
@@ -56,7 +78,7 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 알림 옵션은 AndroidManifest.xml 에 정의하여 설정할 수 있습니다.<br/>
 설정 방법은 아래 가이드를 확인해주시기 바랍니다.
 
-[Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Notification Options](./aos-started/)
+[Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
 
 #### Set Notification Options with RegisterPush in Runtime
 
