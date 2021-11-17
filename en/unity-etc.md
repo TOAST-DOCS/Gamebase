@@ -61,7 +61,7 @@ The language code entered for Display Language should be one of the codes listed
 | de | German |
 | en |English  |
 | es | Spanish |
-| fi | Finish |
+| fi | Finnish |
 | fr | French |
 | id | Indonesian |
 | it | Italian |
@@ -85,7 +85,7 @@ namespace Toast.Gamebase
         public const string German = "de";
         public const string English = "en";
         public const string Spanish = "es";
-        public const string Finish = "fi";
+        public const string Finnish = "fi";
         public const string French = "fr";
         public const string Indonesian = "id";
         public const string Italian = "it";
@@ -452,12 +452,9 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
                 {
                     // When you received push message.
                     
-                    Dictionary<string, object> extras = Toast.Gamebase.LitJson.JsonMapper.ToObject<Dictionary<string, object>>(pushMessage.extras);
-                    // There is 'isForeground' information.
-                    if (extras.ContainsKey("isForeground") == true)
-                    {
-                        bool isForeground = (bool)extras["isForeground"];
-                    }
+                    // By converting the extras field of the push message to JSON,
+                    // you can get the custom information added by the user when sending the push.
+                    // (For Android, an 'isForeground' field is included so that you can check if received in the foreground state.)
                 }
                 break;
             }
@@ -491,8 +488,8 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 | ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
 | Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseResponse.Event.GamebaseEventObserverData.from(message.data) | \- |
 | Purchase - Promotion payment | GamebaseEventCategory.PURCHASE_UPDATED | GamebaseResponse.Event.PurchasableReceipt.from(message.data) | \- |
-| Push - Message received | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | Checks whether or not a message was received in the Foreground using the **isForeground** value. ||
-| Push - Message clicked | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | The **isForeground** value does not exist. |
+| Push - Message received | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) |  |
+| Push - Message clicked | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) |  |
 | Push - Action clicked | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | Operates when the RichMessage button is clicked. |
 
 #### Server Push
@@ -777,8 +774,8 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 #### Push Received Message
 
 * This event is triggered when a push message is received.
-* Can determine whether the message is received in the foreground through the **isForeground** field or in the background.
 * You can also acquire custom information that was sent along with push by converting the extras field to JSON.
+    * In **Android**, you can determine whether the message was received in the foreground or in the background through the **isForeground** field.
 
 **VO**
 
@@ -794,7 +791,7 @@ public class PushMessage
     // The body of the push message.
     public string body;
 
-    // You can check all information by converting them to JSONObject.
+    // You can check the custom information sent when sending a push in JSON format.
     public string extras;
 }
 ```
@@ -817,13 +814,10 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
                 if (pushMessage != null)
                 {
                     // When you received push message.
-                    
-                    Dictionary<string, object> extras = Toast.Gamebase.LitJson.JsonMapper.ToObject<Dictionary<string, object>>(pushMessage.extras);
-                    // There is 'isForeground' information.
-                    if (extras.ContainsKey("isForeground") == true)
-                    {
-                        bool isForeground = (bool)extras["isForeground"];
-                    }
+
+                    // By converting the extras field of the push message to JSON,
+                    // you can get the custom information added by the user when sending the push.
+                    // (For Android, an 'isForeground' field is included so that you can check if received in the foreground state.
                 }
                 break;
             }
@@ -838,7 +832,7 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 #### Push Click Message
 
 * This event is triggered when a received message is clicked.
-* Unlike GamebaseEventCategory.PUSH_RECEIVED_MESSAGE, there is no **isForeground** field.
+* Unlike 'GamebaseEventCategory.PUSH_RECEIVED_MESSAGE', there is no **isForeground** information in the extras field on Android.
 
 **Example**
 

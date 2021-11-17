@@ -4,70 +4,17 @@ This page describes how to set In-App Purchase (IAP).
 
 Gamebase provides an integrated purchase API to easily link IAP of many stores in a game.
 
-### Settings
-
-#### 1. Store Console
-
-* Refer to the IAP guide as below, to register an app to each store and get an Appkey.
-	* [Game > Gamebase > Store Console Guide  > Google Console Guide](./console-google-guide)
-	* [Game > Gamebase > Store Console Guide > ONEStore Console Guide](./console-onestore-guide)
-
-#### 2. Register as Store's Tester
-
-* Register a tester to each store for purchase testing.
-    * Google
-        * [Android > Setting test purchase](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
-    * ONE store
-        * [ONE store > In-app purchase test](https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#%EC%9D%B8%EC%95%B1%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8)
-        * For testing, be sure to register device phone number you want a sandbox for, with In-app Information-Test button.
-        * A tester device requires USIM, with registered phone number (MDN).
-        * Needs **ONE store** application installed.
-
-#### 3. Item Registration
-
-* See the guide to register items.
-    * [Game > Gamebase > Console User Guide > Purchase > Register](./oper-purchase/#register_1)
-
-#### 4. Setting SDK
-
-* Add the gamebase-adapter-purchase module of the market to gradle dependency.
-
-```groovy
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    // >>> Gamebase Version
-    def GAMEBASE_SDK_VERSION = 'x.x.x'
-    
-    // >>> Gamebase - Select Purchase Adapter
-    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
-    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
-}
-```
-
-#### 5. AndroidManifest.xml(ONE store only)
-
-* Add the following setting to use ONE store.
-
-```xml
-<manifest>
-    ...
-    <application>
-    ...
-        <!-- [ONE store] Configurations begin -->
-        <meta-data android:name="iap:plugin_mode" android:value="development" /> <!-- development / release -->
-        <!-- [ONE store] Configurations end -->
-    ...
-    </application>
-</manifest>
-```
-
 ### Initialization
+
+> <font color="red">[Caution]</font><br/>
+>
+> For ONE Store, only v17 is supported.
+> ONE Store v19 is currently not supported and is being considered for support.
 
 * Store code must be specified to initialize Gamebase. 
 * Select **STORE_CODE** among the following:  
-    * GG: Google
-    * ONESTORE: OneStore
+    * GG: Google Store
+    * ONESTORE: ONE Store
     * GALAXY: Galaxy Store
 
 ```java

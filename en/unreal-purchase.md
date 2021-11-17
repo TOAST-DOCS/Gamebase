@@ -5,6 +5,11 @@ The unified purchase API of Gamebase supports for easy integration of in-app pur
 
 ### Settings
 
+> <font color="red">[Caution]</font><br/>
+>
+> For Android ONE Store, only v17 is supported.
+> Android ONE Store v19 is currently not supported and is being considered for support.
+
 Regarding how to set in-app purchases on Android or iOS, read the following documents: <br/>
 
 * [Android Purchase Settings](aos-purchase#settings)
