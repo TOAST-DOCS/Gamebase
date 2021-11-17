@@ -169,7 +169,7 @@ dependencies {
 
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
-    // >>> For OEN Store, only v17 can be used and v19 is currently not supported.
+    // >>> For ONE Store, only v17 can be used and v19 is currently not supported.
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
 
