@@ -1,5 +1,17 @@
 ## Game > Gamebase > Release Notes > Console
 
+### November 23, 2021
+
+#### Feature Updates
+* App > Client
+	* Added description about server address and installation URL
+* Ban > Ban
+	* Improved ban registration screen
+
+#### Bug Fixes
+* Ban > Ban
+	* Fixed an error where it was impossible to select the day/time of the period when the screen width was reduced
+
 ### November 9, 2021
 
 #### Feature Updates
