@@ -49,7 +49,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 	* [Game > Gamebase > 스토어 콘솔 가이드 > ONEStore 콘솔 가이드](./console-onestore-guide)
         * ONE Store는 현재 v17만 지원합니다.
         * ONE Store에서 앱을 생성할때 v19로 생성하지 않도록 주의하시기 바랍니다.
-        * ONE Storev19 지원은 검토중인 단계입니다.
+        * ONE Store v19 지원은 검토 중입니다.
 	* [Game > Gamebase > 스토어 콘솔 가이드 > GALAXY Store 콘솔 가이드](./console-galaxy-guide)
     * 아래 가이드를 참고하여 아이템을 등록합니다.
         * [Game > Gamebase > 콘솔 사용 가이드 > 결제 > Register](./oper-purchase/#register_1)
@@ -59,7 +59,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
     * 다음 가이드를 따라 새로운 클라이언트 버전을 등록하시기 바랍니다.
     * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Client > Client List](./oper-app/#client-list)
 
-### Regist as Tester
+### Register as Tester
 
 #### Gamebase Test Device
 
