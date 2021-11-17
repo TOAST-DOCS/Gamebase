@@ -7,7 +7,7 @@
 * 강제매핑 시 IdP 로그인을 한번 더 시도해야 하는 불편함을 개선한 새로운 강제매핑 API가 추가되었습니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 인증 > Add Mapping Forcibly](./ios-authentication/#add-mapping-forcibly)
 * 특정 IdP로 매핑 시도 후 **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 에러가 발생했을 때, 해당 IdP로 계정을 변경할 수 있는 API가 추가되었습니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > 인증 > Change Login](./ios-authentication/#change-login)
+    * [Game > Gamebase > iOS SDK 사용 가이드 > 인증 > Change Login with ForcingMappingTicket](./ios-authentication/#change-login-with-forcingmappingticket)
 
 #### 버그 수정
 * loginForLastLoggedInProvider 로그인 이후, 특정 IdP에서 로그아웃 또는 탈퇴 기능이 동작하지 않는 버그를 수정하였습니다.

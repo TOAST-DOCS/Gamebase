@@ -477,7 +477,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 }
 ```
 
-### Change Login
+### Change Login with ForcingMappingTicket
 
 특정 IdP에 이미 매핑되어 있는 계정이 있을 때, **로그인 계정을 변경**합니다.
 **로그인 계정을 변경**할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
