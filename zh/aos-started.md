@@ -56,7 +56,7 @@
     * 注册新客户端版本时，请参考如下指南。 
     * [Game > Gamebase > 控制台使用指南 > App > Client > Client List](./oper-app/#client-list)
 
-### Regist as Tester
+### Register as Tester
 
 #### Gamebase Test Device
 
