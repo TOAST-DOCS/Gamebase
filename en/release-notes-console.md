@@ -6,7 +6,7 @@
 * App > Client
 	* Added description about server address and installation URL
 * Ban > Ban
-	* Improved ban registration screen
+	* Improved the ban registration page
 
 #### Bug Fixes
 * Ban > Ban
