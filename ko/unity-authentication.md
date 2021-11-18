@@ -461,6 +461,8 @@ Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
 
 매핑은 다음 순서로 구현할 수 있습니다.
 
+![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
+
 #### 1. 로그인
 매핑은 현재 계정에 IdP 계정 연동을 추가하는 것이므로 우선 로그인이 돼 있어야 합니다.
 먼저 로그인 API를 호출해 로그인합니다.

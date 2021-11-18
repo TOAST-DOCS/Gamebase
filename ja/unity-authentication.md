@@ -460,6 +460,8 @@ Mappingには、Mapping追加APIと解除APIの2つがあります。
 
 マッピングは、次の手順で設計することができます。
 
+![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
+
 #### 1. ログイン
 マッピングは、現在のアカウントにIdPアカウントの連携を追加する機能であるため、ログインされた状態でなければなりません。
 まず、ログインAPIを呼び出してログインします。
