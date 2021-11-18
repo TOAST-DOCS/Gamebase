@@ -464,6 +464,8 @@ Mapping API includes Add Mapping API and Remove Mapping API.
 
 Implement mapping in the following order:
 
+![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
+
 #### 1. Login
 Mapping means to add an IdP account integration to a current account, so login is a prerequisite.
 First, call a login API and log in.
