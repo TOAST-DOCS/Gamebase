@@ -18,7 +18,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Google 로그인을 지원 | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.4.1 | Hangame 로그인을 지원 | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.4.2 | Hangame 로그인을 지원 | - |
 |  | gamebase-adapter-auth-line | linesdk-5.6.2 | Line 로그인을 지원 | API 17(Kitkat, OS 4.2) |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Naver 로그인을 지원 | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.6 | Payco 로그인을 지원 | - |
