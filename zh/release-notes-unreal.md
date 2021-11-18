@@ -3,8 +3,8 @@
 ### 2.26.1 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.1/GamebaseSDK-Unreal.zip)
 
-#### 버그 수정
-* GamebaseDisplayLanguageCode 핀란드어 오타 수정
+#### 修改程序错误
+* 修改了GamebaseDisplayLanguageCode芬兰语错误。
     * Finish → Finnish
 
 ### 2.26.0 (2021.09.28)
