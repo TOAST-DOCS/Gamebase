@@ -480,6 +480,8 @@ Gamebase的Mapping API，允许将您的其他IdP帐户和您之前登录的游�
 
 映射（Mapping）可以按以下顺序实现。
 
+![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
+
 #### 1. 登录
 Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 首先通过调用登录API登录。
