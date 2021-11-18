@@ -12,6 +12,7 @@
     * [Game > Gamebase > Android SDK 사용 가이드 > 인증 > Mapping > Change Login with ForcingMappingTicket](./aos-authentication/#change-login-with-forcingmappingticket)
 
 #### 기능 개선/변경
+* External SDK update: Hangame Android SDK(1.4.2)
 * Gamebase가 기본으로 제공하는 점검 상세보기 웹뷰 html을 사용자가 수정해서 사용할 수 있도록 개선하였습니다.
     * [Game > Gamebase > Android SDK 사용 가이드 > 초기화 > Launching Information > 1. Launching > 1.3 Maintenance > Change Default Maintenance HTML](./aos-initialization/#change-default-maintenance-html)
 * DisplayLanguageCode를 설정했음에도 기본 점검 웹뷰의 시간이 단말기 언어로 표시되는 오류를 수정하였습니다.
