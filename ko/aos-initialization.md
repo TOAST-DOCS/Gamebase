@@ -256,6 +256,17 @@ Gamebase 콘솔에 등록된 점검 정보입니다.
 
 [Game > Gamebase > 콘솔 사용 가이드 > 운영 > Maintenance](./oper-operation/#maintenance)
 
+##### Change Default Maintenance HTML
+
+enablePopup과 enableLaunchingStatusPopup 값이 모두 true인 경우, 게임이 점검 상태라면 자동으로 점검 팝업이 표시됩니다.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_popup_android_2.30.0.png)
+
+여기서 **자세히 보기** 버튼을 클릭하면 점검 정보가 자동으로 웹뷰로 표시됩니다.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_webview_android_2.30.0.png)
+
+이때 표시되는 html 파일을 수정하고 싶다면 다음 링크의 html 파일을 다운로드 하여 원하는대로 수정한 후 'assets/Gamebase' 폴더에 위치시키면 Gamebase SDK에 내장된 기본 html 파일 대신 해당 html 파일을 사용하여 점검 정보를 표시하게 됩니다.
+[html 파일 다운로드 LINK](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
+
 **1.4 Notice**
 
 Gamebase 콘솔에 등록된 공지 정보입니다.

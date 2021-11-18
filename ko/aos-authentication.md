@@ -253,6 +253,8 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 | AuthProviderCredentialConstants.PROVIDER_NAME | IdP 유형 설정                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.HANGAME<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/>Google 인증 시에는 사용 안 함 |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Google 로그인 이후 획득할 수 있는 OTAC(one time authorization code) 입력 |                                          |
+| AuthProviderCredentialConstants.GAMEBASE_ACCESS_TOKEN | IdP 인증 정보가 아닌 Gamebase Access Token으로 로그인을 하고자 하는 경우 사용 |  |
+| AuthProviderCredentialConstants.IGNORE_ALREADY_LOGGED_IN | Gamebase 로그인 상태에서 로그아웃을 하지 않고도 다른 계정 로그인 시도를 허용함 | **boolean** |
 
 > [참고]
 >
@@ -538,10 +540,8 @@ private static void addMappingForFacebook(final Activity activity) {
                 // 강제로 연동을 해제하기 위해서는 해당 계정의 탈퇴나 Mapping 해제를 하거나, 다음과 같이
                 // ForcingMappingTicket을 획득 후, addMappingForcibly() 메소드를 이용하여 강제 매핑을 시도합니다.
                 Log.e(TAG, "Add Mapping failed- ALREADY_MAPPED_TO_OTHER_MEMBER");
-                final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
-                final String forcingMappingKey = ticket.forcingMappingKey;
-
-                Gamebase.addMappingForcibly(activity, mappingProvider, forcingMappingKey, new GamebaseDataCallback<AuthToken>() {
+                final ForcingMappingTicket forcingMappingTicket = ForcingMappingTicket.from(exception);
+                Gamebase.addMappingForcibly(activity, forcingMappingTicket, new GamebaseDataCallback<AuthToken>() {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException exception) {
                         ...
@@ -572,7 +572,7 @@ private static void addMappingForFacebook(final Activity activity) {
 
 | keyname                                  | a use                                    | 값 종류                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | IdP 유형 설정                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>"payco" |
+| AuthProviderCredentialConstants.PROVIDER_NAME | IdP 유형 설정                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰)설정.<br/>Google 인증 시에는 사용 안 함. |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Google 로그인 이후 획득할 수 있는 OTOC(one time authorization code) 입력 |                                          |
 
@@ -631,10 +631,8 @@ private static void addMappingWithCredential(final Activity activity) {
                 // 강제로 연동을 해제하기 위해서는 해당 계정의 탈퇴나 Mapping 해제를 하거나, 다음과 같이
                 // ForcingMappingTicket을 획득 후, addMappingForcibly() 메소드를 이용하여 강제 매핑을 시도합니다.
                 Log.e(TAG, "Add Mapping failed- ALREADY_MAPPED_TO_OTHER_MEMBER");
-                final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
-                final String forcingMappingKey = ticket.forcingMappingKey;
-
-                Gamebase.addMappingForcibly(activity, credentialInfo, forcingMappingKey, new GamebaseDataCallback<AuthToken>() {
+                final ForcingMappingTicket forcingMappingTicket = ForcingMappingTicket.from(exception);
+                Gamebase.addMappingForcibly(activity, forcingMappingTicket, new GamebaseDataCallback<AuthToken>() {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException exception) {
                         ...
@@ -658,6 +656,7 @@ private static void addMappingWithCredential(final Activity activity) {
 ```
 
 ### Add Mapping Forcibly
+
 특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
 **강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
 
@@ -666,8 +665,12 @@ private static void addMappingWithCredential(final Activity activity) {
 **API**
 
 ```java
++ (void)Gamebase.addMappingForcibly(Activity activity, ForcingMappingTicket forcingMappingTicket, GamebaseDataCallback<AuthToken> callback);
+
+// Legacy API
 + (void)Gamebase.addMappingForcibly(Activity activity, String providerName, String forcingMappingKey, GamebaseDataCallback<AuthToken> callback);
 + (void)Gamebase.addMappingForcibly(Activity activity, String providerName, String forcingMappingKey, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.addMappingForcibly(Activity activity, Map<String, Object> credentialInfo, String forcingMappingKey, GamebaseDataCallback<AuthToken> callback);
 ```
 
 **Example**
@@ -688,11 +691,10 @@ private static void addMappingForciblyFacebook(final Activity activity) {
             // 우선 addMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
             if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
                 // ForcingMappingTicket 클래스의 from() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
-                final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
-                final String forcingMappingKey = ticket.forcingMappingKey;
+                final ForcingMappingTicket forcingMappingTicket = ForcingMappingTicket.from(exception);
 
                 // 강제 매핑을 시도합니다.
-                Gamebase.addMappingForcibly(activity, mappingProvider, forcingMappingKey, null, new GamebaseDataCallback<AuthToken>() {
+                Gamebase.addMappingForcibly(activity, forcingMappingTicket, new GamebaseDataCallback<AuthToken>() {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException addMappingForciblyException) {
                         if (Gamebase.isSuccess(addMappingForciblyException)) {
@@ -714,50 +716,27 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 }
 ```
 
+### Change Login with ForcingMappingTicket
 
-### Add Mapping Forcibly with Credential
-특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
-**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+특정 IdP에 이미 매핑되어 있는 계정이 있을 때, 현재 계정을 로그아웃 하고 이미 매핑되어 있던 해당 계정으로 로그인 합니다.
+이때, AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
 
-게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMappingForcibly를 호출 할 수 있는 인터페이스입니다.
+Change Login API 호출이 실패하는 경우, Gamebase 로그인 상태는 기존의 UserID로 유지됩니다.
 
-* Credential 파라미터 설정방법
-
-| keyname                                  | a use                                    | 값 종류                                     |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | IdP 유형 설정                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>"payco" |
-| AuthProviderCredentialConstants.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰)설정.<br/>Google 인증 시에는 사용 안 함. |                                          |
-| AuthProviderCredentialConstants.AUTHORIZATION_CODE | Google 로그인 이후 획득할 수 있는 OTOC(one time authorization code) 입력 |                                          |
-
-> [참고]
->
-> 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
->
-
-<br/>
-
-> <font color="red">[주의]</font><br/>
->
-> 외부 SDK에서 지원 요구하는 개발사항은 외부 SDK의 API를 사용하여 구현해야 하며, Gamebase에서는 지원하지 않습니다.
->
-
-다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
+다음은 Facebook으로 매핑 시도 후 Facebook에 이미 매핑된 계정이 존재하자, 해당 계정으로 로그인을 변경하는 예시입니다.
 
 **API**
 
 ```java
-+ (void)Gamebase.addMappingForcibly(Activity activity, Map<String, Object> credentialInfo, String forcingMappingKey, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.changeLogin(Activity activity, ForcingMappingTicket forcingMappingTicket, GamebaseDataCallback<AuthToken> callback);
 ```
 
 **Example**
 
 ```java
-private static void addMappingForciblyFacebook(final Activity activity) {
-    final Map<String, Object> credentialInfo = new HashMap<>();
-    credentialInfo.put(AuthProviderCredentialConstants.PROVIDER_NAME, AuthProvider.FACEBOOK);
-    credentialInfo.put(AuthProviderCredentialConstants.ACCESS_TOKEN, facebookAccessToken);
-
-    Gamebase.addMapping(activity, credentialInfo, new GamebaseDataCallback<AuthToken>() {
+private static void changeLoginFacebook(final Activity activity) {
+    String mappingProvider = AuthProvider.FACEBOOK;
+    Gamebase.addMapping(activity, mappingProvider, new GamebaseDataCallback<AuthToken>() {
         @Override
         public void onCallback(AuthToken result, GamebaseException exception) {
             if (Gamebase.isSuccess(exception)) {
@@ -770,21 +749,20 @@ private static void addMappingForciblyFacebook(final Activity activity) {
             // 우선 addMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
             if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
                 // ForcingMappingTicket 클래스의 from() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
-                final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
-                final String forcingMappingKey = ticket.forcingMappingKey;
+                final ForcingMappingTicket forcingMappingTicket = ForcingMappingTicket.from(exception);
 
-                // 강제 매핑을 시도합니다.
-                Gamebase.addMappingForcibly(activity, credentialInfo, forcingMappingKey, null, new GamebaseDataCallback<AuthToken>() {
+                // ForcingMappingTicket의 UserID로 로그인 합니다.
+                Gamebase.changeLogin(activity, forcingMappingTicket, new GamebaseDataCallback<AuthToken>() {
                     @Override
-                    public void onCallback(AuthToken data, GamebaseException addMappingForciblyException) {
-                        if (Gamebase.isSuccess(addMappingForciblyException)) {
-                            // 강제 매핑 추가 성공
-                            Log.d(TAG, "Add Mapping Forcibly successful");
+                    public void onCallback(AuthToken data, GamebaseException changeLoginException) {
+                        if (Gamebase.isSuccess(changeLoginException)) {
+                            // 로그인 변경 성공
+                            Log.d(TAG, "Change Login successful");
                             String userId = Gamebase.getUserID();
                             return;
                         }
 
-                        // 강제 매핑 추가 실패
+                        // 로그인 변경 실패
                         // 에러 코드를 확인하고 적절한 처리를 진행합니다.
                     }
                 }
@@ -795,8 +773,6 @@ private static void addMappingForciblyFacebook(final Activity activity) {
     });
 }
 ```
-
-
 
 ### Remove Mapping
 

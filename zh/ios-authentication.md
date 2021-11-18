@@ -346,18 +346,13 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 - (void)authAddMapping {
     [TCGBGamebase addMappingWithType:kTCGBAuthFacebook viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
-                     NSLog(@"AddMapping is succeeded.");
-                 }
-                 else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
-                     NSLog(@"Retry addMapping");
-                 }
-                 else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                     NSLog(@"Already mapped to other member");
-                 }
-                 else {
-                     NSLog(@"AddMapping Error - %@", [error description]);
-                 }
-            }
+            NSLog(@"AddMapping is succeeded.");
+        } else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
+            NSLog(@"Retry addMapping");
+        } else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+            NSLog(@"Already mapped to other member");
+        } else {
+            NSLog(@"AddMapping Error - %@", [error description]);
         }
     }];
 }
@@ -397,29 +392,29 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 
 ```objectivec
-     - (void)onButtonLogin {
-         UIViewController* topViewController = nil;
- 
-         NSString* facebookAccessToken = @"feijla;feij;fdklvda;hfihsdfeuipivaipef/131fcusp";
-         NSMutableDictionary* credentialInfo = [NSMutableDictionary dictionary];
-         credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = kTCGBAuthFacebook;
-         credentialInfo[kTCGBAuthLoginWithCredentialAccessTokenKeyname] = facebookAccessToken;
- 
-         [TCGBGamebase addMappingWithCredential:credentialInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
-             if ([TCGBGamebase isSuccessWithError:error] == YES) {
-                 NSLog(@"AddMapping is succeeded.");
-             }
-             else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
-                 NSLog(@"Retry addMapping");
-             }
-             else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                 NSLog(@"Already mapped to other member");
-             }
-             else {
-                 NSLog(@"AddMapping Error - %@", [error description]);
-             }
-         }];
-     }
+- (void)onButtonLogin {
+    UIViewController* topViewController = nil;
+
+    NSString* facebookAccessToken = @"feijla;feij;fdklvda;hfihsdfeuipivaipef/131fcusp";
+    NSMutableDictionary* credentialInfo = [NSMutableDictionary dictionary];
+    credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = kTCGBAuthFacebook;
+    credentialInfo[kTCGBAuthLoginWithCredentialAccessTokenKeyname] = facebookAccessToken;
+
+    [TCGBGamebase addMappingWithCredential:credentialInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
+            NSLog(@"AddMapping is succeeded.");
+        }
+        else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
+            NSLog(@"Retry addMapping");
+        }
+        else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+            NSLog(@"Already mapped to other member");
+        }
+        else {
+            NSLog(@"AddMapping Error - %@", [error description]);
+        }
+    }];
+}
 ```
 
 ### Add Mapping Forcibly

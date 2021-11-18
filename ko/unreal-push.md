@@ -4,19 +4,24 @@
 
 ### Settings
 
-Android나 iOS에서 푸시를 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
+Android나 iOS에서 푸시를 설정하는 방법은 다음 문서를 참고하시기 바랍니다.
 
-* [Android Push Settings](aos-started/#firebase-notification)
-    * Firebase 푸시를 사용한다면 아래 가이드를 참고 바랍니다.
-        * 해당 가이드에서 Unity 빌드인 경우는 Unreal의 경우도 동일하게 설정이 필요합니다.
-            * Android 빌드 시 res/values/google-services-json.xml 파일이 포함되어야 하므로 가이드를 참고하여 작성합니다.
-            * Plugins/Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xml 경로에 파일이 있습니다.
-* [iOS Push Settings](ios-push#settings)
+* Android
+    * [Android Push Settings](aos-push/#settings)
+    * [Firebase Notification Settings](aos-started/#firebase-notification)
+        * Android 빌드 시 res/values/google-services-json.xml 파일이 포함되어야 하므로 가이드를 참고하여 작성합니다.
+        * Plugins/Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xml 경로에 파일이 있습니다.
+* iOS
+    * [iOS Push Settings](ios-push#settings)
 
 ### Register Push
 
 다음 API를 호출하여, NHN Cloud Push에 해당 사용자를 등록합니다.
 푸시 동의 여부(enablePush), 광고성 푸시 동의 여부(enableAdPush), 야간 광고성 푸시 동의 여부(enableAdNightPush)값을 사용자로부터 받아, 다음 API를 호출해 등록을 완료합니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> UserID 마다 푸시 설정이 다를 수 있고, 푸시 토큰이 만료되는 경우도 발생할 수 있으므로 로그인 이후에는 매번 RegisterPush API를 호출할 것을 권장합니다.
 
 **API**
 

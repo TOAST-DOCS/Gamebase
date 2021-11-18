@@ -537,10 +537,8 @@ private static void addMappingForFacebook(final Activity activity) {
                 // 若欲强制解除关联，注销该账户或解除映射(mapping)。或如下
                 // 获得ForcingMappingTicket后利用addMappingForcibly()方法尝试强制映射。
                 Log.e(TAG, "Add Mapping failed- ALREADY_MAPPED_TO_OTHER_MEMBER");
-                final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
-                final String forcingMappingKey = ticket.forcingMappingKey;
-
-                Gamebase.addMappingForcibly(activity, mappingProvider, forcingMappingKey, new GamebaseDataCallback<AuthToken>() {
+                final ForcingMappingTicket forcingMappingTicket = ForcingMappingTicket.from(exception);
+                Gamebase.addMappingForcibly(activity, forcingMappingTicket, new GamebaseDataCallback<AuthToken>() {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException exception) {
                         ...
@@ -571,7 +569,7 @@ private static void addMappingForFacebook(final Activity activity) {
 
 | keyname                                  | a use                                    | 值类型                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP类型                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE |
+| AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP类型                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）。<br/>不用于Google认证。|                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE |输入登录Google后可以获取的OTOC(一次性验证码)。|                                          |
 
@@ -630,10 +628,8 @@ private static void addMappingWithCredential(final Activity activity) {
                 // 若欲强制解除关联，注销该账户或解除映射(mapping)。或如下
                 // 获得ForcingMappingTicket后利用addMappingForcibly()方法尝试强制映射。
                 Log.e(TAG, "Add Mapping failed- ALREADY_MAPPED_TO_OTHER_MEMBER");
-                final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
-                final String forcingMappingKey = ticket.forcingMappingKey;
-
-                Gamebase.addMappingForcibly(activity, credentialInfo, forcingMappingKey, new GamebaseDataCallback<AuthToken>() {
+                final ForcingMappingTicket forcingMappingTicket = ForcingMappingTicket.from(exception);
+                Gamebase.addMappingForcibly(activity, forcingMappingTicket, new GamebaseDataCallback<AuthToken>() {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException exception) {
                         ...
@@ -657,6 +653,7 @@ private static void addMappingWithCredential(final Activity activity) {
 ```
 
 ### Add Mapping Forcibly
+
 若特定IdP有已映射的账户，尝试**强制**映射。
 尝试**强制映射**时需要从AddMapping API获得的`ForcingMappingTicket`。
 
@@ -665,8 +662,12 @@ private static void addMappingWithCredential(final Activity activity) {
 **API**
 
 ```java
++ (void)Gamebase.addMappingForcibly(Activity activity, ForcingMappingTicket forcingMappingTicket, GamebaseDataCallback<AuthToken> callback);
+
+// Legacy API
 + (void)Gamebase.addMappingForcibly(Activity activity, String providerName, String forcingMappingKey, GamebaseDataCallback<AuthToken> callback);
 + (void)Gamebase.addMappingForcibly(Activity activity, String providerName, String forcingMappingKey, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.addMappingForcibly(Activity activity, Map<String, Object> credentialInfo, String forcingMappingKey, GamebaseDataCallback<AuthToken> callback);
 ```
 
 **Example**
@@ -687,11 +688,10 @@ private static void addMappingForciblyFacebook(final Activity activity) {
             // 首先调用addMapping API，尝试以已关联的账户映射，如下可获得ForcingMappingTicket。
             if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
                 // 利用ForcingMappingTicket类的from()方法获得ForcingMappingTicket实例。
-                final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
-                final String forcingMappingKey = ticket.forcingMappingKey;
+                final ForcingMappingTicket forcingMappingTicket = ForcingMappingTicket.from(exception);
 
                 // 尝试强制映射。
-                Gamebase.addMappingForcibly(activity, mappingProvider, forcingMappingKey, null, new GamebaseDataCallback<AuthToken>() {
+                Gamebase.addMappingForcibly(activity, forcingMappingTicket, new GamebaseDataCallback<AuthToken>() {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException addMappingForciblyException) {
                         if (Gamebase.isSuccess(addMappingForciblyException)) {
@@ -713,89 +713,15 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 }
 ```
 
+### Change Login with ForcingMappingTicket
 
-### Add Mapping Forcibly with Credential
-若特定IdP有已映射的账户，尝试**强制**映射。
-尝试**强制映射**时需要从AddMapping API获得的`ForcingMappingTicket`。
-
-游戏中先直接以IdP提供的SDK进行验证，并可利用发放的访问令牌等调用Gamebase AddMappingForcibly的接口。
-
-* Credential参数设置方法
-
-| keyname                                            | a use                                                        | 值类型                                                      |
-| -------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| AuthProviderCredentialConstants.PROVIDER_NAME      | 设置IdP类型                                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>"payco" |
-| AuthProviderCredentialConstants.ACCESS_TOKEN       | 设置登录IdP后获得的验证信息（访问令牌）<br/>在Google验证时不使用 |                                                              |
-| AuthProviderCredentialConstants.AUTHORIZATION_CODE | 输入登录Google后可获得的OTOC(one time authorization code) |                                                              |
-
-> [参考]
->
-> 游戏中欲使用外部服务（Facebook等）的固有功能时可能需要。
->
-
-<br/>
-
-> <font color="red">[注意]</font><br/>
->
-> 外部SDK要求支持的开发事项应使用外部SDK的API实现，Gamebase不支持。
->
-
-如下为对Facebook尝试强制映射的范例。
+* Not translated yet
 
 **API**
 
 ```java
-+ (void)Gamebase.addMappingForcibly(Activity activity, Map<String, Object> credentialInfo, String forcingMappingKey, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.changeLogin(Activity activity, ForcingMappingTicket forcingMappingTicket, GamebaseDataCallback<AuthToken> callback);
 ```
-
-**Example**
-
-```java
-private static void addMappingForciblyFacebook(final Activity activity) {
-    final Map<String, Object> credentialInfo = new HashMap<>();
-    credentialInfo.put(AuthProviderCredentialConstants.PROVIDER_NAME, AuthProvider.FACEBOOK);
-    credentialInfo.put(AuthProviderCredentialConstants.ACCESS_TOKEN, facebookAccessToken);
-
-    Gamebase.addMapping(activity, credentialInfo, new GamebaseDataCallback<AuthToken>() {
-        @Override
-        public void onCallback(AuthToken result, GamebaseException exception) {
-            if (Gamebase.isSuccess(exception)) {
-                // 添加映射成功
-                Log.d(TAG, "Add Mapping successful");
-                String userId = Gamebase.getUserID();
-                return;
-            }
-
-            // 首先调用addMapping API，尝试以已关联的账户映射，如下可获得ForcingMappingTicket。
-            if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                // 利用ForcingMappingTicket类的from()方法获得ForcingMappingTicket实例。
-                final ForcingMappingTicket ticket = ForcingMappingTicket.from(exception);
-                final String forcingMappingKey = ticket.forcingMappingKey;
-
-                // 尝试强制映射。
-                Gamebase.addMappingForcibly(activity, credentialInfo, forcingMappingKey, null, new GamebaseDataCallback<AuthToken>() {
-                    @Override
-                    public void onCallback(AuthToken data, GamebaseException addMappingForciblyException) {
-                        if (Gamebase.isSuccess(addMappingForciblyException)) {
-                            // 添加强制映射成功
-                            Log.d(TAG, "Add Mapping Forcibly successful");
-                            String userId = Gamebase.getUserID();
-                            return;
-                        }
-
-                        // 添加强制映射失败
-                        // 确认错误代码并解决错误。
-                    }
-                }
-            } else {
-                ...
-            }
-        }
-    });
-}
-```
-
-
 
 ### Remove Mapping
 
