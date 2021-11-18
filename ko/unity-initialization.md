@@ -23,13 +23,13 @@ Gamebase Unity SDK를 사용하려면 먼저 초기화를 진행해야 합니다
 
 Gamebase Console에 등록된 프로젝트 ID입니다.
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Game > Gamebase > 콘솔 사용 가이드 > 앱 > App](./oper-app/#app)
 
 #### 2. appVersion
 
 Gamebase Console에 등록한 클라이언트 버전입니다.
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+[Game > Gamebase > 콘솔 사용 가이드 > 앱 > Client](./oper-app/#client)
 
 #### 3. storeCode
 
@@ -48,7 +48,7 @@ NHN Cloud 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하
 
 Gamebase에서 제공하는 UI 및 SystemDialog에 표시되는 언어를 단말기에 설정된 언어가 아닌 다른 언어로 변경할 수 있습니다.
 
-[Display Language](./unity-etc/#display-language)
+[Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Display Language](./unity-etc/#display-language)
 
 #### 5. enablePopup
 
@@ -83,7 +83,7 @@ Gamebase Server로 부터 Kickout 이벤트를 받은 경우, Gamebase에서 제
 
 Firebase Messaging(FCM) 사용을 위한 Sender ID입니다.
 
-![FCM Sender ID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
+![FCM Sender ID](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
 
 #### 10. useWebview
 
@@ -259,22 +259,22 @@ Gamebase Unity SDK 초기화 설정에 입력한 앱 버전의 게임 상태 정
 
 상태 코드는 아래 표를 참고하십시오.
 
-| Status                      | Status Code | Description                                    |
-| --------------------------- | ----------- | ---------------------------------------- |
-| IN_SERVICE | 200 | 정상 서비스 중 |
-| RECOMMEND_UPDATE | 201 | 업그레이드 권장 |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202         | 점검 중에는 서비스를 이용할 수 없지만 QA 단말기로 등록된 경우에는 점검과 상관없이 서비스에 접속해 테스트 할 수 있습니다. |
+| Status                      | Code | Description                              |
+| --------------------------- | ---- | ---------------------------------------- |
+| IN_SERVICE                  | 200  | 정상 서비스 중                                 |
+| RECOMMEND_UPDATE            | 201  | 업데이트 권장                                  |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202  | 점검 중에는 서비스를 이용할 수 없지만 QA 단말기로 등록된 경우에는 점검과 상관없이 서비스에 접속해 테스트할 수 있습니다. |
 | IN_TEST                     | 203  | 테스트 중 |
 | IN_REVIEW                   | 204  | 심사 중 |
 | IN_BETA                     | 205  | 베타 서버 환경 |
-| REQUIRE_UPDATE | 300 | 업그레이드 필수 |
-| BLOCKED_USER                | 301         | 접속 차단으로 등록된 단말기(디바이스 키)로 서비스에 접속한 경우입니다. |
-| TERMINATED_SERVICE          | 302         | 서비스 종료                                   |
-| INSPECTING_SERVICE          | 303         | 서비스 점검 중                                 |
-| INSPECTING_ALL_SERVICES     | 304         | 전체 시스템 점검 중                              |
-| INTERNAL_SERVER_ERROR       | 500         | 내부 서버 오류                                 |
+| REQUIRE_UPDATE              | 300  | 업데이트 필수                                  |
+| BLOCKED_USER                | 301  | 접속 차단으로 등록된 단말기(디바이스 키)로 서비스에 접속한 경우입니다. |
+| TERMINATED_SERVICE          | 302  | 서비스 종료                                   |
+| INSPECTING_SERVICE          | 303  | 서비스 점검 중                                 |
+| INSPECTING_ALL_SERVICES     | 304  | 전체 서비스 점검 중                              |
+| INTERNAL_SERVER_ERROR       | 500  | 내부 서버 오류                                 |
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Game > Gamebase > 콘솔 사용 가이드 > 앱 > App](./oper-app/#app)
 
 **1.2 App**
 
@@ -293,7 +293,7 @@ Gamebase Console에 등록된 앱 정보입니다.
 * install: 설치 URL
 * idP: 인증 정보
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+[Game > Gamebase > 콘솔 사용 가이드 > 앱 > Client](./oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -305,7 +305,18 @@ Gamebase Console에 등록된 점검 정보입니다.
 * endDate: 종료 시간
 * message: 점검 사유
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+[Game > Gamebase > 콘솔 사용 가이드 > 운영 > Maintenance](./oper-operation/#maintenance)
+
+##### Change Default Maintenance HTML
+
+enablePopup과 enableLaunchingStatusPopup 값이 모두 true인 경우, 게임이 점검 상태라면 자동으로 점검 팝업이 표시됩니다.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_popup_android_2.30.0.png)
+
+여기서 **자세히 보기** 버튼을 클릭하면 점검 정보가 자동으로 웹뷰로 표시됩니다.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_webview_android_2.30.0.png)
+
+이때 표시되는 html 파일을 수정하고 싶다면 다음 링크의 html 파일을 다운로드 하여 원하는대로 수정한 후 'Assets > StreamingAssets > Gamebase' 폴더에 추가하면 Gamebase SDK에 내장된 기본 html 파일 대신 해당 html 파일을 사용하여 점검 정보를 표시하게 됩니다.
+[html 파일 다운로드 LINK](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
 
 **1.4 Notice**
 
@@ -315,7 +326,7 @@ Gamebase Console에 등록된 공지 정보입니다.
 * title: 타이틀
 * url: 점검 URL
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+[Game > Gamebase > 콘솔 사용 가이드 > 운영 > Notice](./oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -334,7 +345,7 @@ NHN Cloud Console에 등록된 IAP 스토어 정보입니다.
 * name: App Name
 * storeCode: Store Code
  
-[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+[Game > Gamebase > 콘솔 사용 가이드 > 결제](./oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -343,7 +354,7 @@ NHN Cloud Launching 콘솔에서 사용자가 입력한 정보입니다
 * 사용자가 입력한 값을 JSON string으로 전달합니다.
 * NHN Cloud Launching 상세 설정은 아래 가이드를 참고하시기 바랍니다.
  
-[Console Guide](/Game/Gamebase/ko/oper-management/#config)
+[Game > Gamebase > 콘솔 사용 가이드 > 관리 > Config](./oper-management/#config)
 
 ### Get Launching Information
 
