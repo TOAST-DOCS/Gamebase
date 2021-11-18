@@ -277,6 +277,8 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 | GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid, hangame, weibo, kakaogame |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
+| GamebaseAuthProviderCredential.GAMEBASE_ACCESS_TOKEN | IdP 인증 정보가 아닌 Gamebase Access Token으로 로그인을 하고자 하는 경우 사용 |  |
+| GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | Gamebase 로그인 상태에서 로그아웃을 하지 않고도 다른 계정 로그인 시도를 허용함 | **bool** |
 
 > [TIP]
 >
@@ -612,7 +614,7 @@ public void AddMappingForcibly(string idPName)
         }
         else
         {
-            // 우선 addMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
+            // 우선 AddMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
             if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
             {
                 // ForcingMappingTicket 클래스의 From() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
@@ -641,83 +643,62 @@ public void AddMappingForcibly(string idPName)
 }
 ```
 
+### Change Login with ForcingMappingTicket
 
-### Add Mapping Forcibly with Credential
-특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
-**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+특정 IdP에 이미 매핑되어 있는 계정이 있을 때, 현재 계정을 로그아웃 하고 이미 매핑되어 있던 해당 계정으로 로그인 합니다.
+이때, AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
 
-게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMappingForcibly를 호출 할 수 있는 인터페이스입니다.
-
-* Credential 파라미터의 설정 방법
-
-| keyname | a use | 값 종류 |
-| ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                        |
-
-> [TIP]
->
-> 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
->
-
-
-> <font color="red">[주의]</font><br/>
->
-> 외부 SDK에서 지원 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
->
-
-다음은 강제 매핑을 시도하는 예시입니다.
+Change Login API 호출이 실패하는 경우, Gamebase 로그인 상태는 기존의 UserID로 유지됩니다.
 
 **API**
 
 ```cs
-static void AddMappingForcibly(Dictionary<string, object> credentialInfo, string forcingMappingKey, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+static void ChangeLogin(GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 ```
 
 **Example**
 
+다음은 Facebook으로 매핑 시도 후 Facebook에 이미 매핑된 계정이 존재하자, 해당 계정으로 로그인을 변경하는 예시입니다.
+
 ```cs
-public void AddMappingForcibly(Dictionary<string, object> credential)
+public void ChangeLoginWithFacebook()
 {
-    Gamebase.AddMapping(credential, (authToken, error) =>
+    Gamebase.AddMapping(GamebaseAuthProvider.FACEBOOK, (authToken, error) =>
     {
         if (Gamebase.IsSuccess(error) == true)
         {
             // 매핑 추가 성공
+            return;
+        }
+        
+        // 우선 AddMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
+        if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
+        {
+            // ForcingMappingTicket 클래스의 From() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
+            GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
+
+            // ForcingMappingTicket의 UserID로 로그인 합니다.
+            Gamebase.ChangeLogin(forcingMappingTicket, (authTokenForcibly, errorForcibly) =>
+            {
+                if (Gamebase.IsSuccess(errorForcibly) == true)
+                {
+                    // 로그인 변경 성공
+                }
+                else
+                {
+                    // 로그인 변경 실패
+                    // 에러 코드를 확인하고 적절한 처리를 진행합니다.
+                }
+            });
         }
         else
         {
-            // 우선 addMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
-            if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
-            {
-                // ForcingMappingTicket 클래스의 From() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
-                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
-
-                // 강제 매핑을 시도합니다.
-                Gamebase.AddMappingForcibly(credential, forcingMappingTicket.forcingMappingKey, (authTokenForcibly, errorForcibly) =>
-                {
-                    if (Gamebase.IsSuccess(error) == true)
-                    {
-                        // 강제 매핑 추가 성공
-                    }
-                    else
-                    {
-                        // 강제 매핑 추가 실패
-                        // 에러 코드를 확인하고 적절한 처리를 진행합니다.
-                    }
-                });
-            }
-            else
-            {
-                // Add Mapping Failed.
-                // 에러 코드를 확인하고 적절한 처리를 진행합니다.
-            }
+            // Add Mapping Failed.
+            // 에러 코드를 확인하고 적절한 처리를 진행합니다.
         }
     });
 }
 ```
-
 
 ### Remove Mapping
 
