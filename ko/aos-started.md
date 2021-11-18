@@ -49,7 +49,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 	* [Game > Gamebase > 스토어 콘솔 가이드 > ONEStore 콘솔 가이드](./console-onestore-guide)
         * ONE Store는 현재 v17만 지원합니다.
         * ONE Store에서 앱을 생성할때 v19로 생성하지 않도록 주의하시기 바랍니다.
-        * ONE Storev19 지원은 검토중인 단계입니다.
+        * ONE Store v19 지원은 검토 중입니다.
 	* [Game > Gamebase > 스토어 콘솔 가이드 > GALAXY Store 콘솔 가이드](./console-galaxy-guide)
     * 아래 가이드를 참고하여 아이템을 등록합니다.
         * [Game > Gamebase > 콘솔 사용 가이드 > 결제 > Register](./oper-purchase/#register_1)
@@ -59,7 +59,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
     * 다음 가이드를 따라 새로운 클라이언트 버전을 등록하시기 바랍니다.
     * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Client > Client List](./oper-app/#client-list)
 
-### Regist as Tester
+### Register as Tester
 
 #### Gamebase Test Device
 
@@ -489,21 +489,23 @@ android {
 
 ## Recommended Flow
 
-* Gamebase 에서 권장하는 flow 는 Sample Project 에도 동일하게 구현되어 있습니다.
+* Gamebase에서 권장하는 flow는 Sample Project에도 동일하게 구현되어 있습니다.
     * Android Sample Project
         * 아래 링크의 GamebaseAndroidSDK/sample
         * [https://docs.toast.com/ko/Download/#game-gamebase](https://docs.toast.com/ko/Download/#game-gamebase)
             * GamebaseManager.java 파일을 참고하시면 됩니다.
     * Unity Sample Project
         * [https://github.com/nhn/toast.gamebase.unity.sample](https://github.com/nhn/toast.gamebase.unity.sample)
-* 게임이 시작되었을 때 Gamebase 클라이언트 SDK 를 초기화 하고 로그인이 성공하면 결제 재처리가 시작되도록 구현하세요.
+* 게임이 시작되었을 때 Gamebase 클라이언트 SDK를 초기화 하고 로그인이 성공하면, 결제 재처리를 시작하고 푸시 토큰을 등록하세요.
 
-![overview flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.19.0.png)
+![overview flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.30.0.png)
 
 * 상세 flow 는 다음 링크에서 확인할 수 있습니다.
+    * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler](./aos-etc/#gamebase-event-handler)
     * [Game > Gamebase > Android SDK 사용 가이드 > 초기화 > Initialization Flow](./aos-initialization/#initialization-flow)
     * [Game > Gamebase > Android SDK 사용 가이드 > 인증 > Login Flow](./aos-authentication/#login-flow)
     * [Game > Gamebase > Android SDK 사용 가이드 > 결제 > Retry Transaction Flow](./aos-purchase/#retry-transaction-flow)
+    * [Game > Gamebase > Android SDK 사용 가이드 > 푸시 > Register Push](./aos-push/#register-push)
 
 ## 3rd-Party Provider SDK Guide
 

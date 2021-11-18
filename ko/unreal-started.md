@@ -2,7 +2,7 @@
 
 Gamebase Unreal SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 
-### Environments
+## Environments
 
 > [참고] 
 >
@@ -47,7 +47,7 @@ Supported Platforms
 1. 에디터의 메뉴 **Edit > Project Settings** 를 선택합니다.
 2. Project Settings 창에서 Plugin 카테고리에서 **Gamebase**를 선택합니다.
 
-![Unreal Project Settings - Android](http://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.19.0.png)
+![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.19.0.png)
 
 * Android - Authentication
     * 사용하려는 IdP를 활성화 합니다.

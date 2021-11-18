@@ -14,7 +14,7 @@ To execute Gamebase in Android, the following system environment is required.
 
 | Gamebase SDK | Gamebase Adapter | External SDK | Purpose | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.27.1<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include interface and core logic of Gamebase | API 16 (JellyBean, OS 4.1) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.27.4<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include interface and core logic of Gamebase | API 16 (JellyBean, OS 4.1) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Support Google login | - |
@@ -28,7 +28,7 @@ To execute Gamebase in Android, the following system environment is required.
 | Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.16.0<br>toast-iap-core | Support in-app purchase | - |
 |  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | Support Galaxy Store | API 21 (Lollipop, OS 5.0)<br>Although minSdkVersion of Galaxy IAP SDK is 18, the minSdkVersion of Checkout service app that must be installed for actual purchase is 21. |
 |  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Support Google Store | - |
-|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | Support ONE Store | - |
+|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | Support ONE Store v17<br>Currently v19 is not supported | - |
 | Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Support push notifications | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Support Firebase Notification | - |
 
@@ -47,6 +47,9 @@ To execute Gamebase in Android, the following system environment is required.
 * To enable item purchase, register the app info in the Store console and enter it in Gamebase > Purchase(IAP) console.
 	* [Game > Gamebase > Store Console Guide > Google Console Guide](./console-google-guide)
 	* [Game > Gamebase > Store Console Guide > ONEStore Console Guide](./console-onestore-guide)
+        * For ONE Store, currently only v17 is supported.
+        * When creating an app in the ONE Store, please be careful not to create it in v19.
+        * ONE Store v19 support is under consideration.
 	* [Game > Gamebase > Store Console Guide > GALAXY Store Console Guide](./console-galaxy-guide)
     * See the following guide to register items.
         * [Game > Gamebase > Console User Guide > Payment > Register](./oper-purchase/#register_1)
@@ -56,7 +59,7 @@ To execute Gamebase in Android, the following system environment is required.
     * Use the following guide to register a new client version.
     * [Game > Gamebase > Console User Guide > App > Client > Client List](./oper-app/#client-list)
 
-### Regist as Tester
+### Register as Tester
 
 #### Gamebase Test Device
 
@@ -91,14 +94,16 @@ To execute Gamebase in Android, the following system environment is required.
         // mainTemplate.gradle
         ([rootProject] + (rootProject.subprojects as List)).each {
             ext {
+                // >>> [AndroidX]
                 it.setProperty("android.useAndroidX", true)
                 it.setProperty("android.enableJetifier", true)
             }
         }
         ```
     * Unity 2019.3 or later
-        ```groovy
-        // gradleTemplate.properties
+        ```
+        # gradleTemplate.properties
+        # >>> [AndroidX]
         android.useAndroidX=true
         android.enableJetifier=true
         ```
@@ -111,6 +116,27 @@ To execute Gamebase in Android, the following system environment is required.
           </insert>  
         </gradleProperties>
         ```
+        
+#### Under AGP 3.4.0
+
+* If the Android Gradle Plugin version is lower than 3.4.0, the build will fail, so the following declaration is required:
+    ```groovy
+    # gradle.properties
+    # >>> Fix for AGP under 3.4.0
+    android.enableD8.desugaring=true
+    android.enableIncrementalDesugaring=false
+    ```
+* For Unity, the following declaration is required if the Editor version is 2018.4.3 or lower or 2019.1.6 or lower. (AGP version is 3.2.0)
+    ```groovy
+    // mainTemplate.gradle
+    ([rootProject] + (rootProject.subprojects as List)).each {
+        ext {
+            // >>> Fix for AGP under 3.4.0
+            it.setProperty("android.enableD8.desugaring", true)
+            it.setProperty("android.enableIncrementalDesugaring", false)
+        }
+    }
+    ```
 
 #### Define Adapters
 
@@ -143,6 +169,7 @@ dependencies {
 
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
+    // >>> For ONE Store, only v17 can be used and v19 is currently not supported.
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
 

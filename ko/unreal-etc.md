@@ -227,7 +227,7 @@ FString GetCountryCodeOfDevice() const;
     2. USIM 국가 코드가 빈 값이라면 단말기 국가 코드를 확인하고, 값이 존재한다면 추가 확인 없이 그대로 리턴합니다.
     3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ' 를 리턴합니다.
 
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
+![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
 
 **API**
@@ -324,7 +324,7 @@ void Sample::AddEventHandler()
 | Purchase - 프로모션 결제 | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(message.data) | \- |
 | Push - 메세지 수신 | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(message.data) |  |
 | Push - 메세지 클릭 | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) |  |
-| Push - 액션 클릭 | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(message.data) | RichMessage 버튼 클릭시 동작합니다. |
+| Push - 액션 클릭 | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(message.data) | RichMessage 버튼 클릭 시 동작합니다. |
 
 
 #### Server Push
@@ -585,7 +585,7 @@ void Sample::AddEventHandler()
 #### Push Click Message
 
 * 수신한 Push 메세지를 클릭했을때 발생하는 이벤트 입니다.
-* 'GamebaseEventCategory::PushReceivedMessage' 와는 다르게 Android에서 extras 필드에 **isForeground** 정보가 존재하지 않습니다.
+* 'GamebaseEventCategory::PushReceivedMessage'와는 다르게 Android에서 extras 필드에 **isForeground** 정보가 존재하지 않습니다.
 
 **Example**
 

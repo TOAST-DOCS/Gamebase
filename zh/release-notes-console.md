@@ -1,5 +1,15 @@
 ## Game > Gamebase > Release Notes > Console
 
+### 2021. 11. 09.
+
+#### 改善/修改功能
+* 应用程序 > 设置URL
+	* 为新创建的Gamebase提供的ShortURL域名已更改为https://nh.nu。
+
+#### 修改程序错误
+* 运营 > 维护
+	* 修改注册自定义HTML(Webview)维护时, 未能正常看到”预览”的错误。
+
 ### October 12, 2021
 
 #### Feature Updates

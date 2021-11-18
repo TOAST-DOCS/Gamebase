@@ -37,7 +37,7 @@ Then, include corresponding SDK files to a target of your project.
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.29.0 | Includes the interface and key logic of Gamebase | iOS9 or later
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.29.1 | Includes the interface and key logic of Gamebase | iOS9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Supports Facebook login | iOS9 or later |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.2 | Supports Payco login | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | Supports Naver login | iOS9 or later |
@@ -49,8 +49,8 @@ Then, include corresponding SDK files to a target of your project.
 |  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.1 | Supports Hangame login | iOS9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Supports Weibo login | iOS9 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.11.5 | Supports Kakao login | iOS11 or later |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.29.0<br/> ToastGamebaseIAP 0.12.0 | Supports in-game purchase | iOS9 or later |
-| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.29.0 | Supports Push | iOS9 or later |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.29.1<br/> ToastGamebaseIAP 0.12.1 | Supports in-game purchase | iOS9 or later |
+| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.29.1 | Supports Push | iOS9 or later |
 
 
 > <font color="red">[Caution]</font><br/>
@@ -252,7 +252,7 @@ end
 
 **Google**
 
-* Gamebase iOS SDK 1.12.1 이하
+* Gamebase iOS SDK 1.12.1 or lower
     * You need to provide JSON string-type data in the **Additional Info** field in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
         * For Google, you need to set **url_scheme_ios_only** required for iOS apps.
         * The value of **url_scheme_ios_only** must match one of the values registered for the URL Scheme of Xcode.

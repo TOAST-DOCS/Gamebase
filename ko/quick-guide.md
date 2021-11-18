@@ -26,15 +26,7 @@
 * Gamebase Initialize
 * Gamebase Guest Login
 * Gamebase Logout
-	
-### [Javascript] Guest 인증 [\[바로가기\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.guest-auth-on-js/)
 
-#### 초급/15분
-
-* Gamebase JavaScript 초기 설정
-* Gamebase JavaScript 초기화
-* Gamebase Guest 인증
-	
 ### [Unity] Google IdP 인증 [\[바로가기\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.google-setting/)
 
 #### 초급/30분

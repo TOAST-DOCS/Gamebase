@@ -200,7 +200,7 @@ public void GetDisplayLanguageCode()
 
 UnityEditor 및 Unity Standalone, WebGL 플랫폼 서비스 시, Gamebase에서 제공하는 기본 언어(ko, en) 외 다른 언어를 사용하려면 Assets > StreamingAssets > Gamebase에 있는 localizedstring.json 파일에 값을 추가해야 합니다.
 
-![localizedstring.json](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-etc_001_1.11.0.png)
+![localizedstring.json](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-etc_001_1.11.0.png)
 
 localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
@@ -316,7 +316,7 @@ static string GetCountryCodeOfDevice()
 	2. USIM 국가 코드가 빈 값이라면 단말기 국가 코드를 확인하고, 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
 	3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ' 를 리턴합니다.
 
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
+![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
 > [참고]
 >
@@ -490,7 +490,7 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 | Purchase - 프로모션 결제 | GamebaseEventCategory.PURCHASE_UPDATED | GamebaseResponse.Event.PurchasableReceipt.from(message.data) | \- |
 | Push - 메세지 수신 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
 | Push - 메세지 클릭 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
-| Push - 액션 클릭 | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | RichMessage 버튼 클릭시 동작합니다. |
+| Push - 액션 클릭 | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | RichMessage 버튼 클릭 시 동작합니다. |
 
 
 #### Server Push
@@ -833,7 +833,7 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 #### Push Click Message
 
 * 수신한 Push 메세지를 클릭했을때 발생하는 이벤트 입니다.
-* 'GamebaseEventCategory.PUSH_RECEIVED_MESSAGE' 와는 다르게 Android에서 extras 필드에 **isForeground** 정보가 존재하지 않습니다.
+* 'GamebaseEventCategory.PUSH_RECEIVED_MESSAGE'와는 다르게 Android에서 extras 필드에 **isForeground** 정보가 존재하지 않습니다.
 
 **Example**
 

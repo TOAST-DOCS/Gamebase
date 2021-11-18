@@ -56,7 +56,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
     * 次のガイドに従って新しいクライアントバージョンを登録してください。
     * [Game > Gamebase > コンソール使用ガイド > アプリ > Client > Client List](./oper-app/#client-list)
 
-### Regist as Tester
+### Register as Tester
 
 #### Gamebase Test Device
 

@@ -53,56 +53,102 @@ Supported Platforms
 
 ## Installation
 
-Setting Tool is provided to install Gamebase SDK with more at ease.
+Setting Tool is provided to install Gamebase SDK easily.
 
 * [Download Gamebase Client SDK](/Download/#game-gamebase)
 
 ### Specification of Setting Tool
+
 1. Download SDK
-    * Supports the latest download.
+    * Supports download of the latest version of SDK.
 2. Install SDK
     * Supports installation of downloaded SDK.
+        * Unity: Unitypackage
+        * Android: Gradle
+        * iOS: CocoaPods
 3. Delete SDK
     * Supports deletion of installed SDK.
 4. Update SDK
     * Update is not supported.
-    * Instead, installation after deletion is supported.
+    * Resetting after removing the SDK replaces the update feature.
 
 ### Using the Setting Tool
 
+* Gamebase SettingTool **v2.0.0** has been newly released.
+    * It is not compatible with the existing v1.5.0, so please use v2.0.0 or later after completely uninstalling it.
+
+**AS-IS**
+
+1. Proceed with build by including the Gamebase SDK for Android and iOS in the Unity project.
+2. Gradle and CocoaPods are not supported.
+
+**TO-BE**
+
+1. Gradle and CocoaPods are supported.
+2. EDM4U (External Dependency Manager for Unity) has been adopted as a required library.
+    * After downloading EDM4U from [EDM4U Github](https://github.com/googlesamples/unity-jar-resolver), install it.
+    * If there is no EDM4U, Gamebase SDK for Android and iOS settings are not available.
+    * If you are using an SDK that already includes EDM4U, such as Facebook, GPGS SDK, or Firebase, you do not need to download EDM4U.
+3. If you provide a service for the Android platform, select the Top Menu > **Assets > External Dependency Manager > Android Resolver > Settings** to open the Android Resolver Settings window and set the options as follows.
+    * Enable Auto-Resolution: Disable
+    * Explode AARs: Disabled
+    * Patch mainTemplate.gradle: Enable
+    * Use Jetifier: Enabled
+    * ![Android Resolver Settings](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-edm4u-settings-1_2.0.0.png)
+4. If you provide a service for the iOS platform, select the Top Menu > **Assets > External Dependency Manager > iOS Resolver > Settings** to open the iOS Resolver Settings window and set the options as follows.
+    * Use Shell to Execute Cocoapod Tool: Disable
+        * If this feature is enabled, an error occurs where xcworkspace is not created when building iOS in Unity. (CocoaPods 1.11.x bug)
+        * For users who need to enable this feature, solve the error in one of the 2 ways below.
+            * Install CocoaPods version 1.10.x.
+            * Call **pod install** directly from the Xcode project created in Unity.
+
+> <font color="red">[Caution]</font>
+>
+> If you provide a service for the iOS platform, CocoaPods must be installed. For CocoaPods installation and detailed instructions, refer to [cocoapods.org](https://cocoapods.org/).
+
 #### Install SDK
+
 1. Open a Unity project.
 2. Import GamebaseUnitySettingTool_{version}.unitypackage.
-3. Execute Menu > Tools > Gamebase > SDKSettings > Setting Tool.
-    * v1.0.1 or lower : Menu > Gamebase > SDKSettings > Setting Tool
-4. Click [Download SDK] to download SDK.
+3. In the top menu, select **Tools > NhnCloud > Gamebase > SettingTool > Settings**.
+4. In SDK Download, click the [Gamebase SDK] button to download the latest version of SDK.
 5. Select a platform.
-    * Unity Adapter
     * Android
     * iOS
 6. Select a module for each platform.
-    * For Authentication, integration with an ID Provider (IdP), like Google, is supported.
-    * For Push, FCM(Firebase), Tencent and APNS Push services are supported.
-    * For Purchase, In-App Purchase (IAP) of NHN Cloud is provided.
+    * For authentication, integration with an ID Provider (IdP), like Google, is supported.
+    * For push, FCM(Firebase), Tencent and APNS Push services are supported.
+    * For purchase, In-App Purchase (IAP) of NHN Cloud is provided.
 7. Click [Settings] and install SDK.
+8. If you selected Android and iOS modules, you need to execute EDM4U resolve.
+    * Android: Select Top Menu > **Assets > External Dependency Manager > Android Resolver > Force Resolve**.
+    * iOS: Select Top Menu > **Assets > External Dependency Manager > iOS Resolver > install Cocoapods**.
+
+> <font color="red">[Caution]</font>
+>
+> If there is no EDM4U, Gamebase SDK for Android and iOS settings are not available.<br/>
+> Before executing EDM4U resolve, click the Switch Platform button in the **Build Settings** window to switch to the platform you want to build for. If the Android platform is selected, you need to enable Custom Gradle Template in **Player Settings > Publishing Settings** to create the mainTemplate.gradle file.<br/>
+> When using `Unity 2019.3 or later`, you need to enable Custom Gradle Properties Template in **Player Settings > Publishing Settings** to create a gradleTemplate.properties file.
+
 
 #### Update SDK
-1. Run Menu > Tools > Gamebase > SDKSettings > Setting Tool.
-	* v1.0.1 or earlier: Menu > Gamebase > SDKSettings > Setting Tool
-2. Click the [Download SDK] button to download the latest SDK.
+1. In the top menu, select **Tools > NhnCloud > Gamebase > SettingTool > Settings**.
+2. In SDK Download, click the [Gamebase SDK] button to download the latest version of SDK.
+    * If the latest SDK is already downloaded, the button is disabled.
 3. Click the [Settings] button to install the SDK.
     * Previously selected modules per platform can be changed.
 
 #### Delete SDK
-1. Execute Menu > Tools > Gamebase > SDKSettings > Setting Tool.
-    * v1.0.1 or lower : Menu > Gamebase > SDKSettings > Setting Tool
+
+1. In the top menu, select **Tools > NhnCloud > Gamebase > SettingTool > Settings**.
 2. Click [Remove] to delete installed SDKs.
 
 <br/>
 > [Note]
 > 
 > If an unexpected error occurs at Setting Tool, close the window and try again. <br/>
-> In case of Unity Facebook Authentication, need to download Facebook Unity SDK. [Go to Download](https://developers.facebook.com/docs/unity/)<br/>
+> If the error is not resolved by re-running, open the SettingToolWindow.cs file in **Assets/NhnCloud/GamebaseTools/SettingTool/Editor/Scripts**, uncomment SettingTool.SetDebugMode(true); code in the ShowWindow method, and send the log.<br/><br/>
+> If you are using Unity Facebook Authentication, you need to download Facebook Unity SDK separately. [Go to Download](https://developers.facebook.com/docs/unity/)<br/>
 > To check the version of Facebook Unity SDK supported by Unity Facebook Authentication, refer to the README file which is also provided. <br/>
 
 ### Video of Setting Tool Usage
@@ -115,7 +161,7 @@ Setting Tool is provided to install Gamebase SDK with more at ease.
 "></iframe>
 
 
-### Update of Setting Tool
+### Setting Tool Update
 
 If the Setting Tool needs to be updated, the Setting Tool informs whether update is available or not.
 Depending on the update type, some functions provided by Setting Tool may be limited.
@@ -126,14 +172,14 @@ Depending on the update type, some functions provided by Setting Tool may be lim
 * SDK download limited
 	* You can install or uninstall using the SDK downloaded before.
 
-![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-1_1.13.0.png)
+![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-1_1.13.0.png)
 
 #### Selective update
 
 * Select update
 * SDK download available
 
-![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-2_1.13.0.png)
+![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-2_1.13.0.png)
 
 ### Android Lifecycle
 
