@@ -3,7 +3,7 @@
 
 Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 
-### Environments
+## Environments
 
 > [참고] 
 >

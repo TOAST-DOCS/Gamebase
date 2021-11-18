@@ -2,7 +2,7 @@
 
 Gamebase JavaScript SDK를 사용하기 위한 환경은 다음과 같습니다.
 
-### Environments
+## Environments
 
 > [최소 사양]
 >
@@ -10,7 +10,7 @@ Gamebase JavaScript SDK를 사용하기 위한 환경은 다음과 같습니다.
 > Brower Popup 허용
 > Browser Cookie 접근 허용
 
-### Installation
+## Installation
 
 Gamebase JavaScript SDK 파일을 다운로드합니다.
 
