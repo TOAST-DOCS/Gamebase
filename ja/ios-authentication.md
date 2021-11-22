@@ -307,6 +307,8 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 マッピングは、次の手順で設計することができます。
 
+![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
+
 #### 1. ログイン
 マッピングは、現在のアカウントにIdPアカウントの連携を追加する機能であるため、ログインされた状態でなければなりません。
 まず、ログインAPIを呼び出してログインします。
@@ -354,18 +356,13 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 - (void)authAddMapping {
     [TCGBGamebase addMappingWithType:kTCGBAuthFacebook viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
-                     NSLog(@"AddMapping is succeeded.");
-                 }
-                 else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
-                     NSLog(@"Retry addMapping");
-                 }
-                 else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                     NSLog(@"Already mapped to other member");
-                 }
-                 else {
-                     NSLog(@"AddMapping Error - %@", [error description]);
-                 }
-            }
+            NSLog(@"AddMapping is succeeded.");
+        } else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
+            NSLog(@"Retry addMapping");
+        } else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+            NSLog(@"Already mapped to other member");
+        } else {
+            NSLog(@"AddMapping Error - %@", [error description]);
         }
     }];
 }
@@ -404,29 +401,29 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 
 ```objectivec
-     - (void)onButtonLogin {
-         UIViewController* topViewController = nil;
- 
-         NSString* facebookAccessToken = @"feijla;feij;fdklvda;hfihsdfeuipivaipef/131fcusp";
-         NSMutableDictionary* credentialInfo = [NSMutableDictionary dictionary];
-         credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = kTCGBAuthFacebook;
-         credentialInfo[kTCGBAuthLoginWithCredentialAccessTokenKeyname] = facebookAccessToken;
- 
-         [TCGBGamebase addMappingWithCredential:credentialInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
-             if ([TCGBGamebase isSuccessWithError:error] == YES) {
-                 NSLog(@"AddMapping is succeeded.");
-             }
-             else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
-                 NSLog(@"Retry addMapping");
-             }
-             else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                 NSLog(@"Already mapped to other member");
-             }
-             else {
-                 NSLog(@"AddMapping Error - %@", [error description]);
-             }
-         }];
-     }
+- (void)onButtonLogin {
+    UIViewController* topViewController = nil;
+
+    NSString* facebookAccessToken = @"feijla;feij;fdklvda;hfihsdfeuipivaipef/131fcusp";
+    NSMutableDictionary* credentialInfo = [NSMutableDictionary dictionary];
+    credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = kTCGBAuthFacebook;
+    credentialInfo[kTCGBAuthLoginWithCredentialAccessTokenKeyname] = facebookAccessToken;
+
+    [TCGBGamebase addMappingWithCredential:credentialInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
+            NSLog(@"AddMapping is succeeded.");
+        }
+        else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
+            NSLog(@"Retry addMapping");
+        }
+        else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+            NSLog(@"Already mapped to other member");
+        }
+        else {
+            NSLog(@"AddMapping Error - %@", [error description]);
+        }
+    }];
+}
 ```
 
 ### Add Mapping Forcibly

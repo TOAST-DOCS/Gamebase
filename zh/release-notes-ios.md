@@ -1,14 +1,26 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.30.0 (2021.11.23)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-iOS.zip)
+
+#### 添加功能
+* 为了改善强制映射时需要再次尝试IdP登录的不便，添加了一个新的强制映射API。
+    * [Game > Gamebase > iOS SDK使用指南 > 认证 > Add Mapping Forcibly](./ios-authentication/#add-mapping-forcibly)
+* 为了解决因使用特定IdP尝试映射，出现**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**错误的问题，添加了可将帐户转换为已有的帐户后登录的API。
+    * [Game > Gamebase > iOS SDK使用指南 > 认证 > Change Login](./ios-authentication/#change-login)
+
+#### 修改程序错误
+* 修改了调用loginForLastLoggedInProvider登录后，使用特定IdP时未能注销或退出的程序错误。
+
 ### 2.29.0 (2021.11.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST iOS SDK(0.29.1), ToastGamebaseIAP SDK(0.12.1)
-* 콘솔에 등록한 점검 및 공지 자세히 보기의 URL을 인코딩 하지 않고 화면에 출력하도록 변경되었습니다.
+#### 改善/修改功能
+* 外部SDK升级 : TOAST iOS SDK(0.29.1), ToastGamebaseIAP SDK(0.12.1)
+* 即使未对”在控制台中注册的维护”和”查看公告详情”URL进行编码，也可在页面上显示。
 
-#### 버그 수정
-* TCGBPushMessage.extras를 json 파싱 할 때 에러가 발생하는 버그를 수정하였습니다.
+#### 修改程序错误
+* 已修改将TCGBPushMessage.extras转换为json格式时出现错误的问题。
 
 ### 2.28.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-iOS.zip)

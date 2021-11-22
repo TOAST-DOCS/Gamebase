@@ -1,5 +1,12 @@
 ## Game > Gamebase > Release Notes > Unreal
 
+### 2.26.1 (2021.11.23)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.1/GamebaseSDK-Unreal.zip)
+
+#### 修改程序错误
+* 修改了GamebaseDisplayLanguageCode芬兰语错误。
+    * Finish → Finnish
+
 ### 2.26.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Unreal.zip)
 

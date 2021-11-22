@@ -18,7 +18,7 @@
 #### 实现Notification Service Extension
 * 为了搜集“接收指标‘’或设置提示音，请参考[TOAST Push指南](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-ios/#notification-service-extension)，在应用程序内实现**Notification Service Extension**。
 
-#### XCode Project设置
+#### Xcode Project设置
 * 将**Targets > Capabilities > Push Notifications**项目设置为**ON**。
 * 打开自动被创建的.entitlements文件，将**APS Environment**key值设置为适合的值。 
     * **development** : Sandbox APNS

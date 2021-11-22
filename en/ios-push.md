@@ -18,7 +18,7 @@ This document describes the process of creating Apple developer certificates req
 * For tasks such as collecting inbound indicators and setting the notification sound, see [NHN Cloud Push Guide](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-ios/#notification-service-extension) to implement the **Notification Service Extension** for the application.
 
 
-#### Setting up XCode Project
+#### Setting up Xcode Project
 * Go to **Targets > Capabilities > Push Notifications** and set it to **ON**.
 * Open the .entitlements file automatically created, and set the value of the **APS Environment** key to an appropriate value.
     * **development**: Sandbox APNS

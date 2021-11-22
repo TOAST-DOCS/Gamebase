@@ -21,7 +21,7 @@ With user&#39;s agreement to enablePush, enableAdPush, and enableAdNightPush, ca
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS<br/>
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
@@ -121,7 +121,7 @@ Retrieves the notification options value which was set previously when registeri
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS<br/>
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
@@ -149,12 +149,11 @@ public void GetNotificationOptionsSample()
 To retrieve user's push setting, apply API as below.
 From GamebaseResponse.Push.TokenInfo callback values, you can get user's value set.
 
-
 **API**
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS<br/>
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs

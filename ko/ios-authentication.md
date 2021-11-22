@@ -306,6 +306,8 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 매핑은 다음 순서로 구현할 수 있습니다.
 
+![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
+
 #### 1. 로그인
 매핑은 현재 계정에 IdP 계정 연동을 추가하는 것이므로 우선 로그인이 돼 있어야 합니다.
 먼저 로그인 API를 호출해 로그인합니다.
@@ -347,24 +349,27 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 특정 IdP에 로그인된 상태에서 다른 IdP로 매핑을 시도합니다.<br/>
 
+**API**
+
+```objectivec
++ (void)addMappingWithType:(NSString *)type viewController:(UIViewController *)viewController completion:(LoginCompletion)completion;
+```
+
+**Example**
+
 다음은 Facebook에 매핑을 시도하는 예시입니다.
 
 ```objectivec
 - (void)authAddMapping {
     [TCGBGamebase addMappingWithType:kTCGBAuthFacebook viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
-                     NSLog(@"AddMapping is succeeded.");
-                 }
-                 else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
-                     NSLog(@"Retry addMapping");
-                 }
-                 else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                     NSLog(@"Already mapped to other member");
-                 }
-                 else {
-                     NSLog(@"AddMapping Error - %@", [error description]);
-                 }
-            }
+            NSLog(@"AddMapping is succeeded.");
+        } else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
+            NSLog(@"Retry addMapping");
+        } else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+            NSLog(@"Already mapped to other member");
+        } else {
+            NSLog(@"AddMapping Error - %@", [error description]);
         }
     }];
 }
@@ -401,106 +406,23 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 > 외부 SDK에서 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
 >
 
+**API**
 
 ```objectivec
-     - (void)onButtonLogin {
-         UIViewController* topViewController = nil;
- 
-         NSString* facebookAccessToken = @"feijla;feij;fdklvda;hfihsdfeuipivaipef/131fcusp";
-         NSMutableDictionary* credentialInfo = [NSMutableDictionary dictionary];
-         credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = kTCGBAuthFacebook;
-         credentialInfo[kTCGBAuthLoginWithCredentialAccessTokenKeyname] = facebookAccessToken;
- 
-         [TCGBGamebase addMappingWithCredential:credentialInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
-             if ([TCGBGamebase isSuccessWithError:error] == YES) {
-                 NSLog(@"AddMapping is succeeded.");
-             }
-             else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
-                 NSLog(@"Retry addMapping");
-             }
-             else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                 NSLog(@"Already mapped to other member");
-             }
-             else {
-                 NSLog(@"AddMapping Error - %@", [error description]);
-             }
-         }];
-     }
++ (void)addMappingWithCredential:(NSDictionary *)credentialInfo viewController:(UIViewController *)viewcontroller completion:(LoginCompletion)completion;
 ```
 
-### Add Mapping Forcibly
-특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
-**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
-
-다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
+**Example**
 
 ```objectivec
-- (void)authAddMapping {
-    [TCGBGamebase addMappingWithType:kTCGBAuthFacebook viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
-        if ([TCGBGamebase isSuccessWithError:error] == YES) {
-            NSLog(@"AddMapping is succeeded.");
-        }
-        else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
-            NSLog(@"Retry addMapping");
-        }
-        else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-            NSLog(@"Already mapped to other member");
-            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketFromError:error];
-            [TCGBGamebase addMappingForciblyWithType:ticket.idPCode forcingMappingKey:ticket.forcingMappingKey viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
-                if ([TCGBGamebase isSuccessWithError:error]) {
-                    // Mapping success.
-                }
-                else {
-                    // Mapping failed.
-                }
-            }];
-        }
-        else {
-            NSLog(@"AddMapping Error - %@", [error description]);
-        }
-    }];
-}
-```
-
-
-### Add Mapping Forcibly with Credential
-특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
-**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
-
-게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMappingForcibly를 호출 할 수 있는 인터페이스입니다.
-
-* Credential 파라미터 설정방법
-
-
-| keyname                                  | a use                          | 값 종류                           |
-| ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, iosgamecenter, naver, google, twitter |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정 |                                           |
-
-> [참고]
->
-> 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
->
-
-<br/>
-
-
-> <font color="red">[주의]</font><br/>
->
-> 외부 SDK에서 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
->
-
-다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
-
-```objc
-- (void)onButtonLogin {
+- (void)authAddMappingCredential {
     UIViewController* topViewController = nil;
-    
-    NSString* facebookAccessToken = @"feijla;feij;fdklvda;hfihsdfeuipivaipef/131fcusp";
+
+    NSString* facebookAccessToken = @"FACEBOOK_ACCESS_TOKEN";
     NSMutableDictionary* credentialInfo = [NSMutableDictionary dictionary];
     credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = kTCGBAuthFacebook;
     credentialInfo[kTCGBAuthLoginWithCredentialAccessTokenKeyname] = facebookAccessToken;
-    
+
     [TCGBGamebase addMappingWithCredential:credentialInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             NSLog(@"AddMapping is succeeded.");
@@ -510,15 +432,6 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
         }
         else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
             NSLog(@"Already mapped to other member");
-            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketFromError:error];
-            [TCGBGamebase addMappingWithCredential:credentialInfo forcingMappingKey:ticket.forcingMappingKey viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
-                if ([TCGBGamebase isSuccessWithError:error]) {
-                    // Mapping success.
-                }
-                else {
-                    // Mapping failed.
-                }
-            }];
         }
         else {
             NSLog(@"AddMapping Error - %@", [error description]);
@@ -527,6 +440,87 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 }
 ```
 
+### Add Mapping Forcibly
+특정 IdP에 이미 매핑되어있는 계정이 있을 때, **강제로** 매핑을 시도합니다.
+**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+
+**API**
+
+```objectivec
++ (void)addMappingForciblyWithTicket:(TCGBForcingMappingTicket *)ticket viewController:(nullable UIViewController *)viewController completion:(LoginCompletion)completion;
+```
+
+**Example**
+
+다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
+
+```objectivec
+- (void)authAddMappingForcibly {
+    [TCGBGamebase addMappingWithType:kTCGBAuthFacebook viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
+            NSLog(@"AddMapping is succeeded.");
+        } else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
+            NSLog(@"Retry addMapping");
+        } else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+            NSLog(@"Already mapped to other member");
+            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketFromError:error];
+            [TCGBGamebase addMappingForciblyWithTicket:ticket viewController:self completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+                if ([TCGBGamebase isSuccessWithError:error]) {
+                    // Mapping success.
+                }
+                else {
+                    // Mapping failed.
+                }
+            }];
+        } else {
+            NSLog(@"AddMapping Error - %@", [error description]);
+        }
+    }];
+}
+```
+
+### Change Login with ForcingMappingTicket
+
+특정 IdP에 이미 매핑되어 있는 계정이 있을 때, **로그인 계정을 변경**합니다.
+**로그인 계정을 변경**할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+
+Change Login API 호출이 실패하는 경우, 이전 계정의 로그인 상태가 유지됩니다.
+
+**API**
+
+```objectivec
++ (void)changeLoginWithForcingMappingTicket:(TCGBForcingMappingTicket *)ticket viewController:(nullable UIViewController *)viewController completion:(LoginCompletion)completion;
+```
+
+**Example**
+
+다음은 Facebook에 로그인 계정 변경을 시도하는 예시입니다.
+
+```objectivec
+- (void)authChangeLogin {
+    [TCGBGamebase addMappingWithType:kTCGBAuthFacebook viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
+            NSLog(@"AddMapping is succeeded.");
+        } else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
+            NSLog(@"Retry addMapping");
+        } else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+            NSLog(@"Already mapped to other member");
+            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketFromError:error];
+            [TCGBGamebase changeLoginWithForcingMappingTicket:ticket viewController:self completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+                if ([TCGBGamebase isSuccessWithError:error]) {
+                    // Change login successed.
+                }
+                else {
+                    // Change login failed.
+                    // The login status of the previous account is maintained.
+                }
+            }];
+        } else {
+            NSLog(@"AddMapping Error - %@", [error description]);
+        }
+    }];
+}
+```
 
 ### Remove Mapping API
 

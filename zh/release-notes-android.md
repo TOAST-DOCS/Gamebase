@@ -1,22 +1,40 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.30.0 (2021.11.23)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Android.zip)
+
+#### 添加功能   
+* 为了改善强制映射时需要再次尝试IdP登录的不便，添加了一个新的强制映射API。
+    * **Gamebase.addMappingForcibly(Activity, ForcingMappingTicket, GamebaseDataCallback\<AuthToken\>)**
+    * [Game > Gamebase > Android SDK使用指南 > 认证 > Mapping > Add Mapping Forcibly](./aos-authentication/#add-mapping-forcibly) 
+* 为了解决调用Gamebase.addMapping()后出现AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)错误的问题，添加了可将帐户转换为已有的帐户后登录的API。
+    * **Gamebase.changeLogin(Activity, ForcingMappingTicket, GamebaseDataCallback\<AuthToken\>)**
+    * [Game > Gamebase > Android SDK使用指南 > 认证 > Mapping > Change Login with ForcingMappingTicket](./aos-authentication/#change-login-with-forcingmappingticket)
+
+#### 改善/修改功能
+* 外部SDK升级 : Hangame Android SDK(1.4.2)
+* 经过改善，现在用户可直接修改后使用Gamebase提供的”查看维护详情Webview”html。 
+    * [Game > Gamebase > Android SDK使用指南 > 初始化 > Launching Information > 1. Launching > 1.3 Maintenance > Change Default Maintenance HTML](./aos-initialization/#change-default-maintenance-html)
+* 修改了即使设置DisplayLanguageCode也仍以终端机设置的语言显示维护Webview时间的错误。 
+* 已改善因以断开的连接尝试通信而反复出现网络通信错误的问题。
+
 ### 2.29.0 (2021.11.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* Google 로그인시 Scope를 선언할 수 있는 기능을 추가하였습니다.
+#### 添加功能
+* 已添加登录Google时声明Scope的功能。
     * [https://developers.google.com/identity/protocols/oauth2/scopes](https://developers.google.com/identity/protocols/oauth2/scopes)
-    * Scope로 **email**을 추가하면 프로필에서 Email 정보 획득이 가능합니다.
-    * Scope는 Gamebase Console의 AdditionalInfo에 다음과 같이 설정하면 로그인시 자동으로 설정됩니다.
+    * 通过Scope添加**email**时，可在简介中获取Email信息。 
+    * 如下所示，若在Gamebase Console的AdditionalInfo中进行设置，Gamebase登录谷歌时将自动设置Scope。
 
 ```
 {"scope":["email","myscope1","myscope2",...]}
 ```
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.27.4)
-* DisplayLanguage 가이드 문서에서만 안내되고, 실제로 SDK에는 포함되어 있지 않았던 DisplayLanguage.Code 클래스를 추가하였습니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Display Language > Gamebase에서 지원하는 언어코드의 종류](https://docs.toast.com/en/Game/Gamebase/en/aos-etc/#types-of-language-codes-supported-by-gamebase)
+#### 改善/修改功能
+* 外部SDK升级 : TOAST Android SDK(0.27.4)
+* 只在DisplayLanguage指南上描述，实际上未包含在SDK的DisplayLanguage.Code类已被添加。
+    * [Game > Gamebase > Android SDK使用指南 > ETC > Display Language > Gamebase支持的语言代码种类](https://docs.toast.com/en/Game/Gamebase/en/aos-etc/#types-of-language-codes-supported-by-gamebase)
 
 ### 2.28.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-Android.zip)

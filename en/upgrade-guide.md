@@ -49,6 +49,17 @@ android {
 }
 ```
 
+#### Under AGP 3.4.0
+
+* If the Android Gradle Plugin version is lower than 3.4.0, the build will fail, so the following declaration is required in the gradle.properties file:
+
+```groovy
+# gradle.properties
+# >>> Fix for AGP under 3.4.0
+android.enableD8.desugaring=true
+android.enableIncrementalDesugaring=false
+```
+
 #### Line IdP
 
 * When using the Line IdP, the build may fail depending on the AGP version as there is a **&lt;queries&gt;** tag inside the Line SDK
@@ -97,6 +108,21 @@ android {
 // gradleTemplate.properties
 android.useAndroidX=true
 android.enableJetifier=true
+```
+
+#### Under AGP 3.4.0
+
+* If the Unity Editor version is 2018.4.3 or lower or 2019.1.6 or lower, the build will fail because the AGP version is low (3.2.0), so add the following declaration.
+
+```groovy
+// mainTemplate.gradle
+([rootProject] + (rootProject.subprojects as List)).each {
+    ext {
+        // >>> Fix for AGP under 3.4.0
+        it.setProperty("android.enableD8.desugaring", true)
+        it.setProperty("android.enableIncrementalDesugaring", false)
+    }
+}
 ```
 
 ### Unreal

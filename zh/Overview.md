@@ -8,19 +8,19 @@
 
 ## Gamebase Sample App
 
-提供一个示例应用程序，以便可以尝试使用Gamebase的各种功能。
-通过使用示例应用程序，可在游戏应用程序内尝试Gamebase提供的功能，并提前掌握应用程序的运行方式。 
-开发人员通过查询示例应用程序代码，可轻松查看Gamebase的适用方法。
+通过参考示例应用程序可掌握Gamebase的各种功能。
+使用示例应用程序可尝试Gamebase在游戏应用程序中提供的功能，并提前掌握应用程序的运行方式。
+通过使用以下下载页面上的示例应用程序代码，可轻松掌握适用Gamebase的方法。
 
 * [下载页面](https://github.com/nhn/toast.gamebase.unity.sample/releases)
 ![Gamebase_sample_app](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_Sample_App1.png)
-* 可通过使用QR代码下载Sample App APK。(支持的平台 : Android OS)
+* 可通过使用QR代码下载Sample App APK。(支持平台 : Android OS)
 
-## Key Features
+## 主要功能
 
 ### Gamebase Analytics
 
-只要应用Gamebase SDK，即免费提供销售、用户、游戏平衡指标。 
+只要应用Gamebase SDK，即免费提供销售、用户及游戏平衡指标。 
 提供游戏中产生的销售、并发用户、用户、级别、道具销售等游戏事业与运营中必不可少的指标服务。 
 请快速应用，并积极地运用于服务中！
 ![Gamebase_analytics](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_02_201903_en.png)
@@ -39,7 +39,7 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 
 
 * **提供多种外部IDP认证**
-提供的外部认证将会持续更新，如果您有想在游戏中使用的认证请联系【客服中心】。(https://toast.com/support/inquiry)
+提供的外部认证将会持续更新，如果您有想在游戏中使用的认证请联系【客户服务】。(https://toast.com/support/inquiry)
 
 以下是Gamebase支持的外部认证列表。
 
@@ -68,9 +68,9 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
    退出登录后，您可以选择其他身份认证方式重新登录，如果退出游戏，则用户在Gamebase中的ID及其他所有相关信息都将会被删除。
 
 * **提供映射（Mapping）功能，使一名游戏用户可以同时使用多个外部IDP。**
-    例如，使用Facebook认证的游戏用户，也可以通过Google认证来使用相同用户ID。如果将Facebook和Gogle认证映射到一个游戏用户ID上，游戏用户就可在某个机器上使用Facebook认证,在其它机器上使用Google认证进行游戏。
+    例如，使用Facebook认证的游戏用户，也可以通过Google认证来使用相同用户ID。如果将Facebook和Gogle认证映射到一个游戏用户ID上，游戏用户就可在某个机器上使用Facebook认证，在其它机器上使用Google认证进行游戏。
 
-#### Reference
+#### 参考  
 
 * [Android SDK 使用指南 > 认证](./aos-authentication)
 * [iOS SDK 使用指南 > 认证](./ios-authentication)
@@ -100,7 +100,7 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 * **利用网页控制台的各种功能（支付明细查询功能等）可顺利应对顾客咨询。**
   在网页控制台可确认用户的支付明细及道具提供状态，还可应对取消支付及滥用。
 
-#### Reference
+#### 参考
 
 * [Android SDK 使用指南 > 结算](./aos-purchase)
 * [iOS SDK 使用指南 > 结算](./ios-purchase)
@@ -110,9 +110,9 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 ### Launching
 
 已上线的游戏APP，在移动终端上启动游戏时需要的各种信息，是由Gamebase提供，将之称为Launching。
-Launching信息可以在 Gamebase Console实时设定，SDK的初始化或 Launching状态变更时可以在游戏中确认。
+Launching信息可以在Gamebase Console实时设定，SDK的初始化或Launching状态变更时可以在游戏中确认。
 
-在Gamebase上提供的Launching信息如下
+在Gamebase上提供的Launching信息如下。
 
 * APP状态信息
 	* 游戏客户端是否需要更新、下载URL
@@ -121,7 +121,7 @@ Launching信息可以在 Gamebase Console实时设定，SDK的初始化或 Launc
 * 认证信息
 * 游戏内URL清单
 
-#### Reference
+#### 参考
 
 * [Android SDK 使用指南 > 初始化 > Launching Status](./aos-initialization/#launching-status)
 * [iOS SDK 使用指南 > 初始化 > Launching Status](./ios-initialization/#launching-status)
@@ -142,10 +142,6 @@ Gamebase基本上支持全球游戏，并提供以下功能：
 * **运营者可以选择当地标时区(local timezone)，轻松输入时间。**
 	* 在越南运营游戏时，可以选择越南时区(timezone)，以越南的时间为准输入，可以省去变更为韩国时间的步骤。
 
-#### 参考
-
-* [控制台使用指南 > 运营指标](./oper-operating-indicator) 
-
 ### 其他NHN Cloud服务
 
 * 可以轻松的联动游戏中所需的NHN Cloud服务。
@@ -161,14 +157,14 @@ Gamebase基本上支持全球游戏，并提供以下功能：
 | --------- |    ----------------------------------------       |
 | 游戏用户名| Gamebase中的用户标识符                     |
 | 设备秘钥  | 设备标识符(iOS:IDFV, Android:Android ID)            |
-| UUID      | Guest用户创建时生成（使用）的终端识别符，应用删除前一直有效   |
+| UUID      | Guest用户创建时生成（使用）的终端识别符，应用删除前一直有效。   |
 | IdP       | 身份认证的提供者（Identify Provder），例如：Facebook, Gogle, APPLE Game Center, PAYCO等 |
 | IdP 令牌 | 身份验证后从IdP SDK收到的访问令牌（access token）         |
 | IdP 登录 | 外部IdP登录(Facebook, Google 等)                  |
 
 ## 服务架构
 
-以下是Gamebase的服务架构图和简介
+以下是Gamebase的服务架构图和简介。
 ![逻辑架构图](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_201903_en.png)
 
 | 组件名称        | 说明                                       |
@@ -204,9 +200,9 @@ Gamebase基本上支持全球游戏，并提供以下功能：
 | Logout                | 退出登录                                 | [[Android](./aos-authentication/#logout)]  [[iOS](./ios-authentication/#logout)] [[Unity](./unity-authentication/#logout)] |                                          |                                          |
 | Withdraw              | 退出游戏 <br> -  删除游戏用户的用户ID，浏览记录等所有信息 | [[Android](./aos-authentication/#withdraw)] [[iOS](./ios-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
 | Mapping               | 一个游戏用户ID映射多个IdP的功能        | [[Android](./aos-authentication/#mapping)] [[iOS](./ios-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |                                          |
-| Purchase(IAP)         | (TOAST联动服务) <br> 应用内结算| [[Android](./aos-purchase/#purchase)] [[iOS](./ios-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- 注册商品](./oper-purchase/#item) <br> [- 查询结算信息](./oper-purchase/#transactions) |
-| 推送                  | (TOAST 连动服务) <br> 推送消息及确认结果 | [[Android](./aos-push/#push)] [[iOS](./ios-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- 实时、预约推送消息 |
-| 排行榜           | (TOAST联动服务) <br> 查询及注册大容量数据的实时排名 |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
+| Purchase(IAP)         | 应用内结算| [[Android](./aos-purchase/#purchase)] [[iOS](./ios-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchaseiap)] | [[Purchase]](./oper-purchase/#app)<br> [- 注册商品](./oper-purchase/#item) <br> [- 查询结算信息](./oper-purchase/#transactions) |
+| 推送                  | (NHN Cloud 连动服务) <br> 推送消息及确认结果 | [[Android](./aos-push/#push)] [[iOS](./ios-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- 实时、预约推送消息 |
+| 排行榜           | 查询及注册大容量数据的实时排名 |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
 | Webview               |SDK提供默认的WebView UI<br/>提供系统弹出窗口和TOAST UI | [[Android](./aos-ui/#webview)] [[iOS](./ios-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
 | [管理员] Maintenance | (操作)维护功能                               |                                          | [[确认维护](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- 登记或取消维护 |
 | [管理员] Notice      | (操作) 紧急公告功能 <br> -  游戏用户运行应用时，可以以弹出窗口的形式查看公告的功能 |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>-登记公告 |

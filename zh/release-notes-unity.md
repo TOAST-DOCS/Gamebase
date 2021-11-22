@@ -1,21 +1,42 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.30.0 (2021.11.23)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Unity.zip)
+
+#### 添加功能
+* 为了改善强制映射时需要再次尝试IdP登录的不便，添加了一个新的强制映射API。
+    * **Gamebase.AddMappingForcibly(ForcingMappingTicket, GamebaseDataCallback\<AuthToken\>)**
+    * [Game > Gamebase > Unity SDK使用指南 > 认证 > Mapping > Add Mapping Forcibly](./unity`-authentication/#add-mapping-forcibly)
+
+#### 各平台变更项目
+* [Gamebase Android SDK 2.30.0](./release-notes-android/#2300-20211123)
+* [Gamebase iOS SDK 2.30.0](./release-notes-ios/#2300-20211123)
+
 ### 2.29.0 (2021.11.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Unity SDK(0.23.5)
+#### 改善/修改功能
+* 外部SDK升级 : TOAST Unity SDK(0.23.5)
+* Setting Tool
+    * 发布了v2.0.0版本。
+    * 需要先删除已有的SettingTool后再进行设置。
+    * 关于修改的信息和使用方法，请参考以下指南。 
+        * [Game > Gamebase > Unity SDK使用指南 > 开始 > Specification of Setting Tool](https://docs.toast.com/ko/Game/Gamebase/ko/unity-started/#specification-of-setting-tool)
 
-#### 플랫폼 별 변경 사항
+#### 修改程序错误
+* 修改了GamebaseDisplayLanguageCode芬兰语错误。 
+    * Finish → Finnish
+
+#### 各平台变更项目
 * [Gamebase Android SDK 2.29.0](./release-notes-android/#2290-20211109)
 * [Gamebase iOS SDK 2.29.0](./release-notes-ios/#2290-2021109)
 
 ### 2.28.1 (2021.10.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.1/GamebaseSDK-Unity.zip)
 
-#### 버그 수정
-* (Android) DisplayLanguage 설정을 하지 않을 경우, 잘못된 값으로 설정되는 문제가 수정되었습니다.
-* (Standalone) 이전 프레임에서 시간이 오래 걸릴 경우 발생하는 Timeout 오류가 수정되었습니다.
+#### 修改程序错误
+* 修改了未设置(Android) DisplayLanguage时，使用错误值进行设置的问题。
+* 修改了在(Standalone)前帧需要较长时间时发生的Timeout错误。 
 
 ### 2.28.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-Unity.zip)

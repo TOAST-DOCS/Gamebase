@@ -7,7 +7,7 @@ This document describes additional features supported by Gamebase.
 ### Device Language
 
 * Return the language code configured for your device. 
-* When there's many number of registered languagues, return only the language of the highest priority.   
+* When there's many number of registered languages, return only the language of the highest priority.   
 
 **API**
 
@@ -37,7 +37,7 @@ FString GetDeviceLanguageCode() const;
 | de | German |
 | en |English  |
 | es | Spanish |
-| fi | Finish |
+| fi | Finnish |
 | fr | French |
 | id | Indonesian |
 | it | Italian |
@@ -64,7 +64,7 @@ namespace GamebaseDisplayLanguageCode
     static const FString German(TEXT("de"));
     static const FString English(TEXT("en"));
     static const FString Spanish(TEXT("es"));
-    static const FString Finish(TEXT("fi"));
+    static const FString Finnish(TEXT("fi"));
     static const FString French(TEXT("fr"));
     static const FString Indonesian(TEXT("id"));
     static const FString Italian(TEXT("it"));
@@ -322,8 +322,8 @@ void Sample::AddEventHandler()
 | ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(message.data) | \- |
 | Observer | GamebaseEventCategory::ObserverLaunching<br>GamebaseEventCategory::ObserverNetwork<br>GamebaseEventCategory::ObserverHeartbeat | FGamebaseEventObserverData::From(message.data) | \- |
 | Purchase - Promotion payment | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(message.data) | \- |
-| Push - Message received | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(message.data) | Checks whether or not a message was received in the Foreground using the **isForeground** value. |
-| Push - Message clicked | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) | The **isForeground** value does not exist. |
+| Push - Message received | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(message.data) |  |
+| Push - Message clicked | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) |  |
 | Push - Action clicked | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(message.data) | Operates when the RichMessage button is clicked. |
 
 
@@ -537,8 +537,8 @@ void Sample::AddEventHandler()
 #### Push Received Message
 
 * This event is triggered when a push message is received.
-* Can determine whether the message is received in the foreground through the **isForeground** field or in the background.
 * You can also acquire custom information that was sent along with push by converting the extras field to JSON.
+    * In **Android**, you can determine whether the message was received in the foreground or in the background through the **isForeground** field.
 
 **VO**
 
@@ -554,7 +554,7 @@ struct FGamebaseEventPushMessage
     // The body of the push message.
     FString body;
 
-    // You can check all information by converting them to JSONObject.
+    // You can check the custom information sent when sending a push in JSON format.
     FString extras;
 };
 ```
@@ -572,6 +572,10 @@ void Sample::AddEventHandler()
             if (pushMessage.IsVaild())
             {
                 // When you clicked push message.
+
+                // By converting the extras field of the push message to JSON,
+                // you can get the custom information added by the user when sending the push.
+                // (For Android, an 'isForeground' field is included so that you can check if received in the foreground state.)
             }
         }
     }));
@@ -581,7 +585,7 @@ void Sample::AddEventHandler()
 #### Push Click Message
 
 * This event is triggered when a received message is clicked.
-* Unlike GamebaseEventCategory.PUSH_RECEIVED_MESSAGE, there is no **isForeground** field.
+* Unlike 'GamebaseEventCategory.PushReceivedMessage', there is no **isForeground** information in the extras field on Android.
 
 **Example**
 

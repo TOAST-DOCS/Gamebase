@@ -161,7 +161,7 @@ Gamebase iOS SDK 초기화 설정에 입력한 앱 버전의 게임 상태 정�
 | INSPECTING_ALL_SERVICES     | 304  | 전체 서비스 점검 중                              |
 | INTERNAL_SERVER_ERROR       | 500  | 내부 서버 오류                                 |
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Game > Gamebase > 콘솔 사용 가이드 > 앱 > App](./oper-app/#app)
 
 **1.2 App**
 
@@ -180,7 +180,7 @@ Gamebase 콘솔에 등록된 앱 정보입니다.
 * install: 설치 URL
 * idP: 인증 정보
 
-[콘솔 가이드](/Game/Gamebase/ko/oper-app/#client)
+[Game > Gamebase > 콘솔 사용 가이드 > 앱 > Client](./oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -192,7 +192,16 @@ Gamebase 콘솔에 등록된 점검 정보입니다.
 * endDate: 종료 시간
 * message: 점검 사유
 
-[콘솔 가이드](/Game/Gamebase/ko/oper-operation/#maintenance)
+[Game > Gamebase > 콘솔 사용 가이드 > 운영 > Maintenance](./oper-operation/#maintenance)
+
+##### Change Default Maintenance HTML
+
+enablePopup과 enableLaunchingStatusPopup 값이 모두 true인 경우, 게임이 점검 상태라면 자동으로 점검 팝업이 표시됩니다.
+여기서 **자세히 보기** 버튼을 클릭하면 점검 정보가 자동으로 웹뷰로 표시됩니다.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_webview_android_2.30.0.png)
+
+이때 표시되는 html 파일을 수정하고 싶다면 다음 링크의 html 파일을 다운로드 하여 원하는대로 수정한 후 Xcode 프로젝트의 `Copy Bundle Resources`에 **gamebase-maintenance.html** 파일을 추가하면 됩니다.
+[html 파일 다운로드 LINK](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
 
 **1.4 Notice**
 
@@ -202,7 +211,7 @@ Gamebase 콘솔에 등록된 공지 정보입니다.
 * title: 타이틀
 * url: 점검 URL
 
-[콘솔 가이드](/Game/Gamebase/ko/oper-operation/#notice)
+[Game > Gamebase > 콘솔 사용 가이드 > 운영 > Notice](./oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -221,7 +230,7 @@ NHN Cloud 콘솔에 등록된 IAP 스토어 정보입니다.
 * name: App Name
 * storeCode: Store Code
 
-[콘솔 가이드](/Game/Gamebase/ko/oper-purchase/)
+[Game > Gamebase > 콘솔 사용 가이드 > 결제](./oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -230,7 +239,7 @@ NHN Cloud Launching Console에서 사용자가 입력한 정보입니다.
 * 사용자가 입력한 값을 JSON string으로 전달합니다.
 * NHN Cloud Launching 상세 설정은 아래 가이드를 참고하시기 바랍니다.
 
-[콘솔 가이드](/Game/Gamebase/ko/oper-management/#config)
+[Game > Gamebase > 콘솔 사용 가이드 > 관리 > Config](./oper-management/#config)
 
 
 ### Handling Unregistered Version
@@ -294,6 +303,16 @@ iOS의 앱 이벤트를 관리하려면 다음 **UIApplicationDelegate** 프로�
 >
 > SceneDelegate(iOS 13 이상)을 사용한다면, **UISceneDelegate** 프로토콜을 구현해야 합니다.
 >
+
+### DidFinishLaunching Event
+**application:didFinishLaunchingWithOptions:** 메서드를 호출하여, Gamebase에 앱이 시작되었음을 알려줘야 합니다.
+
+```objectivec
+// AppDelegate.m
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    return [TCGBGamebase application:application didFinishLaunchingWithOptions:launchOptions];
+}
+```
 
 ### OpenURL Event
 **application:openURL:sourceApplication:annotation:** 메서드를 호출하여, 어플리케이션의 외부 URL Open 시도를 Gamebase에 알려주어야 합니다. Gamebase에서는 각 Idp의 인증용 SDK에 해당 값을 전달하여, 필요한 동작을 하도록 알려줍니다.
