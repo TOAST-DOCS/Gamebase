@@ -5,8 +5,9 @@
 
 #### 添加功能
 * 为了改善强制映射时需要再次尝试IdP登录的不便，添加了一个新的强制映射API。
-    * **Gamebase.AddMappingForcibly(ForcingMappingTicket, GamebaseDataCallback\<AuthToken\>)**
-    * [Game > Gamebase > Unity SDK使用指南 > 认证 > Mapping > Add Mapping Forcibly](./unity`-authentication/#add-mapping-forcibly)
+    * [Game > Gamebase > Unity SDK使用指南 > 认证 > Mapping > Add Mapping Forcibly](./unity-authentication/#add-mapping-forcibly)
+* 为了解决调用Gamebase.AddMapping()后出现AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)错误的问题，添加了可将帐户转换为已有的帐户后登录的API。
+    * [Game > Gamebase > Unity SDK使用指南 > 认证 > Mapping > Change Login with ForcingMappingTicket](./unity-authentication/#change-login-with-forcingmappingticket)
 
 #### 各平台变更项目
 * [Gamebase Android SDK 2.30.0](./release-notes-android/#2300-20211123)
