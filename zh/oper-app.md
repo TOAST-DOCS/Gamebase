@@ -625,7 +625,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 - 当勾选”重新同意条款”后进行发布时，向已同意条款的用户也重新显示条款窗。
 
 #### 发布历史记录
-![gamebase_app_34_202102](https://static.toastoven.net/prod_gamebase/gameba se_app_34_202102.png)
+![gamebase_app_34_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_34_202102.png)
 - 是在条款列表中所选的条款的发布历史记录。 
 
 ## Installed URL

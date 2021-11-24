@@ -110,7 +110,7 @@
 ### Inquiry details
    
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_03_202009.png)
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquir   ；‘’y_04_202009.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_04_202009.png)
 
 可以确认来自客户的咨询并对此进行处理。
 
