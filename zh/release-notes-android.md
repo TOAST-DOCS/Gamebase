@@ -5,10 +5,8 @@
 
 #### 添加功能   
 * 为了改善强制映射时需要再次尝试IdP登录的不便，添加了一个新的强制映射API。
-    * **Gamebase.addMappingForcibly(Activity, ForcingMappingTicket, GamebaseDataCallback\<AuthToken\>)**
     * [Game > Gamebase > Android SDK使用指南 > 认证 > Mapping > Add Mapping Forcibly](./aos-authentication/#add-mapping-forcibly) 
 * 为了解决调用Gamebase.addMapping()后出现AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)错误的问题，添加了可将帐户转换为已有的帐户后登录的API。
-    * **Gamebase.changeLogin(Activity, ForcingMappingTicket, GamebaseDataCallback\<AuthToken\>)**
     * [Game > Gamebase > Android SDK使用指南 > 认证 > Mapping > Change Login with ForcingMappingTicket](./aos-authentication/#change-login-with-forcingmappingticket)
 
 #### 改善/修改功能

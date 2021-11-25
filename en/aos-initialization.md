@@ -255,6 +255,12 @@ Maintenance information registered on Gamebase Console:
 * message: Cause of maintenance
 
 [Game > Gamebase > Console User Guide > Operation > Maintenance](./oper-operation/#maintenance)
+<br/>
+##### Change Default Maintenance HTML
+
+```
+Not translated yet
+```
 
 **1.4 Notice**
 

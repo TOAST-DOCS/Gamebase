@@ -255,6 +255,12 @@ Gamebase Consoleに登録されたメンテナンス情報です。
 * message：メンテナンス理由
 
 [Game > Gamebase > コンソール使用ガイド > 運営 > Maintenance](./oper-operation/#maintenance)
+<br/>
+##### Change Default Maintenance HTML
+
+```
+Not translated yet
+```
 
 **1.4 Notice**
 

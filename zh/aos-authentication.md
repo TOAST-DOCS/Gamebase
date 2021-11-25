@@ -717,7 +717,9 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 
 ### Change Login with ForcingMappingTicket
 
-* Not translated yet
+```
+Not translated yet
+```
 
 **API**
 

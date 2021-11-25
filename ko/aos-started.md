@@ -498,7 +498,7 @@ android {
         * [https://github.com/nhn/toast.gamebase.unity.sample](https://github.com/nhn/toast.gamebase.unity.sample)
 * 게임이 시작되었을 때 Gamebase 클라이언트 SDK를 초기화 하고 로그인이 성공하면, 결제 재처리를 시작하고 푸시 토큰을 등록하세요.
 
-![overview flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.30.0.png)
+![overview flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.30.1.png)
 
 * 상세 flow 는 다음 링크에서 확인할 수 있습니다.
     * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler](./aos-etc/#gamebase-event-handler)

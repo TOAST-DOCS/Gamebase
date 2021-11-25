@@ -10,6 +10,7 @@
 [매터리얼 디자인 가이드 - Android Notification \[LINK\]](https://material.io/design/platform-guidance/android-notifications.html#anatomy-of-a-notification)
 
 단말기 해상도 별로 아이콘 사이즈도 정해져 있으므로 다음을 참고하여 푸시 아이콘을 준비하시기 바랍니다.
+
 * MDPI - 24 x 24  (drawable-mdpi)
 * HDPI - 36 x 36  (drawable-hdpi)
 * XHDPI - 48 x 48  (drawable-xhdpi)

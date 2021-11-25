@@ -255,7 +255,7 @@ Gamebase 콘솔에 등록된 점검 정보입니다.
 * message: 점검 사유
 
 [Game > Gamebase > 콘솔 사용 가이드 > 운영 > Maintenance](./oper-operation/#maintenance)
-
+<br/>
 ##### Change Default Maintenance HTML
 
 enablePopup과 enableLaunchingStatusPopup 값이 모두 true인 경우, 게임이 점검 상태라면 자동으로 점검 팝업이 표시됩니다.

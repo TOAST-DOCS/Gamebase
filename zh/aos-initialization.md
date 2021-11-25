@@ -252,6 +252,12 @@ LaunchingInfo对象中包含Gamebase Console中设置的值和游戏状态等。
 * message: 检查原因
 
 [Game > Gamebase > 控制台使用指南 > 运营 > Maintenance](./oper-operation/#maintenance)
+<br/>
+##### Change Default Maintenance HTML
+
+```
+Not translated yet
+```
 
 **1.4 Notice**
 

@@ -1,5 +1,13 @@
 ## Game > Gamebase > Android Developer's Guide > Push
 
+### Settings
+
+#### Android Notification Icon
+
+```
+Not translated yet
+```
+
 ### Register Push
 
 Call the following API to register the user for NHN Cloud Push.<br/>
