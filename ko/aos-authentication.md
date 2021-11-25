@@ -466,10 +466,7 @@ private static void onWithdraw(final Activity activity) {
 
 매핑은 다음 순서로 구현할 수 있습니다.
 
-![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
-
 #### 1. 로그인
-
 매핑은 현재 계정에 IdP 계정 연동을 추가하는 것이므로 우선 로그인이 돼 있어야 합니다.
 먼저 로그인 API를 호출해 로그인합니다.
 
@@ -481,7 +478,6 @@ private static void onWithdraw(final Activity activity) {
 
 * 축하합니다! 현재 계정과 연동중인 IdP 계정이 추가되었습니다.
 * 매핑에 성공해도 '현재 로그인 중인 IdP'가 바뀌지는 않습니다. 즉, Google 계정으로 로그인한 후, Facebook 계정 매핑 시도가 성공했다고 해서 '현재 로그인 중인 IdP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다.
-    * <font color="red">[주의]</font><br/> : Guest 계정은 예외입니다. Guest 계정으로 로그인한 상태에서 시도한 매핑이 성공했다면 Guest IdP는 **삭제**되고 '현재 로그인 중인 IdP'도 매핑 IdP로 변경됩니다.
 * 매핑은 단순히 IdP 연동만 추가해 줍니다.
 
 #### 2-2. 매핑이 실패한 경우
@@ -489,7 +485,7 @@ private static void onWithdraw(final Activity activity) {
 * 네트워크 오류
     * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **Gamebase.addMapping()**을 다시 호출하거나, 잠시 대기했다가 재시도 합니다.
 * 이미 다른 계정에 연동 중일 때 발생하는 오류
-    * 오류 코드가 **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**인 경우, 매핑하려는 IdP의 계정이 이미 다른 계정에 연동 중이라는 뜻입니다. 이때 획득한 **ForcingMappingTicket**으로 강제 매핑(**Gamebase.AddMappingForcibly()**)이나 로그인 계정 변경(**Gamebase.ChangeLogin()**)을 시도할 수 있습니다.
+    * 오류 코드가 **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**인 경우, 매핑하려는 IdP의 계정이 이미 다른 계정에 연동 중이라는 뜻입니다. 이미 연동된 계정을 해제하려면 해당 계정으로 로그인하여 **Gamebase.withdraw()**를 호출하여 탈퇴하거나 **Gamebase.removeMapping()**를 호출하여 연동을 해제한 후 다시 매핑을 시도하세요.
 * 이미 동일한 IdP 계정에 연동돼 발생하는 오류
     * 에러 코드가 **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)** 인 경우, 매핑하려는 IdP와 같은 종류의 계정이 이미 연동중이라는 뜻입니다.
         * Gamebase 매핑은 한 IdP당 하나의 계정만 연동 가능합니다. 예를 들어 PAYCO 계정에 이미 연동 중이라면 더 이상 PAYCO 계정을 추가할 수 없습니다.
