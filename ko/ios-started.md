@@ -202,6 +202,7 @@ end
 
 * URL Scheme 를 설정해야 합니다.
     * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.payco**를 추가해야 합니다.
+    * **Xcode > Target > Info > URL Types**에 **paycologinsdk**를 추가해야 합니다.
 
 #### Naver
 
