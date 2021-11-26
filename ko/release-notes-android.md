@@ -501,9 +501,9 @@ Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
         * 발급된 TransferAccountInfo를 사용하여 계정 이전을 요청하는 API (transferAccountWithIdPLogin)
         * 발급된 TransferAccountInfo를 확인하는 API (queryTransferAccount)
         * 이미 발급된 TransferAccountInfo 갱신하는 API (renewTransferAccount)        
-* 강제매핑 기능 추가: 이미 다른 계정에 연동 되어있는 IdP계정을 매핑할 수 있는 기능
+* 강제 매핑 기능 추가: 이미 다른 계정에 연동 되어있는 IdP계정을 매핑할 수 있는 기능
     * (SDK공통)추가된 API 
-        * 강제매핑하는 API (addMappingForcibly)
+        * 강제 매핑하는 API (addMappingForcibly)
 
 #### 기능 개선/변경
 * [SDK] 2.2.0

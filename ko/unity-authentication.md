@@ -684,7 +684,7 @@ public void ChangeLoginWithFacebook()
             // ForcingMappingTicket 클래스의 From() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
             GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
 
-            // ForcingMappingTicket의 UserID로 로그인 합니다.
+            // ForcingMappingTicket의 UserID로 로그인합니다.
             Gamebase.ChangeLogin(forcingMappingTicket, (authTokenForcibly, errorForcibly) =>
             {
                 if (Gamebase.IsSuccess(errorForcibly) == true)
