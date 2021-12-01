@@ -3,8 +3,8 @@
 ### 2.26.1 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.1/GamebaseSDK-Unreal.zip)
 
-#### 버그 수정
-* GamebaseDisplayLanguageCode 핀란드어 오타 수정
+#### Bug Fixes
+* Fixed a typo of Finnish language on GamebaseDisplayLanguageCode
     * Finish → Finnish
 
 ### 2.26.0 (2021.09.28)
@@ -21,7 +21,7 @@
 * Changed the internal launching URL
 * Removed Android multidex-related setting from Gamebase
 
-### 2.19.2(2021.06.29) 
+### 2.19.2 (2021.06.29)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.2/GamebaseSDK-Unreal.zip)
 
 #### Bug Fixes

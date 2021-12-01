@@ -234,18 +234,18 @@ See the below table for status codes:
 
 Refers to app information registered on Gamebase Console. 
 
-* idP: Authentication information 
+* accessInfo
     * serverAddress: Server address
 * customerService
-    * accessInfo : Customer center information
-    * type : customer center type
-    * url : Customer Center
+    * accessInfo : Customer Center contact information
+    * type : Customer Center type
+    * url : Customer Center URL
 * relatedUrls
-    * termsUrl: Terms of Service  
-    * personalInfoCollectionUrl: Consent to Personal Information 
-    * punishRuleUrl: Punishment regulations
+    * termsUrl: Terms of use
+    * personalInfoCollectionUrl: Agreement to collection of personal information
+    * punishRuleUrl: User ban rules
 * install: Installation URL
-* idP: ID Provider
+* idP: Authentication information
 
 [Console Guide](/Game/Gamebase/en/oper-app/#client)
 

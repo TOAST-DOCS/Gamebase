@@ -3,34 +3,33 @@
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 강제매핑 시 IdP 로그인을 한번 더 시도해야 하는 불편함을 개선한 새로운 강제매핑 API가 추가되었습니다.
+#### Added Features
+* Added a new forced mapping API, which removes the inconvenience of having to try IdP login once more when performing forced mapping.
     * **Gamebase.AddMappingForcibly(ForcingMappingTicket, GamebaseDataCallback\<AuthToken\>)**
-    * [Game > Gamebase > Unity SDK 사용 가이드 > 인증 > Mapping > Add Mapping Forcibly](./unity`-authentication/#add-mapping-forcibly)
+    * [Game > Gamebase > Unity SDK User Guide > Authentication > Mapping > Add Mapping Forcibly](./unity`-authentication/#add-mapping-forcibly)
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.30.0](./release-notes-android/#2300-20211123)
 * [Gamebase iOS SDK 2.30.0](./release-notes-ios/#2300-20211123)
 
 ### 2.29.0 (2021.11.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Unity SDK(0.23.5)
+#### Feature Updates
+* External SDK update: TOAST Unity SDK(0.23.5)
 * Setting Tool
-    * v2.0.0이 새로 배포되었습니다.
-    * 기존 SettingTool을 완전히 삭제한 후 재설치해야 합니다.
-    * 변경된 내용 및 사용 방법은 아래 가이드를 확인하십시오.
-        * [Game > Gamebase > Unity SDK 사용 가이드 > 시작하기 > Specification of Setting Tool](https://docs.toast.com/ko/Game/Gamebase/ko/unity-started/#specification-of-setting-tool)
+    * v2.0.0 has been released.
+    * You must reinstall the tool after removing the previous version of SettingTool completely.
+    * Refer to the guide below for what has changed and how to use it.
+        * [Game > Gamebase > Unity SDK User Guide > Getting Started > Specification of Setting Tool](https://docs.toast.com/ko/Game/Gamebase/ko/unity-started/#specification-of-setting-tool)
 
-#### 버그 수정
-* GamebaseDisplayLanguageCode 핀란드어 오타 수정
+#### Bug Fixes
+* Fixed a typo of Finnish language on GamebaseDisplayLanguageCode
     * Finish → Finnish
 
-#### 플랫폼 별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.29.0](./release-notes-android/#2290-20211109)
 * [Gamebase iOS SDK 2.29.0](./release-notes-ios/#2290-2021109)
-
 
 ### 2.28.1 (2021.10.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.1/GamebaseSDK-Unity.zip)

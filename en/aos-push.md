@@ -1,9 +1,35 @@
 ## Game > Gamebase > Android Developer's Guide > Push
 
+### Settings
+
+#### Android Notification Icon
+
+For the icon displayed when a push notification arrives, the app icon is used by default.
+
+However, a push icon on Android is displayed correctly only if the icon uses a solid color image with an alpha area applied.
+[Material Design Guide - Android Notification \[LINK\]](https://material.io/design/platform-guidance/android-notifications.html#anatomy-of-a-notification)
+
+Since the icon size is also fixed by device resolution, please refer to the following to prepare a push icon.
+* MDPI - 24 x 24  (drawable-mdpi)
+* HDPI - 36 x 36  (drawable-hdpi)
+* XHDPI - 48 x 48  (drawable-xhdpi)
+* XXHDPI - 72 x 72  (drawable-xxhdpi)
+* XXXHDPI - 96 x 96  (drawable-xxxhdpi)
+
+Push icon file names cannot include spaces, uppercase English characters, and special characters.
+
+You need to set **default_small_icon** (AndroidManifest.xml) or **setSmallIconName** (API) by referring to the following Notification Options guide.
+[Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
+[Game > Gamebase > Android SDK User Guide > Push > Notification Options > Set Notification Options with RegisterPush in Runtime](./aos-push/#set-notification-options-with-registerpush-in-runtime)
+
 ### Register Push
 
 Call the following API to register the user for NHN Cloud Push.<br/>
-Get the values of Accept push (enablePush), Accept advertisement push (enableAdPush), and Accept night advertisement push (enableAdNightPush) from the user, and call the following API to complete the registration.
+Get the values of consent to receiving push (enablePush), consent to receiving advertisement push (enableAdPush), and consent to receiving night-time advertisement push (enableAdNightPush) from the user, and call the following API to complete the registration.
+
+> <font color="red">[Caution]</font><br/>
+>
+> It is recommended to call the registerPush API every time after logging in because the push settings may be different for each UserID and the push token may expire.
 
 **API**
 
@@ -52,7 +78,7 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 Notification options can be set by defining them to AndroidManifest.xml.<br/>
 To find out how to set the options, see the following guide:
 
-[Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > Notification Options](./aos-started/)
+[Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
 
 #### Set Notification Options with RegisterPush in Runtime
 

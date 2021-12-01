@@ -34,8 +34,12 @@ Import the following header file to the ViewController you want to implement a p
 ### Register Push
 
 Call the following API to register the user for NHN Cloud Push.<br/>
-Get the values of Accept push (enablePush), Accept advertisement push (enableAdPush), and Accept night advertisement push (enableAdNightPush) from the user, and call the following API to complete the registration.
+Get the values of consent to receiving push (enablePush), consent to receiving advertisement push (enableAdPush), and consent to receiving night-time advertisement push (enableAdNightPush) from the user, and call the following API to complete the registration.
 
+> <font color="red">[Caution]</font><br/>
+>
+> It is recommended that you always call the registerPush API after logging in, because it is not certain when the push token will expire.
+>
 
 ```objectivec
 - (void)didLoginSucceeded {
@@ -52,7 +56,6 @@ Get the values of Accept push (enablePush), Accept advertisement push (enableAdP
             // To Register Push Failed.
         }
     }];
-
 }
 ```
 

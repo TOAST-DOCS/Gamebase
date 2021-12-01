@@ -496,14 +496,16 @@ android {
             * GamebaseManager.java file in the following link.
     * Unity Sample Project
         * [https://github.com/nhn/toast.gamebase.unity.sample](https://github.com/nhn/toast.gamebase.unity.sample)
-* Implement to reset the Gamebase client SDK at the start of the game and start to reprocess the payment after a successful login.
+* Initialize the Gamebase client SDK when the game starts, and if the login is successful, start reprocessing the payment and register the push token.
 
-![overview flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.19.0.png)
+![overview flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.30.0.png)
 
 * You can see the detailed flow in the following link:
+    * [Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Gamebase Event Handler](./aos-etc/#gamebase-event-handler)
     * [Game > Gamebase > Android SDK User Guide > Initialization > Initialization Flow](./aos-initialization/#initialization-flow)
     * [Game > Gamebase > Android SDK User Guide > Authentication > Login Flow](./aos-authentication/#login-flow)
     * [Game > Gamebase > Android SDK User Guide > Payment > Retry Transaction Flow](./aos-purchase/#retry-transaction-flow)
+    * [Game > Gamebase > Android SDK User Guide > Push > Register Push](./aos-push/#register-push)
 
 ## 3rd-Party Provider SDK Guide
 
