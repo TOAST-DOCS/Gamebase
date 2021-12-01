@@ -6,7 +6,7 @@
 #### 添加功能
 * 为了改善强制映射时需要再次尝试IdP登录的不便，添加了一个新的强制映射API。
     * [Game > Gamebase > iOS SDK使用指南 > 认证 > Add Mapping Forcibly](./ios-authentication/#add-mapping-forcibly)
-* 为了解决因使用特定IdP尝试映射，出现**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**错误的问题，添加了可将帐户转换为已有的帐户后登录的API。
+* 为了解决因使用特定IdP尝试映射，出现**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**错误的问题，添加了将帐户转换为已有的帐户后可进行登录的API。
     * [Game > Gamebase > iOS SDK使用指南 > 认证 > Change Login](./ios-authentication/#change-login)
 
 #### 修改程序错误

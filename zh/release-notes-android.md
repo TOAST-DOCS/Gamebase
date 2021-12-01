@@ -7,16 +7,16 @@
 * 为了改善强制映射时需要再次尝试IdP登录的不便，添加了一个新的强制映射API。
     * **Gamebase.addMappingForcibly(Activity, ForcingMappingTicket, GamebaseDataCallback\<AuthToken\>)**
     * [Game > Gamebase > Android SDK使用指南 > 认证 > Mapping > Add Mapping Forcibly](./aos-authentication/#add-mapping-forcibly) 
-* 为了解决调用Gamebase.addMapping()后出现AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)错误的问题，添加了可将帐户转换为已有的帐户后登录的API。
+* 为了解决调用Gamebase.addMapping()后出现AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)错误的问题，添加了将帐户转换为已有的帐户后可进行登录的API。
     * **Gamebase.changeLogin(Activity, ForcingMappingTicket, GamebaseDataCallback\<AuthToken\>)**
     * [Game > Gamebase > Android SDK使用指南 > 认证 > Mapping > Change Login with ForcingMappingTicket](./aos-authentication/#change-login-with-forcingmappingticket)
 
 #### 改善/修改功能
 * 外部SDK升级 : Hangame Android SDK(1.4.2)
-* 经过改善，现在用户可直接修改后使用Gamebase提供的”查看维护详情Webview”html。 
+* 改善后，用户可直接修改或使用Gamebase提供的”查看维护详情Webview”html。 
     * [Game > Gamebase > Android SDK使用指南 > 初始化 > Launching Information > 1. Launching > 1.3 Maintenance > Change Default Maintenance HTML](./aos-initialization/#change-default-maintenance-html)
 * 修改了即使设置DisplayLanguageCode也仍以终端机设置的语言显示维护Webview时间的错误。 
-* 已改善因以断开的连接尝试通信而反复出现网络通信错误的问题。
+* 改善了因以断开的连接尝试通信而反复出现网络通信错误的问题。
 
 ### 2.29.0 (2021.11.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-Android.zip)
@@ -34,7 +34,7 @@
 #### 改善/修改功能
 * 外部SDK升级 : TOAST Android SDK(0.27.4)
 * 只在DisplayLanguage指南上描述，实际上未包含在SDK的DisplayLanguage.Code类已被添加。
-    * [Game > Gamebase > Android SDK使用指南 > ETC > Display Language > Gamebase支持的语言代码种类](https://docs.toast.com/en/Game/Gamebase/en/aos-etc/#types-of-language-codes-supported-by-gamebase)
+    * [Game > Gamebase > Android SDK使用指南 > ETC > Display Language > Gamebase支持的语言代码种类](./aos-etc/#gamebase)
 
 ### 2.28.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-Android.zip)
