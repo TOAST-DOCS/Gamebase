@@ -150,7 +150,7 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 ## AppGuard
 
 > <font color="red">[중요]</font>
-> NHN Cloud AppGuard 서비스를 사용하는 경우에만 이용할 수 있습니다.
+> NHN Cloud의 동일한 프로젝트에 활성화한 NHN AppGuard 서비스를 사용하는 경우에만 이용할 수 있습니다
 
 ![gamebase_ban_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_09_202101.png)
 
@@ -168,7 +168,3 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 > [참고]
 >
 > AppGuard 연동으로 이용 정지가 자동으로 등록된 경우 등록 시스템에 '앱가드'로 등록됩니다.
-
-> [참고]
->
-> NHN Cloud의 동일한 프로젝트에 활성화한 NHN AppGuard 서비스에 대해서만 동작합니다.
