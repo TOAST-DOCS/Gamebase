@@ -165,3 +165,7 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 > [참고]
 >
 > AppGuard 연동으로 이용 정지가 자동으로 등록된 경우 등록 시스템에 '앱가드'로 등록됩니다.
+
+> [참고]
+>
+> 동일한 프로젝트에 활성화한 NHN Cloud AppGuard 서비스에 대해서만 동작합니다.
