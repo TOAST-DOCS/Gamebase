@@ -4,19 +4,24 @@ This document describes setting requirements to enable push notifications on eac
 
 ### Settings
 
-Regarding push settings on Android or iOS, see the following documents. <br/>
+For how to set up push on Android or iOS, refer to the following documents.
 
-* [Android Push Settings](aos-started/#firebase-notification)
-    * For a Firebase push, read the guide as below.
-        * In the guide, Unity build setting must be applied the same for Unreal.  
-            * For Android buildup, see the guide as reference so as to include the res/values/google-services-json.xml file. 
-            * File exists on the Plugins/Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xml path. 
-* [iOS Push Settings](ios-push#settings)
+* Android
+    * [Android Push Settings](aos-push/#settings)
+    * [Firebase Notification Settings](aos-started/#firebase-notification)
+        * When building for Android, the res/values/google-services-json.xml file must be included, so prepare the file by referring to the guide.
+        * The file is in the path Plugins/Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xml.
+* iOS
+    * [iOS Push Settings](ios-push#settings)
 
 ### Register Push
 
-Call the following API to register users for NHN Cloud Push. 
-Get a consent from user for EnablePush, EnableAdPush, and EnableAdNightPush, and call the following API to complete with registration. 
+Call the following API to register the user for NHN Cloud Push.
+Get the values of consent to receiving push (enablePush), consent to receiving advertisement push (enableAdPush), and consent to receiving night-time advertisement push (enableAdNightPush) from the user, and call the following API to complete the registration.
+
+> <font color="red">[Caution]</font><br/>
+>
+> It is recommended to call the registerPush API every time after logging in because the push settings may be different for each UserID and the push token may expire.
 
 **API**
 

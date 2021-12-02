@@ -23,13 +23,13 @@ Following settings are required for initialization.
 
 Project ID registered in NHN Cloud.
 
-[Console Guide](/Game/Gamebase/en/oper-app/#app)
+[Game > Gamebase > Console Guide > App > App](./oper-app/#app)
 
 #### 2. appVersion
 
 Client version registered in NHN Cloud.
 
-[Console Guide](/Game/Gamebase/en/oper-app/#client)
+[Game > Gamebase > Console Guide > App > Client](./oper-app/#client)
 
 #### 3. storeCode
 
@@ -44,17 +44,16 @@ Store information required to initialize In-App Purchase (IAP) of NHN Cloud.
 | Windows | WIN | only Unity Standalone |
 | Web | WEB | only Unity WebGL and JavaScript |
 
-
 #### 4. displayLanguageCode
 
 The display language on the Gamebase UI and SystemDialog can be changed into another language, which is not set on a device, as the user wants. 
 
-[Display Language](./unity-etc/#display-language)
+[Game > Gamebase > Unity SDK User Guide > ETC > Additional Features > Display Language](./unity-etc/#display-language)
 
 #### 5. enablePopup
 
 When a game user cannot play games due to system maintenance or banned from use, reasons need to be displayed by pop-ups.
-This setting regards to applying default pop-ups provided by Gamebase SDK.
+This setting is related to applying default pop-ups provided by Gamebase SDK.
 
 * True: Pop-ups are exposed depending on the setting of enableLaunchingStatusPopup and enableBanPopup.
 * False: All pop-ups provided by Gamebase are not exposed.
@@ -62,20 +61,20 @@ This setting regards to applying default pop-ups provided by Gamebase SDK.
 
 #### 6. enableLaunchingStatusPopup
 
-This setting regards to applying default pop-ups provided by Gamebase, when the LaunchingStatus is disabled to play games.
+This setting is related to applying default pop-ups provided by Gamebase, when the LaunchingStatus is disabled to play games.
 For LaunchingStatus, refer to Status/Code below Launching.
 
 * Default: True
 
 #### 7. enableBanPopup
 
-This setting regards to applying default pop-ups provided by Gamebase, when the game user has been banned.
+This setting is related to applying default pop-ups provided by Gamebase, when the game user has been banned.
 
 * Default: True
 
 #### 8. enableKickoutPopup
 
-The setting regards to enabling default Gamebase popups, when Kickout event is received by the Gamebase server. 
+The setting is related to enabling default Gamebase popups, when Kickout event is received by the Gamebase server. 
 
 * Default: true
 
@@ -84,7 +83,7 @@ The setting regards to enabling default Gamebase popups, when Kickout event is r
 
 Sender ID to use FCM (Firebase Cloud Messaging).
 
-![FCM Sender ID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
+![FCM Sender ID](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
 
 #### 10. useWebview
 
@@ -248,7 +247,7 @@ This LaunchingInfo object contains settings of the NHN Cloud Gamebase Console an
 
 #### 1. Launching
 
-Launching information of Gameabse.
+Launching information of Gamebase.
 
 **1.1 Status**
 
@@ -259,38 +258,41 @@ Status information of game app version set in the Gamebase Unity SDK initializat
 
 For game status codes, refer to the table below.
 
-| Status                      | Status Code | Description                                    |
-| --------------------------- | ----------- | ---------------------------------------- |
-| IN_SERVICE | 200 | Service is now normally provided |
-| RECOMMEND_UPDATE | 201 | Update is recommended |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202 | Under maintenance now but QA user service is available. |
-| IN_TEST                     | 203  | Under test |
+| Status                      | Code | Description                              |
+| --------------------------- | ---- | ---------------------------------------- |
+| IN_SERVICE                  | 200  | Service is provided normally                                 |
+| RECOMMEND_UPDATE            | 201  | Update is recommended                                  |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202  | The service cannot be used during maintenance, but if the device is registered as a QA device, you can access and test the service regardless of maintenance status. |
+| IN_TEST                     | 203  | Test in progress |
 | IN_REVIEW                   | 204  | Review in progress |
-| REQUIRE_UPDATE | 300 | Update is required |
-| BLOCKED_USER | 301 | User whose access has been blocked. |
-| TERMINATED_SERVICE | 302 | Service has been terminated |
-| INSPECTING_SERVICE | 303 | Under maintenance now |
-| INSPECTING_ALL_SERVICES | 304 | Under maintenance for the whole service |
-| INTERNAL_SERVER_ERROR | 500 | Error of internal server |
+| IN_BETA                     | 205  | Beta server environment |
+| REQUIRE_UPDATE              | 300  | Update is required                                  |
+| BLOCKED_USER                | 301  | The service has been accessed with a device (device key) registered as access blocked. |
+| TERMINATED_SERVICE          | 302  | Service has been terminated                                   |
+| INSPECTING_SERVICE          | 303  | Service maintenance in progress                                 |
+| INSPECTING_ALL_SERVICES     | 304  | The whole service maintenance in progress                              |
+| INTERNAL_SERVER_ERROR       | 500  | Internal server error                                 |
 
-[Console Guide](/Game/Gamebase/en/oper-app/#app)
+[Game > Gamebase > Console Guide > App > App](./oper-app/#app)
 
 **1.2 App**
 
 App information registered in the NHN Cloud Console.
 
 * accessInfo
-    * serverAddress: Address of the server
-    * csInfo: Customer center information
+    * serverAddress: Server address
+* customerService
+    * accessInfo : Customer Center contact information
+    * type : Customer Center type
+    * url : Customer Center URL
 * relatedUrls
-    * termsUrl: Terms of Use
-    * personalInfoCollectionUrl: Agreement to Personal Information
-    * punishRuleUrl: Rules of Punishment
-    * csUrl: Customer Center
+    * termsUrl: Terms of use
+    * personalInfoCollectionUrl: Agreement to collection of personal information
+    * punishRuleUrl: User ban rules
 * install: Installation URL
-* idP: ID Provider
+* idP: Authentication information
 
-[Console Guide](/Game/Gamebase/en/oper-app/#client)
+[Game > Gamebase > Console Guide > App > Client](./oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -302,7 +304,18 @@ Maintenance information registered in the NHN Cloud Console is as follows.
 * endDate: End time
 * message: Purpose of maintenance
 
-[Console Guide](/Game/Gamebase/en/oper-operation/#maintenance)
+[Game > Gamebase > Console Guide > Operation > Maintenance](./oper-operation/#maintenance)
+
+##### Change Default Maintenance HTML
+
+If both the `enablePopup` and `enableLaunchingStatusPopup` values are `true`, a maintenance popup will be automatically displayed if the game is in maintenance status.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_popup_android_2.30.0.png)
+
+If you click the **DETAILS** button here, the maintenance information is automatically displayed in a webview.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_webview_android_2.30.0.png)
+
+If you want to modify the displayed HTML file, download the HTML file from the following link, modify it as you need, and place it in the 'Assets > StreamingAssets > Gamebase' folder. Then the HTML file will be used to display maintenance information instead of the default HTML file included in the Gamebase SDK.
+[HTML file download link](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
 
 **1.4 Notice**
 
@@ -312,7 +325,7 @@ Following notices are registered in the Gamebase Console.
 * title: Title
 * url: Maintenance url
 
-[Console Guide](/Game/Gamebase/en/oper-operation/#notice)
+[Game > Gamebase > Console Guide > Operation > Notice](./oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -331,7 +344,7 @@ IAP store information registered in the NHN Cloud Console.
 * name: App Name
 * storeCode: Store Code
  
-[Console Guide](/Game/Gamebase/en/oper-purchase/)
+[Game > Gamebase > Console Guide > Purchase](./oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -340,7 +353,7 @@ Refers to user-input information on NHN Cloud Launching Console.
 * Deliver user-input values via JSON string. 
 * For detail setting of NHN Cloud Launching, see the guide as below. 
  
-[Console Guide](/Game/Gamebase/en/oper-management/#config)
+[Game > Gamebase > Console Guide > Management > Config](./oper-management/#config)
 
 ### Get Launching Information
 
