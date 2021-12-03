@@ -1,4 +1,4 @@
-## Game > Gamebase > iOS SDK 使用指南 > UI
+## Game > Gamebase > iOS SDK使用指南 > UI
 
 ## ImageNotice
 
@@ -8,7 +8,7 @@
 
 ### Show ImageNotices
 
-将图片通知显示在页面上。
+在页面上显示图片通知。
 
 #### Required参数
 * viewController : 为显示图片通知的ViewController。
@@ -37,7 +37,7 @@
 
 ### Custom ImageNotices
 
-将自定义图片通知显示在页面上。
+在页面上显示自定义图片通知。
 通过TCGBImageNoticeConfiguration可创建自定义图片通知。
 
 ```objectivec
@@ -102,15 +102,17 @@
 
 ### showTermsView
 
-在页面显示条款窗。
-用户已同意条款时，在服务器中注册”同意与否“。
+在页面上显示条款窗。
+用户已同意条款时，在服务器中注册”同意与否“。  
 如果已同意条款，即使重新调用showTermsView API，也不显示条款窗，而直接返还“成功回调”。
 但，如果在Gamebase控制台中将”重新同意条款”项目更改为**必须**，用户再次同意条款之前一直显示条款窗。
 
 > <font color="red">[注意]</font><br/>
 >
-> 如果在条款中添加了”是否同意接收推送”，可从TCGBDataContainer生成TCGBPushConfiguration。
-> 若TCGBPushConfiguration不为nil，则**登录后**调用[TCGBPush registerPushWithConfiguration:completion:] API。
+> * 如果在条款中已添加”是否同意接收推送”，可从TCGBDataContainer创建TCGBPushConfiguration。
+> * 未显示条款窗时，PushConfiguration为nil。(显示条款窗时，始终返还有效的对象。) 
+> * PushConfiguration.pushEnabled值始终为true。 
+> * 如果TCGBPushConfiguration不是nil，请**登录后**调用[TCGBPush registerPushWithConfiguration:completion:] API。
 >
 
 #### Required参数
@@ -132,7 +134,7 @@
 | Error Code | Description |
 | --- | --- |
 | TCGB\_ERROR\_NOT\_INITIALIZED(1) | 未初始化Gamebase。|
-| TCGB\_ERROR\_LAUNCHING\_SERVER\_ERROR(2001) | 是从启动服务器返还的项目不包含相关条款内容时出现的错误。<br/>出现该问题时，请联系Gamebase负责人员。|
+| TCGB\_ERROR\_LAUNCHING\_SERVER\_ERROR(2001) | 是从启动服务器返还的项目不包含相关条款内容时出现的错误。<br/>出现此问题时，请联系Gamebase负责人员。|
 | TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 上一次调用的Terms API未完成。<br/>请稍后再试。|
 | TCGB\_ERROR\_WEBVIEW\_TIMEOUT(7002) | 显示条款Webview时出现超时错误。|
 | TCGB\_ERROR\_WEBVIEW\_HTTP\_ERROR(7003) | 打开条款Webview时出现HTTP错误。|
@@ -166,7 +168,7 @@
 
 ### queryTerms
 
-Gamebase通过Webview，以简单形式显示条款。 
+Gamebase通过Webview以简单形式显示条款。 
 如果要创建符合游戏UI的条款窗，可通过调用queryTerms API，获取在Gamebase控制台中注册的条款信息后使用。
 
 如果登录后调用，则可确认游戏用户是否同意条款。 
@@ -177,7 +179,7 @@ Gamebase通过Webview，以简单形式显示条款。
 >     * 这是因为必要项目将始终保存为true，不需要保存。
 > * 因”是否接收推送”没有被存储在gamebase服务器中，agreed值将始终返回为false。
 >     * 如需查看用户”是否接收推送”，请调用[TCGBPush queryTokenInfoWithCompletion:] API 。 
-> * 如果在控制台中未设置”基本条款”的状态下，使用与条款语言不同的国家代码在设置的终端机上调用queryTerms API，则将出现**TCGB_ERROR_UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误
+> * 如果在控制台中未设置”基本条款”的状态下，使用与条款语言不同的国家代码在设置的终端机上调用queryTerms API，则将出现**TCGB_ERROR_UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误。
 >     * 在控制台中设置”基本条款”或出现**TCGB_ERROR_UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误时，请不要显示条款。
 
 #### Required参数
@@ -241,10 +243,10 @@ Gamebase通过Webview，以简单形式显示条款。
 | agreePush            | String                | 是否同意接收广告性推送通知<br/> - NONE : 不同意。<br/> - ALL : 全部同意。<br/> - DAY : 同意白天接收推送通知。<br/> - NIGHT : 同意夜间接收推送通知。          |
 | agreed               | BOOL                  | 用户是否同意相关条款项目            |
 | node1DepthPosition   | int                   | 显示第1阶段项目的顺序             |
-| node2DepthPosition   | int                   | 显示第2阶段项目的顺序<br/> 没有时 -1           |
-| detailPageUrl        | String                | 详细查看条款URL<br/> 未设置时没有字段。           |
+| node2DepthPosition   | int                   | 显示第2阶段项目的顺序<br/> 没有 -1           |
+| detailPageUrl        | String                | 查看条款URL详情<br/> 未设置时没有字段。           |
 
-
+   
 ### updateTerms
 
 如果使用调用queryTerms API后被返回的条款信息创建了UI，
@@ -261,7 +263,7 @@ Gamebase通过Webview，以简单形式显示条款。
 
 #### Required参数
 * viewController : 是最上级ViewController。
-* configuration : 是将要在服务器中注册的用户的可选条款信息。
+* configuration : 要向服务器注册的用户的可选条款信息。
  
 #### Optional参数
 
@@ -313,7 +315,7 @@ Gamebase通过Webview，以简单形式显示条款。
 | -------------------- | -------------------------- | ------------------------- | ------------------- |
 | termsVersion         | **M**                      | String                    | 条款版本<br/>需要传送调用queryTerms API时获取的值。   |
 | termsSeq             | **M**                      | int                       | 所有条款KEY<br/>通过调用queryTerms API，需要传送获取的值。              |
-| contents             | **M**                      | Array< TCGBTermsContent > | 用户同意可选条款的信息 |
+| contents             | **M**                      | Array< TCGBTermsContent > | 用户同意可选条款的信息。 |
 
 #### TCGBTermsContent
 
@@ -537,7 +539,7 @@ Gamebase支持基本WebView。<br/>
 
 ## Toast
 
-可以使用以下API轻松显示 [Android toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)消息。<br/>
+可以使用以下API轻松显示[Android toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)消息。<br/>
 可以设置简单的消息和显示时间。
 
 ```objectivec
