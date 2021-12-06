@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         String appId = "T0aStC1d";
         String appVersion = "1.0.0";
         String storeCode = "GG";
-        GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(appId, appVersio, storeCode)
+        GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(appId, appVersion, storeCode)
                                             .enableLaunchingStatusPopup(true)
                                             .build();
         /**
