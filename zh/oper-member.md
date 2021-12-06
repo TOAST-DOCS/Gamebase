@@ -19,7 +19,7 @@ IdP ID是Id Provider提供的ID信息，这意味着Id Provider中的唯一标�
 
 - **用户ID** : Gamebase用户ID
 - **国家代码(USIM)** : 使用用户终端机中的USIM国家代码进行搜集的结果为失败时，将显示为”ZZ”。如果您想查看代码，请查看底部的**登录历史**。
-- **最后登录的时间** : 用户最后登录的时间
+- **最后登录的时间** : 用户最后登录的时间   
 - **参加日期** : 用户最初登录的时间
 - **账户状态**
   - **一般** : 一般用户
@@ -31,9 +31,9 @@ IdP ID是Id Provider提供的ID信息，这意味着Id Provider中的唯一标�
 
 **Identity Provider **
 
-Gamebase允许多个外部IdP协同工作。 换句话说，用户可以通过使用一个用户ID注册Facebook和Google两个IDP来登录。SDK在调用**Login using a specific IdP**或'**Add Mapping** API时注册IdP。
+Gamebase允许多个外部IdP协同工作。换句话说，用户可以通过使用一个用户ID注册Facebook和Google两个IDP来登录。SDK在调用**Login using a specific IdP**或'**Add Mapping** API时注册IdP。
 
-- **IdP** : 外部 IdP(guest, Facebook, PAYCO, Google 等)
+- **IdP** : 外部IdP(guest, Facebook, PAYCO, Google 等)
 - **Idp ID** : 外部IdP提供的ID(Facebook no, PAYCO ID等)
 - **注册日期** : 用户首次注册IdP的时间
 
@@ -62,7 +62,7 @@ Gamebase允许多个外部IdP协同工作。 换句话说，用户可以通过�
 ### Login History
 ![gamebase_member_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_05_201812.png)
 
-查询被查询用户的登录历史记录。
+查看查询用户的登录历史记录。
 查询时最初可以查询最近1天，您还可以输入想查询的日期来进行查询。但，仅提供过去3个月（90天）的历史记录。
 SDK调用与登录相关的API时会添加历史记录。
 
@@ -74,7 +74,7 @@ SDK调用与登录相关的API时会添加历史记录。
 - **Device Country Code** : 用户登录时在设备上设置的国家代码
 - **USIM Country Code** : 用户登录时在USIM卡上设置的国家代码
 - **Telecom** : 用户登录时使用的运营商信息
-- **Network** : 用户登录的网络类型(Wi-Fi/3G/LTE 等)
+- **Network** : 用户登录的网络类型(Wi-Fi/3G/LTE等)
 - **Language Code** : 用户登录时在终端中设置的语言代码信息
 - **Store Code** : 用户下载应用的商店信息
 - **Client Version** : 应用下载时的客户端版本信息
@@ -84,27 +84,27 @@ SDK调用与登录相关的API时会添加历史记录。
 ### Mapping History
 ![gamebase_member_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_06_201812.png)
 
-查询被查询用户的Mapping，解除Mapping的历史记录。 最长可查看日期为三个月（90天）。
+查看查询用户的Mapping，解除Mapping的历史记录。可查看的最长日期为三个月（90天）。
 
 * **IdP ID** : 登录IdP时使用的ID信息
 * **IdP** : Mapping IdP信息
-* **日期** : IdP ID和 Gamebase ID Mapping映射操作的时间
+* **日期** : IdP ID和Gamebase ID Mapping映射操作的时间
 * **Type** : Mapping操作的详细信息
   - AAM : 添加Mapping
   - ARM : 删除Mapping
   - AFR : 强制删除Mapping
   - GMG : 创建guest帐户
-  - OMG : 创建IdP 账户
+  - OMG : 创建IdP账户
 
-点击Mapping的IDP历史记录可显示基于IdP 映射到Gamebase ID的历史记录。
+点击Mapping的IDP历史记录可显示基于IdP映射到Gamebase ID的历史记录。
 ![gamebase_member_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_07_201812.png)
 
 ### Purchase History
 ![gamebase_member_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_08_201812.png)
-查询被查询用户的购买记录。
-您可以输入要查看的日期，可以查看的最长日期为一个月（30天）。
+查看查询用户的购买记录。
+您可以输入要查看的日期。可查看的最长日期为一个月（30天）。
 
-- **Transaction ID** : 用于区分Gamebase内支付的唯一编号
+- **Transaction ID** : 用于区分Gamebase内支付的唯一编号。
 - **商店** : 已付款的商店信息
 - **道具名称** : 用户在APP内购买的实际item名称
 - **价格** : 用户购买的item价格
@@ -118,55 +118,57 @@ SDK调用与登录相关的API时会添加历史记录。
 ### Ban History
 ![gamebase_member_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_09_201812.png)
 
-查询被查询用户的禁用记录。
+查看查询用户的停止使用记录。
 
-您可以输入要查看的日期，可以查看的最长日期为一个月（30天）。
+您可以输入要查看的日期。可查看的最长日期为一个月（30天）。
 
-- **开始日期** : 用户禁用应用程序开始时间
-- **结束日期** : 解除禁用的时间
+- **开始日期** : 适用用户禁用的开始时间
+- **结束日期** : 解除用户禁用的时间
 - **模板** : 添加用户禁用时使用的模板名称
 - **原因** : 管理员禁用用户的实际原因信息
-- **添加人/添加日期** : 管理员/系统信息以及日期和时间
-- **解除原因** : 管理员解除禁用时输入的解除原因
-- **解除禁用人/解除日期** : 管理员/系统信息以及日期和时间
+- **添加人/添加日期** : 管理员/系统信息、日期、时间
+- **解除理由** : 管理员解除禁用时输入的解除原因
+- **解除注册者/解除注册日期** : 管理员/系统信息、日期、时间
 
 ### Playtime
 
 ![gamebase_member_10_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_10_201812.png)
-按日期查询被查询用户的游戏时间。
-您可以输入要查看的日期，可以查看的最长日期为一个月（30天）。
+按日期查看被查询用户的游戏时间。
+您可以输入要查看的日期，可查看的最长日期为一个月（30天）。
 
 ### Withdraw History
-![image alt](https://static.toastoven.net/prod_gamebase/gamebase_member_11_202006.png)
-如果查询的用户是退出的用户，则会显示退出记录。
+![gamebase_member_11_202006](https://static.toastoven.net/prod_gamebase/gamebase_member_11_202006.png)
+如果查看的用户为已退出的用户，则显示退出历史。
+只在查看已退出或预约退出的用户时显示此菜单，而可在此菜单上查看用户的详细退出明细。 
 
 ## Transfer account
+只在使用**转移账户**功能时才能使用。[启用转移账户功能](./oper-app/#transfer-account)
+可以查询游戏用户的转移账户密钥的发放和验证历史。可以解除被禁用的密钥或重新发放过期的密钥。
 
-仅当使用**转移终端机**功能时可使用。[启用转移终端机功能](./oper-app/#transfer-account)
-可确认游戏用户的终端机转移密钥的发放及验证历史。可解除对密钥的阻止或重新发放到期的密钥。
+![gamebase_member_transferaccount_01_202107.png](https://static.toastoven.net/prod_gamebase/gamebase_member_transferaccount_01_202107.png)
+**转移账户发放密钥**
 
-![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_TransferAccount1_1.0.png)
-**终端机转移发放密钥**
-- **ID**：向游戏用户发放的终端机转移ID
-- **发放日期**：终端机转移ID的发放日期
-- **到期日期**：发放的终端机转移ID的到期日期
-- **状态**：发放的终端机转移ID的当前状态
-  - <font color="white" style="background-color:#88C637">正常</font>：发放的终端机密钥为正常状态。使用该密钥可转移终端机。
-  - <font color="white" style="background-color:#FB8F37">阻止</font>：发放的终端机密钥为阻止状态。使用发放密钥不可转移终端机。
-  - <font color="white" style="background-color:#A1A1A1">到期</font>：发放的密钥为使用期到期的状态。使用发放密钥不可转移终端机。
+- **ID** : 发给游戏用户的转移账户ID
+- **发行日期** : 发放转移账户ID的日期
+- **有效日期** : 发放的转移账户ID的到期日期
+- **状态** : 发放的转移账户ID的现状态
+  - <font color="white" style="background-color:#88C637">正常</font>: 发放的密钥为正常状态。通过使用相关密钥，可转移账户。 
+  - <font color="white" style="background-color:#FB8F37">阻止</font>: 发放的密钥为阻止状态。使用发放的密钥无法转移账户。
+  - <font color="white" style="background-color:#A1A1A1">过期</font>: 发放的密钥已过期。使用发放的密钥无法转移账户。
 
-**终端机转移历史**
-可查询发放给该游戏用户的密钥的历史。
-默认选择最近一次发放的密钥，若选择其他密钥，可查询所选密钥的历史。
 
-### 重新发放终端机转移
-单击**重新发放**按钮，可重新发放新的终端机转移密钥。若重新发放，之前发放的密钥无法继续使用。
-![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_TransferAccount_Renewal1_1.0.png)
+**转移账户历史**
+可查看发给相关游戏用户的密钥历史。
+最近发放的密钥将已被选择，而若选择其他密钥，可查看所选的密钥历史。
 
-- **重新发放ID、密码** : ID、密码全部重新发放。
-- **重新发放密码**：ID仍使用之前发放的ID，仅重新发放密码。
+### 重新发放转移账户
+单击**重新发放**按钮，可重新发放新的转移账户密钥。若重新发放，以前发放的密钥无法继续使用。
+![gamebase_member_transferaccount_02_202107.png](https://static.toastoven.net/prod_gamebase/gamebase_member_transferaccount_02_202107.png)
 
-#### 重新发放时注意事项
+- **重新发放ID和密码** : ID和密码全部重新发放。
+- **重新发放密码**：ID仍使用以前发放的ID，仅重新发放密码。
+
+#### 重新发放时的注意事项
 - 密码在重新发放时仅显示一次，因此进行重新发放后，请务必另行保存相应信息。
 - 若未能保存，无其他找回密码的方法，因此应再次进行重新发放。
 - 到期的密钥更新到期日期，但账户状态为正常/阻止时，到期日期不更新。
