@@ -574,7 +574,7 @@ private static void addMappingForFacebook(final Activity activity) {
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | AuthProviderCredentialConstants.PROVIDER_NAME | IdPタイプの設定                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)の設定<br/>Google認証の場合は使用しない  |                                          |
-| AuthProviderCredentialConstants.AUTHORIZATION_CODE | Googleログイン後に取得できるOTOC(one time authorization code)の入力 |                                          |
+| AuthProviderCredentialConstants.AUTHORIZATION_CODE | Googleログイン後に取得できるOTAC(one time authorization code)の入力 |                                          |
 
 > [参考]
 >

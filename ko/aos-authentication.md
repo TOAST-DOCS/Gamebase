@@ -577,8 +577,8 @@ private static void addMappingForFacebook(final Activity activity) {
 | keyname                                  | a use                                    | 값 종류                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | AuthProviderCredentialConstants.PROVIDER_NAME | IdP 유형 설정                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
-| AuthProviderCredentialConstants.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰)설정.<br/>Google 인증 시에는 사용 안 함. |                                          |
-| AuthProviderCredentialConstants.AUTHORIZATION_CODE | Google 로그인 이후 획득할 수 있는 OTOC(one time authorization code) 입력 |                                          |
+| AuthProviderCredentialConstants.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정.<br/>Google 인증 시에는 사용 안 함. |                                          |
+| AuthProviderCredentialConstants.AUTHORIZATION_CODE | Google 로그인 이후 획득할 수 있는 OTAC(one time authorization code) 입력 |                                          |
 
 > [참고]
 >
@@ -692,7 +692,7 @@ private static void addMappingForciblyFacebook(final Activity activity) {
                 return;
             }
 
-            // 우선 addMapping API 호출 및, 이미 연동되어있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
+            // 우선 addMapping API 호출 및 이미 연동되어 있는 계정으로 매핑을 시도하여, 다음과 같이 ForcingMappingTicket을 얻을 수 있습니다.
             if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
                 // ForcingMappingTicket 클래스의 from() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
                 final ForcingMappingTicket forcingMappingTicket = ForcingMappingTicket.from(exception);
@@ -722,7 +722,7 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 
 ### Change Login with ForcingMappingTicket
 
-특정 IdP에 이미 매핑되어 있는 계정이 있을 때, 현재 계정을 로그아웃 하고 이미 매핑되어 있던 해당 계정으로 로그인 합니다.
+특정 IdP에 이미 매핑되어 있는 계정이 있을 때, 현재 계정을 로그아웃하고 이미 매핑되어 있던 해당 계정으로 로그인합니다.
 이때, AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
 
 Change Login API 호출이 실패하는 경우, Gamebase 로그인 상태는 기존의 UserID로 유지됩니다.
@@ -755,7 +755,7 @@ private static void changeLoginFacebook(final Activity activity) {
                 // ForcingMappingTicket 클래스의 from() 메소드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
                 final ForcingMappingTicket forcingMappingTicket = ForcingMappingTicket.from(exception);
 
-                // ForcingMappingTicket의 UserID로 로그인 합니다.
+                // ForcingMappingTicket의 UserID로 로그인합니다.
                 Gamebase.changeLogin(activity, forcingMappingTicket, new GamebaseDataCallback<AuthToken>() {
                     @Override
                     public void onCallback(AuthToken data, GamebaseException changeLoginException) {
@@ -1258,11 +1258,11 @@ public static void testLogin() {
 |                | AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | 이미 같은 IdP에 매핑돼 있습니다.                     |
 |                | AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO   | 3304       | IdP 정보가 유효하지 않습니다. (Console에 해당 IdP 정보가 없습니다.) |
 |                | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP    | 3305       | 게스트 IdP로는 AddMapping이 불가능합니다. |
-| Add Mapping Forcibly | AUTH_ADD_MAPPING_FORCIBLY_NOT_EXIST_KEY         | 3311       | 강제매핑키(ForcingMappingKey)가 존재하지 않습니다. <br/>ForcingMappingTicket을 다시 한번 확인해주세요. |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_ALREADY_USED_KEY      | 3312       | 강제매핑키(ForcingMappingKey)가 이미 사용되었습니다. |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_EXPIRED_KEY           | 3313       | 강제매핑키(ForcingMappingKey)의 유효기간이 만료되었습니다. |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_IDP         | 3314       | 강제매핑키(ForcingMappingKey)가 다른 IdP에 사용되었습니다. <br/>발급받은 ForcingMappingKey는 같은 IdP에 강제 매핑을 시도 하는데 사용됩니다. |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_AUTHKEY     | 3315       | 강제매핑키(ForcingMappingKey)가 다른 계정에 사용되었습니다. <br/>발급받은 ForcingMappingKey는 같은 IdP 및 계정에 강제 매핑을 시도 하는데 사용됩니다. |
+| Add Mapping Forcibly | AUTH_ADD_MAPPING_FORCIBLY_NOT_EXIST_KEY         | 3311       | 강제 매핑 키(ForcingMappingKey)가 존재하지 않습니다. <br/>ForcingMappingTicket을 다시 한번 확인해주세요. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_ALREADY_USED_KEY      | 3312       | 강제 매핑 키(ForcingMappingKey)가 이미 사용되었습니다. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_EXPIRED_KEY           | 3313       | 강제 매핑 키(ForcingMappingKey)의 유효기간이 만료되었습니다. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_IDP         | 3314       | 강제 매핑 키(ForcingMappingKey)가 다른 IdP에 사용되었습니다. <br/>발급받은 ForcingMappingKey는 같은 IdP에 강제 매핑을 시도 하는데 사용됩니다. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_AUTHKEY     | 3315       | 강제 매핑 키(ForcingMappingKey)가 다른 계정에 사용되었습니다. <br/>발급받은 ForcingMappingKey는 같은 IdP 및 계정에 강제 매핑을 시도 하는데 사용됩니다. |
 | Remove Mapping | AUTH\_REMOVE\_MAPPING\_FAILED            | 3401       | 매핑 삭제에 실패했습니다.                           |
 |                | AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | 마지막에 매핑된 IdP는 삭제할 수 없습니다.                |
 |                | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP   | 3403       | 현재 로그인되어 있는 IdP입니다.                      |

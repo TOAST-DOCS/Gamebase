@@ -115,6 +115,13 @@ Need to call launching status after Gamebase is initialized.
 
 With the launchingInformations API, you can get the LaunchingInfo object after initialization.
 
+> <font color="red">[Caution]</font><br/>
+>
+> The launchingInformations API is not an asynchronous API that retrieves information from the server in real time.
+> It returns cached information updated every 2 minutes, so it is not suitable for real-time checking of the current status.
+> In that case, use GamebaseEventHandler, which triggers an event when the Launching Status Code is changed.
+> [Game > Gamebase > iOS SDK User Guide  > ETC > Additional Features > Gamebase Event Handler > Observer](./ios-etc/#observer)
+
 **API**
 
 ```objectivec
@@ -154,27 +161,26 @@ Refer to the table for status codes:
 | INSPECTING_ALL_SERVICES     | 304  | Under maintenance for the whole service.                              |
 | INTERNAL_SERVER_ERROR       | 500  | Error of internal server.                                 |
 
-
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Game > Gamebase > Console Guide > App > App](./oper-app/#app)
 
 **1.2 App**
 
 This is information about apps registered in the Gamebase Console.
 
 * accessInfo
-    * serverAddress: server address
+    * serverAddress: Server address
 * customerService
-    * accessInfo : Customer Center contact
+    * accessInfo : Customer Center contact information
     * type : Customer Center type
     * url : Customer Center URL
 * relatedUrls
-    * termsUrl: Terms and Conditions
-    * personalInfoCollectionUrl: privacy agreement
-    * punishRuleUrl: user ban rules
-* install: installation URL
-* idP: authentication information
+    * termsUrl: Terms of use
+    * personalInfoCollectionUrl: Agreement to collection of personal information
+    * punishRuleUrl: User ban rules
+* install: Installation URL
+* idP: Authentication information
 
-[Console Guide] (/Game/Gamebase/ko/oper-app/#client)
+[Game > Gamebase > Console Guide > App > Client](./oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -186,7 +192,16 @@ This is information about maintenance registered in the Gamebase Console.
 * endDate: End time
 * message: Cause of maintenance
 
-[Console Guide] (/Game/Gamebase/ko/oper-operation/#maintenance)
+[Game > Gamebase > Console Guide > Operation > Maintenance](./oper-operation/#maintenance)
+
+##### Change Default Maintenance HTML
+
+If both the `enablePopup` and `enableLaunchingStatusPopup` values are `true`, a maintenance popup will be automatically displayed if the game is in maintenance status.
+If you click the **DETAILS** button here, the maintenance information is automatically displayed in a webview.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_webview_android_2.30.0.png)
+
+If you want to modify the displayed HTML file, download the HTML file from the following link, modify it as you need, and add it as the **gamebase-maintenance.html** file in `Copy Bundle Resources` of the Xcode project.
+[HTML file download link](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
 
 **1.4 Notice**
 
@@ -196,7 +211,7 @@ This is information about notification registered in the Gamebase Console.
 * title: Title
 * url: Maintenance URL
 
-[Console Guide] (/Game/Gamebase/ko/oper-operation/#notice)
+[Game > Gamebase > Console Guide > Operation > Notice](./oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -215,7 +230,7 @@ This is information about IAP stores registered in the NHN Cloud console.
 * name: App Name
 * storeCode: Store Code
 
-[Console Guide] (/Game/Gamebase/ko/oper-purchase/)
+[Game > Gamebase > Console Guide > Purchase](./oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -224,7 +239,7 @@ The information users entered in the NHN Cloud Launching Console.
 * The value entered by users is sent as a JSON string.
 * See the guide below for the detailed NHN Cloud Launching settings.
 
-[Console Guide] (/Game/Gamebase/ko/oper-management/#config)
+[Game > Gamebase > Console Guide > Management > Config](./oper-management/#config)
 
 
 ### Handling Unregistered Version
@@ -248,13 +263,6 @@ If the Gamebase popup is not used, the related UI can be manually implemented so
 
 @end
 ```
-
-> <font color="red">[Caution]</font><br/>
->
-> The launchingInformations API is not an asynchronous API that retrieves information from the server in real time.
-> It returns cached information updated every 2 minutes, so it is not suitable for real-time checking of the current status.
-> In that case, use GamebaseEventHandler, which triggers an event when the Launching Status Code is changed.
-> [Game > Gamebase > iOS SDK User Guide  > ETC > Additional Features > Gamebase Event Handler > Observer](./ios-etc/#observer)
 
 **API**
 
@@ -294,6 +302,16 @@ To manage iOS app events, implement the following **UIApplicationDelegate** prot
 >
 > If you are using SceneDelegate (iOS 13 or later), **UISceneDelegate** protocol must be implemented.
 >
+
+### DidFinishLaunching Event
+You need to notify Gamebase that your app has started by calling the **application:didFinishLaunchingWithOptions:** method.
+
+```objectivec
+// AppDelegate.m
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    return [TCGBGamebase application:application didFinishLaunchingWithOptions:launchOptions];
+}
+```
 
 ### OpenURL Event
 Call **application:openURL:sourceApplication:annotation:** method to notify Gamebase when application's external URL was tried to be open. Gamebase will deliver a corresponding value to authentication SDK of each IdP to make it operate as required.

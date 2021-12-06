@@ -253,6 +253,8 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 | AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.HANGAME<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter One Time Authorization (OTAC) which can be obtained after Google login. |                                          |
+| AuthProviderCredentialConstants.GAMEBASE_ACCESS_TOKEN | Used when logging in with Gamebase Access Token instead of IdP authentication information |  |
+| AuthProviderCredentialConstants.IGNORE_ALREADY_LOGGED_IN | While logged in to Gamebase, allow login attempts with other account without logging out | **boolean** |
 
 > [Note]
 >
@@ -574,7 +576,7 @@ This interface can be used for Gamebase AddMapping by an access token issued by 
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                          |
-| AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter One Time Authorization (OTAC) which can be obtained after Google login. |                                          |
+| AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter one time authorization code (OTAC) which can be obtained after Google login. |                                          |
 
 > [Note]
 >
@@ -718,14 +720,60 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 
 ### Change Login with ForcingMappingTicket
 
-```
-Not translated yet
-```
+When there is an account already mapped to a specific IdP, log out from the current account and log in with the account already mapped to the IdP.
+At this time, you need the `ForcingMappingTicket` obtained from the AddMapping API.
+
+If the Change Login API call fails, the Gamebase login status remains as the existing UserID.
+
+The following example shows a situation where, after attempting to map to Facebook, an account already mapped to Facebook is found and the login is changed to the account.
 
 **API**
 
 ```java
 + (void)Gamebase.changeLogin(Activity activity, ForcingMappingTicket forcingMappingTicket, GamebaseDataCallback<AuthToken> callback);
+```
+
+**Example**
+
+```java
+private static void changeLoginFacebook(final Activity activity) {
+    String mappingProvider = AuthProvider.FACEBOOK;
+    Gamebase.addMapping(activity, mappingProvider, new GamebaseDataCallback<AuthToken>() {
+        @Override
+        public void onCallback(AuthToken result, GamebaseException exception) {
+            if (Gamebase.isSuccess(exception)) {
+                // Successfully added mapping
+                Log.d(TAG, "Add Mapping successful");
+                String userId = Gamebase.getUserID();
+                return;
+            }
+
+            // First, call the addMapping API to try mapping to an already linked account and get ForcingMappingTicket as follows.
+            if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+                // Use the from() method of the ForcingMappingTicket class to obtain the ForcingMappingTicket instance.
+                final ForcingMappingTicket forcingMappingTicket = ForcingMappingTicket.from(exception);
+
+                // Log in with the UserID of ForcingMappingTicket
+                Gamebase.changeLogin(activity, forcingMappingTicket, new GamebaseDataCallback<AuthToken>() {
+                    @Override
+                    public void onCallback(AuthToken data, GamebaseException changeLoginException) {
+                        if (Gamebase.isSuccess(changeLoginException)) {
+                            // Successfully changed login
+                            Log.d(TAG, "Change Login successful");
+                            String userId = Gamebase.getUserID();
+                            return;
+                        }
+
+                        // Failed to change login
+                        // Check the error code and resolve the error.
+                    }
+                }
+            } else {
+                ...
+            }
+        }
+    });
+}
 ```
 
 ### Remove Mapping
