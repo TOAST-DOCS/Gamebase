@@ -5,7 +5,7 @@
 ### Settings
 
 
-AndroidやiOSでPushを設定する方法は、次のドキュメントをご参考ください。<br/>
+AndroidやiOSでPushを設定する方法は、次のドキュメントを参照してください。<br/>
 
 * Android
     * [Android Push Settings](aos-push/#settings)
