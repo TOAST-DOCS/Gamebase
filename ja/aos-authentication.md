@@ -735,13 +735,6 @@ Change Login APIの呼び出しが失敗した場合、Gamebaseログイン状�
 
 **Example**
 
-### Remove Mapping
-
-特定のIdPに対する連携を解除します。現在ログインしているアカウントを解除しようとした場合は、失敗を返します。<br/>
-連携を解除した後は、Gamebase内部で該当するIdPに対するログアウト処理を行います。
-
-**API**
-
 ```java
 private static void changeLoginFacebook(final Activity activity) {
     String mappingProvider = AuthProvider.FACEBOOK;
