@@ -27,14 +27,6 @@
 * Gamebase ゲストログイン
 * Gamebase ログアウト
 
-### [Javascript] Guest Authentication [\[lリンク参照\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.guest-auth-on-js/)
-
-#### 初心者 / 15分
-
-* Gamebase JavaScriptの初期設定
-* Gamebase JavaScriptの初期化
-* Gamebase のゲスト認証
-
 ### [Unity] Google IdP Authentication [\[リンク参照\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.google-setting/)
 
 #### 初心者 / 30分
