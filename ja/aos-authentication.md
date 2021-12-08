@@ -807,7 +807,7 @@ private static void removeMappingForFacebook(final Activity activity) {
             } else {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                    // Socket errorで一時的なネットワーク接続不可状態になっていることを意味します。
+                    // Socket errorにより一時的にネットワークに接続できない状態であることを意味します。
                     // ネットワークの状態を確認するか、しばらくしてから再試行してください。
                     new Thread(new Runnable() {
                         @Override
