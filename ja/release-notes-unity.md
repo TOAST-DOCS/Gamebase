@@ -3,31 +3,31 @@
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 강제매핑 시 IdP 로그인을 한번 더 시도해야 하는 불편함을 개선한 새로운 강제매핑 API가 추가되었습니다.
+#### 機能追加
+* 強制マッピングを行う時、IdPログインをもう一度試行しなければいけない煩わしさを改善した、新しい強制マッピングAPIが追加されました。
     * **Gamebase.AddMappingForcibly(ForcingMappingTicket, GamebaseDataCallback\<AuthToken\>)**
-    * [Game > Gamebase > Unity SDK 사용 가이드 > 인증 > Mapping > Add Mapping Forcibly](./unity`-authentication/#add-mapping-forcibly)
+    * [Game > Gamebase > Unity SDK使用ガイド > 認証 > Mapping > Add Mapping Forcibly](./unity`-authentication/#add-mapping-forcibly)
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.30.0](./release-notes-android/#2300-20211123)
 * [Gamebase iOS SDK 2.30.0](./release-notes-ios/#2300-20211123)
 
 ### 2.29.0 (2021.11.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Unity SDK(0.23.5)
+#### 機能改善/変更
+* 外部SDKアップデート：TOAST Unity SDK(0.23.5)
 * Setting Tool
-    * v2.0.0이 새로 배포되었습니다.
-    * 기존 SettingTool을 완전히 삭제한 후 재설치해야 합니다.
-    * 변경된 내용 및 사용 방법은 아래 가이드를 확인하십시오.
-        * [Game > Gamebase > Unity SDK 사용 가이드 > 시작하기 > Specification of Setting Tool](https://docs.toast.com/ko/Game/Gamebase/ko/unity-started/#specification-of-setting-tool)
+    * v2.0.0が新しく配布されました。
+    * 既存SettingToolを完全に削除して、再インストールする必要があります。
+    * 変更された内容および使用方法は、以下のガイドを確認してください。
+        * [Game > Gamebase > Unity SDK使用ガイド > 始める > Specification of Setting Tool](https://docs.toast.com/ko/Game/Gamebase/ko/unity-started/#specification-of-setting-tool)
 
-#### 버그 수정
-* GamebaseDisplayLanguageCode 핀란드어 오타 수정
+#### バグ修正
+* GamebaseDisplayLanguageCodeフィンランド語の誤字を修正
     * Finish → Finnish
 
-#### 플랫폼 별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.29.0](./release-notes-android/#2290-20211109)
 * [Gamebase iOS SDK 2.29.0](./release-notes-ios/#2290-2021109)
 
