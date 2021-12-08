@@ -253,6 +253,8 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 | AuthProviderCredentialConstants.PROVIDER_NAME | IdPタイプの設定                              | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.HANGAME<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)の設定<br/>Google認証の場合は使用しない |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Googleログイン後に取得できるOTAC(one time authorization code)の入力 |                                          |
+| AuthProviderCredentialConstants.GAMEBASE_ACCESS_TOKEN | IdP認証情報ではなくGamebase Access Tokenでログインを行いたい場合に使用 |  |
+| AuthProviderCredentialConstants.IGNORE_ALREADY_LOGGED_IN | Gamebaseログイン状態からログアウトを行わずに別のアカウントへのログイン試行を許可する | **boolean** |
 
 > [参考]
 >
@@ -718,7 +720,12 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 
 ### Change Login with ForcingMappingTicket
 
-* Not translated yet
+特定IdPにすでにマッピングされているアカウントがある時、現在のアカウントをログアウトして、すでにマッピングされているアカウントでログインします。
+この時、AddMapping APIから取得した`ForcingMappingTicket`が必要です。
+
+Change Login APIの呼び出しが失敗した場合、Gamebaseログイン状態は既存のUserIDで維持されます。
+
+次はFacebookでマッピングを試みた後、Facebookにすでにマッピングされているアカウントが存在するため、該当アカウントにログインを変更する例です。
 
 **API**
 
@@ -726,10 +733,60 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 + (void)Gamebase.changeLogin(Activity activity, ForcingMappingTicket forcingMappingTicket, GamebaseDataCallback<AuthToken> callback);
 ```
 
+**Example**
+
 ### Remove Mapping
 
 特定のIdPに対する連携を解除します。現在ログインしているアカウントを解除しようとした場合は、失敗を返します。<br/>
 連携を解除した後は、Gamebase内部で該当するIdPに対するログアウト処理を行います。
+
+**API**
+
+```java
+private static void changeLoginFacebook(final Activity activity) {
+    String mappingProvider = AuthProvider.FACEBOOK;
+    Gamebase.addMapping(activity, mappingProvider, new GamebaseDataCallback<AuthToken>() {
+        @Override
+        public void onCallback(AuthToken result, GamebaseException exception) {
+            if (Gamebase.isSuccess(exception)) {
+                // マッピング追加成功
+                Log.d(TAG, "Add Mapping successful");
+                String userId = Gamebase.getUserID();
+                return;
+            }
+
+            // まずaddMapping APIを呼び出し、すでに連携されているアカウントでマッピングを試行し、次のようにForcingMappingTicketを取得できます。
+            if (exception.getCode() == GamebaseError.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+                // ForcingMappingTicketクラスのfrom()メソッドを利用してForcingMappingTicketインスタンスを取得します。
+                final ForcingMappingTicket forcingMappingTicket = ForcingMappingTicket.from(exception);
+
+                // ForcingMappingTicketのUserIDでログインします。
+                Gamebase.changeLogin(activity, forcingMappingTicket, new GamebaseDataCallback<AuthToken>() {
+                    @Override
+                    public void onCallback(AuthToken data, GamebaseException changeLoginException) {
+                        if (Gamebase.isSuccess(changeLoginException)) {
+                            // ログイン変更成功
+                            Log.d(TAG, "Change Login successful");
+                            String userId = Gamebase.getUserID();
+                            return;
+                        }
+
+                        // ログイン変更失敗
+                        // エラーコードを確認し、適切な処理を行います。
+                    }
+                }
+            } else {
+                ...
+            }
+        }
+    });
+}
+```
+
+### Remove Mapping
+
+特定IdPの連携を解除します。現在ログイン中のアカウントを解除しようとすると失敗を返します。<br/>
+連携解除後はGamebase内部でそのIdPのログアウト処理を行います。
 
 **API**
 
@@ -750,8 +807,8 @@ private static void removeMappingForFacebook(final Activity activity) {
             } else {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                    // Socket errorにより一時的にネットワークに接続できない状態であることを意味します。
-                    // ネットワーク状態を確認したり、しばらくしてからもう一度試してください。
+                    // Socket errorで一時的なネットワーク接続不可状態になっていることを意味します。
+                    // ネットワークの状態を確認するか、しばらくしてから再試行してください。
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -762,14 +819,14 @@ private static void removeMappingForFacebook(final Activity activity) {
                         }
                     }).start();
                 } else if (exception.getCode() == GamebaseError.AUTH_REMOVE_MAPPING_LOGGED_IN_IDP) {
-                    // ログイン中のアカウントではMappingを解除することができません。
-                    // 他のアカウントでログインしてからMappingを解除したり退会する必要があります。
+                    // ログイン中のアカウントはMapping解除を行えません。
+                    // 別のアカウントでログインしてMapping解除を行うか、退会する必要があります。
                     Log.e(TAG, "Remove Mapping failed- LOGGED_IN_IDP");
                 } else {
                     // マッピング解除失敗
                     Log.e(TAG, "Remove mapping failed- "
-                            + "errorCode：" + exception.getCode()
-                            + "errorMessage：" + exception.getMessage());
+                            + "errorCode: " + exception.getCode()
+                            + "errorMessage: " + exception.getMessage());
                 }
             }
         }
