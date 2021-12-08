@@ -5,10 +5,8 @@
 
 #### 機能追加
 * 強制マッピングを行う時、IdPログインをもう一度試行しなければいけない煩わしさを改善した、新しい強制マッピングAPIが追加されました。
-    * **Gamebase.addMappingForcibly(Activity, ForcingMappingTicket, GamebaseDataCallback\<AuthToken\>)**
     * [Game > Gamebase > Android SDK使用ガイド > 認証 > Mapping > Add Mapping Forcibly](./aos-authentication/#add-mapping-forcibly)
 * Gamebase.addMapping()呼び出し後、AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)エラーが発生した時、該当アカウントにログインすることができるAPIが追加されました。
-    * **Gamebase.changeLogin(Activity, ForcingMappingTicket, GamebaseDataCallback\<AuthToken\>)**
     * [Game > Gamebase > Android SDK使用ガイド > 認証 > Mapping > Change Login with ForcingMappingTicket](./aos-authentication/#change-login-with-forcingmappingticket)
 
 #### 機能改善/変更
