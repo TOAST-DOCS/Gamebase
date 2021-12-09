@@ -3,15 +3,6 @@
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Android.zip)
 
-<<<<<<< HEAD
-#### 기능 추가
-* 강제매핑 시 IdP 로그인을 한번 더 시도해야 하는 불편함을 개선한 새로운 강제매핑 API가 추가되었습니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > 인증 > Mapping > Add Mapping Forcibly](./aos-authentication/#add-mapping-forcibly)
-* Gamebase.addMapping() 호출 후 AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302) 에러가 발생했을 때, 해당 계정으로 로그인을 할 수 있는 API가 추가되었습니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > 인증 > Mapping > Change Login with ForcingMappingTicket](./aos-authentication/#change-login-with-forcingmappingticket)
-
-#### 기능 개선/변경
-=======
 #### 機能追加
 * 強制マッピングを行う時、IdPログインをもう一度試行しなければいけない煩わしさを改善した、新しい強制マッピングAPIが追加されました。
     * [Game > Gamebase > Android SDK使用ガイド > 認証 > Mapping > Add Mapping Forcibly](./aos-authentication/#add-mapping-forcibly)
@@ -19,7 +10,6 @@
     * [Game > Gamebase > Android SDK使用ガイド > 認証 > Mapping > Change Login with ForcingMappingTicket](./aos-authentication/#change-login-with-forcingmappingticket)
 
 #### 機能改善/変更
->>>>>>> alpha-client-20211214-base
 * 外部SDKアップデート：Hangame Android SDK(1.4.2)
 * Gamebaseが基本的に提供するメンテナンス詳細表示Webビューhtmlをユーザーが修正して使用できるように改善しました。
     * [Game > Gamebase > Android SDK使用ガイド > 初期化 > Launching Information > 1. Launching > 1.3 Maintenance > Change Default Maintenance HTML](./aos-initialization/#change-default-maintenance-html)

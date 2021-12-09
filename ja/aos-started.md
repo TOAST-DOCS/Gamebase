@@ -471,11 +471,7 @@ android {
         * [https://github.com/nhn/toast.gamebase.unity.sample](https://github.com/nhn/toast.gamebase.unity.sample)
 * ゲームの開始時にGamebaseクライアントSDKを初期化し、ログインが成功したら、決済の再処理を始めてプッシュトークンを登録してください。
 
-<<<<<<< HEAD
 ![overview flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.30.1.png)
-=======
-![overview flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.30.0.png)
->>>>>>> alpha-client-20211214-base
 
 * 詳細flowは、次のリンクで確認できます。
     * [Game > Gamebase > Android SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler](./aos-etc/#gamebase-event-handler)

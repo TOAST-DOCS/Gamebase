@@ -4,11 +4,6 @@
 
 #### Android Notification Icon
 
-<<<<<<< HEAD
-```
-Not translated yet
-```
-=======
 プッシュ通知が届いた時に表示されるアイコンは、基本状態ではアプリアイコンが使用されます。
 
 しかしAndroidのプッシュアイコンは、アルファ領域を適用した単色の画像を使用した時のみ正常に表示されます。
@@ -26,7 +21,6 @@ Not translated yet
 そして次のNotification Optionsガイドを参考にして**default_small_icon**(AndroidManifest.xml)または**setSmallIconName**(API)を設定する必要があります。
 [Game > Gamebase > Android SDK使用ガイド > 始める > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
 [Game > Gamebase > Android SDK使用ガイド > プッシュ > Notification Options > Set Notification Options with RegisterPush in Runtime](./aos-push/#set-notification-options-with-registerpush-in-runtime)
->>>>>>> alpha-client-20211214-base
 
 ### Register Push
 

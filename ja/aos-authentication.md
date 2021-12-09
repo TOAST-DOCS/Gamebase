@@ -720,18 +720,12 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 
 ### Change Login with ForcingMappingTicket
 
-<<<<<<< HEAD
-```
-Not translated yet
-```
-=======
 特定IdPにすでにマッピングされているアカウントがある時、現在のアカウントをログアウトして、すでにマッピングされているアカウントでログインします。
 この時、AddMapping APIから取得した`ForcingMappingTicket`が必要です。
 
 Change Login APIの呼び出しが失敗した場合、Gamebaseログイン状態は既存のUserIDで維持されます。
 
 次はFacebookでマッピングを試みた後、Facebookにすでにマッピングされているアカウントが存在するため、該当アカウントにログインを変更する例です。
->>>>>>> alpha-client-20211214-base
 
 **API**
 
