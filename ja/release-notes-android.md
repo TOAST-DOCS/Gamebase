@@ -3,6 +3,7 @@
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Android.zip)
 
+<<<<<<< HEAD
 #### 기능 추가
 * 강제매핑 시 IdP 로그인을 한번 더 시도해야 하는 불편함을 개선한 새로운 강제매핑 API가 추가되었습니다.
     * [Game > Gamebase > Android SDK 사용 가이드 > 인증 > Mapping > Add Mapping Forcibly](./aos-authentication/#add-mapping-forcibly)
@@ -10,29 +11,38 @@
     * [Game > Gamebase > Android SDK 사용 가이드 > 인증 > Mapping > Change Login with ForcingMappingTicket](./aos-authentication/#change-login-with-forcingmappingticket)
 
 #### 기능 개선/변경
+=======
+#### 機能追加
+* 強制マッピングを行う時、IdPログインをもう一度試行しなければいけない煩わしさを改善した、新しい強制マッピングAPIが追加されました。
+    * [Game > Gamebase > Android SDK使用ガイド > 認証 > Mapping > Add Mapping Forcibly](./aos-authentication/#add-mapping-forcibly)
+* Gamebase.addMapping()呼び出し後、AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)エラーが発生した時、該当アカウントにログインすることができるAPIが追加されました。
+    * [Game > Gamebase > Android SDK使用ガイド > 認証 > Mapping > Change Login with ForcingMappingTicket](./aos-authentication/#change-login-with-forcingmappingticket)
+
+#### 機能改善/変更
+>>>>>>> alpha-client-20211214-base
 * 外部SDKアップデート：Hangame Android SDK(1.4.2)
-* Gamebase가 기본으로 제공하는 점검 상세보기 웹뷰 html을 사용자가 수정해서 사용할 수 있도록 개선하였습니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > 초기화 > Launching Information > 1. Launching > 1.3 Maintenance > Change Default Maintenance HTML](./aos-initialization/#change-default-maintenance-html)
-* DisplayLanguageCode를 설정했음에도 기본 점검 웹뷰의 시간이 단말기 언어로 표시되는 오류를 수정하였습니다.
-* 통신 오류 발생시, 끊긴 커넥션으로 통신을 시도함으로 인해 반복적으로 발생하던 네트워크 오류를 개선하였습니다.
+* Gamebaseが基本的に提供するメンテナンス詳細表示Webビューhtmlをユーザーが修正して使用できるように改善しました。
+    * [Game > Gamebase > Android SDK使用ガイド > 初期化 > Launching Information > 1. Launching > 1.3 Maintenance > Change Default Maintenance HTML](./aos-initialization/#change-default-maintenance-html)
+* DisplayLanguageCodeを設定したにもかかわらず、基本メンテナンスWebビューの時間が端末言語で表示されるエラーを修正しました。
+* 通信エラー発生時に切断されたコネクションで通信を試行するため、繰り返しネットワークエラーが発生していた問題を修正しました。
 
 ### 2.29.0 (2021.11.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* Google 로그인시 Scope를 선언할 수 있는 기능을 추가하였습니다.
+#### 機能追加
+* Googleログイン時にScopeを宣言することができる機能を追加しました。
     * [https://developers.google.com/identity/protocols/oauth2/scopes](https://developers.google.com/identity/protocols/oauth2/scopes)
-    * Scope로 **email**을 추가하면 프로필에서 Email 정보 획득이 가능합니다.
-    * Scope는 Gamebase Console의 AdditionalInfo에 다음과 같이 설정하면 로그인시 자동으로 설정됩니다.
+    * Scopeに**email**を追加すると、プロフィールからEmail情報の取得が可能です。
+    * ScopeはGamebase ConsoleのAdditionalInfoに次のように設定するとログイン時に自動的に設定されます。
 
 ```
 {"scope":["email","myscope1","myscope2",...]}
 ```
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.27.4)
-* DisplayLanguage 가이드 문서에서만 안내되고, 실제로 SDK에는 포함되어 있지 않았던 DisplayLanguage.Code 클래스를 추가하였습니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Display Language > Gamebase에서 지원하는 언어코드의 종류](https://docs.toast.com/en/Game/Gamebase/en/aos-etc/#types-of-language-codes-supported-by-gamebase)
+#### 機能改善/変更
+* 外部SDKアップデート：TOAST Android SDK(0.27.4)
+* DisplayLanguageガイド文書でのみ案内し、実際のSDKには含まれていなかったDisplayLanguage.Codeクラスを追加しました。
+    * [Game > Gamebase > Android SDK使用ガイド > ETC > Display Language > Gamebaseでサポートする言語コードの種類](https://docs.toast.com/en/Game/Gamebase/en/aos-etc/#types-of-language-codes-supported-by-gamebase)
 
 ### 2.28.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-Android.zip)

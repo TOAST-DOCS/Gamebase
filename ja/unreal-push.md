@@ -4,19 +4,24 @@
 
 ### Settings
 
-AndroidやiOSでプッシュを設定する方法は、次の文書を参照してください。<br/>
+AndroidやiOSでプッシュを設定する方法は、次の文書を参照してください。
 
-* [Android Push Settings](aos-started/#firebase-notification)
-    * Firebaseプッシュを使用する時は、下記のガイドを参照してください。
-        * 該当ガイドでUnityビルドの場合はUnrealの場合も同じように設定する必要があります。
-            * Androidビルド時、res/values/google-services-json.xmlファイルが含まれている必要があるため、ガイドを参照して作成します。
-            * Plugins/Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xmlパスにファイルがあります。
-* [iOS Push Settings](ios-push#settings)
+* Android
+    * [Android Push Settings](aos-push/#settings)
+    * [Firebase Notification Settings](aos-started/#firebase-notification)
+        * Androidビルド時にres/values/google-services-json.xmlファイル含まれている必要があるため、ガイドを参考にして作成します。
+        * Plugins/Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xmlパスにファイルがあります。
+* iOS
+    * [iOS Push Settings](ios-push#settings)
 
 ### Register Push
 
 次のAPIを呼び出して、TOAST Pushに該当ユーザーを登録します。
 プッシュ同意(enablePush)、広告性プッシュ同意(enableAdPush)、夜間広告性プッシュ同意(enableAdNightPush)値をユーザーから受け取り、次のAPIを呼び出して登録を完了します。
+
+> <font color="red">[注意]</font><br/>
+>
+> UserIDごとにプッシュ設定が異なる場合があり、プッシュトークンの有効期限切れも発生することがあるため、ログイン後は毎回registerPush APIを呼び出すことを推奨します。
 
 **API**
 

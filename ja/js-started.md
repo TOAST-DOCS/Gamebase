@@ -2,7 +2,7 @@
 
 Gamebase JavaScript SDKを使用するための環境は次の通りです。
 
-### Environments
+## Environments
 
 > [要件]
 >
@@ -10,7 +10,7 @@ Gamebase JavaScript SDKを使用するための環境は次の通りです。
 > ポップアップ許可
 > Cookie許可
 
-### Installation
+## Installation
 
 Gamebase JavaScript SDKファイルをダウンロードします。
 

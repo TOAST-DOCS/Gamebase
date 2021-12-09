@@ -3,23 +3,23 @@
 ### 2.26.1 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.1/GamebaseSDK-Unreal.zip)
 
-#### 버그 수정
-* GamebaseDisplayLanguageCode 핀란드어 오타 수정
+#### バグ修正
+* GamebaseDisplayLanguageCodeフィンランド語の誤字を修正
     * Finish → Finnish
 
 ### 2.26.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
-* 공통약관 기능 추가
-    * 약관 WebView를 여는 API 추가
-    * 약관 리스트 및 유저별 동의 여부를 조회하는 API 추가
-    * 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
+#### 機能追加
+* 共通約款機能の追加
+    * 約款WebViewを開くAPIの追加
+    * 約款リストおよびユーザー別同意有無を照会するAPIを追加
+    * ユーザー別の約款同意有無をGamebaseサーバーに保存するAPIを追加
 
-#### 기능 개선/변경
-* 고객센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객센터가 표시되도록 변경
-* 내부 론칭 URL 변경
-* Gamebase에서 Android multidex 적용 제거
+#### 機能改善/変更
+* サポートのタイプがTOAST組織商品(Online Contact)の場合、ログインを行わなくてもサポートが表示されるように変更
+* 内部ローンチURLの変更
+* GamebaseからAndroid multidexの適用削除
 
 ### 2.19.2 (2021.06.29)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.2/GamebaseSDK-Unreal.zip)
