@@ -277,6 +277,8 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 | GamebaseAuthProviderCredential.PROVIDER_NAME | IdPタイプ設定                         | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid, hangame, weibo, kakaogame |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)の設定<br/>Google認証の場合は使用しない |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Googleログイン後に取得できるOTAC(one time authorization code)の入力 |                                          |
+| GamebaseAuthProviderCredential.GAMEBASE_ACCESS_TOKEN | IdP認証情報ではなくGamebase Access Tokenでログインを行いたい場合に使用 |  |
+| GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | Gamebaseログイン状態からログアウトを行わずに別のアカウントへのログイン試行を許可する | **bool** |
 
 > [参考]
 >
@@ -600,7 +602,11 @@ public void AddMappingWithCredential()
 **API**
 
 ```cs
+static void AddMappingForcibly(GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+// Legacy API
 static void AddMappingForcibly(string providerName, string forcingMappingKey, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+static void AddMappingForcibly(string providerName, string forcingMappingKey, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+static void AddMappingForcibly(Dictionary<string, object> credentialInfo, string forcingMappingKey, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 ```
 
 **Example**
@@ -616,14 +622,14 @@ public void AddMappingForcibly(string idPName)
         }
         else
         {
-            // まずaddMapping APIを呼び出し、すでに連携されているアカウントでマッピングを試行し、次のようにForcingMappingTicketを取得できます。
+            // まずAddMapping APIを呼び出し、すでに連携されているアカウントでマッピングを試行し、次のようにForcingMappingTicketを取得できます。
             if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
             {
                 // ForcingMappingTicketクラスのFrom()メソッドを利用してForcingMappingTicketインスタンスを取得します。
                 GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
 
                 // 強制マッピングを試行します。
-                Gamebase.AddMappingForcibly(idPName, forcingMappingTicket.forcingMappingKey, (authTokenForcibly, errorForcibly) =>
+                Gamebase.AddMappingForcibly(forcingMappingTicket, (authTokenForcibly, errorForcibly) =>
                 {
                     if (Gamebase.IsSuccess(error) == true)
                     {
@@ -645,83 +651,62 @@ public void AddMappingForcibly(string idPName)
 }
 ```
 
+### Change Login with ForcingMappingTicket
 
-### Add Mapping Forcibly with Credential
-特定IdPにすでにマッピングされているアカウントがある時、**強制的に**マッピングを試行します。
-**強制マッピング**を試行する時は、AddMapping APIで取得した`ForcingMappingTicket`が必要です。
+特定IdPにすでにマッピングされているアカウントがある時、現在のアカウントをログアウトして、すでにマッピングされているアカウントでログインします。
+この時、AddMapping APIから取得した`ForcingMappingTicket`が必要です。
 
-ゲームで直接IdPが提供するSDKにより先に認証し、発行されたアクセストークンなどを利用して、Gamebase AddMappingForciblyを呼び出すことができるインターフェイスです。
-
-* Credentialパラメータの設定方法
-
-| keyname | a use | 値種類 |
-| ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdPタイプ設定                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)設定<br/>Google認証時には使用しない |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Googleログイン後に取得した認証情報(Authorization Code)設定 |                                        |
-
-> [TIP]
->
-> ゲーム内で外部サービス(Facebookなど)の固有機能を使用するには必要な場合があります。
->
-
-
-> <font color="red">[注意]</font><br/>
->
-> 外部SDKでサポートを要求する開発事項は外部SDKのAPIを使用して実装する必要があり、Gamebaseではサポートしません。
->
-
-次は、強制マッピングを試行する例です。
+Change Login APIの呼び出しが失敗した場合、Gamebaseログイン状態は既存のUserIDで維持されます。
 
 **API**
 
 ```cs
-static void AddMappingForcibly(Dictionary<string, object> credentialInfo, string forcingMappingKey, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+static void ChangeLogin(GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 ```
 
 **Example**
 
+次はFacebookでマッピングを試みた後、Facebookにすでにマッピングされているアカウントが存在するため、該当アカウントにログインを変更する例です。
+
 ```cs
-public void AddMappingForcibly(Dictionary<string, object> credential)
+public void ChangeLoginWithFacebook()
 {
-    Gamebase.AddMapping(credential, (authToken, error) =>
+    Gamebase.AddMapping(GamebaseAuthProvider.FACEBOOK, (authToken, error) =>
     {
         if (Gamebase.IsSuccess(error) == true)
         {
             // マッピング追加成功
+            return;
+        }
+        
+        // まずAddMapping APIを呼び出し、すでに連携されているアカウントでマッピングを試行して、次のようにForcingMappingTicketを取得できます。
+        if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
+        {
+            // ForcingMappingTicketクラスのFrom()メソッドを利用してForcingMappingTicketインスタンスを取得します。
+            GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
+
+            // ForcingMappingTicketのUserIDでログインします。
+            Gamebase.ChangeLogin(forcingMappingTicket, (authTokenForcibly, errorForcibly) =>
+            {
+                if (Gamebase.IsSuccess(errorForcibly) == true)
+                {
+                    // ログイン変更成功
+                }
+                else
+                {
+                    // ログイン変更失敗
+                    // エラーコードを確認し、適切な処理を行います。
+                }
+            });
         }
         else
         {
-            // まずaddMapping APIを呼び出し、すでに連携されているアカウントでマッピングを試行し、次のようにForcingMappingTicketを取得できます。
-            if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
-            {
-                // ForcingMappingTicketクラスのFrom()メソッドを利用してForcingMappingTicketインスタンスを取得します。
-                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
-
-                // 強制マッピングを試行します。
-                Gamebase.AddMappingForcibly(credential, forcingMappingTicket.forcingMappingKey, (authTokenForcibly, errorForcibly) =>
-                {
-                    if (Gamebase.IsSuccess(error) == true)
-                    {
-                        // 強制マッピング追加成功
-                    }
-                    else
-                    {
-                        // 強制マッピング追加失敗
-                        // エラーコードを確認し、エラーを解決します。
-                    }
-                });
-            }
-            else
-            {
-                // Add Mapping Failed.
-                // エラーコードを確認し、エラーを解決します。
-            }
+            // Add Mapping Failed.
+            // エラーコードを確認し、適切な処理を行います。
         }
     });
 }
 ```
-
 
 ### Remove Mapping
 

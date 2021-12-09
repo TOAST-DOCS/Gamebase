@@ -3,13 +3,13 @@
 
 Gamebase Unity SDKの使用環境及び初期設定について説明します。
 
-### Environments
+## Environments
 
 > [参考]
 > 
 > Unity対応バージョン
 >
-> * 2018.4.0～2021.1.22
+> * 2018.4.0～2021.2.2
 > * 下位バージョンのUnityのサポートが必要な場合は[サポート](https://toast.com/support/inquiry)へお問い合わせください。
 
 

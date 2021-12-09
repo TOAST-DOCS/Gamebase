@@ -161,7 +161,7 @@ Gamebase iOS SDKの初期化設定に入力したアプリバージョンのゲ�
 | INSPECTING_ALL_SERVICES     | 304  | 全体サービスをメンテナンス中です。                             |
 | INTERNAL_SERVER_ERROR       | 500  | 内部サーバーエラーです。                                |
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Game > Gamebase > コンソール使用ガイド > アプリ > App](./oper-app/#app)
 
 **1.2 App**
 
@@ -180,19 +180,28 @@ Gamebaseコンソールに登録されたアプリ情報です。
 * install：インストールURL
 * idP：認証情報
 
-[コンソールガイド](/Game/Gamebase/ko/oper-app/#client)
+[Game > Gamebase > コンソール使用ガイド > アプリ > Client](./oper-app/#client)
 
 **1.3 Maintenance**
 
 Gamebaseコンソールに登録されたメンテナンス情報です。
 
-* url: URL for maintenance page
-* timezone: Standard time zone (timezone)
-* beginDate: Start time
-* endDate: End time
-* message: Cause of maintenance
+* url：メンテナンスページURL
+* timezone：標準時間帯(timezone)
+* beginDate：開始時間
+* endDate：終了時間
+* message：メンテナンス理由
 
-[コンソールガイド](/Game/Gamebase/ko/oper-operation/#maintenance)
+[Game > Gamebase > コンソール使用ガイド > 運営 > Maintenance](./oper-operation/#maintenance)
+
+##### Change Default Maintenance HTML
+
+enablePopupとenableLaunchingStatusPopupの値がいずれもtrueの場合、ゲームがメンテナンス状態の時、自動的にメンテナンスポップアップが表示されます。
+ここで**詳細表示**ボタンをクリックするとメンテナンス情報が自動的にWebビューで表示されます。
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_webview_android_2.30.0.png)
+
+この時に表示されるhtmlファイルを修正したい場合は、次のリンクのhtmlファイルをダウンロードして自由に修正した後、Xcodeプロジェクトの`Copy Bundle Resources`に**gamebase-maintenance.html**ファイルを追加してください。
+[htmlファイルのダウンロードLINK](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
 
 **1.4 Notice**
 
@@ -202,7 +211,7 @@ Gamebaseコンソールに登録された告知情報です。
 * title: Title
 * url: Maintenance URL
 
-[コンソールガイド](/Game/Gamebase/ko/oper-operation/#notice)
+[Game > Gamebase > コンソール使用ガイド > 運営 > Notice](./oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -221,7 +230,7 @@ NHN Cloudコンソールに登録されたIAPストア情報です。
 * name: App Name
 * storeCode: Store Code
 
-[コンソールガイド](/Game/Gamebase/ko/oper-purchase/)
+[Game > Gamebase > コンソール使用ガイド > 決済](./oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -230,7 +239,7 @@ NHN Cloud Launching Consoleでユーザーが入力した情報です。
 * ユーザーが入力した値をJSON stringで渡します。
 * NHN Cloud Launching詳細設定は、次のガイドを参照してください。
 
-[コンソールガイド](/Game/Gamebase/ko/oper-management/#config)
+[Game > Gamebase > コンソール使用ガイド > 管理 > Config](./oper-management/#config)
 
 
 ### Handling Unregistered Version
@@ -294,6 +303,16 @@ iOSのアプリイベントを管理したい場合、次の**UIApplicationDeleg
 >
 > SceneDelegate(iOS 13以上)を使用している場合は、**UISceneDelegate**プロトコルを実装する必要があります。
 >
+
+### DidFinishLaunching Event
+**application:didFinishLaunchingWithOptions:**メソッドを呼び出しして、Gamebaseにアプリが起動されたことを伝える必要があります。
+
+```objectivec
+// AppDelegate.m
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    return [TCGBGamebase application:application didFinishLaunchingWithOptions:launchOptions];
+}
+```
 
 ### OpenURL Event
 **application:openURL:sourceApplication:annotation:**メソッドを呼び出してアプリケーションの外部URL Openの試みをGamebaseに知らせなければなりません。Gamebaseでは、各Idpの認証用SDKに該当する値を送り、必要な動作をするように知らせます。

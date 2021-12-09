@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > iOS SDK ご利用ガイド > Push
+## Game > Gamebase > iOS SDK ご利用ガイド > Push
 
 ### Settings
 
@@ -36,6 +36,10 @@ Push APIを設計するViewControllerに次のヘッダーファイルを持っ�
 次のAPIを呼び出して、 NHN Cloud Pushに該当ユーザーを登録します。<br/>
 プッシュ同意有無(enablePush)、広告性プッシュ同意有無(enableAdPush)、夜間広告性プッシュ同意有無(enableAdNightPush)値をユーザーから取得し、次のAPIを呼び出して登録を完了します。
 
+> <font color="red">[注意]</font><br/>
+>
+> プッシュトークンがいつ有効期限切れになるかわからないため、ログイン後は常にregisterPush APIを呼び出すことを推奨します。
+>
 
 ```objectivec
 - (void)didLoginSucceeded {
@@ -52,7 +56,6 @@ Push APIを設計するViewControllerに次のヘッダーファイルを持っ�
             // To Register Push Failed.
         }
     }];
-
 }
 ```
 

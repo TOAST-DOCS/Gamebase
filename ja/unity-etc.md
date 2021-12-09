@@ -200,7 +200,7 @@ public void GetDisplayLanguageCode()
 
 UnityEditor及びUnity Standalone、WebGLプラットフォームサービスを提供する際にGamebaseで提供するデフォルト言語(ko、en、ja)以外に他の言語を使用しなければならない場合、Assets > StreamingAssets > Gamebaseにあるlocalizedstring.jsonファイルに値を追加しなければなりません。
 
-![localizedstring.json](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-etc_001_1.11.0.png)
+![localizedstring.json](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-etc_001_1.11.0.png)
 
 localizedstring.jsonに定義されている形式は、次の通りです。
 
@@ -316,8 +316,8 @@ static string GetCountryCodeOfDevice()
 	2. USIM国コードが空の値の場合、端末国コードを確認し、値があれば別途確認しないでそのまま返します。
 	3. USIM、端末国コードがどちらも空の値の場合は、'ZZ'を返します。
 
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
-
+![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
+sb
 > [参考] 
 >
 > Editor on Windows, Standalone on Windowsの場合は、[CultureInfo](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo?view=netframework-4.7.2)を参照して国コードを返します。
