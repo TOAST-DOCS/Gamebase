@@ -1,6 +1,6 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
-### 2.31.0
+### 2.31.0 (2021.12.14)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Unity.zip)
 
