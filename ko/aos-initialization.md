@@ -253,6 +253,7 @@ Gamebase 콘솔에 등록된 점검 정보입니다.
 * beginDate: 시작 시간
 * endDate: 종료 시간
 * message: 점검 사유
+* hideDate: 점검 시작, 종료 시간을 표시할 것인지 여부
 
 [Game > Gamebase > 콘솔 사용 가이드 > 운영 > Maintenance](./oper-operation/#maintenance)
 <br/>

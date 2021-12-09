@@ -1,5 +1,17 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.31.0 (2021.12.14)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: NHN Cloud Android SDK(0.29.0)
+* 이용정지 웹뷰 내의 고객센터 링크에서 이용정지 유저 정보로 문의를 등록할 수 없는 문제를 해결하였습니다.
+* 앱이 켜지자마자 Gamebase 초기화를 호출하는 경우, 런칭 팝업이 간헐적으로 영어로 표시되는 문제를 수정하였습니다.
+* 앱이 백그라운드에서 포그라운드로 전환될때는 항상 런칭 정보가 변경되지 않았는지 바로 체크하도록 스케쥴러를 개선하였습니다.
+* GamebaseEventHandler의 GamebaseEventObserverData.code에 **GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)** 에러가 추가되었습니다.
+    * 이 이벤트가 발생하는 경우에는 Gamebase Access Token이 만료되어 복구되지 않는 상황이므로, 로그인을 다시 시도하시기 바랍니다.
+    * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Observer](./aos-etc/#observer)
+
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Android.zip)
 
