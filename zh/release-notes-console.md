@@ -1,5 +1,15 @@
 ## Game > Gamebase > Release Notes > Console
 
+### December 14, 2021
+
+#### Feature Updates
+* App > App > Customer Center
+	* Added a feature that allows users to access the Customer Center from a web browser and submit direct 1:1 inquiry
+* Operation > Maintenance
+	* Added a feature to select whether to display the maintenance time on the Maintenance page
+* Customer Center > Template
+	* Changed so that templates in languages that are no longer supported by the Customer Center among previously registered templates are not displayed and deleted.
+
 ### 2021. 11. 23.
 
 #### 改善/修改功能
