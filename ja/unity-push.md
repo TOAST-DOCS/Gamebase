@@ -27,7 +27,7 @@ Pushの同意状態(enablePush)、Push型広告の同意状態(enableAdPush)、�
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS<br/>
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
@@ -127,7 +127,7 @@ public void RegisterPushSample(bool pushEnabled, bool adAgreement, bool adAgreem
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS<br/>
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
@@ -159,7 +159,7 @@ public void GetNotificationOptionsSample()
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS<br/>
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
