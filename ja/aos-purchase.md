@@ -64,6 +64,11 @@ dependencies {
 
 ### Initialization
 
+> <font color="red">[注意]</font><br/>
+>
+> ONE Storeはv17のみサポートします。
+> ONE Store v19はサポートを検討中で、現在はサポートしていません。
+
 * Gamebaseの初期化時、ストアコードを指定する必要があります。
 * **STORE_CODE**は、次の値の中から選択します。
     * GG：Google
