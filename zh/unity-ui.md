@@ -2,13 +2,13 @@
 
 ## ImageNotice
 
-通过在控制台中注册图片，可以向用户显示公告。
+通过在控制台中注册图片，可向用户显示公告。
 
 ![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-002.png)
 
 ### Show ImageNotices
 
-将图片通知显示在页面上。
+在页面上显示图片通知。
 
 **API**
 
@@ -44,7 +44,7 @@ public void ShowImageNotices()
 
 ### Custom ImageNotices
 
-将自定义图片通知显示在页面上。
+在页面上显示自定义图片通知。
 通过使用GamebaseRequest.ImageNotice.Configuration可创建自定义图片通知。
 
 **Example**
@@ -87,7 +87,7 @@ public void ShowImageNotices(int colorR = 0 , int colorG = 0, int colorB = 0, in
 
 ### Close ImageNotices
 
-通过调用closeImageNotices API，可以关闭当前显示的所有图片通知。
+通过调用closeImageNotices API，可关闭当前显示的所有图片通知。
 
 **API**
 
@@ -107,21 +107,21 @@ static void CloseImageNotices()
 ![TermsView Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/termsView-guide-ui-001_2.20.0.png)
 
 调用ShowTermsView API，可通过Webview显示条款窗口。
-如果要生成符合Game UI的条款窗口，则可通过调用QueryTerms API显示在Gamebase控制台中注册的条款项目。 
+如果要生成符合Game UI的条款窗口，则可通过调用QueryTerms API显示Gamebase控制台中的条款项目。 
 如果用户已经同意条款，通过UpdateTerms API，将各项目的”同意与否”传送到Gamebase服务器。
 
 ### ShowTermsView
 
-将条款窗口显示在页面上。
+在页面上显示条款窗口。
 用户已经同意条款时，在服务器注册”同意与否”。
 如果已经同意条款，即使再调用ShowTermsView API，也不再显示条款窗口，而直接返还”成功回调”。 
 但如果在Gamebase控制台中将条款的“重新同意"项目更改为**必须**，用户再次同意之前一直显示条款窗口。  
 
 > <font color="red">[注意]</font><br/>
 >
-> 如果已在条款中添加”是否同意接收推送”，则可从GamebaseResponse.DataContainer生成GamebaseResponse.Push.PushConfiguration。
-> 如果GamebaseResponse.Push.PushConfiguration不为null，**登录后**，请调用Gamebase.Push.RegisterPush API。
->
+> * 未显示PushConfiguration条款窗时为null。(如果显示了条款窗口，则始终返回有效对象。)
+> * PushConfiguration.pushEnabled值始终为true。
+> * 如果PushConfiguration不是null，**登录后**，请调用Gamebase.Push.RegisterPush API。
 
 #### Optional参数
 
@@ -143,7 +143,7 @@ static void ShowTermsView(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Dat
 | Error Code | Description |
 | --- | --- |
 | NOT\_INITIALIZED(1) | 未初始化Gamebase。|
-| LAUNCHING\_SERVER\_ERROR(2001) | 是从启动服务器返还的项目不包含相关条款内容时出现的错误。<br/>出现该问题时，请联系Gamebase负责人员。|
+| LAUNCHING\_SERVER\_ERROR(2001) | 是从启动服务器返还的项目不包含相关条款内容时出现的错误。<br/>出现此问题时，请联系Gamebase负责人员。|
 | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 上一次调用的Terms API未完成。<br/>请稍后再试。|
 | UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW(6925) | Webview尚未关闭，但已重新调用。|
 | WEBVIEW\_TIMEOUT(7002) | 显示条款Webview时出现超时错误。|
@@ -159,7 +159,10 @@ public void SampleShowTermsView()
         if (Gamebase.IsSuccess(error) == true)
         {
             Debug.Log("ShowTermsView succeeded.");
-            GamebaseResponse.Push.PushConfiguration pushConfiguration = GamebaseResponse.Push.PushConfiguration.From(data)
+            
+            // If the 'PushConfiguration' is not null,
+            // save the 'PushConfiguration' and use it for Gamebase.Push.RegisterPush() after Gamebase.Login().
+            GamebaseResponse.Push.PushConfiguration pushConfiguration = GamebaseResponse.Push.PushConfiguration.From(data);
         }
          else
         {
@@ -172,7 +175,7 @@ public void SampleShowTermsView()
 
 ### QueryTerms 
 
-Gamebase通过Webview，以简单形式显示条款。 
+Gamebase通过Webview以简单形式显示条款。 
 如果要直接制作符合游戏UI的条款，通过调用queryTerms API，则可使用从Gamebase控制台中被返还的条款信息。
 
 如果登录后调用，则可确认游戏用户是否同意条款。
@@ -184,7 +187,7 @@ Gamebase通过Webview，以简单形式显示条款。
 > * 因”是否接收推送”没被存储在gamebase服务器中，agreed值将始终以false返回。
 >     * 如需查看”是否接收推送”，请调用Gamebase.Push.queryTokenInfo API。
 > * 如果在控制台中未设置”基本条款”的状态下，使用与条款语言不同的国家代码在设置的终端机上调用queryTerms API，则将出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误。
->     * 在控制台中设置”基本条款”或出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误时，请不要显示条款。
+>     * 若在控制台中设置”基本条款”或出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误，请不要显示条款。
 
 #### Required参数
 * callback : 通过回调通知用户API的调用结果。通过作为回调被返回的GamebaseQueryTermsResult，可获取在控制台中设置的条款信息。 
@@ -247,16 +250,16 @@ public void SampleQueryTerms()
 | agreePush            | string                | 是否同意接收广告性推送通知<br/> - NONE : 不同意。<br/> - ALL : 全部同意。<br/> - DAY : 同意白天接收推送通知。<br/> - NIGHT : 同意夜间接收推送通知。          |
 | agreed               | bool                  | 用户是否同意相关条款项目           
 | node1DepthPosition   | int                   | 显示第1阶段项目的顺序           |
-| node2DepthPosition   | int                   | 显示第2阶段项目的顺序<b r/> 没有时 -1           |
-| detailPageUrl        | string                | 详细查看条款URL<br/> 没有时 -null |
+| node2DepthPosition   | int                   | 显示第2阶段项目的顺序<b r/> 没有 -1           |
+| detailPageUrl        | string                | 查看条款URL详情<br/> 没有 -null |
 
 
 ### UpdateTerms
 
-如果使用调用QueryTerms API后被返回的条款信息创建了UI，
+如果以调用QueryTerms API后被返回的条款信息来创建了UI，
 请将游戏用户同意条款的记录通过updateTerms API传送到Gamebase服务器。
 
-不仅可用于取消”可选择条款同意”，也可用于修改同意条款的记录。 
+不仅可用于取消”可选条款同意”，也可用于修改同意条款的记录。 
 
 > <font color="red">[注意]</font><br/>
 >
@@ -354,7 +357,7 @@ public void SampleUpdateTerms()
 ##### 可选参数
 * configuration：可以使用GamebaseWebViewConfiguration更改WebView的布局。
 * closeCallback：WebView关闭时通过回调通知用户。
-* schemeList：指定用户想要接收的自定义SchemeList。
+* schemeList：指定用户请求接收的自定义SchemeList。
 * schemeEvent：将用schemeList指定的包含自定义Scheme的url，作为回调通知。
 
 **API**
@@ -405,7 +408,7 @@ public void ShowWebView()
 
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | string                                   | WebView标题                 |
+| title                    | string                                   | WebView的标题                 |
 | orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 未指定 |
 |                          | GamebaseScreenOrientation.PORTRAIT       | 纵向模式                      |
 |                          | GamebaseScreenOrientation.LANDSCAPE      | 横向模式                       |
@@ -534,7 +537,7 @@ public void ShowAlertDialog()
 
 ## Toast
 
-可以使用以下API轻松显示消息。
+通过使用以下API，可轻松显示消息。
 
 **API**
 

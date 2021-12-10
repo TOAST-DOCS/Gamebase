@@ -1,9 +1,35 @@
 ## Game > Gamebase > Android SDK ご利用ガイド > Push
 
+### Settings
+
+#### Android Notification Icon
+
+プッシュ通知が届いた時に表示されるアイコンは、基本状態ではアプリアイコンが使用されます。
+
+しかしAndroidのプッシュアイコンは、アルファ領域を適用した単色の画像を使用した時のみ正常に表示されます。
+[マテリアルデザインガイド - Android Notification \[LINK\]](https://material.io/design/platform-guidance/android-notifications.html#anatomy-of-a-notification)
+
+端末解像度ごとにアイコンサイズも決められています。次を参考にしてプッシュアイコンを準備してください。
+* MDPI - 24 x 24  (drawable-mdpi)
+* HDPI - 36 x 36  (drawable-hdpi)
+* XHDPI - 48 x 48  (drawable-xhdpi)
+* XXHDPI - 72 x 72  (drawable-xxhdpi)
+* XXXHDPI - 96 x 96  (drawable-xxxhdpi)
+
+プッシュアイコンのファイル名にスペース、英字大文字、特殊文字は使用しないでください。
+
+そして次のNotification Optionsガイドを参考にして**default_small_icon**(AndroidManifest.xml)または**setSmallIconName**(API)を設定する必要があります。
+[Game > Gamebase > Android SDK使用ガイド > 始める > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
+[Game > Gamebase > Android SDK使用ガイド > プッシュ > Notification Options > Set Notification Options with RegisterPush in Runtime](./aos-push/#set-notification-options-with-registerpush-in-runtime)
+
 ### Register Push
 
 次のAPIを呼び出して、 NHN Cloud Pushに該当ユーザーを登録します。<br/>
 プッシュ同意有無(enablePush)、広告性プッシュ同意有無(enableAdPush)、夜間広告性プッシュ同意有無(enableAdNightPush)値をユーザーから取得し、次のAPIを呼び出して登録を完了します。
+
+> <font color="red">[注意]</font><br/>
+>
+> UserIDごとにプッシュ設定が異なる場合があり、プッシュトークンの有効期限切れも発生することがあるため、ログイン後は毎回registerPush APIを呼び出すことを推奨します。
 
 **API**
 
@@ -52,7 +78,7 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 通知オプションは、AndroidManifest.xmlに定義して設定できます。<br/>
 設定方法は、以下のガイドを確認してください。
 
-[Game > Gamebase > Android SDK使用ガイド > 始める > Setting > AndroidManifest.xml > Notification Options](./aos-started/)
+[Game > Gamebase > Android SDK使用ガイド > 始める > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
 
 #### Set Notification Options with RegisterPush in Runtime
 

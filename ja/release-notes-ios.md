@@ -3,24 +3,24 @@
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* 강제매핑 시 IdP 로그인을 한번 더 시도해야 하는 불편함을 개선한 새로운 강제매핑 API가 추가되었습니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > 인증 > Add Mapping Forcibly](./ios-authentication/#add-mapping-forcibly)
-* 특정 IdP로 매핑 시도 후 **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 에러가 발생했을 때, 해당 IdP로 계정을 변경할 수 있는 API가 추가되었습니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > 인증 > Change Login with ForcingMappingTicket](./ios-authentication/#change-login-with-forcingmappingticket)
+#### 機能追加
+* 強制マッピングを行う時、IdPログインをもう一度試行しなければいけない煩わしさを改善した、新しい強制マッピングAPIが追加されました。
+    * [Game > Gamebase > iOS SDK使用ガイド > 認証 > Add Mapping Forcibly](./ios-authentication/#add-mapping-forcibly)
+* 特定IdPでマッピング試行後、**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**エラーが発生した時、該当IdPにアカウントを変更することができるAPIが追加されました。
+    * [Game > Gamebase > iOS SDK使用ガイド > 認証 > Change Login with ForcingMappingTicket](./ios-authentication/#change-login-with-forcingmappingticket)
 
-#### 버그 수정
-* loginForLastLoggedInProvider 로그인 이후, 특정 IdP에서 로그아웃 또는 탈퇴 기능이 동작하지 않는 버그를 수정하였습니다.
+#### バグ修正
+* loginForLastLoggedInProviderログイン後、特定IdPでログアウトまたは退会機能が動作しないバグを修正しました。
 
 ### 2.29.0 (2021.11.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST iOS SDK(0.29.1), ToastGamebaseIAP SDK(0.12.1)
-* 콘솔에 등록한 점검 및 공지 자세히 보기의 URL을 인코딩 하지 않고 화면에 출력하도록 변경되었습니다.
+#### 機能改善/変更
+* 外部SDKアップデート：TOAST iOS SDK(0.29.1), ToastGamebaseIAP SDK(0.12.1)
+* コンソールに登録したメンテナンスおよび告知詳細表示のURLをエンコードせずに画面に表示するように変更しました。
 
-#### 버그 수정
-* TCGBPushMessage.extras를 json 파싱 할 때 에러가 발생하는 버그를 수정하였습니다.
+#### バグ修正
+* TCGBPushMessage.extrasをjson解析する時にエラーが発生する問題を修正しました。
 
 ### 2.28.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-iOS.zip)

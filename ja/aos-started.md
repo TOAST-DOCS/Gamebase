@@ -469,14 +469,16 @@ android {
             * GamebaseManager.javaファイルを参考にしてください。
     * Unity Sample Project
         * [https://github.com/nhn/toast.gamebase.unity.sample](https://github.com/nhn/toast.gamebase.unity.sample)
-* ゲームが始まった時、GamebaseクライアントSDKを初期化し、ログインが成功したら決済の再処理が始まるように実装してください。
+* ゲームの開始時にGamebaseクライアントSDKを初期化し、ログインが成功したら、決済の再処理を始めてプッシュトークンを登録してください。
 
-![overview flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.19.0.png)
+![overview flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.30.0.png)
 
 * 詳細flowは、次のリンクで確認できます。
+    * [Game > Gamebase > Android SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler](./aos-etc/#gamebase-event-handler)
     * [Game > Gamebase > Android SDK使用ガイド > 初期化 > Initialization Flow](./aos-initialization/#initialization-flow)
     * [Game > Gamebase > Android SDK使用ガイド > 認証 > Login Flow](./aos-authentication/#login-flow)
     * [Game > Gamebase > Android SDK使用ガイド > 決済 > Retry Transaction Flow](./aos-purchase/#retry-transaction-flow)
+    * [Game > Gamebase > Android SDK使用ガイド > プッシュ > Register Push](./aos-push/#register-push)
 
 ## 3rd-Party Provider SDK Guide
 

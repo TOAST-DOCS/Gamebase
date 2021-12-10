@@ -227,7 +227,7 @@ FString GetCountryCodeOfDevice() const;
     2. USIM国コードが空の場合、端末国コードを確認し、値が存在すれば追加のチェックを行わず、そのまま返します。
     3. USIM、端末国コードがどちらも空の場合は「ZZ」を返します。
 
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
+![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
 
 **API**

@@ -8,8 +8,8 @@
 >
 > Gamebase支持的Unity版本
 >
-> * 2017.4.16 ~ 2020.1.8
-> * 如果需要Gamebase支持的低版本Unity时，请联系[客户服务](https://toast.com/support/inquiry)。
+> * 2018.4.0 ~ 2021.1.22
+> * 如果需要Gamebase支持的低版本Unity，请联系[客户服务](https://toast.com/support/inquiry)。
 
 #### Android
 > <font color="red">[注意]</font>
@@ -22,7 +22,7 @@
 * iOS
 * Android
 * Standalone
-    * Windows7 以上
+    * Windows7以上
 	* 不支持MAC OS。
 * WebGL
     * [WebGL Browser Compatibility](https://docs.unity3d.com/Manual/webgl-browsercompatibility.html)
@@ -64,7 +64,7 @@ Supported Platforms
     * 支持删除已安装的SDK。
 4. 更新SDK
     * 不支持更新功能。
-    * 如需更新请删除后重新安装。
+    * 如需更新，请删除后重新安装。
 
 ### Using the Setting Tool
 
@@ -85,8 +85,8 @@ Supported Platforms
 
 #### 删除SDK
 1. 运行Menu > Tools > Gamebase > SDKSettings > Setting Tool。
-	* v1.0.1 以下：Menu > Gamebase > SDKSettings > Setting Tool
-2. 点击[Remove] 按钮删除已安装的SDK。
+	* v1.0.1以下：Menu > Gamebase > SDKSettings > Setting Tool
+2. 点击[Remove]按钮删除已安装的SDK。
 
 <br/>
 > [参考]
@@ -127,7 +127,7 @@ Supported Platforms
 
 ### Android Lifecycle
 
-为了管理生命周期，需要把“com.toast.gamebase.activity.GamebaseMainActivity”设置为为MainActivity。
+为了管理生命周期，需要把“com.toast.gamebase.activity.GamebaseMainActivity”设置为MainActivity。
 "com.toast.gamebase.activity.GamebaseMainActivity"是继承"com.unity3d.player.UnityPlayerActivity"实现的。
 
 
@@ -136,6 +136,8 @@ Supported Platforms
 > AndroidPlugin开发也必须继承GamebaseMainActivity。 <br/>
 > GamebaseMainActivity包含在GamebasePlugin.jar。 <br/>
 > launchMode应该是singleTask。(Unity默认Activity也将固定为singleTask。) 否则，第一次启动应用程序时可能会崩溃。
+>
+> 修改相关Lifecycle时，要通过启用Project Settings > Settings for Android > Publish Settings > Build > Custom Main Manifest来在相关AndroidManifest.xml上进行修改。 
 
 ```xml
 <manifest>
