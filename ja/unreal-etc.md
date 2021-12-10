@@ -64,7 +64,7 @@ namespace GamebaseDisplayLanguageCode
     static const FString German(TEXT("de"));
     static const FString English(TEXT("en"));
     static const FString Spanish(TEXT("es"));
-    static const FString Finish(TEXT("fi"));
+    static const FString Finnish(TEXT("fi"));
     static const FString French(TEXT("fr"));
     static const FString Indonesian(TEXT("id"));
     static const FString Italian(TEXT("it"));
@@ -324,8 +324,8 @@ void Sample::AddEventHandler()
 | ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(message.data) | \- |
 | Observer | GamebaseEventCategory::ObserverLaunching<br>GamebaseEventCategory::ObserverNetwork<br>GamebaseEventCategory::ObserverHeartbeat | FGamebaseEventObserverData::From(message.data) | \- |
 | Purchase - プロモーション決済 | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(message.data) | \- |
-| Push - メッセージ受信 | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(message.data) | **isForeground**値を使用してForegroundでメッセージを受信したかどうかを確認できます。 |
-| Push - メッセージクリック | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) | **isForeground**値がありません。 |
+| Push - メッセージ受信 | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(message.data) |  |
+| Push - メッセージクリック | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) |  |
 | Push - アクションクリック | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(message.data) | RichMessageボタンを押すと動作します。 |
 
 
@@ -539,8 +539,8 @@ void Sample::AddEventHandler()
 #### Push Received Message
 
 * Pushメッセージが到着した時に発生するイベントです。
-* **isForeground**フィールドを利用してフォアグラウンドでメッセージを受信したのか、バックグラウンドでメッセージを受信したのかを区別できます。
-* extrasフィールドをJSONに変換して、Push送信時に送信されたカスタム情報を取得することもできます。
+* extrasフィールドをJSONに変換して、Push送信時に送信したカスタム情報を取得することもできます。
+    * **Android**では**isForeground**フィールドでフォアグラウンドでメッセージを受信したのか、バックグラウンドでメッセージを受信したのかを区別できます。
 
 **VO**
 
@@ -556,7 +556,7 @@ struct FGamebaseEventPushMessage
     // Pushメッセージ本文内容です。
     FString body;
 
-    // JSONObjectに変換してすべての情報を確認できます。
+    // JSON形式でPush送信時、送信したカスタム情報を確認できます。
     FString extras;
 };
 ```
@@ -574,6 +574,10 @@ void Sample::AddEventHandler()
             if (pushMessage.IsVaild())
             {
                 // When you clicked push message.
+
+                // By converting the extras field of the push message to JSON,
+                // you can get the custom information added by the user when sending the push.
+                // (For Android, an 'isForeground' field is included so that you can check if received in the foreground state.)
             }
         }
     }));
@@ -583,7 +587,7 @@ void Sample::AddEventHandler()
 #### Push Click Message
 
 * 受信したPushメッセージをクリックした時に発生するイベントです。
-* 'GamebaseEventCategory.PUSH_RECEIVED_MESSAGE'とは異なり、**isForeground**フィールドが存在しません。
+* 'GamebaseEventCategory::PushReceivedMessage'とは異なり、Androidのextrasフィールドに**isForeground**情報が存在しません。
 
 **Example**
 
