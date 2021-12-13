@@ -1,22 +1,32 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.31.0 (2021.12.14)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST Android SDK(0.29.0)
+* 이용정지 웹뷰 내의 고객센터 링크에서 이용정지 유저 정보로 문의를 등록할 수 없는 문제를 해결하였습니다.
+* 앱이 켜지자마자 Gamebase 초기화를 호출하는 경우, 런칭 팝업이 간헐적으로 영어로 표시되는 문제를 수정하였습니다.
+* 앱이 백그라운드에서 포그라운드로 전환될때는 항상 런칭 정보가 변경되지 않았는지 바로 체크하도록 스케쥴러를 개선하였습니다.
+* GamebaseEventHandler의 GamebaseEventObserverData.code에 **GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)** 에러가 추가되었습니다.
+    * 이 이벤트가 발생하는 경우에는 Gamebase Access Token이 만료되어 복구되지 않는 상황이므로, 로그인을 다시 시도하시기 바랍니다.
+    * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Observer](./aos-etc/#observer)
+    
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* 강제매핑 시 IdP 로그인을 한번 더 시도해야 하는 불편함을 개선한 새로운 강제매핑 API가 추가되었습니다.
-    * **Gamebase.addMappingForcibly(Activity, ForcingMappingTicket, GamebaseDataCallback\<AuthToken\>)**
-    * [Game > Gamebase > Android SDK 사용 가이드 > 인증 > Mapping > Add Mapping Forcibly](./aos-authentication/#add-mapping-forcibly)
-* Gamebase.addMapping() 호출 후 AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302) 에러가 발생했을 때, 해당 계정으로 로그인을 할 수 있는 API가 추가되었습니다.
-    * **Gamebase.changeLogin(Activity, ForcingMappingTicket, GamebaseDataCallback\<AuthToken\>)**
-    * [Game > Gamebase > Android SDK 사용 가이드 > 인증 > Mapping > Change Login with ForcingMappingTicket](./aos-authentication/#change-login-with-forcingmappingticket)
+#### Added Features
+* Added a new forced mapping API, which removes the inconvenience of having to try IdP login once more when performing forced mapping.
+    * [Game > Gamebase > Android SDK User Guide > Authentication > Mapping > Add Mapping Forcibly](./aos-authentication/#add-mapping-forcibly)
+* Added an API that allows you to log in to the corresponding account when an AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302) error occurs after calling Gamebase.addMapping().
+    * [Game > Gamebase > Android SDK User Guide > Authentication > Mapping > Change Login with ForcingMappingTicket](./aos-authentication/#change-login-with-forcingmappingticket)
 
-#### 기능 개선/변경
+#### Feature Updates
 * External SDK update: Hangame Android SDK(1.4.2)
-* Gamebase가 기본으로 제공하는 점검 상세보기 웹뷰 html을 사용자가 수정해서 사용할 수 있도록 개선하였습니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > 초기화 > Launching Information > 1. Launching > 1.3 Maintenance > Change Default Maintenance HTML](./aos-initialization/#change-default-maintenance-html)
-* DisplayLanguageCode를 설정했음에도 기본 점검 웹뷰의 시간이 단말기 언어로 표시되는 오류를 수정하였습니다.
-* 통신 오류 발생시, 끊긴 커넥션으로 통신을 시도함으로 인해 반복적으로 발생하던 네트워크 오류를 개선하였습니다.
+* Improved so that the user can modify and use the maintenance details webview HTML provided by Gamebase by default.
+    * [Game > Gamebase > Android SDK User Guide > Initialization > Launching Information > 1. Launching > 1.3 Maintenance > Change Default Maintenance HTML](./aos-initialization/#change-default-maintenance-html)
+* Fixed an error where the time on the default maintenance webview was displayed in the device language even though DisplayLanguageCode was set.
+* Improved the network error that occurred repeatedly by trying to communicate with a disconnected connection when a communication error occurs.
 
 ### 2.29.0 (2021.11.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-Android.zip)

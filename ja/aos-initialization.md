@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         String appId = "T0aStC1d";
         String appVersion = "1.0.0";
         String storeCode = "GG";
-        GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(appId, appVersio, storeCode)
+        GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(appId, appVersion, storeCode)
                 .enablePopup(true)
                 .build();
         /**
@@ -255,6 +255,23 @@ Gamebase Consoleに登録されたメンテナンス情報です。
 * message：メンテナンス理由
 
 [Game > Gamebase > コンソール使用ガイド > 運営 > Maintenance](./oper-operation/#maintenance)
+<br/>
+##### Change Default Maintenance HTML
+
+```
+Not translated yet
+```
+
+##### Change Default Maintenance HTML
+
+enablePopupとenableLaunchingStatusPopupの値がいずれもtrueの場合、ゲームがメンテナンス状態の時、自動的にメンテナンスポップアップが表示されます。
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_popup_android_2.30.0.png)
+
+ここで**詳細表示**ボタンをクリックするとメンテナンス情報が自動的にWebビューで表示されます。
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_webview_android_2.30.0.png)
+
+この時に表示されるhtmlファイルを修正したい場合は、次のリンクのhtmlファイルをダウンロードして自由に修正した後、'assets/Gamebase'フォルダに格納します。するとGamebase SDKに内蔵された基本htmlファイルの代わりにそのhtmlファイルを使用してメンテナンス情報を表示します。
+[htmlファイルダウンロードLINK](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
 
 **1.4 Notice**
 

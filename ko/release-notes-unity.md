@@ -1,5 +1,20 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
+### 2.31.0 (2021.12.14)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST Unity SDK(0.25.0)
+* Standalone 점검 팝업에서 점검 시간 표시 여부를 동적으로 설정할 수 있도록 변경되었습니다.
+* Setting Tool
+    * Payco IDP가 추가되었습니다.
+    * 기존 SettingTool을 완전히 삭제한 후 재설치해야 합니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.31.0](./release-notes-android/#2310-20211214)
+* [Gamebase iOS SDK 2.31.0](./release-notes-ios/#2310-20211214)
+
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Unity.zip)
 
@@ -629,9 +644,9 @@ Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
         * 발급된 TransferAccountInfo를 사용하여 계정 이전을 요청하는 API (transferAccountWithIdPLogin)
         * 발급된 TransferAccountInfo를 확인하는 API (queryTransferAccount)
         * 이미 발급된 TransferAccountInfo 갱신하는 API (renewTransferAccount)        
-* 강제매핑 기능 추가: 이미 다른 계정에 연동 되어있는 IdP계정을 매핑할 수 있는 기능
+* 강제 매핑 기능 추가: 이미 다른 계정에 연동 되어있는 IdP계정을 매핑할 수 있는 기능
     * (SDK공통)추가된 API 
-        * 강제매핑하는 API (addMappingForcibly)
+        * 강제 매핑하는 API (addMappingForcibly)
 
 #### 기능 개선/변경
 * [SDK] 2.2.0
@@ -724,7 +739,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * (iOS)에러코드 추가 : Gamecenter 로그인 거부(TCGB_ERROR_IOS_GAMECENTER_DENIED)
 * [SDK] Setting Tool
     * 폴더명 변경 : TOAST -> Toast
-    * 에러발생시 팝업 알림 추가 : File Download 실패, File Extract 실패, XML 파싱 실패
+    * 에러 발생 시 팝업 알림 추가 : File Download 실패, File Extract 실패, XML 파싱 실패
     
 ### 1.12.0 (2018.07.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.12.0/GamebaseSDK-Unity.zip)

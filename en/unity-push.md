@@ -4,18 +4,23 @@ This document describes how to set push notifications for each platform.
 
 ### Settings
 
+For how to set up push on Android or iOS, refer to the following documents.
 
-For Android or iOS users, refer to the following documents:<br/>
-
-* [Android Push Settings](aos-started/#firebase-notification)<br/>
-* [iOS Push Settings](ios-push#settings)
+* Android
+    * [Android Push Settings](aos-push/#settings)
+    * [Firebase Notification Settings](aos-started/#firebase-notification)
+* iOS
+    * [iOS Push Settings](ios-push#settings)
 
 
 ### Register Push
 
-Register a user to NHN Cloud Push by calling API as below.
-With user&#39;s agreement to enablePush, enableAdPush, and enableAdNightPush, call following API to complete registration.
+Call the following API to register the user for NHN Cloud Push.
+Get the values of consent to receiving push (enablePush), consent to receiving advertisement push (enableAdPush), and consent to receiving night-time advertisement push (enableAdNightPush) from the user, and call the following API to complete the registration.
 
+> <font color="red">[Caution]</font><br/>
+>
+> It is recommended to call the registerPush API every time after logging in because the push settings may be different for each UserID and the push token may expire.
 
 **API**
 

@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         String appId = "T0aStC1d";
         String appVersion = "1.0.0";
         String storeCode = "GG";
-        GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(appId, appVersio, storeCode)
+        GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(appId, appVersion, storeCode)
                                             .enableLaunchingStatusPopup(true)
                                             .build();
         /**
@@ -252,6 +252,12 @@ LaunchingInfo对象中包含Gamebase Console中设置的值和游戏状态等。
 * message: 检查原因
 
 [Game > Gamebase > 控制台使用指南 > 运营 > Maintenance](./oper-operation/#maintenance)
+<br/>
+##### Change Default Maintenance HTML
+
+```
+Not translated yet
+```
 
 **1.4 Notice**
 

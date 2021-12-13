@@ -1,5 +1,20 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.31.0 (2021.12.14)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Unity.zip)
+
+#### 改善/修复功能
+* 外部SDK升级 : TOAST Unity SDK(0.25.0)
+* 可以更改Standalone维护弹窗“是否显示维护时间”。 
+* Setting Tool
+    * 添加了Payco IDP。
+    * 需要删除以前的SettingTool后重新进行设置。 
+
+#### 各平台变更项目
+* [Gamebase Android SDK 2.31.0](./release-notes-android/#2310-20211214)
+* [Gamebase iOS SDK 2.31.0](./release-notes-ios/#2310-20211214)
+
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Unity.zip)
 
@@ -16,7 +31,7 @@
 ### 2.29.0 (2021.11.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-Unity.zip)
 
-#### 改善/修改功能
+#### 改善/修复功能
 * 外部SDK升级 : TOAST Unity SDK(0.23.5)
 * Setting Tool
     * 发布了v2.0.0版本。

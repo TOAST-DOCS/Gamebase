@@ -200,7 +200,7 @@ public void GetDisplayLanguageCode()
 
 For UnityEditor and Unity Standalone, or WebGL platform services, to use another language in addition to default Gamebase languages (ko, en, ja), go to Assets > StreamingAssets > Gamebase and add a value to the localizedstring.json file. 
 
-![localizedstring.json](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-etc_001_1.11.0.png)
+![localizedstring.json](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-etc_001_1.11.0.png)
 
 The localizedstring.json has a format defined as below:
 
@@ -316,7 +316,7 @@ static string GetCountryCodeOfDevice()
 	2. If the country code in the USIM is empty, checks the country code of the device. If a value exists, returns the value without any separate verification.
 	3. 'ZZ' is returned when the country code values of USIM and device are empty.
 
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
+![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
 > [Note]
 >

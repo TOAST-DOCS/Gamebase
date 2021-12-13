@@ -2,14 +2,14 @@
 
 This document describes the environment and initial setting to enable Unreal Gamebase SDK.
 
-### Environments
+## Environments
 
 > [Note] 
 >
 > Support Versions for Unreal 
 >
 > * UE 4.22 ~ UE 4.26
-> * To get a lower-version support for Unreal, please contact [Customer Center](https://toast.com/support/inquiry).
+> * To get support for a lower version of Unreal, please contact [Customer Center](https://toast.com/support/inquiry).
 
 #### Supported Platforms
 
@@ -47,7 +47,7 @@ Supported Platforms
 1. Select **Edit > Project Settings** from the editor menu.
 2. In the Project Settings window, under Plugin category, select **Gamebase**.
 
-![Unreal Project Settings - Android](http://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.19.0.png)
+![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.19.0.png)
 
 * Android - Authentication
     * Activate the IdP to use.
@@ -150,6 +150,7 @@ if (bRemoteNotificationsSupported)
 
 1. To enable Gamebase Remote Notification, go to **Project Settings > Platforms > iOS** and activate **Enable Remote Notifications Support**. (available only on Github sources)
 2. To receive the Foreground push notification, the code shown below must be removed from the [Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp) file, or
+
     ```objectivec
     - (void)userNotificationCenter:(UNUserNotificationCenter *)center
         willPresentNotification:(UNNotification *)notification
@@ -203,9 +204,9 @@ APIs that are no longer supported by Gamebase are to be deprecated.
 Once deprecated, APIs might be deleted without previous notice if they fulfill the following conditions: 
 
 * Updated more than 5 times for a minor version 
-	* Gamebase Version Format - XX.YY.ZZ
-		* XX : Major
-		* YY : Minor
-		* ZZ : Hotfix
+    * Gamebase Version Format - XX.YY.ZZ
+        * XX : Major
+        * YY : Minor
+        * ZZ : Hotfix
 
 * At least 5-month old 

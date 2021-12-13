@@ -1,37 +1,51 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.31.0 (2021.12.14)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST Unity SDK(0.25.0)
+* Standalone 점검 팝업에서 점검 시간 표시 여부를 동적으로 설정할 수 있도록 변경되었습니다.
+* Setting Tool
+    * Payco IDP가 추가되었습니다.
+    * 기존 SettingTool을 완전히 삭제한 후 재설치해야 합니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.31.0](./release-notes-android/#2310-20211214)
+* [Gamebase iOS SDK 2.31.0](./release-notes-ios/#2310-20211214)
+
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 강제매핑 시 IdP 로그인을 한번 더 시도해야 하는 불편함을 개선한 새로운 강제매핑 API가 추가되었습니다.
-    * [Game > Gamebase > Unity SDK 사용 가이드 > 인증 > Mapping > Add Mapping Forcibly](./unity-authentication/#add-mapping-forcibly)
-* Gamebase.AddMapping() 호출 후 AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302) 에러가 발생했을 때, 해당 계정으로 로그인을 할 수 있는 API가 추가되었습니다.
-    * [Game > Gamebase > Unity SDK 사용 가이드 > 인증 > Mapping > Change Login with ForcingMappingTicket](./unity-authentication/#change-login-with-forcingmappingticket)
+#### Added Features
+* Added a new forced mapping API, which removes the inconvenience of having to try IdP login once more when performing forced mapping.
+    * [Game > Gamebase > Unity SDK User Guide > Authentication > Mapping > Add Mapping Forcibly](./unity-authentication/#add-mapping-forcibly)
+* Added an API that allows you to log in to the corresponding account when an AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302) error occurs after calling Gamebase.AddMapping().
+    * [Game > Gamebase > Unity SDK User Guide > Authentication > Mapping > Change Login with ForcingMappingTicket](./unity-authentication/#change-login-with-forcingmappingticket)
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.30.0](./release-notes-android/#2300-20211123)
 * [Gamebase iOS SDK 2.30.0](./release-notes-ios/#2300-20211123)
 
 ### 2.29.0 (2021.11.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Unity SDK(0.23.5)
+#### Feature Updates
+* External SDK update: TOAST Unity SDK(0.23.5)
 * Setting Tool
-    * v2.0.0이 새로 배포되었습니다.
-    * 기존 SettingTool을 완전히 삭제한 후 재설치해야 합니다.
-    * 변경된 내용 및 사용 방법은 아래 가이드를 확인하십시오.
-        * [Game > Gamebase > Unity SDK 사용 가이드 > 시작하기 > Specification of Setting Tool](https://docs.toast.com/ko/Game/Gamebase/ko/unity-started/#specification-of-setting-tool)
+    * v2.0.0 has been released.
+    * You must reinstall the tool after removing the previous version of SettingTool completely.
+    * Refer to the guide below for what has changed and how to use it.
+        * [Game > Gamebase > Unity SDK User Guide > Getting Started > Specification of Setting Tool](https://docs.toast.com/ko/Game/Gamebase/ko/unity-started/#specification-of-setting-tool)
 
-#### 버그 수정
-* GamebaseDisplayLanguageCode 핀란드어 오타 수정
+#### Bug Fixes
+* Fixed a typo of Finnish language on GamebaseDisplayLanguageCode
     * Finish → Finnish
 
-#### 플랫폼 별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.29.0](./release-notes-android/#2290-20211109)
 * [Gamebase iOS SDK 2.29.0](./release-notes-ios/#2290-2021109)
-
 
 ### 2.28.1 (2021.10.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.1/GamebaseSDK-Unity.zip)

@@ -571,7 +571,7 @@ void Sample::AddMappingForcibly(const FString& providerName)
         }
         else
         {
-            // 우선 addMapping API 호출 및, 이미 연동되어 있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
+            // 우선 AddMapping API 호출 및, 이미 연동되어 있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
             if (error->code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
                 // ForcingMappingTicket 클래스의 From() 메서드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
@@ -664,7 +664,7 @@ void Sample::AddMappingForcibly()
         }
         else
         {
-            // 우선 addMapping API 호출 및, 이미 연동되어 있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
+            // 우선 AddMapping API 호출 및, 이미 연동되어 있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
             if (error->code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
                 // ForcingMappingTicket 클래스의 From() 메서드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.

@@ -1,5 +1,13 @@
 ## Game > Gamebase > Android SDK 使用指南 > push
 
+### Settings
+
+#### Android Notification Icon
+
+```
+Not translated yet
+```
+
 ### Register Push
 
 调用以下API在TOAST Push注册该用户。<br/>

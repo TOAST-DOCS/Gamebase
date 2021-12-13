@@ -4,9 +4,9 @@
 
 ## Install: Developers
 
-### Gamebase SDKのインストール [\[リンク参照\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.install-with-setting-tool/)
+### Gamebase SDKのインストール [\[リンク参照\]](https://forward.nhn.com/2021/hands-on-labs/gamebase.install-with-setting-tool/)
 
-#### 初心者 / 5分
+#### 初心者 / 10分
 
 * Setting Toolのインストール
 * Setting Toolを利用しGamebase SDKをダウンロード
@@ -16,7 +16,7 @@
 
 ## Authentication: Developers
 
-### [Unity] Guest Authentication [\[リンク参照\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.guest-auth-on-unity/)
+### [Unity] Guest Authentication [\[リンク参照\]](https://forward.nhn.com/2021/hands-on-labs/gamebase.guest-auth-on-unity/)
 
 #### 初心者 / 15分
 
@@ -27,15 +27,7 @@
 * Gamebase ゲストログイン
 * Gamebase ログアウト
 
-### [Javascript] Guest Authentication [\[lリンク参照\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.guest-auth-on-js/)
-
-#### 初心者 / 15分
-
-* Gamebase JavaScriptの初期設定
-* Gamebase JavaScriptの初期化
-* Gamebase のゲスト認証
-
-### [Unity] Google IdP Authentication [\[リンク参照\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.google-setting/)
+### [Unity] Google IdP Authentication [\[リンク参照\]](https://forward.nhn.com/2021/hands-on-labs/gamebase.google-setting/)
 
 #### 初心者 / 30分
 

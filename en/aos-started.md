@@ -14,7 +14,7 @@ To execute Gamebase in Android, the following system environment is required.
 
 | Gamebase SDK | Gamebase Adapter | External SDK | Purpose | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.27.4<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include interface and core logic of Gamebase | API 16 (JellyBean, OS 4.1) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.29.0<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include interface and core logic of Gamebase | API 16 (JellyBean, OS 4.1) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Support Google login | - |
@@ -25,7 +25,7 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Support Twitter login | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | Support Weibo login | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 21(Lollipop, OS 5.0) |
-| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.16.0<br>toast-iap-core | Support in-app purchase | - |
+| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.0<br>toast-iap-core | Support in-app purchase | - |
 |  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | Support Galaxy Store | API 21 (Lollipop, OS 5.0)<br>Although minSdkVersion of Galaxy IAP SDK is 18, the minSdkVersion of Checkout service app that must be installed for actual purchase is 21. |
 |  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Support Google Store | - |
 |  | gamebase-adapter-purchase-onestore | toast-iap-onestore | Support ONE Store v17<br>Currently v19 is not supported | - |
@@ -496,14 +496,16 @@ android {
             * GamebaseManager.java file in the following link.
     * Unity Sample Project
         * [https://github.com/nhn/toast.gamebase.unity.sample](https://github.com/nhn/toast.gamebase.unity.sample)
-* Implement to reset the Gamebase client SDK at the start of the game and start to reprocess the payment after a successful login.
+* Initialize the Gamebase client SDK when the game starts, and if the login is successful, start reprocessing the payment and register the push token.
 
-![overview flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.19.0.png)
+![overview flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.30.1.png)
 
 * You can see the detailed flow in the following link:
+    * [Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Gamebase Event Handler](./aos-etc/#gamebase-event-handler)
     * [Game > Gamebase > Android SDK User Guide > Initialization > Initialization Flow](./aos-initialization/#initialization-flow)
     * [Game > Gamebase > Android SDK User Guide > Authentication > Login Flow](./aos-authentication/#login-flow)
     * [Game > Gamebase > Android SDK User Guide > Payment > Retry Transaction Flow](./aos-purchase/#retry-transaction-flow)
+    * [Game > Gamebase > Android SDK User Guide > Push > Register Push](./aos-push/#register-push)
 
 ## 3rd-Party Provider SDK Guide
 

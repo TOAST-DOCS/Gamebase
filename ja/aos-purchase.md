@@ -4,65 +4,12 @@
 
 Gamebaseは、一つの統合された決済APIを提供することで、ゲームで簡単に各ストアのアプリ内決済を連動することができるようサポートします。
 
-### Settings
-
-#### 1. Store Console
-
-* 次のIAPガイドをご参考の上、各ストアにアプリを登録してアプリケーションキーを発行してもらいます。
-	* [Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド](./console-google-guide)
-	* [Game > Gamebase > ストアコンソールガイド > ONEStoreコンソールガイド](./console-onestore-guide)
-
-#### 2. Register as Store's Tester
-
-* 決済テストのため、次のようにストアごとにテスター登録をします。
-    * Google
-        * [Android > テスト購入設定](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
-    * ONE store
-        * [ONE store > アプリ内決済テスト](https://github.com/ONE-store/inapp-sdk/wiki/IAP-Developer-Guide#%EC%9D%B8%EC%95%B1%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8)
-        * 必ずアプリ内情報 - テストボタンでサンドボックスを希望する端末の電話番号を登録してテストを行う必要があります。
-        * テスト用の端末にはUSIMが必要であり、電話番号を登録しなければなりません(MDN)。
-        * **ONE store**のアプリケーションがインストールされている必要があります。
-
-#### 3. Register Item
-
-* 下記のガイドを参考にしてアイテムを登録します。
-    * [Game > Gamebase > コンソール使用ガイド > 決済 > Register](./oper-purchase/#register_1)
-
-#### 4. Setting SDK
-
-* 使用するマーケットのgamebase-adapter-purchaseモジュールをgradle依存性に追加します。
-
-```groovy
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    // >>> Gamebase Version
-    def GAMEBASE_SDK_VERSION = 'x.x.x'
-    
-    // >>> Gamebase - Select Purchase Adapter
-    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
-    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
-}
-```
-
-#### 5. AndroidManifest.xml(ONE store only)
-
-* ONE storeを使用するためには、次の設定を追加する必要があります。
-
-```xml
-<manifest>
-    ...
-    <application>
-    ...
-        <!-- [ONE store] Configurations begin -->
-        <meta-data android:name="iap:plugin_mode" android:value="development" /> <!—development:開発モード / release:運営 -->
-        <!-- [ONE store] Configurations end -->
-    ...
-    </application>
-</manifest>
-```
-
 ### Initialization
+
+> <font color="red">[注意]</font><br/>
+>
+> ONE Storeはv17のみサポートします。
+> ONE Store v19はサポートを検討中で、現在はサポートしていません。
 
 * Gamebaseの初期化時、ストアコードを指定する必要があります。
 * **STORE_CODE**は、次の値の中から選択します。

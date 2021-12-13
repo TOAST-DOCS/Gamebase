@@ -23,13 +23,13 @@ Gamebase Unity SDKを使用するためには、まず初期化を行う必要�
 
 Gamebase Consoleに登録されたプロジェクトIDです。
 
-[Console Guide](/Game/Gamebase/ja/oper-app/#app)
+[Game > Gamebase > コンソール使用ガイド > アプリ > App](./oper-app/#app)
 
 #### 2. appVersion
 
 Gamebase Consoleに登録したクライアントバージョンです。
 
-[Console Guide](/Game/Gamebase/ja/oper-app/#client)
+[Game > Gamebase > コンソール使用ガイド > アプリ > Client](./oper-app/#client)
 
 #### 3. storeCode
 
@@ -48,7 +48,7 @@ NHN Cloudの統合アプリ内決済サービスであるIAP(In-App Purchase)を
 
 Gamebaseで提供するUI及びSystemDialogに表示される言語をデバイスに設定されている言語ではなく、ユーザーが設定した言語に変更することができます。
 
-[Display Language](./unity-etc/#display-language)
+[Game > Gamebase > Unity SDK使用ガイド > ETC > Additional Features > Display Language](./unity-etc/#display-language)
 
 #### 5. enablePopup
 
@@ -83,7 +83,7 @@ GamebaseサーバーからKickoutイベントを取得した場合、Gamebaseで
 
 Firebase Messaging(FCM)を使用するためのSender IDです。
 
-![FCM Sender ID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
+![FCM Sender ID](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
 
 #### 10. useWebview
 
@@ -259,21 +259,22 @@ Gamebase Unity SDKの初期化の設定に入力したアプリバージョン�
 
 ステータスコードは、次の表をご参考ください。
 
-| Status                      | Status Code | Description                                    |
-| --------------------------- | ----------- | ---------------------------------------- |
-| IN_SERVICE | 200 | サービスが正常に動作しています。 |
-| RECOMMEND_UPDATE | 201 | アップデートを推奨します。 |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202         | メンテナンス中にはサービスを利用できませんが、QA端末に登録された場合にはメンテナンスに関係なくサービスに接続してテストすることができます。|
+| Status                      | Code | Description                              |
+| --------------------------- | ---- | ---------------------------------------- |
+| IN_SERVICE                  | 200  | 正常サービス中                               |
+| RECOMMEND_UPDATE            | 201  | アップデート推奨                                |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202  | メンテナンス中はサービスを利用できませんが、QA端末として登録されている場合はメンテナンスに関係なくサービスに接続してテストできます。 |
 | IN_TEST                     | 203  | テスト中 |
 | IN_REVIEW                   | 204  | 審査中 |
-| REQUIRE_UPDATE | 300 | アップデートが必ず必要です。 |
-| BLOCKED_USER                | 301         | 接続ブロックに登録された端末(デバイスキー)でサービスに接続したケースです。|
-| TERMINATED_SERVICE          | 302         | サービスが終了しました。                                   |
-| INSPECTING_SERVICE          | 303         | サービスをメンテナンス中です。                                 |
-| INSPECTING_ALL_SERVICES     | 304         | 全体サービスをメンテナンス中です。                              |
-| INTERNAL_SERVER_ERROR       | 500         | 内部サーバーエラーです。                                 |
+| IN_BETA                     | 205  | ベータサーバー環境 |
+| REQUIRE_UPDATE              | 300  | アップデート必須                                |
+| BLOCKED_USER                | 301  | 「接続ブロック」に登録された端末(デバイスキー)からサービスに接続した場合です。 |
+| TERMINATED_SERVICE          | 302  | サービス終了                                 |
+| INSPECTING_SERVICE          | 303  | サービスメンテナンス中                               |
+| INSPECTING_ALL_SERVICES     | 304  | 全てのサービスメンテナンス中                            |
+| INTERNAL_SERVER_ERROR       | 500  | 内部サーバーエラー                               |
 
-[Console Guide](/Game/Gamebase/ja/oper-app/#app)
+[Game > Gamebase > コンソール使用ガイド > アプリ > App](./oper-app/#app)
 
 
 **1.2 App**
@@ -291,7 +292,7 @@ Gamebase Consoleに登録されたアプリ情報です。
 * install:インストールURL
 * idP:認証情報
 
-[Console Guide](/Game/Gamebase/ja/oper-app/#client)
+[Game > Gamebase > コンソール使用ガイド > アプリ > Client](./oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -303,7 +304,18 @@ Gamebase Consoleに登録されたメンテナンス情報です。
 * endDate:終了時間
 * message:メンテナンス理由
 
-[Console Guide](/Game/Gamebase/ja/oper-operation/#maintenance)
+[Game > Gamebase > コンソール使用ガイド > 運営 > Maintenance](./oper-operation/#maintenance)
+
+##### Change Default Maintenance HTML
+
+enablePopupとenableLaunchingStatusPopupの値がいずれもtrueの場合、ゲームがメンテナンス状態の時、自動的にメンテナンスポップアップが表示されます。
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_popup_android_2.30.0.png)
+
+ここで**詳細表示**ボタンをクリックするとメンテナンス情報が自動的にWebビューで表示されます。
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_webview_android_2.30.0.png)
+
+この時に表示されるhtmlファイルを修正したい場合は、次のリンクのhtmlファイルをダウンロードして自由に修正した後、'Assets > StreamingAssets > Gamebase'フォルダに追加するとGamebase SDKに内蔵された基本htmlファイルの代わりにそのhtmlファイルを使用してメンテナンス情報を表示します。
+[htmlファイルダウンロードLINK](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
 
 **1.4 Notice**
 
@@ -313,7 +325,7 @@ Gamebaes Consoleに登録されたお知らせ情報です。
 * title:タイトル
 * url:メンテナンスURL
 
-[Console Guide](/Game/Gamebase/ja/oper-operation/#notice)
+[Game > Gamebase > コンソール使用ガイド > 運営 > Notice](./oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -332,7 +344,7 @@ Gamebaseと連携しているNHN CloudサービスのappKeyです。
 * name:App Name
 * storeCode:Store Code
  
-[Console Guide](/Game/Gamebase/ja/oper-purchase/)
+[Game > Gamebase > コンソール使用ガイド > 決済](./oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -341,7 +353,7 @@ NHN Cloud Launching Consoleでユーザーが入力した情報です。
 * ユーザーが入力した値をJSON stringで伝達します。
 * NHN Cloud Launchingの詳細設定は、下記のガイドを参照してください。
  
-[Console Guide](/Game/Gamebase/ja/oper-management/#config)
+[Game > Gamebase > コンソール使用ガイド > 管理 > Config](./oper-management/#config)
 
 ### Get Launching Information
 

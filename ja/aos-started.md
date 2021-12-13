@@ -14,7 +14,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.27.4<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | GamebaseのInterfaceおよびコアロジックを含む | API 16 (JellyBean, OS 4.1) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.29.0<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | GamebaseのInterfaceおよびコアロジックを含む | API 16 (JellyBean, OS 4.1) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Appleログインをサポート | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | Facebookログインをサポート | - |
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Googleログインをサポート | - |
@@ -25,10 +25,10 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitterログインをサポート | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | Weiboログインをサポート | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Kakaoログインをサポート | API 21(Lollipop, OS 5.0) |
-| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.16.0<br>toast-iap-core | ゲーム内決済をサポート | - |
+| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.0<br>toast-iap-core | ゲーム内決済をサポート | - |
 |  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | Galaxy Storeをサポート | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDKのminSdkVersionは18ですが、<br>実際の決済のためにインストールしなければいけないCheckoutサービスアプリの<br>minSdkVersionは21です。 |
 |  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Google Storeをサポート | - |
-|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | ONE Storeをサポート | - |
+|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | ONE Store v17をサポート<br>現在v19はサポート不可 | - |
 | Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Pushをサポート | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Firebase Notificationをサポート | - |
 
@@ -47,6 +47,9 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 * アイテムを購入するためにStoreコンソールでアプリ情報を登録してGamebase > 購入(IAP)コンソールに入力します。
 	* [Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド](./console-google-guide)
 	* [Game > Gamebase > ストアコンソールガイド > ONEStoreコンソールガイド](./console-onestore-guide)
+        * ONE Storeは現在v17のみサポートします。
+        * ONE Storeでアプリを作成する時、v19で作成しないように注意してください。
+        * ONE Storev19のサポートは検討中の段階です。
 	* [Game > Gamebase > ストアコンソールガイド > GALAXY Storeコンソールガイド](./console-galaxy-guide)
     * 以下のガイドを参考にしてアイテムを登録します。
         * [Game > Gamebase > コンソール使用ガイド > 決済 > Register](./oper-purchase/#register_1)
@@ -91,14 +94,16 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
         // mainTemplate.gradle
         ([rootProject] + (rootProject.subprojects as List)).each {
             ext {
+                // >>> [AndroidX]
                 it.setProperty("android.useAndroidX", true)
                 it.setProperty("android.enableJetifier", true)
             }
         }
         ```
     * Unity 2019.3以上
-        ```groovy
-        // gradleTemplate.properties
+        ```
+        # gradleTemplate.properties
+        # >>> [AndroidX]
         android.useAndroidX=true
         android.enableJetifier=true
         ```
@@ -111,6 +116,27 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
           </insert>  
         </gradleProperties>
         ```
+
+#### Under AGP 3.4.0
+
+* Android Gradle Pluginバージョンが3.4.0未満の場合、ビルドが失敗するため、次の宣言が必要です。
+    ```groovy
+    # gradle.properties
+    # >>> Fix for AGP under 3.4.0
+    android.enableD8.desugaring=true
+    android.enableIncrementalDesugaring=false
+    ```
+* Unityの場合、Editorバージョンが2018.4.3以下または2019.1.6以下の場合、これに該当します。(AGPバージョンが3.2.0)
+    ```groovy
+    // mainTemplate.gradle
+    ([rootProject] + (rootProject.subprojects as List)).each {
+        ext {
+            // >>> Fix for AGP under 3.4.0
+            it.setProperty("android.enableD8.desugaring", true)
+            it.setProperty("android.enableIncrementalDesugaring", false)
+        }
+    }
+    ```
 
 #### Define Adapters
 
@@ -143,6 +169,7 @@ dependencies {
 
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
+    // >>> ONE Storeはv17のみ使用することができ、v19は現在サポートしていません。
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
 
@@ -469,14 +496,16 @@ android {
             * GamebaseManager.javaファイルを参考にしてください。
     * Unity Sample Project
         * [https://github.com/nhn/toast.gamebase.unity.sample](https://github.com/nhn/toast.gamebase.unity.sample)
-* ゲームが始まった時、GamebaseクライアントSDKを初期化し、ログインが成功したら決済の再処理が始まるように実装してください。
+* ゲームの開始時にGamebaseクライアントSDKを初期化し、ログインが成功したら、決済の再処理を始めてプッシュトークンを登録してください。
 
-![overview flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.19.0.png)
+![overview flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.30.1.png)
 
 * 詳細flowは、次のリンクで確認できます。
+    * [Game > Gamebase > Android SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler](./aos-etc/#gamebase-event-handler)
     * [Game > Gamebase > Android SDK使用ガイド > 初期化 > Initialization Flow](./aos-initialization/#initialization-flow)
     * [Game > Gamebase > Android SDK使用ガイド > 認証 > Login Flow](./aos-authentication/#login-flow)
     * [Game > Gamebase > Android SDK使用ガイド > 決済 > Retry Transaction Flow](./aos-purchase/#retry-transaction-flow)
+    * [Game > Gamebase > Android SDK使用ガイド > プッシュ > Register Push](./aos-push/#register-push)
 
 ## 3rd-Party Provider SDK Guide
 

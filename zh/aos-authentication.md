@@ -573,7 +573,7 @@ private static void addMappingForFacebook(final Activity activity) {
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP类型                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）。<br/>不用于Google认证。|                                          |
-| AuthProviderCredentialConstants.AUTHORIZATION_CODE |输入登录Google后可以获取的OTOC(一次性验证码)。|                                          |
+| AuthProviderCredentialConstants.AUTHORIZATION_CODE |输入登录Google后可以获取的OTAC(一次性验证码)。|                                          |
 
 > [参考]
 >
@@ -717,7 +717,9 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 
 ### Change Login with ForcingMappingTicket
 
-* Not translated yet
+```
+Not translated yet
+```
 
 **API**
 
