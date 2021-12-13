@@ -3,14 +3,14 @@
 ### 2.31.0 (2021.12.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.29.0)
-* 이용정지 웹뷰 내의 고객센터 링크에서 이용정지 유저 정보로 문의를 등록할 수 없는 문제를 해결하였습니다.
-* 앱이 켜지자마자 Gamebase 초기화를 호출하는 경우, 런칭 팝업이 간헐적으로 영어로 표시되는 문제를 수정하였습니다.
-* 앱이 백그라운드에서 포그라운드로 전환될때는 항상 런칭 정보가 변경되지 않았는지 바로 체크하도록 스케쥴러를 개선하였습니다.
-* GamebaseEventHandler의 GamebaseEventObserverData.code에 **GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)** 에러가 추가되었습니다.
-    * 이 이벤트가 발생하는 경우에는 Gamebase Access Token이 만료되어 복구되지 않는 상황이므로, 로그인을 다시 시도하시기 바랍니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Observer](./aos-etc/#observer)
+#### 改善/修复功能
+* 外部SDK升级 : TOAST Android SDK(0.29.0)
+* 解决了已被禁用的用户（使用禁用信息）未能通过“禁用Webview”内客户服务链接注册查询的问题。
+* 修复了打开应用程序后立即调用Gamebase初始化函数时，Launching弹窗显示英语的问题。
+* 改善Scheduler之后，现在您可以始终确认当应用程序从后台转为前台时Launching信息是否已被更改。
+* 在GamebaseEventHandler的GamebaseEventObserverData.code中添加了**GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)**错误。
+    * 如果发生此事件，则表示Gamebase Access Token已过期而尚未恢复，因此需要重新登录。
+    * [Game > Gamebase > Android SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Observer](./aos-etc/#observer)
     
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Android.zip)
@@ -21,7 +21,7 @@
 * 为了解决调用Gamebase.addMapping()后出现AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)错误的问题，添加了将帐户转换为已有的帐户后可进行登录的API。
     * [Game > Gamebase > Android SDK使用指南 > 认证 > Mapping > Change Login with ForcingMappingTicket](./aos-authentication/#change-login-with-forcingmappingticket)
 
-#### 改善/修改功能
+#### 改善/修复功能
 * 外部SDK升级 : Hangame Android SDK(1.4.2)
 * 改善后，用户可直接修改或使用Gamebase提供的”查看维护详情Webview”html。 
     * [Game > Gamebase > Android SDK使用指南 > 初始化 > Launching Information > 1. Launching > 1.3 Maintenance > Change Default Maintenance HTML](./aos-initialization/#change-default-maintenance-html)
@@ -41,7 +41,7 @@
 {"scope":["email","myscope1","myscope2",...]}
 ```
 
-#### 改善/修改功能
+#### 改善/修复功能
 * 外部SDK升级 : TOAST Android SDK(0.27.4)
 * 只在DisplayLanguage指南上描述，实际上未包含在SDK的DisplayLanguage.Code类已被添加。
     * [Game > Gamebase > Android SDK使用指南 > ETC > Display Language > Gamebase支持的语言代码种类](./aos-etc/#gamebase)

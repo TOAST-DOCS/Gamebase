@@ -4,14 +4,14 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Unity SDK(0.25.0)
-* Standalone 점검 팝업에서 점검 시간 표시 여부를 동적으로 설정할 수 있도록 변경되었습니다.
+#### 改善/修复功能
+* 外部SDK升级 : TOAST Unity SDK(0.25.0)
+* 可以更改Standalone维护弹窗“是否显示维护时间”。 
 * Setting Tool
-    * Payco IDP가 추가되었습니다.
-    * 기존 SettingTool을 완전히 삭제한 후 재설치해야 합니다.
+    * 添加了Payco IDP。
+    * 需要删除以前的SettingTool后重新进行设置。 
 
-#### 플랫폼별 변경 사항
+#### 各平台变更项目
 * [Gamebase Android SDK 2.31.0](./release-notes-android/#2310-20211214)
 * [Gamebase iOS SDK 2.31.0](./release-notes-ios/#2310-20211214)
 
@@ -31,7 +31,7 @@
 ### 2.29.0 (2021.11.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-Unity.zip)
 
-#### 改善/修改功能
+#### 改善/修复功能
 * 外部SDK升级 : TOAST Unity SDK(0.23.5)
 * Setting Tool
     * 发布了v2.0.0版本。

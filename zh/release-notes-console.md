@@ -1,18 +1,18 @@
 ## Game > Gamebase > Release Notes > Console
 
-### December 14, 2021
+### 2021. 12. 14.
 
-#### Feature Updates
-* App > App > Customer Center
-	* Added a feature that allows users to access the Customer Center from a web browser and submit direct 1:1 inquiry
-* Operation > Maintenance
-	* Added a feature to select whether to display the maintenance time on the Maintenance page
-* Customer Center > Template
-	* Changed so that templates in languages that are no longer supported by the Customer Center among previously registered templates are not displayed and deleted.
+#### 改善/修复功能
+* 应用程序 > 应用程序 > 客户服务
+	* 添加了用户可通过网络浏览器直接跳转到客户服务网页注册1:1查询的功能。
+* 运营 > 维护
+	* 添加了在维护网页上可选择“是否显示维护时间”的功能。
+* 客户服务 > 模板
+	* 在以前注册的模板中，用客户服务不再支持的语言输入的模板内容被删除或不显示。
 
 ### 2021. 11. 23.
 
-#### 改善/修改功能
+#### 改善/修复功能
 * 应用程序 > 客户端
 	* 添加了服务器地址和与URL设置有关的说明。  
 * 禁止使用 > 禁用
@@ -24,7 +24,7 @@
 
 ### 2021. 11. 09.
 
-#### 改善/修改功能
+#### 改善/修复功能
 * 应用程序 > 设置URL
 	* 为新创建的Gamebase提供的ShortURL域名已更改为https://nh.nu。
 

@@ -3,13 +3,13 @@
 ### 2.31.0 (2021.12.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* 점검 팝업에서 점검 시간 표시 여부를 동적으로 설정할 수 있게 되었습니다.
+#### 添加功能
+* 可以更改维护弹窗“是否显示维护时间”。 
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트 : TOAST iOS SDK (0.29.2), PAYCO iOS SDK (1.5.4)
-* 이용정지 웹뷰 내의 고객센터 링크에서 이용정지 유저 정보로 문의를 등록할 수 없는 문제를 해결하였습니다.
-* 점검 팝업, 이용정지 자세히보기 웹뷰에서 뒤로가기 버튼이 출력될 수 있도록 수정하였습니다.
+#### 改善/修复功能
+* 外部SDK升级 : TOAST iOS SDK (0.29.2), PAYCO iOS SDK (1.5.4)
+* 解决了已被禁用的用户（使用禁用信息）未能通过“禁用Webview”内的客户服务链接注册查询的问题。
+* 修复之后，当用户按维护和禁用弹窗中的“查看更多”按钮时，在Webview中可显示“返回上一页”按钮了。
 
 ### 2.30.1 (2021.11.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.1/GamebaseSDK-iOS.zip)
@@ -32,7 +32,7 @@
 ### 2.29.0 (2021.11.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-iOS.zip)
 
-#### 改善/修改功能
+#### 改善/修复功能
 * 外部SDK升级 : TOAST iOS SDK(0.29.1), ToastGamebaseIAP SDK(0.12.1)
 * 即使未对”在控制台中注册的维护”和”查看公告详情”URL进行编码，也可在页面上显示。
 
