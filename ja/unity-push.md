@@ -5,10 +5,13 @@
 ### Settings
 
 
-AndroidやiOSでPushを設定する方法は、次のドキュメントをご参考ください。<br/>
+AndroidやiOSでPushを設定する方法は、次のドキュメントを参照してください。<br/>
 
-* [Android Push Settings](aos-started/#firebase-notification)<br/>
-* [iOS Push Settings](ios-push#settings)
+* Android
+    * [Android Push Settings](aos-push/#settings)
+    * [Firebase Notification Settings](aos-started/#firebase-notification)
+* iOS
+    * [iOS Push Settings](ios-push#settings)
 
 
 ### Register Push
@@ -16,13 +19,15 @@ AndroidやiOSでPushを設定する方法は、次のドキュメントをご参
 次のAPIを呼び出してNHN Cloud Pushに該当するユーザーを登録します。
 Pushの同意状態(enablePush)、Push型広告の同意状態(enableAdPush)、夜間のPush型広告の同意状態(enableAdNightPush)の値をユーザーから取得し、次のAPIを呼び出して登録を完了させます。
 
-
+> <font color="red">[注意]</font><br/>
+>
+> UserIDごとにプッシュ設定が異なる場合があり、プッシュトークンの有効期限切れも発生することがあるため、ログイン後は毎回registerPush APIを呼び出すことを推奨します。
 
 **API**
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS<br/>
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
@@ -122,7 +127,7 @@ public void RegisterPushSample(bool pushEnabled, bool adAgreement, bool adAgreem
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS<br/>
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
@@ -154,7 +159,7 @@ public void GetNotificationOptionsSample()
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS<br/>
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs

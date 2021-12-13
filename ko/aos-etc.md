@@ -439,6 +439,7 @@ void processServerPush(String category, GamebaseEventServerPushData data) {
     	* GamebaseEventObserverData.code : GamebaseError 값을 의미합니다.
             * GamebaseError.INVALID_MEMBER: 6
             * GamebaseError.BANNED_MEMBER: 7
+            * GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO: 3102
     * GamebaseEventCategory.OBSERVER_NETWORK
     	* 네트워크 변동 사항 정보를 받을 수 있습니다.
     	* 네트워크가 끊기거나 연결되었을 때, 혹은 Wifi 에서 셀룰러 네트워크로 변경되었을 때 동작합니다.
@@ -511,6 +512,11 @@ void processObserver(String category, GamebaseEventObserverData data) {
                 break;
             case GamebaseError.BANNED_MEMBER:
                 // You can check the banned user session in here.
+                break;
+            case GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO:
+                // There was a problem with the access token.
+                // Call login again.
+                Gamebase.login(activity, Gamebase.getLastLoggedInProvider(), (authToken, exception) -> {});
                 break;
         }
     } else if (category.equals(GamebaseEventCategory.OBSERVER_NETWORK)) {

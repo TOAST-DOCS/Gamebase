@@ -1,10 +1,27 @@
 ## Game > Gamebase > 릴리스 노트 > iOS
 
+### 2.31.0 (2021.12.14)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-iOS.zip)
+
+#### 기능 추가
+* 점검 팝업에서 점검 시간 표시 여부를 동적으로 설정할 수 있게 되었습니다.
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트 : TOAST iOS SDK (0.29.2), PAYCO iOS SDK (1.5.4)
+* 이용정지 웹뷰 내의 고객센터 링크에서 이용정지 유저 정보로 문의를 등록할 수 없는 문제를 해결하였습니다.
+* 점검 팝업, 이용정지 자세히보기 웹뷰에서 뒤로가기 버튼이 출력될 수 있도록 수정하였습니다.
+
+### 2.30.1 (2021.11.25)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.1/GamebaseSDK-iOS.zip)
+
+#### 버그 수정
+* Unity 2019.3 이상에서 Cocoapods 설치를 했을 때, 결제와 푸시 API에서 에러가 발생하는 버그를 수정하였습니다.
+
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-iOS.zip)
 
 #### 기능 추가
-* 강제매핑 시 IdP 로그인을 한번 더 시도해야 하는 불편함을 개선한 새로운 강제매핑 API가 추가되었습니다.
+* 강제 매핑 시 IdP 로그인을 한번 더 시도해야 하는 불편함을 개선한 새로운 강제 매핑 API가 추가되었습니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 인증 > Add Mapping Forcibly](./ios-authentication/#add-mapping-forcibly)
 * 특정 IdP로 매핑 시도 후 **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)** 에러가 발생했을 때, 해당 IdP로 계정을 변경할 수 있는 API가 추가되었습니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 인증 > Change Login with ForcingMappingTicket](./ios-authentication/#change-login-with-forcingmappingticket)
@@ -480,9 +497,9 @@ Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다.
         * 발급된 TransferAccountInfo를 사용하여 계정 이전을 요청하는 API (transferAccountWithIdPLogin)
         * 발급된 TransferAccountInfo를 확인하는 API (queryTransferAccount)
         * 이미 발급된 TransferAccountInfo 갱신하는 API (renewTransferAccount)        
-* 강제매핑 기능 추가: 이미 다른 계정에 연동 되어있는 IdP계정을 매핑할 수 있는 기능
+* 강제 매핑 기능 추가: 이미 다른 계정에 연동 되어있는 IdP계정을 매핑할 수 있는 기능
     * 추가된 API 
-        * 강제매핑하는 API (addMappingForcibly)
+        * 강제 매핑하는 API (addMappingForcibly)
 
 #### 기능 개선/변경
 

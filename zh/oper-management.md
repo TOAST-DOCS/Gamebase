@@ -1,11 +1,11 @@
-## Game > Gamebase > 操控台使用指南 >  管理
+## Game > Gamebase > 控制台使用指南 > 管理
 
-可对使用Gamebase 的游戏，使用查询权限管理、报警发送设置、查询报警记录等功能。
+可在使用Gamebase的游戏中使用查询权限管理、报警发送设置、查询报警记录等功能。
 
 ## Authorization
 
-可以对Gamebase Console使用权限进行管理。 
-![gamebase_manage_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_manage_01_202101.png)
+可以管理Gamebase Console的使用权限。 
+![gamebase_manage_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_manage_01_202106.png)
 
 * Gamebase Console使用权限管理
   * **接收周报的权限** : 是否接收**周报**的权限
@@ -19,7 +19,7 @@
 
 ### Alarm
 
-![gamebase_manage_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_02_201812.png)
+![gamebase_manage_02_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_manage_02_202106.png)
 
 #### (1) 启用减少报警
 设置同时在线用户数减少时是否接受报警。如需接收报警将**启用减少报警**设置为**On**。
@@ -43,7 +43,7 @@
 报警记录位于报警菜单下，您可以查询报警的历史记录。
 最多可以搜索30天以内的报警记录。查询后单击**Search**按钮，可以实时筛选。
 
-![gamebase_manage_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_03_201812.png)
+![gamebase_manage_03_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_manage_03_202106.png)
 
 - 发生时间：发送报警的时间信息
 - 历史同时在线用户数 : 在发送报警之前收集的同时在线用户数
@@ -55,32 +55,32 @@
 如果有通过外部系统的Webhook URL发出报警的请求，则会同时发送报警。
 
 #### (1) 查询列表
-![gamebase_manage_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_04_201812.png)
-您可以看到可以接收当前报警的Webhooks的注册详细信息。
-如果您需要已注册的Webhook URL，可以通过单击右侧的**Copy URL**轻松复制它。
+![gamebase_manage_04_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_manage_04_202106.png)
+可以查看可接收报警的Webhook注册历史记录。
+当需要已注册的Webhook URL，通过点击右边的**复制URL**进行复制。 
 
 #### (2) 注册
-![gamebase_manage_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_05_201812.png)
-可以单击**注册**按钮注册外部系统发放的Webhook信息。
-目前，只有Dooray和Slack可以注册，以后根据需求将会添加新列表。
+![gamebase_manage_05_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_manage_05_202106.png)
+通过点击**注册**按钮，可注册从外部系统接收的Webhook信息。 
+目前只能注册Dooray和Slack，而请求时将计划添加新列表。
 
-#### (3) 查询详细信息/修改/删除
-![gamebase_manage_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_06_201812.png)
-点击各个项目以查询详细信息。
-需要修改注册信息请点击**编辑**按钮。 如果您不需要此webhook，也可以通过**删除**按钮删除项目。
-
+#### (2) 查询详细/修改/删除
+![gamebase_manage_06_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_manage_06_202106.png)
+通过点击项目，可查看详细信息。
+若要修改注册的信息，则点击**修改**按钮。若不需要相关Webhook，则可通过点击**删除**按钮来删除。 
+ 
 ### Recipient List
 
-可以设定接收通知的用户。如需注册新成员，请在NHN Cloud项目成员管理中进行添加。 
-![gamebase_manage_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_07_201812.png)
-可在Gamebase中通过电子邮件和SMS传送通知。
-利用加入NHN Cloud时输入的信息发送电子邮件和SMS。为了使用户正常接收通知，应输入正确的邮件地址或号码。请在NHN Cloud中的**我的信息管理**页面上确认手机号码信息。
+可以设置要发送报警的对象。如需注册新成员，则添加在NHN Cloud项目的成员管理中。
+![gamebase_manage_07_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_manage_07_202106.png)
+可通过Gamebase发送报警邮件和SMS。 
+将根据加入NHN Cloud时输入的信息发送电子邮件和SMS。如果邮件地址或号码不正确，无法接收警报。可以在NHN Cloud的**我的信息管理**页面上确认手机号码信息。
 
 
 ## Config
 
-可以设置与Gamebase和NHN Cloud服务联动相关的设置。 
+设置与Gamebase和NHN Cloud服务联动有关的设置。 
 
-![gamebase_manage_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_manage_08_201812.png)
+![gamebase_manage_08_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_manage_08_202106.png)
 
 调用Gamebase Launching API时可以设置是否要一起接收在NHN Cloud Launching中设置的信息。只能在使用NHN Cloud Launching服务时开启或关闭功能。 

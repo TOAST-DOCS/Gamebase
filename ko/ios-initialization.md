@@ -191,16 +191,17 @@ Gamebase 콘솔에 등록된 점검 정보입니다.
 * beginDate: 시작 시간
 * endDate: 종료 시간
 * message: 점검 사유
+* hideDate: 점검 시작, 종료 시간을 표시할 것인지 여부
 
 [Game > Gamebase > 콘솔 사용 가이드 > 운영 > Maintenance](./oper-operation/#maintenance)
 
 ##### Change Default Maintenance HTML
 
-enablePopup과 enableLaunchingStatusPopup 값이 모두 true인 경우, 게임이 점검 상태라면 자동으로 점검 팝업이 표시됩니다.
+`enablePopup`과 `enableLaunchingStatusPopup` 값이 모두 `true`인 경우, 게임이 점검 상태라면 자동으로 점검 팝업이 표시됩니다.
 여기서 **자세히 보기** 버튼을 클릭하면 점검 정보가 자동으로 웹뷰로 표시됩니다.
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_webview_android_2.30.0.png)
 
-이때 표시되는 html 파일을 수정하고 싶다면 다음 링크의 html 파일을 다운로드 하여 원하는대로 수정한 후 Xcode 프로젝트의 `Copy Bundle Resources`에 **gamebase-maintenance.html** 파일을 추가하면 됩니다.
+이때 표시되는 html 파일을 수정하고 싶다면 다음 링크의 html 파일을 다운로드하여 원하는 대로 수정한 후 Xcode 프로젝트의 `Copy Bundle Resources`에 **gamebase-maintenance.html** 파일을 추가하면 됩니다.
 [html 파일 다운로드 LINK](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
 
 **1.4 Notice**

@@ -3,13 +3,13 @@
 
 This guide describes the environments and initial setting of Gamebase Unity SDK.
 
-### Environments
+## Environments
 
 > [Note]
 > 
 > Supported Unity versions
 >
-> * 2018.4.0 - 2021.1.22
+> * 2018.4.0 - 2021.2.2
 > * To support a lower version of Unity, contact [Customer Center](https://toast.com/support/inquiry).
 
 #### Android

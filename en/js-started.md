@@ -2,7 +2,7 @@
 
 The environment to use Gamebase JavaScript SDK is as follows:
 
-### Environments
+## Environments
 
 > [Minimum specifications]
 >
@@ -10,7 +10,7 @@ The environment to use Gamebase JavaScript SDK is as follows:
 > Popup allowed
 > Cookie access allowed
 
-### Installation
+## Installation
 
 Download Gamebase JavaScript SDK file.
 

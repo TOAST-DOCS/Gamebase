@@ -22,7 +22,7 @@ When the game starts, enable the Debug Mode and reset the Gamebase to implement 
 
 To initialize Gamebase, Gamebase setting can be modified with GamebaseConfiguration.Builder.
 
-| API                                      | Mandatory (M) / Optional (O) | Description                              |
+| API                                      | Mandatory(M) / Optional(O) | Description                              |
 | ---------------------------------------- | -------------------------- | ---------------------------------------- |
 | newBuilder(String appId, String appVersion, String storeCode) | **M**                      | The GamebaseConfiguration.Builder object can be created with the newBuilder() function.<br/><br/> **appId:** Enter an App ID issued from NHN Cloud Project.<br/> **appVersion:** Update or maintenance status can be decided upon a game version. Specify a game version. <br/> **storeCode** refers to the store in which APK is deployed. Find each store code in the following guide. [Purchase - Initialization](./aos-purchase/#6-initialization) |
 | build()                                  | **M**                      | Convert Builder completed with setting to a configuration object.<br/>Required for **Gamebase.initialize ()** API. |
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         String appId = "T0aStC1d";
         String appVersion = "1.0.0";
         String storeCode = "GG";
-        GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(appId, appVersio, storeCode)
+        GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(appId, appVersion, storeCode)
                 .enablePopup(true)
                 .build();
         /**
@@ -232,13 +232,13 @@ App information registered on Gamebase console.
 * accessInfo
     * serverAddress: Server address
 * customerService
-    * accessInfo : Customer center information
-    * type : customer center type
-    * url : Customer Center
+    * accessInfo : Customer Center contact information
+    * type : Customer Center type
+    * url : Customer Center URL
 * relatedUrls
-    * termsUrl: Terms of Service
-    * personalInfoCollectionUrl: Consent to Personal Information
-    * punishRuleUrl: Ban Regulation
+    * termsUrl: Terms of use
+    * personalInfoCollectionUrl: Agreement to collection of personal information
+    * punishRuleUrl: User ban rules
 * install: Installation URL
 * idP: Authentication information
 
@@ -255,6 +255,23 @@ Maintenance information registered on Gamebase Console:
 * message: Cause of maintenance
 
 [Game > Gamebase > Console User Guide > Operation > Maintenance](./oper-operation/#maintenance)
+<br/>
+##### Change Default Maintenance HTML
+
+```
+Not translated yet
+```
+
+##### Change Default Maintenance HTML
+
+If both the `enablePopup` and `enableLaunchingStatusPopup` values are `true`, a maintenance popup will be automatically displayed if the game is in maintenance status.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_popup_android_2.30.0.png)
+
+If you click the **DETAILS** button here, the maintenance information is automatically displayed in a webview.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_webview_android_2.30.0.png)
+
+If you want to modify the displayed HTML file, download the HTML file from the following link, modify it as you need, and place it in the 'assets/Gamebase' folder. Then the HTML file will be used to display maintenance information instead of the default HTML file included in the Gamebase SDK.
+[HTML file download link](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
 
 **1.4 Notice**
 

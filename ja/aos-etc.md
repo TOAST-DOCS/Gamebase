@@ -439,6 +439,7 @@ void processServerPush(String category, GamebaseEventServerPushData data) {
     	* GamebaseEventObserverData.code : GamebaseError値を意味します。
             * GamebaseError.INVALID_MEMBER: 6
             * GamebaseError.BANNED_MEMBER: 7
+            * GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO: 3102
     * GamebaseEventCategory.OBSERVER_NETWORK
     	* ネットワーク変動事項情報を受け取れます。
     	* ネットワークが切断されたり、接続された時、またはWi-FiからCellularネットワークに変更された時に動作します。
@@ -511,6 +512,11 @@ void processObserver(String category, GamebaseEventObserverData data) {
                 break;
             case GamebaseError.BANNED_MEMBER:
                 // You can check the banned user session in here.
+                break;
+            case GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO:
+                // There was a problem with the access token.
+                // Call login again.
+                Gamebase.login(activity, Gamebase.getLastLoggedInProvider(), (authToken, exception) -> {});
                 break;
         }
     } else if (category.equals(GamebaseEventCategory.OBSERVER_NETWORK)) {

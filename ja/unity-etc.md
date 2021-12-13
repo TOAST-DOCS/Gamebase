@@ -61,7 +61,7 @@ Display Languageに入力する言語コードは、以下の表(**Gamebaseで�
 | de | German |
 | en |English  |
 | es | Spanish |
-| fi | Finish |
+| fi | Finnish |
 | fr | French |
 | id | Indonesian |
 | it | Italian |
@@ -85,7 +85,7 @@ namespace Toast.Gamebase
         public const string German = "de";
         public const string English = "en";
         public const string Spanish = "es";
-        public const string Finish = "fi";
+        public const string Finnish = "fi";
         public const string French = "fr";
         public const string Indonesian = "id";
         public const string Italian = "it";
@@ -200,7 +200,7 @@ public void GetDisplayLanguageCode()
 
 UnityEditor及びUnity Standalone、WebGLプラットフォームサービスを提供する際にGamebaseで提供するデフォルト言語(ko、en、ja)以外に他の言語を使用しなければならない場合、Assets > StreamingAssets > Gamebaseにあるlocalizedstring.jsonファイルに値を追加しなければなりません。
 
-![localizedstring.json](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-etc_001_1.11.0.png)
+![localizedstring.json](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-etc_001_1.11.0.png)
 
 localizedstring.jsonに定義されている形式は、次の通りです。
 
@@ -316,8 +316,8 @@ static string GetCountryCodeOfDevice()
 	2. USIM国コードが空の値の場合、端末国コードを確認し、値があれば別途確認しないでそのまま返します。
 	3. USIM、端末国コードがどちらも空の値の場合は、'ZZ'を返します。
 
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
-
+![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
+sb
 > [参考] 
 >
 > Editor on Windows, Standalone on Windowsの場合は、[CultureInfo](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo?view=netframework-4.7.2)を参照して国コードを返します。
@@ -454,12 +454,9 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
                 {
                     // When you received push message.
                     
-                    Dictionary<string, object> extras = Toast.Gamebase.LitJson.JsonMapper.ToObject<Dictionary<string, object>>(pushMessage.extras);
-                    // There is 'isForeground' information.
-                    if (extras.ContainsKey("isForeground") == true)
-                    {
-                        bool isForeground = (bool)extras["isForeground"];
-                    }
+                    // By converting the extras field of the push message to JSON,
+                    // you can get the custom information added by the user when sending the push.
+                    // (For Android, an 'isForeground' field is included so that you can check if received in the foreground state.)
                 }
                 break;
             }
@@ -494,9 +491,10 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 | ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
 | Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseResponse.Event.GamebaseEventObserverData.from(message.data) | \- |
 | Purchase - プロモーション決済 | GamebaseEventCategory.PURCHASE_UPDATED | GamebaseResponse.Event.PurchasableReceipt.from(message.data) | \- |
-| Push - メッセージ受信 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | **isForeground**値を使用してForegroundでメッセージを受信したかどうかを確認できます。 |
-| Push - メッセージクリック | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | **isForeground**値がありません。 |
+| Push - メッセージ受信 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
+| Push - メッセージクリック | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
 | Push - アクションクリック | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | RichMessageボタンを押すと動作します。 |
+
 
 #### Server Push
 
@@ -780,8 +778,8 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 #### Push Received Message
 
 * Pushメッセージが到着した時に発生するイベントです。
-* **isForeground**フィールドを利用してフォアグラウンドでメッセージを受信したのか、バックグラウンドでメッセージを受信したのかを区別できます。
-* extrasフィールドをJSONに変換して、Push送信時に送信されたカスタム情報を取得することもできます。
+* extrasフィールドをJSONに変換して、Push送信時に送信したカスタム情報を取得することもできます。
+    * **Android**では**isForeground**フィールドでフォアグラウンドでメッセージを受信したのか、バックグラウンドでメッセージを受信したのかを区別できます。
 
 **VO**
 
@@ -797,7 +795,7 @@ public class PushMessage
     // Pushメッセージ本文内容です。
     public string body;
 
-    // JSONObjectに変換してすべての情報を確認できます。
+    // JSON形式でPush送信時、送信したカスタム情報を確認できます。
     public string extras;
 }
 ```
@@ -821,12 +819,9 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
                 {
                     // When you received push message.
                     
-                    Dictionary<string, object> extras = Toast.Gamebase.LitJson.JsonMapper.ToObject<Dictionary<string, object>>(pushMessage.extras);
-                    // There is 'isForeground' information.
-                    if (extras.ContainsKey("isForeground") == true)
-                    {
-                        bool isForeground = (bool)extras["isForeground"];
-                    }
+                    // By converting the extras field of the push message to JSON,
+                    // you can get the custom information added by the user when sending the push.
+                    // (For Android, an 'isForeground' field is included so that you can check if received in the foreground state.
                 }
                 break;
             }
@@ -841,7 +836,7 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 #### Push Click Message
 
 * 受信したPushメッセージをクリックした時に発生するイベントです。
-* 'GamebaseEventCategory.PUSH_RECEIVED_MESSAGE'とは異なり、**isForeground**フィールドが存在しません。
+* 'GamebaseEventCategory.PUSH_RECEIVED_MESSAGE'とは異なり、Androidのextrasフィールドに**isForeground**情報が存在しません。
 
 **Example**
 

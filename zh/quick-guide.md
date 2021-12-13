@@ -1,43 +1,36 @@
 ## Game > Gamebase > Quick Guide
 
-A Step-By-Step Quick Guide is available to get to know Gamebase easily.
+参考以下Quick Guide上的程序，轻松掌握Gamebase功能。
 
 ## Install: Developers
 
-### Gamebase SDK Installation [\[link\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.install-with-setting-tool/)
+### Gamebase SDK设置 [\[跳转\]](https://forward.nhn.com/2021/hands-on-labs/gamebase.install-with-setting-tool/)
 
-#### Beginners / 5mins
-
-* Seeting Tool Installation
-* Gamebase SDK Download using Setting Tool
-* Gamebase SDK Installation using Setting Tool
-* Gamebase SDK Deletion using Setting Tool
-* Setting Tool Update
+#### 初级/10分
+	
+* Setting Tool设置
+* 使用Setting Tool下载Gamebase SDK。 
+* 使用Setting Tool设置Gamebase SDK。 
+* 使用Settign Tool删除Gamebase SDK。 
+* Setting Tool升级
 
 ## Authentication: Developers
 
-### [Unity] Guest Authentication [\[link\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.guest-auth-on-unity/)
+### [Unity] Guest认证 [\[跳转\]](https://forward.nhn.com/2021/hands-on-labs/gamebase.guest-auth-on-unity/)
 
-#### Beginners / 15mins
+#### 初级/15分
 
-* Project Creation in Gamebase Console
-* Gamebase SDK Installation using Gamebase Seeting Tool
-* Gamebase Configuration from Unity Project
+* 在Gamebase console中创建项目。
+* 使用Gamebase Setting Tool设置Gamebase SDK。
+* 在Unity项目中设置Gamebase。
 * Gamebase Initialize
 * Gamebase Guest Login
 * Gamebase Logout
+	
+### [Unity] Google IdP认证 [\[跳转\]](https://forward.nhn.com/2021/hands-on-labs/gamebase.google-setting/)
 
-### [Javascript] Guest Authentication [\[link\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.guest-auth-on-js/)
+#### 初级/30分
 
-#### Beginners / 15mins
+* 设置Google Play Console。
+* 在Gamebase Console中添加认证信息。
 
-* Gamebase JavaScript Initial Setup
-* Gamebase JavaScript Initialize
-* Gamebase Guest Authentication
-
-### [Unity] Google IdP Authentication [\[link\]](https://forward.nhn.com/2020/seoul/hands-on-labs/gamebase.google-setting/)
-
-#### Beginners / 30mins
-
-* Google Play Console Configuration
-* Register Authentication Information from Gamebase Console

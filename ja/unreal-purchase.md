@@ -5,6 +5,11 @@ Gamebaseは、1つの統合された決済APIを提供し、ゲームから簡�
 
 ### Settings
 
+> <font color="red">[注意]</font><br/>
+>
+> Android ONE Storeはv17のみをサポートします。
+> Android ONE Store v19はサポートを検討中で、現在はサポートしていません。
+
 AndroidまたはiOSでアプリ内決済機能を設定する方法は、次の文書を参照してください。<br/>
 
 * [Android Purchase Settings](aos-purchase#settings)

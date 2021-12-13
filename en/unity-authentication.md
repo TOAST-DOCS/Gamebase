@@ -276,6 +276,8 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 | GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid, hangame, weibo, kakaogame |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Enter One Time Authorization Code (OTAC) which can be obtained after Google login. |                                          |
+| GamebaseAuthProviderCredential.GAMEBASE_ACCESS_TOKEN | Used when logging in with Gamebase Access Token instead of IdP authentication information |  |
+| GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | While logged in to Gamebase, allow login attempts with other account without logging out | **bool** |
 
 > [Note]
 >
@@ -600,7 +602,12 @@ The following is an example of force mapping to Facebook:
 **API**
 
 ```cs
+static void AddMappingForcibly(GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+
+// Legacy API
 static void AddMappingForcibly(string providerName, string forcingMappingKey, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+static void AddMappingForcibly(string providerName, string forcingMappingKey, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+static void AddMappingForcibly(Dictionary<string, object> credentialInfo, string forcingMappingKey, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 ```
 
 **Example**
@@ -616,14 +623,14 @@ public void AddMappingForcibly(string idPName)
         }
         else
         {
-            // First, call the addMapping API to try mapping to an already linked account and get ForcingMappingTicket as follows.
+            // First, call the AddMapping API to try mapping to an already linked account and get ForcingMappingTicket as follows.
             if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
             {
                 // Gets the ForcingMappingTicket instance using the From() method of the ForcingMappingTicket class.
                 GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
 
                 // Try force mapping.
-                Gamebase.AddMappingForcibly(idPName, forcingMappingTicket.forcingMappingKey, (authTokenForcibly, errorForcibly) =>
+                Gamebase.AddMappingForcibly(forcingMappingTicket, (authTokenForcibly, errorForcibly) =>
                 {
                     if (Gamebase.IsSuccess(error) == true)
                     {
@@ -645,83 +652,62 @@ public void AddMappingForcibly(string idPName)
 }
 ```
 
+### Change Login with ForcingMappingTicket
 
-### Add Mapping Forcibly with Credential
-If there is any account mapped to a specific IdP, try **force** mapping.
-When you try **force mapping**, you need `ForcingMappingTicket` obtained from the AddMapping API.
+When there is an account already mapped to a specific IdP, log out from the current account and log in with the account already mapped to the IdP.
+At this time, you need the `ForcingMappingTicket` obtained from the AddMapping API.
 
-This interface allows you to perform authentication in the game with the SDK provided by IdP first and then to call the Gamebase AddMappingForcibly by using the access token issued.
-
-* How to set the Credential parameter
-
-| keyname | a use | Value type |
-| ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP type setting                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | Set the authentication information (access token) received after IdP login.<br/>It is not used for Google authentication. |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Set the authentication information (Authorization Code) received after login with Google |                                        |
-
-> [TIP]
->
-> This may be needed to use unique functions of external services (e.g. Facebook).
->
-
-
-> <font color="red">[Caution]</font><br/>
->
-> Developments requested by an external SDK must be implement using APIs from the external SDK; Gamebase does not support those development features.
->
-
-The following shows an example of force mapping.
+If the Change Login API call fails, the Gamebase login status remains as the existing UserID.
 
 **API**
 
 ```cs
-static void AddMappingForcibly(Dictionary<string, object> credentialInfo, string forcingMappingKey, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+static void ChangeLogin(GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 ```
 
 **Example**
 
+The following example shows a situation where, after attempting to map to Facebook, an account already mapped to Facebook is found and the login is changed to the account.
+
 ```cs
-public void AddMappingForcibly(Dictionary<string, object> credential)
+public void ChangeLoginWithFacebook()
 {
-    Gamebase.AddMapping(credential, (authToken, error) =>
+    Gamebase.AddMapping(GamebaseAuthProvider.FACEBOOK, (authToken, error) =>
     {
         if (Gamebase.IsSuccess(error) == true)
         {
             // Successfully added mapping
+            return;
+        }
+        
+        // First, call the addMapping API to try mapping to an already linked account and get ForcingMappingTicket as follows.
+        if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
+        {
+            // Use the from() method of the ForcingMappingTicket class to obtain the ForcingMappingTicket instance.
+            GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
+
+            // Log in with the UserID of ForcingMappingTicket
+            Gamebase.ChangeLogin(forcingMappingTicket, (authTokenForcibly, errorForcibly) =>
+            {
+                if (Gamebase.IsSuccess(errorForcibly) == true)
+                {
+                    // Successfully changed login
+                }
+                else
+                {
+                    // Failed to change login
+                    // Check the error code and resolve the error.
+                }
+            });
         }
         else
         {
-            // First, call the addMapping API to try mapping to an already linked account and get ForcingMappingTicket as follows.
-            if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
-            {
-                // Gets the ForcingMappingTicket instance using the From() method of the ForcingMappingTicket class.
-                GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
-
-                // Try force mapping.
-                Gamebase.AddMappingForcibly(credential, forcingMappingTicket.forcingMappingKey, (authTokenForcibly, errorForcibly) =>
-                {
-                    if (Gamebase.IsSuccess(error) == true)
-                    {
-                        // Successfully added force mapping
-                    }
-                    else
-                    {
-                        // Failed to add force mapping
-                        // Check the error code and resolve the error.
-                    }
-                });
-            }
-            else
-            {
-                // Add Mapping Failed.
-                // Check the error code and resolve the error.
-            }
+            // Add Mapping Failed.
+            // Check the error code and resolve the error.
         }
     });
 }
 ```
-
 
 ### Remove Mapping
 
