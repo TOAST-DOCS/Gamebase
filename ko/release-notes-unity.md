@@ -34,8 +34,8 @@
 #### 기능 개선/변경
 * 외부 SDK 업데이트: TOAST Unity SDK(0.23.5)
 * Setting Tool
-    * v2.0.0이 새로 배포되었습니다.
-    * 기존 SettingTool을 완전히 삭제한 후 재설치해야 합니다.
+    * 2.0.0이 새로 배포되었습니다.
+    * 기존 Setting Tool을 완전히 삭제한 후 재설치해야 합니다.
     * 변경된 내용 및 사용 방법은 아래 가이드를 확인하십시오.
         * [Game > Gamebase > Unity SDK 사용 가이드 > 시작하기 > Specification of Setting Tool](https://docs.toast.com/ko/Game/Gamebase/ko/unity-started/#specification-of-setting-tool)
 
