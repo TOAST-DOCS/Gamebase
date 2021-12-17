@@ -481,7 +481,7 @@ private static void onWithdraw(final Activity activity) {
 
 * 축하합니다! 현재 계정과 연동중인 IdP 계정이 추가되었습니다.
 * 매핑에 성공해도 '현재 로그인 중인 IdP'가 바뀌지는 않습니다. 즉, Google 계정으로 로그인한 후, Facebook 계정 매핑 시도가 성공했다고 해서 '현재 로그인 중인 IdP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다.
-    * <font color="red">[주의]</font> : Guest 계정은 예외입니다. Guest 계정으로 로그인한 상태에서 시도한 매핑이 성공했다면 Guest IdP는 **삭제**되고 '현재 로그인 중인 IdP'도 매핑 IdP로 변경됩니다.
+    * <font color="red">[주의]</font> : Guest 계정은 예외입니다. Guest 계정으로 로그인한 상태에서 시도한 매핑이 성공했다면 Guest IdP는 **삭제**되고 '현재 로그인 중인 IdP'도 매핑된 IdP로 변경됩니다.
 * 매핑은 단순히 IdP 연동만 추가해 줍니다.
 
 #### 2-2. 매핑이 실패한 경우
