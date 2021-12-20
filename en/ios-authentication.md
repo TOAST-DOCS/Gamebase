@@ -71,7 +71,7 @@ The logic described in the above can be implemented in the following order.
 * Network error
     * If the error code is either **TCGB_ERROR_SOCKET_ERROR(110)** or **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**, authentication failed because of a temporary network problem. In this case, call **[TCGBGamebase loginWithType:viewController:completion:]** again or try authenticating later.
 * Banned game users
-    * If the error code is **TCGB_ERROR_BANNED_MEMBER(7)**, authentication failed because the user has been banned.
+    * If the error code is **TCGB_ERROR_BANNED_MEMBER(7)**, it means authentication failed because the user has been banned.
     * Check the ban information with **[TCGBBanInfo banInfoFromError:error]** and inform the game user why they cannot play the game.
     * If **[TCGBConfiguration enablePopup:YES]** and **[TCGBConfiguration enableBanPopup:YES]** are called when initializing Gamebase, Gamebase automatically displays a popup explaining the ban.
 * Other errors
@@ -284,8 +284,7 @@ Following shows an exemplary withdrawal code with a click of the withdraw button
 
 Mapping refers to connecting or disconnecting an existing login account to/from another IdP account.
 
-In many games, one account may have many integrated (mapped) IdPs.<br/>
-By using Gamebase Mapping API, other IdP accounts can be integrated or removed to/from another existing IdP account.
+In many games, one account may have many integrated (mapped) IdPs.<br/>By using Gamebase Mapping API, other IdP accounts can be integrated or removed to/from another existing IdP account.
 
 In short, a login to a mapped IdP account will be made available with a same user ID at all times.<br/><br/>
 
@@ -321,20 +320,21 @@ Call **[TCGBGamebase addMappingWithType:viewController:completion:]** to try map
 
 * Congratulations! Successfully added an IdP account integrated with the current account.
 * Even if a mapping is successful, 'currently logged-in IdP' will not change. For example, after a user’s login with Gamecenter account and has successfully mapped with a Facebook account, the user's 'currently logged-in IdP' does not change from Gamecenter to Facebook. It still stays with Gamecenter account.
+    * <font color="red">[Caution]</font><br/> : The Guest account is an exception. If the mapping attempt performed while logged in with the Guest account is successful, the Guest IdP is **deleted** and the 'currently logged-in IdP' is also changed to the mapped IdP.
 * Mapping simply adds IdP integration.
 
-#### 2-2. When mapping is failed
+#### 2-2. When mapping fails
 
 * Network error
-    * If the error code is **TCGB_ERROR_SOCKET_ERROR(110)** or **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**, it means the authentication failed due to temporary network issues, so call **[TCGBGamebase addMappingWithType:viewController:completion:]** again or try again later.
-* Error that occurs when linked to another account
-    * If the error code is **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**, it means the account of the IdP to map is already linked to another account. To remove the linked account, login with that account to call **[TCGBGamebase withdrawWithViewController:completion:]** to withdraw or call **[TCGBGamebase removeMappingWithType:viewController:completion:]** to remove the link and try mapping again.
-* Error that occurs due to linking with the same IdP account
-	* If the error code is **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**, it means the IdP to map is already linked to the account of the same type.
-	* Gamebase mapping can only be linked to one account per IdP. For example, if it is already linked to a Google account, no other Google account can be added anymore.
-	* To link another account of the same IdP, call **[TCGBGamebase removeMappingWithType:viewController:completion:]** to remove the link and try mapping again.
+    * If the error code is **TCGB_ERROR_SOCKET_ERROR(110)** or **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**, it means that the authentication failed due to temporary network issues, so call **[TCGBGamebase addMappingWithType:viewController:completion:]** again or try again later.
+* Error that occurs when already linked to another account
+    * If the error code is **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**, it means that the account of the IdP to map is already linked to another account. Using the **ForcingMappingTicket** obtained at this point, you can try force mapping (**[TCGBGamebase addMappingForciblyWithTicket:viewController:completion:]**) or changing the login account (**[TCGBGamebase changeLoginWithForcingMappingTicket:viewController:completion:]**).
+* Error that occurs when already linked to the same IdP account
+	* If the error code is **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**, it means that an account of the same type as the IdP you want to map to is already linked.
+	* Gamebase mapping allows linking of only one account per IdP. For example, if it is already linked to a Google account, no other Google account can be added.
+	* To link another account of the same IdP, call **[TCGBGamebase removeMappingWithType:viewController:completion:]** to remove the linking and try mapping again.
 * Other errors
-    * Mapping attempt failed.
+    * The mapping attempt has failed.
 
 ### Import Header file into View Controller
 
