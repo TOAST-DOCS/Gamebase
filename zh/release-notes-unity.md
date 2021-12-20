@@ -37,7 +37,7 @@
     * 发布了v2.0.0版本。
     * 需要先删除已有的SettingTool后再进行设置。
     * 关于修改的信息和使用方法，请参考以下指南。 
-        * [Game > Gamebase > Unity SDK使用指南 > 开始 > Specification of Setting Tool](https://docs.toast.com/ko/Game/Gamebase/ko/unity-started/#specification-of-setting-tool)
+        * [Game > Gamebase > Unity SDK使用指南 > 开始 > Specification of Setting Tool](./unity-started/#specification-of-setting-tool)
 
 #### 修改程序错误
 * 修改了GamebaseDisplayLanguageCode芬兰语错误。 

@@ -10,7 +10,7 @@
         * **Assets/Plugins/Android**  
         * **Assets/Plugins/iOS** 
     * 변경된 내용 및 사용 방법은 아래 가이드를 확인하십시오. 
-        * https://docs.toast.com/ko/Game/Gamebase/ko/unity-started/#specification-of-setting-tool 
+        * [Game > Gamebase > Unity SDK 사용 가이드 > 시작하기 > Specification of Setting Tool](./unity-started/#specification-of-setting-tool)
  
 ## 2.26.0
 

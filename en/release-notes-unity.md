@@ -37,7 +37,7 @@
     * v2.0.0 has been released.
     * You must reinstall the tool after removing the previous version of SettingTool completely.
     * Refer to the guide below for what has changed and how to use it.
-        * [Game > Gamebase > Unity SDK User Guide > Getting Started > Specification of Setting Tool](https://docs.toast.com/ko/Game/Gamebase/ko/unity-started/#specification-of-setting-tool)
+        * [Game > Gamebase > Unity SDK User Guide > Getting Started > Specification of Setting Tool](./unity-started/#specification-of-setting-tool)
 
 #### Bug Fixes
 * Fixed a typo of Finnish language on GamebaseDisplayLanguageCode

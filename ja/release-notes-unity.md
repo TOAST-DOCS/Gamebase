@@ -37,7 +37,7 @@
     * v2.0.0が新しく配布されました。
     * 既存SettingToolを完全に削除して、再インストールする必要があります。
     * 変更された内容および使用方法は、以下のガイドを確認してください。
-        * [Game > Gamebase > Unity SDK使用ガイド > 始める > Specification of Setting Tool](https://docs.toast.com/ko/Game/Gamebase/ko/unity-started/#specification-of-setting-tool)
+        * [Game > Gamebase > Unity SDK使用ガイド > 始める > Specification of Setting Tool](./unity-started/#specification-of-setting-tool)
 
 #### バグ修正
 * GamebaseDisplayLanguageCodeフィンランド語の誤字を修正

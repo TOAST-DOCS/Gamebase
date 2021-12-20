@@ -10,7 +10,7 @@
         * **Assets/Plugins/Android**
         * **Assets/Plugins/iOS**
     * Check the following guide for changed features and how to use them.
-        * https://docs.toast.com/ko/Game/Gamebase/ko/unity-started/#specification-of-setting-tool 
+        * [Game > Gamebase > Unity Developer's Guide > Getting Started > Specification of Setting Tool](./unity-started/#specification-of-setting-tool)
  
 ## 2.26.0
 
