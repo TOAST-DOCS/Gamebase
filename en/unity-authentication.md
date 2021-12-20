@@ -30,7 +30,7 @@ The logic described in the above can be implemented in the following order.
 * Congratulations! Successfully authenticated.
 * Get a user ID with **Gamebase.GetUserID()** to implement a game logic.
 
-#### 1-2.When Authentication is Failed
+#### 1-2. When Authentication Fails
 
 * Network error
     * If the error code is **SOCKET_ERROR (110)** or **SOCKET_RESPONSE_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.LoginForLastLoggedInProvider()** again, or try again in a moment.
@@ -52,7 +52,7 @@ The logic described in the above can be implemented in the following order.
 * Congratulations! Successfully authenticated.
 * Get a user ID with **Gamebase.GetUserID()** to implement a game logic.
 
-#### 2-2. When Authentication is Failed
+#### 2-2. When Authentication Fails
 
 * Network error
     * If the error code is **SOCKET_ERROR (110)** or **SOCKET_RESPONSE_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.LoginForLastLoggedInProvider()** again, or try again in a minute.
@@ -473,24 +473,24 @@ First, call a login API and log in.
 
 Call **Gamebase.AddMapping()** to try mapping.
 
-#### 2-1.When mapping is successful
+#### 2-1. When mapping is successful
 
 * Congratulations! Successfully added an IdP account integrated with the current account.
 * Even if a mapping is successful, 'currently logged-in IdP' will not change.<br/>For example, after a user’s login with Google account and has successfully mapped with a Facebook account, the user's 'currently logged-in IdP' does not change from Google to Facebook. It still stays with Google account.
 * Mapping simply adds IdP integration.
 
-#### 2-2. When mapping is failed
+#### 2-2. When mapping fails
 
 * Network error
-    * If the error code is **SOCKET_ERROR(110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.AddMapping()** again or try again in a moment.
-* Error of integration to another account
-    * If the error code is **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**, the IdP account to map has been already integrated to another account.To remove the integrated account, log in the account and call **Gamebase.Withdraw()** to withdraw, or call **Gamebase.RemoveMapping()** to remove integration and try mapping again.
-* Error of integration to a same IdP account
-    * If the error code is **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**, a same type of account to the IdP has already been integrated.
-	* Gamebase mapping allows only one account of integration to an IdP. For example, if your account is already integrated to a PAYCO account, no other PAYCO account can be added.
-	* To integrate another account of a same IdP, call **Gamebase.RemoveMapping()** to remove integration and try mapping again.
-* Other Errors
-    * Mapping hsa failed.
+    * If the error code is **SOCKET_ERROR(110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, it means that the authentication failed due to temporary network issues, so call **Gamebase.AddMapping()** again or try again later.
+* Error that occurs when already linked to another account
+    * If the error code is **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**, it means that the account of the IdP to map to is already linked to another account. Using the **ForcingMappingTicket** obtained at this point, you can try force mapping (**Gamebase.AddMappingForcibly()**) or changing the login account (**Gamebase.ChangeLogin()**).
+* Error that occurs when already linked to the same IdP account
+    * If the error code is **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**, it means that an account of the same type as the IdP you want to map to is already linked.
+	* Gamebase mapping allows linking of only one account per IdP. For example, if an account is already linked to a PAYCO account, no other PAYCO account can be added.
+	* To link another account of the same IdP, call **Gamebase.RemoveMapping()** to remove the linking and try mapping again.
+* Other errors
+    * The mapping attempt has failed.
 
 
 ### Add Mapping
