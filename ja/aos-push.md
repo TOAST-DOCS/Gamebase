@@ -10,6 +10,7 @@
 [マテリアルデザインガイド - Android Notification \[LINK\]](https://material.io/design/platform-guidance/android-notifications.html#anatomy-of-a-notification)
 
 端末解像度ごとにアイコンサイズも決められています。次を参考にしてプッシュアイコンを準備してください。
+
 * MDPI - 24 x 24  (drawable-mdpi)
 * HDPI - 36 x 36  (drawable-hdpi)
 * XHDPI - 48 x 48  (drawable-xhdpi)
