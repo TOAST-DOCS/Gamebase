@@ -1,5 +1,17 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.29.0 
+ 
+### Unity 
+ 
+* Setting Tool 2.0.0が配布されました。
+    * フォルダ構造が変更され、以前のバージョンのSetting Toolを完全に削除した後、再インストールする必要があります。 
+    * Setting Tool 1.5.0以下のユーザーは、下記ディレクトリにあるGamebase関連ライブラリを全て削除する必要があります。 
+        * **Assets/Plugins/Android**  
+        * **Assets/Plugins/iOS** 
+    * 変更された内容と使用方法は以下のガイドを確認してください。 
+        * [Game > Gamebase > Unity SDK使用ガイド > はじめる > Specification of Setting Tool](./unity-started/#specification-of-setting-tool)
+
 ## 2.26.0
 
 ### Unity
