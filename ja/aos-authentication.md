@@ -469,6 +469,7 @@ private static void onWithdraw(final Activity activity) {
 ![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
 
 #### 1. ログイン
+
 マッピングは、現在のアカウントにIdPアカウントの連携を追加する機能であるため、ログインされた状態でなければなりません。
 まず、ログインAPIを呼び出してログインします。
 
@@ -480,6 +481,7 @@ private static void onWithdraw(final Activity activity) {
 
 * おめでとうございます！現在のアカウントと連携しているIdPアカウントが追加されました。
 * マッピングに成功しても、「現在ログイン中のIdP」は変わりません。つまり、Googleアカウントでログインした後、Facebookアカウントのマッピングを試み、それが成功したからといって「現在ログイン中のIdP」がGoogleからFacebookに変更されるわけではありません。Googleのままで維持されます。
+    * <font color="red">[注意]</font>：Guestアカウントは例外です。Guestアカウントでログインした状態で試行したマッピングが成功した場合、Guest IdPは**削除**され、「現在ログイン中のIdP」もマッピングされたIdPに変更されます。
 * マッピングは、単にIdP連携だけを追加する機能です。
 
 #### 2-2. マッピングに失敗した場合
@@ -487,7 +489,7 @@ private static void onWithdraw(final Activity activity) {
 * ネットワークエラー
     * エラーコードが**SOCKET_ERROR(110)**または**SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワーク問題により認証に失敗したケースであるため、**Gamebase.addMapping()**をもう一度呼び出したり、しばらくしてからもう一度試します。
 * 既に他のアカウントに連携している場合に発生するエラー
-    * エラーコード**AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**は、マッピングしようとしているIdPのアカウントが既に他のアカウントに連携しているという意味です。連携済みのアカウントを解除したい場合、該当するアカウントでログインしてから**Gamebase.withdraw()**を呼び出して退会したり、**Gamebase.removeMapping()**を呼び出して連携を解除した後、もう一度マッピングを試みてください。
+    * エラーコード**AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**は、マッピングしようとしているIdPのアカウントが既に他のアカウントに連携しているという意味です。この時取得した**ForcingMappingTicket**で強制マッピング(**Gamebase.AddMappingForcibly()**)またはログインアカウント変更(**Gamebase.ChangeLogin()**)を試行できます。
 * 既に同じIdPアカウントに連携されている場合に発生するエラー
     * エラーコード**AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**は、マッピングしようとしているIdPと同じ種類のアカウントが既に連携しているという意味です。
         * Gamebaseのマッピングは、IdP一つにつき一つのアカウントのみ連携させることができます。例えば、既にPAYCOアカウントに連携している場合は、これ以上PAYCOアカウントを追加することができません。
