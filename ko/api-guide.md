@@ -170,7 +170,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | member.userId | String | 사용자 ID |
 | member.lastLoginDate | String | 마지막으로 로그인한 시간 ISO 8601 <br>처음 로그인한 사용자는 해당 값이 없음 |
 | member.appId | String | appId |
-| member.valid | String | [사용자 상태](#member-valid-code)<br>- 로그인에 성공한 사용자의 값은 Y" |
+| member.valid | String | [사용자 상태](#member-valid-code)<br>로그인에 성공한 사용자 값은 "Y" |
 | member.regDate | String | 사용자가 계정을 생성한 시간 |
 | authList | Array[Object] | 사용자 인증 IdP 관련 정보 |
 | authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 사용자 인증 시스템 지원 예정 |
