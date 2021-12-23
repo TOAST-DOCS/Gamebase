@@ -32,78 +32,85 @@
 * 运营 > 维护
 	* 修改了注册自定义HTML(Webview)维护时, 未能正常看到”预览”的错误。
 
-### October 12, 2021
+### 2021. 10. 26.
 
-#### Feature Updates
-* Push > Statistics > Send/Receive, Receive Settings
-	* Changed the file download format to CSV.
-* Coupon > History, Coupon publish list
-	* Changed the file download format to CSV.
-
-#### Bug Fixes
-* Analytics > User Indicators > Life Cycle
-	* Fixed a bug where the withdrawn user indicator is displayed as 0 on the day of registration.
-
-### September 28, 2021
-
-#### Feature Updates
-* Purchase (IAP) > Payment Abusing Monitoring
-    * Added an automatic release feature for payment abusing.
-* Purchase (IAP) > Store
-    * ONE store SDK v16 support.
-
-#### Bug Fixes
-* Purchase (IAP) > Product
-    * Fixed an error where, when registering items with a file, the items are registered incorrectly if there is multiple store information.
-* Push > Push
-    * Fixed an error where message sending fails when setting the text color for messages that have only content without a subject.
-
-### September 14, 2021
-
-#### Feature Updates
-* Push > Statistics > Inbound settings
-	* Changed the text related to inbound settings statistics.
-* Customer Center
-	* Added a template feature where users can enter details depending on an inquiry type.
-	* Added an internationalization feature to the customer inquiry reply template.
+#### 改善/修复功能
 * Analytics
-    * Added a feature to provide MCU/ACU data when a filter is selected.
-        * MCU data is provided from August 11.
-* Analytics > Real-Time Monitoring > Concurrent Users
-	* Added a feature to provide push notifications scheduling history.
+	* 将下载文件的形式更改为.csv和.xlsx。
+* 运营 > Kickout
+	* 添加了复制Kickout详细明细的功能。
 
-#### Bug Fixes
-* Customer Center > Customer Inquiry
-	* Fixed an error where a wrong calendar is exposed when the user selects submission period dates.
+### 2021. 10. 12.
 
-### August 24, 2021
+#### 改善/修复功能
+* 推送 > 统计 > 发送/接收、接收设置 
+	* 将下载文件的形式更改为.csv。     
+* 优惠券 > 优惠券使用履历、优惠券发布列表
+	* 将下载文件的形式更改为.csv。
 
-#### Feature Updates
-* Customer Center > Customer Inquiry
-	* Added the inquiry history in the customer information at the bottom
-* Purchase (IAP)
-	* For the initial currency setting, a base currency is displayed according to the language selected in NHN Cloud
+#### 修改程序错误
+* Analytics > 用户指标 > Life Cycle
+	* 修改了加入的当天将退出用户指标显示为0的程序错误。   
 
-### August 10, 2021
+### 2021. 09. 28.
 
-#### Feature Updates
-* Analytics > Real-time Monitoring > Real-time CCU
-    * Fixed the graph of change in the number of concurrent connected users (CCU) to GMT+9 timezone
-* Push > Push Registration
-	* Added the feature of deleting all entered messages
-* Customer Center > Customer Inquiry > Send Reply Settings
-	* Improved to expose all languages selected in App > Language Settings > Supported Language, if Send Reply is not set up
-* Coupon > Issue Coupon
-	* Modified the notification message about the number of coupons issued
+#### 改善/修复功能
+* 购买(IAP) > 结算Abusing监测
+	* 添加了结算Abusing自动解除功能。
+* 购买(IAP) > 商店
+	* 支持ONE store SDK v16。
 
-#### Bug Fixes
-* App > Terms and Conditions
-	* Fixed the error of some country names not being displayed in Preview Terms and Conditions
-* Purchase (IAP) > Store
-	* Fixed the error of no alarm message popping up even though this is a required value
-* Members > Members
-	* Changed the text in the popup window when looking for a non-existing member
+#### 修改程序错误
+* 购买(IAP) > 商品
+	* 修改了通过文件注册道具时，因存在多个商店信息而出现不正确的”注册错误“的问题。
+* 推送 > 推送
+	* 修改了为没有标题但只有文本的消息设置文本颜色时出现“发送错误”的问题。
 
+### 2021. 09. 14.
+
+#### 改善/修复功能
+* 推送 > 统计 > 接收设置
+	* 更改了与接收设置统计有关的语句。
+* 客户服务
+	* 添加了用户可根据查询类型输入模板的功能。
+	* 添加了通过模板回复客户提问时使用多国语的功能。
+* Analytics
+    * 选择过滤时提供MCU/ACU数据。
+        * 从8月11号开始提供MCU数据。 
+* Analytics > 实时监测 > 实时同时在线
+    * 开始提供推送预约明细。
+
+#### 修改程序错误
+* 客户服务 > 客户查询
+	* 修改了选择接收时期的日期时，日历显示不正确的错误。
+
+### 2021. 08. 24.
+
+#### 改善/修复功能  
+* 客户服务 > 客户提问
+	* 在下端客户信息中添加了查询明细。
+* 购买(IAP)
+	* 初次设置货币时，根据在NHN Cloud中选择的语言显示货币基准。
+
+### 2021. 08. 10.
+
+#### 改善/修复功能
+* Analytics > 实时监测 > 实时同时在线
+    * 将同时在线人数(CCU)变化图标的时间固定为GMT+9。
+* 推送 > 注册推送
+	* 添加了可删除输入的所有消息的功能。
+* 客户服务 > 客户提问 > 推送响应设置
+	* 改善之后，即使未设置推送响应设置，也将在应用程序 > 语言设置 > 支持语言中选择的语言全部显示出来。 
+* 优惠券 > 发放优惠券
+	* 修改了优惠券发布个数的提示语句。 
+
+#### 修改程序错误   
+* 应用程序 > 条款
+	* 修改了在”预览条款”中未能看到部分国家名的错误。
+* 购买(IAP) > 商店
+	* 修改了未输入必须值时，在下端无法显示提示消息的问题。
+* 成员 > 会员
+	* 修改了查看不存在的成员时的通知弹窗提示语句。 
 
 ### July 27, 2021
 
