@@ -9,7 +9,7 @@
 #### 機能改善/変更
 * 外部SDKアップデート：TOAST iOS SDK (0.29.2), PAYCO iOS SDK (1.5.4)
 * 利用停止Webビュー内のサポートリンクから利用停止ユーザー情報でお問い合わせを登録することができない問題を修正しました。
-* メンテナンスポップアップ、利用停止詳細表示Webビューで戻るボタンが表示されないように修正しました。
+* メンテナンスポップアップ、利用停止詳細表示Webビューで戻るボタンが表示されるように修正しました。
 
 ### 2.30.1 (2021.11.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.1/GamebaseSDK-iOS.zip)
