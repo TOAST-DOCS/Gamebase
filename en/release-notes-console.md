@@ -1,5 +1,12 @@
 ## Game > Gamebase > Release Notes > Console
 
+### 2021. 12. 28.
+
+#### Bug Fixes
+* Analytics > User Indicators > Inflow/Outflow
+	* Fixed an error where the numbers of new/withdrawn users were displayed as twice the actual value
+
+
 ### December 14, 2021
 
 #### Feature Updates
@@ -9,6 +16,10 @@
 	* Added a feature to select whether to display the maintenance time on the Maintenance page
 * Customer Center > Template
 	* Changed so that templates in languages that are no longer supported by the Customer Center among previously registered templates are not displayed and deleted.
+
+#### Bug Fixes
+* App > App > Customer Center
+	* Fixed an error where Chinese was not displayed in the Customer Center even if Chinese was set as the supported language
 
 ### November 23, 2021
 
