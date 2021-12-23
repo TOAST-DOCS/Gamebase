@@ -1,7 +1,7 @@
-## Game > Gamebase > JavaScript SDK使用指南 > 验证
+## Game > Gamebase > JavaScript SDK使用指南 > 认证
 
 ## Login
-Gamebase默认支持访客登录。
+Gamebase支持访客登录。
 若欲使用其他IdP（identity provider，例如Google、Facebook、Line、NAVER、Twitter），请参考”Login with IdP”章节。
 
 
@@ -10,13 +10,12 @@ Gamebase默认支持访客登录。
 * 可在游戏初始标题界面选择以何种IdP进行验证。
 
 以上说明的逻辑可按照如下顺序实现。
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_001_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_003_1.10.0.png)
-![purchase flow](http://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_flow_004_1.10.0.png)
+![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
+![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
-#### 1.以指定的IdP验证
+#### 1.以指定的IdP认证
 
-* 直接指定IdP类型尝试验证。
+* 直接指定IdP类型尝试认证。
     * 可验证的类型如下。
         * Guest('guest')
         * Google('google')
@@ -57,13 +56,13 @@ Gamebase默认支持访客登录。
 
 > <font color="red">[注意]</font><br/>
 >
-> Gamebase中为进行验证，使用’弹出窗口’。若未允许使用‘弹出窗口’，可能会一直停留在正在’尝试登录’的状态。
-> 应提前显示’验证前请允许使用弹出窗口’的文字内容，避免给用户带来不便。
+> Gamebase为进行认证使用“弹窗”。若无法向用户显示“弹窗”，可能一直显示‘’尝试登录’’。
+> 通过提前向用户显示“您必须允许显示弹窗”的语句，避免给用户带来不便。
 >
-> 按照”连接Facebook时使用的浏览器政策‘’， 
-> 在IE浏览器使用Facebook Idp进行Gamebase登录时，一直会强制跳转到Edge浏览器。 
-> 因此使用Facebook Idp进行Gamebase登录时，要在Chrome、Edge等浏览器进行连接。 
-> 但若需要在IE浏览器登录时，
+> 按照”连接Facebook的浏览器政策‘’， 
+> 在IE浏览器使用Facebook Idp登录Gamebase时，一直会强制跳转到Edge浏览器。 
+> 因此使用Facebook Idp登录Gamebase时，要通过Chrome、Edge等浏览器进行连接。 
+> 但如需在IE浏览器登录Facebook时，
 > 则可按以下顺序防止强制跳转到Edge浏览器。
 > 1. 进入Edge浏览器设置。
 > 2. 在设置界面菜单中选择”默认浏览器”。
@@ -88,7 +87,7 @@ function gamebaseLogin() {
                 // GamebaseConfiguration.uiConfiguration.enableBanPopup(true)初始化，
                 // 则Gamebase自动显示与停止使用相关的UI。
 
-                // 若欲按照Game UI直接实现停止使用的弹出窗口，请利用toast.Gamebase.getBanInfo()
+                // 若欲按照Game UI直接实现停止使用的弹出窗口，请利用toast.Gamebase.getBanInfo()。
                 // 确认禁用信息，为用户标注无法玩游戏的原因。
                 var banInfo = toast.Gamebase.getBanInfo();
             } else {
@@ -120,18 +119,17 @@ function gamebaseLogin() {
 
 > [参考]
 >
-> 游戏中必须使用外部服务（Facebook等）的固有功能时可能需要。
+> 游戏中使用外部服务（Facebook等）的固有功能时可能需要。
 >
 
 <br/>
 
 > <font color="red">[注意]</font><br/>
 >
-> 外部SDK要求支持的开发事项应使用外部SDK的API实现，Gamebase不支持。
+> 必须调用外部SDK API实现外部SDK要求支持的开发事项（Gamebase不支持）。
 >
 
-```js
-var credential = {
+  
     providerName:${IdP},
     acessToken:${IdP AccessToken},
     accessTokenSecret:${IdP AccessTokenSecret}, // This is only nessassary in the case that IdP give you this value.
@@ -209,20 +207,23 @@ function logout() {
 
 ## Withdraw
 
-如下为在登录状态下实现游戏用户注销的示例代码。<br/><br/>
+登录后尝试退出。
 
-* 若注销成功，与登录的IdP关联的游戏用户数据将被删除。
-* 可以用相应的IdP重新登录，创建新的游戏用户数据。
-* 表示注销Gamebase，但不表示注销IdP账户。
-* 注销成功时尝试注退出IdP。
+* 成功退出时
+  * 已登录过的IdP的游戏用户数据将被删除。 
+  * 可使用此IdP重新登录。将创建新的游戏用户数据。
+  * 用户将从连接的所有IdP注销。 
+* 这表示退出Gamebase，而不表示退出IdP账户。
 
 > <font color="red">[注意]</font><br/>
 >
-> 当多个IdP关联时，所有IdP关联解除，Gamebase游戏用户数据被删除。
+> 多个IdP被连接时，所有IdP的连接将解除，而Gamebase用户数据也将被删除。
 >
 
+游戏用户登录后退出时，调用退出函数的示例如下。
+
 ```js
-toast.Gamebase.withdraw(callback)
+toast.Gamebase.withdraw(callback) 
 ```
 
 **Example**
@@ -242,10 +243,10 @@ function withdraw() {
 ```
 
 ## Gamebase User's Information
-以Gamebase进行验证程序后，可获得制作应用程序时需要的信息。
+通过Gamebase进行验证后，可获得为创建应用程序所需的信息。
 
 ### Get Authentication Information for Gamebase
-可导入Gamebase提供的验证信息。
+可获取Gamebase提供的验证信息。
 
 ```js
 // Obtaining Gamebase UserID
@@ -256,7 +257,7 @@ var accessToken = toast.Gamebase.getAccessToken();
 ```
 
 ### Get Banned User Information
-以禁用的用户注册TOAST Gamebase控制台时，
+在NHN Cloud Gamebase Console中注册为禁用的游戏用户时，
 若尝试登录，显示如下限制使用信息代码。可使用**toast.Gamebase.getBanInfo()**方法确认禁用信息。
 
 ```js
@@ -276,7 +277,7 @@ var banInfo = toast.Gamebase.getBanInfo();
 > 使用预约退出功能时，不应调用**Gamebase.withdraw()** API。 
 > 调用**Gamebase.withdraw()** API，可立即退出账号。
 
-登录成功后通过调用AuthToken.member.temporaryWithdrawal判断是否为已预约退出的用户。 
+登录成功后，通过调用AuthToken.member.temporaryWithdrawal来判断是否是预约退出的用户。 
 
 ### Request TemporaryWithdrawal
 
@@ -393,23 +394,23 @@ function withdrawImmediately() {
 
 | Category       | Error                                                   | Error Code | Description                                                       |
 | -------------- | ------------------------------------------------------- | ---------- | ----------------------------------------------------------------- |
-| Auth           | INVALID\_MEMBER                                         | 6          | 无效的用户请求。                                            |
-|                | BANNED\_MEMBER                                          | 7          | 被制裁的用户。                                                      |
+| Auth           | INVALID\_MEMBER                                         | 6          | 无效的用户请求                                            |
+|                | BANNED\_MEMBER                                          | 7          | 是禁用用户。                                                      |
 |                | AUTH\_USER\_CANCELED                                    | 3001       | 登录信息已被取消 。                                             |
-|                | AUTH\_NOT\_SUPPORTED\_PROVIDER                          | 3002       | 不支持的认证方式 。                                           | 
-|                | AUTH\_NOT\_EXIST\_MEMBER                                | 3003       | 不存在或已退出（删除数据）的用户。                                        |
-|                | AUTH_ALREADY_IN_PROGRESS_ERROR                          | 3010       | 之前的认证过程未完成。                                 |
-| Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED                              | 3101       | 令牌登录失败。                                              |
-|                | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO                | 3102       | 无效的令牌信息 。                                           |
+|                | AUTH\_NOT\_SUPPORTED\_PROVIDER                          | 3002       | 是不支持的认证方式 。                                           | 
+|                | AUTH\_NOT\_EXIST\_MEMBER                                | 3003       | 是不存在或已退出（删除数据）的用户。                                        |
+|                | AUTH_ALREADY_IN_PROGRESS_ERROR                          | 3010       | 未完成上一次的认证程序。                                 |
+| Auth (Login)   | AUTH\_TOKEN\_LOGIN\_FAILED                              | 3101       | 令牌登录失败                                              |
+|                | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO                | 3102       | 无效的令牌信息                                            |
 |                | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP      | 3103       | 无近期登录的IdP信息。             |
-| IDP Login      | AUTH\_IDP\_LOGIN\_FAILED                                | 3201       | IdP登录失败。                                              |
-|                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO                    | 3202       | 无效的IdP信息。（Console中没有此IdP信息）。         |
-| Logout         | AUTH\_LOGOUT\_FAILED                                    | 3501       |  退出登录失败。                                                |
-| Withdrawal     | AUTH\_WITHDRAW\_FAILED                                  | 3601       | 退出（删除数据）失败。                                                 |
-|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 用户已临时退出                   |
-|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 用户未临时退出                    |
-| Not Playable   | AUTH\_NOT\_PLAYABLE                                     | 3701       | 无法玩游戏的状态(维护或已下线等)。                |
-| Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                                    | 3999       | 未知错误(未定义的错误)。                      |
+| IDP Login      | AUTH\_IDP\_LOGIN\_FAILED                                | 3201       | IdP登录失败                                              |
+|                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO                    | 3202       | 无效的IdP信息（Console中没有此IdP信息。）         |
+| Logout         | AUTH\_LOGOUT\_FAILED                                    | 3501       |  退出登录失败                                                |
+| Withdrawal     | AUTH\_WITHDRAW\_FAILED                                  | 3601       | 退出（删除数据）失败                                                 |
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 用户已临时退出。                   |
+|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 用户未临时退出。                    |
+| Not Playable   | AUTH\_NOT\_PLAYABLE                                     | 3701       | 是无法玩游戏的状态(维护或已下线等)。                |
+| Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                                    | 3999       | 未知错误(未定义的错误)                      |
 
 * 所有错误代码，请参考以下文档。
     * [Entire Error Codes](./error-code/#client-sdk)
