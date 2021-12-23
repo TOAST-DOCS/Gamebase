@@ -303,6 +303,7 @@ Gamebase Consoleに登録されたメンテナンス情報です。
 * beginDate:開始時間
 * endDate:終了時間
 * message:メンテナンス理由
+* hideDate：メンテナンス開始、終了時間を表示するかどうか
 
 [Game > Gamebase > コンソール使用ガイド > 運営 > Maintenance](./oper-operation/#maintenance)
 
