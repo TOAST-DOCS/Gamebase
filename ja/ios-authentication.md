@@ -321,6 +321,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 * おめでとうございます！現在のアカウントと連携しているIdPアカウントが追加されました。
 * マッピングに成功しても、「現在ログイン中のIdP」は変わりません。つまり、Gamecenterアカウントでログインした後、Facebookアカウントのマッピングを試み、それが成功したからといって「現在ログイン中のIdP」がGamecenterからFacebookに変更されるわけではありません。Gamecenterのままで維持されます。
+    * <font color="red">[注意]</font><br/>：Guestアカウントは例外です。Guestアカウントでログインした状態で試行したマッピングが成功した場合、Guest IdPは**削除**され、「現在ログイン中のIdP」もマッピングされたIdPに変更されます。
 * マッピングは、単にIdP連携だけを追加する機能です。
 
 #### 2-2. マッピングに失敗した場合
@@ -328,7 +329,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 * ネットワークエラー
     * エラーコードが**TCGB_ERROR_SOCKET_ERROR(110)**または **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**の場合、一時的なネットワークの問題で認証が失敗したということなので、**[TCGBGamebase addMappingWithType:viewController:completion:]**を再度呼び出すか、しばらくしてから再度試行します。
 * すでに他のアカウントに連携中の時に発生するエラー
-    * エラーコードが **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**の場合、マッピングしようとしているIdPのアカウントがすでに他のアカウントに連動中という意味です。すでに連動しているアカウントを解除するには、該当アカウントでログインして **[TCGBGamebase withdrawWithViewController:completion:]**を呼び出して退会するか、**[TCGBGamebase removeMappingWithType:viewController:completion:]**を呼び出して連動を解除した後、再度マッピングを行ってください。
+    * エラーコードが**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**の場合、マッピングしようとしているIdPのアカウントがすでに他のアカウントに連動中という意味です。この時取得した**ForcingMappingTicket**で強制マッピング(**[TCGBGamebase addMappingForciblyWithTicket:viewController:completion:]**)またはログインアカウント変更(**[TCGBGamebase changeLoginWithForcingMappingTicket:viewController:completion:]**)を試行できます。
 * すでに同じIdPアカウントに連携している時に発生するエラー
 	* エラーコードが**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**の場合、マッピングしようとしているIdPと同じ種類のアカウントがすでに連携中という意味です。
 	* Gamebaseマッピングは、1つのIdPにつき1つのアカウントのみ連携可能です。例えばGoogleアカウントにすでに連携中の場合は、Googleアカウントを追加できません。

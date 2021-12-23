@@ -4,14 +4,14 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Unity SDK(0.25.0)
-* Standalone 점검 팝업에서 점검 시간 표시 여부를 동적으로 설정할 수 있도록 변경되었습니다.
+#### 機能改善/変更
+* 外部SDKアップデート：TOAST Unity SDK(0.25.0)
+* Standaloneメンテナンスポップアップでメンテナンス時間を表示するかどうかを動的に設定できるように変更しました。
 * Setting Tool
-    * Payco IDP가 추가되었습니다.
-    * 기존 SettingTool을 완전히 삭제한 후 재설치해야 합니다.
+    * Payco IDPが追加されました。
+    * 既存のSettingToolを完全に削除した後、再インストールする必要があります。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.31.0](./release-notes-android/#2310-20211214)
 * [Gamebase iOS SDK 2.31.0](./release-notes-ios/#2310-20211214)
 
@@ -20,8 +20,8 @@
 
 #### 機能追加
 * 強制マッピングを行う時、IdPログインをもう一度試行しなければいけない煩わしさを改善した、新しい強制マッピングAPIが追加されました。
-    * [Game > Gamebase > Unity SDK使用ガイド > 認証 > Mapping > Add Mapping Forcibly](./unity`-authentication/#add-mapping-forcibly)
-* Gamebase.AddMapping()呼び出し後、AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)エラーが発生した時、該当アカウントにログインすることができるAPIが追加されました。
+    * [Game > Gamebase > Unity SDK使用ガイド > 認証 > Mapping > Add Mapping Forcibly](./unity-authentication/#add-mapping-forcibly)
+* Gamebase.AddMapping()呼び出し後、AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)エラーが発生した時、該当アカウントでログインすることができるAPIが追加されました。
     * [Game > Gamebase > Unity SDK使用ガイド > 認証 > Mapping > Change Login with ForcingMappingTicket](./unity-authentication/#change-login-with-forcingmappingticket)
 
 #### プラットフォーム別の変更事項
