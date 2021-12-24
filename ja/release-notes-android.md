@@ -8,9 +8,6 @@
 * 利用停止Webビュー内のサポートリンクから利用停止ユーザー情報でお問い合わせを登録することができない問題を修正しました。
 * アプリを起動してすぐにGamebaseの初期化を呼び出す場合、ローンチポップアップが英語で表示されることがある問題を修正しました。
 * アプリがバックグラウンドからフォアグラウンドに切り替わる時は常にローンチ情報が変更されていないかをすぐチェックするようにスケジューラを改善しました。
-* GamebaseEventHandlerのGamebaseEventObserverData.codeに**GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)**エラーが追加されました。
-    * このイベントが発生する場合はGamebase Access Tokenの有効期限が切れて復旧できない状況のため、ログインを再試行してください。
-    * [Game > Gamebase > Android SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Observer](./aos-etc/#observer)
 	
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Android.zip)

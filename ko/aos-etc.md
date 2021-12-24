@@ -294,8 +294,8 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 ### Gamebase Event Handler
 
-* Gamebase 는 각종 이벤트를 **GamebaseEventHandler** 라는 하나의 이벤트 시스템에서 모두 처리할 수 있습니다.
-* GamebaseEventHandler 는 아래 API 를 통해 간단하게 Listener 를 추가/제거 할 수 있습니다.
+* Gamebase는 각종 이벤트를 **GamebaseEventHandler**라는 하나의 이벤트 시스템에서 모두 처리할 수 있습니다.
+* GamebaseEventHandler는 아래 API를 통해 간단하게 Listener를 추가/제거 할 수 있습니다.
 
 **API**
 
@@ -328,6 +328,13 @@ void eventHandlerSample(Activity activity) {
         @Override
         public void onReceive(@NonNull GamebaseEventMessage message) {
             switch (message.category) {
+                case GamebaseEventCategory.LOGGED_OUT:
+                    GamebaseEventLoggedOutData loggedOutData = GamebaseEventLoggedOutData.from(message.data);
+                    if (loggedOutData != null) {
+                        processLoggedOut(activity, message.category, loggedOutData);
+                    }
+                    break;
+                case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED:
                 case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
                 case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
                     GamebaseEventServerPushData serverPushData = GamebaseEventServerPushData.from(message.data);
@@ -360,23 +367,85 @@ void eventHandlerSample(Activity activity) {
 ```
 
 * Category 는 GamebaseEventCategory 클래스에 정의되어 있습니다.
-* 이벤트는 크게 ServerPush, Observer, Purchase, Push 로 나눌 수 있고, 각 Category 에 따라, GamebaseEventMessage.data 를 아래 표와 같은 방법으로 VO 로 변환할 수 있습니다.
+* 이벤트는 크게 LoggedOut, ServerPush, Observer, Purchase, Push 로 나눌 수 있고, 각 Category 에 따라, GamebaseEventMessage.data 를 아래 표와 같은 방법으로 VO 로 변환할 수 있습니다.
 
 | Event 종류 | GamebaseEventCategory | VO 변환 방법 | 비고 |
 | --------- | --------------------- | ----------- | --- |
-| ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseEventServerPushData.from(message.data) | \- |
+| LoggedOut | GamebaseEventCategory.LOGGED_OUT | GamebaseEventLoggedOutData.from(message.data) | \- |
+| ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED<br>GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseEventServerPushData.from(message.data) | \- |
 | Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseEventObserverData.from(message.data) | \- |
 | Purchase - 프로모션 결제 | GamebaseEventCategory.PURCHASE_UPDATED | PurchasableReceipt.from(message.data) | \- |
 | Push - 메세지 수신 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | PushMessage.from(message.data) | **isForeground** 값을 통해 Foreground 에서 메세지를 수신했는지 여부를 확인할 수 있습니다. |
 | Push - 메세지 클릭 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | PushMessage.from(message.data) | **isForeground** 값이 없습니다. |
 | Push - 액션 클릭 | GamebaseEventCategory.PUSH_CLICK_ACTION | PushAction.from(message.data) | RichMessage 버튼 클릭 시 동작합니다. |
 
+#### How to handle events when the application is not running
+
+* 커스텀 Application 클래스에서 GamebaseEventHandler를 등록하면 어플리케이션이 실행되지 않았을때에도 이벤트 처리를 할 수 있습니다.
+
+```java
+public class MyApplication extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        Gamebase.addEventHandler(new GamebaseEventHandler() {
+            @Override
+            public void onReceive(@NonNull GamebaseEventMessage message) {
+                // ...
+            }
+        });
+
+        // ...
+    }
+}
+```
+
+#### Logged Out
+
+* Gamebase Access Token이 만료되어 네트워크 세션을 복구하기 위해 로그인 함수 호출이 필요한 경우 발생하는 이벤트 입니다.
+
+**Example**
+
+```java
+void eventHandlerSample(Activity activity) {
+    Gamebase.addEventHandler(new GamebaseEventHandler() {
+        @Override
+        public void onReceive(@NonNull GamebaseEventMessage message) {
+            switch (message.category) {
+                case GamebaseEventCategory.LOGGED_OUT:
+                    GamebaseEventLoggedOutData loggedOutData = GamebaseEventLoggedOutData.from(message.data);
+                    if (loggedOutData != null) {
+                        processLoggedOut(activity, message.category, loggedOutData);
+                    }
+                    break;
+                default:
+                    ...
+            }
+        }
+    });
+}
+
+void processLoggedOut(String category, GamebaseEventLoggedOutData data) {
+    if (category.equals(GamebaseEventCategory.LOGGED_OUT)) {
+        // There was a problem with the access token.
+        // Call login again.
+        Gamebase.login(activity, Gamebase.getLastLoggedInProvider(), (authToken, exception) -> {});
+    }
+}
+```
+
 #### Server Push
 
 * Gamebase 서버에서 클라이언트 단말기로 보내는 메세지 입니다.
 * Gamebase 에서 지원하는 Server Push Type 은 다음과 같습니다.
+	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED
+    	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
+        * 클라이언트 단말기에서 서버 메세지를 수신했을때 바로 동작하는 이벤트 입니다.
+        * '오토 플레이'와 같이 게임이 동작중인 경우, 게임을 일시 정지 시키는 목적으로 활용할 수 있습니다.
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
     	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
+        * 클라이언트 단말기에서 서버 메세지를 수신했을때 팝업을 표시하는데, 유저가 팝업을 닫았을때 동작하는 이벤트 입니다.
     * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
     	* Guest 계정을 다른 단말기로 이전을 성공하게 되면 이전 단말기에서 킥아웃 메세지를 받게 됩니다.
 
@@ -388,6 +457,7 @@ void eventHandlerSample(Activity activity) {
         @Override
         public void onReceive(@NonNull GamebaseEventMessage message) {
             switch (message.category) {
+                case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED:
                 case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
                 case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
                     GamebaseEventServerPushData serverPushData = GamebaseEventServerPushData.from(message.data);
@@ -403,8 +473,12 @@ void eventHandlerSample(Activity activity) {
 }
 
 void processServerPush(String category, GamebaseEventServerPushData data) {
-    if (category.equals(GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT)) {
+    if (category.equals(GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED)) {
+        // Currently, the kickout pop-up is displayed.
+        // If your game is running, stop it.
+    } else if (category.equals(GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT)) {
         // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+        // And the game user closes the kickout pop-up.
         // Return to title and initialize Gamebase again.
     } else if (category.equals(GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT)) {
         // If the user wants to move the guest account to another device,
@@ -530,7 +604,6 @@ void processObserver(String category, GamebaseEventObserverData data) {
     }
 }
 ```
-
 
 #### Purchase Updated
 

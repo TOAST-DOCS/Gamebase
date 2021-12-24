@@ -8,9 +8,6 @@
 * Fixed an issue where it was not possible to register inquiries with banned user information from the Customer Center link in the ban webview.
 * Fixed an issue where the launch pop-up was intermittently displayed in English when calling Gamebase initialization as soon as the app was executed.
 * Improved the scheduler so that it always checks whether the launch information has changed when the app is switched from the background to the foreground status.
-* Added **GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)** error to GamebaseEventObserverData.code of GamebaseEventHandler.
-    * If this event occurs, it means the Gamebase Access Token has expired and cannot be recovered, so try logging in again.
-    * [Game > Gamebase > Android SDK Usage Guide > ETC > Additional Features > Gamebase Event Handler > Observer](./aos-etc/#observer)
 
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Android.zip)

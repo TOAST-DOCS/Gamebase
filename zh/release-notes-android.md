@@ -8,9 +8,6 @@
 * 解决了被禁用的用户（使用禁用信息）无法通过“禁用Webview”内客户服务链接注册查询的问题。
 * 修复了打开应用程序后立即调用Gamebase初始化函数时，Launching弹窗显示英语的问题。
 * 改善Scheduler之后，现在您可以始终确认当应用程序从后台转为前台时Launching信息是否已被更改。
-* 在GamebaseEventHandler的GamebaseEventObserverData.code中添加了**GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)**错误。
-    * 如果发生此事件，则表示Gamebase Access Token已过期而尚未恢复，因此需要重新登录。
-    * [Game > Gamebase > Android SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Observer](./aos-etc/#observer)
     
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Android.zip)
