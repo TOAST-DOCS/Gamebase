@@ -215,7 +215,7 @@ localizedstring.json中定义的格式如下。
 }
 ```
 
-如果需要添加其他语言集，则在localizedstring.json文件的相应语言代码中以“"key":"value"”的形式添加值。
+如果需要添加其他语言集，则在localizedstring.json文件的相应语言代码中以`"key":"value"`的形式添加值。
 
 ```json
 {

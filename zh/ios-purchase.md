@@ -14,7 +14,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 #### Gamebase Console设置
 
-您需要在Gamebase Console中设置的内容如下。
+您需要在Gamebase Console中进行的设置方法如下。
 
 1. 在**Gamebase > Purchase(IAP) > 商店**中注册使用的商店。  
     * 商店 : 选择**App Store**。
@@ -28,7 +28,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 #### Xcode Project设置
 1. **Targets > Capabilities > In-App Purchase**设置为**ON**。
-2. 根据需要设置**Targets > General > Identity** 的Bundle Identifier, Version和Build的值。
+2. 根据需要设置**Targets > General > Identity**的Bundle Identifier, Version和Build的值。
 
 #### 导入Header文件
 
@@ -83,7 +83,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 ### Purchase Item
 
 使用想要购买商品的gamebaseProductId，调用以下API申请购买。<br/>
-gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在Gamebase控制台中进行修改。完成支付后，在payload字段中输入的附加信息将会一直留在**TCGBPurchasableReceipt.payload**字段，因此可用于多种用途。<br/>
+gamebaseProductId基本上与在商店中注册的道具ID相同，而可在Gamebase控制台中进行修改。完成支付后，在payload字段中输入的附加信息将会一直留在**TCGBPurchasableReceipt.payload**字段，因此可用于多种用途。<br/>
 游戏用户取消购买时，返还**TCGB_ERROR_PURCHASE_USER_CANCELED**错误。请进行取消处理。
 
 **API**
@@ -128,23 +128,23 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在G
 ```objectivec
 @interface TCGBPurchasableReceipt : NSObject
 
-// 是购买的道具的产品ID。
+// 是购买的道具产品ID。
 @property (nonatomic, strong) NSString *gamebaseProductId;
 
-// 是购买的商品的价格。
+// 是购买的商品价格。
 @property (assign) float price;
 
 // 为货币代码。
 @property (nonatomic, strong) NSString *currency;
 
 // 为结算标识符。
-// 调用”Consume”服务器API时，与purchaseToken一起使用。
+// 调用”Consume”服务器API时与purchaseToken一起使用。
 // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
-// 注意 : 只能通过游戏服务器调用Consume API!
+ 
 @property (nonatomic, strong) NSString *paymentSeq;
 
 // 为结算标识符。
-// 调用”Consume”服务器API时，与paymentSeq一起使用。
+// 调用”Consume”服务器API时与paymentSeq一起使用。
 // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
 // 注意 : 只能通过游戏服务器调用Consume API!
 @property (nonatomic, strong) NSString *purchaseToken;
@@ -156,7 +156,7 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在G
 // UNKNOWN : 无法识别类型/请更新Gamebase SDK或联系Gamebase客户服务。
 // CONSUMABLE : 消费型商品
 // AUTO_RENEWABLE : 订阅型商品
-// CONSUMABLE_AUTO_RENEWABLE : 指需要向购买订购商品的用户定期提供可消费商品时使用的“可消费订购商品”。
+// CONSUMABLE_AUTO_RENEWABLE : 用于向购买订购商品的用户定期提供可消费商品的“可消费订购商品”。
 @property (nonatomic, strong) NSString *productType;
 
 // 是购买商品的User ID。
@@ -164,7 +164,7 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在G
 @property (nonatomic, strong) NSString *userId;
 
 // 为商店的结算标识符。
-@property (nonatomic, strong) NSString *paymentId;
+@property (nonatomic, strong, nullable) NSString *paymentId;
 
 // 为订阅结束的时间(epoch time)。
 @property (nonatomic, assign) long expiryTime;
@@ -175,12 +175,12 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在G
 // 是调用requestPurchase API时，作为payload传送的值。
 // 使用相同的User ID进行了购买，但仍然需要根据游戏频道、游戏角色等区分商品购买和支付，
 // 即，当需要添加游戏中的各种附加信息时，可使用此字段。
-@property (nonatomic, strong) NSString *payload;
+@property (nonatomic, strong, nullable) NSString *payload;
 
 // 当订购商品被更新时，paymentId将也会被修改。
 // 通过此字段可以确认第一次进行订阅商品结算时的paymentId。 
 // 根据商店类型、结算服务器状态，可能不存在值，因此不能保证始终是有效值。
-@property (nonatomic, strong) NSString *originalPaymentId;
+@property (nonatomic, strong, nullable) NSString *originalPaymentId;
 
 // 是通过itemSeq购买商品的Lecacy API专用标识符。
 @property (assign)            long itemSeq;
@@ -192,7 +192,7 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在G
 
 ### List Purchasable Items
 
-要查询商品列表，请调用以下API。回调返还的数组(array)包含各item的信息。
+如需查询商品列表，请调用以下API。回调返还的数组(array)包含各item的信息。
 
 ```objectivec
 - (void)viewDidLoad {
@@ -241,7 +241,7 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在G
 // UNKNOWN : 无法识别类型/请更新Gamebase SDK或联系Gamebase客户服务。
 // CONSUMABLE : 消费型商品
 // AUTO_RENEWABLE : 订阅型商品
-// CONSUMABLE_AUTO_RENEWABLE : 指需要向购买订购商品的用户定期提供可消费商品时使用的“可消费订购商品”。
+// CONSUMABLE_AUTO_RENEWABLE : 用于向购买订购商品的用户定期提供可消费商品的“可消费订购商品”。
 @property (nonatomic, strong) NSString *productType;
 
 // 是包含货币符号的当地价格信息。
@@ -253,7 +253,7 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在G
 // 是在商店控制台中注册的当地商品说明。
 @property (nonatomic, strong) NSString *localizedDescription;
 
-// 在Gamebase控制台中的相关商品的”使用与否"。
+// Gamebase控制台中的相关商品的”使用与否"。
 @property (nonatomic, assign, getter=isActive) BOOL active;
 
 // 是通过itemSeq购买商品的Lecacy API专用道具标识符。
@@ -299,7 +299,7 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在G
 ### Reprocess Failed Purchase Transaction
 
 如果在商店付款成功，但因TOAST IAP服务器认证失败等原因未能正常付款的情况下，我们将尝试使用API重新处理。<br/>
-最后，根据付款成功的历史记录，需要通过调用item配送(支付) 等的API来进行处理。
+最后，根据付款成功的历史记录，需要通过调用item配送(支付)等的API来进行处理。
 
 ```objectivec
 - (void)viewDidLoad {
@@ -397,6 +397,7 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，并可以在G
 | TCGB\_ERROR\_PURCHASE\_NOT\_ENOUGH\_CASH | 4004       | 因该商店的现金不足，无法进行结算。             |
 | TCGB\_ERROR\_PURCHASE\_INACTIVE\_PRODUCT\_ID | 4005       | 是未激活商品。             |
 | TCGB\_ERROR\_PURCHASE\_NOT\_EXIST\_PRODUCT\_ID | 4006       | 您使用不存在的GamebaseProductID请求了支付。             |
+| TCGB_ERROR_PURCHASE_LIMIT_EXCEEDED                   | 4007       | 超过了一个月的购买限额。             |
 | TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010       | 是不支持的商店。iOS支持的商店是"AS"。 |
 | TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201       | 是IAP库错误。<br>请确认error.message。|
 | TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR    | 4999       | 是未定义的购买错误。<br>将所有日志上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。|

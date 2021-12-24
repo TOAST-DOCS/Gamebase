@@ -5,7 +5,7 @@
 
 #### 改善/修复功能
 * 外部SDK升级 : TOAST Android SDK(0.29.0)
-* 解决了已被禁用的用户（使用禁用信息）未能通过“禁用Webview”内客户服务链接注册查询的问题。
+* 解决了被禁用的用户（使用禁用信息）无法通过“禁用Webview”内客户服务链接注册查询的问题。
 * 修复了打开应用程序后立即调用Gamebase初始化函数时，Launching弹窗显示英语的问题。
 * 改善Scheduler之后，现在您可以始终确认当应用程序从后台转为前台时Launching信息是否已被更改。
 * 在GamebaseEventHandler的GamebaseEventObserverData.code中添加了**GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)**错误。
