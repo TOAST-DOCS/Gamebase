@@ -6,7 +6,7 @@
 
 > [参考] 
 >
-> Unreal支持版本
+> Unreal支持的版本
 >
 > * UE 4.22 ~ UE 4.26
 > * 如果需要比上述版本更低的Unreal版本，请联系[客户服务](https://toast.com/support/inquiry)。
@@ -51,7 +51,7 @@ Supported Platforms
 
 * Android - Authentication
     * 启用要使用的IdP。
-    * 使用Hangame IdP时，请咨询客服。
+    * 关于使用Hangame IdP有提问时，请联系客服。
 * Android - Push
     * 启用要使用的Push。
 * Android - Purchase
@@ -60,12 +60,45 @@ Supported Platforms
         * View Option - 在结算页面(Full)和结算弹窗(Popup)当中选择。 
 
 
-#### Google Play认证及未完成的结算
+#### Google Play认证和未完成付款
 
 若想在Google Play服务进行认证和结算，则需设置Distribution。 
 关于详细的内容，请参考以下文档。
 
 * [Signing Projects for Release](https://docs.unrealengine.com/en-US/Platforms/Mobile/Android/DistributionSigning/index.html)
+
+#### AndroidX适用
+
+* 因为Android X将适用于Gamebase Android SDK 2.25.0版本，需要在[UPL(Unreal Plugin Language)](https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Mobile/UnrealPluginLanguage/)文件中添加以下设置。
+  
+```xml
+<gradleProperties>    
+  <insert>
+    android.useAndroidX=true      
+    android.enableJetifier=true    
+  </insert>  
+</gradleProperties>
+```
+
+#### multidex适用	
+
+* 因为将从Gamebase Unreal SDK 2.26.0版本开始删除与Gamebase内multidex有关的信息，需要在[UPL(Unreal Plugin Language)](https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Mobile/UnrealPluginLanguage/)文件中添加以下设置。 
+
+```xml
+<buildGradleAdditions>
+  <insert>
+  android {
+    defaultConfig {
+      multiDexEnabled true
+    }
+  }
+  </insert>
+</buildGradleAdditions>
+
+<androidManifestUpdates>
+    <addAttribute tag="application" name="android:name" value="androidx.multidex.MultiDexApplication"/>
+</androidManifestUpdates>
+```
 
 ### iOS Settings
 
@@ -157,7 +190,7 @@ if (bRemoteNotificationsSupported)
 
 #### PLCrashReporter
 
-因UE4中使用的PLCrashReporter不支持”arm64e”architecture，出现未能从使用该architecture的设备获取存储器地址值的问题。
+因UE4中使用的PLCrashReporter不支持”arm64e”architecture，出现无法从使用该architecture的设备获取存储器地址值的问题。
 
 在NHN Cloud Log & Crash Search中使用Crash分析的游戏开发公司应参考以下指南更改UE4内部PLCrashReporter。
 
@@ -168,7 +201,7 @@ if (bRemoteNotificationsSupported)
 ## API Deprecate Governance
 
 将对Gamebase不支持的API进行Deprecate处理。 
-若Deprecated的API符合以下条件，可能在不提前通知的状态被删除掉。
+若Deprecated的API符合以下条件，可能在未通知的状态被删除掉。
 
 * 更新5次以上的次要版本
     * Gamebase Version Format - XX.YY.ZZ

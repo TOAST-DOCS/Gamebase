@@ -301,6 +301,13 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 
 调用GetLaunchingInformations API时，Initialize之后也可以获取LaunchingInfo对象。
 
+> <font color="red">[注意]</font><br/>
+>
+> GetLaunchingInformations API不是实时从服务器获取信息的异步API。 
+> 因每2分钟返还更新的现金信息，不适合实时判断当前是否维护。 
+> 在上述情况下，当Launching Status Code被更改时，请适用启动事件的GamebaseEventHandler。
+> [Game > Gamebase > Unreal SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Observer](./unreal-etc/#observer)
+
 **API**
 
 Supported Platforms
