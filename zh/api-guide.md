@@ -1,7 +1,7 @@
 ## Game > Gamebase > API v1.3指南
 
 ## 更改事项
-- 在IAP(In App Purchase)API的请求参数和响应结果中已添加并删除新的项目。
+- 在IAP(In App Purchase)API的请求参数和响应结果中已添加并删除了新的项目。
 - 已添加Push Wrapping API。
 - 添加了使用Gamebase Access Token可获取登录时使用的IdP Profiles和令牌信息的"Get IdP Token and Profiles" API。
 - 添加了用IdP Id获取进行映射的Gamebase userId的"Get UserId Information with IdP Id" API。
@@ -19,7 +19,7 @@ Gamebase Server API以RESTful类型提供如下API。为了使用服务器API，
 
 #### AppId
 
-APP ID可通过NHN Cloud项目ID，在APP菜单页面中确认。
+可通过NHN Cloud项目ID，在APP菜单页面上确认APP ID。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
@@ -27,7 +27,7 @@ APP ID可通过NHN Cloud项目ID，在APP菜单页面中确认。
 
 密钥(secret key)是API的访问控制方法，可在Gamebase Console进行确认。调用Server API时，在HTTP标头中将密钥设置为必须。
 > [参考]
-> 如果密钥被泄露发生了无效调用，则可以通过点击**创建**按钮创建新密钥后使用新秘钥。
+> 如果密钥被泄露发生了无效调用，则可通过点击**创建**按钮创建新密钥后使用新秘钥。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
 
@@ -83,7 +83,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | transactionId | String | API请求时在HTTP Header设定的值。<br>如果不传递此值，则返回Gamebase内部生成的值。|
 | isSuccessful | boolean | 成功与否 |
-| resultCode | int | 响应代码<br>成功时为0，失败时返还错误代码 |
+| resultCode | int | 响应代码<br>成功时为0，失败时返还错误代码。 |
 | resultMessage | String | 响应消息 |
 
 <br>
@@ -165,7 +165,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Key | Type | Description |
 | --- | --- | --- |
 | linkedIdP | Object | 登录用户使用的IdP信息 |
-| linkedIdP.idPCode | String | IdP信息 <br>guest, payco, facebook等 |
+| linkedIdP.idPCode | String | IdP信息 <br>guest、payco、facebook等 |
 | linkedIdP.idPId | String | IdP ID |
 | member.userId | String | 用户ID |
 | member.lastLoginDate | String | 上一次登录的时间 <br>第一次登录的用户没有此值。|
@@ -174,7 +174,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | member.regDate | String | 用户创建账户的时间 |
 | authList | Array[Object] | 用户认证IdP相关信息 |
 | authList[].authSystem | String | Gamebase内部使用的认证系统 <br>预计将会支持用户认证系统 |
-| authList[].idPCode | String | 用户认证IdP信息 <br>guest, payco, facebook等 |
+| authList[].idPCode | String | 用户认证IdP信息 <br>guest、payco、facebook等 |
 | authList[].authKey | String | authSystem发放的用户区分值 |
 | temporaryWithdrawal | Object | 预约退出信息 <br>仅在valid为"T"值时提供。|
 | temporaryWithdrawal.gracePeriodDate | String | 预约退出的到期时间ISO 8601 |
@@ -186,17 +186,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 <br/>
 #### Get IdP Token and Profiles
 
-是在客户端通过"Login with IdP"登录时发放的Gamebase Access Token。使用此令牌可查看登录时使用的IdP Access Token和Profiles信息。 
+是在客户端通过"Login with IdP"登录时发放的Gamebase Access Token。使用此令牌可查看登录时使用的IdP Access Token和Profiles信息。
 
 > [注意]
 > 按照各IdP类别，IdP的Access Token有效时间都不同，而且一般很短。
-> 在客户端通过"Login as the Latest Login IdP"登录成功后，通过服务器调用相关API时，因IdP的Access Token已过期，有可能无法获取IdP信息。 
+> 在客户端通过"Login as the Latest Login IdP"登录成功后，通过服务器调用相关API时，因IdP的Access Token已过期，有可能无法获取IdP信息。
 
 <br/>
 
 > [参考]
 > 如果只用IdP的Access Token，有些IdP无法获取信息。
-> ex) appleid / iosgamecenter : 不存在使用Access Token，通过Server to Server可获取的信息。 
+> ex) appleid / iosgamecenter : 不存在使用Access Token，通过Server to Server可获取的信息。
 
 <br/>
 
@@ -222,7 +222,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| accessToken | String | mandatory | 发放给登录用户的Gamebase Access Token | 
+| accessToken | String | mandatory | 发放给登录用户的Gamebase Access Token |
 
 **[Response Body]**
 
@@ -370,7 +370,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | status.code | int | 客户端状态代码 <br><br>正常：200 <br>推荐更新：201、强制更新：300 <br>服务终止 : 302 <br>维护中：303 |
 | status.message | String | 客户端状态消息 |
 | app | Object | App信息 |
-| app.storeCode | String | 应用商店代码 <br>"GG"、"AS" 等 |
+| app.storeCode | String | 应用商店代码 <br>"GG"、"AS"等 |
 | app.accessInfo | Object | 在控制台应用页面中设置的信息 |
 | app.accessInfo.serverAddress | String | 服务器地址<br>在客户端设置的服务地址的优先级高。<br>如果未设置客户端服务器地址时，将传递应用页面中设置的服务器地址。|
 | app.accessInfo.csInfo | String | 客户服务信息 |
@@ -525,9 +525,13 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| userIdList | Array[String] | mandatory | 查询对象用户ID <br>  ["userId"、"userId"、"userId",...]|
+```json
+["userId", "userId", "userId"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | 查询对象用户ID |
 
 **[Response Body]**
 
@@ -552,7 +556,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| memberList | Array[Object] | 被查询用户的基本信息 |
+| memberList | Array[Object] | 查询的用户基本信息 |
 | memberList[].userId | String | 用户ID |
 | memberList[].valid | Enum | Y：正常用户 <br>D : 已退出的用户 <br>B：禁用的用户 <br>M：丢失的账户 <br>T : 用户已预约退出 |
 | memberList[].appId | String | appId |
@@ -586,9 +590,13 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| userIdList | Array[String] | mandatory | 查询对象用户ID  ["userId"、"userId"、"userId"、...]|
+```json
+["userId", "userId", "userId"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | 查询对象用户ID |
 
 **[Response Body]**
 
@@ -653,9 +661,13 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| authKeyList | Array[String] | mandatory | authSystem发放的authKey ["authKey"、"authKey"、"authKey",...]|
+```json
+["authKey", "authKey", "authKey"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | authSystem发放的authKey |
 
 **[Response Body]**
 
@@ -675,7 +687,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Array[Object] | 被查询用户的基本信息authKey为key，用户Id为value的object |
+| result | Array[Object] | 查询用户的基本信息authKey是key，用户Id是value的object。 |
 
 **[Error Code]**
 
@@ -706,9 +718,13 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Body]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| idPIdList | Array[String] | mandatory | 查询对象用户的IdP ID ["idPId"、"idPId"、"idPId"、...] <br> 查询对象列表的最大尺寸为300。|
+```json
+["idPId", "idPId", "idPId"]
+```
+
+| Type | Required | Value |
+| --- | --- | --- |
+| Array[String] | mandatory | 查询对象用户的IdP ID。 <br> 查询对象列表的最大尺寸为300。 |
 
 **[Response Body]**
 
@@ -730,7 +746,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Map<String, String> | 被查询的用户的ID信息<br>- IdP ID为key，Gamebase userId为value<br>- 如果不存在包含请求查询的IdP ID的userId信息，则在响应结果中不存在。|
+| result | Map<String, String> | 查询用户的ID信息<br>- IdP ID为key，Gamebase userId为value<br>- 如果不存在包含请求查询的IdP ID的userId信息，则在响应结果中不存在。|
 
 **[Error Code]**
 
@@ -956,7 +972,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 #### Validate TransferAccount
 
 检查为转移访客账户获得的ID及密码的有效性。为有效的TransferAccount时，返回获得的userId信息。
- 
+
 **[Method, URI]**
 
 | Method | URI |
@@ -1015,9 +1031,9 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| member | Object | 查询的用户的基本信息 |
+| member | Object | 查询的用户基本信息 |
 | member.userId | String | 用户ID |
-| member.valid | Enum | Y : 正常用户<br>D：注销的用户<br>B：停止使用的用户<br>M：丢失的账户<br>T : 用户已预约退出 |
+| member.valid | Enum | Y : 正常用户<br>D：注销的用户<br>B：停止使用的用户<br>M：丢失的账户<br>T : 已预约退出的用户 |
 | member.appId | String | 应用程序ID |
 | member.regDate | String | 用户创建账户的时间 |
 | member.lastLoginDate | String | 最后一次登录的时间 <br>初次登录的用户无相应值 |
@@ -1147,7 +1163,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | maintenances.endDate | String | 维护结束时间 ISO 8601 |
 | maintenances.url | String | 详细维护URL |
 | maintenances.message | String | 维护消息 |
-| maintenances.targetStores | Array[Enum] | 仅对特定客户设置检查时，设置检查的客户的商店代码<br>- GG : Google<br>- ONESTORE : ONE store<br>- AS : AppStore |
+| maintenances.targetStores | Array[Enum] | 仅对特定客户设置进行检查时，设置检查的客户商店代码。<br>- GG : Google<br>- ONESTORE : ONE store<br>- AS : AppStore |
 
 **[Error Code]**
 
@@ -1160,7 +1176,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 #### Check Validation And Consume Coupon
 
-对于通过Console获得的优惠券代码，验证有效性并更改优惠券状态。为有效的优惠券时，更改为消费状态，作为响应结果，返回支付的道具信息。
+对于通过Console获得的优惠券代码，验证有效性并更改优惠券状态。若为有效的优惠券，则更改为消费状态，作为响应结果，返回支付的道具信息。
 
 **[Method, URI]**
 
@@ -1513,30 +1529,34 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 Gamebase为NHN Cloud Leaderboard服务的服务器API提供**Wrapping**功能。使用Wrapping功能可在用户服务器上通过统一接口来使用NHN Cloud服务。
 
 > [参考]
-> 如果启用Gamebase，即使不设置Leaderboard Appkey，也可通过调用Gamebase Wrapping API来使用Leaderboard功能。 
+> 如果启用Gamebase，即使不设置Leaderboard Appkey，也可通过调用Gamebase Wrapping API来使用Leaderboard。
 
 <br>
 
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
-| 查询Factor中的注册用户数 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
-| 查询单个用户分数/排名 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
-| 查询多个用户分数/排名 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
-| 查询一定范围的整体分数/排名 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
-| 查询指定顺序的用户 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
-| 查询指定用户的顺序和上级、下级用户的顺序 | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} | /leaderboard/v2.0/appkeys/{appkey}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} |
-| 登录单个用户分数 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
-| 登录单个用户分数/ExtraData | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
-| 登录多个用户分数 | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
-| 登录多个用户分数/ExtraData | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
-| 删除单个用户Leaderboard信息 | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| 查询Factor中的注册用户数<br>- Get user count in factor | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
+| 查看所有Factor数<br>- Get total factor count | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factor-count | /leaderboard/v2.0/appkeys/{appKey}/factor-count |
+| 查询Factor信息<br>- Get factor info<br>- Get multiple factor info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors | /leaderboard/v2.0/appkeys/{appKey}/factors |
+| 查询单个用户分数/排名<br>- Get single user info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
+| 查询多个用户分数/排名<br>- Get multiple user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
+| 查询一定范围的整体分数/排名<br>- Get multiple user info by range | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
+| 查询指定顺序的用户<br>- Get selected rank user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| 查询指定用户的顺序和上级、下级用户的顺序<br>- Get multiple user info by pivot user | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} | /leaderboard/v2.0/appkeys/{appkey}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} |
+| 登录单个用户分数<br>- Set single user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
+| 登录单个用户分数/ExtraData- Set single user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
+| 登录多个用户分数- Set multiple user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
+| 登录多个用户分数/ExtraData<br>- Set multiple user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/scores-with-extra |
+| 删除单个用户Leaderboard信息<br>- Delete single user info<br>- Delete multiple user info | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+
+<br/>
 
 **有关API的详细说明，请参考以下链接。**
 关于与Gamebase Wrapping API进行映射的Leaderboard API Spec，请参考以下指南。
 即使不设置Leaderboard Appkey，也可使用Gamebase AppId和SecretKey调用Gamebase Wrapping Leaderboard API。
 
-[Leaderboard Guide](/Game/Leaderboard/ko/api-guide/)
+[Leaderboard Guide](/Game/Leaderboard/zh/api-guide/)
 
 <br/>
 
@@ -1558,7 +1578,7 @@ X-Secret-Key: IgsaAP
 Gamebase为NHN Cloud Push服务的服务器API提供**Wrapping**功能。如果使用Wrapping功能，可通过用户服务器的单一的统合界面来使用NHN Cloud服务。
 
 > [参考]
-> 如果启用Gamebase，即使不设置Push Appkey，也可通过调用Gamebase Wrapping API使用Push功能。 
+> 如果启用Gamebase，即使不设置Push Appkey，也可通过调用Gamebase Wrapping API使用Push功能。
 
 
 <br>
@@ -1577,9 +1597,15 @@ Gamebase为NHN Cloud Push服务的服务器API提供**Wrapping**功能。如果�
 |   | 更改 | PUT | /tcgb-push/v1.3/apps/{appId}/reservations/{reservationId} | /push/v2.4/appkeys/{appkey}/reservations/{reservationId} |
 |   | 删除 | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
 
+<br/>
+
 **有关相关API的详细说明，请参考以下链接。**
 关于与Gamebase Wrapping API进行映射的Push API Spec，请参考以下指南。
-即使不设置Push Appkey，也可使用Gamebase AppId和SecretKey调用Gamebase Wrapping Push API。   
+即使不设置Push Appkey，也可使用Gamebase AppId和SecretKey调用Gamebase Wrapping Push API。
+
+> [参考]
+> 将Push指南上的uid Key指定为gamebase userId值。在客户端SDK中注册推送令牌时，用户标识符将注册为gamebase userId。
+> 一个用户同意允许从多个终端机接收推送时，将从所有的终端机接收推送。
 
 [Push Guide](/Notification/Push/zh/api-guide/)
 
@@ -1597,7 +1623,7 @@ X-Secret-Key: IgsaAP
 {
     "target" : {
         "type" : "UID",
-        "to": ["uid-1", "uid-2"]
+        "to": ["gamebase userId-1", "gamebase userId-2"]
     },
     "content" : {
         "default" : {
@@ -1621,7 +1647,7 @@ X-Secret-Key: IgsaAP
 
 ### Support
 
-如需咨询API调用失败原因，请将**API调用URL(如有HTTP body将HTTP body一同)及响应结果**发送到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。
+如需知道API调用失败原因，请将**API调用URL(如有HTTP body将HTTP body一同)及响应结果**发送到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。
 
 ##### API调用示例
 
