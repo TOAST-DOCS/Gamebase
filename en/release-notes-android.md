@@ -1,17 +1,30 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.32.0 (2021.12.28)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+* GamebaseEventHandler의 GamebaseEventCategory에 **GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED** 타입이 추가되었습니다.
+    * 이 이벤트의 활용 방법은 다음 문서를 참고하시기 바랍니다.
+    * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Server Push](./aos-etc/#server-push)
+* Gamebase Access Token이 만료되어 로그인이 필요할때 동작하는 **GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler category가 추가되었습니다.
+    * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./aos-etc/#logged-out)
+
+#### 기능 개선/변경
+* 웹뷰 URL이 **onestore://**로 시작하는 ONE store 딥링크가 동작하도록 웹뷰를 개선했습니다.
+
+#### 버그 수정
+* Gamebase Android SDK 2.31.0에서 로그아웃을 호출해도 IdP 로그아웃은 호출되지 않아 IdP 계정을 변경할 수 없는 버그를 수정했습니다.
+
 ### 2.31.0 (2021.12.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.29.0)
-* 이용정지 웹뷰 내의 고객센터 링크에서 이용정지 유저 정보로 문의를 등록할 수 없는 문제를 해결하였습니다.
-* 앱이 켜지자마자 Gamebase 초기화를 호출하는 경우, 런칭 팝업이 간헐적으로 영어로 표시되는 문제를 수정하였습니다.
-* 앱이 백그라운드에서 포그라운드로 전환될때는 항상 런칭 정보가 변경되지 않았는지 바로 체크하도록 스케쥴러를 개선하였습니다.
-* GamebaseEventHandler의 GamebaseEventObserverData.code에 **GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)** 에러가 추가되었습니다.
-    * 이 이벤트가 발생하는 경우에는 Gamebase Access Token이 만료되어 복구되지 않는 상황이므로, 로그인을 다시 시도하시기 바랍니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Observer](./aos-etc/#observer)
-    
+#### Feature Updates
+* External SDK update: TOAST Android SDK(0.29.0)
+* Fixed an issue where it was not possible to register inquiries with banned user information from the Customer Center link in the ban webview.
+* Fixed an issue where the launch pop-up was intermittently displayed in English when calling Gamebase initialization as soon as the app was executed.
+* Improved the scheduler so that it always checks whether the launch information has changed when the app is switched from the background to the foreground status.
+
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Android.zip)
 

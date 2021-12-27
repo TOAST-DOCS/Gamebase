@@ -28,10 +28,10 @@ The above login can be implemented in the following order:
 
 #### 1-1. When Authentication is Successful 
 
-* Congratuations! Successfully authenticated.
+* Congratulations! Successfully authenticated.
 * Get a user ID with **GetUserID API** and implement game logic. 
 
-#### 1-2. When Authentication Failed 
+#### 1-2. When Authentication Fails
 
 * Network Error 
     * When the error code is **SOCKET_ERROR(110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, authentication has failed due to temporary network issue, so call  **LoginForLastLoggedInProvider API** again or try again in a moment. 
@@ -39,7 +39,7 @@ The above login can be implemented in the following order:
     * When the error code is **BANNED_MEMBER(7)**, authentication has failed since the game user is banned.  
     * Check information with **FGamebaseBanInfo::From API** to notify game user of why game play is unavailable. 
     * For Gamebase initialization, set true for **FGamebaseConfiguration.enablePopup** and **FGamebaseConfiguration.enableBanPopup**, and Gamebase automatically loads the popup on the ban. 
-* Other Erros 
+* Other Errors 
     * Authentication failed with the previous login type. Execute **'2. Authenticate with Specified IdP'**.
 
 #### 2. Authenticate with Specified IdP
@@ -50,10 +50,10 @@ The above login can be implemented in the following order:
 
 #### 2-1. When Authentication is Successful 
 
-* Congratuations! Successfully authenticated.
+* Congratulations! Successfully authenticated.
 * Get a user ID with **GetUserID API** and implement game logic.
 
-#### 2-2. When Authentication Failed
+#### 2-2. When Authentication Fails
 
 * Network Error
     * When the error code is **SOCKET_ERROR(110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, authentication has failed due to temporary network, so call **Login(providerName, callback) API** again, or try again in a moment. 
@@ -62,7 +62,7 @@ The above login can be implemented in the following order:
     * Check information with **FGamebaseBanInfo::From API** to notify game user of why game play is unavailable. 
     * For Gamebase initialization, set **True** for **FGamebaseConfiguration.enablePopup** and **FGamebaseConfiguration.enableBanPopup**, and Gamebase automatically loads the popup on the ban. 
 * Other Errors 
-    * Notify game users of the occurrence of error, and it is reverted to a status (mostly, title or login page) in which game user can select an IdP type of authetication.   
+    * Notify game users of the occurrence of error, and it is reverted to a status (mostly, title or login page) in which game user can select an IdP type of authentication.   
 
 ### Login with the Latest Login IdP
 
@@ -429,22 +429,22 @@ Call **AddMapping API** to attempt a mapping.
 
 #### 2-2. When Mapping Fails 
 
-* Network Error
-    * When the error code is **SOCKET_ERROR(110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, authentication has failed due to temporary network issue, so call **AddMapping API** again or try again in a moment. 
-* Error from Mapping to Another Account
-    * When the error code is **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**, the IdP account about to map is already mapped to another account. To disintegrate such account, login to the account and call **Withdraw API** to withdraw, or call **RemoveMapping API** to cancel mapping and try a new mapping again.  
-* Error from Mapping to Same IdP Account 
-	* When the error code is **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**, it means the same type of account with an IdP about to map is already mapped.  
-	* Gamebase mapping allows mapping of only one account from each IdP. For example, if an account is already mapped to a PAYCO account, no further PAYCO account can be added.  
-	* To map to another account of same IdP, call **RemoveMapping API** to cancel mapping and try a new mapping again. 
-* Other Errors 
-    * An attempt to map has failed. 
+* Network error
+    * When the error code is **SOCKET_ERROR(110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, it means that the authentication failed due to temporary network issues, so call **AddMapping API** again or try again later. 
+* Error that occurs when already linked to another account
+    * When the error code is **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**, it means that the account of the IdP to map to is already linked to another account. To disintegrate such account, login to the account and call **Withdraw API** to withdraw, or call **RemoveMapping API** to cancel mapping and try a new mapping again.  
+* Error that occurs when already linked to the same IdP account
+	* When the error code is **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**, it means that an account of the same type as the IdP you want to map to is already linked.
+	* Gamebase mapping allows linking of only one account per IdP. For example, if an account is already linked to a PAYCO account, no other PAYCO account can be added.  
+	* To link another account of the same IdP, call **RemoveMapping API** to remove the linking and try mapping again.
+* Other errors 
+    * The mapping attempt has failed.
 
 
 ### Add Mapping
 
 Attempt to map with another IdP while it is logged in to a specific IdP. 
-If an account of IdP about to mapp is already mapped to another account, 
+If an account of IdP about to map to is already mapped to another account, 
 return the error of **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**.<br/>
 
 Even with a successful mapping, 'Currently logged IdP' does not change. For instance, if you've been logged with Google account, and even if an attempt of mapping with Facebook has been successful, the 'Currently logged IdP' does not change from Google to Facebook.

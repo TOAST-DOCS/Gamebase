@@ -481,7 +481,7 @@ private static void onWithdraw(final Activity activity) {
 
 * 축하합니다! 현재 계정과 연동중인 IdP 계정이 추가되었습니다.
 * 매핑에 성공해도 '현재 로그인 중인 IdP'가 바뀌지는 않습니다. 즉, Google 계정으로 로그인한 후, Facebook 계정 매핑 시도가 성공했다고 해서 '현재 로그인 중인 IdP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다.
-    * <font color="red">[주의]</font> : Guest 계정은 예외입니다. Guest 계정으로 로그인한 상태에서 시도한 매핑이 성공했다면 Guest IdP는 **삭제**되고 '현재 로그인 중인 IdP'도 매핑 IdP로 변경됩니다.
+    * <font color="red">[주의]</font> : Guest 계정은 예외입니다. Guest 계정으로 로그인한 상태에서 시도한 매핑이 성공했다면 Guest IdP는 **삭제**되고 '현재 로그인 중인 IdP'도 매핑된 IdP로 변경됩니다.
 * 매핑은 단순히 IdP 연동만 추가해 줍니다.
 
 #### 2-2. 매핑이 실패한 경우
@@ -1237,7 +1237,8 @@ public static void testLogin() {
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 존재하지 않거나 탈퇴한 회원입니다.                      |
 |                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | 외부 인증 라이브러리 초기화에 실패하였습니다. |
 |                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
-|                | AUTH_ALREADY_IN_PROGRESS_ERROR           | 3010       | 이전 인증 프로세스가 완료되지 않았습니다. |
+|                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | 이전 인증 프로세스가 완료되지 않았습니다. |
+|                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | Gamebase Access Token이 유효하지 않아 로그아웃 되었습니다.<br/>로그인을 다시 시도하십시오. |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | 발급한 TransferAccount를 동일한 단말기에서 사용했습니다. |
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IdP가 연동되어 있습니다. |
 |                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccount의 유효기간이 만료됐습니다. |

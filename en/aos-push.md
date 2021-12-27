@@ -10,6 +10,7 @@ However, a push icon on Android is displayed correctly only if the icon uses a s
 [Material Design Guide - Android Notification \[LINK\]](https://material.io/design/platform-guidance/android-notifications.html#anatomy-of-a-notification)
 
 Since the icon size is also fixed by device resolution, please refer to the following to prepare a push icon.
+
 * MDPI - 24 x 24  (drawable-mdpi)
 * HDPI - 36 x 36  (drawable-hdpi)
 * XHDPI - 48 x 48  (drawable-xhdpi)

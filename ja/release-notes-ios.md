@@ -1,21 +1,33 @@
 ## Game > Gamebase > リリースノート > iOS
 
+### 2.32.0 (2021.12.28)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-iOS.zip)
+
+#### 기능 추가
+* GamebaseEventHandler의 GamebaseEventCategory에 **kTCGBServerPushAppKickoutMessageReceived** 타입이 추가되었습니다.
+    * [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Server Push](./ios-etc/#server-push)
+* GamebaseEventHandler의 GamebaseEventCategory에 **kTCGBLoggedOut** 타입이 추가되었습니다.
+    * [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./ios-etc/#logged-out)
+
+#### 기능 개선/변경
+* 웹뷰 navigationBar의 default title Color가 **UIColor.white**로 변경되었습니다.
+
 ### 2.31.0 (2021.12.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* 점검 팝업에서 점검 시간 표시 여부를 동적으로 설정할 수 있게 되었습니다.
+#### 機能追加
+* メンテナンスポップアップでメンテナンス時間を表示するかどうかを動的に設定できるようにしました。
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트 : TOAST iOS SDK (0.29.2), PAYCO iOS SDK (1.5.4)
-* 이용정지 웹뷰 내의 고객센터 링크에서 이용정지 유저 정보로 문의를 등록할 수 없는 문제를 해결하였습니다.
-* 점검 팝업, 이용정지 자세히보기 웹뷰에서 뒤로가기 버튼이 출력될 수 있도록 수정하였습니다.
+#### 機能改善/変更
+* 外部SDKアップデート：TOAST iOS SDK (0.29.2), PAYCO iOS SDK (1.5.4)
+* 利用停止Webビュー内のサポートリンクから利用停止ユーザー情報でお問い合わせを登録することができない問題を修正しました。
+* メンテナンスポップアップ、利用停止詳細表示Webビューで戻るボタンが表示されるように修正しました。
 
 ### 2.30.1 (2021.11.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.1/GamebaseSDK-iOS.zip)
 
-#### 버그 수정
-* Unity 2019.3 이상에서 Cocoapods 설치를 했을 때, 결제와 푸시 API에서 에러가 발생하는 버그를 수정하였습니다.
+#### バグ修正
+* Unity 2019.3以上でCocoapodsをインストールした時、決済とプッシュAPIでエラーが発生するバグを修正しました。
 
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-iOS.zip)

@@ -328,6 +328,13 @@ void eventHandlerSample(Activity activity) {
         @Override
         public void onReceive(@NonNull GamebaseEventMessage message) {
             switch (message.category) {
+                case GamebaseEventCategory.LOGGED_OUT:
+                    GamebaseEventLoggedOutData loggedOutData = GamebaseEventLoggedOutData.from(message.data);
+                    if (loggedOutData != null) {
+                        processLoggedOut(activity, message.category, loggedOutData);
+                    }
+                    break;
+                case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED:
                 case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
                 case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
                     GamebaseEventServerPushData serverPushData = GamebaseEventServerPushData.from(message.data);
@@ -364,17 +371,56 @@ void eventHandlerSample(Activity activity) {
 
 | Event type | GamebaseEventCategory | VO conversion method | Remarks |
 | --------- | --------------------- | ----------- | --- |
-| ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseEventServerPushData.from(message.data) | \- |
+| LoggedOut | GamebaseEventCategory.LOGGED_OUT | GamebaseEventLoggedOutData.from(message.data) | \- |
+| ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED<br>GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseEventServerPushData.from(message.data) | \- |
 | Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseEventObserverData.from(message.data) | \- |
 | Purchase - Promotion payment | GamebaseEventCategory.PURCHASE_UPDATED | PurchasableReceipt.from(message.data) | \- |
 | Push - Message received | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | PushMessage.from(message.data) | Checks whether or not a message was received in the Foreground using the **isForeground** value. |
 | Push - Message clicked | GamebaseEventCategory.PUSH_CLICK_MESSAGE | PushMessage.from(message.data) | The **isForeground** value does not exist. |
 | Push - Action clicked | GamebaseEventCategory.PUSH_CLICK_ACTION | PushAction.from(message.data) | Operates when the RichMessage button is clicked. |
 
+#### Logged Out
+
+```
+Not translated yet.
+```
+
+**Example**
+
+```java
+void eventHandlerSample(Activity activity) {
+    Gamebase.addEventHandler(new GamebaseEventHandler() {
+        @Override
+        public void onReceive(@NonNull GamebaseEventMessage message) {
+            switch (message.category) {
+                case GamebaseEventCategory.LOGGED_OUT:
+                    GamebaseEventLoggedOutData loggedOutData = GamebaseEventLoggedOutData.from(message.data);
+                    if (loggedOutData != null) {
+                        processLoggedOut(activity, message.category, loggedOutData);
+                    }
+                    break;
+                default:
+                    ...
+            }
+        }
+    });
+}
+
+void processLoggedOut(String category, GamebaseEventLoggedOutData data) {
+    if (category.equals(GamebaseEventCategory.LOGGED_OUT)) {
+        // There was a problem with the access token.
+        // Call login again.
+        Gamebase.login(activity, Gamebase.getLastLoggedInProvider(), (authToken, exception) -> {});
+    }
+}
+```
+
 #### Server Push
 
 * This is a message sent from the Gamebase server to the client's device.
 * The Server Push Types supported from Gamebase are as follows:
+	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED
+        * Not translated yet.
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
     	* If you register a kickout ServerPush message in **Operation > Kickout** of the NHN Cloud Gamebase Console, then all clients connected to Gamebase will receive the kickout message.
     * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
@@ -388,6 +434,7 @@ void eventHandlerSample(Activity activity) {
         @Override
         public void onReceive(@NonNull GamebaseEventMessage message) {
             switch (message.category) {
+                case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED:
                 case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
                 case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
                     GamebaseEventServerPushData serverPushData = GamebaseEventServerPushData.from(message.data);
@@ -403,8 +450,12 @@ void eventHandlerSample(Activity activity) {
 }
 
 void processServerPush(String category, GamebaseEventServerPushData data) {
-    if (category.equals(GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT)) {
+    if (category.equals(GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED)) {
+        // Currently, the kickout pop-up is displayed.
+        // If your game is running, stop it.
+    } else if (category.equals(GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT)) {
         // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+        // And the game user closes the kickout pop-up.
         // Return to title and initialize Gamebase again.
     } else if (category.equals(GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT)) {
         // If the user wants to move the guest account to another device,

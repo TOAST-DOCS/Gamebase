@@ -320,7 +320,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 * 축하합니다! 현재 계정과 연동중인 IdP 계정이 추가되었습니다.
 * 매핑에 성공해도 '현재 로그인 중인 IdP'가 바뀌지는 않습니다. 즉, Gamecenter 계정으로 로그인한 후, Facebook 계정 매핑 시도가 성공했다고 해서 '현재 로그인 중인 IdP'가 Gamecenter에서 Facebook으로 변경되지는 않습니다. Gamecenter 상태로 유지됩니다.
-    * <font color="red">[주의]</font><br/> : Guest 계정은 예외입니다. Guest 계정으로 로그인한 상태에서 시도한 매핑이 성공했다면 Guest IdP는 **삭제**되고 '현재 로그인 중인 IdP'도 매핑 IdP로 변경됩니다.
+    * <font color="red">[주의]</font><br/> : Guest 계정은 예외입니다. Guest 계정으로 로그인한 상태에서 시도한 매핑이 성공했다면 Guest IdP는 **삭제**되고 '현재 로그인 중인 IdP'도 매핑된 IdP로 변경됩니다.
 * 매핑은 단순히 IdP 연동만 추가해 줍니다.
 
 #### 2-2. 매핑이 실패한 경우
@@ -937,6 +937,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 |                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | 존재하지 않거나 탈퇴한 회원입니다.                      |
 |                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR    | 3006       |  외부 인증 라이브러리 초기화에 실패하였습니다.                      |
 |                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
+|                | TCGB\_ERROR\_AUTH\_INVALID\_GAMEBASE\_TOKEN | 3011       | Gamebase Access Token이 유효하지 않아 로그아웃 되었습니다.<br/>로그인을 다시 시도하십시오. |
 | Auth (Login)   | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED  | 3101       | 토큰 로그인에 실패했습니다.                          |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | 토큰 정보가 유효하지 않습니다.                        |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 최근에 로그인한 IdP 정보가 없습니다.                   |

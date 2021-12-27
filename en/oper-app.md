@@ -635,7 +635,7 @@ Manage store URL information to install a game.
 Set the value of address to be provided by store when the client status is   <font color="white" style="background-color:#2AB1A6">Update is recommended(in service )</font> or <font color="white" style="background-color:#A1A1A1">update is required</font>.
 
 * A user's click on a short URL via PC or mobile will be redirected to a site entered on a user device (device, operating system, store, etc.).
-* If there is no store information, or redirection is failed, the URL will be linked as set in 'COMMON'.
+* If there is no store information, or redirection fails, the URL will be linked as set in 'COMMON'.
 
 _[Example 1] A user clicks Install URL in a text message on an Android device._
 **(Device:mobile,OS:Android,Store:N/A)** Move to a mobile URL of a representing Android store. In the case of 'Google Play', move to the URL set on the 'Google Play' mobile.
@@ -702,7 +702,7 @@ For verification of the issued device transfer, you can set the transfer count, 
 3. **Device transfer count**: Sets the count of allowed number of device transfers for the issued ID. You can select either Unlimited or One-time.
 4. **Expiration date**: Sets the expiration date of the issued account. The issued device transfer ID is affected by this value. You have to select either Unlimited or Set Period.
 5. **Block reverification upon failure**: When a user tried logging in but failed, the account is blocked for a certain period. If you select this option, additional settings will be displayed.
-6. **Login attempt count until blocking**: Displayed when **Block reverification upon failure** is selected. The account is blocked when login verification is failed for the specific count entered here. The value must be 1 or above.
+6. **Login attempt count until blocking**: Displayed when **Block reverification upon failure** is selected. The account is blocked when login verification fails for the specific count entered here. The value must be 1 or above.
 7. **Block period**: Sets the period of blocking time that must be passed to unblock the account for retry. Select **PERMANENT** or **Specify Period**.If you select **Specify Period**, you can set the desired block hours and minutes.
 
 #### After initial setting completed

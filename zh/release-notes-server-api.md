@@ -1,78 +1,76 @@
 ## Game > Gamebase > Release Notes > Server API
 
-### September 14, 2021
+### 2021. 09. 14.
 
-#### Bug Fixes
-* Modified Leaderboard Wrapping API
-	* Fixed an error where mapping of Register Scores/ExtraData of Multiple Users API is wrong.
+#### 修改程序错误
+* 修改了Leaderboard Wrapping API。
+	* 修改了”多数用户分数/ExtraData注册”API的映射错误。
 
-### March 09, 2021
+### 2021. 03. 09.
 
-#### More Features
-* Added an API that can be used to acquire Gamebase user ID with IdP ID
+#### 添加功能
+* 添加了使用IdP ID获取Gamebase user ID的API。
 
-### August 11, 2020
+### 2020. 08. 11.
 
-#### Feature Updates
-* Added error code for Coupon Expired API: When a coupon code includes a value other than English or numbers (Error Code:-4000205)
+#### 改善/修复功能
+* 添加了消耗优惠券的API错误代码 : 在优惠券代码输入英文或数字之外的值时(Error Code:-4000205)
 
-### February 11, 2020
+### 2020. 02. 11.
 
-#### Feature Updates
-* Added validation for the regUser length when Withdraw API is called
+#### 改善/修复功能
+* 添加了调用退出API时的regUser长度有效性验证(validation)。
 
-### January 14, 2020
+### 2020. 01. 14.
 
-#### More Features
-* Added Withdraw Users API
+#### 添加功能
+* 添加了用户退出API。
 
-### November 12, 2019
+### 2019. 11. 12.
 
-#### More Features
-* Coupon Service Newly Open: Create and manage coupons in large quantity
-	* Find coupons and add Consume API
+#### 添加功能
+* 已开始优惠券服务 : 生成和管理大量优惠券的功能
+	* 添加了确认或消费优惠券的API。
 
-### May 28, 2019
+### 2019. 05. 28.
 
-#### Feature Updates
-* Modified LTV queries and the failover logic
+#### 改善/修复功能
+* 更改了LTV查询修改和failover逻辑。
 
 ### 2019. 03. 26.
 
-#### 기능 추가
-* TransferAccount 기능 추가: guest 사용자가 매핑없이 최대 2개의 키를 이용하여 새로운 기기로 이전할 수 있는 기능
-	- (Server API)
-		* 발급된 TransferAccount의 ID/PW 검증하는 서버 API (validateTransferAccount)
+#### 添加功能
+* 添加了TransferAccount功能 : 是guest用户在未映射的状态下，最多使用2个密钥转移至新设备的功能。
+	* 验证发布的TransferAccount的ID/PW服务器API(validateTransferAccount)。
 
 ### 2018. 06. 26.
 
-#### 기능 추가
-* getSimpleLaunching : 클라이언트 앱 기동시 제공되는 Launching 정보 확인용 API
+#### 添加功能
+* getSimpleLaunching : 是确认启动客户端应用程序时提供的Launching信息的API。
 
 ### 2017. 11. 30.
 
-#### 기능 개선/변경
-* [점검 조회 API](./api-guide/#check-under-maintenance) 결과를 List 에서 단일 객체로 변경
+#### 改善/修复功能
+* 在List中将[查询维护API](./api-guide/#check-under-maintenance)结果更改为单一对象。
 
 ### 2017. 04. 04.
 
-#### 기능 개선/변경
-* [IAP](./api-guide/#purchaseiap) API 연동 : 아이템 조회, 미소비내역 조회
-* checkAccessToken API 응답 결과에, 로그인 시 사용된 IdP 관련 정보 포함하는 스펙 추가
-
+#### 改善/修复功能
+* [IAP](./api-guide/#purchaseiap) API联动 : 查询道具、查询未消费明细
+* 在checkAccessToken API响应结果中添加了用于登录的包含IdP信息的Spec。
 
 ### 2017. 03. 21.
 
-#### 기능 개선/변경
-* [Leaderboard](./api-guide/#leaderboard), [IAP](./api-guide/#purchaseiap) API 연동
+#### 改善/修复功能
+* [Leaderboard](./api-guide/#leaderboard), [IAP](./api-guide/#purchaseiap) API联动
 
 ### 2017. 03. 09.
 
-#### 신규 상품 출시
-* 게임에서 공통적으로 필요한 기능들을 제공하여 손쉽고 효율적으로 게임 개발이 가능하도록 돕는 서비스입니다.
-	* 다양한 인증 지원 : Guest , 3rd Party(Google , Facebook, GameCenter 등) 인증
-	* 로그아웃 및 회원탈퇴 기능을 제공
-	* 하나의 User가 여러 개의 외부 IDP를 동시에 사용할 수 있도록 mapping기능을 제공
-	* 게임운영을 위한 게임 앱 상태관리, 점검, 긴급공지 등의 기능을 웹콘솔로 제공
-	* 실시간 운영지표 확인 가능한 웹콘솔 화면 제공
-	* TOAST Cloud상품 연동 : PUSH, IAP
+#### 推出新商品
+* 是一项通过提供游戏中通常需要的功能来帮助轻松高效地开发游戏的服务。
+	* 支持多种认证 : Guest、3rd Party(Google、Facebook、GameCenter等)认证
+	* 提供注销和退出会员功能。
+	* 为了使一名User同时使用多个外部IDP，提供mapping功能。
+	* 为了运营游戏，通过网络控制台提供游戏应用程序状态管理、维护、紧急公告等功能。
+	* 提供可实时确认运营指标的网络控制台。
+	* TOAST Cloud商品联动 : PUSH、IAP

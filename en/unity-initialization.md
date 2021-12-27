@@ -303,6 +303,7 @@ Maintenance information registered in the NHN Cloud Console is as follows.
 * beginDate: Start time
 * endDate: End time
 * message: Purpose of maintenance
+* hideDate: Whether to display maintenance start and end times
 
 [Game > Gamebase > Console Guide > Operation > Maintenance](./oper-operation/#maintenance)
 

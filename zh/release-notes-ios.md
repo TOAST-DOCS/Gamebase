@@ -1,5 +1,17 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.32.0 (2021.12.28)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-iOS.zip)
+
+#### 기능 추가
+* GamebaseEventHandler의 GamebaseEventCategory에 **kTCGBServerPushAppKickoutMessageReceived** 타입이 추가되었습니다.
+    * [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Server Push](./ios-etc/#server-push)
+* GamebaseEventHandler의 GamebaseEventCategory에 **kTCGBLoggedOut** 타입이 추가되었습니다.
+    * [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./ios-etc/#logged-out)
+
+#### 기능 개선/변경
+* 웹뷰 navigationBar의 default title Color가 **UIColor.white**로 변경되었습니다.
+
 ### 2.31.0 (2021.12.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-iOS.zip)
 
@@ -9,7 +21,7 @@
 #### 改善/修复功能
 * 外部SDK升级 : TOAST iOS SDK (0.29.2), PAYCO iOS SDK (1.5.4)
 * 解决了已被禁用的用户（使用禁用信息）未能通过“禁用Webview”内的客户服务链接注册查询的问题。
-* 修复之后，当用户按维护和禁用弹窗中的“查看更多”按钮时，在Webview中可显示“返回上一页”按钮了。
+* 修复之后，现在当用户按维护和禁用弹窗中的“查看更多”按钮时，在Webview中可显示“返回上一页”按钮。
 
 ### 2.30.1 (2021.11.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.1/GamebaseSDK-iOS.zip)

@@ -191,6 +191,7 @@ This is information about maintenance registered in the Gamebase Console.
 * beginDate: Start time
 * endDate: End time
 * message: Cause of maintenance
+* hideDate: Whether to display maintenance start and end times
 
 [Game > Gamebase > Console Guide > Operation > Maintenance](./oper-operation/#maintenance)
 
@@ -318,7 +319,7 @@ Call **application:openURL:sourceApplication:annotation:** method to notify Game
 
 > <font color="red">[Caution]</font><br/>
 >
-> If **application:openURL:options:** of UIApplicationDelegate has been already overriden, call of **application:openURL:sourceApplication:annotation:** may not work.
+> If **application:openURL:options:** of UIApplicationDelegate has already been overridden, call of **application:openURL:sourceApplication:annotation:** may not work.
 >
 
 
