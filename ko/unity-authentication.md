@@ -1212,16 +1212,17 @@ public void Login()
 
 ## Error Handling
 
-| Category | Error | Error Code | Description |
-| --- | --- | --- | --- |
-| Auth | INVALID_MEMBER | 6 | 잘못된 회원에 대한 요청입니다. |
-|  | BANNED_MEMBER | 7 | 제재된 회원입니다. |
-|  | AUTH_USER_CANCELED | 3001 | 로그인이 취소되었습니다. |
-|  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
-|  | AUTH_NOT_EXIST_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
-|  | AUTH_EXTERNAL_LIBRARY_INITIALIZATION_ERROR | 3006 | 외부 인증 라이브러리 초기화에 실패하였습니다. |
-|  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
-|  | AUTH_ALREADY_IN_PROGRESS_ERROR | 3010 | 이전 인증 프로세스가 완료되지 않았습니다.
+| Category       | Error                                    | Error Code | Description                              |
+| -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
+| Auth           | INVALID\_MEMBER                          | 6          | 잘못된 회원에 대한 요청입니다.                        |
+|                | BANNED\_MEMBER                           | 7          | 제재된 회원입니다.                               |
+|                | AUTH\_USER\_CANCELED                     | 3001       | 로그인이 취소되었습니다.                            |
+|                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | 지원하지 않는 인증 방식입니다.                        |
+|                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 존재하지 않거나 탈퇴한 회원입니다.                      |
+|                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | 외부 인증 라이브러리 초기화에 실패하였습니다. |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
+|                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | 이전 인증 프로세스가 완료되지 않았습니다. |
+|                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | Gamebase Access Token이 유효하지 않아 로그아웃 되었습니다.<br/>로그인을 다시 시도하십시오. |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | 발급한 TransferAccount를 동일한 단말기에서 사용했습니다. |
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IdP가 연동되어 있습니다. |
 |                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccount의 유효기간이 만료됐습니다. |

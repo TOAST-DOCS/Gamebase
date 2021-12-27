@@ -492,6 +492,12 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 | Push - Message clicked | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) |  |
 | Push - Action clicked | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | Operates when the RichMessage button is clicked. |
 
+#### Logged Out
+
+```
+Not translated yet
+```
+
 #### Server Push
 
 * This is a message sent from the Gamebase server to the client's device.
