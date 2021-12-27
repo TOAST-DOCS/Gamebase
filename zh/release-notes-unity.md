@@ -4,17 +4,17 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* GamebaseEventHandler의 GamebaseEventCategory에 **GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED** 타입이 추가되었습니다.
-    * 이 이벤트의 활용 방법은 다음 문서를 참고하시기 바랍니다.
-    * [Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Server Push](./unity-etc/#server-push)
-* Gamebase Access Token이 만료되어 로그인이 필요할때 동작하는 **GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler category가 추가되었습니다.
-    * [Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./unity-etc/#logged-out)
+#### 改善/修复功能
+* 在GamebaseEventHandler的GamebaseEventCategory中添加了**GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED**类型。
+    * 关于此事件的适用方法，请参考如下指南。
+    * [Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Server Push](./unity-etc/#server-push)
+* 添加了当Gamebase Access Token过期，登录时需要启动的**GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler category。
+    * [Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./unity-etc/#logged-out)
 
-#### 버그 수정
-* (iOS) RegisterPush 이전에 포그라운드 푸시 이벤트를 받을 수 있도록 수정하였습니다.
+#### 修改程序错误
+* 修改后，现在可在调用(iOS) RegisterPush之前接收前台推送事件。 
 
-#### 플랫폼별 변경 사항
+#### 各平台变更项目
 * [Gamebase Android SDK 2.32.0](./release-notes-android/#2320-20211228)
 * [Gamebase iOS SDK 2.32.0](./release-notes-ios/#2320-20211228)
 
