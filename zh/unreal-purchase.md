@@ -12,7 +12,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 #### 有关Android结算的设置(引擎版本为4.24以下)
 
-* 通过Epic Games Launcher设置4.24版本时,
+* 通过Epic Games Launcher设置4.24版本时, 
     删除**Engine\Build\Android\Java\src\com\android\vending\billing\IInAppBillingService.aidl**才能打包。
     * 因Gamebase提供[IInAppBillingService.aidl](https://developer.android.com/google/play/billing/api)文件，将发生冲突，因此需要删除。
     * 如果使用4.25以上版本或由github提供引擎，则不需删除。
@@ -40,7 +40,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 ![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
 
 1. 游戏客户端向游戏服务器请求consume（消费）。
-    * 传送UserID、gamebaseProductId、paymentSeq、purchaseToken。
+    * 传送UserID、gamebaseProductId、paymentSeq及purchaseToken。
 2. 游戏服务器查看在游戏DB中是否存在以同样的paymentSeq提供道具的历史记录。
     * 2-1. 若存在未提供道具，则需向UserID提供使用gamebaseProductId购买的道具。
     * 2-2. 提供道具后在游戏DB保存UserID、gamebaseProductId、paymentSeq、purchaseToken，必要时进行‘’支付再处理”或防止重复提供。
@@ -137,6 +137,92 @@ void Sample::RequestPurchaseWithPayload(const FString& gamebaseProductId)
 }
 ```
 
+**VO**
+
+```cpp
+USTRUCT()
+struct FGamebasePurchasableReceipt
+{
+    GENERATED_USTRUCT_BODY()
+    
+    // 是购买的道具商品ID。 
+    UPROPERTY()
+    FString gamebaseProductId;
+
+    // 是通过itemSeq购买商品的Legacy API专用标识符。 
+    UPROPERTY()
+    int64 itemSeq;
+
+    // 是购买的商品价格。
+    UPROPERTY()
+    float price;
+
+    // 是货币代码。
+    UPROPERTY()
+    FString currency;
+
+    // 是结算标识符。 
+    // 是调用“Consume”服务器API时与purchaseToken一起使用的重要信息。 
+    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // 注意 : 请通过游戏服务器调用Consume API! 
+    UPROPERTY()
+    FString paymentSeq;
+
+    // 是结算标识符。
+    // 是调用“Consume”服务器API时与paymentSeq一起使用的重要信息。  
+    // 调用Consume API时要将参数名称作为“accessToken”传送。  
+    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // 注意 : 请通过游戏服务器调用Consume API! 
+    UPROPERTY()
+    FString purchaseToken;
+
+    // 是与Google和Apple在商店控制台中注册的商品ID。
+    UPROPERTY()
+    FString marketItemId;
+
+    // 商品类型存在以下值。  
+    // * UNKNOWN : 无法识别类型/请更新Gamebase SDK或联系Gamebase客户服务。
+    // * CONSUMABLE : 消费型商品
+    // * AUTO_RENEWABLE : 订阅型商品        
+    // * CONSUMABLE_AUTO_RENEWABLE : 指需向购买订购商品的用户定期提供可消费商品时使用的“可消费订购商品”。
+    UPROPERTY()
+    FString productType;
+
+    // 为购买商品的User ID。
+    // 如果使用没有购买商品的User ID登录，则无法获取购买的道具。
+    UPROPERTY()
+    FString userId;
+
+    // 为商店的结算标识符。 
+    UPROPERTY()
+    FString paymentId;
+
+    // 每当订购商品被更新，paymentId也将被修改。
+    // 通过此字段可以确认第一次进行订阅商品支付时的paymentId。 
+    // 根据商店类型、结算服务器状态，可能不存在值，
+    // 因此不能保证始终是有效值。
+    UPROPERTY()
+    FString originalPaymentId;
+    
+    // 是购买商品的时间。(epoch time)
+    UPROPERTY()
+    int64 purchaseTime;
+    
+    // 是订购结束的时间。(epoch time)
+    UPROPERTY()
+    int64 expiryTime;
+
+    // 是调用Gamebase.Purchase.requestPurchase API时作为payload传送的值。 
+    //
+    // 使用相同的User ID进行了购买，但仍然需要根据游戏频道、
+    // 游戏角色等区分商品购买和支付，
+    // 即，当需要添加游戏中的各种附加信息时，可使用此字段。
+    UPROPERTY()
+    FString payload;
+};
+```
+
+
 ### List Purchasable Items
 
 若需查看道具列表，请调用以下API。
@@ -177,6 +263,64 @@ void Sample::RequestItemListPurchasable()
 }
 ```
 
+**VO**
+
+```cpp
+USTRUCT()
+struct FGamebasePurchasableItem
+{
+    GENERATED_USTRUCT_BODY()
+    
+    // 是在Gamebase控制台中注册的商品ID。
+    // 是用于调用Gamebase.Purchase.requestPurchase API来购买商品。
+    UPROPERTY()
+    FString gamebaseProductId;
+
+    // 是通过itemSeq购买商品的Legacy API专用标识符。
+    UPROPERTY()
+    int64 itemSeq;
+
+    // 为商品的价格。
+    UPROPERTY()
+    float price;
+
+    // 为货币代码。
+    UPROPERTY()
+    FString currency;
+
+    // 是在Gamebase控制台中注册的商品名称。
+    UPROPERTY()
+    FString itemName;
+
+    // 是与Google和Apple在商店控制台中注册的商品ID。
+    UPROPERTY()
+    FString marketItemId;
+
+    // 商品类型存在以下值。  
+    // * UNKNOWN : 无法识别类型/请更新Gamebase SDK或联系Gamebase客户服务。
+    // * CONSUMABLE : 消费型商品
+    // * AUTORENEWABLE : 订购型商品
+    // * CONSUMABLE_AUTO_RENEWABLE : 指需向购买订购商品的用户定期提供可消费商品时用的“可消费订购商品”。
+    UPROPERTY()
+    FString productType;
+    
+    // 是包含货币符号的当地价格信息。
+    UPROPERTY()
+    FString localizedPrice;
+    
+    // 是在商店控制台中注册的当地商品名称。 
+    UPROPERTY()
+    FString localizedTitle;
+
+    // 是在商店控制台中注册的当地商品说明。
+    UPROPERTY()
+    FString localizedDescription;
+
+    // Gamebase控制台显示此商品的“使用与否”。
+    UPROPERTY()
+    bool isActive;
+};
+```
 
 
 ### List Non-Consumed Items
@@ -270,15 +414,18 @@ void Sample::RequestActivatedPurchases()
 
 ### Error Handling
 
-| Error                                    | Error Code | Description                              |
-| ---------------------------------------- | ---------- | ---------------------------------------- |
-| PURCHASE_NOT_INITIALIZED                 | 4001       | 未初始化Purchase模块。<br>请确认是否将gamebase-adapter-purchase-IAP模块添加在项目中。|
-| PURCHASE_USER_CANCELED                   | 4002       | 游戏用户取消购买道具。                  |
-| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003      | 未完成购买逻辑的状态下调用了API。|
-| PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 因该商店的现金不足，无法进行结算。              |
-| PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 是不支持的商店。<br>可以选择的商店为AS(App Store)、GG(Google)、ONESTORE、GALAXY。|
-| PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | 是IAP库错误。<br>请确认DetailCode。  |
-| PURCHASE_UNKNOWN_ERROR                   | 4999       | 是未定义的购买错误。<br>请将所有日志上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。|
+| Error                                     | Error Code | Description                              |
+| ----------------------------------------- | ---------- | ---------------------------------------- |
+| PURCHASE_NOT_INITIALIZED                  | 4001       | 未初始化Purchase模块。<br>请确认是否将gamebase-adapter-purchase-IAP模块添加在项目中。|
+| PURCHASE_USER_CANCELED                    | 4002       | 游戏用户取消购买道具。                  |
+| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 未完成购买逻辑的状态下调用了API。|
+| PURCHASE_NOT_ENOUGH_CASH                  | 4004       | 因该商店的现金不足，无法进行结算。              |
+| PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | 此商品为非激活状态。 |
+| PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 使用不存在的GamebaseProductID请求了支付。 |
+| PURCHASE_LIMIT_EXCEEDED                   | 4007       | 超过了一个月的购买限额。             |
+| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 是不支持的商店。<br>可以选择的商店为AS(App Store)、GG(Google)、ONESTORE及GALAXY。|
+| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | 是IAP库错误。<br>请确认DetailCode。  |
+| PURCHASE_UNKNOWN_ERROR                    | 4999       | 是未定义的购买错误。<br>请将所有日志上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。|
 
 * 关于所有错误代码，请参考以下文档。 
     * [错误代码](./error-code/#client-sdk)
@@ -309,8 +456,6 @@ else
 
 * 关于IAP错误代码，请参考以下文档。 
     * [NHN Cloud > NHN Cloud SDK使用指南 > NHN Cloud IAP > Unity > 错误代码](/TOAST/ko/toast-sdk/iap-unity/#_17)
-
-
 
 
 
