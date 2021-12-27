@@ -342,8 +342,8 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
                 //TODO: process server push
             }
         } else if ([message.category isEqualToString:kTCGBObserverLaunching] == YES
-                 || [message.category isEqualToString:kTCGBObserverHeartbeat] == YES
-                 || [message.category isEqualToString:kTCGBObserverNetwork] == YES) {
+            || [message.category isEqualToString:kTCGBObserverHeartbeat] == YES
+            || [message.category isEqualToString:kTCGBObserverNetwork] == YES) {
             TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
             if (observerData != nil) {
                 //TODO: process observer
