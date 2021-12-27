@@ -371,6 +371,12 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 | Push - - 点击消息 | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
 | Push - 动态点击 | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | 点击RichMessage按键时启动。|
 
+#### Logged Out
+
+```
+Not translated yet
+```
+
 #### Server Push
 
 * 是从Gamebase服务器向客户端终端机传送的消息。
