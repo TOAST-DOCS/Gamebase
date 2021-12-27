@@ -1,5 +1,24 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.32.0
+
+### Android
+
+* 因Gamebase Access Token过期无法恢复而发生的GamebaseEventHandler事件category，在**GamebaseEventCategory.OBSERVER_HEARTBEAT**中已被更改为**GamebaseEventCategory.LOGGED_OUT**。
+    * 请更改登录条件，即当**GamebaseEventCategory.OBSERVER_HEARTBEAT**事件中的GamebaseEventObserverData.code值为**GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)**时登录的条件，更改为在**GamebaseEventCategory.LOGGED_OUT**事件中登录。 
+
+## 2.29.0 
+ 
+### Unity 
+ 
+* 已发布Setting Tool 2.0.0。  
+    * 因文件结构已被更改，需要删除以前的Setting Tool后重新进行设置。 
+    * 使用Setting Tool 1.5.0以下的用户需要删除以下Directory中的所有与Gamebase有关的库。
+        * **Assets/Plugins/Android**  
+        * **Assets/Plugins/iOS** 
+    * 关于更改的信息和使用方法，请参考如下指南。
+        * [Game > Gamebase > Unity SDK使用指南 > 开始 > Specification of Setting Tool](./unity-started/#specification-of-setting-tool)
+
 ## 2.27.0
 
 ### iOS

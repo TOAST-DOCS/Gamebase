@@ -1,5 +1,13 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.32.0
+
+### Android
+
+```
+Not traslated yet.
+```
+
 ## 2.29.0 
  
 ### Unity 
