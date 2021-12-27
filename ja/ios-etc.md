@@ -374,6 +374,12 @@ localizedstring.jsonに定義されている形式は、次の通りです。
 | Push - メッセージクリック | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
 | Push - アクションクリック | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | RichMessageボタンを押すと動作します。 |
 
+#### Logged Out
+
+```
+Not translated yet
+```
+
 #### Server Push
 
 * Gamebaseサーバーからクライアント端末へ送信するメッセージです。
