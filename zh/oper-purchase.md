@@ -205,7 +205,7 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 
 在搜索的列表中单击用户ID时，可 查询搜索期间的支付详细明细。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing2_1.3_ko.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing2_1.3_en.png)
 
 #### 支付明细
 - **预约支付日期**：用户尝试或完成购买的时间
@@ -219,7 +219,7 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 
 ### 结算Abusing自动解除历史查询
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing5_1.3_ko.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing5_1.3_en.png)
 
 通过以下搜索条件，可查看所需的结算Abusing自动解除用户信息。
 
@@ -243,7 +243,7 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 通过在搜索的列表中点击用户ID，可查看查询期间的支付详细明细。
 (但没有支付明细的用户将更改为非激活状态。)
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing6_1.3_ko.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing6_1.3_en.png)
 
 #### 支付明细
 - **支付日期** :
@@ -257,11 +257,11 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 
 若欲使用设置自动制裁，单击**使用**按钮，输入设定值。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing3_1.3_ko.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing3_1.3_en.png)
 
 #### 设置信息
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing4_1.3_ko.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing4_1.3_en.png)
 
 * **禁用时期**：适用自动制裁时需要输入禁用时期。
     * **永久禁用** : 当要进行永久禁用处理时选择。
@@ -281,11 +281,11 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 如需使用自动解除设置，则单机**使用**按钮设置设定值。 
 为了激活自动解除设置，必须要激活自动制裁设置<font color="red"></font>。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing7_1.3_ko.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing7_1.3_en.png)
 
 #### 设置信息
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing8_1.3_ko.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing8_1.3_en.png)
 
 * **禁用的解除时期** : 适用自动解除时输入禁用预约时期。
 * **禁用解除条件设置** : 设置自动解除时所需的条件。至少要设置1个以上。 

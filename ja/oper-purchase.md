@@ -172,7 +172,7 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 
 ### 返金履歴照会
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing1_1.3_ko.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing1_1.3_jp.png)
 
 下記の検索条件を利用して決済および返金情報を照会できます。
 決済および返金履歴は、右上の**ダウンロード**ボタンをクリックしていつでもダウンロードできます。
@@ -205,7 +205,7 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 各状態からは、次のように変更できます。
 - **正常**：利用停止、退会状態に変更できます。退会させると該当アカウントの情報を復元できないため、処理前によく確認してください。
 - **利用停止**：利用停止の解除を行うことができます。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing2_1.3_ko.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing2_1.3_jp.png)
 - **退会**：該当ボタンが表示されません。
 
 #### 決済履歴の確認
@@ -226,7 +226,7 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 
 ### 決済アビューズ自動解除履歴照会
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing5_1.3_ko.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing5_1.3_jp.png)
 
 以下の検索条件を利用して決済アビューズ自動解除ユーザー情報を検索できます。
 
@@ -250,7 +250,7 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 検索されたリストでユーザーIDをクリックすると、検索期間の決済詳細履歴を照会できます。
 (ただし、決済履歴がないユーザーはクリックできません。)
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing6_1.3_ko.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing6_1.3_jp.png)
 
 #### 決済履歴
 - **決済日時**：
@@ -264,11 +264,11 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 
 自動制裁設定を使用するには、**使用**ボタンをクリックして設定値を入力します。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing3_1.3_ko.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing3_1.3_jp.png)
 
 #### 設定情報
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing4_1.3_ko.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing4_1.3_jp.png)
 
 * **利用停止期間**自動制裁適用時の利用停止期間を入力します。
     * **永久停止**：永久に利用を停止する時に選択します。
@@ -288,11 +288,11 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 自動解除設定を使用するには**使用**ボタンをクリックして設定値を入力します。
 自動解除設定を有効にするには、自動制裁設定が<font color="red">有効</font>になっている必要があります。
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing7_1.3_ko.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing7_1.3_jp.png)
 
 #### 設定情報
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing8_1.3_ko.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing8_1.3_jp.png)
 
 * **利用停止日時解除期間**：自動解除の適用時、利用停止猶予期間を入力します。
 * **利用停止解除条件設定**：自動解除に必要な条件を設定します。1つ以上設定する必要があります。
