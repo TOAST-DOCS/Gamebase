@@ -497,6 +497,12 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 | Push - 点击消息 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | 不存在**isForeground**值。|
 | Push - 动态点击 | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | 点击RichMessage按键时启动。|
 
+#### Logged Out
+
+```
+Not translated yet
+```
+
 #### Server Push
 
 * 是从Gamebase服务器向客户端终端机传送的消息。 
