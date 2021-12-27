@@ -17,22 +17,22 @@ Gamebase에서 지원하는 부가 기능을 설명합니다.
 
 ### Display Language
 
-점검 팝업과 같이 Gamebase 가 표시하는 언어는 단말기에 설정된 언어로 표시됩니다.
+점검 팝업과 같이 Gamebase가 표시하는 언어는 단말기에 설정된 언어로 표시됩니다.
 
 그런데 게임에서 표시하는 언어를 단말기에 설정된 언어가 아닌, 별도의 옵션으로 언어를 변경할 수 있는 게임이 있습니다.
-예를 들어, 단말기에 설정된 언어는 영어 이지만 게임 표시 언어를 일본어로 변경한 경우, Gamebase 에서 표시하는 언어도 일본어로 변경하고 싶지만 Gamebase 가 표시하는 언어는 단말기에 설정된 언어인 영어로 표시됩니다.
+예를 들어, 단말기에 설정된 언어는 영어 이지만 게임 표시 언어를 일본어로 변경한 경우, Gamebase에서 표시하는 언어도 일본어로 변경하고 싶지만 Gamebase가 표시하는 언어는 단말기에 설정된 언어인 영어로 표시됩니다.
 
-이와 같이 `단말기에 설정된 언어가 아닌, 다른 언어로 Gamebase 메세지를 표시하고 싶은` 어플리케이션을 위해 Gamebase 는 `Display Language` 라는 기능을 제공합니다.
+이와 같이 `단말기에 설정된 언어가 아닌, 다른 언어로 Gamebase 메세지를 표시하고 싶은` 어플리케이션을 위해 Gamebase는 `Display Language` 라는 기능을 제공합니다.
 
-Gamebase 는 Display Language 로 설정한 언어로 Gamebase 메세지를 표시합니다.
-Display Language 에 입력하는 언어 코드는 반드시 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 지정된 코드만을 사용할 수 있습니다.
+Gamebase는 Display Language로 설정한 언어로 Gamebase 메세지를 표시합니다.
+Display Language에 입력하는 언어 코드는 반드시 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 지정된 코드만을 사용할 수 있습니다.
 
 > <font color="red">[주의]</font><br/>
 >
-> * Display Language 는 단말기 설정 언어와 무관하게 Gamebase 의 표시 언어를 변경하고 싶은 경우에만 사용하시기 바랍니다.
-> * Display Language Code 는 ISO-639 형태의 값으로, 대소문자를 구분합니다.
+> * Display Language는 단말기 설정 언어와 무관하게 Gamebase의 표시 언어를 변경하고 싶은 경우에만 사용하시기 바랍니다.
+> * Display Language Code는 ISO-639 형태의 값으로, 대소문자를 구분합니다.
 > 'EN'이나 'zh-cn'과 같이 설정하면 문제가 발생할 수 있습니다.
-> * 만일 Display Language Code 로 입력한 값이 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 존재하지 않는다면, Display Langauge Code 는 Gamebase 콘솔에서 설정한 기본 언어로 지정됩니다.
+> * 만일 Display Language Code로 입력한 값이 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 존재하지 않는다면, Display Langauge Code는 Gamebase 콘솔에서 설정한 기본 언어로 지정됩니다.
 >     * 만일 Gamebase 콘솔에서 언어 설정을 하지 않았다면 영어(en)가 기본 언어로 설정됩니다.
 
 > [참고]
@@ -265,7 +265,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 #### Device Country Code
 
-* OS 로부터 전달받은 단말기 국가코드를 추가적인 체크 없이 그대로 리턴합니다.
+* OS로부터 전달받은 단말기 국가코드를 추가적인 체크 없이 그대로 리턴합니다.
 * 단말기 국가코드는 '언어' 설정에 따라 OS가 자동으로 결정합니다.
 * 여러개의 언어가 등록된 경우, 우선권이 가장 높은 언어로 국가코드를 결정합니다.
 * 값이 비어있는 경우 'ZZ'를 리턴합니다.
@@ -282,7 +282,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 * getCountryCode API는 다음 순서로 동작합니다.
 	1. USIM에 기록된 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
 	2. USIM 국가 코드가 빈 값이라면 단말기 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
-	3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ' 를 리턴합니다.
+	3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ'를 리턴합니다.
 
 ![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
@@ -366,8 +366,8 @@ void eventHandlerSample(Activity activity) {
 }
 ```
 
-* Category 는 GamebaseEventCategory 클래스에 정의되어 있습니다.
-* 이벤트는 크게 LoggedOut, ServerPush, Observer, Purchase, Push 로 나눌 수 있고, 각 Category 에 따라, GamebaseEventMessage.data 를 아래 표와 같은 방법으로 VO 로 변환할 수 있습니다.
+* Category는 GamebaseEventCategory 클래스에 정의되어 있습니다.
+* 이벤트는 크게 LoggedOut, ServerPush, Observer, Purchase, Push로 나눌 수 있고, 각 Category에 따라, GamebaseEventMessage.data를 아래 표와 같은 방법으로 VO로 변환할 수 있습니다.
 
 | Event 종류 | GamebaseEventCategory | VO 변환 방법 | 비고 |
 | --------- | --------------------- | ----------- | --- |
@@ -375,13 +375,13 @@ void eventHandlerSample(Activity activity) {
 | ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED<br>GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseEventServerPushData.from(message.data) | \- |
 | Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseEventObserverData.from(message.data) | \- |
 | Purchase - 프로모션 결제 | GamebaseEventCategory.PURCHASE_UPDATED | PurchasableReceipt.from(message.data) | \- |
-| Push - 메세지 수신 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | PushMessage.from(message.data) | **isForeground** 값을 통해 Foreground 에서 메세지를 수신했는지 여부를 확인할 수 있습니다. |
+| Push - 메세지 수신 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | PushMessage.from(message.data) | **isForeground** 값을 통해 Foreground에서 메세지를 수신했는지 여부를 확인할 수 있습니다. |
 | Push - 메세지 클릭 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | PushMessage.from(message.data) | **isForeground** 값이 없습니다. |
 | Push - 액션 클릭 | GamebaseEventCategory.PUSH_CLICK_ACTION | PushAction.from(message.data) | RichMessage 버튼 클릭 시 동작합니다. |
 
 #### How to handle events when the application is not running
 
-* 커스텀 Application 클래스에서 GamebaseEventHandler를 등록하면 어플리케이션이 실행되지 않았을때에도 이벤트 처리를 할 수 있습니다.
+* 커스텀 Application 클래스에서 GamebaseEventHandler를 등록하면 어플리케이션이 실행되지 않았을 때에도 이벤트 처리를 할 수 있습니다.
 
 ```java
 public class MyApplication extends Application {
@@ -438,13 +438,13 @@ void processLoggedOut(String category, GamebaseEventLoggedOutData data) {
 #### Server Push
 
 * Gamebase 서버에서 클라이언트 단말기로 보내는 메세지 입니다.
-* Gamebase 에서 지원하는 Server Push Type 은 다음과 같습니다.
+* Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED
-    	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
+    	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout**에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
         * 클라이언트 단말기에서 서버 메세지를 수신했을 때 바로 동작하는 이벤트입니다.
         * '오토 플레이'와 같이 게임이 동작 중인 경우, 게임을 일시 정지 시키는 목적으로 활용할 수 있습니다.
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
-    	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
+    	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout**에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
         * 클라이언트 단말기에서 서버 메세지를 수신했을 때 팝업을 표시하는데, 유저가 팝업을 닫았을 때 동작하는 이벤트입니다.
     * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
     	* Guest 계정을 다른 단말기로 이전을 성공하게 되면 이전 단말기에서 킥아웃 메세지를 받게 됩니다.
@@ -491,8 +491,8 @@ void processServerPush(String category, GamebaseEventServerPushData data) {
 
 #### Observer
 
-* Gamebase Gamebase의 각종 상태 변동 이벤트를 처리하는 시스템 입니다.
-* Gamebase 에서 지원하는 Observer Type 은 다음과 같습니다.
+* Gamebase의 각종 상태 변동 이벤트를 처리하는 시스템 입니다.
+* Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
     * GamebaseEventCategory.OBSERVER_LAUNCHING
     	* 점검이 걸리거나 풀린 경우, 새로운 버전이 배포되어 업데이트가 필요한 경우와 같이, Launching 상태가 변경되었을 때 동작합니다.
     	* GamebaseEventObserverData.code : LaunchingStatus 값을 의미합니다.
@@ -637,7 +637,7 @@ void eventHandlerSample(Activity activity) {
 
 * Push 메세지가 도착했을때 발생하는 이벤트 입니다.
 * **isForeground** 필드를 통해 포그라운드에서 메세지를 수신했는지, 백그라운드에서 메세지를 수신했는지 구분할 수 있습니다.
-* extras 필드를 JSON 으로 변환하여, Push 발송시 전송했던 커스텀 정보를 얻을 수도 있습니다.
+* extras 필드를 JSON으로 변환하여, Push 발송 시 전송했던 커스텀 정보를 얻을 수도 있습니다.
 
 **VO**
 
@@ -719,7 +719,7 @@ void eventHandlerSample(Activity activity) {
 #### Push Click Action
 
 * Rich Message 기능을 통해 생성한 버튼을 클릭했을때 발생하는 이벤트 입니다.
-* actionType 은 다음 항목이 제공됩니다.
+* actionType은 다음 항목이 제공됩니다.
 	* "OPEN_APP"
 	* "OPEN_URL"
 	* "REPLY"
@@ -874,10 +874,10 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 | Gamebase customer center  | △             |
 | NHN Cloud Online Contact      | △              |
 
-각 유형에 따라 Gamebase SDK 의 고객센터 API 는 다음 URL 을 사용합니다.
+각 유형에 따라 Gamebase SDK의 고객센터 API는 다음 URL을 사용합니다.
 
 * 개발사 자체 고객센터(Developer customer center)
-    * **고객센터 URL** 에 입력한 URL.
+    * **고객센터 URL**에 입력한 URL.
 * Gamebase 제공 고객센터(Gamebase customer center)
     * 로그인 전 : 유저 정보가 **없는** 고객센터 URL.
     * 로그인 후 : 유저 정보가 포함된 고객센터 URL.
@@ -896,7 +896,7 @@ ContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니다.
 | API | Mandatory(M) / Optional(O) | Description |
 | --- | --- | --- |
 | newBuilder() | **M** | ContactConfiguration 객체는 newBuilder() 함수를 통해 생성할 수 있습니다. |
-| build() | **M** | 설정을 마친 Builder 를 Configuration 객체로 변환합니다. |
+| build() | **M** | 설정을 마친 Builder를 Configuration 객체로 변환합니다. |
 | setUserName(String userName) | O | 사용자 이름(닉네임)을 전달하고자 할 때 사용합니다.<br>NHN Cloud 조직 상품(Online Contact) 유형에서 사용하는 필드입니다.<br>**default** : null |
 | setAdditionalURL(String additionalURL) | O | 개발사 자체 고객센터 URL 뒤에 붙는 추가적인 URL 입니다.<br>고객센터 타입이 `CUSTOM` 인 경우에만 사용하시기 바랍니다.<br>**default** : null |
 | setExtraData(Map<String, Object> extraData) | O | 개발사가 원하는 extra data를 고객센터 오픈 시에 전달합니다.<br>**default** : EmptyMap |
@@ -916,8 +916,8 @@ ContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니다.
 
 | Error Code | Description |
 | --- | --- |
-| NOT\_INITIALIZED(1)                                 | Gamebase.initialize 가 호출되지 않았습니다. |
-| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 고객센터 URL 이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL** 을 확인하세요. |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initialize가 호출되지 않았습니다. |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 고객센터 URL이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL**을 확인하세요. |
 | UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 사용자 식별을 위한 임시 티켓 발급에 실패하였습니다. |
 | UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | 고객센터 웹뷰가 이미 표시중입니다. |
 
@@ -952,7 +952,7 @@ Gamebase.Contact.openContact(activity, new GamebaseCallback() {
 
 #### Request Contact URL
 
-고객센터 웹뷰를 표시하는데 사용되는 URL 을 리턴합니다.
+고객센터 웹뷰를 표시하는데 사용되는 URL을 리턴합니다.
 
 **API**
 
@@ -967,8 +967,8 @@ Gamebase.Contact.openContact(activity, new GamebaseCallback() {
 
 | Error Code | Description |
 | --- | --- |
-| NOT\_INITIALIZED(1)                                 | Gamebase.initialize 가 호출되지 않았습니다. |
-| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 고객센터 URL 이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL** 을 확인하세요. |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initialize가 호출되지 않았습니다. |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 고객센터 URL이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL**을 확인하세요. |
 | UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 사용자를 식별을 위한 임시 티켓 발급에 실패하였습니다. |
 
 **Example**
