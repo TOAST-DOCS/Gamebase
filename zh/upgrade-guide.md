@@ -5,11 +5,11 @@
 ### Android
 
 * 因Gamebase Access Token过期无法恢复而发生的GamebaseEventHandler事件category，在**GamebaseEventCategory.OBSERVER_HEARTBEAT**中已被更改为**GamebaseEventCategory.LOGGED_OUT**。
-    * 请更改登录条件，即当**GamebaseEventCategory.OBSERVER_HEARTBEAT**事件中的GamebaseEventObserverData.code值为**GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)**时登录的条件，更改为在**GamebaseEventCategory.LOGGED_OUT**事件中登录。 
+    * 请更改登录条件，即当**GamebaseEventCategory.OBSERVER_HEARTBEAT**事件中的GamebaseEventObserverData.code值为**GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)**时登录的条件，更改为在**GamebaseEventCategory.LOGGED_OUT**事件中登录。
 
 ## 2.29.0 
  
-### Unity 
+### Unity
  
 * 已发布Setting Tool 2.0.0。  
     * 因文件结构已被更改，需要删除以前的Setting Tool后重新进行设置。 
