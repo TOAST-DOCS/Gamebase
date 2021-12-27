@@ -360,6 +360,7 @@ WebView를 표시합니다.<br/>
 }
 ```
 
+![Webview Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
 
 #### Custom WebView
 사용자 지정 WebView를 표시합니다.<br/>TCGBWebViewConfiguration으로 사용자 지정 WebView를 만들 수 있습니다.
