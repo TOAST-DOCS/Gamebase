@@ -1,16 +1,29 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.32.0 (2021.12.28)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-Android.zip)
+
+#### 添加功能 
+* 在GamebaseEventHandler的GamebaseEventCategory中添加了**GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED**类型。
+    * 关于此事件的适用方法，请参考如下指南。
+    * [Game > Gamebase > Android SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Server Push](./aos-etc/#server-push)
+* 添加了当Gamebase Access Token过期，登录时需要启动的**GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler category。
+    * [Game > Gamebase > Android SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./aos-etc/#logged-out)
+ 
+#### 改善/修复功能
+* 改善Webview后，现在可启动Webview URL地址开始为**onestore://**的ONE store Deeplink。
+
+#### 修改程序错误
+* 修改了已在Gamebase Android SDK 2.31.0中调用退出函数，但因未调用IdP登录函数，无法更改IdP账户的程序错误。 
+
 ### 2.31.0 (2021.12.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Android.zip)
 
 #### 改善/修复功能
 * 外部SDK升级 : TOAST Android SDK(0.29.0)
-* 解决了已被禁用的用户（使用禁用信息）未能通过“禁用Webview”内客户服务链接注册查询的问题。
+* 解决了被禁用的用户（使用禁用信息）无法通过“禁用Webview”内客户服务链接注册查询的问题。
 * 修复了打开应用程序后立即调用Gamebase初始化函数时，Launching弹窗显示英语的问题。
 * 改善Scheduler之后，现在您可以始终确认当应用程序从后台转为前台时Launching信息是否已被更改。
-* 在GamebaseEventHandler的GamebaseEventObserverData.code中添加了**GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)**错误。
-    * 如果发生此事件，则表示Gamebase Access Token已过期而尚未恢复，因此需要重新登录。
-    * [Game > Gamebase > Android SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Observer](./aos-etc/#observer)
     
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Android.zip)

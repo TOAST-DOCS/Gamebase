@@ -198,6 +198,14 @@ Gamebase.Push.queryTokenInfo(activity, new GamebaseDataCallback<PushConfiguratio
 | adAgreement      | boolean | 광고성 알림 표시 동의 여부      |
 | adAgreementNight | boolean | 야간 광고성 알림 표시 동의 여부  |
 
+### Event Handling
+
+* 푸시 메세지가 도착했거나 푸시 메세지를 클릭했을 때 이벤트 처리를 할 수 있습니다.
+* 이벤트 등록 방법은 GamebaseEventHandler 가이드를 참고하시기 바랍니다.
+    * [ Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Push Received Message](./aos-etc/#push-received-message)
+    * [ Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./aos-etc/#push-click-message)
+    * [ Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./aos-etc/#push-click-action)
+
 ### Error Handling
 
 | Error                          | Error Code | Description                              |

@@ -37,9 +37,9 @@ Then, include corresponding SDK files to a target of your project.
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.29.1 | Includes the interface and key logic of Gamebase | iOS9 or later
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.29.2 | Includes the interface and key logic of Gamebase | iOS9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Supports Facebook login | iOS9 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.2 | Supports Payco login | iOS9 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.4 | Supports Payco login | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | Supports Naver login | iOS9 or later |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Supports Game Center login | iOS9 or later |
 |  | GamebaseAuthGoogleAdapter.framework | | Supports Google login | iOS9 or later |
@@ -49,8 +49,8 @@ Then, include corresponding SDK files to a target of your project.
 |  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.1 | Supports Hangame login | iOS9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Supports Weibo login | iOS9 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.11.5 | Supports Kakao login | iOS11 or later |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.29.1<br/> ToastGamebaseIAP 0.12.1 | Supports in-game purchase | iOS9 or later |
-| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.29.1 | Supports Push | iOS9 or later |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.29.2<br/> ToastGamebaseIAP 0.12.1 | Supports in-game purchase | iOS9 or later |
+| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.29.2 | Supports Push | iOS9 or later |
 
 
 > <font color="red">[Caution]</font><br/>
@@ -193,7 +193,7 @@ end
 #### Google
 
 * URL Scheme must be configured.
-    * Go to **Xcode > Target > Info > URL Types**and add **tcgb.{Bundle ID}.google**
+    * Go to **Xcode > Target > Info > URL Types** and add **tcgb.{Bundle ID}.google**
 
 * An additional setting is required for Gamebase iOS SDK 1.12.1 or earlier versions.
     * [Game > Gamebase > iOS SDK User Guide > Getting Started > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
@@ -201,12 +201,13 @@ end
 #### Payco
 
 * URL Scheme must be configured.
-    * Go to **Xcode > Target > Info > URL Types**and add **tcgb.{Bundle ID}.payco**
+    * Go to **Xcode > Target > Info > URL Types** and add **tcgb.{Bundle ID}.payco**
+    * Go to **Xcode > Target > Info > URL Types** and add **paycologinsdk**.
 
 #### Naver
 
 * URL Scheme must be configured.
-    * Go to **Xcode > Target > Info > URL Types**and add **tcgb.{Bundle ID}.naver**
+    * Go to **Xcode > Target > Info > URL Types** and add **tcgb.{Bundle ID}.naver**
 
 * An additional setting is required for Gamebase iOS SDK 1.12.1 or earlier versions.
     * [Game > Gamebase > iOS SDK User Guide > Getting Started > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
@@ -214,14 +215,14 @@ end
 #### Twitter
 
 * URL Scheme must be configured.
-    * Go to **Xcode > Target > Info > URL Types**and add **tcgb.{Bundle ID}.twitter**
+    * Go to **Xcode > Target > Info > URL Types** and add **tcgb.{Bundle ID}.twitter**
 * Need to configure Apps > Target Project > App Details > Callback URL on the Developer site of Twitter.
     *  Add **tcgb.{Bundle ID}.twitter://**.
 
 #### Line
 
 * URL Scheme must be configured.
-	* Go to **Xcode > Target > Info > URL Types**and add **line3rdp.{App Bundle ID}**
+	* Go to **Xcode > Target > Info > URL Types** and add **line3rdp.{App Bundle ID}**
 
 * The Info.plist file needs to be configured.
 	* Configure the ChannelID issued by LINE.

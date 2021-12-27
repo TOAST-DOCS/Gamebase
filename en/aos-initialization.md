@@ -253,15 +253,10 @@ Maintenance information registered on Gamebase Console:
 * beginDate: Start time
 * endDate: End time
 * message: Cause of maintenance
+* hideDate: Whether to display maintenance start and end times
 
 [Game > Gamebase > Console User Guide > Operation > Maintenance](./oper-operation/#maintenance)
 <br/>
-##### Change Default Maintenance HTML
-
-```
-Not translated yet
-```
-
 ##### Change Default Maintenance HTML
 
 If both the `enablePopup` and `enableLaunchingStatusPopup` values are `true`, a maintenance popup will be automatically displayed if the game is in maintenance status.

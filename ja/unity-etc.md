@@ -495,6 +495,11 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 | Push - メッセージクリック | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
 | Push - アクションクリック | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | RichMessageボタンを押すと動作します。 |
 
+#### Logged Out
+
+```
+Not translated yet
+```
 
 #### Server Push
 

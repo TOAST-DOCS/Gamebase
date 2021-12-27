@@ -36,22 +36,22 @@ Gamebase에서 지원하는 부가적인 기능을 설명합니다.
 
 ### Display Language
 
-점검 팝업과 같이 Gamebase 가 표시하는 언어는 단말기에 설정된 언어로 표시됩니다.
+점검 팝업과 같이 Gamebase가 표시하는 언어는 단말기에 설정된 언어로 표시됩니다.
 
 그런데 게임에서 표시하는 언어를 단말기에 설정된 언어가 아닌, 별도의 옵션으로 언어를 변경할 수 있는 게임이 있습니다.
-예를 들어, 단말기에 설정된 언어는 영어 이지만 게임 표시 언어를 일본어로 변경한 경우, Gamebase 에서 표시하는 언어도 일본어로 변경하고 싶지만 Gamebase 가 표시하는 언어는 단말기에 설정된 언어인 영어로 표시됩니다.
+예를 들어, 단말기에 설정된 언어는 영어 이지만 게임 표시 언어를 일본어로 변경한 경우, Gamebase에서 표시하는 언어도 일본어로 변경하고 싶지만 Gamebase가 표시하는 언어는 단말기에 설정된 언어인 영어로 표시됩니다.
 
 이와 같이 `단말기에 설정된 언어가 아닌, 다른 언어로 Gamebase 메세지를 표시하고 싶은` 어플리케이션을 위해 Gamebase 는 `Display Language` 라는 기능을 제공합니다.
 
-Gamebase 는 Display Language 로 설정한 언어로 Gamebase 메세지를 표시합니다.
-Display Language 에 입력하는 언어 코드는 반드시 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 지정된 코드만을 사용할 수 있습니다.
+Gamebase는 Display Language로 설정한 언어로 Gamebase 메세지를 표시합니다.
+Display Language에 입력하는 언어 코드는 반드시 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 지정된 코드만을 사용할 수 있습니다.
 
 > <font color="red">[주의]</font><br/>
 >
-> * Display Language 는 단말기 설정 언어와 무관하게 Gamebase 의 표시 언어를 변경하고 싶은 경우에만 사용하시기 바랍니다.
-> * Display Language Code 는 ISO-639 형태의 값으로, 대소문자를 구분합니다.
+> * Display Language는 단말기 설정 언어와 무관하게 Gamebase의 표시 언어를 변경하고 싶은 경우에만 사용하시기 바랍니다.
+> * Display Language Code는 ISO-639 형태의 값으로, 대소문자를 구분합니다.
 > 'EN'이나 'zh-cn'과 같이 설정하면 문제가 발생할 수 있습니다.
-> * 만일 Display Language Code 로 입력한 값이 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 존재하지 않는다면, Display Langauge Code 는 Gamebase 콘솔에서 설정한 기본 언어로 지정됩니다.
+> * 만일 Display Language Code로 입력한 값이 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 존재하지 않는다면, Display Langauge Code는 Gamebase 콘솔에서 설정한 기본 언어로 지정됩니다.
 >   * 만일 Gamebase 콘솔에서 언어 설정을 하지 않았다면 영어(en)가 기본 언어로 설정됩니다.
 
 > [참고]
@@ -174,7 +174,7 @@ Gamebase 초기화 시 입력된 Display Language를 변경할 수 있습니다.
 
 #### 신규 언어셋 추가
 
-Gamebase에서 제공하는 기본 언어(ko, en, ja, zh-CN, zh-TW, th) 외 다른 언어를 사용하는 경우에는 Xcode 프로젝트의 `Copy Bundle Resources` 에 **localizedstring.json** 파일을 추가하면 됩니다.
+Gamebase에서 제공하는 기본 언어(ko, en, ja, zh-CN, zh-TW, th) 외 다른 언어를 사용하는 경우에는 Xcode 프로젝트의 `Copy Bundle Resources`에 **localizedstring.json** 파일을 추가하면 됩니다.
 
 localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
@@ -272,9 +272,9 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 #### Device Country Code
 
-* OS 로부터 전달받은 단말기 지역 설정을 추가적인 체크 없이 그대로 리턴합니다.
+* OS로부터 전달받은 단말기 지역 설정을 추가적인 체크 없이 그대로 리턴합니다.
 * 단말기 국가코드는 '설정 > 일반 > 언어 및 지역 > 지역' 설정에 따라 OS가 결정합니다.
-* iOS 에서 제공하는 NSLocaleCountryCode 를 사용하여 획득한 값을 리턴합니다.
+* iOS에서 제공하는 NSLocaleCountryCode를 사용하여 획득한 값을 리턴합니다.
 
 **API**
 
@@ -288,7 +288,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 * country API는 다음 순서로 동작합니다.
 	1. USIM에 기록된 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
 	2. USIM 국가 코드가 빈 값이라면 단말기 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
-	3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ' 를 리턴합니다.
+	3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ'를 리턴합니다.
 
 ![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
@@ -301,8 +301,8 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 ### Gamebase Event Handler
 
-* Gamebase 는 각종 이벤트를 **GamebaseEventHandler** 라는 하나의 이벤트 시스템에서 모두 처리할 수 있습니다.
-* GamebaseEventHandler 는 아래 API 를 통해 간단하게 Handler 를 추가/제거 할 수 있습니다.
+* Gamebase는 각종 이벤트를 **GamebaseEventHandler**라는 하나의 이벤트 시스템에서 모두 처리할 수 있습니다.
+* GamebaseEventHandler는 아래 API를 통해 간단하게 Handler를 추가/제거 할 수 있습니다.
 
 **API**
 
@@ -329,31 +329,32 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 ```objectivec
 - (void)eventHandler_addEventHandler {
     void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
-        if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES
+        if ([message.category isEqualToString:kTCGBLoggedOut] == YES) {
+            TCGBGamebaseEventLoggedOutData* loggedOutData = [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data];
+            if (loggedOutData != nil) {
+                //TODO: process loggedOut
+            }
+        } else if ([message.category isEqualToString:kTCGBServerPushAppKickoutMessageReceived] == YES
+            || [message.category isEqualToString:kTCGBServerPushAppKickout] == YES
             || [message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
             TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
             if (serverPushData != nil) {
                 //TODO: process server push
             }
-        }
-        else if ([message.category isEqualToString:kTCGBObserverLaunching] == YES
-                 || [message.category isEqualToString:kTCGBObserverHeartbeat] == YES
-                 || [message.category isEqualToString:kTCGBObserverNetwork] == YES) {
+        } else if ([message.category isEqualToString:kTCGBObserverLaunching] == YES
+            || [message.category isEqualToString:kTCGBObserverHeartbeat] == YES
+            || [message.category isEqualToString:kTCGBObserverNetwork] == YES) {
             TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
             if (observerData != nil) {
                 //TODO: process observer
             }
-        }
-        else if ([message.category isEqualToString:kTCGBPurchaseUpdated] == YES) {
+        } else if ([message.category isEqualToString:kTCGBPurchaseUpdated] == YES) {
             
-        }
-        else if ([message.category isEqualToString:kTCGBPushReceivedMessage] == YES) {
+        } else if ([message.category isEqualToString:kTCGBPushReceivedMessage] == YES) {
             
-        }
-        else if ([message.category isEqualToString:kTCGBPushClickMessage] == YES) {
+        } else if ([message.category isEqualToString:kTCGBPushClickMessage] == YES) {
             
-        }
-        else if ([message.category isEqualToString:kTCGBPushClickAction] == YES) {
+        } else if ([message.category isEqualToString:kTCGBPushClickAction] == YES) {
             
         }
     };
@@ -362,24 +363,52 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-* Category 는 GamebaseEventCategory 클래스에 정의되어 있습니다.
-* 이벤트는 크게 ServerPush, Observer, Purchase, Push 로 나눌 수 있고, 각 Category 에 따라, TCGBGamebaseEventMessage.data 를 아래 표와 같은 방법으로 VO 로 변환할 수 있습니다.
+* Category는 GamebaseEventCategory 클래스에 정의되어 있습니다.
+* 이벤트는 크게 LoggedOut, ServerPush, Observer, Purchase, Push로 나눌 수 있고, 각 Category에 따라, TCGBGamebaseEventMessage.data를 아래 표와 같은 방법으로 VO로 변환할 수 있습니다.
 
 | Event 종류 | GamebaseEventCategory | VO 변환 방법 | 비고 |
 | --------- | --------------------- | ----------- | --- |
-| ServerPush | kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
+| LoggedOut | kTCGBLoggedOut | [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data] | \- |
+| ServerPush | kTCGBServerPushAppKickoutMessageReceived<br>kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
 | Observer | kTCGBObserverLaunching<br>kTCGBObserverHeartbeat<br>kTCGBObserverNetwork | [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data] | \- |
 | Purchase - 프로모션 결제 | kTCGBPurchaseUpdated | [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data] | \- |
 | Push - 메세지 수신 | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
 | Push - 메세지 클릭 | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
 | Push - 액션 클릭 | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | RichMessage 버튼 클릭 시 동작합니다. |
 
+#### Logged Out
+
+* Gamebase Access Token이 만료되어 네트워크 세션을 복구하기 위해 로그인 함수 호출이 필요한 경우 발생하는 이벤트 입니다.
+
+**Example**
+
+```objectivec
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        [self printLogAndShowAlertWithData:[message prettyJsonString] error:nil alertTitle:@"addEventHandler Result"];
+        if ([message.category isEqualToString:kTCGBLoggedOut] == YES) {
+            TCGBGamebaseEventLoggedOutData* loggedOutData = [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data];
+            if (loggedOutData != nil) {
+                //TODO: process loggedOut
+            }
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
+```
+
 #### Server Push
 
 * Gamebase 서버에서 클라이언트 단말기로 보내는 메세지 입니다.
-* Gamebase 에서 지원하는 Server Push Type 은 다음과 같습니다.
+* Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
+	* kTCGBServerPushAppKickoutMessageReceived
+    	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout**에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
+        * 클라이언트 단말기에서 서버 메세지를 수신했을 때 바로 동작하는 이벤트입니다.
+        * '오토 플레이'와 같이 게임이 동작 중인 경우, 게임을 일시 정지 시키는 목적으로 활용할 수 있습니다.
 	* kTCGBServerPushAppKickout
-    	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
+    	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout**에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
+        * 클라이언트 단말기에서 서버 메세지를 수신했을 때 팝업을 표시하는데, 유저가 팝업을 닫았을 때 동작하는 이벤트입니다.
     * kTCGBServerPushTransferKickout
     	* Guest 계정을 다른 단말기로 이전을 성공하게 되면 이전 단말기에서 킥아웃 메세지를 받게 됩니다.
 
@@ -389,13 +418,17 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 - (void)eventHandler_addEventHandler {
     void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
         [self printLogAndShowAlertWithData:[message prettyJsonString] error:nil alertTitle:@"addEventHandler Result"];
-        if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES) {
+        if ([message.category isEqualToString:kTCGBServerPushAppKickoutMessageReceived] == YES) {
+            TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
+            if (serverPushData != nil) {
+                //TODO: process server push 
+            }
+        } else if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES) {
             TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
             if (serverPushData != nil) {
                 //TODO: process server push
             }
-        }
-        esle if ([message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
+        } else if ([message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
             TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
             if (serverPushData != nil) {
                 //TODO: process server push
@@ -405,13 +438,12 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
     
     [TCGBGamebase addEventHandler:eventHandler];
 }
-
 ```
 
 #### Observer
 
-* Gamebase Gamebase의 각종 상태 변동 이벤트를 처리하는 시스템 입니다.
-* Gamebase 에서 지원하는 Observer Type 은 다음과 같습니다.
+* Gamebase의 각종 상태 변동 이벤트를 처리하는 시스템입니다.
+* Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
     * kTCGBObserverLaunching
     	* 점검이 걸리거나 풀린 경우, 새로운 버전이 배포되어 업데이트가 필요한 경우와 같이, Launching 상태가 변경되었을 때 동작합니다.
     	* TCGBGamebaseEventObserverData.code : TCGBLaunchingStatus 값을 의미합니다.
@@ -467,7 +499,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
                     // Under maintenance.
                     break;
                 ...
-        }
+                }
             }
         }
         else if ([message.category isEqualToString:kTCGBObserverHeartbeat] == YES) {
@@ -481,7 +513,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
             case TCGB_ERROR_BANNED_MEMBER:
                 // You can check the banned user session in here.
                 break;
-        }
+            }
         }
         else if ([message.category isEqualToString:kTCGBObserverNetwork] == YES) {
             TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
@@ -525,7 +557,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 
 * Push 메세지가 도착했을때 발생하는 이벤트 입니다.
-* extras 필드를 JSON 으로 변환하여, Push 발송시 전송했던 커스텀 정보를 얻을 수도 있습니다.
+* extras 필드를 JSON으로 변환하여, Push 발송 시 전송했던 커스텀 정보를 얻을 수도 있습니다.
 
 **VO**
 
@@ -580,8 +612,8 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 #### Push Click Action
 
-* Rich Message 기능을 통해 생성한 버튼을 클릭했을때 발생하는 이벤트 입니다.
-* actionType 은 다음 항목이 제공됩니다.
+* Rich Message 기능을 통해 생성한 버튼을 클릭했을 때 발생하는 이벤트 입니다.
+* actionType은 다음 항목이 제공됩니다.
 	* "OPEN_APP"
 	* "OPEN_URL"
 	* "REPLY"
@@ -724,10 +756,10 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 | Gamebase customer center  | △              |
 | NHN Cloud Online Contact      | △              |
 
-각 유형에 따라 Gamebase SDK 의 고객센터 API 는 다음 URL 을 사용합니다.
+각 유형에 따라 Gamebase SDK의 고객센터 API는 다음 URL을 사용합니다.
 
 * 개발사 자체 고객센터(Developer customer center)
-    * **고객센터 URL** 에 입력한 URL.
+    * **고객센터 URL**에 입력한 URL.
 * Gamebase 제공 고객센터(Gamebase customer center)
     * 로그인 전 : 유저 정보가 **없는** 고객센터 URL.
     * 로그인 후 : 유저 정보가 포함된 고객센터 URL.
@@ -766,7 +798,7 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
 | Error                           | Error Code | Description                 |
 | ------------------------------- | ---------- | --------------------------- |
 | TCGB\_ERROR\_NOT\_INITIALIZED | 1       | Gamebase가 초기화되어 있지 않습니다. |
-| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 고객센터 URL이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL** 을 확인하세요. |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 고객센터 URL이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL**을 확인하세요. |
 | TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 사용자 식별을 위한 임시 티켓 발급에 실패하였습니다. |
 
 **Example**
@@ -807,7 +839,7 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
 | Error                           | Error Code | Description                 |
 | ------------------------------- | ---------- | --------------------------- |
 | TCGB\_ERROR\_NOT\_INITIALIZED | 1       | Gamebase가 초기화되어 있지 않습니다. |
-| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 고객센터 URL이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL** 을 확인하세요. |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 고객센터 URL이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL**을 확인하세요. |
 | TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 사용자 식별을 위한 임시 티켓 발급에 실패하였습니다. |
 
 **Example**

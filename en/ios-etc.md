@@ -374,6 +374,12 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 | Push - Message clicked | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
 | Push - Action clicked | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | Operates when the RichMessage button is clicked. |
 
+#### Logged Out
+
+```
+Not translated yet
+```
+
 #### Server Push
 
 * This is a message sent from the Gamebase server to the client's device.

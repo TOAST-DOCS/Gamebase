@@ -36,7 +36,7 @@
 
 ### Display Language
 
-正如游戏维护弹窗显示语言，Gamebase也显示终端机设置的语言。
+正像游戏维护弹窗显示语言，Gamebase也显示终端机设置的语言。
 
 但有些游戏允许通过额外选项更改终端机设置的语言。
 终端机设置的默认语言是英语，但需将游戏的显示语言转换为日语时，即使要将Gamebase的显示语言也转换为日语，Gamebase仍显示终端机设置的默认语言（en）。
@@ -47,10 +47,11 @@ Gamebase显示消息时，按照注册为Display Language的语言显示消息�
 
 > <font color="red">[注意]</font><br/>
 >
-> * 无论终端机设置的语言如何，只需要更改Gamebase显示的语言时使用Display Language Gamebase功能。
-> * Display Language Code是区分大小写的ISO-639形态的值。 
+> * 无论终端机设置的语言如何，只需更改Gamebase显示的语言时使用Display Language Gamebase功能。
+> * 显示Display Language Code时要以ISO-639格式显示，并且要区分英文字母的大小写。
 > 若按”EN"或"zh-cn"进行设置，可能出现问题。
-> * 若输入的Display Language Code值不在以下列表时（**Gamebase支持的语言代码种类**）, 则将Display Langauge Code自动设置为默认语言(en)。
+> * 若输入的Display Language Code值不在以下列表时（**Gamebase支持的语言代码种类**）, Display Langauge Code将会设置为Gamebase控制台中设置的默认语言。 
+>   * 如果未在Gamebase控制台中设置需要使用的语言集，则会自动设置为英语(en)。  
 
 > [参考]
 >
@@ -104,7 +105,7 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 
 #### 初始化Gamebase时设定显示语言 
 
-初始化Gamebase时可以设定显示语言。
+初始化Gamebase时可设定显示语言。
 
 **API**
 
@@ -152,7 +153,7 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 
 #### 查询显示语言
 
-可以查看当前使用的显示语言。
+可以查 看当前使用的显示语言。
 
 **API**
 
@@ -171,7 +172,7 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 
 #### 添加新语言集
 
-如果要使用Gamebase提供的默认语言(ko, en)以外的其他语言，将值添加到Gamebase.bundle文件的Resource文件夹中的**localizedstring.json**文件。
+如需使用Gamebase提供的默认语言(ko, en, ja, zh-CN, zh-TW, th)以外的其他语言，则在Xcode项目中的”Copy Bundle Resources”中添加**localizedstring.json**文件即可。 
 
 在localizedstring.json中定义的格式如下。
 
@@ -195,10 +196,32 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
     ...
     "launching_service_closed_title": "サービス終了"
   },
+  "zh-CN": {
+    "common_ok_button": "确定",
+    "common_cancel_button": "取消",
+    ...
+    "launching_service_closed_title": "关闭服务"
+  },
+  "zh-TW": {
+    "common_ok_button": "好",
+    "common_cancel_button": "取消",
+    ...
+    "launching_service_closed_title": "服務關閉"
+  },
+  "th": {
+    "common_ok_button": "ยืนยัน",
+    "common_cancel_button": "ยกเลิก",
+    ...
+    "launching_service_closed_title": "ปิดให้บริการ"
+  },
+  "de": {},
+  "es": {},
+  ...
+  "ms": {}
 }
 ```
 
-如果需要添加另一种语言集，可在localizedstring.json文件中添加”"${语言代码}":{"key":"value"}”形式的值。
+如需添加其他语言集，则在localizedstring.json文件的相关语言代码以`"key":"value"`的形式添加值即可。 
 
 ```json
 {
@@ -208,43 +231,33 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
     ...
     "launching_service_closed_title": "Service Closed"
   },
-  "ko": {
-    "common_ok_button": "확인",
-    "common_cancel_button": "취소",
+  ...
+  "vi": {
+    "common_ok_button": "value",
+    "common_cancel_button": "value",
     ...
-    "launching_service_closed_title": "서비스 종료"
+    "launching_service_closed_title": "value"
   },
-  "ja": {
-    "common_ok_button": "確認",
-    "common_cancel_button": "キャンセル",
-    ...
-    "launching_service_closed_title": "サービス終了"
-  },
-  "${语言代码}": {
-      "common_ok_button": "...",
-      ...
-  }
+  "ms": {}
 }
 ```
 
-如果在上述JSON文件的格式"${语言代码}":{ }中缺少key，则会自动输入在设备上设置的语言或”en”。
-
-#### 显示语言优先级
+#### Display Language的优先顺序
 
 通过初始化或SetDisplayLanguageCode API设置的Display Language时，最终应用的Display Language可以与输入的值不同。
 
-1. 确认输入的languageCode是否在localizedstring.json文件中定义。
-2. 初始化Gamebase时，确认在localizedstring.json文件中是否定义了设备上设置的语言代码（即使在初始化后更改了设备上设置的语言，此值也将保留）。
-3. 自动设置Display Language的默认值为”en”。
-
-
+1. 需要确认输入的languageCode是否已在localizedstring.json文件中定义。 
+2. 如果1号失败，初始化Gamebase时，需要确认终端机设置的语言代码是否已在localizedstring.json文件中定义。(若初始化值，即使更改终端机设置的语言，也将会保持此值。)
+3. 如果2号失败，将设置Gamebase控制台中的默认语言。 
+4. 如果Gamebase控制台中不存在语言设置，将设置为默认语言（en）。
+  
 ### Country Code
 
 * Gamebase以如下API提供系统的国家代码(country code)。
 * 各API具有不同特征，因此请选择与用途相符的API。
 
 #### USIM Country Code
-
+ 
 * 返回USIM中记录的国家代码。
 * 即使USIM中记录的是错误的国家代码也将不进行补充确认就直接返回。
 * 若值为空，则返回”ZZ”。
@@ -315,7 +328,7 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
     void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
         if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES
             || [message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
-            TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gaembaseEventServerPushDataFromJsonString:message.data];
+            TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
             if (serverPushData != nil) {
                 //TODO: process server push
             }
@@ -357,6 +370,12 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 | Push - 接收消息 | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
 | Push - - 点击消息 | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
 | Push - 动态点击 | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | 点击RichMessage按键时启动。|
+
+#### Logged Out
+
+```
+Not translated yet
+```
 
 #### Server Push
 
@@ -688,11 +707,11 @@ Analytics控制台使用方法，请参考如下指南。
 
 ### Contact
 
-Gamebase提供应对客户咨询的功能。
+Gamebase提供接待客户查询的功能。
 
 > [TIP]
 >
-> 如果与NHN Cloud Contact服务联动使用，则可更加轻松方便地应对客户咨询。
+> 如果与NHN Cloud Contact服务联动使用，则可更加轻松方便地应对客户查询。
 > 详细的NHN Cloud Contact服务使用，请参考如下指南。
 > [NHN Cloud Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
 
@@ -710,13 +729,13 @@ Gamebase提供应对客户咨询的功能。
 Gamebase SDK的客户服务API根据类型使用以下URL。
 
 * 开发公司自建客户服务(Developer customer center)
-    * 在**客户服务URL**中输入的URL。
+    * 在**客户服务URL**中输入的URL
 * Gamebase提供的客户服务(Gamebase customer center)
-    * 登录前 : **不包含**用户信息的客户服务URL。
-    * 登录后 : 包含用户信息的客户服务URL。
+    * 登录前 : **不包含**用户信息的客户服务URL
+    * 登录后 : 包含用户信息的客户服务URL
 * NHN Cloud组织服务(Online Contact)
-    * 登录前 : **不包含**用户信息的客户服务URL。
-    * 登录后 : 包含用户信息的客户服务URL。
+    * 登录前 : **不包含**用户信息的客户服务URL
+    * 登录后 : 包含用户信息的客户服务URL
 
 #### Open Contact WebView
 
@@ -768,8 +787,8 @@ Gamebase SDK的客户服务API根据类型使用以下URL。
 
 > <font color="red">[注意]</font><br/>
 > 
-> 向客服提问咨询时，为了添附文件可能需要允许访问相机或相册权限。
-> 请在info.plist设置”Privacy - Camera Usage Description“、”Privacy - Photo Library Usage Description”。 
+> 向客服提问时，为了添附文件可能需要允许访问相机或相册权限。
+> 请在info.plist设置”Privacy - Camera Usage Description“和”Privacy - Photo Library Usage Description”。 
 
 #### Request Contact URL
 
@@ -789,8 +808,8 @@ Gamebase SDK的客户服务API根据类型使用以下URL。
 | Error                           | Error Code | Description                 |
 | ------------------------------- | ---------- | --------------------------- |
 | TCGB\_ERROR\_NOT\_INITIALIZED | 1       | 未调用Gamebase。|
-| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2       | 客户服务的类型为”NHN Cloud Online Contact”时，登录前已调用了函数。|
-| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 客服中心URL不存在。<br>请确认Gamebase控制台中的**客户服务URL**。|
+| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2       | 客户服务类型为”NHN Cloud Online Contact”时，登录前已调用了函数。|
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 客户服务URL不存在。<br>请确认Gamebase控制台中的**客户服务URL**。|
 | TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 识别用户的临时ticket发放失败 |
 
 **Example**

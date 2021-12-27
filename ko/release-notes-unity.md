@@ -1,5 +1,23 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
+### 2.32.0 (2021.12.28)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* GamebaseEventHandler의 GamebaseEventCategory에 **GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED** 타입이 추가되었습니다.
+    * 이 이벤트의 활용 방법은 다음 문서를 참고하시기 바랍니다.
+    * [Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Server Push](./unity-etc/#server-push)
+* Gamebase Access Token이 만료되어 로그인이 필요할때 동작하는 **GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler category가 추가되었습니다.
+    * [Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./unity-etc/#logged-out)
+
+#### 버그 수정
+* (iOS) RegisterPush 이전에 포그라운드 푸시 이벤트를 받을 수 있도록 수정하였습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.32.0](./release-notes-android/#2320-20211228)
+* [Gamebase iOS SDK 2.32.0](./release-notes-ios/#2320-20211228)
+
 ### 2.31.0 (2021.12.14)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Unity.zip)
@@ -34,10 +52,10 @@
 #### 기능 개선/변경
 * 외부 SDK 업데이트: TOAST Unity SDK(0.23.5)
 * Setting Tool
-    * v2.0.0이 새로 배포되었습니다.
-    * 기존 SettingTool을 완전히 삭제한 후 재설치해야 합니다.
+    * 2.0.0이 새로 배포되었습니다.
+    * 기존 Setting Tool을 완전히 삭제한 후 재설치해야 합니다.
     * 변경된 내용 및 사용 방법은 아래 가이드를 확인하십시오.
-        * [Game > Gamebase > Unity SDK 사용 가이드 > 시작하기 > Specification of Setting Tool](https://docs.toast.com/ko/Game/Gamebase/ko/unity-started/#specification-of-setting-tool)
+        * [Game > Gamebase > Unity SDK 사용 가이드 > 시작하기 > Specification of Setting Tool](./unity-started/#specification-of-setting-tool)
 
 #### 버그 수정
 * GamebaseDisplayLanguageCode 핀란드어 오타 수정

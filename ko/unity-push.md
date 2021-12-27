@@ -210,6 +210,14 @@ public void QueryTokenInfoSample(bool isSandbox)
 | adAgreementNight | bool | 야간 광고성 알림 표시 동의 여부  |
 
 
+### Event Handling
+
+* 푸시 메세지가 도착했거나 푸시 메세지를 클릭했을 때 이벤트 처리를 할 수 있습니다.
+* 이벤트 등록 방법은 GamebaseEventHandler 가이드를 참고하시기 바랍니다.
+    * [ Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Push Received Message](./unity-etc/#push-received-message)
+    * [ Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./unity-etc/#push-click-message)
+    * [ Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./unity-etc/#push-click-action)
+
 #### Setting for APNS Sandbox
 * SandboxMode를 켜면, APNS Sandbox로 Push를 발송하도록 등록할 수 있습니다.
 * 콘솔 발송 방법

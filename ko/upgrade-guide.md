@@ -1,16 +1,23 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.32.0
+
+### Android
+
+* Gamebase Access Token이 만료되어 복구되지 않을때 발생하는 GamebaseEventHandler 이벤트 category가 **GamebaseEventCategory.OBSERVER_HEARTBEAT**에서 **GamebaseEventCategory.LOGGED_OUT**으로 변경되었습니다.
+    * **GamebaseEventCategory.OBSERVER_HEARTBEAT** 이벤트에서 GamebaseEventObserverData.code 값이 **GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)**일때 로그인 하도록 구현했다면 **GamebaseEventCategory.LOGGED_OUT** 이벤트에서 로그인을 하도록 변경하시기 바랍니다.
+
 ## 2.29.0 
  
 ### Unity 
  
-* Setting Tool v2.0.0이 업데이트되었습니다. 
-  * 폴더 구조가 변경되어, 이전 버전의 Setting Tool을 완전히 삭제한 후 재설치해야 합니다. 
-  * Setting Tool v1.5.0 이하 사용자는 아래 Directory에 있는 Gamebase 관련 라이브러리들을 모두 제거해야 합니다. 
-    * **Assets/Plugins/Android**  
-    * **Assets/Plugins/iOS** 
-  * 변경된 내용 및 사용 방법은 아래 가이드를 확인하십시오. 
-    * https://docs.toast.com/ko/Game/Gamebase/ko/unity-started/#specification-of-setting-tool 
+* Setting Tool 2.0.0이 배포되었습니다.
+    * 폴더 구조가 변경되어, 이전 버전의 Setting Tool을 완전히 삭제한 후 재설치해야 합니다. 
+    * Setting Tool 1.5.0 이하 사용자는 아래 디렉터리 있는 Gamebase 관련 라이브러리들을 모두 제거해야 합니다. 
+        * **Assets/Plugins/Android**  
+        * **Assets/Plugins/iOS** 
+    * 변경된 내용 및 사용 방법은 아래 가이드를 확인하십시오. 
+        * [Game > Gamebase > Unity SDK 사용 가이드 > 시작하기 > Specification of Setting Tool](./unity-started/#specification-of-setting-tool)
  
 ## 2.26.0
 

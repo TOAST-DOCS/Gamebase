@@ -1,5 +1,23 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.32.0 (2021.12.28)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-Unity.zip)
+
+#### 改善/修复功能
+* 在GamebaseEventHandler的GamebaseEventCategory中添加了**GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED**类型。
+    * 关于此事件的适用方法，请参考如下指南。
+    * [Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Server Push](./unity-etc/#server-push)
+* 添加了当Gamebase Access Token过期，登录时需要启动的**GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler category。
+    * [Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./unity-etc/#logged-out)
+
+#### 修改程序错误
+* 修改后，现在可在调用(iOS) RegisterPush之前接收前台推送事件。 
+
+#### 各平台变更项目
+* [Gamebase Android SDK 2.32.0](./release-notes-android/#2320-20211228)
+* [Gamebase iOS SDK 2.32.0](./release-notes-ios/#2320-20211228)
+
 ### 2.31.0 (2021.12.14)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Unity.zip)
@@ -37,7 +55,7 @@
     * 发布了v2.0.0版本。
     * 需要先删除已有的SettingTool后再进行设置。
     * 关于修改的信息和使用方法，请参考以下指南。 
-        * [Game > Gamebase > Unity SDK使用指南 > 开始 > Specification of Setting Tool](https://docs.toast.com/ko/Game/Gamebase/ko/unity-started/#specification-of-setting-tool)
+        * [Game > Gamebase > Unity SDK使用指南 > 开始 > Specification of Setting Tool](./unity-started/#specification-of-setting-tool)
 
 #### 修改程序错误
 * 修改了GamebaseDisplayLanguageCode芬兰语错误。 
