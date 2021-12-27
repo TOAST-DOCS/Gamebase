@@ -3,14 +3,14 @@
 ### 2.32.0 (2021.12.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* GamebaseEventHandler의 GamebaseEventCategory에 **kTCGBServerPushAppKickoutMessageReceived** 타입이 추가되었습니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Server Push](./ios-etc/#server-push)
-* GamebaseEventHandler의 GamebaseEventCategory에 **kTCGBLoggedOut** 타입이 추가되었습니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./ios-etc/#logged-out)
+#### 添加功能
+* 在GamebaseEventHandler的GamebaseEventCategory中添加了**kTCGBServerPushAppKickoutMessageReceived**类型。
+    * [Game > Gamebase > iOS SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Server Push](./ios-etc/#server-push)
+* 在GamebaseEventHandler的GamebaseEventCategory中添加了**kTCGBLoggedOut**类型。
+    * [Game > Gamebase > iOS SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./ios-etc/#logged-out)
 
-#### 기능 개선/변경
-* 웹뷰 navigationBar의 default title Color가 **UIColor.white**로 변경되었습니다.
+#### 改善/修复功能
+* Webview navigationBar的default title Color被更改为**UIColor.white**。
 
 ### 2.31.0 (2021.12.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-iOS.zip)
