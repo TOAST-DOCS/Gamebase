@@ -11,9 +11,6 @@
 * Gamebase Access Token이 만료되어 로그인이 필요할때 동작하는 **GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler category가 추가되었습니다.
     * [Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./unity-etc/#logged-out)
 
-#### 버그 수정
-* (iOS) RegisterPush 이전에 포그라운드 푸시 이벤트를 받을 수 있도록 수정하였습니다.
-
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.32.0](./release-notes-android/#2320-20211228)
 * [Gamebase iOS SDK 2.32.0](./release-notes-ios/#2320-20211228)
