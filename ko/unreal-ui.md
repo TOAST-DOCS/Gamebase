@@ -86,8 +86,8 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 Q
 
 > <font color="red">[주의]</font><br/>
 >
-> * FGamebasePushConfiguration 은 약관창이 표시되지 않은 경우에는 null 입니다.(약관창이 표시되었다면 항상 유효한 객체가 리턴됩니다.)
-> * FGamebasePushConfiguration.pushEnabled 값은 항상 true 입니다.
+> * FGamebasePushConfiguration 은 약관창이 표시되지 않은 경우에는 null입니다.(약관창이 표시되었다면 항상 유효한 객체가 리턴됩니다.)
+> * FGamebasePushConfiguration.pushEnabled 값은 항상 true입니다.
 > * FGamebasePushConfiguration 이 null 이 아니라면 **로그인 후에** IGamebase::Get().GetPush().RegisterPush() 를 호출하세요.
 
 #### Optional 파라미터

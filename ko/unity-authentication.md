@@ -531,7 +531,7 @@ public void AddMapping(string providerName)
 
 ### AddMapping with Credential
 
-게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증을 하고 발급받은 액세스 토큰등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스 입니다.
+게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증을 하고 발급받은 액세스 토큰등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스입니다.
 
 * Credential 파라미터의 설정 방법
 
@@ -1250,10 +1250,10 @@ public void Login()
 |                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_AUTHKEY     | 3315       | 강제 매핑 키(ForcingMappingKey)가 다른 계정에 사용되었습니다. <br/>발급받은 ForcingMappingKey는 같은 IdP 및 계정에 강제 매핑을 시도 하는데 사용됩니다. |
 | Remove Mapping | AUTH_REMOVE_MAPPING_FAILED | 3401 | 맵핑 삭제에 실패하였습니다. |
 |  | AUTH_REMOVE_MAPPING_LAST_MAPPED\_IDP | 3402 | 마지막에 맵핑된 IdP는 삭제할 수 없습니다. |
-|  | AUTH_REMOVE_MAPPING_LOGGED_IN\_IDP | 3403 | 현재 로그인 되어 있는 IdP 입니다. |
+|  | AUTH_REMOVE_MAPPING_LOGGED_IN\_IDP | 3403 | 현재 로그인 되어 있는 IdP입니다. |
 | Logout | AUTH_LOGOUT_FAILED | 3501 | 로그아웃에 실패하였습니다. |
 | Withdrawal     | AUTH\_WITHDRAW\_FAILED                   | 3601       | 탈퇴에 실패했습니다.                              |
-|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 이미 임시 탈퇴를 요청한 유저 입니다.                    |
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 이미 임시 탈퇴를 요청한 유저입니다.                    |
 |                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 임시 탈퇴를 요청한 유저가 아닙니다.                     |
 | Not Playable | AUTH_NOT_PLAYABLE | 3701 | 플레이할 수 없는 상태입니다. (점검 또는 서비스 종료 등) |
 | Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | 알수 없는 에러입니다. (정의 되지 않은 에러입니다.) |

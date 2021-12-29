@@ -298,7 +298,7 @@ toast.Gamebase.addEventHandler((message) => {
 
 #### Server Push
 
-* Gamebase 서버에서 클라이언트 단말기로 보내는 메세지 입니다.
+* Gamebase 서버에서 클라이언트 단말기로 보내는 메세지입니다.
 * Gamebase 에서 지원하는 Server Push Type 은 다음과 같습니다.
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
     	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
@@ -330,7 +330,7 @@ toast.Gamebase.addEventHandler((message) => {
 
 #### Observer
 
-* Gamebase Gamebase의 각종 상태 변동 이벤트를 처리하는 시스템 입니다.
+* Gamebase Gamebase의 각종 상태 변동 이벤트를 처리하는 시스템입니다.
 * Gamebase 에서 지원하는 Observer Type 은 다음과 같습니다.
     * GamebaseEventCategory.OBSERVER_LAUNCHING
     	* 점검이 걸리거나 풀린 경우, 새로운 버전이 배포되어 업데이트가 필요한 경우와 같이, Launching 상태가 변경되었을 때 동작합니다.

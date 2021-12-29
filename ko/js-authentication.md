@@ -410,7 +410,7 @@ function withdrawImmediately() {
 |                | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO                    | 3202       | IdP 정보가 유효하지 않습니다. (Console에 해당 IdP 정보가 없습니다.)           |
 | Logout         | AUTH\_LOGOUT\_FAILED                                    | 3501       | 로그아웃에 실패했습니다.                                                |
 | Withdrawal     | AUTH\_WITHDRAW\_FAILED                                  | 3601       | 탈퇴에 실패했습니다.                                                   |
-|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 이미 임시 탈퇴중인 유저 입니다.                    |
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 이미 임시 탈퇴중인 유저입니다.                    |
 |                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 임시 탈퇴중인 유저가 아닙니다.                     |
 | Not Playable   | AUTH\_NOT\_PLAYABLE                                     | 3701       | 플레이할 수 없는 상태입니다(점검 또는 서비스 종료 등).                        |
 | Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                                    | 3999       | 알수 없는 오류입니다.(정의되지 않은 오류입니다).                             |

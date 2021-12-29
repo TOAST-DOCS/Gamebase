@@ -131,22 +131,22 @@ public void RequestPurchase(string gamebaseProductId)
 public class PurchasableReceipt
 {
     /// <summary>
-    /// 구매한 아이템의 상품 ID 입니다.
+    /// 구매한 아이템의 상품 ID입니다.
     /// </summary>
     public string gamebaseProductId;
 
     /// <summary>
-    /// itemSeq 로 상품을 구매하는 Legacy API용 식별자 입니다.
+    /// itemSeq 로 상품을 구매하는 Legacy API용 식별자입니다.
     /// </summary>
     public long itemSeq;
 
     /// <summary>
-    /// 구매한 상품의 가격 입니다.
+    /// 구매한 상품의 가격입니다.
     /// </summary>
     public float price;
 
     /// <summary>
-    /// 통화 코드 입니다.
+    /// 통화 코드입니다.
     /// </summary>
     public string currency;
 
@@ -170,7 +170,7 @@ public class PurchasableReceipt
     public string purchaseToken;
 
     /// <summary>
-    /// Google, Apple 과 같이 스토어 콘솔에 등록된 상품 ID 입니다.
+    /// Google, Apple 과 같이 스토어 콘솔에 등록된 상품 ID입니다.
     /// </summary>
     public string marketItemId;
 
@@ -191,7 +191,7 @@ public class PurchasableReceipt
     public string userId;
 
     /// <summary>
-    /// 스토어의 결제 식별자 입니다.
+    /// 스토어의 결제 식별자입니다.
     /// </summary>
     public string paymentId;
 
@@ -262,23 +262,23 @@ public void RequestItemListPurchasable()
 public class PurchasableItem
 {
     /// <summary>
-    /// Gamebase 콘솔에 등록된 상품 ID 입니다.
+    /// Gamebase 콘솔에 등록된 상품 ID입니다.
     /// Gamebase.Purchase.requestPurchase API 로 상품을 구매할 때 사용됩니다.
     /// </summary>
     public string gamebaseProductId;
 
     /// <summary>
-    /// itemSeq 로 상품을 구매하는 Legacy API용 식별자 입니다.
+    /// itemSeq 로 상품을 구매하는 Legacy API용 식별자입니다.
     /// </summary>
     public long itemSeq;
 
     /// <summary>
-    /// 상품의 가격 입니다.
+    /// 상품의 가격입니다.
     /// </summary>
     public float price;
 
     /// <summary>
-    /// 통화 코드 입니다.
+    /// 통화 코드입니다.
     /// </summary>
     public string currency;
 
@@ -288,7 +288,7 @@ public class PurchasableItem
     public string itemName;
 
     /// <summary>
-    /// Google, Apple 과 같이 스토어 콘솔에 등록된 상품 ID 입니다.
+    /// Google, Apple 과 같이 스토어 콘솔에 등록된 상품 ID입니다.
     /// </summary>
     public string marketItemId;
 
@@ -308,12 +308,12 @@ public class PurchasableItem
     public string localizedPrice;
 
     /// <summary>
-    /// 스토어 콘솔에 등록된 현지화된 상품 이름 입니다.
+    /// 스토어 콘솔에 등록된 현지화된 상품 이름입니다.
     /// </summary>
     public string localizedTitle;
 
     /// <summary>
-    /// 스토어 콘솔에 등록된 현지화된 상품 설명 입니다.
+    /// 스토어 콘솔에 등록된 현지화된 상품 설명입니다.
     /// </summary>
     public string localizedDescription;
 
@@ -449,7 +449,7 @@ Supported Platforms
 | PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | 해당 상품이 활성화 상태가 아닙니다.  |
 | PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 존재하지 않는 GamebaseProductID 로 결제를 요청하였습니다. |
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | 월 구매 한도를 초과했습니다.             |
-| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 AS(App Store), GG(Google), ONESTORE, GALAXY 입니다. |
+| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 AS(App Store), GG(Google), ONESTORE, GALAXY입니다. |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | IAP 라이브러리 오류입니다.<br>DetailCode를 확인하세요.   |
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 

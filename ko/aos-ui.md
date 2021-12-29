@@ -113,13 +113,13 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 q
 > <font color="red">[주의]</font><br/>
 >
 > * 약관에 푸시 수신 동의 여부를 추가했다면, GamebaseDataContainer 로부터 PushConfiguration 을 생성할 수 있습니다.
-> * PushConfiguration 은 약관창이 표시되지 않은 경우에는 null 입니다.(약관창이 표시되었다면 항상 유효한 객체가 리턴됩니다.)
-> * PushConfiguration.pushEnabled 값은 항상 true 입니다.
+> * PushConfiguration 은 약관창이 표시되지 않은 경우에는 null입니다.(약관창이 표시되었다면 항상 유효한 객체가 리턴됩니다.)
+> * PushConfiguration.pushEnabled 값은 항상 true입니다.
 > * PushConfiguration 이 null 이 아니라면 **로그인 후에** Gamebase.Push.registerPush API 를 호출하세요.
 
 #### Required 파라미터
 
-* Activity : 약관창이 노출되는 Activity 입니다.
+* Activity : 약관창이 노출되는 Activity입니다.
  
 #### Optional 파라미터
 
@@ -197,7 +197,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 
 #### Required 파라미터
 
-* Activity : API 호출 시점의 최상위 Activity 입니다.
+* Activity : API 호출 시점의 최상위 Activity입니다.
 * GamebaseDataCallback : API 호출 결과를 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseQueryTermsResult 로 콘솔에 설정된 약관 정보를 얻을 수 있습니다.
 
 **API**
@@ -273,7 +273,7 @@ queryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면,
 
 #### Required 파라미터
 
-* Activity : API 호출 시점의 최상위 Activity 입니다.
+* Activity : API 호출 시점의 최상위 Activity입니다.
 * GamebaseUpdateTermsConfiguration : 서버에 등록할 유저의 선택 약관 정보입니다.
 
 #### Optional 파라미터
@@ -355,8 +355,8 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 
 | API                  | Description         |
 | -------------------- | ------------------- |
-| GamebaseTermsContent(int termsContentSeq, boolean agreed) | GamebaseTermsContent 생성자 입니다. |
-| from(GamebaseTermsContentDetail) | GamebaseTermsContentDetail 객체로부터 GamebaseTermsContent 객체를 생성하는 팩토리 메서드 입니다. |
+| GamebaseTermsContent(int termsContentSeq, boolean agreed) | GamebaseTermsContent 생성자입니다. |
+| from(GamebaseTermsContentDetail) | GamebaseTermsContentDetail 객체로부터 GamebaseTermsContent 객체를 생성하는 팩토리 메서드입니다. |
 | setAgreed(boolean) | 해당 객체의 agreed 값을 변경합니다. |
 
 | Parameter            | Mandatory(M) / Optional(O) | Values             | Description         |

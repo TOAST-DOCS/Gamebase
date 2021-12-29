@@ -117,7 +117,7 @@
         * 유저가 주간, 야간 홍보성 Push 수신에 모두 거부한 경우 PushConfiguration.pushEnabled는 false로 생성되었습니다.
     * 변경 후
         * 약관 UI가 표시되었다면 항상 null이 아닌 유효한 PushConfiguration이 리턴됩니다.
-        * showTermsView가 리턴하는 PushConfiguration 객체의 pushEnabled 값은 항상 true 입니다.
+        * showTermsView가 리턴하는 PushConfiguration 객체의 pushEnabled 값은 항상 true입니다.
     * 변경되지 않고 동일한 점
         * 이미 약관에 동의하여 약관 UI가 표시되지 않았다면 PushConfiguration은 null로 리턴됩니다.
 
@@ -136,7 +136,7 @@
 * Push 항목이 존재하는 약관에서 PushConfiguration 객체 보장
     * 약관 UI에서 Push 수신 동의를 하지 않을 경우 Gamebase.Terms.showTermsView API 호출 결과로 생성되는 PushConfiguration이 null이었으나, 약관에 Push 항목이 존재한다면 PushConfiguration 객체가 항상 리턴되도록 변경되었습니다.
     * Push 수신 거부 시 PushConfiguration 객체는 (푸시 동의 여부 = false, 광고성 푸시 동의 여부 = false, 야간 광고성 푸시 동의 여부 = false) 로 생성됩니다.
-    * 약관에 Push 항목이 존재하지 않는다면 PushConfiguration 객체는 null 입니다.
+    * 약관에 Push 항목이 존재하지 않는다면 PushConfiguration 객체는 null입니다.
 * 외부 SDK 업데이트
     * TOAST Android SDK(0.26.0)
     * Kotlin(1.5.21)

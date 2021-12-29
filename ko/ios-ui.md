@@ -11,7 +11,7 @@
 이미지 공지를 화면에 띄워 줍니다.
 
 #### Required 파라미터
-* viewController : 이미지 공지가 노출되는 ViewController 입니다.
+* viewController : 이미지 공지가 노출되는 ViewController입니다.
  
 #### Optional 파라미터
 * configuration : TCGBImageNoticeConfiguration으로 배경색 등 이미지 공지 설정을 변경할 수 있습니다.
@@ -112,13 +112,13 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 q
 > <font color="red">[주의]</font><br/>
 >
 > * 약관에 푸시 수신 동의 여부를 추가했다면, TCGBDataContainer 로부터 TCGBPushConfiguration 을 생성할 수 있습니다.
-> * PushConfiguration 은 약관창이 표시되지 않은 경우에는 nil 입니다.(약관창이 표시되었다면 항상 유효한 객체가 리턴됩니다.) 
-> * PushConfiguration.pushEnabled 값은 항상 true 입니다. 
+> * PushConfiguration 은 약관창이 표시되지 않은 경우에는 nil입니다.(약관창이 표시되었다면 항상 유효한 객체가 리턴됩니다.) 
+> * PushConfiguration.pushEnabled 값은 항상 true입니다. 
 > * TCGBPushConfiguration 이 nil 이 아니라면 **로그인 후에** [TCGBPush registerPushWithConfiguration:completion:] API 를 호출하세요.
 >
 
 #### Required 파라미터
-* viewController : 약관창이 노출되는 ViewController 입니다.
+* viewController : 약관창이 노출되는 ViewController입니다.
  
 #### Optional 파라미터
 
@@ -186,7 +186,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 >     * 콘솔에서 '기본 약관 설정' 을 하거나, **TCGB_ERROR_UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** 에러가 발생했을때는 약관을 표시하지 않도록 처리하시기 바랍니다.
 
 #### Required 파라미터
-* viewController : 최상위 ViewController 입니다.
+* viewController : 최상위 ViewController입니다.
 * completion : API 호출 결과를 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 TCGBQueryTermsResult으로 콘솔에 설정된 약관 정보를 얻을 수 있습니다.
  
 
@@ -265,7 +265,7 @@ queryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면,
 >
 
 #### Required 파라미터
-* viewController : 최상위 ViewController 입니다.
+* viewController : 최상위 ViewController입니다.
 * configuration : 서버에 등록할 유저의 선택 약관 정보입니다.
  
 #### Optional 파라미터
