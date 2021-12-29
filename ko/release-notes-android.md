@@ -7,7 +7,7 @@
 * GamebaseEventHandler의 GamebaseEventCategory에 **GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED** 타입이 추가되었습니다.
     * 이 이벤트의 활용 방법은 다음 문서를 참고하시기 바랍니다.
     * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Server Push](./aos-etc/#server-push)
-* Gamebase Access Token이 만료되어 로그인이 필요할때 동작하는 **GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler category가 추가되었습니다.
+* Gamebase Access Token이 만료되어 로그인이 필요할 때 동작하는 **GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler category가 추가되었습니다.
     * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./aos-etc/#logged-out)
 
 #### 기능 개선/변경
@@ -81,7 +81,7 @@
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트: PAYCO Android SDK(1.5.5), Hangame Android SDK(1.4.1), Weibo Android SDK(11.8.1)
-* 에뮬레이터, 루팅 단말기에서 웹뷰가 정상적으로 표시되지 않을때 재시도를 추가하여, 웹뷰가 정상적으로 표시되도록 개선하였습니다.
+* 에뮬레이터, 루팅 단말기에서 웹뷰가 정상적으로 표시되지 않을 때 재시도를 추가하여, 웹뷰가 정상적으로 표시되도록 개선하였습니다.
     * 대상은 웹뷰로 동작하는 이미지공지, 고객센터, 공통약관이 해당됩니다.
 * Weibo IdP 인증을 개선하여 안정성을 향상시켰습니다.
     * 동기 API 이지만 실제로는 비동기로 동작하여 에러를 발생시키는 API에 예외 처리, 대기, 재시도 등을 추가였습니다.

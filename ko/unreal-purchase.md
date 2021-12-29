@@ -277,7 +277,7 @@ struct FGamebasePurchasableItem
     GENERATED_USTRUCT_BODY()
     
     // Gamebase 콘솔에 등록된 상품 ID 입니다.
-    // Gamebase.Purchase.requestPurchase API 로 상품을 구매할때 사용됩니다.
+    // Gamebase.Purchase.requestPurchase API 로 상품을 구매할 때 사용됩니다.
     UPROPERTY()
     FString gamebaseProductId;
 

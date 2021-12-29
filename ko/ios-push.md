@@ -15,7 +15,7 @@
 * 위 인증서를 만들 때 설정한 비밀번호를 사용해서 등록합니다.
 
 #### Notification Service Extension 구현
-* 수신 지표 수집, 알림음 설정 등을 위해서는 [NHN Cloud Push 가이드](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-ios/#notification-service-extension)를 참고하여 어플리케이션에 **Notification Service Extension**을 구현해야 합니다.
+* 수신 지표 수집, 알림음 설정 등을 위해서는 [NHN Cloud Push 가이드](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-ios/#notification-service-extension)를 참고하여 애플리케이션에 **Notification Service Extension**을 구현해야 합니다.
 
 
 #### Xcode Project 설정

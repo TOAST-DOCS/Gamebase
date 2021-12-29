@@ -510,7 +510,7 @@ void Sample::CheckHeartbeat(const FGamebaseEventObserverData& data)
 
 #### Purchase Updated
 
-* Promotion 코드 입력을 통해 상품을 획득한 경우 발생하는 이벤트 입니다.
+* Promotion 코드 입력을 통해 상품을 획득한 경우 발생하는 이벤트입니다.
 * 결제 영수증 정보를 획득할 수 있습니다.
 
 **Example**
@@ -536,7 +536,7 @@ void Sample::AddEventHandler()
 
 #### Push Received Message
 
-* Push 메세지가 도착했을때 발생하는 이벤트 입니다.
+* Push 메세지가 도착했을때 발생하는 이벤트입니다.
 * extras 필드를 JSON으로 변환하여, Push 발송 시 전송했던 커스텀 정보를 얻을 수도 있습니다.
     * **Android**에서는 **isForeground** 필드를 통해 포그라운드에서 메세지를 수신했는지, 백그라운드에서 메세지를 수신했는지 구분할 수 있습니다.
 
@@ -584,7 +584,7 @@ void Sample::AddEventHandler()
 
 #### Push Click Message
 
-* 수신한 Push 메세지를 클릭했을때 발생하는 이벤트 입니다.
+* 수신한 Push 메세지를 클릭했을때 발생하는 이벤트입니다.
 * 'GamebaseEventCategory::PushReceivedMessage'와는 다르게 Android에서 extras 필드에 **isForeground** 정보가 존재하지 않습니다.
 
 **Example**
@@ -609,7 +609,7 @@ void Sample::AddEventHandler()
 
 #### Push Click Action
 
-* Rich Message 기능을 통해 생성한 버튼을 클릭했을때 발생하는 이벤트 입니다.
+* Rich Message 기능을 통해 생성한 버튼을 클릭했을때 발생하는 이벤트입니다.
 * actionType 은 다음 항목이 제공됩니다.
     * "OPEN_APP"
     * "OPEN_URL"
