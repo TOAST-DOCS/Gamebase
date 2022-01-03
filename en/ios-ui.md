@@ -91,7 +91,6 @@ You can call the closeImageNotices API to terminate all image notices currently 
 
 
 
-
 ## Terms
 
 Shows the Terms and Conditions specified in the Gamebase Console.
@@ -360,10 +359,10 @@ Shows a WebView.<br/>
 }
 ```
 
+![Webview Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
 
 #### Custom WebView
-Shows a customized WebView.<br/>
-Can configure a customzed WebView by using TCGBWebViewConfiguration.
+Shows a customized WebView.<br/>Can configure a customzed WebView by using TCGBWebViewConfiguration.
 
 ```objectivec
 - (void)showFixedOrientationWebView:(id)sender {

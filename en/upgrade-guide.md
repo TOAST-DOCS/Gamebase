@@ -4,9 +4,8 @@
 
 ### Android
 
-```
-Not traslated yet.
-```
+* The category for a GamebaseEventHandler event that occurs when the Gamebase Access Token expires and cannot be recovered has been changed from **GamebaseEventCategory.OBSERVER_HEARTBEAT** to **GamebaseEventCategory.LOGGED_OUT**.
+    * If you implemented the code to perform login when the GamebaseEventObserverData.code value is **GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)** in the **GamebaseEventCategory.OBSERVER_HEARTBEAT** event, change it to perform login in the **GamebaseEventCategory.LOGGED_OUT** event.
 
 ## 2.29.0 
  
@@ -82,10 +81,10 @@ android.enableIncrementalDesugaring=false
 
 #### Line IdP
 
-* When using the Line IdP, the build may fail depending on the AGP version as there is a **&lt;queries&gt;** tag inside the Line SDK
+* When using the Line IdP, the build may fail depending on the AGP version as there is a **&lt;queries&gt;** tag inside the Line SDK.
     * Please refer to the following guide to upgrade to the AGP version that can build the 'queries' tag.
     * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > Android 11](./aos-started/#android-11)
-* If you are using Line IdP, an error may occur in Manifest merger when building an application because **android:allowBackup="false"** is declared in Line SDK. If a build fails for this reason, declare **tools:replace="android:allowBackup"** in the application tag.
+* If you are using the Line IdP, an error may occur in Manifest merger when building an application because **android:allowBackup="false"** is declared in Line SDK. If a build fails for this reason, declare **tools:replace="android:allowBackup"** in the application tag as follows.
 
 ```xml
 <application
@@ -187,8 +186,8 @@ repositories {
 
 #### Line IdP
 
-* If you are using Line IdP, due to the Line SDK update, you must configure **JavaVersion.VERSION_1_8** in Gradle to succeed the build.
-* If you are using Line IdP, a fail may occur in Manifest merger when building an application because **android:allowBackup="false"** is declared in Line SDK. If a build fails for this reason, declare **tools:replace="android:allowBackup"** in the application tag.
+* If you are using Line IdP, due to the Line SDK update, you must configure **JavaVersion.VERSION_1_8** in Gradle to make the build succeed.
+
 ```groovy
 android {
     compileOptions {
@@ -196,14 +195,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    
 }
-```
-
-```xml
-<application
-      tools:replace="android:allowBackup"
-      ... >
 ```
 
 ### iOS

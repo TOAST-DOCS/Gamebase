@@ -3,18 +3,18 @@
 ### 2.32.0 (2021.12.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* GamebaseEventHandler의 GamebaseEventCategory에 **GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED** 타입이 추가되었습니다.
-    * 이 이벤트의 활용 방법은 다음 문서를 참고하시기 바랍니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Server Push](./aos-etc/#server-push)
-* Gamebase Access Token이 만료되어 로그인이 필요할때 동작하는 **GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler category가 추가되었습니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./aos-etc/#logged-out)
+#### Added Features
+* Added the **GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED** type to GamebaseEventCategory of GamebaseEventHandler.
+    * Please refer to the following document for how to use this event.
+    * [Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Server Push](./aos-etc/#server-push)
+* Added the **GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler category, which works when Gamebase Access Token expires and login is required.
+    * [Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Logged Out](./aos-etc/#logged-out)
 
-#### 기능 개선/변경
-* 웹뷰 URL이 **onestore://**로 시작하는 ONE store 딥링크가 동작하도록 웹뷰를 개선했습니다.
+#### Feature Updates
+* Improved the webview so that the ONE store deep link whose webview URL starts with **onestore://** works.
 
-#### 버그 수정
-* Gamebase Android SDK 2.31.0에서 로그아웃을 호출해도 IdP 로그아웃은 호출되지 않아 IdP 계정을 변경할 수 없는 버그를 수정했습니다.
+#### Bug Fixes
+* Fixed a bug in Gamebase Android SDK 2.31.0 where an IdP account cannot be changed because IdP logout is not called even when logout is called.
 
 ### 2.31.0 (2021.12.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Android.zip)

@@ -1264,18 +1264,19 @@ public void Login()
 
 ## Error Handling
 
-| Category | Error                                    | Error Code | Description                                    |
-| ---  | ---------------------------------------- | ---------- | ---------------------------------------- |
-| Auth | INVALID_MEMBER | 6 | Request for invalid member. |
-|      | BANNED_MEMBER | 7 | Named member has been banned. |
-|      | AUTH_USER_CANCELED | 3001 | Login is cancelled. |
-|      | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | The authentication is not supported. |
-|      | AUTH_NOT_EXIST_MEMBER | 3003 | Named member does not exist or has withdrawn. |
-|  | AUTH_EXTERNAL_LIBRARY_INITIALIZATION_ERROR | 3006 | Failed to initialize the external authentication library. |
-|      | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | Error in external authentication library. <br/>Check DetailCode and DetailMessage. |
-|  | AUTH_ALREADY_IN_PROGRESS_ERROR | 3010 | Previous authentication process is not complete.
-| TransferKey | SAME\_REQUESTOR | 8 | The issued TransferKey has been used on the same device. |
-|             | NOT\_GUEST\_OR\_HAS\_OTHERS | 9 | You have tried transferring with a non-guest account or the account is linked with a non-guest IdP. |
+| Category       | Error                                    | Error Code | Description                              |
+| -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
+| Auth           | INVALID\_MEMBER                          | 6          | Request for invalid member.                        |
+|                | BANNED\_MEMBER                           | 7          | Named member has been banned.                               |
+|                | AUTH\_USER\_CANCELED                     | 3001       | Login is cancelled.                            |
+|                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | The authentication is not supported.                        |
+|                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | Named member does not exist or has withdrawn.                      |
+|                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | Failed to initialize the external authentication library. |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | Error in external authentication library. <br/>Check DetailCode and DetailMessage.  |
+|                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | Previous authentication process is not complete. |
+|                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | You have been logged out due to an invalid Gamebase Access Token.<br/>Please try logging in again. |
+| TransferAccount| SAME\_REQUESTOR                          | 8          | The issued TransferKey has been used on the same device. |
+|                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | You have tried transferring with a non-guest account or the account is linked with a non-guest IdP. |
 |                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | The date of TransferAccount has expired. |
 |                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | You have entered a wrong TransferAccount several times, so the account transfer function has been locked. |
 |                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | Invalid TransferAccount ID. |

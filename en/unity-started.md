@@ -9,7 +9,7 @@ This guide describes the environments and initial setting of Gamebase Unity SDK.
 > 
 > Supported Unity versions
 >
-> * 2018.4.0 - 2021.2.2
+> * 2018.4.0 - 2021.2.7
 > * To support a lower version of Unity, contact [Customer Center](https://toast.com/support/inquiry).
 
 #### Android
@@ -17,7 +17,6 @@ This guide describes the environments and initial setting of Gamebase Unity SDK.
 >
 > Since August 1 of 2019, new apps on Google Play must support 64-bit architecture. 
 > [See Google Play policy and Unity versions supporting 64 bits](https://developer.android.com/distribute/best-practices/develop/64-bit#unity-developers)
-
 
 #### Supported Platforms
 
@@ -132,6 +131,7 @@ Setting Tool is provided to install Gamebase SDK easily.
 
 
 #### Update SDK
+
 1. In the top menu, select **Tools > NhnCloud > Gamebase > SettingTool > Settings**.
 2. In SDK Download, click the [Gamebase SDK] button to download the latest version of SDK.
     * If the latest SDK is already downloaded, the button is disabled.

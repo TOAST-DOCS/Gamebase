@@ -198,6 +198,14 @@ Gamebase.Push.queryTokenInfo(activity, new GamebaseDataCallback<PushConfiguratio
 | adAgreement      | boolean | Opt in to display advertisement notifications      |
 | adAgreementNight | boolean | Opt in to display night advertisement notifications  |
 
+### Event Handling
+
+* You can handle events when a push message is received or clicked.
+* For how to register event handlers, refer to the GamebaseEventHandler guide.
+    * [ Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Received Message](./aos-etc/#push-received-message)
+    * [ Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./aos-etc/#push-click-message)
+    * [ Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./aos-etc/#push-click-action)
+
 ### Error Handling
 
 | Error                          | Error Code | Description                              |
