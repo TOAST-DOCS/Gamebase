@@ -233,13 +233,14 @@ If you need to add another language set, you can add a value in the form of `"ke
     ...
     "launching_service_closed_title": "Service Closed"
   },
+  ...
   "vi": {
     "common_ok_button": "value",
     "common_cancel_button": "value",
     ...
     "launching_service_closed_title": "value"
   },
-    "ms": {}
+  "ms": {}
 }
 ```
 
@@ -251,7 +252,6 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 2. If step 1 fails, check if the language code set in the device is defined in the localizedstring.json file during the initialization of Gamebase. (This value is maintained even if the language set in the device is changed after initialization.)
 3. If step 2 fails, the default language set in the Gamebase console is set as the Display Language.
 4. If there is no language set in the Gamebase console, `en` is set as the default value.
-
 
 ### Country Code
 
@@ -329,31 +329,32 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 ```objectivec
 - (void)eventHandler_addEventHandler {
     void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
-        if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES
+        if ([message.category isEqualToString:kTCGBLoggedOut] == YES) {
+            TCGBGamebaseEventLoggedOutData* loggedOutData = [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data];
+            if (loggedOutData != nil) {
+                //TODO: process loggedOut
+            }
+        } else if ([message.category isEqualToString:kTCGBServerPushAppKickoutMessageReceived] == YES
+            || [message.category isEqualToString:kTCGBServerPushAppKickout] == YES
             || [message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
             TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
             if (serverPushData != nil) {
                 //TODO: process server push
             }
-        }
-        else if ([message.category isEqualToString:kTCGBObserverLaunching] == YES
-                 || [message.category isEqualToString:kTCGBObserverHeartbeat] == YES
-                 || [message.category isEqualToString:kTCGBObserverNetwork] == YES) {
+        } else if ([message.category isEqualToString:kTCGBObserverLaunching] == YES
+            || [message.category isEqualToString:kTCGBObserverHeartbeat] == YES
+            || [message.category isEqualToString:kTCGBObserverNetwork] == YES) {
             TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
             if (observerData != nil) {
                 //TODO: process observer
             }
-        }
-        else if ([message.category isEqualToString:kTCGBPurchaseUpdated] == YES) {
+        } else if ([message.category isEqualToString:kTCGBPurchaseUpdated] == YES) {
             
-        }
-        else if ([message.category isEqualToString:kTCGBPushReceivedMessage] == YES) {
+        } else if ([message.category isEqualToString:kTCGBPushReceivedMessage] == YES) {
             
-        }
-        else if ([message.category isEqualToString:kTCGBPushClickMessage] == YES) {
+        } else if ([message.category isEqualToString:kTCGBPushClickMessage] == YES) {
             
-        }
-        else if ([message.category isEqualToString:kTCGBPushClickAction] == YES) {
+        } else if ([message.category isEqualToString:kTCGBPushClickAction] == YES) {
             
         }
     };
@@ -363,11 +364,12 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 ```
 
 * Category is defined in the GamebaseEventCategory class.
-* In general, events can be categorized as ServerPush, Observer, Purchase, or Push; TCGBGamebaseEventMessage.data can be converted into a VO in the ways shown in the table shown below for each Category.
+* In general, events can be categorized into LoggedOut, ServerPush, Observer, Purchase, or Push. TCGBGamebaseEventMessage.data can be converted into a VO in the ways shown in the following table for each Category.
 
 | Event type | GamebaseEventCategory | VO conversion method | Remarks |
 | --------- | --------------------- | ----------- | --- |
-| ServerPush | kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
+| LoggedOut | kTCGBLoggedOut | [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data] | \- |
+| ServerPush | kTCGBServerPushAppKickoutMessageReceived<br>kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
 | Observer | kTCGBObserverLaunching<br>kTCGBObserverHeartbeat<br>kTCGBObserverNetwork | [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data] | \- |
 | Purchase - Promotion payment | kTCGBPurchaseUpdated | [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data] | \- |
 | Push - Message received | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
@@ -376,16 +378,37 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 
 #### Logged Out
 
-```
-Not translated yet
+* This event occurs when the Gamebase Access Token has expired and a login function call is required to recover the network session.
+
+**Example**
+
+```objectivec
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        [self printLogAndShowAlertWithData:[message prettyJsonString] error:nil alertTitle:@"addEventHandler Result"];
+        if ([message.category isEqualToString:kTCGBLoggedOut] == YES) {
+            TCGBGamebaseEventLoggedOutData* loggedOutData = [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data];
+            if (loggedOutData != nil) {
+                //TODO: process loggedOut
+            }
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
 ```
 
 #### Server Push
 
 * This is a message sent from the Gamebase server to the client's device.
 * The Server Push Types supported from Gamebase are as follows:
+	* kTCGBServerPushAppKickoutMessageReceived
+    	* If you register a kickout ServerPush message in **Operation > Kickout** in the NHN Cloud Gamebase console, all clients connected to Gamebase will receive a kickout message.
+        * This event occurs immediately after receiving a server message from the client device.
+        * It can be used to pause the game when the game is running, as in the case of 'Auto Play'.
 	* kTCGBServerPushAppKickout
     	* If you register a kickout ServerPush message in **Operation > Kickout** of the NHN Cloud Gamebase Console, then all clients connected to Gamebase will receive the kickout message.
+        * A pop-up is displayed when the client device receives a server message. This event occurs when the user closes this pop-up.
     * kTCGBServerPushTransferKickout
     	* If the guest account is successfully transferred to another device, the previous device receives a kickout message.
 
@@ -395,13 +418,17 @@ Not translated yet
 - (void)eventHandler_addEventHandler {
     void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
         [self printLogAndShowAlertWithData:[message prettyJsonString] error:nil alertTitle:@"addEventHandler Result"];
-        if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES) {
+        if ([message.category isEqualToString:kTCGBServerPushAppKickoutMessageReceived] == YES) {
+            TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
+            if (serverPushData != nil) {
+                //TODO: process server push 
+            }
+        } else if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES) {
             TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
             if (serverPushData != nil) {
                 //TODO: process server push
             }
-        }
-        esle if ([message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
+        } else if ([message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
             TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
             if (serverPushData != nil) {
                 //TODO: process server push
@@ -411,7 +438,6 @@ Not translated yet
     
     [TCGBGamebase addEventHandler:eventHandler];
 }
-
 ```
 
 #### Observer
@@ -473,7 +499,7 @@ Not translated yet
                     // Under maintenance.
                     break;
                 ...
-        }
+                }
             }
         }
         else if ([message.category isEqualToString:kTCGBObserverHeartbeat] == YES) {
@@ -487,7 +513,7 @@ Not translated yet
             case TCGB_ERROR_BANNED_MEMBER:
                 // You can check the banned user session in here.
                 break;
-        }
+            }
         }
         else if ([message.category isEqualToString:kTCGBObserverNetwork] == YES) {
             TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
@@ -527,10 +553,11 @@ Not translated yet
 }
 ```
 
-#### Purchase Updated
+#### Push Received Message
 
-* This event is triggered when a product is acquired by redeeming a promotion code.
-* Can acquire payment receipt information.
+
+* This event occurs when a push message is received.
+* By converting the extras field to JSON, you can also get custom information sent along with the push message.
 
 **VO**
 
@@ -562,10 +589,9 @@ Not translated yet
 }
 ```
 
-
 #### Push Click Message
 
-* This event is triggered when a received message is clicked.
+* This event is triggered when a received push message is clicked.
 
 **Example**
 
@@ -717,6 +743,7 @@ Gamebase provides features to respond to customer inquiries.
 > Associate it with the NHN Cloud Contact service to easily respond to inquiries from customers.
 > See the guide below if you want to know how to use the NHN Cloud Contact service in detail.
 > [NHN Cloud Online Contact Guide] (/Contact%20Center/ko/online-contact-overview/)
+>
 
 #### Customer Service Type
 

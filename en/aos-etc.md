@@ -37,9 +37,8 @@ The language code entered for Display Language should be one of the codes listed
 
 > [Note]
 >
-> * As the client messages of Gamebase include only English (en), Korean (ko), and Japanese (ja), if you try to set a language other than English (en), Korean (ko), or Japanese (ja), even though the language code might be listed in the table below, the value is automatically set to English (en) by default.
 > * You can manually add a language set that is not included in the Gamebase client.
-> See the **Add New Language Set** section.
+> See the **Add New Language Sets** section.
 
 #### Types of Language Codes Supported by Gamebase
 
@@ -367,7 +366,7 @@ void eventHandlerSample(Activity activity) {
 ```
 
 * Category is defined in the GamebaseEventCategory class.
-* In general, events can be categorized as ServerPush, Observer, Purchase, or Push; GamebaseEventMessage.data can be converted into a VO in the ways shown in the table shown below for each Category.
+* In general, events can be categorized into LoggedOut, ServerPush, Observer, Purchase, or Push. GamebaseEventMessage.data can be converted into a VO in the ways shown in the following table for each Category.
 
 | Event type | GamebaseEventCategory | VO conversion method | Remarks |
 | --------- | --------------------- | ----------- | --- |
@@ -379,11 +378,31 @@ void eventHandlerSample(Activity activity) {
 | Push - Message clicked | GamebaseEventCategory.PUSH_CLICK_MESSAGE | PushMessage.from(message.data) | The **isForeground** value does not exist. |
 | Push - Action clicked | GamebaseEventCategory.PUSH_CLICK_ACTION | PushAction.from(message.data) | Operates when the RichMessage button is clicked. |
 
+#### How to handle events when the application is not running
+
+* By registering GamebaseEventHandler in your custom Application class, you can handle events even when the application is not running.
+
+```java
+public class MyApplication extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        Gamebase.addEventHandler(new GamebaseEventHandler() {
+            @Override
+            public void onReceive(@NonNull GamebaseEventMessage message) {
+                // ...
+            }
+        });
+
+        // ...
+    }
+}
+```
+
 #### Logged Out
 
-```
-Not translated yet.
-```
+* This event occurs when the Gamebase Access Token has expired and a login function call is required to recover the network session.
 
 **Example**
 
@@ -420,9 +439,12 @@ void processLoggedOut(String category, GamebaseEventLoggedOutData data) {
 * This is a message sent from the Gamebase server to the client's device.
 * The Server Push Types supported from Gamebase are as follows:
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED
-        * Not translated yet.
+    	* If you register a kickout ServerPush message in **Operation > Kickout** in the NHN Cloud Gamebase console, all clients connected to Gamebase will receive a kickout message.
+        * This event occurs immediately after receiving a server message from the client device.
+        * It can be used to pause the game when the game is running, as in the case of 'Auto Play'.
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
     	* If you register a kickout ServerPush message in **Operation > Kickout** of the NHN Cloud Gamebase Console, then all clients connected to Gamebase will receive the kickout message.
+        * A pop-up is displayed when the client device receives a server message. This event occurs when the user closes this pop-up.
     * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
     	* If the guest account is successfully transferred to another device, the previous device receives a kickout message.
 

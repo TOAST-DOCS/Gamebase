@@ -178,6 +178,14 @@ You can get the push info registered with the TCGBPushTokenInfo value which come
 | ADAgreement                            | YES or NO                         | Opt in to display advertisement notifications      |
 | ADAgreementNight                       | YES or NO                         | Opt in to display night advertisement notifications  |
 
+### Event Handling
+
+* You can receive events when a push message is received or clicked.
+* For how to register event handlers, refer to the GamebaseEventHandler guide.
+    * [ Game > Gamebase > iOS SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Received Message](./ios-etc/#push-received-message)
+    * [ Game > Gamebase > iOS SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./ios-etc/#push-click-message)
+    * [ Game > Gamebase > iOS SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./ios-etc/#push-click-action)
+
 ### Error Handling
 
 | Error                                    | Error Code | Description                              |
