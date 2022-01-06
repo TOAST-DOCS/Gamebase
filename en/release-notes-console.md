@@ -1,11 +1,16 @@
 ## Game > Gamebase > Release Notes > Console
 
-### 2021. 12. 28.
+### January 11, 2022
+
+#### Feature Updates
+* Customer Center
+	* Added a feature that enables users to select a display language among the supported languages in the Customer Center
+
+### December 28, 2021
 
 #### Bug Fixes
 * Analytics > User Indicators > Inflow/Outflow
 	* Fixed an error where the numbers of new/withdrawn users were displayed as twice the actual value
-
 
 ### December 14, 2021
 
