@@ -93,7 +93,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 #### Token Authentication
 
-로그인 사용자에게 발급된 Gamebase Access Token이 유효한지를 검증합니다. Access Token이 정상이면 해당 사용자의 정보를 리턴합니다.
+로그인 유저에게 발급된 Gamebase Access Token이 유효한지를 검증합니다. Access Token이 정상이면 해당 유저의 정보를 리턴합니다.
 
 **[Method, URI]**
 
@@ -110,8 +110,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Name | Type | Value |
 | --- | --- | --- |
 | appId | String | NHN Cloud 프로젝트 ID |
-| userId | String | 로그인한 사용자 아이디 |
-| accessToken | String | 로그인한 사용자에게 발급된 Gamebase Access Token |
+| userId | String | 로그인한 유저 아이디 |
+| accessToken | String | 로그인한 유저에게 발급된 Gamebase Access Token |
 
 **[Request Parameter]**
 
@@ -164,18 +164,18 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| linkedIdP | Object | 로그인한 사용자가 사용한 IdP 정보 |
-| linkedIdP.idPCode | String | IdP 정보 <br>guest, payco, facebook 등 |
+| linkedIdP | Object | 로그인한 유저가 사용한 IdP 정보 |
+| linkedIdP.idPCode | String | [유저 인증 IdP](#identity-provider-code]) |
 | linkedIdP.idPId | String | IdP ID |
-| member.userId | String | 사용자 ID |
-| member.lastLoginDate | String | 마지막으로 로그인한 시간 ISO 8601 <br>처음 로그인한 사용자는 해당 값이 없음 |
+| member.userId | String | 유저 ID |
+| member.lastLoginDate | String | 마지막으로 로그인한 시간 ISO 8601 <br>처음 로그인한 유저는 해당 값이 없음 |
 | member.appId | String | appId |
-| member.valid | String | 로그인에 성공한 사용자의 값은 "Y" <br>(다른 값에 대한 설명은 멤버 API 참고) |
-| member.regDate | String | 사용자가 계정을 생성한 시간 |
-| authList | Array[Object] | 사용자 인증 IdP 관련 정보 |
-| authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 사용자 인증 시스템 지원 예정 |
-| authList[].idPCode | String | 사용자 인증 IdP 정보 <br>guest, payco, facebook 등 |
-| authList[].authKey | String | authSystem에서 IdP Id 별로 발급된 사용자 구분 값 |
+| member.valid | String | [유저 상태](#member-valid-code)<br>로그인에 성공한 유저 값은 "Y" |
+| member.regDate | String | 유저가 계정을 생성한 시간 |
+| authList | Array[Object] | 유저 인증 IdP 관련 정보 |
+| authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 유저 인증 시스템 지원 예정 |
+| authList[].idPCode | String | [유저 인증 IdP](#identity-provider-code]) |
+| authList[].authKey | String | authSystem에서 IdP Id 별로 발급된 유저 구분 값 |
 | temporaryWithdrawal | Object | 탈퇴 유예 관련 정보 <br>valid 가 "T" 값에서만 제공 |
 | temporaryWithdrawal.gracePeriodDate | String | 탈퇴 유예 만료 시간 ISO 8601 |
 
@@ -215,14 +215,14 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Name | Type | Value |
 | --- | --- | --- |
 | appId | String | NHN Cloud 프로젝트 ID |
-| userId | String | 로그인한 사용자 아이디 |
-| idPCode | String | 사용자 인증 IdP 정보 <br>google, payco, facebook 등 |
+| userId | String | 로그인한 유저 아이디 |
+| idPCode | String | [유저 인증 IdP](#identity-provider-code]) |
 
 **[Request Parameter]**
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| accessToken | String | mandatory | 로그인한 사용자에게 발급된 Gamebase Access Token |
+| accessToken | String | mandatory | 로그인한 유저에게 발급된 Gamebase Access Token |
 
 **[Response Body]**
 
@@ -250,9 +250,9 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| idPProfile | Map<String, Object> | 로그인한 사용자가 사용한 IdP의 프로필<br>- IdP별로 모두 응답 형태(format)가 다르다 |
-| idPToken | Object | 로그인한 사용자가 사용한 IdP의 Access Token 정보 |
-| idPToken.idPCode | String | IdP code |
+| idPProfile | Map<String, Object> | 로그인한 유저가 사용한 IdP의 프로필<br>- IdP별로 모두 응답 형태(format)가 다르다 |
+| idPToken | Object | 로그인한 유저가 사용한 IdP의 Access Token 정보 |
+| idPToken.idPCode | String | [유저 인증 IdP](#identity-provider-code]) |
 | idPToken.accessToken | String | IdP Access Token |
 <br>
 <br>
@@ -284,8 +284,8 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| osCode | Enum | true | OS 코드 <br>- AOS, IOS, WEB, WINDOWS |
-| storeCode | Enum | true | 스토어 코드 <br>- GG: Google<br>- ONESTORE<br>- AS: AppStore |
+| osCode | Enum | true | [OS 코드](#os-code) |
+| storeCode | Enum | true | [스토어 코드](#store-code]) |
 | clientVersion | String | true | 콘솔에서 설정한 클라이언트 버전 |
 
 **[Response Body]**
@@ -370,7 +370,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | status.code | int | 클라이언트 상태코드 <br><br>정상: 200 <br>업데이트 권장: 201, 업데이트 필수: 300 <br>서비스 종료: 302 <br>점검 중: 303 |
 | status.message | String | 클라이언트 상태 메시지 |
 | app | Object | 앱의 정보 |
-| app.storeCode | String | 앱 스토어코드 <br>"GG", "AS" 등 |
+| app.storeCode | String | [스토어 코드](#store-code]) |
 | app.accessInfo | Object | 콘솔 앱 화면에서 설정한 정보 |
 | app.accessInfo.serverAddress | String | 서버 주소<br>클라이언트에서 설정한 서버 주소의 우선순위가 높음. <br>클라이언트 서버 주소 미설정시, 앱 화면에서 설정한 서버 주소가 전달됨. |
 | app.accessInfo.csInfo | String | 고객 센터 정보 |
@@ -400,7 +400,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 #### Get Member
 
-단일 사용자에 대해 상세 정보를 조회합니다.
+단일 유저에 대해 상세 정보를 조회합니다.
 
 **[Method, URI]**
 
@@ -417,13 +417,13 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | Name | Type | Value |
 | --- | --- | --- |
 | appId | String | NHN Cloud 프로젝트 ID |
-| userId | String | 조회 대상 사용자 ID |
+| userId | String | 조회 대상 유저 ID |
 
 **[Request Parameter]**
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| includeMemberInfo | boolean | optional | true or false (기본값은 true) 사용자 단말기, OS 등의 상세 정보 포함 여부 |
+| includeMemberInfo | boolean | optional | true or false (기본값은 true) 유저 단말기, OS 등의 상세 정보 포함 여부 |
 
 **[Response Body]**
 ```json
@@ -471,30 +471,30 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Key | Type | Description |
 | --- | --- | --- |
-| member | Object | 조회된 사용자의 기본 정보 |
-| member.userId | String | 사용자 ID |
-| member.valid | Enum | Y: 정상 사용자 <br>D: 탈퇴된 사용자 <br>B: 이용 정지된 사용자 <br>M: 유실된 계정 <br>T: 탈퇴 유예 상태인 사용자 |
+| member | Object | 조회된 유저의 기본 정보 |
+| member.userId | String | 유저 ID |
+| member.valid | Enum | [유저 상태](#member-valid-code) |
 | member.appId | String | appId |
-| member.regDate | String | 사용자가 계정을 생성한 시간 |
-| member.lastLoginDate | String | 마지막으로 로그인한 시간 <br>처음 로그인한 사용자는 해당 값이 없음 |
-| member.authList | Array[Object] | 사용자 인증 IdP 관련 정보 |
-| member.authList[].userId | String | 사용자 ID |
-| member.authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 사용자 인증 시스템 지원 예정 |
-| member.authList[].idPCode | String | 사용자 인증 IdP 정보 <br>guest, payco, facebook 등 |
-| member.authList[].authKey | String | authSystem에서 발급된 사용자 구분 값 |
-| member.authList[].regDate | String | IdP 정보가 사용자 계정과 매핑된 시간 |
+| member.regDate | String | 유저가 계정을 생성한 시간 |
+| member.lastLoginDate | String | 마지막으로 로그인한 시간 <br>처음 로그인한 유저는 해당 값이 없음 |
+| member.authList | Array[Object] | 유저 인증 IdP 관련 정보 |
+| member.authList[].userId | String | 유저 ID |
+| member.authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 유저 인증 시스템 지원 예정 |
+| member.authList[].idPCode | String | [유저 인증 IdP](#identity-provider-code]) |
+| member.authList[].authKey | String | authSystem에서 발급된 유저 구분 값 |
+| member.authList[].regDate | String | IdP 정보가 유저 계정과 매핑된 시간 |
 | temporaryWithdrawal | Object | 탈퇴 유예 관련 정보 <br>valid 가 "T" 값에서만 제공 |
 | temporaryWithdrawal.gracePeriodDate | String | 탈퇴 유예 만료 시간 ISO 8601 |
-| memberInfo | Object | 사용자에 대한 부가 정보 |
-| memberInfo.deviceCountryCode | String | 사용자 단말기의 국가 설정 |
-| memberInfo.usmCountryCode | String | 사용자 USIM의 국가 코드 |
-| memberInfo.language | String | 사용자 언어 |
-| memberInfo.osCode | String | 사용자 단말기의 OS 종류 |
+| memberInfo | Object | 유저에 대한 부가 정보 |
+| memberInfo.deviceCountryCode | String | 유저 단말기의 국가 설정 |
+| memberInfo.usmCountryCode | String | 유저 USIM의 국가 코드 |
+| memberInfo.language | String | 유저 언어 |
+| memberInfo.osCode | String | [OS 코드](#os-code) |
 | memberInfo.telecom | String | 통신사 |
-| memberInfo.storeCode | String | store 코드 |
+| memberInfo.storeCode | String | [스토어 코드](#store-code]) |
 | memberInfo.network | String | 네트워크 환경 <br>3g, WiFi 등|
-| memberInfo.deviceModel | String | 사용자 단말기의 모델명 |
-| memberInfo.osVersion | String | 사용자 단말기의 OS 버전 |
+| memberInfo.deviceModel | String | 유저 단말기의 모델명 |
+| memberInfo.osVersion | String | 유저 단말기의 OS 버전 |
 | memberInfo.sdkVersion | String | SDK 버전 |
 | memberInfo.clientVersion | String | 클라이언트 버전 |
 
@@ -506,7 +506,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 #### Get Members
 
-다수의 사용자 정보를 간략히 조회합니다.
+다수의 유저 정보를 간략히 조회합니다.
 
 **[Method, URI]**
 
@@ -532,7 +532,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | mandatory | 조회 대상 사용자 ID |
+| Array[String] | mandatory | 조회 대상 유저 ID |
 
 **[Response Body]**
 
@@ -557,11 +557,11 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Key | Type | Description |
 | --- | --- | --- |
-| memberList | Array[Object] | 조회된 사용자의 기본 정보 |
-| memberList[].userId | String | 사용자 ID |
-| memberList[].valid | Enum | Y: 정상 사용자 <br>D: 탈퇴된 사용자 <br>B: 이용 정지된 사용자 <br>M: 유실된 계정|
+| memberList | Array[Object] | 조회된 유저의 기본 정보 |
+| memberList[].userId | String | 유저 ID |
+| memberList[].valid | Enum | [유저 상태](#member-valid-code) |
 | memberList[].appId | String | appId |
-| memberList[].regDate | String | 사용자가 계정을 생성한 시간 |
+| memberList[].regDate | String | 계정 생성 시간 |
 
 **[Error Code]**
 
@@ -571,7 +571,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 #### Get IdP Information
 
-사용자 ID로 매핑된 IdP 정보를 조회합니다.
+유저 ID로 매핑된 IdP 정보를 조회합니다.
 
 **[Method, URI]**
 
@@ -597,7 +597,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | mandatory | 조회 대상 사용자 ID |
+| Array[String] | mandatory | 조회 대상 유저 ID |
 
 **[Response Body]**
 
@@ -623,10 +623,10 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Array[Object] | 조회된 사용자의 기본 정보 <br>userId가 key, IdP 정보가 value인 object|
-| authkey | String | authSystem에서 발급된 사용자 구분 값 |
-| IdPCode | String | 사용자 인증 IdP 정보 <br>guest, payco, facebook 등 |
-| authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 사용자 인증 시스템 지원 예정 |
+| result | Array[Object] | 조회된 유저의 기본 정보 <br>userId가 key, IdP 정보가 value인 object|
+| authkey | String | authSystem에서 발급된 유저 구분 값 |
+| IdPCode | String | [유저 인증 IdP](#identity-provider-code]) |
+| authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 유저 인증 시스템 지원 예정 |
 
 **[Error Code]**
 
@@ -636,7 +636,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 #### Get UserId Information with Auth key
 
-사용자 인증 키에 매핑된 사용자 ID를 조회합니다.
+유저 인증 키에 매핑된 유저 ID를 조회합니다.
 
 **[Method, URI]**
 
@@ -658,7 +658,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| authSystem | String | mandatory | Gamebase 내부적으로 사용되는 인증 시스템 추후 사용자 인증 시스템 지원 예정 현재는 gbid |
+| authSystem | String | mandatory | Gamebase 내부적으로 사용되는 인증 시스템 추후 유저 인증 시스템 지원 예정 현재는 gbid |
 
 **[Request Body]**
 
@@ -688,7 +688,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Array[Object] | 조회된 사용자의 기본 정보 authKey가 key이고, userId가 value인 object|
+| result | Array[Object] | 조회된 유저의 기본 정보 authKey가 key이고, userId가 value인 object|
 
 **[Error Code]**
 
@@ -698,7 +698,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 #### Get UserId Information with IdP Id
 
-IdP ID로 매핑된 사용자 ID 정보를 조회합니니다.
+IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 **[Method, URI]**
 
@@ -715,7 +715,7 @@ IdP ID로 매핑된 사용자 ID 정보를 조회합니니다.
 | Name | Type | Value |
 | --- | --- | --- |
 | appId | String | NHN Cloud 프로젝트 ID |
-| idPCode | String | IdP 정보 <br>- payco, google, facebook, iosgamecenter, appleid, twitter, hangame |
+| idPCode | String | [유저 인증 IdP](#identity-provider-code]) |
 
 **[Request Body]**
 
@@ -725,7 +725,7 @@ IdP ID로 매핑된 사용자 ID 정보를 조회합니니다.
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | mandatory | 조회 대상 사용자의 IdP ID <br> 조회 대상 리스트 크기는 최대 300 |
+| Array[String] | mandatory | 조회 대상 유저의 IdP ID <br> 조회 대상 리스트 크기는 최대 300 |
 
 **[Response Body]**
 
@@ -747,7 +747,7 @@ IdP ID로 매핑된 사용자 ID 정보를 조회합니니다.
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Map<String, String> | 조회된 사용자의 ID 정보 <br>- IdP ID가 key, Gamebase userId 가 value<br>- 조회 요청한 IdP ID를 가지는 userId 정보가 없을 경우 응답 결과에 존재하지 않습니다. |
+| result | Map<String, String> | 조회된 유저의 ID 정보 <br>- IdP ID가 key, Gamebase userId 가 value<br>- 조회 요청한 IdP ID를 가지는 userId 정보가 없을 경우 응답 결과에 존재하지 않습니다. |
 
 **[Error Code]**
 
@@ -757,7 +757,7 @@ IdP ID로 매핑된 사용자 ID 정보를 조회합니니다.
 
 #### Ban Histories
 
-사용자 이용 정지 이력을 조회합니다.
+유저 이용 정지 이력을 조회합니다.
 
 **[Method, URI]**
 
@@ -854,7 +854,7 @@ IdP ID로 매핑된 사용자 ID 정보를 조회합니니다.
 | result.releaseUser | String | 이용 정지 해제 등록자 |
 | result.seq | Long | 이용 정지 내역 순번 |
 | result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
-| result.userId | String | 사용자 ID |
+| result.userId | String | 유저 ID |
 
 **[Error Code]**
 
@@ -864,7 +864,7 @@ IdP ID로 매핑된 사용자 ID 정보를 조회합니니다.
 
 #### Ban Release Histories.
 
-사용자 이용 정지 해제 이력을 조회합니다.
+유저 이용 정지 해제 이력을 조회합니다.
 
 **[Method, URI]**
 
@@ -961,7 +961,7 @@ IdP ID로 매핑된 사용자 ID 정보를 조회합니니다.
 | result.releaseUser | String | 이용 정지 해제 등록자 |
 | result.seq | Long | 이용 정지 내역 순번 |
 | result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
-| result.userId | String | 사용자 ID |
+| result.userId | String | 유저 ID |
 
 **[Error Code]**
 
@@ -1031,12 +1031,12 @@ IdP ID로 매핑된 사용자 ID 정보를 조회합니니다.
 
 | Key | Type | Description |
 | --- | --- | --- |
-| member | Object | 조회된 사용자의 기본 정보 |
-| member.userId | String | 사용자 ID |
-| member.valid | Enum | Y: 정상 사용자 <br>D: 탈퇴된 사용자 <br>B: 이용 정지된 사용자 <br>M: 유실된 계정|
+| member | Object | 조회된 유저의 기본 정보 |
+| member.userId | String | 유저 ID |
+| member.valid | Enum | [유저 상태](#member-valid-code) |
 | member.appId | String | appId |
-| member.regDate | String | 사용자가 계정을 생성한 시간 |
-| member.lastLoginDate | String | 마지막으로 로그인한 시간 <br>처음 로그인한 사용자는 해당 값이 없음 |
+| member.regDate | String | 유저가 계정을 생성한 시간 |
+| member.lastLoginDate | String | 마지막으로 로그인한 시간 <br>처음 로그인한 유저는 해당 값이 없음 |
 
 **[Error Code]**
 
@@ -1046,10 +1046,10 @@ IdP ID로 매핑된 사용자 ID 정보를 조회합니니다.
 
 #### Withdraw
 
-사용자 계정을 탈퇴 처리합니다.
+유저 계정을 탈퇴 처리합니다.
 
 > [참고]
-> SDK의 탈퇴 API를 사용하지 않고 서버 탈퇴 API를 사용하여 계정 탈퇴를 구현한 경우, 클라이언트에서는 탈퇴 성공 후 SDK의 logout API를 호출하여 캐시되어 있는 토큰 등의 데이터 삭제가 필요하다.
+> SDK의 탈퇴 API를 사용하지 않고 서버 탈퇴 API를 사용하여 계정 탈퇴를 구현한 경우, 클라이언트에서는 탈퇴 성공 후 SDK의 logout API를 호출하여 캐시되어 있는 토큰 등의 데이터 삭제가 필요합니다.
 
 **[Method, URI]**
 
@@ -1066,7 +1066,7 @@ IdP ID로 매핑된 사용자 ID 정보를 조회합니니다.
 | Name | Type | Value |
 | --- | --- | --- |
 | appId | String | NHN Cloud 프로젝트 ID |
-| userId | String | 탈퇴 대상 사용자 ID |
+| userId | String | 탈퇴 대상 유저 ID |
 
 **[Request Parameter]**
 
@@ -1199,7 +1199,7 @@ IdP ID로 매핑된 사용자 ID 정보를 조회합니니다.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| storeCode | String | optional | 콘솔에서 특정 스토어만 사용 가능하도록 쿠폰을 발급 받았다면, 스토어 코드를 전달해야 함<br>전체 스토어인 경우 ALL 또는 파라미터 생략<br>- GG: Google<br>- ONESTORE: ONE store<br>- AS: AppStore |
+| storeCode | String | optional | 콘솔에서 특정 스토어에서 설치한 앱에 대해서만 쿠폰 사용이 가능하도록 설정하였다면, 스토어 코드를 전달해야 함<br>- 전체 스토어인 경우 ALL 또는 파라미터 생략 가능<br>- [스토어 코드](#store-code]) |
 
 **[Response Body]**
 
@@ -1245,14 +1245,14 @@ IdP ID로 매핑된 사용자 ID 정보를 조회합니니다.
 
 #### Consume
 
-Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완료되었다면 유저에게 아이템 지급 및 서버 내부적으로 이력을 기록한 후에, Gmaebase에 결제를 소비를 알립니다. 결제 1건당 1번만 결제를 소비할 수 있으며 결제 상태가 정상이 아니면 소비되지 않습니다.
+Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완료되었다면 유저에게 아이템 지급 및 서버 내부적으로 이력을 기록한 후에, Gmaebase에 결제 소비를 알립니다. 결제 1건당 1번만 결제를 소비할 수 있으며 결제 상태가 정상이 아니면 소비되지 않습니다.
 
 > [참고]
 > 상품 등록 시 상품 유형이 일회성(CONSUMABLE)인 아이템 결제에 대해서만 소비(consume) 처리됩니다.
 > 결제 1건당 1번 소비 가능하며, 결제 소비를 하지 않은 결제는 IAP에서는 아이템을 지급하지 않은 것으로 간주합니다.
 
 소비(consume)하지 않은 결제 내역은 SDK 및 서버의 미소비 결제 내역 조회 API를 통해 조회할 수 있습니다. API를 통해 미소비 결재 내역이 존재하더라고, 게임서버 내부적으로 아이템 지급에 대한 이력을 가지고 있다면 게임 서버 내부 지급 이력을 우선으로 판단하면 됩니다.
-(네트워크 장애 등으로 API timeout이 발생하면 Gamebase에서는 지급 완료 처리가 되었지만, API 응답 실패로 게임 서버에서는 실제로 유저에게는 아이템 지급이 안될 수 있음)
+(네트워크 장애 등으로 API timeout이 발생하면 Gamebase에서는 지급이 완료되지만, 게임 서버에서는 API 응답 실패로 유저에게 아이템이 지급되지 않을 수 있음)
 
 > [참고]
 > 게임 내부적으로 아이템 지급 이력을 모두 관리할 수 없다면 해당 API의 request timeout을 10초 이상으로 하고, API timout 발생시 만이라도 이력을 기록하여 중복 지급 혹은 미지급 이슈에 대한 방안이 필요함
@@ -1320,7 +1320,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 | result.price | Float | 결제 가격 |
 | result.currency | String  | 결제 통화  |
 | result.productSeq | Long | 아이템 번호<br>콘솔에서 상품 등록 시, 외부 스토어 아이템에 대해 자동 생성된 값 |
-| result.marketId | String | 스토어 코드<br>GG: Google, AS: Apple, ONESTORE: 원스토어 |
+| result.marketId | String | [스토어 코드](#store-code]) |
 | result.gamebaseProductId | String | Gamebase 상품 아이디<br>콘솔에서 상품 등록 시, 사용자 입력 값 |
 | result.payload | String | SDK에서 설정한 추가 정보 |
 
@@ -1371,7 +1371,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | 스토어 코드<br>GG: Google, AS: Apple, ONESTORE: 원스토어 |
+| marketId | String | mandatory | [스토어 코드](#store-code]) |
 | userId | String | mandatory | 유저 ID  |
 
 **[Response Body]**
@@ -1417,8 +1417,8 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 | result[].currency  | String | 결제 통화  |
 | result[].price | Float | 결제 가격 |
 | result[].accessToken | String | 결제 인증 토큰 |
-| result[].marketId | String | 스토어 코드 |
-| result[].gamebaseProductId | String | Gamebase 상품 아이디<br>콘솔에서 상품 등록 시, 사용자 입력 값 |
+| result[].marketId | String | [스토어 코드](#store-code]) |
+| result[].gamebaseProductId | String | Gamebase 상품 아이디<br>콘솔에서 상품 등록 시, 유저 입력 값 |
 | result[].purchaseTime | String | 결제 발생 일시 |
 | result[].payload | String | SDK에서 설정한 추가 정보 |
 
@@ -1430,7 +1430,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 ### List Active Subscriptions
 
-유저가 현재 구독 중인 결제를 조회할 수 있습니다.
+사용자가 현재 구독 중인 결제를 조회할 수 있습니다.
 
 **[Method, URI]**
 
@@ -1464,7 +1464,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | 스토어 코드<br>GG: Google, AS: Apple, ONESTORE: 원스토어 |
+| marketId | String | mandatory | [스토어 코드](#store-code]) |
 | packageName | String | mandatory | 콘솔에 등록한 앱의 packageName |
 | userId | String | mandatory | 유저 ID  |
 
@@ -1501,7 +1501,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Array[Object] | 결제 기본 정보 |
-| result[].marketId  | String  | 스토어 코드  |
+| result[].marketId  | String  | [스토어 코드](#store-code]) |
 | result[].userId | String  | 유저 ID  |
 | result[].paymentSeq | String  | 결제 번호 |
 | result[].accessToken | String | 결제 인증 토큰 |
@@ -1535,19 +1535,19 @@ Gamebase는 NHN Cloud Leaderboard 서비스의 서버 API에 대해 **Wrapping**
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
-| Factor에 등록된 사용자 수 조회<br>- Get user count in factor | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
+| Factor에 등록된 유저 수 조회<br>- Get user count in factor | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
 | Factor 전체 수 검색<br>- Get total factor count | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factor-count | /leaderboard/v2.0/appkeys/{appKey}/factor-count |
 | Factor 정보 조회<br>- Get factor info<br>- Get multiple factor info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors | /leaderboard/v2.0/appkeys/{appKey}/factors |
-| 단일 사용자 점수/순위 조회<br>- Get single user info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
-| 다수 사용자 점수/순위 조회<br>- Get multiple user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
+| 단일 유저 점수/순위 조회<br>- Get single user info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
+| 다수 유저 점수/순위 조회<br>- Get multiple user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
 | 일정 범위의 전체 점수/순위 조회<br>- Get multiple user info by range | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
 | 특정 순위의 유저들을 검색<br>- Get selected rank user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
 | 특정 유저의 순위 및 상위, 하위 유저들의 순위 검색<br>- Get multiple user info by pivot user | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} | /leaderboard/v2.0/appkeys/{appkey}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} |
-| 단일 사용자 점수 등록<br>- Set single user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
-| 단일 사용자 점수/ExtraData 등록<br>- Set single user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
-| 다수 사용자 점수 등록<br>- Set multiple user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
-| 다수 사용자 점수/ExtraData 등록<br>- Set multiple user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
-| 사용자 Leaderboard 정보 삭제<br>- Delete single user info<br>- Delete multiple user info | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| 단일 유저 점수 등록<br>- Set single user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
+| 단일 유저 점수/ExtraData 등록<br>- Set single user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
+| 다수 유저 점수 등록<br>- Set multiple user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
+| 다수 유저 점수/ExtraData 등록<br>- Set multiple user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
+| 유저 Leaderboard 정보 삭제<br>- Delete single user info<br>- Delete multiple user info | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
 
 <br/>
 
@@ -1645,11 +1645,68 @@ X-Secret-Key: IgsaAP
 
 ## Others
 
+### OS Code
+
+유저 단말기의 OS에 대해 Gamebase 내부적으로 정의한 코드입니다.
+
+| Code | 설명 |
+| --- | --- |
+| AOS | Android |
+| IOS | iOS |
+| WEB | Web |
+| WINDOWS | Windows |
+<br/>
+
+### Store Code
+
+앱을 설치한 스토어에 대해 Gamebase 내부적으로 정의한 코드입니다.
+
+| Code | 설명 |
+| --- | --- |
+| GG | Google Play Store |
+| AS | App Store |
+| ONESTORE | ONE store |
+| GALAXY | Galaxy Store |
+<br/>
+
+### Identity Provider Code
+
+유저 인증에 사용된 Identity Provider들에 대해 Gamebaes 내부적으로 정의한 코드입니다.
+
+| Code |
+| --- |
+| guest |
+| google |
+| facebook |
+| appleid |
+| iosgamecenter |
+| payco |
+| twitter |
+| naver |
+| line |
+| hangame |
+| kakaogame |
+| weibo |
+<br/>
+
+### Member Valid Code
+
+유저의 현재 상태에 대해 Gamebaes 내부적으로 정의한 코드입니다.
+
+| Code | 설명 |
+| --- | --- |
+| Y | 정상 유저 |
+| D | 탈퇴된 유저 |
+| B | 이용 정지된 유저 |
+| T | 탈퇴 유예 상태인 유저 |
+| P | 이용 정지 유예 상태인 유저 |
+| M | 유실된 계정 |
+<br/>
+
+
 ### Support
 
 API 호출 실패 원인에 대한 문의 사항이 있을 경우, **API 호출 URL(HTTP body가 있는 경우는 body와 함께)과 그에 대한 응답 결과**를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다.
-
-
 
 ##### API 호출 예시
 
