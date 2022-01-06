@@ -165,7 +165,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Key | Type | Description |
 | --- | --- | --- |
 | linkedIdP | Object | 로그인한 유저가 사용한 IdP 정보 |
-| linkedIdP.idPCode | String | [유저 인증 IdP](#identity-provider-code]) |
+| linkedIdP.idPCode | String | [유저 인증 IdP](#identity-provider-code) |
 | linkedIdP.idPId | String | IdP ID |
 | member.userId | String | 유저 ID |
 | member.lastLoginDate | String | 마지막으로 로그인한 시간 ISO 8601 <br>처음 로그인한 유저는 해당 값이 없음 |
@@ -174,7 +174,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | member.regDate | String | 유저가 계정을 생성한 시간 |
 | authList | Array[Object] | 유저 인증 IdP 관련 정보 |
 | authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 유저 인증 시스템 지원 예정 |
-| authList[].idPCode | String | [유저 인증 IdP](#identity-provider-code]) |
+| authList[].idPCode | String | [유저 인증 IdP](#identity-provider-code) |
 | authList[].authKey | String | authSystem에서 IdP Id 별로 발급된 유저 구분 값 |
 | temporaryWithdrawal | Object | 탈퇴 유예 관련 정보 <br>valid 가 "T" 값에서만 제공 |
 | temporaryWithdrawal.gracePeriodDate | String | 탈퇴 유예 만료 시간 ISO 8601 |
@@ -216,7 +216,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | appId | String | NHN Cloud 프로젝트 ID |
 | userId | String | 로그인한 유저 아이디 |
-| idPCode | String | [유저 인증 IdP](#identity-provider-code]) |
+| idPCode | String | [유저 인증 IdP](#identity-provider-code) |
 
 **[Request Parameter]**
 
@@ -252,7 +252,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | idPProfile | Map<String, Object> | 로그인한 유저가 사용한 IdP의 프로필<br>- IdP별로 모두 응답 형태(format)가 다르다 |
 | idPToken | Object | 로그인한 유저가 사용한 IdP의 Access Token 정보 |
-| idPToken.idPCode | String | [유저 인증 IdP](#identity-provider-code]) |
+| idPToken.idPCode | String | [유저 인증 IdP](#identity-provider-code) |
 | idPToken.accessToken | String | IdP Access Token |
 <br>
 <br>
@@ -285,7 +285,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | osCode | Enum | true | [OS 코드](#os-code) |
-| storeCode | Enum | true | [스토어 코드](#store-code]) |
+| storeCode | Enum | true | [스토어 코드](#store-code) |
 | clientVersion | String | true | 콘솔에서 설정한 클라이언트 버전 |
 
 **[Response Body]**
@@ -370,7 +370,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | status.code | int | 클라이언트 상태코드 <br><br>정상: 200 <br>업데이트 권장: 201, 업데이트 필수: 300 <br>서비스 종료: 302 <br>점검 중: 303 |
 | status.message | String | 클라이언트 상태 메시지 |
 | app | Object | 앱의 정보 |
-| app.storeCode | String | [스토어 코드](#store-code]) |
+| app.storeCode | String | [스토어 코드](#store-code) |
 | app.accessInfo | Object | 콘솔 앱 화면에서 설정한 정보 |
 | app.accessInfo.serverAddress | String | 서버 주소<br>클라이언트에서 설정한 서버 주소의 우선순위가 높음. <br>클라이언트 서버 주소 미설정시, 앱 화면에서 설정한 서버 주소가 전달됨. |
 | app.accessInfo.csInfo | String | 고객 센터 정보 |
@@ -480,7 +480,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | member.authList | Array[Object] | 유저 인증 IdP 관련 정보 |
 | member.authList[].userId | String | 유저 ID |
 | member.authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 유저 인증 시스템 지원 예정 |
-| member.authList[].idPCode | String | [유저 인증 IdP](#identity-provider-code]) |
+| member.authList[].idPCode | String | [유저 인증 IdP](#identity-provider-code) |
 | member.authList[].authKey | String | authSystem에서 발급된 유저 구분 값 |
 | member.authList[].regDate | String | IdP 정보가 유저 계정과 매핑된 시간 |
 | temporaryWithdrawal | Object | 탈퇴 유예 관련 정보 <br>valid 가 "T" 값에서만 제공 |
@@ -491,7 +491,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | memberInfo.language | String | 유저 언어 |
 | memberInfo.osCode | String | [OS 코드](#os-code) |
 | memberInfo.telecom | String | 통신사 |
-| memberInfo.storeCode | String | [스토어 코드](#store-code]) |
+| memberInfo.storeCode | String | [스토어 코드](#store-code) |
 | memberInfo.network | String | 네트워크 환경 <br>3g, WiFi 등|
 | memberInfo.deviceModel | String | 유저 단말기의 모델명 |
 | memberInfo.osVersion | String | 유저 단말기의 OS 버전 |
@@ -625,7 +625,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | --- | --- | --- |
 | result | Array[Object] | 조회된 유저의 기본 정보 <br>userId가 key, IdP 정보가 value인 object|
 | authkey | String | authSystem에서 발급된 유저 구분 값 |
-| IdPCode | String | [유저 인증 IdP](#identity-provider-code]) |
+| IdPCode | String | [유저 인증 IdP](#identity-provider-code) |
 | authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 유저 인증 시스템 지원 예정 |
 
 **[Error Code]**
@@ -715,7 +715,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | Name | Type | Value |
 | --- | --- | --- |
 | appId | String | NHN Cloud 프로젝트 ID |
-| idPCode | String | [유저 인증 IdP](#identity-provider-code]) |
+| idPCode | String | [유저 인증 IdP](#identity-provider-code) |
 
 **[Request Body]**
 
@@ -1199,7 +1199,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| storeCode | String | optional | 콘솔에서 특정 스토어에서 설치한 앱에 대해서만 쿠폰 사용이 가능하도록 설정하였다면, 스토어 코드를 전달해야 함<br>- 전체 스토어인 경우 ALL 또는 파라미터 생략 가능<br>- [스토어 코드](#store-code]) |
+| storeCode | String | optional | 콘솔에서 특정 스토어에서 설치한 앱에 대해서만 쿠폰 사용이 가능하도록 설정하였다면, 스토어 코드를 전달해야 함<br>- 전체 스토어인 경우 ALL 또는 파라미터 생략 가능<br>- [스토어 코드](#store-code) |
 
 **[Response Body]**
 
@@ -1320,7 +1320,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 | result.price | Float | 결제 가격 |
 | result.currency | String  | 결제 통화  |
 | result.productSeq | Long | 아이템 번호<br>콘솔에서 상품 등록 시, 외부 스토어 아이템에 대해 자동 생성된 값 |
-| result.marketId | String | [스토어 코드](#store-code]) |
+| result.marketId | String | [스토어 코드](#store-code) |
 | result.gamebaseProductId | String | Gamebase 상품 아이디<br>콘솔에서 상품 등록 시, 사용자 입력 값 |
 | result.payload | String | SDK에서 설정한 추가 정보 |
 
@@ -1371,7 +1371,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | [스토어 코드](#store-code]) |
+| marketId | String | mandatory | [스토어 코드](#store-code) |
 | userId | String | mandatory | 유저 ID  |
 
 **[Response Body]**
@@ -1417,7 +1417,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 | result[].currency  | String | 결제 통화  |
 | result[].price | Float | 결제 가격 |
 | result[].accessToken | String | 결제 인증 토큰 |
-| result[].marketId | String | [스토어 코드](#store-code]) |
+| result[].marketId | String | [스토어 코드](#store-code) |
 | result[].gamebaseProductId | String | Gamebase 상품 아이디<br>콘솔에서 상품 등록 시, 유저 입력 값 |
 | result[].purchaseTime | String | 결제 발생 일시 |
 | result[].payload | String | SDK에서 설정한 추가 정보 |
@@ -1464,7 +1464,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | [스토어 코드](#store-code]) |
+| marketId | String | mandatory | [스토어 코드](#store-code) |
 | packageName | String | mandatory | 콘솔에 등록한 앱의 packageName |
 | userId | String | mandatory | 유저 ID  |
 
@@ -1501,7 +1501,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Array[Object] | 결제 기본 정보 |
-| result[].marketId  | String  | [스토어 코드](#store-code]) |
+| result[].marketId  | String  | [스토어 코드](#store-code) |
 | result[].userId | String  | 유저 ID  |
 | result[].paymentSeq | String  | 결제 번호 |
 | result[].accessToken | String | 결제 인증 토큰 |
@@ -1673,20 +1673,18 @@ X-Secret-Key: IgsaAP
 
 유저 인증에 사용된 Identity Provider들에 대해 Gamebaes 내부적으로 정의한 코드입니다.
 
-| Code |
-| --- |
-| guest |
-| google |
-| facebook |
-| appleid |
-| iosgamecenter |
-| payco |
-| twitter |
-| naver |
-| line |
-| hangame |
-| kakaogame |
-| weibo |
+- guest
+- google
+- facebook
+- appleid
+- iosgamecenter
+- payco
+- hangame
+- twitter
+- naver
+- line
+- kakaogame
+- weibo
 <br/>
 
 ### Member Valid Code
