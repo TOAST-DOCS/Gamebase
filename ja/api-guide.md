@@ -165,7 +165,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Key | Type | Description |
 | --- | --- | --- |
 | linkedIdP | Object | ログインしたユーザーが使用したIdP情報 |
-| linkedIdP.idPCode | String | [ユーザー認証IdP](#identity-provider-code]) |
+| linkedIdP.idPCode | String | [ユーザー認証IdP](#identity-provider-code) |
 | linkedIdP.idPId | String | IdP ID |
 | member.userId | String |ユーザーID |
 | member.lastLoginDate | String | 最後にログインした時間<br>はじめてログインしたユーザーは、該当する値なし |
@@ -174,7 +174,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | member.regDate | String | ユーザーがアカウントを作成した時間 |
 | authList | Array[Object] |ユーザー認証IdP関連の情報 |
 | authList[].authSystem | String | Gamebase内部で使用される認証システム<br>今後、ユーザー認証システムを実装する予定 |
-| authList[].idPCode | String | [ユーザー認証IdP](#identity-provider-code]) |
+| authList[].idPCode | String | [ユーザー認証IdP](#identity-provider-code) |
 | authList[].authKey | String | authSystemから発行されたユーザーを区別する値 |
 | temporaryWithdrawal | Object | 退会猶予関連情報 <br>validが"T"値でのみ提供 |
 | temporaryWithdrawal.gracePeriodDate | String | 退会猶予満了時間ISO 8601 |
@@ -218,7 +218,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | appId | String | NHN CloudプロジェクトID |
 | userId | String | ログインしたユーザーID |
-| idPCode | String | [ユーザー認証IdP](#identity-provider-code]) |
+| idPCode | String | [ユーザー認証IdP](#identity-provider-code) |
 
 **[Request Parameter]**
 
@@ -254,7 +254,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | idPProfile | Map<String, Object> | ログインしたユーザーが使用したIdPのプロフィール<br>- IdPごとに全てのレスポンス形式(format)が異なる |
 | idPToken | Object | ログインしたユーザーが使用したIdPのAccess Token情報 |
-| idPToken.idPCode | String | [ユーザー認証IdP](#identity-provider-code]) |
+| idPToken.idPCode | String | [ユーザー認証IdP](#identity-provider-code) |
 | idPToken.accessToken | String | IdP Access Token |
 
 **[Error Code]**
@@ -292,7 +292,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | osCode | Enum | true | [OSコード](#os-code) |
-| storeCode | Enum | true | [ストアコード](#store-code]) |
+| storeCode | Enum | true | [ストアコード](#store-code) |
 | clientVersion | String | true | クライアントバージョン |
 
 **[Response Body]**
@@ -377,7 +377,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | status.code | int | クライアントステータスコード <br><br>正常：200 <br>アップデート推奨：201、アップデート必須：300 <br>サービス終了：302 <br>メンテナンス中：303 |
 | status.message | String | クライアントステータスメッセージ |
 | app | Object | アプリ情報 |
-| app.storeCode | String | [ストアコード](#store-code]) |
+| app.storeCode | String | [ストアコード](#store-code) |
 | app.accessInfo | Object | コンソールアプリ画面で設定した情報 |
 | app.accessInfo.serverAddress | String | サーバーアドレス<br>クライアントで設定したサーバーアドレスの優先順位が高い。<br>クライアントサーバーアドレスが未設定の時は、アプリ画面で設定したサーバーアドレスが伝達される。|
 | app.accessInfo.csInfo | String | サポート情報 |
@@ -491,7 +491,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | member.authList | Array[Object] |ユーザー認証IdP関連の情報 |
 | member.authList[].userId | String |ユーザーID |
 | member.authList[].authSystem | String | Gamebase内部で使用される認証システム<br>今後ユーザー認証システム実装予定 |
-| member.authList[].idPCode | String | [ユーザー認証IdP](#identity-provider-code]) |
+| member.authList[].idPCode | String | [ユーザー認証IdP](#identity-provider-code) |
 | member.authList[].authKey | String | authSystemから発行された、ユーザーを区別する値 |
 | member.authList[].regDate | String | IdP情報がユーザーアカウントとマッピングされた時間 |
 | temporaryWithdrawal | Object | 退会猶予関連情報 <br>validが"T"値でのみ提供 |
@@ -502,7 +502,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | memberInfo.language | String | ユーザー言語 |
 | memberInfo.osCode | String | [OSコード](#os-code) |
 | memberInfo.telecom | String | 通信キャリア |
-| memberInfo.storeCode | String | [ストアコード](#store-code]) |
+| memberInfo.storeCode | String | [ストアコード](#store-code) |
 | memberInfo.network | String | ネットワーク環境<br>3g、Wi-Fiなど|
 | memberInfo.deviceModel | String |ユーザー端末のモデル名 |
 | memberInfo.osVersion | String |ユーザー端末のOSバージョン |
@@ -636,7 +636,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | result | Array[Object] | 照会されたユーザーの基本情報 <br>userIdがkey、IdP情報がvalueのobject|
 | authkey | String | authSystemから発行された、ユーザーを区別する値 |
-| IdPCode | String | [ユーザー認証IdP](#identity-provider-code]) |
+| IdPCode | String | [ユーザー認証IdP](#identity-provider-code) |
 | authSystem | String | Gamebase内部で使用される認証システム<br>今後ユーザー認証実装予定 |
 
 **[Error Code]**
@@ -726,7 +726,7 @@ Check common requirements.
 | Name | Type | Value |
 | --- | --- | --- |
 | appId | String | NHN Cloud project ID |
-| idPCode | String | [ユーザー認証IdP](#identity-provider-code]) |
+| idPCode | String | [ユーザー認証IdP](#identity-provider-code) |
 
 **[Request Body]**
 
@@ -1211,7 +1211,7 @@ Consoleを通して発行されたクーポンコードに対して、有効性�
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| storeCode | String | optional | コンソールで特定ストアからインストールしたアプリのみクーポンを使用できるように設定した場合、ストアコードを伝達する必要があります。<br>- 全てのストアの場合はALLまたはパラメータ省略可能<br>- [ストアコード](#store-code]) |
+| storeCode | String | optional | コンソールで特定ストアからインストールしたアプリのみクーポンを使用できるように設定した場合、ストアコードを伝達する必要があります。<br>- 全てのストアの場合はALLまたはパラメータ省略可能<br>- [ストアコード](#store-code) |
 
 **[Response Body]**
 
@@ -1332,7 +1332,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 | result.price | Long | 決済価格 |
 | result.currency  | String  | 決済通貨 |
 | result.productSeq | Long | 決済アイテム番号(consoleに登録されたアイテム固有番号) |
-| result.marketId | String | [ストアコード](#store-code]) |
+| result.marketId | String | [ストアコード](#store-code) |
 | result.gamebaseProductId | String | Gamebase商品ID<br>コンソールで商品登録時にユーザーが入力した値 |
 | result.payload | String | SDKで設定した追加情報 |
 
@@ -1383,7 +1383,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | [ストアコード](#store-code]) |
+| marketId | String | mandatory | [ストアコード](#store-code) |
 | userId | String | mandatory  | ユーザーID  |
 
 **[Response Body]**
@@ -1429,7 +1429,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 | result[].currency  | String  | 決済通貨 |
 | result[].price | Float | 決済価格 |
 | result[].accessToken | String | 決済認証トークン |
-| result[].marketId | String | [ストアコード](#store-code]) |
+| result[].marketId | String | [ストアコード](#store-code) |
 | result[].gamebaseProductId | String | Gamebase商品ID<br>コンソールに商品登録した時にユーザーが入力した値 |
 | result[].purchaseTime | String | 決済発生日時 |
 | result[].payload | String | SDKで設定した追加情報 |
@@ -1476,7 +1476,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | [ストアコード](#store-code]) |
+| marketId | String | mandatory | [ストアコード](#store-code) |
 | packageName | String | mandatory | コンソールに登録したアプリのpackageName |
 | userKey | String | mandatory  | ユーザーID  |
 
@@ -1513,7 +1513,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Array[Object] | 決済基本情報 |
-| result[].marketId  | String  | [ストアコード](#store-code]) |
+| result[].marketId  | String  | [ストアコード](#store-code) |
 | result[].userId  | String  | ユーザーID  |
 | result[].paymentSeq | String  | 決済番号 |
 | result[].accessToken | String | 決済認証トークン |
@@ -1684,20 +1684,18 @@ X-Secret-Key: IgsaAP
 
 ユーザー認証に使用されたIdentity ProviderについてGamebaes内部で定義したコードです。
 
-| Code |
-| --- |
-| guest |
-| google |
-| facebook |
-| appleid |
-| iosgamecenter |
-| payco |
-| twitter |
-| naver |
-| line |
-| hangame |
-| kakaogame |
-| weibo |
+- guest
+- google
+- facebook
+- appleid
+- iosgamecenter
+- payco
+- twitter
+- naver
+- line
+- hangame
+- kakaogame
+- weibo
 <br/>
 
 ### Member Valid Code
