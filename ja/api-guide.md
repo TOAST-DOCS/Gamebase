@@ -1717,7 +1717,7 @@ X-Secret-Key: IgsaAP
 
 ### Support
 
-API呼び出しが失敗した原因について質問がある場合、**API呼び出しURL(HTTP bodyがある場合はbodyと一緒に)とそれに対するレスポンス結果**を[サポート](https://toast.com/support/inquiry)に送ってください。できるだけ早く回答させていただきます。
+API呼び出し失敗の原因に対するお問い合わせがある場合、**API呼び出しURL(HTTP bodyがある場合は、bodyと一緒に)とそれに対するレスポンス結果**を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。
 
 <br>
 
