@@ -107,14 +107,14 @@ void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebase가 초기화되어 있지 않습니다. |
-| LAUNCHING\_SERVER\_ERROR(2001) | 런칭서버가 내려준 항목에 약관 관련 내용이 없는 경우에 발생하는 에러입니다.<br/>정상적인 상황이 아니므로 Gamebase 담당자에게 문의해주시기 바랍니다. |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 이전에 호출된 Terms API 가 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
-| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW(6925) | 약관 웹뷰가 아직 종료되지 않았는데 다시 호출되었습니다. |
-| WEBVIEW\_TIMEOUT(7002) | 약관 웹뷰 표시 중 타임아웃이 발생했습니다. |
-| WEBVIEW\_HTTP\_ERROR(7003) | 약관 웹뷰 오픈 중 HTTP 에러가 발생하였습니다. |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
+| LAUNCHING\_SERVER\_ERROR | 2001 | 런칭서버가 내려준 항목에 약관 관련 내용이 없는 경우에 발생하는 에러입니다.<br/>정상적인 상황이 아니므로 Gamebase 담당자에게 문의해주시기 바랍니다. |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 이전에 호출된 Terms API 가 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
+| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925 | 약관 웹뷰가 아직 종료되지 않았는데 다시 호출되었습니다. |
+| WEBVIEW\_TIMEOUT | 7002 | 약관 웹뷰 표시 중 타임아웃이 발생했습니다. |
+| WEBVIEW\_HTTP\_ERROR | 7003 | 약관 웹뷰 오픈 중 HTTP 에러가 발생하였습니다. |
 
 **Example**
 
@@ -173,11 +173,11 @@ void QueryTerms(const FGamebaseQueryTermsResultDelegate& onCallback);
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebase가 초기화되어 있지 않습니다. |
-| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE(6921) | 약관 정보가 콘솔에 등록되어 있지 않습니다. |
-| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY(6922) | 단말기 국가코드에 맞는 약관 정보가 콘솔에 등록되어 있지 않습니다. |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
+| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE | 6921 | 약관 정보가 콘솔에 등록되어 있지 않습니다. |
+| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY | 6922 | 단말기 국가코드에 맞는 약관 정보가 콘솔에 등록되어 있지 않습니다. |
 
 **Example**
 
@@ -257,11 +257,11 @@ void UpdateTerms(const FGamebaseUpdateTermsConfiguration& configuration, const F
 
 **ErrorCode**
 
-| Error Code | Description |
+| Error | Error Code | Description |
 | --- | --- |
-| NOT\_INITIALIZED(1) | Gamebase가 초기화되어 있지 않습니다. |
-| UI\_TERMS\_UNREGISTERED\_SEQ(6923) | 등록되지 않은 약관 Seq 값을 설정하였습니다. |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 이전에 호출된 Terms API 가 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
+| NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
+| UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | 등록되지 않은 약관 Seq 값을 설정하였습니다. |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 이전에 호출된 Terms API 가 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
 
 
 **Example**

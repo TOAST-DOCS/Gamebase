@@ -8,7 +8,12 @@
     * **GamebaseEventCategory.OBSERVER_HEARTBEAT** 이벤트에서 GamebaseEventObserverData.code 값이 **GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)**일 때 로그인 하도록 구현했다면 **GamebaseEventCategory.LOGGED_OUT** 이벤트에서 로그인을 하도록 변경하시기 바랍니다.
 
 ## 2.29.0 
- 
+
+### iOS
+
+* Xcode 최소 지원 버전이 12에서 13으로 변경되었습니다.
+  * Xcode 12에서 아카이브 빌드를 하면 에러가 발생합니다. Xcode 13으로 업데이트하시기 바랍니다.
+
 ### Unity 
  
 * Setting Tool 2.0.0이 배포되었습니다.

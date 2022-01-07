@@ -1,5 +1,12 @@
 ## Game > Gamebase > 릴리스 노트 > iOS
 
+### 2.32.1 (2022.01.11)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.1/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 업데이트 권장 팝업의 '지금 업데이트' 버튼 클릭 시 팝업이 종료되지 않도록 수정하였습니다.
+* SDK 안정성을 개선하였습니다.
+
 ### 2.32.0 (2021.12.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-iOS.zip)
 
@@ -8,6 +15,9 @@
     * [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Server Push](./ios-etc/#server-push)
 * GamebaseEventHandler의 GamebaseEventCategory에 **kTCGBLoggedOut** 타입이 추가되었습니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./ios-etc/#logged-out)
+
+#### 버그 수정
+* Hangame 로그아웃 호출 시, thirdIdP도 로그아웃 되도록 수정하였습니다.
 
 #### 기능 개선/변경
 * 웹뷰 navigationBar의 기본 타이틀 색상이 **UIColor.white**로 변경되었습니다.
@@ -45,6 +55,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경
+* Xcode 최소 지원 버전이 12에서 13으로 변경되었습니다. 
 * 외부 SDK 업데이트: TOAST iOS SDK(0.29.1), ToastGamebaseIAP SDK(0.12.1)
 * 콘솔에 등록한 점검 및 공지 자세히 보기의 URL을 인코딩하지 않고 화면에 출력하도록 변경되었습니다.
 
