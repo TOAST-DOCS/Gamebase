@@ -158,4 +158,4 @@
 |         | 1100                  | Missing required parameter or sent invalid parameter |
 |         | 5032                  | Send invalid type of Json data |
 |         | 9999                  | UNKNOWN ERROR |
-|         | -4001002              | Invalid Gambase product |
+|         | -4001002              | Invalid Gamebase product |
