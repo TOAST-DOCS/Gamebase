@@ -43,9 +43,9 @@ APIを呼び出す際には、HTTP Headerに次の項目を設定する必要が
 
 | Name | Required | Value |
 | --- | --- | --- |
-| Content-Type | mandatory | application/json; charset=UTF-8 |
-| X-Secret-Key | mandatory |SecretKey 説明参考 |
-| X-TCGB-Transaction-Id | optional | TransactionId 説明参考 |
+| Content-Type | Required | application/json; charset=UTF-8 |
+| X-Secret-Key | Required |SecretKey 説明参考 |
+| X-TCGB-Transaction-Id | Optional | TransactionId 説明参考 |
 
 #### API Response
 
@@ -117,7 +117,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| linkedIdP | boolean | optional | true or false(デフォルトはfalse) <br>Access Tokenの発行を受ける際に使用された、IdP関連の情報が含まれているかどうか |
+| linkedIdP | boolean | Optional | true or false(デフォルトはfalse) <br>Access Tokenの発行を受ける際に使用された、IdP関連の情報が含まれているかどうか |
 
 **[Response Body]**
 
@@ -224,7 +224,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| accessToken | String | mandatory | ログインしたユーザーに発行されたGamebase Access Token |
+| accessToken | String | Required | ログインしたユーザーに発行されたGamebase Access Token |
 
 **[Response Body]**
 
@@ -434,7 +434,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| includeMemberInfo | boolean | optional | true or false(デフォルトはtrue) <br>ユーザー端末、OSなどの詳細情報を含むかどうか |
+| includeMemberInfo | boolean | Optional | true or false(デフォルトはtrue) <br>ユーザー端末、OSなどの詳細情報を含むかどうか |
 
 **[Response Body]**
 ```json
@@ -543,7 +543,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | mandatory | 照会対象のユーザーID|
+| Array[String] | Required | 照会対象のユーザーID|
 
 **[Response Body]**
 
@@ -608,7 +608,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | mandatory | 照会対象のユーザーID |
+| Array[String] | Required | 照会対象のユーザーID |
 
 **[Response Body]**
 
@@ -669,7 +669,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| authSystem | String | mandatory | Gamebase内部で使用される認証システム<br>今後ユーザー認証システム実装予定 <br>現在はgbid |
+| authSystem | String | Required | Gamebase内部で使用される認証システム<br>今後ユーザー認証システム実装予定 <br>現在はgbid |
 
 **[Request Body]**
 
@@ -679,7 +679,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | mandatory | authSystemから発行されたauthKey |
+| Array[String] | Required | authSystemから発行されたauthKey |
 
 **[Response Body]**
 
@@ -736,7 +736,7 @@ Check common requirements.
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | mandatory | 照会対象ユーザーのIdP ID <br> 照会対象リストサイズは最大300 |
+| Array[String] | Required | 照会対象ユーザーのIdP ID <br> 照会対象リストサイズは最大300 |
 
 **[Response Body]**
 
@@ -790,10 +790,10 @@ Check common requirements.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | mandatory | 利用停止履歴照会開始時間(ISO 8601標準時間、UTF-8エンコード必要) <br>例) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | mandatory | 利用停止履歴照会終了時間(ISO 8601標準時間、UTF-8エンコード必要) <br>beginとendの間の時間に利用停止した場合、照会結果に存在 |
-| page | String | optional | 照会するページ。0から開始 |
-| size | String | optional | 1ページ当たりのデータ数 |
+| begin | String | Required | 利用停止履歴照会開始時間(ISO 8601標準時間、UTF-8エンコード必要) <br>例) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | Required | 利用停止履歴照会終了時間(ISO 8601標準時間、UTF-8エンコード必要) <br>beginとendの間の時間に利用停止した場合、照会結果に存在 |
+| page | String | Optional | 照会するページ。0から開始 |
+| size | String | Optional | 1ページ当たりのデータ数 |
 
 **[Response Body]**
 
@@ -897,10 +897,10 @@ Check common requirements.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | mandatory | 利用停止解除履歴照会開始時間(ISO 8601標準時間、UTF-8エンコード必要) <br>例) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | mandatory | 利用停止解除履歴照会終了時間(ISO 8601標準時間、UTF-8エンコード必要) <br>beginとendの間の時間に利用停止が解除された場合、照会結果に存在 |
-| page | String | optional | 照会するページ。0から開始 |
-| size | String | optional | 1ページ当たりのデータ数 |
+| begin | String | Required | 利用停止解除履歴照会開始時間(ISO 8601標準時間、UTF-8エンコード必要) <br>例) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | Required | 利用停止解除履歴照会終了時間(ISO 8601標準時間、UTF-8エンコード必要) <br>beginとendの間の時間に利用停止が解除された場合、照会結果に存在 |
+| page | String | Optional | 照会するページ。0から開始 |
+| size | String | Optional | 1ページ当たりのデータ数 |
 
 **[Response Body]**
 
@@ -1084,7 +1084,7 @@ Check common requirements.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| regUser | String | mandatory | 退会をリクエストしたシステムまたはユーザー情報 <br> - この情報はConsole > 「メンバー」ページの「退会履歴」画面で確認可能 <br> - 退会履歴画面は退会した利用者の照会時にのみ表示される |
+| regUser | String | Required | 退会をリクエストしたシステムまたはユーザー情報 <br> - この情報はConsole > 「メンバー」ページの「退会履歴」画面で確認可能 <br> - 退会履歴画面は退会した利用者の照会時にのみ表示される |
 
 **[Request Body]**
 
@@ -1174,7 +1174,7 @@ Check common requirements.
 | maintenances.endDate | String | メンテナンス終了時間。ISO 8601 |
 | maintenances.url | String | 詳細なメンテナンスURL |
 | maintenances.message | String | メンテナンスメッセージ |
-| maintenances.targetStores | Array[Enum] | 特定のクライアントに対してのみメンテナンスを設定した時、メンテナンスが設定されたクライアントのストアコード<br>- GG：Google<br>- ONESTORE<br>- AS：AppStore |
+| maintenances.targetStores | Array[Enum] | 特定のクライアントに対してのみメンテナンスを設定した時、メンテナンスが設定されたクライアントの[ストアコード](#store-code) |
 
 **[Error Code]**
 
@@ -1211,7 +1211,7 @@ Consoleを通して発行されたクーポンコードに対して、有効性�
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| storeCode | String | optional | コンソールで特定ストアからインストールしたアプリのみクーポンを使用できるように設定した場合、ストアコードを伝達する必要があります。<br>- 全てのストアの場合はALLまたはパラメータ省略可能<br>- [ストアコード](#store-code) |
+| storeCode | String | Optional | コンソールで特定ストアからインストールしたアプリのみクーポンを使用できるように設定した場合、ストアコードを伝達する必要があります。<br>- 全てのストアの場合はALLまたはパラメータ省略可能<br>- [ストアコード](#store-code) |
 
 **[Response Body]**
 
@@ -1300,8 +1300,8 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| paymentSeq | String | mandatory | 決済番号 |
-| accessToken | String | mandatory  | 決済認証トークン(ログイン認証トークンではない)  |
+| paymentSeq | String | Required | 決済番号 |
+| accessToken | String | Required  | 決済認証トークン(ログイン認証トークンではない)  |
 
 > [参考]
 > クライアントでrequestPurchase APIを呼び出した時、返されたpurchaseTokenの値がaccessTokenに使用
@@ -1383,8 +1383,8 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | [ストアコード](#store-code) |
-| userId | String | mandatory  | ユーザーID  |
+| marketId | String | Required | [ストアコード](#store-code) |
+| userId | String | Required  | ユーザーID  |
 
 **[Response Body]**
 
@@ -1476,9 +1476,9 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | [ストアコード](#store-code) |
-| packageName | String | mandatory | コンソールに登録したアプリのpackageName |
-| userKey | String | mandatory  | ユーザーID  |
+| marketId | String | Required | [ストアコード](#store-code) |
+| packageName | String | Required | コンソールに登録したアプリのpackageName |
+| userKey | String | Required  | ユーザーID  |
 
 **[Response Body]**
 
@@ -1682,7 +1682,7 @@ X-Secret-Key: IgsaAP
 
 ### Identity Provider Code
 
-ユーザー認証に使用されたIdentity ProviderについてGamebaes内部で定義したコードです。
+ユーザー認証に使用されたIdentity ProviderについてGamebase内部で定義したコードです。
 
 - guest
 - google
@@ -1700,7 +1700,7 @@ X-Secret-Key: IgsaAP
 
 ### Member Valid Code
 
-ユーザーの現在状態についてGamebaes内部で定義したコードです。
+ユーザーの現在状態についてGamebase内部で定義したコードです。
 
 | Code | 説明 |
 | --- | --- |

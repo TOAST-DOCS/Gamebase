@@ -43,9 +43,9 @@ API 호출 시 HTTP Header에 다음 항목들을 설정해야 합니다.
 
 | Name | Required | Value |
 | --- | --- | --- |
-| Content-Type | mandatory | application/json; charset=UTF-8 |
-| X-Secret-Key | mandatory |SecretKey 설명 참고 |
-| X-TCGB-Transaction-Id | optional | TransactionId 설명 참고 |
+| Content-Type | Required | application/json; charset=UTF-8 |
+| X-Secret-Key | Required |SecretKey 설명 참고 |
+| X-TCGB-Transaction-Id | Optional | TransactionId 설명 참고 |
 
 #### API Response
 
@@ -117,7 +117,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| linkedIdP | boolean | optional | true or false (기본값은 false) Access Token을 발급받을 때 사용된, IdP 관련 정보 포함 여부 |
+| linkedIdP | boolean | Optional | true or false (기본값은 false) Access Token을 발급받을 때 사용된, IdP 관련 정보 포함 여부 |
 
 **[Response Body]**
 
@@ -222,7 +222,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| accessToken | String | mandatory | 로그인한 유저에게 발급된 Gamebase Access Token |
+| accessToken | String | Required | 로그인한 유저에게 발급된 Gamebase Access Token |
 
 **[Response Body]**
 
@@ -423,7 +423,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| includeMemberInfo | boolean | optional | true or false (기본값은 true) 유저 단말기, OS 등의 상세 정보 포함 여부 |
+| includeMemberInfo | boolean | Optional | true or false (기본값은 true) 유저 단말기, OS 등의 상세 정보 포함 여부 |
 
 **[Response Body]**
 ```json
@@ -532,7 +532,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | mandatory | 조회 대상 유저 ID |
+| Array[String] | Required | 조회 대상 유저 ID |
 
 **[Response Body]**
 
@@ -597,7 +597,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | mandatory | 조회 대상 유저 ID |
+| Array[String] | Required | 조회 대상 유저 ID |
 
 **[Response Body]**
 
@@ -658,7 +658,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| authSystem | String | mandatory | Gamebase 내부적으로 사용되는 인증 시스템 추후 유저 인증 시스템 지원 예정 현재는 gbid |
+| authSystem | String | Required | Gamebase 내부적으로 사용되는 인증 시스템 추후 유저 인증 시스템 지원 예정 현재는 gbid |
 
 **[Request Body]**
 
@@ -668,7 +668,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | mandatory | authSystem에서 발급된 authKey |
+| Array[String] | Required | authSystem에서 발급된 authKey |
 
 **[Response Body]**
 
@@ -725,7 +725,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | mandatory | 조회 대상 유저의 IdP ID <br> 조회 대상 리스트 크기는 최대 300 |
+| Array[String] | Required | 조회 대상 유저의 IdP ID <br> 조회 대상 리스트 크기는 최대 300 |
 
 **[Response Body]**
 
@@ -779,10 +779,10 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | mandatory | 이용 정지 이력 조회 시작 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | mandatory | 이용 정지 이력 조회 종료 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용정지가 되었다면 조회 결과에 존재 |
-| page | String | optional | 조회하고자 하는 페이지. 0부터 시작 |
-| size | String | optional | 한 페이지당 데이터 개수 |
+| begin | String | Required | 이용 정지 이력 조회 시작 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | Required | 이용 정지 이력 조회 종료 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용정지가 되었다면 조회 결과에 존재 |
+| page | String | Optional | 조회하고자 하는 페이지. 0부터 시작 |
+| size | String | Optional | 한 페이지당 데이터 개수 |
 
 **[Response Body]**
 
@@ -886,10 +886,10 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | mandatory | 이용 정지 해제 이력 조회 시작 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | mandatory | 이용 정지 해제 이력 조회 종료 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용정지가 해제 되었다면 조회 결과에 존재 |
-| page | String | optional | 조회하고자 하는 페이지. 0부터 시작 |
-| size | String | optional | 한 페이지당 데이터 개수 |
+| begin | String | Required | 이용 정지 해제 이력 조회 시작 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | Required | 이용 정지 해제 이력 조회 종료 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용정지가 해제 되었다면 조회 결과에 존재 |
+| page | String | Optional | 조회하고자 하는 페이지. 0부터 시작 |
+| size | String | Optional | 한 페이지당 데이터 개수 |
 
 **[Response Body]**
 
@@ -1072,7 +1072,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| regUser | String | mandatory | 탈퇴를 요청한 시스템 혹은 사용자 정보 <br> - 해당 정보는 Console > '멤버' 페이지의 '탈퇴 이력' 화면에서 확인 가능 |
+| regUser | String | Required | 탈퇴를 요청한 시스템 혹은 사용자 정보 <br> - 해당 정보는 Console > '멤버' 페이지의 '탈퇴 이력' 화면에서 확인 가능 |
 
 **[Request Body]**
 
@@ -1162,7 +1162,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | maintenances.endDate | String | 점검 종료 시간. ISO 8601 |
 | maintenances.url | String | 상세 점검 URL |
 | maintenances.message | String | 점검 메시지 |
-| maintenances.targetStores | Array[Enum] | 특정 클라이언트에 대해서만 점검을 설정했을 때 점검 설정된 클라이언트의 스토어 코드<br>- GG: Google<br>- ONESTORE<br>- AS: AppStore |
+| maintenances.targetStores | Array[Enum] | 특정 클라이언트에 대해서만 점검을 설정했을 때 점검 설정된 클라이언트의 [스토어 코드](#store-code) |
 
 **[Error Code]**
 
@@ -1199,7 +1199,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| storeCode | String | optional | 콘솔에서 특정 스토어에서 설치한 앱에 대해서만 쿠폰 사용이 가능하도록 설정하였다면, 스토어 코드를 전달해야 함<br>- 전체 스토어인 경우 ALL 또는 파라미터 생략 가능<br>- [스토어 코드](#store-code) |
+| storeCode | String | Optional | 콘솔에서 특정 스토어에서 설치한 앱에 대해서만 쿠폰 사용이 가능하도록 설정하였다면, 스토어 코드를 전달해야 함<br>- 전체 스토어인 경우 ALL 또는 파라미터 생략 가능<br>- [스토어 코드](#store-code) |
 
 **[Response Body]**
 
@@ -1288,8 +1288,8 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| paymentSeq | String | mandatory | 결제 번호 |
-| accessToken | String | mandatory  | 결제 인증 토큰(로그인 인증 토큰이 아님) |
+| paymentSeq | String | Required | 결제 번호 |
+| accessToken | String | Required  | 결제 인증 토큰(로그인 인증 토큰이 아님) |
 
 > [참고]
 > 클라이언트에서 requestPurchase API 호출시 응답으로 오는 purchaseToken 값이 accessToken으로 사용
@@ -1371,8 +1371,8 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | [스토어 코드](#store-code) |
-| userId | String | mandatory | 유저 ID  |
+| marketId | String | Required | [스토어 코드](#store-code) |
+| userId | String | Required | 유저 ID  |
 
 **[Response Body]**
 
@@ -1464,9 +1464,9 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | [스토어 코드](#store-code) |
-| packageName | String | mandatory | 콘솔에 등록한 앱의 packageName |
-| userId | String | mandatory | 유저 ID  |
+| marketId | String | Required | [스토어 코드](#store-code) |
+| packageName | String | Required | 콘솔에 등록한 앱의 packageName |
+| userId | String | Required | 유저 ID  |
 
 **[Response Body]**
 
@@ -1671,7 +1671,7 @@ X-Secret-Key: IgsaAP
 
 ### Identity Provider Code
 
-유저 인증에 사용된 Identity Provider들에 대해 Gamebaes 내부적으로 정의한 코드입니다.
+유저 인증에 사용된 Identity Provider들에 대해 Gamebase 내부적으로 정의한 코드입니다.
 
 - guest
 - google
@@ -1689,7 +1689,7 @@ X-Secret-Key: IgsaAP
 
 ### Member Valid Code
 
-유저의 현재 상태에 대해 Gamebaes 내부적으로 정의한 코드입니다.
+유저의 현재 상태에 대해 Gamebase 내부적으로 정의한 코드입니다.
 
 | Code | 설명 |
 | --- | --- |
