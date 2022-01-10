@@ -49,7 +49,7 @@ Google Play Consle과 동일한 계정으로 Google API Console에 프로젝트�
 3) Refresh Token  
 ```
 
-##### 1. OAuth 클라이언트 생성 (웹 어플리케이션)
+##### 1. OAuth 클라이언트 생성 (웹 애플리케이션)
 
 * https://console.developers.google.com/apis/credentials
 ![[그림 1] Client ID 및 Client Secret 생성 1](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/2020-oAuth_kr.png)

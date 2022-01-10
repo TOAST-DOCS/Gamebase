@@ -214,6 +214,14 @@ public void QueryTokenInfoSample(bool isSandbox)
 | adAgreementNight | bool | Opt in to display night advertisement notifications  |
 
 
+### Event Handling
+
+* You can handle events when a push message is received or clicked.
+* For how to register event handlers, refer to the GamebaseEventHandler guide.
+    * [ Game > Gamebase > Unity SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Received Message](./unity-etc/#push-received-message)
+    * [ Game > Gamebase > Unity SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./unity-etc/#push-click-message)
+    * [ Game > Gamebase > Unity SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./unity-etc/#push-click-action)
+
 #### Setting for APNS Sandbox
 * By turning on the SandboxMode, it can be registered so that the push will be sent with the APNS Sandbox.
 * How to send console

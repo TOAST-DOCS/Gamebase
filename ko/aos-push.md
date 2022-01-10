@@ -90,7 +90,7 @@ GamebaseNotificationOptions.newBuilder() 의 인자로 Gamebase.Push.getNotifica
 
 | API                   | Parameter       | Description        |
 | --------------------  | ------------ | ------------------ |
-| enableForeground      | boolean      | 앱이 포그라운드 상태일때의 알림 노출 여부<br/>**default**: false |
+| enableForeground      | boolean      | 앱이 포그라운드 상태일 때의 알림 노출 여부<br/>**default**: false |
 | enableBadge           | boolean      | 배지 아이콘 사용 여부<br/>**default**: true |
 | setPriority           | int          | 알림 우선 순위. 아래 5가지 값을 설정할 수 있습니다.<br/>NoticationComapt.PRIORITY_MIN : -2<br/> NoticationComapt.PRIORITY_LOW : -1<br/>NoticationComapt.PRIORITY_DEFAULT : 0<br/>NoticationComapt.PRIORITY_HIGH : 1<br/>NoticationComapt.PRIORITY_MAX : 2<br/>**default**: NoticationComapt.HIGH |
 | setSmallIconName         | String       | 알림용 작은 아이콘 파일 이름.<br/>설정하지 않을 경우 앱 아이콘이 사용됩니다.<br/>**default**: null |

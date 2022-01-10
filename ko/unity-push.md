@@ -73,7 +73,7 @@ GamebaseRequest.Push.NotificationOptions 의 생성자에 Gamebase.Push.GetNotif
 
 | API                    | Parameter       | Description        |
 | ---------------------  | ------------ | ------------------ |
-| foregroundEnabled      | bool         | 앱이 포그라운드 상태일때의 알림 노출 여부<br/>**default**: false |
+| foregroundEnabled      | bool         | 앱이 포그라운드 상태일 때의 알림 노출 여부<br/>**default**: false |
 | badgeEnabled           | bool         | 배지 아이콘 사용 여부<br/>**default**: true |
 | soundEnabled           | bool         | 알림음 사용 여부<br/>**default**: true<br/>**iOS Only** |
 | priority               | int          | 알림 우선 순위. 아래 5가지 값을 설정할 수 있습니다.<br/>GamebaseNotificationPriority.MIN : -2<br/> GamebaseNotificationPriority.LOW : -1<br/>GamebaseNotificationPriority.DEFAULT : 0<br/>GamebaseNotificationPriority.HIGH : 1<br/>GamebaseNotificationPriority.MAX : 2<br/>**default**: GamebaseNotificationPriority.HIGH<br/>**Android Only** |

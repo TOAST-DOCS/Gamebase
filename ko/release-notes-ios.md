@@ -1,5 +1,12 @@
 ## Game > Gamebase > 릴리스 노트 > iOS
 
+### 2.32.1 (2022.01.11)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.1/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 업데이트 권장 팝업의 '지금 업데이트' 버튼 클릭 시 팝업이 종료되지 않도록 수정하였습니다.
+* SDK 안정성을 개선하였습니다.
+
 ### 2.32.0 (2021.12.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-iOS.zip)
 
@@ -10,7 +17,10 @@
     * [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./ios-etc/#logged-out)
 
 #### 기능 개선/변경
-* 웹뷰 navigationBar의 default title Color가 **UIColor.white**로 변경되었습니다.
+* 웹뷰 navigationBar의 기본 타이틀 색상이 **UIColor.white**로 변경되었습니다.
+
+#### 버그 수정
+* Hangame 로그아웃 호출 시, thirdIdP도 로그아웃 되도록 수정하였습니다.
 
 ### 2.31.0 (2021.12.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-iOS.zip)
@@ -45,6 +55,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경
+* Xcode 최소 지원 버전이 12에서 13으로 변경되었습니다. 
 * 외부 SDK 업데이트: TOAST iOS SDK(0.29.1), ToastGamebaseIAP SDK(0.12.1)
 * 콘솔에 등록한 점검 및 공지 자세히 보기의 URL을 인코딩하지 않고 화면에 출력하도록 변경되었습니다.
 
@@ -109,7 +120,7 @@
         * 유저가 주간, 야간 홍보성 Push 수신에 모두 거부한 경우 PushConfiguration.pushEnabled는 false로 생성되었습니다.
     * 변경 후
         * 약관 UI가 표시되었다면 항상 nil이 아닌 유효한 PushConfiguration이 리턴됩니다.
-        * showTermsView가 리턴하는 PushConfiguration 객체의 pushEnabled 값은 항상 true 입니다.
+        * showTermsView가 리턴하는 PushConfiguration 객체의 pushEnabled 값은 항상 true입니다.
     * 변경되지 않고 동일한 점
         * 이미 약관에 동의하여 약관 UI가 표시되지 않았다면 PushConfiguration은 nil로 리턴됩니다.
 
@@ -127,7 +138,7 @@
 * Push 항목이 존재하는 약관에서 PushConfiguration 객체 보장
     * 약관 UI 에서 Push 수신 동의를 하지 않을 경우 Gamebase.Terms.showTermsView API 호출 결과로 생성되는 TCGBPushConfiguration 이 null이었으나, 약관에 Push 항목이 존재한다면 TCGBPushConfiguration 객체가 항상 리턴되도록 변경되었습니다.
     * Push 수신 거부 시 TCGBPushConfiguration 객체는 (푸시 동의 여부 = false, 광고성 푸시 동의 여부 = false, 야간 광고성 푸시 동의 여부 = false)로 생성됩니다.
-    * 약관에 Push 항목이 존재하지 않는다면 TCGBPushConfiguration 객체는 null 입니다.
+    * 약관에 Push 항목이 존재하지 않는다면 TCGBPushConfiguration 객체는 null입니다.
 * 외부 SDK 업데이트: TOAST iOS SDK(0.29.0)
 * Sign In with Apple 의 ASAuthorizationErrorUnknown 에러가 발생했을 경우, TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERROR 에러를 리턴하도록 변경
 

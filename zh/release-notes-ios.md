@@ -1,5 +1,12 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.32.1 (2022.01.11)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.1/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 업데이트 권장 팝업의 '지금 업데이트' 버튼 클릭 시 팝업이 종료되지 않도록 수정하였습니다.
+* SDK 안정성을 개선하였습니다.
+
 ### 2.32.0 (2021.12.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-iOS.zip)
 
@@ -11,6 +18,9 @@
 
 #### 改善/修复功能
 * Webview navigationBar的default title Color被更改为**UIColor.white**。
+
+#### 버그 수정
+* Hangame 로그아웃 호출 시, thirdIdP도 로그아웃 되도록 수정하였습니다.
 
 ### 2.31.0 (2021.12.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-iOS.zip)
@@ -45,6 +55,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-iOS.zip)
 
 #### 改善/修复功能
+* Xcode 최소 지원 버전이 12에서 13으로 변경되었습니다. 
 * 外部SDK升级 : TOAST iOS SDK(0.29.1), ToastGamebaseIAP SDK(0.12.1)
 * 即使未对”在控制台中注册的维护”和”查看公告详情”URL进行编码，也可在页面上显示。
 

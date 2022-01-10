@@ -41,8 +41,8 @@ To execute Gamebase in Android, the following system environment is required.
 > * Make sure that Gamebase service is enabled by creating a new project from NHN Cloud Console.
 > * Make sure that Client ID is issued by each IdP console and the IDs are entered in the Gamebase console.
 
-* Before applying Gamebase Android SDK, you need an App ID issued at the NHN Cloud Console: select a project created in the NHN Cloud Console and click **(+)Service** **Game > Gamebase**.
-* For authentication, get the client id from the IdP and enter it in the Gamebase console.
+* Before using the Gamebase Android SDK, you need an App ID issued at the NHN Cloud Console. To get an App ID, click **(+)Service** on the NHN Cloud Console and then click **Game > Gamebase** to enable the service.
+* For authentication, get the Client ID from the IdP and enter it in the Gamebase console.
     * [Game > Gamebase > Console User Guide > App > Authentication Information](./oper-app/#authentication-information)
 * To enable item purchase, register the app info in the Store console and enter it in Gamebase > Purchase(IAP) console.
 	* [Game > Gamebase > Store Console Guide > Google Console Guide](./console-google-guide)

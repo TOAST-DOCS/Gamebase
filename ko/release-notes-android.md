@@ -7,7 +7,7 @@
 * GamebaseEventHandler의 GamebaseEventCategory에 **GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED** 타입이 추가되었습니다.
     * 이 이벤트의 활용 방법은 다음 문서를 참고하시기 바랍니다.
     * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Server Push](./aos-etc/#server-push)
-* Gamebase Access Token이 만료되어 로그인이 필요할때 동작하는 **GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler category가 추가되었습니다.
+* Gamebase Access Token이 만료되어 로그인이 필요할 때 동작하는 **GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler category가 추가되었습니다.
     * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./aos-etc/#logged-out)
 
 #### 기능 개선/변경
@@ -81,7 +81,7 @@
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트: PAYCO Android SDK(1.5.5), Hangame Android SDK(1.4.1), Weibo Android SDK(11.8.1)
-* 에뮬레이터, 루팅 단말기에서 웹뷰가 정상적으로 표시되지 않을때 재시도를 추가하여, 웹뷰가 정상적으로 표시되도록 개선하였습니다.
+* 에뮬레이터, 루팅 단말기에서 웹뷰가 정상적으로 표시되지 않을 때 재시도를 추가하여, 웹뷰가 정상적으로 표시되도록 개선하였습니다.
     * 대상은 웹뷰로 동작하는 이미지공지, 고객센터, 공통약관이 해당됩니다.
 * Weibo IdP 인증을 개선하여 안정성을 향상시켰습니다.
     * 동기 API 이지만 실제로는 비동기로 동작하여 에러를 발생시키는 API에 예외 처리, 대기, 재시도 등을 추가였습니다.
@@ -117,7 +117,7 @@
         * 유저가 주간, 야간 홍보성 Push 수신에 모두 거부한 경우 PushConfiguration.pushEnabled는 false로 생성되었습니다.
     * 변경 후
         * 약관 UI가 표시되었다면 항상 null이 아닌 유효한 PushConfiguration이 리턴됩니다.
-        * showTermsView가 리턴하는 PushConfiguration 객체의 pushEnabled 값은 항상 true 입니다.
+        * showTermsView가 리턴하는 PushConfiguration 객체의 pushEnabled 값은 항상 true입니다.
     * 변경되지 않고 동일한 점
         * 이미 약관에 동의하여 약관 UI가 표시되지 않았다면 PushConfiguration은 null로 리턴됩니다.
 
@@ -136,7 +136,7 @@
 * Push 항목이 존재하는 약관에서 PushConfiguration 객체 보장
     * 약관 UI에서 Push 수신 동의를 하지 않을 경우 Gamebase.Terms.showTermsView API 호출 결과로 생성되는 PushConfiguration이 null이었으나, 약관에 Push 항목이 존재한다면 PushConfiguration 객체가 항상 리턴되도록 변경되었습니다.
     * Push 수신 거부 시 PushConfiguration 객체는 (푸시 동의 여부 = false, 광고성 푸시 동의 여부 = false, 야간 광고성 푸시 동의 여부 = false) 로 생성됩니다.
-    * 약관에 Push 항목이 존재하지 않는다면 PushConfiguration 객체는 null 입니다.
+    * 약관에 Push 항목이 존재하지 않는다면 PushConfiguration 객체는 null입니다.
 * 외부 SDK 업데이트
     * TOAST Android SDK(0.26.0)
     * Kotlin(1.5.21)

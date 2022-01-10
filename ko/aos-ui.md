@@ -31,10 +31,10 @@
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebase.initialize 가 호출되지 않았습니다. |
-| UI\_IMAGE\_NOTICE\_TIMEOUT(6901) | 이미지 공지 팝업 표시중 타임아웃이 발생하여 모든 팝업을 강제 종료합니다. |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebase.initialize 가 호출되지 않았습니다. |
+| UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | 이미지 공지 팝업 표시중 타임아웃이 발생하여 모든 팝업을 강제 종료합니다. |
 
 **Example**
 
@@ -113,13 +113,13 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 q
 > <font color="red">[주의]</font><br/>
 >
 > * 약관에 푸시 수신 동의 여부를 추가했다면, GamebaseDataContainer 로부터 PushConfiguration 을 생성할 수 있습니다.
-> * PushConfiguration 은 약관창이 표시되지 않은 경우에는 null 입니다.(약관창이 표시되었다면 항상 유효한 객체가 리턴됩니다.)
-> * PushConfiguration.pushEnabled 값은 항상 true 입니다.
+> * PushConfiguration 은 약관창이 표시되지 않은 경우에는 null입니다.(약관창이 표시되었다면 항상 유효한 객체가 리턴됩니다.)
+> * PushConfiguration.pushEnabled 값은 항상 true입니다.
 > * PushConfiguration 이 null 이 아니라면 **로그인 후에** Gamebase.Push.registerPush API 를 호출하세요.
 
 #### Required 파라미터
 
-* Activity : 약관창이 노출되는 Activity 입니다.
+* Activity : 약관창이 노출되는 Activity입니다.
  
 #### Optional 파라미터
 
@@ -134,14 +134,14 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 q
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebase가 초기화되어 있지 않습니다. |
-| LAUNCHING\_SERVER\_ERROR(2001) | 런칭서버가 내려준 항목에 약관 관련 내용이 없는 경우에 발생하는 에러입니다.<br/>정상적인 상황이 아니므로 Gamebase 담당자에게 문의해주시기 바랍니다. |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 이전에 호출된 Terms API 가 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
-| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW(6925) | 약관 웹뷰가 아직 종료되지 않았는데 다시 호출되었습니다. |
-| WEBVIEW\_TIMEOUT(7002) | 약관 웹뷰 표시 중 타임아웃이 발생했습니다. |
-| WEBVIEW\_HTTP\_ERROR(7003) | 약관 웹뷰 오픈 중 HTTP 에러가 발생하였습니다. |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
+| LAUNCHING\_SERVER\_ERROR | 2001 | 런칭서버가 내려준 항목에 약관 관련 내용이 없는 경우에 발생하는 에러입니다.<br/>정상적인 상황이 아니므로 Gamebase 담당자에게 문의해주시기 바랍니다. |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 이전에 호출된 Terms API 가 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
+| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925 | 약관 웹뷰가 아직 종료되지 않았는데 다시 호출되었습니다. |
+| WEBVIEW\_TIMEOUT | 7002 | 약관 웹뷰 표시 중 타임아웃이 발생했습니다. |
+| WEBVIEW\_HTTP\_ERROR | 7003 | 약관 웹뷰 오픈 중 HTTP 에러가 발생하였습니다. |
 
 **Example**
 
@@ -197,7 +197,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 
 #### Required 파라미터
 
-* Activity : API 호출 시점의 최상위 Activity 입니다.
+* Activity : API 호출 시점의 최상위 Activity입니다.
 * GamebaseDataCallback : API 호출 결과를 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseQueryTermsResult 로 콘솔에 설정된 약관 정보를 얻을 수 있습니다.
 
 **API**
@@ -209,11 +209,11 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebase가 초기화되어 있지 않습니다. |
-| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE(6921) | 약관 정보가 콘솔에 등록되어 있지 않습니다. |
-| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY(6922) | 단말기 국가코드에 맞는 약관 정보가 콘솔에 등록되어 있지 않습니다. |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
+| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE | 6921 | 약관 정보가 콘솔에 등록되어 있지 않습니다. |
+| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY | 6922 | 단말기 국가코드에 맞는 약관 정보가 콘솔에 등록되어 있지 않습니다. |
 
 **Example**
 
@@ -273,7 +273,7 @@ queryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면,
 
 #### Required 파라미터
 
-* Activity : API 호출 시점의 최상위 Activity 입니다.
+* Activity : API 호출 시점의 최상위 Activity입니다.
 * GamebaseUpdateTermsConfiguration : 서버에 등록할 유저의 선택 약관 정보입니다.
 
 #### Optional 파라미터
@@ -290,11 +290,11 @@ queryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면,
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebase가 초기화되어 있지 않습니다. |
-| UI\_TERMS\_UNREGISTERED\_SEQ(6923) | 등록되지 않은 약관 Seq 값을 설정하였습니다. |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 이전에 호출된 Terms API 가 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
+| UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | 등록되지 않은 약관 Seq 값을 설정하였습니다. |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 이전에 호출된 Terms API 가 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
 
 **Example**
 
@@ -355,8 +355,8 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 
 | API                  | Description         |
 | -------------------- | ------------------- |
-| GamebaseTermsContent(int termsContentSeq, boolean agreed) | GamebaseTermsContent 생성자 입니다. |
-| from(GamebaseTermsContentDetail) | GamebaseTermsContentDetail 객체로부터 GamebaseTermsContent 객체를 생성하는 팩토리 메서드 입니다. |
+| GamebaseTermsContent(int termsContentSeq, boolean agreed) | GamebaseTermsContent 생성자입니다. |
+| from(GamebaseTermsContentDetail) | GamebaseTermsContentDetail 객체로부터 GamebaseTermsContent 객체를 생성하는 팩토리 메서드입니다. |
 | setAgreed(boolean) | 해당 객체의 agreed 값을 변경합니다. |
 
 | Parameter            | Mandatory(M) / Optional(O) | Values             | Description         |

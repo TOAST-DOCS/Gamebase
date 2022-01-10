@@ -316,7 +316,7 @@ iOS의 앱 이벤트를 관리하려면 다음 **UIApplicationDelegate** 프로�
 ```
 
 ### OpenURL Event
-**application:openURL:sourceApplication:annotation:** 메서드를 호출하여, 어플리케이션의 외부 URL Open 시도를 Gamebase에 알려주어야 합니다. Gamebase에서는 각 Idp의 인증용 SDK에 해당 값을 전달하여, 필요한 동작을 하도록 알려줍니다.
+**application:openURL:sourceApplication:annotation:** 메서드를 호출하여, 애플리케이션의 외부 URL Open 시도를 Gamebase에 알려주어야 합니다. Gamebase에서는 각 Idp의 인증용 SDK에 해당 값을 전달하여, 필요한 동작을 하도록 알려줍니다.
 
 > <font color="red">[주의]</font><br/>
 >

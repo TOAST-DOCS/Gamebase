@@ -8,14 +8,14 @@ Gamebase를 초기화할 때, GamebaseConfiguration 객체로 Gamebase 설정을
 
 | KEY                                                 | Mandatory(M) / Optional(O) | Description                              |
 | --------------------------------------------------- | -------------------------- | ---------------------------------------- |
-| appId: string                                       | **M**                      | NHN Cloud  Project ID 입니다. 필수적으로 입력해야합니다. |
+| appId: string                                       | **M**                      | NHN Cloud  Project ID입니다. 필수적으로 입력해야합니다. |
 | clientVersion: string                               | **M**                      | 서비스 중, 점검, 공지사항 등 Playable한 상태인지를 게임 버전을 통해 판단합니다. <br/> `NHN Cloud  Console > Gamebase > App > Client Version > WEB`의 버전을 입력해주세요. |
-| enableDebugMode: boolean                            | O                          | DebugMode를 활성화 할 수 있습니다. Debug log는 개발자 콘솔에 출력됩니다. <br/> 기본값은 **false** 입니다. |
+| enableDebugMode: boolean                            | O                          | DebugMode를 활성화 할 수 있습니다. Debug log는 개발자 콘솔에 출력됩니다. <br/> 기본값은 **false**입니다. |
 | uiConfiguration.enablePopup: boolean                | O                          | **[UI]**<br/>시스템 점검, 이용 제재(ban) 등 게임 이용자가 게임을 플레이할 수 없는 상황에서 팝업 등으로 사유를 표시해야 할 때가 있습니다. <br/> **true**로 설정하면 Gamebase가 해당 상황에서 정보 팝업을 자동으로 표시합니다. <br/> 기본값은 **false**입니다.<br/>**false** 상태에서는 론칭 결과를 통해 정보를 획득한 후 자체 UI를 구현해 게임을 플레이할 수 없는 이유를 표시해 주시기 바랍니다. |
 | uiConfiguration.enableLaunchingStatusPopup: boolean | O                          | **[UI]**<br/>론칭 결과에 따라 로그인할 수 없는 상태에서(주로 점검 상태) Gamebase가 자동으로 팝업을 표시할지 여부를 변경할 수 있습니다. <br/>**enablePopup(true)** 상태에서만 동작합니다.<br/>기본값은 **true**입니다. |
 | uiConfiguration.enableBanPopup: boolean             | O                          | **[UI]**<br/>게임 이용자가 이용 제재를 당한 상태일 때 Gamebase가 자동으로 이용정지 사유를 팝업으로 표시할지 여부를 변경할 수 있습니다. <br/>**enablePopup(true)** 상태에서만 동작합니다.<br/>기본값은 **true**입니다. |
-| displayLanguageCode: string                         | O                          | Gamebase UI 에서 사용하는 언어코드입니다. <br/> 기본값은 **브라우져의 language**(navigator.language) 입니다. |
-| displayLanguageTable: json                          | O                          | Gamebase UI 노출시 사용하는 Text Resource 입니다. <br/> 해당 값은 내장되어있는 언어셋 테이블과 자동으로 merging이 되어 사용됩니다. <br/> `toast.Gamebase.getDisplayLanguageTable()` 을 통해서 내장되어있는 언어셋 테이블 및 포멧을 확인할 수 있습니다.|
+| displayLanguageCode: string                         | O                          | Gamebase UI 에서 사용하는 언어코드입니다. <br/> 기본값은 **브라우져의 language**(navigator.language)입니다. |
+| displayLanguageTable: json                          | O                          | Gamebase UI 노출시 사용하는 Text Resource입니다. <br/> 해당 값은 내장되어있는 언어셋 테이블과 자동으로 merging이 되어 사용됩니다. <br/> `toast.Gamebase.getDisplayLanguageTable()` 을 통해서 내장되어있는 언어셋 테이블 및 포멧을 확인할 수 있습니다.|
 
 
 #### GamebaseConfiguration Example
