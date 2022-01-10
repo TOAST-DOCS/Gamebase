@@ -16,11 +16,11 @@
 * GamebaseEventHandler의 GamebaseEventCategory에 **kTCGBLoggedOut** 타입이 추가되었습니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./ios-etc/#logged-out)
 
-#### 버그 수정
-* Hangame 로그아웃 호출 시, thirdIdP도 로그아웃 되도록 수정하였습니다.
-
 #### 기능 개선/변경
 * 웹뷰 navigationBar의 기본 타이틀 색상이 **UIColor.white**로 변경되었습니다.
+
+#### 버그 수정
+* Hangame 로그아웃 호출 시, thirdIdP도 로그아웃 되도록 수정하였습니다.
 
 ### 2.31.0 (2021.12.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-iOS.zip)
