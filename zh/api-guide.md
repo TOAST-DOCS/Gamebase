@@ -43,9 +43,9 @@ API调用时在HTTP Header中设置以下项目。
 
 | Name | Required | Value |
 | --- | --- | --- |
-| Content-Type | mandatory | application/json; charset=UTF-8 |
-| X-Secret-Key | mandatory |参考SecretKey说明 |
-| X-TCGB-Transaction-Id | optional | 参考TransactionId说明 |
+| Content-Type | Required | application/json; charset=UTF-8 |
+| X-Secret-Key | Required |参考SecretKey说明 |
+| X-TCGB-Transaction-Id | Optional | 参考TransactionId说明 |
 
 #### API响应
 
@@ -117,7 +117,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| linkedIdP | boolean | optional | 是否包含获取true or false (默认值为false) 访问令牌时使用的IdP相关信息。|
+| linkedIdP | boolean | Optional | 是否包含获取true or false (默认值为false) 访问令牌时使用的IdP相关信息。|
 
 **[Response Body]**
 
@@ -222,7 +222,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| accessToken | String | mandatory | 发放给登录用户的Gamebase Access Token |
+| accessToken | String | Required | 发放给登录用户的Gamebase Access Token |
 
 **[Response Body]**
 
@@ -423,7 +423,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| includeMemberInfo | boolean | optional | 是否包含true or false (默认值为true) 用户终端，OS等的详细信息 |
+| includeMemberInfo | boolean | Optional | 是否包含true or false (默认值为true) 用户终端，OS等的详细信息 |
 
 **[Response Body]**
 ```json
@@ -531,7 +531,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | mandatory | 查询对象用户ID |
+| Array[String] | Required | 查询对象用户ID |
 
 **[Response Body]**
 
@@ -596,7 +596,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | mandatory | 查询对象用户ID |
+| Array[String] | Required | 查询对象用户ID |
 
 **[Response Body]**
 
@@ -657,7 +657,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| authSystem | String | mandatory | Gamebase内部使用的认证系统，预计将会支持用户认证系统，目前是gbid。|
+| authSystem | String | Required | Gamebase内部使用的认证系统，预计将会支持用户认证系统，目前是gbid。|
 
 **[Request Body]**
 
@@ -667,7 +667,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | mandatory | authSystem发放的authKey |
+| Array[String] | Required | authSystem发放的authKey |
 
 **[Response Body]**
 
@@ -724,7 +724,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | mandatory | 查询对象用户的IdP ID。 <br> 查询对象列表的最大尺寸为300。 |
+| Array[String] | Required | 查询对象用户的IdP ID。 <br> 查询对象列表的最大尺寸为300。 |
 
 **[Response Body]**
 
@@ -778,10 +778,10 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | mandatory | 禁用历史记录查询开始时间 (ISO 8601标准时间，需要UTF-8 Encoding) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | mandatory |禁用历史记录查询结束时间 (ISO 8601标准时间，需要UTF-8 Encoding) <br>begin ~ end期间被禁用，则在查询结果中存在。|
-| page | String | optional | 要查询的页面。从0开始 |
-| size | String | optional | 每页的数据数量 |
+| begin | String | Required | 禁用历史记录查询开始时间 (ISO 8601标准时间，需要UTF-8 Encoding) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | Required |禁用历史记录查询结束时间 (ISO 8601标准时间，需要UTF-8 Encoding) <br>begin ~ end期间被禁用，则在查询结果中存在。|
+| page | String | Optional | 要查询的页面。从0开始 |
+| size | String | Optional | 每页的数据数量 |
 
 **[Response Body]**
 
@@ -885,10 +885,10 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | mandatory | 禁用解除历史记录查询开始时间 (ISO 8601标准时间，需要UTF-8 Encoding) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | mandatory | 禁用解除历史记录查询结束时间 (ISO 8601标准时间， 需要UTF-8 Encoding) <br>begin ~ end期间禁用解除，则在查询结果中存在。|
-| page | String | optional | 要查询的页面。从0开始。|
-| size | String | optional | 每页的数据数量 |
+| begin | String | Required | 禁用解除历史记录查询开始时间 (ISO 8601标准时间，需要UTF-8 Encoding) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | Required | 禁用解除历史记录查询结束时间 (ISO 8601标准时间， 需要UTF-8 Encoding) <br>begin ~ end期间禁用解除，则在查询结果中存在。|
+| page | String | Optional | 要查询的页面。从0开始。|
+| size | String | Optional | 每页的数据数量 |
 
 **[Response Body]**
 
@@ -1073,7 +1073,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| regUser | String | mandatory | 请求退出的系统或用户信息<br> - 此信息可以在Console > ”member”页面的”退出履历”页面上确认。|
+| regUser | String | Required | 请求退出的系统或用户信息<br> - 此信息可以在Console > ”member”页面的”退出履历”页面上确认。|
 
 **[Request Body]**
 
@@ -1200,7 +1200,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| storeCode | String | optional | 若获取的优惠券只能在指定的商店使用，则需传送商店代码。<br>如果是所有的商店，”ALL”或省略参数。<br>- GG : Google<br>- ONESTORE : ONE store<br>- AS : AppStore |
+| storeCode | String | Optional | 若获取的优惠券只能在指定的商店使用，则需传送商店代码。<br>如果是所有的商店，”ALL”或省略参数。<br>- GG : Google<br>- ONESTORE : ONE store<br>- AS : AppStore |
 
 **[Response Body]**
 
@@ -1289,8 +1289,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| paymentSeq | String | mandatory | 支付编号 |
-| accessToken | String | mandatory  | 支付验证令牌（非登录验证令牌） |
+| paymentSeq | String | Required | 支付编号 |
+| accessToken | String | Required  | 支付验证令牌（非登录验证令牌） |
 
 > [参考]
 > 客户调用requestPurchase API时响应的purchaseToken值作为accessToken使用。
@@ -1372,8 +1372,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | 商店代码<br>GG : Google, AS : Apple, ONESTORE : One store |
-| userId | String | mandatory  | 用户ID  |
+| marketId | String | Required | 商店代码<br>GG : Google, AS : Apple, ONESTORE : One store |
+| userId | String | Required  | 用户ID  |
 
 **[Response Body]**
 
@@ -1465,9 +1465,9 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | mandatory | 商店代码<br>GG : Google, AS : Apple, ONESTORE : One Store |
-| packageName | String | mandatory | 控制台中注册的应用程序的packageName |
-| userId | String | mandatory  | 用户ID  |
+| marketId | String | Required | 商店代码<br>GG : Google, AS : Apple, ONESTORE : One Store |
+| packageName | String | Required | 控制台中注册的应用程序的packageName |
+| userId | String | Required  | 用户ID  |
 
 **[Response Body]**
 
