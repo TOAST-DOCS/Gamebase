@@ -2,10 +2,10 @@
 
 ### 2.32.1 (2022.01.11)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.1/GamebaseSDK-iOS.zip)
-
-#### 기능 개선/변경
-* 업데이트 권장 팝업의 '지금 업데이트' 버튼 클릭 시 팝업이 종료되지 않도록 수정하였습니다.
-* SDK 안정성을 개선하였습니다.
+ 
+#### 改善/修复功能 
+* 点击推荐更新弹窗里的“立即更新”按钮时弹窗被关闭的问题已修复。
+* 提高了SDK稳定性。
 
 ### 2.32.0 (2021.12.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-iOS.zip)
@@ -19,14 +19,14 @@
 #### 改善/修复功能
 * Webview navigationBar的default title Color被更改为**UIColor.white**。
 
-#### 버그 수정
-* Hangame 로그아웃 호출 시, thirdIdP도 로그아웃 되도록 수정하였습니다.
+#### 修改程序错误
+* 修改后，现在当调用Hangame注销时，thirdIdP也将注销。
 
 ### 2.31.0 (2021.12.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-iOS.zip)
 
 #### 添加功能
-* 可以更改维护弹窗“是否显示维护时间”。 
+* 可以更改维护弹窗“是否显示维护时间”。
 
 #### 改善/修复功能
 * 外部SDK升级 : TOAST iOS SDK (0.29.2), PAYCO iOS SDK (1.5.4)
@@ -36,8 +36,8 @@
 ### 2.30.1 (2021.11.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.1/GamebaseSDK-iOS.zip)
 
-#### 버그 수정
-* Unity 2019.3 이상에서 Cocoapods 설치를 했을 때, 결제와 푸시 API에서 에러가 발생하는 버그를 수정하였습니다.
+#### 修改程序错误
+* 在Unity 2019.3或更高版本中设置Cocoapods时调用结算和推送API时发生的程序错误已被修改。
 
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-iOS.zip)
@@ -55,7 +55,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-iOS.zip)
 
 #### 改善/修复功能
-* Xcode 최소 지원 버전이 12에서 13으로 변경되었습니다. 
+* Xcode支持的最低版本从12升级到13。
 * 外部SDK升级 : TOAST iOS SDK(0.29.1), ToastGamebaseIAP SDK(0.12.1)
 * 即使未对”在控制台中注册的维护”和”查看公告详情”URL进行编码，也可在页面上显示。
 
