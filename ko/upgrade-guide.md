@@ -7,14 +7,14 @@
 * Gamebase Access Token이 만료되어 복구되지 않을 때 발생하는 GamebaseEventHandler 이벤트 category가 **GamebaseEventCategory.OBSERVER_HEARTBEAT**에서 **GamebaseEventCategory.LOGGED_OUT**으로 변경되었습니다.
     * **GamebaseEventCategory.OBSERVER_HEARTBEAT** 이벤트에서 GamebaseEventObserverData.code 값이 **GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)**일 때 로그인 하도록 구현했다면 **GamebaseEventCategory.LOGGED_OUT** 이벤트에서 로그인을 하도록 변경하시기 바랍니다.
 
-## 2.29.0 
+## 2.29.0
 
 ### iOS
 
 * Xcode 최소 지원 버전이 12에서 13으로 변경되었습니다.
     * Xcode 12에서 아카이브 빌드를 하면 에러가 발생합니다. Xcode 13으로 업데이트하시기 바랍니다.
 
-### Unity 
+### Unity
  
 * Setting Tool 2.0.0이 배포되었습니다.
     * 폴더 구조가 변경되어, 이전 버전의 Setting Tool을 완전히 삭제한 후 재설치해야 합니다. 
@@ -35,7 +35,6 @@
 
 * Gamebase에서 multidex 설정이 제거되었습니다. 설정 하시려면 아래 가이드를 참고 바랍니다.
     * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > Installation > Android Settings > multidex 적용](./unreal-started/#android-settings)
-
 
 ## 2.25.0
 
