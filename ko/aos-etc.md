@@ -22,7 +22,7 @@ Gamebase에서 지원하는 부가 기능을 설명합니다.
 그런데 게임에서 표시하는 언어를 단말기에 설정된 언어가 아닌, 별도의 옵션으로 언어를 변경할 수 있는 게임이 있습니다.
 예를 들어, 단말기에 설정된 언어는 영어 이지만 게임 표시 언어를 일본어로 변경한 경우, Gamebase에서 표시하는 언어도 일본어로 변경하고 싶지만 Gamebase가 표시하는 언어는 단말기에 설정된 언어인 영어로 표시됩니다.
 
-이와 같이 `단말기에 설정된 언어가 아닌, 다른 언어로 Gamebase 메세지를 표시하고 싶은` 어플리케이션을 위해 Gamebase는 `Display Language` 라는 기능을 제공합니다.
+이와 같이 `단말기에 설정된 언어가 아닌, 다른 언어로 Gamebase 메세지를 표시하고 싶은` 애플리케이션을 위해 Gamebase는 `Display Language` 라는 기능을 제공합니다.
 
 Gamebase는 Display Language로 설정한 언어로 Gamebase 메세지를 표시합니다.
 Display Language에 입력하는 언어 코드는 반드시 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 지정된 코드만을 사용할 수 있습니다.
@@ -314,7 +314,7 @@ class GamebaseEventMessage {
     @NonNull
     final public String category;
 
-    // 각 category 에 맞는 VO 로 변환할 수 있는 JSON String 데이터 입니다.
+    // 각 category 에 맞는 VO 로 변환할 수 있는 JSON String 데이터입니다.
     @Nullable
     final public String data;
 }
@@ -381,7 +381,7 @@ void eventHandlerSample(Activity activity) {
 
 #### How to handle events when the application is not running
 
-* 커스텀 Application 클래스에서 GamebaseEventHandler를 등록하면 어플리케이션이 실행되지 않았을 때에도 이벤트 처리를 할 수 있습니다.
+* 커스텀 Application 클래스에서 GamebaseEventHandler를 등록하면 애플리케이션이 실행되지 않았을 때에도 이벤트 처리를 할 수 있습니다.
 
 ```java
 public class MyApplication extends Application {
@@ -403,7 +403,7 @@ public class MyApplication extends Application {
 
 #### Logged Out
 
-* Gamebase Access Token이 만료되어 네트워크 세션을 복구하기 위해 로그인 함수 호출이 필요한 경우 발생하는 이벤트 입니다.
+* Gamebase Access Token이 만료되어 네트워크 세션을 복구하기 위해 로그인 함수 호출이 필요한 경우 발생하는 이벤트입니다.
 
 **Example**
 
@@ -437,15 +437,15 @@ void processLoggedOut(String category, GamebaseEventLoggedOutData data) {
 
 #### Server Push
 
-* Gamebase 서버에서 클라이언트 단말기로 보내는 메세지 입니다.
+* Gamebase 서버에서 클라이언트 단말기로 보내는 메세지입니다.
 * Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED
     	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout**에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
-        * 클라이언트 단말기에서 서버 메세지를 수신했을 때 바로 동작하는 이벤트입니다.
-        * '오토 플레이'와 같이 게임이 동작 중인 경우, 게임을 일시 정지 시키는 목적으로 활용할 수 있습니다.
+        * 클라이언트 단말기에서 서버 메세지를 수신한 직후에 발생하는 이벤트입니다.
+        * '오토 플레이'와 같이 게임이 동작 중인 경우, 게임을 일시 정지시키는 목적으로 활용할 수 있습니다.
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
     	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout**에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
-        * 클라이언트 단말기에서 서버 메세지를 수신했을 때 팝업을 표시하는데, 유저가 팝업을 닫았을 때 동작하는 이벤트입니다.
+        * 클라이언트 단말기에서 서버 메세지를 수신했을 때 팝업을 표시하는데, 유저가 이 팝업을 닫았을 때 발생하는 이벤트입니다.
     * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
     	* Guest 계정을 다른 단말기로 이전을 성공하게 되면 이전 단말기에서 킥아웃 메세지를 받게 됩니다.
 
@@ -491,7 +491,7 @@ void processServerPush(String category, GamebaseEventServerPushData data) {
 
 #### Observer
 
-* Gamebase의 각종 상태 변동 이벤트를 처리하는 시스템 입니다.
+* Gamebase의 각종 상태 변동 이벤트를 처리하는 시스템입니다.
 * Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
     * GamebaseEventCategory.OBSERVER_LAUNCHING
     	* 점검이 걸리거나 풀린 경우, 새로운 버전이 배포되어 업데이트가 필요한 경우와 같이, Launching 상태가 변경되었을 때 동작합니다.
@@ -530,11 +530,11 @@ class GamebaseEventObserverData {
 	// 상태값을 나타내는 정보입니다.
     public int code;
 
-    // 상태에 관련된 메세지 정보 입니다.
+    // 상태에 관련된 메세지 정보입니다.
     @Nullable
     public String message;
 
-    // 추가 정보용 예비 필드 입니다.
+    // 추가 정보용 예비 필드입니다.
     @Nullable
     public String extras;
 }
@@ -607,7 +607,7 @@ void processObserver(String category, GamebaseEventObserverData data) {
 
 #### Purchase Updated
 
-* Promotion 코드 입력을 통해 상품을 획득한 경우 발생하는 이벤트 입니다.
+* Promotion 코드 입력을 통해 상품을 획득한 경우 발생하는 이벤트입니다.
 * 결제 영수증 정보를 획득할 수 있습니다.
 
 **Example**
@@ -635,7 +635,7 @@ void eventHandlerSample(Activity activity) {
 
 #### Push Received Message
 
-* Push 메세지가 도착했을때 발생하는 이벤트 입니다.
+* Push 메세지가 도착했을때 발생하는 이벤트입니다.
 * **isForeground** 필드를 통해 포그라운드에서 메세지를 수신했는지, 백그라운드에서 메세지를 수신했는지 구분할 수 있습니다.
 * extras 필드를 JSON으로 변환하여, Push 발송 시 전송했던 커스텀 정보를 얻을 수도 있습니다.
 
@@ -643,15 +643,15 @@ void eventHandlerSample(Activity activity) {
 
 ```java
 class PushMessage {
-	// 메세지 고유의 id 입니다.
+	// 메세지 고유의 id입니다.
     @NonNull
     public String id;
 
-    // Push 메세지 제목 입니다.
+    // Push 메세지 제목입니다.
     @Nullable
     public String title;
 
-    // Push 메세지 본문 내용 입니다.
+    // Push 메세지 본문 내용입니다.
     @Nullable
     public String body;
 
@@ -691,7 +691,7 @@ void eventHandlerSample(Activity activity) {
 
 #### Push Click Message
 
-* 수신한 Push 메세지를 클릭했을때 발생하는 이벤트 입니다.
+* 수신한 Push 메세지를 클릭했을때 발생하는 이벤트입니다.
 * 'GamebaseEventCategory.PUSH_RECEIVED_MESSAGE'와는 다르게 **isForeground** 필드가 존재하지 않습니다.
 
 **Example**
@@ -718,7 +718,7 @@ void eventHandlerSample(Activity activity) {
 
 #### Push Click Action
 
-* Rich Message 기능을 통해 생성한 버튼을 클릭했을때 발생하는 이벤트 입니다.
+* Rich Message 기능을 통해 생성한 버튼을 클릭했을때 발생하는 이벤트입니다.
 * actionType은 다음 항목이 제공됩니다.
 	* "OPEN_APP"
 	* "OPEN_URL"
@@ -729,15 +729,15 @@ void eventHandlerSample(Activity activity) {
 
 ```java
 class PushAction {
-	// 버튼 액션 종류 입니다.
+	// 버튼 액션 종류입니다.
     @NonNull
     public String actionType;
 
-	// PushMessage 데이터 입니다.
+	// PushMessage 데이터입니다.
     @NonNull
     public PushMessage message;
 
-	// Push 콘솔에서 입력한 사용자 텍스트 입니다.
+	// Push 콘솔에서 입력한 사용자 텍스트입니다.
     @Nullable
     public String userText;
 }
@@ -898,7 +898,7 @@ ContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니다.
 | newBuilder() | **M** | ContactConfiguration 객체는 newBuilder() 함수를 통해 생성할 수 있습니다. |
 | build() | **M** | 설정을 마친 Builder를 Configuration 객체로 변환합니다. |
 | setUserName(String userName) | O | 사용자 이름(닉네임)을 전달하고자 할 때 사용합니다.<br>NHN Cloud 조직 상품(Online Contact) 유형에서 사용하는 필드입니다.<br>**default** : null |
-| setAdditionalURL(String additionalURL) | O | 개발사 자체 고객센터 URL 뒤에 붙는 추가적인 URL 입니다.<br>고객센터 타입이 `CUSTOM` 인 경우에만 사용하시기 바랍니다.<br>**default** : null |
+| setAdditionalURL(String additionalURL) | O | 개발사 자체 고객센터 URL 뒤에 붙는 추가적인 URL입니다.<br>고객센터 타입이 `CUSTOM` 인 경우에만 사용하시기 바랍니다.<br>**default** : null |
 | setExtraData(Map<String, Object> extraData) | O | 개발사가 원하는 extra data를 고객센터 오픈 시에 전달합니다.<br>**default** : EmptyMap |
 
 **API**

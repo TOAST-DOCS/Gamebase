@@ -265,7 +265,7 @@ struct GAMEBASE_API FGamebaseEventMessage
     // GamebaseEventCategory 클래스의 값이 할당됩니다.
     FString category;
 
-    // 각 category 에 맞는 VO 로 변환할 수 있는 JSON String 데이터 입니다.
+    // 각 category 에 맞는 VO 로 변환할 수 있는 JSON String 데이터입니다.
     FString data;
 };
 ```
@@ -329,7 +329,7 @@ void Sample::AddEventHandler()
 
 #### Server Push
 
-* Gamebase 서버에서 클라이언트 단말기로 보내는 메세지 입니다.
+* Gamebase 서버에서 클라이언트 단말기로 보내는 메세지입니다.
 * Gamebase 에서 지원하는 Server Push Type 은 다음과 같습니다.
     * GamebaseEventCategory::ServerPushAppKickOut
         * NHN Cloud  Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
@@ -374,7 +374,7 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
 
 #### Observer
 
-* Gamebase Gamebase의 각종 상태 변동 이벤트를 처리하는 시스템 입니다.
+* Gamebase Gamebase의 각종 상태 변동 이벤트를 처리하는 시스템입니다.
 * Gamebase 에서 지원하는 Observer Type 은 다음과 같습니다.
     * GamebaseEventCategory::ObserverLaunching
         * 점검이 걸리거나 풀린 경우, 새로운 버전이 배포되어 업데이트가 필요한 경우와 같이, Launching 상태가 변경되었을 때 동작합니다.
@@ -410,10 +410,10 @@ struct GAMEBASE_API FGamebaseEventObserverData
     // 상태값을 나타내는 정보입니다.
     int32 code;
 
-    // 추가 정보용 예비 필드 입니다.
+    // 추가 정보용 예비 필드입니다.
     FString message;
 
-    // 상태에 관련된 메세지 정보 입니다.
+    // 상태에 관련된 메세지 정보입니다.
     FString extras;
 }
 ```
@@ -510,7 +510,7 @@ void Sample::CheckHeartbeat(const FGamebaseEventObserverData& data)
 
 #### Purchase Updated
 
-* Promotion 코드 입력을 통해 상품을 획득한 경우 발생하는 이벤트 입니다.
+* Promotion 코드 입력을 통해 상품을 획득한 경우 발생하는 이벤트입니다.
 * 결제 영수증 정보를 획득할 수 있습니다.
 
 **Example**
@@ -536,7 +536,7 @@ void Sample::AddEventHandler()
 
 #### Push Received Message
 
-* Push 메세지가 도착했을때 발생하는 이벤트 입니다.
+* Push 메세지가 도착했을때 발생하는 이벤트입니다.
 * extras 필드를 JSON으로 변환하여, Push 발송 시 전송했던 커스텀 정보를 얻을 수도 있습니다.
     * **Android**에서는 **isForeground** 필드를 통해 포그라운드에서 메세지를 수신했는지, 백그라운드에서 메세지를 수신했는지 구분할 수 있습니다.
 
@@ -545,13 +545,13 @@ void Sample::AddEventHandler()
 ```cpp
 struct FGamebaseEventPushMessage
 {
-    // 메세지 고유의 id 입니다.
+    // 메세지 고유의 id입니다.
     FString id;
 
-    // Push 메세지 제목 입니다.
+    // Push 메세지 제목입니다.
     FString title;
 
-    // Push 메세지 본문 내용 입니다.
+    // Push 메세지 본문 내용입니다.
     FString body;
 
     // JSON 형식으로 Push 발송 시 전송했던 커스텀 정보를 확인할 수 있습니다.
@@ -584,7 +584,7 @@ void Sample::AddEventHandler()
 
 #### Push Click Message
 
-* 수신한 Push 메세지를 클릭했을때 발생하는 이벤트 입니다.
+* 수신한 Push 메세지를 클릭했을때 발생하는 이벤트입니다.
 * 'GamebaseEventCategory::PushReceivedMessage'와는 다르게 Android에서 extras 필드에 **isForeground** 정보가 존재하지 않습니다.
 
 **Example**
@@ -609,7 +609,7 @@ void Sample::AddEventHandler()
 
 #### Push Click Action
 
-* Rich Message 기능을 통해 생성한 버튼을 클릭했을때 발생하는 이벤트 입니다.
+* Rich Message 기능을 통해 생성한 버튼을 클릭했을때 발생하는 이벤트입니다.
 * actionType 은 다음 항목이 제공됩니다.
     * "OPEN_APP"
     * "OPEN_URL"
@@ -622,13 +622,13 @@ void Sample::AddEventHandler()
 ```cpp
 struct FGamebaseEventPushAction
 {
-    // 버튼 액션 종류 입니다.
+    // 버튼 액션 종류입니다.
     FString actionType;
 
-    // PushMessage 데이터 입니다.
+    // PushMessage 데이터입니다.
     FGamebaseEventPushMessage message;
 
-    // Push 콘솔에서 입력한 사용자 텍스트 입니다.
+    // Push 콘솔에서 입력한 사용자 텍스트입니다.
     FString userText;
 };
 ```

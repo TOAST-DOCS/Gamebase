@@ -68,7 +68,7 @@ FGamebaseNotificationOptions 의 생성자에 IGamebase::Get().GetPush().GetNoti
 
 | API                    | Parameter       | Description        |
 | ---------------------  | ------------ | ------------------ |
-| foregroundEnabled      | bool         | 앱이 포그라운드 상태일때의 알림 노출 여부<br/>**default**: false |
+| foregroundEnabled      | bool         | 앱이 포그라운드 상태일 때의 알림 노출 여부<br/>**default**: false |
 | badgeEnabled           | bool         | 배지 아이콘 사용 여부<br/>**default**: true |
 | soundEnabled           | bool         | 알림음 사용 여부<br/>**default**: true<br/>**iOS Only** |
 | priority               | int32        | 알림 우선 순위. 아래 5가지 값을 설정할 수 있습니다.<br/>GamebaseNotificationPriority::Min : -2<br/> GamebaseNotificationPriority::Low : -1<br/>GamebaseNotificationPriority::Default : 0<br/>GamebaseNotificationPriority::High : 1<br/>GamebaseNotificationPriority::Max : 2<br/>**default**: GamebaseNotificationPriority::High<br/>**Android Only** |

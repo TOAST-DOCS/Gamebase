@@ -7,7 +7,12 @@
 * 因Gamebase Access Token过期无法恢复而发生的GamebaseEventHandler事件category，在**GamebaseEventCategory.OBSERVER_HEARTBEAT**中已被更改为**GamebaseEventCategory.LOGGED_OUT**。
     * 请更改登录条件，即当**GamebaseEventCategory.OBSERVER_HEARTBEAT**事件中的GamebaseEventObserverData.code值为**GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)**时登录的条件，更改为在**GamebaseEventCategory.LOGGED_OUT**事件中登录。
 
-## 2.29.0 
+## 2.29.0
+
+### iOS
+
+* Xcode支持的最低版本从12升级至13。
+    * 在Xcode 12中进行Archive打包时将出现错误。请升级到Xcode 13。
  
 ### Unity
  
@@ -19,21 +24,12 @@
     * 关于更改的信息和使用方法，请参考如下指南。
         * [Game > Gamebase > Unity SDK使用指南 > 开始 > Specification of Setting Tool](./unity-started/#specification-of-setting-tool)
 
-## 2.27.0
-
-### iOS
-
-#### ImageNotice
-
-* 已修改在Unity中未能显示图片通知的问题。
-    * 如果使用低于Gamebase iOS SDK 2.27.0的版本，有可能在Unity中看不到图片通知。 
-    * 如果要使用图片通知，请使用Gamebase iOS SDK 2.27.0以上版本。 
-
 ## 2.26.0
 
 ### Unity
 
 * 使用相关版本时，请直接删除”Assets/Gamebase/Toast/IAP/Plugins”后使用。
+    * 如果应用了Gamebase Unity SDK 2.27.0或更高版本，则不需要删除。
 
 ### Unreal
 
@@ -95,7 +91,8 @@ android {
 
 ### Unity
 
- * 使用相关版本时，请直接删除”Assets/Gamebase/Toast/IAP/Plugins”后使用。
+* 使用相关版本时，请直接删除”Assets/Gamebase/Toast/IAP/Plugins”后使用。
+    * 如果应用了Gamebase Unity SDK 2.27.0或更高版本，则不需要删除。
 
 #### Changed Minimum Support Version
 
