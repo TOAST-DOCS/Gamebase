@@ -258,7 +258,7 @@ void UpdateTerms(const FGamebaseUpdateTermsConfiguration& configuration, const F
 **ErrorCode**
 
 | Error | Error Code | Description |
-| --- | --- |
+| --- | --- | --- |
 | NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
 | UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | 등록되지 않은 약관 Seq 값을 설정하였습니다. |
 | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 이전에 호출된 Terms API 가 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |

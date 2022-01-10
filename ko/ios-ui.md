@@ -134,7 +134,7 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 q
 
 **ErrorCode**
 
-| Error Code | Description |
+| Error | Error Code | Description |
 | --- | --- | --- |
 | TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
 | TCGB\_ERROR\_LAUNCHING\_SERVER\_ERROR | 2001 | 런칭서버가 내려준 항목에 약관 관련 내용이 없는 경우에 발생하는 에러입니다.<br/>정상적인 상황이 아니므로 Gamebase 담당자에게 문의해주시기 바랍니다. |
