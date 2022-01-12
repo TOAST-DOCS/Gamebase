@@ -4,9 +4,8 @@
 
 ### Android
 
-```
-Not traslated yet.
-```
+* Gamebase Access Tokenの有効期限が切れて復元できなかったときに発生するGamebaseEventHandlerイベントcategoryが**GamebaseEventCategory.OBSERVER_HEARTBEAT**から**GamebaseEventCategory.LOGGED_OUT**に変更されました。
+    * **GamebaseEventCategory.OBSERVER_HEARTBEAT**イベントでGamebaseEventObserverData.codeの値が**GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)**のときにログインするように実装した場合は、**GamebaseEventCategory.LOGGED_OUT**イベントでログインを行うように変更してください。
 
 ## 2.29.0 
  
