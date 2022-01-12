@@ -3,24 +3,24 @@
 ### 2.32.1 (2022.01.11)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.1/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 업데이트 권장 팝업의 '지금 업데이트' 버튼 클릭 시 팝업이 종료되지 않도록 수정하였습니다.
-* SDK 안정성을 개선하였습니다.
+#### 機能改善/変更
+* アップデート推奨ポップアップの「今アップデート」ボタンクリックしたとき、ポップアップが終了しないように修正しました。
+* SDKの安定性を改善しました。
 
 ### 2.32.0 (2021.12.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* GamebaseEventHandler의 GamebaseEventCategory에 **kTCGBServerPushAppKickoutMessageReceived** 타입이 추가되었습니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Server Push](./ios-etc/#server-push)
-* GamebaseEventHandler의 GamebaseEventCategory에 **kTCGBLoggedOut** 타입이 추가되었습니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./ios-etc/#logged-out)
+#### 機能追加
+* GamebaseEventHandlerのGamebaseEventCategoryに**kTCGBServerPushAppKickoutMessageReceived**タイプが追加されました。
+    * [Game > Gamebase > iOS SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Server Push](./ios-etc/#server-push)
+* GamebaseEventHandlerのGamebaseEventCategoryに**kTCGBLoggedOut**タイプが追加されました。
+    * [Game > Gamebase > iOS SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Logged Out](./ios-etc/#logged-out)
 
-#### 기능 개선/변경
-* 웹뷰 navigationBar의 default title Color가 **UIColor.white**로 변경되었습니다.
+#### 機能改善/変更
+* WebビューnavigationBarの基本タイトル色を**UIColor.white**に変更しました。
 
-#### 버그 수정
-* Hangame 로그아웃 호출 시, thirdIdP도 로그아웃 되도록 수정하였습니다.
+#### バグ修正
+* Hangameログアウトを呼び出した時、thirdIdPもログアウトするように修正しました。
 
 ### 2.31.0 (2021.12.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-iOS.zip)
@@ -55,7 +55,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-iOS.zip)
 
 #### 機能改善/変更
-* Xcode 최소 지원 버전이 12에서 13으로 변경되었습니다. 
+* Xcode最小サポートバージョンが12から13に変更されました。
 * 外部SDKアップデート：TOAST iOS SDK(0.29.1), ToastGamebaseIAP SDK(0.12.1)
 * コンソールに登録したメンテナンスおよび告知詳細表示のURLをエンコードせずに画面に表示するように変更しました。
 
