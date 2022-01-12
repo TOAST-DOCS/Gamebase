@@ -376,13 +376,24 @@ public class GamebaseEventMessage
 ```cs
 public void AddEventHandlerSample()
 {
-    Gamebase.AddEventHandler(GamebaseObserverHandler);
+    Gamebase.AddEventHandler(GamebaseEventHandler);
 }
 
-private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
     switch (message.category)
     {
+        case GamebaseEventCategory.LOGGED_OUT:
+            {
+                GamebaseResponse.Event.GamebaseEventLoggedOutData loggedData = GamebaseResponse.Event.GamebaseEventLoggedOutData.From(message.data);
+                if (loggedData != null)
+                {
+                    // There was a problem with the access token.
+                    // Call login again.
+                }
+                break;
+            }
+        case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED:
         case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
         case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
             {
@@ -483,12 +494,12 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 ```
 
 * CategoryはGamebaseEventCategoryクラスに定義されています。
-* イベントは大きくServerPush、Observer、Purchase、Pushに分けられ、各Categoryに基づいて、GamebaseEventMessage.dataを次の表のような方法でVOに変換できます。
-
+* イベントは大きく LoggedOut、ServerPush、Observer、Purchase、Pushに分けられ、各Categoryに基づいて、GamebaseEventMessage.dataを次の表のような方法でVOに変換できます。
 
 | Event種類 | GamebaseEventCategory | VO変換方法 | 備考 |
 | --------- | --------------------- | ----------- | --- |
-| ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
+| LoggedOut | GamebaseEventCategory.LOGGED_OUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
+| ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED<br>GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
 | Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseResponse.Event.GamebaseEventObserverData.from(message.data) | \- |
 | Purchase - プロモーション決済 | GamebaseEventCategory.PURCHASE_UPDATED | GamebaseResponse.Event.PurchasableReceipt.from(message.data) | \- |
 | Push - メッセージ受信 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
@@ -497,16 +508,45 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 
 #### Logged Out
 
-```
-Not translated yet
+* Gamebase Access Tokenの有効期限が切れてネットワークセッションを復元するためにログイン関数の呼び出しが必要な場合に発生するイベントです。
+
+**Example**
+
+```cs
+public void AddEventHandlerSample()
+{
+    Gamebase.AddEventHandler(GamebaseEventHandler);
+}
+
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+{
+    switch (message.category)
+    {
+        case GamebaseEventCategory.LOGGED_OUT:
+            {
+                GamebaseResponse.Event.GamebaseEventLoggedOutData loggedData = GamebaseResponse.Event.GamebaseEventLoggedOutData.From(message.data);
+                if (loggedData != null)
+                {
+                    // There was a problem with the access token.
+                    // Call login again.
+                }
+                break;
+            }
+    }
+}
 ```
 
 #### Server Push
 
 * Gamebaseサーバーからクライアント端末へ送信するメッセージです。
 * GamebaseでサポートするServer Push Typeは次の通りです。
+    * GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED
+    	* NHN Cloud Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseと接続したすべてのクライアントでキックアウトメッセージを受け取ります。
+        * クライアント端末でサーバーメッセージを受信した直後に発生するイベントです。
+        * 「オートプレイ」のようにゲームが動作中の場合、ゲームを一時停止させる目的で活用できます。
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
     	* NHN Cloud Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseに接続されたすべてのクライアントでキックアウトメッセージを受信します。
+        * クライアント端末でサーバーメッセージを受信した時、ポップアップを表示しますが、ユーザーがポップアップを閉じたときに発生するイベントです。
     * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
     	* Guestアカウントを他の端末へ移行すると、以前の端末でキックアウトメッセージを受信します。
 
@@ -515,13 +555,14 @@ Not translated yet
 ```cs
 public void AddEventHandlerSample()
 {
-    Gamebase.AddEventHandler(GamebaseObserverHandler);
+    Gamebase.AddEventHandler(GamebaseEventHandler);
 }
 
-private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
     switch (message.category)
     {
+        case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED:
         case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
         case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
             {
@@ -539,12 +580,18 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
     }
 }
 
-void CheckServerPush(string category, GamebaseResponse.Event.GamebaseEventServerPushData data)
+private void CheckServerPush(string category, GamebaseResponse.Event.GamebaseEventServerPushData data)
 {
     if (category.Equals(GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT) == true)
     {
-        // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+        // Kicked out from Gamebase server.(Maintenance, banned or etc.)
+        // And the game user closes the kickout pop-up.
         // Return to title and initialize Gamebase again.
+    }
+    else if (category.Equals(GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED) == true)
+    {
+        // Currently, the kickout pop-up is displayed.
+        // If your game is running, stop it.
     }
     else if (category.Equals(GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT) == true)
     {
@@ -613,10 +660,10 @@ public class GamebaseEventObserverData
 ```cs
 public void AddEventHandlerSample()
 {
-    Gamebase.AddEventHandler(GamebaseObserverHandler);
+    Gamebase.AddEventHandler(GamebaseEventHandler);
 }
 
-private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
     switch (message.category)
     {
@@ -755,10 +802,10 @@ private void CheckWebView(GamebaseResponse.Event.GamebaseEventObserverData obser
 ```cs
 public void AddEventHandlerSample()
 {
-    Gamebase.AddEventHandler(GamebaseObserverHandler);
+    Gamebase.AddEventHandler(GamebaseEventHandler);
 }
 
-private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
     switch (message.category)
     {
@@ -810,10 +857,10 @@ public class PushMessage
 ```cs
 public void AddEventHandlerSample()
 {
-    Gamebase.AddEventHandler(GamebaseObserverHandler);
+    Gamebase.AddEventHandler(GamebaseEventHandler);
 }
 
-private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
     switch (message.category)
     {
@@ -823,7 +870,7 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
                 if (pushMessage != null)
                 {
                     // When you received push message.
-                    
+
                     // By converting the extras field of the push message to JSON,
                     // you can get the custom information added by the user when sending the push.
                     // (For Android, an 'isForeground' field is included so that you can check if received in the foreground state.
@@ -848,10 +895,10 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 ```cs
 public void AddEventHandlerSample()
 {
-    Gamebase.AddEventHandler(GamebaseObserverHandler);
+    Gamebase.AddEventHandler(GamebaseEventHandler);
 }
 
-private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
     switch (message.category)
     {
@@ -902,10 +949,10 @@ class PushAction
 ```cs
 public void AddEventHandlerSample()
 {
-    Gamebase.AddEventHandler(GamebaseObserverHandler);
+    Gamebase.AddEventHandler(GamebaseEventHandler);
 }
 
-private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
     switch (message.category)
     {    
