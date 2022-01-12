@@ -41,7 +41,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 > * NHN Cloud Consoleで新しいプロジェクトを作成してGamebaseサービスが有効になっていることを必ず確認してください。
 > * 各IdPのコンソールでClient IDを発行してGamebaseコンソールに入力していることを必ず確認してください。
 
-* Gamebase Android SDKを使用する前に、NHN Cloud ConsoleからアプリIDを発行する必要があります。アプリIDを発行するためには、NHN Cloud Consoleから**(+)サービス選択**をクリックし、**Game > Gamebase**をクリックしてサービスを有効にします。
+* Gamebase Android SDKを使用する前に、NHN Cloud ConsoleからアプリIDを発行する必要があります。アプリIDを発行するためには、NHN Cloud Consoleから**(+)サービス選択**をクリックした後、**Game > Gamebase**をクリックしてサービスを有効にします。
 * 認証するためにIdPコンソールでclient idを発行し、Gamebaseコンソールに入力します。
     * [Game > Gamebase > コンソール使用ガイド > アプリ > Authentication Information](./oper-app/#authentication-information)
 * アイテムを購入するためにStoreコンソールでアプリ情報を登録してGamebase > 購入(IAP)コンソールに入力します。
