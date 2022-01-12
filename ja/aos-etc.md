@@ -379,11 +379,30 @@ void eventHandlerSample(Activity activity) {
 | Push - メッセージクリック | GamebaseEventCategory.PUSH_CLICK_MESSAGE | PushMessage.from(message.data) | **isForeground**値がありません。 |
 | Push - アクションクリック | GamebaseEventCategory.PUSH_CLICK_ACTION | PushAction.from(message.data) | RichMessageボタンを押すと動作します。 |
 
+#### How to handle events when the application is not running
+
+* カスタムApplicationクラスでGamebaseEventHandlerを登録すると、アプリケーションが実行されなかった時もにもイベント処理をできます。
+
+```java
+public class MyApplication extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Gamebase.addEventHandler(new GamebaseEventHandler() {
+            @Override
+            public void onReceive(@NonNull GamebaseEventMessage message) {
+                // ...
+            }
+        });
+        // ...
+    }
+}
+```
+
 #### Logged Out
 
-```
-Not translated yet.
-```
+* Gamebase Access Tokenの有効期限が切れてネットワークセッションを復元するためにログイン関数の呼び出しが必要な場合に発生するイベントです。
+
 
 **Example**
 
@@ -420,9 +439,12 @@ void processLoggedOut(String category, GamebaseEventLoggedOutData data) {
 * Gamebaseサーバーからクライアント端末へ送信するメッセージです。
 * GamebaseでサポートするServer Push Typeは次の通りです。
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED
-        * Not translated yet.
+    	* NHN Cloud Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseと接続したすべてのクライアントでキックアウトメッセージを受け取ります。
+        * クライアント端末でサーバーメッセージを受信した直後に発生するイベントです。
+        * 「オートプレイ」のようにゲームが動作中の場合、ゲームを一時停止させる目的で活用できます。
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
     	* NHN Cloud Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseに接続されたすべてのクライアントでキックアウトメッセージを受信します。
+        * クライアント端末でサーバーメッセージを受信した時、ポップアップを表示しますが、ユーザーがポップアップを閉じたときに発生するイベントです。
     * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
     	* Guestアカウントを他の端末へ移行すると、以前の端末でキックアウトメッセージを受信します。
 
@@ -581,7 +603,6 @@ void processObserver(String category, GamebaseEventObserverData data) {
     }
 }
 ```
-
 
 #### Purchase Updated
 
