@@ -329,31 +329,32 @@ localizedstring.jsonに定義されている形式は、次の通りです。
 ```objectivec
 - (void)eventHandler_addEventHandler {
     void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
-        if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES
+        if ([message.category isEqualToString:kTCGBLoggedOut] == YES) {
+            TCGBGamebaseEventLoggedOutData* loggedOutData = [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data];
+            if (loggedOutData != nil) {
+                //TODO: process loggedOut
+            }
+        } else if ([message.category isEqualToString:kTCGBServerPushAppKickoutMessageReceived] == YES
+            || [message.category isEqualToString:kTCGBServerPushAppKickout] == YES
             || [message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
             TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
             if (serverPushData != nil) {
                 //TODO: process server push
             }
-        }
-        else if ([message.category isEqualToString:kTCGBObserverLaunching] == YES
-                 || [message.category isEqualToString:kTCGBObserverHeartbeat] == YES
-                 || [message.category isEqualToString:kTCGBObserverNetwork] == YES) {
+        } else if ([message.category isEqualToString:kTCGBObserverLaunching] == YES
+            || [message.category isEqualToString:kTCGBObserverHeartbeat] == YES
+            || [message.category isEqualToString:kTCGBObserverNetwork] == YES) {
             TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
             if (observerData != nil) {
                 //TODO: process observer
             }
-        }
-        else if ([message.category isEqualToString:kTCGBPurchaseUpdated] == YES) {
+        } else if ([message.category isEqualToString:kTCGBPurchaseUpdated] == YES) {
             
-        }
-        else if ([message.category isEqualToString:kTCGBPushReceivedMessage] == YES) {
+        } else if ([message.category isEqualToString:kTCGBPushReceivedMessage] == YES) {
             
-        }
-        else if ([message.category isEqualToString:kTCGBPushClickMessage] == YES) {
+        } else if ([message.category isEqualToString:kTCGBPushClickMessage] == YES) {
             
-        }
-        else if ([message.category isEqualToString:kTCGBPushClickAction] == YES) {
+        } else if ([message.category isEqualToString:kTCGBPushClickAction] == YES) {
             
         }
     };
@@ -367,7 +368,8 @@ localizedstring.jsonに定義されている形式は、次の通りです。
 
 | Event種類 | GamebaseEventCategory | VO変換方法 | 備考 |
 | --------- | --------------------- | ----------- | --- |
-| ServerPush | kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
+| LoggedOut | kTCGBLoggedOut | [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data] | \- |
+| ServerPush | kTCGBServerPushAppKickoutMessageReceived<br>kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
 | Observer | kTCGBObserverLaunching<br>kTCGBObserverHeartbeat<br>kTCGBObserverNetwork | [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data] | \- |
 | Purchase - プロモーション決済 | kTCGBPurchaseUpdated | [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data] | \- |
 | Push - メッセージ受信 | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
@@ -376,16 +378,37 @@ localizedstring.jsonに定義されている形式は、次の通りです。
 
 #### Logged Out
 
-```
-Not translated yet
+* Gamebase Access Tokenの有効期限が切れてネットワークセッションを復元するためにログイン関数の呼び出しが必要な場合に発生するイベントです。
+
+**Example**
+
+```objectivec
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        [self printLogAndShowAlertWithData:[message prettyJsonString] error:nil alertTitle:@"addEventHandler Result"];
+        if ([message.category isEqualToString:kTCGBLoggedOut] == YES) {
+            TCGBGamebaseEventLoggedOutData* loggedOutData = [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data];
+            if (loggedOutData != nil) {
+                //TODO: process loggedOut
+            }
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
 ```
 
 #### Server Push
 
 * Gamebaseサーバーからクライアント端末へ送信するメッセージです。
 * GamebaseでサポートするServer Push Typeは次の通りです。
+	* kTCGBServerPushAppKickoutMessageReceived
+    	* NHN Cloud Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseと接続したすべてのクライアントでキックアウトメッセージを受け取ります。
+        * クライアント端末でサーバーメッセージを受信した直後に発生するイベントです。
+        * 「オートプレイ」のようにゲームが動作中の場合、ゲームを一時停止させる目的で活用できます。
 	* kTCGBServerPushAppKickout
     	* NHN Cloud Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseに接続されたすべてのクライアントでキックアウトメッセージを受信します。
+        * クライアント端末でサーバーメッセージを受信した時、ポップアップを表示しますが、ユーザーがポップアップを閉じたときに発生するイベントです。
     * kTCGBServerPushTransferKickout
     	* Guestアカウントを他の端末へ移行すると、以前の端末でキックアウトメッセージを受信します。
 
@@ -395,13 +418,17 @@ Not translated yet
 - (void)eventHandler_addEventHandler {
     void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
         [self printLogAndShowAlertWithData:[message prettyJsonString] error:nil alertTitle:@"addEventHandler Result"];
-        if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES) {
+        if ([message.category isEqualToString:kTCGBServerPushAppKickoutMessageReceived] == YES) {
+            TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
+            if (serverPushData != nil) {
+                //TODO: process server push 
+            }
+        } else if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES) {
             TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
             if (serverPushData != nil) {
                 //TODO: process server push
             }
-        }
-        esle if ([message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
+        } else if ([message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
             TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
             if (serverPushData != nil) {
                 //TODO: process server push
@@ -411,7 +438,6 @@ Not translated yet
     
     [TCGBGamebase addEventHandler:eventHandler];
 }
-
 ```
 
 #### Observer
@@ -473,7 +499,7 @@ Not translated yet
                     // Under maintenance.
                     break;
                 ...
-        }
+                }
             }
         }
         else if ([message.category isEqualToString:kTCGBObserverHeartbeat] == YES) {
@@ -487,7 +513,7 @@ Not translated yet
             case TCGB_ERROR_BANNED_MEMBER:
                 // You can check the banned user session in here.
                 break;
-        }
+            }
         }
         else if ([message.category isEqualToString:kTCGBObserverNetwork] == YES) {
             TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
