@@ -388,12 +388,14 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         Gamebase.addEventHandler(new GamebaseEventHandler() {
             @Override
             public void onReceive(@NonNull GamebaseEventMessage message) {
                 // ...
             }
         });
+
         // ...
     }
 }
