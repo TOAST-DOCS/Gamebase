@@ -4,14 +4,14 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* GamebaseEventHandler의 GamebaseEventCategory에 **GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED** 타입이 추가되었습니다.
-    * 이 이벤트의 활용 방법은 다음 문서를 참고하시기 바랍니다.
-    * [Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Server Push](./unity-etc/#server-push)
-* Gamebase Access Token이 만료되어 로그인이 필요할때 동작하는 **GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler category가 추가되었습니다.
-    * [Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./unity-etc/#logged-out)
+#### 機能改善/変更
+* GamebaseEventHandlerのGamebaseEventCategoryに**GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED**タイプが追加されました。
+    * このイベントの活用方法は、次の文書を参照してください。
+    * [Game > Gamebase > Unity SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Server Push](./unity-etc/#server-push)
+* Gamebase Access Tokenの有効期限が切れてログインが必要なときに動作する**GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler categoryが追加されました。
+    * [Game > Gamebase > Unity SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Logged Out](./unity-etc/#logged-out)
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.32.0](./release-notes-android/#2320-20211228)
 * [Gamebase iOS SDK 2.32.0](./release-notes-ios/#2320-20211228)
 
