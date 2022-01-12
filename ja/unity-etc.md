@@ -544,7 +544,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
     	* NHN Cloud Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseと接続したすべてのクライアントでキックアウトメッセージを受け取ります。
         * クライアント端末でサーバーメッセージを受信した直後に発生するイベントです。
         * 「オートプレイ」のようにゲームが動作中の場合、ゲームを一時停止させる目的で活用できます。
-	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
+    * GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
     	* NHN Cloud Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseに接続されたすべてのクライアントでキックアウトメッセージを受信します。
         * クライアント端末でサーバーメッセージを受信した時、ポップアップを表示しますが、ユーザーがポップアップを閉じたときに発生するイベントです。
     * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
