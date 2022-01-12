@@ -1236,7 +1236,8 @@ public static void testLogin() {
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 退会されているか、存在しない会員です。                    |
 |                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | 外部認証ライブラリの初期化に失敗しました。 |
 |                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部認証ライブラリーエラーです。<br/> DetailCodeおよびDetailMessageを確認してください。  |
-|                | AUTH_ALREADY_IN_PROGRESS_ERROR           | 3010       | 移行認証プロセスが完了していません。 |
+|                | AUTH\_ALREADY_IN_PROGRESS_ERROR           | 3010       | 移行認証プロセスが完了していません。 |
+|                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | Gamebase Access Tokenが有効ではないためログアウトしました。<br/>ログインを再試行してください。 |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | 発行したTransferAccountを同じ端末で使用しました。 |
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | ゲストではないアカウントから移行しようとしたか、アカウントにゲスト以外のIdPが連携されています。 |
 |                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccountの有効期限が切れました。 |
