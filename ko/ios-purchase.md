@@ -176,7 +176,7 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 // 게임에서 필요로 하는 다양한 추가 정보를 담기 위한 목적으로 활용할 수 있습니다.
 @property (nonatomic, strong, nullable) NSString *payload;
 
-// 구독 상품은 갱실 될때마다 paymentId 가 변경됩니다.
+// 구독 상품은 갱실 될때마다 paymentId가 변경됩니다.
 // 이 필드는 맨 처음 구독 상품을 결제 했을 때의 paymentId 를 알려줍니다.
 // 스토어에 따라, 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로 항상 유요한 값을 보장하지는 않습니다.
 @property (nonatomic, strong, nullable) NSString *originalPaymentId;

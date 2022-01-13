@@ -239,7 +239,7 @@ android {
 
 * Facebook SDK 초기화를 위해 App ID 를 선언합니다.
     * 해당 값을 직접 선언하는 것 보다는 아래 예시와 같이 resources 를 참조하도록 설정하는 것이 좋습니다.
-    * Gamebase SDK 가 내부적으로 Facebook SDK 초기화 함수를 호출하고 있으므로 현재는 필수 설정은 아닙니다.
+    * Gamebase SDK가 내부적으로 Facebook SDK 초기화 함수를 호출하고 있으므로 현재는 필수 설정은 아닙니다.
 
 **AndroidManifest.xml**
 
@@ -276,7 +276,7 @@ android {
 
 #### Weibo IdP
 
-* Weibo IdP 가 정상 동작 하기 위해서는 **application** 태그에 **android:networkSecurityConfig** attribute 를 추가하고, weibo, sina 관련 URL 을 선언한 xml 파일 이름을 설정해야 합니다.
+* Weibo IdP가 정상 동작 하기 위해서는 **application** 태그에 **android:networkSecurityConfig** attribute 를 추가하고, weibo, sina 관련 URL 을 선언한 xml 파일 이름을 설정해야 합니다.
 
 ```xml
 <application android:networkSecurityConfig="@xml/my_network_security_config"

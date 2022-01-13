@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.1/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경
-* 업데이트 권장 팝업의 '지금 업데이트' 버튼 클릭 시 팝업이 종료되지 않도록 수정하였습니다.
+* 업데이트 권장 팝업 창의 '지금 업데이트' 버튼 클릭 시 팝업 창이 종료되지 않도록 수정하였습니다.
 * SDK 안정성을 개선하였습니다.
 
 ### 2.32.0 (2021.12.28)
@@ -789,14 +789,14 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 추가
 * 이용정지(사용자처벌) 기능 추가
 * [SDK] 1.2.0 업데이트
-    * 이용정지 사용자 팝업 노출
+    * 이용정지 사용자 팝업 창 노출
 
 ### 1.1.5 (2017.07.20) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.5/GamebaseSDK-iOS.zip)
 #### 기능 개선/변경
 * Gamebase 상품 이용 중지시 관련 데이터 삭제를 위한 일 배치 기능 추가
 * [SDK] 1.1.5 업데이트
-    * 시스템 팝업 API 추가 (showAlertWithTitle)
+    * 시스템 팝업 창 API 추가 (showAlertWithTitle)
     * 국가코드를 대문자로 반환하도록 변경 (Android)
     * TCPush SDK 1.4.1 로 업데이트
     * IAP SDK 1.3.3.20170627 로 업데이트
@@ -812,7 +812,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.2/GamebaseSDK-iOS.zip)
 #### 기능 개선/변경
 * [SDK] 1.1.2 업데이트
-    * 게임런칭시 점검, 긴급공지 팝업 개선
+    * 게임론칭시 점검, 긴급공지 팝업 창 개선
     * Unity Plugin 디버그로그 추가 및 익셉션 상세처리
 
 ### 1.1.0 (2017.03.21) 

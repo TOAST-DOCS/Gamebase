@@ -56,29 +56,29 @@ Gamebase에서 제공하는 UI 및 SystemDialog에 표시되는 언어를 단말
 
 #### 5. enablePopup
 
-시스템 점검, 이용 제재(ban) 등 게임 유저가 게임을 플레이할 수 없는 상황에서 팝업 등으로 사유를 표시해야 할 때가 있습니다.
-Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+시스템 점검, 이용 제재(ban) 등 게임 유저가 게임을 플레이할 수 없는 상황에서 팝업 창 등으로 사유를 표시해야 할 때가 있습니다.
+Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 설정입니다.
 
-* true: enableLaunchingStatusPopup, enableBanPopup 설정에 따라 팝업 노출 여부가 결정됩니다.
-* false: Gamebase에서 제공하는 모든 팝업이 노출되지 않습니다.
+* true: enableLaunchingStatusPopup, enableBanPopup 설정에 따라 팝업 창 노출 여부가 결정됩니다.
+* false: Gamebase에서 제공하는 모든 팝업 창이 노출되지 않습니다.
 * 기본값: false
 
 #### 6. enableLaunchingStatusPopup
 
-LaunchingStatus가 게임을 할 수 없는 상태일 경우, Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+LaunchingStatus가 게임을 할 수 없는 상태일 경우, Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 설정입니다.
 LaunchingStatus는 아래 Launching 절 아래 State, Code 부분을 참고하십시오.
 
 * 기본값: true
 
 #### 7. enableBanPopup
 
-로그인 시 해당 게임 유저가 이용 정지 상태인 경우, Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+로그인 시 해당 게임 유저가 이용 정지 상태인 경우, Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 설정입니다.
 
 * 기본값: true
 
 #### 8. enableKickoutPopup
 
-Gamebase Server로 부터 Kickout 이벤트를 받은 경우, Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+Gamebase Server로 부터 Kickout 이벤트를 받은 경우, Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 설정입니다.
 
 * 기본값: true
 
@@ -305,9 +305,9 @@ GetLaunchingInformations API를 이용하면 Initialize 이후에도 LaunchingIn
 
 > <font color="red">[주의]</font><br/>
 >
-> GetLaunchingInformations API 는 실시간으로 서버에서 정보를 가져오는 비동기 API 가 아닙니다.
+> GetLaunchingInformations API 는 실시간으로 서버에서 정보를 가져오는 비동기 API가 아닙니다.
 > 2분 주기로 업데이트 되는 캐시 정보를 리턴하므로, 실시간으로 현재의 점검 여부를 판단하는 용도로는 적합하지 않습니다.
-> 이런 경우에는 Launching Status Code 가 변경되었을때 이벤트가 동작하는 GamebaseEventHandler 를 활용하시기 바랍니다.
+> 이런 경우에는 Launching Status Code가 변경되었을때 이벤트가 동작하는 GamebaseEventHandler 를 활용하시기 바랍니다.
 > [Game > Gamebase > Unreal SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Observer](./unreal-etc/#observer)
 
 **API**

@@ -8,7 +8,7 @@
 > Minimum specifications
 >
 > * User run environment : iOS 9 or later
-> * Build environment : Xcode 13 (iOS 15 SDK) or later
+> * Build environment : Xcode 13(iOS 15 SDK) or later
 >
 
 <br/>

@@ -22,8 +22,8 @@
 #### 기능 개선/변경
 * 외부 SDK 업데이트: TOAST Android SDK(0.29.0)
 * 이용정지 웹뷰 내의 고객센터 링크에서 이용정지 유저 정보로 문의를 등록할 수 없는 문제를 해결하였습니다.
-* 앱이 켜지자마자 Gamebase 초기화를 호출하는 경우, 런칭 팝업이 간헐적으로 영어로 표시되는 문제를 수정하였습니다.
-* 앱이 백그라운드에서 포그라운드로 전환될 때는 항상 런칭 정보가 변경되지 않았는지 바로 체크하도록 스케줄러를 개선하였습니다.
+* 앱이 켜지자마자 Gamebase 초기화를 호출하는 경우, 론칭 팝업 창이 간헐적으로 영어로 표시되는 문제를 수정하였습니다.
+* 앱이 백그라운드에서 포그라운드로 전환될 때는 항상 론칭 정보가 변경되지 않았는지 바로 체크하도록 스케줄러를 개선하였습니다.
 
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Android.zip)
@@ -87,8 +87,8 @@
     * 동기 API 이지만 실제로는 비동기로 동작하여 에러를 발생시키는 API에 예외 처리, 대기, 재시도 등을 추가였습니다.
 
 #### 버그 수정
-* '등록되지 않은 게임 버전' 에러 팝업이 영어로만 표시되는 버그를 수정하였습니다.
-* 점검 팝업에 중국어가 표시되지 않는 버그를 수정하였습니다.
+* '등록되지 않은 게임 버전' 에러 팝업 창이 영어로만 표시되는 버그를 수정하였습니다.
+* 점검 팝업 창에 중국어가 표시되지 않는 버그를 수정하였습니다.
 * [Credential Login](./aos-authentication/#login-with-credential) 을 한 경우, [Login as the Latest Login IdP](./aos-authentication/#login-as-the-latest-login-idp) 호출이 항상 실패하는 버그를 수정하였습니다.
 
 ### 2.27.0 (2021.08.24)
@@ -321,7 +321,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 
 #### 기능 개선/변경
 * [SDK] 2.13.0
-    * (Android) 이미지 공지의 팝업 이미지 비율 계산 로직 수정
+    * (Android) 이미지 공지의 팝업 창 이미지 비율 계산 로직 수정
 
 #### 버그 수정
 * [SDK] 2.13.0
@@ -332,7 +332,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.12.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
-* 이미지 공지: 표시 기간과 우선순위에 따라 게임 내 이미지 팝업 표시
+* 이미지 공지: 표시 기간과 우선순위에 따라 게임 내 이미지 팝업 창 표시
     * [SDK] 2.12.0: 이미지 공지 표시 API 추가
     
 ### 2.11.0 (2020.06.23)
@@ -387,7 +387,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 
 #### 기능 개선/변경
 * [SDK] 2.8.0 
-    * (공통) 콘솔에 등록되지 않은 앱 버전으로 초기화 실패할 때 스토어로 이동할 수 있는 팝업이 추가로 노출하도록 개선
+    * (공통) 콘솔에 등록되지 않은 앱 버전으로 초기화 실패할 때 스토어로 이동할 수 있는 팝업 창이 추가로 노출하도록 개선
     * (Android) 로그인 직후 결제 관련 API를 호출할 때 초기화 타이밍 문제로 실패가 발생할 수 있는 코드를 수정
 
 ### 2.7.2 (2020.03.10)
@@ -442,7 +442,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 * [SDK] 2.6.0
     * (공통) 데이터를 Log&Crash 에 전송하여 각종 분석에 이용할 수 있도록 TOAST Logger 추가
     * (Android) Google 구독 결제 기능 추가
-    * (Android) Gamebase Android SDK 가 Bintray 를 통해 배포되므로 gradle 설정만으로 Gamebase 를 사용할 수 있음
+    * (Android) Gamebase Android SDK가 Bintray 를 통해 배포되므로 gradle 설정만으로 Gamebase 를 사용할 수 있음
 
 ### 2.5.0 (2019.08.27)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.5.0/GamebaseSDK-Android.zip)
@@ -543,7 +543,7 @@ Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
         
 #### 버그수정
 * [SDK] 2.1.0
-    * (Android)Gamebase 초기화 이전, onActivityResult() 가 호출되면서 이상 동작하던 버그 수정
+    * (Android)Gamebase 초기화 이전, onActivityResult()가 호출되면서 이상 동작하던 버그 수정
 
 ### 2.0.0 (2019.01.29)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.0.0/GamebaseSDK-Android.zip)
@@ -697,7 +697,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그 수정
 * [SDK] 1.9.0
-    * (Android) Heartbeat 에서 잘못된 사용자로 판정되는 경우 이용정지 팝업이 뜨지 않도록 수정(iOS 와 동일한 로직으로 수정)
+    * (Android) Heartbeat 에서 잘못된 사용자로 판정되는 경우 이용정지 팝업 창이 뜨지 않도록 수정(iOS 와 동일한 로직으로 수정)
 
 ### 1.8.1 (2018.04.12)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.8.1/GamebaseSDK-Android.zip)
@@ -740,7 +740,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그 수정
 * [SDK] 1.4.0 업데이트
-    * (Android)Gamebase 제공 팝업을 사용하지 않는 경우 이용정지 정보가 null로 리턴되는 오류 수정
+    * (Android)Gamebase 제공 팝업 창을 사용하지 않는 경우 이용정지 정보가 null로 리턴되는 오류 수정
 
 ### 1.3.0 (2017.10.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.3.0/GamebaseSDK-Android.zip)
@@ -755,7 +755,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 추가
 * 이용정지(사용자처벌) 기능 추가
 * [SDK] 1.2.0 업데이트
-    * 이용정지 사용자 팝업 노출
+    * 이용정지 사용자 팝업 창 노출
 
 
 ### 1.1.5 (2017.07.20)
@@ -763,7 +763,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 개선/변경
 * [SDK] 1.1.5 업데이트
-    * 시스템 팝업 API 추가 (showAlertWithTitle)
+    * 시스템 팝업 창 API 추가 (showAlertWithTitle)
     * 국가코드를 대문자로 반환하도록 변경 (Android)
     * TCPush SDK 1.4.1 로 업데이트
     * IAP SDK 1.3.3.20170627 로 업데이트
@@ -779,7 +779,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.3/GamebaseSDK-Android.zip)
 #### 기능 개선/변경
 * [SDK] 1.1.3 업데이트
-    * (Android)론칭 구조 및 팝업/점검 페이지 개선 :커스텀 점검 페이지 설정 기능 추가
+    * (Android)론칭 구조 및 팝업 창/점검 페이지 개선 :커스텀 점검 페이지 설정 기능 추가
     * (Android)인증 구조 개선 및 로그 추가 : 인증 Adapter 및 SDK 버전 로그 출력
 
 #### 버그 수정
@@ -792,7 +792,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 개선/변경
 * [SDK] 1.1.2 업데이트
-    * 게임 론칭시 점검, 긴급공지 팝업 개선
+    * 게임 론칭시 점검, 긴급공지 팝업 창 개선
 
 ### 1.1.0 (2017.03.21)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.0/GamebaseSDK-Android.zip)
