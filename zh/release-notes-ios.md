@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.1/GamebaseSDK-iOS.zip)
  
 #### 改善/修复功能 
-* 点击推荐更新弹窗里的“立即更新”按钮时弹窗被关闭的问题已修复。
+* 点击推荐更新弹窗里的**立即更新**按钮时弹窗被关闭的问题已修复。
 * 提高了SDK稳定性。
 
 ### 2.32.0 (2021.12.28)

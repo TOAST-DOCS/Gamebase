@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.1/GamebaseSDK-iOS.zip)
 
 #### Feature Updates
-* Modified so that, when clicking the Update Now button in the Update recommended pop-up window, the pop-up window is not closed.
+* Modified so that, when clicking the **Update Now** button in the Update recommended pop-up window, the pop-up window is not closed.
 * Improved the stability of SDK.
 
 ### 2.32.0 (2021.12.28)

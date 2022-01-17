@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.1/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경
-* 업데이트 권장 팝업 창에서 지금 업데이트 버튼을 클릭하면 팝업 창이 종료되지 않도록 수정하였습니다.
+* 업데이트 권장 팝업 창에서 **지금 업데이트** 버튼을 클릭하면 팝업 창이 종료되지 않도록 수정하였습니다.
 * SDK 안정성을 개선하였습니다.
 
 ### 2.32.0 (2021.12.28)
