@@ -74,6 +74,7 @@ You can use TCGBImageNoticeConfiguration to create a customized image notice.
 
 
 ### Close ImageNotices
+
 You can call the closeImageNotices API to terminate all image notices currently being displayed.
 
 ```objectivec
@@ -84,10 +85,10 @@ You can call the closeImageNotices API to terminate all image notices currently 
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| TCGB\_ERROR\_NOT\_INITIALIZED(1) | Gamebase not initialized. |
-| TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT(6901) | Performs a force shutdown of all popups because timeout has occurred while displaying the image notice popup. |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebase not initialized. |
+| TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | Performs a force shutdown of all popup windows because timeout has occurred while displaying the image notice popup. |
 
 
 
@@ -133,13 +134,13 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| TCGB\_ERROR\_NOT\_INITIALIZED(1) | Gamebase not initialized. |
-| TCGB\_ERROR\_LAUNCHING\_SERVER\_ERROR(2001) | This error occurs when the items downloaded from the launching server does not have any information about the terms and conditions.<br/>This is not a usual case, and you should contact the Gamebase personnel. |
-| TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | The Terms API called previously has not been completed yet.<br/>Please try again later. |
-| TCGB\_ERROR\_WEBVIEW\_TIMEOUT(7002) | Timed out while displaying the terms and conditions WebView. |
-| TCGB\_ERROR\_WEBVIEW\_HTTP\_ERROR(7003) | An HTTP error has occurred while opening the terms and conditions WebView. |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebase not initialized. |
+| TCGB\_ERROR\_LAUNCHING\_SERVER\_ERROR | 2001 | This error occurs when the items downloaded from the launching server do not have any information about the terms and conditions.<br/>This is not a usual case, and you should contact the Gamebase personnel. |
+| TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | The Terms API call has not been completed yet.<br/>Please try again later. |
+| TCGB\_ERROR\_WEBVIEW\_TIMEOUT | 7002 | Timed out while displaying the terms and conditions WebView. |
+| TCGB\_ERROR\_WEBVIEW\_HTTP\_ERROR | 7003 | An HTTP error has occurred while opening the terms and conditions WebView. |
 
 **Example**
 
@@ -198,11 +199,11 @@ Calling it after login also lets you see if the game user has agreed to the term
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| TCGB\_ERROR\_NOT\_INITIALIZED(1) | Gamebase not initialized. |
-| TCGB\_ERROR\_UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE(6921) | Terms & conditions information is not registered with the console. |
-| TCGB\_ERROR\_UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY(6922) | Terms & conditions appropriate for the device's country code is not registered with the console. |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebase not initialized. |
+| TCGB\_ERROR\_UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE | 6921 | Terms & conditions information is not registered with the console. |
+| TCGB\_ERROR\_UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY | 6922 | Terms & conditions information appropriate for the device's country code is not registered with the console. |
 
 **Example**
 
@@ -282,11 +283,11 @@ It can be used to terminate the agreement to optional terms and conditions as we
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| TCGB\_ERROR\_NOT\_INITIALIZED(1) | Gamebase not initialized. |
-| TCGB\_ERROR\_UI\_TERMS\_UNREGISTERED\_SEQ(6923) | Unregistered terms and conditions Seq value has been set. |
-| TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | The Terms API called previously has not been completed yet.<br/>Please try again later. |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebase not initialized. |
+| TCGB\_ERROR\_UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | Unregistered terms and conditions Seq value has been set. |
+| TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | The Terms API call has not been completed yet.<br/>Please try again later. |
 
 
 **Example**

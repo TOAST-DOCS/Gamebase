@@ -9,6 +9,11 @@
 
 ## 2.29.0 
  
+### iOS
+
+* The minimum supported version of Xcode has been changed from 12 to 13.
+    * An error occurs if you run archive build in Xcode 12. Please update to Xcode 13.
+
 ### Unity 
  
 * Setting Tool 2.0.0 has been released.

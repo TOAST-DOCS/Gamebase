@@ -31,10 +31,10 @@ Show the image notice on the screen.
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebase.initialize has not been called. |
-| UI\_IMAGE\_NOTICE\_TIMEOUT(6901) | Performs a force shutdown of all popups because timeout has occurred while displaying the image notice popup. |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebase.initialize has not been called. |
+| UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | Performs a force shutdown of all popup windows because timeout has occurred while displaying the image notice popup. |
 
 **Example**
 
@@ -134,14 +134,14 @@ However, if the "Agree again to Terms and Conditions" item has been switched to 
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebase not initialized. |
-| LAUNCHING\_SERVER\_ERROR(2001) | This error occurs when the items downloaded from the launching server does not have any information about the terms and conditions.<br/>This is not a usual case, and you should contact the Gamebase personnel. |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | The Terms API called previously has not been completed yet.<br/>Please try again later. |
-| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW(6925) | Unfinished terms & conditions WebView has been called again. |
-| WEBVIEW\_TIMEOUT(7002) | Timed out while displaying the terms and conditions WebView. |
-| WEBVIEW\_HTTP\_ERROR(7003) | An HTTP error has occurred while opening the terms and conditions WebView. |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebase not initialized. |
+| LAUNCHING\_SERVER\_ERROR | 2001 | This error occurs when the items downloaded from the launching server do not have any information about the terms and conditions.<br/>This is not a usual case, and you should contact the Gamebase personnel. |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | The Terms API call has not been completed yet.<br/>Please try again later. |
+| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925 | Unfinished terms & conditions WebView has been called again. |
+| WEBVIEW\_TIMEOUT | 7002 | Timed out while displaying the terms and conditions WebView. |
+| WEBVIEW\_HTTP\_ERROR | 7003 | An HTTP error has occurred while opening the terms and conditions WebView. |
 
 **Example**
 
@@ -209,11 +209,11 @@ Calling it after login also lets you see if the game user has agreed to the term
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebase not initialized. |
-| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE(6921) | Terms & conditions information is not registered with the console. |
-| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY(6922) | Terms & conditions appropriate for the device's country code is not registered with the console. |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebase not initialized. |
+| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE | 6921 | Terms & conditions information is not registered with the console. |
+| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY | 6922 | Terms & conditions information appropriate for the device's country code is not registered with the console. |
 
 **Example**
 
@@ -290,11 +290,11 @@ It can be used to terminate the agreement to optional terms and conditions as we
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebase not initialized. |
-| UI\_TERMS\_UNREGISTERED\_SEQ(6923) | Unregistered terms and conditions Seq value has been set. |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | The Terms API called previously has not been completed yet.<br/>Please try again later. |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebase not initialized. |
+| UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | Unregistered terms and conditions Seq value has been set. |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | The Terms API call has not been completed yet.<br/>Please try again later. |
 
 **Example**
 
