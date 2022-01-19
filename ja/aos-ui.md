@@ -130,6 +130,9 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 ```java
 + (void)Gamebase.Terms.showTermsView(@NonNull Activity activity,
                                      @Nullable GamebaseDataCallback<GamebaseDataContainer> callback);
++ (void)Gamebase.Terms.showTermsView(@NonNull Activity activity,
+                                     @Nullable GamebaseTermsConfiguration configuration,
+                                     @Nullable GamebaseDataCallback<GamebaseDataContainer> callback);
 ```
 
 **ErrorCode**
@@ -146,35 +149,29 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 **Example**
 
 ```java
-public void showTermsView(final Activity activity,
-                          final GamebaseDataCallback<GamebaseDataContainer> callback) {
-    Gamebase.Terms.showTermsView(activity, new GamebaseDataCallback<GamebaseDataContainer>() {
-        @Override
-        public void onCallback(GamebaseDataContainer container, GamebaseException exception) {
-            if (Gamebase.isSuccess(exception)) {
-                // If the 'PushConfiguration' is not null,
-                // save the 'PushConfiguration' and use it for Gamebase.Push.registerPush()
-                // after Gamebase.login().
-                @Nullable PushConfiguration savedPushConfiguration = PushConfiguration.from(container);
-            } else {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Wait for a while and try again.
-                        try { Thread.sleep(2000); }
-                        catch (Exception ignored) {}
-                        showTermsView(activity, callback);
-                    }
-                }).start();
-            }
-        }
-    });
-}
+static PushConfiguration savedPushConfiguration = null;
+final GamebaseTermsConfiguration configuration = GamebaseTermsConfiguration.newBuilder()
+        .setForceShow(true)
+        .build();
+Gamebase.Terms.showTermsView(activity, configuration, (container, exception) -> {
+    if (Gamebase.isSuccess(exception)) {
+        // Save the PushConfiguration and use it for Gamebase.Push.registerPush()
+        // after Gamebase.login().
+        savedPushConfiguration = PushConfiguration.from(container);
+    } else {
+        new Thread(() -> {
+            // Wait for a while and try again.
+            try { Thread.sleep(2000); }
+            catch (Exception ignored) {}
+            showTermsView(activity, callback);
+        }).start();
+    }
+});
 
 public void afterLogin(Activity activity) {
     // Call registerPush with saved PushConfiguration.
     if (savedPushConfiguration != null) {
-        Gamebase.Push.registerPush(activity, savedPushConfiguration, new GamebaseCallback() {...});
+        Gamebase.Push.registerPush(activity, savedPushConfiguration, exception -> {...});
     }
 }
 ```
