@@ -9,7 +9,7 @@
     * [Game > Gamebase > Android SDK 사용 가이드 > UI > Terms > showTermsView](./aos-ui/#showtermsview)
 
 #### 기능 개선/변경
-* 외부 SDK 업데이트: Payco Login Android SDK(1.5.7), Hangame Android SDK(1.4.3.1), TOAST Gamebase IAP Andoid SDK(0.18.1)
+* 외부 SDK 업데이트: PAYCO Android SDK(1.5.7), Hangame Android SDK(1.4.3.1), TOAST Gamebase IAP Andoid SDK(0.18.1)
 * 로그인 성공 직후 론칭 정보가 변경되지 않았는지 체크하는 로직을 추가하였습니다.
 
 ### 2.32.0 (2021.12.28)
