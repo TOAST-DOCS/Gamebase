@@ -1,5 +1,13 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.33.0
+
+### iOS
+
+* TCGB_ERROR_UNKNOWN_ERROR 에러에 매핑된 에러코드가 변경되었습니다.
+    * TCGB_ERROR_UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
+    * 에러코드 999에 매핑 시킨 TCGB_ERROR_SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
+
 ## 2.32.0
 
 ### Android

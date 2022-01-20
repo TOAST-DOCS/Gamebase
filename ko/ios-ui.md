@@ -121,7 +121,7 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 q
 * viewController : 약관창이 노출되는 ViewController입니다.
  
 #### Optional 파라미터
-
+* configuration: TCGBTermsConfiguration으로 약관창 강제 표시 여부 등 설정을 변경할 수 있습니다.
 * completion : 약관 동의 후 약관창이 종료될 때 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 TCGBDataContainer 객체는 TCGBPushConfiguration으로 변환해서 로그인 후 registerPush API 에 사용할 수 있습니다.
 
 
@@ -130,6 +130,10 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 q
 ```objectivec
 + (void)showTermsViewWithViewController:(UIViewController *)viewController
                              completion:(nullable void (^)(TCGBDataContainer * _Nullable dataContainer, TCGBError * _Nullable error))completion;
+                             
++ (void)showTermsViewWithConfiguration:(TCGBTermsConfiguration *)configuration
+                        viewController:(nullable UIViewController *)viewController
+                            completion:(nullable void (^)(TCGBDataContainer * _Nullable dataContainer, TCGBError * _Nullable error))completion;
 ```
 
 **ErrorCode**
@@ -168,6 +172,11 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 q
 }
 ```
 
+**TCGBTermsConfiguration**
+
+| Parameter            | Values                          | Description         |
+| -------------------- | --------------------------------| ------------------- |
+| forceShow            | BOOL                            | 약관에 동의한 이후에도 약관창을 강제로 표시합니다.<br/>**default**: NO          |
 
 ### queryTerms
 
