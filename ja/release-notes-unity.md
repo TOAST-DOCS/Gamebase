@@ -1,5 +1,22 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.33.0 (2022.01.25)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* 공통약관창의 설정을 변경할 수 있는 신규 API가 추가되었습니다.
+    * [Game > Gamebase > Unity SDK 사용 가이드 > UI > Terms > showTermsView](./unity-ui/#showtermsview)
+
+#### 기능 개선/변경
+* 에러코드 추가 및 변경
+    * GamebaseErrorCode.UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
+    * 에러코드 999에 매핑 시킨 GamebaseErrorCode.SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
+    
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.33.0](./release-notes-android/#2330-20220125)
+* [Gamebase iOS SDK 2.33.0](./release-notes-ios/#2330-20220125)
+
 ### 2.32.0 (2021.12.28)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-Unity.zip)
@@ -79,7 +96,7 @@
     * 決済アビューズ自動解除機能は、決済アビューズ自動制裁で利用停止にならなければいけないユーザーが利用停止猶予状態後、利用停止になるようにします。
     * 利用停止猶予状態の場合、設定した期間内に解除条件を全て満たすと正常にプレイが可能になります。
     * 期間内に条件を満たせなかった場合、利用停止になります。
-* 決済アビューズ自動解除機能を使用するゲームはログイン後、常にAuthToken.getGraceBanInfo() API値を確認し、nullではない有効なGraceBanInfoオブジェクトを返した場合、該当ユーザーに利用停止解除条件、期間などを案内する必要があります。
+* 決済アビューズ自動解除機能を使用するゲームはログイン後、常にAuthToken.member.graceBanInfo API値を確認し、nullではない有効なGraceBanInfoオブジェクトを返した場合、該当ユーザーに利用停止解除条件、期間などを案内する必要があります。
     * 利用停止猶予状態のユーザーのゲーム内アクセス制御はゲームで処理する必要があります。
 
 #### プラットフォーム別の変更事項

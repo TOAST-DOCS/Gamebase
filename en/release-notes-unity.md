@@ -1,5 +1,22 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.33.0 (2022.01.25)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* 공통약관창의 설정을 변경할 수 있는 신규 API가 추가되었습니다.
+    * [Game > Gamebase > Unity SDK 사용 가이드 > UI > Terms > showTermsView](./unity-ui/#showtermsview)
+
+#### 기능 개선/변경
+* 에러코드 추가 및 변경
+    * GamebaseErrorCode.UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
+    * 에러코드 999에 매핑 시킨 GamebaseErrorCode.SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
+    
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.33.0](./release-notes-android/#2330-20220125)
+* [Gamebase iOS SDK 2.33.0](./release-notes-ios/#2330-20220125)
+
 ### 2.32.0 (2021.12.28)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-Unity.zip)
@@ -79,7 +96,7 @@
     * The purchase abuse automatic release function allows users who should be banned due to purchase abuse automatic lockdown to be banned after ban suspension status.
     * When a user is in ban suspension status, if the user satisfies all of the release conditions within the set period of time, the user will be able to play normally.
     * If the user does not satisfy the conditions within the period, the user is banned.
-* Games that use the purchase abuse automatic release function must always call the AuthToken.getGraceBanInfo() API after login. If a valid GraceBanInfo object that is not null is returned, the user must be informed of the ban release conditions, period, etc.
+* Games that use the purchase abuse automatic release function must always call the AuthToken.member.graceBanInfo API after login. If a valid GraceBanInfo object that is not null is returned, the user must be informed of the ban release conditions, period, etc.
     * In-game access control for users who are in ban suspension status must be handled by the game.
 
 #### Platform-specific Changes
