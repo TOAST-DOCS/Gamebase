@@ -1,4 +1,4 @@
-## Game > Gamebase > Unreal SDK使用ガイド > UI
+## Game > Gamebase > Unreal SDKご利用ガイド > UI
 
 ## ImageNotice
 
@@ -106,14 +106,14 @@ void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebaseが初期化されていません。 |
-| LAUNCHING\_SERVER\_ERROR(2001) | ローンチサーバーから取得した項目に約款関連内容がない場合に発生するエラーです。<br/>正常な状況ではないため、Gamebase担当者にお問い合わせください。 |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 以前に呼び出されたTerms APIがまだ完了していません。<br/>しばらくしてからもう一度お試しください。 |
-| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW(6925) | 約款Webビューがまだ終了していないのに再度呼び出されました。 |
-| WEBVIEW\_TIMEOUT(7002) | 約款Webビューの表示中にタイムアウトが発生しました。 |
-| WEBVIEW\_HTTP\_ERROR(7003) | 約款Webビューのオープン中にHTTPエラーが発生しました。 |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebaseが初期化されていません。 |
+| LAUNCHING\_SERVER\_ERROR | 2001 | ローンチサーバーからダウンロードした項目に約款関連内容がない場合に発生するエラーです。<br/>正常な状況ではないため、Gamebase担当者にお問い合わせください。 |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 以前に呼び出されたTerms APIがまだ完了していません。<br/>しばらくしてから再度試行してください。 |
+| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925 | 約款Webビューが終了していないのに再び呼び出されました。 |
+| WEBVIEW\_TIMEOUT | 7002 | 約款Webビューの表示中にタイムアウトが発生しました。 |
+| WEBVIEW\_HTTP\_ERROR | 7003 | 約款Webビューのオープン中にHTTPエラーが発生しました。 |
 
 **Example**
 
@@ -171,11 +171,11 @@ void QueryTerms(const FGamebaseQueryTermsResultDelegate& onCallback);
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebaseが初期化されていません。 |
-| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE(6921) | 約款情報がコンソールに登録されていません。 |
-| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY(6922) | 端末の国コードに合った約款情報がコンソールに登録されていません。 |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebaseが初期化されていません。 |
+| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE | 6921 | 約款情報がコンソールに登録されていません。 |
+| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY | 6922 | 端末国コードに合った約款情報がコンソールに登録されていません。 |
 
 **Example**
 
@@ -254,11 +254,11 @@ void UpdateTerms(const FGamebaseUpdateTermsConfiguration& configuration, const F
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebaseが初期化されていません。 |
-| UI\_TERMS\_UNREGISTERED\_SEQ(6923) | 登録されていない約款Seq値を設定しました。 |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 以前に呼び出されたTerms APIがまだ完了していません。<br/>しばらくしてからもう一度お試しください。 |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebaseが初期化されていません。 |
+| UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | 登録されていない約款Seq値を設定しました。 |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 以前に呼び出されたTerms APIがまだ完了していません。<br/>しばらくしてから再度試行してください。 |
 
 
 **Example**
