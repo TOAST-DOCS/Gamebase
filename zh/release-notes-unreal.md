@@ -4,33 +4,33 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
-* '결제 어뷰징 자동 해제' 기능이 추가되었습니다.
-    * [Game > Gamebase > Unreal SDK 사용 가이드 > 인증 > GraceBan](./unreal-authentication/#graceban)
-    * 결제 어뷰징 자동 해제 기능은 결제 어뷰징 자동 제재로 이용 정지가 되어야 할 사용자가 이용 정지 유예 상태 후 이용 정지가 되도록 합니다.
-    * 이용 정지 유예 상태일 경우 설정한 기간 내에 해제 조건을 모두 만족하면 정상플레이가 가능해집니다.
-    * 기간 내에 조건을 충족하지 못하면 이용 정지가 됩니다.
-* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 AuthToken.member.graceBanInfo API 값을 확인하고, null이 아닌 유효한 GraceBanInfo 객체를 리턴한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
-    * 이용 정지 유예 상태인 유저의 게임 내 접근 제어는 게임에서 처리하셔야 합니다.
-* 강제매핑 시 IdP 로그인을 한번 더 시도해야 하는 불편함을 개선한 새로운 강제매핑 API가 추가되었습니다.
-    * [Game > Gamebase > Unreal SDK 사용 가이드 > 인증 > Mapping > Add Mapping Forcibly](./unreal-authentication/#add-mapping-forcibly)
-* Gamebase.AddMapping() 호출 후 AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302) 에러가 발생했을 때, 해당 계정으로 로그인을 할 수 있는 API가 추가되었습니다.
-    * [Game > Gamebase > Unreal SDK 사용 가이드 > 인증 > Mapping > Change Login with ForcingMappingTicket](./unreal-authentication/#change-login-with-forcingmappingticket)
-* GamebaseEventHandler의 GamebaseEventCategory에 **GamebaseEventCategory::ServerPushAppKickOutMessageReceived** 타입이 추가되었습니다.
-    * 이 이벤트의 활용 방법은 다음 문서를 참고하시기 바랍니다.
-    * [Game > Gamebase > Unreal SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Server Push](./unreal-etc/#server-push)
-* GamebaseEventHandler의 GamebaseEventCategory에 **GamebaseEventCategory::LoggedOut** 타입이 추가되었습니다.
-    * Gamebase Access Token이 만료되어 로그인이 필요할 때 동작합니다.
-    * [Game > Gamebase > Unreal SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./unreal-etc/#logged-out)
-* 공통약관 창의 설정을 변경할 수 있는 신규 API가 추가되었습니다.
-    * [Game > Gamebase > Unreal SDK 사용 가이드 > UI > Terms > showTermsView](./unreal-ui/#showtermsview)
+#### 添加功能
+* 添加了”结算Abusing自动解除”功能。        
+    * [Game > Gamebase > Unreal SDK使用指南 > 认证 > GraceBan](./unreal-authentication/#graceban)
+    * 结算Abusing自动解除功能是当存在需通过”结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。
+    * 如果为”预约禁用”状态，在设定的时期内满足解除条件，则可正常玩游戏。
+    * 若在所定的时期内未能满足条件，则会被禁用。
+* 登录使用结算Abusing自动解除功能的游戏后，始终要确认AuthToken.member.graceBanInfo API的值，如果返还GraceBanInfo对象，而不返还null，要告知相关用户禁用解除条件、时期等。
+    * 当需要控制处于预约禁用状态的用户进入游戏时，要在游戏中进行处理。
+* 添加了新的强制映射API，以改善进行强制映射时再次尝试IdP登录的不便。
+    * [Game > Gamebase > Unreal SDK使用指南 > 认证 > Mapping > Add Mapping Forcibly](./unreal-authentication/#add-mapping-forcibly)
+* 添加了当调用Gamebase.AddMapping()后出现AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)时您可使用相关账户进行登录的API。
+    * [Game > Gamebase > Unreal SDK使用指南 > 认证 > Mapping > Change Login with ForcingMappingTicket](./unreal-authentication/#change-login-with-forcingmappingticket)
+* 在GamebaseEventHandler的GamebaseEventCategory中添加了**GamebaseEventCategory::ServerPushAppKickOutMessageReceived**类型。
+    * 关于此事件的应用方法，请参考以下文件。
+    * [Game > Gamebase > Unreal SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Server Push](./unreal-etc/#server-push)
+* 在GamebaseEventHandler的GamebaseEventCategory中添加了**GamebaseEventCategory::LoggedOut**类型。
+    * 当Gamebase Access Token已过期，需要登录时启动。 
+    * [Game > Gamebase > Unreal SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./unreal-etc/#logged-out)
+* 添加了可更改共同条款窗设置的新API。
+    * [Game > Gamebase > Unreal SDK使用指南 > UI > Terms > showTermsView](./unreal-ui/#showtermsview)
 
-#### 기능 개선/변경
-* 에러코드 추가 및 변경
-    * GamebaseErrorCode::UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
-    * 에러코드 999에 매핑 시킨 GamebaseErrorCode::SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
+#### 改善/更改功能
+* 添加或更改错误代码
+    * GamebaseErrorCode::UNKNOWN_ERROR的错误代码从999更改为9999。
+    * 添加了映射到999错误代码的GamebaseErrorCode::SOCKET_UNKNOWN_ERROR错误。
     
-#### 플랫폼별 변경 사항
+#### 各平台变更项目
 * [Gamebase Android SDK 2.33.0](./release-notes-android/#2330-20220125)
 * [Gamebase iOS SDK 2.33.0](./release-notes-ios/#2330-20220125)
 
