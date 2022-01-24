@@ -1,5 +1,11 @@
 ## Game > Gamebase > Release Notes > Console
 
+### January 25, 2022
+
+#### Feature Updates
+* Operation > Kickout
+	* Added a feature to select whether or not to expose a kickout popup
+
 ### January 11, 2022
 
 #### Feature Updates
