@@ -11,8 +11,8 @@ Gamebase默认支持Guest登录。
 
 根据尝试登录的IdP，可能需要输入additionalInfo参数。<br/>
 有关AdditionalInfo的说明，请参考以下**Gamebase支持的IdP说明**。
-
-
+ 
+   
 ### Import Header File
 在ViewController中，导入要实现登录的以下头文件。
 
@@ -313,28 +313,28 @@ Mapping API中有添加映射和解除映射的功能。
 Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 首先通过调用登录API登录。
 
-#### 2. 映射（Mapping）
+#### 2. 映射（Mapping）                   
 
 调用**[TCGBGamebase addMappingWithType:viewController:completion:]**尝试进行映射（Mapping）。
 
 #### 2-1. 如果映射（Mapping）成功
-
 * 恭喜！ 已成功添加与当前账户关联的IdP帐户。
-* 映射（Mapping）成功后，“当前登录的IdP”也不会更改。 换句话说，在已使用Google帐户登录后，成功映射（Mapping）到您的Facebook帐户，也不会将您“当前登录的IdP”从Google更改为Facebook，会保持Google的状态。
+*    映射（Mapping）成功后，“当前登录的IdP”也不会更改。 换句话说，在已使用Gamecenter帐户登录后，成功映射（Mapping）到您的Facebook帐户，也不会将您“当前登录的IdP”从Google更改为Facebook，会保持Gamecenter的状态。
+    * <font color="red">[注意]</font><br/> : Guest账户是个例外。若使用Guest账户登录后映射成功，Guest IdP将被**删除**，而“当前登录的IdP”也将更改为映射的IdP。
 * 映射（Mapping）只是添加IdP关联。
 
 #### 2-2. 如果映射（Mapping）失败
 
 * 网络错误
-    * 由于突发的网络问题，认证失败，错误代码为**TCGB_ERROR_SOCKET_ERROR(110)**或**TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**。需要重新调用**[TCGBGamebase addMappingWithType:viewController:completion:]**或稍后再试。
+    * 由于突发的网络问题，认证失败，错误代码为**TCGB_ERROR_SOCKET_ERROR(110)**和**TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**，则重新调用**[TCGBGamebase addMappingWithType:viewController:completion:]**或稍后再试。
 * 与其他帐户关联时发生的错误
-    * 错误代码为**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**则表示尝试映射（Mapping）的IdP上的帐户已关联了另一个帐户，要解除已关联的帐户，请使用该帐户登录并通过调用**[TCGBGamebase withdrawWithViewController:completion:]**退出（删除数据），或者通过调用**[TCGBGamebase removeMappingWithType:viewController:completion:]**解除关联，再尝试映射（Mapping）。
-* 关联相同IdP帐户时发生的错误
+    * 错误代码为**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**，则表示尝试映射（Mapping）的IdP上的帐户已关联了另一个帐户。请使用已获取的**ForcingMappingTicket**强制映射(**[TCGBGamebase addMappingForciblyWithTicket:viewController:completion:]**)或在尝试更改登录账号(**[TCGBGamebase changeLoginWithForcingMappingTicket:viewController:completion:]**)。
+* 关联相同IdP帐户发生的错误
 	* 错误代码为**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**，则表示已关联了与IDP相同类型的账户。
 	* Gamebase映射（Mapping），每个IdP只能关联一个游戏帐户。例如，已经关联了Google帐户，则无法添加其他Google帐户。
-	* 要关联同一IdP中的另一个帐户，请调用**[TCGBGamebase removeMappingWithType:viewController:completion:]**解除关联后，再尝试映射（Mapping）。
-* 其他错误
-    * 尝试映射（Mapping）失败。
+	* 要关联同一IdP中的另一个帐户，请调用**[TCGBGamebase removeMappingWithType:viewController:completion:]**，解除关联后，再尝试映射（Mapping）。
+* 其他错误                            
+    * 尝试映射（Mapping）失败。              
 
 ### Import Header file into View Controller
 
@@ -348,7 +348,15 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 在登录特定IdP状态下，尝试用其他IdP Mapping。<br/>
 
-以下是尝试映射（Mapping）到Facebook的示例。
+**API**
+
+```objectivec
++ (void)addMappingWithType:(NSString *)type viewController:(UIViewController *)viewController completion:(LoginCompletion)completion;
+```
+
+**Example**
+
+如下为对Facebook尝试强制映射的范例。
 
 ```objectivec
 - (void)authAddMapping {
@@ -398,106 +406,23 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 > 外部SDK要求的开发事项需使用外部SDK的API实现，Gamebase不支持。
 >
 
+**API**
 
 ```objectivec
-     - (void)onButtonLogin {
-         UIViewController* topViewController = nil;
- 
-         NSString* facebookAccessToken = @"feijla;feij;fdklvda;hfihsdfeuipivaipef/131fcusp";
-         NSMutableDictionary* credentialInfo = [NSMutableDictionary dictionary];
-         credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = kTCGBAuthFacebook;
-         credentialInfo[kTCGBAuthLoginWithCredentialAccessTokenKeyname] = facebookAccessToken;
- 
-         [TCGBGamebase addMappingWithCredential:credentialInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
-             if ([TCGBGamebase isSuccessWithError:error] == YES) {
-                 NSLog(@"AddMapping is succeeded.");
-             }
-             else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
-                 NSLog(@"Retry addMapping");
-             }
-             else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-                 NSLog(@"Already mapped to other member");
-             }
-             else {
-                 NSLog(@"AddMapping Error - %@", [error description]);
-             }
-         }];
-     }
++ (void)addMappingWithCredential:(NSDictionary *)credentialInfo viewController:(UIViewController *)viewcontroller completion:(LoginCompletion)completion;
 ```
 
-### Add Mapping Forcibly
-若特定IdP有已映射的账户，尝试**强制**映射。
-尝试**强制映射**时需要从AddMapping API获得的”ForcingMappingTicket”。
-
-如下为对Facebook尝试强制映射的范例。
+**Example**
 
 ```objectivec
-- (void)authAddMapping {
-    [TCGBGamebase addMappingWithType:kTCGBAuthFacebook viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
-        if ([TCGBGamebase isSuccessWithError:error] == YES) {
-            NSLog(@"AddMapping is succeeded.");
-        }
-        else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
-            NSLog(@"Retry addMapping");
-        }
-        else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
-            NSLog(@"Already mapped to other member");
-            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketFromError:error];
-            [TCGBGamebase addMappingForciblyWithType:ticket.idPCode forcingMappingKey:ticket.forcingMappingKey viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
-                if ([TCGBGamebase isSuccessWithError:error]) {
-                    // Mapping success.
-                }
-                else {
-                    // Mapping failed.
-                }
-            }];
-        }
-        else {
-            NSLog(@"AddMapping Error - %@", [error description]);
-        }
-    }];
-}
-```
-
-
-### Add Mapping Forcibly with Credential
-若特定IdP有已映射的账户，尝试**强制**映射。
-尝试**强制映射**时需要从AddMapping API获得的”ForcingMappingTicket”。
-
-游戏中先直接以IdP提供的SDK进行验证，并可利用发放的访问令牌等调用Gamebase AddMappingForcibly的接口。
-
-* Credential参数设置方法
-
-
-| keyname                                  | a use                          | 值类型                           |
-| ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | 设置IdP类型                      | facebook, iosgamecenter, naver, google, twitter |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname | 设定登录IdP后获得的验证信息（访问令牌）。|                                           |
-
-> [参考]
->
-> 游戏中必须使用外部服务（Facebook等）的固有功能时，可能需要它。
->
-
-<br/>
-
-
-> <font color="red">[注意]</font><br/>
->
-> 外部SDK要求的开发事项应使用外部SDK的API实现，Gamebase不支持。
->
-
-如下为对Facebook尝试强制映射的范例。
-
-```objc
-- (void)onButtonLogin {
+- (void)authAddMappingCredential {
     UIViewController* topViewController = nil;
-    
-    NSString* facebookAccessToken = @"feijla;feij;fdklvda;hfihsdfeuipivaipef/131fcusp";
+
+    NSString* facebookAccessToken = @"FACEBOOK_ACCESS_TOKEN";
     NSMutableDictionary* credentialInfo = [NSMutableDictionary dictionary];
     credentialInfo[kTCGBAuthLoginWithCredentialProviderNameKeyname] = kTCGBAuthFacebook;
     credentialInfo[kTCGBAuthLoginWithCredentialAccessTokenKeyname] = facebookAccessToken;
-    
+
     [TCGBGamebase addMappingWithCredential:credentialInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             NSLog(@"AddMapping is succeeded.");
@@ -507,15 +432,6 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
         }
         else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
             NSLog(@"Already mapped to other member");
-            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketFromError:error];
-            [TCGBGamebase addMappingWithCredential:credentialInfo forcingMappingKey:ticket.forcingMappingKey viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
-                if ([TCGBGamebase isSuccessWithError:error]) {
-                    // Mapping success.
-                }
-                else {
-                    // Mapping failed.
-                }
-            }];
         }
         else {
             NSLog(@"AddMapping Error - %@", [error description]);
@@ -524,6 +440,87 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 }
 ```
 
+### Add Mapping Forcibly
+若特定IdP有已映射的账户，尝试**强制**映射。
+尝试**强制映射**时需要从AddMapping API获得的”ForcingMappingTicket”。
+
+**API**
+
+```objectivec
++ (void)addMappingForciblyWithTicket:(TCGBForcingMappingTicket *)ticket viewController:(nullable UIViewController *)viewController completion:(LoginCompletion)completion;
+```
+
+**Example**
+
+如下为对Facebook尝试强制映射的范例。
+
+```objectivec
+- (void)authAddMappingForcibly {
+    [TCGBGamebase addMappingWithType:kTCGBAuthFacebook viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
+            NSLog(@"AddMapping is succeeded.");
+        } else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
+            NSLog(@"Retry addMapping");
+        } else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+            NSLog(@"Already mapped to other member");
+            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketFromError:error];
+            [TCGBGamebase addMappingForciblyWithTicket:ticket viewController:self completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+                if ([TCGBGamebase isSuccessWithError:error]) {
+                    // Mapping success.
+                }
+                else {
+                    // Mapping failed.
+                }
+            }];
+        } else {
+            NSLog(@"AddMapping Error - %@", [error description]);
+        }
+    }];
+}
+```
+
+### Change Login with ForcingMappingTicket
+
+若特定IdP有已映射的账户，尝试**更改登录账号**。
+尝试**更改登录账号**时需要从AddMapping API获得的“ForcingMappingTicket”。
+
+若调用Change Login API失败，上一个账号保持登录状态。
+
+**API**
+
+```objectivec
++ (void)changeLoginWithForcingMappingTicket:(TCGBForcingMappingTicket *)ticket viewController:(nullable UIViewController *)viewController completion:(LoginCompletion)completion;
+```
+
+**Example**
+
+如下为对Facebook尝试强制映射的范例。
+
+```objectivec
+- (void)authChangeLogin {
+    [TCGBGamebase addMappingWithType:kTCGBAuthFacebook viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
+            NSLog(@"AddMapping is succeeded.");
+        } else if (error.code == TCGB_ERROR_SOCKET_ERROR || error.code == TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT) {
+            NSLog(@"Retry addMapping");
+        } else if (error.code == TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) {
+            NSLog(@"Already mapped to other member");
+            TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketFromError:error];
+            [TCGBGamebase changeLoginWithForcingMappingTicket:ticket viewController:self completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+                if ([TCGBGamebase isSuccessWithError:error]) {
+                    // Change login successed.
+                }
+                else {
+                    // Change login failed.
+                    // The login status of the previous account is maintained.
+                }
+            }];
+        } else {
+            NSLog(@"AddMapping Error - %@", [error description]);
+        }
+    }];
+}
+```
 
 ### Remove Mapping API
 
@@ -928,6 +925,7 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 |                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | 是不存在或已退出的成员。                      |
 |                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR    | 3006       |  第三方认证库初始化失败                      |
 |                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 第三方认证库出现错误。<br/> 请确认DetailCode和DetailMessage。  |
+|                | TCGB\_ERROR\_AUTH\_INVALID\_GAMEBASE\_TOKEN | 3011       | 由于Gamebase Access Token无效已注销。<br/>请稍后重新登录。 |
 | Auth (Login)   | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED  | 3101       | 令牌登录失败                          |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | 是无效的令牌信息。                      |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 最近登录的IdP信息不存在。                   |

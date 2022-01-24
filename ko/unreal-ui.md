@@ -92,8 +92,15 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 Q
 
 #### Optional 파라미터
 
+* GamebaseTermsConfiguration : GamebaseTermsConfiguration 객체를 통해 강제 약관 동의창 표시여부와 같은 설정을 변경할 수 있습니다. 
 * callback : 약관 동의 후 약관창이 종료될 때 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseResponse.DataContainer 객체는 GamebaseResponse.Push.PushConfiguration 변환해서 로그인 후 Gamebase.Push.RegisterPush API 에 사용할 수 있습니다.
 
+**FGamebaseTermsConfiguration** 
+ 
+| API | Mandatory(M) / Optional(O) | Description | 
+| --- | --- | --- | 
+| forceShow | O | 약관에 동의했다면 ShowTermsView API를 다시 호출해도 약관창이 표시되지 않지만, 이를 무시하고 강제로 약관창을 표시합니다.<br>**default** : false | 
+ 
 
 **API**
 
@@ -102,6 +109,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
+void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
 void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
 ```
 
@@ -121,15 +129,16 @@ void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
 ```cpp
 void Sample::ShowTermsView()
 {
-    IGamebase::Get().GetTerms().ShowTermsView(
+    FGamebaseTermsConfiguration configuration { true };
+
+    IGamebase::Get().GetTerms().ShowTermsView(configuration,
         FGamebaseDataContainerDelegate::CreateLambda([=](const FGamebaseDataContainer* dataContainer, const FGamebaseError* error) {
             if (Gamebase::IsSuccess(error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView succeeded."));
-
-                // If the 'FGamebasePushConfiguration' is not null,
-                // save the 'FGamebasePushConfiguration' and use it for IGamebase::Get().GetPush().RegisterPush() after IGamebase::Get().Login().
-                const auto pushConfiguration = FGamebasePushConfiguration::From(dataContainer);
+                
+                // Save the 'PushConfiguration' and use it for RegisterPush() after Login().
+                savedPushConfiguration = FGamebasePushConfiguration::From(dataContainer);
             }
             else
             {
@@ -137,6 +146,18 @@ void Sample::ShowTermsView()
             }
         })
     );
+}
+
+void Sample::AfterLogin()
+{
+    // Call RegisterPush with saved PushConfiguration.
+    if (savedPushConfiguration != null)
+    {
+        Gamebase.Push.RegisterPush(savedPushConfiguration, (error) =>
+        {
+            ...
+        });
+    }
 }
 ```
 

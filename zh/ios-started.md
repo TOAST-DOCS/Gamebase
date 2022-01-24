@@ -37,9 +37,9 @@ Gamebase可以通过以下方式安装。
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 用途 | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.29.0 | 包含Gamebase的Interface和核心逻辑。| iOS9 or later
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.29.2 | 包含Gamebase的Interface和核心逻辑。| iOS9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | 支持Facebook登录。| iOS9 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.2 | 支持Payco登录。| iOS9 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.4 | 支持Payco登录。| iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | 支持Naver登录。| iOS9 or later |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | 支持Gamecenter登录。| iOS9 or later |
 |  | GamebaseAuthGoogleAdapter.framework | | 支持Google登录。| iOS9 or later |
@@ -49,8 +49,8 @@ Gamebase可以通过以下方式安装。
 |  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.1 | 支持Hangame登录。| iOS9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | 支持Weibo登录。| iOS9 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.11.5 | 支持Kakao登录 | iOS11 or later |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.29.0<br/> ToastGamebaseIAP 0.12.0 | 支持游戏内支付。| iOS9 or later |
-| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.29.0 | 支持Push。| iOS9 or later |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.29.2<br/> ToastGamebaseIAP 0.12.1 | 支持游戏内支付。| iOS9 or later |
+| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.29.2 | 支持Push。| iOS9 or later |
 
 
 > <font color="red">[注意]</font><br/>
@@ -201,6 +201,7 @@ end
 
 * 需要设置URL Scheme。
     * 在**Xcode > Target > Info > URL Types**中添加**tcgb.{Bundle ID}.payco**。
+    * 在**Xcode > Target > Info > URL Types**中添加**paycologinsdk**。
 
 #### Naver
 
@@ -209,7 +210,7 @@ end
 
 * Gamebase iOS SDK 1.12.1以下版本需要额外的设置。 
     * [Game > Gamebase > iOS SDK使用指南 > 开始 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
-
+ 
 #### Twitter
 
 * 需要设置URL Scheme。
