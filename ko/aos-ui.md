@@ -76,7 +76,7 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 
 | API | Mandatory(M) / Optional(O) | Description |
 | --- | --- | --- |
-| newBuilder() | **M** | ImageNoticeConfiguration 객체는 newBuilder() 함수를 통해 생성할 수 있습니다. |
+| newBuilder() | **M** | ImageNoticeConfiguration.Builder 객체는 newBuilder() 함수를 통해 생성할 수 있습니다. |
 | build() | **M** | 설정을 마친 Builder 를 Configuration 객체로 변환합니다. |
 | setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | 이미지 공지 뒷 배경색.<br>String 은 android.graphics.Color.parseColor(String) API 로 변환한 값을 사용합니다.<br>**default** : #80000000 |
 | setTimeout(long timeoutMs) | O | 이미지 공지 최대 로딩 시간 (단위 : millisecond)<br>**default** : 5000L (5s) |
@@ -123,6 +123,7 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 q
  
 #### Optional 파라미터
 
+* GamebaseTermsConfiguration : GamebaseTermsConfiguration 객체를 통해 강제 약관 동의창 표시여부와 같은 설정을 변경할 수 있습니다.
 * GamebaseDataCallback : 약관 동의 후 약관창이 종료될 때 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseDataContainer 객체는 PushConfiguration 으로 변환해서 로그인 후 Gamebase.Push.registerPush API 에 사용할 수 있습니다.
 
 **API**
@@ -130,7 +131,18 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 q
 ```java
 + (void)Gamebase.Terms.showTermsView(@NonNull Activity activity,
                                      @Nullable GamebaseDataCallback<GamebaseDataContainer> callback);
++ (void)Gamebase.Terms.showTermsView(@NonNull Activity activity,
+                                     @Nullable GamebaseTermsConfiguration configuration,
+                                     @Nullable GamebaseDataCallback<GamebaseDataContainer> callback);
 ```
+
+**GamebaseTermsConfiguration**
+
+| API | Mandatory(M) / Optional(O) | Description |
+| --- | --- | --- |
+| newBuilder() | **M** | GamebaseTermsConfiguration.Builder 객체는 newBuilder() 함수를 통해 생성할 수 있습니다. |
+| build() | **M** | 설정을 마친 Builder 를 Configuration 객체로 변환합니다. |
+| setForceShow(boolean forceShow) | O | 약관에 동의했다면 showTermsView API를 다시 호출해도 약관창이 표시되지 않지만, 이를 무시하고 강제로 약관창을 표시합니다.<br>**default** : false |
 
 **ErrorCode**
 
@@ -146,35 +158,29 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 q
 **Example**
 
 ```java
-public void showTermsView(final Activity activity,
-                          final GamebaseDataCallback<GamebaseDataContainer> callback) {
-    Gamebase.Terms.showTermsView(activity, new GamebaseDataCallback<GamebaseDataContainer>() {
-        @Override
-        public void onCallback(GamebaseDataContainer container, GamebaseException exception) {
-            if (Gamebase.isSuccess(exception)) {
-                // If the 'PushConfiguration' is not null,
-                // save the 'PushConfiguration' and use it for Gamebase.Push.registerPush()
-                // after Gamebase.login().
-                @Nullable PushConfiguration savedPushConfiguration = PushConfiguration.from(container);
-            } else {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Wait for a while and try again.
-                        try { Thread.sleep(2000); }
-                        catch (Exception ignored) {}
-                        showTermsView(activity, callback);
-                    }
-                }).start();
-            }
-        }
-    });
-}
+static PushConfiguration savedPushConfiguration = null;
+final GamebaseTermsConfiguration configuration = GamebaseTermsConfiguration.newBuilder()
+        .setForceShow(true)
+        .build();
+Gamebase.Terms.showTermsView(activity, configuration, (container, exception) -> {
+    if (Gamebase.isSuccess(exception)) {
+        // Save the PushConfiguration and use it for Gamebase.Push.registerPush()
+        // after Gamebase.login().
+        savedPushConfiguration = PushConfiguration.from(container);
+    } else {
+        new Thread(() -> {
+            // Wait for a while and try again.
+            try { Thread.sleep(2000); }
+            catch (Exception ignored) {}
+            showTermsView(activity, callback);
+        }).start();
+    }
+});
 
 public void afterLogin(Activity activity) {
     // Call registerPush with saved PushConfiguration.
     if (savedPushConfiguration != null) {
-        Gamebase.Push.registerPush(activity, savedPushConfiguration, new GamebaseCallback() {...});
+        Gamebase.Push.registerPush(activity, savedPushConfiguration, exception -> {...});
     }
 }
 ```

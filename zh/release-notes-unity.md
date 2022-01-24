@@ -1,5 +1,22 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.33.0 (2022.01.25)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* 공통약관창의 설정을 변경할 수 있는 신규 API가 추가되었습니다.
+    * [Game > Gamebase > Unity SDK 사용 가이드 > UI > Terms > showTermsView](./unity-ui/#showtermsview)
+
+#### 기능 개선/변경
+* 에러코드 추가 및 변경
+    * GamebaseErrorCode.UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
+    * 에러코드 999에 매핑 시킨 GamebaseErrorCode.SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
+    
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.33.0](./release-notes-android/#2330-20220125)
+* [Gamebase iOS SDK 2.33.0](./release-notes-ios/#2330-20220125)
+
 ### 2.32.0 (2021.12.28)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-Unity.zip)
@@ -79,7 +96,7 @@
     * 结算Abusing自动解除功能是当存在需通过”结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。
     * 如果为”预约禁用”状态，在设定的时期内满足解除条件，则可正常玩游戏。
     * 若在所定的时期内未能满足条件，则会被禁用。
-* 登录使用结算Abusing自动解除功能的游戏后，始终要确认AuthToken.getGraceBanInfo() API值，如果返还GraceBanInfo对象，而不返还null，要向相关用户通知禁用解除条件、时期等。
+* 登录使用结算Abusing自动解除功能的游戏后，始终要确认AuthToken.member.graceBanInfo API值，如果返还GraceBanInfo对象，而不返还null，要向相关用户通知禁用解除条件、时期等。
     * 当需要控制处于预约禁用状态的用户进入游戏时，要在游戏中进行处理。
 
 #### 各平台项目变更
