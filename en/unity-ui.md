@@ -141,14 +141,14 @@ static void ShowTermsView(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Dat
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebase not initialized. |
-| LAUNCHING\_SERVER\_ERROR(2001) | This error occurs when the items downloaded from the launching server does not have any information about the terms and conditions.<br/>This is not a usual case, and you should contact the Gamebase personnel. |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | The Terms API called previously has not been completed yet.<br/>Please try again later. |
-| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW(6925) | Unfinished terms & conditions WebView has been called again. |
-| WEBVIEW\_TIMEOUT(7002) | Timed out while displaying the terms and conditions WebView. |
-| WEBVIEW\_HTTP\_ERROR(7003) | An HTTP error has occurred while opening the terms and conditions WebView. |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebase not initialized. |
+| LAUNCHING\_SERVER\_ERROR | 2001 | This error occurs when the items downloaded from the launching server do not have any information about the terms and conditions.<br/>This is not a usual case, and you should contact the Gamebase personnel. |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | The Terms API call has not been completed yet.<br/>Please try again later. |
+| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925 | Unfinished terms & conditions WebView has been called again. |
+| WEBVIEW\_TIMEOUT | 7002 | Timed out while displaying the terms and conditions WebView. |
+| WEBVIEW\_HTTP\_ERROR | 7003 | An HTTP error has occurred while opening the terms and conditions WebView. |
 
 **Example**
 
@@ -159,10 +159,10 @@ public void SampleShowTermsView()
     {
         if (Gamebase.IsSuccess(error) == true)
         {
-                                
+            Debug.Log("ShowTermsView succeeded.");
+            
             // If the 'PushConfiguration' is not null,
             // save the 'PushConfiguration' and use it for Gamebase.Push.RegisterPush() after Gamebase.Login().
-            Debug.Log("ShowTermsView succeeded.");
             GamebaseResponse.Push.PushConfiguration pushConfiguration = GamebaseResponse.Push.PushConfiguration.From(data);
         }
         else
@@ -206,11 +206,11 @@ static void QueryTerms(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Terms.
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebase not initialized. |
-| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE(6921) | Terms & conditions information is not registered with the console. |
-| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY(6922) | Terms & conditions appropriate for the device's country code is not registered with the console. |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebase not initialized. |
+| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE | 6921 | Terms & conditions information is not registered with the console. |
+| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY | 6922 | Terms & conditions information appropriate for the device's country code is not registered with the console. |
 
 **Example**
 
@@ -289,11 +289,11 @@ static void UpdateTerms(GamebaseRequest.Terms.UpdateTermsConfiguration configura
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebase not initialized. |
-| UI\_TERMS\_UNREGISTERED\_SEQ(6923) | Unregistered terms and conditions Seq value has been set. |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | The Terms API called previously has not been completed yet.<br/>Please try again later. |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebase not initialized. |
+| UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | Unregistered terms and conditions Seq value has been set. |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | The Terms API call has not been completed yet.<br/>Please try again later. |
 
 
 **Example**

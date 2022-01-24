@@ -198,6 +198,14 @@ Gamebase.Push.queryTokenInfo(activity, new GamebaseDataCallback<PushConfiguratio
 | adAgreement      | boolean | 広告性通知表示同意有無    |
 | adAgreementNight | boolean | 夜間広告性通知表示同意有無 |
 
+### Event Handling
+
+* プッシュメッセージが到着した場合、またはプッシュメッセージをクリックしたときにイベント処理を行うことができます。
+* イベントの登録方法はGamebaseEventHandlerガイドを参照してください。
+    * [ Game > Gamebase > Android SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Push Received Message](./aos-etc/#push-received-message)
+    * [ Game > Gamebase > Android SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./aos-etc/#push-click-message)
+    * [ Game > Gamebase > Android SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./aos-etc/#push-click-action)
+
 ### Error Handling
 
 | Error                          | Error Code | Description                              |

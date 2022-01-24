@@ -1,5 +1,25 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.33.0
+
+### iOS
+
+* 更改了与TCGB_ERROR_UNKNOWN_ERROR进行映射的错误代码。
+    * TCGB_ERROR_UNKNOWN_ERROR的错误代码从999更改为9999。
+    * 添加了映射到999错误代码的TCGB_ERROR_SOCKET_UNKNOWN_ERROR错误。
+    
+### Unity
+
+* 更改了与GamebaseErrorCode.UNKNOWN_ERROR进行映射的错误代码。
+    * GamebaseErrorCode.UNKNOWN_ERROR的错误代码从999更改为9999。
+    * 添加了映射到999错误代码的GamebaseErrorCode.SOCKET_UNKNOWN_ERROR错误。
+
+### Unreal
+
+* 更改了与GamebaseErrorCode.UNKNOWN_ERROR进行映射的错误代码。
+    * GamebaseErrorCode::UNKNOWN_ERROR的错误代码从999更改为9999。
+    * 添加了映射到999错误代码的GamebaseErrorCode::SOCKET_UNKNOWN_ERROR错误。  
+
 ## 2.32.0
 
 ### Android

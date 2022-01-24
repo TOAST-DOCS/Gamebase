@@ -18,14 +18,14 @@ To execute Gamebase in Android, the following system environment is required.
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Support Google login | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.4.2 | Support Hangame login | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.4.3.1 | Support Hangame login | - |
 |  | gamebase-adapter-auth-line | linesdk-5.6.2 | Support Line login | API 17 (Kitkat, OS 4.2) |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Support Naver login | - |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.6 | Support Payco login | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.7 | Support Payco login | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Support Twitter login | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | Support Weibo login | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 21(Lollipop, OS 5.0) |
-| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.0<br>toast-iap-core | Support in-app purchase | - |
+| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.1<br>toast-iap-core | Support in-app purchase | - |
 |  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | Support Galaxy Store | API 21 (Lollipop, OS 5.0)<br>Although minSdkVersion of Galaxy IAP SDK is 18, the minSdkVersion of Checkout service app that must be installed for actual purchase is 21. |
 |  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Support Google Store | - |
 |  | gamebase-adapter-purchase-onestore | toast-iap-onestore | Support ONE Store v17<br>Currently v19 is not supported | - |

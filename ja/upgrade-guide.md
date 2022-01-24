@@ -1,15 +1,39 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.33.0
+
+### iOS
+
+* TCGB_ERROR_UNKNOWN_ERROR 에러에 매핑된 에러코드가 변경되었습니다.
+    * TCGB_ERROR_UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
+    * 에러코드 999에 매핑 시킨 TCGB_ERROR_SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
+
+### Unity
+
+* GamebaseErrorCode.UNKNOWN_ERROR 에러에 매핑된 에러코드가 변경되었습니다.
+    * GamebaseErrorCode.UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
+    * 에러코드 999에 매핑 시킨 GamebaseErrorCode.SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
+
+### Unreal
+
+* GamebaseErrorCode.UNKNOWN_ERROR 에러에 매핑된 에러코드가 변경되었습니다.
+    * GamebaseErrorCode::UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
+    * 에러코드 999에 매핑 시킨 GamebaseErrorCode::SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
+
 ## 2.32.0
 
 ### Android
 
-```
-Not traslated yet.
-```
+* Gamebase Access Tokenの有効期限が切れて復元できなかったときに発生するGamebaseEventHandlerイベントcategoryが**GamebaseEventCategory.OBSERVER_HEARTBEAT**から**GamebaseEventCategory.LOGGED_OUT**に変更されました。
+    * **GamebaseEventCategory.OBSERVER_HEARTBEAT**イベントでGamebaseEventObserverData.codeの値が**GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)**のときにログインするように実装した場合は、**GamebaseEventCategory.LOGGED_OUT**イベントでログインを行うように変更してください。
 
 ## 2.29.0 
  
+### iOS
+
+* Xcode最低サポートバージョンが12から13に変更されました。
+    * Xcode 12でアーカイブビルドを行うとエラーが発生します。Xcode 13にアップデートしてください。
+
 ### Unity 
  
 * Setting Tool 2.0.0が配布されました。

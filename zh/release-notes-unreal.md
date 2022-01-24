@@ -1,5 +1,39 @@
 ## Game > Gamebase > Release Notes > Unreal
 
+### 2.33.0 (2022.01.25)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Unreal.zip)
+
+#### 添加功能
+* 添加了”结算Abusing自动解除”功能。        
+    * [Game > Gamebase > Unreal SDK使用指南 > 认证 > GraceBan](./unreal-authentication/#graceban)
+    * 结算Abusing自动解除功能是当存在需通过”结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。
+    * 如果为”预约禁用”状态，在设定的时期内满足解除条件，则可正常玩游戏。
+    * 若在所定的时期内未能满足条件，则会被禁用。
+* 登录使用结算Abusing自动解除功能的游戏后，始终要确认AuthToken.member.graceBanInfo API的值，如果返还GraceBanInfo对象，而不返还null，要告知相关用户禁用解除条件、时期等。
+    * 当需要控制处于预约禁用状态的用户进入游戏时，要在游戏中进行处理。
+* 添加了新的强制映射API，以改善进行强制映射时再次尝试IdP登录的不便。
+    * [Game > Gamebase > Unreal SDK使用指南 > 认证 > Mapping > Add Mapping Forcibly](./unreal-authentication/#add-mapping-forcibly)
+* 添加了当调用Gamebase.AddMapping()后出现AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)时您可使用相关账户进行登录的API。
+    * [Game > Gamebase > Unreal SDK使用指南 > 认证 > Mapping > Change Login with ForcingMappingTicket](./unreal-authentication/#change-login-with-forcingmappingticket)
+* 在GamebaseEventHandler的GamebaseEventCategory中添加了**GamebaseEventCategory::ServerPushAppKickOutMessageReceived**类型。
+    * 关于此事件的应用方法，请参考以下文件。
+    * [Game > Gamebase > Unreal SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Server Push](./unreal-etc/#server-push)
+* 在GamebaseEventHandler的GamebaseEventCategory中添加了**GamebaseEventCategory::LoggedOut**类型。
+    * 当Gamebase Access Token已过期，需要登录时启动。 
+    * [Game > Gamebase > Unreal SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./unreal-etc/#logged-out)
+* 添加了可更改共同条款窗设置的新API。
+    * [Game > Gamebase > Unreal SDK使用指南 > UI > Terms > showTermsView](./unreal-ui/#showtermsview)
+
+#### 改善/更改功能
+* 添加或更改错误代码
+    * GamebaseErrorCode::UNKNOWN_ERROR的错误代码从999更改为9999。
+    * 添加了映射到999错误代码的GamebaseErrorCode::SOCKET_UNKNOWN_ERROR错误。
+    
+#### 各平台变更项目
+* [Gamebase Android SDK 2.33.0](./release-notes-android/#2330-20220125)
+* [Gamebase iOS SDK 2.33.0](./release-notes-ios/#2330-20220125)
+
 ### 2.26.1 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.1/GamebaseSDK-Unreal.zip)
 
@@ -901,7 +935,7 @@ Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
 		
 #### 버그수정
 * [SDK] 2.1.0
-	* (Android)Gamebase 초기화 이전, onActivityResult() 가 호출되면서 이상 동작하던 버그 수정
+	* (Android)Gamebase 초기화 이전, onActivityResult()가 호출되면서 이상 동작하던 버그 수정
 	* (iOS)Gamecenter를 Gamebase가 아닌 다른 로직에의해 로그인 한 후, Gamebase를 통하여 Gamecenter로그인을 시도할 때, 반응이 없는 버그 수정
 
 ### 2019.01.29
@@ -1028,7 +1062,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 		* (Unity)1개
 			- GetLanguageCode()
 * [SDK] Setting Tool		
-	* 팝업 및 UI 개선
+	* 팝업 창 및 UI 개선
 	
 #### 버그수정
 * [SDK] 1.14.1
@@ -1111,7 +1145,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	* (iOS)에러코드 추가 : Gamecenter 로그인 거부(TCGB_ERROR_IOS_GAMECENTER_DENIED)
 * [SDK] Setting Tool
 	* 폴더명 변경 : TOAST -> Toast
-	* 에러발생시 팝업 알림 추가 : File Download 실패, File Extract 실패, XML 파싱 실패
+	* 에러발생시 팝업 창 알림 추가 : File Download 실패, File Extract 실패, XML 파싱 실패
 	
 #### 버그수정
 * [SDK] 1.12.1
@@ -1249,7 +1283,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.9.0
 	* (iOS) Naver계정을 이용한 로그인 중 App to Web 로그인 시도 시, 서버로부터 받아온 Scheme의 형식이 변경되어, 로그인이 되지 않는 현상 수정
     * (iOS) Adapter로부터 UnderlyingError 객체를 받아서 유저에게 전달되는 에러객체를 생성하는 로직에서 메시지 및 Underlying Error의 설정이 되지 않는 버그 수정
-    * (Android) Heartbeat 에서 잘못된 사용자로 판정되는 경우 이용정지 팝업이 뜨지 않도록 수정(iOS 와 동일한 로직으로 수정)
+    * (Android) Heartbeat 에서 잘못된 사용자로 판정되는 경우 이용정지 팝업 창이 뜨지 않도록 수정(iOS 와 동일한 로직으로 수정)
 
 ### 2018.04.12
 
@@ -1385,7 +1419,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그 수정
 * [SDK] 1.4.0 업데이트
-	* (Android)Gamebase 제공 팝업을 사용하지 않는 경우 이용정지 정보가 null로 리턴되는 오류 수정
+	* (Android)Gamebase 제공 팝업 창을 사용하지 않는 경우 이용정지 정보가 null로 리턴되는 오류 수정
 	* (iOS)WebView 런치 후, 기기 회전시 NavigationBar Title 이 reset이 되는 오류 수정
 	* (iOS)WebView의 NavigationBar Height을 커스터마이징 할 때, NavigationBar 배경 부분이 겹쳐서 노출되는 오류 수정
 
@@ -1410,7 +1444,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 * 이용정지(사용자처벌) 기능 추가
 * [SDK] 1.2.0 업데이트
-	* 이용정지 사용자 팝업 노출
+	* 이용정지 사용자 팝업 창 노출
 * [Console]
 	* 고객센터(email, 전화번호) 등록
 	* Ban 메뉴 오픈
@@ -1437,7 +1471,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 * Gamebase 상품 이용 중지시 관련 데이터 삭제를 위한 일 배치 기능 추가
 * [SDK] 1.1.5 업데이트
-	* 시스템 팝업 API 추가 (showAlertWithTitle)
+	* 시스템 팝업 창 API 추가 (showAlertWithTitle)
 	* 국가코드를 대문자로 반환하도록 변경 (Android)
 	* TCPush SDK 1.4.1 로 업데이트
 	* IAP SDK 1.3.3.20170627 로 업데이트
@@ -1461,7 +1495,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 개선/변경
 
 * [SDK] 1.1.3 업데이트
-	* (Android)런칭 구조 및 팝업/점검 페이지 개선 :커스텀 점검 페이지 설정 기능 추가
+	* (Android)론칭 구조 및 팝업 창/점검 페이지 개선 :커스텀 점검 페이지 설정 기능 추가
 	* (Android)인증 구조 개선 및 로그 추가 : 인증 Adapter 및 SDK 버전 로그 출력
 
 #### 버그 수정
@@ -1473,7 +1507,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 개선/변경
 * [SDK] 1.1.2 업데이트
-    * 게임런칭시 점검, 긴급공지 팝업 개선
+    * 게임론칭시 점검, 긴급공지 팝업 창 개선
     * Unity Plugin 디버그로그 추가 및 익셉션 상세처리
 * [API] [IAP](./api-guide/#purchaseiap) API 연동 : 아이템 조회, 미소비내역 조회
 * [API] checkAccessToken API 응답 결과에, 로그인 시 사용된 IdP 관련 정보 포함하는 스펙 추가

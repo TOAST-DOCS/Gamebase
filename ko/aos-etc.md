@@ -17,7 +17,7 @@ Gamebase에서 지원하는 부가 기능을 설명합니다.
 
 ### Display Language
 
-점검 팝업과 같이 Gamebase가 표시하는 언어는 단말기에 설정된 언어로 표시됩니다.
+점검 팝업 창과 같이 Gamebase가 표시하는 언어는 단말기에 설정된 언어로 표시됩니다.
 
 그런데 게임에서 표시하는 언어를 단말기에 설정된 언어가 아닌, 별도의 옵션으로 언어를 변경할 수 있는 게임이 있습니다.
 예를 들어, 단말기에 설정된 언어는 영어 이지만 게임 표시 언어를 일본어로 변경한 경우, Gamebase에서 표시하는 언어도 일본어로 변경하고 싶지만 Gamebase가 표시하는 언어는 단말기에 설정된 언어인 영어로 표시됩니다.
@@ -445,7 +445,7 @@ void processLoggedOut(String category, GamebaseEventLoggedOutData data) {
         * '오토 플레이'와 같이 게임이 동작 중인 경우, 게임을 일시 정지시키는 목적으로 활용할 수 있습니다.
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
     	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout**에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
-        * 클라이언트 단말기에서 서버 메세지를 수신했을 때 팝업을 표시하는데, 유저가 이 팝업을 닫았을 때 발생하는 이벤트입니다.
+        * 클라이언트 단말기에서 서버 메세지를 수신했을 때 팝업 창을 표시하는데, 유저가 이 팝업 창을 닫았을 때 발생하는 이벤트입니다.
     * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
     	* Guest 계정을 다른 단말기로 이전을 성공하게 되면 이전 단말기에서 킥아웃 메세지를 받게 됩니다.
 

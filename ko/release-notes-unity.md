@@ -1,5 +1,22 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
+### 2.33.0 (2022.01.25)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* 공통약관창의 설정을 변경할 수 있는 신규 API가 추가되었습니다.
+    * [Game > Gamebase > Unity SDK 사용 가이드 > UI > Terms > showTermsView](./unity-ui/#showtermsview)
+
+#### 기능 개선/변경
+* 에러코드 추가 및 변경
+    * GamebaseErrorCode.UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
+    * 에러코드 999에 매핑 시킨 GamebaseErrorCode.SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
+    
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.33.0](./release-notes-android/#2330-20220125)
+* [Gamebase iOS SDK 2.33.0](./release-notes-ios/#2330-20220125)
+
 ### 2.32.0 (2021.12.28)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-Unity.zip)
@@ -21,7 +38,7 @@
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트: TOAST Unity SDK(0.25.0)
-* Standalone 점검 팝업에서 점검 시간 표시 여부를 동적으로 설정할 수 있도록 변경되었습니다.
+* Standalone 점검 팝업 창에서 점검 시간 표시 여부를 동적으로 설정할 수 있도록 변경되었습니다.
 * Setting Tool
     * Payco IDP가 추가되었습니다.
     * 기존 SettingTool을 완전히 삭제한 후 재설치해야 합니다.
@@ -79,7 +96,7 @@
     * 결제 어뷰징 자동 해제 기능은 결제 어뷰징 자동 제재로 이용 정지가 되어야 할 사용자가 이용 정지 유예 상태 후 이용 정지가 되도록 합니다.
     * 이용 정지 유예 상태일 경우 설정한 기간 내에 해제 조건을 모두 만족하면 정상플레이가 가능해집니다.
     * 기간 내에 조건을 충족하지 못하면 이용 정지가 됩니다.
-* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 AuthToken.getGraceBanInfo() API 값을 확인하고, null이 아닌 유효한 GraceBanInfo 객체를 리턴한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
+* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 AuthToken.member.graceBanInfo API 값을 확인하고, null이 아닌 유효한 GraceBanInfo 객체를 리턴한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
     * 이용 정지 유예 상태인 유저의 게임 내 접근 제어는 게임에서 처리하셔야 합니다.
 
 #### 플랫폼별 변경 사항
@@ -95,8 +112,8 @@
         * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > 언어 설정](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
 
 #### 버그 수정
-* '등록되지 않은 게임 버전' 에러 팝업이 영어로만 표시되는 버그를 수정하였습니다.
-* 점검 팝업에 중국어가 표시되지 않는 버그를 수정하였습니다.
+* '등록되지 않은 게임 버전' 에러 팝업 창이 영어로만 표시되는 버그를 수정하였습니다.
+* 점검 팝업 창에 중국어가 표시되지 않는 버그를 수정하였습니다.
 
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.27.1](./release-notes-android/#2271-20210914)
@@ -344,7 +361,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 
 #### 기능 개선/변경
 * [SDK] 2.13.0
-    * (Android) 이미지 공지의 팝업 이미지 비율 계산 로직 수정
+    * (Android) 이미지 공지의 팝업 창 이미지 비율 계산 로직 수정
     * (iOS) Sign In With Apple 인증: iOS 12 이하 지원
 
 #### 버그 수정
@@ -356,7 +373,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.12.0/GamebaseSDK-Unity.zip)
 
 #### 기능 추가
-* 이미지 공지: 표시 기간과 우선순위에 따라 게임 내 이미지 팝업 표시
+* 이미지 공지: 표시 기간과 우선순위에 따라 게임 내 이미지 팝업 창 표시
     * [SDK] 2.12.0: 이미지 공지 표시 API 추가
 
 #### 기능 개선/변경
@@ -440,11 +457,11 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 * [SDK] 2.8.0
     * (공통) 결제 및 상품 정보에 상품 타입 및 지역 가격 등의 정보를 추가
     * (Unity) StandaloneWebviewAdapter 내부의 CefWebview가 v2.0.1 버전으로 업데이트
-        * PopupType이 PASS_INFO일 경우, 팝업을 띄우지 않고 팝업 정보를 전달하는 기능을 추가
+        * PopupType이 PASS_INFO일 경우, 팝업 창을 띄우지 않고 팝업 창 정보를 전달하는 기능을 추가
 
 #### 기능 개선/변경
 * [SDK] 2.8.0 
-    * (공통) 콘솔에 등록되지 않은 앱 버전으로 초기화 실패할 때 스토어로 이동할 수 있는 팝업이 추가로 노출하도록 개선
+    * (공통) 콘솔에 등록되지 않은 앱 버전으로 초기화 실패할 때 스토어로 이동할 수 있는 팝업 창이 추가로 노출하도록 개선
     * (Android) 로그인 직후 결제 관련 API를 호출할 때 초기화 타이밍 문제로 실패가 발생할 수 있는 코드를 수정
     
 ### 2.7.2 (2020.03.10)
@@ -534,7 +551,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 * [SDK] 2.6.0
     * (공통) 데이터를 Log&Crash 에 전송하여 각종 분석에 이용할 수 있도록 TOAST Logger 추가
     * (iOS) Sign In with Apple 인증 추가
-    * (Android) Gamebase Android SDK 가 Bintray 를 통해 배포되므로 gradle 설정만으로 Gamebase 를 사용할 수 있음
+    * (Android) Gamebase Android SDK가 Bintray 를 통해 배포되므로 gradle 설정만으로 Gamebase 를 사용할 수 있음
 
 #### 기능 개선/변경
 * [SDK] 2.6.0
@@ -579,7 +596,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 
 #### 버그 수정
 * [SDK] 2.4.3
-    * (Unity)iOS와 Android로 빌드시 AddMappingForcibly API 가 동작하지 않는 오류 수정
+    * (Unity)iOS와 Android로 빌드시 AddMappingForcibly API가 동작하지 않는 오류 수정
     * (Unity)RequestRetryTransaction API 호출시 iOSPlugin에서 JSON 파싱 오류가 있어 수정
 
 ### 2019. 06. 27.
@@ -725,7 +742,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * Deprecated  API 
         * GetLanguageCode()
 * [SDK] Setting Tool        
-    * 팝업 및 UI 개선
+    * 팝업 창 및 UI 개선
     
 ### 1.13.0 (2018.09.13)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.13.0/GamebaseSDK-Unity.zip)
@@ -754,7 +771,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * (iOS)에러코드 추가 : Gamecenter 로그인 거부(TCGB_ERROR_IOS_GAMECENTER_DENIED)
 * [SDK] Setting Tool
     * 폴더명 변경 : TOAST -> Toast
-    * 에러 발생 시 팝업 알림 추가 : File Download 실패, File Extract 실패, XML 파싱 실패
+    * 에러 발생 시 팝업 창 알림 추가 : File Download 실패, File Extract 실패, XML 파싱 실패
     
 ### 1.12.0 (2018.07.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.12.0/GamebaseSDK-Unity.zip)
@@ -943,7 +960,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 추가
 * 이용정지(사용자처벌) 기능 추가
 * [SDK] 1.2.0 업데이트
-    * 이용정지 사용자 팝업 노출
+    * 이용정지 사용자 팝업 창 노출
 
 ### 1.1.5 (2017.07.20)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.5/GamebaseSDK-Unity.zip)
@@ -951,7 +968,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 개선/변경
 * Gamebase 상품 이용 중지시 관련 데이터 삭제를 위한 일 배치 기능 추가
 * [SDK] 1.1.5 업데이트
-    * 시스템 팝업 API 추가 (showAlertWithTitle)
+    * 시스템 팝업 창 API 추가 (showAlertWithTitle)
     * 국가코드를 대문자로 반환하도록 변경 (Android)
     * TCPush SDK 1.4.1 로 업데이트
     * IAP SDK 1.3.3.20170627 로 업데이트
@@ -970,7 +987,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 개선/변경
 * [SDK] 1.1.2 업데이트
-    * 게임 론칭시 점검, 긴급공지 팝업 개선
+    * 게임 론칭시 점검, 긴급공지 팝업 창 개선
     * Unity Plugin 디버그로그 추가 및 익셉션 상세처리
 
 ### 1.1.0 (2017.03.21)

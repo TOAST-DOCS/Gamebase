@@ -1,10 +1,23 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.33.0 (2022.01.25)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-iOS.zip)
+
+#### 添加功能
+* 添加了可更改共同条款窗设置的新API。
+    * [Game > Gamebase > iOS SDK使用指南 > UI > Terms > showTermsView](./ios-ui/#showtermsview)
+
+#### 改善/更改功能
+* 外部SDK升级 : PAYCO iOS SDK (1.5.5)
+* 添加或更改错误代码
+    * TCGB_ERROR_UNKNOWN_ERROR的错误代码从999更改为9999。
+    * 添加了映射到999错误代码的TCGB_ERROR_SOCKET_UNKNOWN_ERROR错误。 
+    
 ### 2.32.1 (2022.01.11)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.1/GamebaseSDK-iOS.zip)
  
 #### 改善/修复功能 
-* 点击推荐更新弹窗里的“立即更新”按钮时弹窗被关闭的问题已修复。
+* 点击推荐更新弹窗里的**立即更新**按钮时弹窗被关闭的问题已修复。
 * 提高了SDK稳定性。
 
 ### 2.32.0 (2021.12.28)
@@ -783,14 +796,14 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 추가
 * 이용정지(사용자처벌) 기능 추가
 * [SDK] 1.2.0 업데이트
-    * 이용정지 사용자 팝업 노출
+    * 이용정지 사용자 팝업 창 노출
 
 ### 1.1.5 (2017.07.20) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.5/GamebaseSDK-iOS.zip)
 #### 기능 개선/변경
 * Gamebase 상품 이용 중지시 관련 데이터 삭제를 위한 일 배치 기능 추가
 * [SDK] 1.1.5 업데이트
-    * 시스템 팝업 API 추가 (showAlertWithTitle)
+    * 시스템 팝업 창 API 추가 (showAlertWithTitle)
     * 국가코드를 대문자로 반환하도록 변경 (Android)
     * TCPush SDK 1.4.1 로 업데이트
     * IAP SDK 1.3.3.20170627 로 업데이트
@@ -806,7 +819,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.2/GamebaseSDK-iOS.zip)
 #### 기능 개선/변경
 * [SDK] 1.1.2 업데이트
-    * 게임런칭시 점검, 긴급공지 팝업 개선
+    * 게임론칭시 점검, 긴급공지 팝업 창 개선
     * Unity Plugin 디버그로그 추가 및 익셉션 상세처리
 
 ### 1.1.0 (2017.03.21) 

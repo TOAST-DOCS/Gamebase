@@ -8,7 +8,7 @@
 > 최소 사양
 >
 > * 사용자 실행 환경 : iOS 9 이상
-> * 빌드 환경 : Xcode 13 (iOS 15 SDK) 이상
+> * 빌드 환경 : Xcode 13(iOS 15 SDK) 이상
 >
 
 <br/>
@@ -39,7 +39,7 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 | --- | --- | --- | --- | --- |
 | Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.29.2 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Facebook 로그인을 지원 | iOS9 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.4 | Payco 로그인을 지원 | iOS9 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.5 | Payco 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | Naver 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenter 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthGoogleAdapter.framework | | Google 로그인을 지원 | iOS9 or later |
@@ -208,7 +208,7 @@ end
 
 * URL Scheme 를 설정해야 합니다.
     * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.naver**를 추가해야 합니다.
-
+    * **Naver Developers > 내 애플리케이션 > API 설정 > iOS > URL Scheme**에 **tcgb.{Bundle ID}.naver**를 추가해야 합니다.
 * Gamebase iOS SDK 1.12.1 이하는 추가 설정이 필요합니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 

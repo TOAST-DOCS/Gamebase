@@ -31,7 +31,7 @@ static string GetDeviceLanguageCode()
 
 ### Display Language
 
-점검 팝업과 같이 Gamebase 가 표시하는 언어는 단말기에 설정된 언어로 표시됩니다.
+점검 팝업 창과 같이 Gamebase가 표시하는 언어는 단말기에 설정된 언어로 표시됩니다.
 
 그런데 게임에서 표시하는 언어를 단말기에 설정된 언어가 아닌, 별도의 옵션으로 언어를 변경할 수 있는 게임이 있습니다.
 예를 들어, 단말기에 설정된 언어는 영어 이지만 게임 표시 언어를 일본어로 변경한 경우, Gamebase 에서 표시하는 언어도 일본어로 변경하고 싶지만 Gamebase 가 표시하는 언어는 단말기에 설정된 언어인 영어로 표시됩니다.
@@ -542,9 +542,9 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
     	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
         * 클라이언트 단말기에서 서버 메세지를 수신했을 때 바로 동작하는 이벤트입니다.
         * '오토 플레이'와 같이 게임이 동작 중인 경우, 게임을 일시 정지시키는 목적으로 활용할 수 있습니다.
-	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
+    * GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
     	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
-        * 클라이언트 단말기에서 서버 메세지를 수신했을 때 팝업을 표시하는데, 유저가 이 팝업을 닫았을 때 발생하는 이벤트입니다.
+        * 클라이언트 단말기에서 서버 메세지를 수신했을 때 팝업 창을 표시하는데, 유저가 이 팝업 창을 닫았을 때 발생하는 이벤트입니다.
     * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
     	* Guest 계정을 다른 단말기로 이전을 성공하게 되면 이전 단말기에서 킥아웃 메세지를 받게 됩니다.
 
@@ -1135,7 +1135,7 @@ static void OpenContact(GamebaseRequest.Contact.Configuration configuration, Gam
 
 | Error Code | Description |
 | --- | --- |
-| NOT\_INITIALIZED(1)                                 | Gamebase.initialize 가 호출되지 않았습니다. |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initialize가 호출되지 않았습니다. |
 | UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 고객센터 URL 이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL** 을 확인하세요. |
 | UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 사용자 식별을 위한 임시 티켓 발급에 실패하였습니다. |
 | UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | 고객센터 웹뷰가 이미 표시중입니다. |
@@ -1199,7 +1199,7 @@ static void RequestContactURL(GamebaseRequest.Contact.Configuration configuratio
 
 | Error Code | Description |
 | --- | --- |
-| NOT\_INITIALIZED(1)                                 | Gamebase.initialize 가 호출되지 않았습니다. |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initialize가 호출되지 않았습니다. |
 | UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 고객센터 URL 이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL** 을 확인하세요. |
 | UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 사용자를 식별을 위한 임시 티켓 발급에 실패하였습니다. |
 

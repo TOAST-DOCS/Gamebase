@@ -202,7 +202,7 @@ struct FGamebasePurchasableReceipt
     UPROPERTY()
     FString paymentId;
 
-    // 구독 상품은 갱신 될때마다 paymentId 가 변경됩니다.
+    // 구독 상품은 갱신 될때마다 paymentId가 변경됩니다.
     // 이 필드는 맨 처음 구독 상품을 결제 했을때의 paymentId 를 알려줍니다.
     // 스토어에 따라, 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로
     // 항상 유효한 값을 보장하지는 않습니다.

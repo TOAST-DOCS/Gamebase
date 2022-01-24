@@ -126,6 +126,7 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 Q
 
 #### Optional 파라미터
 
+* GamebaseTermsConfiguration : GamebaseTermsConfiguration 객체를 통해 강제 약관 동의창 표시여부와 같은 설정을 변경할 수 있습니다. 
 * callback : 약관 동의 후 약관창이 종료될 때 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseResponse.DataContainer 객체는 GamebaseResponse.Push.PushConfiguration 변환해서 로그인 후 Gamebase.Push.RegisterPush API 에 사용할 수 있습니다.
 
 
@@ -137,15 +138,22 @@ Supported Platforms
 
 ```cs
 static void ShowTermsView(GamebaseCallback.GamebaseDelegate<GamebaseResponse.DataContainer> callback)
+static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration configuration, GamebaseCallback.GamebaseDelegate<GamebaseResponse.DataContainer> callback)
 ```
 
+**GamebaseTermsConfiguration** 
+ 
+| API | Mandatory(M) / Optional(O) | Description | 
+| --- | --- | --- | 
+| forceShow | O | 약관에 동의했다면 ShowTermsView API를 다시 호출해도 약관창이 표시되지 않지만, 이를 무시하고 강제로 약관창을 표시합니다.<br>**default** : false | 
+ 
 **ErrorCode**
 
 | Error | Error Code | Description |
 | --- | --- | --- |
 | NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
-| LAUNCHING\_SERVER\_ERROR | 2001 | 런칭서버가 내려준 항목에 약관 관련 내용이 없는 경우에 발생하는 에러입니다.<br/>정상적인 상황이 아니므로 Gamebase 담당자에게 문의해주시기 바랍니다. |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 이전에 호출된 Terms API 가 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
+| LAUNCHING\_SERVER\_ERROR | 2001 | 론칭 서버에 전달받은 항목에 약관 관련 내용이 없는 경우에 발생하는 에러입니다.<br/>정상적인 상황이 아니므로 Gamebase 담당자에게 문의해주시기 바랍니다. |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | Terms API 호출이 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
 | UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925 | 약관 웹뷰가 아직 종료되지 않았는데 다시 호출되었습니다. |
 | WEBVIEW\_TIMEOUT | 7002 | 약관 웹뷰 표시 중 타임아웃이 발생했습니다. |
 | WEBVIEW\_HTTP\_ERROR | 7003 | 약관 웹뷰 오픈 중 HTTP 에러가 발생하였습니다. |
@@ -153,17 +161,23 @@ static void ShowTermsView(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Dat
 **Example**
 
 ```cs
+static GamebaseResponse.Push.PushConfiguration savedPushConfiguration = null;
+
 public void SampleShowTermsView()
 {
-    Gamebase.Terms.ShowTermsView((data, error) => 
+    var configuration = new GamebaseRequest.Terms.GamebaseTermsConfiguration
+    {
+        forceShow = true
+    };
+
+    Gamebase.Terms.ShowTermsView(configuration, (data, error) => 
     {
         if (Gamebase.IsSuccess(error) == true)
         {
             Debug.Log("ShowTermsView succeeded.");
             
-            // If the 'PushConfiguration' is not null,
-            // save the 'PushConfiguration' and use it for Gamebase.Push.RegisterPush() after Gamebase.Login().
-            GamebaseResponse.Push.PushConfiguration pushConfiguration = GamebaseResponse.Push.PushConfiguration.From(data);
+            // Save the 'PushConfiguration' and use it for Gamebase.Push.RegisterPush() after Gamebase.Login().
+            savedPushConfiguration = GamebaseResponse.Push.PushConfiguration.From(data);
         }
         else
         {
@@ -171,8 +185,19 @@ public void SampleShowTermsView()
         }
     });
 }
-```
 
+public void AfterLogin()
+{
+    // Call RegisterPush with saved PushConfiguration.
+    if (savedPushConfiguration != null)
+    {
+        Gamebase.Push.RegisterPush(savedPushConfiguration, (error) =>
+        {
+            ...
+        });
+    }
+}
+```
 
 ### QueryTerms
 
@@ -293,7 +318,7 @@ static void UpdateTerms(GamebaseRequest.Terms.UpdateTermsConfiguration configura
 | --- | --- | --- |
 | NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
 | UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | 등록되지 않은 약관 Seq 값을 설정하였습니다. |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 이전에 호출된 Terms API 가 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | Terms API 호출이 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
 
 
 **Example**

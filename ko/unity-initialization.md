@@ -52,29 +52,29 @@ Gamebase에서 제공하는 UI 및 SystemDialog에 표시되는 언어를 단말
 
 #### 5. enablePopup
 
-시스템 점검, 이용 제재(ban) 등 게임 유저가 게임을 플레이할 수 없는 상황에서 팝업 등으로 사유를 표시해야 할 때가 있습니다.
-Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+시스템 점검, 이용 제재(ban) 등 게임 유저가 게임을 플레이할 수 없는 상황에서 팝업 창 등으로 사유를 표시해야 할 때가 있습니다.
+Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 설정입니다.
 
-* true: enableLaunchingStatusPopup, enableBanPopup 설정에 따라 팝업이 노출 여부가 결정됩니다.
-* false: Gamebase에서 제공하는 모든 팝업이 노출되지 않습니다.
+* true: enableLaunchingStatusPopup, enableBanPopup 설정에 따라 팝업 창이 노출 여부가 결정됩니다.
+* false: Gamebase에서 제공하는 모든 팝업 창이 노출되지 않습니다.
 * 기본값: false
 
 #### 6. enableLaunchingStatusPopup
 
-LaunchingStatus가 게임을 할 수 없는 상태일 경우, Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+LaunchingStatus가 게임을 할 수 없는 상태일 경우, Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 설정입니다.
 LaunchingStatus는 아래 Launching 절 아래 State, Code 부분을 참고하십시오.
 
 * 기본값: true
 
 #### 7. enableBanPopup
 
-로그인 시 해당 게임 유저가 이용 정지 상태인 경우, Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+로그인 시 해당 게임 유저가 이용 정지 상태인 경우, Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 설정입니다.
 
 * 기본값: true
 
 #### 8. enableKickoutPopup
 
-Gamebase Server로 부터 Kickout 이벤트를 받은 경우, Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+Gamebase Server로 부터 Kickout 이벤트를 받은 경우, Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 설정입니다.
 
 * 기본값: true
 
@@ -310,7 +310,7 @@ Gamebase Console에 등록된 점검 정보입니다.
 
 ##### Change Default Maintenance HTML
 
-`enablePopup`과 `enableLaunchingStatusPopup` 값이 모두 `true`인 경우, 게임이 점검 상태라면 자동으로 점검 팝업이 표시됩니다.
+`enablePopup`과 `enableLaunchingStatusPopup` 값이 모두 `true`인 경우, 게임이 점검 상태라면 자동으로 점검 팝업 창이 표시됩니다.
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_popup_android_2.30.0.png)
 
 여기서 **자세히 보기** 버튼을 클릭하면 점검 정보가 자동으로 웹뷰로 표시됩니다.
@@ -363,9 +363,9 @@ GetLaunchingInformations API를 이용하면 Initialize 이후에도 LaunchingIn
 
 > <font color="red">[주의]</font><br/>
 >
-> GetLaunchingInformations API 는 실시간으로 서버에서 정보를 가져오는 비동기 API 가 아닙니다.
+> GetLaunchingInformations API 는 실시간으로 서버에서 정보를 가져오는 비동기 API가 아닙니다.
 > 2분 주기로 업데이트 되는 캐시 정보를 리턴하므로, 실시간으로 현재의 점검 여부를 판단하는 용도로는 적합하지 않습니다.
-> 이런 경우에는 Launching Status Code 가 변경되었을때 이벤트가 동작하는 GamebaseEventHandler 를 활용하시기 바랍니다.
+> 이런 경우에는 Launching Status Code가 변경되었을때 이벤트가 동작하는 GamebaseEventHandler 를 활용하시기 바랍니다.
 > [Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Observer](./unity-etc/#observer)
 
 **API**
@@ -393,7 +393,7 @@ public GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
 ### Handling Unregistered Version
  	 
 Gamebase 콘솔에 등록되지 않은 GameClientVersion 을 초기화를 하면 **LAUNCHING_UNREGISTERED_CLIENT(2004)** 에러가 발생합니다.
-enablePopup(true), enableLaunchingStatusPopup(true) 상태라면 강제 업데이트 팝업이 표시되고, 마켓으로 이동할 수 있습니다.
+enablePopup(true), enableLaunchingStatusPopup(true) 상태라면 강제 업데이트 팝업 창이 표시되고, 마켓으로 이동할 수 있습니다.
 Gamebase 팝업을 사용하지 않을 경우에는 마켓 URL과 같은 Udpate정보를 GamebaseError 객체로부터 얻을 수 있습니다.
 
 **VO**

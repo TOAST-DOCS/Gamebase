@@ -110,8 +110,8 @@ void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
 | Error | Error Code | Description |
 | --- | --- | --- |
 | NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
-| LAUNCHING\_SERVER\_ERROR | 2001 | 런칭서버가 내려준 항목에 약관 관련 내용이 없는 경우에 발생하는 에러입니다.<br/>정상적인 상황이 아니므로 Gamebase 담당자에게 문의해주시기 바랍니다. |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 이전에 호출된 Terms API 가 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
+| LAUNCHING\_SERVER\_ERROR | 2001 | 론칭 서버에서 전달받은 항목에 약관 관련 내용이 없는 경우에 발생하는 에러입니다.<br/>정상적인 상황이 아니므로 Gamebase 담당자에게 문의해주시기 바랍니다. |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | Terms API 호출이 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
 | UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925 | 약관 웹뷰가 아직 종료되지 않았는데 다시 호출되었습니다. |
 | WEBVIEW\_TIMEOUT | 7002 | 약관 웹뷰 표시 중 타임아웃이 발생했습니다. |
 | WEBVIEW\_HTTP\_ERROR | 7003 | 약관 웹뷰 오픈 중 HTTP 에러가 발생하였습니다. |
@@ -150,7 +150,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 
 > <font color="red">[주의]</font><br/>
 >
-> * GamebaseResponse.Terms.ContentDetail.required 가 true 인 필수 항목은 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false 로 리턴됩니다.
+> * GamebaseResponse.Terms.ContentDetail.required가 true 인 필수 항목은 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false 로 리턴됩니다.
 >     * 필수 항목은 항상 true 로 저장될 수 밖에 없어서 저장하는 의미가 없기 때문입니다.
 > * 푸시 수신 동의 여부도 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false 로 리턴됩니다.
 >     * 유저의 푸시 수신 동의 여부는 Gamebase.Push.QueryPush API 를 통해 확인하시기 바랍니다.
@@ -261,7 +261,7 @@ void UpdateTerms(const FGamebaseUpdateTermsConfiguration& configuration, const F
 | --- | --- | --- |
 | NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
 | UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | 등록되지 않은 약관 Seq 값을 설정하였습니다. |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 이전에 호출된 Terms API 가 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | Terms API 호출이 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
 
 
 **Example**

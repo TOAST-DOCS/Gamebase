@@ -85,10 +85,10 @@ closeImageNotices APIを呼び出して現在表示中のイメージ告知を�
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| TCGB\_ERROR\_NOT\_INITIALIZED(1) | Gamebaseが初期化されていません。 |
-| TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT(6901) | イメージ告知ポップアップ表示中にタイムアウトが発生してすべてのポップアップを強制終了します。 |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebaseが初期化されていません。 |
+| TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | イメージ告知ポップアップ表示中タイムアウトが発生してすべてのポップアップを強制終了します。 |
 
 
 
@@ -134,13 +134,13 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| TCGB\_ERROR\_NOT\_INITIALIZED(1) | Gamebaseが初期化されていません。 |
-| TCGB\_ERROR\_LAUNCHING\_SERVER\_ERROR(2001) | ローンチサーバーからダウンロードした項目に約款関連内容がない場合に発生するエラーです。<br/>正常な状況ではないため、Gamebase担当者にお問い合わせください。 |
-| TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 以前に呼び出されたTerms APIがまだ完了していません。<br/>しばらくしてから再度試行してください。 |
-| TCGB\_ERROR\_WEBVIEW\_TIMEOUT(7002) | 約款Webビューの表示中にタイムアウトが発生しました。 |
-| TCGB\_ERROR\_WEBVIEW\_HTTP\_ERROR(7003) | 約款Webビューのオープン中にHTTPエラーが発生しました。 |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebaseが初期化されていません。 |
+| TCGB\_ERROR\_LAUNCHING\_SERVER\_ERROR | 2001 | ローンチサーバーからダウンロードした項目に約款関連内容がない場合に発生するエラーです。<br/>正常な状況ではないため、Gamebase担当者にお問い合わせください。 |
+| TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 以前に呼び出されたTerms APIがまだ完了していません。<br/>しばらくしてから再度試行してください。 |
+| TCGB\_ERROR\_WEBVIEW\_TIMEOUT | 7002 | 約款Webビューの表示中にタイムアウトが発生しました。 |
+| TCGB\_ERROR\_WEBVIEW\_HTTP\_ERROR | 7003 | 約款Webビューのオープン中にHTTPエラーが発生しました。 |
 
 **Example**
 
@@ -199,11 +199,11 @@ Gamebaseは単純な形式のWebビューで約款を表示します。
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| TCGB\_ERROR\_NOT\_INITIALIZED(1) | Gamebaseが初期化されていません。 |
-| TCGB\_ERROR\_UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE(6921) | 約款情報がコンソールに登録されていません。 |
-| TCGB\_ERROR\_UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY(6922) | 端末国コードに合った約款情報がコンソールに登録されていません。 |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebaseが初期化されていません。 |
+| TCGB\_ERROR\_UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE | 6921 | 約款情報がコンソールに登録されていません。 |
+| TCGB\_ERROR\_UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY | 6922 | 端末国コードに合った約款情報がコンソールに登録されていません。 |
 
 **Example**
 
@@ -283,11 +283,11 @@ queryTerms APIでダウンロードした約款情報でUIを直接作った場�
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| TCGB\_ERROR\_NOT\_INITIALIZED(1) | Gamebaseが初期化されていません。 |
-| TCGB\_ERROR\_UI\_TERMS\_UNREGISTERED\_SEQ(6923) | 登録されていない約款Seq値を設定しました。 |
-| TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 以前に呼び出されたTerms APIがまだ完了していません。<br/>しばらくしてから再度お試しください。 |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1 |Gamebaseが初期化されていません。 |
+| TCGB\_ERROR\_UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | 登録されていない約款Seq値を設定しました。 |
+| TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 以前に呼び出されたTerms APIがまだ完了していません。<br/>しばらくしてから再度試行してください。 |
 
 
 **Example**
@@ -360,6 +360,7 @@ WebViewを表示します。<br/>
 }
 ```
 
+![Webview Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
 
 #### Custom WebView
 ユーザーが指定したWebViewを表示します。<br/>TCGBWebViewConfigurationでユーザーが指定したWebViewを作成することができます。

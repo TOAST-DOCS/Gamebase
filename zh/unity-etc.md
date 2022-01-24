@@ -507,7 +507,7 @@ Not translated yet
 
 * 是从Gamebase服务器向客户端终端机传送的消息。 
 * Gamebase支持的Server Push Type如下。
-	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
+    * GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
     	* 如果在TOAST Gamebase控制台**Operation > Kickout**中注册 Kickout ServerPush消息，则从与Gamebase连接的所有客户端接收Kickout消息。
     * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
     	* 将Guest账号成功转移到其他终端机时，从转移之前的终端机接收Kickout消息。

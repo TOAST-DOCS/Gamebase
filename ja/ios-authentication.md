@@ -934,6 +934,7 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 |                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | 存在しないか、退会した会員です。                      |
 |                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR    | 3006       | 外部認証ライブラリの初期化に失敗しました。                      |
 |                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 外部認証ライブラリエラーです。<br/> DetailCodeおよびDetailMessageを確認してください。  |
+|                | TCGB\_ERROR\_AUTH\_INVALID\_GAMEBASE\_TOKEN | 3011       | Gamebase Access Tokenが有効ではないためログアウトしました。<br/>ログインを再試行してください。 |
 | Auth (Login)   | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED  | 3101       | トークンのログインに失敗しました。                          |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | トークン情報が有効ではありません。                        |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 最近ログインしたIdP情報がありません。                   |

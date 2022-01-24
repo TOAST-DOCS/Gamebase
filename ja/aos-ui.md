@@ -31,10 +31,10 @@
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebase.initializeが呼び出されませんでした。 |
-| UI\_IMAGE\_NOTICE\_TIMEOUT(6901) | イメージ告知ポップアップの表示中にタイムアウトが発生してすべてのポップアップを強制終了します。 |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebase.initializeが呼び出されませんでした。 |
+| UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | イメージ告知ポップアップウィンドウの表示中にタイムアウトが発生してすべてのポップアップを強制終了します。 |
 
 **Example**
 
@@ -130,51 +130,48 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 ```java
 + (void)Gamebase.Terms.showTermsView(@NonNull Activity activity,
                                      @Nullable GamebaseDataCallback<GamebaseDataContainer> callback);
++ (void)Gamebase.Terms.showTermsView(@NonNull Activity activity,
+                                     @Nullable GamebaseTermsConfiguration configuration,
+                                     @Nullable GamebaseDataCallback<GamebaseDataContainer> callback);
 ```
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebaseが初期化されていません。 |
-| LAUNCHING\_SERVER\_ERROR(2001) | ローンチサーバーからダウンロードした項目に約款関連内容がない場合に発生するエラーです。<br/>正常な状況ではないため、Gamebase担当者にお問い合わせください。 |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 以前に呼び出されたTerms APIがまだ完了していません。<br/>しばらくしてから再度試行してください。 |
-| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW(6925) | 約款Webビューがまだ終了していないのに再び呼び出されました。 |
-| WEBVIEW\_TIMEOUT(7002) | 約款Webビューの表示中にタイムアウトが発生しました。 |
-| WEBVIEW\_HTTP\_ERROR(7003) | 約款Webビューのオープン中にHTTPエラーが発生しました。 |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebaseが初期化されていません。 |
+| LAUNCHING\_SERVER\_ERROR | 2001 | ローンチサーバーからダウンロードした項目に約款関連内容がない場合に発生するエラーです。<br/>正常な状況ではないため、Gamebase担当者にお問い合わせください。 |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 以前に呼び出されたTerms APIがまだ完了していません。<br/>しばらくしてから再度試行してください。 |
+| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925 | 約款Webビューが終了していないのに再び呼び出されました。 |
+| WEBVIEW\_TIMEOUT | 7002 | 約款Webビューの表示中にタイムアウトが発生しました。 |
+| WEBVIEW\_HTTP\_ERROR | 7003 | 約款Webビューのオープン中にHTTPエラーが発生しました。 |
 
 **Example**
 
 ```java
-public void showTermsView(final Activity activity,
-                          final GamebaseDataCallback<GamebaseDataContainer> callback) {
-    Gamebase.Terms.showTermsView(activity, new GamebaseDataCallback<GamebaseDataContainer>() {
-        @Override
-        public void onCallback(GamebaseDataContainer container, GamebaseException exception) {
-            if (Gamebase.isSuccess(exception)) {
-                // If the 'PushConfiguration' is not null,
-                // save the 'PushConfiguration' and use it for Gamebase.Push.registerPush()
-                // after Gamebase.login().
-                @Nullable PushConfiguration savedPushConfiguration = PushConfiguration.from(container);
-            } else {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Wait for a while and try again.
-                        try { Thread.sleep(2000); }
-                        catch (Exception ignored) {}
-                        showTermsView(activity, callback);
-                    }
-                }).start();
-            }
-        }
-    });
-}
+static PushConfiguration savedPushConfiguration = null;
+final GamebaseTermsConfiguration configuration = GamebaseTermsConfiguration.newBuilder()
+        .setForceShow(true)
+        .build();
+Gamebase.Terms.showTermsView(activity, configuration, (container, exception) -> {
+    if (Gamebase.isSuccess(exception)) {
+        // Save the PushConfiguration and use it for Gamebase.Push.registerPush()
+        // after Gamebase.login().
+        savedPushConfiguration = PushConfiguration.from(container);
+    } else {
+        new Thread(() -> {
+            // Wait for a while and try again.
+            try { Thread.sleep(2000); }
+            catch (Exception ignored) {}
+            showTermsView(activity, callback);
+        }).start();
+    }
+});
 
 public void afterLogin(Activity activity) {
     // Call registerPush with saved PushConfiguration.
     if (savedPushConfiguration != null) {
-        Gamebase.Push.registerPush(activity, savedPushConfiguration, new GamebaseCallback() {...});
+        Gamebase.Push.registerPush(activity, savedPushConfiguration, exception -> {...});
     }
 }
 ```
@@ -209,11 +206,11 @@ Gamebaseは単純な形式のWebビューで約款を表示します。
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebaseが初期化されていません。 |
-| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE(6921) | 約款情報がコンソールに登録されていません。 |
-| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY(6922) | 端末国コードに合った約款情報がコンソールに登録されていません。 |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebaseが初期化されていません。 |
+| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE | 6921 | 約款情報がコンソールに登録されていません。 |
+| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY | 6922 | 端末国コードに合った約款情報がコンソールに登録されていません。 |
 
 **Example**
 
@@ -290,11 +287,11 @@ queryTerms APIでダウンロードした約款情報でUIを直接作った場�
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | Gamebaseが初期化されていません。 |
-| UI\_TERMS\_UNREGISTERED\_SEQ(6923) | 登録されていない約款Seq値を設定しました。 |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 以前に呼び出されたTerms APIがまだ完了していません。<br/>しばらくしてから再度お試しください。 |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebaseが初期化されていません。 |
+| UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | 登録されていない約款Seq値を設定しました。 |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 以前に呼び出されたTerms APIがまだ完了していません。<br/>しばらくしてから再度試行してください。 |
 
 **Example**
 
