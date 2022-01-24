@@ -34,13 +34,14 @@
 ```
 
 
-### Display Language
+### Display Language           
 
 正像游戏维护弹窗显示语言，Gamebase也显示终端机设置的语言。
 
 但有些游戏允许通过额外选项更改终端机设置的语言。
 终端机设置的默认语言是英语，但需将游戏的显示语言转换为日语时，即使要将Gamebase的显示语言也转换为日语，Gamebase仍显示终端机设置的默认语言（en）。
-因此Gamebase向需以终端机设置语言之外的其他语言显示Gamebase消息的应用程序，提供”Display Language“功能。 
+
+因此Gamebase向需以终端机设置语言之外的其他语言显示Gamebase消息的应用程序，提供”Display Language“功能。
 
 Gamebase显示消息时，按照注册为Display Language的语言显示消息。
 在Display Language输入语言代码时，只能使用以下列表中（**Gamebase支持的语言代码种类**）指定的代码。
@@ -48,10 +49,10 @@ Gamebase显示消息时，按照注册为Display Language的语言显示消息�
 > <font color="red">[注意]</font><br/>
 >
 > * 无论终端机设置的语言如何，只需更改Gamebase显示的语言时使用Display Language Gamebase功能。
-> * 显示Display Language Code时要以ISO-639格式显示，并且要区分英文字母的大小写。
+> * 显示Display Language Code时要以ISO-639格式显示，并且要区分英文字母的大小写。 
 > 若按”EN"或"zh-cn"进行设置，可能出现问题。
-> * 若输入的Display Language Code值不在以下列表时（**Gamebase支持的语言代码种类**）, Display Langauge Code将会设置为Gamebase控制台中设置的默认语言。 
->   * 如果未在Gamebase控制台中设置需要使用的语言集，则会自动设置为英语(en)。  
+> * 若输入的Display Language Code值不在以下列表时（**Gamebase支持的语言代码种类**）, Display Langauge Code将会设置为Gamebase控制台中设置的默认语言。
+>   * 如果未在Gamebase控制台中设置需要使用的语言集，则会自动设置为英语(en)。
 
 > [参考]
 >
@@ -153,7 +154,7 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 
 #### 查询显示语言
 
-可以查 看当前使用的显示语言。
+可以查看当前使用的显示语言。
 
 **API**
 
@@ -172,7 +173,7 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 
 #### 添加新语言集
 
-如需使用Gamebase提供的默认语言(ko, en, ja, zh-CN, zh-TW, th)以外的其他语言，则在Xcode项目中的”Copy Bundle Resources”中添加**localizedstring.json**文件即可。 
+如需使用Gamebase提供的默认语言(ko, en, ja, zh-CN, zh-TW, th)以外的其他语言，则在Xcode项目中的“Copy Bundle Resources”中添加**localizedstring.json**文件即可。 
 
 在localizedstring.json中定义的格式如下。
 
@@ -326,31 +327,32 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 ```objectivec
 - (void)eventHandler_addEventHandler {
     void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
-        if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES
+        if ([message.category isEqualToString:kTCGBLoggedOut] == YES) {
+            TCGBGamebaseEventLoggedOutData* loggedOutData = [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data];
+            if (loggedOutData != nil) {
+                //TODO: process loggedOut
+            }
+        } else if ([message.category isEqualToString:kTCGBServerPushAppKickoutMessageReceived] == YES
+            || [message.category isEqualToString:kTCGBServerPushAppKickout] == YES
             || [message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
             TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
             if (serverPushData != nil) {
                 //TODO: process server push
             }
-        }
-        else if ([message.category isEqualToString:kTCGBObserverLaunching] == YES
-                 || [message.category isEqualToString:kTCGBObserverHeartbeat] == YES
-                 || [message.category isEqualToString:kTCGBObserverNetwork] == YES) {
+        } else if ([message.category isEqualToString:kTCGBObserverLaunching] == YES
+            || [message.category isEqualToString:kTCGBObserverHeartbeat] == YES
+            || [message.category isEqualToString:kTCGBObserverNetwork] == YES) {
             TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];
             if (observerData != nil) {
                 //TODO: process observer
             }
-        }
-        else if ([message.category isEqualToString:kTCGBPurchaseUpdated] == YES) {
+        } else if ([message.category isEqualToString:kTCGBPurchaseUpdated] == YES) {
             
-        }
-        else if ([message.category isEqualToString:kTCGBPushReceivedMessage] == YES) {
+        } else if ([message.category isEqualToString:kTCGBPushReceivedMessage] == YES) {
             
-        }
-        else if ([message.category isEqualToString:kTCGBPushClickMessage] == YES) {
+        } else if ([message.category isEqualToString:kTCGBPushClickMessage] == YES) {
             
-        }
-        else if ([message.category isEqualToString:kTCGBPushClickAction] == YES) {
+        } else if ([message.category isEqualToString:kTCGBPushClickAction] == YES) {
             
         }
     };
@@ -360,11 +362,12 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 ```
 
 * Category在GamebaseEventCategory类中定义。
-* 事件大体分为ServerPush、Observer、Purchase及Push，并按各Category, 按如下列表的方式，将GamebaseEventMessage.data转换为VO。
+* 事件大体分为LoggedOut、ServerPush、Observer、Purchase及Push，并按各Category, 按如下列表的方式，将TCGBGamebaseEventMessage.data转换为VO。
 
 | Event种类 | GamebaseEventCategory | VO转换方法 | 备注 |
 | --------- | --------------------- | ----------- | --- |
-| ServerPush | kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
+| LoggedOut | kTCGBLoggedOut | [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data] | \- |
+| ServerPush | kTCGBServerPushAppKickoutMessageReceived<br>kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
 | Observer | kTCGBObserverLaunching<br>kTCGBObserverHeartbeat<br>kTCGBObserverNetwork | [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data] | \- |
 | Purchase - Promotion支付 | kTCGBPurchaseUpdated | [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data] | \- |
 | Push - 接收消息 | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
@@ -377,12 +380,39 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 Not translated yet
 ```
 
+#### Logged Out
+
+* 是当Gamebase Access Token过期，为了恢复网络会话需要调用函数时出现的事件。
+
+**Example**
+
+```objectivec
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        [self printLogAndShowAlertWithData:[message prettyJsonString] error:nil alertTitle:@"addEventHandler Result"];
+        if ([message.category isEqualToString:kTCGBLoggedOut] == YES) {
+            TCGBGamebaseEventLoggedOutData* loggedOutData = [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data];
+            if (loggedOutData != nil) {
+                //TODO: process loggedOut
+            }
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
+```
+
 #### Server Push
 
 * 是从Gamebase服务器向客户端终端机传送的消息。
-* Gamebase支持的Server Push Type如下。
+* Gamebase支持的Server Push Type如下。  
+	* kTCGBServerPushAppKickoutMessageReceived
+    	*  如果在NHN Cloud Gamebase控制台**Operation > Kickout**中注册Kickout ServerPush消息，则从与Gamebase连接的所有客户端接收Kickout消息。
+        * 是当从客户端终端机接收了服务器消息时启动的事件。
+        * 正如“Autoplay”，当游戏运行时，它可以用于暂停游戏。
 	* kTCGBServerPushAppKickout
-    	* 如果在NHN Cloud Gamebase控制台**Operation > Kickout**中注册Kickout ServerPush消息，则从与Gamebase连接的所有客户端接收Kickout消息。
+    	* 从NHN Cloud Gamebase控制台**Operation > Kickout**中注册Kickout ServerPush消息，则从与Gamebase连接的所有客户端接收Kickout消息。
+        * 是当在客户端终端机接收了服务器消息时显示弹窗，而用户关闭其弹窗时启动的事件。
     * kTCGBServerPushTransferKickout
     	* Guest账号成功转移到其他终端机时，将会从转移之前的终端机接收Kickout消息。
 
@@ -392,13 +422,17 @@ Not translated yet
 - (void)eventHandler_addEventHandler {
     void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
         [self printLogAndShowAlertWithData:[message prettyJsonString] error:nil alertTitle:@"addEventHandler Result"];
-        if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES) {
+        if ([message.category isEqualToString:kTCGBServerPushAppKickoutMessageReceived] == YES) {
+            TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
+            if (serverPushData != nil) {
+                //TODO: process server push 
+            }
+        } else if ([message.category isEqualToString:kTCGBServerPushAppKickout] == YES) {
             TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
             if (serverPushData != nil) {
                 //TODO: process server push
             }
-        }
-        esle if ([message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
+        } else if ([message.category isEqualToString:kTCGBServerPushTransferKickout] == YES) {
             TCGBGamebaseEventServerPushData* serverPushData = [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data];
             if (serverPushData != nil) {
                 //TODO: process server push
@@ -408,7 +442,6 @@ Not translated yet
     
     [TCGBGamebase addEventHandler:eventHandler];
 }
-
 ```
 
 #### Observer
@@ -470,7 +503,7 @@ Not translated yet
                     // Under maintenance.
                     break;
                 ...
-        }
+                }
             }
         }
         else if ([message.category isEqualToString:kTCGBObserverHeartbeat] == YES) {
@@ -484,7 +517,7 @@ Not translated yet
             case TCGB_ERROR_BANNED_MEMBER:
                 // You can check the banned user session in here.
                 break;
-        }
+            }
         }
         else if ([message.category isEqualToString:kTCGBObserverNetwork] == YES) {
             TCGBGamebaseEventObserverData* observerData = [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data];

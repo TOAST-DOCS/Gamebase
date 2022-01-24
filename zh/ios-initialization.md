@@ -11,7 +11,7 @@
 #import <Gamebase/Gamebase.h>
 ```
 
-### Initialization Flow
+### Initialization Flow							
 
 当游戏开始时设置Debug Mode， 初始化Gamebase之后，根据Launching Status Code判断是否进入游戏。具体的Flow如下。 
 
@@ -24,24 +24,24 @@
 | API                                | Mandatory(M) / Optional(O) | Description                              |
 | ---------------------------------- | -------------------------- | ---------------------------------------- |
 | configurationWithAppID:appVersion: | M                          | 设置TCGBConfiguration的App ID和版本。<br/>无论是更新还是维护都取决于游戏版本。<br/>请指定游戏版本。 |
-| enablePopup:                       | O                          | **[UI]**<br/>因系统维护或设置禁用（ban）等，游戏用户无法玩游戏的状态下，有时需要通过弹出窗口显示原因。<br/>如果设置为** YES **，Gamebase将在该情况下自动弹出窗口公告信息。<br/>默认为**NO**。<br/>**NO**的情况下，请通过Launching结果获取信息，并使用自定义UI，显示用户无法玩游戏的原因。 |
-| enableLaunchingStatusPopup:        | O                          | **[UI]**根据Launching结果，可以更改Gamebase是否在无法登录时，自动显示弹出窗口（维护状态为主）。<br/>仅适用于**enablePopup:YES** 状态下。<br/>默认值为 **YES**。 | 
-| enableBanPopup:                    | O                          | **[UI]**<br/>当游戏用户被禁用时，Gamebase可以设定是否将制裁原因以弹出窗口的形式显示给用户。<br/>仅适用于**enablePopup:** 状态下。<br/>默认值为 **YES**。 |
+| enablePopup:                       | O                          | **[UI]**<br/>由于系统维护或设置禁用（ban）等，游戏用户无法玩游戏的状态下，有时需要通过弹窗显示原因。<br/>如果设置为** YES **，Gamebase将自动弹出窗口公告信息。<br/>默认为**NO**。<br/>如果是**NO**，请通过Launching结果获取信息，并使用自定义UI显示用户无法玩游戏的原因。 |
+| enableLaunchingStatusPopup:        | O                          | **[UI]**根据Launching结果，可以更改Gamebase是否在无法登录的状态下也显示弹窗（主要在维护状态下）。<br/>仅在**enablePopup:YES**状态下启动。<br/>默认值为**YES**。 | 
+| enableBanPopup:                    | O                          | **[UI]**<br/>当游戏用户被禁用时，Gamebase可设定是否通过弹窗将制裁原因显示给用户。<br/>仅在**enablePopup:**状态下启动。<br/>默认值为**YES**。 |
 
-
+                                                                                     
 ### Debug Mode
 Gamebase仅显示警告(warning)和错误日志。
-要打开系统日志以进行开发，请调用 **[TCGBGamebase setDebugMode:YES]**。
-
+要打开系统日志以进行开发，请调用**[TCGBGamebase setDebugMode:YES]**。
+    
 > <font color="red">[注意]</font><br/>
->
+> 
 > 当**发布**游戏时，请务必从源代码中删除setDebugMode调用，或者将参数更改为false之后再打包。
 
 调试设置也可在控制台中进行，优先考虑在控制台中设置的值。
 关于控制台设置方法，请参考如下指南。
 
-* [控制台测试终端机设定](./oper-app/#test-device)
-* [控制台客户设定](./oper-app/#client)
+* [控制台测试终端机的设定](./oper-app/#test-device)
+* [控制台客户的设定](./oper-app/#client)
 
 
 
@@ -62,7 +62,7 @@ Gamebase仅显示警告(warning)和错误日志。
 > 如果不调用**initializeWithConfiguration：launchOptions：completion：**方法，调用了另一个Gamebase API，它可能无法正常工作。
 
 1. 创建一个**TCGBConfiguration**对象并设置每个属性。
-2. 使用 **TCGBConfiguration** 对象调用**initializeWithConfiguration:launchOptions:completion:**。
+2. 使用**TCGBConfiguration**对象调用**initializeWithConfiguration:launchOptions:completion:**。
 3. 通过确认**completion**块传递的**TCGBError**对象，判断是否成功，如初始化失败，可重试。
 
 
@@ -132,8 +132,8 @@ NSDictionary* launchingInfo = [TCGBLaunching launchingInformations];
 
 是Gamebase iOS SDK初始化设置中输入的应用程序版本的游戏状态信息。
 
-* code: 游戏状态代码（正在检查、必须升级、结束服务等）
-* message: 游戏状态信息
+* code : 游戏状态代码（正在检查、必须升级、结束服务等）
+* message : 游戏状态信息
 
 状态代码请参考以下表。
 
@@ -155,7 +155,7 @@ NSDictionary* launchingInfo = [TCGBLaunching launchingInformations];
 | INTERNAL_SERVER_ERROR       | 500  | 内部服务器错误                                 |
 
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Game > Gamebase > 控制台使用指南 > 应用程序 > App](./oper-app/#app)
 
 **1.2 App**
 
@@ -174,29 +174,39 @@ NSDictionary* launchingInfo = [TCGBLaunching launchingInformations];
 * install : 安装URL
 * idP : 认证信息 
 
-[控制台指南](/Game/Gamebase/ko/oper-app/#client)
+[Game > Gamebase > 控制台使用指南 > 应用程序 > Client](./oper-app/#client)
 
 **1.3 Maintenance**
 
 是Gamebase Console中创建的维护信息。
 
-* url : 检查页面URL
-* timezone : 标准时间段(timezone)
+* url : 维护页面URL
+* timezone : 标准时区(timezone)
 * beginDate : 开始时间
 * endDate : 结束时间
-* message : 检查原因
+* message : 维护原因
+* hideDate : 开始维护，是否显示结束时间
 
-[控制台指南](/Game/Gamebase/ko/oper-operation/#maintenance)
+[Game > Gamebase > 控制台使用指南 > 运营 > Maintenance](./oper-operation/#maintenance)
+
+##### Change Default Maintenance HTML
+
+“enablePopup”和“enableLaunchingStatusPopup”都为“true”时，如果游戏正在维护中，它将自动显示维护弹窗。
+此时若点击**查看更多**按钮，通过Webview将自动显示维护信息。
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_webview_android_2.30.0.png)
+
+如果要修改显示的html文件，请下载以下链接的html文件，将按照您所需的形式修改后，在Xcode项目的“Copy Bundle Resources”中添加**gamebase-maintenance.html**文件。
+[下载html文件的LINK](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
 
 **1.4 Notice**
 
 是Gamebase Console中创建的公告信息。
 
-* message: 信息
-* title: 标题
-* url: 检查URL
+* message : 信息
+* title : 标题
+* url : 检查URL
 
-[控制台指南](/Game/Gamebase/ko/oper-operation/#notice)
+[Game > Gamebase > 控制台使用指南 > 运营 > Notice](./oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -215,7 +225,7 @@ NSDictionary* launchingInfo = [TCGBLaunching launchingInformations];
 * name: App Name
 * storeCode: Store Code
 
-[控制台指南](/Game/Gamebase/ko/oper-purchase/)
+[Game > Gamebase > 控制台使用指南 > 结算](./oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -224,12 +234,12 @@ NSDictionary* launchingInfo = [TCGBLaunching launchingInformations];
 * 以JSON string格式传送用户输入的值。
 * 有关NHN Cloud Launching的具体设置方法，请参考以下指南。
 
-[控制台指南](/Game/Gamebase/ko/oper-management/#config)
+[Game > Gamebase > 控制台使用指南 > 管理 > Config](./oper-management/#config)
 
 ### Handling Unregistered Version
 
-对在Gamebase控制台中未注册的GameClientVersion进行初始化时，将会出现**LAUNCHING_UNREGISTERED_CLIENT(2004)**错误。
-如果是enablePopup(true), enableLaunchingStatusPopup(true)状态，则会弹出强制更新窗口，并可以跳转到商店。
+对未注册在Gamebase控制台中的GameClientVersion进行初始化时，将出现**LAUNCHING_UNREGISTERED_CLIENT(2004)**错误。
+如果是enablePopup(true)、enableLaunchingStatusPopup(true)状态，则会弹出强制更新窗口，并可跳转到商店。
 如果不使用Gamebase弹窗，您可通过TCGBError对象获取UpdateInfo，在游戏中直接创建UI, 使用户直接跳转到商店。
 
 
@@ -287,6 +297,16 @@ NSDictionary* launchingInfo = [TCGBLaunching launchingInformations];
 >
 > 如果要使用SceneDelegate(iOS 13以上)， 要实现**UISceneDelegate**协议。
 >
+
+### DidFinishLaunching Event
+通过调用**application:didFinishLaunchingWithOptions:**方法，您需要通知Gamebase引用程序已启动。
+
+```objectivec
+// AppDelegate.m
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    return [TCGBGamebase application:application didFinishLaunchingWithOptions:launchOptions];
+}
+```
 
 ### OpenURL Event
 需要通过调用**application:openURL:sourceApplication:annotation:**方法，将App的外部URL Open尝试告知Gamebase，Gamebase将相应的值传递给各Idp的认证用SDK，告知需要的操作。
@@ -361,7 +381,7 @@ NSDictionary* launchingInfo = [TCGBLaunching launchingInformations];
 ```
 
 ### WillEnterForeground Event
-需要通过调用**applicationWillEnterForeground** 方法，将App切换到前台(foreground)告知Gamebase。
+需要通过调用**applicationWillEnterForeground**方法，将App切换到前台(foreground)告知Gamebase。
 
 ```objectivec
 // AppDelegate.m
