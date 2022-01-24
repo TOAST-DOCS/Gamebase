@@ -1,5 +1,17 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.33.0 (2022.01.25)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Android.zip)
+
+#### 添加功能
+* 添加了可通过更改共同条款显示选项的新API。
+    * 关于可以更改设置的项目，请参考以下指南。
+    * [Game > Gamebase > Android SDK使用指南 > UI > Terms > showTermsView](./aos-ui/#showtermsview)
+
+#### 改善/更改功能
+* 外部SDK升级 : PAYCO Android SDK(1.5.7), Hangame Android SDK(1.4.3.1), TOAST Gamebase IAP Andoid SDK(0.18.1)
+* 添加了登录成功后可检查Launching信息是否被更改的逻辑。   
+
 ### 2.32.0 (2021.12.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-Android.zip)
 
@@ -547,7 +559,7 @@ Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
         
 #### 버그수정
 * [SDK] 2.1.0
-    * (Android)Gamebase 초기화 이전, onActivityResult() 가 호출되면서 이상 동작하던 버그 수정
+    * (Android)Gamebase 초기화 이전, onActivityResult()가 호출되면서 이상 동작하던 버그 수정
 
 ### 2.0.0 (2019.01.29)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.0.0/GamebaseSDK-Android.zip)
@@ -701,7 +713,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그 수정
 * [SDK] 1.9.0
-    * (Android) Heartbeat 에서 잘못된 사용자로 판정되는 경우 이용정지 팝업이 뜨지 않도록 수정(iOS 와 동일한 로직으로 수정)
+    * (Android) Heartbeat 에서 잘못된 사용자로 판정되는 경우 이용정지 팝업 창이 뜨지 않도록 수정(iOS 와 동일한 로직으로 수정)
 
 ### 1.8.1 (2018.04.12)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.8.1/GamebaseSDK-Android.zip)
@@ -744,7 +756,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그 수정
 * [SDK] 1.4.0 업데이트
-    * (Android)Gamebase 제공 팝업을 사용하지 않는 경우 이용정지 정보가 null로 리턴되는 오류 수정
+    * (Android)Gamebase 제공 팝업 창을 사용하지 않는 경우 이용정지 정보가 null로 리턴되는 오류 수정
 
 ### 1.3.0 (2017.10.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.3.0/GamebaseSDK-Android.zip)
@@ -759,7 +771,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 추가
 * 이용정지(사용자처벌) 기능 추가
 * [SDK] 1.2.0 업데이트
-    * 이용정지 사용자 팝업 노출
+    * 이용정지 사용자 팝업 창 노출
 
 
 ### 1.1.5 (2017.07.20)
@@ -767,7 +779,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 개선/변경
 * [SDK] 1.1.5 업데이트
-    * 시스템 팝업 API 추가 (showAlertWithTitle)
+    * 시스템 팝업 창 API 추가 (showAlertWithTitle)
     * 국가코드를 대문자로 반환하도록 변경 (Android)
     * TCPush SDK 1.4.1 로 업데이트
     * IAP SDK 1.3.3.20170627 로 업데이트
@@ -783,7 +795,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.3/GamebaseSDK-Android.zip)
 #### 기능 개선/변경
 * [SDK] 1.1.3 업데이트
-    * (Android)론칭 구조 및 팝업/점검 페이지 개선 :커스텀 점검 페이지 설정 기능 추가
+    * (Android)론칭 구조 및 팝업 창/점검 페이지 개선 :커스텀 점검 페이지 설정 기능 추가
     * (Android)인증 구조 개선 및 로그 추가 : 인증 Adapter 및 SDK 버전 로그 출력
 
 #### 버그 수정
@@ -796,7 +808,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 개선/변경
 * [SDK] 1.1.2 업데이트
-    * 게임런칭시 점검, 긴급공지 팝업 개선
+    * 게임론칭시 점검, 긴급공지 팝업 창 개선
 
 ### 1.1.0 (2017.03.21)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.0/GamebaseSDK-Android.zip)

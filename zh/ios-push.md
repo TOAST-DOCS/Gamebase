@@ -6,12 +6,12 @@
 
 以下介绍了为推送通知发送而创建Apple Developer证书的过程。
 
-* 在[Apple Developer网站](https://developer.apple.com)的 **Add iOS Certificate**上利用 **Apple Push Notification service SSL**创建证书。
-* 注册Keychain后，以 Personal Information Exchange (.p12) 格式导出生成的证书。
+* 在[Apple Developer网站](https://developer.apple.com)的**Add iOS Certificate**上利用**Apple Push Notification service SSL**创建证书。
+* 注册Keychain后，以Personal Information Exchange (.p12)格式导出生成的证书。
 * 导出(export)证书时设置密码。
 
-#### TOAST Console 登记
-* **Notification > Push > Certificate**中注册 **APNS Certificate**和 **APNS (Sandbox) Certificate**中生成的证书。
+#### TOAST Console登记
+* **Notification > Push > Certificate**中注册**APNS Certificate**和**APNS (Sandbox) Certificate**中生成的证书。
 * 使用制作上述认证书时设定的密码进行登记。
 
 
@@ -36,6 +36,10 @@
 调用以下API在TOAST Push注册该用户。<br/>
 接受来自用户的推送协议（enablePush），广告推送协议（enableAdPush），夜间广告推送协议（enableAdNightPush）的值，并调用以下API完成注册。
 
+> <font color="red">[注意]</font><br/>
+>
+> 由于无法确认推送令牌的有效期，建议您在登录后始终调用registerPush API。
+>  
 
 ```objectivec
 - (void)didLoginSucceeded {
@@ -52,7 +56,6 @@
             // To Register Push Failed.
         }
     }];
-
 }
 ```
 
@@ -60,7 +63,7 @@
 通过从用户接收”foreground推送与否(foregroundEnabled)、badge使用与否(badgeEnabled)、提示音使用与否(soundEnabled)”值，可通过调用以下API设置通知选项。 
 
 ```objectivec
-- (void)didLoginSucceeded {
+- (void)didLoginSucceeded {  
     BOOL enablePush;
     BOOL enableAdPush;
     BOOL enableAdNightPush;
@@ -101,7 +104,7 @@
 
 * Push发送方法
 
-在Push菜单的**对象**中，选择**iOS Sandbox**后发送。 
+在Push菜单的**对象**中选择**iOS Sandbox**后发送。 
 
 #### Get NotificationOptions
 
@@ -175,13 +178,21 @@
 | ADAgreement                            | YES or NO                         | 是否同意接收广告性推送通知      |
 | ADAgreementNight                       | YES or NO                         | 是否允许在夜间推送广告  |
 
+### Event Handling
+
+* 接收推送消息或点击推送消息时可接收事件。 
+* 关于注册事件的方法，请参考GamebaseEventHandler指南。
+    * [ Game > Gamebase > iOS SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Push Received Message](./ios-etc/#push-received-message)
+    * [ Game > Gamebase > iOS SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./ios-etc/#push-click-message)
+    * [ Game > Gamebase > iOS SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./ios-etc/#push-click-action)
+
 ### Error Handling
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | TOAST Push库错误。<br>请确认DetailCode。 |
-| TCGB_ERROR_PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 上一次的推送API调用未完成。<br>上一次的推送 API回调执行后请重新调用。|
-| TCGB_ERROR_PUSH_UNKNOWN_ERROR            | 5999       | 未知推送错误。<br>请将全部的Log上传到[客服中心](https://toast.com/support/inquiry)，我们会尽快回复。 |
+| TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | TOAST Push库错误<br>请确认DetailCode。 |
+| TCGB_ERROR_PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 上一次推送API的调用未完成。<br>将上一次推送API回调执行后重新调用。| 
+| TCGB_ERROR_PUSH_UNKNOWN_ERROR            | 5999       | 未知推送错误<br>请将所有Log上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。 |
 
 **TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR**
 
@@ -189,25 +200,25 @@
 * 检查错误代码的方法如下。
 
 ```objectivec
-TCGBError *tcgbError = error; // 转到Callback的TCGBError实例
+TCGBError *tcgbError = error; // 转到Callback的TCGBError实例。
 NSError *moduleError = [tcgbError.userInfo objectForKey:NSUnderlyingErrorKey]; // 来自外部库的错误对象
 NSInteger moduleErrorCode = moduleError.code;
 NSString *moduleErrorMessage = moduleError.message;
 
-// 您可以通过调用以下 [tcgbError description] 获取 json format的所有错误信息。
+// 您可以通过调用以下[tcgbError description]获取json format的所有错误信息。
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
 * TOAST Push错误代码如下。
     
-| 错误代码 |  说明 |
+| 错误代码 | 说明 |
 | --- | --- |
-| TCPushErrorNotInitialized | 未初始化 |
+| TCPushErrorNotInitialized | 未初始化。 |
 | TCPushErrorInvalidParameters | 参数错误 |
-| TCPushErrorPermissionDenined | 未获得权限 |
+| TCPushErrorPermissionDenined | 未获得权限。 |
 | TCPushErrorSystemFail | 系统警报注册失败 |
 | TCPushErrorNetworkFail | 网络收发信失败 |
 | TCPushErrorServerFail | 服务器响应失败 |
-| TCPushErrorInvalidUrl | 无效的URL 请求 |
-| TCPushErrorNetworkNotReachable | 网络未连接 |
+| TCPushErrorInvalidUrl | 无效的URL请求 |
+| TCPushErrorNetworkNotReachable | 网络未连接。 |
 

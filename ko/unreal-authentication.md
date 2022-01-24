@@ -38,7 +38,7 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 * 이용 정지 게임 유저
     * 오류 코드가 **BANNED_MEMBER(7)** 인 경우, 이용 정지 게임 유저이므로 인증에 실패한 것입니다.
     * **FGamebaseBanInfo::From API**로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려주시기 바랍니다.
-    * Gamebase 초기화 시 **FGamebaseConfiguration.enablePopup** 및 **FGamebaseConfiguration.enableBanPopup**값을  true로 한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
+    * Gamebase 초기화 시 **FGamebaseConfiguration.enablePopup** 및 **FGamebaseConfiguration.enableBanPopup**값을 true로 한다면 Gamebase가 이용 정지에 관한 팝업 창을 자동으로 띄웁니다.
 * 그 외 오류
     * 이전 로그인 유형으로 인증에 실패했습니다. **'2. 지정된 IdP로 인증'**을 진행합니다.
 
@@ -60,7 +60,7 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 * 이용 정지 게임 유저
     * 오류 코드가 **BANNED_MEMBER(7)**인 경우, 이용 정지 게임 유저이므로 인증에 실패한 것입니다.
     * **FGamebaseBanInfo::From API**로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
-    * Gamebase 초기화 시 **FGamebaseConfiguration.enablePopup** 및 **FGamebaseConfiguration.enableBanPopup**값을  **true**로 한다면 Gamebase가 이용 정지에 관한 팝업을 자동으로 띄웁니다.
+    * Gamebase 초기화 시 **FGamebaseConfiguration.enablePopup** 및 **FGamebaseConfiguration.enableBanPopup**값을 **true**로 한다면 Gamebase가 이용 정지에 관한 팝업 창을 자동으로 띄웁니다.
 * 그 외의 오류
     * 오류가 발생했다는 것을 게임 유저에게 알리고, 게임 유저가 인증 IdP 유형을 선택할 수 있는 상태(주로 타이틀 화면 또는 로그인 화면)로 되돌아갑니다.
 
@@ -246,9 +246,11 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 | keyname | a use | 값 종류 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
+| GamebaseAuthProviderCredential::ProviderName | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential::AccessToken | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
+| GamebaseAuthProviderCredential::AuthorizationCode | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
+| GamebaseAuthProviderCredential::GamebaseAccessToken | IdP 인증 정보가 아닌 Gamebase Access Token으로 로그인을 하고자 하는 경우 사용 |  |
+| GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn | Gamebase 로그인 상태에서 로그아웃을 하지 않고도 다른 계정 로그인 시도를 허용함 | **bool** |
 
 > [TIP]
 >
@@ -413,6 +415,8 @@ Mapping에는 Mapping 추가/해제 API 2개가 있습니다.
 
 매핑은 다음 순서로 구현할 수 있습니다.
 
+![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
+
 #### 1. 로그인
 매핑은 현재 계정에 IdP 계정 연동을 추가하는 것이므로 우선 로그인이 돼 있어야 합니다.
 먼저 로그인 API를 호출해 로그인합니다.
@@ -554,8 +558,12 @@ void Sample::AddMappingWithCredential()
 **API**
 
 ```cpp
+void AddMappingForcibly(const FGamebaseForcingMappingTicket& forcingMappingTicket, const FGamebaseAuthTokenDelegate& onCallback);
+
+// Legacy API
 void AddMappingForcibly(const FString& providerName, const FString& forcingMappingKey, const FGamebaseAuthTokenDelegate& onCallback);
 void AddMappingForcibly(const FString& providerName, const FString& forcingMappingKey, const UGamebaseJsonObject& additionalInfo, const FGamebaseAuthTokenDelegate& onCallback);
+void AddMappingForcibly(const UGamebaseJsonObject& credentialInfo, const FString& forcingMappingKey, const FGamebaseAuthTokenDelegate& onCallback);
 ```
 
 **Example**
@@ -571,7 +579,7 @@ void Sample::AddMappingForcibly(const FString& providerName)
         }
         else
         {
-            // 우선 AddMapping API 호출 및, 이미 연동되어 있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
+            // 우선 AddMapping API 호출 및, 이미 연동되어 있는 계정으로 매핑을 시도하여, 다음과 같이 ForcingMappingTicket을 얻을 수 있습니다.
             if (error->code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
                 // ForcingMappingTicket 클래스의 From() 메서드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
@@ -582,7 +590,7 @@ void Sample::AddMappingForcibly(const FString& providerName)
                 }
                 
                 // 강제 매핑을 시도합니다.
-                IGamebase::Get().AddMappingForcibly(providerName, forcingMappingTicket->forcingMappingKey,
+                IGamebase::Get().AddMappingForcibly(forcingMappingTicket, forcingMappingTicket->forcingMappingKey,
                     FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* innerAuthToken, const FGamebaseError* innerError)
                 {
                     if (Gamebase::IsSuccess(error))
@@ -607,56 +615,27 @@ void Sample::AddMappingForcibly(const FString& providerName)
 }
 ```
 
+### Change Login with ForcingMappingTicket
 
-### Add Mapping Forcibly with Credential
-특정 IdP에 이미 매핑된 계정이 있을 때, **강제로** 매핑을 시도합니다.
-**강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
+특정 IdP에 이미 매핑되어 있는 계정이 있을 때, 현재 계정을 로그아웃하고 이미 매핑되어 있던 해당 계정으로 로그인 합니다.
+이때, AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
 
-게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMappingForcibly를 호출할 수 있는 인터페이스입니다.
-
-* Credential 파라미터의 설정 방법
-
-| keyname | a use | 값 종류 |
-| ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                        |
-
-> [TIP]
->
-> 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
->
-
-
-> <font color="red">[주의]</font><br/>
->
-> 외부 SDK에서 지원 요구하는 개발 사항은 외부 SDK의 API를 사용해 구현해야 하며, Gamebase에서는 지원하지 않습니다.
->
-
-다음은 강제 매핑을 시도하는 예시입니다.
+Change Login API 호출이 실패하는 경우, Gamebase 로그인 상태는 기존의 UserID로 유지됩니다.
 
 **API**
 
-```cpp
-void AddMappingForcibly(const UGamebaseJsonObject& credentialInfo, const FString& forcingMappingKey, const FGamebaseAuthTokenDelegate& onCallback);
+```cs
+void ChangeLogin(const FGamebaseForcingMappingTicket& forcingMappingTicket, const FGamebaseAuthTokenDelegate& onCallback);
 ```
 
 **Example**
 
+다음은 Facebook으로 매핑 시도 후 Facebook에 이미 매핑된 계정이 존재하자, 해당 계정으로 로그인을 변경하는 예시입니다.
+
 ```cpp
-void Sample::AddMappingForcibly()
+void Sample::ChangeLoginWithFacebook(const FString& providerName)
 {
-    UGamebaseJsonObject* credentialInfo = NewObject<UGamebaseJsonObject>();
-
-    // google
-    //credentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Google);
-    //credentialInfo->SetStringField(GamebaseAuthProviderCredential::AuthorizationCode, TEXT("google auchorization code"));
-
-    // facebook
-    credentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Facebook);
-    credentialInfo->SetStringField(GamebaseAuthProviderCredential::AccessToken, TEXT("facebook access token"));
-
-    IGamebase::Get().AddMapping(*credentialInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    IGamebase::Get().AddMapping(GamebaseAuthProvider::Facebook, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -664,31 +643,32 @@ void Sample::AddMappingForcibly()
         }
         else
         {
-            // 우선 AddMapping API 호출 및, 이미 연동되어 있는 계정으로 매핑을 시도하여, 다음과 같이, ForcingMappingTicket을 얻을 수 있습니다.
+            // 우선 AddMapping API 호출 및, 이미 연동되어 있는 계정으로 매핑을 시도하여, 다음과 같이 ForcingMappingTicket을 얻을 수 있습니다.
             if (error->code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
                 // ForcingMappingTicket 클래스의 From() 메서드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
                 auto forcingMappingTicket = FGamebaseForcingMappingTicket::From(error);
-                if (forcingMappingTicket.IsValid() == false)
+                if (forcingMappingTicket.IsValid())
+                {   
+                    // 강제 매핑을 시도합니다.
+                    IGamebase::Get().ChangeLogin(forcingMappingTicket, forcingMappingTicket->forcingMappingKey,
+                        FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* authTokenForcibly, const FGamebaseError* innerError)
+                    {
+                        if (Gamebase::IsSuccess(error))
+                        {
+                            // 로그인 변경 성공
+                        }
+                        else
+                        {
+                            // 로그인 변경 실패
+                            // 에러 코드를 확인하고 적절한 처리를 진행합니다.
+                        }
+                    }));
+                }
+                else
                 {
                     // Unexpected error occurred. Contact Administrator.
                 }
-                
-                // 강제 매핑을 시도합니다.
-                IGamebase::Get().AddMappingForcibly(*credentialInfo, forcingMappingTicket->forcingMappingKey,
-                    FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* innerAuthToken, const FGamebaseError* innerError)
-                {
-                    if (Gamebase::IsSuccess(error))
-                    {
-                        // 강제 매핑 추가 성공
-                        UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly succeeded."));
-                    }
-                    else
-                    {
-                        // 오류 코드를 확인하고 적절한 처리를 진행합니다.
-                        UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly failed. (errorCode: %d, errorMessage: %s)"), error->code, *error->message);
-                    }
-                }));
             }
             else
             {
@@ -699,7 +679,6 @@ void Sample::AddMappingForcibly()
     }));
 }
 ```
-
 
 ### Remove Mapping
 
@@ -1132,17 +1111,73 @@ void Sample::WithdrawImmediately()
 }
 ```
 
+## GraceBan
+
+* '결제 어뷰징 자동 해제' 기능입니다.
+    * 결제 어뷰징 자동 해제 기능은 결제 어뷰징 자동 제재로 이용 정지가 되어야 할 사용자가 이용 정지 유예 상태 후 이용 정지가 되도록 합니다.
+    * 이용 정지 유예 상태일 경우 설정한 기간 내에 해제 조건을 모두 만족하면 정상플레이가 가능해집니다.
+    * 기간 내에 조건을 충족하지 못하면 이용 정지가 됩니다.
+* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 AuthToken.getGraceBanInfo() API를 호출하여, 결과가 null이 아닌 유효한 GraceBanInfo 객체를 리턴한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
+    * 이용 정지 유예 상태인 유저의 게임 내 접근 제어는 게임에서 처리하셔야 합니다.
+
+**Example**
+
+```cpp
+void Sample::Login()
+{
+    IGamebase::Get().Login(GamebaseAuthProvider::Guest, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    {
+        if (Gamebase::IsSuccess(error) == false)
+        {
+            // Login failed
+            return;
+        }
+        
+        // Check if user is under grace ban
+        GamebaseResponse.Common.Member.GraceBanInfo graceBanInfo = authToken->member.graceBan;
+        if (graceBanInfo != null)
+        {
+            string periodDate = string.Format("{0:yyyy/MM/dd HH:mm:ss}", 
+                new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(graceBanInfo.gracePeriodDate));
+            string message = graceBanInfo.message;
+            
+            GamebaseResponse.Common.Member.GraceBanInfo.ReleaseRuleCondition releaseRuleCondition = graceBanInfo.releaseRuleCondition;
+            if (releaseRuleCondition != null)
+            {
+                // condition type : "AND", "OR"
+                string releaseRule = string.Format("{0}{1} {2} {3}time(s)", releaseRuleCondition.amount,
+                    releaseRuleCondition.currency, releaseRuleCondition.conditionType, releaseRuleCondition.count);
+            }
+
+            GamebaseResponse.Common.Member.GraceBanInfo.PaymentStatus paymentStatus = graceBanInfo.paymentStatus;
+            if (paymentStatus != null) {
+                String paidAmount = paymentStatus.amount + paymentStatus.currency;
+                String paidCount = paymentStatus.count + "time(s)";
+            }
+
+            // Guide the user through the UI how to finish the grace ban status.
+        }
+        else
+        {
+            // Login success.
+        }
+    }));
+}
+```
+
 ## Error Handling
 
-| Category | Error | Error Code | Description |
-| --- | --- | --- | --- |
-| Auth | INVALID_MEMBER | 6 | 잘못된 회원에 대한 요청입니다. |
-|  | BANNED_MEMBER | 7 | 제재된 회원입니다. |
-|  | AUTH_USER_CANCELED | 3001 | 로그인이 취소되었습니다. |
-|  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | 지원하지 않는 인증 방식입니다. |
-|  | AUTH_NOT_EXIST_MEMBER | 3003 | 존재하지 않거나 탈퇴한 회원입니다. |
-|  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
-|  | AUTH_ALREADY_IN_PROGRESS_ERROR | 3010 | 이전 인증 프로세스가 완료되지 않았습니다.
+| Category       | Error                                    | Error Code | Description                              |
+| -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
+| Auth           | INVALID\_MEMBER                          | 6          | 잘못된 회원에 대한 요청입니다.                        |
+|                | BANNED\_MEMBER                           | 7          | 제재된 회원입니다.                               |
+|                | AUTH\_USER\_CANCELED                     | 3001       | 로그인이 취소되었습니다.                            |
+|                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | 지원하지 않는 인증 방식입니다.                        |
+|                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 존재하지 않거나 탈퇴한 회원입니다.                      |
+|                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | 외부 인증 라이브러리 초기화에 실패하였습니다. |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
+|                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | 이전 인증 프로세스가 완료되지 않았습니다. |
+|                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | Gamebase Access Token이 유효하지 않아 로그아웃되었습니다.<br/>로그인을 다시 시도하십시오. |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | 발급한 TransferAccount를 동일한 단말기에서 사용했습니다. |
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IdP가 연동되어 있습니다. |
 |                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccount의 유효 기간이 만료됐습니다. |

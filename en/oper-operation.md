@@ -280,7 +280,7 @@ You can see the kickout history and kickout registrations at a glance.
 
 Clicking the **Register** button on the **Kickout** tab redirects you to the screen where you can register a kickout.
 
-![gamebase_op_10_202102](https://static.toastoven.net/prod_gamebase/gamebase_op_10_202102.png)
+![gamebase_op_10_202201](https://static.toastoven.net/prod_gamebase/gamebase_op_10_202201.png)
 
 ### (1) Target to process
 Select the target client to kick out.
@@ -291,9 +291,13 @@ Select the target client to kick out.
 ![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
 
 ### (2) Reason
-The maximum length of kickout reason is 100 characters.
-This information is not exposed to the game user. You just need to enter a brief explanation as to why you registered the kickout.
+You can write the reason for the kickout, up to 100 characters.
+This input information is not exposed to the game user, and you can enter a brief reason for registering the kickout for operational purposes.
 
-### (3) Message
-A kickout message to expose to users.
-If you select 'Auto-translate to default language', the message is translated based on what was entered in the default language and fill out the message using the appropriate language set for each one.
+### (3) Whether to Expose Popup
+- Expose Popup: You can enter a message in the popup that is exposed to the user upon kickout.
+- Do Not Expose Popup: Popup is not exposed when kicking out.
+
+### (4) Message
+A kickout message to expose to users. You can write the message only when **Whether to Expose Popup** is **Expose Popup**.
+If you select 'Auto-translate to default language', the message is translated based on what was entered in the default language and the message is filled out using the appropriate language set for each item.

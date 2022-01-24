@@ -1,5 +1,25 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.33.0
+
+### iOS
+
+* TCGB_ERROR_UNKNOWN_ERROR 에러에 매핑된 에러코드가 변경되었습니다.
+    * TCGB_ERROR_UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
+    * 에러코드 999에 매핑 시킨 TCGB_ERROR_SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
+
+### Unity
+
+* GamebaseErrorCode.UNKNOWN_ERROR 에러에 매핑된 에러코드가 변경되었습니다.
+    * GamebaseErrorCode.UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
+    * 에러코드 999에 매핑 시킨 GamebaseErrorCode.SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
+
+### Unreal
+
+* GamebaseErrorCode.UNKNOWN_ERROR 에러에 매핑된 에러코드가 변경되었습니다.
+    * GamebaseErrorCode::UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
+    * 에러코드 999에 매핑 시킨 GamebaseErrorCode::SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
+
 ## 2.32.0
 
 ### Android
@@ -9,6 +29,11 @@
 
 ## 2.29.0 
  
+### iOS
+
+* The minimum supported version of Xcode has been changed from 12 to 13.
+    * An error occurs if you run archive build in Xcode 12. Please update to Xcode 13.
+
 ### Unity 
  
 * Setting Tool 2.0.0 has been released.

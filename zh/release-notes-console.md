@@ -1,5 +1,11 @@
 ## Game > Gamebase > Release Notes > Console
 
+### 2022. 01. 25.
+
+#### 改善/更改功能
+* 运营 > Kickout
+	* 添加了选择是否显示Kickout弹窗的功能。 
+
 ### 2022. 01. 11.
 
 #### 改善/修复功能

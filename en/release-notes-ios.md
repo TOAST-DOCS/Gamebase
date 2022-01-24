@@ -1,11 +1,24 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.33.0 (2022.01.25)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-iOS.zip)
+
+#### 기능 추가
+* 공통약관창의 설정을 변경할 수 있는 신규 API가 추가되었습니다.
+    * [Game > Gamebase > iOS SDK 사용 가이드 > UI > Terms > showTermsView](./ios-ui/#showtermsview)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트 : PAYCO iOS SDK (1.5.5)
+* 에러코드 추가 및 변경
+    * TCGB_ERROR_UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
+    * 에러코드 999에 매핑 시킨 TCGB_ERROR_SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
+    
 ### 2.32.1 (2022.01.11)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.1/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 업데이트 권장 팝업의 '지금 업데이트' 버튼 클릭 시 팝업이 종료되지 않도록 수정하였습니다.
-* SDK 안정성을 개선하였습니다.
+#### Feature Updates
+* Modified so that, when clicking the **Update Now** button in the Update recommended pop-up window, the pop-up window is not closed.
+* Improved the stability of SDK.
 
 ### 2.32.0 (2021.12.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-iOS.zip)
@@ -19,8 +32,8 @@
 #### Feature Updates
 * Changed the default title color of webview navigationBar to **UIColor.white**.
 
-#### 버그 수정
-* Hangame 로그아웃 호출 시, thirdIdP도 로그아웃 되도록 수정하였습니다.
+#### Bug Fixes
+* Fixed so that, when calling Hangame logout, thirdIdP is also logged out.
 
 ### 2.31.0 (2021.12.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-iOS.zip)
@@ -55,7 +68,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-iOS.zip)
 
 #### Feature Updates
-* Xcode 최소 지원 버전이 12에서 13으로 변경되었습니다. 
+* The minimum supported version of Xcode has been changed from 12 to 13.
 * External SDK update: TOAST iOS SDK (0.29.1), ToastGamebaseIAP SDK (0.12.1)
 * Changed to display the URL of the detailed view of maintenance and notice registered in the console without encoding.
 
@@ -789,14 +802,14 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 추가
 * 이용정지(사용자처벌) 기능 추가
 * [SDK] 1.2.0 업데이트
-    * 이용정지 사용자 팝업 노출
+    * 이용정지 사용자 팝업 창 노출
 
 ### 1.1.5 (2017.07.20) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.5/GamebaseSDK-iOS.zip)
 #### 기능 개선/변경
 * Gamebase 상품 이용 중지시 관련 데이터 삭제를 위한 일 배치 기능 추가
 * [SDK] 1.1.5 업데이트
-    * 시스템 팝업 API 추가 (showAlertWithTitle)
+    * 시스템 팝업 창 API 추가 (showAlertWithTitle)
     * 국가코드를 대문자로 반환하도록 변경 (Android)
     * TCPush SDK 1.4.1 로 업데이트
     * IAP SDK 1.3.3.20170627 로 업데이트
@@ -812,7 +825,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.2/GamebaseSDK-iOS.zip)
 #### 기능 개선/변경
 * [SDK] 1.1.2 업데이트
-    * 게임런칭시 점검, 긴급공지 팝업 개선
+    * 게임론칭시 점검, 긴급공지 팝업 창 개선
     * Unity Plugin 디버그로그 추가 및 익셉션 상세처리
 
 ### 1.1.0 (2017.03.21) 

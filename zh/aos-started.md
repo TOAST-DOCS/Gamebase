@@ -18,14 +18,14 @@
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | 支持Sign In With Apple登录 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | 支持Facebook登录 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | 支持Google登录 | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.4.2 | 支持Hangame登录 | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.4.3.1 | 支持Hangame登录 | - |
 |  | gamebase-adapter-auth-line | linesdk-5.6.2 | 支持Line登录 | API 17(Kitkat, OS 4.2) |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | 支持Naver登录 | - |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.6 | 支持Payco登录 | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.7 | 支持Payco登录 | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | 支持Twitter登录 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | 支持Weibo登录 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | 支持Kakao登录 | API 21(Lollipop, OS 5.0) |
-| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.0<br>toast-iap-core | 支持游戏内支付 | - |
+| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.1<br>toast-iap-core | 支持游戏内支付 | - |
 |  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | 支持Galaxy Store | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK的minSdkVersion是18，为了实际结算，需要设置的Checkout服务应用程序的minSdkVersion是21。 |
 |  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | 支持Google Store | - |
 |  | gamebase-adapter-purchase-onestore | toast-iap-onestore | 支持ONE Store | - |

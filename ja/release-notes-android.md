@@ -1,20 +1,32 @@
 ## Game > Gamebase > リリースノート > Android
 
+### 2.33.0 (2022.01.25)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+* 공통약관의 표시 옵션을 변경할 수 있는 신규 API가 추가되었습니다.
+    * 설정 변경이 가능한 항목에 관한 설명은 다음 가이드를 참고하시기 바랍니다.
+    * [Game > Gamebase > Android SDK 사용 가이드 > UI > Terms > showTermsView](./aos-ui/#showtermsview)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: PAYCO Android SDK(1.5.7), Hangame Android SDK(1.4.3.1), TOAST Gamebase IAP Andoid SDK(0.18.1)
+* 로그인 성공 직후 론칭 정보가 변경되지 않았는지 체크하는 로직을 추가하였습니다.
+
 ### 2.32.0 (2021.12.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* GamebaseEventHandler의 GamebaseEventCategory에 **GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED** 타입이 추가되었습니다.
-    * 이 이벤트의 활용 방법은 다음 문서를 참고하시기 바랍니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Server Push](./aos-etc/#server-push)
-* Gamebase Access Token이 만료되어 로그인이 필요할때 동작하는 **GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler category가 추가되었습니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./aos-etc/#logged-out)
+#### 機能追加
+* GamebaseEventHandlerのGamebaseEventCategoryに**GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED**タイプが追加されました。
+    * このイベントの活用方法は、次の文書を参照してください。
+    * [Game > Gamebase > Android SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Server Push](./aos-etc/#server-push)
+* Gamebase Access Tokenの有効期限が切れてログインが必要なときに動作する**GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler categoryが追加されました。
+    * [Game > Gamebase > Android SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Logged Out](./aos-etc/#logged-out)
 
-#### 기능 개선/변경
-* 웹뷰 URL이 **onestore://**로 시작하는 ONE store 딥링크가 동작하도록 웹뷰를 개선했습니다.
+#### 機能改善/変更
+* WebビューURLが**onestore://**で始まるONE storeディープリンクが動作するようにWebビューを改善しました。
 
-#### 버그 수정
-* Gamebase Android SDK 2.31.0에서 로그아웃을 호출해도 IdP 로그아웃은 호출되지 않아 IdP 계정을 변경할 수 없는 버그를 수정했습니다.
+#### バグ修正
+* Gamebase Android SDK 2.31.0でログアウトを呼び出してもIdPログアウトは呼び出されずIdPアカウントを変更できないバグを修正しました。
 
 ### 2.31.0 (2021.12.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Android.zip)

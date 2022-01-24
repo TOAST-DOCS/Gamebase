@@ -178,6 +178,14 @@ Pushメニューの**対象**から**iOS Sandbox**を選択した後に送信し
 | ADAgreement                            | YES or NO                         | 広告性通知表示同意有無     |
 | ADAgreementNight                       | YES or NO                         | 夜間広告性通知表示同意有無 |
 
+### Event Handling
+
+* プッシュメッセージが到着した場合、またはプッシュメッセージをクリックしたときにイベントを受け取ることができます。
+* イベントの登録方法はGamebaseEventHandlerガイドを参照してください。
+    * [ Game > Gamebase > iOS SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Push Received Message](./ios-etc/#push-received-message)
+    * [ Game > Gamebase > iOS SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./ios-etc/#push-click-message)
+    * [ Game > Gamebase > iOS SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./ios-etc/#push-click-action)
+
 ### Error Handling
 
 | Error                                    | Error Code | Description                              |

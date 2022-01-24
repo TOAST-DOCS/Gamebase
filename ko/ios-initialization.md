@@ -24,9 +24,9 @@ Gamebase 초기화 시 TCGBConfiguration 객체로 Gamebase 설정을 변경할 
 | API                                | Mandatory(M) / Optional(O) | Description                              |
 | ---------------------------------- | -------------------------- | ---------------------------------------- |
 | configurationWithAppID:appVersion: | M                          | TCGBConfiguration의 앱 ID와 앱 버전을 설정합니다.<br/>업데이트, 점검에 해당하는지 여부는 게임 버전으로 판단합니다.<br/>게임 버전을 지정해 주세요. |
-| enablePopup:                       | O                          | **[UI]**<br/>시스템 점검, 이용 제재(ban) 등 게임 유저가 게임을 플레이할 수 없는 상황에서 팝업 등으로 사유를 표시해야 할 때가 있습니다.<br/>**YES**로 설정하면 Gamebase가 해당 상황에서 정보 팝업을 자동으로 표시합니다.<br/>기본값은 **NO**입니다.<br/>**NO** 상태에서는 론칭 결과를 통해 정보를 획득한 후 자체 UI를 구현해 게임을 플레이할 수 없는 이유를 표시해 주시기 바랍니다. |
-| enableLaunchingStatusPopup:        | O                          | **[UI]**<br/>론칭 결과에 따라 로그인할 수 없는 상태에서(주로 점검 상태) Gamebase가 자동으로 팝업을 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup:YES** 상태에서만 동작합니다.<br/>기본값은 **YES**입니다. |
-| enableBanPopup:                    | O                          | **[UI]**<br/>게임 유저가 이용 제재를 당한 상태일 때 Gamebase가 자동으로 제재 사유를 팝업으로 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup:** 상태에서만 동작합니다.<br/>기본값은 **YES**입니다. |
+| enablePopup:                       | O                          | **[UI]**<br/>시스템 점검, 이용 제재(ban) 등 게임 유저가 게임을 플레이할 수 없는 상황에서 팝업 창 등으로 사유를 표시해야 할 때가 있습니다.<br/>**YES**로 설정하면 Gamebase가 해당 상황에서 정보 팝업 창을 자동으로 표시합니다.<br/>기본값은 **NO**입니다.<br/>**NO** 상태에서는 론칭 결과를 통해 정보를 획득한 후 자체 UI를 구현해 게임을 플레이할 수 없는 이유를 표시해 주시기 바랍니다. |
+| enableLaunchingStatusPopup:        | O                          | **[UI]**<br/>론칭 결과에 따라 로그인할 수 없는 상태에서(주로 점검 상태) Gamebase가 자동으로 팝업 창을 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup:YES** 상태에서만 동작합니다.<br/>기본값은 **YES**입니다. |
+| enableBanPopup:                    | O                          | **[UI]**<br/>게임 유저가 이용 제재를 당한 상태일 때 Gamebase가 자동으로 제재 사유를 팝업 창으로 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup:** 상태에서만 동작합니다.<br/>기본값은 **YES**입니다. |
 
 
 ### Debug Mode
@@ -117,9 +117,9 @@ launchingInformations API를 이용하면 초기화 이후에도 LaunchingInfo �
 
 > <font color="red">[주의]</font><br/>
 >
-> launchingInformations API 는 실시간으로 서버에서 정보를 가져오는 비동기 API 가 아닙니다.
+> launchingInformations API 는 실시간으로 서버에서 정보를 가져오는 비동기 API가 아닙니다.
 > 2분 주기로 업데이트 되는 캐시 정보를 리턴하므로, 실시간으로 현재의 점검 여부를 판단하는 용도로는 적합하지 않습니다.
-> 이런 경우에는 Launching Status Code 가 변경되었을때 이벤트가 동작하는 GamebaseEventHandler 를 활용하시기 바랍니다.
+> 이런 경우에는 Launching Status Code가 변경되었을때 이벤트가 동작하는 GamebaseEventHandler 를 활용하시기 바랍니다.
 > [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Observer](./ios-etc/#observer)
 
 **API**
@@ -197,7 +197,7 @@ Gamebase 콘솔에 등록된 점검 정보입니다.
 
 ##### Change Default Maintenance HTML
 
-`enablePopup`과 `enableLaunchingStatusPopup` 값이 모두 `true`인 경우, 게임이 점검 상태라면 자동으로 점검 팝업이 표시됩니다.
+`enablePopup`과 `enableLaunchingStatusPopup` 값이 모두 `true`인 경우, 게임이 점검 상태라면 자동으로 점검 팝업 창이 표시됩니다.
 여기서 **자세히 보기** 버튼을 클릭하면 점검 정보가 자동으로 웹뷰로 표시됩니다.
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_webview_android_2.30.0.png)
 
@@ -246,8 +246,8 @@ NHN Cloud Launching Console에서 사용자가 입력한 정보입니다.
 ### Handling Unregistered Version
       
 Gamebase 콘솔에 등록되지 않은 GameClientVersion 을 초기화를 하면 **LAUNCHING_UNREGISTERED_CLIENT(2004)** 에러가 발생합니다.
-enablePopup(true), enableLaunchingStatusPopup(true) 상태라면 강제 업데이트 팝업이 표시되고, 마켓으로 이동할 수 있습니다.
-Gamebase 팝업을 사용하지 않을 경우에는 UpdateInfo를 TCGBError 객체로부터 얻어 사용자가 마켓으로 이동할 수 있도록 게임에서 직접 UI를 구현할 수 있습니다.
+enablePopup(true), enableLaunchingStatusPopup(true) 상태라면 강제 업데이트 팝업 창이 표시되고, 마켓으로 이동할 수 있습니다.
+Gamebase 팝업 창을 사용하지 않을 경우에는 UpdateInfo를 TCGBError 객체로부터 얻어 사용자가 마켓으로 이동할 수 있도록 게임에서 직접 UI를 구현할 수 있습니다.
 
 **VO**
 

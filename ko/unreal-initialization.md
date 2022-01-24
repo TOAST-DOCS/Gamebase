@@ -29,13 +29,13 @@ Gamebase API를 사용하기 위해서는 다음의 헤더 파일을 가져옵�
 
 Gamebase Console에 등록된 프로젝트 ID입니다.
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Game > Gamebase > 콘솔 사용 가이드 > 앱 > App](./oper-app/#app)
 
 #### 2. appVersion
 
 Gamebase Console에 등록한 클라이언트 버전입니다.
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+[Game > Gamebase > 콘솔 사용 가이드 > 앱 > Client](./oper-app/#client)
 
 #### 3. storeCode
 
@@ -52,33 +52,33 @@ NHN Cloud 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하
 
 Gamebase에서 제공하는 UI 및 SystemDialog에 표시되는 언어를 단말기에 설정된 언어가 아닌 다른 언어로 변경할 수 있습니다.
 
-[Display Language](./unreal-etc/#display-language)
+[Game > Gamebase > Unreal SDK 사용 가이드 > ETC > Additional Features > Display Language](./unreal-etc/#display-language)
 
 #### 5. enablePopup
 
-시스템 점검, 이용 제재(ban) 등 게임 유저가 게임을 플레이할 수 없는 상황에서 팝업 등으로 사유를 표시해야 할 때가 있습니다.
-Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+시스템 점검, 이용 제재(ban) 등 게임 유저가 게임을 플레이할 수 없는 상황에서 팝업 창 등으로 사유를 표시해야 할 때가 있습니다.
+Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 설정입니다.
 
-* true: enableLaunchingStatusPopup, enableBanPopup 설정에 따라 팝업 노출 여부가 결정됩니다.
-* false: Gamebase에서 제공하는 모든 팝업이 노출되지 않습니다.
+* true: enableLaunchingStatusPopup, enableBanPopup 설정에 따라 팝업 창 노출 여부가 결정됩니다.
+* false: Gamebase에서 제공하는 모든 팝업 창이 노출되지 않습니다.
 * 기본값: false
 
 #### 6. enableLaunchingStatusPopup
 
-LaunchingStatus가 게임을 할 수 없는 상태일 경우, Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+LaunchingStatus가 게임을 할 수 없는 상태일 경우, Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 설정입니다.
 LaunchingStatus는 아래 Launching 절 아래 State, Code 부분을 참고하십시오.
 
 * 기본값: true
 
 #### 7. enableBanPopup
 
-로그인 시 해당 게임 유저가 이용 정지 상태인 경우, Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+로그인 시 해당 게임 유저가 이용 정지 상태인 경우, Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 설정입니다.
 
 * 기본값: true
 
 #### 8. enableKickoutPopup
 
-Gamebase Server로 부터 Kickout 이벤트를 받은 경우, Gamebase에서 제공하는 기본 팝업을 사용할 것인지에 대한 설정입니다.
+Gamebase Server로 부터 Kickout 이벤트를 받은 경우, Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 설정입니다.
 
 * 기본값: true
 
@@ -213,22 +213,22 @@ Gamebase Unreal SDK 초기화 설정에 입력한 앱 버전의 게임 상태 �
 
 상태 코드는 아래 표를 참고하십시오.
 
-| Status                      | Status Code | Description                                    |
-| --------------------------- | ----------- | ---------------------------------------- |
-| IN_SERVICE | 200 | 정상 서비스 중 |
-| RECOMMEND_UPDATE | 201 | 업그레이드 권장 |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202         | 점검 중에는 서비스를 이용할 수 없지만 QA 단말기로 등록된 경우에는 점검과 상관없이 서비스에 접속해 테스트할 수 있습니다. |
+| Status                      | Code | Description                              |
+| --------------------------- | ---- | ---------------------------------------- |
+| IN_SERVICE                  | 200  | 정상 서비스 중                                 |
+| RECOMMEND_UPDATE            | 201  | 업데이트 권장                                  |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202  | 점검 중에는 서비스를 이용할 수 없지만 QA 단말기로 등록된 경우에는 점검과 상관없이 서비스에 접속해 테스트할 수 있습니다. |
 | IN_TEST                     | 203  | 테스트 중 |
 | IN_REVIEW                   | 204  | 심사 중 |
 | IN_BETA                     | 205  | 베타 서버 환경 |
-| REQUIRE_UPDATE | 300 | 업그레이드 필수 |
-| BLOCKED_USER                | 301         | 접속 차단으로 등록된 단말기(디바이스 키)로 서비스에 접속한 경우입니다. |
-| TERMINATED_SERVICE          | 302         | 서비스 종료                                   |
-| INSPECTING_SERVICE          | 303         | 서비스 점검 중                                 |
-| INSPECTING_ALL_SERVICES     | 304         | 전체 시스템 점검 중                              |
-| INTERNAL_SERVER_ERROR       | 500         | 내부 서버 오류                                 |
+| REQUIRE_UPDATE              | 300  | 업데이트 필수                                  |
+| BLOCKED_USER                | 301  | 접속 차단으로 등록된 단말기(디바이스 키)로 서비스에 접속한 경우입니다. |
+| TERMINATED_SERVICE          | 302  | 서비스 종료                                   |
+| INSPECTING_SERVICE          | 303  | 서비스 점검 중                                 |
+| INSPECTING_ALL_SERVICES     | 304  | 전체 서비스 점검 중                              |
+| INTERNAL_SERVER_ERROR       | 500  | 내부 서버 오류                                 |
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Game > Gamebase > 콘솔 사용 가이드 > 앱 > App](./oper-app/#app)
 
 **1.2 App**
 
@@ -247,7 +247,7 @@ Gamebase Console에 등록된 앱 정보입니다.
 * install: 설치 URL
 * idP: 인증 정보
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+[Game > Gamebase > 콘솔 사용 가이드 > 앱 > Client](./oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -258,8 +258,9 @@ Gamebase Console에 등록된 점검 정보입니다.
 * beginDate: 시작 시간
 * endDate: 종료 시간
 * message: 점검 사유
+* hideDate: 점검 시작, 종료 시간을 표시할 것인지 여부
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+[Game > Gamebase > 콘솔 사용 가이드 > 운영 > Maintenance](./oper-operation/#maintenance)
 
 **1.4 Notice**
 
@@ -269,7 +270,7 @@ Gamebase Console에 등록된 공지 정보입니다.
 * title: 타이틀
 * url: 점검 URL
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+[Game > Gamebase > 콘솔 사용 가이드 > 운영 > Notice](./oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -288,7 +289,7 @@ NHN Cloud Console에 등록된 IAP 스토어 정보입니다.
 * name: App Name
 * storeCode: Store Code
  
-[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+[Game > Gamebase > 콘솔 사용 가이드 > 결제](./oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -297,7 +298,7 @@ NHN Cloud Launching 콘솔에서 사용자가 입력한 정보입니다
 * 사용자가 입력한 값을 JSON string으로 전달합니다.
 * NHN Cloud Launching 상세 설정은 아래 가이드를 참고하시기 바랍니다.
  
-[Console Guide](/Game/Gamebase/ko/oper-management/#config)
+[Game > Gamebase > 콘솔 사용 가이드 > 관리 > Config](./oper-management/#config)
 
 ### Get Launching Information
 
@@ -305,9 +306,9 @@ GetLaunchingInformations API를 이용하면 Initialize 이후에도 LaunchingIn
 
 > <font color="red">[주의]</font><br/>
 >
-> GetLaunchingInformations API 는 실시간으로 서버에서 정보를 가져오는 비동기 API 가 아닙니다.
+> GetLaunchingInformations API 는 실시간으로 서버에서 정보를 가져오는 비동기 API가 아닙니다.
 > 2분 주기로 업데이트 되는 캐시 정보를 리턴하므로, 실시간으로 현재의 점검 여부를 판단하는 용도로는 적합하지 않습니다.
-> 이런 경우에는 Launching Status Code 가 변경되었을때 이벤트가 동작하는 GamebaseEventHandler 를 활용하시기 바랍니다.
+> 이런 경우에는 Launching Status Code가 변경되었을때 이벤트가 동작하는 GamebaseEventHandler 를 활용하시기 바랍니다.
 > [Game > Gamebase > Unreal SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Observer](./unreal-etc/#observer)
 
 **API**

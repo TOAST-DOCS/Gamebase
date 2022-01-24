@@ -542,7 +542,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
     	* If you register a kickout ServerPush message in **Operation > Kickout** in the NHN Cloud Gamebase console, all clients connected to Gamebase will receive a kickout message.
         * This event occurs immediately after receiving a server message from the client device.
         * It can be used to pause the game when the game is running, as in the case of 'Auto Play'.
-	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
+    * GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
     	* If you register a kickout ServerPush message in **Operation > Kickout** of the NHN Cloud Gamebase Console, then all clients connected to Gamebase will receive the kickout message.
         * A pop-up is displayed when the client device receives a server message. This event occurs when the user closes this pop-up.
     * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT

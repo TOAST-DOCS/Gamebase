@@ -1214,16 +1214,17 @@ public void Login()
 
 ## Error Handling
 
-| Category | Error                                    | Error Code | Description                                    |
-| ---  | ---------------------------------------- | ---------- | ---------------------------------------- |
-| Auth | INVALID_MEMBER | 6 | 正しくない会員に対するリクエストです。 |
-|      | BANNED_MEMBER | 7 | 利用制限対象の会員です。 |
-|      | AUTH_USER_CANCELED | 3001 | ログインがキャンセルされました。|
-|      | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | この認証方式には対応しておりません。|
-|      | AUTH_NOT_EXIST_MEMBER | 3003 | 退会されているか、存在しない会員です。|
-|  | AUTH_EXTERNAL_LIBRARY_INITIALIZATION_ERROR | 3006 | 外部認証ライブラリの初期化に失敗しました。 |
-|      | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 外部認証ライブラリーエラーです。<br/> DetailCodeおよびDetailMessageを確認してください。|
-|  | AUTH_ALREADY_IN_PROGRESS_ERROR | 3010 | 以前の認証プロセスが完了しませんでした。
+| Category       | Error                                    | Error Code | Description                              |
+| -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
+| Auth           | INVALID\_MEMBER                          | 6          | 無効な会員へのリクエストです。                        |
+|                | BANNED\_MEMBER                           | 7          | 制裁を受けている会員です。                               |
+|                | AUTH\_USER\_CANCELED                     | 3001       | ログインがキャンセルされました。                            |
+|                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | サポートしていない認証方式です。                        |
+|                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 存在しないか退会した会員です。                      |
+|                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | 外部認証ライブラリの初期化に失敗しました。 |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部認証ライブラリエラーです。 <br/> DetailCodeとDetailMessageを確認してください。  |
+|                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | 以前の認証プロセスが完了していません。 |
+|                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | Gamebase Access Tokenが有効ではないためログアウトしました。<br/>ログインを再試行してください。 |
 | TransferKey | SAME\_REQUESTOR | 8 | 発行したTransferKeyを同じ端末で使用しました。 |
 |             | NOT\_GUEST\_OR\_HAS\_OTHERS | 9 | ゲストではないアカウントから移行しようとしたか、アカウントにゲスト以外のIdPが連携されています。 |
 |                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccountの有効期限が切れました。 |

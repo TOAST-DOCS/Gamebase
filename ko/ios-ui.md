@@ -88,7 +88,7 @@ closeImageNotices API를 호출하여 현재 표시 중인 이미지 공지를 �
 | Error | Error Code | Description |
 | --- | --- | --- |
 | TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
-| TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | 이미지 공지 팝업 표시중 타임아웃이 발생하여 모든 팝업을 강제 종료합니다. |
+| TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | 이미지 공지 팝업 창 표시중 타임아웃이 발생하여 모든 팝업 창을 강제 종료합니다. |
 
 
 
@@ -121,7 +121,7 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 q
 * viewController : 약관창이 노출되는 ViewController입니다.
  
 #### Optional 파라미터
-
+* configuration : TCGBTermsConfiguration으로 약관창 강제 표시 여부 등 설정을 변경할 수 있습니다.
 * completion : 약관 동의 후 약관창이 종료될 때 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 TCGBDataContainer 객체는 TCGBPushConfiguration으로 변환해서 로그인 후 registerPush API 에 사용할 수 있습니다.
 
 
@@ -130,6 +130,10 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 q
 ```objectivec
 + (void)showTermsViewWithViewController:(UIViewController *)viewController
                              completion:(nullable void (^)(TCGBDataContainer * _Nullable dataContainer, TCGBError * _Nullable error))completion;
+                             
++ (void)showTermsViewWithConfiguration:(TCGBTermsConfiguration *)configuration
+                        viewController:(nullable UIViewController *)viewController
+                            completion:(nullable void (^)(TCGBDataContainer * _Nullable dataContainer, TCGBError * _Nullable error))completion;
 ```
 
 **ErrorCode**
@@ -137,8 +141,8 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 q
 | Error | Error Code | Description |
 | --- | --- | --- |
 | TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
-| TCGB\_ERROR\_LAUNCHING\_SERVER\_ERROR | 2001 | 런칭서버가 내려준 항목에 약관 관련 내용이 없는 경우에 발생하는 에러입니다.<br/>정상적인 상황이 아니므로 Gamebase 담당자에게 문의해주시기 바랍니다. |
-| TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 이전에 호출된 Terms API 가 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
+| TCGB\_ERROR\_LAUNCHING\_SERVER\_ERROR | 2001 | 론칭 서버에서 전달받은 항목에 약관 관련 내용이 없는 경우에 발생하는 에러입니다.<br/>정상적인 상황이 아니므로 Gamebase 담당자에게 문의해주시기 바랍니다. |
+| TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | Terms API 호출이 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
 | TCGB\_ERROR\_WEBVIEW\_TIMEOUT | 7002 | 약관 웹뷰 표시 중 타임아웃이 발생했습니다. |
 | TCGB\_ERROR\_WEBVIEW\_HTTP\_ERROR | 7003 | 약관 웹뷰 오픈 중 HTTP 에러가 발생하였습니다. |
 
@@ -168,6 +172,11 @@ Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 q
 }
 ```
 
+**TCGBTermsConfiguration**
+
+| Parameter            | Values                          | Description         |
+| -------------------- | --------------------------------| ------------------- |
+| forceShow            | BOOL                            | 약관에 동의한 이후에도 약관창을 강제로 표시합니다.<br/>**default**: NO          |
 
 ### queryTerms
 
@@ -178,7 +187,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 
 > <font color="red">[주의]</font><br/>
 >
-> * TCGBTermsContentDetail.required 가 true 인 필수 항목은 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false 로 리턴됩니다.
+> * TCGBTermsContentDetail.required가 true 인 필수 항목은 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false 로 리턴됩니다.
 >     * 필수 항목은 항상 true 로 저장될 수 밖에 없어서 저장하는 의미가 없기 때문입니다.
 > * 푸시 수신 동의 여부도 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false 로 리턴됩니다.
 >     * 유저의 푸시 수신 동의 여부는 [TCGBPush queryTokenInfoWithCompletion:] API 를 통해 확인하시기 바랍니다.
@@ -287,7 +296,7 @@ queryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면,
 | --- | --- | --- |
 | TCGB\_ERROR\_NOT\_INITIALIZED | 1 |Gamebase가 초기화되어 있지 않습니다. |
 | TCGB\_ERROR\_UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | 등록되지 않은 약관 Seq 값을 설정하였습니다. |
-| TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 이전에 호출된 Terms API 가 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
+| TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | Terms API 호출이 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
 
 
 **Example**
