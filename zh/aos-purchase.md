@@ -6,8 +6,13 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 ### Initialization
 
-* 初始化Gamebase时，需要指定STORE_CODE。
-* 请您在以下值中选择STORE_CODE。 
+> <font color="red">[注意]</font><br/>
+>
+> ONE Store仅支持v17。
+> 目前不支持ONE Store v19，但仍在审查是否支持它。
+
+* 初始化Gamebase时，需要指定**STORE_CODE**。
+* 请您在以下值中选择**STORE_CODE**。 
     * GG: Google Store
     * ONESTORE: ONE Store
     * GALAXY: Galaxy Store
@@ -68,7 +73,7 @@ Gamebase.initialize(activity, configuration, callback);
 
 使用想要购买商品的gamebaseProductId调用以下API请求购买。<br/>
 gamebaseProductId与在商店注册的道具id相同，但可在Gamebase Console中更改。
-支付后在payload field中输入的附加信息（将会一直留在**PurchasableReceipt.payload**field）可用于多种用途。<br/>
+支付后在payload field中输入的附加信息（将一直留在**PurchasableReceipt.payload**field）可用于多种用途。<br/>
 用户取消购买时，返还**GamebaseError.PURCHASE_USER_CANCELED**错误代码。
 请进行取消处理。
 
@@ -209,17 +214,17 @@ Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<L
 ### Event by Promotion
 
 完成Promotion支付后，可通过GamebaseEventHandler接收Event并进行处理。 
-关于使用GamebaseEventHandler处理Promotion支付Event的方法，请参考如下指南。
+关于使用GamebaseEventHandler处理Promotion支付Event的方法，请参考以下指南。
 [Game > Gamebase > Android SDK 使用指南 > ETC > Gamebase Event Handler](./aos-etc/#purchase-updated) 
 
 ### Error Handling
 
 | Error                                     | Error Code | Description                              |
 | ----------------------------------------- | ---------- | ---------------------------------------- |
-| PURCHASE_NOT_INITIALIZED                  | 4001       | Purchase模块未初始化。请确认是否将<br>gamebase-adapter-purchase-IAP模块添加到项目中。 |
+| PURCHASE_NOT_INITIALIZED                  | 4001       | 未初始化Purchase模块。请确认是否将<br>gamebase-adapter-purchase-IAP模块添加到项目中。 |
 | PURCHASE_USER_CANCELED                    | 4002       | 游戏用户已取消购买商品。                 |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 尚未完成购买逻辑的情况下已调用API。    |
-| PURCHASE_NOT_ENOUGH_CASH                  | 4004       | 该商店的余额不足，无法结算。           |
+| PURCHASE_NOT_ENOUGH_CASH                  | 4004       | 此商店的余额不足，无法结算。           |
 | PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | 此商品为非激活状态。 |
 | PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 请求支付的GamebaseProductID不存在。 |
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | 超过了一个月购买限额。             |

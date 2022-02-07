@@ -2,7 +2,7 @@
 
 ## Environments
 
-在Android上应用Gamebase，需要的系统环境如下。
+在Android上应用Gamebase时，需要以下系统环境。
 
 > [最低版本]
 >
@@ -15,22 +15,22 @@
 | Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
 | --- | --- | --- | --- | --- |
 | Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.29.0<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | 包含Gamebase的Interface和核心逻辑。 | API 16 (JellyBean, OS 4.1) |
-| Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | 支持Sign In With Apple登录 | API 19(Kitkat, OS 4.4) |
-|  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | 支持Facebook登录 | - |
-|  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | 支持Google登录 | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.4.3.1 | 支持Hangame登录 | - |
-|  | gamebase-adapter-auth-line | linesdk-5.6.2 | 支持Line登录 | API 17(Kitkat, OS 4.2) |
-|  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | 支持Naver登录 | - |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.7 | 支持Payco登录 | - |
-|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | 支持Twitter登录 | API 19(Kitkat, OS 4.4) |
-|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | 支持Weibo登录 | API 19(Kitkat, OS 4.4) |
-|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | 支持Kakao登录 | API 21(Lollipop, OS 5.0) |
-| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.1<br>toast-iap-core | 支持游戏内支付 | - |
-|  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | 支持Galaxy Store | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK的minSdkVersion是18，为了实际结算，需要设置的Checkout服务应用程序的minSdkVersion是21。 |
-|  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | 支持Google Store | - |
-|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | 支持ONE Store | - |
-| Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | 支持Push | - |
-|  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | 支持Firebase Notification | - |
+| Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | 支持Sign In With Apple登录。 | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | 支持Facebook登录。 | - |
+|  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | 支持Google登录。 | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.4.3.1 | 支持Hangame登录。 | - |
+|  | gamebase-adapter-auth-line | linesdk-5.6.2 | 支持Line登录。 | API 17(Kitkat, OS 4.2) |
+|  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | 支持Naver登录。 | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.7 | 支持Payco登录。 | - |
+|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | 支持Twitter登录。 | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | 支持Weibo登录。 | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | 支持Kakao登录。 | API 21(Lollipop, OS 5.0) |
+| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.1<br>toast-iap-core | 支持游戏内支付。 | - |
+|  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | 支持Galaxy Store。 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK的minSdkVersion是18，为了实际结算，需要设置的Checkout服务应用程序的minSdkVersion为21。 |
+|  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | 支持Google Store。 | - |
+|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | 支持ONE Store。 | - |
+| Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | 支持Push。 | - |
+|  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | 支持Firebase Notification。 | - |
 
 ## Setting
 
@@ -39,20 +39,23 @@
 > <font color="red">[注意]</font><br/>
 >
 > * 在NHN Cloud Console中创建新项目后，请确认是否启用了Gamebase服务。
-> * 从各IdP控制台中获取Client ID后，请确认是否在Gamebase控制台中输入了ID。 
+> * 通过从各IdP控制台中获取Client ID确认是否在Gamebase控制台中输入了ID。 
  
 * 在应用Gamebase Android SDK之前，您需要从NHN Cloud Console获取App ID。获取应用App ID，请在NHN Cloud Console上在单击**(+)服务**，然后点击**Game > Gamebase**以启用该服务。
-* 进行认证时从IdP控制台获取client id，在Gamebase控制台中输入。 
+* 验证时从IdP控制台获取client id，在Gamebase控制台中输入。 
     * [Game > Gamebase > 控制台使用指南 > App > Authentication Information](./oper-app/#authentication-information)
 * 如果想购买道具，在Store控制台中注册App信息，在Gamebase > 购买(IAP)控制台中输入相关信息。
 	* [Game > Gamebase > Store控制台指南 > Google控制台指南](./console-google-guide) 
 	* [Game > Gamebase > Store控制台指南 > ONEStore控制台指南](./console-onestore-guide)
 	* [Game > Gamebase > Store控制台指南 > GALAXY Store控制台指南](./console-galaxy-guide)
+        * 目前ONE Store只支持v17。
+        * 在ONE Store中创建应用程序时，请注意不要使用v19创建。
+        * 正在检讨ONE Store v19支持。 
     * 注册道具时，请参考以下指南。
         * [Game > Gamebase > 控制台使用指南 > 结算 > Register](./oper-purchase/#register_1)
 * 为了推送通知，要将推送通知服务认证书在Gamebase > 推送 > 认证书控制台中输入。
     * [Game > Gamebase > 控制台使用指南 > 推送 > Authentication > Authentication register](./oper-push/#authentication)
-* 新Gamebase项目已生成，需要注册AppVersion和StoreCode。
+* 若新Gamebase项目已生成，需要注册AppVersion和StoreCode。
     * 注册新客户端版本时，请参考如下指南。 
     * [Game > Gamebase > 控制台使用指南 > App > Client > Client List](./oper-app/#client-list)
 
@@ -71,7 +74,7 @@
     * ONE store
         * [ONE store > APPS > 商品现状 > In-App信息 > 付费测试 > 注册/管理测试ID](https://dev.onestore.co.kr/wiki/ko/doc/%EA%B0%9C%EB%B0%9C%EB%8F%84%EA%B5%AC/api-v5-sdk-v17/%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%B0%8F-%EB%B3%B4%EC%95%88#id-%EA%B2%B0%EC%A0%9C%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%B0%8F%EB%B3%B4%EC%95%88-%ED%85%8C%EC%8A%A4%ED%8A%B8ID%EB%93%B1%EB%A1%9D/%EA%B4%80%EB%A6%AC)
     * GALAXY store
-        * [GALAXY store > App > 已注册App > Binary > Beta Test > 设置Tester](https://seller.samsungapps.com/application)
+        * [GALAXY store > App > 已注册的App > Binary > Beta Test > 设置Tester](https://seller.samsungapps.com/application)
         * 只能在三星终端机上进行付费测试。 
 
 ### Gradle
@@ -91,14 +94,16 @@
         // mainTemplate.gradle
         ([rootProject] + (rootProject.subprojects as List)).each {
             ext {
+                // >>> [AndroidX]
                 it.setProperty("android.useAndroidX", true)
                 it.setProperty("android.enableJetifier", true)
             }
         }
         ```
     * Unity 2019.3以上
-        ```groovy
-        // gradleTemplate.properties
+        ```
+        # gradleTemplate.properties
+        # >>> [AndroidX]
         android.useAndroidX=true
         android.enableJetifier=true
         ```
@@ -111,6 +116,27 @@
           </insert>  
         </gradleProperties>
         ```
+        
+#### Under AGP 3.4.0
+
+* Android Gradle Plugin版本低于3.4.0时将出现打包失败，因此需要添加以下声明。 
+    ```groovy
+    # gradle.properties
+    # >>> Fix for AGP under 3.4.0
+    android.enableD8.desugaring=true
+    android.enableIncrementalDesugaring=false 
+    ```
+* 使用Unity时，如果Editor版本为2018.4.3或更低版本、为2019.1.6或更低版本，则会出现打包失败，因此需要添加以下声明。(AGP版本为3.2.0)
+    ```groovy
+    // mainTemplate.gradle
+    ([rootProject] + (rootProject.subprojects as List)).each {
+        ext {
+            // >>> Fix for AGP under 3.4.0
+            it.setProperty("android.enableD8.desugaring", true)
+            it.setProperty("android.enableIncrementalDesugaring", false)
+        }
+    }
+    ```
 
 #### Define Adapters
 
@@ -143,6 +169,7 @@ dependencies {
 
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
+    // >>> 在ONE Store只使用v17，而现在不支持v19。
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
 
@@ -183,8 +210,7 @@ android {
         ```
         "{UnityProject}\Firebase\Editor\generate_xml_from_google_services_json.exe" -i "{JsonFilePath}\google-services.json" -o "{UnityProject}\Assets\Plugins\Android\res\values\google-services.xml" -p "{PackageName}"
         ```
-    * 如果未设置Firebase Unity SDK Package，则需在”Firebase Console > 项目设置中下载google-services.json文件，按照如下指南制作string resource(xml)文件后，添加在”Assets/Plugins/Android/res/values/”文件夹里。
-        根据Firebase服务联动，google-services.json文件的内容可能会有所不同。
+    * 如果未设置Firebase Unity SDK Package，则需在”Firebase Console > 项目设置”中下载google-services.json文件，按照如下指南制作string resource(xml)文件后添加在”Assets/Plugins/Android/res/values/”文件夹里。
         根据Firebase服务联动，google-services.json文件的内容可能会有所不同。
         ![Download google-services.json](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
         * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
@@ -250,7 +276,7 @@ android {
 
 #### Weibo IdP
 
-* 为了使Weibo IdP正常启动，需要在**application**标签中添加**android:networkSecurityConfig** attribute，并需要设置声明为与weibo, sina相关的URL的xml文件名。 
+* 为了使Weibo IdP正常启动，需要在**application**标签中添加**android:networkSecurityConfig** attribute，并需要设置声明为与weibo和sina相关的URL的xml文件名。 
 
 ```xml
 <application android:networkSecurityConfig="@xml/my_network_security_config"
@@ -356,9 +382,9 @@ android {
 
 ### Android 11
 
-* Android 11打包时，只能运行提前在AndroidManifest.xml中声明的应用程序。
+* Android 11打包时，只能运行在AndroidManifest.xml中提前声明的应用程序。
     * [https://developer.android.com/about/versions/11/privacy/package-visibility](https://developer.android.com/about/versions/11/privacy/package-visibility)
-* 为此，如果要将targetSdkVersion设置为30以上，通过**queries**标签必须将允许运行的应用程序在AndroidManifest.xml中声明。
+* 为此，如果要将targetSdkVersion设置为30以上，通过**queries**标签必须在AndroidManifest.xml中声明允许运行的应用程序。
 
 > <font color="red">[注意]</font><br/>
 >
@@ -366,7 +392,7 @@ android {
 > * 通过参考以下指南和列表，请升级到可进行”queries”标签打包的AGP版本。 
 >     * [https://android-developers.googleblog.com/2020/07/preparing-your-build-for-package-visibility-in-android-11.html](https://android-developers.googleblog.com/2020/07/preparing-your-build-for-package-visibility-in-android-11.html)
 >     * 如果使用AGP 3.2.*以下版本，请升级到3.3.3以上。
->     * 如果使用AGP 4.1.0以上版本，不用进行AGP升级。
+>     * 如果使用AGP 4.1.0以上版本，则不用进行AGP升级。
 
 | If you are using<br>the Android Gradle<br>plugin version... | ...upgrade to: | Unity Editor |
 | --- | --- | --- |
@@ -399,6 +425,19 @@ android {
         <!-- [Payco/Hangame] Configurations begin -->
         <package android:name="com.nhnent.payapp" />
         <!-- [Payco/Hangame] Configurations end -->
+
+        <!-- [Hangame] Configurations begin -->
+        <package android:name="com.nhn.hangameotp" />
+        <package android:name="com.sci.siren24.ipin" />
+        <package android:name="kr.co.samsungcard.mpocket" />
+        <package android:name="com.lcacApp" />
+        <package android:name="com.shcard.smartpay" />
+        <package android:name="com.hyundaicard.appcard" />
+        <package android:name="com.kbcard.cxh.appcard" />
+        <package android:name="com.hanaskcard.paycla" />
+        <package android:name="kvp.jjy.MispAndroid320" />
+        <package android:name="nh.smart.nhallonepay" />
+        <!-- [Hangame] Configurations end -->
 
         <!-- [Line] Configurations begin -->
         <package android:name="jp.naver.line.android" />
@@ -438,7 +477,7 @@ android {
 
 ### Proguard
 
-* 当Proguard适用于gamebase 2.21.0及2.21.0之前版本时，调用结算API而不添加Proguard Rule时会发生崩溃。
+* 将Proguard应用于gamebase 2.21.0或低于2.21.0版本时，若调用结算API而不添加Proguard Rule，则将发生崩溃。
     * 在Gamebase 2.21.0版本上已被修改。
 
 ```
@@ -452,19 +491,20 @@ android {
 
 * 可在Sample Project上确认Gamebase推荐的flow。
     * Android Sample Project
-        * 请参考以下链接的GamebaseAndroidSDK/sample
+        * 请参考以下链接的GamebaseAndroidSDK/sample。
         * [https://docs.toast.com/ko/Download/#game-gamebase](https://docs.toast.com/ko/Download/#game-gamebase)
             *  GamebaseManager.java文件
     * Unity Sample Project
         * [https://github.com/nhn/toast.gamebase.unity.sample](https://github.com/nhn/toast.gamebase.unity.sample)
-* 当游戏开始，初始化Gamebase客户端SDK，若登录成功，则进行”支付再处理”。
-
+* 当您启动游戏、初始化Gamebase客户端SDK并成功登录时，请进行“支付再处理”并注册推送令牌。
 ![overview flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.30.1.png)
 
 * 通过以下链接确认具体的Flow。
+    * [Game > Gamebase > Android SDK 使用指南 > ETC > Additional Features > Gamebase Event Handler](./aos-etc/#gamebase-event-handler)
     * [Game > Gamebase > Android SDK 使用指南 > 初始化 > Initialization Flow](./aos-initialization/#initialization-flow)
     * [Game > Gamebase > Android SDK 使用指南 > 认证 > Login Flow](./aos-authentication/#login-flow)
     * [Game > Gamebase > Android SDK 使用指南 > 结算 > Retry Transaction Flow](./aos-purchase/#retry-transaction-flow)
+    * [Game > Gamebase > Android SDK 使用指南 > Push > Register Push](./aos-push/#register-push)
 
 ## 3rd-Party Provider SDK Guide
 
