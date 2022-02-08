@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-iOS.zip)
 
 #### 기능 추가
-* 공통약관창의 설정을 변경할 수 있는 신규 API가 추가되었습니다.
+* 공통 약관 창의 설정을 변경할 수 있는 신규 API가 추가되었습니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > UI > Terms > showTermsView](./ios-ui/#showtermsview)
 
 #### 기능 개선/변경
