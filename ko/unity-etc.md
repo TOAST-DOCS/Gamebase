@@ -36,9 +36,9 @@ static string GetDeviceLanguageCode()
 그런데 게임에서 표시하는 언어를 단말기에 설정된 언어가 아닌, 별도의 옵션으로 언어를 변경할 수 있는 게임이 있습니다.
 예를 들어, 단말기에 설정된 언어는 영어 이지만 게임 표시 언어를 일본어로 변경한 경우, Gamebase 에서 표시하는 언어도 일본어로 변경하고 싶지만 Gamebase 가 표시하는 언어는 단말기에 설정된 언어인 영어로 표시됩니다.
 
-이와 같이 `단말기에 설정된 언어가 아닌, 다른 언어로 Gamebase 메세지를 표시하고 싶은` 애플리케이션을 위해 Gamebase 는 `Display Language` 라는 기능을 제공합니다.
+이와 같이 `단말기에 설정된 언어가 아닌, 다른 언어로 Gamebase 메시지를 표시하고 싶은` 애플리케이션을 위해 Gamebase 는 `Display Language` 라는 기능을 제공합니다.
 
-Gamebase 는 Display Language 로 설정한 언어로 Gamebase 메세지를 표시합니다.
+Gamebase 는 Display Language 로 설정한 언어로 Gamebase 메시지를 표시합니다.
 Display Language 에 입력하는 언어 코드는 반드시 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 지정된 코드만을 사용할 수 있습니다.
 
 > <font color="red">[주의]</font><br/>
@@ -339,7 +339,7 @@ public static string GetCountryCode()
 ### Gamebase Event Handler
 
 * Gamebase는 각종 이벤트를 **GamebaseEventHandler**라는 하나의 이벤트 시스템에서 모두 처리할 수 있습니다.
-* GamebaseEventHandler는 아래 API를 통해 간단하게 Listener를 추가/제거 할 수 있습니다.
+* GamebaseEventHandler는 아래 API를 통해 간단하게 Listener를 추가/제거할 수 있습니다.
 
 **API**
 
@@ -500,8 +500,8 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 | ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED<br>GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
 | Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseResponse.Event.GamebaseEventObserverData.from(message.data) | \- |
 | Purchase - 프로모션 결제 | GamebaseEventCategory.PURCHASE_UPDATED | GamebaseResponse.Event.PurchasableReceipt.from(message.data) | \- |
-| Push - 메세지 수신 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
-| Push - 메세지 클릭 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
+| Push - 메시지 수신 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
+| Push - 메시지 클릭 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
 | Push - 액션 클릭 | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | RichMessage 버튼 클릭 시 동작합니다. |
 
 #### Logged Out
@@ -536,17 +536,17 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 
 #### Server Push
 
-* Gamebase 서버에서 클라이언트 단말기로 보내는 메세지입니다.
+* Gamebase 서버에서 클라이언트 단말기로 보내는 메시지입니다.
 * Gamebase 에서 지원하는 Server Push Type 은 다음과 같습니다.
     * GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED
     	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
-        * 클라이언트 단말기에서 서버 메세지를 수신했을 때 바로 동작하는 이벤트입니다.
+        * 클라이언트 단말기에서 서버 메시지를 수신했을 때 바로 동작하는 이벤트입니다.
         * '오토 플레이'와 같이 게임이 동작 중인 경우, 게임을 일시 정지시키는 목적으로 활용할 수 있습니다.
     * GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
     	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout** 에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
-        * 클라이언트 단말기에서 서버 메세지를 수신했을 때 팝업 창을 표시하는데, 유저가 이 팝업 창을 닫았을 때 발생하는 이벤트입니다.
+        * 클라이언트 단말기에서 서버 메시지를 수신했을 때 팝업 창을 표시하는데, 유저가 이 팝업 창을 닫았을 때 발생하는 이벤트입니다.
     * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
-    	* Guest 계정을 다른 단말기로 이전을 성공하게 되면 이전 단말기에서 킥아웃 메세지를 받게 됩니다.
+    	* Guest 계정을 다른 단말기로 이전을 성공하게 되면 이전 단말기에서 킥아웃 메시지를 받게 됩니다.
 
 **Example**
 
@@ -645,7 +645,7 @@ public class GamebaseEventObserverData
 	// 상태값을 나타내는 정보입니다.
     public int code;
 
-    // 상태에 관련된 메세지 정보입니다.
+    // 상태에 관련된 메시지 정보입니다.
     public string message;
 
     // 추가 정보용 예비 필드입니다.
@@ -827,22 +827,22 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 
 #### Push Received Message
 
-* Push 메세지가 도착했을때 발생하는 이벤트입니다.
+* Push 메시지가 도착했을때 발생하는 이벤트입니다.
 * extras 필드를 JSON으로 변환하여, Push 발송 시 전송했던 커스텀 정보를 얻을 수도 있습니다.
-    * **Android**에서는 **isForeground** 필드를 통해 포그라운드에서 메세지를 수신했는지, 백그라운드에서 메세지를 수신했는지 구분할 수 있습니다.
+    * **Android**에서는 **isForeground** 필드를 통해 포그라운드에서 메시지를 수신했는지, 백그라운드에서 메시지를 수신했는지 구분할 수 있습니다.
 
 **VO**
 
 ```cs
 public class PushMessage 
 {
-	// 메세지 고유의 id입니다.
+	// 메시지 고유의 id입니다.
     public string id;
 
-    // Push 메세지 제목입니다.
+    // Push 메시지 제목입니다.
     public string title;
 
-    // Push 메세지 본문 내용입니다.
+    // Push 메시지 본문 내용입니다.
     public string body;
 
     // JSON 형식으로 Push 발송 시 전송했던 커스텀 정보를 확인할 수 있습니다.
@@ -885,7 +885,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 
 #### Push Click Message
 
-* 수신한 Push 메세지를 클릭했을때 발생하는 이벤트입니다.
+* 수신한 Push 메시지를 클릭했을때 발생하는 이벤트입니다.
 * 'GamebaseEventCategory.PUSH_RECEIVED_MESSAGE'와는 다르게 Android에서 extras 필드에 **isForeground** 정보가 존재하지 않습니다.
 
 **Example**

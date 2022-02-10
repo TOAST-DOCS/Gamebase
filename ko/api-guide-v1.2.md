@@ -704,7 +704,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | result.beginDate | Long | 이용 정지 시작 시간 |
 | result.endDate | Long | 이용 정지 종료 시간 |
 | result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'Leaderboard' 로 반환 |
-| result.message | String | 이용 정지 메세지 |
+| result.message | String | 이용 정지 메시지 |
 | result.name | String | 콘솔에서 등록한 템플릿 이름 |
 | result.regUser | String | 이용 정지 등록자 |
 | result.releaseCaller | String | 이용 정지 해제 주체 |
@@ -811,7 +811,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | result.beginDate | Long | 이용 정지 시작 시간 |
 | result.endDate | Long | 이용 정지 종료 시간 |
 | result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'Leaderboard' 로 반환 |
-| result.message | String | 이용 정지 메세지 |
+| result.message | String | 이용 정지 메시지 |
 | result.name | String | 콘솔에서 등록한 템플릿 이름 |
 | result.regUser | String | 이용 정지 등록자 |
 | result.releaseCaller | String | 이용 정지 해제 주체 |
