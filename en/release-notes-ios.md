@@ -3,16 +3,16 @@
 ### 2.33.0 (2022.01.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* 공통약관창의 설정을 변경할 수 있는 신규 API가 추가되었습니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > UI > Terms > showTermsView](./ios-ui/#showtermsview)
+#### Added Features
+* Added a new API that allows you to change settings of the common terms and conditions window.
+    * [Game > Gamebase > iOS SDK User Guide > UI > Terms > showTermsView](./ios-ui/#showtermsview)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트 : PAYCO iOS SDK (1.5.5)
-* 에러코드 추가 및 변경
-    * TCGB_ERROR_UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
-    * 에러코드 999에 매핑 시킨 TCGB_ERROR_SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
-    
+#### Feature Updates
+* External SDK update: PAYCO iOS SDK (1.5.5)
+* Added and changed error codes
+    * Changed the error code mapped to the TCGB_ERROR_UNKNOWN_ERROR error from 999 to 9999.
+    * Newly added the TCGB_ERROR_SOCKET_UNKNOWN_ERROR error mapped to the error code 999.
+
 ### 2.32.1 (2022.01.11)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.1/GamebaseSDK-iOS.zip)
 

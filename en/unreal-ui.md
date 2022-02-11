@@ -92,8 +92,15 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
 
 #### Optional parameter
 
+* GamebaseTermsConfiguration: Using the GamebaseTermsConfiguration object, you can change settings such as whether to forcibly display the terms and conditions agreement window.
 * callback: Uses a callback to inform the user when the terms and conditions window closes after agreeing to it. The GamebaseResponse.DataContainer object which comes as a callback can be converted to GamebaseResponse.Push.PushConfiguration. The converted object can be used in the Gamebase.Push.RegisterPush API after login.
 
+**FGamebaseTermsConfiguration** 
+ 
+| API | Mandatory(M) / Optional(O) | Description | 
+| --- | --- | --- | 
+| forceShow | O | If the user agreed to the terms, calling the showTermsView API again will not display the terms and conditions window, but ignore it and force the display of the terms and conditions window.<br>**default** : false | 
+ 
 
 **API**
 
@@ -102,6 +109,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
+void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
 void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
 ```
 
@@ -121,15 +129,16 @@ void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
 ```cpp
 void Sample::ShowTermsView()
 {
-    IGamebase::Get().GetTerms().ShowTermsView(
+    FGamebaseTermsConfiguration configuration { true };
+
+    IGamebase::Get().GetTerms().ShowTermsView(configuration,
         FGamebaseDataContainerDelegate::CreateLambda([=](const FGamebaseDataContainer* dataContainer, const FGamebaseError* error) {
             if (Gamebase::IsSuccess(error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView succeeded."));
-
-                // If the 'FGamebasePushConfiguration' is not null,
-                // save the 'FGamebasePushConfiguration' and use it for IGamebase::Get().GetPush().RegisterPush() after IGamebase::Get().Login().
-                const auto pushConfiguration = FGamebasePushConfiguration::From(dataContainer);
+                
+                // Save the 'PushConfiguration' and use it for RegisterPush() after Login().
+                savedPushConfiguration = FGamebasePushConfiguration::From(dataContainer);
             }
             else
             {
@@ -137,6 +146,18 @@ void Sample::ShowTermsView()
             }
         })
     );
+}
+
+void Sample::AfterLogin()
+{
+    // Call RegisterPush with saved PushConfiguration.
+    if (savedPushConfiguration != null)
+    {
+        Gamebase.Push.RegisterPush(savedPushConfiguration, (error) =>
+        {
+            ...
+        });
+    }
 }
 ```
 
