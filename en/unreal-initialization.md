@@ -29,13 +29,13 @@ Following settings are required for initialization.
 
 Refers to Project ID registered on Gamebase Console.
 
-[Console Guide](/Game/Gamebase/en/oper-app/#app)
+[Game > Gamebase > Console Guide > App > App](./oper-app/#app)
 
 #### 2. appVersion
 
 Refers to Client Version registered on Gamebase Console. 
 
-[Console Guide](/Game/Gamebase/en/oper-app/#client)
+[Game > Gamebase > Console Guide > App > Client](./oper-app/#client)
 
 #### 3. storeCode
 
@@ -50,9 +50,9 @@ Find store information as below, required to initialize NHN Cloud In-App Purchas
 
 #### 4. displayLanguageCode
 
-Language change is available other than default language on device for Gamebase UI and SystemDialog.  
+The language displayed on Gamebase UI and SystemDialog can be changed to languages other than language set on device.  
 
-[Display Language](./unreal-etc/#display-language)
+[Game > Gamebase > Unreal SDK User Guide > ETC > Additional Features > Display Language](./unreal-etc/#display-language)
 
 #### 5. enablePopup
 
@@ -213,22 +213,22 @@ Refers to game status information of the app version for the initialization sett
 
 See the below table for status codes: 
 
-| Status                      | Status Code | Description                                    |
-| --------------------------- | ----------- | ---------------------------------------- |
-| IN_SERVICE                  | 200         | Under normal service |
-| RECOMMEND_UPDATE            | 201         | Upgrade is recommended |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202         | Service is unavailable during maintenance; but on QA device, access to service is allowed for testing, regardless of maintenance. |
-| IN_TEST                     | 203         | Under testing  |
-| IN_REVIEW                   | 204         | Under review  |
-| IN_BETA                     | 205         | Beta server environment |
-| REQUIRE_UPDATE              | 300         | Upgrade is required  |
-| BLOCKED_USER                | 301         | Service is accessed on device (device key) which is registered to be blocked from access. |
-| TERMINATED_SERVICE          | 302         | Service is closed                                   |
-| INSPECTING_SERVICE          | 303         | Service under maintenance                                |
-| INSPECTING_ALL_SERVICES     | 304         | All systems under maintenance                            |
-| INTERNAL_SERVER_ERROR       | 500         | Error of internal server                                 |
+| Status                      | Code | Description                                    |
+| --------------------------- | ---- | ---------------------------------------- |
+| IN_SERVICE                  | 200  | Under normal service |
+| RECOMMEND_UPDATE            | 201  | Update is recommended |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202  | Service is unavailable during maintenance; but on QA device, access to service is allowed for testing, regardless of maintenance. |
+| IN_TEST                     | 203  | Under testing  |
+| IN_REVIEW                   | 204  | Under review  |
+| IN_BETA                     | 205  | Beta server environment |
+| REQUIRE_UPDATE              | 300  | Upgrade is required  |
+| BLOCKED_USER                | 301  | Service is accessed on device (device key) which is registered to be blocked from access. |
+| TERMINATED_SERVICE          | 302  | Service is closed                                   |
+| INSPECTING_SERVICE          | 303  | Service under maintenance                                |
+| INSPECTING_ALL_SERVICES     | 304  | All services under maintenance                            |
+| INTERNAL_SERVER_ERROR       | 500  | Error of internal server                                 |
 
-[Console Guide](/Game/Gamebase/en/oper-app/#app)
+[Game > Gamebase > Console Guide > App > App](./oper-app/#app)
 
 **1.2 App**
 
@@ -247,7 +247,7 @@ Refers to app information registered on Gamebase Console.
 * install: Installation URL
 * idP: Authentication information
 
-[Console Guide](/Game/Gamebase/en/oper-app/#client)
+[Game > Gamebase > Console Guide > App > Client](./oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -259,7 +259,7 @@ Refers to maintenance information registered on Gamebase Console.
 * endDate: End time 
 * message: Cause of maintenance 
 
-[Console Guide](/Game/Gamebase/en/oper-operation/#maintenance)
+[Game > Gamebase > Console Guide > Operation > Maintenance](./oper-operation/#maintenance)
 
 **1.4 Notice**
 
@@ -288,7 +288,7 @@ Refers to IAP store information registered on NHN Cloud Console.
 * name: App Name
 * storeCode: Store Code
  
-[Console Guide](/Game/Gamebase/en/oper-purchase/)
+[Game > Gamebase > Console Guide > Purchase](./oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -297,7 +297,7 @@ User-input information on the console of NHN Cloud Launching.
 * Deliver user-input value to JSON string. 
 * Refer to the guide as below for detail setting of NHN Cloud Launching.  
 
-[Console Guide](/Game/Gamebase/en/oper-management/#config)
+[Game > Gamebase > Console Guide > Management > Config](./oper-management/#config)
 
 ### Get Launching Information
 

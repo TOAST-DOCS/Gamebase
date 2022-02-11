@@ -126,6 +126,7 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
 
 #### Optional parameter
 
+* GamebaseTermsConfiguration : Using the GamebaseTermsConfiguration object, you can change settings such as whether to display the forced terms and conditions agreement window.
 * callback: Uses a callback to inform the user when the terms and conditions window closes after agreeing to it. The GamebaseResponse.DataContainer object which comes as a callback can be converted to GamebaseResponse.Push.PushConfiguration. The converted object can be used in the Gamebase.Push.RegisterPush API after login.
 
 
@@ -137,8 +138,15 @@ Supported Platforms
 
 ```cs
 static void ShowTermsView(GamebaseCallback.GamebaseDelegate<GamebaseResponse.DataContainer> callback)
+static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration configuration, GamebaseCallback.GamebaseDelegate<GamebaseResponse.DataContainer> callback)
 ```
 
+**GamebaseTermsConfiguration** 
+ 
+| API | Mandatory(M) / Optional(O) | Description | 
+| --- | --- | --- | 
+| forceShow | O | If the user agreed to the terms, calling the showTermsView API again will not display the terms and conditions window, but ignore it and force the display of the terms and conditions window.<br>**default** : false | 
+ 
 **ErrorCode**
 
 | Error | Error Code | Description |
@@ -153,17 +161,23 @@ static void ShowTermsView(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Dat
 **Example**
 
 ```cs
+static GamebaseResponse.Push.PushConfiguration savedPushConfiguration = null;
+
 public void SampleShowTermsView()
 {
-    Gamebase.Terms.ShowTermsView((data, error) => 
+    var configuration = new GamebaseRequest.Terms.GamebaseTermsConfiguration
+    {
+        forceShow = true
+    };
+
+    Gamebase.Terms.ShowTermsView(configuration, (data, error) => 
     {
         if (Gamebase.IsSuccess(error) == true)
         {
             Debug.Log("ShowTermsView succeeded.");
             
-            // If the 'PushConfiguration' is not null,
-            // save the 'PushConfiguration' and use it for Gamebase.Push.RegisterPush() after Gamebase.Login().
-            GamebaseResponse.Push.PushConfiguration pushConfiguration = GamebaseResponse.Push.PushConfiguration.From(data);
+            // Save the 'PushConfiguration' and use it for Gamebase.Push.RegisterPush() after Gamebase.Login().
+            savedPushConfiguration = GamebaseResponse.Push.PushConfiguration.From(data);
         }
         else
         {
@@ -171,8 +185,19 @@ public void SampleShowTermsView()
         }
     });
 }
-```
 
+public void AfterLogin()
+{
+    // Call RegisterPush with saved PushConfiguration.
+    if (savedPushConfiguration != null)
+    {
+        Gamebase.Push.RegisterPush(savedPushConfiguration, (error) =>
+        {
+            ...
+        });
+    }
+}
+```
 
 ### QueryTerms
 
