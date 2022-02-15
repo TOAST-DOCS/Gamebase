@@ -76,7 +76,7 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 
 | API | Mandatory(M) / Optional(O) | Description |
 | --- | --- | --- |
-| newBuilder() | **M** | ImageNoticeConfigurationオブジェクトはnewBuilder()関数で作成できます。 |
+| newBuilder() | **M** | ImageNoticeConfiguration.BuilderオブジェクトはnewBuilder()関数で作成できます。 |
 | build() | **M** | 設定を終えたBuilderをConfigurationオブジェクトに変換します。 |
 | setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | イメージ告知の背景色。<br>Stringはandroid.graphics.Color.parseColor(String) APIで変換した値を使用します。<br>**default** : #80000000 |
 | setTimeout(long timeoutMs) | O | イメージ告知の最大ローディング時間(単位：millisecond)<br>**default** ： 5000L (5s) |
@@ -123,6 +123,7 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
  
 #### Optionalパラメータ
 
+* GamebaseTermsConfiguration : GamebaseTermsConfigurationオブジェクトを介して強制的に約款同意ウィンドウを表示するかどうかなどの設定を変更できます。
 * GamebaseDataCallback：約款に同意した後、約款ウィンドウが終了する時、ユーザーにコールバックで伝えます。コールバックで返されたGamebaseDataContainerオブジェクトはPushConfigurationに変換してログイン後、Gamebase.Push.registerPush APIに使用できます。
 
 **API**
@@ -134,6 +135,14 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
                                      @Nullable GamebaseTermsConfiguration configuration,
                                      @Nullable GamebaseDataCallback<GamebaseDataContainer> callback);
 ```
+
+**GamebaseTermsConfiguration**
+
+| API | Mandatory(M) / Optional(O) | Description |
+| --- | --- | --- |
+| newBuilder() | **M** | GamebaseTermsConfiguration.BuilderオブジェクトはnewBuilder()関数で作成できます。 |
+| build() | **M** | 設定を終えたBuilderをConfigurationオブジェクトに変換します。 |
+| setForceShow(boolean forceShow) | O | 約款に同意した場合、showTermsView APIを再度呼び出しても約款ウィンドウが表示されませんが、これを無視して強制的に約款ウィンドウを表示します。<br>**default** : false |
 
 **ErrorCode**
 
