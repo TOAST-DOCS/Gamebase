@@ -41,7 +41,7 @@ void Sample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNi
 {
     FGamebasePushConfiguration configuration{ pushEnabled, adAgreement, adAgreementNight };
     
-    IGamebase::Get().GetPush().RegisterPush(FGamebasePushConfigurationDelegate::CreateLambda([](const FGamebaseError* error)
+    IGamebase::Get().GetPush().RegisterPush(configuration, FGamebasePushConfigurationDelegate::CreateLambda([](const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -199,6 +199,15 @@ void Sample::QueryTokenInfo()
 | pushEnabled      | bool | 通知表示同意有無          |
 | adAgreement      | bool | 広告性通知表示同意有無     |
 | adAgreementNight | bool | 夜間広告性通知表示同意有無 |
+
+
+### Event Handling
+
+* プッシュメッセージが到着したときやプッシュメッセージをクリックしたときに、イベント処理を行うことができます。
+* イベントの登録方法はGamebaseEventHandlerガイドを参照してください。
+    * [ Game > Gamebase > Unreal SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Push Received Message](./unreal-etc/#push-received-message)
+    * [ Game > Gamebase > Unreal SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./unreal-etc/#push-click-message)
+    * [ Game > Gamebase > Unreal SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./unreal-etc/#push-click-action)
 
 
 #### Setting for APNS Sandbox
