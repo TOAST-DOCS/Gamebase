@@ -4,21 +4,21 @@
 
 ### iOS
 
-* TCGB_ERROR_UNKNOWN_ERROR 에러에 매핑된 에러코드가 변경되었습니다.
-    * TCGB_ERROR_UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
-    * 에러코드 999에 매핑 시킨 TCGB_ERROR_SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
+* TCGB_ERROR_UNKNOWN_ERRORエラーにマッピングされたエラーコードが変更されました。
+    * TCGB_ERROR_UNKNOWN_ERRORエラーにマッピングされたエラーコードを999から9999に変更しました。
+    * エラーコード999にマッピングしたTCGB_ERROR_SOCKET_UNKNOWN_ERRORエラーを新たに追加しました。
 
 ### Unity
 
-* GamebaseErrorCode.UNKNOWN_ERROR 에러에 매핑된 에러코드가 변경되었습니다.
-    * GamebaseErrorCode.UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
-    * 에러코드 999에 매핑 시킨 GamebaseErrorCode.SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
+* GamebaseErrorCode.UNKNOWN_ERRORエラーにマッピングされたエラーコードが変更されました。
+    * GamebaseErrorCode.UNKNOWN_ERRORエラーにマッピングされたエラーコードを999から9999に変更しました。
+    * エラーコード999にマッピングしたGamebaseErrorCode.SOCKET_UNKNOWN_ERRORエラーを新たに追加しました。
 
 ### Unreal
 
-* GamebaseErrorCode.UNKNOWN_ERROR 에러에 매핑된 에러코드가 변경되었습니다.
-    * GamebaseErrorCode::UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
-    * 에러코드 999에 매핑 시킨 GamebaseErrorCode::SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
+* GamebaseErrorCode.UNKNOWN_ERRORエラーにマッピングされたエラーコードが変更されました。
+    * GamebaseErrorCode::UNKNOWN_ERRORエラーにマッピングされたエラーコードを999から9999に変更しました。
+    * エラーコード999にマッピングしたGamebaseErrorCode::SOCKET_UNKNOWN_ERRORエラーを新たに追加しました。
 
 ## 2.32.0
 
