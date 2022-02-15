@@ -29,13 +29,13 @@ Gamebase APIを使用するには、次のヘッダファイルをインクル�
 
 Gamebase Consoleに登録されたプロジェクトIDです。
 
-[Console Guide](/Game/Gamebase/ja/oper-app/#app)
+[Game > Gamebase > コンソール使用ガイド > アプリ > App](./oper-app/#app)
 
 #### 2. appVersion
 
 Gamebase Consoleに登録したクライアントバージョンです。
 
-[Console Guide](/Game/Gamebase/ja/oper-app/#client)
+[Game > Gamebase > コンソール使用ガイド > アプリ > Client](./oper-app/#client)
 
 #### 3. storeCode
 NHN Cloud統合アプリ内決済サービスであるIAP(In-App Purchase)を初期化するために必要なストア情報です。
@@ -51,7 +51,7 @@ NHN Cloud統合アプリ内決済サービスであるIAP(In-App Purchase)を初
 
 Gamebaseで提供するUIおよびSystemDialogに表示される言語を、端末に設定された言語ではない別の言語に変更できます。
 
-[Display Language](./unreal-etc/#display-language)
+[Game > Gamebase > Unreal SDK使用ガイド > ETC > Additional Features > Display Language](./unreal-etc/#display-language)
 
 #### 5. enablePopup
 
@@ -212,22 +212,22 @@ Gamebase Unreal SDK初期化設定に入力したアプリバージョンのゲ�
 
 ステータスコードは、下記の表を参照してください。
 
-| Status                      | Status Code | Description                                    |
-| --------------------------- | ----------- | ---------------------------------------- |
-| IN_SERVICE                  | 200         | 正常サービス中 |
-| RECOMMEND_UPDATE            | 201         | アップグレード推奨 |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202         | メンテナンス中はサービスを利用できませんが、QA端末に登録されている場合はメンテナンスに関係なくサービスに接続してテストできます。 |
+
+
+| IN_SERVICE                  | 200  | 正常サービス中                               |
+| RECOMMEND_UPDATE            | 201  | アップデート推奨                                |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202  | メンテナンス中はサービスを利用できませんが、QA端末に登録されている場合はメンテナンスに関係なくサービスに接続してテストできます。 |
 | IN_TEST                     | 203         | テスト中 |
 | IN_REVIEW                   | 204         | 審査中 |
 | IN_BETA                     | 205         | ベータサーバー環境 |
-| REQUIRE_UPDATE              | 300         | アップグレード必須 |
-| BLOCKED_USER                | 301         | 接続遮断に登録された端末(デバイスキー)でサービスに接続した場合です。 |
-| TERMINATED_SERVICE          | 302         | サービス終了                                |
-| INSPECTING_SERVICE          | 303         | サービスメンテナンス中                              |
-| INSPECTING_ALL_SERVICES     | 304         | 全体システムメンテナンス中                           |
-| INTERNAL_SERVER_ERROR       | 500         | 内部サーバーエラー                              |
+| REQUIRE_UPDATE              | 300  | アップデート必須                                |
+| BLOCKED_USER                | 301  | 接続遮断に登録された端末(デバイスキー)でサービスに接続した場合です。 |
+| TERMINATED_SERVICE          | 302  | サービス終了                                 |
+| INSPECTING_SERVICE          | 303  | サービスメンテナンス中                               |
+| INSPECTING_ALL_SERVICES     | 304  | 全サービスメンテナンス中                            |
+| INTERNAL_SERVER_ERROR       | 500  | 内部サーバーエラー                               |
 
-[Console Guide](/Game/Gamebase/ja/oper-app/#app)
+[Game > Gamebase > コンソール使用ガイド > アプリ > App](./oper-app/#app)
 
 **1.2 App**
 
@@ -246,7 +246,7 @@ Gamebase Consoleに登録されたアプリ情報です。
 * install: インストールURL
 * idP：認証情報
 
-[Console Guide](/Game/Gamebase/ja/oper-app/#client)
+[Game > Gamebase > コンソール使用ガイド > アプリ > Client](./oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -258,7 +258,7 @@ Gamebase Consoleに登録されたメンテナンス情報です。
 * endDate：終了時間
 * message：メンテナンス理由
 
-[Console Guide](/Game/Gamebase/ja/oper-operation/#maintenance)
+[Game > Gamebase > コンソール使用ガイド > 運営 > Maintenance](./oper-operation/#maintenance)
 
 **1.4 Notice**
 
@@ -268,7 +268,7 @@ Gamebase Consoleに登録された告知情報です。
 * title：タイトル
 * url：メンテナンスURL
 
-[Console Guide](/Game/Gamebase/ja/oper-operation/#notice)
+[Game > Gamebase > コンソール使用ガイド > 運営 > Notice](./oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -287,7 +287,7 @@ NHN Cloud Consoleに登録されたIAPストア情報です。
 * name： App Name
 * storeCode： Store Code
  
-[Console Guide](/Game/Gamebase/ja/oper-purchase/)
+[Game > Gamebase > コンソール使用ガイド > 決済](./oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -296,7 +296,7 @@ NHN Cloud Launchingコンソールでユーザーが入力した情報です。
 * ユーザーが入力した値をJSON stringで伝達します。
 * NHN Cloud Launchingの詳細設定は、下記のガイドを参照してください。
  
-[Console Guide](/Game/Gamebase/ja/oper-management/#config)
+[Game > Gamebase > コンソール使用ガイド > 管理 > Config](./oper-management/#config)
 
 ### Get Launching Information
 
