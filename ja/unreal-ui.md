@@ -89,9 +89,17 @@ GameのUIに合った約款ウィンドウを直接製作したい場合には�
 > * FGamebasePushConfigurationは、約款ウィンドウが表示されていない場合にはnullです。(約款ウィンドウが表示された場合、常に有効なオブジェクトが返されます。)
 > * FGamebasePushConfiguration.pushEnabled値は常にtrueです。
 > * FGamebasePushConfigurationがnullではない場合、**ログイン後に** IGamebase::Get().GetPush().RegisterPush()を呼び出してください。
+
 #### Optionalパラメータ
 
+* GamebaseTermsConfiguration : GamebaseTermsConfigurationオブジェクトを介して強制的に約款同意ウィンドウを表示するかどうかなどの設定を変更できます。
 * callback：約款同意後、約款ウィンドウが終了する時、ユーザーにコールバックで伝えます。コールバックで来るGamebaseResponse.DataContainerオブジェクトはGamebaseResponse.Push.PushConfiguration変換してログイン後、Gamebase.Push.RegisterPush APIに使用できます。
+
+**FGamebaseTermsConfiguration** 
+
+| API | Mandatory(M) / Optional(O) | Description | 
+| --- | --- | --- | 
+| forceShow | O | 約款に同意した場合、showTermsView APIを再度呼び出しても約款ウィンドウが表示されませんが、これを無視して強制的に約款ウィンドウを表示します。<br>**default** : false |
 
 
 **API**
@@ -101,6 +109,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
+void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
 void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
 ```
 
@@ -120,15 +129,16 @@ void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
 ```cpp
 void Sample::ShowTermsView()
 {
-    IGamebase::Get().GetTerms().ShowTermsView(
+    FGamebaseTermsConfiguration configuration { true };
+
+    IGamebase::Get().GetTerms().ShowTermsView(configuration,
         FGamebaseDataContainerDelegate::CreateLambda([=](const FGamebaseDataContainer* dataContainer, const FGamebaseError* error) {
             if (Gamebase::IsSuccess(error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView succeeded."));
                 
-                // If the 'FGamebasePushConfiguration' is not null,
-                // save the 'FGamebasePushConfiguration' and use it for IGamebase::Get().GetPush().RegisterPush() after IGamebase::Get().Login().
-                const auto pushConfiguration = FGamebasePushConfiguration::From(dataContainer);
+                // Save the 'PushConfiguration' and use it for RegisterPush() after Login().
+                savedPushConfiguration = FGamebasePushConfiguration::From(dataContainer);
             }
             else
             {
@@ -136,6 +146,18 @@ void Sample::ShowTermsView()
             }
         })
     );
+}
+
+void Sample::AfterLogin()
+{
+    // Call RegisterPush with saved PushConfiguration.
+    if (savedPushConfiguration != null)
+    {
+        Gamebase.Push.RegisterPush(savedPushConfiguration, (error) =>
+        {
+            ...
+        });
+    }
 }
 ```
 
