@@ -60,7 +60,7 @@ Gamebaseではゲストログインをデフォルトでサポートします。
 * 利用停止ゲームユーザー
     * エラーコードが**BANNED_MEMBER(7)**の場合、利用停止ゲームユーザーのため認証に失敗したということです。
     * **FGamebaseBanInfo::From API**で制裁情報を確認してゲームユーザーにゲームをプレイできない理由を伝えてください。
-
+    * Gamebase初期化時、**FGamebaseConfiguration.enablePopup**および**FGamebaseConfiguration.enableBanPopup**値を**true**にすると、Gamebaseが利用停止に関するポップアップを自動的に表示します。
 * その他のエラー
     * エラーが発生したことをゲームユーザーに伝え、ゲームが認証IdPタイプを選択できる状態(主にタイトル画面またはログイン画面)へ戻ります。
 
