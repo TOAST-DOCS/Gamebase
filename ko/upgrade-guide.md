@@ -1,5 +1,13 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.34.0
+
+### iOS
+
+* 킥아웃 팝업 표시 여부는 Gamebase 콘솔에서 킥아웃 등록시 설정할 수 있으므로 아래 API들이 deprecated 되었습니다.
+    * **[TCGBConfiguration enableKickoutPopup:]**
+    * **[TCGBConfiguration isEnableKickoutPopup]**
+
 ## 2.33.0
 
 ### iOS

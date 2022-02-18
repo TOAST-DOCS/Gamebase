@@ -154,9 +154,14 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
         // Called when the entire termsView is closed.
         NSLog(@"TermsView closed");
 
+        TCGBShowTermsViewResult *showTermsViewResult = [TCGBShowTermsViewResult fromDataContainer:dataContainer];
+
         // If the TCGBPushConfiguration is not null, 
         // save TCGBPushConfiguration and use it for registerPush after login.
-        TCGBPushConfiguration *savedPushConfiguraiton = [TCGBPushConfiguration fromDataContainer:dataContainer];
+        TCGBPushConfiguration *savedPushConfiguraiton = showTermsViewResult.pushConfiguration;
+
+        // Wheter the TermsUI was displayed.
+        BOOL isTermsUIOpened = showTermsViewResult.isTermsUIOpened;
     };
 
     [TCGBTerms showTermsViewWithViewController:self completion:completion];
@@ -177,6 +182,13 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 | Parameter            | Values                          | Description         |
 | -------------------- | --------------------------------| ------------------- |
 | forceShow            | BOOL                            | 약관에 동의한 이후에도 약관 창을 강제로 표시합니다.<br/>**default**: NO          |
+
+**TCGBShowTermsViewResult**
+
+| Parameter            | Values                          | Description         |
+| -------------------- | --------------------------------| ------------------- |
+| isTermsUIOpened            | BOOL                            | 약관 창이 화면에 표시되었는지 여부를 나타냅니다.          |
+| TCGBPushConfiguration      | TCGBPushConfiguration           | 약관에 푸시 수신 동의 여부를 추가한 경우, 푸시 수신 동의 여부에 대한 정보를 가지고 있습니다.    |
 
 ### queryTerms
 

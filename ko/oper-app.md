@@ -357,10 +357,10 @@ Sign In with Apple 기능을 사용하려면 App Store Connect, Gamebase 콘솔,
 ###### Secret Key Settings
 > Apple Developer Account 설정에서 획득한 값(**TeamID**, **KeyID**, **PrivateKey**)으로 JSON 문자열을 생성해 설정합니다.
 
-* `teamId`: 개발자 계정 오른쪽 상단의 값을 설정합니다.
-* `keyId`: Certificates, Identifiers & Profiles > Keys > Sign In with Apple을 선택하여 생성된 값을 설정합니다.
+* **teamId**: 개발자 계정 오른쪽 상단의 값을 설정합니다.
+* **keyId**: Certificates, Identifiers & Profiles > Keys > Sign In with Apple을 선택하여 생성된 값을 설정합니다.
 ![SecretKey설정](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
-* `privateKey`: 위의 Keys에서 키를 생성하면서 같이 생성된 PrivateKey 파일의 내용을 설정합니다. 다운로드한 파일을 열어서 아래 그림과 같이 빨간 사각형 부분의 값을 사용합니다.
+* **privateKey**: 위의 Keys에서 키를 생성하면서 같이 생성된 PrivateKey 파일의 내용을 설정합니다. 다운로드한 파일을 열어서 아래 그림과 같이 빨간 사각형 부분의 값을 사용합니다.
 ![SecretKey설정](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
 
 위의 값을 아래의 예제와 같이 JSON으로 만들어서 설정합니다.
@@ -373,6 +373,10 @@ Sign In with Apple 기능을 사용하려면 App Store Connect, Gamebase 콘솔,
     "privateKey":"MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBA.. 중략"
 }
 ```
+
+> <font color="red">[주의]</font><br/>
+>
+> privateKey 값에 개행이 들어가지 않도록 주의해 주세요.
 
 ###### Additional Info Settings
 [Sign In with Apple 의 AuthorizationScope 알아보기](https://developer.apple.com/documentation/authenticationservices/asauthorizationscope?language=occ)
