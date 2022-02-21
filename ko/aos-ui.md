@@ -112,10 +112,13 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 
 > <font color="red">[주의]</font><br/>
 >
-> * 약관에 푸시 수신 동의 여부를 추가했다면, GamebaseDataContainer 로부터 PushConfiguration 을 생성할 수 있습니다.
-> * PushConfiguration 은 약관 창이 표시되지 않은 경우에는 null입니다.(약관 창이 표시되었다면 항상 유효한 객체가 리턴됩니다.)
-> * PushConfiguration.pushEnabled 값은 항상 true입니다.
-> * PushConfiguration 이 null 이 아니라면 **로그인 후에** Gamebase.Push.registerPush API 를 호출하세요.
+> * 약관에 푸시 수신 동의 여부를 추가했다면, GamebaseDataContainer로부터 GamebaseShowTermsViewResult를 생성할 수 있습니다.
+>     * GamebaseShowTermsViewResult.isTermsUIOpened : 약관 창이 표시되었다면 true, 이미 약관에 동의하여 약관 창이 표시되지 않았다면 false입니다.
+>     * GamebaseShowTermsViewResult.pushConfiguration
+>         * pushConfiguration은 약관 창이 표시되지 않은 경우에는 null입니다.
+>         * 약관에 Push 수신 항목이 존재하고 약관 창이 표시되었다면 pushConfiguration은 항상 유효한 객체가 리턴됩니다.
+>         * pushConfiguration이 null이 아니라면 pushConfiguration.pushEnabled는 항상 true입니다.
+>         * pushConfiguration이 null이 아니라면 **로그인 후에** Gamebase.Push.registerPush API를 호출하세요.
 
 #### Required 파라미터
 
@@ -124,7 +127,7 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 #### Optional 파라미터
 
 * GamebaseTermsConfiguration : GamebaseTermsConfiguration 객체를 통해 강제 약관 동의창 표시여부와 같은 설정을 변경할 수 있습니다.
-* GamebaseDataCallback : 약관 동의 후 약관 창이 종료될 때 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseDataContainer 객체는 PushConfiguration 으로 변환해서 로그인 후 Gamebase.Push.registerPush API 에 사용할 수 있습니다.
+* GamebaseDataCallback : 약관 동의 후 약관 창이 종료될 때 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseDataContainer 객체는 GamebaseShowTermsViewResult로 변환해서 약관 팝업 표시 여부나 Push 수신 동의 여부 등을 확인할 수 있습니다.
 
 **API**
 
@@ -162,11 +165,14 @@ static PushConfiguration savedPushConfiguration = null;
 final GamebaseTermsConfiguration configuration = GamebaseTermsConfiguration.newBuilder()
         .setForceShow(true)
         .build();
-Gamebase.Terms.showTermsView(activity, configuration, (container, exception) -> {
+Gamebase.Terms.showTermsView(activity, (container, exception) -> {
     if (Gamebase.isSuccess(exception)) {
         // Save the PushConfiguration and use it for Gamebase.Push.registerPush()
         // after Gamebase.login().
-        savedPushConfiguration = PushConfiguration.from(container);
+        GamebaseShowTermsViewResult termsViewResult = GamebaseShowTermsViewResult.from(container);
+        if (termsViewResult != null) {
+            savedPushConfiguration = termsViewResult.pushConfiguration;
+        }
     } else {
         new Thread(() -> {
             // Wait for a while and try again.
@@ -176,7 +182,6 @@ Gamebase.Terms.showTermsView(activity, configuration, (container, exception) -> 
         }).start();
     }
 });
-
 public void afterLogin(Activity activity) {
     // Call registerPush with saved PushConfiguration.
     if (savedPushConfiguration != null) {
