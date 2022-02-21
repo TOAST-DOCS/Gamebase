@@ -124,6 +124,14 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 > * PushConfiguration.pushEnabled 값은 항상 true입니다.
 > * PushConfiguration 이 null 이 아니라면 **로그인 후에** Gamebase.Push.RegisterPush API 를 호출하세요.
 
+> * 약관에 푸시 수신 동의 여부를 추가했다면, GamebaseDataContainer로부터 GamebaseResponse.Terms.ShowTermsViewResult를 생성할 수 있습니다. 
+>     * isTermsUIOpened : 약관 창이 표시되었다면 true, 이미 약관에 동의하여 약관 창이 표시되지 않았다면 false입니다. 
+>     * pushConfiguration 
+>         * pushConfiguration은 약관 창이 표시되지 않은 경우에는 null입니다. 
+>         * 약관에 Push 수신 항목이 존재하고 약관 창이 표시되었다면 pushConfiguration은 항상 유효한 객체가 리턴됩니다. 
+>         * pushConfiguration이 null이 아니라면 pushConfiguration.pushEnabled는 항상 true입니다. 
+>         * pushConfiguration이 null이 아니라면 **로그인 후에** Gamebase.Push.RegisterPush API를 호출하세요. 
+
 #### Optional 파라미터
 
 * GamebaseTermsConfiguration : GamebaseTermsConfiguration 객체를 통해 강제 약관 동의창 표시여부와 같은 설정을 변경할 수 있습니다. 
