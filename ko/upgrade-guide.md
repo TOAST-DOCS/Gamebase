@@ -8,6 +8,10 @@
     * **[TCGBConfiguration enableKickoutPopup:]**
     * **[TCGBConfiguration isEnableKickoutPopup]**
 
+### Unity
+
+* GamebaseConfiguration의 enableKickoutPopup 속성을 더 이상 지원하지 않습니다.
+
 ## 2.33.0
 
 ### iOS
