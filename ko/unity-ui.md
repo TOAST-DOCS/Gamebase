@@ -120,10 +120,6 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 
 > <font color="red">[주의]</font><br/>
 >
-> * PushConfiguration 은 약관 창이 표시되지 않은 경우에는 null입니다.(약관 창이 표시되었다면 항상 유효한 객체가 리턴됩니다.)
-> * PushConfiguration.pushEnabled 값은 항상 true입니다.
-> * PushConfiguration 이 null 이 아니라면 **로그인 후에** Gamebase.Push.RegisterPush API 를 호출하세요.
-
 > * 약관에 푸시 수신 동의 여부를 추가했다면, GamebaseDataContainer로부터 GamebaseResponse.Terms.ShowTermsViewResult를 생성할 수 있습니다. 
 >     * isTermsUIOpened : 약관 창이 표시되었다면 true, 이미 약관에 동의하여 약관 창이 표시되지 않았다면 false입니다. 
 >     * pushConfiguration 
@@ -149,12 +145,20 @@ static void ShowTermsView(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Dat
 static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration configuration, GamebaseCallback.GamebaseDelegate<GamebaseResponse.DataContainer> callback)
 ```
 
-**GamebaseTermsConfiguration** 
+**GamebaseRequest.Terms.GamebaseTermsConfiguration** 
  
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
 | forceShow | O | 약관에 동의했다면 ShowTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br>**default** : false | 
  
+
+**GamebaseResponse.Terms.ShowTermsViewResult**
+
+| Parameter            | Values                          | Description         |
+| -------------------- | --------------------------------| ------------------- |
+| isTermsUIOpened        | bool                            | 약관 창이 화면에 표시되었는지 여부를 나타냅니다.          |
+| pushConfiguration      | GamebaseResponse.Push.PushConfiguration           | 약관에 푸시 수신 동의 여부를 추가한 경우, 푸시 수신 동의 여부에 대한 정보를 가지고 있습니다.    |
+
 **ErrorCode**
 
 | Error | Error Code | Description |
@@ -183,9 +187,14 @@ public void SampleShowTermsView()
         if (Gamebase.IsSuccess(error) == true)
         {
             Debug.Log("ShowTermsView succeeded.");
+
+            GamebaseResponse.Terms.ShowTermsViewResult result = GamebaseResponse.Terms.ShowTermsViewResult.From(data);
             
             // Save the 'PushConfiguration' and use it for Gamebase.Push.RegisterPush() after Gamebase.Login().
-            savedPushConfiguration = GamebaseResponse.Push.PushConfiguration.From(data);
+            savedPushConfiguration = result.pushConfiguration;
+            
+            // Wheter the TermsUI was displayed.
+            bool isTermsUIOpened = result.isTermsUIOpened;
         }
         else
         {
