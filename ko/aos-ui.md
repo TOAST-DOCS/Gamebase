@@ -110,16 +110,6 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 약관에 동의했다면 showTermsView API 를 다시 호출해도 약관 창이 표시되지 않고 바로 성공 콜백이 리턴됩니다.
 단, Gamebase 콘솔에서 '약관 재동의' 항목을 **필요** 로 변경했다면 유저가 다시 약관에 동의할 때까지는 약관 창이 표시됩니다.
 
-> <font color="red">[주의]</font><br/>
->
-> * 약관에 푸시 수신 동의 여부를 추가했다면, GamebaseDataContainer로부터 GamebaseShowTermsViewResult를 생성할 수 있습니다.
->     * GamebaseShowTermsViewResult.isTermsUIOpened : 약관 창이 표시되었다면 true, 이미 약관에 동의하여 약관 창이 표시되지 않았다면 false입니다.
->     * GamebaseShowTermsViewResult.pushConfiguration
->         * pushConfiguration은 약관 창이 표시되지 않은 경우에는 null입니다.
->         * 약관에 Push 수신 항목이 존재하고 약관 창이 표시되었다면 pushConfiguration은 항상 유효한 객체가 리턴됩니다.
->         * pushConfiguration이 null이 아니라면 pushConfiguration.pushEnabled는 항상 true입니다.
->         * pushConfiguration이 null이 아니라면 **로그인 후에** Gamebase.Push.registerPush API를 호출하세요.
-
 #### Required 파라미터
 
 * Activity : 약관 창이 노출되는 Activity입니다.
@@ -127,7 +117,7 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 #### Optional 파라미터
 
 * GamebaseTermsConfiguration : GamebaseTermsConfiguration 객체를 통해 강제 약관 동의창 표시여부와 같은 설정을 변경할 수 있습니다.
-* GamebaseDataCallback : 약관 동의 후 약관 창이 종료될 때 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseDataContainer 객체는 GamebaseShowTermsViewResult로 변환해서 약관 팝업 표시 여부나 Push 수신 동의 여부 등을 확인할 수 있습니다.
+* GamebaseDataCallback : 약관 동의 후 약관 창이 종료될 때 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseDataContainer 객체는 GamebaseShowTermsViewResult로 변환해서 추가 정보를 확인할 수 있습니다.
 
 **API**
 
@@ -146,6 +136,13 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 | newBuilder() | **M** | GamebaseTermsConfiguration.Builder 객체는 newBuilder() 함수를 통해 생성할 수 있습니다. |
 | build() | **M** | 설정을 마친 Builder 를 Configuration 객체로 변환합니다. |
 | setForceShow(boolean forceShow) | O | 약관에 동의했다면 showTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br>**default** : false |
+
+**GamebaseShowTermsViewResult**
+
+| Field | Type | Nullable / NonNull | Description |
+| --- | --- | --- | --- |
+| isTermsUIOpened | boolean | NonNull | **true** : 약관 창이 표시되어 유저가 동의하여 약관 창이 종료되었습니다.<br>**false** : 이미 약관에 동의하여 약관 창이 표시되지 않고 약관 창이 종료되었습니다. |
+| pushConfiguration | PushConfiguration | Nullable | isTermsUIOpened가 **true**이고, 약관에 푸시 수신 동의 여부를 추가했다면 pushConfiguration은 항상 유효한 객체를 가집니다.<br>그렇지 않을 경우에는 **null**입니다.<br>pushConfiguration이 유효할 때 pushConfiguration.pushEnabled 값은 항상 **true**입니다. |
 
 **ErrorCode**
 
