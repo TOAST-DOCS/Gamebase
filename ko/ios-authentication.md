@@ -127,11 +127,11 @@ AdditionalInfo에 대한 설명은 하단의 **Gamebase에서 지원 중인 IdP*
 ### Login with IdP
 
 특정 IdP 로그인 호출을 위해서 **[TCGBGamebase loginWithType:viewController:completion:]** 메서드를 호출합니다.<br/>
-Gamebase를 통하여 로그인을 처음 시도하거나, 로그인 정보(액세스 토큰) 등이 만료되었다면, 이 API를 사용하여 로그인을 시도해야 합니다.<br/>
+Gamebase를 통하여 로그인을 처음 시도하거나, 로그인 정보(Access Token) 등이 만료되었다면, 이 API를 사용하여 로그인을 시도해야 합니다.<br/>
 로그인 결과로 **(TCGBError *)error** 객체를 이용해 성공 여부를 판단할 수 있습니다. <br/>
 또한 **TCGBAuthToken** 객체를 이용하여 사용자 ID 등의 사용자 정보 및 토큰 정보를 얻을 수 있습니다.<br/>
-로그인에 성공하면, Gamebase 액세스 토큰이 Local Storage에 저장되며 이후 loginForLastLoggedInProviderWithViewController:completion: 메서드를 사용할 때 저장된 액세스 토큰을 사용하게 됩니다.<br/>
-하지만 IdP의 액세스 토큰은 각 IdP가 제공하는 SDK가 관리합니다.<br/>
+로그인에 성공하면, Gamebase Access Token이 Local Storage에 저장되며 이후 loginForLastLoggedInProviderWithViewController:completion: 메서드를 사용할 때 저장된 Access Token을 사용하게 됩니다.<br/>
+하지만 IdP의 Access Token은 각 IdP가 제공하는 SDK가 관리합니다.<br/>
 
 <br/><br/>
 몇몇 IdP로 로그인할 때는 꼭 필요한 정보가 있습니다.<br/>
@@ -164,7 +164,7 @@ Gamebase를 통하여 로그인을 처음 시도하거나, 로그인 정보(액�
 
 ### Login with Credential
 
-IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급받은 액세스 토큰 등을 이용하여, Gamebase에 로그인할 수 있는 인터페이스입니다.
+IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급받은 Access Token 등을 이용하여, Gamebase에 로그인할 수 있는 인터페이스입니다.
 
 
 
@@ -176,7 +176,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 | keyname                                  | a use                          | 값 종류                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정 |                                |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(Access Token) 설정 |                                |
 
 
 
@@ -378,7 +378,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 ### AddMapping with Credential
 
-게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 액세스 토큰 등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스입니다.
+게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 Access Token 등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스입니다.
 
 
 
@@ -390,7 +390,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 | keyname                                  | a use                          | 값 종류                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, iosgamecenter, naver, google, twitter, line, appleid |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정 |                                |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(Access Token) 설정 |                                |
 
 
 
@@ -574,17 +574,17 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 
 ### Get Authentication Information for External IdP
 
-* 외부 인증 IdP 의 액세스 토큰, 사용자 ID, Profile 등의 정보는 로그인 후 게임 서버에서 Gamebase Server API 를 호출하여 가져올 수 있습니다.
+* 외부 인증 IdP의 Access Token, 사용자 ID, Profile 등의 정보는 로그인 후 게임 서버에서 Gamebase Server API를 호출하여 가져올 수 있습니다.
     * [Game > Gamebase > API 가이드 > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
 
 > <font color="red">[주의]</font><br/>
 >
-> * 외부 IdP 의 인증 정보는 보안을 위해 게임 서버에서 호출할 것을 권장합니다.
-> * IdP 에 따라 액세스 토큰이 빠른 시간에 만료될 수 있습니다.
->     * 예를 들어 Google 은 로그인 2시간 후에는 액세스 토큰이 만료되어 버립니다.
->     * 사용자 정보가 필요하다면 로그인 후 바로 Gamebase Server API 를 호출하시기 바랍니다.
-> * "[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]" API 로 로그인한 경우에는 인증 정보를 가져올 수 없습니다.
->     * 사용자 정보가 필요하다면 "[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]" 대신, 사용하고자 하는 IDPCode 와 동일한 {IDP_CODE} 를 파라미터로 하여 "[TCGBGamebase loginWithType:viewController:completion:]" API 로 로그인 해야 합니다.
+> * 외부 IdP의 인증 정보는 보안을 위해 게임 서버에서 호출할 것을 권장합니다.
+> * IdP에 따라 Access Token이 빠른 시간에 만료될 수 있습니다.
+>     * 예를 들어 Google은 로그인 2시간 후에는 Access Token이 만료되어 버립니다.
+>     * 사용자 정보가 필요하다면 로그인 후 바로 Gamebase Server API를 호출하시기 바랍니다.
+> * "[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]" API로 로그인한 경우에는 인증 정보를 가져올 수 없습니다.
+>     * 사용자 정보가 필요하다면 "[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]" 대신, 사용하고자 하는 IDPCode와 동일한 {IDP_CODE}를 파라미터로 하여 "[TCGBGamebase loginWithType:viewController:completion:]" API로 로그인 해야 합니다.
 
 > <font color="red">[주의]</font><br/>
 >
@@ -882,11 +882,11 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 ## GraceBan
 
 * '결제 어뷰징 자동 해제' 기능입니다.
-    * 결제 어뷰징 자동 해제 기능은 결제 어뷰징 자동 제재로 이용 정지가 되어야 할 사용자가 이용 정지 유예 상태 후 이용 정지가 되도록 합니다.
-    * 이용 정지 유예 상태일 경우 설정한 기간 내에 해제 조건을 모두 만족하면 정상플레이가 가능해집니다.
+    * 결제 어뷰징 자동 해제 기능은 결제 어뷰징 자동 제재로 이용 정지가 되어야 할 사용자가 '이용 정지 유예 상태' 후 이용 정지가 되도록 합니다.
+    * '이용 정지 유예 상태'일 경우, 설정한 기간 내에 이용 정지 해제 조건을 모두 만족하면 정상적으로 플레이할 수 있습니다.
     * 기간 내에 조건을 충족하지 못하면 이용 정지가 됩니다.
 * 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 TCGBAuthToken.tcgbMember.graceBanInfo 값을 확인하고, null이 아닌 유효한 TCGBGraceBanInfo 객체를 리턴한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
-    * 이용 정지 유예 상태인 유저의 게임 내 접근 제어는 게임에서 처리하셔야 합니다.
+    * 이용 정지 유예 상태인 유저의 게임 내 접근 제어는 게임에서 처리해야 합니다.
 
 **Example**
 

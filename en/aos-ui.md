@@ -76,8 +76,8 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 
 | API | Mandatory(M) / Optional(O) | Description |
 | --- | --- | --- |
-| newBuilder() | **M** | ImageNoticeConfiguration object can be created using the newBuilder() function. |
-| build() | **M** | Converts the configured builder into a Configuration object. |
+| newBuilder() | **M** | ImageNoticeConfiguration.Builder object can be created using the newBuilder() function. |
+| build() | **M** | Converts the configured Builder to a Configuration object. |
 | setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | Image notice background color.<br>This string uses a value converted into android.graphics.Color.parseColor(String) API.<br>**default**: #80000000 |
 | setTimeout(long timeoutMs) | O | Max time to load an image notice (in millisec)<br>**default**: 5000L (5s) |
 | enableAutoCloseByCustomScheme(boolean enable) | O | Determine whether to force shutdown the image notice when a custom scheme event occurs.<br>**default**: true |
@@ -123,6 +123,7 @@ However, if the "Agree again to Terms and Conditions" item has been switched to 
  
 #### Optional parameter
 
+* GamebaseTermsConfiguration: Using the GamebaseTermsConfiguration object, you can change settings such as whether to forcibly display the terms and conditions agreement window.
 * GamebaseDataCallback: Uses a callback to inform the user when the terms and conditions window closes after agreeing to it. The GamebaseDataContainer object which comes as a callback can be converted to PushConfiguration. The converted object can be used in the Gamebase.Push.registerPush API after login.
 
 **API**
@@ -134,6 +135,14 @@ However, if the "Agree again to Terms and Conditions" item has been switched to 
                                      @Nullable GamebaseTermsConfiguration configuration,
                                      @Nullable GamebaseDataCallback<GamebaseDataContainer> callback);
 ```
+
+**GamebaseTermsConfiguration**
+
+| API | Mandatory(M) / Optional(O) | Description |
+| --- | --- | --- |
+| newBuilder() | **M** | A GamebaseTermsConfiguration.Builder object can be created using the newBuilder() function. |
+| build() | **M** | Converts the configured Builder to a Configuration object. |
+| setForceShow(boolean forceShow) | O | If the user agreed to the terms, calling the showTermsView API again will not display the terms and conditions window, but ignore it and force the display of the terms and conditions window.<br>**default** : false |
 
 **ErrorCode**
 
@@ -338,7 +347,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | API                  | Description         |
 | -------------------- | ------------------- |
 | newBuilder(String termsVersion, int termsSeq, List<GamebaseTermsContent> contents) | Creates a Builder to create Configuration objects. |
-| build() | Converts the configured builder into a Configuration object. |
+| build() | Converts the configured Builder to a Configuration object. |
 
 | Parameter            | Mandatory(M) / Optional(O) | Type                    | Description         |
 | -------------------- | -------------------------- | ------------------------- | ------------------- |

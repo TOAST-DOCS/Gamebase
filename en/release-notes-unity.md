@@ -4,16 +4,16 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 공통약관창의 설정을 변경할 수 있는 신규 API가 추가되었습니다.
-    * [Game > Gamebase > Unity SDK 사용 가이드 > UI > Terms > showTermsView](./unity-ui/#showtermsview)
+#### Added Features
+* Added a new API that allows you to change settings of the common terms and conditions window.
+    * [Game > Gamebase > Unity SDK User Guide > UI > Terms > showTermsView](./unity-ui/#showtermsview)
 
-#### 기능 개선/변경
-* 에러코드 추가 및 변경
-    * GamebaseErrorCode.UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
-    * 에러코드 999에 매핑 시킨 GamebaseErrorCode.SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
+#### Feature Updates
+* Added and changed error codes
+    * Changed the error code mapped to the GamebaseErrorCode.UNKNOWN_ERROR error from 999 to 9999.
+    * Newly added the GamebaseErrorCode.SOCKET_UNKNOWN_ERROR error mapped to the error code 999.
     
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.33.0](./release-notes-android/#2330-20220125)
 * [Gamebase iOS SDK 2.33.0](./release-notes-ios/#2330-20220125)
 

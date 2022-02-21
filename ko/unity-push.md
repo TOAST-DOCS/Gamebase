@@ -212,7 +212,7 @@ public void QueryTokenInfoSample(bool isSandbox)
 
 ### Event Handling
 
-* 푸시 메세지가 도착했거나 푸시 메세지를 클릭했을 때 이벤트 처리를 할 수 있습니다.
+* 푸시 메시지가 도착했거나 푸시 메시지를 클릭했을 때 이벤트를 처리할 수 있습니다.
 * 이벤트 등록 방법은 GamebaseEventHandler 가이드를 참고하시기 바랍니다.
     * [ Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Push Received Message](./unity-etc/#push-received-message)
     * [ Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./unity-etc/#push-click-message)

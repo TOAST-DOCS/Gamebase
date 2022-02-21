@@ -121,7 +121,7 @@
 |         | -4150001              | 잘못된 형식의 JSON 데이터 전달 |
 |         | -5000001 ~ 15         | 내부 시스템 오류 |
 | Gateway | -4010202              | 잘못된 앱 ID가 호출됨 |
-|         | -4010203              | 유효하지 않은 액세스 토큰 |
+|         | -4010203              | 유효하지 않은 Access Token |
 |         | -4010204              | 이용 정지/탈퇴/계정 유실 등 유효하지 않은 사용자 |
 |         | -4010208              | Gamebase Access Token 만료 혹은 IdP Access Token 만료 |
 |         | -4040201              | 호출한 API에 대한 NHN Cloud 서비스가 활성화되어 있지 않을 때 <br/>- 예) Leaderboard 서비스를 사용하지 않는 상태에서 Gamebase를 통해 Leaderboard API를 호출할 때 <br/>혹은 Gamebase 자체가 활성화되어 있지 않을 때 |

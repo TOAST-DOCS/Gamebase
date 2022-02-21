@@ -109,15 +109,15 @@ function gamebaseLogin() {
 
 ### Login with Credential
 
-IdP에서 제공하는 SDK, RestAPI 등을 사용해 게임에서 직접 인증한 후 발급받은 액세스 토큰 등을 이용하여, Gamebase에 로그인할 수 있는 인터페이스입니다.
+IdP에서 제공하는 SDK, RestAPI 등을 사용해 게임에서 직접 인증한 후 발급받은 Access Token 등을 이용하여, Gamebase에 로그인할 수 있는 인터페이스입니다.
 
 **Credential 파라미터 설정 방법**
 
 | key name             | a use                                                               |
 | -------------------- | ------------------------------------------------------------------- |
 | providerName         | IdP 유형 설정                                                        |
-| accessToken          | IdP 로그인 이후 받은 인증 정보(액세스 토큰) 설정                          |
-| accessTokenSecret    | IdP 로그인 이후 받은 인증 정보(액세스 토큰 시크릿) 설정                    |
+| accessToken          | IdP 로그인 이후 받은 인증 정보(Access Token) 설정                          |
+| accessTokenSecret    | IdP 로그인 이후 받은 인증 정보(Access Token Secret) 설정                    |
 
 > [참고]
 >

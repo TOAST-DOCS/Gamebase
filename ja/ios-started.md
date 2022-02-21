@@ -39,7 +39,7 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 | --- | --- | --- | --- | --- |
 | Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.29.2 | GamebaseのInterfaceおよびコアロジックを含む | iOS9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Facebookログインをサポート | iOS9 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.4 | Paycoログインをサポート | iOS9 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.5 | Paycoログインをサポート | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | Naverログインをサポート | iOS9 or later |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenterログインをサポート | iOS9 or later |
 |  | GamebaseAuthGoogleAdapter.framework | | Googleログインをサポート | iOS9 or later |
@@ -208,7 +208,7 @@ end
 
 * URL Schemeを設定する必要があります。
     * **Xcode > Target > Info > URL Types**に**tcgb.{Bundle ID}.naver**を追加する必要があります。
-
+    * **Naver Developers > マイアプリケーション > API設定 > iOS > URL Scheme**に**tcgb.{Bundle ID}.naver**を追加する必要があります。
 * Gamebase iOS SDK 1.12.1以下は追加設定が必要です。
     * [Game > Gamebase > iOS SDK使用ガイド > 始める > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 

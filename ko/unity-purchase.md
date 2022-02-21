@@ -376,7 +376,7 @@ public void RequestItemListOfNotConsumed()
 
 > <font color="red">[주의]</font><br/>
 >
-> 현재 구독 상품은 Android의 경우 Google Play 스토어만 지원합니다.
+> 현재 Android에서는 Google Play 스토어에서만 구독 상품을 지원합니다.
 
 **API**
 

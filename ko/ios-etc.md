@@ -41,9 +41,9 @@ Gamebase에서 지원하는 부가적인 기능을 설명합니다.
 그런데 게임에서 표시하는 언어를 단말기에 설정된 언어가 아닌, 별도의 옵션으로 언어를 변경할 수 있는 게임이 있습니다.
 예를 들어, 단말기에 설정된 언어는 영어 이지만 게임 표시 언어를 일본어로 변경한 경우, Gamebase에서 표시하는 언어도 일본어로 변경하고 싶지만 Gamebase가 표시하는 언어는 단말기에 설정된 언어인 영어로 표시됩니다.
 
-이와 같이 `단말기에 설정된 언어가 아닌, 다른 언어로 Gamebase 메세지를 표시하고 싶은` 애플리케이션을 위해 Gamebase 는 `Display Language` 라는 기능을 제공합니다.
+이와 같이 `단말기에 설정된 언어가 아닌, 다른 언어로 Gamebase 메시지를 표시하고 싶은` 애플리케이션을 위해 Gamebase 는 `Display Language` 라는 기능을 제공합니다.
 
-Gamebase는 Display Language로 설정한 언어로 Gamebase 메세지를 표시합니다.
+Gamebase는 Display Language로 설정한 언어로 Gamebase 메시지를 표시합니다.
 Display Language에 입력하는 언어 코드는 반드시 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 지정된 코드만을 사용할 수 있습니다.
 
 > <font color="red">[주의]</font><br/>
@@ -302,7 +302,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 ### Gamebase Event Handler
 
 * Gamebase는 각종 이벤트를 **GamebaseEventHandler**라는 하나의 이벤트 시스템에서 모두 처리할 수 있습니다.
-* GamebaseEventHandler는 아래 API를 통해 간단하게 Handler를 추가/제거 할 수 있습니다.
+* GamebaseEventHandler는 아래 API를 통해 간단하게 Handler를 추가/제거할 수 있습니다.
 
 **API**
 
@@ -372,8 +372,8 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 | ServerPush | kTCGBServerPushAppKickoutMessageReceived<br>kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
 | Observer | kTCGBObserverLaunching<br>kTCGBObserverHeartbeat<br>kTCGBObserverNetwork | [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data] | \- |
 | Purchase - 프로모션 결제 | kTCGBPurchaseUpdated | [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data] | \- |
-| Push - 메세지 수신 | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
-| Push - 메세지 클릭 | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
+| Push - 메시지 수신 | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
+| Push - 메시지 클릭 | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
 | Push - 액션 클릭 | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | RichMessage 버튼 클릭 시 동작합니다. |
 
 #### Logged Out
@@ -400,17 +400,17 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 #### Server Push
 
-* Gamebase 서버에서 클라이언트 단말기로 보내는 메세지입니다.
+* Gamebase 서버에서 클라이언트 단말기로 보내는 메시지입니다.
 * Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
 	* kTCGBServerPushAppKickoutMessageReceived
     	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout**에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
-        * 클라이언트 단말기에서 서버 메세지를 수신한 직후에 발생하는 이벤트입니다.
+        * 클라이언트 단말기에서 서버 메시지를 수신한 직후에 발생하는 이벤트입니다.
         * '오토 플레이'와 같이 게임이 동작 중인 경우, 게임을 일시 정지시키는 목적으로 활용할 수 있습니다.
 	* kTCGBServerPushAppKickout
     	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout**에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
-        * 클라이언트 단말기에서 서버 메세지를 수신했을 때 팝업 창을 표시하는데, 유저가 이 팝업 창을 닫았을 때 발생하는 이벤트입니다.
+        * 클라이언트 단말기에서 서버 메시지를 수신했을 때 팝업 창을 표시하는데, 유저가 이 팝업 창을 닫았을 때 발생하는 이벤트입니다.
     * kTCGBServerPushTransferKickout
-    	* Guest 계정을 다른 단말기로 이전을 성공하게 되면 이전 단말기에서 킥아웃 메세지를 받게 됩니다.
+    	* Guest 계정을 다른 단말기로 이전을 성공하게 되면 이전 단말기에서 킥아웃 메시지를 받게 됩니다.
 
 **Example**
 
@@ -556,7 +556,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 #### Push Received Message
 
 
-* Push 메세지가 도착했을때 발생하는 이벤트입니다.
+* Push 메시지가 도착했을때 발생하는 이벤트입니다.
 * extras 필드를 JSON으로 변환하여, Push 발송 시 전송했던 커스텀 정보를 얻을 수도 있습니다.
 
 **VO**
@@ -591,7 +591,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 #### Push Click Message
 
-* 수신한 Push 메세지를 클릭했을때 발생하는 이벤트입니다.
+* 수신한 Push 메시지를 클릭했을때 발생하는 이벤트입니다.
 
 **Example**
 

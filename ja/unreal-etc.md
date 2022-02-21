@@ -279,8 +279,13 @@ void Sample::AddEventHandler()
 {
     IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
     {
-        if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
-            message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
+        if (message.category.Equals(GamebaseEventCategory::LoggedOut))
+        {
+            auto loggedOutData = FGamebaseEventLoggedOutData::From(message.data);
+        }
+        else if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
+                 message.category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived) ||
+                 message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
         {
             auto serverPushData = FGamebaseEventServerPushData::From(message.data);
         }
@@ -316,25 +321,74 @@ void Sample::AddEventHandler()
 }
 ```
 * CategoryはGamebaseEventCategoryクラスに定義されています。
-* イベントは大きくServerPush、Observer、Purchase、Pushに分けられ、各Categoryに基づいて、GamebaseEventMessage.dataを次の表のような方法でVOに変換できます。
+* イベントは大きくLoggedOut、ServerPush、Observer、Purchase、Pushに分けられ、各Categoryに基づいて、GamebaseEventMessage.dataを次の表のような方法でVOに変換できます。
 
 
 | Event種類 | GamebaseEventCategory | VO変換方法 | 備考 |
 | --------- | --------------------- | ----------- | --- |
-| ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(message.data) | \- |
+| LoggedOut | GamebaseEventCategory::LoggedOut | FGamebaseEventLoggedOutData::From(message.data) | \- |
+| ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushAppKickOutMessageReceived<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(message.data) | \- |
 | Observer | GamebaseEventCategory::ObserverLaunching<br>GamebaseEventCategory::ObserverNetwork<br>GamebaseEventCategory::ObserverHeartbeat | FGamebaseEventObserverData::From(message.data) | \- |
 | Purchase - プロモーション決済 | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(message.data) | \- |
 | Push - メッセージ受信 | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(message.data) |  |
 | Push - メッセージクリック | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) |  |
 | Push - アクションクリック | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(message.data) | RichMessageボタンを押すと動作します。 |
 
+#### Logged Out
+
+* Gamebase Access Tokenの有効期限が切れてネットワークセッションを復元するためにログイン関数の呼び出しが必要な場合に発生するイベントです。
+
+**Example**
+
+```cpp
+public void AddEventHandlerSample()
+{
+    Gamebase.AddEventHandler(GamebaseEventHandler);
+}
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+{
+    switch (message.category)
+    {
+        case GamebaseEventCategory.LOGGED_OUT:
+            {
+                GamebaseResponse.Event.GamebaseEventLoggedOutData loggedData = GamebaseResponse.Event.GamebaseEventLoggedOutData.From(message.data);
+                if (loggedData != null)
+                {
+                    // There was a problem with the access token.
+                    // Call login again.
+                }
+                break;
+            }
+    }
+}
+void Sample::AddEventHandler()
+{
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    {
+        if (message.category.Equals(GamebaseEventCategory::LoggedOut))
+        {
+            auto loggedOutData = FGamebaseEventLoggedOutData::From(message.data);
+            if (loggedData.IsValid() == true)
+            {
+                // There was a problem with the access token.
+                // Call login again.
+            }
+        }
+    }));
+}
+```
 
 #### Server Push
 
 * Gamebaseサーバーからクライアント端末へ送信するメッセージです。
 * GamebaseでサポートするServer Push Typeは次の通りです。
+    * GamebaseEventCategory::ServerPushAppKickOutMessageReceived
+    	* NHN Cloud Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseに接続されたすべてのクライアントでキックアウトメッセージを受け取ります。
+        * クライアント端末でサーバーメッセージを受信したときに動作するイベントです。
+        * ゲームで「オートプレイ」などが動作中の場合に、ゲームを一時停止させる目的で活用できます。
     * GamebaseEventCategory::ServerPushAppKickOut
     	* NHN Cloud Gamebaseコンソールの**Operation > Kickout**でキックアウトServerPushメッセージを登録すると、Gamebaseに接続されたすべてのクライアントでキックアウトメッセージを受信します。
+        * クライアント端末でサーバーメッセージを受信したときにポップアップを表示しますが、ユーザーがポップアップを閉じたときに動作するイベントです。
     * GamebaseEventCategory::ServerPushTransferKickout
     	* Guestアカウントを他の端末へ移行すると、以前の端末でキックアウトメッセージを受信します。
 
@@ -346,6 +400,7 @@ void Sample::AddEventHandler()
     IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
     {
         if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
+            message.category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived) ||
             message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
         {
             auto serverPushData = FGamebaseEventServerPushData::From(message.data);
@@ -361,8 +416,14 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
 {
     if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut))
     {
-        // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+        // Kicked out from Gamebase server.(Maintenance, banned or etc.)
+        // And the game user closes the kickout pop-up.
         // Return to title and initialize Gamebase again.
+    }
+   else if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived))
+    {
+        // Currently, the kickout pop-up is displayed.
+        // If your game is running, stop it.
     }
     else if (message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
     {

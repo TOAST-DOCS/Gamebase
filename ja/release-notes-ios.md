@@ -1,17 +1,33 @@
 ## Game > Gamebase > リリースノート > iOS
 
+### 2.34.0 (2022. 02. 22.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.0/GamebaseSDK-iOS.zip)
+
+#### 기능 추가
+* Gamebase 콘솔의 업데이트 필수 설정에서 '팝업 버튼 추가' 항목을 선택하면 클라이언트의 업데이트 필수 팝업에 '자세히 보기' 버튼이 추가됩니다.
+* 단말기에서 알림을 허용했는지 여부를 알 수 있는 API가 추가되었습니다.
+    * **[TCGBPush queryNotificationAllowedWithCompletion:]**
+* 공통 약관 API 호출 후 약관 UI가 표시되었는지 여부를 알 수 있는 VO 클래스가 추가되었습니다.
+    * **TCGBShowTermsViewResult**
+
+#### 기능 개선/변경
+* 이미지공지 API를 호출했을 때 표시할 이미지공지가 없는 경우, 배경이 잠시 어두워지는 현상을 수정하였습니다.
+* 킥아웃 팝업 표시 여부는 Gamebase 콘솔에서 킥아웃 등록시 설정할 수 있으므로 아래 API들이 deprecated 되었습니다.
+    * **[TCGBConfiguration enableKickoutPopup:]**
+    * **[TCGBConfiguration isEnableKickoutPopup]**
+    
 ### 2.33.0 (2022.01.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* 공통약관창의 설정을 변경할 수 있는 신규 API가 추가되었습니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > UI > Terms > showTermsView](./ios-ui/#showtermsview)
+#### 機能追加
+* 共通約款ウィンドウの設定を変更できる新規APIが追加されました。
+    * [Game > Gamebase > iOS SDK使用ガイド > UI > Terms > showTermsView](./ios-ui/#showtermsview)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트 : PAYCO iOS SDK (1.5.5)
-* 에러코드 추가 및 변경
-    * TCGB_ERROR_UNKNOWN_ERROR 에러에 매핑된 에러코드를 999에서 9999로 변경하였습니다.
-    * 에러코드 999에 매핑 시킨 TCGB_ERROR_SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
+#### 機能改善/変更
+* 外部SDKアップデート: PAYCO iOS SDK (1.5.5)
+* エラーコード追加および変更
+    * TCGB_ERROR_UNKNOWN_ERRORエラーにマッピングされたエラーコードを999から9999に変更しました。
+    * エラーコード999にマッピングしたTCGB_ERROR_SOCKET_UNKNOWN_ERRORエラーを新たに追加しました。
     
 ### 2.32.1 (2022.01.11)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.1/GamebaseSDK-iOS.zip)

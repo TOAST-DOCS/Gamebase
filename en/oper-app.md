@@ -2,9 +2,9 @@
 
 Go to the NHN Cloud Cloud Console and click **Game > Gamebase > App**.
 
-* **App** : Manage app information
-* **Client** : Manage client version and status information
-* **Install URL** : Manage installation URL of each app store
+* **App**: Manage app information
+* **Client**: Manage client version and status information
+* **Install URL**: Manage installation URL of each app store
 
 ## App
 
@@ -89,25 +89,25 @@ The following are the settings for each customer center type:
 ![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_19_202009.png)
 Set this when the developer uses its own customer center.
 The options to be set are as follows:
-* **Customer Center URL** : Enter developer's own customer center address which is currently being provided or used.
-* **Contact** : Enter the Customer Center contact information. This information will be delivered via the Gamebase SDK.
+* **Customer Center URL**: Enter developer's own customer center address which is currently being provided or used.
+* **Contact**: Enter the Customer Center contact information. This information will be delivered via the Gamebase SDK.
 
 #### 2. Customer Center Provided by Gamebase
 ![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_20_202009.png)
 Set this when you want to use the customer center feature provided by Gamebase.
 The options to be set are as follows:
-* **Customer Center URL** : Provides the page info where you can receive customer inquiries. This URL is automatically created when selecting the Customer Center Provided by Gamebase, and you can receive the customer inquiry through a separate web page by using this URL.
-* **Contact** : Enter the Customer Center contact information. This information will be delivered via the Gamebase SDK.
-* **Supported language** : Select the language supported for the customer center users. This setting is separate from the project language setting, and Korean, English, Japanese, and Chinese are available for now. You can use the Customer Center Provided by Gamebase features based on the language selected here.
-* **Default language** : From the list of the selected support languages, select the default one.
+* **Customer Center URL**: Provides the page info where you can receive customer inquiries. This URL is automatically created when selecting the Customer Center Provided by Gamebase, and you can receive the customer inquiry through a separate web page by using this URL.
+* **Contact**: Enter the Customer Center contact information. This information will be delivered via the Gamebase SDK.
+* **Supported language**: Select the language supported for the customer center users. It is set separately from the project language setting, and supports Korean, English, Japanese, Chinese (Simplified), Chinese (Traditional), and Russian. If the supported language you want is not available, please contact customer center.
+* **Default language**: From the list of the selected support languages, select the default one.
 
 #### 3. NHN Cloud organization product (Online Contact)
 ![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_21_202102.png)
 Set this to use online contact products provided by each organization within NHN Cloud.
 The options to be set are as follows:
-* **Customer Center URL** : Enter the address provided by NHN Cloud Online Contact. You can see this info by accessing the NHN Cloud Online Contact
-* **Contact** : Enter the customer center contact information. Additional information can be received through the Gamebase SDK.
-* **OC organization Key** : Enter the key for checking the NHN Cloud Online Contact Customer Center inquiries. If you do not enter this info, you cannot find the inquiries received within the customer center page. To find out how to link it, see the following section:
+* **Customer Center URL**: Enter the address provided by NHN Cloud Online Contact. You can see this info by accessing the NHN Cloud Online Contact
+* **Contact**: Enter the customer center contact information. Additional information can be received through the Gamebase SDK.
+* **OC organization Key**: Enter the key for checking the NHN Cloud Online Contact Customer Center inquiries. If you do not enter this info, you cannot find the inquiries received within the customer center page. To find out how to link it, see the following section:
 > [Note] Linking NHN Cloud Online Contact to Gamebase
 > For linking NHN Cloud Online Contact within Gamebase, you must follow the following procedure to acquire the SSO login API Key and set it within the Gamebase in order to use the customer center service properly.
 > For the customer center to provide stable service, please follow the below steps in the correct order:
@@ -119,9 +119,9 @@ The options to be set are as follows:
 > Login type: GET method
 > Token validation URL: https://gamebase-web.cloud.toast.com/tcgb-web/v1.0/apps/{appId}/online-contact/login-status
 > For the **{appId}** field, check the project ID of Gamebase and enter it in the field.
-> 
+>
 > 2) Acquire the OC organization Key and enter it in the OC organization Key field.
-> Full Administration -> Contract service status -> Go to the organization info, copy the OC organization key of the OC organization info, and then enter it in the Gamebase OC organization Key field 
+> Full Administration -> Contract service status -> Go to the organization info, copy the OC organization key of the OC organization info, and then enter it in the Gamebase OC organization Key field
 > ![gamebase_app_25_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_25_202102.png)
 >
 > 3) Acquire the NHN Cloud Online Contact Customer Center site address, and enter it in the Customer Center URL field
@@ -448,8 +448,8 @@ As of today (November of 2019), there are only two types of scope, such as `full
 ![gamebase_app_29_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_29_202012.png)
 
 2. In the callback URL field, enter the following:
-	* Authorization callback page : https://api.weibo.com/oauth2/default.html
-	* Cancel authorization callback page : https://api.weibo.com/oauth2/default.html
+	* Authorization callback page: https://api.weibo.com/oauth2/default.html
+	* Cancel authorization callback page: https://api.weibo.com/oauth2/default.html
 
 
 **Input field**

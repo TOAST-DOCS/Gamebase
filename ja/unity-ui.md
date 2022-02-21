@@ -126,6 +126,7 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 
 #### Optionalパラメータ
 
+* GamebaseTermsConfiguration : GamebaseTermsConfigurationオブジェクトを介して強制的に約款同意ウィンドウを表示するかどうかなどの設定を変更できます。
 * callback：約款に同意した後、約款ウィンドウが終了する時、ユーザーにコールバックで伝えます。コールバックで返されたGamebaseResponse.DataContainerオブジェクトはGamebaseResponse.Push.PushConfigurationに変換してログイン後、Gamebase.Push.registerPush APIに使用できます。
 
 
@@ -137,7 +138,14 @@ Supported Platforms
 
 ```cs
 static void ShowTermsView(GamebaseCallback.GamebaseDelegate<GamebaseResponse.DataContainer> callback)
+static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration configuration, GamebaseCallback.GamebaseDelegate<GamebaseResponse.DataContainer> callback)
 ```
+
+**GamebaseTermsConfiguration** 
+ 
+| API | Mandatory(M) / Optional(O) | Description | 
+| --- | --- | --- | 
+| forceShow | O | 約款に同意した場合、showTermsView APIを再度呼び出しても約款ウィンドウが表示されませんが、これを無視して強制的に約款ウィンドウを表示します。<br>**default** : false |
 
 **ErrorCode**
 
@@ -153,17 +161,22 @@ static void ShowTermsView(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Dat
 **Example**
 
 ```cs
+static GamebaseResponse.Push.PushConfiguration savedPushConfiguration = null;
+
 public void SampleShowTermsView()
 {
-    Gamebase.Terms.ShowTermsView((data, error) => 
+    var configuration = new GamebaseRequest.Terms.GamebaseTermsConfiguration
+    {
+        forceShow = true
+    };
+    Gamebase.Terms.ShowTermsView(configuration, (data, error) => 
     {
         if (Gamebase.IsSuccess(error) == true)
         {
             Debug.Log("ShowTermsView succeeded.");
 
-            // If the 'PushConfiguration' is not null,
-            // save the 'PushConfiguration' and use it for Gamebase.Push.RegisterPush() after Gamebase.Login().
-            GamebaseResponse.Push.PushConfiguration pushConfiguration = GamebaseResponse.Push.PushConfiguration.From(data);
+            // Save the 'PushConfiguration' and use it for Gamebase.Push.RegisterPush() after Gamebase.Login().
+            savedPushConfiguration = GamebaseResponse.Push.PushConfiguration.From(data);
         }
         else
         {
@@ -171,8 +184,19 @@ public void SampleShowTermsView()
         }
     });
 }
-```
 
+public void AfterLogin()
+{
+    // Call RegisterPush with saved PushConfiguration.
+    if (savedPushConfiguration != null)
+    {
+        Gamebase.Push.RegisterPush(savedPushConfiguration, (error) =>
+        {
+            ...
+        });
+    }
+}
+```    
 
 ### queryTerms
 

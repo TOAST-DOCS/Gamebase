@@ -277,8 +277,13 @@ void Sample::AddEventHandler()
 {
     IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
     {
-        if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
-            message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
+        if (message.category.Equals(GamebaseEventCategory::LoggedOut))
+        {
+            auto loggedOutData = FGamebaseEventLoggedOutData::From(message.data);
+        }
+        else if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
+                 message.category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived) ||
+                 message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
         {
             auto serverPushData = FGamebaseEventServerPushData::From(message.data);
         }
@@ -315,24 +320,75 @@ void Sample::AddEventHandler()
 ```
 
 * Category is defined in the GamebaseEventCategory class.
-* In general, events can be categorized into ServerPush, Observer, Purchase, or Push. GamebaseEventMessage.data can be converted into a VO in the ways shown in the following table for each Category.
+* In general, events can be categorized into LoggedOut, ServerPush, Observer, Purchase, or Push. GamebaseEventMessage.data can be converted into a VO in the ways shown in the following table for each Category.
 
 | Event type | GamebaseEventCategory | VO conversion method | Remarks |
 | --------- | --------------------- | ----------- | --- |
-| ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(message.data) | \- |
+| LoggedOut | GamebaseEventCategory::LoggedOut | FGamebaseEventLoggedOutData::From(message.data) | \- |
+| ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushAppKickOutMessageReceived<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(message.data) | \- |
 | Observer | GamebaseEventCategory::ObserverLaunching<br>GamebaseEventCategory::ObserverNetwork<br>GamebaseEventCategory::ObserverHeartbeat | FGamebaseEventObserverData::From(message.data) | \- |
 | Purchase - Promotion payment | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(message.data) | \- |
 | Push - Message received | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(message.data) |  |
 | Push - Message clicked | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) |  |
 | Push - Action clicked | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(message.data) | Operates when the RichMessage button is clicked. |
 
+#### Logged Out
+
+* This event occurs when the Gamebase Access Token has expired and a login function call is required to recover the network session.
+
+**Example**
+
+```cpp
+public void AddEventHandlerSample()
+{
+    Gamebase.AddEventHandler(GamebaseEventHandler);
+}
+
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+{
+    switch (message.category)
+    {
+        case GamebaseEventCategory.LOGGED_OUT:
+            {
+                GamebaseResponse.Event.GamebaseEventLoggedOutData loggedData = GamebaseResponse.Event.GamebaseEventLoggedOutData.From(message.data);
+                if (loggedData != null)
+                {
+                    // There was a problem with the access token.
+                    // Call login again.
+                }
+                break;
+            }
+    }
+}
+
+void Sample::AddEventHandler()
+{
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    {
+        if (message.category.Equals(GamebaseEventCategory::LoggedOut))
+        {
+            auto loggedOutData = FGamebaseEventLoggedOutData::From(message.data);
+            if (loggedData.IsValid() == true)
+            {
+                // There was a problem with the access token.
+                // Call login again.
+            }
+        }
+    }));
+}
+```
 
 #### Server Push
 
 * This is a message sent from the Gamebase server to the client's device.
 * The Server Push Types supported from Gamebase are as follows:
+    * GamebaseEventCategory::ServerPushAppKickOutMessageReceived
+    	* If you register a kickout ServerPush message in **Operation > Kickout** in the NHN Cloud Gamebase console, all clients connected to Gamebase will receive a kickout message.
+        * This event occurs immediately after receiving a server message from the client device.
+        * It can be used to pause the game when the game is running, as in the case of 'Auto Play'.
     * GamebaseEventCategory::ServerPushAppKickOut
     	* If you register a kickout ServerPush message in **Operation > Kickout** of the NHN Cloud Gamebase Console, then all clients connected to Gamebase will receive the kickout message.
+        * A pop-up is displayed when the client device receives a server message. This event occurs when the user closes this pop-up.
     * GamebaseEventCategory::ServerPushTransferKickout
     	* If the guest account is successfully transferred to another device, the previous device receives a kickout message.
 
@@ -344,6 +400,7 @@ void Sample::AddEventHandler()
     IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
     {
         if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
+            message.category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived) ||
             message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
         {
             auto serverPushData = FGamebaseEventServerPushData::From(message.data);
@@ -359,8 +416,14 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
 {
     if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut))
     {
-        // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+        // Kicked out from Gamebase server.(Maintenance, banned or etc.)
+        // And the game user closes the kickout pop-up.
         // Return to title and initialize Gamebase again.
+    }
+    else if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived))
+    {
+        // Currently, the kickout pop-up is displayed.
+        // If your game is running, stop it.
     }
     else if (message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
     {

@@ -15,9 +15,7 @@ Gamebase Unity SDK를 사용하려면 먼저 초기화를 진행해야 합니다
 | enablePopup | ALL | O |
 | enableLaunchingStatusPopup | ALL | O |
 | enableBanPopup | ALL | O |
-| enableKickoutPopup | ALL | O |
-| fcmSenderId | Android | O |
-| useWebview | Standalone | O |
+| useWebViewLogin | Standalone | O |
 
 #### 1. App ID
 
@@ -72,20 +70,7 @@ LaunchingStatus는 아래 Launching 절 아래 State, Code 부분을 참고하�
 
 * 기본값: true
 
-#### 8. enableKickoutPopup
-
-Gamebase Server로 부터 Kickout 이벤트를 받은 경우, Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 설정입니다.
-
-* 기본값: true
-
-
-#### 9. fcmSenderId
-
-Firebase Messaging(FCM) 사용을 위한 Sender ID입니다.
-
-![FCM Sender ID](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
-
-#### 10. useWebview
+#### 8. useWebViewLogin
 
 Standalone 플랫폼에서 WebView를 통해서 로그인을 할 것인지에 대한 설정입니다. 
 

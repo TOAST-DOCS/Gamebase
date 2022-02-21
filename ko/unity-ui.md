@@ -107,27 +107,21 @@ Gamebase 콘솔에 설정한 약관을 표시합니다.
 
 ![TermsView Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/termsView-guide-ui-001_2.20.0.png)
 
-ShowTermsView API 는 웹뷰로 약관창을 표시해줍니다.
-Game 의 UI 에 맞는 약관창을 직접 제작하고자 하는 경우에는 QueryTerms API 를 호출하여, Gamebase 콘솔에 설정한 약관 항목을 불러올 수 있습니다.
+ShowTermsView API 는 웹뷰로 약관 창을 표시해줍니다.
+Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 QueryTerms API 를 호출하여, Gamebase 콘솔에 설정한 약관 항목을 불러올 수 있습니다.
 유저가 약관에 동의했다면 각 항목별 동의 여부를 UpdateTerms API 를 통해 Gamebase 서버로 전송하시기 바랍니다.
 
 ### ShowTermsView
 
-약관창을 화면에 띄워 줍니다.
+약관 창을 화면에 띄워 줍니다.
 유저가 약관에 동의를 했을 경우, 동의 여부를 서버에 등록합니다.
-약관에 동의했다면 ShowTermsView API 를 다시 호출해도 약관창이 표시되지 않고 바로 성공 콜백이 리턴됩니다.
-단, Gamebase 콘솔에서 약관 재동의 항목을 **필요** 로 변경했다면 유저가 다시 약관에 동의할 때까지는 약관창이 표시됩니다.
-
-> <font color="red">[주의]</font><br/>
->
-> * PushConfiguration 은 약관창이 표시되지 않은 경우에는 null입니다.(약관창이 표시되었다면 항상 유효한 객체가 리턴됩니다.)
-> * PushConfiguration.pushEnabled 값은 항상 true입니다.
-> * PushConfiguration 이 null 이 아니라면 **로그인 후에** Gamebase.Push.RegisterPush API 를 호출하세요.
+약관에 동의했다면 ShowTermsView API 를 다시 호출해도 약관 창이 표시되지 않고 바로 성공 콜백이 리턴됩니다.
+단, Gamebase 콘솔에서 약관 재동의 항목을 **필요** 로 변경했다면 유저가 다시 약관에 동의할 때까지는 약관 창이 표시됩니다.
 
 #### Optional 파라미터
 
 * GamebaseTermsConfiguration : GamebaseTermsConfiguration 객체를 통해 강제 약관 동의창 표시여부와 같은 설정을 변경할 수 있습니다. 
-* callback : 약관 동의 후 약관창이 종료될 때 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseResponse.DataContainer 객체는 GamebaseResponse.Push.PushConfiguration 변환해서 로그인 후 Gamebase.Push.RegisterPush API 에 사용할 수 있습니다.
+* callback : 약관 동의 후 약관 창이 종료될 때 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseResponse.DataContainer 객체는 GamebaseResponse.Push.PushConfiguration 변환해서 로그인 후 Gamebase.Push.RegisterPush API 에 사용할 수 있습니다.
 
 
 **API**
@@ -141,12 +135,20 @@ static void ShowTermsView(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Dat
 static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration configuration, GamebaseCallback.GamebaseDelegate<GamebaseResponse.DataContainer> callback)
 ```
 
-**GamebaseTermsConfiguration** 
+**GamebaseRequest.Terms.GamebaseTermsConfiguration** 
  
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
-| forceShow | O | 약관에 동의했다면 ShowTermsView API를 다시 호출해도 약관창이 표시되지 않지만, 이를 무시하고 강제로 약관창을 표시합니다.<br>**default** : false | 
+| forceShow | O | 약관에 동의했다면 ShowTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br>**default** : false | 
  
+
+**GamebaseResponse.Terms.ShowTermsViewResult**
+
+| Parameter              | Values                          | Description         |
+| ---------------------- | --------------------------------| ------------------- |
+| isTermsUIOpened        | bool                            | **true** : 약관 창이 표시되어 유저가 동의하여 약관 창이 종료되었습니다.<br>**false** : 이미 약관에 동의하여 약관 창이 표시되지 않고 약관 창이 종료되었습니다.        |
+| pushConfiguration      | GamebaseResponse.Push.PushConfiguration           | isTermsUIOpened가 **true**이고, 약관에 푸시 수신 동의 여부를 추가했다면 pushConfiguration은 항상 유효한 객체를 가집니다.<br>그렇지 않을 경우에는 **null**입니다.<br>pushConfiguration이 유효할 때 pushConfiguration.pushEnabled 값은 항상 **true**입니다. |
+
 **ErrorCode**
 
 | Error | Error Code | Description |
@@ -175,9 +177,14 @@ public void SampleShowTermsView()
         if (Gamebase.IsSuccess(error) == true)
         {
             Debug.Log("ShowTermsView succeeded.");
+
+            GamebaseResponse.Terms.ShowTermsViewResult result = GamebaseResponse.Terms.ShowTermsViewResult.From(data);
             
             // Save the 'PushConfiguration' and use it for Gamebase.Push.RegisterPush() after Gamebase.Login().
-            savedPushConfiguration = GamebaseResponse.Push.PushConfiguration.From(data);
+            savedPushConfiguration = result.pushConfiguration;
+            
+            // Wheter the TermsUI was displayed.
+            bool isTermsUIOpened = result.isTermsUIOpened;
         }
         else
         {
