@@ -376,7 +376,7 @@ Sign In with Apple 기능을 사용하려면 App Store Connect, Gamebase 콘솔,
 
 > <font color="red">[주의]</font><br/>
 >
-> privateKey 값에 개행이 들어가지 않도록 주의해 주세요.
+> privateKey에 개행이 들어가지 않도록 주의해 주세요.
 
 ###### Additional Info Settings
 [Sign In with Apple 의 AuthorizationScope 알아보기](https://developer.apple.com/documentation/authenticationservices/asauthorizationscope?language=occ)
