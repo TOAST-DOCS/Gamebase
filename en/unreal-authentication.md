@@ -246,9 +246,11 @@ This interface allows login to Gamebase with SDKs provided by IdP and authentica
 
 | Keyname | Usage | Value Type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                          | google, facebook, payco, iosgamecenter, naver, twitter, line |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | Set authentication information (e.g. access token) given after IdP login <br/> Disabled for Google authentication |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Set authorization code given after Google login |                                          |
+| GamebaseAuthProviderCredential::ProviderName | Set IdP type                          | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential::AccessToken | Set authentication information (e.g. access token) given after IdP login <br/> Disabled for Google authentication |                                |
+| GamebaseAuthProviderCredential::AuthorizationCode | Set authorization code given after Google login |                                          |
+| GamebaseAuthProviderCredential::GamebaseAccessToken | Used when logging in with Gamebase Access Token instead of IdP authentication information |  |
+| GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn | Allow login attempts with another account without logging out while logged in to Gamebase | **bool** |
 
 > [TIP]
 >
@@ -413,6 +415,8 @@ Regarding mapping, two APIs exist: Add/Cancel Mapping API.
 
 Mapping can be implemented in the following order. 
 
+![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
+
 #### 1. Login 
 Since mapping refers to adding IdP account integration to a current account, login is required. 
 Call login API first to log in. 
@@ -554,8 +558,12 @@ See the following example for the attempt of force mapping:
 **API**
 
 ```cpp
+void AddMappingForcibly(const FGamebaseForcingMappingTicket& forcingMappingTicket, const FGamebaseAuthTokenDelegate& onCallback);
+
+// Legacy API
 void AddMappingForcibly(const FString& providerName, const FString& forcingMappingKey, const FGamebaseAuthTokenDelegate& onCallback);
 void AddMappingForcibly(const FString& providerName, const FString& forcingMappingKey, const UGamebaseJsonObject& additionalInfo, const FGamebaseAuthTokenDelegate& onCallback);
+void AddMappingForcibly(const UGamebaseJsonObject& credentialInfo, const FString& forcingMappingKey, const FGamebaseAuthTokenDelegate& onCallback);
 ```
 
 **Example**
@@ -581,8 +589,8 @@ void Sample::AddMappingForcibly(const FString& providerName)
                     // Unexpected error occurred. Contact Administrator.
                 }
                 
-                // Attempt to force mapping. 
-                IGamebase::Get().AddMappingForcibly(providerName, forcingMappingTicket->forcingMappingKey,
+                // Attempt force mapping. 
+                IGamebase::Get().AddMappingForcibly(forcingMappingTicket, forcingMappingTicket->forcingMappingKey,
                     FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* innerAuthToken, const FGamebaseError* innerError)
                 {
                     if (Gamebase::IsSuccess(error))
@@ -607,57 +615,27 @@ void Sample::AddMappingForcibly(const FString& providerName)
 }
 ```
 
+### Change Login with ForcingMappingTicket
 
-### Add Mapping Forcibly with Credential
+When there's an account which is already mapped to a particular IdP, log out from the current account and log in with the mapped account. 
+In this case, `ForcingMappingTicket` acquired from AddMapping API is required. 
 
-When there's an account which is already mapped to a particular IdP, attempt to **Force Mapping**. 
-To attempt a **Force Mapping**, you need `ForcingMappingTicket` acquired from AddMpping API. 
-
-The interface enables to authenticate with SDK provided by game IdP to call Gamebase AddMappingForcibly, by using given access token. 
-
-* Setting Credential Parameters 
-
-| Keyname | Usage | Value Type |
-| ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                           | google, facebook, payco, iosgamecenter, naver, twitter, line |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | Set authentication information (e.g. access token) given after IdP login <br/> Disabled for Google authentication |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Set authorization code given after Google login |                                        |
-
-> [TIP]
->
-> Might be required to use unique features of an external service (e.g. Facebook) for a game. 
->
-
-
-> <font color="red">[Caution]</font><br/>
->
-> Development issues requiring the support of an external SDK must be implemented by using API of such SDK, which is not supported by Gamebase.
->
-
-See the following example of attempting force mapping. 
+If the Change Login API call fails, the Gamebase login status is maintained with the existing UserID.
 
 **API**
 
-```cpp
-void AddMappingForcibly(const UGamebaseJsonObject& credentialInfo, const FString& forcingMappingKey, const FGamebaseAuthTokenDelegate& onCallback);
+```cs
+void ChangeLogin(const FGamebaseForcingMappingTicket& forcingMappingTicket, const FGamebaseAuthTokenDelegate& onCallback);
 ```
 
 **Example**
 
+The following example shows a situation where, after attempting to map to Facebook, an account already mapped to Facebook is found and the login is changed to the account.
+
 ```cpp
-void Sample::AddMappingForcibly()
+void Sample::ChangeLoginWithFacebook(const FString& providerName)
 {
-    UGamebaseJsonObject* credentialInfo = NewObject<UGamebaseJsonObject>();
-
-    // google
-    //credentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Google);
-    //credentialInfo->SetStringField(GamebaseAuthProviderCredential::AuthorizationCode, TEXT("google auchorization code"));
-
-    // facebook
-    credentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Facebook);
-    credentialInfo->SetStringField(GamebaseAuthProviderCredential::AccessToken, TEXT("facebook access token"));
-
-    IGamebase::Get().AddMapping(*credentialInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    IGamebase::Get().AddMapping(GamebaseAuthProvider::Facebook, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -670,37 +648,37 @@ void Sample::AddMappingForcibly()
             {
                 // Use the From() method of the ForcingMappingTicket class to get an ForcingMappingTicket instance.
                 auto forcingMappingTicket = FGamebaseForcingMappingTicket::From(error);
-                if (forcingMappingTicket.IsValid() == false)
+                if (forcingMappingTicket.IsValid())
+                {   
+                    // Attempt force mapping.
+                    IGamebase::Get().ChangeLogin(forcingMappingTicket, forcingMappingTicket->forcingMappingKey,
+                        FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* authTokenForcibly, const FGamebaseError* innerError)
+                    {
+                        if (Gamebase::IsSuccess(error))
+                        {
+                            // Successfully changed login
+                        }
+                        else
+                        {
+                            // Failed to change login
+                            // Check the error code and resolve the error.
+                        }
+                    }));
+                }
+                else
                 {
                     // Unexpected error occurred. Contact Administrator.
                 }
-                
-                // Attempt to force mapping. 
-                IGamebase::Get().AddMappingForcibly(*credentialInfo, forcingMappingTicket->forcingMappingKey,
-                    FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* innerAuthToken, const FGamebaseError* innerError)
-                {
-                    if (Gamebase::IsSuccess(error))
-                    {
-                        // Successfully added force mapping 
-                        UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly succeeded."));
-                    }
-                    else
-                    {
-                        // Check error code and take an appropriate processing. 
-                        UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly failed. (errorCode: %d, errorMessage: %s)"), error->code, *error->message);
-                    }
-                }));
             }
             else
             {
-                // Check error code and take an appropriate processing. 
+                // Check the error code and resolve the error.
                 UE_LOG(GamebaseTestResults, Display, TEXT("AddMapping failed."));
             }
         }
     }));
 }
 ```
-
 
 ### Remove Mapping
 
@@ -1131,17 +1109,74 @@ void Sample::WithdrawImmediately()
 }
 ```
 
+## GraceBan
+
+* This is a 'purchase abuse automatic release' function.
+    * The purchase abuse automatic release function allows users who should be banned due to purchase abuse automatic lockdown to be banned after ban suspension status.
+    * When a user is in ban suspension status, if the user satisfies all of the release conditions within the set period of time, the user will be able to play normally.
+    * If the user does not satisfy the conditions within the period, the user is banned.
+* Games that use the purchase abuse automatic release function must always check the value of AuthToken.member.graceBanInfo API after login. If a valid GraceBanInfo object that is not null is returned, the user must be informed of the ban release conditions, period, etc.
+    * In-game access control for users who are in ban suspension status must be handled by the game.
+
+**Example**
+
+```cpp
+void Sample::Login()
+{
+    IGamebase::Get().Login(GamebaseAuthProvider::Guest, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    {
+        if (Gamebase::IsSuccess(error) == false)
+        {
+            // Login failed
+            return;
+        }
+        
+        // Check if user is under grace ban
+        GamebaseResponse.Common.Member.GraceBanInfo graceBanInfo = authToken->member.graceBan;
+        if (graceBanInfo != null)
+        {
+            string periodDate = string.Format("{0:yyyy/MM/dd HH:mm:ss}", 
+                new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(graceBanInfo.gracePeriodDate));
+            string message = graceBanInfo.message;
+            
+            GamebaseResponse.Common.Member.GraceBanInfo.ReleaseRuleCondition releaseRuleCondition = graceBanInfo.releaseRuleCondition;
+            if (releaseRuleCondition != null)
+            {
+                // condition type : "AND", "OR"
+                string releaseRule = string.Format("{0}{1} {2} {3}time(s)", releaseRuleCondition.amount,
+                    releaseRuleCondition.currency, releaseRuleCondition.conditionType, releaseRuleCondition.count);
+            }
+
+            GamebaseResponse.Common.Member.GraceBanInfo.PaymentStatus paymentStatus = graceBanInfo.paymentStatus;
+            if (paymentStatus != null) {
+                String paidAmount = paymentStatus.amount + paymentStatus.currency;
+                String paidCount = paymentStatus.count + "time(s)";
+            }
+
+            // Guide the user through the UI how to finish the grace ban status.
+        }
+        else
+        {
+            // Login success.
+        }
+    }));
+}
+```
+
 ## Error Handling
 
 | Category | Error | Error Code | Description |
 | --- | --- | --- | --- |
-| Auth | INVALID_MEMBER | 6 | Requested for invalid member.  |
-|  | BANNED_MEMBER | 7 | The member has been banned.  |
-|  | AUTH_USER_CANCELED | 3001 | Cancelled login. |
-|  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | The authentication method is not supported.  |
-|  | AUTH_NOT_EXIST_MEMBER | 3003 | The member does not exist or has withdrawn.  |
-|  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | Error of external authentication library. <br/> Check DetailCode and DetailMessage.  |
-|  | AUTH_ALREADY_IN_PROGRESS_ERROR | 3010 | Previous authentication process has not been completed. 
+| -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
+| Auth           | INVALID\_MEMBER                          | 6          | A request for invalid member.                        |
+|                | BANNED\_MEMBER                           | 7          | The member has been banned.                               |
+|                | AUTH\_USER\_CANCELED                     | 3001       | Tje login has been cancelled.                            |
+|                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | The authentication method is not supported.                        |
+|                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | The member does not exist or has withdrawn.                      |
+|                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | Failed to initialize an external authentication library. |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | Error occurred in the external authentication library. <br/> Check DetailCode and DetailMessage.  |
+|                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | The previous authentication process has not been completed. |
+|                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | Logged out because the Gamebase Access Token is not valid.<br/>Please try logging in again. |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | Used TransferAccount on a same device.  |
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | Attempted to transfer on a non-guest account, or mapped a non-guest IdP to account.  |
 |                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccount has been expired.  |

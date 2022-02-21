@@ -121,7 +121,7 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
 * viewController: The terms and conditions window is exposed in ViewController.
  
 #### Optional parameter
-
+* configuration: Using TCGBTermsConfiguration, you can change settings such as whether to forcibly display the terms and conditions agreement window.
 * completion: Uses a callback to inform the user when the terms and conditions window closes after agreeing to it. The TCGBDataContainer object which comes as callback can be converted to TCGBPushConfiguration. The converted object can be used in the registerPush API after login.
 
 
@@ -130,6 +130,10 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
 ```objectivec
 + (void)showTermsViewWithViewController:(UIViewController *)viewController
                              completion:(nullable void (^)(TCGBDataContainer * _Nullable dataContainer, TCGBError * _Nullable error))completion;
+                             
++ (void)showTermsViewWithConfiguration:(TCGBTermsConfiguration *)configuration
+                        viewController:(nullable UIViewController *)viewController
+                            completion:(nullable void (^)(TCGBDataContainer * _Nullable dataContainer, TCGBError * _Nullable error))completion;
 ```
 
 **ErrorCode**
@@ -168,6 +172,11 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
 }
 ```
 
+**TCGBTermsConfiguration**
+
+| Parameter            | Values                          | Description         |
+| -------------------- | --------------------------------| ------------------- |
+| forceShow            | BOOL                            | Even after the user agreed to the terms and conditions, forcibly display the terms and conditions window.<br/>**default**: NO          |
 
 ### queryTerms
 

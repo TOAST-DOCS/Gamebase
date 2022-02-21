@@ -1,16 +1,32 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.34.0 (2022. 02. 22.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+* Gamebase 콘솔의 업데이트 필수 설정에 '팝업 버튼 추가' 항목을 선택하면 클라이언트의 업데이트 필수 팝업에 '자세히 보기' 버튼이 추가됩니다.
+* 단말기에서 알림을 허용했는지 여부를 알 수 있는 API가 추가되었습니다.
+    * **Gamebase.Push.queryNotificationAllowed()**
+* 공통 약관 API 호출 후 약관 UI가 표시되었는지 여부를 알 수 있는 VO 클래스가 추가되었습니다.
+    * **GamebaseShowTermsViewResult**
+
+#### 기능 개선/변경
+* 킥아웃 팝업 표시 여부는 Gamebase 콘솔에서 킥아웃 등록시 설정할 수 있으므로 다음 필드가 deprecated 되었습니다.
+    * **UIPopupConfiguration.enableKickoutPopup**
+
+#### 버그 수정
+* 이미지 공지 '오늘은 다시 보지 않기' 체크시 24시간 후에도 이미지 공지가 표시되지 않는 버그를 수정했습니다.
+
 ### 2.33.0 (2022.01.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* 공통약관의 표시 옵션을 변경할 수 있는 신규 API가 추가되었습니다.
-    * 설정 변경이 가능한 항목에 관한 설명은 다음 가이드를 참고하시기 바랍니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > UI > Terms > showTermsView](./aos-ui/#showtermsview)
+#### Added Features
+* Added a new API that allows you to change settings of the common terms and conditions window.
+    * [Game > Gamebase > Android SDK User Guide > UI > Terms > showTermsView](./aos-ui/#showtermsview)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: PAYCO Android SDK(1.5.7), Hangame Android SDK(1.4.3.1), TOAST Gamebase IAP Andoid SDK(0.18.1)
-* 로그인 성공 직후 론칭 정보가 변경되지 않았는지 체크하는 로직을 추가하였습니다.
+#### Feature Updates
+* External SDK update: PAYCO Android SDK(1.5.7), Hangame Android SDK(1.4.3.1), TOAST Gamebase IAP Android SDK(0.18.1)
+* Added logic to check whether the launching information has not changed immediately after successful login.
 
 ### 2.32.0 (2021.12.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-Android.zip)

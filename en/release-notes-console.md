@@ -1,5 +1,23 @@
 ## Game > Gamebase > Release Notes > Console
 
+### February 22, 2022
+
+#### Feature Updates
+* Customer Center
+	* Added Chinese (Traditional) and Russian to supported languages for customer center provided by Gamebase
+* App > Client
+	* Added a **Details** button to the Update Required pop-up window
+* Purchase (IAP) > Store
+	* Added Amazon Appstore and Huawei AppGallery store
+* Push > Push
+	* Added a message click action feature and custom fields
+* Push > Settings
+	* Added a feature to reserve a message for consent to receive push advertisements
+
+#### Bug Fixes
+* Purchase (IAP) > Product
+	* Fixed an error where an error message does not appear in certain situations when product registration using a CSV file fails
+
 ### January 25, 2022
 
 #### Feature Updates

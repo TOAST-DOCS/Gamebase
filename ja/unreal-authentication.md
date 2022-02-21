@@ -246,9 +246,10 @@ IdPで提供するSDKを使用して、ゲームで直接認証した後、発�
 
 | keyname | a use | 値種類 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdPタイプ設定                        | google, facebook, payco, iosgamecenter, naver, twitter, line |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)設定<br/>Google認証時には使用しない |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Googleログイン後に取得した認証情報(Authorization Code)設定 |                                          |
+| GamebaseAuthProviderCredential::ProviderName | IdPタイプ設定                         | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential::AccessToken | IdPログイン後に取得した認証情報(Access Token)設定<br/>Google認証時には使用しない |  
+| GamebaseAuthProviderCredential::AuthorizationCode | Googleログイン後に取得した認証情報(Authorization Code)設定 |                                          |
+| GamebaseAuthProviderCredential::GamebaseAccessToken | IdP認証情報ではなくGamebase Access Tokenでログインを行いたい場合に使用 |  |
 
 > [TIP]
 >
@@ -413,6 +414,8 @@ MappingにはMapping追加/解除APIがあります。
 
 マッピングは、次の順序で実装できます。
 
+![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
+
 #### 1. ログイン
 マッピングは、現在のアカウントにIdPアカウント連携を追加することです。優先的にログインする必要があります。
 先にログインAPIを呼び出してログインします。
@@ -554,6 +557,9 @@ void Sample::AddMappingWithCredential()
 **API**
 
 ```cpp
+void AddMappingForcibly(const FGamebaseForcingMappingTicket& forcingMappingTicket, const FGamebaseAuthTokenDelegate& onCallback);
+
+// Legacy API
 void AddMappingForcibly(const FString& providerName, const FString& forcingMappingKey, const FGamebaseAuthTokenDelegate& onCallback);
 void AddMappingForcibly(const FString& providerName, const FString& forcingMappingKey, const UGamebaseJsonObject& additionalInfo, const FGamebaseAuthTokenDelegate& onCallback);
 ```
@@ -582,7 +588,7 @@ void Sample::AddMappingForcibly(const FString& providerName)
                 }
                 
                 // 強制マッピングを試行します。
-                IGamebase::Get().AddMappingForcibly(providerName, forcingMappingTicket->forcingMappingKey,
+                IGamebase::Get().AddMappingForcibly(forcingMappingTicket, forcingMappingTicket->forcingMappingKey,
                     FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* innerAuthToken, const FGamebaseError* innerError)
                 {
                     if (Gamebase::IsSuccess(error))
@@ -608,55 +614,27 @@ void Sample::AddMappingForcibly(const FString& providerName)
 ```
 
 
-### Add Mapping Forcibly with Credential
-特定IdPにすでにマッピングされているアカウントがある時、**強制的に**マッピングを試行します。
-**強制マッピング**を試行する時は、AddMapping APIで取得した`ForcingMappingTicket`が必要です。
+### Change Login with ForcingMappingTicket
 
-ゲームで、直接IdPから提供するSDKで先に認証し、発行されたアクセストークンなどを利用してGamebase AddMappingForciblyを呼び出すことができるインターフェイスです。
+特定IdPにすでにマッピングされているアカウントがある場合、現在のアカウントからログアウトし、マッピングされたアカウントにログインします。
+このとき、AddMapping APIで取得した`ForcingMappingTicket`が必要です。
 
-* Credentialパラメータの設定方法
-
-| keyname | a use | 値種類 |
-| ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdPタイプ設定                        | google, facebook, payco, iosgamecenter, naver, twitter, line |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)設定<br/>Google認証時には使用しない |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Googleログイン後に取得した認証情報(Authorization Code)設定 |                                        |
-
-> [TIP]
->
-> ゲーム内で外部サービス(Facebookなど)の固有機能を使用する必要がある時に必要な場合があります。
->
-
-
-> <font color="red">[注意]</font><br/>
->
-> 外部SDKでサポートを要求する開発事項は外部SDKのAPIを使用して実装する必要があり、Gamebaseではサポートしません。
->
-
-次は強制マッピングを試行する例です。
+Change Login APIの呼び出しが失敗した場合、 Gamebaseログイン状態は既存のUserIDのままです。
 
 **API**
 
-```cpp
-void AddMappingForcibly(const UGamebaseJsonObject& credentialInfo, const FString& forcingMappingKey, const FGamebaseAuthTokenDelegate& onCallback);
+```cs
+void ChangeLogin(const FGamebaseForcingMappingTicket& forcingMappingTicket, const FGamebaseAuthTokenDelegate& onCallback);
 ```
 
 **Example**
 
+次はFacebookにマッピング試行後、Facebookにすでにマッピングされたアカウントが存在し、該当アカウントにログインを変更する例です。
+
 ```cpp
-void Sample::AddMappingForcibly()
+void Sample::ChangeLoginWithFacebook(const FString& providerName)
 {
-    UGamebaseJsonObject* credentialInfo = NewObject<UGamebaseJsonObject>();
-
-    // google
-    //credentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Google);
-    //credentialInfo->SetStringField(GamebaseAuthProviderCredential::AuthorizationCode, TEXT("google auchorization code"));
-
-    // facebook
-    credentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Facebook);
-    credentialInfo->SetStringField(GamebaseAuthProviderCredential::AccessToken, TEXT("facebook access token"));
-
-    IGamebase::Get().AddMapping(*credentialInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    IGamebase::Get().AddMapping(GamebaseAuthProvider::Facebook, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -664,31 +642,32 @@ void Sample::AddMappingForcibly()
         }
         else
         {
-            // まず、addMapping APIを呼び出し、すでに連携されているアカウントでマッピングを試行し、次のようにForcingMappingTicketを取得できます。
+            // まずAddMapping APIの呼び出しと、すでに連動されているアカウントにマッピングを試行して、次のようにForcingMappingTicketを取得できます。
             if (error->code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
                 // ForcingMappingTicketクラスのFrom()メソッドを利用してForcingMappingTicketインスタンスを取得します。
                 auto forcingMappingTicket = FGamebaseForcingMappingTicket::From(error);
-                if (forcingMappingTicket.IsValid() == false)
+                if (forcingMappingTicket.IsValid())
+                {   
+                    // 強制マッピングを試行します。
+                    IGamebase::Get().ChangeLogin(forcingMappingTicket, forcingMappingTicket->forcingMappingKey,
+                        FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* authTokenForcibly, const FGamebaseError* innerError)
+                    {
+                        if (Gamebase::IsSuccess(error))
+                        {
+                            // ログイン変更成功
+                        }
+                        else
+                        {
+                            // ログイン変更失敗
+                            // エラーコードを確認し、適切な処理を行います。
+                        }
+                    }));
+                }
+                else
                 {
                     // Unexpected error occurred. Contact Administrator.
                 }
-                
-                // 強制マッピングを試行します。
-                IGamebase::Get().AddMappingForcibly(*credentialInfo, forcingMappingTicket->forcingMappingKey,
-                    FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* innerAuthToken, const FGamebaseError* innerError)
-                {
-                    if (Gamebase::IsSuccess(error))
-                    {
-                        // 強制マッピング追加成功
-                        UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly succeeded."));
-                    }
-                    else
-                    {
-                        // エラーコードを確認し、適切な処理を行います。
-                        UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly failed. (errorCode: %d, errorMessage: %s)"), error->code, *error->message);
-                    }
-                }));
             }
             else
             {
@@ -699,7 +678,6 @@ void Sample::AddMappingForcibly()
     }));
 }
 ```
-
 
 ### Remove Mapping
 
@@ -1130,17 +1108,73 @@ void Sample::WithdrawImmediately()
 }
 ```
 
+## GraceBan
+
+* 「決済アビューズ自動解除」機能です。
+    * 決済アビューズ自動解除機能は、決済アビューズ自動制裁で利用停止になるべきユーザーが利用停止猶予状態後に利用停止になるようにします。
+    * 利用停止猶予状態の場合、設定した期間内に解除条件を全て満たすと正常プレイが可能になります。
+    * 期間内に条件を満たさなかった場合は利用が停止されます。
+* 決済アビューズ自動解除機能を使用するゲームは、ログイン後に常にAuthToken.getGraceBanInfo() APIを呼び出して、結果がnullではない有効なGraceBanInfoオブジェクトをリターンした場合、該当ユーザーに利用停止解除条件、期間などを案内する必要があります。
+    * 利用停止猶予状態のユーザーのゲーム内アクセス制御はゲームで処理する必要があります。
+
+**Example**
+
+```cpp
+void Sample::Login()
+{
+    IGamebase::Get().Login(GamebaseAuthProvider::Guest, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    {
+        if (Gamebase::IsSuccess(error) == false)
+        {
+            // Login failed
+            return;
+        }
+        
+        // Check if user is under grace ban
+        GamebaseResponse.Common.Member.GraceBanInfo graceBanInfo = authToken->member.graceBan;
+        if (graceBanInfo != null)
+        {
+            string periodDate = string.Format("{0:yyyy/MM/dd HH:mm:ss}", 
+                new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(graceBanInfo.gracePeriodDate));
+            string message = graceBanInfo.message;
+            
+            GamebaseResponse.Common.Member.GraceBanInfo.ReleaseRuleCondition releaseRuleCondition = graceBanInfo.releaseRuleCondition;
+            if (releaseRuleCondition != null)
+            {
+                // condition type : "AND", "OR"
+                string releaseRule = string.Format("{0}{1} {2} {3}time(s)", releaseRuleCondition.amount,
+                    releaseRuleCondition.currency, releaseRuleCondition.conditionType, releaseRuleCondition.count);
+            }
+
+            GamebaseResponse.Common.Member.GraceBanInfo.PaymentStatus paymentStatus = graceBanInfo.paymentStatus;
+            if (paymentStatus != null) {
+                String paidAmount = paymentStatus.amount + paymentStatus.currency;
+                String paidCount = paymentStatus.count + "time(s)";
+            }
+
+            // Guide the user through the UI how to finish the grace ban status.
+        }
+        else
+        {
+            // Login success.
+        }
+    }));
+}
+```
+
 ## Error Handling
 
-| Category | Error | Error Code | Description |
-| --- | --- | --- | --- |
-| Auth | INVALID_MEMBER | 6 | 無効な会員に対するリクエストです。 |
-|  | BANNED_MEMBER | 7 | 制裁中の会員です。 |
-|  | AUTH_USER_CANCELED | 3001 | ログインがキャンセルされました。 |
-|  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | サポートしない認証方式です。 |
-|  | AUTH_NOT_EXIST_MEMBER | 3003 | 存在しないか、退会した会員です。 |
-|  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 外部認証ライブラリエラーです。<br/> DetailCodeおよびDetailMessageを確認してください。 |
-|  | AUTH_ALREADY_IN_PROGRESS_ERROR | 3010 | 移行認証プロセスが完了しませんでした。|
+| Category       | Error                                    | Error Code | Description                              |
+| -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
+| Auth           | INVALID\_MEMBER                          | 6          | 無効な会員に対するリクエストです。 |
+|                | BANNED\_MEMBER                           | 7          | 制裁中の会員です。 |
+|                | AUTH\_USER\_CANCELED                     | 3001       | ログインがキャンセルされました。 |
+|                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | サポートしない認証方式です。 |
+|                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 存在しないか、退会した会員です。 |
+|                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | 外部認証ライブラリの初期化に失敗しました。 |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部認証ライブラリエラーです。 <br/> DetailCodeおよびDetailMessageを確認してください。  |
+|                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | 以前の認証プロセスが完了していません。 |
+|                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | Gamebase Access Tokenが有効ではないためログアウトしました。<br/>もう一度ログインを行ってください。 |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | 発行したTransferAccountを同じ端末で使用しました。 |
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | ゲストではないアカウントで移行を試行したか、アカウントにゲスト以外のIdPが連携されています。 |
 |                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccountの有効期限が切れました。 |

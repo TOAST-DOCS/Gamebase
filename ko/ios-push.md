@@ -180,7 +180,7 @@ Push 메뉴의 **대상**에서 **iOS Sandbox**를 선택한 후 발송합니다
 
 ### Event Handling
 
-* 푸시 메세지가 도착했거나 푸시 메세지를 클릭했을 때 이벤트를 받을 수 있습니다.
+* 푸시 메시지가 도착했거나 푸시 메시지를 클릭했을 때 이벤트를 받을 수 있습니다.
 * 이벤트 등록 방법은 GamebaseEventHandler 가이드를 참고하시기 바랍니다.
     * [ Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Push Received Message](./ios-etc/#push-received-message)
     * [ Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./ios-etc/#push-click-message)

@@ -121,7 +121,7 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 * viewController：約款ウィンドウが表示されるViewControllerです。
  
 #### Optionalパラメータ
-
+* configuration : TCGBTermsConfigurationで約款ウィンドウを強制的に表示するかどうかなどの設定を変更できます。
 * completion：約款同意後、約款ウィンドウが終了する時、ユーザーにコールバックで伝えます。コールバックで来るTCGBDataContainerオブジェクトは、TCGBPushConfigurationに変換してログイン後、registerPush APIに使用できます。
 
 
@@ -130,6 +130,10 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 ```objectivec
 + (void)showTermsViewWithViewController:(UIViewController *)viewController
                              completion:(nullable void (^)(TCGBDataContainer * _Nullable dataContainer, TCGBError * _Nullable error))completion;
+
++ (void)showTermsViewWithConfiguration:(TCGBTermsConfiguration *)configuration
+                        viewController:(nullable UIViewController *)viewController
+                            completion:(nullable void (^)(TCGBDataContainer * _Nullable dataContainer, TCGBError * _Nullable error))completion;
 ```
 
 **ErrorCode**
@@ -168,6 +172,11 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 }
 ```
 
+**TCGBTermsConfiguration**
+
+| Parameter            | Values                          | Description         |
+| -------------------- | --------------------------------| ------------------- |
+| forceShow            | BOOL                            | 約款に同意した後も約款ウィンドウを強制的に表示します。<br/>**default**: NO          |
 
 ### queryTerms
 
