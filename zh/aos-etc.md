@@ -513,7 +513,6 @@ void processServerPush(String category, GamebaseEventServerPushData data) {
     	* GamebaseEventObserverData.code: 为GamebaseError值。
             * GamebaseError.INVALID_MEMBER: 6
             * GamebaseError.BANNED_MEMBER: 7
-            * GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO: 3102
     * GamebaseEventCategory.OBSERVER_NETWORK
     	* 可以接收网络变动信息。
     	* 当网络断开或被连接时或从Wifi转为Cellular网络时启动。
