@@ -1,22 +1,24 @@
-## Mobile Service > IAP > ONEStore 콘솔 가이드
+## Game > Gamebase > Store 設定ガイド > Amazon Appstoreコンソールガイド
 
-원스토어에서 라이선스 키 및 OAuth 인증 정보를 생성하여 IAP 앱 정보에 등록합니다.
+## Amazon Developer Console
+1. [Amazon開発者コンソール](https://developer.amazon.com/)にアカウントを登録し、Amazon AppStore管理メニューでアプリを作成します。
+   ![Amazon開発者コンソール](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/amazon_developer_console_eng.png)
+2. NHN Cloud IAPは、AndroidプラットフォームのAmazon AppStoreアプリのみを公式サポートします。Androidプラットフォームを選択し、アプリ名を入力たら`Create app`ボタンをクリックしてアプリを作成します。
+   ![アプリプラットフォーム選択](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/amazon_appmenu_0_eng.png)
+3. アプリを作成すると、次のように作成されたアプリのリストを確認できます。
+   ![AppStore開発者コンソールのアプリリスト](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/amazon_appmenu_1_eng.png)
+4. アプリ作成後に追加情報を入力し、開発者コンソールで提供する情報をNHN Cloud IAPコンソールのアプリ設定に入力する必要があります。
+5. このガイドの内容はAmazon AppStoreに登録されたアプリの情報とNHN Cloud IAP間のアプリ情報を接続するためのガイドだけを扱っており、<br/>より詳細なAmazon AppStoreのアプリ登録手順については[Amazonのガイド文書](https://developer.amazon.com/apps-and-games/documentation)を参照してください。
 
-### 원스토어 키 생성
-```
-Apps > 앱 선택 >In-App정보 > 인증 및 라이선스
-```
-![원스토어 인증 및 라이선스 확인](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_52.PNG)
+## 接続に必要な設定値
+![NHN Cloud Gamebaseストア設定画面](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/amazon_iap_console_ja.png)
+### Store App ID
+- [アプリリスト](https://developer.amazon.com/apps-and-games/console/apps/list.html)画面で作成されたアプリの名前をクリックすると詳細設定メニューに移動します。
+- 詳細設定メニューで、編集をタップして 'App SKU'を入力する必要があります。App SKUの値を[NHN Cloud Gamebaseコンソール>ストア]のストア情報登録画面の'ストアアプリID'に入力する必要があります。
+  ![Amazon開発者コンソールのアプリ詳細設定画面](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/amazon_appmenu_2_eng.png)
 
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-onestore-edit-gamebase.png)
 
-[표] 원스토어 v17 연동을 위한 앱 등록 필드
-
-| 필드         | 설명                             |
-| ------------- | ------------------------------ |
-| Store ID     | 스토어 리스트에서 ONE Store v17 선택|
-| App Name      | IAP Console에서 사용할 이름|
-| ONE Store Client ID | 스토어에 등록한 ClientID |
-| ONE Store Client Secret | 스토어 Oauth 인증 정보 중 Client Secret |
-| ONE Store License Key | 스토어 Oauth 인증 정보 중 License Key|
-
+### Amazon Shared Key
+- Amazon開発者コンソールの[Settings -> Identityメニュー](https://developer.amazon.com/settings/console/sdk/shared-key)に移動すると、以下のような画面で共有キーを確認できます。
+  ![Amazon開発者コンソールのIdentity画面](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/amazon_appmenu_3_eng.png)
+- この値をNHN Cloud Gamebaseコンソールアプリ設定の'Amazon Shared Key'項目に入力する必要があります。
