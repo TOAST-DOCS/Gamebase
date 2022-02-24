@@ -514,7 +514,6 @@ void processServerPush(String category, GamebaseEventServerPushData data) {
     	* GamebaseEventObserverData.code : GamebaseError値を意味します。
             * GamebaseError.INVALID_MEMBER: 6
             * GamebaseError.BANNED_MEMBER: 7
-            * GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO: 3102
     * GamebaseEventCategory.OBSERVER_NETWORK
     	* ネットワーク変動事項情報を受け取れます。
     	* ネットワークが切断されたり、接続された時、またはWi-FiからCellularネットワークに変更された時に動作します。

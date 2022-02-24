@@ -8,7 +8,7 @@
     * **GamebaseResponse.Terms.ShowTermsViewResult**
 
 #### 기능 개선/변경
-* 킥아웃 팝업 표시 여부는 Gamebase 콘솔에서 킥아웃 등록시 설정할 수 있으므로 다음 필드가 deprecated 되었습니다.
+* 킥아웃 팝업 창 표시 여부는 Gamebase 콘솔에서 킥아웃 등록 시 설정할 수 있으므로 다음 필드가 deprecated되었습니다.
     * **GamebaseConfiguration.enableKickoutPopup**
     
 #### 플랫폼별 변경 사항
