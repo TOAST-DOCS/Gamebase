@@ -12,7 +12,7 @@
 
 #### Feature Updates
 * Corrected the issue where the background becomes dark briefly when the Image Notice API has been called but there is no image notice to display
-* The following field has been deprecated because whether to display the kickout popup window can be set during kickout registration in the Gamebase console.
+* The following fields have been deprecated because whether to display the kickout popup window can be set during kickout registration in the Gamebase console.
     * **[TCGBConfiguration enableKickoutPopup:]**
     * **[TCGBConfiguration isEnableKickoutPopup]**
 
