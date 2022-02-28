@@ -154,9 +154,14 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
         // Called when the entire termsView is closed.
         NSLog(@"TermsView closed");
 
+        TCGBShowTermsViewResult *showTermsViewResult = [TCGBShowTermsViewResult fromDataContainer:dataContainer];
+
         // If the TCGBPushConfiguration is not null, 
         // save TCGBPushConfiguration and use it for registerPush after login.
-        TCGBPushConfiguration *savedPushConfiguraiton = [TCGBPushConfiguration fromDataContainer:dataContainer];
+        TCGBPushConfiguration *savedPushConfiguraiton = showTermsViewResult.pushConfiguration;
+
+        // Wheter the TermsUI was displayed.
+        BOOL isTermsUIOpened = showTermsViewResult.isTermsUIOpened;
     };
 
     [TCGBTerms showTermsViewWithViewController:self completion:completion];
@@ -177,6 +182,13 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 | Parameter            | Values                          | Description         |
 | -------------------- | --------------------------------| ------------------- |
 | forceShow            | BOOL                            | 約款に同意した後も約款ウィンドウを強制的に表示します。<br/>**default**: NO          |
+
+**TCGBShowTermsViewResult**
+
+| Parameter            | Values                          | Description         |
+| -------------------- | --------------------------------| ------------------- |
+| isTermsUIOpened            | BOOL                            | 約款ウィンドウが画面に表示されているかどうかを表します。          |
+| TCGBPushConfiguration      | TCGBPushConfiguration           | 約款にプッシュ受信同意有無を追加した場合、プッシュ受信同意有無についての情報を持っています。    |
 
 ### queryTerms
 
