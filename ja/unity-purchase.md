@@ -378,7 +378,7 @@ public void RequestItemListOfNotConsumed()
 
 > <font color="red">[注意]</font><br/>
 >
-> 現在、定期購入商品は、Androidの場合Google Playストアのみサポートします。
+> 現在AndroidではGoogle Playストアでのみサブスクリプション商品をサポートしています。
 
 **API**
 
