@@ -5,7 +5,12 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 ### Settings
 
-在Android或iOS中设置应用内结算的方法请参考以下文档。<br/>
+> <font color="red">[注意]</font><br/>
+>
+> Android ONE Store仅支持v17。
+> 目前不支持Android ONE Store v19，但仍在审查是否支持它。
+
+在Android或iOS中设置应用内结算的方法请参考以下文档。
 
 * [Android Purchase Settings](aos-purchase#settings)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
@@ -257,7 +262,7 @@ public void RequestActivatedPurchasesSample()
 ### Event by Promotion
 
 完成Promotion支付后，可通过GamebaseEventHandler接收Event并进行处理。 
-关于使用GamebaseEventHandler处理Promotion支付Event的方法，请参考如下指南。
+关于使用GamebaseEventHandler处理Promotion支付Event的方法，请参考以下指南。
 [Game > Gamebase > Unity SDK使用指南 > ETC > Gamebase Event Handler](./unity-etc/#purchase-updated)
 
 Supported Platforms
@@ -275,7 +280,7 @@ Supported Platforms
 | ---------------------------------------- | ---------- | ---------------------------------------- |
 | PURCHASE_NOT_INITIALIZED                 | 4001       | Purchase模块未初始化。请确认是否将<br>gamebase-adapter-purchase-IAP模块添加到项目中。 |
 | PURCHASE_USER_CANCELED                   | 4002       | 游戏用户已取消购买商品。                 |
-| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 尚未完成购买逻辑的情况下已调用API。    |
+| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 尚未完成购买逻辑的情况下调用了API。    |
 | PURCHASE_NOT_ENOUGH_CASH                 | 4004       | 该商店的余额不足，无法结算。           |
 | PURCHASE_INACTIVE_PRODUCT_ID             | 4005       | 此商品为非激活状态。 |
 | PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | 请求支付的GamebaseProductID不存在。 |
