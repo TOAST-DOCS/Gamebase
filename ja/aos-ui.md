@@ -110,13 +110,6 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 約款に同意した場合、showTermsView APIを再度呼び出しても約款ウィンドウが表示されず、すぐに成功コールバックがリターンされます。
 ただし、Gamebaseコンソールで「約款の再同意」項目を**必要**に変更した場合は、ユーザーが再度約款に同意するまでは約款ウィンドウが表示されます。
 
-> <font color="red">[注意]</font><br/>
->
-> * 約款にプッシュ受信同意有無を追加した場合は、GamebaseDataContainerからPushConfigurationを作成できます。
-> * PushConfigurationは、約款ウィンドウが表示されていない場合はnullです。(約款ウィンドウが表示されていれば常に有効なオブジェクトが返されます。)
-> * PushConfiguration.pushEnabled値は常にtrueです。
-> * PushConfigurationがnullではない場合、**ログイン後に**Gamebase.Push.registerPush APIを呼び出してください。
-
 #### Requiredパラメータ
 
 * Activity：約款ウィンドウが表示されるActivityです。
@@ -124,7 +117,7 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 #### Optionalパラメータ
 
 * GamebaseTermsConfiguration : GamebaseTermsConfigurationオブジェクトを介して強制的に約款同意ウィンドウを表示するかどうかなどの設定を変更できます。
-* GamebaseDataCallback：約款に同意した後、約款ウィンドウが終了する時、ユーザーにコールバックで伝えます。コールバックで返されたGamebaseDataContainerオブジェクトはPushConfigurationに変換してログイン後、Gamebase.Push.registerPush APIに使用できます。
+* GamebaseDataCallback：約款に同意した後、約款ウィンドウが終了する時、ユーザーにコールバックで伝えます。コールバックで返されたGamebaseDataContainerオブジェクトはGamebaseShowTermsViewResultに変換して追加情報を確認できます。
 
 **API**
 
@@ -144,6 +137,13 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 | build() | **M** | 設定を終えたBuilderをConfigurationオブジェクトに変換します。 |
 | setForceShow(boolean forceShow) | O | 約款に同意した場合、showTermsView APIを再度呼び出しても約款ウィンドウが表示されませんが、これを無視して強制的に約款ウィンドウを表示します。<br>**default** : false |
 
+**GamebaseShowTermsViewResult**
+
+| Field | Type | Nullable / NonNull | Description |
+| --- | --- | --- | --- |
+| isTermsUIOpened | boolean | NonNull | **true**：約款ウィンドウが表示され、ユーザーが同意して約款ウィンドウが終了しました。<br>**false**：すでに約款に同意していて約款ウィンドウが表示されずに約款ウィンドウが終了しました。 |
+| pushConfiguration | PushConfiguration | Nullable | isTermsUIOpenedが**true**で、約款にプッシュ受信同意有無を追加した場合、pushConfigurationは常に有効なオブジェクトを持ちます。<br>そうでない場合は**null**です。<br>pushConfigurationが有効なとき、pushConfiguration.pushEnabled値は常に**true**です。 |
+
 **ErrorCode**
 
 | Error | Error Code | Description |
@@ -162,11 +162,14 @@ static PushConfiguration savedPushConfiguration = null;
 final GamebaseTermsConfiguration configuration = GamebaseTermsConfiguration.newBuilder()
         .setForceShow(true)
         .build();
-Gamebase.Terms.showTermsView(activity, configuration, (container, exception) -> {
+Gamebase.Terms.showTermsView(activity, (container, exception) -> {
     if (Gamebase.isSuccess(exception)) {
         // Save the PushConfiguration and use it for Gamebase.Push.registerPush()
         // after Gamebase.login().
-        savedPushConfiguration = PushConfiguration.from(container);
+        GamebaseShowTermsViewResult termsViewResult = GamebaseShowTermsViewResult.from(container);
+        if (termsViewResult != null) {
+            savedPushConfiguration = termsViewResult.pushConfiguration;
+        }
     } else {
         new Thread(() -> {
             // Wait for a while and try again.
@@ -176,7 +179,6 @@ Gamebase.Terms.showTermsView(activity, configuration, (container, exception) -> 
         }).start();
     }
 });
-
 public void afterLogin(Activity activity) {
     // Call registerPush with saved PushConfiguration.
     if (savedPushConfiguration != null) {
