@@ -162,7 +162,7 @@ static PushConfiguration savedPushConfiguration = null;
 final GamebaseTermsConfiguration configuration = GamebaseTermsConfiguration.newBuilder()
         .setForceShow(true)
         .build();
-Gamebase.Terms.showTermsView(activity, (container, exception) -> {
+Gamebase.Terms.showTermsView(activity, configuration, (container, exception) -> {
     if (Gamebase.isSuccess(exception)) {
         // Save the PushConfiguration and use it for Gamebase.Push.registerPush()
         // after Gamebase.login().
