@@ -392,7 +392,7 @@ Under same user ID, you can query all subscriptions purchased both on Android an
 
 > <font color="red">[Caution]</font><br/>
 >
-> For Android, subscriptions are currently supported only on the Google Play Store.a
+> For Android, subscriptions are currently supported only on the Google Play Store.
 
 **API**
 
