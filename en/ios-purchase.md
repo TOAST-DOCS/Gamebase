@@ -1,5 +1,10 @@
 ## Game > Gamebase > iOS Developer's Guide> Purchase
 
+> <font color="red">[Caution]</font><br/>
+>
+> If you use 3rd party payment plugins or modules such as those for Unreal or Unity, it might affect the Gamebase purchase functionality.
+>
+
 This page describes how to set In-App Purchase (IAP).
 
 Gamebase provides an integrated purchase API to easily link IAP of many stores in a game.

@@ -15,9 +15,7 @@ Following settings are required for initialization.
 | enablePopup | ALL | O |
 | enableLaunchingStatusPopup | ALL | O |
 | enableBanPopup | ALL | O |
-| enableKickoutPopup | ALL | O |
-| fcmSenderId | Android | O |
-| useWebview | Standalone | O |
+| useWebViewLogin | Standalone | O |
 
 #### 1. App ID
 
@@ -72,23 +70,11 @@ This setting is related to applying default pop-ups provided by Gamebase, when t
 
 * Default: True
 
-#### 8. enableKickoutPopup
-
-The setting is related to enabling default Gamebase popups, when Kickout event is received by the Gamebase server. 
-
-* Default: true
-
-
-#### 9. fcmSenderId
-
-Sender ID to use FCM (Firebase Cloud Messaging).
-
-![FCM Sender ID](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
-
-#### 10. useWebview
+#### 8. useWebViewLogin
 
 Set whether or not to log in to WebView on a (Standalone) platform.
 
+### Debug Mode
 * Gamebase only displays the (warning) and error log.
 * To turn on system logs for development reference, call **Gamebase.SetDebugMode(true)**.
 
