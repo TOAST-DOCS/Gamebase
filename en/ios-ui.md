@@ -154,9 +154,14 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
         // Called when the entire termsView is closed.
         NSLog(@"TermsView closed");
 
+        TCGBShowTermsViewResult *showTermsViewResult = [TCGBShowTermsViewResult fromDataContainer:dataContainer];
+
         // If the TCGBPushConfiguration is not null, 
         // save TCGBPushConfiguration and use it for registerPush after login.
-        TCGBPushConfiguration *savedPushConfiguraiton = [TCGBPushConfiguration fromDataContainer:dataContainer];
+        TCGBPushConfiguration *savedPushConfiguraiton = showTermsViewResult.pushConfiguration;
+
+        // Wheter the TermsUI was displayed.
+        BOOL isTermsUIOpened = showTermsViewResult.isTermsUIOpened;
     };
 
     [TCGBTerms showTermsViewWithViewController:self completion:completion];
@@ -177,6 +182,13 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
 | Parameter            | Values                          | Description         |
 | -------------------- | --------------------------------| ------------------- |
 | forceShow            | BOOL                            | Even after the user agreed to the terms and conditions, forcibly display the terms and conditions window.<br/>**default**: NO          |
+
+**TCGBShowTermsViewResult**
+
+| Parameter            | Values                          | Description         |
+| -------------------- | --------------------------------| ------------------- |
+| isTermsUIOpened            | BOOL                            | Indicates whether the terms and conditions window was displayed on the screen.          |
+| TCGBPushConfiguration      | TCGBPushConfiguration           | If you added consent to receive push notifications to the terms and conditions, this parameter has information on whether the user agrees to receive push notifications.    |
 
 ### queryTerms
 

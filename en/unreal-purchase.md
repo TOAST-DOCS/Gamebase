@@ -5,19 +5,32 @@ The unified purchase API of Gamebase supports for easy integration of in-app pur
 
 ### Settings
 
-> <font color="red">[Caution]</font><br/>
->
-> For Android ONE Store, only v17 is supported.
-> Android ONE Store v19 is currently not supported and is being considered for support.
-
 Regarding how to set in-app purchases on Android or iOS, read the following documents: <br/>
 
 * [Android Purchase Settings](aos-purchase#settings)
 * [iOS Purchase Settings](ios-purchase#settings)
 
+#### Unreal Plugin Settings
+
+> <font color="red">[Caution]</font><br/>
+>
+> If there is payment-related processing in an external plugin, the Gamebase purchase function may not work properly.
+
+* You must disable the Online SubSystem plugin, which is enabled by default in Unreal, or change it to not use the Store function.
+    * If you're using Online SubSystem GooglePlay plugin, edit the /Config/Android/AndroidEngine.ini file.
+        ```ini
+        [OnlineSubsystemGooglePlay.Store]
+        bSupportsInAppPurchasing=False
+        ```
+    * If you're using Online SubSystem Online SubSystem iOS plugin, edit the /Config/IOS/IOSEngine.ini file.
+        ```ini
+        [OnlineSubsystemIOS.Store]
+        bSupportsInAppPurchasing=False
+        ```
+
 #### Setting for Purchases on Android (for 4.24 or lower engine version)
 
-* When 4.24 is installed via Epic Games Launcher, 
+* When the version 4.24 or lower is installed via Epic Games Launcher, 
     delete **Engine\Build\Android\Java\src\com\android\vending\billing\IInAppBillingService.aidl** to build it properly.  
     * [IInAppBillingService.aidl](https://developer.android.com/google/play/billing/api), provided by Gamebase, must be removed to prevent conflicts. 
     * There's no need to remove it, though, if you're using 4.25 or higher engine versions, or if the engine is provided by github. 
@@ -379,7 +392,7 @@ Under same user ID, you can query all subscriptions purchased both on Android an
 
 > <font color="red">[Caution]</font><br/>
 >
-> Currently, subscriptions of Android are supported only at Google Playstore. 
+> For Android, subscriptions are currently supported only on the Google Play Store.
 
 **API**
 

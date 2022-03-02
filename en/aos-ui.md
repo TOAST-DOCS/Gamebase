@@ -110,13 +110,6 @@ If users agree to the terms and conditions, register the user consent data in th
 If users agree to the terms and conditions, calling the showTermsView API again will immediately return the success callback without displaying the terms and conditions window.
 However, if the "Agree again to Terms and Conditions" item has been switched to **Required**, the terms and conditions window is displayed until users agree again to the terms and conditions.
 
-> <font color="red">[Caution]</font><br/>
->
-> * If you have added user consent for receiving push notification in the terms and conditions, you can create a PushConfiguration from GamebaseDataContainer.
-* PushConfiguration is null if the terms and conditions window is not displayed. (If the terms and conditions window is displayed, a valid object is always returned.)
-* PushConfiguration.pushEnabled value is always true.
-* If PushConfiguration is not null, call Gamebase.Push.registerPush API **after login**.
-
 #### Required parameter
 
 * Activity: An activity that prompts the terms and conditions window.
@@ -124,7 +117,7 @@ However, if the "Agree again to Terms and Conditions" item has been switched to 
 #### Optional parameter
 
 * GamebaseTermsConfiguration: Using the GamebaseTermsConfiguration object, you can change settings such as whether to forcibly display the terms and conditions agreement window.
-* GamebaseDataCallback: Uses a callback to inform the user when the terms and conditions window closes after agreeing to it. The GamebaseDataContainer object which comes as a callback can be converted to PushConfiguration. The converted object can be used in the Gamebase.Push.registerPush API after login.
+* GamebaseDataCallback: The user is notified through a callback when the terms and conditions window is closed after the user agreed to the terms and conditions. You can check additional information by converting the GamebaseDataContainer object passed by the callback to a GamebaseShowTermsViewResult.
 
 **API**
 
@@ -144,6 +137,13 @@ However, if the "Agree again to Terms and Conditions" item has been switched to 
 | build() | **M** | Converts the configured Builder to a Configuration object. |
 | setForceShow(boolean forceShow) | O | If the user agreed to the terms, calling the showTermsView API again will not display the terms and conditions window, but ignore it and force the display of the terms and conditions window.<br>**default** : false |
 
+**GamebaseShowTermsViewResult**
+
+| Field | Type | Nullable / NonNull | Description |
+| --- | --- | --- | --- |
+| isTermsUIOpened | boolean | NonNull | **true**: The terms and conditions window was displayed, and it was closed after the user agreed to the terms and conditions.<br>**false**: The user has already agreed to the terms and conditions, so the terms and conditions window was closed without being displayed. |
+| pushConfiguration | PushConfiguration | Nullable | If isTermsUIOpened is **true** and you have added consent to receive push notifications to the terms and conditions, then pushConfiguration will always have a valid object.<br>Otherwise it will be **null**.<br>When pushConfiguration is valid, the value of pushConfiguration.pushEnabled is always **true**. |
+
 **ErrorCode**
 
 | Error | Error Code | Description |
@@ -162,11 +162,14 @@ static PushConfiguration savedPushConfiguration = null;
 final GamebaseTermsConfiguration configuration = GamebaseTermsConfiguration.newBuilder()
         .setForceShow(true)
         .build();
-Gamebase.Terms.showTermsView(activity, configuration, (container, exception) -> {
+Gamebase.Terms.showTermsView(activity, (container, exception) -> {
     if (Gamebase.isSuccess(exception)) {
         // Save the PushConfiguration and use it for Gamebase.Push.registerPush()
         // after Gamebase.login().
-        savedPushConfiguration = PushConfiguration.from(container);
+        GamebaseShowTermsViewResult termsViewResult = GamebaseShowTermsViewResult.from(container);
+        if (termsViewResult != null) {
+            savedPushConfiguration = termsViewResult.pushConfiguration;
+        }
     } else {
         new Thread(() -> {
             // Wait for a while and try again.
@@ -176,7 +179,6 @@ Gamebase.Terms.showTermsView(activity, configuration, (container, exception) -> 
         }).start();
     }
 });
-
 public void afterLogin(Activity activity) {
     // Call registerPush with saved PushConfiguration.
     if (savedPushConfiguration != null) {
