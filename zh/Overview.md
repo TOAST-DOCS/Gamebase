@@ -164,7 +164,7 @@ Gamebase基本上支持全球游戏，并提供以下功能：
 ## 服务架构
 
 以下是Gamebase的服务架构图和简介。
-![逻辑架构图](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_201903_en.png)
+![逻辑架构图](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_202203_en.png)
 
 | 组件名称        | 说明                                       |
 | --------------- | ---------------------------------------- |

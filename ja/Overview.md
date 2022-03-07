@@ -162,7 +162,7 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
 ## サービス構造
 
 以下は、Gamebaseのサービス構造と簡単な説明です。
-![論理構成図](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_201903_en.png)
+![論理構成図](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_202203_en.png)
 
 | コンポーネント名           | 説明                                      |
 | --------------- | ---------------------------------------- |
