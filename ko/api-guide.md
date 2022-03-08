@@ -1667,6 +1667,8 @@ X-Secret-Key: IgsaAP
 | AS | App Store |
 | ONESTORE | ONE store |
 | GALAXY | Galaxy Store |
+| AMAZON | Amazon Appstore |
+| HUAWEI | Huawei AppGallery |
 <br/>
 
 ### Identity Provider Code
