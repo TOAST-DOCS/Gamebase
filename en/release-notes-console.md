@@ -9,7 +9,7 @@
 * Operation > Maintenance
 	* Fixed an error where the maintenance content could not be modified when the maintenance page is an external page
 * Push > Setting
-	* Fixed an error where settings could not be saved after modifying the settings
+	* Fixed an error where settings were not saved after modifying the settings
 
 ### February 22, 2022
 
