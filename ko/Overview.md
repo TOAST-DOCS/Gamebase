@@ -1,7 +1,7 @@
 ## Game > Gamebase > 개요
 
 게임플랫폼 선두기업 NHN 의 10년 노하우를 담은 Gamebase, 자신있게 추천합니다. 
-Gamebase SDK 만 적용하면,  모든 서비스를 손쉽게 이용 가능합니다. 
+Gamebase SDK 만 적용하면,  모든 서비스를 손쉽게 이용 가능합니다.  
 
 ![Gamebase_summary](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_01_201903.png)
 
