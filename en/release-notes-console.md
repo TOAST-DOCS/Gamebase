@@ -1,5 +1,16 @@
 ## Game > Gamebase > Release Notes > Console
 
+### March 15, 2022
+
+#### Bug Fixes
+* Purchase (IAP) > Transactions
+	* Fixed an error where the item name was displayed incorrectly when searching for a receipt
+	* Fixed an error in saving data as an Excel file for query with a large amount of payment history
+* Operation > Maintenance
+	* Fixed an error where the maintenance content could not be modified when the maintenance page is an external page
+* Push > Setting
+	* Fixed an error where settings could not be saved after modifying the settings
+
 ### February 22, 2022
 
 #### Feature Updates

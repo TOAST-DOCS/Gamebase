@@ -1667,6 +1667,8 @@ The code defined internally by Gamebase for the store where the app is installed
 | AS | App Store |
 | ONESTORE | ONE store |
 | GALAXY | Galaxy Store |
+| AMAZON | Amazon Appstore |
+| HUAWEI | Huawei AppGallery |
 <br/>
 
 ### Identity Provider Code
