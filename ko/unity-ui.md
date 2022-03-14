@@ -429,7 +429,7 @@ public void ShowWebView()
      configuration.colorB = 128;
      configuration.colorA = 255;
      configuration.barHeight = 40;
-     configuration.buttonVisible = true;
+     configuration.isBackButtonVisible = true;
     
     var schemeList = new List<string>() { "customScheme://openBrowser" };
     
@@ -454,7 +454,7 @@ public void ShowWebView()
 | colorG                   | 0~255                                    | 내비게이션 바 색상 G                |
 | colorB                   | 0~255                                    | 내비게이션 바 색상 B                |
 | colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha                |
-| buttonVisible            | true or false                            | 뒤로 가기 버튼 활성 또는 비활성          |
+| isBackButtonVisible      | true or false                            | 뒤로 가기 버튼 활성 또는 비활성          |
 | barHeight                | height                                   | 내비게이션 바 높이                  |
 | backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지                |
 | closeButtonImageResource | ID of resource | 닫기 버튼 이미지 |
