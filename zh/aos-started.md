@@ -1,4 +1,4 @@
-## Game > Gamebase > Android SDK使用指南 > 开始
+﻿## Game > Gamebase > Android SDK使用指南 > 开始
 
 ## Environments
 
@@ -26,11 +26,14 @@
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | 支持Weibo登录。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | 支持Kakao登录。 | API 21(Lollipop, OS 5.0) |
 | Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.1<br>toast-iap-core | 支持游戏内支付。 | - |
+|  | gamebase-adapter-purchase-amazon | toast-iap-amazon | 支持Amazon Appstore。 | - |
 |  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | 支持Galaxy Store。 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK的minSdkVersion是18，为了实际结算，需要设置的Checkout服务应用程序的minSdkVersion为21。 |
 |  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | 支持Google Store。 | - |
+|  | gamebase-adapter-purchase-huawei | toast-iap-huawei | 支持Huawei App Gallery。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-purchase-onestore | toast-iap-onestore | 支持ONE Store。 | - |
 | Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | 支持Push。 | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | 支持Firebase Notification。 | - |
+| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.0<br>toast-iap-core | 支持游戏内支付 | - |
 
 ## Setting
 
@@ -46,11 +49,13 @@
     * [Game > Gamebase > 控制台使用指南 > App > Authentication Information](./oper-app/#authentication-information)
 * 如果想购买道具，在Store控制台中注册App信息，在Gamebase > 购买(IAP)控制台中输入相关信息。
 	* [Game > Gamebase > Store控制台指南 > Google控制台指南](./console-google-guide) 
-	* [Game > Gamebase > Store控制台指南 > ONEStore控制台指南](./console-onestore-guide)
-	* [Game > Gamebase > Store控制台指南 > GALAXY Store控制台指南](./console-galaxy-guide)
+	* [Game > Gamebase > Store控制台指南 > ONE store控制台指南](./console-onestore-guide)
         * 目前ONE Store只支持v17。
         * 在ONE Store中创建应用程序时，请注意不要使用v19创建。
         * 正在检讨ONE Store v19支持。 
+	* [Game > Gamebase > Store控制台指南 > GALAXY Store控制台指南](./console-galaxy-guide)
+	* [Game > Gamebase > Store控制台指南 > Amazon Appstor控制台指南](./console-amazon-guide)
+	* [Game > Gamebase > Store控制台指南 > Huawei App Gallery控制台指南](./console-huawei-guide)
     * 注册道具时，请参考以下指南。
         * [Game > Gamebase > 控制台使用指南 > 结算 > Register](./oper-purchase/#register_1)
 * 为了推送通知，要将推送通知服务认证书在Gamebase > 推送 > 认证书控制台中输入。
@@ -69,13 +74,17 @@
 #### Store's Tester
 
 * 进行付费测试时，请按以下方式添加每个商店的测试人员。（不应在Gamebase设置Tester，要在Store控制台中设置。)
-    * Google
+    * Google Play Store
         * [Android > 测试购买设置](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
     * ONE store
         * [ONE store > APPS > 商品现状 > In-App信息 > 付费测试 > 注册/管理测试ID](https://dev.onestore.co.kr/wiki/ko/doc/%EA%B0%9C%EB%B0%9C%EB%8F%84%EA%B5%AC/api-v5-sdk-v17/%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%B0%8F-%EB%B3%B4%EC%95%88#id-%EA%B2%B0%EC%A0%9C%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%B0%8F%EB%B3%B4%EC%95%88-%ED%85%8C%EC%8A%A4%ED%8A%B8ID%EB%93%B1%EB%A1%9D/%EA%B4%80%EB%A6%AC)
-    * GALAXY store
+    * GALAXY Store
         * [GALAXY store > App > 已注册的App > Binary > Beta Test > 设置Tester](https://seller.samsungapps.com/application)
         * 只能在三星终端机上进行付费测试。 
+    * Amazon Appstore
+        * [Amazon Appstore > In-App Purchasing > Test IAP Apps > IAP Testing Overview](https://developer.amazon.com/docs/in-app-purchasing/iap-testing-overview.html)
+    * Huawei App Gallery
+        * [Huawei Developers > HMS Core > App Services > In-App Purchases > Guides > Sandbox Testing](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/sandbox-testing-0000001050035039)
 
 ### Gradle
 
@@ -172,6 +181,8 @@ dependencies {
     // >>> 在ONE Store只使用v17，而现在不支持v19。
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-amazon:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-huawei:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
@@ -471,6 +482,13 @@ android {
         <package android:name="com.sec.android.app.samsungapps" />
         <!-- [Galaxy store] Configurations end -->
     </queries>
+    
+    <!-- [Amazon Appstore] Configuration begin -->
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+    <!-- [Amazon Appstore] Configuration end -->
+    
     <!-- [Android11] settings end -->
 </manifest>
 ```
