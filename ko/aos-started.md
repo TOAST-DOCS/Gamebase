@@ -1,4 +1,4 @@
-## Game > Gamebase > Android SDK 사용 가이드 > 시작하기
+﻿## Game > Gamebase > Android SDK 사용 가이드 > 시작하기
 
 ## Environments
 
@@ -26,9 +26,11 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | Weibo 로그인을 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Kakao 로그인을 지원 | API 21(Lollipop, OS 5.0) |
 | Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.1<br>toast-iap-core | 게임 내 결제를 지원 | - |
+|  | gamebase-adapter-purchase-amazon | toast-iap-amazon | Amazon Appstore를 지원 | - |
 |  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | Galaxy Store를 지원 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK 의 minSdkVersion 은 18이지만, 실제 결제를 위해 설치해야 하는 Checkout 서비스앱의 minSdkVersion 은 21입니다. |
-|  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Google Store를 지원 | - |
-|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | ONE Store v17을 지원<br>현재 v19는 지원 불가 | - |
+|  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Google Play Store를 지원 | - |
+|  | gamebase-adapter-purchase-huawei | toast-iap-huawei | 화웨이 App Gallery를 지원 | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | ONE store v17을 지원<br>현재 v19는 지원 불가 | - |
 | Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Push를 지원 | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Firebase Notification을 지원 | - |
 
@@ -46,11 +48,13 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
     * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
 * 아이템 구매를 위해 Store 콘솔에서 앱 정보를 등록하여 Gamebase > 구매(IAP) 콘솔에 입력합니다.
 	* [Game > Gamebase > 스토어 콘솔 가이드 > Google 콘솔 가이드](./console-google-guide)
-	* [Game > Gamebase > 스토어 콘솔 가이드 > ONEStore 콘솔 가이드](./console-onestore-guide)
+	* [Game > Gamebase > 스토어 콘솔 가이드 > ONE Store 콘솔 가이드](./console-onestore-guide)
         * ONE Store는 현재 v17만 지원합니다.
         * ONE Store에서 앱을 생성할 때 v19로 생성하지 않도록 주의하시기 바랍니다.
         * ONE Store v19 지원은 검토 중입니다.
-	* [Game > Gamebase > 스토어 콘솔 가이드 > GALAXY Store 콘솔 가이드](./console-galaxy-guide)
+	* [Game > Gamebase > 스토어 콘솔 가이드 > GALAXY 콘솔 가이드](./console-galaxy-guide)
+	* [Game > Gamebase > 스토어 콘솔 가이드 > Amazon 콘솔 가이드](./console-amazon-guide)
+	* [Game > Gamebase > 스토어 콘솔 가이드 > Huawei 콘솔 가이드](./console-huawei-guide)
     * 아래 가이드를 참고하여 아이템을 등록합니다.
         * [Game > Gamebase > 콘솔 사용 가이드 > 결제 > Register](./oper-purchase/#register_1)
 * 푸시 알림을 위해 푸시 알림 서비스 인증서를 Gamebase > 푸시 > 인증서 콘솔에 입력합니다.
@@ -69,13 +73,18 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 #### Store's Tester
 
 * 결제 테스트를 위하여 스토어별로 다음과 같이 테스터로 등록합니다.(Gamebase Tester 등록이 아닌, 스토어의 테스트 결제를 위한 설정입니다.)
-    * Google
+    * Google Play Store
         * [Android > 테스트 구매 설정](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
     * ONE store
         * [ONE store > APPS > 상품현황 > In-App정보 > 결제테스트 > 테스트 ID 등록/관리](https://dev.onestore.co.kr/wiki/ko/doc/%EA%B0%9C%EB%B0%9C%EB%8F%84%EA%B5%AC/api-v5-sdk-v17/%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%B0%8F-%EB%B3%B4%EC%95%88#id-%EA%B2%B0%EC%A0%9C%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%B0%8F%EB%B3%B4%EC%95%88-%ED%85%8C%EC%8A%A4%ED%8A%B8ID%EB%93%B1%EB%A1%9D/%EA%B4%80%EB%A6%AC)
-    * GALAXY store
+    * GALAXY Store
+        * [Samsung Developers > Samsung IAP > Technical Documents > Test Guide > 3. IAP Testing > 3.2 Test Type > (3) Production Closed Beta Test](https://developer.samsung.com/iap/iap-test-guide.html)
         * [GALAXY store > 앱 > 등록한 앱 > 바이너리 > Beta Test > Tester 설정](https://seller.samsungapps.com/application)
         * 삼성 단말기에서만 결제 테스트가 가능합니다.
+    * Amazon Appstore
+        * [Amazon Appstore > In-App Purchasing > Test IAP Apps > IAP Testing Overview](https://developer.amazon.com/docs/in-app-purchasing/iap-testing-overview.html)
+    * Huawei App Gallery
+        * [Huawei Developers > HMS Core > App Services > In-App Purchases > Guides > Sandbox Testing](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/sandbox-testing-0000001050035039)
 
 ### Gradle
 
@@ -149,6 +158,9 @@ repositories {
     // >>> For Gamebase SDK
     mavenCentral()
     ...
+    
+    // >>> [Huawei App Gallary]
+    maven { url 'https://developer.huawei.com/repo/' }
 }
 
 dependencies {
@@ -172,6 +184,8 @@ dependencies {
     // >>> ONE Store는 v17만 사용 가능하고 v19는 현재 지원하지 않습니다.
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-amazon:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-huawei:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
@@ -199,6 +213,18 @@ android {
 ```
 
 ### Resources
+
+#### Huawei Store
+
+* AppGallery Connection 구성 파일(agconnect-service.json)을 assets 폴더에 추가해야 합니다.
+    * [AppGallery Connect](https://developer.huawei.com/consumer/en/service/josp/agc/index.html)에 로그인 한 다음 **내 프로젝트**를 클릭합니다.
+    * 프로젝트에서 앱을 선택합니다.
+    * **Project settings** > **General information**으로 이동합니다.
+    * **App information**에서 **agconnect-service.json** 파일을 다운로드합니다.
+    * Android Studio 빌드인 경우
+        * **agconnect-service.json** 파일을 프로젝트의 **assets** 폴더에 복사합니다.
+    * Unity 빌드인 경우
+        * **agconnect-service.json** 파일을 프로젝트의 **Assets/StreamingAssets** 폴더에 복사합니다.
 
 #### Firebase Notification
 
@@ -471,9 +497,22 @@ android {
         <package android:name="com.sec.android.app.samsungapps" />
         <!-- [Galaxy store] Configurations end -->
     </queries>
+    
+    <!-- [Amazon Appstore] Configuration begin -->
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+    <!-- [Amazon Appstore] Configuration end -->
+    
     <!-- [Android11] settings end -->
 </manifest>
 ```
+
+* Amazon Appstore에서는 'queries' 요소 대신 **QUERY_ALL_PACKAGES** 권한을 추가합니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> * **QUERY_ALL_PACKAGES** 권한은 Amazon Appstore 전용 선언이므로 Google Play 빌드시에는 적용하지 않도록 주의하시기 바랍니다.
 
 ### Proguard
 

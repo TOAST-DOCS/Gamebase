@@ -1,4 +1,4 @@
-## Game > Gamebase > Android SDK ご利用ガイド > はじめる
+﻿## Game > Gamebase > Android SDK ご利用ガイド > はじめる
 
 ## Environments
 
@@ -26,8 +26,10 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | Weiboログインをサポート | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Kakaoログインをサポート | API 21(Lollipop, OS 5.0) |
 | Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.1<br>toast-iap-core | ゲーム内決済をサポート | - |
+|  | gamebase-adapter-purchase-amazon | toast-iap-amazon | Amazon Appstoreをサポート | - |
 |  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | Galaxy Storeをサポート | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDKのminSdkVersionは18ですが、<br>実際の決済のためにインストールしなければいけないCheckoutサービスアプリの<br>minSdkVersionは21です。 |
-|  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Google Storeをサポート | - |
+|  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Google Play Storeをサポート | - |
+|  | gamebase-adapter-purchase-huawei | toast-iap-huawei | Huawei App Galleryをサポート | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-purchase-onestore | toast-iap-onestore | ONE Store v17をサポート<br>現在v19はサポート不可 | - |
 | Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Pushをサポート | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Firebase Notificationをサポート | - |
@@ -51,6 +53,8 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
         * ONE Storeでアプリを作成する時、v19で作成しないように注意してください。
         * ONE Storev19のサポートは検討中の段階です。
 	* [Game > Gamebase > ストアコンソールガイド > GALAXY Storeコンソールガイド](./console-galaxy-guide)
+	* [Game > Gamebase > ストアコンソールガイド > Amazon Appstoreコンソールガイド](./console-amazon-guide)
+	* [Game > Gamebase > ストアコンソールガイド > Huawei App Galleryコンソールガイド](./console-huawei-guide)
     * 以下のガイドを参考にしてアイテムを登録します。
         * [Game > Gamebase > コンソール使用ガイド > 決済 > Register](./oper-purchase/#register_1)
 * プッシュ通知を行うためにプッシュ通知サービス証明書をGamebase > Push > 証明書コンソールに入力します。
@@ -69,13 +73,17 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 #### Store's Tester
 
 * 決済テストを行うために、ストアごとに次のようにテスターとして登録します。(Gamebase Tester登録ではなく、ストアのテスト決済を行うための設定です。)
-    * Google
+    * Google Play Store
         * [Android > テスト購入設定](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
     * ONE store
         * [ONE store > APPS > 商品状況 > In-App情報 > 決済テスト > テストID登録/管理](https://dev.onestore.co.kr/wiki/ko/doc/%EA%B0%9C%EB%B0%9C%EB%8F%84%EA%B5%AC/api-v5-sdk-v17/%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%B0%8F-%EB%B3%B4%EC%95%88#id-%EA%B2%B0%EC%A0%9C%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%B0%8F%EB%B3%B4%EC%95%88-%ED%85%8C%EC%8A%A4%ED%8A%B8ID%EB%93%B1%EB%A1%9D/%EA%B4%80%EB%A6%AC)
-    * GALAXY store
+    * GALAXY Store
         * [GALAXY store > アプリ > 登録したアプリ > バイナリ > Beta Test > Tester設定](https://seller.samsungapps.com/application)
         * サムソン端末でのみ決済テストが可能です。
+    * Amazon Appstore
+        * [Amazon Appstore > In-App Purchasing > Test IAP Apps > IAP Testing Overview](https://developer.amazon.com/docs/in-app-purchasing/iap-testing-overview.html)
+    * Huawei App Gallery
+        * [Huawei Developers > HMS Core > App Services > In-App Purchases > Guides > Sandbox Testing](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/sandbox-testing-0000001050035039)
 
 ### Gradle
 
@@ -172,6 +180,8 @@ dependencies {
     // >>> ONE Storeはv17のみ使用することができ、v19は現在サポートしていません。
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-amazon:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-huawei:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
@@ -471,6 +481,13 @@ android {
         <package android:name="com.sec.android.app.samsungapps" />
         <!-- [Galaxy store] Configurations end -->
     </queries>
+    
+    <!-- [Amazon Appstore] Configuration begin -->
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+    <!-- [Amazon Appstore] Configuration end -->
+    
     <!-- [Android11] settings end -->
 </manifest>
 ```
