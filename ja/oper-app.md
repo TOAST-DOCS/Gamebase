@@ -98,8 +98,8 @@ Gamebaseで提供するサポート機能を使用したい時に設定します
 設定項目は以下の通りです。
 * **サポートURL** ：顧客からのお問い合わせを受けるページ情報を提供します。このURLはGamebase提供サポートを選択する場合は自動的に作成され、このURLから顧客のお問い合わせを別のWebページを介して受信できます。
 * **連絡先**：サポートの連絡先を入力します。この情報はGamebase SDKを介して取得できます。
-* **サポート言語**：サポートユーザーにサポートする言語を選択します。プロジェクト自体の言語設定とは別に設定される情報で、現在は韓国語、英語、日本語、中国語をサポートしています。この設定で選択された言語を元にGamebaseのサポート機能を使用できます。
-* **基本言語**：サポート言語で選択した項目のうち、サポート内でデフォルトで提供する言語を選択します。
+
+* **サポート言語**：サポートセンターでサポートする言語を選択します。プロジェクト自体の言語設定とは別に設定され、 韓国語、英語、日本語、中国語(簡体字/繁体字)、ロシア語をサポートします。ご希望の言語がない場合はサポートセンターまでお問い合わせください。
 
 #### 3. NHN Cloud組織商品(Online Contact)
 ![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_21_202102.png)
@@ -351,10 +351,10 @@ Sign In with Apple機能を使用するには、AppStore Connect、Gamebase Cons
 ###### Secret Key Settings
 > Apple Developer Account設定で取得した値(**TeamID**、**KeyID**、**PrivateKey**)にJSON文字列を作成して設定します。
 
-* `teamId`：開発者アカウントの右上の値を設定します。
-* `keyId`：Certificates, Identifiers & Profiles > Keys > Sign In with Appleをチェックし、作成された値を設定します。
+* **teamId**：開発者アカウントの右上の値を設定します。
+* **keyId**：Certificates, Identifiers & Profiles > Keys > Sign In with Appleをチェックし、作成された値を設定します。
 ![SecretKey設定](./image/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
-* `privateKey`：上のKeysでキーを作成した時に作成されたPrivateKeyファイルの内容を設定します。 (ダウンロードしたファイルを開き、下記のスクリーンショットのように赤い四角形部分の値を使用します)
+* **privateKey**：上のKeysでキーを作成した時に作成されたPrivateKeyファイルの内容を設定します。 (ダウンロードしたファイルを開き、下記のスクリーンショットのように赤い四角形部分の値を使用します)
 ![SecretKey設定](./image/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
 
 上の値を下記の例のようにJSONで作って設定します。
@@ -366,6 +366,10 @@ Sign In with Apple機能を使用するには、AppStore Connect、Gamebase Cons
     "privateKey":"MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBA.. 中略"
 }
 ```
+
+> <font color="red">[注意]</font><br/>
+>
+> privateKeyに改行が入らないように注意してください。
 
 ###### Additional Info Settings
 [Sign In with AppleのAuthorizationScopeの詳細](https://developer.apple.com/documentation/authenticationservices/asauthorizationscope?language=occ)

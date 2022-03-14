@@ -1,5 +1,15 @@
 ## Game > Gamebase > 릴리스 노트 > iOS
 
+### 2.34.1 (2022. 03. 15.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.1/GamebaseSDK-iOS.zip)
+
+#### 기능 추가
+* Swift 프로젝트 사용자를 위해서 Public API에 NS_SWIFT_NAME 설정을 추가하였습니다.
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트 : Hangame iOS SDK (1.6.2)
+* 디바이스가 가로모드인 상태에서 showWebView API를 호출했을 때, 하단에 검은색 빈 공간이 출력되는 이슈를 수정하였습니다.
+
 ### 2.34.0 (2022. 02. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.0/GamebaseSDK-iOS.zip)
 
@@ -46,7 +56,7 @@
     * [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./ios-etc/#logged-out)
 
 #### 기능 개선/변경
-* 웹뷰 navigationBar의 기본 타이틀 색상이 **UIColor.white**로 변경되었습니다.
+* 웹뷰 navigationBar의 기본 타이틀 색상이 **UIColor.whiteColor**로 변경되었습니다.
 
 #### 버그 수정
 * Hangame 로그아웃 호출 시, thirdIdP도 로그아웃되도록 수정하였습니다.

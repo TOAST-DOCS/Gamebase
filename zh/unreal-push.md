@@ -4,19 +4,24 @@
 
 ### Settings
 
-关于在Android和iOS设置推送的方法，请参考以下文档。<br/>
+关于在Android和iOS设置推送的方法，请参考以下文档。
 
-* [Android Push Settings](aos-push#settings)
-    * 如需使用Firebase推送，请参考以下指南。 
-        * 如果使用Unity build，必须对Unreal适用同样的设置。
-            * Android打包时，必须包含res/values/google-services-json.xml文件，因此请参考以下指南。
-            * 在Plugins/Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xml路径中存在文件。 
-* [iOS Push Settings](ios-push#settings)
+* Android
+    * [Android Push Settings](aos-push/#settings)
+    * [Firebase Notification Settings](aos-started/#firebase-notification)
+        * Android打包时，必须包含res/values/google-services-json.xml文件，因此请参考以下指南。
+        * 在Plugins/Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xml路径中存在文件。 
+* iOS
+    * [iOS Push Settings](ios-push#settings)
 
 ### Register Push
 
 通过调用以下API，在TOAST Push中注册相关用户。  
-从用户获得”是否允许显示推送通知(enablePush)‘’、”是否同意接收广告性推送通知(enableAdPush)”、”是否允许在夜间显示广告性推送通知(enableAdNightPush)”的同意，通过调用以下API进行注册。 
+从用户获得”是否允许显示推送通知(enablePush)‘’、”是否同意接收广告性推送通知(enableAdPush)”、”是否允许在夜间显示广告性推送通知(enableAdNightPush)”的同意后，通过调用以下API进行注册。 
+
+> <font color="red">[注意]</font><br/>
+>
+> 由于每个UserID的推送设置不同而推送令牌可能过期，建议登录后每次都调用RegisterPush API。
 
 **API**
 
@@ -57,9 +62,9 @@ void Sample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNi
 
 #### Set Notification Options with RegisterPush in Runtime
 
-调用RegisterPush API时， 可以通过添加FGamebaseNotificationOptions参数来设置通知选项值。
-当向FGamebaseNotificationOptions的生成器传送IGamebase::Get ().GetPush().GetNotificationOptions()的调用结果时，创建用当前通知选项初始化的对象, 因此可以更改需要更改的值。<br/>
-可以设置的值如下。
+调用RegisterPush API时，可以通过添加FGamebaseNotificationOptions参数来设置通知选项值。
+当向FGamebaseNotificationOptions的生成器传送IGamebase::Get ().GetPush().GetNotificationOptions()调用结果时，创建用当前通知选项初始化的对象, 因此可以更改要更改的值。<br/>
+设置的值如下。
 
 | API                    | Parameter       | Description        |
 | ---------------------  | ------------ | ------------------ |
@@ -133,7 +138,7 @@ void Sample::GetNotificationOptions()
 
 ### Request Push Settings
 
-需要查看用户的推送设置时，请调用以下API。
+查看用户的推送设置时，请调用以下API。
 利用通过回调获取的FGamebasePushTokenInfo值，可以获取自定义值。 
 
 **API**
@@ -225,17 +230,17 @@ void Sample::SetSandboxMode(bool isSandbox)
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | 是TOAST Push库错误。<br>请确认DetailCode。|
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | TOAST Push库错误<br>请确认DetailCode。|
 | PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 未成功调用上一次的推送API。<br>执行上一次的推送API回调之后，请再调用。| 
-| PUSH_UNKNOWN_ERROR             | 5999       | 是未定义的推送错误。<br>请您将所有日志上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。|
+| PUSH_UNKNOWN_ERROR             | 5999       | 未定义的推送错误<br>请您将所有日志上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。|
 
 * 关于所有错误代码，请参考以下文档。
     * [错误代码](./error-code/#client-sdk)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* 相关错误是在TOAST Push库出现的。 
-* 确认错误代码的方法如下。 
+* 此错误是在TOAST Push库出现的。 
+* 查看错误代码的方法如下。 
 
 ```cpp
 GamebaseError* gamebaseError = error; // GamebaseError object via callback
@@ -256,6 +261,6 @@ else
 }
 ```
 
-* 请确认TOAST Push的错误代码。 
+* 请查看TOAST Push的错误代码。 
     * [Android](aos-push#error-handling)
     * [iOS](ios-push#error-handling)

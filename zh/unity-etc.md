@@ -26,7 +26,7 @@ static string GetDeviceLanguageCode()
 >
 > 为Editor on Windows、Standalone on Windows时参考[CultureInfo](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo?view=netframework-4.7.2)返回语言代码。
 >
-> Editor on Mac、WebGL参考[Application.systemLanguage](https://docs.unity3d.com/ScriptReference/SystemLanguage.html)值返回语言代码。<br/>例如，为Application.systemLanguage == SystemLanguage.Korean时返回’ko’。
+> Editor on Mac、WebGL参考[Application.systemLanguage](https://docs.unity3d.com/ScriptReference/SystemLanguage.html)值返回语言代码。<br/>例如，为Application.systemLanguage == SystemLanguage.Korean时返回“ko”。
 
 ### Display Language
 
@@ -60,7 +60,7 @@ Gamebase显示消息时，按照注册为Display Language的语言显示消息�
 | de | German |
 | en |English  |
 | es | Spanish |
-| fi | Finish |
+| fi | Finnish |
 | fr | French |
 | id | Indonesian |
 | it | Italian |
@@ -84,7 +84,7 @@ namespace Toast.Gamebase
         public const string German = "de";
         public const string English = "en";
         public const string Spanish = "es";
-        public const string Finish = "fi";
+        public const string Finnish = "fi";
         public const string French = "fr";
         public const string Indonesian = "id";
         public const string Italian = "it";
@@ -101,9 +101,9 @@ namespace Toast.Gamebase
 }
 ```
 
-#### 在Gamebase初始化时设置显示语言
+#### 初始化Gamebase时设置显示语言
 
-在Gamebase初始化时可以设置显示语言。
+初始化Gamebase时可以设置显示语言。
 
 **API**
 
@@ -145,7 +145,7 @@ public void InitializeWithConfiguration()
 
 #### 设置显示语言
 
-Gamebase初始化时可更改输入的 Display Language。
+初始化Gamebase时可更改输入的Display Language。
 
 **API**
 
@@ -197,9 +197,9 @@ public void GetDisplayLanguageCode()
 
 #### 添加新语言集
 
-提供UnityEditor及Unity Standalone, WebGL平台服务时，如果要使用Gamebase提供的默认语言(ko, en)外的其他语言，需要在Assets > StreamingAssets > Gamebase中的 localizedstring.json文件中添加值。
+提供UnityEditor、Unity Standalone及WebGL平台服务时，如果要使用Gamebase提供的默认语言(ko, en)外的其他语言，需要在Assets > StreamingAssets > Gamebase中的localizedstring.json文件中添加值。
 
-![localizedstring.json](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-etc_001_1.11.0.png)
+![localizedstring.json](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-etc_001_1.11.0.png)
 
 localizedstring.json中定义的格式如下。
 
@@ -226,7 +226,7 @@ localizedstring.json中定义的格式如下。
 }
 ```
 
-如果需要添加另一种语言集，可在localizedstring.json文件中添加`"${语言代码}":{"key":"value"}`形式的值。
+如果需要添加另一种语言集，则在localizedstring.json文件中添加`"${语言代码}":{"key":"value"}`形式的值。
 
 ```json
 {
@@ -257,12 +257,12 @@ localizedstring.json中定义的格式如下。
 
 如果在上述JSON文件的格式"${语言代码}":{ }中缺少key，则会自动输入`在设备上设置的语言`或`en`。
 
-Unity Android, iOS平台中添加新语言集的方法请参考以下指南。
+关于Unity Android、iOS平台中添加新语言集的方法，请参考以下指南。
 
 * [Android添加新语言集](./aos-etc#display-language)
 * [iOS添加新语言集](./ios-etc#display-language)
 
-#### 显示语言优先级
+  
 
 通过初始化或SetDisplayLanguageCode API设置Display Language时，最终应用的Display Language可以与输入的值不同。
 
@@ -279,7 +279,7 @@ Unity Android, iOS平台中添加新语言集的方法请参考以下指南。
 
 * 返回USIM中记录的国家代码。
 * 即使USIM中记录的是错误的国家代码也将不进行确认就直接返回。
-* 若值为空，则返回’ZZ’。
+* 若值为空，则返回“ZZ”。
 
 **API**
 
@@ -295,9 +295,9 @@ static string GetCountryCodeOfUSIM()
 #### Device Country Code
 
 * 从OS接收的终端机国家代码直接返回，不另行确认。
-* 终端机国家代码根据’语言’设置，由OS自动决定。
+* 终端机国家代码根据语言设置，由OS自动决定。
 * 注册多种语言时，以优先权最高的语言决定国家代码。
-* 若值为空，则返回’ZZ’。
+* 若值为空，则返回“ZZ”。
 
 **API**
 
@@ -315,9 +315,9 @@ static string GetCountryCodeOfDevice()
 * GetCountryCode API按照如下顺序运行。
 	1. 确认USIM中记录的国家代码，若存在值，则直接返回，不另行确认。
 	2. 若USIM国家代码为空值，确认终端机国家代码，若存在值，则直接返回，不另行确认。
-	3. 若USIM、终端机国家代码均为空值，则返回’ZZ’。
+	3. 若USIM、终端机国家代码均为空值，则返回“ZZ”。
 
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
+![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
 > [参考] 
 >
@@ -375,13 +375,24 @@ public class GamebaseEventMessage
 ```cs
 public void AddEventHandlerSample()
 {
-    Gamebase.AddEventHandler(GamebaseObserverHandler);
+    Gamebase.AddEventHandler(GamebaseEventHandler);
 }
 
-private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
     switch (message.category)
     {
+        case GamebaseEventCategory.LOGGED_OUT:
+            {
+                GamebaseResponse.Event.GamebaseEventLoggedOutData loggedData = GamebaseResponse.Event.GamebaseEventLoggedOutData.From(message.data);
+                if (loggedData != null)
+                {
+                    // There was a problem with the access token.
+                    // Call login again.
+                }
+                break;
+            }
+        case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED:
         case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
         case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
             {
@@ -453,12 +464,9 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
                 {
                     // When you received push message.
                     
-                    Dictionary<string, object> extras = Toast.Gamebase.LitJson.JsonMapper.ToObject<Dictionary<string, object>>(pushMessage.extras);
-                    // There is 'isForeground' information.
-                    if (extras.ContainsKey("isForeground") == true)
-                    {
-                        bool isForeground = (bool)extras["isForeground"];
-                    }
+                    // By converting the extras field of the push message to JSON,
+                    // you can get the custom information added by the user when sending the push.
+                    // (For Android, an 'isForeground' field is included so that you can check if received in the foreground state.)
                 }
                 break;
             }
@@ -484,46 +492,78 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 }
 ```
 
-* Category在GamebaseEventCategory类中定义。
-* 事件大体分为ServerPush、Observer、Purchase、Push，并按照各Category, 按如下列表的方式将GamebaseEventMessage.data转换为VO。
+    
+* 事件大体分为LoggedOut、ServerPush、Observer、Purchase、Push，并按照各Category, 按如下列表的方式将GamebaseEventMessage.data转换为VO。
 
 
 | Event种类 | GamebaseEventCategory | VO转换方法 | 备注 |
 | --------- | --------------------- | ----------- | --- |
-| ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
+| LoggedOut | GamebaseEventCategory.LOGGED_OUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
+| ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED<br>GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
 | Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseResponse.Event.GamebaseEventObserverData.from(message.data) | \- |
 | Purchase - Promotion支付 | GamebaseEventCategory.PURCHASE_UPDATED | GamebaseResponse.Event.PurchasableReceipt.from(message.data) | \- |
-| Push - 接收消息 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | 通过**isForeground**值，可以确认是否是在Foreground状态接收的消息。|
-| Push - 点击消息 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | 不存在**isForeground**值。|
+| Push - 接收消息 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
+| Push - 点击消息 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
 | Push - 动态点击 | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | 点击RichMessage按键时启动。|
 
 #### Logged Out
 
-```
-Not translated yet
+* 是当Gamebase Access Token无效，为了恢复网络会话，需要调用登录函数时出现的事件。
+
+**Example**
+
+```cs
+public void AddEventHandlerSample()
+{
+    Gamebase.AddEventHandler(GamebaseEventHandler);
+}
+
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+{
+    switch (message.category)
+    {
+        case GamebaseEventCategory.LOGGED_OUT:
+            {
+                GamebaseResponse.Event.GamebaseEventLoggedOutData loggedData = GamebaseResponse.Event.GamebaseEventLoggedOutData.From(message.data);
+                if (loggedData != null)
+                {
+                    // There was a problem with the access token.
+                    // Call login again.
+                }
+                break;
+            }
+    }
+}
 ```
 
 #### Server Push
 
 * 是从Gamebase服务器向客户端终端机传送的消息。 
 * Gamebase支持的Server Push Type如下。
-    * GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
-    	* 如果在TOAST Gamebase控制台**Operation > Kickout**中注册 Kickout ServerPush消息，则从与Gamebase连接的所有客户端接收Kickout消息。
-    * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
+    * GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED
+    	* 如果在NHN Cloud Gamebase控制台的**Operation > Kickout**中注册Kickout ServerPush消息， 则将从与Gamebase连接的所有客户端接收Kickout消息。
+        * 是在客户端终端机中接收了服务器消息时立即启动的事件。 
+        * 正如“Autoplay”，当游戏运行时，它可以用于暂停游戏。
+	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
+    	* 如果在TOAST Gamebase控制台的**Operation > Kickout**中注册Kickout ServerPush消息，则从与Gamebase连接的所有客户端接收Kickout消息。
+        * 是当在客户端终端机接收了服务器消息时显示弹窗，而用户关闭其弹窗时启动的事件。
+    	* 在NHN Cloud Gamebase控制台的**Operation > Kickout**中注册Kickout ServerPush消息，将从与Gamebase连接的所有客户端接收Kickout消息。
+    * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT    
     	* 将Guest账号成功转移到其他终端机时，从转移之前的终端机接收Kickout消息。
-
+   
 **示例**
 
 ```cs
 public void AddEventHandlerSample()
 {
-    Gamebase.AddEventHandler(GamebaseObserverHandler);
+    Gamebase.AddEventHandler(GamebaseEventHandler);
 }
 
-private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
     switch (message.category)
     {
+        case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED:
         case GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT:
         case GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT:
             {
@@ -541,12 +581,18 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
     }
 }
 
-void CheckServerPush(string category, GamebaseResponse.Event.GamebaseEventServerPushData data)
+private void CheckServerPush(string category, GamebaseResponse.Event.GamebaseEventServerPushData data)
 {
     if (category.Equals(GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT) == true)
     {
-        // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+        // Kicked out from Gamebase server.(Maintenance, banned or etc.)
+        // And the game user closes the kickout pop-up.
         // Return to title and initialize Gamebase again.
+    }
+    else if (category.Equals(GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED) == true)
+    {
+        // Currently, the kickout pop-up is displayed.
+        // If your game is running, stop it.
     }
     else if (category.Equals(GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT) == true)
     {
@@ -615,10 +661,10 @@ public class GamebaseEventObserverData
 ```cs
 public void AddEventHandlerSample()
 {
-    Gamebase.AddEventHandler(GamebaseObserverHandler);
+    Gamebase.AddEventHandler(GamebaseEventHandler);
 }
 
-private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
     switch (message.category)
     {
@@ -765,10 +811,10 @@ private void CheckWebView(GamebaseResponse.Event.GamebaseEventObserverData obser
 ```cs
 public void AddEventHandlerSample()
 {
-    Gamebase.AddEventHandler(GamebaseObserverHandler);
+    Gamebase.AddEventHandler(GamebaseEventHandler);
 }
 
-private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
     switch (message.category)
     {
@@ -792,9 +838,9 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 
 #### Push Received Message
 
-* 是Push消息到达时出现的事件。
-* 通过**isForeground**字段可区分是在Foreground状态还是在Backgroud状态接收的消息。 
+* 是接收Push消息时出现的事件。
 * 通过将extras字段转换为JSON，可获取发送Push时传送的自定义信息。
+    * 在**Android**上可以通过**isForeground**字段区分是否是在前台接收的消息还是在后台接收的消息。
 
 **VO**
 
@@ -810,7 +856,7 @@ public class PushMessage
     // 为Push消息的身体。
     public string body;
 
-    // 通过转换为JSONObject，可确认所有的信息。
+    // 当以JSON格式发送Push时，可查看传送的自定义信息。
     public string extras;
 }
 ```
@@ -820,10 +866,10 @@ public class PushMessage
 ```cs
 public void AddEventHandlerSample()
 {
-    Gamebase.AddEventHandler(GamebaseObserverHandler);
+    Gamebase.AddEventHandler(GamebaseEventHandler);
 }
 
-private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
     switch (message.category)
     {
@@ -833,13 +879,10 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
                 if (pushMessage != null)
                 {
                     // When you received push message.
-                    
-                    Dictionary<string, object> extras = Toast.Gamebase.LitJson.JsonMapper.ToObject<Dictionary<string, object>>(pushMessage.extras);
-                    // There is 'isForeground' information.
-                    if (extras.ContainsKey("isForeground") == true)
-                    {
-                        bool isForeground = (bool)extras["isForeground"];
-                    }
+
+                    // By converting the extras field of the push message to JSON,
+                    // you can get the custom information added by the user when sending the push.
+                    // (For Android, an 'isForeground' field is included so that you can check if received in the foreground state.
                 }
                 break;
             }
@@ -854,17 +897,17 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 #### Push Click Message
 
 * 是点击”已接收的Push消息”时出现的事件。
-* 与”GamebaseEventCategory.PUSH_RECEIVED_MESSAGE”不同，不存在**isForeground** field。
+* 与“GamebaseEventCategory.PUSH_RECEIVED_MESSAGE”不同，在Android上的extras字段不存在**isForeground**信息。
 
 **Example**
 
 ```cs
 public void AddEventHandlerSample()
 {
-    Gamebase.AddEventHandler(GamebaseObserverHandler);
+    Gamebase.AddEventHandler(GamebaseEventHandler);
 }
 
-private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
     switch (message.category)
     {
@@ -915,10 +958,10 @@ class PushAction
 ```cs
 public void AddEventHandlerSample()
 {
-    Gamebase.AddEventHandler(GamebaseObserverHandler);
+    Gamebase.AddEventHandler(GamebaseEventHandler);
 }
 
-private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
     switch (message.category)
     {    
@@ -953,7 +996,7 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 > 调用Gamebase.Purchase.RequestPurchase API付款完成后，自动传送指标。
 >
 
-Analytics控制台使用方法请参考如下指南。
+关于Analytics控制台使用方法，请参考如下指南。
 
 * [Analytics Console](./oper-analytics)
 
@@ -1087,7 +1130,7 @@ Gamebase SDK的客户服务API根据各类型使用如下URL。
 | ------------- | ------------- | ---------------------------------- | ------------------ |
 | userName      | O             | string                             | 用户名(nickname)<br>**default** : null    |
 | additionalURL | O             | string                             | 添加在开发公司自建客户服务URL后面的附加URL<br>**default** : null    |
-| extraData     | O             | dictionary<string, string>         | 客户服务开始服务时传送开发公司所需的extra data。<br>**default** : null    |
+| extraData     | O             | dictionary<string, string>         | 开始客户服务服务时传送开发公司所需的extra data。<br>**default** : null    |
 
 **API**
 

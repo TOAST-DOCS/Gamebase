@@ -376,7 +376,7 @@ With a same user ID, all purchased subscriptions from Android and iOS can be lis
 
 > <font color="red">[Caution]</font><br/>
 >
-> Current subscriptions for Android are supported by Google Play Store only. 
+> For Android, subscriptions are currently supported only on the Google Play Store.
 
 **API**
 

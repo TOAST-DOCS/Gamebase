@@ -1,5 +1,20 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.34.0 (2022. 02. 22.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.0/GamebaseSDK-Unity.zip)
+
+#### 機能追加
+* 共通約款API呼び出し後、約款UIが表示されたかどうかを知ることができるVOクラスが追加されました。
+    * **GamebaseResponse.Terms.ShowTermsViewResult**
+
+#### 機能改善/変更
+* キックアウトポップアップの表示有無はGamebaseコンソールでキックアウト登録時に設定することができるため、次のフィールドがdeprecatedになりました。
+    * **GamebaseConfiguration.enableKickoutPopup**
+
+#### プラットフォーム別の変更事項
+* [Gamebase Android SDK 2.34.0](./release-notes-android/#2340-20220222)
+* [Gamebase iOS SDK 2.34.0](./release-notes-ios/#2340-20220125)
+
 ### 2.33.0 (2022.01.25)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Unity.zip)

@@ -349,33 +349,37 @@ To enable Sign In with Apple, setting is required for AppStore Connect, Gamebase
 * Gamebase
 ![Set SecretKey Setting](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
 
-###### Setting Client ID
+###### Client ID Settings
 > Set Bundle ID for the app.
 
-###### Setting Secret Key
+###### Secret Key Settings
 > Use **TeamID**, **KeyID**, or **PrivateKey** that are acquired from Apple Developer Account setting to create JSON character strings.  
 
-* `teamId`: Set value on top right of the developer account.
-* `keyId`: Go to Certificates, Identifiers & Profiles > Keys, and check Sign In with Apple to set created value.
+* **teamId**: Set value on top right of the developer account.
+* **keyId**: Go to Certificates, Identifiers & Profiles > Keys, and check Sign In with Apple to set created value.
 ![SecretKey Setting](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
-* `privateKey`: Set PrivateKey file which is created along with the Keys. (Open the downloaded file and apply the value in red rectangle like the screen shot as below.)
+* **privateKey**: Set PrivateKey file which is created along with the Keys. (Open the downloaded file and apply the value in red rectangle like the screen shot as below.)
 ![SecretKey Setting](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
 
-Create the above value into JSON like the example as below.  
+Set the values above by creating JSON as in the following example.
 
 ```json
 {
     "teamId":"2UH5Cxxxx",
     "keyId":"3C3FXYxxxx",
-    "privateKey":"MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBA.. omits"
+    "privateKey":"MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBA.. omitted"
 }
 ```
 
-###### Setting Additional Info
+> <font color="red">[Caution]</font><br/>
+>
+> Be careful not to include newlines in privateKey.
+
+###### Additional Info Settings
 [Getting to know AuthorizationScope of Sign In With Apple](https://developer.apple.com/documentation/authenticationservices/asauthorizationscope?language=occ)
 
-By adding Apple on Gamebase Console > App, JSON is set as default.
-As of today (November of 2019), there are only two types of scope, such as `full_name` and `email`, and Gamebase has the two as default.
+If you add Apple in Gamebase Console > **App**, the following JSON value is set by default.
+As of November 2019, there are only two types of scope, `full_name` and `email`, and Gamebase sets the two values as the default.
 
 ```json
 { "authorization_scope":["full_name", "email"] }

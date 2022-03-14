@@ -3,19 +3,19 @@
 ### 2.34.0 (2022. 02. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* Gamebase 콘솔의 업데이트 필수 설정에 '팝업 버튼 추가' 항목을 선택하면 클라이언트의 업데이트 필수 팝업에 '자세히 보기' 버튼이 추가됩니다.
-* 단말기에서 알림을 허용했는지 여부를 알 수 있는 API가 추가되었습니다.
+#### 添加功能
+* 在Gamebase控制台的“必须更新”设定中选择**添加弹窗按钮**时，客户端的必须更新弹窗中将添加一个**查看更多**按钮。
+* 添加了可确认终端机是否允许提示通知的API。
     * **Gamebase.Push.queryNotificationAllowed()**
-* 공통 약관 API 호출 후 약관 UI가 표시되었는지 여부를 알 수 있는 VO 클래스가 추가되었습니다.
+* 添加了当调用共同条款API后可确认条款UI是否被显示的VO类。 
     * **GamebaseShowTermsViewResult**
 
-#### 기능 개선/변경
-* 킥아웃 팝업 표시 여부는 Gamebase 콘솔에서 킥아웃 등록시 설정할 수 있으므로 다음 필드가 deprecated 되었습니다.
+#### 改善/更改功能
+* 由于在Gamebase控制台中注册Kickout时可以设置是否显示kickout弹窗，因此以下字段已被deprecated。
     * **UIPopupConfiguration.enableKickoutPopup**
 
-#### 버그 수정
-* 이미지 공지 '오늘은 다시 보지 않기' 체크시 24시간 후에도 이미지 공지가 표시되지 않는 버그를 수정했습니다.
+#### 修改错误    
+* 即使在图片通知中已点击**24小时内不显示**，但过24小时也不显示图片通知的错误被修改。 
 
 ### 2.33.0 (2022.01.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Android.zip)

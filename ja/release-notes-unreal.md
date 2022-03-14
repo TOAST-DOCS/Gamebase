@@ -1,5 +1,11 @@
 ## Game > Gamebase > リリースノート > Unreal
 
+### 2.33.1 (2022. 02. 22.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.1/GamebaseSDK-Unreal.zip)
+
+#### バグ修正
+* iOSビルド時に発生するエラーを修正しました。
+
 ### 2.33.0 (2022.01.25)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Unreal.zip)

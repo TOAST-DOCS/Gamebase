@@ -26,7 +26,7 @@ Gamebaseを初期化する際に、TCGBConfigurationの客体でGamebaseの設�
 | configurationWithAppID:appVersion:| M                          | TCGBConfigurationのアプリIDとアプリバージョンを設定します。<br/>アップデート、メンテナンスに該当するかどうかはゲームバージョンで判断します。<br/>ゲームバージョンを指定してください。|
 | enablePopup:                      | O                          | **[UI]**<br/>システムメンテナンス、利用制限(ban)などゲームユーザーがゲームをプレイすることができない状況のとき、ポップアップなどで理由を表示しなければならない場合があります。<br/>**YES**に設定すれば、Gamebaseが該当する状況で案内ポップアップを自動で表示します。<br/>デフォルトは**NO**です。<br/>**NO**の状態のときは起動結果を通して情報を取得した後に直接UIを設計し、ゲームをプレイすることができない理由を表示してください。|
 | enableLaunchingStatusPopup:       | O                          | **[UI]**<br/>起動結果によりログインできない状態のとき(主にメンテナンス状態)、 Gamebaseが自動でポップアップを表示するかどうかを変更することができます。<br/>**enablePopup:YES**の状態でのみ動作します。<br/>デフォルトは**YES**です。|
-| enableBanPopup:                   | O                          | **[UI]**<br/>ゲームユーザーが利用を制限された状態のとき、Gamebaseが自動でbanされた理由をポップアップで表示するかどうかを変更することができます。<br/>**enablePopup:** の状態でのみ動作します。<br/>デフォルトは**YES**です。|
+| enableBanPopup:                   | O                          | **[UI]**<br/>ゲームユーザーが利用を制限された状態のとき、Gamebaseが自動でbanされた理由をポップアップで表示するかどうかを変更することができます。<br/>**enablePopup:YES** の状態でのみ動作します。<br/>デフォルトは**YES**です。|
 
 
 ### Debug Mode

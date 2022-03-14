@@ -575,7 +575,7 @@ private static void addMappingForFacebook(final Activity activity) {
 
 | keyname                                  | a use                                    | 值类型                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP类型                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.PAYCO<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
+| AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP类型                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）。<br/>不用于Google认证。|                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE |输入登录Google后可以获取的OTAC(一次性验证码)。|                                          |
 
@@ -724,7 +724,9 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 如果已有映射到指定IdP的账户，则注销现账户，并使用已映射到的账户登录。 
 然后需要调用AddMapping API获取的“ForcingMappingTicket”。
 
-如果未能调用Change Login API，Gamebase将维持使用上一次的UserID登录的状态。
+若调用Change Login API失败，上一个UserID保持登录状态。
+
+以下为一个在尝试映射到Facebook后，当已经映射到Facebook的帐户存在时，将登录账户更改为该账户的示例。
 
 **API**
 
@@ -1048,8 +1050,8 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
 |                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | 第三方认证库初始化失败 |
-|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 用户已临时退出。                   |
-|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 用户未临时退出。                    |
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 用户已临时退出。                    |
+|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 用户未临时退出。                     |
 {@line:end}
 
 ## TemporaryWithdrawal

@@ -118,12 +118,6 @@ If users agree to the terms and conditions, register the user consent data in th
 If users agree to the terms and conditions, calling the ShowTermsView API again will immediately return the success callback without displaying the terms and conditions window.
 However, if the Terms and Conditions reconsent requirement has been changed to **Required**, the terms and conditions window is displayed until users agree again to the terms and conditions.
 
-> <font color="red">[Caution]</font><br/>
->
-> * PushConfiguration is null if the terms and conditions window is not displayed. (If the terms and conditions window is displayed, a valid object is always returned.)
-> * PushConfiguration.pushEnabled value is always true.
-> * If PushConfiguration is not null, call Gamebase.Push.registerPush API **after login**.
-
 #### Optional parameter
 
 * GamebaseTermsConfiguration : Using the GamebaseTermsConfiguration object, you can change settings such as whether to display the forced terms and conditions agreement window.
@@ -141,12 +135,20 @@ static void ShowTermsView(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Dat
 static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration configuration, GamebaseCallback.GamebaseDelegate<GamebaseResponse.DataContainer> callback)
 ```
 
-**GamebaseTermsConfiguration** 
+**GamebaseRequest.Terms.GamebaseTermsConfiguration** 
  
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
 | forceShow | O | If the user agreed to the terms, calling the showTermsView API again will not display the terms and conditions window, but ignore it and force the display of the terms and conditions window.<br>**default** : false | 
  
+
+**GamebaseResponse.Terms.ShowTermsViewResult**
+
+| Parameter              | Values                          | Description         |
+| ---------------------- | --------------------------------| ------------------- |
+| isTermsUIOpened        | bool                            | **true**: The terms and conditions window was displayed, and it was closed after the user agreed to the terms and conditions.<br>**false**: The user has already agreed to the terms and conditions, so the terms and conditions window was closed without being displayed.        |
+| pushConfiguration      | GamebaseResponse.Push.PushConfiguration           | If isTermsUIOpened is **true** and you have added consent to receive push notifications to the terms and conditions, then pushConfiguration will always have a valid object.<br>Otherwise it will be **null**.<br>When pushConfiguration is valid, the value of pushConfiguration.pushEnabled is always **true**. |
+
 **ErrorCode**
 
 | Error | Error Code | Description |
@@ -175,9 +177,14 @@ public void SampleShowTermsView()
         if (Gamebase.IsSuccess(error) == true)
         {
             Debug.Log("ShowTermsView succeeded.");
+
+            GamebaseResponse.Terms.ShowTermsViewResult result = GamebaseResponse.Terms.ShowTermsViewResult.From(data);
             
             // Save the 'PushConfiguration' and use it for Gamebase.Push.RegisterPush() after Gamebase.Login().
-            savedPushConfiguration = GamebaseResponse.Push.PushConfiguration.From(data);
+            savedPushConfiguration = result.pushConfiguration;
+            
+            // Wheter the TermsUI was displayed.
+            bool isTermsUIOpened = result.isTermsUIOpened;
         }
         else
         {
