@@ -118,12 +118,6 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 約款に同意した場合、showTermsView APIを再度呼び出しても約款ウィンドウが表示されず、すぐに成功コールバックがリターンされます。
 ただし、Gamebaseコンソールで「約款の再同意」項目を**必要**に変更した場合は、ユーザーが再度約款に同意するまでは約款ウィンドウが表示されます。
 
-> <font color="red">[注意]</font><br/>
->
-> * PushConfigurationは、約款ウィンドウが表示されていない場合はnullです。(約款ウィンドウが表示されていれば常に有効なオブジェクトが返されます。)
-> * PushConfiguration.pushEnabled値は常にtrueです。
-> * PushConfigurationがnullではない場合、**ログイン後に**Gamebase.Push.RegisterPush APIを呼び出してください。
-
 #### Optionalパラメータ
 
 * GamebaseTermsConfiguration : GamebaseTermsConfigurationオブジェクトを介して強制的に約款同意ウィンドウを表示するかどうかなどの設定を変更できます。
@@ -141,11 +135,18 @@ static void ShowTermsView(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Dat
 static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration configuration, GamebaseCallback.GamebaseDelegate<GamebaseResponse.DataContainer> callback)
 ```
 
-**GamebaseTermsConfiguration** 
+**GamebaseRequest.Terms.GamebaseTermsConfiguration** 
  
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
 | forceShow | O | 約款に同意した場合、showTermsView APIを再度呼び出しても約款ウィンドウが表示されませんが、これを無視して強制的に約款ウィンドウを表示します。<br>**default** : false |
+
+
+**GamebaseResponse.Terms.ShowTermsViewResult**
+| Parameter              | Values                          | Description         |
+| ---------------------- | --------------------------------| ------------------- |
+| isTermsUIOpened        | bool                            | **true**：約款ウィンドウが表示され、ユーザーが同意して約款ウィンドウが終了しました。<br>**false**：すでに約款に同意していて約款ウィンドウが表示されずに約款ウィンドウが終了しました。 |
+| pushConfiguration      | GamebaseResponse.Push.PushConfiguration           | isTermsUIOpenedが **true**で、約款にプッシュ受信同意有無を追加した場合、pushConfigurationは常に有効なオブジェクトを持ちます。<br>そうでない場合は**null**です。<br>pushConfigurationが有効なとき、pushConfiguration.pushEnabled値は常に**true**です。 |
 
 **ErrorCode**
 
@@ -175,8 +176,13 @@ public void SampleShowTermsView()
         {
             Debug.Log("ShowTermsView succeeded.");
 
+            GamebaseResponse.Terms.ShowTermsViewResult result = GamebaseResponse.Terms.ShowTermsViewResult.From(data);
+
             // Save the 'PushConfiguration' and use it for Gamebase.Push.RegisterPush() after Gamebase.Login().
-            savedPushConfiguration = GamebaseResponse.Push.PushConfiguration.From(data);
+            savedPushConfiguration = result.pushConfiguration;
+            
+            // Wheter the TermsUI was displayed.
+            bool isTermsUIOpened = result.isTermsUIOpened;
         }
         else
         {

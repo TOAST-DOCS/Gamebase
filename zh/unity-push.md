@@ -4,24 +4,29 @@
 
 ### Settings
 
+在Android和iOS设置推送的方法请参考以下文档。
 
-在Android和iOS设置推送的方法请参考以下文档。<br/>
-
-* [Android Push Settings](aos-push#settings)<br/>
-* [iOS Push Settings](ios-push#settings)
+* Android
+    * [Android Push Settings](aos-push/#settings)
+    * [Firebase Notification Settings](aos-started/#firebase-notification)
+* iOS
+    * [iOS Push Settings](ios-push#settings)
 
 
 ### Register Push
 
 调用以下API在TOAST Push注册该用户。
-接受来自用户的推送协议(enablePush)，广告推送协议(enableAdPush)，夜间广告推送协议(enableAdNightPush)的值，并调用以下API完成注册。
+接受来自用户的推送协议(enablePush)、广告推送协议(enableAdPush)及夜间广告推送协议(enableAdNightPush)的值，并调用以下API完成注册。
 
+> <font color="red">[注意]</font><br/>
+>
+> 由于每个UserID的推送设置不同而推送令牌可能过期，建议登录后每次都调用RegisterPush API。
 
 **API**
 
-Supported Platforms
+ 
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS<br/>
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
@@ -58,7 +63,7 @@ public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNig
 ### Notification Options
 
 * 通过使用Notification Options功能可更改终端机显示的通知类型。 
-* 可以在运行时调用registerPush API进行变更。
+* 可以在运行时调用registerPush API进行更改。
 
 #### Set Notification Options with RegisterPush in Runtime
 
@@ -72,7 +77,7 @@ public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNig
 | badgeEnabled           | bool         | 是否使用Badge图标<br/>**default**: true |
 | soundEnabled           | bool         | 提示音的使用与否<br/>**default**: true<br/>**iOS Only** |
 | priority               | int          | 推送通知的优先顺序/可设置以下5个值。<br/>GamebaseNotificationPriority.MIN : -2<br/> GamebaseNotificationPriority.LOW : -1<br/>GamebaseNotificationPriority.DEFAULT : 0<br/>GamebaseNotificationPriority.HIGH : 1<br/>GamebaseNotificationPriority.MAX : 2<br/>**default**: GamebaseNotificationPriority.HIGH<br/>**Android Only** |
-| smallIconName          | string       | 手机顶端状态栏的通知提示小图标文件名称<br/      >如果不设置时，则使用应用程序图标。<br/>**default**: null<br/>**Android Only** |
+| smallIconName          | string       | 手机顶端状态栏的通知提示小图标文件名称<br/>如果不设置，则使用应用程序图标。<br/>**default**: null<br/>**Android Only** |
 | soundFileName          | string       | 提示音文件名称/只在Android 8.0以下的OS上运行。<br/>如果指定”res/raw”文件夹的mp3、wav文件名称，则可更改提示音。<br/>**default**: null<br/>**Android Only** |
 
 **Example**
@@ -117,7 +122,7 @@ public void RegisterPushSample(bool pushEnabled, bool adAgreement, bool adAgreem
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS<br/>
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
@@ -149,7 +154,7 @@ public void GetNotificationOptionsSample()
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS<br/>
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
@@ -205,6 +210,14 @@ public void QueryTokenInfoSample(bool isSandbox)
 | adAgreementNight | bool | 是否允许在夜间显示广告性推送通知  | 
 
 
+### Event Handling
+
+* 当接收推送消息或点击推送消息时可处理事件。 
+* 关于注册事件的方法，请参考GamebaseEventHandler指南。
+    * [ Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Push Received Message](./unity-etc/#push-received-message)
+    * [ Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./unity-etc/#push-click-message)
+    * [ Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./unity-etc/#push-click-action)
+
 #### Setting for APNS Sandbox
 * 在APNS Sandbox环境下，为了正常启动Push功能，需要开启SandboxMode。 
 * Push发送方法
@@ -233,9 +246,9 @@ public void SetSandboxModeSample()
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | TOAST Push 库错误。<br>请确认DetailCode。 |
-| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | 上一次的推送API调用未完成。<br>上一次推送 API回调执行后请重新调用。 |
-| PUSH_UNKNOWN_ERROR             | 5999       | 未知推送错误。<br>请将全部的Log上传到[客服中心](https://toast.com/support/inquiry)，我们会尽快回复。 |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | TOAST Push库错误。<br>请确认DetailCode。 |
+| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | 上一次的推送API调用未完成。<br>上一次推送API回调执行后请重新调用。 |
+| PUSH_UNKNOWN_ERROR             | 5999       | 未知推送错误。<br>请将全部的Log上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。 |
 
 * 全部错误代码，请参考以下文档。
     * [错误代码](./error-code/#client-sdk)

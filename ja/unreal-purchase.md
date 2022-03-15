@@ -5,19 +5,31 @@ Gamebaseは、1つの統合された決済APIを提供し、ゲームから簡�
 
 ### Settings
 
-> <font color="red">[注意]</font><br/>
->
-> Android ONE Storeはv17のみをサポートします。
-> Android ONE Store v19はサポートを検討中で、現在はサポートしていません。
-
 AndroidまたはiOSでアプリ内決済機能を設定する方法は、次の文書を参照してください。<br/>
 
 * [Android Purchase Settings](aos-purchase#settings)
 * [iOS Purchase Settings](ios-purchase#settings)
 
+#### Unreal Plugin設定
+
+> <font color="red">[注意]</font><br/>
+>
+> 外部プラグインで決済関連処理がある場合、 Gamebase決済機能が正常に動作しない可能性があります。
+* Unrealでデフォルトで有効になっているOnline SubSystemプラグインを無効化またはストア機能を利用できないように変更する必要があります。
+    * Online SubSystem GooglePlayプラグイン使用時 /Config/Android/AndroidEngine.iniファイルを編集します。
+        ```ini
+        [OnlineSubsystemGooglePlay.Store]
+        bSupportsInAppPurchasing=False
+        ```
+    * Online SubSystem iOSプラグイン使用時 /Config/IOS/IOSEngine.iniファイルを編集します。
+        ```ini
+        [OnlineSubsystemIOS.Store]
+        bSupportsInAppPurchasing=False
+        ```
+
 #### Android決済設定(エンジンバージョン4.24以下)
 
-* Epic Games Launcherを通して4.24バージョンをインストールした場合、
+* Epic Games Launcherを通じて4.24以下のバージョンをインストールした場合、
     **Engine\Build\Android\Java\src\com\android\vending\billing\IInAppBillingService.aidl**を削除すると正常にビルドできます。
     * [IInAppBillingService.aidl](https://developer.android.com/google/play/billing/api)ファイルはGamebaseで提供しており、衝突が発生するので除去する必要があります。
     * エンジン4.25以上のバージョンや、githubからエンジンをダウンロードした場合は、別途除去する必要がありません。
@@ -378,7 +390,7 @@ void Sample::RequestItemListOfNotConsumed()
 
 > <font color="red">[注意]</font><br/>
 >
-> 現在の購読商品は、Androidの場合Google Playストアのみサポートします。
+> Androidでは現在、Google Playストアでのみサブスクリプション商品をサポートしています。
 
 **API**
 

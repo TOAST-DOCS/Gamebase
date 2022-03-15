@@ -1,18 +1,28 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.34.1 (2022. 03. 15.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.1/GamebaseSDK-iOS.zip)
+
+#### 기능 추가
+* Swift 프로젝트 사용자를 위해서 Public API에 NS_SWIFT_NAME 설정을 추가하였습니다.
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트 : Hangame iOS SDK (1.6.2)
+* 디바이스가 가로모드인 상태에서 showWebView API를 호출했을 때, 하단에 검은색 빈 공간이 출력되는 이슈를 수정하였습니다.
+
 ### 2.34.0 (2022. 02. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* Gamebase 콘솔의 업데이트 필수 설정에서 '팝업 버튼 추가' 항목을 선택하면 클라이언트의 업데이트 필수 팝업에 '자세히 보기' 버튼이 추가됩니다.
-* 단말기에서 알림을 허용했는지 여부를 알 수 있는 API가 추가되었습니다.
+#### 添加功能
+* 当在Gamebase控制台的必须更新设定中选择**添加弹窗按钮**时，客户端的必须更新弹窗中将添加一个**查看更多**按钮。
+* 添加了可确认终端机是否允许提示通知的API。
     * **[TCGBPush queryNotificationAllowedWithCompletion:]**
-* 공통 약관 API 호출 후 약관 UI가 표시되었는지 여부를 알 수 있는 VO 클래스가 추가되었습니다.
+* 添加了当调用共同条款API后可确认条款UI是否被显示的VO类。 
     * **TCGBShowTermsViewResult**
 
-#### 기능 개선/변경
-* 이미지공지 API를 호출했을 때 표시할 이미지공지가 없는 경우, 배경이 잠시 어두워지는 현상을 수정하였습니다.
-* 킥아웃 팝업 표시 여부는 Gamebase 콘솔에서 킥아웃 등록시 설정할 수 있으므로 아래 API들이 deprecated 되었습니다.
+#### 改善/更改功能
+* 当调用图片通知API时没有可以显示的图片通知时，背景突然变暗的现象被修改。
+* 由于在Gamebase控制台中注册Kickout时可以设置是否显示kickout弹窗，因此以下字段已被deprecated。
     * **[TCGBConfiguration enableKickoutPopup:]**
     * **[TCGBConfiguration isEnableKickoutPopup]**
     
@@ -46,7 +56,7 @@
     * [Game > Gamebase > iOS SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./ios-etc/#logged-out)
 
 #### 改善/修复功能
-* Webview navigationBar的default title Color被更改为**UIColor.white**。
+* Webview navigationBar的default title Color被更改为**UIColor.whiteColor**。
 
 #### 修改程序错误
 * 修改后，现在当调用Hangame注销时，thirdIdP也将注销。

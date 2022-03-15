@@ -1,4 +1,4 @@
-## Game > Gamebase > Android Developer's Guide > Getting Started
+﻿## Game > Gamebase > Android Developer's Guide > Getting Started
 
 ## Environments
 
@@ -26,9 +26,11 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | Support Weibo login | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 21(Lollipop, OS 5.0) |
 | Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.1<br>toast-iap-core | Support in-app purchase | - |
+|  | gamebase-adapter-purchase-amazon | toast-iap-amazon | Support Amazon Appstore | - |
 |  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | Support Galaxy Store | API 21 (Lollipop, OS 5.0)<br>Although minSdkVersion of Galaxy IAP SDK is 18, the minSdkVersion of Checkout service app that must be installed for actual purchase is 21. |
-|  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Support Google Store | - |
-|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | Support ONE Store v17<br>Currently v19 is not supported | - |
+|  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Support Google Play Store | - |
+|  | gamebase-adapter-purchase-huawei | toast-iap-huawei | Support Huawei App Gallery | API 19 (Kitkat, OS 4.4) |
+|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | Support ONE store v17<br>Currently v19 is not supported | - |
 | Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Support push notifications | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Support Firebase Notification | - |
 
@@ -46,11 +48,13 @@ To execute Gamebase in Android, the following system environment is required.
     * [Game > Gamebase > Console User Guide > App > Authentication Information](./oper-app/#authentication-information)
 * To enable item purchase, register the app info in the Store console and enter it in Gamebase > Purchase(IAP) console.
 	* [Game > Gamebase > Store Console Guide > Google Console Guide](./console-google-guide)
-	* [Game > Gamebase > Store Console Guide > ONEStore Console Guide](./console-onestore-guide)
+	* [Game > Gamebase > Store Console Guide > ONE store Console Guide](./console-onestore-guide)
         * For ONE Store, currently only v17 is supported.
         * When creating an app in the ONE Store, please be careful not to create it in v19.
         * ONE Store v19 support is under consideration.
 	* [Game > Gamebase > Store Console Guide > GALAXY Store Console Guide](./console-galaxy-guide)
+	* [Game > Gamebase > Store Console Guide > Amazon Appstore Console Guide](./console-amazon-guide)
+	* [Game > Gamebase > Store Console Guide > Huawei App Gallery Console Guide](./console-huawei-guide)
     * See the following guide to register items.
         * [Game > Gamebase > Console User Guide > Payment > Register](./oper-purchase/#register_1)
 * For push notifications, go to Gamebase > Push > Certificate Console and enter the push notification service certificate.
@@ -69,13 +73,17 @@ To execute Gamebase in Android, the following system environment is required.
 #### Store's Tester
 
 * For payment test, register as a tester as follows for each store: (This is not settings for Gamebase Tester registration but for test payment of the store.)
-    * Google
+    * Google Play Store
         * [Android > Test Purchase Settings](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
     * ONE store
         * [ONE Store > APPS > Article Status > In-App Information > Payment Test > Register/Manage Test ID](https://dev.onestore.co.kr/wiki/ko/doc/%EA%B0%9C%EB%B0%9C%EB%8F%84%EA%B5%AC/api-v5-sdk-v17/%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%B0%8F-%EB%B3%B4%EC%95%88#id-%EA%B2%B0%EC%A0%9C%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%B0%8F%EB%B3%B4%EC%95%88-%ED%85%8C%EC%8A%A4%ED%8A%B8ID%EB%93%B1%EB%A1%9D/%EA%B4%80%EB%A6%AC)
-    * GALAXY store
+    * GALAXY Store
         * [GALAXY Store > App > Registered Apps > Binary > Beta Test > Tester Settings](https://seller.samsungapps.com/application)
         * Payment test is available only on Samsung devices.
+    * Amazon Appstore
+        * [Amazon Appstore > In-App Purchasing > Test IAP Apps > IAP Testing Overview](https://developer.amazon.com/docs/in-app-purchasing/iap-testing-overview.html)
+    * Huawei App Gallery
+        * [Huawei Developers > HMS Core > App Services > In-App Purchases > Guides > Sandbox Testing](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/sandbox-testing-0000001050035039)
 
 ### Gradle
 
@@ -172,6 +180,8 @@ dependencies {
     // >>> For ONE Store, only v17 can be used and v19 is currently not supported.
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-amazon:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-huawei:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
@@ -471,6 +481,13 @@ android {
         <package android:name="com.sec.android.app.samsungapps" />
         <!-- [Galaxy store] Configurations end -->
     </queries>
+    
+    <!-- [Amazon Appstore] Configuration begin -->
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+    <!-- [Amazon Appstore] Configuration end -->
+    
     <!-- [Android11] settings end -->
 </manifest>
 ```

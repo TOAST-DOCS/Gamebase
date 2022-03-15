@@ -13,9 +13,11 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
 
 * Store code must be specified to initialize Gamebase. 
 * Select **STORE_CODE** among the following:  
-    * GG: Google Store
+    * GG: Google Play
     * ONESTORE: ONE Store
     * GALAXY: Galaxy Store
+    * AMAZON: Amazon Appstore
+    * HUAWEI: Huawei Appstore
 
 ```java
 String STORE_CODE = "GG";	// Google
@@ -424,7 +426,7 @@ See the guide on how to process a promotional purchase event via GamebaseEventHa
 | PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | Product is not activated.  |
 | PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | Requested for purchase with invalid GamebaseProductID. |
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | You have exceeded your monthly purchase limit.             |
-| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | The store is not supported.<br>You can choose either GG (Google), ONESTORE, or GALAXY. |
+| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | The store is not supported.<br>You can choose either GG (Google), ONESTORE, GALAXY, AMAZON, or HUAWEI. |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | Error in IAP library.<br>Check detail codes.   |
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | Unknown error in purchase.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry) and we'll reply at the earliest possible moment. |
 

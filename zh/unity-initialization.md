@@ -1,6 +1,6 @@
 ## Game > Gamebase > Unity SDK使用指南 > 初始化
 
-如需使用Gamebase Unity SDK，必须先执行初始化。此外，还需在TOAST控制台中注册APP ID、APP版本信息。
+如需使用Gamebase Unity SDK，必须先执行初始化。此外，还需在TOAST控制台中注册APP ID和APP版本信息。
 
 ### GamebaseConfiguration 
 
@@ -23,13 +23,13 @@
 
 在Gamebase控制台中注册的项目ID。
 
-[Console Guide](/Game/Gamebase/zh/oper-app/#app)
+[Game > Gamebase > 控制台使用指南> APP > App](./oper-app/#app)
 
 #### 2. appVersion
 
 在Gamebase控制台中注册的客户端版本。
 
-[Console Guide](/Game/Gamebase/zh/oper-app/#client)
+[Game > Gamebase > 控制台使用指南> APP > Client](./oper-app/#client)
 
 #### 3. storeCode
 
@@ -48,21 +48,21 @@
 
 可以将Gamebase提供的UI及SystemDialog中显示的语言更改为设备上设置的语言以外的语言。
 
-[Display Language](./unity-etc/#display-language)
+[Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Display Language](./unity-etc/#display-language)
 
 #### 5. enablePopup
 
 因系统维护、禁用(ban)等原因用户无法玩游戏时，需要通过弹出窗口等方式显示原因。
 此设置为是否使用Gamebase提供的默认弹出窗口的设置。
 
-* true：根据enableLaunchingStatusPopup, enableBanPopup的设置决定是否显示弹出窗口。
+* true：根据enableLaunchingStatusPopup、enableBanPopup的设置决定是否显示弹出窗口。
 * false：Gamebase提供的所有弹出窗口均不显示。
-* 默认值: false
+* 默认值 : false
 
 #### 6. enableLaunchingStatusPopup
 
 此设置是当LaunchingStatus不能进行游戏时是否使用Gamebase提供默认弹出窗口的设置。
-LaunchingStatus请参考下面Launching段落下面的State, Code部分。
+LaunchingStatus请参考下面Launching段落下面的State、Code部分。
 
 * 默认值: true
 
@@ -83,7 +83,7 @@ LaunchingStatus请参考下面Launching段落下面的State, Code部分。
 
 使用Firebase Messaging(FCM)所需的Sender ID。
 
-![FCM Sender ID](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
+![FCM Sender ID](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
 
 #### 10. useWebview
 
@@ -281,19 +281,19 @@ Gamebase Unity SDK初始化设置是输入的APP版本的游戏状态信息。
 Gamebase Console中注册的APP信息。
 
 * accessInfo
-    * serverAddress: 服务器地址
+    * serverAddress : 服务器地址
 * customerService
-    * accessInfo : 客服中心信息
-    * type : 客服中心的类型
-    * url : 客服中心URL
+    * accessInfo : 客户服务信息
+    * type : 客户服务的类型
+    * url : 客户服务URL
 * relatedUrls
-    * termsUrl: 使用条款
-    * personalInfoCollectionUrl: 同意个人信息
-    * punishRuleUrl: 停止使用规定
-* install: 安装URL
-* idP: 验证信息
+    * termsUrl : 使用条款
+    * personalInfoCollectionUrl : 同意个人信息
+    * punishRuleUrl : 停止使用规定
+* install : 安装URL
+* idP : 验证信息
 
-[Game > Gamebase > 控制台使用指南> APP > Client](./oper-app/#client)
+[Game > Gamebase > 控制台使用指南 > APP > Client](./oper-app/#client)
 
 **1.3维护**
 
@@ -304,6 +304,7 @@ Gamebase Console中注册的APP信息。
 * beginDate：开始时间
 * endDate：结束时间
 * message：维护理由
+* hideDate : 是否显示维护的开始和结束时间
 
 [Game > Gamebase > 控制台使用指南 > 运营 > Maintenance](./oper-operation/#maintenance)
 
@@ -313,7 +314,7 @@ Gamebase Console中注册的APP信息。
 
 * message：消息
 * title：标题
-* url：维护URL
+* url：维护URL 
 
 [Game > Gamebase > 控制台使用指南 > 运营 > Notice](./oper-operation/#notice)
 
@@ -353,7 +354,7 @@ Gamebase Console中注册的APP信息。
 >
 > GetLaunchingInformations API不是从服务器实时获取信息的异步API。
 > 因每两分钟返还更新的现金信息，不适合实时判断当前是否维护。
-> 在这种情况下，请使用Launching Status Code被更改时启动事件的GamebaseEventHandler。
+> 在此情况下，请使用Launching Status Code被更改时启动事件的GamebaseEventHandler。
 > [Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Observer](./unity-etc/#observer)
 
 **API**
@@ -381,7 +382,7 @@ public GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
 ### Handling Unregistered Version
  	 
 初始化未在Gamebase控制台中注册的GameClientVersion时，将出现**LAUNCHING_UNREGISTERED_CLIENT(2004)**错误。
-如果是enablePopup(true), enableLaunchingStatusPopup(true)状态，则显示强制更新弹窗，并可跳转到商店。
+如果是enablePopup(true)、enableLaunchingStatusPopup(true)状态，则显示强制更新弹窗，并可跳转到商店。
 若不使用Gamebase弹窗，则可从GamebaseError对象获取商店URL等的Update信息。 
 
 **VO**
@@ -467,8 +468,8 @@ public class SampleInitialization
 | ---------------------------------- | ---------- | ---------------------- |
 | NOT\_INITIALIZED      | 1          | 未初始化Gamebase。 |
 | NOT\_LOGGED\_IN       | 2          | 需要登录。            |
-| INVALID\_PARAMETER    | 3          | 无效的参数。           |
-| INVALID\_JSON\_FORMAT | 4          | JSON格式错误。         |
+| INVALID\_PARAMETER    | 3          | 无效的参数           |
+| INVALID\_JSON\_FORMAT | 4          | JSON格式错误         |
 | USER\_PERMISSION      | 5          | 无权限。              |
 | NOT\_SUPPORTED        | 10         | 不支持此功能。         |
 

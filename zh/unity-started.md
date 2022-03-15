@@ -1,14 +1,14 @@
-## Game > Gamebase > Unity SDK使用指南 > 开始
+﻿## Game > Gamebase > Unity SDK使用指南 > 开始
 
 以下说明Gamebase Unity SDK使用环境和初始设置。
 
-### Environments 
+## Environments
 
 > [参考] 
 >
 > Gamebase支持的Unity版本
 >
-> * 2018.4.0 ~ 2021.1.22
+> * 2018.4.0 ~ 2021.2.7
 > * 如果需要Gamebase支持的低版本Unity，请联系[客户服务](https://toast.com/support/inquiry)。
 
 #### Android
@@ -56,44 +56,99 @@ Supported Platforms
 * [Download Gamebase Unity SDK](/Download/#game-gamebase)
 
 ### Specification of Setting Tool
+
 1. 下载SDK
-    * 支持最新版本的下载。
+    * 支持下载最新版本SDK。 
 2. 安装SDK
-    * 支持下载的SDK安装。
+    * 支持安装下载的SDK。 
+        * Unity : Unitypackage
+        * Android : Gradle
+        * iOS : CocoaPods
 3. 删除SDK
-    * 支持删除已安装的SDK。
+    * 支持删除SDK。 
 4. 更新SDK
     * 不支持更新功能。
-    * 如需更新，请删除后重新安装。
+    * 删除SDK后，通过重新设置来取代更新功能。
 
 ### Using the Setting Tool
 
+* 发布了Gamebase SettingTool **v2.0.0**。 
+    * 与v1.5.0不兼容，请删除后使用v2.0.0以上版本。 
+
+**AS-IS**
+
+1. 在Unity项目中进行打包时包括适用于Android和iOS的Gamebase SDK。
+2. 不支持Gradle和CocoaPods。
+
+**TO-BE**
+
+1. 支持Gradle和CocoaPods。
+2. 将EDM4U(External Dependency Manager for Unity)使用为必要的库。
+    * 在[EDM4U Github](https://github.com/googlesamples/unity-jar-resolver)中下载EDM4U后进行设置。 
+    * 如果没有EDM4U则无法设置Gamebase SDK for Android、iOS。
+    * 当使用已经包含EDM4U的SDK，如Facebook、GPGS SDK和Firebase，不需要下载EDM4U。
+3. 在为Android平台提供服务时，请选择上方菜单 > **Assets > External Dependency Manager > Android Resolver > Settings**，打开Android Resolver Settings窗口，按如下方式进行设置。 
+    * Enable Auto-Resolution : 不启用
+    * Explode AARs : 不启用
+    * Patch mainTemplate.gradle : 启用
+    * Use Jetifier : 启用
+    * ![Android Resolver Settings](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-edm4u-settings-1_2.0.0.png)
+4. 在为iOS平台提供服务时，选择上方菜单 > **Assets > External Dependency Manager > iOS Resolver > Settings**，打开iOS Resolver Settings窗口，按如下方式进行设置。 
+    * Use Shell to Execute Cocoapod Tool : 不启用
+        * 如果此功能已被激活，在Unity打包iOS时将出现无法生成xcworkspace的错误。(CocoaPods 1.11.x程序错误)
+        * 需要激活此功能的用户，请用以下2种方法之一解决错误。
+            * 设置CocoaPods 1.10.x版本。
+            * 在Unity生成的Xcode项目中直接调用**pod install**。
+
+> <font color="red">[注意]</font>
+>
+> 在为iOS平台提供服务时，需要安装CocoaPods。关于安装CocoaPods和具体的说明，请参考[cocoapods.org](https://cocoapods.org/)。
+
 #### 安装SDK
-1. 打开Unity项目。
-2. 输入GamebaseUnitySettingTool_{version}.unitypackage。
-3. 运行Menu > Tools > Gamebase > SDKSettings > Setting Tool。
-	* v1.0.1 以下：Menu > Gamebase > SDKSettings > Setting Tool
-4. 通过点击[Download SDK]按钮来下载SDK。
-5. 选择所需的平台。
+
+1. 打开Unity项目。  
+2. 导入GamebaseUnitySettingTool_{version}.unitypackage。 
+3. 选择上方菜单 > **Tools > NhnCloud > Gamebase > SettingTool > Settings**。
+4. 在SDK Download项目中点击[Gamebase SDK]按钮下载最新SDK。
+5. 选择要使用的平台。
     * Android
     * iOS
-6. 选择在每个平台上使用的模块儿。
-    * Authentication支持与类似Google的ID Provider(所谓IDP)的联动。
-    * Push支持FCM(Firebase)、APNS Push等服务。
-    * Pruchase通过使用TOAST支付服务的IAP(In-App Purchase)来支持支付。
-7. 通过点击[Settings]按钮来设置SDK。
+6. 选择各平台将使用的模块儿。
+    * authentication支持与Google等ID Provider(以下简称IDP)进行交互。
+    * push支持FCM(Firebase)和APNS Push服务。
+    * pruchase使用NHN Cloud结算服务IAP(In-App Purchase)支持付款。
+7. 点击[Settings]按钮安装SDK。
+8. 如果选择了Android和iOS模块儿，则要执行EDM4U的resolve。
+    * Android : 选择上方菜单 > **Assets > External Dependency Manager > Android Resolver > Force Resolve**。
+    * iOS : 选择上方菜单 > **Assets > External Dependency Manager > iOS Resolver > install Cocoapods**。
+
+> <font color="red">[注意]</font>
+>
+> 如果没有EDM4U，则不设置Gamebase SDK for Android和iOS。<br/>
+> 在执行EDM4U的resolve之前，要在**Build Settings**窗口中点击Switch Platform按钮转为将要打包的平台。如果Android平台已被选择，则在**Player Settings > Publishing Settings**中启用Custom Gradle Template创建mainTemplate.gradle文件。<br/>
+> 如果使用“Unity 2019.3”以上，则需在**Player Settings > Publishing Settings**中启用Custom Gradle Properties Template创建gradleTemplate.properties文件。
+
+
+#### 更新SDK
+
+1. 选择上方菜单 > **Tools > NhnCloud > Gamebase > SettingTool > Settings**。
+2. 在**SDK Download**项目中点击[Gamebase SDK]按钮下载最新SDK。
+    * 最新SDK已被下载时相关按钮将被激活。 
+3. 点击[Settings]按钮安装SDK。
+    * 可以更改之前选择的平台模块。
+
 
 #### 删除SDK
-1. 运行Menu > Tools > Gamebase > SDKSettings > Setting Tool。
-	* v1.0.1以下：Menu > Gamebase > SDKSettings > Setting Tool
-2. 点击[Remove]按钮删除已安装的SDK。
 
-<br/>
+1. 选择上方菜单 > **Tools > NhnCloud > Gamebase > SettingTool > Settings**。
+2. 请点击[Remove]按钮删除安装的SDK。
+
 > [参考]
 > 
-> 如果Setting Tool发生意外错误，请关闭窗口后重新运行。 <br/>
-> 如果您使用Unity Facebook认证，则需要单独下载Facebook Unity SDK。 [Go to Download](https://developers.facebook.com/docs/unity/)<br/>
-> 有关Unity Facebook Authentication支持的Facebook Unity SDK版本，请参考随附的README文件。 <br/>
+> 如果在Setting Tool出现意外错误，请关闭窗口并重试。 <br/> 
+> 如果错误没能通过重新运行解决，在**Assets/NhnCloud/GamebaseTools/SettingTool/Editor/Scripts**中打开SettingToolWindow.cs文件，在ShowWindow方法中解除SettingTool.SetDebugMode(true);代码注释后，请传送日志。<br/><br/>
+> 使用Unity Facebook Authentication时需要另行下载Facebook Unity SDK。 [Go to Download](https://developers.facebook.com/docs/unity/)<br/>
+> 关于在Unity Facebook Authentication中支持的Facebook Unity SDK版本，请参考随附的README文件。 <br/>
 
 ### Video of Setting Tool Usage
 
@@ -105,7 +160,7 @@ Supported Platforms
 "></iframe>
 
 
-### Update of Setting Tool
+### Setting Tool Update
 
 如果需要更新Setting Tool，Setting Tool将通知更新。
 根据更新类型，Setting Tool提供的部分功能会受限制。
@@ -114,16 +169,16 @@ Supported Platforms
 
 * 需要更新
 * SDK下载限制
-	* 可以使用已下载的SDK进行安装和删除
+	* 可以使用已下载的SDK进行安装和删除。
 
-![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-1_1.13.0.png)
+![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-1_1.13.0.png)
 
 #### 选择更新
 
 * 选择更新
-* 可下载SDK
+* 可以下载SDK
 
-![Select Build System](http://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-2_1.13.0.png)
+![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-2_1.13.0.png)
 
 ### Android Lifecycle
 
@@ -133,11 +188,16 @@ Supported Platforms
 
 > <font color="red">[注意]</font>
 >
-> AndroidPlugin开发也必须继承GamebaseMainActivity。 <br/>
-> GamebaseMainActivity包含在GamebasePlugin.jar。 <br/>
+> AndroidPlugin开发也必须继承GamebaseMainActivity。 
+> GamebaseMainActivity包含在GamebasePlugin.jar。
 > launchMode应该是singleTask。(Unity默认Activity也将固定为singleTask。) 否则，第一次启动应用程序时可能会崩溃。
 >
 > 修改相关Lifecycle时，要通过启用Project Settings > Settings for Android > Publish Settings > Build > Custom Main Manifest来在相关AndroidManifest.xml上进行修改。 
+
+> <font color="red">[注意]</font>
+> 
+> 将Android的targetSdkVersion设置为31以上时，在存在intent-filter的标签中必须声明android:exported属性。
+> 当为了在Gamebase中管理Lifecycle而提供的**GamebaseMainActivity**设置为MainActivity时也需在属性中添加**android:exported="true"**。
 
 ```xml
 <manifest>
@@ -147,7 +207,8 @@ Supported Platforms
     	<activity android:name="com.toast.android.gamebase.activity.GamebaseMainActivity"
         	android:launchMode="singleTask"
         	android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:exported="true">
             <intent-filter>
             	<action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

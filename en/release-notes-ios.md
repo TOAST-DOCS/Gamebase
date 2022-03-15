@@ -1,21 +1,31 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.34.1 (2022. 03. 15.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.1/GamebaseSDK-iOS.zip)
+
+#### 기능 추가
+* Swift 프로젝트 사용자를 위해서 Public API에 NS_SWIFT_NAME 설정을 추가하였습니다.
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트 : Hangame iOS SDK (1.6.2)
+* 디바이스가 가로모드인 상태에서 showWebView API를 호출했을 때, 하단에 검은색 빈 공간이 출력되는 이슈를 수정하였습니다.
+
 ### 2.34.0 (2022. 02. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* Gamebase 콘솔의 업데이트 필수 설정에서 '팝업 버튼 추가' 항목을 선택하면 클라이언트의 업데이트 필수 팝업에 '자세히 보기' 버튼이 추가됩니다.
-* 단말기에서 알림을 허용했는지 여부를 알 수 있는 API가 추가되었습니다.
+#### Added Features
+* If you select **Add Popup Button** in the Update Required settings of the Gamebase console, a **Details** button will be added to the client's Update Required popup window.
+* Added an API to find out whether the device has allowed notifications or not.
     * **[TCGBPush queryNotificationAllowedWithCompletion:]**
-* 공통 약관 API 호출 후 약관 UI가 표시되었는지 여부를 알 수 있는 VO 클래스가 추가되었습니다.
+* Added a VO class that can be used to find out whether the terms and conditions UI was displayed after calling the common terms and conditions API.
     * **TCGBShowTermsViewResult**
 
-#### 기능 개선/변경
-* 이미지공지 API를 호출했을 때 표시할 이미지공지가 없는 경우, 배경이 잠시 어두워지는 현상을 수정하였습니다.
-* 킥아웃 팝업 표시 여부는 Gamebase 콘솔에서 킥아웃 등록시 설정할 수 있으므로 아래 API들이 deprecated 되었습니다.
+#### Feature Updates
+* Corrected the issue where the background becomes dark briefly when the Image Notice API has been called but there is no image notice to display
+* The following fields have been deprecated because whether to display the kickout popup window can be set during kickout registration in the Gamebase console.
     * **[TCGBConfiguration enableKickoutPopup:]**
     * **[TCGBConfiguration isEnableKickoutPopup]**
-    
+
 ### 2.33.0 (2022.01.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-iOS.zip)
 
@@ -46,7 +56,7 @@
     * [Game > Gamebase > iOS SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Logged Out](./ios-etc/#logged-out)
 
 #### Feature Updates
-* Changed the default title color of webview navigationBar to **UIColor.white**.
+* Changed the default title color of webview navigationBar to **UIColor.whiteColor**.
 
 #### Bug Fixes
 * Fixed so that, when calling Hangame logout, thirdIdP is also logged out.

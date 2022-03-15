@@ -1,5 +1,34 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.34.1 (2022. 03. 15.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.1/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* 단말기에서 알림을 허용했는지 여부를 알 수 있는 API가 추가되었습니다.
+    * Gamebase.Push.QueryNotificationAllowed
+
+#### 버그 수정
+* iOS에서 GamebaseWebViewConfiguration의 isBackButtonVisible 설정이 적용되지 않는 오류가 수정되었습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.34.0](./release-notes-android/#2340-20220222)
+* [Gamebase iOS SDK 2.34.1](./release-notes-ios/#2341-20220315)
+
+### 2.34.0 (2022. 02. 22.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.0/GamebaseSDK-Unity.zip)
+
+#### 添加功能
+* 添加了当调用共同条款API后可确认条款UI是否被显示的VO类。
+    * **GamebaseResponse.Terms.ShowTermsViewResult**
+
+#### 改善/更改功能
+* 由于在Gamebase控制台中注册Kickout时可以设置是否显示kickout弹窗，因此以下字段已被deprecated。
+    * **GamebaseConfiguration.enableKickoutPopup**
+    
+#### 各平台更改事项 
+* [Gamebase Android SDK 2.34.0](./release-notes-android/#2340-20220222)
+* [Gamebase iOS SDK 2.34.0](./release-notes-ios/#2340-20220125)
+
 ### 2.33.0 (2022.01.25)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Unity.zip)

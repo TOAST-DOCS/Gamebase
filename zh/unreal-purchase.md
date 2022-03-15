@@ -5,11 +5,16 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 ### Settings
 
-如果要在Android或iOS上设置In-App结算功能，请参考以下文档。<br/>
+> <font color="red">[注意]</font><br/>
+>
+> Android ONE Store仅支持v17。
+> 目前不支持Android ONE Store v19，但仍在审查是否支持它。
+
+如果要在Android或iOS上设置In-App结算功能，请参考以下文档。
 
 * [Android Purchase Settings](aos-purchase#settings)
 * [iOS Purchase Settings](ios-purchase#settings)
-
+  
 #### 有关Android结算的设置(引擎版本为4.24以下)
 
 * 通过Epic Games Launcher设置4.24版本时, 
@@ -24,7 +29,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 ![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-1. 尚未正常结束上一次支付时，若不进行‘’支付再处理”则将导致支付失败。因此支付前应调用**RequestI temListOfNotConsumed**进行‘’支付再处理”， 若存在未提供的道具则进行Consume Flow。
+1. 尚未正常结束上一次支付时，若不进行‘’支付再处理”则将导致支付失败。因此支付前应调用**RequestI temListOfNotConsumed**进行‘’支付再处理”，若存在未提供的道具则进行Consume Flow。
 2. 游戏客户端通过从Gamebase SDK调用**RequestPurchase**尝试支付。 
 3. 如果付款成功，调用**RequestItemListOfNotConsumed**查看未消费结算明细。若存在未提供的道具，则进行Consume Flow。
 
@@ -418,14 +423,14 @@ void Sample::RequestActivatedPurchases()
 | ----------------------------------------- | ---------- | ---------------------------------------- |
 | PURCHASE_NOT_INITIALIZED                  | 4001       | 未初始化Purchase模块。<br>请确认是否将gamebase-adapter-purchase-IAP模块添加在项目中。|
 | PURCHASE_USER_CANCELED                    | 4002       | 游戏用户取消购买道具。                  |
-| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 未完成购买逻辑的状态下调用了API。|
+| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 尚未完成购买逻辑的状态下调用了API。|
 | PURCHASE_NOT_ENOUGH_CASH                  | 4004       | 因该商店的现金不足，无法进行结算。              |
 | PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | 此商品为非激活状态。 |
 | PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 使用不存在的GamebaseProductID请求了支付。 |
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | 超过了一个月的购买限额。             |
-| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 是不支持的商店。<br>可以选择的商店为AS(App Store)、GG(Google)、ONESTORE及GALAXY。|
-| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | 是IAP库错误。<br>请确认DetailCode。  |
-| PURCHASE_UNKNOWN_ERROR                    | 4999       | 是未定义的购买错误。<br>请将所有日志上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。|
+| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 是不支持的商店。<br>可以选择的商店为AS(App Store)、GG(Google)及ONESTORE及GALAXY。|
+| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | IAP库错误<br>请确认DetailCode。  |
+| PURCHASE_UNKNOWN_ERROR                    | 4999       | 未定义的购买错误<br>请将所有日志上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。|
 
 * 关于所有错误代码，请参考以下文档。 
     * [错误代码](./error-code/#client-sdk)

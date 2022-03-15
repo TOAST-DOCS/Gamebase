@@ -28,16 +28,16 @@ FString GetDeviceLanguageCode() const;
 
 > [参考]
 >
-> Gamebase的客户端消息只包含英语(en)、韩语(ko)、日语(ja)。
+> Gamebase的客户端消息只包含英语(en)、韩语(ko)及日语(ja)。
 
-#### Gamebase支持的语言代码的种类
+#### Gamebase支持的语言代码种类
 
 | Code | Name |
 | --- | --- |
 | de | German |
 | en |English  |
 | es | Spanish |
-| fi | Finish |
+| fi | Finnish |
 | fr | French |
 | id | Indonesian |
 | it | Italian |
@@ -64,7 +64,7 @@ namespace GamebaseDisplayLanguageCode
     static const FString German(TEXT("de"));
     static const FString English(TEXT("en"));
     static const FString Spanish(TEXT("es"));
-    static const FString Finish(TEXT("fi"));
+    static const FString Finnish(TEXT("fi"));
     static const FString French(TEXT("fr"));
     static const FString Indonesian(TEXT("id"));
     static const FString Italian(TEXT("it"));
@@ -174,7 +174,7 @@ void Sample::GetDisplayLanguageCode()
 
 #### Display Language的优先顺序
 
-通过进行初始化或调用SetDisplayLanguageCode API设置Display Language时，最终适用的Display Language值与输入的值不同。
+通过初始化或调用SetDisplayLanguageCode API设置Display Language时，最终适用的Display Language值与输入的值不同。
 
 1. 确认输入到的languageCode是否在localizedstring.json文件中定义。
 2. 初始化Gamebase时，确认终端机设置的语言代码是否在localizedstring.json文件中定义。( 一旦初始化DisplayLanguageCode值，即使终端机设置的语言被更改，也会保持初始值。）                          
@@ -226,7 +226,7 @@ FString GetCountryCodeOfDevice() const;
     2. 如果USIM国家代码为空值，需要确认终端机国家代码，若存在值，则不再确认，而直接返还。
     3. 若USIM、终端机国家代码为空值，则返还”ZZ”。 
 
-![observer](http://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
+![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
 
 **API**
@@ -314,15 +314,15 @@ void Sample::AddEventHandler()
 ```
 
 * Category在GamebaseEventCategory类中定义。 
-* 事件大体分为ServerPush、Observer、Purchase、Push，根据各Category将GamebaseEventMessage.data按以下表的方式转换为VO。 
+* 事件大体分为ServerPush、Observer、Purchase及Push，根据各Category将GamebaseEventMessage.data按以下表的方式转换为VO。 
 
 | Event种类 | GamebaseEventCategory | VO转换方法 | 备注 |
 | --------- | --------------------- | ----------- | --- |
 | ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(message.data) | \- |
 | Observer | GamebaseEventCategory::ObserverLaunching<br>GamebaseEventCategory::ObserverNetwork<br>GamebaseEventCategory::ObserverHeartbeat | FGamebaseEventObserverData::From(message.data) | \- |
 | Purchase - Promotion支付 | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(message.data) | \- |
-| Push - 接收消息 | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(message.data) | 通过**isForeground**值可以确认是否是在Foreground状态接收的消息。|
-| Push - 点击消息 | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) | **isForeground**值不存在。|
+| Push - 接收消息 | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(message.data) | |
+| Push - 点击消息 | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) | |
 | Push - 动态点击 | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(message.data) | 点击RichMessage时启动。|
 
 
@@ -331,7 +331,7 @@ void Sample::AddEventHandler()
 * 是从Gamebase服务器向客户端终端机传送的消息。 
 * Gamebase支持的Server Push Type如下。
     * GamebaseEventCategory::ServerPushAppKickOut
-        * 通过在NHN Cloud Gamebase控制台的**Operation > Kickout**注册Kickout ServerPush消息，将从与Gamebase连接的所有客户端接收Kickout消息。
+        * 通过在NHN Cloud Gamebase控制台的**Operation > Kickout**中注册Kickout ServerPush消息，将从与Gamebase连接的所有客户端接收Kickout消息。
     * GamebaseEventCategory::ServerPushTransferKickout
         * 将Guest账户成功转移至其他终端机时，从以前的终端机接收Kickout消息。
 
@@ -544,9 +544,9 @@ void Sample::AddEventHandler()
 #### Push Received Message
 
 * 是接收Push消息时出现的事件。
-* 通过**isForeground**字段可区分是在Foreground状态还是在Backgroud状态接收的消息。 
 * 通过将extras字段转换为JSON，可获取发送Push时传送的自定义信息。
-
+    *  在**Android**上可通过**isForeground**字段可区分是在Foreground状态还是在Backgroud状态接收的消息。 
+        
 **VO**
 
 ```cpp
@@ -556,12 +556,12 @@ struct FGamebaseEventPushMessage
     FString id;
 
     // 为Push消息的标题。 
-    FString title;
+    FString title;  
 
     // 为Push消息的身体。
     FString body;
 
-    // 通过转换为JSONObject，可确认所有的信息。
+    // 可以确认以JSON格式发送Push时传送的自定义信息。 
     FString extras;
 };
 ```
@@ -579,6 +579,10 @@ void Sample::AddEventHandler()
             if (pushMessage.IsVaild())
             {
                 // When you clicked push message.
+
+                // By converting the extras field of the push message to JSON,
+                // you can get the custom information added by the user when sending the push.
+                // (For Android, an 'isForeground' field is included so that you can check if received in the foreground state.)
             }
         }
     }));
@@ -588,7 +592,7 @@ void Sample::AddEventHandler()
 #### Push Click Message
 
 * 是点击”已接收的Push消息”时出现的事件。
-* 与”GamebaseEventCategory::PUSH_RECEIVED_MESSAGE”不同，不存在**isForeground**字段。
+* 与“GamebaseEventCategory::PushReceivedMessage”不同，Android上的extras字段中没有**isForeground**信息。
 
 **Example**
 
@@ -813,7 +817,7 @@ void OpenContact(const FGamebaseContactConfiguration& configuration, const FGame
 | Error Code | Description |                     
 | --- | --- |
 | NOT\_INITIALIZED(1)                                 | 未调用Gamebase.initialize。|
-| NOT\_LOGGED\_IN(2)                                  | 客户服务类型为“NHN Cloud  OC”， 但在登录之前被调用了。 |
+| NOT\_LOGGED\_IN(2)                                  | 客户服务类型为“NHN Cloud  OC”， 但在登录之前已被调用。 |
 | UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 客户服务URL不存在。<br>请确认Gamebase控制台中的**客户服务URL**。|
 | UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 识别用户的临时发票发布失败 |
 | UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | 已经显示客户服务WebView。|
@@ -855,7 +859,7 @@ void Sample::OpenContact()
 >
 > * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
 >
-> * 使用Unreal时，通过启用内置于引擎中的**Android Runtime Permission**plug-in，确认以下API Reference后，在获取所需的权限时参考。 
+> * 使用Unreal时，通过启用内置于引擎中的**Android Runtime Permission**plug-in，查看以下API Reference后在获取所需的权限时参考。 
 > [Unreal API Reference : AndroidPermission](https://docs.unrealengine.com/en-US/API/Plugins/AndroidPermission/index.html)
 >
 > iOS用户
@@ -878,7 +882,7 @@ void RequestContactURL(const FGamebaseContactConfiguration& configuration, const
 | Error Code | Description |
 | --- | --- |
 | NOT\_INITIALIZED(1)                                 | 未调用Gamebase.initialize。|
-| NOT\_LOGGED\_IN(2)                                  | 客户服务类型为“NHN Cloud  OC”，但在登录之前被调用了。|
+| NOT\_LOGGED\_IN(2)                                  | 客户服务类型为“NHN Cloud  OC”，但在登录之前已被调用。|
 | UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 客户服务URL不存在。<br>请确认Gamebase控制台中的**客户服务URL**。|
 | UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 识别用户的临时发票发放失败 |
 
