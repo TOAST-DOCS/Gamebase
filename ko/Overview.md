@@ -1,7 +1,7 @@
 ## Game > Gamebase > 개요
 
-게임플랫폼 선두기업 NHN 의 10년 노하우를 담은 Gamebase, 자신있게 추천합니다. 
-Gamebase SDK 만 적용하면,  모든 서비스를 손쉽게 이용 가능합니다. 
+게임플랫폼 선두기업 NHN 의 10년 노하우를 담은 Gamebase, 자신있게 추천합니다.
+Gamebase SDK 만 적용하면,  모든 서비스를 손쉽게 이용 가능합니다.
 
 ![Gamebase_summary](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_01_201903.png)
 
@@ -22,7 +22,7 @@ Gamebase의 다양한 기능을 확인할 수 있도록 샘플앱을 제공하�
 Gamebase SDK만 적용하면, 매출, 이용자, 게임밸런싱 지표를 무료로 제공합니다. 
 게임에서 발생하는 매출, 동접, 이용자, 레벨, 아이템 판매 등 게임 사업과 운영에  꼭 필요한 지표 서비스를 제공합니다. 
 빠르게 적용하시고 서비스에 적극 활용해보세요!
-![Gamebase_analytics](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_02_201903.png)
+![Gamebase_analytics_](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_02_201903.png)
 
 #### Reference
 
@@ -155,14 +155,12 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 | UUID    | Guest 생성 시 사용되는 단말 식별자로, 앱 삭제 전까지 유지     |
 | IdP     | Identify Provider로 인증 제공자. Facebook, Google, Apple Game Center, PAYCO 등 |
 | IdP 토큰  | IdP SDK로부터 인증 후 받은 액세스 토큰(access token)  |
-| IdP 로그인 | 외부 IdP 로그인(Facebook, Google 등)           |
+| IdP 로그인 | 외부 IdP 로그인(Facebook, Google 등) |
 
-<br/>
 
 ## Service Architecture
 다음은 Gamebase 서비스 구조도와 간단한 설명입니다.
 ![논리 구성도](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_201903.png)
-<br>
 
 | 컴포넌트명           | 설명                                       |
 | --------------- | ---------------------------------------- |
