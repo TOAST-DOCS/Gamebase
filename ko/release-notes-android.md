@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > 릴리스 노트 > Android
+## Game > Gamebase > 릴리스 노트 > Android
 
 ### 2.34.0 (2022. 02. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.0/GamebaseSDK-Android.zip)
