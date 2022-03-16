@@ -161,7 +161,7 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 
 ## Service Architecture
 다음은 Gamebase 서비스 구조도와 간단한 설명입니다.
-![논리 구성도](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_201903.png)
+![논리 구성도](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_202203.png)
 <br>
 
 | 컴포넌트명           | 설명                                       |
