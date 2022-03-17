@@ -47,6 +47,20 @@
 ### 2.31.0 (2021.12.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Android.zip)
 
+#### Added Features
+* Added Amazon Appstore.
+    * **STORE_CODE** is **AMAZON**.
+    * For how to set up the store, check the following guide.
+        * [Game > Gamebase > Store Console Guide > Amazon Appstore Console Guide](./console-amazon-guide)
+        * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > Gradle > Define Adapters](./aos-started/#define-adapters)
+        * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > Android 11](./aos-started/#android-11)
+* Added Huawei AppGallery.
+    * **STORE_CODE** is **HUAWEI**.
+    * For how to set up the store, check the following guide.
+        * [Game > Gamebase > Store Console Guide > Huawei AppGallery Console Guide](./console-huawei-guide)
+        * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > Gradle > Define Adapters](./aos-started/#define-adapters)
+        * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > Resources > Huawei Store](./aos-started/#resources)
+
 #### Feature Updates
 * External SDK update: TOAST Android SDK(0.29.0)
 * Fixed an issue where it was not possible to register inquiries with banned user information from the Customer Center link in the ban webview.

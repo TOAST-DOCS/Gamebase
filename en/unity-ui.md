@@ -429,7 +429,7 @@ public void ShowWebView()
      configuration.colorB = 128;
      configuration.colorA = 255;
      configuration.barHeight = 40;
-     configuration.buttonVisible = true;
+     configuration.isBackButtonVisible = true;
     
     var schemeList = new List<string>() { "customScheme://openBrowser" };
     
@@ -454,7 +454,7 @@ public void ShowWebView()
 | colorG                   | 0~255                                    | Color of Navigation Bar: R                 |
 | colorB                   | 0~255                                    | Color of Navigation Bar: G               |
 | colorA                   | 0~255                                    | Color of Navigation Bar: B                |
-| buttonVisible            | true or false                            | Activate/Deactivate Go Back Button           |
+| isBackButtonVisible            | true or false                            | Activate/Deactivate Go Back Button           |
 | barHeight                | height                                   | Height of Navigation Bar                  |
 | backButtonImageResource  | ID of resource                           | Image of Go Back Button                |
 | closeButtonImageResource | ID of resource | Image of Close Button |
@@ -464,6 +464,19 @@ public void ShowWebView()
 >
 > In iPadOS 13 or later, WebView is the default desktop mode.
 > You can use the contentMode =`GamebaseWebViewContentMode.MOBILE` setting to switch to the mobile mode.
+
+#### Predefined Custom Scheme
+
+This is the scheme that has been set by Gamebase.
+
+| scheme | Usage |
+| ----------------------------- | ------------------------------ |
+| gamebase://dismiss | Close WebView |
+| gamebase://goBack | Go back on WebView |
+| gamebase://getUserId | Display the user ID of the currently logged in game user |
+| gamebase://getMaintenanceInfo | Display maintenance information on WebPage |
+| gamebase://showwebview?link={URLEncodedURL} | Open URL of the link parameter with WebView.<br>URLEncodedURL: URL to open with WebView.<br>Requires URL decoding. |
+| gamebase://openbrowser?link={URLEncodedURL} | Open URL of the link parameter with an external browser<br/>URLEncodedURL: URL to open with an external browser<br/>URL decoding required |
 
 ### Close WebView
 
