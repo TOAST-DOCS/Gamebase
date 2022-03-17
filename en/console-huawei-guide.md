@@ -1,4 +1,4 @@
-## Game > Gamebase > Store Console Guide > Amazon Appstore Console Guide
+## Game > Gamebase > Store Console Guide > Huawei AppGallery Console Guide
 
 ## Huawei Developer Console
 1. After registering an account in [Huawei Developer Console](https://developer.huawei.com/consumer/en/console) <br/>
