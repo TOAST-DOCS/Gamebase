@@ -7,7 +7,7 @@
 * Added the NS_SWIFT_NAME setting to Public API for Swift project users.
 
 #### Feature Updates
-* External SDK update: Hanggame iOS SDK (1.6.2)
+* External SDK update: Hangame iOS SDK (1.6.2)
 * Fixed an error where, when the showWebView API is called while the device is in landscape mode, a black blank space is displayed at the bottom.
 
 ### 2.34.0 (2022. 02. 22.)
