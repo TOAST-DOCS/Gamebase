@@ -27,7 +27,7 @@
 
 #### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.34.0](./release-notes-android/#2340-20220222)
-* [Gamebase iOS SDK 2.34.0](./release-notes-ios/#2340-20220125)
+* [Gamebase iOS SDK 2.34.0](./release-notes-ios/#2340-20220222)
 
 ### 2.33.0 (2022.01.25)
 
