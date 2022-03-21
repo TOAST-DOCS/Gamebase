@@ -3,14 +3,14 @@
 ### 2.34.1 (2022. 03. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.1/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 단말기에서 알림을 허용했는지 여부를 알 수 있는 API가 추가되었습니다.
+#### Added Features
+* Added an API to determine whether the device has allowed notifications or not.
     * Gamebase.Push.QueryNotificationAllowed
 
-#### 버그 수정
-* iOS에서 GamebaseWebViewConfiguration의 isBackButtonVisible 설정이 적용되지 않는 오류가 수정되었습니다.
+#### Bug Fixes
+* Fixed an error where the isBackButtonVisible setting of GamebaseWebViewConfiguration was not applied on iOS.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.34.0](./release-notes-android/#2340-20220222)
 * [Gamebase iOS SDK 2.34.1](./release-notes-ios/#2341-20220315)
 
@@ -27,7 +27,7 @@
 
 #### Platform-specific Changes
 * [Gamebase Android SDK 2.34.0](./release-notes-android/#2340-20220222)
-* [Gamebase iOS SDK 2.34.0](./release-notes-ios/#2340-20220125)
+* [Gamebase iOS SDK 2.34.0](./release-notes-ios/#2340-20220222)
 
 ### 2.33.0 (2022.01.25)
 

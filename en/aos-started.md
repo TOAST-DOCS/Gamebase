@@ -78,6 +78,7 @@ To execute Gamebase in Android, the following system environment is required.
     * ONE store
         * [ONE Store > APPS > Article Status > In-App Information > Payment Test > Register/Manage Test ID](https://dev.onestore.co.kr/wiki/ko/doc/%EA%B0%9C%EB%B0%9C%EB%8F%84%EA%B5%AC/api-v5-sdk-v17/%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%B0%8F-%EB%B3%B4%EC%95%88#id-%EA%B2%B0%EC%A0%9C%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%B0%8F%EB%B3%B4%EC%95%88-%ED%85%8C%EC%8A%A4%ED%8A%B8ID%EB%93%B1%EB%A1%9D/%EA%B4%80%EB%A6%AC)
     * GALAXY Store
+        * [Samsung Developers > Samsung IAP > Technical Documents > Test Guide > 3. IAP Testing > 3.2 Test Type > (3) Production Closed Beta Test](https://developer.samsung.com/iap/iap-test-guide.html)
         * [GALAXY Store > App > Registered Apps > Binary > Beta Test > Tester Settings](https://seller.samsungapps.com/application)
         * Payment test is available only on Samsung devices.
     * Amazon Appstore
@@ -157,6 +158,9 @@ repositories {
     // >>> For Gamebase SDK
     mavenCentral()
     ...
+    
+    // >>> [Huawei App Gallery]
+    maven { url 'https://developer.huawei.com/repo/' }
 }
 
 dependencies {
@@ -209,6 +213,18 @@ android {
 ```
 
 ### Resources
+
+#### Huawei Store
+
+* You must add the AppGallery Connection configuration file (agconnect-service.json) to the assets folder.
+    * Log in to [AppGallery Connect](https://developer.huawei.com/consumer/en/ervice/josp/agc/index.html) and click on **My Projects**.
+    * Select an app from your project.
+    * Go to **Project settings** > **General information**.
+    * Download the **agconnect-service.json** file from **App information**.
+    * For Android Studio builds
+        * Copy the **agconnect-service.json** file to the **assets** folder in your project.
+    * For Unity builds
+        * Copy the **agconnect-service.json** file to the **Assets/StreamingAssets** folder in your project.
 
 #### Firebase Notification
 
@@ -491,6 +507,12 @@ android {
     <!-- [Android11] settings end -->
 </manifest>
 ```
+
+* For Amazon Appstore, add the **QUERY_ALL_PACKAGES** permission instead of the 'queries' element.
+
+> <font color="red">[Caution]</font><br/>
+>
+> * The **QUERY_ALL_PACKAGES** permission is declared exclusively for Amazon Appstore, so be careful not to apply it when running Google Play builds.
 
 ### Proguard
 
