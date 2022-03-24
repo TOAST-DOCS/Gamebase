@@ -295,6 +295,7 @@ end
 * [Line for developers](https://developers.line.biz/en/docs/ios-sdk/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/ios)
 * [Weibo for developers](https://github.com/sinaweibosdk/weibo_ios_sdk/blob/3.2.7/%E5%BE%AE%E5%8D%9AiOS%E5%B9%B3%E5%8F%B0SDK%E6%96%87%E6%A1%A3V3.2.7.pdf)
+* [Google Sign-In for iOS](https://developers.google.com/identity/sign-in/ios)
 
 ## API Reference
 

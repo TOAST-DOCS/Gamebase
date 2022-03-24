@@ -216,11 +216,33 @@ NHN Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 
 ![gamebase_app_06_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_06_201812.png)
 
-1. Google 인증을 위해서는 Google Cloud Console에서 **Web Application Client ID**를 발급받아 Gamebase Console에 입력해야 합니다.
-2. 승인된 리디렉션 URI 란에 다음 값을 입력합니다.
+Google 인증을 위해서는 Google Cloud Console에서 **Web Application Client ID**를 발급받아 Gamebase Console에 입력해야 합니다.
+승인된 리디렉션 URI 란에 다음 값을 입력합니다.
 	* https://alpha-id-gamebase.toast.com/oauth/callback
 	* https://beta-id-gamebase.toast.com/oauth/callback
 	* https://id-gamebase.toast.com/oauth/callback
+
+<br/>
+
+Google iOS 인증을 위해서는 Google Cloud Console에서 **iOS Client ID**를 발급받아 Gamebase Console에 입력해야 합니다.
+
+**APIs & Services > CREATE CREDENTIALS > OAuth client ID**를 선택한 뒤,
+
+![gamebase_app_google_ios_1.png](https://static.toastoven.net/prod_gamebase/gamebase_app_google_ios_1.png)
+
+**Application type**을 **iOS**로 선택하고 Bundle ID를 입력합니다.
+
+![gamebase_app_google_ios_2.png](https://static.toastoven.net/prod_gamebase/gamebase_app_google_ios_2.png)
+
+#### Gamebase Console
+
+![gamebase_app_google_ios_4.png](https://static.toastoven.net/prod_gamebase/gamebase_app_google_ios_4.png)
+
+**입력 필드**<br />
+
+- Web Application ID : {Google Web Application Client ID}
+- iOS Client ID : {Google iOS Client ID}
+- Secret Key : {Google Web Application Client secret}
 
 ##### iOS
 * [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP Settings > Google](./ios-started/#google)
