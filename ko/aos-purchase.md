@@ -17,7 +17,7 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
     * ONESTORE: ONE Store
     * GALAXY: Galaxy Store
     * AMAZON: Amazon Appstore
-    * HUAWEI: Huawei Appstore
+    * HUAWEI: Huawei AppGallery
 
 ```java
 String STORE_CODE = "GG";	// Google
@@ -87,10 +87,6 @@ payload 필드에 입력한 추가 정보는 결제 성공 후 **PurchasableRece
 + (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
                                           @NonNull final String gamebaseProductId,
                                           @NonNull final String payload,
-                                          @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
-// Legacy API
-+ (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
-                                          final long itemSeq,
                                           @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
 ```
 

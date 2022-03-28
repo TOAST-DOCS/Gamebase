@@ -162,7 +162,7 @@ Gamebase service terms are as follows:
 
 ## Service Architecture
 Below shows the service structure of Gamebase with simple description
-![logical architecture](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_201903_en.png)
+![logical architecture](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_202203_en.png)
 
 | Component           | Description                                       |
 | --------------- | ---------------------------------------- |

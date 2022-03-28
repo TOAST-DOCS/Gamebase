@@ -17,7 +17,7 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
     * ONESTORE：ONEstore
     * GALAXY: Galaxy Store
     * AMAZON: Amazon Appstore
-    * HUAWEI: Huawei Appstore
+    * HUAWEI: Huawei AppGallery
 
 ```java
 String STORE_CODE = "GG";	// Google

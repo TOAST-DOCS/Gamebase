@@ -1,16 +1,37 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.35.0 (2022. 03. 29.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.35.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* 외부 SDK 업데이트: TOAST Unity SDK(0.25.1)
+* 약관이 표시되었는지 여부를 알 수 있는 API가 추가되었습니다.
+    * Gamebase.Terms.IsShowingTermsView()
+* 웹뷰에서 네비게이션 바를 숨길 수 있는 옵션이 추가되었습니다.
+    * GamebaseRequest.Webview.GamebaseWebViewConfiguration.isNavigationBarVisible
+* (Android) 웹뷰에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다
+    * GamebaseRequest.Webview.GamebaseWebViewConfiguration.enableFixedFontSize
+* (Android) 약관 창에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다
+    * GamebaseRequest.Terms.GamebaseTermsConfiguration.enableFixedFontSize
+* Setting Tool
+    * (Android) Amazon 스토어가 추가되었습니다.
+    * (Android) Huawei 스토어가 추가되었습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.35.0](./release-notes-android/#2350-20220329)
+* [Gamebase iOS SDK 2.35.0](./release-notes-ios/#2350-20220329)
+
 ### 2.34.1 (2022. 03. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.1/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 단말기에서 알림을 허용했는지 여부를 알 수 있는 API가 추가되었습니다.
+#### Added Features
+* Added an API to determine whether the device has allowed notifications or not.
     * Gamebase.Push.QueryNotificationAllowed
 
-#### 버그 수정
-* iOS에서 GamebaseWebViewConfiguration의 isBackButtonVisible 설정이 적용되지 않는 오류가 수정되었습니다.
+#### Bug Fixes
+* Fixed an error where the isBackButtonVisible setting of GamebaseWebViewConfiguration was not applied on iOS.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.34.0](./release-notes-android/#2340-20220222)
 * [Gamebase iOS SDK 2.34.1](./release-notes-ios/#2341-20220315)
 
@@ -27,7 +48,7 @@
 
 #### Platform-specific Changes
 * [Gamebase Android SDK 2.34.0](./release-notes-android/#2340-20220222)
-* [Gamebase iOS SDK 2.34.0](./release-notes-ios/#2340-20220125)
+* [Gamebase iOS SDK 2.34.0](./release-notes-ios/#2340-20220222)
 
 ### 2.33.0 (2022.01.25)
 
