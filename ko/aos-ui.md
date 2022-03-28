@@ -136,6 +136,7 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 | newBuilder() | **M** | GamebaseTermsConfiguration.Builder 객체는 newBuilder() 함수를 통해 생성할 수 있습니다. |
 | build() | **M** | 설정을 마친 Builder 를 Configuration 객체로 변환합니다. |
 | setForceShow(boolean forceShow) | O | 약관에 동의했다면 showTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br>**default** : false |
+| enableFixedFontSize(boolean enable) | O | 시스템 폰트 사이즈를 무시하고 고정된 사이즈로 약관을 표시합니다.<br>**default** : false |
 
 **GamebaseShowTermsViewResult**
 
@@ -372,6 +373,16 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | termsContentSeq      | **M**                      | int                | 선택 약관 항목 KEY      |
 | agreed               | **M**                      | boolean            | 선택 약관 항목 동의 여부  |
 
+### isShowingTermsView
+
+현재 약관 창이 표시되어 있는 상태인지를 알려줍니다.
+
+**API**
+
+```java
++ (boolean)Gamebase.Terms.isShowingTermsView();
+```
+
 ## WebView
 
 Gamebase에서는 기본적인 WebView를 지원합니다.
@@ -494,6 +505,7 @@ showWebView(activity, urlString, configuration,
 |                                          | ScreenOrientation.LANDSCAPE_REVERSE | 가로 모드를 180도 회전 |
 | setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | 내비게이션 바 색상     |
 | setBackButtonVisible(boolean visible)    | true or false                       | 백 버튼 활성 또는 비활성 |
+| enableFixedFontSize(boolean enable)      | true or false                       | 네비게이션 바 비활성 |
 | setNavigationBarHeight(int height)       | height                              | 내비게이션 바 높이     |
 | setBackButtonImageResource(int resourceId) | ID of resource                      | 백 버튼 이미지       |
 | setCloseButtonImageResource(int resourceId) | ID of resource                      | 닫기 버튼 이미지      |
