@@ -209,13 +209,13 @@ end
     * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.naver**를 추가해야 합니다.
     * **Naver Developers > 내 애플리케이션 > API 설정 > iOS > URL Scheme**에 **tcgb.{Bundle ID}.naver**를 추가해야 합니다.
 * Info.plist 파일에서 Scheme을 등록합니다.
-	```
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-    	<string>naversearchthirdlogin</string>
-    	<string>naversearchapp</string>
-	</array>
-	```
+```
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>naversearchthirdlogin</string>
+    <string>naversearchapp</string>
+</array>
+```
 * Gamebase iOS SDK 1.12.1 이하는 추가 설정이 필요합니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
@@ -231,23 +231,22 @@ end
 * URL Scheme을 설정해야 합니다.
 	* **Xcode > Target > Info > URL Types**에 **line3rdp.{App Bundle ID}**를 추가해야 합니다.
 
-* Info.plist 파일을 설정해야합니다.
-	* LINE에서 발급받은 ChannelID를 설정합니다.
-	```
-	<key>LineSDKConfig</key>
-	<dict>
-    	<key>ChannelID</key>
-    	<string>{Issued LINE ChannleID}</string>
-	</dict>
-	```
-	* ATS 설정을 위하여 Scheme 를 등록합니다.
-	```
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-    	<string>lineauth</string>
-    	<string>line3rdp.{App Bundle ID}</string>
-	</array>
-	```
+* LINE에서 발급받은 ChannelID를 Info.plist 파일에 설정해야 합니다..
+```
+<key>LineSDKConfig</key>
+<dict>
+    <key>ChannelID</key>
+    <string>{Issued LINE ChannleID}</string>
+</dict>
+```
+* ATS 설정을 위해서 Info.plist 파일에 Scheme을 등록합니다.
+```
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>lineauth</string>
+    <string>line3rdp.{App Bundle ID}</string>
+</array>
+```
 * LINE Login 을 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다. (인증 필요)
 * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
 
