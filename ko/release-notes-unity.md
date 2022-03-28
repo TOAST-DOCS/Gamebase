@@ -15,8 +15,8 @@
 * (Android) 약관 창에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다
     * GamebaseRequest.Terms.GamebaseTermsConfiguration.enableFixedFontSize
 * Setting Tool
-    * IAP Amazon for Android 추가
-    * IAP Huawei for Android 추가
+    * Android 플랫폼에서 Amazon 스토어가 추가되었습니다.
+    * Android 플랫폼에서 Huawei 스토어가 추가되었습니다.
 
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.35.0](./release-notes-android/#2350-20220329)
