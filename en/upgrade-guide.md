@@ -1,5 +1,20 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.35.0
+
+### Android
+
+#### Naver IdP
+
+* 이제 Naver 로그아웃시 토큰을 삭제하지 않습니다.
+    * 재로그인 할 때 정보 제공 동의 창이 뜨지 않습니다.
+    * 웹로그인시에는 계정이 변경되지 않습니다.
+    * 이전 동작을 유지하기 위해서는 Gamebase Console의 AdditionalInfo에 다음과 같이 설정하세요.
+
+```
+{"logout_and_delete_token":true}
+```
+
 ## 2.34.0
 
 ### Android
