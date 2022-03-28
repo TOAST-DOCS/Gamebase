@@ -208,6 +208,14 @@ end
 * URL Scheme을 설정해야 합니다.
     * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.naver**를 추가해야 합니다.
     * **Naver Developers > 내 애플리케이션 > API 설정 > iOS > URL Scheme**에 **tcgb.{Bundle ID}.naver**를 추가해야 합니다.
+* Info.plist 파일에서 Scheme을 등록합니다.
+	```
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+    	<string>naversearchthirdlogin</string>
+    	<string>naversearchapp</string>
+	</array>
+	```
 * Gamebase iOS SDK 1.12.1 이하는 추가 설정이 필요합니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
