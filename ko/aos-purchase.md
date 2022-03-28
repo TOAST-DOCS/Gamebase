@@ -88,10 +88,6 @@ payload 필드에 입력한 추가 정보는 결제 성공 후 **PurchasableRece
                                           @NonNull final String gamebaseProductId,
                                           @NonNull final String payload,
                                           @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
-// Legacy API
-+ (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
-                                          final long itemSeq,
-                                          @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
 ```
 
 **Example**
