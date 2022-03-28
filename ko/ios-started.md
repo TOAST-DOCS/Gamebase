@@ -231,23 +231,22 @@ end
 * URL Scheme을 설정해야 합니다.
 	* **Xcode > Target > Info > URL Types**에 **line3rdp.{App Bundle ID}**를 추가해야 합니다.
 
-* Info.plist 파일을 설정해야합니다.
-	* LINE에서 발급받은 ChannelID를 설정합니다.
-	```
-	<key>LineSDKConfig</key>
-	<dict>
-    	<key>ChannelID</key>
-    	<string>{Issued LINE ChannleID}</string>
-	</dict>
-	```
-	* ATS 설정을 위하여 Scheme 를 등록합니다.
-	```
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-    	<string>lineauth</string>
-    	<string>line3rdp.{App Bundle ID}</string>
-	</array>
-	```
+* LINE에서 발급받은 ChannelID를 Info.plist 파일에 설정해야 합니다..
+```
+<key>LineSDKConfig</key>
+<dict>
+    <key>ChannelID</key>
+    <string>{Issued LINE ChannleID}</string>
+</dict>
+```
+* ATS 설정을 위해서 Info.plist 파일에 Scheme을 등록합니다.
+```
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>lineauth</string>
+    <string>line3rdp.{App Bundle ID}</string>
+</array>
+```
 * LINE Login 을 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다. (인증 필요)
 * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
 
