@@ -479,7 +479,7 @@ Can add customized functions by specifying scheme names and blocks in Gamebase.
 |                                        | TCGBWebViewContentModeDesktop            | Desktop browser          |
 | navigationBarColor                     | UIColor                                  | Color of Navigation Bar         |
 | isBackButtonVisible                    | YES or NO                                | Activate/Deactivate Go Back Button |
-| navigationBarHeight                    | CGFloat                                  | Height of Navigation Bar         |
+| isNavigationBarVisible                 | YES or NO                                | Show or hide the navigation bar<br/>**default**: YES    |
 | goBackImagePathForFullScreenNavigation | file name in Gamebase.bundle             | Image of Go Back Button       |
 | closeImagePathForFullScreenNavigation  | file name in Gamebase.bundle             | Image of Close Button          |
 

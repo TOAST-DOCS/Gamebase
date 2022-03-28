@@ -478,7 +478,7 @@ Gamebaseにスキーム名とブロックを指定し、任意の機能を追加
 |                                        | TCGBWebViewContentModeDesktop            | デスクトップブラウザ       |
 | navigationBarColor                     | UIColor                                  | ナビゲーションバーの色         |
 | isBackButtonVisible                    | YES or NO                                | 戻るボタンの有効化または無効化 |
-| navigationBarHeight                    | CGFloat                                  | ナビゲーションバーの高さ          |
+| isNavigationBarVisible                 | YES or NO                                | ナビゲーションバーの表示/非表示<br/>**default**：YES    |
 | goBackImagePathForFullScreenNavigation | file name in Gamebase.bundle             | 戻るボタンの画像        |
 | closeImagePathForFullScreenNavigation  | file name in Gamebase.bundle             | 閉じるボタンの画像          |
 

@@ -48,6 +48,20 @@
 ### 2.31.0 (2021.12.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Android.zip)
 
+#### 機能追加
+* Amazonストアが追加されました。
+    * **STORE_CODE**は **AMAZON**です。
+    * ストアの設定方法は次のガイドをご確認ください。
+        * [Game > Gamebase > ストアコンソールガイド > Amazonコンソールガイド](./console-amazon-guide)
+        * [Game > Gamebase > Android SDK使用ガイド > はじめる > Setting > Gradle > Define Adapters](./aos-started/#define-adapters)
+        * [Game > Gamebase > Android SDK使用ガイド > はじめる > Setting > Android 11](./aos-started/#android-11)
+* Huaweiストアが追加されました。
+    * **STORE_CODE**は **HUAWEI**です。
+    * ストアの設定方法は次のガイドをご確認ください。
+        * [Game > Gamebase > ストアコンソールガイド > Huaweiコンソールガイド](./console-huawei-guide)
+        * [Game > Gamebase > Android SDK使用ガイド > はじめる > Setting > Gradle > Define Adapters](./aos-started/#define-adapters)
+        * [Game > Gamebase > Android SDK使用ガイド > はじめる > Setting > Resources > Huawei Store](./aos-started/#resources)
+
 #### 機能改善/変更
 * 外部SDKアップデート：TOAST Android SDK(0.29.0)
 * 利用停止Webビュー内のサポートリンクから利用停止ユーザー情報でお問い合わせを登録することができない問題を修正しました。

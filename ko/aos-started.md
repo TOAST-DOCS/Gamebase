@@ -159,7 +159,7 @@ repositories {
     mavenCentral()
     ...
     
-    // >>> [Huawei App Gallary]
+    // >>> [Huawei App Gallery]
     maven { url 'https://developer.huawei.com/repo/' }
 }
 

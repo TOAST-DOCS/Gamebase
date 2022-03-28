@@ -348,6 +348,23 @@ queryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면,
 | termsContentSeq      | **M**                      | int                | 선택 약관 항목 KEY      |
 | agreed               | **M**                      | BOOL               | 선택 약관 항목 동의 여부  |
 
+### isShowingTermsView
+
+현재 약관 창이 화면에 표시되고 있는지 여부를 알 수 있습니다.
+
+**API**
+
+```objectivec
++ (void)isShowingTermsView;
+```
+**Example**
+
+```objectivec
+- (void)isShowingTermsView {
+    BOOL isShowingTermsView = [TCGBTerms isShowingTermsView];   // YES or NO
+}
+```
+
 ## WebView
 
 Gamebase에서는 기본적인 WebView를 지원합니다.<br/>

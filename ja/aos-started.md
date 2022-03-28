@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > Android SDK ご利用ガイド > はじめる
+## Game > Gamebase > Android SDK ご利用ガイド > はじめる
 
 ## Environments
 
@@ -48,11 +48,11 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
     * [Game > Gamebase > コンソール使用ガイド > アプリ > Authentication Information](./oper-app/#authentication-information)
 * アイテムを購入するためにStoreコンソールでアプリ情報を登録してGamebase > 購入(IAP)コンソールに入力します。
 	* [Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド](./console-google-guide)
-	* [Game > Gamebase > ストアコンソールガイド > ONEStoreコンソールガイド](./console-onestore-guide)
+	* [Game > Gamebase > ストアコンソールガイド > ONE Storeコンソールガイド](./console-onestore-guide)
         * ONE Storeは現在v17のみサポートします。
         * ONE Storeでアプリを作成する時、v19で作成しないように注意してください。
         * ONE Storev19のサポートは検討中の段階です。
-	* [Game > Gamebase > ストアコンソールガイド > GALAXY Storeコンソールガイド](./console-galaxy-guide)
+	* [Game > Gamebase > ストアコンソールガイド > GALAXYコンソールガイド](./console-galaxy-guide)
 	* [Game > Gamebase > ストアコンソールガイド > Amazon Appstoreコンソールガイド](./console-amazon-guide)
 	* [Game > Gamebase > ストアコンソールガイド > Huawei App Galleryコンソールガイド](./console-huawei-guide)
     * 以下のガイドを参考にしてアイテムを登録します。
@@ -78,6 +78,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
     * ONE store
         * [ONE store > APPS > 商品状況 > In-App情報 > 決済テスト > テストID登録/管理](https://dev.onestore.co.kr/wiki/ko/doc/%EA%B0%9C%EB%B0%9C%EB%8F%84%EA%B5%AC/api-v5-sdk-v17/%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%B0%8F-%EB%B3%B4%EC%95%88#id-%EA%B2%B0%EC%A0%9C%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%B0%8F%EB%B3%B4%EC%95%88-%ED%85%8C%EC%8A%A4%ED%8A%B8ID%EB%93%B1%EB%A1%9D/%EA%B4%80%EB%A6%AC)
     * GALAXY Store
+        * [Samsung Developers > Samsung IAP > Technical Documents > Test Guide > 3. IAP Testing > 3.2 Test Type > (3) Production Closed Beta Test](https://developer.samsung.com/iap/iap-test-guide.html)
         * [GALAXY store > アプリ > 登録したアプリ > バイナリ > Beta Test > Tester設定](https://seller.samsungapps.com/application)
         * サムソン端末でのみ決済テストが可能です。
     * Amazon Appstore
@@ -157,6 +158,9 @@ repositories {
     // >>> For Gamebase SDK
     mavenCentral()
     ...
+
+    // >>> [Huawei App Gallery]
+    maven { url 'https://developer.huawei.com/repo/' }
 }
 
 dependencies {
@@ -210,6 +214,18 @@ android {
 ```
 
 ### Resources
+
+#### Huawei Store
+
+* AppGallery Connection構成ファイル(agconnect-service.json)をassetsフォルダに追加する必要があります。
+    * [AppGallery Connect](https://developer.huawei.com/consumer/en/service/josp/agc/index.html)にログインした後、**マイプロジェクト**をクリックします。
+    * プロジェクトでアプリを選択します。
+    * **Project settings** > **General information**に移動します。
+    * **App information**から**agconnect-service.json**ファイルをダウンロードします。
+    * Android Studioビルドの場合
+        * **agconnect-service.json** ファイルをプロジェクトの**assets**フォルダにコピーします。
+    * Unityビルドの場合
+        * **agconnect-service.json** ファイルをプロジェクトの **Assets/StreamingAssets**フォルダにコピーします。
 
 #### Firebase Notification
 
@@ -491,6 +507,12 @@ android {
     <!-- [Android11] settings end -->
 </manifest>
 ```
+
+* Amazon Appstoreでは「queries」要素の代わりに**QUERY_ALL_PACKAGES**権限を追加します。
+
+> <font color="red">[注意]</font><br/>
+>
+> * **QUERY_ALL_PACKAGES**権限はAmazon Appstore専用宣言のため、Google Playビルド時には適用しないようにご注意ください。
 
 ### Proguard
 
