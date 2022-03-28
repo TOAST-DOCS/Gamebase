@@ -4,6 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.35.0/GamebaseSDK-Unity.zip)
 
 #### 기능 추가
+
 * 외부 SDK 업데이트: TOAST Unity SDK(0.25.1)
 * 약관이 표시되었는지 여부를 알 수 있는 API가 추가되었습니다.
     * Gamebase.Terms.IsShowingTermsView()
@@ -13,6 +14,9 @@
     * GamebaseRequest.Webview.GamebaseWebViewConfiguration.enableFixedFontSize
 * (Android) 약관 창에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다
     * GamebaseRequest.Terms.GamebaseTermsConfiguration.enableFixedFontSize
+* Setting Tool
+    * IAP Amazon for Android 추가
+    * IAP Huawei for Android 추가
 
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.35.0](./release-notes-android/#2350-20220329)
