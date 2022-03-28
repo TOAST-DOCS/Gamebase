@@ -140,7 +140,7 @@ static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration confi
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
 | forceShow | O | 약관에 동의했다면 ShowTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br>**default** : false | 
-| enableFixedFontSize | O | 약관 창의 폰트 사이즈를 고정할지 결정합니다.<br>**default** : false |
+| enableFixedFontSize | O | 약관 창의 폰트 사이즈를 고정할지 결정합니다.<br>**default** : false<br/>**Android Only** |
  
 
 **GamebaseResponse.Terms.ShowTermsViewResult**
@@ -481,7 +481,7 @@ public void ShowWebView()
 | backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지                |
 | closeButtonImageResource | ID of resource                           | 닫기 버튼 이미지 |
 | url                      | "http://" or "https://" or "file://"     | 웹 URL |
-| enableFixedFontSize      | true or false                            | 폰트 사이즈 고정 활성 또는 비활성 |
+| enableFixedFontSize      | true or false                            | 폰트 사이즈 고정 활성 또는 비활성<br/>**Android Only** |
 
 > [TIP]
 >
