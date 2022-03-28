@@ -42,7 +42,7 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.5 | Payco 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | Naver 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenter 로그인을 지원 | iOS9 or later |
-|  | GamebaseAuthGoogleAdapter.framework | | Google 로그인을 지원 | iOS9 or later |
+|  | GamebaseAuthGoogleAdapter.framework | GoogleSignIn 5.0.2 | Google 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthTwitterAdapter.framework | | Twitter 로그인을 지원 | iOS9 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | LINE 로그인을 지원 | iOS10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS9 or later<br/>arm64 지원<br/> |
@@ -192,36 +192,43 @@ end
 
 #### Google
 
-* URL Scheme 를 설정해야 합니다.
-    * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.google**를 추가해야 합니다.
-
-* Gamebase iOS SDK 1.12.1 이하는 추가 설정이 필요합니다.
+* URL Scheme을 설정해야 합니다.
+    * **Google Cloud Platform > APIs & Services > Credentials**에서 발급받은 iOS URL scheme을 **Xcode > Target > Info > URL Types**에 추가해야 합니다.
+* Gamebase iOS SDK 2.34.1 이하는 추가 설정이 필요합니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
 #### Payco
 
-* URL Scheme 를 설정해야 합니다.
+* URL Scheme을 설정해야 합니다.
     * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.payco**를 추가해야 합니다.
     * **Xcode > Target > Info > URL Types**에 **paycologinsdk**를 추가해야 합니다.
 
 #### Naver
 
-* URL Scheme 를 설정해야 합니다.
+* URL Scheme을 설정해야 합니다.
     * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.naver**를 추가해야 합니다.
     * **Naver Developers > 내 애플리케이션 > API 설정 > iOS > URL Scheme**에 **tcgb.{Bundle ID}.naver**를 추가해야 합니다.
+* Info.plist 파일에서 Scheme을 등록합니다.
+	```
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+    	<string>naversearchthirdlogin</string>
+    	<string>naversearchapp</string>
+	</array>
+	```
 * Gamebase iOS SDK 1.12.1 이하는 추가 설정이 필요합니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
 #### Twitter
 
-* URL Scheme 를 설정해야 합니다.
+* URL Scheme을 설정해야 합니다.
     * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.twitter**를 추가해야 합니다.
 * Twitter 의 Developer 사이트의 Apps > 대상 프로젝트 > App Details > Callback URL 항목을 설정해야 합니다.
     *  **tcgb.{Bundle ID}.twitter://** 를 추가합니다.
 
 #### Line
 
-* URL Scheme 를 설정해야 합니다.
+* URL Scheme을 설정해야 합니다.
 	* **Xcode > Target > Info > URL Types**에 **line3rdp.{App Bundle ID}**를 추가해야 합니다.
 
 * Info.plist 파일을 설정해야합니다.
@@ -253,11 +260,14 @@ end
 
 **Google**
 
+* Gamebase iOS SDK 2.34.1 이하
+    * URL Scheme을 설정해야 합니다.
+        * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.google**를 추가해야 합니다.
 * Gamebase iOS SDK 1.12.1 이하
     * **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
         * Google 의 경우, iOS 앱에서 필요한 정보 **url_scheme_ios_only**의 설정이 필요합니다.
         * **url_scheme_ios_only**의 값은 Xcode의 URL Scheme에 등록된 값들 중 한개와 일치해야 합니다.
-    * URL Scheme 를 설정해야 합니다.
+    * URL Scheme을 설정해야 합니다.
         * **Xcode > Target > Info > URL Types**
 * Google 추가 인증 정보 입력 예제
 
@@ -293,6 +303,7 @@ end
 * [Line for developers](https://developers.line.biz/en/docs/ios-sdk/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/ios)
 * [Weibo for developers](https://github.com/sinaweibosdk/weibo_ios_sdk/blob/3.2.7/%E5%BE%AE%E5%8D%9AiOS%E5%B9%B3%E5%8F%B0SDK%E6%96%87%E6%A1%A3V3.2.7.pdf)
+* [Google Sign-In for iOS](https://developers.google.com/identity/sign-in/ios)
 
 ## API Reference
 
