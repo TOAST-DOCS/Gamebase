@@ -4,12 +4,12 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.35.0/GamebaseSDK-iOS.zip)
 
 #### 기능 추가
-* 현재 약관 창이 화면에 표시되고 있는지 여부를 알 수 있는 API를 추가하였습니다.
+* 현재 약관 창이 화면에 표시되고 있는지를 알 수 있는 API를 추가하였습니다.
     * **[TCGBTerms isShowingTermsView]**
 
 #### 기능 개선/변경
 * 기존의 Google 웹 로그인 방식에서 Google SDK 로그인 방식으로 변경하였습니다.
-* 한게임 로그인을 도중에 취소했을 경우, **TCGB_ERROR_AUTH_USER_CANCELED(3001)** 에러를 리턴하도록 수정하였습니다.
+* 한게임 로그인을 도중에 취소했을 경우, **TCGB_ERROR_AUTH_USER_CANCELED(3001)** 오류를 리턴하도록 수정하였습니다.
 
 ### 2.34.1 (2022. 03. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.1/GamebaseSDK-iOS.zip)
@@ -680,7 +680,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     
 #### 버그수정
 
-* Naver 로그인 시 프로필 정보 조회 실패로 인해 로그인이 불가능한 버그 수정 : 프로필 정보 조회 실패하더라도 로그인은 성공하도록 변경    
+* NAVER 로그인 시 프로필 정보 조회 실패로 인해 로그인이 불가능한 버그 수정 : 프로필 정보 조회 실패하더라도 로그인은 성공하도록 변경    
     
 ### 1.12.0 (2018.07.24) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.12.0/GamebaseSDK-iOS.zip)
@@ -695,7 +695,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 추가
 
-* Line IdP 추가
+* LINE IdP 추가
 
 #### 기능 개선/변경
 
@@ -736,7 +736,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그 수정
 
-* Naver계정을 이용한 로그인 중 App to Web 로그인 시도 시, 서버로부터 받아온 Scheme의 형식이 변경되어, 로그인이 되지 않는 현상 수정
+* NAVER 계정을 이용한 로그인 중 App to Web 로그인 시도 시, 서버로부터 받아온 Scheme의 형식이 변경되어, 로그인이 되지 않는 현상 수정
 * Adapter로부터 UnderlyingError 객체를 받아서 유저에게 전달되는 에러객체를 생성하는 로직에서 메시지 및 Underlying Error의 설정이 되지 않는 버그 수정
 
 ### 1.8.1 (2018.04.12) 
@@ -774,7 +774,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 추가
 
-* Naver IdP 인증 추가
+* NAVER IdP 인증 추가
 * Display Language 설정 추가: 단말기 언어와 별도로 게임내에서 게임유저의 노출 언어를 설정할 수 있도록 Display 언어를 추가하였습니다.
 
 ### 1.6.0 (2018.01.25) 
