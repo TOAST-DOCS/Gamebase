@@ -348,6 +348,23 @@ It can be used to terminate the agreement to optional terms and conditions as we
 | termsContentSeq      | **M**                      | int                | KEY for optional terms and conditions      |
 | agreed               | **M**                      | BOOL               | Info on whether user agrees to optional terms and conditions  |
 
+### isShowingTermsView
+
+Determines whether the terms and conditions window is currently displayed or not.
+
+**API**
+
+```objectivec
++ (void)isShowingTermsView;
+```
+**Example**
+
+```objectivec
+- (void)isShowingTermsView {
+    BOOL isShowingTermsView = [TCGBTerms isShowingTermsView];   // YES or NO
+}
+```
+
 ## WebView
 
 Gamebase supports a default WebView.<br/>
@@ -470,16 +487,16 @@ Can add customized functions by specifying scheme names and blocks in Gamebase.
 | -------------------------------------- | ---------------------------------------- | ------------------ |
 | navigationBarTitle                     | string                                   | Title of WebView        |
 | orientationMask                        | TCGBWebViewOrientationUnspecified        | Unspecified                |
-|                                        | TCGBWebViewOrientationPortrait           | Portrait Mode              |
-|                                        | TCGBWebViewOrientationPortraitUpsideDown | Reverse Portrait      |
-|                                        | TCGBWebViewOrientationLandscapeRight     | Landscape Mode              |
-|                                        | TCGBWebViewOrientationLandscapeLeft      | Reverse Landscape     |
+|                                        | TCGBWebViewOrientationPortrait           | Portrait mode              |
+|                                        | TCGBWebViewOrientationPortraitUpsideDown | Reverse portrait      |
+|                                        | TCGBWebViewOrientationLandscapeRight     | Landscape mode              |
+|                                        | TCGBWebViewOrientationLandscapeLeft      | Reverse landscape     |
 | contentMode                            | TCGBWebViewContentModeRecommended        | Browser recommended by the current platform    |
 |                                        | TCGBWebViewContentModeMobile             | Mobile browser            |
 |                                        | TCGBWebViewContentModeDesktop            | Desktop browser          |
 | navigationBarColor                     | UIColor                                  | Color of Navigation Bar         |
-| isBackButtonVisible                    | YES or NO                                | Activate/Deactivate Go Back Button |
-| isNavigationBarVisible                 | YES or NO                                | Show or hide the navigation bar<br/>**default**: YES    |
+| isBackButtonVisible                    | YES or NO                                | Activate or deactivate Go Back Button |
+| isNavigationBarVisible                 | YES or NO                                | Show or hide Navigation Bar<br/>**default**: YES    |
 | goBackImagePathForFullScreenNavigation | file name in Gamebase.bundle             | Image of Go Back Button       |
 | closeImagePathForFullScreenNavigation  | file name in Gamebase.bundle             | Image of Close Button          |
 
