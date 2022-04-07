@@ -4,12 +4,12 @@
 
 ### Android
 
-#### Naver IdP
+#### NAVER IdP
 
-* 이제 Naver 로그아웃시 토큰을 삭제하지 않습니다.
-    * 재로그인 할 때 정보 제공 동의 창이 뜨지 않습니다.
-    * 웹로그인시에는 계정이 변경되지 않습니다.
-    * 이전 동작을 유지하기 위해서는 Gamebase Console의 AdditionalInfo에 다음과 같이 설정하세요.
+* NAVERログアウト時にトークンを削除しません。
+    * 再ログインするとき、情報提供同意ウィンドウが表示されません。
+    * Webログイン時にはアカウントが変更されません。
+    * 以前の動作を維持するにはGamebase ConsoleのAdditionalInfoに次のように設定してください。
 
 ```
 {"logout_and_delete_token":true}
@@ -140,12 +140,12 @@ android.enableD8.desugaring=true
 android.enableIncrementalDesugaring=false
 ```
 
-#### Line IdP
+#### LINE IdP
 
-* Line IdPを使用する場合、Line SDK内部に**&lt;queries&gt;**タグが存在するため、AGPのバージョンによってはビルドが失敗することがあります。
+* LINE IdPを使用する場合、LINE SDK内部に**&lt;queries&gt;**タグが存在するため、AGPのバージョンによってはビルドが失敗することがあります。
     * 次のガイドを参考にして「queries」タグビルドが可能なAGPバージョンにアップグレードしてください。
     * [Game > Gamebase > Android SDK使用ガイド > 始める > Setting > Android 11](./aos-started/#android-11)
-* Line IdPを使用する場合、Line SDK内部に**android:allowBackup="false"**が宣言されており、アプリケーションビルド時にManifest mergerでfailが発生することがあります。ビルドが失敗する場合は、次のようにapplicationタグに**tools:replace="android:allowBackup"**宣言を追加してください。
+* LINE IdPを使用する場合、LINE SDK内部に**android:allowBackup="false"**が宣言されており、アプリケーションビルド時にManifest mergerでfailが発生することがあります。ビルドが失敗する場合は、次のようにapplicationタグに**tools:replace="android:allowBackup"**宣言を追加してください。
 
 ```xml
 <application
@@ -245,14 +245,14 @@ repositories {
 }
 ```
 
-#### Line IdP
+#### LINE IdP
 
-* Line IdPを使用する場合、Line SDKのアップデートにより以下のようにGradleに**JavaVersion.VERSION_1_8**を設定していない場合はビルドが失敗します。
+* LINE IdPを使用する場合、LINE SDKのアップデートにより以下のようにGradleに**JavaVersion.VERSION_1_8**を設定していない場合はビルドが失敗します。
 
 ```groovy
 android {
     compileOptions {
-        // >>> [Line IdP]
+        // >>> [LINE IdP]
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
