@@ -136,6 +136,7 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 | newBuilder() | **M** | GamebaseTermsConfiguration.BuilderオブジェクトはnewBuilder()関数で作成できます。 |
 | build() | **M** | 設定を終えたBuilderをConfigurationオブジェクトに変換します。 |
 | setForceShow(boolean forceShow) | O | 約款に同意した場合、showTermsView APIを再度呼び出しても約款ウィンドウが表示されませんが、これを無視して強制的に約款ウィンドウを表示します。<br>**default** : false |
+| enableFixedFontSize(boolean enable) | O | システム文字サイズを無視し、固定されたサイズで約款を表示します。<br>**default** : false |
 
 **GamebaseShowTermsViewResult**
 
@@ -372,6 +373,16 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | termsContentSeq      | **M**                      | int                | 任意約款項目KEY      |
 | agreed               | **M**                      | boolean            | 任意約款項目同意有無 |
 
+### isShowingTermsView
+
+現在約款ウィンドウが表示されている状態かどうかを伝えます。
+
+**API**
+
+```java
++ (boolean)Gamebase.Terms.isShowingTermsView();
+```
+
 ## WebView
 
 Gamebaseでは、基本的なWebViewに対応しています。
@@ -492,9 +503,10 @@ showWebView(activity, urlString, configuration,
 | setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | 縦モード          |
 |                                          | ScreenOrientation.LANDSCAPE         | 横モード          |
 |                                          | ScreenOrientation.LANDSCAPE_REVERSE | 横モードを180度回転 |
+| setNavigationBarVisible(boolean enable)  | true or false                       | ナビゲーションバーの有効または無効 |
 | setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | ナビゲーションバーの色     |
-| setBackButtonVisible(boolean visible)    | true or false                       | 戻るボタンの有効化または無効化 |
 | setNavigationBarHeight(int height)       | height                              | ナビゲーションバーの高さ     |
+| setBackButtonVisible(boolean visible)    | true or false                       | 戻るボタンの有効または無効 |
 | setBackButtonImageResource(int resourceId) | ID of resource                      | 戻るボタンの画像       |
 | setCloseButtonImageResource(int resourceId) | ID of resource                      | 閉じるボタンの画像      |
 
