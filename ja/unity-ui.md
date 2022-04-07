@@ -140,6 +140,7 @@ static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration confi
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
 | forceShow | O | 約款に同意した場合、showTermsView APIを再度呼び出しても約款ウィンドウが表示されませんが、これを無視して強制的に約款ウィンドウを表示します。<br>**default** : false |
+| enableFixedFontSize | O | 約款ウィンドウの文字サイズを固定するかどうかを決定します。<br>**default** : false<br/>**Android Only** |
 
 
 **GamebaseResponse.Terms.ShowTermsViewResult**
@@ -377,6 +378,24 @@ public void SampleUpdateTerms()
 | agreed               | **M**                      | bool               | 任意約款項目同意有無 |
 
 
+### IsShowingTermsView
+
+現在約款ウィンドウが画面に表示されているかどうかを知ることができます。
+
+**API**
+
+```cs
+static bool IsShowingTermsView()
+```
+**Example**
+```cs
+public void SampleIsShowingTermsView()
+{
+    bool isShowingTermsView = Gamebase.Terms.IsShowingTermsView();
+    Debug.Log(string.Format("isShowingTermsView: {0}", isShowingTermsView));
+}
+```
+
 ## Webview
 
 ### Show WebView
@@ -453,12 +472,13 @@ public void ShowWebView()
 | colorG                   | 0~255                                    | ナビゲーションバーの色R                |
 | colorB                   | 0~255                                    | ナビゲーションバーの色G                |
 | colorA                   | 0~255                                    | ナビゲーションバーの色B                |
-| buttonVisible            | true or false                            | 戻るボタンの有効化または無効化          |
+| isNavigationBarVisible   | true or false                            | ナビゲーションバーの有効または無効         |
+| isBackButtonVisible      | true or false                            | 戻るボタンの有効または無効         |
 | barHeight                | height                                   | ナビゲーションバーの高さ                  |
 | backButtonImageResource  | ID of resource                           | 戻るボタンのイメージ                |
-| closeButtonImageResource | ID of resource | 閉じるボタンの画像 |
-| url | "http://" or "https://" or "file://" | ウェブURL |
-
+| closeButtonImageResource | ID of resource                           | 閉じるボタンの画像 |
+| url                      | "http://" or "https://" or "file://"     | Web URL |
+| enableFixedFontSize      | true or false                            | 文字サイズ固定の有効または無効<br/>**Android Only** |
 
 > [TIP]
 >
