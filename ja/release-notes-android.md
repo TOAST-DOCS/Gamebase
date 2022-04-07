@@ -4,39 +4,39 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.35.0/GamebaseSDK-Android.zip)
 
 ```
-Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
-더 이상 배포용 zip 파일에서 aar 파일을 포함하지 않습니다.
+Gamebase Android SDKは今後、Maven Centralでのみ配布します。
+配布用ZIPファイルでAARファイルを含みません。
 ```
 
-#### 기능 추가
-* 약관 창이 표시되었는지 여부를 알 수 있는 API가 추가되었습니다.
+#### 機能追加
+* 約款ウィンドウが表示されているかどうかを知ることができるAPIが追加されました。
     * **Gamebase.Terms.isShowingTermsView()**
-* 웹뷰에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다.
+* Webビューで文字サイズを固定することができるオプションが追加されました。
     * **GamebaseWebViewConfiguration.Builder.enableFixedFontSize(boolean)**
-* 약관 창에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다.
+* 約款ウィンドウで文字サイズを固定することができるオプションが追加されました。
     * **GamebaseTermsConfiguration.Builder.enableFixedFontSize(boolean)**
-* Facebook, Naver 로그인시 Facebook, Naver 앱이 설치되어 있더라도 강제로 웹로그인을 진행하는 기능이 추가되었습니다.
-    * 이 기능을 사용하기 위해서는 Gamebase Console의 AdditionalInfo에 다음과 같이 설정하세요.
+* Facebook、NAVERログイン時、Facebook、NAVERアプリがインストールされていても強制的にWebログインを進行する機能が追加されました。
+    * この機能を使用するにはGamebase ConsoleのAdditionalInfoに次のように設定してください。
 
 ```
 {"enforce_app2web":true}
 ```
 
-* 이제 Naver 로그아웃시 토큰을 삭제하지 않습니다.
-    * 재로그인 할 때 정보 제공 동의 창이 뜨지 않습니다.
-    * 웹로그인시에는 계정이 변경되지 않습니다.
-    * 이전 동작을 유지하기 위해서는 Gamebase Console의 AdditionalInfo에 다음과 같이 설정하세요.
+* NAVERログアウト時にトークンを削除しなくなります。
+    * 再ログインするとき、情報提供同意ウィンドウが表示されません。
+    * Webログイン時にはアカウントが変更されません。
+    * 以前の動作を維持するにはGamebase ConsoleのAdditionalInfoに次のように設定してください。
 
 ```
 {"logout_and_delete_token":true}
 ```
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.29.1), Hangame Android SDK(1.4.4)
-* 약관 창이 표시될때 흰색 배경이 길게 표시되지 않도록 개선했습니다.
+#### 機能改善/変更
+* 外部SDKアップデート：TOAST Android SDK(0.29.1)、Hangame Android SDK(1.4.4)
+* 約款ウィンドウが表示されるとき、白い背景が長く表示されないように改善しました。
 
-#### 버그 수정
-* 웹뷰의 네비게이션바를 숨기는 **GamebaseWebViewConfiguration.Builder.setNavigationBarVisible()** API가 정상동작 하지 않는 이슈를 수정했습니다.
+#### バグ修正
+* Webビューのナビゲーションバーを隠す**GamebaseWebViewConfiguration.Builder.setNavigationBarVisible()** APIが正常に動作しない問題を修正しました。
 
 ### 2.34.0 (2022. 02. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.0/GamebaseSDK-Android.zip)
@@ -223,8 +223,8 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
     * Kotlin(1.5.21)
     * Google Play Services Auth(19.0.0)
     * Facebook Android SDK(11.1.0)
-    * Naver Android SDK(4.4.1)
-    * Line Android SDK(5.6.2)
+    * NAVER Android SDK(4.4.1)
+    * LINE Android SDK(5.6.2)
     * Weibo Android SDK(11.6.0)
 * Weiboログイン時に発生するクラッシュを修正
 
@@ -264,7 +264,7 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
 * Hangame日本認証を追加
 
 #### 機能改善/変更
-* 外部SDKアップデート：Facebook Android SDK(6.5.1)、Line Android SDK(5.4.0)
+* 外部SDKアップデート：Facebook Android SDK(6.5.1)、LINE Android SDK(5.4.0)
 	
 #### バグ修正 
 * Proguardを適用したビルドで決済APIを呼び出すとクラッシュが発生するエラーを修正
@@ -324,7 +324,7 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
 #### 機能改善/変更
 * [SDK] 2.18.2
     * (共通) TOAST SDKアップデート: [Android(0.24.2)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0242-20201124), [iOS(0.27.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-unity/#0213-20201124)
-	* (Android)暗号化ロジックセキュリティ警告を解決するための外部SDKアップデート：Payco Login SDK(1.5.3), Hangame ID SDK(1.3.2)
+	* (Android)暗号化ロジックセキュリティ警告を解決するための外部SDKアップデート：PAYCO Login SDK(1.5.3), Hangame ID SDK(1.3.2)
 	* (Android) Tencent Pushモジュール削除
 	* (Android) Gamebase Android SDK 2.6.0でdeprecatedされた関数を削除
 		* GamebaseConfiguration.Builder.setFCMSenderId()
@@ -560,7 +560,7 @@ Gamebase SDK 2.6.0未満バージョンから2.6.0にアップグレードする
 	* (共通)指標関連Class変更
         * LevelUpData Class：userLevel、levelUpTimeパラメータが必須に変更 / その他フィールド削除[詳細表示[Android](http://docs.toast.com/ja/Game/Gamebase/ja/aos-etc/#game-user-data-settings) / [iOS](http://docs.toast.com/ja/Game/Gamebase/ja/ios-etc/#game-user-data-settings) / [Unity](http://docs.toast.com/ja/Game/Gamebase/ja/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/ja/Game/Gamebase/ja/js-etc/#game-user-data-settings)]
         * GameUserData Class：classId(ゲームユーザーの職業)フィールド追加[詳細表示[Android](http://docs.toast.com/ja/Game/Gamebase/ja/aos-etc/#level-up-trace) / [iOS](http://docs.toast.com/ja/Game/Gamebase/ja/ios-etc/#level-up-trace) / [Unity](http://docs.toast.com/ja/Game/Gamebase/ja/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/ja/Game/Gamebase/ja/js-etc/#level-up-trace)]
-    * (Android)Naver SDKバージョンアップデート(v4.2.5)：Naver SDKのバグを修正(Naverログイン中にアプリアイコンからアプリを再起動した場合、Activityが強制終了する問題により、認証プロセスが中断される問題を解決)
+    * (Android)NAVER SDKバージョンアップデート(v4.2.5)：NAVER SDKのバグを修正(NAVERログイン中にアプリアイコンからアプリを再起動した場合、Activityが強制終了する問題により、認証プロセスが中断される問題を解決)
 
 ### 2.3.1 (2019.05.16)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.3.1/GamebaseSDK-Android.zip)
@@ -710,7 +710,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 	
 #### バグ修正
 * [SDK] 1.13.0
-	* (Android)NaverCafe SDKとの衝突で、Naverログイン時に発生するエラーを解決
+	* (Android)NaverCafe SDKとの衝突で、NAVERログイン時に発生するエラーを解決
 
 ### 1.12.2 (2018.08.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.12.2/GamebaseSDK-Android.zip)
@@ -752,7 +752,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 
 #### 機能追加
 * Twitter IdP追加：Android、iOS
-* Line IdP追加：Androidのみ提供。iOSは2018年7月に提供予定です。
+* LINE IdP追加：Androidのみ提供。iOSは2018年7月に提供予定です。
 	
 #### 機能改善/変更
 * [SDK] 1.11.0
@@ -803,7 +803,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 
 #### 機能追加
 * [SDK] 1.7.0
-	* Naver IdP認証追加
+	* NAVER IdP認証追加
 	* Display Language設定を追加：端末言語とは別に、ゲーム内でゲームユーザーの表示言語を設定できるようにDisplay言語を追加しました。
 
 ### 1.5.0 (2017.12.21)
