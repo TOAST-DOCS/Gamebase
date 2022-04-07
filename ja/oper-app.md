@@ -213,11 +213,33 @@ NHN Cloud Consoleでの設定の他に追加設定はありません。
 
 ![gamebase_app_06_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_app_06_202004_ja.png)
 
-1. Google認証を行うには、Google Cloud Consoleで**Web Application Client ID**を発行し、Gamebase Consoleに入力する必要があります。
-2. 承認されたリダイレクトURI欄に次の値を入力します。
+Google認証を行うには、Google Cloud Consoleで**Web Application Client ID**を発行し、Gamebase Consoleに入力する必要があります。
+承認されたリダイレクトURI欄に次の値を入力します。
 	* https://alpha-id-gamebase.toast.com/oauth/callback
 	* https://beta-id-gamebase.toast.com/oauth/callback
 	* https://id-gamebase.toast.com/oauth/callback
+
+<br/>
+
+Google iOS認証を行うには、Google Cloud Consoleで**iOS Client ID**を発行し、Gamebase Consoleに入力する必要があります。
+
+**APIs & Services > CREATE CREDENTIALS > OAuth client ID**を選択した後、
+
+![gamebase_app_google_ios_1.png](https://static.toastoven.net/prod_gamebase/gamebase_app_google_ios_1.png)
+
+**Application type**は**iOS**を選択し、Bundle IDを入力します。
+
+![gamebase_app_google_ios_2.png](https://static.toastoven.net/prod_gamebase/gamebase_app_google_ios_2.png)
+
+#### Gamebase Console
+
+![gamebase_app_google_ios_4.png](https://static.toastoven.net/prod_gamebase/gamebase_app_google_ios_4.png)
+
+**入力フィールド**<br />
+
+- Web Application ID : {Google Web Application Client ID}
+- iOS Client ID : {Google iOS Client ID}
+- Secret Key : {Google Web Application Client secret}
 
 ##### iOS
 * [Gamebase > iOS SDK使用ガイド > 始める > IdP Settings > Google](./ios-started/#google)
@@ -242,14 +264,14 @@ PAYCO Client IDを申請して発行された{client_id}及び{client_secret}を
 
 **入力フィールド**<br />
 
-- ClientID：{Payco client_id}
-- Secret Key：{Payco client_secret}
-- 追加情報：Payco Service & Service Name (JSON format)
+- ClientID：{PAYCO client_id}
+- Secret Key：{PAYCO client_secret}
+- 追加情報：PAYCO Service & Service Name (JSON format)
 
 ##### Additional Info Settings
 
 * **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報**項目にJSON string形式の情報を設定する必要があります。
-* PAYCOの場合、PaycoSDKで要求する**service_code**と **service_name**を設定する必要があります。
+* PAYCOの場合、PAYCO SDKで要求する**service_code**と**service_name**を設定する必要があります。
 
 * PAYCO追加認証情報の入力例
 
@@ -258,10 +280,10 @@ PAYCO Client IDを申請して発行された{client_id}及び{client_secret}を
 ```
 
 ##### iOS
-* [Gamebase > iOS SDK使用ガイド > 始める > IdP settings > Payco](./ios-started/#payco)
+* [Gamebase > iOS SDK使用ガイド > 始める > IdP settings > PAYCO](./ios-started/#payco)
 
 #### 5.NAVER
-Naver Developersサイトで申請して発行された{client_id}および{client_secret}をGamebase Consoleに入力します。
+NAVER Developersサイトで申請して発行された{client_id}および{client_secret}をGamebase Consoleに入力します。
 この時、ログイン同意ウィンドウで表示するアプリケーション名である**service_name**を設定する必要があります。
 
 **入力フィールド**<br />
@@ -284,7 +306,7 @@ Naver Developersサイトで申請して発行された{client_id}および{clie
 ```
 
 ##### iOS
-* [Gamebase > iOS SDK使用ガイド > 始める > IdP settings > Naver](./ios-started/#naver)
+* [Gamebase > iOS SDK使用ガイド > 始める > IdP settings > NAVER](./ios-started/#NAVER)
 
 #### 6. Twitter
 Twitter Application Managementサイトでアプリを登録して発行した{Consumer Key}および{Consumer Secret}をGamebase Consoleに入力します。
@@ -320,7 +342,7 @@ Twitter Application Managementサイトでアプリを登録して発行した{C
 - [LINE Developer Console](https://developers.line.me/console/)
 
 ##### iOS
-* [Gamebase > iOS SDK使用ガイド > 始める > IdP settings > Line](./ios-started/#line)
+* [Gamebase > iOS SDK使用ガイド > 始める > IdP settings > LINE](./ios-started/#line)
 
 #### 8. Sign In with Apple
 Sign In with Apple機能を使用するには、AppStore Connect、Gamebase Console、そしてXcodeの設定が必要です。
