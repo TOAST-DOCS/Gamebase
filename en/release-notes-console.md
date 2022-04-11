@@ -1,5 +1,21 @@
 ## Game > Gamebase > Release Notes > Console
 
+### April 12, 2022
+
+#### Feature Updates
+* Purchase (IAP) > Product
+	* For Amazon Store, changed to register only one 'Gamebase Product' in 'Store Item ID'
+
+### March 29, 2022
+
+#### Feature Updates
+* App > App
+	* Added login using Google SDK on iOS
+
+#### Bug Fixes
+* App > Installation URL
+	* Fixed an issue where, when saving data for the first time, an error occurred when saving data in different windows at the same time
+
 ### March 15, 2022
 
 #### Bug Fixes
