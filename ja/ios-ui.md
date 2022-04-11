@@ -348,6 +348,23 @@ queryTerms APIでダウンロードした約款情報でUIを直接作った場�
 | termsContentSeq      | **M**                      | int                | 任意約款項目KEY      |
 | agreed               | **M**                      | BOOL               | 任意約款項目同意有無 |
 
+### isShowingTermsView
+
+現在約款ウィンドウが画面に表示されているかどうかを知ることができます。
+
+**API**
+
+```objectivec
++ (void)isShowingTermsView;
+```
+**Example**
+
+```objectivec
+- (void)isShowingTermsView {
+    BOOL isShowingTermsView = [TCGBTerms isShowingTermsView];   // YES or NO
+}
+```
+
 ## WebView
 
 Gamebaseでは、基本的なWebViewに対応しています。<br/>

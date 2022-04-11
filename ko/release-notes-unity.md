@@ -1,11 +1,33 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
+### 2.35.0 (2022. 03. 29.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.35.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+
+* 외부 SDK 업데이트: TOAST Unity SDK(0.25.1)
+* 약관이 표시되었는지를 알 수 있는 API가 추가되었습니다.
+    * Gamebase.Terms.IsShowingTermsView()
+* 웹뷰에서 내비게이션 바를 숨길 수 있는 옵션이 추가되었습니다.
+    * GamebaseRequest.Webview.GamebaseWebViewConfiguration.isNavigationBarVisible
+* (Android) 웹뷰에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다
+    * GamebaseRequest.Webview.GamebaseWebViewConfiguration.enableFixedFontSize
+* (Android) 약관 창에서 글자 크기를 고정할 수 있는 옵션이 추가되었습니다.
+    * GamebaseRequest.Terms.GamebaseTermsConfiguration.enableFixedFontSize
+* Setting Tool
+    * (Android) Amazon 스토어가 추가되었습니다.
+    * (Android) Huawei 스토어가 추가되었습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.35.0](./release-notes-android/#2350-20220329)
+* [Gamebase iOS SDK 2.35.0](./release-notes-ios/#2350-20220329)
+
 ### 2.34.1 (2022. 03. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.1/GamebaseSDK-Unity.zip)
 
 #### 기능 추가
 * 단말기에서 알림을 허용했는지 여부를 알 수 있는 API가 추가되었습니다.
-    * Gamebase.Push.QueryNotificationAllowed
+    * Gamebase.Push.QueryNotificationAllowed()
 
 #### 버그 수정
 * iOS에서 GamebaseWebViewConfiguration의 isBackButtonVisible 설정이 적용되지 않는 오류가 수정되었습니다.
@@ -69,7 +91,7 @@
 * 외부 SDK 업데이트: TOAST Unity SDK(0.25.0)
 * Standalone 점검 팝업 창에서 점검 시간 표시 여부를 동적으로 설정할 수 있도록 변경되었습니다.
 * Setting Tool
-    * Payco IDP가 추가되었습니다.
+    * PAYCO IDP가 추가되었습니다.
     * 기존 SettingTool을 완전히 삭제한 후 재설치해야 합니다.
 
 #### 플랫폼별 변경 사항
@@ -547,7 +569,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 #### 기능 개선/변경
 * [SDK] 2.6.2
     * (공통) TOAST SDK 업데이트: Android(0.19.4), iOS(0.20.1), Unity(0.18.0)
-    * (iOS) Naver SDK 버전 업데이트(4.1.0)
+    * (iOS) NAVER SDK 버전 업데이트(4.1.0)
 
 ### 2.6.1 (2019.11.20)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.6.1/GamebaseSDK-Unity.zip)
@@ -659,7 +681,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
     * (공통) 지표관련 Class 변경
         * LevelUpData Class: userLevel, levelUpTime 파라미터가 필수로 변경 / 그 외 필드 삭제 [자세히보기 [Android](http://docs.toast.com/ko/Game/Gamebase/ko/aos-etc/#game-user-data-settings) / [iOS](http://docs.toast.com/ko/Game/Gamebase/ko/ios-etc/#game-user-data-settings) / [Unity](http://docs.toast.com/ko/Game/Gamebase/ko/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#game-user-data-settings)]
         * GameUserData Class: classId(게임유저의 직업) 필드 추가 [자세히보기 [Android](http://docs.toast.com/ko/Game/Gamebase/ko/aos-etc/#level-up-trace) / [iOS](http://docs.toast.com/ko/Game/Gamebase/ko/ios-etc/#level-up-trace) / [Unity](http://docs.toast.com/ko/Game/Gamebase/ko/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#level-up-trace)]
-    * (Android)Naver SDK 버전 업데이트(v4.2.5): Naver SDK 버그 수정(Naver 로그인 도중에 앱 아이콘을 통해 앱을 재시작할 경우, Activity가 강제종료 되는 이슈로 인해 인증 프로세스가 중단되는 이슈가 해결)
+    * (Android)NAVER SDK 버전 업데이트(v4.2.5): NAVER SDK 버그 수정(NAVER 로그인 도중에 앱 아이콘을 통해 앱을 재시작할 경우, Activity가 강제종료 되는 이슈로 인해 인증 프로세스가 중단되는 이슈가 해결)
     * (Unity)StandaloneWebview가 32bit 빌드를 지원 (SDK 용량 53.6MB에서 99.2MB로 증가)
 
     
@@ -837,7 +859,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 추가
 * iOS Google IdP 추가 : iOS
 * Twitter IdP 추가 : Android, iOS
-* Line IdP 추가 : Android만 제공. iOS는 2018년 7월 제공 예정입니다.
+* LINE IdP 추가 : Android만 제공. iOS는 2018년 7월 제공 예정입니다.
     
 #### 기능 개선/변경
 * [SDK] 1.11.0
@@ -847,7 +869,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * (Android)GamebaseConfiguration.Builder의 필수 설정값인 setAppId, setAppVersion을 생성자에서 입력할 수 있도록 변경
     * (Android)GamebaseConfiguration.Builder 의 setServerApiVerseion API를 제거
     * (Android)getAuthBanInfo() API, class AuthBanInfo 이름을 변경 : getBanInfo(), class BanInfo
-    * Naver ID Login SDK 업데이트 : iOS(4.0.10)
+    * NAVER ID Login SDK 업데이트 : iOS(4.0.10)
 * Sample App 
     * ServerPush 기능 및 Observer 기능 추가
     * Gamebase SDK 업데이트 : Android(1.9.0), iOS(1.9.0), Unity(1.10.1)    

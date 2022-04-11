@@ -1,5 +1,27 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.35.0 (2022. 03. 29.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.35.0/GamebaseSDK-Unity.zip)
+
+#### 機能追加
+
+* 外部SDKアップデート: TOAST Unity SDK(0.25.1)
+* 約款が表示されているかどうかを知ることができるAPIが追加されました。
+    * Gamebase.Terms.IsShowingTermsView()
+* Webビューでナビゲーションバーを隠すことができるオプションが追加されました。
+    * GamebaseRequest.Webview.GamebaseWebViewConfiguration.isNavigationBarVisible
+* (Android) Webビューで文字サイズを固定することができるオプションが追加されました
+    * GamebaseRequest.Webview.GamebaseWebViewConfiguration.enableFixedFontSize
+* (Android)約款ウィンドウで文字サイズを固定することができるオプションが追加されました。
+    * GamebaseRequest.Terms.GamebaseTermsConfiguration.enableFixedFontSize
+* Setting Tool
+    * (Android) Amazonストアが追加されました。
+    * (Android) Huaweiストアが追加されました。
+
+#### プラットフォーム別変更事項
+* [Gamebase Android SDK 2.35.0](./release-notes-android/#2350-20220329)
+* [Gamebase iOS SDK 2.35.0](./release-notes-ios/#2350-20220329)
+
 ### 2.34.1 (2022. 03. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.1/GamebaseSDK-Unity.zip)
 
@@ -69,7 +91,7 @@
 * 外部SDKアップデート：TOAST Unity SDK(0.25.0)
 * Standaloneメンテナンスポップアップでメンテナンス時間を表示するかどうかを動的に設定できるように変更しました。
 * Setting Tool
-    * Payco IDPが追加されました。
+    * PAYCO IDPが追加されました。
     * 既存のSettingToolを完全に削除した後、再インストールする必要があります。
 
 #### プラットフォーム別の変更事項
@@ -267,7 +289,7 @@
 #### 機能改善/変更
 * [SDK] 2.18.2
     * (共通) TOAST SDKアップデート: [Android(0.24.2)](https://docs.toast.com/ja/TOAST/ja/toast-sdk/release-notes-android/#0242-20201124), [iOS(0.27.1)](https://docs.toast.com/ja/TOAST/ja/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/ja/TOAST/ja/toast-sdk/release-notes-unity/#0213-20201124)
-	* (Android)暗号化ロジックセキュリティ警告を解決するための外部SDKアップデート：Payco Login SDK(1.5.3), Hangame ID SDK(1.3.2)
+	* (Android)暗号化ロジックセキュリティ警告を解決するための外部SDKアップデート：PAYCO Login SDK(1.5.3), Hangame ID SDK(1.3.2)
 	* (Android) Tencent Pushモジュール削除
 	* (Android) Gamebase Android SDK 2.6.0でdeprecatedされた関数を削除
 		* GamebaseConfiguration.Builder.setFCMSenderId()
@@ -536,7 +558,7 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 #### 機能改善/変更
 * [SDK] 2.6.2
 	* (共通) TOAST SDKアップデート: Android(0.19.4), iOS(0.20.1), Unity(0.18.0)
-	* (iOS) Naver SDKバージョンをアップデート(4.1.0)
+	* (iOS) NAVER SDKバージョンをアップデート(4.1.0)
 
 ### 2.6.1 (2019.11.20)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.6.1/GamebaseSDK-Unity.zip)
@@ -646,7 +668,7 @@ Gamebase SDK 2.6.0未満バージョンから2.6.0にアップグレードする
 	* (共通)指標関連Class変更
         * LevelUpData Class：userLevel、levelUpTimeパラメータが必須に変更 / その他フィールド削除[詳細表示[Android](http://docs.toast.com/ja/Game/Gamebase/ja/aos-etc/#game-user-data-settings) / [iOS](http://docs.toast.com/ja/Game/Gamebase/ja/ios-etc/#game-user-data-settings) / [Unity](http://docs.toast.com/ja/Game/Gamebase/ja/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/ja/Game/Gamebase/ja/js-etc/#game-user-data-settings)]
         * GameUserData Class：classId(ゲームユーザーの職業)フィールド追加[詳細表示[Android](http://docs.toast.com/ja/Game/Gamebase/ja/aos-etc/#level-up-trace) / [iOS](http://docs.toast.com/ja/Game/Gamebase/ja/ios-etc/#level-up-trace) / [Unity](http://docs.toast.com/ja/Game/Gamebase/ja/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/ja/Game/Gamebase/ja/js-etc/#level-up-trace)]
-    * (Android)Naver SDKバージョンアップデート(v4.2.5)：Naver SDKのバグを修正(Naverログイン中にアプリアイコンからアプリを再起動した場合、Activityが強制終了する問題により、認証プロセスが中断される問題を解決)
+    * (Android)NAVER SDKバージョンアップデート(v4.2.5)：NAVER SDKのバグを修正(NAVERログイン中にアプリアイコンからアプリを再起動した場合、Activityが強制終了する問題により、認証プロセスが中断される問題を解決)
     * (Unity)StandaloneWebviewが32bit Buildをサポート(SDK容量53.6MBから99.2MBに増加)
 
 ### 2.3.0 (2019.04.23)
@@ -746,7 +768,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 #### 機能改善/変更
 * [SDK] 1.14.0
 	* (共通)利用停止/メンテナンスについて、ユーザーがコンソールに作成したメッセージをURLエンコードして伝送し、クライアントでデコードして処理するように修正
-	* (iOS)Payco SDKのバージョンを1.2.4にアップデート
+	* (iOS)PAYCO SDKのバージョンを1.2.4にアップデート
 	* (Unity)GamebaseSDKSettingオブジェクトがあるシーンに戻る場合、オブジェクトが重複して生成されないように改善
 	* Remove API：Webview、Network、Launching
 		* ShowWebBrowser(string url)
@@ -772,7 +794,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 	
 #### バグ修正
 * [SDK] 1.13.0
-	* (Android)NaverCafe SDKとの衝突で、Naverログイン時に発生するエラーを解決
+	* (Android)NaverCafe SDKとの衝突で、NAVERログイン時に発生するエラーを解決
 	* (Unity)Unity 2017.2以上のバージョンでEditor Play Mode終了時、websocke close処理で発生するエラーを修正
 
 ### 1.12.1 (2018.08.09)
@@ -829,7 +851,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 #### 機能追加
 * iOS Google IdP追加：iOS
 * Twitter IdP追加：Android、iOS
-* Line IdP追加：Androidのみ提供。iOSは2018年7月に提供予定です。
+* LINE IdP追加：Androidのみ提供。iOSは2018年7月に提供予定です。
 	
 #### 機能改善/変更
 * [SDK] 1.11.0
@@ -839,7 +861,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 	* (Android)GamebaseConfiguration.Builderの必須設定値であるsetAppId、setAppVersionをコンストラクタで入力できるように変更
 	* (Android)GamebaseConfiguration.BuilderのsetServerApiVerseion APIを削除
 	* (Android)getAuthBanInfo() API、class AuthBanInfo名を変更：getBanInfo()、class BanInfo
-	* Naver ID Login SDKアップデート：iOS(4.0.10)
+	* NAVER ID Login SDKアップデート：iOS(4.0.10)
 * Sample App 
 	* ServerPush機能およびObserver機能を追加
 	* Gamebase SDKアップデート：Android(1.9.0)、iOS(1.9.0)、Unity(1.10.1)	
@@ -889,7 +911,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 
 #### バグ修正
 * [SDK] 1.9.0
-	* (iOS) Naverアカウントを利用してログイン中にApp to Webログインを試行時、サーバーから受け取ったSchemeの形式が変更され、ログインされない現象を修正
+	* (iOS) NAVERアカウントを利用してログイン中にApp to Webログインを試行時、サーバーから受け取ったSchemeの形式が変更され、ログインされない現象を修正
     * (iOS) AdapterからUnderlyingErrorオブジェクトを受け取ってゲームユーザーに伝達するエラーオブジェクトを作成するロジックで、メッセージおよびUnderlying Errorの設定ができていない問題を修正
     * (Android) Heartbeatで、無効なユーザーと判定される場合、利用停止ポップアップが表示されないように修正(iOSと同じロジックで修正)
 
@@ -937,7 +959,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.7.0/GamebaseSDK-Unity.zip)
 #### 機能追加
 * [SDK] 1.7.0
-	* Naver IdP認証追加
+	* NAVER IdP認証追加
 	* Display Language設定を追加：端末言語とは別に、ゲーム内でゲームユーザーの表示言語を設定できるようにDisplay言語を追加しました。
 
 ### 1.6.0 (2018.01.25)

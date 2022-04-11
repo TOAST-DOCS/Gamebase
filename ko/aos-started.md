@@ -14,14 +14,14 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 용도 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.29.0<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 Interface 및 핵심 로직을 포함 | API 16 (JellyBean, OS 4.1) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.29.1<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 Interface 및 핵심 로직을 포함 | API 16 (JellyBean, OS 4.1) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Google 로그인을 지원 | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.4.3.1 | Hangame 로그인을 지원 | - |
-|  | gamebase-adapter-auth-line | linesdk-5.6.2 | Line 로그인을 지원 | API 17(Kitkat, OS 4.2) |
-|  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Naver 로그인을 지원 | - |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.7 | Payco 로그인을 지원 | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.4.4 | Hangame 로그인을 지원 | - |
+|  | gamebase-adapter-auth-line | linesdk-5.6.2 | LINE 로그인을 지원 | API 17(Kitkat, OS 4.2) |
+|  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | NAVER 로그인을 지원 | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.7 | PAYCO 로그인을 지원 | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitter 로그인을 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | Weibo 로그인을 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Kakao 로그인을 지원 | API 21(Lollipop, OS 5.0) |
@@ -290,9 +290,9 @@ android {
 </resources>
 ```
 
-#### Line IdP
+#### LINE IdP
 
-* Line SDK 내부에 **android:allowBackup="false"** 로 선언되어 있어 애플리케이션 빌드시 Manifest merger 에서 fail 이 발생할 수 있습니다. 이렇게 빌드가 실패한다면 다음과 같이 application 태그에 **tools:replace="android:allowBackup"** 선언을 추가하시기 바랍니다.
+* LINE SDK 내부에 **android:allowBackup="false"** 로 선언되어 있어 애플리케이션 빌드시 Manifest merger 에서 fail 이 발생할 수 있습니다. 이렇게 빌드가 실패한다면 다음과 같이 application 태그에 **tools:replace="android:allowBackup"** 선언을 추가하시기 바랍니다.
 
 ```xml
 <application
@@ -448,9 +448,9 @@ android {
         <package android:name="com.facebook.katana" />
         <!-- [Facebook] Configurations end -->
 
-        <!-- [Payco/Hangame] Configurations begin -->
+        <!-- [PAYCO/Hangame] Configurations begin -->
         <package android:name="com.nhnent.payapp" />
-        <!-- [Payco/Hangame] Configurations end -->
+        <!-- [PAYCO/Hangame] Configurations end -->
 
         <!-- [Hangame] Configurations begin -->
         <package android:name="com.nhn.hangameotp" />
@@ -465,18 +465,18 @@ android {
         <package android:name="nh.smart.nhallonepay" />
         <!-- [Hangame] Configurations end -->
 
-        <!-- [Line] Configurations begin -->
+        <!-- [LINE] Configurations begin -->
         <package android:name="jp.naver.line.android" />
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.BROWSABLE" />
             <data android:scheme="https" />
         </intent>
-        <!-- [Line] Configurations end -->
+        <!-- [LINE] Configurations end -->
         
-        <!-- [Naver] Configurations begin -->
+        <!-- [NAVER] Configurations begin -->
         <package android:name="com.nhn.android.search" />
-        <!-- [Naver] Configurations end -->
+        <!-- [NAVER] Configurations end -->
         
         <!-- [Weibo] Configurations begin -->
         <package android:name="com.weico.international" />
@@ -550,11 +550,11 @@ android {
 
 * [Facebook for developers](https://developers.facebook.com/docs/android)
 * [Google APIs for Android](https://developers.google.com/android/guides/overview)
-* [Naver for developers](https://developers.naver.com/docs/login/android/)
+* [NAVER for developers](https://developers.naver.com/docs/login/android/)
 * [Twitter Android Developer's guide - Log in with Twitter](https://dev.twitter.com/web/sign-in/implementing)
 * [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
-* [Line for developers](https://developers.line.biz/en/docs/android-sdk/integrate-line-login/)
-* [Payco Login SDK for developers](https://developers.payco.com/guide/development/apply/android)
+* [LINE for developers](https://developers.line.biz/en/docs/android-sdk/integrate-line-login/)
+* [PAYCO Login SDK for developers](https://developers.payco.com/guide/development/apply/android)
 * [Sign in with Apple JS guide](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js)
 * [Weibo for developers](https://github.com/sinaweibosdk/weibo_android_sdk/blob/master/2019SDK/文档)
 * [Kakaogame SDK Guide for Channeling](https://tech-wiki.kakaogames.com/display/SDK/Kakaogame+SDK+Guide+for+Channeling)
