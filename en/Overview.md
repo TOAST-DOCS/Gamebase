@@ -120,7 +120,6 @@ Following information is provided by Gamebase for launching.
 
 #### Reference
 
-<<<<<<< HEAD
 * [Android Developer Guide > Launching Info](./aos-initialization/#launching-status)
 * [iOS Developer Guide > Launching Info](./ios-initialization/#launching-status)
 * [Unity Developer Guide > Launching Info](./unity-initialization/#launching-informations)

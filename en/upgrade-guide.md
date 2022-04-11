@@ -4,12 +4,12 @@
 
 ### Android
 
-#### Naver IdP
+#### NAVER IdP
 
-* 이제 Naver 로그아웃시 토큰을 삭제하지 않습니다.
-    * 재로그인 할 때 정보 제공 동의 창이 뜨지 않습니다.
-    * 웹로그인시에는 계정이 변경되지 않습니다.
-    * 이전 동작을 유지하기 위해서는 Gamebase Console의 AdditionalInfo에 다음과 같이 설정하세요.
+* From this version, a token is not deleted when performing NAVER logout.
+    * When the user logs in again, the information provision consent window does not appear.
+    * The account is not changed when performing web login.
+    * To maintain the previous behavior, set AdditionalInfo in the Gamebase Console as follows.
 
 ```
 {"logout_and_delete_token":true}
@@ -140,12 +140,12 @@ android.enableD8.desugaring=true
 android.enableIncrementalDesugaring=false
 ```
 
-#### Line IdP
+#### LINE IdP
 
-* When using the Line IdP, the build may fail depending on the AGP version as there is a **&lt;queries&gt;** tag inside the Line SDK.
+* When using the LINE IdP, the build may fail depending on the AGP version as there is a **&lt;queries&gt;** tag inside the LINE SDK.
     * Please refer to the following guide to upgrade to the AGP version that can build the 'queries' tag.
     * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > Android 11](./aos-started/#android-11)
-* If you are using the Line IdP, an error may occur in Manifest merger when building an application because **android:allowBackup="false"** is declared in Line SDK. If a build fails for this reason, declare **tools:replace="android:allowBackup"** in the application tag as follows.
+* If you are using the LINE IdP, an error may occur in Manifest merger when building an application because **android:allowBackup="false"** is declared in LINE SDK. If a build fails for this reason, declare **tools:replace="android:allowBackup"** in the application tag as follows.
 
 ```xml
 <application
@@ -245,14 +245,14 @@ repositories {
 }
 ```
 
-#### Line IdP
+#### LINE IdP
 
-* If you are using Line IdP, due to the Line SDK update, you must configure **JavaVersion.VERSION_1_8** in Gradle to make the build succeed.
+* If you are using LINE IdP, due to the LINE SDK update, you must configure **JavaVersion.VERSION_1_8** in Gradle to make the build succeed.
 
 ```groovy
 android {
     compileOptions {
-        // >>> [Line IdP]
+        // >>> [LINE IdP]
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }

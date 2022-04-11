@@ -452,7 +452,7 @@ Below shows an example.<br/>
 	* Google ID : aa
 	* Facebook ID : bb
 	* AppleGameCenter ID : cc
-	* Payco ID : dd
+	* PAYCO ID : dd
 * Gamebase UserID : 456abcabc
 	* Google ID : ee
 	* Google ID : ff **-> As the Google ee account is integrated, no additional Google account can be integrated.**
@@ -924,7 +924,7 @@ The issued TransferAccountInfo calls the **requestTransferAccount** API from ano
 > <font color="red">[Caution]</font><br/>
 > The TransferAccountInfo key can be issued while the guest account is logged in.
 > Transfer of guest account using TransferAccountInfo is allowed only when logged in to a guest account or not logged in.
-> If the logged-in guest account has already been mapped to an IdP ((Google, Facebook, PAYCO, etc.)) account, account transfer is not supported.
+> If the logged-in guest account has already been mapped to an IdP (Google, Facebook, PAYCO, etc.) account, account transfer is not supported.
 
 ### Issue TransferAccount
 Issues TransferAccountInfo to transfer the guest account.

@@ -384,20 +384,20 @@ void Sample::ShowWebView(const FString& url)
 | ------------------------ | ---------------------------------------- | --------------------------- |
 | title                    | FString                                   | Title of WebView                  |
 | orientation              | GamebaseScreenOrientation::Unspecified    | Unspecified |
-|                          | GamebaseScreenOrientation::Portrait       | Portrait Mode                       |
-|                          | GamebaseScreenOrientation::Landscape      | Landscape Mode                       |
+|                          | GamebaseScreenOrientation::Portrait       | Portrait mode                       |
+|                          | GamebaseScreenOrientation::Landscape      | Landscape mode                       |
 |                          | GamebaseScreenOrientation::LandscapeReverse | Rotate portrait mode 180 degrees            |
 | contentMode              | GamebaseWebViewContentMode::Recommended        | Browser recommended by the current platform    |
 |                          | GamebaseWebViewContentMode::Mobile             | Mobile browser            |
 |                          | GamebaseWebViewContentMode::Desktop            | Desktop browser          |
-| colorR                   | 0~255                                    | Color R of navigation bar            |
-| colorG                   | 0~255                                    | Color G of navigation bar                |
-| colorB                   | 0~255                                    | Color B of navigation bar                |
-| colorA                   | 0~255                                    | Color alpha of navigation bar                |
-| buttonVisible            | true or false                            | Activate or deactivate the back button          |
-| barHeight                | height                                   | Height of navigation bar                  |
-| backButtonImageResource  | ID of resource                           | The back button image                |
-| closeButtonImageResource | ID of resource | The close button image |
+| colorR                   | 0~255                                    | Color R of Navigation Bar            |
+| colorG                   | 0~255                                    | Color G of Navigation Bar                |
+| colorB                   | 0~255                                    | Color B of Navigation Bar                |
+| colorA                   | 0~255                                    | Color alpha of Navigation Bar                |
+| buttonVisible            | true or false                            | Activate or deactivate Go Back button          |
+| barHeight                | height                                   | Height of Navigation Bar                  |
+| backButtonImageResource  | ID of resource                           | Image of Go Back button                |
+| closeButtonImageResource | ID of resource | Image of Close button |
 | url | "http://" or "https://" or "file://" | Web URL |
 
 > [TIP]
