@@ -218,6 +218,18 @@ public class PurchasableReceipt
     /// 게임에서 필요로 하는 다양한 추가 정보를 담기 위한 목적으로 활용할 수 있습니다.
     /// </summary>
     public string payload;
+
+    /// <summary>
+    /// 프로모션 결제 여부
+    /// - (Android) Gamebase 결제 서버에서 일시적으로 검증 로직을 끄는 경우에는 항상 false로만 출력되므로 항상 유효한 값이 보장되지 않습니다.
+    /// </summary>
+    public bool isPromotion;
+    
+    /// <summary>
+    /// 테스트 결제 여부
+    /// - (Android) Gamebase 결제 서버에서 일시적으로 검증 로직을 끄는 경우에는 항상 false로만 출력되므로 항상 유효한 값이 보장되지 않습니다.
+    /// </summary>
+    public bool isTestPurchase;
 }
 ```
 
