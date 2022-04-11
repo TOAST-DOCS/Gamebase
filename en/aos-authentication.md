@@ -888,7 +888,7 @@ The issued TransferAccountInfo calls the **requestTransferAccount** API from ano
 > `Caution`
 > The TransferAccountInfo key can be issued while the guest account is logged in.
 > Transfer of guest account using TransferAccountInfo is allowed only when logged in to a guest account or not logged in.
-> If the logged-in guest account has already been mapped to an IdP ((Google, Facebook, PAYCO, etc.)) account, account transfer is not supported.
+> If the logged-in guest account has already been mapped to an IdP (Google, Facebook, PAYCO, etc.) account, account transfer is not supported.
 
 ### Issue TransferAccount
 Issues TransferAccountInfo to transfer the guest account.

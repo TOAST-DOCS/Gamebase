@@ -2,7 +2,7 @@
 
 ## Login
 The Gamebase supports guest login by default.
-To use other IdPs (identity providers, such as Google, Facebook, Line, NAVER, Twitter), please see the section "Login with IdP".
+To use other IdPs (identity providers, such as Google, Facebook, LINE, NAVER, Twitter), please see the section "Login with IdP".
 
 
 ### Login Flow
@@ -26,7 +26,7 @@ The logic described above can be implemented in the following order:
         * Facebook('facebook')
         * PAYCO('payco')
         * NAVER('naver')
-        * Line('line')
+        * LINE('line')
 * **toast.Gamebase.login(providerName, (authToken, error) => { ... })** Calls the API.
 
 #### 1-1. When authentication is successful
@@ -56,7 +56,7 @@ The IdP types available for login are as follows:
 * Facebook('facebook')
 * PAYCO('payco')
 * NAVER('naver')
-* Line('line')
+* LINE('line')
 
 > <font color="red">[Caution]</font><br/>
 >

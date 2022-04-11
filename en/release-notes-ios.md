@@ -14,13 +14,13 @@
 ### 2.35.0 (2022. 03. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.35.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* 현재 약관 창이 화면에 표시되고 있는지 여부를 알 수 있는 API를 추가하였습니다.
+#### Added Features
+* Added an API to determine whether the terms and conditions window is currently displayed or not.
     * **[TCGBTerms isShowingTermsView]**
 
-#### 기능 개선/변경
-* 기존의 Google 웹 로그인 방식에서 Google SDK 로그인 방식으로 변경하였습니다.
-* 한게임 로그인을 도중에 취소했을 경우, **TCGB_ERROR_AUTH_USER_CANCELED(3001)** 에러를 리턴하도록 수정하였습니다.
+#### Feature Updates
+* Changed the login method from the Google web login method to the Google SDK login method.
+* Modified to return an error **TCGB_ERROR_AUTH_USER_CANCELED(3001)** when Hangame login is canceled during the process.
 
 ### 2.34.1 (2022. 03. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.1/GamebaseSDK-iOS.zip)
@@ -462,7 +462,7 @@ you may encounter an issue during reprocessing if a different billing client ver
 #### Feature Updates
 * [SDK 2.9.0]
     * (Common) Updated TOAST SDK: Android(v0.21.0), iOS(v0.23.0), Unity(0.20.1)
-    * (Common) Updated Payco Login SDK: Android(v1.5.0), iOS(v1.4.0)
+    * (Common) Updated PAYCO Login SDK: Android(v1.5.0), iOS(v1.4.0)
 
 ### 2.8.1 (2020.04.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.8.1/GamebaseSDK-iOS.zip)
@@ -498,7 +498,7 @@ you may encounter an issue during reprocessing if a different billing client ver
 #### Feature Updates
 * [SDK] 2.6.2
     * (Common) TOAST SDK Updates: Android(0.19.4), iOS(0.20.1), Unity(0.18.0)
-    * (iOS) Naver SDK Updates (4.1.0)
+    * (iOS) NAVER SDK Updates (4.1.0)
 
 ### 2.6.1 (2019.12.10)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.6.1/GamebaseSDK-iOS.zip)
@@ -585,7 +585,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 
 #### Feature Updates/Changes
 * [SDK] 2.4.0
-  * (Common) Chanage of Classes Relevant to Indicators 
+  * (Common) Change of Classes Relevant to Indicators 
         * LevelUpData Class: Changed userLevel and levelUpTime as required parameters; the other fields are deleted [See Details: [Android](http://docs.toast.com/en/Game/Gamebase/en/aos-etc/#game-user-data-settings) / [iOS](http://docs.toast.com/en/Game/Gamebase/en/ios-etc/#game-user-data-settings) / [Unity](http://docs.toast.com/en/Game/Gamebase/en/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/en/Game/Gamebase/en/js-etc/#game-user-data-settings)]
             * GameUserData Class: Added the classId (game user's profession) field [See Details: [Android](http://docs.toast.com/en/Game/Gamebase/en/aos-etc/#level-up-trace) / [iOS](http://docs.toast.com/en/Game/Gamebase/en/ios-etc/#level-up-trace) / [Unity](http://docs.toast.com/en/Game/Gamebase/en/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/en/Game/Gamebase/en/js-etc/#level-up-trace)]
     
@@ -625,7 +625,7 @@ Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
 #### 기능 개선/변경
 * [SDK] 2.2.0
     * (iOS)LINE SDK의 App 로그인 기능이 비활성화
-        * LINE SDK v4의 버그로 인해 iOS 12에서 앱 로그인이 실패 하는 이슈가 있어 Gamebase Line Adatper에서 Web 로그인만 지원하도록 변경
+        * LINE SDK v4의 버그로 인해 iOS 12에서 앱 로그인이 실패 하는 이슈가 있어 Gamebase Line Adapter에서 Web 로그인만 지원하도록 변경
 
 ### 2.1.0 (2019.02.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.1.0/GamebaseSDK-iOS.zip)
@@ -676,7 +676,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 개선/변경
 * [SDK] 1.14.0
     * (공통)이용정지/점검에 대해 사용자가 콘솔에 작성한 메시지들을 URL 인코딩하여 전송하고 클라이언트에서 디코딩하여 처리하도록 수정
-    * (iOS)Payco SDK의 버전이 1.2.4로 업데이트 
+    * (iOS)PAYCO SDK의 버전이 1.2.4로 업데이트 
     * Remove API : Webview, Network, Launching
         * [TCGBUtil showToastWithMessage:duration:]
         * [TCGBWebView showWebBrowserWithURL:viewController:]
@@ -707,7 +707,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.12.2
     * (iOS)Google Auth Adapter, Naver Auth Adapter의 Callback URL Scheme 설정 개선
         * 콘솔에 "url_scheme_ios_only" 값을 설정하지 않으면 Default URL Scheme을 설정 하도록 개선 : Default URL Scheme을 사용하기 위해서는 XCode > Target > Info > URL Types에 tcgb.{Bundle ID}.google 또는 tcgb.{Bundle ID}.naver 등록 필요
-    * (iOS)Payco Auth Adapter 개선
+    * (iOS)PAYCO Auth Adapter 개선
         * URL Scheme 미설정으로 인해 의도치 않은 URL Scheme을 호출하던 문제 수정 : 설정 방법이 변경되어 업데이트를 위해서는 반드시 URL Scheme 설정 필요 (XCode > Target > Info > URL Types에 tcgb.{Bundle ID}.payco를 등록)
 
 ### 1.12.1 (2018.08.09) 
@@ -723,19 +723,19 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     
 #### 버그수정
 * [SDK] 1.12.1
-    * (iOS)Naver 로그인 시 프로필 정보 조회 실패로 인해 로그인이 불가능한 버그 수정 : 프로필 정보 조회 실패하더라도 로그인은 성공하도록 변경    
+    * (iOS)NAVER 로그인 시 프로필 정보 조회 실패로 인해 로그인이 불가능한 버그 수정 : 프로필 정보 조회 실패하더라도 로그인은 성공하도록 변경    
     
 ### 1.12.0 (2018.07.24) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.12.0/GamebaseSDK-iOS.zip)
 #### 기능 개선/변경
 * [SDK] 1.12.0
     * (iOS)Gamebase 초기화 시 Debug Log에 사용중인 Adapter들의 버전 정보, 앱의 빌드 정보를 출력하는 기능이 추가 
-    * (iOS)CocoaPods을 통해 배포 되는 Naver Auth Adapter에서 포함하고 있던 Naver ID Login SDK의 바이너리가 제거 되고 의존성 설정 방식으로 변경
+    * (iOS)CocoaPods을 통해 배포 되는 Naver Auth Adapter에서 포함하고 있던 NAVER ID Login SDK의 바이너리가 제거 되고 의존성 설정 방식으로 변경
 
 ### 1.11.1 (2018.07.05) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.11.1/GamebaseSDK-iOS.zip)
 #### 기능 추가
-* Line IdP 추가 : iOS
+* LINE IdP 추가 : iOS
 #### 기능 개선/변경
 * [SDK] 1.11.1
     * (공통)Guest로그인 후 AddMapping 성공 시, loginForLastLoggedInPrivder를 하게되면, AddMapping 성공한 IdP계정을 사용하여 로그인하도록 변경
@@ -749,7 +749,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 추가
 * iOS Google IdP 추가 : iOS
 * Twitter IdP 추가 : Android, iOS
-* Line IdP 추가 : Android만 제공. iOS는 2018년 7월 제공 예정입니다.
+* LINE IdP 추가 : Android만 제공. iOS는 2018년 7월 제공 예정입니다.
 * Server API 추가 
     * getSimpleLaunching : 클라이언트 앱 기동시 제공되는 Launching 정보 확인용 API
     
@@ -757,7 +757,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.11.0
     * (공통)LocalizedString 일본어 번역 추가
     * (공통)인증 API 호출시 초기화, 로그인을 하지 않은 경우 명확히 에러 코드를 구분하도록 내부 로직을 개선
-    * Naver ID Login SDK 업데이트 : iOS(4.0.10)
+    * NAVER ID Login SDK 업데이트 : iOS(4.0.10)
 * Sample App 
     * ServerPush 기능 및 Observer 기능 추가
     * Gamebase SDK 업데이트 : Android(1.9.0), iOS(1.9.0), Unity(1.10.1)    
@@ -780,7 +780,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * 이용정지 등록 메뉴를 이용하거나 App Guard 연동 페이지에서 사용 가능
 #### 버그 수정
 * [SDK] 1.9.0
-    * (iOS) Naver계정을 이용한 로그인 중 App to Web 로그인 시도 시, 서버로부터 받아온 Scheme의 형식이 변경되어, 로그인이 되지 않는 현상 수정
+    * (iOS) NAVER 계정을 이용한 로그인 중 App to Web 로그인 시도 시, 서버로부터 받아온 Scheme의 형식이 변경되어, 로그인이 되지 않는 현상 수정
     * (iOS) Adapter로부터 UnderlyingError 객체를 받아서 유저에게 전달되는 에러객체를 생성하는 로직에서 메시지 및 Underlying Error의 설정이 되지 않는 버그 수정
 
 ### 1.8.1 (2018.04.12) 
@@ -812,7 +812,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.7.0/GamebaseSDK-iOS.zip)
 #### 기능 추가
 * [SDK] 1.7.0
-    * Naver IdP 인증 추가
+    * NAVER IdP 인증 추가
     * Display Language 설정 추가: 단말기 언어와 별도로 게임내에서 게임유저의 노출 언어를 설정할 수 있도록 Display 언어를 추가하였습니다.
 
 ### 1.6.0 (2018.01.25) 
