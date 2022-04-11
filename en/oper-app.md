@@ -212,11 +212,33 @@ No further configuration needs to be done apart from NHN Cloud console.
 
 ![gamebase_app_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_06_201812.png)
 
-1. You need to enter **Web Application Client ID** from Google Cloud Console into Gamebase Console for configuration.
-2. Enter these URIs in the **Authorized redirect URIs** field.
-   - https://alpha-id-gamebase.toast.com/oauth/callback
-   - https://beta-id-gamebase.toast.com/oauth/callback
-   - https://id-gamebase.toast.com/oauth/callback
+For Google authentication, you must obtain a **Web Application Client ID** from Google Cloud Console and enter it into Gamebase Console.
+Enter these URIs in the **Authorized redirect URIs** field.
+	* https://alpha-id-gamebase.toast.com/oauth/callback
+	* https://beta-id-gamebase.toast.com/oauth/callback
+	* https://id-gamebase.toast.com/oauth/callback
+
+<br/>
+
+For Google iOS authentication, you must obtain an **iOS Client ID** from Google Cloud Console and enter it into Gamebase Console.
+
+After selecting **APIs & Services > CREATE CREDENTIALS > OAuth client ID**,
+
+![gamebase_app_google_ios_1.png](https://static.toastoven.net/prod_gamebase/gamebase_app_google_ios_1.png)
+
+Select **Application type** as **iOS** and input the Bundle ID.
+
+![gamebase_app_google_ios_2.png](https://static.toastoven.net/prod_gamebase/gamebase_app_google_ios_2.png)
+
+#### Gamebase Console
+
+![gamebase_app_google_ios_4.png](https://static.toastoven.net/prod_gamebase/gamebase_app_google_ios_4.png)
+
+**Input field**<br />
+
+- Web Application ID: {Google Web Application Client ID}
+- iOS Client ID: {Google iOS Client ID}
+- Secret Key: {Google Web Application Client secret}
 
 ##### iOS
 * [Gamebase > iOS SDK User Guide > Getting Started > IdP Settings > Google](./ios-started/#google)
@@ -242,14 +264,14 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the TO
 
 **Entry Fields**<br />
 
-- ClientID: {Payco client_id}
-- Secret Key: {Payco client_secret}
-- Additional Information: Payco Service & Service Name (JSON format)
+- ClientID: {PAYCO client_id}
+- Secret Key: {PAYCO client_secret}
+- Additional Information: PAYCO Service & Service Name (JSON format)
 
 ##### Additional Info Settings
 
 * You need to provide JSON string data at **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info**.
-* For PAYCO, set **service_code** and **service_name** required by PaycoSDK.
+* For PAYCO, set **service_code** and **service_name** required by PAYCO SDK.
 
 * Example of entering the additional authentication information for PAYCO
 
@@ -258,10 +280,10 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the TO
 ```
 
 ##### iOS
-* [Gamebase > iOS SDK User Guide > Getting Started > IdP Settings > Payco](./ios-started/#payco)
+* [Gamebase > iOS SDK User Guide > Getting Started > IdP Settings > PAYCO](./ios-started/#payco)
 
 #### 5.NAVER
-Enter {client_id} and {client_secret} issued by the Naver Developers website in the Gamebase Console.
+Enter {client_id} and {client_secret} issued by the NAVER Developers website in the Gamebase Console.
 Here, **service_name**, which is the name of an application to be displayed in the Agree to Login window, needs to be configured.
 
 Enter {client_id} and {client_secret} you requested and acquired from NAVER Developers website into the Gamebase console.
@@ -280,14 +302,14 @@ You need to set **service_name** which will be displayed in sign in agreement wi
 ##### Additional Info Settings
 
 * You need to provide JSON String-type data in the **Additional Info** field in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
-* For Naver, **service_name**, which is the app name to be displayed on the Agree to Login window, needs to be configured.
+* For NAVER, **service_name**, which is the app name to be displayed on the Agree to Login window, needs to be configured.
 
 ```json
 {"service_name": "Your Service Name" }
 ```
 
 ##### iOS
-* [Gamebase > iOS SDK User Guide > Getting Started > IdP settings > Naver](./ios-started/#naver)
+* [Gamebase > iOS SDK User Guide > Getting Started > IdP settings > NAVER](./ios-started/#naver)
 
 #### 6. Twitter
 
@@ -324,7 +346,7 @@ You need to provide {Consumer Key} and {consumer Secret} acquired from Twitter A
 - [LINE Developer Console](https://developers.line.me/console/)
 
 ##### iOS
-* [Gamebase > iOS SDK User Guide > Getting Started > IdP settings > Line](./ios-started/#line)
+* [Gamebase > iOS SDK User Guide > Getting Started > IdP settings > LINE](./ios-started/#line)
 
 #### 8. Sign In with Apple
 To enable Sign In with Apple, setting is required for AppStore Connect, Gamebase Console and Xcode.

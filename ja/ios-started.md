@@ -37,20 +37,20 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.29.2 | GamebaseのInterfaceおよびコアロジックを含む | iOS9 or later
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Facebookログインをサポート | iOS9 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.5 | Paycoログインをサポート | iOS9 or later |
-|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | Naverログインをサポート | iOS9 or later |
-|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenterログインをサポート | iOS9 or later |
-|  | GamebaseAuthGoogleAdapter.framework | | Googleログインをサポート | iOS9 or later |
-|  | GamebaseAuthTwitterAdapter.framework | | Twitterログインをサポート | iOS9 or later |
-|  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | LINEログインをサポート | iOS10 or later |
-|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS9 or later<br/>arm64サポート<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.2 | Hangameログインをサポート | iOS9 or later |
-|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weiboログインをサポート | iOS9 or later |
-|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.11.5 | Kakaoログインをサポート | iOS11 or later |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.29.2<br/> ToastGamebaseIAP 0.12.1 | ゲーム内決済をサポート | iOS9 or later |
-| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.29.2 | Pushをサポート | iOS9 or later |
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.29.2 | GamebaseのInterfaceおよびコアロジックを含む | iOS 9 or later
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Facebookログインをサポート | iOS 9 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.5 | PAYCOログインをサポート | iOS 9 or later |
+|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | NAVERログインをサポート | iOS 9 or later |
+|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenterログインをサポート | iOS 9 or later |
+|  | GamebaseAuthGoogleAdapter.framework | GoogleSignIn 5.0.2 | Googleログインをサポート | iOS 9 or later |
+|  | GamebaseAuthTwitterAdapter.framework | | Twitterログインをサポート | iOS 9 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | LINEログインをサポート | iOS 10 or later |
+|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 9 or later<br/>arm64サポート<br/> |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.2 | Hangameログインをサポート | iOS 9 or later |
+|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weiboログインをサポート | iOS 9 or later |
+|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.11.5 | Kakaoログインをサポート | iOS 11 or later |
+| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.29.2<br/> ToastGamebaseIAP 0.12.1 | ゲーム内決済をサポート | iOS 9 or later |
+| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.29.2 | Pushをサポート | iOS 9 or later |
 
 
 > <font color="red">[注意]</font><br/>
@@ -105,7 +105,7 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
     * プロジェクト内部に**空のswiftファイル**追加(プロジェクト内部にswiftファイルが1つもない場合)
 * 5) **Target > Build Settings > Linking > Other Linker Flags**に**-ObjC**を追加する必要があります。
 ![Other Linker Flags](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
-* 6) NaverAuthAdapterを使用する場合にはNaverSDKで提供する**NaverThirdPartyLogin.framework**ファイルを**Target > General > Embedded Binaries**に追加する必要があります。
+* 6) NaverAuthAdapterを使用する場合にはNAVER SDKで提供する**NaverThirdPartyLogin.framework**ファイルを**Target > General > Embedded Binaries**に追加する必要があります。
  ![Naver Embeded Binaries](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.7.0.png)
 
 > [INFO]
@@ -193,22 +193,30 @@ end
 #### Google
 
 * URL Schemeを設定する必要があります。
-    * **Xcode > Target > Info > URL Types**に**tcgb.{Bundle ID}.google**を追加する必要があります。
+    * **Google Cloud Platform > APIs & Services > Credentials**で発行されたiOS URL schemeを**Xcode > Target > Info > URL Types**に追加する必要があります。
+* Gamebase iOS SDK 2.34.1以下は追加設定が必要です。
 
-* Gamebase iOS SDK 1.12.1以下は追加設定が必要です。
     * [Game > Gamebase > iOS SDK使用ガイド > 始める > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
-#### Payco
+#### PAYCO
 
 * URL Schemeを設定する必要があります。
     * **Xcode > Target > Info > URL Types**に**tcgb.{Bundle ID}.payco**を追加する必要があります。
     * **Xcode > Target > Info > URL Types**に**paycologinsdk**を追加する必要があります。
 
-#### Naver
+#### NAVER
 
 * URL Schemeを設定する必要があります。
     * **Xcode > Target > Info > URL Types**に**tcgb.{Bundle ID}.naver**を追加する必要があります。
-    * **Naver Developers > マイアプリケーション > API設定 > iOS > URL Scheme**に**tcgb.{Bundle ID}.naver**を追加する必要があります。
+    * **NAVER Developers > マイアプリケーション > API設定 > iOS > URL Scheme**に**tcgb.{Bundle ID}.naver**を追加する必要があります。
+* Info.plistファイルでSchemeを登録します。
+```
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>naversearchthirdlogin</string>
+    <string>naversearchapp</string>
+</array>
+```
 * Gamebase iOS SDK 1.12.1以下は追加設定が必要です。
     * [Game > Gamebase > iOS SDK使用ガイド > 始める > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
@@ -219,28 +227,27 @@ end
 * TwitterのDeveloperサイトのApps > 対象プロジェクト > App Details > Callback URL項目を設定する必要があります。
     *  **tcgb.{Bundle ID}.twitter://**を追加します。
 
-#### Line
+#### LINE
 
 * URL Schemeを設定する必要があります。
 	* **Xcode > Target > Info > URL Types**に**line3rdp.{App Bundle ID}**を追加する必要があります。
 
-* Info.plistファイルを設定する必要があります。
-	* LINEで発行されたChannelIDを設定します。
-	```
-	<key>LineSDKConfig</key>
-	<dict>
-    	<key>ChannelID</key>
-    	<string>{Issued LINE ChannleID}</string>
-	</dict>
-	```
-	* ATS設定を行うためにSchemeを登録します。
-	```
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-    	<string>lineauth</string>
-    	<string>line3rdp.{App Bundle ID}</string>
-	</array>
-	```
+* LINEで発行されたChannelIDをInfo.plistファイルに設定する必要があります。
+```
+<key>LineSDKConfig</key>
+<dict>
+    <key>ChannelID</key>
+    <string>{Issued LINE ChannleID}</string>
+</dict>
+```
+* ATS設定を行うためにInfo.plistファイルにSchemeを登録します。
+```
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>lineauth</string>
+    <string>line3rdp.{App Bundle ID}</string>
+</array>
+```
 * LINE Loginを使用するためのプロジェクト設定は次のリンクを参照します。(認証必要)
 * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
 
@@ -253,6 +260,9 @@ end
 
 **Google**
 
+* Gamebase iOS SDK 2.34.1以下
+    * URL Schemeを設定する必要があります。
+        * **Xcode > Target > Info > URL Types**に**tcgb.{Bundle ID}.google**を追加する必要があります。
 * Gamebase iOS SDK 1.12.1以下
     * **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目にJSON string形式の情報を設定する必要があります。
         * Googleの場合、iOSアプリで必要な情報**url_scheme_ios_only**の設定が必要です。
@@ -268,7 +278,7 @@ end
 ![gamebase_auth_google_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_google_console_01.png)
 
 
-**Naver**
+**NAVER**
 
 * Gamebase iOS SDK 1.12.1以下
 	* **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報& Callback URL**の**追加情報**項目にJSON String形式の情報を設定する必要があります。
@@ -276,7 +286,7 @@ end
 		* iOSアプリで必要な情報である**url_scheme_ios_only**を追加で設定する必要があります。
 	* URL Schemeを設定する必要があります。
 		* **Xcode > Target > Info > URL Types**
-* Naver追加認証情報の入力例
+* NAVER追加認証情報の入力例
 
 ```json
 { "url_scheme_ios_only": "Your URL Scheme", "service_name": "Your Service Name" }
@@ -287,12 +297,13 @@ end
 ## 3rd-Party Provider SDK Guide
 
 * [Facebook for developers](https://developers.facebook.com/docs/ios)
-* [Naver for developers](https://developers.naver.com/docs/login/ios/)
+* [NAVER for developers](https://developers.NAVER.com/docs/login/ios/)
 * [Twitter Developer's guide - Log in with Twitter](https://developer.twitter.com/en/docs/basics/authentication/guides/log-in-with-twitter)
 * [Twitter Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
-* [Line for developers](https://developers.line.biz/en/docs/ios-sdk/)
+* [LINE for developers](https://developers.line.biz/en/docs/ios-sdk/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/ios)
 * [Weibo for developers](https://github.com/sinaweibosdk/weibo_ios_sdk/blob/3.2.7/%E5%BE%AE%E5%8D%9AiOS%E5%B9%B3%E5%8F%B0SDK%E6%96%87%E6%A1%A3V3.2.7.pdf)
+* [Google Sign-In for iOS](https://developers.google.com/identity/sign-in/ios)
 
 ## API Reference
 

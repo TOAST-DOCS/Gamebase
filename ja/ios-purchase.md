@@ -101,11 +101,6 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
                                      payload:(NSString *)payload 
                               viewController:(UIViewController *)viewController 
                                   completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
-
-// Legacy API
-+ (void)requestPurchaseWithItemSeq:(long)itemSeq 
-                    viewController:(UIViewController *)viewController 
-                        completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
 ```
 
 **Example**

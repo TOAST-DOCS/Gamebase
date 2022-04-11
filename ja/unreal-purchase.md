@@ -89,9 +89,6 @@ Supported Platforms
 ```cpp
 void RequestPurchase(const FString& gamebaseProductId, const FGamebasePurchasableReceiptDelegate& onCallback);
 void RequestPurchase(const FString& gamebaseProductId, const FString& payload, const FGamebasePurchasableReceiptDelegate& onCallback);
-
-// Legacy API
-void RequestPurchase(int64 itemSeq, const FGamebasePurchasableReceiptDelegate& onCallback);
 ```
 
 **Example**

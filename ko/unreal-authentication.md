@@ -404,7 +404,7 @@ Gamebase의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 
     * Google ID : aa
     * Facebook ID : bb
     * AppleGameCenter ID : cc
-    * Payco ID : dd
+    * PAYCO ID : dd
 * Gamebase 사용자 ID : 456abcabc
     * Google ID : ee
     * Google ID : ff **-> 이미 Google ee 계정이 연동 중이므로 Google 계정을 추가로 연동할 수 없습니다.**
