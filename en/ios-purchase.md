@@ -101,11 +101,6 @@ When a game user cancels purchase, the **TCGB_ERROR_PURCHASE_USER_CANCELED** is 
                                      payload:(NSString *)payload 
                               viewController:(UIViewController *)viewController 
                                   completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
-
-// Legacy API
-+ (void)requestPurchaseWithItemSeq:(long)itemSeq 
-                    viewController:(UIViewController *)viewController 
-                        completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
 ```
 
 **Example**

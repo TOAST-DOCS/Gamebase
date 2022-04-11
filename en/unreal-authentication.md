@@ -404,7 +404,7 @@ See the following for example: <br/>
 	* Google ID : aa
 	* Facebook ID : bb
 	* AppleGameCenter ID : cc
-	* Payco ID : dd
+	* PAYCO ID : dd
 * Gamebase User ID : 456abcabc
 	* Google ID : ee
 	* Google ID : ff **-> Unable to map further Google account, since the Google ee account is already mapped.**
@@ -847,7 +847,7 @@ The issued TransferAccountInfo enables account transfer by calling **requestTran
 > <font color="red">[Caution]</font><br/>
 > TransferAccountInfo can be issued only under guest login.  
 > Account transfer by using TransferAccountInfo is available only with a guest login or logout. 
-> If a login guest account is already mapped with another external IdP (e.g. Google, Facebook, or Payco), account transfer is not supported. 
+> If a login guest account is already mapped with another external IdP (e.g. Google, Facebook, or PAYCO), account transfer is not supported. 
 
 ### Issue TransferAccount
 Issue TransferAccountInfo to transfer account. 

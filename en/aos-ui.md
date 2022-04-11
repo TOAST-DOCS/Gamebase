@@ -136,6 +136,7 @@ However, if the "Agree again to Terms and Conditions" item has been switched to 
 | newBuilder() | **M** | A GamebaseTermsConfiguration.Builder object can be created using the newBuilder() function. |
 | build() | **M** | Converts the configured Builder to a Configuration object. |
 | setForceShow(boolean forceShow) | O | If the user agreed to the terms, calling the showTermsView API again will not display the terms and conditions window, but ignore it and force the display of the terms and conditions window.<br>**default** : false |
+| enableFixedFontSize(boolean enable) | O | Ignores the system font size and displays the terms and conditions in a fixed size.<br>**default** : false |
 
 **GamebaseShowTermsViewResult**
 
@@ -372,6 +373,16 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | termsContentSeq      | **M**                      | int                | KEY for optional terms and conditions      |
 | agreed               | **M**                      | boolean            | Info on whether user agrees to optional terms and conditions  |
 
+### isShowingTermsView
+
+Determines whether the terms and conditions window is currently displayed or not.
+
+**API**
+
+```java
++ (boolean)Gamebase.Terms.isShowingTermsView();
+```
+
 ## WebView
 
 Gamebase supports a default WebView.
@@ -422,8 +433,8 @@ GamebaseWebViewConfiguration configuration
             .setScreenOrientation(ScreenOrientation.PORTRAIT)   // Set Screen Orientation
             .setNavigationBarColor(Color.RED)                   // Set Navigation Bar Color
             .setNavigationBarHeight(40)                         // Set Navigation Bar Height
-            .setBackButtonVisible(true)                         // Set Back Button Visible
-            .setBackButtonImageResource(R.id.back_button)       // Set Back Button Image
+            .setBackButtonVisible(true)                         // Set Go Back Button Visibility
+            .setBackButtonImageResource(R.id.back_button)       // Set Go Back Button Image
             .setCloseButtonImageResource(R.id.close_button)     // Set Close Button Image
             .build();
 GamebaseWebView.showWebView(activity, "http://www.toast.com", configuration);
@@ -489,12 +500,13 @@ showWebView(activity, urlString, configuration,
 | Method                                   | Values                              | Description    |
 | ---------------------------------------- | ----------------------------------- | -------------- |
 | setTitleText(String title)               | title                               | Title of WebView         |
-| setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | Portrait Mode          |
-|                                          | ScreenOrientation.LANDSCAPE         | Landscape Mode          |
-|                                          | ScreenOrientation.LANDSCAPE_REVERSE | Reverse Landscape |
+| setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | Portrait mode          |
+|                                          | ScreenOrientation.LANDSCAPE         | Landscape mode          |
+|                                          | ScreenOrientation.LANDSCAPE_REVERSE | Reverse landscape |
+| setNavigationBarVisible(boolean enable)  | true or false                       | Activate or deactivate Navigation Bar |
 | setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | Color of Navigation Bar     |
-| setBackButtonVisible(boolean visible)    | true or false                       | Activate/Deactivate Go Back Button |
 | setNavigationBarHeight(int height)       | height                              | Height of Navigation Bar     |
+| setBackButtonVisible(boolean visible)    | true or false                       | Activate or deactivate Go Back Button |
 | setBackButtonImageResource(int resourceId) | ID of resource                      | Image of Go Back Button       |
 | setCloseButtonImageResource(int resourceId) | ID of resource                      | Image of Close Button      |
 

@@ -88,10 +88,6 @@ Please process cancellation.
                                           @NonNull final String gamebaseProductId,
                                           @NonNull final String payload,
                                           @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
-// Legacy API
-+ (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
-                                          final long itemSeq,
-                                          @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
 ```
 
 **Example**
