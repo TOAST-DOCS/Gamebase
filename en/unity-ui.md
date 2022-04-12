@@ -140,6 +140,7 @@ static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration confi
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
 | forceShow | O | If the user agreed to the terms, calling the showTermsView API again will not display the terms and conditions window, but ignore it and force the display of the terms and conditions window.<br>**default** : false | 
+| enableFixedFontSize | O | Sets whether to fix the font size of the terms and conditions window.<br>**default** : false<br/>**Android Only** |
  
 
 **GamebaseResponse.Terms.ShowTermsViewResult**
@@ -379,6 +380,26 @@ public void SampleUpdateTerms()
 | agreed               | **M**                      | bool               | Info on whether user agrees to optional terms and conditions  |
 
 
+### IsShowingTermsView
+
+Determines whether the terms and conditions window is currently displayed or not.
+
+**API**
+
+```cs
+static bool IsShowingTermsView()
+```
+
+**Example**
+
+```cs
+public void SampleIsShowingTermsView()
+{
+    bool isShowingTermsView = Gamebase.Terms.IsShowingTermsView();
+    Debug.Log(string.Format("isShowingTermsView: {0}", isShowingTermsView));
+}
+```
+
 ## Webview
 
 ### Show WebView
@@ -444,9 +465,9 @@ public void ShowWebView()
 | ------------------------ | ---------------------------------------- | --------------------------- |
 | title                    | string                                   | Title of WebView                 |
 | orientation              | GamebaseScreenOrientation.UNSPECIFIED    | Unspecified |
-|                          | GamebaseScreenOrientation.PORTRAIT       | Portrait Mode                      |
-|                          | GamebaseScreenOrientation.LANDSCAPE      | Landscape Mode                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | Reverse Landscape              |
+|                          | GamebaseScreenOrientation.PORTRAIT       | Portrait mode                      |
+|                          | GamebaseScreenOrientation.LANDSCAPE      | Landscape mode                       |
+|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | Reverse landscape              |
 | contentMode              | GamebaseWebViewContentMode.RECOMMENDED        | Browser recommended by the current platform    |
 |                          | GamebaseWebViewContentMode.MOBILE             | Mobile browser            |
 |                          | GamebaseWebViewContentMode.DESKTOP            | Desktop browser          |
@@ -454,11 +475,13 @@ public void ShowWebView()
 | colorG                   | 0~255                                    | Color of Navigation Bar: R                 |
 | colorB                   | 0~255                                    | Color of Navigation Bar: G               |
 | colorA                   | 0~255                                    | Color of Navigation Bar: B                |
-| isBackButtonVisible            | true or false                            | Activate/Deactivate Go Back Button           |
+| isNavigationBarVisible   | true or false                            | Activate or deactivate Navigation Bar          |
+| isBackButtonVisible            | true or false                            | Activate or deactivate Go Back Button           |
 | barHeight                | height                                   | Height of Navigation Bar                  |
 | backButtonImageResource  | ID of resource                           | Image of Go Back Button                |
-| closeButtonImageResource | ID of resource | Image of Close Button |
-| url | "http://" or "https://" or "file://" | Web URL |
+| closeButtonImageResource | ID of resource                           | Image of Close Button |
+| url                      | "http://" or "https://" or "file://"     | Web URL |
+| enableFixedFontSize      | true or false                            | Activate or deactivate fixed font size<br/>**Android Only** |
 
 > [TIP]
 >

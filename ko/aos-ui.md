@@ -136,7 +136,7 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 | newBuilder() | **M** | GamebaseTermsConfiguration.Builder 객체는 newBuilder() 함수를 통해 생성할 수 있습니다. |
 | build() | **M** | 설정을 마친 Builder 를 Configuration 객체로 변환합니다. |
 | setForceShow(boolean forceShow) | O | 약관에 동의했다면 showTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br>**default** : false |
-| enableFixedFontSize(boolean enable) | O | 시스템 폰트 사이즈를 무시하고 고정된 사이즈로 약관을 표시합니다.<br>**default** : false |
+| enableFixedFontSize(boolean enable) | O | 시스템 글자 크기를 무시하고 고정된 크기로 약관을 표시합니다.<br>**default** : false |
 
 **GamebaseShowTermsViewResult**
 
@@ -375,7 +375,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 
 ### isShowingTermsView
 
-현재 약관 창이 표시되어 있는 상태인지를 알려줍니다.
+현재 약관 창이 표시되어 있는 상태인지를 알려 줍니다.
 
 **API**
 
@@ -433,8 +433,8 @@ GamebaseWebViewConfiguration configuration
             .setScreenOrientation(ScreenOrientation.PORTRAIT)   // WebView 스크린 방향 설정
             .setNavigationBarColor(Color.RED)                   // 내비게이션바 색상 설정
             .setNavigationBarHeight(40)                         // 내비게이션바 높이 설정
-            .setBackButtonVisible(true)                         // 백 버튼 활성화 여부 설정
-            .setBackButtonImageResource(R.id.back_button)       // 백 버튼 이미지 설정
+            .setBackButtonVisible(true)                         // 뒤로 가기 버튼 활성화 여부 설정
+            .setBackButtonImageResource(R.id.back_button)       // 뒤로 가기 버튼 이미지 설정
             .setCloseButtonImageResource(R.id.close_button)     // 닫기 버튼 이미지 설정
             .build();
 GamebaseWebView.showWebView(activity, "http://www.toast.com", configuration);
@@ -503,11 +503,11 @@ showWebView(activity, urlString, configuration,
 | setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | 세로 모드          |
 |                                          | ScreenOrientation.LANDSCAPE         | 가로 모드          |
 |                                          | ScreenOrientation.LANDSCAPE_REVERSE | 가로 모드를 180도 회전 |
-| setNavigationBarVisible(boolean enable)  | true or false                       | 네비게이션 바 비활성 |
+| setNavigationBarVisible(boolean enable)  | true or false                       | 내비게이션 바 활성 또는 비활성 |
 | setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | 내비게이션 바 색상     |
 | setNavigationBarHeight(int height)       | height                              | 내비게이션 바 높이     |
-| setBackButtonVisible(boolean visible)    | true or false                       | 백 버튼 활성 또는 비활성 |
-| setBackButtonImageResource(int resourceId) | ID of resource                      | 백 버튼 이미지       |
+| setBackButtonVisible(boolean visible)    | true or false                       | 뒤로 가기 버튼 활성 또는 비활성 |
+| setBackButtonImageResource(int resourceId) | ID of resource                      | 뒤로 가기 버튼 이미지       |
 | setCloseButtonImageResource(int resourceId) | ID of resource                      | 닫기 버튼 이미지      |
 
 

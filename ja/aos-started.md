@@ -20,8 +20,8 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Googleログインをサポート | - |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.4.4 | Hangameログインをサポート | - |
 |  | gamebase-adapter-auth-line | linesdk-5.6.2 | LINEログインをサポート | API 17(Kitkat, OS 4.2) |
-|  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Naverログインをサポート | - |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.7 | Paycoログインをサポート | - |
+|  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | NAVERログインをサポート | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.7 | PAYCOログインをサポート | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitterログインをサポート | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | Weiboログインをサポート | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Kakaoログインをサポート | API 21(Lollipop, OS 5.0) |
@@ -291,9 +291,9 @@ android {
 </resources>
 ```
 
-#### Line IdP
+#### LINE IdP
 
-* Line SDKの内部に**android:allowBackup="false"**が宣言されており、アプリケーションビルド時にManifest mergerでfailが発生することがあります。ビルドが失敗した場合は、次のようにapplicationタグに**tools:replace="android:allowBackup"**宣言を追加してください。
+* LINE SDKの内部に**android:allowBackup="false"**が宣言されており、アプリケーションビルド時にManifest mergerでfailが発生することがあります。ビルドが失敗した場合は、次のようにapplicationタグに**tools:replace="android:allowBackup"**宣言を追加してください。
 
 ```xml
 <application
@@ -448,9 +448,9 @@ android {
         <package android:name="com.facebook.katana" />
         <!-- [Facebook] Configurations end -->
 
-        <!-- [Payco/Hangame] Configurations begin -->
+        <!-- [PAYCO/Hangame] Configurations begin -->
         <package android:name="com.nhnent.payapp" />
-        <!-- [Payco/Hangame] Configurations end -->
+        <!-- [PAYCO/Hangame] Configurations end -->
 
         <!-- [Hangame] Configurations begin -->
         <package android:name="com.nhn.hangameotp" />
@@ -465,18 +465,18 @@ android {
         <package android:name="nh.smart.nhallonepay" />
         <!-- [Hangame] Configurations end -->
 
-        <!-- [Line] Configurations begin -->
+        <!-- [LINE] Configurations begin -->
         <package android:name="jp.naver.line.android" />
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.BROWSABLE" />
             <data android:scheme="https" />
         </intent>
-        <!-- [Line] Configurations end -->
+        <!-- [LINE] Configurations end -->
 
-        <!-- [Naver] Configurations begin -->
+        <!-- [NAVER] Configurations begin -->
         <package android:name="com.nhn.android.search" />
-        <!-- [Naver] Configurations end -->
+        <!-- [NAVER] Configurations end -->
 
         <!-- [Weibo] Configurations begin -->
         <package android:name="com.weico.international" />
@@ -550,11 +550,11 @@ android {
 
 * [Facebook for developers](https://developers.facebook.com/docs/android)
 * [Google APIs for Android](https://developers.google.com/android/guides/overview)
-* [Naver for developers](https://developers.naver.com/docs/login/android/)
+* [NAVER for developers](https://developers.naver.com/docs/login/android/)
 * [Twitter Android Developer's guide - Log in with Twitter](https://dev.twitter.com/web/sign-in/implementing)
 * [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
-* [Line for developers](https://developers.line.biz/en/docs/android-sdk/integrate-line-login/)
-* [Payco Login SDK for developers](https://developers.payco.com/guide/development/apply/android)
+* [LINE for developers](https://developers.line.biz/en/docs/android-sdk/integrate-line-login/)
+* [PAYCO Login SDK for developers](https://developers.payco.com/guide/development/apply/android)
 * [Sign in with Apple JS guide](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js)
 * [Weibo for developers](https://github.com/sinaweibosdk/weibo_android_sdk/blob/master/2019SDK/文档)
 * [Kakaogame SDK Guide for Channeling](https://tech-wiki.kakaogames.com/display/SDK/Kakaogame+SDK+Guide+for+Channeling)

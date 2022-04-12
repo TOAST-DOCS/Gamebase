@@ -1,15 +1,26 @@
 ## Game > Gamebase > リリースノート > iOS
 
+### 2.36.0 (2022. 04. 12.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.36.0/GamebaseSDK-iOS.zip)
+
+#### 기능 추가
+* 결제 영수증에서 sandbox 결제 여부 및 프로모션 결제 여부를 알 수 있도록 다음 필드가 추가되었습니다.
+    * **TCGBPurchasableReceipt.sandboxPayment**
+    * **TCGBPurchasableReceipt.promotionPayment**
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST iOS SDK(0.30.0), ToastGamebaseIAP SDK(0.13.0), Hangame iOS SDK (1.6.3)
+
 ### 2.35.0 (2022. 03. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.35.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* 현재 약관 창이 화면에 표시되고 있는지 여부를 알 수 있는 API를 추가하였습니다.
+#### 機能追加
+* 現在約款ウィンドウが画面に表示されているかどうかを知ることができるAPIを追加しました。
     * **[TCGBTerms isShowingTermsView]**
 
-#### 기능 개선/변경
-* 기존의 Google 웹 로그인 방식에서 Google SDK 로그인 방식으로 변경하였습니다.
-* 한게임 로그인을 도중에 취소했을 경우, **TCGB_ERROR_AUTH_USER_CANCELED(3001)** 에러를 리턴하도록 수정하였습니다.
+#### 機能改善/変更
+* Google Webログイン方式からGoogle SDKログイン方式に変更しました。
+* ハンゲームログインを途中でキャンセルした場合、**TCGB_ERROR_AUTH_USER_CANCELED(3001)**エラーを返すように修正しました。
 
 ### 2.34.1 (2022. 03. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.1/GamebaseSDK-iOS.zip)
@@ -19,7 +30,7 @@
 
 #### 機能改善/変更
 * 外部SDKアップデート：Hangame iOS SDK (1.6.2)
-* デバイスが横モードの状態でshowWebView APIを呼び出したとき、下部に黒色の空きスペースが表示される問題を修正しました。
+* デバイスが横モードの状態でshowWebView APIを呼び出したとき、下部に黒い空スペースが表示されるエラーを修正しました。
 
 ### 2.34.0 (2022. 02. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.0/GamebaseSDK-iOS.zip)
@@ -489,7 +500,7 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 #### 機能改善/変更
 * [SDK] 2.6.2
     * (共通) TOAST SDKアップデート: Android(0.19.4), iOS(0.20.1), Unity(0.18.0)
-    * (iOS) Naver SDKバージョンをアップデート(4.1.0)
+    * (iOS) NAVER SDKバージョンをアップデート(4.1.0)
 
 ### 2.6.1 (2019.12.10)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.6.1/GamebaseSDK-iOS.zip)
@@ -574,7 +585,7 @@ Gamebase SDK 2.6.0未満バージョンから2.6.0にアップグレードする
     * (共通)指標関連Class変更
         * LevelUpData Class：userLevel、levelUpTimeパラメータが必須に変更 / その他フィールド削除[詳細表示[Android](http://docs.toast.com/ja/Game/Gamebase/ja/aos-etc/#game-user-data-settings) / [iOS](http://docs.toast.com/ja/Game/Gamebase/ja/ios-etc/#game-user-data-settings) / [Unity](http://docs.toast.com/ja/Game/Gamebase/ja/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/ja/Game/Gamebase/ja/js-etc/#game-user-data-settings)]
         * GameUserData Class：classId(ゲームユーザーの職業)フィールド追加[詳細表示[Android](http://docs.toast.com/ja/Game/Gamebase/ja/aos-etc/#level-up-trace) / [iOS](http://docs.toast.com/ja/Game/Gamebase/ja/ios-etc/#level-up-trace) / [Unity](http://docs.toast.com/ja/Game/Gamebase/ja/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/ja/Game/Gamebase/ja/js-etc/#level-up-trace)]
-    * (Android)Naver SDKバージョンアップデート(v4.2.5)：Naver SDKのバグを修正(Naverログイン中にアプリアイコンからアプリを再起動した場合、Activityが強制終了する問題により、認証プロセスが中断される問題を解決)
+    * (Android)NAVER SDKバージョンアップデート(v4.2.5)：NAVER SDKのバグを修正(NAVERログイン中にアプリアイコンからアプリを再起動した場合、Activityが強制終了する問題により、認証プロセスが中断される問題を解決)
     * (Unity)StandaloneWebviewが32bit Buildをサポート(SDK容量53.6MBから99.2MBに増加)
 
 ### 2.3.0 (2019.04.23)
@@ -666,7 +677,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 #### 機能改善/変更
 * [SDK] 1.14.0
     * (共通)利用停止/メンテナンスについて、ユーザーがコンソールに作成したメッセージをURLエンコードして伝送し、クライアントでデコードして処理するように修正
-    * (iOS)Payco SDKのバージョンを1.2.4にアップデート
+    * (iOS)PAYCO SDKのバージョンを1.2.4にアップデート
     * Remove API：Webview、Network、Launching
         * [TCGBUtil showToastWithMessage:duration:]
         * [TCGBWebView showWebBrowserWithURL:viewController:]
@@ -698,9 +709,9 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 
 #### 機能改善/変更
 * [SDK] 1.12.2
-    * (iOS)Google Auth Adapter、Naver Auth AdapterのCallback URL Scheme設定を改善
+    * (iOS)Google Auth Adapter、NAVER Auth AdapterのCallback URL Scheme設定を改善
         * コンソールに"url_scheme_ios_only"値を設定しない場合、Default URL Schemeを設定するように改善：Default URL Schemeを使用するためには、XCode > Target > Info > URL Typesにtcgb.{Bundle ID}.googleまたはtcgb.{Bundle ID}.naver登録が必要
-    * (iOS)Payco Auth Adapterの改善
+    * (iOS)PAYCO Auth Adapterの改善
         * URL Schemeの未設定により、意図していないURL Schemeを呼び出す問題を修正：設定方法が変更され、アップデートするためには必ずURL Scheme設定が必要(XCode > Target > Info > URL Typesにtcgb.{Bundle ID}.paycoを登録)
 
 ### 1.12.1 (2018.08.09) 
@@ -717,7 +728,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 
 #### バグ修正
 * [SDK] 1.12.1
-    * (iOS)Naverログイン時、プロフィール情報照会失敗により、ログインできない問題を修正：プロフィール情報の照会に失敗してもログインは成功するように変更    
+    * (iOS)NAVERログイン時、プロフィール情報照会失敗により、ログインできない問題を修正：プロフィール情報の照会に失敗してもログインは成功するように変更    
     
 ### 1.12.0 (2018.07.24) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.12.0/GamebaseSDK-iOS.zip)
@@ -725,13 +736,13 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 #### 機能改善/変更
 * [SDK] 1.12.0
     * (iOS)Gamebaseの初期化時、Debug Logに使用中のAdapterのバージョン情報、アプリのビルド情報を出力する機能を追加
-    * (iOS)CocoaPodsを通して配布されるNaver Auth Adapterに含まれていたNaver ID Login SDKのバイナリが削除され、依存性設定方式に変更
+    * (iOS)CocoaPodsを通して配布されるNAVER Auth Adapterに含まれていたNAVER ID Login SDKのバイナリが削除され、依存性設定方式に変更
     
 ### 1.11.1 (2018.07.05) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.11.1/GamebaseSDK-iOS.zip)
 
 #### 機能追加
-* Line IdP追加：iOS
+* LINE IdP追加：iOS
 
 #### 機能改善/変更
 * [SDK] 1.11.1
@@ -747,7 +758,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 #### 機能追加
 * iOS Google IdP追加：iOS
 * Twitter IdP追加：Android、iOS
-* Line IdP追加：Androidのみ提供。iOSは2018年7月に提供予定です。
+* LINE IdP追加：Androidのみ提供。iOSは2018年7月に提供予定です。
 * Server API追加
     * getSimpleLaunching：クライアントアプリ起動時に提供されるLaunching情報の確認用API
     
@@ -755,7 +766,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 * [SDK] 1.11.0
     * (共通)LocalizedString日本語翻訳を追加
     * (共通)認証APIを呼び出した時に初期化、ログインをしない場合は明確にエラーコードを区別するように内部ロジックを改善
-    * Naver ID Login SDKアップデート：iOS(4.0.10)
+    * NAVER ID Login SDKアップデート：iOS(4.0.10)
 * Sample App 
     * ServerPush機能およびObserver機能を追加
     * Gamebase SDKアップデート：Android(1.9.0)、iOS(1.9.0)、Unity(1.10.1)    
@@ -781,7 +792,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 
 #### バグ修正
 * [SDK] 1.9.0
-    * (iOS) Naverアカウントを利用してログイン中にApp to Webログインを試行時、サーバーから受け取ったSchemeの形式が変更され、ログインされない現象を修正
+    * (iOS) NAVERアカウントを利用してログイン中にApp to Webログインを試行時、サーバーから受け取ったSchemeの形式が変更され、ログインされない現象を修正
     * (iOS) AdapterからUnderlyingErrorオブジェクトを受け取ってゲームユーザーに伝達するエラーオブジェクトを作成するロジックで、メッセージおよびUnderlying Errorの設定ができていない問題を修正
 
 ### 1.8.1 (2018.04.12) 
@@ -816,7 +827,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.7.0/GamebaseSDK-iOS.zip)
 #### 機能追加
 * [SDK] 1.7.0
-    * Naver IdP認証追加
+    * NAVER IdP認証追加
     * Display Language設定を追加：端末言語とは別に、ゲーム内でゲームユーザーの表示言語を設定できるようにDisplay言語を追加しました。
 
 ### 1.6.0 (2018.01.25) 

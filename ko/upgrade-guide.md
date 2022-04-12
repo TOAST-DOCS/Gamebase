@@ -1,15 +1,23 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.36.0
+
+### Android
+
+#### Hangame SDK
+* Hangame SDK v1.4.5에서 sms_hash가 내부에서 생성되도록 개선되었습니다.
+    * 더 이상 sms_hash를 설정하지 않아도 됩니다. 
+
 ## 2.35.0
 
 ### Android
 
-#### Naver IdP
+#### NAVER IdP
 
-* 이제 Naver 로그아웃시 토큰을 삭제하지 않습니다.
-    * 재로그인 할 때 정보 제공 동의 창이 뜨지 않습니다.
-    * 웹로그인시에는 계정이 변경되지 않습니다.
-    * 이전 동작을 유지하기 위해서는 Gamebase Console의 AdditionalInfo에 다음과 같이 설정하세요.
+* 이제 NAVER 로그아웃 시 토큰을 삭제하지 않습니다.
+    * 재로그인할 때 정보 제공 동의 창이 나타나지 않습니다.
+    * 웹 로그인 시에는 계정이 변경되지 않습니다.
+    * 이전 동작을 유지하려면 Gamebase Console의 AdditionalInfo에 다음과 같이 설정하세요.
 
 ```
 {"logout_and_delete_token":true}
@@ -139,12 +147,12 @@ android.enableD8.desugaring=true
 android.enableIncrementalDesugaring=false
 ```
 
-#### Line IdP
+#### LINE IdP
 
-* Line IdP 를 사용하는 경우, Line SDK 내부에 **&lt;queries&gt;** 태그가 존재하여 AGP 버전에 따라서는 빌드가 실패할 수 있습니다.
+* LINE IdP 를 사용하는 경우, LINE SDK 내부에 **&lt;queries&gt;** 태그가 존재하여 AGP 버전에 따라서는 빌드가 실패할 수 있습니다.
     * 다음 가이드를 참고하여 'queries' 태그 빌드가 가능한 AGP 버전으로 업그레이드 하시기 바랍니다.
     * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > Android 11](./aos-started/#android-11)
-* Line IdP 를 사용하는 경우, Line SDK 내부에 **android:allowBackup="false"** 로 선언되어 있어 애플리케이션 빌드시 Manifest merger 에서 fail 이 발생할 수 있습니다. 이렇게 빌드가 실패한다면 다음과 같이 application 태그에 **tools:replace="android:allowBackup"** 선언을 추가하시기 바랍니다.
+* LINE IdP 를 사용하는 경우, LINE SDK 내부에 **android:allowBackup="false"** 로 선언되어 있어 애플리케이션 빌드시 Manifest merger 에서 fail 이 발생할 수 있습니다. 이렇게 빌드가 실패한다면 다음과 같이 application 태그에 **tools:replace="android:allowBackup"** 선언을 추가하시기 바랍니다.
 
 ```xml
 <application
@@ -244,14 +252,14 @@ repositories {
 }
 ```
 
-#### Line IdP
+#### LINE IdP
 
-* Line IdP 를 사용하는 경우, Line SDK 업데이트로 인해 아래와 같이 Gradle 에 **JavaVersion.VERSION_1_8** 설정을 하지 않으면 빌드가 실패합니다.
+* LINE IdP 를 사용하는 경우, LINE SDK 업데이트로 인해 아래와 같이 Gradle 에 **JavaVersion.VERSION_1_8** 설정을 하지 않으면 빌드가 실패합니다.
 
 ```groovy
 android {
     compileOptions {
-        // >>> [Line IdP]
+        // >>> [LINE IdP]
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }

@@ -181,8 +181,14 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 // 스토어에 따라, 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로 항상 유요한 값을 보장하지는 않습니다.
 @property (nonatomic, strong, nullable) NSString *originalPaymentId;
 
-// itemSeq 로 상품을 구매하는 Legacy API 용 식별자
+// itemSeq로 상품을 구매하는 Legacy API용 식별자
 @property (assign)            long itemSeq;
+
+// sandbox 결제 여부
+@property (nonatomic, assign) BOOL sandboxPayment;
+
+// 프로모션 결제 여부
+@property (nonatomic, assign) BOOL promotionPayment;
 
 @end
 ```
@@ -255,7 +261,7 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 // Gamebase 콘솔에서 해당 상품의 '사용 여부'
 @property (nonatomic, assign, getter=isActive) BOOL active;
 
-// itemSeq로 상품을 구매하는 Legacy API 용 아이템 식별자
+// itemSeq로 상품을 구매하는 Legacy API용 아이템 식별자
 @property (assign) long itemSeq;
 
 @end

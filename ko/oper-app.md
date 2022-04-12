@@ -217,7 +217,7 @@ NHN Cloud Console에서의 설정 외에 추가 설정은 없습니다.
 ![gamebase_app_06_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_06_201812.png)
 
 Google 인증을 위해서는 Google Cloud Console에서 **Web Application Client ID**를 발급받아 Gamebase Console에 입력해야 합니다.
-승인된 리디렉션 URI 란에 다음 값을 입력합니다.
+승인된 리디렉션 URI란에 다음 값을 입력합니다.
 	* https://alpha-id-gamebase.toast.com/oauth/callback
 	* https://beta-id-gamebase.toast.com/oauth/callback
 	* https://id-gamebase.toast.com/oauth/callback
@@ -240,9 +240,9 @@ Google iOS 인증을 위해서는 Google Cloud Console에서 **iOS Client ID**�
 
 **입력 필드**<br />
 
-- Web Application ID : {Google Web Application Client ID}
-- iOS Client ID : {Google iOS Client ID}
-- Secret Key : {Google Web Application Client secret}
+- Web Application ID: {Google Web Application Client ID}
+- iOS Client ID: {Google iOS Client ID}
+- Secret Key: {Google Web Application Client secret}
 
 ##### iOS
 * [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP Settings > Google](./ios-started/#google)
@@ -268,14 +268,14 @@ PAYCO Client ID를 신청해서 발급받은 {client_id} 및 {client_secret}을 
 
 **입력 필드**<br />
 
-- ClientID: {Payco client_id}
-- Secret Key: {Payco client_secret}
-- 추가정보: Payco Service & Service Name (JSON format)
+- ClientID: {PAYCO client_id}
+- Secret Key: {PAYCO client_secret}
+- 추가정보: PAYCO Service & Service Name (JSON format)
 
 ##### Additional Info Settings
 
 * **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-* PAYCO의 경우, PaycoSDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
+* PAYCO의 경우, PAYCO SDK에서 요구하는 **service_code**와 **service_name**을 설정해야 합니다.
 
 * PAYCO 추가 인증 정보 입력 예제
 
@@ -284,10 +284,10 @@ PAYCO Client ID를 신청해서 발급받은 {client_id} 및 {client_secret}을 
 ```
 
 ##### iOS
-* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Payco](./ios-started/#payco)
+* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > PAYCO](./ios-started/#payco)
 
 #### 5.NAVER
-Naver Developers 사이트에서 신청하여 발급받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
+NAVER Developers 사이트에서 신청하여 발급받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
 이때, 로그인 동의 창에서 표시할 애플리케이션 이름인 **service_name** 을 설정해야 합니다.
 
 **입력 필드**
@@ -347,7 +347,7 @@ Twitter Application Management 사이트에서 앱을 등록하고 발급받은 
 - [LINE Developer Console](https://developers.line.me/console/)
 
 ##### iOS
-* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Line](./ios-started/#line)
+* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > LINE](./ios-started/#line)
 
 #### 8. Sign In with Apple
 Sign In with Apple 기능을 사용하려면 App Store Connect, Gamebase 콘솔, Xcode에 설정이 필요합니다.
