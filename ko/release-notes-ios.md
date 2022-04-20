@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.36.0/GamebaseSDK-iOS.zip)
 
 #### 기능 추가
-* 결제 영수증에서 sandbox 결제 여부 및 프로모션 결제 여부를 알 수 있도록 다음 필드가 추가되었습니다.
+* 결제 영수증에서 Sandbox 및 프로모션 결제 여부를 알 수 있도록 다음 필드가 추가되었습니다.
     * **TCGBPurchasableReceipt.sandboxPayment**
     * **TCGBPurchasableReceipt.promotionPayment**
 
