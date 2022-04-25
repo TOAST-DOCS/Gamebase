@@ -217,6 +217,18 @@ public class PurchasableReceipt
     /// and provision of the products purchased using the same user ID and sort them by game channel or character.
     /// </summary>
     public string payload;
+
+    /// <summary>
+    /// Whether it is promotion payment
+    /// - (Android) If the validation logic is temporarily turned off in the Gamebase payment server, the value is output as false only, so it is not always guaranteed to be a valid value.
+    /// </summary>
+    public bool isPromotion;
+    
+    /// <summary>
+    /// Whether it is test purchase
+    /// - (Android) If the validation logic is temporarily turned off in the Gamebase payment server, the value is output as false only, so it is not always guaranteed to be a valid value.
+    /// </summary>
+    public bool isTestPurchase;
 }
 ```
 
