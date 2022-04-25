@@ -51,7 +51,7 @@ You may execute an item purchase in the following order:
 
 1. If the previous payment has not properly been completed, the payment will fail when the reprocessing starts. Therefore, you should call **requestItemListOfNotConsumedWithCompletion:** to trigger reprocessing before payment, so as to perform Consume Flow if there are items not issued yet.
 2. In the game client, call **requestPurchaseWithGamebaseProductId:viewController:completion:** of Gamebase SDK to attempt payment.
-3. If the payment has successfully been made, call **requestItemListOfNotConsumedWithCompletion:** to check the consumable purchases history. If there are items to be provided, perform Consume Flow.
+3. If the payment has been made successfully, call **requestItemListOfNotConsumedWithCompletion:** to check the consumable purchases history. If there are items to be provided, perform Consume Flow.
 
 ### Consume Flow
 
@@ -76,7 +76,7 @@ If there's a value on the list of non-consumable purchases, execute Consume Flow
 
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
-* There are cases where the store purchase has successfully been made but the process was not properly completed due to errors.
+* There are cases where the store purchase has been made successfully but the process was not properly completed due to errors.
 *If there are items not issued yet, call **requestItemListOfNotConsumedWithCompletion:** to trigger reprocessing to finish [Consume Flow](./ios-purchase/#consume-flow).
 * It is recommended to call reprocessing:
     * after login.

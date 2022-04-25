@@ -1,5 +1,21 @@
 ## Game > Gamebase > Release Notes > Console
 
+### April 26, 2022
+
+#### Feature Updates
+* App > App
+	* Added a feature to enter a content provider ID (CPID) in the NHN Cloud organization product (Online Contact) Customer Center
+* App > Client
+	* Made a change so that, when a newline character ('\n') is entered in the service status display message, newline processing is performed by the client SDK
+* Member > Member
+	* Added a feature to terminate the connection if the withdrawn user is currently logged in when performing the user withdrawal processing
+* Purchase (IAP) > Store
+	* Provided an additional service account integration method for Google Play Store
+
+#### Bug Fixes
+* Customer Center > FAQ
+	* Fixed an issue where, when an error occurs due to input of special characters in the FAQ type management, an incorrect message is displayed as a duplicate category error
+
 ### April 12, 2022
 
 #### Feature Updates

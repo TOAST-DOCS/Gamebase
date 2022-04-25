@@ -5,7 +5,7 @@
 ### Android
 
 #### Hangame SDK
-* Hangame SDK v1.4.5에서 sms_hash가 내부에서 생성되도록 개선되었습니다.
+* Hangame Android SDK v1.4.5에서 sms_hash가 내부에서 생성되도록 개선되었습니다.
     * 더 이상 sms_hash를 설정하지 않아도 됩니다. 
 
 ## 2.35.0
