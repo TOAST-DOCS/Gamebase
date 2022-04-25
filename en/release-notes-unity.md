@@ -3,19 +3,19 @@
 ### 2.36.0 (2022. 04. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.36.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 외부 SDK 업데이트: TOAST Unity SDK(0.25.2)
-* 결제 시 프로모션 여부를 알 수 있는 isPromotion 필드가 추가되었습니다.
+#### Added Features
+* External SDK update: TOAST Unity SDK(0.25.2)
+* Added the isPromotion field to determine whether it is promotion payment while purchasing
     * GamebaseResponse.Purchase.PurchasableReceipt.isPromotion
-* 결제 시 테스트 결제 여부를 알 수 있는 isTestPurchase 필드가 추가되었습니다.
+* Added the isTestPurchase field to determine whether it is test payment while purchasing
     * GamebaseResponse.Purchase.PurchasableReceipt.isTestPurchase
 
-#### 버그 수정
-* 디바이스가 특정 문화권으로 설정되었을 때 결제 상품 가격 정보가 0으로 입력되는 오류가 수정되었습니다.
-* (iOS) Push 알림 클릭 시 딥 링크가 동작하지 않는 이슈 수정되었습니다.
-* (iOS) 프로젝트의 opientation이 Auto Rotation으로 설정되어 있고, 프로젝트 첫 씬에 포함된 MonoBehaviour의 Awake에서 Gamebase API 호출 시 웹뷰 등의 UI 출력이 정상적으로 동작하지 않는 오류가 수정되었습니다.
+#### Bug Fixes
+* Fixed an error where, when a device was set to a specific cultural area, price information of the purchase product was entered as 0.
+* (iOS) Fixed an issue where, when clicking on push notifications, deep links did not work.
+* (iOS) Fixed an error where, when the orientation of the project was set to Auto Rotation and Gamebase API was called in Awake of MonoBehaviour included in the first scene of the project, UI such as WebView was not displayed properly.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.36.0](./release-notes-android/#2360-20220412)
 * [Gamebase iOS SDK 2.36.0](./release-notes-ios/#2360-20220412)
 
