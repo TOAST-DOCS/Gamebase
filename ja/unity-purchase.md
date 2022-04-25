@@ -223,13 +223,13 @@ public class PurchasableReceipt
     /// <summary>
     /// プロモーション決済かどうか
     /// - (Android) Gamebase決済サーバーで一時的に検証ロジックをオフにする場合にはfalseのみ出力されるため、常に有効な値が保障されません。
-        /// </summary>
+    /// </summary>
     public bool isPromotion;
     
     /// <summary>
     /// テスト決済かどうか
     /// - (Android) Gamebase決済サーバーで一時的に検証ロジックをオフにする場合にはfalseのみ出力されるため、常に有効な値が保障されません。
-        /// </summary>
+    /// </summary>
     public bool isTestPurchase;
 }
 ```
