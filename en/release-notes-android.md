@@ -14,10 +14,10 @@
 ### 2.36.0 (2022. 04. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.36.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.29.2), TOAST Gamebase IAP Android SDK(0.18.2), Hangame Android SDK(1.4.5)
-* Hangame Android SDK에서 v1.4.5에서 sms_hash가 내부에서 생성되도록 개선되었습니다.
-    * 더 이상 sms_hash를 설정하지 않아도 됩니다.
+#### Feature Updates
+* External SDK update: TOAST Android SDK(0.29.2), TOAST Gamebase IAP Android SDK(0.18.2), Hangame Android SDK(1.4.5)
+* Made improvements so that sms_hash is generated internally in Hangame Android SDK v1.4.5.
+    * sms_hash does not need to be set anymore.
 
 ### 2.35.0 (2022. 03. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.35.0/GamebaseSDK-Android.zip)
