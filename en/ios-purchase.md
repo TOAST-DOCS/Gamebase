@@ -184,6 +184,12 @@ When a game user cancels purchase, the **TCGB_ERROR_PURCHASE_USER_CANCELED** is 
 // An identifier for Legacy API that purchases products with itemSeq
 @property (assign)            long itemSeq;
 
+// Whether it is sandbox payment
+@property (nonatomic, assign) BOOL sandboxPayment;
+
+// Whether it is promotion payment
+@property (nonatomic, assign) BOOL promotionPayment;
+
 @end
 ```
 
