@@ -1432,7 +1432,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 | result[].marketId | String | [ストアコード](#store-code) |
 | result[].gamebaseProductId | String | Gamebase商品ID<br>コンソールに商品登録した時にユーザーが入力した値 |
 | result[].purchaseTime | String | 決済発生日時 |
-| result[].payload | String | SDKで設定した追加情報 |
+| result[].payload | String | SDKで設定した追加情報<br>Amazonストアはその値がない場合があります |
 
 **[Error Code]**
 

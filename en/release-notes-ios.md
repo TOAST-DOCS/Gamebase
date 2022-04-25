@@ -10,13 +10,13 @@
 ### 2.36.0 (2022. 04. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.36.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* 결제 영수증에서 sandbox 결제 여부 및 프로모션 결제 여부를 알 수 있도록 다음 필드가 추가되었습니다.
+#### Added Features
+* Added the following fields to determine whether the payment is a sandbox payment or a promotion payment in the payment receipt.
     * **TCGBPurchasableReceipt.sandboxPayment**
     * **TCGBPurchasableReceipt.promotionPayment**
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST iOS SDK(0.30.0), ToastGamebaseIAP SDK(0.13.0), Hangame iOS SDK (1.6.3)
+#### Feature Updates
+* External SDK update: TOAST iOS SDK(0.30.0), ToastGamebaseIAP SDK(0.13.0), Hangame iOS SDK (1.6.3)
 
 ### 2.35.0 (2022. 03. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.35.0/GamebaseSDK-iOS.zip)
