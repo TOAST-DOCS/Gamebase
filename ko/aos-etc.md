@@ -898,7 +898,8 @@ ContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니다.
 | build() | **M** | 설정을 마친 Builder를 Configuration 객체로 변환합니다. |
 | setUserName(String userName) | O | 사용자 이름(닉네임)을 전달하고자 할 때 사용합니다.<br>NHN Cloud 조직 상품(Online Contact) 유형에서 사용하는 필드입니다.<br>**default** : null |
 | setAdditionalURL(String additionalURL) | O | 개발사 자체 고객센터 URL 뒤에 붙는 추가적인 URL입니다.<br>고객센터 타입이 `CUSTOM` 인 경우에만 사용하시기 바랍니다.<br>**default** : null |
-| setExtraData(Map<String, Object> extraData) | O | 개발사가 원하는 extra data를 고객센터 오픈 시에 전달합니다.<br>**default** : EmptyMap |
+| setAdditionalParameters(Map&lt;String, String&gt; additionalParameters) | O | 고객센터 URL 뒤에 붙는 추가적인 파라미터입니다.<br>**default** : null |
+| setExtraData(Map&lt;String, Object&gt; extraData) | O | 개발사가 원하는 extra data를 고객센터 오픈 시에 전달합니다.<br>**default** : EmptyMap |
 
 **API**
 

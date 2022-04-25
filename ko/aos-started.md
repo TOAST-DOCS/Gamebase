@@ -19,13 +19,13 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 |  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Google 로그인을 지원 | - |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.4.5 | Hangame 로그인을 지원 | - |
-|  | gamebase-adapter-auth-line | linesdk-5.6.2 | Line 로그인을 지원 | API 17(Kitkat, OS 4.2) |
-|  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Naver 로그인을 지원 | - |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.7 | Payco 로그인을 지원 | - |
+|  | gamebase-adapter-auth-line | linesdk-5.6.2 | LINE 로그인을 지원 | API 17(Kitkat, OS 4.2) |
+|  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | NAVER 로그인을 지원 | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.7 | PAYCO 로그인을 지원 | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitter 로그인을 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | Weibo 로그인을 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Kakao 로그인을 지원 | API 21(Lollipop, OS 5.0) |
-| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.2<br>toast-iap-core | 게임 내 결제를 지원 | - |
+| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.3<br>toast-iap-core | 게임 내 결제를 지원 | - |
 |  | gamebase-adapter-purchase-amazon | toast-iap-amazon | Amazon Appstore를 지원 | - |
 |  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | Galaxy Store를 지원 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK 의 minSdkVersion 은 18이지만, 실제 결제를 위해 설치해야 하는 Checkout 서비스앱의 minSdkVersion 은 21입니다. |
 |  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Google Play Store를 지원 | - |
