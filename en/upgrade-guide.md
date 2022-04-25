@@ -1,5 +1,13 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.36.0
+
+### Android
+
+#### Hangame SDK
+* Made improvements so that sms_hash is generated internally in Hangame Android SDK v1.4.5.
+    * sms_hash does not need to be set anymore.
+
 ## 2.35.0
 
 ### Android

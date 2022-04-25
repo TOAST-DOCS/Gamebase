@@ -5,10 +5,11 @@
 - Added storeCode as required parameter to call Get Simple Launching API.
 - Added storeCode information of the maintenance target for the response result of Check Maintenance API.
 - Added Validate TransferAccount API to verify TransferAccount that is published in advance and used for device transfer on a guest account.
-- Changed the date time of API response result frmo Epoch Time to ISO 8601 (ssXXX:mm:HH'T'dd-MM-yyyy). regDate and lastLoginDate for response result of Token Authentication, Get Member, and Get Members API.
-- Added Exhaust Coupons API.
+- Changed the date time of API response result from Epoch Time to ISO 8601 (ssXXX:mm:HH'T'dd-MM-yyyy). regDate and lastLoginDate for response result of Token Authentication, Get Member, and Get Members API.
+- Added the Exhaust Coupons API.
+- Added the Withdraw API.
 - Corrected the price data type of Purchase (IAP) from Long to Float.  
-- Added information of users who are suspended from withdrawal to the result of Token Authentication and Get Member API Response, as the feature of susepnsion of withdrawal has been added.
+- Added information of users who are suspended from withdrawal to the result of Token Authentication and Get Member API Response, as the feature of suspension of withdrawal has been added.
 
 ## Advance Notice
 
@@ -1103,13 +1104,17 @@ Check common issues
 
 #### Consume
 
-After purchase is completed at each store, such as Google Play Store, App Store, and ONEStore, users must be notified to consume such purchase before item is provided. Consume only once per purchase, but if purchase state is not normal, it cannot be consumed.    
-(If purchase is consumed, user's purchase and item supply is deemed to have been complete.)
-
-Non-consumed purchases can be queried on SDK or server via Query Consume Non-Consumed Purchases API. Note that only consumable items can be consumed when registering items.  
+If the store payment (Google Play Store, App Store, ONEStore, etc.) has been made successfully, it issues the purchased items to the user, records the purchase history in the server, and then informs the Gamebase of the payment consumption. You can consume payment only once per payment, and the payment is not consumed if the payment status is not normal.
 
 > [Note]
-> Consume once per purchase, and non-consumed purchases are considered that no item has been provided by IAP.
+> Only the item payment with the product type CONSUMABLE at the time of registration will be consumed.
+> Can consume once per payment, and IAP regards any payment without consumption as not issuing the purchased item.
+
+Unconsumed payment history can be viewed through SDK and View Unconsumed Payment History API. Even if the unconsumed payment history exists through the API, the provisioning history within the game server becomes the priority if the game server has the history about the item provisioning.
+(If an API timeout occurs due to a network failure, etc., there might be cases where payment is completed in Gamebase whereas the item is not issued to the user due to API response failure in the game server.)
+
+> [Note]
+> If it is not possible to manage all item issuance history inside the game, a safety measure for a duplicate issuance or non-issuance issue is required, for example, by setting the request timeout of API to 10 seconds or longer, and logging the history at least when an API timeout occurs.
 
 **[Method, URI]**
 
