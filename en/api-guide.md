@@ -1245,7 +1245,7 @@ Check common issues
 
 #### Consume
 
-If the store payment (Google Play Store, App Store, ONEStore, etc.) has successfully been made, it issues the purchased items to the user, records the purchase history in the server, and then informs the Gamebase of the payment consumption. You can consume payment only once per payment, and the payment is not consumed if the payment status is not normal.
+If the store payment (Google Play Store, App Store, ONEStore, etc.) has been made successfully, it issues the purchased items to the user, records the purchase history in the server, and then informs the Gamebase of the payment consumption. You can consume payment only once per payment, and the payment is not consumed if the payment status is not normal.
 
 > [Note]
 > Only the item payment with the product type CONSUMABLE at the time of registration will be consumed.
@@ -1255,7 +1255,7 @@ Unconsumed payment history can be viewed through SDK and View Unconsumed Payment
 (If an API timeout occurs due to a network failure, etc., there might be cases where payment is completed in Gamebase whereas the item is not issued to the user due to API response failure in the game server.)
 
 > [Note]
-> If the game cannot manage all item issuance history internally, at least set the API request timeout to 10 sec or longer and record the history at the time of API timeout as safety measures to resolve issues regarding repeated/failed issuance of items.
+> If it is not possible to manage all item issuance history inside the game, a safety measure for a duplicate issuance or non-issuance issue is required, for example, by setting the request timeout of API to 10 seconds or longer, and logging the history at least when an API timeout occurs.
 
 **[Method, URI]**
 
@@ -1420,7 +1420,7 @@ N/A
 | result[].marketId | String | [Store code](#store-code) |
 | result[].gamebaseProductId | String | Gamebase product ID<br>The value to be entered by user when registering a product using the console |
 | result[].purchaseTime | String | Time and date of payment |
-| result[].payload | String | Additional information configured in SDK |
+| result[].payload | String | Additional information configured in SDK<br>For Amazon store, the value might be missing |
 
 **[Error Code]**
 
