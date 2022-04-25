@@ -1,5 +1,16 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
+### 2.37.0 (2022. 04. 26.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.37.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* 고객센터 URL 뒤에 파라미터를 추가할 수 있도록 다음 필드가 추가되었습니다.
+    * GamebaseRequest.Contact.Configuration.additionalParameters
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.37.0](./release-notes-android/#2370-20220426)
+* [Gamebase iOS SDK 2.37.0](./release-notes-ios/#2370-20220426)
+
 ### 2.36.0 (2022. 04. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.36.0/GamebaseSDK-Unity.zip)
 
@@ -12,8 +23,8 @@
 
 #### 버그 수정
 * 디바이스가 특정 문화권으로 설정되었을 때 결제 상품 가격 정보가 0으로 입력되는 오류가 수정되었습니다.
-* (iOS) Push 알림 클릭 시 딥 링크가 동작하지 않는 이슈 수정되었습니다.
-* (iOS) 프로젝트의 opientation이 Auto Rotation으로 설정되어 있고, 프로젝트 첫 씬에 포함된 MonoBehaviour의 Awake에서 Gamebase API 호출 시 웹뷰 등의 UI 출력이 정상적으로 동작하지 않는 오류가 수정되었습니다.
+* (iOS) Push 알림 클릭 시 딥 링크가 동작하지 않는 오류가 수정되었습니다.
+* (iOS) 프로젝트의 orientation이 Auto Rotation으로 설정되어 있고, 프로젝트 첫 신(scene)에 포함된 MonoBehaviour의 Awake에서 Gamebase API 호출 시 웹뷰 등의 UI 출력이 정상적으로 되지 않는 오류가 수정되었습니다.
 
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.36.0](./release-notes-android/#2360-20220412)
