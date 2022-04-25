@@ -5,7 +5,7 @@
 
 #### 기능 추가
 * 고객센터 URL 뒤에 파라미터를 추가할 수 있도록 다음 필드가 추가되었습니다.
-    * **ContactConfiguration.Builder.setAdditionalParameters(Map<String, String>)**
+    * **ContactConfiguration.Builder.setAdditionalParameters(Map&lt;String, String&gt;)**
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트 : Toast Gamebase IAP 0.18.3
