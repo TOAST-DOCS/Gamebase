@@ -184,9 +184,9 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
 // itemSeqで商品を購入するLegacy API用の識別子
 @property (assign)            long itemSeq;
 
-// sandbox決済を行うかどうか
+// sandbox決済かどうか
 @property (nonatomic, assign) BOOL sandboxPayment;
-// プロモーション決済を行うかどうか
+// プロモーション決済かどうか
 @property (nonatomic, assign) BOOL promotionPayment;
 
 @end
