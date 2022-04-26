@@ -1,17 +1,10 @@
 ## Game > Gamebase > リリースノート > iOS
 
-### 2.37.0 (2022. 04. 26.)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.37.0/GamebaseSDK-iOS.zip)
-
-#### 기능 추가
-* 고객센터 URL 뒤에 파라미터를 추가할 수 있도록 다음 필드가 추가되었습니다.
-    * **TCGBContactConfiguration.additionalParameters**
-    
 ### 2.36.0 (2022. 04. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.36.0/GamebaseSDK-iOS.zip)
 
 #### 機能追加
-* 決済領収書でsandboxおよびプロモーション決済を行うかどうかを知ることができるように、次のフィールドが追加されました。
+* 決済領収書でsandboxおよびプロモーション決済なのかどうかを知ることができるように、次のフィールドが追加されました。
     * **TCGBPurchasableReceipt.sandboxPayment**
     * **TCGBPurchasableReceipt.promotionPayment**
 
