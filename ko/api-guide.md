@@ -4,7 +4,8 @@
 - IAP(In App Purchase) API의 요청 파라미터 및 응답 결과에 새로운 항목이 추가 및 삭제 되었습니다.
 - Push Wrapping API가 추가 되었습니다.
 - Gamebase Access Token으로 로그인시에 사용된 IdP의 프로필 및 토큰 정보를 획득할 수 있는 "Get IdP Token and Profiles" API가 추가되었습니다.
-- IdP Id로 매핑된 Gamebase userId 를 획득하는 "Get UserId Information with IdP Id" API가 추가되었습니다.
+- IdP Id로 매핑된 Gamebase userId를 획득하는 "Get UserId Information with IdP Id" API가 추가되었습니다.
+- 특정 기간 동안 탈퇴한 사용의 Gamebase userId를 획득하는 "Withdraw Histories" API가 추가되었습니다.
 
 ## Advance Notice
 
@@ -862,7 +863,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 <br>
 
-#### Ban Release Histories.
+#### Ban Release Histories
 
 유저 이용 정지 해제 이력을 조회합니다.
 
@@ -1090,6 +1091,90 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
     }
 }
 ```
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+</br>
+
+#### Withdraw Histories
+
+특정 기간 동안 탈퇴한 유저들을 조회합니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-member/v1.3/apps/{appId}/logs/withdrawal |
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud 프로젝트 ID |
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| begin | String | Required | 이력 조회 시작 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>**최근 1년이내의 데이터만 제공** |
+| end | String | Required | 이력 조회 종료 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX / 2021-09-11T00%3a00%3a00%2b09%3a00 |
+| page | String | Optional | 조회하고자 하는 페이지. 0부터 시작 |
+| size | String | Optional | 한 페이지당 데이터 개수 |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "transactionId": "String",
+        "isSuccessful": true
+    },
+    "pagingInfo": {
+        "totalPages": 1,
+        "totalElements": 2,
+        "numberOfElements": 2,
+        "first": true,
+        "last": true,
+        "page": 0,
+        "size": 100
+    },
+    "result": [
+        {
+            "userId": "String",
+            "date": "2022-03-27T17:40:00+09:00",
+            "regUser": null
+        },
+        {
+            "userId": "String",
+            "date": "2022-03-27T17:41:05+09:00",
+            "regUser": "String"
+        }
+    ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| pagingInfo | Object | 조회된 페이징 정보 |
+| pagingInfo.first | boolean | 첫번째 페이지이면 true |
+| pagingInfo.last | boolean | 마지막 페이지이면 true |
+| pagingInfo.numberOfElements | int | 전체 데이터 수 |
+| pagingInfo.page | int | 페이지 번호 |
+| pagingInfo.size | int | 한 페이지당 데이터 개수 |
+| pagingInfo.totalElements | int | 전체 데이터 수 |
+| pagingInfo.totalPages | int | 전체 페이징 수 |
+| result | Array[Object] | 조회된 탈퇴 내역 |
+| result.userId | String | 유저 ID |
+| result.date | String | 탈퇴 일시 |
+| result.regUser | String | 탈퇴 API를 호출한 주체<br>- 해당 값이 **null** 이면 client SDK에서 호출됨|
 
 **[Error Code]**
 
