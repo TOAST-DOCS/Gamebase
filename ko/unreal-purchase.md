@@ -18,15 +18,15 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 
 * Unreal에서 기본으로 활성화 되어있는 Online SubSystem 플러그인을 비활성화 혹은 스토어 기능을 이용하지 못하도록 변경해야 합니다.
     * Online SubSystem GooglePlay 플러그인 사용 시 /Config/Android/AndroidEngine.ini 파일을 편집합니다.
-        ```ini
-        [OnlineSubsystemGooglePlay.Store]
-        bSupportsInAppPurchasing=False
-        ```
+            
+            [OnlineSubsystemGooglePlay.Store]
+            bSupportsInAppPurchasing=False
+            
     * Online SubSystem iOS 플러그인 사용 시 /Config/IOS/IOSEngine.ini 파일을 편집합니다.
-        ```ini
-        [OnlineSubsystemIOS.Store]
-        bSupportsInAppPurchasing=False
-        ```
+            
+            [OnlineSubsystemIOS.Store]
+            bSupportsInAppPurchasing=False
+            
 
 #### Android 결제 설정(엔진 버전 4.24 이하)
 
