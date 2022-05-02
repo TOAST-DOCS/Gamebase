@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.37.0/GamebaseSDK-Unity.zip)
 
 #### 기능 추가
-* 고객센터 URL 뒤에 파라미터를 추가할 수 있도록 다음 필드가 추가되었습니다.
+* 고객 센터 URL 뒤에 파라미터를 추가할 수 있도록 다음 필드가 추가되었습니다.
     * GamebaseRequest.Contact.Configuration.additionalParameters
 
 #### 플랫폼별 변경 사항
@@ -284,7 +284,7 @@
     * 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
 
 #### 기능 개선/변경
-* 고객센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객센터가 표시되도록 변경
+* 고객 센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객 센터가 표시되도록 변경
 * Warning 로그 제거
 * Standalone WebView에 CEF 2.1.2 업데이트
     * URL의 길이가 2,048보다 길 경우 크래시가 발생하는 이슈 수정
@@ -312,7 +312,7 @@
 
 #### 기능 추가
 * [SDK] 2.18.2
-    * (공통) 개발사 자체 고객센터 오픈 시 additionalURL 필드 추가
+    * (공통) 개발사 자체 고객 센터 오픈 시 additionalURL 필드 추가
     * (공통) 결제 아이템 정보에 지역화된 상품 정보 추가: localizedTitle, localizedDescription
 
 #### 기능 개선/변경
@@ -374,7 +374,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.17.0/GamebaseSDK-Unity.zip)
 
 ```
-한게임 인증 사용을 원하는 경우 고객센터로 미리 연락주세요.
+한게임 인증 사용을 원하는 경우 고객 센터로 미리 연락주세요.
 ```
 
 #### 기능 추가
@@ -397,7 +397,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.16.0/GamebaseSDK-Unity.zip)
 
 #### 기능 추가
-* 고객센터 기능 추가
+* 고객 센터 기능 추가
     * [SDK] 2.16.0
     * (공통) API 추가(Gamebase.Contact.requestContactURL): 고객 센터 URL 리턴
     * (공통) 고객 센터 API 에 userName 을 설정할 수 있도록 ContactConfiguration 파라미터 추가 
@@ -720,7 +720,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 
 ```
 Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
-중국출시에 관심 있으신 경우에는 고객센터로 연락주세요.
+중국출시에 관심 있으신 경우에는 고객 센터로 연락주세요.
 ```
 
 #### 기능 추가

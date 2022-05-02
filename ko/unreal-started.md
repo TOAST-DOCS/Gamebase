@@ -51,7 +51,7 @@ Supported Platforms
 
 * Android - Authentication
     * 사용하려는 IdP를 활성화 합니다.
-    * Hangame IdP 사용 시 고객센터로 별도로 문의 바랍니다.
+    * Hangame IdP 사용 시 고객 센터로 별도로 문의 바랍니다.
 * Android - Push
     * 사용하려는 Push를 활성화 합니다.
 * Android - Purchase
