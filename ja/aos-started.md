@@ -32,6 +32,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 |  | gamebase-adapter-purchase-huawei | toast-iap-huawei | Huawei App Galleryをサポート | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-purchase-onestore | toast-iap-onestore | ONE Store v17をサポート<br>現在v19はサポート不可 | - |
 | Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Pushをサポート | - |
+|  | gamebase-adapter-push-adm | toast-push-adm | Amazon Device Messagingをサポート | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Firebase Notificationをサポート | - |
 
 
@@ -190,6 +191,7 @@ dependencies {
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-push-adm:$GAMEBASE_SDK_VERSION"
 
     // >>> 次のモジュールの使用方法はサポートへお問い合わせください。
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
@@ -517,15 +519,17 @@ android {
 
 ### Proguard
 
+* Amazon Device Messaging
+    * [https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
+    * [https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)
 * Gamebase 2.21.0未満のバージョンはProguard適用時、Proguard Ruleに次の宣言を追加していない場合、決済API呼び出し時にクラッシュが発生します。
     * Gamebase 2.21.0バージョンで修正されました。
 
-```
-# ---------------------- [Gamebase TOAST IAP] defines start ----------------------
-# For using reflection
--keep class com.toast.android.toastgb.iap.ToastGbStoreCode { *; }
-# ---------------------- [Gamebase TOAST IAP] defines end ----------------------
-```
+            # ---------------------- [Gamebase TOAST IAP] defines start ----------------------
+            # For using reflection
+            -keep class com.toast.android.toastgb.iap.ToastGbStoreCode { *; }
+            # ---------------------- [Gamebase TOAST IAP] defines end ----------------------
+
 
 ## Recommended Flow
 

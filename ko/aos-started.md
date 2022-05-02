@@ -32,6 +32,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 |  | gamebase-adapter-purchase-huawei | toast-iap-huawei | 화웨이 App Gallery를 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-purchase-onestore | toast-iap-onestore | ONE store v17을 지원<br>현재 v19는 지원 불가 | - |
 | Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Push를 지원 | - |
+|  | gamebase-adapter-push-adm | toast-push-adm | Amazon Device Messaging를 지원 | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Firebase Notification을 지원 | - |
 
 
@@ -190,6 +191,7 @@ dependencies {
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-push-adm:$GAMEBASE_SDK_VERSION"
     
     // >>> 다음 모듈의 사용 방법은 고객 센터로 문의 하시기 바랍니다.
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
@@ -517,15 +519,18 @@ android {
 
 ### Proguard
 
+* Amazon Device Messaging
+    * Amazon Device Messaging(ADM)에서 Proguard를 사용하는 경우, 다음 가이드를 확인하여 적용하셔야 합니다.
+        * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > ADM SDK 다운로드](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
+        * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > Proguard 설정](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)
 * Gamebase 2.21.0 미만 버전은 Proguard 적용시 Proguard Rule 에 다음 선언을 추가하지 않으면 결제 API 호출시 크래쉬가 발생합니다.
     * Gamebase 2.21.0 버전에서 수정되었습니다.
 
-```
-# ---------------------- [Gamebase TOAST IAP] defines start ----------------------
-# For using reflection
--keep class com.toast.android.toastgb.iap.ToastGbStoreCode { *; }
-# ---------------------- [Gamebase TOAST IAP] defines end ----------------------
-```
+            # ---------------------- [Gamebase TOAST IAP] defines start ----------------------
+            # For using reflection
+            -keep class com.toast.android.toastgb.iap.ToastGbStoreCode { *; }
+            # ---------------------- [Gamebase TOAST IAP] defines end ----------------------
+
 
 ## Recommended Flow
 

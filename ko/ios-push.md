@@ -1,5 +1,10 @@
 ## Game > Gamebase > iOS SDK 사용 가이드 > 푸시
 
+> <font color="red">[주의]</font><br/>
+>
+> Unreal, Unity 등 3rd party 푸시 플러그인 또는 모듈을 사용할 경우, Gamebase 푸시 기능에 영향을 줄 수 있습니다.
+>
+
 ### Settings
 
 #### Apple Developer Certificates
