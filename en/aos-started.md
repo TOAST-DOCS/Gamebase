@@ -32,6 +32,7 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-purchase-huawei | toast-iap-huawei | Support Huawei App Gallery | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-purchase-onestore | toast-iap-onestore | Support ONE store v17<br>Currently v19 is not supported | - |
 | Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Support push notifications | - |
+|  | gamebase-adapter-push-adm | toast-push-adm | Support Amazon Device Messaging | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Support Firebase Notification | - |
 
 
@@ -190,6 +191,7 @@ dependencies {
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-push-adm:$GAMEBASE_SDK_VERSION"
     
     // >>> Regarding how to use the following modules, please contact the Customer Center.
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
@@ -517,15 +519,17 @@ android {
 
 ### Proguard
 
+* Amazon Device Messaging
+    * [https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
+    * [https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)
 * For Gamebase versions earlier than 2.21.0, calling Payment API without adding a declaration at the end of Proguard Rule when applying Proguard would result in a crash.
     * This issue has been fixed in Gamebase 2.21.0 version.
 
-```
-# ---------------------- [Gamebase TOAST IAP] defines start ----------------------
-# For using reflection
--keep class com.toast.android.toastgb.iap.ToastGbStoreCode { *; }
-# ---------------------- [Gamebase TOAST IAP] defines end ----------------------
-```
+            # ---------------------- [Gamebase TOAST IAP] defines start ----------------------
+            # For using reflection
+            -keep class com.toast.android.toastgb.iap.ToastGbStoreCode { *; }
+            # ---------------------- [Gamebase TOAST IAP] defines end ----------------------
+
 
 ## Recommended Flow
 

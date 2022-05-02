@@ -32,8 +32,8 @@
 |  | gamebase-adapter-purchase-huawei | toast-iap-huawei | 支持Huawei App Gallery。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-purchase-onestore | toast-iap-onestore | 支持ONE Store。 | - |
 | Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | 支持Push。 | - |
+|  | gamebase-adapter-push-adm | toast-push-adm | 支持Amazon Device Messaging | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | 支持Firebase Notification。 | - |
-| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.0<br>toast-iap-core | 支持游戏内支付 | - |
 
 ## Setting
 
@@ -186,6 +186,7 @@ dependencies {
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-push-adm:$GAMEBASE_SDK_VERSION"
     
     // >>> 关于下一个模块儿的使用方法，请参考客户服务。
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
@@ -495,16 +496,18 @@ android {
 
 ### Proguard
 
+* Amazon Device Messaging
+    * [https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
+    * [https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)
 * 将Proguard应用于gamebase 2.21.0或低于2.21.0版本时，若调用结算API而不添加Proguard Rule，则将发生崩溃。
     * 在Gamebase 2.21.0版本上已被修改。
 
-```
-# ---------------------- [Gamebase TOAST IAP] defines start ----------------------
-# For using reflection
--keep class com.toast.android.toastgb.iap.ToastGbStoreCode { *; }
-# ---------------------- [Gamebase TOAST IAP] defines end ----------------------
-```
- 
+            # ---------------------- [Gamebase TOAST IAP] defines start ----------------------
+            # For using reflection
+            -keep class com.toast.android.toastgb.iap.ToastGbStoreCode { *; }
+            # ---------------------- [Gamebase TOAST IAP] defines end ----------------------
+
+
 ## Recommended Flow
 
 * 可在Sample Project上确认Gamebase推荐的flow。
