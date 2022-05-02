@@ -78,9 +78,9 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 | --- | --- | --- |
 | newBuilder() | **M** | ImageNoticeConfiguration.Builder 객체는 newBuilder() 함수를 통해 생성할 수 있습니다. |
 | build() | **M** | 설정을 마친 Builder 를 Configuration 객체로 변환합니다. |
-| setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | 이미지 공지 뒷 배경색.<br>String 은 android.graphics.Color.parseColor(String) API 로 변환한 값을 사용합니다.<br>**default** : #80000000 |
-| setTimeout(long timeoutMs) | O | 이미지 공지 최대 로딩 시간 (단위 : millisecond)<br>**default** : 5000L (5s) |
-| enableAutoCloseByCustomScheme(boolean enable) | O | custom scheme 이벤트가 발생하면 이미지 공지를 강제종료 할지 여부를 결정합니다.<br>**default** : true |
+| setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | 이미지 공지 뒷 배경색.<br>String 은 android.graphics.Color.parseColor(String) API 로 변환한 값을 사용합니다.<br>**default**: #80000000 |
+| setTimeout(long timeoutMs) | O | 이미지 공지 최대 로딩 시간 (단위 : millisecond)<br>**default**: 5000L (5s) |
+| enableAutoCloseByCustomScheme(boolean enable) | O | custom scheme 이벤트가 발생하면 이미지 공지를 강제종료 할지 여부를 결정합니다.<br>**default**: true |
 
 
 ### Close ImageNotices
@@ -135,8 +135,8 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 | --- | --- | --- |
 | newBuilder() | **M** | GamebaseTermsConfiguration.Builder 객체는 newBuilder() 함수를 통해 생성할 수 있습니다. |
 | build() | **M** | 설정을 마친 Builder 를 Configuration 객체로 변환합니다. |
-| setForceShow(boolean forceShow) | O | 약관에 동의했다면 showTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br>**default** : false |
-| enableFixedFontSize(boolean enable) | O | 시스템 글자 크기를 무시하고 고정된 크기로 약관을 표시합니다.<br>**default** : false |
+| setForceShow(boolean forceShow) | O | 약관에 동의했다면 showTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br>**default**: false |
+| enableFixedFontSize(boolean enable) | O | 시스템 글자 크기를 무시하고 고정된 크기로 약관을 표시합니다.<br>**default**: false |
 
 **GamebaseShowTermsViewResult**
 

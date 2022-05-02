@@ -152,7 +152,7 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 @property (nonatomic, strong) NSString *marketItemId;
 
 // 상품 타입
-// UNKNOWN : 인식 불가능한 타입. Gamebase SDK를 업데이트하거나 Gamebase 고객센터로 문의하세요.
+// UNKNOWN : 인식 불가능한 타입. Gamebase SDK를 업데이트하거나 Gamebase 고객 센터로 문의하세요.
 // CONSUMABLE : 소비성 상품
 // AUTO_RENEWABLE : 구독성 상품
 // CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'
@@ -243,7 +243,7 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 @property (nonatomic, strong) NSString *marketItemId;
 
 // 상품 타입
-// UNKNOWN : 인식 불가능한 타입. Gamebase SDK를 업데이트하거나 Gamebase 고객센터로 문의하세요.
+// UNKNOWN : 인식 불가능한 타입. Gamebase SDK를 업데이트하거나 Gamebase 고객 센터로 문의하세요.
 // CONSUMABLE : 소비성 상품
 // AUTO_RENEWABLE : 구독성 상품
 // CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'

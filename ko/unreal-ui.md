@@ -99,7 +99,7 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
  
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
-| forceShow | O | 약관에 동의했다면 ShowTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br>**default** : false | 
+| forceShow | O | 약관에 동의했다면 ShowTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br>**default**: false | 
  
 
 **API**

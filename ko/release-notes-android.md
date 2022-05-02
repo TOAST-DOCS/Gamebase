@@ -4,12 +4,12 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.37.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
-* 고객센터 URL 뒤에 파라미터를 추가할 수 있도록 다음 필드가 추가되었습니다.
+* 고객 센터 URL 뒤에 파라미터를 추가할 수 있도록 다음 필드가 추가되었습니다.
     * **ContactConfiguration.Builder.setAdditionalParameters(Map&lt;String, String&gt;)**
 
 #### 기능 개선/변경
-* 외부 SDK 업데이트 : Toast Gamebase IAP 0.18.3
-* Amazon appstore 결제 데이터에서 userId, gamebaseProductId가 누락될 시 userId, gamebaseProductId를 자동으로 채우도록 개선되었습니다.
+* 외부 SDK 업데이트: Toast Gamebase IAP 0.18.3
+* Amazon Appstore 결제 데이터에서 userId, gamebaseProductId가 누락될 시 userId, gamebaseProductId를 자동으로 채우도록 개선되었습니다.
 
 ### 2.36.0 (2022. 04. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.36.0/GamebaseSDK-Android.zip)
@@ -120,7 +120,7 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트: TOAST Android SDK(0.29.0)
-* 이용정지 웹뷰 내의 고객센터 링크에서 이용정지 유저 정보로 문의를 등록할 수 없는 문제를 해결하였습니다.
+* 이용정지 웹뷰 내의 고객 센터 링크에서 이용정지 유저 정보로 문의를 등록할 수 없는 문제를 해결하였습니다.
 * 앱이 켜지자마자 Gamebase 초기화를 호출하는 경우, 론칭 팝업 창이 간헐적으로 영어로 표시되는 문제를 수정하였습니다.
 * 앱이 백그라운드에서 포그라운드로 전환될 때는 항상 론칭 정보가 변경되지 않았는지 바로 체크하도록 스케줄러를 개선하였습니다.
 
@@ -181,7 +181,7 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
 #### 기능 개선/변경
 * 외부 SDK 업데이트: PAYCO Android SDK(1.5.5), Hangame Android SDK(1.4.1), Weibo Android SDK(11.8.1)
 * 에뮬레이터, 루팅 단말기에서 웹뷰가 정상적으로 표시되지 않을 때 재시도를 추가하여, 웹뷰가 정상적으로 표시되도록 개선하였습니다.
-    * 대상은 웹뷰로 동작하는 이미지공지, 고객센터, 공통 약관이 해당됩니다.
+    * 대상은 웹뷰로 동작하는 이미지공지, 고객 센터, 공통 약관이 해당됩니다.
 * Weibo IdP 인증을 개선하여 안정성을 향상시켰습니다.
     * 동기 API 이지만 실제로는 비동기로 동작하여 에러를 발생시키는 API에 예외 처리, 대기, 재시도 등을 추가였습니다.
 
@@ -309,7 +309,7 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
     * 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
 
 #### 기능 개선/변경
-* 고객센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객센터가 표시되도록 변경
+* 고객 센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객 센터가 표시되도록 변경
 
 ### 2.19.1 (2020.12.29)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.1/GamebaseSDK-Android.zip)
@@ -331,10 +331,10 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.18.2/GamebaseSDK-Android.zip)
 
 #### 기능 추가
-* Gamebase 고객센터 페이지 오픈 시 게임에서 정의한 extra data 전달: SDK 2.18.2
-    * [Console] 고객센터 > 고객 문의: 고객 문의 상세 조회 화면에서 추가로 등록한 extra data 확인 가능
+* Gamebase 고객 센터 페이지 오픈 시 게임에서 정의한 extra data 전달: SDK 2.18.2
+    * [Console] 고객 센터 > 고객 문의: 고객 문의 상세 조회 화면에서 추가로 등록한 extra data 확인 가능
 * [SDK] 2.18.2
-    * (공통) 개발사 자체 고객센터 오픈 시 additionalURL 필드 추가
+    * (공통) 개발사 자체 고객 센터 오픈 시 additionalURL 필드 추가
     * (공통) 결제 아이템 정보에 지역화된 상품 정보 추가: localizedTitle, localizedDescription
 
 #### 기능 개선/변경
@@ -369,7 +369,7 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
 ### 2.17.1 (2020.10.13)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.17.1/GamebaseSDK-Android.zip)
 ```
-한게임 인증 사용을 원하는 경우 고객센터로 미리 연락주세요.
+한게임 인증 사용을 원하는 경우 고객 센터로 미리 연락주세요.
 ```
 
 #### 기능 추가
@@ -388,7 +388,7 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.16.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
-* 고객센터 기능 추가
+* 고객 센터 기능 추가
     * [SDK] 2.16.0
         * (공통) API 추가(Gamebase.Contact.requestContactURL): 고객 센터 URL 리턴
         * (공통) 고객 센터 API 에 userName 을 설정할 수 있도록 ContactConfiguration 파라미터 추가 
@@ -593,7 +593,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
     
 ```
 Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
-중국출시에 관심 있으신 경우에는 고객센터로 연락주세요.
+중국출시에 관심 있으신 경우에는 고객 센터로 연락주세요.
 ```
 
 #### 기능 추가
