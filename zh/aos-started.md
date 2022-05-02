@@ -92,60 +92,60 @@
 
 * 请将AndroidX使用声明添加到打包设置中。
     * Android Studio
-        ```groovy
-        # gradle.properties
-        # >>> [AndroidX]
-        android.useAndroidX=true
-        android.enableJetifier=true
-        ```
+        
+            # gradle.properties
+            # >>> [AndroidX]
+            android.useAndroidX=true
+            android.enableJetifier=true
+        
     * Unity 2019.2以下
-        ```groovy
-        // mainTemplate.gradle
-        ([rootProject] + (rootProject.subprojects as List)).each {
-            ext {
-                // >>> [AndroidX]
-                it.setProperty("android.useAndroidX", true)
-                it.setProperty("android.enableJetifier", true)
+            
+            // mainTemplate.gradle
+            ([rootProject] + (rootProject.subprojects as List)).each {
+                ext {
+                    // >>> [AndroidX]
+                    it.setProperty("android.useAndroidX", true)
+                    it.setProperty("android.enableJetifier", true)
+                }
             }
-        }
-        ```
+            
     * Unity 2019.3以上
-        ```
-        # gradleTemplate.properties
-        # >>> [AndroidX]
-        android.useAndroidX=true
-        android.enableJetifier=true
-        ```
+            
+            # gradleTemplate.properties
+            # >>> [AndroidX]
+            android.useAndroidX=true
+            android.enableJetifier=true
+            
     * Unreal
-        ```xml
-        <gradleProperties>    
-          <insert>      
-            android.useAndroidX=true      
-            android.enableJetifier=true    
-          </insert>  
-        </gradleProperties>
-        ```
+            
+            <gradleProperties>
+              <insert>
+                android.useAndroidX=true
+                android.enableJetifier=true
+              </insert>
+            </gradleProperties>
+            
         
 #### Under AGP 3.4.0
 
 * Android Gradle Plugin版本低于3.4.0时将出现打包失败，因此需要添加以下声明。 
-    ```groovy
-    # gradle.properties
-    # >>> Fix for AGP under 3.4.0
-    android.enableD8.desugaring=true
-    android.enableIncrementalDesugaring=false 
-    ```
+    
+        # gradle.properties
+        # >>> Fix for AGP under 3.4.0
+        android.enableD8.desugaring=true
+        android.enableIncrementalDesugaring=false
+    
 * 使用Unity时，如果Editor版本为2018.4.3或更低版本、为2019.1.6或更低版本，则会出现打包失败，因此需要添加以下声明。(AGP版本为3.2.0)
-    ```groovy
-    // mainTemplate.gradle
-    ([rootProject] + (rootProject.subprojects as List)).each {
-        ext {
-            // >>> Fix for AGP under 3.4.0
-            it.setProperty("android.enableD8.desugaring", true)
-            it.setProperty("android.enableIncrementalDesugaring", false)
+        
+        // mainTemplate.gradle
+        ([rootProject] + (rootProject.subprojects as List)).each {
+            ext {
+                // >>> Fix for AGP under 3.4.0
+                it.setProperty("android.enableD8.desugaring", true)
+                it.setProperty("android.enableIncrementalDesugaring", false)
+            }
         }
-    }
-    ```
+        
 
 #### Define Adapters
 
@@ -218,9 +218,9 @@ android {
 		* [NHN Cloud > NHN Cloud SDK使用指南 > NHN Cloud Push > Android > 设置Firebase Cloud Messaging](/TOAST/ko/toast-sdk/push-android/#firebase-cloud-messaging)
 * 如果使用Unity build
     * 如果已设置Firebase Unity SDK Package，则使用以下命令执行**generate_xml_from_google_services_json.exe**文件，将json文件转换为xml文件。
-        ```
-        "{UnityProject}\Firebase\Editor\generate_xml_from_google_services_json.exe" -i "{JsonFilePath}\google-services.json" -o "{UnityProject}\Assets\Plugins\Android\res\values\google-services.xml" -p "{PackageName}"
-        ```
+            
+            "{UnityProject}\Firebase\Editor\generate_xml_from_google_services_json.exe" -i "{JsonFilePath}\google-services.json" -o "{UnityProject}\Assets\Plugins\Android\res\values\google-services.xml" -p "{PackageName}"
+            
     * 如果未设置Firebase Unity SDK Package，则需在”Firebase Console > 项目设置”中下载google-services.json文件，按照如下指南制作string resource(xml)文件后添加在”Assets/Plugins/Android/res/values/”文件夹里。
         根据Firebase服务联动，google-services.json文件的内容可能会有所不同。
         ![Download google-services.json](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)

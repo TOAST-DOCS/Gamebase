@@ -121,7 +121,6 @@ Sign in with Apple 기능을 사용하려면 entitlement에 com.apple.developer.
 
 ```
 Authorization failed: Error Domain=AKAuthenticationError Code=-7026 "(null)"
-
 ```
 
 UE4(4.24.3)는 해당 기능을 지원하지 않으므로 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs) 파일에서 아래 코드를 수정해야 합니다.

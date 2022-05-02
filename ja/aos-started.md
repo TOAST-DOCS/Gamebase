@@ -93,60 +93,60 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 
 * AndroidX使用宣言をビルド設定に追加してください。
     * Android Studio
-        ```groovy
-        # gradle.properties
-        # >>> [AndroidX]
-        android.useAndroidX=true
-        android.enableJetifier=true
-        ```
+        
+            # gradle.properties
+            # >>> [AndroidX]
+            android.useAndroidX=true
+            android.enableJetifier=true
+        
     * Unity 2019.2以下
-        ```groovy
-        // mainTemplate.gradle
-        ([rootProject] + (rootProject.subprojects as List)).each {
-            ext {
-                // >>> [AndroidX]
-                it.setProperty("android.useAndroidX", true)
-                it.setProperty("android.enableJetifier", true)
+            
+            // mainTemplate.gradle
+            ([rootProject] + (rootProject.subprojects as List)).each {
+                ext {
+                    // >>> [AndroidX]
+                    it.setProperty("android.useAndroidX", true)
+                    it.setProperty("android.enableJetifier", true)
+                }
             }
-        }
-        ```
+            
     * Unity 2019.3以上
-        ```
-        # gradleTemplate.properties
-        # >>> [AndroidX]
-        android.useAndroidX=true
-        android.enableJetifier=true
-        ```
+            
+            # gradleTemplate.properties
+            # >>> [AndroidX]
+            android.useAndroidX=true
+            android.enableJetifier=true
+            
     * Unreal
-        ```xml
-        <gradleProperties>    
-          <insert>      
-            android.useAndroidX=true      
-            android.enableJetifier=true    
-          </insert>  
-        </gradleProperties>
-        ```
-
+            
+            <gradleProperties>
+              <insert>
+                android.useAndroidX=true
+                android.enableJetifier=true
+              </insert>
+            </gradleProperties>
+            
+        
 #### Under AGP 3.4.0
 
 * Android Gradle Pluginバージョンが3.4.0未満の場合、ビルドが失敗するため、次の宣言が必要です。
-    ```groovy
-    # gradle.properties
-    # >>> Fix for AGP under 3.4.0
-    android.enableD8.desugaring=true
-    android.enableIncrementalDesugaring=false
-    ```
+    
+        # gradle.properties
+        # >>> Fix for AGP under 3.4.0
+        android.enableD8.desugaring=true
+        android.enableIncrementalDesugaring=false
+    
 * Unityの場合、Editorバージョンが2018.4.3以下または2019.1.6以下の場合、これに該当します。(AGPバージョンが3.2.0)
-    ```groovy
-    // mainTemplate.gradle
-    ([rootProject] + (rootProject.subprojects as List)).each {
-        ext {
-            // >>> Fix for AGP under 3.4.0
-            it.setProperty("android.enableD8.desugaring", true)
-            it.setProperty("android.enableIncrementalDesugaring", false)
+        
+        // mainTemplate.gradle
+        ([rootProject] + (rootProject.subprojects as List)).each {
+            ext {
+                // >>> Fix for AGP under 3.4.0
+                it.setProperty("android.enableD8.desugaring", true)
+                it.setProperty("android.enableIncrementalDesugaring", false)
+            }
         }
-    }
-    ```
+        
 
 #### Define Adapters
 
@@ -235,9 +235,9 @@ android {
 		* [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud Push > Android > Firebase Cloud Messaging設定](https://docs.toast.com/ja/TOAST/ja/toast-sdk/push-android/#firebase-cloud-messaging)
 * Unityビルドの場合
     * Firebase Unity SDK Packageをインストールした場合は、以下のコマンドで**generate_xml_from_google_services_json.exe**ファイルを実行してjsonファイルをxmlファイルに変換できます。
-        ```
-        "{UnityProject}\Firebase\Editor\generate_xml_from_google_services_json.exe" -i "{JsonFilePath}\google-services.json" -o "{UnityProject}\Assets\Plugins\Android\res\values\google-services.xml" -p "{PackageName}"
-        ```
+            
+            "{UnityProject}\Firebase\Editor\generate_xml_from_google_services_json.exe" -i "{JsonFilePath}\google-services.json" -o "{UnityProject}\Assets\Plugins\Android\res\values\google-services.xml" -p "{PackageName}"
+            
     * Firebase Unity SDK Packageをインストールしていない場合は、「Firebase Console > プロジェクト設定」からgoogle-services.jsonファイルをダウンロードして、以下のガイドに従ってstring resource(xml)ファイルを直接作って「Assets/Plugins/Android/res/values/」フォルダに含める必要があります。
         Firebaseサービスの連携によってgoogle-services.jsonファイルの内容は異なる場合があります。
         ![Download google-services.json](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
