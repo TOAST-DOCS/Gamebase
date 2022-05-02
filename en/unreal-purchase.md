@@ -18,15 +18,15 @@ Regarding how to set in-app purchases on Android or iOS, read the following docu
 
 * You must disable the Online SubSystem plugin, which is enabled by default in Unreal, or change it to not use the Store function.
     * If you're using Online SubSystem GooglePlay plugin, edit the /Config/Android/AndroidEngine.ini file.
-        ```ini
-        [OnlineSubsystemGooglePlay.Store]
-        bSupportsInAppPurchasing=False
-        ```
+            
+            [OnlineSubsystemGooglePlay.Store]
+            bSupportsInAppPurchasing=False
+            
     * If you're using Online SubSystem Online SubSystem iOS plugin, edit the /Config/IOS/IOSEngine.ini file.
-        ```ini
-        [OnlineSubsystemIOS.Store]
-        bSupportsInAppPurchasing=False
-        ```
+            
+            [OnlineSubsystemIOS.Store]
+            bSupportsInAppPurchasing=False
+            
 
 #### Setting for Purchases on Android (for 4.24 or lower engine version)
 

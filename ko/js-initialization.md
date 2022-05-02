@@ -174,7 +174,7 @@ Gamebase Console에 등록된 앱 정보입니다.
     * termsUrl: 이용약관
     * personalInfoCollectionUrl: 개인 정보 동의
     * punishRuleUrl: 이용 정지 규정
-    * csUrl : 고객센터
+    * csUrl : 고객 센터
 * install: 설치 URL
 * idP: 인증 정보
 

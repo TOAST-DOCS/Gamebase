@@ -139,8 +139,8 @@ static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration confi
  
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
-| forceShow | O | 약관에 동의했다면 ShowTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br>**default** : false | 
-| enableFixedFontSize | O | 약관 창의 글자 크기를 고정할지 결정합니다.<br>**default** : false<br/>**Android Only** |
+| forceShow | O | 약관에 동의했다면 ShowTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br>**default**: false | 
+| enableFixedFontSize | O | 약관 창의 글자 크기를 고정할지 결정합니다.<br>**default**: false<br/>**Android Only** |
  
 
 **GamebaseResponse.Terms.ShowTermsViewResult**

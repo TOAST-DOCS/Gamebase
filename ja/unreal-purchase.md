@@ -17,15 +17,15 @@ AndroidまたはiOSでアプリ内決済機能を設定する方法は、次の�
 > 外部プラグインで決済関連処理がある場合、 Gamebase決済機能が正常に動作しない可能性があります。
 * Unrealでデフォルトで有効になっているOnline SubSystemプラグインを無効化またはストア機能を利用できないように変更する必要があります。
     * Online SubSystem GooglePlayプラグイン使用時 /Config/Android/AndroidEngine.iniファイルを編集します。
-        ```ini
-        [OnlineSubsystemGooglePlay.Store]
-        bSupportsInAppPurchasing=False
-        ```
+            
+            [OnlineSubsystemGooglePlay.Store]
+            bSupportsInAppPurchasing=False
+            
     * Online SubSystem iOSプラグイン使用時 /Config/IOS/IOSEngine.iniファイルを編集します。
-        ```ini
-        [OnlineSubsystemIOS.Store]
-        bSupportsInAppPurchasing=False
-        ```
+            
+            [OnlineSubsystemIOS.Store]
+            bSupportsInAppPurchasing=False
+            
 
 #### Android決済設定(エンジンバージョン4.24以下)
 

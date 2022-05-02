@@ -25,13 +25,14 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitter 로그인을 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | Weibo 로그인을 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Kakao 로그인을 지원 | API 21(Lollipop, OS 5.0) |
-| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.3<br>toast-iap-core | 게임 내 결제를 지원 | - |
+| Gamebase IAP | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.3<br>toast-iap-core | 게임 내 결제 지원 | - |
 |  | gamebase-adapter-purchase-amazon | toast-iap-amazon | Amazon Appstore를 지원 | - |
 |  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | Galaxy Store를 지원 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK 의 minSdkVersion 은 18이지만, 실제 결제를 위해 설치해야 하는 Checkout 서비스앱의 minSdkVersion 은 21입니다. |
 |  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Google Play Store를 지원 | - |
 |  | gamebase-adapter-purchase-huawei | toast-iap-huawei | 화웨이 App Gallery를 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-purchase-onestore | toast-iap-onestore | ONE store v17을 지원<br>현재 v19는 지원 불가 | - |
 | Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Push를 지원 | - |
+|  | gamebase-adapter-push-adm | toast-push-adm | Amazon Device Messaging를 지원 | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Firebase Notification을 지원 | - |
 
 
@@ -93,60 +94,60 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 * AndroidX 사용 선언을 빌드 설정에 추가하세요.
     * Android Studio
-        ```groovy
-        # gradle.properties
-        # >>> [AndroidX]
-        android.useAndroidX=true
-        android.enableJetifier=true
-        ```
+        
+            # gradle.properties
+            # >>> [AndroidX]
+            android.useAndroidX=true
+            android.enableJetifier=true
+        
     * Unity 2019.2 이하
-        ```groovy
-        // mainTemplate.gradle
-        ([rootProject] + (rootProject.subprojects as List)).each {
-            ext {
-                // >>> [AndroidX]
-                it.setProperty("android.useAndroidX", true)
-                it.setProperty("android.enableJetifier", true)
+            
+            // mainTemplate.gradle
+            ([rootProject] + (rootProject.subprojects as List)).each {
+                ext {
+                    // >>> [AndroidX]
+                    it.setProperty("android.useAndroidX", true)
+                    it.setProperty("android.enableJetifier", true)
+                }
             }
-        }
-        ```
+            
     * Unity 2019.3 이상
-        ```
-        # gradleTemplate.properties
-        # >>> [AndroidX]
-        android.useAndroidX=true
-        android.enableJetifier=true
-        ```
+            
+            # gradleTemplate.properties
+            # >>> [AndroidX]
+            android.useAndroidX=true
+            android.enableJetifier=true
+            
     * Unreal
-        ```xml
-        <gradleProperties>    
-          <insert>      
-            android.useAndroidX=true      
-            android.enableJetifier=true    
-          </insert>  
-        </gradleProperties>
-        ```
+            
+            <gradleProperties>
+              <insert>
+                android.useAndroidX=true
+                android.enableJetifier=true
+              </insert>
+            </gradleProperties>
+            
         
 #### Under AGP 3.4.0
 
 * Android Gradle Plugin 버전이 3.4.0 미만인 경우 빌드가 실패하므로 다음 선언이 필요합니다.
-    ```groovy
-    # gradle.properties
-    # >>> Fix for AGP under 3.4.0
-    android.enableD8.desugaring=true
-    android.enableIncrementalDesugaring=false
-    ```
+    
+        # gradle.properties
+        # >>> Fix for AGP under 3.4.0
+        android.enableD8.desugaring=true
+        android.enableIncrementalDesugaring=false
+    
 * Unity의 경우 Editor 버전이 2018.4.3 이하이거나, 2019.1.6 이하인 경우 이에 해당됩니다.(AGP 버전이 3.2.0)
-    ```groovy
-    // mainTemplate.gradle
-    ([rootProject] + (rootProject.subprojects as List)).each {
-        ext {
-            // >>> Fix for AGP under 3.4.0
-            it.setProperty("android.enableD8.desugaring", true)
-            it.setProperty("android.enableIncrementalDesugaring", false)
+        
+        // mainTemplate.gradle
+        ([rootProject] + (rootProject.subprojects as List)).each {
+            ext {
+                // >>> Fix for AGP under 3.4.0
+                it.setProperty("android.enableD8.desugaring", true)
+                it.setProperty("android.enableIncrementalDesugaring", false)
+            }
         }
-    }
-    ```
+        
 
 #### Define Adapters
 
@@ -190,6 +191,7 @@ dependencies {
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-push-adm:$GAMEBASE_SDK_VERSION"
     
     // >>> 다음 모듈의 사용 방법은 고객 센터로 문의 하시기 바랍니다.
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
@@ -234,9 +236,9 @@ android {
 		* [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud Push > Android > Firebase Cloud Messaging 설정](/TOAST/ko/toast-sdk/push-android/#firebase-cloud-messaging)
 * Unity 빌드인 경우
     * 만일 Firebase Unity SDK Package 를 설치했다면 아래 명령어로 **generate_xml_from_google_services_json.exe** 파일을 실행하여 json 파일을 xml 파일로 변환시킬 수 있습니다.
-        ```
-        "{UnityProject}\Firebase\Editor\generate_xml_from_google_services_json.exe" -i "{JsonFilePath}\google-services.json" -o "{UnityProject}\Assets\Plugins\Android\res\values\google-services.xml" -p "{PackageName}"
-        ```
+            
+            "{UnityProject}\Firebase\Editor\generate_xml_from_google_services_json.exe" -i "{JsonFilePath}\google-services.json" -o "{UnityProject}\Assets\Plugins\Android\res\values\google-services.xml" -p "{PackageName}"
+            
     * Firebase Unity SDK Package 를 설치하지 않았다면, 'Firebase Console > 프로젝트 설정' 에서 google-services.json 파일을 다운로드하여 아래 가이드에 따라 string resource(xml) 파일을 직접 만들어서 'Assets/Plugins/Android/res/values/' 폴더에 포함시켜야 합니다.
         Firebase 서비스 연동에 따라서 google-services.json 파일의 내용은 달라질 수 있습니다.
         ![Download google-services.json](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
@@ -517,15 +519,18 @@ android {
 
 ### Proguard
 
+* Amazon Device Messaging
+    * Amazon Device Messaging(ADM)에서 Proguard를 사용하는 경우, 다음 가이드를 확인하여 적용하셔야 합니다.
+        * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > ADM SDK 다운로드](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
+        * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > Proguard 설정](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)
 * Gamebase 2.21.0 미만 버전은 Proguard 적용시 Proguard Rule 에 다음 선언을 추가하지 않으면 결제 API 호출시 크래쉬가 발생합니다.
     * Gamebase 2.21.0 버전에서 수정되었습니다.
 
-```
-# ---------------------- [Gamebase TOAST IAP] defines start ----------------------
-# For using reflection
--keep class com.toast.android.toastgb.iap.ToastGbStoreCode { *; }
-# ---------------------- [Gamebase TOAST IAP] defines end ----------------------
-```
+            # ---------------------- [Gamebase TOAST IAP] defines start ----------------------
+            # For using reflection
+            -keep class com.toast.android.toastgb.iap.ToastGbStoreCode { *; }
+            # ---------------------- [Gamebase TOAST IAP] defines end ----------------------
+
 
 ## Recommended Flow
 

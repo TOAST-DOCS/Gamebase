@@ -3,6 +3,10 @@
 여기에서는 Unity에서 인앱 결제 기능을 사용하기 위해 필요한 설정 방법을 알아보겠습니다.
 Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 많은 스토어의 인앱 결제를 연동할 수 있도록 돕습니다.
 
+> <font color="red">[주의]</font><br/>
+>
+> 외부 패키지에서 결제 관련 처리가 있는 경우, Gamebase 결제 기능이 정상적으로 동작하지 않을 수 있습니다.
+
 ### Settings
 
 > <font color="red">[주의]</font><br/>
@@ -173,7 +177,7 @@ public class PurchasableReceipt
 
     /// <summary>
     /// 상품 타입으로, 다음 값들이 올 수 있습니다.
-    /// * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객센터로 문의하세요.
+    /// * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객 센터로 문의하세요.
     /// * CONSUMABLE : 소비성 상품.
     /// * AUTO_RENEWABLE : 구독형 상품.
     /// * CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
@@ -303,7 +307,7 @@ public class PurchasableItem
 
     /// <summary>
     /// 상품 타입으로, 다음 값들이 올 수 있습니다.
-    /// * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객센터로 문의하세요.
+    /// * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객 센터로 문의하세요.
     /// * CONSUMABLE : 소비성 상품.
     /// * AUTORENEWABLE : 구독형 상품.
     /// * CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.

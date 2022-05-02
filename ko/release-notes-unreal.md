@@ -57,7 +57,7 @@
     * 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
 
 #### 기능 개선/변경
-* 고객센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객센터가 표시되도록 변경
+* 고객 센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객 센터가 표시되도록 변경
 * 내부 론칭 URL 변경
 * Gamebase에서 Android multidex 적용 제거
 
@@ -80,7 +80,7 @@
 #### 기능 추가
 * SDK 배포: 2.16.0 ~ 2.19.0 누적된 내역 반영
     * [Android 설정 툴](https://docs.toast.com/ko/Game/Gamebase/ko/unreal-started/#android-settings) 제공: Gamebase_Android_UPL.xml 파일을 수정하는 대신 설정 툴을 사용바랍니다.
-    * 고객센터 기능 추가    
+    * 고객 센터 기능 추가    
     * 인증 추가: Hangame, Weibo
     * Galaxy 스토어 추가
     * 결제 아이템 정보에 지역화된 상품 정보 추가: localizedTitle, localizedDescription

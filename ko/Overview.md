@@ -208,7 +208,7 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 | [Operator] Image Notice         | (운영) 이미지 공지 기능 <br> -  게임내 팝업 형태의 이미지 공지 노출 | [[Android](./aos-ui/#imagenotice)] [[iOS](./ios-ui/#imagenotice)] [[Unity](./unity-ui/#imagenotice)] <br/> - 이미지 공지 노출 |                             | [[Image Notice]](./oper-operation/#image-notice) <br/>- 이미지 공지 관리 |
 | [Operator] Ban         | (운영) 게임 이용자의 이용 정지 등록 및 해제 <br> -  게임 이용자의 이용 정지 등록 및 해제 | [[Android](./aos-authentication/#get-banned-user-information)] [[iOS](./ios-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> - 이용 정지 게임 이용자 정보 확인 |    [[게임 이용자의 이용정지 이력조회](./api-guide/#ban-histories)]                                      | [[Ban]](./oper-ban/#ban) <br/>- 이용 정지 등록 및 해제 |
 | [Operator] Coupon         | (운영) 쿠폰 관리<br>- 발급, 이력 조회 |  |                                      [[쿠폰 유효성 검증 및 쿠폰 상태 변경](./api-guide/#coupon)  | [[Coupon]](./oper-coupon) <br/>- 쿠폰 발급 |
-| [Operator] Customer Service         | (운영) 1:1 문의 접수 및 처리 <br> -  FAQ, 공지사항 관리 | [[Android](./aos-etc/#contact)] [[iOS](./ios-etc/#contact)] [[Unity](./unity-etc/#contact)] <br/> - 고객센터 웹페이지를 웹뷰로 표시 |                                        | [[Customer Service]](./oper-customer-service) <br/>- 고객센터 문의 처리<br>- FAQ/공지 관리 |
+| [Operator] Customer Service         | (운영) 1:1 문의 접수 및 처리 <br> -  FAQ, 공지사항 관리 | [[Android](./aos-etc/#contact)] [[iOS](./ios-etc/#contact)] [[Unity](./unity-etc/#contact)] <br/> - 고객 센터 웹페이지를 웹뷰로 표시 |                                        | [[Customer Service]](./oper-customer-service) <br/>- 고객 센터 문의 처리<br>- FAQ/공지 관리 |
 
 
 ## Console Role

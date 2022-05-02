@@ -1,13 +1,31 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.38.0 (2022. 05. 03.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.38.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* 외부 SDK 업데이트: TOAST Unity SDK(0.25.3)
+
+#### 기능 개선/변경
+* Display Language의 중국어 번체(zh-TW) 언어셋에서 어색한 문장이 수정되었습니다.
+
+#### 버그 수정
+* (Android) API Level 24 미만에서 특정 API 호출 시 오류가 발생하지 않도록 수정되었습니다.
+    * Gamebase.Purchase.RequestActivatedPurchases()
+    * Gamebase.Purchase.RequestItemListOfNotConsumed()
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.38.0](./release-notes-android/#2380-20220503)
+* [Gamebase iOS SDK 2.38.0](./release-notes-ios/#2380-20220503)
+
 ### 2.37.0 (2022. 04. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.37.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 고객센터 URL 뒤에 파라미터를 추가할 수 있도록 다음 필드가 추가되었습니다.
+#### Added Features
+* Added the following field so that you can add parameters after the contact center URL.
     * GamebaseRequest.Contact.Configuration.additionalParameters
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.37.0](./release-notes-android/#2370-20220426)
 * [Gamebase iOS SDK 2.37.0](./release-notes-ios/#2370-20220426)
 
