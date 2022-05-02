@@ -7,7 +7,7 @@
 * 외부 SDK 업데이트: TOAST Unity SDK(0.25.3)
 
 #### 기능 개선/변경
-* 중국어 번체 문장 수정
+* Display Language의 중국어 번체(zh-TW) 언어셋에서 어색한 문장이 수정되었습니다.
 
 #### 버그 수정
 * (Android) API Level 24 미만에서 특정 API 호출 시 오류가 발생하지 않도록 수정되었습니다.
