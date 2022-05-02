@@ -1119,7 +1119,8 @@ ContactConfigurationでURLに追加情報を伝達できます。
 | ------------- | ------------- | ---------------------------------- | ------------------ |
 | userName      | O             | string                             | ユーザー名(ニックネーム)<br>**default** : null    |
 | additionalURL | O             | string                             | 開発会社独自のサポートURLの後ろにつく追加のURL<br>**default** : null    |
-| extraData     | O             | dictionary<string, string>         | 開発会社が任意のextra dataをサポートオープン時に伝達<br>**default** : null    |
+| additionalParameters | O      | Dictionary<string, string>         | サポートURLの後ろにつく追加のパラメータ<br>**default** : null    |
+| extraData     | O             | Dictionary<string, string>         | 開発会社が任意のextra dataをサポートオープン時に伝達<br>**default** : null    |
 
 **API**
 

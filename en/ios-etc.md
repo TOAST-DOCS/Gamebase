@@ -777,9 +777,10 @@ You can pass the additional information to the URL using TCGBContactConfiguratio
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
 | ------------- | ------------- | ---------------------------------- | ------------------ |
-| userName      | O             | string                             | User name (nickname)<br>**default** : nil    |
-| additionalURL | O             | string                             | Additional URL appended after the developer's own customer center URL<br>Use it only if the customer center type is `CUSTOM`<br>**default** : nil    |
-| extraData     | O             | dictionary<string, string>         | Passes the extra data wanted by the developer when opening the customer<br>**default** : nil    |
+| userName      | O             | string                             | User name (nickname)<br>**default**: nil    |
+| additionalURL | O             | string                             | Additional URL appended to the developer's own customer center URL<br>Use it only if the customer center type is `CUSTOM`<br>**default**: nil    |
+| additionalParameters | O      | dictionary&lt;string, string&gt;         | Additional parameters appended to the contact center URL<br>**default**: nil    |
+| extraData     | O             | dictionary&lt;string, string&gt;        | Passes the extra data wanted by the developer when opening the customer center<br>**default**: nil    |
 
 
 **API**
