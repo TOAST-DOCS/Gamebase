@@ -7,10 +7,10 @@
 * Amazon(ADM) Push Adapter가 추가되었습니다.
     * 빌드 의존성에 **gamebase-adapter-push-adm** 모듈을 추가하시면 사용 가능합니다.
         
-        dependencies {
-            ...
-            implementation "com.toast.android.gamebase:gamebase-adapter-push-adm:$GAMEBASE_SDK_VERSION"
-        }
+            dependencies {
+                ...
+                implementation "com.toast.android.gamebase:gamebase-adapter-push-adm:$GAMEBASE_SDK_VERSION"
+            }
         
     * Proguard를 적용하는 경우, 다음 가이드를 확인하여 적용하셔야 합니다.
         * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > ADM SDK 다운로드](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
