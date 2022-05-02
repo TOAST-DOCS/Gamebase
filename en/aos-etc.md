@@ -896,9 +896,10 @@ You can pass the additional information to the URL using ContactConfiguration.
 | --- | --- | --- |
 | newBuilder() | **M** | ContactConfiguration object can be created with the newBuilder() function. |
 | build() | **M** | Converts the configured builder into a Configuration object. |
-| setUserName(String userName) | O | Used to pass the user name (nickname).<br>It is a field used for the NHN Cloud organization product (Online Contact) type.<br>**default** : null |
-| setAdditionalURL(String additionalURL) | O | Additional URL which is appended after the developer's own customer center URL.<br>Use it only if the customer center type is `CUSTOM`.<br>**default** : null |
-| setExtraData(Map&lt;String, Object&gt; extraData) | O | Passes the extra data wanted by the developer at the opening of the customer center.<br>**default** : EmptyMap |
+| setUserName(String userName) | O | Used to pass the user name (nickname).<br>It is a field used for the NHN Cloud organization product (Online Contact) type.<br>**default**: null |
+| setAdditionalURL(String additionalURL) | O | Additional URL appended to the developer's own customer center URL.<br>Use it only if the customer center type is `CUSTOM`.<br>**default**: null |
+| setAdditionalParameters(Map&lt;String, String&gt; additionalParameters) | O | Additional parameters appended to the contact center URL.<br>**default**: null |
+| setExtraData(Map&lt;String, Object&gt; extraData) | O | Passes the extra data wanted by the developer at the opening of the customer center.<br>**default**: EmptyMap |
 
 **API**
 
