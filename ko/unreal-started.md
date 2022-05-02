@@ -161,13 +161,13 @@ if (bRemoteNotificationsSupported)
             completionHandler(UNNotificationPresentationOptionNone);
         }
 
-다음과 같이 수정해야 합니다.
-    
-        // AS-IS
-        completionHandler(UNNotificationPresentationOptionNone);
+    다음과 같이 수정해야 합니다.
         
-        // TO-BE
-        completionHandler(UNNotificationPresentationOptionAlert);
+            // AS-IS
+            completionHandler(UNNotificationPresentationOptionNone);
+            
+            // TO-BE
+            completionHandler(UNNotificationPresentationOptionAlert);
     
 
 #### Rich Push Notification
