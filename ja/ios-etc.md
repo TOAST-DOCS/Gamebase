@@ -780,7 +780,8 @@ TCGBContactConfigurationでURLに追加情報を伝達できます。
 | ------------- | ------------- | ---------------------------------- | ------------------ |
 | userName      | O             | string                             | ユーザー名前(ニックネーム)<br>**default** : nil    |
 | additionalURL | O             | string                             | 開発会社独自のサポートURLの後ろにつく追加のURL<br>サポートタイプが`CUSTOM`の場合にのみ使用<br>**default** : nil    |
-| extraData     | O             | dictionary<string, string>         | 開発会社が任意のextra dataをサポートオープン時に伝達<br>**default** : nil    |
+| additionalParameters | O      | dictionary&lt;string, string&gt;         | サポートURLの後ろにつく追加のパラメータ<br>**default** : nil    |
+| extraData     | O             | dictionary&lt;string, string&gt;         | 開発会社が任意のextra dataをサポートオープン時に伝達<br>**default** : nil    |
 
 
 **API**

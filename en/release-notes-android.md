@@ -23,13 +23,13 @@
 ### 2.37.0 (2022. 04. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.37.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* 고객센터 URL 뒤에 파라미터를 추가할 수 있도록 다음 필드가 추가되었습니다.
+#### Added Features
+* Added the following field so that you can add parameters after the contact center URL.
     * **ContactConfiguration.Builder.setAdditionalParameters(Map&lt;String, String&gt;)**
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트 : Toast Gamebase IAP 0.18.3
-* Amazon appstore 결제 데이터에서 userId, gamebaseProductId가 누락될 시 userId, gamebaseProductId를 자동으로 채우도록 개선되었습니다.
+#### Feature Updates
+* External SDK update: Toast Gamebase IAP 0.18.3
+* Made improvements so that, when userId and gamebaseProductId are missing from the Amazon Appstore payment data, userId and gamebaseProductId are automatically filled in.
 
 ### 2.36.0 (2022. 04. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.36.0/GamebaseSDK-Android.zip)

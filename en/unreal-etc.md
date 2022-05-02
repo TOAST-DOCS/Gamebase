@@ -849,9 +849,9 @@ You can pass the additional information to the URL using ContactConfiguration.
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
 | ------------- | ------------- | ---------------------------------- | ------------------ |
-| userName      | O             | FString                            | User name (nickname) <br>**default** : ""   |
-| additionalURL | O             | FString                            | Additional URL which is appended after the developer's own customer center URL <br>**default** : ""    |
-| extraData     | O             | TMap<FString, FString>             | Passes the extra data wanted by the developer when opening the customer<br>**default** : EmptyMap |
+| userName      | O             | FString                            | User name (nickname) <br>**default**: ""   |
+| additionalURL | O             | FString                            | Additional URL appended to the developer's own customer center URL <br>**default**: ""    |
+| extraData     | O             | TMap<FString, FString>             | Passes the extra data wanted by the developer when opening the customer center<br>**default**: EmptyMap |
 
 **API**
 
