@@ -1116,9 +1116,10 @@ You can pass the additional information to the URL using ContactConfiguration.
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
 | ------------- | ------------- | ---------------------------------- | ------------------ |
-| userName      | O             | string                             | User name (nickname)<br>**default** : null    |
-| additionalURL | O             | string                             | Additional URL which is appended after the developer's own customer center URL<br>**default** : null    |
-| extraData     | O             | dictionary<string, string>         | Passes the extra data wanted by the developer when opening the customer<br>**default** : null    |
+| userName      | O             | string                             | User name (nickname)<br>**default**: null    |
+| additionalURL | O             | string                             | Additional URL appended to the developer's own customer center URL<br>**default**: null    |
+| additionalParameters | O      | Dictionary<string, string>         | Additional parameters appended to the contact center URL<br>**default**: null    |
+| extraData     | O             | Dictionary<string, string>         | Passes the extra data wanted by the developer when opening the customer center<br>**default**: null    |
 
 **API**
 

@@ -1,10 +1,16 @@
 ## Game > Gamebase > 릴리스 노트 > iOS
 
+### 2.38.0 (2022. 05. 03.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.38.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* Display Language의 중국어 번체(zh-TW) 언어셋에서 어색한 문장을 수정했습니다.
+
 ### 2.37.0 (2022. 04. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.37.0/GamebaseSDK-iOS.zip)
 
 #### 기능 추가
-* 고객센터 URL 뒤에 파라미터를 추가할 수 있도록 다음 필드가 추가되었습니다.
+* 고객 센터 URL 뒤에 파라미터를 추가할 수 있도록 다음 필드가 추가되었습니다.
     * **TCGBContactConfiguration.additionalParameters**
 
 ### 2.36.0 (2022. 04. 12.)
@@ -63,7 +69,7 @@
     * [Game > Gamebase > iOS SDK 사용 가이드 > UI > Terms > showTermsView](./ios-ui/#showtermsview)
 
 #### 기능 개선/변경
-* 외부 SDK 업데이트 : PAYCO iOS SDK (1.5.5)
+* 외부 SDK 업데이트: PAYCO iOS SDK (1.5.5)
 * 오류 코드 추가 및 변경
     * TCGB_ERROR_UNKNOWN_ERROR 에러에 매핑된 오류 코드를 999에서 9999로 변경하였습니다.
     * 오류 코드 999에 매핑한 TCGB_ERROR_SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
@@ -97,8 +103,8 @@
 * 점검 팝업 창에서 점검 시간 표시 여부를 동적으로 설정할 수 있게 되었습니다.
 
 #### 기능 개선/변경
-* 외부 SDK 업데이트 : TOAST iOS SDK (0.29.2), PAYCO iOS SDK (1.5.4)
-* 이용정지 웹뷰 내의 고객센터 링크에서 이용정지 유저 정보로 문의를 등록할 수 없는 문제를 해결하였습니다.
+* 외부 SDK 업데이트: TOAST iOS SDK (0.29.2), PAYCO iOS SDK (1.5.4)
+* 이용정지 웹뷰 내의 고객 센터 링크에서 이용정지 유저 정보로 문의를 등록할 수 없는 문제를 해결하였습니다.
 * 점검 팝업 창, 이용정지 자세히보기 웹뷰에서 뒤로가기 버튼이 표시되도록 수정하였습니다.
 
 ### 2.30.1 (2021.11.25)
@@ -281,7 +287,7 @@
     * 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
 
 #### 기능 개선/변경
-* 고객센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객센터가 표시되도록 변경
+* 고객 센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객 센터가 표시되도록 변경
 
 ### 2.19.1 (2021.01.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.1/GamebaseSDK-iOS.zip)
@@ -311,7 +317,7 @@ Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다.
 
 #### 기능 추가
 
-* 개발사 자체 고객센터 오픈 시 additionalURL 필드 추가
+* 개발사 자체 고객 센터 오픈 시 additionalURL 필드 추가
 * 결제 아이템 정보에 지역화된 상품 정보 추가: localizedTitle, localizedDescription
 
 #### 기능 개선/변경
@@ -339,7 +345,7 @@ Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다.
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.17.0/GamebaseSDK-iOS.zip)
 
 ```
-한게임 인증 사용을 원하는 경우 고객센터로 미리 연락주세요.
+한게임 인증 사용을 원하는 경우 고객 센터로 미리 연락주세요.
 ```
 
 #### 기능 추가
@@ -361,7 +367,7 @@ Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다.
 
 #### 기능 추가
 
-* 고객센터 기능 추가
+* 고객 센터 기능 추가
     * API 추가(Gamebase.Contact.requestContactURL): 고객 센터 URL 리턴
     * 고객 센터 API 에 userName 을 설정할 수 있도록 ContactConfiguration 파라미터 추가 
         

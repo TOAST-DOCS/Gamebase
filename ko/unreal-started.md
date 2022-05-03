@@ -51,7 +51,7 @@ Supported Platforms
 
 * Android - Authentication
     * 사용하려는 IdP를 활성화 합니다.
-    * Hangame IdP 사용 시 고객센터로 별도로 문의 바랍니다.
+    * Hangame IdP 사용 시 고객 센터로 별도로 문의 바랍니다.
 * Android - Push
     * 사용하려는 Push를 활성화 합니다.
 * Android - Purchase
@@ -121,7 +121,6 @@ Sign in with Apple 기능을 사용하려면 entitlement에 com.apple.developer.
 
 ```
 Authorization failed: Error Domain=AKAuthenticationError Code=-7026 "(null)"
-
 ```
 
 UE4(4.24.3)는 해당 기능을 지원하지 않으므로 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs) 파일에서 아래 코드를 수정해야 합니다.
@@ -151,27 +150,24 @@ if (bRemoteNotificationsSupported)
 1. Gamebase Remote Notification 기능을 사용하려면 **Project Settings > Platforms > iOS** 설정에서 **Enable Remote Notifications Support** 기능을 활성화해야 합니다. (Github 소스에서만 가능)
 2. Foreground 푸시 알림을 받기 위해서는 [Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp) 파일에서 아래 코드를 제거하거나,
 
-    ```objectivec
-    - (void)userNotificationCenter:(UNUserNotificationCenter *)center
-        willPresentNotification:(UNNotification *)notification
-            withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
-    {
-        // Received notification while app is in the foreground
-        HandleReceivedNotification(notification);
+        - (void)userNotificationCenter:(UNUserNotificationCenter *)center
+            willPresentNotification:(UNNotification *)notification
+                withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
+        {
+            // Received notification while app is in the foreground
+            HandleReceivedNotification(notification);
         
-        completionHandler(UNNotificationPresentationOptionNone);
-    }
-    ```
+            completionHandler(UNNotificationPresentationOptionNone);
+        }
 
     다음과 같이 수정해야 합니다.
-
-    ```objectivec
-    // AS-IS
-    completionHandler(UNNotificationPresentationOptionNone);
-
-    // TO-BE
-    completionHandler(UNNotificationPresentationOptionAlert);
-    ```
+        
+            // AS-IS
+            completionHandler(UNNotificationPresentationOptionNone);
+            
+            // TO-BE
+            completionHandler(UNNotificationPresentationOptionAlert);
+    
 
 #### Rich Push Notification
 

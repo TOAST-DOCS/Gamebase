@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.1/GamebaseSDK-JavaScript.zip)
 
 #### 버그 수정
-* 콘솔에 고객센터 정보를 입력하지 않으면 초기화 시 오류가 발생하여 수정
+* 콘솔에 고객 센터 정보를 입력하지 않으면 초기화 시 오류가 발생하여 수정
 
 ### 2.19.0 (2020.12.29)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.0/GamebaseSDK-JavaScript.zip)

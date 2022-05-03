@@ -32,6 +32,7 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-purchase-huawei | toast-iap-huawei | Support Huawei App Gallery | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-purchase-onestore | toast-iap-onestore | Support ONE store v17<br>Currently v19 is not supported | - |
 | Gamebase Push | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Support push notifications | - |
+|  | gamebase-adapter-push-adm | toast-push-adm | Support Amazon Device Messaging | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Support Firebase Notification | - |
 
 
@@ -93,60 +94,60 @@ To execute Gamebase in Android, the following system environment is required.
 
 * Add the terms of use for AndroidX to build settings.
     * Android Studio
-        ```groovy
-        # gradle.properties
-        # >>> [AndroidX]
-        android.useAndroidX=true
-        android.enableJetifier=true
-        ```
+        
+            # gradle.properties
+            # >>> [AndroidX]
+            android.useAndroidX=true
+            android.enableJetifier=true
+        
     * Unity 2019.2 or earlier
-        ```groovy
-        // mainTemplate.gradle
-        ([rootProject] + (rootProject.subprojects as List)).each {
-            ext {
-                // >>> [AndroidX]
-                it.setProperty("android.useAndroidX", true)
-                it.setProperty("android.enableJetifier", true)
+            
+            // mainTemplate.gradle
+            ([rootProject] + (rootProject.subprojects as List)).each {
+                ext {
+                    // >>> [AndroidX]
+                    it.setProperty("android.useAndroidX", true)
+                    it.setProperty("android.enableJetifier", true)
+                }
             }
-        }
-        ```
+            
     * Unity 2019.3 or later
-        ```
-        # gradleTemplate.properties
-        # >>> [AndroidX]
-        android.useAndroidX=true
-        android.enableJetifier=true
-        ```
+            
+            # gradleTemplate.properties
+            # >>> [AndroidX]
+            android.useAndroidX=true
+            android.enableJetifier=true
+            
     * Unreal
-        ```xml
-        <gradleProperties>    
-          <insert>      
-            android.useAndroidX=true      
-            android.enableJetifier=true    
-          </insert>  
-        </gradleProperties>
-        ```
+            
+            <gradleProperties>
+              <insert>
+                android.useAndroidX=true
+                android.enableJetifier=true
+              </insert>
+            </gradleProperties>
+            
         
 #### Under AGP 3.4.0
 
 * If the Android Gradle Plugin version is lower than 3.4.0, the build will fail, so the following declaration is required:
-    ```groovy
-    # gradle.properties
-    # >>> Fix for AGP under 3.4.0
-    android.enableD8.desugaring=true
-    android.enableIncrementalDesugaring=false
-    ```
+    
+        # gradle.properties
+        # >>> Fix for AGP under 3.4.0
+        android.enableD8.desugaring=true
+        android.enableIncrementalDesugaring=false
+    
 * For Unity, the following declaration is required if the Editor version is 2018.4.3 or lower or 2019.1.6 or lower. (AGP version is 3.2.0)
-    ```groovy
-    // mainTemplate.gradle
-    ([rootProject] + (rootProject.subprojects as List)).each {
-        ext {
-            // >>> Fix for AGP under 3.4.0
-            it.setProperty("android.enableD8.desugaring", true)
-            it.setProperty("android.enableIncrementalDesugaring", false)
+        
+        // mainTemplate.gradle
+        ([rootProject] + (rootProject.subprojects as List)).each {
+            ext {
+                // >>> Fix for AGP under 3.4.0
+                it.setProperty("android.enableD8.desugaring", true)
+                it.setProperty("android.enableIncrementalDesugaring", false)
+            }
         }
-    }
-    ```
+        
 
 #### Define Adapters
 
@@ -190,6 +191,7 @@ dependencies {
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-push-adm:$GAMEBASE_SDK_VERSION"
     
     // >>> Regarding how to use the following modules, please contact the Customer Center.
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
@@ -234,9 +236,9 @@ android {
 		* [NHN Cloud > NHN Cloud SDK User Guide > NHN Cloud Push > Android > Firebase Cloud Messaging Settings](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#firebase-cloud-messaging)
 * For a Unity build
     * If the Firebase Unity SDK Package has been installed, you can use the following command to execute **generate_xml_from_google_services_json.exe** file to convert json files into xml files.
-        ```
-        "{UnityProject}\Firebase\Editor\generate_xml_from_google_services_json.exe" -i "{JsonFilePath}\google-services.json" -o "{UnityProject}\Assets\Plugins\Android\res\values\google-services.xml" -p "{PackageName}"
-        ```
+            
+            "{UnityProject}\Firebase\Editor\generate_xml_from_google_services_json.exe" -i "{JsonFilePath}\google-services.json" -o "{UnityProject}\Assets\Plugins\Android\res\values\google-services.xml" -p "{PackageName}"
+            
     * If the Firebase Unity SDK Package is not installed, go to 'Firebase Console > Project Settings' to download google-services.json file, and then follow the guide below to directly create a string resource (xml) file. The created file must be included in 'Assets/Plugins/Android/res/values/' folder.
         Depending on the Firebase service link, the contents of the google-services.json file may vary.
         ![Download google-services.json](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
@@ -517,15 +519,17 @@ android {
 
 ### Proguard
 
+* Amazon Device Messaging
+    * [https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
+    * [https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)
 * For Gamebase versions earlier than 2.21.0, calling Payment API without adding a declaration at the end of Proguard Rule when applying Proguard would result in a crash.
     * This issue has been fixed in Gamebase 2.21.0 version.
 
-```
-# ---------------------- [Gamebase TOAST IAP] defines start ----------------------
-# For using reflection
--keep class com.toast.android.toastgb.iap.ToastGbStoreCode { *; }
-# ---------------------- [Gamebase TOAST IAP] defines end ----------------------
-```
+            # ---------------------- [Gamebase TOAST IAP] defines start ----------------------
+            # For using reflection
+            -keep class com.toast.android.toastgb.iap.ToastGbStoreCode { *; }
+            # ---------------------- [Gamebase TOAST IAP] defines end ----------------------
+
 
 ## Recommended Flow
 

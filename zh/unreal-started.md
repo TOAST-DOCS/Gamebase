@@ -121,7 +121,6 @@ Supported Platforms
 
 ```
 Authorization failed: Error Domain=AKAuthenticationError Code=-7026 "(null)"
-
 ```
 
 因UE4(4.24.3)不支持此功能，要在[Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs)文件中修改以下代码。
@@ -151,27 +150,23 @@ if (bRemoteNotificationsSupported)
 1. 为了使用Gamebase Remote Notification功能，需要在**Project Settings > Platforms > iOS**设置中启用**Enable Remote Notifications Support**功能(只有在Github下载源码时才能使用)。
 2. 为了接收Foreground推送通知，要在[Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp)文件中删除以下代码，
 
-    ```objectivec
-    - (void)userNotificationCenter:(UNUserNotificationCenter *)center
-        willPresentNotification:(UNNotification *)notification
-            withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
-    {
-        // Received notification while app is in the foreground
-        HandleReceivedNotification(notification);
+        - (void)userNotificationCenter:(UNUserNotificationCenter *)center
+            willPresentNotification:(UNNotification *)notification
+                withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
+        {
+            // Received notification while app is in the foreground
+            HandleReceivedNotification(notification);
         
-        completionHandler(UNNotificationPresentationOptionNone);
-    }
-    ```
+            completionHandler(UNNotificationPresentationOptionNone);
+        }
 
     修改的方式如下。
-
-    ```objectivec
-    // AS-IS
-    completionHandler(UNNotificationPresentationOptionNone);
-
-    // TO-BE
-    completionHandler(UNNotificationPresentationOptionAlert);
-    ```
+        
+            // AS-IS
+            completionHandler(UNNotificationPresentationOptionNone);
+            
+            // TO-BE
+            completionHandler(UNNotificationPresentationOptionAlert);
 
 #### Rich Push Notification
 

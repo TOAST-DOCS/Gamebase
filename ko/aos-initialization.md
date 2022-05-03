@@ -232,9 +232,9 @@ Gamebase 콘솔에 등록된 앱 정보입니다.
 * accessInfo
     * serverAddress: 서버 주소
 * customerService
-    * accessInfo : 고객센터 연락처
-    * type : 고객센터 유형
-    * url : 고객센터 URL
+    * accessInfo : 고객 센터 연락처
+    * type : 고객 센터 유형
+    * url : 고객 센터 URL
 * relatedUrls
     * termsUrl: 이용 약관
     * personalInfoCollectionUrl: 개인 정보 동의

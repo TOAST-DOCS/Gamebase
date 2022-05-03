@@ -18,15 +18,15 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 
 * Unreal에서 기본으로 활성화 되어있는 Online SubSystem 플러그인을 비활성화 혹은 스토어 기능을 이용하지 못하도록 변경해야 합니다.
     * Online SubSystem GooglePlay 플러그인 사용 시 /Config/Android/AndroidEngine.ini 파일을 편집합니다.
-        ```ini
-        [OnlineSubsystemGooglePlay.Store]
-        bSupportsInAppPurchasing=False
-        ```
+            
+            [OnlineSubsystemGooglePlay.Store]
+            bSupportsInAppPurchasing=False
+            
     * Online SubSystem iOS 플러그인 사용 시 /Config/IOS/IOSEngine.ini 파일을 편집합니다.
-        ```ini
-        [OnlineSubsystemIOS.Store]
-        bSupportsInAppPurchasing=False
-        ```
+            
+            [OnlineSubsystemIOS.Store]
+            bSupportsInAppPurchasing=False
+            
 
 #### Android 결제 설정(엔진 버전 4.24 이하)
 
@@ -196,7 +196,7 @@ struct FGamebasePurchasableReceipt
     FString marketItemId;
 
     // 상품 타입으로, 다음 값들이 올 수 있습니다.
-    // * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객센터로 문의하세요.
+    // * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객 센터로 문의하세요.
     // * CONSUMABLE : 소비성 상품.
     // * AUTO_RENEWABLE : 구독형 상품.
     // * CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
@@ -312,7 +312,7 @@ struct FGamebasePurchasableItem
     FString marketItemId;
 
     // 상품 타입으로, 다음 값들이 올 수 있습니다.
-    // * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객센터로 문의하세요.
+    // * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객 센터로 문의하세요.
     // * CONSUMABLE : 소비성 상품.
     // * AUTORENEWABLE : 구독형 상품.
     // * CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.

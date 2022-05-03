@@ -747,7 +747,7 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 
 #### Customer Service Type
 
-**Gamebase 콘솔 > App > InApp URL > Service center** 에서는 아래와 같이 3가지 유형의 고객센터를 선택할 수 있습니다.
+**Gamebase 콘솔 > App > InApp URL > Service center** 에서는 아래와 같이 3가지 유형의 고객 센터를 선택할 수 있습니다.
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
 
 | Customer Service Type     | Required Login |
@@ -756,16 +756,16 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 | Gamebase customer center  | △              |
 | NHN Cloud Online Contact      | △              |
 
-각 유형에 따라 Gamebase SDK의 고객센터 API는 다음 URL을 사용합니다.
+각 유형에 따라 Gamebase SDK의 고객 센터 API는 다음 URL을 사용합니다.
 
-* 개발사 자체 고객센터(Developer customer center)
-    * **고객센터 URL**에 입력한 URL.
-* Gamebase 제공 고객센터(Gamebase customer center)
-    * 로그인 전 : 유저 정보가 **없는** 고객센터 URL.
-    * 로그인 후 : 유저 정보가 포함된 고객센터 URL.
+* 개발사 자체 고객 센터(Developer customer center)
+    * **고객 센터 URL**에 입력한 URL.
+* Gamebase 제공 고객 센터(Gamebase customer center)
+    * 로그인 전 : 유저 정보가 **없는** 고객 센터 URL.
+    * 로그인 후 : 유저 정보가 포함된 고객 센터 URL.
 * NHN Cloud 조직 상품(Online Contact)
-    * 로그인 전 : 유저 정보가 **없는** 고객센터 URL.
-    * 로그인 후 : 유저 정보가 포함된 고객센터 URL.
+    * 로그인 전 : 유저 정보가 **없는** 고객 센터 URL.
+    * 로그인 후 : 유저 정보가 포함된 고객 센터 URL.
 
 #### Open Contact WebView
 
@@ -777,10 +777,10 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
 | ------------- | ------------- | ---------------------------------- | ------------------ |
-| userName      | O             | string                             | 사용자 이름(닉네임)<br>**default** : nil    |
-| additionalURL | O             | string                             | 개발사 자체 고객센터 URL 뒤에 붙는 추가적인 URL<br>고객센터 타입이 `CUSTOM` 인 경우에만 사용<br>**default** : nil    |
-| additionalParameters | O      | dictionary&lt;string, string&gt;         | 고객센터 URL 뒤에 붙는 추가적인 파라미터<br>**default** : nil    |
-| extraData     | O             | dictionary&lt;string, string&gt;         | 개발사가 원하는 extra data를 고객센터 오픈 시에 전달<br>**default** : nil    |
+| userName      | O             | string                             | 사용자 이름(닉네임)<br>**default**: nil    |
+| additionalURL | O             | string                             | 개발사 자체 고객 센터 URL 뒤에 붙는 추가적인 URL<br>고객 센터 타입이 `CUSTOM` 인 경우에만 사용<br>**default**: nil    |
+| additionalParameters | O      | dictionary&lt;string, string&gt;         | 고객 센터 URL 뒤에 붙는 추가적인 파라미터<br>**default**: nil    |
+| extraData     | O             | dictionary&lt;string, string&gt;         | 개발사가 원하는 extra data를 고객 센터 오픈 시에 전달<br>**default**: nil    |
 
 
 **API**
@@ -799,7 +799,7 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
 | Error                           | Error Code | Description                 |
 | ------------------------------- | ---------- | --------------------------- |
 | TCGB\_ERROR\_NOT\_INITIALIZED | 1       | Gamebase가 초기화되어 있지 않습니다. |
-| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 고객센터 URL이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL**을 확인하세요. |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 고객 센터 URL이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객 센터 URL**을 확인하세요. |
 | TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 사용자 식별을 위한 임시 티켓 발급에 실패하였습니다. |
 
 **Example**
@@ -819,12 +819,12 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
 
 > <font color="red">[주의]</font><br/>
 >
-> 고객센터 문의 시 파일 첨부를 위해 카메라 또는 앨범 접근이 필요할 수 있습니다.
+> 고객 센터 문의 시 파일 첨부를 위해 카메라 또는 앨범 접근이 필요할 수 있습니다.
 > info.plist에 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description' 설정을 해주시기 바랍니다.
 
 #### Request Contact URL
 
-고객센터 웹뷰를 표시하는데 사용되는 URL을 얻을 수 있습니다.
+고객 센터 웹뷰를 표시하는데 사용되는 URL을 얻을 수 있습니다.
 
 **API**
 
@@ -840,7 +840,7 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
 | Error                           | Error Code | Description                 |
 | ------------------------------- | ---------- | --------------------------- |
 | TCGB\_ERROR\_NOT\_INITIALIZED | 1       | Gamebase가 초기화되어 있지 않습니다. |
-| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 고객센터 URL이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객센터 URL**을 확인하세요. |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 고객 센터 URL이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객 센터 URL**을 확인하세요. |
 | TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 사용자 식별을 위한 임시 티켓 발급에 실패하였습니다. |
 
 **Example**
