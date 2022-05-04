@@ -5,7 +5,7 @@
 - Push Wrapping API가 추가 되었습니다.
 - Gamebase Access Token으로 로그인시에 사용된 IdP의 프로필 및 토큰 정보를 획득할 수 있는 "Get IdP Token and Profiles" API가 추가되었습니다.
 - IdP Id로 매핑된 Gamebase userId를 획득하는 "Get UserId Information with IdP Id" API가 추가되었습니다.
-- 특정 기간 동안 탈퇴한 사용의 Gamebase userId를 획득하는 "Withdraw Histories" API가 추가되었습니다.
+- 특정 기간 동안 탈퇴한 사용자의 Gamebase userId를 획득하는 "Withdraw Histories" API가 추가되었습니다.
 
 ## Advance Notice
 
@@ -197,7 +197,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 > [참고]
 > IdP의 Access Token 만으로 정보를 획득 할 수 없는 IdP 들도 존재합니다.
-> ex) appleid / iosgamecenter / kakaogame : Access Token으로 Server to Server에서 가져올 수 있는 정보가 없다.
+> 예: appleid / iosgamecenter / kakaogame : Access Token으로 Server to Server에서 가져올 수 있는 정보가 없다.
 
 <br/>
 
@@ -780,10 +780,10 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | Required | 이용 정지 이력 조회 시작 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | Required | 이용 정지 이력 조회 종료 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용정지가 되었다면 조회 결과에 존재 |
+| begin | String | Required | 이용 정지 이력 조회 시작 시간(ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>예: yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | Required | 이용 정지 이력 조회 종료 시간(ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용정지가 되었다면 조회 결과에 존재 |
 | page | String | Optional | 조회하고자 하는 페이지. 0부터 시작 |
-| size | String | Optional | 한 페이지당 데이터 개수 |
+| size | String | Optional | 페이지당 데이터 개수 |
 | order | String | Optional | 조회 데이터 정렬 방법. ASC or DESC |
 
 **[Response Body]**
@@ -828,9 +828,9 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | pagingInfo.last | boolean | 마지막 페이지이면 true |
 | pagingInfo.numberOfElements | int | 전체 데이터 수 |
 | pagingInfo.page | int | 페이지 번호 |
-| pagingInfo.size | int | 한 페이지당 데이터 개수 |
+| pagingInfo.size | int | 페이지당 데이터 개수 |
 | pagingInfo.totalElements | int | 전체 데이터 수 |
-| pagingInfo.totalPages | int | 전체 페이징 수 |
+| pagingInfo.totalPages | int | 전체 페이지 수 |
 | result | Array[Object] | 조회된 이용 정지 내역 |
 | result.userId | String | 유저 ID |
 | result.banCaller | String | 이용 정지 호출 주체 |
@@ -838,7 +838,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
 | result.beginDate | Long | 이용 정지 시작 시간 |
 | result.endDate | Long | 이용 정지 종료 시간<br>PERMANENT 타입인 경우 해당 값은 존재하지 않음 |
-| result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'leaderboard' 로 반환 |
+| result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'leaderboard'로 반환 |
 | result.name | String | 콘솔에서 등록한 템플릿 이름 |
 | result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
 
@@ -873,10 +873,10 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | Required | 이용 정지 해제 이력 조회 시작 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | Required | 이용 정지 해제 이력 조회 종료 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용정지가 해제 되었다면 조회 결과에 존재 |
+| begin | String | Required | 이용 정지 해제 이력 조회 시작 시간(ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>예: yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | Required | 이용 정지 해제 이력 조회 종료 시간(ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용정지가 해제 되었다면 조회 결과에 존재 |
 | page | String | Optional | 조회하고자 하는 페이지. 0부터 시작 |
-| size | String | Optional | 한 페이지당 데이터 개수 |
+| size | String | Optional | 페이지당 데이터 개수 |
 | order | String | Optional | 조회 데이터 정렬 방법. ASC or DESC |
 
 **[Response Body]**
@@ -924,9 +924,9 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | pagingInfo.last | boolean | 마지막 페이지이면 true |
 | pagingInfo.numberOfElements | int | 전체 데이터 수 |
 | pagingInfo.page | int | 페이지 번호 |
-| pagingInfo.size | int | 한 페이지당 데이터 개수 |
+| pagingInfo.size | int | 페이지당 데이터 개수 |
 | pagingInfo.totalElements | int | 전체 데이터 수 |
-| pagingInfo.totalPages | int | 전체 페이징 수 |
+| pagingInfo.totalPages | int | 전체 페이지 수 |
 | result | Array[Object] | 조회된 이용 정지 정보 |
 | result.userId | String | 유저 ID |
 | result.banCaller | String | 이용 정지 호출 주체 |
@@ -934,7 +934,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
 | result.beginDate | String | 이용 정지 시작 시간 |
 | result.endDate | String | 이용 정지 종료 시간 |
-| result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'leaderboard' 로 반환 |
+| result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'leaderboard'로 반환 |
 | result.name | String | 콘솔에서 등록한 템플릿 이름 |
 | result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
 | result.releaseCaller | String | 이용 정지 해제 주체 |
@@ -950,7 +950,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 #### Validate TransferAccount
 
-게스트 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사를 수행합니다. 유효한 TransferAccount인 경우 발급받은 userId 정보를 반환합니다.
+게스트 계정 이전을 위해 발급 받은 ID 및 PASSWORD의 유효성 검사를 수행합니다. 유효한 TransferAccount인 경우 발급받은 userId 정보를 반환합니다.
 
 **[Method, URI]**
 
@@ -1100,10 +1100,10 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | Required | 이력 조회 시작 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>**최근 1년이내의 데이터만 제공** |
-| end | String | Required | 이력 조회 종료 시간 (ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX / 2021-09-11T00%3a00%3a00%2b09%3a00 |
+| begin | String | Required | 이력 조회 시작 시간(ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>**최근 1년 이내의 데이터만 제공** |
+| end | String | Required | 이력 조회 종료 시간(ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>예) yyyy-MM-dd'T'HH:mm:ss.SSSXXX / 2021-09-11T00%3a00%3a00%2b09%3a00 |
 | page | String | Optional | 조회하고자 하는 페이지. 0부터 시작 |
-| size | String | Optional | 한 페이지당 데이터 개수 |
+| size | String | Optional | 페이지당 데이터 개수 |
 | order | String | Optional | 조회 데이터 정렬 방법. ASC or DESC |
 
 **[Response Body]**
@@ -1147,9 +1147,9 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | pagingInfo.last | boolean | 마지막 페이지이면 true |
 | pagingInfo.numberOfElements | int | 전체 데이터 수 |
 | pagingInfo.page | int | 페이지 번호 |
-| pagingInfo.size | int | 한 페이지당 데이터 개수 |
+| pagingInfo.size | int | 페이지당 데이터 개수 |
 | pagingInfo.totalElements | int | 전체 데이터 수 |
-| pagingInfo.totalPages | int | 전체 페이징 수 |
+| pagingInfo.totalPages | int | 전체 페이지 수 |
 | result | Array[Object] | 조회된 탈퇴 유저 내역 |
 | result.userId | String | 유저 ID |
 | result.date | String | 탈퇴 일시 |
