@@ -814,7 +814,6 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
             "beginDate": "2019-08-27T17:41:05+09:00",
             "endDate": "2019-08-28T17:41:05+09:00",
             "flags": "String",
-            "message": "String",
             "name": "String",
             "templateCode": 0
         }
@@ -840,7 +839,6 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | result.beginDate | Long | 이용 정지 시작 시간 |
 | result.endDate | Long | 이용 정지 종료 시간<br>PERMANENT 타입인 경우 해당 값은 존재하지 않음 |
 | result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'leaderboard' 로 반환 |
-| result.message | String | 이용 정지 메시지 |
 | result.name | String | 콘솔에서 등록한 템플릿 이름 |
 | result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
 
@@ -909,11 +907,10 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
             "beginDate": "2019-08-27T17:41:05+09:00",
             "endDate": "2019-08-29T17:41:05+09:00",
             "flags": "String",
-            "message": "String",
             "name": "String",
             "templateCode": 0,
             "releaseCaller": "CONSOLE",
-            "releaseDate": "2019-08-29T18:41:05+09:00",
+            "releaseDate": "2019-08-30T18:41:05+09:00",
             "releaseReason": "String"
         }
     ]
@@ -938,11 +935,11 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | result.beginDate | String | 이용 정지 시작 시간 |
 | result.endDate | String | 이용 정지 종료 시간 |
 | result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'leaderboard' 로 반환 |
-| result.message | String | 이용 정지 메시지 |
 | result.name | String | 콘솔에서 등록한 템플릿 이름 |
 | result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
 | result.releaseCaller | String | 이용 정지 해제 주체 |
 | result.releaseReason | String | 이용 정지 해제 사유 |
+| result.releaseDate | String | 이용 정지 해제 시간 |
 
 
 **[Error Code]**
