@@ -899,6 +899,7 @@ ContactConfigurationでURLに追加情報を伝達できます。
 | build() | **M** | 設定を終えたBuilderをConfigurationオブジェクトに変換します。 |
 | setUserName(String userName) | O | ユーザー名(ニックネーム)を伝達したい時に使用します。<br>NHN Cloud組織商品(Online Contact)タイプで使用するフィールドです。<br>**default** : null |
 | setAdditionalURL(String additionalURL) | O | 開発会社の独自サポートURLの後ろにつく追加のURLです。<br>サポートタイプが`CUSTOM`の場合にのみ使用してください。<br>**default** : null |
+| setAdditionalParameters(Map&lt;String, String&gt; additionalParameters) | O | サポートセンターURLの後ろにつく追加のパラメータです。<br>**default** : null |
 | setExtraData(Map&lt;String, Object&gt; extraData) | O | 任意のextra dataをサポートのオープン時に伝達します。<br>**default** : EmptyMap |
 
 **API**
