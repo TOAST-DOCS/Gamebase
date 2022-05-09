@@ -46,11 +46,11 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 |  | GamebaseAuthTwitterAdapter.framework | | Twitter 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | LINE 로그인을 지원 | iOS 10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 9 or later<br/>arm64 지원<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.3 | Hangame 로그인을 지원 | iOS 9 or later |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.4 | Hangame 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weibo 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.11.5 | Kakao 로그인을 지원 | iOS 11 or later |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.30.0<br/> ToastGamebaseIAP 0.13.0 | 게임 내 결제 지원 | iOS 9 or later |
-| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.30.0 | Push를 지원 | iOS 9 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.30.0<br/> ToastGamebaseIAP 0.13.0 | 게임 내 결제 지원 | iOS 9 or later |
+| Gamebase Push Adapters | GamebasePushAdapter.framework | ToastPush 0.30.0 | Push를 지원 | iOS 9 or later |
 
 
 > <font color="red">[주의]</font><br/>
