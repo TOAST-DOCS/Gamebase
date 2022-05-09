@@ -105,7 +105,7 @@ To find out more, see the following document.
 To use the Gamebase SDK for Unreal, `UE4 Github source code` has to be used, and the Github account must be linked after joining the Epic games in order to expose the UnrealEngine repository.
 See below for relevant guides.  
 
-* [Downloading Unreal Engine Source Code](https://docs.unrealengine.com/en-US/GettingStarted/DownloadingUnrealEngine/index.html)
+* [Downloading Unreal Engine Source Code](https://docs.unrealengine.com/5.0/en-US/downloading-unreal-engine-source-code/)
 * [Getting up and running](https://github.com/EpicGames/UnrealEngine#getting-up-and-running)
 
 >`!Important`

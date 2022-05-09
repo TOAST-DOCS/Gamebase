@@ -1,5 +1,10 @@
 ## Game > Gamebase > Release Notes > Server API
 
+### May 10, 2022
+
+#### Added Features
+* Added an API to query users who have withdrawn during a specific period
+
 ### September 14, 2021
 
 #### Bug Fixes
@@ -8,7 +13,7 @@
 
 ### March 09, 2021
 
-#### More Features
+#### Added Features
 * Added an API that can be used to acquire Gamebase user ID with IdP ID
 
 ### August 11, 2020
@@ -23,12 +28,12 @@
 
 ### January 14, 2020
 
-#### More Features
+#### Added Features
 * Added Withdraw Users API
 
 ### November 12, 2019
 
-#### More Features
+#### Added Features
 * Coupon Service Newly Open: Create and manage coupons in large quantity
 	* Find coupons and add Consume API
 
