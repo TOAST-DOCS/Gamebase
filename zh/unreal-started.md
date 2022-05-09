@@ -105,7 +105,7 @@ Supported Platforms
 若要使用Gamebase SDK for Unreal，则需使用”UE4 Github源代码”。注册成为Epic games会员后连接Github账户才能显示UnrealEngine repository。
 有关指南内容，请参考以下文档。
 
-* [Downloading Unreal Engine Source Code](https://docs.unrealengine.com/en-US/GettingStarted/DownloadingUnrealEngine/index.html)
+* [Downloading Unreal Engine Source Code](https://docs.unrealengine.com/5.0/en-US/downloading-unreal-engine-source-code/)
 * [Getting up and running](https://github.com/EpicGames/UnrealEngine#getting-up-and-running)
 
 >”!注意”
