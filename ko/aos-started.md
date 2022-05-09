@@ -32,7 +32,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 |  | gamebase-adapter-purchase-huawei | toast-iap-huawei | 화웨이 App Gallery를 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-purchase-onestore | toast-iap-onestore | ONE store v17을 지원<br>현재 v19는 지원 불가 | - |
 | Gamebase Push Adapters | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Push를 지원 | - |
-|  | gamebase-adapter-push-adm | toast-push-adm | Amazon Device Messaging를 지원 | - |
+|  | gamebase-adapter-push-adm | toast-push-adm | Amazon Device Messaging을 지원 | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Firebase Notification을 지원 | - |
 
 
