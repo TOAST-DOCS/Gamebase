@@ -5,6 +5,7 @@
 - Push Wrapping APIが追加されました。
 - Gamebase Access Tokenでログインする時に使用されたIdPのプロフィールおよびトークン情報を取得できる"Get IdP Token and Profiles" APIが追加されました。
 - IdP IdでマッピングされたGamebase userIdを取得する"Get UserId Information with IdP Id" APIが追加されました。
+- 特定期間に退会したユーザーのGamebase userIdを取得する"Withdraw Histories" APIが追加されました。
 
 ## Advance Notice
 
@@ -198,7 +199,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 > [参考]
 > IdPのAccess Tokenだけで情報を取得できないIdPも存在します。
-> ex) appleid / iosgamecenter : Access TokenでServer to Serverから取得できる情報がありません。
+> 例) appleid / iosgamecenter : Access TokenでServer to Serverから取得できる情報がありません。
 
 <br/>
 
@@ -794,6 +795,7 @@ Check common requirements.
 | end | String | Required | 利用停止履歴照会終了時間(ISO 8601標準時間、UTF-8エンコード必要) <br>beginとendの間の時間に利用停止した場合、照会結果に存在 |
 | page | String | Optional | 照会するページ。0から開始 |
 | size | String | Optional | 1ページ当たりのデータ数 |
+| order | String | Optional | 照会データソート方法。 ASC or DESC |
 
 **[Response Body]**
 
@@ -816,23 +818,15 @@ Check common requirements.
     },
     "result": [
         {
-            "appId": "String",
+            "userId": "String",
             "banCaller": "CONSOLE",
             "banReason": "String",
             "banType": "TEMPORARY",
-            "beginDate": 0,
-            "endDate": 0,
+            "beginDate": "2019-08-27T17:41:05+09:00",
+            "endDate": "2019-08-28T17:41:05+09:00",
             "flags": "String",
-            "message": "String",
             "name": "String",
-            "regUser": "String",
-            "releaseCaller": "CONSOLE",
-            "releaseDate": 0,
-            "releaseReason": "String",
-            "releaseUser": "String",
-            "seq": 0,
-            "templateCode": 0,
-            "userId": "String"
+            "templateCode": 0
         }
     ]
 }
@@ -849,23 +843,15 @@ Check common requirements.
 | pagingInfo.totalElements | int | 総データ数 |
 | pagingInfo.totalPages | int | 総ページ数 |
 | result | Array[Object] | 照会された利用停止内訳 |
-| result.appId | String | 照会された利用停止のNHN CloudプロジェクトID |
+| result.userId | String | ユーザーID |
 | result.banCaller | String | 利用停止指示者 |
 | result.banReason | String | 利用停止理由 |
 | result.banType | String | 利用停止タイプ。TEMPORARYまたはPERMANENT |
 | result.beginDate | String | 利用停止開始時間。ISO 8601標準時間|
-| result.endDate | String | 利用停止終了時間。ISO 8601標準時間 |
-| result.flags | String | コンソールから利用停止を登録した時、リーダーボード削除を選択した場合は'Leaderboard'を返す |
-| result.message | String | 利用停止メッセージ |
+| result.endDate | String | 利用停止終了時間。ISO 8601標準時間<br>PERMANENTタイプの場合、この値は存在しない |
+| result.flags | String | コンソールから利用停止を登録した時、リーダーボード削除を選択した場合は'leaderboard'を返す |
 | result.name | String | コンソールで登録したテンプレート名 |
-| result.regUser | String | 利用停止登録者 |
-| result.releaseCaller | String | 利用停止解除者 |
-| result.releaseDate | String | 利用停止解除時間。ISO 8601標準時間 |
-| result.releaseReason | String | 利用停止解除理由 |
-| result.releaseUser | String | 利用停止解除登録者 |
-| result.seq | Long | 利用停止内訳順番 |
 | result.templateCode | Long | コンソールで登録した利用停止テンプレートコード値 |
-| result.userId | String | ユーザーID |
 
 **[Error Code]**
 
@@ -873,7 +859,7 @@ Check common requirements.
 
 <br>
 
-#### Ban Release Histories.
+#### Ban Release Histories
 
 ユーザー利用停止解除履歴を照会します。
 
@@ -901,6 +887,7 @@ Check common requirements.
 | end | String | Required | 利用停止解除履歴照会終了時間(ISO 8601標準時間、UTF-8エンコード必要) <br>beginとendの間の時間に利用停止が解除された場合、照会結果に存在 |
 | page | String | Optional | 照会するページ。0から開始 |
 | size | String | Optional | 1ページ当たりのデータ数 |
+| order | String | Optional | 照会データソート方法。 ASC or DESC |
 
 **[Response Body]**
 
@@ -923,23 +910,18 @@ Check common requirements.
     },
     "result": [
         {
-            "appId": "String",
+            "userId": "String",
             "banCaller": "CONSOLE",
             "banReason": "String",
             "banType": "TEMPORARY",
-            "beginDate": 0,
-            "endDate": 0,
+            "beginDate": "2019-08-27T17:41:05+09:00",
+            "endDate": "2019-08-29T17:41:05+09:00",
             "flags": "String",
-            "message": "String",
             "name": "String",
-            "regUser": "String",
-            "releaseCaller": "CONSOLE",
-            "releaseDate": 0,
-            "releaseReason": "String",
-            "releaseUser": "String",
-            "seq": 0,
             "templateCode": 0,
-            "userId": "String"
+            "releaseCaller": "CONSOLE",
+            "releaseDate": "2019-08-30T18:41:05+09:00",
+            "releaseReason": "String"
         }
     ]
 }
@@ -956,23 +938,19 @@ Check common requirements.
 | pagingInfo.totalElements | int | 総データ数 |
 | pagingInfo.totalPages | int | 総ページ数 |
 | result | Array[Object] | 照会された利用停止情報 |
-| result.appId | String | 照会された利用停止のNHN CloudプロジェクトID |
+| result.userId | String | ユーザーID |
 | result.banCaller | String | 利用停止指示者 |
 | result.banReason | String | 利用停止理由 |
 | result.banType | String | 利用停止タイプ。TEMPORARYまたはPERMANENT |
 | result.beginDate | String | 利用停止開始時間。ISO 8601標準時間 |
 | result.endDate | String | 利用停止終了時間。ISO 8601標準時間 |
-| result.flags | String | コンソールから利用停止を登録した時、リーダーボード削除を選択した場合は'Leaderboard'を返す |
-| result.message | String | 利用停止メッセージ |
+| result.flags | String | コンソールから利用停止を登録した時、リーダーボード削除を選択した場合は「leaderboard」を返す |
 | result.name | String | コンソールで登録したテンプレート名 |
-| result.regUser | String | 利用停止登録者 |
-| result.releaseCaller | String | 利用停止解除者 |
-| result.releaseDate | String | 利用停止解除時間。ISO 8601標準時間 |
-| result.releaseReason | String | 利用停止解除理由 |
-| result.releaseUser | String | 利用停止解除登録者 |
-| result.seq | Long | 利用停止内訳順番 |
 | result.templateCode | Long | コンソールで登録した利用停止テンプレートコード値 |
-| result.userId | String | ユーザーID |
+| result.releaseCaller | String | 利用停止解除者 |
+| result.releaseReason | String | 利用停止解除理由 |
+| result.releaseDate | String | 利用停止解除時間 |
+
 
 **[Error Code]**
 
@@ -1107,8 +1085,147 @@ Check common requirements.
 
 [エラーコード](./error-code/#server)
 
+
 <br>
-<br>
+
+#### Withdraw
+
+ユーザーアカウントを退会処理します。
+
+> [参考]
+> SDKの退会APIを使用せず、サーバー退会APIを使用してアカウント退会を実装した場合、クライアントでは退会成功後にSDKのlogout APIを呼び出してキャッシュされているトークンなどのデータ削除が必要です。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| DELETE | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}?regUser={regUser} |
+
+**[Request Header]**
+
+共通事項の確認
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN CloudプロジェクトID |
+| userId | String | 退会対象ユーザーID |
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| regUser | String | Required | 退会をリクエストしたシステムまたはユーザー情報<br> - この情報はConsole > 「メンバー」ページの「退会履歴」画面で確認可能 |
+
+**[Request Body]**
+
+なし
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    }
+}
+```
+
+**[Error Code]**
+
+[エラーコード](./error-code/#server)
+
+</br>
+
+#### Withdraw Histories
+
+特定期間に退会したユーザーを照会します。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-member/v1.3/apps/{appId}/logs/withdrawal |
+
+**[Request Header]**
+
+共通事項の確認
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN CloudプロジェクトID |
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| begin | String | Required | 履歴照会開始時間(ISO 8601標準時間、 UTF-8 Encoding必要) <br>**過去1年以内のデータのみ提供** |
+| end | String | Required | 履歴照会終了時間(ISO 8601標準時間、 UTF-8 Encoding必要) <br>例) yyyy-MM-dd'T'HH:mm:ss.SSSXXX / 2021-09-11T00%3a00%3a00%2b09%3a00 |
+| page | String | Optional | 照会したいページ。 0から開始 |
+| size | String | Optional | 1ページ当たりのデータ数 |
+| order | String | Optional | 照会データのソート方法。 ASC or DESC |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "transactionId": "String",
+        "isSuccessful": true
+    },
+    "pagingInfo": {
+        "totalPages": 1,
+        "totalElements": 2,
+        "numberOfElements": 2,
+        "first": true,
+        "last": true,
+        "page": 0,
+        "size": 100
+    },
+    "result": [
+        {
+            "userId": "String",
+            "date": "2022-03-27T17:40:00+09:00",
+            "regUser": null
+        },
+        {
+            "userId": "String",
+            "date": "2022-03-27T17:41:05+09:00",
+            "regUser": "String"
+        }
+    ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| pagingInfo | Object | 照会されたページング情報 |
+| pagingInfo.first | boolean | 最初のページの場合はtrue |
+| pagingInfo.last | boolean | 最後のページの場合はtrue |
+| pagingInfo.numberOfElements | int | 総データ数 |
+| pagingInfo.page | int | ページ番号 |
+| pagingInfo.size | int | 1ページ当たりのデータ数 |
+| pagingInfo.totalElements | int | 総データ数 |
+| pagingInfo.totalPages | int | 総ページ数 |
+| result | Array[Object] | 照会された退会ユーザーの内容 |
+| result.userId | String | ユーザーID |
+| result.date | String | 退会日時 |
+| result.regUser | String | 退会APIを呼び出した主体<br>- この値が**null**の場合はclient SDKで呼び出し|
+
+**[Error Code]**
+
+[エラーコード](./error-code/#server)
+
+</br>
+</br>
 
 ## Maintenance
 
