@@ -105,7 +105,7 @@ Google Play 서비스에 인증과 결제를 진행하려면 Distribution 설정
 Gamebase SDK for Unreal을 사용하려면 `UE4 Github 소스 코드`를 사용해야 하며, Epic games 회원 가입 후 Github 계정을 연결해야 UnrealEngine repository가 노출됩니다.
 관련 가이드는 아래 문서를 참고하시기 바랍니다.
 
-* [Downloading Unreal Engine Source Code](https://docs.unrealengine.com/en-US/GettingStarted/DownloadingUnrealEngine/index.html)
+* [Downloading Unreal Engine Source Code](https://docs.unrealengine.com/5.0/en-US/downloading-unreal-engine-source-code/)
 * [Getting up and running](https://github.com/EpicGames/UnrealEngine#getting-up-and-running)
 
 >`!중요`
