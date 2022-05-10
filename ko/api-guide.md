@@ -805,7 +805,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | end | String | 이용 정지 종료 시간(ISO 8601 표준 시간) <br>- TEMPORARY 타입일 때 필수 값 |
 | templateCode | Integer | 이용 정지 노출 메시지에 대한 템플릿 코드 <br>- 해당 값은 Console **이용 정지 > 템플릿** 상세 조회 화면에서 확인 가능 |
 | banReason | String | 이용 정지 사유 |
-| flags | String | 이용 정지 유저의 리더보드 데이터의 삭제하기를 원한다면 'leaderboard'로 설정 |
+| flags | String | 이용 정지 유저의 리더보드 데이터도 함께 삭제하기를 원한다면 'leaderboard'로 설정 |
 | banCaller | String | 이용 정지 API를 호출한 주체로, 'APP_SERVER' 고정 값으로 설정 |
 | regUser | String | Console 이용 정지 화면에서 노출할 이름 |
 
