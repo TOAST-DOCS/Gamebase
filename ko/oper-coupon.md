@@ -143,13 +143,13 @@
 > [참고1]
 >
 > 쿠폰 아이템을 등록하는 방법은 [Coupon Item](./oper-coupon/#coupon-item)을 참고하시기 바랍니다.
-> 
+>
 > [참고2]
 >
 > 쿠폰 발송은 SMS 상품을 활성화 해야 사용할 수 있습니다.
 
 #### 7. 쿠폰 추가 발급
-쿠폰 타입이 시리얼인 경우 1회 10만개씩 최대 100개까지(초기 발급 개수 포함) 추가로 발급받을 수 있습니다.
+쿠폰 타입이 시리얼인 경우 1회 10만 개씩 최대 100만 개까지(초기 발급 개수 포함) 추가로 발급받을 수 있습니다.
 
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_05_202106.png)
 

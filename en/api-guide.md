@@ -5,6 +5,7 @@
 - Added Push Wrapping API.
 - Added the "Get IdP Token and Profiles" API capable of acquiring the profile and token info of the IdP used for logging in with the Gamebase Access Token.
 - Added the "Get UserId Information with IdP Id" API which acquires the Gamebase userId mapped with IdP Id.
+- Added the "Withdraw Histories" API to get Gamebase userId of users who have withdrawn during a specific period.
 
 ## Advance Notice
 
@@ -103,7 +104,7 @@ Authenticates an Access Token issued to a login user. If it is normal, returns i
 
 **[Request Header]**
 
-Check common requirements.
+Check common items.
 
 **[Path Variable]**
 
@@ -195,8 +196,8 @@ Gamebase Access Token which is issued upon successful login with "Login with IdP
 <br/>
 
 > [Note]
-> There are also IdPs that are unable to acquire info with the IdP's Access Token only.
-> e.g. appleid / iosgamecenter : there are no information you can retrieve from Server to Server with Access Token.
+> There are also IdPs that are unable to acquire information with the IdP's Access Token only.
+> Example: appleid / iosgamecenter / kakaogame : There is no information you can retrieve from Server to Server with Access Token.
 
 <br/>
 
@@ -208,7 +209,7 @@ Gamebase Access Token which is issued upon successful login with "Login with IdP
 
 **[Request Header]**
 
-Checks common items
+Check common items.
 
 **[Path Variable]**
 
@@ -272,7 +273,7 @@ To check only if the current maintenance setting is enabled, use [Check Maintena
 
 **[Request Header]**
 
-Check Common Factors
+Check common items.
 
 **[Path Variable]**
 
@@ -410,7 +411,7 @@ Retrieves detailed information of a single user.
 
 **[Request Header]**
 
-Check common requirements.
+Check common items.
 
 **[Path Variable]**
 
@@ -516,7 +517,7 @@ Retrieves brief information about multiple users.
 
 **[Request Header]**
 
-Check common requirements.
+Check common items.
 
 **[Path Variable]**
 
@@ -581,7 +582,7 @@ Retrieves IdP information mapped with user ID.
 
 **[Request Header]**
 
-Check common requirements.
+Check common items.
 
 **[Path Variable]**
 
@@ -646,7 +647,7 @@ Retrieves a user ID mapped to user authentication key.
 
 **[Request Header]**
 
-Check common requirements.
+Check common items.
 
 **[Path Variable]**
 
@@ -708,7 +709,7 @@ Retrieves the information of user ID mapped with IdP ID.
 
 **[Request Header]**
 
-Check common requirements.
+Check common items.
 
 **[Path Variable]**
 
@@ -767,7 +768,7 @@ Retrieves the user ban history.
 
 **[Request Header]**
 
-Check Common Factors
+Check common items.
 
 **[Path Variable]**
 
@@ -779,10 +780,11 @@ Check Common Factors
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | Required | Ban history query start time (ISO 8601 standard time, UTF-8 encoding required) <br>E.g. yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | Required | Ban history query end time (ISO 8601 standard time, UTF-8 encoding required)<br>If banned between the start and end time, the query result shows this. |
+| begin | String | Required | Ban history query start time (ISO 8601 standard time, UTF-8 encoding required) <br>Example: yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | Required | Ban history query end time (ISO 8601 standard time, UTF-8 encoding required)<br>If banned between the begin and end time, the query result shows this. |
 | page | String | Optional | Page to retrieve, starting from 0 |
 | size | String | Optional | Number of data per page |
+| order | String | Optional | Sorting method for queried data. ASC or DESC |
 
 **[Response Body]**
 
@@ -805,23 +807,15 @@ Check Common Factors
     },
     "result": [
         {
-            "appId": "String",
+            "userId": "String",
             "banCaller": "CONSOLE",
             "banReason": "String",
             "banType": "TEMPORARY",
-            "beginDate": 0,
-            "endDate": 0,
+            "beginDate": "2019-08-27T17:41:05+09:00",
+            "endDate": "2019-08-28T17:41:05+09:00",
             "flags": "String",
-            "message": "String",
             "name": "String",
-            "regUser": "String",
-            "releaseCaller": "CONSOLE",
-            "releaseDate": 0,
-            "releaseReason": "String",
-            "releaseUser": "String",
-            "seq": 0,
-            "templateCode": 0,
-            "userId": "String"
+            "templateCode": 0
         }
     ]
 }
@@ -838,23 +832,16 @@ Check Common Factors
 | pagingInfo.totalElements | int | Total number of data |
 | pagingInfo.totalPages | int | Total number of pages |
 | result | Array[Object] | Retrieved ban history details |
-| result.appId | String | NHN Cloud Project ID of the retrieved ban |
+| result.userId | String | User ID |
 | result.banCaller | String | Subject of calling ban |
 | result.banReason | String | Reason of ban |
 | result.banType | String | Type of ban. TEMPORARY or PERMANENT |
 | result.beginDate | Long | Start date of ban|
-| result.endDate | Long | End date of ban |
-| result.flags | String | Returns 'Leaderboard' when you have selected Delete Leaderboard upon Registering Ban in the console. |
-| result.message | String | Ban message |
+| result.endDate | Long | End date of ban<br>In case of PERMANENT type, the value does not exist |
+| result.flags | String | Returned as 'leaderboard' when you have selected Delete Leaderboard upon Registering Ban in the console. |
 | result.name | String | Template name registered in the console |
-| result.regUser | String | Banned user |
-| result.releaseCaller | String | Subject of ban release |
-| result.releaseDate | Long | Date of ban release |
-| result.releaseReason | String | Reason of ban release |
-| result.releaseUser | String | Unbanned user |
-| result.seq | Long | Sequence number of ban history |
 | result.templateCode | Long | Code value of ban template registered in the console |
-| result.userId | String | User ID |
+
 
 **[Error Code]**
 
@@ -862,7 +849,7 @@ Check Common Factors
 
 <br>
 
-#### Ban Release Histories.
+#### Ban Release Histories
 
 Retrieves the user ban release history.
 
@@ -874,7 +861,7 @@ Retrieves the user ban release history.
 
 **[Request Header]**
 
-Check Common Factors
+Check common items.
 
 **[Path Variable]**
 
@@ -886,10 +873,11 @@ Check Common Factors
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | Required | Ban release history query start time (ISO 8601 standard time, UTF-8 encoding required) <br>E.g. yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | Required | Ban release history query end time (ISO 8601 standard time, UTF-8 encoding required)<br>If unbanned between the start and end time, the query result shows this. |
+| begin | String | Required | Ban release history query start time (ISO 8601 standard time, UTF-8 encoding required) <br>Example: yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | Required | Ban release history query end time (ISO 8601 standard time, UTF-8 encoding required)<br>If unbanned between the begin and end time, the query result shows this. |
 | page | String | Optional | Page to retrieve, starting from 0 |
 | size | String | Optional | Number of data per page |
+| order | String | Optional | Sorting method for queried data. ASC or DESC |
 
 **[Response Body]**
 
@@ -912,23 +900,18 @@ Check Common Factors
     },
     "result": [
         {
-            "appId": "String",
+            "userId": "String",
             "banCaller": "CONSOLE",
             "banReason": "String",
             "banType": "TEMPORARY",
-            "beginDate": 0,
-            "endDate": 0,
+            "beginDate": "2019-08-27T17:41:05+09:00",
+            "endDate": "2019-08-29T17:41:05+09:00",
             "flags": "String",
-            "message": "String",
             "name": "String",
-            "regUser": "String",
-            "releaseCaller": "CONSOLE",
-            "releaseDate": 0,
-            "releaseReason": "String",
-            "releaseUser": "String",
-            "seq": 0,
             "templateCode": 0,
-            "userId": "String"
+            "releaseCaller": "CONSOLE",
+            "releaseDate": "2019-08-30T18:41:05+09:00",
+            "releaseReason": "String"
         }
     ]
 }
@@ -945,23 +928,19 @@ Check Common Factors
 | pagingInfo.totalElements | int | Total number of data |
 | pagingInfo.totalPages | int | Total number of pages |
 | result | Array[Object] | Retrieved ban information |
-| result.appId | String | NHN Cloud Project ID of the retrieved ban |
+| result.userId | String | User ID |
 | result.banCaller | String | Subject of calling ban |
 | result.banReason | String | Reason of ban |
 | result.banType | String | Type of ban. TEMPORARY or PERMANENT |
 | result.beginDate | String | Start date of ban |
 | result.endDate | String | End date of ban |
-| result.flags | String | Returns 'Leaderboard' when you have selected Delete Leaderboard upon Registering Ban in the console. |
-| result.message | String | Ban message |
+| result.flags | String | Returned as 'leaderboard' when you have selected Delete Leaderboard upon Registering Ban in the console. |
 | result.name | String | Template name registered in the console |
-| result.regUser | String | Banned user |
-| result.releaseCaller | String | Subject of ban release |
-| result.releaseDate | String | Date of ban release |
-| result.releaseReason | String | Reason of ban release |
-| result.releaseUser | String | Unbanned user |
-| result.seq | Long | Sequence number of ban history |
 | result.templateCode | Long | Code value of ban template registered in the console |
-| result.userId | String | User ID |
+| result.releaseCaller | String | Subject of ban release |
+| result.releaseReason | String | Reason of ban release |
+| result.releaseDate | String | Date of ban release |
+
 
 **[Error Code]**
 
@@ -981,7 +960,7 @@ Validates the ID and password issued for transferring the guest account. For val
 
 **[Request Header]**
 
-Check Common Factors
+Check common items.
 
 **[Path Variable]**
 
@@ -1059,7 +1038,7 @@ Withdraws a user account.
 
 **[Request Header]**
 
-Checks common items
+Check common items.
 
 **[Path Variable]**
 
@@ -1095,8 +1074,93 @@ None
 
 [Error code](./error-code/#server)
 
-<br>
-<br>
+</br>
+
+#### Withdraw Histories
+
+Retrieves users who have withdrawn during a specific period.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-member/v1.3/apps/{appId}/logs/withdrawal |
+
+**[Request Header]**
+
+Check common items.
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud Project ID |
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| begin | String | Required | History query start time (ISO 8601 standard time, UTF-8 encoding required) <br>**Only data within the last 1 year are provided** |
+| end | String | Required | History query end time (ISO 8601 standard time, UTF-8 encoding required) <br>Example: yyyy-MM-dd'T'HH:mm:ss.SSSXXX / 2021-09-11T00%3a00%3a00%2b09%3a00 |
+| page | String | Optional | Page to retrieve, starting from 0 |
+| size | String | Optional | Number of data per page |
+| order | String | Optional | Sorting method for queried data. ASC or DESC |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "transactionId": "String",
+        "isSuccessful": true
+    },
+    "pagingInfo": {
+        "totalPages": 1,
+        "totalElements": 2,
+        "numberOfElements": 2,
+        "first": true,
+        "last": true,
+        "page": 0,
+        "size": 100
+    },
+    "result": [
+        {
+            "userId": "String",
+            "date": "2022-03-27T17:40:00+09:00",
+            "regUser": null
+        },
+        {
+            "userId": "String",
+            "date": "2022-03-27T17:41:05+09:00",
+            "regUser": "String"
+        }
+    ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| pagingInfo | Object | Retrieved paging information |
+| pagingInfo.first | boolean | True if it is the first page |
+| pagingInfo.last | boolean | True if it is the last page |
+| pagingInfo.numberOfElements | int | Total number of data |
+| pagingInfo.page | int | Page No. |
+| pagingInfo.size | int | Number of data per page |
+| pagingInfo.totalElements | int | Total number of data |
+| pagingInfo.totalPages | int | Total number of pages |
+| result | Array[Object] | Retrieved withdrawn user details |
+| result.userId | String | User ID |
+| result.date | String | Date of withdrawal |
+| result.regUser | String | The entity that called the Withdraw API<br>- If the value is **null**, the API has been called from the client SDK |
+
+**[Error Code]**
+
+[Error code](./error-code/#server)
+
+</br>
+</br>
 
 ## Maintenance
 
@@ -1112,7 +1176,7 @@ Checks whether maintenance is currently set.
 
 **[Request Header]**
 
-Check common requirements.
+Check common items.
 
 **[Path Variable]**
 
@@ -1185,7 +1249,7 @@ Validates published coupon code and change coupon status via console. For valid 
 
 **[Request Header]**
 
-Check common issues
+Check common items.
 
 **[Path Variable]**
 
@@ -1265,7 +1329,7 @@ Unconsumed payment history can be viewed through SDK and View Unconsumed Payment
 
 **[Request Header]**
 
-Check common issues
+Check common items.
 
 **[Path Variable]**
 
@@ -1348,7 +1412,7 @@ Lists non-consumed payment, which is not consumed even if paid up.
 
 **[Request Header]**
 
-Check common issues
+Check common items.
 
 **[Path Variable]**
 
@@ -1440,7 +1504,7 @@ Lists payment of user's current subscriptions.
 
 **[Request Header]**
 
-Check common issues
+Check common items.
 
 **[Path Variable]**
 

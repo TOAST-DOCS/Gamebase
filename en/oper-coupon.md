@@ -3,10 +3,13 @@
 Coupons to be deployed to game users can be created in bulk and managed for game operations.  
 
 ## Publish Coupons
+
 You can issue or search for coupons which can be used within the app.
 
 ### Search Coupon publish
+
 Searches for coupon issuance history that matches the search conditions.
+
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_01_202106.png)
 
 **Search conditions**
@@ -32,27 +35,32 @@ Searches for coupon issuance history that matches the search conditions.
 
 You can click the **Register** button on the coupon Issuance search screen to proceed with the coupon issuance
 
-
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_02_202106.png)
 
-#### (1) Coupon Type
+#### 1. Coupon Type
+
 Set a coupon type to publish.
 Each type is described as below.
+
 - **Serial Coupons** : Publish coupon codes by creating a random coupon number.
 - **Keyword**: Issues the name of a specified keyword as a coupon code that can be used by users.
 
-#### (2) Coupon Name
+#### 2. Coupon Name
+
 Enter name of a coupon along with the purpose.
 
-#### (3) Coupon Code
+#### 3. Coupon Code
 
 Enter a unique coupon code that users can redeem when **keyword coupons are issued*.
 
-#### (4) Store
+#### 4. Store
+
 Select a store to use published coupons.
+
 Currently, you can get **General** coupons only, and more times are to be added to get coupons from each store.
 
-#### (5) Valid Period
+#### 5. Valid Period
+
 Sets the period during which you can use the issued coupon
 
 #### 6. Number of issuance
@@ -76,27 +84,34 @@ You have to register the item in the Coupon Item menu first to be able to select
 >
 > Regarding coupon item registration, see [Coupon Item](./oper-coupon/#Coupon_Item).
 
+
 ### Update Coupons
 
 To change the information about the issued coupon, click the **Modify** button in the Details.
 Since a coupon code type already issued cannot be edited, you must register new issuance information if you want to issue a new coupon type.
+
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_03_202106.png)
 
 #### 1. Coupon Name
+
 Enter name of a coupon along with the purpose.
 
 #### 2. Store
+
 Select a store to use published coupons.
 Currently, you can get **General** coupons only, and more times are to be added to get coupons from each store.  
 
 #### 3. Valid Period
+
 Set the period to use published coupons.
 
 #### 4. Available Count per User
+
 Set the maximum number of coupons a user can use.
 The maximum count is 100; if it is '0', coupons are available indefinitely.
 
 #### 5. Item
+
 Enter information of item to be provided with coupon code registration.
 Select an item to be provided and enter the supply count on the right.
 For item registration, register an item from the menu first.
@@ -104,10 +119,10 @@ For item registration, register an item from the menu first.
 #### 6. Send Coupon
 Provides a feature that directly sends coupons to users using issued coupon information.
 
-![gamebase_ban_01_201812] (https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_04_202106.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_04_202106.png)
 ##### (1) Send type: Select the send type. Supports MMS/SMS. For MMS, you also need to enter the title to send it.
 
-#### (2) Select template: If you registered a template from the TOAST Cloud SMS service, you can select and send that template. If you do not have any template registered, you do not have to select any.
+##### (2) Select template: If you registered a template from the TOAST Cloud SMS service, you can select and send that template. If you do not have any template registered, you do not have to select any.
 
 ##### (3) Advertisement: Select whether the SMS will be tagged as an advertisement. Remember that an advertisement must include an '(Ad) [Opt Out for Free]' string to be sent as an SMS.
 
@@ -128,13 +143,14 @@ Provides a feature that directly sends coupons to users using issued coupon info
 > [Note1]
 >
 > Refer to [Coupon Item](./oper-coupon/#coupon-item) to see how to register coupon items.
-> 
+>
 > [Note2]
 >
 > SMS products must be enabled to be able to issue coupons.
 
 #### 7. Issue additional coupons
 If the coupon type is serial, you can receive up to 100 (100,000 at a time) additional coupons (including the initially issued quantity).
+
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_05_202106.png)
 
 #### 8. Coupon statistics
@@ -148,52 +164,67 @@ The status after requesting download is as follows:
 - **Download**: When the file is ready to be downloaded, Download button is activated. Click the button to download the send details.
 
 ## Query Coupon History
+
 Usage history of a published coupon can be queried.
 Search screen comes as below depending on the search conditions.
 
-### By Coupon Code
+### Properties
+
+#### Query By Coupon Code
+
 Enter coupon code to query the usage.
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_06_202106.png)
 
-### By User ID
+#### Query By User ID
+
 Query history of coupon usage by each user ID.
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_07_202106.png)
 
-### By Coupon Name
+#### Query By Coupon Name
+
 Query history of coupon usage by coupon name and other search conditions.
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_08_202106.png)
-(1) **Coupon Name**: Select a coupon published from Publish Coupons.
-(2) **Availability**: Query is available by selecting availability. Currently, only used coupons can be queried, and further search conditions are to be added for other statuses.  
-(3) **Coupon Usage Date**: It is available to query coupons that are used during a set period only.
+
+1. **Coupon Name**: Select a coupon published from Publish Coupons.
+2. **Availability**: Query is available by selecting availability. Currently, only used coupons can be queried, and further search conditions are to be added for other statuses.  
+3. **Coupon Usage Date**: It is available to query coupons that are used during a set period only.
 
 ## Coupon Items
+
 Query/Manage coupon items to be provided to use coupon codes.  
 
-### List
+### Search Coupon item
+
 List history of registered coupon items.
 Search by Item ID/Item Name is available through filtering.
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_09_202106.png)
 
-### Register
+### Register Coupon item
+
 Register items to be provided to use coupon codes.
 Items can be registered by case or file.
 
-#### By Case
+#### Register By Case
+
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_10_202106.png)
 
-##### (1) Item ID
+##### 1. Item ID
+
 Enter original item ID registered within app. Since data input on this page are to be delivered as result data for actual server, an original item ID is required so as to be identified within the server.
 Note that item ID cannot be changed after initial registration.
 
-##### (2) Item Name
+##### 2. Item Name
+
 Enter item name to identify a registered item.
 
-#### By File
+#### Register By File Upload
 
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_11_202106.png)
-You may use files to register mass data all at once: up to 10,000 cases can be registered with a file. To enable file registration, first download a template file and fill in information for each format, before uploading it.  
+You may use files to register mass data all at once.
+Up to 10,000 cases can be registered with a file. To enable file registration, first download a template file and fill in information for each format, before uploading it.  
 
-### Update
+### Update Coupon item
+
 Information of registered item can be updated, and you may disable the item so as it does not show when a coupon is published.
 
 > [Note]
@@ -202,8 +233,10 @@ Information of registered item can be updated, and you may disable the item so a
 
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_12_202106.png)
 
-#### (1) Item Name
+#### 1. Item Name
+
 Enter item name to be identified.
 
-#### (2) Availability
+#### 2. Availability
+
 Items can be added for coupon registration, only when it is **Enabled**. In order not to show items on the coupon registration page, change the status to **Disabled**. Items are always **Enabled** when they are registered initially.
