@@ -14,6 +14,10 @@ For how to set up push on Android or iOS, refer to the following documents.
 * iOS
     * [iOS Push Settings](ios-push#settings)
 
+> <font color="red">[Caution]</font><br/>
+>
+> If there is push-related processing in an external plugin, the Gamebase push function may not work properly.
+
 ### Register Push
 
 Call the following API to register the user for NHN Cloud Push.
