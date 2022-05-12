@@ -1,5 +1,10 @@
 ## Game > Gamebase > iOS SDK ご利用ガイド > Push
 
+> <font color="red">[注意]</font><br/>
+>
+> Unreal、Unityなど3rd partyプッシュプラグインまたはモジュールを使用する場合は、 Gamebaseプッシュ機能に影響を与える可能性があります。
+>
+
 ### Settings
 
 #### Apple Developer Certificates
