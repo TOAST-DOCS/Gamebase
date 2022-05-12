@@ -3,31 +3,31 @@
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 외부 SDK 업데이트: TOAST Unity SDK(0.25.4)
+#### 機能追加
+* 外部SDKアップデート：TOAST Unity SDK(0.25.4)
 
-#### 버그 수정
-* 초기화 전에 GetLaunchingInformations() API를 호출 시 JsonException이 발생하지 않도록 수정되었습니다.
+#### バグ修正
+* 初期化前にGetLaunchingInformations() APIを呼び出したときにJsonExceptionが発生しないように修正しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.39.0](./release-notes-android/#2390-20220510)
 * [Gamebase iOS SDK 2.39.0](./release-notes-ios/#2390-20220510)
 
 ### 2.38.0 (2022. 05. 03.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.38.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 외부 SDK 업데이트: TOAST Unity SDK(0.25.3)
+#### 機能追加
+* 外部SDKアップデート：TOAST Unity SDK(0.25.3)
 
-#### 기능 개선/변경
-* Display Language의 중국어 번체(zh-TW) 언어셋에서 어색한 문장이 수정되었습니다.
+#### 機能改善/変更
+* Display Languageの中国語繁体字(zh-TW)言語セットで不自然な文章を修正しました。
 
-#### 버그 수정
-* (Android) API Level 24 미만에서 특정 API 호출 시 오류가 발생하지 않도록 수정되었습니다.
+#### バグ修正
+* (Android) API Level 24未満で特定API呼び出し時にエラーが発生しないように修正しました。
     * Gamebase.Purchase.RequestActivatedPurchases()
     * Gamebase.Purchase.RequestItemListOfNotConsumed()
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.38.0](./release-notes-android/#2380-20220503)
 * [Gamebase iOS SDK 2.38.0](./release-notes-ios/#2380-20220503)
 
