@@ -19,6 +19,15 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 > 2019年8月1日から、Google Playに公開する新規アプリは64bitアーキテクチャをサポートする必要があります。
 > [Google Playポリシーおよび64bitをサポートするUnityバージョン確認](https://developer.android.com/distribute/best-practices/develop/64-bit#unity-developers)
 
+#### Dependencies
+
+| Gamebase SDK | External SDK |
+| --- | --- |
+| Gamebase | TOAST Unity SDK 0.25.3 |
+
+* [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
+* [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
+
 #### Supported Platforms
 
 * iOS
