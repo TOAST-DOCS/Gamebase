@@ -3,6 +3,10 @@
 This page describes how to set In-App Purchase (IAP).
 Gamebase provides an integrated purchase API to easily link IAP of many stores in a game.
 
+> <font color="red">[Caution]</font><br/>
+>
+> If there is payment-related processing in an external package, the Gamebase payment function may not work properly.
+
 ### Settings
 
 > <font color="red">[Caution]</font><br/>

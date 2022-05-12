@@ -9,8 +9,8 @@
 ### 2.38.0 (2022. 05. 03.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.38.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* Display Language의 중국어 번체(zh-TW) 언어셋에서 어색한 문장 수정
+#### Feature Updates
+* Fixed unnatural sentences in the Traditional Chinese (zh-TW) language set of Display Language.
 
 ### 2.37.0 (2022. 04. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.37.0/GamebaseSDK-iOS.zip)

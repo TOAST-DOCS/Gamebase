@@ -1,5 +1,10 @@
 ## Game > Gamebase > iOS Developer's Guide > Push
 
+> <font color="red">[Caution]</font><br/>
+>
+> If you use a 3rd party push plugin or module such as Unreal or Unity, it may affect the Gamebase push function.
+>
+
 ### Settings
 
 #### Apple Developer Certificates
