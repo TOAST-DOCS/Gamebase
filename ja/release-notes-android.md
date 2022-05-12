@@ -3,28 +3,28 @@
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.30.1)
+#### 機能改善/変更
+* 外部SDKアップデート：TOAST Android SDK(0.30.1)
 
 ### 2.38.0 (2022. 05. 03.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.38.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* Amazon(ADM) Push Adapter가 추가되었습니다.
-    * 빌드 의존성에 **gamebase-adapter-push-adm** 모듈을 추가하시면 사용 가능합니다.
+#### 機能追加
+* Amazon(ADM) Push Adapterが追加されました。
+    * ビルド依存関係に**gamebase-adapter-push-adm**モジュールを追加すると使用できます。
             
             dependencies {
                 ...
                 implementation "com.toast.android.gamebase:gamebase-adapter-push-adm:$GAMEBASE_SDK_VERSION"
             }
             
-    * Proguard를 적용하는 경우, 다음 가이드를 확인하여 적용하셔야 합니다.
-        * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > ADM SDK 다운로드](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#download-the-adm-sdk)
-        * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > Proguard 설정](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#proguard-settings)
+    * Proguardを適用する場合、次のガイドを確認して適用する必要があります。
+        * [NHN Cloud > SDK使用ガイド > TOAST Push > Android > Amazon Device Messaging設定 > ADM SDKダウンロード](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#download-the-adm-sdk)
+        * [NHN Cloud > SDK使用ガイド > TOAST Push > Android > Amazon Device Messaging設定 > Proguard設定](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#proguard-settings)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.30.0)
-* Display Language의 중국어 번체(zh-TW) 언어셋에서 어색한 문장을 수정했습니다.
+#### 機能改善/変更
+* 外部SDKアップデート：TOAST Android SDK(0.30.0)
+* Display Languageの中国語繁体字(zh-TW)言語セットで不自然な文章を修正しました。
 
 ### 2.37.0 (2022. 04. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.37.0/GamebaseSDK-Android.zip)
