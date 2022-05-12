@@ -19,8 +19,8 @@
             }
             
     * Proguard를 적용하는 경우, 다음 가이드를 확인하여 적용하셔야 합니다.
-        * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > ADM SDK 다운로드](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
-        * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > Proguard 설정](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)
+        * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > ADM SDK 다운로드](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#download-the-adm-sdk)
+        * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > Proguard 설정](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#proguard-settings)
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트: TOAST Android SDK(0.30.0)
