@@ -3,14 +3,14 @@
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Hangame iOS SDK (1.6.4)
+#### 機能改善/変更
+* 外部SDKアップデート：Hangame iOS SDK (1.6.4)
 
 ### 2.38.0 (2022. 05. 03.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.38.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* Display Language의 중국어 번체(zh-TW) 언어셋에서 어색한 문장 수정
+#### 機能改善/変更
+* Display Languageの中国語繁体字(zh-TW)言語セットで不自然な文章を修正
 
 ### 2.37.0 (2022. 04. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.37.0/GamebaseSDK-iOS.zip)
