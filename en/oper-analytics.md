@@ -132,7 +132,7 @@ By opting for the exclusion of withdrawer on the same day of subscription, you c
       e.g.) Out of 100 new users on January 1st, 20 withdrew on January 1st: then, the number of actual new users is calculated at 80 (100-20).
       
 ### LTV
-![gamebase_analytics_06_201912_1_ltv] (https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_201912_1_ltv.png)
+![gamebase_analytics_06_201912_1_ltv](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_201912_1_ltv.png)
 
 LTV is an index representing the expected annual revenue from a single user in the selected user group.
 
@@ -156,7 +156,7 @@ The following restrictions are applied for accurate estimation of LTV:
 * The most recent signed-up date must be more than 7 days.
 
 ### Life Cycle
-![gamebase_analytics_06_202002_1_lifeCycle] (https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202002_1_lifeCycle.png)
+![gamebase_analytics_06_202002_1_lifeCycle](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202002_1_lifeCycle.png)
 
 Life Cycle is an index used to check the trend of daily active users since the first inflow of users. Data is retained for up to 3 years.
 
@@ -170,7 +170,7 @@ Life Cycle is an index used to check the trend of daily active users since the f
 
 ### Frequency7
 
-![gamebase_analytics_06_202003_1_frequency] (https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202003_1_frequency.png)
+![gamebase_analytics_06_202003_1_frequency](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202003_1_frequency.png)
 
 The Frequency7 index provides information about weekly visitor and ratio of DAU. It can be used to see immersion, loyalty, and other information at a glance.
 

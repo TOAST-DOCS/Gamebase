@@ -335,7 +335,7 @@ Changed the minimum supported version of the XCode of Gamebase from ver. 10 to 1
 
 #### Feature Updates
 * [SDK] 2.18.2
-    * (Common) TOAST SDK update: [Android(0.24.2)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0242-20201124), [iOS(0.27.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-unity/#0213-20201124)
+    * (Common) TOAST SDK update: [Android(0.24.2)](https://docs.toast.com/en/TOAST/en/toast-sdk/release-notes-android/#0242-20201124), [iOS(0.27.1)](https://docs.toast.com/en/TOAST/en/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/en/TOAST/en/toast-sdk/release-notes-unity/#0213-20201124)
     * (iOS) showWebView: Returns error when invalid URL is delivered, delivered URL is used as is without encoding
     * (iOS) Changed to run the custom scheme regardless of letter case
 
@@ -390,7 +390,7 @@ Contact our Customer Center if you want to use the Hangame authentication.
 #### Feature Updates
 * [SDK] 2.15.1
     * (iOS) TOAST SDK update: iOS(0.27.0)
-    * A new version of IAP SDK is applied to support the changes made to iOS 14 beta. [TOAST SDK Release Notes](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0270-20200911)
+    * A new version of IAP SDK is applied to support the changes made to iOS 14 beta. [TOAST SDK Release Notes](https://docs.toast.com/en/TOAST/en/toast-sdk/release-notes-ios/#0270-20200911)
 
 ### 2.15.0 (2020.08.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.15.0/GamebaseSDK-iOS.zip)

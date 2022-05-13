@@ -319,7 +319,7 @@ Push > Push (Old) Console menu feature has been removed.
 	* Push > Push: Tencent Push removed
 	* Purchase (IAP) > Transaction information: Changed not to show the Check Receipt button in the refund state
 * [SDK] 2.18.2
-    * (Common) TOAST SDK update: [Android(0.24.2)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0242-20201124), [iOS(0.27.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-unity/#0213-20201124)
+    * (Common) TOAST SDK update: [Android(0.24.2)](https://docs.toast.com/en/TOAST/en/toast-sdk/release-notes-android/#0242-20201124), [iOS(0.27.1)](https://docs.toast.com/en/TOAST/en/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/en/TOAST/en/toast-sdk/release-notes-unity/#0213-20201124)
 	* (Android) External SDK update to resolve encryption logic security warnings: PAYCO Login SDK (1.5.3), Hangame ID SDK (1.3.2)
 	* (Android) Tencent Push module removed
 	* (Android) The deprecated function in Gamebase Android SDK 2.6.0 removed
@@ -365,7 +365,7 @@ Push > Push (Old) Console menu feature has been removed.
 
 #### Feature Updates
 * [SDK] 2.18.0
-    * (Android) TOAST SDK update: [Android(0.24.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0240-20201027) - Apply GooglePlay Billing Library v.3.0.1
+    * (Android) TOAST SDK update: [Android(0.24.1)](https://docs.toast.com/en/TOAST/en/toast-sdk/release-notes-android/#0240-20201027) - Apply GooglePlay Billing Library v.3.0.1
     * (Android) Added the response for WebView SSL security warnings
     * (iOS) Added API that supports the SceneDelegate of iOS 13 or higher
 
@@ -444,7 +444,7 @@ Contact our Customer Center if you want to use the Hangame authentication.
 #### Feature Updates
 * [SDK] 2.15.1
     * (iOS) TOAST SDK update: iOS(0.27.0)
-	* A new version of IAP SDK is applied to support the changes made to iOS 14 beta. [TOAST SDK Release Notes](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0270-20200911)
+	* A new version of IAP SDK is applied to support the changes made to iOS 14 beta. [TOAST SDK Release Notes](https://docs.toast.com/en/TOAST/en/toast-sdk/release-notes-ios/#0270-20200911)
 
 ### September 15, 2020
 
@@ -474,7 +474,7 @@ you may encounter an issue during reprocessing if a different billing client ver
     * (Common) Added Push API: Check token information of a push (Gamebase.Push.queryTokenInfo API)
 * [SDK] 2.9.1
     * (Unreal) Supports Unreal 4.22 ~ 4.25
-    * (Unreal) Supports PLCrashReporter Issue: [Guide](http://docs.toast.com/ko/Game/Gamebase/ko/unreal-started/#ios-settings)
+    * (Unreal) Supports PLCrashReporter Issue: [Guide](http://docs.toast.com/en/Game/Gamebase/en/unreal-started/#ios-settings)
 
 #### Feature Updates
 * [Console]
