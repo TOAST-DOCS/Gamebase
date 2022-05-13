@@ -269,7 +269,7 @@ Information for notice registered on Gamebase Console.
 * title: Title
 * url: URL for maintenance 
 
-[Console Guide](/Game/Gamebase/en/oper-operation/#notice)
+[Console Guide](./oper-operation/#notice)
 
 #### 2. tcProduct
 

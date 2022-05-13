@@ -79,7 +79,7 @@
 
 #### 기능 추가
 * SDK 배포: 2.16.0 ~ 2.19.0 누적된 내역 반영
-    * [Android 설정 툴](https://docs.toast.com/ko/Game/Gamebase/ko/unreal-started/#android-settings) 제공: Gamebase_Android_UPL.xml 파일을 수정하는 대신 설정 툴을 사용바랍니다.
+    * [Android 설정 툴](./unreal-started/#android-settings) 제공: Gamebase_Android_UPL.xml 파일을 수정하는 대신 설정 툴을 사용바랍니다.
     * 고객 센터 기능 추가    
     * 인증 추가: Hangame, Weibo
     * Galaxy 스토어 추가
@@ -115,7 +115,7 @@
 #### 기능 추가
 * [SDK] 2.9.1
     * (Unreal) Unreal 4.22 ~ 4.25 지원
-    * (Unreal) PLCrashReporter 이슈 지원: [가이드](http://docs.toast.com/ko/Game/Gamebase/ko/unreal-started/#ios-settings)
+    * (Unreal) PLCrashReporter 이슈 지원: [가이드](./unreal-started/#ios-settings)
 
 #### 기능 개선/변경
 * [SDK] 2.9.1

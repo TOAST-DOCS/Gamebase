@@ -182,7 +182,7 @@ The ZIP file for distribution no longer includes AAR files.
 #### Feature Updates
 * External SDK update: TOAST Android SDK (0.27.4)
 * Added DisplayLanguage.Code class, which was described only in the DisplayLanguage guide document and was not actually included in the SDK.
-    * [Game > Gamebase > Android SDK User Guide > ETC > Display Language > Types of language codes supported by Gamebase](https://docs.toast.com/en/Game/Gamebase/en/aos-etc/#types-of-language-codes-supported-by-gamebase)
+    * [Game > Gamebase > Android SDK User Guide > ETC > Display Language > Types of language codes supported by Gamebase](./aos-etc/#types-of-language-codes-supported-by-gamebase)
 
 ### 2.28.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-Android.zip)
@@ -232,10 +232,10 @@ The ZIP file for distribution no longer includes AAR files.
         * It has been improved so that you can add the localizedstring.json file to the res/raw folder of the project.
     * Until now, the method of adding the Display Language language set in the Unity guide could not be applied to Android.
         * It has been improved so that the information is reflected in the Android build even if a localizedstring.json file is added, according to the Unity guide.
-        * [Game > Gamebase > Unity SDK User Guide > Notes > Additional Features > Display Language > Add New Language Sets](https://docs.toast.com/en/Game/Gamebase/en/unity-etc/#add-new-language-sets)
+        * [Game > Gamebase > Unity SDK User Guide > Notes > Additional Features > Display Language > Add New Language Sets](./unity-etc/#add-new-language-sets)
     * Simplified Chinese (zh-CN), Traditional Chinese (zh-TW), and Thai (th) have been added to the Display Language language set.
     * The default language code was **en**, but it has been improved to reflect the default language set in the Gamebase console.
-        * [Game > Gamebase > Console User Guide > App > App > Language settings](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
+        * [Game > Gamebase > Console User Guide > App > App > Language settings](./oper-app/#language-settings)
 * Changed the creation criteria of the PushConfiguration object that can be created after calling the showTermsView API as follows.
     * Before change
         * A valid non-null PushConfiguration was returned only when **Receive Push Notification** item exists in the terms and conditions.
@@ -606,8 +606,8 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 #### Feature Updates/Changes
 * [SDK] 2.4.0
   * (Common) Change of Classes Relevant to Indicators 
-        * LevelUpData Class: Changed userLevel and levelUpTime as required parameters; the other fields are deleted [See Details: [Android](http://docs.toast.com/en/Game/Gamebase/en/aos-etc/#game-user-data-settings) / [iOS](http://docs.toast.com/en/Game/Gamebase/en/ios-etc/#game-user-data-settings) / [Unity](http://docs.toast.com/en/Game/Gamebase/en/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/en/Game/Gamebase/en/js-etc/#game-user-data-settings)]
-            * GameUserData Class: Added the classId (game user's profession) field [See Details: [Android](http://docs.toast.com/en/Game/Gamebase/en/aos-etc/#level-up-trace) / [iOS](http://docs.toast.com/en/Game/Gamebase/en/ios-etc/#level-up-trace) / [Unity](http://docs.toast.com/en/Game/Gamebase/en/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/en/Game/Gamebase/en/js-etc/#level-up-trace)]
+        * LevelUpData Class: Changed userLevel and levelUpTime as required parameters; the other fields are deleted [See Details: [Android](./aos-etc/#game-user-data-settings) / [iOS](./ios-etc/#game-user-data-settings) / [Unity](./unity-etc/#game-user-data-settings) / [JavaScript](./js-etc/#game-user-data-settings)]
+            * GameUserData Class: Added the classId (game user's profession) field [See Details: [Android](./aos-etc/#level-up-trace) / [iOS](./en/ios-etc/#level-up-trace) / [Unity](./unity-etc/#level-up-trace) / [JavaScript](./js-etc/#level-up-trace)]
 
     * (Android) NAVER SDK Version Updated (v4.2.5): Bug of NAVER SDK fixed (fixed the issue, in which authentication process was stopped due to forced closure of activities when the app was restarted via app icon while NAVER login was underway)  
 

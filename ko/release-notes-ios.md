@@ -193,7 +193,7 @@
         * 이제 Xcode 프로젝트의 Copy Bundle Resources에 localizedstring.json 파일을 추가하면 되도록 개선하였습니다.
     * Display Language 언어셋에 중국어 간체(zh-CN), 중국어 번체(zh-TW), 태국어(th)가 추가되었습니다.
     * 기본 언어코드가 **en** 이었으나, Gamebase 콘솔에서 설정한 기본언어가 반영되도록 개선하였습니다.
-        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > 언어 설정](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
+        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > 언어 설정](./oper-app/#language-settings)
 * showTermsView API 호출 후 생성할 수 있는 PushConfiguration 객체의 생성 기준이 다음과 같이 변경되었습니다.
     * 변경 전
         * 약관 항목 중에 **Push 수신** 항목이 존재하는 경우에만 nil이 아닌 유효한 PushConfiguration이 리턴되었습니다.
@@ -572,8 +572,8 @@ Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다.
 #### 기능 개선/변경
 
 * 지표관련 Class 변경
-    * LevelUpData Class: userLevel, levelUpTime 파라미터가 필수로 변경 / 그 외 필드 삭제 [자세히보기 [iOS](http://docs.toast.com/ko/Game/Gamebase/ko/ios-etc/#game-user-data-settings)]
-    * GameUserData Class: classId(게임유저의 직업) 필드 추가 [자세히보기 [iOS](http://docs.toast.com/ko/Game/Gamebase/ko/ios-etc/#level-up-trace)]
+    * LevelUpData Class: userLevel, levelUpTime 파라미터가 필수로 변경 / 그 외 필드 삭제 [자세히보기 [iOS](./ios-etc/#game-user-data-settings)]
+    * GameUserData Class: classId(게임유저의 직업) 필드 추가 [자세히보기 [iOS](./ios-etc/#level-up-trace)]
 
     
 ### 2.3.0 (2019.04.23)
