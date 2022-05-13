@@ -162,7 +162,7 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 | INSPECTING_ALL_SERVICES     | 304  | 所有服务正在维护中                              |
 | INTERNAL_SERVER_ERROR       | 500  | 内部服务器错误                                 |
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Console Guide](./oper-app/#app)
 
 **1.2 App**
 
@@ -179,7 +179,7 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 * install : 安装URL
 * idP : 认证信息
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+[Console Guide](./oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -191,7 +191,7 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 * endDate : 终止时间
 * message : 维护原因
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+[Console Guide](./oper-operation/#maintenance)
 
 **1.4 Notice**
 
@@ -201,7 +201,7 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 * title : 标题
 * url : 维护URL
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+[Console Guide](./oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -220,7 +220,7 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 * name: App Name
 * storeCode: Store Code
  
-[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+[Console Guide](./oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -228,7 +228,7 @@ toast.Gamebase.initialize(gamebaseConfiguration, function (launchingInfo, error)
 
 * 以JSON string格式传送用户在Console中输入的值。
  
-[Console Guide](/Game/Gamebase/ko/oper-management/#config)
+[Console Guide](./oper-management/#config)
 
 
 ### Error Handling

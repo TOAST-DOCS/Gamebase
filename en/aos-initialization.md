@@ -223,7 +223,7 @@ Refer to the table for status codes:
 | INSPECTING_ALL_SERVICES     | 304  | Under maintenance for the whole service                              |
 | INTERNAL_SERVER_ERROR       | 500  | Error in internal server                                 |
 
-[Console Guide](/Game/Gamebase/en/oper-app/#app)
+[Console Guide](./oper-app/#app)
 
 **1.2 App**
 

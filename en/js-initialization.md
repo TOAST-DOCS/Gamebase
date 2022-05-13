@@ -161,7 +161,7 @@ See the table below for status code:
 | INSPECTING_ALL_SERVICES     | 304  | All services in maintenance                              |
 | INTERNAL_SERVER_ERROR       | 500  | Internal server error                                 |
 
-[Console Guide](/Game/Gamebase/en/oper-app/#app)
+[Console Guide](./oper-app/#app)
 
 **1.2 App**
 
@@ -178,7 +178,7 @@ App information registered in the Gamebase Console.
 * install: Installation URL
 * idP: Authentication information
 
-[Console Guide](/Game/Gamebase/en/oper-app/#client)
+[Game > Gamebase > Console User Guide > App > Client](./oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -190,7 +190,7 @@ Maintenance information registered in the Gamebase Console.
 * endDate: End time
 * message: Reason for maintenance
 
-[Console Guide](/Game/Gamebase/en/oper-operation/#maintenance)
+[Game > Gamebase > Console User Guide > Operation > Maintenance](./oper-operation/#maintenance)
 
 **1.4 Notice**
 
@@ -200,7 +200,7 @@ Notification information registered in the Gamebase Console.
 * title: Title
 * url: Maintenance URL
 
-[Console Guide](/Game/Gamebase/en/oper-operation/#notice)
+[Game > Gamebase > Console User Guide > Operation > Notice](./oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -219,7 +219,7 @@ The IAP store information registered in the NHN Cloud Console.
 * name: App Name
 * storeCode: Store Code
  
-[Console Guide](/Game/Gamebase/en/oper-purchase/)
+[Game > Gamebase > Console User Guide > Payment](./oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -227,7 +227,7 @@ Launching information registered in the NHN Cloud Console.
 
 * The value entered by users in Console is sent as a JSON string.
  
-[Console Guide](/Game/Gamebase/en/oper-management/#config)
+[Game > Gamebase > Console User Guide > Management > Config](./oper-management/#config)
 
 
 ### Error Handling

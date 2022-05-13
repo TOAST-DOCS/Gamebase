@@ -161,7 +161,7 @@ Gamebase JavaScript SDK 초기화 설정에 입력한 앱 버전의 게임 상�
 | INSPECTING_ALL_SERVICES     | 304  | 전체 서비스 점검 중                              |
 | INTERNAL_SERVER_ERROR       | 500  | 내부 서버 오류                                 |
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Console Guide](./oper-app/#app)
 
 **1.2 App**
 
@@ -178,7 +178,7 @@ Gamebase Console에 등록된 앱 정보입니다.
 * install: 설치 URL
 * idP: 인증 정보
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+[Console Guide](./oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -190,7 +190,7 @@ Gamebase Console에 등록된 점검 정보입니다.
 * endDate: 종료 시간
 * message: 점검 사유
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+[Console Guide](./oper-operation/#maintenance)
 
 **1.4 Notice**
 
@@ -200,7 +200,7 @@ Gamebase Console에 등록된 공지 정보입니다.
 * title: 타이틀
 * url: 점검 URL
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+[Console Guide](./oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -219,7 +219,7 @@ NHN Cloud  Console에 등록된 IAP 스토어 정보입니다.
 * name: App Name
 * storeCode: Store Code
  
-[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+[Console Guide](./oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -227,7 +227,7 @@ NHN Cloud  Console에 등록된 Launching 정보입니다
 
 * 사용자가 Console에 입력한 값을 JSON string으로 전달합니다.
  
-[Console Guide](/Game/Gamebase/ko/oper-management/#config)
+[Console Guide](./oper-management/#config)
 
 
 ### Error Handling

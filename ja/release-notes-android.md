@@ -368,7 +368,7 @@ Gamebase Android SDKは今後、Maven Centralでのみ配布します。
 
 #### 機能改善/変更
 * [SDK] 2.18.2
-    * (共通) TOAST SDKアップデート: [Android(0.24.2)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0242-20201124), [iOS(0.27.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-unity/#0213-20201124)
+    * (共通) TOAST SDKアップデート: [Android(0.24.2)](https://docs.toast.com/en/TOAST/en/toast-sdk/release-notes-android/#0242-november-24-2020), [iOS(0.27.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-unity/#0213-20201124)
 	* (Android)暗号化ロジックセキュリティ警告を解決するための外部SDKアップデート：PAYCO Login SDK(1.5.3), Hangame ID SDK(1.3.2)
 	* (Android) Tencent Pushモジュール削除
 	* (Android) Gamebase Android SDK 2.6.0でdeprecatedされた関数を削除
@@ -387,7 +387,7 @@ Gamebase Android SDKは今後、Maven Centralでのみ配布します。
 
 #### 機能改善/変更
 * [SDK] 2.18.0
-    * (Android) TOAST SDKアップデート：[Android(0.24.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0240-20201027)-GooglePlay Billing Library v.3.0.1 適用
+    * (Android) TOAST SDKアップデート：[Android(0.24.1)](https://docs.toast.com/en/TOAST/en/toast-sdk/release-notes-android/#0240-october-27-2020) - GooglePlay Billing Library v.3.0.1 適用
     * (Android) WebView SSLセキュリティ警告対応処理を追加
 
 #### バグ修正 
