@@ -417,5 +417,5 @@ function withdrawImmediately() {
 | Auth(Unknown)  | AUTH\_UNKNOWN\_ERROR                                    | 3999       | An unknown error occurred (undefined error).                             |
 
 * For the entire list of error codes, see the following document.
-    * [Entire Error Codes] (./error-code/#client-sdk)
+    * [Entire Error Codes](./error-code/#client-sdk)
     
