@@ -23,7 +23,7 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 
 | Gamebase SDK | External SDK |
 | --- | --- |
-| Gamebase | TOAST Unity SDK 0.25.3 |
+| Gamebase | TOAST Unity SDK 0.25.4 |
 
 * [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
 * [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
