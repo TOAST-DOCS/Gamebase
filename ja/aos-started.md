@@ -423,6 +423,7 @@ android {
 >     * [https://android-developers.googleblog.com/2020/07/preparing-your-build-for-package-visibility-in-android-11.html](https://android-developers.googleblog.com/2020/07/preparing-your-build-for-package-visibility-in-android-11.html)
 >     * AGP 3.2.*以下のバージョンを使用する場合、3.3.3以上にアップグレードする必要があります。
 >     * AGP 4.1.0以上のバージョンを使用する場合は、AGPのアップグレードは行わなくても構いません。
+
 | If you are using<br>the Android Gradle<br>plugin version... | ...upgrade to: | Unity Editor |
 | --- | --- | --- |
 | 4.1.* | N/A (no upgrade needed)| \- |
