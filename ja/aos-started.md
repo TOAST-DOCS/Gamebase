@@ -521,8 +521,9 @@ android {
 ### Proguard
 
 * Amazon Device Messaging
-    * [https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
-    * [https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)
+    * Amazon Device Messaging(ADM)でProguardを適用する場合、次のガイドを確認して適用する必要があります。
+        * [NHN Cloud > SDK使用ガイド > TOAST Push > Android > Amazon Device Messaging設定 > ADM SDKダウンロード](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#download-the-adm-sdk)
+        * [NHN Cloud > SDK使用ガイド > TOAST Push > Android > Amazon Device Messaging設定 > Proguard設定](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#proguard-settings)
 * Gamebase 2.21.0未満のバージョンはProguard適用時、Proguard Ruleに次の宣言を追加していない場合、決済API呼び出し時にクラッシュが発生します。
     * Gamebase 2.21.0バージョンで修正されました。
 
