@@ -3,8 +3,8 @@
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.30.1)
+#### Feature Updates
+* External SDK update: TOAST Android SDK(0.30.1)
 
 ### 2.38.0 (2022. 05. 03.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.38.0/GamebaseSDK-Android.zip)
