@@ -46,11 +46,11 @@ Then, include corresponding SDK files to a target of your project.
 |  | GamebaseAuthTwitterAdapter.framework | | Supports Twitter login | iOS 9 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | Supports LINE login | iOS 10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 9 or later<br/>arm64 support<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.3 | Supports Hangame login | iOS 9 or later |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.4 | Supports Hangame login | iOS 9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Supports Weibo login | iOS 9 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.11.5 | Supports Kakao login | iOS 11 or later |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.30.0<br/> ToastGamebaseIAP 0.13.0 | Supports in-game purchase | iOS 9 or later |
-| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.30.0 | Supports Push | iOS 9 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.30.0<br/> ToastGamebaseIAP 0.13.0 | Supports in-game purchase | iOS 9 or later |
+| Gamebase Push Adapters | GamebasePushAdapter.framework | ToastPush 0.30.0 | Supports Push | iOS 9 or later |
 
 
 > <font color="red">[Caution]</font><br/>
