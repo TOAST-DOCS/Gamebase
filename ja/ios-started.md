@@ -46,11 +46,11 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 |  | GamebaseAuthTwitterAdapter.framework | | Twitterログインをサポート | iOS 9 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | LINEログインをサポート | iOS 10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 9 or later<br/>arm64サポート<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.3 | Hangameログインをサポート | iOS 9 or later |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.4 | Hangameログインをサポート | iOS 9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weiboログインをサポート | iOS 9 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.11.5 | Kakaoログインをサポート | iOS 11 or later |
-| Gamebase IAP | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.30.0<br/> ToastGamebaseIAP 0.13.0 | ゲーム内決済をサポート | iOS 9 or later |
-| Gamebase Push | GamebasePushAdapter.framework | ToastPush 0.30.0 | Pushをサポート | iOS 9 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.30.0<br/> ToastGamebaseIAP 0.13.0 | ゲーム内決済をサポート | iOS 9 or later |
+| Gamebase Push Adapters | GamebasePushAdapter.framework | ToastPush 0.30.0 | Pushをサポート | iOS 9 or later |
 
 
 > <font color="red">[注意]</font><br/>
