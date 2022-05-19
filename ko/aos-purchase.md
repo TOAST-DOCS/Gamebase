@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > Android SDK 사용 가이드 > 결제
+## Game > Gamebase > Android SDK 사용 가이드 > 결제
 
 여기에서는 앱에서 인앱 결제 기능을 사용하기 위해 필요한 설정 방법을 알아보겠습니다.
 
