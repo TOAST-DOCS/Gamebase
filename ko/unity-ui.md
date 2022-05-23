@@ -232,6 +232,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
 static void QueryTerms(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Terms.QueryTermsResult> callback)
@@ -315,6 +316,7 @@ QueryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면,
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
 static void UpdateTerms(GamebaseRequest.Terms.UpdateTermsConfiguration configuration, GamebaseCallback.ErrorDelegate callback)
@@ -325,6 +327,7 @@ static void UpdateTerms(GamebaseRequest.Terms.UpdateTermsConfiguration configura
 | Error | Error Code | Description |
 | --- | --- | --- |
 | NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
+| NOT\_LOGGED_IN | 2 | 로그인이 필요합니다. (Only Standalone) |
 | UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | 등록되지 않은 약관 Seq 값을 설정하였습니다. |
 | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | Terms API 호출이 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
 
