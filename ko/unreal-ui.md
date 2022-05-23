@@ -84,12 +84,6 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 약관에 동의했다면 ShowTermsView API 를 다시 호출해도 약관 창이 표시되지 않고 바로 성공 콜백이 리턴됩니다.
 단, Gamebase 콘솔에서 약관 재동의 항목을 **필요** 로 변경했다면 유저가 다시 약관에 동의할 때까지는 약관 창이 표시됩니다.
 
-> <font color="red">[주의]</font><br/>
->
-> * FGamebasePushConfiguration 은 약관 창이 표시되지 않은 경우에는 null입니다.(약관 창이 표시되었다면 항상 유효한 객체가 리턴됩니다.)
-> * FGamebasePushConfiguration.pushEnabled 값은 항상 true입니다.
-> * FGamebasePushConfiguration 이 null 이 아니라면 **로그인 후에** IGamebase::Get().GetPush().RegisterPush() 를 호출하세요.
-
 #### Optional 파라미터
 
 * GamebaseTermsConfiguration : GamebaseTermsConfiguration 객체를 통해 강제 약관 동의 창 표시 여부와 같은 설정을 변경할 수 있습니다.
@@ -100,7 +94,14 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
 | forceShow | O | 약관에 동의했다면 ShowTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br>**default**: false | 
+| enableFixedFontSize | O | 약관 창의 폰트 사이즈를 고정할지 결정합니다.<br>**default** : false<br/>**Android Only** |
  
+**FGamebaseShowTermsViewResult**
+
+| Parameter              | Values                          | Description         |
+| ---------------------- | --------------------------------| ------------------- |
+| isTermsUIOpened        | bool                            | **true** : 약관 창이 표시되어 유저가 동의하여 약관 창이 종료되었습니다.<br>**false** : 이미 약관에 동의하여 약관 창이 표시되지 않고 약관 창이 종료되었습니다.        |
+| pushConfiguration      | FGamebasePushConfiguration           | isTermsUIOpened가 **true**이고, 약관에 푸시 수신 동의 여부를 추가했다면 pushConfiguration은 항상 유효한 객체를 가집니다.<br>그렇지 않을 경우에는 **null**입니다.<br>pushConfiguration이 유효할 때 pushConfiguration.pushEnabled 값은 항상 **true**입니다. |
 
 **API**
 
@@ -110,7 +111,7 @@ Supported Platforms
 
 ```cpp
 void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
-void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
+void ShowTermsView(const FGamebaseTermsConfiguration& configuration, const FGamebaseDataContainerDelegate& onCallback);
 ```
 
 **ErrorCode**
@@ -137,8 +138,12 @@ void Sample::ShowTermsView()
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView succeeded."));
                 
-                // Save the 'PushConfiguration' and use it for RegisterPush() after Login().
-                savedPushConfiguration = FGamebasePushConfiguration::From(dataContainer);
+                const auto result = FGamebaseShowTermsResult::From(dataContainer);
+                if (result.IsValid())
+                {
+                    // Save the 'PushConfiguration' and use it for RegisterPush() after Login().
+                    savedPushConfiguration = result->pushConfiguration;
+                }
             }
             else
             {
@@ -309,7 +314,6 @@ void Sample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 term
 }
 ```
 
-
 #### GamebaseRequest.Terms.UpdateTermsConfiguration
 
 | Parameter            | Mandatory(M) / Optional(O) | Values                    | Description         |
@@ -325,6 +329,25 @@ void Sample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 term
 | termsContentSeq      | **M**                      | int32                | 선택 약관 항목 KEY      |
 | agreed               | **M**                      | bool               | 선택 약관 항목 동의 여부  |
 
+### IsShowingTermsView
+
+현재 약관 창이 화면에 표시되고 있는지 여부를 알 수 있습니다.
+
+**API**
+
+```cpp
+bool IsShowingTermsView();
+```
+
+**Example**
+
+```cpp
+void Sample::IsShowingTermsView()
+{
+    bool isShowingTermsView = IGamebase::Get().GetTerms().IsShowingTermsView();
+    UE_LOG(GamebaseTestResults, Display, TEXT("IsShowingTermsView : %s"), isShowingTermsView ? TEXT("true") : TEXT("false"));
+}
+```
 
 ## Webview
 
@@ -394,11 +417,12 @@ void Sample::ShowWebView(const FString& url)
 | colorG                   | 0~255                                    | 내비게이션 바 색상 G                |
 | colorB                   | 0~255                                    | 내비게이션 바 색상 B                |
 | colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha                |
-| buttonVisible            | true or false                            | 뒤로 가기 버튼 활성 또는 비활성          |
+| isBackButtonVisible      | true or false                            | 뒤로 가기 버튼 활성 또는 비활성          |
 | barHeight                | height                                   | 내비게이션 바 높이                  |
 | backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지                |
 | closeButtonImageResource | ID of resource | 닫기 버튼 이미지 |
 | url | "http://" or "https://" or "file://" | 웹 URL |
+| enableFixedFontSize      | true or false                            | 폰트 사이즈 고정 활성 또는 비활성<br/>**Android Only** |
 
 > [TIP]
 >
