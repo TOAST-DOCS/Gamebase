@@ -9,8 +9,10 @@
     * FGamebaseAnalyticesLevelUpData → FGamebaseAnalyticsLevelUpData
     * FGambaseBanInfoPtr → FGamebaseBanInfoPtr
 * (iOS) iOS 설정 툴을 제공하면서 빌드 시 필요한 프레임워크만 포함되도록 수정되었습니다.
+* (iOS) PLCrashReporter가 업데이트 되어 엔진 내부에 PLCrashReporter도 업데이트가 필요합니다.
+    * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > Installation > iOS Settings > PLCrashReporter](./unreal-started/#ios-settings)
 * (iOS) Facebook iOS SDK가 9.2.0버전으로 업데이트 되어 swift 사용을 위해 엔진 코드 수정이 필요합니다.
-    * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > Installation > iOS Settings](./unreal-started/#ios-settings)
+    * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > Installation > iOS Settings > Facebook SDK](./unreal-started/#ios-settings)
 
 ## 2.36.0
 

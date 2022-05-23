@@ -4,7 +4,6 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Unreal.zip)
 
 #### 기능 추가
-* 외부 SDK 업데이트 : Facebook iOS SDK 9.2
 *  [iOS 설정 툴](./unreal-started/#ios-settings)을 제공합니다.
     * 기존 프로젝트 설정에서 **Gamebase**으로 표시 되었지만 업데이트 이후 **Gamebase - Android**, **Gamebase - iOS**로 표시됩니다.
     * iOS 설정 툴을 제공하면서 빌드 시 필요한 프레임워크만 포함되도록 수정되었습니다.
@@ -28,7 +27,8 @@
     * FGamebaseContactConfiguration.additionalParameters
 
 #### 기능 개선/변경
-* API 결과 콜백 호출 시 GameThread로 전환하여 전달하도록 수정하였습니다.
+* API 결과 콜백 호출 시 GameThread로 전환하여 호출하도록 수정되었습니다.
+* RequestActivatedPurchases API 호출 시 내부에서 2회 호출되는 문제가 수정되었습니다.
 * 일부 API의 이름이 변경되었습니다.
     * FGamebaseAnalyticesLevelUpData → FGamebaseAnalyticsLevelUpData
     * FGambaseBanInfoPtr → FGamebaseBanInfoPtr
