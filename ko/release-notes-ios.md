@@ -1,6 +1,6 @@
 ## Game > Gamebase > 릴리스 노트 > iOS
 
-### 2.40.0 (2022. 05. 10.)
+### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경
