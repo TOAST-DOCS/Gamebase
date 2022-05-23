@@ -19,8 +19,8 @@
             }
             
     * Proguard를 적용하는 경우, 다음 가이드를 확인하여 적용하셔야 합니다.
-        * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > ADM SDK 다운로드](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
-        * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > Proguard 설정](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)
+        * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > ADM SDK 다운로드](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#download-the-adm-sdk)
+        * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > Proguard 설정](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#proguard-settings)
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트: TOAST Android SDK(0.30.0)
@@ -219,10 +219,10 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
         * 但经过功能改善，将localizedstring.json文件放入res/raw文件夹里就可添加语言了。
     * 以前未能将Unity指南的Display Language语言集添加方法适用于Android。
         * 但经过功能改善，按照Unity指南添加localizedstring.json文件时，可将其方法适用于Android打包了。
-        * [Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Display Language > 添加新语言集](https://docs.toast.com/en/Game/Gamebase/en/unity-etc/#add-new-language-sets)
+        * [Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Display Language > 添加新语言集](./unity-etc/#add-new-language-sets)
     * 在Display Language语言集中添加了汉语简体(zh-CN)、汉语繁体(zh-TW)及泰国语(th)。
     * 默认语言代码为**en**，但经过改善已可适用Gamebase控制台中设置的默认语言。
-        * [Game > Gamebase > 控制台使用指南 > 应用程序 > App > 语言设置](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
+        * [Game > Gamebase > 控制台使用指南 > 应用程序 > App > 语言设置](./oper-app/#language-settings)
 * 调用showTermsView API后，可创建PushConfiguration对象的基准被更改为；
     * 修改前
         * 仅当在条款项目中存在**接收Push**项目时，才返还有效的PushConfiguration，而不返还null。
@@ -354,7 +354,7 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
 
 #### Feature Updates
 * [SDK] 2.18.2
-    * (Common) TOAST SDK update: [Android(0.24.2)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0242-20201124), [iOS(0.27.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-unity/#0213-20201124)
+    * (Common) TOAST SDK update: Android(0.24.2), iOS(0.27.1), Unity(0.21.3)
 	* (Android) External SDK update to resolve encryption logic security warnings: Payco Login SDK (1.5.3), Hangame ID SDK (1.3.2)
 	* (Android) Tencent Push module removed
 	* (Android) The deprecated function in Gamebase Android SDK 2.6.0 removed
@@ -373,7 +373,7 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
 
 #### Feature Updates
 * [SDK] 2.18.0
-    * (Android) TOAST SDK update: [Android(0.24.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0240-20201027) - Apply GooglePlay Billing Library v.3.0.1
+    * (Android) TOAST SDK update: Android(0.24.1) - Apply GooglePlay Billing Library v.3.0.1
     * (Android) Added the response for WebView SSL security warnings
 
 #### Bug Fixes  
@@ -593,8 +593,8 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 #### Feature Updates/Changes
 * [SDK] 2.4.0
   * (Common) Chanage of Classes Relevant to Indicators 
-        * LevelUpData Class: Changed userLevel and levelUpTime as required parameters; the other fields are deleted [See Details: [Android](http://docs.toast.com/en/Game/Gamebase/en/aos-etc/#game-user-data-settings) / [iOS](http://docs.toast.com/en/Game/Gamebase/en/ios-etc/#game-user-data-settings) / [Unity](http://docs.toast.com/en/Game/Gamebase/en/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/en/Game/Gamebase/en/js-etc/#game-user-data-settings)]
-            * GameUserData Class: Added the classId (game user's profession) field [See Details: [Android](http://docs.toast.com/en/Game/Gamebase/en/aos-etc/#level-up-trace) / [iOS](http://docs.toast.com/en/Game/Gamebase/en/ios-etc/#level-up-trace) / [Unity](http://docs.toast.com/en/Game/Gamebase/en/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/en/Game/Gamebase/en/js-etc/#level-up-trace)]
+        * LevelUpData Class: Changed userLevel and levelUpTime as required parameters; the other fields are deleted [See Details: [Android](./aos-etc/#game-user-data-settings) / [iOS](./ios-etc/#game-user-data-settings) / [Unity](./unity-etc/#game-user-data-settings) / [JavaScript](./js-etc/#game-user-data-settings)]
+            * GameUserData Class: Added the classId (game user's profession) field [See Details: [Android](./aos-etc/#level-up-trace) / [iOS](./ios-etc/#level-up-trace) / [Unity](./unity-etc/#level-up-trace) / [JavaScript](./js-etc/#level-up-trace)]
 
     * (Android) Naver SDK Version Updated (v4.2.5): Bug of Naver SDK fixed (fixed the issue, in which authentication process was stopped due to forced closure of activities when the app was restarted via app icon while login to Naver was underway)  
 

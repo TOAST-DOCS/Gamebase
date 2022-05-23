@@ -61,9 +61,17 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 
 ### Purchase Item
 
-구매하고자 하는 아이템의 gamebaseProductId를 이용해 다음의 API를 호출하여 구매를 요청합니다.
-게임 유저가 구매를 취소하는 경우 **PURCHASE_USER_CANCELED** 오류가 반환됩니다.
+구매하고자 하는 아이템의 gamebaseProductId를 사용하여 구매를 요청합니다.<br/>
+gamebaseProductId는 일반적으로 스토어에 등록한 아이템의 id와 동일하지만, Gamebase 콘솔에서 변경할 수도 있습니다.
+payload 필드에 입력한 추가 정보는 결제 성공 후, **PurchasableReceipt.payload** 필드에 유지되므로 여러 가지 용도로 활용할 수 있습니다.<br/>
 
+> <font color="red">[주의]</font><br/>
+>
+> AMAZON 스토어는 **payload** 필드를 지원하지 않습니다.
+>
+
+게임 유저가 구매를 취소하는 경우 **PURCHASE_USER_CANCELED** 오류가 반환됩니다.
+취소 처리를 해 주시기 바랍니다.
 
 **API**
 

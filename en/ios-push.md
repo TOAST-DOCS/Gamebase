@@ -1,5 +1,10 @@
 ## Game > Gamebase > iOS Developer's Guide > Push
 
+> <font color="red">[Caution]</font><br/>
+>
+> If you use a 3rd party push plugin or module such as Unreal or Unity, it may affect the Gamebase push function.
+>
+
 ### Settings
 
 #### Apple Developer Certificates
@@ -15,7 +20,7 @@ This document describes the process of creating Apple developer certificates req
 * The password you used to create the above certificate will be used for registration.
 
 #### Implementing Notification Service Extension
-* For tasks such as collecting inbound indicators and setting the notification sound, see [NHN Cloud Push Guide](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-ios/#notification-service-extension) to implement the **Notification Service Extension** for the application.
+* For tasks such as collecting inbound indicators and setting the notification sound, see [NHN Cloud Push Guide](https://docs.toast.com/en/TOAST/en/toast-sdk/push-ios/#notification-service-extension) to implement the **Notification Service Extension** for the application.
 
 
 #### Setting up Xcode Project

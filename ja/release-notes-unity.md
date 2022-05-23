@@ -3,31 +3,31 @@
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 외부 SDK 업데이트: TOAST Unity SDK(0.25.4)
+#### 機能追加
+* 外部SDKアップデート：TOAST Unity SDK(0.25.4)
 
-#### 버그 수정
-* 초기화 전에 GetLaunchingInformations() API를 호출 시 JsonException이 발생하지 않도록 수정되었습니다.
+#### バグ修正
+* 初期化前にGetLaunchingInformations() APIを呼び出したときにJsonExceptionが発生しないように修正しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.39.0](./release-notes-android/#2390-20220510)
 * [Gamebase iOS SDK 2.39.0](./release-notes-ios/#2390-20220510)
 
 ### 2.38.0 (2022. 05. 03.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.38.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 외부 SDK 업데이트: TOAST Unity SDK(0.25.3)
+#### 機能追加
+* 外部SDKアップデート：TOAST Unity SDK(0.25.3)
 
-#### 기능 개선/변경
-* Display Language의 중국어 번체(zh-TW) 언어셋에서 어색한 문장이 수정되었습니다.
+#### 機能改善/変更
+* Display Languageの中国語繁体字(zh-TW)言語セットで不自然な文章を修正しました。
 
-#### 버그 수정
-* (Android) API Level 24 미만에서 특정 API 호출 시 오류가 발생하지 않도록 수정되었습니다.
+#### バグ修正
+* (Android) API Level 24未満で特定API呼び出し時にエラーが発生しないように修正しました。
     * Gamebase.Purchase.RequestActivatedPurchases()
     * Gamebase.Purchase.RequestItemListOfNotConsumed()
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.38.0](./release-notes-android/#2380-20220503)
 * [Gamebase iOS SDK 2.38.0](./release-notes-ios/#2380-20220503)
 
@@ -221,7 +221,7 @@
 #### 機能改善/変更
 * Display Language機能が改善されました。
     * 基本言語コードが**en**でしたが、Gamebaseコンソールで設定した基本言語が反映されるように改善しました。
-        * [Game > Gamebase > コンソール使用ガイド > アプリ > App > 言語設定](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
+        * [Game > Gamebase > コンソール使用ガイド > アプリ > App > 言語設定](./oper-app/#language-settings)
 
 #### バグ修正
 * 「登録されていないゲームバージョン」エラーポップアップが英語でのみ表示されるバグを修正しました。
@@ -727,8 +727,8 @@ Gamebase SDK 2.6.0未満バージョンから2.6.0にアップグレードする
 #### 機能改善/変更
 * [SDK] 2.4.0
 	* (共通)指標関連Class変更
-        * LevelUpData Class：userLevel、levelUpTimeパラメータが必須に変更 / その他フィールド削除[詳細表示[Android](http://docs.toast.com/ja/Game/Gamebase/ja/aos-etc/#game-user-data-settings) / [iOS](http://docs.toast.com/ja/Game/Gamebase/ja/ios-etc/#game-user-data-settings) / [Unity](http://docs.toast.com/ja/Game/Gamebase/ja/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/ja/Game/Gamebase/ja/js-etc/#game-user-data-settings)]
-        * GameUserData Class：classId(ゲームユーザーの職業)フィールド追加[詳細表示[Android](http://docs.toast.com/ja/Game/Gamebase/ja/aos-etc/#level-up-trace) / [iOS](http://docs.toast.com/ja/Game/Gamebase/ja/ios-etc/#level-up-trace) / [Unity](http://docs.toast.com/ja/Game/Gamebase/ja/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/ja/Game/Gamebase/ja/js-etc/#level-up-trace)]
+        * LevelUpData Class：userLevel、levelUpTimeパラメータが必須に変更 / その他フィールド削除[詳細表示[Android](./aos-etc/#game-user-data-settings) / [iOS](./ios-etc/#game-user-data-settings) / [Unity](./unity-etc/#game-user-data-settings) / [JavaScript](./js-etc/#game-user-data-settings)]
+        * GameUserData Class：classId(ゲームユーザーの職業)フィールド追加[詳細表示[Android](./aos-etc/#level-up-trace) / [iOS](./ios-etc/#level-up-trace) / [Unity](./unity-etc/#level-up-trace) / [JavaScript](./js-etc/#level-up-trace)]
     * (Android)NAVER SDKバージョンアップデート(v4.2.5)：NAVER SDKのバグを修正(NAVERログイン中にアプリアイコンからアプリを再起動した場合、Activityが強制終了する問題により、認証プロセスが中断される問題を解決)
     * (Unity)StandaloneWebviewが32bit Buildをサポート(SDK容量53.6MBから99.2MBに増加)
 

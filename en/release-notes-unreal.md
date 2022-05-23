@@ -79,7 +79,7 @@
 
 #### More Features
 * (Unreal) SDK distribution: accumulated features from 2.16.0 to 2.19.0 reflected
-	* [Android Settings Tool](https://docs.toast.com/en/Game/Gamebase/en/unreal-started/#android-settings) provided: please use this settings tool rather than modifying the Gamebase_Android_UPL.xml file.
+	* [Android Settings Tool](./unreal-started/#android-settings) provided: please use this settings tool rather than modifying the Gamebase_Android_UPL.xml file.
 	* Customer Center feature added	
 	* Authentication for Hangame, Weibo added
 	* Galaxy Store added
@@ -115,7 +115,7 @@
 #### More Features
 * [SDK] 2.9.1
     * (Unreal) Supports Unreal 4.22 ~ 4.25
-    * (Unreal) Supports PLCrashReporter Issue: [Guide](http://docs.toast.com/en/Game/Gamebase/en/unreal-started/#ios-settings)
+    * (Unreal) Supports PLCrashReporter Issue: [Guide](./unreal-started/#ios-settings)
 
 #### Feature Updates
 * [SDK] 2.9.1

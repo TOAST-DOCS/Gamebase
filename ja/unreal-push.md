@@ -14,6 +14,10 @@ AndroidやiOSでプッシュを設定する方法は、次の文書を参照し�
 * iOS
     * [iOS Push Settings](ios-push#settings)
 
+> <font color="red">[注意]</font><br/>
+>
+> 外部プラグインでプッシュ関連処理がある場合、Gamebaseプッシュ機能が正常に動作しない可能性があります。
+
 ### Register Push
 
 次のAPIを呼び出して、TOAST Pushに該当ユーザーを登録します。

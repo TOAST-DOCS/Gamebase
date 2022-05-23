@@ -223,7 +223,7 @@ Gamebase Android SDKの初期化設定に入力したアプリバージョンの
 | INSPECTING_ALL_SERVICES     | 304  | 全体サービスメンテナンス中です。                            |
 | INTERNAL_SERVER_ERROR       | 500  | 内部サーバーエラーです。                               |
 
-[コンソールガイド](/Game/Gamebase/ja/oper-app/#app)
+[コンソールガイド](./oper-app/#app)
 
 **1.2 App**
 

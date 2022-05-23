@@ -6,6 +6,7 @@
 - Gamebase Access Tokenでログインする時に使用されたIdPのプロフィールおよびトークン情報を取得できる"Get IdP Token and Profiles" APIが追加されました。
 - IdP IdでマッピングされたGamebase userIdを取得する"Get UserId Information with IdP Id" APIが追加されました。
 - 特定期間に退会したユーザーのGamebase userIdを取得する"Withdraw Histories" APIが追加されました。
+'- 利用停止および利用停止解除を行う"Ban"、"Ban Release" APIが追加されました。
 
 ## Advance Notice
 
@@ -767,6 +768,82 @@ Check common requirements.
 
 <br>
 
+#### Ban
+
+ユーザーを利用停止状態に変更します。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-gateway/v1.3/apps/{appId}/members/ban |
+
+**[Request Header]**
+
+共通事項確認
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN CloudプロジェクトID |
+
+**[Request Parameter]**
+
+なし
+
+**[Request Body]**
+
+```json
+{
+    "userIdList": [
+        "userId-1", "userId-2"
+    ],
+    "banTypeCode": "TEMPORARY",
+    "end": "2022-05-10T06:03:50.000+09:00",
+    "templateCode": 0,
+    "banReason": "string",
+    "flags": "leaderboard",
+    "banCaller": "APP_SERVER",
+    "regUser": "GAME-SERVER"
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| userIdList | Array[String] | 利用停止対象ユーザーID |
+| banTypeCode | Enum | 利用停止タイプ。 TEMPORARY or PERMANENT |
+| end | String | 利用停止終了時間(ISO 8601標準時間) <br>- TEMPORARYタイプのときの必須値 |
+| templateCode | Integer | 利用停止時に表示されるメッセージに使われるテンプレートのテンプレートコード <br>- この値はConsole**利用停止 > テンプレート** 詳細照会画面で確認可能 |
+| banReason | String | 利用停止理由 |
+| flags | String | 利用停止ユーザーのリーダーボードデータも一緒に削除したい場合は「leaderboard」に設定 |
+| banCaller | String | 利用停止APIを呼び出した主体。「APP_SERVER」固定値に設定 |
+| regUser | String | Console利用停止画面で表示する名前 |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "failedUserIdList": ["userId-1"]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| failedUserIdList | Array[String] | 利用停止登録に失敗したユーザーID |
+
+**[Error Code]**
+
+[エラーコード](./error-code/#server)
+
+</br>
+
 #### Ban Histories
 
 ユーザー利用停止履歴を照会します。
@@ -857,7 +934,73 @@ Check common requirements.
 
 [エラーコード](./error-code/#server)
 
-<br>
+#### Ban Release
+
+ユーザーを利用停止解除状態、すなわち正常状態に変更します。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| DELETE | /tcgb-gateway/v1.3/apps/{appId}/members/ban |
+
+**[Request Header]**
+
+共通事項確認
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN CloudプロジェクトID |
+
+**[Request Parameter]**
+
+なし
+
+**[Request Body]**
+
+```json
+{
+    "userIdList": [
+        "userId-1", "userId-2"
+    ],
+    "banReleaseReason": "string",
+    "banReleaseCaller": "APP_SERVER",
+    "releaseUser": "GAME-SERVER"
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| userIdList | Array[String] | 利用停止解除対象ユーザーID |
+| banReleaseReason | String | 利用停止解除理由 |
+| banReleaseCaller | String | 利用停止解除APIを呼び出した主体。「APP_SERVER」固定値に設定 |
+| releaseUser | String | Console利用停止解除画面で表示する名前 |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "failedUserIdList": ["userId-1"]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| failedUserIdList | Array[String] | 利用停止解除に失敗したユーザーID |
+
+**[Error Code]**
+
+[エラーコード](./error-code/#server)
+
+</br>
 
 #### Ban Release Histories
 

@@ -80,7 +80,7 @@
 
 #### More Features
 * (Unreal) SDK distribution: accumulated features from 2.16.0 to 2.19.0 reflected
-	* [Android Settings Tool](https://docs.toast.com/ko/Game/Gamebase/ko/unreal-started/#android-settings) provided: please use this settings tool rather than modifying the Gamebase_Android_UPL.xml file.
+	* [Android Settings Tool](./unreal-started/#android-settings) provided: please use this settings tool rather than modifying the Gamebase_Android_UPL.xml file.
 	* Customer Center feature added	
 	* Authentication for Hangame, Weibo added
 	* Galaxy Store added
@@ -282,7 +282,7 @@ you may encounter an issue during reprocessing if a different billing client ver
     * (Common) Added Push API: Check token information of a push (Gamebase.Push.queryTokenInfo API)
 * [SDK] 2.9.1
     * (Unreal) Supports Unreal 4.22 ~ 4.25
-    * (Unreal) Supports PLCrashReporter Issue: [Guide](http://docs.toast.com/ko/Game/Gamebase/ko/unreal-started/#ios-settings)
+    * (Unreal) Supports PLCrashReporter Issue: [Guide](./unreal-started/#ios-settings)
 
 #### Feature Updates
 * [Console]
@@ -834,8 +834,8 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 * [SDK] 2.4.0
 
   * (Common) Chanage of Classes Relevant to Indicators 
-        * LevelUpData Class: Changed userLevel and levelUpTime as required parameters; the other fields are deleted [See Details: [Android](http://docs.toast.com/en/Game/Gamebase/en/aos-etc/#game-user-data-settings) / [iOS](http://docs.toast.com/en/Game/Gamebase/en/ios-etc/#game-user-data-settings) / [Unity](http://docs.toast.com/en/Game/Gamebase/en/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/en/Game/Gamebase/en/js-etc/#game-user-data-settings)]
-            * GameUserData Class: Added the classId (game user's profession) field [See Details: [Android](http://docs.toast.com/en/Game/Gamebase/en/aos-etc/#level-up-trace) / [iOS](http://docs.toast.com/en/Game/Gamebase/en/ios-etc/#level-up-trace) / [Unity](http://docs.toast.com/en/Game/Gamebase/en/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/en/Game/Gamebase/en/js-etc/#level-up-trace)]
+        * LevelUpData Class: Changed userLevel and levelUpTime as required parameters; the other fields are deleted [See Details: [Android](./aos-etc/#game-user-data-settings) / [iOS](./ios-etc/#game-user-data-settings) / [Unity](./unity-etc/#game-user-data-settings) / [JavaScript](./js-etc/#game-user-data-settings)]
+            * GameUserData Class: Added the classId (game user's profession) field [See Details: [Android](./aos-etc/#level-up-trace) / [iOS](./ios-etc/#level-up-trace) / [Unity](./unity-etc/#level-up-trace) / [JavaScript](./js-etc/#level-up-trace)]
 
     * (Android) Naver SDK Version Updated (v4.2.5): Bug of Naver SDK fixed (fixed the issue, in which authentication process was stopped due to forced closure of activities when the app was restarted via app icon while login to Naver was underway)  
     * (Unity) StandaloneWebview supports 32bit Build (SDK volume upgraded from 53.6MB to 99.2MB)
