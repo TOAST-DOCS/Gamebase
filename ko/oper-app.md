@@ -543,12 +543,13 @@ Gamebase Console에서 관리하는 클라이언트 등록 정보를 설명합�
 - <font color="white" style="background-color:#F8BB28">테스트</font>: 내부 테스트
 - <font color="white" style="background-color:#eba34b">베타 서비스</font>: 서비스 서버가 아닌 별도의 베타 서버에 연결이 필요한 경우 선택합니다.
 - <font color="white" style="background-color:#FB8F37">심사중</font>: 스토어 심사 중
-![gamebase_app_15_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_15_201812.png)
 
 - <font color="white" style="background-color:#88C637">서비스중</font>: 정상 서비스
 - <font color="white" style="background-color:#2AB1A6">업데이트 권장(서비스 중)</font>: 정상 서비스. <br/>보다 안정적인 버전을 사용하도록 유도하기 위해 팝업을 표시합니다. <br/>새로운 버전을 다운로드해서 이용하도록 유도하지만 사용자가 원하는 경우 현재 버전으로도 계속 서비스를 이용할 수 있습니다.<br />아래는 '업데이트 권장(서비스 중)' 상태일 때 Gamebase SDK에서 기본적으로 제공하는 팝업입니다.
 
-- <font color="white" style="background-color:#A1A1A1">업데이트 필수</font>: 서비스 불가능. <br/>현재 게임에서 서비스를 지원하지 않는 버전으로, 최신 버전 설치 안내 팝업을 표시합니다.<br />아래는 '업데이트 필수' 상태일 때 Gamebase SDK에서 기본적으로 제공하는 팝업입니다.
+- <font color="white" style="background-color:#A1A1A1">업데이트 필수</font>: 서비스 불가능. <br/>현재 게임에서 서비스를 지원하지 않는 버전으로, 최신 버전 설치 안내 팝업을 표시합니다.<br />아래는 '업데이트 필수' 상태일 때 Gamebase SDK에서 기본적으로 제공하는 팝업입니다. <br/> '업데이트 필수' 상태일 때 팝업 버튼을 추가할 수 있습니다. '자세히 보기 버튼 추가'에서 '버튼 추가'를 선택할 경우, 연결될 URL을 설정할 수 있습니다.
+
+![gamebase_app_37_202205.png](https://static.toastoven.net/prod_gamebase/gamebase_app_37_202205.png)
 
 >  <font color="red">[주의] </font>
 >  **업데이트 필수와 점검이 동시에 설정**되어 있을 경우 서비스 상태는 '업데이트 필수'가 됩니다.
@@ -558,6 +559,8 @@ Gamebase Console에서 관리하는 클라이언트 등록 정보를 설명합�
 >  예를 들면 클라이언트가 App store로 설정되어 있고 설치 URL 메뉴에서 App store 관련 설정이 존재한다면 설정한 주소로 이동되며 만약 설치 URL 메뉴에 설정이 되어 있지 않을 경우 공통(Common) URL로 연결됩니다.
 
 - <font color="white" style="background-color:#CCCCCC">종료</font>: 서비스 불가능. <br/> 서비스가 종료된 버전인 경우 선택합니다.<br />아래는 '종료' 상태일 때 Gamebase SDK에서 기본적으로 제공하는 팝업입니다.
+
+![gamebase_app_15_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_15_201812.png)
 
 > [참고]
 > 서비스 상태별 표시할 메시지 설정
