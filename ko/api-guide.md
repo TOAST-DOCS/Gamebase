@@ -6,6 +6,7 @@
 - Gamebase Access Token으로 로그인시에 사용된 IdP의 프로필 및 토큰 정보를 획득할 수 있는 "Get IdP Token and Profiles" API가 추가되었습니다.
 - IdP Id로 매핑된 Gamebase userId를 획득하는 "Get UserId Information with IdP Id" API가 추가되었습니다.
 - 특정 기간 동안 탈퇴한 사용자의 Gamebase userId를 획득하는 "Withdraw Histories" API가 추가되었습니다.
+- 이용 정지 및 이용 정지 해제를 수행하는 "Ban", "Ban Release" API가 추가되었습니다.
 
 ## Advance Notice
 
@@ -756,6 +757,82 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 <br>
 
+#### Ban
+
+유저들을 이용 정지 상태로 변경합니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-gateway/v1.3/apps/{appId}/members/ban |
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud 프로젝트 ID |
+
+**[Request Parameter]**
+
+없음
+
+**[Request Body]**
+
+```json
+{
+    "userIdList": [
+        "userId-1", "userId-2"
+    ],
+    "banTypeCode": "TEMPORARY",
+    "end": "2022-05-10T06:03:50.000+09:00",
+    "templateCode": 0,
+    "banReason": "string",
+    "flags": "leaderboard",
+    "banCaller": "APP_SERVER",
+    "regUser": "GAME-SERVER"
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| userIdList | Array[String] | 이용 정지 대상 유저 ID |
+| banTypeCode | Enum | 이용 정지 타입. TEMPORARY or PERMANENT |
+| end | String | 이용 정지 종료 시간(ISO 8601 표준 시간) <br>- TEMPORARY 타입일 때 필수 값 |
+| templateCode | Integer | 이용 정지 시 표시될 메시지에 사용되는 템플릿의 템플릿 코드 <br>- 해당 값은 Console **이용 정지 > 템플릿** 상세 조회 화면에서 확인 가능 |
+| banReason | String | 이용 정지 사유 |
+| flags | String | 이용 정지 유저의 리더보드 데이터도 함께 삭제하기를 원한다면 'leaderboard'로 설정 |
+| banCaller | String | 이용 정지 API를 호출한 주체로, 'APP_SERVER' 고정 값으로 설정 |
+| regUser | String | Console 이용 정지 화면에서 표시할 이름 |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "failedUserIdList": ["userId-1"]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| failedUserIdList | Array[String] | 이용 정지 등록에 실패한 유저 ID |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+</br>
+
 #### Ban Histories
 
 유저 이용 정지 이력을 조회합니다.
@@ -781,7 +858,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | begin | String | Required | 이용 정지 이력 조회 시작 시간(ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>예: yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | Required | 이용 정지 이력 조회 종료 시간(ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용정지가 되었다면 조회 결과에 존재 |
+| end | String | Required | 이용 정지 이력 조회 종료 시간(ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용 정지가 되었다면 조회 결과에 존재 |
 | page | String | Optional | 조회하고자 하는 페이지. 0부터 시작 |
 | size | String | Optional | 페이지당 데이터 개수 |
 | order | String | Optional | 조회 데이터 정렬 방법. ASC or DESC |
@@ -847,7 +924,75 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 [오류 코드](./error-code/#server)
 
-<br>
+</br>
+
+#### Ban Release
+
+유저들을 이용 정지 해제 상태, 즉 정상 상태로 변경합니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| DELETE | /tcgb-gateway/v1.3/apps/{appId}/members/ban |
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud 프로젝트 ID |
+
+**[Request Parameter]**
+
+없음
+
+**[Request Body]**
+
+```json
+{
+    "userIdList": [
+        "userId-1", "userId-2"
+    ],
+    "banReleaseReason": "string",
+    "banReleaseCaller": "APP_SERVER",
+    "releaseUser": "GAME-SERVER"
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| userIdList | Array[String] | 이용 정지 해제 대상 유저 ID |
+| banReleaseReason | String | 이용 정지 해제 사유 |
+| banReleaseCaller | String | 이용 정지 해제 API를 호출한 주체로, 'APP_SERVER' 고정 값으로 설정 |
+| releaseUser | String | Console 이용 정지 해제 화면에서 표시할 이름 |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "failedUserIdList": ["userId-1"]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| failedUserIdList | Array[String] | 이용 정지 해제에 실패한 유저 ID |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+</br>
 
 #### Ban Release Histories
 
@@ -874,7 +1019,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | begin | String | Required | 이용 정지 해제 이력 조회 시작 시간(ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>예: yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | Required | 이용 정지 해제 이력 조회 종료 시간(ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용정지가 해제 되었다면 조회 결과에 존재 |
+| end | String | Required | 이용 정지 해제 이력 조회 종료 시간(ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용 정지가 해제 되었다면 조회 결과에 존재 |
 | page | String | Optional | 조회하고자 하는 페이지. 0부터 시작 |
 | size | String | Optional | 페이지당 데이터 개수 |
 | order | String | Optional | 조회 데이터 정렬 방법. ASC or DESC |

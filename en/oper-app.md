@@ -133,13 +133,13 @@ The options to be set are as follows:
 
 ### Test Device
 
-![gamebase_app_02_201812.png] (http://static.toastoven.net/prod_gamebase/gamebase_app_02_201912.png)
+![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_02_201912.png)
 If it is registered as a test device, it can access the game as usual even when the app running Gamebase is under maintenance.
 You need to register **Device Key** or **IP** information to register a test device. You can register it by directly entering the information or retrieving **Game User ID**.
 Test devices can be managed by allowing them to be able to access the game even when it is under maintenance or configuring whether to display the debug log on each device.
 You can also delete test devices that you don't use anymore.
 Click the Access History button to check **Connected Time and Detailed Connection Log during Maintenance** via the device.
-![gamebase_app_02_201812.png] (http://static.toastoven.net/prod_gamebase/gamebase_app_09_201912.png)
+![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_09_201912.png)
 
 > [Note]
 > Up to 100 test devices can be registered.
@@ -152,7 +152,7 @@ Can check all test devices registered with the app. Enter a keyword in the **Sea
 
 Click the **Register** button on the Search screen to access the screen where test devices can be registered. Manually enter **Device Key** or search for **Game User ID** and register a test device.
 
-![gamebase_app_02_201812.png] (http://static.toastoven.net/prod_gamebase/gamebase_app_10_201912.png)
+![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_10_201912.png)
 ![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_11_201912.png)
 
 **(1) Register using Game User ID**
@@ -171,7 +171,7 @@ Enter **Device Name**, debug log, and whether to ignore maintenance of the devic
 
 #### (3) Delete
 
-![gamebase_app_02_201812.png] (http://static.toastoven.net/prod_gamebase/gamebase_app_12_201912.png)
+![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_12_201912.png)
 
 Select the test device to delete on the Search Test Device screen and click the Delete button located at the top left of the screen to delete the test device information. Once deleted, the information cannot be recovered, so please make sure that it needs to be deleted before clicking the button.
 
@@ -742,19 +742,19 @@ They are divided by user level (INT), world/server/channel, and class/profession
 ### By User Level (INT)
 Can check the level indexes transferred to the Analytics system.
 In this item, only search is available, without separate edits.
-![gamebase_app_20_201812.png] (https://static.toastoven.net/prod_gamebase/gamebase_analytics_indicator_01_202003.png)
+![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_analytics_indicator_01_202003.png)
 
 ### Search by World/Server/Channel and Class/Profession
 Currently, you can check the transfer index configured for each item.
 If you do not want to stack the indexes for the items configured in the Search screen, you can delete previously registered items using the Delete button.
 Deleted items are not displayed as indexes in the Analytics menu. Be careful when deleting items, as the indexes of deleted items won't be stacked anymore.
-![gamebase_app_20_201812.png] (https://static.toastoven.net/prod_gamebase/gamebase_analytics_indicator_02_202003.png)
+![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_analytics_indicator_02_202003.png)
 
 ### Register each World/Server/Channel and Class/Profession
 You can register new information that you want to stack in Analytics indexes.
 You can use the Add button below. **Up to 100 new items** can be registered.
 Only **those items displayed on the Index screen can be edited** among the previously registered data. If you want to delete them, you need to go to the Search screen and delete them there.
-![gamebase_app_20_201812.png] (https://static.toastoven.net/prod_gamebase/gamebase_analytics_indicator_03_202003.png)
+![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_analytics_indicator_03_202003.png)
 
 #### (1) ChannelId/ClassId: Enter the information of the separator to be stacked in Analytics. Enter the ID information you want to set when stacking indexes.
 #### (2) Display index screen: Type in text to display when displaying the index that was transferred to the ID entered as the first item. The information can be used to edit already registered indexes.

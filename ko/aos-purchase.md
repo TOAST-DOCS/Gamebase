@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > Android SDK 사용 가이드 > 결제
+## Game > Gamebase > Android SDK 사용 가이드 > 결제
 
 여기에서는 앱에서 인앱 결제 기능을 사용하기 위해 필요한 설정 방법을 알아보겠습니다.
 
@@ -75,6 +75,12 @@ Gamebase.initialize(activity, configuration, callback);
 구매하고자 하는 아이템의 gamebaseProductId 를 이용해 다음의 API를 호출해 구매를 요청합니다.<br/>
 gamebaseProductId 는 일반적으로는 스토어에 등록한 아이템의 id와 동일하지만, Gamebase 콘솔에서 변경할 수도 있습니다.
 payload 필드에 입력한 추가 정보는 결제 성공 후 **PurchasableReceipt.payload** 필드에 유지되므로 여러가지 용도로 활용할 수 있습니다.<br/>
+
+> <font color="red">[주의]</font><br/>
+>
+> AMAZON 스토어는 **payload** 필드를 지원하지 않습니다.
+>
+
 게임 유저가 구매를 취소하는 경우 **GamebaseError.PURCHASE_USER_CANCELED** 오류가 반환됩니다.
 취소 처리를 해 주시기 바랍니다.
 

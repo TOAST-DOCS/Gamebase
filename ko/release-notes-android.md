@@ -1,5 +1,26 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.40.0 (2022. 05. 24.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+* ONE Store 외부 결제를 위한 Purchase Adapter가 추가되었습니다.
+    * 빌드 의존성에 **gamebase-adapter-purchase-onestore-external** 모듈을 추가하시면 사용 가능합니다.
+            
+            dependencies {
+                ...
+                implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-external:$GAMEBASE_SDK_VERSION"
+            }
+            
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST Android SDK(0.31.0), TOAST Gamebase IAP Android SDK(0.18.5)
+* 서로 다른 앱이 하나의 Gamebase 프로젝트를 공유하는 경우 Push가 정상적으로 동작하지 않는 이슈가 수정되었습니다.
+    * AndroidManifest.xml에 앱마다 서로 다른 **com.nhncloud.sdk.push.deviceId.salt**값을 선언하시기 바랍니다.
+
+            <!-- When you have multiple applications sharing an Gamebase project, use this field to identify each application. -->
+            <meta-data android:name="com.nhncloud.sdk.push.deviceId.salt"
+                       android:value="ApplicationForGoogleStore" />
+
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-Android.zip)
 
@@ -34,7 +55,7 @@
     * **ContactConfiguration.Builder.setAdditionalParameters(Map&lt;String, String&gt;)**
 
 #### 기능 개선/변경
-* 외부 SDK 업데이트: Toast Gamebase IAP 0.18.3
+* 외부 SDK 업데이트: TOAST Gamebase IAP Android SDK(0.18.3)
 * Amazon Appstore 결제 데이터에서 userId, gamebaseProductId가 누락될 시 userId, gamebaseProductId를 자동으로 채우도록 개선되었습니다.
 
 ### 2.36.0 (2022. 04. 12.)
@@ -232,10 +253,10 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
         * 이제 프로젝트의 res/raw 폴더에 localizedstring.json 파일을 추가하면 되도록 개선하였습니다.
     * 지금까지는 Unity 가이드의 Display Language 언어셋 추가 방법은 Android에 적용할 수 없었습니다.
         * 이제 Unity 가이드에 따라 localizedstring.json 파일을 추가하더라도 Android 빌드에 반영되도록 개선하였습니다.
-        * [Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Display Language > 신규 언어셋 추가](https://docs.toast.com/en/Game/Gamebase/en/unity-etc/#add-new-language-sets)
+        * [Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Display Language > 신규 언어셋 추가](./unity-etc/#add-new-language-sets)
     * Display Language 언어셋에 중국어 간체(zh-CN), 중국어 번체(zh-TW), 태국어(th)가 추가되었습니다.
     * 기본 언어코드가 **en** 이었으나, Gamebase 콘솔에서 설정한 기본언어가 반영되도록 개선하였습니다.
-        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > 언어 설정](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
+        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > 언어 설정](./oper-app/#language-settings)
 * showTermsView API 호출 후 생성할 수 있는 PushConfiguration 객체의 생성 기준이 다음과 같이 변경되었습니다.
     * 변경 전
         * 약관 항목 중에 **Push 수신** 항목이 존재하는 경우에만 null이 아닌 유효한 PushConfiguration이 리턴되었습니다.
@@ -365,7 +386,7 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
 
 #### 기능 개선/변경
 * [SDK] 2.18.2
-    * (공통) TOAST SDK 업데이트: [Android(0.24.2)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0242-20201124), [iOS(0.27.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-unity/#0213-20201124)
+    * (공통) TOAST SDK 업데이트: Android(0.24.2), iOS(0.27.1), Unity(0.21.3)
     * (Android) 암호화 로직 보안 경고 해결을 위한 외부 SDK 업데이트: PAYCO Login SDK(1.5.3), Hangame ID SDK(1.3.2)
     * (Android) Tencent Push 모듈 제거
     * (Android) Gamebase Android SDK 2.6.0에서 deprecated된 함수 제거
@@ -385,7 +406,7 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
 
 #### 기능 개선/변경
 * [SDK] 2.18.0
-    * (Android) TOAST SDK 업데이트: [Android(0.24.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0240-20201027)-GooglePlay Billing Library v.3.0.1 적용
+    * (Android) TOAST SDK 업데이트: Android(0.24.1) - GooglePlay Billing Library v.3.0.1 적용
     * (Android) WebView SSL 보안 경고 대응 처리 추가
 
 #### 버그 수정
@@ -601,8 +622,8 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 #### 기능 개선/변경
 * [SDK] 2.4.0
     * (공통) 지표관련 Class 변경
-        * LevelUpData Class: userLevel, levelUpTime 파라미터가 필수로 변경 / 그 외 필드 삭제 [자세히 보기 [Android](http://docs.toast.com/ko/Game/Gamebase/ko/aos-etc/#game-user-data-settings) / [iOS](http://docs.toast.com/ko/Game/Gamebase/ko/ios-etc/#game-user-data-settings) / [Unity](http://docs.toast.com/ko/Game/Gamebase/ko/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#game-user-data-settings)]
-        * GameUserData Class: classId(게임유저의 직업) 필드 추가 [자세히 보기 [Android](http://docs.toast.com/ko/Game/Gamebase/ko/aos-etc/#level-up-trace) / [iOS](http://docs.toast.com/ko/Game/Gamebase/ko/ios-etc/#level-up-trace) / [Unity](http://docs.toast.com/ko/Game/Gamebase/ko/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#level-up-trace)]
+        * LevelUpData Class: userLevel, levelUpTime 파라미터가 필수로 변경 / 그 외 필드 삭제 [자세히 보기 [Android](./aos-etc/#game-user-data-settings) / [iOS](./ios-etc/#game-user-data-settings) / [Unity](./unity-etc/#game-user-data-settings) / [JavaScript](./js-etc/#game-user-data-settings)]
+        * GameUserData Class: classId(게임유저의 직업) 필드 추가 [자세히 보기 [Android](./aos-etc/#level-up-trace) / [iOS](./ios-etc/#level-up-trace) / [Unity](./unity-etc/#level-up-trace) / [JavaScript](./js-etc/#level-up-trace)]
     * (Android)NAVER SDK 버전 업데이트(v4.2.5): NAVER SDK 버그 수정(NAVER 로그인 도중에 앱 아이콘을 통해 앱을 재시작할 경우, Activity가 강제종료 되는 이슈로 인해 인증 프로세스가 중단되는 이슈가 해결)
 
 ### 2.3.1 (2019.05.16)

@@ -959,7 +959,7 @@ Instant withdrawal cannot be undone, so it is important to ask the user several 
 
 
 * For the entire list of error codes, see the following document.
-    - [Error Code] (./error-code/#client-sdk)
+    - [Error Code](./error-code/#client-sdk)
 
 
 **TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR**

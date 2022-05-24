@@ -23,7 +23,6 @@ Gamebase API를 사용하기 위해서는 다음의 헤더 파일을 가져옵�
 | enablePopup | ALL | O |
 | enableLaunchingStatusPopup | ALL | O |
 | enableBanPopup | ALL | O |
-| enableKickoutPopup | ALL | O |
 
 #### 1. App ID
 
@@ -76,13 +75,6 @@ LaunchingStatus는 아래 Launching 절 아래 State, Code 부분을 참고하�
 
 * 기본값: true
 
-#### 8. enableKickoutPopup
-
-Gamebase Server로 부터 Kickout 이벤트를 받은 경우, Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 설정입니다.
-
-* 기본값: true
-
-
 ### Debug Mode
 
 * Gamebase는 경고(warning)와 오류 로그만을 표시합니다.
@@ -118,7 +110,6 @@ void Sample::SetDebugMode(bool isDebugMode)
 }
 ```
 
-
 ### Initialize
 
 SDK를 초기화합니다.
@@ -139,7 +130,14 @@ void Initialize(const FGamebaseConfiguration& configuration, const FGamebaseLaun
 ```cpp
 void Sample::Initialize(const FString& appID, const FString& appVersion)
 {
-    FGamebaseConfiguration configuration{ "AppID", "AppVersion", "real", GamebaseDisplayLanguageCode.Korean, true, true, true, true, GamebaseStoreCode.Google, true };
+    FGamebaseConfiguration configuration;
+    configuration.appID = appID;
+    configuration.appVersion = appVersion;
+    configuration.storeCode = GamebaseStoreCode.Google;
+    configuration.displayLanguageCode = GamebaseDisplayLanguageCode.Korean;
+    configuration.enablePopup = true;
+    configuration.enableLaunchingStatusPopup = true;
+    configuration.enableBanPopup = true;
 
     IGamebase::Get().Initialize(configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* error)
     {

@@ -29,13 +29,13 @@
  
 是在Gamebase Console中注册的项目ID。
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Console Guide](./oper-app/#app)
 
 #### 2. appVersion
 
 是在Gamebase Console中注册的客户端版本。
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+[Console Guide](./oper-app/#client)
 
 #### 3. storeCode
 
@@ -226,7 +226,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 | INSPECTING_ALL_SERVICES     | 304         | 正在进行系统的全面检查                             |
 | INTERNAL_SERVER_ERROR       | 500         | 内部服务器错误                                 |
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#app)
+[Console Guide](./oper-app/#app)
 
 **1.2 App**
 
@@ -245,7 +245,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 * install : 安装URL
 * idP : 认证信息
 
-[Console Guide](/Game/Gamebase/ko/oper-app/#client)
+[Console Guide](./oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -257,7 +257,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 * endDate : 终止时间
 * message : 维护原因
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#maintenance)
+[Console Guide](./oper-operation/#maintenance)
 
 **1.4 Notice**
 
@@ -267,7 +267,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 * title : 标题
 * url : 维护URL
 
-[Console Guide](/Game/Gamebase/ko/oper-operation/#notice)
+[Console Guide](./oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -286,7 +286,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 * name: App Name
 * storeCode: Store Code
  
-[Console Guide](/Game/Gamebase/ko/oper-purchase/)
+[Console Guide](./oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -295,7 +295,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 * 以JSON string格式传送用户输入的值。
 * 关于TOAST Launching的详细设置，请参考以下指南。 
  
-[Console Guide](/Game/Gamebase/ko/oper-management/#config)
+[Console Guide](./oper-management/#config)
 
 ### Get Launching Information
 

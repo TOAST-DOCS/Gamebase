@@ -2,6 +2,10 @@
 
 This document describes how to set push notifications for each platform.
 
+> <font color="red">[Caution]</font><br/>
+>
+> If there is push-related processing in an external package, the Gamebase push function may not work properly.
+
 ### Settings
 
 For how to set up push on Android or iOS, refer to the following documents.

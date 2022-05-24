@@ -1,5 +1,25 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.40.0 (2022. 05. 24.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* 외부 SDK 업데이트: TOAST Unity SDK(0.25.5)
+* (Stanalone) 약관 API를 지원합니다.
+    * Gamebase.Terms.QueryTerms
+    * Gamebase.Terms.UpdateTerms
+
+#### 기능 개선/변경
+* 한글이 유니코드로 표시되는 현상이 개선되었습니다.
+* (iOS) bitcode 지원하도록 수정되었습니다.
+
+#### 버그 수정
+* (Android) OpenContact API 호출 시 Configuration.additionalParameters가 적용되지 않는 문제가 수정되었습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.40.0](./release-notes-android/#2400-20220524)
+* [Gamebase iOS SDK 2.40.0](./release-notes-ios/#2400-20220524)
+
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-Unity.zip)
 
@@ -220,7 +240,7 @@
 #### 改善/修复功能
 * Display Language功能已被改善。
     * 默认语言代码为**en**，但经过改善已可适用Gamebase控制台中设置的默认语言。
-        * [Game > Gamebase > 控制台使用指南 > 应用程序 > App > 语言设置](https://docs.toast.com/en/Game/Gamebase/en/oper-app/#language-settings)
+        * [Game > Gamebase > 控制台使用指南 > 应用程序 > App > 语言设置](./oper-app/#language-settings)
 
 #### 修改错误
 * 已修改只用英语显示”未注册的游戏版本”错误弹窗的问题。 
@@ -739,8 +759,8 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 #### Feature Updates/Changes
 * [SDK] 2.4.0
   * (Common) Chanage of Classes Relevant to Indicators 
-        * LevelUpData Class: Changed userLevel and levelUpTime as required parameters; the other fields are deleted [See Details: [Android](http://docs.toast.com/zh/Game/Gamebase/zh/aos-etc/#game-user-data-settings) / [iOS](http://docs.toast.com/zh/Game/Gamebase/zh/ios-etc/#game-user-data-settings) / [Unity](http://docs.toast.com/zh/Game/Gamebase/zh/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/zh/Game/Gamebase/zh/js-etc/#game-user-data-settings)]
-            * GameUserData Class: Added the classId (game user's profession) field [See Details: [Android](http://docs.toast.com/zh/Game/Gamebase/zh/aos-etc/#level-up-trace) / [iOS](http://docs.toast.com/zh/Game/Gamebase/zh/ios-etc/#level-up-trace) / [Unity](http://docs.toast.com/zh/Game/Gamebase/zh/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/zh/Game/Gamebase/zh/js-etc/#level-up-trace)]
+        * LevelUpData Class: Changed userLevel and levelUpTime as required parameters; the other fields are deleted [See Details: [Android](./aos-etc/#game-user-data-settings) / [iOS](./ios-etc/#game-user-data-settings) / [Unity](./unity-etc/#game-user-data-settings) / [JavaScript](./js-etc/#game-user-data-settings)]
+            * GameUserData Class: Added the classId (game user's profession) field [See Details: [Android](./aos-etc/#level-up-trace) / [iOS](./ios-etc/#level-up-trace) / [Unity](./unity-etc/#level-up-trace) / [JavaScript](./js-etc/#level-up-trace)]
 
     * (Android) Naver SDK Version Updated (v4.2.5): Bug of Naver SDK fixed (fixed the issue, in which authentication process was stopped due to forced closure of activities when the app was restarted via app icon while login to Naver was underway)  
     * (Unity) StandaloneWebview supports 32bit Build (SDK volume upgraded from 53.6MB to 99.2MB)
