@@ -7,6 +7,7 @@
 - IdP Id로 매핑된 Gamebase userId를 획득하는 "Get UserId Information with IdP Id" API가 추가되었습니다.
 - 특정 기간 동안 탈퇴한 사용자의 Gamebase userId를 획득하는 "Withdraw Histories" API가 추가되었습니다.
 - 이용 정지 및 이용 정지 해제를 수행하는 "Ban", "Ban Release" API가 추가되었습니다.
+- 결제 트랜잭션을 조회하는 "Get Payment Transaction" API가 추가되었습니다.
 
 ## Advance Notice
 
@@ -46,7 +47,7 @@ API 호출 시 HTTP Header에 다음 항목들을 설정해야 합니다.
 | Name | Required | Value |
 | --- | --- | --- |
 | Content-Type | Required | application/json; charset=UTF-8 |
-| X-Secret-Key | Required |SecretKey 설명 참고 |
+| X-Secret-Key | Required | SecretKey 설명 참고 |
 | X-TCGB-Transaction-Id | Optional | TransactionId 설명 참고 |
 
 #### API Response
@@ -87,6 +88,13 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | isSuccessful | boolean | 성공 여부 |
 | resultCode | int | 응답 코드<br>성공 시 0, 실패 시 오류 코드 반환 |
 | resultMessage | String | 응답 메시지 |
+
+#### API Version
+
+API 응답 결과의 특정 변수 타입이 변경될 때 API 버전이 변경됩니다. 즉, 신규 API가 추가되거나 또는 응답 결과에 신규 변수가 추가되어도 API 버전은 변경되지 않습니다.
+
+> [주의]
+> API 응답 결과에 신규 변수가 추가되어도 JSON 파싱 오류가 발생하지 않도록, 사용하는 JSON 라이브러리의 옵션을 추가해 주시기 바랍니다.
 
 <br>
 <br>
@@ -478,7 +486,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | member.valid | Enum | [유저 상태](#member-valid-code) |
 | member.appId | String | appId |
 | member.regDate | String | 유저가 계정을 생성한 시간 |
-| member.lastLoginDate | String | 마지막으로 로그인한 시간 <br>처음 로그인한 유저는 해당 값이 없음 |
+| member.lastLoginDate | String | 마지막으로 로그인한 시간 <br>처음 로그인한 유저 또는 탈퇴한 유저는 해당 값이 없음 |
 | member.authList | Array[Object] | 유저 인증 IdP 관련 정보 |
 | member.authList[].userId | String | 유저 ID |
 | member.authList[].authSystem | String | Gamebase 내부적으로 사용되는 인증 시스템 <br>추후 유저 인증 시스템 지원 예정 |
@@ -487,7 +495,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | member.authList[].regDate | String | IdP 정보가 유저 계정과 매핑된 시간 |
 | temporaryWithdrawal | Object | 탈퇴 유예 관련 정보 <br>valid 가 "T" 값에서만 제공 |
 | temporaryWithdrawal.gracePeriodDate | String | 탈퇴 유예 만료 시간 ISO 8601 |
-| memberInfo | Object | 유저에 대한 부가 정보 |
+| memberInfo | Object | 유저에 대한 부가 정보<br>탈퇴한 유저는 해당 정보 없음 |
 | memberInfo.deviceCountryCode | String | 유저 단말기의 국가 설정 |
 | memberInfo.usmCountryCode | String | 유저 USIM의 국가 코드 |
 | memberInfo.language | String | 유저 언어 |
@@ -1457,7 +1465,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완료되었다면 유저에게 아이템 지급 및 서버 내부적으로 이력을 기록한 후에, Gmaebase에 결제 소비를 알립니다. 결제 1건당 1번만 결제를 소비할 수 있으며 결제 상태가 정상이 아니면 소비되지 않습니다.
 
 > [참고]
-> 상품 등록 시 상품 유형이 일회성(CONSUMABLE)인 아이템 결제에 대해서만 소비(consume) 처리됩니다.
+> 상품 등록 시 상품 유형이 일회성(CONSUMABLE) 또는 소비성 구독(CONSUMABLE_AUTO_RENEWABLE) 아이템 결제에 대해서만 소비(consume) 처리됩니다.
 > 결제 1건당 1번 소비 가능하며, 결제 소비를 하지 않은 결제는 IAP에서는 아이템을 지급하지 않은 것으로 간주합니다.
 
 소비(consume)하지 않은 결제 내역은 SDK 및 서버의 미소비 결제 내역 조회 API를 통해 조회할 수 있습니다. API를 통해 미소비 결재 내역이 존재하더라도, 게임 서버 내부적으로 아이템 지급에 대한 이력을 가지고 있다면 게임 서버 내부 지급 이력을 우선으로 판단하면 됩니다.
@@ -1602,7 +1610,8 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
             "accessToken": "ja5SBJBfr7rYUdjFr6dRe7gKnkX0r7EKPvuK6CIUBBekc1rE9CVbMKVCNuw6ZtwmcpDRXrToR9l26NF9zub6ol",
             "gamebaseProductId": "gamebase_prod_001",
             "purchaseTime": "2020-06-02T13:38:56+09:00",
-            "payload": "additional info"
+            "payload": "additional info",
+            "isTestPurchase" : false
         },
         {
             "paymentSeq": "2016122110023125",
@@ -1612,7 +1621,8 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
             "marketId": "AS",
             "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ",
             "gamebaseProductId": "gamebase_prod_002",
-            "purchaseTime": "2020-06-02T13:37:42+09:00"
+            "purchaseTime": "2020-06-02T13:37:42+09:00",
+            "isTestPurchase" : false
         }
     ]
 }
@@ -1630,6 +1640,88 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 | result[].gamebaseProductId | String | Gamebase 상품 아이디<br>콘솔에서 상품 등록 시, 유저 입력 값 |
 | result[].purchaseTime | String | 결제 발생 일시 |
 | result[].payload | String | SDK에서 설정한 추가 정보<br>Amazon 스토어는 해당 값이 누락될 수 있음 |
+| result[].isTestPurchase | boolean | 테스트 결제 여부 |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+<br>
+
+#### Get Payment Transaction
+
+클라이언트 SDK를 통해 획득한 미소비 결제 내역이 유효한지를 확인할 수 있습니다.
+(서버에서 아이템 지급(consume) API를 호출하기 전에, 결제 번호(paymentSeq)와 결제 인증 토큰(accessToken)의 유효성 검사를 원한다면 해당 API 호출)
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-inapp/v1.3/apps/{appId}/payment/transaction?accessToken={accessToken} |
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud 프로젝트 ID |
+
+**[Request Parameter]**
+
+| Name | Type | Required |  Value |
+| --- | --- | --- | --- |
+| accessToken | String | Required | 결제 인증 토큰(purchaseToken) |
+
+**[Request Body]**
+
+없음
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "paymentSeq": "2022041110385239",
+        "productSeq": 1003150,
+        "currency": "EUR",
+        "price": 2.29,
+        "marketId": "AS",
+        "accessToken": "-Fr8Y7_dvv5qhdd6qVHbs7gKnkX0r7EKPvuK6CI-UBBekc1rE9CVbMKVCNuw6ZtwkBGlzeIHg6DdjaRVeaW7GYlPF4vRa50L8umB6tdBvk8",
+        "productType": "CONSUMABLE",
+        "userId": "AS@QW4M1GM7W97YJDCN",
+        "gamebaseProductId": "qa_ksw_prod_as_001",
+        "purchaseTime": "2022-04-11T16:47:01+09:00",
+        "payload" : "string",
+        "isTestPurchase": true,
+        "isConsumable": false
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Object |  결제 정보 |
+| result.paymentSeq | String | 결제 번호 |
+| result.productSeq | Long | 아이템 번호<br>콘솔에서 상품 등록 시, 외부 스토어 아이템에 대해 자동 생성된 값 |
+| result.currency  | String | 결제 통화  |
+| result.price | Float | 결제 가격 |
+| result.marketId | String | [스토어 코드](#store-code) |
+| result.accessToken | String | 결제 인증 토큰 |
+| result.productType | String  | 상품(아이템) 유형<br>- 일회성: CONSUMABLE<br>- 소비성 구독: CONSUMABLE_AUTO_RENEWABLE<br>- 구독: AUTO_RENEWABLE |
+| result.userId | String  | 유저 ID  |
+| result.gamebaseProductId | String | Gamebase 상품 아이디<br>콘솔에서 상품 등록 시, 유저 입력 값 |
+| result.purchaseTime | String | 결제 발생 일시 |
+| result.payload | String | SDK에서 설정한 추가 정보<br>Amazon 스토어는 해당 값이 누락될 수 있음 |
+| result.isTestPurchase | boolean | 테스트 결제 여부 |
+| result.isConsumable | boolean | 소비 API 호출 여부 |
 
 **[Error Code]**
 
@@ -1695,13 +1787,16 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
             "productSeq": 1001221,
             "productId": "money_100",
             "productType": "AUTO_RENEWABLE",
+            "originalPaymentId": "GPA.3302-8679-7228-41195",
             "paymentId": "GPA.3302-8679-7228-41195",
             "price": 1000.0,
             "currency": "KRW",
             "gamebaseProductId": "gamebase_renewal_001",
             "payload" : "additional info",
             "purchaseTime": "2020-06-02T13:38:56+09:00",
-            "expiryTime": "2020-06-02T13:48:56+09:00"
+            "expiryTime": "2020-06-02T13:48:56+09:00",
+            "isTestPurchase" : false,
+            "referenceStatus" : "PURCHASED"
         }
     ]
 }
@@ -1716,14 +1811,17 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 | result[].accessToken | String | 결제 인증 토큰 |
 | result[].productSeq | Long | 아이템 번호<br>콘솔에서 상품 등록 시, 외부 스토어 아이템에 대해 자동 생성된 값 |
 | result[].productId | String | 스토어에 등록된 상품(아이템) 식별자 |
-| result[].productType | String  | 상품(아이템) 타입<br>구독: AUTO_RENEWABLE |
+| result[].productType | String  | 상품(아이템) 유형<br>구독: AUTO_RENEWABLE |
 | result[].currency  | String  | 결제 통화 |
 | result[].price | Float | 결제 가격 |
+| result[].originalPaymentId | String | 최초 스토어 결제 번호 |
 | result[].paymentId | String | 최근 갱신된 스토어 결제 번호 |
 | result[].gamebaseProductId | String | Gamebase 상품 아이디<br>콘솔에서 상품 등록 시, 사용자 입력 값 |
 | result[].payload | String | SDK에서 설정한 추가 정보 |
 | result[].purchaseTime | String | 최근 갱신된 시간 |
 | result[].expiryTime | String | 구독 만료 시간 |
+| result[].isTestPurchase | boolean | 테스트 결제 여부 |
+| result[].referenceStatus | String | 결제 시스템(인앱 결제, 외부 결제)이 제공하는 [결제 참조 상태](#store-reference-status)<br>현재 Google Play 스토어만 지원 |
 
 **[Error Code]**
 
@@ -1910,6 +2008,31 @@ X-Secret-Key: IgsaAP
 | T | 탈퇴 유예 상태인 유저 |
 | P | 이용 정지 유예 상태인 유저 |
 | M | 유실된 계정 |
+<br/>
+
+
+### Store Reference Status
+
+결제 시스템(스토어의 인앱 결제, 외부 결제)이 제공하는 결제 참조 상태
+
+| 결제 시스템 | Code | 설명 |
+| --- | --- | --- |
+| 구글 인앱 | PURCHASED | 구매 완료 |
+| | REPURCHASED | 재구매 완료 |
+| | RESTARTED | 구독 재시작 |
+| | PENDING | 결제 지연 중 |
+| | RENEWED | 구독 갱신 |
+| | RECOVERED | 구독 복구 |
+| | PAUSE_SCHEDULED | 구독 중지 예정 |
+| | PAUSED | 중지 |
+| | REVOKED | 환불 |
+| | CANCELED_PRODUCT | 단품 결제 취소 |
+| | CANCELED_SUBSCRIPTION | 구독 취소(갱신 중지)<br>- 현 회차 구독은 제공해야 함 |
+| | ON_HOLD | 보류 중 |
+| | IN_GRACE | 유예 중 |
+| | EXPIRED | 만료 |
+| | NOT_APPOINTED | 알맞는 특정 상태 없음 |
+
 <br/>
 
 
