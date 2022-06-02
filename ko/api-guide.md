@@ -1721,7 +1721,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 | result.purchaseTime | String | 결제 발생 일시 |
 | result.payload | String | SDK에서 설정한 추가 정보<br>Amazon 스토어는 해당 값이 누락될 수 있음 |
 | result.isTestPurchase | boolean | 테스트 결제 여부 |
-| result.isConsumable | boolean | 소비 API 호출 여부 |
+| result.isConsumable | boolean | 소비 API 호출 여부<br>- true: 현재 미소비 상태로 소비 API 호출 가능 |
 
 **[Error Code]**
 
