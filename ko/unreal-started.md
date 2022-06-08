@@ -119,16 +119,16 @@ Gamebase SDK for Unreal을 사용하려면 `UE4 Github 소스 코드`를 사용�
 #### Project Settings
 
 1. 에디터의 메뉴 **Edit > Project Settings** 를 선택합니다.
-2. Project Settings 창에서 Plugin 카테고리에서 **Gamebase - Android**를 선택합니다.
+2. Project Settings 창에서 Plugin 카테고리에서 **Gamebase - iOS**를 선택합니다.
 
 ![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.40.0.png)
 
 * Authentication
-    * 사용하려는 IdP를 활성화 합니다.
+    * 사용하려는 IdP를 활성화합니다.
 * Purchase
     * 사용하려는 스토어를 선택합니다.
 * Push
-    * 사용하려는 푸시 서비스를 활성화 합니다.
+    * 사용하려는 푸시 서비스를 활성화합니다.
 
 #### Sign in with Apple
 
@@ -166,7 +166,7 @@ if (bRemoteNotificationsSupported)
 
 #### Facebook SDK
 
-Facebook IdP를 사용하려면 아래 코드를 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) 파일에서 아래 코드를 추가해주셔야 합니다.
+Facebook IdP를 사용하려면 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) 파일에서 아래 코드를 추가해주셔야 합니다.
 
 ```cs
 // need to tell where to load Framework dylibs
