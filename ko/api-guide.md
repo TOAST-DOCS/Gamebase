@@ -91,7 +91,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 #### API Version
 
-API 응답 결과의 특정 변수 타입이 변경될 때 API 버전이 변경됩니다. 즉, 신규 API가 추가되거나 또는 응답 결과에 신규 변수가 추가되어도 API 버전은 변경되지 않습니다.
+API 응답 결과의 특정 변수 타입이 변경될 때 API 버전이 변경됩니다. 즉, 신규 API가 추가되거나 응답 결과에 신규 변수가 추가되어도 API 버전은 변경되지 않습니다.
 
 > [주의]
 > API 응답 결과에 신규 변수가 추가되어도 JSON 파싱 오류가 발생하지 않도록, 사용하는 JSON 라이브러리의 옵션을 추가해 주시기 바랍니다.
@@ -2031,7 +2031,7 @@ X-Secret-Key: IgsaAP
 | | ON_HOLD | 보류 중 |
 | | IN_GRACE | 유예 중 |
 | | EXPIRED | 만료 |
-| | NOT_APPOINTED | 알맞는 특정 상태 없음 |
+| | NOT_APPOINTED | 알맞은 특정 상태 없음 |
 
 <br/>
 
