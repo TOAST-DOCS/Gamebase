@@ -5,9 +5,9 @@
 
 #### 기능 추가
 *  [iOS 설정 툴](./unreal-started/#ios-settings)을 제공합니다.
-    * 기존 프로젝트 설정에서 **Gamebase**으로 표시 되었지만 업데이트 이후 **Gamebase - Android**, **Gamebase - iOS**로 표시됩니다.
+    * 기존 프로젝트 설정에서 **Gamebase**으로 표시되었지만 업데이트 이후 **Gamebase - Android**, **Gamebase - iOS**로 표시됩니다.
     * iOS 설정 툴을 제공하면서 빌드 시 필요한 프레임워크만 포함되도록 수정되었습니다.
-* 공통 약관 API 호출 후 약관 UI가 표시되었는지 여부를 알 수 있는 VO 클래스가 추가되었습니다.
+* 공통 약관 API 호출 후 약관 UI가 표시되었는지를 알 수 있는 VO 클래스가 추가되었습니다.
     * FGamebaseShowTermsViewResult
 * 단말기에서 알림을 허용했는지 여부를 알 수 있는 API가 추가되었습니다.
     * IGamebase::Get().GetPush().QueryNotificationAllowed()
@@ -32,7 +32,7 @@
 * 일부 API의 이름이 변경되었습니다.
     * FGamebaseAnalyticesLevelUpData → FGamebaseAnalyticsLevelUpData
     * FGambaseBanInfoPtr → FGamebaseBanInfoPtr
-* 킥아웃 팝업 창 표시 여부는 Gamebase 콘솔에서 킥아웃 등록 시 설정할 수 있으므로 다음 필드가 deprecated되었습니다.
+* 킥아웃 팝업 창 표시 여부는 Gamebase 콘솔에서 킥아웃 등록 시 설정할 수 있으므로 다음 필드는 더 이상 사용하지 않습니다
     * FGamebaseConfiguration.enableKickoutPopup
     
 #### 플랫폼별 변경 사항

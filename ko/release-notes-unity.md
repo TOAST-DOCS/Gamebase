@@ -5,7 +5,7 @@
 
 #### 기능 추가
 * 외부 SDK 업데이트: TOAST Unity SDK(0.25.5)
-* (Stanalone) 아래 약관 API를 지원하도록 변경되었습니다.
+* (Standalone) 아래 약관 API를 지원하도록 변경되었습니다.
     * Gamebase.Terms.QueryTerms
     * Gamebase.Terms.UpdateTerms
 
