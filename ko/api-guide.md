@@ -498,7 +498,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 | memberInfo | Object | 유저에 대한 부가 정보<br>탈퇴한 유저는 해당 정보 없음 |
 | memberInfo.deviceCountryCode | String | 유저 단말기의 국가 설정 |
 | memberInfo.usmCountryCode | String | 유저 USIM의 국가 코드 |
-| memberInfo.language | String | 유저 단말기 언어 ISO 639-1 |
+| memberInfo.language | String | 유저 단말기 언어, ISO 639-1 |
 | memberInfo.osCode | String | [OS 코드](#os-code) |
 | memberInfo.telecom | String | 통신사 |
 | memberInfo.storeCode | String | [스토어 코드](#store-code) |

@@ -4,7 +4,7 @@
 
 #### 기능 추가
 * 결제 트랜잭션 조회 API 추가
-* 미소비 결제내역 조회 API 응답에 'isTestPurchase' 필드 추가
+* 미소비 결제 내역 조회 API 응답에 'isTestPurchase' 필드 추가
 
 ### 2022. 05. 24.
 
