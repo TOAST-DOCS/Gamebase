@@ -1,5 +1,10 @@
 ## Game > Gamebase > Release Notes > Server API
 
+### May 24, 2022
+
+#### Added Features
+* Added the Ban and Ban Release APIs
+
 ### May 10, 2022
 
 #### Added Features

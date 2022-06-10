@@ -6,6 +6,7 @@
 - Added the "Get IdP Token and Profiles" API capable of acquiring the profile and token info of the IdP used for logging in with the Gamebase Access Token.
 - Added the "Get UserId Information with IdP Id" API which acquires the Gamebase userId mapped with IdP Id.
 - Added the "Withdraw Histories" API to get Gamebase userId of users who have withdrawn during a specific period.
+- Added the "Ban" and "Ban Release" APIs that perform ban and ban release.
 
 ## Advance Notice
 
@@ -756,6 +757,82 @@ Check common items.
 
 <br>
 
+#### Ban
+
+Changed users to the banned state.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-gateway/v1.3/apps/{appId}/members/ban |
+
+**[Request Header]**
+
+Check common items.
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud project ID |
+
+**[Request Parameter]**
+
+N/A
+
+**[Request Body]**
+
+```json
+{
+    "userIdList": [
+        "userId-1", "userId-2"
+    ],
+    "banTypeCode": "TEMPORARY",
+    "end": "2022-05-10T06:03:50.000+09:00",
+    "templateCode": 0,
+    "banReason": "string",
+    "flags": "leaderboard",
+    "banCaller": "APP_SERVER",
+    "regUser": "GAME-SERVER"
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| userIdList | Array[String] | IDs of the users who are target for the ban |
+| banTypeCode | Enum | Type of the ban. TEMPORARY or PERMANENT |
+| end | String | End time for the ban (ISO 8601 standard time) <br>- Required for TEMPORARY type |
+| templateCode | Integer | Template code of the template used for the message to be displayed when the user is banned <br>- The value can be found on the console's **Ban > Template** detailed query page |
+| banReason | String | Reason for the ban |
+| flags | String | To delete the banned users' leaderboard data as well, set it to 'leaderboard' |
+| banCaller | String | The subject who called the Ban API. Set it to a fixed value of 'APP_SERVER'. |
+| regUser | String | Name to display on the console's Ban page |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "failedUserIdList": ["userId-1"]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| failedUserIdList | Array[String] | IDs of the users who could not be registered for the ban |
+
+**[Error Code]**
+
+[Error code](./error-code/#server)
+
+</br>
+
 #### Ban Histories
 
 Retrieves the user ban history.
@@ -834,20 +911,88 @@ Check common items.
 | result | Array[Object] | Retrieved ban history details |
 | result.userId | String | User ID |
 | result.banCaller | String | Subject of calling ban |
-| result.banReason | String | Reason of ban |
-| result.banType | String | Type of ban. TEMPORARY or PERMANENT |
-| result.beginDate | Long | Start date of ban|
-| result.endDate | Long | End date of ban<br>In case of PERMANENT type, the value does not exist |
+| result.banReason | String | Reason for the ban |
+| result.banType | String | Type of the ban. TEMPORARY or PERMANENT |
+| result.beginDate | Long | Start date of the ban|
+| result.endDate | Long | End date of the ban<br>In case of PERMANENT type, the value does not exist |
 | result.flags | String | Returned as 'leaderboard' when you have selected Delete Leaderboard upon Registering Ban in the console. |
 | result.name | String | Template name registered in the console |
-| result.templateCode | Long | Code value of ban template registered in the console |
+| result.templateCode | Long | Code value of the ban template registered in the console |
 
 
 **[Error Code]**
 
 [Error code](./error-code/#server)
 
-<br>
+</br>
+
+#### Ban Release
+
+Changes users to the ban released state, that is, the normal state.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| DELETE | /tcgb-gateway/v1.3/apps/{appId}/members/ban |
+
+**[Request Header]**
+
+Check common items.
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud project ID |
+
+**[Request Parameter]**
+
+N/A
+
+**[Request Body]**
+
+```json
+{
+    "userIdList": [
+        "userId-1", "userId-2"
+    ],
+    "banReleaseReason": "string",
+    "banReleaseCaller": "APP_SERVER",
+    "releaseUser": "GAME-SERVER"
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| userIdList | Array[String] | IDs of the users who are target for the ban release |
+| banReleaseReason | String | Reason for the ban release |
+| banReleaseCaller | String | Subject who called the Ban Release API. Set it to a fixed value of 'APP_SERVER'. |
+| releaseUser | String | Name to display on the console's Ban Release page |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "failedUserIdList": ["userId-1"]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| failedUserIdList | Array[String] | IDs of the users who could not be released from a ban |
+
+**[Error Code]**
+
+[Error code](./error-code/#server)
+
+</br>
 
 #### Ban Release Histories
 
@@ -929,17 +1074,17 @@ Check common items.
 | pagingInfo.totalPages | int | Total number of pages |
 | result | Array[Object] | Retrieved ban information |
 | result.userId | String | User ID |
-| result.banCaller | String | Subject of calling ban |
-| result.banReason | String | Reason of ban |
-| result.banType | String | Type of ban. TEMPORARY or PERMANENT |
-| result.beginDate | String | Start date of ban |
-| result.endDate | String | End date of ban |
-| result.flags | String | Returned as 'leaderboard' when you have selected Delete Leaderboard upon Registering Ban in the console. |
+| result.banCaller | String | Subject of calling the ban |
+| result.banReason | String | Reason for the ban |
+| result.banType | String | Type of the ban. TEMPORARY or PERMANENT |
+| result.beginDate | String | Start date of the ban |
+| result.endDate | String | End date of the ban |
+| result.flags | String | Returned as 'leaderboard' if you have selected Delete Leaderboard when registering the ban in the console. |
 | result.name | String | Template name registered in the console |
-| result.templateCode | Long | Code value of ban template registered in the console |
-| result.releaseCaller | String | Subject of ban release |
-| result.releaseReason | String | Reason of ban release |
-| result.releaseDate | String | Date of ban release |
+| result.templateCode | Long | Code value of the ban template registered in the console |
+| result.releaseCaller | String | Subject of the ban release |
+| result.releaseReason | String | Reason for the ban release |
+| result.releaseDate | String | Date of the ban release |
 
 
 **[Error Code]**
