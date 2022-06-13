@@ -7,6 +7,7 @@
 - IdP IdでマッピングされたGamebase userIdを取得する"Get UserId Information with IdP Id" APIが追加されました。
 - 特定期間に退会したユーザーのGamebase userIdを取得する"Withdraw Histories" APIが追加されました。
 '- 利用停止および利用停止解除を行う"Ban"、"Ban Release" APIが追加されました。
+'- 決済トランザクションを照会する"Get Payment Transaction" APIが追加されました。
 
 ## Advance Notice
 
@@ -46,7 +47,7 @@ APIを呼び出す際には、HTTP Headerに次の項目を設定する必要が
 | Name | Required | Value |
 | --- | --- | --- |
 | Content-Type | Required | application/json; charset=UTF-8 |
-| X-Secret-Key | Required |SecretKey 説明参考 |
+| X-Secret-Key | Required | SecretKey 説明参考 |
 | X-TCGB-Transaction-Id | Optional | TransactionId 説明参考 |
 
 #### API Response
@@ -87,6 +88,13 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | isSuccessful | boolean |成功したかどうか |
 | resultCode | int | レスポンスコード<br>成功すると0、失敗するとエラーコードを返す |
 | resultMessage | String | レスポンスメッセージ |
+
+#### API Version
+
+APIレスポンス結果の特定変数タイプが変更されるとき、APIバージョンが変更されます。すなわち、新規APIが追加されたりレスポンス結果に新規変数が追加されてもAPIバージョンは変更されません。
+
+> [注意]
+> APIレスポンス結果に新規変数が追加されてもJSON解析エラーが発生しないように、使用するJSONライブラリのオプションを追加してください。
 
 <br>
 <br>
@@ -489,7 +497,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | member.valid | Enum | [ユーザー状態](#member-valid-code) |
 | member.appId | String | appId |
 | member.regDate | String | ユーザーがアカウントを作成した時間 |
-| member.lastLoginDate | long | 最後にログインした時間<br>はじめてログインしたユーザーは、該当する値なし |
+| member.lastLoginDate | String | 最後にログインした時間 <br>はじめてログインしたユーザーまたは退会したユーザーは該当する値なし |
 | member.authList | Array[Object] |ユーザー認証IdP関連の情報 |
 | member.authList[].userId | String |ユーザーID |
 | member.authList[].authSystem | String | Gamebase内部で使用される認証システム<br>今後ユーザー認証システム実装予定 |
@@ -498,10 +506,10 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | member.authList[].regDate | String | IdP情報がユーザーアカウントとマッピングされた時間 |
 | temporaryWithdrawal | Object | 退会猶予関連情報 <br>validが"T"値でのみ提供 |
 | temporaryWithdrawal.gracePeriodDate | String | 退会猶予満了時間ISO 8601 |
-| memberInfo | Object | ユーザーに対する付加情報 |
+| memberInfo | Object | ユーザーに対する付加情報<br>退会したユーザーは該当する情報なし |
 | memberInfo.deviceCountryCode | String |ユーザー端末の国家設定 |
 | memberInfo.usmCountryCode | String |ユーザーUSIMの国家コード|
-| memberInfo.language | String | ユーザー言語 |
+| memberInfo.language | String | ユーザー端末言語、 ISO 639-1 |
 | memberInfo.osCode | String | [OSコード](#os-code) |
 | memberInfo.telecom | String | 通信キャリア |
 | memberInfo.storeCode | String | [ストアコード](#store-code) |
@@ -1520,7 +1528,7 @@ Consoleを通して発行されたクーポンコードに対して、有効性�
 Google Play Store、App Store、ONEStoreなどのストア決済が正常に完了した場合、ユーザーにアイテムを支給し、サーバー内部的に履歴を記録した後、Gmaebaseに決済消費を伝えます。決済1件につき1回のみ決済を消費することができ、決済の状態が正常でない場合は消費されません。
 
 > [参考]
-> 商品登録時、商品タイプが消費(CONSUMABLE)のアイテム決済に対してのみ消費(consume)処理されます。
+> 商品登録時、商品タイプが消費(CONSUMABLE)または消費性購読(CONSUMABLE_AUTO_RENEWABLE)アイテム決済に対してのみ消費(consume)処理されます。
 > 決済1件につき1回消費可能で、決済消費を行っていない決済はIAPではアイテムを支給していないものとみなします。
 
 消費(consume)していない決済は、SDKおよびサーバーの未消費決済履歴照会APIで照会できます。 APIでは未消費決済履歴が存在していても、ゲームサーバー内部にアイテム支給履歴がある場合は、ゲームサーバー内部支給履歴を優先的に判断してください。
@@ -1665,7 +1673,8 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
             "accessToken": "ja5SBJBfr7rYUdjFr6dRe7gKnkX0r7EKPvuK6CIUBBekc1rE9CVbMKVCNuw6ZtwmcpDRXrToR9l26NF9zub6ol",
             "gamebaseProductId": "gamebase_prod_001",
             "purchaseTime": "2020-06-02T13:38:56+09:00",
-            "payload": "additional info"
+            "payload": "additional info",
+            "isTestPurchase" : false
         },
         {
             "paymentSeq": "2016122110023125",
@@ -1675,7 +1684,8 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
             "marketId": "AS",
             "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ",
             "gamebaseProductId": "gamebase_prod_002",
-            "purchaseTime": "2020-06-02T13:37:42+09:00"
+            "purchaseTime": "2020-06-02T13:37:42+09:00",
+            "isTestPurchase" : false
         }
     ]
 }
@@ -1693,6 +1703,88 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 | result[].gamebaseProductId | String | Gamebase商品ID<br>コンソールに商品登録した時にユーザーが入力した値 |
 | result[].purchaseTime | String | 決済発生日時 |
 | result[].payload | String | SDKで設定した追加情報<br>Amazonストアはその値がない場合があります |
+| result[].isTestPurchase | boolean | テスト決済かどうか |
+
+**[Error Code]**
+
+[エラーコード](./error-code/#server)
+
+<br>
+
+#### Get Payment Transaction
+
+クライアントSDKを介して取得した未消費決済履歴が有効かどうかを確認できます。
+(サーバーでアイテム支給(consume) APIを呼び出す前に、決済番号(paymentSeq)と決済認証トークン(accessToken)の有効性チェックを行いたい場合は該当APIを呼び出す)
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-inapp/v1.3/apps/{appId}/payment/transaction?accessToken={accessToken} |
+
+**[Request Header]**
+
+共通事項確認
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN CloudプロジェクトID |
+
+**[Request Parameter]**
+
+| Name | Type | Required |  Value |
+| --- | --- | --- | --- |
+| accessToken | String | Required | 決済認証トークン(purchaseToken) |
+
+**[Request Body]**
+
+なし
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "paymentSeq": "2022041110385239",
+        "productSeq": 1003150,
+        "currency": "EUR",
+        "price": 2.29,
+        "marketId": "AS",
+        "accessToken": "-Fr8Y7_dvv5qhdd6qVHbs7gKnkX0r7EKPvuK6CI-UBBekc1rE9CVbMKVCNuw6ZtwkBGlzeIHg6DdjaRVeaW7GYlPF4vRa50L8umB6tdBvk8",
+        "productType": "CONSUMABLE",
+        "userId": "AS@QW4M1GM7W97YJDCN",
+        "gamebaseProductId": "qa_ksw_prod_as_001",
+        "purchaseTime": "2022-04-11T16:47:01+09:00",
+        "payload" : "string",
+        "isTestPurchase": true,
+        "isConsumable": false
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Object | 決済情報 |
+| result.paymentSeq | String | 決済番号 |
+| result.productSeq | Long | アイテム番号<br>コンソールで商品登録時、外部ストアアイテムに対して自動作成された値 |
+| result.currency  | String | 決済通貨 |
+| result.price | Float | 決済価格 |
+| result.marketId | String | [ストアコード](#store-code) |
+| result.accessToken | String | 決済認証トークン |
+| result.productType | String  | 商品(アイテム)タイプ<br>- 消費：CONSUMABLE<br>- 消費性購読：CONSUMABLE_AUTO_RENEWABLE<br>- 購読：AUTO_RENEWABLE |
+| result.userId | String  | ユーザーID  |
+| result.gamebaseProductId | String | Gamebase商品ID<br>コンソールで商品登録時、ユーザー入力値 |
+| result.purchaseTime | String | 決済発生日時 |
+| result.payload | String | SDKで設定した追加情報<br>Amazonストアは該当値がない場合あり |
+| result.isTestPurchase | boolean | テスト決済かどうか<br>- true：テスト決済 |
+| result.isConsumable | boolean | 消費API呼び出し可否<br>- true：現在未消費状態で消費API呼び出し可能 |
 
 **[Error Code]**
 
@@ -1764,7 +1856,9 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
             "gamebaseProductId": "gamebase_renewal_001",
             "payload": "additional info",
             "purchaseTime": "2020-06-02T13:38:56+09:00",
-            "expiryTime": "2020-06-02T13:48:56+09:00"
+            "expiryTime": "2020-06-02T13:48:56+09:00",
+            "isTestPurchase" : false,
+            "referenceStatus" : "PURCHASED"
         }
     ]
 }
@@ -1782,11 +1876,14 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 | result[].productType | String  | 商品(アイテム)タイプ<br>定期購入： AUTO_RENEWABLE |
 | result[].currency  | String  | 決済通貨 |
 | result[].price | Float | 決済価格 |
+| result[].originalPaymentId | String | 最初のストア決済番号 |
 | result[].paymentId | String | 最近更新されたストア決済番号 |
 | result[].gamebaseProductId | String | Gamebase商品ID<br>コンソールから商品を登録した時にユーザーが入力した値 |
 | result[].payload | String | SDKで設定した追加情報 |
 | result[].purchaseTime | String | 最近更新された時間 |
 | result[].expiryTime | String | 定期購入終了時間 |
+| result[].isTestPurchase | boolean | テスト決済かどうか |
+| result[].referenceStatus | String | 決済システム(アプリ内決済、外部決済)が提供する[決済参照状態](#store-reference-status)<br>現在Google Playストアのみサポート |
 
 **[Error Code]**
 
@@ -1970,6 +2067,31 @@ X-Secret-Key: IgsaAP
 | T | 退会猶予状態のユーザー |
 | P | 利用停止猶予状態のユーザー |
 | M | 消失したアカウント |
+<br/>
+
+
+### Store Reference Status
+
+決済システム(ストアのアプリ内決済、外部決済)が提供する決済参照状態
+
+| 決済システム | Code | 説明 |
+| --- | --- | --- |
+| Googleアプリ内 | PURCHASED | 購入完了 |
+| | REPURCHASED | 再購入完了 |
+| | RESTARTED | 購読再開 |
+| | PENDING | 決済遅延中 |
+| | RENEWED | 購読更新 |
+| | RECOVERED | 購読復旧 |
+| | PAUSE_SCHEDULED | 購読中止予定 |
+| | PAUSED | 中止 |
+| | REVOKED | 払い戻し |
+| | CANCELED_PRODUCT | 単品決済キャンセル |
+| | CANCELED_SUBSCRIPTION | 購読キャンセル(更新中止)<br>- 現在の回の購読は提供する必要がある |
+| | ON_HOLD | 保留中 |
+| | IN_GRACE | 猶予中 |
+| | EXPIRED | 期限切れ |
+| | NOT_APPOINTED | 適切な特定状態なし |
+
 <br/>
 
 
