@@ -61,8 +61,17 @@ To prevent the multiple issuance of the same purchased item, always check the ga
 
 ### Purchase Item
 
-Call following API of an item to purchase by using itemSeq to send a purchase request.
-When a game user cancels purchasing, the **PURCHASE_USER_CANCELED** error will be returned.
+Request a purchase by using the gamebaseProductId of the item to purchase.<br/>
+The gamebaseProductId is generally the same as the ID of item registered at the store, but it can be changed in the Gamebase console. 
+Additional information entered in the payload field is maintained at the **PurchasableReceipt.payload** field after a successful payment, so it can be used for many purposes.<br/>
+
+> <font color="red">[Caution]</font><br/>
+>
+> The AMAZON store does not support the **payload** field.
+>
+
+When a game user cancels purchase, the **PURCHASE_USER_CANCELED** error is returned.
+Please process cancellation.
 
 **API**
 

@@ -31,6 +31,7 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Support Google Play Store | - |
 |  | gamebase-adapter-purchase-huawei | toast-iap-huawei | Support Huawei App Gallery | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-purchase-onestore | toast-iap-onestore | Support ONE store v17<br>Currently v19 is not supported | - |
+|  | gamebase-adapter-purchase-onestore-external | toast-iap-onestore-external | Support ONE store external payment function | - |
 | Gamebase Push Adapters | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Support push notifications | - |
 |  | gamebase-adapter-push-adm | toast-push-adm | Support Amazon Device Messaging | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Support Firebase Notification | - |
@@ -370,6 +371,10 @@ android {
 **Example**
 
 ```xml
+<!-- When you have multiple applications sharing an Gamebase project, use this field to identify each application. -->
+<meta-data android:name="com.nhncloud.sdk.push.deviceId.salt"
+           android:value="ApplicationForGoogleStore" />
+
 <!-- Notification priority -->
 <meta-data android:name="com.toast.sdk.push.notification.default_priority"
            android:value="1"/>
@@ -402,6 +407,7 @@ android {
 
 | meta-data key | value type | description |
 | ------------- | ---------- | ----------- |
+| com.nhncloud.sdk.push.deviceId.salt | String | If different applications share a single Gamebase project, push does not work properly.<br/>You must specify a different random 'salt' value for each app. |
 | com.toast.sdk.push.notification.default_priority | int | Priorities.<br/>You can set the following five values:<br/>NoticationComapt.PRIORITY_MIN : -2<br/> NoticationComapt.PRIORITY_LOW : -1<br/>NoticationComapt.PRIORITY_DEFAULT : 0<br/>NoticationComapt.PRIORITY_HIGH : 1<br/>NoticationComapt.PRIORITY_MAX : 2 |
 | com.toast.sdk.push.notification.default_background_color | int | Background color. |
 | com.toast.sdk.push.notification.default_light_color | int | LED color. |

@@ -1,5 +1,19 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.40.0
+
+### Unreal
+
+* The enableKickoutPopup property of FGamebaseConfiguration is no longer supported.
+* Changed the name of the following APIs.
+    * FGamebaseAnalyticsLevelUpData → FGamebaseAnalyticsLevelUpData
+    * FGambaseBanInfoPtr → FGamebaseBanInfoPtr
+* (iOS) Made modifications so that only the necessary frameworks are included when building, with the iOS settings tool.
+* (iOS) PLCrashReporter has been updated, so PLCrashReporter inside the engine also needs to be updated.
+    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > Installation > iOS Settings > PLCrashReporter](./unreal-started/#ios-settings)
+* (iOS) Facebook iOS SDK has been updated to version 9.2.0, so engine code needs to be modified in order to use swift.
+    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > Installation > iOS Settings > Facebook SDK](./unreal-started/#ios-settings)
+
 ## 2.36.0
 
 ### Android
@@ -42,7 +56,7 @@
 
 ### Unity
 
-* The enableKickoutPopup attribute of GamebaseConfiguration is no longer supported.
+* The enableKickoutPopup property of GamebaseConfiguration is no longer supported.
 
 ## 2.33.0
 

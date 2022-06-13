@@ -222,6 +222,7 @@ Calling it after login also lets you see if the game user has agreed to the term
 >     * To see if the user has agreed to receive push, use the Gamebase.Push.QueryPush API.
 > * If you do not touch the 'Terms and Conditions settings' in the console, **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** error occurs when you call the queryTerms API from the device with the country code different from the terms and conditions language.
 >     * If you complete the 'Terms and Conditions settings' in the console or if **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** error occurs, please make sure the terms and conditions are not displayed.
+> * The standalone platform does not support push-related functions, so be careful not to expose these terms in the game UI.
 
 #### Required parameter
 * callback: Uses a callback to inform the user about the API call result. With the GamebaseResponse.Terms.QueryTermsResult that comes as callback, you can acquire the terms and conditions information set in the console.
@@ -232,6 +233,7 @@ Calling it after login also lets you see if the game user has agreed to the term
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
 static void QueryTerms(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Terms.QueryTermsResult> callback)
@@ -300,6 +302,7 @@ It can be used to terminate the agreement to optional terms and conditions as we
 >
 > Push accept status is not stored in the Gamebase server.
 > Push accept status should be stored by calling the Gamebase.Push.RegisterPush API **after login**.
+> In the standalone platform, you must call the API after logging in. If the API is called without logging in, a NOT_LOGGED_IN error is returned.
 >
 
 #### Required parameter
@@ -315,6 +318,7 @@ It can be used to terminate the agreement to optional terms and conditions as we
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
 static void UpdateTerms(GamebaseRequest.Terms.UpdateTermsConfiguration configuration, GamebaseCallback.ErrorDelegate callback)
@@ -325,6 +329,7 @@ static void UpdateTerms(GamebaseRequest.Terms.UpdateTermsConfiguration configura
 | Error | Error Code | Description |
 | --- | --- | --- |
 | NOT\_INITIALIZED | 1 | Gamebase not initialized. |
+| NOT\_LOGGED_IN | 2 | Login is required. (Only Standalone) |
 | UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | Unregistered terms and conditions Seq value has been set. |
 | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | The Terms API call has not been completed yet.<br/>Please try again later. |
 

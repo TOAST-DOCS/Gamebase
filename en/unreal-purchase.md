@@ -234,6 +234,16 @@ struct FGamebasePurchasableReceipt
     // and provision of the products purchased using the same user ID and sort them by game channel or character.
     UPROPERTY()
     FString payload;
+    
+    // Whether it is promotion or not
+    // - (Android) If the validation logic is temporarily turned off in the Gamebase payment server, a valid value is not guaranteed because this value will be output as false only.
+    UPROPERTY()
+    bool isPromotion;
+
+    // Whether it is test purchase or not
+    // - (Android) If the validation logic is temporarily turned off in the Gamebase payment server, a valid value is not guaranteed because this value will be output as false only.
+    UPROPERTY()
+    bool isTestPurchase;
 };
 ```
 
