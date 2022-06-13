@@ -55,17 +55,21 @@ If there's a value on the list of unconsumed purchases, proceed with the Consume
 > To prevent duplicate provision of an item, always check whether the item is being provided in duplicate in the game server.
 >
 
-![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
+![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.40.1.png)
 
 1. The game client makes a request to the game server to consume the purchase item.
     * Passes UserID, gamebaseProductId, paymentSeq, and purchaseToken.
 2. The game server checks the game DB to see if there is a history of already providing an item with the same paymentSeq.
-    * 2-1. If the item has not been provided yet, provide the item corresponding to gamebaseProductId to UserID.
-    * 2-2. After providing the item, store UserID, gamebaseProductId, paymentSeq, and purchaseToken in the game DB to prevent duplicate provision or allow for re-provision.
+    * 2-1.
+        * [Game > Gamebase > API Guide > Purchase(IAP) > Get Payment Transaction](./api-guide/#get-payment-transaction)
+    * 2-2. If the item has not been provided yet, provide the item corresponding to gamebaseProductId to UserID.
+    * 2-3. After providing the item, store UserID, gamebaseProductId, paymentSeq, and purchaseToken in the game DB to prevent duplicate provision or allow for re-provision.
 3. Regardless of whether the item has been provided, the game server completes the item provision by calling the Gamebase server's consume API.
-    * [API Guide > Purchase(IAP) > Consume](./api-guide/#consume)
+    * [Game > Gamebase > API Guide > Purchase(IAP) > Consume](./api-guide/#consume)
 
 ### Retry Transaction Flow
+
+![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
 * There are cases where the store purchase has been made successfully but the process was not properly completed due to errors.
 * Call **RequestItemListOfNotConsumed** to run reprocessing and proceed with the Consume Flow for any unprovided items.
