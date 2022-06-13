@@ -9,7 +9,7 @@ This guide describes the environments and initial setting of Gamebase Unity SDK.
 > 
 > Supported Unity versions
 >
-> * 2018.4.0 - 2021.2.19
+> * 2018.4.0 - 2021.3.3
 > * To support a lower version of Unity, contact [Customer Center](https://toast.com/support/inquiry).
 
 #### Android
@@ -22,7 +22,7 @@ This guide describes the environments and initial setting of Gamebase Unity SDK.
 
 | Gamebase SDK | External SDK |
 | --- | --- |
-| Gamebase | TOAST Unity SDK 0.25.4 |
+| Gamebase | TOAST Unity SDK 0.25.5 |
 
 * [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
 * [Gamebase iOS SDK - Dependencies](./ios-started/#setting)

@@ -23,7 +23,6 @@ Following settings are required for initialization.
 | enablePopup | ALL | O |
 | enableLaunchingStatusPopup | ALL | O |
 | enableBanPopup | ALL | O |
-| enableKickoutPopup | ALL | O |
 
 #### 1. App ID
 
@@ -76,13 +75,6 @@ This setting regards to using default Gamebase popups, when a game user is found
 
 * Default: true
 
-#### 8. enableKickoutPopup
-
-This setting regards to using default Gamebase popups, when a kickout event is received from the Gamebase Server. 
-
-* Default: true
-
-
 ### Debug Mode
 
 * Gamebase only displays the warning and error log.
@@ -118,7 +110,6 @@ void Sample::SetDebugMode(bool isDebugMode)
 }
 ```
 
-
 ### Initialize
 
 Initialize SDKs. 
@@ -139,7 +130,14 @@ void Initialize(const FGamebaseConfiguration& configuration, const FGamebaseLaun
 ```cpp
 void Sample::Initialize(const FString& appID, const FString& appVersion)
 {
-    FGamebaseConfiguration configuration{ "AppID", "AppVersion", "real", GamebaseDisplayLanguageCode.Korean, true, true, true, true, GamebaseStoreCode.Google, true };
+    FGamebaseConfiguration configuration;
+    configuration.appID = appID;
+    configuration.appVersion = appVersion;
+    configuration.storeCode = GamebaseStoreCode.Google;
+    configuration.displayLanguageCode = GamebaseDisplayLanguageCode.Korean;
+    configuration.enablePopup = true;
+    configuration.enableLaunchingStatusPopup = true;
+    configuration.enableBanPopup = true;
 
     IGamebase::Get().Initialize(configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* error)
     {
@@ -151,7 +149,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
             auto notice = launchingInfo->launching.notice;
             if (notice != null)
             {
-                if (FString.IsNullOrEmpty(notice.message) == false)
+                if (string.IsNullOrEmpty(notice.message) == false)
                 {
                     UE_LOG(GamebaseTestResults, Display, TEXT("title: %s"), notice.title);
                     UE_LOG(GamebaseTestResults, Display, TEXT("message: %s"), notice.message);
@@ -258,6 +256,7 @@ Refers to maintenance information registered on Gamebase Console.
 * beginDate: Start time 
 * endDate: End time 
 * message: Cause of maintenance 
+* hideDate: Whether to display maintenance start and end times
 
 [Game > Gamebase > Console Guide > Operation > Maintenance](./oper-operation/#maintenance)
 

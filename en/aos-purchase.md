@@ -72,9 +72,15 @@ If there's a value on the list of non-consumable purchases, execute **Consume Fl
 
 ### Purchase Items
 
-With gamebaseProductId of an item to purchase, call the following API to request for purchase.<br/>
-The gamebaseProductId is generally same as the ID of item registered at store, but it could be changed on Gamebase console. 
-Additional information for the payload field remains at the **PurchasableReceipt.payload** field after a successful payment, and therefore, can be applied to many purposes.<br/>
+Request purchase by calling the following API using the gamebaseProductId of the item to purchase.<br/>
+The gamebaseProductId is generally the same as the ID of item registered at the store, but it can be changed in the Gamebase console. 
+Additional information entered in the payload field is maintained at the **PurchasableReceipt.payload** field after a successful payment, so it can be used for many purposes.<br/>
+
+> <font color="red">[Caution]</font><br/>
+>
+> The AMAZON store does not support the **payload** field.
+>
+
 When a game user cancels purchase, the **GamebaseError.PURCHASE_USER_CANCELED** error is returned.
 Please process cancellation.
 
@@ -136,7 +142,7 @@ class PurchasableReceipt {
     // This is an important piece of information used to call 'Consume' Server API with purchaseToken.
     //
     // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
-    // aution: Call Consume API from game server!
+    // Caution: Call Consume API from game server!
     @NonNull
     String paymentSeq;
     

@@ -236,12 +236,12 @@ struct FGamebasePurchasableReceipt
     FString payload;
     
     // 프로모션 결제 여부
-    // - (Android) Gamebase 결제 서버에서 일시적으로 검증 로직을 끄는 경우에는 항상 false로만 출력되므로 항상 유효한 값이 보장되지 않습니다.
+    // - (Android) Gamebase 결제 서버에서 일시적으로 검증 로직을 끄는 경우에는 false로만 출력되므로 유효한 값이 보장되지 않습니다.
     UPROPERTY()
     bool isPromotion;
 
     // 테스트 결제 여부
-    // - (Android) Gamebase 결제 서버에서 일시적으로 검증 로직을 끄는 경우에는 항상 false로만 출력되므로 항상 유효한 값이 보장되지 않습니다.
+    // - (Android) Gamebase 결제 서버에서 일시적으로 검증 로직을 끄는 경우에는 false로만 출력되므로 유효한 값이 보장되지 않습니다.
     UPROPERTY()
     bool isTestPurchase;
 };
