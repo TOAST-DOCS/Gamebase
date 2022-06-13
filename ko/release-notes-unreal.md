@@ -1,5 +1,12 @@
 ## Game > Gamebase > 릴리스 노트 > Unreal
 
+### 2.40.1 (2022. 06. 14.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.1/GamebaseSDK-Unreal.zip)
+
+#### 버그 수정
+* 크래시가 발생할 수 있는 로직이 수정되었습니다.
+* (iOS) 동일한 API를 연속해서 호출 시 콜백이 정상적으로 전달되지 않는 문제가 수정되었습니다.
+
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Unreal.zip)
 
@@ -17,7 +24,7 @@
     * FGamebaseWebViewConfiguration.isNavigationBarVisible
 * (Android) 웹뷰에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다
     * FGamebaseTermsConfiguration.enableFixedFontSize
-* (Android) 약관 창에서 글자 크기를 고정할 수 있는 옵션이 추가되었습니다.
+* (Android) 약관 창에서 글자 크기를 고정할 수 있는 옵션이 추가되었습니다.p
     * FGamebaseTermsConfiguration.enableFixedFontSize
 * 결제 시 프로모션 여부를 알 수 있는 isPromotion 필드가 추가되었습니다.
     * FGamebasePurchasableReceipt.isPromotion
