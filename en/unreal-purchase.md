@@ -38,43 +38,46 @@ Regarding how to set in-app purchases on Android or iOS, read the following docu
 ### Purchase Flow
 
 Purchase of an item can be divided into Purchase Flow, Consume Flow, and Reprocess Flow.
-You may execute an item purchase in the following order: 
+It is recommended to implement the Purchase Flow in the following order:
 
 ![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-1. When a previous purchase has not been closed, purchase fails unless reprocessing runs. Therefore, call **RequestItemListOfNotConsumed** before payment so as to run reprocessing, and execute Consume Flow if there's any unsupplied item. 
-2. For the game client, call **RequestPurchase** of Gamebase SDK to make a purchase. 
-3. When a purchase has been successful, call **RequestItemListOfNotConsumed** and check history of non-consumable purchases; and if there's any item to supply, execute Consume Flow. 
-
+1. If the previous purchase was not completed normally, the purchase will fail if the reprocessing is not performed. Therefore, call **RequestItemListOfNotConsumed** before the purchase to run reprocessing, so that the Consume Flow is executed if there are any unprovided items.
+2. The game client attempts to make a purchase by calling **RequestPurchase** of the Gamebase SDK.
+3. If the purchase is successful, call **RequestItemListOfNotConsumed** to check the unconsumed purchase details, and if there is an item to provide, proceed with the Consume Flow.
 
 ### Consume Flow
 
-If there's a value on the list of non-consumable purchases, execute Consume Flow in the following order:
+If there's a value on the list of unconsumed purchases, proceed with the Consume Flow in the following order:
 
 > <font color="red">[Caution]</font><br/>
 >
-> To prevent the multiple issuance of the same purchased item, always check the game server for issuance history of items.
+> To prevent duplicate provision of an item, always check whether the item is being provided in duplicate in the game server.
 >
 
-![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
+![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.40.1.png)
 
-1. The game client requests for Consume of a purchase item on the game server. 
-    * Deliver UserID, itemSeq, paymentSeq, purchaseToken.
-2. The game server tracks down the history of item supplies with same paymentSeq, or purchaseToken within game database.  
-    * 2-1. If not supplied yet, supply the item for itemSeq to UserID.  
-    * 2-2. After item is provided, save UserID, itemSeq, paymentSeq, and purchaseToken to game database so as to check redundancy.  
-3. The game server calls Consume API to the Gamebase server to complete with item supply.
-    * [API Guide > Purchase (IAP) > Consume](./api-guide/#consume)
+1. The game client makes a request to the game server to consume the purchase item.
+    * Passes UserID, gamebaseProductId, paymentSeq, and purchaseToken.
+2. The game server checks the game DB to see if there is a history of already providing an item with the same paymentSeq.
+    * 2-1.
+        * [Game > Gamebase > API Guide > Purchase(IAP) > Get Payment Transaction](./api-guide/#get-payment-transaction)
+    * 2-2. If the item has not been provided yet, provide the item corresponding to gamebaseProductId to UserID.
+    * 2-3. After providing the item, store UserID, gamebaseProductId, paymentSeq, and purchaseToken in the game DB to prevent duplicate provision or allow for re-provision.
+3. Regardless of whether the item has been provided, the game server completes the item provision by calling the Gamebase server's consume API.
+    * [Game > Gamebase > API Guide > Purchase(IAP) > Consume](./api-guide/#consume)
 
 ### Retry Transaction Flow
 
-* Sometimes, a successful purchase at store ends up with failed closure, due to error. 
-* Call **RequestItemListOfNotConsumed** to run reprocessing and execute Consume Flow for any non-supplied items. 
-* It is recommended to call reprocessing in time for the following:
+![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
+
+* There are cases where the store purchase has been made successfully but the process was not properly completed due to errors.
+* Call **RequestItemListOfNotConsumed** to run reprocessing and proceed with the Consume Flow for any unprovided items.
+* It is recommended to call reprocessing at the following times:
     * After login is completed
-    * Before payment
-    * Entering store (or lobby) of a game
-    * Checking user profile or mailbox
+    * Before making a purchase
+    * When entering the store (or lobby) in a game
+    * When checking the user profile or mailbox
 
 ### Purchase Item
 
@@ -350,8 +353,8 @@ struct FGamebasePurchasableItem
 
 ### List Non-Consumed Items
 
-Send a request for non-consumable purchases of which items have not been normally consumed (delivered or paid) even after purchased. 
-When there's a non-consumable purchase, send a request to the game server (item server) so as to deliver (pay) items. 
+Send a request for unconsumed purchases of which items have not been normally consumed (delivered or provided) even after purchased. 
+When there's an unconsumed purchase, send a request to the game server (item server) so as to deliver (provide) items. 
 
 **API**
 

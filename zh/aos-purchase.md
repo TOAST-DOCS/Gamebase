@@ -49,13 +49,15 @@ Gamebase.initialize(activity, configuration, callback);
 > 为了防止重复提供道具，必须通过游戏服务器确认是否重复提供道具。
 >
 
-![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
+![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.40.1.png)
 
-1. 游戏客户端向游戏服务器请求consume（消费）。
+1. 游戏客户向游戏服务器请求consume（消费）。
     * 传送UserID、gamebaseProductId、paymentSeq、purchaseToken。
 2. 游戏服务器查看在游戏DB中是否存在以同样的paymentSeq提供道具的历史记录。
-    * 2-1. 若存在未提供道具，则需向UserID提供以gamebaseProductId购买的道具。
-    * 2-2. 提供道具后在游戏DB保存UserID、gamebaseProductId、paymentSeq、purchaseToken，必要时进行‘’支付再处理”或防止重复提供。
+    * 2-1.
+        * [Game > Gamebase > API指南 > Purchase(IAP) > Get Payment Transaction](./api-guide/#get-payment-transaction)
+    * 2-2. 若存在未提供道具，则需向UserID提供使用gamebaseProductId购买的商品。
+    * 2-3. 提供道具后在游戏DB保存UserID、gamebaseProductId、paymentSeq、purchaseToken，必要时进行‘’支付再处理”或防止重复提供。
 3. 游戏服务器通过调用Gamebase服务器的consume（消费）API提供道具。这时不考虑是否已提供道具。
     * [Game > Gamebase > API指南 > Purchase(IAP) > Consume](./api-guide/#consume)
 
