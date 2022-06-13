@@ -24,7 +24,7 @@
     * FGamebaseWebViewConfiguration.isNavigationBarVisible
 * (Android) 웹뷰에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다
     * FGamebaseTermsConfiguration.enableFixedFontSize
-* (Android) 약관 창에서 글자 크기를 고정할 수 있는 옵션이 추가되었습니다.p
+* (Android) 약관 창에서 글자 크기를 고정할 수 있는 옵션이 추가되었습니다.
     * FGamebaseTermsConfiguration.enableFixedFontSize
 * 결제 시 프로모션 여부를 알 수 있는 isPromotion 필드가 추가되었습니다.
     * FGamebasePurchasableReceipt.isPromotion
