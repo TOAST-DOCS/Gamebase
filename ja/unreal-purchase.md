@@ -236,6 +236,14 @@ struct FGamebasePurchasableReceipt
     // ゲームで必要とするさまざまな追加情報を入れる目的で活用できます。
     UPROPERTY()
     FString payload;
+    // プロモーション決済かどうか
+    // - (Android) Gamebase決済サーバーで一時的に検証ロジックを切る場合は、常にfalseと出力されるため、有効な値が保障されません。
+    UPROPERTY()
+    bool isPromotion;
+    // テスト決済かどうか
+    // - (Android) Gamebase決済サーバーで一時的に検証ロジックを切る場合は、常にfalseと出力されるため、有効な値が保障されません。
+    UPROPERTY()
+    bool isTestPurchase;    
 };
 ```
 
