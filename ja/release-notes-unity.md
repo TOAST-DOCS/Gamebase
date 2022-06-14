@@ -3,20 +3,20 @@
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 외부 SDK 업데이트: TOAST Unity SDK(0.25.5)
-* (Stanalone) 약관 API를 지원합니다.
+#### 機能追加
+* 外部SDKアップデート：TOAST Unity SDK(0.25.5)
+* (Standalone)以下の約款APIをサポートするように変更しました。
     * Gamebase.Terms.QueryTerms
     * Gamebase.Terms.UpdateTerms
 
-#### 기능 개선/변경
-* 한글이 유니코드로 표시되는 현상이 개선되었습니다.
-* (iOS) bitcode 지원하도록 수정되었습니다.
+#### 機能改善/変更
+* ハングルがUnicodeで表示される現象が改善されました。
+* (iOS) bitcodeをサポートするように修正しました。
 
-#### 버그 수정
-* (Android) OpenContact API 호출 시 Configuration.additionalParameters가 적용되지 않는 문제가 수정되었습니다.
+#### バグ修正
+* (Android) OpenContact API呼び出し時にConfiguration.additionalParametersが適用されない問題が修正されました。
 
-#### 플랫폼별 변경 사항
+#### 各プラットフォームの変更事項
 * [Gamebase Android SDK 2.40.0](./release-notes-android/#2400-20220524)
 * [Gamebase iOS SDK 2.40.0](./release-notes-ios/#2400-20220524)
 
