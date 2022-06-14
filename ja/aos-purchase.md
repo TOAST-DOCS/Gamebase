@@ -15,9 +15,9 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 * **STORE_CODE**は、次の値の中から選択します。
     * GG：Google
     * ONESTORE：ONEstore
-    * GALAXY: Galaxy Store
-    * AMAZON: Amazon Appstore
-    * HUAWEI: Huawei AppGallery
+    * GALAXY：Galaxy Store
+    * AMAZON：Amazon Appstore
+    * HUAWEI：Huawei AppGallery
 
 ```java
 String STORE_CODE = "GG";	// Google
@@ -77,6 +77,12 @@ Gamebase.initialize(activity, configuration, callback);
 購入するアイテムのgamebaseProductIdを利用して次のAPIを呼び出し、購入をリクエストします。<br/>
 gamebaseProductIdは一般的にはストアに登録したアイテムのIDと同じですが、Gamebaseコンソールで変更することもできます。
 payloadフィールドに入力した追加情報は決済成功後、**PurchasableReceipt.payload**フィールドに維持されるため、複数の用途で活用できます。<br/>
+
+> <font color="red">[注意]</font><br/>
+>
+> AMAZONストアは**payload**フィールドをサポートしません。
+>
+
 ゲームユーザーが購入をキャンセルすると、**GamebaseError.PURCHASE_USER_CANCELED**エラーが返ります。
 キャンセル処理をしてください。
 
