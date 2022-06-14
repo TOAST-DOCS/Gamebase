@@ -3,8 +3,8 @@
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* SDK 내부 로직 개선
+#### 機能改善/変更
+* SDK内部ロジック改善
 
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-iOS.zip)
