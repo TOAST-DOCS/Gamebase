@@ -62,11 +62,13 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 > アイテムが重複支給されることがないように、ゲームサーバーで必ず重複支給有無をチェックしてください。
 >
 
-![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
+![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.40.1.png)
 
 1. ゲームクライアントがゲームサーバーに決済アイテムのconsume(消費)をリクエストします。
     * UserID, gamebaseProductId, paymentSeq, purchaseTokenを伝達します。
 2. ゲームサーバーは、ゲームDBにすでに同じpaymentSeqでアイテムを支給した履歴があるかを確認します。
+    * 2-1.
+        * [Game > Gamebase > APIガイド > Purchase(IAP) > Get Payment Transaction](./api-guide/#get-payment-transaction)
     * 2-1. まだアイテムを支給していなければUserIDにgamebaseProductIdに該当するアイテムを支給します。
     * 2-2. アイテム支給後、ゲームDBにUserID、gamebaseProductId、paymentSeq、purchaseTokenを保存して重複支給防止または再支給ができるようにします。
 3. アイテム支給有無に関係なく、ゲームサーバーはGamebaseサーバーのconsume(消費) APIを呼び出してアイテムの支給を完了します。

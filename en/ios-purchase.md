@@ -45,49 +45,51 @@ Import the following header to ViewController to implement purchase API.
 ### Purchase Flow
 
 Purchase of an item can be divided into Purchase Flow, Consume Flow, and Reprocess Flow.
-You may execute an item purchase in the following order:
+It is recommended to implement the Purchase Flow in the following order:
 
 ![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-1. If the previous payment has not properly been completed, the payment will fail when the reprocessing starts. Therefore, you should call **requestItemListOfNotConsumedWithCompletion:** to trigger reprocessing before payment, so as to perform Consume Flow if there are items not issued yet.
-2. In the game client, call **requestPurchaseWithGamebaseProductId:viewController:completion:** of Gamebase SDK to attempt payment.
-3. If the payment has been made successfully, call **requestItemListOfNotConsumedWithCompletion:** to check the consumable purchases history. If there are items to be provided, perform Consume Flow.
+1. If the previous purchase was not completed normally, the purchase will fail if the reprocessing is not performed. Therefore, call **requestItemListOfNotConsumedWithCompletion:** before the purchase to run reprocessing, so that the Consume Flow is executed if there are any unprovided items.
+2. The game client attempts to make a purchase by calling **requestPurchaseWithGamebaseProductId:viewController:completion:** of the Gamebase SDK.
+3. If the purchase is successful, call **requestItemListOfNotConsumedWithCompletion:** to check the unconsumed purchase details, and if there is an item to provide, proceed with the Consume Flow.
 
 ### Consume Flow
 
-If there's a value on the list of non-consumable purchases, execute Consume Flow in the following order:
+If there's a value on the list of unconsumed purchases, proceed with the Consume Flow in the following order:
 
 > <font color="red">[Caution]</font><br/>
 >
-> To prevent the multiple issuance of the same purchased item, always check the game server for issuance history of items.
+> To prevent duplicate provision of an item, always check whether the item is being provided in duplicate in the game server.
 >
 
-![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
+![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.40.1.png)
 
-1. The game client requests the game server to consume the purchased items.
-    * UserID, gamebaseProductId, paymentSeq, and purchaseToken are passed.
-2. Game server checks the game DB to see if there is any history of the items being issued with the identical paymentSeq.
-    * 2-1. If the item has not been issued yet, issue the item belonging to the gamebaseProductId to the UserID.
-    * 2-2. After issuing the item, save the UserID, gamebaseProductId, paymentSeq, and purchaseToken in the game DB to prevent provisioning or to allow reprovisioning.
-3. Regardless of the item issuance, the game server should call Consume API from the Gamebase server to complete the item issuance.
-    * [Game > Gamebase > API Guide > Purchase (IAP) > Consume](./api-guide/#consume)
+1. The game client makes a request to the game server to consume the purchase item.
+    * Passes UserID, gamebaseProductId, paymentSeq, and purchaseToken.
+2. The game server checks the game DB to see if there is a history of already providing an item with the same paymentSeq.
+    * 2-1.
+        * [Game > Gamebase > API Guide > Purchase(IAP) > Get Payment Transaction](./api-guide/#get-payment-transaction)
+    * 2-2. If the item has not been provided yet, provide the item corresponding to gamebaseProductId to UserID.
+    * 2-3. After providing the item, store UserID, gamebaseProductId, paymentSeq, and purchaseToken in the game DB to prevent duplicate provision or allow for re-provision.
+3. Regardless of whether the item has been provided, the game server completes the item provision by calling the Gamebase server's consume API.
+    * [Game > Gamebase > API Guide > Purchase(IAP) > Consume](./api-guide/#consume)
 
 ### Retry Transaction Flow
 
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
 * There are cases where the store purchase has been made successfully but the process was not properly completed due to errors.
-*If there are items not issued yet, call **requestItemListOfNotConsumedWithCompletion:** to trigger reprocessing to finish [Consume Flow](./ios-purchase/#consume-flow).
-* It is recommended to call reprocessing:
-    * after login.
-    * before payment.
-    * when entering the in-game store (or lobby).
-    * when checking the user profile or mailbox.
+* Call **requestItemListOfNotConsumedWithCompletion:** to run reprocessing and proceed with the [Consume Flow](./ios-purchase/#consume-flow) for any unprovided items.
+* It is recommended to call reprocessing at the following times:
+    * After login is completed
+    * Before making a purchase
+    * When entering the store (or lobby) in a game
+    * When checking the user profile or mailbox
 
 ### Purchase Item
 
 With gamebaseProductId of an item to purchase, call the following API to request for purchase.   <br/>The gamebaseProductId is generally same as the ID of item registered at store, but it could be changed on Gamebase console. 
-Additional information for the payload field remains at the **TCGBPurchasableReceipt.payload** field after a successful payment, and therefore, can be applied to many purposes. <br/>
+Additional information for the payload field is maintained at the **TCGBPurchasableReceipt.payload** field after a successful payment, and therefore, can be applied to many purposes. <br/>
 When a game user cancels purchase, the **TCGB_ERROR_PURCHASE_USER_CANCELED** is returned. Please process cancellation. 
 
 **API**
@@ -268,17 +270,17 @@ To retrieve the list of items, call the following API. Information of each item 
 
 ### List Non-Consumed Items
 
-Request for a list of non-consumed items, which have not been normally consumed (delivered, or provided) after purchase.<br/>
-In case of non-purchased items, ask the game server (item server) to proceed with item delivery (supply).
+Request a list of non-consumed items, which have not been normally consumed (delivered, or provided) after purchase.<br/>
+* In case there is any non-purchased item, request the game server (item server) to proceed with item delivery (provision).
 
-* When a purchase is not properly completed, reprocessing is also required; please call in time for the following: 
-    * See if there's any unsupplied items for a game user
-        * After login is completed 
-        * Entering store (or lobby) of a game 
-        * Checking user profile or mailbox
-    * See if there's any item in need of reprocessing
-        * Before purchase
-        * After failed purchase
+* If the purchase is not completed normally, this API also serves the reprocessing function, so call it in the following situations:
+    * Check if there's any unprovided items for a game user
+    	* After login is completed
+    	* When entering the store (or lobby) of a game
+    	* When checking the user profile or mailbox
+    * Check if there's any item in need of reprocessing
+    	* Before making a purchase
+    	* After a purchase fails
 
 ```objectivec
 - (void)viewDidLoad {
@@ -322,7 +324,7 @@ Based on the latest success of purchase, reprocessing is required by calling an 
 List of purchases made by user's App Store account can be restored and applied to console. 
 This feature is useful when a purchased subscription cannot be queried nor activated. 
 Restored payment, including expired payment, is returned as result.
-In the case of auto-renewed consumable subscriptions, any missing purchases can be queried from the non-consumable purchase history after restoration is done. 
+In the case of auto-renewed consumable subscriptions, any missing purchases can be queried from the unconsumed purchase history after restoration is done. 
 
 
 ```objectivec

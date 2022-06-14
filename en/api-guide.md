@@ -1,11 +1,13 @@
 ## Game > Gamebase > API v1.3 Guide
 
 ## Updates
-- IAP(In App Purchase) New items have been added to or deleted from the request parameters and response results of API.
+- New items have been added to or deleted from the request parameters and response results of IAP (In App Purchase) API.
 - Added Push Wrapping API.
-- Added the "Get IdP Token and Profiles" API capable of acquiring the profile and token info of the IdP used for logging in with the Gamebase Access Token.
+- Added the "Get IdP Token and Profiles" API that lets you acquire the profile and token info of the IdP used for logging in with the Gamebase Access Token.
 - Added the "Get UserId Information with IdP Id" API which acquires the Gamebase userId mapped with IdP Id.
 - Added the "Withdraw Histories" API to get Gamebase userId of users who have withdrawn during a specific period.
+- Added the "Ban" and "Ban Release" APIs that perform ban and ban release.
+- Added the "Get Payment Transaction" API to query payment transaction.
 
 ## Advance Notice
 
@@ -34,7 +36,7 @@ Secret Key, as a control access of API, can be found in the Gamebase Console. It
 
 #### TransactionId
 
-AS part of managing API internally within a server that calls API, TransactionId is provided. By setting a transaction ID at the HTTP header from a calling server to call API, the Gamebase server delivers results with corresponding TransactionId set at the response HTTP Header and Response Body Header of results.
+As part of managing API internally within a server that calls API, TransactionId is provided. By setting a transaction ID at the HTTP header from a calling server to call API, the Gamebase server delivers results with corresponding TransactionId set at the response HTTP Header and Response Body Header of results.
 
 ## Common
 
@@ -45,7 +47,7 @@ Following items should be set at the HTTP Header to call API.
 | Name | Required | Value |
 | --- | --- | --- |
 | Content-Type | Required | application/json; charset=UTF-8 |
-| X-Secret-Key | Required |Refer to description of SecretKey  |
+| X-Secret-Key | Required | Refer to description of SecretKey  |
 | X-TCGB-Transaction-Id | Optional | Refer to description of TransactionId |
 
 #### API Response
@@ -86,6 +88,13 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | isSuccessful | boolean | Whether it is successful or not.  |
 | resultCode | int | Result code<br>0 for success; return error codes, for failure |
 | resultMessage | String | Result message  |
+
+#### API Version
+
+When a specific variable type in the API response result changes, the API version changes. That is, even if a new API is added or a new variable is added to the response result, the API version does not change.
+
+> [Caution]
+> Make sure that you add the option of the JSON library you are using so that a JSON parsing error does not occur even if a new variable is added to the API response result.
 
 <br>
 <br>
@@ -477,7 +486,7 @@ Check common items.
 | member.valid | Enum | [User status](#member-valid-code) |
 | member.appId | String | appId |
 | member.regDate | String | Time when a user created an account   |
-| member.lastLoginDate | String | Last login time <br>Not available for a first-time login user |
+| member.lastLoginDate | String | Last login time <br>Not available for a first-time login user or a withdrawn user |
 | member.authList | Array[Object] | Information related to user authentication IdP  |
 | member.authList[].userId | String | User ID |
 | member.authList[].authSystem | String |  Authentication system used internally within Gamebase <br>User authentication system to be provided |
@@ -486,10 +495,10 @@ Check common items.
 | member.authList[].regDate | String | Time when the IdP information was mapped with the user account |
 | temporaryWithdrawal | Object | Information related to pending withdrawal <br>Provided only when the value of valid is "T" |
 | temporaryWithdrawal.gracePeriodDate | String | Expiration time for pending withdrawal ISO 8601 |
-| memberInfo                   | Object        | Additional user information              |
+| memberInfo                   | Object        | Additional user information<br>Not available for a withdrawn user |
 | memberInfo.deviceCountryCode | String        | Country code of user device              |
 | memberInfo.usmCountryCode    | String        | Country code of user USIM                |
-| memberInfo.language          | String        | User language                            |
+| memberInfo.language          | String        | User device language, ISO 639-1          |
 | memberInfo.osCode            | String        | [OS code](#os-code)                      |
 | memberInfo.telecom           | String        | Telecommunication provider               |
 | memberInfo.storeCode         | String        | [Store code](#store-code)               |
@@ -756,6 +765,82 @@ Check common items.
 
 <br>
 
+#### Ban
+
+Changed users to the banned state.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-gateway/v1.3/apps/{appId}/members/ban |
+
+**[Request Header]**
+
+Check common items.
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud project ID |
+
+**[Request Parameter]**
+
+N/A
+
+**[Request Body]**
+
+```json
+{
+    "userIdList": [
+        "userId-1", "userId-2"
+    ],
+    "banTypeCode": "TEMPORARY",
+    "end": "2022-05-10T06:03:50.000+09:00",
+    "templateCode": 0,
+    "banReason": "string",
+    "flags": "leaderboard",
+    "banCaller": "APP_SERVER",
+    "regUser": "GAME-SERVER"
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| userIdList | Array[String] | IDs of the users who are target for the ban |
+| banTypeCode | Enum | Type of the ban. TEMPORARY or PERMANENT |
+| end | String | End time for the ban (ISO 8601 standard time) <br>- Required for TEMPORARY type |
+| templateCode | Integer | Template code of the template used for the message to be displayed when the user is banned <br>- The value can be found on the console's **Ban > Template** detailed query page |
+| banReason | String | Reason for the ban |
+| flags | String | To delete the banned users' leaderboard data as well, set it to 'leaderboard' |
+| banCaller | String | The subject who called the Ban API. Set it to a fixed value of 'APP_SERVER'. |
+| regUser | String | Name to display on the console's Ban page |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "failedUserIdList": ["userId-1"]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| failedUserIdList | Array[String] | IDs of the users who could not be registered for the ban |
+
+**[Error Code]**
+
+[Error code](./error-code/#server)
+
+</br>
+
 #### Ban Histories
 
 Retrieves the user ban history.
@@ -834,20 +919,88 @@ Check common items.
 | result | Array[Object] | Retrieved ban history details |
 | result.userId | String | User ID |
 | result.banCaller | String | Subject of calling ban |
-| result.banReason | String | Reason of ban |
-| result.banType | String | Type of ban. TEMPORARY or PERMANENT |
-| result.beginDate | Long | Start date of ban|
-| result.endDate | Long | End date of ban<br>In case of PERMANENT type, the value does not exist |
+| result.banReason | String | Reason for the ban |
+| result.banType | String | Type of the ban. TEMPORARY or PERMANENT |
+| result.beginDate | Long | Start date of the ban|
+| result.endDate | Long | End date of the ban<br>In case of PERMANENT type, the value does not exist |
 | result.flags | String | Returned as 'leaderboard' when you have selected Delete Leaderboard upon Registering Ban in the console. |
 | result.name | String | Template name registered in the console |
-| result.templateCode | Long | Code value of ban template registered in the console |
+| result.templateCode | Long | Code value of the ban template registered in the console |
 
 
 **[Error Code]**
 
 [Error code](./error-code/#server)
 
-<br>
+</br>
+
+#### Ban Release
+
+Changes users to the ban released state, that is, the normal state.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| DELETE | /tcgb-gateway/v1.3/apps/{appId}/members/ban |
+
+**[Request Header]**
+
+Check common items.
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud project ID |
+
+**[Request Parameter]**
+
+N/A
+
+**[Request Body]**
+
+```json
+{
+    "userIdList": [
+        "userId-1", "userId-2"
+    ],
+    "banReleaseReason": "string",
+    "banReleaseCaller": "APP_SERVER",
+    "releaseUser": "GAME-SERVER"
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| userIdList | Array[String] | IDs of the users who are target for the ban release |
+| banReleaseReason | String | Reason for the ban release |
+| banReleaseCaller | String | Subject who called the Ban Release API. Set it to a fixed value of 'APP_SERVER'. |
+| releaseUser | String | Name to display on the console's Ban Release page |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "failedUserIdList": ["userId-1"]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| failedUserIdList | Array[String] | IDs of the users who could not be released from a ban |
+
+**[Error Code]**
+
+[Error code](./error-code/#server)
+
+</br>
 
 #### Ban Release Histories
 
@@ -929,17 +1082,17 @@ Check common items.
 | pagingInfo.totalPages | int | Total number of pages |
 | result | Array[Object] | Retrieved ban information |
 | result.userId | String | User ID |
-| result.banCaller | String | Subject of calling ban |
-| result.banReason | String | Reason of ban |
-| result.banType | String | Type of ban. TEMPORARY or PERMANENT |
-| result.beginDate | String | Start date of ban |
-| result.endDate | String | End date of ban |
-| result.flags | String | Returned as 'leaderboard' when you have selected Delete Leaderboard upon Registering Ban in the console. |
+| result.banCaller | String | Subject of calling the ban |
+| result.banReason | String | Reason for the ban |
+| result.banType | String | Type of the ban. TEMPORARY or PERMANENT |
+| result.beginDate | String | Start date of the ban |
+| result.endDate | String | End date of the ban |
+| result.flags | String | Returned as 'leaderboard' if you have selected Delete Leaderboard when registering the ban in the console. |
 | result.name | String | Template name registered in the console |
-| result.templateCode | Long | Code value of ban template registered in the console |
-| result.releaseCaller | String | Subject of ban release |
-| result.releaseReason | String | Reason of ban release |
-| result.releaseDate | String | Date of ban release |
+| result.templateCode | Long | Code value of the ban template registered in the console |
+| result.releaseCaller | String | Subject of the ban release |
+| result.releaseReason | String | Reason for the ban release |
+| result.releaseDate | String | Date of the ban release |
 
 
 **[Error Code]**
@@ -1312,7 +1465,7 @@ Check common items.
 If the store payment (Google Play Store, App Store, ONEStore, etc.) has been made successfully, it issues the purchased items to the user, records the purchase history in the server, and then informs the Gamebase of the payment consumption. You can consume payment only once per payment, and the payment is not consumed if the payment status is not normal.
 
 > [Note]
-> Only the item payment with the product type CONSUMABLE at the time of registration will be consumed.
+> Only the item payment with the product type CONSUMABLE or CONSUMABLE_AUTO_RENEWABLE at the time of registration will be consumed.
 > Can consume once per payment, and IAP regards any payment without consumption as not issuing the purchased item.
 
 Unconsumed payment history can be viewed through SDK and View Unconsumed Payment History API. Even if the unconsumed payment history exists through the API, the provisioning history within the game server becomes the priority if the game server has the history about the item provisioning.
@@ -1383,7 +1536,7 @@ N/A
 | result | Object | Basic payment information |
 | result.price | Float | Payment price |
 | result.currency  | String  | Payment currency |
-| result.productSeq | Long | Payment item number (original item number registered on console) |
+| result.productSeq | Long | Item number<br>Automatically generated value for external store items when registering a product in the console |
 | result.marketId | String | [Store code](#store-code) |
 | result.gamebaseProductId | String | Gamebase product ID<br>The value to be entered by user when registering products using the console |
 | result.payload | String | Additional information configured in SDK |
@@ -1457,7 +1610,8 @@ N/A
             "accessToken": "ja5SBJBfr7rYUdjFr6dRe7gKnkX0r7EKPvuK6CIUBBekc1rE9CVbMKVCNuw6ZtwmcpDRXrToR9l26NF9zub6ol",
             "gamebaseProductId": "gamebase_prod_001",
             "purchaseTime": "2020-06-02T13:38:56+09:00",
-            "payload": "additional info"
+            "payload": "additional info",
+            "isTestPurchase" : false
         },
         {
             "paymentSeq": "2016122110023125",
@@ -1467,7 +1621,8 @@ N/A
             "marketId": "AS",
             "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ",
             "gamebaseProductId": "gamebase_prod_002",
-            "purchaseTime": "2020-06-02T13:37:42+09:00"
+            "purchaseTime": "2020-06-02T13:37:42+09:00",
+            "isTestPurchase" : false
         }
     ]
 }
@@ -1477,14 +1632,96 @@ N/A
 | --- | --- | --- |
 | result | Array[Object] | Basic payment information |
 | result[].paymentSeq | String  | Payment number |
-| result[].productSeq | Long | Payment item number (original item number registered on console) |
+| result[].productSeq | Long | Item number<br>Automatically generated value for external store items when registering a product in the console |
 | result[].currency  | String  | Payment currency |
 | result[].price | Float | Payment price |
 | result[].accessToken | String | Payment authentication token |
 | result[].marketId | String | [Store code](#store-code) |
-| result[].gamebaseProductId | String | Gamebase product ID<br>The value to be entered by user when registering a product using the console |
+| result[].gamebaseProductId | String | Gamebase product ID<br>The value entered by the user when registering a product in the console |
 | result[].purchaseTime | String | Time and date of payment |
 | result[].payload | String | Additional information configured in SDK<br>For Amazon store, the value might be missing |
+| result[].isTestPurchase | boolean | Whether it is a test purchase or not |
+
+**[Error Code]**
+
+[Error Code](./error-code/#server)
+
+<br>
+
+#### Get Payment Transaction
+
+You can check whether the non-consumed payment history obtained through the client SDK is valid.
+(If you want to validate the payment number (paymentSeq) and payment authentication token (accessToken) before calling the item issuance (consume) API on the server, call this API.)
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-inapp/v1.3/apps/{appId}/payment/transaction?accessToken={accessToken} |
+
+**[Request Header]**
+
+Check common items.
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud project ID |
+
+**[Request Parameter]**
+
+| Name | Type | Required |  Value |
+| --- | --- | --- | --- |
+| accessToken | String | Required | Payment authentication token (purchaseToken) |
+
+**[Request Body]**
+
+N/A
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "paymentSeq": "2022041110385239",
+        "productSeq": 1003150,
+        "currency": "EUR",
+        "price": 2.29,
+        "marketId": "AS",
+        "accessToken": "-Fr8Y7_dvv5qhdd6qVHbs7gKnkX0r7EKPvuK6CI-UBBekc1rE9CVbMKVCNuw6ZtwkBGlzeIHg6DdjaRVeaW7GYlPF4vRa50L8umB6tdBvk8",
+        "productType": "CONSUMABLE",
+        "userId": "AS@QW4M1GM7W97YJDCN",
+        "gamebaseProductId": "qa_ksw_prod_as_001",
+        "purchaseTime": "2022-04-11T16:47:01+09:00",
+        "payload" : "string",
+        "isTestPurchase": true,
+        "isConsumable": false
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Object |  Payment information |
+| result.paymentSeq | String | Payment number |
+| result.productSeq | Long | Item number<br>Automatically generated value for external store items when registering a product in the console |
+| result.currency  | String | Payment currency  |
+| result.price | Float | Payment price |
+| result.marketId | String | [Store code](#store-code) |
+| result.accessToken | String | Payment authentication token |
+| result.productType | String  | Product (item) type<br>- One-time: CONSUMABLE<br>- Consumable Subscription: CONSUMABLE_AUTO_RENEWABLE<br>- Subscription: AUTO_RENEWABLE |
+| result.userId | String  | User ID  |
+| result.gamebaseProductId | String | Gamebase product ID<br>The value entered by the user when registering a product in the console |
+| result.purchaseTime | String | Time and date of payment |
+| result.payload | String | Additional information configured in SDK<br>For Amazon store, the value might be missing |
+| result.isTestPurchase | boolean | Whether it is a test purchase or not<br>- true: Test purchase |
+| result.isConsumable | boolean | Whether Consume API can be called<br>- true: Currently in non-consumed state, so Consume API can be called |
 
 **[Error Code]**
 
@@ -1550,13 +1787,16 @@ N/A
             "productSeq": 1001221,
             "productId": "money_100",
             "productType": "AUTO_RENEWABLE",
+            "originalPaymentId": "GPA.3302-8679-7228-41195",
             "paymentId": "GPA.3302-8679-7228-41195",
             "price": 1000.0,
             "currency": "KRW",
             "gamebaseProductId": "gamebase_renewal_001",
-            "payload": "additional info",
+            "payload" : "additional info",
             "purchaseTime": "2020-06-02T13:38:56+09:00",
-            "expiryTime": "2020-06-02T13:48:56+09:00"
+            "expiryTime": "2020-06-02T13:48:56+09:00",
+            "isTestPurchase" : false,
+            "referenceStatus" : "PURCHASED"
         }
     ]
 }
@@ -1569,16 +1809,19 @@ N/A
 | result[].userId  | String  | User ID |
 | result[].paymentSeq | String  | Payment number |
 | result[].accessToken | String | Payment validation token |
-| result[].productSeq | Long | Payment item number (original item number registered on console) |
+| result[].productSeq | Long | Item number<br>Automatically generated value for external store items when registering a product in the console |
 | result[].productId | String  | Identifier of product (item) registered at store |
 | result[].productType | String  | Product (item) type <br>Subscription: AUTO_RENEWABLE |
 | result[].currency  | String  | Payment currency |
 | result[].price | Float | Payment price |
+| result[].originalPaymentId | String | Initial store payment number |
 | result[].paymentId | String | Recently updated store payment number |
-| result[].gamebaseProductId | String | Gamebase product ID<br>The value to be entered by user when registering a product using the console |
+| result[].gamebaseProductId | String | Gamebase product ID<br>The value entered by the user when registering a product in the console |
 | result[].payload | String | Additional information configured in SDK |
 | result[].purchaseTime | String | Recent updated time |
 | result[].expiryTime | String | Subscription expiration time |
+| result[].isTestPurchase | boolean | Whether it is a test purchase or not |
+| result[].referenceStatus | String | [Payment reference status](#store-reference-status) provided by the payment system (in-app purchase, external payment)<br>Currently only supported by Google Play Store |
 
 **[Error Code]**
 
@@ -1765,6 +2008,31 @@ The code defined internally by Gamebase for the user's current status.
 | T | Withdrawal-suspended user |
 | P | Ban-suspended user |
 | M | Missing account |
+<br/>
+
+
+### Store Reference Status
+
+Payment reference status provided by the payment system (in-app purchase in stores, external payment)
+
+| Payment System | Code | Description |
+| --- | --- | --- |
+| Google In-App | PURCHASED | Purchase complete |
+| | REPURCHASED | Repurchase complete |
+| | RESTARTED | Subscription restarted |
+| | PENDING | Payment pending |
+| | RENEWED | Subscription renewed |
+| | RECOVERED | Subscription recovered |
+| | PAUSE_SCHEDULED | Subscription to be paused |
+| | PAUSED | Paused |
+| | REVOKED | Refunded |
+| | CANCELED_PRODUCT | Single item payment canceled |
+| | CANCELED_SUBSCRIPTION | Subscription canceled (renewal stopped)<br>- Current subscription must be provided |
+| | ON_HOLD | On hold |
+| | IN_GRACE | In grace period |
+| | EXPIRED | Expired |
+| | NOT_APPOINTED | No corresponding condition |
+
 <br/>
 
 

@@ -8,7 +8,7 @@ This document describes the environment and initial setting to enable Unreal Gam
 >
 > Support Versions for Unreal 
 >
-> * UE 4.22 ~ UE 4.26
+> * UE 4.22 ~ UE 5.0
 > * To get support for a lower version of Unreal, please contact [Customer Center](https://toast.com/support/inquiry).
 
 #### Supported Platforms
@@ -35,6 +35,11 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 <span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
 
+#### Dependencies
+
+* [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
+* [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
+
 ## Installation
 
 1. Download Unreal Gamebase SDK and create a folder named `Plugins` in the project path and add the downloaded SDK.  
@@ -45,19 +50,19 @@ Supported Platforms
 ### Android Settings
 
 1. Select **Edit > Project Settings** from the editor menu.
-2. In the Project Settings window, under Plugin category, select **Gamebase**.
+2. In the Project Settings window, under Plugin category, select **Gamebase - Android**.
 
-![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.19.0.png)
+![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.40.0.png)
 
-* Android - Authentication
+* Authentication
     * Activate the IdP to use.
     * To use Hangame IdP, please contact our Customer Center.
-* Android - Push
-    * Activate the Push to use.
-* Android - Purchase
+* Purchase
     * Select the store to use.
     * ONE Store
         * Select View Option - Full payment screen (Full) or Payment popup window (Popup).
+* Push
+    * Enable the push service to use.
 
 
 #### An issue where Google Play authentication and payment does not complete
@@ -111,6 +116,20 @@ See below for relevant guides.
 >`!Important`
 > If you ignore this process, the following guide link does not properly work and the Gamebase SDK for Unreal will become unavailable.
 
+#### Project Settings
+
+1. Select the editor menu **Edit > Project Settings**.
+2. In the Project Settings window, select **Gamebase - iOS** from the Plugin category.
+
+![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.40.0.png)
+
+* Authentication
+    * Enable the IdP to use.
+* Purchase
+    * Select the store to use.
+* Push
+    * Enable the push service to use.
+
 #### Sign in with Apple
 
 To enable Sign in with Apple, com.apple.developer.applesignin must be added to entitlement.  
@@ -143,6 +162,16 @@ if (bRemoteNotificationsSupported)
     Text.AppendLine("\t\t<string>Default</string>");
     Text.AppendLine("\t</array>");
 }
+```
+
+#### Facebook SDK
+
+To use Facebook IdP, you need to add the following code in the [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS /IOSToolChain.cs) file.
+
+```cs
+// need to tell where to load Framework dylibs
+Result += " -rpath /usr/lib/swift";                 // Added code
+Result += " -rpath @executable_path/Frameworks";
 ```
 
 #### Remote Notification
