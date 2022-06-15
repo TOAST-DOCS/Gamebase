@@ -100,7 +100,13 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
 | forceShow | O | If the user agreed to the terms, calling the showTermsView API again will not display the terms and conditions window, but ignore it and force the display of the terms and conditions window.<br>**default** : false | 
+| enableFixedFontSize | O | Determines whether to fix the font size of the terms and conditions window.<br>**default** : false<br/>**Android Only** |
  
+**FGamebaseShowTermsViewResult**
+
+| Parameter              | Values                          | Description         |
+| ---------------------- | --------------------------------| ------------------- |
+| isTermsUIOpened        | bool                            | **true** : The terms window was displayed and the user agreed, and the terms window has been closed.<br>**false** : The terms window was not displayed and the terms window has been closed because the user has already agreed to the terms.        |
 
 **API**
 
@@ -110,7 +116,7 @@ Supported Platforms
 
 ```cpp
 void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
-void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
+void ShowTermsView(const FGamebaseTermsConfiguration& configuration, const FGamebaseDataContainerDelegate& onCallback);
 ```
 
 **ErrorCode**
@@ -137,8 +143,12 @@ void Sample::ShowTermsView()
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView succeeded."));
                 
-                // Save the 'PushConfiguration' and use it for RegisterPush() after Login().
-                savedPushConfiguration = FGamebasePushConfiguration::From(dataContainer);
+                const auto result = FGamebaseShowTermsResult::From(dataContainer);
+                if (result.IsValid())
+                {
+                    // Save the 'PushConfiguration' and use it for RegisterPush() after Login().
+                    savedPushConfiguration = FGamebasePushConfiguration::From(dataContainer);
+                }
             }
             else
             {
@@ -309,7 +319,6 @@ void Sample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 term
 }
 ```
 
-
 #### GamebaseRequest.Terms.UpdateTermsConfiguration
 
 | Parameter            | Mandatory(M) / Optional(O) | Values                    | Description         |
@@ -325,6 +334,25 @@ void Sample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 term
 | termsContentSeq      | **M**                      | int32                | KEY for optional terms and conditions      |
 | agreed               | **M**                      | bool               | Info on whether user agrees to optional terms and conditions  |
 
+### IsShowingTermsView
+
+Determines whether the current terms and conditions window is being displayed on the screen.
+
+**API**
+
+```cpp
+bool IsShowingTermsView();
+```
+
+**Example**
+
+```cpp
+void Sample::IsShowingTermsView()
+{
+    bool isShowingTermsView = IGamebase::Get().GetTerms().IsShowingTermsView();
+    UE_LOG(GamebaseTestResults, Display, TEXT("IsShowingTermsView : %s"), isShowingTermsView ? TEXT("true") : TEXT("false"));
+}
+```
 
 ## Webview
 
@@ -394,11 +422,12 @@ void Sample::ShowWebView(const FString& url)
 | colorG                   | 0~255                                    | Color G of Navigation Bar                |
 | colorB                   | 0~255                                    | Color B of Navigation Bar                |
 | colorA                   | 0~255                                    | Color alpha of Navigation Bar                |
-| buttonVisible            | true or false                            | Activate or deactivate Go Back button          |
+| isBackButtonVisible            | true or false                            | Activate or deactivate Go Back button          |
 | barHeight                | height                                   | Height of Navigation Bar                  |
 | backButtonImageResource  | ID of resource                           | Image of Go Back button                |
 | closeButtonImageResource | ID of resource | Image of Close button |
 | url | "http://" or "https://" or "file://" | Web URL |
+| enableFixedFontSize      | true or false                            | Enable or disable fixed font size<br/>**Android Only** |
 
 > [TIP]
 >

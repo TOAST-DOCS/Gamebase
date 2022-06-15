@@ -1,5 +1,21 @@
 ## Game > Gamebase > Release Notes > Console
 
+### June 14, 2022
+
+#### Feature Updates
+* Coupon > Publish
+	* Added a feature to set the hour and minute in the coupon validity period
+
+### May 24, 2022
+
+#### Feature Updates
+* Purchase (IAP) > Store
+	* Added ONE store external payment
+
+#### Bug Fixes
+* App > Terms
+	* Fixed an issue where unnecessary horizontal scroll is generated when the manually entered terms and conditions detailed page is displayed in Android WebView
+
 ### April 26, 2022
 
 #### Feature Updates

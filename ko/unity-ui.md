@@ -222,6 +222,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 >     * 유저의 푸시 수신 동의 여부는 Gamebase.Push.QueryPush API 를 통해 확인하시기 바랍니다.
 > * 콘솔에서 '기본 약관 설정' 을 하지 않는 경우, 약관 언어와 다른 국가코드로 설정된 단말기에서 queryTerms API 를 호출하면 **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** 에러가 발생합니다.
 >     * 콘솔에서 '기본 약관 설정' 을 하거나, **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** 에러가 발생했을때는 약관을 표시하지 않도록 처리하시기 바랍니다.
+> * Standalone 플랫폼에서는 푸시와 관련된 기능을 지원하지 않으므로, 게임 UI에 해당 약관이 노출되지 않도록 주의합니다.
 
 #### Required 파라미터
 * callback : API 호출 결과를 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseResponse.Terms.QueryTermsResult 로 콘솔에 설정된 약관 정보를 얻을 수 있습니다.
@@ -232,6 +233,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
 static void QueryTerms(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Terms.QueryTermsResult> callback)
@@ -300,6 +302,7 @@ QueryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면,
 >
 > 푸시 수신 동의 여부는 Gamebase 서버에 저장되지 않습니다.
 > 푸시 수신 동의 여부는 **로그인 후에** Gamebase.Push.RegisterPush API 를 호출해서 저장하세요.
+> Standalone 플랫폼에서는 로그인 후, 해당 API를 호출해야 합니다. 로그인을 하지 않고 호출할 경우 NOT_LOGGED_IN 오류가 전달됩니다.
 >
 
 #### Required 파라미터
@@ -315,6 +318,7 @@ QueryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면,
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
 static void UpdateTerms(GamebaseRequest.Terms.UpdateTermsConfiguration configuration, GamebaseCallback.ErrorDelegate callback)
@@ -325,6 +329,7 @@ static void UpdateTerms(GamebaseRequest.Terms.UpdateTermsConfiguration configura
 | Error | Error Code | Description |
 | --- | --- | --- |
 | NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
+| NOT\_LOGGED_IN | 2 | 로그인이 필요합니다. (Only Standalone) |
 | UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | 등록되지 않은 약관 Seq 값을 설정하였습니다. |
 | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | Terms API 호출이 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
 

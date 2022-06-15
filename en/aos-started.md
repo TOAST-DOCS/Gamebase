@@ -14,7 +14,7 @@ To execute Gamebase in Android, the following system environment is required.
 
 | Gamebase SDK | Gamebase Adapter | External SDK | Purpose | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.30.1<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include interface and core logic of Gamebase | API 16 (JellyBean, OS 4.1) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.31.0<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include interface and core logic of Gamebase | API 16 (JellyBean, OS 4.1) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Support Google login | - |
@@ -25,12 +25,13 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Support Twitter login | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | Support Weibo login | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 21(Lollipop, OS 5.0) |
-| Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.3<br>toast-iap-core | Support in-app purchase | - |
+| Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.5<br>toast-iap-core | Support in-app purchase | - |
 |  | gamebase-adapter-purchase-amazon | toast-iap-amazon | Support Amazon Appstore | - |
 |  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | Support Galaxy Store | API 21 (Lollipop, OS 5.0)<br>Although minSdkVersion of Galaxy IAP SDK is 18, the minSdkVersion of Checkout service app that must be installed for actual purchase is 21. |
 |  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Support Google Play Store | - |
 |  | gamebase-adapter-purchase-huawei | toast-iap-huawei | Support Huawei App Gallery | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-purchase-onestore | toast-iap-onestore | Support ONE store v17<br>Currently v19 is not supported | - |
+|  | gamebase-adapter-purchase-onestore-external | toast-iap-onestore-external | Support ONE store external payment function | - |
 | Gamebase Push Adapters | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Support push notifications | - |
 |  | gamebase-adapter-push-adm | toast-push-adm | Support Amazon Device Messaging | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Support Firebase Notification | - |
@@ -185,6 +186,7 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
     // >>> For ONE Store, only v17 can be used and v19 is currently not supported.
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-external:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-amazon:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-huawei:$GAMEBASE_SDK_VERSION"
@@ -195,7 +197,10 @@ dependencies {
     
     // >>> Regarding how to use the following modules, please contact the Customer Center.
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangamejp:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangamejpemail:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-kakaogame:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo-v4:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v16:$GAMEBASE_SDK_VERSION"
 }
 
@@ -366,6 +371,10 @@ android {
 **Example**
 
 ```xml
+<!-- When you have multiple applications sharing an Gamebase project, use this field to identify each application. -->
+<meta-data android:name="com.nhncloud.sdk.push.deviceId.salt"
+           android:value="ApplicationForGoogleStore" />
+
 <!-- Notification priority -->
 <meta-data android:name="com.toast.sdk.push.notification.default_priority"
            android:value="1"/>
@@ -398,6 +407,7 @@ android {
 
 | meta-data key | value type | description |
 | ------------- | ---------- | ----------- |
+| com.nhncloud.sdk.push.deviceId.salt | String | If different applications share a single Gamebase project, push does not work properly.<br/>You must specify a different random 'salt' value for each app. |
 | com.toast.sdk.push.notification.default_priority | int | Priorities.<br/>You can set the following five values:<br/>NoticationComapt.PRIORITY_MIN : -2<br/> NoticationComapt.PRIORITY_LOW : -1<br/>NoticationComapt.PRIORITY_DEFAULT : 0<br/>NoticationComapt.PRIORITY_HIGH : 1<br/>NoticationComapt.PRIORITY_MAX : 2 |
 | com.toast.sdk.push.notification.default_background_color | int | Background color. |
 | com.toast.sdk.push.notification.default_light_color | int | LED color. |

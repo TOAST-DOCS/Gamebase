@@ -1,5 +1,16 @@
 ## Game > Gamebase > Release Notes > Server API
 
+### June 14, 2022
+
+#### Added Features
+* Added the payment transaction query API
+* Added the 'isTestPurchase' field to the response for the unconsumed payment history query API
+
+### May 24, 2022
+
+#### Added Features
+* Added the Ban and Ban Release APIs
+
 ### May 10, 2022
 
 #### Added Features

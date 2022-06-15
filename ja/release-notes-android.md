@@ -1,5 +1,26 @@
 ## Game > Gamebase > リリースノート > Android
 
+### 2.40.0 (2022. 05. 24.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Android.zip)
+
+#### 機能追加
+* ONE store外部決済のためのPurchase Adapterが追加されました。
+    * ビルド依存関係に**gamebase-adapter-purchase-onestore-external**モジュールを追加すると使用できます。
+            
+            dependencies {
+                ...
+                implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-external:$GAMEBASE_SDK_VERSION"
+            }
+            
+#### 機能改善/変更
+* 外部SDKアップデート：TOAST Android SDK(0.31.0)、TOAST Gamebase IAP Android SDK(0.18.5)
+* 別々のアプリが1つのGamebaseプロジェクトを共有する場合にプッシュが正常に動作しない問題が修正されました。
+    * AndroidManifest.xmlに各アプリに異なる**com.nhncloud.sdk.push.deviceId.salt**値を宣言してください。
+
+            <!-- When you have multiple applications sharing an Gamebase project, use this field to identify each application. -->
+            <meta-data android:name="com.nhncloud.sdk.push.deviceId.salt"
+                       android:value="ApplicationForGoogleStore" />
+
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-Android.zip)
 
@@ -34,7 +55,7 @@
     * **ContactConfiguration.Builder.setAdditionalParameters(Map&lt;String, String&gt;)**
 
 #### 機能改善/変更
-* 外部SDKアップデート: Toast Gamebase IAP 0.18.3
+* 外部SDKアップデート: TOAST Gamebase IAP Android SDK(0.18.3)
 * Amazon appstore決済データでuserId、gamebaseProductIdが抜けているとき、userId、gamebaseProductIdを自動的に埋めるように改善されました。
 
 ### 2.36.0 (2022. 04. 12.)
@@ -222,7 +243,7 @@ Gamebase Android SDKは今後、Maven Centralでのみ配布します。
 
 #### 機能改善/変更
 * 外部SDKアップデート：TOAST Android SDK(0.27.1)
-* ONE Store V16ストア追加
+* ONE store V16ストア追加
 
 ### 2.26.0 (2021.08.10)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Android.zip)

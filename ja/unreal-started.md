@@ -8,7 +8,7 @@ Gamebase Unreal SDKの使用環境および初期設定の説明を行います�
 >
 > Unrealサポートバージョン
 >
-> * UE 4.22 ~ UE 4.26
+> * UE 4.22 ~ UE 5.0
 > * 下位バージョンのUnrealのサポートが必要な場合は[サポート](https://toast.com/support/inquiry)へお問い合わせください。
 
 #### Supported Platforms
@@ -35,6 +35,11 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 <span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
 
+#### Dependencies
+
+* [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
+* [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
+
 ## Installation
 
 1. Gamebase Unreal SDKをダウンロードして、プロジェクトパスに`Plugins`フォルダを作成し、ダウンロードしたSDKを追加します。
@@ -45,19 +50,19 @@ Supported Platforms
 ### Android Settings
 
 1. エディタのメニュー **Edit > Project Settings**を選択します。
-2. Project SettingsウィンドウでPluginカテゴリーから**Gamebase**を選択します。
+2. Project SettingsウィンドウでPluginカテゴリーから**Gamebase - Android**を選択します。
 
-![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.19.0.png)
+![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.40.0.png)
 
-* Android - Authentication
+* Authentication
     * 使用するIdPを有効にします。
     * Hangame IdPを使用する時は、サポートへお問い合わせください。
-* Android - Push
-    * 使用するPushを有効にします。
-* Android - Purchase
+* Purchase
     * 使用するストアを選択します。
     * ONE Store
         * View Option - 全体決済画面(Full)とポップアップ決済画面(Popup)のいずれかを選択します。
+* Push
+    * 使用したいプッシュサービスを有効にします。
 
 
 #### Google Play認証および決済ができない問題
@@ -111,6 +116,20 @@ See below for relevant guides.
 >`!重要`
 > このプロセスを無視すると、以下のガイドリンクが正常に動作しなかったりGamebase SDK for Unrealを使用できません。
 
+#### Project Settings
+
+1. エディタのメニュー**Edit > Project Settings**を選択します。
+2. Project SettingsウィンドウでPluginカテゴリーから**Gamebase - iOS**を選択します。
+
+![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.40.0.png)
+
+* Authentication
+    * 使用したいIdPを有効にします。
+* Purchase
+    * 使用したいストアを選択します。
+* Push
+    * 使用したいプッシュサービスを有効にします。
+
 #### Sign in with Apple
 
 Sign in with Apple機能を使用するにはentitlementにcom.apple.developer.applesigninキー値が追加されている必要があります。
@@ -143,6 +162,16 @@ if (bRemoteNotificationsSupported)
     Text.AppendLine("\t\t<string>Default</string>");
     Text.AppendLine("\t</array>");
 }
+```
+
+#### Facebook SDK
+
+Facebook IdPを使用するには[Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs)ファイルで以下のコードを追加する必要があります。
+
+```cs
+// need to tell where to load Framework dylibs
+Result += " -rpath /usr/lib/swift";                 // 追加コード
+Result += " -rpath @executable_path/Frameworks";
 ```
 
 #### Remote Notification

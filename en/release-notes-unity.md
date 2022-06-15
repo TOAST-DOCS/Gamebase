@@ -1,4 +1,24 @@
-## Game > Gamebase > Release Notes > Unity
+## Game > Gamebase > Release Notes > Unity## Game > Gamebase > 릴리스 노트 > Unity
+
+### 2.40.0 (2022. 05. 24.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Unity.zip)
+
+#### Added Features
+* External SDK update: TOAST Unity SDK(0.25.5)
+* (Standalone) Made changes to support the following Terms API.
+    * Gamebase.Terms.QueryTerms
+    * Gamebase.Terms.UpdateTerms
+
+#### Feature Updates
+* Improved an issue where Hangul is displayed in Unicode.
+* (iOS) Made a fix to support bitcode.
+
+#### Bug Fixes
+* (Android) Fixed an issue where Configuration.additionalParameters were not applied when calling the OpenContact API.
+
+#### Platform-specific Changes
+* [Gamebase Android SDK 2.40.0](./release-notes-android/#2400-20220524)
+* [Gamebase iOS SDK 2.40.0](./release-notes-ios/#2400-20220524)
 
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-Unity.zip)

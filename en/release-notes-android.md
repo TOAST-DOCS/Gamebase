@@ -1,5 +1,26 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.40.0 (2022. 05. 24.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Android.zip)
+
+#### Added Features
+* Added Purchase Adapter for external payment of ONE store.
+    * You can use it by adding the **gamebase-adapter-purchase-onestore-external** module to your build dependencies.
+            
+            dependencies {
+                ...
+                implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-external:$GAMEBASE_SDK_VERSION"
+            }
+            
+#### Feature Updates
+* External SDK update: TOAST Android SDK(0.31.0), TOAST Gamebase IAP Android SDK(0.18.5)
+* Fixed an issue where push did not work properly when different apps share a single Gamebase project.
+    * Declare a different **com.nhncloud.sdk.push.deviceId.salt** value for each app in AndroidManifest.xml.
+
+            <!-- When you have multiple applications sharing an Gamebase project, use this field to identify each application. -->
+            <meta-data android:name="com.nhncloud.sdk.push.deviceId.salt"
+                       android:value="ApplicationForGoogleStore" />
+
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-Android.zip)
 
@@ -34,7 +55,7 @@
     * **ContactConfiguration.Builder.setAdditionalParameters(Map&lt;String, String&gt;)**
 
 #### Feature Updates
-* External SDK update: Toast Gamebase IAP 0.18.3
+* External SDK update: TOAST Gamebase IAP Android SDK(0.18.3)
 * Made improvements so that, when userId and gamebaseProductId are missing from the Amazon Appstore payment data, userId and gamebaseProductId are automatically filled in.
 
 ### 2.36.0 (2022. 04. 12.)

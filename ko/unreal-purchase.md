@@ -55,17 +55,21 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 > 아이템이 중복 지급되는 일이 발생하지 않도록, 게임 서버에서 반드시 중복 지급 여부를 체크하시기 바랍니다.
 >
 
-![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.18.1.png)
+![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.40.1.png)
 
 1. 게임 클라이언트가 게임 서버에 결제 아이템에 대한 consume(소비)을 요청합니다.
     * UserID, gamebaseProductId, paymentSeq, purchaseToken 을 전달합니다.
 2. 게임 서버는 게임 DB에 이미 동일한 paymentSeq 로 아이템을 지급한 이력이 있는지 확인합니다.
-    * 2-1. 아직 아이템을 지급하지 않았다면 UserID 에 gamebaseProductId 에 해당하는 아이템을 지급합니다.
-    * 2-2. 아이템 지급 후 게임 DB에 UserID, gamebaseProductId, paymentSeq, purchaseToken을 저장하여 중복 지급 방지 또는 재지급을 할 수 있도록 합니다.
+    * 2-1. 아직 아이템을 지급하지 않았다면 Gamebase 서버의 Payment Transaction API를 호출하여 paymentSeq, purchaseToken값이 유효한지 검증합니다.
+        * [Game > Gamebase > API 가이드 > Purchase(IAP) > Get Payment Transaction](./api-guide/#get-payment-transaction)
+    * 2-2. purchaseToken이 정상적인 값이라면 UserID에 gamebaseProductId에 해당하는 아이템을 지급합니다.
+    * 2-3. 아이템 지급 후 게임DB에 UserID, gamebaseProductId, paymentSeq, purchaseToken을 저장하여 중복 지급 방지 또는 재지급을 할 수 있도록 합니다.
 3. 아이템 지급 여부와 무관하게 게임 서버는 Gamebase 서버의 consume(소비) API를 호출하여 아이템 지급을 완료합니다.
-    * [API 가이드 > Purchase(IAP) > Consume](./api-guide/#consume)
+    * [Game > Gamebase > API 가이드 > Purchase(IAP) > Consume](./api-guide/#consume)
 
 ### Retry Transaction Flow
+
+![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
 * 스토어 결제에는 성공했으나 오류가 발생해 정상 종료되지 못하는 경우가 있습니다.
 * **RequestItemListOfNotConsumed**를 호출하여 재처리를 동작시켜 미지급된 아이템이 있으면 Consume Flow 를 진행하세요.
@@ -234,6 +238,16 @@ struct FGamebasePurchasableReceipt
     // 게임에서 필요로 하는 다양한 추가 정보를 담기 위한 목적으로 활용할 수 있습니다.
     UPROPERTY()
     FString payload;
+    
+    // 프로모션 결제 여부
+    // - (Android) Gamebase 결제 서버에서 일시적으로 검증 로직을 끄는 경우에는 false로만 출력되므로 유효한 값이 보장되지 않습니다.
+    UPROPERTY()
+    bool isPromotion;
+
+    // 테스트 결제 여부
+    // - (Android) Gamebase 결제 서버에서 일시적으로 검증 로직을 끄는 경우에는 false로만 출력되므로 유효한 값이 보장되지 않습니다.
+    UPROPERTY()
+    bool isTestPurchase;
 };
 ```
 

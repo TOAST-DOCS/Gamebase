@@ -852,6 +852,7 @@ ContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니다.
 | ------------- | ------------- | ---------------------------------- | ------------------ |
 | userName      | O             | FString                            | 사용자 이름(닉네임) <br>**default**: ""   |
 | additionalURL | O             | FString                            | 개발사 자체 고객 센터 URL 뒤에 붙는 추가적인 URL <br>**default**: ""    |
+| additionalParameters | O      | TMap<string, string>               | 고객센터 URL 뒤에 붙는 추가적인 파라미터<br>**default** : EmptyMap |
 | extraData     | O             | TMap<FString, FString>             | 개발사가 원하는 extra data를 고객 센터 오픈 시에 전달<br>**default**: EmptyMap |
 
 **API**

@@ -1,5 +1,51 @@
 ## Game > Gamebase > リリースノート > Unreal
 
+### 2.40.1 (2022. 06. 14.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.1/GamebaseSDK-Unreal.zip)
+
+#### バグ修正
+* クラッシュが発生することがあるロジックが修正されました。
+* (iOS)同じAPIを連続して呼び出すとき、コールバックが正常に伝達されない問題が修正されました。
+
+### 2.40.0 (2022. 05. 24.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Unreal.zip)
+
+#### 機能追加
+*  [iOS設定ツール](./unreal-started/#ios-settings)を提供します。
+    * 既存プロジェクト設定で**Gamebase**と表示されましたがアップデート後は**Gamebase - Android**、**Gamebase - iOS**と表示されます。
+    * iOS設定ツールを提供し、ビルド時に必要なフレームワークのみ含まれるように修正しました。
+* 共通約款API呼び出し後に約款UIが表示されたかどうかを知ることができるVOクラスが追加されました。
+    * FGamebaseShowTermsViewResult
+* 端末で通知を許可したかどうかを知ることができるAPIが追加されました。
+    * IGamebase::Get().GetPush().QueryNotificationAllowed()
+* 約款が表示されたかどうかを知ることができるAPIが追加されました。
+    * IGamebase::Get().GetTerms().IsShowingTermsView()
+* Webビューでナビゲーションバーを隠すことができるオプションが追加されました。
+    * FGamebaseWebViewConfiguration.isNavigationBarVisible
+* (Android) Webビューでフォントサイズを固定することができるオプションが追加されました。
+    * FGamebaseTermsConfiguration.enableFixedFontSize
+* (Android)約款ウィンドウで文字サイズを固定することができるオプションが追加されました。
+    * FGamebaseTermsConfiguration.enableFixedFontSize
+* 決済時にプロモーションかどうかを知ることができるisPromotionフィールドが追加されました。
+    * FGamebasePurchasableReceipt.isPromotion
+* 決済時にテスト決済かどうかを知ることができるisTestPurchaseフィールドが追加されました。
+    * FGamebasePurchasableReceipt.isTestPurchase
+* サポートURLの後ろにパラメータを追加できるように次のフィールドが追加されました。
+    * FGamebaseContactConfiguration.additionalParameters
+
+#### 機能改善/変更
+* API結果コールバック呼び出し時にGameThreadに切り替えて呼び出すように修正しました。
+* RequestActivatedPurchases API呼び出し時に内部で2回呼び出される問題が修正されました。
+* 一部APIの名前が変更されました。
+    * FGamebaseAnalyticesLevelUpData → FGamebaseAnalyticsLevelUpData
+    * FGambaseBanInfoPtr → FGamebaseBanInfoPtr
+* キックアウトポップアップウィンドウを表示するかどうかは、Gamebaseコンソールでキックアウト登録時に設定できるため、次のフィールドは使用しなくなりました。
+    * FGamebaseConfiguration.enableKickoutPopup
+    
+#### 各プラットフォームの変更事項
+* [Gamebase Android SDK 2.40.0](./release-notes-android/#2400-20220524)
+* [Gamebase iOS SDK 2.40.0](./release-notes-ios/#2400-20220524)
+
 ### 2.33.1 (2022. 02. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.1/GamebaseSDK-Unreal.zip)
 

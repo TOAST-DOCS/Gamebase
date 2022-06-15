@@ -8,7 +8,7 @@ Gamebase Unreal SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 >
 > Unreal 지원 버전
 >
-> * UE 4.22 ~ UE 4.26
+> * UE 4.22 ~ UE 5.0
 > * 하위 버전의 Unreal 지원이 필요하면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
 
 #### Supported Platforms
@@ -35,6 +35,11 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 <span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
 
+#### Dependencies
+
+* [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
+* [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
+
 ## Installation
 
 1. Gamebase Unreal SDK를 다운로드한 후 프로젝트 경로에 **Plugins** 폴더를 만들어 다운로드한 SDK를 추가합니다.
@@ -45,19 +50,19 @@ Supported Platforms
 ### Android Settings
 
 1. 에디터의 메뉴 **Edit > Project Settings** 를 선택합니다.
-2. Project Settings 창에서 Plugin 카테고리에서 **Gamebase**를 선택합니다.
+2. Project Settings 창에서 Plugin 카테고리에서 **Gamebase - Android**를 선택합니다.
 
-![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.19.0.png)
+![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.40.0.png)
 
-* Android - Authentication
+* Authentication
     * 사용하려는 IdP를 활성화 합니다.
     * Hangame IdP 사용 시 고객 센터로 별도로 문의 바랍니다.
-* Android - Push
-    * 사용하려는 Push를 활성화 합니다.
-* Android - Purchase
-    * 사용할 스토어를 선택합니다.
+* Purchase
+    * 사용하려는 스토어를 선택합니다.
     * ONE Store
         * View Option - 전체 결제 화면(Full)과 팝업 결제 화면(Popup) 중 선택합니다.
+* Push
+    * 사용하려는 푸시 서비스를 활성화 합니다.
 
 
 #### Google Play 인증 및 결제가 되지 않는 문제
@@ -111,6 +116,20 @@ Gamebase SDK for Unreal을 사용하려면 `UE4 Github 소스 코드`를 사용�
 >`!중요`
 > 이 과정을 무시할 경우, 아래 가이드 링크가 정상 작동하지 않거나 Gamebase SDK for Unreal 사용이 불가합니다.
 
+#### Project Settings
+
+1. 에디터의 메뉴 **Edit > Project Settings** 를 선택합니다.
+2. Project Settings 창에서 Plugin 카테고리에서 **Gamebase - iOS**를 선택합니다.
+
+![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.40.0.png)
+
+* Authentication
+    * 사용하려는 IdP를 활성화합니다.
+* Purchase
+    * 사용하려는 스토어를 선택합니다.
+* Push
+    * 사용하려는 푸시 서비스를 활성화합니다.
+
 #### Sign in with Apple
 
 Sign in with Apple 기능을 사용하려면 entitlement에 com.apple.developer.applesignin 키값을 추가해야 합니다.
@@ -143,6 +162,16 @@ if (bRemoteNotificationsSupported)
     Text.AppendLine("\t\t<string>Default</string>");
     Text.AppendLine("\t</array>");
 }
+```
+
+#### Facebook SDK
+
+Facebook IdP를 사용하려면 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) 파일에서 아래 코드를 추가해주셔야 합니다.
+
+```cs
+// need to tell where to load Framework dylibs
+Result += " -rpath /usr/lib/swift";                 // 추가 코드
+Result += " -rpath @executable_path/Frameworks";
 ```
 
 #### Remote Notification

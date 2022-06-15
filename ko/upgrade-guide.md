@@ -1,5 +1,19 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.40.0
+
+### Unreal
+
+* FGamebaseConfiguration의 enableKickoutPopup 속성을 더 이상 지원하지 않습니다.
+* 일부 API의 이름이 변경되었습니다.
+    * FGamebaseAnalyticesLevelUpData → FGamebaseAnalyticsLevelUpData
+    * FGambaseBanInfoPtr → FGamebaseBanInfoPtr
+* (iOS) iOS 설정 툴을 제공하면서 빌드 시 필요한 프레임워크만 포함되도록 수정되었습니다.
+* (iOS) PLCrashReporter가 업데이트되어 엔진 내부에 PLCrashReporter도 업데이트가 필요합니다.
+    * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > Installation > iOS Settings > PLCrashReporter](./unreal-started/#ios-settings)
+* (iOS) Facebook iOS SDK가 9.2.0버전으로 업데이트되어 swift 사용을 위해 엔진 코드 수정이 필요합니다.
+    * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > Installation > iOS Settings > Facebook SDK](./unreal-started/#ios-settings)
+
 ## 2.36.0
 
 ### Android
@@ -332,7 +346,7 @@ android {
 #### Purchase Google
 
 * **gamebase-adapter-purchase-google** 을 사용한다면 Gamebase SDK 2.15.0 미만 버전에서 2.15.0 이상으로 업그레이드 하는 경우 반드시 **이전 버전의 Game Client Version 을 업데이트 필수** 로 설정해야 합니다.
-    * Google Billing Client 모듈이 업데이트 되어, 여러개의 단말기에서 서로 다른 Billing Client 버전이 적용된 상태에서 아이템을 구매하는 경우 오류가 발생했을때 재처리에 문제가 생길 수 있기 때문입니다.
+    * Google Billing Client 모듈이 업데이트되어, 여러개의 단말기에서 서로 다른 Billing Client 버전이 적용된 상태에서 아이템을 구매하는 경우 오류가 발생했을때 재처리에 문제가 생길 수 있기 때문입니다.
 
 ## 2.6.0
 
