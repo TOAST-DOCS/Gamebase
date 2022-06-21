@@ -40,12 +40,12 @@ secret key를 IAP 앱 정보에 등록합니다.
 ![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-edit-gamebase.png)
 
 
-
-## Notification url 등록하기
+## Notification URL 등록하기
 ```
 1. App Store Connect > 나의 앱 > 앱 정보 > 일반 정보 
-2. 구독 상태 URL 에 IAP url을 등록합니다.
+2. 프로덕션 서버 URL에 IAP URL을 등록합니다.
 - URL : https://api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/AS
 - {YOUR_PACKAGE_NAME} : app bundle id
 ```
+- Notification URL 정보를 등록해야, 구독, 프로모션 교환 및 환불 정보가 Gamebase에 갱신됩니다.
 
