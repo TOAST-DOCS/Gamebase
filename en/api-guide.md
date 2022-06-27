@@ -1608,6 +1608,7 @@ N/A
             "price": 2500.0,
             "marketId": "AS",
             "accessToken": "ja5SBJBfr7rYUdjFr6dRe7gKnkX0r7EKPvuK6CIUBBekc1rE9CVbMKVCNuw6ZtwmcpDRXrToR9l26NF9zub6ol",
+            "paymentId" : "Store Reference Key",
             "gamebaseProductId": "gamebase_prod_001",
             "purchaseTime": "2020-06-02T13:38:56+09:00",
             "payload": "additional info",
@@ -1620,6 +1621,7 @@ N/A
             "price": 1000.0,
             "marketId": "AS",
             "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ",
+            "paymentId" : "Store Reference Key",
             "gamebaseProductId": "gamebase_prod_002",
             "purchaseTime": "2020-06-02T13:37:42+09:00",
             "isTestPurchase" : false
@@ -1631,11 +1633,12 @@ N/A
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Array[Object] | Basic payment information |
-| result[].paymentSeq | String  | Payment number |
+| result[].paymentSeq | String |  Payment ID issued by Gamebase |
 | result[].productSeq | Long | Item number<br>Automatically generated value for external store items when registering a product in the console |
 | result[].currency  | String  | Payment currency |
 | result[].price | Float | Payment price |
 | result[].accessToken | String | Payment authentication token |
+| result[].paymentId | String | Payment ID issued by the store |
 | result[].marketId | String | [Store code](#store-code) |
 | result[].gamebaseProductId | String | Gamebase product ID<br>The value entered by the user when registering a product in the console |
 | result[].purchaseTime | String | Time and date of payment |
@@ -1695,6 +1698,7 @@ N/A
         "price": 2.29,
         "marketId": "AS",
         "accessToken": "-Fr8Y7_dvv5qhdd6qVHbs7gKnkX0r7EKPvuK6CI-UBBekc1rE9CVbMKVCNuw6ZtwkBGlzeIHg6DdjaRVeaW7GYlPF4vRa50L8umB6tdBvk8",
+        "paymentId" : "Store Reference Key",
         "productType": "CONSUMABLE",
         "userId": "AS@QW4M1GM7W97YJDCN",
         "gamebaseProductId": "qa_ksw_prod_as_001",
@@ -1709,13 +1713,14 @@ N/A
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Object |  Payment information |
-| result.paymentSeq | String | Payment number |
+| result.paymentSeq | String | Payment ID issued by Gamebase |
 | result.productSeq | Long | Item number<br>Automatically generated value for external store items when registering a product in the console |
 | result.currency  | String | Payment currency  |
 | result.price | Float | Payment price |
 | result.marketId | String | [Store code](#store-code) |
 | result.accessToken | String | Payment authentication token |
 | result.productType | String  | Product (item) type<br>- One-time: CONSUMABLE<br>- Consumable Subscription: CONSUMABLE_AUTO_RENEWABLE<br>- Subscription: AUTO_RENEWABLE |
+| result.paymentId | String | Payment ID issued by the store |
 | result.userId | String  | User ID  |
 | result.gamebaseProductId | String | Gamebase product ID<br>The value entered by the user when registering a product in the console |
 | result.purchaseTime | String | Time and date of payment |
@@ -1814,8 +1819,8 @@ N/A
 | result[].productType | String  | Product (item) type <br>Subscription: AUTO_RENEWABLE |
 | result[].currency  | String  | Payment currency |
 | result[].price | Float | Payment price |
-| result[].originalPaymentId | String | Initial store payment number |
-| result[].paymentId | String | Recently updated store payment number |
+| result[].originalPaymentId | String | Initial store payment ID |
+| result[].paymentId | String | Recently updated store payment ID |
 | result[].gamebaseProductId | String | Gamebase product ID<br>The value entered by the user when registering a product in the console |
 | result[].payload | String | Additional information configured in SDK |
 | result[].purchaseTime | String | Recent updated time |
