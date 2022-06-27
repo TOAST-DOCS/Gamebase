@@ -1671,6 +1671,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
             "price": 2500.0,
             "marketId": "AS",
             "accessToken": "ja5SBJBfr7rYUdjFr6dRe7gKnkX0r7EKPvuK6CIUBBekc1rE9CVbMKVCNuw6ZtwmcpDRXrToR9l26NF9zub6ol",
+            "paymentId" : "Store Reference Key",
             "gamebaseProductId": "gamebase_prod_001",
             "purchaseTime": "2020-06-02T13:38:56+09:00",
             "payload": "additional info",
@@ -1683,6 +1684,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
             "price": 1000.0,
             "marketId": "AS",
             "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ",
+            "paymentId" : "Store Reference Key",
             "gamebaseProductId": "gamebase_prod_002",
             "purchaseTime": "2020-06-02T13:37:42+09:00",
             "isTestPurchase" : false
@@ -1694,11 +1696,12 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Array[Object] | 決済基本情報 |
-| result[].paymentSeq | String  | 決済番号 |
+| result[].paymentSeq | String |  Gamebaseで発行された決済番号 |
 | result[].productSeq | Long | 決済アイテム番号(consoleに登録されたアイテム固有番号) |
 | result[].currency  | String  | 決済通貨 |
 | result[].price | Float | 決済価格 |
 | result[].accessToken | String | 決済認証トークン |
+| result[].paymentId | String | ストアで発行された決済ID |
 | result[].marketId | String | [ストアコード](#store-code) |
 | result[].gamebaseProductId | String | Gamebase商品ID<br>コンソールに商品登録した時にユーザーが入力した値 |
 | result[].purchaseTime | String | 決済発生日時 |
@@ -1758,6 +1761,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
         "price": 2.29,
         "marketId": "AS",
         "accessToken": "-Fr8Y7_dvv5qhdd6qVHbs7gKnkX0r7EKPvuK6CI-UBBekc1rE9CVbMKVCNuw6ZtwkBGlzeIHg6DdjaRVeaW7GYlPF4vRa50L8umB6tdBvk8",
+        "paymentId" : "Store Reference Key",
         "productType": "CONSUMABLE",
         "userId": "AS@QW4M1GM7W97YJDCN",
         "gamebaseProductId": "qa_ksw_prod_as_001",
@@ -1772,12 +1776,13 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Object | 決済情報 |
-| result.paymentSeq | String | 決済番号 |
+| result.paymentSeq | String | Gamebaseで発行された決済番号 |
 | result.productSeq | Long | アイテム番号<br>コンソールで商品登録時、外部ストアアイテムに対して自動作成された値 |
 | result.currency  | String | 決済通貨 |
 | result.price | Float | 決済価格 |
 | result.marketId | String | [ストアコード](#store-code) |
 | result.accessToken | String | 決済認証トークン |
+| result.paymentId | String | ストアで発行された決済ID |
 | result.productType | String  | 商品(アイテム)タイプ<br>- 消費：CONSUMABLE<br>- 消費性購読：CONSUMABLE_AUTO_RENEWABLE<br>- 購読：AUTO_RENEWABLE |
 | result.userId | String  | ユーザーID  |
 | result.gamebaseProductId | String | Gamebase商品ID<br>コンソールで商品登録時、ユーザー入力値 |
@@ -1876,8 +1881,8 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 | result[].productType | String  | 商品(アイテム)タイプ<br>定期購入： AUTO_RENEWABLE |
 | result[].currency  | String  | 決済通貨 |
 | result[].price | Float | 決済価格 |
-| result[].originalPaymentId | String | 最初のストア決済番号 |
-| result[].paymentId | String | 最近更新されたストア決済番号 |
+| result[].originalPaymentId | String | 最初のストア決済ID |
+| result[].paymentId | String | 最近更新されたストア決済ID |
 | result[].gamebaseProductId | String | Gamebase商品ID<br>コンソールから商品を登録した時にユーザーが入力した値 |
 | result[].payload | String | SDKで設定した追加情報 |
 | result[].purchaseTime | String | 最近更新された時間 |
