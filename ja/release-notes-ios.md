@@ -1,5 +1,11 @@
 ## Game > Gamebase > リリースノート > iOS
 
+### 2.41.0 (2022. 06. 30.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 이미지 공지가 노출 중일 때 화면 방향에 따라 회전하도록 변경했습니다.
+
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-iOS.zip)
 
