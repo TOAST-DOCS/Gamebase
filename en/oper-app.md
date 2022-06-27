@@ -6,6 +6,7 @@ Go to the NHN Cloud Cloud Console and click **Game > Gamebase > App**.
 * **Client**: Manage client version and status information
 * **Install URL**: Manage installation URL of each app store
 
+
 ## App
 
 When the Gamebase service is activated, the app is automatically created and only the registered information can be edited from the menu.
@@ -187,6 +188,7 @@ Note that {Facebook Permission} which is required for a login should also be ent
 - Secret Key: {App Secret Code}
 - Additional Info: Facebook Permission (json format)
 
+
 ![gamebase_app_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_04_201812.png)
 
 **[Example] facebook_permission format **
@@ -205,6 +207,8 @@ Note that {Facebook Permission} which is required for a login should also be ent
 
 ##### Android & iOS & Unity
 No further configuration needs to be done apart from NHN Cloud console.
+
+
 
 #### 2. Google
 
@@ -253,11 +257,11 @@ Enter Bundle ID registered on Apple Developer's Site in the TOAST Cloud Gamebase
 
 ![gamebase_app_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_08_201812.png)
 
-
 **Reference URL**<br />
 
 - [Apple Developer Site](https://developer.apple.com/)
 - [Apple iTunes Connect](https://itunesconnect.apple.com/)
+
 
 #### 4. PAYCO
 Enter {client_id} and {client_secret} issued from PAYCO ID application in the TOAST Cloud Gamebase Console.
@@ -286,9 +290,6 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the TO
 Enter {client_id} and {client_secret} issued by the NAVER Developers website in the Gamebase Console.
 Here, **service_name**, which is the name of an application to be displayed in the Agree to Login window, needs to be configured.
 
-Enter {client_id} and {client_secret} you requested and acquired from NAVER Developers website into the Gamebase console.
-You need to set **service_name** which will be displayed in sign in agreement window. In case of iOS, you need to provide additional **url_scheme_ios_only** field in JSON String format.
-
 **Entry Fields**
 
 - Client ID: {NAVER client_id}
@@ -296,6 +297,7 @@ You need to set **service_name** which will be displayed in sign in agreement wi
 - Additional information: NAVER Application Name (json format)
 
 **Reference URL**<br />
+
 - [NAVER Developers - Register Applications](https://developers.naver.com/apps/#/register)
 - [NAVER Developers - Check Client IDs and Client Secrets](https://developers.naver.com/docs/common/openapiguide/#/appregister.md)
 
@@ -312,7 +314,6 @@ You need to set **service_name** which will be displayed in sign in agreement wi
 * [Gamebase > iOS SDK User Guide > Getting Started > IdP settings > NAVER](./ios-started/#naver)
 
 #### 6. Twitter
-
 You need to provide {Consumer Key} and {consumer Secret} acquired from Twitter Applicaiton Management Website.
 
 **Input Fields**
@@ -326,7 +327,8 @@ You need to provide {Consumer Key} and {consumer Secret} acquired from Twitter A
 ##### Android
 > <font color="red">[Caution]</font><br/>
 >
-> As of July 25 of 2019, Twitter has suspended its support for TLS 1.0 and TLS 1.1, to support TLS 1.2 only.  Hence, Android 4.3 (Jellybean, API Level 18) or lower devices do not support logins to Twitter via Android WebView.
+> As of July 25 of 2019, Twitter has suspended its support for TLS 1.0 and TLS 1.1, to support TLS 1.2 only. 
+> Therefore, Android 4.3 (Jellybean, API Level 18) or lower devices do not support logins to Twitter via Android WebView.
 >
 > In short, only Android 4.4 and higher devices (KitKat, API Level 19) allow logins to Twitter.
 
@@ -337,7 +339,6 @@ You need to provide {Consumer Key} and {consumer Secret} acquired from Twitter A
 #### 7. LINE
 
 **Input Fields**
-
 - Client ID: {LINE Channel ID}
 - Secret Key: {LINE Channel Secret}
 
@@ -371,6 +372,7 @@ To enable Sign In with Apple, setting is required for AppStore Connect, Gamebase
 * Gamebase
 ![Set SecretKey Setting](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
 
+
 ###### Client ID Settings
 > Set Bundle ID for the app.
 
@@ -384,6 +386,7 @@ To enable Sign In with Apple, setting is required for AppStore Connect, Gamebase
 ![SecretKey Setting](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
 
 Set the values above by creating JSON as in the following example.
+
 
 ```json
 {
@@ -412,13 +415,17 @@ As of November 2019, there are only two types of scope, `full_name` and `email`,
 >
 > The version must be Xcode 11 or later in order to build a project that uses the **Sign In with Apple** feature.
 
+
 1. Select Target > Signing & Capabilities,  and add Sign In with Apple.
-![Capability_SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid8_1.0.png)
+[Capability_SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid8_1.0.png)
 2. Select Target > Build Phases > Link Binary With Libraries, and add Authentication.framework as **Optional**.
 ![AuthenticationServices.framework](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid9_1.0.png)
 
 > <font color="red">[Caution]</font><br/>
 > If this is set to Optional instead of Required, the app crashes at runtime for any device running iOS 12 or earlier.
+
+
+
 
 
 ##### Settings for supporting iOS 12 or earlier (Sign In with Apple JS)
@@ -512,11 +519,10 @@ You should not change this.
 Can manage client information by operating system (iOS, Android, Unity WebGL, or Unity Standalone), or version.
 
 ### Client List
-
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client1_1.2.png)
 You can see the list of currently registered clients.
 They are sorted by OS, and the number in the icon indicates the version entered when registering the client.
-Only the icon list shows only the following service statuses: <font color="white" style="background-color:#eed14c">Test</font>, <font color="white" style="background-color:#eba34b">Beta service</font>, <font color="white" style="background-color:#eb7e4b">Review in progress</font>, <font color="white" style="background-color:#88C637">Service</font>, and <font color="white" style="background-color:#2AB1A6">Update recommended (In service)</font>. If you click the arrow at the bottom right of each OS, you can see the list of clients in the following statuses: <font color="white" style="background-color:#A1A1A1">Update required</font>, and <font color="white" style="background-color:#CCCCCC">Service terminated</font>.
+Only the icon list shows only the following service statuses: <font color="white" style="background-color:#eed14c">Test</font>, <font color="white" style="background-color:#eba34b">Beta Service</font>, <font color="white" style="background-color:#eb7e4b">Review in Progress</font>, <font color="white" style="background-color:#88C637">In Service</font>, and <font color="white" style="background-color:#2AB1A6">Update Recommended (In Service)</font>. If you click the arrow at the bottom right of each OS, you can see the list of clients in the following statuses: <font color="white" style="background-color:#A1A1A1">Update Required</font>, and <font color="white" style="background-color:#CCCCCC">Service Closed</font>.
 You can see the service status at a glance thanks to the distinguished icon color per service status.
 
 ### Properties
@@ -532,30 +538,33 @@ The store you can select varies by OS.
 You just need to enter the string according to the rules set forth by the game.
 #### (3) Service status
 (<font color="red">Required</font>) Select the service status of the client.
-There are 6 service statuses: <font color="white" style="background-color:#eed14c">Test</font>, <font color="white" style="background-color:#eba34b">Beta service</font>, <font color="white" style="background-color:#eb7e4b">Review in progress</font>, <font color="white" style="background-color:#88C637">Service</font>, <font color="white" style="background-color:#2AB1A6">Update recommended (In service)</font>, <font color="white" style="background-color:#A1A1A1">Updated required</font>, and <font color="white" style="background-color:#CCCCCC">Service terminated</font>.
+There are 6 service statuses: <font color="white" style="background-color:#eed14c">Test</font>, <font color="white" style="background-color:#eba34b">Beta Service</font>, <font color="white" style="background-color:#eb7e4b">Review in Progress</font>, <font color="white" style="background-color:#88C637">In Service</font>, <font color="white" style="background-color:#2AB1A6">Update Recommended (In Service)</font>, <font color="white" style="background-color:#A1A1A1">Updated Required</font>, and <font color="white" style="background-color:#CCCCCC">Service Closed</font>.
 
 - <font color="white" style="background-color:#F8BB28">Test</font>: Internal test
-- <font color="white" style="background-color:#eba34b">Beta service</font>: Select this when you need to connect to a separate beta server instead of the service server.
-- <font color="white" style="background-color:#FB8F37">Review in progress</font>: The store is being reviewed
-![gamebase_app_15_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_15_201812.png)
+- <font color="white" style="background-color:#eba34b">Beta Service</font>: Select this when you need to connect to a separate beta server instead of the service server.
+- <font color="white" style="background-color:#FB8F37">Review in Progress</font>: The store is being reviewed
 
-- <font color="white" style="background-color:#88C637">In service</font>: Normal service
-- <font color="white" style="background-color:#2AB1A6">Update recommended (In service)</font>: Normal service. <br/>Pops up a window to prompt users to use the more stable version. <br/>Encourages users to download the latest version, but users can also continue to use the current version of the service.<br />The following is the standard popup provided by Gamebase SDK when the service status is 'Update recommended (In service)'.
+- <font color="white" style="background-color:#88C637">In Service</font>: Normal service
+- <font color="white" style="background-color:#2AB1A6">Update Recommended (In Service)</font>: Normal service. <br/>Pops up a window to prompt users to use the more stable version. <br/>Encourages users to download the latest version, but users can also continue to use the current version of the service.<br />The following is the default popup provided by Gamebase SDK when the service status is 'Update Recommended (In Service)'.
 
-- <font color="white" style="background-color:#A1A1A1">Update required</font>: Service unavailable. <br/>The game currently does not support the service, so instead it displays a popup to prompt users to install the latest version.<br />The following is the standard popup provided by Gamebase SDK when the service status is 'Update Required'.
+- <font color="white" style="background-color:#A1A1A1">Update Required</font>: Service unavailable. <br/>The game currently does not support the service of this version, so it displays a popup to prompt users to install the latest version.<br />The following is the default popup provided by Gamebase SDK when the service status is 'Update Required'. <br/> You can add a popup button when the status is 'Update Required'. If you select **Add Button** in **Add Details Button**, you can set the URL to connect to.
+
+![gamebase_app_37_202205.png](https://static.toastoven.net/prod_gamebase/gamebase_app_37_202205.png)
 
 >  <font color="red">[Caution] </font>
->If **Update Required and Maintenance are both enabled**, the service status becomes 'Update Required'.
+>  If **Update Required and Maintenance are both enabled**, the service status becomes 'Update Required'.
 >  If you do not want to show a popup about required updates to users during the maintenance, the service status must be changed to 'Update Required' after the maintenance.
 >  <font color="orange">[Note] </font>
 >  Clicking the Update button redirects the user to each store address configured for the installation URL menu.
 >  For example, if the client is set to App store and there is a setting related to App store in the Installation URL menu, the user is redirected to that address. If there is no setting configured in the Installation URL menu, the user is redirected to the common URL.
 
-- <font color="white" style="background-color:#CCCCCC">Service terminated</font>: Service unavailable. <br/> Select this if the service is no longer available.<br />The following is the standard popup provided by Gamebase SDK when the service status is 'Service terminated'.
+- <font color="white" style="background-color:#CCCCCC">Service Closed</font>: Service unavailable. <br/> Select this if the service version is no longer available.<br />The following is the default popup provided by Gamebase SDK when the service status is 'Service Closed'.
+
+![gamebase_app_15_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_15_201812.png)
 
 > [Note]
 > Configure messages to be displayed according to service status
-> For **Update recommended (In service)**, **Update required**, or **Service terminated** status, you can set the message to be exposed to users in multiple languages.
+> For **Update Recommended (In Service)**, **Update Required**, or **Service Closed** status, you can set the message to be exposed to users in multiple languages.
 > If you select the service status, default messages are provided according to the language settings configured for the app, and if you want, more languages can be added or change the default message text.
 > If there are already settings for each language, those settings are used regardless of the app's language settings.
 > If there is no information in the app's language settings, the default messages are provided in 5 languages (Korean, English, Japanese, Simplified Chinese, and Traditional Chinese). These languages can be added or the text of the default message can be changed.
@@ -659,9 +668,8 @@ Manage store URL information to install a game.
 ![gamebase_app_19_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_19_201812_en.png)
 
 Set the value of address to be provided by store when the client status is   <font color="white" style="background-color:#2AB1A6">Update is recommended(in service )</font> or <font color="white" style="background-color:#A1A1A1">update is required</font>.
-
-* A user's click on a short URL via PC or mobile will be redirected to a site entered on a user device (device, operating system, store, etc.).
-* If there is no store information, or redirection fails, the URL will be linked as set in 'COMMON'.
+A user's click on a short URL via PC or mobile will be redirected to a site entered on a user device (device, operating system, store, etc.).
+If there is no store information, or redirection fails, the URL will be linked as set in 'COMMON'.
 
 _[Example 1] A user clicks Install URL in a text message on an Android device._
 **(Device:mobile,OS:Android,Store:N/A)** Move to a mobile URL of a representing Android store. In the case of 'Google Play', move to the URL set on the 'Google Play' mobile.
@@ -669,6 +677,7 @@ _[Example 2] A user playing a game downloaded from 'One Store' clicks 'Update No
 **(Device:mobile,OS:Android,Store:One Store)** Move to the URL set in 'One Store' mobile (installation page for One Store mobile)<br/>
 _[Example 3] A user enters Install URL on a PC._
 **(Device:PC,OS:Windows,Store:N/A)** Move to URL set in COMMON PC.
+
 
 ### Properties
 
@@ -703,17 +712,19 @@ Click the **Enable** button and then enter the information required for transfer
 ![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_2.0.png)
 Description on each item is as follows:
 
+### Properties
+
 #### Issue
 Sets the format of a key issued for device transfer.
 The key for device transfer can be either ID only or both ID and password. Format of ID and password can be a combination of the desired lowercase letters, uppercase letters, and numbers.
 
 1. **Auto ID Issue Format**: Sets the format of issuing a device transfer ID. The options to be set are as follows:
-
 - **Number(Minimum length: 12)**: Issues an ID with numbers only. The minimum length of the issued ID is 12 characters.
 - **Number+Lowercase(Minimum length: 10)**: Issues an ID with numbers and lowercase letters. The minimum length of the issued ID is 10 characters.
 - **Number+Uppercase(Minimum length: 10)**: Issues an ID with numbers and uppercase letters. The minimum length of the issued ID is 10 characters.
 - **Number+Lowercase+Uppercase(Minimum length: 9)**: Issues an ID with numbers, lowercase letters, and uppercase letters. The minimum length of the issued ID is 9 characters.
 - **Lowercase+Uppercase(Minimum length: 9)**: Issues an ID with lowercase letters and uppercase letters. The minimum length of the issued ID is 9 characters.
+
 2. **Password auto issue format**: Sets the format for issuing the password to be used for login with the ID transferred to the device. The options to be set are as follows:
 - **Disable Password**: Select this not to use a password. If you select this option, you can set the valid time of the ID only from the verification below.
 - **Number(Minimum length: 12)**: Issues a password with numbers only. The minimum length of the issued password is 12 characters.
