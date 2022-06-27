@@ -1,5 +1,11 @@
 ## Game > Gamebase > リリースノート > Server API
 
+### 2022. 06. 30.
+
+#### 機能追加
+* 退会ユーザーがApple ID認証を使用している場合、Apple ID AccessToken満了APIの呼び出しを追加
+* 未消費決済履歴照会APIレスポンスに「paymentId」フィールドを追加
+
 ### 2022. 06. 14.
 
 #### 機能追加
