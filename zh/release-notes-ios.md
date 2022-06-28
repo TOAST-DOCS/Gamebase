@@ -9,59 +9,59 @@
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* SDK 내부 로직 개선
+#### 改善/修复功能
+* 改善了SDK内部逻辑
 
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Hangame iOS SDK (1.6.4)
+#### 改善/修复功能
+* 外部SDK升级 : Hangame iOS SDK (1.6.4)
 
 ### 2.38.0 (2022. 05. 03.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.38.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* Display Language의 중국어 번체(zh-TW) 언어셋에서 어색한 문장 수정
+#### 改善/修复功能
+* 更改了Display Language中汉语繁体(zh-TW)语言集中的错误句子。
 
 ### 2.37.0 (2022. 04. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.37.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* 고객센터 URL 뒤에 파라미터를 추가할 수 있도록 다음 필드가 추가되었습니다.
+#### 添加功能
+* 为了在客户服务URL后边添加参数，添加了以下字段。
     * **TCGBContactConfiguration.additionalParameters**
-    
+
 ### 2.36.0 (2022. 04. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.36.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* 결제 영수증에서 sandbox 결제 여부 및 프로모션 결제 여부를 알 수 있도록 다음 필드가 추가되었습니다.
+#### 添加功能
+* 添加了以下字段以确定付款收据中的付款是Sandbox付款还是Promotion付款。
     * **TCGBPurchasableReceipt.sandboxPayment**
-    * **TCGBPurchasableReceipt.promotionPayment**
+    * **TCGBPurchasableReceipt.promotionPayment** 
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST iOS SDK(0.30.0), ToastGamebaseIAP SDK(0.13.0), Hangame iOS SDK (1.6.3)
+#### 改善/修复功能
+* 外部SDK升级 : TOAST iOS SDK(0.30.0), ToastGamebaseIAP SDK(0.13.0), Hangame iOS SDK (1.6.3)
 
 ### 2.35.0 (2022. 03. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.35.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* 현재 약관 창이 화면에 표시되고 있는지 여부를 알 수 있는 API를 추가하였습니다.
+#### 添加功能
+* 添加了用于确认是否显示条款窗的API。
     * **[TCGBTerms isShowingTermsView]**
 
-#### 기능 개선/변경
-* 기존의 Google 웹 로그인 방식에서 Google SDK 로그인 방식으로 변경하였습니다.
-* 한게임 로그인을 도중에 취소했을 경우, **TCGB_ERROR_AUTH_USER_CANCELED(3001)** 에러를 리턴하도록 수정하였습니다.
+#### 改善/修复功能
+* 将登录方式从Google网络登录方式更改为Google SDK登录方式。
+* 更改后，在登录过程中取消Hangame登录时返回**TCGB_ERROR_AUTH_USER_CANCELED(3001)**错误 。
 
 ### 2.34.1 (2022. 03. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.1/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* Swift 프로젝트 사용자를 위해서 Public API에 NS_SWIFT_NAME 설정을 추가하였습니다.
+#### 添加功能
+* 为了Swift项目用户，在Public API添加了NS_SWIFT_NAME设置。
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트 : Hangame iOS SDK (1.6.2)
-* 디바이스가 가로모드인 상태에서 showWebView API를 호출했을 때, 하단에 검은색 빈 공간이 출력되는 이슈를 수정하였습니다.
+#### 改善/修复功能
+* 外部SDK升级 : Hangame iOS SDK (1.6.2)
+* 更改了当设备为横向模式调用showWebView API时，在下端输出黑色空白的错误。 
 
 ### 2.34.0 (2022. 02. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.0/GamebaseSDK-iOS.zip)

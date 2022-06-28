@@ -3,116 +3,116 @@
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 외부 SDK 업데이트: TOAST Unity SDK(0.25.5)
-* (Stanalone) 약관 API를 지원합니다.
+#### 添加功能
+* 外部SDK升级 : TOAST Unity SDK(0.25.5)
+* 更改后支持(Standalone)以下条款API。
     * Gamebase.Terms.QueryTerms
     * Gamebase.Terms.UpdateTerms
 
-#### 기능 개선/변경
-* 한글이 유니코드로 표시되는 현상이 개선되었습니다.
-* (iOS) bitcode 지원하도록 수정되었습니다.
+#### 改善/修复功能
+* 改善后韩语不再显示为统一码。
+* 修改后支持(iOS) bitcode。
 
-#### 버그 수정
-* (Android) OpenContact API 호출 시 Configuration.additionalParameters가 적용되지 않는 문제가 수정되었습니다.
+#### 修改程序错误
+* 修复了调用(Android) OpenContact API时未能应用Configuration.additionalParameters的问题。
 
-#### 플랫폼별 변경 사항
+#### 各平台更改项目
 * [Gamebase Android SDK 2.40.0](./release-notes-android/#2400-20220524)
 * [Gamebase iOS SDK 2.40.0](./release-notes-ios/#2400-20220524)
 
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 외부 SDK 업데이트: TOAST Unity SDK(0.25.4)
+#### 添加功能
+* 外部SDK升级 : TOAST Unity SDK(0.25.4)
 
-#### 버그 수정
-* 초기화 전에 GetLaunchingInformations() API를 호출 시 JsonException이 발생하지 않도록 수정되었습니다.
+#### 修改程序错误
+* 修改后，即使初始化前调用GetLaunchingInformations()也不出现JsonException。
 
-#### 플랫폼별 변경 사항
+#### 各平台更改项目
 * [Gamebase Android SDK 2.39.0](./release-notes-android/#2390-20220510)
 * [Gamebase iOS SDK 2.39.0](./release-notes-ios/#2390-20220510)
 
 ### 2.38.0 (2022. 05. 03.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.38.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 외부 SDK 업데이트: TOAST Unity SDK(0.25.3)
+#### 添加功能
+* 外部SDK升级 : TOAST Unity SDK(0.25.3)
 
-#### 기능 개선/변경
-* Display Language의 중국어 번체(zh-TW) 언어셋에서 어색한 문장이 수정되었습니다.
+#### 改善/修复功能
+* 更改了Display Language中汉语繁体(zh-TW)语言集中的错误句子。
 
-#### 버그 수정
-* (Android) API Level 24 미만에서 특정 API 호출 시 오류가 발생하지 않도록 수정되었습니다.
+#### 修改程序错误
+* 修改后在低于(Android) API Level 24上调用指定API时不出现错误。
     * Gamebase.Purchase.RequestActivatedPurchases()
     * Gamebase.Purchase.RequestItemListOfNotConsumed()
 
-#### 플랫폼별 변경 사항
+#### 各平台更改项目
 * [Gamebase Android SDK 2.38.0](./release-notes-android/#2380-20220503)
 * [Gamebase iOS SDK 2.38.0](./release-notes-ios/#2380-20220503)
 
 ### 2.37.0 (2022. 04. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.37.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 고객센터 URL 뒤에 파라미터를 추가할 수 있도록 다음 필드가 추가되었습니다.
+#### 添加功能
+* 为了在客户服务URL后边添加参数，添加了以下字段。
     * GamebaseRequest.Contact.Configuration.additionalParameters
 
-#### 플랫폼별 변경 사항
+#### 各平台更改项目
 * [Gamebase Android SDK 2.37.0](./release-notes-android/#2370-20220426)
 * [Gamebase iOS SDK 2.37.0](./release-notes-ios/#2370-20220426)
 
 ### 2.36.0 (2022. 04. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.36.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 외부 SDK 업데이트: TOAST Unity SDK(0.25.2)
-* 결제 시 프로모션 여부를 알 수 있는 isPromotion 필드가 추가되었습니다.
-    * GamebaseResponse.Purchase.PurchasableReceipt.isPromotion
-* 결제 시 테스트 결제 여부를 알 수 있는 isTestPurchase 필드가 추가되었습니다.
+#### 添加功能
+* 外部SDK升级 : TOAST Unity SDK(0.25.2)
+* 添加了付款时确认是否是Promotion付款的isPromotion字段。 
+    * GamebaseResponse.Purchase.PurchasableReceipt.isPromotion。
+* 添加了付款时确认是否是测试付款的isTestPurchase字段。
     * GamebaseResponse.Purchase.PurchasableReceipt.isTestPurchase
 
-#### 버그 수정
-* 디바이스가 특정 문화권으로 설정되었을 때 결제 상품 가격 정보가 0으로 입력되는 오류가 수정되었습니다.
-* (iOS) Push 알림 클릭 시 딥 링크가 동작하지 않는 이슈 수정되었습니다.
-* (iOS) 프로젝트의 opientation이 Auto Rotation으로 설정되어 있고, 프로젝트 첫 씬에 포함된 MonoBehaviour의 Awake에서 Gamebase API 호출 시 웹뷰 등의 UI 출력이 정상적으로 동작하지 않는 오류가 수정되었습니다.
+#### 修改程序错误
+* 修复了设备设置为指定文化圈时，将支付商品价格信息输入为0的错误。
+* 修复了点击(iOS) Push通知时未能启动DeepLink的错误。
+* 修复了(iOS)项目的orientation设置为Auto Rotation，在包含于项目第一scene的MonoBehaviour的Awake中调用Gamebase API时未能输出Webview等的UI的错误。
 
-#### 플랫폼별 변경 사항
+#### 各平台更改项目
 * [Gamebase Android SDK 2.36.0](./release-notes-android/#2360-20220412)
 * [Gamebase iOS SDK 2.36.0](./release-notes-ios/#2360-20220412)
 
 ### 2.35.0 (2022. 03. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.35.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 외부 SDK 업데이트: TOAST Unity SDK(0.25.1)
-* 약관이 표시되었는지 여부를 알 수 있는 API가 추가되었습니다.
+#### 添加功能
+* 外部SDK升级 : TOAST Unity SDK(0.25.1)
+* 添加了可确认是否显示条款的API。
     * Gamebase.Terms.IsShowingTermsView()
-* 웹뷰에서 네비게이션 바를 숨길 수 있는 옵션이 추가되었습니다.
+* 添加了可在Webview隐藏导航栏的选项。
     * GamebaseRequest.Webview.GamebaseWebViewConfiguration.isNavigationBarVisible
-* (Android) 웹뷰에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다
+* 添加了可在(Android)Webview固定字形大小的选项。
     * GamebaseRequest.Webview.GamebaseWebViewConfiguration.enableFixedFontSize
-* (Android) 약관 창에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다
+* 添加了可在(Android)条款窗固定文字大小的选项。
     * GamebaseRequest.Terms.GamebaseTermsConfiguration.enableFixedFontSize
 * Setting Tool
-    * (Android) Amazon 스토어가 추가되었습니다.
-    * (Android) Huawei 스토어가 추가되었습니다.
+    * 添加了(Android) Amazon商店。
+    * 添加了(Android) Huawei商店。
 
-#### 플랫폼별 변경 사항
+#### 各平台更改项目
 * [Gamebase Android SDK 2.35.0](./release-notes-android/#2350-20220329)
 * [Gamebase iOS SDK 2.35.0](./release-notes-ios/#2350-20220329)
 
 ### 2.34.1 (2022. 03. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.1/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 단말기에서 알림을 허용했는지 여부를 알 수 있는 API가 추가되었습니다.
-    * Gamebase.Push.QueryNotificationAllowed
+#### 添加功能
+* 添加了可确认终端机是否允许通知的API。
+    * Gamebase.Push.QueryNotificationAllowed()
 
-#### 버그 수정
-* iOS에서 GamebaseWebViewConfiguration의 isBackButtonVisible 설정이 적용되지 않는 오류가 수정되었습니다.
+#### 修改程序错误
+* 修复了未能在iOS应用GamebaseWebViewConfiguration的isBackButtonVisible设置的错误。 
 
-#### 플랫폼별 변경 사항
+#### 各平台更改项目
 * [Gamebase Android SDK 2.34.0](./release-notes-android/#2340-20220222)
 * [Gamebase iOS SDK 2.34.1](./release-notes-ios/#2341-20220315)
 

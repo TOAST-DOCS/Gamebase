@@ -3,46 +3,46 @@
 ### 2.40.1 (2022. 06. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.1/GamebaseSDK-Unreal.zip)
 
-#### 버그 수정
-* 크래시가 발생할 수 있는 로직이 수정되었습니다.
-* (iOS) 동일한 API를 연속해서 호출 시 콜백이 정상적으로 전달되지 않는 문제가 수정되었습니다.
+#### 修改程序错误
+* 修改了可能出现崩溃的逻辑。
+* (iOS) 修改了连续调用同样的API时未能传送回调的问题。     
 
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
-*  [iOS 설정 툴](./unreal-started/#ios-settings)을 제공합니다.
-    * 기존 프로젝트 설정에서 **Gamebase**으로 표시 되었지만 업데이트 이후 **Gamebase - Android**, **Gamebase - iOS**로 표시됩니다.
-    * iOS 설정 툴을 제공하면서 빌드 시 필요한 프레임워크만 포함되도록 수정되었습니다.
-* 공통 약관 API 호출 후 약관 UI가 표시되었는지 여부를 알 수 있는 VO 클래스가 추가되었습니다.
-    * FGamebaseShowTermsViewResult
-* 단말기에서 알림을 허용했는지 여부를 알 수 있는 API가 추가되었습니다.
+#### 添加功能
+*  提供[iOS设置工具](./unreal-started/#ios-settings)。
+    * 在以前的项目设置中被显示为**Gamebase**，而升级后被显示为**Gamebase - Android**, **Gamebase - iOS**。
+    * 更改后当提供iOS设置工具打包时只包含必要的框架。
+* 添加了可在调用共同条款API后确认是否显示了条款UI的VO类。
+    * FGamebaseShowTermsViewResult   
+* 添加了可确认终端机是否允许通知的API。
     * IGamebase::Get().GetPush().QueryNotificationAllowed()
-* 약관이 표시되었는지를 알 수 있는 API가 추가되었습니다.
+* 添加了可确认是否显示条款的API。
     * IGamebase::Get().GetTerms().IsShowingTermsView()
-* 웹뷰에서 내비게이션 바를 숨길 수 있는 옵션이 추가되었습니다.
+* 添加了可在Webview隐藏导航栏的选项。
     * FGamebaseWebViewConfiguration.isNavigationBarVisible
-* (Android) 웹뷰에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다
+* 添加了可在(Android)WebView固定字体大小的选项。
     * FGamebaseTermsConfiguration.enableFixedFontSize
-* (Android) 약관 창에서 글자 크기를 고정할 수 있는 옵션이 추가되었습니다.
-    * FGamebaseTermsConfiguration.enableFixedFontSize
-* 결제 시 프로모션 여부를 알 수 있는 isPromotion 필드가 추가되었습니다.
+* 添加了可在(Android)条款窗固定文字大小的选项。
+    * FGamebaseTermsConfiguration.enableFixedFontSize	    
+* 添加了当付款时可以确认是否是Promotion的isPromotion字段。 
     * FGamebasePurchasableReceipt.isPromotion
-* 결제 시 테스트 결제 여부를 알 수 있는 isTestPurchase 필드가 추가되었습니다.
+* 添加了当付款时可以确认是否是测试付款的isTestPurchase字段。 
     * FGamebasePurchasableReceipt.isTestPurchase
-* 고객 센터 URL 뒤에 파라미터를 추가할 수 있도록 다음 필드가 추가되었습니다.
+* 为了在客户服务URL后边添加参数添加了以下字段。
     * FGamebaseContactConfiguration.additionalParameters
 
-#### 기능 개선/변경
-* API 결과 콜백 호출 시 GameThread로 전환하여 호출하도록 수정되었습니다.
-* RequestActivatedPurchases API 호출 시 내부에서 2회 호출되는 문제가 수정되었습니다.
-* 일부 API의 이름이 변경되었습니다.
-    * FGamebaseAnalyticesLevelUpData → FGamebaseAnalyticsLevelUpData
+#### 改善/修复功能
+* 更改后调用API结果的回调时，将转换为GameThread后调用回调。
+* 修复了调用RequestActivatedPurchases API时，API在内部被调用两次的问题。
+* 更改了一些API的名称。
+    * FGamebaseAnalyticesLevelUpData → FGamebaseAnalyticsLevelUpData        
     * FGambaseBanInfoPtr → FGamebaseBanInfoPtr
-* 킥아웃 팝업 창 표시 여부는 Gamebase 콘솔에서 킥아웃 등록 시 설정할 수 있으므로 다음 필드가 deprecated되었습니다.
+* 在Gamebase控制台中注册Kickout时可以设置是否显示Kickout弹窗，因此不需要使用以下字段。
     * FGamebaseConfiguration.enableKickoutPopup
     
-#### 플랫폼별 변경 사항
+#### 各平台更改项目
 * [Gamebase Android SDK 2.40.0](./release-notes-android/#2400-20220524)
 * [Gamebase iOS SDK 2.40.0](./release-notes-ios/#2400-20220524)
 
