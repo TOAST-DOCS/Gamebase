@@ -251,7 +251,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 #import <Gamebase/Gamebase.h>
 ```
 
-### Widthdraw API
+### Withdraw API
 
 로그인 상태에서 탈퇴를 시도합니다.
 

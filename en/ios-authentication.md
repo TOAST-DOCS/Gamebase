@@ -252,7 +252,7 @@ Import the following header file to the ViewController to implement withdrawal.
 #import <Gamebase/Gamebase.h>
 ```
 
-### Widthdraw API
+### Withdraw API
 
 Attempts account withdrawal while logged in.
 
