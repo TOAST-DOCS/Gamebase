@@ -23,7 +23,6 @@ Gamebase APIを使用するには、次のヘッダファイルをインクル�
 | enablePopup | ALL | O |
 | enableLaunchingStatusPopup | ALL | O |
 | enableBanPopup | ALL | O |
-| enableKickoutPopup | ALL | O |
 
 #### 1. App ID
 
@@ -75,13 +74,6 @@ LaunchingStatusは、下記Launching項目下のState、Code部分を参照し�
 
 * デフォルト値：true
 
-#### 8. enableKickoutPopup
-
-Gamebase ServerからKickoutイベントを受け取った場合、Gamebaseで提供する基本ポップアップを使用するかどうかの設定です。
-
-* デフォルト値：true
-
-
 ### Debug Mode
 
 * Gamebaseは警告(warning)とエラーログのみを表示します。
@@ -117,7 +109,6 @@ void Sample::SetDebugMode(bool isDebugMode)
 }
 ```
 
-
 ### Initialize
 
 SDKを初期化します。
@@ -138,7 +129,14 @@ void Initialize(const FGamebaseConfiguration& configuration, const FGamebaseLaun
 ```cpp
 void Sample::Initialize(const FString& appID, const FString& appVersion)
 {
-    FGamebaseConfiguration configuration{ "AppID", "AppVersion", "real", GamebaseDisplayLanguageCode.Korean, true, true, true, true, GamebaseStoreCode.Google, true };
+    FGamebaseConfiguration configuration;
+    configuration.appID = appID;
+    configuration.appVersion = appVersion;
+    configuration.storeCode = GamebaseStoreCode.Google;
+    configuration.displayLanguageCode = GamebaseDisplayLanguageCode.Korean;
+    configuration.enablePopup = true;
+    configuration.enableLaunchingStatusPopup = true;
+    configuration.enableBanPopup = true;
 
     IGamebase::Get().Initialize(configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* error)
     {
