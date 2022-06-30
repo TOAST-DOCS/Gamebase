@@ -503,12 +503,13 @@ showWebView(activity, urlString, configuration,
 | setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | 세로 모드          |
 |                                          | ScreenOrientation.LANDSCAPE         | 가로 모드          |
 |                                          | ScreenOrientation.LANDSCAPE_REVERSE | 가로 모드를 180도 회전 |
-| setNavigationBarVisible(boolean enable)  | true or false                       | 내비게이션 바 활성 또는 비활성 |
+| setNavigationBarVisible(boolean enable)  | true or false                       | 내비게이션 바 활성 또는 비활성.<br>**default**: true |
 | setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | 내비게이션 바 색상     |
 | setNavigationBarHeight(int height)       | height                              | 내비게이션 바 높이     |
-| setBackButtonVisible(boolean visible)    | true or false                       | 뒤로 가기 버튼 활성 또는 비활성 |
+| setBackButtonVisible(boolean visible)    | true or false                       | 뒤로 가기 버튼 활성 또는 비활성.<br>**default**: true |
 | setBackButtonImageResource(int resourceId) | ID of resource                      | 뒤로 가기 버튼 이미지       |
 | setCloseButtonImageResource(int resourceId) | ID of resource                      | 닫기 버튼 이미지      |
+| enableAutoCloseByCustomScheme(boolean enable) | true or false | 커스텀 Scheme 동작시 자동으로 웹뷰 종료.<br>**default**: true |
 
 
 ### Close WebView

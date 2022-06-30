@@ -1,5 +1,12 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.41.0
+
+### Android
+
+* 이제 웹뷰에 등록한 커스텀 스킴 이벤트가 동작할 때 자동으로 웹뷰가 종료됩니다.
+    * 이전과 같이 커스텀 스킴 이벤트가 동작하더라도 웹뷰를 유지시키고 싶은 경우에는 **GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** API를 호출하세요.
+
 ## 2.35.0
 
 ### Android
