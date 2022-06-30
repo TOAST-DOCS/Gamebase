@@ -86,7 +86,7 @@ GameのUIに合った約款ウィンドウを直接製作したい場合には�
 
 > <font color="red">[注意]</font><br/>
 >
-> * FGamebasePushConfigurationは、約款ウィンドウが表示されていない場合にはnullです(約款ウィンドウが表示された場合、常に有効なオブジェクトが返されます。)。
+> * FGamebasePushConfigurationは、約款ウィンドウが表示されていない場合にはnullです。(約款ウィンドウが表示された場合、常に有効なオブジェクトが返されます。)
 > * FGamebasePushConfiguration.pushEnabled値は常にtrueです。
 > * FGamebasePushConfigurationがnullではない場合、**ログイン後に** IGamebase::Get().GetPush().RegisterPush()を呼び出してください。
 
@@ -100,13 +100,7 @@ GameのUIに合った約款ウィンドウを直接製作したい場合には�
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
 | forceShow | O | 約款に同意した場合、showTermsView APIを再度呼び出しても約款ウィンドウが表示されませんが、これを無視して強制的に約款ウィンドウを表示します。<br>**default** : false |
-| enableFixedFontSize | O | 約款ウィンドウのフォントサイズを固定するかどうかを決定します。<br>**default**：false<br/>**Android Only** |
 
-**FGamebaseShowTermsViewResult**
-
-| Parameter              | Values                          | Description         |
-| ---------------------- | --------------------------------| ------------------- |
-| isTermsUIOpened        | bool                            | **true**：約款ウィンドウが表示され、ユーザーが同意して約款ウィンドウが終了しました。<br>**false**：すでに約款に同意していて、約款ウィンドウが表示されずに約款ウィンドウが終了しました。        |
 
 **API**
 
@@ -116,7 +110,7 @@ Supported Platforms
 
 ```cpp
 void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
-void ShowTermsView(const FGamebaseTermsConfiguration& configuration, const FGamebaseDataContainerDelegate& onCallback);
+void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
 ```
 
 **ErrorCode**
@@ -143,12 +137,8 @@ void Sample::ShowTermsView()
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView succeeded."));
                 
-                const auto result = FGamebaseShowTermsResult::From(dataContainer);
-                if (result.IsValid())
-                {
-                    // Save the 'PushConfiguration' and use it for RegisterPush() after Login().
-                    savedPushConfiguration = FGamebasePushConfiguration::From(dataContainer);
-                }
+                // Save the 'PushConfiguration' and use it for RegisterPush() after Login().
+                savedPushConfiguration = FGamebasePushConfiguration::From(dataContainer);
             }
             else
             {
@@ -317,6 +307,7 @@ void Sample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 term
 }
 ```
 
+
 #### GamebaseRequest.Terms.UpdateTermsConfiguration
 
 | Parameter            | Mandatory(M) / Optional(O) | Values                    | Description         |
@@ -332,25 +323,6 @@ void Sample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 term
 | termsContentSeq      | **M**                      | int32                | 選択約款項目KEY      |
 | agreed               | **M**                      | bool               | 選択約款項目同意状況 |
 
-### IsShowingTermsView
-
-現在約款ウィンドウが画面に表示されているかどうかを知ることができます。
-
-**API**
-
-```cpp
-bool IsShowingTermsView();
-```
-
-**Example**
-
-```cpp
-void Sample::IsShowingTermsView()
-{
-    bool isShowingTermsView = IGamebase::Get().GetTerms().IsShowingTermsView();
-    UE_LOG(GamebaseTestResults, Display, TEXT("IsShowingTermsView : %s"), isShowingTermsView ? TEXT("true") : TEXT("false"));
-}
-```
 
 ## Webview
 
@@ -420,12 +392,11 @@ void Sample::ShowWebView(const FString& url)
 | colorG                   | 0～255                                    | ナビゲーションバーの色相G                |
 | colorB                   | 0～255                                    | ナビゲーションバーの色相B                |
 | colorA                   | 0～255                                    | ナビゲーションバーの色相Alpha                |
-| isBackButtonVisible      | true or false                            | 戻るボタン有効/無効        |
+| buttonVisible            | true or false                            | 戻るボタン有効/無効          |
 | barHeight                | height                                   | ナビゲーションバーの高さ                  |
 | backButtonImageResource  | ID of resource                           | 戻るボタンのイメージ              |
 | closeButtonImageResource | ID of resource | 閉じるボタンのイメージ |
 | url | "http://" or "https://" or "file://" | Web URL |
-| enableFixedFontSize      | true or false                            | フォントサイズ固定有効または無効<br/>**Android Only** |
 
 
 > [TIP]

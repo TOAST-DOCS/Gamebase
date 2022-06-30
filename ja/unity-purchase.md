@@ -65,17 +65,9 @@ AndroidやiOSでアプリ内決済機能を設定する方法は、次のドキ�
 
 ### Purchase Item
 
-購入しようとするアイテムのgamebaseProductIdを使用して購入をリクエストします。<br/>
-gamebaseProductIdは一般的にストアに登録したアイテムのidと同じですが、Gamebaseコンソールで変更することもできます。
-payloadフィールドに入力した追加情報は決済成功後、**PurchasableReceipt.payload**フィールドに維持されるため、さまざまな用途で活用できます。<br/>
-
-> <font color="red">[注意]</font><br/>
->
-> AMAZONストアは**payload**フィールドをサポートしません。
->
-
+購入したいアイテムのitemSeqを利用して次のAPIを呼び出し、購入をリクエストします。
 ゲームユーザーが購入をキャンセルする場合、**PURCHASE_USER_CANCELED**エラーが返されます。
-キャンセル処理を行ってください。
+
 
 **API**
 

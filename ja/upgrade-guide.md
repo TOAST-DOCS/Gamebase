@@ -1,19 +1,5 @@
 ## Game > Gamebase > Upgrade Guide
 
-## 2.40.0
-
-### Unreal
-
-* FGamebaseConfigurationのenableKickoutPopupプロパティをサポートしなくなりました。
-* 一部APIの名前が変更されました。
-    * FGamebaseAnalyticesLevelUpData → FGamebaseAnalyticsLevelUpData
-    * FGambaseBanInfoPtr → FGamebaseBanInfoPtr
-* (iOS) iOS設定ツールを提供し、ビルド時に必要なフレームワークのみ含まれるように修正しました。
-* (iOS) PLCrashReporterがアップデートされ、エンジン内部にPLCrashReporterもアップデートが必要です。
-    * [Game > Gamebase > Unreal SDK使用ガイド > はじめる > Installation > iOS Settings > PLCrashReporter](./unreal-started/#ios-settings)
-* (iOS) Facebook iOS SDKが9.2.0バージョンにアップデートされ、swiftを使用するためにエンジンコードの修正が必要です。
-    * [Game > Gamebase > Unreal SDK使用ガイド > はじめる > Installation > iOS Settings > Facebook SDK](./unreal-started/#ios-settings)
-
 ## 2.36.0
 
 ### Android

@@ -1,11 +1,5 @@
 ## Game > Gamebase > 릴리스 노트 > Server API
 
-### 2022. 06. 30.
-
-#### 기능 추가
-* 탈퇴 유저가 Apple ID 인증을 사용하고 있다면, Apple ID AccessToken 만료 API 호출 추가
-* 미소비 결제 내역 조회 API 응답에 'paymentId' 필드 추가
-
 ### 2022. 06. 14.
 
 #### 기능 추가
