@@ -1,5 +1,11 @@
 ## Game > Gamebase > Release Notes > Server API
 
+### June 30, 2022
+
+#### Added Features
+* Added Apple ID AccessToken expiry API call in case the withdrawn user is using Apple ID authentication
+* Added the 'paymentId' field to the response for unconsumed payment history query API
+
 ### June 14, 2022
 
 #### Added Features
