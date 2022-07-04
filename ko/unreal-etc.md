@@ -277,7 +277,11 @@ void Sample::AddEventHandler()
 {
     IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
     {
-        if (message.category.Equals(GamebaseEventCategory::LoggedOut))
+        if (message.category.Equals(GamebaseEventCategory::IdPRevoked))
+        {
+            auto idPRevokedData = FGamebaseEventIdPRevokedData::From(message.data);
+        }
+        else if (message.category.Equals(GamebaseEventCategory::LoggedOut))
         {
             auto loggedOutData = FGamebaseEventLoggedOutData::From(message.data);
         }
@@ -324,6 +328,7 @@ void Sample::AddEventHandler()
 
 | Event 종류 | GamebaseEventCategory | VO 변환 방법 | 비고 |
 | --------- | --------------------- | ----------- | --- |
+| IdPRevoked | GamebaseEventCategory::IdPRevoked | FGamebaseEventIdPRevokedData::From(message.data) | \- |
 | LoggedOut | GamebaseEventCategory::LoggedOut | FGamebaseEventLoggedOutData::From(message.data) | \- |
 | ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushAppKickOutMessageReceived<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(message.data) | \- |
 | Observer | GamebaseEventCategory::ObserverLaunching<br>GamebaseEventCategory::ObserverNetwork<br>GamebaseEventCategory::ObserverHeartbeat | FGamebaseEventObserverData::From(message.data) | \- |
@@ -332,6 +337,90 @@ void Sample::AddEventHandler()
 | Push - 메시지 클릭 | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) |  |
 | Push - 액션 클릭 | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(message.data) | RichMessage 버튼 클릭 시 동작합니다. |
 
+#### IdP Revoked
+
+* IdP에서 해당 서비스를 삭제하였을 때 발생하는 이벤트입니다.
+* 유저에게 IdP가 사용 중지되었음을 알려주고, 동일 IdP로 로그인할 때 userID를 새로 발급받을 수 있도록 구현해야 합니다.
+* FGamebaseEventIdPRevokedData.code: GamebaseIdPRevokedCode 값을 의미합니다.
+    * Withdraw : 600
+        * 현재 사용 중지된 IdP로 로그인되어 있고, 매핑된 IdP 목록이 없을 때를 의미합니다.
+        * Withdraw API를 호출해서 현재 계정을 탈퇴시켜줘야 합니다.
+    * OverwriteLoginAndRemoveMapping : 601
+        * 현재 사용 중지된 IdP로 로그인되어 있고, 사용 중지된 IdP 외에 다른 IdP가 매핑되어 있는 경우를 의미합니다.
+        * 매핑된 IdP 목록 중 하나의 IdP로 로그인을 하고 RemoveMapping API를 호출해서 사용 중지된 IdP에 대한 연동을 해제해야 합니다.
+    * RemoveMapping : 602
+        * 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
+        * RemoveMapping API를 호출해서 사용 중지된 IdP에 대한 연동을 해제해야 합니다.
+* FGamebaseEventIdPRevokedData.idpType: 사용 중지된 IdP 타입을 의미합니다.
+* FGamebaseEventIdPRevokedData.authMappingList: 현재 계정에 매핑되어 있는 IdP 목록을 의미합니다.
+
+**Example**
+
+```cpp
+void Sample::AddEventHandler()
+{
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    {
+        if (message.category.Equals(GamebaseEventCategory::IdPRevoked))
+        {
+            auto idPRevokedData = FGamebaseEventIdPRevokedData::From(message.data);
+            if (idPRevokedData.IsValid())
+            {
+                ProcessIdPRevoked(idPRevokedData);
+            }
+        }
+    }));
+}
+
+void Sample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
+{
+    auto revokedIdP = data->idPType;
+    switch (data->code)
+    {
+        // 현재 사용 중지된 IdP로 로그인되어 있고, 매핑된 IdP 목록이 없을 때를 의미합니다.
+        // 유저에게 현재 계정이 탈퇴됨을 알려주세요.
+        case GamebaseIdPRevokeCode::Withdraw:
+        {
+            IGamebase::Get().Withdraw(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+            {
+                ...
+            }));
+            break;
+        }
+        case GamebaseIdPRevokeCode::OverwriteLoginAndRemoveMapping:
+        {
+            // 현재 사용 중지된 IdP로 로그인되어 있고, 사용 중지된 IdP 외에 다른 IdP가 매핑되어 있는 경우를 의미합니다.
+            // 유저가 authMappingList 중 어떤 IdP로 다시 로그인할 지 선택하고, 선택된 IdP로 로그인한 후에 사용 중지된 IdP에 대해서는 연동 해제 시켜주세요.
+            auto selectedIdP = "유저가 선택한 IdP";
+            auto additionalInfo = NewObject<UGamebaseJsonObject>();
+            additionalInfo->SetBoolField(GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn, true);
+
+            IGamebase::Get().Login(selectedIdP, *additionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+            {
+                if (Gamebase::IsSuccess(error))
+                {
+                    IGamebase::Get().RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+                    {
+                        ...
+                    }));
+                }
+            }));
+            break;
+        }
+        case GamebaseIdPRevokeCode::RemoveMapping:
+        {
+            // 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
+            // 유저에게 현재 계정에서 사용 중지된 IdP가 연동 해제됨을 알려주세요.
+            IGamebase::Get().RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+            {
+                ...
+            }));
+            break;
+        }
+    }
+}
+```
+
 #### Logged Out
 
 * Gamebase Access Token이 만료되어 네트워크 세션을 복구하기 위해 로그인 함수 호출이 필요한 경우 발생하는 이벤트 입니다.
@@ -339,28 +428,6 @@ void Sample::AddEventHandler()
 **Example**
 
 ```cpp
-public void AddEventHandlerSample()
-{
-    Gamebase.AddEventHandler(GamebaseEventHandler);
-}
-
-private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
-{
-    switch (message.category)
-    {
-        case GamebaseEventCategory.LOGGED_OUT:
-            {
-                GamebaseResponse.Event.GamebaseEventLoggedOutData loggedData = GamebaseResponse.Event.GamebaseEventLoggedOutData.From(message.data);
-                if (loggedData != null)
-                {
-                    // There was a problem with the access token.
-                    // Call login again.
-                }
-                break;
-            }
-    }
-}
-
 void Sample::AddEventHandler()
 {
     IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
