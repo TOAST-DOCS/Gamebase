@@ -4,7 +4,6 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-Unreal.zip)
 
 #### 기능 추가
-* 외부 SDK 업데이트: TOAST Unity SDK(0.25.6)
 * GamebaseEventHandler의 GamebaseEventCategory에 **IdPRevoked** 타입이 추가되었습니다.
     * [Game > Gamebase > Unreal SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./unreal-etc/#idp-revoked)
 
