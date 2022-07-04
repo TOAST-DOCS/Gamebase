@@ -384,17 +384,17 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 #### IdP Revoked
 
-* IdP가 사용 중지 되었을 때 발생하는 이벤트입니다.
+* IdP에서 해당 서비스를 삭제하였을 때 발생하는 이벤트입니다.
 * 유저에게 IdP가 사용 중지되었음을 알려주고, 동일 IdP로 로그인할 때 userID를 새로 발급받을 수 있도록 구현해야 합니다.
 * TCGBGamebaseEventIdPRevokedData.code: TCGBIdPRevokedCode 값을 의미합니다.
     * IDP_REVOKED_WITHDRAW: 600
         * 현재 사용 중지된 IdP로 로그인되어 있고, 매핑된 IdP 목록이 없을 때를 의미합니다.
         * withdraw API를 호출해서 현재 계정을 탈퇴시켜줘야 합니다.
     * IDP_REVOKED_OVERWRITE_LOGIN_AND_REMOVE_MAPPING: 601
-        * 현재 사용 중지된 IdP로 로그인되어 있고, 매핑된 IdP 목록이 존재하는 경우를 의미합니다.
+        * 현재 사용 중지된 IdP로 로그인되어 있고, 사용 중지된 IdP 외에 다른 IdP가 매핑되어 있는 경우를 의미합니다.
         * 매핑된 IdP 목록 중 하나의 IdP로 로그인을 하고 removeMapping API를 호출해서 사용 중지된 IdP에 대한 연동을 해제해야 합니다.
     * IDP_REVOKED_REMOVE_MAPPING: 602
-        * 현재 계정에 사용 중지된 IdP가 매핑되어 있을 때를 의미합니다.
+        * 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
         * removeMapping API를 호출해서 사용 중지된 IdP에 대한 연동을 해제해야 합니다.
 * TCGBGamebaseEventIdPRevokedData.idpType: 사용 중지된 IdP 타입을 의미합니다.
 * TCGBGamebaseEventIdPRevokedData.authMappingList: 현재 계정에 매핑되어 있는 IdP 목록을 의미합니다.
@@ -432,8 +432,8 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
                 }   
                 case IDP_REVOKED_OVERWRITE_LOGIN_AND_REMOVE_MAPPING:
                 {
-                    // 현재 사용 중지된 IdP로 로그인되어 있고, 매핑된 IdP 목록이 존재하는 경우를 의미합니다.
-                    // 유저가 authMappingList 중 어떤 IdP로 다시 로그인할 지 선택하여 선택된 IdP로 로그인한 후에 사용 중지된 IdP에 대해서는 연동 해제 시켜주세요.
+                    // 현재 사용 중지된 IdP로 로그인되어 있고, 사용 중지된 IdP 외에 다른 IdP가 매핑되어 있는 경우를 의미합니다.
+                    // 유저가 authMappingList 중 어떤 IdP로 다시 로그인할 지 선택하고, 선택된 IdP로 로그인한 후에 사용 중지된 IdP에 대해서는 연동 해제 시켜주세요.
                     NSString *selectedIdPType = "유저가 선택한 IdP";
                     NSMutableDictionary *additionalInfo = [NSMutableDictionary dictionary];
                     additionalInfo[kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname] = @(YES);
@@ -448,7 +448,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
                 }
                 case IDP_REVOKED_REMOVE_MAPPING:
                 {
-                    // 현재 계정에 사용 중지된 IdP가 매핑되어 있을 때를 의미합니다.
+                    // 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
                     // 유저에게 현재 계정에서 사용 중지된 IdP가 연동 해제됨을 알려주세요.
                     [TCGBGamebase removeMappingWithType:revokedIdP viewController:nil completion:^(TCGBError *error) {
                         ...
