@@ -96,7 +96,7 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
 2. EDM4U(External Dependency Manager for Unity)가 필수 라이브러리로 채택되었습니다.
     * [EDM4U Github](https://github.com/googlesamples/unity-jar-resolver)에서 EDM4U를 다운로드 후, 설치해야 합니다.
     * EDM4U가 없을 경우에는 Gamebase SDK for Android, iOS 설정이 되지 않습니다.
-    * Facebook, GPGS SDK, Firebase와 같이 EDM4U를 이미 포함하고 있는 SDK를 사용할 경우에는 EDM4U를 다운로드하지 않아도 됩니다.
+    * 프로젝트에서 이미 EDM4U를 포함하고 있을 경우에는 EDM4U를 다운로드하지 않아도 됩니다.
 3. Android 플랫폼을 서비스할 경우에는 상단 메뉴 > **Assets > External Dependency Manager > Android Resolver > Settings**를 선택하여 Android Resolver Settings 창을 열고 아래와 같이 설정하십시오.
     * Enable Auto-Resolution: 비활성화
     * Explode AARs: 비활성화
@@ -147,7 +147,6 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
 3. [Settings] 버튼 클릭해서 SDK를 설치합니다.
     * 기존에 선택한 플랫폼별 모듈은 변경이 가능합니다
 
-
 #### SDK 삭제
 
 1. 상단 메뉴 > **Tools > NhnCloud > Gamebase > SettingTool > Settings**를 선택합니다.
@@ -157,8 +156,6 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
 > 
 > Setting Tool에서 예기치 못한 오류가 발생할 경우, 창을 닫고 재실행하시기 바랍니다. <br/>
 > 재실행하여도 오류가 해결되지 않을 경우, **Assets/NhnCloud/GamebaseTools/SettingTool/Editor/Scripts**에서 SettingToolWindow.cs 파일을 열고, ShowWindow 메서드에서 SettingTool.SetDebugMode(true); 코드를 주석 해제 후, 로그를 전달해 주시기 바랍니다.<br/><br/>
-> Unity Facebook Authentication을 사용하는 경우, Facebook Unity SDK는 별도로 다운로드해야 합니다. [Go to Download](https://developers.facebook.com/docs/unity/)<br/>
-> Unity Facebook Authentication에서 지원하는 Facebook Unity SDK 버전은 같이 제공되는 README 파일을 참고하시기 바랍니다. <br/>
 
 ### Video of Setting Tool Usage
 
@@ -189,6 +186,45 @@ Setting Tool의 업데이트가 필요한 경우 Setting Tool에서 업데이트
 * SDK 다운로드 가능
 
 ![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-2_1.13.0.png)
+
+### Facebook 인증 추가
+
+Facebook SDK for Unity는 Facebook SDK for iOS, Android를 포함합니다.
+
+![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_001.jpg)
+
+Unity 설정에서 Facebook 인증을 활성화한 후,
+
+![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_002.png)
+
+Android, iOS 설정에서 Facebook 인증을 활성화할 경우,
+
+![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_003.png)
+
+프로젝트에 Facebook SDK가 중복으로 포함되는 현상이 발생하며, 이로 인해 인증 실패 또는 빌드 실패와 같은 오류가 발생합니다.
+SettingTool은 이와 같은 오류를 차단하기 위해 **Unity 설정**과 **Android && iOS 설정**에서 Facebook 인증을 중복 활성화할 수 없도록 처리되어 있습니다.
+
+> `[주의]`
+> Unity 설정과 Android && iOS 설정에서 Facebook 인증을 중복 활성화할 수 없습니다.
+> Unity 설정에서 Facebook 인증을 활성화할 경우 [Facebook SDK for Unity를 직접 다운로드](https://developers.facebook.com/docs/unity/)해야 합니다.
+
+게임사별 상황에 맞는 SettingTool 설정은 아래 표를 참고하십시오.
+
+| | **SettingTool > Unity** 설정 > Facebook 인증 활성화 | **SettingTool > Android, iOS** 설정 > Facebook 인증 활성화 |
+| --- | --- | --- |
+| 게임에 필요한 기능 | Gamebase Facebook 로그인(Android, iOS)<br>ShareLink나 FeedShare와 같은 기능 사용 | Gamebase Facebook 로그인(Android, iOS) |
+| Android, iOS Login API | [Gamebase Login with Credential](https://docs.toast.com/ko/Game/Gamebase/ko/unity-authentication/#login-with-credential) | [Gamebase Login with ID Provider](https://docs.toast.com/ko/Game/Gamebase/ko/unity-authentication/#login-with-idp) |
+| Facebook SDK for Unity 다운로드 | O | X |
+
+* Case 1. Android, iOS 플랫폼에서 Gamebase Facebook 로그인만 사용합니다.
+    * **SettingTool > Android, iOS** 설정에서 Facebook 인증을 활성화합니다.
+* Case 2. Unity 프로젝트에서 Gamebase Facebook 로그인과 Facebook의 FeedShare 기능을 사용해야 합니다.
+    * **SettingTool > Unity** 설정에서 Facebook 인증을 활성화합니다.
+    * Gamebase는 Facebook 인증 외 다른 기능은 지원을 하지 않으므로 Facebook SDK for Unity를 사용하여 직접 구현해야 합니다.
+* Case 3. **SettingTool > Android, iOS** 설정에서 Facebook 인증을 활성화하였는데 Facebook SDK for Unity를 프로젝트에 포함하고 있습니다.
+    * Gamebase Facebook 로그인만 사용하고 계시다면 프로젝트에 포함된 Facebook SDK for Unity를 프로젝트에서 제거하십시오.
+    * Gamebase Facebook 로그인 외 Facebook의 FeedShare 기능을 사용하고 있다면 **SettingTool > Unity** 설정에서 Facebook 인증을 활성화합니다.
+        * 이 경우 Android, iOS 설정이 되어 있다면 자동으로 해제됩니다.
 
 ### Android Lifecycle
 
