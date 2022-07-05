@@ -252,7 +252,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 #import <Gamebase/Gamebase.h>
 ```
 
-### Widthdraw API
+### Withdraw API
 
 ログイン状態で退会を試行します。
 

@@ -1,21 +1,32 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.41.0 (2022. 07. 05.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST Android SDK(0.31.1), Hangame Android SDK(1.4.6)
+* 웹뷰에 등록한 커스텀 스킴 이벤트가 동작할 때 자동으로 웹뷰가 종료됩니다.
+    * 커스텀 스킴 이벤트가 동작하더라도 웹뷰를 유지시키고 싶은 경우에는 **GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** API를 호출하세요.
+
+#### 버그 수정
+* Hangame IdP 로그아웃 후 로그인을 바로 시도하는 경우, 간헐적으로 크래쉬가 발생하거나 로그인이 실패하는 이슈 수정
+
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* ONE Store 외부 결제를 위한 Purchase Adapter가 추가되었습니다.
-    * 빌드 의존성에 **gamebase-adapter-purchase-onestore-external** 모듈을 추가하시면 사용 가능합니다.
-
+#### 添加功能
+* 为了ONE store外部支付，添加了Purchase Adapter。
+    * 如需使用，则在打包依赖性添加**gamebase-adapter-purchase-onestore-external**模块儿。 
+            
             dependencies {
                 ...
                 implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-external:$GAMEBASE_SDK_VERSION"
             }
-
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.31.0), TOAST Gamebase IAP Android SDK(0.18.5)
-* 서로 다른 앱이 하나의 Gamebase 프로젝트를 공유하는 경우 Push가 정상적으로 동작하지 않는 이슈가 수정되었습니다.
-    * AndroidManifest.xml에 앱마다 서로 다른 **com.nhncloud.sdk.push.deviceId.salt**값을 선언하시기 바랍니다.
+            
+#### 改善/修复功能
+* 外部SDK升级 : TOAST Android SDK(0.31.0)、TOAST Gamebase IAP Android SDK(0.18.5)
+* 更改了不同的应用程序使用同一个Gamebase项目时，无法正常启动推送功能的问题。
+    * 请在AndroidManifest.xml中声明各应用程序的**com.nhncloud.sdk.push.deviceId.salt**值。
 
             <!-- When you have multiple applications sharing an Gamebase project, use this field to identify each application. -->
             <meta-data android:name="com.nhncloud.sdk.push.deviceId.salt"
@@ -24,85 +35,85 @@
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.30.1)
+#### 改善/修复功能
+* 外部SDK升级 : TOAST Android SDK(0.30.1)
 
 ### 2.38.0 (2022. 05. 03.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.38.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* Amazon(ADM) Push Adapter가 추가되었습니다.
-    * 빌드 의존성에 **gamebase-adapter-push-adm** 모듈을 추가하시면 사용 가능합니다.
+#### 添加功能
+* 添加了Amazon(ADM) Push Adapter。
+    * 如需使用，则在打包依赖性添加**gamebase-adapter-push-adm**模块儿。
             
             dependencies {
                 ...
                 implementation "com.toast.android.gamebase:gamebase-adapter-push-adm:$GAMEBASE_SDK_VERSION"
             }
             
-    * Proguard를 적용하는 경우, 다음 가이드를 확인하여 적용하셔야 합니다.
-        * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > ADM SDK 다운로드](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#download-the-adm-sdk)
-        * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > Proguard 설정](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#proguard-settings)
+    * 使用Proguard时，请先参考以下指南。
+        * [NHN Cloud > SDK使用指南 > TOAST Push > Android > 设置Amazon Device Messaging > 升级ADM SDK](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#download-the-adm-sdk)
+        * [NHN Cloud > SDK使用指南 > TOAST Push > Android > 设置Amazon Device Messaging > 设置Proguard](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#proguard-settings)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.30.0)
-* Display Language의 중국어 번체(zh-TW) 언어셋에서 어색한 문장을 수정했습니다.
+#### 改善/修复功能
+* 外部SDK升级 : TOAST Android SDK(0.30.0)
+* 更改了Display Language中汉语繁体(zh-TW)语言集中的错误句子。
 
 ### 2.37.0 (2022. 04. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.37.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* 고객센터 URL 뒤에 파라미터를 추가할 수 있도록 다음 필드가 추가되었습니다.
+#### 添加功能
+* 为了在客户服务URL后边添加参数，添加了以下字段。
     * **ContactConfiguration.Builder.setAdditionalParameters(Map&lt;String, String&gt;)**
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트 : TOAST Gamebase IAP Android SDK(0.18.3)
-* Amazon appstore 결제 데이터에서 userId, gamebaseProductId가 누락될 시 userId, gamebaseProductId를 자동으로 채우도록 개선되었습니다.
+#### 改善/修复功能
+* 外部SDK升级 : TOAST Gamebase IAP Android SDK(0.18.3)
+* 更改后，当在Amazon Appstore结算数据中未输入userid和gamebaseproductid时，自动添加userid和gamebaseproductid。
 
 ### 2.36.0 (2022. 04. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.36.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.29.2), TOAST Gamebase IAP Android SDK(0.18.2), Hangame Android SDK(1.4.5)
-* Hangame Android SDK에서 v1.4.5에서 sms_hash가 내부에서 생성되도록 개선되었습니다.
-    * 더 이상 sms_hash를 설정하지 않아도 됩니다.
+#### 改善/修复功能
+* 外部SDK升级 : TOAST Android SDK(0.29.2), TOAST Gamebase IAP Android SDK(0.18.2), Hangame Android SDK(1.4.5)
+* 更改后，在Hangame Android SDK v1.4.5内部创建sms_hash。
+    * 不需要设置sms_hash。
 
 ### 2.35.0 (2022. 03. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.35.0/GamebaseSDK-Android.zip)
 
 ```
-Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
-더 이상 배포용 zip 파일에서 aar 파일을 포함하지 않습니다.
+目前只能使用Maven Central发布Gamebase Android SDK。
+发布专用ZIP文件不再包含AAR文件。  
 ```
 
-#### 기능 추가
-* 약관 창이 표시되었는지 여부를 알 수 있는 API가 추가되었습니다.
+#### 添加功能
+* 添加了用于确认是否显示条款窗的API。
     * **Gamebase.Terms.isShowingTermsView()**
-* 웹뷰에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다.
+* 添加了在WebView中可固定文字大小的选项。 
     * **GamebaseWebViewConfiguration.Builder.enableFixedFontSize(boolean)**
-* 약관 창에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다.
+* 添加了在条款窗中可固定文字大小的选项。 
     * **GamebaseTermsConfiguration.Builder.enableFixedFontSize(boolean)**
-* Facebook, Naver 로그인시 Facebook, Naver 앱이 설치되어 있더라도 강제로 웹로그인을 진행하는 기능이 추가되었습니다.
-    * 이 기능을 사용하기 위해서는 Gamebase Console의 AdditionalInfo에 다음과 같이 설정하세요.
+* 添加了登录Facebook、NAVER时，即使Facebook、NAVER等应用程序已被设置，也可强制登录网页的功能。
+    * 如需使用此功能，请在Gamebase Console的AdditionalInfo中进行以下设置。 
 
 ```
 {"enforce_app2web":true}
 ```
 
-* 이제 Naver 로그아웃시 토큰을 삭제하지 않습니다.
-    * 재로그인 할 때 정보 제공 동의 창이 뜨지 않습니다.
-    * 웹로그인시에는 계정이 변경되지 않습니다.
-    * 이전 동작을 유지하기 위해서는 Gamebase Console의 AdditionalInfo에 다음과 같이 설정하세요.
+* 注销NAVER账户时不删除令牌。
+    * 重新登录时不显示个人隐私协议窗。 
+    * 登录网页时，保持原有账号。
+    * 如需保持更改之前的状态，请在Gamebase Console中的AdditionalInfo输入如下信息。
 
 ```
 {"logout_and_delete_token":true}
 ```
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.29.1), Hangame Android SDK(1.4.4)
-* 약관 창이 표시될때 흰색 배경이 길게 표시되지 않도록 개선했습니다.
+#### 改善/修复功能
+* 外部SDK升级 : TOAST Android SDK(0.29.1)、Hangame Android SDK(1.4.4)
+* 更改后，在显示条款窗时不显示长白色背景。
 
-#### 버그 수정
-* 웹뷰의 네비게이션바를 숨기는 **GamebaseWebViewConfiguration.Builder.setNavigationBarVisible()** API가 정상동작 하지 않는 이슈를 수정했습니다.
+#### 修改程序错误
+* 更改了未能正常启动用于隐藏WebView导航栏的**GamebaseWebViewConfiguration.Builder.setNavigationBarVisible()** API的问题。
 
 ### 2.34.0 (2022. 02. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.0/GamebaseSDK-Android.zip)

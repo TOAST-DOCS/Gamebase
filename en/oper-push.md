@@ -1,9 +1,13 @@
 ## Game > Gamebase > Console Guide > Push
 
+
+
 You can send push notification to app users.
+
 In Gamebase, push notifications are provided by applying TOAST Cloud Push service.
 
 ## Push
+
 > <font color="red">[Important]</font><br/>
 >
 > This menu is used when the **Gamebase SDK 2.6.0 or later** is applied to the current game service.
@@ -28,7 +32,7 @@ If you click the **Copy** button, you can easily register the push by using the 
 To register a new push, click the **Register** button.
 You can check the preview on the right to see how the value registered in the console appears in the actual device.
 
-![gamebase_push_05_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_05_202101.png)
+![gamebase_push_05_202205](https://static.toastoven.net/prod_gamebase/gamebase_push_05_202205.png)
 
 #### (1) Send type
 
@@ -104,20 +108,27 @@ You can set the text color of the push message in the Android device.
 You can set the color for the subject and body by either picking the color from text color selection window or by manually entering the RGB hex value.
 The selected text color can be viewed in the preview screen on the right.
 
-#### (8) Notification sound (optional)
+#### (8) Message click action (optional)
+You can set a URL to go to or a scheme to use when a push message is clicked.
+
+#### (9) Custom fields (optional)
+You can set a custom key that you want to pass along with the push message.
+You can create an item using the Add Field button, and you can create up to 10 items.
+
+#### (10) Notification sound (optional)
 
 You can set the notification sound which is played when the device receives a push message.
 You can set the sound by clicking the **Add Notification Sound** button. The default sound is played if no particular sound has been set.
 Enter the external URL address or the path of the notification sound file deployed in app.
 
-#### (9) Large icon (Only Android)
+#### (11) Large icon (Only Android)
 
 You can click the **Add Large Icon** button to set the icon image to show on the right upon receiving a push message.
 Once you set the large icon image and send the push message, it appears only in the Android device and not in the iOS device.
 Select **External** to enter the external URL of the icon image to display, or select **Internal** to enter the path of the icon image file deployed in app.
 If it is an external image, you can check the icon beforehand in the preview on the right.
 
-#### (10) Button
+#### (12) Button
 
 You can include up to 3 buttons in the message. These buttons appear at the bottom upon receiving a push message.
 There are 4 button types, each with its own behavior and settings.
@@ -127,12 +138,12 @@ There are 4 button types, each with its own behavior and settings.
 - Response: Clicking the button in the push message opens a window to which you can respond. In iOS, you can set the name of the Send button along with this.
 -  Close: Clicking the button in the push message closes the push message. You can specify the button name only.
 
-#### (11) Media (iOS)
+#### (13) Media (iOS)
 
 You can add a media which is dynamically played when receiving an iOS push message.
 You can set the **IMAGE**, **GIF**, **VIDEO**, and **AUDIO**, and enter the external URL to connect to or internal file path.
 
-#### (12) Media (Android)
+#### (14) Media (Android)
 
 You can add a media which is played when receiving an Android push message.
 In Android, you can only set the **IMAGE**, and enter the external URL to connect to or internal file path.
@@ -219,9 +230,53 @@ For each certificate, click the **Register**, **Modify**, or **Delete** button t
 
 ### Authentication register
 ![gamebase_push_19_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_19_202101.png)
-{@line:end}
 
-{@line:263}
+
+## Tag
+
+Provides a tag function that can send push messages by grouping users according to specific criteria.
+
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_06_201910.png)
+
+You can register a tag name to be used when sending push messages from NHN Cloud Push.
+
+
+
+### Tag register
+
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_09_201910.png)
+
+
+### Tag detail
+
+You can manage the registered tags and manage the list of users registered in the tags.
+
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_07_201911.png)
+
+You can modify or delete tag information by clicking the **Modify** or **Delete** buttons at the top, and you can register or delete users in the tag using the user ID management function at the bottom.
+
+#### Add users
+
+##### Add a single user
+
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_08_201910.png)
+
+##### Add using a file
+
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_10_201910.png)
+
+If you click the **Add** button, the registration popup appears as shown above, and you can input users by entering an ID directly or by registering a file.
+
+**File registration** allows you to register up to 1,000 users at a time.
+
+
+#### Delete users
+
+![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_11_201910.png)
+
+To delete a user registered in a tag, select the checkbox on the left in the user list and click the **Delete** button.
+
+
 ## Setting
 You can also manage the push settings
 ![gamebase_push_20_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_20_202101.png)
@@ -260,3 +315,12 @@ Saves the history of outbound messages in the NHN Cloud Log & Crash Search.
 	* ALL: All logs are sent to Log & Crash Search.
 	* INFO: Expired tokens and send failure logs are sent to Log & Crash Search.
 	* ERROR: Send failure logs are sent to Log & Crash Search.
+
+### Settings for reservation of guidance message for consent to receive advertisements
+Automatically sends a re-consent message to users who agreed to receive advertising messages two years ago. A message is sent on the configured date and time every month that turns 2 years old.
+* Whether to use: Whether to use the reservation setting function for the guidance message of consent to receive advertisements.
+* Reservation date: The date to deliver the push message. If set to 3, the message will be sent on the 3rd of every month.
+* Reservation time: The time to deliver the push message. If you set the reservation date to 3 and the reservation time to 11, the message will be sent on the 3rd of every month at 11am.
+* Guidance message
+	* Subject: You can set the subject of the push message.
+	* Content: You can set the content of the push message. If you enter the date and time replace element (###AD_AGREEMENT_DATE_TIME###) for consent to receiving advertising messages in the body, it will be replaced with the date and time of consent for the corresponding token when sending the message. The content of the message must include the fact of consent, the date of consent, and how to maintain or withdraw the consent.

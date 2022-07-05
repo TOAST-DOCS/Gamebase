@@ -1,5 +1,32 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.41.0
+
+### Android
+
+* 이제 웹뷰에 등록한 커스텀 스킴 이벤트가 동작할 때 자동으로 웹뷰가 종료됩니다.
+    * 이전과 같이 커스텀 스킴 이벤트가 동작하더라도 웹뷰를 유지시키고 싶은 경우에는 **GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** API를 호출하세요.
+
+### Unity
+
+* Gamebase SettingTool 필수 업데이트가 추가되었습니다. (v2.4.0)
+    * 기존 SettingTool은 Unity 프로젝트에서 완전히 제거 후, 최신 버전으로 재설치해야 합니다.
+    * SettingTool v1은 더 이상 지원하지 않습니다.
+
+## 2.40.0
+
+### Unreal
+
+* FGamebaseConfigurationのenableKickoutPopupプロパティをサポートしなくなりました。
+* 一部APIの名前が変更されました。
+    * FGamebaseAnalyticesLevelUpData → FGamebaseAnalyticsLevelUpData
+    * FGambaseBanInfoPtr → FGamebaseBanInfoPtr
+* (iOS) iOS設定ツールを提供し、ビルド時に必要なフレームワークのみ含まれるように修正しました。
+* (iOS) PLCrashReporterがアップデートされ、エンジン内部にPLCrashReporterもアップデートが必要です。
+    * [Game > Gamebase > Unreal SDK使用ガイド > はじめる > Installation > iOS Settings > PLCrashReporter](./unreal-started/#ios-settings)
+* (iOS) Facebook iOS SDKが9.2.0バージョンにアップデートされ、swiftを使用するためにエンジンコードの修正が必要です。
+    * [Game > Gamebase > Unreal SDK使用ガイド > はじめる > Installation > iOS Settings > Facebook SDK](./unreal-started/#ios-settings)
+
 ## 2.36.0
 
 ### Android

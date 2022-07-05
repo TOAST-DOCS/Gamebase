@@ -1,5 +1,16 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.41.0 (2022. 07. 05.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST Android SDK(0.31.1), Hangame Android SDK(1.4.6)
+* 웹뷰에 등록한 커스텀 스킴 이벤트가 동작할 때 자동으로 웹뷰가 종료됩니다.
+    * 커스텀 스킴 이벤트가 동작하더라도 웹뷰를 유지시키고 싶은 경우에는 **GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** API를 호출하세요.
+
+#### 버그 수정
+* Hangame IdP 로그아웃 후 로그인을 바로 시도하는 경우, 간헐적으로 크래쉬가 발생하거나 로그인이 실패하는 이슈 수정
+
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Android.zip)
 

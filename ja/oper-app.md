@@ -531,12 +531,13 @@ OSごとに選択できるストアが異なります。
 - <font color="white" style="background-color:#F8BB28">テスト</font>：内部テスト
 - <font color="white" style="background-color:#eba34b">ベータサービス</font>：サービスサーバーではない別のベータサーバーに接続が必要な場合に選択します。
 - <font color="white" style="background-color:#FB8F37">審査中</font>：ストア審査中
-![gamebase_app_15_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_15_201812.png)
 
 - <font color="white" style="background-color:#88C637">サービス中</font>：正常サービス
 - <font color="white" style="background-color:#2AB1A6">アップデート推奨(サービス中)</font>：正常サービス。 <br/>より安定的なバージョンを使用するように誘導するためにポップアップを表示します。<br/>新しいバージョンをダウンロードして利用するように誘導しますが、ユーザーが望む場合は、現在のバージョンで継続してサービスを利用できます。<br />以下は「アップデート推奨(サービス中)」状態の時にGamebase SDKがデフォルトで提供するポップアップです。
 
-- <font color="white" style="background-color:#A1A1A1">アップデート必須</font>：サービス不可。<br/>現在ゲームでサービスをサポートしないバージョンのため、最新バージョンインストール案内ポップアップを表示します。<br />以下は「アップデート必須」状態の時にGamebase SDKがデフォルトで提供するポップアップです。
+- <font color="white" style="background-color:#A1A1A1">アップデート必須</font>：サービス不可。<br/>現在ゲームでサービスをサポートしないバージョンのため、最新バージョンインストール案内ポップアップを表示します。<br />以下は「アップデート必須」状態の時にGamebase SDKがデフォルトで提供するポップアップです。 <br/> 「アップデート必須」状態のときにポップアップボタンを追加できます。 **詳細表示ボタン追加**から**ボタン追加**を選択する場合、接続するURLを設定できます。
+
+![gamebase_app_37_202205.png](https://static.toastoven.net/prod_gamebase/gamebase_app_37_202205.png)
 
 >  <font color="red">[注意] </font>
 >  **アップデート必須とメンテナンスが同時に設定**されている場合、サービス状態は「アップデート必須」になります。
@@ -545,7 +546,9 @@ OSごとに選択できるストアが異なります。
 > アップデートボタンを押すと、インストールURLメニューで設定したそれぞれのストアアドレスに接続されます。
 > 例えばクライアントがApp storeに設定されていて、インストールURLメニューでApp store関連設定が存在する場合、設定したアドレスに移動し、インストールURLメニューに設定されていない場合は共通(Common) URLに接続されます。
 
-- <font color="white" style="background-color:#CCCCCC">終了</font>：サービス不可。<br/>サービスが終了したバージョンの場合に選択します。<br />以下は、「終了」状態の時にGamebase SDKがデフォルトで提供するポップアップです。
+- <font color="white" style="background-color:#CCCCCC">終了</font>：サービス不可。 <br/> サービスが終了したバージョンの場合に選択します。<br />以下は、「終了」状態の時にGamebase SDKがデフォルトで提供するポップアップです。
+
+![gamebase_app_15_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_15_201812.png)
 
 > [参考]
 > サービスの状態に基づいて表示するメッセージ設定

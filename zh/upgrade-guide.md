@@ -1,15 +1,50 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.41.0
+
+### Android
+
+* 이제 웹뷰에 등록한 커스텀 스킴 이벤트가 동작할 때 자동으로 웹뷰가 종료됩니다.
+    * 이전과 같이 커스텀 스킴 이벤트가 동작하더라도 웹뷰를 유지시키고 싶은 경우에는 **GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** API를 호출하세요.
+
+### Unity
+
+* Gamebase SettingTool 필수 업데이트가 추가되었습니다. (v2.4.0)
+    * 기존 SettingTool은 Unity 프로젝트에서 완전히 제거 후, 최신 버전으로 재설치해야 합니다.
+    * SettingTool v1은 더 이상 지원하지 않습니다.
+
+## 2.40.0
+
+### Unreal
+
+* 不再支持FGamebaseConfiguration的enableKickoutPopup俗性。
+* 更改了一些API的名称。
+    * FGamebaseAnalyticesLevelUpData → FGamebaseAnalyticsLevelUpData
+    * FGambaseBanInfoPtr → FGamebaseBanInfoPtr
+* (iOS) 更改后当提供iOS设置工具打包时只包含必要的框架。
+* (iOS) 由于PLCrashReporter被更新，也需要更新引擎内部的PLCrashReporter。
+    * [Game > Gamebase > Unreal SDK使用指南 > 开始 > Installation > iOS Settings > PLCrashReporter](./unreal-started/#ios-settings)
+* (iOS) 由于Facebook iOS SDK升级为9.2.0版本，为了使用swift需要修改引擎代码。 
+    * [Game > Gamebase > Unreal SDK使用指南 > 开始 > Installation > iOS Settings > Facebook SDK](./unreal-started/#ios-settings)
+
+## 2.36.0
+
+### Android
+
+#### Hangame SDK
+* 更改后，在Hangame Android SDK v1.4.5的内部创建sms_hash。
+    * 不需要再设置sms_hash。
+
 ## 2.35.0
 
 ### Android
 
-#### Naver IdP
+#### NAVER IdP
 
-* 이제 Naver 로그아웃시 토큰을 삭제하지 않습니다.
-    * 재로그인 할 때 정보 제공 동의 창이 뜨지 않습니다.
-    * 웹로그인시에는 계정이 변경되지 않습니다.
-    * 이전 동작을 유지하기 위해서는 Gamebase Console의 AdditionalInfo에 다음과 같이 설정하세요.
+* 目前注销NAVER账号时不需要令牌。
+    * 重新登录时不显示个人隐私协议窗。 
+    * 登录网页时，保持原有账号。
+    * 如需保持更改之前的状态，请在Gamebase Console中的AdditionalInfo输入如下信息。
 
 ```
 {"logout_and_delete_token":true}

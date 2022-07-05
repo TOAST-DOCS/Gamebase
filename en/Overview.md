@@ -128,6 +128,7 @@ Following information is provided by Gamebase for launching.
 * [Operator Guide > App Info(App, Client, Installed URL)](./oper-app): Set status of app and client, and installation URL
 * [Operator Guide > Operator(Maintenance,Notice)](./oper-operation): Register maintenance and notice
 
+
 ### For Global
 
 Gamebase basically supports global games, and provides following functions to that purpose:
@@ -159,9 +160,12 @@ Gamebase service terms are as follows:
 | IdP Token  | Access token received from IdP SDK after authentication  |
 | IdP Login | Login with an external IdP (such as Facebook or Google)           |
 
+<br/>
+
 ## Service Architecture
-Below shows the service structure of Gamebase with simple description
+The following shows the service structure of Gamebase with simple description
 ![logical architecture](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_202203_en.png)
+<br>
 
 | Component           | Description                                       |
 | --------------- | ---------------------------------------- |
@@ -175,13 +179,11 @@ Below shows the service structure of Gamebase with simple description
 
 ### Client Developer's Guide
 
-
-* [iOS Developer's Guide](./ios-started/)
 * [Android Developer's Guide](./aos-started/)
+* [iOS Developer's Guide](./ios-started/)
 * [Unity Developer's Guide](./unity-started/)
 * [Unreal Developer's Guide](./unreal-started/)
 * [JavaScript Developer's Guide](./js-started/)
-
 
 ### Server Developer's Guide
 
@@ -191,7 +193,8 @@ Below shows the service structure of Gamebase with simple description
 
 * [Console Guide](./oper-operating-indicator/)
 
-## Funtional Guide
+<br/>
+## Functional Guide
 
 | Feature               | Description                              | Client                                   | Server                                   | Console                                  |
 | --------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
@@ -204,11 +207,13 @@ Below shows the service structure of Gamebase with simple description
 | Push                  | (TOAST Integration) <br>Send push messages and check results | [[iOS](./ios-push/#push)] [[Android](./aos-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- Real-time delivery |
 | Leaderboard           | (TOAST Integration)<br> Retrieve and register real-time ranking of large-capacity data |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
 | Webview               | SDK provides default WebView UI<br/>Provides both system pop-up and TOAST UI | [[iOS](./ios-ui/#webview)] [[Android](./aos-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
-| [Operator] Maintenance | (Operational)  Maintenance                               |                                          | [[Check for Maintenance](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- Register or cancel maintenance |
-| [Operator] Notice      | (Operational) Urgent Notification <br> -  In pop-ups while user is executing an app |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>-Register Notice |
-{@line210}| [Operator] Image Notice         | (Operation) Image Notice function <br> -  Exposes the image notice in in-game popup format | [[Android](./aos-ui/#imagenotice)] [[iOS](./ios-ui/#imagenotice)] [[Unity](./unity-ui/#imagenotice)] <br/> - Expose image notice |                             | [[Image Notice]](./oper-operation/#image-notice) <br/>- Manage image notice |
-| [Operator] Ban         | (Operational) Register/Release banned game users <br> -  Register/Release banned game users | [[iOS](./ios-authentication/#get-banned-user-information)][[Android](./aos-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -Check information of banned users |   [[Retrieving the ban history of game users](./api-guide/#ban-histories)                                       | [[Ban]](./oper-ban/#ban) <br/>-Register and Release Ban |
+| [Operator] Maintenance | (Operation) Maintenance                               |                                          | [[Check for Maintenance](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- Register or cancel maintenance |
+| [Operator] Notice      | (Operation) Urgent Notification <br> -  In pop-ups while user is executing an app |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>-Register Notice |
+| [Operator] Image Notice         | (Operation) Image Notice function <br> -  Exposes the image notice in in-game popup format | [[Android](./aos-ui/#imagenotice)] [[iOS](./ios-ui/#imagenotice)] [[Unity](./unity-ui/#imagenotice)] <br/> - Expose image notice |                             | [[Image Notice]](./oper-operation/#image-notice) <br/>- Manage image notice |
+| [Operator] Ban         | (Operation) Register/Release banned game users <br> -  Register/Release banned game users | [[iOS](./ios-authentication/#get-banned-user-information)][[Android](./aos-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -Check information of banned users |   [[Retrieving the ban history of game users](./api-guide/#ban-histories)                                       | [[Ban]](./oper-ban/#ban) <br/>-Register and Release Ban |
 | [Operator] Coupon         | (Operation) Manage coupon<br>- issue, view history |  |                                      [[Validate coupon and change coupon status](./api-guide/#coupon)  | [[Coupon]](./oper-coupon) <br/>- Issue coupon | | [Operator] Customer Service         | (Operation) Receive and process 1:1 inquiry <br> -  Manage FAQ and notices | [[Android](./aos-etc/#contact)] [[iOS](./ios-etc/#contact)] [[Unity](./unity-etc/#contact)] <br/> - Display the Customer Center web page in WebView |                                        | [[Customer Service]](./oper-customer-service) <br/>- Process inquiries sent to customer center<br>- Manage FAQ/notices |
+| [Operator] Customer Service         | (Operation) 1:1 inquiry reception and handling <br> - FAQ, notice management | [[Android](./aos-etc/#contact)] [[iOS](./ios-etc/#contact)] [[Unity](./unity-etc/#contact)] <br/> - Display customer center webpages in WebView | | [[Customer Service]](./oper-customer-service) <br/>- Handling Customer Center Inquiries<br>- FAQ/Notice Management
+
 
 ## Console Role
 

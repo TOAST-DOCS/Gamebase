@@ -381,6 +381,15 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 {
     switch (message.category)
     {
+        case GamebaseEventCategory.IDP_REVOKED:
+            {
+                GamebaseResponse.Event.GamebaseEventIdPRevokedData idPRevokedData = GamebaseResponse.Event.GamebaseEventIdPRevokedData.From(message.data);
+                if (idPRevokedData != null)
+                {
+                    ProcessIdPRevoked(idPRevokedData);
+                }
+                break;
+            }
         case GamebaseEventCategory.LOGGED_OUT:
             {
                 GamebaseResponse.Event.GamebaseEventLoggedOutData loggedData = GamebaseResponse.Event.GamebaseEventLoggedOutData.From(message.data);
@@ -492,17 +501,114 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 ```
 
 * Category 는 GamebaseEventCategory 클래스에 정의되어 있습니다.
-* 이벤트는 크게 LoggedOut, ServerPush, Observer, Purchase, Push로 나눌 수 있고, 각 Category에 따라, GamebaseEventMessage.data를 아래 표와 같은 방법으로 VO로 변환할 수 있습니다.
+* 이벤트는 크게 IdPRevoked, LoggedOut, ServerPush, Observer, Purchase, Push로 나눌 수 있고, 각 Category에 따라 GamebaseEventMessage.data를 아래 표와 같은 방법으로 VO로 변환할 수 있습니다.
 
 | Event 종류 | GamebaseEventCategory | VO 변환 방법 | 비고 |
 | --------- | --------------------- | ----------- | --- |
-| LoggedOut | GamebaseEventCategory.LOGGED_OUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
+| IdPRevoked | GamebaseEventCategory.IDP_REVOKED | GamebaseResponse.Event.GamebaseEventIdPRevokedData.from(message.data) | \- |
+| LoggedOut | GamebaseEventCategory.LOGGED_OUT | GamebaseResponse.Event.GamebaseEventLoggedOutData.from(message.data) | \- |
 | ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED<br>GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
 | Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseResponse.Event.GamebaseEventObserverData.from(message.data) | \- |
 | Purchase - 프로모션 결제 | GamebaseEventCategory.PURCHASE_UPDATED | GamebaseResponse.Event.PurchasableReceipt.from(message.data) | \- |
 | Push - 메시지 수신 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
 | Push - 메시지 클릭 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
 | Push - 액션 클릭 | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | RichMessage 버튼 클릭 시 동작합니다. |
+
+#### IdP Revoked
+
+* IdP에서 해당 서비스를 삭제하였을 때 발생하는 이벤트입니다.
+* 유저에게 IdP가 사용 중지되었음을 알려주고, 동일 IdP로 로그인할 때 userID를 새로 발급받을 수 있도록 구현해야 합니다.
+* GamebaseEventIdPRevokedData.code: GamebaseIdPRevokedCode 값을 의미합니다.
+    * WITHDRAW : 600
+        * 현재 사용 중지된 IdP로 로그인되어 있고, 매핑된 IdP 목록이 없을 때를 의미합니다.
+        * Withdraw API를 호출해서 현재 계정을 탈퇴시켜줘야 합니다.
+    * OVERWRITE_LOGIN_AND_REMOVE_MAPPING : 601
+        * 현재 사용 중지된 IdP로 로그인되어 있고, 사용 중지된 IdP 외에 다른 IdP가 매핑되어 있는 경우를 의미합니다.
+        * 매핑된 IdP 목록 중 하나의 IdP로 로그인을 하고 RemoveMapping API를 호출해서 사용 중지된 IdP에 대한 연동을 해제해야 합니다.
+    * REMOVE_MAPPING : 602
+        * 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
+        * RemoveMapping API를 호출해서 사용 중지된 IdP에 대한 연동을 해제해야 합니다.
+* GamebaseEventIdPRevokedData.idpType: 사용 중지된 IdP 타입을 의미합니다.
+* GamebaseEventIdPRevokedData.authMappingList: 현재 계정에 매핑되어 있는 IdP 목록을 의미합니다.
+
+**Example**
+
+```cs
+public void AddEventHandlerSample()
+{
+    Gamebase.AddEventHandler(GamebaseEventHandler);
+}
+
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+{
+    switch (message.category)
+    {
+        case GamebaseEventCategory.IDP_REVOKED:
+            {
+                GamebaseResponse.Event.GamebaseEventIdPRevokedData idPRevokedData = GamebaseResponse.Event.GamebaseEventIdPRevokedData.From(message.data);
+                if (idPRevokedData != null)
+                {
+                    ProcessIdPRevoked(idPRevokedData);
+                }
+                break;
+            }
+        default:
+            {
+                break;
+            }
+    }
+}
+
+private void ProcessIdPRevoked(string category, GamebaseResponse.Event.GamebaseEventIdPRevokedData data)
+{
+    var revokedIdP = data.idPType;
+    switch (data.code)
+    {
+        case GamebaseIdPRevokedCode.WITHDRAW:
+            {
+                // 현재 사용 중지된 IdP로 로그인되어 있고, 매핑된 IdP 목록이 없을 때를 의미합니다.
+                // 유저에게 현재 계정이 탈퇴됨을 알려주세요.
+                Gamebase.Withdraw((error) =>
+                {
+                    ...
+                });
+                break;
+            }
+        case GamebaseIdPRevokedCode.OVERWRITE_LOGIN_AND_REMOVE_MAPPING:
+            {
+                // 현재 사용 중지된 IdP로 로그인되어 있고, 사용 중지된 IdP 외에 다른 IdP가 매핑되어 있는 경우를 의미합니다.
+                // 유저가 authMappingList 중 어떤 IdP로 다시 로그인할 지 선택하고, 선택된 IdP로 로그인한 후에 사용 중지된 IdP에 대해서는 연동 해제 시켜주세요.
+                var selectedIdP = "유저가 선택한 IdP";
+                var additionalInfo = new Dictionary<string, object>()
+                {
+                    { GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN, true }
+                };
+
+                Gamebase.Login(selectedIdP, additionalInfo, (authToken, loginError) =>
+                {
+                    if (Gamebase.IsSuccess(loginError) == true)
+                    {
+                        Gamebase.RemoveMapping(revokedIdP, (mappingError) =>
+                        {
+                            ...
+                        });
+                    }
+                });
+                break;
+            }
+        case GamebaseIdPRevokedCode.REMOVE_MAPPING:
+            {
+                // 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
+                // 유저에게 현재 계정에서 사용 중지된 IdP가 연동 해제됨을 알려주세요.
+                Gamebase.RemoveMapping(revokedIdP, (error) =>
+                {
+                    ...
+                });
+                break;
+            }
+    }
+}
+```
 
 #### Logged Out
 
