@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > Android SDK 사용 가이드 > 시작하기
+## Game > Gamebase > Android SDK 사용 가이드 > 시작하기
 
 ## Environments
 
