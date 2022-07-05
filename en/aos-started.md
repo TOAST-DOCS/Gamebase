@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > Android Developer's Guide > Getting Started
+## Game > Gamebase > Android Developer's Guide > Getting Started
 
 ## Environments
 
@@ -573,7 +573,7 @@ android {
 * [PAYCO Login SDK for developers](https://developers.payco.com/guide/development/apply/android)
 * [Sign in with Apple JS guide](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js)
 * [Weibo for developers](https://github.com/sinaweibosdk/weibo_android_sdk/blob/master/2019SDK/文档)
-* [Kakaogame SDK Guide for Channeling](https://tech-wiki.kakaogames.com/display/SDK/Kakaogame+SDK+Guide+for+Channeling)
+* [Kakaogame SDK 3.0 Guide for Channeling](https://kakaogames.atlassian.net/wiki/spaces/KS3GFC/overview)
 
 ## API Reference
 
