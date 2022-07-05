@@ -15,9 +15,9 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 * **STORE_CODE**は、次の値の中から選択します。
     * GG：Google
     * ONESTORE：ONEstore
-    * GALAXY: Galaxy Store
-    * AMAZON: Amazon Appstore
-    * HUAWEI: Huawei AppGallery
+    * GALAXY：Galaxy Store
+    * AMAZON：Amazon Appstore
+    * HUAWEI：Huawei AppGallery
 
 ```java
 String STORE_CODE = "GG";	// Google
@@ -53,10 +53,10 @@ Gamebase.initialize(activity, configuration, callback);
 1. ゲームクライアントがゲームサーバーに決済アイテムのconsume(消費)をリクエストします。
     * UserID, gamebaseProductId, paymentSeq, purchaseTokenを伝達します。
 2. ゲームサーバーは、ゲームDBにすでに同じpaymentSeqでアイテムを支給した履歴があるかを確認します。
-    * 2-1.
+    * 2-1. まだアイテムを支給していなければGamebaseサーバーのPayment Transaction APIを呼び出ししてpaymentSeq、purchaseToken値が有効か検証します。
         * [Game > Gamebase > APIガイド > Purchase(IAP) > Get Payment Transaction](./api-guide/#get-payment-transaction)
-    * 2-1. まだアイテムを支給していなければUserIDにgamebaseProductIdに該当するアイテムを支給します。
-    * 2-2. アイテム支給後、ゲームDBにUserID、gamebaseProductId、paymentSeq、purchaseTokenを保存して重複支給防止または再支給ができるようにします。
+    * 2-2. purchaseTokenが正常な値の場合はUserIDにgamebaseProductIdに該当するアイテムを支給します。
+    * 2-3. アイテム支給後、ゲームDBにUserID、gamebaseProductId、paymentSeq、purchaseTokenを保存して重複支給防止または再支給ができるようにします。
 3. アイテム支給有無に関係なく、ゲームサーバーはGamebaseサーバーのconsume(消費) APIを呼び出してアイテムの支給を完了します。
     * [Game > Gamebase > APIガイド > Purchase(IAP) > Consume](./api-guide/#consume)
 
@@ -77,6 +77,12 @@ Gamebase.initialize(activity, configuration, callback);
 購入するアイテムのgamebaseProductIdを利用して次のAPIを呼び出し、購入をリクエストします。<br/>
 gamebaseProductIdは一般的にはストアに登録したアイテムのIDと同じですが、Gamebaseコンソールで変更することもできます。
 payloadフィールドに入力した追加情報は決済成功後、**PurchasableReceipt.payload**フィールドに維持されるため、複数の用途で活用できます。<br/>
+
+> <font color="red">[注意]</font><br/>
+>
+> AMAZONストアは**payload**フィールドをサポートしません。
+>
+
 ゲームユーザーが購入をキャンセルすると、**GamebaseError.PURCHASE_USER_CANCELED**エラーが返ります。
 キャンセル処理をしてください。
 

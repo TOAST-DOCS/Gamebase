@@ -1,21 +1,32 @@
 ## Game > Gamebase > リリースノート > Android
 
+### 2.41.0 (2022. 07. 05.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST Android SDK(0.31.1), Hangame Android SDK(1.4.6)
+* 웹뷰에 등록한 커스텀 스킴 이벤트가 동작할 때 자동으로 웹뷰가 종료됩니다.
+    * 커스텀 스킴 이벤트가 동작하더라도 웹뷰를 유지시키고 싶은 경우에는 **GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** API를 호출하세요.
+
+#### 버그 수정
+* Hangame IdP 로그아웃 후 로그인을 바로 시도하는 경우, 간헐적으로 크래쉬가 발생하거나 로그인이 실패하는 이슈 수정
+
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* ONE Store 외부 결제를 위한 Purchase Adapter가 추가되었습니다.
-    * 빌드 의존성에 **gamebase-adapter-purchase-onestore-external** 모듈을 추가하시면 사용 가능합니다.
+#### 機能追加
+* ONE store外部決済のためのPurchase Adapterが追加されました。
+    * ビルド依存関係に**gamebase-adapter-purchase-onestore-external**モジュールを追加すると使用できます。
             
             dependencies {
                 ...
                 implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-external:$GAMEBASE_SDK_VERSION"
             }
             
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.31.0), TOAST Gamebase IAP Android SDK(0.18.5)
-* 서로 다른 앱이 하나의 Gamebase 프로젝트를 공유하는 경우 Push가 정상적으로 동작하지 않는 이슈가 수정되었습니다.
-    * AndroidManifest.xml에 앱마다 서로 다른 **com.nhncloud.sdk.push.deviceId.salt**값을 선언하시기 바랍니다.
+#### 機能改善/変更
+* 外部SDKアップデート：TOAST Android SDK(0.31.0)、TOAST Gamebase IAP Android SDK(0.18.5)
+* 別々のアプリが1つのGamebaseプロジェクトを共有する場合にプッシュが正常に動作しない問題が修正されました。
+    * AndroidManifest.xmlに各アプリに異なる**com.nhncloud.sdk.push.deviceId.salt**値を宣言してください。
 
             <!-- When you have multiple applications sharing an Gamebase project, use this field to identify each application. -->
             <meta-data android:name="com.nhncloud.sdk.push.deviceId.salt"
@@ -243,7 +254,7 @@ Gamebase Android SDKは今後、Maven Centralでのみ配布します。
 
 #### 機能改善/変更
 * 外部SDKアップデート：TOAST Android SDK(0.27.1)
-* ONE Store V16ストア追加
+* ONE store V16ストア追加
 
 ### 2.26.0 (2021.08.10)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Android.zip)
