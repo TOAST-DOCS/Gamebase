@@ -14,16 +14,17 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 용도 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.31.0<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 16 (JellyBean, OS 4.1) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.31.1<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 16 (JellyBean, OS 4.1) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Google 로그인을 지원 | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.4.5 | Hangame 로그인을 지원 | - |
-|  | gamebase-adapter-auth-line | linesdk-5.6.2 | LINE 로그인을 지원 | API 17(Kitkat, OS 4.2) |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.4.6 | Hangame 로그인을 지원 | - |
+|  | gamebase-adapter-auth-line | linesdk-5.6.2 | LINE 로그인을 지원 | API 17(JellyBean MR1, OS 4.2) |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | NAVER 로그인을 지원 | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.7 | PAYCO 로그인을 지원 | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitter 로그인을 지원 | API 19(Kitkat, OS 4.4) |
-|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-11.8.1 | Weibo 로그인을 지원 | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | Weibo 로그인을 지원 | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Weibo 로그인을 지원 | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Kakao 로그인을 지원 | API 21(Lollipop, OS 5.0) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.5<br>toast-iap-core | 게임 내 결제 지원 | - |
 |  | gamebase-adapter-purchase-amazon | toast-iap-amazon | Amazon Appstore를 지원 | - |
