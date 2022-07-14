@@ -1608,6 +1608,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
             "price": 2500.0,
             "marketId": "AS",
             "accessToken": "ja5SBJBfr7rYUdjFr6dRe7gKnkX0r7EKPvuK6CIUBBekc1rE9CVbMKVCNuw6ZtwmcpDRXrToR9l26NF9zub6ol",
+            "paymentId" : "Store Reference Key",
             "gamebaseProductId": "gamebase_prod_001",
             "purchaseTime": "2020-06-02T13:38:56+09:00",
             "payload": "additional info",
@@ -1620,6 +1621,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
             "price": 1000.0,
             "marketId": "AS",
             "accessToken": "7_3zXyNJub0FNLed3m9XRAAXsSxLWq698t8QyTzk3NeeSoytKxtKGjldTc1wkSktgzjsfkVTKE50DoGihsAvGQ",
+            "paymentId" : "Store Reference Key",
             "gamebaseProductId": "gamebase_prod_002",
             "purchaseTime": "2020-06-02T13:37:42+09:00",
             "isTestPurchase" : false
@@ -1631,11 +1633,12 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Array[Object] | 결제 기본 정보 |
-| result[].paymentSeq | String |  결제 번호 |
+| result[].paymentSeq | String |  Gamebase에서 발급된 결제 번호 |
 | result[].productSeq | Long | 아이템 번호<br>콘솔에서 상품 등록 시, 외부 스토어 아이템에 대해 자동 생성된 값 |
 | result[].currency  | String | 결제 통화  |
 | result[].price | Float | 결제 가격 |
 | result[].accessToken | String | 결제 인증 토큰 |
+| result[].paymentId | String | 스토어에서 발급된 결제 ID |
 | result[].marketId | String | [스토어 코드](#store-code) |
 | result[].gamebaseProductId | String | Gamebase 상품 아이디<br>콘솔에서 상품 등록 시, 유저 입력 값 |
 | result[].purchaseTime | String | 결제 발생 일시 |
@@ -1695,6 +1698,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
         "price": 2.29,
         "marketId": "AS",
         "accessToken": "-Fr8Y7_dvv5qhdd6qVHbs7gKnkX0r7EKPvuK6CI-UBBekc1rE9CVbMKVCNuw6ZtwkBGlzeIHg6DdjaRVeaW7GYlPF4vRa50L8umB6tdBvk8",
+        "paymentId" : "Store Reference Key",
         "productType": "CONSUMABLE",
         "userId": "AS@QW4M1GM7W97YJDCN",
         "gamebaseProductId": "qa_ksw_prod_as_001",
@@ -1709,12 +1713,13 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Object |  결제 정보 |
-| result.paymentSeq | String | 결제 번호 |
+| result.paymentSeq | String | Gamebase에서 발급된 결제 번호 |
 | result.productSeq | Long | 아이템 번호<br>콘솔에서 상품 등록 시, 외부 스토어 아이템에 대해 자동 생성된 값 |
 | result.currency  | String | 결제 통화  |
 | result.price | Float | 결제 가격 |
 | result.marketId | String | [스토어 코드](#store-code) |
 | result.accessToken | String | 결제 인증 토큰 |
+| result.paymentId | String | 스토어에서 발급된 결제 ID |
 | result.productType | String  | 상품(아이템) 유형<br>- 일회성: CONSUMABLE<br>- 소비성 구독: CONSUMABLE_AUTO_RENEWABLE<br>- 구독: AUTO_RENEWABLE |
 | result.userId | String  | 유저 ID  |
 | result.gamebaseProductId | String | Gamebase 상품 아이디<br>콘솔에서 상품 등록 시, 유저 입력 값 |
@@ -1814,8 +1819,8 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 | result[].productType | String  | 상품(아이템) 유형<br>구독: AUTO_RENEWABLE |
 | result[].currency  | String  | 결제 통화 |
 | result[].price | Float | 결제 가격 |
-| result[].originalPaymentId | String | 최초 스토어 결제 번호 |
-| result[].paymentId | String | 최근 갱신된 스토어 결제 번호 |
+| result[].originalPaymentId | String | 최초 스토어 결제 ID |
+| result[].paymentId | String | 최근 갱신된 스토어 결제 ID |
 | result[].gamebaseProductId | String | Gamebase 상품 아이디<br>콘솔에서 상품 등록 시, 사용자 입력 값 |
 | result[].payload | String | SDK에서 설정한 추가 정보 |
 | result[].purchaseTime | String | 최근 갱신된 시간 |
