@@ -8,6 +8,7 @@
 - 특정 기간 동안 탈퇴한 사용자의 Gamebase userId를 획득하는 "Withdraw Histories" API가 추가되었습니다.
 - 이용 정지 및 이용 정지 해제를 수행하는 "Ban", "Ban Release" API가 추가되었습니다.
 - 결제 트랜잭션을 조회하는 "Get Payment Transaction" API가 추가되었습니다.
+- 미소비 결제 내역을 조회하는 "List Consumables" API에 한 번에 N 개의 스토어를 대상으로 조회 수 있도록 **marketIds**가 추가되었습니다.
 
 ## Advance Notice
 
@@ -1353,33 +1354,32 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
     },
     "appId": "",
     "underMaintenance": true,
-    "maintenances": [
-        {
-            "typeCode": "APP",
-            "beginDate": "2017-01-01T12:10:00+07:00",
-            "endDate": "2017-02-01T12:17:00+07:00",
-            "url": "http://url.info",
-            "message": "maintenance message",
-            "targetStores": [
-                "GG",
-                "AS",
-                "ONESTROE"
-            ]
-        }
-    ]
+    "maintenance": {
+        "typeCode": "APP",
+        "beginDate": "2017-01-01T12:10:00+07:00",
+        "endDate": "2017-02-01T12:17:00+07:00",
+        "url": "http://url.info",
+        "reason" : "maintenance reason",
+        "message": "maintenance message",
+        "targetStores": [
+            "GG",
+            "AS",
+            "ONESTORE"
+        ]
+    }
 }
 ```
 
 | Key | Type | Description |
 | --- | --- | --- |
 | underMaintenance | boolean | 현재 점검 설정 여부 |
-| maintenances | Object | 점검이 설정되어 있다면 점검 기본 정보 |
-| maintenances.typeCode | Enum | APP: 게임에서 설정한 점검 <br>SYSTEM: Gamebase 시스템에서 설정한 점검 |
-| maintenances.beginDate | String | 점검 시작 시간. ISO 8601 |
-| maintenances.endDate | String | 점검 종료 시간. ISO 8601 |
-| maintenances.url | String | 상세 점검 URL |
-| maintenances.message | String | 점검 메시지 |
-| maintenances.targetStores | Array[Enum] | 특정 클라이언트에 대해서만 점검을 설정했을 때 점검 설정된 클라이언트의 [스토어 코드](#store-code) |
+| maintenance | Object | 점검이 설정되어 있다면 점검 기본 정보 |
+| maintenance.typeCode | Enum | APP: 게임에서 설정한 점검 <br>SYSTEM: Gamebase 시스템에서 설정한 점검 |
+| maintenance.beginDate | String | 점검 시작 시간. ISO 8601 |
+| maintenance.endDate | String | 점검 종료 시간. ISO 8601 |
+| maintenance.url | String | 상세 점검 URL |
+| maintenance.message | String | 점검 메시지 |
+| maintenance.targetStores | Array[Enum] | 특정 클라이언트에 대해서만 점검을 설정했을 때, 점검 설정된 클라이언트의 [스토어 코드](#store-code) |
 
 **[Error Code]**
 
@@ -1581,14 +1581,15 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 ```json
 {
-    "marketId": "GG",
+    "marketIds": ["GG", "AS"],
     "userId": "QXG774PMRZMWR3BR"
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | Required | [스토어 코드](#store-code) |
+| marketId | String | Optional | [스토어 코드](#store-code)<br>- **deprecated** 예정으로 *marketIds* 사용 |
+| marketIds | Array | Optional | [스토어 코드](#store-code)<br>- 빈 값(혹은 null)인 경우 전체 스토어 대상으로 조회<br> - 단, AMAZON 스토어가 포함된 전체 스토어를 조회할 경우 명시적으로 조회할 **모든 스토어**를 나열해야 함 |
 | userId | String | Required | 유저 ID  |
 
 **[Response Body]**
@@ -1633,7 +1634,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Array[Object] | 결제 기본 정보 |
-| result[].paymentSeq | String |  Gamebase에서 발급된 결제 번호 |
+| result[].paymentSeq | String |  Gamebase에서 발급된 결제 번호 / 결제 Transaction ID |
 | result[].productSeq | Long | 아이템 번호<br>콘솔에서 상품 등록 시, 외부 스토어 아이템에 대해 자동 생성된 값 |
 | result[].currency  | String | 결제 통화  |
 | result[].price | Float | 결제 가격 |
