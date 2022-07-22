@@ -509,7 +509,7 @@ showWebView(activity, urlString, configuration,
 | setBackButtonVisible(boolean visible)    | true or false                       | 뒤로 가기 버튼 활성 또는 비활성.<br>**default**: true |
 | setBackButtonImageResource(int resourceId) | ID of resource                      | 뒤로 가기 버튼 이미지       |
 | setCloseButtonImageResource(int resourceId) | ID of resource                      | 닫기 버튼 이미지      |
-| enableAutoCloseByCustomScheme(boolean enable) | true or false | 커스텀 Scheme 동작시 자동으로 웹뷰 종료.<br>**default**: true |
+| enableAutoCloseByCustomScheme(boolean enable) | true or false | 커스텀 스키마 동작 시 자동으로 웹뷰 종료.<br>**default**: true |
 
 
 ### Close WebView
