@@ -8,7 +8,7 @@
 - 특정 기간 동안 탈퇴한 사용자의 Gamebase userId를 획득하는 "Withdraw Histories" API가 추가되었습니다.
 - 이용 정지 및 이용 정지 해제를 수행하는 "Ban", "Ban Release" API가 추가되었습니다.
 - 결제 트랜잭션을 조회하는 "Get Payment Transaction" API가 추가되었습니다.
-- 미소비 결제 내역을 조회하는 "List Consumables" API에 한 번에 N 개의 스토어를 대상으로 조회 수 있도록 **marketIds**가 추가되었습니다.
+- 미소비 결제 내역을 조회하는 "List Consumables" API에 한 번에 N개의 스토어를 대상으로 조회할 수 있도록 **marketIds**가 추가되었습니다.
 
 ## Advance Notice
 
