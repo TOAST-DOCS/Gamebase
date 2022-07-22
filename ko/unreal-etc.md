@@ -324,7 +324,7 @@ void Sample::AddEventHandler()
 ```
 
 * Category는 GamebaseEventCategory 클래스에 정의되어 있습니다.
-* 이벤트는 크게 LoggedOut, ServerPush, Observer, Purchase, Push 로 나눌 수 있고, 각 Category 에 따라, GamebaseEventMessage.data 를 아래 표와 같은 방법으로 VO 로 변환할 수 있습니다.
+* 이벤트는 크게 LoggedOut, ServerPush, Observer, Purchase, Push로 나뉘며, 각 Category에 따라, 아래 표와 같은 방법으로 GamebaseEventMessage.data를 VO로 변환할 수 있습니다.
 
 | Event 종류 | GamebaseEventCategory | VO 변환 방법 | 비고 |
 | --------- | --------------------- | ----------- | --- |
