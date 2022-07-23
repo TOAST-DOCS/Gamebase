@@ -5,14 +5,14 @@
 ### Android
 
 * 이제 웹뷰에 등록한 커스텀 스킴 이벤트가 동작할 때 자동으로 웹뷰가 종료됩니다.
-    * 이전과 같이 커스텀 스킴 이벤트가 동작하더라도 웹뷰를 유지시키고 싶은 경우에는 **GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** API를 호출하세요.
+    * 이전과 같이 커스텀 스킴 이벤트가 동작하더라도 웹뷰를 유지하려면 **GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** API를 호출하세요.
 * Gamebase Android SDK 2.41.0은 약관 창의 '보기' 버튼이 동작하지 않는 버그가 존재합니다.
     * Gamebase 약관 창을 사용하시는 경우, 이슈가 해결된 Gamebase Android SDK 2.41.1을 사용하시기 바랍니다.
 
 ### Unity
 
 * Gamebase SettingTool 필수 업데이트가 추가되었습니다. (v2.4.0)
-    * 기존 SettingTool은 Unity 프로젝트에서 완전히 제거 후, 최신 버전으로 재설치해야 합니다.
+    * 기존 SettingTool은 Unity 프로젝트에서 완전히 제거한 뒤 최신 버전으로 다시 설치해야 합니다.
     * SettingTool v1은 더 이상 지원하지 않습니다.
 
 ## 2.40.0
