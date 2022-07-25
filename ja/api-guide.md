@@ -1698,3 +1698,435 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 | --- | --- | --- |
 | result | Array[Object] | 決済基本情報 |
 | result[].paymentSeq | String |  Gamebaseで発行された決済Transaction ID |
+| result[].productSeq | Long | 決済アイテム番号(consoleに登録されたアイテム固有番号) |
+| result[].currency  | String  | 決済通貨 |
+| result[].price | Float | 決済価格 |
+| result[].accessToken | String | 決済認証トークン |
+| result[].paymentId | String | ストアで発行された決済ID |
+| result[].marketId | String | [ストアコード](#store-code) |
+| result[].gamebaseProductId | String | Gamebase商品ID<br>コンソールに商品登録した時にユーザーが入力した値 |
+| result[].purchaseTime | String | 決済発生日時 |
+| result[].payload | String | SDKで設定した追加情報<br>Amazonストアはその値がない場合があります |
+| result[].isTestPurchase | boolean | テスト決済かどうか |
+
+**[Error Code]**
+
+[エラーコード](./error-code/#server)
+
+<br>
+
+#### Get Payment Transaction
+
+クライアントSDKを介して取得した未消費決済履歴が有効かどうかを確認できます。
+(サーバーでアイテム支給(consume) APIを呼び出す前に、決済番号(paymentSeq)と決済認証トークン(accessToken)の有効性チェックを行いたい場合は該当APIを呼び出す)
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-inapp/v1.3/apps/{appId}/payment/transaction?accessToken={accessToken} |
+
+**[Request Header]**
+
+共通事項確認
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN CloudプロジェクトID |
+
+**[Request Parameter]**
+
+| Name | Type | Required |  Value |
+| --- | --- | --- | --- |
+| accessToken | String | Required | 決済認証トークン(purchaseToken) |
+
+**[Request Body]**
+
+なし
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "paymentSeq": "2022041110385239",
+        "productSeq": 1003150,
+        "currency": "EUR",
+        "price": 2.29,
+        "marketId": "AS",
+        "accessToken": "-Fr8Y7_dvv5qhdd6qVHbs7gKnkX0r7EKPvuK6CI-UBBekc1rE9CVbMKVCNuw6ZtwkBGlzeIHg6DdjaRVeaW7GYlPF4vRa50L8umB6tdBvk8",
+        "paymentId" : "Store Reference Key",
+        "productType": "CONSUMABLE",
+        "userId": "AS@QW4M1GM7W97YJDCN",
+        "gamebaseProductId": "qa_ksw_prod_as_001",
+        "purchaseTime": "2022-04-11T16:47:01+09:00",
+        "payload" : "string",
+        "isTestPurchase": true,
+        "isConsumable": false
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Object | 決済情報 |
+| result.paymentSeq | String | Gamebaseで発行された決済番号 |
+| result.productSeq | Long | アイテム番号<br>コンソールで商品登録時、外部ストアアイテムに対して自動作成された値 |
+| result.currency  | String | 決済通貨 |
+| result.price | Float | 決済価格 |
+| result.marketId | String | [ストアコード](#store-code) |
+| result.accessToken | String | 決済認証トークン |
+| result.paymentId | String | ストアで発行された決済ID |
+| result.productType | String  | 商品(アイテム)タイプ<br>- 消費：CONSUMABLE<br>- 消費性購読：CONSUMABLE_AUTO_RENEWABLE<br>- 購読：AUTO_RENEWABLE |
+| result.userId | String  | ユーザーID  |
+| result.gamebaseProductId | String | Gamebase商品ID<br>コンソールで商品登録時、ユーザー入力値 |
+| result.purchaseTime | String | 決済発生日時 |
+| result.payload | String | SDKで設定した追加情報<br>Amazonストアは該当値がない場合あり |
+| result.isTestPurchase | boolean | テスト決済かどうか<br>- true：テスト決済 |
+| result.isConsumable | boolean | 消費API呼び出し可否<br>- true：現在未消費状態で消費API呼び出し可能 |
+
+**[Error Code]**
+
+[エラーコード](./error-code/#server)
+
+<br>
+
+### List Active Subscriptions
+
+ユーザーが現在定期購入中の決済を照会できます。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/active-subscriptions |
+
+**[Request Header]**
+
+共通事項確認
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN CloudプロジェクトID |
+
+**[Request Parameter]**
+
+なし
+
+**[Request Body]**
+
+```json
+{
+    "marketId": "GG",
+    "packageName": "com.toast.gamebase",
+    "userId": "QXG774PMRZMWR3BR"
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| marketId | String | Required | [ストアコード](#store-code) |
+| packageName | String | Required | コンソールに登録したアプリのpackageName |
+| userKey | String | Required  | ユーザーID  |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "result": [
+        {
+            "marketId": "GG",
+            "userId": "QXG774PMRZMWR3BR",
+            "paymentSeq": "2020052810364755",
+            "accessToken": "NczL3n4TumMF8n9oRR5l8zXDyMXRVjxSRks0Lk1Saob2A9rdAupqjZSrQ0-hb2GOSFwTx5uDDchH8EB-EkWGGQ",
+            "productSeq": 1001221,
+            "productId": "money_100",
+            "productType": "AUTO_RENEWABLE",
+            "paymentId": "GPA.3302-8679-7228-41195",
+            "price": 1000.0,
+            "currency": "KRW",
+            "gamebaseProductId": "gamebase_renewal_001",
+            "payload": "additional info",
+            "purchaseTime": "2020-06-02T13:38:56+09:00",
+            "expiryTime": "2020-06-02T13:48:56+09:00",
+            "isTestPurchase" : false,
+            "referenceStatus" : "PURCHASED"
+        }
+    ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Array[Object] | 決済基本情報 |
+| result[].marketId  | String  | [ストアコード](#store-code) |
+| result[].userId  | String  | ユーザーID  |
+| result[].paymentSeq | String  | 決済番号 |
+| result[].accessToken | String | 決済認証トークン |
+| result[].productSeq | Long | 決済アイテム番号(consoleに登録されたアイテム固有番号) |
+| result[].productId | String  | ストアに登録された商品(アイテム)識別子 |
+| result[].productType | String  | 商品(アイテム)タイプ<br>定期購入： AUTO_RENEWABLE |
+| result[].currency  | String  | 決済通貨 |
+| result[].price | Float | 決済価格 |
+| result[].originalPaymentId | String | 最初のストア決済ID |
+| result[].paymentId | String | 最近更新されたストア決済ID |
+| result[].gamebaseProductId | String | Gamebase商品ID<br>コンソールから商品を登録した時にユーザーが入力した値 |
+| result[].payload | String | SDKで設定した追加情報 |
+| result[].purchaseTime | String | 最近更新された時間 |
+| result[].expiryTime | String | 定期購入終了時間 |
+| result[].isTestPurchase | boolean | テスト決済かどうか |
+| result[].referenceStatus | String | 決済システム(アプリ内決済、外部決済)が提供する[決済参照状態](#store-reference-status)<br>現在Google Playストアのみサポート |
+
+**[Error Code]**
+
+[エラーコード](./error-code/#server)
+
+<br>
+<br>
+
+## Leaderboard
+
+Gamebaseは、NHN Cloud LeaderboardサービスのサーバーAPIに対して**Wrapping**機能を提供します。Wrapping機能を使用すれば、ユーザーサーバーにおいて一貫したインターフェースでNHN Cloudサービスを使用することができます。
+
+> [参考]
+> Gamebaseを有効化すると、Leaderboard Appkey設定を行わずにGamebase Wrapping APIを呼び出してLeaderboard機能を使用できます。
+
+<br>
+
+#### Wrapping API
+| API | Method | Wrapping URI | Leaderboard URI |
+| --- | --- | --- | --- |
+| Factorに登録されたユーザー数を照会<br>- Get user count in factor | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
+| Factor全体数検索<br>- Get total factor count | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factor-count | /leaderboard/v2.0/appkeys/{appKey}/factor-count |
+| Factor情報照会<br>- Get factor info<br>- Get multiple factor info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors | /leaderboard/v2.0/appkeys/{appKey}/factors |
+| 単一ユーザーのスコア/ランキングを照会<br>- Get single user info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
+| 複数のユーザーのスコア/ランキングを照会<br>- Get multiple user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
+| 一定範囲の全体スコア/ランキングを照会<br>- Get multiple user info by range | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
+| 特定順位のユーザーを検索<br>- Get selected rank user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| 特定ユーザーの順位および上位、下位ユーザーの順位検索<br>- Get multiple user info by pivot user | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} | /leaderboard/v2.0/appkeys/{appkey}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} |
+| 単一ユーザーのスコアを登録<br>- Set single user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
+| 単一ユーザーのスコア/ExtraDataを登録<br>- Set single user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
+| 複数のユーザーのスコアを登録<br>- Set multiple user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
+| 複数のユーザーのスコア/ExtraDataを登録<br>- Set multiple user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
+| ユーザーLeaderboard情報を削除<br>- Delete single user info<br>- Delete multiple user info | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+
+<br/>
+
+**該当するAPIに対する詳細説明は、次のリンクをご参考ください。**
+Gamebase Wrapping APIとマッピングされたLeaderboard APIのスペックは、以下のガイドを参考にしてください。
+Leaderboard Appkeyを設定しないで、Gamebase AppIdおよびSecretKeyを利用してGamebase Wrapping Leaderboard APIを呼び出してください。
+
+
+[Leaderboard APIガイド](/Game/Leaderboard/ja/api-guide/)
+
+<br/>
+
+##### API呼び出し例
+
+```
+GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
+
+Content-Type: application/json
+X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
+X-Secret-Key: IgsaAP
+```
+
+<br/>
+<br/>
+
+## Push
+
+Gamebaseは、NHN Cloud PushサービスのサーバーAPIで**Wrapping**機能を提供します。Wrapping機能を使用すると、ユーザーサーバーで一貫したインターフェイスでNHN Cloudサービスを使用できます。
+
+> [参考]
+> Gamebaseを有効化すると、Push Appkeyの設定を行わずにGamebase Wrapping APIを呼び出してPush機能を使用できます。
+
+<br>
+
+#### Wrapping API
+|    | API | Method | Wrapping URI | Push URI |
+| --- | --- | --- | --- | --- |
+| メッセージ | 送信 | POST | /tcgb-push/v1.3/apps/{appId}/messages | /push/v2.4/appkeys/{appkey}/messages |
+|   | 照会 | GET | /tcgb-push/v1.3/apps/{appId}/messages | /push/v2.4/appkeys/{appkey}/messages |
+|   | 送信ログ照会 | GET | /tcgb-push/v1.3/apps/{appId}/logs/message | /push/v2.4/appkeys/{appkey}/logs/message |
+| 予約メッセージ | 送信スケジュール作成 | POST | /tcgb-push/v1.3/apps/{appId}/schedules | /push/v2.4/appkeys/{appkey}/schedules |
+|   | 作成 | POST | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+|   | リスト照会 | GET | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+|   | 1件照会 | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id} | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id} |
+|   | 送信完了照会 | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id}/messages | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id}/messages |
+|   | 修正 | PUT | /tcgb-push/v1.3/apps/{appId}/reservations/{reservationId} | /push/v2.4/appkeys/{appkey}/reservations/{reservationId} |
+|   | 削除 | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+
+<br/>
+
+**For more information of the API, click the following link.**
+Gamebase Wrapping APIとマッピングされたPush APIのスペックは、以下のガイドを参照してください。
+Push Appkeyの設定を行わずに、Gamebase AppIdおよびSecretKeyを利用してGamebase Wrapping Push APIを呼び出してください。
+
+[Push Guide](/Notification/Push/en/api-guide/)
+
+> [参考]
+> Pushガイドに存在するuid値はgamebase userId値を使用してください。クライアントSDKでプッシュトークン登録時、ユーザー識別子はgamebase userIdに登録されています。
+> 1人のユーザーが複数の端末でプッシュ受信を許可した場合、複数の端末でプッシュを受信します。
+
+<br/>
+
+##### API呼び出し例
+
+```
+POST https://api-gamebase.cloud.toast.com/tcgb-push/v1.3/apps/{appId}/messages
+
+Content-Type: application/json
+X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
+X-Secret-Key: IgsaAP
+
+{
+    "target" : {
+        "type" : "UID",
+        "to": ["gamebase userId-1", "gamebase userId-2"]
+    },
+    "content" : {
+        "default" : {
+            "title": "title",
+            "body": "body"
+        }
+    },
+    "messageType" : "AD",
+    "contact": "1588-1588",
+    "removeGuide": "Menu > Setting",
+    "timeToLiveMinute": 1,
+    "provisionedResourceId": "id",
+    "adWordPosition": "TITLE"
+}
+```
+
+<br/>
+<br/>
+
+## Etc
+
+### OS Code
+
+ユーザー端末のOSに対してGamebase内部で定義したコードです。
+
+| Code | 説明 |
+| --- | --- |
+| AOS | Android |
+| IOS | iOS |
+| WEB | Web |
+| WINDOWS | Windows |
+<br/>
+
+### Store Code
+
+アプリをインストールしたストアについてGamebase内部で定義したコードです。
+
+| Code | 説明 |
+| --- | --- |
+| GG | Google Play Store |
+| AS | App Store |
+| ONESTORE | ONE store |
+| GALAXY | Galaxy Store |
+<br/>
+
+### Identity Provider Code
+
+ユーザー認証に使用されたIdentity ProviderについてGamebase内部で定義したコードです。
+
+- guest
+- google
+- facebook
+- appleid
+- iosgamecenter
+- payco
+- twitter
+- naver
+- line
+- hangame
+- kakaogame
+- weibo
+<br/>
+
+### Member Valid Code
+
+ユーザーの現在状態についてGamebase内部で定義したコードです。
+
+| Code | 説明 |
+| --- | --- |
+| Y | 正常ユーザー |
+| D | 退会したユーザー |
+| B | 利用停止したユーザー |
+| T | 退会猶予状態のユーザー |
+| P | 利用停止猶予状態のユーザー |
+| M | 消失したアカウント |
+<br/>
+
+
+### Store Reference Status
+
+決済システム(ストアのアプリ内決済、外部決済)が提供する決済参照状態
+
+| 決済システム | Code | 説明 |
+| --- | --- | --- |
+| Googleアプリ内 | PURCHASED | 購入完了 |
+| | REPURCHASED | 再購入完了 |
+| | RESTARTED | 購読再開 |
+| | PENDING | 決済遅延中 |
+| | RENEWED | 購読更新 |
+| | RECOVERED | 購読復旧 |
+| | PAUSE_SCHEDULED | 購読中止予定 |
+| | PAUSED | 中止 |
+| | REVOKED | 払い戻し |
+| | CANCELED_PRODUCT | 単品決済キャンセル |
+| | CANCELED_SUBSCRIPTION | 購読キャンセル(更新中止)<br>- 現在の回の購読は提供する必要がある |
+| | ON_HOLD | 保留中 |
+| | IN_GRACE | 猶予中 |
+| | EXPIRED | 期限切れ |
+| | NOT_APPOINTED | 適切な特定状態なし |
+
+<br/>
+
+
+### Support
+
+API呼び出し失敗の原因に対するお問い合わせがある場合、**API呼び出しURL(HTTP bodyがある場合は、bodyと一緒に)とそれに対するレスポンス結果**を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。
+
+<br>
+
+##### API呼び出し例
+
+```
+GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance
+```
+
+##### API失敗のレスポンス結果
+
+```json
+{
+    "header": {
+        "transactionId": "18a1ae42-6b1d-54c8-894e-54e97bca07fq",
+        "resultCode": -4010002,
+        "resultMessage": "Gamebase product appKey is invalid, appId:C3JmSctU",
+        "traceError": {
+            "trackingTime": 1489726350287,
+            "throwPoint": "gateway",
+            "uri": "/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance"
+        },
+        "isSuccessful": false
+    }
+}
+```
