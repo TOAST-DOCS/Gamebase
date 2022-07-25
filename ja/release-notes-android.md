@@ -3,19 +3,19 @@
 ### 2.41.1 (2022. 07. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.1/GamebaseSDK-Android.zip)
 
-#### 버그 수정
-* 약관 창의 '보기' 버튼이 동작하지 않는 버그를 수정했습니다.
+#### バグ修正
+* 約款ウィンドウの「表示」ボタンが動作しないバグを修正しました。
 
 ### 2.41.0 (2022. 07. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.31.1), Hangame Android SDK(1.4.6)
-* 웹뷰에 등록한 커스텀 스킴 이벤트가 동작할 때 자동으로 웹뷰가 종료됩니다.
-    * 커스텀 스킴 이벤트가 동작하더라도 웹뷰를 유지시키고 싶은 경우에는 **GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** API를 호출하세요.
+#### 機能改善/変更
+* 外部SDKアップデート：TOAST Android SDK(0.31.1)、Hangame Android SDK(1.4.6)
+* Webビューに登録したカスタムスキームイベントが動作するとき、動的にWebビューが終了します。
+    * カスタムスキームイベントが動作してもWebビューを維持させたい場合には**GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** APIを呼び出してください。
 
-#### 버그 수정
-* Hangame IdP 로그아웃 후 로그인을 바로 시도하는 경우, 간헐적으로 크래쉬가 발생하거나 로그인이 실패하는 이슈 수정
+#### バグ修正
+* Hangame IdPログアウト後、ログインをすぐに試行する場合、断続的にクラッシュが発生したりログインが失敗する問題を修正
 
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Android.zip)
