@@ -805,8 +805,6 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 | -------------------------- | -------------------------- | ---- | ---- |
 | userLevel | M | int | 게임 유저 레벨을 나타내는 필드입니다. |
 | levelUpTime | M | long | Epoch time으로 입력합니다.</br>밀리초(ms) 단위로 입력합니다. |
-| channelId | O | string | |
-| characterId | O | string | |
 
 **API**
 
