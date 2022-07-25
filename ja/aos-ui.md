@@ -80,7 +80,7 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 | build() | **M** | 設定を終えたBuilderをConfigurationオブジェクトに変換します。 |
 | setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | イメージ告知の背景色。<br>Stringはandroid.graphics.Color.parseColor(String) APIで変換した値を使用します。<br>**default** : #80000000 |
 | setTimeout(long timeoutMs) | O | イメージ告知の最大ローディング時間(単位：millisecond)<br>**default** ： 5000L (5s) |
-| enableAutoCloseByCustomScheme(boolean enable) | O | custom schemeイベントが発生した時、メージ告知を強制終了するかどうかを決定します。<br>**default** : true |
+| enableAutoCloseByCustomScheme(boolean enable) | O | カスタムスキームイベントが発生した時、メージ告知を強制終了するかどうかを決定します。<br>**default** : true |
 
 
 ### Close ImageNotices
@@ -400,7 +400,7 @@ WebViewを表示します。
 * configuration : GamebaseWebViewConfigurationでWebViewのレイアウトを変更することができます。
 * GamebaseCallback : WebViewが終了する際に、ユーザーにコールバックで知らせます。
 * schemeList : ユーザーの求めるカスタムSchemeのリストを指定します。
-* GamebaseDataCallback : schemeListに指定したカスタムSchemeを含むurlをコールバックで知らせます。
+* GamebaseDataCallback : schemeListに指定したカスタムスキームを含むurlをコールバックで知らせます。
 
 **API**
 
@@ -442,11 +442,11 @@ GamebaseWebView.showWebView(activity, "http://www.toast.com", configuration);
 
 #### Custom Scheme
 
-Gamebase WebViewでローディングしたWebページ内に、スキーマ(scheme)で特定機能を使用したり、Webページの内容を変更できます。
+Gamebase WebViewでローディングしたWebページ内に、スキームで特定機能を使用したり、Webページの内容を変更できます。
 
 ##### Predefined Custom Scheme
 
-Gamebaseで指定しておいたスキーマです。
+Gamebaseで指定しておいたスキームです。
 
 | スキーマ         | 用途                                |
 | -------------------- | ------------------------------------- |
@@ -458,7 +458,7 @@ Gamebaseで指定しておいたスキーマです。
 
 #### User Custom Scheme
 
-Gamebaseにスキーマ名とブロックを指定し、自由に機能を追加できます。
+Gamebaseにスキーム名とブロックを指定し、自由に機能を追加できます。
 
 ```java
 GamebaseWebViewConfiguration configuration = new GamebaseWebViewConfiguration.Builder()
@@ -503,12 +503,13 @@ showWebView(activity, urlString, configuration,
 | setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | 縦モード          |
 |                                          | ScreenOrientation.LANDSCAPE         | 横モード          |
 |                                          | ScreenOrientation.LANDSCAPE_REVERSE | 横モードを180度回転 |
-| setNavigationBarVisible(boolean enable)  | true or false                       | ナビゲーションバーの有効または無効 |
+| setNavigationBarVisible(boolean enable)  | true or false                       | ナビゲーションバーの有効または無効<br>**default**: true |
 | setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | ナビゲーションバーの色     |
 | setNavigationBarHeight(int height)       | height                              | ナビゲーションバーの高さ     |
-| setBackButtonVisible(boolean visible)    | true or false                       | 戻るボタンの有効または無効 |
+| setBackButtonVisible(boolean visible)    | true or false                       | 戻るボタンの有効または無効<br>**default**: true |
 | setBackButtonImageResource(int resourceId) | ID of resource                      | 戻るボタンの画像       |
 | setCloseButtonImageResource(int resourceId) | ID of resource                      | 閉じるボタンの画像      |
+| enableAutoCloseByCustomScheme(boolean enable) | true or false | カスタムScheme動作時、自動的にWebビュー終了。<br>**default**: true |
 
 
 ### Close WebView
