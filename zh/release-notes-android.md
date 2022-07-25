@@ -48,7 +48,7 @@
             }
             
 #### 改善/修复功能
-* 外部SDK升级 : TOAST Android SDK(0.31.0)、TOAST Gamebase IAP Android SDK(0.18.5)
+* 外部SDK升级 : TOAST Android SDK(0.31.0)、TOAST Gamebase IAP Android SDK(0.18.5)、LINE Android SDK(5.8.0)
 * 更改了不同的应用程序使用同一个Gamebase项目时，无法正常启动推送功能的问题。
     * 请在AndroidManifest.xml中声明各应用程序的**com.nhncloud.sdk.push.deviceId.salt**值。
 
