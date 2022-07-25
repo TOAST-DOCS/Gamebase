@@ -16,7 +16,7 @@ This guide describes the environments and initial setting of Gamebase Unity SDK.
 > <font color="red">[Caution]</font>
 >
 > Since August 1 of 2019, new apps on Google Play must support 64-bit architecture. 
-> [See Google Play policy and Unity versions supporting 64 bits](https://developer.android.com/distribute/best-practices/develop/64-bit#unity-developers)
+> [See Google Play policy and Unity versions supporting 64 bits](https://developer.android.com/games/optimize/64-bit?#unity-developers)
 
 #### Dependencies
 
