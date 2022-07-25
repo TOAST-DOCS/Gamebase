@@ -18,7 +18,7 @@ To execute Gamebase in Android, the following system environment is required.
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Support Google login | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.4.6 | Support Hangame login | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.5.2 | Support Hangame login | - |
 |  | gamebase-adapter-auth-line | linesdk-5.6.2 | Support LINE login | API 17 (JellyBean MR1, OS 4.2) |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Support NAVER login | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.7 | Support PAYCO login | - |
