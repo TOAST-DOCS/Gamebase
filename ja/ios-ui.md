@@ -70,7 +70,7 @@ TCGBImageNoticeConfigurationでユーザー設定イメージ告知を作成で�
 | -------------------------------------- | ---------------------------------------- | ------------------ |
 | backgroundColor                  | UIColor     | イメージ告知の背景色<br/>**default**: [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]         |
 | timeoutMS                  | long        | イメージ告知の最大ローディング時間(単位: millisecond)<br/>**default**: 5000                     |
-| enableAutoCloseByCustomScheme    | YES or NO   | custom schemeイベント発生時、告知全体を閉じる、または次の告知を表示<br/>**default**: YES         |
+| enableAutoCloseByCustomScheme    | YES or NO   | カスタムスキームイベント発生時、告知全体を閉じる、または次の告知を表示<br/>**default**: YES         |
 
 
 ### Close ImageNotices
@@ -382,7 +382,7 @@ WebViewを表示します。<br/>
 * configuration : TCGBWebViewConfigurationでWebViewのレイアウトを変更することができます。
 * closeCompletion : WebViewが終了する際に、ユーザーにコールバックで知らせます。
 * schemeList : ユーザーの求めるカスタムSchemeのリストを指定します。
-* schemeEvent : schemeListに指定したカスタムSchemeを含むurlをコールバックで知らせます。
+* schemeEvent : schemeListに指定したカスタムスキームを含むurlをコールバックで知らせます。
 
 
 ```objectivec
