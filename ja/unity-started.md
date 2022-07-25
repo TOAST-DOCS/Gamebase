@@ -17,7 +17,7 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 > <font color="red">[注意]</font>
 >
 > 2019年8月1日から、Google Playに公開する新規アプリは64bitアーキテクチャをサポートする必要があります。
-> [Google Playポリシーおよび64bitをサポートするUnityバージョン確認](https://developer.android.com/distribute/best-practices/develop/64-bit#unity-developers)
+> [Google Playポリシーおよび64bitをサポートするUnityバージョン確認](https://developer.android.com/games/optimize/64-bit?#unity-developers)
 
 #### Dependencies
 
@@ -97,7 +97,7 @@ Gamebase SDKを手軽にインストールすることができるように、Se
 2. EDM4U(External Dependency Manager for Unity)が必須ライブラリとして選ばれました。
     * [EDM4U Github](https://github.com/googlesamples/unity-jar-resolver)からEDM4Uをダウンロードしてインストールする必要があります。
     * EDM4Uがない場合はGamebase SDK for Android、iOSの設定ができません。
-    * Facebook、GPGS SDK、Firebaseなど、EDM4Uがすでに含まれているSDKを使用する場合はEDM4Uをダウンロードする必要はありません。
+    * プロジェクトですでにEDM4Uが含まれている場合にはEDM4Uをダウンロードする必要はありません。
 3. Androidプラットフォームをサービスする場合にはメニュー上部 > **Assets > External Dependency Manager > Android Resolver > Settings**を選択してAndroid Resolver Settingsウィンドウを開き、以下のように設定してください。
     * Enable Auto-Resolution：無効
     * Explode AARs：無効
@@ -147,7 +147,6 @@ Gamebase SDKを手軽にインストールすることができるように、Se
 3. [Settings]ボタンクリックしてSDKをインストールします。
     * 既に選択したプラットフォーム別モジュールは変更が可能です。
 
-
 #### SDK削除
 1. メニュー上部 > **Tools > NhnCloud > Gamebase > SettingTool > Settings**を選択します。
 2. [Remove]ボタンをクリックしてインストールされたSDKを削除します。
@@ -157,8 +156,6 @@ Gamebase SDKを手軽にインストールすることができるように、Se
 > 
 > Setting Toolで予期しないエラーが発生した場合、ウィンドウを閉じて再度実行してください。 <br/>
 > 再度実行してもエラーが解決しない場合は、**Assets/NhnCloud/GamebaseTools/SettingTool/Editor/Scripts**でSettingToolWindow.csファイルを開き、ShowWindowメソッドでSettingTool.SetDebugMode(true);コードをコメント解除した後、ログをお送りください。<br/><br/>
-> Unity Facebook Authenticationを使用する場合、 Facebook Unity SDKは別途ダウンロードする必要があります。 [Go to Download](https://developers.facebook.com/docs/unity/)<br/>
-> Unity Facebook Authenticationで対応しているFacebook Unity SDKバージョンについては、一緒に提供されるREADMEファイルをご参考ください。<br/>
 
 ### Video of Setting Tool Usage
 
@@ -190,10 +187,49 @@ Setting Toolのアップデートが必要な場合、Setting Toolでアップ�
 
 ![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-2_1.13.0.png)
 
+### Facebook認証追加
+
+Facebook SDK for UnityはFacebook SDK for iOS、Androidが含まれています。
+
+![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_001.jpg)
+
+Unity設定でFacebook認証を有効にした後、
+
+![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_002.png)
+
+Android、iOS設定でFacebook認証を有効にする場合、
+
+![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_003.png)
+
+プロジェクトにFacebook SDKが重複して含まれる現象が発生し、これにより認証失敗またはビルド失敗などのエラーが発生します。
+SettingToolは、このようなエラーをブロックするために**Unity設定**と**Android && iOS設定**でFacebook認証を重複して有効にできないように処理されています。
+
+> `[注意]`
+> Unity設定とAndroid && iOS設定でFacebook認証を重複して有効にできません。
+> Unity設定でFacebook認証を有効にする場合、[Facebook SDK for Unityを直接ダウンロード](https://developers.facebook.com/docs/unity/)する必要があります。
+
+各ゲーム会社の状況に合ったSettingTool設定は、以下の表を参考にしてください。
+
+| | **SettingTool > Unity** 設定 > Facebook認証の有効化 | **SettingTool > Android、iOS** 設定 > Facebook認証の有効化 |
+| --- | --- | --- |
+| ゲームに必要な機能 | Gamebase Facebookログイン(Android、iOS)<br>ShareLinkやFeedShareなどの機能を使用 | Gamebase Facebookログイン(Android, iOS) |
+| Android, iOS Login API | [Gamebase Login with Credential](https://docs.toast.com/ko/Game/Gamebase/ko/unity-authentication/#login-with-credential) | [Gamebase Login with ID Provider](https://docs.toast.com/ko/Game/Gamebase/ko/unity-authentication/#login-with-idp) |
+| Facebook SDK for Unityダウンロード | O | X |
+
+* Case 1. Android、iOSプラットフォームでGamebase Facebookログインのみ使用します。
+    * **SettingTool > Android、iOS**設定でFacebook認証を有効にします。
+* Case 2. UnityプロジェクトでGamebase FacebookログインとFacebookのFeedShare機能を使用する必要があります。
+    * **SettingTool > Unity**設定でFacebook認証を有効にします。
+    * GamebaseはFacebook認証以外の機能をサポートしないため、Facebook SDK for Unityを使用して直接実装する必要があります。
+* Case 3. **SettingTool > Android、iOS**設定でFacebook認証を有効にしましたがFacebook SDK for Unityをプロジェクトに含めています。
+    * Gamebase Facebookログインのみ使用している場合は、プロジェクトに含まれているFacebook SDK for Unityをプロジェクトから削除してください。
+    * Gamebase Facebookログイン以外のFacebookのFeedShare機能を使用している場合は、**SettingTool > Unity**設定でFacebook認証を有効にします。
+        * この場合、Android、iOS設定になっていれば自動的に解除されます。
+
 ### Android Lifecycle
 
 Lifecycle管理のために"com.toast.gamebase.activity.GamebaseMainActivity"をMainActivityにする必要があります。
-"com.toast.gamebase.activity.GamebaseMainActivity"は、"com.unity3d.player.UnityPlayerActivity"を受け継いで設計されています。
+com.toast.gamebase.activity.GamebaseMainActivityは、"com.unity3d.player.UnityPlayerActivity"を受け継いで設計されています。
 
 > <font color="red">[注意]</font>
 >

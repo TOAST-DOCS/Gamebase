@@ -365,7 +365,7 @@ WebViewを表示します。<br/>
 * configuration：GamebaseWebViewConfigurationでWebViewのレイアウトを変更できます。
 * closeCallback：WebViewが終了する時、ユーザーにコールバックで伝えます。
 * schemeList：ユーザーが受け取りたいカスタムSchemeリストを指定します。
-* schemeEvent：schemeListに指定したカスタムSchemeを含むurlをコールバックで伝えます。
+* schemeEvent：schemeListに指定したカスタムスキームを含むurlをコールバックで伝えます。
 
 **API**
 
@@ -435,7 +435,7 @@ void Sample::ShowWebView(const FString& url)
 
 #### Predefined Custom Scheme
 
-Gamebaseで指定しておいたSchemeです。
+Gamebaseで指定しておいたスキームです。
 
 | scheme | 用途 |
 | ----------------------------- | ------------------------------ |

@@ -1,5 +1,23 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.42.0 (2022. 07. 26.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: Hangame Android SDK(1.5.2)
+* ForcingMappingTicket VO 클래스에 매핑 유저 상태를 나타내는 mappedUserValid 필드가 추가되었습니다.
+* Gamebase Adapter 버전이 Gamebase 버전과 일치하지 않는 경우 런타임 예외가 발생할 수 있으므로, 초기화가 실패하도록 변경되었습니다.
+
+#### 버그 수정
+* LDPlayer에서 Naver 웹로그인이 실패하는 현상이 수정되었습니다.
+* OS 버전이 낮아 Twitter 로그인이 실패하는 경우 크래쉬가 발생하는 문제가 수정되었습니다.
+
+### 2.41.2 (2022. 07. 22.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.2/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 기본 웹뷰 설정을 '쿠키 허용'으로 변경했습니다.
+
 ### 2.41.1 (2022. 07. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.1/GamebaseSDK-Android.zip)
 
@@ -30,7 +48,7 @@
             }
             
 #### 改善/修复功能
-* 外部SDK升级 : TOAST Android SDK(0.31.0)、TOAST Gamebase IAP Android SDK(0.18.5)
+* 外部SDK升级 : TOAST Android SDK(0.31.0)、TOAST Gamebase IAP Android SDK(0.18.5)、LINE Android SDK(5.8.0)
 * 更改了不同的应用程序使用同一个Gamebase项目时，无法正常启动推送功能的问题。
     * 请在AndroidManifest.xml中声明各应用程序的**com.nhncloud.sdk.push.deviceId.salt**值。
 

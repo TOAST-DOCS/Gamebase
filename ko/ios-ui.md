@@ -70,7 +70,7 @@ TCGBImageNoticeConfiguration으로 사용자 설정 이미지 공지를 만들 �
 | -------------------------------------- | ---------------------------------------- | ------------------ |
 | backgroundColor                  | UIColor     | 이미지 공지 뒷 배경색<br/>**default**: [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]         |
 | timeoutMS                  | long        | 이미지 공지 최대 로딩 시간 (단위 : millisecond)<br/>**default**: 5000                     |
-| enableAutoCloseByCustomScheme    | YES or NO   | custom scheme 이벤트 발생 시 공지 전체 닫기 또는 다음 공지 표시<br/>**default**: YES         |
+| enableAutoCloseByCustomScheme    | YES or NO   | 커스텀 스킴 이벤트 발생 시 공지 전체 닫기 또는 다음 공지 표시<br/>**default**: YES         |
 
 
 ### Close ImageNotices
@@ -381,8 +381,8 @@ WebView를 표시합니다.<br/>
 ##### Optional 파라미터
 * configuration : TCGBWebViewConfiguration으로 WebView의 레이아웃을 변경 할 수 있습니다.
 * closeCompletion : WebView가 종료될 때 사용자에게 콜백으로 알려 줍니다.
-* schemeList : 사용자가 받고 싶은 커스텀 Scheme 목록을 지정합니다.
-* schemeEvent : schemeList로 지정한 커스텀 Scheme을 포함하는 url을 콜백으로 알려 줍니다.
+* schemeList : 사용자가 받고 싶은 커스텀 스킴 목록을 지정합니다.
+* schemeEvent : schemeList로 지정한 커스텀 스킴을 포함하는 url을 콜백으로 알려 줍니다.
 
 
 ```objectivec
@@ -434,7 +434,7 @@ WebView를 표시합니다.<br/>
 
 #### Custom Scheme 
 
-Gamebase WebView에서 로딩한 웹 페이지 내에 스키마(scheme)로 특정 기능을 사용하거나 웹 페이지 내용을 변경할 수 있습니다.
+Gamebase WebView에서 로딩한 웹 페이지 내에 스킴으로 특정 기능을 사용하거나 웹 페이지 내용을 변경할 수 있습니다.
 
 ##### Predefined Custom Scheme
 
@@ -452,7 +452,7 @@ Gamebase에서 지정해 놓은 스키마입니다.<br/>
 
 #### User Custom Scheme
 
-Gamebase에 스키마 이름과 블록을 지정해 원하는 기능을 추가할 수 있습니다.
+Gamebase에 스킴 이름과 블록을 지정해 원하는 기능을 추가할 수 있습니다.
 
 
 ```objectivec
@@ -491,11 +491,11 @@ Gamebase에 스키마 이름과 블록을 지정해 원하는 기능을 추가�
 |                                        | TCGBWebViewOrientationPortraitUpsideDown | 세로 모드 180도 회전      |
 |                                        | TCGBWebViewOrientationLandscapeRight     | 가로 모드              |
 |                                        | TCGBWebViewOrientationLandscapeLeft      | 가로 모드를 180도 회전     |
-| contentMode                            | TCGBWebViewContentModeRecommended        | 현재 플랫폼 추천 브라우저    |
+| contentMode                            | TCGBWebViewContentModeRecommended        | 현재 플랫폼 추천 브라우저 (**default**)    |
 |                                        | TCGBWebViewContentModeMobile             | 모바일 브라우저            |
 |                                        | TCGBWebViewContentModeDesktop            | 데스크탑 브라우저          |
-| navigationBarColor                     | UIColor                                  | 내비게이션 바 색상         |
-| isBackButtonVisible                    | YES or NO                                | 뒤로 가기 버튼 활성 또는 비활성 |
+| navigationBarColor                     | UIColor                                  | 내비게이션 바 색상<br/>**default**: [UIColor colorWithRed: 0.07 green: 0.36 blue: 0.90 alpha: 1.00]   |
+| isBackButtonVisible                    | YES or NO                                | 뒤로 가기 버튼 활성 또는 비활성<br/>**default**: YES |
 | isNavigationBarVisible                 | YES or NO                                | 내비게이션 바 표시 또는 숨기기<br/>**default**: YES    |
 | goBackImagePathForFullScreenNavigation | file name in Gamebase.bundle             | 뒤로 가기 버튼 이미지       |
 | closeImagePathForFullScreenNavigation  | file name in Gamebase.bundle             | 닫기 버튼 이미지          |

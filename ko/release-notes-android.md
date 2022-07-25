@@ -1,5 +1,23 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.42.0 (2022. 07. 26.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: Hangame Android SDK(1.5.2)
+* ForcingMappingTicket VO 클래스에 매핑 유저 상태를 나타내는 mappedUserValid 필드가 추가되었습니다.
+* Gamebase Adapter 버전이 Gamebase 버전과 일치하지 않는 경우 런타임 예외가 발생할 수 있으므로, 초기화가 실패하도록 변경되었습니다.
+
+#### 버그 수정
+* LDPlayer에서 Naver 웹로그인이 실패하는 현상이 수정되었습니다.
+* OS 버전이 낮아 Twitter 로그인이 실패하는 경우 크래쉬가 발생하는 문제가 수정되었습니다.
+
+### 2.41.2 (2022. 07. 22.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.2/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 기본 웹뷰 설정을 '쿠키 허용'으로 변경했습니다.
+
 ### 2.41.1 (2022. 07. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.1/GamebaseSDK-Android.zip)
 
@@ -12,10 +30,10 @@
 #### 기능 개선/변경
 * 외부 SDK 업데이트: TOAST Android SDK(0.31.1), Hangame Android SDK(1.4.6)
 * 웹뷰에 등록한 커스텀 스킴 이벤트가 동작할 때 자동으로 웹뷰가 종료됩니다.
-    * 커스텀 스킴 이벤트가 동작하더라도 웹뷰를 유지시키고 싶은 경우에는 **GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** API를 호출하세요.
+    * 커스텀 스킴 이벤트가 동작하더라도 웹뷰를 유지하려면 **GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** API를 호출하세요.
 
 #### 버그 수정
-* Hangame IdP 로그아웃 후 로그인을 바로 시도하는 경우, 간헐적으로 크래쉬가 발생하거나 로그인이 실패하는 이슈 수정
+* Hangame IdP 로그아웃 후 로그인을 바로 시도하면 간헐적으로 크래시가 발생하거나 로그인에 실패하는 문제를 수정했습니다.
 
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Android.zip)
@@ -30,7 +48,7 @@
             }
             
 #### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.31.0), TOAST Gamebase IAP Android SDK(0.18.5)
+* 외부 SDK 업데이트: TOAST Android SDK(0.31.0), TOAST Gamebase IAP Android SDK(0.18.5), LINE Android SDK(5.8.0)
 * 서로 다른 앱이 하나의 Gamebase 프로젝트를 공유하는 경우 푸시가 정상적으로 동작하지 않는 이슈가 수정되었습니다.
     * AndroidManifest.xml에 앱마다 서로 다른 **com.nhncloud.sdk.push.deviceId.salt** 값을 선언하시기 바랍니다.
 

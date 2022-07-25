@@ -417,8 +417,8 @@ WebView를 표시합니다.<br/>
 ##### Optional 파라미터
 * configuration : GamebaseWebViewConfiguration으로 WebView의 레이아웃을 변경 할 수 있습니다.
 * closeCallback : WebView가 종료될 때 사용자에게 콜백으로 알려 줍니다.
-* schemeList : 사용자가 받고 싶은 커스텀 Scheme 목록을 지정합니다.
-* schemeEvent : schemeList로 지정한 커스텀 Scheme을 포함하는 url을 콜백으로 알려 줍니다.
+* schemeList : 사용자가 받고 싶은 커스텀 스킴 목록을 지정합니다.
+* schemeEvent : schemeList로 지정한 커스텀 스킴을 포함하는 url을 콜백으로 알려 줍니다.
 
 **API**
 
@@ -495,7 +495,7 @@ public void ShowWebView()
 
 #### Predefined Custom Scheme
 
-Gamebase에서 지정해 놓은 Scheme입니다.
+Gamebase에서 지정해 놓은 스킴입니다.
 
 | scheme | 용도 |
 | ----------------------------- | ------------------------------ |

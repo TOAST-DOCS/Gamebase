@@ -324,7 +324,7 @@ void Sample::AddEventHandler()
 ```
 
 * Category는 GamebaseEventCategory 클래스에 정의되어 있습니다.
-* 이벤트는 크게 LoggedOut, ServerPush, Observer, Purchase, Push 로 나눌 수 있고, 각 Category 에 따라, GamebaseEventMessage.data 를 아래 표와 같은 방법으로 VO 로 변환할 수 있습니다.
+* 이벤트는 크게 LoggedOut, ServerPush, Observer, Purchase, Push로 나뉘며, 각 Category에 따라, 아래 표와 같은 방법으로 GamebaseEventMessage.data를 VO로 변환할 수 있습니다.
 
 | Event 종류 | GamebaseEventCategory | VO 변환 방법 | 비고 |
 | --------- | --------------------- | ----------- | --- |
@@ -340,17 +340,17 @@ void Sample::AddEventHandler()
 #### IdP Revoked
 
 * IdP에서 해당 서비스를 삭제하였을 때 발생하는 이벤트입니다.
-* 유저에게 IdP가 사용 중지되었음을 알려주고, 동일 IdP로 로그인할 때 userID를 새로 발급받을 수 있도록 구현해야 합니다.
+* 유저에게 IdP가 사용 중지된 것을 알리고, 동일한 IdP로 로그인할 때 userID를 새로 발급 받을 수 있도록 구현해야 합니다.
 * FGamebaseEventIdPRevokedData.code: GamebaseIdPRevokedCode 값을 의미합니다.
     * Withdraw : 600
         * 현재 사용 중지된 IdP로 로그인되어 있고, 매핑된 IdP 목록이 없을 때를 의미합니다.
-        * Withdraw API를 호출해서 현재 계정을 탈퇴시켜줘야 합니다.
+        * Withdraw API를 호출하여 현재 계정을 탈퇴 처리해야 합니다.
     * OverwriteLoginAndRemoveMapping : 601
         * 현재 사용 중지된 IdP로 로그인되어 있고, 사용 중지된 IdP 외에 다른 IdP가 매핑되어 있는 경우를 의미합니다.
-        * 매핑된 IdP 목록 중 하나의 IdP로 로그인을 하고 RemoveMapping API를 호출해서 사용 중지된 IdP에 대한 연동을 해제해야 합니다.
+        * 매핑된 IdP 중 하나의 IdP로 로그인을 하고 RemoveMapping API를 호출하여 사용 중지된 IdP에 대해 연동을 해제해야 합니다.
     * RemoveMapping : 602
         * 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
-        * RemoveMapping API를 호출해서 사용 중지된 IdP에 대한 연동을 해제해야 합니다.
+        * RemoveMapping API를 호출하여 사용 중지된 IdP에 대해 연동을 해제해야 합니다.
 * FGamebaseEventIdPRevokedData.idpType: 사용 중지된 IdP 타입을 의미합니다.
 * FGamebaseEventIdPRevokedData.authMappingList: 현재 계정에 매핑되어 있는 IdP 목록을 의미합니다.
 
@@ -378,7 +378,7 @@ void Sample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
     switch (data->code)
     {
         // 현재 사용 중지된 IdP로 로그인되어 있고, 매핑된 IdP 목록이 없을 때를 의미합니다.
-        // 유저에게 현재 계정이 탈퇴됨을 알려주세요.
+        // 유저에게 현재 계정이 탈퇴 처리된 것을 알려 주세요.
         case GamebaseIdPRevokeCode::Withdraw:
         {
             IGamebase::Get().Withdraw(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
@@ -390,7 +390,7 @@ void Sample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
         case GamebaseIdPRevokeCode::OverwriteLoginAndRemoveMapping:
         {
             // 현재 사용 중지된 IdP로 로그인되어 있고, 사용 중지된 IdP 외에 다른 IdP가 매핑되어 있는 경우를 의미합니다.
-            // 유저가 authMappingList 중 어떤 IdP로 다시 로그인할 지 선택하고, 선택된 IdP로 로그인한 후에 사용 중지된 IdP에 대해서는 연동 해제 시켜주세요.
+            // 유저가 authMappingList 중 다시 로그인할 IdP를 선택하도록 하고, 선택한 IdP로 로그인한 뒤에는 사용 중지된 IdP의 연동을 해제해 주세요.
             auto selectedIdP = "유저가 선택한 IdP";
             auto additionalInfo = NewObject<UGamebaseJsonObject>();
             additionalInfo->SetBoolField(GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn, true);
@@ -410,7 +410,7 @@ void Sample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
         case GamebaseIdPRevokeCode::RemoveMapping:
         {
             // 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
-            // 유저에게 현재 계정에서 사용 중지된 IdP가 연동 해제됨을 알려주세요.
+            // 유저에게 현재 계정에서 사용 중지된 IdP가 연동 해제됨을 알려 주세요.
             IGamebase::Get().RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
             {
                 ...
@@ -423,7 +423,7 @@ void Sample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
 
 #### Logged Out
 
-* Gamebase Access Token이 만료되어 네트워크 세션을 복구하기 위해 로그인 함수 호출이 필요한 경우 발생하는 이벤트 입니다.
+* Gamebase Access Token이 만료되어 네트워크 세션을 복구하기 위해 로그인 함수 호출이 필요한 경우 발생하는 이벤트입니다.
 
 **Example**
 
