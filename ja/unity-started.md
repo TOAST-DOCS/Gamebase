@@ -17,7 +17,7 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 > <font color="red">[注意]</font>
 >
 > 2019年8月1日から、Google Playに公開する新規アプリは64bitアーキテクチャをサポートする必要があります。
-> [Google Playポリシーおよび64bitをサポートするUnityバージョン確認](https://developer.android.com/distribute/best-practices/develop/64-bit#unity-developers)
+> [Google Playポリシーおよび64bitをサポートするUnityバージョン確認](https://developer.android.com/games/optimize/64-bit?#unity-developers)
 
 #### Dependencies
 
