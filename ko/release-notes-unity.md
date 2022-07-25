@@ -9,10 +9,10 @@
     * [Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./unity-etc/#idp-revoked)
 
 #### 기능 개선/변경
-* Unity의 Burst 패키지를 사용 시 메모리 릭이 발생하는 이슈를 수정했습니다.
+* Unity의 Burst 패키지를 사용할 때 메모리 누수가 발생하는 이슈를 수정했습니다.
 * Setting Tool (v2.4.0)
     * 내부 안정화 지표가 추가되었습니다.
-    * 기존 SettingTool은 Unity 프로젝트에서 완전히 제거 후, 최신 버전으로 재설치해야 합니다.
+    * 기존 SettingTool은 Unity 프로젝트에서 완전히 제거한 뒤 최신 버전으로 다시 설치해야 합니다.
     * SettingTool v1은 더 이상 지원하지 않습니다.
 
 #### 버그 수정

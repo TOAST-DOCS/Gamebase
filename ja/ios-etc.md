@@ -330,6 +330,12 @@ localizedstring.jsonに定義されている形式は、次の通りです。
 - (void)eventHandler_addEventHandler {
     void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
         if ([message.category isEqualToString:kTCGBLoggedOut] == YES) {
+        if ([message.category isEqualToString:kTCGBIdPRevoked] == YES) {
+            TCGBGamebaseEventIdPRevokedData* idPRevokedData = [TCGBGamebaseEventIdPRevokedData gamebaseEventIdPRevokedDataFromJsonString:message.data];
+            if (idPRevokedData != nil) {
+                //TODO: process idp revoked
+            }
+        } else if ([message.category isEqualToString:kTCGBLoggedOut] == YES) {
             TCGBGamebaseEventLoggedOutData* loggedOutData = [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data];
             if (loggedOutData != nil) {
                 //TODO: process loggedOut
@@ -364,10 +370,11 @@ localizedstring.jsonに定義されている形式は、次の通りです。
 ```
 
 * CategoryはGamebaseEventCategoryクラスに定義されています。
-* イベントは大きくServerPush、Observer、Purchase、Pushに分けられ、各Categoryに基づいて、TCGBGamebaseEventMessage.dataを次の表のような方法でVOに変換できます。
+* イベントは大きくIdPRevoked、ServerPush、Observer、Purchase、Pushに分けられ、各Categoryに基づいて、TCGBGamebaseEventMessage.dataを次の表のような方法でVOに変換できます。
 
 | Event種類 | GamebaseEventCategory | VO変換方法 | 備考 |
 | --------- | --------------------- | ----------- | --- |
+| IdPRevoked | kTCGBIdPRevoked | [TCGBGamebaseEventIdPRevokedData gamebaseEventIdPRevokedDataFromJsonString:message.data] | \- |
 | LoggedOut | kTCGBLoggedOut | [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data] | \- |
 | ServerPush | kTCGBServerPushAppKickoutMessageReceived<br>kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
 | Observer | kTCGBObserverLaunching<br>kTCGBObserverHeartbeat<br>kTCGBObserverNetwork | [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data] | \- |
@@ -375,6 +382,87 @@ localizedstring.jsonに定義されている形式は、次の通りです。
 | Push - メッセージ受信 | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
 | Push - メッセージクリック | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
 | Push - アクションクリック | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | RichMessageボタンを押すと動作します。 |
+
+#### IdP Revoked
+
+* IdPで該当サービスを削除したときに発生するイベントです。
+* ユーザーにIdPが使用停止したことを知らせ、同じIdPでログインするとき、userIDを新たに発行できるように実装する必要があります。
+* TCGBGamebaseEventIdPRevokedData.code: TCGBIdPRevokedCode値を意味します。
+    * IDP_REVOKED_WITHDRAW: 600
+        * 現在使用停止しているIdPでログインしていて、マッピングされたIdPリストがないことを意味します。
+        * withdraw APIを呼び出して現在のアカウントを退会させる必要があります。
+    * IDP_REVOKED_OVERWRITE_LOGIN_AND_REMOVE_MAPPING: 601
+        * 現在使用停止しているIdPでログインしていて、使用停止しているIdP以外の他のIdPがマッピングされている場合を意味します。
+        * マッピングされたIdPリストのうちの1つのIdPにログインし、removeMapping APIを呼び出して使用停止しているIdPの連動を解除する必要があります。
+    * IDP_REVOKED_REMOVE_MAPPING: 602
+        * 現在アカウントにマッピングされているIdPのうち、使用停止しているIdPがある場合を意味します。
+        * removeMapping APIを呼び出して使用停止しているIdPの連動を解除する必要があります。
+* TCGBGamebaseEventIdPRevokedData.idpType：使用停止したIdPタイプを意味します。
+* TCGBGamebaseEventIdPRevokedData.authMappingList：現在アカウントにマッピングされているIdPリストを意味します。
+
+```objectivec
+@interface TCGBGamebaseEventIdPRevokedData : NSObject <TCGBValueObject>
+
+@property (nonatomic, assign) int64_t                 code;
+@property (nonatomic, strong) NSString*               idPType;
+@property (nonatomic, strong) NSArray<NSString *>*    authMappingList;
+@property (nonatomic, strong) NSString*               extras;
+
+@end
+```
+
+**Example**
+
+```objectivec
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        if ([message.category isEqualToString:kTCGBIdPRevoked] == YES) {
+            TCGBGamebaseEventIdPRevokedData *idPRevokedData = [TCGBGamebaseEventIdPRevokedData gamebaseEventIdPRevokedDataFromJsonString:message.data];
+            if (idPRevokedData == nil) { return; }   
+
+            NSString *revokedIdP = idPRevokedData.idPType;
+            switch (idPRevokedData.code) {
+                case IDP_REVOKED_WITHDRAW:
+                {
+                    // 現在使用停止しているIdPでログインしていて、マッピングされたIdPリストがないことを意味します。
+                    // ユーザーに現在のアカウントが退会していることを伝えてください。
+                    [TCGBGamebase withdrawWithViewController:nil completion:^(TCGBError *error) {
+                        ...
+                    }];
+                    break;
+                }   
+                case IDP_REVOKED_OVERWRITE_LOGIN_AND_REMOVE_MAPPING:
+                {
+                    // 現在使用停止しているIdPでログインしていて、使用停止したIdP以外のIdPがマッピングされている場合を意味します。
+                    // ユーザーがauthMappingListのうちどのIdPで再度ログインするか選択し、選択したIdPでログインした後、使用停止したIdPについては連動を解除してください。
+                    NSString *selectedIdPType = "ユーザーが選択したIdP";
+                    NSMutableDictionary *additionalInfo = [NSMutableDictionary dictionary];
+                    additionalInfo[kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname] = @(YES);
+                    [TCGBGamebase loginWithType:selectedIdPType additionalInfo:additionalInfo viewController:viewController completion:^(TCGBAuthToken *authToken, TCGBError *loginError) {
+                        if ([TCGBGamebase isSuccessWithError:loginError]) {
+                            [TCGBGamebase removeMappingWithType:revokedIdP viewController:nil completion:^(TCGBError * _Nullable removeMappingError) {
+                                ...
+                            }];
+                        }
+                    }];
+                    break;
+                }
+                case IDP_REVOKED_REMOVE_MAPPING:
+                {
+                    // 現在のアカウントにマッピングされているIdPのうち使用停止しているIdPがある場合を意味します。
+                    // ユーザーに現在のアカウントで使用停止しているIdPが連動解除されたことを伝えてください。
+                    [TCGBGamebase removeMappingWithType:revokedIdP viewController:nil completion:^(TCGBError *error) {
+                        ...
+                    }];   
+                    break;
+                }
+            }
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
+```
 
 #### Logged Out
 
@@ -478,6 +566,8 @@ localizedstring.jsonに定義されている形式は、次の通りです。
 @property (nonatomic, assign)           int64_t     code;
 @property (nonatomic, strong, nullable) NSString*   message;
 @property (nonatomic, strong, nullable) NSString*   extras;
+
+'@end
 ```
 
 **Example**

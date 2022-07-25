@@ -18,8 +18,8 @@
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | 支持Sign In With Apple登录。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.1.0 | 支持Facebook登录。 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | 支持Google登录。 | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.4.4 | 支持Hangame登录。 | - |
-|  | gamebase-adapter-auth-line | linesdk-5.6.2 | 支持Line登录。 | API 17(JellyBean MR1, OS 4.2) |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.5.2 | 支持Hangame登录。 | - |
+|  | gamebase-adapter-auth-line | linesdk-5.8.0 | 支持Line登录。 | API 17(JellyBean MR1, OS 4.2) |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | 支持Naver登录。 | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.7 | 支持Payco登录。 | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | 支持Twitter登录。 | API 19(Kitkat, OS 4.4) |

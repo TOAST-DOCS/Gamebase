@@ -8,6 +8,7 @@
 - 特定期間に退会したユーザーのGamebase userIdを取得する"Withdraw Histories" APIが追加されました。
 '- 利用停止および利用停止解除を行う"Ban"、"Ban Release" APIが追加されました。
 '- 決済トランザクションを照会する"Get Payment Transaction" APIが追加されました。
+'- 未消費決済履歴を照会する"List Consumables"APIで一度にN個のストアを対象に照会できるように**marketIds**が追加されました。
 
 ## Advance Notice
 
@@ -1416,33 +1417,32 @@ Check common requirements.
     },
     "appId": "",
     "underMaintenance": true,
-    "maintenances": [
-        {
-            "typeCode": "APP",
-            "beginDate": "2017-01-01T12:10:00+07:00",
-            "endDate": "2017-02-01T12:17:00+07:00",
-            "url": "http://url.info",
-            "message": "maintenance message",
-            "targetStores": [
-                "GG",
-                "AS",
-                "ONESTROE"
-            ]
-        }
-    ]
+    "maintenance": {
+        "typeCode": "APP",
+        "beginDate": "2017-01-01T12:10:00+07:00",
+        "endDate": "2017-02-01T12:17:00+07:00",
+        "url": "http://url.info",
+        "reason" : "maintenance reason",
+        "message": "maintenance message",
+        "targetStores": [
+            "GG",
+            "AS",
+            "ONESTORE"
+        ]
+    }
 }
 ```
 
 | Key | Type | Description |
 | --- | --- | --- |
 | underMaintenance | boolean | 現在、メンテナンスを設定しているかどうか |
-| maintenances | Object | メンテナンスが設定されている場合、メンテナンスの基本情報 |
-| maintenances.typeCode | Enum | APP：ゲームで設定したメンテナンス <br>SYSTEM：Gamebaseシステムで設定したメンテナンス |
-| maintenances.beginDate | String | メンテナンス開始時間。ISO 8601 |
-| maintenances.endDate | String | メンテナンス終了時間。ISO 8601 |
-| maintenances.url | String | 詳細なメンテナンスURL |
-| maintenances.message | String | メンテナンスメッセージ |
-| maintenances.targetStores | Array[Enum] | 特定のクライアントに対してのみメンテナンスを設定した時、メンテナンスが設定されたクライアントの[ストアコード](#store-code) |
+| maintenance | Object | メンテナンスが設定されている場合、メンテナンスの基本情報 |
+| maintenance.typeCode | Enum | APP：ゲームで設定したメンテナンス <br>SYSTEM：Gamebaseシステムで設定したメンテナンス |
+| maintenance.beginDate | String | メンテナンス開始時間。ISO 8601 |
+| maintenance.endDate | String | メンテナンス終了時間。ISO 8601 |
+| maintenance.url | String | 詳細なメンテナンスURL |
+| maintenance.message | String | メンテナンスメッセージ |
+| maintenance.targetStores | Array[Enum] | 特定のクライアントに対してのみメンテナンスを設定した時、メンテナンスが設定されたクライアントの[ストアコード](#store-code) |
 
 **[Error Code]**
 
@@ -1644,14 +1644,15 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 ```json
 {
-    "marketId": "GG",
+    "marketIds": ["GG", "AS"],
     "userId": "QXG774PMRZMWR3BR"
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | Required | [ストアコード](#store-code) |
+| marketId | String | Optional | [ストアコード](#store-code)<br>- **deprecated**予定で*marketIds*使用 |
+| marketIds | Array | Optional | [ストアコード](#store-code)<br>- 空の値(またはnull)の場合、全てのストアを対象に照会<br> - ただし、AMAZONストアが含まれる全てのストアを照会する場合、明示的に照会する**すべてのストア**を羅列する必要がある |
 | userId | String | Required  | ユーザーID  |
 
 **[Response Body]**
@@ -1696,7 +1697,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Array[Object] | 決済基本情報 |
-| result[].paymentSeq | String |  Gamebaseで発行された決済番号 |
+| result[].paymentSeq | String |  Gamebaseで発行された決済Transaction ID |
 | result[].productSeq | Long | 決済アイテム番号(consoleに登録されたアイテム固有番号) |
 | result[].currency  | String  | 決済通貨 |
 | result[].price | Float | 決済価格 |

@@ -16,7 +16,7 @@ Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 > <font color="red">[주의]</font>
 >
 > 2019년 8월 1일부터 Google Play에 게시되는 신규 앱에서는 64비트 아키텍처를 지원해야 합니다.
-> [Google Play 정책 및 64비트 지원 Unity 버전 확인](https://developer.android.com/distribute/best-practices/develop/64-bit#unity-developers)
+> [Google Play 정책 및 64비트 지원 Unity 버전 확인](https://developer.android.com/games/optimize/64-bit?#unity-developers)
 
 #### Dependencies
 
@@ -96,7 +96,7 @@ Gamebase SDK를 쉽게 설치할 수 있도록 Setting Tool을 제공하고 있�
 2. EDM4U(External Dependency Manager for Unity)가 필수 라이브러리로 채택되었습니다.
     * [EDM4U Github](https://github.com/googlesamples/unity-jar-resolver)에서 EDM4U를 다운로드 후, 설치해야 합니다.
     * EDM4U가 없을 경우에는 Gamebase SDK for Android, iOS 설정이 되지 않습니다.
-    * 프로젝트에서 이미 EDM4U를 포함하고 있을 경우에는 EDM4U를 다운로드하지 않아도 됩니다.
+    * 프로젝트가 이미 EDM4U를 포함할 경우 EDM4U를 다운로드하지 않아도 됩니다.
 3. Android 플랫폼을 서비스할 경우에는 상단 메뉴 > **Assets > External Dependency Manager > Android Resolver > Settings**를 선택하여 Android Resolver Settings 창을 열고 아래와 같이 설정하십시오.
     * Enable Auto-Resolution: 비활성화
     * Explode AARs: 비활성화
@@ -193,19 +193,19 @@ Facebook SDK for Unity는 Facebook SDK for iOS, Android를 포함합니다.
 
 ![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_001.jpg)
 
-Unity 설정에서 Facebook 인증을 활성화한 후,
+Unity 설정에서 Facebook 인증을 활성화한 후
 
 ![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_002.png)
 
-Android, iOS 설정에서 Facebook 인증을 활성화할 경우,
+Android, iOS 설정에서 Facebook 인증을 활성화할 경우
 
 ![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_003.png)
 
 프로젝트에 Facebook SDK가 중복으로 포함되는 현상이 발생하며, 이로 인해 인증 실패 또는 빌드 실패와 같은 오류가 발생합니다.
-SettingTool은 이와 같은 오류를 차단하기 위해 **Unity 설정**과 **Android && iOS 설정**에서 Facebook 인증을 중복 활성화할 수 없도록 처리되어 있습니다.
+SettingTool은 이와 같은 오류를 차단하기 위해 **Unity 설정**과 **Android & iOS 설정**에서 Facebook 인증을 중복 활성화할 수 없도록 처리되어 있습니다.
 
 > `[주의]`
-> Unity 설정과 Android && iOS 설정에서 Facebook 인증을 중복 활성화할 수 없습니다.
+> Unity 설정과 Android & iOS 설정에서 Facebook 인증을 중복 활성화할 수 없습니다.
 > Unity 설정에서 Facebook 인증을 활성화할 경우 [Facebook SDK for Unity를 직접 다운로드](https://developers.facebook.com/docs/unity/)해야 합니다.
 
 게임사별 상황에 맞는 SettingTool 설정은 아래 표를 참고하십시오.
@@ -222,7 +222,7 @@ SettingTool은 이와 같은 오류를 차단하기 위해 **Unity 설정**과 *
     * **SettingTool > Unity** 설정에서 Facebook 인증을 활성화합니다.
     * Gamebase는 Facebook 인증 외 다른 기능은 지원을 하지 않으므로 Facebook SDK for Unity를 사용하여 직접 구현해야 합니다.
 * Case 3. **SettingTool > Android, iOS** 설정에서 Facebook 인증을 활성화하였는데 Facebook SDK for Unity를 프로젝트에 포함하고 있습니다.
-    * Gamebase Facebook 로그인만 사용하고 계시다면 프로젝트에 포함된 Facebook SDK for Unity를 프로젝트에서 제거하십시오.
+    * Gamebase Facebook 로그인만 사용하려면 프로젝트에 포함된 Facebook SDK for Unity를 제거합니다.
     * Gamebase Facebook 로그인 외 Facebook의 FeedShare 기능을 사용하고 있다면 **SettingTool > Unity** 설정에서 Facebook 인증을 활성화합니다.
         * 이 경우 Android, iOS 설정이 되어 있다면 자동으로 해제됩니다.
 

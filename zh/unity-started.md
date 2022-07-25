@@ -15,7 +15,7 @@
 > <font color="red">[注意]</font>
 >
 > 2019年8月1日起Google Play公告的新应用程序应支持64位架构。
-> [确认Google Play政策及支持64bit Unity版本](https://developer.android.com/distribute/best-practices/develop/64-bit#unity-developers)
+> [确认Google Play政策及支持64bit Unity版本](https://developer.android.com/games/optimize/64-bit?#unity-developers)
 
 #### Supported Platforms
 

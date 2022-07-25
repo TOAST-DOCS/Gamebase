@@ -409,7 +409,7 @@ WebViewを表示します。<br/>
 * configuration:GamebaseWebViewConfigurationでWebViewのレイアウトを変更することができます。
 * closeCallback:WebViewが終了する際に、ユーザーにコールバックで知らせます。
 * schemeList:ユーザーの求めるカスタムSchemeのリストを指定します。
-* schemeEvent:schemeListに指定したカスタムSchemeを含むurlをコールバックで知らせます。
+* schemeEvent:schemeListに指定したカスタムスキームを含むurlをコールバックで知らせます。
 
 **API**
 
