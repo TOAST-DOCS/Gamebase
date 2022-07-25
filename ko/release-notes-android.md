@@ -48,7 +48,7 @@
             }
             
 #### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.31.0), TOAST Gamebase IAP Android SDK(0.18.5)
+* 외부 SDK 업데이트: TOAST Android SDK(0.31.0), TOAST Gamebase IAP Android SDK(0.18.5), LINE Android SDK(5.8.0)
 * 서로 다른 앱이 하나의 Gamebase 프로젝트를 공유하는 경우 푸시가 정상적으로 동작하지 않는 이슈가 수정되었습니다.
     * AndroidManifest.xml에 앱마다 서로 다른 **com.nhncloud.sdk.push.deviceId.salt** 값을 선언하시기 바랍니다.
 

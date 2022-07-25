@@ -48,7 +48,7 @@
             }
             
 #### Feature Updates
-* External SDK update: TOAST Android SDK(0.31.0), TOAST Gamebase IAP Android SDK(0.18.5)
+* External SDK update: TOAST Android SDK(0.31.0), TOAST Gamebase IAP Android SDK(0.18.5), LINE Android SDK(5.8.0)
 * Fixed an issue where push did not work properly when different apps share a single Gamebase project.
     * Declare a different **com.nhncloud.sdk.push.deviceId.salt** value for each app in AndroidManifest.xml.
 

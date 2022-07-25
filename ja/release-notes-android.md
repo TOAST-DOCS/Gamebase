@@ -48,7 +48,7 @@
             }
             
 #### 機能改善/変更
-* 外部SDKアップデート：TOAST Android SDK(0.31.0)、TOAST Gamebase IAP Android SDK(0.18.5)
+* 外部SDKアップデート：TOAST Android SDK(0.31.0)、TOAST Gamebase IAP Android SDK(0.18.5)、LINE Android SDK(5.8.0)
 * 別々のアプリが1つのGamebaseプロジェクトを共有する場合にプッシュが正常に動作しない問題が修正されました。
     * AndroidManifest.xmlに各アプリに異なる**com.nhncloud.sdk.push.deviceId.salt**値を宣言してください。
 
