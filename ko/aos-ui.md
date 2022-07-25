@@ -80,7 +80,7 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 | build() | **M** | 설정을 마친 Builder 를 Configuration 객체로 변환합니다. |
 | setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | 이미지 공지 뒷 배경색.<br>String 은 android.graphics.Color.parseColor(String) API 로 변환한 값을 사용합니다.<br>**default**: #80000000 |
 | setTimeout(long timeoutMs) | O | 이미지 공지 최대 로딩 시간 (단위 : millisecond)<br>**default**: 5000L (5s) |
-| enableAutoCloseByCustomScheme(boolean enable) | O | custom scheme 이벤트가 발생하면 이미지 공지를 강제종료 할지 여부를 결정합니다.<br>**default**: true |
+| enableAutoCloseByCustomScheme(boolean enable) | O | 커스텀 스킴 이벤트가 발생하면 이미지 공지를 강제종료 할지 여부를 결정합니다.<br>**default**: true |
 
 
 ### Close ImageNotices
@@ -399,8 +399,8 @@ WebView를 표시합니다.
 ##### Optional 파라미터
 * configuration : GamebaseWebViewConfiguration으로 WebView의 레이아웃을 변경 할 수 있습니다.
 * GamebaseCallback : WebView가 종료될 때 사용자에게 콜백으로 알려 줍니다.
-* schemeList : 사용자가 받고 싶은 커스텀 Scheme 목록을 지정합니다.
-* GamebaseDataCallback : schemeList로 지정한 커스텀 Scheme을 포함하는 url을 콜백으로 알려 줍니다.
+* schemeList : 사용자가 받고 싶은 커스텀 스킴 목록을 지정합니다.
+* GamebaseDataCallback : schemeList로 지정한 커스텀 스킴을 포함하는 url을 콜백으로 알려 줍니다.
 
 **API**
 
@@ -442,11 +442,11 @@ GamebaseWebView.showWebView(activity, "http://www.toast.com", configuration);
 
 #### Custom Scheme
 
-Gamebase WebView에서 로딩한 웹 페이지 내에 스키마(scheme)로 특정 기능을 사용하거나 웹 페이지 내용을 변경할 수 있습니다.
+Gamebase WebView에서 로딩한 웹 페이지 내에 스킴으로 특정 기능을 사용하거나 웹 페이지 내용을 변경할 수 있습니다.
 
 ##### Predefined Custom Scheme
 
-Gamebase에서 지정해 놓은 스키마입니다.
+Gamebase에서 지정해 놓은 스킴입니다.
 
 | scheme               | 용도                                  |
 | -------------------- | ------------------------------------- |
@@ -458,7 +458,7 @@ Gamebase에서 지정해 놓은 스키마입니다.
 
 #### User Custom Scheme
 
-Gamebase에 스키마 이름과 블록을 지정해 원하는 기능을 추가할 수 있습니다.
+Gamebase에 스킴 이름과 블록을 지정해 원하는 기능을 추가할 수 있습니다.
 
 ```java
 GamebaseWebViewConfiguration configuration = new GamebaseWebViewConfiguration.Builder()
@@ -509,7 +509,7 @@ showWebView(activity, urlString, configuration,
 | setBackButtonVisible(boolean visible)    | true or false                       | 뒤로 가기 버튼 활성 또는 비활성.<br>**default**: true |
 | setBackButtonImageResource(int resourceId) | ID of resource                      | 뒤로 가기 버튼 이미지       |
 | setCloseButtonImageResource(int resourceId) | ID of resource                      | 닫기 버튼 이미지      |
-| enableAutoCloseByCustomScheme(boolean enable) | true or false | 커스텀 스키마 동작 시 자동으로 웹뷰 종료.<br>**default**: true |
+| enableAutoCloseByCustomScheme(boolean enable) | true or false | 커스텀 스킴 동작 시 자동으로 웹뷰 종료.<br>**default**: true |
 
 
 ### Close WebView
