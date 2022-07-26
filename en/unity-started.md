@@ -190,7 +190,7 @@ Depending on the update type, some functions provided by Setting Tool may be lim
 
 ### Add Facebook Authentication
 
-Facebook SDK for iOS and Android are included in Facdbook SDK.
+Facebook SDK for iOS and Android are included in Facebook SDK.
 
 ![Select Build System]()
 
@@ -222,7 +222,7 @@ Refer to the table below for SettingTool settings for each game company.
 * Case 2. When you need to use Gamebase Facebook login and Facebook's FeedShare function in your Unity project
     * Enable Facebook authentication in **SettingTool > Unity** settings.
     * Gamebase does not support functions other than Facebook authentication, so you must implement it yourself using the Facebook SDK for Unity.
-* Case 3. When you enable Facebook authentication in **SettingTool > Android, iOS** settings, and Facebook SDK for Unity is included in yout project
+* Case 3. When you enable Facebook authentication in **SettingTool > Android, iOS** settings, and Facebook SDK for Unity is included in your project
     * If you are only using Gamebase Facebook Login, please remove the Facebook SDK for Unity included in your project.
     * If you are using Facebook's FeedShare function other than Gamebase Facebook login, enable Facebook authentication in  **SettingTool > Unity**  settings.
         * In this case, if Android or iOS settings are configured, they are automatically released.
