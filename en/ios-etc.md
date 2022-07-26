@@ -369,7 +369,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 ```
 
 * Category is defined in the GamebaseEventCategory class.
-* In general, events can be categorized into IdPRevoked, LoggedOut, ServerPush, Observer, Purchase, or Push. TCGBGamebaseEventMessage.data can be converted into a VO in the ways shown in the following table for each Category
+* In general, events can be categorized into IdPRevoked, LoggedOut, ServerPush, Observer, Purchase, or Push. TCGBGamebaseEventMessage.data can be converted into a VO in the ways shown in the following table for each Category.
 
 | Event type | GamebaseEventCategory | VO conversion method | Remarks |
 | --------- | --------------------- | ----------- | --- |
