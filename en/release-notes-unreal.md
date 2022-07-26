@@ -15,8 +15,8 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.1/GamebaseSDK-Unreal.zip)
 
 #### Bug Fixes
-* Fixed the logic that could cause a crash.
-* (iOS) Fixed an issue where the callback was not passed normally when calling the same API consecutively.
+* 크래시가 발생할 수 있는 로직이 수정되었습니다.
+* (iOS) 동일한 API를 연속해서 호출 시 콜백이 정상적으로 전달되지 않는 문제가 수정되었습니다.
 
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Unreal.zip)
