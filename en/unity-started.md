@@ -96,8 +96,8 @@ Setting Tool is provided to install Gamebase SDK easily.
 2. EDM4U (External Dependency Manager for Unity) has been adopted as a required library.
     * After downloading EDM4U from [EDM4U Github](https://github.com/googlesamples/unity-jar-resolver), install it.
     * If there is no EDM4U, Gamebase SDK for Android and iOS settings are not available.
-    * If you are using an SDK that already includes EDM4U, such as Facebook, GPGS SDK, or Firebase, you do not need to download EDM4U.
-3. If you provide a service for the Android platform, select the Top Menu > **Assets > External Dependency Manager > Android Resolver > Settings** to open the Android Resolver Settings window and set the options as follows.
+    * If there is EDM4U in a project, you do not need to download EDM4U.
+    3. If you provide a service for the Android platform, select the Top Menu > **Assets > External Dependency Manager > Android Resolver > Settings** to open the Android Resolver Settings window and set the options as follows.
     * Enable Auto-Resolution: Disable
     * Explode AARs: Disabled
     * Patch mainTemplate.gradle: Enable
@@ -157,8 +157,6 @@ Setting Tool is provided to install Gamebase SDK easily.
 > 
 > If an unexpected error occurs at Setting Tool, close the window and try again. <br/>
 > If the error is not resolved by re-running, open the SettingToolWindow.cs file in **Assets/NhnCloud/GamebaseTools/SettingTool/Editor/Scripts**, uncomment SettingTool.SetDebugMode(true); code in the ShowWindow method, and send the log.<br/><br/>
-> If you are using Unity Facebook Authentication, you need to download Facebook Unity SDK separately. [Go to Download](https://developers.facebook.com/docs/unity/)<br/>
-> To check the version of Facebook Unity SDK supported by Unity Facebook Authentication, refer to the README file which is also provided. <br/>
 
 ### Video of Setting Tool Usage
 
@@ -189,6 +187,45 @@ Depending on the update type, some functions provided by Setting Tool may be lim
 * SDK download available
 
 ![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-2_1.13.0.png)
+
+### Add Facebook Authentication
+
+Facebook SDK for iOS and Android are included in Facdbook SDK.
+
+![Select Build System]()
+
+When you enable Facebook authentication in Unity settings
+
+![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_002.png)
+
+and also enable Facebook authentication in Android and iOS settings,
+
+![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_003.png)
+
+Facebook SDKs are included as duplicate in the project, resulting in errors such as authentication failure or build failure.
+To prevent such errors, SettingTool is configured to prevent the user from enabling Facebook authentication both in **Unity settings** and **Android & iOS settings**.
+
+> `[Caution]`
+> You cannot enable Facebook authentication both in Unity settings and Android & iOS settings.
+> When you enable Facebook authentication in Unity settings, you need to download [Facebook SDK for Unity](https://developers.facebook.com/docs/unity/).
+
+Refer to the table below for SettingTool settings for each game company.
+
+| | **SettingTool > Unity** settings > Enable Facebook authentication | **SettingTool > Android, iOS** settings > Enable Facebook authentication |
+| --- | --- | --- |
+| Features required for games | Gamebase Facebook Login (Android, iOS)<br>Use features such as ShareLink or FeedShare | Gamebase Facebook Login (Android, iOS) |
+| Android, iOS Login API | [Gamebase Login with Credential](https://docs.toast.com/en/Game/Gamebase/en/unity-authentication/#login-with-credential) | [Gamebase Login with ID Provider](https://docs.toast.com/en/Game/Gamebase/en/unity-authentication/#login-with-idp) |
+| Download Facebook SDK for Unity | O | X |
+
+* Case 1. When only using Gamebase Facebook login on Android and iOS platforms
+    * Enable Facebook authentication in **SettingTool > Android, iOS** settings.
+* Case 2. When you need to use Gamebase Facebook login and Facebook's FeedShare function in your Unity project
+    * Enable Facebook authentication in **SettingTool > Unity** settings.
+    * Gamebase does not support functions other than Facebook authentication, so you must implement it yourself using the Facebook SDK for Unity.
+* Case 3. When you enable Facebook authentication in **SettingTool > Android, iOS** settings, and Facebook SDK for Unity is included in yout project
+    * If you are only using Gamebase Facebook Login, please remove the Facebook SDK for Unity included in your project.
+    * If you are using Facebook's FeedShare function other than Gamebase Facebook login, enable Facebook authentication in  **SettingTool > Unity**  settings.
+        * In this case, if Android or iOS settings are configured, they are automatically released.
 
 ### Android Lifecycle
 

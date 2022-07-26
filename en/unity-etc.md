@@ -381,6 +381,15 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 {
     switch (message.category)
     {
+        case GamebaseEventCategory.IDP_REVOKED:
+            {
+                GamebaseResponse.Event.GamebaseEventIdPRevokedData idPRevokedData = GamebaseResponse.Event.GamebaseEventIdPRevokedData.From(message.data);
+                if (idPRevokedData != null)
+                {
+                    ProcessIdPRevoked(idPRevokedData);
+                }
+                break;
+            }
         case GamebaseEventCategory.LOGGED_OUT:
             {
                 GamebaseResponse.Event.GamebaseEventLoggedOutData loggedData = GamebaseResponse.Event.GamebaseEventLoggedOutData.From(message.data);
@@ -492,17 +501,114 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 ```
 
 * Category is defined in the GamebaseEventCategory class.
-* In general, events can be categorized into LoggedOut, ServerPush, Observer, Purchase, or Push. GamebaseEventMessage.data can be converted into a VO in the ways shown in the following table for each Category.
+* In general, events can be categorized into IdPRevoked, LoggedOut, ServerPush, Observer, Purchase, or Push. GamebaseEventMessage.data can be converted into a VO in the ways shown in the following table for each Category.
 
 | Event type | GamebaseEventCategory | VO conversion method | Remarks |
 | --------- | --------------------- | ----------- | --- |
-| LoggedOut | GamebaseEventCategory.LOGGED_OUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
+| IdPRevoked | GamebaseEventCategory.IDP_REVOKED | GamebaseResponse.Event.GamebaseEventIdPRevokedData.from(message.data) | \- |
+| LoggedOut | GamebaseEventCategory.LOGGED_OUT | GamebaseResponse.Event.GamebaseEventLoggedOutData.from(message.data) | \- |
 | ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED<br>GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
 | Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseResponse.Event.GamebaseEventObserverData.from(message.data) | \- |
 | Purchase - Promotion payment | GamebaseEventCategory.PURCHASE_UPDATED | GamebaseResponse.Event.PurchasableReceipt.from(message.data) | \- |
 | Push - Message received | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) |  |
 | Push - Message clicked | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) |  |
 | Push - Action clicked | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | Operates when the RichMessage button is clicked. |
+
+#### IdP Revoked
+
+* This event occurs when the service is deleted from the IdP.
+* Notifies the user that the IdP has been revoked, and issues a new userID when the user logs in with the same IdP.
+* GamebaseEventIdPRevokedData.code:  Indicates the GamebaseIdPRevokedCode value.
+    * WITHDRAW : 600
+        * Indicates that the user is logged in with a revoked IdP, and there is no list of mapped IdPs.
+        * You need to call the Withdraw API to delete the current account.
+    * OVERWRITE_LOGIN_AND_REMOVE_MAPPING : 601
+        * Indicates that the user is logged in with a revoked IdP and IdPs other than the revoked IdP are mapped.
+        * You need to log in with one of the mapped IdPs and call the RemoveMapping API to remove mapping with the revoked IdP.
+    * REMOVE_MAPPING : 602
+        * Indicates that there is a revoked IdP among IdPs mapped to the current account.
+        * You need to call the RemoveMapping API to remove mapping with the revoked IdP.
+* GamebaseEventIdPRevokedData.idpType: Indicates a revoked IdP type.
+* GamebaseEventIdPRevokedData.authMappingList: Indicates the list of IdPs mapped to the current account.
+
+**Example**
+
+```cs
+public void AddEventHandlerSample()
+{
+    Gamebase.AddEventHandler(GamebaseEventHandler);
+}
+
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+{
+    switch (message.category)
+    {
+        case GamebaseEventCategory.IDP_REVOKED:
+            {
+                GamebaseResponse.Event.GamebaseEventIdPRevokedData idPRevokedData = GamebaseResponse.Event.GamebaseEventIdPRevokedData.From(message.data);
+                if (idPRevokedData != null)
+                {
+                    ProcessIdPRevoked(idPRevokedData);
+                }
+                break;
+            }
+        default:
+            {
+                break;
+            }
+    }
+}
+
+private void ProcessIdPRevoked(string category, GamebaseResponse.Event.GamebaseEventIdPRevokedData data)
+{
+    var revokedIdP = data.idPType;
+    switch (data.code)
+    {
+        case GamebaseIdPRevokedCode.WITHDRAW:
+            {
+                // The user is logged in with a revoked IdP and there is no list of mapped IdPs. 
+                // Notifies the user that the current account has been deleted.
+                Gamebase.Withdraw((error) =>
+                {
+                    ...
+                });
+                break;
+            }
+        case GamebaseIdPRevokedCode.OVERWRITE_LOGIN_AND_REMOVE_MAPPING:
+            {
+                // The user is logged in with a revoked IdP and IdPs other than the revoked IdP are mapped.
+                // Allows the user to select an IdP to login in to among the authMappingList, and removes mapping with the revoked IdP after login with the selected IdP.
+                var selectedIdP = "the IdP selected by the user";
+                var additionalInfo = new Dictionary<string, object>()
+                {
+                    { GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN, true }
+                };
+
+                Gamebase.Login(selectedIdP, additionalInfo, (authToken, loginError) =>
+                {
+                    if (Gamebase.IsSuccess(loginError) == true)
+                    {
+                        Gamebase.RemoveMapping(revokedIdP, (mappingError) =>
+                        {
+                            ...
+                        });
+                    }
+                });
+                break;
+            }
+        case GamebaseIdPRevokedCode.REMOVE_MAPPING:
+            {
+                // There is a revoked IdP among IdPs mapped to the current account.
+                // Notifies the user that mapping with the revoked IdP is removed from the current account.
+                Gamebase.RemoveMapping(revokedIdP, (error) =>
+                {
+                    ...
+                });
+                break;
+            }
+    }
+}
+```
 
 #### Logged Out
 
