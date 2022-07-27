@@ -413,7 +413,7 @@ void Sample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
         case GamebaseIdPRevokeCode::RemoveMapping:
         {
             // 現在のアカウントにマッピングされているIdPのうち使用停止しているIdPがある場合を意味します。
-// ユーザーに現在アカウントで使用停止しているIdPが連動解除されていることを伝えてください。
+            // ユーザーに現在アカウントで使用停止しているIdPが連動解除されていることを伝えてください。
             IGamebase::Get().RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
             {
                 ...
