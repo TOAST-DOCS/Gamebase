@@ -353,7 +353,7 @@ void Sample::AddEventHandler()
         * マッピングされたIdPリストのうちの1つのIdPにログインし、removeMapping APIを呼び出して使用停止しているIdPの連動を解除する必要があります。
     * RemoveMapping : 602
         * 現在アカウントにマッピングされているIdPのうち、使用停止しているIdPがある場合を意味します。
-RemoveMapping APIを呼び出して使用停止しているIdPの連動を解除する必要があります。
+        * RemoveMapping APIを呼び出して使用停止しているIdPの連動を解除する必要があります。
 * FGamebaseEventIdPRevokedData.idpType：使用停止しているIdPタイプを意味します。
 * FGamebaseEventIdPRevokedData.authMappingList：現在アカウントにマッピングされているIdPリストを意味します。
 
