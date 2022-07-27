@@ -6,6 +6,8 @@
 
 * When the custom scheme event registered in WebView works, the WebView is automatically closed.
     * If you want to maintain WebView when the custom scheme works as before, call **GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** API.
+* There is a bug where the 'View' button in the Terms and Conditions screen does not work in Gamebase Android SDK 2.41.0.
+    * To use the Gamebase's Terms and Conditions screen, use the Gamebase Android SDK 2.41.1 where the bug is fixed.
 
 ### Unity
 
