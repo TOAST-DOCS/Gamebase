@@ -503,12 +503,13 @@ showWebView(activity, urlString, configuration,
 | setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | Portrait mode          |
 |                                          | ScreenOrientation.LANDSCAPE         | Landscape mode          |
 |                                          | ScreenOrientation.LANDSCAPE_REVERSE | Reverse landscape |
-| setNavigationBarVisible(boolean enable)  | true or false                       | Activate or deactivate Navigation Bar |
+| setNavigationBarVisible(boolean enable)  | true or false                       | Activate or deactivate Navigation Bar.<br>**default**: true  |
 | setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | Color of Navigation Bar     |
 | setNavigationBarHeight(int height)       | height                              | Height of Navigation Bar     |
-| setBackButtonVisible(boolean visible)    | true or false                       | Activate or deactivate Go Back Button |
+| setBackButtonVisible(boolean visible)    | true or false                       | Activate or deactivate Go Back Button.<br>**default**: true |
 | setBackButtonImageResource(int resourceId) | ID of resource                      | Image of Go Back Button       |
 | setCloseButtonImageResource(int resourceId) | ID of resource                      | Image of Close Button      |
+| enableAutoCloseByCustomScheme(boolean enable) | true or false | WebView is automatically closed when the custom scheme works.<br>**default**: true |
 
 
 ### Close WebView
