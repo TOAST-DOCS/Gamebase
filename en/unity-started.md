@@ -191,7 +191,7 @@ Depending on the update type, some functions provided by Setting Tool may be lim
 
 Facebook SDK for iOS and Android are included in Facebook SDK.
 
-![Select Build System]()https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_001.jpg
+![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_001.jpg)
 
 When you enable Facebook authentication in Unity settings
 
