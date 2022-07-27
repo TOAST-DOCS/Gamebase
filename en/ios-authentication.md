@@ -177,8 +177,8 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 | keyname                                  | Usage                          | Value Type                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |     
-| kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname | Allow login attempts using other accounts while logged into Gamebase without logging out  | **BOOL** |                                         |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                   | 
+| kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname | Allow login attempts using other accounts while logged into Gamebase without logging out  | **BOOL** |                                        
 
 
 
