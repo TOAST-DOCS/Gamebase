@@ -9,12 +9,10 @@ Please be cautious with your choice, since the currency code cannot be modified,
 You can register in-app purchase information and view the history.
 Gamebase uses NHN Cloud IAP (In-App Purchase) service.
 
-
 ## Store
 
 Register stores to sell products in games.
 Register a new store on the **Store Information List** of the **Store** tab, or manage registered stores.
-
 ![gamebase_purchase_01_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_01_201812_en.png)
 
 ### Register
@@ -38,7 +36,6 @@ Click **Register** on the **Store Information List** to register a new store.
 Retrieve or modify detail information of registered stores on the list.
 
 ![gamebase_purchase_03_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_03_201812_en.png)
-
 - Select a registered store on the list to retrieve detail information.
 - Click **Modify** to modify information such as app name, store app, and use or not, but not store App ID.
 - Click **Delete** to delete information: only for the stores that are Not in Use.
@@ -81,10 +78,10 @@ To register a new product, click **Register** on the **Product List** page.
 
 Query details or change information of a registered product from the list. 
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_07_202006.png)
-
 - Select each item from the list to query details. 
 - Click **Modify** to change information, except Store, Item Number, and Product Type. 
 - Only **Product Name, Use, and Store Item ID** are modifiable, and the others cannot be changed. 
+- **Store Item ID** is only modifiable with other already registered **Store Item ID**, and a new **Store Item ID** requires product registration.
 
 ## Transactions
 
@@ -115,7 +112,6 @@ Search is available by Transaction ID which is created upon purchase.
 
 ##### (3) Search by Receipt 
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202006.png)
-
 You can view the results using the receipt issued during the purchase.
 
 
@@ -153,16 +149,15 @@ The status of the searched purchase information is as follows:
 - **Canceling during the purchase process (UserClose)** 
 	- User has withdrawn the purchase
 
+
 #### Changing to Success
-
 ![gamebase_purchase_08_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_201812_en.png)
-
 In order to proceed, you need to provide **Receipt Number, Value, and Currency**.
 
 #### Changing to Refund
 ![gamebase_purchase_09_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_09_201812_en.png)
-
-No additional information is required. Once it has been changed to Refund status, it's set for good.
+No additional information is required. 
+Once it has been changed to Refund status, it's set for good.
 
 #### Validate Receipt
 ![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction3.1.png)
@@ -182,7 +177,6 @@ Purchase and refund information can be queried by search conditions as below.
 Click **Download** on top right to download purchase and refund list at any time.
 
 #### Search Conditions
-
 - **Refund Date**: Time when a user item was refunded
 - **User ID**: User ID that made the purchase
 - **Refund Count**: Refund count of the user. Only the items with count higher than input value are queried.
