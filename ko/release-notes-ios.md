@@ -14,7 +14,7 @@
 
 #### 버그 수정
 * 잘못된 AppID로 Gamebase를 초기화했을 때 콜백이 호출되지 않는 버그를 수정하였습니다.
-* 한게임 IdP로 로그인한 상태에서 Gamebase의 EventHandler의 **kTCGBIdPRevoked** 이벤트가 발생하지 않는 버그를 수정하였습니다.
+* 한게임 IdP로 로그인한 상태에서 GamebaseEventHandler의 **kTCGBIdPRevoked** 이벤트가 발생하지 않는 버그를 수정하였습니다.
 
 ### 2.41.1 (2022. 07. 20.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.1/GamebaseSDK-iOS.zip)
