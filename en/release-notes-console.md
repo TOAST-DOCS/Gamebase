@@ -1,5 +1,17 @@
 ## Game > Gamebase > Release Notes > Console
 
+### July 26, 2022
+
+#### Feature Updates
+* Purchase (IAP) > Payment Information
+	* Added the payment date item to Payment History
+
+### Bug Fixes
+* Purchas(IAP) > Payment Information
+	* Fixed an error in saving data as an Excel file when the payment history is very large
+* Mobile Customer Center
+	* Fixed a download error when there is a space in the attached file name
+
 ### June 14, 2022
 
 #### Feature Updates
