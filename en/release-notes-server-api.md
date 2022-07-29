@@ -1,5 +1,10 @@
 ## Game > Gamebase > Release Notes > Server API
 
+### July 26, 2022
+
+#### Added Features
+* Added 'marketIds' to the "List Consumables" API that queries the unconsumed payment history so that multiple stores can be viewed at a time. 
+
 ### June 30, 2022
 
 #### Added Features
