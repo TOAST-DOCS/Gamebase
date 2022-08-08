@@ -22,7 +22,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.2/GamebaseSDK-Android.zip)
 
 #### Feature Updats 
-* Changed the default WebView settings to 'Allow cookies".
+* Changed the default WebView settings to 'Allow cookies'.
 
 ### 2.41.1 (2022. 07. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.1/GamebaseSDK-Android.zip)

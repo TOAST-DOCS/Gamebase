@@ -14,7 +14,7 @@
 
 #### Bug Fixes
 * Fixed a bug where callback is not called when initializing Gamebase with an incorrect AppID.
-* Fixed a bug where the **kTCGBIdPRevoked** event of GamebaseEventHandle does not occur when logged in with Hangame IdP.
+* Fixed a bug where the **kTCGBIdPRevoked** event of GamebaseEventHandle does not occur for Hangame login users.
 
 ### 2.41.1 (2022. 07. 20.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.1/GamebaseSDK-iOS.zip)
