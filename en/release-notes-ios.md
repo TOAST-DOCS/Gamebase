@@ -3,24 +3,24 @@
 ### 2.42.0 (2022. 07. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* 매핑 실패 시 반환되는 ForcingMappingTicket VO 클래스에 유저의 현재 상태를 알 수 있도록 필드가 추가되었습니다.
+#### Added Features
+* Added a field to the ForcingMappingTicket VO class that is returned when mapping fails so that the user's current status can be identified.
     * **TCGBForcingMappingTicket.mappedUserValid**
-    * mappedUserValid에 저장된 값의 의미는 아래를 참고해주세요.
-        * [Game > Gamebase > API 가이드 > API v1.3 가이드 > Others > Mamber Vaild Code](./api-guide/#member-valid-code)
+    * For what the value stored in mappedUserValid means, refer to the following.
+        * [Game > Gamebase > API Guide > API v1.3 Guide > Others > Mamber Vaild Code](./api-guide/#member-valid-code)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Hangame iOS SDK (1.7.0)
+#### Feature Updates
+* External SDK update: Hangame iOS SDK (1.7.0)
 
-#### 버그 수정
-* 잘못된 AppID로 Gamebase 초기화를 했을 때 콜백이 호출되지 않는 버그를 수정하였습니다.
-* 한게임 로그인 사용자의 경우 GamebaseEventHandler의 **kTCGBIdPRevoked** 이벤트가 오지 않는 버그를 수정하였습니다.
+#### Bug Fixes
+* Fixed a bug where callback is not called when initializing Gamebase with an incorrect AppID.
+* Fixed a bug where the **kTCGBIdPRevoked** event of GamebaseEventHandle does not occur for Hangame login users.
 
 ### 2.41.1 (2022. 07. 20.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.1/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 약관 창이 완전히 닫힌 후에 콜백을 호출하도록 수정하였습니다.
+#### Feature Updates
+* Modified to call callback after the terms and condition window is completely closed.
 
 ### 2.41.0 (2022. 07. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-iOS.zip)
