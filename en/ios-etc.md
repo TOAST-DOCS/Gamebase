@@ -805,8 +805,6 @@ Parameters required for calling the API are as follows:
 | -------------------------- | -------------------------- | ---- | ---- |
 | userLevel | M | int | This field represents game user's level. |
 | levelUpTime | M | long | Enter in Epoch time.</br>The unit is milliseconds. |
-| channelId | O | string | |
-| characterId | O | string | |
 
 **API**
 
