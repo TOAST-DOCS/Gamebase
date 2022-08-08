@@ -491,11 +491,11 @@ Can add customized functions by specifying scheme names and blocks in Gamebase.
 |                                        | TCGBWebViewOrientationPortraitUpsideDown | Reverse portrait      |
 |                                        | TCGBWebViewOrientationLandscapeRight     | Landscape mode              |
 |                                        | TCGBWebViewOrientationLandscapeLeft      | Reverse landscape     |
-| contentMode                            | TCGBWebViewContentModeRecommended        | Browser recommended by the current platform    |
+| contentMode                            | TCGBWebViewContentModeRecommended        | Browser recommended by the current platform (**default**)    |
 |                                        | TCGBWebViewContentModeMobile             | Mobile browser            |
 |                                        | TCGBWebViewContentModeDesktop            | Desktop browser          |
-| navigationBarColor                     | UIColor                                  | Color of Navigation Bar         |
-| isBackButtonVisible                    | YES or NO                                | Activate or deactivate Go Back Button |
+| navigationBarColor                     | UIColor                                  | Color of Navigation Bar<br/>**default**: [UIColor colorWithRed: 0.07 green: 0.36 blue: 0.90 alpha: 1.00]   |
+| isBackButtonVisible                    | YES or NO                                | Activate or deactivate Go Back Button<br/>**default**: YES |
 | isNavigationBarVisible                 | YES or NO                                | Show or hide Navigation Bar<br/>**default**: YES    |
 | goBackImagePathForFullScreenNavigation | file name in Gamebase.bundle             | Image of Go Back Button       |
 | closeImagePathForFullScreenNavigation  | file name in Gamebase.bundle             | Image of Close Button          |

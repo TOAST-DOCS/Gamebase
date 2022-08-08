@@ -3,22 +3,22 @@
 ### 2.41.0 (2022. 07. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 외부 SDK 업데이트: TOAST Unity SDK(0.25.6)
-* GamebaseEventHandler의 GamebaseEventCategory에 **IDP_REVOKED** 타입이 추가되었습니다.
-    * [Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./unity-etc/#idp-revoked)
+#### Added Features
+* External SDK update: TOAST Unity SDK(0.25.6)
+* Added the **IDP_REVOKED** type to GamebaseEventCategory of GamebaseEventHandler.
+    * [Game > Gamebase > Unity SDK User Guide > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./unity-etc/#idp-revoked)
 
-#### 기능 개선/변경
-* Unity의 Burst 패키지를 사용 시 메모리 릭이 발생하는 이슈를 수정했습니다.
+#### Feature Updates
+* Fixed an issue where memory leakage occurs when using the Burst package of Unity.
 * Setting Tool (v2.4.0)
-    * 내부 안정화 지표가 추가되었습니다.
-    * 기존 SettingTool은 Unity 프로젝트에서 완전히 제거 후, 최신 버전으로 재설치해야 합니다.
-    * SettingTool v1은 더 이상 지원하지 않습니다.
+    * Added internal stability metrics.
+    * You need to install the latest version of Setting Tool after completely deleting the previous version of SettingTool from Unity projects.
+    * SettingTool v1 is no longer supported.
 
-#### 버그 수정
-* (iOS) 특정 환경에서 결제 후 크래시가 발생하는 문제를 수정했습니다.
+#### Bug Fixes
+* (iOS) Fixed an issue where a crash would occur in a specific environment after payment.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.41.0](./release-notes-android/#2410-20220705)
 * [Gamebase iOS SDK 2.41.0](./release-notes-ios/#2410-20220705)
 
