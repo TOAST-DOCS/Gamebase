@@ -45,10 +45,10 @@ void Sample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 co
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| colorR                   | 0~255                                    | 내비게이션 바 색상 R            |
-| colorG                   | 0~255                                    | 내비게이션 바 색상 G                |
-| colorB                   | 0~255                                    | 내비게이션 바 색상 B                |
-| colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha                |
+| colorR                   | 0~255                                    | 백그라운드 배경 색상 R            |
+| colorG                   | 0~255                                    | 백그라운드 배경 색상 G                |
+| colorB                   | 0~255                                    | 백그라운드 배경 색상 B                |
+| colorA                   | 0~255                                    | 백그라운드 배경 색상 Alpha                |
 | timeOut                  | int64        | 이미지 공지 최대 로딩 시간 (단위 : millisecond)<br/>**default**: 5000                     |
 
 
@@ -411,23 +411,22 @@ void Sample::ShowWebView(const FString& url)
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
 | title                    | FString                                   | WebView의 제목                 |
-| orientation              | GamebaseScreenOrientation::Unspecified    | 미지정 |
+| orientation              | GamebaseScreenOrientation::Unspecified    | 미지정 (**default**)            |
 |                          | GamebaseScreenOrientation::Portrait       | 세로 모드                       |
 |                          | GamebaseScreenOrientation::Landscape      | 가로 모드                       |
 |                          | GamebaseScreenOrientation::LandscapeReverse | 가로 모드를 180도 회전              |
-| contentMode              | GamebaseWebViewContentMode::Recommended        | 현재 플랫폼 추천 브라우저    |
+| contentMode              | GamebaseWebViewContentMode::Recommended        | 현재 플랫폼 추천 브라우저 (**default**)   |
 |                          | GamebaseWebViewContentMode::Mobile             | 모바일 브라우저            |
 |                          | GamebaseWebViewContentMode::Desktop            | 데스크탑 브라우저          |
-| colorR                   | 0~255                                    | 내비게이션 바 색상 R            |
-| colorG                   | 0~255                                    | 내비게이션 바 색상 G                |
-| colorB                   | 0~255                                    | 내비게이션 바 색상 B                |
-| colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha                |
-| isBackButtonVisible      | true or false                            | 뒤로 가기 버튼 활성 또는 비활성          |
-| barHeight                | height                                   | 내비게이션 바 높이                  |
-| backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지                |
-| closeButtonImageResource | ID of resource | 닫기 버튼 이미지 |
-| url | "http://" or "https://" or "file://" | 웹 URL |
-| enableFixedFontSize      | true or false                            | 폰트 사이즈 고정 활성 또는 비활성<br/>**Android Only** |
+| colorR                   | 0~255                                    | 내비게이션 바 색상 R<br>**default** : 18               |
+| colorG                   | 0~255                                    | 내비게이션 바 색상 G<br>**default** : 93               |
+| colorB                   | 0~255                                    | 내비게이션 바 색상 B<br>**default** : 230              |
+| colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha<br>**default** : 255          |
+| barHeight                | height                                   | 내비게이션 바 높이<br>**Android Only**                 |
+| isNavigationBarVisible   | true or false                            | 내비게이션 바 활성 또는 비활성<br>**default** : true    |
+| isBackButtonVisible      | true or false                            | 뒤로 가기 버튼 활성 또는 비활성<br>**default** : true   |
+| backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지         |
+| closeButtonImageResource | ID of resource                           | 닫기 버튼 이미지             |
 
 > [TIP]
 >
