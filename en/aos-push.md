@@ -259,3 +259,4 @@ Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
 | UNSUPPORTED_PUSH_TYPE | 103 | PushType is invalid or push library is not included to a project |
 | API_SERVER_ERROR | 104 | NHN Cloud Push server API call fails |
 | TOKEN_NOT_REGISTERED | 105 | Internally-cached push token does not exist |
+| INVALID_PARAMETER | 106 | Invalid parameter |
