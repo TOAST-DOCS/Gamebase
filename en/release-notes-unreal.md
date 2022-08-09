@@ -1,5 +1,29 @@
 ## Game > Gamebase > Release Notes > Unreal
 
+### 2.42.1 (2022. 08. 09.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Unreal.zip)
+
+#### 기능 추가
+* FGamebaseForcingMappingTicket 클래스에 매핑 유저 상태를 나타내는 mappedUserValid 필드가 추가되었습니다.
+*  [iOS 설정 툴](./unreal-started/#ios-settings)에서 Xcode의 경로를 지정할 수 있도록 **Xcode Path** 설정이 추가되었습니다.
+
+#### 기능 개선/변경
+* 킥아웃 팝업 창 표시 여부는 Gamebase 콘솔에서 킥아웃 등록 시 설정할 수 있으므로 다음 필드는 더 이상 사용하지 않습니다
+    * **FGamebaseConfiguration.enableKickoutPopup**
+* FGamebaseConfiguration 내 일부 필드에 기본값이 추가되었습니다.
+    * enableLaunchingStatusPopup의 기본값이 true로 설정되었습니다.
+    * enableBanPopup의 기본값이 true로 설정되었습니다.
+* FWebView에서 고정 폰트 사이즈 사용 여부를 설정하는 필드는 더 이상 사용되지 않습니다.
+    * **FGamebaseWebViewConfiguration.enableFixedFontSize**
+* FGamebaseWebViewConfiguratio 내 일부 필드에 기본 값이 추가되었습니다.
+    * 네비게이션 바의 색상 필드인 colorR, colorG, colorB, colorA의 기본값이 18, 93, 230, 255으로 설정되었습니다.
+    * 네비게이션 바 활성 여부를 지정하는 필드인 isNavigationBarVisible의 기본값이 true로 설정되었습니다.
+    * 웹뷰 내 뒤로가기 버튼 활성 여부를 지정하는 필드인 isBackButtonVisible의 기본값이 true로 설정되었습니다.
+    
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.42.1](./release-notes-android/#2421-2022-07-26)
+* [Gamebase iOS SDK 2.42.1](./release-notes-ios/#2421-2022-08-09)
+
 ### 2.41.0 (2022. 07. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-Unreal.zip)
 
@@ -8,8 +32,8 @@
     * [Game > Gamebase > Unreal SDK User Guide > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./unreal-etc/#idp-revoked)
 
 #### Platform-specific Changes
-* [Gamebase Android SDK 2.41.0](./release-notes-android/#2410-20220705)
-* [Gamebase iOS SDK 2.41.0](./release-notes-ios/#2410-20220705)
+* [Gamebase Android SDK 2.41.0](./release-notes-android/#2410-2022-07-05)
+* [Gamebase iOS SDK 2.41.0](./release-notes-ios/#2410-2022-07-05)
 
 ### 2.40.1 (2022. 06. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.1/GamebaseSDK-Unreal.zip)
@@ -54,8 +78,8 @@
      * FGamebaseConfiguration.enableKickoutPopup
     
 #### Platform-specific Changes
-* [Gamebase Android SDK 2.40.0](./release-notes-android/#2400-20220524)
-* [Gamebase iOS SDK 2.40.0](./release-notes-ios/#2400-20220524)
+* [Gamebase Android SDK 2.40.0](./release-notes-android/#2400-2022-05-24)
+* [Gamebase iOS SDK 2.40.0](./release-notes-ios/#2400-2022-05-24)
 
 ### 2.33.1 (2022. 02. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.1/GamebaseSDK-Unreal.zip)

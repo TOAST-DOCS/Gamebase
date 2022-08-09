@@ -1,5 +1,23 @@
 ## Game > Gamebase > Release Notes > Unity## Game > Gamebase > 릴리스 노트 > Unity
 
+### 2.42.1 (2022. 08. 09.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* ForcingMappingTicket 클래스에 매핑 유저 상태를 나타내는 mappedUserValid 필드가 추가되었습니다.
+
+#### 기능 개선/변경
+* WebView에서 고정 폰트 사이즈 사용 여부를 설정하는 필드는 더 이상 사용되지 않습니다.
+    * **GamebaseWebViewConfiguration.enableFixedFontSize**
+* GamebaseWebViewConfiguration의 기본값이 추가되었습니다.
+    * 네비게이션 바의 색상 필드인 colorR, colorG, colorB, colorA의 기본값이 18, 93, 230, 255으로 설정되었습니다.
+    * 네비게이션 바 활성 여부를 지정하는 필드인 isNavigationBarVisible의 기본값이 true로 설정되었습니다.
+    * 웹뷰 내 뒤로가기 버튼 활성 여부를 지정하는 필드인 isBackButtonVisible의 기본값이 true로 설정되었습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.42.1](./release-notes-android/#2421-2022-07-26)
+* [Gamebase iOS SDK 2.42.1](./release-notes-ios/#2421-2022-08-09)
+
 ### 2.41.0 (2022. 07. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-Unity.zip)
 
@@ -19,8 +37,8 @@
 * (iOS) Fixed an issue where a crash would occur in a specific environment after payment.
 
 #### Platform-specific Changes
-* [Gamebase Android SDK 2.41.0](./release-notes-android/#2410-20220705)
-* [Gamebase iOS SDK 2.41.0](./release-notes-ios/#2410-20220705)
+* [Gamebase Android SDK 2.41.0](./release-notes-android/#2410-2022-07-05)
+* [Gamebase iOS SDK 2.41.0](./release-notes-ios/#2410-2022-07-05)
 
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Unity.zip)
@@ -39,8 +57,8 @@
 * (Android) Fixed an issue where Configuration.additionalParameters were not applied when calling the OpenContact API.
 
 #### Platform-specific Changes
-* [Gamebase Android SDK 2.40.0](./release-notes-android/#2400-20220524)
-* [Gamebase iOS SDK 2.40.0](./release-notes-ios/#2400-20220524)
+* [Gamebase Android SDK 2.40.0](./release-notes-android/#2400-2022-05-24)
+* [Gamebase iOS SDK 2.40.0](./release-notes-ios/#2400-2022-05-24)
 
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-Unity.zip)
@@ -52,8 +70,8 @@
 * Made a fix so that JsonException does not occur when calling the GetLaunchingInformations() API before initialization.
 
 #### Platform-specific Changes
-* [Gamebase Android SDK 2.39.0](./release-notes-android/#2390-20220510)
-* [Gamebase iOS SDK 2.39.0](./release-notes-ios/#2390-20220510)
+* [Gamebase Android SDK 2.39.0](./release-notes-android/#2390-2022-05-10)
+* [Gamebase iOS SDK 2.39.0](./release-notes-ios/#2390-2022-05-10)
 
 ### 2.38.0 (2022. 05. 03.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.38.0/GamebaseSDK-Unity.zip)
@@ -70,8 +88,8 @@
     * Gamebase.Purchase.RequestItemListOfNotConsumed()
 
 #### Platform-specific Changes
-* [Gamebase Android SDK 2.38.0](./release-notes-android/#2380-20220503)
-* [Gamebase iOS SDK 2.38.0](./release-notes-ios/#2380-20220503)
+* [Gamebase Android SDK 2.38.0](./release-notes-android/#2380-2022-05-03)
+* [Gamebase iOS SDK 2.38.0](./release-notes-ios/#2380-2022-05-03)
 
 ### 2.37.0 (2022. 04. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.37.0/GamebaseSDK-Unity.zip)
@@ -81,8 +99,8 @@
     * GamebaseRequest.Contact.Configuration.additionalParameters
 
 #### Platform-specific Changes
-* [Gamebase Android SDK 2.37.0](./release-notes-android/#2370-20220426)
-* [Gamebase iOS SDK 2.37.0](./release-notes-ios/#2370-20220426)
+* [Gamebase Android SDK 2.37.0](./release-notes-android/#2370-2022-04-26)
+* [Gamebase iOS SDK 2.37.0](./release-notes-ios/#2370-2022-04-26)
 
 ### 2.36.0 (2022. 04. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.36.0/GamebaseSDK-Unity.zip)
@@ -100,8 +118,8 @@
 * (iOS) Fixed an error where, when the orientation of the project was set to Auto Rotation and Gamebase API was called in Awake of MonoBehaviour included in the first scene of the project, UI such as WebView was not displayed properly.
 
 #### Platform-specific Changes
-* [Gamebase Android SDK 2.36.0](./release-notes-android/#2360-20220412)
-* [Gamebase iOS SDK 2.36.0](./release-notes-ios/#2360-20220412)
+* [Gamebase Android SDK 2.36.0](./release-notes-android/#2360-2022-04-12)
+* [Gamebase iOS SDK 2.36.0](./release-notes-ios/#2360-2022-04-12)
 
 ### 2.35.0 (2022. 03. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.35.0/GamebaseSDK-Unity.zip)
@@ -122,8 +140,8 @@
     * (Android) Added Huawei store.
 
 #### Platform-specific Changes
-* [Gamebase Android SDK 2.35.0](./release-notes-android/#2350-20220329)
-* [Gamebase iOS SDK 2.35.0](./release-notes-ios/#2350-20220329)
+* [Gamebase Android SDK 2.35.0](./release-notes-android/#2350-2022-03-29)
+* [Gamebase iOS SDK 2.35.0](./release-notes-ios/#2350-2022-03-29)
 
 ### 2.34.1 (2022. 03. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.1/GamebaseSDK-Unity.zip)
@@ -136,8 +154,8 @@
 * Fixed an error where the isBackButtonVisible setting of GamebaseWebViewConfiguration was not applied on iOS.
 
 #### Platform-specific Changes
-* [Gamebase Android SDK 2.34.0](./release-notes-android/#2340-20220222)
-* [Gamebase iOS SDK 2.34.1](./release-notes-ios/#2341-20220315)
+* [Gamebase Android SDK 2.34.0](./release-notes-android/#2340-2022-02-22)
+* [Gamebase iOS SDK 2.34.1](./release-notes-ios/#2341-2022-03-15)
 
 ### 2.34.0 (2022. 02. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.0/GamebaseSDK-Unity.zip)
@@ -151,8 +169,8 @@
     * **GamebaseConfiguration.enableKickoutPopup**
 
 #### Platform-specific Changes
-* [Gamebase Android SDK 2.34.0](./release-notes-android/#2340-20220222)
-* [Gamebase iOS SDK 2.34.0](./release-notes-ios/#2340-20220222)
+* [Gamebase Android SDK 2.34.0](./release-notes-android/#2340-2022-02-22)
+* [Gamebase iOS SDK 2.34.0](./release-notes-ios/#2340-2022-02-22)
 
 ### 2.33.0 (2022.01.25)
 
