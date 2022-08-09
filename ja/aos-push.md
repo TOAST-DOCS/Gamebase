@@ -259,3 +259,4 @@ Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
 | UNSUPPORTED_PUSH_TYPE | 103 | PushTypeの入力に誤りがあるか、プッシュライブラリがプロジェクトに含まれていない場合。 |
 | API_SERVER_ERROR | 104 | NHN Cloud PushサーバーAPIの呼び出しに失敗した場合。 |
 | TOKEN_NOT_REGISTERED | 105 | 内部にキャッシュされたPush Tokenが存在しない場合。 |
+| INVALID_PARAMETER | 106 | 無効なパラメータの場合 |
