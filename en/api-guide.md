@@ -8,6 +8,7 @@
 - Added the "Withdraw Histories" API to get Gamebase userId of users who have withdrawn during a specific period.
 - Added the "Ban" and "Ban Release" APIs that perform ban and ban release.
 - Added the "Get Payment Transaction" API to query payment transaction.
+- Added **marketIds** to the "List Consumables" API that queries the unconsumed payment history so that multiple stores can be viewed at a time. 
 
 ## Advance Notice
 
@@ -1353,33 +1354,32 @@ N/A
     },
     "appId": "",
     "underMaintenance": true,
-    "maintenances": [
-        {
-            "typeCode": "APP",
-            "beginDate": "2017-01-01T12:10:00+07:00",
-            "endDate": "2017-02-01T12:17:00+07:00",
-            "url": "http://url.info",
-            "message": "maintenance message",
-            "targetStores": [
-                "GG",
-                "AS",
-                "ONESTROE"
-            ]
-        }
-    ]
+    "maintenance": {
+        "typeCode": "APP",
+        "beginDate": "2017-01-01T12:10:00+07:00",
+        "endDate": "2017-02-01T12:17:00+07:00",
+        "url": "http://url.info",
+        "reason" : "maintenance reason",
+        "message": "maintenance message",
+        "targetStores": [
+            "GG",
+            "AS",
+            "ONESTORE"
+        ]
+    }
 }
 ```
 
 | Key | Type | Description |
 | --- | --- | --- |
 | underMaintenance       | Boolean | Whether maintenance is currently set     |
-| maintenances           | Object  | Default maintenance information, if maintenance is set |
-| maintenances.typeCode  | Enum    | APP: Maintenance set in a game <br>SYSTEM: Maintenance set by the Gamebase system |
-| maintenances.beginDate | String  | Start time of maintenance. ISO 8601      |
-| maintenances.endDate   | String  | End time of maintenance. ISO 8601        |
-| maintenances.url       | String  | Detailed maintenance URL                 |
-| maintenances.message   | String  | Maintenance message                      |
-| maintenances.targetStores | Array[Enum] | [Store code](#store-code) of a client for the maintenance setting of a particular client only |
+| maintenance           | Object  | Default maintenance information, if maintenance is set |
+| maintenance.typeCode  | Enum    | APP: Maintenance set in a game <br>SYSTEM: Maintenance set by the Gamebase system |
+| maintenance.beginDate | String  | Start time of maintenance. ISO 8601      |
+| maintenance.endDate   | String  | End time of maintenance. ISO 8601        |
+| maintenance.url       | String  | Detailed maintenance URL                 |
+| maintenance.message   | String  | Maintenance message                      |
+| maintenance.targetStores | Array[Enum] | [Store code](#store-code) of a client for the maintenance setting of a particular client only |
 
 **[Error Code]**
 
@@ -1581,14 +1581,15 @@ N/A
 
 ```json
 {
-    "marketId": "GG",
+    "marketIds": ["GG", "AS"],
     "userId": "QXG774PMRZMWR3BR"
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | Required | [Store code](#store-code) |
+| marketId | String | Optional | [Store code](#store-code)<br>- Use *marketIds* as it will be **deprecated** |
+| marketIds | Array | Optional | [Store code](#store-code)<br>- Retrieve all stores when the value is empty (or null)<br> - However, **all stores** must be listed explicitly when retrieving all stores including AMAZON stores. |
 | userId | String | Required  | User ID |
 
 **[Response Body]**
@@ -1633,7 +1634,7 @@ N/A
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Array[Object] | Basic payment information |
-| result[].paymentSeq | String |  Payment ID issued by Gamebase |
+| result[].paymentSeq | String |  Payment ID issued by Gamebase / Payment transaction ID |
 | result[].productSeq | Long | Item number<br>Automatically generated value for external store items when registering a product in the console |
 | result[].currency  | String  | Payment currency |
 | result[].price | Float | Payment price |

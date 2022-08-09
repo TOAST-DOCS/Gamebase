@@ -329,7 +329,12 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 ```objectivec
 - (void)eventHandler_addEventHandler {
     void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
-        if ([message.category isEqualToString:kTCGBLoggedOut] == YES) {
+        if ([message.category isEqualToString:kTCGBIdPRevoked] == YES) {
+            TCGBGamebaseEventIdPRevokedData* idPRevokedData = [TCGBGamebaseEventIdPRevokedData gamebaseEventIdPRevokedDataFromJsonString:message.data];
+            if (idPRevokedData != nil) {
+                //TODO: process idp revoked
+            }
+        } else if ([message.category isEqualToString:kTCGBLoggedOut] == YES) {
             TCGBGamebaseEventLoggedOutData* loggedOutData = [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data];
             if (loggedOutData != nil) {
                 //TODO: process loggedOut
@@ -364,10 +369,11 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 ```
 
 * Category is defined in the GamebaseEventCategory class.
-* In general, events can be categorized into LoggedOut, ServerPush, Observer, Purchase, or Push. TCGBGamebaseEventMessage.data can be converted into a VO in the ways shown in the following table for each Category.
+* In general, events can be categorized into IdPRevoked, LoggedOut, ServerPush, Observer, Purchase, or Push. TCGBGamebaseEventMessage.data can be converted into a VO in the ways shown in the following table for each Category.
 
 | Event type | GamebaseEventCategory | VO conversion method | Remarks |
 | --------- | --------------------- | ----------- | --- |
+| IdPRevoked | kTCGBIdPRevoked | [TCGBGamebaseEventIdPRevokedData gamebaseEventIdPRevokedDataFromJsonString:message.data] | \- |
 | LoggedOut | kTCGBLoggedOut | [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data] | \- |
 | ServerPush | kTCGBServerPushAppKickoutMessageReceived<br>kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
 | Observer | kTCGBObserverLaunching<br>kTCGBObserverHeartbeat<br>kTCGBObserverNetwork | [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data] | \- |
@@ -375,6 +381,87 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 | Push - Message received | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
 | Push - Message clicked | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
 | Push - Action clicked | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | Operates when the RichMessage button is clicked. |
+
+#### IdP Revoked
+
+* This event occurs when the service is deleted from the IdP.
+* Notifies the user that the IdP has been revoked, and issues a new userID when the user logs in with the same IdP.
+* TCGBGamebaseEventIdPRevokedData.code: Indicates the TCGBIdPRevokedCode value.
+    * IDP_REVOKED_WITHDRAW: 600
+        * Indicates that the user is logged in with a revoked IdP, and there is no list of mapped IdPs.
+        * You need to call the Withdraw API to remove the current account.
+    * IDP_REVOKED_OVERWRITE_LOGIN_AND_REMOVE_MAPPING: 601
+        * Indicates that the user is logged in with a revoked IdP and IdPs other than the revoked IdP are mapped.
+        * You need to log in with one of the mapped IdPs and call the removeMapping API to remove mapping with the revoked IdP.
+    * IDP_REVOKED_REMOVE_MAPPING: 602
+        * Indicates that there is a revoked IdP among IdPs mapped to the current account.
+        * You need to call the removeMapping API to remove mapping with the revoked IdP.
+* TCGBGamebaseEventIdPRevokedData.idpType: Indicates the revoked IdP type.
+* TCGBGamebaseEventIdPRevokedData.authMappingList: Indicates the list of IdPs mapped to the current account.
+
+```objectivec
+@interface TCGBGamebaseEventIdPRevokedData : NSObject <TCGBValueObject>
+
+@property (nonatomic, assign) int64_t                 code;
+@property (nonatomic, strong) NSString*               idPType;
+@property (nonatomic, strong) NSArray<NSString *>*    authMappingList;
+@property (nonatomic, strong) NSString*               extras;
+
+@end
+```
+
+**Example**
+
+```objectivec
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        if ([message.category isEqualToString:kTCGBIdPRevoked] == YES) {
+            TCGBGamebaseEventIdPRevokedData *idPRevokedData = [TCGBGamebaseEventIdPRevokedData gamebaseEventIdPRevokedDataFromJsonString:message.data];
+            if (idPRevokedData == nil) { return; }   
+
+            NSString *revokedIdP = idPRevokedData.idPType;
+            switch (idPRevokedData.code) {
+                case IDP_REVOKED_WITHDRAW:
+                {
+                    // The user is logged in with a revoked IdP, and there is no list of mapped IdPs.
+                    // Notifies the user that the current account has been removed.
+                    [TCGBGamebase withdrawWithViewController:nil completion:^(TCGBError *error) {
+                        ...
+                    }];
+                    break;
+                }   
+                case IDP_REVOKED_OVERWRITE_LOGIN_AND_REMOVE_MAPPING:
+                {
+                    // The user is logged in with a revoked IdP and IdPs other than the revoked IdP are mapped.
+                    // Allows the user to select a IdP to log in to among the authMappingList, and remove mapping with the revoked IdP after login with the selected IdP.
+                    NSString *selectedIdPType = "The IdP selected by the user";
+                    NSMutableDictionary *additionalInfo = [NSMutableDictionary dictionary];
+                    additionalInfo[kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname] = @(YES);
+                    [TCGBGamebase loginWithType:selectedIdPType additionalInfo:additionalInfo viewController:viewController completion:^(TCGBAuthToken *authToken, TCGBError *loginError) {
+                        if ([TCGBGamebase isSuccessWithError:loginError]) {
+                            [TCGBGamebase removeMappingWithType:revokedIdP viewController:nil completion:^(TCGBError * _Nullable removeMappingError) {
+                                ...
+                            }];
+                        }
+                    }];
+                    break;
+                }
+                case IDP_REVOKED_REMOVE_MAPPING:
+                {
+                    // There is a revoked IdP among IdPs mapped to the current account.
+                    // Notifies the user that mapping with the revoked IdP is removed from the current account.
+                    [TCGBGamebase removeMappingWithType:revokedIdP viewController:nil completion:^(TCGBError *error) {
+                        ...
+                    }];   
+                    break;
+                }
+            }
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
+```
 
 #### Logged Out
 
@@ -478,6 +565,8 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 @property (nonatomic, assign)           int64_t     code;
 @property (nonatomic, strong, nullable) NSString*   message;
 @property (nonatomic, strong, nullable) NSString*   extras;
+
+@end
 ```
 
 **Example**
@@ -716,8 +805,6 @@ Parameters required for calling the API are as follows:
 | -------------------------- | -------------------------- | ---- | ---- |
 | userLevel | M | int | This field represents game user's level. |
 | levelUpTime | M | long | Enter in Epoch time.</br>The unit is milliseconds. |
-| channelId | O | string | |
-| characterId | O | string | |
 
 **API**
 

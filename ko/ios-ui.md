@@ -491,7 +491,7 @@ Gamebase에 스킴 이름과 블록을 지정해 원하는 기능을 추가할 �
 |                                        | TCGBWebViewOrientationPortraitUpsideDown | 세로 모드 180도 회전      |
 |                                        | TCGBWebViewOrientationLandscapeRight     | 가로 모드              |
 |                                        | TCGBWebViewOrientationLandscapeLeft      | 가로 모드를 180도 회전     |
-| contentMode                            | TCGBWebViewContentModeRecommended        | 현재 플랫폼 추천 브라우저 (**default**)    |
+| contentMode                            | TCGBWebViewContentModeRecommended        | 현재 플랫폼 추천 브라우저(**default**)    |
 |                                        | TCGBWebViewContentModeMobile             | 모바일 브라우저            |
 |                                        | TCGBWebViewContentModeDesktop            | 데스크탑 브라우저          |
 | navigationBarColor                     | UIColor                                  | 내비게이션 바 색상<br/>**default**: [UIColor colorWithRed: 0.07 green: 0.36 blue: 0.90 alpha: 1.00]   |

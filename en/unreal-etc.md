@@ -277,7 +277,11 @@ void Sample::AddEventHandler()
 {
     IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
     {
-        if (message.category.Equals(GamebaseEventCategory::LoggedOut))
+        if (message.category.Equals(GamebaseEventCategory::IdPRevoked))
+        {
+            auto idPRevokedData = FGamebaseEventIdPRevokedData::From(message.data);
+        }
+        else if (message.category.Equals(GamebaseEventCategory::LoggedOut))
         {
             auto loggedOutData = FGamebaseEventLoggedOutData::From(message.data);
         }
@@ -324,6 +328,7 @@ void Sample::AddEventHandler()
 
 | Event type | GamebaseEventCategory | VO conversion method | Remarks |
 | --------- | --------------------- | ----------- | --- |
+| IdPRevoked | GamebaseEventCategory::IdPRevoked | FGamebaseEventIdPRevokedData::From(message.data) | \- |
 | LoggedOut | GamebaseEventCategory::LoggedOut | FGamebaseEventLoggedOutData::From(message.data) | \- |
 | ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushAppKickOutMessageReceived<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(message.data) | \- |
 | Observer | GamebaseEventCategory::ObserverLaunching<br>GamebaseEventCategory::ObserverNetwork<br>GamebaseEventCategory::ObserverHeartbeat | FGamebaseEventObserverData::From(message.data) | \- |
@@ -332,6 +337,90 @@ void Sample::AddEventHandler()
 | Push - Message clicked | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) |  |
 | Push - Action clicked | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(message.data) | Operates when the RichMessage button is clicked. |
 
+#### IdP Revoked
+
+* This event occurs when the service is deleted from the IdP.
+* Notifies the user that the IdP has been revoked, and issues a new userID when the user logs in with the same IdP.
+* FGamebaseEventIdPRevokedData.code: Indicates the GamebaseIdPRevokedCode value.
+    * Withdraw : 600
+        * Indicates that the user is logged in with a revoked IdP, and there is no list of mapped IdPs.
+        * You need to call the Withdraw API to remove the current account.
+    * OverwriteLoginAndRemoveMapping : 601
+        * Indicates that the user is logged in with a revoked IdP and IdPs other than the revoked IdP are mapped.
+        * You need to log in with one of the mapped IdPs and call the RemoveMapping API to remove mapping with the revoked IdP.
+    * RemoveMapping : 602
+        * Indicates that there is a revoked IdP among IdPs mapped to the current account.
+        * You need to call the RemoveMapping API to remove mapping with the revoked IdP.
+* FGamebaseEventIdPRevokedData.idpType: Indicates the revoked IdP type.
+* FGamebaseEventIdPRevokedData.authMappingList: Indicates the list of IdPs mapped to the current account.
+
+**Example**
+
+```cpp
+void Sample::AddEventHandler()
+{
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    {
+        if (message.category.Equals(GamebaseEventCategory::IdPRevoked))
+        {
+            auto idPRevokedData = FGamebaseEventIdPRevokedData::From(message.data);
+            if (idPRevokedData.IsValid())
+            {
+                ProcessIdPRevoked(idPRevokedData);
+            }
+        }
+    }));
+
+}
+void Sample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
+{
+    auto revokedIdP = data->idPType;
+    switch (data->code)
+    {
+        // Indicates that the user is logged in with a revoked IdP, and there is no list of mapped IdPs.
+        // Notifies the user that the current account has been deleted.
+        case GamebaseIdPRevokeCode::Withdraw:
+        {
+            IGamebase::Get().Withdraw(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+            {
+                ...
+            }));
+            break;
+        }
+        case GamebaseIdPRevokeCode::OverwriteLoginAndRemoveMapping:
+        {
+            // Indicates that the user is logged in with a revoked IdP and IdPs other than the revoked IdP are mapped.
+            // Allows the user to select an IdP to login in to among the authMappingList, and removes mapping with the revoked IdP after login with the selected IdP.
+            auto selectedIdP = "the IdP selected by the user";
+            auto additionalInfo = NewObject<UGamebaseJsonObject>();
+            additionalInfo->SetBoolField(GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn, true);
+
+            IGamebase::Get().Login(selectedIdP, *additionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+            {
+                if (Gamebase::IsSuccess(error))
+                {
+                    IGamebase::Get().RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+                    {
+                        ...
+                    }));
+                }
+             }));
+            break;
+        }
+        case GamebaseIdPRevokeCode::RemoveMapping:
+        {
+            // Indicates that there is a revoked IdP among IdPs mapped to the current account.
+            // Notifies the user that mapping with the revoked IdP is removed from the current account.
+              IGamebase::Get().RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+            {
+                ...
+            }));
+            break;
+        }
+    }
+}
+```
+
 #### Logged Out
 
 * This event occurs when the Gamebase Access Token has expired and a login function call is required to recover the network session.
@@ -339,28 +428,6 @@ void Sample::AddEventHandler()
 **Example**
 
 ```cpp
-public void AddEventHandlerSample()
-{
-    Gamebase.AddEventHandler(GamebaseEventHandler);
-}
-
-private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
-{
-    switch (message.category)
-    {
-        case GamebaseEventCategory.LOGGED_OUT:
-            {
-                GamebaseResponse.Event.GamebaseEventLoggedOutData loggedData = GamebaseResponse.Event.GamebaseEventLoggedOutData.From(message.data);
-                if (loggedData != null)
-                {
-                    // There was a problem with the access token.
-                    // Call login again.
-                }
-                break;
-            }
-    }
-}
-
 void Sample::AddEventHandler()
 {
     IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)

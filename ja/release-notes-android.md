@@ -3,26 +3,26 @@
 ### 2.42.1 (2022. 07. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Facebook Android SDK(11.3.0)
+#### 機能改善/変更
+* 外部SDKアップデート：Facebook Android SDK(11.3.0)
 
 ### 2.42.0 (2022. 07. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Hangame Android SDK(1.5.2)
-* ForcingMappingTicket VO 클래스에 매핑 유저 상태를 나타내는 mappedUserValid 필드가 추가되었습니다.
-* Gamebase Adapter 버전이 Gamebase 버전과 일치하지 않는 경우 런타임 예외가 발생할 수 있으므로, 초기화가 실패하도록 변경되었습니다.
+#### 機能改善/変更
+* 外部SDKアップデート: Hangame Android SDK(1.5.2)
+* ForcingMappingTicket VOクラスにマッピングユーザー状態を表すmappedUserValidフィールドが追加されました。
+* Gamebase AdapterバージョンがGamebaseバージョンと一致しない場合、ランタイム例外が発生することがあるため、初期化が失敗するように変更されました。
 
-#### 버그 수정
-* LDPlayer에서 Naver 웹로그인이 실패하는 현상이 수정되었습니다.
-* OS 버전이 낮아 Twitter 로그인이 실패하는 경우 크래쉬가 발생하는 문제가 수정되었습니다.
+#### バグ修正
+* LDPlayerでNaver Webログインが失敗する現象が修正されました。
+* OSバージョンが低くてTwitterログインが失敗する場合にクラッシュが発生する問題が修正されました。
 
 ### 2.41.2 (2022. 07. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.2/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 기본 웹뷰 설정을 '쿠키 허용'으로 변경했습니다.
+#### 機能改善/変更
+* 基本Webビュー設定を「Cookie許可」に変更しました。
 
 ### 2.41.1 (2022. 07. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.1/GamebaseSDK-Android.zip)

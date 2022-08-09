@@ -1,5 +1,29 @@
 ## Game > Gamebase > リリースノート > Unreal
 
+### 2.42.1 (2022. 08. 09.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Unreal.zip)
+
+#### 기능 추가
+* FGamebaseForcingMappingTicket 클래스에 매핑 유저 상태를 나타내는 mappedUserValid 필드가 추가되었습니다.
+*  [iOS 설정 툴](./unreal-started/#ios-settings)에서 Xcode의 경로를 지정할 수 있도록 **Xcode Path** 설정이 추가되었습니다.
+
+#### 기능 개선/변경
+* 킥아웃 팝업 창 표시 여부는 Gamebase 콘솔에서 킥아웃 등록 시 설정할 수 있으므로 다음 필드는 더 이상 사용하지 않습니다
+    * **FGamebaseConfiguration.enableKickoutPopup**
+* FGamebaseConfiguration 내 일부 필드에 기본값이 추가되었습니다.
+    * enableLaunchingStatusPopup의 기본값이 true로 설정되었습니다.
+    * enableBanPopup의 기본값이 true로 설정되었습니다.
+* FWebView에서 고정 폰트 사이즈 사용 여부를 설정하는 필드는 더 이상 사용되지 않습니다.
+    * **FGamebaseWebViewConfiguration.enableFixedFontSize**
+* FGamebaseWebViewConfiguratio 내 일부 필드에 기본 값이 추가되었습니다.
+    * 네비게이션 바의 색상 필드인 colorR, colorG, colorB, colorA의 기본값이 18, 93, 230, 255으로 설정되었습니다.
+    * 네비게이션 바 활성 여부를 지정하는 필드인 isNavigationBarVisible의 기본값이 true로 설정되었습니다.
+    * 웹뷰 내 뒤로가기 버튼 활성 여부를 지정하는 필드인 isBackButtonVisible의 기본값이 true로 설정되었습니다.
+    
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.42.1](./release-notes-android/#2421-2022-07-26)
+* [Gamebase iOS SDK 2.42.1](./release-notes-ios/#2421-2022-08-09)
+
 ### 2.41.0 (2022. 07. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-Unreal.zip)
 
@@ -8,54 +32,54 @@
     * [Game > Gamebase > Unreal SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./unreal-etc/#idp-revoked)
 
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.41.0](./release-notes-android/#2410-20220705)
-* [Gamebase iOS SDK 2.41.0](./release-notes-ios/#2410-20220705)
+* [Gamebase Android SDK 2.41.0](./release-notes-android/#2410-2022-07-05)
+* [Gamebase iOS SDK 2.41.0](./release-notes-ios/#2410-2022-07-05)
 
 ### 2.40.1 (2022. 06. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.1/GamebaseSDK-Unreal.zip)
 
-#### 버그 수정
-* 크래시가 발생할 수 있는 로직이 수정되었습니다.
-* (iOS) 동일한 API를 연속해서 호출 시 콜백이 정상적으로 전달되지 않는 문제가 수정되었습니다.
+#### バグ修正
+* クラッシュが発生することがあるロジックが修正されました。
+* (iOS)同じAPIを連続して呼び出すとき、コールバックが正常に伝達されない問題が修正されました。
 
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
-*  [iOS 설정 툴](./unreal-started/#ios-settings)을 제공합니다.
-    * 기존 프로젝트 설정에서 **Gamebase**으로 표시 되었지만 업데이트 이후 **Gamebase - Android**, **Gamebase - iOS**로 표시됩니다.
-    * iOS 설정 툴을 제공하면서 빌드 시 필요한 프레임워크만 포함되도록 수정되었습니다.
-* 공통 약관 API 호출 후 약관 UI가 표시되었는지 여부를 알 수 있는 VO 클래스가 추가되었습니다.
+#### 機能追加
+*  [iOS設定ツール](./unreal-started/#ios-settings)を提供します。
+    * 既存プロジェクト設定で**Gamebase**と表示されましたがアップデート後は**Gamebase - Android**、**Gamebase - iOS**と表示されます。
+    * iOS設定ツールを提供し、ビルド時に必要なフレームワークのみ含まれるように修正しました。
+* 共通約款API呼び出し後に約款UIが表示されたかどうかを知ることができるVOクラスが追加されました。
     * FGamebaseShowTermsViewResult
-* 단말기에서 알림을 허용했는지 여부를 알 수 있는 API가 추가되었습니다.
+* 端末で通知を許可したかどうかを知ることができるAPIが追加されました。
     * IGamebase::Get().GetPush().QueryNotificationAllowed()
-* 약관이 표시되었는지를 알 수 있는 API가 추가되었습니다.
+* 約款が表示されたかどうかを知ることができるAPIが追加されました。
     * IGamebase::Get().GetTerms().IsShowingTermsView()
-* 웹뷰에서 내비게이션 바를 숨길 수 있는 옵션이 추가되었습니다.
+* Webビューでナビゲーションバーを隠すことができるオプションが追加されました。
     * FGamebaseWebViewConfiguration.isNavigationBarVisible
-* (Android) 웹뷰에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다
+* (Android) Webビューでフォントサイズを固定することができるオプションが追加されました。
     * FGamebaseTermsConfiguration.enableFixedFontSize
-* (Android) 약관 창에서 글자 크기를 고정할 수 있는 옵션이 추가되었습니다.
+* (Android)約款ウィンドウで文字サイズを固定することができるオプションが追加されました。
     * FGamebaseTermsConfiguration.enableFixedFontSize
-* 결제 시 프로모션 여부를 알 수 있는 isPromotion 필드가 추가되었습니다.
+* 決済時にプロモーションかどうかを知ることができるisPromotionフィールドが追加されました。
     * FGamebasePurchasableReceipt.isPromotion
-* 결제 시 테스트 결제 여부를 알 수 있는 isTestPurchase 필드가 추가되었습니다.
+* 決済時にテスト決済かどうかを知ることができるisTestPurchaseフィールドが追加されました。
     * FGamebasePurchasableReceipt.isTestPurchase
-* 고객 센터 URL 뒤에 파라미터를 추가할 수 있도록 다음 필드가 추가되었습니다.
+* サポートURLの後ろにパラメータを追加できるように次のフィールドが追加されました。
     * FGamebaseContactConfiguration.additionalParameters
 
-#### 기능 개선/변경
-* API 결과 콜백 호출 시 GameThread로 전환하여 호출하도록 수정되었습니다.
-* RequestActivatedPurchases API 호출 시 내부에서 2회 호출되는 문제가 수정되었습니다.
-* 일부 API의 이름이 변경되었습니다.
+#### 機能改善/変更
+* API結果コールバック呼び出し時にGameThreadに切り替えて呼び出すように修正しました。
+* RequestActivatedPurchases API呼び出し時に内部で2回呼び出される問題が修正されました。
+* 一部APIの名前が変更されました。
     * FGamebaseAnalyticesLevelUpData → FGamebaseAnalyticsLevelUpData
     * FGambaseBanInfoPtr → FGamebaseBanInfoPtr
-* 킥아웃 팝업 창 표시 여부는 Gamebase 콘솔에서 킥아웃 등록 시 설정할 수 있으므로 다음 필드가 deprecated되었습니다.
+* キックアウトポップアップウィンドウを表示するかどうかは、Gamebaseコンソールでキックアウト登録時に設定できるため、次のフィールドは使用しなくなりました。
     * FGamebaseConfiguration.enableKickoutPopup
     
-#### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.40.0](./release-notes-android/#2400-20220524)
-* [Gamebase iOS SDK 2.40.0](./release-notes-ios/#2400-20220524)
+#### 各プラットフォームの変更事項
+* [Gamebase Android SDK 2.40.0](./release-notes-android/#2400-2022-05-24)
+* [Gamebase iOS SDK 2.40.0](./release-notes-ios/#2400-2022-05-24)
 
 ### 2.33.1 (2022. 02. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.1/GamebaseSDK-Unreal.zip)

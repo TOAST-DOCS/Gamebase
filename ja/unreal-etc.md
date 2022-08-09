@@ -353,7 +353,7 @@ void Sample::AddEventHandler()
         * マッピングされたIdPリストのうちの1つのIdPにログインし、removeMapping APIを呼び出して使用停止しているIdPの連動を解除する必要があります。
     * RemoveMapping : 602
         * 現在アカウントにマッピングされているIdPのうち、使用停止しているIdPがある場合を意味します。
-        * マッピングされたIdPリストのうちの1つのIdPにログインし、removeMapping APIを呼び出して使用停止しているIdPの連動を解除する必要があります。
+        * RemoveMapping APIを呼び出して使用停止しているIdPの連動を解除する必要があります。
 * FGamebaseEventIdPRevokedData.idpType：使用停止しているIdPタイプを意味します。
 * FGamebaseEventIdPRevokedData.authMappingList：現在アカウントにマッピングされているIdPリストを意味します。
 
@@ -413,7 +413,7 @@ void Sample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
         case GamebaseIdPRevokeCode::RemoveMapping:
         {
             // 現在のアカウントにマッピングされているIdPのうち使用停止しているIdPがある場合を意味します。
-            // 現在のアカウントにマッピングされているIdPのうち使用停止しているIdPがある場合を意味します。
+            // ユーザーに現在アカウントで使用停止しているIdPが連動解除されていることを伝えてください。
             IGamebase::Get().RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
             {
                 ...
