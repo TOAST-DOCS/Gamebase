@@ -13,7 +13,7 @@
 * FGamebaseConfiguration 내 일부 필드에 기본값이 추가되었습니다.
     * enableLaunchingStatusPopup의 기본값이 true로 설정되었습니다.
     * enableBanPopup의 기본값이 true로 설정되었습니다.
-* FGamebaseWebViewConfiguration에서 enableFixedFontSize 필드는 더 이상 사용되지 않습니다.
+* FWebView에서 고정 폰트 사이즈 사용 여부를 설정하는 필드는 더 이상 사용되지 않습니다.
     * **FGamebaseWebViewConfiguration.enableFixedFontSize**
 * FGamebaseWebViewConfiguratio 내 일부 필드에 기본 값이 추가되었습니다.
     * 네비게이션 바의 색상 필드인 colorR, colorG, colorB, colorA의 기본값이 18, 93, 230, 255으로 설정되었습니다.
