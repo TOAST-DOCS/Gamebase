@@ -490,11 +490,11 @@ Gamebaseにスキーム名とブロックを指定し、任意の機能を追加
 |                                        | TCGBWebViewOrientationPortraitUpsideDown | 縦モードを180度回転      |
 |                                        | TCGBWebViewOrientationLandscapeRight     | 横モード              |
 |                                        | TCGBWebViewOrientationLandscapeLeft      | 横モードを180度回転    |
-| contentMode                            | TCGBWebViewContentModeRecommended        | 現在プラットフォーム推薦ブラウザ |
+| contentMode                            | TCGBWebViewContentModeRecommended        | 現在プラットフォーム推薦ブラウザ (**default**)    |
 |                                        | TCGBWebViewContentModeMobile             | モバイルブラウザ         |
 |                                        | TCGBWebViewContentModeDesktop            | デスクトップブラウザ       |
-| navigationBarColor                     | UIColor                                  | ナビゲーションバーの色         |
-| isBackButtonVisible                    | YES or NO                                | 戻るボタンの有効化または無効化 |
+| navigationBarColor                     | UIColor                                  | ナビゲーションバーの色<br/>**default**: [UIColor colorWithRed: 0.07 green: 0.36 blue: 0.90 alpha: 1.00]   |
+| isBackButtonVisible                    | YES or NO                                | 戻るボタンの有効化または無効化<br/>**default**: YES |
 | isNavigationBarVisible                 | YES or NO                                | ナビゲーションバーの表示/非表示<br/>**default**：YES    |
 | goBackImagePathForFullScreenNavigation | file name in Gamebase.bundle             | 戻るボタンの画像        |
 | closeImagePathForFullScreenNavigation  | file name in Gamebase.bundle             | 閉じるボタンの画像          |
