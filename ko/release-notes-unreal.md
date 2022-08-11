@@ -13,7 +13,7 @@
 * FGamebaseConfiguration 내 일부 필드에 기본값이 추가되었습니다.
     * enableLaunchingStatusPopup의 기본값이 true로 설정되었습니다.
     * enableBanPopup의 기본값이 true로 설정되었습니다.
-* WebView에서 고정 폰트 사이즈 사용 여부를 설정하는 필드는 더 이상 사용되지 않습니다.
+* 웹뷰에서 고정 폰트 사이즈 사용 여부를 설정하는 필드는 더 이상 사용되지 않습니다.
     * **FGamebaseWebViewConfiguration.enableFixedFontSize**
 * FGamebaseWebViewConfiguratio 내 일부 필드에 기본값이 추가되었습니다.
     * 내비게이션 바의 색상 필드인 colorR, colorG, colorB, colorA의 기본값이 18, 93, 230, 255로 설정되었습니다.
@@ -131,7 +131,7 @@
 
 #### 기능 추가
 * 공통 약관 기능 추가
-    * 약관 WebView를 여는 API 추가
+    * 약관 웹뷰를 여는 API 추가
     * 약관 리스트 및 유저별 동의 여부를 조회하는 API 추가
     * 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
 

@@ -367,20 +367,20 @@ queryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면,
 
 ## WebView
 
-Gamebase에서는 기본적인 WebView를 지원합니다.<br/>
-WebView와 관련된 리소스(이미지 및 html, 기타 리소스)는 Gamebase.bundle에 포함돼 있습니다.
+Gamebase에서는 기본적인 웹뷰를 지원합니다.<br/>
+웹뷰와 관련된 리소스(이미지 및 html, 기타 리소스)는 Gamebase.bundle에 포함돼 있습니다.
 
 ### Show WebView
 
-WebView를 표시합니다.<br/>
+웹뷰를 표시합니다.<br/>
 
 ##### Required 파라미터
 * url : 파라미터로 전송되는 url은 유효한 값이어야 합니다.
-* viewController : WebView가 노출되는 View Controller입니다.
+* viewController : 웹뷰가 노출되는 ViewController입니다.
 
 ##### Optional 파라미터
-* configuration : TCGBWebViewConfiguration으로 WebView의 레이아웃을 변경 할 수 있습니다.
-* closeCompletion : WebView가 종료될 때 사용자에게 콜백으로 알려 줍니다.
+* configuration : TCGBWebViewConfiguration으로 웹뷰의 레이아웃을 변경 할 수 있습니다.
+* closeCompletion : 웹뷰가 종료될 때 사용자에게 콜백으로 알려 줍니다.
 * schemeList : 사용자가 받고 싶은 커스텀 스킴 목록을 지정합니다.
 * schemeEvent : schemeList로 지정한 커스텀 스킴을 포함하는 url을 콜백으로 알려 줍니다.
 
@@ -401,7 +401,7 @@ WebView를 표시합니다.<br/>
 ![Webview Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
 
 #### Custom WebView
-사용자 지정 WebView를 표시합니다.<br/>TCGBWebViewConfiguration으로 사용자 지정 WebView를 만들 수 있습니다.
+사용자 지정 웹뷰를 표시합니다.<br/>TCGBWebViewConfiguration으로 사용자 지정 웹뷰를 만들 수 있습니다.
 
 ```objectivec
 - (void)showFixedOrientationWebView:(id)sender {
@@ -434,7 +434,7 @@ WebView를 표시합니다.<br/>
 
 #### Custom Scheme 
 
-Gamebase WebView에서 로딩한 웹 페이지 내에 스킴으로 특정 기능을 사용하거나 웹 페이지 내용을 변경할 수 있습니다.
+Gamebase 웹뷰에서 로딩한 웹 페이지 내에 스킴으로 특정 기능을 사용하거나 웹 페이지 내용을 변경할 수 있습니다.
 
 ##### Predefined Custom Scheme
 
@@ -442,10 +442,10 @@ Gamebase에서 지정해 놓은 스키마입니다.<br/>
 
 | scheme               | 용도                     |
 | -------------------- | ---------------------- |
-| gamebase://dismiss   | WebView 닫기             |
-| gamebase://goback    | WebView 뒤로 가기          |
+| gamebase://dismiss   | 웹뷰 닫기             |
+| gamebase://goback    | 웹뷰 뒤로 가기          |
 | gamebase://getuserid | 현재 로그인중인 있는 사용자의 아이디 표시 |
-| gamebase://showwebview?link={URLEncodedURL} | link 파라메터의 URL 을 WebView로 열기.<br>URLEncodedURL : WebView로 열 URL.<br>URL 디코딩 필요. |
+| gamebase://showwebview?link={URLEncodedURL} | link 파라메터의 URL 을 웹뷰로 열기.<br>URLEncodedURL : 웹뷰로 열 URL.<br>URL 디코딩 필요. |
 | gamebase://openbrowser?link={URLEncodedURL} | link 파라메터의 URL을 외부 브라우저로 열기<br/>URLEncodedURL : 외부 브라우저로 열 URL<br/>URL 디코딩 필요 |
 
 

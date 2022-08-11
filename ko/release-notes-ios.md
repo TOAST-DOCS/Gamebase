@@ -333,7 +333,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.0/GamebaseSDK-iOS.zip)
 
 * 공통 약관 기능 추가
-    * 약관 WebView를 여는 API 추가
+    * 약관 웹뷰를 여는 API 추가
     * 약관 리스트 및 유저별 동의 여부를 조회하는 API 추가
     * 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
 
@@ -701,7 +701,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 추가
 
-* Gamebase Webview에서 파일첨부 기능 추가
+* Gamebase 웹뷰에서 파일첨부 기능 추가
     
 #### 기능 개선/변경
 * 이용정지/점검에 대해 사용자가 콘솔에 작성한 메시지들을 URL 인코딩하여 전송하고 클라이언트에서 디코딩하여 처리하도록 수정
@@ -797,7 +797,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그수정
 
-* Gamebase WebView NavigationBar 영역에 타이틀, 뒤로 가기, 닫기 버튼이 나타나지 않는 현상을 수정
+* Gamebase 웹뷰 NavigationBar 영역에 타이틀, 뒤로 가기, 닫기 버튼이 나타나지 않는 현상을 수정
     
 ### 1.9.0 (2018.05.03) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.9.0/GamebaseSDK-iOS.zip)
@@ -857,15 +857,15 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그 수정
 
-* WebView 호출시, 크래시가 일어날 수 있는 부분에 대한 방어로직 처리
+* 웹뷰 호출시, 크래시가 일어날 수 있는 부분에 대한 방어로직 처리
 
 ### 1.5.0 (2017.12.21) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.5.0/GamebaseSDK-iOS.zip)
 
 #### 기능 추가
 
-* WebView가 닫힐 때 발생하는 Close Callback 추가
-* WebView에서 사용하는 Custom Scheme의 Event를 받을 수 있는 기능 추가
+* 웹뷰가 닫힐 때 발생하는 Close Callback 추가
+* 웹뷰에서 사용하는 Custom Scheme의 Event를 받을 수 있는 기능 추가
 * Unity Setting Tool 신규 배포
 
 ### 1.4.0 (2017.11.23) 
@@ -877,8 +877,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그 수정
 
-* WebView 런치 후, 기기 회전시 NavigationBar Title 이 reset이 되는 오류 수정
-* WebView의 NavigationBar Height을 커스터마이징 할 때, NavigationBar 배경 부분이 겹쳐서 노출되는 오류 수정
+* 웹뷰 런치 후, 기기 회전시 NavigationBar Title 이 reset이 되는 오류 수정
+* 웹뷰의 NavigationBar Height을 커스터마이징 할 때, NavigationBar 배경 부분이 겹쳐서 노출되는 오류 수정
 
 ### 1.3.0 (2017.10.26) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.3.0/GamebaseSDK-iOS.zip)

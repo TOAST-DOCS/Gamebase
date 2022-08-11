@@ -392,7 +392,7 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
 
 #### 기능 추가
 * 공통 약관 기능 추가
-    * 약관 WebView를 여는 API 추가
+    * 약관 웹뷰를 여는 API 추가
     * 약관 리스트 및 유저별 동의 여부를 조회하는 API 추가
     * 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
 
@@ -786,7 +786,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 추가
 * [SDK] 1.14.0
-    * (공통)Gamebase Webview에서 파일첨부 기능 추가 : Android의 API 19, Kitcat 에서는 정상 동작하지 않습니다.
+    * (공통)Gamebase 웹뷰에서 파일첨부 기능 추가 : Android의 API 19, Kitcat 에서는 정상 동작하지 않습니다.
     
 #### 기능 개선/변경
 * [SDK] 1.14.0
@@ -919,8 +919,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.5.0/GamebaseSDK-Android.zip)
 #### 기능 추가
 * [SDK] 1.5.0
-    * WebView가 닫힐 때 발생하는 Close Callback 추가
-    * WebView에서 사용하는 Custom Scheme의 Event를 받을 수 있는 기능 추가
+    * 웹뷰가 닫힐 때 발생하는 Close Callback 추가
+    * 웹뷰에서 사용하는 Custom Scheme의 Event를 받을 수 있는 기능 추가
 
 ### 1.4.0 (2017.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.4.0/GamebaseSDK-Android.zip)

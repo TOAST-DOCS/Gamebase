@@ -385,20 +385,20 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 
 ## WebView
 
-Gamebase에서는 기본적인 WebView를 지원합니다.
+Gamebase에서는 기본적인 웹뷰를 지원합니다.
 
 
 ### Show WebView
 
-WebView를 표시합니다.
+웹뷰를 표시합니다.
 
 ##### Required 파라미터
-* activity : WebView가 노출되는 Activity입니다.
+* activity : 웹뷰가 노출되는 Activity입니다.
 * url : 파라미터로 전송되는 url은 유효한 값이어야 합니다.
 
 ##### Optional 파라미터
-* configuration : GamebaseWebViewConfiguration으로 WebView의 레이아웃을 변경 할 수 있습니다.
-* GamebaseCallback : WebView가 종료될 때 사용자에게 콜백으로 알려 줍니다.
+* configuration : GamebaseWebViewConfiguration으로 웹뷰의 레이아웃을 변경 할 수 있습니다.
+* GamebaseCallback : 웹뷰가 종료될 때 사용자에게 콜백으로 알려 줍니다.
 * schemeList : 사용자가 받고 싶은 커스텀 스킴 목록을 지정합니다.
 * GamebaseDataCallback : schemeList로 지정한 커스텀 스킴을 포함하는 url을 콜백으로 알려 줍니다.
 
@@ -423,14 +423,14 @@ Gamebase.WebView.showWebView(activity, "http://www.toast.com");
 
 #### Custom WebView
 
-사용자 지정 WebView를 표시합니다. <br/>
-GamebaseWebViewConfiguration으로 사용자 지정 WebView를 만들 수 있습니다.
+사용자 지정 웹뷰를 표시합니다. <br/>
+GamebaseWebViewConfiguration으로 사용자 지정 웹뷰를 만들 수 있습니다.
 
 ```java
 GamebaseWebViewConfiguration configuration
         = new GamebaseWebViewConfiguration.Builder()
-            .setTitleText("title")                              // WebView 제목을 설정
-            .setScreenOrientation(ScreenOrientation.PORTRAIT)   // WebView 스크린 방향 설정
+            .setTitleText("title")                              // 웹뷰 제목을 설정
+            .setScreenOrientation(ScreenOrientation.PORTRAIT)   // 웹뷰 스크린 방향 설정
             .setNavigationBarColor(Color.RED)                   // 내비게이션바 색상 설정
             .setNavigationBarHeight(40)                         // 내비게이션바 높이 설정
             .setBackButtonVisible(true)                         // 뒤로 가기 버튼 활성화 여부 설정
@@ -442,7 +442,7 @@ GamebaseWebView.showWebView(activity, "http://www.toast.com", configuration);
 
 #### Custom Scheme
 
-Gamebase WebView에서 로딩한 웹 페이지 내에 스킴으로 특정 기능을 사용하거나 웹 페이지 내용을 변경할 수 있습니다.
+Gamebase 웹뷰에서 로딩한 웹 페이지 내에 스킴으로 특정 기능을 사용하거나 웹 페이지 내용을 변경할 수 있습니다.
 
 ##### Predefined Custom Scheme
 
