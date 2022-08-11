@@ -156,7 +156,7 @@
 #### 기능 개선/변경
 * 외부 SDK 업데이트: TOAST iOS SDK (0.29.2), PAYCO iOS SDK (1.5.4)
 * 이용정지 웹뷰 내의 고객 센터 링크에서 이용정지 유저 정보로 문의를 등록할 수 없는 문제를 해결하였습니다.
-* 점검 팝업 창, 이용정지 자세히보기 웹뷰에서 뒤로가기 버튼이 표시되도록 수정하였습니다.
+* 점검 팝업 창, 이용정지 자세히보기 웹뷰에서 뒤로 가기 버튼이 표시되도록 수정하였습니다.
 
 ### 2.30.1 (2021.11.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.1/GamebaseSDK-iOS.zip)
@@ -797,7 +797,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그수정
 
-* Gamebase WebView NavigationBar 영역에 타이틀, 뒤로가기, 닫기 버튼이 나타나지 않는 현상을 수정
+* Gamebase WebView NavigationBar 영역에 타이틀, 뒤로 가기, 닫기 버튼이 나타나지 않는 현상을 수정
     
 ### 1.9.0 (2018.05.03) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.9.0/GamebaseSDK-iOS.zip)

@@ -493,7 +493,7 @@ Gamebase에 스킴 이름과 블록을 지정해 원하는 기능을 추가할 �
 |                                        | TCGBWebViewOrientationLandscapeLeft      | 가로 모드를 180도 회전     |
 | contentMode                            | TCGBWebViewContentModeRecommended        | 현재 플랫폼 추천 브라우저(**default**)    |
 |                                        | TCGBWebViewContentModeMobile             | 모바일 브라우저            |
-|                                        | TCGBWebViewContentModeDesktop            | 데스크탑 브라우저          |
+|                                        | TCGBWebViewContentModeDesktop            | 데스크톱 브라우저          |
 | navigationBarColor                     | UIColor                                  | 내비게이션 바 색상<br/>**default**: [UIColor colorWithRed: 0.07 green: 0.36 blue: 0.90 alpha: 1.00]   |
 | isBackButtonVisible                    | YES or NO                                | 뒤로 가기 버튼 활성 또는 비활성<br/>**default**: YES |
 | isNavigationBarVisible                 | YES or NO                                | 내비게이션 바 표시 또는 숨기기<br/>**default**: YES    |
@@ -502,7 +502,7 @@ Gamebase에 스킴 이름과 블록을 지정해 원하는 기능을 추가할 �
 
 > [TIP]
 >
-> iPadOS 13 이상에서 WebView는 기본적으로 데스크탑 모드입니다.
+> iPadOS 13 이상에서 WebView는 기본적으로 데스크톱 모드입니다.
 > contentMode=`TCGBWebViewContentModeMobile` 설정으로 모바일 모드로 변경할 수 있습니다.
 
 

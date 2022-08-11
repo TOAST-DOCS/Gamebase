@@ -468,26 +468,26 @@ public void ShowWebView()
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
 | title                    | string                                   | WebView의 제목               |
-| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 미지정 (**default**)            |
+| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 미지정(**default**)            |
 |                          | GamebaseScreenOrientation.PORTRAIT       | 세로 모드                    |
 |                          | GamebaseScreenOrientation.LANDSCAPE      | 가로 모드                    |
 |                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 가로 모드를 180도 회전     |
-| contentMode              | GamebaseWebViewContentMode.RECOMMENDED      | 현재 플랫폼 추천 브라우저 (**default**)  |
+| contentMode              | GamebaseWebViewContentMode.RECOMMENDED      | 현재 플랫폼 추천 브라우저(**default**)  |
 |                          | GamebaseWebViewContentMode.MOBILE           | 모바일 브라우저            |
-|                          | GamebaseWebViewContentMode.DESKTOP          | 데스크탑 브라우저          |
-| colorR                   | 0~255                                    | 내비게이션 바 색상 R<br>**default** : 18               |
-| colorG                   | 0~255                                    | 내비게이션 바 색상 G<br>**default** : 93               |
-| colorB                   | 0~255                                    | 내비게이션 바 색상 B<br>**default** : 230              |
-| colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha<br>**default** : 255          |
+|                          | GamebaseWebViewContentMode.DESKTOP          | 데스크톱 브라우저          |
+| colorR                   | 0~255                                    | 내비게이션 바 색상 R<br>**default**: 18               |
+| colorG                   | 0~255                                    | 내비게이션 바 색상 G<br>**default**: 93               |
+| colorB                   | 0~255                                    | 내비게이션 바 색상 B<br>**default**: 230              |
+| colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha<br>**default**: 255          |
 | barHeight                | height                                   | 내비게이션 바 높이<br>**Android Only**                 |
-| isNavigationBarVisible   | true or false                            | 내비게이션 바 활성 또는 비활성<br>**default** : true    |
-| isBackButtonVisible      | true or false                            | 뒤로 가기 버튼 활성 또는 비활성<br>**default** : true   |
+| isNavigationBarVisible   | true or false                            | 내비게이션 바 활성 또는 비활성<br>**default**: true    |
+| isBackButtonVisible      | true or false                            | 뒤로 가기 버튼 활성 또는 비활성<br>**default**: true   |
 | backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지         |
 | closeButtonImageResource | ID of resource                           | 닫기 버튼 이미지             |
 
 > [TIP]
 >
-> iPadOS 13 이상에서 WebView는 기본적으로 데스크탑 모드입니다.
+> iPadOS 13 이상에서 WebView는 기본적으로 데스크톱 모드입니다.
 > contentMode =`GamebaseWebViewContentMode.MOBILE` 설정으로 모바일 모드로 변경할 수 있습니다.
 
 #### Predefined Custom Scheme
@@ -497,7 +497,7 @@ Gamebase에서 지정해 놓은 스킴입니다.
 | scheme | 용도 |
 | ----------------------------- | ------------------------------ |
 | gamebase://dismiss | WebView 닫기 |
-| gamebase://goBack | WebView 뒤로가기 |
+| gamebase://goBack | WebView 뒤로 가기 |
 | gamebase://getUserId          | 현재 로그인중인 있는 게임 유저의 사용자 ID를 표시 |
 | gamebase://getMaintenanceInfo | 점검 내용을 WebPage에 표시 |
 | gamebase://showwebview?link={URLEncodedURL} | link 파라메터의 URL 을 WebView로 열기.<br>URLEncodedURL : WebView로 열 URL.<br>URL 디코딩 필요. |
