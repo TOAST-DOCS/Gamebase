@@ -336,7 +336,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 * 그 외의 오류
     * 매핑 시도가 실패했습니다.
 
-### Import Header file into View Controller
+### Import Header file into ViewController
 
 매핑을 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 

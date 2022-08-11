@@ -376,7 +376,7 @@ WebViewを表示します。<br/>
 
 ##### Required パラメーター
 * url:パラメーターで送信されるurlは、有効な値でなければなりません。
-* viewController:WebViewが表示されるView Controllerです。
+* viewController:WebViewが表示されるViewControllerです。
 
 ##### Optional パラメーター
 * configuration : TCGBWebViewConfigurationでWebViewのレイアウトを変更することができます。
