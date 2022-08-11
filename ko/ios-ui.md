@@ -485,7 +485,7 @@ Gamebase에 스킴 이름과 블록을 지정해 원하는 기능을 추가할 �
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| navigationBarTitle                     | string                                   | WebView의 제목        |
+| navigationBarTitle                     | string                                   | 웹뷰의 제목        |
 | orientationMask                        | TCGBWebViewOrientationUnspecified        | 미지정                |
 |                                        | TCGBWebViewOrientationPortrait           | 세로 모드              |
 |                                        | TCGBWebViewOrientationPortraitUpsideDown | 세로 모드 180도 회전      |
@@ -502,13 +502,13 @@ Gamebase에 스킴 이름과 블록을 지정해 원하는 기능을 추가할 �
 
 > [TIP]
 >
-> iPadOS 13 이상에서 WebView는 기본적으로 데스크톱 모드입니다.
+> iPadOS 13 이상에서 웹뷰는 기본적으로 데스크톱 모드입니다.
 > contentMode=`TCGBWebViewContentModeMobile` 설정으로 모바일 모드로 변경할 수 있습니다.
 
 
 
 ### Close WebView
-다음 API를 통하여, 보여지고 있는 WebView를 닫을 수 있습니다.
+다음 API를 통하여, 보여지고 있는 웹뷰를 닫을 수 있습니다.
 
 ```objectivec
 // Close the gamebase web view

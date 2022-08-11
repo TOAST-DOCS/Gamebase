@@ -839,7 +839,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 * Observer 기능 추가에 따라 다음 API Deprecated : LaunchingStatus Listener, Network Listener(기존 사용자는 계속 사용 가능)
 * PAYCO 간편로그인 3rd SDK v1.2.2 적용 : 로그인 성공 시 토큰 만료 정보(expires_in) 제공, iPhoneX 로그인 UI 개선
-* iPhoneX 지원을 위하여, Webview 사용 인터페이스 수정
+* iPhoneX 지원을 위하여, 웹뷰 사용 인터페이스 수정
 
 #### 버그 수정
 * 국가코드(contry code)가 10자 이상인 경우 동접 데이터가 저장되지 않는 현상 수정
