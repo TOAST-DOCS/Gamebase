@@ -45,10 +45,10 @@ void Sample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 co
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| colorR                   | 0～255                                    | ナビゲーションバーの色R            |
-| colorG                   | 0～255                                    | ナビゲーションバーの色G                |
-| colorB                   | 0～255                                    | ナビゲーションバーの色B                |
-| colorA                   | 0～255                                    | ナビゲーションバーの色Alpha                |
+| colorR                   | 0～255                                    | バックグラウンドの色R            |
+| colorG                   | 0～255                                    | バックグラウンドの色G                |
+| colorB                   | 0～255                                    | バックグラウンドの色B                |
+| colorA                   | 0～255                                    | バックグラウンドの色Alpha                |
 | timeOut                  | int64        | イメージ告知最大ローディング時間(単位: millisecond)<br/>**default**: 5000                     |
 
 
@@ -409,24 +409,22 @@ void Sample::ShowWebView(const FString& url)
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
 | title                    | FString                                   | WebViewのタイトル               |
-| orientation              | GamebaseScreenOrientation::Unspecified   | 未指定 |
+| orientation              | GamebaseScreenOrientation::Unspecified   | 未指定(**default**)            |
 |                          | GamebaseScreenOrientation::Portrait      | 縦モード                     |
 |                          | GamebaseScreenOrientation::Landscape     | 横モード                     |
 |                          | GamebaseScreenOrientation::LandscapeReverse | 横モードを180度回転              |
-| contentMode              | GamebaseWebViewContentMode::Recommended        | 現在のプラットフォームの推薦ブラウザ |
+| contentMode              | GamebaseWebViewContentMode::Recommended        | 現在のプラットフォームの推薦ブラウザ(**default**)   |
 |                          | GamebaseWebViewContentMode::Mobile             | モバイルブラウザ         |
 |                          | GamebaseWebViewContentMode::Desktop            | デスクトップブラウザ       |
-| colorR                   | 0～255                                    | ナビゲーションバーの色相R            |
-| colorG                   | 0～255                                    | ナビゲーションバーの色相G                |
-| colorB                   | 0～255                                    | ナビゲーションバーの色相B                |
-| colorA                   | 0～255                                    | ナビゲーションバーの色相Alpha                |
-| isBackButtonVisible      | true or false                            | 戻るボタン有効/無効        |
-| barHeight                | height                                   | ナビゲーションバーの高さ                  |
-| backButtonImageResource  | ID of resource                           | 戻るボタンのイメージ              |
-| closeButtonImageResource | ID of resource | 閉じるボタンのイメージ |
-| url | "http://" or "https://" or "file://" | Web URL |
-| enableFixedFontSize      | true or false                            | フォントサイズ固定有効または無効<br/>**Android Only** |
-
+| colorR                   | 0～255                                    | ナビゲーションバーの色相R<br>**default** : 18               |
+| colorG                   | 0～255                                    | ナビゲーションバーの色相G<br>**default** : 93               |
+| colorB                   | 0～255                                    | ナビゲーションバーの色相B<br>**default** : 230              |
+| colorA                   | 0～255                                    | ナビゲーションバーの色相Alpha<br>**default** : 255          |
+| barHeight                | height                                   | ナビゲーションバーの高さ<br>**Android Only**                 |
+| isNavigationBarVisible   | true or false                            | ナビゲーションバー有効/無効<br>**default** : true    |
+| isBackButtonVisible      | true or false                            | 戻るボタン有効/無効<br>**default** : true   |
+| backButtonImageResource  | ID of resource                           | 戻るボタンのイメージ       |
+| closeButtonImageResource | ID of resource                           | 閉じるボタンのイメージ           |
 
 > [TIP]
 >
