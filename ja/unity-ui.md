@@ -79,10 +79,10 @@ public void ShowImageNotices(int colorR = 0 , int colorG = 0, int colorB = 0, in
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| colorR                   | 0～255                                    | ナビゲーションバーの色R            |
-| colorG                   | 0～255                                    | ナビゲーションバーの色G                |
-| colorB                   | 0～255                                    | ナビゲーションバーの色B                |
-| colorA                   | 0～255                                    | ナビゲーションバーの色Alpha                |
+| colorR                   | 0～255                                    | バックグラウンドの色R            |
+| colorG                   | 0～255                                    | バックグラウンドの色G                |
+| colorB                   | 0～255                                    | バックグラウンドの色B                |
+| colorA                   | 0～255                                    | バックグラウンドの色Alpha                |
 | timeoutMS                | long        | イメージ告知最大ローディング時間(単位：millisecond)<br/>**default**：5000                     |
 
 
@@ -460,30 +460,27 @@ public void ShowWebView()
 }
 ```
 
-
 #### GamebaseWebViewConfiguration
 
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | string                                   | WebViewのタイトル                 |
-| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 未指定 |
-|                          | GamebaseScreenOrientation.PORTRAIT       | 縦モード                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE      | 横モード                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 横モードを180度回転              |
-| contentMode              | GamebaseWebViewContentMode.RECOMMENDED        | 現在プラットフォーム推薦ブラウザ |
-|                          | GamebaseWebViewContentMode.MOBILE             | モバイルブラウザ         |
-|                          | GamebaseWebViewContentMode.DESKTOP            | デスクトップブラウザ       |
-| colorR                   | 0~255                                    | ナビゲーションバーの色Alpha            |
-| colorG                   | 0~255                                    | ナビゲーションバーの色R                |
-| colorB                   | 0~255                                    | ナビゲーションバーの色G                |
-| colorA                   | 0~255                                    | ナビゲーションバーの色B                |
-| isNavigationBarVisible   | true or false                            | ナビゲーションバーの有効または無効         |
-| isBackButtonVisible      | true or false                            | 戻るボタンの有効または無効         |
-| barHeight                | height                                   | ナビゲーションバーの高さ                  |
-| backButtonImageResource  | ID of resource                           | 戻るボタンのイメージ                |
-| closeButtonImageResource | ID of resource                           | 閉じるボタンの画像 |
-| url                      | "http://" or "https://" or "file://"     | Web URL |
-| enableFixedFontSize      | true or false                            | 文字サイズ固定の有効または無効<br/>**Android Only** |
+| title                    | string                                   | WebViewのタイトル             |
+| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 未指定(**default**)            |
+|                          | GamebaseScreenOrientation.PORTRAIT       | 縦モード                  |
+|                          | GamebaseScreenOrientation.LANDSCAPE      | 横モード                  |
+|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 横モードを180度回転    |
+| contentMode              | GamebaseWebViewContentMode.RECOMMENDED      | 現在プラットフォーム推薦ブラウザ(**default**)  |
+|                          | GamebaseWebViewContentMode.MOBILE           | モバイルブラウザ          |
+|                          | GamebaseWebViewContentMode.DESKTOP          | デスクトップブラウザ        |
+| colorR                   | 0～255                                    | ナビゲーションバーの色相R<br>**default** : 18               |
+| colorG                   | 0～255                                    | ナビゲーションバーの色相G<br>**default** : 93               |
+| colorB                   | 0～255                                    | ナビゲーションバーの色相B<br>**default** : 230              |
+| colorA                   | 0～255                                    | ナビゲーションバーの色相Alpha<br>**default** : 255          |
+| barHeight                | height                                   | ナビゲーションバーの高さ<br>**Android Only**                 |
+| isNavigationBarVisible   | true or false                            | ナビゲーションバー有効/無効<br>**default** : true    |
+| isBackButtonVisible      | true or false                            | 戻るボタン有効/無効<br>**default** : true   |
+| backButtonImageResource  | ID of resource                           | 戻るボタンのイメージ       |
+| closeButtonImageResource | ID of resource                           | 閉じるボタンのイメージ           |
 
 > [TIP]
 >
