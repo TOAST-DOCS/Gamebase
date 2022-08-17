@@ -1,5 +1,11 @@
 ## Game > Gamebase > 릴리스 노트 > Console
 
+### 2022. 08. 23.
+
+#### 기능 개선/변경
+* 앱 > 앱
+	* 라인 IdP에 대해서 멀티 채널(Japan/Thailand/Taiwan/Indonesia) 기능 추가
+
 ### 2022. 07. 26.
 
 #### 기능 개선/변경

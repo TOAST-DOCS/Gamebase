@@ -17,7 +17,7 @@ Gamebase Server API는 RESTful 형식으로, 서버 API를 사용하기 위해�
 #### Server Address
 
 API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주소는 Gamebase Console 화면에서도 확인 가능합니다.
-> https://api-gamebase.cloud.toast.com
+> https://api-gamebase.nhncloudservice.com
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
 
@@ -61,7 +61,7 @@ API 호출 시 HTTP Header에 다음 항목들을 설정해야 합니다.
 Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 X-Secret-Key: IgsaAP
-GET https://api-gamebase.cloud.toast.com
+GET https://api-gamebase.nhncloudservice.com
 ```
 
 **[Response]**
@@ -1876,7 +1876,7 @@ Leaderboard Appkey 설정 없이 Gamebase AppId 및 SecretKey를 이용해서 Ga
 ##### API 호출 예시
 
 ```
-GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
+GET https://api-gamebase.nhncloudservice.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
 
 Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
@@ -1927,7 +1927,7 @@ Push Appkey 설정 없이 Gamebase AppId 및 SecretKey를 이용해서 Gamebase 
 ##### API 호출 예시
 
 ```
-POST https://api-gamebase.cloud.toast.com/tcgb-push/v1.3/apps/{appId}/messages
+POST https://api-gamebase.nhncloudservice.com/tcgb-push/v1.3/apps/{appId}/messages
 
 Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
@@ -2049,7 +2049,7 @@ API 호출 실패 원인에 대한 문의 사항이 있을 경우, **API 호출 
 ##### API 호출 예시
 
 ```
-GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance
+GET https://api-gamebase.nhncloudservice.com/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance
 ```
 
 ##### API 실패 응답 결과
