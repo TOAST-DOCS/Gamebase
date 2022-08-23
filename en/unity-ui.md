@@ -463,7 +463,6 @@ public void ShowWebView()
 }
 ```
 
-
 #### GamebaseWebViewConfiguration
 
 | Parameter | Values | Description |
