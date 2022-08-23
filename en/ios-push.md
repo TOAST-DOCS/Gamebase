@@ -7,17 +7,14 @@
 
 ### Settings
 
-#### Apple Developer Certificates
+#### Getting Authentication Information for APNS JWT
 
-This document describes the process of creating Apple developer certificates required to deliver push notifications.
+This document describes the process of getting authentication information for APNS JWT required to deliver push notifications.
 
-* Go to the [Apple Developer's Site](https://developer.apple.com) and create a certificate with **Apple Push Notification service SSL** from **Add iOS Certificate**.
-* Register a keychain and export the created certificate in the Personal Information Exchange (.p12) format.
-* To export certificates, set passwords.
+* Go to [Notification > Push > Console Guide > Getting APNS JWT credentials](https://docs.toast.com/en/Notification/Push/en/console-guide/#get-authentication-information-for-apns-jwt) and get the authentication information required to register ANPS JWT.
 
 #### Registering NHN Cloud Console
-* Go to **Notification > Push > Certificate** and register the certificate that was created from above to **APNS Certificate** and **APNS (Sandbox) Certificate**.
-* The password you used to create the above certificate will be used for registration.
+* Go to **Notification > Push > Certificate** and enter the information you get in **APNS JWT**.
 
 #### Implementing Notification Service Extension
 * For tasks such as collecting inbound indicators and setting the notification sound, see [NHN Cloud Push Guide](https://docs.toast.com/en/TOAST/en/toast-sdk/push-ios/#notification-service-extension) to implement the **Notification Service Extension** for the application.

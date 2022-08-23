@@ -79,10 +79,10 @@ public void ShowImageNotices(int colorR = 0 , int colorG = 0, int colorB = 0, in
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| colorR                   | 0 - 255                                    | Navigation bar color R            |
-| colorG                   | 0 - 255                                    | Navigation bar color G                |
-| colorB                   | 0 - 255                                    | Navigation bar color B                |
-| colorA                   | 0 - 255                                    | Navigation bar color Alpha                |
+| colorR                   | 0~255                                    | Background color R            |
+| colorG                   | 0~255                                    | Background color G                |
+| colorB                   | 0~255                                    | Background color B                |
+| colorA                   | 0~255                                    | Background color Alpha                |
 | timeoutMS                | long        | Image notice max loading time (in millisecond)<br/>**default**: 5000                     |
 
 
@@ -463,30 +463,27 @@ public void ShowWebView()
 }
 ```
 
-
 #### GamebaseWebViewConfiguration
 
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | string                                   | Title of WebView                 |
-| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | Unspecified |
-|                          | GamebaseScreenOrientation.PORTRAIT       | Portrait mode                      |
-|                          | GamebaseScreenOrientation.LANDSCAPE      | Landscape mode                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | Reverse landscape              |
-| contentMode              | GamebaseWebViewContentMode.RECOMMENDED        | Browser recommended by the current platform    |
-|                          | GamebaseWebViewContentMode.MOBILE             | Mobile browser            |
-|                          | GamebaseWebViewContentMode.DESKTOP            | Desktop browser          |
-| colorR                   | 0~255                                    | Color of Navigation Bar: Alpha            |
-| colorG                   | 0~255                                    | Color of Navigation Bar: R                 |
-| colorB                   | 0~255                                    | Color of Navigation Bar: G               |
-| colorA                   | 0~255                                    | Color of Navigation Bar: B                |
-| isNavigationBarVisible   | true or false                            | Activate or deactivate Navigation Bar          |
-| isBackButtonVisible            | true or false                            | Activate or deactivate Go Back Button           |
-| barHeight                | height                                   | Height of Navigation Bar                  |
-| backButtonImageResource  | ID of resource                           | Image of Go Back Button                |
-| closeButtonImageResource | ID of resource                           | Image of Close Button |
-| url                      | "http://" or "https://" or "file://"     | Web URL |
-| enableFixedFontSize      | true or false                            | Activate or deactivate fixed font size<br/>**Android Only** |
+| title                    | string                                   | Title of WebView               |
+| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | Unspecified (**default**)            |
+|                          | GamebaseScreenOrientation.PORTRAIT       | Portait mode                    |
+|                          | GamebaseScreenOrientation.LANDSCAPE      | Landscape mode                    |
+|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | Reverse landscape     |
+| contentMode              | GamebaseWebViewContentMode.RECOMMENDED      | Browser recommended by the current platform (**default**)  |
+|                          | GamebaseWebViewContentMode.MOBILE           | Mobile browser            |
+|                          | GamebaseWebViewContentMode.DESKTOP          | Desktop browser          |
+| colorR                   | 0~255                                    | Color of Navigation Bar: R<br>**default**: 18               |
+| colorG                   | 0~255                                    | Color of Navigation Bar: G<br>**default**: 93               |
+| colorB                   | 0~255                                    | Color of Navigation Bar: B<br>**default**: 230              |
+| colorA                   | 0~255                                    | Color of Navigation Bar: Alpha<br>**default**: 255          |
+| barHeight                | height                                   | Height of Navigation Bar<br>**Android Only**                 |
+| isNavigationBarVisible   | true or false                            | Activate or deactivate Navigation Bar<br>**default**: true    |
+| isBackButtonVisible      | true or false                            | Activate or deactivate Go Back Button<br>**default**: true   |
+| backButtonImageResource  | ID of resource                           | Image of Go Back Button         |
+| closeButtonImageResource | ID of resource                           | Image of Close Button             |
 
 > [TIP]
 >
