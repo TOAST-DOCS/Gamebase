@@ -75,14 +75,14 @@ void CloseImageNotices();
 
 调用showTermsView API显示条款窗时通过Webview显示。  
 如果要创建符合Game UI的条款窗，可通过调用QueryTerms API显示Gamebase控制台中注册的条款项目。
-若用户已同意条款，请将各项目的”同意与否"通过调用UpdateTerms API传送到Gamebase服务器。 
+若用户已同意条款，请将各项目的“同意与否”通过调用UpdateTerms API传送到Gamebase服务器。 
 
 ### ShowTermsView
 
 在页面上显示条款窗。
-若用户已同意条款，在服务器中注册”同意与否“。
+若用户已同意条款，在服务器中注册“同意与否”。
 如果已同意条款，即使重新调用ShowTermsView API也不显示条款窗，而直接返还“成功回调”。
-但，如果在Gamebase控制台中将”重新同意条款”项目更改为**必须**，用户再次同意条款之前一直显示条款窗。
+但，如果在Gamebase控制台中将“重新同意条款”项目更改为**必须**，用户再次同意条款之前一直显示条款窗。
 
 > <font color="red">[注意]</font><br/> 
 >
@@ -92,9 +92,22 @@ void CloseImageNotices();
 
 #### Optional参数
 
-* callback : 同意条款后关闭条款窗时，通过回调通知用户。可将作为回调返回的GamebaseResponse.DataContainer对象变换为GamebaseResponse.Push.PushConfiguration，登录后用于调用Gamebase.Push.RegisterPush API。  
-                
+* GamebaseTermsConfiguration : 通过GamebaseTermsConfiguration对象您可以更改设置，例如是否显示“强制条款协议”窗口。
+* callback : 同意条款后关闭条款窗时，通过回调通知用户。将通过回调返还的GamebaseResponse.DataContainer对象 转换为GamebaseResponse.Push.PushConfiguration，登录后用于Gamebase.Push.RegisterPush API。
 
+**FGamebaseTermsConfiguration** 
+
+| API | Mandatory(M) / Optional(O) | Description | 
+| --- | --- | --- | 
+| forceShow | O | 如果已同意了条款，即使再调用ShowTermsView API也不显示条款窗，但还是强制显示条款窗。<br>**default**: false | 
+| enableFixedFontSize | O | 决定是否要固定条款窗的字体大小。<br>**default** : false<br/>**Android Only** |
+
+**FGamebaseShowTermsViewResult**
+
+| Parameter              | Values                          | Description         |
+| ---------------------- | --------------------------------| ------------------- |
+| isTermsUIOpened        | bool                            | **true** : 显示条款窗，用户同意条款后条款窗被关闭。<br>**false** : 由于已同意了条款，不显示条款窗，而关闭了条款窗。        |
+     
 **API**
 
 Supported Platforms
@@ -103,18 +116,19 @@ Supported Platforms
 
 ```cpp
 void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
+void ShowTermsView(const FGamebaseTermsConfiguration& configuration, const FGamebaseDataContainerDelegate& onCallback);
 ```
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | 未初始化Gamebase。  |
-| LAUNCHING\_SERVER\_ERROR(2001) | 是从启动服务器返还的项目不包含相关条款内容时出现的错误。<br/>出现此问题时，请联系Gamebase负责人员。 |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 上一次调用的Terms API未完成。<br/>请稍后再试。 |
-| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW(6925) | 条款Webview尚未结束，但已再次被调用。 | 	
-| WEBVIEW\_TIMEOUT(7002) | 显示条款Webview时出现超时错误。 |
-| WEBVIEW\_HTTP\_ERROR(7003) | 打开条款Webview时出现HTTP错误。 | 
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | 未初始化Gamebase。  |
+| LAUNCHING\_SERVER\_ERROR | 2001 | 是从启动服务器返还的项目不包含相关条款内容时出现的错误。<br/>出现此问题时，请联系Gamebase负责人员。 |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 上一次调用的Terms API未完成。<br/>请稍后再试。 |
+| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925 | 条款Webview尚未结束，但已再次被调用。 | 	
+| WEBVIEW\_TIMEOUT | 7002 | 显示条款Webview时出现超时错误。 |
+| WEBVIEW\_HTTP\_ERROR | 7003 | 打开条款Webview时出现HTTP错误。 | 
 
 **Example**
 
@@ -122,14 +136,20 @@ void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
 void Sample::ShowTermsView()
 {
     IGamebase::Get().GetTerms().ShowTermsView(
+    FGamebaseTermsConfiguration configuration { true };
+
+    IGamebase::Get().GetTerms().ShowTermsView(configuration,
         FGamebaseDataContainerDelegate::CreateLambda([=](const FGamebaseDataContainer* dataContainer, const FGamebaseError* error) {
             if (Gamebase::IsSuccess(error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView succeeded."));
-
-                // If the 'FGamebasePushConfiguration' is not null,
-                // save the 'FGamebasePushConfiguration' and use it for IGamebase::Get().GetPush().RegisterPush() after IGamebase::Get().Login().
-                const auto pushConfiguration = FGamebasePushConfiguration::From(dataContainer);
+     
+                const auto result = FGamebaseShowTermsResult::From(dataContainer);
+                if (result.IsValid())
+                {
+                    // Save the 'PushConfiguration' and use it for RegisterPush() after Login().
+                    savedPushConfiguration = FGamebasePushConfiguration::From(dataContainer);
+                }
             }
             else
             {
@@ -137,6 +157,17 @@ void Sample::ShowTermsView()
             }
         })
     );
+}
+void Sample::AfterLogin()
+{
+    // Call RegisterPush with saved PushConfiguration.
+    if (savedPushConfiguration != null)
+    {
+        Gamebase.Push.RegisterPush(savedPushConfiguration, (error) =>
+        {
+            ...
+        });
+    }
 }
 ```
 
@@ -152,10 +183,10 @@ Gamebase通过Webview以简单形式显示条款。
 >
 > * 因Gamebase服务器不保存GamebaseResponse.Terms.ContentDetail.required为true的必要项目，agreed值将始终返回为false。 
 >     * 这是因为必要项目将始终保存为true，不需要保存。
-> * 因gamebase服务器不保存”是否接收推送”，agreed值将始终返回为false。
->     * 如需查看用户”是否接收推送”，请调用Gamebase.Push.QueryPush API 。
+> * 因gamebase服务器不保存“是否接收推送”，agreed值将始终返回为false。
+>     * 如需查看用户“是否接收推送”，请调用Gamebase.Push.QueryPush API 。
 > * 使用与条款语言不同的国家代码在设置的终端机上调用queryTerms API，则将出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误。
->     * 在控制台中设置”基本条款”或出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** 错误时，请不要显示条款。 
+>     * 在控制台中设置“基本条款”或出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** 错误时，请不要显示条款。 
             
 #### Required参数
 * callback : 通过回调通知用户调用API的结果。可使用通过回调被返回的GamebaseResponse.Terms.QueryTermsResult来获取控制台中设置的条款信息。
@@ -173,11 +204,11 @@ void QueryTerms(const FGamebaseQueryTermsResultDelegate& onCallback);
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | 未初始化Gamebase。 |
-| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE(6921) | 在控制台中未注册条款信息。 |
-| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY(6922) | 在控制台中未注册符合终端机国家代码的条款信息。 |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | 未初始化Gamebase。 |
+| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE | 6921 | 在控制台中未注册条款信息。 |
+| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY | 6922 | 在控制台中未注册符合终端机国家代码的条款信息。 |
 
 **Example**
 
@@ -228,13 +259,13 @@ void Sample::QueryTerms()
 如果使用调用QueryTerms API后被返回的条款信息创建了UI，
 请调用UpdateTerms API将游戏用户同意条款的记录传送到Gamebase服务器。 
 
-不仅 可用于取消”可选条款同意”，也可用于修改同意条款的记录。
+不仅可用于取消“可选条款同意”，也可用于修改同意条款的记录。
 
 
 > <font color="red">[注意]</font><br/>
 >
-> Gamebase服务器不保存”是否同意接收推送”。
-> 当保存”是否同意接收推送时，**登录后**通过调用Gamebase.Push.RegisterPush API后保存。
+> Gamebase服务器不保存“是否同意接收推送”。
+> 当保存“是否同意接收推送”时，**登录后**通过调用Gamebase.Push.RegisterPush API后保存。
 >
 
 #### Required参数
@@ -257,11 +288,11 @@ void UpdateTerms(const FGamebaseUpdateTermsConfiguration& configuration, const F
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | 未初始化Gamebase。 |
-| UI\_TERMS\_UNREGISTERED\_SEQ(6923) | 设置了未注册的条款Seq值。 |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 上一次调用的Terms API未完成。<br/>请稍后再试。 |
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | 未初始化Gamebase。 |
+| UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | 设置了未注册的条款Seq值。 |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 未完成Terms API的调用。<br/>请稍后再试。 |
 
 
 **Example**
@@ -288,7 +319,6 @@ void Sample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 term
 }
 ```
 
-
 #### GamebaseRequest.Terms.UpdateTermsConfiguration
 
 | Parameter            | Mandatory(M) / Optional(O) | Values                    | Description         |
@@ -304,7 +334,26 @@ void Sample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 term
 | termsContentSeq      | **M**                      | int32                | 可选条款项目KEY      |
 | agreed               | **M**                      | bool               | 是否同意可选条款项目  |
 
-      
+### IsShowingTermsView
+
+可以查看当前条款窗是否显示在页面上。
+
+**API**
+
+```cpp
+bool IsShowingTermsView();
+```
+
+**Example**
+
+```cpp
+void Sample::IsShowingTermsView()
+{
+    bool isShowingTermsView = IGamebase::Get().GetTerms().IsShowingTermsView();
+    UE_LOG(GamebaseTestResults, Display, TEXT("IsShowingTermsView : %s"), isShowingTermsView ? TEXT("true") : TEXT("false"));
+}
+```
+
 ## Webview
 
 ### Show WebView
@@ -373,16 +422,17 @@ void Sample::ShowWebView(const FString& url)
 | colorG                   | 0~255                                    | Navigation Bar颜色G                |
 | colorB                   | 0~255                                    | Navigation Bar颜色B                |
 | colorA                   | 0~255                                    | Navigation Bar颜色Alpha                |
-| buttonVisible            | true or false                            | 激活或不激活返回按钮          |
+| isBackButtonVisible      | true or false                            | 返回按钮有效或无效          |
 | barHeight                | height                                   | Navigation Bar高度                  |
 | backButtonImageResource  | ID of resource                           | 返回按钮图片                |
 | closeButtonImageResource | ID of resource | 关闭按钮图片 |
 | url | "http://" or "https://" or "file://" | 网络URL |
+| enableFixedFontSize      | true or false                            | 固定字体大小有效或无效<br/>**Android Only** |
 
 > [TIP]
 >
 > iPadOS 13以上中的WebView基本上是桌面模式。
-> 可通过contentMode = ”GamebaseWebViewContentMode.MOBILE”设置来更改移动模式。
+> 可通过contentMode = “GamebaseWebViewContentMode.MOBILE”设置来更改移动模式。
 
 #### Predefined Custom Scheme
 
@@ -501,7 +551,7 @@ void Sample::ShowToast(const FString& message, EGamebaseToastExposureTime exposu
 | Error              | Error Code | Description                 |
 | ------------------ | ---------- | --------------------------- |
 | UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | 显示图片通知时出现了超时错误。|
-| UI\_UNKNOWN\_ERROR | 6999       | 未知错误(是未定义的错误)。|
+| UI\_UNKNOWN\_ERROR | 6999       | 未知错误(是未定义的错误) |
 
 * 关于所有错误代码，请参考以下文档。 
     * [错误代码](./error-code/#client-sdk)

@@ -38,12 +38,12 @@
 ### 2.41.0 (2022. 07. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* GamebaseEventHandler의 GamebaseEventCategory에 **kTCGBIdPRevoked** 타입이 추가되었습니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./ios-etc/#idp-revoked)
+#### 添加功能
+* 在GamebaseEventHandler的GamebaseEventCategory中添加了**kTCGBIdPRevoked**类型。
+    * [Game > Gamebase > iOS SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./ios-etc/#idp-revoked)
 
-#### 기능 개선/변경
-* 이미지 공지가 노출 중일 때 화면 방향에 따라 회전하도록 변경했습니다.
+#### 改善/修复功能
+* 更改了图片通知，使其在显示时根据屏幕方向旋转。
 
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-iOS.zip)
@@ -196,12 +196,12 @@
 ### 2.28.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-iOS.zip)
 
-#### 添加功能
+#### 添加功能 
 * 添加Kakaogame认证
-* ”结算Abusing自动解除”功能已被添加。 
+* “结算Abusing自动解除”功能已被添加。 
     * [Game > Gamebase > iOS SDK使用指南 > 认证 > GraceBan](./ios-authentication/#graceban)
     * 结算Abusing自动解除功能是当存在需通过”结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。
-    * 如果为”预约禁用”状态，在设定的时期内满足解除条件，则可正常玩游戏。
+    * 如果为“预约禁用状态”，在设定的时期内满足解除条件，则可正常玩游戏。
     * 若在所定的时期内未能满足条件，则会被禁用。
 * 登录使用结算Abusing自动解除功能的游戏后，始终要确认TCGBAuthToken.tcgbMember.graceBanInfo值，如果返还TCGBGraceBanInfo对象，而不返还null，要向相关用户通知禁用解除条件、时期等。
     * 当需要控制处于预约禁用状态的用户进入游戏时，要在游戏中进行处理。
@@ -227,7 +227,7 @@
 
 #### 改善/修复功能
 * PAYCO iOS SDK升级(1.5.0)
-    * 以前，如果不能使用PAYCO应用程序，则只能手动登录。但目前若已登录到Safari，则可使用“简单登录”功能。
+    * 以前如果不能使用PAYCO应用程序，则只能手动登录。但目前若已登录到Safari，则可使用“简单登录”功能。
 
 ### 2.26.0 (2021.08.10)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-iOS.zip)

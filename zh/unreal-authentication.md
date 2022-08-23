@@ -173,8 +173,8 @@ void Sample::Login()
 >
 > 使用IdP登录时有些IdP需要附加信息。
 > 为了设置附加信息提供void Login(const FString& providerName, const UGamebaseJsonObject& additionalInfo, const FGamebaseAuthTokenDelegate& onCallback) API。
->将以dictionary格式在additionalInfo参数中输入必要信息即可。 
->如有additionalInfo值，则使用相应值，而如果为null，则使用[NHN Cloud Console](./oper-app/#authentication-information)中注册的值。
+> 将以dictionary格式在additionalInfo参数中输入必要信息即可。 
+> 如有additionalInfo值，则使用相应值，而如果为null，则使用[NHN Cloud Console](./oper-app/#authentication-information)中注册的值。
 
 **API**
 
@@ -240,15 +240,17 @@ void Sample::LoginWithAdditionalInfo()
 
 ### Login with Credential
 
-使用IdP提供的SDK在游戏中直接进行认证后，利用已发放的访问令牌登录Gamebase界面。
+使用IdP提供的SDK在游戏中直接进行认证后，利用已发放的Access Token登录Gamebase界面。
 
 * Credential参数的设置方法
 
 | keyname | a use | 值类型 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP类型                         | google, facebook, payco, iosgamecenter, naver, twitter, line |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | 进行IdP登录后获取的认证信息(访问令牌)<br/>进行Google认证时不使用。|                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 登录Google后获取的认证信息(Authorization Code) |                                          |
+| GamebaseAuthProviderCredential::ProviderName | IdP类型设置                           | google、facebook、payco、iosgamecenter、 naver、twitter、line |
+| GamebaseAuthProviderCredential::AccessToken | 进行IdP登录后接收的认证信息(Access Token)设置<br/>Google认证时不使用。 |                                |
+| GamebaseAuthProviderCredential::AuthorizationCode | Google登录后接收的认证信息(Authorization Code)设置 |                                          |
+| GamebaseAuthProviderCredential::GamebaseAccessToken | 通过Gamebase Access Token登录，而不是通过IdP认证信息登录时使用。 |  |
+| GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn | 在Gamebase登录状态下，不注销也允许其他帐户登录尝试。 | **bool** |                             
 
 > [TIP]
 >
@@ -402,7 +404,7 @@ Gamebase的Mapping API，允许将您的其他IdP帐户和您之前登录的游�
     * Google ID : aa
     * Facebook ID : bb
     * AppleGameCenter ID : cc
-    * Payco ID : dd
+    * PAYCO ID : dd
 * Gamebase用户ID : 456abcabc
     * Google ID : ee
     * Google ID : ff **-> 由于您已关联Google ee帐户，因此无法添加其他Google帐户。**
@@ -412,6 +414,8 @@ Mapping中有添加映射和解除映射的功能。
 ### Add Mapping Flow
  
 映射（Mapping）可以按以下顺序实现。
+
+![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
 
 #### 1. 登录
 Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
@@ -482,15 +486,15 @@ void Sample::AddMapping(const FString& providerName)
 
 ### AddMapping with Credential
 
-游戏中先直接以IdP提供的SDK进行验证，并可利用发放的访问令牌等调用Gamebase AddMapping的接口。
+游戏中先直接以IdP提供的SDK进行验证，并可利用发放的Access Token等调用Gamebase AddMapping的接口。
 
 * Credential参数的设置方法
 
 | keyname | a use | 值类型 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
 | GamebaseAuthProviderCredential.PROVIDER_NAME | IdP类型                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | 进行IdP登录后获取的认证信息(访问令牌)<br/>进行Google认证时不使用。|                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 登录Google后获取的认证信息(Authorization Code) |                                          |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | 进行IdP登录后获取的认证信息(Access Token)<br/>进行Google认证时不使用。|                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google登录后获取的认证信息(Authorization Code) |                                          |
 
 > [TIP]
 >
@@ -546,15 +550,18 @@ void Sample::AddMappingWithCredential()
 ### Add Mapping Forcibly
 
 若特定IdP有已映射的账户，尝试**强制**映射。
-尝试强制映射时需要从AddMapping API获得的”ForcingMappingTicket”。
+尝试强制映射时需要从AddMapping API获得的“ForcingMappingTicket”。
 
 如下为对Facebook尝试强制映射的范例。
 
 **API**
 
 ```cpp
+void AddMappingForcibly(const FGamebaseForcingMappingTicket& forcingMappingTicket, const FGamebaseAuthTokenDelegate& onCallback);
+// Legacy API
 void AddMappingForcibly(const FString& providerName, const FString& forcingMappingKey, const FGamebaseAuthTokenDelegate& onCallback);
 void AddMappingForcibly(const FString& providerName, const FString& forcingMappingKey, const UGamebaseJsonObject& additionalInfo, const FGamebaseAuthTokenDelegate& onCallback);
+void AddMappingForcibly(const UGamebaseJsonObject& credentialInfo, const FString& forcingMappingKey, const FGamebaseAuthTokenDelegate& onCallback);
 ```
 
 **Example**
@@ -581,7 +588,7 @@ void Sample::AddMappingForcibly(const FString& providerName)
                 }
                 
                 // 尝试强制Mapping。
-                IGamebase::Get().AddMappingForcibly(providerName, forcingMappingTicket->forcingMappingKey,
+                IGamebase::Get().AddMappingForcibly(forcingMappingTicket, forcingMappingTicket->forcingMappingKey,
                     FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* innerAuthToken, const FGamebaseError* innerError)
                 {
                     if (Gamebase::IsSuccess(error))
@@ -606,56 +613,27 @@ void Sample::AddMappingForcibly(const FString& providerName)
 }
 ```
 
+### Change Login with ForcingMappingTicket
 
-### Add Mapping Forcibly with Credential
-若特定IdP有已映射的账户，尝试**强制**映射。
-尝试强制映射时需要从AddMapping API获得的”ForcingMappingTicket”。
+如果已经有一个映射到特定IdP的帐户，注销当前帐户并使用映射的帐户登录。
+这时，需要从AddMapping API获取的“ForcingMappingTicket”。
 
-游戏中先直接以IdP提供的SDK进行验证，并可利用发放的访问令牌等调用Gamebase AddMappingForcibly的接口。
-
-* Credential参数的设置方法
-
-| keyname | a use | 值类型 |
-| ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP类型                        | google, facebook, payco, iosgamecenter, naver, twitter, line |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | 进行IdP登录后获取的认证信息(访问令牌)<br/>进行Google认证时不使用。|                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 登录Google后获取的认证信息(Authorization Code) |                                        |
-
-> [TIP]
->
-> 游戏中必须使用外部服务（Facebook等）的固有功能时，您可能需要它。
->
-
-
-> <font color="red">[注意]</font><br/>
->
-> 外部SDK要求支持的开发事项应使用外部SDK的API来实现，Gamebase不支持。
->
-
-以下为尝试强制映射的范例。
+当Change Login API调用失败，将以当前的UserID维持Gamebase登录。 
 
 **API**
 
-```cpp
-void AddMappingForcibly(const UGamebaseJsonObject& credentialInfo, const FString& forcingMappingKey, const FGamebaseAuthTokenDelegate& onCallback);
+```cs
+void ChangeLogin(const FGamebaseForcingMappingTicket& forcingMappingTicket, const FGamebaseAuthTokenDelegate& onCallback);
 ```
 
 **Example**
 
+下面是一个在尝试映射到Facebook后存在已映射到Facebook的帐户时将登录更改为相应账户的示例。
+
 ```cpp
-void Sample::AddMappingForcibly()
+void Sample::ChangeLoginWithFacebook(const FString& providerName)
 {
-    UGamebaseJsonObject* credentialInfo = NewObject<UGamebaseJsonObject>();
-
-    // google
-    //credentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Google);
-    //credentialInfo->SetStringField(GamebaseAuthProviderCredential::AuthorizationCode, TEXT("google auchorization code"));
-
-    // facebook
-    credentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Facebook);
-    credentialInfo->SetStringField(GamebaseAuthProviderCredential::AccessToken, TEXT("facebook access token"));
-
-    IGamebase::Get().AddMapping(*credentialInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    IGamebase::Get().AddMapping(GamebaseAuthProvider::Facebook, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)  
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -668,38 +646,38 @@ void Sample::AddMappingForcibly()
             {
                 // 通过利用ForcingMappingTicket类中的From()方法获取ForcingMappingTicket实例。
                 auto forcingMappingTicket = FGamebaseForcingMappingTicket::From(error);
-                if (forcingMappingTicket.IsValid() == false)
+                  if (forcingMappingTicket.IsValid())
+                  {   
+                    // 尝试强制映射。
+                    IGamebase::Get().ChangeLogin(forcingMappingTicket, forcingMappingTicket->forcingMappingKey,
+                        FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* authTokenForcibly, const FGamebaseError* innerError)
+                    {
+                        if (Gamebase::IsSuccess(error))
+                        {
+                            // 登录更改成功
+                        }
+                        else
+                        {
+                            // 登录更改失败
+                            // 确认错误代码后进行适当的处理。
+                        }
+                    }));
+                }
+                else
                 {
                     // Unexpected error occurred. Contact Administrator.
                 }
-                
-                // 尝试强制Mapping。
-                IGamebase::Get().AddMappingForcibly(*credentialInfo, forcingMappingTicket->forcingMappingKey,
-                    FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* innerAuthToken, const FGamebaseError* innerError)
-                {
-                    if (Gamebase::IsSuccess(error))
-                    {
-                        // 成功添加强制Mapping。
-                        UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly succeeded."));
-                    }
-                    else
-                    {
-                        // 确认错误代码后进行相应的处理。 
-                        UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly failed. (errorCode: %d, errorMessage: %s)"), error->code, *error->message);
-                    }
-                }));
             }
             else
             {
-                // 确认错误代码后进行相应的处理。
+                // 确认错误代码后进行相关处理。
                 UE_LOG(GamebaseTestResults, Display, TEXT("AddMapping failed."));
             }
         }
     }));
 }
 ```
-
-
+  
 ### Remove Mapping
 
 解除特定IdP的关联。如果您要解除关联的IdP是唯一的IdP，则会返回失败。
@@ -795,11 +773,11 @@ void Sample::GetUserID()
 
 #### AccessToken
 
-可以获取Gamebase发行的访问令牌。
+可以获取Gamebase发行的Access Token。
 
 **API**
 
-支持的平台
+支持的平台  
 
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
@@ -841,14 +819,14 @@ void Sample::GetLastLoggedInProvider()
 
 ### Get Authentication Information for External IdP
 
-* 登录后可通过游戏服务器调用Gamebase Server API来获取外部认证IdP的访问令牌、用户ID及Profile等信息。
+* 登录后可通过游戏服务器调用Gamebase Server API来获取外部认证IdP的Access Token、用户ID及Profile等信息。
     * [Game > Gamebase > API指南 > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
 
 > <font color="red">[注意]</font><br/>
 >
 > * 为了安全起见，请通过游戏服务器调用外部IdP的认证信息。 
 > * 根据IdP类型，访问令牌可很快过期。
->     * 例如，登录Google后过2小时后访问令牌将过期。 
+>     * 例如，登录Google后过2小时后Access Token将过期。 
 >     * 如需用户信息，登录后直接调用Gamebase Server API。
 > * 使用"Gamebase.LoginForLastLoggedInProvider()" API登录时无法获取认证信息。
 >     * 如需用户信息，不需要使用"Gamebase.LoginForLastLoggedInProvider()"，而需通过与您要使用的IDPCode相同的{IDP_CODE}作为参数来调用"Gamebase.Login(IDP_CODE, callback)" API进行登录。
@@ -868,7 +846,7 @@ void Sample::GetLastLoggedInProvider()
 > <font color="red">[注意]</font><br/>
 > TransferAccountInfo仅在访客登录状态下可获得。
 > 使用TransferAccountInfo的账户转移仅可在访客登录状态或未登录状态下实现。
-> 若登录的访客账户已与其他外部IdP (Google, Facebook, PAYCO等)账户映射，则不支持账户转移。
+> 若登录的访客账户已与其他外部IdP (Google、Facebook、PAYCO等)账户映射，则不支持账户转移。
 
 ### Issue TransferAccount
 为转移访客账户，发放TransferAccountInfo。  
@@ -928,7 +906,7 @@ void Sample::QueryTransferAccount()
 
 ### Renew TransferAccount
 更新已获得的TransferAccountInfo信息。
-更新方法有”自动更新”与”手动更新”，可通过仅更新Password、同时更新ID与Password等的设置更新TransferAccountInfo信息。
+更新方法有“自动更新”与“手动更新”，可通过仅更新Password、同时更新ID与Password等的设置更新TransferAccountInfo信息。
 
 ```cpp
 void RenewTransferAccount(const FGamebaseTransferAccountRenewConfiguration& configuration, const FGamebaseTransferAccountDelegate& onCallback);
@@ -998,7 +976,7 @@ void Sample::TransferAccountWithIdPLogin(const FString& accountId, const FString
 
 ## TemporaryWithdrawal
 
-为“预约退出‘’功能。
+为“预约退出”功能。
 由于请求了临时退出，不立即退出，预约时期过后退出。
 可以在控制台中修改预约时期。
 
@@ -1130,17 +1108,71 @@ void Sample::WithdrawImmediately()
 }
 ```
 
+## GraceBan
+
+* 是“结算Abusing自动解除”功能。
+    * 结算Abusing自动解除功能是当存在需通过“结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。
+    * 处于“禁用预约”状态时，若在设定的时期内满足所有的解除条件则可玩游戏。
+    * 如果在所定的时期内未能满足条件，则将禁止使用。
+* 如果是使用结算Abusing自动解除功能的游戏，每当登录时要调用AuthToken.member.graceBanInfo API。若返还结果为有效的GraceBanInfo对象，而不为null，则需通知用户解除禁用的条件和时期等。
+    * 如需禁止处于禁用预约状态的用户进入游戏，则需在游戏中进行处理。
+
+**Example**
+
+```cpp
+void Sample::Login()
+{
+    IGamebase::Get().Login(GamebaseAuthProvider::Guest, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    {
+        if (Gamebase::IsSuccess(error) == false)
+        {
+            // Login failed
+            return;
+        }
+        
+        // Check if user is under grace ban
+        GamebaseResponse.Common.Member.GraceBanInfo graceBanInfo = authToken->member.graceBan;
+        if (graceBanInfo != null)
+        {
+            string periodDate = string.Format("{0:yyyy/MM/dd HH:mm:ss}", 
+                new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(graceBanInfo.gracePeriodDate));
+            string message = graceBanInfo.message;
+            
+            GamebaseResponse.Common.Member.GraceBanInfo.ReleaseRuleCondition releaseRuleCondition = graceBanInfo.releaseRuleCondition;
+            if (releaseRuleCondition != null)
+            {
+                // condition type : "AND", "OR"
+                string releaseRule = string.Format("{0}{1} {2} {3}time(s)", releaseRuleCondition.amount,
+                    releaseRuleCondition.currency, releaseRuleCondition.conditionType, releaseRuleCondition.count);
+            }
+            GamebaseResponse.Common.Member.GraceBanInfo.PaymentStatus paymentStatus = graceBanInfo.paymentStatus;
+            if (paymentStatus != null) {
+                String paidAmount = paymentStatus.amount + paymentStatus.currency;
+                String paidCount = paymentStatus.count + "time(s)";
+            }
+            // Guide the user through the UI how to finish the grace ban status.
+        }
+        else
+        {
+            // Login success.
+        }
+    }));
+}
+```
+
 ## Error Handling
 
-| Category | Error | Error Code | Description |
-| --- | --- | --- | --- |
-| Auth | INVALID_MEMBER | 6 | 请求了错误的成员。|
-|  | BANNED_MEMBER | 7 | 是受制裁的成员。|
-|  | AUTH_USER_CANCELED | 3001 | 登录被取消。|
-|  | AUTH_NOT_SUPPORTED_PROVIDER | 3002 | 是不支持的认证方式。|
-|  | AUTH_NOT_EXIST_MEMBER | 3003 | 是不存在或退出的成员。|
-|  | AUTH_EXTERNAL_LIBRARY_ERROR | 3009 | 外部认证库错误<br/> 请确认DetailCode和DetailMessage。|
-|  | AUTH_ALREADY_IN_PROGRESS_ERROR | 3010 | 未完成上一次的认证程序。
+| Category       | Error                                    | Error Code | Description                              |
+| -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
+| Auth           | INVALID\_MEMBER                          | 6          | 是对错误会员的请求。                        |
+|                | BANNED\_MEMBER                           | 7          | 是禁用用户。                               |
+|                | AUTH\_USER\_CANCELED                     | 3001       | 登录被取消。                            |
+|                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | 是不支持的认证方式。                        |
+|                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 是不存在或退出的会员。                      |
+|                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | 外部认证库初始化失败 |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部认证库错误 <br/> 请确认DetailCode和DetailMessage。  |
+|                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | 尚未完成上一个认证程序。 |
+|                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | 您已注销，因为Gamebase Access Token无效。<br/>请再尝试登录。 |   
 | TransferAccount| SAME\_REQUESTOR                          | 8          | 在同一个终端机使用了TransferAccount。|
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 使用访客账户之外的账户尝试了转移，或账户与访客之外的IdP关联。|
 |                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccount的有效期已过。|
@@ -1207,4 +1239,3 @@ else
 ```
 
 * 关于IdP SDK的错误代码，请参考相应Developer页面。
-ㄴ

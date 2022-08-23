@@ -87,7 +87,7 @@
 |                 | Android, UNITY<br/>IOS | UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE<br/>TCGB\_ERROR\_UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE | 6921       | 在控制台中未注册条款信息。|
 |                 | Android, UNITY<br/>IOS | UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY<br/>TCGB\_ERROR\_UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY | 6922       | 在控制台中未注册符合终端机国家代码的条款信息。|
 |                 | Android, UNITY<br/>IOS | UI\_TERMS\_UNREGISTERED\_SEQ<br/>TCGB\_ERROR\_UI\_TERMS\_UNREGISTERED\_SEQ | 6923       | 是未注册的条款Seq值。            |
-|                 | Android, UNITY<br/>IOS | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR<br/>TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924       | 未完成以前调用的Terms API。<br/>请稍后再试。|
+|                 | Android, UNITY<br/>IOS | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR<br/>TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924       | 未完成Terms API的调用。<br/>请稍后再试。|
 |                 | Android, UNITY         | UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925       | 条款Webview未终止的状态下再次被调用。|                                                       
 |                 | Android, UNITY<br/>IOS | UI\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_UI\_UNKNOWN\_ERROR | 6999       | 是未知错误(未定义的错误)。            |
 | WebView         | Android, UNITY<br/>IOS | WEBVIEW\_INVALID\_URL<br/>TCGB\_ERROR\_WEBVIEW\_INVALID\_URL           | 7001       | URL出错。           |
@@ -121,7 +121,7 @@
 |         | -4150001              | 传递了无效格式的JSON数据。 |
 |         | -5000001 ~ 15         | 内部系统错误 |
 | Gateway | -4010202              | 调用的APP ID无效 |
-|         | -4010203              | 无效的访问令牌 |
+|         | -4010203              | 无效的Access Token |
 |         | -4010204              | 禁用/退出（删除数据）/ 账户丢失等无效用户 |
 |         | -4010208              | Gamebase Access Token已过期或IdP Access Token已过期。|
 |         | -4040201              | 已调用API的NHN Cloud服务未启用时 <br/>- 例) 在未启用Leaderboard服务的状态下，通过Gamebase调用了Leaderboard API时<br/>或Gamebase本身未启用时 |

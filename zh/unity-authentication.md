@@ -282,14 +282,14 @@ public void LoginWithAdditionalInfo()
 
 ### Login with Credential
 
-是通过IdP提供的SDK在游戏中进行认证后，使用获取到的访问令牌，登录到Gamebase的接口。
+是通过IdP提供的SDK在游戏中进行认证后，使用获取到的Access Token，登录到Gamebase的接口。
 
 * Credential参数设置方法
 
 | keyname | a use | 值类型 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
 | GamebaseAuthProviderCredential.PROVIDER_NAME | 设定IdP类型                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid, hangame, weibo, kakaogame |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）。<br/>不用于Google认证。 |                                |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（Access Token）。<br/>不用于Google认证。 |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 输入登录Google后可以获取的认证码(Authorization Code)。 |
 | GamebaseAuthProviderCredential.GAMEBASE_ACCESS_TOKEN | 使用Gamebase访问令牌而非  IdP身份验证信息登录时使用。 |  |
 | GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | 允许在不注销Gamebase的情况下尝试其他帐户登录。 | **bool** |
@@ -548,7 +548,7 @@ public void AddMapping(string providerName)
 
 ### AddMapping with Credential
 
-游戏中直接使用ID Provider提供的SDK进行认证后，使用发行的访问令牌，进行GameBase AddMapping的接口。
+游戏中直接使用ID Provider提供的SDK进行认证后，使用发行的Access Token等，进行GameBase AddMapping的接口。
 
 
 * Credential参数设置方法
@@ -556,7 +556,7 @@ public void AddMapping(string providerName)
 | keyname | a use | 值类型 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
 | GamebaseAuthProviderCredential.PROVIDER_NAME | 设定IdP类型                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）。<br/>不用于Google认证。 |                                |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（Access Token）。<br/>不用于Google认证。 |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 输入登录Google后可以获取的认证码(Authorization Code)。 |                                          |
 
 > [TIP]
@@ -672,7 +672,7 @@ public void AddMappingForcibly(string idPName)
 
 ### Add Mapping Forcibly with Credential
 若特定IdP有已映射的账户，尝试**强制**映射。
-尝试**强制映射**时需要从AddMapping API获得的`ForcingMappingTicket`。
+尝试**强制映射**时需要从AddMapping API获得的“ForcingMappingTicket”。
 
 若调用Change Login API失败，上一个UserID保持登录状态。
 
@@ -815,7 +815,7 @@ public void GetUserID()
 
 #### AccessToken
 
-可以获取Gamebase发放的访问令牌。
+可以获取Gamebase发放的AccessToken。
 
 **API**
 
@@ -862,14 +862,14 @@ public void GetLastLoggedInProvider()
 
 ### Get Authentication Information for External IdP
 
-* 登录后，可通过游戏服务器调用Gamebase Server API来获取外部认证IdP的访问令牌、用户ID及Profile等信息。 
+* 登录后，可通过游戏服务器调用Gamebase Server API来获取外部认证IdP的Access Token、用户ID及Profile等信息。 
     * [Game > Gamebase > API指南 > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
 
 > <font color="red">[注意]</font><br/>
 >
 > * 为了安全起见，建议通过游戏服务器调用外部IdP的认证信息。
-> * 根据IDP类型，访问令牌可能很快过期。
->     * 例如，登录Google后过2小时，访问令牌将过期。
+> * 根据IDP类型，Access Token可能很快过期。
+>     * 例如，登录Google后过2小时，Access Token将过期。
 >     * 如果需要用户信息，登录后，请立即调用Gamebase Server API。
 > * 若使用"Gamebase.LoginForLastLoggedInProvider()" API登录时，则不能获取认证信息。 
 >     * 如果需要用户信息，通过将与要使用的IDPCode相同的{IDP_CODE}作为参数，而不将"Gamebase.LoginForLastLoggedInProvider()"作为参数来调用"Gamebase.Login(IDP_CODE, callback)" API进行登录。
@@ -1035,7 +1035,7 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 
 ## TemporaryWithdrawal
 
-是”预约退出”功能。
+是“预约退出”功能。
 由于请求了临时退出，不立即退出，预约时期过后退出。
 可以在控制台中修改预约时间。
 
@@ -1174,9 +1174,9 @@ public void SampleWithdrawImmediately()
 
 ## GraceBan
 
-* 是”结算Abusing自动解除”功能。
-    * 结算Abusing自动解除功能是当存在需通过”结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。
-    * 如果为”预约禁用”状态，在设定的时期内满足解除条件，则可正常玩游戏。
+* 是“结算Abusing自动解除”功能。
+    * 结算Abusing自动解除功能是当存在需通过“结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。
+    * 如果为“预约禁用状态”，在设定的时期内满足解除条件，则可玩游戏。
     * 若在所定的时期内未能满足条件，则会被禁用。
 * 登录使用结算Abusing自动解除功能的游戏后，始终要确认AuthToken.getGraceBanInfo() API值，如果返还GraceBanInfo对象，而不返还null，要向相关用户通知禁用解除条件、时期等。
     * 当需要控制处于预约禁用状态的用户进入游戏时，要在游戏中进行处理。

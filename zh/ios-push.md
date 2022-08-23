@@ -1,5 +1,10 @@
 ## Game > Gamebase > iOS SDK 使用指南 > Push
 
+> <font color="red">[注意]</font><br/>
+>
+> 使用3rd party结算Plug-In或模块（如Unreal或Unity）时，可能会影响Gamebase的结算功能。
+>
+
 ### Settings
 
 #### Apple Developer证书

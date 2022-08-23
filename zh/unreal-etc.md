@@ -51,12 +51,12 @@ FString GetDeviceLanguageCode() const;
 | zh-CN | Chinese-Simplified |
 | zh-TW | Chinese-Traditional |
 
-相关语言代码在”GamebaseDisplayLanguageCode”类中定义。
+相关语言代码在“GamebaseDisplayLanguageCode”类中定义。
 
 > <font color="red">[注意]</font><br/>
 >
 > Gamebase支持的语言代码区分大小写字母。
-> 若按”EN"或"zh-cn"进行设置，可能出现问题。
+> 若按“EN”或“zh-cn”进行设置，可能出现问题。
 
 ```cpp
 namespace GamebaseDisplayLanguageCode
@@ -178,7 +178,7 @@ void Sample::GetDisplayLanguageCode()
 
 1. 确认输入到的languageCode是否在localizedstring.json文件中定义。
 2. 初始化Gamebase时，确认终端机设置的语言代码是否在localizedstring.json文件中定义。( 一旦初始化DisplayLanguageCode值，即使终端机设置的语言被更改，也会保持初始值。）                          
-3. 自动设置Display Language的默认值”en”。  
+3. 自动设置Display Language的默认值“en”。  
 
 ### Country Code
 
@@ -189,7 +189,7 @@ void Sample::GetDisplayLanguageCode()
 
 * 返还USIM中存储的国家代码。
 * 即使USIM中的值当中有错误的国家代码，也不再确认，而直接返还。
-* 如果为空值，则返还”ZZ”。
+* 如果为空值，则返还“ZZ”。
 
 **API**
 
@@ -204,9 +204,9 @@ FString GetCountryCodeOfUSIM() const;
 #### Device Country Code
 
 * 不再进一步确认，直接返还从OS接收的终端机国家代码。                
-* OS按照”语言”设置自动选择终端机的国际代码。
+* OS按照“语言”设置自动选择终端机的国际代码。
 * 注册的语言为多个语言时，选择优先权最高的语言。
-* 如果为空值，则返还”ZZ”。
+* 如果为空值，则返还“ZZ”。
 
 **API**
 
@@ -224,7 +224,7 @@ FString GetCountryCodeOfDevice() const;
 * GetCountryCode API按以下顺序启动。 
     1. 如果USIM中的国家代码当中存在值，则不再确认，而直接返还。
     2. 如果USIM国家代码为空值，需要确认终端机国家代码，若存在值，则不再确认，而直接返还。
-    3. 若USIM、终端机国家代码为空值，则返还”ZZ”。 
+    3. 若USIM、终端机国家代码为空值，则返还“ZZ”。 
 
 ![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
@@ -240,7 +240,7 @@ FString GetCountryCode() const;
 
 ### Gamebase Event Handler
 
-* Gamebase通过”GamebaseEventHandler”事件系统处理各种事件。 
+* Gamebase通过**GamebaseEventHandler**事件系统处理各种事件。 
 * GamebaseEventHandler通过以下API添加或删除Listener。
 
 **API**
@@ -276,8 +276,13 @@ void Sample::AddEventHandler()
 {
     IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
     {
-        if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
-            message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
+        if (message.category.Equals(GamebaseEventCategory::LoggedOut))
+        {
+            auto loggedOutData = FGamebaseEventLoggedOutData::From(message.data);
+        }
+        else if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
+                 message.category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived) ||
+                 message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
         {
             auto serverPushData = FGamebaseEventServerPushData::From(message.data);
         }
@@ -314,24 +319,73 @@ void Sample::AddEventHandler()
 ```
 
 * Category在GamebaseEventCategory类中定义。 
-* 事件大体分为ServerPush、Observer、Purchase及Push，根据各Category将GamebaseEventMessage.data按以下表的方式转换为VO。 
+* 事件大体分为LoggedOut、ServerPush、Observer、Purchase及Push，根据各Category将GamebaseEventMessage.data按以下表的方式转换为VO。 
 
 | Event种类 | GamebaseEventCategory | VO转换方法 | 备注 |
 | --------- | --------------------- | ----------- | --- |
-| ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(message.data) | \- |
+| LoggedOut | GamebaseEventCategory::LoggedOut | FGamebaseEventLoggedOutData::From(message.data) | \- |
+| ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushAppKickOutMessageReceived<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(message.data) | \- |
 | Observer | GamebaseEventCategory::ObserverLaunching<br>GamebaseEventCategory::ObserverNetwork<br>GamebaseEventCategory::ObserverHeartbeat | FGamebaseEventObserverData::From(message.data) | \- |
 | Purchase - Promotion支付 | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(message.data) | \- |
 | Push - 接收消息 | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(message.data) | |
 | Push - 点击消息 | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) | |
 | Push - 动态点击 | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(message.data) | 点击RichMessage时启动。|
 
+#### Logged Out
+
+* 当Gamebase Access Token过期，需要登录函数调用来恢复网络会话时，会引发此事件。
+
+**Example**
+
+```cpp
+public void AddEventHandlerSample()
+{
+    Gamebase.AddEventHandler(GamebaseEventHandler);
+}
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+{
+    switch (message.category)
+    {
+        case GamebaseEventCategory.LOGGED_OUT:
+            {
+                GamebaseResponse.Event.GamebaseEventLoggedOutData loggedData = GamebaseResponse.Event.GamebaseEventLoggedOutData.From(message.data);
+                if (loggedData != null)
+                {
+                    // There was a problem with the access token.
+                    // Call login again.
+                }
+                break;
+            }
+    }
+}
+void Sample::AddEventHandler()
+{
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    {
+        if (message.category.Equals(GamebaseEventCategory::LoggedOut))
+        {
+            auto loggedOutData = FGamebaseEventLoggedOutData::From(message.data);
+            if (loggedData.IsValid() == true)
+            {
+                // There was a problem with the access token.
+                // Call login again.
+            }
+        }
+    }));
+}
+```
 
 #### Server Push
 
 * 是从Gamebase服务器向客户端终端机传送的消息。 
 * Gamebase支持的Server Push Type如下。
+  * GamebaseEventCategory::ServerPushAppKickOutMessageReceived
+    	* 如果在NHN Cloud Gamebase控制台中的**Operation > Kickout**中注册Kickout ServerPush消息，则与Gamebase连接的所有 客户端接收Kickout消息。
+        * 是在客户终端机接收服务器消息时立即启动的事件。
+        * 它可以用于在游戏运行时暂停游戏，例如“AutoPlay”。
     * GamebaseEventCategory::ServerPushAppKickOut
         * 通过在NHN Cloud Gamebase控制台的**Operation > Kickout**中注册Kickout ServerPush消息，将从与Gamebase连接的所有客户端接收Kickout消息。
+       * 在客户终端机接收服务器消息时显示弹窗，而当用户关闭该弹窗时启动此事件。 
     * GamebaseEventCategory::ServerPushTransferKickout
         * 将Guest账户成功转移至其他终端机时，从以前的终端机接收Kickout消息。
 
@@ -343,6 +397,7 @@ void Sample::AddEventHandler()
     IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
     {
         if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
+            message.category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived) ||
             message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
         {
             auto serverPushData = FGamebaseEventServerPushData::From(message.data);
@@ -359,7 +414,14 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
     if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut))
     {
         // Kicked out from Gamebase server.(Maintenance, banned or etc..)
+        // Kicked out from Gamebase server.(Maintenance, banned or etc.)
+        // And the game user closes the kickout pop-up.
         // Return to title and initialize Gamebase again.
+    }
+ else if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived))
+    {
+        // Currently, the kickout pop-up is displayed.
+        // If your game is running, stop it.
     }
     else if (message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
     {
@@ -591,7 +653,7 @@ void Sample::AddEventHandler()
 
 #### Push Click Message
 
-* 是点击”已接收的Push消息”时出现的事件。
+* 是点击“已接收的Push消息”时出现的事件。
 * 与“GamebaseEventCategory::PushReceivedMessage”不同，Android上的extras字段中没有**isForeground**信息。
 
 **Example**
@@ -797,9 +859,10 @@ Gamebase SDK的客户服务API根据各类型使用如下URL。
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
 | ------------- | ------------- | ---------------------------------- | ------------------ |
-| userName      | O             | FString                            | 用户名(nickname) <br>**default** : ""   |
-| additionalURL | O             | FString                              在开发公司客户服务URL后面添加的附加URL<br>**default** : ""    |
-| extraData     | O             | TMap<FString, FString>             | 开始客户服务时传送开发公司需要的extra data。<br>**default** : EmptyMap |
+| userName      | O             | FString                            | 用户名(nickname) <br>**default**: ""   |
+| additionalURL | O             | FString                            | 在开发公司客户服务URL后面添加的附加URL <br>**default**: ""    |
+| additionalParameters | O      | TMap<string, string>               | 客户服务URL后面添加的附加参数<br>**default** : EmptyMap |
+| extraData     | O             | TMap<FString, FString>             | 开始客户服务时传送开发公司需要的extra data。<br>**default**: EmptyMap |
 
 **API**
 
@@ -864,7 +927,7 @@ void Sample::OpenContact()
 >
 > iOS用户
 >
-> * 请在info.plist中设置”Privacy - Camera Usage Description”和”Privacy - Photo Library Usage Description”。 
+> * 请在info.plist中设置“Privacy - Camera Usage Description”和“Privacy - Photo Library Usage Description”。 
 
 #### Request Contact URL
 

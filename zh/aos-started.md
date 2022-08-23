@@ -7,7 +7,7 @@
 > [最低版本]
 >
 > * 用户运行环境 : Android API 16 (JellyBean, OS 4.1)以上
-> * 打包环境 : Android Gradle Plugin 3.2.0以上
+> * Build环境 : Android Gradle Plugin 3.2.0以上
 > * 开发环境 : Android Studio
 
 ### Dependencies
@@ -19,9 +19,9 @@
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | 支持Facebook登录。 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | 支持Google登录。 | - |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.5.2 | 支持Hangame登录。 | - |
-|  | gamebase-adapter-auth-line | linesdk-5.8.0 | 支持Line登录。 | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-line | linesdk-5.8.0 | 支持LINE登录。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | 支持Naver登录。 | - |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.7 | 支持Payco登录。 | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.7 | 支持PAYCO登录。 | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | 支持Twitter登录。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | 支持Weibo登录。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | 支持Weibo登录。 | - |
@@ -29,11 +29,12 @@
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.5<br>toast-iap-core | 支持游戏内支付。 | - |
 |  | gamebase-adapter-purchase-amazon | toast-iap-amazon | 支持Amazon Appstore。 | API 18(JellyBean MR2, OS 4.3) |
 |  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | 支持Galaxy Store。 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK的minSdkVersion是18，为了实际结算，需要设置的Checkout服务应用程序的minSdkVersion为21。 |
-|  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | 支持Google Store。 | - |
+|  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | 支持Google Play Store。 | - |
 |  | gamebase-adapter-purchase-huawei | toast-iap-huawei | 支持Huawei App Gallery。 | API 19(Kitkat, OS 4.4) |
-|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | 支持ONE Store。 | - |
+|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | 支持ONE store v17。<br>目前不支持v19。 | - |
+| gamebase-adapter-purchase-onestore-external | toast-iap-onestore-external | 支持ONE store外部支付功能。 | - |
 | Gamebase Push Adapters | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | 支持Push。 | - |
-|  | gamebase-adapter-push-adm | toast-push-adm | 支持Amazon Device Messaging | - |
+|  | gamebase-adapter-push-adm | toast-push-adm | 支持Amazon Device Messaging。 | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | 支持Firebase Notification。 | - |
 
 ## Setting
@@ -54,9 +55,9 @@
         * 目前ONE Store只支持v17。
         * 在ONE Store中创建应用程序时，请注意不要使用v19创建。
         * 正在检讨ONE Store v19支持。 
-	* [Game > Gamebase > Store控制台指南 > GALAXY Store控制台指南](./console-galaxy-guide)
-	* [Game > Gamebase > Store控制台指南 > Amazon Appstor控制台指南](./console-amazon-guide)
-	* [Game > Gamebase > Store控制台指南 > Huawei App Gallery控制台指南](./console-huawei-guide)
+	* [Game > Gamebase > Store控制台指南 > GALAXY控制台指南](./console-galaxy-guide)
+	* [Game > Gamebase > Store控制台指南 > Amazon控制台指南](./console-amazon-guide)
+	* [Game > Gamebase > Store控制台指南 > Huawei控制台指南](./console-huawei-guide)
     * 注册道具时，请参考以下指南。
         * [Game > Gamebase > 控制台使用指南 > 结算 > Register](./oper-purchase/#register_1)
 * 为了推送通知，要将推送通知服务认证书在Gamebase > 推送 > 认证书控制台中输入。
@@ -80,6 +81,7 @@
     * ONE store
         * [ONE store > APPS > 商品现状 > In-App信息 > 付费测试 > 注册/管理测试ID](https://dev.onestore.co.kr/wiki/ko/doc/%EA%B0%9C%EB%B0%9C%EB%8F%84%EA%B5%AC/api-v5-sdk-v17/%EA%B2%B0%EC%A0%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%B0%8F-%EB%B3%B4%EC%95%88#id-%EA%B2%B0%EC%A0%9C%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%B0%8F%EB%B3%B4%EC%95%88-%ED%85%8C%EC%8A%A4%ED%8A%B8ID%EB%93%B1%EB%A1%9D/%EA%B4%80%EB%A6%AC)
     * GALAXY Store
+        * [Samsung Developers > Samsung IAP > Technical Documents > Test Guide > 3. IAP Testing > 3.2 Test Type > (3) Production Closed Beta Test](https://developer.samsung.com/iap/iap-test-guide.html)
         * [GALAXY store > App > 已注册的App > Binary > Beta Test > 设置Tester](https://seller.samsungapps.com/application)
         * 只能在三星终端机上进行付费测试。 
     * Amazon Appstore
@@ -129,14 +131,14 @@
         
 #### Under AGP 3.4.0
 
-* Android Gradle Plugin版本低于3.4.0时将出现打包失败，因此需要添加以下声明。 
+* Android Gradle Plugin版本低于3.4.0时将出现Build失败，因此需要添加以下声明。 
     
         # gradle.properties
         # >>> Fix for AGP under 3.4.0
         android.enableD8.desugaring=true
         android.enableIncrementalDesugaring=false
     
-* 使用Unity时，如果Editor版本为2018.4.3或更低版本、为2019.1.6或更低版本，则会出现打包失败，因此需要添加以下声明。(AGP版本为3.2.0)
+* 使用Unity时，如果Editor版本为2018.4.3或更低版本、  2019.1.6或更低版本，则会出现Build失败，因此需要添加以下声明。(AGP版本为3.2.0)
         
         // mainTemplate.gradle
         ([rootProject] + (rootProject.subprojects as List)).each {
@@ -159,6 +161,9 @@ repositories {
     // >>> For Gamebase SDK
     mavenCentral()
     ...
+ 
+    // >>> [Huawei App Gallery]
+    maven { url 'https://developer.huawei.com/repo/' }
 }
 
 dependencies {
@@ -189,7 +194,7 @@ dependencies {
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-push-adm:$GAMEBASE_SDK_VERSION"
-    
+       
     // >>> 关于下一个模块儿的使用方法，请参考客户服务。
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangamejp:$GAMEBASE_SDK_VERSION"
@@ -217,17 +222,29 @@ android {
 
 ### Resources
 
+#### Huawei Store
+
+* 将AppGallery Connection配置文件(agconnect-service.json)添加在assets文件夹。 
+    * 登录[AppGallery Connect](https://developer.huawei.com/consumer/en/service/josp/agc/index.html)后 单机**我的项目**。
+    * 在项目中选择应用程序。
+    * 移动至**Project settings** > **General information**。
+    * 在**App information**中下载**agconnect-service.json**文件。
+    * 如果为Android Studio Build时
+        * 将**agconnect-service.json**文件复制到项目的**assets**文件夹。 
+    * 如果为Unity Build时
+        * 将**agconnect-service.json**文件复制到项目的**Assets/StreamingAssets**文件夹。
+
 #### Firebase Notification
 
-* 使用Android Studio build时
+* 使用Android Studio Build时
     * 使用Firebase推送功能时，请参考以下指南设置Firebase之后，将google-services.json文件添加在项目中。 
 		* [NHN Cloud > NHN Cloud SDK使用指南 > NHN Cloud Push > Android > 设置Firebase Cloud Messaging](/TOAST/ko/toast-sdk/push-android/#firebase-cloud-messaging)
-* 如果使用Unity build
+* 如果使用Unity Build
     * 如果已设置Firebase Unity SDK Package，则使用以下命令执行**generate_xml_from_google_services_json.exe**文件，将json文件转换为xml文件。
             
             "{UnityProject}\Firebase\Editor\generate_xml_from_google_services_json.exe" -i "{JsonFilePath}\google-services.json" -o "{UnityProject}\Assets\Plugins\Android\res\values\google-services.xml" -p "{PackageName}"
             
-    * 如果未设置Firebase Unity SDK Package，则需在”Firebase Console > 项目设置”中下载google-services.json文件，按照如下指南制作string resource(xml)文件后添加在”Assets/Plugins/Android/res/values/”文件夹里。
+    * 如果未设置Firebase Unity SDK Package，则需在“Firebase Console > 项目设置”中下载google-services.json文件，按照如下指南制作string resource(xml)文件后添加在“Assets/Plugins/Android/res/values/”文件夹。
         根据Firebase服务联动，google-services.json文件的内容可能会有所不同。
         ![Download google-services.json](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
         * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
@@ -247,8 +264,8 @@ android {
 </resources>
 ```
 
-* 如果是Unreal打包，当前在发布包含空google-service-json.xml文件的Gamebase Unreal SDK，因此需要修改为符合相关游戏信息的值。
-    * 如果有自动生成类似于EasyFirebase格式的XML的Content，因资源的重复，可能出现打包错误。这时需要删除google-service-json.xml文件。
+* 如果是Unreal Build，当前在发布包含空google-service-json.xml文件的Gamebase Unreal SDK，因此需要修改为符合相关游戏信息的值。
+    * 如果有自动生成类似于EasyFirebase格式的XML的Content，因资源的重复，可能出现Build错误。这时需要删除google-service-json.xml文件。
 
 ### AndroidManifest.xml
 
@@ -256,7 +273,7 @@ android {
 
 * 初始化Facebook SDK时，需要在AndroidManifest.xmlApp中声明App ID。
     * 如下列所示，若设置方式是可以参考resources的，则不必将其值直接在AndroidManifest.xml中声明。
-    * 但目前，在Gamebase SDK内已调用初始化Facebook SDK的函数，不必设置。
+    * 但目前在Gamebase SDK内已调用初始化Facebook SDK的函数，不必设置。
 
 **AndroidManifest.xml**
 
@@ -281,9 +298,9 @@ android {
 </resources>
 ```
 
-#### Line IdP
+#### LINE IdP
 
-* 因已在Line SDK中声明为**android:allowBackup="false"**，应用程序打包时，有可能在Manifest merger出现fail。如果打包失败，按照下面的示例，请将**tools:replace=“android:allowBackup”**声明添加到应用程序标签中。
+* 因已在LINE SDK中声明为**android:allowBackup="false"**，应用程序Build时，有可能在Manifest merger出现fail。如果Build失败，按照下面的示例，请将**tools:replace=“android:allowBackup”**声明添加到应用程序标签中。
 
 ```xml
 <application
@@ -354,6 +371,10 @@ android {
 **Example**
 
 ```xml
+<!-- When you have multiple applications sharing an Gamebase project, use this field to identify each application. -->
+<meta-data android:name="com.nhncloud.sdk.push.deviceId.salt"
+           android:value="ApplicationForGoogleStore" />
+
 <!-- Notification priority -->
 <meta-data android:name="com.toast.sdk.push.notification.default_priority"
            android:value="1"/>
@@ -386,27 +407,28 @@ android {
 
 | meta-data key | value type | description |
 | ------------- | ---------- | ----------- |
+| com.nhncloud.sdk.push.deviceId.salt | String | 如果不同的应用程序连接于一个Gamebase项目时，有可能推送不正常启动。<br/>要对每个应用程序分别指定任意的“salt”值。 |
 | com.toast.sdk.push.notification.default_priority | int | 优先顺序<br/>可设置以下5个值。<br/>NoticationComapt.PRIORITY_MIN : -2<br/> NoticationComapt.PRIORITY_LOW : -1<br/>NoticationComapt.PRIORITY_DEFAULT : 0<br/>NoticationComapt.PRIORITY_HIGH : 1<br/>NoticationComapt.PRIORITY_MAX : 2 |
 | com.toast.sdk.push.notification.default_background_color | int | 背景色 |
 | com.toast.sdk.push.notification.default_light_color | int | LED色 |
 | com.toast.sdk.push.notification.default_light_on_ms | int | LED灯亮的时间 |
 | com.toast.sdk.push.notification.default_light_off_ms | int | LED灯灭的时间 |
 | com.toast.sdk.push.notification.default_small_icon | resource id | 小图标的资源标识符 |
-| com.toast.sdk.push.notification.default_sound | String | 提示音文件名<br/>只在安卓8.0以下OS上运行。<br/>如果指定”res/raw”文件夹的mp3、wav文件名，则可更改提示音。 |
+| com.toast.sdk.push.notification.default_sound | String | 提示音文件名<br/>只在安卓8.0以下OS上运行。<br/>如果指定“res/raw”文件夹的mp3、wav文件名，则可更改提示音。 |
 | com.toast.sdk.push.notification.default_vibrate_pattern | long[] | 震动模式 |
 | com.toast.sdk.push.notification.badge_enabled | boolean | 是否使用badge图标 |
 | com.toast.sdk.push.notification.foreground_enabled | boolean | 是否使用foreground通知 |
 
 ### Android 11
 
-* Android 11打包时，只能运行在AndroidManifest.xml中提前声明的应用程序。
+* Android 11 Build时，只能运行在AndroidManifest.xml中提前声明的应用程序。
     * [https://developer.android.com/about/versions/11/privacy/package-visibility](https://developer.android.com/about/versions/11/privacy/package-visibility)
 * 为此，如果要将targetSdkVersion设置为30以上，通过**queries**标签必须在AndroidManifest.xml中声明允许运行的应用程序。
 
 > <font color="red">[注意]</font><br/>
 >
-> * 如果以前的Android Gradle Plugin(AGP)认知不到”queries”标签，将出现打包失败。
-> * 通过参考以下指南和列表，请升级到可进行”queries”标签打包的AGP版本。 
+> * 如果以前的Android Gradle Plugin(AGP)认知不到“queries”标签，将出现Build失败。
+> * 通过参考以下指南和列表，请升级到可进行“queries”标签Build的AGP版本。 
 >     * [https://android-developers.googleblog.com/2020/07/preparing-your-build-for-package-visibility-in-android-11.html](https://android-developers.googleblog.com/2020/07/preparing-your-build-for-package-visibility-in-android-11.html)
 >     * 如果使用AGP 3.2.*以下版本，请升级到3.3.3以上。
 >     * 如果使用AGP 4.1.0以上版本，则不用进行AGP升级。
@@ -439,9 +461,9 @@ android {
         <package android:name="com.facebook.katana" />
         <!-- [Facebook] Configurations end -->
 
-        <!-- [Payco/Hangame] Configurations begin -->
+        <!-- [PAYCO/Hangame] Configurations begin -->
         <package android:name="com.nhnent.payapp" />
-        <!-- [Payco/Hangame] Configurations end -->
+        <!-- [PAYCO/Hangame] Configurations end -->
 
         <!-- [Hangame] Configurations begin -->
         <package android:name="com.nhn.hangameotp" />
@@ -456,14 +478,14 @@ android {
         <package android:name="nh.smart.nhallonepay" />
         <!-- [Hangame] Configurations end -->
 
-        <!-- [Line] Configurations begin -->
+        <!-- [LINE] Configurations begin -->
         <package android:name="jp.naver.line.android" />
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.BROWSABLE" />
             <data android:scheme="https" />
         </intent>
-        <!-- [Line] Configurations end -->
+        <!-- [LINE] Configurations end -->
         
         <!-- [Naver] Configurations begin -->
         <package android:name="com.nhn.android.search" />
@@ -499,10 +521,19 @@ android {
 </manifest>
 ```
 
+* 在Amazon Appstore添加**QUERY_ALL_PACKAGES**权限，而不是 “queries”因素。 
+
+> <font color="red">[注意]</font><br/>
+>
+> * **QUERY_ALL_PACKAGES**权限是专用于Amazon Appstore的声明，因此注意进行Google Play  Build时不应用。 
+
 ### Proguard
 
 * Amazon Device Messaging
-    * [https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
+      * 在Amazon Device Messaging(ADM)使用Proguard时，请参考以下指南后应用。
+                * [NHN Cloud > SDK使用指南> TOAST Push > Android > 设置Amazon Device Messaging > 下载ADM SDK ](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
+               * [NHN Cloud > SDK使用指南 > TOAST Push > Android > 设置Amazon Device Messaging > 设置Proguard ](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)   
+     * [https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
     * [https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)
 * 将Proguard应用于gamebase 2.21.0或低于2.21.0版本时，若调用结算API而不添加Proguard Rule，则将发生崩溃。
     * 在Gamebase 2.21.0版本上已被修改。
@@ -525,7 +556,7 @@ android {
 * 当您启动游戏、初始化Gamebase客户端SDK并成功登录时，请进行“支付再处理”并注册推送令牌。
 ![overview flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.30.1.png)
 
-* 通过以下链接确认具体的Flow。
+* 通过以下链接查看具体的Flow。
     * [Game > Gamebase > Android SDK 使用指南 > ETC > Additional Features > Gamebase Event Handler](./aos-etc/#gamebase-event-handler)
     * [Game > Gamebase > Android SDK 使用指南 > 初始化 > Initialization Flow](./aos-initialization/#initialization-flow)
     * [Game > Gamebase > Android SDK 使用指南 > 认证 > Login Flow](./aos-authentication/#login-flow)
@@ -536,11 +567,11 @@ android {
 
 * [Facebook for developers](https://developers.facebook.com/docs/android)
 * [Google APIs for Android](https://developers.google.com/android/guides/overview)
-* [Naver for developers](https://developers.naver.com/docs/login/android/)
+* [NAVER for developers](https://developers.naver.com/docs/login/android/)
 * [Twitter Android Developer's guide - Log in with Twitter](https://dev.twitter.com/web/sign-in/implementing)
 * [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
-* [Line for developers](https://developers.line.biz/en/docs/android-sdk/integrate-line-login/)
-* [Payco Login SDK for developers](https://developers.payco.com/guide/development/apply/android)
+* [LINE for developers](https://developers.line.biz/en/docs/android-sdk/integrate-line-login/)
+* [PAYCO Login SDK for developers](https://developers.payco.com/guide/development/apply/android)
 * [Sign in with Apple JS guide](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js)
 * [Weibo for developers](https://github.com/sinaweibosdk/weibo_android_sdk/blob/master/2019SDK/文档)
 * [Kakaogame SDK 3.0 Guide for Channeling](https://kakaogames.atlassian.net/wiki/spaces/KS3GFC/overview)
