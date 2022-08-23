@@ -3,24 +3,24 @@
 ### 2.42.1 (2022. 08. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
-* FGamebaseForcingMappingTicket 클래스에 매핑 유저 상태를 나타내는 mappedUserValid 필드가 추가되었습니다.
-*  [iOS 설정 툴](./unreal-started/#ios-settings)에서 Xcode의 경로를 지정할 수 있도록 **Xcode Path** 설정이 추가되었습니다.
+#### Added Features
+* Added the mappedUserValid field that represents the mapped user status to the FGamebaseForcingMappingTicket class.
+* Added the **Xcode Path** setting to specify the path for Xcode in [iOS Setting Tool](./unreal-started/#ios-settings).
 
-#### 기능 개선/변경
-* 킥아웃 팝업 창 표시 여부는 Gamebase 콘솔에서 킥아웃 등록 시 설정할 수 있으므로 다음 필드는 더 이상 사용하지 않습니다
+#### Feature Updates
+* The following field has been deprecated because whether to display the kickout popup window can be set during kickout registration in the Gamebase console.
     * **FGamebaseConfiguration.enableKickoutPopup**
-* FGamebaseConfiguration 내 일부 필드에 기본값이 추가되었습니다.
-    * enableLaunchingStatusPopup의 기본값이 true로 설정되었습니다.
-    * enableBanPopup의 기본값이 true로 설정되었습니다.
-* FWebView에서 고정 폰트 사이즈 사용 여부를 설정하는 필드는 더 이상 사용되지 않습니다.
+* Default values have been added to some fields in FGamebaseConfiguration.
+    * The default value of enableLaunchingStatusPopup is set to true.
+    * The default value of enableBanPopup is set to true.
+* The field to set whether to use the fixed font size in FWebView is no longer used.
     * **FGamebaseWebViewConfiguration.enableFixedFontSize**
-* FGamebaseWebViewConfiguratio 내 일부 필드에 기본 값이 추가되었습니다.
-    * 네비게이션 바의 색상 필드인 colorR, colorG, colorB, colorA의 기본값이 18, 93, 230, 255으로 설정되었습니다.
-    * 네비게이션 바 활성 여부를 지정하는 필드인 isNavigationBarVisible의 기본값이 true로 설정되었습니다.
-    * 웹뷰 내 뒤로가기 버튼 활성 여부를 지정하는 필드인 isBackButtonVisible의 기본값이 true로 설정되었습니다.
+* Default values have been added to some fields in FGamebaseWebViewConfiguration.
+    *  The default values of navigation bar colorR, colorG, colorB, and colorA are set to 18, 93, 230, 255.
+    * The default value of the isNavigationBarVisible field to enable the navigation bar is set to true.
+    * The default value of the isBackButtonVisible field to enable the Go Back button in WebView is set to true.
     
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.42.1](./release-notes-android/#2421-2022-07-26)
 * [Gamebase iOS SDK 2.42.1](./release-notes-ios/#2421-2022-08-09)
 

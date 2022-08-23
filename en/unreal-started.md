@@ -121,8 +121,10 @@ See below for relevant guides.
 1. Select the editor menu **Edit > Project Settings**.
 2. In the Project Settings window, select **Gamebase - iOS** from the Plugin category.
 
-![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.40.0.png)
+![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.42.1.png)
 
+* Path
+    * Xcode Path: Enter the path of Xcode. (default: /Applications/Xcode.app)
 * Authentication
     * Enable the IdP to use.
 * Purchase

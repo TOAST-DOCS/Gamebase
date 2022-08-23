@@ -45,10 +45,10 @@ void Sample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 co
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| colorR                   | 0 - 255                                    | Navigation bar color R            |
-| colorG                   | 0 - 255                                    | Navigation bar color G                |
-| colorB                   | 0 - 255                                    | Navigation bar color B                |
-| colorA                   | 0 - 255                                    | Navigation bar color Alpha                |
+| colorR                   | 0~255                                    | Background color R            |
+| colorG                   | 0~255                                    | Backgrouond color G                |
+| colorB                   | 0~255                                    | Background color B                |
+| colorA                   | 0~255                                    | Background color Alpha                |
 | timeOut                  | int64        | Image notice max loading time (in millisecond)<br/>**default**: 5000                     |
 
 
@@ -411,23 +411,22 @@ void Sample::ShowWebView(const FString& url)
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
 | title                    | FString                                   | Title of WebView                  |
-| orientation              | GamebaseScreenOrientation::Unspecified    | Unspecified |
+| orientation              | GamebaseScreenOrientation::Unspecified    | Unspecified (**default**)            |
 |                          | GamebaseScreenOrientation::Portrait       | Portrait mode                       |
 |                          | GamebaseScreenOrientation::Landscape      | Landscape mode                       |
 |                          | GamebaseScreenOrientation::LandscapeReverse | Rotate portrait mode 180 degrees            |
-| contentMode              | GamebaseWebViewContentMode::Recommended        | Browser recommended by the current platform    |
+| contentMode              | GamebaseWebViewContentMode::Recommended        | Browser recommended by the current platform (**default**)   |
 |                          | GamebaseWebViewContentMode::Mobile             | Mobile browser            |
 |                          | GamebaseWebViewContentMode::Desktop            | Desktop browser          |
-| colorR                   | 0~255                                    | Color R of Navigation Bar            |
-| colorG                   | 0~255                                    | Color G of Navigation Bar                |
-| colorB                   | 0~255                                    | Color B of Navigation Bar                |
-| colorA                   | 0~255                                    | Color alpha of Navigation Bar                |
-| isBackButtonVisible            | true or false                            | Activate or deactivate Go Back button          |
-| barHeight                | height                                   | Height of Navigation Bar                  |
-| backButtonImageResource  | ID of resource                           | Image of Go Back button                |
-| closeButtonImageResource | ID of resource | Image of Close button |
-| url | "http://" or "https://" or "file://" | Web URL |
-| enableFixedFontSize      | true or false                            | Enable or disable fixed font size<br/>**Android Only** |
+| colorR                   | 0~255                                    | Color R of Navigation Bar<br>**default**: 18               |
+| colorG                   | 0~255                                    | Color G of Navigation Bar<br>**default**: 93               |
+| colorB                   | 0~255                                    | Color B of Navigation Bar<br>**default**: 230              |
+| colorA                   | 0~255                                    | Color alpha of Navigation Bar<br>**default**: 255          |
+| barHeight                | height                                   | Height of Navigation Bar<br>**Android Only**                 |
+| isNavigationBarVisible   | true or false                            | Activate or deactivate Navigation Bar<br>**default**: true    |
+| isBackButtonVisible      | true or false                            | Activate or deactivate Go Back button<br>**default**: true   |
+| backButtonImageResource  | ID of resource                           | Image of Go Back button         |
+| closeButtonImageResource | ID of resource                           | Image of Close button            |
 
 > [TIP]
 >

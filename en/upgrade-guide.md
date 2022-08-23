@@ -1,5 +1,32 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.42.1
+
+### Unity
+    
+#### Changed/Deprecated APIs
+* The enableFixedFontSize field in FGamebaseWebViewConfiguration is no longer supported.
+* Default values have been added to some fields of GamebaseWebViewConfiguration, which may behave differently if no values are set.
+    * The default values of navigation bar color R, colorG, colorB, and colorA are set to 18, 93, 230, 255.
+    * The default value of the isNavigationBarVisible field to enable the navigation bar is set to true.
+    * The default value of the isBackButtonVisible field to enable Go Back button in the webview is set to true.
+
+### Unreal
+
+* (iOS) Added the**Xcode Path** setting to change the path of Xcode in [the iOS Settings tool](./unreal-started/#ios-settings).
+    * If you don’t change the path, it is set to default (default: /Applications/Xcode.app).
+
+#### Changed/Deprecated APIs
+* The enableKickoutPopup property of FGamebaseConfiguration is no longer supported.
+* Default values have been added to some fields in FGamebaseConfiguration, which may behave differently if no values are set.
+    * The default value of enableLaunchingStatusPopup is set to true.
+    * The default value of enableBanPopup is set to true.
+* The enableFixedFontSize field in FGamebaseWebViewConfiguration is no longer supported.
+* Default values have been added to some fields in FgamebaseWebViewConfiguration, which may behave differently if no values are set.
+    * The default values of navigation bar color R, colorG, colorB, and colorA are set to 18, 93, 230, 255.
+    * The default value of the isNavigationBarVisible field to enable the navigation bar is set to true.
+    * The default value of the isBackButtonVisible field to enable the Go Back button in WebVeiw is set to true.
+
 ## 2.41.0
 
 ### Android
