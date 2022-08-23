@@ -1,4 +1,4 @@
-## Game > Gamebase > Unreal SDK使用指南 > 初始化
+ ## Game > Gamebase > Unreal SDK使用指南 > 初始化
 
 若需使用Gamebase Unreal SDK，必须先进行初始化。此外，必须在TOAST控制台中注册应用程序ID和版本信息。
 
@@ -23,19 +23,18 @@
 | enablePopup | ALL | O |
 | enableLaunchingStatusPopup | ALL | O |
 | enableBanPopup | ALL | O |
-| enableKickoutPopup | ALL | O |
 
 #### 1. App ID
  
 是在Gamebase Console中注册的项目ID。
 
-[Console Guide](./oper-app/#app)
+[Game > Gamebase > 控制台使用指南 > 应用程序 > App](./oper-app/#app)
 
 #### 2. appVersion
 
 是在Gamebase Console中注册的客户端版本。
 
-[Console Guide](./oper-app/#client)
+[Game > Gamebase > 控制台使用指南 > 应用程序 > Client](./oper-app/#client)
 
 #### 3. storeCode
 
@@ -51,7 +50,7 @@
 
 可以将Gamebase提供的UI和SystemDialog显示的语言更改为终端机设置的语言以外的其他语言。 
 
-[Display Language](./unreal-etc/#display-language)
+[Game > Gamebase > Unreal SDK使用指南 > ETC > Additional Features > Display Language](./unreal-etc/#display-language)
 
 #### 5. enablePopup
 
@@ -74,13 +73,6 @@ LaunchingStatus为不能玩游戏的状态时，通过此设置可以选择是�
 游戏用户已被禁止登陆游戏时，通过此设置可以选择是否使用Gamebase提供的弹窗。
 
 * 默认值 : true
-
-#### 8. enableKickoutPopup
-
-从Gamebase Server接收Kickout事件时，通过此设置可以选择是否使用Gamebase提供的弹窗。 
-
-* 默认值 : true
-
 
 ### Debug Mode
 
@@ -138,7 +130,14 @@ void Initialize(const FGamebaseConfiguration& configuration, const FGamebaseLaun
 ```cpp
 void Sample::Initialize(const FString& appID, const FString& appVersion)
 {
-    FGamebaseConfiguration configuration{ "AppID", "AppVersion", "real", GamebaseDisplayLanguageCode.Korean, true, true, true, true, GamebaseStoreCode.Google, true };
+     FGamebaseConfiguration configuration;
+     configuration.appID = appID;
+     configuration.appVersion = appVersion;
+     configuration.storeCode = GamebaseStoreCode.Google;
+     configuration.displayLanguageCode = GamebaseDisplayLanguageCode.Korean;
+     configuration.enablePopup = true;
+     configuration.enableLaunchingStatusPopup = true;
+     configuration.enableBanPopup = true;  
 
     IGamebase::Get().Initialize(configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* error)
     {
@@ -212,21 +211,21 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 
 有关状态代码，请参考如下。
 
-| Status                      | Status Code | Description                                    |
-| --------------------------- | ----------- | ---------------------------------------- |
-| IN_SERVICE | 200 | 在服务中 |
-| RECOMMEND_UPDATE | 201 | 推荐更新 |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202         | 进行维护时不能使用服务，但注册为QA终端机时，即使在进行维护，也可连接服务进行测试。|
+| Status                      | Code | Description                              |
+| --------------------------- | ---- | ---------------------------------------- |
+| IN_SERVICE                  | 200  | 在服务中                                 |
+| RECOMMEND_UPDATE            | 201  | 推荐更新                                  |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202  | 进行维护时不能使用服务，但注册为QA终端机时，即使在进行维护，也可连接服务进行测试。 |
 | IN_TEST                     | 203  | 正在测试 |
 | IN_REVIEW                   | 204  | 正在审核 |
-| REQUIRE_UPDATE | 300 | 必须更新 |
-| BLOCKED_USER                | 301         | 使用注册为禁止访问的终端机(device key)访问了服务。|  
-| TERMINATED_SERVICE          | 302         | 终止服务                                   |
-| INSPECTING_SERVICE          | 303         | 服务正在维护中                                 |
-| INSPECTING_ALL_SERVICES     | 304         | 正在进行系统的全面检查                             |
-| INTERNAL_SERVER_ERROR       | 500         | 内部服务器错误                                 |
+| REQUIRE_UPDATE              | 300  | 必须更新                                  |
+| BLOCKED_USER                | 301  | 使用注册为禁止访问的终端机(device key)访问了服务。 |
+| TERMINATED_SERVICE          | 302  | 终止服务                                   |
+| INSPECTING_SERVICE          | 303  | 服务正在维护中                                 |
+| INSPECTING_ALL_SERVICES     | 304  | 正在进行系统的全面检查                              |
+| INTERNAL_SERVER_ERROR       | 500  | 内部服务器错误                                 |
 
-[Console Guide](./oper-app/#app)
+[Game > Gamebase > 控制台使用指南 > 应用程序 > App](./oper-app/#app)
 
 **1.2 App**
 
@@ -245,7 +244,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 * install : 安装URL
 * idP : 认证信息
 
-[Console Guide](./oper-app/#client)
+[Game > Gamebase > 控制台使用指南 > 应用程序 > Client](./oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -256,8 +255,9 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 * beginDate : 开始时间 
 * endDate : 终止时间
 * message : 维护原因
+* hideDate : 是否显示维护的开始时间和结束时间
 
-[Console Guide](./oper-operation/#maintenance)
+[Game > Gamebase > 控制台使用指南 > 运营 > Maintenance](./oper-operation/#maintenance)
 
 **1.4 Notice**
 
@@ -267,7 +267,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 * title : 标题
 * url : 维护URL
 
-[Console Guide](./oper-operation/#notice)
+[Game > Gamebase > 控制台使用指南 > 运营 > Notice](./oper-operation/#notice)
 
 #### 2. tcProduct
 
@@ -286,7 +286,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 * name: App Name
 * storeCode: Store Code
  
-[Console Guide](./oper-purchase/)
+[Game > Gamebase > 控制台使用指南 > 结算](./oper-purchase/)
 
 #### 4. tcLaunching
 
@@ -295,7 +295,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 * 以JSON string格式传送用户输入的值。
 * 关于TOAST Launching的详细设置，请参考以下指南。 
  
-[Console Guide](./oper-management/#config)
+[Game > Gamebase > 控制台使用指南 > 管理 > Config](./oper-management/#config)
 
 ### Get Launching Information
 

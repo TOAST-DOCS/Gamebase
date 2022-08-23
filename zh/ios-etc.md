@@ -17,7 +17,7 @@
 >
 > 如果在iOS 14以上版本上请求IDFA值，则需要获得用户权限。
 > 需要设定用户权限时，在info.plist中设定您要显示的内容。 
-> 请在info.plist中设定”Privacy - Tracking Usage Description”。
+> 请在info.plist中设定“Privacy - Tracking Usage Description”。
 
 
 
@@ -41,7 +41,7 @@
 但有些游戏允许通过额外选项更改终端机设置的语言。
 终端机设置的默认语言是英语，但需将游戏的显示语言转换为日语时，即使要将Gamebase的显示语言也转换为日语，Gamebase仍显示终端机设置的默认语言（en）。
 
-因此Gamebase向需以终端机设置语言之外的其他语言显示Gamebase消息的应用程序，提供”Display Language“功能。
+因此Gamebase向需以终端机设置语言之外的其他语言显示Gamebase消息的应用程序，提供“Display Language”功能。
 
 Gamebase显示消息时，按照注册为Display Language的语言显示消息。
 在Display Language输入语言代码时，只能使用以下列表中（**Gamebase支持的语言代码种类**）指定的代码。
@@ -50,7 +50,7 @@ Gamebase显示消息时，按照注册为Display Language的语言显示消息�
 >
 > * 无论终端机设置的语言如何，只需更改Gamebase显示的语言时使用Display Language Gamebase功能。
 > * 显示Display Language Code时要以ISO-639格式显示，并且要区分英文字母的大小写。 
-> 若按”EN"或"zh-cn"进行设置，可能出现问题。
+> 若按“EN”或“zh-cn”进行设置，可能出现问题。
 > * 若输入的Display Language Code值不在以下列表时（**Gamebase支持的语言代码种类**）, Display Langauge Code将会设置为Gamebase控制台中设置的默认语言。
 >   * 如果未在Gamebase控制台中设置需要使用的语言集，则会自动设置为英语(en)。
 
@@ -261,7 +261,7 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
  
 * 返回USIM中记录的国家代码。
 * 即使USIM中记录的是错误的国家代码也将不进行补充确认就直接返回。
-* 若值为空，则返回”ZZ”。
+* 若值为空，则返回“ZZ”。
 
 **API**
 
@@ -287,7 +287,7 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 * country API按照如下顺序运行。
     1.确认USIM中记录的国家代码，若存在值，则直接返回，不另行确认。
     2.若USIM国家代码为空值，确认终端机国家代码，若存在值，则直接返回，不另行确认。
-    3.若USIM、终端机国家代码均为空值，则返回”ZZ”。
+    3.若USIM、终端机国家代码均为空值，则返回“ZZ”。
 
 ![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
@@ -408,7 +408,7 @@ Not translated yet
 * Gamebase支持的Server Push Type如下。  
 	* kTCGBServerPushAppKickoutMessageReceived
     	*  如果在NHN Cloud Gamebase控制台**Operation > Kickout**中注册Kickout ServerPush消息，则从与Gamebase连接的所有客户端接收Kickout消息。
-        * 是当从客户端终端机接收了服务器消息时启动的事件。
+        * 是当从客户端终端机接收了服务器消息时出现的事件。
         * 正如“Autoplay”，当游戏运行时，它可以用于暂停游戏。
 	* kTCGBServerPushAppKickout
     	* 从NHN Cloud Gamebase控制台**Operation > Kickout**中注册Kickout ServerPush消息，则从与Gamebase连接的所有客户端接收Kickout消息。
@@ -595,7 +595,7 @@ Not translated yet
 
 #### Push Click Message
 
-* 是点击”已接收的Push消息”时出现的事件。
+* 是点击“已接收的Push消息”时出现的事件。
 
 **Example**
 
@@ -779,9 +779,10 @@ Gamebase SDK的客户服务API根据类型使用以下URL。
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
 | ------------- | ------------- | ---------------------------------- | ------------------ |
-| userName      | O             | string                             | 用户名(nickname)<br>**default** : nil    | 
-| additionalURL | O             | string                             | 是添加在开发公司自建客户服务URL后面的附加URL。<br>只能在客户服务类型为”CUSTOM”时使用。<br>**default** : nil    |
-| extraData     | O             | dictionary<string, string>         | 客户服务open时传送开发公司需要的extra data。<br>**default** : nil    | 
+| userName      | O             | string                             | 用户名(nickname)<br>**default**: nil    |
+| additionalURL | O             | string                             | 添加在开发公司自建客户服务URL后面的附加URL<br>只能在客户服务类型为“CUSTOM”时使用。<br>**default**: nil    |
+| additionalParameters | O      | dictionary&lt;string, string&gt;         | 添加在客户服务URL后面的附加URL<br>**default**: nil    |
+| extraData     | O             | dictionary&lt;string, string&gt;         | 当开始客户服务时传送开发公司需要的extra data。<br>**default**: nil    |
 
 **API**
 
@@ -799,7 +800,7 @@ Gamebase SDK的客户服务API根据类型使用以下URL。
 | Error                           | Error Code | Description                 |
 | ------------------------------- | ---------- | --------------------------- |
 | TCGB\_ERROR\_NOT\_INITIALIZED | 1       | 未调用Gamebase。|
-| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2       | 客户服务的类型为”NHN Cloud Online Contact”时，登录前已调用了函数。|
+| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2       | 客户服务的类型为“NHN Cloud Online Contact”时，登录前已调用了函数。|
 | TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 客户服务URL不存在。<br>请确认Gamebase控制台中的**客户服务URL**。|
 | TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 识别用户的临时ticket发放失败 |
 
@@ -821,7 +822,7 @@ Gamebase SDK的客户服务API根据类型使用以下URL。
 > <font color="red">[注意]</font><br/>
 > 
 > 向客服提问时，为了添附文件可能需要允许访问相机或相册权限。
-> 请在info.plist设置”Privacy - Camera Usage Description“和”Privacy - Photo Library Usage Description”。 
+> 请在info.plist设置“Privacy - Camera Usage Description”和“Privacy - Photo Library Usage Description”。 
 
 #### Request Contact URL
 
@@ -841,7 +842,7 @@ Gamebase SDK的客户服务API根据类型使用以下URL。
 | Error                           | Error Code | Description                 |
 | ------------------------------- | ---------- | --------------------------- |
 | TCGB\_ERROR\_NOT\_INITIALIZED | 1       | 未调用Gamebase。|
-| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2       | 客户服务类型为”NHN Cloud Online Contact”时，登录前已调用了函数。|
+| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2       | 客户服务类型为“NHN Cloud Online Contact”时，登录前已调用了函数。|
 | TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 客户服务URL不存在。<br>请确认Gamebase控制台中的**客户服务URL**。|
 | TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 识别用户的临时ticket发放失败 |
 

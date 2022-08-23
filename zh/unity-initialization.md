@@ -1,4 +1,5 @@
-## Game > Gamebase > Unity SDK使用指南 > 初始化
+ 
+ ## Game > Gamebase > Unity SDK使用指南 > 初始化
 
 如需使用Gamebase Unity SDK，必须先执行初始化。此外，还需在TOAST控制台中注册APP ID和APP版本信息。
 
@@ -72,20 +73,7 @@ LaunchingStatus请参考下面Launching段落下面的State、Code部分。
 
 * 默认值: true
 
-#### 8. enableKickoutPopup
-
-当Gamebase服务器接收到Kickout事件时，通过此设置可使用Gamebase默认弹窗。
-
-* 默认值 : true
-
-
-#### 9. fcmSenderId
-
-使用Firebase Messaging(FCM)所需的Sender ID。
-
-![FCM Sender ID](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-initialization_004_1.2.0.png)
-
-#### 10. useWebview
+#### 8. useWebViewLogin
 
 此设置为是否在Standalone平台上通过WebView进行登录的设置。
 

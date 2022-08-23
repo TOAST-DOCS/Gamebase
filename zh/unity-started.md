@@ -1,4 +1,4 @@
-﻿## Game > Gamebase > Unity SDK使用指南 > 开始
+﻿  ## Game > Gamebase > Unity SDK使用指南 > 开始
 
 以下说明Gamebase Unity SDK使用环境和初始设置。
 
@@ -8,7 +8,7 @@
 >
 > Gamebase支持的Unity版本
 >
-> * 2018.4.0 ~ 2021.2.7
+> * 2018.4.0 ~ 2021.3.3
 > * 如果需要Gamebase支持的低版本Unity，请联系[客户服务](https://toast.com/support/inquiry)。
 
 #### Android
@@ -16,6 +16,15 @@
 >
 > 2019年8月1日起Google Play公告的新应用程序应支持64位架构。
 > [确认Google Play政策及支持64bit Unity版本](https://developer.android.com/games/optimize/64-bit?#unity-developers)
+
+#### Dependencies
+
+| Gamebase SDK | External SDK |
+| --- | --- |
+| Gamebase | TOAST Unity SDK 0.25.5 |
+
+* [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
+* [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
 
 #### Supported Platforms
 
@@ -85,7 +94,7 @@ Supported Platforms
 1. 支持Gradle和CocoaPods。
 2. 将EDM4U(External Dependency Manager for Unity)使用为必要的库。
     * 在[EDM4U Github](https://github.com/googlesamples/unity-jar-resolver)中下载EDM4U后进行设置。 
-    * 如果没有EDM4U则无法设置Gamebase SDK for Android、iOS。
+    * 如果没有EDM4U则无法设置Gamebase SDK for Android和iOS。
     * 当使用已经包含EDM4U的SDK，如Facebook、GPGS SDK和Firebase，不需要下载EDM4U。
 3. 在为Android平台提供服务时，请选择上方菜单 > **Assets > External Dependency Manager > Android Resolver > Settings**，打开Android Resolver Settings窗口，按如下方式进行设置。 
     * Enable Auto-Resolution : 不启用

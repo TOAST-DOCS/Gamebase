@@ -31,10 +31,10 @@
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | 未调用Gamebase.initialize。|
-| UI\_IMAGE\_NOTICE\_TIMEOUT(6901) | 显示图片通知弹窗时，因出现超时错误强制关闭所有弹窗。|
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | 未调用Gamebase.initialize。|
+| UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | 显示图片通知弹窗时，因出现超时错误强制关闭所有弹窗。|
 
 **Example**
 
@@ -76,11 +76,11 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 
 | API | Mandatory(M) / Optional(O) | Description |
 | --- | --- | --- |
-| newBuilder() | **M** | 使用newBuilder()函数，可以生成ImageNoticeConfiguration对象。 |
+| newBuilder() | **M** | 使用newBuilder()函数，可以生成ImageNoticeConfiguration.Builder对象。 |
 | build() | **M** | 将设置的Builder转换为Configuration对象。 |
-| setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | ImageNotice背景颜色<br>使用String参数时，调用转换为android.graphics.Color.parseColor(String) API的值。<br>**default** : #80000000 |
-| setTimeout(long timeoutMs) | O | ImageNotice最大加载时间(单位 : millisecond)<br>**default** : 5000L (5s) |
-| enableAutoCloseByCustomScheme(boolean enable) | O | 出现custom scheme event时，判断是否应强制关闭图片通知。<br>**default** : true |
+| setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | 图片通知背景颜色<br>使用String参数时，调用转换为android.graphics.Color.parseColor(String) API的值。<br>**default**: #80000000 |
+| setTimeout(long timeoutMs) | O | 最大加载时间 (单位 : millisecond)<br>**default**: 5000L (5s) |
+| enableAutoCloseByCustomScheme(boolean enable) | O | 出现custom scheme事件时，判断是否应强制关闭图片通知。<br>**default**: true |  
 
 
 ### Close ImageNotices
@@ -101,21 +101,14 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 
 调用showTermsView API，通过Webview显示条款窗口。
 如果需要直接创建符合Game UI的条款窗口，可通过调用queryTerms API来显示Gamebase控制台中注册的条款项目。
-如果用户已同意，则将各项目的”同意与否”通过updateTerms API传送到Gamebase服务器。
+如果用户已同意，则将各项目的“同意与否”通过updateTerms API传送到Gamebase服务器。
 
 ### showTermsView
 
 在页面中显示条款窗口。
-用户同意条款后，将”同意与否”注册在服务器中。
-如果已同意条款，即使再调用showTermsView API，也不显示条款窗口，而立即返还”成功回调”。
-但如果将Gamebase控制台中的”重新同意条款”项目修改为**必须**，用户再次同意条款之前，会一直显示条款窗口。
-
-> <font color="red">[注意]</font><br/>
->
-> * 如果在条款中添加”是否接收推送”，则可从GamebaseDataContainer构造PushConfiguration。
-> * 未显示条款时，PushConfiguration为null。(如果显示了条款窗，则始终返还有效的对象。)
-> * PushConfiguration.pushEnabled值始终为true。 
-> * 若PushConfiguration不为null，**登录后**，请调用Gamebase.Push.registerPush API。
+用户同意条款后，将“同意与否”注册在服务器中。   
+如果已同意条款，即使再调用showTermsView API，也不显示条款窗口，而立即返还“成功回调”。
+但如果将Gamebase控制台中的“重新同意条款”项目修改为**必须**，用户再次同意条款之前会一直显示条款窗口。
 
 #### Required参数
 
@@ -123,9 +116,11 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
  
 #### Optional参数
 
-* GamebaseDataCallback : 同意条款后，关闭条款窗时通过回调通知用户。如果将通过回调获取的GamebaseDataContainer对象转换为PushConfiguration，登录后可用于调用Gamebase.Push.registerPush API。
+* GamebaseDataCallback : 同意条款后，关闭条款窗时通过回调通知用户。如果将通过回调获取的GamebaseDataContainer对象转换为PushConfiguration，登录后可以在调用Gamebase.Push.registerPush API时使用它。
+* GamebaseTermsConfiguration : 通过GamebaseTermsConfiguration对象可以更改“是否强制显示条款同意窗”等设置。
+* GamebaseDataCallback : 同意条款后，关闭条款窗时通过回调通知用户。查看通过回调获取的GamebaseDataContainer对象的附加信息时，可以转换为 GamebaseShowTermsViewResult后查看信息。
 
-**API**
+**API**                 
 
 ```java
 + (void)Gamebase.Terms.showTermsView(@NonNull Activity activity,
@@ -135,16 +130,32 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
                                      @Nullable GamebaseDataCallback<GamebaseDataContainer> callback);
 ```
 
+**GamebaseTermsConfiguration**
+
+| API | Mandatory(M) / Optional(O) | Description |
+| --- | --- | --- |
+| newBuilder() | **M** | 通过newBuilder()函数创建GamebaseTermsConfiguration.Builder对象。 |
+| build() | **M** | 将设置完的Builder转换为Configuration对象。 |
+| setForceShow(boolean forceShow) | O | 如果已同意条款，即使再调用showTermsView API也不显示条款窗口。但忽略此项并强制显示条款窗。<br>**default**: false |
+| enableFixedFontSize(boolean enable) | O | 忽略系统字体大小并以固定大小显示条款。<br>**default**: false |
+
+**GamebaseShowTermsViewResult**
+
+| Field | Type | Nullable / NonNull | Description |
+| --- | --- | --- | --- |
+| isTermsUIOpened | boolean | NonNull | **true** : 显示条款窗后，由于用户已同意条款，条款窗被关闭。<br>**false** : 由于已同意条款，不显示条款窗，条款窗已关闭。 |  
+| pushConfiguration | PushConfiguration | Nullable | 如果isTermsUIOpened为**true**时，在条款中添加“是否同意接收推送”， pushConfiguration则始终具有有效的对象。<br>否则为**null**。<br>pushConfiguration有效时，pushConfiguration.pushEnabled值始终为 **true**。 |
+
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | 未初始化Gamebase。|
-| LAUNCHING\_SERVER\_ERROR(2001) | 是启动服务器返还的项目中不包含相关条款内容时出现的错误。<br/>出现该问题时，请联系Gamebase负责人员。|
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 上一次调用的Terms API未完成。<br/>请稍后再试。|
-| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW(6925) | 条款Webview未关闭的状态下再次被调用。|
-| WEBVIEW\_TIMEOUT(7002) | 显示条款Webview时出现超时错误。|
-| WEBVIEW\_HTTP\_ERROR(7003) | 打开条款Webview时出现HTTP错误。|
+| Error | Error Code | Description |   
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | 未初始化Gamebase。 |    
+| LAUNCHING\_SERVER\_ERROR | 2001 | 当从Launching服务器接收的项目中没有与条款相关的信息时，会发生此错误。<br/>发生此问题时，请联系Gamebase负责人。 |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | Terms API的调用未完成 。<br/>请稍后再试。 |
+| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925 | 条款Webview尚未终止，但已再次调用。 |
+| WEBVIEW\_TIMEOUT | 7002 | 显示条款Webview时出现了Timeout。 |       
+| WEBVIEW\_HTTP\_ERROR | 7003 | 打开条款Webview时出现了HTTP错误。 |
 
 **Example**
 
@@ -157,8 +168,11 @@ Gamebase.Terms.showTermsView(activity, configuration, (container, exception) -> 
     if (Gamebase.isSuccess(exception)) {
         // Save the PushConfiguration and use it for Gamebase.Push.registerPush()
         // after Gamebase.login().
-        savedPushConfiguration = PushConfiguration.from(container);
-    } else {
+        GamebaseShowTermsViewResult termsViewResult = GamebaseShowTermsViewResult.from(container);
+        if (termsViewResult != null) {
+            savedPushConfiguration = termsViewResult.pushConfiguration;
+        }
+ } else {
         new Thread(() -> {
             // Wait for a while and try again.
             try { Thread.sleep(2000); }
@@ -167,7 +181,6 @@ Gamebase.Terms.showTermsView(activity, configuration, (container, exception) -> 
         }).start();
     }
 });
-
 public void afterLogin(Activity activity) {
     // Call registerPush with saved PushConfiguration.
     if (savedPushConfiguration != null) {
@@ -179,7 +192,7 @@ public void afterLogin(Activity activity) {
 ### queryTerms
 
 Gamebase通过Webview，以简单形式显示条款。
-如果要直接制作符合游戏UI的条款，通过调用queryTerms API，则可使用Gamebase控制台返还的条款信息。
+如果您要直接制作符合游戏UI的条款，通过调用queryTerms API可使用Gamebase控制台返还的条款信息。
 
 如果登录后调用，则可确认游戏用户是否同意条款。
 
@@ -187,10 +200,10 @@ Gamebase通过Webview，以简单形式显示条款。
 >
 > * 因Gamebase服务器不保存GamebaseTermsContentDetail.getRequired()为true的必要项目，agreed值将始终以false返回。
 >     * 这是因为必要项目将始终保存为true，不需要保存。
-> * 因”是否接收推送”没有被存储在gamebase服务器中，agreed值将始终以false返回。  
->     * 如需查看”是否接收推送”，请调用Gamebase.Push.queryTokenInfo API。
-> * 如果控制台中未设置”基本条款”，使用与条款语言不同的国家代码在设置的终端上调用queryterms API，则将出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误。
->     * 在控制台中设置”基本条款”或出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误时，请不要显示条款。
+> * 因“是否接收推送”没有被存储在gamebase服务器中，agreed值将始终以false返回。  
+>     * 如需查看“是否接收推送”，请调用Gamebase.Push.queryTokenInfo API。
+> * 如果控制台中未设置“基本条款”，使用与条款语言不同的国家代码在设置的终端上调用queryterms API，则将出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误。
+>     * 在控制台中设置“基本条款”或出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误时，请不要显示条款。
 
 #### Required参数
 
@@ -206,11 +219,11 @@ Gamebase通过Webview，以简单形式显示条款。
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | 未初始化Gamebase。|
-| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE(6921) | 在控制台中不存在条款信息。|
-| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY(6922) | 在控制台中不存在符合终端机国家代码的条款信息。|
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | 未初始化Gamebase。 |     
+| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE | 6921 | 未在控制台中注册条款信息。 |
+| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY | 6922 | 未在控制台中注册与终端机国家代码匹配的条款信息。 |
 
 **Example**
 
@@ -261,12 +274,12 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 如果使用通过queryTerms API获取的条款信息直接创建了UI，
 请将游戏用户同意条款的记录通过updateTerms API传送到Gamebase服务器。
 
-不仅可用于取消”同意可选择条款”，也可用于修改同意条款的记录。 
+不仅可用于取消“同意可选择条款”，也可用于修改同意条款的记录。 
 
 > <font color="red">[注意]</font><br/>
 >
-> Gamebase服务器基本上不保存”是否同意接收推送”。
-> **登录后**，请通过调用Gamebase.Push.registerPush API保存”是否同意接收推送”。
+> Gamebase服务器基本上不保存“是否同意接收推送”。
+> **登录后**，请通过调用Gamebase.Push.registerPush API保存“是否同意接收推送”。
 
 #### Required参数
 
@@ -361,6 +374,16 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | termsContentSeq      | **M**                      | int                | 可选择条款项目KEY      |
 | agreed               | **M**                      | boolean            | 可选择条款项目的同意与否 |
 
+### isShowingTermsView
+
+指示当前是否显示了条款窗。
+
+**API**
+
+```java
++ (boolean)Gamebase.Terms.isShowingTermsView();
+```
+
 ## WebView
 
 Gamebase支持基本的WebView。
@@ -372,7 +395,7 @@ Gamebase支持基本的WebView。
 
 ##### Required参数
 * activity：显示WebView活动。
-* url：作为参数发送的url必须是有效值。
+* url ：作为参数发送的url必须是有效值。
 
 ##### 可选参数
 * configuration：可以使用GamebaseWebViewConfiguration更改WebView的布局。
@@ -480,12 +503,13 @@ showWebView(activity, urlString, configuration,
 | setTitleText(String title)               | title                               | WebView标题        |
 | setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | 纵向模式         |
 |                                          | ScreenOrientation.LANDSCAPE         | 横向模式         |
-|                                          | ScreenOrientation.LANDSCAPE_REVERSE | 将横向模式旋转180度 |
+|                                          | ScreenOrientation.LANDSCAPE_REVERSE | 将横向模式旋转180度。 |
+| setNavigationBarVisible(boolean enable)  | true or false                       | 导航栏有效或无效。 |
 | setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | 导航栏颜色  |
-| setBackButtonVisible(boolean visible)    | true or false                       | 返回按钮有效或无效 |
 | setNavigationBarHeight(int height)       | height                              | 导航栏高度    |
-| setBackButtonImageResource(int resourceId) | ID of resource                      | 返回按钮的图标      |
-| setCloseButtonImageResource(int resourceId) | ID of resource                      | 关闭按钮的图标      |
+| setBackButtonVisible(boolean visible)    | true or false                       | 返回按钮有效或无效。 |
+| setBackButtonImageResource(int resourceId) | ID of resource                      | 返回按钮图像       |
+| setCloseButtonImageResource(int resourceId) | ID of resource                      | 关闭按钮的图标。      |
 
 
 ### Close WebView
@@ -542,7 +566,7 @@ showWebView(activity, urlString, configuration,
 
 ## Toast
 
-可以使用以下API轻松显示 [Android toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)消息。<br/>
+可以使用以下API轻松显示[Android toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)消息。<br/>
 用于显示信息的时间类型参数是int型，并根据Android SDK NotificationManagerService类的定义，可显示的时间如下表。
 
 | 时间类型(int)         | 显示时间                     |

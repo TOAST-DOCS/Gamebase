@@ -1,10 +1,17 @@
 ## Game > Gamebase > Release Notes > Server API
 
+### 2022. 06. 30. 
+
+#### 添加功能
+* 如果退出的用户正在使用Apple ID认证，添加了调用Apple ID AccessToken到期API。
+* 如果退出的用户正在使用Apple ID认证，添加了调用Apple ID AccessToken到期API。
+* 在响应未消费结算明细查询API中添加了“paymentId”字段。
+
 ### 2022. 06. 14.
 
 #### 添加功能
 * 添加了结算Transaction查询API。
-* 在未消费结算明细查询API响应中添加了“isTestPurchase”。
+* 在响应未消费结算明细查询API中添加了“isTestPurchase”。
 
 ### 2022. 05. 24.
 

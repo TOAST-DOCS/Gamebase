@@ -125,11 +125,11 @@ Gamebase默认支持Guest登录。
 ### Login with IdP
 
 如果要调用特定的IdP登录，可以调用**[TCGBGamebase loginWithType:viewController:completion:]**方法。<br/>
-如果是第一次尝试通过Gamebase登录，或者登录信息（访问令牌）已过期，则可以尝试使用此API登录。<br/>
+如果是第一次尝试通过Gamebase登录，或者登录信息（Access Token）已过期，则可以尝试使用此API登录。<br/>
 作为登录的结果，可以使用**(TCGBError *)error**对象来确定是否成功。<br/>
 您还可以使用**TCGBAuthToken**对象来获取如用ID等用户信息和令牌信息。<br/>
-如果登录成功，Gamebase访问令牌将存储在Local Storage中，并在调用loginForLastLoggedInProviderWithViewController:completion:方法后，可以应用存储的访问令牌。<br/>
-但是，IdP的访问令牌是由每个IdP提供的SDK管理。<br/>
+如果登录成功，Gamebase Access Token将存储在Local Storage中，并在调用loginForLastLoggedInProviderWithViewController:completion:方法后，可以应用存储的Access Token。<br/>
+但是，IdP的Access Token是由每个IdP提供的SDK管理。<br/>
 
 <br/><br/>
 个别IdP登录，需要一些特定信息。<br/>
@@ -162,7 +162,7 @@ Gamebase默认支持Guest登录。
 
 ### Login with Credential
 
-是通过IdP提供的SDK，在游戏中进行认证后，并使用获取到的访问令牌，登录到Gamebase的接口。
+是通过IdP提供的SDK，在游戏中进行认证后，并使用获取到的Access Token，登录到Gamebase的接口。
 
 
 
@@ -174,7 +174,7 @@ Gamebase默认支持Guest登录。
 | keyname                                  | a use                          | 值类型                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | 设定IdP类型                     | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname |设定登录IdP后收到的认证信息（访问令牌）。|                                |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname |设定登录IdP后收到的认证信息（Access Token）。|                                |
 
 
 
@@ -376,7 +376,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 ### AddMapping with Credential
 
-游戏中直接使用IdP提供的SDK进行认证后，使用发行的访问令牌，进行Gamebase AddMapping的接口。
+游戏中直接使用IdP提供的SDK进行认证后，使用发行的Access Token，进行Gamebase AddMapping的接口。
 
 
 
@@ -388,7 +388,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 | keyname                                  | a use                          | 值类型                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | 设定IdP类型                     | facebook, iosgamecenter, naver, google, twitter, line, appleid |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname | 设定登录IdP后收到的认证信息（访问令牌）。|                                |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname | 设定登录IdP后收到的认证信息（Access Token）。|                                |
 
 
 
@@ -572,14 +572,14 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 
 ### Get Authentication Information for External IdP
 
-* 登录后，通过游戏服务器调用Gamebase Server API，可获取外部认证IdP的访问令牌、用户ID及Profile等信息。
+* 登录后，通过游戏服务器调用Gamebase Server API，可获取外部认证IdP的Access Token、用户ID及Profile等信息。
     * [Game > Gamebase > API指南 > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
 
 > <font color="red">[注意]</font><br/>
 >   
 > * 为了安全起见，建议通过游戏服务器调用外部IdP的认证信息。
 > * 根据IdP访问令牌类型，可能会很快过期。
->     * 例如，登录Google过2小时后，访问令牌将会过期。
+>     * 例如，登录Google过2小时后，Access Token将会过期。
 >     * 如果您需要用户信息，登录后，请直接调用Gamebase Server API。
 > * 如果调用"[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]" API登录，则无法接收认证信息。
 >     * 如需用户信息，需要通过与IDPCode相同的{IDP_CODE}作为参数，调用"[TCGBGamebase loginWithType:viewController:completion:]" API登录，而不调用"[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]"。
@@ -869,9 +869,9 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 
 ## GraceBan
 
-* 是”结算Abusing自动解除”功能。
-    * 结算Abusing自动解除功能是当存在需通过”结算Abusing自动制裁”来禁止用户使用时，禁止这些用户的使用之前先提供预约时间的功能。
-    * 如果为”预约禁用”状态，在设定的时期内满足解除条件，则可正常玩游戏。
+* 是“结算Abusing自动解除”功能。
+    * 结算Abusing自动解除功能是当存在需通过“结算Abusing自动制裁”来禁止用户使用时，禁止这些用户的使用之前先提供预约时间的功能。
+    * 如果为“预约禁用状态”，在设定的时期内满足解除条件，则可玩游戏。
     * 若在所定的时期内未能满足条件，则会被禁用。
 * 登录使用结算Abusing自动解除功能的游戏后，始终要确认TCGBAuthToken.tcgbMember.graceBanInfo值，如果返还有效的TCGBGraceBanInfo对象，而不返还null，要向相关用户通知解除禁用的条件、时期等。
     * 当需要控制处于预约禁用状态的用户进入游戏时，要在游戏中进行处理。   

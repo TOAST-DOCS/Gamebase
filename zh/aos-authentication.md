@@ -1,4 +1,4 @@
-## Game > Gamebase > Android SDK使用指南 > 认证
+## Game > Gamebase > Android SDK使用指南 > 认证----
 
 ## Login
 
@@ -105,7 +105,7 @@ Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthTok
                 // 如果调用GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true)
                 // Gamebase自动弹出禁用窗口。
                 //
-                // 如果要根据游戏UI实现禁用弹出窗口，请使用BanInfo.from(exception)
+                // 如果要根据游戏UI实现禁用弹出窗口，请使用BanInfo.from(exception)。
                 // 确认制裁信息并告知游戏用户无法进行游戏的原因。
                 BanInfo banInfo = BanInfo.from(exception);
             } else {
@@ -243,14 +243,14 @@ private static void onLoginForGoogle(final Activity activity) {
 
 ### Login with Credential
 
-是在游戏中通过IdP提供的SDK进行认证后，使用获取到的访问令牌登录到Gamebase的接口。
+是在游戏中通过IdP提供的SDK进行认证后，使用获取到的Access Token登录到Gamebase的接口。
 
 * Credential参数设定方法
 
 | keyname                                  | a use                                    | 值类型                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP类型                               | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.HANGAME<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
-| AuthProviderCredentialConstants.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）<br/>不用于Google认证 |                                          |
+| AuthProviderCredentialConstants.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（Access Token）<br/>不用于Google认证 |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | 输入登录Google后可以获取的OTAC(一次性验证码) |                                          |
 | AuthProviderCredentialConstants.GAMEBASE_ACCESS_TOKEN | 当需使用Gamebase Access Token，而不需使用IdP认证信息登录时使用。 |  |
 | AuthProviderCredentialConstants.IGNORE_ALREADY_LOGGED_IN | 在登录Gamebase的状态下，即使不注销也可使用其他账户尝试登录。 | **boolean** |
@@ -569,14 +569,14 @@ private static void addMappingForFacebook(final Activity activity) {
 
 ### Add Mapping with Credential
 
-是使用IdP提供的SDK在游戏中直接进行认证后，使用获取的访问令牌可登录GameBase AddMapping的接口。
+是使用IdP提供的SDK在游戏中直接进行认证后，使用获取的Access Token可登录GameBase AddMapping的接口。
 
 * Credential参数设定方法
 
 | keyname                                  | a use                                    | 值类型                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP类型                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
-| AuthProviderCredentialConstants.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（访问令牌）。<br/>不用于Google认证。|                                          |
+| AuthProviderCredentialConstants.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（Access Token）。<br/>不用于Google认证。|                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE |输入登录Google后可以获取的OTAC(一次性验证码)。|                                          |
 
 > [参考]
@@ -859,10 +859,14 @@ String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
 
 ### Get Authentication Information for External IdP
 
-可从外部认证SDK获取访问令牌、用户ID及Profile等信息。
+可从外部认证SDK获取Access Token、用户ID及Profile等信息。
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[注意]</font><br/> 
 >
+> * 为了安全起见，建议通过游戏服务器调用外部IdP的认证信息。
+> * 根据IdP类型，Access Token可能会很快过期。
+>     * 例如，登录Google过2小时后，Access Token将会过期。
+>     * 如果您需要用户信息，登录后，请直接调用Gamebase Server API。
 > * 如果您使用"Gamebase.loginForLastLoggedInProvider()" API登录，则无法获取认证信息。
 >     * 为了获取认证信息，您不需使用"Gamebase.loginForLastLoggedInProvider()"，而应使用IDPCode和同一个{IDP_CODE}作为参数，使用“Gamebase.login(activity, IDP_CODE, callback)” API登录，才可获取正确的认证信息。 
 
@@ -1056,7 +1060,7 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 
 ## TemporaryWithdrawal
 
-为”预约退出”功能。
+为“预约退出”功能。
 由于请求了临时退出，不立即退出，预约时期过后退出。 
 可以在控制台中修改预约时间。
 
@@ -1208,9 +1212,9 @@ public static void testWithdrawImmediately() {
 
 ## GraceBan
 
-* 是”结算Abusing自动解除”功能。   
-    * 结算Abusing自动解除功能是当存在需通过”结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。  
-    * 在“禁用预约”状态下，若在设定的时期内满足所有的解除条件，则可正常玩游戏。
+* 是“结算Abusing自动解除”功能。   
+    * 结算Abusing自动解除功能是当存在需通过“结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。  
+    * 在“禁用预约状态”下，若在设定的时期内满足所有的解除条件，则可玩游戏。
     * 如果在所定的时期内未能满足条件，则将禁止使用。
 * 如果是使用结算Abusing自动解除功能的游戏，每当登录时要调用AuthToken.getGraceBanInfo() API。若返还结果为有效的GraceBanInfo对象，而不为null，则需告知用户解除禁用的条件、时期等。
     * 如需控制处于禁用预约状态的用户进入游戏，需要在游戏中进行处理。

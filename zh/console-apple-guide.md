@@ -44,8 +44,10 @@ shared secret key可以创建为所有应用程序共用的主密钥，还可以
 ## 注册Notification url
 ```
 1. App Store Connect > 我的应用程序 > 应用程序信息 > 一般信息 
-2. 在订阅状态URL中注册IAP url。
+2. 在Production服务器URL中注册IAP URL。
 - URL : https://api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/AS
 - {YOUR_PACKAGE_NAME} : app bundle id
 ```
+- 必须注册Notification URL信息，才能在Gamebase中更新订阅、促销交换及退款信息。
+
 

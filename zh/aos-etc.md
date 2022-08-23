@@ -31,7 +31,7 @@ Gamebase显示消息时，按照注册为**Display Language**的语言显示消�
 >
 > * 无论终端机设置的语言如何，只需更改Gamebase显示的语言时使用Display Language Gamebase功能。
 > * 显示Display Language Code时要以ISO-639格式显示，并要区分英文字母的大小写。
-> 若按”EN”(应该为英语的小写字母)或”zh-cn”(zh后面的英文字母必须是大写字母)进行设置，可能出现问题。
+> 若按“EN”(应该为英语的小写字母)或“zh-cn”(zh后面的英文字母必须是大写字母)进行设置，可能出现问题。
 > * 若输入的Display Language Code值不在以下列表时（**Gamebase支持的语言代码种类**）, Display Langauge Code将会设置为Gamebase控制台中设置的默认语言。 
 >     * 如果未在Gamebase控制台中设置需要使用的语言集，则会自动设置为英语(en)。  
 
@@ -89,9 +89,9 @@ public class DisplayLanguage {
 }
 ```
 
-#### 初始化Gamebase时的设置语言
+#### Gamebase 초기화 시 Display Language 설정
 
-初始化Gamebase时可以设置显示语言。
+初始化Gamebase时可以设置Display Language。
 
 **API**
 
@@ -99,7 +99,7 @@ public class DisplayLanguage {
 + (GamebaseConfiguration)GamebaseConfiguration.Builder.setDisplayLanguageCode(String displayLanguageCode);
 ```
 
-**示例**
+**Example**
 
 ```java
 public class MainActivity extends AppCompatActivity {
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-#### 设置显示语言
+#### Set Display Language
 
 初始化Gamebase时可更改输入的Display Language。
 
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
 + (void)Gamebase.setDisplayLanguageCode(String displayLanguageCode);
 ```
 
-**示例**
+**Example**
 
 ```java
 public void setDisplayLanguageCodeToEnglishInRuntime() {
@@ -144,9 +144,9 @@ public void setDisplayLanguageCodeToEnglishInRuntime() {
 }
 ```
 
-#### 查询显示语言
+#### Get Display Language
 
-可以查询当前使用的显示语言。
+可以查询当前使用的Display Language。
 
 **API**
 
@@ -154,7 +154,7 @@ public void setDisplayLanguageCodeToEnglishInRuntime() {
 + (String)Gamebase.getDisplayLanguageCode();
 ```
 
-**示例**
+**Example**
 
 ```java
 public void getDisplayLanguageCodeInRuntime() {
@@ -266,9 +266,9 @@ localizedstring.json中定义的格式如下。
 #### Device Country Code
 
 * 从OS接收的终端机国家代码直接返回，不另行确认。
-* 终端机国家代码根据”语言”设置，由OS自动决定。
+* 终端机国家代码根据“语言”设置，由OS自动决定。
 * 注册多种语言时，以优先权最高的语言决定国家代码。
-* 若值为空，则返回”ZZ”。
+* 若值为空，则返回“ZZ”。
 
 **API**
 
@@ -441,11 +441,11 @@ void processLoggedOut(String category, GamebaseEventLoggedOutData data) {
 * Gamebase支持的Server Push Type如下。
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED
     	* 在NHN Cloud Gamebase控制台的**Operation > Kickout**中注册Kickout ServerPush消息时将从与Gamebase连接的所有客户端接收Kickout消息。 
-        * 是客户端终端机接收服务器消息时启动的事件。(但Unity打包是个例外。为了启动事件需要关闭弹窗，因此与SERVER_PUSH_APP_KICKOUT没有差别。)
+        * 此事件在从客户端接收到服务器消息后立即发生。
         * 正像“Autoplay”，若游戏正在运行，则可以用来暂停游戏。
 	* GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT
     	* 如果在TOAST Gamebase控制台**Operation > Kickout**中注册Kickout ServerPush消息，则从与Gamebase连接的所有客户端接收Kickout消息。
-        * 是当客户端终端机接收服务器消息时显示弹窗，用户关闭弹窗时启动的事件。
+        * 是当客户端终端机接收服务器消息显示弹窗时，用户关闭该弹窗时启动的事件。
     * GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT
     	* 将Guest账号成功转移到其他终端机时，从转移之前的终端机接收Kickout消息。
 
@@ -514,8 +514,8 @@ void processServerPush(String category, GamebaseEventServerPushData data) {
             * GamebaseError.INVALID_MEMBER: 6
             * GamebaseError.BANNED_MEMBER: 7
     * GamebaseEventCategory.OBSERVER_NETWORK
-    	* 可以接收网络变动信息。
-    	* 当网络断开或被连接时或从Wifi转为Cellular网络时启动。
+    	* 可以接收网络更改项目信息。
+    	* 当网络断开或被连接时或从Wifi更改为Cellular网络时启动。
         * GamebaseEventObserverData.code: 为NetworkManager值。
             * NetworkManager.TYPE_NOT: -1
             * NetworkManager.TYPE_MOBILE: 0
@@ -539,7 +539,7 @@ class GamebaseEventObserverData {
 }
 ```
 
-**示例**
+**Example**
 
 ```java
 void eventHandlerSample(Activity activity) {
@@ -690,8 +690,8 @@ void eventHandlerSample(Activity activity) {
 
 #### Push Click Message
 
-* 是点击”已接收的Push消息”时出现的事件。
-* 与”GamebaseEventCategory.PUSH_RECEIVED_MESSAGE”不同，不存在**isForeground** field。
+* 是点击“已接收的Push消息”时出现的事件。
+* 与“GamebaseEventCategory.PUSH_RECEIVED_MESSAGE”不同，不存在**isForeground** field。
 
 **Example**
 
@@ -717,7 +717,7 @@ void eventHandlerSample(Activity activity) {
 
 #### Push Click Action
 
-* 是通过Rich Message功能，点击生成按钮时出现的事件。
+* 是通过Rich Message功能点击生成按钮时出现的事件。
 * actionType中存在以下值。
 	* "OPEN_APP"
 	* "OPEN_URL"
@@ -742,7 +742,7 @@ class PushAction {
 }
 ```
 
-**示例**
+**Example**
 
 ```java
 void eventHandlerSample(Activity activity) {
@@ -857,9 +857,9 @@ Gamebase提供用于应对客户咨询的功能。
 
 > [TIP]
 >
-> 若与TOAST Contact商品关联使用，则可更加轻松方便地应对顾客咨询。
-> 详细的TOAST Contact商品使用，请参考如下指南。
-> [TOAST Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
+> 若与NHN Cloud Contact商品关联使用，则可更加轻松方便地应对顾客咨询。
+> 详细的NHN Cloud Contact商品使用，请参考如下指南。
+> [NHN Cloud Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
 >
 
 #### Customer Service Type
@@ -897,7 +897,7 @@ Gamebase SDK客户服务API根据类型使用以下URL。
 | newBuilder() | **M** | 可通过newBuilder()函数生成ContactConfiguration对象。 |
 | build() | **M** | 将设置完的Builder转换为Configuration对象。 |
 | setUserName(String userName) | O | 需传送用户名(nickname)时使用。<br>是在NHN Cloud组织服务(Online Contact)类型中使用的字段。<br>**default** : null |
-| setAdditionalURL(String additionalURL) | O | 是添加在开发公司客户服务URL后面的附加URL。<br>只能在客户服务类型为”CUSTOM”时使用。<br>**default** : null |
+| setAdditionalURL(String additionalURL) | O | 是添加在开发公司客户服务URL后面的附加URL。<br>只能在客户服务类型为“CUSTOM”时使用。<br>**default** : null |
 | setExtraData(Map&lt;String, Object&gt; extraData) | O | 客户服务开始服务后传送开发公司需要的extra data。<br>**default** : EmptyMap |
 
 **API**
@@ -944,7 +944,7 @@ Gamebase.Contact.openContact(activity, new GamebaseCallback() {
 
 > <font color="red">[注意]</font><br/>
 >
-> 联系客户服务时，可能需要添附文件。
+> 向客户服务提问时，可能需要添附文件。
 > 为此，需要在运行时从用户获得相机拍照或Storage存储的权限。 
 > [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
 >

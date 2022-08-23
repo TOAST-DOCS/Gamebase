@@ -8,7 +8,7 @@
 >
 > Unreal支持的版本
 >
-> * UE 4.22 ~ UE 4.26
+> * UE 4.22 ~ UE 5.0
 > * 如果需要比上述版本更低的Unreal版本，请联系[客户服务](https://toast.com/support/inquiry)。
 
 #### Supported Platforms
@@ -35,29 +35,34 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 <span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
 
+#### Dependencies
+
+* [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
+* [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
+
 ## Installation
 
 1. 下载Gamebase Unreal SDK后，在项目路径创建**Plugins**文件夹，并将下载的SDK添加在文件夹里。
-2. 在Unreal编辑器中打开**Settings > Plugins**窗口后，启用**Project > Gamebase > Gamebase Plugin**中的Plugin。 
+2. 在Unreal编辑器中打开**Settings > Plugins**窗口后启用**Project > Gamebase > Gamebase Plugin**中的Plugin。 
 
 * [Download Gamebase Unreal SDK](/Download/#game-gamebase)
 
 ### Android Settings
 
 1. 选择编辑器菜单**Edit > Project Settings**。
-2. 在Project Settings窗选择Plugin类别中的**Gamebase**。
+2. 在Project Settings窗口选择Plugin类别中的**Gamebase - Android**。
 
-![Unreal Project Settings - Android](http://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.19.0.png)
+![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.40.0.png)
 
-* Android - Authentication
+* Authentication
     * 启用要使用的IdP。
-    * 关于使用Hangame IdP有提问时，请联系客服。
-* Android - Push
-    * 启用要使用的Push。
-* Android - Purchase
+    * 当使用Hangame IdP时有疑问，请联系客户服务。
+* Purchase
     * 选择要使用的商店。
     * ONE Store
         * View Option - 在结算页面(Full)和结算弹窗(Popup)当中选择。 
+* Push
+   * 启用要使用的推送服务。
 
 
 #### Google Play认证和未完成付款
@@ -69,7 +74,7 @@ Supported Platforms
 
 #### AndroidX适用
 
-* 因为Android X将适用于Gamebase Android SDK 2.25.0版本，需要在[UPL(Unreal Plugin Language)](https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Mobile/UnrealPluginLanguage/)文件中添加以下设置。
+* 因为Android X将适用于Gamebase Android SDK 2.25.0版本，需要在[UPL(Unreal Plugin Language)](https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Mobile/UnrealPluginLanguage/) 文件中添加以下设置。
   
 ```xml
 <gradleProperties>    
@@ -82,7 +87,7 @@ Supported Platforms
 
 #### multidex适用	
 
-* 因为将从Gamebase Unreal SDK 2.26.0版本开始删除与Gamebase内multidex有关的信息，需要在[UPL(Unreal Plugin Language)](https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Mobile/UnrealPluginLanguage/)文件中添加以下设置。 
+* 因为将从Gamebase Unreal SDK 2.26.0版本开始删除与Gamebase内multidex有关的信息，需要在[UPL(Unreal Plugin Language)](https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Mobile/UnrealPluginLanguage/) 文件中添加以下设置。 
 
 ```xml
 <buildGradleAdditions>
@@ -102,14 +107,28 @@ Supported Platforms
 
 ### iOS Settings
 
-若要使用Gamebase SDK for Unreal，则需使用”UE4 Github源代码”。注册成为Epic games会员后连接Github账户才能显示UnrealEngine repository。
+若要使用Gamebase SDK for Unreal，则需使用“UE4 Github源代码”。注册成为Epic games会员后连接Github账户才能显示UnrealEngine repository。
 有关指南内容，请参考以下文档。
 
 * [Downloading Unreal Engine Source Code](https://docs.unrealengine.com/5.0/en-US/downloading-unreal-engine-source-code/)
 * [Getting up and running](https://github.com/EpicGames/UnrealEngine#getting-up-and-running)
 
->”!注意”
+>“!注意”
 > 如果省略此程序，无法正常使用以下指南的链接或Gamebase SDK for Unreal。
+
+#### Project Settings
+
+1. 选择编辑器菜单**Edit > Project Settings**。
+2. 在Project Settings窗的Plugin类别中选择**Gamebase - iOS**。
+
+![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.40.0.png)
+
+* Authentication
+    * 启用要使用的IdP。
+* Purchase
+    * 选择要使用的商店。
+* Push
+    * 启用要使用的推送服务。
 
 #### Sign in with Apple
 
@@ -123,7 +142,7 @@ Supported Platforms
 Authorization failed: Error Domain=AKAuthenticationError Code=-7026 "(null)"
 ```
 
-因UE4(4.24.3)不支持此功能，要在[Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs)文件中修改以下代码。
+因UE4(4.24.3)不支持此功能，要在[Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs) 文件中修改以下代码。
 
 ```cs
 // AS-IS
@@ -145,10 +164,20 @@ if (bRemoteNotificationsSupported)
 }
 ```
 
+#### Facebook SDK
+
+如需使用Facebook IdP，则在[Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) 文件中添加以下代码。
+
+```cs
+// need to tell where to load Framework dylibs
+Result += " -rpath /usr/lib/swift";                 // 添加代码
+Result += " -rpath @executable_path/Frameworks";
+```
+
 #### Remote Notification
 
 1. 为了使用Gamebase Remote Notification功能，需要在**Project Settings > Platforms > iOS**设置中启用**Enable Remote Notifications Support**功能(只有在Github下载源码时才能使用)。
-2. 为了接收Foreground推送通知，要在[Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp)文件中删除以下代码，
+2. 为了接收Foreground推送通知，要在[Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp) 文件中删除以下代码，
 
         - (void)userNotificationCenter:(UNUserNotificationCenter *)center
             willPresentNotification:(UNNotification *)notification
@@ -172,12 +201,12 @@ if (bRemoteNotificationsSupported)
 
 因出现以下问题不能使用Rich Push Notification功能。
 
-* Unreal不提供在项目中可添加[Notification Service Extension](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension?language=objc)的方法。
+* Unreal不提供在项目中可添加[Notification Service Extension](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension?language=objc) 的方法。
     * [创建NHN Cloud Push Notification Service Extension](https://docs.toast.com/en/TOAST/en/toast-sdk/push-ios/#notification-service-extension)
 
 #### iOS SDK的Warning消息导致Unreal打包错误
 
-若因iOS SDK上出现的Warning消息转为错误，导致Unreal打包失败的现象，则需对[Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs)文件中的clang编译选项进行注释。 
+若因iOS SDK上出现的Warning消息转为错误，导致Unreal打包失败的现象，则需对[Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) 文件中的clang编译选项进行注释。 
 
 ```cs
 // Result += " -Wall -Werror";
@@ -185,7 +214,7 @@ if (bRemoteNotificationsSupported)
 
 #### PLCrashReporter
 
-因UE4中使用的PLCrashReporter不支持”arm64e”architecture，出现无法从使用该architecture的设备获取存储器地址值的问题。
+因UE4中使用的PLCrashReporter不支持“arm64e”architecture，出现无法从使用该architecture的设备获取存储器地址值的问题。
 
 在NHN Cloud Log & Crash Search中使用Crash分析的游戏开发公司应参考以下指南更改UE4内部PLCrashReporter。
 

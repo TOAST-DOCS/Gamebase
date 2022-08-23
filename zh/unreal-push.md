@@ -14,10 +14,14 @@
 * iOS
     * [iOS Push Settings](ios-push#settings)
 
+> <font color="red">[注意]</font><br/>
+>
+> 在外部Plugin存在与推送有关的处理时Gamebase推送功能可能不正常启动。
+
 ### Register Push
 
 通过调用以下API，在TOAST Push中注册相关用户。  
-从用户获得”是否允许显示推送通知(enablePush)‘’、”是否同意接收广告性推送通知(enableAdPush)”、”是否允许在夜间显示广告性推送通知(enableAdNightPush)”的同意后，通过调用以下API进行注册。 
+从用户获得“是否允许显示推送通知(enablePush)”、“是否同意接收广告性推送通知(enableAdPush)”、“是否允许在夜间显示广告性推送通知(enableAdNightPush)”的同意后，通过调用以下API进行注册。 
 
 > <font color="red">[注意]</font><br/>
 >
@@ -41,7 +45,7 @@ void Sample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNi
 {
     FGamebasePushConfiguration configuration{ pushEnabled, adAgreement, adAgreementNight };
     
-    IGamebase::Get().GetPush().RegisterPush(FGamebasePushConfigurationDelegate::CreateLambda([](const FGamebaseError* error)
+    IGamebase::Get().GetPush().RegisterPush(configuration, FGamebasePushConfigurationDelegate::CreateLambda([](const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -68,12 +72,12 @@ void Sample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNi
 
 | API                    | Parameter       | Description        |
 | ---------------------  | ------------ | ------------------ |
-| foregroundEnabled      | bool         | 应用程序为Foreground状态时是否允许推送通知。<br/>**default**: false |
-| badgeEnabled           | bool         | 是否使用Badge图标<br/>**default**: true |
-| soundEnabled           | bool         | 提示音使用与否<br/>**default**: true<br/>**iOS Only** |
-| priority               | int32        | 推送通知的优先顺序/可以设置的5个值如下。<br/>GamebaseNotificationPriority::Min : -2<br/> GamebaseNotificationPriority::Low : -1<br/>GamebaseNotificationPriority::Default : 0<br/>GamebaseNotificationPriority::High : 1<br/>GamebaseNotificationPriority::Max : 2<br/>**default**: GamebaseNotificationPriority::High<br/>**Android Only** |
-| smallIconName          | FString       | 手机顶端状态栏的通知提示小图标文件名称<br/>如果不设置，则使用应用程序图标。<br/>**default**: null<br/>**Android Only** |
-| soundFileName          | FString       | 提示音文件名称/只在Android 8.0以下的OS上运行。<br/>如果指定”res/raw”文件夹的mp3、wav文件名称，则可更改提示音。<br/>**default**: null<br/>**Android Only** |
+| foregroundEnabled      | bool         | 应用程序为Foreground状态时是否允许推送通知。<br/>**default** : false |
+| badgeEnabled           | bool         | 是否使用Badge图标<br/>**default** : true |
+| soundEnabled           | bool         | 提示音使用与否<br/>**default** : true<br/>**iOS Only** |
+| priority               | int32        | 推送通知的优先顺序/可以设置的5个值如下。<br/>GamebaseNotificationPriority::Min : -2<br/> GamebaseNotificationPriority::Low : -1<br/>GamebaseNotificationPriority::Default : 0<br/>GamebaseNotificationPriority::High : 1<br/>GamebaseNotificationPriority::Max : 2<br/>**default** : GamebaseNotificationPriority::High<br/>**Android Only** |
+| smallIconName          | FString       | 手机顶端状态栏的通知提示小图标文件名称<br/>如果不设置，则使用应用程序图标。<br/>**default** : null<br/>**Android Only** |
+| soundFileName          | FString       | 提示音文件名称/只在Android 8.0以下的OS上运行。<br/>如果指定“res/raw”文件夹的mp3、wav文件名称，则可更改提示音。<br/>**default** : null<br/>**Android Only** |
 
 **Example**
 
@@ -200,6 +204,14 @@ void Sample::QueryTokenInfo()
 | adAgreement      | bool | 是否同意接收广告性推送通知      |
 | adAgreementNight | bool | 是否允许在夜间显示广告性推送通知  |
 
+
+### Event Handling
+
+* 当接收了推送或通过点击推送可以处理事件。
+* 关于注册事件的方法，请参考GamebaseEventHandler指南。
+    * [ Game > Gamebase > Unreal SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Push Received Message](./unreal-etc/#push-received-message)
+    * [ Game > Gamebase > Unreal SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./unreal-etc/#push-click-message)
+    * [ Game > Gamebase > Unreal SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./unreal-etc/#push-click-action)
 
 #### Setting for APNS Sandbox
 
