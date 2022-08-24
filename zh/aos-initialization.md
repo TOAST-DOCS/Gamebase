@@ -25,7 +25,7 @@
 | ---------------------------------------- | -------------------------- | ---------------------------------------- |
 | newBuilder(String appId, String appVersion, String storeCode) | **M**                      | 可以使用newBuilder()函数生成GamebaseConfiguration.Builder对象。<br/><br/>**appId**是NHN Cloud Project发放的App的ID。<br/>**appVersion**用于判断游戏是处于服务状态、更新状态还是维护状态。请指定游戏版本。<br/> **storeCode**是代表APK分配的商店的代码。以下指南中有关于各商店代码的说明。
 | build()                                  | **M**                      | 将设置完的Builder转换为Configuration对象。<br/>**Gamebase.initialize()** API要求。 |
-| enablePopup(boolean enable)              | O                          | **[UI]**<br/>由于系统维护或设置禁用（ban）等原因，游戏用户无法玩游戏的状态下，有时需要通过弹窗显示原因。<br/>如果设置为**true**，Gamebase将在该情况下自动显示信息弹窗。<br/>默认值为 **false**。<br/>  **false**时，从Launching结果中获取信息，并使用自定义UI显示用户无法玩游戏的原因。 |
+| enablePopup(boolean enable)              | O                          | **[UI]**<br/>由于系统维护或设置禁用（ban）等原因，游戏用户无法玩游戏的状态下，有时需要通过弹窗显示原因。<br/>如果设置为**true**，Gamebase将在该情况下自动显示信息弹窗。<br/>默认值为 **false**。<br/>为**false**时，从Launching结果中获取信息，并使用自定义UI显示用户无法玩游戏的原因。 |
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>根据Launching结果，可以更改Gamebase在无法登录的状态下是否自动显示弹窗（主要在维护时）。<br/>仅在**enablePopup(true)** 状态启动。<br/>默认值为 **true**。 |
 | enableBanPopup(boolean enable)           | O                          | **[UI]**<br/>当游戏用户被禁用时，Gamebase可设定是否通过弹窗向用户显示制裁原因。<br/>仅在**enablePopup(true)**状态下启动。<br/>默认值为 **true**。 |
 
@@ -291,7 +291,7 @@ LaunchingInfo对象中包含Gamebase Console中设置的值和游戏状态等。
 * id : App ID
 * name : App Name
 * storeCode : Store Code
-    
+
 [Game > Gamebase > 控制台使用指南 > IAP](./oper-purchase/)
 
 #### 4. tcLaunching

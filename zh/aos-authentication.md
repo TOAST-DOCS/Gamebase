@@ -1,4 +1,4 @@
-## Game > Gamebase > Android SDK使用指南 > 认证----
+## Game > Gamebase > Android SDK使用指南 > 认证
 
 ## Login
 
@@ -569,7 +569,7 @@ private static void addMappingForFacebook(final Activity activity) {
 
 ### Add Mapping with Credential
 
-是使用IdP提供的SDK在游戏中直接进行认证后，使用获取的Access Token可登录GameBase AddMapping的接口。
+是使用IdP提供的SDK在游戏中直接进行认证后，使用获取的Access Token可登录Gamebase AddMapping的接口。
 
 * Credential参数设定方法
 
@@ -861,7 +861,7 @@ String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
 
 可从外部认证SDK获取Access Token、用户ID及Profile等信息。
 
-> <font color="red">[注意]</font><br/> 
+> <font color="red">[注意]</font><br/>
 >
 > * 为了安全起见，建议通过游戏服务器调用外部IdP的认证信息。
 > * 根据IdP类型，Access Token可能会很快过期。
@@ -1064,7 +1064,7 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 由于请求了临时退出，不立即退出，预约时期过后退出。 
 可以在控制台中修改预约时间。
 
-> ”注意”
+> `注意`
 >
 > 使用预约退出功能时，不应调用**Gamebase.withdraw()** API。
 > 通过调用**Gamebase.withdraw()** API，可立即退出。

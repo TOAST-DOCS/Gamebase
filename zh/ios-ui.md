@@ -1,4 +1,4 @@
-## Game > Gamebase > iOS SDK使用指南 > UI
+ ## Game > Gamebase > iOS SDK使用指南 > UI
 
 ## ImageNotice
 
@@ -497,7 +497,7 @@ Gamebase支持基本WebView。<br/>
 > [TIP]
 >
 > 在iPadOS 13以上，WebView基本上是Desktop模式。
-> contentMode=可以通过“TCGBWebViewContentModeMobile”设置，转换Mobile模式。
+> contentMode=可以通过`TCGBWebViewContentModeMobile`设置，转换Mobile模式。
 
 
 

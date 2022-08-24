@@ -1,4 +1,4 @@
-  ## Game > Gamebase > Upgrade Guide
+## Game > Gamebase > Upgrade Guide
 
 ## 2.41.0
 

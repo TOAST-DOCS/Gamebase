@@ -41,7 +41,7 @@ shared secret key可以创建为所有应用程序共用的主密钥，还可以
 
 
 
-## 注册Notification url
+## 注册Notification URL
 ```
 1. App Store Connect > 我的应用程序 > 应用程序信息 > 一般信息 
 2. 在Production服务器URL中注册IAP URL。
