@@ -199,14 +199,13 @@ end
 #### PAYCO
 
 * 需要设置URL Scheme。
-    * 在**Xcode > Target > Info > URL Types**中添加**tcgb.{Bundle ID}.payco**。
-    * 在**Xcode > Target > Info > URL Types**中添加**paycologinsdk**。
+    * 需要在**Xcode > Target > Info > URL Types**中添加**tcgb.{Bundle ID}.payco**。
+    * 需要在**Xcode > Target > Info > URL Types**中添加**paycologinsdk**。
 
 #### NAVER
 
 * 需要设置URL Scheme。
     * 在**Xcode > Target > Info > URL Types**中添加**tcgb.{Bundle ID}.naver**。
-
     * 需要在**NAVER Developers > 我的应用程序 > 设置API > iOS > URL Scheme**中添加**tcgb.{Bundle ID}.naver**。
 * 在Info.plist文件注册Scheme。
 ```
@@ -276,8 +275,8 @@ end
 
 ![gamebase_auth_google_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_google_console_01.png)
 
-
-**NAVER **
+  
+**NAVER**
 
 * Gamebase iOS SDK 1.12.1以下
 	* 要在**NHN Cloud Console > Gamebase > App > 认证信息 > 附加信息 & Callback URL**的**附加信息**项目中设定JSON String格式的信息。

@@ -343,7 +343,7 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，而可在Game
 
 ### Event by Promotion
 
->“注意”
+> `注意`
 > 只能在iOS 11以上版本上使用。
 > 仅在Gamebase 1.13.0以上版本上支持。(适用NHN Cloud IAP SDK 1.6.0以上)
 
@@ -376,7 +376,7 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，而可在Game
 
 #### 如何测试AppStore Promotion IAP
 
->“注意”
+> `注意`
 > 将应用程序上传到App Store Connect后，可以通过TestFlight安装应用程序后对其进行测试。
 > 
 
@@ -391,7 +391,7 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，而可在Game
 | | bundleId | APP的 bundeld identifier |
 | | productIdentifier | 购买商品的product identifier |
 
-示例)“itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001”
+示例) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 
 ### Error Handling
 

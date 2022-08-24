@@ -1,4 +1,4 @@
-## Game > Gamebase > Android SDK使用指南> 结算
+## Game > Gamebase > Android SDK使用指南 > 结算
 
 以下是设置使用应用内结算的方法。
 
@@ -53,7 +53,7 @@ Gamebase.initialize(activity, configuration, callback);
 
 1. 游戏客户向游戏服务器请求consume（消费）。
     * 传送UserID、gamebaseProductId、paymentSeq、purchaseToken。
-2. 游戏服务器查看在游戏DB中是否存在以同样的paymentSeq提供道具的历史记录。 
+2. 游戏服务器查看在游戏DB中是否存在以同样的paymentSeq提供道具的历史记录。
     * 2-1. 如果未提供道具则调用Gamebase服务器的Payment Transaction API，验证paymentSeq和purchaseToken值​​是否有效。
         * [Game > Gamebase > API指南 > Purchase(IAP) > Get Payment Transaction](./api-guide/#get-payment-transaction)
     * 2-2. purchaseToken为正常的值时，向UserID提供使用gamebaseProductId购买的道具。 
@@ -125,7 +125,7 @@ class PurchasableReceipt {
     @Nullable
     String gamebaseProductId;
                  
-    //  是调用Gamebase.Purchase.requestPurchase API时作为payload传送的值。
+    // 是调用Gamebase.Purchase.requestPurchase API时作为payload传送的值。
     //
     // 当使用相同的User ID进行了购买，但仍然需要根据游戏频道或角色
     // 区分商品的购买和提供等，
@@ -164,7 +164,7 @@ class PurchasableReceipt {
     // 作为产品类型，存在以下值。
     // * UNKNOWN : 无法识别类型/请更新Gamebase SDK或联系Gamebase客户服务。
     // * CONSUMABLE : 消费型商品   
-    // * AUTO_RENEWABLE : 订购型商品
+    // * AUTO_RENEWABLE : 订阅型商品
     // * CONSUMABLE_AUTO_RENEWABLE : 当您想向购买订阅型产品的用户定期提供可消费商品时，使用“可消费订阅商品”。
     @NonNull
     String productType;
@@ -185,22 +185,22 @@ class PurchasableReceipt {
     long expiryTime;
     
     // 是用于Google支付的值。以下值​​可以使用。
-    // 하지만 Google 서버에서 장애가 발생하여 Gamebase 결제 서버에서 일시적으로 검증 로직을 끄는 경우에는
-    // null로만 리턴되므로 항상 유효한 값을 보장하지는 않음에 주의하시기 바랍니다.
+    // 但在Google服务器出现故障而在Gamebase支付服务器暂时关闭验证逻辑时，
+    // 仅返还为null，因此要注意不始终保证有效的值。 
     // * null : 一般付款
     // * Test : 测试付款
     // * Promo : Promotion付款
     @Nullable
     String purchaseType;
     
-    // 구독 상품은 갱신 될때마다 paymentId가 변경됩니다.
-    // 이 필드는 맨 처음 구독 상품을 결제 했을때의 paymentId 를 알려줍니다.
-    // 스토어에 따라, 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로
-    // 항상 유효한 값을 보장하지는 않습니다.
+    // 每当订阅商品被更新时paymentId也将被更新。 
+    // 通过此字段可以确认首次支付订阅产品时的paymentId。
+    // 根据商店类型或支付服务器状态可能不存在值，
+    // 因此不始终保证有效的值。
     @Nullable
     String originalPaymentId;
     
-    // itemSeq 로 상품을 구매하는 Legacy API용 식별자입니다.
+    // 是通过itemSeq购买商品的Legacy API专用标识符。
     long itemSeq;
 }
 ```
@@ -276,50 +276,50 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 
 ```java
 class PurchasableItem {
-    // Gamebase 콘솔에 등록된 상품 ID입니다.
-    // Gamebase.Purchase.requestPurchase API 로 상품을 구매할 때 사용됩니다.
+    // 是在Gamebase控制台中注册的商品ID。
+    // 当调用Gamebase.Purchase.requestPurchase API购买商品时使用它。
     @Nullable
     String gamebaseProductId;
     
-    // 상품의 가격입니다.
+    // 是商品的价格。
     float price;
     
-    // 통화 코드입니다.
+    // 是货币代码。
     @Nullable
     String currency;
     
-    // Gamebase 콘솔에 등록된 상품 이름입니다.
+    // 是在Gamebase控制台中注册的商品名称。
     @Nullable
     String itemName;
     
-    // Google, Apple 과 같이 스토어 콘솔에 등록된 상품 ID입니다.
+    // 是在商店控制台中注册的产品ID，如Google或Apple。
     @NonNull
     String marketItemId;
     
-    // 상품 타입으로, 다음 값들이 올 수 있습니다.
-    // * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객 센터로 문의하세요.
-    // * CONSUMABLE : 소비성 상품.
-    // * AUTORENEWABLE : 구독형 상품.
-    // * CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
+    // 为商品类型，存在以下值。
+    // * UNKNOWN : 无法识别类型/请更新Gamebase SDK或联系Gamebase客户服务。
+    // * CONSUMABLE : 消费型商品
+    // * AUTORENEWABLE : 订阅型商品
+    // * CONSUMABLE_AUTO_RENEWABLE : 当您想向购买订阅型产品的用户定期提供可消费商品时使用“可消费订阅商品”。
     @NonNull
     String productType;
     
-    // 통화 기호가 포함된 현지화 된 가격 정보입니다.
+    // 是包含货币符号的当地价格信息。 
     @Nullable
     String localizedPrice;
     
-    // 스토어 콘솔에 등록된 현지화된 상품 이름입니다.
+    // 是在商店控制台中注册的当地商品名称。
     @Nullable
     String localizedTitle;
     
-    // 스토어 콘솔에 등록된 현지화된 상품 설명입니다.
+    // 是在商店控制台中注册的当地商品说明。
     @Nullable
     String localizedDescription;
     
-    // Gamebase 콘솔에서 해당 상품의 '사용 여부'를 나타냅니다.
+    // 在Gamebase控制台中显示此商品的“使用与否”。
     boolean isActive;
     
-    // itemSeq 로 상품을 구매하는 Legacy API용 식별자입니다.
+    // 是通过itemSeq购买商品的Legacy API专用标识符。 
     long itemSeq;
 }
 ```

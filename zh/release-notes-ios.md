@@ -190,7 +190,7 @@
 ### 2.28.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-iOS.zip)
 
-#### 添加功能 
+#### 添加功能
 * 添加Kakaogame认证
 * “结算Abusing自动解除”功能已被添加。 
     * [Game > Gamebase > iOS SDK使用指南 > 认证 > GraceBan](./ios-authentication/#graceban)

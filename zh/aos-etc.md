@@ -89,7 +89,7 @@ public class DisplayLanguage {
 }
 ```
 
-#### Gamebase 초기화 시 Display Language 설정
+#### 初始化Gamebase时设置Display Language
 
 初始化Gamebase时可以设置Display Language。
 
@@ -898,6 +898,7 @@ Gamebase SDK客户服务API根据类型使用以下URL。
 | build() | **M** | 将设置完的Builder转换为Configuration对象。 |
 | setUserName(String userName) | O | 需传送用户名(nickname)时使用。<br>是在NHN Cloud组织服务(Online Contact)类型中使用的字段。<br>**default** : null |
 | setAdditionalURL(String additionalURL) | O | 是添加在开发公司客户服务URL后面的附加URL。<br>只能在客户服务类型为“CUSTOM”时使用。<br>**default** : null |
+| setAdditionalParameters(Map&lt;String, String&gt; additionalParameters) | O | 是添加在客户服务URL后边的附加的参数。<br>**default**: null |
 | setExtraData(Map&lt;String, Object&gt; extraData) | O | 客户服务开始服务后传送开发公司需要的extra data。<br>**default** : EmptyMap |
 
 **API**

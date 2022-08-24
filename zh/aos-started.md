@@ -138,7 +138,7 @@
         android.enableD8.desugaring=true
         android.enableIncrementalDesugaring=false
     
-* 使用Unity时，如果Editor版本为2018.4.3或更低版本、  2019.1.6或更低版本，则会出现Build失败，因此需要添加以下声明。(AGP版本为3.2.0)
+* 使用Unity时，如果Editor版本为2018.4.3或更低版本、2019.1.6或更低版本，则会出现Build失败，因此需要添加以下声明。(AGP版本为3.2.0)
         
         // mainTemplate.gradle
         ([rootProject] + (rootProject.subprojects as List)).each {
@@ -194,7 +194,7 @@ dependencies {
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-push-adm:$GAMEBASE_SDK_VERSION"
-       
+
     // >>> 关于下一个模块儿的使用方法，请参考客户服务。
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangamejp:$GAMEBASE_SDK_VERSION"
@@ -225,7 +225,7 @@ android {
 #### Huawei Store
 
 * 将AppGallery Connection配置文件(agconnect-service.json)添加在assets文件夹。 
-    * 登录[AppGallery Connect](https://developer.huawei.com/consumer/en/service/josp/agc/index.html)后 单机**我的项目**。
+    * 登录[AppGallery Connect](https://developer.huawei.com/consumer/en/service/josp/agc/index.html)后单机**我的项目**。
     * 在项目中选择应用程序。
     * 移动至**Project settings** > **General information**。
     * 在**App information**中下载**agconnect-service.json**文件。
@@ -530,9 +530,9 @@ android {
 ### Proguard
 
 * Amazon Device Messaging
-      * 在Amazon Device Messaging(ADM)使用Proguard时，请参考以下指南后应用。
-                * [NHN Cloud > SDK使用指南> TOAST Push > Android > 设置Amazon Device Messaging > 下载ADM SDK ](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
-               * [NHN Cloud > SDK使用指南 > TOAST Push > Android > 设置Amazon Device Messaging > 设置Proguard ](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)   
+    * 在Amazon Device Messaging(ADM)使用Proguard时，请参考以下指南后应用。
+            * [NHN Cloud > SDK使用指南> TOAST Push > Android > 设置Amazon Device Messaging > 下载ADM SDK ](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
+           * [NHN Cloud > SDK使用指南 > TOAST Push > Android > 设置Amazon Device Messaging > 设置Proguard ](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)   
      * [https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
     * [https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)
 * 将Proguard应用于gamebase 2.21.0或低于2.21.0版本时，若调用结算API而不添加Proguard Rule，则将发生崩溃。

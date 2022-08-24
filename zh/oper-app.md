@@ -236,7 +236,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 
 ![gamebase_app_google_ios_4.png](https://static.toastoven.net/prod_gamebase/gamebase_app_google_ios_4.png)
 
-**输入字段**<br />
+**输入字段**<br/>
 
 - Web Application ID : {Google Web Application Client ID}
 - iOS Client ID : {Google iOS Client ID}
@@ -404,7 +404,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 > <font color="red">[注意]</font><br/>
 >
 > 请注意不要在privateKey中包含换行符。
-注意不要在privateKey中包含换行符。
+
 ###### Additional Info Settings
 [了解Sign In with Apple的AuthorizationScope](https://developer.apple.com/documentation/authenticationservices/asauthorizationscope?language=occ)
 

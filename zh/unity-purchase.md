@@ -190,7 +190,7 @@ public class PurchasableReceipt
     /// * UNKNOWN : 无法识别类型/请更新Gamebase SDK或联系Gamebase客户服务。
     /// * CONSUMABLE : 消费型商品
     /// * AUTO_RENEWABLE : 订购型商品
-    /// * CONSUMABLE_AUTO_RENEWABLE : 当您想向购买订阅型产品的用户定期提供可消费商品时，使用“可消费订阅商品”。
+    /// * CONSUMABLE_AUTO_RENEWABLE : 当您想向购买订阅型产品的用户定期提供可消费商品时使用“可消费订阅商品”。
     /// <para/><see cref="GamebasePurchase.ProductType"/>
     /// </summary>
     public string productType;

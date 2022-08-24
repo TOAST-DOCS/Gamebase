@@ -113,7 +113,7 @@ Supported Platforms
 * [Downloading Unreal Engine Source Code](https://docs.unrealengine.com/5.0/en-US/downloading-unreal-engine-source-code/)
 * [Getting up and running](https://github.com/EpicGames/UnrealEngine#getting-up-and-running)
 
->“!注意”
+> `!注意`
 > 如果省略此程序，无法正常使用以下指南的链接或Gamebase SDK for Unreal。
 
 #### Project Settings

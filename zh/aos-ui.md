@@ -80,7 +80,7 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 | build() | **M** | 将设置的Builder转换为Configuration对象。 |
 | setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | 图片通知背景颜色<br>使用String参数时，调用转换为android.graphics.Color.parseColor(String) API的值。<br>**default**: #80000000 |
 | setTimeout(long timeoutMs) | O | 最大加载时间 (单位 : millisecond)<br>**default**: 5000L (5s) |
-| enableAutoCloseByCustomScheme(boolean enable) | O | 出现custom scheme事件时，判断是否应强制关闭图片通知。<br>**default**: true |  
+| enableAutoCloseByCustomScheme(boolean enable) | O | 出现custom scheme事件时，判断是否应强制关闭图片通知。<br>**default**: true |
 
 
 ### Close ImageNotices
@@ -118,9 +118,8 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 
 * GamebaseDataCallback : 同意条款后，关闭条款窗时通过回调通知用户。如果将通过回调获取的GamebaseDataContainer对象转换为PushConfiguration，登录后可以在调用Gamebase.Push.registerPush API时使用它。
 * GamebaseTermsConfiguration : 通过GamebaseTermsConfiguration对象可以更改“是否强制显示条款同意窗”等设置。
-* GamebaseDataCallback : 同意条款后，关闭条款窗时通过回调通知用户。查看通过回调获取的GamebaseDataContainer对象的附加信息时，可以转换为 GamebaseShowTermsViewResult后查看信息。
 
-**API**                 
+**API**               
 
 ```java
 + (void)Gamebase.Terms.showTermsView(@NonNull Activity activity,
@@ -148,13 +147,13 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 
 **ErrorCode**
 
-| Error | Error Code | Description |   
+| Error | Error Code | Description |
 | --- | --- | --- |
-| NOT\_INITIALIZED | 1 | 未初始化Gamebase。 |    
+| NOT\_INITIALIZED | 1 | 未初始化Gamebase。 |
 | LAUNCHING\_SERVER\_ERROR | 2001 | 当从Launching服务器接收的项目中没有与条款相关的信息时，会发生此错误。<br/>发生此问题时，请联系Gamebase负责人。 |
 | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | Terms API的调用未完成 。<br/>请稍后再试。 |
 | UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925 | 条款Webview尚未终止，但已再次调用。 |
-| WEBVIEW\_TIMEOUT | 7002 | 显示条款Webview时出现了Timeout。 |       
+| WEBVIEW\_TIMEOUT | 7002 | 显示条款Webview时出现了Timeout。 |
 | WEBVIEW\_HTTP\_ERROR | 7003 | 打开条款Webview时出现了HTTP错误。 |
 
 **Example**
@@ -221,7 +220,7 @@ Gamebase通过Webview，以简单形式显示条款。
 
 | Error | Error Code | Description |
 | --- | --- | --- |
-| NOT\_INITIALIZED | 1 | 未初始化Gamebase。 |     
+| NOT\_INITIALIZED | 1 | 未初始化Gamebase。 |
 | UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE | 6921 | 未在控制台中注册条款信息。 |
 | UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY | 6922 | 未在控制台中注册与终端机国家代码匹配的条款信息。 |
 
