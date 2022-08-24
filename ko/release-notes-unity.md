@@ -7,12 +7,12 @@
 * ForcingMappingTicket 클래스에 매핑 유저 상태를 나타내는 mappedUserValid 필드가 추가되었습니다.
 
 #### 기능 개선/변경
-* WebView에서 고정 폰트 사이즈 사용 여부를 설정하는 필드는 더 이상 사용되지 않습니다.
+* 웹뷰에서 고정 폰트 사이즈 사용 여부를 설정하는 필드는 더 이상 사용되지 않습니다.
     * **GamebaseWebViewConfiguration.enableFixedFontSize**
 * GamebaseWebViewConfiguration의 기본값이 추가되었습니다.
-    * 네비게이션 바의 색상 필드인 colorR, colorG, colorB, colorA의 기본값이 18, 93, 230, 255으로 설정되었습니다.
-    * 네비게이션 바 활성 여부를 지정하는 필드인 isNavigationBarVisible의 기본값이 true로 설정되었습니다.
-    * 웹뷰 내 뒤로가기 버튼 활성 여부를 지정하는 필드인 isBackButtonVisible의 기본값이 true로 설정되었습니다.
+    * 내비게이션 바의 색상 필드인 colorR, colorG, colorB, colorA의 기본값이 18, 93, 230, 255로 설정되었습니다.
+    * 내비게이션 바 활성 여부를 지정하는 필드인 isNavigationBarVisible의 기본값이 true로 설정되었습니다.
+    * 웹뷰 내 뒤로 가기 버튼 활성 여부를 지정하는 필드인 isBackButtonVisible의 기본값이 true로 설정되었습니다.
 
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.42.1](./release-notes-android/#2421-2022-07-26)
@@ -370,18 +370,18 @@
 
 #### 기능 추가
 * 공통 약관 기능 추가
-    * 약관 WebView를 여는 API 추가
+    * 약관 웹뷰를 여는 API 추가
     * 약관 리스트 및 유저별 동의 여부를 조회하는 API 추가
     * 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
 
 #### 기능 개선/변경
 * 고객 센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객 센터가 표시되도록 변경
 * Warning 로그 제거
-* Standalone WebView에 CEF 2.1.2 업데이트
+* Standalone 웹뷰에 CEF 2.1.2 업데이트
     * URL의 길이가 2,048보다 길 경우 크래시가 발생하는 이슈 수정
     * Unity 2019에서 빌드 시 라이브러리 경로가 변경되어 PostProcessBuild 개선
     * string 초기화를 하지 않아 간헐적으로 발생하는 오류 수정
-    * Gamebase WebView 사용 중 WebView가 신(scene)을 이동한 이후에는 다시 열리지 않는 버그 수정
+    * Gamebase 웹뷰 사용 중 웹뷰가 신(scene)을 이동한 이후에는 다시 열리지 않는 버그 수정
 
 ### 2.19.0 (2020.12.29)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.0/GamebaseSDK-Unity.zip)
@@ -585,7 +585,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 * [SDK] 2.10.0 
     * (Unity) StandaloneWebviewAdapter 내부의 CefWebview 버전 업데이트: v2.0.4
         * WebviewIndex 검증 로직을 개선
-        * Webview 생성 시, 간헐적으로 NullReferenceException이 발생하는 오류를 개선
+        * 웹뷰 생성 시, 간헐적으로 NullReferenceException이 발생하는 오류를 개선
     * (Unity) GamebaseErrorCode에 소켓 연결에 관한 에러 코드 추가: SOCKET_CONNECTION_TIMEOUT, SOCKET_CONNECTION_FAIL
 
 #### 버그 수정
@@ -666,14 +666,14 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
     * (Android) 서버 응답(response)에서 traceError 필수 파라미터가 없더라도 크래시가 발생하지 않도록 수정
     * (Android) Firebase 설정이 누락되어 있을 때 예외가 발생하지 않도록 수정
     * (Unity) Web Login 시, gamebase://dismiss 스킴 처리 추가
-    * (Unity) 릴리스 빌드 시, 간헐적으로 Webview가 노출되지 않는 문제 수정    
+    * (Unity) 릴리스 빌드 시, 간헐적으로 웹뷰가 노출되지 않는 문제 수정    
 
 ### 2.6.3 (2020.01.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.6.3/GamebaseSDK-Unity.zip)
 
 #### 기능 개선/변경
 * [SDK] 2.6.3
-    * (Unity) Standalone Webview 개선: CefWebview 업데이트    
+    * (Unity) Standalone 웹뷰 개선: CefWebview 업데이트    
     * (Unity) 로그인 이후 오류가 발생하여 누락된 .dll 파일 추가
         * ToastCommon.dll, vcruntime140.dll
 
@@ -897,7 +897,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 추가
 * [SDK] 1.14.0
-    * (공통)Gamebase Webview에서 파일첨부 기능 추가 : Android의 API 19, Kitcat 에서는 정상 동작하지 않습니다.
+    * (공통)Gamebase 웹뷰에서 파일첨부 기능 추가 : Android의 API 19, Kitcat 에서는 정상 동작하지 않습니다.
     
 #### 기능 개선/변경
 * [SDK] 1.14.0
@@ -1062,7 +1062,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.8.0
     * (공통)Observer 기능 추가에 따라 다음 API Deprecated : LaunchingStatus Listener, Network Listener(기존 사용자는 계속 사용 가능)
     * (iOS)페이코 간편로그인 3rd SDK v1.2.2 적용 : 로그인 성공 시 토큰 만료 정보(expires_in) 제공, iPhoneX 로그인 UI 개선
-    * (iOS)iPhoneX 지원을 위하여, Webview 사용 인터페이스 수정
+    * (iOS)iPhoneX 지원을 위하여, 웹뷰 사용 인터페이스 수정
 
 #### 버그 수정
 * 국가코드(contry code)가 10자 이상인 경우 동접 데이터가 저장되지 않는 현상 수정
@@ -1099,8 +1099,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 추가
 * [SDK] 1.5.0
-    * WebView가 닫힐 때 발생하는 Close Callback 추가
-    * WebView에서 사용하는 Custom Scheme의 Event를 받을 수 있는 기능 추가
+    * 웹뷰가 닫힐 때 발생하는 Close Callback 추가
+    * 웹뷰에서 사용하는 Custom Scheme의 Event를 받을 수 있는 기능 추가
     * Unity Setting Tool 신규 배포
 
 #### 버그 수정

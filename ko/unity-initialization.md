@@ -72,7 +72,7 @@ LaunchingStatus는 아래 Launching 절 아래 State, Code 부분을 참고하�
 
 #### 8. useWebViewLogin
 
-Standalone 플랫폼에서 WebView를 통해서 로그인을 할 것인지에 대한 설정입니다. 
+Standalone 플랫폼에서 웹뷰를 통해서 로그인을 할 것인지에 대한 설정입니다. 
 
 ### Debug Mode
 * Gamebase는 경고(warning)와 오류 로그만을 표시합니다.

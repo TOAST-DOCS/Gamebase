@@ -121,7 +121,10 @@ See below for relevant guides.
 1. エディタのメニュー**Edit > Project Settings**を選択します。
 2. Project SettingsウィンドウでPluginカテゴリーから**Gamebase - iOS**を選択します。
 
-![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.40.0.png)
+![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.42.1.png)
+
+* Path
+    * Xcode Path：Xcodeのパスを入力します。 (デフォルト値： /Applications/Xcode.app)
 
 * Authentication
     * 使用したいIdPを有効にします。

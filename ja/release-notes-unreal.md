@@ -3,24 +3,24 @@
 ### 2.42.1 (2022. 08. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
-* FGamebaseForcingMappingTicket 클래스에 매핑 유저 상태를 나타내는 mappedUserValid 필드가 추가되었습니다.
-*  [iOS 설정 툴](./unreal-started/#ios-settings)에서 Xcode의 경로를 지정할 수 있도록 **Xcode Path** 설정이 추가되었습니다.
+#### 機能追加
+* FGamebaseForcingMappingTicketクラスにマッピングユーザー状態を表すmappedUserValidフィールドが追加されました。
+*  [iOS設定ツール](./unreal-started/#ios-settings)でXcodeのパスを指定できるように**Xcode Path**設定が追加されました。
 
-#### 기능 개선/변경
-* 킥아웃 팝업 창 표시 여부는 Gamebase 콘솔에서 킥아웃 등록 시 설정할 수 있으므로 다음 필드는 더 이상 사용하지 않습니다
+#### 機能改善/変更
+* キックアウトポップアップウィンドウを表示するかどうかはGamebaseコンソールでキックアウト登録時に設定できるため、次のフィールドは今後は使用しません。
     * **FGamebaseConfiguration.enableKickoutPopup**
-* FGamebaseConfiguration 내 일부 필드에 기본값이 추가되었습니다.
-    * enableLaunchingStatusPopup의 기본값이 true로 설정되었습니다.
-    * enableBanPopup의 기본값이 true로 설정되었습니다.
-* FWebView에서 고정 폰트 사이즈 사용 여부를 설정하는 필드는 더 이상 사용되지 않습니다.
+* FGamebaseConfiguration内の一部フィールドにデフォルト値が追加されました。
+    * enableLaunchingStatusPopupのデフォルト値がtrueに設定されました。
+    * enableBanPopupのデフォルト値がtrueに設定されました。
+* FWebViewで固定フォントサイズを使用するかどうかを設定するフィールドは、今後は使用しません。
     * **FGamebaseWebViewConfiguration.enableFixedFontSize**
-* FGamebaseWebViewConfiguratio 내 일부 필드에 기본 값이 추가되었습니다.
-    * 네비게이션 바의 색상 필드인 colorR, colorG, colorB, colorA의 기본값이 18, 93, 230, 255으로 설정되었습니다.
-    * 네비게이션 바 활성 여부를 지정하는 필드인 isNavigationBarVisible의 기본값이 true로 설정되었습니다.
-    * 웹뷰 내 뒤로가기 버튼 활성 여부를 지정하는 필드인 isBackButtonVisible의 기본값이 true로 설정되었습니다.
+* FGamebaseWebViewConfiguratio内の一部フィールドに基本値が追加されました。
+    * ナビゲーションバーの色相フィールドであるcolorR、colorG、colorB、colorAのデフォルト値が18、93、230、255に設定されました。
+    * ナビゲーションバーの有効/無効を指定するフィールドであるisNavigationBarVisibleのデフォルト値がtrueに設定されました。
+    * Webビュー内の戻るボタンの有効/無効を指定するフィールドであるisBackButtonVisibleのデフォルト値がtrueに設定されました。
     
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.42.1](./release-notes-android/#2421-2022-07-26)
 * [Gamebase iOS SDK 2.42.1](./release-notes-ios/#2421-2022-08-09)
 

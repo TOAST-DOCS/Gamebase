@@ -183,7 +183,7 @@ public void Login()
 
 > <font color="red">[주의]</font><br/>
 >
-> Standalone에서는 WebViewAdapter를 통해서 로그인을 지원하며 WebView가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
+> Standalone에서는 WebViewAdapter를 통해서 로그인을 지원하며 웹뷰가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
 >
 > Standalone WebViewAdapter를 사용하여 로그인을 하기 위해서는 IdP 개발자 사이트에서 아래 CallbackURL을 설정 하여야 합니다.
 > - https://id-gamebase.toast.com/oauth/callback

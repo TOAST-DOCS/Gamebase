@@ -335,7 +335,7 @@ Gamebase支持基本WebView。<br/>
 
 ##### Required参数
 * url : 作为参数发送的url必须是有效值。
-* viewController : View Controller用于显示WebView。
+* viewController : ViewController用于显示WebView。
 
 ##### Optional参数
 * configuration : 使用TCGBWebViewConfiguration可更改WebView的布局。

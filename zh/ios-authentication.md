@@ -336,7 +336,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 * 其他错误                            
     * 尝试映射（Mapping）失败。              
 
-### Import Header file into View Controller
+### Import Header file into ViewController
 
 将以下头文件导入到ViewController中，来实现映射（Mapping）。
 

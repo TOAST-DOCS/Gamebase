@@ -336,7 +336,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 * その他のエラー
     * マッピングが失敗しました。
 
-### Import Header file into View Controller
+### Import Header file into ViewController
 
 マッピングを設計するViewControllerに次のヘッダーファイルを持ってきます。
 

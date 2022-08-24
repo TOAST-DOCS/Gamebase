@@ -376,7 +376,7 @@ Shows a WebView.<br/>
 
 ##### Required Parameters
 * url: The url delivered as a parameter should be valid.
-* viewController: WebView is displayed on the View Controller.
+* viewController: WebView is displayed on the ViewController.
 
 ##### Optional Parameters
 * configuration: Changes WebView layout by using TCGBWebViewConfiguration.

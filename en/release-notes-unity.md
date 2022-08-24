@@ -1,20 +1,20 @@
-## Game > Gamebase > Release Notes > Unity## Game > Gamebase > 릴리스 노트 > Unity
+## Game > Gamebase > Release Notes > Unity## Game > Gamebase > Release Notes > Unity
 
 ### 2.42.1 (2022. 08. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* ForcingMappingTicket 클래스에 매핑 유저 상태를 나타내는 mappedUserValid 필드가 추가되었습니다.
+#### Added Features
+* Added the mappedUserValid field that represents the mapped user status to the ForcingMappingTicket class.
 
-#### 기능 개선/변경
-* WebView에서 고정 폰트 사이즈 사용 여부를 설정하는 필드는 더 이상 사용되지 않습니다.
+#### Feature Updates
+* The field to set whether to use the fixed font size in WebViewis no longer used.
     * **GamebaseWebViewConfiguration.enableFixedFontSize**
-* GamebaseWebViewConfiguration의 기본값이 추가되었습니다.
-    * 네비게이션 바의 색상 필드인 colorR, colorG, colorB, colorA의 기본값이 18, 93, 230, 255으로 설정되었습니다.
-    * 네비게이션 바 활성 여부를 지정하는 필드인 isNavigationBarVisible의 기본값이 true로 설정되었습니다.
-    * 웹뷰 내 뒤로가기 버튼 활성 여부를 지정하는 필드인 isBackButtonVisible의 기본값이 true로 설정되었습니다.
+* Added the default values of GamebaseWebViewConfiguration.
+    * The default values of navigation bar colorR, colorG, colorB, and colorA are set to 18, 93, 230, 255.
+    * The default value of the isNavigationBarVisible field to enable the navigation bar is set to true.
+    * The default value of the isBackButtonVisible field to enable the Go Back button in WebView is set to true.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.42.1](./release-notes-android/#2421-2022-07-26)
 * [Gamebase iOS SDK 2.42.1](./release-notes-ios/#2421-2022-08-09)
 

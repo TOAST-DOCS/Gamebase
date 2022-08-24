@@ -1,5 +1,32 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.42.1
+
+### Unity
+    
+#### Changed/Deprecated APIs
+* FGamebaseWebViewConfigurationでenableFixedFontSizeフィールドは今後はサポートしません。
+* GamebaseWebViewConfiguration一部フィールドにデフォルト値が追加され、値を設定していない場合、従来と異なる動作をする場合があります。
+    * ナビゲーションバーの色相フィールドであるcolorR、colorG、colorB、colorAのデフォルト値が18、93、230、255に設定されました。
+    * ナビゲーションバーの有効/無効を指定するフィールドであるisNavigationBarVisibleのデフォルト値がtrueに設定されました。
+    * Webビュー内の戻るボタンの有効/無効を指定するフィールドであるisBackButtonVisibleのデフォルト値がtrueに設定されました。
+
+### Unreal
+
+* (iOS) [iOS設定ツール](./unreal-started/#ios-settings)でXcodeのパスを変更できるように**Xcode Path**設定が追加されました。
+    * 変更しない場合、デフォルト値に設定されます。 (デフォルト値：/Applications/Xcode.app)
+
+#### Changed/Deprecated APIs
+* FGamebaseConfigurationのenableKickoutPopupプロパティは、今後はサポートしません。
+* FGamebaseConfigurationの一部フィールドにデフォルト値が追加され、値を設定していない場合、従来と異なる動作をする場合があります。
+    * enableLaunchingStatusPopupのデフォルト値がtrueに設定されました。
+    * enableBanPopupのデフォルト値がtrueに設定されました。
+* FGamebaseWebViewConfigurationでenableFixedFontSizeフィールドは今後はサポートしません。
+* FGamebaseWebViewConfigurationの一部フィールドにデフォルト値が追加され、値を設定していない場合、従来と異なる動作をする場合があります。
+    * ナビゲーションバーの色相フィールドであるcolorR、colorG、colorB、colorAのデフォルト値が18、93、230、255に設定されました。
+    * ナビゲーションバーの有効/無効を指定するフィールドであるisNavigationBarVisibleのデフォルト値がtrueに設定されました。
+    * Webビュー内の戻るボタンの有効/無効を指定するフィールドであるisBackButtonVisibleのデフォルト値がtrueに設定されました。
+
 ## 2.41.0
 
 ### Android
