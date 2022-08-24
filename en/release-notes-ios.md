@@ -1,11 +1,17 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.42.2 (2022. 08. 24.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.2/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 웹뷰에서 사용하는 스킴 목록 중 "itms-services"가 애플 검수에서 리젝되는 경우가 발생하여 제거하였습니다.
+
 ### 2.42.1 (2022. 08. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-iOS.zip)
 
-#### 버그 수정
-* 대비 증가 옵션을 활성화한 경우 Gamebase 팝업 창이 정상적으로 표시되지 않는 버그를 수정하였습니다.
-* SceneDelegate를 사용하는 프로젝트에서 Gamebase 팝업 창이 표시되지 않는 버그를 수정하였습니다.
+#### Bug Fixes
+* Fixed a bug where the Gamebase popup window is not displayed normally when the Increase Contrast option is enabled.
+* Fixed a bug where the Gamebase popup window is not displayed in a project using SceneDelegate.
 
 ### 2.42.0 (2022. 07. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.0/GamebaseSDK-iOS.zip)

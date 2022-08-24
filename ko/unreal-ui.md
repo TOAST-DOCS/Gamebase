@@ -358,14 +358,14 @@ void Sample::IsShowingTermsView()
 
 ### Show WebView
 
-WebView를 표시합니다.<br/>
+웹뷰를 표시합니다.<br/>
 
 ##### Required 파라미터
 * url: 파라미터로 전송되는 url은 유효한 값이어야 합니다.
 
 ##### Optional 파라미터 (현재는 Require 파라미터지만, 이후 버전에서 Optional로 변경 예정)
-* configuration: GamebaseWebViewConfiguration으로 WebView의 레이아웃을 변경할 수 있습니다.
-* closeCallback: WebView가 종료될 때 사용자에게 콜백으로 알려 줍니다.
+* configuration: GamebaseWebViewConfiguration으로 웹뷰의 레이아웃을 변경할 수 있습니다.
+* closeCallback: 웹뷰가 종료될 때 사용자에게 콜백으로 알려 줍니다.
 * schemeList: 사용자가 받고 싶은 커스텀 스킴 목록을 지정합니다.
 * schemeEvent: schemeList로 지정한 커스텀 스킴을 포함하는 url을 콜백으로 알려 줍니다.
 
@@ -410,27 +410,27 @@ void Sample::ShowWebView(const FString& url)
 
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | FString                                   | WebView의 제목                 |
-| orientation              | GamebaseScreenOrientation::Unspecified    | 미지정 (**default**)            |
+| title                    | FString                                   | 웹뷰의 제목                 |
+| orientation              | GamebaseScreenOrientation::Unspecified    | 미지정(**default**)            |
 |                          | GamebaseScreenOrientation::Portrait       | 세로 모드                       |
 |                          | GamebaseScreenOrientation::Landscape      | 가로 모드                       |
 |                          | GamebaseScreenOrientation::LandscapeReverse | 가로 모드를 180도 회전              |
-| contentMode              | GamebaseWebViewContentMode::Recommended        | 현재 플랫폼 추천 브라우저 (**default**)   |
+| contentMode              | GamebaseWebViewContentMode::Recommended        | 현재 플랫폼 추천 브라우저(**default**)   |
 |                          | GamebaseWebViewContentMode::Mobile             | 모바일 브라우저            |
-|                          | GamebaseWebViewContentMode::Desktop            | 데스크탑 브라우저          |
-| colorR                   | 0~255                                    | 내비게이션 바 색상 R<br>**default** : 18               |
-| colorG                   | 0~255                                    | 내비게이션 바 색상 G<br>**default** : 93               |
-| colorB                   | 0~255                                    | 내비게이션 바 색상 B<br>**default** : 230              |
-| colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha<br>**default** : 255          |
+|                          | GamebaseWebViewContentMode::Desktop            | 데스크톱 브라우저          |
+| colorR                   | 0~255                                    | 내비게이션 바 색상 R<br>**default**: 18               |
+| colorG                   | 0~255                                    | 내비게이션 바 색상 G<br>**default**: 93               |
+| colorB                   | 0~255                                    | 내비게이션 바 색상 B<br>**default**: 230              |
+| colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha<br>**default**: 255          |
 | barHeight                | height                                   | 내비게이션 바 높이<br>**Android Only**                 |
-| isNavigationBarVisible   | true or false                            | 내비게이션 바 활성 또는 비활성<br>**default** : true    |
-| isBackButtonVisible      | true or false                            | 뒤로 가기 버튼 활성 또는 비활성<br>**default** : true   |
+| isNavigationBarVisible   | true or false                            | 내비게이션 바 활성 또는 비활성<br>**default**: true    |
+| isBackButtonVisible      | true or false                            | 뒤로 가기 버튼 활성 또는 비활성<br>**default**: true   |
 | backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지         |
 | closeButtonImageResource | ID of resource                           | 닫기 버튼 이미지             |
 
 > [TIP]
 >
-> iPadOS 13 이상에서 WebView는 기본적으로 데스크탑 모드입니다.
+> iPadOS 13 이상에서 웹뷰는 기본적으로 데스크톱 모드입니다.
 > contentMode =`GamebaseWebViewContentMode.MOBILE` 설정으로 모바일 모드로 변경할 수 있습니다.
 
 #### Predefined Custom Scheme
@@ -439,15 +439,15 @@ Gamebase에서 지정해 놓은 스킴입니다.
 
 | scheme | 용도 |
 | ----------------------------- | ------------------------------ |
-| gamebase://dismiss | WebView 닫기 |
+| gamebase://dismiss | 웹뷰 닫기 |
 | gamebase://getMaintenanceInfo | 점검 내용을 WebPage에 표시 |
 | gamebase://getUserId          | 현재 로그인된 게임 유저의 사용자 ID를 표시 |
-| gamebase://goBack | WebView 뒤로 가기 |
+| gamebase://goBack | 웹뷰 뒤로 가기 |
 
 
 ### Close WebView
 
-다음 API를 이용해 보이는 WebView를 닫을 수 있습니다.
+다음 API를 이용해 보이는 웹뷰를 닫을 수 있습니다.
 
 **API**
 

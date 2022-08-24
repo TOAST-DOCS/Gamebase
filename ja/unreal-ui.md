@@ -45,10 +45,10 @@ void Sample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 co
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| colorR                   | 0～255                                    | ナビゲーションバーの色R            |
-| colorG                   | 0～255                                    | ナビゲーションバーの色G                |
-| colorB                   | 0～255                                    | ナビゲーションバーの色B                |
-| colorA                   | 0～255                                    | ナビゲーションバーの色Alpha                |
+| colorR                   | 0～255                                    | バックグラウンドの色R            |
+| colorG                   | 0～255                                    | バックグラウンドの色G                |
+| colorB                   | 0～255                                    | バックグラウンドの色B                |
+| colorA                   | 0～255                                    | バックグラウンドの色Alpha                |
 | timeOut                  | int64        | イメージ告知最大ローディング時間(単位: millisecond)<br/>**default**: 5000                     |
 
 
@@ -86,7 +86,7 @@ GameのUIに合った約款ウィンドウを直接製作したい場合には�
 
 > <font color="red">[注意]</font><br/>
 >
-> * FGamebasePushConfigurationは、約款ウィンドウが表示されていない場合にはnullです。(約款ウィンドウが表示された場合、常に有効なオブジェクトが返されます。)
+> * FGamebasePushConfigurationは、約款ウィンドウが表示されていない場合にはnullです(約款ウィンドウが表示された場合、常に有効なオブジェクトが返されます。)。
 > * FGamebasePushConfiguration.pushEnabled値は常にtrueです。
 > * FGamebasePushConfigurationがnullではない場合、**ログイン後に** IGamebase::Get().GetPush().RegisterPush()を呼び出してください。
 
@@ -100,7 +100,13 @@ GameのUIに合った約款ウィンドウを直接製作したい場合には�
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
 | forceShow | O | 約款に同意した場合、showTermsView APIを再度呼び出しても約款ウィンドウが表示されませんが、これを無視して強制的に約款ウィンドウを表示します。<br>**default** : false |
+| enableFixedFontSize | O | 約款ウィンドウのフォントサイズを固定するかどうかを決定します。<br>**default**：false<br/>**Android Only** |
 
+**FGamebaseShowTermsViewResult**
+
+| Parameter              | Values                          | Description         |
+| ---------------------- | --------------------------------| ------------------- |
+| isTermsUIOpened        | bool                            | **true**：約款ウィンドウが表示され、ユーザーが同意して約款ウィンドウが終了しました。<br>**false**：すでに約款に同意していて、約款ウィンドウが表示されずに約款ウィンドウが終了しました。        |
 
 **API**
 
@@ -110,7 +116,7 @@ Supported Platforms
 
 ```cpp
 void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
-void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
+void ShowTermsView(const FGamebaseTermsConfiguration& configuration, const FGamebaseDataContainerDelegate& onCallback);
 ```
 
 **ErrorCode**
@@ -137,8 +143,12 @@ void Sample::ShowTermsView()
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView succeeded."));
                 
-                // Save the 'PushConfiguration' and use it for RegisterPush() after Login().
-                savedPushConfiguration = FGamebasePushConfiguration::From(dataContainer);
+                const auto result = FGamebaseShowTermsResult::From(dataContainer);
+                if (result.IsValid())
+                {
+                    // Save the 'PushConfiguration' and use it for RegisterPush() after Login().
+                    savedPushConfiguration = FGamebasePushConfiguration::From(dataContainer);
+                }
             }
             else
             {
@@ -307,7 +317,6 @@ void Sample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 term
 }
 ```
 
-
 #### GamebaseRequest.Terms.UpdateTermsConfiguration
 
 | Parameter            | Mandatory(M) / Optional(O) | Values                    | Description         |
@@ -323,6 +332,25 @@ void Sample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 term
 | termsContentSeq      | **M**                      | int32                | 選択約款項目KEY      |
 | agreed               | **M**                      | bool               | 選択約款項目同意状況 |
 
+### IsShowingTermsView
+
+現在約款ウィンドウが画面に表示されているかどうかを知ることができます。
+
+**API**
+
+```cpp
+bool IsShowingTermsView();
+```
+
+**Example**
+
+```cpp
+void Sample::IsShowingTermsView()
+{
+    bool isShowingTermsView = IGamebase::Get().GetTerms().IsShowingTermsView();
+    UE_LOG(GamebaseTestResults, Display, TEXT("IsShowingTermsView : %s"), isShowingTermsView ? TEXT("true") : TEXT("false"));
+}
+```
 
 ## Webview
 
@@ -381,23 +409,22 @@ void Sample::ShowWebView(const FString& url)
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
 | title                    | FString                                   | WebViewのタイトル               |
-| orientation              | GamebaseScreenOrientation::Unspecified   | 未指定 |
+| orientation              | GamebaseScreenOrientation::Unspecified   | 未指定(**default**)            |
 |                          | GamebaseScreenOrientation::Portrait      | 縦モード                     |
 |                          | GamebaseScreenOrientation::Landscape     | 横モード                     |
 |                          | GamebaseScreenOrientation::LandscapeReverse | 横モードを180度回転              |
-| contentMode              | GamebaseWebViewContentMode::Recommended        | 現在のプラットフォームの推薦ブラウザ |
+| contentMode              | GamebaseWebViewContentMode::Recommended        | 現在のプラットフォームの推薦ブラウザ(**default**)   |
 |                          | GamebaseWebViewContentMode::Mobile             | モバイルブラウザ         |
 |                          | GamebaseWebViewContentMode::Desktop            | デスクトップブラウザ       |
-| colorR                   | 0～255                                    | ナビゲーションバーの色相R            |
-| colorG                   | 0～255                                    | ナビゲーションバーの色相G                |
-| colorB                   | 0～255                                    | ナビゲーションバーの色相B                |
-| colorA                   | 0～255                                    | ナビゲーションバーの色相Alpha                |
-| buttonVisible            | true or false                            | 戻るボタン有効/無効          |
-| barHeight                | height                                   | ナビゲーションバーの高さ                  |
-| backButtonImageResource  | ID of resource                           | 戻るボタンのイメージ              |
-| closeButtonImageResource | ID of resource | 閉じるボタンのイメージ |
-| url | "http://" or "https://" or "file://" | Web URL |
-
+| colorR                   | 0～255                                    | ナビゲーションバーの色相R<br>**default** : 18               |
+| colorG                   | 0～255                                    | ナビゲーションバーの色相G<br>**default** : 93               |
+| colorB                   | 0～255                                    | ナビゲーションバーの色相B<br>**default** : 230              |
+| colorA                   | 0～255                                    | ナビゲーションバーの色相Alpha<br>**default** : 255          |
+| barHeight                | height                                   | ナビゲーションバーの高さ<br>**Android Only**                 |
+| isNavigationBarVisible   | true or false                            | ナビゲーションバー有効/無効<br>**default** : true    |
+| isBackButtonVisible      | true or false                            | 戻るボタン有効/無効<br>**default** : true   |
+| backButtonImageResource  | ID of resource                           | 戻るボタンのイメージ       |
+| closeButtonImageResource | ID of resource                           | 閉じるボタンのイメージ           |
 
 > [TIP]
 >

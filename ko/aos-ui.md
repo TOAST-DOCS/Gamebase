@@ -385,20 +385,20 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 
 ## WebView
 
-Gamebase에서는 기본적인 WebView를 지원합니다.
+Gamebase에서는 기본적인 웹뷰를 지원합니다.
 
 
 ### Show WebView
 
-WebView를 표시합니다.
+웹뷰를 표시합니다.
 
 ##### Required 파라미터
-* activity : WebView가 노출되는 Activity입니다.
+* activity : 웹뷰가 노출되는 Activity입니다.
 * url : 파라미터로 전송되는 url은 유효한 값이어야 합니다.
 
 ##### Optional 파라미터
-* configuration : GamebaseWebViewConfiguration으로 WebView의 레이아웃을 변경 할 수 있습니다.
-* GamebaseCallback : WebView가 종료될 때 사용자에게 콜백으로 알려 줍니다.
+* configuration : GamebaseWebViewConfiguration으로 웹뷰의 레이아웃을 변경 할 수 있습니다.
+* GamebaseCallback : 웹뷰가 종료될 때 사용자에게 콜백으로 알려 줍니다.
 * schemeList : 사용자가 받고 싶은 커스텀 스킴 목록을 지정합니다.
 * GamebaseDataCallback : schemeList로 지정한 커스텀 스킴을 포함하는 url을 콜백으로 알려 줍니다.
 
@@ -423,14 +423,14 @@ Gamebase.WebView.showWebView(activity, "http://www.toast.com");
 
 #### Custom WebView
 
-사용자 지정 WebView를 표시합니다. <br/>
-GamebaseWebViewConfiguration으로 사용자 지정 WebView를 만들 수 있습니다.
+사용자 지정 웹뷰를 표시합니다. <br/>
+GamebaseWebViewConfiguration으로 사용자 지정 웹뷰를 만들 수 있습니다.
 
 ```java
 GamebaseWebViewConfiguration configuration
         = new GamebaseWebViewConfiguration.Builder()
-            .setTitleText("title")                              // WebView 제목을 설정
-            .setScreenOrientation(ScreenOrientation.PORTRAIT)   // WebView 스크린 방향 설정
+            .setTitleText("title")                              // 웹뷰 제목을 설정
+            .setScreenOrientation(ScreenOrientation.PORTRAIT)   // 웹뷰 스크린 방향 설정
             .setNavigationBarColor(Color.RED)                   // 내비게이션바 색상 설정
             .setNavigationBarHeight(40)                         // 내비게이션바 높이 설정
             .setBackButtonVisible(true)                         // 뒤로 가기 버튼 활성화 여부 설정
@@ -442,7 +442,7 @@ GamebaseWebView.showWebView(activity, "http://www.toast.com", configuration);
 
 #### Custom Scheme
 
-Gamebase WebView에서 로딩한 웹 페이지 내에 스킴으로 특정 기능을 사용하거나 웹 페이지 내용을 변경할 수 있습니다.
+Gamebase 웹뷰에서 로딩한 웹 페이지 내에 스킴으로 특정 기능을 사용하거나 웹 페이지 내용을 변경할 수 있습니다.
 
 ##### Predefined Custom Scheme
 
@@ -450,10 +450,10 @@ Gamebase에서 지정해 놓은 스킴입니다.
 
 | scheme               | 용도                                  |
 | -------------------- | ------------------------------------- |
-| gamebase://dismiss   | WebView 닫기                          |
-| gamebase://goback    | WebView 뒤로 가기                     |
+| gamebase://dismiss   | 웹뷰 닫기                          |
+| gamebase://goback    | 웹뷰 뒤로 가기                     |
 | gamebase://getuserid | 현재 로그인중인 있는 사용자의 아이디 표시 |
-| gamebase://showwebview?link={URLEncodedURL} | link 파라메터의 URL 을 WebView로 열기.<br>URLEncodedURL : WebView로 열 URL.<br>URL 디코딩 필요. |
+| gamebase://showwebview?link={URLEncodedURL} | link 파라메터의 URL 을 웹뷰로 열기.<br>URLEncodedURL : 웹뷰로 열 URL.<br>URL 디코딩 필요. |
 | gamebase://openbrowser?link={URLEncodedURL} | link 파라메터의 URL 을 외부 브라우저로 열기.<br>URLEncodedURL : 외부 브라우저로 열 URL.<br>URL 디코딩 필요. |
 
 #### User Custom Scheme
@@ -499,7 +499,7 @@ showWebView(activity, urlString, configuration,
 
 | Method                                   | Values                              | Description    |
 | ---------------------------------------- | ----------------------------------- | -------------- |
-| setTitleText(String title)               | title                               | WebView의 제목         |
+| setTitleText(String title)               | title                               | 웹뷰의 제목         |
 | setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | 세로 모드          |
 |                                          | ScreenOrientation.LANDSCAPE         | 가로 모드          |
 |                                          | ScreenOrientation.LANDSCAPE_REVERSE | 가로 모드를 180도 회전 |
@@ -513,7 +513,7 @@ showWebView(activity, urlString, configuration,
 
 
 ### Close WebView
-다음 API를 통하여, 보여지고 있는 WebView를 닫을 수 있습니다.
+다음 API를 통하여, 보여지고 있는 웹뷰를 닫을 수 있습니다.
 
 **API**
 

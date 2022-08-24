@@ -7,17 +7,14 @@
 
 ### Settings
 
-#### Apple Developer Certificates
+#### APNS JWT認証情報を取得する
 
-ここではPush通知の送信に必要なApple開発者認証書を作成する過程について説明します。
+ここではPush通知の送信に必要なAPNS JWT認証情報を取得するプロセスを説明します。
 
-* [Apple Developerサイト](https://developer.apple.com)の**Add iOS Certificate**から**Apple Push Notification service SSL**で認証書を作成します。
-* Keychainを登録した後、作成された認証書をPersonal Information Exchange(.p12)形式でエクスポートします(export)。
-* 認証書をエクスポート(export)するときに、パスワードを設定します。
+* [Notification > Push > Console Guide > APNS JWT認証情報を取得する](https://docs.toast.com/en/Notification/Push/en/console-guide/#get-authentication-information-for-apns-jwt)ガイドを参考にしてANPS JWTの登録に必要な必須認証情報を取得します。
 
 #### NHN Cloud Console登録
-* **Notification > Push > Certificate**で**APNS Certificate**と**APNS (Sandbox)Certificate**に上で作成した証明書を登録します。
-* 上の証明書を作成する時に設定したパスワードを使用して登録します。
+* **Notification > Push > Certificate**で**APNS JWT**に上で取得した情報を入力します。
 
 #### Notification Service Extension実装
 * 受信指標収集、通知音設定などを行うには[NHN Cloud Pushガイド](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-ios/#notification-service-extension)を参考にしてアプリケーションに**Notification Service Extension**を実装する必要があります。

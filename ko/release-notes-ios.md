@@ -1,5 +1,11 @@
 ## Game > Gamebase > 릴리스 노트 > iOS
 
+### 2.42.2 (2022. 08. 24.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.2/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 웹뷰에서 사용하는 스킴 목록 중 "itms-services"가 애플 검수에서 리젝되는 경우가 발생하여 제거하였습니다.
+
 ### 2.42.1 (2022. 08. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-iOS.zip)
 
@@ -156,7 +162,7 @@
 #### 기능 개선/변경
 * 외부 SDK 업데이트: TOAST iOS SDK (0.29.2), PAYCO iOS SDK (1.5.4)
 * 이용정지 웹뷰 내의 고객 센터 링크에서 이용정지 유저 정보로 문의를 등록할 수 없는 문제를 해결하였습니다.
-* 점검 팝업 창, 이용정지 자세히보기 웹뷰에서 뒤로가기 버튼이 표시되도록 수정하였습니다.
+* 점검 팝업 창, 이용정지 자세히보기 웹뷰에서 뒤로 가기 버튼이 표시되도록 수정하였습니다.
 
 ### 2.30.1 (2021.11.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.1/GamebaseSDK-iOS.zip)
@@ -333,7 +339,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.0/GamebaseSDK-iOS.zip)
 
 * 공통 약관 기능 추가
-    * 약관 WebView를 여는 API 추가
+    * 약관 웹뷰를 여는 API 추가
     * 약관 리스트 및 유저별 동의 여부를 조회하는 API 추가
     * 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
 
@@ -701,7 +707,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 추가
 
-* Gamebase Webview에서 파일첨부 기능 추가
+* Gamebase 웹뷰에서 파일첨부 기능 추가
     
 #### 기능 개선/변경
 * 이용정지/점검에 대해 사용자가 콘솔에 작성한 메시지들을 URL 인코딩하여 전송하고 클라이언트에서 디코딩하여 처리하도록 수정
@@ -797,7 +803,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그수정
 
-* Gamebase WebView NavigationBar 영역에 타이틀, 뒤로가기, 닫기 버튼이 나타나지 않는 현상을 수정
+* Gamebase 웹뷰 NavigationBar 영역에 타이틀, 뒤로 가기, 닫기 버튼이 나타나지 않는 현상을 수정
     
 ### 1.9.0 (2018.05.03) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.9.0/GamebaseSDK-iOS.zip)
@@ -839,7 +845,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 * Observer 기능 추가에 따라 다음 API Deprecated : LaunchingStatus Listener, Network Listener(기존 사용자는 계속 사용 가능)
 * PAYCO 간편로그인 3rd SDK v1.2.2 적용 : 로그인 성공 시 토큰 만료 정보(expires_in) 제공, iPhoneX 로그인 UI 개선
-* iPhoneX 지원을 위하여, Webview 사용 인터페이스 수정
+* iPhoneX 지원을 위하여, 웹뷰 사용 인터페이스 수정
 
 #### 버그 수정
 * 국가코드(contry code)가 10자 이상인 경우 동접 데이터가 저장되지 않는 현상 수정
@@ -857,15 +863,15 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그 수정
 
-* WebView 호출시, 크래시가 일어날 수 있는 부분에 대한 방어로직 처리
+* 웹뷰 호출시, 크래시가 일어날 수 있는 부분에 대한 방어로직 처리
 
 ### 1.5.0 (2017.12.21) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.5.0/GamebaseSDK-iOS.zip)
 
 #### 기능 추가
 
-* WebView가 닫힐 때 발생하는 Close Callback 추가
-* WebView에서 사용하는 Custom Scheme의 Event를 받을 수 있는 기능 추가
+* 웹뷰가 닫힐 때 발생하는 Close Callback 추가
+* 웹뷰에서 사용하는 Custom Scheme의 Event를 받을 수 있는 기능 추가
 * Unity Setting Tool 신규 배포
 
 ### 1.4.0 (2017.11.23) 
@@ -877,8 +883,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그 수정
 
-* WebView 런치 후, 기기 회전시 NavigationBar Title 이 reset이 되는 오류 수정
-* WebView의 NavigationBar Height을 커스터마이징 할 때, NavigationBar 배경 부분이 겹쳐서 노출되는 오류 수정
+* 웹뷰 런치 후, 기기 회전시 NavigationBar Title 이 reset이 되는 오류 수정
+* 웹뷰의 NavigationBar Height을 커스터마이징 할 때, NavigationBar 배경 부분이 겹쳐서 노출되는 오류 수정
 
 ### 1.3.0 (2017.10.26) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.3.0/GamebaseSDK-iOS.zip)

@@ -111,6 +111,23 @@ See below for relevant guides.
 >`!重要`
 > このプロセスを無視すると、以下のガイドリンクが正常に動作しなかったりGamebase SDK for Unrealを使用できません。
 
+#### Project Settings
+
+1. エディタのメニュー**Edit > Project Settings**を選択します。
+2. Project SettingsウィンドウでPluginカテゴリーから**Gamebase - iOS**を選択します。
+
+![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.42.1.png)
+
+* Path
+    * Xcode Path：Xcodeのパスを入力します。 (デフォルト値： /Applications/Xcode.app)
+
+* Authentication
+    * 使用したいIdPを有効にします。
+* Purchase
+    * 使用したいストアを選択します。
+* Push
+    * 使用したいプッシュサービスを有効にします。
+
 #### Sign in with Apple
 
 Sign in with Apple機能を使用するにはentitlementにcom.apple.developer.applesigninキー値が追加されている必要があります。

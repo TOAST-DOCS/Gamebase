@@ -19,7 +19,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | Facebookログインをサポート | - |
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Googleログインをサポート | - |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.5.2 | Hangameログインをサポート | - |
-|  | gamebase-adapter-auth-line | linesdk-5.8.0 | Lineログインをサポート | API 17(JellyBean MR1, OS 4.2) |
+|  | gamebase-adapter-auth-line | linesdk-5.8.0 | Lineログインをサポート | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Naverログインをサポート | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.7 | Paycoログインをサポート | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitterログインをサポート | API 19(Kitkat, OS 4.4) |

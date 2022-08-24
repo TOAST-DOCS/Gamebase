@@ -337,7 +337,7 @@ Call **[TCGBGamebase addMappingWithType:viewController:completion:]** to try map
 * Other errors
     * The mapping attempt has failed.
 
-### Import Header file into View Controller
+### Import Header file into ViewController
 
 Import the following header file to the ViewController to implement mapping.
 

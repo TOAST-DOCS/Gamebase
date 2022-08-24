@@ -124,7 +124,7 @@ Gamebase SDK for Unreal을 사용하려면 `UE4 Github 소스 코드`를 사용�
 ![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.42.1.png)
 
 * Path
-    * Xcode Path : Xcode의 경로를 입력합니다. (기본값 : /Applications/Xcode.app)
+    * Xcode Path: Xcode의 경로를 입력합니다. (기본값: /Applications/Xcode.app)
 * Authentication
     * 사용하려는 IdP를 활성화합니다.
 * Purchase

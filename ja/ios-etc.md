@@ -808,8 +808,6 @@ APIの呼び出しに必要なパラメータは下記の通りです。
 | -------------------------- | -------------------------- | ---- | ---- |
 | userLevel | M | int | ゲームユーザーレベルを表すフィールドです。 |
 | levelUpTime | M | long | Epoch timeで入力します。</br>ミリ秒(ms)単位で入力します。 |
-| channelId | O | string | |
-| characterId | O | string | |
 
 **API**
 

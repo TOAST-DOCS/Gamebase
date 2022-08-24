@@ -1,33 +1,39 @@
 ## Game > Gamebase > リリースノート > iOS
 
+### 2.42.2 (2022. 08. 24.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.2/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 웹뷰에서 사용하는 스킴 목록 중 "itms-services"가 애플 검수에서 리젝되는 경우가 발생하여 제거하였습니다.
+
 ### 2.42.1 (2022. 08. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-iOS.zip)
 
-#### 버그 수정
-* 대비 증가 옵션을 활성화한 경우 Gamebase 팝업 창이 정상적으로 표시되지 않는 버그를 수정하였습니다.
-* SceneDelegate를 사용하는 프로젝트에서 Gamebase 팝업 창이 표시되지 않는 버그를 수정하였습니다.
+#### バグ修正
+* コントラスト増加オプションを有効にした場合、Gamebaseポップアップウィンドウが正常に表示されないバグを修正しました。
+* SceneDelegateを使用するプロジェクトでGamebaseポップアップウィンドウが表示されないバグを修正しました。
 
 ### 2.42.0 (2022. 07. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* 매핑 실패 시 반환되는 ForcingMappingTicket VO 클래스에 유저의 현재 상태를 알 수 있도록 필드가 추가되었습니다.
+#### 機能追加
+* マッピングが失敗したときに返されるForcingMappingTicket VOクラスにユーザーの現在状態を知ることができるフィールドが追加されました。
     * **TCGBForcingMappingTicket.mappedUserValid**
-    * mappedUserValid에 저장된 값의 의미는 아래를 참고해주세요.
-        * [Game > Gamebase > API 가이드 > API v1.3 가이드 > Others > Mamber Vaild Code](./api-guide/#member-valid-code)
+    * mappedUserValidに保存された値の意味は以下を参照してください。
+        * [Game > Gamebase > APIガイド > API v1.3ガイド > Others > Mamber Vaild Code](./api-guide/#member-valid-code)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Hangame iOS SDK (1.7.0)
+#### 機能改善/変更
+* 外部SDKアップデート: Hangame iOS SDK (1.7.0)
 
-#### 버그 수정
-* 잘못된 AppID로 Gamebase 초기화를 했을 때 콜백이 호출되지 않는 버그를 수정하였습니다.
-* 한게임 로그인 사용자의 경우 GamebaseEventHandler의 **kTCGBIdPRevoked** 이벤트가 오지 않는 버그를 수정하였습니다.
+#### バグ修正
+* 無効なAppIDでGamebaseを初期化したときにコールバックが呼び出されないバグを修正しました。
+* ハンゲームIdPでログインした状態でGamebaseのEventHandlerの **kTCGBIdPRevoked**イベントが発生しないバグを修正しました。
 
 ### 2.41.1 (2022. 07. 20.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.1/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 약관 창이 완전히 닫힌 후에 콜백을 호출하도록 수정하였습니다.
+#### 機能改善/変更
+* 約款ウィンドウが完全に閉じたあとにコールバックを呼び出すように修正しました。
 
 ### 2.41.0 (2022. 07. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-iOS.zip)
