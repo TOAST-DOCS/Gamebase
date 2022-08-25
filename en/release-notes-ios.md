@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.2/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경
-* 웹뷰에서 사용하는 스킴 목록 중 "itms-services"가 애플 검수에서 리젝되는 경우가 발생하여 제거하였습니다.
+* 웹뷰에서 사용하는 스킴 목록 중 "itms-services"가 앱 스토어 심사에서 거절되는 경우가 발생하여 제거하였습니다.
 
 ### 2.42.1 (2022. 08. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-iOS.zip)

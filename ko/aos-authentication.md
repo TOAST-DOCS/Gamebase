@@ -186,7 +186,7 @@ private static void onLoginForGuest(final Activity activity) {
 
 > <font color="red">[주의]</font><br/>
 >
-> PAYCO IdP 는 iOS 에서 인증 모듈임에도 외부 결제라고 오탐하여 리젝되는 케이스가 발생하여
+> PAYCO IdP 는 iOS 에서 인증 모듈임에도 외부 결제라고 오탐하여 앱 스토어 심사에서 거절되는 케이스가 발생하여
 > AuthProvider.PAYCO 의 상수를 제공하지 않게 되었으므로
 > "payco" 라는 문자열을 직접 파라메터로 전달해야 합니다.
 
