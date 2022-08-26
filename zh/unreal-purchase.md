@@ -59,10 +59,10 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 1. 游戏客户向游戏服务器请求consume（消费）。
     * 传送UserID、gamebaseProductId、paymentSeq、purchaseToken。
 2. 游戏服务器查看在游戏DB中是否存在以同样的paymentSeq提供道具的历史记录。
-        * 2-1. 如果还未提供道具，则调用Gamebase服务器的Payment Transaction API验证paymentSeq和purchaseToken 值是否有效。
+    * 2-1. 如果还未提供道具，则调用Gamebase服务器的Payment Transaction API验证paymentSeq和purchaseToken 值是否有效。
         * [Game > Gamebase > API指南 > Purchase(IAP) > Get Payment Transaction](./api-guide/#get-payment-transaction)
-       * 2-2. 如果purchaseToken为正常的值，则向UserID提供使用gamebaseProductId购买的道具。
-       * 2-3. 提供道具后在游戏DB保存UserID、gamebaseProductId、paymentSeq及purchaseToken，必要时进行“支付再处理”或防止重复提供。
+    * 2-2. 如果purchaseToken为正常的值，则向UserID提供使用gamebaseProductId购买的道具。
+    * 2-3. 提供道具后在游戏DB保存UserID、gamebaseProductId、paymentSeq及purchaseToken，必要时进行“支付再处理”或防止重复提供。
 3. 游戏服务器通过调用Gamebase服务器的consume（消费）API提供道具（不考虑是否已提供道具）。
     * [Game > Gamebase > API指南 > Purchase(IAP) > Consume](./api-guide/#consume)
 

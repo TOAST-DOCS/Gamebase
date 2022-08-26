@@ -116,10 +116,10 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
  
 #### Optional参数
 
-* GamebaseDataCallback : 同意条款后，关闭条款窗时通过回调通知用户。如果将通过回调获取的GamebaseDataContainer对象转换为PushConfiguration，登录后可以在调用Gamebase.Push.registerPush API时使用它。
-* GamebaseTermsConfiguration : 通过GamebaseTermsConfiguration对象可以更改“是否强制显示条款同意窗”等设置。
+* GamebaseTermsConfiguration : 通过GamebaseTermsConfiguration对象可以更改“是否强制显示同意条款窗”等设置。 
+* GamebaseDataCallback : 同意条款后，条款窗将被关闭时通过回调通知用户。将通过回调返还的GamebaseDataContainer对象 转换为GamebaseShowTermsViewResult确认附加信息。 
 
-**API**               
+**API**
 
 ```java
 + (void)Gamebase.Terms.showTermsView(@NonNull Activity activity,
@@ -142,7 +142,7 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 
 | Field | Type | Nullable / NonNull | Description |
 | --- | --- | --- | --- |
-| isTermsUIOpened | boolean | NonNull | **true** : 显示条款窗后，由于用户已同意条款，条款窗被关闭。<br>**false** : 由于已同意条款，不显示条款窗，条款窗已关闭。 |  
+| isTermsUIOpened | boolean | NonNull | **true**: 显示条款窗后，由于用户已同意条款，条款窗被关闭。<br>**false**: 由于已同意条款，不显示条款窗，条款窗已关闭。 |  
 | pushConfiguration | PushConfiguration | Nullable | 如果isTermsUIOpened为**true**时，在条款中添加“是否同意接收推送”， pushConfiguration则始终具有有效的对象。<br>否则为**null**。<br>pushConfiguration有效时，pushConfiguration.pushEnabled值始终为 **true**。 |
 
 **ErrorCode**
@@ -393,14 +393,14 @@ Gamebase支持基本的WebView。
 显示WebView。
 
 ##### Required参数
-* activity：显示WebView活动。
+* activity ：显示WebView活动。
 * url ：作为参数发送的url必须是有效值。
 
 ##### 可选参数
-* configuration：可以使用GamebaseWebViewConfiguration更改WebView的布局。
-* GamebaseCallback：关闭时WebView通过回调通知用户。
-* schemeList：指定用户想要接收的自定义SchemeList。
-* GamebaseDataCallback：用schemeList指定的包含自定义Scheme的url，作为回调通知。
+* configuration ：可以使用GamebaseWebViewConfiguration更改WebView的布局。
+* GamebaseCallback ：关闭时WebView通过回调通知用户。
+* schemeList ：指定用户想要接收的自定义SchemeList。
+* GamebaseDataCallback ：用schemeList指定的包含自定义Scheme的url，作为回调通知。
 
 **API**
 
