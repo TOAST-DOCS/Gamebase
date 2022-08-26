@@ -531,11 +531,9 @@ android {
 
 * Amazon Device Messaging
     * 在Amazon Device Messaging(ADM)使用Proguard时，请参考以下指南后应用。
-            * [NHN Cloud > SDK使用指南> TOAST Push > Android > 设置Amazon Device Messaging > 下载ADM SDK ](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
-           * [NHN Cloud > SDK使用指南 > TOAST Push > Android > 设置Amazon Device Messaging > 设置Proguard ](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)   
-     * [https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
-    * [https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)
-* 将Proguard应用于gamebase 2.21.0或低于2.21.0版本时，若调用结算API而不添加Proguard Rule，则将发生崩溃。
+        * [NHN Cloud > SDK使用指南> TOAST Push > Android > 设置Amazon Device Messaging > 下载ADM SDK ](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
+        * [NHN Cloud > SDK使用指南 > TOAST Push > Android > 设置Amazon Device Messaging > 设置Proguard ](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)   
+* 将Proguard应用于Gamebase 2.21.0或低于2.21.0的版本时，若调用结算API而不添加Proguard Rule，则将发生崩溃。
     * 在Gamebase 2.21.0版本上已被修改。
 
             # ---------------------- [Gamebase TOAST IAP] defines start ----------------------

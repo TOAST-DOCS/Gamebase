@@ -219,7 +219,7 @@ Gamebase通过Webview以简单形式显示条款。
 >     * 如需查看“是否接收推送”，请调用Gamebase.Push.queryTokenInfo API。
 > * 如果在控制台中未设置“基本条款”的状态下，使用与条款语言不同的国家代码在设置的终端机上调用queryTerms API，则将出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误。
 >     * 若在控制台中设置“基本条款”或出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误，请不要显示条款。
-       * 在Standalone平台上不支持与推送有关的功能，相关条款不应被显示在游戏UI。
+> * 在Standalone平台上不支持与推送有关的功能，相关条款不应被显示在游戏UI。
 
 #### Required参数
 * callback : 通过回调通知用户API的调用结果。通过作为回调被返回的GamebaseQueryTermsResult，可获取在控制台中设置的条款信息。 
@@ -233,7 +233,7 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
-static void UpdateTerms(GamebaseRequest.Terms.UpdateTermsConfiguration configuration, GamebaseCallback.ErrorDelegate callback)
+static void QueryTerms(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Terms.QueryTermsResult> callback)
 ```
  
 **ErrorCode**
