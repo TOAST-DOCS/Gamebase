@@ -44,11 +44,11 @@ Then, include corresponding SDK files to a target of your project.
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Supports Game Center login | iOS 9 or later |
 |  | GamebaseAuthGoogleAdapter.framework | GoogleSignIn 5.0.2 | Supports Google login | iOS 9 or later |
 |  | GamebaseAuthTwitterAdapter.framework | | Supports Twitter login | iOS 9 or later |
-|  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | Supports LINE login | iOS 10 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | Supports LINE login | iOS 10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 9 or later<br/>arm64 support<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.7.0 | Supports Hangame login | iOS 9 or later |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.7.1 | Supports Hangame login | iOS 9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Supports Weibo login | iOS 9 or later |
-|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.11.5 | Supports Kakao login | iOS 11 or later |
+|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.4 | Supports Kakao login | iOS 11 or later |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.30.0<br/> ToastGamebaseIAP 0.13.0 | Supports in-game purchase | iOS 9 or later |
 | Gamebase Push Adapters | GamebasePushAdapter.framework | ToastPush 0.30.0 | Supports Push | iOS 9 or later |
 
@@ -232,24 +232,17 @@ end
 * URL Scheme must be configured.
 	* Go to **Xcode > Target > Info > URL Types** and add **line3rdp.{App Bundle ID}**
 
-* You must set the ChannelID issued by LINE in the Info.plist file.
-```
-<key>LineSDKConfig</key>
-<dict>
-    <key>ChannelID</key>
-    <string>{Issued LINE ChannelID}</string>
-</dict>
-```
 * For ATS setting, register the Scheme in the Info.plist file.
 ```
 <key>LSApplicationQueriesSchemes</key>
 <array>
-    <string>lineauth</string>
-    <string>line3rdp.{App Bundle ID}</string>
+    <string>lineauth2</string>
 </array>
 ```
 * Refer to the following link to see how to configure a project to use LINE Login. (Authentication required)
-* [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
+  * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/swift/overview/)
+* Gamebase iOS SDK 2.42.1 이하는 추가 설정이 필요합니다.
+    * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
 #### Weibo
 
@@ -293,6 +286,17 @@ end
 ```
 
 ![gamebase_auth_naver_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_naver_console_01.png)
+
+**LINE**
+* Gamebase iOS SDK 2.42.1 이하
+  * You must set the ChannelID issued by LINE in the Info.plist file.
+```
+<key>LineSDKConfig</key>
+<dict>
+    <key>ChannelID</key>
+    <string>{Issued LINE ChannleID}</string>
+</dict>
+```
 
 ## 3rd-Party Provider SDK Guide
 
