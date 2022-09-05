@@ -134,6 +134,19 @@ In addition, by using **TCGBAuthToken** , you can get user information, such as 
 When a login is successful, Gamebase access token is saved at a local storage; to use loginForLastLoggedInProviderWithViewController:completion: method, the stored access token can be applied.<br/>
 However, access token of each IdP is managed by SDK of each IdP.<br/>
 
+<br/><br/>
+To log in with some IdPs, certain information is required.<br/>
+For example, scope needs to be set when implementing Facebook login.<br/>
+To be able to set the required information, **[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API is provided.<br/>
+Enter the required information into the parameter additionalInfo in the form of the dictionary.<br/>
+(If the parameter value is nil, it is filled with the additionalInfo value registered in the NHN Cloud Console. If there is a parameter value, it takes precedence and overwrites the value registered in the Console.)
+
+
+> [Note]
+>
+> The IdP supported by iOS is defined as **kTCGBAuthXXXXXX** in the area of TCGBAuthIDPs of **TCGBConstants.h**.
+>
+
 ```objectivec
 - (void)loginFacebookButtonClick {
     [TCGBGamebase loginWithType:kTCGBAuthFacebook viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
@@ -146,49 +159,6 @@ However, access token of each IdP is managed by SDK of each IdP.<br/>
     }];
 }
 ```
-
-<br/><br/>
-To log in with some IdPs, certain information is required.<br/>
-For example, scope needs to be set when implementing Facebook login.<br/>
-To be able to set the required information, **[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API is provided.<br/>
-Enter the required information into the parameter additionalInfo in the form of the dictionary.<br/>
-(If the parameter value is nil, it is filled with the additionalInfo value registered in the NHN Cloud Console. If there is a parameter value, it takes precedence and overwrites the value registered in the Console.)
-
-* additionalInfo 파라미터 설정 방법
-
-| keyname                                  | a use                          | 값 종류                           |
-| ---------------------------------------- | ------------------------------ | ------------------------------ |
-|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | Line 서비스 제공 지역 중 로그인을 수행할 하나의 지역 | **String**(ex: japan, thailand, taiwan, indonesia)|
-
-```objectivec
-- (void)loginLineButtonClick {
-
-    NSDictionary *additionalInfo = @{ kTCGBAuthLoginWithCredentialLineChannelRegionKeyname: @"japan"};
-
-    [TCGBGamebase loginWithType:kTCGBAuthLine additionalInfo:additionalInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
-
-       if ([TCGBGamebase isSuccessWithError:error] == YES) {
-            // To Login Succeeded
-            NSString *userId = [authToken.tcgbMember userId];
-        } else {
-            // To Login Failed
-        }
-    }];
-}
-```
-
-
-> [참고]
->
-> Line로그인은 Console에 서비스를 제공할 지역을 복수개 등록할 수 있습니다. IdP로 로그인을 할 때는 additionalInfo 파라미터로 서비스를 제공할 하나의 지역을 직접 입력해야 합니다.
-> 
-
-
-> [Note]
->
-> The IdP supported by iOS is defined as **kTCGBAuthXXXXXX** in the area of TCGBAuthIDPs of **TCGBConstants.h**.
->
-
 
 #### IdPs supported by Gamebase
 Please refer to [Console Guide](./oper-app/#authentication-information).
@@ -209,7 +179,6 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                   | 
 | kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname | Allow login attempts using other accounts while logged into Gamebase without logging out  | **BOOL** |                                        
-|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | Line 서비스 제공 지역 중 로그인을 수행할 하나의 지역 | **String**(ex: japan, thailand, taiwan, indonesia)|
 
 
 
