@@ -157,7 +157,7 @@ Gamebase를 통하여 로그인을 처음 시도하거나, 로그인 정보(Acce
 
 | keyname                                  | a use                          | 값 종류                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | Line 서비스 제공 지역 중 로그인을 수행할 하나의 지역 | **String**(ex: japan, thailand, taiwan, indonesia)|
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINE 서비스 제공 지역 중 로그인을 수행할 하나의 지역 | **String**(ex: japan, thailand, taiwan, indonesia)|
 
 ```objectivec
 - (void)loginLineButtonClick {
@@ -178,15 +178,13 @@ Gamebase를 통하여 로그인을 처음 시도하거나, 로그인 정보(Acce
 
 > [참고]
 >
-> Line로그인은 Console에 서비스를 제공할 지역을 복수개 등록할 수 있습니다. IdP로 로그인을 할 때는 additionalInfo 파라미터로 서비스를 제공할 하나의 지역을 직접 입력해야 합니다.
+> LINE Login은 Console에 서비스를 제공할 지역을 복수개 등록할 수 있습니다. IdP로 로그인을 할 때는 additionalInfo 파라미터로 서비스를 제공할 하나의 지역을 직접 입력해야 합니다.
 > 
-
 
 > [참고]
 >
 > iOS에서 지원하는 IdP는 **TCGBConstants.h**의 TCGBAuthIDPs 영역의 **kTCGBAuthXXXXXX**로 정의되어 있습니다.
 >
-
 
 #### Gamebase에서 지원 중인 IdP
 [Console Guide](./oper-app/#authentication-information)를 참고하시기 바랍니다.
@@ -196,28 +194,21 @@ Gamebase를 통하여 로그인을 처음 시도하거나, 로그인 정보(Acce
 IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급받은 Access Token 등을 이용하여, Gamebase에 로그인할 수 있는 인터페이스입니다.
 
 
-
-
 * Credential 파라미터 설정 방법
-
-
 
 | keyname                                  | a use                          | 값 종류                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(Access Token) 설정 |                                |
 | kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname | Gamebase에 로그인한 상태에서 로그아웃을 하지 않고 다른 계정을 이용해 로그인을 시도하는 것을 허용 | **BOOL** |
-|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | Line 서비스 제공 지역 중 로그인을 수행할 하나의 지역 | **String**(ex: japan, thailand, taiwan, indonesia)|
-
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINE 서비스 제공 지역 중 로그인을 수행할 하나의 지역 | [Login with IdP 참고](./ios-authentication/#login-with-idp)|
 
 
 > [참고]
 >
 > 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
 >
-
 <br/>
-
 
 > <font color="red">[주의]</font><br/>
 >

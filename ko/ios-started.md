@@ -44,7 +44,7 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenter 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthGoogleAdapter.framework | GoogleSignIn 5.0.2 | Google 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthTwitterAdapter.framework | | Twitter 로그인을 지원 | iOS 9 or later |
-|  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | LINE 로그인을 지원 | iOS 10 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | LINE Login을 지원 | iOS 10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 9 or later<br/>arm64 지원<br/> |
 |  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.7.1 | Hangame 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weibo 로그인을 지원 | iOS 9 or later |
@@ -287,7 +287,7 @@ end
 ![gamebase_auth_naver_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_naver_console_01.png)
 
 **LINE**
-* Gamebase iOS SDK 2.42.1 이하
+* Gamebase iOS SDK 2.42.2 이하
   * LINE에서 발급받은 ChannelID를 Info.plist 파일에 설정해야 합니다.
 ```
 <key>LineSDKConfig</key>
