@@ -1,5 +1,11 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.43.0 (2022. 09. 07.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* Line Login을 수행 시 서비스를 제공할 Region을 입력할 수 있는 파라미터가 추가되었습니다.
+
 ### 2.42.1 (2022. 07. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Android.zip)
 
