@@ -14,7 +14,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 용도 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.31.1<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 16 (JellyBean, OS 4.1) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.1.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 16 (JellyBean, OS 4.1) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Google 로그인을 지원 | - |
@@ -25,17 +25,18 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitter 로그인을 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | Weibo 로그인을 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Weibo 로그인을 지원 | - |
-|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Kakao 로그인을 지원 | API 21(Lollipop, OS 5.0) |
-| Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.5<br>toast-iap-core | 게임 내 결제 지원 | - |
-|  | gamebase-adapter-purchase-amazon | toast-iap-amazon | Amazon Appstore를 지원 | API 18(JellyBean MR2, OS 4.3) |
-|  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | Galaxy Store를 지원 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK 의 minSdkVersion 은 18이지만, 실제 결제를 위해 설치해야 하는 Checkout 서비스앱의 minSdkVersion 은 21입니다. |
-|  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Google Play Store를 지원 | - |
-|  | gamebase-adapter-purchase-huawei | toast-iap-huawei | 화웨이 App Gallery를 지원 | API 19(Kitkat, OS 4.4) |
-|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | ONE store v17을 지원<br>현재 v19는 지원 불가 | - |
-|  | gamebase-adapter-purchase-onestore-external | toast-iap-onestore-external | ONE store 외부 결제 기능을 지원 | - |
-| Gamebase Push Adapters | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Push를 지원 | - |
-|  | gamebase-adapter-push-adm | toast-push-adm | Amazon Device Messaging을 지원 | - |
-|  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Firebase Notification을 지원 | - |
+|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.4<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.0<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Kakao 로그인을 지원 | API 21(Lollipop, OS 5.0) |
+| Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.20.0<br>nhncloud-iap-core | 게임 내 결제 지원 | - |
+|  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Amazon Appstore를 지원 | API 18(JellyBean MR2, OS 4.3) |
+|  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Galaxy Store를 지원 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK 의 minSdkVersion 은 18이지만, 실제 결제를 위해 설치해야 하는 Checkout 서비스앱의 minSdkVersion 은 21입니다. |
+|  | gamebase-adapter-purchase-google | billingclient.billing-5.0.0<br>nhncloud-iap-google | Google Play Store를 지원 | - |
+|  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | 화웨이 App Gallery를 지원 | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | ONE store v17을 지원 | - |
+|  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | ONE store v19를 지원 | - |
+|  | gamebase-adapter-purchase-onestore-external | nhncloud-iap-onestore-external | ONE store 외부 결제 기능을 지원 | - |
+| Gamebase Push Adapters | gamebase-adapter-toastpush | nhncloud-push-analytics<br>nhncloud-push-core<br>nhncloud-push-notification | Push를 지원 | - |
+|  | gamebase-adapter-push-adm | nhncloud-push-adm | Amazon Device Messaging을 지원 | - |
+|  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>nhncloud-push-fcm | Firebase Notification을 지원 | - |
 
 
 ## Setting
@@ -53,9 +54,6 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 * 아이템 구매를 위해 Store 콘솔에서 앱 정보를 등록하여 Gamebase > 구매(IAP) 콘솔에 입력합니다.
 	* [Game > Gamebase > 스토어 콘솔 가이드 > Google 콘솔 가이드](./console-google-guide)
 	* [Game > Gamebase > 스토어 콘솔 가이드 > ONE Store 콘솔 가이드](./console-onestore-guide)
-        * ONE Store는 현재 v17만 지원합니다.
-        * ONE Store에서 앱을 생성할 때 v19로 생성하지 않도록 주의하시기 바랍니다.
-        * ONE Store v19 지원은 검토 중입니다.
 	* [Game > Gamebase > 스토어 콘솔 가이드 > GALAXY 콘솔 가이드](./console-galaxy-guide)
 	* [Game > Gamebase > 스토어 콘솔 가이드 > Amazon 콘솔 가이드](./console-amazon-guide)
 	* [Game > Gamebase > 스토어 콘솔 가이드 > Huawei 콘솔 가이드](./console-huawei-guide)
@@ -185,8 +183,8 @@ dependencies {
 
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
-    // >>> ONE Store는 v17만 사용 가능하고 v19는 현재 지원하지 않습니다.
-    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"    // v17
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v19:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-external:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-amazon:$GAMEBASE_SDK_VERSION"
@@ -239,7 +237,7 @@ android {
 
 * Android Studio 빌드인 경우
     * Firebase 푸시를 사용하려면 아래 가이드에 따라 Firebase 설정을 완료한 후 google-services.json 파일을 프로젝트에 포함시켜야 합니다.
-		* [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud Push > Android > Firebase Cloud Messaging 설정](/TOAST/ko/toast-sdk/push-android/#firebase-cloud-messaging)
+		* [NHN Cloud > SDK 사용 가이드 > Push > Android > Firebase Cloud Messaging 설정](/TOAST/ko/toast-sdk/push-android/#firebase-cloud-messaging)
 * Unity 빌드인 경우
     * 만일 Firebase Unity SDK Package 를 설치했다면 아래 명령어로 **generate_xml_from_google_services_json.exe** 파일을 실행하여 json 파일을 xml 파일로 변환시킬 수 있습니다.
             
@@ -532,8 +530,8 @@ android {
 
 * Amazon Device Messaging
     * Amazon Device Messaging(ADM)에서 Proguard를 사용하는 경우, 다음 가이드를 확인하여 적용하셔야 합니다.
-        * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > ADM SDK 다운로드](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
-        * [NHN Cloud > SDK 사용 가이드 > TOAST Push > Android > Amazon Device Messaging 설정 > Proguard 설정](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)
+        * [NHN Cloud > SDK 사용 가이드 > Push > Android > Amazon Device Messaging 설정 > ADM SDK 다운로드](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
+        * [NHN Cloud > SDK 사용 가이드 > Push > Android > Amazon Device Messaging 설정 > Proguard 설정](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)
 * Gamebase 2.21.0 미만 버전은 Proguard 적용시 Proguard Rule 에 다음 선언을 추가하지 않으면 결제 API 호출시 크래쉬가 발생합니다.
     * Gamebase 2.21.0 버전에서 수정되었습니다.
 
