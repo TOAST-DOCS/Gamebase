@@ -335,10 +335,11 @@ You need to provide {Consumer Key} and {consumer Secret} acquired from Twitter A
 ##### iOS
 * [Gamebase > iOS SDK User Guide > Getting Started > IdP settings > Twitter](./ios-started/#twitter)
 
-
 #### 7. LINE
 
 **Input Fields**
+
+- Region : {LINE Channel Region}
 - Client ID: {LINE Channel ID}
 - Secret Key: {LINE Channel Secret}
 

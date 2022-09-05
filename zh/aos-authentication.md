@@ -187,7 +187,18 @@ private static void onLoginForGuest(final Activity activity) {
 >
 > 因PAYCO IdP（为认证模块）在检测中出现错误，常被误认为第三方结算模块，iOS审核总被拒，
 > 不再提供AuthProvider.PAYCO的常数。
-> 您要将"payco"字符串作为参数传送。 
+> 您要将"payco"字符串作为参数传送。
+
+> <font color="red">[주의]</font><br/>
+>
+> Line IdP는 Gamebase SDK 2.43.0부터 Line 서비스 제공 지역 설정을 할 수 있습니다.
+> 해당 지역은 AdditionalInfo에 설정할 수 있습니다. 
+
+* AdditionalInfo 파라미터 설정 방법
+
+| keyname                                  | a use                                    | 값 종류                                     |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Line 서비스 제공 지역 설정 | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
 
 **API**
 
@@ -254,6 +265,7 @@ private static void onLoginForGoogle(final Activity activity) {
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | 输入登录Google后可以获取的OTAC(一次性验证码) |                                          |
 | AuthProviderCredentialConstants.GAMEBASE_ACCESS_TOKEN | 当需使用Gamebase Access Token，而不需使用IdP认证信息登录时使用。 |  |
 | AuthProviderCredentialConstants.IGNORE_ALREADY_LOGGED_IN | 在登录Gamebase的状态下，即使不注销也可使用其他账户尝试登录。 | **boolean** |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Line 서비스 제공 지역 설정 | [Login with IdP 참고](./aos-authentication/#login-with-idp) |
 
 > [参考]
 >

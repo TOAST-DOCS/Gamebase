@@ -5,6 +5,7 @@
 
 #### 기능 개선/변경
 * Line Login을 수행 시 서비스를 제공할 Region을 입력할 수 있는 파라미터가 추가되었습니다.
+    * [Game > Gamebase > Android SDK 사용 가이드 > 인증 > Login with IdP](./aos-authentication/#login-with-idp)
 
 ### 2.42.1 (2022. 07. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Android.zip)

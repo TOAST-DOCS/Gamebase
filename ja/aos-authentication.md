@@ -190,6 +190,17 @@ private static void onLoginForGuest(final Activity activity) {
 > AuthProvider.PAYCOの定数を提供しなくなったため、
 > "payco"という文字列を直接パラメータとして渡す必要があります。
 
+> <font color="red">[주의]</font><br/>
+>
+> Line IdP는 Gamebase SDK 2.43.0부터 Line 서비스 제공 지역 설정을 할 수 있습니다.
+> 해당 지역은 AdditionalInfo에 설정할 수 있습니다. 
+
+* AdditionalInfo 파라미터 설정 방법
+
+| keyname                                  | a use                                    | 값 종류                                     |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Line 서비스 제공 지역 설정 | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
+
 **API**
 
 ```java
@@ -255,6 +266,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Googleログイン後に取得できるOTAC(one time authorization code)の入力 |                                          |
 | AuthProviderCredentialConstants.GAMEBASE_ACCESS_TOKEN | IdP認証情報ではなくGamebase Access Tokenでログインを行いたい場合に使用 |  |
 | AuthProviderCredentialConstants.IGNORE_ALREADY_LOGGED_IN | Gamebaseログイン状態からログアウトを行わずに別のアカウントへのログイン試行を許可する | **boolean** |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Line 서비스 제공 지역 설정 | [Login with IdP 참고](./aos-authentication/#login-with-idp) |
 
 > [参考]
 >

@@ -335,10 +335,11 @@ Twitter Application Management 사이트에서 앱을 등록하고 발급받은 
 ##### iOS
 * [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Twitter](./ios-started/#twitter)
 
-
 #### 7. LINE
 
 **입력 필드**
+
+- Region : {LINE Channel Region}
 - Client ID: {LINE Channel ID}
 - Secret Key: {LINE Channel Secret}
 

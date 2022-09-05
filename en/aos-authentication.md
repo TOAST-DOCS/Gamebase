@@ -190,6 +190,17 @@ You can find the types of IdP that can login, with **AuthProvider** class.
 > and we are no longer providing the constant of the AuthProvider.PAYCO.,
 > the string called "payco" should be directly passed to the parameter.
 
+> <font color="red">[주의]</font><br/>
+>
+> Line IdP는 Gamebase SDK 2.43.0부터 Line 서비스 제공 지역 설정을 할 수 있습니다.
+> 해당 지역은 AdditionalInfo에 설정할 수 있습니다. 
+
+* AdditionalInfo 파라미터 설정 방법
+
+| keyname                                  | a use                                    | 값 종류                                     |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Line 서비스 제공 지역 설정 | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
+
 **API**
 
 ```java
@@ -255,6 +266,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter One Time Authorization (OTAC) which can be obtained after Google login. |                                          |
 | AuthProviderCredentialConstants.GAMEBASE_ACCESS_TOKEN | Used when logging in with Gamebase Access Token instead of IdP authentication information |  |
 | AuthProviderCredentialConstants.IGNORE_ALREADY_LOGGED_IN | While logged in to Gamebase, allow login attempts with other account without logging out | **boolean** |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Line 서비스 제공 지역 설정 | [Login with IdP 참고](./aos-authentication/#login-with-idp) |
 
 > [Note]
 >
