@@ -339,7 +339,6 @@ You need to provide {Consumer Key} and {consumer Secret} acquired from Twitter A
 
 **Input Fields**
 
-- Region : {LINE Channel Region}
 - Client ID: {LINE Channel ID}
 - Secret Key: {LINE Channel Secret}
 

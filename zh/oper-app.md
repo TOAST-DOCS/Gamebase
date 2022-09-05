@@ -345,7 +345,6 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
  
 **输入字段**
 
-- Region : {LINE Channel Region}
 - Client ID ：{LINE Channel ID}
 - Secret Key ：{LINE Channel Secret}
 
