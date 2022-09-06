@@ -157,12 +157,12 @@ Gamebase를 통하여 로그인을 처음 시도하거나, 로그인 정보(Acce
 
 | keyname                                  | a use                          | 값 종류                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINE 서비스 제공 지역 중 로그인을 수행할 하나의 지역 | **String**(ex: japan, thailand, taiwan, indonesia)|
+| kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINE 서비스 제공 지역 중 로그인을 수행할 하나의 region | **String**(ex: japan, thailand, taiwan, indonesia) |
 
 ```objectivec
 - (void)loginLineButtonClick {
 
-    NSDictionary *additionalInfo = @{ kTCGBAuthLoginWithCredentialLineChannelRegionKeyname: @"japan"};
+    NSDictionary *additionalInfo = @{ kTCGBAuthLoginWithCredentialLineChannelRegionKeyname: @"japan" };
 
     [TCGBGamebase loginWithType:kTCGBAuthLine additionalInfo:additionalInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
 
@@ -178,7 +178,7 @@ Gamebase를 통하여 로그인을 처음 시도하거나, 로그인 정보(Acce
 
 > [참고]
 >
-> LINE Login은 Console에 서비스를 제공할 지역을 복수개 등록할 수 있습니다. IdP로 로그인을 할 때는 additionalInfo 파라미터로 서비스를 제공할 하나의 지역을 직접 입력해야 합니다.
+> LINE 로그인은 Console에 서비스를 제공할 지역을 복수개 등록할 수 있습니다. IdP로 로그인을 할 때는 additionalInfo 파라미터로 서비스를 제공할 하나의 지역을 직접 입력해야 합니다.
 > 
 
 > [참고]

@@ -37,7 +37,7 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 용도  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.30.0 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS 9 or later
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.0.0 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS 9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Facebook 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.5 | PAYCO 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | NAVER 로그인을 지원 | iOS 9 or later |
@@ -49,8 +49,8 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 |  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.7.1 | Hangame 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weibo 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.4 | Kakao 로그인을 지원 | iOS 11 or later |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.30.0<br/> ToastGamebaseIAP 0.13.0 | 게임 내 결제 지원 | iOS 9 or later |
-| Gamebase Push Adapters | GamebasePushAdapter.framework | ToastPush 0.30.0 | Push를 지원 | iOS 9 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.0.0<br/> ToastGamebaseIAP 0.14.0 | 게임 내 결제 지원 | iOS 9 or later |
+| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.0.0 | Push를 지원 | iOS 9 or later |
 
 
 > <font color="red">[주의]</font><br/>
