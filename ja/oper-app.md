@@ -330,10 +330,10 @@ Twitter Application Managementサイトでアプリを登録して発行した{C
 ##### iOS
 * [Gamebase > iOS SDK使用ガイド > 始める > IdP settings > Twitter](./ios-started/#twitter)
 
-
 #### 7. LINE
 
 **入力フィールド**
+
 - Client ID：{LINE Channel ID}
 - Secret Key：{LINE Channel Secret}
 

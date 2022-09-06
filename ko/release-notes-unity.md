@@ -1,5 +1,17 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
+### 2.43.0 (2022. 09. 07.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.0/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST Unity SDK(0.26.1), Kakaogame Unity SDK(3.14.5)
+* LINE Login을 수행 시 서비스를 제공할 Region을 입력하도록 변경되었습니다.
+  * [Game > Gamebase > Unity SDK 사용 가이드 > 인증 > Login with IdP](./unity-authentication/#login-with-idp)
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.43.0](./release-notes-android/#2430-2022-09-07)
+* [Gamebase iOS SDK 2.43.0](./release-notes-ios/#2430-2022-09-07)
+
 ### 2.42.1 (2022. 08. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Unity.zip)
 
@@ -521,7 +533,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 
 #### 기능 개선/변경
 * [SDK] 2.14.0
-    * (iOS) PAYCO IdP의 상수값 제거: PAYCO 문자열로 인한 애플 검수가 리젝되는 경우가 발생하여 제거
+    * (iOS) PAYCO IdP의 상수값 제거: PAYCO 문자열로 인한 앱 스토어 심사에서 거절되는 경우가 발생하여 제거
     * (iOS, Unity) TCGBWebViewConfiguration에 contentMode 설정 추가
 
 ### 2.13.0 (2020.07.28)

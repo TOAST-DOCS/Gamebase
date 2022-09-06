@@ -1,5 +1,10 @@
 ## Game > Gamebase > iOS SDK 使用指南 > 结算
 
+> <font color="red">[注意]</font><br/>
+>
+> 使用3rd party结算Plug-In或模块（如Unreal或Unity）时，可能会影响Gamebase的结算功能。
+>   
+
 以下是设置使用应用内结算的方法。
 
 Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的应用内结算。
@@ -40,12 +45,12 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 ### Purchase Flow
 
-购买商品的程序大体分为结算Flow、Consume Flow及”支付再处理”Flow。
+购买商品的程序大体分为结算Flow、Consume Flow及“支付再处理”Flow。
 请按以下顺序实现结算Flow。
 
 ![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-1. 未能正常结束上一次支付时，若不进行‘’支付再处理”则将导致支付失败。因此支付前应调用**requestItemListOfNotConsumedWithCompletion:**启动‘’支付再处理”，若存在未提供的道具则进行Consume Flow。
+1. 未能正常结束上一次支付时，若不进行“支付再处理”则将导致支付失败。因此支付前应调用**requestItemListOfNotConsumedWithCompletion:**启动“支付再处理”，若存在未提供的道具则进行Consume Flow。
 2. 游戏客户端通过从Gamebase SDK调用**requestPurchaseWithGamebaseProductId:viewController:completion:**进行付款。 
 3. 如果付款成功，请调用**requestItemListOfNotConsumedWithCompletion:**查看未消费结算明细。若存在未提供的道具，则进行Consume Flow。
 
@@ -63,10 +68,10 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 1. 游戏客户向游戏服务器请求consume（消费）。
     * 传送UserID、gamebaseProductId、paymentSeq、purchaseToken。
 2. 游戏服务器查看在游戏DB中是否存在以同样的paymentSeq提供道具的历史记录。
-    * 2-1.
+    * 2-1. 如果您未提供道具，则需调用Gamebase服务器的Payment Transaction API，验证paymentSeq, purchaseToken值是否有效。
         * [Game > Gamebase > API指南 > Purchase(IAP) > Get Payment Transaction](./api-guide/#get-payment-transaction)
-    * 2-2. 若存在未提供道具，则需向UserID提供使用gamebaseProductId购买的商品。
-    * 2-3. 提供道具后在游戏DB保存UserID、gamebaseProductId、paymentSeq、purchaseToken，必要时进行‘’支付再处理”或防止重复提供。
+    * 2-2. 如果purchaseToken为正常的值，则对UserID提供使用gamebaseProductId购买的道具。
+    * 2-3. 提供道具后在游戏DB保存UserID、gamebaseProductId、paymentSeq、purchaseToken，必要时进行“支付再处理”或防止重复提供道具。
 3. 游戏服务器通过调用Gamebase服务器的consume（消费）API提供道具。这时不考虑是否已提供道具。
     * [Game > Gamebase > API指南 > Purchase(IAP) > Consume](./api-guide/#consume)
 
@@ -75,8 +80,8 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
 * 商店支付已成功，但因出现错误无法正常终止时，
-* 请调用**requestItemListOfNotConsumedWithCompletion:**进行‘’支付再处理”。若存在尚未提供的道具，则进行[Consume Flow](./aos-purchase/#consume-flow)。
-* 建议在以下情况下调用‘’支付再处理”。
+* 请调用**requestItemListOfNotConsumedWithCompletion:**进行“支付再处理”。若存在尚未提供的道具，则进行[Consume Flow](./aos-purchase/#consume-flow)。
+* 建议在以下情况下调用“支付再处理”。
     * 完成登录后
     * 支付之前
     * 进入游戏内商店（或 Lobby） 时
@@ -99,11 +104,6 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，而可在Game
                                      payload:(NSString *)payload 
                               viewController:(UIViewController *)viewController 
                                   completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
-
-// Legacy API
-+ (void)requestPurchaseWithItemSeq:(long)itemSeq 
-                    viewController:(UIViewController *)viewController 
-                        completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
 ```
 
 **Example**
@@ -140,13 +140,13 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，而可在Game
 @property (nonatomic, strong) NSString *currency;
 
 // 为结算标识符。
-// 调用”Consume”服务器API时与purchaseToken一起使用。
+// 调用“Consume”服务器API时与purchaseToken一起使用。
 // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
  
 @property (nonatomic, strong) NSString *paymentSeq;
 
 // 为结算标识符。
-// 调用”Consume”服务器API时与paymentSeq一起使用。
+// 调用“Consume”服务器API时与paymentSeq一起使用。
 // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
 // 注意 : 只能通过游戏服务器调用Consume API!
 @property (nonatomic, strong) NSString *purchaseToken;
@@ -186,6 +186,11 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，而可在Game
 
 // 是通过itemSeq购买商品的Lecacy API专用标识符。
 @property (assign)            long itemSeq;
+
+// sandbox支付与否
+@property (nonatomic, assign) BOOL sandboxPayment;
+// promotion支付与否
+@property (nonatomic, assign) BOOL promotionPayment;
 
 @end
 ```
@@ -255,7 +260,7 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，而可在Game
 // 是在商店控制台中注册的当地商品说明。
 @property (nonatomic, strong) NSString *localizedDescription;
 
-// Gamebase控制台中的相关商品的”使用与否"。
+// Gamebase控制台中的相关商品的“使用与否"。
 @property (nonatomic, assign, getter=isActive) BOOL active;
 
 // 是通过itemSeq购买商品的Lecacy API专用道具标识符。
@@ -269,12 +274,12 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，而可在Game
 请求已购买了商品，却没有正常消费（发送，提供）item的未消费结算明细。<br/>
 如果有未完成的商品，您必须要求游戏服务器（item服务器）处理配送item（支付）。
 
-* 未能完成支付时，也起到‘’支付再处理”的作用。可在下列情况下调用该函数。
+* 未能完成支付时，也起到“支付再处理”的作用。可在下列情况下调用该函数。
     * 查看是否存在未提供的道具
         * 完成登录后
         * 进入游戏内商店（或 Lobby） 时
         * 查询用户简介或邮箱时
-    * 查看需要进行‘’支付再处理”的道具
+    * 查看需要进行“支付再处理”的道具
         * 支付之前
         * 支付失败后
 
@@ -338,7 +343,7 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，而可在Game
 
 ### Event by Promotion
 
-> ”注意”
+> `注意`
 > 只能在iOS 11以上版本上使用。
 > 仅在Gamebase 1.13.0以上版本上支持。(适用NHN Cloud IAP SDK 1.6.0以上)
 

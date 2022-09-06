@@ -30,7 +30,7 @@
 
 #### (2) 是否包含测试付款                                 
 查看App指标时，请选择是否包含测试付款。
-选项的默认值为"包含测试付款"。如果选择"测试付款不包括"，当显示指标时，对Analytics销售指标进行筛选，不显示测试付款。
+选项的默认值为“包含测试付款”。如果选择“测试付款不包括”，当显示指标时，对Analytics销售指标进行筛选，不显示测试付款。
 > [参考1]
 > 无论指标的设置状态如何，因数据始终累积测试支付件和实际的支付件，即使更改测试付款的显示与否，也不影响到实际数据搜集。
 
@@ -41,8 +41,8 @@
 > * AppStore : 在Sandbox环境下进行测试付款的历史记录。
 
 #### (3) 预约退出时期
-若欲使用App的”预约退出‘’功能，请设置预约退出的时间。
-选项的默认值为”7天”。可以选择1到30天之间的任何时间。
+若欲使用App的“预约退出”功能，请设置预约退出的时间。
+选项的默认值为“7天”。可以选择1到30天之间的任何时间。
 > [参考]
 > 在预约退出时期也可使用服务。
 
@@ -67,7 +67,7 @@
 登录gamebase时，可以注册、编辑或删除IdP的认证信息。
 
 可以设置外部认证的客户端ID、密钥（secret key）、回调URL及附加信息。
-可以通过单击认证信息旁边的”+"按钮来添加信息，也可单击"-"按钮删除信息。
+可以通过单击认证信息旁边的“+”按钮来添加信息，也可单击“-”按钮删除信息。
 关于Idp详细的设置方法，请参考[Authentication Information](#authentication-information)。
 > [参考]
 > 什么是令牌再验证?
@@ -99,12 +99,12 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 * **电话号码** : 输入客户服务的电话号码。可以通过Gamebase SDK接收相关值。
 
 #### 2. Gamebase提供的客户服务
-![gamebase_app_20_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_20_202009.png)
+![ ](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_20_202009.png)
 若欲使用Gamebase提供的客户服务，设置以下项目。
 需要设置的项目如下。                                               
 * **客户服务URL** : 提供可从客户接收提问的页面信息。当选择Gamebase提供的客户服务时，自动创建URL。通过此URL可在单独的页面上接收客户注册的查询。
 * **电话号码** : 输入客户服务电话号码。可以通过Gamebase SDK接收相关值。
-* **支持语言** : 选择客户服务支持的语言。此信息与项目的语言设置无关，是要另行设置的信息。目前在支持韩语、英语、日语及汉语。使用Gamebase提供的客户服务时使用设置的语言。
+* **支持语言** : 选择客户服务支持的语言。此信息与项目的语言设置无关，是要另行设置的。目前在支持韩语、英语、日语、汉语(简体、繁体)及俄语。如果所需的支持语言不可用，请联系客户服务。
 * **默认语言** : 在支持语言选项中选择要作为客户服务默认值的语言。
 
 #### 3. NHN Cloud组织服务(Online Contact)
@@ -125,13 +125,13 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 > 登录类型 : GET方式 
 > Token验证URL : https://gamebase-web.cloud.toast.com/tcgb-web/v1.0/apps/{appId}/online-contact/login-status
 > 确认需要使用的Gamebase的项目ID ，在**{appId}**中输入。 
-> 
+>  
 > 2) 获取OC组织Key后，将其在OC组织Key项目中输入。 
 > 全局管理 -> 合同服务现状 -> 移动到组织信息，复制OC组织信息的OC组织Key后，在Gamebase OC组织Key项目中输入。  
 > ![gamebase_app_25_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_25_202102.png)
 >
 > 3) 查看NHN Cloud Online contact客户服务网页地址后，将其在客户服务URL中输入。 
-> 帮助中心 -> 选择子菜单 -> 点击右上角的”跳转到帮助中心”
+> 帮助中心 -> 选择子菜单 -> 点击右上角的“跳转到帮助中心”
 > ![gamebase_app_26_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_26_202009.png)
 > 在Gamebase客户服务URL项目中输入浏览器上端的地址。
 > ![gamebase_app_27_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_27_202102.png)
@@ -142,9 +142,9 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 ![gamebase_app_02_201912.png](http://static.toastoven.net/prod_gamebase/gamebase_app_02_201912.png)
 一旦注册为测试终端，即使在通过Gamebase的应用程序进行维护，也可进入游戏。
 若要设置测试终端机，则需注册**Device Key**或**IP**信息。可直接输入或通过查看**游戏用户ID**来进行注册。 
-可通过允许维护中玩游戏或设置各终端机的‘’Debug Log输出与否”来管理测试终端机。
+可通过允许维护中玩游戏或设置各终端机的“Debug Log输出与否”来管理测试终端机。
 可以删除不需要再使用的测试终端机。
-若点击”连接记录”按钮，则可通过相关机器确认**维护时的连接时间和详细的连接日志**。
+若点击“连接记录”按钮，则可通过相关机器确认**维护时的连接时间和详细的连接日志**。
 ![gamebase_app_09_201912.png](http://static.toastoven.net/prod_gamebase/gamebase_app_09_201912.png)
 
 > [参考]
@@ -164,7 +164,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 选择类型作为用户的ID，输入游戏用户ID，然后单击**搜索**按钮，用户的登录日志显示在页面底部。从显示的列表中选择要注册为测试设备的设备密钥，然后输入**备注信息**后单击**注册**按钮将相应的设备密钥注册为测试设备。
 **(B) 使用Device Key或IP进行注册**
 如果已确认要注册的Device key或IP信息，通过在类型选项中选择您要使用的方式， 直接注册测试终端机。
-如需注册测试终端机，输入您要注册的终端机的 **终端机名称**、“Debug Log及‘’维护与否”后点击注册按键。
+如需注册测试终端机，输入您要注册的终端机的 **终端机名称**、“Debug Log”及“维护与否”后点击注册按键。
 
 > [参考]
 > 请在备注信息中输入用户易于查看的自定义名称。 例) iPhone 6 测试、Toast的iPad
@@ -183,9 +183,9 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 
 **输入字段**
 
-- ClientID：{AppID}
-- Secret Key：{App Secret Code}
-- 备注信息：Facebook Permission (json format)
+- ClientID ：{AppID}
+- Secret Key ：{App Secret Code}
+- 备注信息 ：Facebook Permission (json format)
 
 ![gamebase_app_04_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_04_201812.png)
 
@@ -219,7 +219,28 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 	* https://alpha-id-gamebase.toast.com/oauth/callback
 	* https://beta-id-gamebase.toast.com/oauth/callback
 	* https://id-gamebase.toast.com/oauth/callback
-	* ![google console](http://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-google-console-003_1.11.0.png)
+
+<br/>
+
+为了Google iOS认证，您需要从Google Cloud Console获取**iOS Client ID**，并将其在Gamebase控制台中输入。
+
+选择**APIs & Services > CREATE CREDENTIALS > OAuth client ID**后
+
+![gamebase_app_google_ios_1.png](https://static.toastoven.net/prod_gamebase/gamebase_app_google_ios_1.png)
+
+将**Application type**选择为**iOS**并输入Bundle ID。
+
+![gamebase_app_google_ios_2.png](https://static.toastoven.net/prod_gamebase/gamebase_app_google_ios_2.png)
+
+#### Gamebase Console
+
+![gamebase_app_google_ios_4.png](https://static.toastoven.net/prod_gamebase/gamebase_app_google_ios_4.png)
+
+**输入字段**<br/>
+
+- Web Application ID : {Google Web Application Client ID}
+- iOS Client ID : {Google iOS Client ID}
+- Secret Key : {Google Web Application Client secret}
 
 ##### iOS
 * [Gamebase > iOS SDK使用指南 > 开始 > IdP Settings > Google](./ios-started/#google)
@@ -245,14 +266,14 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 
 **输入字段**<br />
 
-- ClientID：{Payco client_id}
-- Secret Key：{Payco client_secret}
-- 追加信息：Payco Service & Service Name (JSON format)
+- ClientID ：{PAYCO client_id}
+- Secret Key ：{PAYCO client_secret}
+- 追加信息 ：PAYCO Service & Service Name (JSON format)
 
 ##### Additional Info Settings
 
 * 需要在**NHN Cloud Console > Gamebase > App > 认证信息 > 追加信息**项目中输入JSON string格式的信息。 
-* 如果是PAYCO，需要设定PaycoSDK要求的**service_code**和**service_name**。
+* 如果是PAYCO，需要设定PAYCO SDK要求的**service_code**和**service_name**。
 
 * 输入PAYCO追加认证信息的示例 
 
@@ -261,10 +282,10 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 ```
 
 ##### iOS
-* [Gamebase > iOS SDK使用指南 > 开始 > IdP settings > Payco](./ios-started/#payco)
+* [Gamebase > iOS SDK使用指南 > 开始 > IdP settings > PAYCO](./ios-started/#payco)
 
 #### 5.NAVER
-在Gamebase Console中输入在Naver Developers网站上申请后获取的{client_id}和{client_secret}。
+在Gamebase Console中输入在NAVER Developers网站上申请后获取的{client_id}和{client_secret}。
 并且还需要设定将想要显示在同意登录的窗口上的应用程序名称**service_name**。 
 
 **输入字段**
@@ -295,7 +316,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 		*对于NAVER，您需要设置**service_name**，它会在登录窗口上显示。
 
 	* 需要设置URL Scheme
-		* **需要在XCode > Target > Info > URL Types**添加”tcgb.{Bundle ID}.naver”。
+		* **需要在XCode > Target > Info > URL Types**添加“tcgb.{Bundle ID}.naver”。
 
 
 #### 6. Twitter
@@ -303,8 +324,8 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 
 **输入字段**
 
-- Client ID：{Twitter Consumer Key}
-- Secret Key：{Twitter Consumer Secret}
+- Client ID ：{Twitter Consumer Key}
+- Secret Key ：{Twitter Consumer Secret}
 
 **Reference URL**
 - [Twitter Application Management](https://apps.twitter.com/)
@@ -323,8 +344,9 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 #### 7. LINE
  
 **输入字段**
-- Client ID：{LINE Channel ID}
-- Secret Key：{LINE Channel Secret}
+
+- Client ID ：{LINE Channel ID}
+- Secret Key ：{LINE Channel Secret}
 
 **Reference URL**
 
@@ -364,10 +386,10 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 ###### Secret Key Settings
 > 利用在Apple Developer Account设置中获得的值(**TeamID**、**KeyID**、**PrivateKey**)创建JSON字符串后进行设置。
 
-* “teamId”：设置开发者账号右上方的值。
-* “keyId”：Certificates, Identifiers & Profiles > Keys > 勾选Sign In with Apple，设置创建的值。
+* **teamId** ：设置开发者账号右上方的值。
+* **keyId** ：Certificates, Identifiers & Profiles > Keys > 勾选Sign In with Apple，设置创建的值。
 ![SecretKey设置](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
-* “privateKey”：设置在上面的Keys中创建密钥的同时创建的PrivateKey文件的内容。（打开下载的文件，如下方截屏所示，使用红色矩形部分的值。）
+* **privateKey** ：设置在上面的Keys中创建密钥的同时创建的PrivateKey文件的内容。（打开下载的文件，如下方截屏所示，使用红色矩形部分的值。）
 ![SecretKey设置](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
 
 如下方示例所示，将上面的值创建为JSON，进行设置。
@@ -379,6 +401,10 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
     "privateKey":"MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBA..中间省略“
 }
 ```
+
+> <font color="red">[注意]</font><br/>
+>
+> 请注意不要在privateKey中包含换行符。
 
 ###### Additional Info Settings
 [了解Sign In with Apple的AuthorizationScope](https://developer.apple.com/documentation/authenticationservices/asauthorizationscope?language=occ)
@@ -511,29 +537,31 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 - <font color="white" style="background-color:#F8BB28">测试</font> : 内部测试
 - <font color="white" style="background-color:#eba34b">Beta Service</font> : 若需要连接到服务器以外的其他beta服务器时选择。
 - <font color="white" style="background-color:#FB8F37">正在审核</font> : 正在进行商店审核
-![gamebase_app_15_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_15_201812.png)
 
-- <font color="white" style="background-color:#88C637">服务中</font>：正常服务。
-- <font color="white" style="background-color:#2AB1A6">推荐更新(服务中)</font>：正常服务。<br/>显示弹出窗口以建议您使用新版本。虽然建议下载新版本，但用户仍然可使用当前的版本。<br />如下是“推荐更新（客户服务）”状态时，Gamebase SDK中的默认弹窗。
+- <font color="white" style="background-color:#88C637">服务中</font> ：正常服务。
+- <font color="white" style="background-color:#2AB1A6">推荐更新(服务中)</font> ：正常服务。<br/>显示弹出窗口以建议您使用新版本。虽然建议下载新版本，但用户仍然可使用当前的版本。<br />如下是“推荐更新（客户服务）”状态时，Gamebase SDK中的默认弹窗。
 
-- <font color="white" style="background-color:#A1A1A1">强制更新</font>：服务不可用。<br/>当前版本已经不能继续使用，提示必须安装最新版本。<br />下面是“强制更新”状态时，Gamebase SDK中的默认弹窗。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_updateRequired_1.1.png)
+- <font color="white" style="background-color:#A1A1A1">强制更新</font> : 服务不可用。 <br/>是在游戏中已不支持服务的版本，显示弹出窗口以建议您设置新版本。<br />如下是“强制更新”状态时，Gamebase SDK中的默认弹窗。 <br/> 如果是“强制更新”状态，可以添加弹窗按钮。如果在**添加查看更多按钮**选择**添加按钮**，则可设置您要连接的URL。
+
+![gamebase_app_37_202205.png](https://static.toastoven.net/prod_gamebase/gamebase_app_37_202205.png)
+
 >  <font color="red">[注意] </font>
 >  如果是**同时设置强制更新和维护**，服务状态变为“强制更新”。
 >  如果不希望在维护过程中向用户显示“强制更新”窗口，则应在维护结束后将服务状态改为“强制更新”。
 
 >  <font color="orange">[参考] </font>
->  点击更新按键时，将移动到”设置URL菜单”上设置的各商店地址。
->  例如，如果客户端已被设置为App store，而在‘’设置URL菜单”中存在与App store有关的设置，将会移动到注册的地址。若在”设置URL菜单”中不存在此设置时，将移动到共同(Common) URL。
+>  单机更新按键，将移动到“设置URL菜单”上设置的各商店地址。
+>  例如，如果客户端已被设置为App store，而在“设置URL菜单”中存在与App store有关的设置，将会移动到注册的地址。若在“设置URL菜单”中不存在此设置时，将移动到共同(Common) URL。
 
-- <font color="white" style="background-color:#CCCCCC">已下线</font>：服务不可用。<br/>如果版本已下线不再对外服务时，请选择此项。<br />如下是“已下线”状态时，Gamebase SDK中的默认弹窗。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client_ended_1.0.png)
+- <font color="white" style="background-color:#CCCCCC">终止</font> : 服务不可用。 <br/> 如果是终止服务的版本，请选择此项。<br />如下是“终止”状态时，Gamebase SDK中的默认弹窗。
+
+![gamebase_app_15_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_15_201812.png)
 
 > [参考]
 > 按照服务状态设置要显示的消息。
 > 如果各状态为**推荐更新(服务中)**、**必须更新**或**终止**，则可通过多国语言设置注册消息。
 > 选择服务状态时，按照在App中设置的语言信息提供符合各状态的默认消息。如果需要时，可以添加语言或修改默认消息。
-> 如果已按照各状态注册‘’语言类别设置"，无论应用程序的语言设置信息状态如何，将显示以前注册的信息。   
+> 如果已按照各状态注册“语言类别设置”，无论应用程序的语言设置信息状态如何，将显示以前注册的信息。   
 > 在应用程序的语言设置中不存在设置信息时，可以以5种(韩语、英语、日语、汉语简体及繁体)语言提供默认消息。如果需要时，可以添加语言或修改默认消息。
 > ![gamebase_app_18_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_18_202004.png)
 
@@ -544,7 +572,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 #### (5) Debug log
 可在控制台中实时修改是否输出Gamebase SDK的Debug Log。
 若未设置，默认优先运行Gamebase SDK内部设置的值，可在Gamebase控制台设置是否输出Debug Log。
-即使Gamebase SDK中Debug Log为”OFF”状态，在控制台中设置为”ON”，也将向终端机输出Gamebase Debug Log。
+即使Gamebase SDK中Debug Log为“OFF”状态，在控制台中设置为“ON”，也将向终端机输出Gamebase Debug Log。
 
 #### (6) Memo
 输入与客户端有关的简短Memo(最多只能输入30个字符)。
@@ -590,7 +618,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 
 > <font color="red">[注意]</font><br/>
 >
-> 如果不点击”保存”按钮，则无法适用创建的条款。
+> 如果不点击“保存”按钮，则无法适用创建的条款。
 > 仅保存当前选定的条款详细信息。
 >
 
@@ -622,7 +650,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 ### (4) 条款的发布和发布历史记录
 #### 发布
 - 可以发布在条款列表中选择的条款。 
-- 当勾选”重新同意条款”后进行发布时，向已同意条款的用户也显示条款窗。
+- 当勾选“重新同意条款”后进行发布时，向已同意条款的用户也显示条款窗。
 
 #### 发布历史记录
 ![gamebase_app_34_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_34_202102.png)
@@ -636,7 +664,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 
 客户状态为<font color="white" style="background-color:#2AB1A6">推荐升级（正在服务）</font>或<font color="white" style="background-color:#A1A1A1">必须升级</font>时，设置各商店提供的地址的值。
 用户在PC或移动设备中单击快捷URL，利用用户终端机信息（设备、操作系统、商店等）重定向至输入的网站。
-若无商店信息或移动至商店失败，移动至”COMMON”中设置的URL。
+若无商店信息或移动至商店失败，移动至“COMMON”中设置的URL。
 
 _[示例1] 单击在Android手机上收到的安装URL。
 **(Device:mobile,OS:Android,Store:无)**时，会转到Android上默认商店的移动网址。如果默认商店是“Google Play”，会转到“Google Play”移动设备中设置的网址。
@@ -681,29 +709,29 @@ _[例示3] 如果在PC上输入安装URL
 设置终端机转移发放密钥的形式。
 终端机转移密钥可仅使用ID或使用ID、密码两个密钥。ID、密码的形式由游戏中需要的小写字母、大写字母、数字组合构成。
 
-1.**ID自动发放形式**：设置终端机转移ID发放形式。设置项目如下。
+1.**ID自动发放形式** ：设置终端机转移ID发放形式。设置项目如下。
 
-- **数字（最小长度：12）**：发放仅由数字构成的ID。发放的ID的最小长度为12个字符。
-- **数字+小写字母（最小长度：10）**：发放仅由数字和小写字母的组合构成的ID。发放的ID的最小长度为10个字符。
-- **数字+大写字母（最小长度：10）**：发放仅由数字和大写字母的组合构成的ID。发放的ID的最小长度为10个字符。
-- **数字+小写字母+大写字母（最小长度：9）**：发放仅由数字、小写字母、大写字母的组合构成的ID。发放的ID的最小长度为9个字符。
-- **小写字母+大写字母（最小长度：9）**：发放仅由小写字母和大写字母的组合构成的ID。发放的ID的最小长度为9个字符。
-2.**密码自动发放形式**：设置用终端机转移ID登录时使用的密码发放形式。设置项目如下。
-- **不使用密码**：不使用密码时选择。若选择该项目，在如下验证项目中仅可设置ID的有效时间。
-- **数字（最小长度：12）**：发放仅由数字构成的密码。发放的密码的最小长度为12个字符。
-- **数字+小写字母（最小长度：10）**：发放仅由数字和小写字母的组合构成的密码。发放的密码的最小长度为10个字符。
-- **数字+大写字母（最小长度：10）**：发放仅由数字和大写字母的组合构成的ID。发放的密码的最小长度为10个字符。
-- **数字+小写字母+大写字母（最小长度：9）**：发放仅由数字、小写字母、大写字母的组合构成的ID。发放的密码的最小长度为9个字符。
-- **小写字母+大写字母（最小长度：9）**：发放仅由小写字母和大写字母组合构成的ID。发放的密码的最小长度为9个字符。
+- **数字（最小长度 ：12）** ：发放仅由数字构成的ID。发放的ID的最小长度为12个字符。
+- **数字+小写字母（最小长度 ：10）** ：发放仅由数字和小写字母的组合构成的ID。发放的ID的最小长度为10个字符。
+- **数字+大写字母（最小长度 ：10）** ：发放仅由数字和大写字母的组合构成的ID。发放的ID的最小长度为10个字符。
+- **数字+小写字母+大写字母（最小长度 ：9）**：发放仅由数字、小写字母、大写字母的组合构成的ID。发放的ID的最小长度为9个字符。
+- **小写字母+大写字母（最小长度 ：9）** ：发放仅由小写字母和大写字母的组合构成的ID。发放的ID的最小长度为9个字符。
+2.**密码自动发放形式** ：设置用终端机转移ID登录时使用的密码发放形式。设置项目如下。
+- **不使用密码** ：不使用密码时选择。若选择该项目，在如下验证项目中仅可设置ID的有效时间。
+- **数字（最小长度 ：12）** ：发放仅由数字构成的密码。发放的密码的最小长度为12个字符。
+- **数字+小写字母（最小长度 ：10）** ：发放仅由数字和小写字母的组合构成的密码。发放的密码的最小长度为10个字符。
+- **数字+大写字母（最小长度 ：10）** ：发放仅由数字和大写字母的组合构成的ID。发放的密码的最小长度为10个字符。
+- **数字+小写字母+大写字母（最小长度 ：9）**：发放仅由数字、小写字母、大写字母的组合构成的ID。发放的密码的最小长度为9个字符。
+- **小写字母+大写字母（最小长度 ：9）** ：发放仅由小写字母和大写字母组合构成的ID。发放的密码的最小长度为9个字符。
 
 #### 验证
 设置发放的终端机转移密钥的验证条件。
 可设置验证终端机转移密钥时转移次数或有效期、失败时阻止等。
-3.**终端机转移次数**：设置发放的ID的终端机可转移次数。应从无限制、一次性中选择一项。
-4.**有效期**：设置发放的账户的有效时间。发放的终端机转移ID受此设定值影响。应从无限制、设置时间中选择一项。
-5.**失败时是否阻止再次验证**：若尝试登录时失败，在特定时间内阻止账户。若选择，显示附加设置项目。
-6.**阻止基准次数**：选择**失败时是否阻止再次验证**时显示。验证失败达到输入的次数时阻止账户。应设置为1次以上。
-7.**阻止时间**：设置账户阻止多久后可重新尝试验证。从**永远阻止**、**指定时间**中选择一项。若选择**指定时间**，可指定希望阻止的小时和分钟。
+3.**终端机转移次数** ：设置发放的ID的终端机可转移次数。应从无限制、一次性中选择一项。
+4.**有效期** ：设置发放的账户的有效时间。发放的终端机转移ID受此设定值影响。应从无限制、设置时间中选择一项。
+5.**失败时是否阻止再次验证** ：若尝试登录时失败，在特定时间内阻止账户。若选择，显示附加设置项目。
+6.**阻止基准次数** ：选择**失败时是否阻止再次验证**时显示。验证失败达到输入的次数时阻止账户。应设置为1次以上。
+7.**阻止时间** ：设置账户阻止多久后可重新尝试验证。从**永远阻止**、**指定时间**中选择一项。若选择**指定时间**，可指定希望阻止的小时和分钟。
 
 #### 初始设置后
 ![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_3.0.png)

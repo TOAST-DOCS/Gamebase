@@ -5,31 +5,43 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 ### Settings
 
-> <font color="red">[注意]</font><br/>
->
-> Android ONE Store仅支持v17。
-> 目前不支持Android ONE Store v19，但仍在审查是否支持它。
-
 如果要在Android或iOS上设置In-App结算功能，请参考以下文档。
 
 * [Android Purchase Settings](aos-purchase#settings)
 * [iOS Purchase Settings](ios-purchase#settings)
+
+#### 设置Unreal Plugin
+
+> <font color="red">[注意]</font><br/>
+>
+> 在外部Plugin存在与支付有关的处理时，Gamebase的支付功能可能不正常启动。 
+* 您需要禁用Online SubSystem Plugin，该Plugin在Unreal中默认启用，或者将其更改为不使用商店功能。
+    * 使用Online SubSystem GooglePlay Plugin时编辑/Config/Android/AndroidEngine.ini文件。
+
+            [OnlineSubsystemGooglePlay.Store]
+            bSupportsInAppPurchasing=False
+
+    * 使用Online SubSystem iOS Plugin时编辑/Config/IOS/IOSEngine.ini文件。
+
+            [OnlineSubsystemIOS.Store]
+            bSupportsInAppPurchasing=False
+
   
 #### 有关Android结算的设置(引擎版本为4.24以下)
 
-* 通过Epic Games Launcher设置4.24版本时, 
+* 通过Epic Games Launcher设置4.24以下版本时, 
     删除**Engine\Build\Android\Java\src\com\android\vending\billing\IInAppBillingService.aidl**才能打包。
     * 因Gamebase提供[IInAppBillingService.aidl](https://developer.android.com/google/play/billing/api)文件，将发生冲突，因此需要删除。
     * 如果使用4.25以上版本或由github提供引擎，则不需删除。
 
 ### Purchase Flow
 
-道具的购买大体分为Flow、Consume Flow及‘’支付再处理”Flow。
+道具的购买大体分为Flow、Consume Flow及“支付再处理”Flow。
 请按以下顺序实现结算Flow。
 
-![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
+![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.40.1.png)
 
-1. 尚未正常结束上一次支付时，若不进行‘’支付再处理”则将导致支付失败。因此支付前应调用**RequestI temListOfNotConsumed**进行‘’支付再处理”，若存在未提供的道具则进行Consume Flow。
+1. 尚未正常结束上一次支付时，若不进行“支付再处理”则将导致支付失败。因此支付前应调用**RequestI temListOfNotConsumed**进行“支付再处理”，若存在未提供的道具则进行Consume Flow。
 2. 游戏客户端通过从Gamebase SDK调用**RequestPurchase**尝试支付。 
 3. 如果付款成功，调用**RequestItemListOfNotConsumed**查看未消费结算明细。若存在未提供的道具，则进行Consume Flow。
 
@@ -47,11 +59,11 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 1. 游戏客户向游戏服务器请求consume（消费）。
     * 传送UserID、gamebaseProductId、paymentSeq、purchaseToken。
 2. 游戏服务器查看在游戏DB中是否存在以同样的paymentSeq提供道具的历史记录。
-    * 2-1.
+    * 2-1. 如果还未提供道具，则调用Gamebase服务器的Payment Transaction API验证paymentSeq和purchaseToken 值是否有效。
         * [Game > Gamebase > API指南 > Purchase(IAP) > Get Payment Transaction](./api-guide/#get-payment-transaction)
-    * 2-2. 若存在未提供道具，则需向UserID提供使用gamebaseProductId购买的商品。
-    * 2-3. 提供道具后在游戏DB保存UserID、gamebaseProductId、paymentSeq、purchaseToken，必要时进行‘’支付再处理”或防止重复提供。
-3. 游戏服务器通过调用Gamebase服务器的consume（消费）API提供道具。这时不考虑是否已提供道具。
+    * 2-2. 如果purchaseToken为正常的值，则向UserID提供使用gamebaseProductId购买的道具。
+    * 2-3. 提供道具后在游戏DB保存UserID、gamebaseProductId、paymentSeq及purchaseToken，必要时进行“支付再处理”或防止重复提供。
+3. 游戏服务器通过调用Gamebase服务器的consume（消费）API提供道具（不考虑是否已提供道具）。
     * [Game > Gamebase > API指南 > Purchase(IAP) > Consume](./api-guide/#consume)
 
 ### Retry Transaction Flow
@@ -59,8 +71,8 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
 * 商店支付已成功，但因出现错误无法正常终止时，
-* 请调用**RequestItemListOfNotConsumed**进行‘’支付再处理”。若存在尚未提供的道具，则进行Consume Flow。
-* 请在下列情况下进行‘’支付再处理”。
+* 请调用**RequestItemListOfNotConsumed**进行“支付再处理”。若存在尚未提供的道具，则进行Consume Flow。
+* 请在下列情况下进行“支付再处理”。
     * 完成登录后
     * 支付之前
     * 进入游戏内商店（或 Lobby）时
@@ -81,9 +93,6 @@ Supported Platforms
 ```cpp
 void RequestPurchase(const FString& gamebaseProductId, const FGamebasePurchasableReceiptDelegate& onCallback);
 void RequestPurchase(const FString& gamebaseProductId, const FString& payload, const FGamebasePurchasableReceiptDelegate& onCallback);
-
-// Legacy API
-void RequestPurchase(int64 itemSeq, const FGamebasePurchasableReceiptDelegate& onCallback);
 ```
 
 **Example**
@@ -228,6 +237,15 @@ struct FGamebasePurchasableReceipt
     // 即，当需要添加游戏中的各种附加信息时，可使用此字段。
     UPROPERTY()
     FString payload;
+   
+    // Promotion支付与否
+    // 如果- (Android) Gamebase支付服务器暂时关闭验证逻辑，它只会输出false，因此不能保证有效值。
+    UPROPERTY()
+    bool isPromotion;
+    // 测试支付与否
+    // 如果- (Android) Gamebase支付服务器暂时关闭验证逻辑，它只会输出false，因此不能保证有效值。
+    UPROPERTY()
+    bool isTestPurchase;
 };
 ```
 
