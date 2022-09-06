@@ -240,7 +240,7 @@ end
 ```
 * LINE Login 을 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다.
     * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/swift/overview/)
-* Gamebase iOS SDK 2.42.1 이하는 추가 설정이 필요합니다.
+* Gamebase iOS SDK 2.42.2 이하는 추가 설정이 필요합니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
 #### Weibo
