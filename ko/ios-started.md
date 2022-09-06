@@ -287,8 +287,10 @@ end
 ![gamebase_auth_naver_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_naver_console_01.png)
 
 **LINE**
+
 * Gamebase iOS SDK 2.42.2 이하
-  * LINE에서 발급받은 ChannelID를 Info.plist 파일에 설정해야 합니다.
+    * LINE에서 발급받은 ChannelID를 Info.plist 파일에 설정해야 합니다.
+
 ```
 <key>LineSDKConfig</key>
 <dict>
