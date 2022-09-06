@@ -187,7 +187,7 @@ private static void onLoginForGuest(final Activity activity) {
 >
 > 因PAYCO IdP（为认证模块）在检测中出现错误，常被误认为第三方结算模块，iOS审核总被拒，
 > 不再提供AuthProvider.PAYCO的常数。
-> 您要将"payco"字符串作为参数传送。 
+> 您要将"payco"字符串作为参数传送。
 
 **API**
 

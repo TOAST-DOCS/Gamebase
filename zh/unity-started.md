@@ -21,7 +21,7 @@
 
 | Gamebase SDK | External SDK |
 | --- | --- |
-| Gamebase | TOAST Unity SDK 0.25.5 |
+| Gamebase | TOAST Unity SDK 0.26.1 |
 
 * [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
 * [Gamebase iOS SDK - Dependencies](./ios-started/#setting)

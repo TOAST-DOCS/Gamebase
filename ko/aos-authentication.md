@@ -186,9 +186,20 @@ private static void onLoginForGuest(final Activity activity) {
 
 > <font color="red">[주의]</font><br/>
 >
-> PAYCO IdP 는 iOS 에서 인증 모듈임에도 외부 결제라고 오탐하여 앱 스토어 심사에서 거절되는 케이스가 발생하여
+> PAYCO IdP는 iOS 에서 인증 모듈임에도 외부 결제라고 오탐하여 앱 스토어 심사에서 거절되는 케이스가 발생하여
 > AuthProvider.PAYCO 의 상수를 제공하지 않게 되었으므로
 > "payco" 라는 문자열을 직접 파라메터로 전달해야 합니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> Line IdP는 Gamebase SDK 2.43.0부터 Line 서비스 제공 지역 설정을 할 수 있습니다.
+> 해당 지역은 AdditionalInfo에 설정할 수 있습니다. 
+
+* AdditionalInfo 파라미터 설정 방법
+
+| keyname                                  | a use                                    | 값 종류                                     |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Line 서비스 제공 지역 설정 | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
 
 **API**
 
@@ -255,6 +266,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Google 로그인 이후 획득할 수 있는 OTAC(one time authorization code) 입력 |                                          |
 | AuthProviderCredentialConstants.GAMEBASE_ACCESS_TOKEN | IdP 인증 정보가 아닌 Gamebase Access Token으로 로그인하는 경우 사용 |  |
 | AuthProviderCredentialConstants.IGNORE_ALREADY_LOGGED_IN | Gamebase에 로그인한 상태에서 로그아웃을 하지 않고 다른 계정을 이용해 로그인을 시도하는 것을 허용 | **boolean** |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Line 서비스 제공 지역 설정 | [Login with IdP 참고](./aos-authentication/#login-with-idp) |
 
 > [참고]
 >
