@@ -5,10 +5,11 @@
 
 #### 기능 추가
 * ONE store v19 Purchase Adapter가 추가되었습니다.
-    * 빌드 의존성에 **gamebase-adapter-purchase-onestore-v19** 모듈을 추가하면 사용 가능합니다.
+    * 빌드 의존성에 **gamebase-adapter-purchase-onestore-v19** 모듈 및 [ONE store v19 IAP SDK를 추가](https://github.com/ONE-store/onestore_iap_release/tree/iap19-release/android_app_sample/app/libs)하면 사용 가능합니다.
             
             dependencies {
                 ...
+                implementation files('libs/iap_sdk-v19.00.02.aar')
                 implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v19:$GAMEBASE_SDK_VERSION"
             }
             
