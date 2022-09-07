@@ -183,7 +183,11 @@ dependencies {
 
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
-    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"    // v17
+    // >>> [ONE store v17]
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
+    // >>> [ONE store v19]
+    // https://github.com/ONE-store/onestore_iap_release/tree/iap19-release/android_app_sample/app/libs
+    implementation files('libs/iap_sdk-v19.00.02.aar')
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v19:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-external:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
@@ -220,6 +224,8 @@ android {
 ```
 
 ### Resources
+
+#### ONE Store
 
 #### Huawei Store
 
