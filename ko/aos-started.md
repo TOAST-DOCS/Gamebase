@@ -225,8 +225,6 @@ android {
 
 ### Resources
 
-#### ONE Store
-
 #### Huawei Store
 
 * AppGallery Connection 구성 파일(agconnect-service.json)을 assets 폴더에 추가해야 합니다.
