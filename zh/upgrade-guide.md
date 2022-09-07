@@ -23,7 +23,7 @@
 * 更改了一些API的名称。
     * FGamebaseAnalyticesLevelUpData → FGamebaseAnalyticsLevelUpData
     * FGambaseBanInfoPtr → FGamebaseBanInfoPtr
-* (iOS) 更改后当提供iOS设置工具打包时只包含必要的框架。
+* (iOS) 更改后当提供iOS设置工具进行Build时只包含必要的框架。
 * (iOS) 由于PLCrashReporter被更新，也需要更新引擎内部的PLCrashReporter。
     * [Game > Gamebase > Unreal SDK使用指南 > 开始 > Installation > iOS Settings > PLCrashReporter](./unreal-started/#ios-settings)
 * (iOS) 由于Facebook iOS SDK升级为9.2.0版本，为了使用swift需要修改引擎代码。 
@@ -58,14 +58,14 @@
 
 #### Changed/Deprecated APIs
 
-* 由于在Gamebase控制台中注册Kickout时可以设置是否显示kickout弹窗，因此以下字段已被deprecated。
+* 由于在Gamebase控制台中注册Kickout时可以设置是否显示kickout弹窗，以下字段已被deprecated。
     * **UIPopupConfiguration.enableKickoutPopup**
 
 ### iOS
 
 #### Changed/Deprecated APIs
 
-* 由于在Gamebase控制台中注册Kickout时可以设置是否显示kickout弹窗，因此以下API已被deprecated。
+* 由于在Gamebase控制台中注册Kickout时可以设置是否显示kickout弹窗，以下API已被deprecated。
     * **[TCGBConfiguration enableKickoutPopup:]**
     * **[TCGBConfiguration isEnableKickoutPopup]**
 
@@ -83,13 +83,13 @@
     
 ### Unity
 
-* 更改了与GamebaseErrorCode.UNKNOWN_ERROR进行映射的错误代码。
-    * GamebaseErrorCode.UNKNOWN_ERROR的错误代码从999更改为9999。
+* 更改了映射到GamebaseErrorCode.UNKNOWN_ERROR的错误代码。
+    * 将映射到GamebaseErrorCode.UNKNOWN_ERROR的错误代码从999更改为9999。
     * 添加了映射到999错误代码的GamebaseErrorCode.SOCKET_UNKNOWN_ERROR错误。
 
 ### Unreal
 
-* 更改了与GamebaseErrorCode.UNKNOWN_ERROR进行映射的错误代码。
+* 更改了映射到GamebaseErrorCode.UNKNOWN_ERROR的错误代码。
     * GamebaseErrorCode::UNKNOWN_ERROR的错误代码从999更改为9999。
     * 添加了映射到999错误代码的GamebaseErrorCode::SOCKET_UNKNOWN_ERROR错误。  
 
@@ -100,8 +100,13 @@
 * 由于Gamebase Access Token过期无法恢复而发生的GamebaseEventHandler事件category，在**GamebaseEventCategory.OBSERVER_HEARTBEAT**中已更改为**GamebaseEventCategory.LOGGED_OUT**。
     * 请更改登录条件，即当**GamebaseEventCategory.OBSERVER_HEARTBEAT**事件中的GamebaseEventObserverData.code值为**GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)**时登录的条件，更改为在**GamebaseEventCategory.LOGGED_OUT**事件中登录。
 
-## 2.29.0 
- 
+## 2.29.0
+
+### iOS
+
+* Xcode支持的最低版本从12更改为13。
+    * 在Xcode 12进行Archive Build时将出现错误。请更新到Xcode 13。
+
 ### Unity
  
 * 已发布Setting Tool 2.0.0。  
@@ -126,7 +131,7 @@
 
 ### Unity
 
-* 使用相关版本时，请直接删除”Assets/Gamebase/Toast/IAP/Plugins”后使用。
+* 使用相关版本时，请直接删除“Assets/Gamebase/Toast/IAP/Plugins”后使用。
     * 如果应用了Gamebase Unity SDK 2.27.0或更高版本，则无需删除。 
 
 ### Unreal
@@ -182,12 +187,12 @@ android.enableD8.desugaring=true
 android.enableIncrementalDesugaring=false
 ```
 
-#### Line IdP
+#### LINE IdP
 
-* 使用Line IdP时，因在Line SDK内存在**&lt;queries&gt;**标签，根据AGP版本可能会打包失败。 
-    * 请参考以下指南，请升级为可进行”queries”标签打包的AGP版本。 
+* 使用LINE IdP时，因在Line SDK内存在**&lt;queries&gt;**标签，根据AGP版本可能会打包失败。 
+    * 请参考以下指南，请升级为可进行“queries”标签打包的AGP版本。 
     * [Game > Gamebase > Android SDK使用指南 > 开始 > Setting > Android 11](./aos-started/#android-11)
-* 使用Line IdP时，由于在Line SDK内已被声明为**android:allowBackup="false"**，应用程序打包时有可能在Manifest merger中出现fail。如果打包失败，请按照以下示例，在application标签中添加**tools:replace="android:allowBackup"**声明。
+* 使用LINE IdP时，由于在Line SDK内已被声明为**android:allowBackup="false"**，应用程序打包时有可能在Manifest merger中出现fail。如果打包失败，请按照以下示例，在application标签中添加**tools:replace="android:allowBackup"**声明。
 ```xml 
 <application
       tools:replace="android:allowBackup"
@@ -200,7 +205,7 @@ android.enableIncrementalDesugaring=false
 
 ### Unity
 
-* 使用相关版本时，请直接删除”Assets/Gamebase/Toast/IAP/Plugins”后使用。
+* 使用相关版本时，请直接删除“Assets/Gamebase/Toast/IAP/Plugins”后使用。
     * 如果应用了Gamebase Unity SDK 2.27.0或更高版本，则无需删除。 
 
 #### Changed Minimum Support Version
@@ -286,14 +291,14 @@ repositories {
 }
 ```
 
-#### Line IdP
+#### LINE IdP
 
-* 使用Line IdP时，当Line SDK被更新时，若不在Gradle中设置**JavaVersion.VERSION_1_8**，则将导致打包失败(请参考以下示例)。
+* 使用LINE IdP时，当Line SDK被更新时，若不在Gradle中设置**JavaVersion.VERSION_1_8**，则将导致打包失败(请参考以下示例)。
 
 ```groovy
 android {
     compileOptions {
-        // >>> [Line IdP]
+        // >>> [LINE IdP]
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8 
     }

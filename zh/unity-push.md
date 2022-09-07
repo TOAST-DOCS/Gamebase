@@ -1,6 +1,10 @@
-## Game > Gamebase > Unity SDK使用指南 > push
+ ## Game > Gamebase > Unity SDK使用指南 > push
 
 以下介绍如何为每个平台设置必要的推送通知。
+
+> <font color="red">[注意]</font><br/>
+>
+> 在外部Package存在与推送有关的处理时，Gamebase推送功能有可能不正常启动。 
 
 ### Settings
 
@@ -78,7 +82,7 @@ public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNig
 | soundEnabled           | bool         | 提示音的使用与否<br/>**default**: true<br/>**iOS Only** |
 | priority               | int          | 推送通知的优先顺序/可设置以下5个值。<br/>GamebaseNotificationPriority.MIN : -2<br/> GamebaseNotificationPriority.LOW : -1<br/>GamebaseNotificationPriority.DEFAULT : 0<br/>GamebaseNotificationPriority.HIGH : 1<br/>GamebaseNotificationPriority.MAX : 2<br/>**default**: GamebaseNotificationPriority.HIGH<br/>**Android Only** |
 | smallIconName          | string       | 手机顶端状态栏的通知提示小图标文件名称<br/>如果不设置，则使用应用程序图标。<br/>**default**: null<br/>**Android Only** |
-| soundFileName          | string       | 提示音文件名称/只在Android 8.0以下的OS上运行。<br/>如果指定”res/raw”文件夹的mp3、wav文件名称，则可更改提示音。<br/>**default**: null<br/>**Android Only** |
+| soundFileName          | string       | 提示音文件名称/只在Android 8.0以下的OS上运行。<br/>如果指定“res/raw”文件夹的mp3、wav文件名称，则可更改提示音。<br/>**default**: null<br/>**Android Only** |
 
 **Example**
 
@@ -116,7 +120,7 @@ public void RegisterPushSample(bool pushEnabled, bool adAgreement, bool adAgreem
 
 #### Get NotificationOptions
 
-注册Push时， 返还以前设置的通知选项值。
+注册Push时，返还以前设置的通知选项值。
 
 **API**
 

@@ -108,24 +108,19 @@ static void CloseImageNotices()
 
 调用ShowTermsView API，可通过Webview显示条款窗口。
 如果要生成符合Game UI的条款窗口，则可通过调用QueryTerms API显示Gamebase控制台中的条款项目。 
-如果用户已经同意条款，通过UpdateTerms API，将各项目的”同意与否”传送到Gamebase服务器。
+如果用户已经同意条款，通过UpdateTerms API，将各项目的“同意与否”传送到Gamebase服务器。
 
 ### ShowTermsView
 
 在页面上显示条款窗口。
-用户已经同意条款时，在服务器注册”同意与否”。
-如果已经同意条款，即使再调用ShowTermsView API，也不再显示条款窗口，而直接返还”成功回调”。 
-但如果在Gamebase控制台中将条款的“重新同意"项目更改为**必须**，用户再次同意之前一直显示条款窗口。  
-
-> <font color="red">[注意]</font><br/>
->
-> * 未显示PushConfiguration条款窗时为null。(如果显示了条款窗口，则始终返回有效对象。)
-> * PushConfiguration.pushEnabled值始终为true。
-> * 如果PushConfiguration不是null，**登录后**，请调用Gamebase.Push.RegisterPush API。
+用户已经同意条款时，在服务器注册“同意与否”。
+如果已经同意条款，即使再调用ShowTermsView API，也不再显示条款窗口，而直接返还“成功回调”。 
+但如果在Gamebase控制台中将条款的“重新同意”项目更改为**必须**，用户再次同意之前一直显示条款窗。  
 
 #### Optional参数
-
-* callback : 同意条款后，关闭条款窗口时，通过回调通知用户。如果将通过回调获取的GamebaseDataContainer对象转换为PushConfiguration，登录后可用于调用Gamebase.Push.registerPush API。
+                                                               
+* GamebaseTermsConfiguration : 可通过GamebaseTermsConfiguration对象更改设置， 例如是否显示强制条款协议窗。
+* callback : 当同意条款后关闭条款窗时，通过回调通知用户。将作为回调接收的GamebaseResponse.DataContainer对象 更改为GamebaseResponse.Push.PushConfiguration，登录后，用于Gamebase.Push.RegisterPush API。
 
 
 **API**
@@ -136,30 +131,55 @@ Supported Platforms
 
 ```cs
 static void ShowTermsView(GamebaseCallback.GamebaseDelegate<GamebaseResponse.DataContainer> callback)
+static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration configuration, GamebaseCallback.GamebaseDelegate<GamebaseResponse.DataContainer> callback)
 ```
+
+**GamebaseRequest.Terms.GamebaseTermsConfiguration** 
+ 
+| API | Mandatory(M) / Optional(O) | Description |  
+| --- | --- | --- | 
+| forceShow | O | 如果已同意条款，即使再调用ShowTermsView API也不显示条款窗，但将忽略此项并强制显示条款窗。<br>**default**: false | 
+| enableFixedFontSize | O | 您要决定是否固定条款窗的文字大小。<br>**default**: false<br/>**Android Only** |
+ 
+**GamebaseResponse.Terms.ShowTermsViewResult**
+| Parameter              | Values                          | Description         |
+| ---------------------- | --------------------------------| ------------------- |
+| isTermsUIOpened        | bool                            | **true** : 用户同意条款后条款窗已关闭。<br>**false** : 因已同意条款，不再显示条款窗，条款窗已关闭。       |
+| pushConfiguration      | GamebaseResponse.Push.PushConfiguration           | 如果isTermsUIOpened为**true**，并且在条款添加了“是否同意 接收推送”，pushConfiguration将始终具有有效的对象。<br>否则为**null**。<br>pushConfiguration有效时pushConfiguration.pushEnabled 值始终为**true**。 |
 
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | 未初始化Gamebase。|
-| LAUNCHING\_SERVER\_ERROR(2001) | 是从启动服务器返还的项目不包含相关条款内容时出现的错误。<br/>出现此问题时，请联系Gamebase负责人员。|
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 上一次调用的Terms API未完成。<br/>请稍后再试。|
-| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW(6925) | Webview尚未关闭，但已重新调用。|
-| WEBVIEW\_TIMEOUT(7002) | 显示条款Webview时出现超时错误。|
-| WEBVIEW\_HTTP\_ERROR(7003) | 打开条款Webview时出现HTTP错误。|  
+| Error | Error Code | Description |   
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | 未初始化Gamebase。 |    
+| LAUNCHING\_SERVER\_ERROR | 2001 | 当传送到Launching服务器的项目中没有与协议相关的内容时，就会发生此错误。<br/>出现此问题时请联系Gamebase负责人。 |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 未完成Terms API的调用。<br/>请稍后再试。 |
+| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925 | 条款Webview尚未结束的情况下再次被调用。 |
+| WEBVIEW\_TIMEOUT | 7002 | 显示条款Webview时出现了Timeout。 |
+| WEBVIEW\_HTTP\_ERROR | 7003 | 打开条款Webview时出现了HTTP错误。 |
 
 **Example**
 
-```cs
+```cs  
+static GamebaseResponse.Push.PushConfiguration savedPushConfiguration = null;
+
 public void SampleShowTermsView()
 {
-    Gamebase.Terms.ShowTermsView((data, error) => 
+    var configuration = new GamebaseRequest.Terms.GamebaseTermsConfiguration
+    {
+        forceShow = true
+    };
+    Gamebase.Terms.ShowTermsView(configuration, (data, error) =>    
     {
         if (Gamebase.IsSuccess(error) == true)
         {
             Debug.Log("ShowTermsView succeeded.");
             
+            GamebaseResponse.Terms.ShowTermsViewResult result = GamebaseResponse.Terms.ShowTermsViewResult.From(data);
+            
+            // Save the 'PushConfiguration' and use it for Gamebase.Push.RegisterPush() after Gamebase.Login().
+            savedPushConfiguration = result.pushConfiguration;
+           
             // If the 'PushConfiguration' is not null,
             // save the 'PushConfiguration' and use it for Gamebase.Push.RegisterPush() after Gamebase.Login().
             GamebaseResponse.Push.PushConfiguration pushConfiguration = GamebaseResponse.Push.PushConfiguration.From(data);
@@ -170,8 +190,19 @@ public void SampleShowTermsView()
         }
     });
 }
-```
 
+public void AfterLogin()
+{
+    // Call RegisterPush with saved PushConfiguration.
+    if (savedPushConfiguration != null)
+    {
+        Gamebase.Push.RegisterPush(savedPushConfiguration, (error) =>
+        {
+            ...
+        });
+    }
+}
+```
 
 ### QueryTerms 
 
@@ -184,10 +215,11 @@ Gamebase通过Webview以简单形式显示条款。
 >
 > * 因Gamebase服务器不保存GamebaseTermsContentDetail.getRequired()为true的必要项目，agreed值将始终以false返回。 
 >     * 这是因为必要项目将始终保存为true，不需要保存。
-> * 因”是否接收推送”没被存储在gamebase服务器中，agreed值将始终以false返回。
->     * 如需查看”是否接收推送”，请调用Gamebase.Push.queryTokenInfo API。
-> * 如果在控制台中未设置”基本条款”的状态下，使用与条款语言不同的国家代码在设置的终端机上调用queryTerms API，则将出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误。
->     * 若在控制台中设置”基本条款”或出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误，请不要显示条款。
+> * 因“是否接收推送”没被存储在gamebase服务器中，agreed值将始终以false返回。
+>     * 如需查看“是否接收推送”，请调用Gamebase.Push.queryTokenInfo API。
+> * 如果在控制台中未设置“基本条款”的状态下，使用与条款语言不同的国家代码在设置的终端机上调用queryTerms API，则将出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误。
+>     * 若在控制台中设置“基本条款”或出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误，请不要显示条款。
+> * 在Standalone平台上不支持与推送有关的功能，相关条款不应被显示在游戏UI。
 
 #### Required参数
 * callback : 通过回调通知用户API的调用结果。通过作为回调被返回的GamebaseQueryTermsResult，可获取在控制台中设置的条款信息。 
@@ -198,6 +230,7 @@ Gamebase通过Webview以简单形式显示条款。
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
 static void QueryTerms(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Terms.QueryTermsResult> callback)
@@ -205,11 +238,12 @@ static void QueryTerms(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Terms.
  
 **ErrorCode**
 
-| Error Code | Description |
-| --- | --- |
-| NOT\_INITIALIZED(1) | 未初始化Gamebase。|
-| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE(6921) | 在控制台中未注册条款信息。|
-| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY(6922) | 在控制台中未注册符合终端机国家代码的条款信息。|
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | 未初始化Gamebase。 |
+| NOT\_LOGGED_IN | 2 | 需要登录。 (Only Standalone) |
+| UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | 设置了未注册的条款Seq值。 |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 未完成Terms API的调用。<br/>请稍后再试。 |
 
 **Example**
 
@@ -259,12 +293,12 @@ public void SampleQueryTerms()
 如果以调用QueryTerms API后被返回的条款信息来创建了UI，
 请将游戏用户同意条款的记录通过updateTerms API传送到Gamebase服务器。
 
-不仅可用于取消”可选条款同意”，也可用于修改同意条款的记录。 
+不仅可用于取消“可选条款同意”，也可用于修改同意条款的记录。 
 
 > <font color="red">[注意]</font><br/>
 >
-> Gamebase服务器基本上不保存”是否同意接收推送”。
-> 当保存”是否同意接收推送时，**登录后**通过调用Gamebase.Push.registerPush API来保存。
+> Gamebase服务器基本上不保存“是否同意接收推送”。
+> 当保存“是否同意接收推送”时，**登录后**通过调用Gamebase.Push.registerPush API来保存。
 >
 
 #### Required参数
@@ -345,20 +379,40 @@ public void SampleUpdateTerms()
 | agreed               | **M**                      | bool               | 是否同意可选条款项目 |
 
 
+### IsShowingTermsView
+
+您可以看到当前条款窗正在页面上显示。
+
+**API**
+
+```cs
+static bool IsShowingTermsView()
+```
+
+**Example**
+
+```cs
+public void SampleIsShowingTermsView()
+{
+    bool isShowingTermsView = Gamebase.Terms.IsShowingTermsView();
+    Debug.Log(string.Format("isShowingTermsView: {0}", isShowingTermsView));
+}
+```
+
 ## Webview
 
 ### Show WebView
 
 显示WebView。<br/>
-
+   
 ##### Required参数
-* url：作为参数发送的url必须是有效值。
+* url ：作为参数发送的url必须是有效值。
 
 ##### 可选参数
-* configuration：可以使用GamebaseWebViewConfiguration更改WebView的布局。
-* closeCallback：WebView关闭时通过回调通知用户。
-* schemeList：指定用户请求接收的自定义SchemeList。
-* schemeEvent：将用schemeList指定的包含自定义Scheme的url，作为回调通知。
+* configuration ：可以使用GamebaseWebViewConfiguration更改WebView的布局。
+* closeCallback ：WebView关闭时通过回调通知用户。
+* schemeList ：指定用户请求接收的自定义SchemeList
+* schemeEvent ：将用schemeList指定的包含自定义Scheme的url，作为回调通知。
 
 **API**
 
@@ -395,7 +449,7 @@ public void ShowWebView()
      configuration.colorB = 128;
      configuration.colorA = 255;
      configuration.barHeight = 40;
-     configuration.buttonVisible = true;
+     configuration.isBackButtonVisible = true;
     
     var schemeList = new List<string>() { "customScheme://openBrowser" };
     
@@ -420,16 +474,18 @@ public void ShowWebView()
 | colorG                   | 0~255                                    | Navigation Bar颜色G                |
 | colorB                   | 0~255                                    | Navigation Bar颜色B                |
 | colorA                   | 0~255                                    | Navigation Bar颜色Alpha                |
-| buttonVisible            | true or false                            | 返回按钮有效或无效          |
+| isNavigationBarVisible   | true or false                            | 导航栏有效或无效          |
+| isBackButtonVisible      | true or false                            | 返回按钮有效或无效          |
 | barHeight                | height                                   | 导航栏高度                 |
 | backButtonImageResource  | ID of resource                           | 返回按钮的图标              |
-| closeButtonImageResource | ID of resource | 关闭按钮的图标 |
-| url | "http://" or "https://" or "file://" | Web URL |
+| closeButtonImageResource | ID of resource                           | 关闭按钮图像 |
+| url                      | "http://" or "https://" or "file://"     | 网络URL |
+| enableFixedFontSize      | true or false                            | 固定文字大小有效或无效<br/>**Android Only** |
 
 > [TIP]
 >
 > iPadOS 13以上WebView基本上是桌面模式。
-> 通过contentMode =”GamebaseWebViewContentMode.MOBILE”，可以转换为移动模式。
+> 通过contentMode =“GamebaseWebViewContentMode.MOBILE”，可以转换为移动模式。
 
 #### Predefined Custom Scheme
 

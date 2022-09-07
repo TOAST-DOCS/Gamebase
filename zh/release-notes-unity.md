@@ -1,5 +1,17 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.43.0 (2022. 09. 07.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.0/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: TOAST Unity SDK(0.26.1), Kakaogame Unity SDK(3.14.5)
+* LINE Login을 수행 시 서비스를 제공할 Region을 입력하도록 변경되었습니다.
+  * [Game > Gamebase > Unity SDK 사용 가이드 > 인증 > Login with IdP](./unity-authentication/#login-with-idp)
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.43.0](./release-notes-android/#2430-2022-09-07)
+* [Gamebase iOS SDK 2.43.0](./release-notes-ios/#2430-2022-09-07)
+
 ### 2.42.1 (2022. 08. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Unity.zip)
 
@@ -115,7 +127,7 @@
 #### 修改程序错误
 * 修复了设备设置为指定文化圈时，将支付商品价格信息输入为0的错误。
 * 修复了点击(iOS) Push通知时未能启动DeepLink的错误。
-* 修复了(iOS)项目的orientation设置为Auto Rotation，在包含于项目第一scene的MonoBehaviour的Awake中调用Gamebase API时未能输出Webview等的UI的错误。
+* 修复了(iOS)项目的orientation设置为Auto Rotation，在包含于项目第一scene的MonoBehaviour的Awake中调用Gamebase。 API时未能输出Webview等的UI的错误。
 
 #### 各平台更改项目
 * [Gamebase Android SDK 2.36.0](./release-notes-android/#2360-2022-04-12)
@@ -262,12 +274,12 @@
 
 #### 添加功能
 * 添加Kakaogame认证
-* ”结算Abusing自动解除”功能已被添加。 
+* 添加了“结算Abusing自动解除”功能。 
     * [Game > Gamebase > Unity SDK使用指南 > 认证 > GraceBan](./unity-authentication/#graceban)
-    * 结算Abusing自动解除功能是当存在需通过”结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。
-    * 如果为”预约禁用”状态，在设定的时期内满足解除条件，则可正常玩游戏。
+    * 结算Abusing自动解除功能是当存在需通过“结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。
+    * 如果为“预约禁用”状态，在设定的时期内满足解除条件，则可玩游戏。
     * 若在所定的时期内未能满足条件，则会被禁用。
-* 登录使用结算Abusing自动解除功能的游戏后，始终要确认AuthToken.member.graceBanInfo API值，如果返还GraceBanInfo对象，而不返还null，要向相关用户通知禁用解除条件、时期等。
+* 登录使用结算Abusing自动解除功能的游戏后，始终要确认AuthToken.member.graceBanInfo API值，如果返还GraceBanInfo对象，而不返还null，要向相关用户通知禁用解除条件和时期等。
     * 当需要控制处于预约禁用状态的用户进入游戏时，要在游戏中进行处理。
 
 #### 各平台项目变更
@@ -278,13 +290,13 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-Unity.zip)
 
 #### 改善/修复功能
-* Display Language功能已被改善。
+* 改善了Display Language功能。
     * 默认语言代码为**en**，但经过改善已可适用Gamebase控制台中设置的默认语言。
         * [Game > Gamebase > 控制台使用指南 > 应用程序 > App > 语言设置](./oper-app/#language-settings)
 
 #### 修改错误
-* 已修改只用英语显示”未注册的游戏版本”错误弹窗的问题。 
-* 已修改维护弹窗不显示汉语的错误。
+* 修改了只用英语显示“未注册的游戏版本”错误弹窗的问题。 
+* 修改了维护弹窗不显示汉语的错误。
 
 #### 各平台变更项目
 * [Gamebase Android SDK 2.27.1](./release-notes-android/#2271-20210914)
@@ -305,7 +317,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Unity.zip)
 
 #### 改善/修复功能
-* Display Language功能已被改善。
+* 改善了Display Language功能。
     * 在Display Language语言集中添加了汉语简体(zh-CN)、汉语繁体(zh-TW)及泰国语(th)。
 * 调用showTermsView API后，可创建PushConfiguration对象的基准被更改为；
     * 修改前
@@ -318,7 +330,7 @@
         * 若因已同意条款，未显示条款UI时，PushConfiguration将会返还为null。
 
 #### 修改错误
-* 已修改因终端机的语言代码和Push控制台中的语言代码不一致，而导致未能正常设置Push语言的问题。
+* 修改了因终端机的语言代码和Push控制台中的语言代码不一致，而导致未能正常设置Push语言的问题。
 
 ### 2.25.0 (2021.07.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.25.0/GamebaseSDK-Unity.zip)

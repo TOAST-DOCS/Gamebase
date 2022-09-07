@@ -180,6 +180,10 @@ public void Login()
 >additionalInfo 파라미터에 필수 정보들을 dictionary 형태로 입력하시면 됩니다.
 >additionalInfo 값이 있을 경우에는 해당 값을 사용하고 null 일 경우에는 [NHN Cloud Console](./oper-app/#authentication-information)에 등록된 값을 사용합니다.
 
+> [참고]
+>
+> Line IdP는 Gamebase SDK 2.43.0부터 Line 서비스 제공 지역 설정을 할 수 있습니다.
+> 해당 지역은 AdditionalInfo에 설정할 수 있습니다. 
 
 > <font color="red">[주의]</font><br/>
 >
@@ -188,6 +192,12 @@ public void Login()
 > Standalone WebViewAdapter를 사용하여 로그인을 하기 위해서는 IdP 개발자 사이트에서 아래 CallbackURL을 설정 하여야 합니다.
 > - https://id-gamebase.toast.com/oauth/callback
 >
+
+* additionalInfo 파라미터 설정 방법
+
+| keyname                                  | a use                                    | 값 종류                                     |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | Line 서비스 제공 지역 설정 | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
 
 **API**
 
@@ -274,17 +284,17 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 | keyname | a use | 값 종류 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid, hangame, weibo, kakaogame |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | GamebaseAuthProvider.GOOGLE<br> GamebaseAuthProvider.FACEBOOK<br>GamebaseAuthProvider.NAVER<br>GamebaseAuthProvider.TWITTER<br>GamebaseAuthProvider.LINE<br>GamebaseAuthProvider.HANGAME<br>GamebaseAuthProvider.APPLEID<br>GamebaseAuthProvider.WEIBO<br>GamebaseAuthProvider.KAKAOGAME<br>GamebaseAuthProvider.PAYCO |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(Access Token) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
 | GamebaseAuthProviderCredential.GAMEBASE_ACCESS_TOKEN | IdP 인증 정보가 아닌 Gamebase Access Token으로 로그인하는 경우 사용 |  |
 | GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | Gamebase에 로그인한 상태에서 로그아웃을 하지 않고 다른 계정을 이용해 로그인을 시도하는 것을 허용 | **bool** |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | Line 서비스 제공 지역 설정 | [Login with IdP 참고](./aos-authentication/#login-with-idp) |
 
 > [TIP]
 >
 > 게임 내에서 외부 서비스(Facebook 등)의 고유 기능을 사용해야 할 때 필요할 수 있습니다.
 >
-
 
 > <font color="red">[주의]</font><br/>
 >

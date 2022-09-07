@@ -37,20 +37,20 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 용도  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.30.0 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS 9 or later
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.0.0 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS 9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Facebook 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.5 | PAYCO 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | NAVER 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenter 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthGoogleAdapter.framework | GoogleSignIn 5.0.2 | Google 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthTwitterAdapter.framework | | Twitter 로그인을 지원 | iOS 9 or later |
-|  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | LINE 로그인을 지원 | iOS 10 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | LINE Login을 지원 | iOS 10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 9 or later<br/>arm64 지원<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.7.0 | Hangame 로그인을 지원 | iOS 9 or later |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.7.1 | Hangame 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weibo 로그인을 지원 | iOS 9 or later |
-|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.11.5 | Kakao 로그인을 지원 | iOS 11 or later |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.30.0<br/> ToastGamebaseIAP 0.13.0 | 게임 내 결제 지원 | iOS 9 or later |
-| Gamebase Push Adapters | GamebasePushAdapter.framework | ToastPush 0.30.0 | Push를 지원 | iOS 9 or later |
+|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.4 | Kakao 로그인을 지원 | iOS 11 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.0.0<br/> ToastGamebaseIAP 0.14.0 | 게임 내 결제 지원 | iOS 9 or later |
+| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.0.0 | Push를 지원 | iOS 9 or later |
 
 
 > <font color="red">[주의]</font><br/>
@@ -231,24 +231,17 @@ end
 * URL Scheme을 설정해야 합니다.
 	* **Xcode > Target > Info > URL Types**에 **line3rdp.{App Bundle ID}**를 추가해야 합니다.
 
-* LINE에서 발급받은 ChannelID를 Info.plist 파일에 설정해야 합니다.
-```
-<key>LineSDKConfig</key>
-<dict>
-    <key>ChannelID</key>
-    <string>{Issued LINE ChannleID}</string>
-</dict>
-```
 * ATS 설정을 위해서 Info.plist 파일에 Scheme을 등록합니다.
 ```
 <key>LSApplicationQueriesSchemes</key>
 <array>
-    <string>lineauth</string>
-    <string>line3rdp.{App Bundle ID}</string>
+    <string>lineauth2</string>
 </array>
 ```
-* LINE Login 을 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다. (인증 필요)
-* [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
+* LINE Login 을 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다.
+    * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/swift/overview/)
+* Gamebase iOS SDK 2.42.2 이하는 추가 설정이 필요합니다.
+    * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
 #### Weibo
 
@@ -292,6 +285,19 @@ end
 ```
 
 ![gamebase_auth_naver_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_naver_console_01.png)
+
+**LINE**
+
+* Gamebase iOS SDK 2.42.2 이하
+    * LINE에서 발급받은 ChannelID를 Info.plist 파일에 설정해야 합니다.
+
+```
+<key>LineSDKConfig</key>
+<dict>
+    <key>ChannelID</key>
+    <string>{Issued LINE ChannleID}</string>
+</dict>
+```
 
 ## 3rd-Party Provider SDK Guide
 

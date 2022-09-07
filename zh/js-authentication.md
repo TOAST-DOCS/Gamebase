@@ -107,15 +107,15 @@ function gamebaseLogin() {
 
 ### Login with Credential
 
-使用IdP提供的SDK、REST API等在游戏中直接验证，并可利用发放的访问令牌等登录Gamebase的接口。
+使用IdP提供的SDK、REST API等在游戏中直接验证，并可利用发放的Access Token等登录Gamebase的接口。
 
 **Credential参数设置方法**
 
 | key name             | a use                                                               |
 | -------------------- | ------------------------------------------------------------------- |
 | providerName         | 设置IdP类型                                                        |
-| accessToken          | 设置登录IdP后获得的验证信息（访问令牌）                          |
-| accessTokenSecret    | 设置登录IdP后获得的验证信息（访问令牌机密）                    |
+| accessToken          | 设置登录IdP后获得的验证信息（Access Token）                          |
+| accessTokenSecret    | 设置登录IdP后获得的验证信息（Access Token机密）                    |
 
 > [参考]
 >

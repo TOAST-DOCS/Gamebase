@@ -19,7 +19,8 @@
 |                 | UNITY                  | NOT\_SUPPORTED\_UNITY\_WEBGL             | 15         | WebGL에서 지원하지 않는 기능입니다.                   |
 |                 | Android                | ANDROID\_ACTIVITY\_DESTROYED             | 31         | Activity가 강제종료되었습니다.                       |
 |                 | Android                | ANDROID\_ACTIVEAPP\_NOT\_CALLED          | 32         | activeApp API가 호출되지 않았습니다.                 |
-|                 | IOS                    | IOS_GAMECENTER_DENIED                    | 51         | Gamecenter 로그인이 거부되었습니다.                 |
+|                 | IOS                    | TCGB_ERROR_IOS_GAMECENTER_DENIED                    | 51         | Gamecenter 로그인이 거부되었습니다.                 |
+|                 | IOS                    | TCGB_ERROR_IOS_CANNOT_OPEN_URL                    | 52         | 앱에서 URL 스킴을 처리할 수 없습니다.                 |
 | Network(Socket) | Android, UNITY<br/>IOS | SOCKET\_RESPONSE\_TIMEOUT<br/>TCGB\_ERROR\_SOCKET\_RESPONSE\_TIMEOUT | 101        | 네트워크 상태가 불안정하여 응답이 없습니다.                 |
 |                 | Android, UNITY<br/>IOS | SOCKET_ERROR<br/>TCGB\_ERROR\_SOCKET\_ERROR | 110        | 소켓 오류입니다.                                    |
 |                 | Android, UNITY<br/>IOS | SOCKET\_UNKNOWN_ERROR<br/>TCGB\_ERROR\_SOCKET\_UNKNOWN\_ERROR | 999        | 소켓 알 수 없는 오류입니다.                             |
