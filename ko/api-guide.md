@@ -9,6 +9,7 @@
 - 이용 정지 및 이용 정지 해제를 수행하는 "Ban", "Ban Release" API가 추가되었습니다.
 - 결제 트랜잭션을 조회하는 "Get Payment Transaction" API가 추가되었습니다.
 - 미소비 결제 내역을 조회하는 "List Consumables" API에 한 번에 N개의 스토어를 대상으로 조회할 수 있도록 **marketIds**가 추가되었습니다.
+- 서버 주소가 'https://api-gamebase.nhncloudservice.com'로 변경되었습니다. 기존 주소도 별도의 공지 전까지 계속 유지됩니다.
 
 ## Advance Notice
 
@@ -19,7 +20,7 @@ Gamebase Server API는 RESTful 형식으로, 서버 API를 사용하기 위해�
 API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주소는 Gamebase Console 화면에서도 확인 가능합니다.
 > https://api-gamebase.nhncloudservice.com
 
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.3.png)
 
 #### AppId
 
@@ -1916,9 +1917,13 @@ Gamebase는 NHN Cloud Push 서비스의 서버 API에 대해 **Wrapping** 기능
 Gamebase Wrapping API와 매핑된 Push API 스펙은 아래 가이드를 참고하세요.
 Push Appkey 설정 없이 Gamebase AppId 및 SecretKey를 이용해서 Gamebase Wrapping Push API를 호출하시면 됩니다.
 
-> [참고]
+> [참고1]
 > Push 가이드에 존재하는 uid 값은 gamebase userId 값을 사용하시면 됩니다. 클라이언트 SDK에서 푸시 토큰 등록 시 유저 식별자는 gamebase userId로 등록이 되어 있습니다.
 > 한 명의 유저가 다수의 단말기에서 모두 푸시 수신을 허용하였다면, 다수의 단말기에서 모두 푸시를 수신하게 됩니다.
+
+> [참고 2]
+> API를 통해 푸시 메시지 발송 시 발송 내역은 'Gamebase Console > 푸시 > 발송 이력' 메뉴에서 확인 불가능합니다.
+> '푸시 > 설정 > 발송 내역 저장' 메뉴에서 Log & Crash 설정을 통해 확인 가능합니다.
 
 [Push Guide](/Notification/Push/ko/api-guide/)
 
