@@ -339,7 +339,7 @@ Twitter Application Management 사이트에서 앱을 등록하고 발급받은 
 
 **입력 필드**
 
-- Region : {LINE Channel Region}
+- Region: {LINE Channel Region}
 - Client ID: {LINE Channel ID}
 - Secret Key: {LINE Channel Secret}
 

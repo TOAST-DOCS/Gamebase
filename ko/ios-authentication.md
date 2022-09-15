@@ -178,7 +178,7 @@ Gamebase를 통하여 로그인을 처음 시도하거나, 로그인 정보(Acce
 
 > [참고]
 >
-> LINE 로그인은 Console에 서비스를 제공할 지역을 복수개 등록할 수 있습니다. IdP로 로그인을 할 때는 additionalInfo 파라미터로 서비스를 제공할 하나의 지역을 직접 입력해야 합니다.
+> LINE 로그인은 Console에 서비스를 제공할 지역을 복수로 등록할 수 있습니다. IdP로 로그인을 할 때는 additionalInfo 파라미터로 서비스를 제공할 하나의 지역을 직접 입력해야 합니다.
 > 
 
 > [참고]
@@ -191,7 +191,7 @@ Gamebase를 통하여 로그인을 처음 시도하거나, 로그인 정보(Acce
 
 ### Login with Credential
 
-IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급받은 Access Token 등을 이용하여, Gamebase에 로그인할 수 있는 인터페이스입니다.
+IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급 받은 Access Token 등을 이용하여, Gamebase에 로그인할 수 있는 인터페이스입니다.
 
 
 * Credential 파라미터 설정 방법
@@ -219,7 +219,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 #import "TCGBConstants.h"
 
 - (void)authLoginWithCredential {
-    NSDictionary *credentialDic = @{ kTCGBAuthLoginWithCredentialProviderNameKeyname: kTCGBAuthFacebook, kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"여기에 facebook SDK에서 발급받은 Access Token을 입력하세요" };
+    NSDictionary *credentialDic = @{ kTCGBAuthLoginWithCredentialProviderNameKeyname: kTCGBAuthFacebook, kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"여기에 facebook SDK에서 발급 받은 Access Token을 입력하세요" };
     [TCGBGamebase loginWithCredential:credentialDic viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         NSLog([authToken description]);
     }];
@@ -400,7 +400,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 ### AddMapping with Credential
 
-게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급받은 Access Token 등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스입니다.
+게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급 받은 Access Token 등을 이용하여, Gamebase AddMapping을 할 수 있는 인터페이스입니다.
 
 
 
@@ -627,7 +627,7 @@ Gamebase Console에 제재된 게임 유저로 등록될 경우,
 게스트 계정을 다른 단말기로 이전하기 위해 계정 이전을 위한 키를 발급받는 기능입니다.
 
 이 키를 **TransferAccountInfo** 라고 부릅니다.
-발급받은 TransferAccountInfo는 다른 단말기에서 **requestTransferAccount** API를 호출하여 계정 이전을 할 수 있습니다.
+발급 받은 TransferAccountInfo는 다른 단말기에서 **requestTransferAccount** API를 호출하여 계정 이전을 할 수 있습니다.
 
 > <font color="red">[주의]</font><br/>
 >
@@ -655,7 +655,7 @@ Gamebase Console에 제재된 게임 유저로 등록될 경우,
 ```
 
 ### Query TransferAccount
-게스트 계정 이전을 위해 이미 발급받은 TransferAccountInfo 정보를 게임베이스 서버에 질의합니다.
+게스트 계정 이전을 위해 이미 발급 받은 TransferAccountInfo 정보를 게임베이스 서버에 질의합니다.
 
 **API**
 
@@ -675,7 +675,7 @@ Gamebase Console에 제재된 게임 유저로 등록될 경우,
 
 
 ### Renew TransferAccount
-이미 발급받은 TransferAccountInfo 정보를 갱신합니다.
+이미 발급 받은 TransferAccountInfo 정보를 갱신합니다.
 "자동 갱신", "수동 갱신"의 방법이 있으며, "Password만 갱신", "ID와 Password 모두 갱신" 등의 설정을 통해
 TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
@@ -711,8 +711,8 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 
 ### Transfer Guest Account to Another Device
-**issueTransfer** API로 발급받은 TransferAccount를 통해 계정을 이전하는 기능입니다.
-계정 이전 성공 시 TransferAccount를 발급받은 단말기에서 이전 완료 메시지가 표시될 수 있고, 게스트 로그인 시 새로운 계정이 생성됩니다.
+**issueTransfer** API로 발급 받은 TransferAccount를 통해 계정을 이전하는 기능입니다.
+계정 이전 성공 시 TransferAccount를 발급 받은 단말기에서 이전 완료 메시지가 표시될 수 있고, 게스트 로그인 시 새로운 계정이 생성됩니다.
 계정 이전이 성공한 단말기에서는 TransferAccount를 발급받았던 단말기의 게스트 계정을 계속해서 사용할 수 있습니다.
 
 > <font color="red">[주의]</font><br/>
