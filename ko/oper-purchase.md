@@ -128,8 +128,9 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 - **소비 상태**: 결제한 아이템의 지급 여부
 - **결제 상태**: 결제의 현재 진행 상태
 - **Store Reference Key**: 스토어에서 발급해주는 결제 고유 번호
-- **결제예약일시**: 사용자가 구입을 시도 또는 완료한 시간
-- **환불일시**: 사용자 아이템이 환불된 시간
+- **결제 예약 일시**: 사용자가 구입을 시도한 시간
+- **결제 일시**: 사용자가 구입을 완료한 시간
+- **환불 일시**: 사용자 아이템이 환불된 시간
 - **추가정보**: SDK에서 결제 요청 시 전달한 추가 정보(Developer payload)
 
 #### 결제 상태 변경
@@ -146,7 +147,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 - **환불 완료(Refund)**
 	- 관리자가 수동으로 스토어에서 환불 처리에 대한 여부를 업데이트한 경우입니다.
 	- 다른 결제 상태로 변경이 불가능합니다.
-- **진행 중 취소(UserClose)** 
+- **진행 중 취소(UserClose)**
 	- 유저가 결제 진행중 취소
 
 
@@ -215,8 +216,9 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing2_1.3_ko.png)
 
 #### 결제 내역
-- **결제 예약 일시**: 사용자가 구입을 시도 또는 완료한 시간
-- **환불일시**: 사용자 아이템이 환불된 시간
+- **결제 예약 일시**: 사용자가 구입을 시도한 시간
+- **결제 일시**: 사용자가 구입을 완료한 시간
+- **환불 일시**: 사용자 아이템이 환불된 시간
 - **Transaction ID**: Gamebase 내에서 결제를 구별할 수 있는 고유 번호
 - **스토어**: 결제된 스토어 정보
 - **아이템 이름**: 사용자가 앱에서 구입한 실제 아이템 이름
@@ -253,7 +255,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing6_1.3_ko.png)
 
 #### 결제 내역
-- **결제 일시**:
+- **결제 일시**: 사용자가 구입을 완료한 시간
 - **Transaction ID**: Gamebase 내에서 결제를 구별할 수 있는 고유 번호
 - **스토어**: 결제된 스토어 정보
 - **유저 ID**: 결제한 사용자 ID
