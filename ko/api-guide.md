@@ -9,7 +9,7 @@
 - 이용 정지 및 이용 정지 해제를 수행하는 "Ban", "Ban Release" API가 추가되었습니다.
 - 결제 트랜잭션을 조회하는 "Get Payment Transaction" API가 추가되었습니다.
 - 미소비 결제 내역을 조회하는 "List Consumables" API에 한 번에 N개의 스토어를 대상으로 조회할 수 있도록 **marketIds**가 추가되었습니다.
-- 서버 주소가 'https://api-gamebase.nhncloudservice.com'로 변경되었습니다. 기존 주소도 별도의 공지 전까지 계속 유지됩니다.
+- 서버 주소가 "https://api-gamebase.nhncloudservice.com"으로 변경되었습니다. 기존 주소도 별도의 공지 전까지 계속 유지됩니다.
 
 ## Advance Notice
 
@@ -1206,7 +1206,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| regUser | String | Required | 탈퇴를 요청한 시스템 혹은 사용자 정보 <br> - 해당 정보는 Console > '멤버' 페이지의 '탈퇴 이력' 화면에서 확인 가능 |
+| regUser | String | Required | 탈퇴를 요청한 시스템 혹은 사용자 정보로 공백 없이 입력 <br> - 해당 정보는 Console > '멤버' 페이지의 '탈퇴 이력' 화면에서 확인 가능 |
 
 **[Request Body]**
 
@@ -1866,8 +1866,8 @@ Gamebase는 NHN Cloud Leaderboard 서비스의 서버 API에 대해 **Wrapping**
 <br/>
 
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
-Gamebase Wrapping API와 매핑된 Leaderboard API 스펙은 아래 가이드를 참고하세요.
-Leaderboard Appkey 설정 없이 Gamebase AppId 및 SecretKey를 이용해서 Gamebase Wrapping Leaderboard API를 호출하시면 됩니다.
+Gamebase Wrapping API와 매핑된 Leaderboard API 스펙은 아래 가이드를 참고하십시오.
+Leaderboard Appkey 설정 없이 Gamebase AppId 및 SecretKey를 이용해서 Gamebase Wrapping Leaderboard API를 호출할 수 있습니다.
 
 
 [Leaderboard Guide](/Game/Leaderboard/ko/api-guide/)
@@ -1914,16 +1914,16 @@ Gamebase는 NHN Cloud Push 서비스의 서버 API에 대해 **Wrapping** 기능
 <br/>
 
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
-Gamebase Wrapping API와 매핑된 Push API 스펙은 아래 가이드를 참고하세요.
-Push Appkey 설정 없이 Gamebase AppId 및 SecretKey를 이용해서 Gamebase Wrapping Push API를 호출하시면 됩니다.
+Gamebase Wrapping API와 매핑된 Push API 스펙은 아래 가이드를 참고하십시오.
+Push Appkey 설정 없이 Gamebase AppId 및 SecretKey를 이용하여 Gamebase Wrapping Push API를 호출할 수 있습니다.
 
-> [참고1]
-> Push 가이드에 존재하는 uid 값은 gamebase userId 값을 사용하시면 됩니다. 클라이언트 SDK에서 푸시 토큰 등록 시 유저 식별자는 gamebase userId로 등록이 되어 있습니다.
+> [참고 1]
+> Push 가이드에 존재하는 uid 값은 gamebase userId 값을 사용할 수 있습니다. 클라이언트 SDK에서 푸시 토큰 등록 시 유저 식별자는 gamebase userId로 등록되어 있습니다.
 > 한 명의 유저가 다수의 단말기에서 모두 푸시 수신을 허용하였다면, 다수의 단말기에서 모두 푸시를 수신하게 됩니다.
 
 > [참고 2]
-> API를 통해 푸시 메시지 발송 시 발송 내역은 'Gamebase Console > 푸시 > 발송 이력' 메뉴에서 확인 불가능합니다.
-> '푸시 > 설정 > 발송 내역 저장' 메뉴에서 Log & Crash 설정을 통해 확인 가능합니다.
+> API를 통해 푸시 메시지를 발송한 경우 발송 내역은 Gamebase Console의 **푸시 > 발송 이력**에서 확인할 수 없습니다.
+> **푸시 > 설정 > 발송 내역 저장** 메뉴에서 **Log & Crash** 설정을 통해 확인할 수 있습니다.
 
 [Push Guide](/Notification/Push/ko/api-guide/)
 
