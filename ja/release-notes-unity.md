@@ -3,12 +3,12 @@
 ### 2.43.0 (2022. 09. 07.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.0/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Unity SDK(0.26.1), Kakaogame Unity SDK(3.14.5)
-* LINE Login을 수행 시 서비스를 제공할 Region을 입력하도록 변경되었습니다.
-    * [Game > Gamebase > Unity SDK 사용 가이드 > 인증 > Login with IdP](./unity-authentication/#login-with-idp)
+#### 機能改善/変更
+* 外部SDKアップデート: TOAST Unity SDK(0.26.1)、Kakaogame Unity SDK(3.14.5)
+* LINE Loginを行う時にサービスを提供するRegionを入力するように変更しました。
+    * [Game > Gamebase > Unity SDK使用ガイド > 認証 > Login with IdP](./unity-authentication/#login-with-idp)
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.43.0](./release-notes-android/#2430-2022-09-07)
 * [Gamebase iOS SDK 2.43.0](./release-notes-ios/#2430-2022-09-07)
 
