@@ -334,6 +334,7 @@ Twitter Application Managementサイトでアプリを登録して発行した{C
 
 **入力フィールド**
 
+- Region : {LINE Channel Region}
 - Client ID：{LINE Channel ID}
 - Secret Key：{LINE Channel Secret}
 
