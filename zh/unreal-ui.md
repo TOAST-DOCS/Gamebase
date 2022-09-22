@@ -45,10 +45,10 @@ void Sample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 co
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| colorR                   | 0~255                                    | Navigation Bar颜色R            |
-| colorG                   | 0~255                                    | Navigation Bar颜色G                |
-| colorB                   | 0~255                                    | Navigation Bar颜色B                |
-| colorA                   | 0~255                                    | Navigation Bar颜色Alpha                |
+| colorR                   | 0~255                                    | Background背景颜色R            |
+| colorG                   | 0~255                                    | Background背景颜色G                |
+| colorB                   | 0~255                                    | Background背景颜色B                |
+| colorA                   | 0~255                                    | Background背景颜色Alpha                |
 | timeOut                  | int64        | 图片通知最大加载时间(单位 : millisecond)<br/>**default**: 5000                     |
 
 
@@ -265,7 +265,7 @@ void Sample::QueryTerms()
 > <font color="red">[注意]</font><br/>
 >
 > Gamebase服务器不保存“是否同意接收推送”。
-> 当保存“是否同意接收推送”时，**登录后**通过调用Gamebase.Push.RegisterPush API后保存。
+> 当保存“是否同意接收推送”时，**登录后**通过调用Gamebase.Push.RegisterPush API后保存。 
 >
 
 #### Required参数
@@ -412,22 +412,23 @@ void Sample::ShowWebView(const FString& url)
 | ------------------------ | ---------------------------------------- | --------------------------- |
 | title                    | string                                   | WebView的标题                 |
 | orientation              | GamebaseScreenOrientation::Unspecified    | 未指定 |
+| title                    | FString                                   | WebView的标题                  |
+| orientation              | GamebaseScreenOrientation::Unspecified    | 未指定(**default**)            |
 |                          | GamebaseScreenOrientation::Portrait       | 纵向模式                       |
 |                          | GamebaseScreenOrientation::Landscape      | 横向模式                       |
 |                          | GamebaseScreenOrientation::LandscapeReverse | 将横向模式旋转180度              |
-| contentMode              | GamebaseWebViewContentMode::Recommended        | 当前平台推荐的浏览器    |
+| contentMode              | GamebaseWebViewContentMode::Recommended        | 当前平台推荐的浏览器(**default**)   |
 |                          | GamebaseWebViewContentMode::Mobile             | 移动浏览器            |
 |                          | GamebaseWebViewContentMode::Desktop            | 桌面浏览器          |
-| colorR                   | 0~255                                    | Navigation Bar颜色R            |
-| colorG                   | 0~255                                    | Navigation Bar颜色G                |
-| colorB                   | 0~255                                    | Navigation Bar颜色B                |
-| colorA                   | 0~255                                    | Navigation Bar颜色Alpha                |
-| isBackButtonVisible      | true or false                            | 返回按钮有效或无效          |
-| barHeight                | height                                   | Navigation Bar高度                  |
-| backButtonImageResource  | ID of resource                           | 返回按钮图片                |
-| closeButtonImageResource | ID of resource | 关闭按钮图片 |
-| url | "http://" or "https://" or "file://" | 网络URL |
-| enableFixedFontSize      | true or false                            | 固定字体大小有效或无效<br/>**Android Only** |
+| colorR                   | 0~255                                    | 导航栏颜色R<br>**default**: 18               |
+| colorG                   | 0~255                                    | 导航栏颜色G<br>**default**: 93               |
+| colorB                   | 0~255                                    | 导航栏颜色B<br>**default**: 230              |
+| colorA                   | 0~255                                    | 导航栏颜色Alpha<br>**default**: 255          |
+| barHeight                | height                                   | 导航栏颜色高度<br>**Android Only**                 |
+| isNavigationBarVisible   | true or false                            | 导航栏有效或无效<br>**default**: true    |
+| isBackButtonVisible      | true or false                            | 返回按钮有效或无效<br>**default**: true   |
+| backButtonImageResource  | ID of resource                           | 返回按钮图像         |
+| closeButtonImageResource | ID of resource                           | 关闭按钮图像             |
 
 > [TIP]
 >

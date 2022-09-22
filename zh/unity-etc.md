@@ -35,7 +35,7 @@ static string GetDeviceLanguageCode()
 但有些游戏允许通过额外选项更改终端机设置的语言。
 终端机设置的默认语言是英语，但需将游戏的显示语言转换为日语时，即使要将Gamebase的显示语言也转换为日语，Gamebase仍显示终端机设置的默认语言（en）。
 
-因此Gamebase向需以终端机设置语言之外的其他语言显示Gamebase消息的应用程序，提供”Display Language“功能。 
+因此Gamebase向需以终端机设置语言之外的其他语言显示Gamebase消息的应用程序，提供“Display Language”功能。 
 
 Gamebase显示消息时，按照注册为Display Language的语言显示消息。
 在Display Language输入语言代码时，只能使用以下列表中（**Gamebase支持的语言代码种类**）指定的代码。
@@ -44,7 +44,7 @@ Gamebase显示消息时，按照注册为Display Language的语言显示消息�
 >
 > * 无论终端机设置的语言如何，只需要更改Gamebase显示的语言时使用Display Language Gamebase功能。
 > * Display Language Code是区分大小写的ISO-639形态的值。
-> 若按”EN"或"zh-cn"进行设置，可能出现问题。
+> 若按“EN”或“zh-cn”进行设置，可能出现问题。
 > * 若输入的Display Language Code值不在以下列表时（**Gamebase支持的语言代码种类**）, 则将Display Langauge Code自动设置为默认语言(en)。
 
 > [参考]
@@ -323,7 +323,7 @@ static string GetCountryCodeOfDevice()
 >
 > 为Editor on Windows、Standalone on Windows时参考[CultureInfo](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo?view=netframework-4.7.2)返回国家代码。
 >
-> Editor on Mac、WebGL参考[Application.systemLanguage](https://docs.unity3d.com/ScriptReference/SystemLanguage.html)值返回国家代码。<br/>例如，为Application.systemLanguage == SystemLanguage.Korean时返回’KR’。
+> Editor on Mac、WebGL参考[Application.systemLanguage](https://docs.unity3d.com/ScriptReference/SystemLanguage.html)值返回国家代码。<br/>例如，为Application.systemLanguage == SystemLanguage.Korean时返回“KR”。
 
 **API**
 
@@ -382,6 +382,15 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 {
     switch (message.category)
     {
+case GamebaseEventCategory.IDP_REVOKED:
+            {
+                GamebaseResponse.Event.GamebaseEventIdPRevokedData idPRevokedData = GamebaseResponse.Event.GamebaseEventIdPRevokedData.From(message.data);
+                if (idPRevokedData != null)
+                {
+                    ProcessIdPRevoked(idPRevokedData);
+                }
+                break;
+            }
         case GamebaseEventCategory.LOGGED_OUT:
             {
                 GamebaseResponse.Event.GamebaseEventLoggedOutData loggedData = GamebaseResponse.Event.GamebaseEventLoggedOutData.From(message.data);
@@ -493,18 +502,112 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 ```
 
     
-* 事件大体分为LoggedOut、ServerPush、Observer、Purchase、Push，并按照各Category, 按如下列表的方式将GamebaseEventMessage.data转换为VO。
+* 事件大体分为LoggedOut、ServerPu 吧     sh、Observer、Purchase、Push，并按照各Category, 按如下列表的方式将GamebaseEventMessage.data转换为VO。
 
 
 | Event种类 | GamebaseEventCategory | VO转换方法 | 备注 |
 | --------- | --------------------- | ----------- | --- |
-| LoggedOut | GamebaseEventCategory.LOGGED_OUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
+| IdPRevoked | GamebaseEventCategory.IDP_REVOKED | GamebaseResponse.Event.GamebaseEventIdPRevokedData.from(message.data) | \- |
+| LoggedOut | GamebaseEventCategory.LOGGED_OUT | GamebaseResponse.Event.GamebaseEventLoggedOutData.from(message.data) | \- |
 | ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED<br>GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
 | Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseResponse.Event.GamebaseEventObserverData.from(message.data) | \- |
 | Purchase - Promotion支付 | GamebaseEventCategory.PURCHASE_UPDATED | GamebaseResponse.Event.PurchasableReceipt.from(message.data) | \- |
 | Push - 接收消息 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
 | Push - 点击消息 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
 | Push - 动态点击 | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | 点击RichMessage按键时启动。|
+
+#### IdP Revoked
+
+* 是当在IdP中删除相关服务时出现的事件。
+* 需要通知用户IdP已被禁用，并使用户使用相同的IdP登录时收到新的userID。
+* GamebaseEventIdPRevokedData.code : 为GamebaseIdPRevokedCode值。
+    * WITHDRAW : 600
+        * 表示当前使用禁用的IdP登录，并且没有映射的IdP列表。
+        * 必须通过调用Withdraw API对当前帐户进行退出处理。
+    * OVERWRITE_LOGIN_AND_REMOVE_MAPPING : 601
+        * 表示当前使用禁用的IdP登录，而除了禁用的IdP还有其他IdP被映射。
+        * 需要使用被映射的IdP当中的一个IdP登录，并通过调用RemoveMapping API解除禁用的IdP的链接。
+    * REMOVE_MAPPING : 602
+        * 表示映射到当前账户的IdP当中有禁用IdP。
+        * 需要通过调用RemoveMapping API解除禁用的IdP的链接。
+* GamebaseEventIdPRevokedData.idpType : 是禁用的IdP类型。
+* GamebaseEventIdPRevokedData.authMappingList : 是映射到当前账户的IdP列表。
+
+**Example**
+
+```cs
+public void AddEventHandlerSample()
+{
+    Gamebase.AddEventHandler(GamebaseEventHandler);
+}
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+{
+    switch (message.category)
+    {
+        case GamebaseEventCategory.IDP_REVOKED:
+            {
+                GamebaseResponse.Event.GamebaseEventIdPRevokedData idPRevokedData = GamebaseResponse.Event.GamebaseEventIdPRevokedData.From(message.data);
+                if (idPRevokedData != null)
+                {
+                    ProcessIdPRevoked(idPRevokedData);
+                }
+                break;
+            }
+        default:
+            {
+                break;
+            }
+    }
+}
+private void ProcessIdPRevoked(string category, GamebaseResponse.Event.GamebaseEventIdPRevokedData data)
+{
+    var revokedIdP = data.idPType;
+    switch (data.code)
+    {
+        case GamebaseIdPRevokedCode.WITHDRAW:
+            {
+                // 表示当前使用禁用的IdP登录，并且没有被映射的IdP列表。
+                // 请通知用户当前账户已被退出。
+                Gamebase.Withdraw((error) =>
+                {
+                    ...
+                });
+                break;                            
+            }
+        case GamebaseIdPRevokedCode.OVERWRITE_LOGIN_AND_REMOVE_MAPPING:
+            {
+                // 表示当前使用禁用的IdP登录，而除了禁用的IdP还有其他IdP被映射。
+                // 让用户从authMappingList中选择要再次登录的IdP，并在使用所选IdP登录后解除禁用的IdP的链接。
+                var selectedIdP = "用户选择的IdP";
+                var additionalInfo = new Dictionary<string, object>()
+                {
+                    { GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN, true }
+                };
+                Gamebase.Login(selectedIdP, additionalInfo, (authToken, loginError) =>
+                {
+                    if (Gamebase.IsSuccess(loginError) == true)
+                    {
+                        Gamebase.RemoveMapping(revokedIdP, (mappingError) =>
+                        {
+                            ...          
+                        });
+                    }
+                });
+                break;
+            }
+        case GamebaseIdPRevokedCode.REMOVE_MAPPING:
+            {
+                // 表示映射到当前账户的IdP当中有禁用IdP。
+                // 请通知用户在当前账户中禁用IdP的链接被解除。
+                Gamebase.RemoveMapping(revokedIdP, (error) =>
+                {
+                    ...
+                });
+                break;
+            }
+    }
+}
+```
 
 #### Logged Out
 
@@ -610,7 +713,7 @@ private void CheckServerPush(string category, GamebaseResponse.Event.GamebaseEve
 * Gamebase支持的Observer Type如下。
     * GamebaseEventCategory.OBSERVER_LAUNCHING
     	* 当维护开始、结束时或发布新版本必须进行更新等Launching状态出现变动时启动。
-    	* GamebaseEventObserverData.code : 为LaunchingStatus值。 
+    	* GamebaseEventObserverData.code: 为LaunchingStatus值。 
             * LaunchingStatus.IN_SERVICE: 200
             * LaunchingStatus.RECOMMEND_UPDATE: 201
             * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
@@ -622,13 +725,13 @@ private void CheckServerPush(string category, GamebaseResponse.Event.GamebaseEve
             * LaunchingStatus.INTERNAL_SERVER_ERROR: 500
     * GamebaseEventCategory.OBSERVER_HEARTBEAT
     	* 当因已被退出或禁用、用户账号状态出现变化时启动。
-    	* GamebaseEventObserverData.code : 为GamebaseError值。
+    	* GamebaseEventObserverData.code: 为GamebaseError值。
             * GamebaseError.INVALID_MEMBER: 6
             * GamebaseError.BANNED_MEMBER: 7
     * GamebaseEventCategory.OBSERVER_NETWORK
     	* 可以接收网络变动信息。 
     	* 当网络断开或被连接时、从Wifi转为Cellular网络时启动。
-    	* GamebaseEventObserverData.code : 为NetworkManager值。
+    	* GamebaseEventObserverData.code: 为NetworkManager值。
             * NetworkManager.TYPE_NOT: -1
             * NetworkManager.TYPE_MOBILE: 0
             * NetworkManager.TYPE_WIFI: 1
@@ -896,7 +999,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 
 #### Push Click Message
 
-* 是点击”已接收的Push消息”时出现的事件。
+* 是点击“已接收的Push消息”时出现的事件。
 * 与“GamebaseEventCategory.PUSH_RECEIVED_MESSAGE”不同，在Android上的extras字段不存在**isForeground**信息。
 
 **Example**
@@ -1149,7 +1252,7 @@ static void OpenContact(GamebaseRequest.Contact.Configuration configuration, Gam
 | Error Code | Description |
 | --- | --- |
 | NOT\_INITIALIZED(1)                                 | 未调用Gamebase.initialize。|
-| NOT\_LOGGED\_IN(2)                                  | 客户服务的类型为”TOAST OC”时，登录前已调用ContactConfiguration函数。 |
+| NOT\_LOGGED\_IN(2)                                  | 客户服务的类型为“TOAST OC”时，登录前已调用ContactConfiguration函数。 |
 | UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 客户服务URL不存在。<br>请确认Gamebase控制台的**客户服务URL**。|
 | UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 识别用户的临时ticket发放失败 |
 | UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | 已显示客户服务WebView。|
@@ -1196,7 +1299,7 @@ public void SampleOpenContact()
 >
 > iOS用户
 >
-> 请在* info.plist中设置”Privacy - Camera Usage Description”、”Privacy - Photo Library Usage Description”。
+> 请在* info.plist中设置“Privacy - Camera Usage Description”、“Privacy - Photo Library Usage Description”。
 
 #### Request Contact URL
 
@@ -1214,7 +1317,7 @@ static void RequestContactURL(GamebaseRequest.Contact.Configuration configuratio
 | Error Code | Description |
 | --- | --- |
 | NOT\_INITIALIZED(1)                                 | 未调用Gamebase.initialize。|
-| NOT\_LOGGED\_IN(2)                                  | 客户服务的类型为”TOAST OC”时，登录前已调用ContactConfiguration函数。|
+| NOT\_LOGGED\_IN(2)                                  | 客户服务的类型为“TOAST OC”时，登录前已调用ContactConfiguration函数。|
 | UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 客户服务URL不存在。<br>请确认Gamebase控制台的**客户服务URL**。|
 | UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 识别用户的临时ticket发放失败 |
 

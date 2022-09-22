@@ -250,7 +250,7 @@ void Sample::LoginWithAdditionalInfo()
 | GamebaseAuthProviderCredential::AccessToken | 进行IdP登录后接收的认证信息(Access Token)设置<br/>Google认证时不使用。 |                                |
 | GamebaseAuthProviderCredential::AuthorizationCode | Google登录后接收的认证信息(Authorization Code)设置 |                                          |
 | GamebaseAuthProviderCredential::GamebaseAccessToken | 通过Gamebase Access Token登录，而不是通过IdP认证信息登录时使用。 |  |
-| GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn | 在Gamebase登录状态下，不注销也允许其他帐户登录尝试。 | **bool** |                             
+| GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn | 在Gamebase登录状态下，不注销也允许使用其他帐户尝试登录。 | **bool** |                             
 
 > [TIP]
 >

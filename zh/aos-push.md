@@ -266,3 +266,4 @@ Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
 | UNSUPPORTED_PUSH_TYPE | 103 | PushType输入错误或项目中不包含推送库 |
 | API_SERVER_ERROR | 104 | 调用TOAST Push服务器API失败时 |
 | TOKEN_NOT_REGISTERED | 105 | 内部缓存的Push Token不存在时 |
+| INVALID_PARAMETER | 106 | 为错误参数时 |

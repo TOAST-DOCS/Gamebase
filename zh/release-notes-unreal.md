@@ -3,35 +3,35 @@
 ### 2.42.1 (2022. 08. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
-* FGamebaseForcingMappingTicket 클래스에 매핑 유저 상태를 나타내는 mappedUserValid 필드가 추가되었습니다.
-*  [iOS 설정 툴](./unreal-started/#ios-settings)에서 Xcode의 경로를 지정할 수 있도록 **Xcode Path** 설정이 추가되었습니다.
+#### 添加功能
+* 在FGamebaseForcingMappingTicket类中添加了显示映射用户状态的mappedUserValid字段。 
+*  [iOS设置工具]添加了**Xcode Path**设置，允许您在（./unreal start/#ios设置）指定Xcode的路径。
 
-#### 기능 개선/변경
-* 킥아웃 팝업 창 표시 여부는 Gamebase 콘솔에서 킥아웃 등록 시 설정할 수 있으므로 다음 필드는 더 이상 사용하지 않습니다
+#### 改善/修复功能
+* 在Gamebase控制台中注册Kickout时可以设置是否要显示Kickout弹窗，因此不需要使用以下字段。
     * **FGamebaseConfiguration.enableKickoutPopup**
-* FGamebaseConfiguration 내 일부 필드에 기본값이 추가되었습니다.
-    * enableLaunchingStatusPopup의 기본값이 true로 설정되었습니다.
-    * enableBanPopup의 기본값이 true로 설정되었습니다.
-* FWebView에서 고정 폰트 사이즈 사용 여부를 설정하는 필드는 더 이상 사용되지 않습니다.
+* 在FGamebaseConfiguration中的一部分字段添加了默认值。
+    * enableLaunchingStatusPopup的默认值已设置为true。
+    * enableBanPopup的默认值已设置为true。
+* 不使用用于设置是否在FWebView中使用固定字体大小的字段。
     * **FGamebaseWebViewConfiguration.enableFixedFontSize**
-* FGamebaseWebViewConfiguratio 내 일부 필드에 기본 값이 추가되었습니다.
-    * 네비게이션 바의 색상 필드인 colorR, colorG, colorB, colorA의 기본값이 18, 93, 230, 255으로 설정되었습니다.
-    * 네비게이션 바 활성 여부를 지정하는 필드인 isNavigationBarVisible의 기본값이 true로 설정되었습니다.
-    * 웹뷰 내 뒤로가기 버튼 활성 여부를 지정하는 필드인 isBackButtonVisible의 기본값이 true로 설정되었습니다.
-    
-#### 플랫폼별 변경 사항
+* 在FGamebaseWebViewConfiguratio内一部分字段添加了默认值。
+    *  导航栏的颜色字段colorR、colorG、colorB、colorA的默认值被设置为18、93、230、255。 
+    * 指定导航栏是否是启用状态的“isNavigationBarVisible”字段的默认值已设置为true。
+    * 指定是否启用Webview内的返回按钮的“isBackButtonVisible”字段的默认值已设置为true。
+
+#### 各平台更改项目
 * [Gamebase Android SDK 2.42.1](./release-notes-android/#2421-2022-07-26)
 * [Gamebase iOS SDK 2.42.1](./release-notes-ios/#2421-2022-08-09)
 
 ### 2.41.0 (2022. 07. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
+#### 添加功能
 * GamebaseEventHandler의 GamebaseEventCategory에 **IdPRevoked** 타입이 추가되었습니다.
     * [Game > Gamebase > Unreal SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./unreal-etc/#idp-revoked)
 
-#### 플랫폼별 변경 사항
+#### 各平台更改项目
 * [Gamebase Android SDK 2.41.0](./release-notes-android/#2410-2022-07-05)
 * [Gamebase iOS SDK 2.41.0](./release-notes-ios/#2410-2022-07-05)
 
@@ -74,8 +74,6 @@
 * 更改了一些API的名称。
     * FGamebaseAnalyticesLevelUpData → FGamebaseAnalyticsLevelUpData        
     * FGambaseBanInfoPtr → FGamebaseBanInfoPtr
-* 在Gamebase控制台中注册Kickout时可以设置是否显示Kickout弹窗，因此不需要使用以下字段。
-    * FGamebaseConfiguration.enableKickoutPopup
     
 #### 各平台更改项目
 * [Gamebase Android SDK 2.40.0](./release-notes-android/#2400-2022-05-24)
@@ -92,10 +90,10 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Unreal.zip)
 
 #### 添加功能
-* 添加了”结算Abusing自动解除”功能。        
+* 添加了“结算Abusing自动解除”功能。        
     * [Game > Gamebase > Unreal SDK使用指南 > 认证 > GraceBan](./unreal-authentication/#graceban)
-    * 结算Abusing自动解除功能是当存在需通过”结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。
-    * 如果为”预约禁用”状态，在设定的时期内满足解除条件，则可正常玩游戏。
+    * 结算Abusing自动解除功能是当存在需通过“结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。
+    * 如果为“预约禁用”状态，在设定的时期内满足解除条件，则可正常玩游戏。
     * 若在所定的时期内未能满足条件，则会被禁用。
 * 登录使用结算Abusing自动解除功能的游戏后，始终要确认AuthToken.member.graceBanInfo API的值，如果返还GraceBanInfo对象，而不返还null，要告知相关用户禁用解除条件、时期等。
     * 当需要控制处于预约禁用状态的用户进入游戏时，要在游戏中进行处理。
@@ -134,7 +132,7 @@
 #### 添加功能
 * 添加共同条款功能
     * 添加打开条款WebView的API。
-    * 添加查询”条款列表”和”用户是否同意”API。
+    * 添加查询“条款列表”和“用户是否同意”API。
     * 添加将”用户是否同意条款”保存在Gamebase服务器的API。
 
 #### 改善/修复功能
