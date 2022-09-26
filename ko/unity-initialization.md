@@ -40,7 +40,7 @@ NHN Cloud 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하
 | ONE Store | ONESTORE | only Android |
 | GALAXY Store | GALAXY | only Android |
 | Windows | WIN | only Unity Standalone |
-| Web | WEB | only Unity WebGL and JavaScript |
+| Web | WEB | only Unity WebGL |
 
 #### 4. displayLanguageCode
 

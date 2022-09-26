@@ -799,8 +799,8 @@ Gamebase SDK 2.6.0未満バージョンから2.6.0にアップグレードする
 #### 機能改善/変更
 * [SDK] 2.4.0
 	* (共通)指標関連Class変更
-        * LevelUpData Class：userLevel、levelUpTimeパラメータが必須に変更 / その他フィールド削除[詳細表示[Android](./aos-etc/#game-user-data-settings) / [iOS](./ios-etc/#game-user-data-settings) / [Unity](./unity-etc/#game-user-data-settings) / [JavaScript](./js-etc/#game-user-data-settings)]
-        * GameUserData Class：classId(ゲームユーザーの職業)フィールド追加[詳細表示[Android](./aos-etc/#level-up-trace) / [iOS](./ios-etc/#level-up-trace) / [Unity](./unity-etc/#level-up-trace) / [JavaScript](./js-etc/#level-up-trace)]
+        * LevelUpData Class：userLevel、levelUpTimeパラメータが必須に変更 / その他フィールド削除[詳細表示[Android](./aos-etc/#game-user-data-settings) / [iOS](./ios-etc/#game-user-data-settings) / [Unity](./unity-etc/#game-user-data-settings) / JavaScript]
+        * GameUserData Class：classId(ゲームユーザーの職業)フィールド追加[詳細表示[Android](./aos-etc/#level-up-trace) / [iOS](./ios-etc/#level-up-trace) / [Unity](./unity-etc/#level-up-trace) / JavaScript]
     * (Android)NAVER SDKバージョンアップデート(v4.2.5)：NAVER SDKのバグを修正(NAVERログイン中にアプリアイコンからアプリを再起動した場合、Activityが強制終了する問題により、認証プロセスが中断される問題を解決)
     * (Unity)StandaloneWebviewが32bit Buildをサポート(SDK容量53.6MBから99.2MBに増加)
 

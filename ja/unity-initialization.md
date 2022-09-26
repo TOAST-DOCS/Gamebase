@@ -40,7 +40,7 @@ NHN Cloudの統合アプリ内決済サービスであるIAP(In-App Purchase)を
 | ONE Store | ONESTORE | only Android |
 | GALAXY Store | GALAXY | only Android |
 | Windows | WIN | only Unity Standalone |
-| Web | WEB | only Unity WebGL and JavaScript |
+| Web | WEB | only Unity WebGL|
 
 #### 4. displayLanguageCode
 
