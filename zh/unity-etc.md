@@ -502,7 +502,7 @@ case GamebaseEventCategory.IDP_REVOKED:
 ```
 
     
-* 事件大体分为LoggedOut、ServerPu 吧     sh、Observer、Purchase、Push，并按照各Category, 按如下列表的方式将GamebaseEventMessage.data转换为VO。
+* 事件大体分为LoggedOut、ServerPush、Observer、Purchase、Push，并按照各Category, 按如下列表的方式将GamebaseEventMessage.data转换为VO。
 
 
 | Event种类 | GamebaseEventCategory | VO转换方法 | 备注 |
