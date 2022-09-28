@@ -54,7 +54,6 @@ The logic described in the above can be implemented in the following order.
 * Other errors
     * Authentication with the previous login type has failed. **'2. Authenticate with the designated IdP'**.
 
-
 #### 2. Authenticate with Specified IdP
 
 * Try to authenticate by specifying an IdP type.
@@ -154,16 +153,20 @@ To be able to set the required information, **[TCGBGamebase loginWithType:additi
 Enter the required information into the parameter additionalInfo in the form of the dictionary.<br/>
 (If the parameter value is nil, it is filled with the additionalInfo value registered in the NHN Cloud Console. If there is a parameter value, it takes precedence and overwrites the value registered in the Console.)
 
+* How to Set additionalInfo Parameters
 
-> [Note]
->
-> The IdP supported by iOS is defined as **kTCGBAuthXXXXXX** in the area of TCGBAuthIDPs of **TCGBConstants.h**.
->
+| keyname                                  | a use                          | Value Type                           |
+| ---------------------------------------- | ------------------------------ | ------------------------------ |
+| kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | One of the LINE service regions to log in | **String**(ex: japan, thailand, taiwan, indonesia) |
 
 ```objectivec
-- (void)loginFacebookButtonClick {
-    [TCGBGamebase loginWithType:kTCGBAuthFacebook viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
-        if ([TCGBGamebase isSuccessWithError:error] == YES) {
+ - (void)loginLineButtonClick {
+    
+    NSDictionary *additionalInfo = @{ kTCGBAuthLoginWithCredentialLineChannelRegionKeyname: @"japan" };
+
+    [TCGBGamebase loginWithType:kTCGBAuthLine additionalInfo:additionalInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+      
+       if ([TCGBGamebase isSuccessWithError:error] == YES){
             // To Login Succeeded
             NSString *userId = [authToken.tcgbMember userId];
         } else {
@@ -191,11 +194,7 @@ Please refer to [Console Guide](./oper-app/#authentication-information).
 This game interface allows authentication to be made with SDK provided by IdP, before login to Gamebase with provided access token.
 
 
-
-
 * How to Set Credential Parameters
-
-
 
 | keyname                                  | Usage                          | Value Type                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
