@@ -134,6 +134,19 @@ In addition, by using **TCGBAuthToken** , you can get user information, such as 
 When a login is successful, Gamebase access token is saved at a local storage; to use loginForLastLoggedInProviderWithViewController:completion: method, the stored access token can be applied.<br/>
 However, access token of each IdP is managed by SDK of each IdP.<br/>
 
+```objectivec
+- (void)loginFacebookButtonClick {
+    [TCGBGamebase loginWithType:kTCGBAuthFacebook viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+        if ([TCGBGamebase isSuccessWithError:error] == YES) {
+            // To Login Succeeded
+            NSString *userId = [authToken.tcgbMember userId];
+        } else {
+            // To Login Failed
+        }
+    }];
+}
+```
+
 <br/><br/>
 To log in with some IdPs, certain information is required.<br/>
 For example, scope needs to be set when implementing Facebook login.<br/>
@@ -160,6 +173,16 @@ Enter the required information into the parameter additionalInfo in the form of 
 }
 ```
 
+> [Note]
+>
+> For LINE login, you can register multiple regions as service provided regions on the console. When logging in with an IdP, you must manually enter a region to provide services as an additionalInfo parameter.
+> 
+
+> [Note]
+>
+> The IdP supported by iOS is defined as **kTCGBAuthXXXXXX** in the TCGBAuthIDPs area of **TCGBConstants.h**.
+>
+
 #### IdPs supported by Gamebase
 Please refer to [Console Guide](./oper-app/#authentication-information).
 
@@ -178,7 +201,8 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                   | 
-| kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname | Allow login attempts using other accounts while logged into Gamebase without logging out  | **BOOL** |                                        
+| kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname | Allow login attempts using other accounts while logged into Gamebase without logging out  | **BOOL** |      
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | One of the LINE service regions to log in  | [See Login with IdP ](./ios-authentication/#login-with-idp)|                                  
 
 
 

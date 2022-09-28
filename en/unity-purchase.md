@@ -9,11 +9,6 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
 
 ### Settings
 
-> <font color="red">[Caution]</font><br/>
->
-> For Android ONE Store, only v17 is supported.
-> Android ONE Store v19 is currently not supported and is being considered for support.
-
 For Android and iOS IAP setting, refer to the below documents.<br/>
 
 * [Android Purchase Settings](aos-purchase#settings)<br/>

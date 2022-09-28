@@ -37,20 +37,20 @@ Then, include corresponding SDK files to a target of your project.
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.30.0 | Includes the interface and key logic of Gamebase | iOS 9 or later
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.0.0 | Includes the interface and key logic of Gamebase | iOS 9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Supports Facebook login | iOS 9 or later |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.5 | Supports PAYCO login | iOS 9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | Supports NAVER login | iOS 9 or later |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Supports Game Center login | iOS 9 or later |
 |  | GamebaseAuthGoogleAdapter.framework | GoogleSignIn 5.0.2 | Supports Google login | iOS 9 or later |
 |  | GamebaseAuthTwitterAdapter.framework | | Supports Twitter login | iOS 9 or later |
-|  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | Supports LINE login | iOS 10 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | Supports LINE  | iOS 10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 9 or later<br/>arm64 support<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.7.0 | Supports Hangame login | iOS 9 or later |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.7.1 | Supports Hangame | iOS 9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Supports Weibo login | iOS 9 or later |
-|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.11.5 | Supports Kakao login | iOS 11 or later |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.30.0<br/> ToastGamebaseIAP 0.13.0 | Supports in-game purchase | iOS 9 or later |
-| Gamebase Push Adapters | GamebasePushAdapter.framework | ToastPush 0.30.0 | Supports Push | iOS 9 or later |
+|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.4 | Supports Kakao | iOS 11 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.0.0<br/> ToastGamebaseIAP 0.14.0 | Supports in-game purchase | iOS 9 or later |
+| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.0.0 | Supports Push | iOS 9 or later |
 
 
 > <font color="red">[Caution]</font><br/>
@@ -232,24 +232,17 @@ end
 * URL Scheme must be configured.
 	* Go to **Xcode > Target > Info > URL Types** and add **line3rdp.{App Bundle ID}**
 
-* You must set the ChannelID issued by LINE in the Info.plist file.
-```
-<key>LineSDKConfig</key>
-<dict>
-    <key>ChannelID</key>
-    <string>{Issued LINE ChannelID}</string>
-</dict>
-```
 * For ATS setting, register the Scheme in the Info.plist file.
 ```
 <key>LSApplicationQueriesSchemes</key>
 <array>
-    <string>lineauth</string>
-    <string>line3rdp.{App Bundle ID}</string>
+    <string>lineauth2</string>
 </array>
 ```
-* Refer to the following link to see how to configure a project to use LINE Login. (Authentication required)
-* [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
+* Refer to the following link to see how to configure a project to use LINE Login.
+    * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/swift/overview/)
+* For Gamebase iOS SDK 2.42.2 or earlier, additional settings are required.
+    * [Game > Gamebase > iOS SDK User Guide > Getting Started > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
 #### Weibo
 
@@ -293,6 +286,18 @@ end
 ```
 
 ![gamebase_auth_naver_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_naver_console_01.png)
+**LINE**
+
+* Gamebase iOS SDK 2.42.2 or earlier
+    * You need to provide the ChannelID issued by LINE in the Info.Plist file.
+
+```
+<key>LineSDKConfig</key>
+<dict>
+    <key>ChannelID</key>
+    <string>{Issued LINE ChannleID}</string>
+</dict>
+```
 
 ## 3rd-Party Provider SDK Guide
 

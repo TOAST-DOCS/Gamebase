@@ -179,6 +179,10 @@ For more information on IdP types that can be used to log in, refer to the **Gam
 >Enter the required information into the additionalInfo parameter in the form of the dictionary.
 >> If additionalInfo has a value, use that value. If null, use the value registered in [NHN Cloud Console](./oper-app/#authentication-information).
 
+> [Note]
+>
+> LINE IdP allows users to set LINE service regions from Gamebase SDK 2.43.0.
+> The regions can be set in AdditionalInfo. 
 
 > <font color="red">[Caution]</font><br/>
 >
@@ -187,6 +191,12 @@ For more information on IdP types that can be used to log in, refer to the **Gam
 > To log in using Standalone WebViewAdapter, the CallbackURL below must be configured on the IdP Developer website.
 > - https://id-gamebase.toast.com/oauth/callback
 >
+
+* How to Set additionalInfo Parameters
+
+| keyname                                  | a use                                    | Value Type                                     |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | Set LINE Service Region | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
 
 **API**
 
@@ -273,11 +283,12 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 
 | Keyname | Usage | Value Type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid, hangame, weibo, kakaogame |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                           | GamebaseAuthProvider.GOOGLE<br> GamebaseAuthProvider.FACEBOOK<br>GamebaseAuthProvider.NAVER<br>GamebaseAuthProvider.TWITTER<br>GamebaseAuthProvider.LINE<br>GamebaseAuthProvider.HANGAME<br>GamebaseAuthProvider.APPLEID<br>GamebaseAuthProvider.WEIBO<br>GamebaseAuthProvider.KAKAOGAME<br>GamebaseAuthProvider.PAYCO |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Enter One Time Authorization Code (OTAC) which can be obtained after Google login. |                                          |
 | GamebaseAuthProviderCredential.GAMEBASE_ACCESS_TOKEN | Used when logging in with Gamebase Access Token instead of IdP authentication information |  |
 | GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | While logged in to Gamebase, allow login attempts with other account without logging out | **bool** |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | Set LINE Service Region  | [See Login with IdP](./aos-authentication/#login-with-idp) |
 
 > [Note]
 >
