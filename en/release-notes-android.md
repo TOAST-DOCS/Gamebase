@@ -17,7 +17,7 @@
 * External SDK update: Google Billing Client(5.0.0), NHN Cloud Android SDK(1.1.0), TOAST Gamebase IAP Android SDK(0.20.0), Kakaogame Android SDK(3.14.4)
 * Added a parameter to enter a service region when logging in to LINE.
     * [Game > Gamebase > Android SDK User Guide > Authentication > Login with IdP](./aos-authentication/#login-with-idp)
-* When using LINE IdP, defense logic has been added to prevent a crash even in devices with API 19 or lower, which is not supported by LINE IdP.
+* Added a defense logic so that a crash does not occur When using LINE IdP even in devices with API 19 or lower.
 
 #### Bug Fixes
 * Fixed an issue where a crash occurs when forcibly lowering the Naver Login SDK version to 4.1.4 to use the Naver PLUG SDK or Naver Cafe SDK.

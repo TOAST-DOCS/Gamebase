@@ -175,7 +175,7 @@ Enter the required information into the parameter additionalInfo in the form of 
 
 > [Note]
 >
-> For LINE login, you can register multiple regions as service provided regions on the console. When logging in with an IdP, you must manually enter a region to provide services as an additionalInfo parameter.
+> For LINE login, you can register multiple regions as service regions on the console. When logging in with an IdP, you must manually enter service regions with the additionalInfo parameter.
 > 
 
 > [Note]
