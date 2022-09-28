@@ -40,7 +40,7 @@ Store information required to initialize In-App Purchase (IAP) of NHN Cloud.
 | ONE Store | ONESTORE | only Android |
 | GALAXY Store | GALAXY | only Android |
 | Windows | WIN | only Unity Standalone |
-| Web | WEB | only Unity WebGL and JavaScript |
+| Web | WEB | only Unity WebGL|
 
 #### 4. displayLanguageCode
 

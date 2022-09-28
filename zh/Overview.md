@@ -42,18 +42,18 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 
 以下是Gamebase支持的外部认证列表。
 
-| 外部认证          | Android | iOS | Windows(based Unity) | Web(based JavaScript)    |
-| ----------------- | ------------ | ------------ | ------------ | ------------ |
-| Facebook          | O | O | O | O |
-| Sign In with Apple | O | O | | |
-| Apple Game Center |  | O | | |
-| Google            | O | O | O | O |
-| PAYCO             | O | O | O | O |
-| NAVER             | O | O | O | O |
-| Twitter			| O | O | |  |
-| LINE				| O | O | O  | O  |
-| Hangame			| O | O | O  | O  |
-| Weibo | O  | O  | | |
+| 外部认证          | Android | iOS | Windows(based Unity) |
+| ----------------- | ------------ | ------------ | ------------ |
+| Facebook          | O | O | O |
+| Sign In with Apple | O | O | |
+| Apple Game Center |  | O | |
+| Google            | O | O | O |
+| PAYCO             | O | O | O |
+| NAVER             | O | O | O |
+| Twitter			| O | O | |
+| LINE				| O | O | O  |
+| Hangame			| O | O | O  |
+| Weibo | O  | O  | |
 
 * **提供游客登录。**
 游客登录，玩家无需输入任何信息，即可直接登录并启动游戏。由于游客登录，是使用了Gamebase发放的ID，所以客户可以管理用户的游戏数据，游戏不论OAuth登录用户和游客登录用户，均可统一管理不用进行区分。
@@ -75,7 +75,6 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 * [iOS SDK 使用指南 > 认证](./ios-authentication)
 * [Unity SDK 使用指南 > 认证](./unity-authentication)
 * [Unreal SDK 使用指南 > 认证](./unreal-authentication)
-* [JavaScript SDK 使用指南 > 认证](./js-authentication)
 
 ### Payment
 
@@ -126,7 +125,6 @@ Launching信息可以在Gamebase Console实时设定，SDK的初始化或Launchi
 * [iOS SDK 使用指南 > 初始化 > Launching Status](./ios-initialization/#launching-status)
 * [Unity SDK 使用指南 > 初始化 > Launching Information](./unity-initialization/#launching-information)
 * [Unreal SDK 使用指南 > 初始化 > Launching Status](./unreal-initialization/#launching-status)
-* [JavaScript SDK 使用指南 > 初始化 > Launching Information](./js-initialization/#launching-information)
 * [控制台使用指南> APP](./oper-app)：设置APP、客户端状态和安装URL
 * [控制台使用指南> 运营](./oper-operation)：维护、登记公告
 
@@ -180,7 +178,6 @@ Gamebase基本上支持全球游戏，并提供以下功能：
 * [iOS SDK 使用指南](./ios-started/)
 * [Unity SDK 使用指南](./unity-started/)
 * [Unreal SDK 使用指南](./unreal-started/)
-* [JavaScript SDK 使用指南](./js-started/)
 
 ### 服务器端开发者指南
 

@@ -133,19 +133,6 @@ Gamebaseを通じてログインを初めて試みたり、ログイン情報(�
 ログインに成功した場合、GamebaseのアクセストークンがLocal Storageに保存され、その後、loginForLastLoggedInProviderWithViewController:completion:のメソッドを使用する際に、保存されているアクセストークンを使用することになります。<br/>
 ただし、IdPのアクセストークンは、各IdPが提供するSDKが管理します。<br/>
 
-<br/><br/>
-いくつかのIdPでログインする時に必ず必要な情報があります。<br/>
-例えば、Facebookログインを実装するにはscopeなどを設定する必要があります。<br/>
-このような必須情報を設定できるように**[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]**APIを提供します。<br/>
-パラメータadditionalInfoに必須情報をdictionary形式で入力してください。<br/>
-(パラメータ値がnilの時は、NHN Cloud Consoleに登録したadditionalInfo値で設定されますパラメータ値がある時はConsoleに登録しておいた値より優先視して値を上書きします。)
-
-
-> [参考]
->
-> iOSで対応しているIdPは、**TCGBConstants.h**のTCGBAuthIDPs領域の**kTCGBAuthXXXXXX**で定義されています。
->
-
 ```objectivec
 - (void)loginFacebookButtonClick {
     [TCGBGamebase loginWithType:kTCGBAuthFacebook viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
@@ -159,6 +146,45 @@ Gamebaseを通じてログインを初めて試みたり、ログイン情報(�
 }
 ```
 
+<br/><br/>
+いくつかのIdPでログインする時に必ず必要な情報があります。<br/>
+例えば、Facebookログインを実装するにはscopeなどを設定する必要があります。<br/>
+このような必須情報を設定できるように**[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]**APIを提供します。<br/>
+パラメータadditionalInfoに必須情報をdictionary形式で入力してください。<br/>
+(パラメータ値がnilの時は、NHN Cloud Consoleに登録したadditionalInfo値で設定されますパラメータ値がある時はConsoleに登録しておいた値より優先視して値を上書きします。)
+
+* additionalInfoパラメータの設定方法
+
+| keyname                                  | a use                          | 値の種類                         |
+| ---------------------------------------- | ------------------------------ | ------------------------------ |
+| kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINEサービス提供地域のうち、ログインを行う1つのregion | **String**(ex: japan, thailand, taiwan, indonesia) |
+
+```objectivec
+- (void)loginLineButtonClick {
+
+    NSDictionary *additionalInfo = @{ kTCGBAuthLoginWithCredentialLineChannelRegionKeyname: @"japan" };
+
+    [TCGBGamebase loginWithType:kTCGBAuthLine additionalInfo:additionalInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+
+       if ([TCGBGamebase isSuccessWithError:error] == YES) {
+            // To Login Succeeded
+            NSString *userId = [authToken.tcgbMember userId];
+        } else {
+            // To Login Failed
+        }
+    }];
+}
+```
+
+> [参考]
+>
+> LINEログインはConsoleにサービスを提供する地域を複数登録できます。IdPでログインを行う時はadditionalInfoパラメータにサービスを提供する1つの地域を直接入力する必要があります。
+> 
+> [参考]
+>
+> iOSでサポートするIdPは**TCGBConstants.h**のTCGBAuthIDPs領域の**kTCGBAuthXXXXXX**に定義されています。
+>
+
 #### Gamebaseでサポート中のIdP
 [Console Guide](./oper-app/#authentication-information)を参照してください。
 
@@ -167,26 +193,21 @@ Gamebaseを通じてログインを初めて試みたり、ログイン情報(�
 IdPが提供するSDKを使ってゲームで直接認証した後、発行されたアクセストークンなどを利用してGamebaseにログインできるインターフェースです。
 
 
-
-
 * Credentialパラメーターの設定方法
-
-
 
 | keyname                                  | a use                          | 値の種類                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | IdPタイプの設定                    | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdPログイン後に取得した認証情報(アクセストークン)設定 |                                |
 | kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname | Gamebaseログイン状態でログアウトを行わなくても、他のアカウントログイン試行を許可する | **BOOL** |
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINEサービス提供地域のうち、ログインを行う1つの地域 | [Login with IdP参考](./ios-authentication/#login-with-idp)|
 
 
 > [参考]
 >
 > ゲーム内で外部サービス(Facebookなど)の固有機能を使用しなければならないとき、必要になることがあります。
 >
-
 <br/>
-
 
 > <font color="red">[注意]</font><br/>
 >

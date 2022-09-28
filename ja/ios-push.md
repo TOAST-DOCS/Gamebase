@@ -13,8 +13,8 @@
 
 * [Notification > Push > Console Guide > APNS JWT認証情報を取得する](https://docs.toast.com/en/Notification/Push/en/console-guide/#get-authentication-information-for-apns-jwt)ガイドを参考にしてANPS JWTの登録に必要な必須認証情報を取得します。
 
-#### NHN Cloud Console登録
-* **Notification > Push > Certificate**で**APNS JWT**に上で取得した情報を入力します。
+#### Gamebase Console登録
+* **Gamebase > Push > Certificate**で**APNS JWT**に上で取得した情報を入力します。
 
 #### Notification Service Extension実装
 * 受信指標収集、通知音設定などを行うには[NHN Cloud Pushガイド](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-ios/#notification-service-extension)を参考にしてアプリケーションに**Notification Service Extension**を実装する必要があります。

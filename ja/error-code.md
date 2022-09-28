@@ -19,7 +19,8 @@
 |                 | UNITY                  | NOT\_SUPPORTED\_UNITY\_WEBGL             | 15         | この機能はWebGLには対応しておりません。                 |
 |                 | Android                | ANDROID\_ACTIVITY\_DESTROYED             | 31         | Activityが強制終了しました。                       |
 |                 | Android                | ANDROID\_ACTIVEAPP\_NOT\_CALLED          | 32         | activeApp APIが呼び出されませんでした。                 |
-|                 | IOS                    | IOS_GAMECENTER_DENIED                    | 51         | Gamecenterログインが拒否されました。                 |
+|                 | IOS                    | TCGB_ERROR_IOS_GAMECENTER_DENIED                    | 51         | Gamecenterログインが拒否されました。                 |
+|                 | IOS                    | TCGB_ERROR_IOS_CANNOT_OPEN_URL                    | 52         | アプリでURLスキームを処理できません。                 |
 | Network(Socket) | Android, UNITY<br/>IOS | SOCKET\_RESPONSE\_TIMEOUT<br/>TCGB\_ERROR\_SOCKET\_RESPONSE\_TIMEOUT | 101        | ネットワーク状態が不安定なため、レスポンスがありません。                |
 |                 | Android, UNITY<br/>IOS | SOCKET_ERROR<br/>TCGB\_ERROR\_SOCKET\_ERROR | 110        | ソケットエラーです。                                  |
 |                 | Android, UNITY<br/>IOS | SOCKET\_UNKNOWN_ERROR<br/>TCGB\_ERROR\_SOCKET\_UNKNOWN\_ERROR | 999        | ソケットの不明なエラーです。                           |

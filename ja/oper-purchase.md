@@ -130,7 +130,8 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 - **消費状態**：決済したアイテムの支給状態
 - **決済状態**：決済の現在進行状態
 - **Store Reference Key**：ストアで発行する決済固有番号
-- **決済予約日時**：ユーザーが購入を試行または完了した時間
+- **決済予約日時**：ユーザーが購入を試行した時間
+- **決済日時**：ユーザーが購入を完了した時間
 - **返金日時**：ユーザーアイテムが返金された時間
 - **追加情報**：SDKから決済リクエストした時に伝達した追加情報(Developer payload)
 
@@ -148,7 +149,7 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 - **返金完了(Refund)**
 	- 管理者が手動でストアから返金処理をアップデートしたことを意味します。
 	- 他の決済状態に変更できます。
-- **進行中キャンセル(UserClose)** 
+'- **進行中キャンセル(UserClose)**
 	- ユーザーが決済進行中にキャンセル
 
 
@@ -216,8 +217,9 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing2_1.0.png)
 
 #### 決済履歴
-- **決済予約日時**：ユーザーが購入を試行または完了した時間
-- **返金日時**：ユーザーアイテムが返金を受けた時間
+- **決済予約日時**：ユーザーが購入を試行した時間
+- **決済日時**：ユーザーが購入を完了した時間
+- **返金日時**：ユーザーアイテムが返金された時間
 - **Transaction ID**：Gamebase内で決済を区別することができる固有番号
 - **ストア**：決済したストア情報
 - **アイテム名**：ユーザーがアプリで購入した実際のアイテム名
@@ -254,7 +256,7 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing6_1.3_jp.png)
 
 #### 決済履歴
-- **決済日時**：
+'- **決済日時**：ユーザーが購入を完了した時間
 - **Transaction ID**：Gamebase内で決済を区別することができる固有の番号
 - **ストア**：決済されたストア情報
 - **ユーザーID**：決済したユーザーID

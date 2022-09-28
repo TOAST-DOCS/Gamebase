@@ -4,7 +4,7 @@
 
 ### Initialize
 
-Log & Crash Search에서 발급받은 앱키(Appkey)로  NHN Cloud Logger SDK를 초기화합니다.<br/>
+Log & Crash Search에서 발급 받은 앱키(Appkey)로  NHN Cloud Logger SDK를 초기화합니다.<br/>
 앱이 실행되자마자 발생하는 크래시 로그도 빠짐없이 전송하려면 **Application.onCreate()**에서 NHN Cloud Logger를 초기화해야 합니다.
 
 **API**

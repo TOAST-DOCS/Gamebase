@@ -333,7 +333,7 @@ android {
 #### Facebook IdP
 
 * Gamebase iOS SDK 2.20.2 에서 Facebook SDK가 9.1.0으로 업데이트 되었습니다. 
-    * Facebook SDK에 추가 설정이 필요하게 되어 info.plist에 아래의 값을 추가해주시기 바랍니다. 설정하지 않을 경우 크래쉬가 발생할 수 있습니다.
+    * Facebook SDK에 추가 설정이 필요하게 되어 info.plist에 아래의 값을 추가해주시기 바랍니다. 설정하지 않을 경우 크래시가 발생할 수 있습니다.
         * FacebookAutoLogAppEventsEnabled
         * FacebookAdvertiserIDCollectionEnabled
 * 자세한 내용은 [Facebook iOS SDK 가이드](https://developers.facebook.com/docs/app-events/getting-started-app-events-ios) 를 참고하시기 바랍니다.
@@ -344,7 +344,7 @@ android {
 
 #### Weibo IdP
 
-* Gamebase Android SDK 2.19.0 에서 Weibo IdP 로그인과 다른 IdP 로그인을 번갈아가며 호출하는 경우 크래쉬가 발생합니다.
+* Gamebase Android SDK 2.19.0 에서 Weibo IdP 로그인과 다른 IdP 로그인을 번갈아가며 호출하는 경우 크래시가 발생합니다.
     * Weibo IdP 를 사용한다면 이슈가 수정된 Gamebase Android SDK 2.19.1 을 사용하시기 바랍니다.
 
 ## 2.18.2
@@ -364,15 +364,15 @@ android {
 
 #### Purchase Google
 
-* Gamebase Android SDK 2.18.0 에서 Google 아이템 결제를 호출하면 크래쉬가 발생합니다.
+* Gamebase Android SDK 2.18.0 에서 Google 아이템 결제를 호출하면 크래시가 발생합니다.
     * 이슈가 수정된 Gamebase Android SDK 2.18.1 을 사용하시기 바랍니다.
 
 ## 2.17.0
 
 ### Android
 
-* Gamebase Android SDK 2.17.0 에서 Gamebase.ImageNotice.showImageNotices API 를 호출하면 크래쉬가 발생합니다.
-    * 2.17.0 의 크래쉬 및 OS 5.0~6.0 에서 커스텀 스킴 이벤트가 동작하지 않는 이슈가 수정된 Gamebase Android SDK 2.17.4 를 사용하시기 바랍니다.
+* Gamebase Android SDK 2.17.0 에서 Gamebase.ImageNotice.showImageNotices API 를 호출하면 크래시가 발생합니다.
+    * 2.17.0 의 크래시 및 OS 5.0~6.0 에서 커스텀 스킴 이벤트가 동작하지 않는 이슈가 수정된 Gamebase Android SDK 2.17.4 를 사용하시기 바랍니다.
 
 ## 2.15.1
 

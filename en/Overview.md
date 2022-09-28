@@ -40,18 +40,18 @@ Gamebase supports OAuth login based on ID and passwords, using accounts of many 
 
 Following is the list of external authentication supported by Gamebase.
 
-| External Authentication             | Android | iOS | Windows(based Unity) | Web(based JavaScript)    |
-| ----------------- | ------------ | ------------ | ------------ | ------------ |
-| Facebook          | O | O | O | O |
-| Sign In with Apple | O  | O | | |
-| Apple Game Center |  | O | | |
-| Google            | O | O | O | O |
-| PAYCO             | O | O | O | O |
-| NAVER             | O | O | O | O |
-| Twitter			| O | O | |  |
-| LINE				| O | O | O  | O  |
-| Hangame			| O | O | O  | O  |
-| Weibo				| O | O |   |   |
+| External Authentication             | Android | iOS | Windows(based Unity) |
+| ----------------- | ------------ | ------------ | ------------ |
+| Facebook          | O | O | O |
+| Sign In with Apple | O  | O | |
+| Apple Game Center |  | O | |
+| Google            | O | O | O |
+| PAYCO             | O | O | O |
+| NAVER             | O | O | O |
+| Twitter			| O | O | |
+| LINE				| O | O | O  |
+| Hangame			| O | O | O  |
+| Weibo				| O | O |   |
 
 > [Note] List of China stores supporting authentication and payment (50 or so) 
 > RedBean(红豆), Lenovo(联想), PPS(爱奇艺), Downjoy(当乐), PPTV(PPTV), Mftnn(4399), Coolpad(酷派), Amigo(金立),Mzw(拇指玩), Sogou(搜狗), AppChina(应用汇), Pengyouwan(朋友玩), Guopan(果盘), Gfan(机锋), Mumayi(木蚂蚁), Hmpay(海马玩), Toutidao(今日头条), Bilibili(bilibili), Mi(小米), Uc(UC), Badu(百度), And360(360), Oppo(OPPO), JiuMeng(九玩(手盟)), BukaSdk(布卡), Moge(摩格(乐游)), StarGame(口袋巴士(星游)), Letv(乐视), Tt(TT语音), Papa(啪啪), NoxPay(夜神模拟器), XiaoBens(笨手机), DouYou(逗游), Ungame(搞趣网), Hanfeng(汉风), QiGuo(七果(七匣子)), SinaV2(新浪v2), XiaoQiV2(新小七), btgame01(乐嗨嗨), ccgame(虫虫游戏), LingDong(灵动), KuaiKan(快看), DouYu(斗鱼), MiFengFanLi(蜜蜂), KaopuRB(靠谱助手), VivoRB(Vivo), BluestacksRB(蓝蝶), HwGamesRB(新华为), XinDong(心动)
@@ -74,7 +74,6 @@ Following is the list of external authentication supported by Gamebase.
 * [iOS Developer Guide > Auth](./ios-authentication)
 * [Unity Developer Guide > Auth](./unity-authentication)
 * [Unreal Developer Guide > Auth](./unreal-authentication)
-* [JavaScript Developer Guide > Auth](./js-authentication)
 
 ### Payment
 
@@ -124,7 +123,6 @@ Following information is provided by Gamebase for launching.
 * [iOS Developer Guide > Launching Info](./ios-initialization/#launching-status)
 * [Unity Developer Guide > Launching Info](./unity-initialization/#launching-informations)
 * [Unreal Developer Guide > Launching Info](./unreal-initialization/#launching-information)
-* [JavaScript Developer Guide > Launching Info](./js-initialization/#launching-information)
 * [Operator Guide > App Info(App, Client, Installed URL)](./oper-app): Set status of app and client, and installation URL
 * [Operator Guide > Operator(Maintenance,Notice)](./oper-operation): Register maintenance and notice
 
@@ -183,7 +181,6 @@ The following shows the service structure of Gamebase with simple description
 * [iOS Developer's Guide](./ios-started/)
 * [Unity Developer's Guide](./unity-started/)
 * [Unreal Developer's Guide](./unreal-started/)
-* [JavaScript Developer's Guide](./js-started/)
 
 ### Server Developer's Guide
 
