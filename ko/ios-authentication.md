@@ -778,7 +778,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 **API**
 
 ```objectivec
-+ (void)withdrawWithViewController:(UIViewController *)viewController completion:(WithdrawCompletion)completion;
++ (void)requestTemporaryWithdrawalWithViewController:(nullable UIViewController *)viewController completion:(nullable TemporaryWithdrawCompletion)completion;
 ```
 
 **ErrorCode**
