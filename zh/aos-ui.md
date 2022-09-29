@@ -503,13 +503,12 @@ showWebView(activity, urlString, configuration,
 | setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | 纵向模式         |
 |                                          | ScreenOrientation.LANDSCAPE         | 横向模式         |
 |                                          | ScreenOrientation.LANDSCAPE_REVERSE | 将横向模式旋转180度。 |
-| setNavigationBarVisible(boolean enable)  | true or false                       | 导航栏有效或无效 |
+| setNavigationBarVisible(boolean enable)  | true or false                       | 导航栏有效或无效<br>**default**: true |
 | setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | 导航栏颜色  |
 | setNavigationBarHeight(int height)       | height                              | 导航栏高度    |
-| setBackButtonVisible(boolean visible)    | true or false                       | 返回按钮有效或无效 |
+| setBackButtonVisible(boolean visible)    | true or false                       | 返回按钮有效或无效<br>**default**: true |
 | setBackButtonImageResource(int resourceId) | ID of resource                      | 返回按钮图像       |
-| setCloseButtonImageResource(int resourceId) | ID of resource                      | 关闭按钮的图标。      |
-| enableAutoCloseByCustomScheme(boolean enable) | true or false | 当Custom Scheme启动时WebView将自动关闭。<br>**default**: true |
+| setCloseButtonImageResource(int resourceId) | ID of resource                      | 关闭按钮的图标      |
 | enableAutoCloseByCustomScheme(boolean enable) | true or false | 当Custom Scheme启动时WebView将自动关闭。<br>**default**: true |
 
 

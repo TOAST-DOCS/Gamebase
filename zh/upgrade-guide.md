@@ -13,7 +13,7 @@
 
 ### Unreal
 
-* 添加了**Xcode Path** 设置以更改[iOS设置工具](./unreal-started/#ios-settings)中Xcode的路径。
+* (iOS) 添加了**Xcode Path** 设置以更改[iOS设置工具](./unreal-started/#ios-settings)中Xcode的路径。
     * 如果不更改则设置为默认值(默认值 : /Applications/Xcode.app)。
 
 #### Changed/Deprecated APIs
@@ -46,7 +46,6 @@
 
 ### Unreal
 
-* 不再支持FGamebaseConfiguration的enableKickoutPopup俗性。
 * 更改了一些API的名称。
     * FGamebaseAnalyticesLevelUpData → FGamebaseAnalyticsLevelUpData
     * FGambaseBanInfoPtr → FGamebaseBanInfoPtr
