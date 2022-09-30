@@ -9,6 +9,7 @@
 - Added the "Ban" and "Ban Release" APIs that perform ban and ban release.
 - Added the "Get Payment Transaction" API to query payment transaction.
 - Added **marketIds** to the "List Consumables" API that queries the unconsumed payment history so that multiple stores can be viewed at a time. 
+- The server address has changed to "https://api-gamebase.nhncloudservice.com". The previous address will be maintained until further notice.
 
 ## Advance Notice
 
@@ -17,9 +18,9 @@ Gamebase Server API provides APIs as follows, in the RESTful format. Following i
 #### Server Address
 
 To call API, below address is needed, which is also available in the Gamebase Console.
-> https://api-gamebase.cloud.toast.com
+> https://api-gamebase.nhncloudservice.com
 
-![image alt](https://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.3.png)
 
 #### AppId
 
@@ -61,7 +62,7 @@ As a response to all API requests, **HTTP 200 OK** is delivered. Whether an API 
 Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 X-Secret-Key: IgsaAP
-GET https://api-gamebase.cloud.toast.com
+GET https://api-gamebase.nhncloudservice.com
 ```
 
 **[Response]**
@@ -1205,7 +1206,7 @@ Check common items.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| regUser | String | Required | The system or user information of the entity that requested withdrawal <br> - The information can be viewed from Console > 'Withdrawal History' in the 'Member' page <br> - The withdrawal history can only be viewed by the withdrawn user |
+| regUser | String | Required | Enter the system or user information of the entity that requested withdrawal without spaces<br> - The information can be viewed in the withdrawl history from Console > the 'Member' page |
 
 **[Request Body]**
 
@@ -1876,7 +1877,7 @@ Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Leaderboard A
 ##### Example of API Call
 
 ```
-GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
+GET https://api-gamebase.nhncloudservice.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
 
 Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
@@ -1916,10 +1917,13 @@ Gamebase provides **Wrapping** function for the Server API of the NHN Cloud Push
 To find out about the Push API spec mapped with Gamebase Wrapping API, see the following guide.
 Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Push API without setting the Push Appkey.
 
-> [Notes]
+> [Notes 1]
 > User can use the gamebase userId value for the uid value exists in Push guide. When registering push token in client SDK, the user identifier is registered as gamebase userId.
 > When a single user allows all push notifications on multiple devices, the user will receive all pushes on multiple devices.
 
+> [Notes 2]
+> When you send a push message with an API, the send history cannot be checked from **Push > Send History** on the Gamebase console.
+> You can find the history in the **Log & Crash** settings from **Push > Settings > Save Send History**.
 [Push Guide](/Notification/Push/en/api-guide/)
 
 <br/>
@@ -1927,7 +1931,7 @@ Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Push API with
 ##### Example of API Call
 
 ```
-POST https://api-gamebase.cloud.toast.com/tcgb-push/v1.3/apps/{appId}/messages
+POST https://api-gamebase.nhncloudservice.com/tcgb-push/v1.3/apps/{appId}/messages
 
 Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
@@ -2049,7 +2053,7 @@ To inquire about causes of failure in API call, upload **API call URL (with HTTP
 ##### Example of API Call
 
 ```
-GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance
+GET https://api-gamebase.nhncloudservice.com/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance
 ```
 
 ##### Result of Failed API Response

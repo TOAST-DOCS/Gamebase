@@ -119,7 +119,8 @@ Can search by date, and history data can be retrieved up to 1 month (30 days).
 - **Consume**: Whether a paid item has been provided or not
 - **Payment Status**: Current status of payment
 - **Store Reference Key**: Original payment number issued by store
-- **Reservation date**: Time when a user tried or completed purchasing
+- **Scheduled Purchase Date**: Time when a user attmpted purchase
+- **Purchase Date**: Time when a user completed purchase
 - **Refund Date**: Time when a user item was refunded
 
 
