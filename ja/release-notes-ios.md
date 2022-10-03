@@ -1,25 +1,37 @@
 ## Game > Gamebase > リリースノート > iOS
 
+### 2.43.3 (2022. 10. 04.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.3/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* SDK 내부 로직 개선
+
+### 2.43.2 (2022. 09. 22.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.2/GamebaseSDK-iOS.zip)
+
+#### 버그 수정
+* Game Center 로그인 시 오류가 발생하는 버그를 수정하였습니다.
+
 ### 2.43.1 (2022. 09. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.1/GamebaseSDK-iOS.zip)
 
-#### 버그 수정
-* CocoaPods을 통해 배포되는 Line Auth Adpater가 LINE SDK 의존성 오류로 Region을 설정할 수 없는 버그를 수정하였습니다.
+#### バグ修正
+* CocoaPodsを通じて配布されるLine Auth AdpaterがLINE SDK依存関係エラーでRegionを設定できないバグを修正しました。
 
 ### 2.43.0 (2022. 09. 07.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### 機能改善/変更
+* 外部SDKアップデート
     * NHN Cloud iOS SDK (1.0.0)
     * ToastGamebaseIAP iOS SDK (0.14.0)
     * LINE iOS SDK (5.8.2)
     * Kakaogame iOS SDK (3.14.4)
     * Hangame iOS SDK (1.7.1)
-* LINE 로그인 수행 시 서비스를 제공할 region을 입력할 수 있도록 변경하였습니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > 인증 > Login with IdP](./ios-authentication/#login-with-idp)
-* Gamebase와 호환성이 보장되지 않은 Gamebase Adapter를 사용하는 경우 초기화 시 에러가 발생하도록 수정하였습니다.
-* SDK 내부 로직 개선
+* LINEログインを行う時にサービスを提供するregionを入力できるように変更しました。
+    * [Game > Gamebase > iOS SDK使用ガイド > 認証 > Login with IdP](./ios-authentication/#login-with-idp)
+* Gamebaseと互換性が保障されていないGamebase Adapterを使用する場合、初期化時にエラーが発生するように修正しました。
+* SDK内部ロジックを改善
 
 ### 2.42.2 (2022. 08. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.2/GamebaseSDK-iOS.zip)

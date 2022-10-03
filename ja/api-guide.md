@@ -9,6 +9,7 @@
 '- 利用停止および利用停止解除を行う"Ban"、"Ban Release" APIが追加されました。
 '- 決済トランザクションを照会する"Get Payment Transaction" APIが追加されました。
 '- 未消費決済履歴を照会する"List Consumables"APIで一度にN個のストアを対象に照会できるように**marketIds**が追加されました。
+'- サーバーアドレスが"https://api-gamebase.nhncloudservice.com"に変更されました。既存アドレスも別途の告知前まで継続維持されます。
 
 ## Advance Notice
 
@@ -17,9 +18,9 @@ Gamebase Server APIは、RESTful形式で、 次のようなAPIを提供しま�
 #### Server Address
 
 APIを呼び出すためのサーバーアドレスは、次の通りです。該当するアドレスは、Gamebase Console画面からでも確認できます。
-> https://api-gamebase.cloud.toast.com
+> https://api-gamebase.nhncloudservice.com
 
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.3.png)
 
 #### AppId
 
@@ -61,7 +62,7 @@ APIを呼び出す際には、HTTP Headerに次の項目を設定する必要が
 Content-Type：application/json
 X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 X-Secret-Key：IgsaAP
-GET https://api-gamebase.cloud.toast.com
+GET https://api-gamebase.nhncloudservice.com
 ```
 
 **[Response]**
@@ -1214,7 +1215,7 @@ Check common requirements.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| regUser | String | Required | 退会をリクエストしたシステムまたはユーザー情報 <br> - この情報はConsole > 「メンバー」ページの「退会履歴」画面で確認可能 <br> - 退会履歴画面は退会した利用者の照会時にのみ表示される |
+| regUser | String | Required | 退会をリクエストしたシステムまたはユーザー情報。空白なしで入力 <br> - この情報はConsole > 「メンバー」ページの「退会履歴」画面で確認可能 <br> - 退会履歴画面は退会した利用者の照会時にのみ表示される |
 
 **[Request Body]**
 
@@ -1928,7 +1929,7 @@ Gamebaseは、NHN Cloud LeaderboardサービスのサーバーAPIに対して**W
 
 **該当するAPIに対する詳細説明は、次のリンクをご参考ください。**
 Gamebase Wrapping APIとマッピングされたLeaderboard APIのスペックは、以下のガイドを参考にしてください。
-Leaderboard Appkeyを設定しないで、Gamebase AppIdおよびSecretKeyを利用してGamebase Wrapping Leaderboard APIを呼び出してください。
+Leaderboard Appkeyを設定しないで、Gamebase AppIdおよびSecretKeyを利用してGamebase Wrapping Leaderboard APIを呼び出せます。
 
 
 [Leaderboard APIガイド](/Game/Leaderboard/ja/api-guide/)
@@ -1938,7 +1939,7 @@ Leaderboard Appkeyを設定しないで、Gamebase AppIdおよびSecretKeyを利
 ##### API呼び出し例
 
 ```
-GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
+GET https://api-gamebase.nhncloudservice.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
 
 Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
@@ -1973,22 +1974,26 @@ Gamebaseは、NHN Cloud PushサービスのサーバーAPIで**Wrapping**機能�
 
 <br/>
 
-**For more information of the API, click the following link.**
+**当該APIの詳細については次のリンクを参照してください。**
 Gamebase Wrapping APIとマッピングされたPush APIのスペックは、以下のガイドを参照してください。
-Push Appkeyの設定を行わずに、Gamebase AppIdおよびSecretKeyを利用してGamebase Wrapping Push APIを呼び出してください。
+Push Appkeyの設定を行わずに、Gamebase AppIdおよびSecretKeyを利用してGamebase Wrapping Push APIを呼び出せます。
 
 [Push Guide](/Notification/Push/en/api-guide/)
 
-> [参考]
-> Pushガイドに存在するuid値はgamebase userId値を使用してください。クライアントSDKでプッシュトークン登録時、ユーザー識別子はgamebase userIdに登録されています。
+> [参考1]
+> Pushガイドに存在するuid値はgamebase userId値を使用できます。クライアントSDKでプッシュトークン登録時、ユーザー識別子はgamebase userIdに登録されています。
 > 1人のユーザーが複数の端末でプッシュ受信を許可した場合、複数の端末でプッシュを受信します。
+
+> [参考2]
+> APIを介してプッシュメッセージを送信した場合、送信履歴はGamebase Consoleの**プッシュ > 送信履歴**で確認できません。
+> **プッシュ > 設定 > 送信履歴保存**メニューで**Log & Crash**設定から確認できます。
 
 <br/>
 
 ##### API呼び出し例
 
 ```
-POST https://api-gamebase.cloud.toast.com/tcgb-push/v1.3/apps/{appId}/messages
+GET https://api-gamebase.nhncloudservice.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
 
 Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
@@ -2110,7 +2115,7 @@ API呼び出し失敗の原因に対するお問い合わせがある場合、**
 ##### API呼び出し例
 
 ```
-GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance
+GET https://api-gamebase.nhncloudservice.com/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance
 ```
 
 ##### API失敗のレスポンス結果

@@ -3,9 +3,9 @@
 ### 2.43.0 (2022. 09. 07.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* ONE store v19 Purchase Adapter가 추가되었습니다.
-    * 빌드 의존성에 **gamebase-adapter-purchase-onestore-v19** 모듈 및 [ONE store v19 IAP SDK를 추가](https://github.com/ONE-store/onestore_iap_release/tree/iap19-release/android_app_sample/app/libs)하면 사용 가능합니다.
+#### 機能追加
+* ONE store v19 Purchase Adapterが追加されました。
+    * ビルド依存関係に**gamebase-adapter-purchase-onestore-v19**モジュールおよび[ONE store v19 IAP SDKを追加](https://github.com/ONE-store/onestore_iap_release/tree/iap19-release/android_app_sample/app/libs)すると使用可能です。
             
             dependencies {
                 ...
@@ -13,14 +13,14 @@
                 implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v19:$GAMEBASE_SDK_VERSION"
             }
             
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Google Billing Client(5.0.0), NHN Cloud Android SDK(1.1.0), TOAST Gamebase IAP Android SDK(0.20.0), Kakaogame Android SDK(3.14.4)
-* Line Login을 수행 시 서비스를 제공할 Region을 입력할 수 있는 파라미터가 추가되었습니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > 인증 > Login with IdP](./aos-authentication/#login-with-idp)
-* Line IdP 사용 시 Line IdP에서 지원하지 않는 API 19 미만 단말기에서도 크래쉬가 발생하지 않도록 방어 로직을 추가했습니다.
+#### 機能改善/変更
+* 外部SDKアップデート: Google Billing Client(5.0.0), NHN Cloud Android SDK(1.1.0), TOAST Gamebase IAP Android SDK(0.20.0), Kakaogame Android SDK(3.14.4)
+* Line Loginを行う時、サービスを提供するRegionを入力できるパラメータが追加されました。
+    * [Game > Gamebase > Android SDK使用ガイド > 認証 > Login with IdP](./aos-authentication/#login-with-idp)
+* Line IdP使用時、Line IdPでサポートしないAPI 19未満の端末でもクラッシュが発生しないように防御ロジックを追加しました。
 
-#### 버그 수정
-* Naver PLUG SDK나 Naver Cafe SDK 사용을 위해 Naver Login SDK 버전을 4.1.4로 강제로 낮추는 경우 크래쉬가 발생하는 이슈를 수정했습니다.
+#### バグ修正
+* Naver PLUG SDKやNaver Cafe SDKを使用するためにNaver Login SDKバージョンを4.1.4に強制的に下げた時にクラッシュが発生する問題を修正しました。
 	
 ### 2.42.1 (2022. 07. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Android.zip)
@@ -687,8 +687,8 @@ Gamebase SDK 2.6.0未満バージョンから2.6.0にアップグレードする
 #### 機能改善/変更
 * [SDK] 2.4.0
 	* (共通)指標関連Class変更
-        * LevelUpData Class：userLevel、levelUpTimeパラメータが必須に変更 / その他フィールド削除[詳細表示[Android](./aos-etc/#game-user-data-settings) / [iOS](./ios-etc/#game-user-data-settings) / [Unity](./unity-etc/#game-user-data-settings) / [JavaScript](./js-etc/#game-user-data-settings)]
-        * GameUserData Class：classId(ゲームユーザーの職業)フィールド追加[詳細表示[Android](./aos-etc/#level-up-trace) / [iOS](./ios-etc/#level-up-trace) / [Unity](./unity-etc/#level-up-trace) / [JavaScript](./js-etc/#level-up-trace)]
+        * LevelUpData Class：userLevel、levelUpTimeパラメータが必須に変更 / その他フィールド削除[詳細表示[Android](./aos-etc/#game-user-data-settings) / [iOS](./ios-etc/#game-user-data-settings) / [Unity](./unity-etc/#game-user-data-settings) / JavaScript]
+        * GameUserData Class：classId(ゲームユーザーの職業)フィールド追加[詳細表示[Android](./aos-etc/#level-up-trace) / [iOS](./ios-etc/#level-up-trace) / [Unity](./unity-etc/#level-up-trace) / JavaScript]
     * (Android)NAVER SDKバージョンアップデート(v4.2.5)：NAVER SDKのバグを修正(NAVERログイン中にアプリアイコンからアプリを再起動した場合、Activityが強制終了する問題により、認証プロセスが中断される問題を解決)
 
 ### 2.3.1 (2019.05.16)

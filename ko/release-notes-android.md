@@ -15,12 +15,12 @@
             
 #### 기능 개선/변경
 * 외부 SDK 업데이트: Google Billing Client(5.0.0), NHN Cloud Android SDK(1.1.0), TOAST Gamebase IAP Android SDK(0.20.0), Kakaogame Android SDK(3.14.4)
-* Line Login을 수행 시 서비스를 제공할 Region을 입력할 수 있는 파라미터가 추가되었습니다.
+* LINE 로그인을 수행 시 서비스를 제공할 Region을 입력할 수 있는 파라미터가 추가되었습니다.
     * [Game > Gamebase > Android SDK 사용 가이드 > 인증 > Login with IdP](./aos-authentication/#login-with-idp)
-* Line IdP 사용 시 Line IdP에서 지원하지 않는 API 19 미만 단말기에서도 크래쉬가 발생하지 않도록 방어 로직을 추가했습니다.
+* LINE IdP 사용 시 LINE IdP에서 지원하지 않는 API 19 미만 단말기에서도 크래시가 발생하지 않도록 방어 로직을 추가했습니다.
 
 #### 버그 수정
-* Naver PLUG SDK나 Naver Cafe SDK 사용을 위해 Naver Login SDK 버전을 4.1.4로 강제로 낮추는 경우 크래쉬가 발생하는 이슈를 수정했습니다.
+* Naver PLUG SDK나 Naver Cafe SDK 사용을 위해 Naver Login SDK 버전을 4.1.4로 강제로 낮추는 경우 크래시가 발생하는 이슈를 수정했습니다.
 
 ### 2.42.1 (2022. 07. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Android.zip)
@@ -354,7 +354,7 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
     * NAVER Android SDK(4.4.1)
     * LINE Android SDK(5.6.2)
     * Weibo Android SDK(11.6.0)
-* Weibo 로그인시 발생하는 크래쉬 수정
+* Weibo 로그인시 발생하는 크래시 수정
 
 ### 2.24.0 (2021.06.29) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-Android.zip)
@@ -604,7 +604,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 
 #### 기능 개선/변경
 * [SDK] 2.7.2 
-      * Gamebase 초기화중 ToastLogger 초기화 부분에서 크래쉬가 발생할 수 있는 코드를 수정
+      * Gamebase 초기화중 ToastLogger 초기화 부분에서 크래시가 발생할 수 있는 코드를 수정
       * 서버 버전을 v1.2.1 로 업데이트 하였습니다.
 
 ### 2.7.1 (2020.02.25)
@@ -685,8 +685,8 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 #### 기능 개선/변경
 * [SDK] 2.4.0
     * (공통) 지표관련 Class 변경
-        * LevelUpData Class: userLevel, levelUpTime 파라미터가 필수로 변경 / 그 외 필드 삭제 [자세히 보기 [Android](./aos-etc/#game-user-data-settings) / [iOS](./ios-etc/#game-user-data-settings) / [Unity](./unity-etc/#game-user-data-settings) / [JavaScript](./js-etc/#game-user-data-settings)]
-        * GameUserData Class: classId(게임유저의 직업) 필드 추가 [자세히 보기 [Android](./aos-etc/#level-up-trace) / [iOS](./ios-etc/#level-up-trace) / [Unity](./unity-etc/#level-up-trace) / [JavaScript](./js-etc/#level-up-trace)]
+        * LevelUpData Class: userLevel, levelUpTime 파라미터가 필수로 변경 / 그 외 필드 삭제 [자세히 보기 [Android](./aos-etc/#game-user-data-settings) / [iOS](./ios-etc/#game-user-data-settings) / [Unity](./unity-etc/#game-user-data-settings) / JavaScript]
+        * GameUserData Class: classId(게임유저의 직업) 필드 추가 [자세히 보기 [Android](./aos-etc/#level-up-trace) / [iOS](./ios-etc/#level-up-trace) / [Unity](./unity-etc/#level-up-trace) / JavaScript]
     * (Android)NAVER SDK 버전 업데이트(v4.2.5): NAVER SDK 버그 수정(NAVER 로그인 도중에 앱 아이콘을 통해 앱을 재시작할 경우, Activity가 강제종료 되는 이슈로 인해 인증 프로세스가 중단되는 이슈가 해결)
 
 ### 2.3.1 (2019.05.16)

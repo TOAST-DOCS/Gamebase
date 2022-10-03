@@ -40,18 +40,18 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 
 다음은 Gamebase에서 지원하는 외부 인증 목록입니다.
 
-| 외부 인증             | Android | iOS | Windows(based Unity) | Web(based JavaScript)    |
-| ----------------- | ------------ | ------------ | ------------ | ------------ |
-| Facebook          | O | O | O | O |
-| Sign In with Apple | O  | O | | |
-| Apple Game Center |  | O | | |
-| Google            | O | O | O | O |
-| PAYCO             | O | O | O | O |
-| NAVER             | O | O | O | O |
-| Twitter			| O | O | |  |
-| LINE				| O | O | O  | O  |
-| Hangame			| O | O | O  | O  |
-| Weibo | O  | O  | | |
+| 외부 인증             | Android | iOS | Windows(based Unity) |
+| ----------------- | ------------ | ------------ | ------------ |
+| Facebook          | O | O | O |
+| Sign In with Apple | O  | O | |
+| Apple Game Center |  | O | |
+| Google            | O | O | O |
+| PAYCO             | O | O | O |
+| NAVER             | O | O | O |
+| Twitter			| O | O | |
+| LINE				| O | O | O  |
+| Hangame			| O | O | O  |
+| Weibo | O  | O  | |
 
 * **게스트 로그인을 제공합니다.**
   게스트 로그인을 이용하면 사용자는 아무런 입력 없이 바로 게임에 로그인하여 간편하게 게임을 시작할 수 있습니다. 게스트 로그인만으로도 Gamebase 사용자 아이디가 발급되므로 게임은 OAuth 로그인 사용자와 게스트 로그인 사용자의 구분 없이 동일하게 사용자의 게임 데이터를 관리할 수 있습니다.
@@ -71,7 +71,6 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 * [iOS SDK 사용 가이드 > 인증](./ios-authentication)
 * [Unity SDK 사용 가이드 > 인증](./unity-authentication)
 * [Unreal SDK 사용 가이드 > 인증](./unreal-authentication)
-* [JavaScript SDK 사용 가이드 > 인증](./js-authentication)
 
 ### Payment
 
@@ -121,7 +120,6 @@ Gamebase에서 제공되는 론칭 정보는 다음과 같습니다.
 * [iOS SDK 사용 가이드 > 초기화 > Launching Status](./ios-initialization/#launching-status)
 * [Unity SDK 사용 가이드 > 초기화 > Launching Information](./unity-initialization/#launching-information)
 * [Unreal SDK 사용 가이드 > 초기화 > Launching Information](./unreal-initialization/#launching-information)
-* [JavaScript SDK 사용 가이드 > 초기화 > Launching Information](./js-initialization/#launching-information)
 * [콘솔 사용 가이드 > 앱](./oper-app): 앱, 클라이언트 상태 및 설치 URL 설정
 * [콘솔 사용 가이드 > 운영](./oper-operation): 점검, 공지 등록
 
@@ -179,7 +177,6 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 * [iOS SDK 사용 가이드](./ios-started/)
 * [Unity SDK 사용 가이드](./unity-started/)
 * [Unreal SDK 사용 가이드](./unreal-started/)
-* [JavaScript SDK 사용 가이드](./js-started/)
 
 ### Server Developer's Guide
 

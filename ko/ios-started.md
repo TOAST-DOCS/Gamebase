@@ -44,7 +44,7 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenter 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthGoogleAdapter.framework | GoogleSignIn 5.0.2 | Google 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthTwitterAdapter.framework | | Twitter 로그인을 지원 | iOS 9 or later |
-|  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | LINE Login을 지원 | iOS 10 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | LINE 로그인을 지원 | iOS 10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 9 or later<br/>arm64 지원<br/> |
 |  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.7.1 | Hangame 로그인을 지원 | iOS 9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weibo 로그인을 지원 | iOS 9 or later |
@@ -105,8 +105,10 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
     * 프로젝트 내부에 **빈 swift 파일** 추가 (프로젝트 내부에 swift 파일이 하나도 없을 경우)
 * 5) **Target > Build Settings > Linking > Other Linker Flags**에 **-ObjC**를 추가해야 합니다.
 ![Other Linker Flags](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
-* 6) NaverAuthAdapter를 사용하는 경우에는 NAVER SDK에서 제공하는 **NaverThirdPartyLogin.framework** 파일을 **Target > General > Embedded Binaries**에 추가해야 합니다.
- ![Naver Embeded Binaries](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.7.0.png)
+* 6) NaverAuthAdapter를 사용하는 경우에는 NAVER SDK에서 제공하는 **NaverThirdPartyLogin.framework** 파일을 **Target > Build Phases > Embedded Frameworks**에 추가해야 합니다.
+ ![Naver Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.8.0.png)
+ * 7) LineAuthAdapter를 사용하는 경우에는 LINE SDK에서 제공하는 **LineSDKObjC.xcframework** 파일을 **Target > Build Phases > Embedded Frameworks**에 추가해야 합니다.
+ ![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.0.png)
 
 > [INFO]
 >
@@ -193,7 +195,7 @@ end
 #### Google
 
 * URL Scheme을 설정해야 합니다.
-    * **Google Cloud Platform > APIs & Services > Credentials**에서 발급받은 iOS URL scheme을 **Xcode > Target > Info > URL Types**에 추가해야 합니다.
+    * **Google Cloud Platform > APIs & Services > Credentials**에서 발급 받은 iOS URL scheme을 **Xcode > Target > Info > URL Types**에 추가해야 합니다.
 * Gamebase iOS SDK 2.34.1 이하는 추가 설정이 필요합니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
@@ -238,7 +240,7 @@ end
     <string>lineauth2</string>
 </array>
 ```
-* LINE Login 을 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다.
+* LINE 로그인을 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다.
     * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/swift/overview/)
 * Gamebase iOS SDK 2.42.2 이하는 추가 설정이 필요합니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
@@ -289,7 +291,7 @@ end
 **LINE**
 
 * Gamebase iOS SDK 2.42.2 이하
-    * LINE에서 발급받은 ChannelID를 Info.plist 파일에 설정해야 합니다.
+    * LINE에서 발급 받은 ChannelID를 Info.plist 파일에 설정해야 합니다.
 
 ```
 <key>LineSDKConfig</key>

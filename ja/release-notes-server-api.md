@@ -1,5 +1,12 @@
 ## Game > Gamebase > リリースノート > Server API
 
+### 2022. 08. 23.
+
+#### 機能追加
+
+* サーバーURL追加
+	* https://api-gamebase.nhncloudservice.com
+
 ### 2022. 07. 26.
 
 #### 機能追加
