@@ -1,5 +1,12 @@
 ## Game > Gamebase > Release Notes > Server API
 
+### August 23, 2022
+
+#### Added Features
+
+* Added the server URL
+	* https://api-gamebase.nhncloudservice.com
+
 ### July 26, 2022
 
 #### Added Features
