@@ -1,5 +1,19 @@
 ## Game > Gamebase > Release Notes > Console
 
+### September 14, 2022
+
+#### Feature Updates
+* App > App
+	* Added multi channels (Japan/Thailand/Taiwan/Indonesia) feature for LINE IdP
+* Purchase(IAP) > Store
+	* Added ONE store API v6(SDK v19)
+* Purchase(IAP) > Payment Information
+	* Added country code and additional information item to Payment History
+
+### Bug Fixes
+* App > App
+	* Fixed an issue where activation failed intermittently when activating 'Customer Center Provided by Gamebase' for the first time
+
 ### July 26, 2022
 
 #### Feature Updates
@@ -8,7 +22,7 @@
 
 ### Bug Fixes
 * Purchas(IAP) > Payment Information
-	* Fixed an error in saving data as an Excel file when the payment history is very large
+	*  Fixed an error in saving files when the payment history is very large
 * Mobile Customer Center
 	* Fixed a download error when there is a space in the attached file name
 
