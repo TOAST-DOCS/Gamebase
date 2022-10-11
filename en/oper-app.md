@@ -25,12 +25,16 @@ See the following link for more information on the operation and maintenance of 
 > When Gamebase is activated, it is automatically created and cannot be changed.
 
 #### (2) Whether to include test payments
-Decides whether or not to include test payment in the indexes when viewing the app's indexes.
-"Include Test Payments" is the default option and if you set it to "Exclude Test Payments", the test payments are excluded from the Analytics revenue indexes.
-> [Note1]
-> Since the data always accumulate test payments and actual payments regardless of the index inclusion settings, the data collection result won't be affected whether or not test payments are displayed.
+Decides whether or not to include test payments in the app's indexes.
+"Include Test Payments" is the default option and if you set it to "Exclude Test Payments", the test payments are all excluded from the Analytics revenue indexes.
 
-> [Note2]
+> [Notes 1]
+>  Since the data always accumulate test payments and actual payments regardless of the index inclusion settings, the data collection result won't be affected whether or not test payments are displayed.
+
+> [Notes 2]
+> For the payments that occur after setting Exclude Test Payments, the test payments are excluded from the Analytics revenue indexes.
+
+> [Note3]
 > Test data is supported only by Google and AppStore. Other stores do not support test data.
 > The test index standard for each store is as follows:
 > * Google: The history of payments made by the test accounts registered with Google

@@ -22,7 +22,7 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 
 | Gamebase SDK | External SDK |
 | --- | --- |
-| Gamebase | TOAST Unity SDK 0.26.1 |
+| Gamebase | NHN Cloud Unity SDK 0.26.2 |
 
 * [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
 * [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
