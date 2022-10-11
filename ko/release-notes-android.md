@@ -1,5 +1,16 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.44.0 (2022. 10. 11.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: NHN Cloud Android SDK(1.2.0), TOAST Gamebase IAP Android SDK(0.21.0), Google Play Services Auth(20.0.3)
+* Android 13 OS에서 registerPush 호출시 자동으로 알림 허용 권한을 요청하는 팝업을 표시합니다.
+* Google 로그인시 silentSignIn API를 활용하도록 내부 로직을 개선했습니다.
+
+#### 버그 수정
+* Hangame IdP 로그인시, 유효한 Third Idp로 로그인을 시도한 후, 지원하지 않는 Third Idp로 Hangame 로그인을 시도하면 에러가 발생하지 않고 이전 IdP로 로그인을 시도하다가 크래쉬가 발생하는 버그를 수정했습니다.
+
 ### 2.43.0 (2022. 09. 07.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.0/GamebaseSDK-Android.zip)
 
@@ -685,8 +696,8 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 #### 기능 개선/변경
 * [SDK] 2.4.0
     * (공통) 지표관련 Class 변경
-        * LevelUpData Class: userLevel, levelUpTime 파라미터가 필수로 변경 / 그 외 필드 삭제 [자세히 보기 [Android](./aos-etc/#game-user-data-settings) / [iOS](./ios-etc/#game-user-data-settings) / [Unity](./unity-etc/#game-user-data-settings) / [JavaScript](./js-etc/#game-user-data-settings)]
-        * GameUserData Class: classId(게임유저의 직업) 필드 추가 [자세히 보기 [Android](./aos-etc/#level-up-trace) / [iOS](./ios-etc/#level-up-trace) / [Unity](./unity-etc/#level-up-trace) / [JavaScript](./js-etc/#level-up-trace)]
+        * LevelUpData Class: userLevel, levelUpTime 파라미터가 필수로 변경 / 그 외 필드 삭제 [자세히 보기 [Android](./aos-etc/#game-user-data-settings) / [iOS](./ios-etc/#game-user-data-settings) / [Unity](./unity-etc/#game-user-data-settings) / JavaScript]
+        * GameUserData Class: classId(게임유저의 직업) 필드 추가 [자세히 보기 [Android](./aos-etc/#level-up-trace) / [iOS](./ios-etc/#level-up-trace) / [Unity](./unity-etc/#level-up-trace) / JavaScript]
     * (Android)NAVER SDK 버전 업데이트(v4.2.5): NAVER SDK 버그 수정(NAVER 로그인 도중에 앱 아이콘을 통해 앱을 재시작할 경우, Activity가 강제종료 되는 이슈로 인해 인증 프로세스가 중단되는 이슈가 해결)
 
 ### 2.3.1 (2019.05.16)

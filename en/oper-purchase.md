@@ -128,8 +128,9 @@ The search results are as follows:
 - **Consume status**: Whether the purchased item has been provided
 - **Purchase status**: The current status of the purchase
 - **Store Reference Key**: Unique purchase number issued by the store
-- **Scheduled purchase date**: The time of purchase attempt or completion
-- **Refund date**: The time when the user's item was refunded
+- **Scheduled purchase date**: Time when a user attempted purchase
+- **Purchase date**: Time when a user completed purchase
+- **Refund date**: Time when a user's item was refunded
 - **Additional information**: Additional information delivered by SDK when the purchase was requested (Developer payload)
 
 #### Change purchase status
@@ -215,8 +216,9 @@ You can query detailed purchase history during the search period by clicking a u
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing2_1.3_en.png)
 
 #### Purchase History
-- **Reserved Purchase Date**: Time when user attempted or completed with a purchase
-- **Refund Date**: Time when a user item was refunded
+- **Scheduled purchase date**: Time when a user attempted purchase
+- **Purchase date**: Time when a user completed purchase
+- **Refund date**: Time when a user's item was refunded
 - **Transaction ID**: Unique number to identify purchases within Gamebase
 - **Store**: Information of a store where purchase has been made
 - **Item Name**: Name of actual item which the user purchased from the app
@@ -253,7 +255,7 @@ You can query detailed purchase history during the search period by clicking a u
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing6_1.3_en.png)
 
 #### Purchase History
-- **Purchase Date**
+- **Purchase Date**: Time when a user completed purchase
 - **Transaction ID**: Unique number to identify purchases within Gamebase
 - **Store**: Information of a store where purchase has been made
 - **User ID**: User ID that made the purchase

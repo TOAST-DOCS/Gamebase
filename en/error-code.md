@@ -19,7 +19,8 @@
 |                 | UNITY                  | NOT\_SUPPORTED\_UNITY\_WEBGL             | 15         | The function is not supported by WebGL.               |
 |                 | Android                | ANDROID\_ACTIVITY\_DESTROYED             | 31         | Activity was terminated by force.                       |
 |                 | Android                | ANDROID\_ACTIVEAPP\_NOT\_CALLED          | 32         | The activeApp API has not been called.                 |
-|                 | IOS                    | IOS_GAMECENTER_DENIED                    | 51         | Gamecenter login has been denied.                 |
+|                 | IOS                    | TCGB_ERROR_IOS_GAMECENTER_DENIED                    | 51         | Gamecenter login has been denied.                 |
+|                 | IOS                    | TCGB_ERROR_IOS_CANNOT_OPEN_URL                    | 52         | The URL scheme cannot be processed by the app.                 |
 | Network(Socket) | Android, UNITY<br/>IOS | SOCKET\_RESPONSE\_TIMEOUT<br/>TCGB\_ERROR\_SOCKET\_RESPONSE\_TIMEOUT | 101        | There is no response due to bad network connection.              |
 |                 | Android, UNITY<br/>IOS | SOCKET_ERROR<br/>TCGB\_ERROR\_SOCKET\_ERROR | 110        | Socket error                                  |
 |                 | Android, UNITY<br/>IOS | SOCKET\_UNKNOWN_ERROR<br/>TCGB\_ERROR\_SOCKET\_UNKNOWN\_ERROR | 999        | Unknown socket error                          |

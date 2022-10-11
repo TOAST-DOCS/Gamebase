@@ -6,11 +6,6 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
 
 ### Initialization
 
-> <font color="red">[Caution]</font><br/>
->
-> For ONE Store, only v17 is supported.
-> ONE Store v19 is currently not supported and is being considered for support.
-
 * Store code must be specified to initialize Gamebase. 
 * Select **STORE_CODE** among the following:  
     * GG: Google Play

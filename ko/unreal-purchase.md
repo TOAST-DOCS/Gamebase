@@ -21,6 +21,7 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
             
             [OnlineSubsystemGooglePlay.Store]
             bSupportsInAppPurchasing=False
+            bUseGooglePlayBillingApiV2=False
             
     * Online SubSystem iOS 플러그인 사용 시 /Config/IOS/IOSEngine.ini 파일을 편집합니다.
             

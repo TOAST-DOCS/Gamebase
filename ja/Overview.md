@@ -41,18 +41,18 @@ Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカ�
 
 以下は、Gamebaseで提供している外部認証リストです。
 
-| 外部認証            | Android | iOS | Windows(based Unity) | Web(based JavaScript)    |
-| ----------------- | ------------ | ------------ | ------------ | ------------ |
-| Facebook          | O | O | O | O |
-| Sign In with Apple | O  | O | | |
-| Apple Game Center |  | O | | |
-| Google            | O | O | O | O |
-| Twitter			| O | O | |  |
-| LINE				| O | O | O  | O  |
-| PAYCO             | O | O | O | O |
-| NAVER             | O | O | O | O |
-| Hangame			| O | O | O  | O  |
-| Weibo | O  | O  | | |
+| 外部認証            | Android | iOS | Windows(based Unity) |
+| ----------------- | ------------ | ------------ | ------------ |
+| Facebook          | O | O | O |
+| Sign In with Apple | O  | O | |
+| Apple Game Center |  | O | |
+| Google            | O | O | O |
+| Twitter			| O | O | |
+| LINE				| O | O | O  |
+| PAYCO             | O | O | O |
+| NAVER             | O | O | O |
+| Hangame			| O | O | O  |
+| Weibo | O  | O  | |
 
 * **ゲストログインを提供します。**
   ゲストログインを利用すれば、ユーザーは何も入力しなくてもすぐにゲームにログインして簡単にゲームを始めることができます。ゲストログインをするだけでもGamebaseのユーザーIDが発行されるため、ゲームはOAuthログインユーザーかゲストログインユーザーかに関係なく同じようにユーザーのゲームデータを管理することができます。
@@ -72,7 +72,6 @@ Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカ�
 * [iOS SDK使用ガイド > 認証](./ios-authentication)
 * [Unity SDK使用ガイド > 認証](./unity-authentication)
 * [Unreal SDK使用ガイド > 認証](./unreal-authentication)
-* [JavaScript SDK使用ガイド > 認証](./js-authentication)
 
 ### Payment
 
@@ -123,7 +122,6 @@ Gamebaseで提供される起動情報は、次の通りです。
 * [iOS SDK使用ガイド > 初期化 > Launching Information](./ios-initialization/#launching-information)
 * [Unity SDK使用ガイド > 初期化 > Launching Information](./unity-initialization/#launching-information)
 * [Unreal SDK使用ガイド > 初期化 > Launching Information](./unreal-initialization/#launching-information)
-* [JavaScript SDK使用ガイド > 初期化 > Launching Information](./js-initialization/#launching-information)
 * [コンソール使用ガイド > アプリ](./oper-app)：アプリ、クライアントステータス及びインストールURLの設定
 * [コンソール使用ガイド > 運営](./oper-operation)：メンテナンス、お知らせ登録
 
@@ -179,7 +177,6 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
 * [iOS SDK使用ガイド](./ios-started/)
 * [Unity SDK使用ガイド](./unity-started/)
 * [Unreal SDK使用ガイド](./unreal-started/)
-* [JavaScript SDK使用ガイド](./js-started/)
 
 ### サーバー開発者向けガイド
 

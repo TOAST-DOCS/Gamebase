@@ -1,11 +1,22 @@
 ## Game > Gamebase > 릴리스 노트 > Unreal
 
+### 2.43.3 (2022. 10. 04.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.3/GamebaseSDK-Unreal.zip)
+
+#### 기능 개선/변경
+* LINE 로그인을 수행 시 서비스를 제공할 Region을 입력하도록 변경되었습니다.
+    * [Game > Gamebase > Unreal SDK 사용 가이드 > 인증 > Login with IdP](./unreal-authentication/#login-with-idp)
+    
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.43.0](./release-notes-android/#2430-2022-09-07)
+* [Gamebase iOS SDK 2.43.3](./release-notes-ios/#2433-2022-10-04)
+
 ### 2.42.1 (2022. 08. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Unreal.zip)
 
 #### 기능 추가
 * FGamebaseForcingMappingTicket 클래스에 매핑 유저 상태를 나타내는 mappedUserValid 필드가 추가되었습니다.
-*  [iOS 설정 툴](./unreal-started/#ios-settings)에서 Xcode의 경로를 지정할 수 있도록 **Xcode Path** 설정이 추가되었습니다.
+* [iOS 설정 툴](./unreal-started/#ios-settings)에서 Xcode의 경로를 지정할 수 있도록 **Xcode Path** 설정이 추가되었습니다.
 
 #### 기능 개선/변경
 * 킥아웃 팝업 창 표시 여부는 Gamebase 콘솔에서 킥아웃 등록 시 설정할 수 있으므로 다음 필드는 더 이상 사용하지 않습니다

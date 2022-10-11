@@ -14,7 +14,7 @@ To execute Gamebase in Android, the following system environment is required.
 
 | Gamebase SDK | Gamebase Adapter | External SDK | Purpose | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.31.1<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include interface and core logic of Gamebase | API 16 (JellyBean, OS 4.1) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.1.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include interface and core logic of Gamebase | API 16(JellyBean, OS 4.1) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | Support Google login | - |
@@ -25,17 +25,18 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Support Twitter login | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | Support Weibo login | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Support Weibo login | - |
-|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 21(Lollipop, OS 5.0) |
-| Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.5<br>toast-iap-core | Support in-app purchase | - |
-|  | gamebase-adapter-purchase-amazon | toast-iap-amazon | Support Amazon Appstore | API 18(JellyBean MR2, OS 4.3) |
-|  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | Support Galaxy Store | API 21 (Lollipop, OS 5.0)<br>Although minSdkVersion of Galaxy IAP SDK is 18, the minSdkVersion of Checkout service app that must be installed for actual purchase is 21. |
-|  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | Support Google Play Store | - |
-|  | gamebase-adapter-purchase-huawei | toast-iap-huawei | Support Huawei App Gallery | API 19 (Kitkat, OS 4.4) |
-|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | Support ONE store v17<br>Currently v19 is not supported | - |
-|  | gamebase-adapter-purchase-onestore-external | toast-iap-onestore-external | Support ONE store external payment function | - |
-| Gamebase Push Adapters | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | Support push notifications | - |
-|  | gamebase-adapter-push-adm | toast-push-adm | Support Amazon Device Messaging | - |
-|  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | Support Firebase Notification | - |
+|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.4<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.0<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 21(Lollipop, OS 5.0) |
+| Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.20.0<br>nhncloud-iap-core | Support in-app purchase | - |
+|  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Support Amazon Appstore | API 18(JellyBean MR2, OS 4.3) |
+|  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Support Samsung Galaxy Store | API 21(Lollipop, OS 5.0)<br>Although minSdkVersion of Galaxy IAP SDK is 18, the minSdkVersion of Checkout service app that must be installed for actual purchase is 21. |
+|  | gamebase-adapter-purchase-google | billingclient.billing-5.0.0<br>nhncloud-iap-google | Support Google Play | - |
+|  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Support Huawei AppGallery | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | Support ONE store v17 | - |
+|  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | Support ONE store v19| - |
+|  | gamebase-adapter-purchase-onestore-external | nhncloud-iap-onestore-external | Support ONE store external payment function | - |
+| Gamebase Push Adapters | gamebase-adapter-toastpush | nhncloud-push-analytics<br>nhncloud-push-core<br>nhncloud-push-notification | Support Push | - |
+|  | gamebase-adapter-push-adm | nhncloud-push-adm | Support Amazon Device Messaging | - |
+|  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>nhncloud-push-fcm | Support Firebase Cloud Messaging | - |
 
 
 ## Setting
@@ -53,9 +54,6 @@ To execute Gamebase in Android, the following system environment is required.
 * To enable item purchase, register the app info in the Store console and enter it in Gamebase > Purchase(IAP) console.
 	* [Game > Gamebase > Store Console Guide > Google Console Guide](./console-google-guide)
 	* [Game > Gamebase > Store Console Guide > ONE store Console Guide](./console-onestore-guide)
-        * For ONE Store, currently only v17 is supported.
-        * When creating an app in the ONE Store, please be careful not to create it in v19.
-        * ONE Store v19 support is under consideration.
 	* [Game > Gamebase > Store Console Guide > GALAXY Store Console Guide](./console-galaxy-guide)
 	* [Game > Gamebase > Store Console Guide > Amazon Appstore Console Guide](./console-amazon-guide)
 	* [Game > Gamebase > Store Console Guide > Huawei App Gallery Console Guide](./console-huawei-guide)
@@ -185,8 +183,12 @@ dependencies {
 
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
-    // >>> For ONE Store, only v17 can be used and v19 is currently not supported.
+    // >>> [ONE store v17]
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
+    // >>> [ONE store v19]
+    // https://github.com/ONE-store/onestore_iap_release/tree/iap19-release/android_app_sample/app/libs
+    implementation files('libs/iap_sdk-v19.00.02.aar')
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v19:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-external:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-amazon:$GAMEBASE_SDK_VERSION"
@@ -239,8 +241,9 @@ android {
 
 * For Android Studio build
     * To use the Firebase push, you need to follow the guide below to complete the Firebase settings, and then include the google-services.json file in the project.
-		* [NHN Cloud > NHN Cloud SDK User Guide > NHN Cloud Push > Android > Firebase Cloud Messaging Settings](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#firebase-cloud-messaging)
+		* [NHN Cloud > SDK User Guide> Push > Android > Firebase Cloud Messaging Settings](/TOAST/en/toast-sdk/push-android/#firebase-cloud-messaging)
 * For a Unity build
+    * **Caution**: It is not necessary to install the Firebase Unity SDK Package, and even if you do not, push works properly.
     * If the Firebase Unity SDK Package has been installed, you can use the following command to execute **generate_xml_from_google_services_json.exe** file to convert json files into xml files.
             
             "{UnityProject}\Firebase\Editor\generate_xml_from_google_services_json.exe" -i "{JsonFilePath}\google-services.json" -o "{UnityProject}\Assets\Plugins\Android\res\values\google-services.xml" -p "{PackageName}"
@@ -532,8 +535,8 @@ android {
 
 * Amazon Device Messaging
     * To use Proguard with Amazon Device Messaging (ADM), you must apply Proguard by referring to the following guide.
-        * [NHN Cloud > SDK User Guide > TOAST Push > Android > Amazon Device Messaging Settings > Download the ADM SDK](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#download-the-adm-sdk)
-        * [NHN Cloud > SDK User Guide > TOAST Push > Android > Amazon Device Messaging Settings > Proguard settings](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#proguard-settings)
+        * [NHN Cloud > SDK User Guide > Push > Android > Amazon Device Messaging Settings > Download the ADM SDK](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#adm-sdk)
+        * [NHN Cloud > SDK User Guide > Push > Android > Amazon Device Messaging Settings > Proguard Settings](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#proguard)
 * For Gamebase versions earlier than 2.21.0, calling Payment API without adding a declaration at the end of Proguard Rule when applying Proguard would result in a crash.
     * This issue has been fixed in Gamebase 2.21.0 version.
 
