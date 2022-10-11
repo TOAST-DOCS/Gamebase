@@ -46,7 +46,7 @@ Gamebase可以通过以下方式安装。
 |  | GamebaseAuthTwitterAdapter.framework | | 支持Twitter登录。 | iOS 9 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | 支持LINE登录。 | iOS 10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | 支持iOS 9 or later<br/>arm64。<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.6.4 | 支持Hangame登录。 | iOS 9 or later |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.7.0 | 支持Hangame登录。 | iOS 9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | 支持Weibo登录。 | iOS 9 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.11.5 | 支持Kakao登录。 | iOS 11 or later |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.30.0<br/> ToastGamebaseIAP 0.13.0 | 支持游戏内支付。 | iOS 9 or later |
@@ -301,6 +301,8 @@ end
 * [LINE for developers](https://developers.line.biz/en/docs/ios-sdk/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/ios)
 * [Weibo for developers](https://github.com/sinaweibosdk/weibo_ios_sdk/blob/3.2.7/%E5%BE%AE%E5%8D%9AiOS%E5%B9%B3%E5%8F%B0SDK%E6%96%87%E6%A1%A3V3.2.7.pdf)
+* [Google Sign-In for iOS](https://developers.google.com/identity/sign-in/ios)
+* [Kakaogame SDK 3.0 Guide for Channeling](https://kakaogames.atlassian.net/wiki/spaces/KS3GFC/overview)
 
 ## API Reference
 

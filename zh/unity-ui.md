@@ -38,7 +38,7 @@ public void ShowImageNotices()
         {
             // Called when custom event occurred.
             ...
-        });        
+        });
 }
 ```
 
@@ -71,7 +71,7 @@ public void ShowImageNotices(int colorR = 0 , int colorG = 0, int colorB = 0, in
         {
             // Called when custom event occurred.
             ...
-        });        
+        });
 }
 ```
 
@@ -79,10 +79,10 @@ public void ShowImageNotices(int colorR = 0 , int colorG = 0, int colorB = 0, in
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| colorR                   | 0~255                                    | Navigation Bar 颜色R            |
-| colorG                   | 0~255                                    | Navigation Bar 颜色G                |
-| colorB                   | 0~255                                    | Navigation Bar 颜色B                |
-| colorA                   | 0~255                                    | Navigation Bar 颜色Alpha                |
+| colorR                   | 0~255                                    | Background背景颜色 R            |
+| colorG                   | 0~255                                    | Background背景颜色 G                |
+| colorB                   | 0~255                                    | Background背景颜色 B                |
+| colorA                   | 0~255                                    | Background背景颜色 Alpha                |
 | timeoutMS                | long        | 图片通知的最大加载时间(单位 : millisecond)<br/>**default** : 5000                     |
 
 ### Close ImageNotices
@@ -107,15 +107,15 @@ static void CloseImageNotices()
 ![TermsView Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/termsView-guide-ui-001_2.20.0.png)
 
 调用ShowTermsView API，可通过Webview显示条款窗口。
-如果要生成符合Game UI的条款窗口，则可通过调用QueryTerms API显示Gamebase控制台中的条款项目。 
+如果要生成符合Game UI的条款窗口，则可通过调用QueryTerms API显示Gamebase控制台中的条款项目。
 如果用户已经同意条款，通过UpdateTerms API，将各项目的“同意与否”传送到Gamebase服务器。
 
 ### ShowTermsView
 
 在页面上显示条款窗口。
 用户已经同意条款时，在服务器注册“同意与否”。
-如果已经同意条款，即使再调用ShowTermsView API，也不再显示条款窗口，而直接返还“成功回调”。 
-但如果在Gamebase控制台中将条款的“重新同意”项目更改为**必须**，用户再次同意之前一直显示条款窗。  
+如果已经同意条款，即使再调用ShowTermsView API，也不再显示条款窗口，而直接返还“成功回调”。
+但如果在Gamebase控制台中将条款的“重新同意”项目更改为**必须**，用户再次同意之前一直显示条款窗。
 
 #### Optional参数
                                                                
@@ -134,11 +134,11 @@ static void ShowTermsView(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Dat
 static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration configuration, GamebaseCallback.GamebaseDelegate<GamebaseResponse.DataContainer> callback)
 ```
 
-**GamebaseRequest.Terms.GamebaseTermsConfiguration** 
+**GamebaseRequest.Terms.GamebaseTermsConfiguration**
  
-| API | Mandatory(M) / Optional(O) | Description |  
-| --- | --- | --- | 
-| forceShow | O | 如果已同意条款，即使再调用ShowTermsView API也不显示条款窗，但将忽略此项并强制显示条款窗。<br>**default**: false | 
+| API | Mandatory(M) / Optional(O) | Description |
+| --- | --- | --- |
+| forceShow | O | 如果已同意条款，即使再调用ShowTermsView API也不显示条款窗，但将忽略此项并强制显示条款窗。<br>**default**: false |
 | enableFixedFontSize | O | 您要决定是否固定条款窗的文字大小。<br>**default**: false<br/>**Android Only** |
  
 **GamebaseResponse.Terms.ShowTermsViewResult**
@@ -149,9 +149,9 @@ static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration confi
 
 **ErrorCode**
 
-| Error | Error Code | Description |   
+| Error | Error Code | Description |
 | --- | --- | --- |
-| NOT\_INITIALIZED | 1 | 未初始化Gamebase。 |    
+| NOT\_INITIALIZED | 1 | 未初始化Gamebase。 |
 | LAUNCHING\_SERVER\_ERROR | 2001 | 当传送到Launching服务器的项目中没有与协议相关的内容时，就会发生此错误。<br/>出现此问题时请联系Gamebase负责人。 |
 | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 未完成Terms API的调用。<br/>请稍后再试。 |
 | UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925 | 条款Webview尚未结束的情况下再次被调用。 |
@@ -160,7 +160,7 @@ static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration confi
 
 **Example**
 
-```cs  
+```cs
 static GamebaseResponse.Push.PushConfiguration savedPushConfiguration = null;
 
 public void SampleShowTermsView()
@@ -169,7 +169,7 @@ public void SampleShowTermsView()
     {
         forceShow = true
     };
-    Gamebase.Terms.ShowTermsView(configuration, (data, error) =>    
+    Gamebase.Terms.ShowTermsView(configuration, (data, error) =>
     {
         if (Gamebase.IsSuccess(error) == true)
         {
@@ -204,16 +204,16 @@ public void AfterLogin()
 }
 ```
 
-### QueryTerms 
+### QueryTerms
 
-Gamebase通过Webview以简单形式显示条款。 
+Gamebase通过Webview以简单形式显示条款。
 如果要直接制作符合游戏UI的条款，通过调用queryTerms API，则可使用从Gamebase控制台中被返还的条款信息。
 
 如果登录后调用，则可确认游戏用户是否同意条款。
 
 > <font color="red">[注意]</font><br/>
 >
-> * 因Gamebase服务器不保存GamebaseTermsContentDetail.getRequired()为true的必要项目，agreed值将始终以false返回。 
+> * 因Gamebase服务器不保存GamebaseTermsContentDetail.getRequired()为true的必要项目，agreed值将始终以false返回。
 >     * 这是因为必要项目将始终保存为true，不需要保存。
 > * 因“是否接收推送”没被存储在gamebase服务器中，agreed值将始终以false返回。
 >     * 如需查看“是否接收推送”，请调用Gamebase.Push.queryTokenInfo API。
@@ -250,7 +250,7 @@ static void QueryTerms(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Terms.
 ```cs
 public void SampleQueryTerms()
 {
-    Gamebase.Terms.QueryTerms((data, error) => 
+    Gamebase.Terms.QueryTerms((data, error) =>
     {
         if (Gamebase.IsSuccess(error) == true)
         {
@@ -267,7 +267,7 @@ public void SampleQueryTerms()
 #### GamebaseResponse.Terms.QueryTermsResult
 
 | Parameter            | Values                          | Description         |
-| -------------------- | --------------------------------| ------------------- | 
+| -------------------- | --------------------------------| ------------------- |
 | termsSeq             | int                             | 所有条款的KEY<br/>是调用updateTerms API时的必须值。|
 | termsVersion         | string                          | 条款版本<br/>是调用updateTerms API时的必须值。             |
 | termsCountryType     | string                          | 条款类型<br/> - KOREAN : 韩国条款 <br/> - GDPR : 欧洲条款 <br/> - ETC : 其他条款         |
@@ -278,11 +278,11 @@ public void SampleQueryTerms()
 
 | Parameter            | Values                | Description         |
 | -------------------- | ----------------------| ------------------- |
-| termsContentSeq      | int                   | 条款项目KEY         | 
+| termsContentSeq      | int                   | 条款项目KEY         |
 | name                 | string                | 条款项目名称         |
 | required             | bool                  | 是否必须同意        |
 | agreePush            | string                | 是否同意接收广告性推送通知<br/> - NONE : 不同意。<br/> - ALL : 全部同意。<br/> - DAY : 同意白天接收推送通知。<br/> - NIGHT : 同意夜间接收推送通知。          |
-| agreed               | bool                  | 用户是否同意相关条款项目           
+| agreed               | bool                  | 用户是否同意相关条款项目
 | node1DepthPosition   | int                   | 显示第1阶段项目的顺序           |
 | node2DepthPosition   | int                   | 显示第2阶段项目的顺序<b r/> 没有 -1           |
 | detailPageUrl        | string                | 查看条款URL详情<br/> 没有 -null |
@@ -293,7 +293,7 @@ public void SampleQueryTerms()
 如果以调用QueryTerms API后被返回的条款信息来创建了UI，
 请将游戏用户同意条款的记录通过updateTerms API传送到Gamebase服务器。
 
-不仅可用于取消“可选条款同意”，也可用于修改同意条款的记录。 
+不仅可用于取消“可选条款同意”，也可用于修改同意条款的记录。
 
 > <font color="red">[注意]</font><br/>
 >
@@ -306,7 +306,7 @@ public void SampleQueryTerms()
  
 #### Optional参数
 
-* callback : 在服务器中注册可选条款信息后，通过回调通知用户。 
+* callback : 在服务器中注册可选条款信息后，通过回调通知用户。
 
 
 **API**
@@ -332,7 +332,7 @@ static void UpdateTerms(GamebaseRequest.Terms.UpdateTermsConfiguration configura
 
 ```cs
 public void SampleUpdateTerms()
-{            
+{
     List<GamebaseRequest.Terms.Content> list = new List<GamebaseRequest.Terms.Content>();
     list.Add(new GamebaseRequest.Terms.Content()
     {
@@ -412,7 +412,7 @@ public void SampleIsShowingTermsView()
 * configuration ：可以使用GamebaseWebViewConfiguration更改WebView的布局。
 * closeCallback ：WebView关闭时通过回调通知用户。
 * schemeList ：指定用户请求接收的自定义SchemeList
-* schemeEvent ：将用schemeList指定的包含自定义Scheme的url，作为回调通知。
+* schemeEvent ：   将用schemeList指定的包含自定义Scheme的url，作为回调通知。
 
 **API**
 
@@ -462,25 +462,23 @@ public void ShowWebView()
 
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | string                                   | WebView的标题                 |
-| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 未指定 |
-|                          | GamebaseScreenOrientation.PORTRAIT       | 纵向模式                      |
-|                          | GamebaseScreenOrientation.LANDSCAPE      | 横向模式                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 将横向模式旋转180度             |
-| contentMode              | GamebaseWebViewContentMode.RECOMMENDED        | 当前平台推荐的浏览器 |
-|                          | GamebaseWebViewContentMode.MOBILE             | 移动浏览器            |
-|                          | GamebaseWebViewContentMode.DESKTOP            | 桌面浏览器          |
-| colorR                   | 0~255                                    | Navigation Bar颜色R            |
-| colorG                   | 0~255                                    | Navigation Bar颜色G                |
-| colorB                   | 0~255                                    | Navigation Bar颜色B                |
-| colorA                   | 0~255                                    | Navigation Bar颜色Alpha                |
-| isNavigationBarVisible   | true or false                            | 导航栏有效或无效          |
-| isBackButtonVisible      | true or false                            | 返回按钮有效或无效          |
-| barHeight                | height                                   | 导航栏高度                 |
-| backButtonImageResource  | ID of resource                           | 返回按钮的图标              |
-| closeButtonImageResource | ID of resource                           | 关闭按钮图像 |
-| url                      | "http://" or "https://" or "file://"     | 网络URL |
-| enableFixedFontSize      | true or false                            | 固定文字大小有效或无效<br/>**Android Only** |
+| title                    | string                                   | WebView的标题               |
+| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 未指定(**default**)            |
+|                          | GamebaseScreenOrientation.PORTRAIT       | 纵向模式                    |
+|                          | GamebaseScreenOrientation.LANDSCAPE      | 横向模式                    |
+|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 将横向模式旋转180度     |
+| contentMode              | GamebaseWebViewContentMode.RECOMMENDED      | 当前平台推荐的浏览器(**default**)  |
+|                          | GamebaseWebViewContentMode.MOBILE           | 移动浏览器            |
+|                          | GamebaseWebViewContentMode.DESKTOP          | 桌面浏览器          |
+| colorR                   | 0~255                                    | 导航栏颜色 R<br>**default**: 18               |
+| colorG                   | 0~255                                    | 导航栏颜色 G<br>**default**: 93               |
+| colorB                   | 0~255                                    | 导航栏颜色 B<br>**default**: 230              |
+| colorA                   | 0~255                                    | 导航栏颜色 Alpha<br>**default**: 255          |
+| barHeight                | height                                   | 导航栏颜色高度<br>**Android Only**                 |
+| isNavigationBarVisible   | true or false                            | 导航栏有效或无效<br>**default**: true    |
+| isBackButtonVisible      | true or false                            | 返回按钮有效或无效<br>**default**: true   |
+| backButtonImageResource  | ID of resource                           | 返回按钮图像         |
+| closeButtonImageResource | ID of resource                           | 关闭按钮图像             |
 
 > [TIP]
 >

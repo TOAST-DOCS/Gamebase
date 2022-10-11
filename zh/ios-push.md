@@ -7,21 +7,17 @@
 
 ### Settings
 
-#### Apple Developer证书
+#### 获取APNS JWT认证信息
 
-以下介绍了为推送通知发送而创建Apple Developer证书的过程。
+以下介绍了为推送通知发送而创建 APNS JWT认证信息的过程。
 
-* 在[Apple Developer网站](https://developer.apple.com)的**Add iOS Certificate**上利用**Apple Push Notification service SSL**创建证书。
-* 注册Keychain后，以Personal Information Exchange (.p12)格式导出生成的证书。
-* 导出(export)证书时设置密码。
+* 请参考[Notification > Push > Console Guide > 获取APNS JWT认证信息](https://docs.toast.com/en/Notification/Push/en/console-guide/#get-authentication-information-for-apns-jwt) 指南获取注册ANPS JWT所需的认证信息。
 
-#### TOAST Console登记
-* **Notification > Push > Certificate**中注册**APNS Certificate**和**APNS (Sandbox) Certificate**中生成的证书。
-* 使用制作上述认证书时设定的密码进行登记。
-
+#### 注册NHN Cloud Console
+* 在**Notification > Push > Certificate**的**APNS JWT**中输入上述信息。
 
 #### 实现Notification Service Extension
-* 为了搜集“接收指标‘’或设置提示音，请参考[TOAST Push指南](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-ios/#notification-service-extension)，在应用程序内实现**Notification Service Extension**。
+* 为了搜集“接收指标”或设置提示音，请参考[TOAST Push指南](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-ios/#notification-service-extension)，在应用程序内实现**Notification Service Extension**。
 
 #### Xcode Project设置
 * 将**Targets > Capabilities > Push Notifications**项目设置为**ON**。

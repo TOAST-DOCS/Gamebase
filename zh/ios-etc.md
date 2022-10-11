@@ -327,7 +327,12 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 ```objectivec
 - (void)eventHandler_addEventHandler {
     void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
-        if ([message.category isEqualToString:kTCGBLoggedOut] == YES) {
+        if ([message.category isEqualToString:kTCGBIdPRevoked] == YES) {
+            TCGBGamebaseEventIdPRevokedData* idPRevokedData = [TCGBGamebaseEventIdPRevokedData gamebaseEventIdPRevokedDataFromJsonString:message.data];
+            if (idPRevokedData != nil) {
+                //TODO: process idp revoked
+            }
+        } else if ([message.category isEqualToString:kTCGBLoggedOut] == YES) {
             TCGBGamebaseEventLoggedOutData* loggedOutData = [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data];
             if (loggedOutData != nil) {
                 //TODO: process loggedOut
@@ -366,6 +371,7 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 
 | Event种类 | GamebaseEventCategory | VO转换方法 | 备注 |
 | --------- | --------------------- | ----------- | --- |
+| IdPRevoked | kTCGBIdPRevoked | [TCGBGamebaseEventIdPRevokedData gamebaseEventIdPRevokedDataFromJsonString:message.data] | \- |
 | LoggedOut | kTCGBLoggedOut | [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data] | \- |
 | ServerPush | kTCGBServerPushAppKickoutMessageReceived<br>kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
 | Observer | kTCGBObserverLaunching<br>kTCGBObserverHeartbeat<br>kTCGBObserverNetwork | [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data] | \- |
@@ -373,6 +379,84 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 | Push - 接收消息 | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
 | Push - - 点击消息 | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
 | Push - 动态点击 | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | 点击RichMessage按键时启动。|
+
+#### IdP Revoked
+ 
+* 是当在IdP中删除相关服务时出现的事件。  
+* 需要通知用户IdP已被禁用，并使用户使用相同的IdP登录时收到新的用户ID。
+* TCGBGamebaseEventIdPRevokedData.code : 为TCGBIdPRevokedCode值。
+    * IDP_REVOKED_WITHDRAW : 600
+        * 表示当前使用禁用的IdP登录，并且没有映射的IdP列表。
+        * 必须通过调用withdraw API对当前帐户进行退出处理。
+    * IDP_REVOKED_OVERWRITE_LOGIN_AND_REMOVE_MAPPING : 601
+        * 表示当前使用禁用的IdP登录，而除了禁用的IdP还有其他IdP被映射。
+        * 需要使用被映射的IdP当中的一个IdP登录，并通过调用removeMapping API解除禁用的IdP的链接。
+    * IDP_REVOKED_REMOVE_MAPPING : 602
+        * 表示映射到当前账户的IdP当中有禁用IdP。
+        * 需要通过调用removeMapping API解除禁用的IdP的链接。
+* TCGBGamebaseEventIdPRevokedData.idpType : 是禁用的IdP类型。 
+* TCGBGamebaseEventIdPRevokedData.authMappingList : 是映射到当前账户的IdP列表。 
+
+```objectivec
+@interface TCGBGamebaseEventIdPRevokedData : NSObject <TCGBValueObject>
+@property (nonatomic, assign) int64_t                 code;
+@property (nonatomic, strong) NSString*               idPType;
+@property (nonatomic, strong) NSArray<NSString *>*    authMappingList;
+@property (nonatomic, strong) NSString*               extras;
+@end
+```
+
+**Example**
+
+```objectivec
+- (void)eventHandler_addEventHandler {
+    void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
+        if ([message.category isEqualToString:kTCGBIdPRevoked] == YES) {
+            TCGBGamebaseEventIdPRevokedData *idPRevokedData = [TCGBGamebaseEventIdPRevokedData gamebaseEventIdPRevokedDataFromJsonString:message.data];
+            if (idPRevokedData == nil) { return; }   
+            NSString *revokedIdP = idPRevokedData.idPType;
+            switch (idPRevokedData.code) {
+                case IDP_REVOKED_WITHDRAW:
+                {
+                    // 表示当前使用禁用的IdP登录，并且没有被映射的IdP列表。
+                    // 请通知用户当前账户已被退出。
+                    [TCGBGamebase withdrawWithViewController:nil completion:^(TCGBError *error) {
+                        ...
+                    }];
+                    break;
+                }   
+                case IDP_REVOKED_OVERWRITE_LOGIN_AND_REMOVE_MAPPING:
+                {   
+                    // 表示当前使用禁用的IdP登录，而除了禁用的IdP还有其他IdP被映射。
+                    // 让用户从authMappingList中选择要再次登录的IdP，并在使用所选IdP登录后解除禁用的IdP的链接。
+                    NSString *selectedIdPType = "用户选择的IdP";
+                    NSMutableDictionary *additionalInfo = [NSMutableDictionary dictionary];
+                    additionalInfo[kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname] = @(YES);
+                    [TCGBGamebase loginWithType:selectedIdPType additionalInfo:additionalInfo viewController:viewController completion:^(TCGBAuthToken *authToken, TCGBError *loginError) {
+                        if ([TCGBGamebase isSuccessWithError:loginError]) {
+                            [TCGBGamebase removeMappingWithType:revokedIdP viewController:nil completion:^(TCGBError * _Nullable removeMappingError) {
+                                ...
+                            }];
+                        }
+                    }];
+                    break; 
+                }
+                case IDP_REVOKED_REMOVE_MAPPING:
+                {
+                    // 表示映射到当前账户的IdP当中有禁用IdP。
+                    // 请通知用户在当前账户中禁用IdP的链接被解除。
+                    [TCGBGamebase removeMappingWithType:revokedIdP viewController:nil completion:^(TCGBError *error) {
+                        ...
+                    }];   
+                    break;
+                }
+            }
+        }
+    };
+    
+    [TCGBGamebase addEventHandler:eventHandler];
+}
+```
 
 #### Logged Out
 
@@ -450,7 +534,7 @@ Not translated yet
 * Gamebase支持的Observer Type如下。
     * kTCGBObserverLaunching
     	* 当维护开始、结束时或发布新版本必须进行更新等Launching状态出现变动时启动。
-    	* TCGBGamebaseEventObserverData.code : 为TCGBLaunchingStatus值。
+    	* TCGBGamebaseEventObserverData.code: 为TCGBLaunchingStatus值。
             * IN_SERVICE: 200
             * RECOMMEND_UPDATE: 201
             * IN_SERVICE_BY_QA_WHITE_LIST: 202
@@ -462,13 +546,13 @@ Not translated yet
             * INTERNAL_SERVER_ERROR: 500
     * kTCGBObserverHeartbeat
     	* 当因已被退出或禁用、用户账号状态出现变化时启动。
-    	* TCGBGamebaseEventObserverData.code : 为TCGBError值。 
+    	* TCGBGamebaseEventObserverData.code: 为TCGBError值。 
             * TCGB_ERROR_INVALID_MEMBER: 6
             * TCGB_ERROR_BANNED_MEMBER: 7
     * kTCGBObserverNetwork
     	* 可以接收网络变动信息。 
     	* 当网络断开或被连接时、从Wifi转为Cellular网络时启动。
-    	* TCGBGamebaseEventObserverData.code : 为NetworkManager值。
+    	* TCGBGamebaseEventObserverData.code: 为NetworkManager值。
             * ReachabilityIsNotDefined = -100
             * NotReachable = -1
             * ReachableViaWWAN = 0
@@ -482,6 +566,8 @@ Not translated yet
 @property (nonatomic, assign)           int64_t     code;
 @property (nonatomic, strong, nullable) NSString*   message;
 @property (nonatomic, strong, nullable) NSString*   extras;
+
+@end
 ```
 
 **Example**
@@ -720,8 +806,6 @@ Analytics控制台使用方法，请参考如下指南。
 | -------------------------- | -------------------------- | ---- | ---- |
 | userLevel | M | int | 是显示游戏用户级别的字段。|
 | levelUpTime | M | long | 按Epoch time输入。</br>按Millisecond(ms)单位输入。|
-| channelId | O | string | |
-| characterId | O | string | |
 
 **API**
 

@@ -9,26 +9,52 @@
             [OnlineSubsystemGooglePlay.Store]
             bUseGooglePlayBillingApiV2=False
 
+## 2.42.1
+
+### Unity
+
+#### Changed/Deprecated APIs
+* FGamebaseWebViewConfiguration不支持enableFixedFontSize字段。
+* 默认值​​已添加到GamebaseWebViewConfiguration的部分字段，因此没有设置值时启动方式可能会与以前不同。​​
+    * 导航栏的颜色字段colorR、colorG、colorB、colorA的默认值已设置为18、93、230、255。
+    * 指定导航栏是否处于有效状态的字段NavigationBarVisible的默认值已设置为true。
+    * 指定Webview内的返回按钮是否处于有效状态的isBackButtonVisible字段的默认值已设置为true。
+
+### Unreal
+
+* (iOS) 添加了**Xcode Path** 设置以更改[iOS设置工具](./unreal-started/#ios-settings)中Xcode的路径。
+    * 如果不更改则设置为默认值(默认值 : /Applications/Xcode.app)。
+
+#### Changed/Deprecated APIs
+* 目前不支持FGamebaseConfiguration的enableKickoutPopup俗性。
+* 默认值​​已添加到FGamebaseConfiguration的部分字段，因此没有设置值时启动方式可能会与以前不同。​​
+    * enableLaunchingStatusPopup的默认值已设置为true。
+    * enableBanPopup的默认值已设置为true。
+* FGamebaseWebViewConfiguration不支持enableFixedFontSize字段。
+* 默认值​​已添加到FGamebaseWebViewConfiguration的部分字段，因此没有设置值时启动方式可能会与以前不同。​​
+    * 导航栏的颜色字段colorR、colorG、colorB、colorA的默认值已设置为18、93、230、255。
+    * 指定导航栏是否处于有效状态的字段isNavigationBarVisible的默认值已设置为true。
+    * 指定Webview内的返回按钮是否处于有效状态的isBackButtonVisible字段的默认值已设置为true。
+
 ## 2.41.0
 
 ### Android
 
-* 이제 웹뷰에 등록한 커스텀 스킴 이벤트가 동작할 때 자동으로 웹뷰가 종료됩니다.
-    * 이전과 같이 커스텀 스킴 이벤트가 동작하더라도 웹뷰를 유지시키고 싶은 경우에는 **GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** API를 호출하세요.
-* Gamebase Android SDK 2.41.0은 약관 창의 '보기' 버튼이 동작하지 않는 버그가 존재합니다.
-    * Gamebase 약관 창을 사용하시는 경우, 이슈가 해결된 Gamebase Android SDK 2.41.1을 사용하시기 바랍니다.
+* 当在WebView中注册的Custom Scheme事件被启动时，WebView将自动关闭。
+    * 如果您想与以前一样在Custom Scheme事件启动时仍使用WebView，请调用**GamebaseWebViewConfigurati  on.Builder.enableAutoCloseByCustomScheme(false)** API。
+* Gamebase Android SDK 2.41.0中出现条款窗中的“阅览”按钮不启动的错误。 
+    * 如果您使用Gamebase条款窗，请使用已修改问题的Gamebase Android SDK 2.41.1。
 
 ### Unity
 
-* Gamebase SettingTool 필수 업데이트가 추가되었습니다. (v2.4.0)
-    * 기존 SettingTool은 Unity 프로젝트에서 완전히 제거 후, 최신 버전으로 재설치해야 합니다.
-    * SettingTool v1은 더 이상 지원하지 않습니다.
+* 添加了“推荐更新Gamebase SettingTool(v2.4.0)”。
+    * 现有的SettingTool必须从Unity项目中完全删除，并重新安装最新版本。
+    * 目前不支持SettingTool v1。
 
 ## 2.40.0
 
 ### Unreal
 
-* 不再支持FGamebaseConfiguration的enableKickoutPopup俗性。
 * 更改了一些API的名称。
     * FGamebaseAnalyticesLevelUpData → FGamebaseAnalyticsLevelUpData
     * FGambaseBanInfoPtr → FGamebaseBanInfoPtr

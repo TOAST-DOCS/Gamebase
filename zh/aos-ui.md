@@ -397,7 +397,7 @@ Gamebase支持基本的WebView。
 * url ：作为参数发送的url必须是有效值。
 
 ##### 可选参数
-* configuration ：可以使用GamebaseWebViewConfiguration更改WebView的布局。
+* configuration ：使用GamebaseWebViewConfiguration更改WebView的布局。
 * GamebaseCallback ：关闭时WebView通过回调通知用户。
 * schemeList ：指定用户想要接收的自定义SchemeList。
 * GamebaseDataCallback ：用schemeList指定的包含自定义Scheme的url，作为回调通知。
@@ -421,7 +421,7 @@ Gamebase.WebView.showWebView(activity, "https://www.toast.com");
 
 ![Webview Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
 
-#### 自定义WebView
+#### Custom WebView
 
 显示自定义WebView。<br/>
 可以用GamebaseWebViewConfiguration设置自定义WebView。
@@ -430,7 +430,7 @@ Gamebase.WebView.showWebView(activity, "https://www.toast.com");
 GamebaseWebViewConfiguration configuration
         = new GamebaseWebViewConfiguration.Builder()
             .setTitleText("title")                              // 设置WebView标题
-            .setScreenOrientation(ScreenOrientation.PORTRAIT)   // 设置WebView页面方向
+            .setScreenOrientation(ScreenOrientation.PORTRAIT)   // 设置WebView Screen方向
             .setNavigationBarColor(Color.RED)                   // 设置导航栏的颜色
             .setNavigationBarHeight(40)                         // 设置导航栏的高度
             .setBackButtonVisible(true)                         // 返回按钮有效或无效
@@ -503,12 +503,13 @@ showWebView(activity, urlString, configuration,
 | setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | 纵向模式         |
 |                                          | ScreenOrientation.LANDSCAPE         | 横向模式         |
 |                                          | ScreenOrientation.LANDSCAPE_REVERSE | 将横向模式旋转180度。 |
-| setNavigationBarVisible(boolean enable)  | true or false                       | 导航栏有效或无效。 |
+| setNavigationBarVisible(boolean enable)  | true or false                       | 导航栏有效或无效<br>**default**: true |
 | setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | 导航栏颜色  |
 | setNavigationBarHeight(int height)       | height                              | 导航栏高度    |
-| setBackButtonVisible(boolean visible)    | true or false                       | 返回按钮有效或无效。 |
+| setBackButtonVisible(boolean visible)    | true or false                       | 返回按钮有效或无效<br>**default**: true |
 | setBackButtonImageResource(int resourceId) | ID of resource                      | 返回按钮图像       |
-| setCloseButtonImageResource(int resourceId) | ID of resource                      | 关闭按钮的图标。      |
+| setCloseButtonImageResource(int resourceId) | ID of resource                      | 关闭按钮的图标      |
+| enableAutoCloseByCustomScheme(boolean enable) | true or false | 当Custom Scheme启动时WebView将自动关闭。<br>**default**: true |
 
 
 ### Close WebView

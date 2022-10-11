@@ -8,7 +8,7 @@
 >
 > Gamebase支持的Unity版本
 >
-> * 2018.4.0 ~ 2021.3.3
+> * 2018.4.0 ~ 2022.1.22
 > * 如果需要Gamebase支持的低版本Unity，请联系[客户服务](https://toast.com/support/inquiry)。
 
 #### Android
@@ -93,16 +93,16 @@ Supported Platforms
 
 1. 支持Gradle和CocoaPods。
 2. 将EDM4U(External Dependency Manager for Unity)使用为必要的库。
-    * 在[EDM4U Github](https://github.com/googlesamples/unity-jar-resolver)中下载EDM4U后进行设置。 
+    * 在[EDM4U Github](https://github.com/googlesamples/unity-jar-resolver)中下载EDM4U后进行设置。
     * 如果没有EDM4U则无法设置Gamebase SDK for Android和iOS。
-    * 当使用已经包含EDM4U的SDK，如Facebook、GPGS SDK和Firebase，不需要下载EDM4U。
+    * 如果项目已经包含EDM4U的SDK，不需要下载EDM4U。
 3. 在为Android平台提供服务时，请选择上方菜单 > **Assets > External Dependency Manager > Android Resolver > Settings**，打开Android Resolver Settings窗口，按如下方式进行设置。 
     * Enable Auto-Resolution : 不启用
     * Explode AARs : 不启用
     * Patch mainTemplate.gradle : 启用
     * Use Jetifier : 启用
     * ![Android Resolver Settings](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-edm4u-settings-1_2.0.0.png)
-4. 在为iOS平台提供服务时，选择上方菜单 > **Assets > External Dependency Manager > iOS Resolver > Settings**，打开iOS Resolver Settings窗口，按如下方式进行设置。 
+4. 在为iOS平台提供服务时，选择上方菜单 > **Assets > External Dependency Manager > iOS Resolver > Settings**，打开iOS Resolver Settings窗口，按如下方式进行设置。
     * Use Shell to Execute Cocoapod Tool : 不启用
         * 如果此功能已被激活，在Unity打包iOS时将出现无法生成xcworkspace的错误。(CocoaPods 1.11.x程序错误)
         * 需要激活此功能的用户，请用以下2种方法之一解决错误。
@@ -115,8 +115,8 @@ Supported Platforms
 
 #### 安装SDK
 
-1. 打开Unity项目。  
-2. 导入GamebaseUnitySettingTool_{version}.unitypackage。 
+1. 打开Unity项目。
+2. 导入GamebaseUnitySettingTool_{version}.unitypackage。
 3. 选择上方菜单 > **Tools > NhnCloud > Gamebase > SettingTool > Settings**。
 4. 在SDK Download项目中点击[Gamebase SDK]按钮下载最新SDK。
 5. 选择要使用的平台。
@@ -142,10 +142,9 @@ Supported Platforms
 
 1. 选择上方菜单 > **Tools > NhnCloud > Gamebase > SettingTool > Settings**。
 2. 在**SDK Download**项目中点击[Gamebase SDK]按钮下载最新SDK。
-    * 最新SDK已被下载时相关按钮将被激活。 
+    * 最新SDK已被下载时相关按钮将被激活。
 3. 点击[Settings]按钮安装SDK。
     * 可以更改之前选择的平台模块。
-
 
 #### 删除SDK
 
@@ -154,10 +153,8 @@ Supported Platforms
 
 > [参考]
 > 
-> 如果在Setting Tool出现意外错误，请关闭窗口并重试。 <br/> 
+> 如果在Setting Tool出现意外错误，请关闭窗口并重试。 <br/>
 > 如果错误没能通过重新运行解决，在**Assets/NhnCloud/GamebaseTools/SettingTool/Editor/Scripts**中打开SettingToolWindow.cs文件，在ShowWindow方法中解除SettingTool.SetDebugMode(true);代码注释后，请传送日志。<br/><br/>
-> 使用Unity Facebook Authentication时需要另行下载Facebook Unity SDK。 [Go to Download](https://developers.facebook.com/docs/unity/)<br/>
-> 关于在Unity Facebook Authentication中支持的Facebook Unity SDK版本，请参考随附的README文件。 <br/>
 
 ### Video of Setting Tool Usage
 
@@ -188,6 +185,44 @@ Supported Platforms
 * 可以下载SDK
 
 ![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-2_1.13.0.png)
+
+### 添加Facebook认证
+
+Facebook SDK for Unity包含Facebook SDK for iOS和Android。
+
+![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_001.jpg)
+
+在Unity设置中启用Facebook认证后
+
+![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_002.png)
+
+在Android和iOS设置中启用Facebook认证时
+
+![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_003.png)
+
+将出现在项目中重复包含Facebook SDK的现象，而这将导致认证失败或Build失败等错误。
+为防止此错误，SettingTool不会在**Unity设置**和**Android&iOS设置**中重复启用Facebook认证。
+
+> `[注意]`
+> 您不能在Unity设置和Android&iOS设置中重复启用Facebook认证。
+> 当在Unity设置中启用Facebook认证时[需要直接下载Facebook SDK for Unity。](https://developers.facebook.com/docs/unity/)
+关于符合各游戏公司的SettingTool设置，请参考以下列表。
+
+| | **SettingTool > Unity**设置 > 启用Facebook认证 | **SettingTool > Android、iOS**设置 > 启用Facebook认证 |
+| --- | --- | --- |
+| 游戏所需的功能 | Gamebase Facebook登录(Android, iOS)<br>使用类似于ShareLink或FeedShare的功能 | Gamebase Facebook 登录(Android、iOS) |
+| Android, iOS Login API | [Gamebase Login with Credential](https://docs.toast.com/ko/Game/Gamebase/ko/unity-authentication/#login-with-credential) | [Gamebase Login with ID Provider](https://docs.toast.com/ko/Game/Gamebase/ko/unity-authentication/#login-with-idp) |
+| 下载Facebook SDK for Unity | O | X |
+
+* Case 1. 在Android和iOS平台上只使用Gamebase Facebook登录。
+    * 在**SettingTool > Android, iOS**设置中启用Facebook认证。
+* Case 2. 在Unity项目中需要使用Gamebase Facebook登录和Facebook的FeedShare功能。
+    * 在**SettingTool > Unity**设置中启用Facebook认证。
+    * Gamebase不支持Facebook认证以外的其他功能，因此您需要通过使用Facebook SDK for Unity直接实现。
+* Case 3. 在**SettingTool > Android、iOS**设置中启用了Facebook认证，但包含Facebook SDK for Unity。
+    * 如果只想使用Gamebase Facebook登录，则消除在项目中包含的Facebook SDK for Unity。
+    * 如果在使用Gamebase Facebook登录以外的Facebook的FeedShare功能，则在**SettingTool > Unity**设置中启用Facebook认证。
+        * 在此情况下，如果设置了Android、iOS设置，它们将自动被解除。
 
 ### Android Lifecycle
 
@@ -249,7 +284,7 @@ API Reference包含在GamebaseUnitySDK中。
 ## API Deprecate Governance
 
 Gamebase不再支持的API，进行Deprecate处理。
-在满足以下条件时，可以删除Deprecated的API，不再另行通知。
+在满足以下条件时可以删除Deprecated的API，不再另行通知。
 
 * 超过5次小更新
 	* Gamebase Version Format - XX.YY.ZZ

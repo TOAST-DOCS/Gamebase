@@ -8,6 +8,7 @@
 - 添加了获取在特定时间内退出的用户的Gamebase userId的“Withdraw Histories”API。
 - 添加了进行禁用和解除禁用的“Ban”和“Ban Release”API。
 - 添加了查询支付Transaction的“Get Payment Transaction”API。
+- **marketIds**已添加到“List Consumables”API中，该API检索未消费支付历史记录，因此可以一次查看N家商店
 
 ## Advance Notice
  
@@ -810,8 +811,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | userIdList | Array[String] | 禁用用户ID |
 | banTypeCode | Enum | 禁用类型 TEMPORARY or PERMANENT |
 | end | String | 禁用结束时间(ISO 8601标准时间) <br>- TEMPORARY类型时必须值 |
-| templateCode | Integer | 禁用时显示的消息所用模板的模板代码 <br>- 可以在Console **禁用 > 模板** 详细查询页面上查看相关值。 |    
-| banReason | String | 禁用原因 | 
+| templateCode | Integer | 禁用时显示的消息所用模板的模板代码 <br>- 可以在Console **禁用 > 模板** 详细查询页面上查看相关值。 |
+| banReason | String | 禁用原因 |
 | flags | String | 如果要删除已禁用用户的leaderboard数据则设置为“leaderboard”。 |
 | flags | String | 如果要删除已禁用用户的leaderboard数据则设置为“leaderboard”。 |
 | banCaller | String | 作为调用禁用API的主体，设置为固定值“APP_SERVER”。 |
@@ -832,7 +833,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 ```
 
 | Key | Type | Description |
-| --- | --- | --- |                                       
+| --- | --- | --- |     
 | failedUserIdList | Array[String] | 未能注册为禁用用户的用户ID |
 
 **[Error Code]**
@@ -1355,33 +1356,32 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
     },
     "appId": "",
     "underMaintenance": true,
-    "maintenances": [
-        {
-            "typeCode": "APP",
-            "beginDate": "2017-01-01T12:10:00+07:00",
-            "endDate": "2017-02-01T12:17:00+07:00",
-            "url": "http://url.info",
-            "message": "maintenance message",
-            "targetStores": [
-                "GG",
-                "AS",
-                "ONESTROE"
-            ]
-        }
-    ]
+    "maintenance": {
+        "typeCode": "APP",
+        "beginDate": "2017-01-01T12:10:00+07:00",
+        "endDate": "2017-02-01T12:17:00+07:00",
+        "url": "http://url.info",
+        "reason" : "maintenance reason",
+        "message": "maintenance message",
+        "targetStores": [
+            "GG",
+            "AS",
+            "ONESTORE"
+        ]
+    }
 }
 ```
 
 | Key | Type | Description |
 | --- | --- | --- |
 | underMaintenance | boolean | 是否设置了当前维护 |
-| maintenances | Object | 如果已设置维护，维护基本信息 |
-| maintenances.typeCode | Enum | APP ：游戏中设置的维护 <br>SYSTEM : Gamebase系统中设置的维护 |
-| maintenances.beginDate | String | 维护开始时间 ISO 8601 |
-| maintenances.endDate | String | 维护结束时间 ISO 8601 |
-| maintenances.url | String | 详细维护URL |
-| maintenances.message | String | 维护消息 |
-| maintenances.targetStores | Array[Enum] | 仅对特定客户设置进行检查时，设置检查的客户[商店代码](#store-code) |
+| maintenance | Object | 如果已设置维护，维护基本信息 |
+| maintenance.typeCode | Enum | APP ：游戏中设置的维护 <br>SYSTEM : Gamebase系统中设置的维护 |
+| maintenance.beginDate | String | 维护开始时间 ISO 8601 |
+| maintenance.endDate | String | 维护结束时间 ISO 8601 |
+| maintenance.url | String | 详细维护URL |
+| maintenance.message | String | 维护消息 |
+| maintenance.targetStores | Array[Enum] | 仅对特定客户设置进行检查时，设置检查的客户[商店代码](#store-code) |
 
 **[Error Code]**
 
@@ -1583,14 +1583,15 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-    "marketId": "GG",
+    "marketIds": ["GG", "AS"],
     "userId": "QXG774PMRZMWR3BR"
 }
 ```
 
 | Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| marketId | String | Required | [商店代码](#store-code) |
+| --- | --- | --- | --- | 
+| marketId | String | Optional | [商店代码](#store-code)<br>- 将被**deprecated**，因此使用*marketIds*。 |
+| marketIds | Array | Optional | [商店代码](#store-code)<br>- 如果为空值(或null)，则以所有商店为对象进行查询。<br> - 但是，当查看包括AMAZON商店在内的所有商店时，您必须明确列出要查看的**所有商店**。 |
 | userId | String | Required  | 用户ID  |
 
 **[Response Body]**
@@ -1635,7 +1636,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Key | Type | Description |
 | --- | --- | --- |
 | result | Array[Object] | 支付基本信息 |
-| result[].paymentSeq | String |  Gamebase发布的支付编号 |
+| result[].paymentSeq | String |  Gamebase发布的支付编号 / 结算Transaction ID | |
 | result[].productSeq | Long | 支付道具编号（console中注册的道具固有编号）|
 | result[].currency  | String  | 支付货币 |
 | result[].price | Float | 支付价格 |

@@ -1,5 +1,10 @@
 ## Game > Gamebase > Release Notes > Server API
 
+### 2022. 07. 26.
+
+#### 添加功能
+* 为了一次搜索N家商店，“marketIds”被添加到未消费支付明细查询API中。
+
 ### 2022. 06. 30. 
 
 #### 添加功能
@@ -25,9 +30,9 @@
 
 ### 2021. 09. 14.
 
-#### 修改程序错误
+#### 修改程序错误  
 * 修改了Leaderboard Wrapping API。
-	* 修改了”多数用户分数/ExtraData注册”API的映射错误。
+	* 修改了“多数用户分数/ExtraData注册”API的映射错误。
 
 ### 2021. 03. 09.
 
