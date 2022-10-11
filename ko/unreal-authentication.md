@@ -178,14 +178,14 @@ void Sample::Login()
 
 > [참고]
 >
-> Line IdP는 Gamebase SDK 2.43.0부터 Line 서비스 제공 지역 설정을 할 수 있습니다.
+> LINE IdP는 Gamebase SDK 2.43.0부터 LINE 서비스 제공 지역을 설정할 수 있습니다.
 > 해당 지역은 AdditionalInfo에 설정할 수 있습니다. 
 
 * additionalInfo 파라미터 설정 방법
 
 | keyname                                  | a use                                    | 값 종류                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| GamebaseAuthProviderCredential::LineChannelRegion | Line 서비스 제공 지역 설정 | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
+| GamebaseAuthProviderCredential::LineChannelRegion | LINE 서비스 제공 지역 설정 | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
 
 **API**
 
@@ -262,7 +262,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 | GamebaseAuthProviderCredential::AuthorizationCode | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
 | GamebaseAuthProviderCredential::GamebaseAccessToken | IdP 인증 정보가 아닌 Gamebase Access Token으로 로그인하는 경우 사용 |  |
 | GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn | Gamebase에 로그인한 상태에서 로그아웃을 하지 않고 다른 계정을 이용해 로그인을 시도하는 것을 허용 | **bool** |
-| GamebaseAuthProviderCredential::LineChannelRegion | Line 서비스 제공 지역 설정 | [Login with IdP 참고](./unreal-authentication/#login-with-idp) |
+| GamebaseAuthProviderCredential::LineChannelRegion | LINE 서비스 제공 지역 설정 | [Login with IdP 참고](./unreal-authentication/#login-with-idp) |
 
 > [TIP]
 >
