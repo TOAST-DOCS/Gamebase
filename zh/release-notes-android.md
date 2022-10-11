@@ -33,43 +33,43 @@
 ### 2.42.1 (2022. 07. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Facebook Android SDK(11.3.0)
+#### 改善/修复功能
+* 外部SDK升级 : Facebook Android SDK(11.3.0)
 
 ### 2.42.0 (2022. 07. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Hangame Android SDK(1.5.2)
-* ForcingMappingTicket VO 클래스에 매핑 유저 상태를 나타내는 mappedUserValid 필드가 추가되었습니다.
-* Gamebase Adapter 버전이 Gamebase 버전과 일치하지 않는 경우 런타임 예외가 발생할 수 있으므로, 초기화가 실패하도록 변경되었습니다.
+#### 改善/修复功能
+* 外部SDK升级 : Hangame Android SDK(1.5.2)
+* 在ForcingMappingTicket VO类中添加了显示映射用户状态的mappedUserValid字段。
+* 如果Gamebase Adapter版本与Gamebase版本不一致，则可能出现运行时例外，因此更改它，使其无法初始化。
 
-#### 버그 수정
-* LDPlayer에서 Naver 웹로그인이 실패하는 현상이 수정되었습니다.
-* OS 버전이 낮아 Twitter 로그인이 실패하는 경우 크래쉬가 발생하는 문제가 수정되었습니다.
+#### 修改程序错误
+* 修复了在LDPlayer中Naver网路登录失败的问题。
+* 修复了由于OS版本较低导致Twitter登录失败时发生的崩溃。
 
 ### 2.41.2 (2022. 07. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.2/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 기본 웹뷰 설정을 '쿠키 허용'으로 변경했습니다.
+#### 改善/修复功能
+* 将默认Webview设置更改为“允许Cookie”。
 
 ### 2.41.1 (2022. 07. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.1/GamebaseSDK-Android.zip)
 
-#### 버그 수정
-* 약관 창의 '보기' 버튼이 동작하지 않는 버그를 수정했습니다.
+#### 修改程序错误
+* 修复了条款窗中“查看”按钮不正常启动的错误。
 
 ### 2.41.0 (2022. 07. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Android SDK(0.31.1), Hangame Android SDK(1.4.6)
-* 웹뷰에 등록한 커스텀 스킴 이벤트가 동작할 때 자동으로 웹뷰가 종료됩니다.
-    * 커스텀 스킴 이벤트가 동작하더라도 웹뷰를 유지시키고 싶은 경우에는 **GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** API를 호출하세요.
+#### 改善/修复功能
+* 外部SDK升级 : TOAST Android SDK(0.31.1), Hangame Android SDK(1.4.6)
+* 在Webview中注册的CustomScheme事件启动时Webview将自动关闭。
+    * 即使CustomScheme事件正常启动，也要维持Webview时， 请调用**GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** API。
 
-#### 버그 수정
-* Hangame IdP 로그아웃 후 로그인을 바로 시도하는 경우, 간헐적으로 크래쉬가 발생하거나 로그인이 실패하는 이슈 수정
+#### 修改程序错误
+* 修复了在注销Hangame IdP后立即尝试登录时导致间歇性崩溃或登录失败的问题。
 
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Android.zip)

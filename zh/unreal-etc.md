@@ -276,7 +276,11 @@ void Sample::AddEventHandler()
 {
     IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
     {
-        if (message.category.Equals(GamebaseEventCategory::LoggedOut))
+        if (message.category.Equals(GamebaseEventCategory::IdPRevoked))
+        {
+            auto idPRevokedData = FGamebaseEventIdPRevokedData::From(message.data);
+        }
+        else if (message.category.Equals(GamebaseEventCategory::LoggedOut))
         {
             auto loggedOutData = FGamebaseEventLoggedOutData::From(message.data);
         }
@@ -323,6 +327,7 @@ void Sample::AddEventHandler()
 
 | Event种类 | GamebaseEventCategory | VO转换方法 | 备注 |
 | --------- | --------------------- | ----------- | --- |
+| IdPRevoked | GamebaseEventCategory::IdPRevoked | FGamebaseEventIdPRevokedData::From(message.data) | \- |
 | LoggedOut | GamebaseEventCategory::LoggedOut | FGamebaseEventLoggedOutData::From(message.data) | \- |
 | ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushAppKickOutMessageReceived<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(message.data) | \- |
 | Observer | GamebaseEventCategory::ObserverLaunching<br>GamebaseEventCategory::ObserverNetwork<br>GamebaseEventCategory::ObserverHeartbeat | FGamebaseEventObserverData::From(message.data) | \- |
@@ -331,33 +336,96 @@ void Sample::AddEventHandler()
 | Push - 点击消息 | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) | |
 | Push - 动态点击 | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(message.data) | 点击RichMessage时启动。|
 
-#### Logged Out
+#### IdP Revoked
 
-* 当Gamebase Access Token过期，需要登录函数调用来恢复网络会话时，会引发此事件。
+* 是当在IdP中删除相关服务时出现的事件。
+* 需要通知用户IdP已被禁用，并使用户使用相同的IdP登录时收到新的userID。
+* FGamebaseEventIdPRevokedData.code : 为GamebaseIdPRevokedCode值。
+    * Withdraw : 600   。
+        * 表示当前使用禁用的IdP登录，并且没有映射的IdP列表。
+        * 必须通过调用Withdraw API对当前帐户进行退出处理。
+    * OverwriteLoginAndRemoveMapping : 601  
+        * 表示当前使用禁用的IdP登录，而除了禁用的IdP还有其他IdP被映射。
+        * 需要使用被映射的IdP当中的一个IdP登录，并通过调用RemoveMapping API解除禁用的IdP的链接。
+    * RemoveMapping : 602  
+        * 表示映射到当前账户的IdP当中有禁用IdP。   
+        * 需要通过调用RemoveMapping API解除禁用的IdP的链接。
+* FGamebaseEventIdPRevokedData.idpType : 是禁用的IdP类型。
+* FGamebaseEventIdPRevokedData.authMappingList : 是映射到当前账户的IdP列表。
 
 **Example**
 
 ```cpp
-public void AddEventHandlerSample()
+void Sample::AddEventHandler()
 {
-    Gamebase.AddEventHandler(GamebaseEventHandler);
-}
-private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
-{
-    switch (message.category)
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
     {
-        case GamebaseEventCategory.LOGGED_OUT:
+        if (message.category.Equals(GamebaseEventCategory::IdPRevoked))
+        {
+            auto idPRevokedData = FGamebaseEventIdPRevokedData::From(message.data);
+            if (idPRevokedData.IsValid())
             {
-                GamebaseResponse.Event.GamebaseEventLoggedOutData loggedData = GamebaseResponse.Event.GamebaseEventLoggedOutData.From(message.data);
-                if (loggedData != null)
-                {
-                    // There was a problem with the access token.
-                    // Call login again.
-                }
-                break;
+                ProcessIdPRevoked(idPRevokedData);
             }
+        }
+    }));
+}
+
+void Sample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
+{
+    auto revokedIdP = data->idPType;
+    switch (data->code)
+    {                  
+        // 表示当前使用禁用的IdP登录，并且没有被映射的IdP列表。
+        // 请通知用户当前账户已被退出。
+        case GamebaseIdPRevokeCode::Withdraw:
+        {
+            IGamebase::Get().Withdraw(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+            {
+                ...
+            }));
+            break;
+        }
+        case GamebaseIdPRevokeCode::OverwriteLoginAndRemoveMapping:
+        {      
+            // 表示当前使用禁用的IdP登录，而除了禁用的IdP还有其他IdP被映射。
+            // 让用户从authMappingList中选择要再次登录的IdP，并在使用所选IdP登录后解除禁用的IdP的链接。
+            auto selectedIdP = "用户选择的IdP";
+            auto additionalInfo = NewObject<UGamebaseJsonObject>();
+            additionalInfo->SetBoolField(GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn, true);
+            IGamebase::Get().Login(selectedIdP, *additionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+            {
+                if (Gamebase::IsSuccess(error))
+                {
+                    IGamebase::Get().RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+                    {
+                        ...
+                    }));
+                }
+            }));
+            break;
+        }
+        case GamebaseIdPRevokeCode::RemoveMapping:
+        {
+            // 表示映射到当前账户的IdP当中有禁用IdP。
+            // 请通知用户在当前账户中禁用IdP的链接被解除。
+            IGamebase::Get().RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+            {
+                ...
+            }));
+            break;
+        }
     }
 }
+```
+
+#### Logged Out
+
+* 当Gamebase Access Token已过期并需要登录函数调用来恢复网络会话时，会引发此事件。
+
+**Example**
+
+```cpp
 void Sample::AddEventHandler()
 {
     IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
@@ -439,7 +507,7 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
 * Gamebase支持的Observer Type如下。
     * GamebaseEventCategory::ObserverLaunching
         * 当维护开始、结束时或发布新版本必须进行更新等Launching状态出现变动时启动。
-        * GamebaseEventObserverData.code : 为LaunchingStatus值。
+        * GamebaseEventObserverData.code: 为LaunchingStatus值。
             * GamebaseLaunchingStatus::IN_SERVICE: 200
             * GamebaseLaunchingStatus::RECOMMEND_UPDATE: 201
             * GamebaseLaunchingStatus::IN_SERVICE_BY_QA_WHITE_LIST: 202
@@ -451,13 +519,13 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
             * GamebaseLaunchingStatus::INTERNAL_SERVER_ERROR: 500
     * GamebaseEventCategory::ObserverHeartbeat
         * 当因已被退出或禁用、用户账号状态出现变化时启动。
-        * GamebaseEventObserverData.code : 为GamebaseError值。
+        * GamebaseEventObserverData.code: 为GamebaseError值。
             * GamebaseErrorCode::INVALID_MEMBER: 6
             * GamebaseErrorCode::BANNED_MEMBER: 7
     * GamebaseEventCategory::ObserverNetwork
         * 可以接收网络变动信息。 
         * 当网络断开或被连接时、从Wifi转为Cellular网络时启动。
-        * GamebaseEventObserverData.code : 为NetworkManager值。 
+        * GamebaseEventObserverData.code: 为NetworkManager值。 
             * EGamebaseNetworkType::Not: 255
             * EGamebaseNetworkType::Mobile: 0
             * EGamebaseNetworkType::Wifi: 1
@@ -861,7 +929,7 @@ Gamebase SDK的客户服务API根据各类型使用如下URL。
 | ------------- | ------------- | ---------------------------------- | ------------------ |
 | userName      | O             | FString                            | 用户名(nickname) <br>**default**: ""   |
 | additionalURL | O             | FString                            | 在开发公司客户服务URL后面添加的附加URL <br>**default**: ""    |
-| additionalParameters | O      | TMap<string, string>               | 客户服务URL后面添加的附加参数<br>**default** : EmptyMap |
+| additionalParameters | O      | TMap<string, string>               | 客户服务URL后面添加的附加参数<br>**default**: EmptyMap |
 | extraData     | O             | TMap<FString, FString>             | 开始客户服务时传送开发公司需要的extra data。<br>**default**: EmptyMap |
 
 **API**

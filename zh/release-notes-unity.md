@@ -25,40 +25,40 @@
 ### 2.42.1 (2022. 08. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* ForcingMappingTicket 클래스에 매핑 유저 상태를 나타내는 mappedUserValid 필드가 추가되었습니다.
+#### 添加功能
+* 在ForcingMappingTicket类中添加了显示映射用户状态的mappedUserValid字段。
 
-#### 기능 개선/변경
-* WebView에서 고정 폰트 사이즈 사용 여부를 설정하는 필드는 더 이상 사용되지 않습니다.
+#### 改善/修复功能
+* 已不使用用于设置是否在WebView中使用固定字体大小的字段。
     * **GamebaseWebViewConfiguration.enableFixedFontSize**
-* GamebaseWebViewConfiguration의 기본값이 추가되었습니다.
-    * 네비게이션 바의 색상 필드인 colorR, colorG, colorB, colorA의 기본값이 18, 93, 230, 255으로 설정되었습니다.
-    * 네비게이션 바 활성 여부를 지정하는 필드인 isNavigationBarVisible의 기본값이 true로 설정되었습니다.
-    * 웹뷰 내 뒤로가기 버튼 활성 여부를 지정하는 필드인 isBackButtonVisible의 기본값이 true로 설정되었습니다.
+* 添加了GamebaseWebViewConfiguration的默认值。
+    * 导航栏的颜色字段colorR、colorG、colorB、colorA的默认值被设置为18、93、230、255。
+    * 指定导航栏是否是启用状态的“isNavigationBarVisible”字段的默认值已设置为true。
+    * 指定是否启用Webview内的返回按钮的“isBackButtonVisible”字段的默认值已设置为true。
 
-#### 플랫폼별 변경 사항
+#### 各平台变更项目
 * [Gamebase Android SDK 2.42.1](./release-notes-android/#2421-2022-07-26)
 * [Gamebase iOS SDK 2.42.1](./release-notes-ios/#2421-2022-08-09)
 
 ### 2.41.0 (2022. 07. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 외부 SDK 업데이트: TOAST Unity SDK(0.25.6)
-* GamebaseEventHandler의 GamebaseEventCategory에 **IDP_REVOKED** 타입이 추가되었습니다.
-    * [Game > Gamebase > Unity SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./unity-etc/#idp-revoked)
+#### 添加功能
+* 外部SDK升级 : TOAST Unity SDK(0.25.6)
+* 在GamebaseEventHandler的GamebaseEventCategory中添加了**IDP_REVOKED**类型。
+    * [Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./unity-etc/#idp-revoked)
 
-#### 기능 개선/변경
-* Unity의 Burst 패키지를 사용 시 메모리 릭이 발생하는 이슈를 수정했습니다.
+#### 改善/修复功能
+* 修复了使用Unity的Burst Package时导致内存泄漏的问题。
 * Setting Tool (v2.4.0)
-    * 내부 안정화 지표가 추가되었습니다.
-    * 기존 SettingTool은 Unity 프로젝트에서 완전히 제거 후, 최신 버전으로 재설치해야 합니다.
-    * SettingTool v1은 더 이상 지원하지 않습니다.
+    * 添加了内部稳定指标。
+    * 必须从Unity项目中完全删除现有的SettingTool，并使用最新版本重新安装。
+    * 目前不支持SettingTool v1。
 
-#### 버그 수정
-* (iOS) 특정 환경에서 결제 후 크래시가 발생하는 문제를 수정했습니다.
+#### 修改程序错误
+* (iOS) 修复了在某些情况下导致付款后崩溃的问题。
 
-#### 플랫폼별 변경 사항
+#### 各平台变更项目
 * [Gamebase Android SDK 2.41.0](./release-notes-android/#2410-2022-07-05)
 * [Gamebase iOS SDK 2.41.0](./release-notes-ios/#2410-2022-07-05)
 

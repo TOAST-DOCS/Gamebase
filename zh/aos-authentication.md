@@ -22,7 +22,7 @@ Gamebase默认支持Guest登录。
 
 #### 1. 按上一次的登录类型认证
 
-* 如果存在已做过的认证的记录，则尝试进行认证，不需要输入ID和密码。
+* 如果存在已做过认证的记录，则尝试进行认证，不需要输入ID和密码。
 * 调用**Gamebase.loginForLastLoggedInProvider()**。
 
 #### 1-1. 如果认证成功
@@ -185,9 +185,9 @@ private static void onLoginForGuest(final Activity activity) {
 
 > <font color="red">[注意]</font><br/>
 >
-> 因PAYCO IdP（为认证模块）在检测中出现错误，常被误认为第三方结算模块，iOS审核总被拒，
-> 不再提供AuthProvider.PAYCO的常数。
-> 您要将"payco"字符串作为参数传送。
+> PAYCO IdP在iOS上是认证模块，但由于在检测中出现错误，常被误认为第三方结算模块，App Store审核总被拒，
+> 因此不再提供AuthProvider.PAYCO的常数。
+> 您需要将“payco”字符串作为参数传送。
 
 **API**
 
@@ -250,7 +250,7 @@ private static void onLoginForGoogle(final Activity activity) {
 | keyname                                  | a use                                    | 值类型                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP类型                               | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.HANGAME<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
-| AuthProviderCredentialConstants.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（Access Token）<br/>不用于Google认证 |                                          |
+| AuthProviderCredentialConstants.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（Access Token）<br/>不用于Google认证。 |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | 输入登录Google后可以获取的OTAC(一次性验证码) |                                          |
 | AuthProviderCredentialConstants.GAMEBASE_ACCESS_TOKEN | 当需使用Gamebase Access Token，而不需使用IdP认证信息登录时使用。 |  |
 | AuthProviderCredentialConstants.IGNORE_ALREADY_LOGGED_IN | 在登录Gamebase的状态下，即使不注销也可使用其他账户尝试登录。 | **boolean** |
@@ -328,7 +328,7 @@ private static void onLoginWithCredential(final Activity activity) {
 
 ## Logout
 
-尝试从登录中的IdP退出。 通常，在游戏的设置画面有退出登录（退出账号）按钮，点击该按钮执行。
+尝试从登录中的IdP退出。 通常在游戏的设置页面有退出登录（退出账号）按钮，点击该按钮执行。
 即使退出登录成功，也会保留游戏用户数据。
 如果退出登录成功，将会删除IDP认证记录，则下次登录时将显示ID和密码输入窗口。<br/><br/>
 
@@ -353,7 +353,7 @@ private static void onLogout(final Activity activity) {
             } else {
                 if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                         exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                    // Socket error 表示网络暂时不可用。
+                    // Socket error表示网络暂时不可用。
                     // 请确认网络状态或稍后再试。
                     new Thread(new Runnable() {
                         @Override
@@ -378,7 +378,7 @@ private static void onLogout(final Activity activity) {
 
 ## Withdraw
 
-登录后，尝试退出。
+登录后尝试退出。
 
 * 成功退出时
   * 登录IdP的游戏用户数据将被删除。
@@ -618,7 +618,7 @@ private static void addMappingWithCredential(final Activity activity) {
             // 添加映射（Mapping）失败
             if (exception.getCode() == GamebaseError.SOCKET_ERROR ||
                     exception.getCode() == GamebaseError.SOCKET_RESPONSE_TIMEOUT) {
-                // Socket error 表示网络暂时不可用。
+                // Socket error表示网络暂时不可用。
                 // 请确认网络状态或稍后再试 。
                 new Thread(new Runnable() {
                     @Override
@@ -868,7 +868,7 @@ String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
 >     * 例如，登录Google过2小时后，Access Token将会过期。
 >     * 如果您需要用户信息，登录后，请直接调用Gamebase Server API。
 > * 如果您使用"Gamebase.loginForLastLoggedInProvider()" API登录，则无法获取认证信息。
->     * 为了获取认证信息，您不需使用"Gamebase.loginForLastLoggedInProvider()"，而应使用IDPCode和同一个{IDP_CODE}作为参数，使用“Gamebase.login(activity, IDP_CODE, callback)” API登录，才可获取正确的认证信息。 
+>     * 为了获取认证信息，不要使用"Gamebase.loginForLastLoggedInProvider()"，而要使用IDPCode和同一个{IDP_CODE}作为参数，使用“Gamebase.login(activity, IDP_CODE, callback)” API登录，才可获取正确的认证信息。 
 
 **API**
 
@@ -895,7 +895,7 @@ Map<String, Object> profileMap = profile.information;
 ### Get Banned User Information
 
 如果在Gamebase Console中登记为受到制裁的游戏用户，当该用户尝试登录时，
-可能会看到以下限制信息代码。您可以使用**BanInfo.from(exception)**方法确认制裁信息。
+可能会看到以下限制信息代码。您可以使用**BanInfo.from(exception)**方法查看制裁信息。
 
 * BANNED_MEMBER(7)
 

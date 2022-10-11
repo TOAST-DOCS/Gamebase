@@ -175,9 +175,7 @@ Gamebase默认支持Guest登录。
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | 设定IdP类型                     | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname |设定登录IdP后收到的认证信息（Access Token）。|                                |
-
-
-
+| kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname | 允许登录Gamebase后尝试使用其他帐户登录而不注销。 | **BOOL** |
 
 
 > [参考]
