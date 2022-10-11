@@ -1,4 +1,4 @@
- ## Game > Gamebase > iOS SDK使用指南 > UI
+## Game > Gamebase > iOS SDK使用指南 > UI
 
 ## ImageNotice
 
@@ -485,11 +485,11 @@ Gamebase支持基本WebView。<br/>
 |                                        | TCGBWebViewOrientationPortraitUpsideDown | 纵向旋转180度     |
 |                                        | TCGBWebViewOrientationLandscapeRight     | 横向模式              |
 |                                        | TCGBWebViewOrientationLandscapeLeft      |横向旋转180度     |
-| contentMode                            | TCGBWebViewContentModeRecommended        | 当前平台推荐的浏览器             |
+| contentMode                            | TCGBWebViewContentModeRecommended        | 当前平台推荐的浏览器(**default**)              |
 |                                        | TCGBWebViewContentModeMobile             | Mobile浏览器            |
 |                                        | TCGBWebViewContentModeDesktop            | Desktop浏览器          |
-| navigationBarColor                     | UIColor                                  | 导航栏颜色         |
-| isBackButtonVisible                    | YES or NO                                | 返回按钮有效或无效 |
+| navigationBarColor                     | UIColor                                  | 导航栏颜色<br/>**default**: [UIColor colorWithRed: 0.07 green: 0.36 blue: 0.90 alpha: 1.00]         |
+| isBackButtonVisible                    | YES or NO                                | 返回按钮有效或无效<br/>**default**: YES |
 | isNavigationBarVisible                 | YES or NO                                | 导航栏有效或无效<br/>**default**: YES    |
 | goBackImagePathForFullScreenNavigation | file name in Gamebase.bundle             | 返回按钮图标      |
 | closeImagePathForFullScreenNavigation  | file name in Gamebase.bundle             | 关闭按钮图标          |

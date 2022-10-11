@@ -292,7 +292,7 @@ public void LoginWithAdditionalInfo()
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（Access Token）。<br/>不用于Google认证。 |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 输入登录Google后可以获取的认证码(Authorization Code)。 |
 | GamebaseAuthProviderCredential.GAMEBASE_ACCESS_TOKEN | 使用Gamebase访问令牌而非  IdP身份验证信息登录时使用。 |  |
-| GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | 允许在不注销Gamebase的情况下尝试其他帐户登录。 | **bool** |
+| GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | 允许在不注销Gamebase的情况下尝试使用其他帐户登录。 | **bool** |
 
 > [TIP]
 >

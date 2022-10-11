@@ -121,8 +121,10 @@ Supported Platforms
 1. 选择编辑器菜单**Edit > Project Settings**。
 2. 在Project Settings窗的Plugin类别中选择**Gamebase - iOS**。
 
-![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.40.0.png)
+![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.42.1.png)
 
+* Path
+    * Xcode Path : 输入Xcode的路径。 (默认值 : /Applications/Xcode.app)
 * Authentication
     * 启用要使用的IdP。
 * Purchase
