@@ -262,7 +262,7 @@ This interface allows login to Gamebase with SDKs provided by IdP and authentica
 | GamebaseAuthProviderCredential::AuthorizationCode | Set authorization code given after Google login |                                          |
 | GamebaseAuthProviderCredential::GamebaseAccessToken | Used when logging in with Gamebase Access Token instead of IdP authentication information |  |
 | GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn | Allow login attempts with another account without logging out while logged in to Gamebase | **bool** |
-| GamebaseAuthProviderCredential::LineChannelRegion | Set LINE service region | [Login with IdP 참고](./unreal-authentication/#login-with-idp) |
+| GamebaseAuthProviderCredential::LineChannelRegion | Set LINE service region | [See Login with IdP](./unreal-authentication/#login-with-idp) |
 
 > [TIP]
 >

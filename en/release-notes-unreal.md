@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.3/GamebaseSDK-Unreal.zip)
 
 #### Feature Updates
-* Made modifications so that, when logging in to LINE, a region to provide service is enterred.
+* Modified to enter a service region when logging in to LINE.
     * [Game > Gamebase > Unreal SDK User Guide > Authentication > Login with IdP](./unreal-authentication/#login-with-idp)
     
 #### Platform-specific Changes
