@@ -21,6 +21,7 @@ Regarding how to set in-app purchases on Android or iOS, read the following docu
             
             [OnlineSubsystemGooglePlay.Store]
             bSupportsInAppPurchasing=False
+            bUseGooglePlayBillingApiV2=False
             
     * If you're using Online SubSystem Online SubSystem iOS plugin, edit the /Config/IOS/IOSEngine.ini file.
             

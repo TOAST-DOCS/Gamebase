@@ -176,6 +176,17 @@ The types of IdPs that can be used for login can be found in the **GamebaseAuthP
 > You can input required information in the additionalInfo parameter in the form of a dictionary.
 > If additionalInfo is available, it is used. If it is null, the value registered in [NHN Cloud Console](./oper-app/#authentication-information) is used.
 
+> [Note]
+>
+> LINE IdP can set a LINE service region from Gamebase SDK 2.43.0.
+> The region can be set in AdditionalInfo. 
+
+* Setting additionalInfo parameters
+
+| keyname                                  | a use                                    | Value type                                     |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| GamebaseAuthProviderCredential::LineChannelRegion | Set LINE service region | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
+
 **API**
 
 Supported Platforms
@@ -251,6 +262,7 @@ This interface allows login to Gamebase with SDKs provided by IdP and authentica
 | GamebaseAuthProviderCredential::AuthorizationCode | Set authorization code given after Google login |                                          |
 | GamebaseAuthProviderCredential::GamebaseAccessToken | Used when logging in with Gamebase Access Token instead of IdP authentication information |  |
 | GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn | Allow login attempts with another account without logging out while logged in to Gamebase | **bool** |
+| GamebaseAuthProviderCredential::LineChannelRegion | Set LINE service region | [Login with IdP 참고](./unreal-authentication/#login-with-idp) |
 
 > [TIP]
 >
@@ -493,9 +505,9 @@ This interface allows to authenticate with SDK provided by IdP of a game to enab
 
 | Keyname | Usage | Value Type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                            | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | Set authentication information (e.g. access token) given after IdP login <br/> Disabled for Google authentication |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Set authorization code given after Google login  |                                          |
+| GamebaseAuthProviderCredential::PROVIDER_NAME |Set IdP type | GamebaseAuthProvider::Google<br> GamebaseAuthProvider::Facebook<br>GamebaseAuthProvider::Naver<br>GamebaseAuthProvider::Twitter<br>GamebaseAuthProvider::Line<br>GamebaseAuthProvider::Hangame<br>GamebaseAuthProvider::AppleId<br>GamebaseAuthProvider::Weibo<br>GamebaseAuthProvider::GameCenter<br>GamebaseAuthProvider::Payco |
+| GamebaseAuthProviderCredential::ACCESS_TOKEN | Set authentication information (Access Token) given after IdP login<br/>Disabled for Google authentication |                                |
+| GamebaseAuthProviderCredential::AUTHORIZATION_CODE | Set authorization code given after Google login |                                          |
 
 > [TIP]
 >

@@ -3,11 +3,11 @@
 ### 2.43.3 (2022. 10. 04.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.3/GamebaseSDK-Unreal.zip)
 
-#### 기능 개선/변경
-* LINE 로그인을 수행 시 서비스를 제공할 Region을 입력하도록 변경되었습니다.
-    * [Game > Gamebase > Unreal SDK 사용 가이드 > 인증 > Login with IdP](./unreal-authentication/#login-with-idp)
+#### Feature Updates
+* Made modifications so that, when logging in to LINE, a region to provide service is enterred.
+    * [Game > Gamebase > Unreal SDK User Guide > Authentication > Login with IdP](./unreal-authentication/#login-with-idp)
     
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.43.0](./release-notes-android/#2430-2022-09-07)
 * [Gamebase iOS SDK 2.43.3](./release-notes-ios/#2433-2022-10-04)
 

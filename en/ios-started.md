@@ -105,8 +105,10 @@ By decompression, following SDKs will show, including Gamebase.framework.
     * Add an **empty swift file** within the project (When there are not any swift files within the project)
 * 5) Go to **Target > Build Settings > Linking > Other Linker Flags** and add **-ObjC**.
 ![Other Linker Flags](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
-* 6) When using NaverAuthAdapter, **NaverThirdPartyLogin.framework** file provided by NAVER SDK should be added to **Target > General > Embedded Binaries**.
- ![Naver Embeded Binaries](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.7.0.png)
+* 6) When using NaverAuthAdapter, the **NaverThirdPartyLogin.framework** file provided by NAVER SDK should be added to **Target > Build Phases > Embedded Frameworks**.
+ ![Naver Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.8.0.png)
+ * 7) When using LineAuthAdapter, the **LineSDKObjC.xcframework** file provided by LINE SDK should be added to **Target > Build Phases > Embedded Frameworks**.
+ ![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.0.png)
 
 > [INFO]
 >

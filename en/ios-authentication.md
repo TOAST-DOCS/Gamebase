@@ -778,7 +778,7 @@ The account is automatically withdrawn after a specific grace period set in the 
 **API**
 
 ```objectivec
-+ (void)withdrawWithViewController:(UIViewController *)viewController completion:(WithdrawCompletion)completion;
++ (void)requestTemporaryWithdrawalWithViewController:(nullable UIViewController *)viewController completion:(nullable TemporaryWithdrawCompletion)completion;
 ```
 
 **ErrorCode**
