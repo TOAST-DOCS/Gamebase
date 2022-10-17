@@ -26,7 +26,7 @@
 
 ## 2つの連動認証方式を提供
 
-![NHN Cloud IAPアプリ設定](https://static.toastoven.net/prod_iap/console_google/google_iap_console.png)
+![NHN Cloud IAPアプリ設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_ja_202210.png)
 
 - Google連携を行うには、GoogleのAndroid開発者APIにアクセスするための認証が必要です。
 - NHN Cloud IAPは、2つの認証モデルを提供し、それぞれ認証のために異なる特化情報が必要です。
@@ -47,7 +47,7 @@
     - `Google API Client ID`：最高管理者認証モデルガイドのステップ4を参照
     - `Google API Client Secret`：最高管理者認証モデルガイドのステップ4を参照
     - `Refresh Token For Google Oauth`：最高管理者認証モデルガイドのステップ6を参照
-      ![最高管理者モデル設定](https://static.toastoven.net/prod_iap/console_google/google_iap_console_supervisor.png)
+      ![最高管理者モデル設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_supervisor_ja_202210.png)
 
 
 2. [Google Cloud Console APIおよびサービス](https://console.cloud.google.com/apis/dashboard)ダッシュボードに移動
@@ -95,7 +95,7 @@
 
 1. NHN Cloud IAPサービスアカウント認証モデル特化入力情報
     - `サービスアカウント連動情報`：サービスアカウント認証モデルガイドのステップ5を参照 
-      ![サービスアカウントモデル設定](https://static.toastoven.net/prod_iap/console_google/google_iap_console_service_account.png)
+      ![サービスアカウントモデル設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_service_account_ja_202210.png)
 
 2. [Google Cloud Console](https://console.cloud.google.com/apis/dashboard) APIおよびサービスページに移動
     - Google Play管理アカウントと連携するプロジェクトを選択
