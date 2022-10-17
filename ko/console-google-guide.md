@@ -26,7 +26,7 @@
 
 ## 두 가지 연동 인증 방식 제공
 
-![NHN Cloud IAP 앱 설정](https://static.toastoven.net/prod_iap/console_google/google_iap_console.png)
+![NHN Cloud IAP 앱 설정](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_202210.png)
 
 - Google 연동을 위해서는 Google의 안드로이드 개발자 API 접근을 위한 인증이 필요합니다.
 - NHN Cloud IAP는 두가지 인증 모델을 제공하며, 각각은 인증을 위해 각기 다른 특화 정보들이 필요합니다.
@@ -47,7 +47,7 @@
     - `Google API Client ID`: 최고 관리자 인증모델 가이드 4단계 참조
     - `Google API Client Secret`: 최고 관리자 인증모델 가이드 4단계 참조
     - `Refresh Token For Google Oauth`: 최고 관리자 인증모델 가이드 6단계 참조
-      ![최고 관리자 모델 설정](https://static.toastoven.net/prod_iap/console_google/google_iap_console_supervisor.png)
+      ![최고 관리자 모델 설정](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_supervisor_202210.png)
 
 
 2. [Google Cloud Console API 및 서비스](https://console.cloud.google.com/apis/dashboard) 대시보드로 이동
@@ -95,7 +95,7 @@
 
 1. NHN Cloud IAP 서비스 계정 인증 모델 특화 입력 정보
     - `서비스 계정 연동 정보`: 서비스 계정 인증 모델 가이드 5단계 참조   
-      ![서비스 계정 모델 설정](https://static.toastoven.net/prod_iap/console_google/google_iap_console_service_account.png)
+      ![서비스 계정 모델 설정](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_service_account_202210.png)
 
 2. [Google Cloud Console](https://console.cloud.google.com/apis/dashboard) API 및 서비스 페이지로 이동
     - Google Play 관리 계정과 연동할 프로젝트 선택
