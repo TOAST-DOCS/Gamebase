@@ -13,13 +13,13 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 
 ゲーム内でアイテムを販売するためにストアを登録します。
 **Store**タブの**ストア情報リスト**から新しいストアを登録したり、登録済みのストアを管理することができます。
-![gamebase_purchase_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_01_201812.png)
+![gamebase_purchase_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_01_202210_ja.png)
 
 ### Register
 
 新しいストアを登録したい場合、**ストア情報リスト**画面の**登録**ボタンをクリックします。
 
-![gamebase_purchase_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_02_201812.png)
+![gamebase_purchase_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_02_202210_ja.png)
 
 * **ストア**登録する外部ストアを選択します。登録するストアがない場合、[カスタマーセンター](https://toast.com/support/inquiry)までご連絡ください。
 * **アプリ名**登録するゲームの名前を入力します。
@@ -35,7 +35,7 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 
 照会リストから登録されたストアの詳細情報を照会したり、情報を変更することができます。
 
-![gamebase_purchase_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_03_201812.png)
+![gamebase_purchase_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_03_202210_ja.png)
 - 照会リストから登録されたストアを選択すると、詳細情報を照会することができます。
 - **修正**ボタンをクリックすればストアアプリIDを除くアプリ名、ストアアプリ、使用有無情報を修正することができます。
 - **削除**ボタンをクリックすればストアの情報を削除することができます。ただし、使用有無の状態が未使用のストアのみ削除できます。
@@ -96,7 +96,7 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 選択した検索タイプに応じて表示される検索項目が異なります。
 
 ##### (1)一般検索
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202006.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202210_ja.png)
 
 下記の検索条件を満たす結果を検索できます。
 - **検索期間**：ユーザーが購入を試行した期間、降順/昇順からソート方法を選択できる。
@@ -107,12 +107,12 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 - **決済状態**：検索する決済状態基準
 
 ##### (2) Transaction ID検索
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202006.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202210_ja.png)
 
 決済すると作成されるTransaction IDを使用して検索できます。
 
 ##### (3)領収書検索
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202006.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202210_ja.png)
 
 決済時に支給された領収書情報で照会できます。
 
@@ -154,11 +154,11 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 
 
 ##### Success変更
-![gamebase_purchase_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_201812.png)
+![gamebase_purchase_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_202210_ja.png)
 決済進行時に発行された**領収書番号**、**価格**、**通貨**情報を入力すると、状態を変更できます。
 
 ##### Refund変更
-![gamebase_purchase_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_09_201812.png)
+![gamebase_purchase_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_09_202210_ja.png)
 追加情報を入力しないで状態を選択した後、変更を選択します。
 変更された決済情報は、変更できないため、慎重に確認してください。
 

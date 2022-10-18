@@ -13,12 +13,12 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
  
 为了在游戏内销售商品，需要添加应用商店。
 您可以在**Store**选项卡中的**商店信息列表**中添加新商店或管理已添加的商店。  
-![gamebase_purchase_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_01_201812.png)
+![gamebase_purchase_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_01_202210_zh.png)
 
 ### Register
 
 如果要添加新商店，请点击**商店信息列表**页面上的**添加**按钮。
-![gamebase_purchase_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_02_201812.png)
+![gamebase_purchase_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_02_202210_zh.png)
 
 * **商店** 选择要添加的外部商店，如果没有需要添加的商店，请联系[客户服务](https://toast.com/support/inquiry)。
 * **App名称** 输入要添加的游戏名称。
@@ -34,7 +34,7 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 
 您可以在查询列表中查看已添加商店的详细信息并更改信息。
 
-![gamebase_purchase_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_03_201812.png)
+![gamebase_purchase_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_03_202210_zh.png)
 - 在查询目录中选择已添加的商店来查看详细信息。
 - 点击**编辑**按钮可以编辑应用程序名称、商店应用程序和可用性信息，但Store App ID除外。
 - 点击**删除**按钮可以删除商店信息。但只能删除未使用的商店。
@@ -92,7 +92,7 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 按照选择的搜索类型显示不同的搜索项目。
 
 ##### (1) 一般搜索
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202006.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202210_zh.png)
 
 可以搜索符合下列搜索条件的结果。
 - **搜索日期** : 用户尝试购买的时间（通过使用右边的降序/升序项目选择排列）
@@ -103,12 +103,12 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 - **支付状态** : 将要搜索的支付状态基准
 
 ##### (2) 搜索Transaction ID
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202006.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202210_zh.png)
 
 可以利用付款时生成的Transaction ID进行查询。 
 
 ##### (3) 搜索发票
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202006.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202210_zh.png)
 可利用支付时提供的发票信息进行查询。 
 
 #### 搜索结果
@@ -145,11 +145,11 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 	- 用户取消支付的状态
 
 ##### Success变更
-![gamebase_purchase_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_201812.png)
+![gamebase_purchase_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_202210_zh.png)
 您可以通过输入付款时收到的**发票编号**、**价格**、**货币**信息来更改状态。
 
 ##### Refund变更
-![gamebase_purchase_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_09_201812.png)
+![gamebase_purchase_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_09_202210_zh.png)
 不必输入其他追加信息，确认状态后选择变更即可。
 您更改的付款信息无法再次更改，因此需要仔细检查信息。
 
