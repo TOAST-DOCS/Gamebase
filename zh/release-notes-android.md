@@ -16,7 +16,7 @@
 
 #### 添加功能
 * 添加了ONE store v19 Purchase Adapter。
-    * 在Build的依赖性添加**gamebase-adapter-purchase-onestore-v19**模块儿和[ONE store v19 IAP SDK后](https://github.com/ONE-store/onestore_iap_release/tree/iap19-release/android_app_sample/app/libs)   可以使用。
+    * 在Build的依赖性添加**gamebase-adapter-purchase-onestore-v19**模块儿和[ONE store v19 IAP SDK后](https://github.com/ONE-store/onestore_iap_release/tree/iap19-release/android_app_sample/app/libs)可以使用。
             
             dependencies {
                 ...
