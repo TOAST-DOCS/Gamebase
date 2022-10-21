@@ -185,7 +185,7 @@ private static void onLoginForGuest(final Activity activity) {
 
 > <font color="red">[注意]</font><br/>
 >
-> PAYCO IdP在是认证模块，但由于在检测中出现错误，常被误认为第三方结算模块，App Store审核总被拒，
+> PAYCO IdP是认证模块，但由于在检测中出现错误，常被误认为第三方结算模块，App Store审核总被拒，
 > 因此不再提供AuthProvider.PAYCO的常数。
 > 您需要将“payco”字符串作为参数传送。
 
