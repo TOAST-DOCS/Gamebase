@@ -35,6 +35,8 @@
 > 无论指标的设置状态如何，因数据始终累积测试支付件和实际的支付件，即使更改测试付款的显示与否，也不影响到实际数据搜集。
 
 > [参考2]
+> 对于设置排除测试付款之后发生的付款，将从Analytics销售指标中排除。
+> [参考3]
 > 测试数据只支持Google和AppStore。
 > 各商店的测试指标的标准如下。
 > * Google : 通过使用Google控制台中注册的测试账户进行付款的历史记录。
@@ -345,6 +347,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
  
 **输入字段**
 
+- Region: {LINE Channel Region}
 - Client ID ：{LINE Channel ID}
 - Secret Key ：{LINE Channel Secret}
 

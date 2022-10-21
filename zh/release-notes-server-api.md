@@ -1,5 +1,12 @@
 ## Game > Gamebase > Release Notes > Server API
 
+### 2022. 08. 23.
+
+#### 添加功能
+
+* 添加了服务器URL。
+	* https://api-gamebase.nhncloudservice.com
+
 ### 2022. 07. 26.
 
 #### 添加功能
@@ -41,12 +48,12 @@
 
 ### 2020. 08. 11.
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 添加了消耗优惠券的API错误代码 : 在优惠券代码输入英文或数字之外的值时(Error Code:-4000205)
 
 ### 2020. 02. 11.
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 添加了调用退出API时的regUser长度有效性验证(validation)。
 
 ### 2020. 01. 14.
@@ -62,7 +69,7 @@
 
 ### 2019. 05. 28.
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 更改了LTV查询修改和failover逻辑。
 
 ### 2019. 03. 26.
@@ -78,18 +85,18 @@
 
 ### 2017. 11. 30.
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 在List中将[查询维护API](./api-guide/#check-under-maintenance)结果更改为单一对象。
 
 ### 2017. 04. 04.
 
-#### 改善/修复功能
+#### 改善/修改功能
 * [IAP](./api-guide/#purchaseiap) API联动 : 查询道具、查询未消费明细
 * 在checkAccessToken API响应结果中添加了用于登录的包含IdP信息的Spec。
 
 ### 2017. 03. 21.
 
-#### 改善/修复功能
+#### 改善/修改功能
 * [Leaderboard](./api-guide/#leaderboard), [IAP](./api-guide/#purchaseiap) API联动
 
 ### 2017. 03. 09.

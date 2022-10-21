@@ -42,10 +42,10 @@ Gamebase认证服务不构建独立会员体系，而是利用外部IDP提供的
 
 以下是Gamebase支持的外部认证列表。
 
-| 外部认证          | Android | iOS | Windows(based Unity) |
+| 外部认证             | Android | iOS | Windows(based Unity) |
 | ----------------- | ------------ | ------------ | ------------ |
 | Facebook          | O | O | O |
-| Sign In with Apple | O | O | |
+| Sign In with Apple | O  | O | |
 | Apple Game Center |  | O | |
 | Google            | O | O | O |
 | PAYCO             | O | O | O |
@@ -178,7 +178,7 @@ Gamebase基本上支持全球游戏，并提供以下功能：
 * [iOS SDK 使用指南](./ios-started/)
 * [Unity SDK 使用指南](./unity-started/)
 * [Unreal SDK 使用指南](./unreal-started/)
-
+ 
 ### 服务器端开发者指南
 
 * [API 指南](./api-guide/)

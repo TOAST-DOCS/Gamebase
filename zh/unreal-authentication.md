@@ -176,6 +176,16 @@ void Sample::Login()
 > 将以dictionary格式在additionalInfo参数中输入必要信息即可。 
 > 如有additionalInfo值，则使用相应值，而如果为null，则使用[NHN Cloud Console](./oper-app/#authentication-information)中注册的值。
 
+> [参考]
+>
+> 从Gamebase SDK 2.43.0开始Line IdP可设置提供Line服务的区域。 
+> 此区域可以在AdditionalInfo中进行设置。
+* additionalInfo参数的设置方法
+
+| keyname                                  | a use                                    | 值类型                                     |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| GamebaseAuthProviderCredential::LineChannelRegion | 设置提供Line服务的区域。 | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
+
 **API**
 
 支持的平台
@@ -250,7 +260,8 @@ void Sample::LoginWithAdditionalInfo()
 | GamebaseAuthProviderCredential::AccessToken | 进行IdP登录后接收的认证信息(Access Token)设置<br/>Google认证时不使用。 |                                |
 | GamebaseAuthProviderCredential::AuthorizationCode | Google登录后接收的认证信息(Authorization Code)设置 |                                          |
 | GamebaseAuthProviderCredential::GamebaseAccessToken | 通过Gamebase Access Token登录，而不是通过IdP认证信息登录时使用。 |  |
-| GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn | 在Gamebase登录状态下，不注销也允许使用其他帐户尝试登录。 | **bool** |                             
+| GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn | 在Gamebase登录状态下，不注销也允许使用其他帐户尝试登录。 | **bool** |
+| GamebaseAuthProviderCredential::LineChannelRegion | 设置提供Line服务的区域。 | [参考Login with IdP](./unreal-authentication/#login-with-idp) |                            
 
 > [TIP]
 >
@@ -492,9 +503,9 @@ void Sample::AddMapping(const FString& providerName)
 
 | keyname | a use | 值类型 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdP类型                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | 进行IdP登录后获取的认证信息(Access Token)<br/>进行Google认证时不使用。|                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google登录后获取的认证信息(Authorization Code) |                                          |
+| GamebaseAuthProviderCredential::PROVIDER_NAME | 设置IdP类型。 | GamebaseAuthProvider::Google<br> GamebaseAuthProvider::Facebook<br>GamebaseAuthProvider::Naver<br>GamebaseAuthProvider::Twitter<br>GamebaseAuthProvider::Line<br>GamebaseAuthProvider::Hangame<br>GamebaseAuthProvider::AppleId<br>GamebaseAuthProvider::Weibo<br>GamebaseAuthProvider::GameCenter<br>GamebaseAuthProvider::Payco |
+| GamebaseAuthProviderCredential::ACCESS_TOKEN | 设置IdP登录以后收到的认证信息(Access Token)<br/>Google 认证时不使用。 |                                |
+| GamebaseAuthProviderCredential::AUTHORIZATION_CODE | 设置Google登录后收到的认证信息(Authorization Code)。 |                                          |
 
 > [TIP]
 >
@@ -826,7 +837,7 @@ void Sample::GetLastLoggedInProvider()
 >
 > * 为了安全起见，请通过游戏服务器调用外部IdP的认证信息。 
 > * 根据IdP类型，访问令牌可很快过期。
->     * 例如，登录Google后过2小时后Access Token将过期。 
+>     * 例如，Google登录后过2小时后Access Token将过期。 
 >     * 如需用户信息，登录后直接调用Gamebase Server API。
 > * 使用"Gamebase.LoginForLastLoggedInProvider()" API登录时无法获取认证信息。
 >     * 如需用户信息，不需要使用"Gamebase.LoginForLastLoggedInProvider()"，而需通过与您要使用的IDPCode相同的{IDP_CODE}作为参数来调用"Gamebase.Login(IDP_CODE, callback)" API进行登录。

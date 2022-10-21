@@ -3,22 +3,22 @@
 ### 2.44.0 (2022. 10. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.0/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: NHN Cloud Unity SDK(0.26.2)
+#### 改善/修改功能
+* 外部SDK升级 : NHN Cloud Unity SDK(0.26.2)
 
-#### 플랫폼별 변경 사항
+#### 各平台更改项目
 * [Gamebase Android SDK 2.44.0](./release-notes-android/#2440-2022-10-11)
 * [Gamebase iOS SDK 2.43.3](./release-notes-ios/#2433-2022-10-04)
 
 ### 2.43.0 (2022. 09. 07.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.0/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: TOAST Unity SDK(0.26.1), Kakaogame Unity SDK(3.14.5)
-* LINE Login을 수행 시 서비스를 제공할 Region을 입력하도록 변경되었습니다.
-    * [Game > Gamebase > Unity SDK 사용 가이드 > 인증 > Login with IdP](./unity-authentication/#login-with-idp)
+#### 改善/修改功能
+* 外部SDK升级 : TOAST Unity SDK(0.26.1), Kakaogame Unity SDK(3.14.5)
+* 修改后当登录LINE时可输入提供服务的Region。
+    * [Game > Gamebase > Unity SDK使用指南 > 认证 > Login with IdP](./unity-authentication/#login-with-idp)
 
-#### 플랫폼별 변경 사항
+#### 各平台更改项目
 * [Gamebase Android SDK 2.43.0](./release-notes-android/#2430-2022-09-07)
 * [Gamebase iOS SDK 2.43.0](./release-notes-ios/#2430-2022-09-07)
 
@@ -28,7 +28,7 @@
 #### 添加功能
 * 在ForcingMappingTicket类中添加了显示映射用户状态的mappedUserValid字段。
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 已不使用用于设置是否在WebView中使用固定字体大小的字段。
     * **GamebaseWebViewConfiguration.enableFixedFontSize**
 * 添加了GamebaseWebViewConfiguration的默认值。
@@ -48,7 +48,7 @@
 * 在GamebaseEventHandler的GamebaseEventCategory中添加了**IDP_REVOKED**类型。
     * [Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./unity-etc/#idp-revoked)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 修复了使用Unity的Burst Package时导致内存泄漏的问题。
 * Setting Tool (v2.4.0)
     * 添加了内部稳定指标。
@@ -71,7 +71,7 @@
     * Gamebase.Terms.QueryTerms
     * Gamebase.Terms.UpdateTerms
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 改善后韩语不再显示为统一码。
 * 修改后支持(iOS) bitcode。
 
@@ -101,7 +101,7 @@
 #### 添加功能
 * 外部SDK升级 : TOAST Unity SDK(0.25.3)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 更改了Display Language中汉语繁体(zh-TW)语言集中的错误句子。
 
 #### 修改程序错误
@@ -185,7 +185,7 @@
 * 添加了当调用共同条款API后可确认条款UI是否被显示的VO类。
     * **GamebaseResponse.Terms.ShowTermsViewResult**
 
-#### 改善/更改功能
+#### 改善/修改功能
 * 由于在Gamebase控制台中注册Kickout时可以设置是否显示kickout弹窗，因此以下字段已被deprecated。
     * **GamebaseConfiguration.enableKickoutPopup**
     
@@ -201,7 +201,7 @@
 * 添加了可更改共同条款窗设置的新API。
     * [Game > Gamebase > Unity SDK使用指南 > UI > Terms > showTermsView](./unity-ui/#showtermsview)
 
-#### 改善/更改功能
+#### 改善/修改功能
 * 添加或更改错误代码
     * GamebaseErrorCode.UNKNOWN_ERROR的错误代码从999更改为9999。
     * 添加了映射到999错误代码的GamebaseErrorCode.SOCKET_UNKNOWN_ERROR错误。
@@ -214,7 +214,7 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-Unity.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 在GamebaseEventHandler的GamebaseEventCategory中添加了**GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED**类型。
     * 关于此事件的适用方法，请参考如下指南。
     * [Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Server Push](./unity-etc/#server-push)
@@ -229,7 +229,7 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Unity.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : TOAST Unity SDK(0.25.0)
 * 可以更改Standalone维护弹窗“是否显示维护时间”。 
 * Setting Tool
@@ -256,7 +256,7 @@
 ### 2.29.0 (2021.11.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-Unity.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : TOAST Unity SDK(0.23.5)
 * Setting Tool
     * 发布了v2.0.0版本。
@@ -299,7 +299,7 @@
 ### 2.27.1 (2021.09.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-Unity.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 改善了Display Language功能。
     * 默认语言代码为**en**，但经过改善已可适用Gamebase控制台中设置的默认语言。
         * [Game > Gamebase > 控制台使用指南 > 应用程序 > App > 语言设置](./oper-app/#language-settings)
@@ -315,7 +315,7 @@
 ### 2.27.0 (2021.08.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-Unity.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : TOAST Unity SDK(0.23.2)
 * 添加ONE Store V16商店
 
@@ -326,7 +326,7 @@
 ### 2.26.0 (2021.08.10)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Unity.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 改善了Display Language功能。
     * 在Display Language语言集中添加了汉语简体(zh-CN)、汉语繁体(zh-TW)及泰国语(th)。
 * 调用showTermsView API后，可创建PushConfiguration对象的基准被更改为；

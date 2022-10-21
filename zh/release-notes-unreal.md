@@ -3,11 +3,11 @@
 ### 2.43.3 (2022. 10. 04.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.3/GamebaseSDK-Unreal.zip)
 
-#### 기능 개선/변경
-* LINE 로그인을 수행 시 서비스를 제공할 Region을 입력하도록 변경되었습니다.
-    * [Game > Gamebase > Unreal SDK 사용 가이드 > 인증 > Login with IdP](./unreal-authentication/#login-with-idp)
+#### 改善/修改功能
+* 修改后当登录LINE时可输入提供服务的Region。
+    * [Game > Gamebase > Unreal SDK使用指南 > 认证 > Login with IdP](./unreal-authentication/#login-with-idp)
     
-#### 플랫폼별 변경 사항
+#### 各平台更改项目
 * [Gamebase Android SDK 2.43.0](./release-notes-android/#2430-2022-09-07)
 * [Gamebase iOS SDK 2.43.3](./release-notes-ios/#2433-2022-10-04)
 
@@ -16,9 +16,9 @@
 
 #### 添加功能
 * 在FGamebaseForcingMappingTicket类中添加了显示映射用户状态的mappedUserValid字段。 
-*  [iOS设置工具]添加了**Xcode Path**设置，允许您在（./unreal start/#ios设置）指定Xcode的路径。
+* [iOS设置工具]添加了**Xcode Path**设置，允许您在（./unreal start/#ios设置）指定Xcode的路径。
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 在Gamebase控制台中注册Kickout时可以设置是否要显示Kickout弹窗，因此不需要使用以下字段。
     * **FGamebaseConfiguration.enableKickoutPopup**
 * 在FGamebaseConfiguration中的一部分字段添加了默认值。
@@ -79,7 +79,7 @@
 * 为了在客户服务URL后边添加参数添加了以下字段。
     * FGamebaseContactConfiguration.additionalParameters
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 更改后调用API结果的回调时，将转换为GameThread后调用回调。
 * 修复了调用RequestActivatedPurchases API时，API在内部被调用两次的问题。
 * 更改了一些API的名称。
@@ -121,7 +121,7 @@
 * 添加了可更改共同条款窗设置的新API。
     * [Game > Gamebase > Unreal SDK使用指南 > UI > Terms > showTermsView](./unreal-ui/#showtermsview)
 
-#### 改善/更改功能
+#### 改善/修改功能
 * 添加或更改错误代码
     * GamebaseErrorCode::UNKNOWN_ERROR的错误代码从999更改为9999。
     * 添加了映射到999错误代码的GamebaseErrorCode::SOCKET_UNKNOWN_ERROR错误。
@@ -146,7 +146,7 @@
     * 添加查询“条款列表”和“用户是否同意”API。
     * 添加将”用户是否同意条款”保存在Gamebase服务器的API。
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 客户服务类型为TOAST组织服务(Online Contact)时，即使不登录，也显示客户服务。
 * 更改内部Launching URL 
 * 从Gamebase中删除Android multidex适用。

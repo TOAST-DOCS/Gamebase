@@ -3,40 +3,40 @@
 ### 2.43.3 (2022. 10. 04.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.3/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* SDK 내부 로직 개선
+#### 改善/修改功能
+* 改善了SDK内部逻辑。
 
 ### 2.43.2 (2022. 09. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.2/GamebaseSDK-iOS.zip)
 
-#### 버그 수정
-* Game Center 로그인 시 오류가 발생하는 버그를 수정하였습니다.
+#### 修改程序错误
+* 修改了登录Game Center时出现错误的程序错误。
 
 ### 2.43.1 (2022. 09. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.1/GamebaseSDK-iOS.zip)
 
-#### 버그 수정
-* CocoaPods을 통해 배포되는 Line Auth Adpater가 LINE SDK 의존성 오류로 Region을 설정할 수 없는 버그를 수정하였습니다.
+#### 修改程序错误
+* 修改了由于Line SDK依赖性错误导致通过CocoaPods发布的Line Auth Adpater无法设置Region的错误。
 
 ### 2.43.0 (2022. 09. 07.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### 改善/修改功能
+* 外部SDK升级
     * NHN Cloud iOS SDK (1.0.0)
     * ToastGamebaseIAP iOS SDK (0.14.0)
     * LINE iOS SDK (5.8.2)
     * Kakaogame iOS SDK (3.14.4)
     * Hangame iOS SDK (1.7.1)
-* LINE 로그인 수행 시 서비스를 제공할 region을 입력할 수 있도록 변경하였습니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > 인증 > Login with IdP](./ios-authentication/#login-with-idp)
-* Gamebase와 호환성이 보장되지 않은 Gamebase Adapter를 사용하는 경우 초기화 시 에러가 발생하도록 수정하였습니다.
-* SDK 내부 로직 개선
+* 修改后当登录LINE时可输入提供服务的区域。
+    * [Game > Gamebase > iOS SDK使用指南 > 认证 > Login with IdP](./ios-authentication/#login-with-idp)
+* 已被更改为允许在初始化过程中使用不与Gamebase兼容的Gamebase Adapter时发生错误。
+* 改善了SDK内部逻辑。
 
 ### 2.42.2 (2022. 08. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.2/GamebaseSDK-iOS.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 由于在App Store审查中被拒绝，WebView中使用的Scheme中的“itms-services”被删除。
 
 ### 2.42.1 (2022. 08. 09.)
@@ -55,7 +55,7 @@
     * 关于mappedUserValid中保存的值，请参考以下指南。
         * [Game > Gamebase > API指南 > API v1.3指南 > Others > Mamber Vaild Code](./api-guide/#member-valid-code)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : Hangame iOS SDK (1.7.0)
 
 #### 修改程序错误
@@ -65,7 +65,7 @@
 ### 2.41.1 (2022. 07. 20.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.1/GamebaseSDK-iOS.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 修改为在条款窗完全关闭后调用回调。
 
 ### 2.41.0 (2022. 07. 05.)
@@ -75,25 +75,25 @@
 * 在GamebaseEventHandler的GamebaseEventCategory中添加了**kTCGBIdPRevoked**类型。
     * [Game > Gamebase > iOS SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./ios-etc/#idp-revoked)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 更改了图片通知，使其在显示时根据屏幕方向旋转。
 
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-iOS.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 改善了SDK内部逻辑
 
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-iOS.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : Hangame iOS SDK (1.6.4)
 
 ### 2.38.0 (2022. 05. 03.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.38.0/GamebaseSDK-iOS.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 更改了Display Language中汉语繁体(zh-TW)语言集中的错误句子。
 
 ### 2.37.0 (2022. 04. 26.)
@@ -111,7 +111,7 @@
     * **TCGBPurchasableReceipt.sandboxPayment**
     * **TCGBPurchasableReceipt.promotionPayment** 
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : TOAST iOS SDK(0.30.0), ToastGamebaseIAP SDK(0.13.0), Hangame iOS SDK (1.6.3)
 
 ### 2.35.0 (2022. 03. 29.)
@@ -121,7 +121,7 @@
 * 添加了用于确认是否显示条款窗的API。
     * **[TCGBTerms isShowingTermsView]**
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 将登录方式从Google网络登录方式更改为Google SDK登录方式。
 * 更改后，在登录过程中取消Hangame登录时返回**TCGB_ERROR_AUTH_USER_CANCELED(3001)**错误 。
 
@@ -131,7 +131,7 @@
 #### 添加功能
 * 为了Swift项目用户，在Public API添加了NS_SWIFT_NAME设置。
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : Hangame iOS SDK (1.6.2)
 * 更改了当设备为横向模式调用showWebView API时，在下端输出黑色空白的错误。 
 
@@ -145,7 +145,7 @@
 * 添加了当调用共同条款API后可确认条款UI是否被显示的VO类。 
     * **TCGBShowTermsViewResult**
 
-#### 改善/更改功能
+#### 改善/修改功能
 * 当调用图片通知API时没有可以显示的图片通知时，背景突然变暗的现象被修改。
 * 由于在Gamebase控制台中注册Kickout时可以设置是否显示kickout弹窗，因此以下字段已被deprecated。
     * **[TCGBConfiguration enableKickoutPopup:]**
@@ -158,7 +158,7 @@
 * 添加了可更改共同条款窗设置的新API。
     * [Game > Gamebase > iOS SDK使用指南 > UI > Terms > showTermsView](./ios-ui/#showtermsview)
 
-#### 改善/更改功能
+#### 改善/修改功能
 * 外部SDK升级 : PAYCO iOS SDK (1.5.5)
 * 添加或更改错误代码
     * TCGB_ERROR_UNKNOWN_ERROR的错误代码从999更改为9999。
@@ -167,7 +167,7 @@
 ### 2.32.1 (2022.01.11)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.1/GamebaseSDK-iOS.zip)
  
-#### 改善/修复功能 
+#### 改善/修改功能 
 * 点击推荐更新弹窗里的**立即更新**按钮时弹窗被关闭的问题已修复。
 * 提高了SDK稳定性。
 
@@ -180,7 +180,7 @@
 * 在GamebaseEventHandler的GamebaseEventCategory中添加了**kTCGBLoggedOut**类型。
     * [Game > Gamebase > iOS SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./ios-etc/#logged-out)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * Webview navigationBar的default title Color被更改为**UIColor.whiteColor**。
 
 #### 修改程序错误
@@ -192,7 +192,7 @@
 #### 添加功能
 * 可以更改维护弹窗“是否显示维护时间”。
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : TOAST iOS SDK (0.29.2), PAYCO iOS SDK (1.5.4)
 * 解决了已被禁用的用户（使用禁用信息）未能通过“禁用Webview”内的客户服务链接注册查询的问题。
 * 修复之后，现在当用户按维护和禁用弹窗中的“查看更多”按钮时，在Webview中可显示“返回上一页”按钮。
@@ -218,7 +218,7 @@
 ### 2.29.0 (2021.11.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-iOS.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * Xcode支持的最低版本从12升级到13。
 * 外部SDK升级 : TOAST iOS SDK(0.29.1), ToastGamebaseIAP SDK(0.12.1)
 * 即使未对”在控制台中注册的维护”和”查看公告详情”URL进行编码，也可在页面上显示。
@@ -239,13 +239,13 @@
 * 登录使用结算Abusing自动解除功能的游戏后，始终要确认TCGBAuthToken.tcgbMember.graceBanInfo值，如果返还TCGBGraceBanInfo对象，而不返还null，要向相关用户通知禁用解除条件、时期等。
     * 当需要控制处于预约禁用状态的用户进入游戏时，要在游戏中进行处理。
 
-#### 改善/修复功能
+#### 改善/修改功能
 * PAYCO iOS SDK升级(1.5.2) 
 
 ### 2.27.1 (2021.09.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-iOS.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * PAYCO iOS SDK升级(1.5.1)
     * 验证流程和UI的改善
 * Hangame iOS SDK升级(1.6.1)
@@ -258,14 +258,14 @@
 ### 2.27.0 (2021.08.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-iOS.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * PAYCO iOS SDK升级(1.5.0)
     * 以前如果不能使用PAYCO应用程序，则只能手动登录。但目前若已登录到Safari，则可使用“简单登录”功能。
 
 ### 2.26.0 (2021.08.10)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-iOS.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * Display Language功能已被改善。
     * 为了添加语言集，以前必须直接修改Gamebase.bundle里的文件。
         * 但经过功能改善，将localizedstring.json文件添加到Xcode项目的Copy Bundle Resources中就可添加语言。
