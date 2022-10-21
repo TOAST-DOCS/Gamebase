@@ -773,7 +773,7 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 **API**
 
 ```objectivec
-+ (void)withdrawWithViewController:(UIViewController *)viewController completion:(WithdrawCompletion)completion;
+'+ (void)requestTemporaryWithdrawalWithViewController:(nullable UIViewController *)viewController completion:(nullable TemporaryWithdrawCompletion)completion;
 ```
 
 **ErrorCode**

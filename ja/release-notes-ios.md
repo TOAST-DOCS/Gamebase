@@ -3,14 +3,14 @@
 ### 2.43.3 (2022. 10. 04.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.3/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* SDK 내부 로직 개선
+#### 機能改善/変更
+* SDK内部ロジック改善
 
 ### 2.43.2 (2022. 09. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.2/GamebaseSDK-iOS.zip)
 
-#### 버그 수정
-* Game Center 로그인 시 오류가 발생하는 버그를 수정하였습니다.
+#### バグ修正
+* Game Centerログイン時にエラーが発生するバグを修正しました。
 
 ### 2.43.1 (2022. 09. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.1/GamebaseSDK-iOS.zip)
