@@ -19,7 +19,8 @@
 |                 | UNITY                  | NOT\_SUPPORTED\_UNITY\_WEBGL             | 15         | WebGL不支持此功能。                   |
 |                 | Android                | ANDROID\_ACTIVITY\_DESTROYED             | 31         | Activity强制终止。                       |
 |                 | Android                | ANDROID\_ACTIVEAPP\_NOT\_CALLED          | 32         | 未调用activeApp API。                 |
-|                 | IOS                    | IOS_GAMECENTER_DENIED                    | 51         | Gamecenter登录被拒绝。                 |
+|                 | IOS                    | TCGB_ERROR_IOS_GAMECENTER_DENIED                    | 51         | Gamecenter登录被拒绝。                 |
+|                 | IOS                    | TCGB_ERROR_IOS_CANNOT_OPEN_URL                    | 52         | 在应用程序中不可处理URL Scheme。                 |
 | Network(Socket) | Android, UNITY<br/>IOS | SOCKET\_RESPONSE\_TIMEOUT<br/>TCGB\_ERROR\_SOCKET\_RESPONSE\_TIMEOUT | 101        | 网络状态不稳定，没有响应。                 |
 |                 | Android, UNITY<br/>IOS | SOCKET_ERROR<br/>TCGB\_ERROR\_SOCKET\_ERROR | 110        | SOCKET错误                                    |
 |                 | Android, UNITY<br/>IOS | SOCKET\_UNKNOWN_ERROR<br/>TCGB\_ERROR\_SOCKET\_UNKNOWN\_ERROR | 999        | SOCKET未知错误                             |

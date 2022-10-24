@@ -5,8 +5,6 @@
 
 #### Feature Updates
 * External SDK update: NHN Cloud Unity SDK(0.26.2)
-* Modified to enter a service region when logging in to LINE.
-    * [Game > Gamebase > Unity SDK User Guide > Authentication > Login with IdP](./unity-authentication/#login-with-idp)
 
 #### Platform-specific Changes
 * [Gamebase Android SDK 2.44.0](./release-notes-android/#2440-2022-10-11)
