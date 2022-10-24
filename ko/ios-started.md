@@ -95,6 +95,7 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
     * ImageIO.framework
     * GameKit.framework
     * StoreKit.framework
+    * Security.framework
     * AuthenticationServices.framework (Optional)
     * AppTrackingTransparency.framework (Optional)
 
@@ -105,10 +106,10 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
     * 프로젝트 내부에 **빈 swift 파일** 추가 (프로젝트 내부에 swift 파일이 하나도 없을 경우)
 * 5) **Target > Build Settings > Linking > Other Linker Flags**에 **-ObjC**를 추가해야 합니다.
 ![Other Linker Flags](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
-* 6) NaverAuthAdapter를 사용하는 경우에는 NAVER SDK에서 제공하는 **NaverThirdPartyLogin.framework** 파일을 **Target > Build Phases > Embedded Frameworks**에 추가해야 합니다.
+* 6) NaverAuthAdapter를 사용하는 경우에는 NAVER SDK에서 제공하는 **NaverThirdPartyLogin.framework** 파일을 **Target > Build Phases > Embeded Frameworks**에 추가해야 합니다.
  ![Naver Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.8.0.png)
- * 7) LineAuthAdapter를 사용하는 경우에는 LINE SDK에서 제공하는 **LineSDKObjC.xcframework** 파일을 **Target > Build Phases > Embedded Frameworks**에 추가해야 합니다.
- ![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.0.png)
+ * 7) LineAuthAdapter를 사용하는 경우에는 LINE SDK에서 제공하는 **LineSDK.xcframework** 파일을 **Target > Build Phases > Embeded Frameworks**에 추가해야 합니다.
+ ![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.1.png)
 
 > [INFO]
 >
