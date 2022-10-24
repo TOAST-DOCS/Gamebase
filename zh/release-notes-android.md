@@ -3,17 +3,20 @@
 ### 2.44.0 (2022. 10. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: NHN Cloud Android SDK(1.2.0), TOAST Gamebase IAP Android SDK(0.21.0), Google Play Services Auth(20.0.3)
-* Android 13 OS에서 registerPush 호출시 자동으로 알림 허용 권한을 요청하는 팝업을 표시합니다.
-* Google 로그인시 silentSignIn API를 활용하도록 내부 로직을 개선했습니다.
+#### 改善/修改功能
+* 外部SDK升级 : NHN Cloud Android SDK(1.2.0), TOAST Gamebase IAP Android SDK(0.21.0), Google Play Services Auth(20.0.3)
+* 在Android 13 OS上调用registerPush时自动显示一个请求接收通知的弹窗。
+* 改善了内部逻辑以Google登录时使用silentSignIn API。
+
+#### 修改程序错误
+* 当通过Hangame Idp登录时，若通过有效的Third Idp试图进行登录后，再通过不支持的Third Idp试图Hangame登录时则不出现错误，而如果通过以前的Idp登录则出现崩溃，而目前此错误被修改。
 
 ### 2.43.0 (2022. 09. 07.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* ONE store v19 Purchase Adapter가 추가되었습니다.
-    * 빌드 의존성에 **gamebase-adapter-purchase-onestore-v19** 모듈 및 [ONE store v19 IAP SDK를 추가](https://github.com/ONE-store/onestore_iap_release/tree/iap19-release/android_app_sample/app/libs)하면 사용 가능합니다.
+#### 添加功能
+* 添加了ONE store v19 Purchase Adapter。
+    * 在Build的依赖性添加**gamebase-adapter-purchase-onestore-v19**模块儿和[ONE store v19 IAP SDK后](https://github.com/ONE-store/onestore_iap_release/tree/iap19-release/android_app_sample/app/libs)可以使用。
             
             dependencies {
                 ...
@@ -21,25 +24,25 @@
                 implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v19:$GAMEBASE_SDK_VERSION"
             }
             
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Google Billing Client(5.0.0), NHN Cloud Android SDK(1.1.0), TOAST Gamebase IAP Android SDK(0.20.0), Kakaogame Android SDK(3.14.4)
-* Line Login을 수행 시 서비스를 제공할 Region을 입력할 수 있는 파라미터가 추가되었습니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > 인증 > Login with IdP](./aos-authentication/#login-with-idp)
-* Line IdP 사용 시 Line IdP에서 지원하지 않는 API 19 미만 단말기에서도 크래쉬가 발생하지 않도록 방어 로직을 추가했습니다.
+#### 改善/修改功能
+* 外部SDK升级 : Google Billing Client(5.0.0), NHN Cloud Android SDK(1.1.0), TOAST Gamebase IAP Android SDK(0.20.0), Kakaogame Android SDK(3.14.4)
+* 添加了可输入Line Login时提供服务的Region的参数。
+    * [Game > Gamebase > Android SDK使用指南 > 认证 > Login with IdP](./aos-authentication/#login-with-idp)
+* 添加了防御逻辑，以防止在使用Line IdP时，在Line IdP不支持的低于API 19的终端机上出现崩溃。
 
-#### 버그 수정
-* Naver PLUG SDK나 Naver Cafe SDK 사용을 위해 Naver Login SDK 버전을 4.1.4로 강제로 낮추는 경우 크래쉬가 발생하는 이슈를 수정했습니다.
+#### 修改程序错误
+* 修改了为了使用Naver PLUG SDK或Naver Cafe SDK而将Naver Login SDK版本强制降为4.1.4时出现崩溃的问题。
 
 ### 2.42.1 (2022. 07. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Android.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : Facebook Android SDK(11.3.0)
 
 ### 2.42.0 (2022. 07. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.0/GamebaseSDK-Android.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : Hangame Android SDK(1.5.2)
 * 在ForcingMappingTicket VO类中添加了显示映射用户状态的mappedUserValid字段。
 * 如果Gamebase Adapter版本与Gamebase版本不一致，则可能出现运行时例外，因此更改它，使其无法初始化。
@@ -51,7 +54,7 @@
 ### 2.41.2 (2022. 07. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.2/GamebaseSDK-Android.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 将默认Webview设置更改为“允许Cookie”。
 
 ### 2.41.1 (2022. 07. 12.)
@@ -63,7 +66,7 @@
 ### 2.41.0 (2022. 07. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-Android.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : TOAST Android SDK(0.31.1), Hangame Android SDK(1.4.6)
 * 在Webview中注册的CustomScheme事件启动时Webview将自动关闭。
     * 即使CustomScheme事件正常启动，也要维持Webview时， 请调用**GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** API。
@@ -83,7 +86,7 @@
                 implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-external:$GAMEBASE_SDK_VERSION"
             }
             
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : TOAST Android SDK(0.31.0)、TOAST Gamebase IAP Android SDK(0.18.5)、LINE Android SDK(5.8.0)
 * 更改了不同的应用程序使用同一个Gamebase项目时，无法正常启动推送功能的问题。
     * 请在AndroidManifest.xml中声明各应用程序的**com.nhncloud.sdk.push.deviceId.salt**值。
@@ -95,7 +98,7 @@
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-Android.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : TOAST Android SDK(0.30.1)
 
 ### 2.38.0 (2022. 05. 03.)
@@ -114,7 +117,7 @@
         * [NHN Cloud > SDK使用指南 > TOAST Push > Android > 设置Amazon Device Messaging > 升级ADM SDK](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#download-the-adm-sdk)
         * [NHN Cloud > SDK使用指南 > TOAST Push > Android > 设置Amazon Device Messaging > 设置Proguard](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#proguard-settings)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : TOAST Android SDK(0.30.0)
 * 更改了Display Language中汉语繁体(zh-TW)语言集中的错误句子。
 
@@ -125,14 +128,14 @@
 * 为了在客户服务URL后边添加参数，添加了以下字段。
     * **ContactConfiguration.Builder.setAdditionalParameters(Map&lt;String, String&gt;)**
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : TOAST Gamebase IAP Android SDK(0.18.3)
 * 更改后，当在Amazon Appstore结算数据中未输入userid和gamebaseproductid时，自动添加userid和gamebaseproductid。
 
 ### 2.36.0 (2022. 04. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.36.0/GamebaseSDK-Android.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : TOAST Android SDK(0.29.2), TOAST Gamebase IAP Android SDK(0.18.2), Hangame Android SDK(1.4.5)
 * 更改后，在Hangame Android SDK v1.4.5内部创建sms_hash。
     * 不需要设置sms_hash。
@@ -168,7 +171,7 @@
 {"logout_and_delete_token":true}
 ```
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : TOAST Android SDK(0.29.1)、Hangame Android SDK(1.4.4)
 * 更改后，在显示条款窗时不显示长白色背景。
 
@@ -185,7 +188,7 @@
 * 添加了当调用共同条款API后可确认条款UI是否被显示的VO类。 
     * **GamebaseShowTermsViewResult**
 
-#### 改善/更改功能
+#### 改善/修改功能
 * 由于在Gamebase控制台中注册Kickout时可以设置是否显示kickout弹窗，因此以下字段已被deprecated。
     * **UIPopupConfiguration.enableKickoutPopup**
 
@@ -200,7 +203,7 @@
     * 关于可以更改设置的项目，请参考以下指南。
     * [Game > Gamebase > Android SDK使用指南 > UI > Terms > showTermsView](./aos-ui/#showtermsview)
 
-#### 改善/更改功能
+#### 改善/修改功能
 * 外部SDK升级 : PAYCO Android SDK(1.5.7), Hangame Android SDK(1.4.3.1), TOAST Gamebase IAP Andoid SDK(0.18.1)
 * 添加了登录成功后可检查Launching信息是否被更改的逻辑。   
 
@@ -214,7 +217,7 @@
 * 添加了当Gamebase Access Token过期，登录时需要启动的**GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler category。
     * [Game > Gamebase > Android SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./aos-etc/#logged-out)
  
-#### 改善/修复功能
+#### 改善/修改功能
 * 改善Webview后，现在可启动Webview URL地址开始为**onestore://**的ONE store Deeplink。
 
 #### 修改程序错误
@@ -223,7 +226,7 @@
 ### 2.31.0 (2021.12.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Android.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : TOAST Android SDK(0.29.0)
 * 解决了被禁用的用户（使用禁用信息）无法通过“禁用Webview”内客户服务链接注册查询的问题。
 * 修复了打开应用程序后立即调用Gamebase初始化函数时，Launching弹窗显示英语的问题。
@@ -238,7 +241,7 @@
 * 为了解决调用Gamebase.addMapping()后出现AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)错误的问题，添加了将帐户转换为已有的帐户后可进行登录的API。
     * [Game > Gamebase > Android SDK使用指南 > 认证 > Mapping > Change Login with ForcingMappingTicket](./aos-authentication/#change-login-with-forcingmappingticket)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : Hangame Android SDK(1.4.2)
 * 改善后，用户可直接修改或使用Gamebase提供的”查看维护详情Webview”html。 
     * [Game > Gamebase > Android SDK使用指南 > 初始化 > Launching Information > 1. Launching > 1.3 Maintenance > Change Default Maintenance HTML](./aos-initialization/#change-default-maintenance-html)
@@ -249,7 +252,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-Android.zip)
 
 #### 添加功能
-* 已添加登录Google时声明Scope的功能。
+* 已添加Google登录时声明Scope的功能。
     * [https://developers.google.com/identity/protocols/oauth2/scopes](https://developers.google.com/identity/protocols/oauth2/scopes)
     * 通过Scope添加**email**时，可在简介中获取Email信息。 
     * 如下所示，若在Gamebase Console的AdditionalInfo中进行设置，Gamebase登录谷歌时将自动设置Scope。
@@ -258,7 +261,7 @@
 {"scope":["email","myscope1","myscope2",...]}
 ```
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : TOAST Android SDK(0.27.4)
 * 只在DisplayLanguage指南上描述，实际上未包含在SDK的DisplayLanguage.Code类已被添加。
     * [Game > Gamebase > Android SDK使用指南 > ETC > Display Language > Gamebase支持的语言代码种类](./aos-etc/#gamebase)
@@ -277,13 +280,13 @@
     * 当需要控制处于预约禁用状态的用户进入游戏时，要在游戏中进行处理。
 * 等待登录响应时，显示等待图标。  
 
-#### 改善/修复功能 
+#### 改善/修改功能 
 * 外部SDK升级 : PAYCO Android SDK(1.5.6)  
   
 ### 2.27.1 (2021.09.14) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-Android.zip)   
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : PAYCO Android SDK(1.5.5), Hangame Android SDK(1.4.1), Weibo Android SDK(11.8.1)
 * 通过反复重试，改善了模拟器和Rooting terminal不正常显示Webview的问题。
     * 对象包括通过Webview启动的图片通知，客户服务和共同条款。
@@ -298,14 +301,14 @@
 ### 2.27.0 (2021.08.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-Android.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * 外部SDK升级 : TOAST Android SDK(0.27.1)
 * 添加ONE Store V16商店
 
 ### 2.26.0 (2021.08.10)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Android.zip)
 
-#### 改善/修复功能
+#### 改善/修改功能
 * Display Language功能已被改善。
     * 以前为了添加语言集，必须直接修改gamebase-sdk-base-version.aar文件。
         * 但经过功能改善，将localizedstring.json文件放入res/raw文件夹里就可添加语言了。
@@ -430,9 +433,9 @@
 
 #### Bug Fixes
 * [SDK] 2.19.0
-    * (Unity) WebSocket에서 재시도 시 OutOfMemoryException이 발생하는 문제 수정
+    * (Unity) Fixed an issue that caused OutOfMemoryException on retry in WebSocket
 * [SDK] 2.19.1
-	* (Android) Weibo 로그인 시도 후 다른 IdP로 로그인 시 크래시가 발생하는 문제 수정
+	* (Android) Fixed a crash when logging in with a different IdP after trying to log in to Weibo IdP
 
 ### 2.18.2 (December 15, 2020)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.18.2/GamebaseSDK-Android.zip)
@@ -484,8 +487,8 @@ Contact our Customer Center if you want to use the Hangame authentication.
 
 #### Feature Updates
 * [SDK] 2.17.0
-	* (공통) Supports the download feature when a Customer Center attachment image is clicked
-	* (공통) TOAST SDK update: Android(0.23.2), Unity(0.21.2)
+	* (Common) Supports the download feature when a Customer Center attachment image is clicked
+	* (Common) TOAST SDK update: Android(0.23.2), Unity(0.21.2)
 
 #### Bug Fixes  
 * [SDK] 2.17.1
@@ -604,8 +607,8 @@ you may encounter an issue during reprocessing if a different billing client ver
 
 #### Feature Updates
 * [SDK] 2.7.2 
-      * Gamebase 초기화중 ToastLogger 초기화 부분에서 크래쉬가 발생할 수 있는 코드를 수정
-      * 서버 버전을 v1.2.1 로 업데이트 하였습니다.
+    * Fix code that may cause a crash in the ToastLogger initialization part during Gamebase initialization
+    * The server version has been updated to v1.2.1.
 
 ### 2.7.1 (February 25, 2020)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.7.1/GamebaseSDK-Android.zip)
@@ -689,335 +692,3 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
             * GameUserData Class: Added the classId (game user's profession) field [See Details: [Android](./aos-etc/#level-up-trace) / [iOS](./ios-etc/#level-up-trace) / [Unity](./unity-etc/#level-up-trace) / JavaScript]
 
     * (Android) Naver SDK Version Updated (v4.2.5): Bug of Naver SDK fixed (fixed the issue, in which authentication process was stopped due to forced closure of activities when the app was restarted via app icon while login to Naver was underway)  
-
-### 2.3.1 (2019.05.16)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.3.1/GamebaseSDK-Android.zip)
-
-#### 버그수정
-* [SDK] 2.3.1
-    * (Android)2.3.0버전에서 Twitter 로그인 되지 않던 문제 수정
-
-### 2.3.0 (2019.04.23)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.3.0/GamebaseSDK-Android.zip)
-    
-```
-Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
-중국출시에 관심 있으신 경우에는 고객센터로 연락주세요.
-```
-
-#### 기능 추가
-* [SDK] 2.3.0
-    * (Android/Unity)중국스토어 인증/결제 추가
-
-#### 기능 개선/변경
-* [SDK] 2.3.0
-    * (공통)Launching Status Code 추가: "심사중(204)", "테스트중(203)"
-    * (Android)최근 로그인한 Provider로 로그인 및 웹소켓 응답 실패를 받았을 경우(Timeout, network disable 등) AuthToken을 삭제 처리하지 않도록 수정
-    * (Android)IdP로그인 시 AuthAdapter 내부에서 발생하는 MemoryLeak을 수정
-
-### 2.2.2 (2019.04.11)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.2.2/GamebaseSDK-Android.zip)
-
-#### 버그수정
-* [SDK] 2.2.2
-    * (Android)Gamebase 초기화 이전 TransferAccount API 호출시, 콜백이 오지 않는 이슈를 수정
-
-### 2.2.0 (2019.03.26)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.2.0/GamebaseSDK-Android.zip)
-
-#### 기능 추가
-* TransferAccount 기능 추가: guest 사용자가 매핑없이 최대 2개의 키를 이용하여 새로운 기기로 이전할 수 있는 기능
-    * (SDK공통)추가된 API 
-        * TransferAccountInfo 발급 API (issueTransferAccount)
-        * 발급된 TransferAccountInfo를 사용하여 계정 이전을 요청하는 API (transferAccountWithIdPLogin)
-        * 발급된 TransferAccountInfo를 확인하는 API (queryTransferAccount)
-        * 이미 발급된 TransferAccountInfo 갱신하는 API (renewTransferAccount)        
-* 강제매핑 기능 추가: 이미 다른 계정에 연동 되어있는 IdP계정을 매핑할 수 있는 기능
-    * (SDK공통)추가된 API 
-        * 강제매핑하는 API (addMappingForcibly)
-
-#### 기능 개선/변경
-* [SDK] 2.2.0
-    * (Android)IAP SDK 버전을 최신버전인 v1.5.3 버전으로 업데이트
-
-### 2.1.0 (2019.02.26)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.1.0/GamebaseSDK-Android.zip)
-
-#### 기능 개선/변경
-* [SDK] 2.1.0
-    * (공통)TransferKey API 삭제
-        * issueTransferKey : TransferKey 발급
-        * requestTransfer : TransferKey 검증
-        
-#### 버그수정
-* [SDK] 2.1.0
-    * (Android)Gamebase 초기화 이전, onActivityResult()가 호출되면서 이상 동작하던 버그 수정
-
-### 2.0.0 (2019.01.29)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.0.0/GamebaseSDK-Android.zip)
-
-```
-Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데이트가 필요합니다.
-```
-
-#### 기능 추가
-* [SDK] 2.0.0
-    * (공통)Custom 지표를 위한 API 추가 (구매 성공의 경우 SDK내부에서 자동 전송)
-        * setGameUserData : 게임 로그인 이후 유저 레벨 정보 전송
-        * traceLevelUpData : 레벨업 추적을 위하여 게임 유저의 레벨업이 되었을 때 호출
-
-
-#### 기능 개선/변경
-* [SDK] 2.0.0
-    * (Android)Push SDK 업데이트(android:1.7.0)
-    * (Android)Adapter API 변경
-        * Launching 정보 전달
-        * logout, withdraw API에 Callback 추가
-
-### 1.14.5 (2018.12.27)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.14.5/GamebaseSDK-Android.zip)
-
-#### 기능 개선/변경
-* [SDK] 1.14.5
-    * deprecated 되었던 다음 API가 제거되었습니다.
-        * (void)Gamebase.WebView.showWebBrowser(Activity, String)
-        * (void)Gamebase.Network.addOnChangedListener(NetworkManager.OnChangedListener)
-        * (void)Gamebase.Network.removeOnChangedListener(NetworkManager.OnChangedListener)
-        * (void)Gamebase.Launching.addOnUpdatedListener(LaunchingOnUpdateListener)
-        * (void)Gamebase.Launching.removeOnUpdatedListener(LaunchingOnUpdateListener)
-    * 결제 모듈(gamebase-adapter-purchase-iap) 수정되었습니다.
-        * IAP SDK를 1.5.2로 업데이트
-        * Client에서는 사용되지 않는 IAP TEST Store 제거
-        * 결제 재처리 로직(requestRetryTransaction)에서 데이터가 불완전할 때 호출이 실패하는 문제를 수정
-        * 크래시를 방지하기 위해 모든 IAP SDK 호출부에 예외 처리
-
-### 1.14.2 (2018.11.15)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.14.2/GamebaseSDK-Android.zip)
-
-#### 기능 개선/변경
-* [SDK] 1.14.2
-    * (Android)점검시, 데이터구조에서 점검 시작/종료 시간을 의미하는 epoch time의 타입을 기존 String에서 long으로 타입 변경 : 기존 Gamebase Unity와 연동 후 점검 호출 시 타입불일치로 콜백이 내려오지 않는 현상으로 인한 수정
-
-#### 버그수정
-* [SDK] 1.14.2
-    * (Android)에뮬레이터 환경에서 스토어앱(PlayStore, OneStore 등)이 없는 상태에서 "앱 설치/업데이트"시 스토어 미체크로 인한 crash 버그를 수정
-    
-### 1.14.1 (2018.10.23)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.14.1/GamebaseSDK-Android.zip)
-
-#### 기능 추가
-* [SDK] 1.14.0
-    * (공통)Gamebase Webview에서 파일첨부 기능 추가 : Android의 API 19, Kitcat 에서는 정상 동작하지 않습니다.
-    
-#### 기능 개선/변경
-* [SDK] 1.14.0
-    * (공통)이용정지/점검에 대해 사용자가 콘솔에 작성한 메시지들을 URL 인코딩하여 전송하고 클라이언트에서 디코딩하여 처리하도록 수정
-    * Remove API : Webview, Network, Launching
-        * (void)Gamebase.WebView.showWebBrowser(Activity, String)
-        * (void)Gamebase.Network.addOnChangedListener(NetworkManager.OnChangedListener)
-        * (void)Gamebase.Network.removeOnChangedListener(NetworkManager.OnChangedListener)
-        * (void)Gamebase.Launching.addOnUpdatedListener(LaunchingOnUpdateListener)
-        * (void)Gamebase.Launching.removeOnUpdatedListener(LaunchingOnUpdateListener)        
-    * Deprecated  API 
-        * (void)Gamebase.WebView.showWebView(Activity, String)
-        * (void)Gamebase.WebView.showWebView(Activity, String, GamebaseWebViewConfiguration)
-    
-#### 버그수정
-* [SDK] 1.14.1
-    * (Android)Auth API 호출 후 콜백에서 다시 Auth API 중복 호출시 정상 호출이 되지 않는 버그 수정
-    
-### 1.13.0 (2018.09.13)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.13.0/GamebaseSDK-Android.zip)
-
-#### 기능 개선/변경
-* [SDK] 1.13.0
-    * (공통)IAP SDK 최신버전 적용 (android:1.5.1, iOS:1.6.0)
-    * (Android)Push API 호출 시, Gamebase 초기화/로그인 상태에 따라 호출 실패에 대한 에러 메시지를 보다 명확하게 개선
-        * 초기화 전 호출 : NOT_INITIALIZED(1)
-        * 초기화 이후 호출시 Push 모듈이 없음 : NOT_SUPPORTED(10)
-        * 초기화 성공 및 로그인 이전 호출 : NOT_LOGGED_IN(2)        
-    
-#### 버그수정
-* [SDK] 1.13.0
-    * (Android)NaverCafe SDK와의 충돌로 Naver 로그인시 발생하던 오류 해결
-        
-### 1.12.2 (2018.08.28)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.12.2/GamebaseSDK-Android.zip)
-
-#### 기능 개선/변경
-* [SDK] 1.12.2
-    * (Android)WebSocket 타입아웃시 (API 호출 시간 경과), 크래시가 날 수 있는 버그에 대해 방어로직 처리
-    
-#### 버그수정
-* [SDK] 1.12.2
-    * (Android)auth-twitter-adapter 를 포함한 상태에서 TargetSdk 28로 빌드시 초기화 에러가 발생하는 문제 수정
-
-### 1.12.1 (2018.08.09)
-
-#### 기능 개선/변경
-* [SDK] 1.12.1
-    * (공통)IAP SDK 최신버전 적용 (1.5.0)
-    * (공통)Gamebase 점검페이지에서 점검시간을 단말기 설정 국가시간에 맞추어 노출하도록 개선
-    * (공통)점검페이지를 외부 페이지로 사용할 때 Console에 입력한 점검 정보를 사용할 수 있도록 기능 추가
-    * (공통)IdP 매핑된 사용자의 Guest 매핑시도시 에러 발생(TCGB_ERROR_AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP)
-    * (공통)인증 API 중복 호출시 에러 발생(AUTH_ALREADY_IN_PROGRESS_ERROR)
-    * (Android)TencentPush SDK 업데이트 (3.2.3)
-    * (Android)Onestore v17(API v5) 지원 : Gamebase에서는 v16(스토어코드=TS)은 제공하지 않습니다.
-
-### 1.11.1 (2018.07.05)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.11.1/GamebaseSDK-Android.zip)
-
-#### 기능 개선/변경
-* [SDK] 1.11.1
-    * (공통)Guest로그인 후 AddMapping 성공 시, loginForLastLoggedInPrivder를 하게되면, AddMapping 성공한 IdP계정을 사용하여 로그인하도록 변경
-    
-#### 버그수정
-* [SDK] 1.11.1
-    * (공통)점검 해제 후 후속 API 진행(login/push/purchase 등)이 되지 않던 버그 수정
-    * (Android)Gamebase.addObserver()를 통해 ObserverMessage를 수신하였을 경우, ObserverMessage.data.code의 타입이 int가 아니라 String인 버그를 수정
-
-
-### 1.11.0 (2018.06.26)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.11.0/GamebaseSDK-Android.zip)
-
-#### 기능 추가
-* Twitter IdP 추가 : Android, iOS
-* Line IdP 추가 : Android만 제공. iOS는 2018년 7월 제공 예정입니다.
-    
-#### 기능 개선/변경
-* [SDK] 1.11.0
-    * (공통)LocalizedString 일본어 번역 추가
-    * (공통)인증 API 호출시 초기화, 로그인을 하지 않은 경우 명확히 에러 코드를 구분하도록 내부 로직을 개선
-    * (Android)'android.permission.READ_PHONE_STATE' 권한 제거
-    * (Android)GamebaseConfiguration.Builder의 필수 설정값인 setAppId, setAppVersion을 생성자에서 입력할 수 있도록 변경
-    * (Android)GamebaseConfiguration.Builder 의 setServerApiVerseion API를 제거
-    * (Android)getAuthBanInfo() API, class AuthBanInfo 이름을 변경 : getBanInfo(), class BanInfo
-
-### 1.9.0 (2018.05.03)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.9.0/GamebaseSDK-Android.zip)
-
-#### 기능 추가
-* Transfer 기능 추가
-    * guest 사용자가 매핑없이 새로운 기기로 이전할 수 있는 기능
-    * (SDK공통)추가된 API 
-        * Transfer Key 발급 API (IssueTransferKey)
-        * 발급된 TransferKey를 사용하여 계정 이전을 요청하는 API (RequestTransfer)
-
-#### 버그 수정
-* [SDK] 1.9.0
-    * (Android) Heartbeat 에서 잘못된 사용자로 판정되는 경우 이용정지 팝업 창이 뜨지 않도록 수정(iOS 와 동일한 로직으로 수정)
-
-### 1.8.1 (2018.04.12)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.8.1/GamebaseSDK-Android.zip)
-
-#### 버그 수정
-* [SDK] 1.8.1
-    * (Android. iOS)registerPush를 호출시 displayLanguageCode를 null로 전달하면 registerPush가 실패하는 버그 수정
-
-### 1.8.0 (2018.04.05)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.8.0/GamebaseSDK-Android.zip)
-
-#### 기능 추가
-* Kick out 기능 추가
-    * 현재 게임 중인 전체 사용자의 연결을 끊는 기능(점검시 게임에서 전체 사용자의 연결을 끊고 싶을 때 사용할 수 있음)
-    * (SDK 공통)kick out 이벤트를 받을 수 있는 API 추가
-* Observer 기능 개발 및 API 추가
-    * (SDK 공통) 점검 등 앱 상태/네트워크 상태/유저 상태(이용정지) 변경사항에 대한 Listener를 Observer 등록을 통하여 일괄 처리할 수 있도록 API 추가
-
-#### 기능 개선/변경
-* [SDK] 1.8.0
-    * (공통)Observer 기능 추가에 따라 다음 API Deprecated : LaunchingStatus Listener, Network Listener(기존 사용자는 계속 사용 가능)
-
-### 1.7.0 (2018.02.22)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.7.0/GamebaseSDK-Android.zip)
-
-#### 기능 추가
-* [SDK] 1.7.0
-    * Naver IdP 인증 추가
-    * Display Language 설정 추가: 단말기 언어와 별도로 게임내에서 게임유저의 노출 언어를 설정할 수 있도록 Display 언어를 추가하였습니다.
-
-### 1.5.0 (2017.12.21)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.5.0/GamebaseSDK-Android.zip)
-#### 기능 추가
-* [SDK] 1.5.0
-    * WebView가 닫힐 때 발생하는 Close Callback 추가
-    * WebView에서 사용하는 Custom Scheme의 Event를 받을 수 있는 기능 추가
-
-### 1.4.0 (2017.11.23)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.4.0/GamebaseSDK-Android.zip)
-
-#### 버그 수정
-* [SDK] 1.4.0 업데이트
-    * (Android)Gamebase 제공 팝업 창을 사용하지 않는 경우 이용정지 정보가 null로 리턴되는 오류 수정
-
-### 1.3.0 (2017.10.26)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.3.0/GamebaseSDK-Android.zip)
-
-#### 기능 추가
-* [SDK] 1.3.0 업데이트
-    * Credential을 이용한 AddMapping API추가
-
-### 1.2.0 (2017.09.21)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.2.0/GamebaseSDK-Android.zip)
-
-#### 기능 추가
-* 이용정지(사용자처벌) 기능 추가
-* [SDK] 1.2.0 업데이트
-    * 이용정지 사용자 팝업 창 노출
-
-
-### 1.1.5 (2017.07.20)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.5/GamebaseSDK-Android.zip)
-
-#### 기능 개선/변경
-* [SDK] 1.1.5 업데이트
-    * 시스템 팝업 창 API 추가 (showAlertWithTitle)
-    * 국가코드를 대문자로 반환하도록 변경 (Android)
-    * TCPush SDK 1.4.1 로 업데이트
-    * IAP SDK 1.3.3.20170627 로 업데이트
-
-### 1.1.4 (2017.05.25)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.4/GamebaseSDK-Android.zip)
-#### 기능 개선/변경
-* [SDK] 1.1.4 업데이트
-    * 런타임 중 결제 Store를 변경할 수 있는 API 제공
-    * (Android)TCPushSdk v1.4 적용, Tencent Push 기능 제공
-
-### 1.1.3 (2017.04.20)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.3/GamebaseSDK-Android.zip)
-#### 기능 개선/변경
-* [SDK] 1.1.3 업데이트
-    * (Android)론칭 구조 및 팝업 창/점검 페이지 개선 :커스텀 점검 페이지 설정 기능 추가
-    * (Android)인증 구조 개선 및 로그 추가 : 인증 Adapter 및 SDK 버전 로그 출력
-
-#### 버그 수정
-* [SDK] 1.1.3 업데이트
-    * (Android)Facebook SDK v4.19.0 이상에서 초기화시 크래시 오류 수정
-
-
-### 1.1.2 (2017.04.04)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.2/GamebaseSDK-Android.zip)
-
-#### 기능 개선/변경
-* [SDK] 1.1.2 업데이트
-    * 게임론칭시 점검, 긴급공지 팝업 창 개선
-
-### 1.1.0 (2017.03.21)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.0/GamebaseSDK-Android.zip)
-
-#### 기능 개선/변경
-* [SDK] 1.1.0 업데이트
-    * 외부 AccessToken을 받아서 idPLogin을 해주는 인터페이스를 추가
-    * [UI 기능 추가](./aos-ui) : Custom Webview, AlertDialog
-
-### 1.0.0 (2017.03.09) 
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.0.0/GamebaseSDK-Android.zip)
-
-#### 신규 상품 출시
-* 게임에서 공통적으로 필요한 기능들을 제공하여 손쉽고 효율적으로 게임 개발이 가능하도록 돕는 서비스입니다.
-    * 다양한 인증 지원 : Guest , 3rd Party(Google , Facebook, GameCenter 등) 인증
-    * 로그아웃 및 회원탈퇴 기능을 제공
-    * 하나의 User가 여러 개의 외부 IDP를 동시에 사용할 수 있도록 mapping기능을 제공
-    * 게임운영을 위한 게임 앱 상태관리, 점검, 긴급공지 등의 기능을 웹콘솔로 제공
-    * 실시간 운영지표 확인 가능한 웹콘솔 화면 제공
-    * TOAST Cloud상품 연동 : PUSH, IAP

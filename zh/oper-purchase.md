@@ -123,8 +123,9 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 - **消费状态** : 是否提供支付完的道具
 - **支付状态** : 结算程序的当前进行状态
 - **Store Reference Key** : 商店发布的结算固有编号
-- **预约支付日期** : 用户尝试或完成购买的时间
-- **退款日期** : 用户退款的时间
+- **预约支付日期** : 用户尝试购买的时间
+- **支付日期** :  用户完成购买的时间
+- **退款日期** : 用户道具退款的时间
 - **追加信息** : 通过SDK请求支付时传送的追加信息(Developer payload)
 
 #### 变更付款状态
@@ -141,7 +142,7 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 - **完成退款(Refund)**
 	- 表示管理员手动处理“在商店是否准许退还请求”。
 	- 无法更改为其他付款状态。
-- **取消支付(UserClose)** 
+- **取消支付(UserClose)**
 	- 用户取消支付的状态
 
 ##### Success变更
@@ -211,6 +212,9 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 #### 支付明细
 - **预约支付日期**：用户尝试或完成购买的时间
 - **退款日期**：用户对道具进行退款的时间
+- **预约支付日期** : 用户尝试购买的时间
+- **支付日期** :  用户完成购买的时间
+- **退款日期** : 用户道具退款的时间
 - **Transaction ID**：Gamebase中可区别支付的固有编号
 - **商店**：支付的商店信息
 - **道具名**：用户在应用程序中购买的实际道具名
@@ -247,7 +251,7 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing6_1.3_en.png)
 
 #### 支付明细
-- **支付日期** :
+- **支付日期** : 用户完成购买的时间
 - **Transaction ID** : 可区分在Gamebase内支付的固有编号
 - **商店** : 结算的商店信息
 - **用户ID** : 结算的用户ID

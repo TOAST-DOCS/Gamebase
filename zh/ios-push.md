@@ -13,8 +13,8 @@
 
 * 请参考[Notification > Push > Console Guide > 获取APNS JWT认证信息](https://docs.toast.com/en/Notification/Push/en/console-guide/#get-authentication-information-for-apns-jwt) 指南获取注册ANPS JWT所需的认证信息。
 
-#### 注册NHN Cloud Console
-* 在**Notification > Push > Certificate**的**APNS JWT**中输入上述信息。
+#### 注册Gamebase Console
+* 在**Gamebase > Push > Certificate**的**APNS JWT**中输入上述信息。
 
 #### 实现Notification Service Extension
 * 为了搜集“接收指标”或设置提示音，请参考[TOAST Push指南](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-ios/#notification-service-extension)，在应用程序内实现**Notification Service Extension**。

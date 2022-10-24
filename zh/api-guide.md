@@ -17,9 +17,9 @@ Gamebase Server API以RESTful类型提供如下API。为了使用服务器API，
 #### 服务器地址
 
 调用API的服务器地址如下。此地址也可以在Gamebase控制台页面中确认。
-> https://api-gamebase.cloud.toast.com
+> https://api-gamebase.nhncloudservice.com
 
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.3.png)
 
 #### AppId
 
@@ -61,7 +61,7 @@ API调用时在HTTP Header中设置以下项目。
 Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 X-Secret-Key: IgsaAP
-GET https://api-gamebase.cloud.toast.com
+GET https://api-gamebase.nhncloudservice.com
 ```
 
 **[Response]**
@@ -1207,7 +1207,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| regUser | String | Required | 请求退出的系统或用户信息<br> - 此信息可以在Console > “member”页面的“退出历史记录”页面上确认。|
+| regUser | String | Required | 请求退出的系统或信息，不留空格。<br> - 此信息可以在Console > “member”页面的“退出历史记录”页面上确认。|
 
 **[Request Body]**
 
@@ -1877,7 +1877,7 @@ Gamebase为NHN Cloud Leaderboard服务的服务器API提供**Wrapping**功能。
 ##### API调用示例
 
 ```
-GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
+GET https://api-gamebase.nhncloudservice.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
 
 Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
@@ -1928,7 +1928,7 @@ Gamebase为NHN Cloud Push服务的服务器API提供**Wrapping**功能。如果�
 ##### API调用示例
 
 ```
-POST https://api-gamebase.cloud.toast.com/tcgb-push/v1.3/apps/{appId}/messages
+POST https://api-gamebase.nhncloudservice.com/tcgb-push/v1.3/apps/{appId}/messages
 
 Content-Type: application/json
 X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
@@ -2050,7 +2050,7 @@ X-Secret-Key: IgsaAP
 ##### API调用示例
 
 ```
-GET https://api-gamebase.cloud.toast.com/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance
+GET https://api-gamebase.nhncloudservice.com/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance
 ```
 
 ##### API失败响应结果

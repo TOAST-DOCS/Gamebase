@@ -8,6 +8,9 @@
 * Android 13 OSでregisterPushを呼び出した時、自動的に通知許可権限をリクエストするポップアップを表示します。
 * Googleログイン時、silentSignIn APIを活用するように内部ロジックを改善しました。
 
+#### バグ修正
+* Hangame IdPログイン時、有効な他社IdPを利用した後に有効ではない他社IdPで再試行すると、エラーが発生せず以前のIdPでログインを試みてクラッシュが発生する問題を修正しました。
+
 ### 2.43.0 (2022. 09. 07.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.0/GamebaseSDK-Android.zip)
 
