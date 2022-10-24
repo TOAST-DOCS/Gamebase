@@ -288,11 +288,12 @@ public void LoginWithAdditionalInfo()
 
 | keyname | a use | 值类型 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | 设定IdP类型                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid, hangame, weibo, kakaogame |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（Access Token）。<br/>不用于Google认证。 |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 输入登录Google后可以获取的认证码(Authorization Code)。 |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | 设置IdP类型。                         | GamebaseAuthProvider.GOOGLE<br>GamebaseAuthProvider.GAMECENTER<br> GamebaseAuthProvider.FACEBOOK<br>GamebaseAuthProvider.NAVER<br>GamebaseAuthProvider.TWITTER<br>GamebaseAuthProvider.LINE<br>GamebaseAuthProvider.HANGAME<br>GamebaseAuthProvider.APPLEID<br>GamebaseAuthProvider.WEIBO<br>GamebaseAuthProvider.KAKAOGAME<br>GamebaseAuthProvider.PAYCO |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置IdP登录后收到的认证信息（Access Token）。<br/>不用于Google认证。 |                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 输入Google登录后可以获取的认证码(Authorization Code)。 |
 | GamebaseAuthProviderCredential.GAMEBASE_ACCESS_TOKEN | 使用Gamebase访问令牌而非  IdP身份验证信息登录时使用。 |  |
 | GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | 允许在不注销Gamebase的情况下尝试使用其他帐户登录。 | **bool** |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | 设置提供LINE服务的区域。 | [参考Login with IdP](./aos-authentication/#login-with-idp) |
 
 > [TIP]
 >
@@ -409,7 +410,7 @@ public void Logout()
 在登录状态尝试退出（删除数据）。
 
 * 成功退出时 
-  * 登录IdP的游戏用户数据将会被删除。 
+  * IdP登录的游戏用户数据将会被删除。 
   * 可使用IdP重新登录，并创建新的游戏用户数据。
   * 所有连接的IdP都将注销。
 * 表示退出Gamebase，并不表示IdP账户的退出。 
@@ -556,8 +557,8 @@ public void AddMapping(string providerName)
 | keyname | a use | 值类型 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
 | GamebaseAuthProviderCredential.PROVIDER_NAME | 设定IdP类型                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置登录IdP后收到的认证信息（Access Token）。<br/>不用于Google认证。 |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 输入登录Google后可以获取的认证码(Authorization Code)。 |                                          |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置IdP登录后收到的认证信息（Access Token）。<br/>不用于Google认证。 |                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 输入Google登录后可以获取的认证码(Authorization Code)。 |                                          |
 
 > [TIP]
 >
@@ -869,7 +870,7 @@ public void GetLastLoggedInProvider()
 >
 > * 为了安全起见，建议通过游戏服务器调用外部IdP的认证信息。
 > * 根据IDP类型，Access Token可能很快过期。
->     * 例如，登录Google后过2小时，Access Token将过期。
+>     * 例如，Google登录后过2小时，Access Token将过期。
 >     * 如果需要用户信息，登录后，请立即调用Gamebase Server API。
 > * 若使用"Gamebase.LoginForLastLoggedInProvider()" API登录时，则不能获取认证信息。 
 >     * 如果需要用户信息，通过将与要使用的IDPCode相同的{IDP_CODE}作为参数，而不将"Gamebase.LoginForLastLoggedInProvider()"作为参数来调用"Gamebase.Login(IDP_CODE, callback)" API进行登录。

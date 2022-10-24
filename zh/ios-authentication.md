@@ -131,19 +131,6 @@ Gamebase默认支持Guest登录。
 如果登录成功，Gamebase Access Token将存储在Local Storage中，并在调用loginForLastLoggedInProviderWithViewController:completion:方法后，可以应用存储的Access Token。<br/>
 但是，IdP的Access Token是由每个IdP提供的SDK管理。<br/>
 
-<br/><br/>
-个别IdP登录，需要一些特定信息。<br/>
-例如，要实现Facebook登录，您需要设置scope等。<br/>
-为了设置这些信息，提供了**[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API。<br/>
-可以用dictionary格式把信息输入到参数additionalInfo中。<br/>
-（当参数值为nil时，它将填充在NHN Cloud Console中注册的additionalInfo值。如果参数值存在，则覆盖在Console中注册的值。）
-
-
-> [参考]
->
-> iOS支持的IdP在**TCGBConstants.h**的TCGBAuthIDPs区域中定义为**kTCGBAuthXXXXXX**。
->
-
 ```objectivec
 - (void)loginFacebookButtonClick {
     [TCGBGamebase loginWithType:kTCGBAuthFacebook viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
@@ -157,34 +144,65 @@ Gamebase默认支持Guest登录。
 }
 ```
 
+<br/><br/>
+个别IdP登录，需要一些特定信息。<br/>
+例如，要实现Facebook登录，您需要设置scope等。<br/>
+为了设置这些信息，提供了**[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API。<br/>
+可以用dictionary格式把信息输入到参数additionalInfo中。<br/>
+（当参数值为nil时，它将填充在NHN Cloud Console中注册的additionalInfo值。如果参数值存在，则覆盖在Console中注册的值。）
+
+* additionalInfo参数设置方法
+
+| keyname                                  | a use                          | 值类型                           |
+| ---------------------------------------- | ------------------------------ | ------------------------------ |
+| kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINE服务区域中要登录的一个服务region。 | **String**(ex: japan, thailand, taiwan, indonesia) |
+
+```objectivec
+- (void)loginLineButtonClick {
+    NSDictionary *additionalInfo = @{ kTCGBAuthLoginWithCredentialLineChannelRegionKeyname: @"japan" };
+    [TCGBGamebase loginWithType:kTCGBAuthLine additionalInfo:additionalInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+       if ([TCGBGamebase isSuccessWithError:error] == YES) {
+            // To Login Succeeded
+            NSString *userId = [authToken.tcgbMember userId];
+        } else { 
+            // To Login Failed
+        }
+    }];
+}
+```
+
+> [参考]
+>登录可以注册多个区域以在控制台中提供服务。
+> LINE登录时可在Console中注册将要提供服务的多个区域。使用IdP登录时通过additionalInfo参数直接输入将要提供服务的区域。
+> 
+> [参考]
+>
+> iOS支持的IdP已定义为**TCGBConstants.h**的TCGBAuthIDPs领域的**kTCGBAuthXXXXXX**。
+>
+
 #### Gamebase支持的IdP
 请参考[控制台使用指南](./oper-app/#authentication-information)。
 
 ### Login with Credential
 
-是通过IdP提供的SDK，在游戏中进行认证后，并使用获取到的Access Token，登录到Gamebase的接口。
-
-
+是使用IdP提供的SDK在游戏中直接进行认证后，使用接收到的Access Token登录Gamebase的界面。
 
 
 * Credential参数设置方法
 
-
-
 | keyname                                  | a use                          | 值类型                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | 设定IdP类型                     | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname |设定登录IdP后收到的认证信息（Access Token）。|                                |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname |设定IdP登录后收到的认证信息（Access Token）。|                                |
 | kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname | 允许登录Gamebase后尝试使用其他帐户登录而不注销。 | **BOOL** |
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINE服务区域中要登录的一个服务区域。| [参考Login with IdP](./ios-authentication/#login-with-idp)|
 
 
 > [参考]
 >
 > 当要在游戏中使用外部服务（例如Facebook）的特有功能时，可能需要它。
 >
-
 <br/>
-
 
 > <font color="red">[注意]</font><br/>
 >
@@ -255,7 +273,7 @@ Gamebase默认支持Guest登录。
 在登录状态下尝试退出。
 
 * 成功退出时
-  * 登录IdP的游戏用户数据将会被删除。
+  * IdP登录的游戏用户数据将会被删除。
   * 可通过相关IdP重新登录。将创建新的游戏用户数据。
   * 所有连接的IDP都将被注销。
 * 表示退出Gamebase，而不表示退出IdP账户。 
@@ -386,7 +404,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 | keyname                                  | a use                          | 值类型                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | 设定IdP类型                     | facebook, iosgamecenter, naver, google, twitter, line, appleid |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname | 设定登录IdP后收到的认证信息（Access Token）。|                                |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname | 设定IdP登录后收到的认证信息（Access Token）。|                                |
 
 
 
@@ -577,7 +595,7 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 >   
 > * 为了安全起见，建议通过游戏服务器调用外部IdP的认证信息。
 > * 根据IdP访问令牌类型，可能会很快过期。
->     * 例如，登录Google过2小时后，Access Token将会过期。
+>     * 例如，Google登录过2小时后，Access Token将会过期。
 >     * 如果您需要用户信息，登录后，请直接调用Gamebase Server API。
 > * 如果调用"[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]" API登录，则无法接收认证信息。
 >     * 如需用户信息，需要通过与IDPCode相同的{IDP_CODE}作为参数，调用"[TCGBGamebase loginWithType:viewController:completion:]" API登录，而不调用"[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]"。
@@ -723,7 +741,7 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 
 ## TemporaryWithdrawal
 
-为“预约退出‘’功能。
+为“预约退出”功能。
 由于请求了临时退出，不立即退出，预约时期过后退出。
 可以在控制台中修改预约时期。
 
@@ -743,7 +761,7 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 **API**
 
 ```objectivec
-+ (void)withdrawWithViewController:(UIViewController *)viewController completion:(WithdrawCompletion)completion;
++ (void)requestTemporaryWithdrawalWithViewController:(nullable UIViewController *)viewController completion:(nullable TemporaryWithdrawCompletion)completion;
 ```
 
 **ErrorCode**

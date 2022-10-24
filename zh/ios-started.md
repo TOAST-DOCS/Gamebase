@@ -37,20 +37,20 @@ Gamebase可以通过以下方式安装。
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 用途 | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | ToastSDK 0.30.0 | 包括Gamebase的Interface和核心逻辑。 | iOS 9 or later
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.0.0 | 包括Gamebase的Interface和核心逻辑。 | iOS 9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | 支持Facebook登录。 | iOS 9 or later |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.5 | 支持PAYCO登录。 | iOS 9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | 支持NAVER登录。 | iOS 9 or later |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | 支持Gamecenter登录。 | iOS 9 or later |
 |  | GamebaseAuthGoogleAdapter.framework | GoogleSignIn 5.0.2 | 支持Google登录。 | iOS 9 or later |
 |  | GamebaseAuthTwitterAdapter.framework | | 支持Twitter登录。 | iOS 9 or later |
-|  | GamebaseAuthLineAdapter.framework | LineSDK v5.0.1 | 支持LINE登录。 | iOS 10 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | 支持LINE登录。 | iOS 10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | 支持iOS 9 or later<br/>arm64。<br/> |
 |  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.7.0 | 支持Hangame登录。 | iOS 9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | 支持Weibo登录。 | iOS 9 or later |
-|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.11.5 | 支持Kakao登录。 | iOS 11 or later |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>ToastIAP 0.30.0<br/> ToastGamebaseIAP 0.13.0 | 支持游戏内支付。 | iOS 9 or later |
-| Gamebase Push Adapters | GamebasePushAdapter.framework | ToastPush 0.30.0 | 支持Push。 | iOS 9 or later |
+|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.4 | 支持Kakao登录。 | iOS 11 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.0.0<br/> ToastGamebaseIAP 0.14.0 | 支持游戏内支付。 | iOS 9 or later |
+| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.0.0 | 支持Push。 | iOS 9 or later |
 
 
 > <font color="red">[注意]</font><br/>
@@ -96,7 +96,7 @@ Gamebase可以通过以下方式安装。
     * StoreKit.framework
     * AuthenticationServices.framework (Optional)
     * AppTrackingTransparency.framework (Optional)
-     
+  
 ![Link Binary With Libraries](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
 
 * 4) 使用**Gamebase iOS SDK 2.12.0以上**版本时，更新Facebook SDK的同时要添加设置。 
@@ -104,8 +104,10 @@ Gamebase可以通过以下方式安装。
     * 在项目内添加**空swift文件**(在项目内没有swift文件时添加)。
 * 5) 需要在**Target > Build Settings > Linking > Other Linker Flags**中添加**-ObjC**。
 ![Other Linker Flags](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
-* 6) 使用NaverAuthAdapter时，需要将NAVER SDK提供的**NaverThirdPartyLogin.framework**文件添加在**Target > General > Embedded Binaries**中。
- ![Naver Embeded Binaries](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.7.0.png)
+* 6) 如果使用NaverAuthAdapter则需将NAVER SDK提供的**NaverThirdPartyLogin.framework**文件添加在**Target > Build Phases > Embedded Frameworks**中。 
+ ![Naver Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.8.0.png)
+ * 7) 如果使用LineAuthAdapter则需将LINE SDK提供的**LineSDKObjC.xcframework**文件添加在**Target > Build Phases > Embedded Frameworks**中。
+ ![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.0.png)
 
 > [INFO]
 >
@@ -230,24 +232,17 @@ end
 * 需要设置URL Scheme。
 	* 在**Xcode > Target > Info > URL Types**中添加**line3rdp.{App Bundle ID}**。
 
-* 需要在Info.plist文件中设置LINE发布的ChannelID。
-```
-<key>LineSDKConfig</key>
-<dict>
-    <key>ChannelID</key>
-    <string>{Issued LINE ChannleID}</string>
-</dict>
-```
 * 为了ATS设置，在Info.plist文件中注册Scheme。
 ```
 <key>LSApplicationQueriesSchemes</key>
 <array>
-    <string>lineauth</string>
-    <string>line3rdp.{App Bundle ID}</string>
+    <string>lineauth2</string>
 </array>
 ```
-* 关于使用LINE Login时所需的项目设置，请参考以下链接。(需要验证)
-* [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/objective-c/overview/)
+* 关于为了使用LINE登录进行的项目设置，请参考以下链接。
+    * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/swift/overview/)
+* Gamebase iOS SDK 2.42.2以下需要额外的设置。
+    * [Game > Gamebase > iOS SDK使用指南 > 开始 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
 #### Weibo
 
@@ -275,7 +270,7 @@ end
 
 ![gamebase_auth_google_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_google_console_01.png)
 
-  
+
 **NAVER**
 
 * Gamebase iOS SDK 1.12.1以下
@@ -291,6 +286,19 @@ end
 ```
 
 ![gamebase_auth_naver_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_naver_console_01.png)
+
+**LINE**
+
+* Gamebase iOS SDK 2.42.2以下
+    * 您需要将LINE发布的ChannelID设置在Info.plist文件中。
+
+```
+<key>LineSDKConfig</key>
+<dict>
+    <key>ChannelID</key>
+    <string>{Issued LINE ChannleID}</string>
+</dict>
+```
 
 ## 3rd-Party Provider SDK Guide
 
