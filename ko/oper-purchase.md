@@ -13,13 +13,13 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 
 게임 내에서 상품을 판매하기 위해 스토어를 등록합니다.
 **Store** 탭의 **스토어 정보 리스트**에서 새 스토어를 등록하거나 이미 등록한 스토어를 관리할 수 있습니다.
-![gamebase_purchase_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_01_201812.png)
+![gamebase_purchase_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_01_202210.png)
 
 ### Register
 
 새로운 스토어를 등록하려면 **스토어 정보 리스트** 화면의 **등록** 버튼을 클릭합니다.
 
-![gamebase_purchase_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_02_201812.png)
+![gamebase_purchase_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_02_202210.png)
 
 * **스토어**  등록하고자 하는 외부 스토어를 선택합니다.  등록하고자 하는 스토어가 없다면, [고객센터](https://toast.com/support/inquiry)로 연락주시기 바랍니다.
 * **앱 이름**   등록하고자 하는 게임의 이름을 입력합니다.
@@ -35,7 +35,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 
 조회 목록에서 등록된 스토어의 상세 정보를 조회하거나 정보를 변경할 수 있습니다.
 
-![gamebase_purchase_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_03_201812.png)
+![gamebase_purchase_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_03_202210.png)
 - 조회 목록에서 등록된 스토어를 선택하면 상세 정보를 조회할 수 있습니다.
 - **수정** 버튼을 클릭하면 스토어 앱 ID를 제외한 앱 이름, 스토어 앱, 사용 여부 정보를 수정할 수 있습니다.
 - **삭제** 버튼을 클릭하면 스토어의 정보를 삭제할 수 있습니다. 단, 사용여부가 미사용인 스토어 삭제만 가능합니다.
@@ -95,7 +95,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 선택한 검색 유형에 따라 검색 항목이 다르게 표시됩니다.
 
 ##### (1) 일반 검색
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202006.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202210.png)
 
 아래의 검색 조건을 만족하는 결과를 검색할 수 있습니다.
 - **검색 기간**: 사용자가 구입을 시도한 기간. 오른쪽의 내림차순/오름차순 항목을 통해 정렬을 선택할 수 있음
@@ -106,12 +106,12 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 - **결제 상태**: 검색하고자 하는 결제 상태 기준
 
 ##### (2) Trnasaction ID 검색
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202006.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202210.png)
 
 결제를 하면 생성되는 Transaction ID를 사용해 검색할 수 있습니다.
 
 ##### (3) 영수증 검색
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202006.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202210.png)
 결제 시 지급된 영수증 정보를 가지고 조회할 수 있습니다.
 
 
@@ -152,11 +152,11 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 
 
 ##### Success 변경
-![gamebase_purchase_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_201812.png)
+![gamebase_purchase_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_202210.png)
 결제 진행 시 발급받은 **영수증 번호**, **가격**, **통화** 정보를 입력해야 상태를 변경할 수 있습니다.
 
 ##### Refund 변경
-![gamebase_purchase_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_09_201812.png)
+![gamebase_purchase_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_09_202210.png)
 추가 정보 입력 없이 상태를 선택한 후 변경을 선택합니다.
 변경된 결제 정보는 이후 변경이 불가능하므로 신중하게 확인해야 합니다.
 

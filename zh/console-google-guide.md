@@ -26,7 +26,7 @@
 
 ## 两种集成验证方式
                                                            
-![设置NHN Cloud IAP应用程序](https://static.toastoven.net/prod_iap/console_google/google_iap_console.png)
+![设置NHN Cloud IAP应用程序](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_zh_202210.png)
 
 - 为了连接到Google，需要进行访问Google Android开发者API验证。 
 - NHN Cloud IAP提供两种验证模式，为了验证每个模式需要不同的特定信息。 
@@ -47,7 +47,7 @@
     - “Google API Client ID” : 请参考高级管理员验证模式指南中的步骤4。
     - “Google API Client Secret” : 请参考高级管理员验证模式指南中的步骤4。
     - “Refresh Token For Google Oauth” : 请参考高级管理员验证模式指南中的步骤6。
-      ![设置高级管理员模式](https://static.toastoven.net/prod_iap/console_google/google_iap_console_supervisor.png)
+      ![设置高级管理员模式](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_supervisor_zh_202210.png)
 
 
 2. 移动至[Google Cloud Console API和服务](https://console.cloud.google.com/apis/dashboard)仪表盘。
@@ -95,7 +95,7 @@
 
 1. 输入NHN Cloud IAP服务账户验证模式的特定信息。
     - “服务账户集成信息” : 请参考服务账户验证模式指南中的步骤5。   
-      ![设置服务账户模式](https://static.toastoven.net/prod_iap/console_google/google_iap_console_service_account.png)
+      ![设置服务账户模式](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_service_account_zh_202210.png)
 
 2. 移动至[Google Cloud Console](https://console.cloud.google.com/apis/dashboard)API和服务页面。
     - 选择将与Google Play管理账户连接的项目。 

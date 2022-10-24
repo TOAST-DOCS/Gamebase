@@ -13,13 +13,13 @@ Gamebase uses NHN Cloud IAP (In-App Purchase) service.
 
 Register stores to sell products in games.
 Register a new store on the **Store Information List** of the **Store** tab, or manage registered stores.
-![gamebase_purchase_01_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_01_201812_en.png)
+![gamebase_purchase_01_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_01_202210_en.png)
 
 ### Register
 
 Click **Register** on the **Store Information List** to register a new store.
 
-![gamebase_purchase_02_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_02_201812_en.png)
+![gamebase_purchase_02_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_02_202210_en.png)
 
 * **Store**  Select an external store to register.  If it is not on the list, contact [Customer Center](https://toast.com/support/inquiry).
 * **App Name**   Enter the name of a game to register.
@@ -35,7 +35,7 @@ Click **Register** on the **Store Information List** to register a new store.
 
 Retrieve or modify detail information of registered stores on the list.
 
-![gamebase_purchase_03_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_03_201812_en.png)
+![gamebase_purchase_03_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_03_202210_en.png)
 - Select a registered store on the list to retrieve detail information.
 - Click **Modify** to modify information such as app name, store app, and use or not, but not store App ID.
 - Click **Delete** to delete information: only for the stores that are Not in Use.
@@ -95,7 +95,7 @@ To query the list of purchases, click **Download** on top right of the page.
 Each search type shows different search items.  
 
 ##### (1) General Search 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202006.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202210_en.png)
 
 Search is available by the following conditions: 
 - **Search Period**: A period when user attempted to purchase, in the ascending or descending order 
@@ -106,12 +106,12 @@ Search is available by the following conditions:
 - **Purchase Status**: Status of purchase to search 
 
 ##### (2) Search by Transaction ID 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202006.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202210_en.png)
 
 Search is available by Transaction ID which is created upon purchase. 
 
 ##### (3) Search by Receipt 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202006.png)
+![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202210_en.png)
 You can view the results using the receipt issued during the purchase.
 
 
@@ -152,11 +152,11 @@ The status of the searched purchase information is as follows:
 
 
 #### Changing to Success
-![gamebase_purchase_08_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_201812_en.png)
+![gamebase_purchase_08_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_202210_en.png)
 In order to proceed, you need to provide **Receipt Number, Value, and Currency**.
 
 #### Changing to Refund
-![gamebase_purchase_09_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_09_201812_en.png)
+![gamebase_purchase_09_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_09_202210_en.png)
 No additional information is required. 
 Once it has been changed to Refund status, it's set for good.
 

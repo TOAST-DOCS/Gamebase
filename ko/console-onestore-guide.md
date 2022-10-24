@@ -1,4 +1,4 @@
-## Mobile Service > IAP > ONEStore 콘솔 가이드
+## Game > Gamebase > 스토어 콘솔 가이드 > ONEStore 콘솔 가이드
 
 원스토어에서 라이선스 키 및 OAuth 인증 정보를 생성하여 IAP 앱 정보에 등록합니다.
 

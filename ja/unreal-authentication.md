@@ -176,6 +176,16 @@ void Sample::Login()
 >additionalInfoパラメータに必須情報をdictionary形式で入力してください。
 >additionalInfo値がある場合にはその値を使用し、nullの場合には[NHN Cloud Console](./oper-app/#authentication-information)に登録された値を使用します。
 
+> [参考]
+>
+> Line IdPはGamebase SDK 2.43.0からLineサービス提供地域を設定できます。
+> 該当地域はAdditionalInfoに設定できます。 
+* additionalInfoパラメータの設定方法
+
+| keyname                                  | a use                                    | 値種類                                   |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| GamebaseAuthProviderCredential::LineChannelRegion | Lineサービス提供地域設定 | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
+
 **API**
 
 Supported Platforms
@@ -250,6 +260,7 @@ IdPで提供するSDKを使用して、ゲームで直接認証した後、発�
 | GamebaseAuthProviderCredential::AccessToken | IdPログイン後に取得した認証情報(Access Token)設定<br/>Google認証時には使用しない |  
 | GamebaseAuthProviderCredential::AuthorizationCode | Googleログイン後に取得した認証情報(Authorization Code)設定 |                                          |
 | GamebaseAuthProviderCredential::GamebaseAccessToken | IdP認証情報ではなくGamebase Access Tokenでログインを行いたい場合に使用 |  |
+| GamebaseAuthProviderCredential::LineChannelRegion | Lineサービス提供地域設定 | [Login with IdP参照](./unreal-authentication/#login-with-idp) |
 
 > [TIP]
 >
@@ -492,9 +503,9 @@ void Sample::AddMapping(const FString& providerName)
 
 | keyname | a use | 値種類 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | IdPタイプ設定                        | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)設定<br/>Google認証時には使用しない |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Googleログイン後に取得した認証情報(Authorization Code)設定 |                                          |
+| GamebaseAuthProviderCredential::PROVIDER_NAME | IdPタイプ設定 | GamebaseAuthProvider::Google<br> GamebaseAuthProvider::Facebook<br>GamebaseAuthProvider::Naver<br>GamebaseAuthProvider::Twitter<br>GamebaseAuthProvider::Line<br>GamebaseAuthProvider::Hangame<br>GamebaseAuthProvider::AppleId<br>GamebaseAuthProvider::Weibo<br>GamebaseAuthProvider::GameCenter<br>GamebaseAuthProvider::Payco |
+| GamebaseAuthProviderCredential::ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)設定<br/>Google認証時には使用しない |                                |
+| GamebaseAuthProviderCredential::AUTHORIZATION_CODE | Googleログイン後に取得した認証情報(Authorization Code)設定 |    
 
 > [TIP]
 >

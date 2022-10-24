@@ -57,12 +57,30 @@ Google Playコンソールと同一のアカウントでGoogle APIコンソー�
 ![[그림 4] OAuth クライアント生成 3](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_g_03.png)
 
 
-##### 5. Step 1で https://www.googleapis.com/auth/androidpublisher 入力して Authorization code コード発給
-![[그림 5] OAuth クライアント生成 4](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_g_04.png)
+## 2つの連動認証方式を提供
+
+![NHN Cloud IAPアプリ設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_ja_202210.png)
+
+- Google連携を行うには、GoogleのAndroid開発者APIにアクセスするための認証が必要です。
+- NHN Cloud IAPは、2つの認証モデルを提供し、それぞれ認証のために異なる特化情報が必要です。
+- モデル別特化情報のほか、共通で必要な情報もGoogle連携および決済確認のために必要なため、**共通入力情報もあわせて確認**する必要があります。
+    - `Store App ID`：共通入力情報ガイドPackage Name参照
+    - `Google In App Purchase License Key`：共通入力情報ガイドInAppPurchase License Public Key参照
+    - `マーケット連動検証省略`：共通入力情報ガイドマーケット検証省略を参照
+- モデル特化/共通必要情報はGoogleが提供する以下のガイドラインに従ってください。 [Google Cloud Platform Console](https://console.cloud.google.com/apis/dashboard), [Google Play Console](https://play.google.com/console/developers), [Google Developer Console](https://developers.google.com/oauthplayground/)などから入手できます。
+- Google Playアプリの決済情報を確認するための[Google Android Publisher API](https://developers.google.com/android-publisher)はOAuth2必須認証対象APIです。
 
 
-##### 6. Step 2で Exchange authorization code for tokens ボタンを押してトークン発給
-![[그림 6] OAuth クライアント生成 5](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_g_05.png)
+## 最高管理者(Supervisor)認証モデル
+- 登録するアプリをGoogleコンソールで管理するGoogleアカウントの認証を代行するモデルであり、NHN Cloud IAPがデフォルト値として提供してきた認証モデルです。
+- Google Consoleでは、1つのGoogleアカウントに複数のアプリを登録管理することができ、同じアカウントに登録されたアプリのNHN Cloud IAP設定情報はすべて同じです。
+- 次の案内に従って合計3つの情報を確認してNHN Cloud IAPのアプリ情報として入力する必要があります。この情報は該当GoogleアカウントのOAuth認証に使用されます。
+
+1. NHN Cloud IAP Google最高管理者認証モデル特化入力情報
+    - `Google API Client ID`：最高管理者認証モデルガイドのステップ4を参照
+    - `Google API Client Secret`：最高管理者認証モデルガイドのステップ4を参照
+    - `Refresh Token For Google Oauth`：最高管理者認証モデルガイドのステップ6を参照
+      ![最高管理者モデル設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_supervisor_ja_202210.png)
 
 
 ### Google Play連動注意事項
@@ -74,10 +92,71 @@ OAuth 認証情報生成後、以下のガイドを参考にプロジェクト�
 
 #### 1. Google Play Android Developer APIの有効化の状態を確認します。
 
-```
-  - https://console.developers.google.com > APIs & Services > Dashboard
-```
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-google-console-1.png)
+4. 新規OAuth Clientが作成されると、作成されたOAuth Clientの2つの情報についての案内ポップアップが表示されます。
+    - クライアントID：NHN Cloud IAPアプリ情報設定画面の`Google API Client ID`の値を入力します。
+    - クライアントセキュリティパスワード：NHN Cloud IAPアプリ情報設定画面の`Google API Client Secret`の値を入力します。
+    - 上記の2つの情報はOAuth Client情報画面で再確認することができ、Googleが提供するOAuth Client情報JSONダウンロードファイルでも確認できます。
+
+   ![最高管理者モデル設定](https://static.toastoven.net/prod_iap/console_google/google_supervisor_step_03.png)
+
+5. [Google OAuth 2 Playground](https://developers.google.com/oauthplayground)ページに移動
+    - 画面右上の歯車ボタンを押すと表示される**OAuth 2.0 Configuration**ポップアップ設定でUse your own OAuth credentialsチェックボックスをチェックします。
+    - OAuth 2.0 Configurationポップアップ設定のClient ID、Client Secretにステップ4で取得した情報を入力します。
+    - 左側のAPI権限範囲選択画面で`Google Play Android Developer API`を選択します。
+        - 左側の選択画面下の範囲入力部分に`https://www.googleapis.com/auth/androidpublisher`を入力しても構いません。
+    - すべての設定値の入力と選択が完了したら左下のAuthorize APIボタンをクリックします。
+
+   ![最高管理者モデル設定](https://static.toastoven.net/prod_iap/console_google/google_supervisor_step_04.png)
+
+6. Authorize APIボタンをクリックするとGoogle OAuth 2 PlaygroundページがStep 2に変わり、追加情報が表示されます。
+    - Refresh Token：NHN Cloud IAPアプリ情報設定画面の`Refresh Token For Google Oauth`の値を入力します。
+
+   ![最高管理者モデル設定](https://static.toastoven.net/prod_iap/console_google/google_supervisor_step_05.png)
+
+## サービスアカウント認証モデル
+- 最高管理者アカウントが委任した権限を持つGoogle内サービスアカウントの認証を代行するモデルであり、 2022年4月NHN Cloud IAPに新規追加された認証サポートモデルです。
+- 権限の範囲を委任されるサービスアカウントの作成および管理は最高管理者(Googleの実際の管理アカウント)がGoogleコンソールで行う必要があります。
+- サービスアカウントは最高管理者によって最高管理者に準ずる範囲の権限を受任することもでき、最高管理者が権限を持つ特定アプリだけに限定された範囲の権限を受任することもできます。
+    - 委任権限範囲の設定戦略は、お客様の意図した特性に合わせて設定してください。
+- 最高管理者認証モデルが持つ権限の範囲に負担を感じる場合は、Googleコンソール内でサービスアカウント作成後にこの認証モデルを使用してください。 ([Googleガイド](https://developers.google.com/identity/protocols/oauth2/service-account))
+
+1. NHN Cloud IAPサービスアカウント認証モデル特化入力情報
+    - `サービスアカウント連動情報`：サービスアカウント認証モデルガイドのステップ5を参照 
+      ![サービスアカウントモデル設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_service_account_ja_202210.png)
+
+2. [Google Cloud Console](https://console.cloud.google.com/apis/dashboard) APIおよびサービスページに移動
+    - Google Play管理アカウントと連携するプロジェクトを選択
+    - **ユーザー認証情報**メニューに移動
+    - **ユーザー認証情報を作成** > **サービスアカウント**を選択
+
+   ![サービスアカウントモデル設定](https://static.toastoven.net/prod_iap/console_google/google_service_account_step_02.png)
+
+3. 新規サービスアカウントの基本情報の入力
+    - 管理しやすい形の基本情報を入力した後、`作成して続行`をクリックします。
+    - サービスアカウントへのアクセス権限付与で役割を`所有者`と選択します。
+    - 追加選択事項で作成するサービスアカウントの管理者メールを入力すると、その管理者にサービスアカウント設定の権限が付与されます。
+        - Google Cloud Console内に存在しない管理者メールアドレスの場合は、入力したメールアドレスに管理者招待メールが送信されます。
+
+   ![サービスアカウントモデル設定](https://static.toastoven.net/prod_iap/console_google/google_service_account_step_03.png)
+
+4. サービスアカウントへの権限委任
+    - **Google Play Console** > **APIアクセス**メニューに移動
+    - Google Cloud Consoleで作成したサービスアカウントが画面下部のサービスアカウントリストに表示されます。作成したサービスアカウント右側の**権限付与**リンクをクリックします。
+    - 権限の範囲は最高管理者アカウントが持つアプリ全体またはアプリ個別単位で複数指定することができ、範囲内で権限の種類を指定できます。
+    - 範囲は顧客の意図に合わせて設定しますが、権限の種類のうち`アプリ情報表示(読み取り専用)`、`財務データ表示`、`注文および購読管理`の権限は必ず委任設定する必要があります。
+    - 委任設定された権限は反映されるまで数日かかる場合があります。委任権限が反映されるまで最長7日程度かかった事例がありますのでご参考ください。
+
+   ![サービスアカウントモデル設定](https://static.toastoven.net/prod_iap/console_google/google_service_account_step_05.png)
+
+5. APIおよびサービスページの新しく作成されたサービスアカウントリストのうち、作成した**サービスアカウント**の詳細情報画面に移動
+    - キータブに移動して、キー追加 > 新しいキーを作成
+    - 新規ポップアップで`JSON`形式を選択して作成をクリック
+    - キーの作成が完了すると、自動的にJSON形式のファイルをGoogleからダウンロードします。
+    - そのファイルをWindowsのメモ帳などの純粋なテキストエディタで開き、すべての内容をコピーした後、NHN Cloud IAPアプリ情報設定画面の`サービスアカウント連動情報`に入力する必要があります。
+    - ダウンロードしたファイルは最初のダウンロード後に、再ダウンロードすることはできませんので、大切に保管して入力してください。
+    - ステップ4で言及したように、Google内部でまだ権限が反映されていない場合は権限なし登録エラーが発生することがありますので、このような場合は時間をおいて再試行してください。
+
+   ![サービスアカウントモデル設定](https://static.toastoven.net/prod_iap/console_google/google_service_account_step_04.png)
 
 
 #### 2. Google Play Developer Consoleでリンクされたプロジェクトを確認します。

@@ -20,6 +20,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
             [OnlineSubsystemGooglePlay.Store]
             bSupportsInAppPurchasing=False
+            bUseGooglePlayBillingApiV2=False
 
     * 使用Online SubSystem iOS Plugin时编辑/Config/IOS/IOSEngine.ini文件。
 

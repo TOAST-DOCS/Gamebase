@@ -4,7 +4,7 @@
 
 ### Unreal
 
-* Google Billing Client 5.0.0 버전으로 변경되었습니다. Unreal에서 제공하는 Online SubSystem GooglePlay 플러그인 사용 시 /Config/Android/AndroidEngine.ini 파일에 해당 값을 추가해야 빌드 시 오류가 발생하지 않습니다.
+* Changed to Google Billing Client 5.0.0. When using the Online SubSystem GooglePlay plugin provided by Unreal, you must add the value to the /Config/Android/AndroidEngine.ini file so that a build error would not occur.
 
             [OnlineSubsystemGooglePlay.Store]
             bUseGooglePlayBillingApiV2=False

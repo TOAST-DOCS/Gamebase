@@ -26,7 +26,7 @@
 
 ## Two Integrated Authentication Methods That Are Provided
 
-![NHN Cloud IAP App Settings](https://static.toastoven.net/prod_iap/console_google/google_iap_console.png)
+![NHN Cloud IAP App Settings](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_en_202210.png)
 
 - For Google integration, authentication is required to access Google's Android Developer API.
 - NHN Cloud IAP provides two authentication models, and each requires different specific information for authentication.
@@ -47,7 +47,7 @@
     - `Google API Client ID`: Refer to Step 4 of the Supervisor Authentication Model section
     - `Google API Client Secret`: Refer to Step 4 of the Supervisor Authentication Model section
     - `Refresh Token For Google Oauth`: Refer to Step 6 of the Supervisor Authentication Model section
-![Setting the Supervisor Model](https://static.toastoven.net/prod_iap/console_google/google_iap_console_supervisor.png)
+![Setting the Supervisor Model](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_supervisor_en_202210.png)
 
 
 2. Go to [Google Cloud Console APIs & Services](https://console.cloud.google.com/apis/dashboard) Dashboard
@@ -95,7 +95,7 @@
 
 1. Input information specific to the NHN Cloud IAP service account authentication model
     - `Service Account Integration Information`: Refer to Step 5 of the service account authentication model section   
-      ![Service account model setting](https://static.toastoven.net/prod_iap/console_google/google_iap_console_service_account.png)
+      ![Service account model setting](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_service_account_en_202210.png)
 
 2. Go to the APIs and Services page on [Google Cloud Console](https://console.cloud.google.com/apis/dashboard)
     - Choose a project to link with your Google Play admin account

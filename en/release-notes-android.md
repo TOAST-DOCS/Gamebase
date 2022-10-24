@@ -3,10 +3,13 @@
 ### 2.44.0 (2022. 10. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: NHN Cloud Android SDK(1.2.0), TOAST Gamebase IAP Android SDK(0.21.0), Google Play Services Auth(20.0.3)
-* Android 13 OS에서 registerPush 호출시 자동으로 알림 허용 권한을 요청하는 팝업을 표시합니다.
-* Google 로그인시 silentSignIn API를 활용하도록 내부 로직을 개선했습니다.
+#### Feature Updates
+* External SDK update: NHN Cloud Android SDK(1.2.0), TOAST Gamebase IAP Android SDK(0.21.0), Google Play Services Auth(20.0.3)
+* Modified to show a popup that automatically requests permission to allow notification when calling registerPush from Android 13 OS.
+* Improved the internal logic so that silentSignIn API can be sued when logging into Google.
+
+#### Bug Fixes
+* Fixed an issue where a crash occurs when logging with the previous version of IdP while logging with Hangame IdP, when no error occurs if you log in with an invalid third-party IdP after using a valid third-party IdP.
 
 ### 2.43.0 (2022. 09. 07.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.0/GamebaseSDK-Android.zip)

@@ -20,6 +20,7 @@ AndroidまたはiOSでアプリ内決済機能を設定する方法は、次の�
             
             [OnlineSubsystemGooglePlay.Store]
             bSupportsInAppPurchasing=False
+            bUseGooglePlayBillingApiV2=False
             
     * Online SubSystem iOSプラグイン使用時 /Config/IOS/IOSEngine.iniファイルを編集します。
             

@@ -14,10 +14,10 @@
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | toast-core-0.31.1<br>toast-common<br>toast-crash-reporter-ndk<br>toast-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | 包含Gamebase的Interface和核心逻辑。 | API 16 (JellyBean, OS 4.1) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.2.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.5.21<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.5.1<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | 包含Gamebase的界面及核心逻辑。 | API 16(JellyBean, OS 4.1) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | 支持Sign In With Apple登录。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | 支持Facebook登录。 | - |
-|  | gamebase-adapter-auth-google | play-services-auth-19.0.0 | 支持Google登录。 | - |
+|  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | 支持Google登录。 | - |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.5.2 | 支持Hangame登录。 | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.0 | 支持LINE登录。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | 支持Naver登录。 | - |
@@ -25,17 +25,19 @@
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | 支持Twitter登录。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | 支持Weibo登录。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | 支持Weibo登录。 | - |
-|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.11.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.5.2<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | 支持Kakao登录。 | API 21(Lollipop, OS 5.0) |
-| Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.18.5<br>toast-iap-core | 支持游戏内支付。 | - |
-|  | gamebase-adapter-purchase-amazon | toast-iap-amazon | 支持Amazon Appstore。 | - |
-|  | gamebase-adapter-purchase-galaxy | toast-iap-galaxy | 支持Galaxy Store。 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK的minSdkVersion是18，为了实际结算，需要设置的Checkout服务应用程序的minSdkVersion为21。 |
-|  | gamebase-adapter-purchase-google | billingclient.billing-3.0.3<br>toast-iap-google | 支持Google Play Store。 | - |
-|  | gamebase-adapter-purchase-huawei | toast-iap-huawei | 支持Huawei App Gallery。 | API 19(Kitkat, OS 4.4) |
-|  | gamebase-adapter-purchase-onestore | toast-iap-onestore | 支持ONE store v17。<br>目前不支持v19。 | - |
-| gamebase-adapter-purchase-onestore-external | toast-iap-onestore-external | 支持ONE store外部支付功能。 | - |
-| Gamebase Push Adapters | gamebase-adapter-toastpush | toast-push-analytics<br>toast-push-core<br>toast-push-notification | 支持Push。 | - |
-|  | gamebase-adapter-push-adm | toast-push-adm | 支持Amazon Device Messaging。 | - |
-|  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>toast-push-fcm | 支持Firebase Notification。 | - |
+|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.4<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.0<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | 支持Kakao登录。 | API 21(Lollipop, OS 5.0) |
+| Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.21.0<br>nhncloud-iap-core | 支持游戏内支付。 | - |
+|  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | 支持Amazon Appstore。 | API 18(JellyBean MR2, OS 4.3) |
+|  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | 支持Samsung Galaxy Store。 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK的minSdkVersion是18, 而为了实际结算要安装的Checkout服务应用程序等的minSdkVersion是21。 |
+|  | gamebase-adapter-purchase-google | billingclient.billing-5.0.0<br>nhncloud-iap-google | 支持Google Play。 | - |
+|  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | 支持Huawei AppGallery。 | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | 支持ONE store v17。 | - |
+|  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | 支持ONE store v19。 | - |
+|  | gamebase-adapter-purchase-onestore-external | nhncloud-iap-onestore-external | 支持ONE store外部支付功能。 | - |
+| Gamebase Push Adapters | gamebase-adapter-toastpush | nhncloud-push-analytics<br>nhncloud-push-core<br>nhncloud-push-notification | 支持Push。 | - |
+|  | gamebase-adapter-push-adm | nhncloud-push-adm | 支持Amazon Device Messaging。 | - |
+|  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>nhncloud-push-fcm | 支持Firebase Cloud Messaging。 | - |
+
 
 ## Setting
 
@@ -51,10 +53,7 @@
     * [Game > Gamebase > 控制台使用指南 > App > Authentication Information](./oper-app/#authentication-information)
 * 如果想购买道具，在Store控制台中注册App信息，在Gamebase > 购买(IAP)控制台中输入相关信息。
 	* [Game > Gamebase > Store控制台指南 > Google控制台指南](./console-google-guide) 
-	* [Game > Gamebase > Store控制台指南 > ONE store控制台指南](./console-onestore-guide)
-        * 目前ONE Store只支持v17。
-        * 在ONE Store中创建应用程序时，请注意不要使用v19创建。
-        * 正在检讨ONE Store v19支持。 
+	* [Game > Gamebase > Store控制台指南 > ONE store控制台指南](./console-onestore-guide) 
 	* [Game > Gamebase > Store控制台指南 > GALAXY控制台指南](./console-galaxy-guide)
 	* [Game > Gamebase > Store控制台指南 > Amazon控制台指南](./console-amazon-guide)
 	* [Game > Gamebase > Store控制台指南 > Huawei控制台指南](./console-huawei-guide)
@@ -184,9 +183,13 @@ dependencies {
 
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
-    // >>> 在ONE Store只使用v17，而现在不支持v19。
+   // >>> [ONE store v17]
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-external:$GAMEBASE_SDK_VERSION"
+    // >>> [ONE store v19]
+    // https://github.com/ONE-store/onestore_iap_release/tree/iap19-release/android_app_sample/app/libs
+    implementation files('libs/iap_sdk-v19.00.02.aar')
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v19:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-amazon:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-huawei:$GAMEBASE_SDK_VERSION"
@@ -238,8 +241,9 @@ android {
 
 * 使用Android Studio Build时
     * 使用Firebase推送功能时，请参考以下指南设置Firebase之后，将google-services.json文件添加在项目中。 
-		* [NHN Cloud > NHN Cloud SDK使用指南 > NHN Cloud Push > Android > 设置Firebase Cloud Messaging](/TOAST/ko/toast-sdk/push-android/#firebase-cloud-messaging)
+        * [NHN Cloud > SDK使用指南 > Push > Android > 设置Firebase Cloud Messaging](/TOAST/ko/toast-sdk/push-android/#firebase-cloud-messaging)
 * 如果使用Unity Build
+     * **注意** : 不必要安装Firebase Unity SDK Package , 即使不安装，推送也将正常启动。
     * 如果已设置Firebase Unity SDK Package，则使用以下命令执行**generate_xml_from_google_services_json.exe**文件，将json文件转换为xml文件。
             
             "{UnityProject}\Firebase\Editor\generate_xml_from_google_services_json.exe" -i "{JsonFilePath}\google-services.json" -o "{UnityProject}\Assets\Plugins\Android\res\values\google-services.xml" -p "{PackageName}"
@@ -531,8 +535,8 @@ android {
 
 * Amazon Device Messaging
     * 在Amazon Device Messaging(ADM)使用Proguard时，请参考以下指南后应用。
-        * [NHN Cloud > SDK使用指南> TOAST Push > Android > 设置Amazon Device Messaging > 下载ADM SDK ](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
-        * [NHN Cloud > SDK使用指南 > TOAST Push > Android > 设置Amazon Device Messaging > 设置Proguard ](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)   
+        * [NHN Cloud > SDK使用指南> Push > Android > 设置Amazon Device Messaging > 下载ADM SDK ](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
+        * [NHN Cloud > SDK使用指南 > Push > Android > 设置Amazon Device Messaging > 设置Proguard ](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)   
 * 将Proguard应用于Gamebase 2.21.0或低于2.21.0的版本时，若调用结算API而不添加Proguard Rule，则将发生崩溃。
     * 在Gamebase 2.21.0版本上已被修改。
 
