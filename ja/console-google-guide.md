@@ -1,60 +1,27 @@
-## Game > Gamebase > Store 設定ガイド > Google 設定ガイド
+## Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド
 
-Google一般商品および購読商品のアプリ内決済のためにGoogle Play請求サービスと連動させる必要があります。
-Google Play請求サービスは、Google PlayコンソールとGoogle APIコンソールで生成された値を使用します。
-さらにGoogle購読商品の決済のため、Notificationを設定する必要があります。
-Notificationの設定が正しくなければ購読決済が進みません。
+> [告知]
+> 本文書はGoogle Playにリリースされたアプリの情報を[[Gamebase IAP](https://docs.toast.com/ko/Game/Gamebase/ko/oper-purchase/)コンソールに登録および連動させる方法について扱います。
+> Google Playにアプリをリリースするためのより詳細なコンソール設定関連事項については、Googleが提供するGoogle Play Consoleガイドを参照してください。
 
-## Google Application Key
-下記情報をIAPアプリ情報に登録します。
+## Google Cloudプロジェクトのリンク
+- Google Playに登録されたアプリに関する情報を連動させるにはGoogle PlayにリンクするGoogle Cloudプロジェクトが必要です。
+- Google Play Consoleの**設定** > **APIアクセス**ページに移動
+    - 新規Google Cloudプロジェクトを作成するか、既存プロジェクトにリンクしてGoogle PlayとGoogle Cloudプロジェクトをリンクします。
+    - すでにリンクされているGoogle Cloudプロジェクトがある場合はリンクされたGoogle Cloudプロジェクトの状態が表示されます。
+    - [Google Cloud Consoleメインページ](https://console.cloud.google.com/home/dashboard)で事前にプロジェクトを作成してから既存プロジェクトにリンクすることもできます。
 
-| Key | Description                                             |
-| ---------------------------------- | ---------------------------------------------- |
-| Google In App Purchase License Key | Google Play Public KEY(RSA)       |
-| Google API Client ID               | Google API Project OAuth Client ID            |
-| Google API Client Secret           | Google API Project OAuth Client Secret        |
-| Refresh Token For Google OAuth     | Google Play Developer 勘定を通じて獲得したRefresh Token |
+![Google Cloudプロジェクトのリンク](https://static.toastoven.net/prod_iap/console_google/google_common_step_01.png)
 
-## Googleが提供するコンソール
-| Console        | Location                              |
-| -------------- | ------------------------------- |
-| Google Play Console | https://play.google.com/console/developers |
-| Google API Console | https://console.developers.google.com/apis/dashboard |
+- Google PlayとGoogle Cloudの間のプロジェクト接続が正常に完了したら、Google Play Consoleの**設定** > **APIアクセス**ページにリンクされているGoogle CloudプロジェクトとAPIリストが表示されます。
+- 以下のガイドに沿って設定を完了した後、画面のようにリンクされたプロジェクトの状態が表示されない場合は、Google Cloudとの接続部分を確認してください。
 
-## Google Playコンソール
+![Google Cloudプロジェクト接続](https://static.toastoven.net/prod_iap/console_google/google_common_step_03.png)
 
-### Google In App Purchase License Key 確認
-```
-https://play.google.com/console/developers > [Select App] > Monetize > Monetization setup > Licensing
-```
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/2020-google_license_en.png)
+- 新規プロジェクト作成後、連動認証設定を行うにはOAuth同意画面設定などが必要です。
+    - **OAuth同意画面設定**関連の詳細については、画面内のガイドおよび[Googleが提供するOAuth2ガイド](https://developers.google.com/identity/protocols/oauth2/)を参照してください。
 
-## Google APIコンソール
-
-* Androidデベロッパーズガイド
-	* [Android Developers - アプリ内課金の管理](http://developer.android.com/google/play/billing/billing_admin.html)
-	* [Android Developers - OAuth認証](https://developers.google.com/identity/protocols/OAuth2WebServer)
-
-### OAuth クライアント生成
-```
-Google Playコンソールと同一のアカウントでGoogle APIコンソールにプロジェクトを生成します。
-下記の図を参照してOAuth 認証に必要な情報3 つを生成します。
-1) Client ID  
-2) Client Secret  
-3) Refresh Token  
-```
-
-##### 1. https://console.cloud.google.com/apis/credentials でOAuthクライアントを生成(ウェブアプリケーション)
-![[그림 1] OAuth クライアント生成 1](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_credentials_ja.png)
-
-##### 2. 承認された redirection urlに https://developers.google.com/oauthplayground 入力
-![[그림 2] OAuth クライアント生成 2](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_Oauth_ja.png)
-
-##### 3. 作成後にポップアップウィンドウからクライアントID /クライアントシークレットをコピーする
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_Oauth_clientSecret_ja.png)
-
-##### 4. [OAuth Playground](https://developers.google.com/oauthplayground/) > oauthplayground 設定 > Use your own OAuth credentials 使用
-![[그림 4] OAuth クライアント生成 3](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_g_03.png)
+![Google Cloudプロジェクト接続](https://static.toastoven.net/prod_iap/console_google/google_common_step_02.png)
 
 
 ## 2つの連動認証方式を提供
@@ -83,14 +50,20 @@ Google Playコンソールと同一のアカウントでGoogle APIコンソー�
       ![最高管理者モデル設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_supervisor_ja_202210.png)
 
 
-### Google Play連動注意事項
+2. [Google Cloud Console APIおよびサービス](https://console.cloud.google.com/apis/dashboard)ダッシュボードに移動
+    - Google Play管理アカウントと連動するプロジェクトを選択
+    - **ユーザー認証情報**メニューに移動
+    - **ユーザー認証情報を作成** > **OAuthクライアントID**を選択
 
-OAuth 認証情報生成後、以下のガイドを参考にプロジェクト設定を進めます。
+   ![最高管理者モデル設定](https://static.toastoven.net/prod_iap/console_google/google_supervisor_step_01.png)
 
-> [参考]
-> Google Guide : https://developers.google.com/android-publisher/getting_started
+3. 新規OAuth Client基本情報の入力
+    - アプリケーションタイプ：Webアプリケーションの指定
+    - 名前：管理者がNHN Cloud IAP用であることを区別することができる適切な名称を指定
+    - 承認されたjavascript原本：無視
+    - 承認されたリダイレクトURI：追加後に`https://developers.google.com/oauthplayground`を入力
 
-#### 1. Google Play Android Developer APIの有効化の状態を確認します。
+   ![最高管理者モデル設定](https://static.toastoven.net/prod_iap/console_google/google_supervisor_step_02.png)
 
 4. 新規OAuth Clientが作成されると、作成されたOAuth Clientの2つの情報についての案内ポップアップが表示されます。
     - クライアントID：NHN Cloud IAPアプリ情報設定画面の`Google API Client ID`の値を入力します。
@@ -159,73 +132,63 @@ OAuth 認証情報生成後、以下のガイドを参考にプロジェクト�
    ![サービスアカウントモデル設定](https://static.toastoven.net/prod_iap/console_google/google_service_account_step_04.png)
 
 
-#### 2. Google Play Developer Consoleでリンクされたプロジェクトを確認します。
- 
-```
-  - https://play.google.com/apps/publish > Settings > Developer account > API access
-```
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-google-console-2.png)
+## 共通入力情報
+### Package Name
+- Google Play Consoleから登録したアプリをビルド時に指定したpackageNameがあります。この値はGoogle内でアプリの固有指定子として活用されます。
+- この値をNHN Cloud IAPアプリ設定の`Store App ID`に入力します。
 
-#### 3. Google Play Developer ConsoleでリンクされたプロジェクトがGoogleAPIのOAuthクライアントを作成プロジェクトと同じであることを確認します。
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_linked_ja.png)
+### InAppPurchase License Public Key
+- **Google Play Console** > 該当アプリダッシュボード > 収入創出メニューに移動
+- 画面下部にBase64エンコードされたライセンス公開鍵が表記されます。この値をNHN Cloud IAPアプリ設定の`Google In App Purchase License Key`に入力します。
 
-## Googleリアルタイムデベロッパー通知設定
+![IAPライセンスキー](https://static.toastoven.net/prod_iap/console_google/google_iap_license_key.png)
 
-> [参考]
-> Google Cloud (https://cloud.google.com) Platformを使用しなければなりません。
-> Google Cloud Platform に決済プロフィールを登録し、使用状態に変更しなければなりません。
+### マーケット検証の省略
+- NHN Cloud IAPが提供するGoogle決済の検証は大きく2つのステップに分けられます。2つのステップのうち**ステップ2を省略するかどうかを設定**します。
+- 省略は推奨仕様ではなく、まれに発生するGoogleサーバー障害状況に対応する一時的な決済承認状態を維持できます。 (デフォルト値は`NO`)
+    - 省略しても、流入する決済検証リクエストが無条件正常決済として処理されるわけではありません。
+    - 購読決済の検証は省略オプションが適用される範囲ではありません。
 
-
-### Google Cloud > ビッグデータ > 掲示/購読
-
-掲示/購読コンソール(https://console.cloud.google.com/cloudpubsub)で下記の作業を行います。
-
-#### トピックを作成 (プロダクト > Pub/Sub)
-
-```
-1. トピックを作成されると、オプションの権限をクリックするかトピック名をクリックしてトピック詳細情報ページに移動します。
-2. トピックの詳細情報ページで、役割の選択をクリックし掲示/購読の掲示者を選択します。
-3. メンバーの追加ボタンをクリックし google-play-developer-notifications@system.gserviceaccount.com を入力します。
-4. 保存ボタンをクリックします。
-```
-![[] Topic 만들기](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_createTopic_ja.png)
-![[] Topic 수정하기](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_create_subscription_ja.png)
-
-#### サブスクリプションの作成
-```
-1. トピック名の右の設定ボタンをクリック > 新しいサブスクリプションを追加 
-2. 配信タイプ
-- [エンドポイントURLでプッシュ] 選択
-- URL :  https://api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG
-- {YOUR_PACKAGE_NAME} : google package name
-```
-![[] Subscription 만들기](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_new_subscirption_ja.png)
-![[] Subscription 만들기](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_create_subscription_ja.png)
+#### Google検証ステップ
+| ステップ | 説明        |
+| --------------- | ----------------------------- |
+| ステップ1 | 検証がリクエストされた決済情報が改ざんされかたどうかを確認      |
+| ステップ2 | 検証がリクエストされた決済情報のGoogleサーバー側の最新ヘルスチェックおよび再検証 |
 
 
-#### IAP ドメイン検証
+## Googleシステム内のリアルタイム購読情報イベント配信設定
+- Googleが提供する購読購入のリアルタイム状態配信イベントをNHN Cloud IAPサーバーが受け取って処理するように設定できます。
+- Google Cloud Platformに決済プロフィールを登録し(クレジットカード必要)、使用状態に変更する必要があります。
+- この配信イベント設定をGoogle内で行わない場合、購読決済の更新情報がユーザーのアプリクライアント実行アクションに基づいて反映されるため、購読決済を使用する場合は設定することを推奨します。
+- 過去には購読リアルタイム配信イベントのプッシュ受信のために受信するアドレスのドメイン検証をGoogle Webマスターツールで行う必要がありましたが、現在はドメイン検証を要求しません。
 
-```
-1. https://console.cloud.google.com/apis/credentials/domainverification
-2. [ドメイン確認]タブで[ドメイン追加] をクリックします。
-3. https://api-iap.cloud.toast.comを入力します。
-4. [今移動]ボタンを押してウェブマスターセンターに移動します。
-5. ウェブマスターセンターでプロパティを合わせることをクリックします。
-6. [プロパティ追加]に https://api-iap.cloud.toast.com を入力します。
-7. ドメイン認証URLのhtmlファイル名をNHN Cloud CONSOLEアプリの登録時に入力する。
-    -> ex) https://api-iap.cloud.toast.com/googleabc.htmlの場合、googleabc.html入力
-8. [推奨方法] 下段の [ロボットではない] クリック後、[OK] をクリックします。
-9. 認証に成功すると最後のイメージと同じ画面が表示されます。 この画面が表示されないと購読決済を正常に使用できません。
-```
-![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-domain-verification_ja_1.png)
-![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_google_add_domain_ja.png)
-![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-domain-verification_ja_3.png)
-![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/google_domain_auth.png)
-![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-domain-verification_ja_4.png)
-![[] domain verification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-domain-verification_ja_5.png)
+1. [Google Cloud Pub/Sub Console](https://console.cloud.google.com/cloudpubsub)に移動
+    - Google Playアプリにリンクされたプロジェクトを正しく選択する必要があります。
+    - **トピック(Topic)**メニューから新しいトピックを作成します。
+    - トピックIDは管理しやすい任意の名称を使用してください。
 
-### Realtime developer notifications
-````
-https://play.google.com/console/developers > [Select App] > Monetize > Monetization setup > Real-time developer notificqations
-````
-![[]realtime notification](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/2020-google_realtime_notification_en.png)
+   ![購読情報配信設定](https://static.toastoven.net/prod_iap/console_google/google_subscription_event_01.png)
+
+2. 作成したトピックに**メインメンバーを追加**を行います。
+    - 詳細メンバー情報`google-play-developer-notifications@system.gserviceaccount.com`を入力
+    - 役割`掲示/購読` > `掲示/購読掲示者`を選択
+
+   ![購読情報配信設定](https://static.toastoven.net/prod_iap/console_google/google_subscription_event_02.png)
+   ![購読情報配信設定](https://static.toastoven.net/prod_iap/console_google/google_subscription_event_03.png)
+
+3. **購読**メニューに移動し、IAPサーバーに伝える購読を作成します。
+    - 購読IDは管理しやすい値を入力
+    - Cloud Pub/Subトピックを選択：前に作成したトピックを選択
+    - 転送タイプ：プッシュ選択
+    - エンドポイントURL：`https://api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG`入力
+    - `{YOUR_PACKAGE}`部分にはNHN Cloud App設定のStoreAppIDに入力した値と同じアプリビルド時に使用したパッケージ名を入力します。
+
+   ![購読情報配信設定](https://static.toastoven.net/prod_iap/console_google/google_subscription_event_04.png)
+
+4. テスト用のアルファ環境/Gamebaseサンドボックス環境を使用する場合は、ステップ3の購読をアルファ/サンドボックス用にそれぞれ作成する必要があります。
+    - アルファエンドポイントURL入力： `https://alpha-api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG`
+    - GamebaseサンドボックスエンドポイントURL入力：`https://sandbox-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG`
+5. [Google Play Console](https://play.google.com/console)のアプリダッシュボードに移動
+    - **収入創出設定設定** > **Google Play決済**画面のリアルタイム開発者通知トピック名にステップ1で作成したトピックの全体名称を入力
+
+   ![購読情報配信設定](https://static.toastoven.net/prod_iap/console_google/google_subscription_event_05.png)
