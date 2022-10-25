@@ -94,6 +94,7 @@ Gamebase可以通过以下方式安装。
     * ImageIO.framework    
     * GameKit.framework
     * StoreKit.framework
+    * Security.framework
     * AuthenticationServices.framework (Optional)
     * AppTrackingTransparency.framework (Optional)
   
@@ -104,10 +105,10 @@ Gamebase可以通过以下方式安装。
     * 在项目内添加**空swift文件**(在项目内没有swift文件时添加)。
 * 5) 需要在**Target > Build Settings > Linking > Other Linker Flags**中添加**-ObjC**。
 ![Other Linker Flags](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
-* 6) 如果使用NaverAuthAdapter则需将NAVER SDK提供的**NaverThirdPartyLogin.framework**文件添加在**Target > Build Phases > Embedded Frameworks**中。 
+* 6) 如果使用NaverAuthAdapter则需将NAVER SDK提供的**NaverThirdPartyLogin.framework**文件添加在**Target > Build Phases > Embeded Frameworks**中。 
  ![Naver Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.8.0.png)
- * 7) 如果使用LineAuthAdapter则需将LINE SDK提供的**LineSDKObjC.xcframework**文件添加在**Target > Build Phases > Embedded Frameworks**中。
- ![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.0.png)
+ * 7) 如果使用LineAuthAdapter则需将LINE SDK提供的**LineSDK.xcframework**文件添加在**Target > Build Phases > Embeded Frameworks**中。
+ ![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.1.png)
 
 > [INFO]
 >
