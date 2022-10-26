@@ -1,5 +1,12 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.44.0
+
+### Android
+
+* Gamebase Android SDK 2.44.0에서 registerPush를 호출하면 Android 6.0(M, API Level 23) 단말기에서 크래시가 발생하는 것이 확인되었습니다.
+    * 이슈가 수정된 Gamebase Android SDK 2.44.1을 사용하시기 바랍니다.
+
 ## 2.43.3
 
 ### Unreal
