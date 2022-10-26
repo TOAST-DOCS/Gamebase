@@ -95,6 +95,7 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
     * ImageIO.framework
     * GameKit.framework
     * StoreKit.framework
+    * Security.framework
     * AuthenticationServices.framework (Optional)
     * AppTrackingTransparency.framework (Optional)
 
@@ -105,12 +106,12 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
     * プロジェクト内部に**空のswiftファイル**追加(プロジェクト内部にswiftファイルが1つもない場合)
 * 5) **Target > Build Settings > Linking > Other Linker Flags**に**-ObjC**を追加する必要があります。
 ![Other Linker Flags](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
-* 6) NaverAuthAdapterを使用する場合にはNAVER SDKで提供する**NaverThirdPartyLogin.framework**ファイルを**Target > Build Phases > Embedded Frameworks**に追加する必要があります。
+* 6) NaverAuthAdapterを使用する場合にはNAVER SDKで提供する**NaverThirdPartyLogin.framework**ファイルを**Target > Build Phases > Embeded Frameworks**に追加する必要があります。
  ![Naver Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.8.0.png)
  * 7) LineAuthAdapterを使用する場合にはLINE SDKで提供する**LineSDKObjC.xcframework**ファイルを**Target > Build Phases > Embedded Frameworks**に追加する必要があります。
- ![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.0.png)
+ * 7) LineAuthAdapterを使用する場合にはLINE SDKで提供する**LineSDK.xcframework**ファイルを**Target > Build Phases > Embeded Frameworks**に追加する必要があります。
+ ![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.1.png)
 
-> [INFO]
 >
 > Linkerに**-ObjC**オプション設定は、Static LibraryにあるすべてのObjective-C classとcategoryを読み込みます。<br/>
 > このオプションを設定しない場合、**selector not recognized**のようなエラーがRuntime上で発生することがあります。
