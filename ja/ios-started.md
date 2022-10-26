@@ -112,6 +112,7 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
  * 7) LineAuthAdapterを使用する場合にはLINE SDKで提供する**LineSDK.xcframework**ファイルを**Target > Build Phases > Embeded Frameworks**に追加する必要があります。
  ![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.1.png)
 
+> [INFO]
 >
 > Linkerに**-ObjC**オプション設定は、Static LibraryにあるすべてのObjective-C classとcategoryを読み込みます。<br/>
 > このオプションを設定しない場合、**selector not recognized**のようなエラーがRuntime上で発生することがあります。
