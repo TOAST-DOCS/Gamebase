@@ -5,7 +5,7 @@
 ### Android
 
 * Confirmed that a crash occurred on Android 6.0 (M, API Level 23) when calling registerPush in Gamebase Android SDK 2.44.0.
-    * Please uses Gamebase Android SDK 2.44.1 where the issue was fixed.  
+    * Please use Gamebase Android SDK 2.44.1 where the issue was fixed.  
 
 ## 2.43.3
 
