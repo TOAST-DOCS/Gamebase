@@ -4,8 +4,8 @@
 
 ### Android
 
-* Gamebase Android SDK 2.44.0에서 registerPush를 호출하면 Android 6.0(M, API Level 23) 단말기에서 크래시가 발생하는 것이 확인되었습니다.
-    * 이슈가 수정된 Gamebase Android SDK 2.44.1을 사용하시기 바랍니다.
+* 如果在Gamebase Android SDK 2.44.0中调用registerPush，Android 6.0(M, API Level 23) 终端上将出现崩溃。 
+    * 请使用已修改问题的Gamebase Android SDK 2.44.1。
 
 ## 2.43.3
 
