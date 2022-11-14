@@ -1,13 +1,14 @@
-## Game > Gamebase > 스토어 콘솔 가이드 > Galaxy 콘솔 가이드
+## Game > Gamebase > ストアコンソールガイド > Galaxy コンソールガイド
 
-Galaxy 스토어 연동을 하려면 앱 등록 시, PackageName 을 입력해야 합니다.
+IAPでGalaxy  Storeを使用するには、アプリ登録時にPackage  Nameを入力してください
 
-## Package Name 확인하기
-[Galaxy Store Seller Portal](https://seller.samsungapps.com/main/sellerMain.as) 에서 바이너리 파일 등록 후, 패키지명을 확인합니다. 
-Galaxy Store Seller Portal > 앱 > 앱 선택 > 바이너리
+## Pakcage Name 確認する
+[Galaxy Store Seller Portal](https://seller.samsungapps.com/main/sellerMain.as) でバイナリファイルを登録後、パッケージ名を確認します。
+
+Galaxy Store Seller Portal > Ap > Select App > Binary
  ![[]](http://static.toastoven.net/prod_iap/2020/galaxy_app_kr.png)
  
 
-## 콘솔에서 Package Name 등록하기
-Store App ID 입력란에 Package Name 입력
+## コンソールでPackage Nameを登録する
+App登録ポップアップウィンドウでStore ID Galaxy Storeを選択し、Store App ID欄にPackage Nameを入力します。
 ![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/galaxy_app_2_kr.png)
