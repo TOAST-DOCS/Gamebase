@@ -5,7 +5,7 @@ Create your license key and OAuth credentials in the one-store to register for t
 ### Create One-Store Key
 
 ```
-Apps > select App> In-App정보 > Licensing & in-app billing
+Apps > select App > In-App information > Licensing & in-app billing
 ```
 
 ![원스토어 인증 및 라이선스 확인](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_52.PNG)

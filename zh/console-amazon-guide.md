@@ -14,7 +14,7 @@
 ![NHN Cloud Gamebase商店的设置页面](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/amazon_iap_console_ko.png)
 ### Store App ID
 - 单机在[应用程序列表](https://developer.amazon.com/apps-and-games/console/apps/list.html) 页面上创建的应用程序的名称，进入详细设置菜单。
-- 在详细设置菜单中通过点击编辑输入“App SKU”后，将其App SKU的值在 [NHN Cloud Gamebase 콘솔 > 스토어]中商店信息注册页面的“商店应用程序ID”中输入。
+- 在详细设置菜单中通过点击编辑输入“App SKU”后，将其App SKU的值在 [NHN Cloud Gamebase控制台 > 商店]中商店信息注册页面的“商店应用程序ID”中输入。
   ![Amazon开发人员控制台的应用程序详细设置页面](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/amazon_appmenu_2_eng.png)
 
 
