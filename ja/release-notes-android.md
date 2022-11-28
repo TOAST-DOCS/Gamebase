@@ -1,19 +1,34 @@
 ## Game > Gamebase > リリースノート > Android
 
+### 2.44.2 (2022. 11. 29.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.2/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+* PurchasableReceipt VO 클래스에 'storeCode' 필드가 추가되었습니다.
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: Kotlin(1.7.20), Hangame Android SDK(1.6.1)
+* 구글 '사전출시 보고서' 권고 사항을 반영하여 Gamebase 웹뷰를 수정했습니다.
+    * 타이틀 바 사이즈 확대
+    * 이미지 설명 문구 수정
+
+#### 버그 수정
+* PurchasableItem VO 클래스의 'itemName' 필드에 잘못 선언된 'deprecated' 어노테이션을 제거했습니다.
+
 ### 2.44.1 (2022. 10. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.1/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* Android 13 이상의 OS에서 registerPush API를 호출했을 때 Push 권한 요청 팝업이 자동으로 뜨지 않도록 할 수 있는 **PushConfiguration.Builder.enableRequestNotificationPermission(boolean)** API가 추가되었습니다.
+#### 機能追加
+* Android 13以上のOSでregisterPush APIを呼び出した時、Push権限リクエストポップアップが自動的に表示されないようにできる**PushConfiguration.Builder.enableRequestNotificationPermission(boolean)**APIが追加されました。
 
-#### 기능 개선/변경
-* Facebook Android SDK를 13.2.0 이상은 Facebook Client Token 설정을 필요로 합니다.
-    * Gamebase Android SDK 2.44.1 이상 부터는 Gamebase Console의 additionalInfo에 다음과 같이 **facebook_client_token** 필드를 추가하는 경우 Facebook Client Token이 클라이언트 SDK에 자동으로 적용됩니다.
+#### 機能改善/変更
+* Facebook Android SDKを13.2.0以上はFacebook Client Token設定を必要とします。
+    * Gamebase Android SDK 2.44.1以上からはGamebase ConsoleのadditionalInfoに次のように**facebook_client_token**フィールドを追加する場合、Facebook Client TokenがクライアントSDKに自動的に適用されます。
 
             { "facebook_permission": [...], "facebook_client_token": "a01234bc56de7fg89012hi3j45k67890" }
 
-#### 버그 수정
-* Android 6.0(M, API Level 23) 단말기에서 **Gamebase.Push.registerPush** API를 호출하면 **IllegalArgumentException** 예외가 발생하는 버그를 수정했습니다.
+#### バグ修正
+* Android 6.0(M, API Level 23)端末で**Gamebase.Push.registerPush**APIを呼び出すと**IllegalArgumentException**例外が発生するバグを修正しました。
 
 ### 2.44.0 (2022. 10. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.0/GamebaseSDK-Android.zip)
