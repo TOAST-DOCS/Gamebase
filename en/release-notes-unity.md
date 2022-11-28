@@ -1,5 +1,15 @@
 ## Game > Gamebase > Release Notes > Unity## Game > Gamebase > Release Notes > Unity
 
+### 2.44.2 (2022. 11. 29.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.2/GamebaseSDK-Unity.zip)
+
+#### 버그 수정
+* (iOS) 게임 중 Screen.orientation을 변경하는 경우 웹뷰, 고객센터 등 뷰 컨트롤러의 영향을 받는 API가 정상적으로 노출되지 않는 이슈를 수정했습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.44.2](./release-notes-android/#2442-2022-11-29)
+* [Gamebase iOS SDK 2.44.0](./release-notes-ios/#2440-2022-10-25)
+
 ### 2.44.0 (2022. 10. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.0/GamebaseSDK-Unity.zip)
 
