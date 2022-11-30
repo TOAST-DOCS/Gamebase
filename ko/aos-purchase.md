@@ -8,8 +8,8 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 
 > <font color="red">[주의]</font><br/>
 >
-> ONE Store는 v17, v19만을 지원합니다.
-> ONE Store v21은 지원을 검토 중으로, 현재는 지원하지 않습니다.
+> ONE Store는 v17 및 v19만 지원합니다.
+> ONE Store v21은 지원을 검토 중이며, 현재는 지원하지 않습니다.
 
 * Gamebase 초기화 시 스토어 코드를 지정해야 합니다.
 * **STORE_CODE**는 다음 값 중에서 선택합니다.
