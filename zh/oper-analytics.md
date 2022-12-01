@@ -71,7 +71,7 @@ Analytics由以下菜单构成。
 
 可以确认用户的基本指标。
 
-![gamebase_analytics_03_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_201901_2.png)
+![gamebase_analytics_03_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_202212_1.png)
 
 #### 1. 用户现状
 显示所选期间内用户的基本指标。
@@ -199,7 +199,7 @@ Frequency7的标准可分为以下3个项目。
 
 可以确认付款金额指标。
 
-![gamebase_analytics_07_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_201901_2.png)
+![gamebase_analytics_07_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_202212_1.png)
 
 #### 1. 付款金额现状表
 可以确认所选时间段内的付款金额。
@@ -213,7 +213,7 @@ Frequency7的标准可分为以下3个项目。
 
 可以确认收费用户(PU)的指标。
 
-![gamebase_analytics_08_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_08_201901_2.png)
+![gamebase_analytics_08_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_08_202212_1.png)
 
 以下为图表及表中出现的用语说明。
 
@@ -232,7 +232,7 @@ Frequency7的标准可分为以下3个项目。
 
 可以确认Gamebase中登记的道具的销售指标。
 
-![gamebase_analytics_09_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_201901_2.png)
+![gamebase_analytics_09_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_202212_1.png)
 
 * 道具：Gamebase中登记的道具列表
 * 最佳道具Top 10：按照销售金额、销售数量排行的销量最高的Top 10道具列表
@@ -242,7 +242,7 @@ Frequency7的标准可分为以下3个项目。
 * 付款比例：各道具付款比例
 
 ### 首次购买
-![gamebase_analytics_10_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_201901_2.png)
+![gamebase_analytics_10_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_202212_1.png)
 
 可以确认新增收费用户首次购买的相关信息。
 按照付款金额顺序显示新增收费用户购买的所有道具。

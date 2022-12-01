@@ -71,7 +71,7 @@ Analyticsは、次のメニューで構成されています。
 
 ユーザーの基本指標を確認できます。
 
-![gamebase_analytics_03_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_202004_2_ja.png)
+![gamebase_analytics_03_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_202212_1_ja.png)
 
 #### 1. ユーザー状況
 選択された期間のユーザー基本指標を表示します。
@@ -193,7 +193,7 @@ Frequency7の基準は、以下の3つに分けられます。
 
 決済額の指標を確認できます。
 
-![gamebase_analytics_07_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_202004_2_ja.png)
+![gamebase_analytics_07_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_202212_1_ja.png)
 
 #### 1. 決済額状況表
 選択した期間の決済額を表示します。
@@ -207,7 +207,7 @@ Frequency7の基準は、以下の3つに分けられます。
 
 有料ユーザー(PU)の指標を確認できます。
 
-![gamebase_analytics_08_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_08_202004_2_ja.png)
+![gamebase_analytics_08_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_08_202212_1_ja.png)
 
 次は、グラフと表で使われる用語説明です。
 
@@ -226,7 +226,7 @@ Frequency7の基準は、以下の3つに分けられます。
 
 Gamebaseに登録したアイテムの販売指標を確認できます。
 
-![gamebase_analytics_09_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_202004_2_ja.png)
+![gamebase_analytics_09_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_202212_1_ja.png)
 
 * アイテム：Gamebaseに登録したアイテムリスト
 * ベストアイテムTop 10：販売金額別、販売数別に販売量が多いアイテムTop 10のリスト
@@ -236,7 +236,7 @@ Gamebaseに登録したアイテムの販売指標を確認できます。
 * 決済比重：アイテム別決済比重
 
 ### 初回購入
-![gamebase_analytics_10_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_202004_2_ja.png)
+![gamebase_analytics_10_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_202212_1_ja.png)
 
 新規有料ユーザーの初回購入に関する情報を確認できます。
 新規有料ユーザーが購入したすべてのアイテムを決済額順に表示します。

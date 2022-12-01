@@ -67,20 +67,21 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 
 ## User Statistics
 ### User
-![gamebase_analytics_03_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_201901_2.png)
+![gamebase_analytics_03_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_202212_1.png)
 
 이용자의 기본 지표들을 확인할 수 있습니다.
 
 #### 1. 이용자 현황
 선택된 기간 동안의 이용자 기본 지표들을 보여줍니다.
 
-* 일간 총 이용자(DAU+): 일간 memberno 기준 로그인 1회 이상 액티브 이용자 수의 합 (Daily Active Users)
-* 주간 총 이용자(WAU+): 주간 DAU의 합 (Weekly Active Users). 주간 지표 선택 시, DAU 항목이 WAU로 대체
-* 월간 총 이용자(MAU+): 월간 DAU의 합 (Monthly Active Users) 월간 지표 선택 시, DAU 항목이 MAU로 대체
+* DAU 누적: 일간 memberno 기준 로그인 1회 이상 액티브 이용자 수의 합 (Daily Active Users)
+* WAU 누적: 주간 DAU의 합 (Weekly Active Users). 주간 지표 선택 시, DAU 항목이 WAU로 대체
+* MAU 누적: 월간 DAU의 합 (Monthly Active Users) 월간 지표 선택 시, DAU 항목이 MAU로 대체
 * 최대 동접자 수(MCU): 0시~24시까지 최대 동접자 수. 1분 단위 CCU 값에서 가장 큰 값을 1일 단위로 집계함.
 * 신규 가입자(NRU): 신규 가입자. 당일 0시~24시까지 로그인 로그가 최초 수집된 유저 (memberno 기준)
-* 탈퇴 유저: 탈퇴 유저. 당일 0시~24시까지 memberno 가 삭제된 유저 수
-* Avg.CCU: 선택된 기간 동안의 CCU의 평균
+* 탈퇴 이용자: 탈퇴 유저. 당일 0시~24시까지 memberno 가 삭제된 유저 수
+* 평균 로그인 횟수: 선택된 기간 동안의 평균 로그인 수
+* 평균.CCU: 선택된 기간 동안의 CCU의 평균
 * Avg.Playtime(/DAU): 조회기간의 Playtime 평균 (DAU의 Playtime의 합 / DAU)
 
 #### 2. 일별 지표
@@ -122,7 +123,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 
 Retention은 특정 일에 가입한 이용자가 D+1일부터 D+90일까지 얼마나 잔존해 있는지를 보여주는 지표입니다.
 
-현재는 당일 탈퇴자를 포함하여 Retention 값을 보여주고 있습니다. 추후에 당일 탈퇴자를 제외한 기준의 Retention 도 제공할 예정입니다.
+당일 탈퇴자를 포함하거나 제외하여 Retention 값을 보여주고 있습니다.
 
 * 당일 탈퇴자 제외: 당일에 가입하고, 당일에 탈퇴한 이용자를 신규 이용자에서 제외하고 Retention 값을 계산합니다. 
     * 신규 가입자(New User) = 당일 가입자 - 당일가입 후 탈퇴자
@@ -186,7 +187,7 @@ Frequency7 기준은 아래 3개로 나뉩니다.
 
 ## Sales Statistics
 ### Payment Amount
-![gamebase_analytics_07_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_201901_2.png)
+![gamebase_analytics_07_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_202212_1.png)
 
 결제 금액에 대한 지표를 확인할 수 있습니다.
 
@@ -196,10 +197,11 @@ Frequency7 기준은 아래 3개로 나뉩니다.
 
 #### 2. 매출 추이
 일자별로 신규 매출, 재구매 매출, PU(결제 이용자)의 추이를 그래프로 확인할 수 있습니다.
-아래의 표에서는 국가별 매출을 확인할 수 있습니다.
+아래의 표에서는 스토어, 국가, IdP별 매출을 확인할 수 있습니다.
+일간 조회 시에만 월 단위 누적 결제 금액을 확인할 수 있습니다.
 
 ### Paying User
-![gamebase_analytics_08_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_08_201901_2.png)
+![gamebase_analytics_08_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_08_202212_1.png)
 
 유료 이용자(PU)에 관한 지표를 확인할 수 있습니다.
 아래는 그래프와 표에 나온 용어 설명입니다.
@@ -214,9 +216,10 @@ Frequency7 기준은 아래 3개로 나뉩니다.
 * ARPU: 하루 동안 게임 이용자 수의 평균 결제 금액 (결제 금액/DAU)
 * ARPPU: 결제 이용자 수의 평균 결제 금액 (결제 금액/PU)
 * ARPNPU: 신규 유료 이용자의 평균 결제 금액 (결제 금액/NPU)
+* 누적 PU(M): 월 단위의 결제 이용자 수 (중복 제외)
 
 ### Item Sales
-![gamebase_analytics_09_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_201901_2.png)
+![gamebase_analytics_09_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_202212_1.png)
 
 등록된 아이템의 판매 지표를 확인할 수 있습니다.
 
@@ -225,12 +228,16 @@ Frequency7 기준은 아래 3개로 나뉩니다.
 * 스토어: 앱스토어, 구글플레이스토어 등과 같은 스토어
 * 결제금액: 이용자가 결제한 아이템별 결제금액
 * 결제 건수: 아이템별 결제 건수
-* 결제 비중: 아이템별 결제 비중
+* PU: 아이템별 구매자 수
+* 결제 비율: 아이템별 결제 비중
 
 ### First Purchase
-![gamebase_analytics_10_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_201901_2.png)
+![gamebase_analytics_10_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_202212_1.png)
 
 신규 유료 이용자의 첫 구매에 관한 정보를 확인할 수 있습니다.
+
+신규 유료 이용자의 가입 후 첫 구매 까지의 소요 기간을 D+0일 부터 D+90일 경과 까지 보여줍니다.
+
 신규 유료 이용자가 구입한 모든 아이템을 결제 금액 순으로 보여줍니다.
 
 * 아이템: 신규 PU가 구매한 아이템 목록
