@@ -74,12 +74,12 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 #### 1. 이용자 현황
 선택된 기간 동안의 이용자 기본 지표들을 보여줍니다.
 
-* DAU 누적: 일간 memberno 기준 로그인 1회 이상 액티브 이용자 수의 합 (Daily Active Users)
-* WAU 누적: 주간 DAU의 합 (Weekly Active Users). 주간 지표 선택 시, DAU 항목이 WAU로 대체
-* MAU 누적: 월간 DAU의 합 (Monthly Active Users) 월간 지표 선택 시, DAU 항목이 MAU로 대체
+* DAU 누적: 일간 memberno 기준 로그인 1회 이상 액티브 이용자 수의 합(Daily Active Users)
+* WAU 누적: 주간 DAU의 합(Weekly Active Users). 주간 지표 선택 시 DAU 항목이 WAU로 대체
+* MAU 누적: 월간 DAU의 합(Monthly Active Users). 월간 지표 선택 시 DAU 항목이 MAU로 대체
 * 최대 동접자 수(MCU): 0시~24시까지 최대 동접자 수. 1분 단위 CCU 값에서 가장 큰 값을 1일 단위로 집계함.
-* 신규 가입자(NRU): 신규 가입자. 당일 0시~24시까지 로그인 로그가 최초 수집된 유저 (memberno 기준)
-* 탈퇴 이용자: 탈퇴 유저. 당일 0시~24시까지 memberno 가 삭제된 유저 수
+* 신규 가입자(NRU): 신규 가입자. 당일 0시~24시까지 로그인 로그가 최초 수집된 유저(memberno 기준)
+* 탈퇴 이용자: 탈퇴 유저. 당일 0시~24시까지 memberno가 삭제된 유저 수
 * 평균 로그인 횟수: 선택된 기간 동안의 평균 로그인 수
 * 평균.CCU: 선택된 기간 동안의 CCU의 평균
 * Avg.Playtime(/DAU): 조회기간의 Playtime 평균 (DAU의 Playtime의 합 / DAU)
@@ -216,7 +216,7 @@ Frequency7 기준은 아래 3개로 나뉩니다.
 * ARPU: 하루 동안 게임 이용자 수의 평균 결제 금액 (결제 금액/DAU)
 * ARPPU: 결제 이용자 수의 평균 결제 금액 (결제 금액/PU)
 * ARPNPU: 신규 유료 이용자의 평균 결제 금액 (결제 금액/NPU)
-* 누적 PU(M): 월 단위의 결제 이용자 수 (중복 제외)
+* 누적 PU(M): 월 단위의 결제 이용자 수(중복 제외)
 
 ### Item Sales
 ![gamebase_analytics_09_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_202212_1.png)
@@ -236,7 +236,7 @@ Frequency7 기준은 아래 3개로 나뉩니다.
 
 신규 유료 이용자의 첫 구매에 관한 정보를 확인할 수 있습니다.
 
-신규 유료 이용자의 가입 후 첫 구매 까지의 소요 기간을 D+0일 부터 D+90일 경과 까지 보여줍니다.
+신규 유료 이용자의 가입 후 첫 구매 까지의 소요 기간을 D+0일부터 D+90일 경과까지 보여줍니다.
 
 신규 유료 이용자가 구입한 모든 아이템을 결제 금액 순으로 보여줍니다.
 
