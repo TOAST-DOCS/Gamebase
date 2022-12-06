@@ -71,17 +71,18 @@ Analyticsは、次のメニューで構成されています。
 
 ユーザーの基本指標を確認できます。
 
-![gamebase_analytics_03_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_202004_2_ja.png)
+![gamebase_analytics_03_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_202212_1_ja.png)
 
 #### 1. ユーザー状況
 選択された期間のユーザー基本指標を表示します。
 
-* 1日の総ユーザー(DAU+)：日間memberno基準でログイン1回以上のアクティブユーザー数の合計(Daily Active Users)
-* 週間総ユーザー(WAU+)：週間DAUの合計(Weekly Active Users)。週間指標を選択すると、DAU項目がWAUに代替。
-* 月間総ユーザー(MAU+)：月間DAUの合計(Monthly Active Users)。月間指標を選択すると、DAU項目がMAUに代替。
+* DAU累積：日間memberno基準でログイン1回以上のアクティブユーザー数の合計(Daily Active Users)
+* WAU累積：週間DAUの合計(Weekly Active Users)。週間指標を選択すると、DAU項目がWAUに代替。
+* MAU累積：月間DAUの合計(Monthly Active Users)。月間指標を選択すると、DAU項目がMAUに代替。
 * 最大同時接続者数(MCU)：0時～24時の最大同時接続者数。1分単位CCU値の最大値を1日単位で集計。
-* 新規加入者(NRU)：新規加入者。当日0時～24時にログインログが初めて収集されたユーザー(memberno基準)
+* 新規加入者(NRU)：新規加入者。当日0時～24時までログインログが初めて収集されたユーザー(memberno基準)
 * 退会ユーザー：退会ユーザー。当日0時～24時までmembernoが削除されたユーザー数
+* 平均ログイン回数：選択した期間の平均ログイン数
 * 平均CCU：選択した期間のCCUの平均
 * 平均ゲーム時間(Avg.Playtime(/DAU))： 照会された期間中に利用時間の平均(DAUの利用時間の合計 / DAU)
 
@@ -193,7 +194,7 @@ Frequency7の基準は、以下の3つに分けられます。
 
 決済額の指標を確認できます。
 
-![gamebase_analytics_07_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_202004_2_ja.png)
+![gamebase_analytics_07_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_202212_1_ja.png)
 
 #### 1. 決済額状況表
 選択した期間の決済額を表示します。
@@ -201,13 +202,14 @@ Frequency7の基準は、以下の3つに分けられます。
 
 #### 2. 売上推移
 日付別に新規売上、再購入売上、PU(決済ユーザー)の推移をグラフで確認できます。
-下記の表では国別売上を確認できます。
+下記の表ではストア、国家、 IdP別の売上を確認できます。
+日間照会時にのみ月単位累積決済金額を確認できます。
 
 ### 有料ユーザー
 
 有料ユーザー(PU)の指標を確認できます。
 
-![gamebase_analytics_08_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_08_202004_2_ja.png)
+![gamebase_analytics_08_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_08_202212_1_ja.png)
 
 次は、グラフと表で使われる用語説明です。
 
@@ -226,19 +228,24 @@ Frequency7の基準は、以下の3つに分けられます。
 
 Gamebaseに登録したアイテムの販売指標を確認できます。
 
-![gamebase_analytics_09_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_202004_2_ja.png)
+![gamebase_analytics_09_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_202212_1_ja.png)
 
 * アイテム：Gamebaseに登録したアイテムリスト
 * ベストアイテムTop 10：販売金額別、販売数別に販売量が多いアイテムTop 10のリスト
 * ストア：AppStore、Google Playなどのストア
 * 決済額：ユーザーが決済したアイテム別決済額
 * 決済件数：アイテム別決済件数
-* 決済比重：アイテム別決済比重
+* PU：アイテム別購入者数
+* 決済比率：アイテム別決済比重
 
 ### 初回購入
-![gamebase_analytics_10_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_202004_2_ja.png)
+![gamebase_analytics_10_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_202212_1_ja.png)
 
 新規有料ユーザーの初回購入に関する情報を確認できます。
+
+
+新規有料ユーザーの加入後から最初の購入までの所要期間をD+0日からD+90日経過まで表示します。
+
 新規有料ユーザーが購入したすべてのアイテムを決済額順に表示します。
 
 * アイテム：新規PUが購入したアイテムリスト
