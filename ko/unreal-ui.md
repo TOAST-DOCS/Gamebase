@@ -100,7 +100,7 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
 | forceShow | O | 약관에 동의했다면 ShowTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br>**default**: false | 
-| enableFixedFontSize | O | 약관 창의 폰트 사이즈를 고정할지 결정합니다.<br>**default** : false<br/>**Android Only** |
+| enableFixedFontSize | O | 약관 창의 폰트 사이즈를 고정할지 결정합니다.<br>**default** : false<br/>**Android에 한함** |
  
 **FGamebaseShowTermsViewResult**
 
@@ -422,7 +422,7 @@ void Sample::ShowWebView(const FString& url)
 | colorG                   | 0~255                                    | 내비게이션 바 색상 G<br>**default**: 93               |
 | colorB                   | 0~255                                    | 내비게이션 바 색상 B<br>**default**: 230              |
 | colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha<br>**default**: 255          |
-| barHeight                | height                                   | 내비게이션 바 높이<br>**Android Only**                 |
+| barHeight                | height                                   | 내비게이션 바 높이<br>**Android에 한함**                 |
 | isNavigationBarVisible   | true or false                            | 내비게이션 바 활성 또는 비활성<br>**default**: true    |
 | isBackButtonVisible      | true or false                            | 뒤로 가기 버튼 활성 또는 비활성<br>**default**: true   |
 | backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지         |
