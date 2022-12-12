@@ -140,7 +140,7 @@ static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration confi
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
 | forceShow | O | 약관에 동의했다면 ShowTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br>**default**: false | 
-| enableFixedFontSize | O | 약관 창의 글자 크기를 고정할지 결정합니다.<br>**default**: false<br/>**Android Only** |
+| enableFixedFontSize | O | 약관 창의 글자 크기를 고정할지 결정합니다.<br>**default**: false<br/>**Android에 한함** |
  
 
 **GamebaseResponse.Terms.ShowTermsViewResult**
@@ -329,7 +329,7 @@ static void UpdateTerms(GamebaseRequest.Terms.UpdateTermsConfiguration configura
 | Error | Error Code | Description |
 | --- | --- | --- |
 | NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
-| NOT\_LOGGED_IN | 2 | 로그인이 필요합니다. (Only Standalone) |
+| NOT\_LOGGED_IN | 2 | 로그인이 필요합니다. (Standalone에 한함) |
 | UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | 등록되지 않은 약관 Seq 값을 설정하였습니다. |
 | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | Terms API 호출이 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
 
@@ -479,7 +479,7 @@ public void ShowWebView()
 | colorG                   | 0~255                                    | 내비게이션 바 색상 G<br>**default**: 93               |
 | colorB                   | 0~255                                    | 내비게이션 바 색상 B<br>**default**: 230              |
 | colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha<br>**default**: 255          |
-| barHeight                | height                                   | 내비게이션 바 높이<br>**Android Only**                 |
+| barHeight                | height                                   | 내비게이션 바 높이<br>**Android에 한함**                 |
 | isNavigationBarVisible   | true or false                            | 내비게이션 바 활성 또는 비활성<br>**default**: true    |
 | isBackButtonVisible      | true or false                            | 뒤로 가기 버튼 활성 또는 비활성<br>**default**: true   |
 | backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지         |

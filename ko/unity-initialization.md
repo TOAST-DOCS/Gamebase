@@ -35,12 +35,12 @@ NHN Cloud 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하
 
 | Store       | Code | Description  |
 | ----------- | ---- | ------------ |
-| App Store | AS | only iOS |
-| Google Play | GG | only Android |
-| ONE Store | ONESTORE | only Android |
-| GALAXY Store | GALAXY | only Android |
-| Windows | WIN | only Unity Standalone |
-| Web | WEB | only Unity WebGL |
+| App Store | AS | iOS에 한함 |
+| Google Play | GG | Android에 한함 |
+| ONE Store | ONESTORE | Android에 한함 |
+| GALAXY Store | GALAXY | Android에 한함 |
+| Windows | WIN | Standalone에 한함 |
+| Web | WEB | WebGL에 한함 |
 
 #### 4. displayLanguageCode
 
