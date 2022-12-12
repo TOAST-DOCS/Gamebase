@@ -372,10 +372,17 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 특정 IdP에 로그인된 상태에서 다른 IdP로 매핑을 시도합니다.<br/>
 
+* additionalInfo 파라미터 설정 방법
+
+| keyname                                  | a use                          | 값 종류                           |
+| ---------------------------------------- | ------------------------------ | ------------------------------ |
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINE 서비스 제공 지역 중 로그인을 수행할 하나의 지역 | [Login with IdP 참고](./ios-authentication/#login-with-idp)|
+
 **API**
 
 ```objectivec
 + (void)addMappingWithType:(NSString *)type viewController:(UIViewController *)viewController completion:(LoginCompletion)completion;
++ (void)addMappingWithType:(NSString *)type additionalInfo:(nullable NSDictionary<NSString *, id> *)additionalInfo viewController:(UIViewController *)viewController completion:(LoginCompletion)completion;
 ```
 
 **Example**
