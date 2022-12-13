@@ -3,16 +3,16 @@
 ### 2.44.2 (2022. 11. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.2/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### 機能追加
 
 * Setting Tool (v2.5.0)
-    * Onestore v19 결제 Adapter 가 추가되었습니다. (Android Only)
-    * 기존 SettingTool은 Unity 프로젝트에서 완전히 제거한 뒤 최신 버전으로 다시 설치해야 합니다.
+    * Onestore v19決済Adapterが追加されました。 (Android Only)
+    * 既存SettingToolはUnityプロジェクトから完全に削除した後、最新バージョンで再度インストールする必要があります。
 
-#### 버그 수정
-* (iOS) 게임 중 Screen.orientation을 변경하는 경우 웹뷰, 고객센터 등 뷰 컨트롤러의 영향을 받는 API가 정상적으로 노출되지 않는 이슈를 수정했습니다.
+#### バグ修正
+* (iOS)ゲーム中にScreen.orientationを変更する場合、Webビュー、サポートなどのビューコントローラーの影響を受けるAPIが正常に表示されない問題を修正しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.44.2](./release-notes-android/#2442-2022-11-29)
 * [Gamebase iOS SDK 2.44.0](./release-notes-ios/#2440-2022-10-25)
 

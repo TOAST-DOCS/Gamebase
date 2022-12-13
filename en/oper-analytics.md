@@ -70,7 +70,7 @@ Share by each OS, app version, store or country, is available on a graph: shows 
 
 Basic user indicators are available. 
 
-![gamebase_analytics_03_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_201901_2.png)
+![gamebase_analytics_03_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_202212_1.png)
 
 #### 1. User Status 
 Basic user indicators during a selected period are available. 
@@ -192,7 +192,7 @@ If there is a user who visited the site on March 1, 2, 3, 6, and 7, as of March 
 
 Shows indicators of purchase amount.   
 
-![gamebase_analytics_07_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_201901_2.png)
+![gamebase_analytics_07_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_202212_1.png)
 
 #### 1.Status Table for Purchase Amount 
 Purchase amount during a specific period can be found. 
@@ -206,7 +206,7 @@ Sales by each country are also available on the below table.
 
 Indicators of paying users are displayed. 
 
-![gamebase_analytics_08_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_08_201901_2.png)
+![gamebase_analytics_08_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_08_202212_1.png)
 
 Refer to the following glossaries:
 
@@ -225,7 +225,7 @@ Refer to the following glossaries:
 
 Sales indicators of Gamebase items are available. 
 
-![gamebase_analytics_09_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_201901_2.png)
+![gamebase_analytics_09_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_202212_1.png)
 
 * Item: List of items registered at Gamebase 
 * 10 Best-Selling Items: List of 10 most selling items by the price or number of sales 
@@ -235,7 +235,7 @@ Sales indicators of Gamebase items are available.
 * Payment Ratio: Rate of purchase for each item 
 
 ### First Purchase
-![gamebase_analytics_10_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_201901_2.png)
+![gamebase_analytics_10_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_202212_1.png)
 
 First-purchase information of newly paying users can be found. 
 All purchased items are displayed in the order of purchase amount. 
