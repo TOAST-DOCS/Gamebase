@@ -79,10 +79,10 @@ GamebaseRequest.Push.NotificationOptions 의 생성자에 Gamebase.Push.GetNotif
 | ---------------------  | ------------ | ------------------ |
 | foregroundEnabled      | bool         | 앱이 포그라운드 상태일 때의 알림 노출 여부<br/>**default**: false |
 | badgeEnabled           | bool         | 배지 아이콘 사용 여부<br/>**default**: true |
-| soundEnabled           | bool         | 알림음 사용 여부<br/>**default**: true<br/>**iOS Only** |
-| priority               | int          | 알림 우선 순위. 아래 5가지 값을 설정할 수 있습니다.<br/>GamebaseNotificationPriority.MIN : -2<br/> GamebaseNotificationPriority.LOW : -1<br/>GamebaseNotificationPriority.DEFAULT : 0<br/>GamebaseNotificationPriority.HIGH : 1<br/>GamebaseNotificationPriority.MAX : 2<br/>**default**: GamebaseNotificationPriority.HIGH<br/>**Android Only** |
-| smallIconName          | string       | 알림용 작은 아이콘 파일 이름.<br/>설정하지 않을 경우 앱 아이콘이 사용됩니다.<br/>**default**: null<br/>**Android Only** |
-| soundFileName          | string       | 알림음 파일 이름. 안드로이드 8.0 미만 OS 에서만 동작합니다.<br/>'res/raw' 폴더의 mp3, wav 파일명을 지정하면 알림음이 변경됩니다.<br/>**default**: null<br/>**Android Only** |
+| soundEnabled           | bool         | 알림음 사용 여부<br/>**default**: true<br/>**iOS에 한함** |
+| priority               | int          | 알림 우선 순위. 아래 5가지 값을 설정할 수 있습니다.<br/>GamebaseNotificationPriority.MIN : -2<br/> GamebaseNotificationPriority.LOW : -1<br/>GamebaseNotificationPriority.DEFAULT : 0<br/>GamebaseNotificationPriority.HIGH : 1<br/>GamebaseNotificationPriority.MAX : 2<br/>**default**: GamebaseNotificationPriority.HIGH<br/>**Android에 한함** |
+| smallIconName          | string       | 알림용 작은 아이콘 파일 이름.<br/>설정하지 않을 경우 앱 아이콘이 사용됩니다.<br/>**default**: null<br/>**Android에 한함** |
+| soundFileName          | string       | 알림음 파일 이름. 안드로이드 8.0 미만 OS 에서만 동작합니다.<br/>'res/raw' 폴더의 mp3, wav 파일명을 지정하면 알림음이 변경됩니다.<br/>**default**: null<br/>**Android에 한함** |
 
 **Example**
 
@@ -203,7 +203,7 @@ public void QueryTokenInfoSample(bool isSandbox)
 | registeredDateTime  | string                | 토큰 업데이트 시간    |
 | languageCode        | string                | 언어 설정            |
 | agreement           | GamebaseResponse.Push.Agreement | 수신 동의 여부        |
-| sandbox             | bool                  | sandbox 여부(iOS Only)        |
+| sandbox             | bool                  | sandbox 여부(iOS에 한함)        |
 
 #### GamebaseResponse.Push.Agreement
 
