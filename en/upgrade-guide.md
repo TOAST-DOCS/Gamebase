@@ -4,8 +4,8 @@
 
 ### Unity
 
-* Added the Onestore v19 Purchase Adapter to Gamebase SettingTool(v2.5.0).
-    * When enabling Onestore v19 Adapter in **SettingTool > Android**, you are connected to the download page of iap_sdk-v19.xx.xx.aar, and must copy the file in **Assets > Plugins > Android**.
+* Added the ONE store v19 Purchase Adapter to Gamebase SettingTool(v2.5.0).
+    * When enabling ONE store v19 Adapter in **SettingTool > Android**, you are connected to the download page of iap_sdk-v19.xx.xx.aar, and must copy the file in **Assets > Plugins > Android**.
 
 ## 2.44.0
 

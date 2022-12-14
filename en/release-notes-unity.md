@@ -6,7 +6,7 @@
 #### Added Features
 
 * Setting Tool (v2.5.0)
-    * Added One store v19 Purcahse Adapter. (Android Only)
+    * Added ONE store v19 Purcahse Adapter. (Android Only)
     * You must reinstall the latest version of SettingTool after removing the existing SettingTool from Unity projects.
 
 #### Bug Fixes
