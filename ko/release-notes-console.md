@@ -1,6 +1,6 @@
 ## Game > Gamebase > 릴리스 노트 > Console
 
-### 2022. 12. 27
+### 2022. 12. 27.
 
 ### 기능 개선/변경
 * Analytics > 이용자 지표 > Retention
