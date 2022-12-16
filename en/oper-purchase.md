@@ -36,6 +36,7 @@ Click **Register** on the **Store Information List** to register a new store.
 Retrieve or modify detail information of registered stores on the list.
 
 ![gamebase_purchase_03_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_03_202210_en.png)
+
 - Select a registered store on the list to retrieve detail information.
 - Click **Modify** to modify information such as app name, store app, and use or not, but not store App ID.
 - Click **Delete** to delete information: only for the stores that are Not in Use.
@@ -44,6 +45,7 @@ Retrieve or modify detail information of registered stores on the list.
 
 You can register products to sell at the store.
 In the **Product** tab, you can register a new product or manage the registered products.
+
 - (1) **Register** : You can use a single Store Item ID to register multiple products.
 - (2) **Change store item status** : You can use a single Store Item ID to change whether to use the registered products all at once.
 - (3) **Filter** : Provides filters for usage, store/store item ID/product ID, product name to allow easy search. When there is no search value, the list of products from all stores is displayed.
@@ -89,6 +91,29 @@ Purchase information can be queried.
 Select a search type in need and query purchase information. 
 To query the list of purchases, click **Download** on top right of the page. 
 
+### Transaction Status Code
+Transaction status code indicates what occurs while the user is making a payment.  
+
+> [Note]
+> Transaction process is divided into four stages.
+> 
+> [Reservation] - [Payment] - [Verification] - [Completion]
+> 
+> - Reservation: Prepares for user’s purchase and sends the required information to Gamebase
+> - Payment: Processes purchases in the market
+> - Verification: Verifies the results sent from the market
+> - Completion: Finishes remaining processes required by each market after verification
+
+- Reservation completed: [Reservation] is completed
+- Verification failed: Verification is failed in [Verification]
+- Verification completed: [Verification] is completed
+- Purchase completed: All purchase processes are done
+- Refund completed: Purchase is refunded by user or operator
+- Canceled during purchase: Purchase is canceled by user during purchase
+
+> [Note]
+> If there is no change in the verification completed status, please contact the Customer Center.
+
 ### Properties
 
 #### Search conditions
@@ -104,6 +129,7 @@ Search is available by the following conditions:
 - **Item**: Select an item to search 
 - **User ID**: User ID that made the purchase 
 - **Purchase Status**: Status of purchase to search 
+
 
 ##### (2) Search by Transaction ID 
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202210_en.png)
@@ -138,7 +164,7 @@ The status of the searched purchase information is as follows:
 - **Purchase successful (Success)**
     - Purchase has been made successfully.
     - Can be changed to the Refund status.
-- **Ready to make purchase (Reserved)**
+- **Reservation completed (Reserved)**
 	- No longer proceeding with purchase through the store, or did not proceed with purchase validation.
 	- Can be changed to Success or Refund status.
 - **Failed to validate purchase (Failure)**
@@ -162,6 +188,7 @@ Once it has been changed to Refund status, it's set for good.
 
 #### Validate Receipt
 ![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction3.1.png)
+
 * Validates transaction of the retrieved receipt.
 * You can see the results of comparing each field. The response value is provided in JSON format, so you can directly check the data if needed.
 * For now, only App Store transactions can be validated.
