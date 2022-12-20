@@ -401,8 +401,8 @@ App Store 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니
 | TCGB_ERROR_PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 존재하지 않은 GamebaseProductID로 결제를 요청하였습니다.             |
 | TCGB_ERROR_PURCHASE_LIMIT_EXCEEDED                   | 4007       | 월 구매 한도를 초과했습니다.             |
 | TCGB_ERROR_PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 지원하지 않는 스토어입니다. iOS의 지원가능한 스토어는 "AS"입니다. |
-| TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | IAP 라이브러리 에러입니다.<br>error.message 를 확인하세요. |
-| TCGB_ERROR_PURCHASE_UNKNOWN_ERROR                    | 4999       | 정의되지 않은 구매 에러입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
+| TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAP 라이브러리 오류입니다.<br/>상세 오류를 확인해 주세요. |
+| TCGB_ERROR_PURCHASE_UNKNOWN_ERROR                    | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
     * [오류 코드](./error-code/#client-sdk)
@@ -411,19 +411,20 @@ App Store 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니
 
 **TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* 이 오류는 IAP 모듈에서 발생한 오류입니다.
-* 오류 코드는 다음과 같이 확인하실 수 있습니다.
+* 이 오류는 NHN Cloud IAP 라이브러리에서 오류가 발생했을 때 반환됩니다.
+* NHN Cloud IAP 라이브러리에서 발생한 오류 정보는 상세 오류에 포함되어 있으며 상세한 오류 코드 및 메시지는 다음과 같이 확인할 수 있습니다. 
+
 
 ```objectivec
 TCGBError *tcgbError = error; // TCGBError object via callback
-NSError *moduleError = [tcgbError.userInfo objectForKey:NSUnderlyingErrorKey]; // NSError object from external module
-NSInteger moduleErrorCode = moduleError.code;
-NSString *moduleErrorMessage = moduleError.message;
+
+NSInteger detailErrorCode = error.detailErrorCode;
+NSString *detailErrorMessage = error.detailErrorMessage;
 
 // If you use **description** method, you can get entire information of this object by JSON Format
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
-* IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > iOS > 에러 코드](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-ios/#error-codes)
+* NHN Cloud IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
+    * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > iOS > 오류 코드](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-ios/#error-codes)
 

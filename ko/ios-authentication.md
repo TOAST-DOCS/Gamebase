@@ -352,7 +352,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 * 이미 다른 계정에 연동 중일 때 발생하는 오류
     * 오류 코드가 **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**인 경우, 매핑하려는 IdP의 계정이 이미 다른 계정에 연동 중이라는 뜻입니다. 이때 획득한 **ForcingMappingTicket**으로 강제 매핑(**[TCGBGamebase addMappingForciblyWithTicket:viewController:completion:]**)이나 로그인 계정 변경(**[TCGBGamebase changeLoginWithForcingMappingTicket:viewController:completion:]**)을 시도할 수 있습니다.
 * 이미 동일한 IdP 계정에 연동돼 발생하는 오류
-	* 에러 코드가 **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)** 인 경우, 매핑하려는 IdP와 같은 종류의 계정이 이미 연동중이라는 뜻입니다.
+	* 오류 코드가 **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)** 인 경우, 매핑하려는 IdP와 같은 종류의 계정이 이미 연동중이라는 뜻입니다.
 	* Gamebase 매핑은 한 IdP당 하나의 계정만 연동 가능합니다. 예를 들어 Google 계정에 이미 연동 중이라면 더 이상 Google 계정을 추가할 수 없습니다.
 	* 동일 IdP의 다른 계정을 연동하기 위해서는 **[TCGBGamebase removeMappingWithType:viewController:completion:]**을 호출해 연동을 해제한 후 다시 매핑을 시도하세요.
 * 그 외의 오류
@@ -725,7 +725,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 > <font color="red">[주의]</font><br/>
 >
 > 이미 게스트 로그인이 되어 있는 상태에서 이전이 성공하게 되면, 단말기에 로그인되어 있던 게스트 계정은 유실됩니다.
-> 만일 잘못된 id/password 를 연속해서 입력하면 **AUTH_TRANSFERACCOUNT_BLOCK(3042)** 에러가 발생하며 계정 이전이 일정 시간 차단됩니다.
+> 만일 잘못된 id/password 를 연속해서 입력하면 **AUTH_TRANSFERACCOUNT_BLOCK(3042)** 오류가 발생하며 계정 이전이 일정 시간 차단됩니다.
 > 이 경우에는 아래의 예제와 같이 TCGBTransferAccountFailInfo 값을 통해 언제까지 계정 이전이 차단되는지 유저에게 알려줄 수 있습니다.
 
 
@@ -965,7 +965,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 |                | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | 지원하지 않는 인증 방식입니다.                        |
 |                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | 존재하지 않거나 탈퇴한 회원입니다.                      |
 |                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR    | 3006       |  외부 인증 라이브러리 초기화에 실패하였습니다.                      |
-|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
+|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 외부 인증 라이브러리 오류입니다.<br/>상세 오류를 확인해 주세요.  |
 |                | TCGB\_ERROR\_AUTH\_INVALID\_GAMEBASE\_TOKEN | 3011       | Gamebase Access Token이 유효하지 않아 로그아웃되었습니다.<br/>로그인을 다시 시도하십시오. |
 | Auth (Login)   | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED  | 3101       | 토큰 로그인에 실패했습니다.                          |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | 토큰 정보가 유효하지 않습니다.                        |
@@ -996,19 +996,19 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 **TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR**
 
-* 이 오류는 각 IdP의 SDK에서 발생한 오류입니다.
-* 오류 코드 확인은 다음과 같이 확인하실 수 있습니다.
-
-* IdP SDK의 오류 코드는 각각의 Developer 페이지를 참고하시기 바랍니다.
+* 이 오류는 외부 인증 라이브러리에서 오류가 발생했을 때 반환됩니다.
+* 외부 인증 라이브러리에서 발생한 오류 정보는 상세 오류에 포함되어 있으며 상세한 오류 코드 및 메시지는 다음과 같이 확인할 수 있습니다. 
 
 ```objectivec
 TCGBError *tcgbError = error; // TCGBError object via callback
-NSError *moduleError = [tcgbError.userInfo objectForKey:NSUnderlyingErrorKey]; // NSError object from external module
-NSInteger moduleErrorCode = moduleError.code;
-NSString *moduleErrorMessage = moduleError.message;
+
+NSInteger detailErrorCode = error.detailErrorCode;
+NSString *detailErrorMessage = error.detailErrorMessage;
 
 // If you use **description** method, you can get entire information of this object by JSON Format
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
+
+* 상세 오류 코드는 각각의 외부 인증 라이브러리의 Developer 페이지를 참고하시기 바랍니다.
 
 
