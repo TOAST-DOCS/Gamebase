@@ -4,8 +4,8 @@
 
 ### Unity
 
-* Gamebase SettingTool(v2.5.0)에  Onestore v19 결제 Adapter 가 추가되었습니다.
-    * **SettingTool > Android** 설정에서 Onestore v19 Adapter 활성화 시, iap_sdk-v19.xx.xx.aar 다운로드 페이지로 연결이 되며, 해당 파일을 **Assets > Plugins > Android** 폴더에 복사해야 합니다.
+* 在Gamebase SettingTool(v2.5.0)添加了Onestore v19支付Adapter。
+    * 当在**SettingTool > Android**设置中启用Onestore v19 Adapter时, 您将连接至iap_sdk-v19.xx.xx.aar下载页面, 您要将相关文件复制到**Assets > Plugins > Android**文件夹。
 
 ## 2.44.0
 
