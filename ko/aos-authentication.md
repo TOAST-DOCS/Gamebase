@@ -513,6 +513,12 @@ private static void onWithdraw(final Activity activity) {
 
 특정 IdP에 로그인된 상태에서 다른 IdP로 매핑을 시도합니다.<br/>
 
+* AdditionalInfo 파라미터 설정 방법
+
+| keyname                                  | a use                                    | 값 종류                                     |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | LINE 서비스 제공 지역 설정 | [Login with IdP 참고](./aos-authentication/#login-with-idp) |
+
 다음은 Facebook에 매핑을 시도하는 예시입니다.
 
 **API**
@@ -591,6 +597,7 @@ private static void addMappingForFacebook(final Activity activity) {
 | AuthProviderCredentialConstants.PROVIDER_NAME | IdP 유형 설정                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(Access Token) 설정.<br/>Google 인증 시에는 사용 안 함. |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Google 로그인 이후 획득할 수 있는 OTAC(one time authorization code) 입력 |                                          |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | LINE 서비스 제공 지역 설정 | [Login with IdP 참고](./aos-authentication/#login-with-idp) |
 
 > [참고]
 >
