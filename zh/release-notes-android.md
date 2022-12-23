@@ -3,17 +3,17 @@
 ### 2.44.2 (2022. 11. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.2/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* PurchasableReceipt VO 클래스에 'storeCode' 필드가 추가되었습니다.
+#### 添加功能
+* 在PurchasableReceipt VO类中添加了“storeCode”字段。
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Kotlin(1.7.20), Hangame Android SDK(1.6.1)
-* 구글 '사전출시 보고서' 권고 사항을 반영하여 Gamebase 웹뷰를 수정했습니다.
-    * 타이틀 바 사이즈 확대
-    * 이미지 설명 문구 수정
+#### 改善/修改功能
+* 外部SDK升级 : Kotlin(1.7.20)、Hangame Android SDK(1.6.1)
+* 通过反映谷歌的“发布前报告”建议事项来修改了Gamebase Webview。
+    * 增加了标题栏大小。
+    * 修改了图像的文本描述。
 
-#### 버그 수정
-* PurchasableItem VO 클래스의 'itemName' 필드에 잘못 선언된 'deprecated' 어노테이션을 제거했습니다.
+#### 修改程序错误
+* 删除了PurchasableItem VO类的“itemName”字段上声明错误的“deprecated” Annotation。
 
 ### 2.44.1 (2022. 10. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.1/GamebaseSDK-Android.zip)

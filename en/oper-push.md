@@ -171,6 +171,9 @@ Shows the outbound/inbound statistics of push message within the selected period
 * Inbound rate: Total number of successful inbounds / total number of inbounds within the period
 * Confirmed inbound rate: Total number of inbounds checked / total number of inbounds succeeded within the period
 
+> [Note]
+> To collect statistics data on inbound rate and confirmed inbound rate, go to **Settings** > [Receiving and Confirming Message](#Setting) and set to **ON**.
+
 2. List of pushes sent
 List showing the push messages that were sent during the selected period
 

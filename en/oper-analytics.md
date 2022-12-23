@@ -70,14 +70,14 @@ Share by each OS, app version, store or country, is available on a graph: shows 
 
 Basic user indicators are available. 
 
-![gamebase_analytics_03_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_201901_2.png)
+![gamebase_analytics_03_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_202212_1.png)
 
 #### 1. User Status 
 Basic user indicators during a selected period are available. 
 
-* Total Daily Active Users (DAU+): Sum of daily active users, by member number, who are logged in more than once a day
-* Total Weekly Active Users (WAU+): Sum of weekly active users. With weekly indicators, WAU items are substituted for DAU items.  
-* Total Monthly Active Users (MAU+): Sum of monthly active users. With monthly indicators, MAU items are substituted for DAU items. 
+* Cumulative DAU: Sum of daily active users, by member number, who are logged in more than once a day
+* Cumulative WAU: Sum of weekly active users. With weekly indicators, WAU items are substituted for DAU items.  
+* Cumulative MAU: Sum of monthly active users. With monthly indicators, MAU items are substituted for DAU items. 
 * Maximum Concurrent Users (MCU): The maximum number of concurrent users around the clock. The largest CCU value of each minute is collected on a daily basis. 
 * Newly Registered Users (NRU): New subscribers whose first login logs are collected around the clock of the day (by member number)
 * Withdrawer: Number of users whose member numbers are deleted around the clock.  
@@ -120,12 +120,11 @@ Inflow and outflow of app users are available on a daily basis.
 * Inactive Users: Users whose logs are not collected during the previous 7 days 
 
 ### Retention
+![gamebase_analytics_06_202107_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202107_2.png)
 
 Retention refers to how many subscribed users remain in service for the next 90 days after subscribed. 
 
-![gamebase_analytics_06_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_201901_2.png)
-
-By opting for the exclusion of withdrawer on the same day of subscription, you can check by excluding those users who subscribed and withdrew on the same day.  
+You can check the retention data either by including or excluding users who subscribe and withdraw on the same day.
 
 * Exclusion of withdrawer on the same day of subscription: Calculate by excluding those users who subscribed and withdrew on the same day 
     * New Users = Subscriber - Withdrawer on the same day of subscription
@@ -192,7 +191,7 @@ If there is a user who visited the site on March 1, 2, 3, 6, and 7, as of March 
 
 Shows indicators of purchase amount.   
 
-![gamebase_analytics_07_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_201901_2.png)
+![gamebase_analytics_07_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_202212_1.png)
 
 #### 1.Status Table for Purchase Amount 
 Purchase amount during a specific period can be found. 
@@ -200,14 +199,13 @@ Total amount, as well as purchase amount by country of major stores are availabl
 
 #### 2. Sales Trend  
 New sales, renewed sales, and trends of paying users are displayed on graphs.
-Sales by each country are also available on the below table. 
+Sales by store, country, and Idp are also available on the below table. 
+Monthly cumulative purchase amount can only be checked on daily view
 
 ### Paying Users 
+![gamebase_analytics_08_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_08_202212_1.png)
 
 Indicators of paying users are displayed. 
-
-![gamebase_analytics_08_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_08_201901_2.png)
-
 Refer to the following glossaries:
 
 * Purchase Amount: Amount of purchase paid by a user 
@@ -220,24 +218,29 @@ Refer to the following glossaries:
 * ARPU: Average purchase amount paid by the number of game users for a day (purchase amount/DAU) 
 * ARPPU: Average purchase amount paid by the number of paying users (purchase amount/PU)
 * ARPNPU: Average purchase amount paid by new paying users (purchase amount/NPU)
+* Cumulative PU(M): Number of paying users on a monthly basis (duplicates excluded)
 
 ### Item Sales Indicators 
 
 Sales indicators of Gamebase items are available. 
 
-![gamebase_analytics_09_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_201901_2.png)
+![gamebase_analytics_09_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_202212_1.png)
 
 * Item: List of items registered at Gamebase 
 * 10 Best-Selling Items: List of 10 most selling items by the price or number of sales 
 * Store: Stores, such as AppStore or Google Play
 * Purchase Amount: Amount paid by users for each item  
 * Purchase Count: Number of purchases for each item 
+* PU: Number of paying users for each item
 * Payment Ratio: Rate of purchase for each item 
 
 ### First Purchase
-![gamebase_analytics_10_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_201901_2.png)
+![gamebase_analytics_10_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_202212_1.png)
 
 First-purchase information of newly paying users can be found. 
+
+Shows how long it takes for new paying users to make the first purchase from day 0 to day 90.
+
 All purchased items are displayed in the order of purchase amount. 
 
 * Item: List of items purchased by new paying users 
