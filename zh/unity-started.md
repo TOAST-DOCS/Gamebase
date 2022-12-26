@@ -8,7 +8,7 @@
 >
 > Gamebase支持的Unity版本
 >
-> * 2018.4.0 ~ 2022.1.19
+> * 2018.4.0 ~ 2022.2.1
 > * 如果需要Gamebase支持的低版本Unity，请联系[客户服务](https://toast.com/support/inquiry)。
 
 #### Android
@@ -21,7 +21,7 @@
 
 | Gamebase SDK | External SDK |
 | --- | --- |
-| Gamebase | NHN Cloud Unity SDK 0.26.2 |
+| Gamebase | NHN Cloud Unity SDK 0.27.1 |
 
 * [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
 * [Gamebase iOS SDK - Dependencies](./ios-started/#setting)

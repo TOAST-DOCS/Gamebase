@@ -1,11 +1,54 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.45.0
+
+* 미소비 내역 조회 API가 변경되었으므로 신규 API로 변경하시기 바랍니다.
+
+        // Unity: Deprecated API
+        Gamebase.Purchase.RequestItemListOfNotConsumed(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
+        // Unity: New API
+        Gamebase.Purchase.RequestItemListOfNotConsumed(GamebaseRequest.Purchase.PurchasableConfiguration configuration,
+                                                       GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
+        // Android: Deprecated API
+        Gamebase.Purchase.requestItemListOfNotConsumed(Activity activity,
+                                                       GamebaseDataCallback<List<PurchasableReceipt>> callback);
+        // Android: New API
+        Gamebase.Purchase.requestItemListOfNotConsumed(Activity activity,
+                                                       PurchasableConfiguration configuration,
+                                                       GamebaseDataCallback<List<PurchasableReceipt>> callback);
+        // iOS: Deprecated API
+        + (void)requestItemListOfNotConsumedWithCompletion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
+        // iOS: New API
+        + (void)requestItemListOfNotConsumedWithConfiguration:(TCGBPurchasableConfiguration *)configuration
+                                                   completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
+
+* 활성화 구독 조회 API가 변경되었으므로 신규 API로 변경하시기 바랍니다.
+    * 기존 API와 동일한 결과를 받으려면 **PurchasableConfiguration.allStores**를 **true**로 설정하시기 바랍니다.
+
+            // Unity: Deprecated API
+            Gamebase.Purchase.RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
+            // Unity: New API
+            Gamebase.Purchase.RequestActivatedPurchases(GamebaseRequest.Purchase.PurchasableConfiguration configuration,
+                                                        GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
+            // Android: Deprecated API
+            Gamebase.Purchase.requestActivatedPurchases(Activity activity,
+                                                        GamebaseDataCallback<List<PurchasableReceipt>> callback);
+            // Android: New API
+            Gamebase.Purchase.requestActivatedPurchases(Activity activity,
+                                                        PurchasableConfiguration configuration,
+                                                        GamebaseDataCallback<List<PurchasableReceipt>> callback);
+            // iOS: Deprecated API
+            + (void)requestActivatedPurchasesWithCompletion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
+            // iOS: New API
+            + (void)requestActivatedPurchasesWithConfiguration:(TCGBPurchasableConfiguration *)configuration
+                                                    completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
+
 ## 2.42.2
 
 ### Unity
 
-* Gamebase SettingTool(v2.5.0)에  Onestore v19 결제 Adapter 가 추가되었습니다.
-    * **SettingTool > Android** 설정에서 Onestore v19 Adapter 활성화 시, iap_sdk-v19.xx.xx.aar 다운로드 페이지로 연결이 되며, 해당 파일을 **Assets > Plugins > Android** 폴더에 복사해야 합니다.
+* 在Gamebase SettingTool(v2.5.0)添加了Onestore v19支付Adapter。
+    * 当在**SettingTool > Android**设置中启用Onestore v19 Adapter时, 您将连接至iap_sdk-v19.xx.xx.aar下载页面, 您要将相关文件复制到**Assets > Plugins > Android**文件夹。
 
 ## 2.44.0
 

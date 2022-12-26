@@ -158,7 +158,7 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 
         // If the TCGBPushConfiguration is not null, 
         // save TCGBPushConfiguration and use it for registerPush after login.
-        TCGBPushConfiguration *savedPushConfiguraiton = showTermsViewResult.pushConfiguration;
+        TCGBPushConfiguration *savedPushConfiguration = showTermsViewResult.pushConfiguration;
 
         // Wheter the TermsUI was displayed.
         BOOL isTermsUIOpened = showTermsViewResult.isTermsUIOpened;

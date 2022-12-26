@@ -1,24 +1,59 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.45.0 (2022. 12. 27.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.45.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+
+* 외부 SDK 업데이트: NHN Cloud Android SDK (1.4.0), Payco Android SDK (1.5.9), Hangame Android SDK (1.6.2)
+* 미소비 내역 조회 API가 변경되었으므로 신규 API로 변경하시기 바랍니다.
+
+        // Deprecated API
+        Gamebase.Purchase.requestItemListOfNotConsumed(Activity,
+                                                       GamebaseDataCallback<List<PurchasableReceipt>>);
+        
+        // New API
+        Gamebase.Purchase.requestItemListOfNotConsumed(Activity,
+                                                       PurchasableConfiguration,
+                                                       GamebaseDataCallback<List<PurchasableReceipt>>);
+
+* 활성화 구독 조회 API가 변경되었으므로 신규 API로 변경하시기 바랍니다.
+    * 기존 API와 동일한 결과를 받으려면 **PurchasableConfiguration.setAllStores(true)**로 설정하시기 바랍니다.
+
+            // Deprecated API
+            Gamebase.Purchase.requestActivatedPurchases(Activity,
+                                                        GamebaseDataCallback<List<PurchasableReceipt>>);
+
+            // New API
+            Gamebase.Purchase.requestActivatedPurchases(Activity,
+                                                        PurchasableConfiguration,
+                                                        GamebaseDataCallback<List<PurchasableReceipt>>);
+
+#### 버그 수정
+
+* 앱 실행시 간헐적으로 ConcurrentModification 예외가 발생할 수 있는 이슈를 수정했습니다.
+* Hangame thirdIdP 로그인 후 Gamebase.getAuthProviderUserID() 호출시 NullPointerException이 발생하는 오류를 수정했습니다.
+
 ### 2.44.2 (2022. 11. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.2/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* PurchasableReceipt VO 클래스에 'storeCode' 필드가 추가되었습니다.
+#### Added Features
+* Added the 'storeCode' field to the PurchasableReceipt VO class.
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Kotlin(1.7.20), Hangame Android SDK(1.6.1)
-* 구글 '사전출시 보고서' 권고 사항을 반영하여 Gamebase 웹뷰를 수정했습니다.
-    * 타이틀 바 사이즈 확대
-    * 이미지 설명 문구 수정
+#### Feature Updates
+* External SDK update: Kotlin(1.7.20), Hangame Android SDK(1.6.1)
+* Modified the Gamebase WebView by reflecting the recommendations in 'Google Play Pre-Launch Report'.
+    * Expanded the title bar size
+    * Modified the image description text
 
-#### 버그 수정
-* PurchasableItem VO 클래스의 'itemName' 필드에 잘못 선언된 'deprecated' 어노테이션을 제거했습니다.
+#### Bug Fixes
+* Removed the 'deprecated' annotaion incorrectly declared on the 'itemName' field of the PurchasableItem V0 class.
 
 ### 2.44.1 (2022. 10. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.1/GamebaseSDK-Android.zip)
 
-#### More Features
+#### Added Features
 * Added the **PushConfiguration.Builder.enableRequestNotificationPermission(boolean)** API so that a popup to request Push permission does not show up automatically when calling the registerPush API from Android 13 OS or higher.
 
 #### Feature Updates

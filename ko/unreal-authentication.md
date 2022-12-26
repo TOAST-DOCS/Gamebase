@@ -673,7 +673,7 @@ void Sample::ChangeLoginWithFacebook(const FString& providerName)
                         else
                         {
                             // 로그인 변경 실패
-                            // 에러 코드를 확인하고 적절한 처리를 진행합니다.
+                            // 오류 코드를 확인하고 적절한 처리를 진행합니다.
                         }
                     }));
                 }
@@ -1187,7 +1187,7 @@ void Sample::Login()
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | 지원하지 않는 인증 방식입니다.                        |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 존재하지 않거나 탈퇴한 회원입니다.                      |
 |                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | 외부 인증 라이브러리 초기화에 실패하였습니다. |
-|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 외부 인증 라이브러리 오류입니다. <br/> DetailCode 및 DetailMessage를 확인해주세요.  |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 외부 인증 라이브러리 오류입니다. <br/>상세 오류를 확인해 주세요. |
 |                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | 이전 인증 프로세스가 완료되지 않았습니다. |
 |                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | Gamebase Access Token이 유효하지 않아 로그아웃되었습니다.<br/>로그인을 다시 시도하십시오. |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | 발급한 TransferAccount를 동일한 단말기에서 사용했습니다. |
@@ -1223,15 +1223,15 @@ void Sample::Login()
 |                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 이미 임시 탈퇴를 요청한 유저입니다.                    | 
 |                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 임시 탈퇴를 요청한 유저가 아닙니다.                     | 
 | Not Playable | AUTH_NOT_PLAYABLE | 3701 | 플레이할 수 없는 상태입니다(점검 또는 서비스 종료 등). |
-| Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | 알수 없는 오류입니다(정의 되지 않은 에러입니다). |
+| Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | 알수 없는 오류입니다(정의 되지 않은 오류입니다). |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
     * [오류 코드](./error-code/#client-sdk)
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* 이 오류는 외부 인증 라이브러리에서 발생한 오류입니다.
-* 오류 코드를 확인하는 방법은 다음과 같습니다.
+* 이 오류는 외부 인증 라이브러리에서 오류가 발생했을 때 반환됩니다.
+* 외부 인증 라이브러리에서 발생한 오류 정보는 상세 오류에 포함되어 있으며 상세한 오류 코드 및 메시지는 다음과 같이 확인할 수 있습니다. 
 
 ```cpp
 GamebaseError* gamebaseError = error; // GamebaseError object via callback
@@ -1255,4 +1255,4 @@ else
 }
 ```
 
-* IdP SDK의 오류 코드는 각 개발자 페이지를 참고하시기 바랍니다.
+* 상세 오류 코드는 각각의 외부 인증 라이브러리의 Developer 페이지를 참고하시기 바랍니다.

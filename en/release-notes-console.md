@@ -1,5 +1,46 @@
 ## Game > Gamebase > Release Notes > Console
 
+### November 29, 2022
+
+#### Added Features
+* Analytics > Sales Indicators > Items Sales Indicators
+  * Added PU for each item on daily view
+* Analytics > Sales Indicators > First Purchase
+  * Added the first purchase period indicator
+
+### November 15, 2022
+
+#### Added Features
+* Analytics > User Indicators > User Indicators
+  * Added the monthly cumulative user item on daily view
+
+### October 25, 2022
+
+#### Added Features
+* Analytics > Sales Indicators > Purchase Amount
+  * Added the monthly cumulative payment amount on daily view
+
+#### Feature Updates
+* Analytics > User Indicators > Service Environment
+  * Improved to display all devices when downloading data files if the search condition is set to device
+
+### October 4, 2022
+
+#### Added Features
+* Analytics > Sales Indicators > Purchase Amount
+  * Added the feature to see more stores
+* Analytics > User Indicators > User Indicators
+  * Added the average number of login item
+* Analytics > Sales Indicators > Paying Users
+  * Added the monthly cumulative PU item on daily view
+
+#### Feature Updates
+* Analytics
+  * Improved the filter that allows multiple selection on menu items other than Transmission Indicator
+  * Improved to organize sheets by country when downloading the excel file
+* Analytics > Sales Indicators > Purchase Amount
+  * Improved to fix the order to output stores
+
 ### September 14, 2022
 
 #### Feature Updates
