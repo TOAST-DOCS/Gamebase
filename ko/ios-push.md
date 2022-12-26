@@ -204,8 +204,8 @@ Push 메뉴의 **대상**에서 **iOS Sandbox**를 선택한 후 발송합니다
 ```objectivec
 TCGBError *tcgbError = error; // TCGBError object via callback
 
-NSInteger detailErrorCode = error.detailErrorCode;
-NSString *detailErrorMessage = error.detailErrorMessage;
+NSInteger detailErrorCode = [error detailErrorCode];
+NSString *detailErrorMessage = [error detailErrorMessage];
 
 // If you use **description** method, you can get entire information of this object by JSON Format
 NSLog(@"TCGBError: %@", [tcgbError description]);

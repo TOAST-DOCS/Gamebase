@@ -377,7 +377,6 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, configuration, new Game
 
 현재 사용자 ID 기준으로 활성화된 구독 목록을 조회합니다.
 결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다.
-사용자 ID가 같다면 Android와 iOS에서 구매한 구독 상품이 모두 조회됩니다.
 
 > <font color="red">[주의]</font><br/>
 >

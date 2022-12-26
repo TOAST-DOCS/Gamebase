@@ -78,7 +78,6 @@ AdditionalInfo에 대한 설명은 하단의 **Gamebase에서 지원 중인 IdP*
 
 ### Login as the Latest Login IdP
 
-특정 IdP에 대한 로그인 버튼을 클릭하였을 때, 다음 로그인 API를 구현합니다.<br/>
 가장 최근에 로그인한 IdP로 로그인을 시도합니다. 해당 로그인에 대한 토큰이 만료되었거나,
 토큰에 대한 검증 등에 실패하면 실패를 반환합니다.<br/>
 이때는 해당 IdP에 대한 로그인을 구현해야 합니다.
@@ -1002,8 +1001,8 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 ```objectivec
 TCGBError *tcgbError = error; // TCGBError object via callback
 
-NSInteger detailErrorCode = error.detailErrorCode;
-NSString *detailErrorMessage = error.detailErrorMessage;
+NSInteger detailErrorCode = [error detailErrorCode];
+NSString *detailErrorMessage = [error detailErrorMessage];
 
 // If you use **description** method, you can get entire information of this object by JSON Format
 NSLog(@"TCGBError: %@", [tcgbError description]);
