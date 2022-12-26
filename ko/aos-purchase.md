@@ -76,12 +76,6 @@ Gamebase.initialize(activity, configuration, callback);
 
 구매하고자 하는 아이템의 gamebaseProductId 를 이용해 다음의 API를 호출해 구매를 요청합니다.<br/>
 gamebaseProductId 는 일반적으로는 스토어에 등록한 아이템의 id와 동일하지만, Gamebase 콘솔에서 변경할 수도 있습니다.
-payload 필드에 입력한 추가 정보는 결제 성공 후 **PurchasableReceipt.payload** 필드에 유지되므로 여러가지 용도로 활용할 수 있습니다.<br/>
-
-> <font color="red">[주의]</font><br/>
->
-> AMAZON 스토어는 **payload** 필드를 지원하지 않습니다.
->
 
 게임 유저가 구매를 취소하는 경우 **GamebaseError.PURCHASE_USER_CANCELED** 오류가 반환됩니다.
 취소 처리를 해 주시기 바랍니다.
@@ -92,17 +86,12 @@ payload 필드에 입력한 추가 정보는 결제 성공 후 **PurchasableRece
 + (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
                                           @NonNull final String gamebaseProductId,
                                           @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
-+ (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
-                                          @NonNull final String gamebaseProductId,
-                                          @NonNull final String payload,
-                                          @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
 ```
 
 **Example**
 
 ```java
-String userPayload = "{\"description\":\"This is example\",\"channelId\":\"delta\",\"characterId\":\"abc\"}";
-Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, userPayload, new GamebaseDataCallback<PurchasableReceipt>() {
+Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataCallback<PurchasableReceipt>() {
     @Override
     public void onCallback(PurchasableReceipt receipt, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
@@ -124,11 +113,8 @@ class PurchasableReceipt {
     @Nullable
     String gamebaseProductId;
     
-    // Gamebase.Purchase.requestPurchase API 호출시 payload 로 전달했던 값입니다.
-    //
-    // 이 필드는 예를 들어 동일한 User ID 로 구매 했음에도 게임 채널, 캐릭터 등에 따라
-    // 상품 구매 및 지급을 구분하고자 하는 경우 등
-    // 게임에서 필요로 하는 다양한 추가 정보를 담기 위한 목적으로 활용할 수 있습니다.
+    // Gamebase.Purchase.requestPurchase API 호출시 payload로 전달했던 값입니다.
+    // 스토어 서버 상태에 따라 정보가 유실되는 경우가 있으므로 사용을 권장하지 않습니다.
     @Nullable
     String payload;
     
@@ -209,7 +195,6 @@ class PurchasableReceipt {
 ```json
 {
     "gamebaseProductId": "my_product_001",
-    "payload": "UserPayload:!@#...",
     "price": 1000.0,
     "currency": "KRW",
     "paymentSeq": "2021032510000001",
@@ -226,7 +211,6 @@ class PurchasableReceipt {
 ```json
 {
     "gamebaseProductId": "my_subcription_product_001",
-    "payload": "MyData:{\"1234\":\"5678\"}",
     "price": 1000.0,
     "currency": "KRW",
     "paymentSeq": "2021032510000001",
@@ -354,16 +338,27 @@ class PurchasableItem {
     	* 결제 전
     	* 결제 실패 후
 
+**PurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                                    |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
+| newBuilder()                    | **M**                      | Configuration 객체 생성을 위한 Builder 를 생성합니다.                                |
+| build()                         | **M**                      | 설정을 마친 Builder를 Configuration 객체로 변환합니다.                                |
+| setAllStores(boolean allStores) | O                          | 동일한 UserID로 다른 스토어에서 구매한 미소비 내역도 리턴합니다.<br/>기본값은 **false**입니다. |
+
 **API**
 
 ```java
-+ (void)Gamebase.Purchase.requestItemListOfNotConsumed(Activity activity, GamebaseDataCallback<List<PurchasableReceipt>> callback);
++ (void)Gamebase.Purchase.requestItemListOfNotConsumed(@NonNull final Activity activity,
+                                                       @NonNull final PurchasableConfiguration configuration,
+                                                       @NonNull final GamebaseDataCallback<List<PurchasableReceipt>> callback);
 ```
 
 **Example**
 
 ```java
-Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallback<List<PurchasableReceipt>>() {
+final PurchasableConfiguration configuration = PurchasableConfiguration.newBuilder().build();
+Gamebase.Purchase.requestItemListOfNotConsumed(activity, configuration, new GamebaseDataCallback<List<PurchasableReceipt>>() {
     @Override
     public void onCallback(List<PurchasableReceipt> data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
@@ -382,23 +377,35 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 
 현재 사용자 ID 기준으로 활성화된 구독 목록을 조회합니다.
 결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다.
-사용자 ID가 같다면 Android와 iOS에서 구매한 구독 상품이 모두 조회됩니다.
 
 > <font color="red">[주의]</font><br/>
 >
 > 현재 구독 상품은 Android의 경우 Google Play 스토어만 지원합니다.
 >
 
+**PurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                               |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------- |
+| newBuilder()                    | **M**                      | Configuration 객체 생성을 위한 Builder 를 생성합니다.                            |
+| build()                         | **M**                      | 설정을 마친 Builder를 Configuration 객체로 변환합니다.                           |
+| setAllStores(boolean allStores) | O                          | 동일한 UserID로 다른 스토어에서 구매한 구독도 리턴합니다.<br/>기본값은 **false**입니다.  |
+
 **API**
 
 ```java
-+ (void)Gamebase.Purchase.requestActivatedPurchases(Activity activity, GamebaseDataCallback<List<PurchasableReceipt>> callback);
++ (void)Gamebase.Purchase.requestActivatedPurchases(@NonNull final Activity activity,
+                                                    @NonNull final PurchasableConfiguration configuration,
+                                                    @NonNull final GamebaseDataCallback<List<PurchasableReceipt>> callback);
 ```
 
 **Example**
 
 ```java
-Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<List<PurchasableReceipt>>() {
+final PurchasableConfiguration configuration = PurchasableConfiguration.newBuilder()
+        .setAllStores(true)
+        .build();
+Gamebase.Purchase.requestActivatedPurchases(activity, configuration, new GamebaseDataCallback<List<PurchasableReceipt>>() {
     @Override
     public void onCallback(List<PurchasableReceipt> data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
@@ -430,7 +437,7 @@ GamebaseEventHandler 로 프로모션 결제 이벤트를 처리하는 방법은
 | PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 존재하지 않는 GamebaseProductID 로 결제를 요청하였습니다. |
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | 월 구매 한도를 초과했습니다.             |
 | PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 GG(Google), ONESTORE, GALAXY, AMAZON, HUAWEI입니다. |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | IAP 라이브러리 오류입니다.<br>DetailCode를 확인하세요.   |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAP 라이브러리 오류입니다.<br/>상세 오류를 확인해 주세요. |
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
@@ -438,8 +445,8 @@ GamebaseEventHandler 로 프로모션 결제 이벤트를 처리하는 방법은
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* 이 오류는 NHN Cloud IAP SDK 에서 발생한 오류입니다.
-* 오류 코드를 확인하는 방법은 다음과 같습니다.
+* 이 오류는 NHN Cloud IAP 라이브러리에서 오류가 발생했을 때 반환됩니다.
+* NHN Cloud IAP 라이브러리에서 발생한 오류 정보는 상세 오류에 포함되어 있으며 상세한 오류 코드 및 메시지는 다음과 같이 확인할 수 있습니다. 
 
 ```java
 Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataCallback<PurchasableReceipt>() {

@@ -221,12 +221,16 @@ public class PurchasableReceipt
     /// </summary>
     public long expiryTime;
 
+
+    /// <summary>
+    /// 결제한 스토어 코드입니다.
+    /// GamebaseStoreCode 클래스에서 스토어 코드 목록을 확인할 수 있습니다.
+    /// </summary>
+    public string storeCode;
+
     /// <summary>
     /// Gamebase.Purchase.requestPurchase API 호출시 payload 로 전달했던 값입니다.
-    ///
-    /// 이 필드는 예를 들어 동일한 User ID 로 구매 했음에도 게임 채널, 캐릭터 등에 따라
-    /// 상품 구매 및 지급을 구분하고자 하는 경우 등
-    /// 게임에서 필요로 하는 다양한 추가 정보를 담기 위한 목적으로 활용할 수 있습니다.
+    /// 스토어 서버 상태에 따라 정보가 유실되는 경우가 있으므로 사용을 권장하지 않습니다.
     /// </summary>
     public string payload;
 
@@ -357,6 +361,12 @@ public class PurchasableItem
     * 결제 전
     * 결제 실패 후
 
+**GamebaseRequest.Purchase.PurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                                    |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
+| allStores                       | O                          | 동일한 UserID로 다른 스토어에서 구매한 미소비 내역도 리턴합니다.<br/>기본값은 **false**입니다. |
+
 **API**
 
 Supported Platforms
@@ -364,14 +374,19 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
-static void RequestItemListOfNotConsumed(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
+static void RequestItemListOfNotConsumed(GamebaseRequest.Purchase.PurchasableConfiguration configuration, GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
 ```
 
 **Example**
 ```cs
-public void RequestItemListOfNotConsumed()
+public void RequestItemListOfNotConsumedSample(bool allStores)
 {
-    Gamebase.Purchase.RequestItemListOfNotConsumed((purchasableReceiptList, error) =>
+    var configuration = new GamebaseRequest.Purchase.PurchasableConfiguration
+    {
+        allStores = allStores
+    };
+
+    Gamebase.Purchase.RequestItemListOfNotConsumed(configuration, (purchasableReceiptList, error) =>
     {
         if (Gamebase.IsSuccess(error))
         {
@@ -392,11 +407,17 @@ public void RequestItemListOfNotConsumed()
 
 현재 사용자 ID 기준으로 활성화된 구독 목록을 조회합니다.
 결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다.
-사용자 ID가 같다면 Android와 iOS에서 구매한 구독 상품이 모두 조회됩니다.
 
 > <font color="red">[주의]</font><br/>
 >
 > 현재 Android에서는 Google Play 스토어에서만 구독 상품을 지원합니다.
+
+
+**GamebaseRequest.Purchase.PurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                                    |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
+| allStores                       | O                          | 동일한 UserID로 다른 스토어에서 구매한 미소비 내역도 리턴합니다.<br/>기본값은 **false**입니다. |
 
 **API**
 
@@ -405,14 +426,19 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
-static void RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
+static void RequestActivatedPurchases(GamebaseRequest.Purchase.PurchasableConfiguration configuration, GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
 ```
 
 **Example**
 ```cs
-public void RequestActivatedPurchasesSample()
+public void RequestActivatedPurchasesSample(bool allStores)
 {
-    Gamebase.Purchase.RequestActivatedPurchases((purchasableReceiptList, error) =>
+    var configuration = new GamebaseRequest.Purchase.PurchasableConfiguration
+    {
+        allStores = allStores
+    };
+    
+    Gamebase.Purchase.RequestActivatedPurchases(configuration, (purchasableReceiptList, error) =>
     {
         if (Gamebase.IsSuccess(error) == true)
         {
@@ -470,7 +496,7 @@ Supported Platforms
 | PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 존재하지 않는 GamebaseProductID 로 결제를 요청하였습니다. |
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | 월 구매 한도를 초과했습니다.             |
 | PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 AS(App Store), GG(Google), ONESTORE, GALAXY, AMAZON, HUAWEI입니다. |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | IAP 라이브러리 오류입니다.<br>DetailCode를 확인하세요.   |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAP 라이브러리 오류입니다.<br/>상세 오류를 확인해 주세요. |
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
@@ -478,8 +504,8 @@ Supported Platforms
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* 이 오류는 IAP 모듈에서 발생한 오류입니다.
-* 오류 코드를 확인하는 방법은 다음과 같습니다.
+* 이 오류는 NHN Cloud IAP 라이브러리에서 오류가 발생했을 때 반환됩니다.
+* NHN Cloud IAP 라이브러리에서 발생한 오류 정보는 상세 오류에 포함되어 있으며 상세한 오류 코드 및 메시지는 다음과 같이 확인할 수 있습니다. 
 
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
@@ -503,7 +529,7 @@ else
 }
 ```
 
-* IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
+* NHN Cloud IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
     * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > Unity > 오류 코드](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-unity/#error-code)
 
 

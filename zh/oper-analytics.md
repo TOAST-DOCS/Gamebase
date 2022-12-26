@@ -47,10 +47,10 @@ Analytics由以下菜单构成。
 * 累计用户：安装Gamebase后注册的全部累计用户数（以memberno为准）
 * 付款金额：0点~24点用户付款的总金额
 * 付款件数：0点~24点用户的总付款件数
-* PU: 支付收费商品的用户（游戏用户）（=再次购买PU + 新增PU）
+* PU：支付收费商品的用户（游戏用户）（=再次购买PU + 新增PU）
 * 新增PU(NPU)：第一次支付收费商品的用户(New Paying Users)
-* ARPPU: 1名付款用户(PU)支付的平均付款金额（=付款金额/PU）
-* ARPU: 1名游戏用户(DAU)支付的平均付款金额（=付款金额/DAU）
+* ARPPU：1名付款用户(PU)支付的平均付款金额（=付款金额/PU）
+* ARPU：1名游戏用户(DAU)支付的平均付款金额（=付款金额/DAU）
 
 ※ MCU、ACU、ARPU仅在过滤器为全部时可确认。
 
@@ -76,14 +76,15 @@ Analytics由以下菜单构成。
 #### 1. 用户现状
 显示所选期间内用户的基本指标。
 
-* 日总用户(DAU+)：以每日memberno为准登录1次以上的活跃用户数之和(Daily Active Users)
-* 周总用户(WAU+)：一周DAU之和(Weekly Active Users)。选择周指标时，WAU替代DAU项目
-* 月总用户(MAU+)：一个月DAU之和(Monthly Active Users)。选择月指标时，WAU替代DAU项目
-* 最多同时在线人数(MCU)：0点~24点最多同时在线人数以1天为单位来合计以1分钟为单位CCU中最大的值
-* 新注册者(NRU)：新注册者。当天0点~24点首次被收集登录日志的用户（以memberno为准）
-* 退出用户：退出用户。当天0点~24点删除memberno的用户数
-* 平均CCU：所选时间段内CCU的平均值
-* 平均游戏时间(Avg.Playtime)：安装Gamebase后注册的全部累计用户数（以memberno为准）
+* DAU累积：以每日memberno为准登录1次以上的活跃用户数之和(Daily Active Users)
+* WAU累积：一周DAU之和(Weekly Active Users) 选择周指标时，WAU替代DAU项目。
+* MAU累积：一个月DAU之和(Monthly Active Users) 选择月指标时，DAU 替代MAU项目。
+* 最多同时在线人数(MCU)：0点~24点最多同时在线人数以1天为单位来合计以1分钟为单位CCU中最大的值 
+* 新注册者(NRU)：新注册者 当天0点~24点首次被收集登录日志的用户（以memberno为准）
+* 退出用户：退出用户 当天0点~24点间被删除memberno的用户数
+* 平均登录次数：所选时间段内平均登录次数
+* 平均.CCU：所选时间段内CCU的平均
+* Avg.Playtime(/DAU)：查询时期的Playtime平均(DAU的Playtime之合 / DAU)
 
 #### 2. 日别指标
 以图表和表显示所选期间内日别用户的基本指标。
@@ -96,7 +97,7 @@ Analytics由以下菜单构成。
 可确认各环境下的用户指标。
 
 * 查询条件
-    * OS: 移动设备运营软件Android、IOS等
+    * OS：移动设备运营软件Android、IOS等
     * 国家：用户移动设备上设置的国家
     * 商店： IdP: Facebook、Google等用户的IdP登录/验证信息
     * 应用程序版本：运行的应用程序的版本信息
@@ -104,7 +105,7 @@ Analytics由以下菜单构成。
 * 查询值
     * 日用户(DAU)：以每日memberno为准登录1 次以上的活跃用户数(Daily Active Users)
     * 新注册者(NRU)：新注册者。当天0点~24点首次被收集登录日志的用户（以memberno为准）
-    * PU: 支付收费商品的用户（游戏用户）（=再次购买PU + 新增PU）
+    * PU：支付收费商品的用户（游戏用户）（=再次购买PU + 新增PU）
     * 付款金额：用户付款的总金额
 
 ### 用户流入与流出
@@ -122,12 +123,11 @@ Analytics由以下菜单构成。
 * 离开用户：基准日期的前7天内未被收集日志的用户
 
 ### Retention
+![gamebase_analytics_06_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_201901_2.png)
 
 Retention为可以确认在指定日注册的用户从第二天起的90天内还剩余多少的指标。
 
-![gamebase_analytics_06_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_201901_2.png)
-
-若选择当天退出者除外选项，可将当天注册后退出的用户排除在外进行确认。
+显示Retention时通过包括或排除当天退出的用户来显示。
 
 * 当天退出者除外：将当天注册并当天退出用户排除在新增用户之外后计算值。
     * 新注册者(New User) = 当天注册者 - 当天注册后退出者
@@ -160,13 +160,13 @@ Gamebase以注册后365天的累积ARPU作为估算LTV的方法。
 
 Life Cycle是可确认从用户首次注册到至今的用户的“日在线趋势”的指标。将数据提供3年。
 
-* 日用户(DAU) : 以日memberno为基准， 登录次数为1次以上的活跃用户数（Daily Active Users）
-* 最多同时在线用户(MCU) : 0点~24点最多同时在线人数/以1天为单位来合计以1分钟为单位CCU中最大的值
-* 新注册者(NRU) : 当天0点~24点首次被收集登录日志的用户（以memberno为准）
+* 日用户(DAU)：以日memberno为基准， 登录次数为1次以上的活跃用户数（Daily Active Users）
+* 最多同时在线用户(MCU)：0点~24点最多同时在线人数/以1天为单位来合计以1分钟为单位CCU中最大的值
+* 新注册者(NRU)：当天0点~24点首次被收集登录日志的用户（以memberno为准）
 * 退出用户：退出用户/当天0点~24点删除memberno的用户数
-* 当天注册退出用户 : 当天注册后，当天退出的用户
+* 当天注册退出用户：当天注册后，当天退出的用户
 * 平均CCU：所选时间段内CCU的平均值
-* 玩游戏的平均时间 - Avg.Playtime(/DAU) : 查询期间的平均Playtime（DAU的Playtime之合 / DAU）
+* 玩游戏的平均时间 - Avg.Playtime(/DAU)：查询期间的平均Playtime（DAU的Playtime之合 / DAU）
 
 ### Frequency7
 
@@ -175,16 +175,16 @@ Frequency7指标提供DAU的一周内的访问人数和比率信息。可一目�
 
 Frequency7的标准可分为以下3个项目。
 
-* 访问次数 : 7天中访问的次数
-* 连续访问次数 : 7天中包括特定日期的连续访问次数
-* 最多的连续访问次数 : 7天中连续访问的最多次数
+* 访问次数：7天中访问的次数
+* 连续访问次数：7天中包括特定日期的连续访问次数
+* 最多的连续访问次数：7天中连续访问的最多次数
 
 上述标准的计算方法如下。
 如果以3/7为标准，而用户总共在3/1, 3/2, 3/3, 3/6, 3/7访问了，等于访问的次数如下。
 
-* 总访问次数 : 5天(3/1, 3/2, 3/3, 3/6, 3/7)
-* 连续访问次数 : 2天(3/6, 3/7)
-* 最多的连续访问次数 : 3天(3/1, 3/2, 3/3)
+* 总访问次数：5天(3/1, 3/2, 3/3, 3/6, 3/7)
+* 连续访问次数：2天(3/6, 3/7)
+* 最多的连续访问次数：3天(3/1, 3/2, 3/3)
 
 
 > [参考] 
@@ -219,14 +219,14 @@ Frequency7的标准可分为以下3个项目。
 
 * 付款金额：用户付款的付款金额
 * 新增付款金额：新增付款用户(NPU)支付的付款金额
-* DAU: 以每日memberno为准登录1次以上的活跃用户数(Daily Active Users)
-* PU: 支付收费商品的用户(Paying User)PU=再次购买PU + 新增PU
+* DAU：以每日memberno为准登录1次以上的活跃用户数(Daily Active Users)
+* PU：支付收费商品的用户(Paying User)PU=再次购买PU + 新增PU
 * 新增PU(NPU)：第一次支付收费商品的用户(New Paying Users)
 * 再次购买PU：累计PU - 新增PU（再次购买PU为日数据，以前一日为准计算）
-* PUR: 收费用户的比例(PU/DAU * 100)
-* ARPU: 一天之内游戏用户数的平均付款金额（付款金额/DAU）
-* ARPPU: 付款用户数的平均付款金额（付款金额/PU）
-* ARPNPU: 新增收费用户的平均付款金额（付款金额/NPU）
+* PUR：收费用户的比例(PU/DAU * 100)
+* ARPU：一天之内游戏用户数的平均付款金额（付款金额/DAU）
+* ARPPU：付款用户数的平均付款金额（付款金额/PU）
+* ARPNPU：新增收费用户的平均付款金额（付款金额/NPU）
 
 ### 道具销售指标
 
@@ -245,6 +245,9 @@ Frequency7的标准可分为以下3个项目。
 ![gamebase_analytics_10_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_202212_1.png)
 
 可以确认新增收费用户首次购买的相关信息。
+
+显示从新付费用户注册到首次购买的D+0天到D+90天的时间段。
+
 按照付款金额顺序显示新增收费用户购买的所有道具。
 
 * 道具：新增PU购买的道具列表
@@ -268,9 +271,9 @@ Frequency7的标准可分为以下3个项目。
 
 ![gamebase_analytics_12_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_12_201901_2.png)
 
-* DAU: 以每日memberno为准登录1次以上活跃用户数(Daily Active Users)
-* NRU: 当天新加入者
-* PU: 支付收费商品的用户(Paying User)（=再次购买PU + 新增PU）
+* DAU：以每日memberno为准登录1次以上活跃用户数(Daily Active Users)
+* NRU：当天新加入者
+* PU：支付收费商品的用户(Paying User)（=再次购买PU + 新增PU）
 * 付款金额：用户付款的付款金额
 
 ※ 图表中显示的组名为**{appId} _ {OS} _ {国家}**形式。
@@ -322,7 +325,7 @@ Frequency7的标准可分为以下3个项目。
 ![gamebase_analytics_15_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_15_201906_1.png)
 
 * DAU (Daily Active User)：以日间用户ID为准，登录1次以上活动用户数
-* Avg.Playtime:该级别的各日期所有Playtime的平均值（DAU的Playtime之和 / DAU）
+* Avg.Playtime：该级别的各日期所有Playtime的平均值（DAU的Playtime之和 / DAU）
 * 付款金额：收费商品付款金额
 * 新增付款：新增付款用户(NPU)支付的金额
 * 再次购买付款：再次购买付款用户支付的金额
@@ -337,7 +340,7 @@ Frequency7的标准可分为以下3个项目。
 ![gamebase_analytics_16_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_16_201906_1.png)
 
 * DAU (Daily Active User)：以一日用户ID为准，登录1次以上的活跃用户数
-* Avg.Playtime:相应级别的各日期所有Playtime的平均值（DAU的Playtime之和 / DAU）
+* Avg.Playtime：相应级别的各日期所有Playtime的平均值（DAU的Playtime之和 / DAU）
 * 付款金额：收费商品付款金额
 * 新增付款：新增付款用户(NPU)支付的金额
 * 再次购买付款：再次购买付款用户支付的金额
@@ -352,7 +355,7 @@ Frequency7的标准可分为以下3个项目。
 ![gamebase_analytics_17_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_17_201906_1.png)
 
 * DAU (Daily Active Users)：以一日用户ID为准，登录1次以上的活跃用户数
-* Avg.Playtime:相应级别的各日期所有Playtime的平均值（DAU的Playtime之和 / DAU）
+* Avg.Playtime：相应级别的各日期所有Playtime的平均值（DAU的Playtime之和 / DAU）
 * 付款金额：收费商品付款金额
 * 新增付款：新增付款用户(NPU)支付的金额
 * 再次购买付款：再次购买付款用户支付的金额
