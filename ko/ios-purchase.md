@@ -192,6 +192,9 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 // 프로모션 결제 여부
 @property (nonatomic, assign) BOOL promotionPayment;
 
+// 스토어 코드 (ex. "AS")
+@property (nonatomic, strong) NSString *storeCode;
+
 @end
 ```
 
@@ -283,9 +286,25 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
         * 결제 전
         * 결제 실패 후
 
+**API**
+
+```objectivec
++ (void)requestItemListOfNotConsumedWithConfiguration:(TCGBPurchasableConfiguration *)configuration
+                                           completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
+```
+
+#### Required 파라미터
+
+* configuration: TCGBPurchasableConfiguration으로 미소비 결제 내역 조회에 대한 설정을 변경할 수 있습니다.
+* completion: 미소비 결제 내역 조회 결과를 사용자에게 콜백으로 알려줍니다.
+
+**Example**
+
 ```objectivec
 - (void)viewDidLoad {
-    [TCGBPurchase requestItemListOfNotConsumedWithCompletion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
+    TCGBPurchasableConfiguration *configuration = [[TCGBPurchasableConfiguration alloc] init];
+
+    [TCGBPurchase requestItemListOfNotConsumedWithConfiguration:configuration completion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
         if (error != nil) {
             // To Requesting Non-consumed Item List Failed cause of the error
             return;
@@ -303,10 +322,25 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다.
 사용자 ID가 같다면 Android와 iOS에서 구매한 구독 상품이 모두 조회됩니다.
 
+**API**
+
+```objectivec
++ (void)requestActivatedPurchasesWithConfiguration:(TCGBPurchasableConfiguration *)configuration
+                                        completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
+```
+
+#### Required 파라미터
+
+* configuration: TCGBPurchasableConfiguration으로 활성화된 구독 목록 조회에 대한 설정을 변경할 수 있습니다.
+* completion: 활성화된 구독 목록 조회 결과를 사용자에게 콜백으로 알려줍니다.
+
+**Example**
 
 ```objectivec
 - (void)viewDidLoad {
-    [TCGBPurchase requestActivatedPurchasesWithCompletion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
+    TCGBPurchasableConfiguration *configuration = [[TCGBPurchasableConfiguration alloc] init];
+
+    [TCGBPurchase requestActivatedPurchasesWithConfiguration:configuration completion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
         if (error != nil) {
             // To Requesting Activated Item List Failed cause of the error
             return;
@@ -324,6 +358,13 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 만료된 결제 건을 포함해 복원된 결제 건이 결과로 반환됩니다.
 자동 갱신형 소비성 구독 상품의 경우 반영되지 않은 구매 내역이 있다면 복원 후 미소비 구매 내역에서 조회할 수 있습니다.
 
+**API**
+
+```objectivec
++ (void)requestRestoreWithCompletion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
+```
+
+**Example**
 
 ```objectivec
 - (void)viewDidLoad {
@@ -388,6 +429,12 @@ App Store 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니
 
 예제) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 
+### TCGBPurchasableConfiguration
+
+| Parameter     | Values            | Description        |
+| ------------- | ----------------- | ------------------ |
+| allStores     | Bool | 동일 UserID 기준으로 API가 현재 스토어 또는 모든 스토어를 대상으로 동작하도록 설정<br>- 모든 스토어: YES<br>- 현재 스토어: NO<br>**default**: NO    |
+
 ### Error Handling
 
 | Error                                                | Error Code | Description                              |
@@ -401,8 +448,8 @@ App Store 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니
 | TCGB_ERROR_PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 존재하지 않은 GamebaseProductID로 결제를 요청하였습니다.             |
 | TCGB_ERROR_PURCHASE_LIMIT_EXCEEDED                   | 4007       | 월 구매 한도를 초과했습니다.             |
 | TCGB_ERROR_PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 지원하지 않는 스토어입니다. iOS의 지원가능한 스토어는 "AS"입니다. |
-| TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | IAP 라이브러리 에러입니다.<br>error.message 를 확인하세요. |
-| TCGB_ERROR_PURCHASE_UNKNOWN_ERROR                    | 4999       | 정의되지 않은 구매 에러입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
+| TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAP 라이브러리 오류입니다.<br/>상세 오류를 확인해 주세요. |
+| TCGB_ERROR_PURCHASE_UNKNOWN_ERROR                    | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
     * [오류 코드](./error-code/#client-sdk)
@@ -411,19 +458,20 @@ App Store 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니
 
 **TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* 이 오류는 IAP 모듈에서 발생한 오류입니다.
-* 오류 코드는 다음과 같이 확인하실 수 있습니다.
+* 이 오류는 NHN Cloud IAP 라이브러리에서 오류가 발생했을 때 반환됩니다.
+* NHN Cloud IAP 라이브러리에서 발생한 오류 정보는 상세 오류에 포함되어 있으며 상세한 오류 코드 및 메시지는 다음과 같이 확인할 수 있습니다. 
+
 
 ```objectivec
 TCGBError *tcgbError = error; // TCGBError object via callback
-NSError *moduleError = [tcgbError.userInfo objectForKey:NSUnderlyingErrorKey]; // NSError object from external module
-NSInteger moduleErrorCode = moduleError.code;
-NSString *moduleErrorMessage = moduleError.message;
+
+NSInteger detailErrorCode = [error detailErrorCode];
+NSString *detailErrorMessage = [error detailErrorMessage];
 
 // If you use **description** method, you can get entire information of this object by JSON Format
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
-* IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > iOS > 에러 코드](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-ios/#error-codes)
+* NHN Cloud IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
+    * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > iOS > 오류 코드](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-ios/#error-codes)
 
