@@ -221,12 +221,16 @@ public class PurchasableReceipt
     /// </summary>
     public long expiryTime;
 
+
+    /// <summary>
+    /// 결제한 스토어 코드입니다.
+    /// GamebaseStoreCode 클래스에서 스토어 코드 목록을 확인할 수 있습니다.
+    /// </summary>
+    public string storeCode;
+
     /// <summary>
     /// Gamebase.Purchase.requestPurchase API 호출시 payload 로 전달했던 값입니다.
-    ///
-    /// 이 필드는 예를 들어 동일한 User ID 로 구매 했음에도 게임 채널, 캐릭터 등에 따라
-    /// 상품 구매 및 지급을 구분하고자 하는 경우 등
-    /// 게임에서 필요로 하는 다양한 추가 정보를 담기 위한 목적으로 활용할 수 있습니다.
+    /// 스토어 서버 상태에 따라 정보가 유실되는 경우가 있으므로 사용을 권장하지 않습니다.
     /// </summary>
     public string payload;
 
@@ -357,6 +361,12 @@ public class PurchasableItem
     * 결제 전
     * 결제 실패 후
 
+**GamebaseRequest.Purchase.PurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                                    |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
+| allStores                       | O                          | 동일한 UserID로 다른 스토어에서 구매한 미소비 내역도 리턴합니다.<br/>기본값은 **false**입니다. |
+
 **API**
 
 Supported Platforms
@@ -364,14 +374,19 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
-static void RequestItemListOfNotConsumed(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
+static void RequestItemListOfNotConsumed(GamebaseRequest.Purchase.PurchasableConfiguration configuration, GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
 ```
 
 **Example**
 ```cs
-public void RequestItemListOfNotConsumed()
+public void RequestItemListOfNotConsumedSample(bool allStores)
 {
-    Gamebase.Purchase.RequestItemListOfNotConsumed((purchasableReceiptList, error) =>
+    var configuration = new GamebaseRequest.Purchase.PurchasableConfiguration
+    {
+        allStores = allStores
+    };
+
+    Gamebase.Purchase.RequestItemListOfNotConsumed(configuration, (purchasableReceiptList, error) =>
     {
         if (Gamebase.IsSuccess(error))
         {
@@ -398,6 +413,13 @@ public void RequestItemListOfNotConsumed()
 >
 > 현재 Android에서는 Google Play 스토어에서만 구독 상품을 지원합니다.
 
+
+**GamebaseRequest.Purchase.PurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                                    |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
+| allStores                       | O                          | 동일한 UserID로 다른 스토어에서 구매한 미소비 내역도 리턴합니다.<br/>기본값은 **false**입니다. |
+
 **API**
 
 Supported Platforms
@@ -405,14 +427,19 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
-static void RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
+static void RequestActivatedPurchases(GamebaseRequest.Purchase.PurchasableConfiguration configuration, GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
 ```
 
 **Example**
 ```cs
-public void RequestActivatedPurchasesSample()
+public void RequestActivatedPurchasesSample(bool allStores)
 {
-    Gamebase.Purchase.RequestActivatedPurchases((purchasableReceiptList, error) =>
+    var configuration = new GamebaseRequest.Purchase.PurchasableConfiguration
+    {
+        allStores = allStores
+    };
+    
+    Gamebase.Purchase.RequestActivatedPurchases(configuration, (purchasableReceiptList, error) =>
     {
         if (Gamebase.IsSuccess(error) == true)
         {
