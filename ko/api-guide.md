@@ -1767,7 +1767,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 ```json
 {
     "marketId": "GG",
-    "packageName": "com.toast.gamebase",
+    "packageName": "com.nhncloud.gamebase",
     "userId": "QXG774PMRZMWR3BR"
 }
 ```
@@ -1775,7 +1775,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | marketId | String | Required | [스토어 코드](#store-code) |
-| packageName | String | Required | 콘솔에 등록한 앱의 packageName |
+| packageName | String | Required | 콘솔에 등록한 스토어 앱 ID |
 | userId | String | Required | 유저 ID  |
 
 **[Response Body]**
