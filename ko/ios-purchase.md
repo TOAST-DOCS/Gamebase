@@ -447,7 +447,7 @@ App Store 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니
 | TCGB_ERROR_PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 존재하지 않은 GamebaseProductID로 결제를 요청하였습니다.             |
 | TCGB_ERROR_PURCHASE_LIMIT_EXCEEDED                   | 4007       | 월 구매 한도를 초과했습니다.             |
 | TCGB_ERROR_PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 지원하지 않는 스토어입니다. iOS의 지원가능한 스토어는 "AS"입니다. |
-| TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAP 라이브러리 오류입니다.<br/>상세 오류를 확인해 주세요. |
+| TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAP 라이브러리 오류입니다.<br/>상세 오류를 확인하십시오. |
 | TCGB_ERROR_PURCHASE_UNKNOWN_ERROR                    | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
