@@ -121,7 +121,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 ### Retention
 ![gamebase_analytics_06_202107_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202107_2.png)
 
-Retention은 특정 일에 가입한 이용자가 D+1일부터 D+180일까지 얼마나 잔존해 있는지를 보여주는 지표입니다.
+Retention은 특정일에 가입한 이용자가 D+1일부터 D+180일까지 얼마나 잔존해 있는지를 보여 주는 지표입니다.
 
 당일 탈퇴자를 포함하거나 제외하여 Retention 값을 보여주고 있습니다.
 

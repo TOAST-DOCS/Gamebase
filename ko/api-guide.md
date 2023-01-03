@@ -10,7 +10,7 @@
 - 결제 트랜잭션을 조회하는 "Get Payment Transaction" API가 추가되었습니다.
 - 미소비 결제 내역을 조회하는 "List Consumables" API에 한 번에 N개의 스토어를 대상으로 조회할 수 있도록 **marketIds**가 추가되었습니다.
 - 서버 주소가 "https://api-gamebase.nhncloudservice.com"으로 변경되었습니다. 기존 주소도 별도의 공지 전까지 계속 유지됩니다.
-- "List Active Subscriptions" API 응답 결과에 구독 상품 취소/재구매 시, 원거래 구독의 마켓 결제 번호를 나타내는 **linkedPaymentId**가 추가되었습니다.
+- "List Active Subscriptions" API 응답 결과에 구독 상품 취소/재구매 시 원거래 구독의 마켓 결제 번호를 나타내는 **linkedPaymentId**가 추가되었습니다.
 - 구독 중인 상품을 취소하는 "Cancel Subscriptions", "Revoke Subscriptions" API가 추가되었습니다.
 
 ## Advance Notice
@@ -1826,7 +1826,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 | result[].price | Float | 결제 가격 |
 | result[].originalPaymentId | String | 최초 스토어 결제 ID |
 | result[].paymentId | String | 최근 갱신된 스토어 결제 ID |
-| result[].linkedPaymentId | String | 구독 취소/재구매 시 이전 원거래의 결제 ID<br>Google Play 스토어만 지원 |
+| result[].linkedPaymentId | String | 구독 취소/재구매 시 원거래의 결제 ID<br>Google Play 스토어만 지원 |
 | result[].gamebaseProductId | String | Gamebase 상품 아이디<br>콘솔에서 상품 등록 시, 사용자 입력 값 |
 | result[].payload | String | SDK에서 설정한 추가 정보 |
 | result[].purchaseTime | String | 최근 갱신된 시간 |
@@ -1845,7 +1845,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 구독 중인 상품에 대해 갱신 시점에 더 이상 갱신이 되지 않고, 현재 구독 만료까지 유지합니다.
 
 > [참고]
-> 현재 Google 스토어만 지원합니다.
+> 현재 Google Play 스토어만 지원합니다.
 
 **[Method, URI]**
 
@@ -1904,7 +1904,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 현재 구독 중인 상품에 대해 즉시 구독을 취소하고 환불을 진행합니다.
 
 > [참고]
-> 현재 Google 스토어만 지원합니다.
+> 현재 Google Play 스토어만 지원합니다.
 
 **[Method, URI]**
 
