@@ -1,5 +1,15 @@
 ## Game > Gamebase > 릴리스 노트 > Server API
 
+### 2022. 12. 27.
+
+#### 기능 추가
+
+* Google Play 스토어의 구독 중인 상품 취소 API 추가
+* 구독 조회 API 응답에 'linkedPaymentId' 필드 추가
+
+#### 기능 개선/변경
+* 특정한 결제 시나리오를 통해 아이템 구매 시 미소비 결제 내역 조회 API 응답 결과에 gamebaseProductId가 null 발생하는 이슈 대응
+
 ### 2022. 08. 23.
 
 #### 기능 추가
