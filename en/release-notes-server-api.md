@@ -1,5 +1,15 @@
 ## Game > Gamebase > Release Notes > Server API
 
+### December 27, 2022
+
+#### Added Features
+
+* Add an API to cancel products in subscription for Google Play Store
+* Added the 'linkedPaymentId' field to response results of the "List Active Subscriptions" API
+
+#### Feature Updates
+* Fixed an issue where, when purchasing items through a specific payment scenario, null occurs in gamebaseProductId for response results of the list non-consumed payment API
+
 ### August 23, 2022
 
 #### Added Features
