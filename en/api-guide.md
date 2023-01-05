@@ -10,6 +10,8 @@
 - Added the "Get Payment Transaction" API to query payment transaction.
 - Added **marketIds** to the "List Consumables" API that queries the unconsumed payment history so that multiple stores can be viewed at a time. 
 - The server address has changed to "https://api-gamebase.nhncloudservice.com". The previous address will be maintained until further notice.
+- Added **linkedPaymentId** to response results of the "List Active Subscriptions" API, indicating the market payment number for the originally transacted subscription when canceling or repurchasing subscription products.
+- Added the "Cancel Subscriptions" and "Revoke Subscriptions" APIs that cancel the products in subscripion.
 
 ## Advance Notice
 
@@ -1765,7 +1767,7 @@ N/A
 ```json
 {
     "marketId": "GG",
-    "packageName": "com.toast.gamebase",
+    "packageName": "com.nhncloud.gamebase",
     "userId": "QXG774PMRZMWR3BR"
 }
 ```
@@ -1773,7 +1775,7 @@ N/A
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | marketId | String | Required | [Store code](#store-code) |
-| packageName | String | Required | packageName of the app registered on console |
+| packageName | String | Required | Store app ID registered on the console |
 | userId | String | Required  | User ID |
 
 **[Response Body]**
@@ -1796,6 +1798,7 @@ N/A
             "productType": "AUTO_RENEWABLE",
             "originalPaymentId": "GPA.3302-8679-7228-41195",
             "paymentId": "GPA.3302-8679-7228-41195",
+            "linkedPaymentId": "GPA.3358-3220-2629-70624",
             "price": 1000.0,
             "currency": "KRW",
             "gamebaseProductId": "gamebase_renewal_001",
@@ -1823,12 +1826,131 @@ N/A
 | result[].price | Float | Payment price |
 | result[].originalPaymentId | String | Initial store payment ID |
 | result[].paymentId | String | Recently updated store payment ID |
+| result[].linkedPaymentId | String | Payment ID for the original transaction when canceling/repurchasing subscription <br>Currently only supported by Google Play Store |
 | result[].gamebaseProductId | String | Gamebase product ID<br>The value entered by the user when registering a product in the console |
 | result[].payload | String | Additional information configured in SDK |
 | result[].purchaseTime | String | Recent updated time |
 | result[].expiryTime | String | Subscription expiration time |
 | result[].isTestPurchase | boolean | Whether it is a test purchase or not |
 | result[].referenceStatus | String | [Payment reference status](#store-reference-status) provided by the payment system (in-app purchase, external payment)<br>Currently only supported by Google Play Store |
+
+**[Error Code]**
+
+[Error Code](./error-code/#server)
+
+<br>
+
+### Cancel Subscriptions
+
+Products in subscription is no longer renewed at the time of renewal, and the subscription will remain until it expires.
+
+> [Note]
+> Currently only supported by Google Play Store.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/subscriptions/cancel |
+
+**[Request Header]**
+
+Check common items
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud project ID |
+
+**[Request Parameter]**
+
+None
+
+**[Request Body]**
+
+```json
+{
+    "paymentSeq": "2022112110400545",
+    "accessToken": "NczL3n4TumMF8n9oRR5l8zXDyMXRVjxSRks0Lk1Saob2A9rdAupqjZSrQ0-hb2GOSFwTx5uDDchH8EB-EkWGGQ"
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| paymentSeq | String | Required | Payment number |
+| accessToken | String | Required | Payment authentication token |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    }
+}
+```
+
+**[Error Code]**
+
+[Error Code](./error-code/#server)
+
+<br>
+
+### Revoke Subscriptions
+
+Cancel the current subscription immediately and proceed with a refund for the products in subscription.
+
+> [Note]
+> Currently only supported by Google Play Store.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/subscriptions/revoke |
+
+**[Request Header]**
+
+Check common items
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud proejct ID |
+
+**[Request Parameter]**
+
+None
+
+**[Request Body]**
+
+```json
+{
+    "paymentSeq": "2022112110400545",
+    "accessToken": "NczL3n4TumMF8n9oRR5l8zXDyMXRVjxSRks0Lk1Saob2A9rdAupqjZSrQ0-hb2GOSFwTx5uDDchH8EB-EkWGGQ"
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| paymentSeq | String | Required | Payment number |
+| accessToken | String | Required | Payment authentication token |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    }
+}
+```
 
 **[Error Code]**
 
