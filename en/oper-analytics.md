@@ -122,7 +122,7 @@ Inflow and outflow of app users are available on a daily basis.
 ### Retention
 ![gamebase_analytics_06_202107_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202107_2.png)
 
-Retention refers to how many subscribed users remain in service for the next 90 days after subscribed. 
+Retention refers to how many subscribed users remain in service for the next 180 days after subscribed. 
 
 You can check the retention data either by including or excluding users who subscribe and withdraw on the same day.
 
