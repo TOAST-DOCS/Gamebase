@@ -113,7 +113,7 @@ class PurchasableReceipt {
     @Nullable
     String gamebaseProductId;
     
-    // Gamebase.Purchase.requestPurchase API 호출시 payload로 전달했던 값입니다.
+    // Gamebase.Purchase.requestPurchase API 호출 시 payload로 전달했던 값입니다.
     // 스토어 서버 상태에 따라 정보가 유실되는 경우가 있으므로 사용을 권장하지 않습니다.
     @Nullable
     String payload;
@@ -342,9 +342,9 @@ class PurchasableItem {
 
 | API                             | Mandatory(M) / Optional(O) | Description                                                                    |
 | ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
-| newBuilder()                    | **M**                      | Configuration 객체 생성을 위한 Builder 를 생성합니다.                                |
+| newBuilder()                    | **M**                      | Configuration 객체 생성을 위한 Builder를 생성합니다.                                |
 | build()                         | **M**                      | 설정을 마친 Builder를 Configuration 객체로 변환합니다.                                |
-| setAllStores(boolean allStores) | O                          | 동일한 UserID로 다른 스토어에서 구매한 미소비 내역도 리턴합니다.<br/>기본값은 **false**입니다. |
+| setAllStores(boolean allStores) | O                          | 동일한 UserID로 다른 스토어에서 구매한 미소비 내역도 반환합니다.<br/>기본값은 **false**입니다. |
 
 **API**
 
@@ -387,9 +387,9 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, configuration, new Game
 
 | API                             | Mandatory(M) / Optional(O) | Description                                                               |
 | ------------------------------- | -------------------------- | ------------------------------------------------------------------------- |
-| newBuilder()                    | **M**                      | Configuration 객체 생성을 위한 Builder 를 생성합니다.                            |
+| newBuilder()                    | **M**                      | Configuration 객체 생성을 위한 Builder를 생성합니다.                            |
 | build()                         | **M**                      | 설정을 마친 Builder를 Configuration 객체로 변환합니다.                           |
-| setAllStores(boolean allStores) | O                          | 동일한 UserID로 다른 스토어에서 구매한 구독도 리턴합니다.<br/>기본값은 **false**입니다.  |
+| setAllStores(boolean allStores) | O                          | 동일한 UserID로 다른 스토어에서 구매한 구독도 반환합니다.<br/>기본값은 **false**입니다.  |
 
 **API**
 
@@ -437,7 +437,7 @@ GamebaseEventHandler 로 프로모션 결제 이벤트를 처리하는 방법은
 | PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 존재하지 않는 GamebaseProductID 로 결제를 요청하였습니다. |
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | 월 구매 한도를 초과했습니다.             |
 | PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 GG(Google), ONESTORE, GALAXY, AMAZON, HUAWEI입니다. |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAP 라이브러리 오류입니다.<br/>상세 오류를 확인해 주세요. |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAP 라이브러리 오류입니다.<br/>상세 오류를 확인하십시오. |
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.

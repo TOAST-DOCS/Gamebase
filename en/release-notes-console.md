@@ -1,5 +1,23 @@
 ## Game > Gamebase > Release Notes > Console
 
+### January 10, 2023
+
+#### Added Features
+* App > App
+    * Added the feature to set product support types (single product/multiple products)
+* Push > Analytics
+    * Added the feature to check the cause of message delivery failure
+
+#### Feature Updates
+* Purchase (IAP) > Product
+    * Made a change so that, only one Gamebase product can be registered per external store item for games that have set 'single product'
+
+#### December 27, 2022
+
+### Feature Updates
+* Analytics > User Indicators > Retention
+    * Changed the maximum retention period from 90 days to 180 days
+
 ### November 29, 2022
 
 #### Added Features
@@ -46,7 +64,7 @@
 #### Feature Updates
 * App > App
 	* Added multi channels (Japan/Thailand/Taiwan/Indonesia) feature for LINE IdP
-* Purchase(IAP) > Store
+* Purchase (IAP) > Store
 	* Added ONE store API v6(SDK v19)
 * Purchase(IAP) > Payment Information
 	* Added country code and additional information item to Payment History
