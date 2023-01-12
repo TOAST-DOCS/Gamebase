@@ -23,7 +23,7 @@
                                                    completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
 
 * 由于“激活订阅查询API”已更改，请更改为新的API。
-    * 如果您要获得与现有的API相同的结果，请将**amebaseRequest.Purchase.PurchasableConfiguration.allStores**的值设置为**true**。
+    * 如果您要获得与现有的API相同的结果，请将**GamebaseRequest.Purchase.PurchasableConfiguration.allStores**的值设置为**true**。
 
             // Unity: Deprecated API
             Gamebase.Purchase.RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
