@@ -242,7 +242,7 @@ void Sample::SetSandboxMode(bool isSandbox)
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | TOAST Push库错误<br>请确认DetailCode。|
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | 是NHN Cloud Push库错误。<br/>请确认详细错误。 |
 | PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 未成功调用上一次的推送API。<br>执行上一次的推送API回调之后，请再调用。| 
 | PUSH_UNKNOWN_ERROR             | 5999       | 未定义的推送错误<br>请您将所有日志上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。|
 
@@ -251,8 +251,8 @@ void Sample::SetSandboxMode(bool isSandbox)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* 此错误是在TOAST Push库出现的。 
-* 查看错误代码的方法如下。 
+* 当在NHN Cloud Push库中发生错误时，将返还此错误。 
+* 在NHN Cloud Push库发生的错误信息包含在详细错误中，而详细的错误代码和消息如下。  
 
 ```cpp
 GamebaseError* gamebaseError = error; // GamebaseError object via callback
@@ -273,6 +273,6 @@ else
 }
 ```
 
-* 请查看TOAST Push的错误代码。 
+* 请确认NHN Cloud Push错误代码。 
     * [Android](aos-push#error-handling)
     * [iOS](ios-push#error-handling)

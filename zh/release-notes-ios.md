@@ -3,24 +3,24 @@
 ### 2.45.0 (2022. 12. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.45.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* 어떤 스토어에 대한 결제 영수증인지 알 수 있도록 다음 필드가 추가되었습니다.
+#### 添加功能    
+* 添加了以下字段以区分是对哪个商店的付款收据。
     * **TCGBPurchasableReceipt.storeCode**
-* 결제 API 호출 시 추가 설정을 할 수 있는 **TCGBPurchasableConfiguration** VO를 추가하였습니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > 결제 > TCGBPurchasableConfiguration](./ios-purchase/#tcgbpurchasableconfiguration)
-* **TCGBPurchasableConfiguration**을 파라미터로 받는 신규 미소비 내역 조회 API를 추가하였습니다.
+* 添加了**TCGBPurchasableConfiguration** VO，它允许在调用支付API时进行其他设置。
+    * [Game > Gamebase > iOS SDK使用指南 > 结算 > TCGBPurchasableConfiguration](./ios-purchase/#tcgbpurchasableconfiguration)
+* 添加了将**TCGBPurchasableConfiguration**接收为参数的“新未消费明细API”。
     * **[TCGBPurchase requestItemListOfNotConsumedWithConfiguration:completion:]**
-* **TCGBPurchasableConfiguration**을 파라미터로 받는 신규 활성화 구독 조회 API를 추가하였습니다.
+* 添加了将**TCGBPurchasableConfiguration**接收为参数的“新激活订阅查询API”。
     * **[TCGBPurchase requestActivatedPurchasesWithConfiguration:completion:]**
-
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+ 
+#### 改善/修改功能
+* 外部SDK升级
     * NHN Cloud iOS SDK (1.2.0)
     * Hangame iOS SDK (1.8.0)
-* 아래 API가 deprecated 되었습니다.
+* 以下API已被deprecated。
     * **[TCGBPurchase requestItemListOfNotConsumedWithCompletion:]**
     * **[TCGBPurchase requestActivatedPurchasesWithCompletion:]**
-* SDK 내부 로직 개선
+* 改善了SDK内部逻辑。
 
 ### 2.44.0 (2022. 10. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.0/GamebaseSDK-iOS.zip)

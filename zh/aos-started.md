@@ -14,19 +14,19 @@
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.2.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | 包含Gamebase的界面及核心逻辑。 | API 16(JellyBean, OS 4.1) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.4.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | 包含Gamebase的 界面和| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.4.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | 包含Gamebase界面和核心逻辑 | API 16(JellyBean, OS 4.1) | | API 16(JellyBean, OS 4.1) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | 支持Sign In With Apple登录。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | 支持Facebook登录。 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | 支持Google登录。 | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.6.1 | 支持Hangame登录。 | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.6.2 | 支持Hangame登录。 | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.0 | 支持LINE登录。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | 支持Naver登录。 | - |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.7 | 支持PAYCO登录。 | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.9 | 支持PAYCO登录。 | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | 支持Twitter登录。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | 支持Weibo登录。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | 支持Weibo登录。 | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.4<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.0<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | 支持Kakao登录。 | API 21(Lollipop, OS 5.0) |
-| Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.21.0<br>nhncloud-iap-core | 支持游戏内支付。 | - |
+| Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.22.1<br>nhncloud-iap-core | 支持游戏内支付。 | - |
 |  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | 支持Amazon Appstore。 | API 18(JellyBean MR2, OS 4.3) |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | 支持Samsung Galaxy Store。 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK的minSdkVersion是18, 而为了实际结算要安装的Checkout服务应用程序等的minSdkVersion是21。 |
 |  | gamebase-adapter-purchase-google | billingclient.billing-5.0.0<br>nhncloud-iap-google | 支持Google Play。 | - |

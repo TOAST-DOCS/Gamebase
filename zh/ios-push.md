@@ -191,26 +191,26 @@
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | TOAST Push库错误<br>请确认DetailCode。 |
+| TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | 是NHN Cloud Push库错误。<br/>请确认详细错误。 |
 | TCGB_ERROR_PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 上一次推送API的调用未完成。<br>将上一次推送API回调执行后重新调用。| 
 | TCGB_ERROR_PUSH_UNKNOWN_ERROR            | 5999       | 未知推送错误<br>请将所有Log上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。 |
 
 **TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* 这是在TOAST Push库中发生的错误。
-* 检查错误代码的方法如下。
+* 当在NHN Cloud Push库中发生错误时，返还此错误。 
+* 在NHN Cloud Push库发生的错误信息包含在详细错误中，而详细的错误代码和消息如下。
 
 ```objectivec
-TCGBError *tcgbError = error; // 转到Callback的TCGBError实例。
-NSError *moduleError = [tcgbError.userInfo objectForKey:NSUnderlyingErrorKey]; // 来自外部库的错误对象
-NSInteger moduleErrorCode = moduleError.code;
-NSString *moduleErrorMessage = moduleError.message;
+TCGBError *tcgbError = error; // TCGBError object via callback
 
-// 您可以通过调用以下[tcgbError description]获取json format的所有错误信息。
+NSInteger detailErrorCode = [error detailErrorCode];
+NSString *detailErrorMessage = [error detailErrorMessage];
+// If you use **description** method, you can get entire information of this object by JSON Format
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
-* TOAST Push错误代码如下。
+
+* NHN Cloud Push错误代码如下。
     
 | 错误代码 | 说明 |
 | --- | --- |

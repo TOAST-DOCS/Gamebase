@@ -219,6 +219,13 @@ public class PurchasableReceipt
     /// </summary>
     public long expiryTime;
 
+
+    /// <summary>
+    /// 是已支付的商店代码。
+    /// 您可以在GamebaseStoreCode类中查看商店代码列表。
+    /// </summary>
+    public string storeCode;
+
     /// <summary>
     /// 是调用Gamebase.Purchase.requestPurchase时作为payload传送的值。
     ///  
@@ -288,6 +295,12 @@ public void RequestItemListPurchasable()
     * 支付之前   
     * 支付失败后
 
+**GamebaseRequest.Purchase.PurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                                    |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ | 
+| allStores                       | O                          | 还返还使用相同UserID的在其他商店购买的未消费明细。<br/>默认值为**false**。 |
+
 **API**
 
 Supported Platforms
@@ -295,14 +308,18 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
-static void RequestItemListOfNotConsumed(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
+static void RequestItemListOfNotConsumed(GamebaseRequest.Purchase.PurchasableConfiguration configuration, GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
 ```
 
 **示例**
 ```cs
-public void RequestItemListOfNotConsumed()
+public void RequestItemListOfNotConsumedSample(bool allStores)
 {
-    Gamebase.Purchase.RequestItemListOfNotConsumed((purchasableReceiptList, error) =>
+    var configuration = new GamebaseRequest.Purchase.PurchasableConfiguration
+    {
+        allStores = allStores
+    };
+    Gamebase.Purchase.RequestItemListOfNotConsumed(configuration, (purchasableReceiptList, error) =>
     {
         if (Gamebase.IsSuccess(error))
         {
@@ -323,11 +340,17 @@ public void RequestItemListOfNotConsumed()
 
 以当前用户ID为准查询激活的订阅列表。
 完成支付的订阅商品（自动更新型订阅、自动更新型消费性订阅商品）到期前可一直查询。
-若用户ID相同，同时查询在Android和iOS中购买的订阅商品。
 
 > <font color="red">[注意]</font><br/>
 >
 > 目前Android只在Google Play商店支持订购商品。
+
+
+**GamebaseRequest.Purchase.PurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                                    |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
+| allStores                       | O                          | 还返还使用相同UserID的在其他商店购买的未消费明细<br/>默认值为**false**。 |
 
 **API**
 
@@ -336,17 +359,22 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
-static void RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
+static void RequestActivatedPurchases(GamebaseRequest.Purchase.PurchasableConfiguration configuration, GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
 ```
 
 **示例**
 ```cs
-public void RequestActivatedPurchasesSample()
+public void RequestActivatedPurchasesSample(bool allStores)
 {
-    Gamebase.Purchase.RequestActivatedPurchases((purchasableReceiptList, error) =>
-    {
-        if (Gamebase.IsSuccess(error) == true)
+        var configuration = new GamebaseRequest.Purchase.PurchasableConfiguration
         {
+               allStores = allStores
+        };
+    
+       Gamebase.Purchase.RequestActivatedPurchases(configuration, (purchasableReceiptList, error) =>
+       {
+                  if (Gamebase.IsSuccess(error) == true)
+               {
             Debug.Log("RequestItemListPurchasable succeeded");
 
             foreach (GamebaseResponse.Purchase.PurchasableReceipt purchasableReceipt in purchasableReceiptList)
@@ -401,7 +429,7 @@ Supported Platforms
 | PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | 请求支付的GamebaseProductID不存在。 |
 | PURCHASE_LIMIT_EXCEEDED                  | 4007       | 超过了一个月购买限额。             |
 | PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 不支持的商店<br>可选择的商店是GG(Google)、ONESTORE、GALAXY、AMAZON及HUAWEI。 |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAP库错误<br>请确认DetailCode。   |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | 是NHN Cloud IAP库错误。<br/>请确认详细错误。 |
 | PURCHASE_UNKNOWN_ERROR                   | 4999       | 未知的购买错误<br>请将完整的Log上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。 |
 
 * 所有错误代码，请参考以下文档。
@@ -409,8 +437,8 @@ Supported Platforms
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* 这是在IAP模块中的错误。
-* 检查错误代码的方法如下。
+* 当在NHN Cloud IAP库中发生错误时，将返还此错误。 
+* 在NHN Cloud IAP库发生的错误信息包含在详细错误中，而详细的错误代码和消息如下。
 
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
@@ -434,7 +462,7 @@ else
 }
 ```
 
-* IAP错误代码，请参考以下文档。
+* 关于NHN Cloud IAP错误代码，请参考以下文件。
     * [NHN Cloud > NHN Cloud SDK使用指南 > NHN Cloud IAP > Unity > 错误代码](https://docs.toast.com/zh/TOAST/zh/toast-sdk/iap-unity/#error-code)
 
 

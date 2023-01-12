@@ -4,10 +4,10 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.45.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
+#### 改善/修改功能
 
-* 외부 SDK 업데이트: NHN Cloud Android SDK (1.4.0), Payco Android SDK (1.5.9), Hangame Android SDK (1.6.2)
-* 미소비 내역 조회 API가 변경되었으므로 신규 API로 변경하시기 바랍니다.
+* 外部SDK升级 : NHN Cloud Android SDK (1.4.0), Payco Android SDK (1.5.9), Hangame Android SDK (1.6.2)
+* 由于“未消费明细查询API”已更改，请更改为新的API。
 
         // Deprecated API
         Gamebase.Purchase.requestItemListOfNotConsumed(Activity,
@@ -18,8 +18,8 @@
                                                        PurchasableConfiguration,
                                                        GamebaseDataCallback<List<PurchasableReceipt>>);
 
-* 활성화 구독 조회 API가 변경되었으므로 신규 API로 변경하시기 바랍니다.
-    * 기존 API와 동일한 결과를 받으려면 **PurchasableConfiguration.setAllStores(true)**로 설정하시기 바랍니다.
+* 由于“激活订阅查询API”已更改，请更改为新的API。
+    * 如果您要获得与现有的API相同的结果，请设置为**PurchasableConfiguration.setAllStores(true)**。
 
             // Deprecated API
             Gamebase.Purchase.requestActivatedPurchases(Activity,
@@ -30,10 +30,10 @@
                                                         PurchasableConfiguration,
                                                         GamebaseDataCallback<List<PurchasableReceipt>>);
 
-#### 버그 수정
+#### 修改程序错误
 
-* 앱 실행시 간헐적으로 ConcurrentModification 예외가 발생할 수 있는 이슈를 수정했습니다.
-* Hangame thirdIdP 로그인 후 Gamebase.getAuthProviderUserID() 호출시 NullPointerException이 발생하는 오류를 수정했습니다.
+* 修复了运行应用程序时发生间歇性ConcurrentModification例外的问题。
+* 修改了Hangame thirdIdP登录后调用Gamebase.getAuthProviderUserID()时发生 NullPointerException的问题。
 
 ### 2.44.2 (2022. 11. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.2/GamebaseSDK-Android.zip)
