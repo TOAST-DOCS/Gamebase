@@ -37,7 +37,7 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.0.0 | GamebaseのInterfaceおよびコアロジックを含む | iOS 9 or later
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.2.0 | GamebaseのInterfaceおよびコアロジックを含む | iOS 9 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Facebookログインをサポート | iOS 9 or later |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.5 | PAYCOログインをサポート | iOS 9 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | NAVERログインをサポート | iOS 9 or later |
@@ -49,8 +49,8 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 |  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.7.1 | Hangameログインをサポート | iOS 9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weiboログインをサポート | iOS 9 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.4 | Kakaoログインをサポート | iOS 11 or later |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.0.0<br/> ToastGamebaseIAP 0.14.0 | ゲーム内決済をサポート | iOS 9 or later |
-| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.0.0 | Pushをサポート | iOS 9 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.2.0<br/> ToastGamebaseIAP 0.15.0 | ゲーム内決済をサポート | iOS 9 or later |
+| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.2.0 | Pushをサポート | iOS 9 or later |
 
 
 > <font color="red">[注意]</font><br/>

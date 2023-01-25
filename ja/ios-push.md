@@ -192,24 +192,25 @@ Pushメニューの**対象**から**iOS Sandbox**を選択した後に送信し
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | NHN Cloud Pushライブラリーエラーです。<br>DetailCodeを確認してください。|
+| TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | NHN Cloud Pushライブラリエラーです。<br/>詳細エラーをご確認ください。 |
 | TCGB_ERROR_PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 前回のPush APIの呼び出しが完了していません。<br>前回のPush APIのコールバックが実行された後、もう一度呼び出してください。|
 | TCGB_ERROR_PUSH_UNKNOWN_ERROR            | 5999       | 定義されていないPushエラーです。<br>ログ全体を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。|
 
 **TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* このエラーは、NHN Cloud Pushライブラリーで発生したエラーです。
-* エラーコードの確認は、次の通りです。
+* このエラーはNHN Cloud Pushライブラリでエラーが発生した時に返されます。
+* NHN Cloud Pushライブラリで発生したエラー情報は詳細エラーに含まれており、詳細なエラーコードおよびメッセージは次のように確認できます。 
 
 ```objectivec
-TCGBError *tcgbError = error; // Callbackで返ってきたTCGBErrorのインスタンス
-NSError *moduleError = [tcgbError.userInfo objectForKey:NSUnderlyingErrorKey]; // 外部ライブラリーで発生したエラーの客体
-NSInteger moduleErrorCode = moduleError.code;
-NSString *moduleErrorMessage = moduleError.message;
+TCGBError *tcgbError = error; // TCGBError object via callback
 
-// 次の[tcgbError description]を呼び出すことで、json formatの全体のエラー情報を取得できます。
+NSInteger detailErrorCode = [error detailErrorCode];
+NSString *detailErrorMessage = [error detailErrorMessage];
+
+// If you use **description** method, you can get entire information of this object by JSON Format
 NSLog(@"TCGBError:%@", [tcgbError description]);
 ```
+
 
 * NHN Cloud Pushのエラーコードは次の通りです。
 

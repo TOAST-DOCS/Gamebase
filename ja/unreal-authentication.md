@@ -1183,7 +1183,7 @@ void Sample::Login()
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | サポートしない認証方式です。 |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 存在しないか、退会した会員です。 |
 |                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | 外部認証ライブラリの初期化に失敗しました。 |
-|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部認証ライブラリエラーです。 <br/> DetailCodeおよびDetailMessageを確認してください。  |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部認証ライブラリエラーです。 <br/>詳細エラーを確認してください。 |
 |                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | 以前の認証プロセスが完了していません。 |
 |                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | Gamebase Access Tokenが有効ではないためログアウトしました。<br/>もう一度ログインを行ってください。 |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | 発行したTransferAccountを同じ端末で使用しました。 |
@@ -1226,8 +1226,8 @@ void Sample::Login()
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* このエラーは外部認証ライブラリで発生したエラーです。
-* エラーコードを確認する方法は次のとおりです。
+* このエラーは外部認証ライブラリでエラーが発生した時に返されます。
+* 外部認証ライブラリで発生したエラー情報は詳細エラーに含まれており、詳細なエラーコードおよびメッセージは次のように確認できます。 
 
 ```cpp
 GamebaseError* gamebaseError = error; // GamebaseError object via callback
@@ -1251,4 +1251,4 @@ else
 }
 ```
 
-* IdP SDKのエラーコードは、各開発者ページを参照してください。
+* 詳細エラーコードは、それぞれの外部認証ライブラリのDeveloperページを参照してください。
