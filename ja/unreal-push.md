@@ -243,7 +243,7 @@ void Sample::SetSandboxMode(bool isSandbox)
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | NHN Pushライブラリエラーです。<br>DetailCodeを確認してください。 |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | NHN Cloud Pushライブラリエラーです。<br/>詳細エラーを確認してください。 |
 | PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 以前のプッシュAPIの呼び出しが完了しませんでした。<br>以前のプッシュAPIのコールバックが実行された後に再度呼び出してください。 |
 | PUSH_UNKNOWN_ERROR             | 5999       | 定義されていないプッシュエラーです。<br>全てのログを[サポート](https://toast.com/support/inquiry)へご送付ください。迅速に対応いたします。
 
@@ -252,8 +252,8 @@ void Sample::SetSandboxMode(bool isSandbox)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* このエラーは、TOAST Pushライブラリで発生したエラーです。
-* エラーコードを確認する方法は次のとおりです。
+* このエラーはNHN Cloud Pushライブラリでエラーが発生した時に返されます。
+* NHN Cloud Pushライブラリで発生したエラー情報は詳細エラーに含まれており、詳細なエラーコードおよびメッセージは次のように確認できます。 
 
 ```cpp
 GamebaseError* gamebaseError = error; // GamebaseError object via callback

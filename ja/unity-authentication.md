@@ -1232,7 +1232,7 @@ public void Login()
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | サポートしていない認証方式です。                        |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 存在しないか退会した会員です。                      |
 |                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | 外部認証ライブラリの初期化に失敗しました。 |
-|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部認証ライブラリエラーです。 <br/> DetailCodeとDetailMessageを確認してください。  |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部認証ライブラリエラーです。<br/>詳細エラーを確認してください。 |
 |                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | 以前の認証プロセスが完了していません。 |
 |                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | Gamebase Access Tokenが有効ではないためログアウトしました。<br/>ログインを再試行してください。 |
 | TransferKey | SAME\_REQUESTOR | 8 | 発行したTransferKeyを同じ端末で使用しました。 |
@@ -1276,8 +1276,8 @@ public void Login()
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* このエラーは、外部認証ライブラリーで発生したエラーです。
-* エラーコードは次のように確認できます。
+* このエラーは外部認証ライブラリでエラーが発生した時に返されます。
+* 外部認証ライブラリで発生したエラー情報は詳細エラーに含まれており、詳細なエラーコードおよびメッセージは次のように確認できます。 
 
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
@@ -1303,4 +1303,4 @@ else
 }
 ```
 
-* IdP SDKのエラーコードは、各々のDeveloperページを参照してください。
+* 詳細エラーコードは、それぞれの外部認証ライブラリのDeveloperページを参照してください。
