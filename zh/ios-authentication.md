@@ -77,7 +77,6 @@ Gamebase默认支持Guest登录。
 
 ### Login as the Latest Login IdP
 
-点击特定IdP的登录按钮时，将执行以下登录API。<br/>
 尝试使用最近登录的IdP登录。如果该登录的令牌已过期，或者令牌认证失败，则返回失败。<br/>
 此时，必须实现对该IdP的登录。
 
@@ -364,10 +363,17 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 在登录特定IdP状态下，尝试用其他IdP Mapping。<br/>
 
+* additionalInfo参数设置方法
+  
+| keyname                                  | a use                          | 值类型                          |
+| ---------------------------------------- | ------------------------------ | ------------------------------ |
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINE服务区域中要登录的一个服务区域。 | [参考Login with IdP](./ios-authentication/#login-with-idp)|
+
 **API**
 
 ```objectivec
 + (void)addMappingWithType:(NSString *)type viewController:(UIViewController *)viewController completion:(LoginCompletion)completion;
++ (void)addMappingWithType:(NSString *)type additionalInfo:(nullable NSDictionary<NSString *, id> *)additionalInfo viewController:(UIViewController *)viewController completion:(LoginCompletion)completion;
 ```
 
 **Example**
@@ -458,7 +464,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 ### Add Mapping Forcibly
 若特定IdP有已映射的账户，尝试**强制**映射。
-尝试**强制映射**时需要从AddMapping API获得的”ForcingMappingTicket”。
+尝试**强制映射**时需要从AddMapping API获得的“ForcingMappingTicket”。
 
 **API**
 
@@ -940,7 +946,7 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 |                | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | 是不支持的认证方式。                        |
 |                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | 是不存在或已退出的成员。                      |
 |                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR    | 3006       |  第三方认证库初始化失败                      |
-|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 第三方认证库出现错误。<br/> 请确认DetailCode和DetailMessage。  |
+|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 是外部认证库错误。<br/>请确认详细错误。  |
 |                | TCGB\_ERROR\_AUTH\_INVALID\_GAMEBASE\_TOKEN | 3011       | 由于Gamebase Access Token无效已注销。<br/>请稍后重新登录。 |
 | Auth (Login)   | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED  | 3101       | 令牌登录失败                          |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | 是无效的令牌信息。                      |
@@ -968,17 +974,17 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 
 **TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR**
 
-* 在各IdP的SDK中发生此错误。
-* 确认错误代码方式如下。
-
-* 关于IdP SDK的错误代码，请参考相应Developer页面。
+* 当在外部认证库发生错误时，将返还此错误。
+* 在外部认证库发生的错误信息包含在详细错误中，而详细错误代码和消息如下。
 
 ```objectivec
 TCGBError *tcgbError = error; // TCGBError object via callback
-NSError *moduleError = [tcgbError.userInfo objectForKey:NSUnderlyingErrorKey]; // NSError object from external module
-NSInteger moduleErrorCode = moduleError.code;
-NSString *moduleErrorMessage = moduleError.message;
+
+NSInteger detailErrorCode = [error detailErrorCode];
+NSString *detailErrorMessage = [error detailErrorMessage];
 
 // If you use **description** method, you can get entire information of this object by JSON Format
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
+
+* 关于详细错误代码，请参考每个外部认证库的Developer页面。

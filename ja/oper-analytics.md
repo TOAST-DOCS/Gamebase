@@ -123,7 +123,7 @@ Analyticsは、次のメニューで構成されています。
 
 ### Retention
 
-Retentionは、特定の日に加入したユーザーが、加入した次の日から90日間、どれだけ残っているかを確認できる指標です。
+Retentionは、特定の日に加入したユーザーが、加入した次の日から180日間、どれだけ残っているかを確認できる指標です。
 
 ![gamebase_analytics_06_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202004_2_ja.png)
 

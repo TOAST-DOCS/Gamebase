@@ -1,5 +1,15 @@
 ## Game > Gamebase > Release Notes > Server API
 
+### 2022. 12. 27.
+
+#### 添加功能
+
+* 添加了“Google Play商店的订阅商品的取消API”。 
+* 在“查询订阅 API” 响应中添加了 “linkedPaymentId”字段。
+
+#### 改善/修改功能
+* 修改了通过特定的支付程序购买道具时，在“未消费支付明细查询API”响应结果中出现gamebaseProductId null的问题。
+
 ### 2022. 08. 23.
 
 #### 添加功能

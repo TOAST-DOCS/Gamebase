@@ -1,4 +1,4 @@
- ## Game > Gamebase > Unity SDK使用指南 > push
+## Game > Gamebase > Unity SDK使用指南 > push
 
 以下介绍如何为每个平台设置必要的推送通知。
 
@@ -250,7 +250,7 @@ public void SetSandboxModeSample()
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | TOAST Push库错误。<br>请确认DetailCode。 |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | 是NHN Cloud Push库错误。<br>请确认详细错误。 |
 | PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | 上一次的推送API调用未完成。<br>上一次推送API回调执行后请重新调用。 |
 | PUSH_UNKNOWN_ERROR             | 5999       | 未知推送错误。<br>请将全部的Log上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。 |
 
@@ -259,8 +259,8 @@ public void SetSandboxModeSample()
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* 这是在TOAST Push库中发生的错误。
-* 检查错误代码的方法如下。
+* 当在NHN Cloud Push库中发生错误时，将返还此错误。
+* 在NHN Cloud Push库发生的错误信息包含在详细错误中，而详细错误代码和消息如下。
 
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback

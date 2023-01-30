@@ -1238,7 +1238,7 @@ public void Login()
 |                | AUTH_NOT_SUPPORTED_PROVIDER              | 3002       | 是不支持的认证方式。 |
 |                | AUTH_NOT_EXIST_MEMBER                    | 3003       | 是不存在或已退出（删除数据）的用户。 |
 |                | AUTH_EXTERNAL_LIBRARY_INITIALIZATION_ERROR | 3006     | 第三方认证库初始化失败 |
-|                | AUTH_EXTERNAL_LIBRARY_ERROR              | 3009       | 外部认证库错误 <br/> 请确认DetailCode和DetailMessage。  |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 是外部认证库错误。<br/>请确认详细错误。 |
 |                | AUTH_ALREADY_IN_PROGRESS_ERROR           | 3010       | 未完成上一个验证流程。 |
 |                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | 由于Gamebase Access Token无效，已被注销。<br/>请再尝试登录。 |
 | TransferKey    | SAME\_REQUESTOR                          | 8          | 在同一台设备上使用了相同的TransferKey。 |
@@ -1281,8 +1281,8 @@ public void Login()
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* 该错误为各IdP的SDK中发生的错误。
-* 确认错误代码方式如下。
+* 当在外部认证库发生错误时，将返还此错误。
+* 在外部认证库发生的错误信息包含在详细错误中，而详细错误代码和消息如下。
 
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
@@ -1308,4 +1308,4 @@ else
 }
 ```
 
-* IdP SDK的错误代码，请参考相应Developer页面。
+* 关于详细错误代码，请参考每个外部认证库的Developer页面。

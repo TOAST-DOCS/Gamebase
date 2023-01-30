@@ -10,6 +10,8 @@
 '- 決済トランザクションを照会する"Get Payment Transaction" APIが追加されました。
 '- 未消費決済履歴を照会する"List Consumables"APIで一度にN個のストアを対象に照会できるように**marketIds**が追加されました。
 '- サーバーアドレスが"https://api-gamebase.nhncloudservice.com"に変更されました。既存アドレスも別途の告知前まで継続維持されます。
+'- "List Active Subscriptions" APIレスポンス結果にサブスクリプション商品キャンセル/再購入時に元取引購読のマーケット決済番号を表す**linkedPaymentId**が追加されました。
+'- 購読中の商品をキャンセルする"Cancel Subscriptions"、"Revoke Subscriptions" APIが追加されました。
 
 ## Advance Notice
 
@@ -1828,7 +1830,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 ```json
 {
     "marketId": "GG",
-    "packageName": "com.toast.gamebase",
+    "packageName": "com.nhncloud.gamebase",
     "userId": "QXG774PMRZMWR3BR"
 }
 ```
@@ -1836,7 +1838,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | marketId | String | Required | [ストアコード](#store-code) |
-| packageName | String | Required | コンソールに登録したアプリのpackageName |
+| packageName | String | Required | コンソールに登録したストアアプリID |
 | userKey | String | Required  | ユーザーID  |
 
 **[Response Body]**
@@ -1858,6 +1860,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
             "productId": "money_100",
             "productType": "AUTO_RENEWABLE",
             "paymentId": "GPA.3302-8679-7228-41195",
+            "linkedPaymentId": "GPA.3358-3220-2629-70624",
             "price": 1000.0,
             "currency": "KRW",
             "gamebaseProductId": "gamebase_renewal_001",
@@ -1885,12 +1888,130 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 | result[].price | Float | 決済価格 |
 | result[].originalPaymentId | String | 最初のストア決済ID |
 | result[].paymentId | String | 最近更新されたストア決済ID |
+| result[].linkedPaymentId | String | 購読キャンセル/再購入時、元取引の決済ID<br>Google Playストアのみサポート |
 | result[].gamebaseProductId | String | Gamebase商品ID<br>コンソールから商品を登録した時にユーザーが入力した値 |
 | result[].payload | String | SDKで設定した追加情報 |
 | result[].purchaseTime | String | 最近更新された時間 |
 | result[].expiryTime | String | 定期購入終了時間 |
 | result[].isTestPurchase | boolean | テスト決済かどうか |
 | result[].referenceStatus | String | 決済システム(アプリ内決済、外部決済)が提供する[決済参照状態](#store-reference-status)<br>現在Google Playストアのみサポート |
+
+**[Error Code]**
+
+[エラーコード](./error-code/#server)
+
+
+<br>
+
+### Cancel Subscriptions
+
+購読中の商品について、更新時点以降は更新されなくなり、現在の購読満了まで維持します。
+
+> [参考]
+> 現在Google Playストアのみサポートします。
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/subscriptions/cancel |
+
+**[Request Header]**
+
+共通事項確認
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN CloudプロジェクトID |
+
+**[Request Parameter]**
+
+なし
+
+**[Request Body]**
+
+```json
+{
+    "paymentSeq": "2022112110400545",
+    "accessToken": "NczL3n4TumMF8n9oRR5l8zXDyMXRVjxSRks0Lk1Saob2A9rdAupqjZSrQ0-hb2GOSFwTx5uDDchH8EB-EkWGGQ"
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| paymentSeq | String | Required | 決済番号 |
+| accessToken | String | Required | 決済認証トークン |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    }
+}
+```
+
+**[Error Code]**
+
+[エラーコード](./error-code/#server)
+
+<br>
+
+### Revoke Subscriptions
+
+現在購読中の商品についてすぐに購読をキャンセルし、返金を行います。
+
+> [参考]
+> 現在Google Playストアのみサポートします。
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/subscriptions/revoke |
+
+**[Request Header]**
+
+共通事項確認
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN CloudプロジェクトID |
+
+**[Request Parameter]**
+
+なし
+
+**[Request Body]**
+
+```json
+{
+    "paymentSeq": "2022112110400545",
+    "accessToken": "NczL3n4TumMF8n9oRR5l8zXDyMXRVjxSRks0Lk1Saob2A9rdAupqjZSrQ0-hb2GOSFwTx5uDDchH8EB-EkWGGQ"
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| paymentSeq | String | Required | 決済番号 |
+| accessToken | String | Required | 決済認証トークン |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    }
+}
+```
 
 **[Error Code]**
 
