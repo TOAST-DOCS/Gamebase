@@ -280,6 +280,16 @@ public void LoginWithAdditionalInfo()
 
 IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급 받은 Access Token 등을 이용하여, Gamebase에 로그인할 수 있는 인터페이스입니다.
 
+> <font color="red">[주의]</font><br/>
+>
+> Standalone, WebGL 플랫폼에서 Google 로그인을 진행할 경우에는 GamebaseAuthProviderCredential.REDIRECT_URI를 입력해야 합니다. 입력을 하지 않을 경우 `redirect_uri_mismatch` 오류가 발생합니다.
+>
+> REDIRECT_URI는 **Google Cloud Console > API 및 서비스 > 사용자 인증 정보 > 웹 클라이언트**의 승인된 리디렉션 URI에 추가된 값을 입력하면 됩니다. (구글 로그인 페이지에서 AuthCode를 반환받는 URI)
+>
+> REDIRECT_URI를 입력하지 않을 경우 기본값이 적용됩니다.
+>   - Standalone: http://localhost:8080/
+>   - WebGL: http://localhost/
+
 * Credential 파라미터의 설정 방법
 
 | keyname | a use | 값 종류 |
@@ -290,6 +300,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 | GamebaseAuthProviderCredential.GAMEBASE_ACCESS_TOKEN | IdP 인증 정보가 아닌 Gamebase Access Token으로 로그인하는 경우 사용 |  |
 | GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | Gamebase에 로그인한 상태에서 로그아웃을 하지 않고 다른 계정을 이용해 로그인을 시도하는 것을 허용 | **bool** |
 | GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINE 서비스 제공 지역 설정 | [Login with IdP 참고](./aos-authentication/#login-with-idp) |
+| GamebaseAuthProviderCredential.REDIRECT_URI | **Google Cloud Console > 승인된 리디렉션 URI** 에 등록된 redirect_uri를 추가<br>**Standalone default**: http://localhost:8080/<br>**WebGL default**: http://localhost/<br/>**Standalone, WebGL 플랫폼에서 Google 로그인 시에 한함** |  |
 
 > [TIP]
 >

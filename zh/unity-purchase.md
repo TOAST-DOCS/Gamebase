@@ -219,6 +219,13 @@ public class PurchasableReceipt
     /// </summary>
     public long expiryTime;
 
+
+    /// <summary>
+    /// 是已支付的商店代码。
+    /// 您可以在GamebaseStoreCode类中查看商店代码列表。
+    /// </summary>
+    public string storeCode;
+
     /// <summary>
     /// 是调用Gamebase.Purchase.requestPurchase时作为payload传送的值。
     ///  
@@ -288,6 +295,12 @@ public void RequestItemListPurchasable()
     * 支付之前   
     * 支付失败后
 
+**GamebaseRequest.Purchase.PurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                                    |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ | 
+| allStores                       | O                          | 还返还使用相同UserID的在其他商店购买的未消费明细。<br/>默认值为**false**。 |
+
 **API**
 
 Supported Platforms
@@ -295,14 +308,18 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
-static void RequestItemListOfNotConsumed(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
+static void RequestItemListOfNotConsumed(GamebaseRequest.Purchase.PurchasableConfiguration configuration, GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
 ```
 
 **示例**
 ```cs
-public void RequestItemListOfNotConsumed()
+public void RequestItemListOfNotConsumedSample(bool allStores)
 {
-    Gamebase.Purchase.RequestItemListOfNotConsumed((purchasableReceiptList, error) =>
+    var configuration = new GamebaseRequest.Purchase.PurchasableConfiguration
+    {
+        allStores = allStores
+    };
+    Gamebase.Purchase.RequestItemListOfNotConsumed(configuration, (purchasableReceiptList, error) =>
     {
         if (Gamebase.IsSuccess(error))
         {
@@ -323,11 +340,17 @@ public void RequestItemListOfNotConsumed()
 
 以当前用户ID为准查询激活的订阅列表。
 完成支付的订阅商品（自动更新型订阅、自动更新型消费性订阅商品）到期前可一直查询。
-若用户ID相同，同时查询在Android和iOS中购买的订阅商品。
 
 > <font color="red">[注意]</font><br/>
 >
 > 目前Android只在Google Play商店支持订购商品。
+
+
+**GamebaseRequest.Purchase.PurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                                    |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
+| allStores                       | O                          | 还返还使用相同UserID的在其他商店购买的未消费明细<br/>默认值为**false**。 |
 
 **API**
 
@@ -336,17 +359,22 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
-static void RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
+static void RequestActivatedPurchases(GamebaseRequest.Purchase.PurchasableConfiguration configuration, GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
 ```
 
 **示例**
 ```cs
-public void RequestActivatedPurchasesSample()
+public void RequestActivatedPurchasesSample(bool allStores)
 {
-    Gamebase.Purchase.RequestActivatedPurchases((purchasableReceiptList, error) =>
-    {
-        if (Gamebase.IsSuccess(error) == true)
+        var configuration = new GamebaseRequest.Purchase.PurchasableConfiguration
         {
+               allStores = allStores
+        };
+    
+       Gamebase.Purchase.RequestActivatedPurchases(configuration, (purchasableReceiptList, error) =>
+       {
+                  if (Gamebase.IsSuccess(error) == true)
+               {
             Debug.Log("RequestItemListPurchasable succeeded");
 
             foreach (GamebaseResponse.Purchase.PurchasableReceipt purchasableReceipt in purchasableReceiptList)
@@ -371,6 +399,190 @@ public void RequestActivatedPurchasesSample()
             Debug.Log(string.Format("RequestItemListPurchasable failed. error is {0}", error));
         }
     });
+}
+```
+
+### List Subscriptions status
+
+현재 사용자 ID 기준으로 구독 상품들의 상태를 조회합니다.
+콜백으로 반환되는 목록 안에는 구독 상품들의 정보가 담겨있습니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> 현재 Google Play 스토어에서만 구독 상품을 지원합니다.
+
+
+**GamebaseRequest.Purchase.PurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                 |
+| ------------------------------- | -------------------------- | ----------------------------------------------------------- |
+|  includeExpiredSubscriptions    | O                          | 만료된 구독 상품까지 포함하여 조회합니다.<br/>기본값은 **false**입니다.   |
+
+**API**
+
+Supported Platforms
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+```cs
+static void RequestActivatedPurchases(GamebaseRequest.Purchase.PurchasableConfiguration configuration, GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
+```
+
+**Example**
+```cs
+public void RequestSubscriptionsStatusSample(bool includeExpiredSubscriptions)
+{
+    var configuration = new GamebaseRequest.Purchase.PurchasableConfiguration
+    {
+        includeExpiredSubscriptions = includeExpiredSubscriptions
+    };
+    Gamebase.Purchase.RequestSubscriptionsStatus(configuration, (subscriptionStatusList, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            Debug.Log("RequestSubscriptionsStatus succeeded");
+
+            foreach (GamebaseResponse.Purchase.PurchasableSubscriptionStatus subscriptionStatus in subscriptionStatusList)
+            {
+                var message = new StringBuilder();
+                message.AppendLine(string.Format("storeCode:{0}", subscriptionStatus.storeCode));
+                message.AppendLine(string.Format("itemSeq:{0}", subscriptionStatus.itemSeq));
+                message.AppendLine(string.Format("price:{0}", subscriptionStatus.price));
+
+                // Subscription status
+                // Refer to the following document for the entire status code.
+                // https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-unity/#iapsubscriptionstatusstatus
+                message.AppendLine(string.Format("statusCode:{0}", subscriptionStatus.statusCode));
+                message.AppendLine(string.Format("gamebaseProductId:{0}", subscriptionStatus.gamebaseProductId));
+                Debug.Log(message);
+            }
+        }
+        else
+        {
+            // Check the error code and handle the error appropriately.
+            Debug.Log(string.Format("s failed. error is {0}", error));
+        }
+    });
+}
+```
+
+**VO**
+```cs
+public class PurchasableSubscriptionStatus
+{
+    /// <summary>
+    /// 앱이 설치된 스토어에 대해 Gamebase에서 내부적으로 정의한 코드입니다.
+    /// </summary>
+    public string storeCode;
+
+    /// <summary>
+    /// 스토어의 결제 식별자입니다.
+    /// </summary>
+    public string paymentId;
+
+    /// <summary>
+    /// 구독 상품은 갱신 될때마다 paymentId가 변경됩니다.
+    /// 이 필드는 맨 처음 구독 상품을 결제 했을때의 paymentId 를 알려줍니다.
+    /// 스토어에 따라, 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로
+    /// 항상 유효한 값을 보장하지는 않습니다.
+    /// </summary>
+    public string originalPaymentId;
+
+    /// 결제 식별자입니다.
+    /// purchaseToken 과 함께 'Consume' 서버 API 를 호출하는데 사용하는 중요한 정보입니다.
+    ///    
+    /// 주의 : Consume API 는 게임 서버에서 호출하세요!
+    /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
+    public string paymentSeq;
+
+    /// <summary>
+    /// 구매한 상품의 상품 ID입니다.
+    /// </summary>
+    public string marketItemId;
+
+    /// <summary>
+    /// IAP 웹 콘솔의 항목 고유 식별자
+    /// </summary>
+    public long itemSeq;
+
+    /// <summary>
+    /// 다음 값 중 하나를 가집니다.
+    /// * UNKNOWN: 알 수 없는 유형입니다. Gamebase SDK를 업데이트하거나 Gamebase 고객센터에 문의하세요.
+    /// * CONSUMABLE: 소모품입니다.
+    /// * AUTO_RENEWABLE: 구독 상품입니다.
+    /// </summary>
+    public string productType;
+
+    /// <summary>
+    /// 상품을 구매한 사용자 아이디입니다.
+    /// 상품 구매에 사용하지 않은 사용자 아이디로 로그인하면 구매한 상품을 받을 수 없습니다.
+    /// </summary>
+    public string userId;
+
+    /// <summary>
+    /// 상품의 가격입니다.
+    /// </summary>
+    public float price;
+
+    /// <summary>
+    /// 통화 정보입니다.
+    /// </summary>
+    public string currency;
+
+    /// <summary>
+    /// Payment 식별자.
+    /// paymentSeq로 'Consume' 서버 API를 호출하는데 사용되는 중요한 정보입니다.
+    /// Consume API에서 매개변수 이름을 'accessToken'으로 지정해야 전달됩니다.
+    ///
+    /// <para/><see href="https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap">Purchase IAP</see>
+    /// </summary>
+    public string purchaseToken;
+
+    /// <summary>
+    /// 이 값은 Google에서 구매할 때 사용되며 다음 값을 가질 수 있습니다.
+    /// 단, Google 서버의 오류로 인해 Gamebase 결제 서버에서 일시적으로 인증 로직이 비활성화된 경우,
+    /// null 만 반환하므로 항상 유효한 반환 값을 보장하지 않는다는 점을 기억하십시오.
+    /// * null : 정상결제
+    /// * 테스트 : 테스트 결제
+    /// * 프로모션 : 프로모션 결제
+    /// </summary>
+    public string purchaseType;
+
+    /// <summary>
+    /// 상품을 구매한 시간.(epoch time)
+    /// </summary>
+    public long purchaseTime;
+
+    /// <summary>
+    /// 구독이 만료되는 시간.(epoch time)
+    /// </summary>
+    public long expiryTime;
+
+    /// <summary>
+    /// Gamebase.Purchase.requestPurchase API 호출 시 페이로드에 전달되는 값입니다.
+    ///
+    /// 이 필드는 다양한 추가 정보를 보유하는 데 사용할 수 있습니다.
+    /// 예를 들어, 이 필드는 구매를 별도로 처리하는 데 사용할 수 있습니다.
+    /// 동일한 사용자 ID로 구매한 상품을 제공하고 게임 채널별 또는 캐릭터별로 정렬합니다.
+    /// </summary>
+    public string payload;
+
+    /// <summary>
+    /// 구독 상태
+    /// 전체 상태 코드는 다음 문서를 참조하세요.
+    /// <para/><see href="https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-unity/#iapsubscriptionstatus">IAP Subscription Status</see>
+    /// </summary>
+    public int statusCode;
+
+    /// <summary>
+    /// 구독 상태에 대한 설명입니다.
+    /// </summary>
+    public string statusDescription;
+
+    /// <summary>
+    /// Gamebase 콘솔에 등록된 상품 ID입니다.
+    /// Gamebase.Purchase.requestPurchase API 로 상품을 구매할 때 사용됩니다.
+    /// </summary>
+    public string gamebaseProductId;
 }
 ```
 
@@ -401,7 +613,7 @@ Supported Platforms
 | PURCHASE_NOT_EXIST_PRODUCT_ID            | 4006       | 请求支付的GamebaseProductID不存在。 |
 | PURCHASE_LIMIT_EXCEEDED                  | 4007       | 超过了一个月购买限额。             |
 | PURCHASE_NOT_SUPPORTED_MARKET            | 4010       | 不支持的商店<br>可选择的商店是GG(Google)、ONESTORE、GALAXY、AMAZON及HUAWEI。 |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR          | 4201       | IAP库错误<br>请确认DetailCode。   |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | 是NHN Cloud IAP库错误。<br/>请确认详细错误。 |
 | PURCHASE_UNKNOWN_ERROR                   | 4999       | 未知的购买错误<br>请将完整的Log上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。 |
 
 * 所有错误代码，请参考以下文档。
@@ -409,8 +621,8 @@ Supported Platforms
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* 这是在IAP模块中的错误。
-* 检查错误代码的方法如下。
+* 当在NHN Cloud IAP库中发生错误时，将返还此错误。 
+* 在NHN Cloud IAP库发生的错误信息包含在详细错误中，而详细的错误代码和消息如下。
 
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
@@ -434,7 +646,7 @@ else
 }
 ```
 
-* IAP错误代码，请参考以下文档。
+* 关于NHN Cloud IAP错误代码，请参考以下文件。
     * [NHN Cloud > NHN Cloud SDK使用指南 > NHN Cloud IAP > Unity > 错误代码](https://docs.toast.com/zh/TOAST/zh/toast-sdk/iap-unity/#error-code)
 
 

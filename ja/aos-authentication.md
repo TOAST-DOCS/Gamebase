@@ -512,6 +512,14 @@ private static void onWithdraw(final Activity activity) {
 
 特定のIdPにログインされた状態で他のIdPへのマッピングを試みます。<br/>
 
+* AdditionalInfoパラメータ設定方法
+
+| keyname                                  | a use                                    | 値種類                                   |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | LINEサービス提供地域設定 | [Login with IdP参考](./aos-authentication/#login-with-idp) |
+
+
+
 次は、Facebookにマッピングを試みる例です。
 
 **API**
@@ -590,6 +598,7 @@ private static void addMappingForFacebook(final Activity activity) {
 | AuthProviderCredentialConstants.PROVIDER_NAME | IdPタイプの設定                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)の設定<br/>Google認証の場合は使用しない  |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Googleログイン後に取得できるOTAC(one time authorization code)の入力 |                                          |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | LINEサービス提供地域設定 | [Login with IdP参考](./aos-authentication/#login-with-idp) |
 
 > [参考]
 >
@@ -1246,7 +1255,7 @@ public static void testLogin() {
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | この認証方式には対応しておりません。                      |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 退会されているか、存在しない会員です。                    |
 |                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | 外部認証ライブラリの初期化に失敗しました。 |
-|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部認証ライブラリーエラーです。<br/> DetailCodeおよびDetailMessageを確認してください。  |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部認証ライブラリエラーです。<br/>詳細エラーを確認してください。 |
 |                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | 移行認証プロセスが完了していません。 |
 |                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | Gamebase Access Tokenが有効ではないためログアウトしました。<br/>ログインを再試行してください。 |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | 発行したTransferAccountを同じ端末で使用しました。 |
@@ -1289,8 +1298,8 @@ public static void testLogin() {
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* このエラーは、外部認証ライブラリーで発生したエラーです。
-* 外部ライブラリーエラーの詳細は次のように確認できます。
+* このエラーは外部認証ライブラリでエラーが発生した時に返されます。
+* 外部認証ライブラリで発生したエラー情報は詳細エラーに含まれており、詳細なエラーコードおよびメッセージは次のように確認できます。 
 
 ```java
 Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
@@ -1318,4 +1327,4 @@ Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
 });
 ```
 
-* IdP SDKのエラーコードは各IdPのDeveloperページをお参照ください。
+* 詳細エラーコードは、それぞれの外部認証ライブラリのDeveloperページを参照してください。

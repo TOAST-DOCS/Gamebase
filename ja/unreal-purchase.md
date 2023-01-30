@@ -442,15 +442,15 @@ void Sample::RequestActivatedPurchases()
 | PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 存在しないGamebaseProductIDで決済をリクエストしました。 |
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | 月購入限度を超過しました。             |
 | PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | サポートしないストアです。<br>選択できるストアはAS(App Store)、GG(Google)、ONESTORE、GALAXYです。 |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | IAPライブラリエラーです。<br>DetailCodeを確認してください。   |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAPライブラリエラーです。<br/>詳細エラーを確認してください。 |
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | 定義されていない購入エラーです。<br>全てのログを[サポート](https://toast.com/support/inquiry)へご送付ください。迅速に対応いたします。
 * エラーコードの一覧は、次の文書を参照してください。
     * [エラーコード](./error-code/#client-sdk)
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* このエラーは、IAPモジュールで発生したエラーです。
-* エラーコードを確認する方法は次のとおりです。
+* このエラーはNHN Cloud IAPライブラリでエラーが発生した時に返されます。
+* NHN Cloud IAPライブラリで発生したエラー情報は詳細エラーに含まれており、詳細なエラーコードおよびメッセージは次のように確認できます。 
 
 ```cpp
 GamebaseError* gamebaseError = error; // GamebaseError object via callback
@@ -471,5 +471,5 @@ else
 }
 ```
 
-* IAPのエラーコードは、次のドキュメントをご参考ください。
+* NHN Cloud IAPのエラーコードは、次のドキュメントをご参考ください。
     * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > Unity > エラーコード](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-unity/#error-code)

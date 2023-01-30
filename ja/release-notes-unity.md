@@ -1,10 +1,29 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.46.0 (2023. 01. 31.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.46.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* (WebGL) 구글 로그인 지원 기능이 추가되었습니다.
+* (WebGL) 내부 보안 로직이 강화되었습니다.
+* (Standalone) 내부 보안 로직이 강화되었습니다.
+* (Android) WebViewConfiguration이 변경되었습니다.
+    * enableFixedFontSize 옵션 재지원
+    * renderOutsideSafeArea 옵션 추가
+* (Android) IAP 구독 상태를 조회할 수 있는 RequestSubscriptionsStatus API 추가되었습니다.
+
+#### 버그 수정
+* (Standalone) 초기화 시, 간헐적으로 발생하는 ReflectionTypeLoadException 수정
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.46.0](./release-notes-android/#2460-2023-01-31)
+* [Gamebase iOS SDK 2.46.0](./release-notes-ios/#2460-2023-01-31)
+
 ### 2.45.0 (2022. 12. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.45.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 미소비 내역 조회 API가 변경되었으므로 신규 API로 변경하시기 바랍니다. 
+#### 機能追加
+* 未消費履歴照会APIが変更されましたので新規APIに変更してください。 
  
         // Deprecated API 
         Gamebase.Purchase.RequestItemListOfNotConsumed(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
@@ -13,8 +32,8 @@
         Gamebase.Purchase.RequestItemListOfNotConsumed(GamebaseRequest.Purchase.PurchasableConfiguration configuration,
                                                        GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
  
-* 활성화 구독 조회 API가 변경되었으므로 신규 API로 변경하시기 바랍니다. 
-    * 기존 API와 동일한 결과를 받으려면 **GamebaseRequest.Purchase.PurchasableConfiguration.allStores**의 값을 **true**로 설정하시기 바랍니다. 
+* 有効化購読照会APIが変更されましたので新規APIに変更してください。 
+    * 既存APIと同じ結果を受け取るには**GamebaseRequest.Purchase.PurchasableConfiguration.allStores**の値を**true**に設定してください。 
  
             // Deprecated API 
             Gamebase.Purchase.RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
@@ -23,10 +42,10 @@
             Gamebase.Purchase.RequestActivatedPurchases(GamebaseRequest.Purchase.PurchasableConfiguration configuration,
                                                         GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: NHN Cloud Unity SDK (0.27.1)
+#### 機能改善/変更
+* 外部SDKアップデート: NHN Cloud Unity SDK (0.27.1)
 
-#### 플랫폼별 변경 사항
+#### 各プラットフォームの変更事項
 * [Gamebase Android SDK 2.45.0](./release-notes-android/#2450-2022-12-27)
 * [Gamebase iOS SDK 2.45.0](./release-notes-ios/#2450-2022-12-27)
 

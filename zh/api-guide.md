@@ -8,7 +8,9 @@
 - 添加了获取在特定时间内退出的用户的Gamebase userId的“Withdraw Histories”API。
 - 添加了进行禁用和解除禁用的“Ban”和“Ban Release”API。
 - 添加了查询支付Transaction的“Get Payment Transaction”API。
-- **marketIds**已添加到“List Consumables”API中，该API检索未消费支付历史记录，因此可以一次查看N家商店
+- **marketIds**已添加到“List Consumables”API中，该API检索未消费支付历史记录，因此可以一次查看N家商店。
+- 在"List Active Subscriptions" API响应结果中添加了在“取消订阅商品/重新购买”时显示原交易订阅商店支付号码的**linkedPaymentId**。
+- 添加了"Cancel Subscriptions"和"Revoke Subscriptions" API以取消当前的订阅商品。
 
 ## Advance Notice
  
@@ -1766,7 +1768,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 ```json
 {
     "marketId": "GG",
-    "packageName": "com.toast.gamebase",
+    "packageName": "com.nhncloud.gamebase",
     "userId": "QXG774PMRZMWR3BR"
 }
 ```
@@ -1774,7 +1776,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | marketId | String | Required | [商店代码](#store-code) |
-| packageName | String | Required | 控制台中注册的应用程序的packageName |
+| packageName | String | Required | 控制台中注册的商店应用程序ID |
 | userId | String | Required  | 用户ID  |
 
 **[Response Body]**
@@ -1797,6 +1799,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
             "productType": "AUTO_RENEWABLE",
             "originalPaymentId": "GPA.3302-8679-7228-41195",
             "paymentId": "GPA.3302-8679-7228-41195",
+            "linkedPaymentId": "GPA.3358-3220-2629-70624",
             "price": 1000.0,
             "currency": "KRW",
             "gamebaseProductId": "gamebase_renewal_001",
@@ -1824,12 +1827,129 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | result[].price | Float | 支付价格 |
 | result[].originalPaymentId | String | 最初的商店支付ID |
 | result[].paymentId | String | 最近更新的商店支付ID |
+| result[].linkedPaymentId | String | 取消订阅/重新购买时原交易的结算ID<br>仅支持Google Play商店。 |
 | result[].gamebaseProductId | String | Gamebase商品ID<br>在控制台中注册商品时的用户输入值 |
 | result[].payload | String | 在SDK中设置的附加信息 |
 | result[].purchaseTime | String | 最近更新的时间 |
 | result[].expiryTime | String | 订阅到期时间 |
 | result[].isTestPurchase | boolean | 测试支付与否 |
 | result[].referenceStatus | String | 支付系统(应用程序内支付、外部支付)提供的[支付参考状态](#store-reference-status)<br>目前只支持 Google Play商店。 |
+
+**[Error Code]**
+
+[错误代码](./error-code/#server)
+
+<br>
+
+### Cancel Subscriptions
+
+如果您继续订阅正在订阅的产品，订阅将不再续订，并将在当前订阅到期之前保持有效。
+
+> [参考]
+> 目前仅支持Google Play商店。
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/subscriptions/cancel |
+
+**[Request Header]**
+
+确认共通事项
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud项目ID |
+
+**[Request Parameter]**
+
+无
+
+**[Request Body]**
+
+```json
+{
+    "paymentSeq": "2022112110400545",
+    "accessToken": "NczL3n4TumMF8n9oRR5l8zXDyMXRVjxSRks0Lk1Saob2A9rdAupqjZSrQ0-hb2GOSFwTx5uDDchH8EB-EkWGGQ"
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| paymentSeq | String | Required | 支付号码 |
+| accessToken | String | Required | 支付认证令牌 |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    }
+}
+```
+
+**[Error Code]**
+
+[错误代码](./error-code/#server)
+
+<br>
+
+### Revoke Subscriptions
+
+将立即取消当前订阅的商品，并对当前的订阅商品进行退款程序。
+
+> [参考]
+> 目前仅支持Google Play商店。
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/subscriptions/revoke |
+
+**[Request Header]**
+
+确认共通事项
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud项目ID |
+
+**[Request Parameter]**
+
+无
+
+**[Request Body]**
+
+```json
+{
+    "paymentSeq": "2022112110400545",
+    "accessToken": "NczL3n4TumMF8n9oRR5l8zXDyMXRVjxSRks0Lk1Saob2A9rdAupqjZSrQ0-hb2GOSFwTx5uDDchH8EB-EkWGGQ"
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| paymentSeq | String | Required | 支付号码 |
+| accessToken | String | Required | 支付认证令牌 |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    }
+}
+```
 
 **[Error Code]**
 

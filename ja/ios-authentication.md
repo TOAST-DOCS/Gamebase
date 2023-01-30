@@ -78,7 +78,6 @@ AdditionalInfoに対する説明は下の**Gamebaseで対応しているIdP**の
 
 ### Login as the Latest Login IdP
 
-特定のIDPに対するログインボタンをクリックしたとき、次のログインAPIを設計します。<br/>
 最後にログインしたIdPでログインを試みます。該当するログイントークンの期限が切れていたり、
 トークン検証などに失敗した場合、失敗を返します。<br/>
 この場合、該当するIdPに対するログインを設計する必要があります。
@@ -371,10 +370,17 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 特定のIdPにログインされた状態で他のIdPへのマッピングを試みます。<br/>
 
+* additionalInfoパラメータ設定方法
+
+| keyname                                  | a use                          | 値種類                         |
+| ---------------------------------------- | ------------------------------ | ------------------------------ |
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINEサービス提供地域のうち、ログインを行う1つの地域 | [Login with IdP参考](./ios-authentication/#login-with-idp)|
+
 **API**
 
 ```objectivec
 + (void)addMappingWithType:(NSString *)type viewController:(UIViewController *)viewController completion:(LoginCompletion)completion;
+'+ (void)addMappingWithType:(NSString *)type additionalInfo:(nullable NSDictionary<NSString *, id> *)additionalInfo viewController:(UIViewController *)viewController completion:(LoginCompletion)completion;
 ```
 
 **Example**
@@ -953,7 +959,7 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 |                | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | サポートしていない認証方式です。                        |
 |                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | 存在しないか、退会した会員です。                      |
 |                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR    | 3006       | 外部認証ライブラリの初期化に失敗しました。                      |
-|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 外部認証ライブラリエラーです。<br/> DetailCodeおよびDetailMessageを確認してください。  |
+|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 外部認証ライブラリエラーです。<br/>詳細エラーを確認してください。  |
 |                | TCGB\_ERROR\_AUTH\_INVALID\_GAMEBASE\_TOKEN | 3011       | Gamebase Access Tokenが有効ではないためログアウトしました。<br/>ログインを再試行してください。 |
 | Auth (Login)   | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED  | 3101       | トークンのログインに失敗しました。                          |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | トークン情報が有効ではありません。                        |
@@ -984,17 +990,16 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 
 **TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR**
 
-* このエラーは、各IdPのSDKで発生したエラーです。
-* エラーコードの確認は、次の通りです。
-
-* IdP SDKのエラーコードは、各Developerページをご参考ください。
+* このエラーは外部認証ライブラリでエラーが発生した時に返されます。
+* 外部認証ライブラリで発生したエラー情報は詳細エラーに含まれており、詳細なエラーコードおよびメッセージは次のように確認できます。 
 
 ```objectivec
 TCGBError *tcgbError = error; // TCGBError object via callback
-NSError *moduleError = [tcgbError.userInfo objectForKey:NSUnderlyingErrorKey]; // NSError object from external module
-NSInteger moduleErrorCode = moduleError.code;
-NSString *moduleErrorMessage = moduleError.message;
 
+NSInteger detailErrorCode = [error detailErrorCode];
+NSString *detailErrorMessage = [error detailErrorMessage];
 // If you use **description** method, you can get entire information of this object by JSON Format
-NSLog(@"TCGBError:%@", [tcgbError description]);
+NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
+
+* 詳細エラーコードは、それぞれの外部認証ライブラリのDeveloperページを参照してください。

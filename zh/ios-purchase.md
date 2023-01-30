@@ -192,6 +192,9 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，而可在Game
 // promotion支付与否
 @property (nonatomic, assign) BOOL promotionPayment;
 
+// 商店代码(ex. "AS")
+@property (nonatomic, strong) NSString *storeCode;
+
 @end
 ```
 
@@ -283,9 +286,24 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，而可在Game
         * 支付之前
         * 支付失败后
 
+**API**
+
+```objectivec
++ (void)requestItemListOfNotConsumedWithConfiguration:(TCGBPurchasableConfiguration *)configuration
+                                           completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
+```
+
+#### Required参数
+
+* configuration : 通过TCGBPurchasableConfiguration可以更改未消费支付明细查询的设置。 
+* completion : 通过回调通知用户未消费支付明细查询结果。
+
+**Example**
+
 ```objectivec
 - (void)viewDidLoad {
-    [TCGBPurchase requestItemListOfNotConsumedWithCompletion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
+    TCGBPurchasableConfiguration *configuration = [[TCGBPurchasableConfiguration alloc] init];
+    [TCGBPurchase requestItemListOfNotConsumedWithConfiguration:configuration completion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
         if (error != nil) {
             // To Requesting Non-consumed Item List Failed cause of the error
             return;
@@ -301,16 +319,26 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，而可在Game
 
 以当前用户ID为准查询激活的订阅列表。
 完成支付的订阅商品（自动更新型订阅、自动更新型消费性订阅商品）到期前可一直查询。
-若用户ID相同，同时查询在Android和iOS中购买的订阅商品。
 
-### Reprocess Failed Purchase Transaction
+**API**
 
-如果在商店付款成功，但因TOAST IAP服务器认证失败等原因未能正常付款的情况下，我们将尝试使用API重新处理。<br/>
-最后，根据付款成功的历史记录，需要通过调用item配送(支付)等的API来进行处理。
+```objectivec
++ (void)requestActivatedPurchasesWithConfiguration:(TCGBPurchasableConfiguration *)configuration
+                                        completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
+```
+
+#### Required参数
+
+* configuration : 通过TCGBPurchasableConfiguration可以更改激活订阅列表查询的设置。
+* completion : 通过回调通知用户激活订阅列表查询结果。
+
+**Example**
 
 ```objectivec
 - (void)viewDidLoad {
-    [TCGBPurchase requestActivatedPurchasesWithCompletion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
+    TCGBPurchasableConfiguration *configuration = [[TCGBPurchasableConfiguration alloc] init];
+
+    [TCGBPurchase requestActivatedPurchasesWithConfiguration:configuration completion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
         if (error != nil) {
             // To Requesting Activated Item List Failed cause of the error
             return;
@@ -327,6 +355,14 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，而可在Game
 查询不到购买的订阅商品或未激活时使用。
 完成的支付件、恢复的支付件都返还为结果。
 如果存在未注册的自动更新型消费性订阅商品购买明细时，恢复之后可以在未消费购买明细中进行查询。
+
+**API**
+
+```objectivec
++ (void)requestRestoreWithCompletion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
+```
+
+**Example**
 
 ```objectivec
 - (void)viewDidLoad {
@@ -393,6 +429,12 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，而可在Game
 
 示例) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 
+### TCGBPurchasableConfiguration
+
+| Parameter     | Values            | Description        |
+| ------------- | ----------------- | ------------------ |
+| allStores     | Bool | 将API设置为基于相同的UserID对当前商店或所有商店操作。<br>- 所有商店 : YES<br>- 当前商店 : NO<br>**default** : NO    |
+
 ### Error Handling
 
 | Error                                    | Error Code | Description                              |
@@ -406,27 +448,28 @@ gamebaseProductId基本上与在商店中注册的道具ID相同，而可在Game
 | TCGB\_ERROR\_PURCHASE\_NOT\_EXIST\_PRODUCT\_ID | 4006       | 您使用不存在的GamebaseProductID请求了支付。             |
 | TCGB_ERROR_PURCHASE_LIMIT_EXCEEDED                   | 4007       | 超过了一个月的购买限额。             |
 | TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010       | 是不支持的商店。iOS支持的商店是"AS"。 |
-| TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201       | 是IAP库错误。<br>请确认error.message。|
-| TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR    | 4999       | 是未定义的购买错误。<br>将所有日志上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。|
+| TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | 是NHN Cloud IAP库错误。<br/>请确认详细错误。 |
+| TCGB_ERROR_PURCHASE_UNKNOWN_ERROR                    | 4999       | 是未定义的购买错误。<br>请将所有日志上载到[客户服务](https://toast.com/support/inquiry) ，我们会尽快回复您。 |
 
 * 所有错误代码，请参考以下文档。
     * [错误代码](./error-code/#client-sdk)
 
 **TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* 这是在IAP模块中的错误。
-* 检查错误代码的方法如下。
+* 当在NHN Cloud IAP库中发生错误时，将返还此错误。
+* 在NHN Cloud IAP库发生的错误信息包含在详细错误中，而详细的错误代码和消息如下。
+
 
 ```objectivec
 TCGBError *tcgbError = error; // TCGBError object via callback
-NSError *moduleError = [tcgbError.userInfo objectForKey:NSUnderlyingErrorKey]; // NSError object from external module
-NSInteger moduleErrorCode = moduleError.code;
-NSString *moduleErrorMessage = moduleError.message;
+
+NSInteger detailErrorCode = [error detailErrorCode];
+NSString *detailErrorMessage = [error detailErrorMessage];
 
 // If you use **description** method, you can get entire information of this object by JSON Format
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
-* 关于IAP错误代码，请参考以下文件。
+* 关于NHN Cloud IAP错误代码，请参考以下文件。
     * [NHN Cloud > NHN Cloud SDK使用指南 > NHN Cloud IAP > iOS > 错误代码](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-ios/#error-codes)
 

@@ -284,6 +284,16 @@ public void LoginWithAdditionalInfo()
 
 是通过IdP提供的SDK在游戏中进行认证后，使用获取到的Access Token，登录到Gamebase的接口。
 
+> <font color="red">[주의]</font><br/>
+>
+> Standalone, WebGL 플랫폼에서 Google 로그인을 진행할 경우에는 GamebaseAuthProviderCredential.REDIRECT_URI를 입력해야 합니다. 입력을 하지 않을 경우 `redirect_uri_mismatch` 오류가 발생합니다.
+>
+> REDIRECT_URI는 **Google Cloud Console > API 및 서비스 > 사용자 인증 정보 > 웹 클라이언트**의 승인된 리디렉션 URI에 추가된 값을 입력하면 됩니다. (구글 로그인 페이지에서 AuthCode를 반환받는 URI)
+>
+> REDIRECT_URI를 입력하지 않을 경우 기본값이 적용됩니다.
+>   - Standalone: http://localhost:8080/
+>   - WebGL: http://localhost/
+
 * Credential参数设置方法
 
 | keyname | a use | 值类型 |
@@ -1238,7 +1248,7 @@ public void Login()
 |                | AUTH_NOT_SUPPORTED_PROVIDER              | 3002       | 是不支持的认证方式。 |
 |                | AUTH_NOT_EXIST_MEMBER                    | 3003       | 是不存在或已退出（删除数据）的用户。 |
 |                | AUTH_EXTERNAL_LIBRARY_INITIALIZATION_ERROR | 3006     | 第三方认证库初始化失败 |
-|                | AUTH_EXTERNAL_LIBRARY_ERROR              | 3009       | 外部认证库错误 <br/> 请确认DetailCode和DetailMessage。  |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 是外部认证库错误。<br/>请确认详细错误。 |
 |                | AUTH_ALREADY_IN_PROGRESS_ERROR           | 3010       | 未完成上一个验证流程。 |
 |                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | 由于Gamebase Access Token无效，已被注销。<br/>请再尝试登录。 |
 | TransferKey    | SAME\_REQUESTOR                          | 8          | 在同一台设备上使用了相同的TransferKey。 |
@@ -1281,8 +1291,8 @@ public void Login()
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* 该错误为各IdP的SDK中发生的错误。
-* 确认错误代码方式如下。
+* 当在外部认证库发生错误时，将返还此错误。
+* 在外部认证库发生的错误信息包含在详细错误中，而详细错误代码和消息如下。
 
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
@@ -1308,4 +1318,4 @@ else
 }
 ```
 
-* IdP SDK的错误代码，请参考相应Developer页面。
+* 关于详细错误代码，请参考每个外部认证库的Developer页面。

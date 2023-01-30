@@ -1181,7 +1181,7 @@ void Sample::Login()
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | 是不支持的认证方式。                        |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 是不存在或退出的会员。                      |
 |                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | 外部认证库初始化失败 |
-|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部认证库错误 <br/> 请确认DetailCode和DetailMessage。  |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 是外部认证库错误。 <br/>请确认详细错误。 |
 |                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | 尚未完成上一个认证程序。 |
 |                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | 您已注销，因为Gamebase Access Token无效。<br/>请再尝试登录。 |   
 | TransferAccount| SAME\_REQUESTOR                          | 8          | 在同一个终端机使用了TransferAccount。|
@@ -1224,8 +1224,8 @@ void Sample::Login()
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* 是在外部认证库中发生的错误。
-* 确认错误代码的方式如下。
+* 当在外部认证库中发生错误时，将返还此错误。
+* 在外部认证库发生的错误信息包含在详细错误中，而详细错误代码和消息如下。
 
 ```cpp
 GamebaseError* gamebaseError = error; // GamebaseError object via callback
@@ -1249,4 +1249,4 @@ else
 }
 ```
 
-* 关于IdP SDK的错误代码，请参考相应Developer页面。
+* 关于详细错误代码，请参考每个外部认证库的Developer页面。

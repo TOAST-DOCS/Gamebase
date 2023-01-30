@@ -511,6 +511,12 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 在登录特定IdP状态下，尝试用其他IdP Mapping。<br/>
 
+* AdditionalInfo参数设置方法
+
+| keyname                                  | a use                                    | 值类型                                    |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | 设置提供LINE服务的地区。 | [参考Login with IdP](./aos-authentication/#login-with-idp) |
+
 以下为尝试映射（Mapping）到Facebook的示例。
 
 **API**
@@ -589,6 +595,7 @@ private static void addMappingForFacebook(final Activity activity) {
 | AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP类型                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | 设置IdP登录后收到的认证信息（Access Token）。<br/>不用于Google认证。|                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE |输入Google登录后可以获取的OTAC(一次性验证码)。|                                          |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | 设置提供LINE服务的地区。 | [参考Login with IdP](./aos-authentication/#login-with-idp) |
 
 > [参考]
 >
@@ -1281,7 +1288,7 @@ public static void testLogin() {
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | 是不支持的认证方式 。                  |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | 是不存在或已退出（删除数据）的用户。               |
 |                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | 第三方认证库初始化失败 |
-|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部认证库错误<br/>请确认DetailCode和DetailMessage。  |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 是外部认证库错误。<br/>请查看详细错误。 |
 |                | AUTH_ALREADY_IN_PROGRESS_ERROR           | 3010       | 未完成之前的认证过程。 |
 |                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | 由于Gamebase Access Token过期，已被注销。<br/>请重新登录。 |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | 在同一台设备上使用了相同的TransferKey。 |
@@ -1324,8 +1331,8 @@ public static void testLogin() {
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* 该错误为在各IdP的SDK中发生的错误。
-* 确认错误代码的方式如下。
+* 当外部认证库中发生错误时，将返回此错误。
+* 外部认证库发生的错误信息包含在详细错误中，而可按如下方式查看详细错误代码和消息。
 
 ```java
 Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
@@ -1353,4 +1360,4 @@ Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
 });
 ```
 
-* 关于IdP SDK的错误代码，请参考相应Developer页面。
+* 有关详细的错误代码，请参考每个外部认证库的“Developer”页面。

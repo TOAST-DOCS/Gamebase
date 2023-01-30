@@ -125,7 +125,7 @@ Analytics由以下菜单构成。
 ### Retention
 ![gamebase_analytics_06_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_201901_2.png)
 
-Retention为可以确认在指定日注册的用户从第二天起的90天内还剩余多少的指标。
+Retention为可以确认在指定日注册的用户从第二天起的180天内还剩余多少的指标。
 
 显示Retention时通过包括或排除当天退出的用户来显示。
 

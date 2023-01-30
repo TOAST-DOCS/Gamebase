@@ -158,7 +158,7 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 
         // If the TCGBPushConfiguration is not null, 
         // save TCGBPushConfiguration and use it for registerPush after login.
-        TCGBPushConfiguration *savedPushConfiguraiton = showTermsViewResult.pushConfiguration;
+        TCGBPushConfiguration *savedPushConfiguration = showTermsViewResult.pushConfiguration;
 
         // Wheter the TermsUI was displayed.
         BOOL isTermsUIOpened = showTermsViewResult.isTermsUIOpened;

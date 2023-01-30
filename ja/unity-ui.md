@@ -464,7 +464,7 @@ public void ShowWebView()
 |                          | GamebaseScreenOrientation.PORTRAIT       | 縦モード                  |
 |                          | GamebaseScreenOrientation.LANDSCAPE      | 横モード                  |
 |                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 横モードを180度回転    |
-| contentMode              | GamebaseWebViewContentMode.RECOMMENDED      | 現在プラットフォーム推薦ブラウザ(**default**)  |
+| contentMode<br>(iOS 전용) | GamebaseWebViewContentMode.RECOMMENDED      | 現在プラットフォーム推薦ブラウザ(**default**)  |
 |                          | GamebaseWebViewContentMode.MOBILE           | モバイルブラウザ          |
 |                          | GamebaseWebViewContentMode.DESKTOP          | デスクトップブラウザ        |
 | colorR                   | 0～255                                    | ナビゲーションバーの色相R<br>**default** : 18               |
@@ -476,6 +476,8 @@ public void ShowWebView()
 | isBackButtonVisible      | true or false                            | 戻るボタン有効/無効<br>**default** : true   |
 | backButtonImageResource  | ID of resource                           | 戻るボタンのイメージ       |
 | closeButtonImageResource | ID of resource                           | 閉じるボタンのイメージ           |
+| enableFixedFontSize<br>(Android 전용)   | true or false              | 약관 창의 글자 크기를 고정할지 결정합니다.<br>**default**: false |
+| renderOutSideSafeArea<br>(Android 전용) | true or false              | Safe Area 영역 밖까지 렌더링할지 결정합니다.<br>**default**: false |
 
 > [TIP]
 >
