@@ -472,7 +472,7 @@ public void ShowWebView()
 |                          | GamebaseScreenOrientation.PORTRAIT       | 세로 모드                    |
 |                          | GamebaseScreenOrientation.LANDSCAPE      | 가로 모드                    |
 |                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 가로 모드를 180도 회전     |
-| contentMode              | GamebaseWebViewContentMode.RECOMMENDED      | 현재 플랫폼 추천 브라우저(**default**)  |
+| contentMode<br>(iOS 전용) | GamebaseWebViewContentMode.RECOMMENDED      | 현재 플랫폼 추천 브라우저(**default**)  |
 |                          | GamebaseWebViewContentMode.MOBILE           | 모바일 브라우저            |
 |                          | GamebaseWebViewContentMode.DESKTOP          | 데스크톱 브라우저          |
 | colorR                   | 0~255                                    | 내비게이션 바 색상 R<br>**default**: 18               |
@@ -484,7 +484,8 @@ public void ShowWebView()
 | isBackButtonVisible      | true or false                            | 뒤로 가기 버튼 활성 또는 비활성<br>**default**: true   |
 | backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지         |
 | closeButtonImageResource | ID of resource                           | 닫기 버튼 이미지             |
-| enableFixedFontSize      | true or false                            | 약관 창의 글자 크기를 고정할지 결정합니다.<br>**default**: false<br/>**Android에 한함** |
+| enableFixedFontSize<br>(Android 전용)   | true or false              | 약관 창의 글자 크기를 고정할지 결정합니다.<br>**default**: false |
+| renderOutSideSafeArea<br>(Android 전용) | true or false              | Safe Area 영역 밖까지 렌더링할지 결정합니다.<br>**default**: false |
 
 > [TIP]
 >
