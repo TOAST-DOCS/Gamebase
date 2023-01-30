@@ -382,8 +382,7 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, configuration, new Game
 현재 사용자 ID 기준으로 활성화된 구독 목록을 조회합니다.
 결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다.
 구독 수명 주기 처리는 다음 문서를 참조하시기 바랍니다.
-[NHN Cloud > SDK 사용 가이드 > IAP > Android
- > Google Play Store 구독(정기 결제) 기능 > 구독 수명 주기 처리](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#subscription-lifecycle-handling)
+[NHN Cloud > SDK 사용 가이드 > IAP > Android > Google Play Store 구독(정기 결제) 기능 > 구독 수명 주기 처리](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#subscription-lifecycle-handling)
 
 > <font color="red">[주의]</font><br/>
 >
@@ -433,8 +432,7 @@ Gamebase.Purchase.requestActivatedPurchases(activity, configuration, new Gamebas
 결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다.
 **PurchasableConfiguration.setIncludeExpiredSubscriptions(true)** API로 만료된 구독 상품의 상태도 조회할 수 있습니다.
 구독 상태 코드는 다음 문서를 참조하시기 바랍니다.
-[NHN Cloud > SDK 사용 가이드 > IAP > Android
- > NHN Cloud IAP Class Reference > IapSubscriptionStatus.StatusCode](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#iapsubscriptionstatusstatuscode)
+[NHN Cloud > SDK 사용 가이드 > IAP > Android > NHN Cloud IAP Class Reference > IapSubscriptionStatus.StatusCode](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#iapsubscriptionstatusstatuscode)
 
 > <font color="red">[주의]</font><br/>
 >
@@ -584,8 +582,8 @@ class PurchasableSubscriptionStatus {
 ```json
 {
     "gamebaseProductId": "my_subcription_product_002",
-    "statusCode": 0,
-    "statusDescription": "PURCHASED",
+    "statusCode": 13,
+    "statusDescription": "EXPIRED",
     "userId": "AS@123456ABCDEFGHIJ",
     "storeCode": "GG",
     "currency": "KRW",
