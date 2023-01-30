@@ -1,5 +1,24 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.46.0 (2023. 01. 31.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.46.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* (WebGL) 구글 로그인 지원 기능이 추가되었습니다.
+* (WebGL) 내부 보안 로직이 강화되었습니다.
+* (Standalone) 내부 보안 로직이 강화되었습니다.
+* (Android) WebViewConfiguration이 변경되었습니다.
+    * enableFixedFontSize 옵션 재지원
+    * renderOutsideSafeArea 옵션 추가
+* (Android) IAP 구독 상태를 조회할 수 있는 RequestSubscriptionsStatus API 추가되었습니다.
+
+#### 버그 수정
+* (Standalone) 초기화 시, 간헐적으로 발생하는 ReflectionTypeLoadException 수정
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.46.0](./release-notes-android/#2460-2023-01-31)
+* [Gamebase iOS SDK 2.46.0](./release-notes-ios/#2460-2023-01-31)
+
 ### 2.45.0 (2022. 12. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.45.0/GamebaseSDK-Unity.zip)
 
