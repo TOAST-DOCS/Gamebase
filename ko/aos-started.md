@@ -552,9 +552,9 @@ android {
 
 * Gamebase에서 권장하는 flow는 Sample Project에도 동일하게 구현되어 있습니다.
     * Android Sample Project
-        * 아래 링크의 GamebaseAndroidSDK/sample
-        * [https://docs.toast.com/ko/Download/#game-gamebase](https://docs.toast.com/ko/Download/#game-gamebase)
-            * GamebaseManager.java 파일을 참고하시면 됩니다.
+        * [Downloads > Game > Gamebase > Android SDK](https://docs.toast.com/ko/Download/#game-gamebase)
+            * GamebaseSDK-Android.zip/GamebaseSDK-Android-{version}/sample
+            * app/src/main/java/com/toast/android/gamebase/sample/gamebase_manager 폴더의 kt 파일들을 참고하시면 됩니다.
     * Unity Sample Project
         * [https://github.com/nhn/toast.gamebase.unity.sample](https://github.com/nhn/toast.gamebase.unity.sample)
 * 게임이 시작되었을 때 Gamebase 클라이언트 SDK를 초기화하고 로그인이 성공하면, 결제 재처리를 시작하고 푸시 토큰을 등록하세요.
