@@ -243,7 +243,7 @@ void Sample::SetSandboxMode(bool isSandbox)
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | Error of NHN Cloud Push library.<br> Check DetailCode. |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | Error of NHN Cloud Push library.<br> Check the error details. |
 | PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | Previous call for push API is yet to be completed. <br> Wait until the previous push API callback is executed and call again. |
 | PUSH_UNKNOWN_ERROR             | 5999       | Undefined push error. <br> Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry) and we'll reply at the earliest possible moment. |
 
@@ -252,8 +252,9 @@ void Sample::SetSandboxMode(bool isSandbox)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* This error occurs from NHN Cloud Push library. 
-* Check your error codes like below: 
+* The error is returned when an error occurs in NHN Cloud Push library.
+* The information on the error in NHN Cloud Push library is included in the error details, and you can find detailed error code and message as follows.
+
 
 ```cpp
 GamebaseError* gamebaseError = error; // GamebaseError object via callback

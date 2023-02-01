@@ -513,6 +513,12 @@ Call **Gamebase.addMapping(activity, idpType, callback)** to try mapping.
 
 Try mapping to another IdP while logged-in to a specific IdP.<br/>
 
+* How to Set AdditionalInfo Parameters
+
+| Keyname                                  | Usage                                  | Value Type                                     |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Set LINE Service Region | [See Login with IdP](./aos-authentication/#login-with-idp) |
+
 Below is an example of mapping to Facebook.
 
 **API**
@@ -591,6 +597,7 @@ This interface can be used for Gamebase AddMapping by an access token issued by 
 | AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter one time authorization code (OTAC) which can be obtained after Google login. |                                          |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Set LINE Service Region | [See Login with IdP](./aos-authentication/#login-with-idp) |
 
 > [Note]
 >
@@ -1247,7 +1254,7 @@ public static void testLogin() {
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | The authentication is not supported.                        |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | Named member does not exist or has withdrawn.                      |
 |                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | Failed to initialize external authentication library.  |
-|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | Error in external authentication library. <br/>Check DetailCode and DetailMessage. |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | Error in external authentication library. <br/>Check the details of the error. |
 |                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | The previous authentication process has not been completed. |
 |                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | You have been logged out due to an invalid Gamebase Access Token.<br/>Please try logging in again. |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | The issued TransferAccount has been used on the same device. |
@@ -1290,8 +1297,8 @@ public static void testLogin() {
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs in SDK of each IdP.
-* Check the error code as below.
+* The error is returned when an error occurs in external authentication library.
+* The information on the error in external authentication library is included in the error details, and you can find detailed error code and message as follows.
 
 ```java
 Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
@@ -1319,4 +1326,5 @@ Gamebase.login(activity, provider, new GamebaseDataCallback<AuthToken>() {
 });
 ```
 
-* Check error codes of IdP SDK at each developer's page.
+
+* For detailed error codes, see the Developer page on each external authentication library.

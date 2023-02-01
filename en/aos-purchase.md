@@ -76,12 +76,6 @@ If there's a value on the list of unconsumed purchases, proceed with the **Consu
 
 Request purchase by calling the following API using the gamebaseProductId of the item to purchase.<br/>
 The gamebaseProductId is generally the same as the ID of item registered at the store, but it can be changed in the Gamebase console. 
-Additional information entered in the payload field is maintained at the **PurchasableReceipt.payload** field after a successful payment, so it can be used for many purposes.<br/>
-
-> <font color="red">[Caution]</font><br/>
->
-> The AMAZON store does not support the **payload** field.
->
 
 When a game user cancels purchase, the **GamebaseError.PURCHASE_USER_CANCELED** error is returned.
 Please process cancellation.
@@ -92,17 +86,12 @@ Please process cancellation.
 + (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
                                           @NonNull final String gamebaseProductId,
                                           @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
-+ (void)Gamebase.Purchase.requestPurchase(@NonNull final Activity activity,
-                                          @NonNull final String gamebaseProductId,
-                                          @NonNull final String payload,
-                                          @NonNull final GamebaseDataCallback<PurchasableReceipt> callback);
 ```
 
 **Example**
 
 ```java
-String userPayload = "{\"description\":\"This is example\",\"channelId\":\"delta\",\"characterId\":\"abc\"}";
-Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, userPayload, new GamebaseDataCallback<PurchasableReceipt>() {
+Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataCallback<PurchasableReceipt>() {
     @Override
     public void onCallback(PurchasableReceipt receipt, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
@@ -125,11 +114,7 @@ class PurchasableReceipt {
     String gamebaseProductId;
     
     // It is the value passed to payload when calling Gamebase.Purchase.requestPurchase API.
-    //
-    // It is the value passed to payload when calling Gamebase.Purchase.requestPurchase API.
-    // This field can be used to hold a variety of additional information.
-    // For example, this field can be used to separately handle purchase and provision
-    // of the products purchased using the same user ID and sort them by game channel or character.
+    // Not recommended to use the value due to the possible loss of information depending on the store server status.
     @Nullable
     String payload;
     
@@ -210,7 +195,6 @@ class PurchasableReceipt {
 ```json
 {
     "gamebaseProductId": "my_product_001",
-    "payload": "UserPayload:!@#...",
     "price": 1000.0,
     "currency": "KRW",
     "paymentSeq": "2021032510000001",
@@ -227,7 +211,6 @@ class PurchasableReceipt {
 ```json
 {
     "gamebaseProductId": "my_subcription_product_001",
-    "payload": "MyData:{\"1234\":\"5678\"}",
     "price": 1000.0,
     "currency": "KRW",
     "paymentSeq": "2021032510000001",
@@ -355,16 +338,27 @@ class PurchasableItem {
     	* Before making a purchase
     	* After a purchase fails
 
+**PurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                                    |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
+| newBuilder()                    | **M**                      | Create Builder for Configuration object creation.                                |
+| build()                         | **M**                      | Convert the Builder that has been set up into a Configuration object.                                |
+| setAllStores(boolean allStores) | O                          | Return unconsumed lists purchased from a different store with the same UserID.<br/>Default value is **false**. |
+
 **API**
 
 ```java
-+ (void)Gamebase.Purchase.requestItemListOfNotConsumed(Activity activity, GamebaseDataCallback<List<PurchasableReceipt>> callback);
++ (void)Gamebase.Purchase.requestItemListOfNotConsumed(@NonNull final Activity activity,
+                                                       @NonNull final PurchasableConfiguration configuration,
+                                                       @NonNull final GamebaseDataCallback<List<PurchasableReceipt>> callback);
 ```
 
 **Example**
 
 ```java
-Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallback<List<PurchasableReceipt>>() {
+final PurchasableConfiguration configuration = PurchasableConfiguration.newBuilder().build();
+Gamebase.Purchase.requestItemListOfNotConsumed(activity, configuration, new GamebaseDataCallback<List<PurchasableReceipt>>() {
     @Override
     public void onCallback(List<PurchasableReceipt> data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
@@ -383,23 +377,35 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, new GamebaseDataCallbac
 
 List activated subscriptions for a current user ID. 
 Paid subscriptions (auto-renewable subscription, or auto-renewed consumable subscription) can be queried before they're expired. 
-Under a same user ID, both subscriptions for Android and iOS can be listed. 
 
 > <font color="red">[Caution]</font><br/>
 >
 > Current subscriptions for Android are supported by Google Play Store only.
 >
 
+**PurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                               |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------- |
+| newBuilder()                    | **M**                      | Create Builder for Configuration object creation.                            |
+| build()                         | **M**                      | Convert the Builder that has been set up into a Configuration object.                          |
+| setAllStores(boolean allStores) | O                          | Return the subscriptions purchased from a different store with the same UserID.<br/>Default value is **false**.  |
+
 **API**
 
 ```java
-+ (void)Gamebase.Purchase.requestActivatedPurchases(Activity activity, GamebaseDataCallback<List<PurchasableReceipt>> callback);
++ (void)Gamebase.Purchase.requestActivatedPurchases(@NonNull final Activity activity,
+                                                    @NonNull final PurchasableConfiguration configuration,
+                                                    @NonNull final GamebaseDataCallback<List<PurchasableReceipt>> callback);
 ```
 
 **Example**
 
 ```java
-Gamebase.Purchase.requestActivatedPurchases(activity, new GamebaseDataCallback<List<PurchasableReceipt>>() {
+final PurchasableConfiguration configuration = PurchasableConfiguration.newBuilder()
+        .setAllStores(true)
+        .build();
+Gamebase.Purchase.requestActivatedPurchases(activity, configuration, new GamebaseDataCallback<List<PurchasableReceipt>>() {
     @Override
     public void onCallback(List<PurchasableReceipt> data, GamebaseException exception) {
         if (Gamebase.isSuccess(exception)) {
@@ -431,7 +437,7 @@ See the guide on how to process a promotional purchase event via GamebaseEventHa
 | PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | Requested for purchase with invalid GamebaseProductID. |
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | You have exceeded your monthly purchase limit.             |
 | PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | The store is not supported.<br>You can choose either GG (Google), ONESTORE, GALAXY, AMAZON, or HUAWEI. |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | Error in IAP library.<br>Check DetailCode.   |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | Error in NHN Cloud IAP library.<br>Check the error details.  |
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | Unknown error in purchase.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry) and we'll reply at the earliest possible moment. |
 
 * Refer to the following document for the entire error code.
@@ -439,8 +445,8 @@ See the guide on how to process a promotional purchase event via GamebaseEventHa
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs at an NHN Cloud IAP SDK.
-* Check the error code as below.
+* The error is returned when an error occurs in NHN Cloud IAP library.
+* The information on the error in NHN Cloud IAP library is included in the error details, and you can find detailed error code and message as follows.
 
 ```java
 Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataCallback<PurchasableReceipt>() {
