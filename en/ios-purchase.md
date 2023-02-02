@@ -303,6 +303,7 @@ Request a list of non-consumed items, which have not been normally consumed (del
 ```objectivec
 - (void)viewDidLoad {
      TCGBPurchasableConfiguration *configuration = [[TCGBPurchasableConfiguration alloc] init];
+
      [TCGBPurchase requestItemListOfNotConsumedWithConfiguration:configuration completion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
         if (error != nil) {
             // To Requesting Non-consumed Item List Failed cause of the error
@@ -317,6 +318,7 @@ Request a list of non-consumed items, which have not been normally consumed (del
 
 ### List Activated Subscriptions
 
+List activated subscriptions based on the current user ID.
 Subscriptions that are paid up (e.g. auto-renewable subscription, auto-renewed consumable subscription) can be listed before they are expired. 
 
 **API**
@@ -468,6 +470,6 @@ NSString *detailErrorMessage = [error detailErrorMessage];
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
+
 * See the guide for the NHN Cloud IAP error codes.  
     * [NHN Cloud > User Guide for NHN CLoud SDK > NHN Cloud IAP > iOS > Error Codes](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-ios/#error-codes)
-

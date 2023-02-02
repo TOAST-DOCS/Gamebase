@@ -408,7 +408,6 @@ public void RequestItemListOfNotConsumedSample(bool allStores)
 
 List activated subscriptions for the current user ID. 
 Subscriptions that are paid up (e.g. auto-renewable subscription, auto-renewed consumable subscription) can be listed before they are expired.
-With a same user ID, all purchased subscriptions from Android and iOS can be listed. 
 
 > <font color="red">[Caution]</font><br/>
 >
