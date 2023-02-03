@@ -533,7 +533,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 * Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
     * kTCGBObserverLaunching
     	* 점검이 걸리거나 풀린 경우, 새로운 버전이 배포되어 업데이트가 필요한 경우와 같이, Launching 상태가 변경되었을 때 동작합니다.
-    	* TCGBGamebaseEventObserverData.code : TCGBLaunchingStatus 값을 의미합니다.
+    	* TCGBGamebaseEventObserverData.code: TCGBLaunchingStatus 값을 의미합니다.
             * IN_SERVICE: 200
             * RECOMMEND_UPDATE: 201
             * IN_SERVICE_BY_QA_WHITE_LIST: 202
@@ -545,13 +545,13 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
             * INTERNAL_SERVER_ERROR: 500
     * kTCGBObserverHeartbeat
     	* 탈퇴 처리 되거나 이용 정지로 인하여 사용자 계정 상태가 변했을 때 동작합니다.
-    	* TCGBGamebaseEventObserverData.code : TCGBError 값을 의미합니다.
+    	* TCGBGamebaseEventObserverData.code: TCGBError 값을 의미합니다.
             * TCGB_ERROR_INVALID_MEMBER: 6
             * TCGB_ERROR_BANNED_MEMBER: 7
     * kTCGBObserverNetwork
     	* 네트워크 변동 사항 정보를 받을 수 있습니다.
     	* 네트워크가 끊기거나 연결되었을 때, 혹은 Wifi 에서 셀룰러 네트워크로 변경되었을 때 동작합니다.
-    	* TCGBGamebaseEventObserverData.code : NetworkManager 값을 의미합니다.
+    	* TCGBGamebaseEventObserverData.code: NetworkManager 값을 의미합니다.
             * ReachabilityIsNotDefined = -100
             * NotReachable = -1
             * ReachableViaWWAN = 0
@@ -848,11 +848,11 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 * 개발사 자체 고객 센터(Developer customer center)
     * **고객 센터 URL**에 입력한 URL.
 * Gamebase 제공 고객 센터(Gamebase customer center)
-    * 로그인 전 : 유저 정보가 **없는** 고객 센터 URL.
-    * 로그인 후 : 유저 정보가 포함된 고객 센터 URL.
+    * 로그인 전: 유저 정보가 **없는** 고객 센터 URL.
+    * 로그인 후: 유저 정보가 포함된 고객 센터 URL.
 * NHN Cloud 조직 상품(Online Contact)
-    * 로그인 전 : 유저 정보가 **없는** 고객 센터 URL.
-    * 로그인 후 : 유저 정보가 포함된 고객 센터 URL.
+    * 로그인 전: 유저 정보가 **없는** 고객 센터 URL.
+    * 로그인 후: 유저 정보가 포함된 고객 센터 URL.
 
 #### Open Contact WebView
 
@@ -935,7 +935,7 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
 ```objectivec
 [TCGBContact requestContactURLWithCompletion^(NSString *contactUrl, TCGBError *error){
     if ([TCGBGamebase isSuccessWithError:error] == YES) {
-        NSLog(@"ContactURL : %@", contactUrl);
+        NSLog(@"ContactURL: %@", contactUrl);
     } else if (error.code == TCGB_ERROR_UI_CONTACT_FAIL_INVALID_URL) {
         // TODO: Gamebase Console Service Center URL is invalid.
         // Please check the url field in the TOAST Gamebase Console.
