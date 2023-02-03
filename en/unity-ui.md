@@ -472,7 +472,7 @@ public void ShowWebView()
 |                          | GamebaseScreenOrientation.PORTRAIT       | Portait mode                    |
 |                          | GamebaseScreenOrientation.LANDSCAPE      | Landscape mode                    |
 |                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | Reverse landscape     |
-| contentMode<br>(iOS 전용) | GamebaseWebViewContentMode.RECOMMENDED      | Browser recommended by the current platform (**default**)  |
+| contentMode              | GamebaseWebViewContentMode.RECOMMENDED      | Browser recommended by the current platform (**default**)  |
 |                          | GamebaseWebViewContentMode.MOBILE           | Mobile browser            |
 |                          | GamebaseWebViewContentMode.DESKTOP          | Desktop browser          |
 | colorR                   | 0~255                                    | Color of Navigation Bar: R<br>**default**: 18               |
@@ -484,8 +484,6 @@ public void ShowWebView()
 | isBackButtonVisible      | true or false                            | Activate or deactivate Go Back Button<br>**default**: true   |
 | backButtonImageResource  | ID of resource                           | Image of Go Back Button         |
 | closeButtonImageResource | ID of resource                           | Image of Close Button             |
-| enableFixedFontSize<br>(Android 전용)   | true or false              | 약관 창의 글자 크기를 고정할지 결정합니다.<br>**default**: false |
-| renderOutSideSafeArea<br>(Android 전용) | true or false              | Safe Area 영역 밖까지 렌더링할지 결정합니다.<br>**default**: false |
 
 > [TIP]
 >
