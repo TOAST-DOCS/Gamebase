@@ -467,7 +467,7 @@ public void ShowWebView()
 |                          | GamebaseScreenOrientation.PORTRAIT       | 纵向模式                    |
 |                          | GamebaseScreenOrientation.LANDSCAPE      | 横向模式                    |
 |                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 将横向模式旋转180度     |
-| contentMode<br>(iOS 전용) | GamebaseWebViewContentMode.RECOMMENDED      | 当前平台推荐的浏览器(**default**)  |
+| contentMode              | GamebaseWebViewContentMode.RECOMMENDED      | 当前平台推荐的浏览器(**default**)  |
 |                          | GamebaseWebViewContentMode.MOBILE           | 移动浏览器            |
 |                          | GamebaseWebViewContentMode.DESKTOP          | 桌面浏览器          |
 | colorR                   | 0~255                                    | 导航栏颜色 R<br>**default**: 18               |
