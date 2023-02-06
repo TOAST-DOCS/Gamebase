@@ -192,6 +192,9 @@ When a game user cancels purchase, the **TCGB_ERROR_PURCHASE_USER_CANCELED** is 
 // Whether it is promotion payment
 @property (nonatomic, assign) BOOL promotionPayment;
 
+// Store code (ex. "AS")
+@property (nonatomic, strong) NSString *storeCode;
+
 @end
 ```
 
@@ -282,9 +285,26 @@ Request a list of non-consumed items, which have not been normally consumed (del
     	* Before making a purchase
     	* After a purchase fails
 
+
+**API**
+
+```objectivec
++ (void)requestItemListOfNotConsumedWithConfiguration:(TCGBPurchasableConfiguration *)configuration
+                                           completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
+```
+
+#### Required Parameters
+
+* configuration: With TCGBPurchasableConfiguration, you can change the settings to query unconsumed lists.
+* completion: Notifies the user of the query result of unconsumed lists through a callback.
+
+**Example**
+
 ```objectivec
 - (void)viewDidLoad {
-    [TCGBPurchase requestItemListOfNotConsumedWithCompletion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
+     TCGBPurchasableConfiguration *configuration = [[TCGBPurchasableConfiguration alloc] init];
+
+     [TCGBPurchase requestItemListOfNotConsumedWithConfiguration:configuration completion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
         if (error != nil) {
             // To Requesting Non-consumed Item List Failed cause of the error
             return;
@@ -298,17 +318,28 @@ Request a list of non-consumed items, which have not been normally consumed (del
 
 ### List Activated Subscriptions
 
+List activated subscriptions based on the current user ID.
 Subscriptions that are paid up (e.g. auto-renewable subscription, auto-renewed consumable subscription) can be listed before they are expired. 
-With a same user ID, all purchased subscriptions from Android and iOS can be listed.
 
-### Reprocess Failed Purchase Transaction
+**API**
 
-In case a purchase is not normally completed after a successful purchase at a store due to failure of authentication of TOAST IAP server, try to reprocess by using API. <br/>
-Based on the latest success of purchase, reprocessing is required by calling an API for item delivery (supply).
+```objectivec
++ (void)requestActivatedPurchasesWithConfiguration:(TCGBPurchasableConfiguration *)configuration
+                                        completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
+```
+
+#### Required Parameters
+
+* configuration: With TCGBPurchasableConfiguration, you can change the settings to query activated subscriptions.
+* completion: Notifiy the user of the query result of activated subscriptions through a callback.
+
+**Example**
 
 ```objectivec
 - (void)viewDidLoad {
-    [TCGBPurchase requestActivatedPurchasesWithCompletion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
+    TCGBPurchasableConfiguration *configuration = [[TCGBPurchasableConfiguration alloc] init];
+
+    [TCGBPurchase requestActivatedPurchasesWithConfiguration:configuration completion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
         if (error != nil) {
             // To Requesting Activated Item List Failed cause of the error
             return;
@@ -326,6 +357,13 @@ This feature is useful when a purchased subscription cannot be queried nor activ
 Restored payment, including expired payment, is returned as result.
 In the case of auto-renewed consumable subscriptions, any missing purchases can be queried from the unconsumed purchase history after restoration is done. 
 
+**API**
+
+```objectivec
++ (void)requestRestoreWithCompletion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
+```
+
+**Example**
 
 ```objectivec
 - (void)viewDidLoad {
@@ -390,6 +428,12 @@ The promotion IAP is displayed only when an additional setting is done in App St
 
 E.g.) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 
+### TCGBPurchasableConfiguration
+
+| Parameter     | Values            | Description        |
+| ------------- | ----------------- | ------------------ |
+| allStores     | Bool | Set to make sure the API works for the current or all stores based on the same UserID<br>- All Stores: YES<br>- Current Store: NO<br>**default**: NO    |
+
 ### Error Handling
 
 | Error                                                      | Error Code | Description                                                  |
@@ -403,7 +447,7 @@ E.g.) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&prod
 | TCGB\_ERROR\_PURCHASE\_NOT\_EXIST\_PRODUCT\_ID             | 4006       | Requested for purchase with invalid GamebaseProductID.       |
 | TCGB_ERROR_PURCHASE_LIMIT_EXCEEDED                         | 4007       | You have exceeded your monthly purchase limit.               |
 | TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET              | 4010       | The store is not supported.<br />iOS supports "AS".                  |
-| TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR            | 4201       | Error in IAP library.<br>Please check error.message.         |
+| TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR            | 4201       | Error in NHN Cloud IAP library.<br>Please check the error details.         |
 | TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR                      | 4999       | Unknown error in purchase.<br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we'll return at the earliest possible moment. 
 
 * Refer to the following document for the entire error code.
@@ -413,19 +457,19 @@ E.g.) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&prod
 
 **TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs at an IAP module.
-* The error code is as below.
+* This error occurs when an error occurs in NHN Cloud IAP library.
+* The information on the error in NHN Cloud IAP library is included in the error details, and you can find detailed error code and message as follows.
 
 ```objectivec
 TCGBError *tcgbError = error; // TCGBError object via callback
-NSError *moduleError = [tcgbError.userInfo objectForKey:NSUnderlyingErrorKey]; // NSError object from external module
-NSInteger moduleErrorCode = moduleError.code;
-NSString *moduleErrorMessage = moduleError.message;
+
+NSInteger detailErrorCode = [error detailErrorCode];
+NSString *detailErrorMessage = [error detailErrorMessage];
 
 // If you use **description** method, you can get entire information of this object by JSON Format
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
-* See the guide for the IAP error codes.  
-    * [NHN Cloud > User Guide for NHN CLoud SDK > NHN Cloud IAP > iOS > Error Codes](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-ios/#error-codes)
 
+* See the guide for the NHN Cloud IAP error codes.  
+    * [NHN Cloud > User Guide for NHN CLoud SDK > NHN Cloud IAP > iOS > Error Codes](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-ios/#error-codes)

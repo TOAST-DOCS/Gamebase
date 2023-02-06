@@ -1186,7 +1186,7 @@ void Sample::Login()
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | The authentication method is not supported.                        |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | The member does not exist or has withdrawn.                      |
 |                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | Failed to initialize an external authentication library. |
-|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | Error occurred in the external authentication library. <br/> Check DetailCode and DetailMessage.  |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | Error occurred in the external authentication library. <br/> Check the error details.  |
 |                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | The previous authentication process has not been completed. |
 |                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | Logged out because the Gamebase Access Token is not valid.<br/>Please try logging in again. |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | Used TransferAccount on a same device.  |
@@ -1229,8 +1229,9 @@ void Sample::Login()
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* The error occurs from external authentication library. 
-* Check error codes like below: 
+* The error is returned when an error occurs in external authentication library.
+* The information on the error in external authentication library is included in the error details, and you can find detailed error code and message as follows.
+
 
 ```cpp
 GamebaseError* gamebaseError = error; // GamebaseError object via callback
@@ -1254,4 +1255,4 @@ else
 }
 ```
 
-* Please see each developer's page for error codes of IdP SDK. 
+* For detailed error codes, see the Developer page on each external authentication library.

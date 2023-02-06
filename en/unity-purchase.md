@@ -221,12 +221,16 @@ public class PurchasableReceipt
     /// </summary>
     public long expiryTime;
 
+
+     /// <summary>
+    /// The store code where the purchase is made.
+    /// You can check the store code list from GamebaseStoreCode class.
+    /// </summary>
+    public string storeCode;
+
     /// <summary>
     /// It is the value passed to payload when calling Gamebase.Purchase.requestPurchase API.
-    ///
-    /// This field can be used to hold a variety of additional information.
-    /// For example, this field can be used to separately handle purchase
-    /// and provision of the products purchased using the same user ID and sort them by game channel or character.
+    /// Not recommended to use due to the possible loss of information depending on the store server status.
     /// </summary>
     public string payload;
 
@@ -358,6 +362,13 @@ If the purchase was not completed normally, this API also serves the reprocessin
     * Before making a purchase
     * After a purchase fails
 
+
+**GamebaseRequest.Purchase.PurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                                    |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
+| allStores                       | O                          | Return the unconsumed list purchased from a different store with the same UserID.<br/>Default value is **false**. |
+
 **API**
 
 Supported Platforms
@@ -365,14 +376,18 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
-static void RequestItemListOfNotConsumed(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
+static void RequestItemListOfNotConsumed(GamebaseRequest.Purchase.PurchasableConfiguration configuration, GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
 ```
 
 **Example**
 ```cs
-public void RequestItemListOfNotConsumed()
+public void RequestItemListOfNotConsumedSample(bool allStores)
 {
-    Gamebase.Purchase.RequestItemListOfNotConsumed((purchasableReceiptList, error) =>
+    var configuration = new GamebaseRequest.Purchase.PurchasableConfiguration
+    {
+        allStores = allStores
+    };
+    Gamebase.Purchase.RequestItemListOfNotConsumed(configuration, (purchasableReceiptList, error) =>
     {
         if (Gamebase.IsSuccess(error))
         {
@@ -393,11 +408,17 @@ public void RequestItemListOfNotConsumed()
 
 List activated subscriptions for the current user ID. 
 Subscriptions that are paid up (e.g. auto-renewable subscription, auto-renewed consumable subscription) can be listed before they are expired.
-With a same user ID, all purchased subscriptions from Android and iOS can be listed. 
 
 > <font color="red">[Caution]</font><br/>
 >
 > For Android, subscriptions are currently supported only on the Google Play Store.
+
+
+**GamebaseRequest.Purchase.PurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                                    |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
+| allStores                       | O                          | Return the unconsumed list purchased from a different store with the same UserID.<br/>Default value is **false**. |
 
 **API**
 
@@ -406,14 +427,19 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
-static void RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
+static void RequestActivatedPurchases(GamebaseRequest.Purchase.PurchasableConfiguration configuration, GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
 ```
 
 **Example**
 ```cs
-public void RequestActivatedPurchasesSample()
+public void RequestActivatedPurchasesSample(bool allStores)
 {
-    Gamebase.Purchase.RequestActivatedPurchases((purchasableReceiptList, error) =>
+    var configuration = new GamebaseRequest.Purchase.PurchasableConfiguration
+    {
+        allStores = allStores
+    };
+    
+    Gamebase.Purchase.RequestActivatedPurchases(configuration, (purchasableReceiptList, error) =>
     {
         if (Gamebase.IsSuccess(error) == true)
         {
@@ -471,7 +497,7 @@ Supported Platforms
 | PURCHASE_NOT_EXIST_PRODUCT_ID               | 4006       | Requested for purchase with invalid GamebaseProductID. |
 | PURCHASE_LIMIT_EXCEEDED                     | 4007       | You have exceeded your monthly purchase limit.              |
 | PURCHASE_NOT_SUPPORTED_MARKET               | 4010       | The store is not supported.<br>The stores you can select are AS (App Store), GG (Google), ONESTORE, GALAXY, AMAZON, and HUAWEI. |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR             | 4201       | Error in IAP library.<br>Check DetailCode. |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR             | 4201       | Error in IAP library.<br>Check the code details. |
 | PURCHASE_UNKNOWN_ERROR                      | 4999       | Unknown error in purchase.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry) and we'll reply at the earliest possible moment. |
 
 * Refer to the following document for the entire error code.
@@ -480,8 +506,8 @@ Supported Platforms
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs at an IAP module.
-* Check the error code as below:
+* The error is returned when an error occurs in NHN Cloud IAP library.
+* The information on the error in NHN Cloud IAP library is included in the error details, and you can find detailed error code and message as follows.
 
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
@@ -505,5 +531,5 @@ else
 }
 ```
 
-* For IAP error codes, refer to the document below.
+* For NHN Cloud IAP error codes, refer to the document below.
     * [NHN Cloud > User Guide for NHN Cloud SDK > NHN Cloud IAP > Unity > Error Codes](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-unity/#error-code)

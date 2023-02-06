@@ -1283,7 +1283,7 @@ public void Login()
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | The authentication is not supported.                        |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | Named member does not exist or has withdrawn.                      |
 |                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | Failed to initialize the external authentication library. |
-|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | Error in external authentication library. <br/>Check DetailCode and DetailMessage.  |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | Error in external authentication library. <br/>Check the error details.  |
 |                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | Previous authentication process is not complete. |
 |                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | You have been logged out due to an invalid Gamebase Access Token.<br/>Please try logging in again. |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | The issued TransferKey has been used on the same device. |
@@ -1326,8 +1326,8 @@ public void Login()
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs in NHN Cloud external authentication library.
-* Check the error code as below:
+* The error is returned when an error occurs in external authentication library.
+* The information on the error in external authentication library is included in the error details, and you can find detailed error code and message as follows.
 
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
@@ -1353,4 +1353,4 @@ else
 }
 ```
 
-* Check error codes of IdP SDK at each developer's page.
+* For detailed error codes, see the Developer page on each external authentication library.
