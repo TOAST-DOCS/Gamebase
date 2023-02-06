@@ -511,10 +511,10 @@ showWebView(activity, urlString, configuration,
 | setCloseButtonImageResource(int resourceId) | ID of resource                      | 닫기 버튼 이미지      |
 | enableAutoCloseByCustomScheme(boolean enable) | true or false | 커스텀 스킴 동작 시 자동으로 웹뷰 종료.<br>**default**: true |
 | enableFixedFontSize(boolean enable)      | true or false | 시스템 글자 크기를 무시하고 고정된 크기로 웹뷰를 표시.<br>**default**: false |
-| setRenderOutsideSafeArea(boolean render) | true or false | safe area 를 무시하고 cutout 영역에도 render.<br>**default**: false |
+| setRenderOutsideSafeArea(boolean render) | true or false | SafeArea를 무시하고 Cutout 영역에도 렌더링.<br>**default**: false |
 
 ### Close WebView
-다음 API를 통하여, 보여지고 있는 웹뷰를 닫을 수 있습니다.
+다음 API를 통해 현재 보여지는 웹뷰를 닫을 수 있습니다.
 
 **API**
 
