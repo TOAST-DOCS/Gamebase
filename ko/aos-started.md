@@ -26,7 +26,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | Weibo 로그인을 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Weibo 로그인을 지원 | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.14<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.1<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Kakao 로그인을 지원 | API 21(Lollipop, OS 5.0) |
-| Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.22.1<br>nhncloud-iap-core | 게임 내 결제 지원 | - |
+| Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | 게임 내 결제 지원 | - |
 |  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Amazon Appstore를 지원 | API 18(JellyBean MR2, OS 4.3) |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Samsung Galaxy Store를 지원 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK의 minSdkVersion은 18이지만, 실제 결제를 위해 설치해야 하는 Checkout 서비스 앱의 minSdkVersion은 21입니다. |
 |  | gamebase-adapter-purchase-google | billingclient.billing-5.0.0<br>nhncloud-iap-google | Google Play를 지원 | - |
@@ -277,9 +277,10 @@ android {
 
 #### Facebook IdP
 
-* Facebook SDK 초기화를 위해 App ID 를 선언합니다.
-    * 해당 값을 직접 선언하는 것 보다는 아래 예시와 같이 resources 를 참조하도록 설정하는 것이 좋습니다.
-    * Gamebase SDK가 내부적으로 Facebook SDK 초기화 함수를 호출하고 있으므로 현재는 필수 설정은 아닙니다.
+* Facebook SDK 초기화를 위해 App ID와 Client Token을 선언합니다.
+    * 해당 값을 직접 선언하지 말고 아래 예시와 같이 resources 를 참조하도록 설정하세요.
+    * App ID는 필수값이 아니지만 Client Token은 Facebook SDK v13.0부터 필수로 입력해야 로그인이 성공합니다.
+        * Client Token은 Facebook 개발자 사이트 > 설정 > 고급 설정 > 보안 항목에서 찾을 수 있습니다.
 
 **AndroidManifest.xml**
 
@@ -289,6 +290,7 @@ android {
         ...
         <!-- [Facebook] Configurations begin -->
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id" />
+        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
         <!-- [Facebook] Configurations end -->
         ...
     </application>
@@ -299,8 +301,9 @@ android {
 
 ```xml
 <resources>
-    <!-- [Facebook] Facebook APP ID -->
+    <!-- [Facebook] Facebook APP ID & Client Token -->
     <string name="facebook_app_id">123456789012345</string>
+    <string name="facebook_client_token">a01234bc56de7fg89012hi3j45k67890</string>
 </resources>
 ```
 
