@@ -183,33 +183,35 @@ NHN Cloud에서 조직별로 제공되는 Online contact 상품을 사용하는 
 
 #### 1. Facebook
 Facebook 개발자 사이트에 등록한 앱의 {앱 아이디}와 {앱 시크릿 코드}를 Gamebase Console에 입력합니다.
-이때, 로그인 시 필요한 {Facebook Permission} 또한 JSON String 형태로 추가 정보란에 입력해야 합니다.
 
 **입력 필드**
 
 - ClientID: {AppID}
 - Secret Key: {App Secret Code}
-- 추가정보: Facebook Permission (json format)
+- 추가정보: Facebook Permission & Facebook Client Token (json format)
 
 
 ![gamebase_app_04_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_04_201812.png)
+![gamebase_app_authentication_information_facebook_02.png](https://static.toastoven.net/prod_gamebase/gamebase_app_authentication_information_facebook_02.png)
 
-**[예시] facebook_permission format**
-* Facebook의 경우, OAuth 인증 시도 시, Facebook에 요청할 정보의 종류를 설정해야 합니다.
+##### Additional Info Settings
+* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+* Facebook의 경우, OAuth 인증 시도 시 Facebook에 요청할 권한 정보인 **facebook_permission**과 **facebook_client_token**을 설정해야 합니다.
+* Facebook 추가 인증 정보 입력 예제
 
 ```json
-{ "facebook_permission": [ "public_profile", "email"] }
+{ "facebook_permission": ["public_profile", "email"], "facebook_client_token": "Your Facebook Client Token" }
 ```
 
-![gamebase_app_05_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_05_201812.png)
+![gamebase_app_authentication_information_facebook_03.png](https://static.toastoven.net/prod_gamebase/gamebase_app_authentication_information_facebook_03.png)
 
 **Reference URL**<br />
 
 - [Facebook 개발자 사이트](https://developers.facebook.com/)
 - [Facebook 권한](https://developers.facebook.com/docs/facebook-login/permissions/)
 
-##### Android & iOS & Unity
-NHN Cloud Console에서의 설정 외에 추가 설정은 없습니다.
+##### Android
+* [Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Facebook IdP](./aos-started/#facebook-idp)
 
 
 
@@ -273,7 +275,7 @@ PAYCO Client ID를 신청해서 발급받은 {client_id} 및 {client_secret}을 
 
 - ClientID: {PAYCO client_id}
 - Secret Key: {PAYCO client_secret}
-- 추가정보: PAYCO Service & Service Name (JSON format)
+- 추가정보: PAYCO Service Code & Service Name (JSON format)
 
 ##### Additional Info Settings
 
