@@ -46,7 +46,7 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 |  | GamebaseAuthTwitterAdapter.framework | | Twitterログインをサポート | iOS 9 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | LINEログインをサポート | iOS 10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 9 or later<br/>arm64サポート<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.0 | Hangameログインをサポート | iOS 9 or later |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.2 | Hangameログインをサポート | iOS 9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weiboログインをサポート | iOS 9 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.14 | Kakaoログインをサポート | iOS 11 or later |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.2.0<br/> ToastGamebaseIAP 0.15.0 | ゲーム内決済をサポート | iOS 9 or later |
