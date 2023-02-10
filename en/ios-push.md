@@ -192,24 +192,25 @@ You can get the push info registered with the TCGBPushTokenInfo value which come
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | Error in NHN Cloud Push library.<br>Please check DetailCode. |
+| TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | Error in NHN Cloud Push library.<br>Please check the error details. |
 | TCGB_ERROR_PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | Previous PUSH API call is not completed.<br>Please call again after the previous push API callback is executed. |
 | TCGB_ERROR_PUSH_UNKNOWN_ERROR            | 5999       | Unknown push error.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry), and we'll respond ASAP. |
 
 **TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs in the NHN Cloud Push library.
-* Check your error codes as below.
+* The error is returned when an error occurs in NHN Cloud Push library.
+* The information on the error in NHN Cloud Push library is included in the error details, and you can find detailed error code and message as follows.
 
 ```objectivec
-TCGBError *tcgbError = error; // TCGBError instance as callback
-NSError *moduleError = [tcgbError.userInfo objectForKey:NSUnderlyingErrorKey]; // Error object occurred at external library
-NSInteger moduleErrorCode = moduleError.code;
-NSString *moduleErrorMessage = moduleError.message;
+TCGBError *tcgbError = error; // TCGBError object via callback
 
-//  By calling [tcgbError description] as below, you can get the entire error information of json format.
+NSInteger detailErrorCode = [error detailErrorCode];
+NSString *detailErrorMessage = [error detailErrorMessage];
+// If you use **description** method, you can get entire information of this object by JSON Format
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
+
+
 
 * The NHN Cloud Push error codes are as follows:
     

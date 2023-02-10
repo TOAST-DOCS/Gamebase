@@ -140,24 +140,24 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 
 // 결제 식별자
 // purchaseToken 과 함께 'Consume' 서버 API 를 호출하는데 사용
-// Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
-// 주의 : Consume API 는 게임 서버에서 호출하세요!
+// Consume API: https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+// 주의: Consume API 는 게임 서버에서 호출하세요!
 @property (nonatomic, strong) NSString *paymentSeq;
 
 // 결제 식별자
 // paymentSeq 와 함께 'Consume' 서버 API 를 호출하는데 사용
-// Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
-// 주의 : Consume API 는 게임 서버에서 호출하세요!
+// Consume API: https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+// 주의: Consume API 는 게임 서버에서 호출하세요!
 @property (nonatomic, strong) NSString *purchaseToken;
 
 // Apple 스토어 콘솔에 등록된 상품 ID
 @property (nonatomic, strong) NSString *marketItemId;
 
 // 상품 타입
-// UNKNOWN : 인식 불가능한 타입. Gamebase SDK를 업데이트하거나 Gamebase 고객 센터로 문의하세요.
-// CONSUMABLE : 소비성 상품
-// AUTO_RENEWABLE : 구독성 상품
-// CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'
+// UNKNOWN: 인식 불가능한 타입. Gamebase SDK를 업데이트하거나 Gamebase 고객 센터로 문의하세요.
+// CONSUMABLE: 소비성 상품
+// AUTO_RENEWABLE: 구독성 상품
+// CONSUMABLE_AUTO_RENEWABLE: 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'
 @property (nonatomic, strong) NSString *productType;
 
 // 상품을 구매한 User ID
@@ -248,10 +248,10 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 @property (nonatomic, strong) NSString *marketItemId;
 
 // 상품 타입
-// UNKNOWN : 인식 불가능한 타입. Gamebase SDK를 업데이트하거나 Gamebase 고객 센터로 문의하세요.
-// CONSUMABLE : 소비성 상품
-// AUTO_RENEWABLE : 구독성 상품
-// CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'
+// UNKNOWN: 인식 불가능한 타입. Gamebase SDK를 업데이트하거나 Gamebase 고객 센터로 문의하세요.
+// CONSUMABLE: 소비성 상품
+// AUTO_RENEWABLE: 구독성 상품
+// CONSUMABLE_AUTO_RENEWABLE: 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'
 @property (nonatomic, strong) NSString *productType;
 
 // 통화 기호가 포함된 현지화 된 가격 정보
@@ -395,12 +395,12 @@ Facebook SDK, Google AdMob SDK 와 같이 SDK 내에 In App Purchase (AppStore �
 * 해결 방법
   * Facebook
     * Facebook Console > 설정 > 기본 설정 > **앱 내 이벤트를 자동으로 로깅(권장)** 기능을 비활성화
-    * Facebook 인증 기능을 사용하지 않을 경우 : **GamebaseAuthFacebookAdapter.framework 파일을 제외** 시킨 후 빌드
+    * Facebook 인증 기능을 사용하지 않을 경우: **GamebaseAuthFacebookAdapter.framework 파일을 제외** 시킨 후 빌드
 
 
 #### Overview
-* Apple Developer Overview : [https://developer.apple.com/app-store/promoting-in-app-purchases/](https://developer.apple.com/app-store/promoting-in-app-purchases/)
-* Apple Developer Reference : [https://help.apple.com/app-store-connect/#/deve3105860f](https://help.apple.com/app-store-connect/#/deve3105860f)
+* Apple Developer Overview: [https://developer.apple.com/app-store/promoting-in-app-purchases/](https://developer.apple.com/app-store/promoting-in-app-purchases/)
+* Apple Developer Reference: [https://help.apple.com/app-store-connect/#/deve3105860f](https://help.apple.com/app-store-connect/#/deve3105860f)
 
 
 App Store 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니다.

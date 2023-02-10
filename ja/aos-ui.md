@@ -510,7 +510,8 @@ showWebView(activity, urlString, configuration,
 | setBackButtonImageResource(int resourceId) | ID of resource                      | 戻るボタンの画像       |
 | setCloseButtonImageResource(int resourceId) | ID of resource                      | 閉じるボタンの画像      |
 | enableAutoCloseByCustomScheme(boolean enable) | true or false | カスタムScheme動作時、自動的にWebビュー終了。<br>**default**: true |
-
+| enableFixedFontSize(boolean enable)      | true or false | システム文字サイズを無視し、固定されたサイズでWebビューを表示。<br>**default**: false |
+| setRenderOutsideSafeArea(boolean render) | true or false | safe areaを無視し、cutout領域にもrender。<br>**default**: false |
 
 ### Close WebView
 次のAPIを通じて、表示されているWebViewを閉じることができます。

@@ -1,18 +1,18 @@
-## Game > Gamebase > Release Notes > Unity## Game > Gamebase > Release Notes > Unity
+## Game > Gamebase > Release Notes > Unity
 
 ### 2.46.0 (2023. 01. 31.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.46.0/GamebaseSDK-Unity.zip)
 
 #### 기능 추가
-* (WebGL) 구글 로그인 기능이 추가되었습니다.
+* (WebGL) Google 로그인 기능이 추가되었습니다.
 * (Android) 웹뷰에서 고정 폰트 사이즈 사용 여부를 설정하는 필드를 재지원합니다.
     * GamebaseWebViewConfiguration.enableFixedFontSize
-* (Android) 웹뷰에서 컷아웃(노치) 영역을 비롯한 모든 이용 가능한 스크린 공간을 사용하여 렌더링할 수 설정이 추가되었습니다.
+* (Android) 웹뷰에서 컷아웃(노치) 영역을 비롯한 모든 이용 가능한 스크린 공간을 사용하여 렌더링할 수 있는 설정이 추가되었습니다.
     * GamebaseWebViewConfiguration.renderOutsideSafeArea
 * (Android) IAP 구독 상태를 조회할 수 있는 RequestSubscriptionsStatus API가 추가되었습니다.
 
 #### 버그 수정
-* (Standalone) 초기화 시, 간헐적으로 발생하는 ReflectionTypeLoadException 오류가 더 이상 발생하지 않도록 개선되었습니다.
+* (Standalone) 초기화 시 간헐적으로 ReflectionTypeLoadException 오류가 발생하는 문제를 수정했습니다.
 
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.46.0](./release-notes-android/#2460-2023-01-31)
@@ -21,8 +21,8 @@
 ### 2.45.0 (2022. 12. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.45.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 미소비 내역 조회 API가 변경되었으므로 신규 API로 변경하시기 바랍니다. 
+#### Added Features
+* Make sure to update to a new API due to changes to the Query Unconsumed Purcahses API. 
  
         // Deprecated API 
         Gamebase.Purchase.RequestItemListOfNotConsumed(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
@@ -31,8 +31,8 @@
         Gamebase.Purchase.RequestItemListOfNotConsumed(GamebaseRequest.Purchase.PurchasableConfiguration configuration,
                                                        GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
  
-* 활성화 구독 조회 API가 변경되었으므로 신규 API로 변경하시기 바랍니다. 
-    * 기존 API와 동일한 결과를 받으려면 **GamebaseRequest.Purchase.PurchasableConfiguration.allStores**의 값을 **true**로 설정하시기 바랍니다. 
+* Make sure to update to a new API due to changes to the Query Activated Subscription API.
+    * To get the same result as the existing API, set the value of **GamebaseRequest.Purchase.PurchasableConfiguration.allStores** to **true**.
  
             // Deprecated API 
             Gamebase.Purchase.RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
@@ -41,10 +41,10 @@
             Gamebase.Purchase.RequestActivatedPurchases(GamebaseRequest.Purchase.PurchasableConfiguration configuration,
                                                         GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: NHN Cloud Unity SDK (0.27.1)
+#### Feature Updates
+* External SDK update: NHN Cloud Unity SDK (0.27.1)
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.45.0](./release-notes-android/#2450-2022-12-27)
 * [Gamebase iOS SDK 2.45.0](./release-notes-ios/#2450-2022-12-27)
 

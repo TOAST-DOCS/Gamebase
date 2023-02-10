@@ -1,5 +1,12 @@
 ## Game > Gamebase > 릴리스 노트 > iOS
 
+### 2.47.0 (2023. 02. 14.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.47.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트
+    * Hangame iOS SDK (1.8.3)
+
 ### 2.46.0 (2023. 01. 31.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.46.0/GamebaseSDK-iOS.zip)
 
@@ -736,8 +743,8 @@ Gamebase의 XCode 최소 지원 버전이 10에서 11로 변경되었습니다.
 #### 기능 개선/변경
 
 * TransferKey API 삭제
-    * issueTransferKey : TransferKey 발급
-    * requestTransfer : TransferKey 검증
+    * issueTransferKey: TransferKey 발급
+    * requestTransfer: TransferKey 검증
         
 #### 버그수정
 
@@ -753,8 +760,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 추가
 
 * Custom 지표를 위한 API 추가 (구매 성공의 경우 SDK 내부에서 자동 전송)
-    * setGameUserData : 게임 로그인 이후 유저 레벨 정보 전송
-    * traceLevelUpData : 레벨업 추적을 위하여 게임 유저의 레벨업이 되었을 때 호출
+    * setGameUserData: 게임 로그인 이후 유저 레벨 정보 전송
+    * traceLevelUpData: 레벨업 추적을 위하여 게임 유저의 레벨업이 되었을 때 호출
 
 #### 기능 개선/변경
 
@@ -782,7 +789,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 개선/변경
 * 이용정지/점검에 대해 사용자가 콘솔에 작성한 메시지들을 URL 인코딩하여 전송하고 클라이언트에서 디코딩하여 처리하도록 수정
 * PAYCO iOS SDK 업데이트 (1.2.4)
-* Remove API : Webview, Network, Launching
+* Remove API: Webview, Network, Launching
     * [TCGBUtil showToastWithMessage:duration:]
     * [TCGBWebView showWebBrowserWithURL:viewController:]
     * [TCGBWebView showWebViewWithURL:viewController:configuration:]
@@ -813,9 +820,9 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 개선/변경
 
 * Google Auth Adapter, Naver Auth Adapter의 Callback URL Scheme 설정 개선
-    * 콘솔에 "url_scheme_ios_only" 값을 설정하지 않으면 Default URL Scheme을 설정 하도록 개선 : Default URL Scheme을 사용하기 위해서는 XCode > Target > Info > URL Types에 tcgb.{Bundle ID}.google 또는 tcgb.{Bundle ID}.naver 등록 필요
+    * 콘솔에 "url_scheme_ios_only" 값을 설정하지 않으면 Default URL Scheme을 설정 하도록 개선: Default URL Scheme을 사용하기 위해서는 XCode > Target > Info > URL Types에 tcgb.{Bundle ID}.google 또는 tcgb.{Bundle ID}.naver 등록 필요
 * Payco Auth Adapter 개선
-    * URL Scheme 미설정으로 인해 의도치 않은 URL Scheme을 호출하던 문제 수정 : 설정 방법이 변경되어 업데이트를 위해서는 반드시 URL Scheme 설정 필요 (XCode > Target > Info > URL Types에 tcgb.{Bundle ID}.payco를 등록)
+    * URL Scheme 미설정으로 인해 의도치 않은 URL Scheme을 호출하던 문제 수정: 설정 방법이 변경되어 업데이트를 위해서는 반드시 URL Scheme 설정 필요 (XCode > Target > Info > URL Types에 tcgb.{Bundle ID}.payco를 등록)
 
 ### 1.12.1 (2018.08.09) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.12.1/GamebaseSDK-iOS.zip)
@@ -827,11 +834,11 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * 점검페이지를 외부 페이지로 사용할 때 Console에 입력한 점검 정보를 사용할 수 있도록 기능 추가
 * IdP 매핑된 사용자의 Guest 매핑시도시 에러 발생(TCGB_ERROR_AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP)
 * 인증 API 중복 호출시 에러 발생(AUTH_ALREADY_IN_PROGRESS_ERROR)
-* 오류 코드 추가 : Gamecenter 로그인 거부(TCGB_ERROR_IOS_GAMECENTER_DENIED)
+* 오류 코드 추가: Gamecenter 로그인 거부(TCGB_ERROR_IOS_GAMECENTER_DENIED)
     
 #### 버그수정
 
-* NAVER 로그인 시 프로필 정보 조회 실패로 인해 로그인이 불가능한 버그 수정 : 프로필 정보 조회 실패하더라도 로그인은 성공하도록 변경    
+* NAVER 로그인 시 프로필 정보 조회 실패로 인해 로그인이 불가능한 버그 수정: 프로필 정보 조회 실패하더라도 로그인은 성공하도록 변경    
     
 ### 1.12.0 (2018.07.24) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.12.0/GamebaseSDK-iOS.zip)
@@ -866,7 +873,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 개선/변경
 * LocalizedString 일본어 번역 추가
 * 인증 API 호출시 초기화, 로그인을 하지 않은 경우 명확히 에러 코드를 구분하도록 내부 로직을 개선
-* Naver ID Login SDK 업데이트 : iOS(4.0.10)
+* Naver ID Login SDK 업데이트: iOS(4.0.10)
     
 ### 1.9.1 (2018.05.29) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.9.1/GamebaseSDK-iOS.zip)
@@ -913,8 +920,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 기능 개선/변경
 
-* Observer 기능 추가에 따라 다음 API Deprecated : LaunchingStatus Listener, Network Listener(기존 사용자는 계속 사용 가능)
-* PAYCO 간편로그인 3rd SDK v1.2.2 적용 : 로그인 성공 시 토큰 만료 정보(expires_in) 제공, iPhoneX 로그인 UI 개선
+* Observer 기능 추가에 따라 다음 API Deprecated: LaunchingStatus Listener, Network Listener(기존 사용자는 계속 사용 가능)
+* PAYCO 간편로그인 3rd SDK v1.2.2 적용: 로그인 성공 시 토큰 만료 정보(expires_in) 제공, iPhoneX 로그인 UI 개선
 * iPhoneX 지원을 위하여, 웹뷰 사용 인터페이스 수정
 
 #### 버그 수정
@@ -1009,9 +1016,9 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 신규 상품 출시
 * 게임에서 공통적으로 필요한 기능들을 제공하여 손쉽고 효율적으로 게임 개발이 가능하도록 돕는 서비스입니다.
-    * 다양한 인증 지원 : Guest , 3rd Party(Google , Facebook, GameCenter 등) 인증
+    * 다양한 인증 지원: Guest , 3rd Party(Google , Facebook, GameCenter 등) 인증
     * 로그아웃 및 회원탈퇴 기능을 제공
     * 하나의 User가 여러 개의 외부 IDP를 동시에 사용할 수 있도록 mapping기능을 제공
     * 게임운영을 위한 게임 앱 상태관리, 점검, 긴급공지 등의 기능을 웹콘솔로 제공
     * 실시간 운영지표 확인 가능한 웹콘솔 화면 제공
-    * TOAST Cloud상품 연동 : PUSH, IAP
+    * TOAST Cloud상품 연동: PUSH, IAP

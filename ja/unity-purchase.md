@@ -397,7 +397,7 @@ public void RequestItemListOfNotConsumedSample(bool allStores)
         }
         else
         {
-            Debug.Log(string.Format("Get list failed. error is {0}", error));
+            Debug.Log(string.Format("RequestItemListOfNotConsumed failed. error is {0}", error));
         }
     });
 }
@@ -462,7 +462,7 @@ public void RequestActivatedPurchasesSample(bool allStores)
         else
         {
             // Check the error code and handle the error appropriately.
-            Debug.Log(string.Format("RequestItemListPurchasable failed. error is {0}", error));
+            Debug.Log(string.Format("RequestActivatedPurchases failed. error is {0}", error));
         }
     });
 }
@@ -470,19 +470,22 @@ public void RequestActivatedPurchasesSample(bool allStores)
 
 ### List Subscriptions status
 
-현재 사용자 ID 기준으로 구독 상품들의 상태를 조회합니다.
-콜백으로 반환되는 목록 안에는 구독 상품들의 정보가 담겨있습니다.
+現在のユーザーID基準でサブスクリプション商品の状態を照会します。
+コールバックで返されるリストにはサブスクリプション商品の情報が含まれています。
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[注意]</font><br/>
 >
-> 현재 Google Play 스토어에서만 구독 상품을 지원합니다.
+> * 以下のガイドに従って購読イベントを設定すると、購読ステータスコードが正常に返されます。
+>     * [Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド > Googleシステム内リアルタイム購読情報イベント配信設定](./console-google-guide/#google_1)
+>     * イベント設定を行っていない状態で購入したサブスクリプション商品のステータスコードは常に0(PURCHASED)が返されます。
+> * 現在、サブスクリプション商品はGoogle Playストアのみサポートします。
 
 
 **GamebaseRequest.Purchase.PurchasableConfiguration**
 
 | API                             | Mandatory(M) / Optional(O) | Description                                                 |
 | ------------------------------- | -------------------------- | ----------------------------------------------------------- |
-|  includeExpiredSubscriptions    | O                          | 만료된 구독 상품까지 포함하여 조회합니다.<br/>기본값은 **false**입니다.   |
+|  includeExpiredSubscriptions    | O                          | 期限切れのサブスクリプション商品まで含めて照会します。<br/>デフォルト値は**false**です。   |
 
 **API**
 
@@ -525,7 +528,7 @@ public void RequestSubscriptionsStatusSample(bool includeExpiredSubscriptions)
         else
         {
             // Check the error code and handle the error appropriately.
-            Debug.Log(string.Format("s failed. error is {0}", error));
+            Debug.Log(string.Format("RequestSubscriptionsStatus failed. error is {0}", error));
         }
     });
 }
@@ -536,117 +539,117 @@ public void RequestSubscriptionsStatusSample(bool includeExpiredSubscriptions)
 public class PurchasableSubscriptionStatus
 {
     /// <summary>
-    /// 앱이 설치된 스토어에 대해 Gamebase에서 내부적으로 정의한 코드입니다.
+    /// アプリがインストールされたストアに対してGamebaseで内部的に定義したコードです。
     /// </summary>
     public string storeCode;
 
     /// <summary>
-    /// 스토어의 결제 식별자입니다.
+    /// ストアの決済識別子です。
     /// </summary>
     public string paymentId;
 
     /// <summary>
-    /// 구독 상품은 갱신 될때마다 paymentId가 변경됩니다.
-    /// 이 필드는 맨 처음 구독 상품을 결제 했을때의 paymentId 를 알려줍니다.
-    /// 스토어에 따라, 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로
-    /// 항상 유효한 값을 보장하지는 않습니다.
+    /// サブスクリプション商品は更新されるたびにpaymentIdが変更されます。
+    /// このフィールドはサブスクリプション商品を初めて決済したときのpaymentIdを示します。
+    /// ストアや決済サーバーの状態によっては値が存在しない場合があるため
+    /// 常に有効な値を保障するわけではありません。
     /// </summary>
     public string originalPaymentId;
 
-    /// 결제 식별자입니다.
-    /// purchaseToken 과 함께 'Consume' 서버 API 를 호출하는데 사용하는 중요한 정보입니다.
+    /// 決済識別子です。
+    /// purchaseTokenと一緒に「Consume」サーバーAPIを呼び出すために使用する重要な情報です。
     ///    
-    /// 주의 : Consume API 는 게임 서버에서 호출하세요!
+    /// 注意：Consume APIはゲームサーバーで呼び出してください！
     /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
     public string paymentSeq;
 
     /// <summary>
-    /// 구매한 상품의 상품 ID입니다.
+    /// 購入した商品の商品IDです。
     /// </summary>
     public string marketItemId;
 
     /// <summary>
-    /// IAP 웹 콘솔의 항목 고유 식별자
+    /// IAP Webコンソールの項目固有識別子
     /// </summary>
     public long itemSeq;
 
     /// <summary>
-    /// 다음 값 중 하나를 가집니다.
-    /// * UNKNOWN: 알 수 없는 유형입니다. Gamebase SDK를 업데이트하거나 Gamebase 고객센터에 문의하세요.
-    /// * CONSUMABLE: 소모품입니다.
-    /// * AUTO_RENEWABLE: 구독 상품입니다.
+    /// 次の値のいずれかを持ちます。
+    /// * UNKNOWN：不明なタイプです。 Gamebase SDKをアップデートするか、Gamebaseサポートにお問い合わせください。
+    /// * CONSUMABLE：消耗品です。
+    /// * AUTO_RENEWABLE：サブスクリプション商品です。
     /// </summary>
     public string productType;
 
     /// <summary>
-    /// 상품을 구매한 사용자 아이디입니다.
-    /// 상품 구매에 사용하지 않은 사용자 아이디로 로그인하면 구매한 상품을 받을 수 없습니다.
+    /// 商品を購入したユーザーIDです。
+    /// 商品の購入に使用していないユーザーIDでログインすると購入した商品を受け取れません。
     /// </summary>
     public string userId;
 
     /// <summary>
-    /// 상품의 가격입니다.
+    /// 商品の価格です。
     /// </summary>
     public float price;
 
     /// <summary>
-    /// 통화 정보입니다.
+    /// 通貨情報です。
     /// </summary>
     public string currency;
 
     /// <summary>
-    /// Payment 식별자.
-    /// paymentSeq로 'Consume' 서버 API를 호출하는데 사용되는 중요한 정보입니다.
-    /// Consume API에서 매개변수 이름을 'accessToken'으로 지정해야 전달됩니다.
+    /// Payment識別子。
+    /// paymentSeqで「Consume」サーバーAPIを呼び出すために使用される重要な情報です。
+    /// Consume APIで引数名を「accessToken」に指定すると渡されます。
     ///
     /// <para/><see href="https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap">Purchase IAP</see>
     /// </summary>
     public string purchaseToken;
 
     /// <summary>
-    /// 이 값은 Google에서 구매할 때 사용되며 다음 값을 가질 수 있습니다.
-    /// 단, Google 서버의 오류로 인해 Gamebase 결제 서버에서 일시적으로 인증 로직이 비활성화된 경우,
-    /// null 만 반환하므로 항상 유효한 반환 값을 보장하지 않는다는 점을 기억하십시오.
-    /// * null : 정상결제
-    /// * 테스트 : 테스트 결제
-    /// * 프로모션 : 프로모션 결제
+    /// この値はGoogleで購入する時に使用され、次の値を持つことができます。
+    /// ただし、GoogleサーバーのエラーによりGamebase決済サーバーで一時的に認証ロジックが無効になっている場合、
+    /// nullが返されるため常に有効な値を保障するわけではありません。
+    /// * null：正常決済
+    /// * テスト：テスト決済
+    /// * プロモーション：プロモーション決済
     /// </summary>
     public string purchaseType;
 
     /// <summary>
-    /// 상품을 구매한 시간.(epoch time)
+    /// 商品を購入した時間。(epoch time)
     /// </summary>
     public long purchaseTime;
 
     /// <summary>
-    /// 구독이 만료되는 시간.(epoch time)
+    /// 購読の期限が切れる時間。(epoch time)
     /// </summary>
     public long expiryTime;
 
     /// <summary>
-    /// Gamebase.Purchase.requestPurchase API 호출 시 페이로드에 전달되는 값입니다.
+    /// Gamebase.Purchase.requestPurchase API呼び出し時にペイロードに渡される値です。
     ///
-    /// 이 필드는 다양한 추가 정보를 보유하는 데 사용할 수 있습니다.
-    /// 예를 들어, 이 필드는 구매를 별도로 처리하는 데 사용할 수 있습니다.
-    /// 동일한 사용자 ID로 구매한 상품을 제공하고 게임 채널별 또는 캐릭터별로 정렬합니다.
+    /// このフィールドはさまざまな追加情報を保有するために使用できます。
+    /// 例えば、このフィールドは購入を別途処理するために使用できます。
+    /// 同じユーザーIDで購入した商品を提供し、ゲームチャンネルごとまたはキャラクターごとにソートします。
     /// </summary>
     public string payload;
 
     /// <summary>
-    /// 구독 상태
-    /// 전체 상태 코드는 다음 문서를 참조하세요.
+    /// 購読状態
+    /// 全体ステータスコードは次の文書を参照してください。
     /// <para/><see href="https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-unity/#iapsubscriptionstatus">IAP Subscription Status</see>
     /// </summary>
     public int statusCode;
 
     /// <summary>
-    /// 구독 상태에 대한 설명입니다.
+    /// 購読状態の説明です。
     /// </summary>
     public string statusDescription;
 
     /// <summary>
-    /// Gamebase 콘솔에 등록된 상품 ID입니다.
-    /// Gamebase.Purchase.requestPurchase API 로 상품을 구매할 때 사용됩니다.
+    /// Gamebaseコンソールに登録された商品IDです。
+    /// Gamebase.Purchase.requestPurchase APIで商品を購入する時に使用されます。
     /// </summary>
     public string gamebaseProductId;
 }

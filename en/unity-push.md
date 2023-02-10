@@ -254,7 +254,7 @@ public void SetSandboxModeSample()
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | Error in NHN Cloud Push library.<br/>Please check DetailCode. |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | Error in NHN Cloud Push library.<br/>Please check the code details. |
 | PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | Previous Push API call is not completed.<br/>Please call again after the previous push API callback is executed.  |
 | PUSH_UNKNOWN_ERROR             | 5999       | Undefined push error.<br/>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry), and we'll respond ASAP. |
 
@@ -264,8 +264,8 @@ public void SetSandboxModeSample()
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* Occurs in the NHN Cloud Push library.
-* Check the error code as below:
+* The error is returned when an error occurs in NHN Cloud Push library.
+* The information on the error in NHN Cloud Push library is included in the error details, and you can find detailed error code and message as follows.
 
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
