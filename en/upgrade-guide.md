@@ -2,7 +2,7 @@
 
 ## 2.45.0
 
-* 미소비 내역 조회 API가 변경되었으므로 신규 API로 변경하시기 바랍니다.
+* Please update to a new API due to changes to the Query Unconsumed Purchases API.
 
         // Unity: Deprecated API
         Gamebase.Purchase.RequestItemListOfNotConsumed(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
@@ -21,9 +21,8 @@
         // iOS: New API
         + (void)requestItemListOfNotConsumedWithConfiguration:(TCGBPurchasableConfiguration *)configuration
                                                    completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
-
-* 활성화 구독 조회 API가 변경되었으므로 신규 API로 변경하시기 바랍니다.
-    * 기존 API와 동일한 결과를 받으려면 **PurchasableConfiguration.allStores**를 **true**로 설정하시기 바랍니다.
+* Make sure to update to a new API due to changes to the Query Activated Subscription API.
+    * To get the same results as the existing API, set **PurchasableConfiguration.setAllStores(true)**.
 
             // Unity: Deprecated API
             Gamebase.Purchase.RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);

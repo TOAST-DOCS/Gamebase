@@ -341,7 +341,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 * 축하합니다! 현재 계정과 연동 중인 IdP 계정이 추가되었습니다.
 * 매핑에 성공해도 '현재 로그인 중인 IdP'가 바뀌지는 않습니다. 즉, Gamecenter 계정으로 로그인한 후, Facebook 계정 매핑 시도가 성공했다고 해서 '현재 로그인 중인 IdP'가 Gamecenter에서 Facebook으로 변경되지는 않습니다. Gamecenter 상태로 유지됩니다.
-    * <font color="red">[주의]</font><br/> : Guest 계정은 예외입니다. Guest 계정으로 로그인한 상태에서 시도한 매핑이 성공했다면 Guest IdP는 **삭제**되고 '현재 로그인 중인 IdP'도 매핑된 IdP로 변경됩니다.
+    * <font color="red">[주의]</font><br/>: Guest 계정은 예외입니다. Guest 계정으로 로그인한 상태에서 시도한 매핑이 성공했다면 Guest IdP는 **삭제**되고 '현재 로그인 중인 IdP'도 매핑된 IdP로 변경됩니다.
 * 매핑은 단순히 IdP 연동만 추가해 줍니다.
 
 #### 2-2. 매핑이 실패한 경우
@@ -929,7 +929,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
         // Check if user is under grace ban
         if (authToken.tcgbMember.graceBanInfo != nil) {
             TCGBGraceBanInfo *graceBanInfo = authToken.tcgbMember.graceBanInfo;
-            // gracePeriodDate : epoch time in milliseconds
+            // gracePeriodDate: epoch time in milliseconds
             long long gracePeriodDate = graceBanInfo.gracePeriodDate;
             NSString *message = [graceBanInfo.message stringByRemovingPercentEncoding];
             if (graceBanInfo.paymentStatus != nil) {
@@ -942,7 +942,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
                 double releaseRuleConditionAmount = releaseRuleCondition.amount;
                 int releaseRuleConditionCount = releaseRuleCondition.count;
                 NSString *releaseRuleConditionCurrency = releaseRuleCondition.currency;
-                // condition type : "AND", "OR"
+                // condition type: "AND", "OR"
                 NSString *releaseRuleConditionType = releaseRuleCondition.conditionType;
             }
             // Guide the user through the UI how to finish the grace ban status.

@@ -11,12 +11,12 @@
 이미지 공지를 화면에 띄워 줍니다.
 
 #### Required 파라미터
-* viewController : 이미지 공지가 노출되는 ViewController입니다.
+* viewController: 이미지 공지가 노출되는 ViewController입니다.
  
 #### Optional 파라미터
-* configuration : TCGBImageNoticeConfiguration으로 배경색 등 이미지 공지 설정을 변경할 수 있습니다.
-* closeCompletion : 이미지 공지가 전체 종료될 때 사용자에게 콜백으로 알려 줍니다.
-* schemeEvent : 이미지를 클릭했을 때, 콘솔에 등록한 payload를 콜백으로 알려 줍니다.
+* configuration: TCGBImageNoticeConfiguration으로 배경색 등 이미지 공지 설정을 변경할 수 있습니다.
+* closeCompletion: 이미지 공지가 전체 종료될 때 사용자에게 콜백으로 알려 줍니다.
+* schemeEvent: 이미지를 클릭했을 때, 콘솔에 등록한 payload를 콜백으로 알려 줍니다.
 
 
 ```objectivec
@@ -28,7 +28,7 @@
 
     void(^schemeEvent)(NSString *, TCGBError *) = ^(NSString *payload , TCGBError *error) {
         // Called when image click event occurred.
-        NSLog(@"Image click event occurred : %@", payload);
+        NSLog(@"Image click event occurred: %@", payload);
     };
 
     [TCGBImageNotice showImageNoticesWithViewController:self configuration:nil closeCompletion:closeCompletion schemeEvent:schemeEvent];
@@ -51,7 +51,7 @@ TCGBImageNoticeConfiguration으로 사용자 설정 이미지 공지를 만들 �
 
     void(^schemeEvent)(NSString *, TCGBError *) = ^(NSString *payload , TCGBError *error) {
         // Called when image click event occurred.
-        NSLog(@"Image click event occurred : %@", payload);
+        NSLog(@"Image click event occurred: %@", payload);
     };
 
     TCGBImageNoticeConfiguration *configuration = [[TCGBImageNoticeConfiguration] alloc] init];
@@ -69,7 +69,7 @@ TCGBImageNoticeConfiguration으로 사용자 설정 이미지 공지를 만들 �
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
 | backgroundColor                  | UIColor     | 이미지 공지 뒷 배경색<br/>**default**: [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]         |
-| timeoutMS                  | long        | 이미지 공지 최대 로딩 시간 (단위 : millisecond)<br/>**default**: 5000                     |
+| timeoutMS                  | long        | 이미지 공지 최대 로딩 시간 (단위: millisecond)<br/>**default**: 5000                     |
 | enableAutoCloseByCustomScheme    | YES or NO   | 커스텀 스킴 이벤트 발생 시 공지 전체 닫기 또는 다음 공지 표시<br/>**default**: YES         |
 
 
@@ -118,11 +118,11 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 >
 
 #### Required 파라미터
-* viewController : 약관 창이 노출되는 ViewController입니다.
+* viewController: 약관 창이 노출되는 ViewController입니다.
  
 #### Optional 파라미터
-* configuration : TCGBTermsConfiguration으로 약관 창 강제 표시 여부 등 설정을 변경할 수 있습니다.
-* completion : 약관 동의 후 약관 창이 종료될 때 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 TCGBDataContainer 객체는 TCGBPushConfiguration으로 변환해서 로그인 후 registerPush API 에 사용할 수 있습니다.
+* configuration: TCGBTermsConfiguration으로 약관 창 강제 표시 여부 등 설정을 변경할 수 있습니다.
+* completion: 약관 동의 후 약관 창이 종료될 때 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 TCGBDataContainer 객체는 TCGBPushConfiguration으로 변환해서 로그인 후 registerPush API 에 사용할 수 있습니다.
 
 
 **API**
@@ -207,8 +207,8 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 >     * 콘솔에서 '기본 약관 설정' 을 하거나, **TCGB_ERROR_UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** 에러가 발생했을때는 약관을 표시하지 않도록 처리하시기 바랍니다.
 
 #### Required 파라미터
-* viewController : 최상위 ViewController입니다.
-* completion : API 호출 결과를 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 TCGBQueryTermsResult으로 콘솔에 설정된 약관 정보를 얻을 수 있습니다.
+* viewController: 최상위 ViewController입니다.
+* completion: API 호출 결과를 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 TCGBQueryTermsResult으로 콘솔에 설정된 약관 정보를 얻을 수 있습니다.
  
 
 **API**
@@ -253,7 +253,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 | -------------------- | --------------------------------| ------------------- |
 | termsSeq             | int                             | 약관 전체 KEY.<br/>updateTerms API 호출 시 필요한 값입니다.          |
 | termsVersion         | String                          | 약관 버전.<br/>updateTerms API 호출 시 필요한 값입니다.              |
-| termsCountryType     | String                          | 약관 타입.<br/> - KOREAN : 한국 약관 <br/> - GDPR : 유럽 약관 <br/> - ETC : 기타 약관         |
+| termsCountryType     | String                          | 약관 타입.<br/> - KOREAN: 한국 약관 <br/> - GDPR: 유럽 약관 <br/> - ETC: 기타 약관         |
 | contents             | Array< TCGBTermsContentDetail > | 약관 항목 정보          |
 
 
@@ -264,7 +264,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 | termsContentSeq      | int                   | 약관 항목 KEY         | 
 | name                 | String                | 약관 항목 이름         |
 | required             | BOOL                  | 필수 동의 여부         |
-| agreePush            | String                | 광고성 푸시 동의 여부.<br/> - NONE : 동의 안함 <br/> - ALL : 전체 동의 <br/> - DAY : 주간 푸시 동의<br/> - NIGHT : 야간 푸시 동의          |
+| agreePush            | String                | 광고성 푸시 동의 여부.<br/> - NONE: 동의 안함 <br/> - ALL: 전체 동의 <br/> - DAY: 주간 푸시 동의<br/> - NIGHT: 야간 푸시 동의          |
 | agreed               | BOOL                  | 해당 약관 항목에 대한 유저 동의 여부           |
 | node1DepthPosition   | int                   | 1단계 항목 노출 순서.           |
 | node2DepthPosition   | int                   | 2단계 항목 노출 순서.<br/> 없을 경우 -1           |
@@ -286,12 +286,12 @@ queryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면,
 >
 
 #### Required 파라미터
-* viewController : 최상위 ViewController입니다.
-* configuration : 서버에 등록할 유저의 선택 약관 정보입니다.
+* viewController: 최상위 ViewController입니다.
+* configuration: 서버에 등록할 유저의 선택 약관 정보입니다.
  
 #### Optional 파라미터
 
-* completion : 선택 약관 정보를 서버에 등록 후 사용자에게 콜백으로 알려줍니다.
+* completion: 선택 약관 정보를 서버에 등록 후 사용자에게 콜백으로 알려줍니다.
 
 
 **API**
@@ -375,14 +375,14 @@ Gamebase에서는 기본적인 웹뷰를 지원합니다.<br/>
 웹뷰를 표시합니다.<br/>
 
 ##### Required 파라미터
-* url : 파라미터로 전송되는 url은 유효한 값이어야 합니다.
-* viewController : 웹뷰가 노출되는 ViewController입니다.
+* url: 파라미터로 전송되는 url은 유효한 값이어야 합니다.
+* viewController: 웹뷰가 노출되는 ViewController입니다.
 
 ##### Optional 파라미터
-* configuration : TCGBWebViewConfiguration으로 웹뷰의 레이아웃을 변경 할 수 있습니다.
-* closeCompletion : 웹뷰가 종료될 때 사용자에게 콜백으로 알려 줍니다.
-* schemeList : 사용자가 받고 싶은 커스텀 스킴 목록을 지정합니다.
-* schemeEvent : schemeList로 지정한 커스텀 스킴을 포함하는 url을 콜백으로 알려 줍니다.
+* configuration: TCGBWebViewConfiguration으로 웹뷰의 레이아웃을 변경 할 수 있습니다.
+* closeCompletion: 웹뷰가 종료될 때 사용자에게 콜백으로 알려 줍니다.
+* schemeList: 사용자가 받고 싶은 커스텀 스킴 목록을 지정합니다.
+* schemeEvent: schemeList로 지정한 커스텀 스킴을 포함하는 url을 콜백으로 알려 줍니다.
 
 
 ```objectivec
@@ -445,8 +445,8 @@ Gamebase에서 지정해 놓은 스키마입니다.<br/>
 | gamebase://dismiss   | 웹뷰 닫기             |
 | gamebase://goback    | 웹뷰 뒤로 가기          |
 | gamebase://getuserid | 현재 로그인중인 있는 사용자의 아이디 표시 |
-| gamebase://showwebview?link={URLEncodedURL} | link 파라메터의 URL 을 웹뷰로 열기.<br>URLEncodedURL : 웹뷰로 열 URL.<br>URL 디코딩 필요. |
-| gamebase://openbrowser?link={URLEncodedURL} | link 파라메터의 URL을 외부 브라우저로 열기<br/>URLEncodedURL : 외부 브라우저로 열 URL<br/>URL 디코딩 필요 |
+| gamebase://showwebview?link={URLEncodedURL} | link 파라메터의 URL 을 웹뷰로 열기.<br>URLEncodedURL: 웹뷰로 열 URL.<br>URL 디코딩 필요. |
+| gamebase://openbrowser?link={URLEncodedURL} | link 파라메터의 URL을 외부 브라우저로 열기<br/>URLEncodedURL: 외부 브라우저로 열 URL<br/>URL 디코딩 필요 |
 
 
 

@@ -162,7 +162,7 @@ public class PurchasableReceipt
     /// 결제 식별자입니다.
     /// purchaseToken 과 함께 'Consume' 서버 API 를 호출하는데 사용하는 중요한 정보입니다.
     ///    
-    /// 주의 : Consume API 는 게임 서버에서 호출하세요!
+    /// 주의: Consume API 는 게임 서버에서 호출하세요!
     /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
     /// </summary>
     public string paymentSeq;
@@ -172,7 +172,7 @@ public class PurchasableReceipt
     /// paymentSeq 와 함께 'Consume' 서버 API 를 호출하는데 사용하는 중요한 정보입니다.
     /// Consume API 에서는 'accessToken' 라는 이름의 파라메터로 전달해야 합니다.
     ///    
-    /// 주의 : Consume API 는 게임 서버에서 호출하세요!
+    /// 주의: Consume API 는 게임 서버에서 호출하세요!
     /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
     /// </summary>
     public string purchaseToken;
@@ -184,10 +184,10 @@ public class PurchasableReceipt
 
     /// <summary>
     /// 상품 타입으로, 다음 값들이 올 수 있습니다.
-    /// * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객 센터로 문의하세요.
-    /// * CONSUMABLE : 소비성 상품.
-    /// * AUTO_RENEWABLE : 구독형 상품.
-    /// * CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
+    /// * UNKNOWN: 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객 센터로 문의하세요.
+    /// * CONSUMABLE: 소비성 상품.
+    /// * AUTO_RENEWABLE: 구독형 상품.
+    /// * CONSUMABLE_AUTO_RENEWABLE: 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
     /// <para/><see cref="GamebasePurchase.ProductType"/>
     /// </summary>
     public string productType;
@@ -318,10 +318,10 @@ public class PurchasableItem
 
     /// <summary>
     /// 상품 타입으로, 다음 값들이 올 수 있습니다.
-    /// * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객 센터로 문의하세요.
-    /// * CONSUMABLE : 소비성 상품.
-    /// * AUTORENEWABLE : 구독형 상품.
-    /// * CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
+    /// * UNKNOWN: 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객 센터로 문의하세요.
+    /// * CONSUMABLE: 소비성 상품.
+    /// * AUTORENEWABLE: 구독형 상품.
+    /// * CONSUMABLE_AUTO_RENEWABLE: 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
     /// <para/><see cref="GamebasePurchase.ProductType"/>
     /// </summary>
     public string productType;
@@ -472,11 +472,11 @@ public void RequestActivatedPurchasesSample(bool allStores)
 ### List Subscriptions status
 
 현재 사용자 ID 기준으로 구독 상품들의 상태를 조회합니다.
-콜백으로 반환되는 목록 안에는 구독 상품들의 정보가 담겨있습니다.
+콜백으로 반환되는 목록 안에는 구독 상품들의 정보가 담겨 있습니다.
 
 > <font color="red">[주의]</font><br/>
 >
-> * 구독 상태 코드는 아래 가이드를 따라 구독 이벤트 설정을 해야 정상적으로 반환됩니다.
+> * 아래 가이드에 따라 구독 이벤트를 설정해야 구독 상태 코드가 정상적으로 반환됩니다.
 >     * [Game > Gamebase > 스토어 콘솔 가이드 > Google 콘솔 가이드 > Google 시스템 내 실시간 구독 정보 이벤트 전파 설정](./console-google-guide/#google_1)
 >     * 이벤트 설정을 하지 않은 상태에서 구매한 구독 상품의 상태 코드는 항상 0(PURCHASED)이 반환됩니다.
 > * 현재 구독 상품은 Google Play 스토어만 지원합니다.
@@ -551,16 +551,16 @@ public class PurchasableSubscriptionStatus
 
     /// <summary>
     /// 구독 상품은 갱신 될때마다 paymentId가 변경됩니다.
-    /// 이 필드는 맨 처음 구독 상품을 결제 했을때의 paymentId 를 알려줍니다.
-    /// 스토어에 따라, 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로
+    /// 이 필드는 구독 상품을 최초 결제했을 때의 paymentId를 알려줍니다.
+    /// 스토어 및 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로
     /// 항상 유효한 값을 보장하지는 않습니다.
     /// </summary>
     public string originalPaymentId;
 
     /// 결제 식별자입니다.
-    /// purchaseToken 과 함께 'Consume' 서버 API 를 호출하는데 사용하는 중요한 정보입니다.
+    /// purchaseToken과 함께 'Consume' 서버 API를 호출하는 데 사용하는 중요한 정보입니다.
     ///    
-    /// 주의 : Consume API 는 게임 서버에서 호출하세요!
+    /// 주의: Consume API는 게임 서버에서 호출하세요!
     /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
     public string paymentSeq;
 
@@ -576,7 +576,7 @@ public class PurchasableSubscriptionStatus
 
     /// <summary>
     /// 다음 값 중 하나를 가집니다.
-    /// * UNKNOWN: 알 수 없는 유형입니다. Gamebase SDK를 업데이트하거나 Gamebase 고객센터에 문의하세요.
+    /// * UNKNOWN: 알 수 없는 유형입니다. Gamebase SDK를 업데이트하거나 Gamebase 고객 센터에 문의하세요.
     /// * CONSUMABLE: 소모품입니다.
     /// * AUTO_RENEWABLE: 구독 상품입니다.
     /// </summary>
@@ -600,7 +600,7 @@ public class PurchasableSubscriptionStatus
 
     /// <summary>
     /// Payment 식별자.
-    /// paymentSeq로 'Consume' 서버 API를 호출하는데 사용되는 중요한 정보입니다.
+    /// paymentSeq로 'Consume' 서버 API를 호출하는 데 사용되는 중요한 정보입니다.
     /// Consume API에서 매개변수 이름을 'accessToken'으로 지정해야 전달됩니다.
     ///
     /// <para/><see href="https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap">Purchase IAP</see>
@@ -610,10 +610,10 @@ public class PurchasableSubscriptionStatus
     /// <summary>
     /// 이 값은 Google에서 구매할 때 사용되며 다음 값을 가질 수 있습니다.
     /// 단, Google 서버의 오류로 인해 Gamebase 결제 서버에서 일시적으로 인증 로직이 비활성화된 경우,
-    /// null 만 반환하므로 항상 유효한 반환 값을 보장하지 않는다는 점을 기억하십시오.
-    /// * null : 정상결제
-    /// * 테스트 : 테스트 결제
-    /// * 프로모션 : 프로모션 결제
+    /// null만 반환하므로 항상 유효한 값을 보장하지 않을 수 있습니다.
+    /// * null: 정상결제
+    /// * 테스트: 테스트 결제
+    /// * 프로모션: 프로모션 결제
     /// </summary>
     public string purchaseType;
 

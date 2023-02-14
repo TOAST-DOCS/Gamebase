@@ -186,6 +186,10 @@ class PurchasableReceipt {
     
     // itemSeqで商品を購入するLegacy API用の識別子です。
     long itemSeq;
+
+    // 商品を購入したStore Code。
+    @NonNull
+    public String storeCode;
 }
 ```
 
@@ -376,6 +380,8 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, configuration, new Game
 
 現在のユーザーID基準で有効になっている定期購入リストを照会します。
 決済が完了した定期購入商品(自動更新型定期購入、自動更新型消費性定期購入商品)は、有効期限が切れる前まで照会できます。
+購読ライフサイクル処理は、次の文書をご覧ください。
+[NHN Cloud > SDK使用ガイド > IAP > Android > Google Play Store購読(定期的決済)機能 > 購読ライフサイクル処理](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#subscription-lifecycle-handling)
 
 > <font color="red">[注意]</font><br/>
 >
@@ -416,6 +422,181 @@ Gamebase.Purchase.requestActivatedPurchases(activity, configuration, new Gamebas
         }
     }
 });
+```
+
+### List Status of Subscriptions
+
+現在のユーザーID基準で購入した購読商品の状態を照会できます。
+決済が完了した購読商品(自動更新型購読、自動更新型消費性購読商品)は、期限が切れる前まで継続して照会できます。
+**PurchasableConfiguration.setIncludeExpiredSubscriptions(true)**APIで、有効期限が切れた購読商品の状態も照会できます。
+購読ステータスコードは、次の文書を参照してください。
+[NHN Cloud > SDK使用ガイド > IAP > Android > NHN Cloud IAP Class Reference > IapSubscriptionStatus.StatusCode](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#iapsubscriptionstatusstatuscode)
+
+> <font color="red">[注意]</font><br/>
+>
+> * 購読ステータスコードは、以下のガイドに従って購読イベント設定を行うと正常に返されます。
+>     * [Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド > Googleシステム内リアルタイム購読情報イベント配信設定](./console-google-guide/#google_1)
+>     * イベント設定を行っていない状態で購入した購読商品のステータスコードは常に0(PURCHASED)が返されます。
+> * 現在、購読商品はGoogle Playストアのみサポートします。
+
+**PurchasableConfiguration**
+
+| API                                             | Mandatory(M) / Optional(O) | Description                              |
+|-------------------------------------------------|----------------------------|------------------------------------------|
+| newBuilder()                                    | **M**                      | Configurationオブジェクトを作成するためのBuilderを作成します。  |
+| build()                                         | **M**                      | 設定を終えたBuilderをConfigurationオブジェクトに変換します。 |
+| setIncludeExpiredSubscriptions(boolean include) | O                          | 有効期限が切れた購読商品を含めます。<br/>デフォルト値は**false**です。 |
+
+**API**
+
+```java
++ (void)Gamebase.Purchase.requestSubscriptionsStatus(@NonNull final Activity activity,
+                                                     @NonNull final PurchasableConfiguration configuration,
+                                                     @NonNull final GamebaseDataCallback<List<PurchasableSubscriptionStatus>> callback);
+```
+
+**Example**
+
+```java
+final PurchasableConfiguration configuration = PurchasableConfiguration.newBuilder()
+        .setIncludeExpiredSubscriptions(true)
+        .build();
+Gamebase.Purchase.requestSubscriptionsStatus(activity, configuration, new GamebaseDataCallback<List<PurchasableSubscriptionStatus>>() {
+    @Override
+    public void onCallback(List<PurchasableSubscriptionStatus> data, GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            // Succeeded.
+        } else {
+            // Failed.
+            Log.e(TAG, "Request status of subscription list failed- "
+                    + "errorCode: " + exception.getCode()
+                    + "errorMessage: " + exception.getMessage()
+                    + "errorDetail: " + exception.toString());
+        }
+    }
+});
+```
+
+**VO**
+
+```java
+class PurchasableSubscriptionStatus {
+    // 購入したアイテムの商品IDです。
+    @Nullable
+    String gamebaseProductId;
+    
+    // 購読ステータスコードです。
+    //
+    // IapSubscriptionStatus.StatusCode : https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#iapsubscriptionstatusstatuscode
+    public int statusCode;
+    
+    // 購読ステータスコードの説明です。
+    @NonNull
+    public String statusDescription;
+    
+    // 購入した商品の価格です。
+    float price;
+    
+    // 通貨コードです。
+    @NonNull
+    String currency;
+    
+    // 決済識別子です。
+    // purchaseTokenと一緒に「Consume」サーバーAPIを呼び出すために使用する重要な情報です。
+    //
+    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // 注意: Consume APIはゲームサーバーで呼び出してください！
+    @NonNull
+    String paymentSeq;
+    
+    // 決済識別子です。
+    // paymentSeqと一緒に「Consume」サーバーAPIを呼び出すために使用する重要な情報です。
+    // Consume APIでは'accessToken'という名前のパラメータで渡す必要があります。
+    //
+    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // 注意: Consume APIは、ゲームサーバーで呼び出してください！
+    @NonNull
+    String purchaseToken;
+    
+    // Google、Appleなどのストアコンソールに登録された商品IDです。
+    @NonNull
+    String marketItemId;
+    
+//商品タイプとして、次の値が来ることができます。
+    // * UNKNOWN：認識できないタイプ。 Gamebase SDKをアップデートするか、Gamebaseサポートにお問い合わせください。
+    // * CONSUMABLE：消費性商品。
+    // * AUTO_RENEWABLE：購読商品。
+    // * CONSUMABLE_AUTO_RENEWABLE：購読商品購を購入したユーザーに定期的に消費が可能な商品を支給したい場合に使用される「消費が可能な購読商品」。
+    @NonNull
+    String productType;
+    
+    // 商品を購入したUser ID.
+    // 商品を購入していないUser IDでログインした場合は購入したアイテムを獲得できません。
+    @NonNull
+    String userId;
+    
+    // 商品を購入したStore Code。
+    @NonNull
+    public String storeCode;
+    
+    // ストアの決済識別子です。
+    @Nullable
+    String paymentId;
+    
+    // 商品を購入した時刻です。(epoch time)
+    long purchaseTime;
+    
+    // 購読が終了する時刻です。(epoch time)
+    long expiryTime;
+    
+    // Google決済時に使用される値で、次の値が来ることができます。
+    // しかしGoogleサーバーで障害が発生してGamebase決済サーバーで一時的に検証ロジックをオフにした場合には
+    // nullのみ返されるため常に有効な値を保障するわけではないことに注意してください。
+    // * null :一般決済
+    // * Test :テスト決済
+    // * Promo : Promotion決済
+    @Nullable
+    String purchaseType;
+    
+    // 購読商品は更新されるたびにpaymentIdが変更されます。
+    // このフィールドは、最初の購読商品を決済したときのpaymentIdを示します。
+    // ストアや決済サーバーの状態によっては値が存在しない場合があるため
+    // 常に有効な値を保障するわけではありません。
+    @Nullable
+    String originalPaymentId;
+    
+    // itemSeqで商品を購入するLegacy API用の識別子です。
+    long itemSeq;
+    
+    // Gamebase.Purchase.requestPurchase API呼び出し時にpayloadに渡した値です。
+    // ストアサーバーの状態によっては情報が失われる場合があるため、使用を推奨しません。
+    @Nullable
+    String payload;
+}
+```
+
+**Response Example**
+
+```json
+{
+    "gamebaseProductId": "my_subcription_product_002",
+    "statusCode": 13,
+    "statusDescription": "EXPIRED",
+    "userId": "AS@123456ABCDEFGHIJ",
+    "storeCode": "GG",
+    "currency": "KRW",
+    "expiryTime": 1675012345678,
+    "itemSeq": 1000003,
+    "marketItemId": "my_subcription_product_002",
+    "originalPaymentId": "GPA.1111-2222-3333-56789",
+    "paymentId": "GPA.1111-2222-3333-56789",
+    "paymentSeq": "2021032510000002",
+    "price": 1000.0,
+    "productType": "CONSUMABLE_AUTO_RENEWABLE",
+    "purchaseTime": 1675001234567,
+    "purchaseToken": "kfetTfGk4...",
+    "purchaseType": "Test"
+}
 ```
 
 ### Event by Promotion

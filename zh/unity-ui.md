@@ -467,7 +467,7 @@ public void ShowWebView()
 |                          | GamebaseScreenOrientation.PORTRAIT       | 纵向模式                    |
 |                          | GamebaseScreenOrientation.LANDSCAPE      | 横向模式                    |
 |                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 将横向模式旋转180度     |
-| contentMode<br>(iOS 전용) | GamebaseWebViewContentMode.RECOMMENDED      | 当前平台推荐的浏览器(**default**)  |
+| contentMode              | GamebaseWebViewContentMode.RECOMMENDED      | 当前平台推荐的浏览器(**default**)  |
 |                          | GamebaseWebViewContentMode.MOBILE           | 移动浏览器            |
 |                          | GamebaseWebViewContentMode.DESKTOP          | 桌面浏览器          |
 | colorR                   | 0~255                                    | 导航栏颜色 R<br>**default**: 18               |
@@ -479,8 +479,6 @@ public void ShowWebView()
 | isBackButtonVisible      | true or false                            | 返回按钮有效或无效<br>**default**: true   |
 | backButtonImageResource  | ID of resource                           | 返回按钮图像         |
 | closeButtonImageResource | ID of resource                           | 关闭按钮图像             |
-| enableFixedFontSize<br>(Android 전용)   | true or false              | 약관 창의 글자 크기를 고정할지 결정합니다.<br>**default**: false |
-| renderOutSideSafeArea<br>(Android 전용) | true or false              | Safe Area 영역 밖까지 렌더링할지 결정합니다.<br>**default**: false |
 
 > [TIP]
 >

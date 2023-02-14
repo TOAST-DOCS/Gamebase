@@ -452,7 +452,7 @@ void Sample::RequestActivatedPurchases()
 | PURCHASE_NOT_EXIST_PRODUCT_ID               | 4006       | Requested for purchase with invalid GamebaseProductID. |
 | PURCHASE_LIMIT_EXCEEDED                     | 4007       | You have exceeded your monthly purchase limit.              |
 | PURCHASE_NOT_SUPPORTED_MARKET               | 4010       | The store is not supported.<br>The stores you can select are AS (App Store), GG (Google), ONESTORE, and GALAXY. |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR             | 4201       | Error in IAP library.<br>Check DetailCode. |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR             | 4201       | Error in NHN Cloud IAP library.<br>Check the error details. |
 | PURCHASE_UNKNOWN_ERROR                      | 4999       | Unknown error in purchase.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry) and we'll reply at the earliest possible moment. |
 
 * See the following document for the entire error codes. 
@@ -460,8 +460,8 @@ void Sample::RequestActivatedPurchases()
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* The error occurs from IAP module. 
-* Here's how to check error codes: 
+* The error is returned when an error occurs in NHN Cloud IAP library.
+* The information on the error in NHN Cloud IAP library is included in the error details, and you can find detailed error code and message as follows.
 
 ```cpp
 GamebaseError* gamebaseError = error; // GamebaseError object via callback
@@ -482,5 +482,5 @@ else
 }
 ```
 
-* For IAP error codes, refer to the document below.
+* For NHN Cloud IAP error codes, refer to the document below.
     * [NHN Cloud > User Guide for NHN Cloud SDK > NHN Cloud IAP > Unity > Error Codes](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-unity/#error-code)

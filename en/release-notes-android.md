@@ -1,5 +1,12 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.47.0 (2023. 02. 14.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.47.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: Hangame Android SDK (1.6.3)
+* 내부 로직 개선
+
 ### 2.46.0 (2023. 01. 31.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.46.0/GamebaseSDK-Android.zip)
 
@@ -7,7 +14,7 @@
 * 구독 상태를 조회할 수 있는 API가 추가되었습니다.
     * Gamebase.Purchase.requestSubscriptionsStatus(Activity, PurchasableConfiguration, GamebaseDataCallback&lt;List&lt;PurchasableSubscriptionStatus&gt;&gt;)
     * PurchasableConfiguration.Builder.setIncludeExpiredSubscriptions(boolean) API로 만료된 구독 상태도 조회할 수 있습니다.
-* 웹뷰에서 SafeArea를 무시하고 Cutout 영역에도 렌더링 할 수 있는 옵션을 추가했습니다.
+* 웹뷰에서 SafeArea를 무시하고 Cutout 영역에도 렌더링할 수 있는 옵션을 추가했습니다.
     * GamebaseWebViewConfiguration.Builder.setRenderOutsideSafeArea(boolean)
 
 #### 기능 개선/변경
@@ -17,10 +24,10 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.45.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
+#### Feature Updates
 
-* 외부 SDK 업데이트: NHN Cloud Android SDK (1.4.0), Payco Android SDK (1.5.9), Hangame Android SDK (1.6.2)
-* 미소비 내역 조회 API가 변경되었으므로 신규 API로 변경하시기 바랍니다.
+* External SDK update: NHN Cloud Android SDK (1.4.0), Payco Android SDK (1.5.9), Hangame Android SDK (1.6.2)
+* Make sure to update to a new API due to changes to the Query Unconsumed Purcahses API.
 
         // Deprecated API
         Gamebase.Purchase.requestItemListOfNotConsumed(Activity,
@@ -31,8 +38,9 @@
                                                        PurchasableConfiguration,
                                                        GamebaseDataCallback<List<PurchasableReceipt>>);
 
-* 활성화 구독 조회 API가 변경되었으므로 신규 API로 변경하시기 바랍니다.
-    * 기존 API와 동일한 결과를 받으려면 **PurchasableConfiguration.setAllStores(true)**로 설정하시기 바랍니다.
+* Make sure to update to a new API due to changes to the Query Activated Subscription API.
+
+    * To get the same results as the existing API, set **PurchasableConfiguration.setAllStores(true)**.
 
             // Deprecated API
             Gamebase.Purchase.requestActivatedPurchases(Activity,
@@ -43,10 +51,10 @@
                                                         PurchasableConfiguration,
                                                         GamebaseDataCallback<List<PurchasableReceipt>>);
 
-#### 버그 수정
+#### Bug Fixes
 
-* 앱 실행시 간헐적으로 ConcurrentModification 예외가 발생할 수 있는 이슈를 수정했습니다.
-* Hangame thirdIdP 로그인 후 Gamebase.getAuthProviderUserID() 호출시 NullPointerException이 발생하는 오류를 수정했습니다.
+* Fixed an issue where ConcurrentModification exceptions occur intermittenly while running the app.
+* Fixed an issue where, when calling Gamebase.getAuthProviderUserID() after logging in with Hangame thirdIdP, NullPointerException occurs.
 
 ### 2.44.2 (2022. 11. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.2/GamebaseSDK-Android.zip)

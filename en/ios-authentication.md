@@ -78,7 +78,6 @@ The logic described in the above can be implemented in the following order.
 
 ### Login as the Latest Login IdP
 
-When a login button is clicked for a specific IdP, following login API will be implemented.<br/>
 Try login with the most recently logged-in IdP. If a token is expired
 or its authentication fails, return failure.<br/>
 Note that a login should be implemented for the IdP.
@@ -374,10 +373,18 @@ Import the following header file to the ViewController to implement mapping.
 
 Try mapping to another IdP while logged-in to a specific IdP.<br/>
 
+* How to Set additionalInfo Parameters
+
+| Keyname                                  | Usage                        | Value Type                           |
+| ---------------------------------------- | ------------------------------ | ------------------------------ |
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | A region to perform login among LINE service regions  | [See Login with IdP](./ios-authentication/#login-with-idp)|
+
+
 **API**
 
 ```objectivec
 + (void)addMappingWithType:(NSString *)type viewController:(UIViewController *)viewController completion:(LoginCompletion)completion;
++ (void)addMappingWithType:(NSString *)type additionalInfo:(nullable NSDictionary<NSString *, id> *)additionalInfo viewController:(UIViewController *)viewController completion:(LoginCompletion)completion;
 ```
 
 **Example**
@@ -957,7 +964,7 @@ Instant withdrawal cannot be undone, so it is important to ask the user several 
 |                | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | The authentication method is not supported.                        |
 |                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | The member either does not exist or withdrew their account.                      |
 |                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR    | 3006       | Failed to initialize the external authentication library.                      |
-|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | An external authentication library error. <br/> Please check DetailCode and DetailMessage. |
+|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | An external authentication library error. <br/> Please check the error details. |
 |                | TCGB\_ERROR\_AUTH\_INVALID\_GAMEBASE\_TOKEN | 3011       | You have been logged out due to an invalid Gamebase Access Token.<br/>Please try logging in again. |
 | Auth (Login)   | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED  | 3101       | Token login failed.                          |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | Invalid token information.                        |
@@ -988,19 +995,17 @@ Instant withdrawal cannot be undone, so it is important to ask the user several 
 
 **TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR**
 
-* Occurs in each IdP SDK.
-* Can check error codes as follows.
-
-* For error codes of IdP SDK, refer to each Developer page.
+* The error is returned when an error occurs in external authentication library.
+* The information on the error in external authentication library is included in the error details, and you can find detailed error code and message as follows.
 
 ```objectivec
 TCGBError *tcgbError = error; // TCGBError object via callback
-NSError *moduleError = [tcgbError.userInfo objectForKey:NSUnderlyingErrorKey]; // NSError object from external module
-NSInteger moduleErrorCode = moduleError.code;
-NSString *moduleErrorMessage = moduleError.message;
+
+NSInteger detailErrorCode = [error detailErrorCode];
+NSString *detailErrorMessage = [error detailErrorMessage];
 
 // If you use **description** method, you can get entire information of this object by JSON Format
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
-
+For detailed error codes, see the Developer page on each external authentication library.

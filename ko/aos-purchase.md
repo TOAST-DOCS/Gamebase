@@ -504,36 +504,36 @@ class PurchasableSubscriptionStatus {
     String currency;
     
     // 결제 식별자입니다.
-    // purchaseToken 과 함께 'Consume' 서버 API 를 호출하는데 사용하는 중요한 정보입니다.
+    // purchaseToken과 함께 'Consume' 서버 API를 호출하는 데 사용하는 중요한 정보입니다.
     //
-    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
-    // 주의 : Consume API 는 게임 서버에서 호출하세요!
+    // Consume API: https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // 주의: Consume API는 게임 서버에서 호출하세요!
     @NonNull
     String paymentSeq;
     
     // 결제 식별자입니다.
-    // paymentSeq 와 함께 'Consume' 서버 API 를 호출하는데 사용하는 중요한 정보입니다.
-    // Consume API 에서는 'accessToken' 라는 이름의 파라메터로 전달해야 합니다.
+    // paymentSeq와 함께 'Consume' 서버 API를 호출하는 데 사용하는 중요한 정보입니다.
+    // Consume API에서는 'accessToken' 이라는 이름의 파라미터로 전달해야 합니다.
     //
-    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
-    // 주의 : Consume API 는 게임 서버에서 호출하세요!
+    // Consume API: https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // 주의: Consume API는 게임 서버에서 호출하세요!
     @NonNull
     String purchaseToken;
     
-    // Google, Apple 과 같이 스토어 콘솔에 등록된 상품 ID입니다.
+    // Google, Apple과 같이 스토어 콘솔에 등록된 상품 ID입니다.
     @NonNull
     String marketItemId;
     
     // 상품 타입으로, 다음 값들이 올 수 있습니다.
-    // * UNKNOWN : 인식 불가능한 타입. Gamebase SDK 를 업데이트 하거나 Gamebase 고객 센터로 문의하세요.
-    // * CONSUMABLE : 소비성 상품.
-    // * AUTO_RENEWABLE : 구독형 상품.
-    // * CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
+    // * UNKNOWN: 인식 불가능한 타입. Gamebase SDK를 업데이트하거나 Gamebase 고객 센터로 문의하세요.
+    // * CONSUMABLE: 소비성 상품.
+    // * AUTO_RENEWABLE: 구독형 상품.
+    // * CONSUMABLE_AUTO_RENEWABLE: 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
     @NonNull
     String productType;
     
     // 상품을 구매했던 User ID.
-    // 상품을 구매하지 않은 User ID 로 로그인 한다면 구매한 아이템을 획득할 수 없습니다.
+    // 상품을 구매하지 않은 User ID로 로그인하면 구매한 아이템을 획득할 수 없습니다.
     @NonNull
     String userId;
     
@@ -551,23 +551,23 @@ class PurchasableSubscriptionStatus {
     // 구독이 종료되는 시각입니다.(epoch time)
     long expiryTime;
     
-    // Google 결제시 사용되는 값으로, 다음 값들이 올 수 있습니다.
-    // 하지만 Google 서버에서 장애가 발생하여 Gamebase 결제 서버에서 일시적으로 검증 로직을 끄는 경우에는
-    // null 로만 리턴되므로 항상 유효한 값을 보장하지는 않음에 주의하시기 바랍니다.
-    // * null : 일반 결제
-    // * Test : 테스트 결제
-    // * Promo : Promotion 결제
+    // Google 결제 시 사용되는 값으로, 다음 값들이 올 수 있습니다.
+    // Google 서버에서 장애가 발생하여 Gamebase 결제 서버에서 일시적으로 검증 로직을 종료하는 경우
+    // null로만 반환되므로 항상 유효한 값을 보장하지 않을 수 있습니다.
+    // * null: 일반 결제
+    // * Test: 테스트 결제
+    // * Promo: Promotion 결제
     @Nullable
     String purchaseType;
     
-    // 구독 상품은 갱신 될때마다 paymentId가 변경됩니다.
-    // 이 필드는 맨 처음 구독 상품을 결제 했을때의 paymentId 를 알려줍니다.
-    // 스토어에 따라, 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로
+    // 구독 상품은 갱신될 때마다 paymentId가 변경됩니다.
+    // 이 필드는 구독 상품을 최초 결제했을 때의 paymentId를 알려줍니다.
+    // 스토어 및 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로
     // 항상 유효한 값을 보장하지는 않습니다.
     @Nullable
     String originalPaymentId;
     
-    // itemSeq 로 상품을 구매하는 Legacy API용 식별자입니다.
+    // itemSeq로 상품을 구매하는 Legacy API용 식별자입니다.
     long itemSeq;
     
     // Gamebase.Purchase.requestPurchase API 호출 시 payload로 전달했던 값입니다.
