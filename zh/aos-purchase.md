@@ -553,7 +553,7 @@ class PurchasableSubscriptionStatus {
     
     // 是订阅结束的时间。(epoch time)
     long expiryTime;
-  是调用Gamebase.Purchase.requestPurchase时作为payload传送的值。  
+    
     // Google支付时使用的值如下。
     // 但要注意由于Google服务器出现故障，而要占时关闭Gamebase结算服务器时，
     // 将始终返还为null，不始终保障有效的值。 
