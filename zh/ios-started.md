@@ -46,9 +46,9 @@ Gamebase可以通过以下方式安装。
 |  | GamebaseAuthTwitterAdapter.framework | | 支持Twitter登录。 | iOS 9 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | 支持LINE登录。 | iOS 10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | 支持iOS 9 or later<br/>arm64。<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.0 | 支持Hangame登录。 | iOS 9 or later |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.2 | 支持Hangame登录。 | iOS 9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | 支持Weibo登录。 | iOS 9 or later |
-|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.4 | 支持Kakao登录。 | iOS 11 or later |
+|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.14 | 支持Kakao登录。 | iOS 11 or later |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.2.0<br/> ToastGamebaseIAP 0.15.0 | 支持游戏内支付。 | iOS 9 or later |
 | Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.2.0 | 支持Push。 | iOS 9 or later |
 

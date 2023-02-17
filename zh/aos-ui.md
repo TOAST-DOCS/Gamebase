@@ -507,9 +507,8 @@ showWebView(activity, urlString, configuration,
 | setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | 导航栏颜色  |
 | setNavigationBarHeight(int height)       | height                              | 导航栏高度    |
 | setBackButtonVisible(boolean visible)    | true or false                       | 返回按钮有效或无效<br>**default**: true |
-| setBackButtonImageResource(int resourceId) | ID of resource                      | 返回按钮图像       |
-| setCloseButtonImageResource(int resourceId) | ID of resource                      | 关闭按钮的图标      |
-| enableAutoCloseByCustomScheme(boolean enable) | true or false | 当Custom Scheme启动时WebView将自动关闭。<br>**default**: true |
+| enableFixedFontSize(boolean enable)      | true or false | 忽略系统字体大小，而以固定的大小显示Webview。<br>**default**: false |  
+| setRenderOutsideSafeArea(boolean render) | true or false | 忽略safe area，并对cutout区域进行rendering。<br>**default**: false |
 
 
 ### Close WebView

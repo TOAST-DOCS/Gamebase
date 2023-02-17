@@ -25,7 +25,7 @@
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | 支持Twitter登录。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | 支持Weibo登录。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | 支持Weibo登录。 | - |
-|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.4<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.0<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | 支持Kakao登录。 | API 21(Lollipop, OS 5.0) |
+|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.14<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.0<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | 支持Kakao登录。 | API 21(Lollipop, OS 5.0) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.22.1<br>nhncloud-iap-core | 支持游戏内支付。 | - |
 |  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | 支持Amazon Appstore。 | API 18(JellyBean MR2, OS 4.3) |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | 支持Samsung Galaxy Store。 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK的minSdkVersion是18, 而为了实际结算要安装的Checkout服务应用程序等的minSdkVersion是21。 |
@@ -552,12 +552,13 @@ android {
 
 * 可在Sample Project上确认Gamebase推荐的flow。
     * Android Sample Project
-        * 请参考以下链接的GamebaseAndroidSDK/sample。
-        * [https://docs.toast.com/ko/Download/#game-gamebase](https://docs.toast.com/ko/Download/#game-gamebase)
-            *  GamebaseManager.java文件
+        * [Downloads > Game > Gamebase > Android SDK](https://docs.toast.com/ko/Download/#game-gamebase)
+            * GamebaseSDK-Android.zip/GamebaseSDK-Android-{version}/sample
+            * 请参考app/src/main/java/com/toast/android/gamebase/sample/gamebase_manager文件夹的kt文件。 
     * Unity Sample Project
         * [https://github.com/nhn/toast.gamebase.unity.sample](https://github.com/nhn/toast.gamebase.unity.sample)
 * 当您启动游戏、初始化Gamebase客户端SDK并成功登录时，请进行“支付再处理”并注册推送令牌。
+
 ![overview flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/overview_flow_2.30.1.png)
 
 * 通过以下链接查看具体的Flow。

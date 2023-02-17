@@ -129,7 +129,7 @@ class PurchasableReceipt {
     String currency;
     
     // 是结算标识符。
-    // 是与purchaseToken调用“Consume”服务器API的重要信息。
+    // 是与purchaseToken调用“Consume”服务器API时使用的重要信息。
     //
     // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // 注意 : 请在游戏服务器调用Consume API!
@@ -137,7 +137,7 @@ class PurchasableReceipt {
     String paymentSeq;
     
     // 是结算标识符。   
-    // 是与paymentSeq调用“Consume”服务器API的重要信息。在Consume API应将名称作为“accessToken”传送。
+    // 是与paymentSeq调用“Consume”服务器API时使用的重要信息。在Consume API应将名称作为“accessToken”传送。
     // 在Consume API应将名称作为“accessToken”传送。
     //
     // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
@@ -173,7 +173,7 @@ class PurchasableReceipt {
     long expiryTime;
     
     // 是用于Google支付的值。以下值​​可以使用。
-    // 但在Google服务器出现故障而在Gamebase支付服务器暂时关闭验证逻辑时，
+    // 但在Google服务器出现故障而在Gamebase结算服务器暂时关闭验证逻辑时，
     // 仅返还为null，因此要注意不始终保证有效的值。 
     // * null : 一般付款
     // * Test : 测试付款
@@ -182,14 +182,18 @@ class PurchasableReceipt {
     String purchaseType;
     
     // 每当订阅商品被更新时paymentId也将被更新。 
-    // 通过此字段可以确认首次支付订阅产品时的paymentId。
-    // 根据商店类型或支付服务器状态可能不存在值，
+    // 通过此字段可以确认首次支付订阅产品时使用的paymentId。
+    // 根据商店类型或结算服务器状态可能不存在值，
     // 因此不始终保证有效的值。
     @Nullable
     String originalPaymentId;
     
     // 是通过itemSeq购买商品的Legacy API专用标识符。
     long itemSeq;
+    
+    // 购买过商品的Store Code
+    @NonNull
+    public String storeCode;
 }
 ```
 
@@ -378,12 +382,14 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, configuration, new Game
 
 ### List Activated Subscriptions
 
-以当前用户ID为准查询激活的订阅列表。
-完成支付的订阅商品（自动更新型订阅、自动更新型消费性订阅商品）到期前可一直查询。 
+以当前用户ID为准查看激活的订阅列表。
+完成支付的订阅商品（自动更新型订阅、自动更新型消费性订阅商品）到期前可一直查询。
+关于“订阅寿命周期处理”，请参考以下文件。
+[NHN Cloud > SDK使用指南 > IAP > Android > Google Play Store订阅(定期支付)功能 > 订阅寿命周期处理](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#subscription-lifecycle-handling) 
 
 > <font color="red">[注意]</font><br/>
 >
-> 当前订阅商品为Android的商品时，仅支持Google Play商店。
+> 当前订阅商品为Android商品时，仅支持Google Play商店。
 >
 
 **PurchasableConfiguration**
@@ -421,6 +427,181 @@ Gamebase.Purchase.requestActivatedPurchases(activity, configuration, new Gamebas
         }
     }
 });
+```
+
+### List Status of Subscriptions
+
+以当前用户ID为准查看购买的订阅商品的状态。
+完成支付的订阅商品（自动更新型订阅、自动更新型消费性订阅商品）到期前可一直查询。
+通过调用**PurchasableConfiguration.setIncludeExpiredSubscriptions(true)** API可查询已到期的订阅商品的状态。 
+关于订阅状态代码，请参考以下文件。
+[NHN Cloud > SDK使用指南 > IAP > Android > NHN Cloud IAP Class Reference > IapSubscriptionStatus.StatusCode](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#iapsubscriptionstatusstatuscode)
+
+> <font color="red">[注意]</font><br/>
+>  
+> * 订阅状态代码通常仅在您根据以下指南设置订阅事件时返回。
+>     * [Game > Gamebase > 商店控制台指南 > Google控制台指南 > Google系统内实时订阅信息事件传播 设置](./console-google-guide/#google_1)
+>     * 对于未进行事件设置的状态下购买的订阅商品，始终返回状态代码0（PURCHASED）。
+> * 当前的订阅商品仅支持Google Play商店。
+
+**PurchasableConfiguration**
+
+| API                                             | Mandatory(M) / Optional(O) | Description                              |
+|-------------------------------------------------|----------------------------|------------------------------------------|
+| newBuilder()                                    | **M**                      | 创建Builder以创建Configuration对象。  |
+| build()                                         | **M**                      | 将已设置的Builder转换为Configuration对象。 |
+| setIncludeExpiredSubscriptions(boolean include) | O                          | 包含已到期的订阅商品。<br/>默认值为**false**。 |
+
+**API**
+
+```java
++ (void)Gamebase.Purchase.requestSubscriptionsStatus(@NonNull final Activity activity,
+                                                     @NonNull final PurchasableConfiguration configuration,
+                                                     @NonNull final GamebaseDataCallback<List<PurchasableSubscriptionStatus>> callback);
+```
+
+**Example**
+
+```java
+final PurchasableConfiguration configuration = PurchasableConfiguration.newBuilder()
+        .setIncludeExpiredSubscriptions(true)
+        .build();
+Gamebase.Purchase.requestSubscriptionsStatus(activity, configuration, new GamebaseDataCallback<List<PurchasableSubscriptionStatus>>() {
+    @Override
+    public void onCallback(List<PurchasableSubscriptionStatus> data, GamebaseException exception) {
+        if (Gamebase.isSuccess(exception)) {
+            // Succeeded.
+        } else {
+            // Failed.
+            Log.e(TAG, "Request status of subscription list failed- "
+                    + "errorCode: " + exception.getCode()
+                    + "errorMessage: " + exception.getMessage()
+                    + "errorDetail: " + exception.toString());
+        }
+    }
+});
+```
+
+**VO**
+
+```java
+class PurchasableSubscriptionStatus {
+    // 是购买的道具的商品ID。
+    @Nullable
+    String gamebaseProductId;
+    
+    // 是订阅状态代码。
+    //
+    // IapSubscriptionStatus.StatusCode : https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#iapsubscriptionstatusstatuscode
+    public int statusCode;
+    
+    // 是有关订阅状态代码的说明。
+    @NonNull
+    public String statusDescription;
+    
+    // 是购买的商品的价格。 
+    float price;
+    
+    // 是货币代码。
+    @NonNull
+    String currency;
+    
+    // 是结算标识符。
+    // 是与purchaseToken调用“Consume”服务器API时使用的重要信息。
+    // 
+    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // 注意 : 请在游戏服务器调用Consume API!
+    @NonNull
+    String paymentSeq;
+    
+    // 是结算标识符。
+    // 是与paymentSeq调用“Consume”服务器API时使用的重要信息。
+    // 在Consume API应将名称作为“accessToken”传送。
+    //
+    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // 注意 : 请在游戏服务器调用Consume API!
+    @NonNull
+    String purchaseToken;
+    
+    // 是在商店控制台中注册的产品ID，如Google和Apple 。
+    @NonNull
+    String marketItemId;
+    
+    // 作为商品类型，都有以下值。
+    // * UNKNOWN : 无法识别类型/请更新Gamebase SDK或联系Gamebase客户服务。
+    // * CONSUMABLE : 消费型商品
+    // * AUTO_RENEWABLE : 订阅型商品
+    // * CONSUMABLE_AUTO_RENEWABLE : 当您想向购买订阅型产品的用户定期提供可消费商品时使用“可消费订阅商品”。
+    @NonNull  
+    String productType;
+    
+    // 购买商品的User ID 
+    // 如果您使用没有购买商品的User ID登录，则无法获取购买的道具。
+    @NonNull  
+    String userId;
+    
+    // 是购买过商品的Store Code。
+    @NonNull
+    public String storeCode;
+    
+    // 是商店的结算标识符。
+    @Nullable
+    String paymentId;
+    
+    // 是购买商品的时间。(epoch time)
+    long purchaseTime;
+    
+    // 是订阅结束的时间。(epoch time)
+    long expiryTime;
+  是调用Gamebase.Purchase.requestPurchase时作为payload传送的值。  
+    // Google支付时使用的值如下。
+    // 但要注意由于Google服务器出现故障，而要占时关闭Gamebase结算服务器时，
+    // 将始终返还为null，不始终保障有效的值。 
+    // * null : 一般支付
+    // * Test : 测试支付
+    // * Promo : Promotion支付
+    @Nullable
+    String purchaseType;
+    
+    // 每当更新订阅产品时，paymentId也会更改。
+    // 通过此字段可以确认首次支付订阅商品时使用的paymentId。 
+    // 根据商店类型和结算服务器状态可能不存在值，
+    // 因此不始终保障有效的值。
+    @Nullable
+    String originalPaymentId;
+    
+    // 是通过itemSeq购买商品的Legacy API专用标识符。 
+    long itemSeq;
+    
+    // 是调用Gamebase.Purchase.requestPurchase API时传送至payload的值。 
+    // 根据商店服务器状态，信息可能会被流失，因此不建议使用。
+    @Nullable
+    String payload;
+}
+```
+
+**Response Example**
+
+```json
+{
+    "gamebaseProductId": "my_subcription_product_002",
+    "statusCode": 13,
+    "statusDescription": "EXPIRED",
+    "userId": "AS@123456ABCDEFGHIJ",
+    "storeCode": "GG",
+    "currency": "KRW",
+    "expiryTime": 1675012345678,
+    "itemSeq": 1000003,
+    "marketItemId": "my_subcription_product_002",
+    "originalPaymentId": "GPA.1111-2222-3333-56789",
+    "paymentId": "GPA.1111-2222-3333-56789",
+    "paymentSeq": "2021032510000002",
+    "price": 1000.0,
+    "productType": "CONSUMABLE_AUTO_RENEWABLE",
+    "purchaseTime": 1675001234567,
+    "purchaseToken": "kfetTfGk4...",
+    "purchaseType": "Test"
+}
 ```
 
 ### Event by Promotion
