@@ -18,7 +18,7 @@
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | 支持Sign In With Apple登录。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | 支持Facebook登录。 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | 支持Google登录。 | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.6.2 | 支持Hangame登录。 | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.6.3 | 支持Hangame登录。 | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.0 | 支持LINE登录。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | 支持Naver登录。 | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.9 | 支持PAYCO登录。 | - |
@@ -26,7 +26,7 @@
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | 支持Weibo登录。 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | 支持Weibo登录。 | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.14<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.0<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | 支持Kakao登录。 | API 21(Lollipop, OS 5.0) |
-| Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.22.1<br>nhncloud-iap-core | 支持游戏内支付。 | - |
+| Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | 支持游戏内支付。 | - |
 |  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | 支持Amazon Appstore。 | API 18(JellyBean MR2, OS 4.3) |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | 支持Samsung Galaxy Store。 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK的minSdkVersion是18, 而为了实际结算要安装的Checkout服务应用程序等的minSdkVersion是21。 |
 |  | gamebase-adapter-purchase-google | billingclient.billing-5.0.0<br>nhncloud-iap-google | 支持Google Play。 | - |
@@ -277,9 +277,10 @@ android {
 
 #### Facebook IdP
 
-* 初始化Facebook SDK时，需要在AndroidManifest.xmlApp中声明App ID。
-    * 如下列所示，若设置方式是可以参考resources的，则不必将其值直接在AndroidManifest.xml中声明。
-    * 但目前在Gamebase SDK内已调用初始化Facebook SDK的函数，不必设置。
+* 初始化Facebook SDK时，需要声明App ID和Client Token。
+    * 如下列所示，若设置方式是可以参考resources的，则不必将其值直接声明。
+    * App ID不是需要值，但从Facebook SDK v13.0开始，您必须输入Client Token才能成功登录。
+        * 您可以在Facebook开发人员网站 > 设置 > 高级设置 > 安全项目中查找Client Token。
 
 **AndroidManifest.xml**
 
@@ -289,6 +290,7 @@ android {
         ...
         <!-- [Facebook] Configurations begin -->
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id" />
+        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
         <!-- [Facebook] Configurations end -->
         ...
     </application> 
@@ -299,8 +301,9 @@ android {
 
 ```xml
 <resources>
-    <!-- [Facebook] Facebook APP ID -->
+    <!-- [Facebook] Facebook APP ID & Client Token -->
     <string name="facebook_app_id">123456789012345</string>
+    <string name="facebook_client_token">a01234bc56de7fg89012hi3j45k67890</string>
 </resources>
 ```
 
