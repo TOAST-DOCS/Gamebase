@@ -182,32 +182,34 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 
 #### 1. Facebook
 在Gamebase Console中输入您在Facebook开发者网站上注册的{App ID}和{App Secret Code}。
-还需要以JSON String格式在备注信息栏中输入登录时使用的{Facebook Permission}。
 
 **输入字段**
 
 - ClientID ：{AppID}
 - Secret Key ：{App Secret Code}
-- 备注信息 ：Facebook Permission (json format)
+- 备注信息 ：Facebook Permission & Facebook Client Token (json format)
 
 ![gamebase_app_04_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_04_201812.png)
+![gamebase_app_authentication_information_facebook_02.png](https://static.toastoven.net/prod_gamebase/gamebase_app_authentication_information_facebook_02.png)
 
-**[例] facebook_permission format**
-*在Facebook上，当您尝试使用OAuth进行身份验证时，您需要在Facebook上设置要求提供的信息类型。
+##### Additional Info Settings
+* 您需要在**NHN Cloud Console > Gamebase > App > 认证信息 > 附加信息**项目中设置JSON string格式的信息。
+*在Facebook上，当您尝试使用OAuth进行身份验证时，您需要在Facebook上设置要求提供的信息“**facebook_permission**和**facebook_client_token**”。
+* 输入Facebook附加身份验证信息的示例
 
 ```json
-{ "facebook_permission"：[ "public_profile", "email"] }
+{ "facebook_permission": ["public_profile", "email"], "facebook_client_token": "Your Facebook Client Token" }
 ```
 
-![gamebase_app_05_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_05_201812.png)
+![gamebase_app_authentication_information_facebook_03.png](https://static.toastoven.net/prod_gamebase/gamebase_app_authentication_information_facebook_03.png)
  
 **Reference URL**<br />
 
 - [Facebook 开发者网站](https://developers.facebook.com/)
 - [Facebook 权限](https://developers.facebook.com/docs/facebook-login/permissions/)
 
-##### Android & iOS & Unity
-除了NHN Cloud Console中的设置以外，没有其他设置。
+##### Android
+* [Gamebase > Android SDK使用指南 > 开始 > Setting > AndroidManifest.xml > Facebook IdP](./aos-started/#facebook-idp)
 
 
 #### 2. Google

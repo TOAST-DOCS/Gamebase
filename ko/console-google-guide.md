@@ -185,9 +185,8 @@
 
    ![구독 정보 전파 설정](https://static.toastoven.net/prod_iap/console_google/google_subscription_event_04.png)
 
-4. 테스트를 위한 알파 환경/Gamebase 샌드박스 환경을 사용할 경우 3번 단계의 구독을 알파/샌드박스 용으로 각각 생성해야 합니다.
-    - 알파 엔드포인트 URL 입력: `https://alpha-api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG`
-    - Gamebase 샌드박스 엔드포인트 URL 입력: `https://sandbox-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG`
+4. 테스트를 위한 Gamebase 샌드박스 환경을 사용할 경우 3번 단계의 구독을 샌드박스 용으로 생성해야 합니다.
+    - Gamebase 샌드박스 엔드포인트 URL 입력: `https://sandbox-api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG`
 5. [Google Play Console](https://play.google.com/console)의 앱 대시보드로 이동
     - **수익창출 설정** > **Google Play 결제** 화면의 실시간 개발자 알림 주제 이름에 1번 단계에서 생성한 주제의 전체 명칭을 입력
 

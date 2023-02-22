@@ -18,7 +18,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Appleログインをサポート | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | Facebookログインをサポート | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Googleログインをサポート | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.6.2 | Hangameログインをサポート | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.6.3 | Hangameログインをサポート | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.0 | Lineログインをサポート | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Naverログインをサポート | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.9 | Paycoログインをサポート | - |
@@ -276,9 +276,10 @@ android {
 
 #### Facebook IdP
 
-* Facebook SDKを初期化するためにApp IDを宣言します。
-    * 値を直接宣言するよりは、以下の例のようにresourcesを参照するように設定するのが良いでしょう。
-    * Gamebase SDKが内部的にFacebook SDK初期化関数を呼び出しているため、現在は必須設定ではありません。
+* Facebook SDKを初期化するためにApp IDとClient Tokenを宣言します。
+    * 値を直接宣言せず、以下の例のようにresourcesを参照するように設定してください。
+    * App IDは必須値ではありませんが、Client TokenはFacebook SDK v13.0から必ず入力する必要があります。
+        * Client TokenはFacebook開発者サイト > 設定 > 高度な設定 > セキュリティ項目にあります。
 
 **AndroidManifest.xml**
 
@@ -288,6 +289,7 @@ android {
         ...
         <!-- [Facebook] Configurations begin -->
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id" />
+        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
         <!-- [Facebook] Configurations end -->
         ...
     </application>
@@ -298,8 +300,9 @@ android {
 
 ```xml
 <resources>
-    <!-- [Facebook] Facebook APP ID -->
+    <!-- [Facebook] Facebook APP ID & Client Token -->
     <string name="facebook_app_id">123456789012345</string>
+    <string name="facebook_client_token">a01234bc56de7fg89012hi3j45k67890</string>
 </resources>
 ```
 

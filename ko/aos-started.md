@@ -278,8 +278,8 @@ android {
 #### Facebook IdP
 
 * Facebook SDK 초기화를 위해 App ID와 Client Token을 선언합니다.
-    * 해당 값을 직접 선언하지 말고 아래 예시와 같이 resources 를 참조하도록 설정하세요.
-    * App ID는 필수값이 아니지만 Client Token은 Facebook SDK v13.0부터 필수로 입력해야 로그인이 성공합니다.
+    * 해당 값을 직접 선언하지 말고 아래 예시와 같이 resources를 참조하도록 설정하세요.
+    * App ID는 필수값이 아니지만 Client Token은 Facebook SDK v13.0부터 필수로 입력해야 로그인할 수 있습니다.
         * Client Token은 Facebook 개발자 사이트 > 설정 > 고급 설정 > 보안 항목에서 찾을 수 있습니다.
 
 **AndroidManifest.xml**
