@@ -96,7 +96,7 @@ public void LoginForLastLoggedInProvider()
             Debug.Log(string.Format("Login failed. error is {0}", error));
         	if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
             {
-            	Debug.Log(string.Format("Retry LoginForLastLoggedInProvider or notify an error message to the user.: {0}", error.message));
+            	Debug.Log(string.Format("Retry LoginForLastLoggedInProvider or notify an error message to the user. : {0}", error.message));
             }
             else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
             {
@@ -153,7 +153,7 @@ public void Login()
         	Debug.Log(string.Format("Login failed. error is {0}", error));
             if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
             {
-            	Debug.Log(string.Format("Retry Login or notify an error message to the user.: {0}", error.message));
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
             }
             else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
             {
@@ -228,7 +228,7 @@ public void Login()
         	Debug.Log(string.Format("Login failed. error is {0}", error));
             if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
             {
-            	Debug.Log(string.Format("Retry Login or notify an error message to the user.: {0}", error.message));
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
             }
             else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
             {
@@ -261,7 +261,7 @@ public void LoginWithAdditionalInfo()
             Debug.Log(string.Format("Login failed. error is {0}", error));
             if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
             {
-            	Debug.Log(string.Format("Retry Login or notify an error message to the user.: {0}", error.message));
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
             }
             else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
             {
@@ -279,16 +279,6 @@ public void LoginWithAdditionalInfo()
 
 This game interface allows authentication to be made with SDK provided by IdP, before login to Gamebase with provided access token.
 
-> <font color="red">[Caution]</font><br/>
->
-> If you are logging into Google on standalone and WebGL platforms, you must enter GamebaseAuthProviderCredential.REDIRECT_URI. If not entered, `redirect_uri_mismatch` error occurs. 
->
-> For REDIRECT_URI, enter a value added to the approved redirection URI from **Google Cloud Console > API & Services > Credentials > Web Client** (URI to get AuthCode from Google sign-in page)
->
-> If REDIRECT_URI not entered, the default value is applied.
->   - Standalone: http://localhost:8080/
->   - WebGL: http://localhost/
-
 * How to Set Credential Parameters
 
 | Keyname | Usage | Value Type |
@@ -299,7 +289,6 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 | GamebaseAuthProviderCredential.GAMEBASE_ACCESS_TOKEN | Used when logging in with Gamebase Access Token instead of IdP authentication information |  |
 | GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | While logged in to Gamebase, allow login attempts with other account without logging out | **bool** |
 | GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | Set LINE Service Region  | [See Login with IdP](./aos-authentication/#login-with-idp) |
-| GamebaseAuthProviderCredential.REDIRECT_URI | Add the redirect_uri registered in **Google Cloud Console > Authorized Redirect URI**<br>**Standalone default**: http://localhost:8080/<br>**WebGL default**: http://localhost/<br/>**Limited to Google sign-in on standalone and WebGL platforms** |  |
 
 > [Note]
 >
@@ -356,7 +345,7 @@ public void LoginWithCredential()
         	Debug.Log(string.Format("Login failed. error is {0}", error));
             if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
             {
-            	Debug.Log(string.Format("Retry Login or notify an error message to the user.: {0}", error.message));
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
             }
             else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
             {
@@ -470,14 +459,14 @@ In short, a login to a mapped IdP account will be made available with a same use
 Note, however, that each IdP can have only one account to map.
 Below shows an example.<br/>
 
-* Gamebase UserID: 123bcabca
-	* Google ID: aa
-	* Facebook ID: bb
-	* AppleGameCenter ID: cc
-	* PAYCO ID: dd
-* Gamebase UserID: 456abcabc
-	* Google ID: ee
-	* Google ID: ff **-> As the Google ee account is integrated, no additional Google account can be integrated.**
+* Gamebase UserID : 123bcabca
+	* Google ID : aa
+	* Facebook ID : bb
+	* AppleGameCenter ID : cc
+	* PAYCO ID : dd
+* Gamebase UserID : 456abcabc
+	* Google ID : ee
+	* Google ID : ff **-> As the Google ee account is integrated, no additional Google account can be integrated.**
 
 Mapping API includes Add Mapping API and Remove Mapping API.
 
@@ -1150,7 +1139,7 @@ public void LoginSample()
             if(authToken.member.temporaryWithdrawal != null)
             {
                 long gracePeriodDate = authToken.member.temporaryWithdrawal.gracePeriodDate;
-                Debug.Log(string.Format("User is under temporary withdrawa. GracePeriodDate: {0}", error));
+                Debug.Log(string.Format("User is under temporary withdrawa. GracePeriodDate : {0}", error));
             }            
             else
             {
@@ -1262,7 +1251,7 @@ public void Login()
             GamebaseResponse.Common.Member.GraceBanInfo.ReleaseRuleCondition releaseRuleCondition = graceBanInfo.releaseRuleCondition;
             if (releaseRuleCondition != null)
             {
-                // condition type: "AND", "OR"
+                // condition type : "AND", "OR"
                 string releaseRule = string.Format("{0}{1} {2} {3}time(s)", releaseRuleCondition.amount,
                     releaseRuleCondition.currency, releaseRuleCondition.conditionType, releaseRuleCondition.count);
             }

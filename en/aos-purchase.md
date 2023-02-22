@@ -187,10 +187,6 @@ class PurchasableReceipt {
     
     // An identifier for Legacy API that purchases products with itemSeq.
     long itemSeq;
-
-    // Store Code that purcahsed products.
-    @NonNull
-    public String storeCode;
 }
 ```
 
@@ -381,8 +377,7 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, configuration, new Game
 
 List activated subscriptions for a current user ID. 
 Paid subscriptions (auto-renewable subscription, or auto-renewed consumable subscription) can be queried before they're expired. 
-For subscription life cycle, refer to the following document.
-[NHN Cloud > SDK User Guide > IAP > Android > Google Play Store Subscription (Regular payment) feature > Subscription Lifecycle Handing](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#subscription-lifecycle-handling)
+
 > <font color="red">[Caution]</font><br/>
 >
 > Current subscriptions for Android are supported by Google Play Store only.
@@ -424,182 +419,6 @@ Gamebase.Purchase.requestActivatedPurchases(activity, configuration, new Gamebas
     }
 });
 ```
-
-
-### List Status of Subscriptions
-
-You can view the status of purchased subscription products based on your current user ID.
-Subscription products that have been paid for (auto-renewable subscriptions, auto-renewable consumable subscription products) can be viewed until they expire.
-You can retrieve the status of expired subscription products with the **PurchasableConfiguration.setIncludeExpiredSubscriptions(true)** API.
-For subscription status codes, see [NHN Cloud > SDK User Guide > IAP > Android > NHN Cloud IAP Class Reference > IapSubscriptionStatus.StatusCode](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#iapsubscriptionstatusstatuscode).
-
-> <font color="red">[Caution]</font><br/>
->
-> * The subscription status code is only returned correctly if you follow the guide below to set up the subscription event.
->     * Go to [Game > Gamebase > Store Console Guide > Google Console Guide and set up event propagation of real-time subscription information within Google's system
->     * The status code for a subscription product purchased without setting up events always returns 0 (PURCHASED).
-> * Subscription products currently only supports Google Play Store.
-
-**PurchasableConfiguration**
-
-| API                                             | Mandatory(M) / Optional(O) | Description                              |
-|-------------------------------------------------|----------------------------|------------------------------------------|
-| newBuilder()                                    | **M**                      | Creates a Builder to create Configuration objects.  |
-| build()                                         | **M**                      | Converts the configured builder into a Configuration object. |
-| setIncludeExpiredSubscriptions(boolean include) | O                          | Includes expired subscription products<br/>Default value is **false**. |
-
-**API**
-
-```java
-+ (void)Gamebase.Purchase.requestSubscriptionsStatus(@NonNull final Activity activity,
-                                                     @NonNull final PurchasableConfiguration configuration,
-                                                     @NonNull final GamebaseDataCallback<List<PurchasableSubscriptionStatus>> callback);
-```
-
-**Example**
-
-```java
-final PurchasableConfiguration configuration = PurchasableConfiguration.newBuilder()
-        .setIncludeExpiredSubscriptions(true)
-        .build();
-Gamebase.Purchase.requestSubscriptionsStatus(activity, configuration, new GamebaseDataCallback<List<PurchasableSubscriptionStatus>>() {
-    @Override
-    public void onCallback(List<PurchasableSubscriptionStatus> data, GamebaseException exception) {
-        if (Gamebase.isSuccess(exception)) {
-            // Succeeded.
-        } else {
-            // Failed.
-            Log.e(TAG, "Request status of subscription list failed- "
-                    + "errorCode: " + exception.getCode()
-                    + "errorMessage: " + exception.getMessage()
-                    + "errorDetail: " + exception.toString());
-        }
-    }
-});
-```
-
-**VO**
-
-```java
-class PurchasableSubscriptionStatus {
-    // Product ID of purchased item.
-    @Nullable
-    String gamebaseProductId;
-    
-    // Subscription status code.
-    //
-    // IapSubscriptionStatus.StatusCode : https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#iapsubscriptionstatusstatuscode
-    public int statusCode;
-    
-    // Description for subscription status code.
-    @NonNull
-    public String statusDescription;
-    
-    // Price of purchased product.
-    float price;
-    
-    // Currency code.
-    @NonNull
-    String currency;
-    
-    // Payment identifier
-    // This is an important piece of information used to call 'Consume' Server API with purchaseToken.
-    //
-    // Consume API: https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
-    // Caution: Call the Consume API from game server!
-    @NonNull
-    String paymentSeq;
-    
-    // Payment identifier.
-    // This is an important piece of information used to call 'Consume' server API with paymentSeq.
-    // In Consume API, the parameter must be named 'accessToken' to be passed.
-    //
-    // Consume API: https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
-    // Caution: Call Consume API from game server!
-    @NonNull
-    String purchaseToken;
-    
-    // This is a product ID registered in store consoles such as Google, Apple.
-    @NonNull
-    String marketItemId;
-    
-    // Product types are as follows.
-    // * UNKNOWN: An unknown type. Either update Gamebase SDK or contact Gamebase Customer Center.
-    // * CONSUMABLE: A consumable product.
-    // * AUTO_RENEWABLE: A subscription product.
-    // * CONSUMABLE_AUTO_RENEWABLE: This 'consumable subscription product' is used when providing a subscribed user a subscription product that can be consumed periodically.
-    @NonNull
-    String productType;
-    
-    // This is a user ID that purchased a product.
-    // If a user logs in with a user ID that is not used to purchase a product, the user cannot obtain the product they purchased.
-    @NonNull
-    String userId;
-    
-    // Store Code that purchased the product..
-    @NonNull
-    public String storeCode;
-    
-    // Payment identifier for store.
-    @Nullable
-    String paymentId;
-    
-    // Time when the product was purchased.(epoch time)
-    long purchaseTime;
-    
-    // Time when subsciription ended.(epoch time)
-    long expiryTime;
-    
-  // This value is used when making a purchase on Google, which can have the following values.
-    // However, if the verification logic is temporarily disabled by Gamebase payment server due to error on Google server,
-    // it returns only null, so please remember that it does not guarantee a valid return value at all times.
-    // * null: Normal payment
-    // * Test: Test payment
-    // * Promotion: Promotion payment
-    @Nullable
-    String purchaseType;
-    
-    // PaymentId is changed whenever the subscription product is renewed.
-    // This field shows the paymentId used when the subscription product was first paid for.
-   // This value does not guarantee to be always valid, as it can have no value
-    // depending on the store from which the user made a purchase and the status of the payment server.
-    @Nullable
-    String originalPaymentId;
-    
-    // Identifier for Legacy API for purchasing with itemSeq.
-    long itemSeq;
-    
-    // Value sent to payload when calling the Gamebase.Purchase.requestPurchase API .
-    // Depending on the status of your store's server, information may be lost, so using it is not recommended. 
-    @Nullable
-    String payload;
-}
-```
-
-**Response Example**
-
-```json
-{
-    "gamebaseProductId": "my_subcription_product_002",
-    "statusCode": 13,
-    "statusDescription": "EXPIRED",
-    "userId": "AS@123456ABCDEFGHIJ",
-    "storeCode": "GG",
-    "currency": "KRW",
-    "expiryTime": 1675012345678,
-    "itemSeq": 1000003,
-    "marketItemId": "my_subcription_product_002",
-    "originalPaymentId": "GPA.1111-2222-3333-56789",
-    "paymentId": "GPA.1111-2222-3333-56789",
-    "paymentSeq": "2021032510000002",
-    "price": 1000.0,
-    "productType": "CONSUMABLE_AUTO_RENEWABLE",
-    "purchaseTime": 1675001234567,
-    "purchaseToken": "kfetTfGk4...",
-    "purchaseType": "Test"
-}
-```
-
 
 ### Promotional Events
 

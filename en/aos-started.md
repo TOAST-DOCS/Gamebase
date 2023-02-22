@@ -25,7 +25,7 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Support Twitter login | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | Support Weibo login | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Support Weibo login | - |
-|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.14<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.1<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 21(Lollipop, OS 5.0) |
+|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.4<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.0<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 21(Lollipop, OS 5.0) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.22.1<br>nhncloud-iap-core | Support in-app purchase | - |
 |  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Support Amazon Appstore | API 18(JellyBean MR2, OS 4.3) |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Support Samsung Galaxy Store | API 21(Lollipop, OS 5.0)<br>Although minSdkVersion of Galaxy IAP SDK is 18, the minSdkVersion of Checkout service app that must be installed for actual purchase is 21. |
@@ -552,9 +552,9 @@ android {
 
 * The flow recommended by Gamebase is identically implemented in the Sample Project.
     * Android Sample Project
-        * [Downloads > Game > Gamebase > Android SDK](https://docs.toast.com/ko/Download/#game-gamebase)
-            * GamebaseSDK-Android.zip/GamebaseSDK-Android-{version}/sample
-            * Please see kt files from app/src/main/java/com/toast/android/gamebase/sample/gamebase_manager.
+        * Please see GamebaseAndroidSDK/sample
+        * [https://docs.toast.com/ko/Download/#game-gamebase](https://docs.toast.com/en/Download/#game-gamebase)
+            * GamebaseManager.java file in the following link.
     * Unity Sample Project
         * [https://github.com/nhn/toast.gamebase.unity.sample](https://github.com/nhn/toast.gamebase.unity.sample)
 * Initialize the Gamebase client SDK when the game starts, and if the login is successful, start reprocessing the payment and register the push token.
