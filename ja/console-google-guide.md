@@ -185,9 +185,8 @@
 
    ![購読情報配信設定](https://static.toastoven.net/prod_iap/console_google/google_subscription_event_04.png)
 
-4. テスト用のアルファ環境/Gamebaseサンドボックス環境を使用する場合は、ステップ3の購読をアルファ/サンドボックス用にそれぞれ作成する必要があります。
-    - アルファエンドポイントURL入力： `https://alpha-api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG`
-    - GamebaseサンドボックスエンドポイントURL入力：`https://sandbox-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG`
+4. テスト用のGamebaseサンドボックス環境を使用する場合は、ステップ3の購読をサンドボックス用に作成する必要があります。
+    - GamebaseサンドボックスエンドポイントURL入力：`https://sandbox-api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG`
 5. [Google Play Console](https://play.google.com/console)のアプリダッシュボードに移動
     - **収入創出設定設定** > **Google Play決済**画面のリアルタイム開発者通知トピック名にステップ1で作成したトピックの全体名称を入力
 
