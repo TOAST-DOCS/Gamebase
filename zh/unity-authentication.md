@@ -284,6 +284,16 @@ public void LoginWithAdditionalInfo()
 
 是通过IdP提供的SDK在游戏中进行认证后，使用获取到的Access Token，登录到Gamebase的接口。
 
+> <font color="red">[注意]</font><br/>
+>
+> 在Standalone、WebGL平台上进行Google登录时要输入 GamebaseAuthProviderCredential.REDIRECT_URI。如果不输入，则将发生`redirect_uri_mismatch`错误。
+>
+> 在REDIRECT_URI中输入时，在**Google Cloud Console > API和服务 > 用户认证信息 > 网络客户端**的授权REDIRECTION URI中输入被添加的值。(是从Google登录页面接收Google登录页面返回的AuthCode的URI)
+>
+> 如果不输入REDIRECT_URI，则使用基本值。
+>   - Standalone: http://localhost:8080/
+>   - WebGL: http://localhost/
+
 * Credential参数设置方法
 
 | keyname | a use | 值类型 |
@@ -294,6 +304,7 @@ public void LoginWithAdditionalInfo()
 | GamebaseAuthProviderCredential.GAMEBASE_ACCESS_TOKEN | 使用Gamebase访问令牌而非  IdP身份验证信息登录时使用。 |  |
 | GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | 允许在不注销Gamebase的情况下尝试使用其他帐户登录。 | **bool** |
 | GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | 设置提供LINE服务的区域。 | [参考Login with IdP](./aos-authentication/#login-with-idp) |
+| GamebaseAuthProviderCredential.REDIRECT_URI | **Google Cloud Console > 在授权的REDIRECTION URI**中添加已注册的redirect_uri。<br>**Standalone default**: http://localhost:8080/<br>**WebGL default**: http://localhost/<br/>**这仅限于Standalone、WebGL平台上进行Google登录。** |  |
 
 > [TIP]
 >

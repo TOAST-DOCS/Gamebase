@@ -3,8 +3,8 @@
 ### 2.47.0 (2023. 02. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.47.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### 機能改善/変更
+* 外部SDKアップデート
     * Hangame iOS SDK (1.8.4)
     
 ### 2.46.0 (2023. 01. 31.)

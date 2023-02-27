@@ -181,21 +181,23 @@ NHN Cloudで組織ごとに提供されるOnline contact商品を使用する場
 
 #### 1. Facebook
 Facebookの開発サイトに登録したアプリの{アプリID}と{アプリシークレットコード}をGamebase Consoleに入力します。
-この時、ログインする際に必要な{Facebook Permission}もJSON Stringタイプで追加情報欄に入力する必要があります。
 
 **入力フィールド**
 
 - ClientID：{AppID}
 - Secret Key：{App Secret Code}
-- 追加情報：Facebook Permission (json format)
+'- 追加情報：Facebook Permission & Facebook Client Token (json format)
 
 ![gamebase_app_04_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_app_04_202004_ja.png)
+![gamebase_app_authentication_information_facebook_02.png](https://static.toastoven.net/prod_gamebase/gamebase_app_authentication_information_facebook_02.png)
 
-**[例] facebook_permission format **
-* Facebookの場合、OAuth認証試行時、Facebookにリクエストする情報の種類を設定する必要があります。
+##### Additional Info Settings
+* **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報**項目にJSON string形式の情報を設定する必要があります。
+* Facebookの場合、 OAuth認証試行時、Facebookにリクエストする権限情報である**facebook_permission**と**facebook_client_token**を設定する必要があります。
+* Facebook追加認証情報の入力例
 
 ```json
-{ "facebook_permission": [ "public_profile", "email"] }
+{ "facebook_permission": ["public_profile", "email"], "facebook_client_token": "Your Facebook Client Token" }
 ```
 
 ![gamebase_app_05_202004_ja](https://static.toastoven.net/prod_gamebase/gamebase_app_05_202004_ja.png)
@@ -205,8 +207,8 @@ Facebookの開発サイトに登録したアプリの{アプリID}と{アプリ�
 - [Facebookの開発者サイト](https://developers.facebook.com/)
 - [Facebookの権限](https://developers.facebook.com/docs/facebook-login/permissions/)
 
-##### Android & iOS & Unity
-NHN Cloud Consoleでの設定の他に追加設定はありません。
+##### Android
+* [Gamebase > Android SDK使用ガイド > 始める > Setting > AndroidManifest.xml > Facebook IdP](./aos-started/#facebook-idp)
 
 
 
@@ -269,7 +271,7 @@ PAYCO Client IDを申請して発行された{client_id}及び{client_secret}を
 
 - ClientID：{PAYCO client_id}
 - Secret Key：{PAYCO client_secret}
-- 追加情報：PAYCO Service & Service Name (JSON format)
+'- 追加情報：PAYCO Service Code & Service Name (json format)
 
 ##### Additional Info Settings
 

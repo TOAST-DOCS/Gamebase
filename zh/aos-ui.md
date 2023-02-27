@@ -510,7 +510,8 @@ showWebView(activity, urlString, configuration,
 | setBackButtonImageResource(int resourceId) | ID of resource                      | 返回按钮图像       |
 | setCloseButtonImageResource(int resourceId) | ID of resource                      | 关闭按钮的图标      |
 | enableAutoCloseByCustomScheme(boolean enable) | true or false | 当Custom Scheme启动时WebView将自动关闭。<br>**default**: true |
-
+| enableFixedFontSize(boolean enable)      | true or false | 忽略系统字体大小，而以固定的大小显示Webview。<br>**default**: false |  
+| setRenderOutsideSafeArea(boolean render) | true or false | 忽略safe area，并对cutout区域进行rendering。<br>**default**: false |
 
 ### Close WebView
 通过以下API，可以关闭当前显示的WebView。

@@ -184,7 +184,7 @@ public class PurchasableReceipt
     /// 作为产品类型，存在以下值。
     /// * UNKNOWN : 无法识别类型/请更新Gamebase SDK或联系Gamebase客户服务。
     /// * CONSUMABLE : 消费型商品
-    /// * AUTO_RENEWABLE : 订购型商品
+    /// * AUTO_RENEWABLE : 订阅型商品
     /// * CONSUMABLE_AUTO_RENEWABLE : 当您想向购买订阅型产品的用户定期提供可消费商品时使用“可消费订阅商品”。
     /// <para/><see cref="GamebasePurchase.ProductType"/>
     /// </summary>
@@ -202,7 +202,7 @@ public class PurchasableReceipt
     public string paymentId;
 
     /// <summary>
-    /// 当订购商品被更新时，paymentId也将被更改。
+    /// 当订阅商品被更新时，paymentId也将被更改。
     /// 通过此字段可以确认第一次进行订阅商品结算时的paymentId。
     /// 根据商店类型、结算服务器状态，可能不存在值，
     /// 因此不能保证始终是有效值。
@@ -343,7 +343,7 @@ public void RequestItemListOfNotConsumedSample(bool allStores)
 
 > <font color="red">[注意]</font><br/>
 >
-> 目前Android只在Google Play商店支持订购商品。
+> 目前Android只在Google Play商店支持订阅商品。
 
 
 **GamebaseRequest.Purchase.PurchasableConfiguration**
@@ -396,9 +396,196 @@ public void RequestActivatedPurchasesSample(bool allStores)
         else
         {
             // Check the error code and handle the error appropriately.
-            Debug.Log(string.Format("RequestItemListPurchasable failed. error is {0}", error));
+            Debug.Log(string.Format("RequestActivatedPurchases failed. error is {0}", error));
         }
     });
+}
+```
+
+### List Subscriptions status
+
+以当前用户ID为准查看订阅商品的状态。
+通过回调返还的列表中包含订阅商品信息。 
+
+> <font color="red">[注意]</font><br/>
+>  
+> * 订阅状态代码通常仅在您根据以下指南设置订阅事件时返回。
+>     * [Game > Gamebase > 商店控制台指南 > Google控制台指南 > 设置Google系统内实时订阅信息事件传播](./console-google-guide/#google_1)
+>     * 对于未进行事件设置的状态下购买的订阅商品，始终返回状态代码0（PURCHASED）。
+> * 当前的订阅商品仅支持Google Play商店。
+ 
+
+**GamebaseRequest.Purchase.PurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                 |
+| ------------------------------- | -------------------------- | ----------------------------------------------------------- |
+|  includeExpiredSubscriptions    | O                          | 查询时包括过期的订阅商品。<br/>基本值为**false**。   | 
+
+**API**
+
+Supported Platforms
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+```cs
+static void RequestActivatedPurchases(GamebaseRequest.Purchase.PurchasableConfiguration configuration, GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
+```
+
+**Example**
+```cs
+public void RequestSubscriptionsStatusSample(bool includeExpiredSubscriptions)
+{
+    var configuration = new GamebaseRequest.Purchase.PurchasableConfiguration
+    {
+        includeExpiredSubscriptions = includeExpiredSubscriptions
+    };
+    Gamebase.Purchase.RequestSubscriptionsStatus(configuration, (subscriptionStatusList, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            Debug.Log("RequestSubscriptionsStatus succeeded");
+
+            foreach (GamebaseResponse.Purchase.PurchasableSubscriptionStatus subscriptionStatus in subscriptionStatusList)
+            {
+                var message = new StringBuilder();
+                message.AppendLine(string.Format("storeCode:{0}", subscriptionStatus.storeCode));
+                message.AppendLine(string.Format("itemSeq:{0}", subscriptionStatus.itemSeq));
+                message.AppendLine(string.Format("price:{0}", subscriptionStatus.price));
+
+                // Subscription status
+                // Refer to the following document for the entire status code.
+                // https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-unity/#iapsubscriptionstatusstatus
+                message.AppendLine(string.Format("statusCode:{0}", subscriptionStatus.statusCode));
+                message.AppendLine(string.Format("gamebaseProductId:{0}", subscriptionStatus.gamebaseProductId));
+                Debug.Log(message);
+            }
+        }
+        else
+        {
+            // Check the error code and handle the error appropriately.
+            Debug.Log(string.Format("s failed. error is {0}", error));
+        }
+    });
+}
+```
+
+**VO**
+```cs
+public class PurchasableSubscriptionStatus
+{
+    /// <summary>
+    /// 是由Gamebase为设置应用程序的商店定义的代码。
+    /// </summary> 
+    public string storeCode;
+
+    /// <summary>
+    /// 是商店的结算标识符。
+    /// </summary>
+    public string paymentId;                  
+
+    /// <summary>
+    /// 每当更新订阅产品时，paymentId也会更改。
+    /// 通过此字段可以确认首次支付订阅商品时使用的paymentId。
+    /// 根据商店类型或结算服务器状态可能不存在值，
+    /// 因此不始终保证有效的值。 
+    /// </summary>
+    public string originalPaymentId;
+
+    /// 是结算标识符。
+    /// 是与purchaseToken调用“Consume”服务器API时使用的重要信息。
+    ///    
+    /// 注意 : 请在游戏服务器调用Consume API!
+    /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
+    public string paymentSeq;
+
+    /// <summary>
+    /// 是购买的商品的商品ID。
+    /// </summary>
+    public string marketItemId;
+
+    /// <summary>
+    /// IAP网络控制台的项目固有标识符
+    /// </summary>
+    public long itemSeq;
+
+    /// <summary>
+    /// 采用以下值之一。
+    /// * UNKNOWN : 无法识别类型/请更新Gamebase SDK或联系Gamebase客户服务。
+    /// * CONSUMABLE : 是消费商品。
+    /// * AUTO_RENEWABLE : 是订阅商品。
+    /// </summary>
+    public string productType;
+
+    /// <summary>
+    /// 是购买商品的用户ID。   
+    /// 如果您使用未用于购买产品的用户ID登录，则无法收到购买的产品。
+    /// </summary>
+    public string userId;
+
+    /// <summary>
+    /// 是商品的价格。
+    /// </summary>
+    public float price;
+
+    /// <summary>
+    /// 是货币信息。
+    /// </summary>
+    public string currency;
+
+    /// <summary>
+    /// Payment标识符
+    /// 是与paymentSeq调用“Consume”服务器API时使用的重要信息。
+    /// 在Consume API中要将参量的名称指定为“accessToken”后传送。
+    ///   
+    /// <para/><see href="https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap">Purchase IAP</see>
+    /// </summary>    
+    public string purchaseToken;
+
+    /// <summary>   
+    /// 该值在从Google购买时使用，可以采用以下值 ：   
+    /// 但当在Google服务器出现错误，Gamebase结算服务器临时非激活认证逻辑时，
+    /// 将仅返还null，因此要注意不始终返还有效的值。
+    /// * null : 支付成功
+    /// * Test : 测试支付
+    /// * Promotion : Promotion支付
+    /// </summary>
+    public string purchaseType;
+
+    /// <summary>
+    /// 购买商品的时间(epoch time)
+    /// </summary>
+    public long purchaseTime;
+
+    /// <summary>
+    /// 订阅结束的时间(epoch time)
+    /// </summary>
+    public long expiryTime;
+
+    /// <summary>
+    /// 是调用Gamebase.Purchase.requestPurchase API时传送至Payload的值。
+    ///   
+    /// 此字段可用于保存各种附加信息。
+    /// 例如，此字段可用于单独处理采购。
+    /// 提供使用相同用户ID购买的产品，并按游戏频道或角色排序。
+    /// </summary>
+    public string payload;
+
+    /// <summary>
+    /// 订阅状态
+    /// 关于所有的状态代码，请参考以下文件。
+    /// <para/><see href="https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-unity/#iapsubscriptionstatus">IAP Subscription Status</see>
+    /// </summary>
+    public int statusCode;
+
+    /// <summary>
+    /// 是有关订阅状态的描述。
+    /// </summary>
+    public string statusDescription;
+
+    /// <summary>
+    /// 是在Gamebase控制台中注册的商品ID。
+    /// 在调用Gamebase.Purchase.requestPurchase API购买商品时使用。 
+    /// </summary>
+    public string gamebaseProductId;
 }
 ```
 
