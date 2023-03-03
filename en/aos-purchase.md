@@ -570,7 +570,7 @@ class PurchasableSubscriptionStatus {
     // Identifier for Legacy API for purchasing with itemSeq.
     long itemSeq;
     
-    // Value sent to payload when calling the Gamebase.Purchase.requestPurchase API .
+    // Value sent to payload when calling the Gamebase.Purchase.requestPurchase API.
     // Depending on the status of your store's server, information may be lost, so using it is not recommended.
     @Nullable
     String payload;
