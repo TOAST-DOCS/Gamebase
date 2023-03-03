@@ -546,7 +546,6 @@ public class PurchasableSubscriptionStatus
     public string paymentId;
     /// <summary>
     /// PaymentId is changed whenever the subscription product is renewed.
-ZeroChan-nhn marked this conversation as resolved.
     /// This field shows the paymentId used when the subscription product was first paid for.
     /// This value does not guarantee to be always valid, as it can have no value
     // depending on the store and payment server status.

@@ -431,12 +431,13 @@ Gamebase.Purchase.requestActivatedPurchases(activity, configuration, new Gamebas
 You can view the status of purchased subscription products based on your current user ID.
 Subscription products that have been paid for (auto-renewable subscriptions, auto-renewable consumable subscription products) can be viewed until they expire.
 You can retrieve the status of expired subscription products with the **PurchasableConfiguration.setIncludeExpiredSubscriptions(true)** API.
-For subscription status codes, see [NHN Cloud > SDK User Guide > IAP > Android > NHN Cloud IAP Class Reference > IapSubscriptionStatus.StatusCode](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#iapsubscriptionstatusstatuscode).
+For subscription status codes, see the following document.
+ [NHN Cloud > SDK User Guide > IAP > Android > NHN Cloud IAP Class Reference > IapSubscriptionStatus.StatusCode](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#iapsubscriptionstatusstatuscode).
 
 > <font color="red">[Caution]</font><br/>
 >
 > * The subscription status code is only returned correctly if you follow the guide below to set up the subscription event.
->     * Go to [Game > Gamebase > Store Console Guide > Google Console Guide and set up event propagation of real-time subscription information within Google's system
+>     * Go to [Game > Gamebase > Store Console Guide > Google Console Guide and set up event propagation of real-time subscription information within Google's system](./console-google-guide/#google_1)
 >     * The status code for a subscription product purchased without setting up events always returns 0 (PURCHASED).
 > * Subscription products currently only supports Google Play Store.
 
@@ -550,7 +551,7 @@ class PurchasableSubscriptionStatus {
     // Time when subsciription ended.(epoch time)
     long expiryTime;
     
-  // This value is used when making a purchase on Google, which can have the following values.
+    // This value is used when making a purchase on Google, which can have the following values.
     // However, if the verification logic is temporarily disabled by Gamebase payment server due to error on Google server,
     // it returns only null, so please remember that it does not guarantee a valid return value at all times.
     // * null: Normal payment
@@ -561,7 +562,7 @@ class PurchasableSubscriptionStatus {
     
     // PaymentId is changed whenever the subscription product is renewed.
     // This field shows the paymentId used when the subscription product was first paid for.
-   // This value does not guarantee to be always valid, as it can have no value
+    // This value does not guarantee to be always valid, as it can have no value
     // depending on the store from which the user made a purchase and the status of the payment server.
     @Nullable
     String originalPaymentId;
@@ -570,7 +571,7 @@ class PurchasableSubscriptionStatus {
     long itemSeq;
     
     // Value sent to payload when calling the Gamebase.Purchase.requestPurchase API .
-    // Depending on the status of your store's server, information may be lost, so using it is not recommended. 
+    // Depending on the status of your store's server, information may be lost, so using it is not recommended.
     @Nullable
     String payload;
 }
