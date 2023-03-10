@@ -165,7 +165,6 @@ Click the **Register** button on the Search screen to access the screen where te
 Select User ID for Type, enter a game user ID, and click the **Search** button and the log history of the user will be displayed at the bottom of the screen. Select the Device key of a device to register as a test device among the searched history, enter **Additional Information**, and click the **Register** button to register the Device key as the test device information.
 
 
-
 **(2) Register Using Device Key or IP**
 
 If you know the Device key or IP of the device you want to register, you can directly register it as a test device by selecting the type you want as your desired input method.
@@ -184,33 +183,36 @@ Select the test device to delete on the Search Test Device screen and click the 
 
 #### 1. Facebook
 Enter {App ID} and {App Secret Code} of an app registered in the Facebook developer's site in the TOAST Cloud Gamebase Console.
-Note that {Facebook Permission} which is required for a login should also be entered to Additional Info in the json string format.
 
 **Entry Fields**
 
 - Client ID: {AppID}
 - Secret Key: {App Secret Code}
-- Additional Info: Facebook Permission (json format)
+- Additional Info: Facebook Permission & Facebook Client Token (json format)
 
 
 ![gamebase_app_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_04_201812.png)
+![gamebase_app_authentication_information_facebook_02.png](https://static.toastoven.net/prod_gamebase/gamebase_app_authentication_information_facebook_02.png)
 
-**[Example] facebook_permission format **
-- In case of Facebook OAuth, You should specify the information to request.
+##### Additional Info Settings
+* Set JSON string type information in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Information**. 
+* For Facebook, set **facebook_permission** and **facebook_client_token**, which is the authentication information to request for Facebook when attempting to authenticate with OAuth.
+* Example of entering Facebook additional authentication information
 
 ```json
-{ "facebook_permission": [ "public_profile", "email"] }
+{ "facebook_permission": ["public_profile", "email"], "facebook_client_token": "Your Facebook Client Token" }
 ```
 
-![gamebase_app_05_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_05_201812_en.png)
+![gamebase_app_authentication_information_facebook_03.png](https://static.toastoven.net/prod_gamebase/gamebase_app_authentication_information_facebook_03.png)
 
 **Reference URL**<br />
 
 - [Facebook Developer's Site](https://developers.facebook.com/)
 - [Facebook Permission](https://developers.facebook.com/docs/facebook-login/permissions/)
 
-##### Android & iOS & Unity
-No further configuration needs to be done apart from NHN Cloud console.
+##### Android
+* [Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > Facebook IdP](./aos-started/#facebook-idp)
+
 
 
 
@@ -274,7 +276,7 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the TO
 
 - ClientID: {PAYCO client_id}
 - Secret Key: {PAYCO client_secret}
-- Additional Information: PAYCO Service & Service Name (JSON format)
+- Additional Information: PAYCO Service Code & Service Name (JSON format)
 
 ##### Additional Info Settings
 
