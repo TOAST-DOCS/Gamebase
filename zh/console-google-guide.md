@@ -171,7 +171,7 @@
    ![设置订阅信息传播](https://static.toastoven.net/prod_iap/console_google/google_subscription_event_01.png)
 
 2. 在创建的主题**添加主要成员**。
-    - 输入成员信息“google-play-developer-notifications@system.gserviceaccount.com”。
+    - 输入成员信息`google-play-developer-notifications@system.gserviceaccount.com`。
     - 选择角色"发布/订阅" > "发布/订阅发布者"。
 
    ![设置订阅信息传播](https://static.toastoven.net/prod_iap/console_google/google_subscription_event_02.png)
@@ -181,14 +181,13 @@
     - 在订阅ID中输入易于管理的值。
     - 选择Cloud Pub/Sub主题 : 选择以前创建的主题。 
     - 传送类型 : 选择推送
-    - EndPoint URL : 输入“https://api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG” 
+    - EndPoint URL : 输入`https://api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG` 
     - 在“{YOUR_PACKAGE}”中输入与NHN Cloud App设置的StoreAppID相同的值（构建应用程序时使用的PACKAGE名称）。
 
    ![设置订阅信息传播](https://static.toastoven.net/prod_iap/console_google/google_subscription_event_04.png)  
 
-4. 如果使用用于测试的Alpha环境/Gamebase Sandbox环境，则需为Alpha/Sandbox分别创建步骤3的订阅。
-    - 输入Alpha EndPoint URL : “https://alpha-api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG”。
-    - 输入Gamebase Sandbox EndPoint URL : “https://sandbox-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG”。
+4. 如果使用用于测试的Gamebase Sandbox环境，则需为Sandbox分别创建步骤3的订阅。
+    - 输入Gamebase Sandbox EndPoint URL : `https://sandbox-api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG`。
 5. 移动到[Google Play Console](https://play.google.com/console)的应用程序仪表盘。
     - 在**设置创出收益** > **Google Play支付**页面的“实时开发人员通知主题名称”中输入您在步骤1创建的主题的全称。 
 
