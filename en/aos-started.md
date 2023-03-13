@@ -26,7 +26,7 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | Support Weibo login | API 19 (Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Support Weibo login | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.14<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.1<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 21(Lollipop, OS 5.0) |
-| Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core  | Support in-app purchase | - |
+| Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | Support in-app purchase | - |
 |  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Support Amazon Appstore | API 18(JellyBean MR2, OS 4.3) |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Support Samsung Galaxy Store | API 21(Lollipop, OS 5.0)<br>Although minSdkVersion of Galaxy IAP SDK is 18, the minSdkVersion of Checkout service app that must be installed for actual purchase is 21. |
 |  | gamebase-adapter-purchase-google | billingclient.billing-5.0.0<br>nhncloud-iap-google | Support Google Play | - |
