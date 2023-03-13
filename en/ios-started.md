@@ -46,10 +46,10 @@ Then, include corresponding SDK files to a target of your project.
 |  | GamebaseAuthTwitterAdapter.framework | | Supports Twitter login | iOS 9 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | Supports LINE login  | iOS 10 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 9 or later<br/>arm64 support<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.2 | Supports Hangame login | iOS 9 or later |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.4 | Supports Hangame login | iOS 9 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Supports Weibo login | iOS 9 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.14 | Supports Kakao login | iOS 11 or later |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.2.0<br/> ToastGamebaseIAP 0.15.0 | Supports in-game purchase | iOS 9 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.2.0 | Supports in-game purchase | iOS 9 or later |
 | Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.2.0 | Supports Push | iOS 9 or later |
 
 
