@@ -1,5 +1,15 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.48.0 (2023. 03. 28.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.48.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+ * 외부 SDK 업데이트
+    * NHN Cloud Android SDK(1.4.2)
+    * PAYCO Android SDK(1.5.11)
+ * DNS 장애를 대비한 Gamebase 서버 예비 도메인 적용
+ * 내부 로직 수정
+
 ### 2.47.0 (2023. 02. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.47.0/GamebaseSDK-Android.zip)
 
