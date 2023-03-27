@@ -1,20 +1,36 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.48.0 (2023. 03. 28.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.48.0/GamebaseSDK-Unity.zip)
+
+#### 기능 개선
+* 외부 SDK 업데이트: NHN Cloud Unity SDK (0.27.4)
+* Gamebase 서버 예비 도메인 적용 (GSLB 이중화)
+* iOS
+    * Xcode 최소 지원 버전이 14.1로 변경되었습니다. 
+    * iOS 최소 지원 버전이 11.0으로 변경되었습니다.
+    * armv7, armv7s, i386 아키텍쳐 지원을 중단하였습니다.
+    * 더 이상 bitcode를 지원하지 않습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.48.0](./release-notes-android/#2480-2023-03-28)
+* [Gamebase iOS SDK 2.48.0](./release-notes-ios/#2480-2023-03-28)
+
 ### 2.46.0 (2023. 01. 31.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.46.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* (WebGL) Google 로그인 기능이 추가되었습니다.
-* (Android) 웹뷰에서 고정 폰트 사이즈 사용 여부를 설정하는 필드를 재지원합니다.
+#### Added Features
+* (WebGL) Added Google login feature.
+* (Android) Re-supported the field that sets whether to use a fixed font size in the WebView.
     * GamebaseWebViewConfiguration.enableFixedFontSize
-* (Android) 웹뷰에서 컷아웃(노치) 영역을 비롯한 모든 이용 가능한 스크린 공간을 사용하여 렌더링할 수 있는 설정이 추가되었습니다.
+* (Android) Added a setting to allow the WebView to render using all available screen space, including cutout (notched) areas.
     * GamebaseWebViewConfiguration.renderOutsideSafeArea
-* (Android) IAP 구독 상태를 조회할 수 있는 RequestSubscriptionsStatus API가 추가되었습니다.
+* (Android) Added the RequestSubscriptionsStatus API to view IAP subscription status.
 
-#### 버그 수정
-* (Standalone) 초기화 시 간헐적으로 ReflectionTypeLoadException 오류가 발생하는 문제를 수정했습니다.
+#### Bug Fixes
+* (Standalone) Fixed an error where ReflectionTypeLoadException error occurs intermittently on initialization.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.46.0](./release-notes-android/#2460-2023-01-31)
 * [Gamebase iOS SDK 2.46.0](./release-notes-ios/#2460-2023-01-31)
 
@@ -93,7 +109,7 @@
 * Added the mappedUserValid field that represents the mapped user status to the ForcingMappingTicket class.
 
 #### Feature Updates
-* The field to set whether to use the fixed font size in WebViewis no longer used.
+* The field to set whether to use the fixed font size in WebView is no longer used.
     * **GamebaseWebViewConfiguration.enableFixedFontSize**
 * Added the default values of GamebaseWebViewConfiguration.
     * The default values of navigation bar colorR, colorG, colorB, and colorA are set to 18, 93, 230, 255.
