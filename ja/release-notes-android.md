@@ -6,7 +6,7 @@
 #### 기능 개선/변경
  * 외부 SDK 업데이트: NHN Cloud Android SDK(1.4.2), PAYCO Android SDK(1.5.11)
  * DNS 장애를 대비한 Gamebase 서버 예비 도메인 적용
- * 내부 로직 수정
+ * 내부 로직 개선
 
 #### 버그 수정
  * Unity에서 proguard 적용 시, Purchase 관련 API 호출에 실패하는 버그를 수정하였습니다.
