@@ -162,6 +162,7 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 - **完成支付预约(Reserved)**
 	- 表示不再进行商店内付款或未进行结算验证
 	- 可以更改为Success、Refund状态。
+    - 但无法在Google Play Store更改Success状态。
 - **支付验证失败(Failure)**
 	- 表示在商店付款过程中验证失败。
 	- 可以更改为Success、Refund状态。 
