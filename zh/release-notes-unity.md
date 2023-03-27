@@ -1,5 +1,20 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.48.0 (2023. 03. 28.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.46.0/GamebaseSDK-Unity.zip)
+
+#### 기능 개선
+* 외부 SDK 업데이트: NHN Cloud Unity SDK (0.27.4)
+* Gamebase 서버 예비 도메인 적용 (GSLB 이중화)
+* iOS
+    * OS 최소지원버전 9.0 -> 11.0 상향
+    * armv7, armv7s, i386 아키텍처 지원 중단
+    * bitcode 지원 중단
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.48.0](./release-notes-android/#2480-2023-03-28)
+* [Gamebase iOS SDK 2.48.0](./release-notes-ios/#2480-2023-03-28)
+
 ### 2.46.0 (2023. 01. 31.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.46.0/GamebaseSDK-Unity.zip)
 
