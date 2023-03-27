@@ -472,7 +472,7 @@ public void ShowWebView()
 |                          | GamebaseScreenOrientation.PORTRAIT       | Portait mode                    |
 |                          | GamebaseScreenOrientation.LANDSCAPE      | Landscape mode                    |
 |                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | Reverse landscape     |
-| contentMode              | GamebaseWebViewContentMode.RECOMMENDED      | Browser recommended by the current platform (**default**)  |
+| contentMode<br>(Only for iOS )           | GamebaseWebViewContentMode.RECOMMENDED      | Browser recommended by the current platform (**default**)  |
 |                          | GamebaseWebViewContentMode.MOBILE           | Mobile browser            |
 |                          | GamebaseWebViewContentMode.DESKTOP          | Desktop browser          |
 | colorR                   | 0~255                                    | Color of Navigation Bar: R<br>**default**: 18               |
@@ -484,6 +484,8 @@ public void ShowWebView()
 | isBackButtonVisible      | true or false                            | Activate or deactivate Go Back Button<br>**default**: true   |
 | backButtonImageResource  | ID of resource                           | Image of Go Back Button         |
 | closeButtonImageResource | ID of resource                           | Image of Close Button             |
+| enableFixedFontSize<br>(Only for Android)   | true or false              | Decide if the font size of the Terms window should be fixed.<br>**default**: false |
+| renderOutSideSafeArea<br>(Only for Android) | true or false              | Decide whether to render outside Safe Area.<br>**default**: false |
 
 > [TIP]
 >

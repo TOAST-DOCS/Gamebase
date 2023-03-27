@@ -510,7 +510,8 @@ showWebView(activity, urlString, configuration,
 | setBackButtonImageResource(int resourceId) | ID of resource                      | Image of Go Back Button       |
 | setCloseButtonImageResource(int resourceId) | ID of resource                      | Image of Close Button      |
 | enableAutoCloseByCustomScheme(boolean enable) | true or false | WebView is automatically closed when the custom scheme works.<br>**default**: true |
-
+| enableFixedFontSize(boolean enable)      | true or false | Display a webview at a fixed size, ignoring system font size.<br>**default**: false |
+| setRenderOutsideSafeArea(boolean render) | true or false | Ignore safe area and render cutout area.<br>**default**: false |
 
 ### Close WebView
 Close currently displayed WebView by using the following API.
