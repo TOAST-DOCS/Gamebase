@@ -1,5 +1,10 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.47.0
+
+* Unity에서 Proguard 적용 시, Purchase 관련 API 호출에 실패합니다.
+    * 해당 이슈는 2.48.0 에서 수정되었습니다.
+
 ## 2.45.0
 
 * 미소비 내역 조회 API가 변경되어 신규 API로 변경해야 합니다.
