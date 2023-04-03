@@ -58,7 +58,7 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 > Sign In with Apple에 필요한 AuthenticationServices.framework를 추가할 경우에는 반드시 Optional로 설정해야 합니다.
 > Required로 설정할 경우에는 iOS 11 이하 기기에서는 실행 직후 크래시가 발생합니다.
 > 
-> Gamebase SDK iOS 2.13.0 부터 iOS 9 이상에서 Sign In with Apple 이 지원되며 추가로 Gamebase Console 에 Service ID를 설정해야합니다.
+> Gamebase SDK iOS 2.13.0부터 iOS 9 이상에서 Sign In with Apple이 지원되며, 추가로 Gamebase Console에 Service ID를 설정해야 합니다.
 
 <br/>
 
