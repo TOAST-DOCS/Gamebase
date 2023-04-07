@@ -1,4 +1,4 @@
-﻿  ## Game > Gamebase > Unity SDK使用指南 > 开始
+﻿## Game > Gamebase > Unity SDK使用指南 > 开始
 
 以下说明Gamebase Unity SDK使用环境和初始设置。
 
@@ -8,7 +8,7 @@
 >
 > Gamebase支持的Unity版本
 >
-> * 2018.4.0 ~ 2022.2.1
+> * 2018.4.0 ~ 2022.2.12
 > * 如果需要Gamebase支持的低版本Unity，请联系[客户服务](https://toast.com/support/inquiry)。
 
 #### Android
@@ -21,7 +21,7 @@
 
 | Gamebase SDK | External SDK |
 | --- | --- |
-| Gamebase | NHN Cloud Unity SDK 0.27.1 |
+| Gamebase | NHN Cloud Unity SDK 0.27.4 |
 
 * [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
 * [Gamebase iOS SDK - Dependencies](./ios-started/#setting)

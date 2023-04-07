@@ -7,9 +7,9 @@
 >
 > 最低规格
 >
-> * 用户执行环境 : iOS 9以上
-> * Build环境 : Xcode 13 (iOS 15 SDK)以上
->
+> * 用户执行环境 : iOS 11以上
+> * Build环境 : Xcode 14.1(iOS 16.1 SDK)以上
+>  
 
 <br/>
 
@@ -37,20 +37,20 @@ Gamebase可以通过以下方式安装。
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 用途 | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.2.0 | 包括Gamebase的Interface和核心逻辑。 | iOS 9 or later
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | 支持Facebook登录。 | iOS 9 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.5 | 支持PAYCO登录。 | iOS 9 or later |
-|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | 支持NAVER登录。 | iOS 9 or later |
-|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | 支持Gamecenter登录。 | iOS 9 or later |
-|  | GamebaseAuthGoogleAdapter.framework | GoogleSignIn 5.0.2 | 支持Google登录。 | iOS 9 or later |
-|  | GamebaseAuthTwitterAdapter.framework | | 支持Twitter登录。 | iOS 9 or later |
-|  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | 支持LINE登录。 | iOS 10 or later |
-|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | 支持iOS 9 or later<br/>arm64。<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.4 | 支持Hangame登录。 | iOS 9 or later |
-|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | 支持Weibo登录。 | iOS 9 or later |
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.3.0 | 包括Gamebase的Interface和核心逻辑。 | iOS 11 or later
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | 支持Facebook登录。 | iOS 11 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.6 | 支持PAYCO登录。 | iOS 11 or later |
+|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | 支持NAVER登录。 | iOS 11 or later |
+|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | 支持Gamecenter登录。 | iOS 11 or later |
+|  | GamebaseAuthGoogleAdapter.framework | GoogleSignIn 5.0.2 | 支持Google登录。 | iOS 11 or later |
+|  | GamebaseAuthTwitterAdapter.framework | | 支持Twitter登录。 | iOS 11 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | 支持LINE登录。 | iOS 11 or later |
+|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | 支持iOS 11 or later<br/>arm64。<br/> |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.4 | 支持Hangame登录。 | iOS 11 or later |
+|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | 支持Weibo登录。 | iOS 11 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.14 | 支持Kakao登录。 | iOS 11 or later |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.2.0 | 支持游戏内支付。 | iOS 9 or later |
-| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.2.0 | 支持Push。 | iOS 9 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.3.0 | 支持游戏内支付。 | iOS 9 or later |
+| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.3.0 | 支持Push。 | iOS 11 or later |
 
 
 > <font color="red">[注意]</font><br/>
@@ -58,7 +58,7 @@ Gamebase可以通过以下方式安装。
 > 添加Sign In with Apple需要的AuthenticationServices.framework时必须设置为Optional。
 > 如果设置为Required，在iOS 11以下设备运行时将会发生崩溃。
 > 
-> Gamebase SDK iOS 2.13.0支持iOS 9以上Sign In with Apple，需要在Gamebase Console中输入Service ID。
+> 从Gamebase SDK iOS 2.13.0开始在iOS 9以上支持Sign In with Apple，并需要在Gamebase Console中输入Service ID。
 
 <br>
 
@@ -67,7 +67,7 @@ Gamebase可以通过以下方式安装。
 > 从Gamebase Framework文件当中选择文件名包括**Adapter**的文件后, 在项目内决定是否使用，若存在不使用的Adapter Framework，推荐删除。
 > 为了使用Adapter Framework，可能需要上述表中显示的外部SDK。
 > 对于部分验证Adpater，应注意上表中的Support iOS Version。
-> (如果支持版本为iOS 10以上的Auth Adpater被包括在build中，在iOS 9以下设备运行时会发生崩溃。)
+> (如果支持版本为iOS 11以上的Auth Adpater被包括在build中，在iOS 9以下设备运行时会发生崩溃。)
 
 <br/> 
 
@@ -135,7 +135,7 @@ Gamebase iOS SDK可以通过CocoaPods来设置。
 * 4) 使用编辑器打开已创建的**Podfile**并编写以下内容。
 
 ```ruby
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 target 'SampleApplication' do
     pod 'Gamebase'
@@ -160,7 +160,7 @@ end
 > [INFO]
 >
 > 在**target 'SampleApplication' do**部分中输入创建项目的target名称。
-> **按照pod “Gamebase”，“2.6.0”**编制，可以指定特定版本。若各pod未列出版本，则设置为最新版。
+> **按照pod “Gamebase”，“2.48.0”**编制，可以指定特定版本。若各pod未列出版本，则设置为最新版。
 > 只能选择特定Adapter适用。 
 > 
 
