@@ -9,7 +9,7 @@
  * 내부 로직 개선
 
 #### 버그 수정
- * Unity에서 proguard 적용 시, Purchase 관련 API 호출에 실패하는 버그를 수정하였습니다.
+ * Unity에서 proguard 적용 시 Purchase 관련 API 호출에 실패하는 버그를 수정하였습니다.
 
 ### 2.47.0 (2023. 02. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.47.0/GamebaseSDK-Android.zip)

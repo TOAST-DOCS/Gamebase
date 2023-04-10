@@ -1,13 +1,34 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.49.0
+
+### Unreal
+
+* 미소비 내역 조회 API가 변경되어 신규 API로 변경해야 합니다.
+
+        // Deprecated API
+        void RequestItemListOfNotConsumed(const FGamebasePurchasableReceiptListDelegate& onCallback);
+        // New API
+        void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
+
+* 활성화 구독 조회 API가 변경되어 신규 API로 변경해야 합니다.
+    * 기존 API와 동일한 결과를 받으려면 **FGamebasePurchasableConfiguration.allStores**를 **true**로 설정해야 합니다.
+
+            // Unity: Deprecated API
+            void RequestActivatedPurchases(const FGamebasePurchasableReceiptListDelegate& onCallback);
+            // Unity: New API
+            void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
+
 ## 2.47.0
 
 ### Android
 
-* Unity에서 Proguard 적용 시, Purchase 관련 API 호출에 실패합니다.
+* Unity에서 Proguard 적용 시 Purchase 관련 API 호출에 실패합니다.
     * 해당 이슈는 2.48.0에서 수정되었습니다.
 
 ## 2.45.0
+
+### Android, iOS, Unity
 
 * 미소비 내역 조회 API가 변경되어 신규 API로 변경해야 합니다.
 

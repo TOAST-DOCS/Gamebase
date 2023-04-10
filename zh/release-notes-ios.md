@@ -1,21 +1,28 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.49.0 (2023. 04. 11.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트
+    * Hangame iOS SDK (1.8.5)
+
 ### 2.48.0 (2023. 03. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.48.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* Xcode 최소 지원 버전이 14.1로 변경되었습니다. 
-* iOS 최소 지원 버전이 11.0으로 변경되었습니다.
-* armv7, armv7s, i386 아키텍쳐 지원을 중단하였습니다.
-* 더 이상 bitcode를 지원하지 않습니다.
-* 외부 SDK 업데이트
+#### 改善/修改功能
+* Xcode支持的最低版本已更改为14.1。
+* iOS支持的最低版本已更改为11.0。
+* 已停止armv7、armv7s及i386Architecture的支持。
+* 目前不支持bitcode。
+* 外部SDK升级
     * NHN Cloud iOS SDK (1.3.0)
     * PAYCO iOS SDK (1.5.6)
-* DNS 장애를 대비한 Gamebase 서버 예비 도메인 적용
+* 修改后，在DNS故障时可应用Gamebase服务器附加域。
 
-#### 버그 수정
-* 특정 상황에서 킥아웃 이벤트가 오지 않는 버그를 수정하였습니다.
-* 웹뷰 커스텀 스킴 콜백이 호출되지 않는 버그를 수정하였습니다.
+#### 修改程序错误
+* 修改了在某特定情况下无法接收Kickout事件的错误。
+* 修改了未能调用Webview Custom Scheme回调的错误。
 
 ### 2.47.0 (2023. 02. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.47.0/GamebaseSDK-iOS.zip)
