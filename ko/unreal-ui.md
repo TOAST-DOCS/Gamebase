@@ -427,11 +427,13 @@ void Sample::ShowWebView(const FString& url)
 | isBackButtonVisible      | true or false                            | 뒤로 가기 버튼 활성 또는 비활성<br>**default**: true   |
 | backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지         |
 | closeButtonImageResource | ID of resource                           | 닫기 버튼 이미지             |
+| enableFixedFontSize      | true or false                            | 약관 창의 글자 크기를 고정할지 결정합니다.<br>**default**: false<br>**Android에 한함**     |
+| renderOutSideSafeArea    | true or false                            | Safe Area 영역 밖까지 렌더링할지 결정합니다.<br>**default**: false<br>**Android에 한함**   |
 
 > [TIP]
 >
 > iPadOS 13 이상에서 웹뷰는 기본적으로 데스크톱 모드입니다.
-> contentMode =`GamebaseWebViewContentMode.MOBILE` 설정으로 모바일 모드로 변경할 수 있습니다.
+> contentMode =`GamebaseWebViewContentMode::MOBILE` 설정으로 모바일 모드로 변경할 수 있습니다.
 
 #### Predefined Custom Scheme
 

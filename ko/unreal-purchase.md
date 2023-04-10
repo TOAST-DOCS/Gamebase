@@ -231,12 +231,14 @@ struct FGamebasePurchasableReceipt
     // 구독이 종료되는 시각입니다.(epoch time)
     UPROPERTY()
     int64 expiryTime;
-
-    // Gamebase.Purchase.requestPurchase API 호출시 payload 로 전달했던 값입니다.
-    //
-    // 이 필드는 예를 들어 동일한 User ID 로 구매 했음에도 게임 채널, 캐릭터 등에 따라
-    // 상품 구매 및 지급을 구분하고자 하는 경우 등
-    // 게임에서 필요로 하는 다양한 추가 정보를 담기 위한 목적으로 활용할 수 있습니다.
+    
+    // 결제한 스토어 코드입니다.
+    // GamebaseStoreCode 클래스에서 스토어 코드 목록을 확인할 수 있습니다.
+    UPROPERTY()
+    FString storeCode;
+    
+    // RequestPurchase API 호출시 payload로 전달했던 값입니다.
+    // 스토어 서버 상태에 따라 정보가 유실되는 경우가 있으므로 사용을 권장하지 않습니다.
     UPROPERTY()
     FString payload;
     
@@ -358,6 +360,13 @@ struct FGamebasePurchasableItem
 아이템을 구매했지만, 정상적으로 아이템이 소비(배송, 지급)되지 않은 미소비 결제 내역을 요청합니다.
 미결제 내역이 있는 경우에는 게임 서버(아이템 서버)에 요청하여, 아이템을 배송(지급)하도록 처리해야 합니다.
 
+
+**FGamebasePurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                                    |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
+| allStores                       | O                          | 동일한 UserID로 다른 스토어에서 구매한 미소비 내역도 반환합니다.<br/>기본값은 **false**입니다. |
+
 **API**
 
 Supported Platforms
@@ -365,14 +374,17 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RequestItemListOfNotConsumed(const FGamebasePurchasableReceiptListDelegate& onCallback);
+void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
 ```
 
 **Example**
 ```cpp
-void Sample::RequestItemListOfNotConsumed()
+void Sample::RequestItemListOfNotConsumed(bool allStores)
 {
-    IGamebase::Get().GetPurchase().RequestItemListOfNotConsumed(FGamebasePurchasableItemListDelegate::CreateLambda(
+    FGamebasePurchasableConfiguration Configuration;
+    Configuration.allStores = allStores;
+
+    IGamebase::Get().GetPurchase().RequestItemListOfNotConsumed(Configuration, FGamebasePurchasableItemListDelegate::CreateLambda(
         [](const TArray<FGamebasePurchasableItem>* purchasableItemList, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
@@ -406,6 +418,12 @@ void Sample::RequestItemListOfNotConsumed()
 >
 > Android에서는 Google Play 스토어에서만 현재 구독 상품을 지원합니다.
 
+**FGamebasePurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                                    |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
+| allStores                       | O                          | 동일한 UserID로 다른 스토어에서 구매한 미소비 내역도 반환합니다.<br/>기본값은 **false**입니다. |
+
 **API**
 
 Supported Platforms
@@ -413,14 +431,17 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RequestActivatedPurchases(const FGamebasePurchasableReceiptListDelegate& onCallback);
+void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
 ```
 
 **Example**
 ```cpp
-void Sample::RequestActivatedPurchases()
+void Sample::RequestActivatedPurchases(bool allStores)
 {
-    IGamebase::Get().GetPurchase().RequestActivatedPurchases(FGamebasePurchasableReceiptListDelegate::CreateLambda(
+    FGamebasePurchasableConfiguration Configuration;
+    Configuration.allStores = allStores;
+
+    IGamebase::Get().GetPurchase().RequestActivatedPurchases(Configuration, FGamebasePurchasableReceiptListDelegate::CreateLambda(
         [](const TArray<FGamebasePurchasableReceipt>* purchasableReceiptList, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
@@ -439,6 +460,165 @@ void Sample::RequestActivatedPurchases()
         }
     }));
 }
+```
+
+### List Subscriptions Status
+
+현재 사용자 ID 기준으로 구독 상품들의 상태를 조회합니다.
+콜백으로 반환되는 목록 안에는 구독 상품들의 정보가 담겨 있습니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> * 아래 가이드에 따라 구독 이벤트를 설정해야 구독 상태 코드가 정상적으로 반환됩니다.
+>     * [Game > Gamebase > 스토어 콘솔 가이드 > Google 콘솔 가이드 > Google 시스템 내 실시간 구독 정보 이벤트 전파 설정](./console-google-guide/#google_1)
+>     * 이벤트 설정을 하지 않은 상태에서 구매한 구독 상품의 상태 코드는 항상 0(PURCHASED)이 반환됩니다.
+> * 현재 구독 상품은 Google Play 스토어만 지원합니다.
+
+
+**FGamebasePurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                 |
+| ------------------------------- | -------------------------- | ----------------------------------------------------------- |
+|  includeExpiredSubscriptions    | O                          | 만료된 구독 상품까지 포함하여 조회합니다.<br/>기본값은 **false**입니다.   |
+
+**API**
+
+Supported Platforms
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+
+```cpp
+void RequestSubscriptionsStatus(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableSubscriptionStatusDelegate& onCallback);
+```
+
+**Example**
+```cpp
+void Sample::RequestSubscriptionsStatus(bool includeExpiredSubscriptions)
+{
+    FGamebasePurchasableConfiguration Configuration;
+    Configuration.allStores = allStores;
+
+    IGamebase::Get().GetPurchase().RequestSubscriptionsStatus(Configuration, FGamebasePurchasableSubscriptionStatusDelegate::CreateLambda(
+        [](const TArray<FGamebasePurchasableSubscriptionStatus>* purchasableReceiptList, const FGamebaseError* error)
+    {
+        if (Gamebase::IsSuccess(error))
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestSubscriptionsStatus succeeded."));
+
+            for (const FGamebasePurchasableSubscriptionStatus& purchasableReceipt : *purchasableReceiptList)
+            {
+                UE_LOG(GamebaseTestResults, Display, TEXT(" - gamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s"),
+                    *purchasableReceipt.gamebaseProductId, purchasableReceipt.price, *purchasableReceipt.currency, *purchasableReceipt.paymentSeq, *purchasableReceipt.purchaseToken);
+            }
+        }
+        else
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestSubscriptionsStatus failed. (error: %d)"), error->code);
+        }
+    }));
+}
+```
+
+**VO**
+```cpp
+USTRUCT()
+struct GAMEBASE_API FGamebasePurchasableSubscriptionStatus
+{
+    GENERATED_USTRUCT_BODY()
+
+    // 앱이 설치된 스토어에 대해 Gamebase에서 내부적으로 정의한 코드입니다.
+    UPROPERTY()
+    FString storeCode;
+    
+    // 스토어의 결제 식별자입니다.
+    UPROPERTY()
+    FString paymentId;
+
+    // 구독 상품은 갱신 될때마다 paymentId가 변경됩니다.
+    // 이 필드는 구독 상품을 최초 결제했을 때의 paymentId를 알려줍니다.
+    // 스토어 및 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로
+    // 항상 유효한 값을 보장하지는 않습니다.
+    UPROPERTY()
+    FString originalPaymentId;
+
+    // 결제 식별자입니다.
+    // purchaseToken과 함께 'Consume' 서버 API를 호출하는 데 사용하는 중요한 정보입니다.
+    //    
+    // 주의: Consume API는 게임 서버에서 호출하세요! (https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap)
+    UPROPERTY()
+    FString paymentSeq;
+
+    // 구매한 상품의 상품 ID입니다.
+    UPROPERTY()
+    FString marketItemId;
+    
+    // IAP 웹 콘솔의 항목 고유 식별자
+    UPROPERTY()
+    int64 itemSeq;
+
+    // 다음 값 중 하나를 가집니다.
+    // * UNKNOWN: 알 수 없는 유형입니다. Gamebase SDK를 업데이트하거나 Gamebase 고객 센터에 문의하세요.
+    // * CONSUMABLE: 소모품입니다.
+    // * AUTO_RENEWABLE: 구독 상품입니다.
+    UPROPERTY()
+    FString productType;
+
+    // 상품을 구매한 사용자 아이디입니다.
+    // 상품 구매에 사용하지 않은 사용자 아이디로 로그인하면 구매한 상품을 받을 수 없습니다.
+    UPROPERTY()
+    FString userId;
+    
+    // 상품의 가격입니다.
+    UPROPERTY()
+    float price;
+
+    // 통화 정보입니다.
+    UPROPERTY()
+    FString currency;
+
+    // Payment 식별자.
+    // paymentSeq로 'Consume' 서버 API를 호출하는 데 사용되는 중요한 정보입니다.
+    // Consume API에서 매개변수 이름을 'accessToken'으로 지정해야 전달됩니다.
+    // 참고 : https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap
+    UPROPERTY()
+    FString purchaseToken;
+
+    // 이 값은 Google에서 구매할 때 사용되며 다음 값을 가질 수 있습니다.
+    // 단, Google 서버의 오류로 인해 Gamebase 결제 서버에서 일시적으로 인증 로직이 비활성화된 경우,
+    // null만 반환하므로 항상 유효한 값을 보장하지 않을 수 있습니다.
+    // * null: 정상결제
+    // * 테스트: 테스트 결제
+    // * 프로모션: 프로모션 결제
+    UPROPERTY()
+    FString purchaseType;
+
+    // 상품을 구매한 시간.(epoch time)
+    UPROPERTY()
+    int64 purchaseTime;
+    
+    // 구독이 만료되는 시간.(epoch time)
+    UPROPERTY()
+    int64 expiryTime;
+    
+    // RequestPurchase API 호출 시 페이로드에 전달되는 값입니다.
+    // 스토어 서버 상태에 따라 정보가 유실되는 경우가 있으므로 사용을 권장하지 않습니다.
+    UPROPERTY()
+    FString payload;
+    
+    // 구독 상태
+    // 전체 상태 코드는 다음 문서를 참조하세요.
+    // - https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-unity/#iapsubscriptionstatus
+    UPROPERTY()
+    int32 statusCode;
+    
+    // 구독 상태에 대한 설명입니다.
+    UPROPERTY()
+    FString statusDescription;
+    
+    // Gamebase 콘솔에 등록된 상품 ID입니다.
+    // RequestPurchase API 로 상품을 구매할 때 사용됩니다.
+    UPROPERTY()
+    FString gamebaseProductId;
+};
 ```
 
 
