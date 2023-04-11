@@ -130,6 +130,36 @@ Gamebase默认支持Guest登录。
 如果登录成功，Gamebase Access Token将存储在Local Storage中，并在调用loginForLastLoggedInProviderWithViewController:completion:方法后，可以应用存储的Access Token。<br/>
 但是，IdP的Access Token是由每个IdP提供的SDK管理。<br/>
 
+> [参考]
+>
+> iOS支持的IdP已定义为**TCGBConstants.h**的TCGBAuthIDPs领域的**kTCGBAuthXXXXXX**。
+>
+> [参考]
+>
+> 某些IdP在登录时需要附加信息。
+> 为了设置这些附加信息，提供**[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API。
+> 您可以在additionalInfo参数中以dictionary的形式输入所需信息。
+> 如果有additionalInfo值，则使用相应值，而如果是null，使用在[NHN Cloud Console](./oper-app/#authentication-information)中注册的值。
+> [参考]
+>
+> LINE IdP可以从Gamebase SDK 2.43.0开始设置提供LINE服务的区域。
+> 可以在additionalInfo中设置此区域。    
+
+* additionalInfo参数设置方法
+
+| keyname                                  | a use                          | 值类型                           |
+| ---------------------------------------- | ------------------------------ | ------------------------------ |
+| kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | 设置提供LINE服务的区域 | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
+
+**API**
+
+```objectivec
++ (void)loginWithType:(NSString *)type viewController:(UIViewController *)viewController completion:(LoginCompletion)completion;
++ (void)loginWithType:(NSString *)type additionalInfo:(nullable NSDictionary<NSString *, id> *)additionalInfo viewController:(UIViewController *)viewController completion:(LoginCompletion)completion;
+```
+
+**Example**
+
 ```objectivec
 - (void)loginFacebookButtonClick {
     [TCGBGamebase loginWithType:kTCGBAuthFacebook viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
@@ -143,23 +173,13 @@ Gamebase默认支持Guest登录。
 }
 ```
 
-<br/><br/>
-个别IdP登录，需要一些特定信息。<br/>
-例如，要实现Facebook登录，您需要设置scope等。<br/>
-为了设置这些信息，提供了**[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API。<br/>
-可以用dictionary格式把信息输入到参数additionalInfo中。<br/>
-（当参数值为nil时，它将填充在NHN Cloud Console中注册的additionalInfo值。如果参数值存在，则覆盖在Console中注册的值。）
-
-* additionalInfo参数设置方法
-
-| keyname                                  | a use                          | 值类型                           |
-| ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINE服务区域中要登录的一个服务region。 | **String**(ex: japan, thailand, taiwan, indonesia) |
-
 ```objectivec
 - (void)loginLineButtonClick {
-    NSDictionary *additionalInfo = @{ kTCGBAuthLoginWithCredentialLineChannelRegionKeyname: @"japan" };
-    [TCGBGamebase loginWithType:kTCGBAuthLine additionalInfo:additionalInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+    NSDictionary *additionalInfo = @{ 
+        @"key" : @"value" 
+    };
+
+    [TCGBGamebase loginWithType:kTCGBAuthLine additionalInfo:additionalInfo viewController:viewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
        if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Login Succeeded
             NSString *userId = [authToken.tcgbMember userId];
@@ -169,18 +189,6 @@ Gamebase默认支持Guest登录。
     }];
 }
 ```
-
-> [参考]
->登录可以注册多个区域以在控制台中提供服务。
-> LINE登录时可在Console中注册将要提供服务的多个区域。使用IdP登录时通过additionalInfo参数直接输入将要提供服务的区域。
-> 
-> [参考]
->
-> iOS支持的IdP已定义为**TCGBConstants.h**的TCGBAuthIDPs领域的**kTCGBAuthXXXXXX**。
->
-
-#### Gamebase支持的IdP
-请参考[控制台使用指南](./oper-app/#authentication-information)。
 
 ### Login with Credential
 

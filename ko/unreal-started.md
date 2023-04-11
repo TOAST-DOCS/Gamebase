@@ -8,7 +8,7 @@ Gamebase Unreal SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 >
 > Unreal 지원 버전
 >
-> * UE 4.22 ~ UE 5.0
+> * UE 4.26 ~ UE 5.0
 > * 하위 버전의 Unreal 지원이 필요하면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
 
 #### Supported Platforms

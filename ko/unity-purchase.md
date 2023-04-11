@@ -494,7 +494,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
-static void RequestActivatedPurchases(GamebaseRequest.Purchase.PurchasableConfiguration configuration, GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
+static void RequestSubscriptionsStatus(GamebaseRequest.Purchase.PurchasableConfiguration configuration, GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
 ```
 
 **Example**
@@ -629,10 +629,7 @@ public class PurchasableSubscriptionStatus
 
     /// <summary>
     /// Gamebase.Purchase.requestPurchase API 호출 시 페이로드에 전달되는 값입니다.
-    ///
-    /// 이 필드는 다양한 추가 정보를 보유하는 데 사용할 수 있습니다.
-    /// 예를 들어, 이 필드는 구매를 별도로 처리하는 데 사용할 수 있습니다.
-    /// 동일한 사용자 ID로 구매한 상품을 제공하고 게임 채널별 또는 캐릭터별로 정렬합니다.
+    /// 스토어 서버 상태에 따라 정보가 유실되는 경우가 있으므로 사용을 권장하지 않습니다.
     /// </summary>
     public string payload;
 

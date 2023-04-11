@@ -139,10 +139,10 @@ Gamebase를 통하여 로그인을 처음 시도하거나, 로그인 정보(Acce
 
 > [참고]
 >
-> 로그인할 때 추가정보를 필요로 하는 IdP도 있습니다.
-> 이러한 추가 정보들을 설정할 수 있게 **[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API를 제공합니다.
-> additionalInfo 파라미터에 필수 정보들을 dictionary 형태로 입력하시면 됩니다.
-> additionalInfo 값이 있을 경우에는 해당 값을 사용하고 null 일 경우에는 [NHN Cloud Console](./oper-app/#authentication-information)에 등록된 값을 사용합니다.
+> 일부 IdP는 로그인 시 추가 정보가 필요합니다.
+> 추가 정보를 설정할 수 있도록 **[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API를 제공합니다.
+> additionalInfo 파라미터에 필수 정보들을 dictionary 형태로 입력합니다.
+> additionalInfo 값이 있을 경우에는 해당 값을 사용하고 null일 경우에는 [NHN Cloud Console](./oper-app/#authentication-information)에 등록된 값을 사용합니다.
 
 > [참고]
 >

@@ -46,7 +46,7 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 |  | GamebaseAuthTwitterAdapter.framework | | Twitter 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | LINE 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 11 or later<br/>arm64 지원<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.4 | Hangame 로그인을 지원 | iOS 11 or later |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.5 | Hangame 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weibo 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.14 | Kakao 로그인을 지원 | iOS 11 or later |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.3.0 | 게임 내 결제 지원 | iOS 11 or later |
@@ -58,7 +58,7 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 > Sign In with Apple에 필요한 AuthenticationServices.framework를 추가할 경우에는 반드시 Optional로 설정해야 합니다.
 > Required로 설정할 경우에는 iOS 11 이하 기기에서는 실행 직후 크래시가 발생합니다.
 > 
-> Gamebase SDK iOS 2.13.0 부터 iOS 9 이상에서 Sign In with Apple 이 지원되며 추가로 Gamebase Console 에 Service ID를 설정해야합니다.
+> Gamebase SDK iOS 2.13.0부터 iOS 9 이상에서 Sign In with Apple이 지원되며, 추가로 Gamebase Console에 Service ID를 설정해야 합니다.
 
 <br/>
 
