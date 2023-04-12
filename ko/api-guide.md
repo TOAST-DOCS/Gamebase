@@ -1512,7 +1512,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 | accessToken | String | Required  | 결제 인증 토큰(로그인 인증 토큰이 아님) |
 
 > [참고]
-> 클라이언트에서 requestPurchase API 호출시 응답으로 오는 purchaseToken 값이 accessToken으로 사용
+> 클라이언트에서 requestPurchase API 호출 시 응답으로 오는 purchaseToken 값이 accessToken으로 사용
 
 **[Response Body]**
 

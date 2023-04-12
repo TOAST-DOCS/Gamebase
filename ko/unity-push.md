@@ -71,7 +71,7 @@ public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNig
 
 #### Set Notification Options with RegisterPush in Runtime
 
-RegisterPush API 호출시 GamebaseRequest.Push.NotificationOptions 인자를 추가하여 알림 옵션을 설정할 수 있습니다.
+RegisterPush API 호출 시 GamebaseRequest.Push.NotificationOptions 인자를 추가하여 알림 옵션을 설정할 수 있습니다.
 GamebaseRequest.Push.NotificationOptions 의 생성자에 Gamebase.Push.GetNotificationOptions() 호출 결과를 전달하면, 현재의 알림 옵션으로 초기화 된 오브젝트가 생성되므로, 필요한 값만 변경할 수 있습니다.<br/>
 설정 가능한 값은 아래와 같습니다.
 
