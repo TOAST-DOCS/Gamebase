@@ -204,7 +204,7 @@ public class PurchasableReceipt
     public string paymentId;
 
     /// <summary>
-    /// 구독 상품은 갱신 될때마다 paymentId가 변경됩니다.
+    /// 구독 상품은 갱신될 때마다 paymentId가 변경됩니다.
     /// 이 필드는 맨 처음 구독 상품을 결제 했을때의 paymentId 를 알려줍니다.
     /// 스토어에 따라, 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로
     /// 항상 유효한 값을 보장하지는 않습니다.
@@ -229,7 +229,7 @@ public class PurchasableReceipt
     public string storeCode;
 
     /// <summary>
-    /// Gamebase.Purchase.requestPurchase API 호출시 payload 로 전달했던 값입니다.
+    /// Gamebase.Purchase.requestPurchase API 호출 시 payload 로 전달했던 값입니다.
     /// 스토어 서버 상태에 따라 정보가 유실되는 경우가 있으므로 사용을 권장하지 않습니다.
     /// </summary>
     public string payload;
@@ -287,7 +287,7 @@ public class PurchasableItem
 {
     /// <summary>
     /// Gamebase 콘솔에 등록된 상품 ID입니다.
-    /// Gamebase.Purchase.requestPurchase API 로 상품을 구매할 때 사용됩니다.
+    /// Gamebase.Purchase.requestPurchase API로 상품을 구매할 때 사용됩니다.
     /// </summary>
     public string gamebaseProductId;
 
@@ -550,7 +550,7 @@ public class PurchasableSubscriptionStatus
     public string paymentId;
 
     /// <summary>
-    /// 구독 상품은 갱신 될때마다 paymentId가 변경됩니다.
+    /// 구독 상품은 갱신될 때마다 paymentId가 변경됩니다.
     /// 이 필드는 구독 상품을 최초 결제했을 때의 paymentId를 알려줍니다.
     /// 스토어 및 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로
     /// 항상 유효한 값을 보장하지는 않습니다.
@@ -609,9 +609,9 @@ public class PurchasableSubscriptionStatus
 
     /// <summary>
     /// 이 값은 Google에서 구매할 때 사용되며 다음 값을 가질 수 있습니다.
-    /// 단, Google 서버의 오류로 인해 Gamebase 결제 서버에서 일시적으로 인증 로직이 비활성화된 경우,
+    /// 단, Google 서버의 오류로 인해 Gamebase 결제 서버에서 일시적으로 인증 로직이 비활성화된 경우
     /// null만 반환하므로 항상 유효한 값을 보장하지 않을 수 있습니다.
-    /// * null: 정상결제
+    /// * null: 정상 결제
     /// * 테스트: 테스트 결제
     /// * 프로모션: 프로모션 결제
     /// </summary>
@@ -647,7 +647,7 @@ public class PurchasableSubscriptionStatus
 
     /// <summary>
     /// Gamebase 콘솔에 등록된 상품 ID입니다.
-    /// Gamebase.Purchase.requestPurchase API 로 상품을 구매할 때 사용됩니다.
+    /// Gamebase.Purchase.requestPurchase API로 상품을 구매할 때 사용됩니다.
     /// </summary>
     public string gamebaseProductId;
 }

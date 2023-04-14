@@ -871,7 +871,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
 #### 버그 수정
 * [SDK] 2.4.3
     * (Unity)iOS와 Android로 빌드시 AddMappingForcibly API가 동작하지 않는 오류 수정
-    * (Unity)RequestRetryTransaction API 호출시 iOSPlugin에서 JSON 파싱 오류가 있어 수정
+    * (Unity)RequestRetryTransaction API 호출 시 iOSPlugin에서 JSON 파싱 오류가 있어 수정
 
 ### 2019. 06. 27.
 
@@ -991,7 +991,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그수정
 * [SDK] 1.14.2
-    * (Unity)ShowWebView API 호출시 파라메타에 Callback을 넣지 않으면 crash가 발생되는 부분 수정
+    * (Unity)ShowWebView API 호출 시 파라메타에 Callback을 넣지 않으면 crash가 발생되는 부분 수정
     * (Unity)iOS SDK의 Deleted API를 호출하는 코드가 있어 컴파일시 오류가 발생 되는 버그 수정
     
 ### 1.14.0 (2018.10.23)
@@ -1039,7 +1039,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * (공통)Gamebase 점검페이지에서 점검시간을 단말기 설정 국가시간에 맞추어 노출하도록 개선
     * (공통)점검페이지를 외부 페이지로 사용할 때 Console에 입력한 점검 정보를 사용할 수 있도록 기능 추가
     * (공통)IdP 매핑된 사용자의 Guest 매핑시도시 에러 발생(TCGB_ERROR_AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP)
-    * (공통)인증 API 중복 호출시 에러 발생(AUTH_ALREADY_IN_PROGRESS_ERROR)
+    * (공통)인증 API 중복 호출 시 에러 발생(AUTH_ALREADY_IN_PROGRESS_ERROR)
     * (Android)TencentPush SDK 업데이트 (3.2.3)
     * (Android)Onestore v17(API v5) 지원 : Gamebase에서는 v16(스토어코드=TS)은 제공하지 않습니다.
     * (iOS)오류 코드 추가 : Gamecenter 로그인 거부(TCGB_ERROR_IOS_GAMECENTER_DENIED)
@@ -1057,7 +1057,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     
 #### 버그수정
 * [SDK] 1.12.0
-    * (Unity)IssueTransferKey API 호출시 exception 발생하던 버그 수정
+    * (Unity)IssueTransferKey API 호출 시 exception 발생하던 버그 수정
     * (Unity)Unity Google Adapter 제거 : 기존에 GoogleAdapter 사용중인 개발사는 아래 업데이트 가이드 참고
     
 **Unity Google Adapter 업데이트 가이드**
@@ -1087,7 +1087,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 개선/변경
 * [SDK] 1.11.0
     * (공통)LocalizedString 일본어 번역 추가
-    * (공통)인증 API 호출시 초기화, 로그인을 하지 않은 경우 명확히 에러 코드를 구분하도록 내부 로직을 개선
+    * (공통)인증 API 호출 시 초기화, 로그인을 하지 않은 경우 명확히 에러 코드를 구분하도록 내부 로직을 개선
     * (Android)'android.permission.READ_PHONE_STATE' 권한 제거
     * (Android)GamebaseConfiguration.Builder의 필수 설정값인 setAppId, setAppVersion을 생성자에서 입력할 수 있도록 변경
     * (Android)GamebaseConfiguration.Builder 의 setServerApiVerseion API를 제거

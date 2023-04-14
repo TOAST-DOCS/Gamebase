@@ -73,7 +73,7 @@ Gamebase 콘솔에 설정한 약관을 표시합니다.
 
 ![TermsView Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/termsView-guide-ui-001_2.20.0.png)
 
-ShowTermsView API 는 웹뷰로 약관 창을 표시해줍니다.
+ShowTermsView API는 웹뷰로 약관 창을 표시해줍니다.
 Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 QueryTerms API 를 호출하여, Gamebase 콘솔에 설정한 약관 항목을 불러올 수 있습니다.
 유저가 약관에 동의했다면 각 항목별 동의 여부를 UpdateTerms API 를 통해 Gamebase 서버로 전송하시기 바랍니다.
 
@@ -81,7 +81,7 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 
 약관 창을 화면에 띄워 줍니다.
 유저가 약관에 동의를 했을 경우, 동의 여부를 서버에 등록합니다.
-약관에 동의했다면 ShowTermsView API 를 다시 호출해도 약관 창이 표시되지 않고 바로 성공 콜백이 리턴됩니다.
+약관에 동의했다면 ShowTermsView API를 다시 호출해도 약관 창이 표시되지 않고 바로 성공 콜백이 리턴됩니다.
 단, Gamebase 콘솔에서 약관 재동의 항목을 **필요** 로 변경했다면 유저가 다시 약관에 동의할 때까지는 약관 창이 표시됩니다.
 
 > <font color="red">[주의]</font><br/>
@@ -175,7 +175,7 @@ void Sample::AfterLogin()
 ### QueryTerms
 
 Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
-게임UI에 맞는 약관을 직접 제작하고자 하신다면, QueryTerms API 를 호출하여 Gamebase 콘솔에 설정한 약관 정보를 내려받아 활용하실 수 있습니다.
+게임UI에 맞는 약관을 직접 제작하고자 하신다면, QueryTerms API를 호출하여 Gamebase 콘솔에 설정한 약관 정보를 내려받아 활용하실 수 있습니다.
 
 로그인 후에 호출하신다면 게임유저가 약관에 동의했는지 여부도 함께 확인할 수 있습니다.
 
@@ -256,8 +256,8 @@ void Sample::QueryTerms()
 
 ### UpdateTerms
 
-QueryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면,
-게임유저가 약관에 동의한 내역을 UpdateTerms API 를 통해 Gamebase 서버로 전송하시기 바랍니다.
+QueryTerms API로 내려받은 약관 정보로 UI를 직접 제작했다면,
+게임유저가 약관에 동의한 내역을 UpdateTerms API를 통해 Gamebase 서버로 전송하시기 바랍니다.
 
 선택 약관 동의를 취소하는 것과 같이, 약관에 동의했던 내역을 변경하는 목적으로도 활용하실 수 있습니다.
 
@@ -427,8 +427,8 @@ void Sample::ShowWebView(const FString& url)
 | isBackButtonVisible      | true or false                            | 뒤로 가기 버튼 활성 또는 비활성<br>**default**: true   |
 | backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지         |
 | closeButtonImageResource | ID of resource                           | 닫기 버튼 이미지             |
-| enableFixedFontSize      | true or false                            | 약관 창의 글자 크기를 고정할지 결정합니다.<br>**default**: false<br>**Android에 한함**     |
-| renderOutSideSafeArea    | true or false                            | Safe Area 영역 밖까지 렌더링할지 결정합니다.<br>**default**: false<br>**Android에 한함**   |
+| enableFixedFontSize      | true or false                            | 약관 창의 글자 크기 고정 여부를 결정합니다.<br>**default**: false<br>**Android에 한함**     |
+| renderOutSideSafeArea    | true or false                            | Safe Area 영역 밖 렌더링 여부를 결정합니다.<br>**default**: false<br>**Android에 한함**   |
 
 > [TIP]
 >

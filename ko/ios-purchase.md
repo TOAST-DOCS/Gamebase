@@ -229,7 +229,7 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 @interface TCGBPurchasableItem : NSObject
 
 // Gamebase 콘솔에 등록된 상품 ID
-// requestPurchase API 로 상품을 구매할 때 사용
+// requestPurchase API로 상품을 구매할 때 사용
 @property (nonatomic, strong) NSString *gamebaseProductId;
 
 // 상품 가격

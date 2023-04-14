@@ -84,7 +84,7 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 #### Set Notification Options with RegisterPush in Runtime
 
 알림 옵션을 AndroidManifest.xml 에 정의하지 않고 런타임에 설정할 수도 있습니다. 또는 AndroidManifest.xml 에 정의한 값을 런타임에 변경할 수도 있습니다.
-registerPush API 호출시 GamebaseNotificationOptions 인자를 추가하여 알림 옵션을 설정합니다.
+registerPush API 호출 시 GamebaseNotificationOptions 인자를 추가하여 알림 옵션을 설정합니다.
 GamebaseNotificationOptions.newBuilder() 의 인자로 Gamebase.Push.getNotificationOptions() 호출 결과를 전달하면, 현재의 알림 옵션으로 초기화 된 Builder 가 생성되므로, 필요한 값만 변경할 수 있습니다.<br/>
 설정 가능한 값은 아래와 같습니다.
 

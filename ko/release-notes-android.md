@@ -828,7 +828,7 @@ Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
 
 #### 버그수정
 * [SDK] 2.2.2
-    * (Android)Gamebase 초기화 이전 TransferAccount API 호출시, 콜백이 오지 않는 이슈를 수정
+    * (Android)Gamebase 초기화 이전 TransferAccount API 호출 시, 콜백이 오지 않는 이슈를 수정
 
 ### 2.2.0 (2019.03.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.2.0/GamebaseSDK-Android.zip)
@@ -932,7 +932,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     
 #### 버그수정
 * [SDK] 1.14.1
-    * (Android)Auth API 호출 후 콜백에서 다시 Auth API 중복 호출시 정상 호출이 되지 않는 버그 수정
+    * (Android)Auth API 호출 후 콜백에서 다시 Auth API 중복 호출 시 정상 호출이 되지 않는 버그 수정
     
 ### 1.13.0 (2018.09.13)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.13.0/GamebaseSDK-Android.zip)
@@ -942,7 +942,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * (공통)IAP SDK 최신버전 적용 (android:1.5.1, iOS:1.6.0)
     * (Android)Push API 호출 시, Gamebase 초기화/로그인 상태에 따라 호출 실패에 대한 에러 메시지를 보다 명확하게 개선
         * 초기화 전 호출 : NOT_INITIALIZED(1)
-        * 초기화 이후 호출시 Push 모듈이 없음 : NOT_SUPPORTED(10)
+        * 초기화 이후 호출 시 Push 모듈이 없음 : NOT_SUPPORTED(10)
         * 초기화 성공 및 로그인 이전 호출 : NOT_LOGGED_IN(2)        
     
 #### 버그수정
@@ -968,7 +968,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * (공통)Gamebase 점검페이지에서 점검시간을 단말기 설정 국가시간에 맞추어 노출하도록 개선
     * (공통)점검페이지를 외부 페이지로 사용할 때 Console에 입력한 점검 정보를 사용할 수 있도록 기능 추가
     * (공통)IdP 매핑된 사용자의 Guest 매핑시도시 에러 발생(TCGB_ERROR_AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP)
-    * (공통)인증 API 중복 호출시 에러 발생(AUTH_ALREADY_IN_PROGRESS_ERROR)
+    * (공통)인증 API 중복 호출 시 에러 발생(AUTH_ALREADY_IN_PROGRESS_ERROR)
     * (Android)TencentPush SDK 업데이트 (3.2.3)
     * (Android)Onestore v17(API v5) 지원 : Gamebase에서는 v16(스토어코드=TS)은 제공하지 않습니다.
 
@@ -995,7 +995,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 개선/변경
 * [SDK] 1.11.0
     * (공통)LocalizedString 일본어 번역 추가
-    * (공통)인증 API 호출시 초기화, 로그인을 하지 않은 경우 명확히 에러 코드를 구분하도록 내부 로직을 개선
+    * (공통)인증 API 호출 시 초기화, 로그인을 하지 않은 경우 명확히 에러 코드를 구분하도록 내부 로직을 개선
     * (Android)'android.permission.READ_PHONE_STATE' 권한 제거
     * (Android)GamebaseConfiguration.Builder의 필수 설정값인 setAppId, setAppVersion을 생성자에서 입력할 수 있도록 변경
     * (Android)GamebaseConfiguration.Builder 의 setServerApiVerseion API를 제거
@@ -1020,7 +1020,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그 수정
 * [SDK] 1.8.1
-    * (Android. iOS)registerPush를 호출시 displayLanguageCode를 null로 전달하면 registerPush가 실패하는 버그 수정
+    * (Android. iOS)registerPush를 호출 시 displayLanguageCode를 null로 전달하면 registerPush가 실패하는 버그 수정
 
 ### 1.8.0 (2018.04.05)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.8.0/GamebaseSDK-Android.zip)

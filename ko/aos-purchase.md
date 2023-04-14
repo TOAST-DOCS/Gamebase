@@ -178,7 +178,7 @@ class PurchasableReceipt {
     @Nullable
     String purchaseType;
     
-    // 구독 상품은 갱신 될때마다 paymentId가 변경됩니다.
+    // 구독 상품은 갱신될 때마다 paymentId가 변경됩니다.
     // 이 필드는 맨 처음 구독 상품을 결제 했을때의 paymentId 를 알려줍니다.
     // 스토어에 따라, 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로
     // 항상 유효한 값을 보장하지는 않습니다.
@@ -264,7 +264,7 @@ Gamebase.Purchase.requestItemListPurchasable(activity, new GamebaseDataCallback<
 ```java
 class PurchasableItem {
     // Gamebase 콘솔에 등록된 상품 ID입니다.
-    // Gamebase.Purchase.requestPurchase API 로 상품을 구매할 때 사용됩니다.
+    // Gamebase.Purchase.requestPurchase API로 상품을 구매할 때 사용됩니다.
     @Nullable
     String gamebaseProductId;
     
