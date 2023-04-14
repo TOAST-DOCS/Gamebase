@@ -1,5 +1,15 @@
 ## Game > Gamebase > Release Notes > Unreal
 
+### 2.49.1 (2023. 04. 14.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.1/GamebaseSDK-Unreal.zip)
+
+#### 버그 수정
+* (iOS) 결제 상품 조회 API를 호출 시 크래시가 발생하지 않도록 수정했습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.48.0](./release-notes-android/#2480-2023-03-28)
+* [Gamebase iOS SDK 2.49.0](./release-notes-ios/#2490-2023-04-11)
+
 ### 2.49.0 (2023. 04. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-Unreal.zip)
 
@@ -26,7 +36,7 @@
     * GamebaseWebViewConfiguration.renderOutsideSafeArea
 
 #### 기능 개선/변경
-
+* Unreal의 최소 지원 버전이 4.26으로 변경되었습니다.
 * (iOS) Xcode 14.1에서 빌드 시 오류가 발생되는 이슈가 수정되었습니다.
     
 #### 플랫폼별 변경 사항
