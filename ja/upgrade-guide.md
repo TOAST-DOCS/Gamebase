@@ -4,12 +4,12 @@
 
 ### Android
 
-* Unity에서 Proguard 적용 시, Purchase 관련 API 호출에 실패합니다.
-    * 해당 이슈는 2.48.0에서 수정되었습니다.
+* UnityでProguard適用時、Purchase関連APIの呼び出しに失敗します。
+    * 当該イシューは2.48.0で修正されました。
 
 ## 2.45.0
 
-* 미소비 내역 조회 API가 변경되었으므로 신규 API로 변경하시기 바랍니다.
+* 未消費履歴照会APIが変更されましたので新規APIに変更してください。
 
         // Unity: Deprecated API
         Gamebase.Purchase.RequestItemListOfNotConsumed(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
@@ -29,8 +29,8 @@
         + (void)requestItemListOfNotConsumedWithConfiguration:(TCGBPurchasableConfiguration *)configuration
                                                    completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
 
-* 활성화 구독 조회 API가 변경되었으므로 신규 API로 변경하시기 바랍니다.
-    * 기존 API와 동일한 결과를 받으려면 **PurchasableConfiguration.allStores**를 **true**로 설정하시기 바랍니다.
+* 有効な購読照会APIが変更されたため、新規APIに変更してください。
+    * 既存APIと同じ結果を得るには**PurchasableConfiguration.allStores**を**true**に設定してください。
 
             // Unity: Deprecated API
             Gamebase.Purchase.RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
