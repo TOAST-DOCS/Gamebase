@@ -7,8 +7,8 @@
 >
 > 要件
 >
-> * ユーザー実行環境：iOS 9以上
-> * ビルド環境：Xcode 13 (iOS 15 SDK)以上
+> * ユーザー実行環境：iOS 11以上
+> * ビルド環境：Xcode 14.1 (iOS 16.1 SDK)以上
 >
 
 <br/>
@@ -37,20 +37,20 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.2.0 | GamebaseのInterfaceおよびコアロジックを含む | iOS 9 or later
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Facebookログインをサポート | iOS 9 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.5 | PAYCOログインをサポート | iOS 9 or later |
-|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | NAVERログインをサポート | iOS 9 or later |
-|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenterログインをサポート | iOS 9 or later |
-|  | GamebaseAuthGoogleAdapter.framework | GoogleSignIn 5.0.2 | Googleログインをサポート | iOS 9 or later |
-|  | GamebaseAuthTwitterAdapter.framework | | Twitterログインをサポート | iOS 9 or later |
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.3.0 | GamebaseのInterfaceおよびコアロジックを含む | iOS 11 or later
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Facebookログインをサポート | iOS 11 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.6 | PAYCOログインをサポート | iOS 11 or later |
+|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | NAVERログインをサポート | iOS 11 or later |
+|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenterログインをサポート | iOS 11 or later |
+|  | GamebaseAuthGoogleAdapter.framework | GoogleSignIn 5.0.2 | Googleログインをサポート | iOS 11 or later |
+|  | GamebaseAuthTwitterAdapter.framework | | Twitterログインをサポート | iOS 11 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | LINEログインをサポート | iOS 10 or later |
-|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 9 or later<br/>arm64サポート<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.4 | Hangameログインをサポート | iOS 9 or later |
-|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weiboログインをサポート | iOS 9 or later |
+|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 11 or later<br/>arm64サポート<br/> |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.4 | Hangameログインをサポート | iOS 11 or later |
+|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weiboログインをサポート | iOS 11 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.14 | Kakaoログインをサポート | iOS 11 or later |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.2.0 | ゲーム内決済をサポート | iOS 9 or later |
-| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.2.0 | Pushをサポート | iOS 9 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.3.0 | ゲーム内決済をサポート | iOS 11 or later |
+| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.3.0 | Pushをサポート | iOS 11 or later |
 
 
 > <font color="red">[注意]</font><br/>
@@ -58,7 +58,7 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 > Sign In with Appleに必要なAuthenticationServices.frameworkを追加する場合は必ずOptionalに設定する必要があります。
 > Requiredに設定すると、iOS 11以下の端末では実行直後にクラッシュが発生します。
 > 
-> Gamebase SDK iOS 2.13.0以上では、iOS 9以上でSign In with Appleがサポートされ、追加でGamebase ConsoleにService IDを設定する必要があります。
+> Gamebase SDK iOS 2.13.0からiOS 11以上でSign In with Appleがサポートされ、追加でGamebase ConsoleにService IDを設定する必要があります。
 
 <br/>
 
@@ -67,7 +67,7 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 > Gamebase Frameworkファイルのうち、名前に**Adapter**が含まれているファイルは、選択してプロジェクト内で使用有無を決定することができ、使用しないAdapter Frameworkは削除することを推奨します。
 > 該当Adapter Frameworkを使用するには、上の表に明示された外部SDKが必要な場合があります。
 > 一部の認証Adapterの場合は、上の表にあるサポートするiOSバージョンに注意する必要があります。
-> (サポートバージョンがiOS 10以上のAuth Adpaterをビルドに含めると、iOS 9以下ではランタイムクラッシュが発生します。)
+> (サポートバージョンがiOS 11以上のAuth Adpaterをビルドに含めると、iOS 11以下ではランタイムクラッシュが発生します。)
 
 <br/>
 
@@ -136,7 +136,7 @@ Gamebase iOS SDKは、CocoaPodsを使用して設定できます。
 * 4) 作成された**Podfile**をエディタで開き、次のような内容を作成します。
 
 ```ruby
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 target 'SampleApplication' do
     pod 'Gamebase'
@@ -161,7 +161,7 @@ end
 > [参考]
 >
 > **target 'SampleApplication' do**部分には作成したプロジェクトのターゲット名を入力します。<br/>
-> **pod 'Gamebase', '2.6.0'**のように入力して、特定バージョンを指定できます。それぞれのpodにバージョンを明示しない場合は最新バージョンが設定されます。<br/>
+> **pod 'Gamebase', '2.48.0'**のように入力して、特定バージョンを指定できます。それぞれのpodにバージョンを明示しない場合は最新バージョンが設定されます。<br/>
 > 特定Adapterのみを任意で適用できます。
 >
 
