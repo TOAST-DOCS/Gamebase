@@ -1,4 +1,4 @@
- ## Game > Gamebase > 릴리스 노트 > Unreal
+## Game > Gamebase > 릴리스 노트 > Unreal
 
 ### 2.49.1 (2023. 04. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.1/GamebaseSDK-Unreal.zip)
