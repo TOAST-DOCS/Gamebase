@@ -1,5 +1,24 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.49.0
+
+### Unreal
+
+* 未消費履歴照会APIが変更され、新規APIに変更する必要があります。
+
+        // Deprecated API
+        void RequestItemListOfNotConsumed(const FGamebasePurchasableReceiptListDelegate& onCallback);
+        // New API
+        void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
+
+* 有効化購読照会APIが変更され、新規APIに変更する必要があります。
+    * 既存APIと同じ結果を得るには**FGamebasePurchasableConfiguration.allStores**を**true**に設定する必要があります。
+
+            // Unity: Deprecated API
+            void RequestActivatedPurchases(const FGamebasePurchasableReceiptListDelegate& onCallback);
+            // Unity: New API
+            void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
+
 ## 2.47.0
 
 ### Android
@@ -8,6 +27,8 @@
     * 当該イシューは2.48.0で修正されました。
 
 ## 2.45.0
+
+### Android, iOS, Unity
 
 * 未消費履歴照会APIが変更されましたので新規APIに変更してください。
 
