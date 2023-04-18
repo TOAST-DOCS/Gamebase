@@ -4,8 +4,8 @@
 
 ### Android
 
-* Unity에서 Proguard 적용 시, Purchase 관련 API 호출에 실패합니다.
-    * 해당 이슈는 2.48.0에서 수정되었습니다.
+* When applying Proguard in Unity, API calls related to Purchase fail.
+    * The issue has been fixed in the version of 2.48.0.
 
 ## 2.45.0
 
