@@ -9,8 +9,8 @@
 * iOS
     * Raised the minimum supported version of Xcode to 14.1. 
     * Raised the minimum supported version of iOS to 11.0.
-    * Stopped support for armv7, armv7s, i386 architectures.
-    * No longer supported bitcode.
+    * Removed support for armv7, armv7s, i386 architectures.
+    * Removed support for bitcode.
 
 #### Platform-specific Changes
 * [Gamebase Android SDK 2.48.0](./release-notes-android/#2480-2023-03-28)

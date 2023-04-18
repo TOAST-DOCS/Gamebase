@@ -13,8 +13,8 @@
 #### Feature Updates
 * Raised the minimum supported version of Xcode to 14.1. 
 * Raised the minimum supported version for iOS to 11.0.
-* Stopped support for armv7, armv7s, i386 architectures.
-* No longer supported bitcode.
+* Removed support for armv7, armv7s, i386 architectures.
+* Removed support for bitcode.
 * External SDK update
     * NHN Cloud iOS SDK (1.3.0)
     * PAYCO iOS SDK (1.5.6)
