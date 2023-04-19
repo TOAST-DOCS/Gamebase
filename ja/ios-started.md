@@ -44,7 +44,7 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenterログインをサポート | iOS 11 or later |
 |  | GamebaseAuthGoogleAdapter.framework | GoogleSignIn 5.0.2 | Googleログインをサポート | iOS 11 or later |
 |  | GamebaseAuthTwitterAdapter.framework | | Twitterログインをサポート | iOS 11 or later |
-|  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | LINEログインをサポート | iOS 10 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | LINEログインをサポート | iOS 11 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 11 or later<br/>arm64サポート<br/> |
 |  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.5 | Hangameログインをサポート | iOS 11 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Weiboログインをサポート | iOS 11 or later |
