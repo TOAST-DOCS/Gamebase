@@ -67,7 +67,7 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 > Gamebase Frameworkファイルのうち、名前に**Adapter**が含まれているファイルは、選択してプロジェクト内で使用有無を決定することができ、使用しないAdapter Frameworkは削除することを推奨します。
 > 該当Adapter Frameworkを使用するには、上の表に明示された外部SDKが必要な場合があります。
 > 一部の認証Adapterの場合は、上の表にあるサポートするiOSバージョンに注意する必要があります。
-> (サポートバージョンがiOS 11以上のAuth Adpaterをビルドに含めると、iOS 11以下ではランタイムクラッシュが発生します。)
+> (サポートバージョンがiOS 11以上のAuth Adpaterをビルドに含めると、iOS 10以下ではランタイムクラッシュが発生します。)
 
 <br/>
 
