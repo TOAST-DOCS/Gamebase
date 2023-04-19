@@ -237,7 +237,6 @@ struct FGamebasePurchasableReceipt
     FString storeCode;
     
     // RequestPurchase API呼び出し時、payloadに渡された値です。
-lurim-nhn marked this conversation as resolved.
     // ストアサーバー状態によって情報が流出する場合があるため、使用を推奨しません。
     UPROPERTY()
     FString payload;
