@@ -3,10 +3,10 @@
 ### 2.49.1 (2023. 04. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.1/GamebaseSDK-Unreal.zip)
 
-#### 버그 수정
-* (iOS) 결제 상품 조회 API를 호출 시 크래시가 발생하지 않도록 수정했습니다.
+#### Bug Fixes
+* (iOS) Fixed a crash when calling the API to query purchases.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.48.0](./release-notes-android/#2480-2023-03-28)
 * [Gamebase iOS SDK 2.49.0](./release-notes-ios/#2490-2023-04-11)
 
@@ -14,14 +14,15 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-Unreal.zip)
 
 #### Added Features
-* Changed the View Unconsumed Payment History API so that replacing with a new API is required
+*  Please update to a new API due to changes to the Query Unconsumed Purchases API.
+unconsumed purchase details
  
         // Deprecated API
         void RequestItemListOfNotConsumed(const FGamebasePurchasableReceiptListDelegate& onCallback);
         // New API
         void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
  
-* Changed the View Active Subscriptions API so that replacing with a new API is required.
+* Make sure to update to a new API due to changes to the Query Activated Subscription API.
     * To get the same results as the existing API, set **FGamebasePurchasableConfiguration.allStores** to **true**.
  
             // Unity: Deprecated API

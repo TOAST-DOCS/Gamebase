@@ -4,7 +4,8 @@
 
 ### Unreal
 
-*  Please update to a new API due to changes to the Query Unconsumed Purchases API.
+* Raised the minimum supported version from 4.22 to 4.26.
+* Please update to a new API due to changes to the Query Unconsumed Purchases API.
 
         // Deprecated API
         void RequestItemListOfNotConsumed(const FGamebasePurchasableReceiptListDelegate& onCallback);
