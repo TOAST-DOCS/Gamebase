@@ -132,6 +132,38 @@ In addition, by using **TCGBAuthToken** , you can get user information, such as 
 When a login is successful, Gamebase access token is saved at a local storage; to use loginForLastLoggedInProviderWithViewController:completion: method, the stored access token can be applied.<br/>
 However, access token of each IdP is managed by SDK of each IdP.<br/>
 
+> [Note]
+>
+> The IdP supported by iOS is defined as **kTCGBAuthXXXXXX** in the TCGBAuthIDPs area of **TCGBConstants.h**.
+>
+
+> [Note]
+>
+> Some IdPs require additional information when logging in.
+> To be able to set the required information, **[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API is provided.
+> Enter the required information into the parameter additionalInfo in the form of the dictionary.
+> If there is a value in the additionalInfo parameter, use that value. if null, use the value registered in [NHN Cloud Console](./oper-app/#authentication-information).
+
+> [Note]
+>
+> LINE IdPs can set LINE service regions starting with Gamebase SDK 2.43.0.
+> The service regions can be set in the additionalInfo.
+
+* How to Set additionalInfo Parameters
+
+| keyname                                  | a use                          | Value type                         |
+| ---------------------------------------- | ------------------------------ | ------------------------------ |
+| kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | Set LINE service region | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
+
+**API**
+
+```objectivec
++ (void)loginWithType:(NSString *)type viewController:(UIViewController *)viewController completion:(LoginCompletion)completion;
++ (void)loginWithType:(NSString *)type additionalInfo:(nullable NSDictionary<NSString *, id> *)additionalInfo viewController:(UIViewController *)viewController completion:(LoginCompletion)completion;
+```
+
+**Example**
+
 ```objectivec
 - (void)loginFacebookButtonClick {
     [TCGBGamebase loginWithType:kTCGBAuthFacebook viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
@@ -145,26 +177,13 @@ However, access token of each IdP is managed by SDK of each IdP.<br/>
 }
 ```
 
-<br/><br/>
-To log in with some IdPs, certain information is required.<br/>
-For example, scope needs to be set when implementing Facebook login.<br/>
-To be able to set the required information, **[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API is provided.<br/>
-Enter the required information into the parameter additionalInfo in the form of the dictionary.<br/>
-(If the parameter value is nil, it is filled with the additionalInfo value registered in the NHN Cloud Console. If there is a parameter value, it takes precedence and overwrites the value registered in the Console.)
-
-* How to Set additionalInfo Parameters
-
-| keyname                                  | a use                          | Value Type                           |
-| ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | One of the LINE service regions to log in | **String**(ex: japan, thailand, taiwan, indonesia) |
-
 ```objectivec
  - (void)loginLineButtonClick {
+     NSDictionary *additionalInfo = @{ 
+        @"key" : @"value" 
+    };
     
-    NSDictionary *additionalInfo = @{ kTCGBAuthLoginWithCredentialLineChannelRegionKeyname: @"japan" };
-
-    [TCGBGamebase loginWithType:kTCGBAuthLine additionalInfo:additionalInfo viewController:topViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
-      
+     [TCGBGamebase loginWithType:kTCGBAuthLine additionalInfo:additionalInfo viewController:viewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
        if ([TCGBGamebase isSuccessWithError:error] == YES){
             // To Login Succeeded
             NSString *userId = [authToken.tcgbMember userId];
@@ -174,19 +193,6 @@ Enter the required information into the parameter additionalInfo in the form of 
     }];
 }
 ```
-
-> [Note]
->
-> For LINE login, you can register multiple regions as service regions on the console. When logging in with an IdP, you must manually enter service regions with the additionalInfo parameter.
-> 
-
-> [Note]
->
-> The IdP supported by iOS is defined as **kTCGBAuthXXXXXX** in the TCGBAuthIDPs area of **TCGBConstants.h**.
->
-
-#### IdPs supported by Gamebase
-Please refer to [Console Guide](./oper-app/#authentication-information).
 
 ### Login with Credential
 

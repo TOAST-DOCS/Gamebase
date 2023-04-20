@@ -167,6 +167,7 @@ The status of the searched purchase information is as follows:
 - **Reservation completed (Reserved)**
 	- No longer proceeding with purchase through the store, or did not proceed with purchase validation.
 	- Can be changed to Success or Refund status.
+    - But, cannot be changed to Success status in Google Play Store.
 - **Failed to validate purchase (Failure)**
 	- The store proceeded with the purchase, but an error occurred during purchase validation.
 	- Can be changed to Success or Refund status.

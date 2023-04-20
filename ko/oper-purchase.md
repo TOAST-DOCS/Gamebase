@@ -167,6 +167,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 - **결제 예약 완료(Reserved)**
 	- 스토어를 통한 결제가 더 이상 진행되지 않거나 결제 검증까지 진행되지 않은 경우를 의미합니다.
 	- Success, Refund 상태로 변경 가능합니다.
+      - 단, Google Play Store에서는 Success 상태 변경이 불가능합니다.
 - **결제 검증 실패(Failure)**
 	- 스토어에서 결제를 진행했으나 결제 검증에서 오류가 발생한 경우를 의미합니다.
 	- Success, Refund 상태로 변경 가능합니다.

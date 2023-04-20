@@ -25,13 +25,13 @@
 ### 2.48.0 (2023. 03. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.48.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
- * 외부 SDK 업데이트: NHN Cloud Android SDK(1.4.2), PAYCO Android SDK(1.5.11)
- * DNS 장애를 대비한 Gamebase 서버 예비 도메인 적용
- * 내부 로직 개선
+#### Feature Updates
+ * External SDK update: NHN Cloud Android SDK(1.4.2), PAYCO Android SDK(1.5.11)
+ * Applied the standby domain for Gamebase server in preparation for DNS failure
+ * Improved the internal logic
 
-#### 버그 수정
- * Unity에서 proguard 적용 시, Purchase 관련 API 호출에 실패하는 버그를 수정하였습니다.
+#### Bug Fixes
+ * Fixed a bug where, when proguard is applied in Unity, API calls related to Purchase fails.
 
 ### 2.47.0 (2023. 02. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.47.0/GamebaseSDK-Android.zip)
