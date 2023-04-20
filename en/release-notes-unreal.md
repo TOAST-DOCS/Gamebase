@@ -15,7 +15,6 @@
 
 #### Added Features
 *  Please update to a new API due to changes to the Query Unconsumed Purchases API.
-unconsumed purchase details
  
         // Deprecated API
         void RequestItemListOfNotConsumed(const FGamebasePurchasableReceiptListDelegate& onCallback);
