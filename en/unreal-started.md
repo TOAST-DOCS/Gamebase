@@ -8,7 +8,7 @@ This document describes the environment and initial setting to enable Unreal Gam
 >
 > Support Versions for Unreal 
 >
-> * UE 4.22 ~ UE 5.0
+> * UE 4.26 ~ UE 5.0
 > * To get support for a lower version of Unreal, please contact [Customer Center](https://toast.com/support/inquiry).
 
 #### Supported Platforms

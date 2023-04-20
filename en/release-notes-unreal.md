@@ -13,33 +13,33 @@
 ### 2.49.0 (2023. 04. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
-* 미소비 내역 조회 API가 변경되어 신규 API로 변경해야 합니다.
+#### Added Features
+* Changed the View Unconsumed Payment History API so that replacing with a new API is required
  
         // Deprecated API
         void RequestItemListOfNotConsumed(const FGamebasePurchasableReceiptListDelegate& onCallback);
         // New API
         void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
  
-* 활성화 구독 조회 API가 변경되어 신규 API로 변경해야 합니다.
-    * 기존 API와 동일한 결과를 받으려면 **FGamebasePurchasableConfiguration.allStores**를 **true**로 설정해야 합니다.
+* Changed the View Active Subscriptions API so that replacing with a new API is required.
+    * To get the same results as the existing API, set **FGamebasePurchasableConfiguration.allStores** to **true**.
  
             // Unity: Deprecated API
             void RequestActivatedPurchases(const FGamebasePurchasableReceiptListDelegate& onCallback);
             // Unity: New API
             void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
 
-* (Android) IAP 구독 상태를 조회할 수 있는 RequestSubscriptionsStatus API가 추가되었습니다.
-* (Android) 웹뷰에서 고정 폰트 사이즈 사용 여부를 설정하는 필드를 재지원합니다.
+* (Android) Added the RequestSubscriptionsStatus API to view the IAP subscription status.
+* (Android) Re-supported the field to set whether to use fixed font sizes from the WebView.
     * GamebaseWebViewConfiguration.enableFixedFontSize
-* (Android) 웹뷰에서 컷아웃(노치) 영역을 비롯한 모든 이용 가능한 스크린 공간을 사용하여 렌더링할 수 있는 설정이 추가되었습니다.
+* (Android) Added a setting to allow WebView to render using all available screen spaces, including cutout (notched) areas.
     * GamebaseWebViewConfiguration.renderOutsideSafeArea
 
-#### 기능 개선/변경
-* Unreal의 최소 지원 버전이 4.26으로 변경되었습니다.
-* (iOS) Xcode 14.1에서 빌드 시 오류가 발생되는 이슈가 수정되었습니다.
+#### Feature Updates
+* Raised the minimum supported version of Unreal to 4.26.
+* (iOS) Fixed an error that occurred when running a build from Xcode 14.1.
     
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.48.0](./release-notes-android/#2480-2023-03-28)
 * [Gamebase iOS SDK 2.49.0](./release-notes-ios/#2490-2023-04-11)
 
@@ -102,7 +102,7 @@
 #### Added Features
 *  Provides [iOS settings tool](./unreal-started/#ios-settings).
     * In the previous project settings, it was displayed as **Gamebase**, but after the update, it is displayed as **Gamebase - Android**, **Gamebase - iOS**.
-    * Made modifications so that only the necessary frameworks are included when building, with the iOS settings tool.
+    * Made modifications so that only the necessary frameworks when running a build are included, with the iOS settings tool.
 * Added the VO class to determine whether the Terms UI is displayed after calling the Common Terms API.
     * FGamebaseShowTermsViewResult
 * Added an API to determine whether the device has allowed notifications or not.
