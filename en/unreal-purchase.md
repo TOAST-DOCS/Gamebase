@@ -85,6 +85,7 @@ If there's a value on the list of unconsumed purchases, proceed with the Consume
 By using itemSeq of an item to purchase, call the following API and request a purchase.  
 If a game user cancels purchase, the **PURCHASE_USER_CANCELED** error is returned.
 
+
 **API**
 
 Supported Platforms
@@ -232,7 +233,8 @@ struct FGamebasePurchasableReceipt
     int64 expiryTime;
 
     // This is a code for store where purchase is made.
-    // The store code list can be found in the GamebaseStoreCode class.  UPROPERTY()
+    // The store code list can be found in the GamebaseStoreCode class.  
+    UPROPERTY()
     FString storeCode;
     
     // The value sent to payload when callign the RequestPurchase API.
@@ -357,6 +359,7 @@ struct FGamebasePurchasableItem
 
 Send a request for unconsumed purchases of which items have not been normally consumed (delivered or provided) even after purchased. 
 When there's an unconsumed purchase, send a request to the game server (item server) so as to deliver (provide) items. 
+
 
 **FGamebasePurchasableConfiguration**
 
@@ -526,15 +529,14 @@ struct GAMEBASE_API FGamebasePurchasableSubscriptionStatus
     UPROPERTY()
     FString storeCode;
     
-    // Payment identifier for store
+    // The payment identifier of a store
    UPROPERTY()
     FString paymentId;
 
-    // The paymentId is changed every time subscription is renewed.
+    // The paymentId is changed every time subscription product is renewed.
     // This field provides the paymentId of the first time the subscription is paid for. 
-    // Not always guarantee a valid value
+    // This value does not guarantee to be always valid, 
     // because the value may not exist depending on the status of the store or payment server.
-    // 
     UPROPERTY()
     FString originalPaymentId;
 
@@ -619,6 +621,7 @@ struct GAMEBASE_API FGamebasePurchasableSubscriptionStatus
 };
 ```
 
+
 ### Error Handling
 
 | Error                                       | Error Code | Description                              |
@@ -663,3 +666,8 @@ else
 
 * For NHN Cloud IAP error codes, refer to the document below.
     * [NHN Cloud > User Guide for NHN Cloud SDK > NHN Cloud IAP > Unity > Error Codes](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-unity/#error-code)
+
+
+
+
+
