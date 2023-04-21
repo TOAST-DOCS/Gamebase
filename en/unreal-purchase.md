@@ -530,7 +530,7 @@ struct GAMEBASE_API FGamebasePurchasableSubscriptionStatus
     FString storeCode;
     
     // The payment identifier of a store
-   UPROPERTY()
+    UPROPERTY()
     FString paymentId;
 
     // The paymentId is changed every time subscription product is renewed.
@@ -557,8 +557,8 @@ struct GAMEBASE_API FGamebasePurchasableSubscriptionStatus
 
     // Contains one of the following values.
     // * UNKNOWN: Unknown type. Update Gamebase SDK or contact Gamebase customer center.
-     // * CONSUMABLE: a consumable.
-     // * AUTO_RENEWABLE: a subscription product.
+    // * CONSUMABLE: a consumable.
+    // * AUTO_RENEWABLE: a subscription product.
     UPROPERTY()
     FString productType;
 
