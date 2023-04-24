@@ -494,7 +494,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
-static void RequestActivatedPurchases(GamebaseRequest.Purchase.PurchasableConfiguration configuration, GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
+static void RequestSubscriptionsStatus(GamebaseRequest.Purchase.PurchasableConfiguration configuration, GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
 ```
 **Example**
 ```cs
@@ -612,10 +612,7 @@ public class PurchasableSubscriptionStatus
     public long expiryTime;
     /// <summary>
     /// It is the value passed to payload when calling Gamebase.Purchase.requestPurchase API.
-    ///
-    /// This field can be used to hold a variety of additional information.
-    /// For example, this field can be used to handle purchases separately.
-    /// Provide products purchased by the same user ID and sort them by game channel or character.
+    /// Not recommended to use due to possible loss of information depending on the store server status.
     /// </summary>
     public string payload;
     /// <summary>

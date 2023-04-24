@@ -429,11 +429,13 @@ void Sample::ShowWebView(const FString& url)
 | isBackButtonVisible      | true or false                            | 返回按钮有效或无效<br>**default**: true   |
 | backButtonImageResource  | ID of resource                           | 返回按钮图像         |
 | closeButtonImageResource | ID of resource                           | 关闭按钮图像             |
+| enableFixedFontSize      | true or false                            | 指定是否固定条款窗的字体大小。<br>**default**: false<br>**仅限Android**     |
+| renderOutSideSafeArea    | true or false                            | 指定是否在Safe Area区域之外进行渲染。<br>**default**: false<br>**仅限Android**   |
 
 > [TIP]
 >
 > iPadOS 13以上中的WebView基本上是桌面模式。
-> 可通过contentMode = “GamebaseWebViewContentMode.MOBILE”设置来更改移动模式。
+> 可通过contentMode = “GamebaseWebViewContentMode::MOBILE”设置来更改移动模式。
 
 #### Predefined Custom Scheme
 

@@ -427,7 +427,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
-static void RequestActivatedPurchases(GamebaseRequest.Purchase.PurchasableConfiguration configuration, GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
+static void RequestSubscriptionsStatus(GamebaseRequest.Purchase.PurchasableConfiguration configuration, GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback)
 ```
 
 **Example**
@@ -562,10 +562,7 @@ public class PurchasableSubscriptionStatus
 
     /// <summary>
     /// 是调用Gamebase.Purchase.requestPurchase API时传送至Payload的值。
-    ///   
-    /// 此字段可用于保存各种附加信息。
-    /// 例如，此字段可用于单独处理采购。
-    /// 提供使用相同用户ID购买的产品，并按游戏频道或角色排序。
+    /// 根据商店服务器的状态，信息可能会丢失，因此我们不建议使用它。
     /// </summary>
     public string payload;
 

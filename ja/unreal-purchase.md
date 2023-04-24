@@ -15,6 +15,7 @@ AndroidまたはiOSでアプリ内決済機能を設定する方法は、次の�
 > <font color="red">[注意]</font><br/>
 >
 > 外部プラグインで決済関連処理がある場合、 Gamebase決済機能が正常に動作しない可能性があります。
+
 * Unrealでデフォルトで有効になっているOnline SubSystemプラグインを無効化またはストア機能を利用できないように変更する必要があります。
     * Online SubSystem GooglePlayプラグイン使用時 /Config/Android/AndroidEngine.iniファイルを編集します。
             
@@ -230,11 +231,14 @@ struct FGamebasePurchasableReceipt
     // 購読が終了する時刻です。(epoch time)
     UPROPERTY()
     int64 expiryTime;
-    // Gamebase.Purchase.requestPurchase APIの呼び出し時にpayloadに伝達した値です。
-    //
-    // このフィールドは、例えば同じUser IDで購入したがゲームチャンネル、キャラクターなどに応じて
-    // 商品購入および支給を区分したい場合など
-    // ゲームで必要とするさまざまな追加情報を入れる目的で活用できます。
+
+    // 決済したストアコードです。
+    // GamebaseStoreCodeクラスでストアコードリストを確認できます。
+    UPROPERTY()
+    FString storeCode;
+    
+    // RequestPurchase API呼び出し時、payloadに渡された値です。
+    // ストアサーバー状態によって情報が流出する場合があるため、使用を推奨しません。
     UPROPERTY()
     FString payload;
     // プロモーション決済かどうか
@@ -354,6 +358,12 @@ struct FGamebasePurchasableItem
 アイテムを購入したが、正常にアイテムが消費(配送、支給)されていない未消費決済内訳をリクエストします。
 未決済内訳がある場合は、ゲームサーバー(アイテムサーバー)にリクエストして、アイテムを配送(支給)するように処理する必要があります。
 
+**FGamebasePurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                                    |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
+| allStores                       | O                          | 同じUserIDにて他のストアで購入した未消費履歴も返します。<br/>デフォルト値は**false**です。 |
+
 **API**
 
 Supported Platforms
@@ -361,14 +371,17 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RequestItemListOfNotConsumed(const FGamebasePurchasableReceiptListDelegate& onCallback);
+void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
 ```
 
 **Example**
 ```cpp
-void Sample::RequestItemListOfNotConsumed()
+void Sample::RequestItemListOfNotConsumed(bool allStores)
 {
-    IGamebase::Get().GetPurchase().RequestItemListOfNotConsumed(FGamebasePurchasableItemListDelegate::CreateLambda(
+    FGamebasePurchasableConfiguration Configuration;
+    Configuration.allStores = allStores;
+
+    IGamebase::Get().GetPurchase().RequestItemListOfNotConsumed(Configuration, FGamebasePurchasableItemListDelegate::CreateLambda(
         [](const TArray<FGamebasePurchasableItem>* purchasableItemList, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
@@ -402,6 +415,12 @@ void Sample::RequestItemListOfNotConsumed()
 >
 > Androidでは現在、Google Playストアでのみサブスクリプション商品をサポートしています。
 
+**FGamebasePurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                                    |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
+| allStores                       | O                          | 同じUserIDにて他のストアで購入した未消費履歴も返します。<br/>デフォルト値は**false**です。 |
+
 **API**
 
 Supported Platforms
@@ -409,14 +428,17 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RequestActivatedPurchases(const FGamebasePurchasableReceiptListDelegate& onCallback);
+void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
 ```
 
 **Example**
 ```cpp
-void Sample::RequestActivatedPurchases()
+void Sample::RequestActivatedPurchases(bool allStores)
 {
-    IGamebase::Get().GetPurchase().RequestActivatedPurchases(FGamebasePurchasableReceiptListDelegate::CreateLambda(
+    FGamebasePurchasableConfiguration Configuration;
+    Configuration.allStores = allStores;
+
+    IGamebase::Get().GetPurchase().RequestActivatedPurchases(Configuration, FGamebasePurchasableReceiptListDelegate::CreateLambda(
         [](const TArray<FGamebasePurchasableReceipt>* purchasableReceiptList, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
@@ -435,6 +457,152 @@ void Sample::RequestActivatedPurchases()
         }
     }));
 }
+```
+
+### List Subscriptions Status
+
+現在ユーザーID基準でサブスクリプション商品の状態を照会します。
+コールバックで返されるリスト内にはサブスクリプション商品の情報が含まれています。
+
+> <font color="red">[注意]</font><br/>
+>
+> * 以下のガイドに従って購読イベントを設定すると購読ステータスコードが正常に返されます。
+>     * [Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド > Googleシステム内リアルタイム購読情報イベント配信設定](./console-google-guide/#google_1)
+>     * イベント設定を行っていない状態で購入したサブスクリプション商品のステータスコードは常に0(PURCHASED)が返されます。
+> * 現在サブスクリプション商品はGoogle Playストアのみサポートします。
+
+**FGamebasePurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                 |
+| ------------------------------- | -------------------------- | ----------------------------------------------------------- |
+|  includeExpiredSubscriptions    | O                          | 期限切れのサブスクリプション商品まで含めて照会します。<br/>デフォルト値は**false**です。   |
+
+**API**
+
+Supported Platforms
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+
+```cpp
+void RequestSubscriptionsStatus(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableSubscriptionStatusDelegate& onCallback);
+```
+
+**Example**
+```cpp
+void Sample::RequestSubscriptionsStatus(bool includeExpiredSubscriptions)
+{
+    FGamebasePurchasableConfiguration Configuration;
+    Configuration.allStores = allStores;
+    IGamebase::Get().GetPurchase().RequestSubscriptionsStatus(Configuration, FGamebasePurchasableSubscriptionStatusDelegate::CreateLambda(
+        [](const TArray<FGamebasePurchasableSubscriptionStatus>* purchasableReceiptList, const FGamebaseError* error)
+    {
+        if (Gamebase::IsSuccess(error))
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestSubscriptionsStatus succeeded."));
+            for (const FGamebasePurchasableSubscriptionStatus& purchasableReceipt : *purchasableReceiptList)
+            {
+                UE_LOG(GamebaseTestResults, Display, TEXT(" - gamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s"),
+                    *purchasableReceipt.gamebaseProductId, purchasableReceipt.price, *purchasableReceipt.currency, *purchasableReceipt.paymentSeq, *purchasableReceipt.purchaseToken);
+            }
+        }
+        else
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestSubscriptionsStatus failed. (error: %d)"), error->code);
+        }
+    }));
+}
+```
+
+**VO**
+```cpp
+USTRUCT()
+struct GAMEBASE_API FGamebasePurchasableSubscriptionStatus
+{
+    GENERATED_USTRUCT_BODY()
+    // アプリがインストールされたストアについてGamebaseで内部的に定義したコードです。
+    UPROPERTY()
+    FString storeCode;
+    
+    // ストアの決済識別子です。
+    UPROPERTY()
+    FString paymentId;
+    // サブスクリプション商品は更新さえる度にpaymentIdが変更されます。
+    // このフィールドはサブスクリプション商品を最初に決済した時のpaymentIdを示します。
+    // ストアおよび決済サーバーの状態によって値が存在しない場合があるため
+    // 常に有効な値を保障するわけではありません。
+    UPROPERTY()
+    FString originalPaymentId;
+    // 決済識別子です。
+    // purchaseTokenと一緒にConsumeサーバーAPIを呼び出すために使用する重要な情報です。
+    //    
+    // 注意：Consume APIはゲームサーバーで呼び出してください！ (https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap)
+    UPROPERTY()
+    FString paymentSeq;
+    // 購入商品の商品IDです。
+    UPROPERTY()
+    FString marketItemId;
+    
+    // IAP Webコンソールの項目固有識別子
+    UPROPERTY()
+    int64 itemSeq;
+    // 次のいずれかの値を持ちます。
+    // * UNKNOWN：不明なタイプです。Gamebase SDKをアップデートするか、Gamebaseサポートにお問い合わせください。
+    // * CONSUMABLE：消耗品です。
+    // * AUTO_RENEWABLE：サブスクリプション商品です。
+    UPROPERTY()
+    FString productType;
+    // 商品を購入したユーザーIDです。
+    // 商品購入に使用していないユーザーIDでログインすると、購入した商品を受け取ることができません。
+    UPROPERTY()
+    FString userId;
+    
+    // 商品の価格です。
+    UPROPERTY()
+    float price;
+    // 通貨情報です。
+    UPROPERTY()
+    FString currency;
+    // Payment識別子。
+    // paymentSeqで'Consume'サーバーAPIを呼び出すために使われる重要な情報です。
+    // Consume APIで引数名を'accessToken'に指定する必要があります。
+    // 参考: https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap
+    UPROPERTY()
+    FString purchaseToken;
+    // この値はGoogleで購入する時に使用され、次の値を持つことができます。
+    // ただし、GoogleサーバーのエラーによりGamebase決済サーバーで一時的に認証ロジックが無効になっている場合、
+    // nullのみを返すため、常に有効な値を保証できない場合があります。
+    // * null：正常決済
+    // * テスト：テスト決済
+    // * プロモーション：プロモーション決済
+    UPROPERTY()
+    FString purchaseType;
+    // 商品を購入した時間。(epoch time)
+    UPROPERTY()
+    int64 purchaseTime;
+    
+    // 購読の期限が切れる時間。(epoch time)
+    UPROPERTY()
+    int64 expiryTime;
+    
+    // RequestPurchase APIの呼び出し時にペイロードに渡される値です。
+    // ストアサーバー状態によって情報が流出する場合があるため、使用を推奨しません。
+    UPROPERTY()
+    FString payload;
+    
+    // 購読状態
+    // 全体ステータスコードは次の文書を参照してください。
+    // - https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-unity/#iapsubscriptionstatus
+    UPROPERTY()
+    int32 statusCode;
+    
+    // 購読状態の説明です。
+    UPROPERTY()
+    FString statusDescription;
+    
+    // Gamebaseコンソールに登録された商品IDです。
+    // RequestPurchase APIで商品を購入する時に使用されます。
+    UPROPERTY()
+    FString gamebaseProductId;
+};
 ```
 
 

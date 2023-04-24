@@ -9,7 +9,7 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 > 
 > Unity対応バージョン
 >
-> * 2018.4.0 ~ 2022.2.3
+> * 2018.4.0 ~ 2022.2.16
 > * 下位バージョンのUnityのサポートが必要な場合は[サポート](https://toast.com/support/inquiry)へお問い合わせください。
 
 
@@ -23,7 +23,7 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 
 | Gamebase SDK | External SDK |
 | --- | --- |
-| Gamebase | NHN Cloud Unity SDK 0.27.1 |
+| Gamebase | NHN Cloud Unity SDK 0.27.4 |
 
 * [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
 * [Gamebase iOS SDK - Dependencies](./ios-started/#setting)

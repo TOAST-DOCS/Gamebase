@@ -1,5 +1,25 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.49.0
+
+### Unreal
+
+* 支持的最低版本从4.22更改为4.26。
+* “查询激活订阅API”已被更改，需要更改为新的API。
+
+        // Deprecated API
+        void RequestItemListOfNotConsumed(const FGamebasePurchasableReceiptListDelegate& onCallback);
+        // New API
+        void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
+
+* “查询激活订阅API”已被更改，需要更改为新的API。
+    * 如需收到与以前的API相同的结果，要将**FGamebasePurchasableConfiguration.allStores**设置为**true**。
+
+            // Unity: Deprecated API
+            void RequestActivatedPurchases(const FGamebasePurchasableReceiptListDelegate& onCallback);
+            // Unity: New API
+            void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
+
 ## 2.47.0
 
 ### Android
@@ -8,6 +28,8 @@
     * 在2.48.0中已修改此问题。 
 
 ## 2.45.0
+
+### Android, iOS, Unity
 
 * 由于“未消费明细查询API”已更改，请更改为新的API。
 

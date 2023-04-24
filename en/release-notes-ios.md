@@ -1,28 +1,34 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.49.1 (2023. 04. 25.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-iOS.zip)
+
+#### 버그 수정
+* 로그인 후 외부 인증 IdP의 인증 정보를 얻지 못하는 버그를 수정하였습니다.
+
 ### 2.49.0 (2023. 04. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * Hangame iOS SDK (1.8.5)
 
 ### 2.48.0 (2023. 03. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.48.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* Xcode 최소 지원 버전이 14.1로 변경되었습니다. 
-* iOS 최소 지원 버전이 11.0으로 변경되었습니다.
-* armv7, armv7s, i386 아키텍쳐 지원을 중단하였습니다.
-* 더 이상 bitcode를 지원하지 않습니다.
-* 외부 SDK 업데이트
+#### Feature Updates
+* Raised the minimum supported version of Xcode to 14.1. 
+* Raised the minimum supported version for iOS to 11.0.
+* Removed support for armv7, armv7s, i386 architectures.
+* Removed support for bitcode.
+* External SDK update
     * NHN Cloud iOS SDK (1.3.0)
     * PAYCO iOS SDK (1.5.6)
-* DNS 장애를 대비한 Gamebase 서버 예비 도메인 적용
+* Applied the standby domain for Gamebase server in preparation for DNS failure
 
-#### 버그 수정
-* 특정 상황에서 킥아웃 이벤트가 오지 않는 버그를 수정하였습니다.
-* 웹뷰 커스텀 스킴 콜백이 호출되지 않는 버그를 수정하였습니다.
+#### Bug Fixes
+* Fixed a bug where the kickout event would not come through in certain situations.
+* Fixed a bug where the webview custom scheme callback is not called.
 
 ### 2.47.0 (2023. 02. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.47.0/GamebaseSDK-iOS.zip)

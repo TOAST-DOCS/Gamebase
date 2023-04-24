@@ -6,7 +6,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 > [최소 사양]
 >
-> * 사용자 실행 환경 : Android API 16 (JellyBean, OS 4.1) 이상
+> * 사용자 실행 환경 : Android API 19 (KitKat, OS 4.4) 이상
 > * 빌드 환경 : Android Gradle Plugin 3.2.0 이상
 > * 개발 환경 : Android Studio
 
@@ -14,7 +14,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 용도 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.4.2<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 16(JellyBean, OS 4.1) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.4.2<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 19(Kitkat, OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | API 19(Kitkat, OS 4.4) |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Google 로그인을 지원 | - |
@@ -150,6 +150,25 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
             }
         }
         
+#### Root level build.gradle
+
+* Huawei IAP를 사용하기 위해서 프로젝트 수준(root level)의 build.gradle 또는 settings.gradle(AGP 7.1 이상)에 다음 선언을 추가하세요.
+
+```groovy
+buildscript {
+    repositories {
+        ...
+        // [Huawei App Gallery] Maven repository address for the HMS Core SDK.
+        maven { url 'https://developer.huawei.com/repo/' }
+    }
+
+    dependencies {
+        ...
+        // [Huawei App Gallery] AppGallery Connect plugin configuration. please use the latest plugin version.
+        classpath 'com.huawei.agconnect:agcp:1.6.0.300'
+    }
+}
+```
 
 #### Define Adapters
 
@@ -158,6 +177,9 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 	* **mavenCentral()** 저장소를 추가하세요.
 
 ```groovy
+// >>> [Huawei App Gallery] agconnect plugin for huawei - when Native Android build
+apply plugin: 'com.huawei.agconnect'
+
 repositories {
     // >>> For Gamebase SDK
     mavenCentral()
@@ -229,15 +251,15 @@ android {
 
 #### Huawei Store
 
-* AppGallery Connection 구성 파일(agconnect-service.json)을 assets 폴더에 추가해야 합니다.
+* AppGallery Connection 구성 파일(agconnect-services.json)을 assets 폴더에 추가해야 합니다.
     * [AppGallery Connect](https://developer.huawei.com/consumer/en/service/josp/agc/index.html)에 로그인 한 다음 **내 프로젝트**를 클릭합니다.
     * 프로젝트에서 앱을 선택합니다.
     * **Project settings** > **General information**으로 이동합니다.
-    * **App information**에서 **agconnect-service.json** 파일을 다운로드합니다.
+    * **App information**에서 **agconnect-services.json** 파일을 다운로드합니다.
     * Android Studio 빌드인 경우
-        * **agconnect-service.json** 파일을 프로젝트의 **assets** 폴더에 복사합니다.
+        * **agconnect-services.json** 파일을 프로젝트의 **assets** 폴더에 복사합니다.
     * Unity 빌드인 경우
-        * **agconnect-service.json** 파일을 프로젝트의 **Assets/StreamingAssets** 폴더에 복사합니다.
+        * **agconnect-services.json** 파일을 프로젝트의 **Assets/StreamingAssets** 폴더에 복사합니다.
 
 #### Firebase Notification
 
@@ -372,6 +394,23 @@ android {
 | --- | --- |
 | 전체 결제 화면 | "full" |
 | 팝업 결제 화면 | "popup" |
+
+#### Huawei Store
+
+* Unity와 같은 multi platform 빌드 시 apply plugin 대신 아래의 내용을 추가하면 정상적인 결제가 가능합니다.
+* agconnect-services.json의 cp_id, app_id 필드의 값을 AndroidManifest.xml의 meta-data에 입력해주세요.
+
+```xml
+<meta-data  
+    android:name="com.huawei.hms.client.appid"  
+    android:value="appid=123456789">  
+</meta-data>
+<meta-data
+    android:name="com.huawei.hms.client.cpid"
+    android:value="cpid=1234567891234">
+</meta-data>
+```
+주의: 사용자 단말에 Huawei App Gallery가 설치되어 있어야 정상적으로 결제가 가능합니다.
 
 #### Notification Options
 

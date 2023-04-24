@@ -85,6 +85,7 @@ If there's a value on the list of unconsumed purchases, proceed with the Consume
 By using itemSeq of an item to purchase, call the following API and request a purchase.  
 If a game user cancels purchase, the **PURCHASE_USER_CANCELED** error is returned.
 
+
 **API**
 
 Supported Platforms
@@ -231,11 +232,13 @@ struct FGamebasePurchasableReceipt
     UPROPERTY()
     int64 expiryTime;
 
-    // It is the value passed to payload when calling Gamebase.Purchase.requestPurchase API.
-    //
-    // This field can be used to hold a variety of additional information.
-    // For example, this field can be used to separately handle purchase
-    // and provision of the products purchased using the same user ID and sort them by game channel or character.
+    // This is a code for store where purchase is made.
+    // The store code list can be found in the GamebaseStoreCode class.  
+    UPROPERTY()
+    FString storeCode;
+    
+    // The value sent to payload when callign the RequestPurchase API.
+    // Not guarantee to use due to possible loss of information depending on the store server status.
     UPROPERTY()
     FString payload;
     
@@ -357,6 +360,13 @@ struct FGamebasePurchasableItem
 Send a request for unconsumed purchases of which items have not been normally consumed (delivered or provided) even after purchased. 
 When there's an unconsumed purchase, send a request to the game server (item server) so as to deliver (provide) items. 
 
+
+**FGamebasePurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                                    |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
+| allStores                       | O                          | Return unconsumed lists purchased with the same UserID from a different store.<br/>Default is **false**. |
+
 **API**
 
 Supported Platforms
@@ -364,14 +374,17 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RequestItemListOfNotConsumed(const FGamebasePurchasableReceiptListDelegate& onCallback);
+void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
 ```
 
 **Example**
 ```cpp
-void Sample::RequestItemListOfNotConsumed()
+void Sample::RequestItemListOfNotConsumed(bool allStores)
 {
-    IGamebase::Get().GetPurchase().RequestItemListOfNotConsumed(FGamebasePurchasableItemListDelegate::CreateLambda(
+    FGamebasePurchasableConfiguration Configuration;
+    Configuration.allStores = allStores;
+
+    IGamebase::Get().GetPurchase().RequestItemListOfNotConsumed(Configuration, FGamebasePurchasableItemListDelegate::CreateLambda(
         [](const TArray<FGamebasePurchasableItem>* purchasableItemList, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
@@ -405,6 +418,12 @@ Under same user ID, you can query all subscriptions purchased both on Android an
 >
 > For Android, subscriptions are currently supported only on the Google Play Store.
 
+**FGamebasePurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                                    |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
+| allStores                       | O                          | Return unconsumed lists purchased with the same UserID from a different store.<br/>Default is **false**. |
+
 **API**
 
 Supported Platforms
@@ -412,14 +431,17 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RequestActivatedPurchases(const FGamebasePurchasableReceiptListDelegate& onCallback);
+void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
 ```
 
 **Example**
 ```cpp
-void Sample::RequestActivatedPurchases()
+void Sample::RequestActivatedPurchases(bool allStores)
 {
-    IGamebase::Get().GetPurchase().RequestActivatedPurchases(FGamebasePurchasableReceiptListDelegate::CreateLambda(
+     FGamebasePurchasableConfiguration Configuration;
+     Configuration.allStores = allStores;
+
+     IGamebase::Get().GetPurchase().RequestActivatedPurchases(Configuration, FGamebasePurchasableReceiptListDelegate::CreateLambda(
         [](const TArray<FGamebasePurchasableReceipt>* purchasableReceiptList, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
@@ -439,6 +461,166 @@ void Sample::RequestActivatedPurchases()
     }));
 }
 ```
+
+### List Subscriptions Status
+
+Retrieve the status of subscription products based on the current user ID.
+The list returned in the callback contains information about the subscription products.
+
+> <font color="red">[Caution]</font><br/>
+>
+> * The subscription status code is only returned correctly if you follow the guide below to set up the subscription event.
+>     * Go to [Game > Gamebase > Store Console Guide > Google Console Guide and set up event propagation of real-time subscription information within Google's system
+>     * The status code for a subscription product purchased without setting up events always returns 0 (PURCHASED).
+> * Subscription products currently only supports Google Play Store.
+
+
+**FGamebasePurchasableConfiguration**
+
+| API                             | Mandatory(M) / Optional(O) | Description                                                 |
+| ------------------------------- | -------------------------- | ----------------------------------------------------------- |
+|  includeExpiredSubscriptions    | O                          | Retrieves including expired subscription products.<br/>Default value is **false**.   |
+
+**API**
+
+Supported Platforms
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+
+```cpp
+void RequestSubscriptionsStatus(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableSubscriptionStatusDelegate& onCallback);
+```
+
+**Example**
+```cpp
+void Sample::RequestSubscriptionsStatus(bool includeExpiredSubscriptions)
+{
+    FGamebasePurchasableConfiguration Configuration;
+    Configuration.allStores = allStores;
+
+    IGamebase::Get().GetPurchase().RequestSubscriptionsStatus(Configuration, FGamebasePurchasableSubscriptionStatusDelegate::CreateLambda(
+        [](const TArray<FGamebasePurchasableSubscriptionStatus>* purchasableReceiptList, const FGamebaseError* error)
+    {
+        if (Gamebase::IsSuccess(error))
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestSubscriptionsStatus succeeded."));
+
+            for (const FGamebasePurchasableSubscriptionStatus& purchasableReceipt : *purchasableReceiptList)
+            {
+                UE_LOG(GamebaseTestResults, Display, TEXT(" - gamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s"),
+                    *purchasableReceipt.gamebaseProductId, purchasableReceipt.price, *purchasableReceipt.currency, *purchasableReceipt.paymentSeq, *purchasableReceipt.purchaseToken);
+            }
+        }
+        else
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestSubscriptionsStatus failed. (error: %d)"), error->code);
+        }
+    }));
+}
+```
+
+**VO**
+```cpp
+USTRUCT()
+struct GAMEBASE_API FGamebasePurchasableSubscriptionStatus
+{
+    GENERATED_USTRUCT_BODY()
+
+    // This is the code defined internally by Gamebase for the store where your app is installed.
+    UPROPERTY()
+    FString storeCode;
+    
+    // The payment identifier of a store
+    UPROPERTY()
+    FString paymentId;
+
+    // The paymentId is changed every time subscription product is renewed.
+    // This field provides the paymentId of the first time the subscription is paid for. 
+    // This value does not guarantee to be always valid, 
+    // because the value may not exist depending on the status of the store or payment server.
+    UPROPERTY()
+    FString originalPaymentId;
+
+    // Payment identifier
+    // This is important information used to call the ‘Consume’ server API along with purchaseToken.
+    //    
+    // Caution: Call the Consume API from the game server! (https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap)
+    UPROPERTY()
+    FString paymentSeq;
+
+    // Product ID for the purchased product.
+    UPROPERTY()
+    FString marketItemId;
+    
+    // Item unique identifier in the IAP web console
+    UPROPERTY()
+    int64 itemSeq;
+
+    // Contains one of the following values.
+    // * UNKNOWN: Unknown type. Update Gamebase SDK or contact Gamebase customer center.
+    // * CONSUMABLE: a consumable.
+    // * AUTO_RENEWABLE: a subscription product.
+    UPROPERTY()
+    FString productType;
+
+    // User ID that purchased the product.
+    // If you log in not with a user ID that purchased the product, you cannot get the purchased product.
+    UPROPERTY()
+    FString userId;
+    
+    // Product price.
+    UPROPERTY()
+    float price;
+
+    // Currency information.
+    UPROPERTY()
+    FString currency;
+
+    // Payment identifier.
+    // As paymentSeq, important information to call the 'Consume' server API.
+    // It is sent only when the parameter name is set to ‘access_Token’ from Consume API.
+    // Note: https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap
+    UPROPERTY()
+    FString purchaseToken;
+
+    // The value is used when purchasing from Google and has one of the following values.
+    // But, when authentication logic is deactivated temporarily from Gamebase payment server due to Google server errors
+    // May not always guarantee a valid value as it only returns null
+    // * null: Normal payment
+    // * Test: Test payment
+    // * Promotion: Promotion payment
+    UPROPERTY()
+    FString purchaseType;
+
+    // Time of product purchase .(epoch time)
+    UPROPERTY()
+    int64 purchaseTime;
+    
+    // Time the subscription expires.(epoch time)
+    UPROPERTY()
+    int64 expiryTime;
+    
+    // A value sent to payload when calling the RequestPurchase API.
+    // Not guarantee to use due to possible loss of information depending on the store server status.
+    UPROPERTY()
+    FString payload;
+    
+    // Subscription status
+    // For all status codes, see the following documentation.
+    // - https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-unity/#iapsubscriptionstatus
+    UPROPERTY()
+    int32 statusCode;
+    
+    // Description for subscription status.
+    UPROPERTY()
+    FString statusDescription;
+    
+    // Product ID registered in Gamebase console.
+    // It is used to purchase products with the RequestPurchase API.
+    UPROPERTY()
+    FString gamebaseProductId;
+};
+```
+
 
 ### Error Handling
 
@@ -484,3 +666,8 @@ else
 
 * For NHN Cloud IAP error codes, refer to the document below.
     * [NHN Cloud > User Guide for NHN Cloud SDK > NHN Cloud IAP > Unity > Error Codes](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-unity/#error-code)
+
+
+
+
+

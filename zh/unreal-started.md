@@ -8,7 +8,7 @@
 >
 > Unreal支持的版本
 >
-> * UE 4.22 ~ UE 5.0
+> * UE 4.26 ~ UE 5.0
 > * 如果需要比上述版本更低的Unreal版本，请联系[客户服务](https://toast.com/support/inquiry)。
 
 #### Supported Platforms
