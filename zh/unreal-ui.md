@@ -430,6 +430,7 @@ void Sample::ShowWebView(const FString& url)
 | backButtonImageResource  | ID of resource                           | 返回按钮图像         |
 | closeButtonImageResource | ID of resource                           | 关闭按钮图像             |
 | enableFixedFontSize      | true or false                            | 指定是否固定条款窗的字体大小。<br>**default**: false<br>**仅限Android**     |
+| renderOutSideSafeArea    | true or false                            | 指定是否在Safe Area区域之外进行渲染。<br>**default**: false<br>**仅限Android**   |
 
 > [TIP]
 >
