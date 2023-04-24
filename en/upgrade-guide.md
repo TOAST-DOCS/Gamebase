@@ -1,5 +1,25 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.49.0
+
+### Unreal
+
+* Raised the minimum supported version from 4.22 to 4.26.
+* Please update to a new API due to changes to the Query Unconsumed Purchases API.
+
+        // Deprecated API
+        void RequestItemListOfNotConsumed(const FGamebasePurchasableReceiptListDelegate& onCallback);
+        // New API
+        void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
+
+* Make sure to update to a new API due to changes to the Query Activated Subscription API.
+    * To get the same results as the existing API, set **FGamebasePurchasableConfiguration.allStores** to **true**.
+
+            // Unity: Deprecated API
+            void RequestActivatedPurchases(const FGamebasePurchasableReceiptListDelegate& onCallback);
+            // Unity: New API
+            void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
+
 ## 2.47.0
 
 ### Android
@@ -8,6 +28,8 @@
     * The issue has been fixed in the version of 2.48.0.
 
 ## 2.45.0
+
+### Android, iOS, Unity
 
 * Please update to a new API due to changes to the Query Unconsumed Purchases API.
 
