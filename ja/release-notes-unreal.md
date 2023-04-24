@@ -24,9 +24,9 @@
 * 有効化購読照会APIが変更され、新規APIに変更する必要があります。
     * 既存APIと同じ結果を得るには**FGamebasePurchasableConfiguration.allStores**を**true**に設定する必要があります。
  
-            // Unity: Deprecated API
+            // Deprecated API
             void RequestActivatedPurchases(const FGamebasePurchasableReceiptListDelegate& onCallback);
-            // Unity: New API
+            // New API
             void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
 
 * (Android) IAP購読状態を照会できるRequestSubscriptionsStatus APIが追加されました。
