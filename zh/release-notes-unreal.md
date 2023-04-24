@@ -3,43 +3,43 @@
 ### 2.49.1 (2023. 04. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.1/GamebaseSDK-Unreal.zip)
 
-#### 버그 수정
-* (iOS) 결제 상품 조회 API를 호출 시 크래시가 발생하지 않도록 수정했습니다.
+#### 修改程序错误
+* (iOS) 修复了调用“查询支付产品API”时出现崩溃的问题。
 
-#### 플랫폼별 변경 사항
+#### 各平台更改项目
 * [Gamebase Android SDK 2.48.0](./release-notes-android/#2480-2023-03-28)
 * [Gamebase iOS SDK 2.49.0](./release-notes-ios/#2490-2023-04-11)
 
 ### 2.49.0 (2023. 04. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
-* 미소비 내역 조회 API가 변경되어 신규 API로 변경해야 합니다.
- 
+#### 添加功能
+* “查询未消费明细API”已被更改，因此需要更改为新的API。
+
         // Deprecated API
-        void RequestItemListOfNotConsumed(const FGamebasePurchasableReceiptListDelegate& onCallback);
+        void RequestItemListOfNotConsumed(const FGamebasePurchasableReceiptListDelegate& onCallback);  
         // New API
         void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
- 
-* 활성화 구독 조회 API가 변경되어 신규 API로 변경해야 합니다.
-    * 기존 API와 동일한 결과를 받으려면 **FGamebasePurchasableConfiguration.allStores**를 **true**로 설정해야 합니다.
- 
+
+* “查询激活订阅API”已被更改，因此需要更改为新的API。
+    * 如需获得与以前的API相同的结果，要将** FGamebasePurchasableConfiguration.allStores**设置为**true**。
+   
             // Unity: Deprecated API
             void RequestActivatedPurchases(const FGamebasePurchasableReceiptListDelegate& onCallback);
             // Unity: New API
             void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
-
-* (Android) IAP 구독 상태를 조회할 수 있는 RequestSubscriptionsStatus API가 추가되었습니다.
-* (Android) 웹뷰에서 고정 폰트 사이즈 사용 여부를 설정하는 필드를 재지원합니다.
+ 
+* (Android) 添加了可查看IAP订阅状态的RequestSubscriptionsStatus API。
+* (Android) 在Webview中将重新支持设置是否使用固定字体大小的字段。
     * GamebaseWebViewConfiguration.enableFixedFontSize
-* (Android) 웹뷰에서 컷아웃(노치) 영역을 비롯한 모든 이용 가능한 스크린 공간을 사용하여 렌더링할 수 있는 설정이 추가되었습니다.
+* (Android) 添加了使用包括Cutout（Notch）区域的所有可用屏幕空间进行渲染的设置。
     * GamebaseWebViewConfiguration.renderOutsideSafeArea
 
-#### 기능 개선/변경
-* Unreal의 최소 지원 버전이 4.26으로 변경되었습니다.
-* (iOS) Xcode 14.1에서 빌드 시 오류가 발생되는 이슈가 수정되었습니다.
-    
-#### 플랫폼별 변경 사항
+#### 改善/修改功能
+* Unreal支持的最低版本已更改为4.26。
+* (iOS) 修改了在Xcode 14.1上进行Build时出现错误的问题。
+   
+#### 各平台更改项目
 * [Gamebase Android SDK 2.48.0](./release-notes-android/#2480-2023-03-28)
 * [Gamebase iOS SDK 2.49.0](./release-notes-ios/#2490-2023-04-11)
 
