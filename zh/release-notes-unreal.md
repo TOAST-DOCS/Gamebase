@@ -24,9 +24,9 @@
 * “查询激活订阅API”已被更改，因此需要更改为新的API。
     * 如需获得与以前的API相同的结果，要将** FGamebasePurchasableConfiguration.allStores**设置为**true**。
    
-            // Unity: Deprecated API
+            // Deprecated API
             void RequestActivatedPurchases(const FGamebasePurchasableReceiptListDelegate& onCallback);
-            // Unity: New API
+            // New API
             void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
  
 * (Android) 添加了可查看IAP订阅状态的RequestSubscriptionsStatus API。

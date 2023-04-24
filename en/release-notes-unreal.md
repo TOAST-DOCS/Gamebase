@@ -24,9 +24,9 @@
 * Make sure to update to a new API due to changes to the Query Activated Subscription API.
     * To get the same results as the existing API, set **FGamebasePurchasableConfiguration.allStores** to **true**.
  
-            // Unity: Deprecated API
+            // Deprecated API
             void RequestActivatedPurchases(const FGamebasePurchasableReceiptListDelegate& onCallback);
-            // Unity: New API
+            // New API
             void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
 
 * (Android) Added the RequestSubscriptionsStatus API to view the IAP subscription status.
