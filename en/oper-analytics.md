@@ -67,10 +67,9 @@ Share by each OS, app version, store or country, is available on a graph: shows 
 
 ## User Indicators
 ### Users 
-
-Basic user indicators are available. 
-
 ![gamebase_analytics_03_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_202212_1.png)
+
+Basic user indicators are available.
 
 #### 1. User Status 
 Basic user indicators during a selected period are available. 
@@ -80,7 +79,8 @@ Basic user indicators during a selected period are available.
 * Cumulative MAU: Sum of monthly active users. With monthly indicators, MAU items are substituted for DAU items. 
 * Maximum Concurrent Users (MCU): The maximum number of concurrent users around the clock. The largest CCU value of each minute is collected on a daily basis. 
 * Newly Registered Users (NRU): New subscribers whose first login logs are collected around the clock of the day (by member number)
-* Withdrawer: Number of users whose member numbers are deleted around the clock.  
+* Withdrawer: Number of users whose member numbers are deleted around the clock.
+* Average number of logins: Average number of logins within a selected period
 * Average CCU: Average of CCU during a selected period. 
 * Avg.Playtime(/DAU) : Average play time during query period (sum of play time of DAU/DAU) 
 
@@ -107,17 +107,26 @@ User indicators are available on each environment.
     * Purchase Amount: Total amount paid by a user  
 
 ### User Inflow and Outflow  
-
-Inflow and outflow of app users are available on a daily basis. 
-
 ![gamebase_analytics_05_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_05_201901_2.png)
 
+Inflow and outflow of app users are available on a daily basis.
+
 * User Inflow (new + returned): User inflow is the combination of new and returned users (=new users + returned users)
-* Newly Registered Users: Newly registered users whose first login logs are collected around the clock of the day (by member number)
-* Returned Users: Users whose logs are not collected during the previous 8 days 
+* Newly Registered Users
+    * Daily: Newly registered users whose first login logs are collected around the clock of the day (by member number)
+    * Monthly: Newly registered users whose first login logs are collected in a given month (by member number)
+* Returned Users
+    * Daily: Users whose logs are not collected in the previous 8 days
+    * Monthly: Users whose logs are collected in a given month but not collected in the previous month
 * User Outflow (withdrawn + inactive): User outflow is the combination of withdrawn and inactive users (=withdrawn users + inactive users)
-* Withdrawn Users: Users who have withdrawn, whose member numbers have been deleted around the clock of the day
-* Inactive Users: Users whose logs are not collected during the previous 7 days 
+* Withdrawn Users
+    * Daily: Users who have withdrawn, whose member numbers have been deleted around the clock of the day
+    * Monthly: Users who have withdrawn, whose member numbers have been deleted in a given month
+* Inactive Users
+    * Daily: Users whose logs are not collected during the previous 7 days
+    * Monthly: Users whose logs are not collected in a given month but collected in the previous month
+* Continuous Users
+    * Monthly: Users whose logs are collected both in a given month and the previous month
 
 ### Retention
 ![gamebase_analytics_06_202107_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202107_2.png)
