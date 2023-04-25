@@ -80,7 +80,7 @@ Basic user indicators during a selected period are available.
 * Maximum Concurrent Users (MCU): The maximum number of concurrent users around the clock. The largest CCU value of each minute is collected on a daily basis. 
 * Newly Registered Users (NRU): New subscribers whose first login logs are collected around the clock of the day (by member number)
 * Withdrawer: Number of users whose member numbers are deleted around the clock.
-* Average number of logins: Average number of logins within a selected period
+* Average Number of Logins: Average number of logins within a selected period
 * Average CCU: Average of CCU during a selected period. 
 * Avg.Playtime(/DAU) : Average play time during query period (sum of play time of DAU/DAU) 
 
