@@ -7,10 +7,10 @@
 ```
 
 #### 기능 개선/변경
- * 내부 지표 개선
+* 내부 지표 개선
 
 #### 버그 수정
- * 다음 adapter를 빌드에 포함하는 경우 불필요한 READ_PHONE_STATE 권한이 추가되는 버그를 수정했습니다.
+* 다음 adapter를 빌드에 포함하는 경우 불필요한 READ_PHONE_STATE 권한이 추가되는 버그를 수정했습니다.
     * gamebase-adapter-auth-facebook
     * gamebase-adapter-auth-hangame
     * gamebase-adapter-auth-line
@@ -26,12 +26,12 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.48.0/GamebaseSDK-Android.zip)
 
 #### 改善/修改功能
- * 外部SDK升级 : NHN Cloud Android SDK(1.4.2), PAYCO Android SDK(1.5.11)
- * 修改后，在DNS故障时可应用Gamebase服务器附加域。
- * 改善了内部逻辑。
+* 外部SDK升级 : NHN Cloud Android SDK(1.4.2), PAYCO Android SDK(1.5.11)
+* 修改后，在DNS故障时可应用Gamebase服务器附加域。
+* 改善了内部逻辑。
 
 #### 修改程序错误
- * 修改了在Unity中应用proguard时，Purchase相关API调用失败的错误。
+* 修改了在Unity中应用proguard时，Purchase相关API调用失败的错误。
 
 ### 2.47.0 (2023. 02. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.47.0/GamebaseSDK-Android.zip)
