@@ -77,8 +77,8 @@ Analytics由以下菜单构成。
 显示所选期间内用户的基本指标。
 
 * DAU累积：以每日memberno为准登录1次以上的活跃用户数之和(Daily Active Users)
-* WAU累积：一周DAU之和(Weekly Active Users) 选择周指标时，WAU替代DAU项目。
-* MAU累积：一个月DAU之和(Monthly Active Users) 选择月指标时，DAU 替代MAU项目。
+* WAU累积：一周AU之和(Weekly Active Users) 选择周指标时，WAU替代DAU项目。
+* MAU累积：一个月AU之和(Monthly Active Users) 选择月指标时，DAU 替代MAU项目。
 * 最多同时在线人数(MCU)：0点~24点最多同时在线人数以1天为单位来合计以1分钟为单位CCU中最大的值 
 * 新注册者(NRU)：新注册者 当天0点~24点首次被收集登录日志的用户（以memberno为准）
 * 退出用户：退出用户 当天0点~24点间被删除memberno的用户数
@@ -116,11 +116,21 @@ Analytics由以下菜单构成。
 ![gamebase_analytics_05_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_05_201901_2.png)
 
 * 流入用户（新增+回归）：流入用户为新注册者与回归用户之和（=新注册者 + 回归用户）
-* 新注册者：新注册者。当天0点~24点首次被收集登录日志的用户（以memberno为准）
-* 回归用户：基准日期的前8天内未被收集日志的用户
+* 新注册者
+    * 每日 : 新注册者/当天0点~24点首次被收集登录日志的用户（以memberno为准）
+    * 每月 : 新注册者/在基准月首次被收集登录日志的用户（以memberno为准）
+* 回归用户
+    * 每日 : 基准日期的前8天内未被收集日志的用户
+    * 每月 : 上一个月未被收集日志，但在基准月被收集日志的用户 
 * 流出用户（退出+离开）：流出用户为退出用户与离开用户之和（=退出用户 + 离开用户）
-* 退出用户：退出用户。当天0点~24点删除memberno的用户数
-* 离开用户：基准日期的前7天内未被收集日志的用户
+* 退出用户
+    * 每日 : 退出用户/当天0点~24点删除memberno的用户数
+    * 每月 : 退出用户/在基准月删除memberno的用户数
+* 离开用户
+    * 每日 : 基准日期的前7天内未被收集日志的用户
+    * 每月 : 上一个月被收集日志的用户当中在基准月未被收集日志的用户
+* 连续用户   
+    * 每月 : 在上一个月和基准月被收集日志的用户 
 
 ### Retention
 ![gamebase_analytics_06_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_201901_2.png)
