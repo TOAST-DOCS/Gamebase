@@ -1,13 +1,35 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.49.0
+
+### Unreal
+
+* Raised the minimum supported version from 4.22 to 4.26.
+* Please update to a new API due to changes to the Query Unconsumed Purchases API.
+
+        // Deprecated API
+        void RequestItemListOfNotConsumed(const FGamebasePurchasableReceiptListDelegate& onCallback);
+        // New API
+        void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
+
+* Make sure to update to a new API due to changes to the Query Activated Subscription API.
+    * To get the same results as the existing API, set **FGamebasePurchasableConfiguration.allStores** to **true**.
+
+            // Unity: Deprecated API
+            void RequestActivatedPurchases(const FGamebasePurchasableReceiptListDelegate& onCallback);
+            // Unity: New API
+            void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
+
 ## 2.47.0
 
 ### Android
 
-* Unity에서 Proguard 적용 시, Purchase 관련 API 호출에 실패합니다.
-    * 해당 이슈는 2.48.0에서 수정되었습니다.
+* When applying Proguard in Unity, API calls related to Purchase fail.
+    * The issue has been fixed in the version of 2.48.0.
 
 ## 2.45.0
+
+### Android, iOS, Unity
 
 * Please update to a new API due to changes to the Query Unconsumed Purchases API.
 

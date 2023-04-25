@@ -15,10 +15,13 @@
 * 활성화 구독 조회 API가 변경되어 신규 API로 변경해야 합니다.
     * 기존 API와 동일한 결과를 받으려면 **FGamebasePurchasableConfiguration.allStores**를 **true**로 설정해야 합니다.
 
-            // Unity: Deprecated API
+            // Deprecated API
             void RequestActivatedPurchases(const FGamebasePurchasableReceiptListDelegate& onCallback);
-            // Unity: New API
+            // New API
             void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
+
+### Android
+* 최소 지원 버전이 Android 4.4 이상으로 상향되었습니다.(minSdk 16 -> 19)
 
 ## 2.47.0
 

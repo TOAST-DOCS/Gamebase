@@ -1,5 +1,33 @@
 ## Game > Gamebase > Release Notes > Console
 
+### March 28, 2023
+
+### Added Features
+* Purchase (IAP) > Payment Information
+  * Added the feature to view and register payments with product information unregistered and register
+
+### March 14, 2023
+
+### Feature Updates
+* Purchase (IAP) > Payment Information
+  * Improved so that the status can be changed from 'Reserved' to 'Success' (Google Play Store excluded)
+
+### February 28, 2023
+
+### Feature Updates
+* Purchase (IAP) > Product
+  * Improved so that the status that changes for each store item can also be applied to Gamebase products
+
+### Added Features
+* Member > Member
+  * Added a feature to search for members by Device Key
+
+### February 14, 2023
+
+### Feature Updates
+* Management > Alarm > Recipient List
+	* Added support for SMS alarm receiving feature for IAM members
+
 ### January 10, 2023
 
 #### Added Features

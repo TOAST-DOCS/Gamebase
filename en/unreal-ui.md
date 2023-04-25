@@ -427,11 +427,13 @@ void Sample::ShowWebView(const FString& url)
 | isBackButtonVisible      | true or false                            | Activate or deactivate Go Back button<br>**default**: true   |
 | backButtonImageResource  | ID of resource                           | Image of Go Back button         |
 | closeButtonImageResource | ID of resource                           | Image of Close button            |
+| enableFixedFontSize      | true or false                            | Fix the font size for the terms and condtion window .<br>**default**: false<br>**Only for Android**     |
+| renderOutSideSafeArea    | true or false                            | Render outside Safe Area.<br>**default**: false<br>**Only for Android**   |
 
 > [TIP]
 >
 > In iPadOS 13 or later, WebView is the default desktop mode.
-> You can use the contentMode =`GamebaseWebViewContentMode.MOBILE` setting to switch to the mobile mode.
+> You can use the contentMode =`GamebaseWebViewContentMode::MOBILE` setting to switch to the mobile mode.
 
 #### Predefined Custom Scheme
 

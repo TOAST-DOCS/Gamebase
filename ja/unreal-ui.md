@@ -425,11 +425,13 @@ void Sample::ShowWebView(const FString& url)
 | isBackButtonVisible      | true or false                            | 戻るボタン有効/無効<br>**default** : true   |
 | backButtonImageResource  | ID of resource                           | 戻るボタンのイメージ       |
 | closeButtonImageResource | ID of resource                           | 閉じるボタンのイメージ           |
+| enableFixedFontSize      | true or false                            | 約款ウィンドウの文字サイズを固定するかどうかを決定します。<br>**default**: false<br>**Android限定**     |
+| renderOutSideSafeArea    | true or false                            | Safe Area領域外までレンダリングするかどうかを決定します。<br>**default**: false<br>**Android限定**   |
 
 > [TIP]
 >
 > iPadOS 13以上でWebViewは基本的にデスクトップモードです。
-> contentMode =`GamebaseWebViewContentMode.MOBILE`設定でモバイルモードに変更できます。
+> contentMode =`GamebaseWebViewContentMode::MOBILE`設定でモバイルモードに変更できます。
 
 #### Predefined Custom Scheme
 
