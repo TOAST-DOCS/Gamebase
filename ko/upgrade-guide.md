@@ -21,7 +21,10 @@
             void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
 
 ### Android
-* 최소 지원 버전이 Android 4.4 이상으로 상향되었습니다.(minSdk 16 -> 19)
+
+```
+최소 지원 버전이 Android 4.4 이상으로 상향되었습니다.(minSdk 16 -> 19)
+```
 
 ## 2.47.0
 

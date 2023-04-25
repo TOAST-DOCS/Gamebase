@@ -2,6 +2,7 @@
 
 ### 2.49.0 (2023. 04. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-Android.zip)
+
 ```
 최소 지원 버전이 Android 4.4 이상으로 상향되었습니다.(minSdk 16 -> 19)
 ```
