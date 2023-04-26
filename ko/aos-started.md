@@ -398,7 +398,7 @@ android {
 #### Huawei Store
 
 * Unity와 같은 multi platform 빌드 시 apply plugin 대신 아래의 내용을 추가하면 정상적인 결제가 가능합니다.
-* agconnect-services.json의 cp_id, app_id 필드의 값을 AndroidManifest.xml의 meta-data에 입력해주세요.
+* agconnect-services.json의 cp_id, app_id 필드의 값을 AndroidManifest.xml의 meta-data에 입력하세요.
 
 ```xml
 <meta-data  
