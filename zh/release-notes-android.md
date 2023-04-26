@@ -3,14 +3,14 @@
 ### 2.49.0 (2023. 04. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-Android.zip)
 ```
-최소 지원 버전이 Android 4.4 이상으로 상향되었습니다.(minSdk 16 -> 19)
+支持的最低版本升级到Android 4.4或更高版本。(minSdk 16 -> 19)
 ```
 
-#### 기능 개선/변경
-* 내부 지표 개선
+#### 改善/修改功能
+* 改善了内部指标。
 
-#### 버그 수정
-* 다음 adapter를 빌드에 포함하는 경우 불필요한 READ_PHONE_STATE 권한이 추가되는 버그를 수정했습니다.
+#### 修改程序错误
+* 修复了在Build中包含以下adapter时不必要的READ_PHONE_STATE权限被添加的错误。
     * gamebase-adapter-auth-facebook
     * gamebase-adapter-auth-hangame
     * gamebase-adapter-auth-line
