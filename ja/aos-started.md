@@ -6,7 +6,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 
 > [最小仕様]
 >
-> * 使用者実行環境：Android API 16 (JellyBean, OS 4.1)以上
+> * 使用者実行環境：Android API19 (KitKat, OS 4.4)以上
 > * ビルド環境：Android Gradle Plugin 3.2.0以上
 > * 開発環境：Android Studio
 
@@ -14,23 +14,23 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.4.2<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebaseのインタフェースおよびコアロジックを含む | API 16 (JellyBean, OS 4.1) |
-| Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Appleログインをサポート | API 19(Kitkat, OS 4.4) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.4.2<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebaseのインタフェースおよびコアロジックを含む | API 19(Kitkat、OS 4.4) |
+| Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Appleログインをサポート | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | Facebookログインをサポート | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Googleログインをサポート | - |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.6.3 | Hangameログインをサポート | - |
-|  | gamebase-adapter-auth-line | linesdk-5.8.0 | Lineログインをサポート | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-line | linesdk-5.8.0 | Lineログインをサポート | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Naverログインをサポート | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.11 | Paycoログインをサポート | - |
-|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitterログインをサポート | API 19(Kitkat, OS 4.4) |
-|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | Weiboログインをサポート | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitterログインをサポート | - |
+|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | Weiboログインをサポート | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Weiboログインをサポート | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.14<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.0<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Kakaoログインをサポート | API 21(Lollipop, OS 5.0) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.21.0<br>nhncloud-iap-core | ゲーム内決済をサポート | - |
-|  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Amazon Appstoreをサポート | API 18(JellyBean MR2、OS 4.3) |
+|  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Amazon Appstoreをサポート | - |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Galaxy Storeをサポート | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDKのminSdkVersionは18ですが、<br>実際の決済のためにインストールしなければいけないCheckoutサービスアプリの<br>minSdkVersionは21です。 |
 |  | gamebase-adapter-purchase-google | billingclient.billing-5.0.0<br>nhncloud-iap-google | Google Play Storeをサポート | - |
-|  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Huawei App Galleryをサポート | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Huawei App Galleryをサポート | - |
 |  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | ONE store v17をサポート | - |
 |  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | ONE store v19をサポート | - |
 |  | gamebase-adapter-purchase-onestore-external | nhncloud-iap-onestore-external | ONE store外部決済機能をサポート | - |
@@ -148,7 +148,25 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
                 it.setProperty("android.enableIncrementalDesugaring", false)
             }
         }
-        
+
+#### Root level build.gradle
+
+* Huawei IAPを使用するにはプロジェクトレベル(root level)のbuild.gradleまたはsettings.gradle(AGP 7.1以上)に次の宣言を追加してください。
+
+```groovy
+buildscript {
+    repositories {
+        ...
+        // [Huawei App Gallery] Maven repository address for the HMS Core SDK.
+        maven { url 'https://developer.huawei.com/repo/' }
+    }
+    dependencies {
+        ...
+        // [Huawei App Gallery] AppGallery Connect plugin configuration. please use the latest plugin version.
+        classpath 'com.huawei.agconnect:agcp:1.6.0.300'
+    }
+}
+```
 
 #### Define Adapters
 
@@ -157,6 +175,9 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 	* `mavenCentral()`保存場所を追加してください。
 
 ```groovy
+// >>> [Huawei App Gallery] agconnect plugin for huawei - when Native Android build
+apply plugin: 'com.huawei.agconnect'
+
 repositories {
     // >>> For Gamebase SDK
     mavenCentral()
@@ -229,15 +250,15 @@ android {
 
 #### Huawei Store
 
-* AppGallery Connection構成ファイル(agconnect-service.json)をassetsフォルダに追加する必要があります。
+* AppGallery Connection構成ファイル(agconnect-services.json)をassetsフォルダに追加する必要があります。
     * [AppGallery Connect](https://developer.huawei.com/consumer/en/service/josp/agc/index.html)にログインした後、**マイプロジェクト**をクリックします。
     * プロジェクトでアプリを選択します。
     * **Project settings** > **General information**に移動します。
-    * **App information**から**agconnect-service.json**ファイルをダウンロードします。
+    * **App information**から**agconnect-services.json**ファイルをダウンロードします。
     * Android Studioビルドの場合
-        * **agconnect-service.json** ファイルをプロジェクトの**assets**フォルダにコピーします。
+        * **agconnect-services.json** ファイルをプロジェクトの**assets**フォルダにコピーします。
     * Unityビルドの場合
-        * **agconnect-service.json** ファイルをプロジェクトの **Assets/StreamingAssets**フォルダにコピーします。
+        * **agconnect-services.json** ファイルをプロジェクトの **Assets/StreamingAssets**フォルダにコピーします。
 
 #### Firebase Notification
 
@@ -371,6 +392,23 @@ android {
 | --- | --- |
 | 全体決済画面 | "full" |
 | ポップアップ決済画面 | "popup" |
+
+
+
+* Unityなどのmulti platformをビルドする時、apply pluginの代わりに下記の内容を追加すると、通常の決済が可能です。
+* agconnect-services.jsonのcp_id, app_idフィールドの値をAndroidManifest.xmlのmeta-dataに入力してください。
+
+```xml
+<meta-data  
+    android:name="com.huawei.hms.client.appid"  
+    android:value="appid=123456789">  
+</meta-data>
+<meta-data
+    android:name="com.huawei.hms.client.cpid"
+    android:value="cpid=1234567891234">
+</meta-data>
+```
+注意：ユーザー端末にHuawei App Galleryがインストールされている時のみ正常に決済が可能です。
 
 #### Notification Options
 
