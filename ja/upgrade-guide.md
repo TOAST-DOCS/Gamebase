@@ -20,6 +20,12 @@
             // Unity: New API
             void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
 
+### Android
+
+```
+最小サポートバージョンがAndroid 4.4以上になりました。(minSdk 16 -> 19)
+```
+
 ## 2.47.0
 
 ### Android
