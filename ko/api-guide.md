@@ -2109,6 +2109,7 @@ X-Secret-Key: IgsaAP
 | GALAXY | Galaxy Store |
 | AMAZON | Amazon Appstore |
 | HUAWEI | Huawei AppGallery |
+| MYCARD | Global MyCard |
 <br/>
 
 ### Identity Provider Code
