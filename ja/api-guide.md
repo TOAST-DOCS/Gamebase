@@ -1217,7 +1217,7 @@ Check common requirements.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| regUser | String | Required | 退会をリクエストしたシステムまたはユーザー情報。空白なしで入力 <br> - この情報はConsole > 「メンバー」ページの「退会履歴」画面で確認可能 <br> - 退会履歴画面は退会した利用者の照会時にのみ表示される |
+| regUser | String | Required | 退会をリクエストしたシステムまたは運営者情報。空白なしで入力 <br> - この情報はConsole > 「メンバー」ページの「退会履歴」画面で確認可能 <br> - 退会履歴画面は退会した利用者の照会時にのみ表示される |
 
 **[Request Body]**
 
@@ -2167,6 +2167,7 @@ X-Secret-Key: IgsaAP
 | AS | App Store |
 | ONESTORE | ONE store |
 | GALAXY | Galaxy Store |
+| MYCARD | Global MyCard |
 <br/>
 
 ### Identity Provider Code
