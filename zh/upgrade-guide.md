@@ -20,6 +20,12 @@
             // Unity: New API
             void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
 
+### Android
+
+```
+支持的最低版本已升级到Android 4.4或更高版本。(minSdk 16 -> 19)
+```
+
 ## 2.47.0
 
 ### Android

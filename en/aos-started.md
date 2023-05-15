@@ -6,7 +6,7 @@ To execute Gamebase in Android, the following system environment is required.
 
 > [Minimum Specifications]
 >
-> * User execution environment: Android API 16 (JellyBean, OS 4.1) or higher
+> * User execution environment: Android API 19 (KitKat, OS 4.4) or higher
 > * Build environment: Android Gradle Plugin 3.2.0 or higher
 > * Development environment: Android Studio
 
@@ -14,23 +14,23 @@ To execute Gamebase in Android, the following system environment is required.
 
 | Gamebase SDK | Gamebase Adapter | External SDK | Purpose | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.4.2<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include the interface and core logic of Gamebase | API 16(JellyBean, OS 4.1) |
-| Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | API 19 (Kitkat, OS 4.4) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.4.2<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include the interface and core logic of Gamebase | API 19(KitKat, OS 4.4) |
+| Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Support Google login | - |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.6.3 | Support Hangame login | - |
-|  | gamebase-adapter-auth-line | linesdk-5.8.0 | Support LINE login | API 19 (Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-line | linesdk-5.8.0 | Support LINE login | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Support NAVER login | - |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.11 | Support PAYCO login | API 19(Kitkat, OS 4.4) |
-|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Support Twitter login | API 19 (Kitkat, OS 4.4) |
-|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | Support Weibo login | API 19 (Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.11 | Support PAYCO login | - |
+|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Support Twitter login | - |
+|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | Support Weibo login | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Support Weibo login | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.14<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.1<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 21(Lollipop, OS 5.0) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | Support in-app purchase | - |
-|  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Support Amazon Appstore | API 18(JellyBean MR2, OS 4.3) |
+|  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Support Amazon Appstore | - |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Support Samsung Galaxy Store | API 21(Lollipop, OS 5.0)<br>Although minSdkVersion of Galaxy IAP SDK is 18, the minSdkVersion of Checkout service app that must be installed for actual purchase is 21. |
 |  | gamebase-adapter-purchase-google | billingclient.billing-5.0.0<br>nhncloud-iap-google | Support Google Play | - |
-|  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Support Huawei AppGallery | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Support Huawei AppGallery | - |
 |  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | Support ONE store v17 | - |
 |  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | Support ONE store v19| - |
 |  | gamebase-adapter-purchase-onestore-external | nhncloud-iap-onestore-external | Support ONE store external payment function | - |
@@ -150,6 +150,25 @@ To execute Gamebase in Android, the following system environment is required.
             }
         }
         
+#### Root level build.gradle
+
+* To use Huawei IAP, add the following declaration to build.gradle or settings.gradle (AGP 7.1 or later) at the project level (root level).
+
+```groovy
+buildscript {
+    repositories {
+        ...
+        // [Huawei App Gallery] Maven repository address for the HMS Core SDK.
+        maven { url 'https://developer.huawei.com/repo/' }
+    }
+
+    dependencies {
+        ...
+        // [Huawei App Gallery] AppGallery Connect plugin configuration. please use the latest plugin version.
+        classpath 'com.huawei.agconnect:agcp:1.6.0.300'
+    }
+}
+```
 
 #### Define Adapters
 
@@ -158,6 +177,9 @@ To execute Gamebase in Android, the following system environment is required.
 	* Add the  `mavenCentral()`  storage. 
 
 ```groovy
+// >>> [Huawei App Gallery] agconnect plugin for huawei - when Native Android build
+apply plugin: 'com.huawei.agconnect'
+
 repositories {
     // >>> For Gamebase SDK
     mavenCentral()
@@ -229,15 +251,15 @@ android {
 
 #### Huawei Store
 
-* You must add the AppGallery Connection configuration file (agconnect-service.json) to the assets folder.
+* You must add the AppGallery Connection configuration file (agconnect-services.json) to the assets folder.
     * Log in to [AppGallery Connect](https://developer.huawei.com/consumer/en/ervice/josp/agc/index.html) and click on **My Projects**.
     * Select an app from your project.
     * Go to **Project settings** > **General information**.
-    * Download the **agconnect-service.json** file from **App information**.
+    * Download the **agconnect-services.json** file from **App information**.
     * For Android Studio builds
-        * Copy the **agconnect-service.json** file to the **assets** folder in your project.
+        * Copy the **agconnect-services.json** file to the **assets** folder in your project.
     * For Unity builds
-        * Copy the **agconnect-service.json** file to the **Assets/StreamingAssets** folder in your project.
+        * Copy the **agconnect-services.json** file to the **Assets/StreamingAssets** folder in your project.
 
 #### Firebase Notification
 
@@ -372,6 +394,23 @@ android {
 | --- | --- |
 | Full payment screen | "full" |
 | Payment popup window | "popup" |
+
+#### Huawei Store
+
+* When building multi platforms like Unity, add the following instead of the apply plugin to enable normal payment.
+* Enter the values of the cp_id and app_id fields in agconnect-services.json into the meta-data of the AndroidManifest.xml.
+
+```xml
+<meta-data  
+    android:name="com.huawei.hms.client.appid"  
+    android:value="appid=123456789">  
+</meta-data>
+<meta-data
+    android:name="com.huawei.hms.client.cpid"
+    android:value="cpid=1234567891234">
+</meta-data>
+```
+Caution: Huawei App Gallery must be installed on your device to make payment normally.
 
 #### Notification Options
 

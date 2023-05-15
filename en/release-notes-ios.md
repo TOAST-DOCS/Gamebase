@@ -1,10 +1,16 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.49.2 (2023. 04. 28.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.2/GamebaseSDK-iOS.zip)
+
+#### 버그 수정
+* 변경사항 누락으로 인한 재배포
+
 ### 2.49.1 (2023. 04. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.1/GamebaseSDK-iOS.zip)
 
-#### 버그 수정
-* 로그인 후 외부 인증 IdP의 인증 정보를 얻지 못하는 버그를 수정하였습니다.
+#### Bug Fixes
+* Fixed a bug where authentication information from an externally authenticated IdP could not be obtained after logging in.
 
 ### 2.49.0 (2023. 04. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-iOS.zip)

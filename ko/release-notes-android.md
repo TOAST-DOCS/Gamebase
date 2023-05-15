@@ -1,16 +1,29 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.50.0 (2023. 05. 16.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+* MyCard Adapter가 추가되었습니다.
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: NHN Cloud Android SDK 1.5.0, PAYCO Android SDK 1.5.12
+
+#### 버그 수정
+* 약관 API 호출 시 Activity 사이즈가 safe area 내로 줄어드는 오류를 수정했습니다.
+
 ### 2.49.0 (2023. 04. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-Android.zip)
+
 ```
 최소 지원 버전이 Android 4.4 이상으로 상향되었습니다.(minSdk 16 -> 19)
 ```
 
 #### 기능 개선/변경
- * 내부 지표 개선
+* 내부 지표 개선
 
 #### 버그 수정
- * 다음 adapter를 빌드에 포함하는 경우 불필요한 READ_PHONE_STATE 권한이 추가되는 버그를 수정했습니다.
+* 다음 adapter를 빌드에 포함하는 경우 불필요한 READ_PHONE_STATE 권한이 추가되는 버그를 수정했습니다.
     * gamebase-adapter-auth-facebook
     * gamebase-adapter-auth-hangame
     * gamebase-adapter-auth-line
@@ -26,12 +39,12 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.48.0/GamebaseSDK-Android.zip)
 
 #### 기능 개선/변경
- * 외부 SDK 업데이트: NHN Cloud Android SDK(1.4.2), PAYCO Android SDK(1.5.11)
- * DNS 장애를 대비한 Gamebase 서버 예비 도메인 적용
- * 내부 로직 개선
+* 외부 SDK 업데이트: NHN Cloud Android SDK(1.4.2), PAYCO Android SDK(1.5.11)
+* DNS 장애를 대비한 Gamebase 서버 예비 도메인 적용
+* 내부 로직 개선
 
 #### 버그 수정
- * Unity에서 proguard 적용 시 Purchase 관련 API 호출에 실패하는 버그를 수정하였습니다.
+* Unity에서 proguard 적용 시 Purchase 관련 API 호출에 실패하는 버그를 수정하였습니다.
 
 ### 2.47.0 (2023. 02. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.47.0/GamebaseSDK-Android.zip)

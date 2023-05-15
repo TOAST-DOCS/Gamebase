@@ -10,6 +10,7 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
 >
 > Only ONE Store v17 and v19 are supported.
 > ONE Store v21 is under review and currently not supported.
+> For ONE Store, you can use only one of the following versions: v17, v19, or external, but not at the same time.
 
 * Store code must be specified to initialize Gamebase. 
 * Select **STORE_CODE** among the following:  

@@ -1208,7 +1208,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| regUser | String | Required | 탈퇴를 요청한 시스템 혹은 사용자 정보로 공백 없이 입력 <br> - 해당 정보는 Console > '멤버' 페이지의 '탈퇴 이력' 화면에서 확인 가능 |
+| regUser | String | Required | 탈퇴를 요청한 시스템 혹은 운영자 정보로 공백 없이 입력 <br> - 해당 정보는 Console > '멤버' 페이지의 '탈퇴 이력' 화면에서 확인 가능 |
 
 **[Request Body]**
 
@@ -2109,6 +2109,7 @@ X-Secret-Key: IgsaAP
 | GALAXY | Galaxy Store |
 | AMAZON | Amazon Appstore |
 | HUAWEI | Huawei AppGallery |
+| MYCARD | Global MyCard |
 <br/>
 
 ### Identity Provider Code

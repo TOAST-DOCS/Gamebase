@@ -3,10 +3,10 @@
 ## Environments
 
 在Android上应用Gamebase时，需要以下系统环境。
-
+ 
 > [最低版本]
 >
-> * 用户运行环境 : Android API 16 (JellyBean, OS 4.1)以上
+> * 用户运行环境 : Android API 19 (KitKat, OS 4.4)以上
 > * Build环境 : Android Gradle Plugin 3.2.0以上
 > * 开发环境 : Android Studio
 
@@ -14,23 +14,23 @@
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.4.2<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | 包含Gamebase的界面和核心逻辑。 | API 16(JellyBean, OS 4.1) |
-| Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | 支持Sign In With Apple登录。 | API 19(Kitkat, OS 4.4) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.4.2<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | 包含Gamebase的界面和核心逻辑。 | API 19(Kitkat, OS 4.4) |
+| Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | 支持Sign In With Apple。 | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | 支持Facebook登录。 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | 支持Google登录。 | - |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.6.3 | 支持Hangame登录。 | - |
-|  | gamebase-adapter-auth-line | linesdk-5.8.0 | 支持LINE登录。 | API 19(Kitkat, OS 4.4) |
+、|  | gamebase-adapter-auth-line | linesdk-5.8.0 | 支持LINE 登录。 | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | 支持Naver登录。 | - |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.11 | 支持PAYCO登录。 | API 19(Kitkat, OS 4.4) |
-|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | 支持Twitter登录。 | API 19(Kitkat, OS 4.4) |
-|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | 支持Weibo登录。 | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.11 | 支持PAYCO登录。 | - |
+|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | 支持Twitter登录。 | - |
+|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | 支持Weibo登录。 | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | 支持Weibo登录。 | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.14<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.0<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | 支持Kakao登录。 | API 21(Lollipop, OS 5.0) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | 支持游戏内支付。 | - |
-|  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | 支持Amazon Appstore。 | API 18(JellyBean MR2, OS 4.3) |
+|  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | 支持Amazon Appstore。 | - |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | 支持Samsung Galaxy Store。 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK的minSdkVersion是18, 而为了实际结算要安装的Checkout服务应用程序等的minSdkVersion是21。 |
 |  | gamebase-adapter-purchase-google | billingclient.billing-5.0.0<br>nhncloud-iap-google | 支持Google Play。 | - |
-|  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | 支持Huawei AppGallery。 | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | 支持Huawei AppGallery。 | - |
 |  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | 支持ONE store v17。 | - |
 |  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | 支持ONE store v19。 | - |
 |  | gamebase-adapter-purchase-onestore-external | nhncloud-iap-onestore-external | 支持ONE store外部支付功能。 | - |
@@ -149,7 +149,25 @@
                 it.setProperty("android.enableIncrementalDesugaring", false)
             }
         }
-        
+
+#### Root level build.gradle
+
+* 为了使用Huawei IAP，请在项目水平(root level)的build.gradle或settings.gradle(AGP 7.1以上)中添加以下声明。
+
+```groovy
+buildscript {
+    repositories {
+        ...
+        // [Huawei App Gallery] Maven repository address for the HMS Core SDK.
+        maven { url 'https://developer.huawei.com/repo/' }
+    }
+    dependencies {
+        ...
+        // [Huawei App Gallery] AppGallery Connect plugin configuration. please use the latest plugin version.
+        classpath 'com.huawei.agconnect:agcp:1.6.0.300'
+    }
+}
+```
 
 #### Define Adapters
 
@@ -158,11 +176,14 @@
 	* 请添加**mavenCentral()**仓库。
 
 ```groovy
+// >>> [Huawei App Gallery] agconnect plugin for huawei - when Native Android build
+apply plugin: 'com.huawei.agconnect'
+
 repositories {
     // >>> For Gamebase SDK
     mavenCentral()
     ...
- 
+
     // >>> [Huawei App Gallery]
     maven { url 'https://developer.huawei.com/repo/' }
 }
@@ -229,15 +250,15 @@ android {
 
 #### Huawei Store
 
-* 将AppGallery Connection配置文件(agconnect-service.json)添加在assets文件夹。 
+* AppGallery Connection配置文件（agconnect-services.json）必须添加到assets文件夹中。
     * 登录[AppGallery Connect](https://developer.huawei.com/consumer/en/service/josp/agc/index.html)后单机**我的项目**。
     * 在项目中选择应用程序。
     * 移动至**Project settings** > **General information**。
-    * 在**App information**中下载**agconnect-service.json**文件。
+    * 在**App information**中下载**agconnect-services.json**文件。
     * 如果为Android Studio Build时
-        * 将**agconnect-service.json**文件复制到项目的**assets**文件夹。 
+        * 将**agconnect-services.json**文件复制到项目的**assets**文件夹中。 
     * 如果为Unity Build时
-        * 将**agconnect-service.json**文件复制到项目的**Assets/StreamingAssets**文件夹。
+        * 将**agconnect-services.json**文件复制到项目的**Assets/StreamingAssets**文件夹中。
 
 #### Firebase Notification
 
@@ -372,6 +393,23 @@ android {
 | --- | --- |
 | 支付页面 | "full" |
 | 支付页面弹窗 | "popup" |
+
+#### Huawei Store    
+
+* 如果您在构建像Unity的multi platform时添加以下信息而不是apply plugin，则可正常付款。
+* 请在AndroidManifest.xml的meta-data中输入agconnect-services.json的cp_id, app_id字段的值。
+
+```xml
+<meta-data  
+    android:name="com.huawei.hms.client.appid"  
+    android:value="appid=123456789">  
+</meta-data>
+<meta-data
+    android:name="com.huawei.hms.client.cpid"
+    android:value="cpid=1234567891234">
+</meta-data>
+```
+注意 ：只有在用户终端上安装了Huawei App Gallery，才能正常付款。
 
 #### Notification Options
 
