@@ -1208,7 +1208,7 @@ Check common items.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| regUser | String | Required | Enter the system or user information of the entity that requested withdrawal without spaces<br> - The information can be viewed in the withdrawl history from Console > the 'Member' page |
+| regUser | String | Required | Enter the system or operator information of the entity that requested withdrawal without spaces<br> - The information can be viewed in the withdrawl history from Console > the 'Member' page |
 
 **[Request Body]**
 
@@ -2108,6 +2108,7 @@ The code defined internally by Gamebase for the store where the app is installed
 | GALAXY | Galaxy Store |
 | AMAZON | Amazon Appstore |
 | HUAWEI | Huawei AppGallery |
+| MYCARD | Global MyCard |
 <br/>
 
 ### Identity Provider Code
