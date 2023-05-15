@@ -5,6 +5,9 @@
 
 #### 기능 추가
 * (Android) My Card 스토어가 추가되었습니다.
+* Setting Tool (v2.5.0)
+    * My Card 스토어가 추가되었습니다. (Android에 한함)
+    * Huawei IAP 추가 시, Huawei repository 자동 설정 기능이 추가되었습니다.
 
 #### 기능 개선
 * 외부 SDK 업데이트 : NHN Cloud Unity SDK(0.28.0)
