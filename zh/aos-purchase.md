@@ -10,6 +10,7 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 >
 > ONE Store仅支持v17和v19。
 > 对ONE Store v21的支持正在审核中，目前不支持。
+> ONE Store按每个版本只能使用v17、v19或external中的一个，并且不能同时使用。
 
 * 初始化Gamebase时，需要指定**STORE_CODE**。
 * 请您在以下值中选择**STORE_CODE**。 

@@ -1,26 +1,41 @@
 ## Game > Gamebase > Release Notes > Console
 
+
+### May 16, 2023
+
+### Added Features
+* Purchase (IAP) > Store
+    * Added MyCard store
+* Coupon > Issue Coupon
+    * Added Galaxy store
+
+### April 25, 2023
+
+### Added Features
+* Push > Push 
+    * Added paging to the scheduled push list
+
 ### March 28, 2023
 
 ### Added Features
 * Purchase (IAP) > Payment Information
-  * Added the feature to view and register payments with product information unregistered and register
+    * Added the feature to view and register payments with product information unregistered and register
 
 ### March 14, 2023
 
 ### Feature Updates
 * Purchase (IAP) > Payment Information
-  * Improved so that the status can be changed from 'Reserved' to 'Success' (Google Play Store excluded)
+    * Improved so that the status can be changed from 'Reserved' to 'Success' (Google Play Store excluded)
 
 ### February 28, 2023
 
 ### Feature Updates
 * Purchase (IAP) > Product
-  * Improved so that the status that changes for each store item can also be applied to Gamebase products
+    * Improved so that the status that changes for each store item can also be applied to Gamebase products
 
 ### Added Features
 * Member > Member
-  * Added a feature to search for members by Device Key
+    * Added a feature to search for members by Device Key
 
 ### February 14, 2023
 

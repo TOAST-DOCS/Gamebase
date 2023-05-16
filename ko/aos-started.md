@@ -14,26 +14,27 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 용도 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.4.2<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 19(Kitkat, OS 4.4) |
-| Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | API 19(Kitkat, OS 4.4) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.5.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-4.10.0<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 19(Kitkat, OS 4.4) |
+| Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Google 로그인을 지원 | - |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.6.3 | Hangame 로그인을 지원 | - |
-|  | gamebase-adapter-auth-line | linesdk-5.8.0 | LINE 로그인을 지원 | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-line | linesdk-5.8.0 | LINE 로그인을 지원 | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | NAVER 로그인을 지원 | - |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.11 | PAYCO 로그인을 지원 | API 19(Kitkat, OS 4.4) |
-|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitter 로그인을 지원 | API 19(Kitkat, OS 4.4) |
-|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | Weibo 로그인을 지원 | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.12 | PAYCO 로그인을 지원 | - |
+|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitter 로그인을 지원 | - |
+|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | Weibo 로그인을 지원 | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Weibo 로그인을 지원 | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.14<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.1<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Kakao 로그인을 지원 | API 21(Lollipop, OS 5.0) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | 게임 내 결제 지원 | - |
-|  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Amazon Appstore를 지원 | API 18(JellyBean MR2, OS 4.3) |
+|  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Amazon Appstore를 지원 | - |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Samsung Galaxy Store를 지원 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK의 minSdkVersion은 18이지만, 실제 결제를 위해 설치해야 하는 Checkout 서비스 앱의 minSdkVersion은 21입니다. |
 |  | gamebase-adapter-purchase-google | billingclient.billing-5.0.0<br>nhncloud-iap-google | Google Play를 지원 | - |
-|  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Huawei AppGallery를 지원 | API 19(Kitkat, OS 4.4) |
+|  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Huawei AppGallery를 지원 | - |
 |  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | ONE store v17을 지원 | - |
 |  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | ONE store v19를 지원 | - |
 |  | gamebase-adapter-purchase-onestore-external | nhncloud-iap-onestore-external | ONE store 외부 결제 기능을 지원 | - |
+|  | gamebase-adapter-purchase-mycard | nhncloud-iap-mycard | MyCard 결제 기능을 지원 | - |
 | Gamebase Push Adapters | gamebase-adapter-toastpush | nhncloud-push-analytics<br>nhncloud-push-core<br>nhncloud-push-notification | Push를 지원 | - |
 |  | gamebase-adapter-push-adm | nhncloud-push-adm | Amazon Device Messaging을 지원 | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>nhncloud-push-fcm | Firebase Cloud Messaging을 지원 | - |
@@ -217,6 +218,7 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-amazon:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-huawei:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-mycard:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
@@ -398,7 +400,7 @@ android {
 #### Huawei Store
 
 * Unity와 같은 multi platform 빌드 시 apply plugin 대신 아래의 내용을 추가하면 정상적인 결제가 가능합니다.
-* agconnect-services.json의 cp_id, app_id 필드의 값을 AndroidManifest.xml의 meta-data에 입력해주세요.
+* agconnect-services.json의 cp_id, app_id 필드의 값을 AndroidManifest.xml의 meta-data에 입력하세요.
 
 ```xml
 <meta-data  
@@ -411,6 +413,34 @@ android {
 </meta-data>
 ```
 주의: 사용자 단말에 Huawei App Gallery가 설치되어 있어야 정상적으로 결제가 가능합니다.
+
+#### MyCard
+
+* MyCard 결제연동을 위해서는 GamebaseMyCardApplication 사용이 필요합니다. AndroidManifest.xml에 다음 내용을 추가하세요.
+
+```xml
+<application
+    android:name="com.toast.android.gamebase.purchase.mycard.GamebaseMyCardApplication"
+  ...>
+  ...
+</application>
+
+```
+
+* 직접 Application 을 정의해서 사용하고 있다면, GamebaseMyCardApplication 을 상속받아서 사용하세요.
+
+```kotlin
+class MyApplication: GamebaseMyCardApplication() {
+    ...
+}
+```
+
+* 결제 테스트를 하려면 AndroidManifest.xml에 'test_mode'를 추가하세요. 'test_mode'를 설정하지 않으면 기본값은 false입니다.
+```xml
+<application>
+  <meta-data android:name="iap:test_mode" android:value="true | false"/>
+</application>
+```
 
 #### Notification Options
 

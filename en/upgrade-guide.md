@@ -20,6 +20,12 @@
             // Unity: New API
             void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
 
+### Android
+
+```
+Raised the minimum supported verision to Android 4.4.(minSdk 16 -> 19)
+```
+
 ## 2.47.0
 
 ### Android
