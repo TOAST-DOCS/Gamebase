@@ -4,9 +4,9 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.0/GamebaseSDK-Unity.zip)
 
 #### 기능 추가
-* (Android) My Card 스토어가 추가되었습니다.
+* (Android) MyCard 스토어가 추가되었습니다.
 * Setting Tool (v2.5.0)
-    * My Card 스토어가 추가되었습니다. (Android에 한함)
+    * MyCard 스토어가 추가되었습니다. (Android에 한함)
     * Huawei IAP 추가 시, Huawei repository 자동 설정 기능이 추가되었습니다.
 
 #### 기능 개선
