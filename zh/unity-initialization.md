@@ -1,5 +1,4 @@
- 
- ## Game > Gamebase > Unity SDK使用指南 > 初始化
+## Game > Gamebase > Unity SDK使用指南 > 初始化
 
 如需使用Gamebase Unity SDK，必须先执行初始化。此外，还需在TOAST控制台中注册APP ID和APP版本信息。
 
@@ -38,10 +37,12 @@
 
 | Store       | Code | Description  |
 | ----------- | ---- | ------------ |
-| App Store | AS | only iOS |
-| Google Play | GG | only Android |
-| ONE Store | ONESTORE | only Android |
-| GALAXY Store | GALAXY | only Android |
+| App Store | AS | 仅限iOS。 |
+| Google Play | GG | 仅限Android。 |
+| ONE Store | ONESTORE | 仅限Android。 |
+| GALAXY Store | GALAXY | 仅限Android。 |
+| Huawei AppGallery | HUAWEI | 仅限Android。 |
+| My Card | MYCARD | 仅限Android。 |
 | Windows | WIN | only Unity Standalone |
 | Web | WEB | only Unity WebGL |
 

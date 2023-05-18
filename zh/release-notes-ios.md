@@ -3,8 +3,8 @@
 ### 2.49.2 (2023. 04. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.2/GamebaseSDK-iOS.zip)
 
-#### 버그 수정
-* 변경사항 누락으로 인한 재배포
+#### 修改程序错误
+* 由于缺少了更改而重新部署。
 
 ### 2.49.1 (2023. 04. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.1/GamebaseSDK-iOS.zip)

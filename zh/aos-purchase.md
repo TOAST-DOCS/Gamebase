@@ -19,6 +19,8 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
     * GALAXY : Galaxy Store
     * AMAZON : Amazon Appstore
     * HUAWEI : Huawei AppGallery
+    * MYCARD: MyCard
+
     
 ```java
 String STORE_CODE = "GG";	// Google
