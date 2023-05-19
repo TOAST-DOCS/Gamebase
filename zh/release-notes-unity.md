@@ -4,9 +4,9 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.0/GamebaseSDK-Unity.zip)
 
 #### 添加功能
-* (Android) 添加了My Card商店。
+* (Android) 添加了MyCard商店。
 * Setting Tool (v2.5.0)
-    * 添加了My Card商店。(仅限Android。)
+    * 添加了MyCard商店。(仅限Android。)
     * 在添加Huawei IAP时，还添加了Huawei repository自动设置功能。
 
 #### 改善功能

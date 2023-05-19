@@ -42,7 +42,7 @@
 | ONE Store | ONESTORE | 仅限Android。 |
 | GALAXY Store | GALAXY | 仅限Android。 |
 | Huawei AppGallery | HUAWEI | 仅限Android。 |
-| My Card | MYCARD | 仅限Android。 |
+| MyCard | MYCARD | 仅限Android。 |
 | Windows | WIN | only Unity Standalone |
 | Web | WEB | only Unity WebGL |
 
