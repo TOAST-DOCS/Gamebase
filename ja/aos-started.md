@@ -14,14 +14,14 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.4.2<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebaseのインタフェースおよびコアロジックを含む | API 19(Kitkat、OS 4.4) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.5.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-4.10.0<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebaseのインタフェースおよびコアロジックを含む | API 19(Kitkat、OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Appleログインをサポート | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | Facebookログインをサポート | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Googleログインをサポート | - |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.6.3 | Hangameログインをサポート | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.0 | Lineログインをサポート | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Naverログインをサポート | - |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.11 | Paycoログインをサポート | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.12 | Paycoログインをサポート | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitterログインをサポート | - |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | Weiboログインをサポート | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Weiboログインをサポート | - |
@@ -34,6 +34,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 |  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | ONE store v17をサポート | - |
 |  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | ONE store v19をサポート | - |
 |  | gamebase-adapter-purchase-onestore-external | nhncloud-iap-onestore-external | ONE store外部決済機能をサポート | - |
+|  | gamebase-adapter-purchase-mycard | nhncloud-iap-mycard | MyCard決済機能をサポート | - |
 | Gamebase Push Adapters | gamebase-adapter-toastpush | nhncloud-push-analytics<br>nhncloud-push-core<br>nhncloud-push-notification | Pushをサポート | - |
 |  | gamebase-adapter-push-adm | nhncloud-push-adm | Amazon Device Messagingをサポート | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>nhncloud-push-fcm | Firebase Notificationをサポート | - |
@@ -215,6 +216,7 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-amazon:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-huawei:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-mycard:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
@@ -409,6 +411,34 @@ android {
 </meta-data>
 ```
 注意：ユーザー端末にHuawei App Galleryがインストールされている時のみ正常に決済が可能です。
+
+#### MyCard
+
+* MyCard決済連動のためにはGamebaseMyCardApplicationを使用する必要があります。 AndroidManifest.xmlに次の内容を追加してください。
+
+```xml
+<application
+    android:name="com.toast.android.gamebase.purchase.mycard.GamebaseMyCardApplication"
+  ...>
+  ...
+</application>
+
+```
+
+* 直接Applicationを定義して使用している場合は、GamebaseMyCardApplicationを継承して使用してください。
+
+```kotlin
+class MyApplication: GamebaseMyCardApplication() {
+    ...
+}
+```
+
+* 決済テストを行うにはAndroidManifest.xmlに'test_mode'を追加してください。 'test_mode'を設定していない場合のデフォルト値はfalseです。
+```xml
+<application>
+  <meta-data android:name="iap:test_mode" android:value="true | false"/>
+</application>
+```
 
 #### Notification Options
 
