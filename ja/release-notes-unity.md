@@ -3,16 +3,16 @@
 ### 2.50.0 (2023. 05. 116.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* (Android) MyCard 스토어가 추가되었습니다.
+#### 機能追加
+* (Android) MyCardストアが追加されました。
 * Setting Tool (v2.5.0)
-    * MyCard 스토어가 추가되었습니다. (Android에 한함)
-    * Huawei IAP 추가 시, Huawei repository 자동 설정 기능이 추가되었습니다.
+    * MyCardストアが追加されました。 (Androidのみ)
+    * Huawei IAP追加時、 Huawei repository自動設定機能が追加されました。
 
-#### 기능 개선
-* 외부 SDK 업데이트 : NHN Cloud Unity SDK(0.28.0)
+#### 機能改善
+* 外部SDKアップデート: NHN Cloud Unity SDK(0.28.0)
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.50.0](./release-notes-android/#2450-2023-05-16)
 * [Gamebase iOS SDK 2.49.2](./release-notes-ios/#2492-2023-05-16)
 
