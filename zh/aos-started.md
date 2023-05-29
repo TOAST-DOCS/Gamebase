@@ -14,14 +14,14 @@
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.4.2<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | 包含Gamebase的界面和核心逻辑。 | API 19(Kitkat, OS 4.4) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.5.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-4.10.0<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | 包含Gamebase的界面和核心逻辑。 | API 19(Kitkat, OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | 支持Sign In With Apple。 | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | 支持Facebook登录。 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | 支持Google登录。 | - |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.6.3 | 支持Hangame登录。 | - |
 、|  | gamebase-adapter-auth-line | linesdk-5.8.0 | 支持LINE 登录。 | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | 支持Naver登录。 | - |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.11 | 支持PAYCO登录。 | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.12 | 支持PAYCO登录。 | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | 支持Twitter登录。 | - |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | 支持Weibo登录。 | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | 支持Weibo登录。 | - |
@@ -34,6 +34,7 @@
 |  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | 支持ONE store v17。 | - |
 |  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | 支持ONE store v19。 | - |
 |  | gamebase-adapter-purchase-onestore-external | nhncloud-iap-onestore-external | 支持ONE store外部支付功能。 | - |
+|  | gamebase-adapter-purchase-mycard | nhncloud-iap-mycard | 支持MyCard支付功能。 | - |
 | Gamebase Push Adapters | gamebase-adapter-toastpush | nhncloud-push-analytics<br>nhncloud-push-core<br>nhncloud-push-notification | 支持Push。 | - |
 |  | gamebase-adapter-push-adm | nhncloud-push-adm | 支持Amazon Device Messaging。 | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>nhncloud-push-fcm | 支持Firebase Cloud Messaging。 | - |
@@ -216,6 +217,7 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-amazon:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-huawei:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-mycard:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
@@ -410,6 +412,35 @@ android {
 </meta-data>
 ```
 注意 ：只有在用户终端上安装了Huawei App Gallery，才能正常付款。
+
+#### MyCard
+
+* 对于MyCard支付集成，必须使用GamebaseMyCardApplication。
+请在AndroidManifest.xml中添加以下信息。 
+
+```xml
+<application
+    android:name="com.toast.android.gamebase.purchase.mycard.GamebaseMyCardApplication"
+  ...>
+  ...
+</application>
+
+```
+
+* 如果您已经直接定义并正在使用应用程序，请继承并使用GamebaseMyCardApplication。
+
+```kotlin
+class MyApplication: GamebaseMyCardApplication() {
+    ...
+}
+```
+
+* 如果您要进行付费测试，请在AndroidManifest.xml中添加“test_mode”。如果不设置“test_mode”，基本值将false。
+```xml
+<application>
+  <meta-data android:name="iap:test_mode" android:value="true | false"/>
+</application>
+```
 
 #### Notification Options
 

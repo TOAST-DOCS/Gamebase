@@ -416,7 +416,7 @@ android {
 
 #### MyCard
 
-* MyCard 결제연동을 위해서는 GamebaseMyCardApplication 사용이 필요합니다. AndroidManifest.xml에 다음 내용을 추가하세요.
+* MyCard 결제를 연동하려면 GamebaseMyCardApplication을 사용해야 합니다. AndroidManifest.xml에 다음 내용을 추가하세요
 
 ```xml
 <application
@@ -427,7 +427,7 @@ android {
 
 ```
 
-* 직접 Application 을 정의해서 사용하고 있다면, GamebaseMyCardApplication 을 상속받아서 사용하세요.
+* 직접 Application을 정의하여 사용하는 경우 GamebaseMyCardApplication을 상속 받아 사용하세요.
 
 ```kotlin
 class MyApplication: GamebaseMyCardApplication() {

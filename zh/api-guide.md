@@ -1209,7 +1209,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| regUser | String | Required | 请求退出的系统或信息，不留空格。<br> - 此信息可以在Console > “member”页面的“退出历史记录”页面上确认。|
+| regUser | String | Required | 请求退出的系统或操作员信息，不留空格。<br> - 此信息可以在Console > “member”页面的“退出历史记录”页面上确认。|
 
 **[Request Body]**
 
@@ -2103,6 +2103,7 @@ X-Secret-Key: IgsaAP
 | GALAXY | Galaxy Store |
 | AMAZON | Amazon Appstore |
 | HUAWEI | Huawei AppGallery |
+| MYCARD | Global MyCard |
 <br/>
 
 ### Identity Provider Code
