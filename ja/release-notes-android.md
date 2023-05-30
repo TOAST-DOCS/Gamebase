@@ -3,14 +3,14 @@
 ### 2.50.0 (2023. 05. 16.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* MyCard Adapter가 추가되었습니다.
+#### 機能追加
+* MyCard Adapterが追加されました。
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: NHN Cloud Android SDK 1.5.0, PAYCO Android SDK 1.5.12
+#### 機能改善/変更
+* 外部SDKアップデート: NHN Cloud Android SDK 1.5.0, PAYCO Android SDK 1.5.12
 
-#### 버그 수정
-* 약관 API 호출 시 Activity 사이즈가 safe area 내로 줄어드는 오류를 수정했습니다.
+#### バグ修正
+* 約款API呼び出し時、Activityサイズがsafe area内に縮小されるエラーを修正しました。
 
 ### 2.49.0 (2023. 04. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-Android.zip)

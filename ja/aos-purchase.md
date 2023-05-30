@@ -16,9 +16,10 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 * **STORE_CODE**は、次の値の中から選択します。
     * GG：Google
     * ONESTORE：ONEstore
-    * GALAXY: Galaxy Store
-    * AMAZON: Amazon Appstore
-    * HUAWEI: Huawei AppGallery
+    * GALAXY：Galaxy Store
+    * AMAZON：Amazon Appstore
+    * HUAWEI：Huawei AppGallery
+    * MYCARD: MyCard
 
 ```java
 String STORE_CODE = "GG";	// Google
