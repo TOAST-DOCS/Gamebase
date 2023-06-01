@@ -39,6 +39,8 @@ Store information required to initialize In-App Purchase (IAP) of NHN Cloud.
 | Google Play | GG | only Android |
 | ONE Store | ONESTORE | only Android |
 | GALAXY Store | GALAXY | only Android |
+| Huawei AppGallery | HUAWEI | only Android |
+| My Card | MYCARD | only Android |
 | Windows | WIN | only Unity Standalone |
 | Web | WEB | only Unity WebGL|
 
