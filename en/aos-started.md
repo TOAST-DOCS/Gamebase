@@ -427,7 +427,7 @@ Caution: Huawei App Gallery must be installed on your device to make payment nor
 
 ```
 
-* If you define and use your own application, inherit from GamebaseMyCardApplication.
+* If you define and use your application class by extending Applcation class, inherit from GamebaseMyCardApplication.
 
 ```kotlin
 class MyApplication: GamebaseMyCardApplication() {
