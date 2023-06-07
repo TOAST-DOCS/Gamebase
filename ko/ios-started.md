@@ -241,8 +241,6 @@ end
     <string>lineauth2</string>
 </array>
 ```
-* LINE 로그인을 사용하기 위한 프로젝트 설정은 다음 링크를 참고합니다.
-    * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/swift/overview/)
 * Gamebase iOS SDK 2.42.2 이하는 추가 설정이 필요합니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
@@ -305,10 +303,10 @@ end
 ## 3rd-Party Provider SDK Guide
 
 * [Facebook for developers](https://developers.facebook.com/docs/ios)
-* [NAVER for developers](https://developers.naver.com/docs/login/ios/)
-* [Twitter Developer's guide - Log in with Twitter](https://developer.twitter.com/en/docs/basics/authentication/guides/log-in-with-twitter)
+* [NAVER for developers](https://developers.naver.com/docs/login/ios/ios.md)
+* [Twitter Developer's guide - Log in with Twitter](https://developer.twitter.com/en/docs/authentication/guides/log-in-with-twitter)
 * [Twitter Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
-* [LINE for developers](https://developers.line.biz/en/docs/ios-sdk/)
+* [LINE for developers](https://developers.line.biz/en/docs/line-login-sdks/ios-sdk/swift/overview/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/ios)
 * [Weibo for developers](https://github.com/sinaweibosdk/weibo_ios_sdk/blob/3.2.7/%E5%BE%AE%E5%8D%9AiOS%E5%B9%B3%E5%8F%B0SDK%E6%96%87%E6%A1%A3V3.2.7.pdf)
 * [Google Sign-In for iOS](https://developers.google.com/identity/sign-in/ios)
