@@ -153,7 +153,7 @@ You can view the results using the receipt issued during the purchase.
 #### [All] Search Results
 The search results are as follows:
 
-![gamebase_purchase_13_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_13_202306.png)
+![gamebase_purchase_13_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_13_202306_en.png)
 
 - **Transaction ID**: Unique number for identifying purchases within Gamebase
 - **Store**: Information about the store where the purchase has been made
