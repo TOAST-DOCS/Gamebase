@@ -122,7 +122,7 @@ The options to be set are as follows:
 > ![gamebase_app_22_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_22_202102.png)
 > Enable member linking: Enable
 > Login type: GET method
-> Token validation URL: https://gamebase-web.cloud.toast.com/tcgb-web/v1.0/apps/{appId}/online-contact/login-status
+> Token validation URL: https://web-gamebase.nhncloud.com/tcgb-web/v1.0/apps/{appId}/online-contact/login-status
 > For the **{appId}** field, check the project ID of Gamebase and enter it in the field.
 >
 > 2) Acquire the OC organization Key and enter it in the OC organization Key field.
