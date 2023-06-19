@@ -116,7 +116,7 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 > 決済検証完了状態から変更がない場合はサポートにお問い合わせください。
 
 ### 決済履歴照会
-![gamebase_purchase_17_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_17_202306.png)
+![gamebase_purchase_17_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_17_202306_ja.png)
 
 #### カテゴリー
 
@@ -130,7 +130,7 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 選択した検索タイプに応じて表示される検索項目が異なります。
 
 ##### (1)一般検索
-![gamebase_purchase_10_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202306.png)
+![gamebase_purchase_10_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202306_ja.png)
 
 下記の検索条件を満たす結果を検索できます。
 
@@ -143,19 +143,19 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 
 
 ##### (2) Transaction ID検索
-![gamebase_purchase_11_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202306.png)
+![gamebase_purchase_11_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202306_ja.png)
 
 決済時に生成されるTransaction IDを利用して検索できます。
 
 ##### (3)領収書検索
-![gamebase_purchase_12_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202306.png)
+![gamebase_purchase_12_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202306_ja.png)
 決済時に支給された領収書情報を利用して検索できます。
 
 #### 検索結果
 #### [全体]検索結果
 検索結果項目は以下の通りです。
 
-![gamebase_purchase_13_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_13_202306.png)
+![gamebase_purchase_13_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_13_202306_ja.png)
 
 - **Transaction ID**：Gamebase内で決済を区別することができる固有番号
 - **ストア**：決済されたストア情報
@@ -212,7 +212,7 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 
 ##### 決済履歴照会
 検索した決済情報のTransaction IDをクリックして決済履歴を照会できます。
-![gamebase_purchase_14_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_14_202306.png)
+![gamebase_purchase_14_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_14_202306_ja.png)
 
 ###### (1)付加情報および領収書照会
 それぞれの決済状態ごとに右矢印をクリックすると、付加情報と領収書情報を確認できます。
@@ -221,7 +221,7 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 #### [商品情報未登録決済]検索結果
 検索結果項目は次のとおりです。
 
-![gamebase_purchase_15_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_15_202306.png)
+![gamebase_purchase_15_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_15_202306_ja.png)
 
 - **Transaction ID**: Gamebase内で決済を区別できる固有番号
 - **ストア**:決済されたストア情報
@@ -237,7 +237,7 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 - **商品ID登録**:商品情報の手動登録
 
 ##### 商品ID登録
-![gamebase_purchase_16_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_16_202306.png)
+![gamebase_purchase_16_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_16_202306_ja.png)
 * 不足しているアイテム情報を手動で選択して支給できます。 
 
 
