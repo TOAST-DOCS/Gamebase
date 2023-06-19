@@ -14,7 +14,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 용도 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.5.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-4.10.0<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 19(Kitkat, OS 4.4) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.6.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-4.10.0<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 19(Kitkat, OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Google 로그인을 지원 | - |
@@ -33,6 +33,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 |  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Huawei AppGallery를 지원 | - |
 |  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | ONE store v17을 지원 | - |
 |  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | ONE store v19를 지원 | - |
+|  | gamebase-adapter-purchase-onestore-v21 | nhncloud-iap-onestore-v21 | ONE store v21을 지원 | API 23(Marshmallow, OS 6.0) |
 |  | gamebase-adapter-purchase-onestore-external | nhncloud-iap-onestore-external | ONE store 외부 결제 기능을 지원 | - |
 |  | gamebase-adapter-purchase-mycard | nhncloud-iap-mycard | MyCard 결제 기능을 지원 | - |
 | Gamebase Push Adapters | gamebase-adapter-toastpush | nhncloud-push-analytics<br>nhncloud-push-core<br>nhncloud-push-notification | Push를 지원 | - |
@@ -81,7 +82,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
     * ONE store
         * [ONE store > Document > 개발도구 > (OLD Version) 인앱결제 가이드 > 원스토어 인앱결제 API V5 (SDK V17) 안내 및 다운로드 > 인앱결제 테스트 및 보안 > 테스트 ID 등록/관리](https://dev.onestore.co.kr/wiki/ko/doc/결제-테스트-및-보안-1572991.html#id-결제테스트및보안-테스트ID등록/관리)
         * [ONE store > Document > 개발도구 > (OLD Version) 인앱결제 가이드 > 원스토어 인앱결제 API V6 (SDK V19) 안내 및 다운로드 > 인앱결제 테스트 및 보안 > 테스트 ID 등록/관리](https://dev.onestore.co.kr/wiki/ko/doc/인앱결제-테스트-및-보안-8290959.html#id-인앱결제테스트및보안-테스트ID등록/관리)
-        * `현재 미지원` [ONE store > Document > 개발도구 > 원스토어 인앱결제 API V7 (SDK V21) 안내 및 다운로드 > 03. 결제 테스트 및 보안 > 테스트 ID 등록/관리](https://dev.onestore.co.kr/wiki/ko/doc/03-37552542.html#id-03.결제테스트및보안-테스트ID등록/관리)
+        * [ONE store > Document > 개발도구 > 원스토어 인앱결제 API V7 (SDK V21) 안내 및 다운로드 > 03. 결제 테스트 및 보안 > 테스트 ID 등록/관리](https://dev.onestore.co.kr/wiki/ko/doc/03-37552542.html#id-03.결제테스트및보안-테스트ID등록/관리)
     * GALAXY Store
         * [Samsung Developers > Samsung IAP > Technical Documents > Test Guide > 3. IAP Testing > 3.2 Test Type > (3) Production Closed Beta Test](https://developer.samsung.com/iap/iap-test-guide.html)
         * [GALAXY store > 앱 > 등록한 앱 > 바이너리 > Beta Test > Tester 설정](https://seller.samsungapps.com/application)
@@ -214,6 +215,7 @@ dependencies {
     // https://github.com/ONE-store/onestore_iap_release/tree/iap19-release/android_app_sample/app/libs
     implementation files('libs/iap_sdk-v19.00.02.aar')
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v19:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v21:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-external:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-amazon:$GAMEBASE_SDK_VERSION"
