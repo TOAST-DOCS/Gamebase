@@ -115,7 +115,7 @@ Transaction status code indicates what occurs while the user is making a payment
 > If there is no change in the verification completed status, please contact the Customer Center.
 
 ### View Transaction List
-![gamebase_purchase_17_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_17_202306.png)
+![gamebase_purchase_17_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_17_202306_en.png)
 
 #### Category
 
@@ -129,7 +129,7 @@ You can view transaction list with two categories.
 Each search type shows different search items.  
 
 ##### (1) General Search 
-![gamebase_purchase_10_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202306.png)
+![gamebase_purchase_10_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202306_en.png)
 
 Search is available by the following conditions: 
 - **Search Period**: A period when user attempted to purchase, in the ascending or descending order 
@@ -141,12 +141,12 @@ Search is available by the following conditions:
 
 
 ##### (2) Search by Transaction ID 
-![gamebase_purchase_11_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202306.png)
+![gamebase_purchase_11_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202306_en.png)
 
 Search is available by Transaction ID which is created upon purchase. 
 
 ##### (3) Search by Receipt 
-![gamebase_purchase_12_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202306.png)
+![gamebase_purchase_12_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202306_en.png)
 You can view the results using the receipt issued during the purchase.
 
 
@@ -209,7 +209,7 @@ Once it has been changed to Refund status, it's set for good.
 
 ##### View Transaction List
 You can view transaction lists by clicking the Transaction ID of the payment information you found.
-![gamebase_purchase_14_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_14_202306.png)
+![gamebase_purchase_14_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_14_202306_en.png)
 
 ###### (1) View Additional Info and Receipt
 For each payment status, you can click the right arrow to view additional information and receipt information.
@@ -218,7 +218,7 @@ For each payment status, you can click the right arrow to view additional inform
 #### Search Result of [Product Information Unregistered Payment]
 Search result items are as follows.
 
-![gamebase_purchase_15_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_15_202306.png)
+![gamebase_purchase_15_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_15_202306_en.png)
 
 - **Transaction ID**: Unique number to identify transactions in Gamebase
 - **Store**: Information of the store where payment is made
@@ -234,7 +234,7 @@ Search result items are as follows.
 - **Register Product ID**: Product information manually registered
 
 ##### Register Product ID
-![gamebase_purchase_16_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_16_202306.png)
+![gamebase_purchase_16_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_16_202306_en.png)
 * You can manually add missing item information. 
 
 ## Monitor Purchase Abuse

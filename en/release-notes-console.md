@@ -1114,6 +1114,10 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 	* Change of Folder Structure: Must reinstall after previous SettingTool is completely deleted  
 	* More languages are supported
 
+#### Bug Fixes
+* [Console]
+	* Analytics > User Indicators: Fixed the issue of date overlaps on the axis X
+
 ### July 11, 2019
 
 #### Feature Updates/Changes
