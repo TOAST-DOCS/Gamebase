@@ -1,5 +1,24 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.52.0
+
+### iOS
+
+#### Weibo IdP
+
+* WeiboSDK가 3.3.3로 업데이트되면서 info.plist에 <weibosdk3.3>을 추가해야 합니다.
+```
+<key>LSApplicationQueriesSchemes</key>
+	<array>
+		...
+		<string>weibosdk</string>
+		<string>weibosdk2.5</string>
+		<string>weibosdk3.3</string>
+        ...
+    </array>
+</key>
+```
+
 ## 2.49.0
 
 ### Unreal
