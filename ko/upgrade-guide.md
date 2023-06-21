@@ -19,6 +19,18 @@
 </key>
 ```
 
+#### Changed/Deprecated APIs
+
+* iOS 16.4부터 Apple이 CTCarrier class가 deprecated됨에 따라 아래 API들이 deprecated 되었습니다.
+    * **[TCGBGamebase countryCode];**
+    * **[TCGBGamebase countryCodeOfUSIM];**
+    * **[TCGBGamebase carrierCode];**
+    * **[TCGBGamebase carrierName];**
+    * **[TCGBUtil countryCode];**
+    * **[TCGBUtil usimCountryCode];**
+    * **[TCGBUtil carrierCode];**
+    * **[TCGBUtil carrierName];**
+
 ## 2.49.0
 
 ### Unreal
