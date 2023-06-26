@@ -19,6 +19,7 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
     * GALAXY: Galaxy Store
     * AMAZON: Amazon Appstore
     * HUAWEI: Huawei AppGallery
+    * MYCARD: MyCard
 
 ```java
 String STORE_CODE = "GG";	// Google

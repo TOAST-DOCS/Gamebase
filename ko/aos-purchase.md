@@ -8,9 +8,8 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 
 > <font color="red">[주의]</font><br/>
 >
-> ONE Store는 v17 및 v19만 지원합니다.
-> ONE Store v21은 지원을 검토 중이며, 현재는 지원하지 않습니다.
-> ONE Store는 버전별로 v17, v19, external 중 하나만 사용이 가능하며, 동시에 사용이 불가능합니다.
+> ONE Store는 v17, v19, v21을 지원합니다.
+> ONE Store는 버전별로 v17, v19, v21, external 중 하나만 사용이 가능하며, 동시에 사용이 불가능합니다.
 
 * Gamebase 초기화 시 스토어 코드를 지정해야 합니다.
 * **STORE_CODE**는 다음 값 중에서 선택합니다.
@@ -619,7 +618,7 @@ GamebaseEventHandler 로 프로모션 결제 이벤트를 처리하는 방법은
 | PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | 해당 상품이 활성화 상태가 아닙니다.  |
 | PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 존재하지 않는 GamebaseProductID 로 결제를 요청하였습니다. |
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | 월 구매 한도를 초과했습니다.             |
-| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 GG(Google), ONESTORE, GALAXY, AMAZON, HUAWEI입니다. |
+| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 GG(Google), ONESTORE, GALAXY, AMAZON, HUAWEI, MYCARD입니다. |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAP 라이브러리 오류입니다.<br/>상세 오류를 확인하십시오. |
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 

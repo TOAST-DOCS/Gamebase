@@ -14,14 +14,14 @@ To execute Gamebase in Android, the following system environment is required.
 
 | Gamebase SDK | Gamebase Adapter | External SDK | Purpose | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.4.2<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.7<br>okhttp-3.12.5<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include the interface and core logic of Gamebase | API 19(KitKat, OS 4.4) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.5.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-4.10.0<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include the interface and core logic of Gamebase | API 19(KitKat, OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Support Google login | - |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.6.3 | Support Hangame login | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.0 | Support LINE login | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Support NAVER login | - |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.11 | Support PAYCO login | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.12 | Support PAYCO login | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Support Twitter login | - |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | Support Weibo login | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Support Weibo login | - |
@@ -34,6 +34,7 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | Support ONE store v17 | - |
 |  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | Support ONE store v19| - |
 |  | gamebase-adapter-purchase-onestore-external | nhncloud-iap-onestore-external | Support ONE store external payment function | - |
+|  | gamebase-adapter-purchase-mycard | nhncloud-iap-mycard | Support MyCard payment function | - |
 | Gamebase Push Adapters | gamebase-adapter-toastpush | nhncloud-push-analytics<br>nhncloud-push-core<br>nhncloud-push-notification | Support Push | - |
 |  | gamebase-adapter-push-adm | nhncloud-push-adm | Support Amazon Device Messaging | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>nhncloud-push-fcm | Support Firebase Cloud Messaging | - |
@@ -217,6 +218,7 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-amazon:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-huawei:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-mycard:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
@@ -411,6 +413,34 @@ android {
 </meta-data>
 ```
 Caution: Huawei App Gallery must be installed on your device to make payment normally.
+
+#### MyCard
+
+* To integrate with MyCard payment, you must use GamebaseMyCardApplication. Add the following to the AndroidManifest.xml.
+
+```xml
+<application
+    android:name="com.toast.android.gamebase.purchase.mycard.GamebaseMyCardApplication"
+  ...>
+  ...
+</application>
+
+```
+
+* If you define and use your application class by extending Applcation class, inherit from GamebaseMyCardApplication.
+
+```kotlin
+class MyApplication: GamebaseMyCardApplication() {
+    ...
+}
+```
+
+* To run the payment test, add 'test_mode' to the AndroidManifest.xml. Otherwise, the default value is false.
+```xml
+<application>
+  <meta-data android:name="iap:test_mode" android:value="true | false"/>
+</application>
+```
 
 #### Notification Options
 

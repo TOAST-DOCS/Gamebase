@@ -37,9 +37,9 @@ Then, include corresponding SDK files to a target of your project.
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.3.0 | Includes the interface and key logic of Gamebase | iOS 11 or later
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.3.1 | Includes the interface and key logic of Gamebase | iOS 11 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Supports Facebook login | iOS 11 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.6 | Supports PAYCO login | iOS 11 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.8 | Supports PAYCO login | iOS 11 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | Supports NAVER login | iOS 11 or later |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Supports Game Center login | iOS 11 or later |
 |  | GamebaseAuthGoogleAdapter.framework | GoogleSignIn 5.0.2 | Supports Google login | iOS 11 or later |
@@ -49,8 +49,8 @@ Then, include corresponding SDK files to a target of your project.
 |  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.5 | Supports Hangame login | iOS 11 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Supports Weibo login | iOS 11 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.14 | Supports Kakao login | iOS 11 or later |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.3.0 | Supports in-game purchase | iOS 11 or later |
-| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.3.0 | Supports Push | iOS 11 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.3.1 | Supports in-game purchase | iOS 11 or later |
+| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.3.1 | Supports Push | iOS 11 or later |
 
 
 > <font color="red">[Caution]</font><br/>

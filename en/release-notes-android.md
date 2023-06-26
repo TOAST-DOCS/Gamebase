@@ -1,16 +1,36 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.52.0 (2023. 06. 27.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+* ONE store v21 Adapter가 추가되었습니다.
+* 특정 메세지가 포함된 알림을 표시하지 않는 기능이 추가된 커스텀 푸시 리시버가 추가되었습니다.
+    * 이 기능을 사용하기 위해서는 빌드 의존성에 gamebase-adapter-push-notification 모듈 선언을 추가하면 됩니다.
+    
+            dependencies {
+                ...
+                implementation "com.toast.android.gamebase:gamebase-adapter-push-notification:$GAMEBASE_SDK_VERSION"
+            }
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: NHN Cloud SDK 업데이트 1.6.0
+
+#### 버그 수정
+* Render outside safe area 가로모드에서 네비게이션바와 X 버튼이 겹치는 버그를 수정했습니다.
+* 약관 팝업 내 '더보기' 클릭 시 뜨는 약관 전문 창이 로딩 완료 전에는 백그라운드가 클릭이 되지 않도록 수정했습니다.
+
 ### 2.50.0 (2023. 05. 16.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* MyCard Adapter가 추가되었습니다.
+#### Added Features
+* Added MyCard Adapter.
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: NHN Cloud Android SDK 1.5.0, PAYCO Android SDK 1.5.12
+#### Feature Updates
+* External SDK update: NHN Cloud Android SDK 1.5.0, PAYCO Android SDK 1.5.12
 
-#### 버그 수정
-* 약관 API 호출 시 Activity 사이즈가 safe area 내로 줄어드는 오류를 수정했습니다.
+#### Bug Fixes
+* Fixed an error where, when calling the Terms and Conditions API, Activity size is reduced within a safe area.
 
 ### 2.49.0 (2023. 04. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-Android.zip)
