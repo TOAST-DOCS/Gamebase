@@ -316,23 +316,13 @@ iOS의 앱 이벤트를 관리하려면 다음 **UIApplicationDelegate** 프로�
 ```
 
 ### OpenURL Event
-**application:openURL:sourceApplication:annotation:** 메서드를 호출하여, 애플리케이션의 외부 URL Open 시도를 Gamebase에 알려주어야 합니다. Gamebase에서는 각 Idp의 인증용 SDK에 해당 값을 전달하여, 필요한 동작을 하도록 알려줍니다.
+**application:openURL:options:** 메서드를 호출하여, 애플리케이션의 외부 URL Open 시도를 Gamebase에 알려주어야 합니다. Gamebase에서는 각 Idp의 인증용 SDK에 해당 값을 전달하여, 필요한 동작을 하도록 알려줍니다.
 
-> <font color="red">[주의]</font><br/>
->
-> UIApplicationDelegate의 **application:openURL:options:**를 이미 재정의(overriding)했다면, **application:openURL:sourceApplication:annotation:**이 호출되지 않을 수 있습니다.
->
-
-
-> <font color="red">[주의]</font><br/>
->
-> WeiboAuthAdapter를 사용할 경우, **application:openURL:sourceApplication:annotation:**를 필수로 구현해야 합니다.
->
 
 ```objectivec
 // AppDelegate.m
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [TCGBGamebase application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    return [TCGBGamebase application:app openURL:url options:options];
 }
 ```
 
