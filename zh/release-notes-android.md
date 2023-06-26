@@ -7,12 +7,14 @@
 * ONE store v21 Adapter가 추가되었습니다.
 * 특정 메세지가 포함된 알림을 표시하지 않는 기능이 추가된 커스텀 푸시 리시버가 추가되었습니다.
     * 이 기능을 사용하기 위해서는 빌드 의존성에 gamebase-adapter-push-notification 모듈 선언을 추가하면 됩니다.
-    ```
-    dependencies {
-        ...
-        implementation "com.toast.android.gamebase:gamebase-adapter-push-notification:$GAMEBASE_SDK_VERSION"
-    }
-    ```
+    
+
+        ```
+        dependencies {
+            ...
+            implementation "com.toast.android.gamebase:gamebase-adapter-push-notification:$GAMEBASE_SDK_VERSION"
+        }
+        ```
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트: NHN Cloud SDK 업데이트 1.6.0

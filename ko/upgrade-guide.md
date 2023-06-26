@@ -6,7 +6,7 @@
 
 #### Weibo IdP
 
-* WeiboSDK가 3.3.3로 업데이트되면서 info.plist에 <weibosdk3.3>을 추가해야 합니다.
+* WeiboSDK가 3.3.3로 업데이트되면서 info.plist에 weibosdk3.3을 추가해야 합니다.
 ```
 <key>LSApplicationQueriesSchemes</key>
 	<array>
