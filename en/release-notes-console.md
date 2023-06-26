@@ -1,9 +1,18 @@
 ## Game > Gamebase > Release Notes > Console
 
+### June 27, 2023
+
+#### Added Features
+* Purchase (IAP) > Store
+	* Added ONE store API v7(SDK v21)
+
+#### Feature Updates
+* App > App
+    * Changed the URL of token verification entered in NHN Cloud Online Contact screen from `https://gamebase-web.cloud.toast.com` to `https://web-gamebase.nhncloud.com`.
 
 ### May 16, 2023
 
-### Added Features
+#### Added Features
 * Purchase (IAP) > Store
     * Added MyCard store
 * Coupon > Issue Coupon
@@ -11,35 +20,47 @@
 
 ### April 25, 2023
 
-### Added Features
+#### Added Features
 * Push > Push 
     * Added paging to the scheduled push list
+* Analytics > User Metrics > Inflow/Outflow
+    * Added monthly inflow/outflow metrics
+
+### April 11, 2023
+
+#### Feature Updates
+* Analytics > Sales Metrics > Paying Users
+	* Improved visibility of user metrics and filters
 
 ### March 28, 2023
 
-### Added Features
+#### Added Features
 * Purchase (IAP) > Payment Information
     * Added the feature to view and register payments with product information unregistered and register
 
+#### Feature Updates
+* Analytics > User Metrics > User Metrics
+	* Added accumulative DAU metrics that were missing when downloading excel files
+
 ### March 14, 2023
 
-### Feature Updates
+#### Feature Updates
 * Purchase (IAP) > Payment Information
     * Improved so that the status can be changed from 'Reserved' to 'Success' (Google Play Store excluded)
 
 ### February 28, 2023
 
-### Feature Updates
+#### Feature Updates
 * Purchase (IAP) > Product
     * Improved so that the status that changes for each store item can also be applied to Gamebase products
 
-### Added Features
+#### Added Features
 * Member > Member
     * Added a feature to search for members by Device Key
 
 ### February 14, 2023
 
-### Feature Updates
+#### Feature Updates
 * Management > Alarm > Recipient List
 	* Added support for SMS alarm receiving feature for IAM members
 
@@ -50,6 +71,8 @@
     * Added the feature to set product support types (single product/multiple products)
 * Push > Analytics
     * Added the feature to check the cause of message delivery failure
+* Analytics
+	* Added scroll feature to the country item of multiple select filter
 
 #### Feature Updates
 * Purchase (IAP) > Product
@@ -57,7 +80,7 @@
 
 #### December 27, 2022
 
-### Feature Updates
+#### Feature Updates
 * Analytics > User Indicators > Retention
     * Changed the maximum retention period from 90 days to 180 days
 
@@ -122,7 +145,7 @@
 * Purchase (IAP) > Payment Information
 	* Added the payment date item to Payment History
 
-### Bug Fixes
+#### Bug Fixes
 * Purchas(IAP) > Payment Information
 	*  Fixed an error in saving files when the payment history is very large
 * Mobile Customer Center

@@ -114,13 +114,22 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 > [참고]
 > 결제 검증 완료 상태에서 변경이 없다면 고객 센터로 문의 주시기 바랍니다.
 
-### Properties
+### 결제 내역 조회
+![gamebase_purchase_17_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_17_202306.png)
+
+#### 카테고리
+
+결제 내역은 2가지 카테고리로 조회할 수 있습니다.
+
+- **전체**: 모든 결제 내역을 조회
+- **상품 정보 미등록 결제**: 결제는 완료되었지만 상품 정보가 누락되어 아이템 지급이 불가능한 결제 내역을 조회 
+
 
 #### Search conditions
 선택한 검색 유형에 따라 검색 항목이 다르게 표시됩니다.
 
 ##### (1) 일반 검색
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202210.png)
+![gamebase_purchase_10_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202306.png)
 
 아래의 검색 조건을 만족하는 결과를 검색할 수 있습니다.
 - **검색 기간**: 사용자가 구입을 시도한 기간. 오른쪽의 내림차순/오름차순 항목을 통해 정렬을 선택할 수 있음
@@ -132,34 +141,36 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 
 
 ##### (2) Trnasaction ID 검색
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202210.png)
+![gamebase_purchase_11_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202306.png)
 
-결제를 하면 생성되는 Transaction ID를 사용해 검색할 수 있습니다.
+결제 시 생성되는 Transaction ID를 이용해 검색할 수 있습니다.
 
 ##### (3) 영수증 검색
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202210.png)
-결제 시 지급된 영수증 정보를 가지고 조회할 수 있습니다.
+![gamebase_purchase_12_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202306.png)
+결제 시 지급된 영수증 정보를 이용해 검색할 수 있습니다.
 
 
-#### 검색 결과
+#### [전체] 검색 결과
 검색 결과 항목은 아래와 같습니다.
+
+![gamebase_purchase_13_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_13_202306.png)
 
 - **Transaction ID**: Gamebase 내에서 결제를 구별할 수 있는 고유 번호
 - **스토어**: 결제된 스토어 정보
 - **유저 ID**: 결제한 사용자 아이디
 - **상품 이름**: 사용자가 앱에서 구입한 실제 상품 이름
 - **상품 ID(스토어 아이템 ID)**: 사용자가 앱에서 구입한 실제 상품 아이디 및 스토어에 실제로 결제된 스토어 아이템 ID
-- **스토어 아이템 유형**: 사용자가 앱에서 구입한 실제 상품 유형
-- **가격/화폐단위**: 사용자가 구입한 아이템의 가격 및 화폐 단위
+- **상품 유형**: 사용자가 앱에서 구입한 실제 상품 유형
+- **가격/통화 종류**: 사용자가 구입한 아이템의 가격 및 통화 종류
 - **소비 상태**: 결제한 아이템의 지급 여부
 - **결제 상태**: 결제의 현재 진행 상태
-- **Store Reference Key**: 스토어에서 발급해주는 결제 고유 번호
+- **Store Reference Key**: 스토어에서 발급해 주는 결제 고유 번호
 - **결제 예약 일시**: 사용자가 구입을 시도한 시간
 - **결제 일시**: 사용자가 구입을 완료한 시간
 - **환불 일시**: 사용자 아이템이 환불된 시간
-- **추가정보**: SDK에서 결제 요청 시 전달한 추가 정보(Developer payload)
+- **추가 정보**: SDK에서 결제 요청 시 전달한 추가 정보(Developer payload)
 
-#### 결제 상태 변경
+##### 결제 상태 변경
 검색한 결제 정보의 상태는 아래와 같으며 각 상태는 아래와 같습니다.
 - **결제 완료(Success)**
     - 결제 처리가 정상적으로 완료된 경우를 의미합니다.
@@ -175,24 +186,57 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 	- 관리자가 수동으로 스토어에서 환불 처리에 대한 여부를 업데이트한 경우입니다.
 	- 다른 결제 상태로 변경이 불가능합니다.
 - **진행 중 취소(UserClose)**
-	- 유저가 결제 진행중 취소
+	- 유저가 결제 진행 중 취소
 
 
-##### Success 변경
+###### Success 변경
 ![gamebase_purchase_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_202210.png)
 결제 진행 시 발급받은 **영수증 번호**, **가격**, **통화** 정보를 입력해야 상태를 변경할 수 있습니다.
 
-##### Refund 변경
+###### Refund 변경
 ![gamebase_purchase_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_09_202210.png)
 추가 정보 입력 없이 상태를 선택한 후 변경을 선택합니다.
 변경된 결제 정보는 이후 변경이 불가능하므로 신중하게 확인해야 합니다.
 
-#### 영수증 검증
+
+##### 영수증 검증
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction3.1.png)
 
 * 조회된 영수증의 결제가 유효한지 검증할 수 있습니다.
 * 각 필드를 비교한 결과를 확인할 수 있습니다. 스토어에서 받은 응답값을 JSON 형식으로 제공하므로 필요한 경우 데이터를 직접 확인하실 수 있습니다.
 * 현재는 App Store 결제 건만 검증할 수 있습니다.
+
+
+##### 결제 이력 조회
+검색한 결제 정보의 Transaction ID를 클릭해서 결제 이력을 조회할 수 있습니다.
+![gamebase_purchase_14_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_14_202306.png)
+
+###### (1) 부가 정보 및 영수증 조회
+각각의 결제 상태마다 오른쪽 화살표를 클릭해서 부가 정보와 영수증 정보를 확인할 수 있습니다.
+
+
+#### [상품 정보 미등록 결제] 검색 결과
+검색 결과 항목은 아래와 같습니다.
+
+![gamebase_purchase_15_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_15_202306.png)
+
+- **Transaction ID**: Gamebase 내에서 결제를 구별할 수 있는 고유 번호
+- **스토어**: 결제된 스토어 정보
+- **유저 ID**: 결제한 사용자 아이디
+- **상품 이름**: 사용자가 앱에서 구입한 실제 상품 이름
+- **상품 ID(스토어 아이템 ID)**: 사용자가 앱에서 구입한 실제 상품 아이디 및 스토어에 실제로 결제된 스토어 아이템 ID
+- **상품 유형**: 사용자가 앱에서 구입한 실제 상품 유형
+- **가격/통화 종류**: 사용자가 구입한 아이템의 가격 및 통화 종류
+- **소비 상태**: 결제한 아이템의 지급 여부
+- **결제 상태**: 결제의 현재 진행 상태
+- **Store Reference Key**: 스토어에서 발급해 주는 결제 고유 번호
+- **추가 정보**: SDK에서 결제 요청 시 전달한 추가 정보(Developer payload)
+- **상품 ID 등록**: 상품 정보 수동 등록
+
+##### 상품 ID 등록
+![gamebase_purchase_16_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_16_202306.png)
+* 누락된 아이템 정보를 수동으로 선택하여 지급할 수 있습니다. 
+
 
 ## 결제 어뷰징 모니터링
 
@@ -251,7 +295,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 - **스토어**: 결제된 스토어 정보
 - **아이템 이름**: 사용자가 앱에서 구입한 실제 아이템 이름
 - **가격**: 사용자가 구입한 아이템 가격
-- **화폐 단위**: 사용자가 구입 시 사용한 통화 종류
+- **통화 종류**: 사용자가 구입 시 사용한 통화 종류
 - **결제 상태**: 결제의 현재 진행 상태
 
 ### 결제 어뷰징 자동 해제 이력 조회

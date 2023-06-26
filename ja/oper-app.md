@@ -120,7 +120,7 @@ NHN Cloudで組織ごとに提供されるOnline contact商品を使用する場
 > ![gamebase_app_22_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_22_202102.png)
 > 会員連携有効化：有効化
 > ログインタイプ：GET方式
-> Token検証URL: https://gamebase-web.cloud.toast.com/tcgb-web/v1.0/apps/{appId}/online-contact/login-status
+> Token検証URL: https://web-gamebase.nhncloud.com/tcgb-web/v1.0/apps/{appId}/online-contact/login-status
 > **{appId}**部分は、設定したいGamebaseのプロジェクトIDを確認した後、入力してください。
 > 
 > 2) OC組織Keyを取得してOC組織Key項目に入力

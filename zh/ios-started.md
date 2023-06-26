@@ -37,9 +37,9 @@ Gamebase可以通过以下方式安装。
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 用途 | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.3.0 | 包括Gamebase的Interface和核心逻辑。 | iOS 11 or later
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.3.1 | 包括Gamebase的Interface和核心逻辑。 | iOS 11 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | 支持Facebook登录。 | iOS 11 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.6 | 支持PAYCO登录。 | iOS 11 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.8 | 支持PAYCO登录。 | iOS 11 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | 支持NAVER登录。 | iOS 11 or later |
 |  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | 支持Gamecenter登录。 | iOS 11 or later |
 |  | GamebaseAuthGoogleAdapter.framework | GoogleSignIn 5.0.2 | 支持Google登录。 | iOS 11 or later |
@@ -49,8 +49,8 @@ Gamebase可以通过以下方式安装。
 |  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.4 | 支持Hangame登录。 | iOS 11 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | 支持Weibo登录。 | iOS 11 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.14 | 支持Kakao登录。 | iOS 11 or later |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.3.0 | 支持游戏内支付。 | iOS 9 or later |
-| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.3.0 | 支持Push。 | iOS 11 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.3.1 | 支持游戏内支付。 | iOS 9 or later |
+| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.3.1 | 支持Push。 | iOS 11 or later |
 
 
 > <font color="red">[注意]</font><br/>

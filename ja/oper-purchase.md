@@ -115,13 +115,22 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 > [参考]
 > 決済検証完了状態から変更がない場合はサポートにお問い合わせください。
 
-### Properties
+### 決済履歴照会
+![gamebase_purchase_17_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_17_202306_ja.png)
+
+#### カテゴリー
+
+決済履歴は2つのカテゴリーで照会できます。
+
+- **全体**:すべての決済履歴を照会
+- **商品情報未登録決済**:決済は完了したが、商品情報が不足しているためアイテムの支給ができない決済履歴を照会 
+
 
 #### Search conditions
 選択した検索タイプに応じて表示される検索項目が異なります。
 
 ##### (1)一般検索
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202210_ja.png)
+![gamebase_purchase_10_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202306_ja.png)
 
 下記の検索条件を満たす結果を検索できます。
 
@@ -134,26 +143,27 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 
 
 ##### (2) Transaction ID検索
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202210_ja.png)
+![gamebase_purchase_11_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202306_ja.png)
 
-決済すると作成されるTransaction IDを使用して検索できます。
+決済時に生成されるTransaction IDを利用して検索できます。
 
 ##### (3)領収書検索
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202210_ja.png)
-
-決済時に支給された領収書情報で照会できます。
-
+![gamebase_purchase_12_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202306_ja.png)
+決済時に支給された領収書情報を利用して検索できます。
 
 #### 検索結果
+#### [全体]検索結果
 検索結果項目は以下の通りです。
+
+![gamebase_purchase_13_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_13_202306_ja.png)
 
 - **Transaction ID**：Gamebase内で決済を区別することができる固有番号
 - **ストア**：決済されたストア情報
 - **ユーザーID**：決済したユーザーID
 - **商品名**：ユーザーがアプリで購入した実際の商品名
 - **商品ID(ストアアイテムID)**：ユーザーがアプリで購入した実際の商品IDおよびストアで実際に決済されたストアアイテムID
-- **ストアアイテムタイプ**：ユーザーがアプリで購入した実際の商品タイプ
-- **価格/貨幣単位**：ユーザーが購入したアイテムの価格および貨幣単位
+- **商品タイプ**:ユーザーがアプリで購入した実際の商品タイプ
+- **価格/通貨の種類**:ユーザーが購入したアイテムの価格および通貨の種類
 - **消費状態**：決済したアイテムの支給状態
 - **決済状態**：決済の現在進行状態
 - **Store Reference Key**：ストアで発行する決済固有番号
@@ -162,7 +172,7 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 - **返金日時**：ユーザーアイテムが返金された時間
 - **追加情報**：SDKから決済リクエストした時に伝達した追加情報(Developer payload)
 
-#### 決済状態変更
+##### 決済状態変更
 検索した決済情報の状態は以下の通りです。
 
 - **決済完了(Success)**
@@ -182,21 +192,54 @@ GamebaseではNHN Cloud IAP(In-App Purchase、アプリ内決済)サービスを
 	- ユーザーが決済進行中にキャンセル
 
 
-##### Success変更
+###### Success変更
 ![gamebase_purchase_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_202210_ja.png)
 決済進行時に発行された**領収書番号**、**価格**、**通貨**情報を入力すると、状態を変更できます。
 
-##### Refund変更
+###### Refund変更
 ![gamebase_purchase_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_09_202210_ja.png)
 追加情報を入力しないで状態を選択した後、変更を選択します。
 変更された決済情報は、変更できないため、慎重に確認してください。
 
-#### 領収書の検証
+##### 領収書の検証
+
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction3.1.png)
 
 * 照会された領収書の決済が有効かどうかを検証できます。
 * 各フィールドを比較した結果を確認できます。ストアから受け取ったレスポンス値をJSON形式で提供するため、必要な場合はデータを直接確認できます。
 * 現在はApp Store決済のみ検証できます。
+
+
+##### 決済履歴照会
+検索した決済情報のTransaction IDをクリックして決済履歴を照会できます。
+![gamebase_purchase_14_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_14_202306_ja.png)
+
+###### (1)付加情報および領収書照会
+それぞれの決済状態ごとに右矢印をクリックすると、付加情報と領収書情報を確認できます。
+
+
+#### [商品情報未登録決済]検索結果
+検索結果項目は次のとおりです。
+
+![gamebase_purchase_15_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_15_202306_ja.png)
+
+- **Transaction ID**: Gamebase内で決済を区別できる固有番号
+- **ストア**:決済されたストア情報
+- **ユーザーID**:決済したユーザーID
+- **商品名**:ユーザーがアプリで購入した実際の商品名
+- **商品ID(ストアアイテムID)**:ユーザーがアプリで購入した実際の商品ID及びストアに実際に決済されたストアアイテムID
+- **商品タイプ**:ユーザーがアプリで購入した実際の商品タイプ。
+- **価格/通貨の種類**:ユーザーが購入したアイテムの価格及び通貨の種類
+- **消費状態**:決済したアイテムの支給状況
+- **決済状態**:決済の現在進行状態
+- **Store Reference Key**:ストアで発行してくれる決済固有の番号。
+- **追加情報**: SDKから決済リクエスト時に伝達した追加情報(Developer payload)
+- **商品ID登録**:商品情報の手動登録
+
+##### 商品ID登録
+![gamebase_purchase_16_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_16_202306_ja.png)
+* 不足しているアイテム情報を手動で選択して支給できます。 
+
 
 ## 決済アビューズモニタリング
 

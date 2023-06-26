@@ -3,11 +3,11 @@
 ### 2.51.0 (2023. 05. 30.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.51.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### 改善/修改功能
+* 外部SDK升级
     * NHN Cloud iOS SDK (1.3.1)
     * PAYCO iOS SDK (1.5.8)
-* SDK 내부 로직 개선
+* 改善了SDK内部逻辑。
 
 ### 2.49.2 (2023. 04. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.2/GamebaseSDK-iOS.zip)
