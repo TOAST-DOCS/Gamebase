@@ -511,8 +511,12 @@ Weibo 가이드 문서에 따라 기본값으로 모든 권한이 선언되어 �
 내부적으로 Weibo Open API 를 호출하기 위한 도메인입니다.
 변경해서는 안됩니다.
 
+* universalLink
 
-![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_28_202012.png)
+Weibo 가이드 문서에 따라 universalLink를 설정 할 수 있습니다.
+입력하지 않으면 임의의 값으로 설정됩니다.
+
+![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_28_202306.png)
 
 
 **Reference URL**
