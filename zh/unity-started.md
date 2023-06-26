@@ -21,7 +21,7 @@
 
 | Gamebase SDK | External SDK |
 | --- | --- |
-| Gamebase | NHN Cloud Unity SDK 0.28.1 |
+| Gamebase | NHN Cloud Unity SDK 0.28.3 |
 
 * [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
 * [Gamebase iOS SDK - Dependencies](./ios-started/#setting)

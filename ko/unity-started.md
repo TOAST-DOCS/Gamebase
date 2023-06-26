@@ -22,7 +22,7 @@ Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 
 | Gamebase SDK | External SDK |
 | --- | --- |
-| Gamebase | NHN Cloud Unity SDK 0.28.1 |
+| Gamebase | NHN Cloud Unity SDK 0.28.3 |
 
 * [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
 * [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
