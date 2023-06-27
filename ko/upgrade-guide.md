@@ -2,6 +2,10 @@
 
 ## 2.52.0
 
+### Unity
+
+* '**IapOnestore**'로 표시되던 **ONE Store v17** 결제 어댑터가 Gamebase Setting Tool (v2.7.0)부터 '**IapOnestoreV17**'로 표시됩니다.
+
 ### iOS
 
 #### Weibo IdP
