@@ -507,7 +507,12 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 是通过Gambase SDK调用Weibo Open API时使用的域名。
 因此不应该更改。 
 
-![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_28_202012.png)
+* universalLink
+
+您可以根据Weibo指南文档设置universalLink。
+如果未输入，则将其设置为任意值。
+
+![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_28_202306.png)
 
 
 **Reference URL**

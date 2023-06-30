@@ -8,9 +8,8 @@ Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的
 
 > <font color="red">[注意]</font><br/>
 >
-> ONE Store仅支持v17和v19。
-> 对ONE Store v21的支持正在审核中，目前不支持。
-> ONE Store按每个版本只能使用v17、v19或external中的一个，并且不能同时使用。
+> ONE Store仅支持v17、v19及v21。
+> ONE Store按每个版本只能使用v17、v19、v21或external中的一个，并且不能同时使用。
 
 * 初始化Gamebase时，需要指定**STORE_CODE**。
 * 请您在以下值中选择**STORE_CODE**。 
@@ -624,7 +623,7 @@ class PurchasableSubscriptionStatus {
 | PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | 此商品为非激活状态。 |
 | PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 请求支付的GamebaseProductID不存在。 |
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | 超过了一个月购买限额。             |
-| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 不支持的商店<br>可选择的商店是GG(Google)、ONESTORE、GALAXY、AMAZON及HUAWEI。 |
+| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 不支持的商店<br>可选择的商店是GG(Google)、ONESTORE、GALAXY、AMAZON、HUAWEI及MYCARD。 |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | 是NHN Cloud IAP库错误。<br/>请确认详细错误。 |
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | 未知的购买错误<br>请将完整的Log上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。 |
 

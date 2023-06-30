@@ -37,7 +37,7 @@ Gamebase可以通过以下方式安装。
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 用途 | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.3.1 | 包括Gamebase的Interface和核心逻辑。 | iOS 11 or later
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.4.0 | 包括Gamebase的Interface和核心逻辑。 | iOS 11 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | 支持Facebook登录。 | iOS 11 or later |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.8 | 支持PAYCO登录。 | iOS 11 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | 支持NAVER登录。 | iOS 11 or later |
@@ -47,10 +47,10 @@ Gamebase可以通过以下方式安装。
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | 支持LINE登录。 | iOS 11 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | 支持iOS 11 or later<br/>arm64。<br/> |
 |  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.4 | 支持Hangame登录。 | iOS 11 or later |
-|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | 支持Weibo登录。 | iOS 11 or later |
+|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.3.3 | 支持Weibo登录。 | iOS 11 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.14 | 支持Kakao登录。 | iOS 11 or later |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.3.1 | 支持游戏内支付。 | iOS 9 or later |
-| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.3.1 | 支持Push。 | iOS 11 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.4.0 | 支持游戏内支付。 | iOS 9 or later |
+| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.4.0 | 支持Push。 | iOS 11 or later |
 
 
 > <font color="red">[注意]</font><br/>
@@ -240,15 +240,8 @@ end
     <string>lineauth2</string>
 </array>
 ```
-* 关于为了使用LINE登录进行的项目设置，请参考以下链接。
-    * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/swift/overview/)
 * Gamebase iOS SDK 2.42.2以下需要额外的设置。
     * [Game > Gamebase > iOS SDK使用指南 > 开始 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
-
-#### Weibo
-
-* 必须要实现AppDelegate的**application:openURL:sourceApplication:annotation:**。
-    * [Game > Gamebase > iOS SDK使用指南 > 初始化 > OpenURL Event](./ios-initialization/#openurl-event)
 
 ### IdP Settings (Legacy)
 
@@ -304,12 +297,12 @@ end
 ## 3rd-Party Provider SDK Guide
 
 * [Facebook for developers](https://developers.facebook.com/docs/ios)
-* [NAVER for developers](https://developers.naver.com/docs/login/ios/)
-* [Twitter Developer's guide - Log in with Twitter](https://developer.twitter.com/en/docs/basics/authentication/guides/log-in-with-twitter)
+* [NAVER for developers](https://developers.naver.com/docs/login/ios/ios.md)
+* [Twitter Developer's guide - Log in with Twitter](https://developer.twitter.com/en/docs/authentication/guides/log-in-with-twitter)
 * [Twitter Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
-* [LINE for developers](https://developers.line.biz/en/docs/ios-sdk/)
+* [LINE for developers](https://developers.line.biz/en/docs/line-login-sdks/ios-sdk/swift/overview/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/ios)
-* [Weibo for developers](https://github.com/sinaweibosdk/weibo_ios_sdk/blob/3.2.7/%E5%BE%AE%E5%8D%9AiOS%E5%B9%B3%E5%8F%B0SDK%E6%96%87%E6%A1%A3V3.2.7.pdf)
+* [Weibo for developers](https://github.com/sinaweibosdk/weibo_ios_sdk/blob/3.3.3/%E5%BE%AE%E5%8D%9AiOS%E5%B9%B3%E5%8F%B0SDK%E6%96%87%E6%A1%A3V3.3.3.pdf)
 * [Google Sign-In for iOS](https://developers.google.com/identity/sign-in/ios)
 * [Kakaogame SDK 3.0 Guide for Channeling](https://kakaogames.atlassian.net/wiki/spaces/KS3GFC/overview)
 
