@@ -7,7 +7,7 @@
 * 외부 SDK 업데이트
     * NHN Cloud iOS SDK (1.4.0)
     * Weibo iOS SDK (3.3.3)
-* 아래 API가 deprecated 되었습니다.
+* 아래 API가 deprecated되었습니다.
     * [TCGBGamebase countryCode];
     * [TCGBGamebase countryCodeOfUSIM];
     * [TCGBGamebase carrierCode];
