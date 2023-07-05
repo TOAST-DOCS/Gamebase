@@ -499,8 +499,12 @@ Weiboガイド文書に従ってデフォルトですべての権限が宣言さ
 内部的にWeibo Open APIを呼び出すためのドメインです。
 変更してはいけません。
 
+* universalLink
 
-![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_28_202012.png)
+Weiboガイド文書に従ってuniversalLinkを設定できます。
+入力しない場合、任意の値に設定されます。
+
+![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_28_202306.png)
 
 
 **Reference URL**
