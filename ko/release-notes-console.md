@@ -4,13 +4,13 @@
 
 #### 기능 개선/변경
 * 운영 > 킥아웃
-    * 처리 대상이 일부 클라이언트인 경우, 업데이트 필수 상태의 클라이언트도 선택 가능하도록 개선
+    * 처리 대상이 일부 클라이언트인 경우 업데이트 필수 상태의 클라이언트도 선택할 수 있도록 개선
 * 모바일 고객센터
     * 단말기 뒤로 가기 버튼으로 팝업창을 닫을 수 있도록 개선
 
 #### 버그 수정
 * 앱 > 약관 배포
-    * 기존에 배포된 국가와 동일한 배포 국가를 배포 할 수 있었던 오류 수정
+    * 기존에 배포된 국가와 동일한 국가를 배포할 수 있는 오류 수정
 * 모바일 고객센터
     * FAQ 검색을 통해 비노출 게시글이 조회되는 오류 수정
 
@@ -24,7 +24,7 @@
 
 #### 기능 개선/변경
 * 앱 > 앱
-    * NHN Cloud Online Contact 화면에 입력하는 Token 검증 URL 도메인이 `https://gamebase-web.cloud.toast.com`에서  `https://web-gamebase.nhncloud.com`으로 변경
+    * NHN Cloud Online Contact 화면에 입력하는 Token 검증 URL 도메인이 `https://gamebase-web.cloud.toast.com`에서 `https://web-gamebase.nhncloud.com`으로 변경
 
 ### 2023. 06. 13.
 
