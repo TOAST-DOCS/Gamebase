@@ -315,23 +315,14 @@ You need to notify Gamebase that your app has started by calling the **applicati
 ```
 
 ### OpenURL Event
-Call **application:openURL:sourceApplication:annotation:** method to notify Gamebase when application's external URL was tried to be open. Gamebase will deliver a corresponding value to authentication SDK of each IdP to make it operate as required.
-
-> <font color="red">[Caution]</font><br/>
->
-> If **application:openURL:options:** of UIApplicationDelegate has already been overridden, call of **application:openURL:sourceApplication:annotation:** may not work.
->
+Call **application:openURL:options:** method to notify Gamebase when application's external URL was tried to be open. Gamebase will deliver a corresponding value to authentication SDK of each IdP to make it operate as required.
 
 
-> <font color="red">[Caution]</font><br/>
->
-> When using the WeiboAuthAdapter, the implementation of **application:openURL:sourceApplication:annotation:** is mandatory.
->
 
 ```objectivec
 // AppDelegate.m
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [TCGBGamebase application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    return [TCGBGamebase application:app openURL:url options:options];
 }
 ```
 
