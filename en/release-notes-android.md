@@ -18,7 +18,7 @@
 
 #### Bug Fixes
 * Fixed a bug where the navigation bar and X button overlapps in horisontal mode of Render outside safe area.
-* Fixed the Terms and Conditions window that appears when you click "Learn more" in the popup to not be clickable in the background until it finishes loading.
+* Fixed the Terms and Conditions details page that appears when you click "Detail" in the Terms and Conditions window to not be clickable in the background until it finishes loading.
 
 ### 2.50.0 (2023. 05. 16.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.0/GamebaseSDK-Android.zip)
