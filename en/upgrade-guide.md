@@ -4,13 +4,13 @@
 
 ### Unity
 
-* '**IapOnestore**'로 표시되던 **ONE Store v17** 결제 어댑터가 Gamebase Setting Tool (v2.7.0)부터 '**IapOnestoreV17**'로 표시됩니다.
+* The **ONE Store v17** purchase adapter, which was displayed as '**IapOnestore**', is now displayed as '**IapOnestoreV17**' starting with the Gamebase Setting Tool (v2.7.0).
 
 ### iOS
 
 #### Weibo IdP
 
-* WeiboSDK가 3.3.3로 업데이트되면서 info.plist에 weibosdk3.3을 추가해야 합니다.
+* With the WeiboSDK updated to 3.3.3, you must add weibosdk3.3 to info.plist.
 ```
 <key>LSApplicationQueriesSchemes</key>
 	<array>
@@ -24,8 +24,7 @@
 ```
 
 #### Changed/Deprecated APIs
-
-* iOS 16.4부터 Apple이 CTCarrier class가 deprecated됨에 따라 아래 API들이 deprecated 되었습니다.
+* Starting from iOS 16.4, the following APIs have been deprecated as Apple deprecated the CTCarrier class.
     * **[TCGBGamebase countryCode];**
     * **[TCGBGamebase countryCodeOfUSIM];**
     * **[TCGBGamebase carrierCode];**

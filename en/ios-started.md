@@ -37,7 +37,7 @@ Then, include corresponding SDK files to a target of your project.
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.3.1 | Includes the interface and key logic of Gamebase | iOS 11 or later
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.4.0 | Includes the interface and key logic of Gamebase | iOS 11 or later
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Supports Facebook login | iOS 11 or later |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.8 | Supports PAYCO login | iOS 11 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | Supports NAVER login | iOS 11 or later |
@@ -47,10 +47,10 @@ Then, include corresponding SDK files to a target of your project.
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | Supports LINE login  | iOS 11 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 11 or later<br/>arm64 support<br/> |
 |  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.5 | Supports Hangame login | iOS 11 or later |
-|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.2.7 | Supports Weibo login | iOS 11 or later |
+|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.3.3 | Supports Weibo login | iOS 11 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.14 | Supports Kakao login | iOS 11 or later |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.3.1 | Supports in-game purchase | iOS 11 or later |
-| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.3.1 | Supports Push | iOS 11 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.4.0 | Supports in-game purchase | iOS 11 or later |
+| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.4.0 | Supports Push | iOS 11 or later |
 
 
 > <font color="red">[Caution]</font><br/>
@@ -242,15 +242,8 @@ end
     <string>lineauth2</string>
 </array>
 ```
-* Refer to the following link to see how to configure a project to use LINE Login.
-    * [LINK \[LINE Developer Guide\]](https://developers.line.biz/en/docs/ios-sdk/swift/overview/)
 * For Gamebase iOS SDK 2.42.2 or earlier, additional settings are required.
     * [Game > Gamebase > iOS SDK User Guide > Getting Started > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
-
-#### Weibo
-
-* You must implement **application:openURL:sourceApplication:annotation:** of AppDelegate.
-    * [Game > Gamebase > iOS SDK User Guide > Initialization > OpenURL Event](./ios-initialization/#openurl-event)
 
 ### IdP Settings (Legacy)
 
@@ -305,12 +298,12 @@ end
 ## 3rd-Party Provider SDK Guide
 
 * [Facebook for developers](https://developers.facebook.com/docs/ios)
-* [NAVER for developers](https://developers.naver.com/docs/login/ios/)
-* [Twitter Developer's guide - Log in with Twitter](https://developer.twitter.com/en/docs/basics/authentication/guides/log-in-with-twitter)
+* [NAVER for developers](https://developers.naver.com/docs/login/ios/ios.md)
+* [Twitter Developer's guide - Log in with Twitter](https://developer.twitter.com/en/docs/authentication/guides/log-in-with-twitter)
 * [Twitter Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
-* [LINE for developers](https://developers.line.biz/en/docs/ios-sdk/)
+* [LINE for developers](https://developers.line.biz/en/docs/line-login-sdks/ios-sdk/swift/overview/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/ios)
-* [Weibo for developers](https://github.com/sinaweibosdk/weibo_ios_sdk/blob/3.2.7/%E5%BE%AE%E5%8D%9AiOS%E5%B9%B3%E5%8F%B0SDK%E6%96%87%E6%A1%A3V3.2.7.pdf)
+* [Weibo for developers](https://github.com/sinaweibosdk/weibo_ios_sdk/blob/3.3.3/%E5%BE%AE%E5%8D%9AiOS%E5%B9%B3%E5%8F%B0SDK%E6%96%87%E6%A1%A3V3.3.3.pdf)
 * [Google Sign-In for iOS](https://developers.google.com/identity/sign-in/ios)
 * [Kakaogame SDK 3.0 Guide for Channeling](https://kakaogames.atlassian.net/wiki/spaces/KS3GFC/overview)
 
