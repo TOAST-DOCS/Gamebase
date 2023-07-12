@@ -1,15 +1,37 @@
 ## Game > Gamebase > Release Notes > Console
 
+### 2023. 07. 11.
+
+#### Feature Updates
+* Operation > Kickout
+    * Improved so that, when only some clients are selectable, clients with the Update Required status can be seletable
+* Mobile Customer Center
+    * Improved so that the popup window can be closed with the go back button on the device
+
+#### Bug Fixes
+* App > Deploy Terms and Conditions
+    * Fixed an error that allowed deployment to a country where deployment was already conducted
+* Mobile Customer Center
+    * Fixed an error that caused unexposed posts to be retrieved via FAQ search
+
 ### June 27, 2023
 
 #### Added Features
 * Purchase (IAP) > Store
 	* Added ONE store API v7(SDK v21)
+* Purchase (IAP) > Payment Information
+	* Added a feature to view payment details
 
 #### Feature Updates
 * App > App
-    * Changed the URL of token verification entered in NHN Cloud Online Contact screen from `https://gamebase-web.cloud.toast.com` to `https://web-gamebase.nhncloud.com`.
+    * Changed the URL of token verification entered in NHN Cloud Online Contact screen from `https://gamebase-web.cloud.toast.com` to `https://web-gamebase.nhncloud.com`
 
+### June 13, 2023
+
+#### Feature Updates
+* App > App
+    * Add a universalLink entry to Additional information for Weibo login authentication.
+	
 ### May 16, 2023
 
 #### Added Features
