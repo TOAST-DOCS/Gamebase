@@ -1,5 +1,17 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.52.1 (2023. 07. 17.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.1/GamebaseSDK-Android.zip)
+
+#### 버그 수정
+* 2.52.0에 적용된 okhttp3의 minSdk가 21 이어서, 19(Kitkat)에서 crash가 발생하는 버그를 수정하였습니다.
+
+### 2.50.1 (2023. 07. 17.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.1/GamebaseSDK-Android.zip)
+
+#### 버그 수정
+* 2.50.0에 적용된 okhttp3의 minSdk가 21 이어서, 19(Kitkat)에서 crash가 발생하는 버그를 수정하였습니다.
+
 ### 2.52.0 (2023. 06. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.0/GamebaseSDK-Android.zip)
 
