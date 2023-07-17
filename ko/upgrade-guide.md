@@ -1,12 +1,12 @@
 ## Game > Gamebase > Upgrade Guide
 
-### 2.52.1 
+## 2.52.1 
 
 ### Android
 
 * 2.52.0버전의 19(Kitkat)에서 crash가 나지 않도록 수정하였습니다.
 
-### 2.50.1 
+## 2.50.1
 
 ### Android
 
