@@ -1,9 +1,15 @@
 ## Game > Gamebase > 릴리스 노트 > Server API
 
+### 2023. 07. 25.
+
+#### 기능 추가
+* 구독 조회 API request body에 'includeInactiveGoogleStatuses' 필드 추가
+* 구독 조회 API 응답에 'renewTime' 필드 추가
+* 구독 조회 API에 한 번에 N개의 스토어를 대상으로 조회할 수 있도록 'marketIds' 필드 추가
+
 ### 2022. 12. 27.
 
 #### 기능 추가
-
 * Google Play 스토어의 구독 중인 상품 취소 API 추가
 * 구독 조회 API 응답에 'linkedPaymentId' 필드 추가
 
@@ -13,7 +19,6 @@
 ### 2022. 08. 23.
 
 #### 기능 추가
-
 * 서버 URL 추가
 	* https://api-gamebase.nhncloudservice.com
 

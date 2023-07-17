@@ -12,6 +12,9 @@
 - 서버 주소가 "https://api-gamebase.nhncloudservice.com"으로 변경되었습니다. 기존 주소도 별도의 공지 전까지 계속 유지됩니다.
 - "List Active Subscriptions" API 응답 결과에 구독 상품 취소/재구매 시 원거래 구독의 마켓 결제 번호를 나타내는 **linkedPaymentId**가 추가되었습니다.
 - 구독 중인 상품을 취소하는 "Cancel Subscriptions", "Revoke Subscriptions" API가 추가되었습니다.
+- "List Active Subscriptions" API request body에 구글 구독 비활성 상태를 요청할 수 있는 **includeInactiveGoogleStatuses**가 추가되었습니다.
+- "List Active Subscriptions" API 응답 결과에 RENEWED/RECOVERED 발생 시간을 나타내는 **renewTime**가 추가되었습니다.
+- "List Active Subscriptions" API request에 한 번에 N개의 스토어를 대상으로 조회할 수 있도록 **marketIds**가 추가되었습니다.
 
 ## Advance Notice
 
@@ -1766,17 +1769,25 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 ```json
 {
-    "marketId": "GG",
+    "marketIds": [
+        "GG",
+        "AS"
+    ],
     "packageName": "com.nhncloud.gamebase",
-    "userId": "QXG774PMRZMWR3BR"
+    "userId": "QXG774PMRZMWR3BR",
+    "includeInactiveGoogleStatuses" : [
+        "ON_HOLD"
+    ]
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | Required | [스토어 코드](#store-code) |
+| marketId | String | Optional | [스토어 코드](#store-code)<br>- **deprecated** 예정으로 *marketIds* 사용 |
+| marketIds | Array[String] | Optional | [스토어 코드](#store-code)<br>- 빈 값(혹은 null)인 경우 전체 스토어 대상으로 조회 |
 | packageName | String | Required | 콘솔에 등록한 스토어 앱 ID |
-| userId | String | Required | 유저 ID  |
+| userId | String | Required | 유저 ID |
+| includeInactiveGoogleStatuses | Array[String] | Optional | 응답 결과에 포함할 **구글 구독 비활성 상태**<br>- 현재 'ON_HOLD' 상태만 지원 |
 
 **[Response Body]**
 
@@ -1805,6 +1816,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
             "payload" : "additional info",
             "purchaseTime": "2020-06-02T13:38:56+09:00",
             "expiryTime": "2020-06-02T13:48:56+09:00",
+            "renewTime" : "2020-06-02T13:50:56+09:00",
             "isTestPurchase" : false,
             "referenceStatus" : "PURCHASED"
         }
@@ -1831,6 +1843,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 | result[].payload | String | SDK에서 설정한 추가 정보 |
 | result[].purchaseTime | String | 최근 갱신된 시간 |
 | result[].expiryTime | String | 구독 만료 시간 |
+| result[].renewTime | String | RENEWED/RECOVERED 발생 시간 |
 | result[].isTestPurchase | boolean | 테스트 결제 여부 |
 | result[].referenceStatus | String | 결제 시스템(인앱 결제, 외부 결제)이 제공하는 [결제 참조 상태](#store-reference-status)<br>현재 Google Play 스토어만 지원 |
 
