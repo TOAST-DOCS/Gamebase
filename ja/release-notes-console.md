@@ -1,14 +1,36 @@
 ## Game > Gamebase > リリースノート > Console
 
+### 2023. 07. 11.
+
+#### 機能改善/変更
+* 運営 > キックアウト
+    * 処理対象が一部のクライアンの場合、アップデート必須状態のクライアントも選択できるように改善
+* モバイルサポート
+    * 端末の戻るボタンでポップアップウィンドウを閉じることができるように改善
+
+#### バグ修正
+* アプリ > 約款配布
+    * 既に配布された国と同じ国を配布できるエラーを修正
+* モバイルサポート
+    * FAQ検索で非表示の投稿が照会sれるエラーを修正
+
 ### 2023. 06. 27.
 
 #### 機能追加
 * 購入(IAP) > ストア
 	* ONEstore API v7(SDK v21)追加
+* 購入(IAP) > 決済情報
+	* 決済詳細情報照会機能を追加
 
 #### 機能改善/変更
 * アプリ > アプリ
-    * NHN Cloud Online Contact画面に入力するToken検証URLドメインが`https://gamebase-web.cloud.toast.com`から`https://web-gamebase.nhncloud.com`に変更されました。
+    * NHN Cloud Online Contact画面に入力するToken検証URLドメインが`https://gamebase-web.cloud.toast.com`から`https://web-gamebase.nhncloud.com`に変更
+
+### 2023. 06. 13.
+
+#### 機能改善/変更
+* アプリ > アプリ
+    * Weiboログイン認証の追加情報にuniversalLink項目を追加
 
 ### 2023. 05. 16.
 

@@ -1,12 +1,24 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.52.1 (2023. 07. 17.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.1/GamebaseSDK-Android.zip)
+
+#### 버그 수정
+* 2.52.0에 적용된 okhttp3의 minSdk가 21 이어서, 19(Kitkat)에서 crash가 발생하는 버그를 수정하였습니다.
+
+### 2.50.1 (2023. 07. 17.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.1/GamebaseSDK-Android.zip)
+
+#### 버그 수정
+* 2.50.0에 적용된 okhttp3의 minSdk가 21 이어서, 19(Kitkat)에서 crash가 발생하는 버그를 수정하였습니다.
+
 ### 2.52.0 (2023. 06. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
 * ONE store v21 Adapter가 추가되었습니다.
-* 특정 메세지가 포함된 알림을 표시하지 않는 기능이 추가된 커스텀 푸시 리시버가 추가되었습니다.
-    * 이 기능을 사용하기 위해서는 빌드 의존성에 gamebase-adapter-push-notification 모듈 선언을 추가하면 됩니다.
+* 특정 메시지가 포함된 알림을 표시하지 않는 커스텀 푸시 리시버가 추가되었습니다.
+    * 이 기능을 사용하려면 빌드 의존성에 gamebase-adapter-push-notification 모듈 선언을 추가해야 합니다.
 
             dependencies {
                 ...
@@ -17,8 +29,8 @@
 * 외부 SDK 업데이트: NHN Cloud SDK 업데이트 1.6.0
 
 #### 버그 수정
-* Render outside safe area 가로모드에서 네비게이션바와 X 버튼이 겹치는 버그를 수정했습니다.
-* 약관 팝업 내 '더보기' 클릭 시 뜨는 약관 전문 창이 로딩 완료 전에는 백그라운드가 클릭이 되지 않도록 수정했습니다.
+* Render outside safe area 가로 모드에서 내비게이션 바와 X 버튼이 겹쳐 보이는 오류를 수정했습니다.
+* 약관 팝업에서 '더보기'를 클릭했을 때 약관 전문이 완전히 로딩되기 전에는 백그라운드를 클릭할 수 없도록 수정했습니다.
 
 ### 2.50.0 (2023. 05. 16.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.0/GamebaseSDK-Android.zip)

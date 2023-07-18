@@ -309,23 +309,13 @@ NSDictionary* launchingInfo = [TCGBLaunching launchingInformations];
 ```
 
 ### OpenURL Event
-需要通过调用**application:openURL:sourceApplication:annotation:**方法，将App的外部URL Open尝试告知Gamebase，Gamebase将相应的值传递给各Idp的认证用SDK，告知需要的操作。
+需要通过调用**application:openURL:options:** 方法，将App的外部URL Open尝试告知Gamebase，Gamebase将相应的值传递给各Idp的认证用SDK，告知需要的操作。
 
-> <font color="red">[注意]</font><br/>
->
-> 如果已经覆盖(overriding)了UIApplicationDelegate的**application:openURL:options:**，则可能无法调用**application:openURL:sourceApplication:annotation:**。
->
-
-
-> <font color="red">[注意]</font><br/>
->
-> 如果使用WeiboAuthAdapter，必须要实现**application:openURL:sourceApplication:annotation:**。
->
 
 ```objectivec
 // AppDelegate.m
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [TCGBGamebase application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    return [TCGBGamebase application:app openURL:url options:options];
 }
 ```
 

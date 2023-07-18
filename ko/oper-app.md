@@ -513,7 +513,7 @@ Weibo 가이드 문서에 따라 기본값으로 모든 권한이 선언되어 �
 
 * universalLink
 
-Weibo 가이드 문서에 따라 universalLink를 설정 할 수 있습니다.
+Weibo 가이드 문서에 따라 universalLink를 설정할 수 있습니다.
 입력하지 않으면 임의의 값으로 설정됩니다.
 
 ![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_28_202306.png)

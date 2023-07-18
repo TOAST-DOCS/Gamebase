@@ -1,16 +1,28 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.52.1
+
+### Android
+
+* 2.52.0버전의 19(Kitkat)에서 crash가 나지 않도록 수정하였습니다.
+
+## 2.50.1
+
+### Android
+
+* 2.50.0버전의 19(Kitkat)에서 crash가 나지 않도록 수정하였습니다.
+
 ## 2.52.0
 
 ### Unity
 
-* '**IapOnestore**'로 표시되던 **ONE Store v17** 결제 어댑터가 Gamebase Setting Tool (v2.7.0)부터 '**IapOnestoreV17**'로 표시됩니다.
+* 以前显示为'**IapOnestore**'的**ONE Store v17**支付Adaptor从Gamebase Setting Tool (v2.7.0)开始将显示为'**IapOnestoreV17**'。
 
 ### iOS
 
 #### Weibo IdP
 
-* WeiboSDK가 3.3.3로 업데이트되면서 info.plist에 weibosdk3.3을 추가해야 합니다.
+* 由于WeiboSDK更新到3.3.3，您需要将weibosdk3.3添加到info.plist中。
 ```
 <key>LSApplicationQueriesSchemes</key>
 	<array>
@@ -25,7 +37,7 @@
 
 #### Changed/Deprecated APIs
 
-* iOS 16.4부터 Apple이 CTCarrier class가 deprecated됨에 따라 아래 API들이 deprecated 되었습니다.
+* 从iOS 16.4开始，由于Apple  CTCarrier class已被deprecated，以下API也随之被deprecated。
     * **[TCGBGamebase countryCode];**
     * **[TCGBGamebase countryCodeOfUSIM];**
     * **[TCGBGamebase carrierCode];**
