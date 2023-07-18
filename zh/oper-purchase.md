@@ -110,14 +110,23 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 
 > [参考]
 > 如果完成验证状态没有变化，请联系客户服务。
- 
-### Properties
+
+### 查看支付明细
+![gamebase_purchase_17_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_17_202306.png)
+
+#### 类别
+
+支付明细可分为两类查看。
+
+- **所有** : 查看所有的支付明细。
+- **未注册商品信息支付** : 搜索付款已完成，但缺少产品信息，因此无法提供道具的支付明细。   
+
 
 #### Search conditions
 按照选择的搜索类型显示不同的搜索项目。
 
 ##### (1) 一般搜索
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202210_zh.png)
+![gamebase_purchase_10_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202306.png)
 
 可以搜索符合下列搜索条件的结果。
 - **搜索日期**：用户尝试购买的时间（通过使用右边的降序/升序项目选择排列）
@@ -129,25 +138,29 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 
 
 ##### (2) 搜索Transaction ID
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202210_zh.png)
+![gamebase_purchase_11_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202306.png)
 
 可以利用付款时生成的Transaction ID进行查询。 
 
 ##### (3) 搜索发票
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202210_zh.png)
-可利用支付时提供的发票信息进行查询。 
+![gamebase_purchase_12_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202306.png)
+可利用支付时提供的发票信息进行查询。
 
-#### 搜索结果
-以下为查询结果项目。
+
+#### [所有] 搜素结果
+以下为搜索结果项目。
+
+![gamebase_purchase_13_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_13_202306.png)
+
 - **Transaction ID**：可在Gamebase内区分的固有编号
 - **商店**：支付的商店信息
 - **用户ID**：支付的用户ID
 - **产品名称**：用户在应用程序内购买的实际商品名称
 - **产品ID(商店道具ID)**：用户在应用程序内购买的实际商品ID和在商店进行支付的商店道具ID
-- **商店道具类别**：用户在应用程序内购买的实际道具类别
-- **价格/货币单位**：用户购买的道具价格及货币单位
+- **商品类别**：用户在应用程序内购买的实际商品类别
+- **价格/货币类别**：用户购买的道具价格及货币类别
 - **消费状态**：是否提供支付完的道具
-- **支付状态**：结算程序的当前进行状态
+- **支付状态**：付款程序的当前进行状态
 - **Store Reference Key**：商店发布的结算固有编号
 - **预约支付日期**：用户尝试购买的时间
 - **支付日期**： 用户完成购买的时间
@@ -181,12 +194,45 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 不必输入其他追加信息，确认状态后选择变更即可。
 您更改的付款信息无法再次更改，因此需要仔细检查信息。
 
-#### 验证发票
+##### 验证发票
 ![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction3.1.png)
 
 * 可验证查询的发票的付款是否有效。
 * 可确认各字段的比较结果。从商店获得的响应值以JSON形式提供，需要时可直接确认数据。
 * 当前仅可验证App Store付款项目。
+
+
+##### 查看支付明细
+可以通过单击搜索到的付款信息的Transaction ID来查看支付明细。
+![gamebase_purchase_14_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_14_202306.png)
+
+###### (1) 查看附加信息和收据
+您可以通过单击每个付款状态的向右箭头来查看附加息和收据信息。
+
+
+#### [未注册产品信息支付]的搜索结果
+搜索结果项目如下。
+
+![gamebase_purchase_15_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_15_202306.png)
+
+
+- **Transaction ID**: 可在Gamebase内区分支付的固有编号
+- **商店**: 支付的商店信息
+- **用户ID**: 支付的用户ID
+- **产品名称**: 用户在应用程序内购买的实际商品名称
+- **产品ID(商店道具ID)**: 用户在应用程序内购买的实际商品ID和在商店进行支付的商店道具ID
+- **商品类别**: 用户在应用程序内购买的实际商品类别
+- **价格/货币类别**：用户购买的道具价格及货币类别
+- **消费状态**：是否提供支付完的道具
+- **支付状态**：付款程序的当前进行状态
+- **Store Reference Key**：商店发布的结算固有编号
+- **追加信息**: 通过SDK请求支付时传送的追加信息(Developer payload)
+- **注册商品ID**: 手动注册商品信息
+
+##### 注册商品ID
+![gamebase_purchase_16_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_16_202306.png)
+* 您可以手动选择并支付被遗漏的项目信息。 
+
 
 ## 结算Abusing监测
 
@@ -247,7 +293,7 @@ Gamebase使用NHN Cloud IAP(In-App Purchase、应用程序内结算)服务。
 - **商店**：支付的商店信息
 - **道具名**：用户在应用程序中购买的实际道具名
 - **价格**：用户购买的道具价格
-- **货币单位**：用户购买时使用的货币类型
+- **货币종류**：用户购买时使用的货币类型
 - **支付状态**：支付的当前进行状态
 
 ### 结算Abusing自动解除历史查询

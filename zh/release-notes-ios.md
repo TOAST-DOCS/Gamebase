@@ -3,11 +3,11 @@
 ### 2.52.0 (2023. 06. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### 改善/修改功能
+* 外部SDK升级
     * NHN Cloud iOS SDK (1.4.0)
     * Weibo iOS SDK (3.3.3)
-* 아래 API가 deprecated 되었습니다.
+* 以下API已deprecated。
     * [TCGBGamebase countryCode];
     * [TCGBGamebase countryCodeOfUSIM];
     * [TCGBGamebase carrierCode];
@@ -16,7 +16,7 @@
     * [TCGBUtil usimCountryCode];
     * [TCGBUtil carrierCode];
     * [TCGBUtil carrierName];
-* SDK 내부 로직 개선
+* 改善了SDK内部逻辑。
 
 ### 2.51.0 (2023. 05. 30.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.51.0/GamebaseSDK-iOS.zip)

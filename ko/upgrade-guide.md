@@ -1,5 +1,17 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.52.1 
+
+### Android
+
+* 2.52.0버전의 19(Kitkat)에서 crash가 나지 않도록 수정하였습니다.
+
+## 2.50.1
+
+### Android
+
+* 2.50.0버전의 19(Kitkat)에서 crash가 나지 않도록 수정하였습니다.
+
 ## 2.52.0
 
 ### Unity
@@ -25,7 +37,7 @@
 
 #### Changed/Deprecated APIs
 
-* iOS 16.4부터 Apple이 CTCarrier class가 deprecated됨에 따라 아래 API들이 deprecated 되었습니다.
+* iOS 16.4부터 Apple이 CTCarrier class가 deprecated됨에 따라 아래 API들이 deprecated되었습니다.
     * **[TCGBGamebase countryCode];**
     * **[TCGBGamebase countryCodeOfUSIM];**
     * **[TCGBGamebase carrierCode];**

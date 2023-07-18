@@ -254,20 +254,7 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
   
 ### Country Code
 
-* Gamebase以如下API提供系统的国家代码(country code)。
-* 各API具有不同特征，因此请选择与用途相符的API。
-
-#### USIM Country Code
- 
-* 返回USIM中记录的国家代码。
-* 即使USIM中记录的是错误的国家代码也将不进行补充确认就直接返回。
-* 若值为空，则返回“ZZ”。
-
-**API**
-
-```objectivec
-+ (NSString *)usimCountryCode;
-```
+* Gamebase将System的Country Code提供为以下API。
 
 #### Device Country Code
 
@@ -280,23 +267,6 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 ```objectivec
 + (NSString *)deviceCountryCode;
 ```
-
-#### Intergrated Country Code
-
-* 按照USIM、终端机地区设置的顺序确认国家代码并返回。
-* country API按照如下顺序运行。
-    1.确认USIM中记录的国家代码，若存在值，则直接返回，不另行确认。
-    2.若USIM国家代码为空值，确认终端机国家代码，若存在值，则直接返回，不另行确认。
-    3.若USIM、终端机国家代码均为空值，则返回“ZZ”。
-
-![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
-
-**API**
-
-```objectivec
-+ (NSString *)countryCode;
-```
-
 
 ### Gamebase Event Handler
 

@@ -256,19 +256,6 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 ### Country Code
 
 * Gamebase provides (country codes) for the system in the following APIs.
-* Please select an appropriate API that best fits your purpose as each API has its own characteristics.
-
-#### USIM Country Code
-
-* Returns a country code written in the USIM.
-* Even if a wrong country code has been written in the USIM, it will be returned as it is without any further verification.
-* 'ZZ' is returned when the value is empty.
-
-**API**
-
-```objectivec
-+ (NSString *)usimCountryCode;
-```
 
 #### Device Country Code
 
@@ -281,23 +268,6 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 ```objectivec
 + (NSString *)deviceCountryCode;
 ```
-
-#### Intergrated Country Code
-
-* Verifies and returns the country code in the order of the region setting in the USIM.
-* The country API operates in the following order:
-	1. Checks the country code written in the USIM. If a value exists, returns the value without any separate verification.
-	2. If the country code in the USIM is empty, checks the country code of the device. If a value exists, returns the value without any further verification.
-	3. 'ZZ' is returned when the country code values of USIM and device are empty.
-
-![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
-
-**API**
-
-```objectivec
-+ (NSString *)countryCode;
-```
-
 
 ### Gamebase Event Handler
 

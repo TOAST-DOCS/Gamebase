@@ -126,7 +126,7 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 > ![gamebase_app_22_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_22_202102.png)
 > 启用成员联动 : 启用
 > 登录类型 : GET方式 
-> Token验证URL : https://gamebase-web.cloud.toast.com/tcgb-web/v1.0/apps/{appId}/online-contact/login-status
+> Token验证URL: https://web-gamebase.nhncloud.com/tcgb-web/v1.0/apps/{appId}/online-contact/login-status
 > 确认需要使用的Gamebase的项目ID ，在**{appId}**中输入。 
 >  
 > 2) 获取OC组织Key后，将其在OC组织Key项目中输入。 
@@ -507,7 +507,12 @@ Gamebase提供3种客户服务类型，根据类型可设置不同的项目。
 是通过Gambase SDK调用Weibo Open API时使用的域名。
 因此不应该更改。 
 
-![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_28_202012.png)
+* universalLink
+
+您可以根据Weibo指南文档设置universalLink。
+如果未输入，则将其设置为任意值。
+
+![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_28_202306.png)
 
 
 **Reference URL**

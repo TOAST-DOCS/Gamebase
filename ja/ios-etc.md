@@ -255,20 +255,7 @@ localizedstring.jsonに定義されている形式は、次の通りです。
 
 ### Country Code
 
-* Gamebaseは、システムの国コード(country code)を次のようなAPIで提供しています。
-* APIごとに特徴があるため、使用用途に合ったAPIを選択してください。
-
-#### USIM Country Code
-
-* USIMに記録された国コードを返します。
-* USIMに無効な国コードが記録されていても、追加確認を行わずにそのまま返します。
-* 値が空の場合、'ZZ'を返します。
-
-**API**
-
-```objectivec
-+ (NSString *)usimCountryCode;
-```
+* GamebaseはSystemのCountry Codeを次のAPIで提供しています。
 
 #### Device Country Code
 
@@ -281,22 +268,6 @@ localizedstring.jsonに定義されている形式は、次の通りです。
 
 ```objectivec
 + (NSString *)deviceCountryCode;
-```
-
-#### Intergrated Country Code
-
-* USIM、端末地域設定の順序で国コードを確認して返します。
-* country APIは次の順序で動作します。
-	1. USIMに記録されている国コードを確認し、値があれば別途確認しないでそのまま返します。
- 2. USIM国コードが空の値の場合は端末国コードを確認し、値があれば追加確認を行わずにそのまま返します。
-	3. USIM、端末国コードがどちらも空の値の場合は、'ZZ'を返します。
-
-![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
-
-**API**
-
-```objectivec
-+ (NSString *)countryCode;
 ```
 
 ### Gamebase Event Handler

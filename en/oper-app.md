@@ -510,9 +510,12 @@ You can add/remove/change them as necessary.
 This is a domain for calling the Weibo Open API internally.
 You should not change this.
 
+* universalLink
 
-![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_28_202012.png)
+You can set up universalLink according to the Weibo guide document.
+If not entered, it is set to a random value.
 
+![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_28_202306.png)
 
 **Reference URL**
 - [Weibo Developer](https://open.weibo.com/)

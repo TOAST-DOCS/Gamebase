@@ -14,7 +14,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.5.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-4.10.0<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebaseのインタフェースおよびコアロジックを含む | API 19(Kitkat、OS 4.4) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.6.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-4.10.0<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebaseのインターフェイスおよびコアロジックを含む | API 19(Kitkat, OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Appleログインをサポート | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | Facebookログインをサポート | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Googleログインをサポート | - |
@@ -33,6 +33,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 |  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Huawei App Galleryをサポート | - |
 |  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | ONE store v17をサポート | - |
 |  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | ONE store v19をサポート | - |
+|  | gamebase-adapter-purchase-onestore-v21 | nhncloud-iap-onestore-v21 | ONE store v21をサポート | API 23(Marshmallow, OS 6.0) |
 |  | gamebase-adapter-purchase-onestore-external | nhncloud-iap-onestore-external | ONE store外部決済機能をサポート | - |
 |  | gamebase-adapter-purchase-mycard | nhncloud-iap-mycard | MyCard決済機能をサポート | - |
 | Gamebase Push Adapters | gamebase-adapter-toastpush | nhncloud-push-analytics<br>nhncloud-push-core<br>nhncloud-push-notification | Pushをサポート | - |
@@ -80,7 +81,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
     * ONE store
         * [ONE store > Document > 開発ツール > (OLD Version)アプリ内決済ガイド > ONEstoreアプリ内決済API V5 (SDK V17)案内およびダウンロード > アプリ内決済テストおよびセキュリティ > テストID登録/管理](https://dev.onestore.co.kr/wiki/ko/doc/결제-테스트-및-보안-1572991.html#id-결제테스트및보안-테스트ID등록/관리)
         * [ONE store > Document > 開発ツール > (OLD Version)アプリ内決済ガイド > ONEstoreアプリ内決済API V6 (SDK V19)案内およびダウンロード > アプリ内決済テストおよびセキュリティ > テストID登録/管理](https://dev.onestore.co.kr/wiki/ko/doc/인앱결제-테스트-및-보안-8290959.html#id-인앱결제테스트및보안-테스트ID등록/관리)
-        * `現在未サポート` [ONE store > Document > 開発ツール > ONEstoreアプリ内決済API V7 (SDK V21)案内およびダウンロード > 03. 決済テストおよびセキュリティ > テストID登録/管理](https://dev.onestore.co.kr/wiki/ko/doc/03-37552542.html#id-03.결제테스트및보안-테스트ID등록/관리)
+        * [ONE store > Document > 開発ツール > ONEstoreアプリ内決済API V7 (SDK V21)案内およびダウンロード > 03. 決済テストおよびセキュリティ > テストID登録/管理](https://dev.onestore.co.kr/wiki/ko/doc/03-37552542.html#id-03.결제테스트및보안-테스트ID등록/관리)
     * GALAXY Store
         * [Samsung Developers > Samsung IAP > Technical Documents > Test Guide > 3. IAP Testing > 3.2 Test Type > (3) Production Closed Beta Test](https://developer.samsung.com/iap/iap-test-guide.html)
         * [GALAXY store > アプリ > 登録したアプリ > バイナリ > Beta Test > Tester設定](https://seller.samsungapps.com/application)
@@ -188,6 +189,9 @@ repositories {
     maven { url 'https://developer.huawei.com/repo/' }
 }
 
+    // >>> [ONE store v21]
+    maven { url 'https://repo.onestore.co.kr/repository/onestore-sdk-public' }
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -212,6 +216,7 @@ dependencies {
     // https://github.com/ONE-store/onestore_iap_release/tree/iap19-release/android_app_sample/app/libs
     implementation files('libs/iap_sdk-v19.00.02.aar')
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v19:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v21:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-external:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-amazon:$GAMEBASE_SDK_VERSION"
@@ -229,6 +234,7 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-kakaogame:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo-v4:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v16:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-push-notification:$GAMEBASE_SDK_VERSION"
 }
 
 android {
