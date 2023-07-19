@@ -29,9 +29,9 @@ Gamebase는 아래와 같은 방법으로 설정이 가능합니다.
 
 * [Download Gamebase iOS SDK](/Download/#game-gamebase)
 
-Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
-또한 각 IdP의 인증을 하기위한 SDK파일들을 다운로드 받아야합니다. 해당 IdP의 로그인을 사용할 때만 포함하면 됩니다.<br/>
-다운로드한 뒤, 해당 SDK파일을 프로젝트의 target에 포함시켜야 합니다.
+Gamebase.framework 및 필요한 Adapter들을 다운로드 받습니다.<br/>
+또한 각 IdP의 인증을 하기위한 SDK 파일들을 다운로드 받아야합니다. 해당 IdP의 로그인을 사용할 때만 포함하면 됩니다.<br/>
+다운로드한 뒤, 해당 SDK 파일을 프로젝트의 target에 포함시켜야 합니다.
 
 **Gamebase iOS SDK Components**
 
@@ -46,7 +46,7 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 |  | GamebaseAuthTwitterAdapter.framework | | Twitter 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | LINE 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 11 or later<br/>arm64 지원<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.5 | Hangame 로그인을 지원 | iOS 11 or later |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.6 | Hangame 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.3.3 | Weibo 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.14 | Kakao 로그인을 지원 | iOS 11 or later |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.4.0 | 게임 내 결제 지원 | iOS 11 or later |
@@ -84,9 +84,9 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 
 
 * 1) Framework 파일을 Project의 Project Navigator로 끌어와서 import합니다. 이 때 추가된 Framework 파일들은 프로젝트 target에 추가되어야 합니다. 
-* 2) **Gamebase.bundle** 파일도 **Copy Bundle Resources** 에 추가합니다.
+* 2) **Gamebase.bundle** 파일도 **Copy Bundle Resources**에 추가합니다.
 ![Gamebase.bundle Bundle Resources](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-003_1.0.0.png)
-* 3) Gamebase를 사용하기 위해서는 Gamebase의 framework외에, Gamebase에서 사용하고 있는 외부 SDK들의 기능을 포함하기 위하여, 여러 framework와 library 파일을 linker에서 참조할 수 있도록 추가해야합니다. 아래 항목들을 추가해야합니다.
+* 3) Gamebase를 사용하기 위해서는 Gamebase의 framework 외에, Gamebase에서 사용하고 있는 외부 SDK들의 기능을 포함하기 위하여, 여러 framework와 library 파일을 linker에서 참조할 수 있도록 추가해야합니다. 아래 항목들을 추가해야합니다.
     * libicucore.tbd
     * libz.tbd
     * libsqlite3.tbd
@@ -186,7 +186,7 @@ end
 
 > <font color="red">[주의]</font><br/>
 >
-> * NHN Cloud Console 에서 새 프로젝트를 생성하여 Gamebase 서비스를 활성화 하였는지 꼭 확인하세요.
+> * NHN Cloud Console에서 새 프로젝트를 생성하여 Gamebase 서비스를 활성화 하였는지 꼭 확인하세요.
 > * 각 IdP 콘솔에서 Client ID 를 발급받아 Gamebase 콘솔에 입력하였는지 꼭 확인하세요.
 
 * 인증을 위해 IdP 콘솔에서 Client ID 를 발급받아 Gamebase 콘솔에 입력합니다.
