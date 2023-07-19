@@ -877,7 +877,7 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
 > <font color="red">[주의]</font><br/>
 >
 > 고객 센터 문의 시 파일 첨부를 위해 카메라 또는 앨범 접근이 필요할 수 있습니다.
-> info.plist에 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description' 설정을 해주시기 바랍니다.
+> info.plist에 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description', 'Privacy - Microphone Usage Description' 설정을 해주시기 바랍니다.
 
 #### Request Contact URL
 
