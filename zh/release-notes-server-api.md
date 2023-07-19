@@ -1,5 +1,12 @@
 ## Game > Gamebase > Release Notes > Server API
 
+### 2023. 07. 25.
+
+#### 添加功能
+* 在订阅查询API request body中添加了“includeInactiveGoogleStatuses”字段。
+* 在订阅查询API响应中添加了“renewTime”字段。
+* 在订阅查询API中添加了“marketIds”字段，以便一次搜索N个商店。 
+
 ### 2022. 12. 27.
 
 #### 添加功能
