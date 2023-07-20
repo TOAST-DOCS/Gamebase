@@ -86,7 +86,7 @@ Gamebase.framework 및 필요한 Adapter들을 다운로드 받습니다.<br/>
 * 1) Framework 파일을 Project의 Project Navigator로 끌어와서 import합니다. 이 때 추가된 Framework 파일들은 프로젝트 target에 추가되어야 합니다. 
 * 2) **Gamebase.bundle** 파일도 **Copy Bundle Resources**에 추가합니다.
 ![Gamebase.bundle Bundle Resources](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-003_1.0.0.png)
-* 3) Gamebase를 사용하기 위해서는 Gamebase의 framework 외에, Gamebase에서 사용하고 있는 외부 SDK들의 기능을 포함하기 위하여, 여러 framework와 library 파일을 linker에서 참조할 수 있도록 추가해야합니다. 아래 항목들을 추가해야합니다.
+* 3) Gamebase를 사용하기 위해서는 Gamebase의 framework 외에, Gamebase에서 사용하고 있는 외부 SDK들의 기능을 포함하기 위하여, 여러 framework와 library 파일을 linker에서 참조할 수 있도록 아래 항목들을 추가해야 합니다.
     * libicucore.tbd
     * libz.tbd
     * libsqlite3.tbd
@@ -269,7 +269,7 @@ end
 **NAVER**
 
 * Gamebase iOS SDK 1.12.1 이하
-	* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+	* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야 합니다.
 		* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
 		* iOS 앱에서 필요한 정보인 **url_scheme_ios_only**를 추가로 설정해야 합니다.
 	* URL Scheme 를 설정해야 합니다.

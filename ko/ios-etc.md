@@ -16,7 +16,7 @@ Gamebase에서 지원하는 부가적인 기능을 설명합니다.
 > <font color="red">[주의]</font><br/>
 >
 > iOS 14 이상부터 IDFA 값 요청 시, 사용자 권한을 받아야합니다.
-> 사용자 권한 요청할 때 노출시킬 문구를 info.plist에 설정을 해야합니다.
+> 사용자 권한 요청할 때 노출시킬 문구를 info.plist에 설정을 해야 합니다.
 > info.plist에 'Privacy - Tracking Usage Description' 설정을 해주시기 바랍니다.
 
 
