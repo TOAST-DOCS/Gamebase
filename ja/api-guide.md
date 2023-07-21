@@ -12,6 +12,9 @@
 '- サーバーアドレスが"https://api-gamebase.nhncloudservice.com"に変更されました。既存アドレスも別途の告知前まで継続維持されます。
 '- "List Active Subscriptions" APIレスポンス結果にサブスクリプション商品キャンセル/再購入時に元取引購読のマーケット決済番号を表す**linkedPaymentId**が追加されました。
 '- 購読中の商品をキャンセルする"Cancel Subscriptions"、"Revoke Subscriptions" APIが追加されました。
+'- "List Active Subscriptions" API request bodyにGoogle購読の無効化状態をリクエストできる**includeInactiveGoogleStatuses**が追加されました。
+'- "List Active Subscriptions" APIレスポンス結果にRENEWED/RECOVERED発生時間を表す**renewTime**が追加されました。
+'- "List Active Subscriptions" API requestに一度にN個のストアを対象に照会できるように **marketIds**が追加されました。
 
 ## Advance Notice
 
@@ -1829,18 +1832,25 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 ```json
 {
-    "marketId": "GG",
+    "marketIds": [
+        "GG",
+        "AS"
+    ],
     "packageName": "com.nhncloud.gamebase",
-    "userId": "QXG774PMRZMWR3BR"
+    "userId": "QXG774PMRZMWR3BR",
+    "includeInactiveGoogleStatuses" : [
+        "ON_HOLD"
+    ]
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | Required | [ストアコード](#store-code) |
+| marketId | String | Optional | [ストアコード](#store-code)<br>- **deprecated**予定で*marketIds*を使用 |
+| marketIds | Array[String] | Optional | [ストアコード](#store-code)<br>- 空の値(またはnull)の場合、全体ストアを対象に照会 |
 | packageName | String | Required | コンソールに登録したストアアプリID |
-| userKey | String | Required  | ユーザーID  |
-
+| userId | String | Required | ユーザーID |
+| includeInactiveGoogleStatuses | Array[String] | Optional | レスポンス結果に含める**Google購読の無効化状態**<br>- 現在'ON_HOLD'状態のみサポート |
 **[Response Body]**
 
 ```json
@@ -1867,6 +1877,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
             "payload": "additional info",
             "purchaseTime": "2020-06-02T13:38:56+09:00",
             "expiryTime": "2020-06-02T13:48:56+09:00",
+            "renewTime" : "2020-06-02T13:50:56+09:00",
             "isTestPurchase" : false,
             "referenceStatus" : "PURCHASED"
         }
@@ -1893,6 +1904,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 | result[].payload | String | SDKで設定した追加情報 |
 | result[].purchaseTime | String | 最近更新された時間 |
 | result[].expiryTime | String | 定期購入終了時間 |
+| result[].renewTime | String | RENEWED/RECOVERED発生時間 |
 | result[].isTestPurchase | boolean | テスト決済かどうか |
 | result[].referenceStatus | String | 決済システム(アプリ内決済、外部決済)が提供する[決済参照状態](#store-reference-status)<br>現在Google Playストアのみサポート |
 
