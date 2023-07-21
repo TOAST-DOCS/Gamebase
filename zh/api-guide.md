@@ -11,9 +11,12 @@
 - **marketIds**已添加到“List Consumables”API中，该API检索未消费支付历史记录，因此可以一次查看N家商店。
 - 在"List Active Subscriptions" API响应结果中添加了在“取消订阅商品/重新购买”时显示原交易订阅商店支付号码的**linkedPaymentId**。
 - 添加了"Cancel Subscriptions"和"Revoke Subscriptions" API以取消当前的订阅商品。
-
-## Advance Notice
+- **includeInactiveGoogleStatuses**已添加到"List Active Subscriptions" API request body，以请求Google订阅处于非激活状态。
+- 将**renewTime**添加到"List Active Subscriptions" API响应结果中，以显示RENEWED/RECOVERED发生时间。
+- 将**marketIds**添加到"List Active Subscriptions" API request中，以便可以一次搜索N个商店。
  
+## Advance Notice
+
 Gamebase Server API以RESTful类型提供如下API。为了使用服务器API，应了解以下信息。
 
 #### 服务器地址
@@ -1767,17 +1770,25 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-    "marketId": "GG",
+    "marketIds": [
+        "GG",
+        "AS"
+    ],
     "packageName": "com.nhncloud.gamebase",
-    "userId": "QXG774PMRZMWR3BR"
+    "userId": "QXG774PMRZMWR3BR",
+    "includeInactiveGoogleStatuses" : [
+        "ON_HOLD"
+    ]
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | Required | [商店代码](#store-code) |
+| marketId | String | Optional | [商店代码](#store-code)<br>- 因将会**deprecated**，使用*marketIds*。 |
+| marketIds | Array[String] | Optional | [商店代码](#store-code)<br>- 为空值(或null)时，搜索所有的商店。 |
 | packageName | String | Required | 控制台中注册的商店应用程序ID |
-| userId | String | Required  | 用户ID  |
+| userId | String | Required | 用户ID |
+| includeInactiveGoogleStatuses  | Array[String] | Optional | 将包含在响应结果中的**谷歌订阅非激活状态**<br>- 目前仅支持“ON_HOLD”状态。 |
 
 **[Response Body]**
 
@@ -1806,6 +1817,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
             "payload" : "additional info",
             "purchaseTime": "2020-06-02T13:38:56+09:00",
             "expiryTime": "2020-06-02T13:48:56+09:00",
+            "renewTime" : "2020-06-02T13:50:56+09:00",
             "isTestPurchase" : false,
             "referenceStatus" : "PURCHASED"
         }
@@ -1832,6 +1844,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | result[].payload | String | 在SDK中设置的附加信息 |
 | result[].purchaseTime | String | 最近更新的时间 |
 | result[].expiryTime | String | 订阅到期时间 |
+| result[].renewTime | String | RENEWED/RECOVERED发生时间 |
 | result[].isTestPurchase | boolean | 测试支付与否 |
 | result[].referenceStatus | String | 支付系统(应用程序内支付、外部支付)提供的[支付参考状态](#store-reference-status)<br>目前只支持 Google Play商店。 |
 

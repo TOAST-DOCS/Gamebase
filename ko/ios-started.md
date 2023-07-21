@@ -29,15 +29,15 @@ Gamebase는 아래와 같은 방법으로 설정이 가능합니다.
 
 * [Download Gamebase iOS SDK](/Download/#game-gamebase)
 
-Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
-또한 각 IdP의 인증을 하기위한 SDK파일들을 다운로드 받아야합니다. 해당 IdP의 로그인을 사용할 때만 포함하면 됩니다.<br/>
-다운로드한 뒤, 해당 SDK파일을 프로젝트의 target에 포함시켜야 합니다.
+Gamebase.framework 및 필요한 Adapter들을 다운로드 받습니다.<br/>
+또한 각 IdP의 인증을 하기위한 SDK 파일들을 다운로드 받아야합니다. 해당 IdP의 로그인을 사용할 때만 포함하면 됩니다.<br/>
+다운로드한 뒤, 해당 SDK 파일을 프로젝트의 target에 포함시켜야 합니다.
 
 **Gamebase iOS SDK Components**
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 용도  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.4.0 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS 11 or later
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.4.0 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS 11 or later |
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Facebook 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.8 | PAYCO 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | NAVER 로그인을 지원 | iOS 11 or later |
@@ -46,7 +46,7 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 |  | GamebaseAuthTwitterAdapter.framework | | Twitter 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | LINE 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 11 or later<br/>arm64 지원<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.5 | Hangame 로그인을 지원 | iOS 11 or later |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.6 | Hangame 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.3.3 | Weibo 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.14 | Kakao 로그인을 지원 | iOS 11 or later |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.4.0 | 게임 내 결제 지원 | iOS 11 or later |
@@ -84,9 +84,9 @@ Gamebase.framework 및 필요한 Adapter 들을 다운로드 받습니다.<br/>
 
 
 * 1) Framework 파일을 Project의 Project Navigator로 끌어와서 import합니다. 이 때 추가된 Framework 파일들은 프로젝트 target에 추가되어야 합니다. 
-* 2) **Gamebase.bundle** 파일도 **Copy Bundle Resources** 에 추가합니다.
+* 2) **Gamebase.bundle** 파일도 **Copy Bundle Resources**에 추가합니다.
 ![Gamebase.bundle Bundle Resources](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-003_1.0.0.png)
-* 3) Gamebase를 사용하기 위해서는 Gamebase의 framework외에, Gamebase에서 사용하고 있는 외부 SDK들의 기능을 포함하기 위하여, 여러 framework와 library 파일을 linker에서 참조할 수 있도록 추가해야합니다. 아래 항목들을 추가해야합니다.
+* 3) Gamebase를 사용하기 위해서는 Gamebase의 framework 외에, Gamebase에서 사용하고 있는 외부 SDK들의 기능을 포함하기 위하여, 여러 framework와 library 파일을 linker에서 참조할 수 있도록 아래 항목들을 추가해야 합니다.
     * libicucore.tbd
     * libz.tbd
     * libsqlite3.tbd
@@ -186,7 +186,7 @@ end
 
 > <font color="red">[주의]</font><br/>
 >
-> * NHN Cloud Console 에서 새 프로젝트를 생성하여 Gamebase 서비스를 활성화 하였는지 꼭 확인하세요.
+> * NHN Cloud Console에서 새 프로젝트를 생성하여 Gamebase 서비스를 활성화 하였는지 꼭 확인하세요.
 > * 각 IdP 콘솔에서 Client ID 를 발급받아 Gamebase 콘솔에 입력하였는지 꼭 확인하세요.
 
 * 인증을 위해 IdP 콘솔에서 Client ID 를 발급받아 Gamebase 콘솔에 입력합니다.
@@ -269,7 +269,7 @@ end
 **NAVER**
 
 * Gamebase iOS SDK 1.12.1 이하
-	* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야합니다.
+	* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야 합니다.
 		* NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
 		* iOS 앱에서 필요한 정보인 **url_scheme_ios_only**를 추가로 설정해야 합니다.
 	* URL Scheme 를 설정해야 합니다.

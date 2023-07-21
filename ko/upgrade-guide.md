@@ -25,14 +25,13 @@
 * WeiboSDK가 3.3.3로 업데이트되면서 info.plist에 weibosdk3.3을 추가해야 합니다.
 ```
 <key>LSApplicationQueriesSchemes</key>
-	<array>
-		...
-		<string>weibosdk</string>
-		<string>weibosdk2.5</string>
-		<string>weibosdk3.3</string>
-        ...
-    </array>
-</key>
+<array>
+    ...
+    <string>weibosdk</string>
+    <string>weibosdk2.5</string>
+    <string>weibosdk3.3</string>
+    ...
+</array>
 ```
 
 #### Changed/Deprecated APIs
