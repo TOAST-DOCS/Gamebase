@@ -1,5 +1,12 @@
 ## Game > Gamebase > リリースノート > Server API
 
+### 2023. 07. 25.
+
+#### 機能追加
+* 購読照会API request bodyに'includeInactiveGoogleStatuses'フィールドを追加
+* 購読照会APIレスポンスに'renewTime'フィールドを追加
+* 購読照会APIに一度にN個のストアを対象に照会できるように'marketIds'フィールドを追加
+
 ### 2022. 12. 27.
 
 #### 機能追加
@@ -13,7 +20,6 @@
 ### 2022. 08. 23.
 
 #### 機能追加
-
 * サーバーURL追加
 	* https://api-gamebase.nhncloudservice.com
 
