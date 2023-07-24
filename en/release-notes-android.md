@@ -3,14 +3,11 @@
 ### 2.52.1 (2023. 07. 17.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.1/GamebaseSDK-Android.zip)
 
-#### 버그 수정
-* 2.52.0에 적용된 okhttp3의 minSdk가 21 이어서, 19(Kitkat)에서 crash가 발생하는 버그를 수정하였습니다.
-
-### 2.50.1 (2023. 07. 17.)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.1/GamebaseSDK-Android.zip)
+#### 기능 개선/변경
+* 외부 SDK 버전 변경: OkHttp 3.12.13(4.10.0에서 다운그레이드)
 
 #### 버그 수정
-* 2.50.0에 적용된 okhttp3의 minSdk가 21 이어서, 19(Kitkat)에서 crash가 발생하는 버그를 수정하였습니다.
+* OkHttp 3.13부터 최소 지원 OS 버전이 21로 올라, Android 4.4(OS 19 Kitkat) 단말기에서 크래시가 발생하는 이슈를 수정했습니다.
 
 ### 2.52.0 (2023. 06. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.0/GamebaseSDK-Android.zip)
@@ -31,6 +28,15 @@
 #### Bug Fixes
 * Fixed a bug where the navigation bar and X button overlapps in horisontal mode of Render outside safe area.
 * Fixed the Terms and Conditions details page that appears when you click "Detail" in the Terms and Conditions window to not be clickable in the background until it finishes loading.
+
+### 2.50.1 (2023. 07. 17.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.1/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 버전 변경: OkHttp 3.12.13(4.10.0에서 다운그레이드)
+
+#### 버그 수정
+* OkHttp 3.13부터 최소 지원 OS 버전이 21로 올라, Android 4.4(OS 19 Kitkat) 단말기에서 크래시가 발생하는 이슈를 수정했습니다.
 
 ### 2.50.0 (2023. 05. 16.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.0/GamebaseSDK-Android.zip)
