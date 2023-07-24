@@ -1,18 +1,11 @@
 ## Game > Gamebase > Upgrade Guide
 
-## 2.52.1 
-
-### Android
-
-* 2.52.0버전의 19(Kitkat)에서 crash가 나지 않도록 수정하였습니다.
-
-## 2.50.1
-
-### Android
-
-* 2.50.0버전의 19(Kitkat)에서 crash가 나지 않도록 수정하였습니다.
-
 ## 2.52.0
+
+### Android
+
+* Android 4.4(OS 19 Kitkat) 단말기에서 crash가 발생합니다.
+    * 이슈가 수정된 Gamebase Android SDK 2.52.1 을 사용하시기 바랍니다.
 
 ### Unity
 
@@ -45,6 +38,13 @@
     * **[TCGBUtil usimCountryCode];**
     * **[TCGBUtil carrierCode];**
     * **[TCGBUtil carrierName];**
+
+## 2.50.0
+
+### Android
+
+* Android 4.4(OS 19 Kitkat) 단말기에서 crash가 발생합니다.
+    * 이슈가 수정된 Gamebase Android SDK 2.50.1 을 사용하시기 바랍니다.
 
 ## 2.49.0
 
