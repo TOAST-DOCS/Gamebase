@@ -1,5 +1,15 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.52.1 (2023. 07. 25.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.0/GamebaseSDK-Unity.zip)
+
+#### 버그 수정
+* (Standalone) Gamebase Logger 초기화가 완료되기 전에 로그를 전송하면 null reference exception이 발생하는 오류가 수정되었습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.52.1](./release-notes-android/#2521-2023-07-17)
+* [Gamebase iOS SDK 2.52.0](./release-notes-ios/#2530-2023-07-25)
+
 ### 2.52.0 (2023. 06. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.0/GamebaseSDK-Unity.zip)
 
@@ -11,7 +21,6 @@
 #### 機能改善
 * 外部SDKアップデート: NHN Cloud Unity SDK(0.28.3)
 * 内部ロジックを改善しました。
-    * NHNCloudLoggerをGPLoggerに変更しました。
 
 #### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.52.0](./release-notes-android/#2520-2023-06-27)
