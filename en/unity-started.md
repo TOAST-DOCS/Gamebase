@@ -10,7 +10,6 @@ This guide describes the environments and initial setting of Gamebase Unity SDK.
 > Supported Unity versions
 >
 > * 2018.4.0 ~ 2022.3.1
-> * To support a lower version of Unity, contact [Customer Center](https://toast.com/support/inquiry).
 
 #### Android
 > <font color="red">[Caution]</font>
