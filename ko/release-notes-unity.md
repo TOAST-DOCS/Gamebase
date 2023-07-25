@@ -8,7 +8,7 @@
 
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.52.1](./release-notes-android/#2521-2023-07-17)
-* [Gamebase iOS SDK 2.52.0](./release-notes-ios/#2530-2023-07-25)
+* [Gamebase iOS SDK 2.53.0](./release-notes-ios/#2530-2023-07-25)
 
 ### 2.52.0 (2023. 06. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.0/GamebaseSDK-Unity.zip)
