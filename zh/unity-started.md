@@ -9,7 +9,6 @@
 > Gamebase支持的Unity版本
 >
 > * 2018.4.0 ~ 2022.3.1
-> * 如果需要Gamebase支持的低版本Unity，请联系[客户服务](https://toast.com/support/inquiry)。
 
 #### Android
 > <font color="red">[注意]</font>
