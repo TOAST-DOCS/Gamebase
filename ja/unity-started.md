@@ -10,7 +10,6 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 > Unity対応バージョン
 >
 > * 2018.4.0 ~ 2022.3.1
-> * 下位バージョンのUnityのサポートが必要な場合は[サポート](https://toast.com/support/inquiry)へお問い合わせください。
 
 
 #### Android
