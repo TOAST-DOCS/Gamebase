@@ -876,7 +876,7 @@ Gamebase SDK的客户服务API根据类型使用以下URL。
 > <font color="red">[注意]</font><br/>
 > 
 > 向客服提问时，为了添附文件可能需要允许访问相机或相册权限。
-> 请在info.plist设置“Privacy - Camera Usage Description”和“Privacy - Photo Library Usage Description”。 
+> 请在info.plist中添加“Privacy - Camera Usage Description”, “Privacy - Photo Library Usage Description”, “Privacy - Microphone Usage Description”。
 
 #### Request Contact URL
 

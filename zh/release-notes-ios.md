@@ -1,19 +1,19 @@
 ## Game > Gamebase > Release Notes > iOS
 
 ### 2.53.0 (2023. 07. 25.)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.53.0/GamebaseSDK-iOS.zip)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.53.0/GamebaseSDK-iOS.zip)   
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### 改善/修改功能
+* 外部SDK升级
     * Hangame iOS SDK (1.8.6)
-* 아래 필드가 deprecated되었습니다.
+* 以下字段已deprecated。
     * TCGBWebViewConfiguration.backgroundOpacity
-* iPad에서 [TCGBUtil showActionSheetWithTitle:message:blocks:] API 호출 시 ActionSheet이 화면 중앙에 오도록 수정하였습니다.
-* 프로젝트에 추가하지 않은 인증 Adapter를 사용하는 경우 **TCGB_ERROR_AUTH_NOT_SUPPORTED_PROVIDER(3002)** 오류를 리턴하도록 수정하였습니다.
+* 修改后，当在iPad中调用[TCGBUtil showActionSheetWithTitle:message:blocks:] API 时 ActionSheet位于屏幕中间。
+* 修改后，在使用尚未添加到项目中的验证Adapter时返回**TCGB_ERROR_AUTH_NOT_SUPPORTED_PROVIDER(3002)**错误。
 
-#### 버그 수정
-* 특정 상황에서 이용정지 팝업 창이 표시되지 않는 버그를 수정하였습니다.
-* Apple Silicon Mac에서 웹뷰가 정상적으로 표시되지 않는 버그를 수정하였습니다.
+#### 修改程序错误
+* 修复了在某些情况下无法显示禁用弹窗的错误。 
+* 修复了在Apple Silicon Mac上无法正常显示Webview的错误。
 
 ### 2.52.0 (2023. 06. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.0/GamebaseSDK-iOS.zip)

@@ -4,12 +4,12 @@
 
 ### Android
 
-* Android 4.4(OS 19 Kitkat) 단말기에서 crash가 발생합니다.
-    * 이슈가 수정된 Gamebase Android SDK 2.52.1 을 사용하시기 바랍니다.
+* Android 4.4(OS 19 Kitkat)终端出现crash。
+    * 请使用修改问题的Gamebase Android SDK 2.52.1。
 
 ### Unity
 
-* 以前显示为'**IapOnestore**'的**ONE Store v17**支付Adaptor从Gamebase Setting Tool (v2.7.0)开始将显示为'**IapOnestoreV17**'。
+* 以前显示为'**IapOnestore**'的**ONE Store v17**支付Adaptor从Gamebase Setting Tool (v2.7.0)开始将显示为“**IapOnestoreV17**”。
 
 ### iOS
 
@@ -18,14 +18,13 @@
 * 由于WeiboSDK更新到3.3.3，您需要将weibosdk3.3添加到info.plist中。
 ```
 <key>LSApplicationQueriesSchemes</key>
-	<array>
-		...
-		<string>weibosdk</string>
-		<string>weibosdk2.5</string>
-		<string>weibosdk3.3</string>
-        ...
-    </array>
-</key>
+<array>
+    ...
+    <string>weibosdk</string>
+    <string>weibosdk2.5</string>
+    <string>weibosdk3.3</string>
+    ...
+</array>
 ```
 
 #### Changed/Deprecated APIs
@@ -44,8 +43,8 @@
 
 ### Android
 
-* Android 4.4(OS 19 Kitkat) 단말기에서 crash가 발생합니다.
-    * 이슈가 수정된 Gamebase Android SDK 2.50.1 을 사용하시기 바랍니다.
+* Android 4.4(OS 19 Kitkat)终端出现crash。
+    * 请使用修改问题的Gamebase Android SDK 2.50.1。
 
 ## 2.49.0
 
