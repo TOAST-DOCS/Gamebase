@@ -4,8 +4,8 @@
 
 ### Android
 
-* Android 4.4(OS 19 Kitkat) 단말기에서 crash가 발생합니다.
-    * 이슈가 수정된 Gamebase Android SDK 2.52.1 을 사용하시기 바랍니다.
+* Android 4.4(OS 19 Kitkat) 단말기에서 크래시가 발생합니다.
+    * 이슈가 수정된 Gamebase Android SDK 2.52.1을 사용하시기 바랍니다.
 
 ### Unity
 
@@ -43,8 +43,8 @@
 
 ### Android
 
-* Android 4.4(OS 19 Kitkat) 단말기에서 crash가 발생합니다.
-    * 이슈가 수정된 Gamebase Android SDK 2.50.1 을 사용하시기 바랍니다.
+* Android 4.4(OS 19 Kitkat) 단말기에서 크래시가 발생합니다.
+    * 이슈가 수정된 Gamebase Android SDK 2.50.1을 사용하시기 바랍니다.
 
 ## 2.49.0
 
