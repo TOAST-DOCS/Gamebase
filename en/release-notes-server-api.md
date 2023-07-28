@@ -3,9 +3,9 @@
 ### July 25, 2023
 
 #### Added Features
-* Add 'includeInactiveGoogleStatuses' field to the List Subscription API request body
-* Added 'renewTime' field to the List Subscription API response
-* Added 'marketIds' field to the List Subscription API to allow querying against N stores at once.
+* Add 'includeInactiveGoogleStatuses' field to the List Active Subscriptions API request body
+* Added 'renewTime' field to the List Active Subscriptions API response
+* Added 'marketIds' field to the List Active Subscriptions API to allow querying against N stores at once.
 
 ### December 27, 2022
 
