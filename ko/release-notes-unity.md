@@ -433,7 +433,7 @@
     * 결제 어뷰징 자동 해제 기능은 결제 어뷰징 자동 제재로 이용 정지가 되어야 할 사용자가 '이용 정지 유예 상태' 후 이용 정지가 되도록 합니다.
     * '이용 정지 유예 상태'일 경우, 설정한 기간 내에 이용 정지 해제 조건을 모두 만족하면 정상적으로 플레이할 수 있습니다.
     * 기간 내에 조건을 충족하지 못하면 이용 정지가 됩니다.
-* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 AuthToken.member.graceBanInfo API 값을 확인하고, null이 아닌 유효한 GraceBanInfo 객체를 리턴한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
+* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 AuthToken.member.graceBanInfo API 값을 확인하고, null이 아닌 유효한 GraceBanInfo 객체를 반환한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
     * 이용 정지 유예 상태인 유저의 게임 내 접근 제어는 게임에서 처리해야 합니다.
 
 #### 플랫폼별 변경 사항
@@ -475,13 +475,13 @@
     * Display Language 언어셋에 중국어 간체(zh-CN), 중국어 번체(zh-TW), 태국어(th)가 추가되었습니다.
 * ShowTermsView API 호출 후 생성할 수 있는 PushConfiguration 객체의 생성 기준이 다음과 같이 변경되었습니다.
     * 변경 전
-        * 약관 항목 중에 **Push 수신** 항목이 존재하는 경우에만 null이 아닌 유효한 PushConfiguration이 리턴되었습니다.
+        * 약관 항목 중에 **Push 수신** 항목이 존재하는 경우에만 null이 아닌 유효한 PushConfiguration이 반환되었습니다.
         * 유저가 주간, 야간 홍보성 Push 수신에 모두 거부한 경우 PushConfiguration.pushEnabled는 false로 생성되었습니다.
     * 변경 후
-        * 약관 UI가 표시되었다면 항상 null이 아닌 유효한 PushConfiguration이 리턴됩니다.
-        * ShowTermsView가 리턴하는 PushConfiguration 객체의 pushEnabled 값은 항상 true입니다.
+        * 약관 UI가 표시되었다면 항상 null이 아닌 유효한 PushConfiguration이 반환됩니다.
+        * ShowTermsView가 반환하는 PushConfiguration 객체의 pushEnabled 값은 항상 true입니다.
     * 변경되지 않고 동일한 점
-        * 이미 약관에 동의하여 약관 UI가 표시되지 않았다면 PushConfiguration은 null로 리턴됩니다.
+        * 이미 약관에 동의하여 약관 UI가 표시되지 않았다면 PushConfiguration은 null로 반환됩니다.
 
 #### 버그 수정
 * Push 언어 설정은 별다른 보조 처리가 없이 단말기의 언어코드를 그대로 적용되어, Push 콘솔에서 전송한 메시지의 언어코드가 일치하지 않는 문제를 수정하였습니다.
@@ -495,7 +495,7 @@
 
 #### 기능 개선/변경
 * Push 항목이 존재하는 약관에서 PushConfiguration 객체 보장
-    * 약관 UI에서 Push 수신 동의를 하지 않을 경우 Gamebase.Terms.ShowTermsView API 호출 결과로 생성되는 PushConfiguration이 null이었으나, 약관에 Push 항목이 존재한다면 PushConfiguration 객체가 항상 리턴되도록 변경되었습니다.
+    * 약관 UI에서 Push 수신 동의를 하지 않을 경우 Gamebase.Terms.ShowTermsView API 호출 결과로 생성되는 PushConfiguration이 null이었으나, 약관에 Push 항목이 존재한다면 PushConfiguration 객체가 항상 반환되도록 변경되었습니다.
     * Push 수신 거부 시 PushConfiguration 객체는 (푸시 동의 여부 = false, 광고성 푸시 동의 여부 = false, 야간 광고성 푸시 동의 여부 = false)로 생성됩니다.
     * 약관에 Push 항목이 존재하지 않는다면 PushConfiguration 객체는 null입니다.
 * Unity 최소지원 버전 변경: 2018.4.0f1
@@ -655,7 +655,7 @@
 #### 기능 추가
 * 고객 센터 기능 추가
     * [SDK] 2.16.0
-    * (공통) API 추가(Gamebase.Contact.requestContactURL): 고객 센터 URL 리턴
+    * (공통) API 추가(Gamebase.Contact.requestContactURL): 고객 센터 URL 반환
     * (공통) 고객 센터 API 에 userName 을 설정할 수 있도록 ContactConfiguration 파라미터 추가 
         
 ### 2.15.0 (2020.08.25)
@@ -1050,11 +1050,11 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 개선/변경
 * [SDK] 1.14.2
     * (Android)점검시, 데이터구조에서 점검 시작/종료 시간을 의미하는 epoch time의 타입을 기존 String에서 long으로 타입 변경 : 기존 Gamebase Unity와 연동 후 점검 호출 시 타입불일치로 콜백이 내려오지 않는 현상으로 인한 수정
-    * (iOS)Provider Profile 획득 메서드 호출 시, 반환하는 TCGBAuthProviderProfile 객체의 description 메서드의 JSON 문자열 구조 변경으로 인하여 Gamebase iOS SDK 1.14.0와 Unity Plugin 1.14.0 적용시 crash가 발생될 수 있는 구조 수정
+    * (iOS)Provider Profile 획득 메서드 호출 시, 반환하는 TCGBAuthProviderProfile 객체의 description 메서드의 JSON 문자열 구조 변경으로 인하여 Gamebase iOS SDK 1.14.0와 Unity Plugin 1.14.0 적용시 크래시가 발생될 수 있는 구조 수정
 
 #### 버그수정
 * [SDK] 1.14.2
-    * (Unity)ShowWebView API 호출 시 파라메타에 Callback을 넣지 않으면 crash가 발생되는 부분 수정
+    * (Unity)ShowWebView API 호출 시 파라메타에 Callback을 넣지 않으면 크래시가 발생되는 부분 수정
     * (Unity)iOS SDK의 Deleted API를 호출하는 코드가 있어 컴파일시 오류가 발생 되는 버그 수정
     
 ### 1.14.0 (2018.10.23)
@@ -1066,7 +1066,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     
 #### 기능 개선/변경
 * [SDK] 1.14.0
-    * (공통)이용정지/점검에 대해 사용자가 콘솔에 작성한 메시지들을 URL 인코딩하여 전송하고 클라이언트에서 디코딩하여 처리하도록 수정
+    * (공통)이용 정지/점검에 대해 사용자가 콘솔에 작성한 메시지들을 URL 인코딩하여 전송하고 클라이언트에서 디코딩하여 처리하도록 수정
     * (Unity)GamebaseSDKSetting 오브젝트가 있는 씬으로 돌아갈 경우 오브젝트가 중복으로 생기지 않도록 개선
     * Remove API : Webview, Network, Launching
         * ShowWebBrowser(string url)
@@ -1200,8 +1200,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * (SDK공통)추가된 API 
         * Transfer Key 발급 API (IssueTransferKey)
         * 발급된 TransferKey를 사용하여 계정 이전을 요청하는 API (RequestTransfer)
-* 이용정지 등록시 사용자의 리더보드(랭킹) 데이터를 삭제할 수 있는 옵션 추가(TOAST Leaderboard를 사용하는 경우에 한함)
-    * 이용정지 등록 메뉴를 이용하거나 App Guard 연동 페이지에서 사용 가능
+* 이용 정지 등록시 사용자의 리더보드(랭킹) 데이터를 삭제할 수 있는 옵션 추가(TOAST Leaderboard를 사용하는 경우에 한함)
+    * 이용 정지 등록 메뉴를 이용하거나 App Guard 연동 페이지에서 사용 가능
 
 ### 1.8.1 (2018.04.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.8.1/GamebaseSDK-Unity.zip)
@@ -1221,7 +1221,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * 이전에는 Gamebase에서 제공하는 웹페이지나 외부 웹페이지 연결만 가능했음
     * 웹서버가 없는 경우에도 점검페이지를 사용자가 원하는 형태로 만들 수 있음
 * Observer 기능 개발 및 API 추가
-    * (SDK 공통) 점검 등 앱 상태/네트워크 상태/유저 상태(이용정지) 변경사항에 대한 Listener를 Observer 등록을 통하여 일괄 처리할 수 있도록 API 추가
+    * (SDK 공통) 점검 등 앱 상태/네트워크 상태/유저 상태(이용 정지) 변경사항에 대한 Listener를 Observer 등록을 통하여 일괄 처리할 수 있도록 API 추가
 
 #### 기능 개선/변경
 * [SDK] 1.8.0
@@ -1295,9 +1295,9 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.2.0/GamebaseSDK-Unity.zip)
 
 #### 기능 추가
-* 이용정지(사용자처벌) 기능 추가
+* 이용 정지(사용자처벌) 기능 추가
 * [SDK] 1.2.0 업데이트
-    * 이용정지 사용자 팝업 창 노출
+    * 이용 정지 사용자 팝업 창 노출
 
 ### 1.1.5 (2017.07.20)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.5/GamebaseSDK-Unity.zip)

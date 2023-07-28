@@ -5,7 +5,7 @@ Gamebase에서 지원하는 부가적인 기능을 설명합니다.
 
 ### IDFA
 
-* 단말기의 광고식별자 값을 리턴합니다.
+* 단말기의 광고식별자 값을 반환합니다.
 
 **API**
 
@@ -17,15 +17,15 @@ Gamebase에서 지원하는 부가적인 기능을 설명합니다.
 >
 > iOS 14 이상부터 IDFA 값 요청 시, 사용자 권한을 받아야합니다.
 > 사용자 권한 요청할 때 노출시킬 문구를 info.plist에 설정을 해야 합니다.
-> info.plist에 'Privacy - Tracking Usage Description' 설정을 해주시기 바랍니다.
+> info.plist에 'Privacy - Tracking Usage Description'을 설정하십시오.
 
 
 
 
 ### Device Language
 
-* 단말기에 설정된 언어 코드를 리턴합니다.
-* 여러개의 언어가 등록된 경우, 우선권이 가장 높은 언어만을 리턴합니다.
+* 단말기에 설정된 언어 코드를 반환합니다.
+* 여러개의 언어가 등록된 경우, 우선권이 가장 높은 언어만을 반환합니다.
 
 **API**
 
@@ -259,9 +259,9 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 #### Device Country Code
 
-* OS로부터 전달받은 단말기 지역 설정을 추가적인 체크 없이 그대로 리턴합니다.
+* OS로부터 전달받은 단말기 지역 설정을 추가적인 체크 없이 그대로 반환합니다.
 * 단말기 국가코드는 '설정 > 일반 > 언어 및 지역 > 지역' 설정에 따라 OS가 결정합니다.
-* iOS에서 제공하는 NSLocaleCountryCode를 사용하여 획득한 값을 리턴합니다.
+* iOS에서 제공하는 NSLocaleCountryCode를 사용하여 획득한 값을 반환합니다.
 
 **API**
 

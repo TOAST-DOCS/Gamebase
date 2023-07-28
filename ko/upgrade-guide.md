@@ -364,7 +364,7 @@ android.enableIncrementalDesugaring=false
 
 ### iOS
 
-* Sign In with Apple 의 ASAuthorizationErrorUnknown 에러가 발생했을 경우, TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERROR (3009) 에러를 리턴하도록 변경되었습니다.
+* Sign In with Apple 의 ASAuthorizationErrorUnknown 에러가 발생했을 경우, TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERROR (3009) 에러를 반환하도록 변경되었습니다.
 
 ### Unity
 

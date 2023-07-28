@@ -115,7 +115,7 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 
 약관 창을 화면에 띄워 줍니다.
 유저가 약관에 동의를 했을 경우, 동의 여부를 서버에 등록합니다.
-약관에 동의했다면 ShowTermsView API 를 다시 호출해도 약관 창이 표시되지 않고 바로 성공 콜백이 리턴됩니다.
+약관에 동의했다면 ShowTermsView API 를 다시 호출해도 약관 창이 표시되지 않고 바로 성공 콜백이 반환됩니다.
 단, Gamebase 콘솔에서 약관 재동의 항목을 **필요** 로 변경했다면 유저가 다시 약관에 동의할 때까지는 약관 창이 표시됩니다.
 
 #### Optional 파라미터
@@ -216,9 +216,9 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 
 > <font color="red">[주의]</font><br/>
 >
-> * GamebaseResponse.Terms.ContentDetail.required 가 true 인 필수 항목은 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false 로 리턴됩니다.
->     * 필수 항목은 항상 true 로 저장될 수 밖에 없어서 저장하는 의미가 없기 때문입니다.
-> * 푸시 수신 동의 여부도 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false 로 리턴됩니다.
+> * GamebaseResponse.Terms.ContentDetail.required 가 true 인 필수 항목은 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false로 반환됩니다.
+>     * 필수 항목은 항상 true로 저장될 수 밖에 없어서 저장하는 의미가 없기 때문입니다.
+> * 푸시 수신 동의 여부도 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false로 반환됩니다.
 >     * 유저의 푸시 수신 동의 여부는 Gamebase.Push.QueryPush API 를 통해 확인하시기 바랍니다.
 > * 콘솔에서 '기본 약관 설정' 을 하지 않는 경우, 약관 언어와 다른 국가코드로 설정된 단말기에서 queryTerms API 를 호출하면 **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** 에러가 발생합니다.
 >     * 콘솔에서 '기본 약관 설정' 을 하거나, **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** 에러가 발생했을때는 약관을 표시하지 않도록 처리하시기 바랍니다.

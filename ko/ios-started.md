@@ -187,9 +187,9 @@ end
 > <font color="red">[주의]</font><br/>
 >
 > * NHN Cloud Console에서 새 프로젝트를 생성하여 Gamebase 서비스를 활성화했는지 반드시 확인하세요.
-> * 각 IdP 콘솔에서 Client ID 를 발급 받아 Gamebase 콘솔에 입력했는지 반드시 확인하세요.
+> * 각 IdP 콘솔에서 Client ID를 발급 받아 Gamebase 콘솔에 입력했는지 반드시 확인하세요.
 
-* 인증을 위해 IdP 콘솔에서 Client ID 를 발급 받아 Gamebase 콘솔에 입력합니다.
+* 인증을 위해 IdP 콘솔에서 Client ID를 발급 받아 Gamebase 콘솔에 입력합니다.
     * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
 * Gamebase iOS SDK는 각 IdP별로 추가 설정이 필요합니다.
 
