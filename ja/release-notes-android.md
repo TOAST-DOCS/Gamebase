@@ -3,11 +3,11 @@
 ### 2.52.1 (2023. 07. 17.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.1/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 버전 변경: OkHttp 3.12.13(4.10.0에서 다운그레이드)
+#### 機能改善/変更
+* 外部SDKバージョン変更：OkHttp 3.12.13(4.10.0でダウングレード)
 
-#### 버그 수정
-* OkHttp 3.13부터 최소 지원 OS 버전이 21로 올라, Android 4.4(OS 19 Kitkat) 단말기에서 크래시가 발생하는 이슈를 수정했습니다.
+#### バグ修正
+* OkHttp 3.13から最小サポートOSバージョンが21になり、Android 4.4(OS 19 Kitkat)端末でクラッシュが発生する問題を修正しました。
 
 #### 機能追加
 * ONE store v21 Adapterが追加されました。
@@ -29,11 +29,11 @@
 ### 2.50.1 (2023. 07. 17.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.1/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 버전 변경: OkHttp 3.12.13(4.10.0에서 다운그레이드)
+#### 機能改善/変更
+* 外部SDKバージョン変更：OkHttp 3.12.13(4.10.0からダウングレード)
 
-#### 버그 수정
-* OkHttp 3.13부터 최소 지원 OS 버전이 21로 올라, Android 4.4(OS 19 Kitkat) 단말기에서 크래시가 발생하는 이슈를 수정했습니다.
+#### バグ修正
+* OkHttp 3.13から最小サポートOSバージョンが21になり、Android 4.4(OS 19 Kitkat)端末でクラッシュが発生する問題を修正しました。
 
 ### 2.50.0 (2023. 05. 16.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.0/GamebaseSDK-Android.zip)
