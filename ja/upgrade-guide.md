@@ -4,8 +4,8 @@
 
 ### Android
 
-* Android 4.4(OS 19 Kitkat) 단말기에서 crash가 발생합니다.
-    * 이슈가 수정된 Gamebase Android SDK 2.52.1 을 사용하시기 바랍니다.
+* Android 4.4(OS 19 Kitkat)端末でcrashが発生します。
+    * イシューが修正されたGamebase Android SDK 2.52.1を使用してください。
 
 ### Unity
 
@@ -18,13 +18,13 @@
 * WeiboSDKが3.3.3にアップデートされ、info.plistにweibosdk3.3を追加する必要があります。
 ```
 <key>LSApplicationQueriesSchemes</key>
-	<array>
-		...
-		<string>weibosdk</string>
-		<string>weibosdk2.5</string>
-		<string>weibosdk3.3</string>
-        ...
-    </array>
+<array>
+    …
+    <string>weibosdk</string>
+    <string>weibosdk2.5</string>
+    <string>weibosdk3.3</string>
+    ...
+</array>
 </key>
 ```
 
@@ -44,8 +44,8 @@
 
 ### Android
 
-* Android 4.4(OS 19 Kitkat) 단말기에서 crash가 발생합니다.
-    * 이슈가 수정된 Gamebase Android SDK 2.50.1 을 사용하시기 바랍니다.
+* Android 4.4(OS 19 Kitkat)端末でcrashが発生します。
+    * 問題が修正されたGamebase Android SDK 2.50.1を使用してください。
 
 ## 2.49.0
 
