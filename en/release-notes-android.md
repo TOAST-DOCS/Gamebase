@@ -29,6 +29,15 @@
 * Fixed a bug where the navigation bar and X button overlapps in horisontal mode of Render outside safe area.
 * Fixed the Terms and Conditions details page that appears when you click "Detail" in the Terms and Conditions window to not be clickable in the background until it finishes loading.
 
+### 2.50.1 (2023. 07. 17.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.1/GamebaseSDK-Android.zip)
+
+#### Feature Updates
+* External SDK version changed: OkHttp 3.12.13 (downgraded from 4.10.0)
+
+#### Bug Fixes
+* Fixed an issue where a crash occurs on Android 4.4 (OS 19 Kitkat) devices due to the mimum supported OS version raised to 21 starting from OkHttp 3.13.
+
 ### 2.50.0 (2023. 05. 16.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.0/GamebaseSDK-Android.zip)
 
