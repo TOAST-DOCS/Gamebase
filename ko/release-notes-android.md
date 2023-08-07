@@ -410,7 +410,7 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트: TOAST Android SDK(0.29.0)
-* 이용정지 웹뷰 내의 고객 센터 링크에서 이용정지 유저 정보로 문의를 등록할 수 없는 문제를 해결하였습니다.
+* 이용 정지 웹뷰 내의 고객 센터 링크에서 이용 정지 유저 정보로 문의를 등록할 수 없는 문제를 해결하였습니다.
 * 앱이 켜지자마자 Gamebase 초기화를 호출하는 경우, 론칭 팝업 창이 간헐적으로 영어로 표시되는 문제를 수정하였습니다.
 * 앱이 백그라운드에서 포그라운드로 전환될 때는 항상 론칭 정보가 변경되지 않았는지 바로 체크하도록 스케줄러를 개선하였습니다.
 
@@ -458,7 +458,7 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
     * 결제 어뷰징 자동 해제 기능은 결제 어뷰징 자동 제재로 이용 정지가 되어야 할 사용자가 '이용 정지 유예 상태' 후 이용 정지가 되도록 합니다.
     * '이용 정지 유예 상태'일 경우, 설정한 기간 내에 이용 정지 해제 조건을 모두 만족하면 정상적으로 플레이할 수 있습니다.
     * 기간 내에 조건을 충족하지 못하면 이용 정지가 됩니다.
-* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 AuthToken.getGraceBanInfo() API 값을 확인하고, null이 아닌 유효한 GraceBanInfo 객체를 리턴한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
+* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 AuthToken.getGraceBanInfo() API 값을 확인하고, null이 아닌 유효한 GraceBanInfo 객체를 반환한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
     * 이용 정지 유예 상태인 유저의 게임 내 접근 제어는 게임에서 처리해야 합니다.
 * 로그인 응답 대기중에 대기 아이콘이 표시됩니다.
 
@@ -502,13 +502,13 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
         * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > 언어 설정](./oper-app/#language-settings)
 * showTermsView API 호출 후 생성할 수 있는 PushConfiguration 객체의 생성 기준이 다음과 같이 변경되었습니다.
     * 변경 전
-        * 약관 항목 중에 **Push 수신** 항목이 존재하는 경우에만 null이 아닌 유효한 PushConfiguration이 리턴되었습니다.
+        * 약관 항목 중에 **Push 수신** 항목이 존재하는 경우에만 null이 아닌 유효한 PushConfiguration이 반환되었습니다.
         * 유저가 주간, 야간 홍보성 Push 수신에 모두 거부한 경우 PushConfiguration.pushEnabled는 false로 생성되었습니다.
     * 변경 후
-        * 약관 UI가 표시되었다면 항상 null이 아닌 유효한 PushConfiguration이 리턴됩니다.
-        * showTermsView가 리턴하는 PushConfiguration 객체의 pushEnabled 값은 항상 true입니다.
+        * 약관 UI가 표시되었다면 항상 null이 아닌 유효한 PushConfiguration이 반환됩니다.
+        * showTermsView가 반환하는 PushConfiguration 객체의 pushEnabled 값은 항상 true입니다.
     * 변경되지 않고 동일한 점
-        * 이미 약관에 동의하여 약관 UI가 표시되지 않았다면 PushConfiguration은 null로 리턴됩니다.
+        * 이미 약관에 동의하여 약관 UI가 표시되지 않았다면 PushConfiguration은 null로 반환됩니다.
 
 #### 버그 수정
 * Push 언어 설정은 별다른 보조 처리가 없이 단말기의 언어코드를 그대로 적용되어, Push 콘솔에서 전송한 메시지의 언어코드가 일치하지 않는 문제를 수정하였습니다.
@@ -523,7 +523,7 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
 #### 기능 개선/변경
 * Android Support Library 의존성을 AndroidX 로 변경
 * Push 항목이 존재하는 약관에서 PushConfiguration 객체 보장
-    * 약관 UI에서 Push 수신 동의를 하지 않을 경우 Gamebase.Terms.showTermsView API 호출 결과로 생성되는 PushConfiguration이 null이었으나, 약관에 Push 항목이 존재한다면 PushConfiguration 객체가 항상 리턴되도록 변경되었습니다.
+    * 약관 UI에서 Push 수신 동의를 하지 않을 경우 Gamebase.Terms.showTermsView API 호출 결과로 생성되는 PushConfiguration이 null이었으나, 약관에 Push 항목이 존재한다면 PushConfiguration 객체가 항상 반환되도록 변경되었습니다.
     * Push 수신 거부 시 PushConfiguration 객체는 (푸시 동의 여부 = false, 광고성 푸시 동의 여부 = false, 야간 광고성 푸시 동의 여부 = false) 로 생성됩니다.
     * 약관에 Push 항목이 존재하지 않는다면 PushConfiguration 객체는 null입니다.
 * 외부 SDK 업데이트
@@ -680,7 +680,7 @@ Gamebase Android SDK는 이제 Maven Central로만 배포합니다.
 #### 기능 추가
 * 고객 센터 기능 추가
     * [SDK] 2.16.0
-        * (공통) API 추가(Gamebase.Contact.requestContactURL): 고객 센터 URL 리턴
+        * (공통) API 추가(Gamebase.Contact.requestContactURL): 고객 센터 URL 반환
         * (공통) 고객 센터 API 에 userName 을 설정할 수 있도록 ContactConfiguration 파라미터 추가 
         
 ### 2.15.0 (2020.08.25)
@@ -981,7 +981,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그수정
 * [SDK] 1.14.2
-    * (Android)에뮬레이터 환경에서 스토어앱(PlayStore, OneStore 등)이 없는 상태에서 "앱 설치/업데이트"시 스토어 미체크로 인한 crash 버그를 수정
+    * (Android)에뮬레이터 환경에서 스토어앱(PlayStore, OneStore 등)이 없는 상태에서 "앱 설치/업데이트"시 스토어 미체크로 인한 크래시 버그를 수정
     
 ### 1.14.1 (2018.10.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.14.1/GamebaseSDK-Android.zip)
@@ -992,7 +992,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     
 #### 기능 개선/변경
 * [SDK] 1.14.0
-    * (공통)이용정지/점검에 대해 사용자가 콘솔에 작성한 메시지들을 URL 인코딩하여 전송하고 클라이언트에서 디코딩하여 처리하도록 수정
+    * (공통)이용 정지/점검에 대해 사용자가 콘솔에 작성한 메시지들을 URL 인코딩하여 전송하고 클라이언트에서 디코딩하여 처리하도록 수정
     * Remove API : Webview, Network, Launching
         * (void)Gamebase.WebView.showWebBrowser(Activity, String)
         * (void)Gamebase.Network.addOnChangedListener(NetworkManager.OnChangedListener)
@@ -1086,7 +1086,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그 수정
 * [SDK] 1.9.0
-    * (Android) Heartbeat 에서 잘못된 사용자로 판정되는 경우 이용정지 팝업 창이 뜨지 않도록 수정(iOS 와 동일한 로직으로 수정)
+    * (Android) Heartbeat 에서 잘못된 사용자로 판정되는 경우 이용 정지 팝업 창이 뜨지 않도록 수정(iOS 와 동일한 로직으로 수정)
 
 ### 1.8.1 (2018.04.12)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.8.1/GamebaseSDK-Android.zip)
@@ -1103,7 +1103,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * 현재 게임 중인 전체 사용자의 연결을 끊는 기능(점검시 게임에서 전체 사용자의 연결을 끊고 싶을 때 사용할 수 있음)
     * (SDK 공통)kick out 이벤트를 받을 수 있는 API 추가
 * Observer 기능 개발 및 API 추가
-    * (SDK 공통) 점검 등 앱 상태/네트워크 상태/유저 상태(이용정지) 변경사항에 대한 Listener를 Observer 등록을 통하여 일괄 처리할 수 있도록 API 추가
+    * (SDK 공통) 점검 등 앱 상태/네트워크 상태/유저 상태(이용 정지) 변경사항에 대한 Listener를 Observer 등록을 통하여 일괄 처리할 수 있도록 API 추가
 
 #### 기능 개선/변경
 * [SDK] 1.8.0
@@ -1129,7 +1129,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 
 #### 버그 수정
 * [SDK] 1.4.0 업데이트
-    * (Android)Gamebase 제공 팝업 창을 사용하지 않는 경우 이용정지 정보가 null로 리턴되는 오류 수정
+    * (Android)Gamebase 제공 팝업 창을 사용하지 않는 경우 이용 정지 정보가 null로 반환되는 오류 수정
 
 ### 1.3.0 (2017.10.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.3.0/GamebaseSDK-Android.zip)
@@ -1142,9 +1142,9 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.2.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
-* 이용정지(사용자처벌) 기능 추가
+* 이용 정지(사용자처벌) 기능 추가
 * [SDK] 1.2.0 업데이트
-    * 이용정지 사용자 팝업 창 노출
+    * 이용 정지 사용자 팝업 창 노출
 
 
 ### 1.1.5 (2017.07.20)

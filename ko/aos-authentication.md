@@ -104,9 +104,9 @@ Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthTok
             } else if (exception.getCode() == GamebaseError.BANNED_MEMBER) {
                 // 로그인을 시도한 게임 유저가 이용 정지 상태입니다.
                 // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) 를 호출하였다면
-                // Gamebase가 이용정지에 관한 팝업 창을 자동으로 띄워줍니다.
+                // Gamebase가 이용 정지에 관한 팝업 창을 자동으로 띄워줍니다.
                 //
-                // Game UI에 맞게 직접 이용정지 팝업 창을 구현하고자 한다면 BanInfo.from(exception)으로
+                // Game UI에 맞게 직접 이용 정지 팝업 창을 구현하고자 한다면 BanInfo.from(exception)으로
                 // 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 사유를 표시해 주시기 바랍니다.
                 BanInfo banInfo = BanInfo.from(exception);
             } else {
@@ -163,7 +163,7 @@ private static void onLoginForGuest(final Activity activity) {
                     // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) 를 호출하였다면
                     // Gamebase가 이용 정지에 관한 팝업 창을 자동으로 띄웁니다.
                     //
-                    // Game UI에 맞게 직접 이용정지 팝업 창을 구현하고자 한다면 BanInfo.from(exception)으로
+                    // Game UI에 맞게 직접 이용 정지 팝업 창을 구현하고자 한다면 BanInfo.from(exception)으로
                     // 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 사유를 표시해 주시기 바랍니다.
                     BanInfo banInfo = BanInfo.from(exception);
                 } else {
@@ -234,11 +234,11 @@ private static void onLoginForGoogle(final Activity activity) {
                         }
                     }).start();
                 } else if (exception.getCode() == GamebaseError.BANNED_MEMBER) {
-                    // 로그인을 시도한 유저가 이용정지 상태입니다.
+                    // 로그인을 시도한 유저가 이용 정지 상태입니다.
                     // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) 를 호출하였다면
-                    // Gamebase가 이용정지에 관한 팝업 창을 자동으로 띄워줍니다.
+                    // Gamebase가 이용 정지에 관한 팝업 창을 자동으로 띄워줍니다.
                     //
-                    // Game UI에 맞게 직접 이용정지 팝업 창을 구현하고자 한다면 BanInfo.from(exception)으로
+                    // Game UI에 맞게 직접 이용 정지 팝업 창을 구현하고자 한다면 BanInfo.from(exception)으로
                     // 제재 정보를 확인하여 유저에게 게임을 플레이 할 수 없는 사유를 표시해 주시기 바랍니다.
                     BanInfo banInfo = BanInfo.from(exception);
                 } else {
@@ -318,9 +318,9 @@ private static void onLoginWithCredential(final Activity activity) {
                 } else if (exception.getCode() == GamebaseError.BANNED_MEMBER) {
                     // 로그인을 시도한 게임 유저가 이용 정지 상태입니다.
                     // GamebaseConfiguration.Builder.enablePopup(true).enableBanPopup(true) 를 호출하였다면
-                    // Gamebase가 이용정지에 관한 팝업 창을 자동으로 띄워줍니다.
+                    // Gamebase가 이용 정지에 관한 팝업 창을 자동으로 띄워줍니다.
                     //
-                    // Game UI에 맞게 직접 이용정지 팝업 창을 구현하고자 한다면 BanInfo.from(exception)으로
+                    // Game UI에 맞게 직접 이용 정지 팝업 창을 구현하고자 한다면 BanInfo.from(exception)으로
                     // 제재 정보를 확인하여 사용자에게 게임을 플레이할 수 없는 사유를 표시해 주시기 바랍니다.
                     BanInfo banInfo = BanInfo.from(exception);
                 } else {
@@ -1097,7 +1097,7 @@ public static void testRequestWithdraw() {
 
 ### Check TemporaryWithdrawal User
 
-탈퇴 유예를 사용하는 게임은 로그인 후 항상 AuthToken.getTemporaryWithdrawalInfo() API 를 호출하여, 결과가 null 이 아닌 유효한 TemporaryWithdrawalInfo 객체를 리턴한다면 해당 유저에게 탈퇴 진행중이라는 사실을 알려주어야 합니다.
+탈퇴 유예를 사용하는 게임은 로그인 후 항상 AuthToken.getTemporaryWithdrawalInfo() API 를 호출하여, 결과가 null 이 아닌 유효한 TemporaryWithdrawalInfo 객체를 반환한다면 해당 유저에게 탈퇴 진행중이라는 사실을 알려주어야 합니다.
 
 **Example**
 
@@ -1201,7 +1201,7 @@ public static void testWithdrawImmediately() {
     * 결제 어뷰징 자동 해제 기능은 결제 어뷰징 자동 제재로 이용 정지가 되어야 할 사용자가 '이용 정지 유예 상태' 후 이용 정지가 되도록 합니다.
     * '이용 정지 유예 상태'일 경우, 설정한 기간 내에 이용 정지 해제 조건을 모두 만족하면 정상적으로 플레이할 수 있습니다.
     * 기간 내에 조건을 충족하지 못하면 이용 정지가 됩니다.
-* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 AuthToken.getGraceBanInfo() API를 호출하여, 결과가 null이 아닌 유효한 GraceBanInfo 객체를 리턴한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
+* 결제 어뷰징 자동 해제 기능을 사용하는 게임은 로그인 후 항상 AuthToken.getGraceBanInfo() API를 호출하여, 결과가 null이 아닌 유효한 GraceBanInfo 객체를 반환한다면 해당 유저에게 이용 정지 해제 조건, 기간 등을 안내해야 합니다.
     * 이용 정지 유예 상태인 유저의 게임 내 접근 제어는 게임에서 처리해야 합니다.
 
 **Example**

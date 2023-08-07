@@ -6,8 +6,8 @@ Gamebase에서 지원하는 부가 기능을 설명합니다.
 
 ### Device Language
 
-* 단말기에 설정된 언어 코드를 리턴합니다.
-* 여러 개의 언어가 등록된 경우, 우선권이 가장 높은 언어만을 리턴합니다.
+* 단말기에 설정된 언어 코드를 반환합니다.
+* 여러 개의 언어가 등록된 경우, 우선권이 가장 높은 언어만을 반환합니다.
 
 **API**
 
@@ -187,9 +187,9 @@ Unreal Android, iOS 플랫폼에서의 신규 언어셋 추가 방법은 아래 
 
 #### USIM Country Code
 
-* USIM에 기록된 국가 코드를 리턴합니다.
-* USIM에 잘못된 국가 코드가 기록되어 있다 하더라도 추가적인 확인 없이 그대로 리턴합니다.
-* 값이 비어 있는 경우 'ZZ'를 리턴합니다.
+* USIM에 기록된 국가 코드를 반환합니다.
+* USIM에 잘못된 국가 코드가 기록되어 있다 하더라도 추가적인 확인 없이 그대로 반환합니다.
+* 값이 비어 있는 경우 'ZZ'를 반환합니다.
 
 **API**
 
@@ -204,10 +204,10 @@ FString GetCountryCodeOfUSIM() const;
 
 #### Device Country Code
 
-* OS로부터 전달받은 단말기 국가 코드를 추가적인 확인 없이 그대로 리턴합니다.
+* OS로부터 전달받은 단말기 국가 코드를 추가적인 확인 없이 그대로 반환합니다.
 * 단말기 국가 코드는 '언어' 설정에 따라 OS가 자동으로 결정합니다.
 * 여러 개의 언어가 등록된 경우, 우선권이 가장 높은 언어로 국가 코드를 결정합니다.
-* 값이 비어 있는 경우 'ZZ'를 리턴합니다.
+* 값이 비어 있는 경우 'ZZ'를 반환합니다.
 
 **API**
 
@@ -221,11 +221,11 @@ FString GetCountryCodeOfDevice() const;
 
 #### Intergrated Country Code
 
-* USIM, 단말기 언어 설정의 순서로 국가 코드를 확인하여 리턴합니다.
+* USIM, 단말기 언어 설정의 순서로 국가 코드를 확인하여 반환합니다.
 * GetCountryCode API는 다음 순서로 동작합니다.
-    1. USIM에 기록된 국가 코드를 확인하고, 값이 존재한다면 추가적인 확인 없이 그대로 리턴합니다.
-    2. USIM 국가 코드가 빈 값이라면 단말기 국가 코드를 확인하고, 값이 존재한다면 추가 확인 없이 그대로 리턴합니다.
-    3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ' 를 리턴합니다.
+    1. USIM에 기록된 국가 코드를 확인하고, 값이 존재한다면 추가적인 확인 없이 그대로 반환합니다.
+    2. USIM 국가 코드가 빈 값이라면 단말기 국가 코드를 확인하고, 값이 존재한다면 추가 확인 없이 그대로 반환합니다.
+    3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ' 를 반환합니다.
 
 ![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
@@ -985,11 +985,11 @@ void Sample::OpenContact()
 >
 > iOS 사용자
 >
-> * info.plist에 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description' 설정을 해주시기 바랍니다.
+> * info.plist에 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description'을 설정하십시오.
 
 #### Request Contact URL
 
-고객 센터 웹뷰를 표시하는데 사용되는 URL 을 리턴합니다.
+고객 센터 웹뷰를 표시하는데 사용되는 URL 을 반환합니다.
 
 **API**
 

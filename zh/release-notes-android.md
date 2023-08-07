@@ -3,11 +3,11 @@
 ### 2.52.1 (2023. 07. 17.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.1/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 버전 변경: OkHttp 3.12.13(4.10.0에서 다운그레이드)
+#### 改善/修改功能
+* 更改了外部SDK版本 : OkHttp 3.12.13(从4.10.0降级。)
 
-#### 버그 수정
-* OkHttp 3.13부터 최소 지원 OS 버전이 21로 올라, Android 4.4(OS 19 Kitkat) 단말기에서 크래시가 발생하는 이슈를 수정했습니다.
+#### 修改程序错误
+* 自OkHttp 3.13以来，支持的最低OS版本已提高到21，Android 4.4（OS 19 Kitkat）设备上发生崩溃的问题已得到修复。
 
 #### 添加功能  
 * 添加了ONE store v21 Adapter。
@@ -29,11 +29,11 @@
 ### 2.50.1 (2023. 07. 17.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.1/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 버전 변경: OkHttp 3.12.13(4.10.0에서 다운그레이드)
+#### 改善/修改功能
+* 更改了外部SDK版本 : OkHttp 3.12.13(从4.10.0降级。)
 
-#### 버그 수정
-* OkHttp 3.13부터 최소 지원 OS 버전이 21로 올라, Android 4.4(OS 19 Kitkat) 단말기에서 크래시가 발생하는 이슈를 수정했습니다.
+#### 修改程序错误
+* 自OkHttp 3.13以来，支持的最低OS版本已提高到21，Android 4.4（OS 19 Kitkat）设备上发生崩溃的问题已得到修复。
 
 ### 2.50.0 (2023. 05. 16.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.0/GamebaseSDK-Android.zip)
@@ -42,7 +42,7 @@
 * 添加了MyCard Adapter。
 
 #### 改善/修改功能
-* 外部SDK升级 : NHN Cloud Android SDK 1.5.0, PAYCO Android SDK 1.5.12
+* 外部SDK升级 : NHN Cloud Android SDK 1.5.0, Gson 2.8.9, OkHttp 4.10.0, PAYCO Android SDK 1.5.12
 
 #### 修改程序错误
 * 修复了调用条款API时Activity大小减少至safe area范围内的错误。

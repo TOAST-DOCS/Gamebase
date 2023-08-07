@@ -1,5 +1,19 @@
 ## Game > Gamebase > Release Notes > Console
 
+### 2023. 07. 25.
+
+#### Feature Updates
+* App > App
+    * Improved so that administrator can directly set additional parameters for NHN Cloud Online Contact Customer Center
+* Customer Center > Customer Inquiry
+    * Improved so that, when pressing the Cancel/Save button after entering the details page from the customer inquiry page list, move to the previous page list.
+* Customer Center > Customer Inquiry
+    * Added a language item to the customer inquiry reception search item (But, all previously created inquiries are applied in the default language, and new inquiries can be searched in the set language)
+
+#### Bug Fixes
+* Push > Push
+    * Fixed an error where, when repeatitive push notification was set for time zones other than UTC+9, the sending time was incorrectly set
+
 ### 2023. 07. 11.
 
 #### Feature Updates
