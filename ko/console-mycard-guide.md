@@ -1,6 +1,6 @@
 ## Game > Gamebase > 스토어 콘솔 가이드 > MyCard 콘솔 가이드
 
-## MyCard 앱 등록
+## MyCard 스토어 등록
 
 - MyCard에서는 고객사가 로그인 가능한 웹콘솔을 제공하지 않습니다. (2023년 7월 기준)
 - MyCard는 NHN Cloud IAP 콘솔에 설정하는 사항만으로 결제 서비스를 이용하게 됩니다.

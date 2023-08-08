@@ -1,6 +1,6 @@
-## Game > Gamebase > Store Console Guide > MyCard Guide
+## Game > Gamebase > Store Console Guide > MyCard Console Guide
 
-## Register MyCard App
+## Register MyCard store
 
 - MyCard does not provide a web console where customers can log in. (As of July 2023)
 - MyCard uses the payment service only with the settings set in the NHN Cloud IAP console.
