@@ -14,16 +14,16 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 용도 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.6.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 19(Kitkat, OS 4.4) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.6.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 19(Kitkat, OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | - |
-|  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | Facebook 로그인을 지원 | - |
+|  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Google 로그인을 지원 | - |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.6.3 | Hangame 로그인을 지원 | - |
-|  | gamebase-adapter-auth-line | linesdk-5.8.0 | LINE 로그인을 지원 | - |
+|  | gamebase-adapter-auth-line | linesdk-5.8.1 | LINE 로그인을 지원 | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | NAVER 로그인을 지원 | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.12 | PAYCO 로그인을 지원 | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitter 로그인을 지원 | - |
-|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | Weibo 로그인을 지원 | - |
+|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.5.0 | Weibo 로그인을 지원 | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Weibo 로그인을 지원 | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.14<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.1<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Kakao 로그인을 지원 | API 21(Lollipop, OS 5.0) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | 게임 내 결제 지원 | - |
@@ -59,6 +59,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 	* [Game > Gamebase > 스토어 콘솔 가이드 > GALAXY 콘솔 가이드](./console-galaxy-guide)
 	* [Game > Gamebase > 스토어 콘솔 가이드 > Amazon 콘솔 가이드](./console-amazon-guide)
 	* [Game > Gamebase > 스토어 콘솔 가이드 > Huawei 콘솔 가이드](./console-huawei-guide)
+	* [Game > Gamebase > 스토어 콘솔 가이드 > MyCard 콘솔 가이드](./console-mycard-guide)
     * 아래 가이드를 참고하여 아이템을 등록합니다.
         * [Game > Gamebase > 콘솔 사용 가이드 > 결제 > Register](./oper-purchase/#register_1)
 * 푸시 알림을 위해 푸시 알림 서비스 인증서를 Gamebase > 푸시 > 인증서 콘솔에 입력합니다.
@@ -257,6 +258,17 @@ android {
 
 ### Resources
 
+#### Weibo IdP
+
+* 빌드 타겟에 따라 다음 URL의 so 파일들을 다운로드 하여 프로젝트로 복사하세요.
+    * https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/so
+* Android Studio 빌드인 경우
+    * 프로젝트의 src/main/java/jniLibs 폴더 하위로 복사합니다.
+    * ![Add so file to Android Studio project](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-started-resources-weibo-so-android-studio-2.53.0.png)
+* Unity 빌드인 경우
+    * so 파일 및 폴더를 Assets/Plugins/Android/libs 폴더 하위로 복사합니다.
+    * ![Add so file to Unity project](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-started-resources-weibo-so-unity-2.53.0.png)
+
 #### Huawei Store
 
 * AppGallery Connection 구성 파일(agconnect-services.json)을 assets 폴더에 추가해야 합니다.
@@ -335,16 +347,6 @@ android {
     <string name="facebook_app_id">123456789012345</string>
     <string name="facebook_client_token">a01234bc56de7fg89012hi3j45k67890</string>
 </resources>
-```
-
-#### LINE IdP
-
-* LINE SDK 내부에 **android:allowBackup="false"** 로 선언되어 있어 애플리케이션 빌드시 Manifest merger 에서 fail 이 발생할 수 있습니다. 이렇게 빌드가 실패한다면 다음과 같이 application 태그에 **tools:replace="android:allowBackup"** 선언을 추가하시기 바랍니다.
-
-```xml
-<application
-      tools:replace="android:allowBackup"
-      ... >
 ```
 
 #### Weibo IdP
@@ -561,15 +563,6 @@ class MyApplication: GamebaseMyCardApplication() {
         <package android:name="kvp.jjy.MispAndroid320" />
         <package android:name="nh.smart.nhallonepay" />
         <!-- [Hangame] Configurations end -->
-
-        <!-- [LINE] Configurations begin -->
-        <package android:name="jp.naver.line.android" />
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="https" />
-        </intent>
-        <!-- [LINE] Configurations end -->
         
         <!-- [NAVER] Configurations begin -->
         <package android:name="com.nhn.android.search" />
