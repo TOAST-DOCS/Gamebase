@@ -70,11 +70,17 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.
 해당 로그인에 대한 토큰이 만료되었거나, 토큰에 대한 검증 등이 실패하면 실패를 반환합니다. <br/>
 이때는 해당 IdP에 대한 로그인을 구현해야 합니다.
 
+* AdditionalInfo 파라미터 설정 방법
+
+| keyname                                  | a use                                    | 값 종류                                     |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | API 호출이 끝날때까지 로딩 애니메이션을 표시. | **boolean**<br>**default**: true |
 
 **API**
 
 ```java
 + (void)Gamebase.loginForLastLoggedInProvider(Activity activity, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.loginForLastLoggedInProvider(Activity activity, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
 ```
 
 **Example**
@@ -117,6 +123,7 @@ Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthTok
     }
 });
 ```
+
 ### Login with GUEST
 
 Gamebase는 게스트 로그인을 지원합니다.
@@ -125,7 +132,6 @@ Gamebase는 게스트 로그인을 지원합니다.
 * 게스트 로그인은 앱 삭제 또는 디바이스 초기화 시에 계정이 삭제될 수 있으므로 IdP를 활용한 로그인 방식을 권장합니다.
 
 게스트 로그인을 구현하는 방법은 아래 예시 코드를 참고하세요.
-
 
 **API**
 
@@ -199,6 +205,7 @@ private static void onLoginForGuest(final Activity activity) {
 
 | keyname                                  | a use                                    | 값 종류                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | API 호출이 끝날때까지 로딩 애니메이션을 표시. | **boolean**<br>**default**: true |
 | AuthProviderCredentialConstants.LINE_CHANNEL_REGION | LINE 서비스 제공 지역 설정 | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
 
 **API**
@@ -266,6 +273,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Google 로그인 이후 획득할 수 있는 OTAC(one time authorization code) 입력 |                                          |
 | AuthProviderCredentialConstants.GAMEBASE_ACCESS_TOKEN | IdP 인증 정보가 아닌 Gamebase Access Token으로 로그인하는 경우 사용 |  |
 | AuthProviderCredentialConstants.IGNORE_ALREADY_LOGGED_IN | Gamebase에 로그인한 상태에서 로그아웃을 하지 않고 다른 계정을 이용해 로그인을 시도하는 것을 허용 | **boolean** |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | API 호출이 끝날때까지 로딩 애니메이션을 표시. | **boolean**<br>**default**: true |
 | AuthProviderCredentialConstants.LINE_CHANNEL_REGION | LINE 서비스 제공 지역 설정 | [Login with IdP 참고](./aos-authentication/#login-with-idp) |
 
 > [참고]
@@ -517,6 +525,7 @@ private static void onWithdraw(final Activity activity) {
 
 | keyname                                  | a use                                    | 값 종류                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | API 호출이 끝날때까지 로딩 애니메이션을 표시. | **boolean**<br>**default**: true |
 | AuthProviderCredentialConstants.LINE_CHANNEL_REGION | LINE 서비스 제공 지역 설정 | [Login with IdP 참고](./aos-authentication/#login-with-idp) |
 
 다음은 Facebook에 매핑을 시도하는 예시입니다.
@@ -597,6 +606,7 @@ private static void addMappingForFacebook(final Activity activity) {
 | AuthProviderCredentialConstants.PROVIDER_NAME | IdP 유형 설정                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(Access Token) 설정.<br/>Google 인증 시에는 사용 안 함. |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Google 로그인 이후 획득할 수 있는 OTAC(one time authorization code) 입력 |                                          |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | API 호출이 끝날때까지 로딩 애니메이션을 표시. | **boolean**<br>**default**: true |
 | AuthProviderCredentialConstants.LINE_CHANNEL_REGION | LINE 서비스 제공 지역 설정 | [Login with IdP 참고](./aos-authentication/#login-with-idp) |
 
 > [참고]
