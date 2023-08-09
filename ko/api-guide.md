@@ -5,7 +5,7 @@
 - Push Wrapping API가 추가 되었습니다.
 - Gamebase Access Token으로 로그인시에 사용된 IdP의 프로필 및 토큰 정보를 획득할 수 있는 "Get IdP Token and Profiles" API가 추가되었습니다.
 - IdP Id로 매핑된 Gamebase userId를 획득하는 "Get UserId Information with IdP Id" API가 추가되었습니다.
-- 특정 기간 동안 탈퇴한 사용자의 Gamebase userId를 획득하는 "Withdraw Histories" API가 추가되었습니다.
+- 특정 기간 동안 탈퇴한 유저의 Gamebase userId를 획득하는 "Withdraw Histories" API가 추가되었습니다.
 - 이용 정지 및 이용 정지 해제를 수행하는 "Ban", "Ban Release" API가 추가되었습니다.
 - 결제 트랜잭션을 조회하는 "Get Payment Transaction" API가 추가되었습니다.
 - 미소비 결제 내역을 조회하는 "List Consumables" API에 한 번에 N개의 스토어를 대상으로 조회할 수 있도록 **marketIds**가 추가되었습니다.
@@ -15,6 +15,7 @@
 - "List Active Subscriptions" API request body에 구글 구독 비활성 상태를 요청할 수 있는 **includeInactiveGoogleStatuses**가 추가되었습니다.
 - "List Active Subscriptions" API 응답 결과에 RENEWED/RECOVERED 발생 시간을 나타내는 **renewTime**가 추가되었습니다.
 - "List Active Subscriptions" API request에 한 번에 N개의 스토어를 대상으로 조회할 수 있도록 **marketIds**가 추가되었습니다.
+- 현재 이용정지 유저들을 조회하는 "Get Ban Members" API가 추가되었습니다.
 
 ## Advance Notice
 
@@ -874,6 +875,97 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | --- | --- | --- | --- |
 | begin | String | Required | 이용 정지 이력 조회 시작 시간(ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>예: yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
 | end | String | Required | 이용 정지 이력 조회 종료 시간(ISO 8601 표준 시간, UTF-8 Encoding 필요) <br>begin ~ end 사이 시간에 이용 정지가 되었다면 조회 결과에 존재 |
+| page | String | Optional | 조회하고자 하는 페이지. 0부터 시작 |
+| size | String | Optional | 페이지당 데이터 개수 |
+| order | String | Optional | 조회 데이터 정렬 방법. ASC or DESC |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "pagingInfo": {
+        "first": true,
+        "last": true,
+        "numberOfElements": 0,
+        "page": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0
+    },
+    "result": [
+        {
+            "userId": "String",
+            "banCaller": "CONSOLE",
+            "banReason": "String",
+            "banType": "TEMPORARY",
+            "beginDate": "2019-08-27T17:41:05+09:00",
+            "endDate": "2019-08-28T17:41:05+09:00",
+            "flags": "String",
+            "name": "String",
+            "templateCode": 0
+        }
+    ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| pagingInfo | Object | 조회된 페이징 정보 |
+| pagingInfo.first | boolean | 첫번째 페이지이면 true |
+| pagingInfo.last | boolean | 마지막 페이지이면 true |
+| pagingInfo.numberOfElements | int | 전체 데이터 수 |
+| pagingInfo.page | int | 페이지 번호 |
+| pagingInfo.size | int | 페이지당 데이터 개수 |
+| pagingInfo.totalElements | int | 전체 데이터 수 |
+| pagingInfo.totalPages | int | 전체 페이지 수 |
+| result | Array[Object] | 조회된 이용 정지 내역 |
+| result.userId | String | 유저 ID |
+| result.banCaller | String | 이용 정지 호출 주체 |
+| result.banReason | String | 이용 정지 사유 |
+| result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
+| result.beginDate | Long | 이용 정지 시작 시간 |
+| result.endDate | Long | 이용 정지 종료 시간<br>PERMANENT 타입인 경우 해당 값은 존재하지 않음 |
+| result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'leaderboard'로 반환 |
+| result.name | String | 콘솔에서 등록한 템플릿 이름 |
+| result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
+
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+</br>
+
+#### Get Ban Members
+
+이용 정지 상태인 유저를 조회합니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-member/v1.3/apps/{appId}/members/bans/current |
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud 프로젝트 ID |
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
 | page | String | Optional | 조회하고자 하는 페이지. 0부터 시작 |
 | size | String | Optional | 페이지당 데이터 개수 |
 | order | String | Optional | 조회 데이터 정렬 방법. ASC or DESC |
