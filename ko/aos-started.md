@@ -604,6 +604,24 @@ class MyApplication: GamebaseMyCardApplication() {
 >
 > * **QUERY_ALL_PACKAGES** 권한은 Amazon Appstore 전용 선언이므로 Google Play 빌드시에는 적용하지 않도록 주의하시기 바랍니다.
 
+### 권한 선언
+
+* [고객센터](https://docs.nhncloud.com/ko/Game/Gamebase/ko/aos-etc/#contact) 페이지에서 문의글 작성 시 사진 및 미디어를 첨부하기 위해 저장소 읽기 권한이 필요합니다.
+```xml
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+```
+
+* 앱이 Android 13 이상을 타겟팅하는 경우, 다음과 같은 세분화된 미디어 권한 선언이 추가로 필요합니다.
+자세한 내용은 https://developer.android.com/about/versions/13/behavior-changes-13#granular-media-permissions를 확인해주세요.
+```xml
+<uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+<uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+<uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+```
+* 권한이 선언되어 있으면, 파일 업로드 시점에 gamebase SDK에서 권한 요청을 수행합니다.
+
 ### Proguard
 
 * Amazon Device Messaging
