@@ -11,7 +11,9 @@
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트: Facebook Android SDK(16.1.2), Line Android SDK(5.8.1), Weibo Android SDK(13.5.0)
-* 고객 센터 웹뷰(./aos-etc/#open-contact-webview)에서 파일을 첨부할 때 사진첩, 카메라, 저장소 타입에 따라 자동으로 권한을 획득하고 타입에 맞는 기능을 실행하도록 개선되었습니다.
+* 고객 센터 웹뷰에서 파일을 첨부할 때 앨범, 카메라, 저장소 타입에 따라 자동으로 권한을 획득하고 타입에 맞는 기능을 실행하도록 개선되었습니다.
+    * '고객 센터' 기능을 사용한다면 아래 가이드를 따라 AndroidManifest.xml에 권한 설정을 추가해야 합니다.
+    * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
 
 ### 2.52.1 (2023. 07. 17.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.1/GamebaseSDK-Android.zip)
