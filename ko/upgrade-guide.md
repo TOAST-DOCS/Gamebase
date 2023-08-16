@@ -6,7 +6,7 @@
 
 #### Contact
 
-* '고객 센터' 기능을 사용한다면 첨부 파일 선택시 권한 요청이 정상적으로 작동하도록 아래 가이드를 따라 AndroidManifest.xml에 권한 설정을 추가해야 합니다.
+* '고객 센터' 기능을 사용하는 경우 첨부 파일 선택 시 권한 요청이 정상적으로 작동하도록 아래 가이드에 따라 AndroidManifest.xml에 권한 설정을 추가해야 합니다.
     * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
 
 #### Line IdP

@@ -863,7 +863,7 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 
 > <font color="red">[주의]</font><br/>
 >
-> * Gamebase Android SDK 2.53.0 이상 버전은 아래 가이드에 따라 AndroidManifest.xml에 권한 선언을 추가한 뒤 고객 센터에 파일 첨부 시 자동으로 권한을 요청합니다.
+> * Gamebase Android SDK 2.53.0 이상 버전은 아래 가이드에 따라 AndroidManifest.xml에 권한 선언만 추가하면 고객 센터에 파일 첨부 시 Gamebase Android SDK가 자동으로 권한을 요청합니다.
 >     * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
 > * Gamebase Android SDK 2.52.0 이하 버전은 플랫폼별 가이드를 참고하여 직접 권한 획득 처리를 구현해야 합니다.
 >     * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
