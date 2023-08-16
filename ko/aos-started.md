@@ -81,9 +81,9 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
     * Google Play Store
         * [Android > 테스트 구매 설정](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
     * ONE store
-        * [ONE store > Document > 개발도구 > (OLD Version) 인앱결제 가이드 > 원스토어 인앱결제 API V5 (SDK V17) 안내 및 다운로드 > 인앱결제 테스트 및 보안 > 테스트 ID 등록/관리](https://dev.onestore.co.kr/wiki/ko/doc/결제-테스트-및-보안-1572991.html#id-결제테스트및보안-테스트ID등록/관리)
-        * [ONE store > Document > 개발도구 > (OLD Version) 인앱결제 가이드 > 원스토어 인앱결제 API V6 (SDK V19) 안내 및 다운로드 > 인앱결제 테스트 및 보안 > 테스트 ID 등록/관리](https://dev.onestore.co.kr/wiki/ko/doc/인앱결제-테스트-및-보안-8290959.html#id-인앱결제테스트및보안-테스트ID등록/관리)
-        * [ONE store > Document > 개발도구 > 원스토어 인앱결제 API V7 (SDK V21) 안내 및 다운로드 > 03. 결제 테스트 및 보안 > 테스트 ID 등록/관리](https://dev.onestore.co.kr/wiki/ko/doc/03-37552542.html#id-03.결제테스트및보안-테스트ID등록/관리)
+        * [ONE store > SUPPORT > 개발도구 > (OLD Version) 인앱결제 가이드 > 원스토어 인앱결제 API V5 (SDK V17) 안내 및 다운로드 > 인앱결제 테스트 및 보안 > 테스트 ID 등록/관리](https://onestore-dev.gitbook.io/dev/tools/tools/old-version/v17/undefined-5#id-id)
+        * [ONE store > SUPPORT > 개발도구 > (OLD Version) 인앱결제 가이드 > 원스토어 인앱결제 API V6 (SDK V19) 안내 및 다운로드 > 인앱결제 테스트 및 보안 > 테스트 ID 등록/관리](https://onestore-dev.gitbook.io/dev/tools/tools/old-version/v19/undefined-4#id-id)
+        * [ONE store > SUPPORT > 개발도구 > 원스토어 인앱결제 API V7 (SDK V21) 안내 및 다운로드 > 03. 결제 테스트 및 보안 > 테스트 ID 등록/관리](https://onestore-dev.gitbook.io/dev/tools/tools/v21/03.#id-03.-id)
     * GALAXY Store
         * [Samsung Developers > Samsung IAP > Technical Documents > Test Guide > 3. IAP Testing > 3.2 Test Type > (3) Production Closed Beta Test](https://developer.samsung.com/iap/iap-test-guide.html)
         * [GALAXY store > 앱 > 등록한 앱 > 바이너리 > Beta Test > Tester 설정](https://seller.samsungapps.com/application)
@@ -260,7 +260,7 @@ android {
 
 #### Weibo IdP
 
-* 빌드 타겟에 따라 다음 URL의 so 파일들을 다운로드 하여 프로젝트로 복사하세요.
+* 빌드 타깃에 따라 다음 URL의 so 파일들을 다운로드하여 프로젝트로 복사하세요.
     * https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/so
 * Android Studio 빌드인 경우
     * 프로젝트의 src/main/java/jniLibs 폴더 하위로 복사합니다.
@@ -319,7 +319,7 @@ android {
 
 #### Contact
 
-* 고객센터 페이지([Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Contact](./aos-etc/#contact))에서 문의글 작성 시 사진 및 미디어를 첨부하기 위해 저장소 읽기 권한 선언이 필요합니다.
+* 고객 센터 페이지([Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Contact](./aos-etc/#contact))에서 문의글 작성 시 사진 및 미디어를 첨부하기 위해 저장소 읽기 권한 선언이 필요합니다.
         
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         
@@ -330,7 +330,7 @@ android {
         <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
         <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
         
-* 권한이 선언되어 있으면, 파일 업로드 시점에 Gamebase SDK가 자동으로 런타임 권한 요청을 진행합니다.
+* 권한이 선언되어 있으면 파일 업로드 시점에 Gamebase SDK가 자동으로 런타임 권한 요청을 진행합니다.
 
 #### Facebook IdP
 
