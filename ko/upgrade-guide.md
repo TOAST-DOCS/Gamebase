@@ -11,7 +11,7 @@
 
 #### Line IdP
 
-* ['시작하기' 문서](./aos-started)에서 Line IdP 사용시 AndroidManifest.xml에 선언하도록 안내했던 아래 내용은 Line SDK 업데이트로 필요없게 되었으므로 삭제하시기 바랍니다.
+* 기존 ['시작하기' 문서](./aos-started)에서 Line IdP 사용 시 AndroidManifest.xml에 선언하도록 안내한 아래 내용은 Line SDK 업데이트로 인해 불필요해졌으므로 삭제하시기 바랍니다.
 
 ```xml
 <manifest>

@@ -260,7 +260,7 @@ android {
 
 #### Weibo IdP
 
-* 빌드 타겟에 따라 다음 URL의 so 파일들을 다운로드 하여 프로젝트로 복사하세요.
+* 빌드 타깃에 따라 다음 URL의 so 파일들을 다운로드하여 프로젝트로 복사하세요.
     * https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/so
 * Android Studio 빌드인 경우
     * 프로젝트의 src/main/java/jniLibs 폴더 하위로 복사합니다.
@@ -319,7 +319,7 @@ android {
 
 #### Contact
 
-* 고객센터 페이지([Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Contact](./aos-etc/#contact))에서 문의글 작성 시 사진 및 미디어를 첨부하기 위해 저장소 읽기 권한 선언이 필요합니다.
+* 고객 센터 페이지([Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Contact](./aos-etc/#contact))에서 문의글 작성 시 사진 및 미디어를 첨부하기 위해 저장소 읽기 권한 선언이 필요합니다.
         
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         
@@ -330,7 +330,7 @@ android {
         <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
         <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
         
-* 권한이 선언되어 있으면, 파일 업로드 시점에 Gamebase SDK가 자동으로 런타임 권한 요청을 진행합니다.
+* 권한이 선언되어 있으면 파일 업로드 시점에 Gamebase SDK가 자동으로 런타임 권한 요청을 진행합니다.
 
 #### Facebook IdP
 
