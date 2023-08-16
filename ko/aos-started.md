@@ -81,9 +81,9 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
     * Google Play Store
         * [Android > 테스트 구매 설정](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
     * ONE store
-        * [ONE store > Document > 개발도구 > (OLD Version) 인앱결제 가이드 > 원스토어 인앱결제 API V5 (SDK V17) 안내 및 다운로드 > 인앱결제 테스트 및 보안 > 테스트 ID 등록/관리](https://dev.onestore.co.kr/wiki/ko/doc/결제-테스트-및-보안-1572991.html#id-결제테스트및보안-테스트ID등록/관리)
-        * [ONE store > Document > 개발도구 > (OLD Version) 인앱결제 가이드 > 원스토어 인앱결제 API V6 (SDK V19) 안내 및 다운로드 > 인앱결제 테스트 및 보안 > 테스트 ID 등록/관리](https://dev.onestore.co.kr/wiki/ko/doc/인앱결제-테스트-및-보안-8290959.html#id-인앱결제테스트및보안-테스트ID등록/관리)
-        * [ONE store > Document > 개발도구 > 원스토어 인앱결제 API V7 (SDK V21) 안내 및 다운로드 > 03. 결제 테스트 및 보안 > 테스트 ID 등록/관리](https://dev.onestore.co.kr/wiki/ko/doc/03-37552542.html#id-03.결제테스트및보안-테스트ID등록/관리)
+        * [ONE store > SUPPORT > 개발도구 > (OLD Version) 인앱결제 가이드 > 원스토어 인앱결제 API V5 (SDK V17) 안내 및 다운로드 > 인앱결제 테스트 및 보안 > 테스트 ID 등록/관리](https://onestore-dev.gitbook.io/dev/tools/tools/old-version/v17/undefined-5#id-id)
+        * [ONE store > SUPPORT > 개발도구 > (OLD Version) 인앱결제 가이드 > 원스토어 인앱결제 API V6 (SDK V19) 안내 및 다운로드 > 인앱결제 테스트 및 보안 > 테스트 ID 등록/관리](https://onestore-dev.gitbook.io/dev/tools/tools/old-version/v19/undefined-4#id-id)
+        * [ONE store > SUPPORT > 개발도구 > 원스토어 인앱결제 API V7 (SDK V21) 안내 및 다운로드 > 03. 결제 테스트 및 보안 > 테스트 ID 등록/관리](https://onestore-dev.gitbook.io/dev/tools/tools/v21/03.#id-03.-id)
     * GALAXY Store
         * [Samsung Developers > Samsung IAP > Technical Documents > Test Guide > 3. IAP Testing > 3.2 Test Type > (3) Production Closed Beta Test](https://developer.samsung.com/iap/iap-test-guide.html)
         * [GALAXY store > 앱 > 등록한 앱 > 바이너리 > Beta Test > Tester 설정](https://seller.samsungapps.com/application)
