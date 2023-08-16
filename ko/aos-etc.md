@@ -6,8 +6,8 @@ Gamebase에서 지원하는 부가 기능을 설명합니다.
 
 ### Device Language
 
-* 단말기에 설정된 언어 코드를 리턴합니다.
-* 여러개의 언어가 등록된 경우, 우선권이 가장 높은 언어만을 리턴합니다.
+* 단말기에 설정된 언어 코드를 반환합니다.
+* 여러개의 언어가 등록된 경우, 우선권이 가장 높은 언어만을 반환합니다.
 
 **API**
 
@@ -253,9 +253,9 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 #### USIM Country Code
 
-* USIM에 기록된 국가코드를 리턴합니다.
-* USIM에 잘못된 국가코드가 기록되어 있다 하더라도 추가적인 체크 없이 그대로 리턴합니다.
-* 값이 비어있는 경우 'ZZ'를 리턴합니다.
+* USIM에 기록된 국가코드를 반환합니다.
+* USIM에 잘못된 국가코드가 기록되어 있다 하더라도 추가적인 체크 없이 그대로 반환합니다.
+* 값이 비어있는 경우 'ZZ'를 반환합니다.
 
 **API**
 
@@ -265,10 +265,10 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 #### Device Country Code
 
-* OS로부터 전달받은 단말기 국가코드를 추가적인 체크 없이 그대로 리턴합니다.
+* OS로부터 전달받은 단말기 국가코드를 추가적인 체크 없이 그대로 반환합니다.
 * 단말기 국가코드는 '언어' 설정에 따라 OS가 자동으로 결정합니다.
 * 여러개의 언어가 등록된 경우, 우선권이 가장 높은 언어로 국가코드를 결정합니다.
-* 값이 비어있는 경우 'ZZ'를 리턴합니다.
+* 값이 비어있는 경우 'ZZ'를 반환합니다.
 
 **API**
 
@@ -278,11 +278,11 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 #### Intergrated Country Code
 
-* USIM, 단말기 언어 설정의 순서로 국가 코드를 확인하여 리턴합니다.
+* USIM, 단말기 언어 설정의 순서로 국가 코드를 확인하여 반환합니다.
 * getCountryCode API는 다음 순서로 동작합니다.
-	1. USIM에 기록된 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
-	2. USIM 국가 코드가 빈 값이라면 단말기 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 리턴합니다.
-	3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ'를 리턴합니다.
+	1. USIM에 기록된 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 반환합니다.
+	2. USIM 국가 코드가 빈 값이라면 단말기 국가 코드를 확인해 보고 값이 존재한다면 추가적인 체크 없이 그대로 반환합니다.
+	3. USIM, 단말기 국가 코드가 모두 빈 값이라면 'ZZ'를 반환합니다.
 
 ![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
@@ -860,7 +860,14 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 > NHN Cloud Contact 서비스와 연동해서 사용하면 보다 쉽고 편리하게 고객 문의에 대응할 수 있습니다.
 > 자세한 NHN Cloud Contact 서비스 이용법은 아래 가이드를 참고하시기 바랍니다.
 > [NHN Cloud Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+
+> <font color="red">[주의]</font><br/>
 >
+> * Gamebase Android SDK 2.53.0 이상 버전은 아래 가이드에 따라 AndroidManifest.xml에 권한 선언만 추가하면 고객 센터에 파일 첨부 시 Gamebase Android SDK가 자동으로 권한을 요청합니다.
+>     * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
+> * Gamebase Android SDK 2.52.0 이하 버전은 플랫폼별 가이드를 참고하여 직접 권한 획득 처리를 구현해야 합니다.
+>     * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
+>     * [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
 
 #### Customer Service Type
 
@@ -941,18 +948,9 @@ Gamebase.Contact.openContact(activity, new GamebaseCallback() {
 });
 ```
 
-> <font color="red">[주의]</font><br/>
->
-> 고객 센터 문의 시 파일 첨부가 필요할 수 있습니다.
-> 이를 위해 사용자로부터 카메라 촬영이나 Storage 저장에 대한 권한을 런타임에 획득하여야 합니다.
-> [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
->
-> Unity 사용자는 아래 가이드를 참조하여 구현할 수 있습니다.
-> [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
-
 #### Request Contact URL
 
-고객 센터 웹뷰를 표시하는데 사용되는 URL을 리턴합니다.
+고객 센터 웹뷰를 표시하는데 사용되는 URL을 반환합니다.
 
 **API**
 
@@ -992,3 +990,8 @@ Gamebase.Contact.requestContactURL(configuration, new GamebaseDataCallback<Strin
 });
 ```
 
+#### File Attach Type Popup
+
+고객 센터 유형이 'NHN Cloud 조직 상품'인 경우 '추가 파라미터' 항목의 Key에 **from**, Value에 **app**을 입력하면 파일 첨부 시 타입 선택 팝업이 표시됩니다.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_002_2.53.0.png)
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_003_2.53.0.png)

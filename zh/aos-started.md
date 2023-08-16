@@ -14,7 +14,7 @@
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.6.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-4.10.0<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | 包含Gamebase界面和核心逻辑。 | API 19(Kitkat, OS 4.4) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.6.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | 包含Gamebase界面和核心逻辑。 | API 19(Kitkat, OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | 支持Sign In With Apple。 | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | 支持Facebook登录。 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | 支持Google登录。 | - |
@@ -80,9 +80,9 @@
     * Google Play Store
         * [Android > 测试购买设置](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
     * ONE store
-        * [ONE store > Document > 开发道具 > (OLD Version) 应用程序内支付指南 > ONE store应用程序内支付API V5 (SDK V17) 指南和下载 > 应用程序内支付测试和保安> 测试ID 注册/管理](https://dev.onestore.co.kr/wiki/ko/doc/결제-테스트-및-보안-1572991.html#id-결제테스트및보안-테스트ID등록/관리)
-        * [ONE store > Document > 开发道具 > (OLD Version) 应用程序内支付指南 > ONE store应用程序内支付API V6 (SDK V19) 指南和下载 > 应用程序内支付测试和保安 > 测试ID 注册/管理](https://dev.onestore.co.kr/wiki/ko/doc/인앱결제-테스트-및-보안-8290959.html#id-인앱결제테스트및보안-테스트ID등록/관리)
-        * [ONE store > Document > 开发道具 > ONE store应用程序内支付API V7 (SDK V21) 指南和下载 > 03. 支付测试和保安 > 测试ID 注册/管理](https://dev.onestore.co.kr/wiki/ko/doc/03-37552542.html#id-03.결제테스트및보안-테스트ID등록/관리)
+        * [ONE store > SUPPORT > 开发道具 > (OLD Version) 应用程序内支付指南 > ONE store应用程序内支付API V5 (SDK V17) 指南和下载 > 应用程序内支付测试和保安> 测试ID 注册/管理](https://onestore-dev.gitbook.io/dev/tools/tools/old-version/v17/undefined-5#id-id)
+        * [ONE store > SUPPORT > 开发道具 > (OLD Version) 应用程序内支付指南 > ONE store应用程序内支付API V6 (SDK V19) 指南和下载 > 应用程序内支付测试和保安 > 测试ID 注册/管理](https://onestore-dev.gitbook.io/dev/tools/tools/old-version/v19/undefined-4#id-id)
+        * [ONE store > SUPPORT > 开发道具 > ONE store应用程序内支付API V7 (SDK V21) 指南和下载 > 03. 支付测试和保安 > 测试ID 注册/管理](https://onestore-dev.gitbook.io/dev/tools/tools/v21/03.#id-03.-id)
     * GALAXY Store
         * [Samsung Developers > Samsung IAP > Technical Documents > Test Guide > 3. IAP Testing > 3.2 Test Type > (3) Production Closed Beta Test](https://developer.samsung.com/iap/iap-test-guide.html)
         * [GALAXY store > App > 已注册的App > Binary > Beta Test > 设置Tester](https://seller.samsungapps.com/application)

@@ -12,6 +12,9 @@
 - The server address has changed to "https://api-gamebase.nhncloudservice.com". The previous address will be maintained until further notice.
 - Added **linkedPaymentId** to response results of the "List Active Subscriptions" API, indicating the market payment number for the originally transacted subscription when canceling or repurchasing subscription products.
 - Added the "Cancel Subscriptions" and "Revoke Subscriptions" APIs that cancel the products in subscripion.
+- Added **includeInactiveGoogleStatuses** to the "List Active Subscriptions" API request body to request inactive Google subscription statuses.
+- Added **renewTime** to the "List Active Subscriptions" API response result to indicate when RENEWED/RECOVERED occurred.
+- Added **marketIds** to the "List Active Subscriptions" API request to perform querying against N stores at once.
 
 ## Advance Notice
 
@@ -1766,17 +1769,25 @@ N/A
 
 ```json
 {
-    "marketId": "GG",
+    "marketIds": [
+        "GG",
+        "AS"
+    ],
     "packageName": "com.nhncloud.gamebase",
-    "userId": "QXG774PMRZMWR3BR"
+    "userId": "QXG774PMRZMWR3BR",
+    "includeInactiveGoogleStatuses" : [
+        "ON_HOLD"
+    ]
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | Required | [Store code](#store-code) |
+| marketId | String | Optional | [Store code](#store-code)<br>- Scheduled to be **deprecated** so *marketIds* used |
+| marketIds | Array[String] | Optional | [Store code](#store-code)<br>- Lookup against all stores if the value is empty (or null) |
 | packageName | String | Required | Store app ID registered on the console |
-| userId | String | Required  | User ID |
+| userId | String | Required | User ID |
+| includeInactiveGoogleStatuses | Array[String] | Optional | **Google Subscription in Inactive Status** to be included in response result<br>- Currently only support 'ON_HOLD' status |
 
 **[Response Body]**
 
@@ -1805,6 +1816,7 @@ N/A
             "payload" : "additional info",
             "purchaseTime": "2020-06-02T13:38:56+09:00",
             "expiryTime": "2020-06-02T13:48:56+09:00",
+            "renewTime" : "2020-06-02T13:50:56+09:00",
             "isTestPurchase" : false,
             "referenceStatus" : "PURCHASED"
         }
@@ -1831,6 +1843,7 @@ N/A
 | result[].payload | String | Additional information configured in SDK |
 | result[].purchaseTime | String | Recent updated time |
 | result[].expiryTime | String | Subscription expiration time |
+| result[].renewTime | String | When RENEWED/RECOVERED occurred |
 | result[].isTestPurchase | boolean | Whether it is a test purchase or not |
 | result[].referenceStatus | String | [Payment reference status](#store-reference-status) provided by the payment system (in-app purchase, external payment)<br>Currently only supported by Google Play Store |
 

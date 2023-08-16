@@ -80,9 +80,9 @@ To execute Gamebase in Android, the following system environment is required.
     * Google Play Store
         * [Android > Test Purchase Settings](https://developer.android.com/google/play/billing/billing_testing.html?hl=ko#billing-testing-test)
     * ONE store
-        * [ONE store > Document > Development Tool > (OLD Version) In-App Purcahse Guide > Introduction and Download for ONE store In-App Purchase API V5 (SDK V17) > In-App Purchase Test and Security > Register/Manage Test ID](https://dev.onestore.co.kr/wiki/ko/doc/결제-테스트-및-보안-1572991.html#id-결제테스트및보안-테스트ID등록/관리)
-        * [ONE store > Document > Development Tool > (OLD Version) In-App Purcahse Guide > Introduction and Download for ONE store In-App Purchase API V6 (SDK V19) > In-App Purchase Test and Security > Register/Manage Test ID](https://dev.onestore.co.kr/wiki/ko/doc/인앱결제-테스트-및-보안-8290959.html#id-인앱결제테스트및보안-테스트ID등록/관리)
-        * [ONE store > Document > Development Tool > Introduction and Download for ONE store In-App Purchase API V7 (SDK V21) > 03. Purchase Test and Security > Register/Manage Test ID](https://dev.onestore.co.kr/wiki/ko/doc/03-37552542.html#id-03.결제테스트및보안-테스트ID등록/관리)
+        * [ONE store > SUPPORT > Development Tool > (OLD Version) In-App Purcahse Guide > Introduction and Download for ONE store In-App Purchase API V5 (SDK V17) > In-App Purchase Test and Security > Register/Manage Test ID](https://onestore-dev.gitbook.io/dev/tools/tools/old-version/v17/undefined-5#id-id)
+        * [ONE store > SUPPORT > Development Tool > (OLD Version) In-App Purcahse Guide > Introduction and Download for ONE store In-App Purchase API V6 (SDK V19) > In-App Purchase Test and Security > Register/Manage Test ID](https://onestore-dev.gitbook.io/dev/tools/tools/old-version/v19/undefined-4#id-id)
+        * [ONE store > SUPPORT > Development Tool > Introduction and Download for ONE store In-App Purchase API V7 (SDK V21) > 03. Purchase Test and Security > Register/Manage Test ID](https://onestore-dev.gitbook.io/dev/tools/tools/v21/03.#id-03.-id)
     * GALAXY Store
         * [Samsung Developers > Samsung IAP > Technical Documents > Test Guide > 3. IAP Testing > 3.2 Test Type > (3) Production Closed Beta Test](https://developer.samsung.com/iap/iap-test-guide.html)
         * [GALAXY Store > App > Registered Apps > Binary > Beta Test > Tester Settings](https://seller.samsungapps.com/application)

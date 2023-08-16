@@ -1,11 +1,45 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.53.0
+
+### Android
+
+#### Contact
+
+* '고객 센터' 기능을 사용하는 경우 첨부 파일 선택 시 권한 요청이 정상적으로 작동하도록 아래 가이드에 따라 AndroidManifest.xml에 권한 설정을 추가해야 합니다.
+    * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
+
+#### Line IdP
+
+* 기존 ['시작하기' 문서](./aos-started)에서 Line IdP 사용 시 AndroidManifest.xml에 선언하도록 안내한 아래 내용은 Line SDK 업데이트로 인해 불필요해졌으므로 삭제하시기 바랍니다.
+
+```xml
+<manifest>
+    <!-- [Android11] settings start -->
+    <queries>
+        <!-- [LINE] Configurations begin -->
+        <package android:name="jp.naver.line.android" />
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" />
+        </intent>
+        <!-- [LINE] Configurations end -->
+    </queries>
+    <!-- [Android11] settings end -->
+        
+    <application
+          tools:replace="android:allowBackup"
+          ... >
+</manifest>
+```
+
 ## 2.52.0
 
 ### Android
 
-* Android 4.4(OS 19 Kitkat) 단말기에서 crash가 발생합니다.
-    * 이슈가 수정된 Gamebase Android SDK 2.52.1 을 사용하시기 바랍니다.
+* Android 4.4(OS 19 Kitkat) 단말기에서 크래시가 발생합니다.
+    * 이슈가 수정된 Gamebase Android SDK 2.52.1을 사용하시기 바랍니다.
 
 ### Unity
 
@@ -43,8 +77,8 @@
 
 ### Android
 
-* Android 4.4(OS 19 Kitkat) 단말기에서 crash가 발생합니다.
-    * 이슈가 수정된 Gamebase Android SDK 2.50.1 을 사용하시기 바랍니다.
+* Android 4.4(OS 19 Kitkat) 단말기에서 크래시가 발생합니다.
+    * 이슈가 수정된 Gamebase Android SDK 2.50.1을 사용하시기 바랍니다.
 
 ## 2.49.0
 
@@ -364,7 +398,7 @@ android.enableIncrementalDesugaring=false
 
 ### iOS
 
-* Sign In with Apple 의 ASAuthorizationErrorUnknown 에러가 발생했을 경우, TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERROR (3009) 에러를 리턴하도록 변경되었습니다.
+* Sign In with Apple 의 ASAuthorizationErrorUnknown 에러가 발생했을 경우, TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERROR (3009) 에러를 반환하도록 변경되었습니다.
 
 ### Unity
 
