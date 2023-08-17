@@ -1,5 +1,10 @@
 ## Game > Gamebase > Release Notes > Server API
 
+### 2023. 08. 17.
+
+#### 添加功能
+* 添加了“Get Ban Members”API来搜索当前被禁止使用的用户。
+
 ### 2023. 07. 25.
 
 #### 添加功能
