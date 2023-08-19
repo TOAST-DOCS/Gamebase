@@ -14,16 +14,16 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.6.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-4.10.0<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebaseのインターフェイスおよびコアロジックを含む | API 19(Kitkat, OS 4.4) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.6.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-4.10.0<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebaseのインターフェイスおよびコアロジックを含む | API 19(Kitkat, OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Appleログインをサポート | - |
-|  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | Facebookログインをサポート | - |
+|  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Facebookログインをサポート | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Googleログインをサポート | - |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.6.3 | Hangameログインをサポート | - |
-|  | gamebase-adapter-auth-line | linesdk-5.8.0 | Lineログインをサポート | - |
+|  | gamebase-adapter-auth-line | linesdk-5.8.1 | Lineログインをサポート | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Naverログインをサポート | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.12 | Paycoログインをサポート | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitterログインをサポート | - |
-|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | Weiboログインをサポート | - |
+|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.5.0 | Weiboログインをサポート | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Weiboログインをサポート | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.14<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.0<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Kakaoログインをサポート | API 21(Lollipop, OS 5.0) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.21.0<br>nhncloud-iap-core | ゲーム内決済をサポート | - |
@@ -58,6 +58,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 	* [Game > Gamebase > ストアコンソールガイド > GALAXYコンソールガイド](./console-galaxy-guide)
 	* [Game > Gamebase > ストアコンソールガイド > Amazon Appstoreコンソールガイド](./console-amazon-guide)
 	* [Game > Gamebase > ストアコンソールガイド > Huawei App Galleryコンソールガイド](./console-huawei-guide)
+	* [Game > Gamebase > ストアコンソールガイド > MyCardコンソールガイド](./console-mycard-guide)
     * 以下のガイドを参考にしてアイテムを登録します。
         * [Game > Gamebase > コンソール使用ガイド > 決済 > Register](./oper-purchase/#register_1)
 * プッシュ通知を行うためにプッシュ通知サービス証明書をGamebase > Push > 証明書コンソールに入力します。
@@ -256,6 +257,17 @@ android {
 
 ### Resources
 
+#### Weibo IdP
+
+* ビルドターゲットに応じて次のURLのsoファイルをダウンロードしてプロジェクトにコピーしてください。
+    * https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/so
+* Android Studioビルドの場合
+    * プロジェクトのsrc/main/java/jniLibsフォルダの下にコピーします。
+    * ![Add so file to Android Studio project](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-started-resources-weibo-so-android-studio-2.53.0.png)
+* Unityビルドの場合
+    * soファイルとフォルダをAssets/Plugins/Android/libsフォルダの下にコピーします。
+    * ![Add so file to Unity project](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-started-resources-weibo-so-unity-2.53.0.png)
+
 #### Huawei Store
 
 * AppGallery Connection構成ファイル(agconnect-services.json)をassetsフォルダに追加する必要があります。
@@ -303,6 +315,21 @@ android {
 
 ### AndroidManifest.xml
 
+#### Contact
+
+* サポートページ([Game > Gamebase > Android SDK使用ガイド > ETC > Additional Features > Contact](./aos-etc/#contact))でお問い合わせの際、写真やメディアを添付するためにストレージの読み取り権限宣言が必要です。
+
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+* アプリがAndroid 13(API Level 33)以上をターゲットにする場合、ストレージの読み取り権限と一緒に次のように細分化されたメディア権限宣言も追加で必要です。
+
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+        <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+        <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+
+* 権限が宣言されている場合、ファイルのアップロード時にGamebase SDKが自動的にランタイム権限を要求します。
+
 #### Facebook IdP
 
 * Facebook SDKを初期化するためにApp IDとClient Tokenを宣言します。
@@ -333,16 +360,6 @@ android {
     <string name="facebook_app_id">123456789012345</string>
     <string name="facebook_client_token">a01234bc56de7fg89012hi3j45k67890</string>
 </resources>
-```
-
-#### LINE IdP
-
-* LINE SDKの内部に**android:allowBackup="false"**が宣言されており、アプリケーションビルド時にManifest mergerでfailが発生することがあります。ビルドが失敗した場合は、次のようにapplicationタグに**tools:replace="android:allowBackup"**宣言を追加してください。
-
-```xml
-<application
-      tools:replace="android:allowBackup"
-      ... >
 ```
 
 #### Weibo IdP
@@ -559,15 +576,6 @@ class MyApplication: GamebaseMyCardApplication() {
         <package android:name="kvp.jjy.MispAndroid320" />
         <package android:name="nh.smart.nhallonepay" />
         <!-- [Hangame] Configurations end -->
-
-        <!-- [LINE] Configurations begin -->
-        <package android:name="jp.naver.line.android" />
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="https" />
-        </intent>
-        <!-- [LINE] Configurations end -->
 
         <!-- [NAVER] Configurations begin -->
         <package android:name="com.nhn.android.search" />
