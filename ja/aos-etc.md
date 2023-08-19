@@ -861,7 +861,14 @@ Gamebaseでは顧客からの問い合わせに対応するための機能を提
 > NHN Cloud Contactサービスと連携して使用すると、簡単に顧客からの問い合わせに対応できます。
 > 詳細はNHN Cloud Contactサービスの利用ガイドを参照してください。
 > [NHN Cloud Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
+
+> <font color="red">[注意]</font><br/>
 >
+> * Gamebase Android SDK 2.53.0以降のバージョンは、下記のガイドに従ってAndroidManifest.xmlに権限宣言を追加するだけで、サポートにファイルを添付する際、Gamebase Android SDKが自動的に権限を要求します。
+>     * [Game > Gamebase > Android SDK使用ガイド > はじめる > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
+> * Gamebase Android SDK 2.52.0以下のバージョンは、プラットフォーム別ガイドを参考にして直接権限取得処理を実装する必要があります。
+>     * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
+>     * [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
 
 #### Customer Service Type
 
@@ -942,15 +949,6 @@ Gamebase.Contact.openContact(activity, new GamebaseCallback() {
 });
 ```
 
-> <font color="red">[注意]</font><br/>
->
-> サポートへお問い合わせする時、ファイルの添付が必要な場合があります。
-> そのため、ユーザーからカメラ撮影やStorage保存の権限をランタイムに取得する必要があります。
-> [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
->
-> Unityユーザーは、以下のガイドを参照して実装できます。
-> [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
-
 #### Request Contact URL
 
 サポートのWebビューを表示するのに使用されるURLを返します。
@@ -992,3 +990,9 @@ Gamebase.Contact.requestContactURL(configuration, new GamebaseDataCallback<Strin
     }
 });
 ```
+
+#### File Attach Type Popup
+
+サポートのタイプが「NHN Cloud組織商品」の場合、「追加パラメータ」項目のKeyに**from**、Valueに**app**を入力すると、ファイル添付時のタイプ選択ポップアップが表示されます。
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_002_2.53.0.png)
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_003_2.53.0.png)
