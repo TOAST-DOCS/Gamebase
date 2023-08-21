@@ -37,7 +37,7 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.4.0 | GamebaseのInterfaceおよびコアロジックを含む | iOS 11 or later
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.4.0 | GamebaseのInterfaceおよびコアロジックを含む | iOS 11 or later |
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Facebookログインをサポート | iOS 11 or later |
 |  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.6 | PAYCOログインをサポート | iOS 11 or later |
 |  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | NAVERログインをサポート | iOS 11 or later |
@@ -46,7 +46,7 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 |  | GamebaseAuthTwitterAdapter.framework | | Twitterログインをサポート | iOS 11 or later |
 |  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | LINEログインをサポート | iOS 11 or later |
 |  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 11 or later<br/>arm64サポート<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.5 | Hangameログインをサポート | iOS 11 or later |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.6 | Hangameログインをサポート | iOS 11 or later |
 |  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.3.3 | Weiboログインをサポート | iOS 11 or later |
 |  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.14 | Kakaoログインをサポート | iOS 11 or later |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.4.0 | ゲーム内決済をサポート | iOS 11 or later |
