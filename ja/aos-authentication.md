@@ -74,7 +74,7 @@ Gamebaseでは基本的にゲストログインに対応しています。
 
 | keyname                                  | a use                                    | 値の種類                                   |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | API呼び出しが終了するまでローディングアニメーションを表示 | **boolean**<br>**default**: true | **boolean**: true
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | API呼び出しが終了するまでローディングアニメーションを表示 | **boolean**<br>**default**: true | **boolean**: true |
 
 **API**
 
