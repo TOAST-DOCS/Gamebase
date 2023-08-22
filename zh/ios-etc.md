@@ -800,7 +800,7 @@ Gamebase提供接待客户查询的功能。
 >
 > 如果与NHN Cloud Contact服务联动使用，则可更加轻松方便地应对客户查询。
 > 详细的NHN Cloud Contact服务使用，请参考如下指南。
-> [NHN Cloud Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+> [NHN Cloud Online Contact Guide](/Contact%20Center/zh/online-contact-overview/)
 
 #### Customer Service Type
 

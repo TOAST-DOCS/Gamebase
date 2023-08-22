@@ -890,7 +890,7 @@ Gamebase提供回复客户咨询的功能。
 >
 > 若与NHN Cloud Contact服务联动后使用，则可更容易应对客户咨询。
 > 有关详细的NHN Cloud Contact服务使用方法，请参考以下指南。
-> [NHN Cloud Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+> [NHN Cloud Online Contact Guide](/Contact%20Center/zh/online-contact-overview/)
 
 
 #### Customer Service Type

@@ -859,7 +859,7 @@ Gamebase提供用于应对客户咨询的功能。
 >
 > 若与NHN Cloud Contact商品关联使用，则可更加轻松方便地应对顾客咨询。
 > 详细的NHN Cloud Contact商品使用，请参考如下指南。
-> [NHN Cloud Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
+> [NHN Cloud Online Contact Guide](/Contact%20Center/zh/online-contact-overview/)
 
 > <font color="red">[注意]</font><br/>
 >
