@@ -3,17 +3,17 @@
 ### 2.53.0 (2023. 08. 17.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.53.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* loginForLastLoggedInProvider 호출 중에 로딩 애니메이션을 숨기는 옵션을 지정할 수 있는 신규 API가 추가되었습니다.
+#### 機能追加
+* loginForLastLoggedInProviderの呼び出し中にローディングアニメーションを非表示にするオプションを指定できる新規APIが追加されました。
     * Gamebase.loginForLastLoggedInProvider(Activity activity, Map&lt;String, Object&gt; additionalInfo, GamebaseDataCallback&lt;AuthToken&gt; callback);
-    * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다.
-        * [Game > Gamebase > Android SDK 사용 가이드 > 인증 > Login > Login Flow > Login as the Latest Login IdP](./aos-authentication/#login-as-the-latest-login-idp)
+    * API呼び出し方法は、次のガイド文書を参照してください。
+        * [Game > Gamebase > Android SDK使用ガイド > 認証 > Login > Login Flow > Login as the Latest Login IdP](./aos-authentication/#login-as-the-latest-login-idp)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Facebook Android SDK(16.1.2), Line Android SDK(5.8.1), Weibo Android SDK(13.5.0)
-* 고객 센터 웹뷰에서 파일을 첨부할 때 앨범, 카메라, 저장소 타입에 따라 자동으로 권한을 획득하고 타입에 맞는 기능을 실행하도록 개선되었습니다.
-    * '고객 센터'의 개선된 파일 첨부 기능을 사용하려면 아래 가이드에 따라 AndroidManifest.xml에 권한 설정을 추가해야 합니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
+#### 機能改善/変更
+* 外部SDKアップデート: Facebook Android SDK(16.1.2), Line Android SDK(5.8.1), Weibo Android SDK(13.5.0)
+* サポートWebビューでファイルを添付する際、アルバム、カメラ、ストレージのタイプに応じて自動的に権限を取得し、タイプに合った機能を実行するように改善されました。
+    * 'サポート'の改善されたファイル添付機能を使用するには、以下のガイドに従ってAndroidManifest.xmlに権限設定を追加する必要があります。
+    * [Game > Gamebase > Android SDK使用ガイド > はじめる > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
 
 ### 2.52.1 (2023. 07. 17.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.1/GamebaseSDK-Android.zip)

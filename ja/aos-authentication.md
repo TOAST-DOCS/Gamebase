@@ -70,11 +70,17 @@ Gamebaseでは基本的にゲストログインに対応しています。
 該当するログイントークンの期限が切れていたり、トークン検証などに失敗した場合、失敗を返します。<br/>
 この場合、該当するIdPに対するログインを設計する必要があります。
 
+* AdditionalInfoパラメータ設定方法
+
+| keyname                                  | a use                                    | 値の種類                                   |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | API呼び出しが終了するまでローディングアニメーションを表示 | **boolean**<br>**default**: true | **boolean**: true |
 
 **API**
 
 ```java
 + (void)Gamebase.loginForLastLoggedInProvider(Activity activity, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.loginForLastLoggedInProvider(Activity activity, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
 ```
 
 **Example**
@@ -117,6 +123,7 @@ Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthTok
     }
 }
 ```
+
 ### Login with GUEST
 
 Gamebaseは、ゲストログインに対応しています。
@@ -125,7 +132,6 @@ Gamebaseは、ゲストログインに対応しています。
 * ゲストログインは、アプリを削除したりデバイスを初期化した場合、アカウントが削除されることがあるためIdPを使ったログイン方式を推奨します。
 
 ゲストログインを設計する方法については、次のコード例をご参考ください。
-
 
 **API**
 
@@ -198,6 +204,7 @@ private static void onLoginForGuest(final Activity activity) {
 
 | keyname                                  | a use                                    | 値種類                                   |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | API呼び出しが終了するまでローディングアニメーションを表示 | **boolean**<br>**default**: true | **boolean**: true |
 | AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Lineサービス提供地域設定 | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
 
 **API**
@@ -265,6 +272,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Googleログイン後に取得できるOTAC(one time authorization code)の入力 |                                          |
 | AuthProviderCredentialConstants.GAMEBASE_ACCESS_TOKEN | IdP認証情報ではなくGamebase Access Tokenでログインを行いたい場合に使用 |  |
 | AuthProviderCredentialConstants.IGNORE_ALREADY_LOGGED_IN | Gamebaseログイン状態からログアウトを行わずに別のアカウントへのログイン試行を許可する | **boolean** |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | API呼び出しが終了するまでローディングアニメーションを表示 | **boolean**<br>**default**: true | **boolean**: true |
 | AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Lineサービス提供地域設定 | [Login with IdP参考](./aos-authentication/#login-with-idp) |
 
 > [参考]
@@ -516,6 +524,7 @@ private static void onWithdraw(final Activity activity) {
 
 | keyname                                  | a use                                    | 値種類                                   |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | API呼び出しが終了するまでローディングアニメーションを表示 | **boolean**<br>**default**: true | **boolean**: true |
 | AuthProviderCredentialConstants.LINE_CHANNEL_REGION | LINEサービス提供地域設定 | [Login with IdP参考](./aos-authentication/#login-with-idp) |
 
 
@@ -598,6 +607,7 @@ private static void addMappingForFacebook(final Activity activity) {
 | AuthProviderCredentialConstants.PROVIDER_NAME | IdPタイプの設定                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)の設定<br/>Google認証の場合は使用しない  |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Googleログイン後に取得できるOTAC(one time authorization code)の入力 |                                          |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | API呼び出しが終了するまでローディングアニメーションを表示 | **boolean**<br>**default**: true | **boolean**: true |
 | AuthProviderCredentialConstants.LINE_CHANNEL_REGION | LINEサービス提供地域設定 | [Login with IdP参考](./aos-authentication/#login-with-idp) |
 
 > [参考]

@@ -6,12 +6,12 @@
 
 #### Contact
 
-* '고객 센터' 기능을 사용하는 경우 첨부 파일 선택 시 권한 요청이 정상적으로 작동하도록 아래 가이드에 따라 AndroidManifest.xml에 권한 설정을 추가해야 합니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
+* 如果您使用的是“客户服务”功能，则需要按照以下指南将权限设置添加到AndroidManifest.xml中，以便在选择附加文件时权限请求能够正常操作。
+    * [Game > Gamebase > Android SDK使用指南 > 开始 > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
 
 #### Line IdP
 
-* 기존 ['시작하기' 문서](./aos-started)에서 Line IdP 사용 시 AndroidManifest.xml에 선언하도록 안내한 아래 내용은 Line SDK 업데이트로 인해 불필요해졌으므로 삭제하시기 바랍니다.
+* 在现有的[“开始”文档](./aos-started)中，由于Line SDK更新，以下信息已变得不必要，因此请删除指导您在使用Line IdP时在AndroidManifest.xml中声明的信息。
 
 ```xml
 <manifest>

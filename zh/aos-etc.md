@@ -859,8 +859,15 @@ Gamebase提供用于应对客户咨询的功能。
 >
 > 若与NHN Cloud Contact商品关联使用，则可更加轻松方便地应对顾客咨询。
 > 详细的NHN Cloud Contact商品使用，请参考如下指南。
-> [NHN Cloud Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
+> [NHN Cloud Online Contact Guide](/Contact%20Center/zh/online-contact-overview/)
+
+> <font color="red">[注意]</font><br/>
 >
+> * 对于Gamebase Android SDK 2.53.0及更高版本，只需按照下面的指南将权限声明添加到AndroidManifest.xml中，当将文件附加到客户服务时，Gamebase Android SDK将自动请求权限。
+>     * [Game > Gamebase > Android SDK使用指南 > 开始 > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
+> * Gamebase Android SDK 2.52.0或更低版本必须参考每个平台的指南来实现直接权限获取的处理。
+>     * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
+>     * [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
 
 #### Customer Service Type
 
@@ -943,15 +950,6 @@ Gamebase.Contact.openContact(activity, new GamebaseCallback() {
 });
 ```
 
-> <font color="red">[注意]</font><br/>
->
-> 向客户服务提问时，可能需要添附文件。
-> 为此，需要在运行时从用户获得相机拍照或Storage存储的权限。 
-> [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
->
-> 如果是Unity用户，请通过参考如下指南执行上述程序 。
-> [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
-
 #### Request Contact URL
 
 返还显示客户服务WebView时使用的URL。
@@ -993,3 +991,9 @@ Gamebase.Contact.requestContactURL(configuration, new GamebaseDataCallback<Strin
     }
 });
 ```
+
+#### File Attach Type Popup
+
+客户服务类型为“NHN Cloud组织商品”时，如果您在“附加参数”的Key项目中输入**from**，在 Value项目中输入**app**，则在附加文件时会显示选择类型的弹窗。
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_002_2.53.0.png)
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_003_2.53.0.png)
