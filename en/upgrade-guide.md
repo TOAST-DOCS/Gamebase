@@ -38,8 +38,8 @@
 
 ### Android
 
-* Android 4.4(OS 19 Kitkat) 단말기에서 crash가 발생합니다.
-    * 이슈가 수정된 Gamebase Android SDK 2.52.1 을 사용하시기 바랍니다.
+* Confirmed that a crash occurred on Android 4.4 (OS 19 Kitkat) devices.
+    * Please use the Gamebase Android SDK 2.52.1 where the issue was fixed.
 
 ### Unity
 
@@ -77,8 +77,8 @@
 
 ### Android
 
-* Android 4.4(OS 19 Kitkat) 단말기에서 crash가 발생합니다.
-    * 이슈가 수정된 Gamebase Android SDK 2.50.1 을 사용하시기 바랍니다.
+* Confirmed that a crash occurred on Android 4.4 (OS 19 Kitkat) devices.
+    * Please use the Gamebase Android SDK 2.50.1 where the issue was fixed.
 
 ## 2.49.0
 

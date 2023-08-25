@@ -18,11 +18,11 @@
 ### 2.52.1 (2023. 07. 17.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.1/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 버전 변경: OkHttp 3.12.13(4.10.0에서 다운그레이드)
+#### Feature Updates
+* External SDK version changed: OkHttp 3.12.13 (downgraded from 4.10.0)
 
-#### 버그 수정
-* OkHttp 3.13부터 최소 지원 OS 버전이 21로 올라, Android 4.4(OS 19 Kitkat) 단말기에서 크래시가 발생하는 이슈를 수정했습니다.
+#### Bug Fixes
+* Fixed an issue where a crash occurs on Android 4.4 (OS 19 Kitkat) devices due to the mimum supported OS version raised to 21 starting from OkHttp 3.13.
 
 ### 2.52.0 (2023. 06. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.0/GamebaseSDK-Android.zip)
@@ -45,13 +45,13 @@
 * Fixed the Terms and Conditions details page that appears when you click "Detail" in the Terms and Conditions window to not be clickable in the background until it finishes loading.
 
 ### 2.50.1 (2023. 07. 17.)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.1/GamebaseSDK-Android.zip)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.1/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 버전 변경: OkHttp 3.12.13(4.10.0에서 다운그레이드)
+#### Feature Updates
+* External SDK version changed: OkHttp 3.12.13 (downgraded from 4.10.0)
 
-#### 버그 수정
-* OkHttp 3.13부터 최소 지원 OS 버전이 21로 올라, Android 4.4(OS 19 Kitkat) 단말기에서 크래시가 발생하는 이슈를 수정했습니다.
+#### Bug Fixes
+* Fixed an issue where a crash occurs on Android 4.4 (OS 19 Kitkat) devices due to the mimum supported OS version raised to 21 starting from OkHttp 3.13.
 
 ### 2.50.0 (2023. 05. 16.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.0/GamebaseSDK-Android.zip)
@@ -60,7 +60,7 @@
 * Added MyCard Adapter.
 
 #### Feature Updates
-* External SDK update: NHN Cloud Android SDK 1.5.0, PAYCO Android SDK 1.5.12
+* External SDK update: NHN Cloud Android SDK 1.5.0, Gson 2.8.9, OkHttp 4.10.0, PAYCO Android SDK 1.5.12
 
 #### Bug Fixes
 * Fixed an error where, when calling the Terms and Conditions API, Activity size is reduced within a safe area.
