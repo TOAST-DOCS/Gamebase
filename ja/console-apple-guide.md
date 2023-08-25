@@ -39,6 +39,7 @@ secret keyをIAPアプリ情報に登録します。
 
 
 ## Notification URLを登録する
+**Notification V2** はサポートされていません。**V1** を使用してください。
 ```
 1. App Store Connect > My Apps > App information> General
 2. 本番サーバーURLにIAP URLを登録します。
