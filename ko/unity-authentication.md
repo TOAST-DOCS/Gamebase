@@ -70,6 +70,12 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 해당 로그인에 대한 토큰이 만료되었거나, 토큰에 대한 검증 등에 실패하면 실패를 반환합니다.
 이때는 [해당 IdP에 대한 로그인](#login-with-idp)을 구현해야합니다.
 
+* AdditionalInfo 파라미터 설정 방법
+
+| keyname                                  | a use                                    | 값 종류                                     |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API 호출이 끝날때까지 로딩 애니메이션을 표시<br>**Android에 한함** | **bool**<br>**default**: true |
+
 **API**
 
 Supported Platforms
@@ -78,6 +84,7 @@ Supported Platforms
 
 ```cs
 static void LoginForLastLoggedInProvider(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+static void LoginForLastLoggedInProvider(Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 ```
 
 **Example**
@@ -197,6 +204,7 @@ public void Login()
 
 | keyname                                  | a use                                    | 값 종류                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API 호출이 끝날때까지 로딩 애니메이션을 표시<br>**Android에 한함** | **bool**<br>**default**: true |
 | GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINE 서비스 제공 지역 설정 | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
 
 **API**
@@ -299,7 +307,8 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
 | GamebaseAuthProviderCredential.GAMEBASE_ACCESS_TOKEN | IdP 인증 정보가 아닌 Gamebase Access Token으로 로그인하는 경우 사용 |  |
 | GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | Gamebase에 로그인한 상태에서 로그아웃을 하지 않고 다른 계정을 이용해 로그인을 시도하는 것을 허용 | **bool** |
-| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINE 서비스 제공 지역 설정 | [Login with IdP 참고](./aos-authentication/#login-with-idp) |
+| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API 호출이 끝날때까지 로딩 애니메이션을 표시<br>**Android에 한함** | **bool**<br>**default**: true |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINE 서비스 제공 지역 설정 | [Login with IdP 참고](./unity-authentication/#login-with-idp) |
 | GamebaseAuthProviderCredential.REDIRECT_URI | **Google Cloud Console > 승인된 리디렉션 URI**에 등록된 redirect_uri를 추가<br>**Standalone default**: http://localhost:8080/<br>**WebGL default**: http://localhost/<br/>**Standalone, WebGL 플랫폼에서 Google 로그인 시에 한함** |  |
 
 > [TIP]
@@ -511,7 +520,6 @@ Mapping 에는 Mapping 추가/해제 API 2개가 있습니다.
 * 그 외의 오류
     * 매핑 시도가 실패했습니다.
 
-
 ### Add Mapping
 
 특정 IdP에 로그인 된 상태에서 다른 IdP로 Mapping을 시도합니다.
@@ -520,6 +528,13 @@ Mapping을 하려는 IdP의 계정이 이미 다른 계정에 연동이 되어�
 
 Mapping이 성공 하더라도 '현재 로그인 중인 IdP'가 바뀌지는 않습니다. 즉, Google 계정으로 로그인 한 후, Facebook 계정 Mapping 시도가 성공했다고 해서 '현재 로그인 중인 IdP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다.
 Mapping은 단순히 IdP 연동만 추가 해줍니다.
+
+* additionalInfo 파라미터 설정 방법
+
+| keyname                                  | a use                                    | 값 종류                                     |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API 호출이 끝날때까지 로딩 애니메이션을 표시<br>**Android에 한함** | **bool**<br>**default**: true |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINE 서비스 제공 지역 설정 | [Login with IdP 참고](./unity-authentication/#login-with-idp) |
 
 **API**
 
@@ -561,6 +576,8 @@ public void AddMapping(string providerName)
 | GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(Access Token) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
+| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API 호출이 끝날때까지 로딩 애니메이션을 표시<br>**Android에 한함** | **bool**<br>**default**: true |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINE 서비스 제공 지역 설정 | [Login with IdP 참고](./unity-authentication/#login-with-idp) |
 
 > [TIP]
 >
