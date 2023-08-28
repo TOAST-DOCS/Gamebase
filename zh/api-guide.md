@@ -14,7 +14,8 @@
 - **includeInactiveGoogleStatuses**已添加到"List Active Subscriptions" API request body，以请求Google订阅处于非激活状态。
 - 将**renewTime**添加到"List Active Subscriptions" API响应结果中，以显示RENEWED/RECOVERED发生时间。
 - 将**marketIds**添加到"List Active Subscriptions" API request中，以便可以一次搜索N个商店。
- 
+- 添加了“Get Ban Members”API来搜索当前被禁止使用的用户。 
+
 ## Advance Notice
 
 Gamebase Server API以RESTful类型提供如下API。为了使用服务器API，应了解以下信息。
@@ -932,6 +933,97 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | result.flags | String | 在控制台中注册禁用时选择删除leaderboard时返还为“leaderboard”。 |
 | result.name | String | 在控制台添加的模板名称 |
 | result.templateCode | Long | 在控制台添加的禁用模板代码值 |
+
+
+**[Error Code]**
+
+[错误代码](./error-code/#server)
+
+</br>
+
+#### Get Ban Members
+
+搜索已被禁止使用的用户。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-member/v1.3/apps/{appId}/members/bans/current |
+
+**[Request Header]**
+
+确认共通事项
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud项目ID |
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| page | String | Optional | 要搜索的页面/ 从0开始。 |
+| size | String | Optional | 每页数据个数 | 
+| order | String | Optional | 查找数据排序方法/ ASC or DESC |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "pagingInfo": {
+        "first": true,
+        "last": true,
+        "numberOfElements": 0,
+        "page": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0
+    },
+    "result": [
+        {
+            "userId": "String",
+            "banCaller": "CONSOLE",
+            "banReason": "String",
+            "banType": "TEMPORARY",
+            "beginDate": "2019-08-27T17:41:05+09:00",
+            "endDate": "2019-08-28T17:41:05+09:00",
+            "flags": "String",
+            "name": "String",
+            "templateCode": 0
+        }
+    ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| pagingInfo | Object | 被搜索的页面信息 |
+| pagingInfo.first | boolean | 如果是第一页，则为true。 |
+| pagingInfo.last | boolean | 如果是最后一页，则为true。 |
+| pagingInfo.numberOfElements | int | 所有数据个数 |
+| pagingInfo.page | int | 页码 |
+| pagingInfo.size | int | 每页数据个数 |
+| pagingInfo.totalElements | int | 所有数据个数 |
+| pagingInfo.totalPages | int | 所有页数 |
+| result | Array[Object] | 已搜索的禁止使用历史记录 |
+| result.userId | String | 用户ID |
+| result.banCaller | String | 调用禁止使用的主题 |
+| result.banReason | String | 禁止使用原因 |
+| result.banType | String | 禁止使用类型/ TEMPORARY or PERMANENT |
+| result.beginDate | Long | 开始禁止使用的时间 |
+| result.endDate | Long | 结束禁止使用的时间<br>如果为PERMANENT类型，该值不存在。 |
+| result.flags | String | 如果在控制台中选择“注册禁止使用时删除leaderboard”，则返还为leaderboard。 |
+| result.name | String | 控制台中注册的模板名称 |
+| result.templateCode | Long | 控制台中注册的禁止使用模板代码值 |
 
 
 **[Error Code]**

@@ -213,7 +213,8 @@ Facebook 개발자 사이트에 등록한 앱의 {앱 아이디}와 {앱 시크�
 ##### Android
 * [Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Facebook IdP](./aos-started/#facebook-idp)
 
-
+##### iOS
+* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP Settings > Facebook](./ios-started/#facebook)
 
 #### 2. Google
 

@@ -14,16 +14,16 @@
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.6.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | 包含Gamebase界面和核心逻辑。 | API 19(Kitkat, OS 4.4) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.6.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | 包含Gamebase界面和核心逻辑。 | API 19(Kitkat, OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | 支持Sign In With Apple。 | - |
-|  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | 支持Facebook登录。 | - |
+|  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | 支持Facebook登录。 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | 支持Google登录。 | - |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.6.3 | 支持Hangame登录。 | - |
-、|  | gamebase-adapter-auth-line | linesdk-5.8.0 | 支持LINE 登录。 | - |
+|  | gamebase-adapter-auth-line | linesdk-5.8.1 | 支持LINE 登录。 | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | 支持Naver登录。 | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.12 | 支持PAYCO登录。 | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | 支持Twitter登录。 | - |
-|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | 支持Weibo登录。 | - |
+|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.5.0 | 支持Weibo登录。 | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | 支持Weibo登录。 | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.14<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.0<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | 支持Kakao登录。 | API 21(Lollipop, OS 5.0) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | 支持游戏内支付。 | - |
@@ -59,6 +59,7 @@
 	* [Game > Gamebase > Store控制台指南 > GALAXY控制台指南](./console-galaxy-guide)
 	* [Game > Gamebase > Store控制台指南 > Amazon控制台指南](./console-amazon-guide)
 	* [Game > Gamebase > Store控制台指南 > Huawei控制台指南](./console-huawei-guide)
+	* [Game > Gamebase > Store控制台指南 > MyCard控制台指南](./console-mycard-guide)
     * 注册道具时，请参考以下指南。
         * [Game > Gamebase > 控制台使用指南 > 结算 > Register](./oper-purchase/#register_1)
 * 为了推送通知，要将推送通知服务认证书在Gamebase > 推送 > 认证书控制台中输入。
@@ -256,6 +257,17 @@ android {
 
 ### Resources
 
+#### Weibo IdP
+
+* 根据Build Targrt，从以下URL下载so文件并将其复制到项目中。
+    * https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/so
+* 如果为Android Studio Build
+    * 将其复制到项目的src/main/java/jniLibs文件夹的子文件夹。
+    * ![Add so file to Android Studio project](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-started-resources-weibo-so-android-studio-2.53.0.png)
+* 如果为Unity 
+    * 将so文件和文件夹复制到Assets/Plugins/Android/libs文件夹的子文件夹。
+    * ![Add so file to Unity project](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-started-resources-weibo-so-unity-2.53.0.png)
+
 #### Huawei Store
 
 * AppGallery Connection配置文件（agconnect-services.json）必须添加到assets文件夹中。
@@ -304,6 +316,21 @@ android {
 
 ### AndroidManifest.xml
 
+#### Contact
+
+* 客户服务页面([Game > Gamebase > Android SDK使用指南 > ETC > Additional Features > Contact]当在(./aos-etc/#contact))中输入您要咨询的问题时，需要声明存储读取权限才能添加照片和多媒体内容。
+
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+* 如果您的应用程序目标为Android 13（API Level 33）或更高版本，除了读取存储权限外，您还需要以下细粒度媒体权限声明。
+
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+        <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+        <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+
+* 如果声明了权限，Gamebase SDK会在文件上传时自动请求运行时权限。
+
 #### Facebook IdP
 
 * 初始化Facebook SDK时，需要声明App ID和Client Token。
@@ -334,16 +361,6 @@ android {
     <string name="facebook_app_id">123456789012345</string>
     <string name="facebook_client_token">a01234bc56de7fg89012hi3j45k67890</string>
 </resources>
-```
-
-#### LINE IdP
-
-* 因已在LINE SDK中声明为**android:allowBackup="false"**，应用程序Build时，有可能在Manifest merger出现fail。如果Build失败，按照下面的示例，请将**tools:replace=“android:allowBackup”**声明添加到应用程序标签中。
-
-```xml
-<application
-      tools:replace="android:allowBackup"
-      ... >
 ```
 
 #### Weibo IdP
@@ -562,15 +579,6 @@ class MyApplication: GamebaseMyCardApplication() {
         <package android:name="nh.smart.nhallonepay" />
         <!-- [Hangame] Configurations end -->
 
-        <!-- [LINE] Configurations begin -->
-        <package android:name="jp.naver.line.android" />
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="https" />
-        </intent>
-        <!-- [LINE] Configurations end -->
-        
         <!-- [Naver] Configurations begin -->
         <package android:name="com.nhn.android.search" />
         <!-- [Naver] Configurations end -->

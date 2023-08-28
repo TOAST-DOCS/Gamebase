@@ -69,11 +69,17 @@ Gamebase默认支持Guest登录。
 如果该登录的令牌已过期，或者令牌认证失败，则返回失败。<br/>
 此时，须实现对该IdP的登录。
 
+* AdditionalInfo参数设置方法
+
+| keyname                                  | a use                                    | 值类型                                   |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | 显示加载动画，直到API调用完成。 | **boolean**<br>**default**: true |
 
 **API**
 
 ```java
 + (void)Gamebase.loginForLastLoggedInProvider(Activity activity, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.loginForLastLoggedInProvider(Activity activity, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
 ```
 
 **示例**
@@ -116,6 +122,7 @@ Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthTok
     }
 });
 ```
+
 ### 游客登录
 
 Gamebase支持游客登录。
@@ -197,6 +204,7 @@ private static void onLoginForGuest(final Activity activity) {
 
 | keyname                                  | a use                                    | 值类型                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | 显示加载动画，直到API调用完成。 | **boolean**<br>**default**: true |
 | AuthProviderCredentialConstants.LINE_CHANNEL_REGION | 设置提供LINE服务的区域 | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
 
 **API**
@@ -264,6 +272,7 @@ private static void onLoginForGoogle(final Activity activity) {
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | 输入Google登录后可以获取的OTAC(一次性验证码)。 |                                          |
 | AuthProviderCredentialConstants.GAMEBASE_ACCESS_TOKEN | 当需使用Gamebase Access Token，而不需使用IdP认证信息登录时使用。 |  |
 | AuthProviderCredentialConstants.IGNORE_ALREADY_LOGGED_IN | 在登录Gamebase的状态下，即使不注销也可使用其他账户尝试登录。 | **boolean** |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | 显示加载动画，直到API调用完成。 | **boolean**<br>**default**: true |
 | AuthProviderCredentialConstants.LINE_CHANNEL_REGION | 设置提供LINE服务的区域 | [参考Login with IdP](./aos-authentication/#login-with-idp) |
 
 > [参考]
@@ -515,6 +524,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 | keyname                                  | a use                                    | 值类型                                    |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | 显示加载动画，直到API调用完成。 | **boolean**<br>**default**: true |
 | AuthProviderCredentialConstants.LINE_CHANNEL_REGION | 设置提供LINE服务的地区。 | [参考Login with IdP](./aos-authentication/#login-with-idp) |
 
 以下为尝试映射（Mapping）到Facebook的示例。
@@ -595,6 +605,7 @@ private static void addMappingForFacebook(final Activity activity) {
 | AuthProviderCredentialConstants.PROVIDER_NAME | 设定IdP类型                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | 设置IdP登录后收到的认证信息（Access Token）。<br/>不用于Google认证。|                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE |输入Google登录后可以获取的OTAC(一次性验证码)。|                                          |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | 显示加载动画，直到API调用完成。 | **boolean**<br>**default**: true |
 | AuthProviderCredentialConstants.LINE_CHANNEL_REGION | 设置提供LINE服务的地区。 | [参考Login with IdP](./aos-authentication/#login-with-idp) |
 
 > [参考]

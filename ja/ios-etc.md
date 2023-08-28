@@ -803,7 +803,7 @@ Gamebaseでは顧客からの問い合わせに対応するための機能を提
 >
 > NHN Cloud Contactサービスと連動して使用すると、より簡単に顧客からのお問い合わせに対応できます。
 > 詳細なNHN Cloud Contactサービスの利用方法は以下のガイドを参照してください。
-> [NHN Cloud Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+> [NHN Cloud Online Contact Guide](/Contact%20Center/ja/online-contact-overview/)
 
 #### Customer Service Type
 
@@ -880,7 +880,7 @@ TCGBContactConfigurationでURLに追加情報を伝達できます。
 > <font color="red">[注意]</font><br/>
 >
 > サポートへのお問い合わせの際、ファイルを添付するために、カメラまたはアルバムへのアクセスが必要な場合があります。
-> info.plistに'Privacy - Camera Usage Description'、'Privacy - Photo Library Usage Description'の設定を行ってください。
+> info.plistに'Privacy - Camera Usage Description'、'Privacy - Photo Library Usage Description'、'Privacy - Microphone Usage Description' の設定を行ってください。
 
 #### Request Contact URL
 

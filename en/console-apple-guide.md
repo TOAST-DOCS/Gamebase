@@ -41,6 +41,7 @@ Register the secret key in the IAP app information.
 
 
 ## Registering a Notification URL
+**Notification V2** is not supported. Please use **V1**.
 ```
 1. Go to App Store Connect > My Apps > App Information > General Information
 2. Register the IAP URL in Production Server URL.
