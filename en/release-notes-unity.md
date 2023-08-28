@@ -3,17 +3,17 @@
 ### 2.52.1 (2023. 07. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.1/GamebaseSDK-Unity.zip)
 
-#### 버그 수정
-* (Standalone) Gamebase Logger 초기화가 완료되기 전에 로그를 전송하면 null reference exception이 발생하는 오류가 수정되었습니다.
+#### Bug Fixes
+* (Standalone) Fixed an issue where sending a log before Gamebase Logger initialization was complete would result in a null reference exception.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.52.1](./release-notes-android/#2521-2023-07-17)
 * [Gamebase iOS SDK 2.53.0](./release-notes-ios/#2530-2023-07-25)
 
 ### 2.52.0 (2023. 06. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.0/GamebaseSDK-Unity.zip)
 
-#### Feature Updates
+#### Added Features
 * Setting Tool (v2.7.0)
     * Added ONE Store v21 Purchase Adapter. (Android only)
     * Added Gamebase Custom Push Receiver Adapter. (Android only)
@@ -22,7 +22,7 @@
 * External SDK update: NHN Cloud Unity SDK(0.28.3)
 * Improved internal logic.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.52.0](./release-notes-android/#2520-2023-06-27)
 * [Gamebase iOS SDK 2.52.0](./release-notes-ios/#2520-2023-06-27)
 
