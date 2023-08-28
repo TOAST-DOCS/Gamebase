@@ -860,7 +860,16 @@ Gamebase provides features to respond to customer inquiries.
 > By integrating with NHN Cloud Contact, customer inquiries can be handled more at ease and convenience.
 > For more details on NHN Cloud Contact, see the guide as below:
 > [NHN Cloud Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
+
+
+> <font color="red">[Caution]</font><br/>
 >
+> * For Gamebase Android SDK 2.53.0 and later versions, you only need to add permission declaration to the AndroidManifest.xml by following the guide below, and Gamebase Android SDK will automatically request permissions when attaching files to the Customer Center.
+>     * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
+> * For Gamebase Android SDK 2.52.0 and earlier versions, you must implement permission handling according to the relevant platform guide.
+>     * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
+>     * [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
+
 
 #### Customer Service Type
 
@@ -941,14 +950,7 @@ Gamebase.Contact.openContact(activity, new GamebaseCallback() {
 });
 ```
 
-> <font color="red">[Caution]</font><br/>
->
-> Contacting the Customer Center may require file attachment.
-> To do so, permissions for using the camera or using the storage must be acquired from the user at runtime.
-> [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
->
-> Unity users can implement this by referring to the following guide.
-> [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
+
 
 #### Request Contact URL
 
@@ -991,3 +993,9 @@ Gamebase.Contact.requestContactURL(configuration, new GamebaseDataCallback<Strin
     }
 });
 ```
+
+#### File Attach Type Popup
+
+If the customer center type is 'NHN Cloud Organization Product', enter **from** for Key and **app** for Value in the 'Additional parameters' item, and the pop-up for selecting the type when attaching a file will be displayed.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_002_2.53.0.png)
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_003_2.53.0.png)

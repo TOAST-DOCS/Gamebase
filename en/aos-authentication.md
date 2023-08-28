@@ -71,10 +71,17 @@ If a token is expired or its authentication fails, return failure. <br/>
 Note that a login should be implemented for the IdP.
 
 
+* How to Set AdditionalInfo parameters
+
+| keyname                                  | a use                                    | Value Type                                     |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | Display loading animation until the API call ends | **boolean**<br>**default**: true |
+
 **API**
 
 ```java
 + (void)Gamebase.loginForLastLoggedInProvider(Activity activity, GamebaseDataCallback<AuthToken> callback);
++ (void)Gamebase.loginForLastLoggedInProvider(Activity activity, Map<String, Object> additionalInfo, GamebaseDataCallback<AuthToken> callback);
 ```
 
 **Example**
@@ -117,6 +124,7 @@ Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthTok
     }
 }
 ```
+
 ### Login with GUEST
 
 Gamebase supports Guest logins.
@@ -199,6 +207,7 @@ You can find the types of IdP that can login, with **AuthProvider** class.
 
 | keyname                                  | a use                                    | Value Type                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | Display loading animation until the API call ends | **boolean**<br>**default**: true |
 | AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Set LINE Service Region | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
 
 **API**
@@ -266,6 +275,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter One Time Authorization (OTAC) which can be obtained after Google login. |                                          |
 | AuthProviderCredentialConstants.GAMEBASE_ACCESS_TOKEN | Used when logging in with Gamebase Access Token instead of IdP authentication information |  |
 | AuthProviderCredentialConstants.IGNORE_ALREADY_LOGGED_IN | While logged in to Gamebase, allow login attempts with other account without logging out | **boolean** |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | Display loading animation until the API call ends | **boolean**<br>**default**: true |
 | AuthProviderCredentialConstants.LINE_CHANNEL_REGION |  Set LINE Service Region| [See Login with IdP](./aos-authentication/#login-with-idp) |
 
 > [Note]
@@ -517,6 +527,7 @@ Try mapping to another IdP while logged-in to a specific IdP.<br/>
 
 | Keyname                                  | Usage                                  | Value Type                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | Display loading animation until the API call ends | **boolean**<br>**default**: true |
 | AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Set LINE Service Region | [See Login with IdP](./aos-authentication/#login-with-idp) |
 
 Below is an example of mapping to Facebook.
@@ -596,7 +607,8 @@ This interface can be used for Gamebase AddMapping by an access token issued by 
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | AuthProviderCredentialConstants.PROVIDER_NAME | Set IdP type                                | AuthProvider.GOOGLE<br> AuthProvider.FACEBOOK<br>AuthProvider.NAVER<br>AuthProvider.TWITTER<br>AuthProvider.LINE<br>AuthProvider.APPLEID<br>AuthProvider.WEIBO<br>AuthProvider.KAKAOGAME<br>"payco" |
 | AuthProviderCredentialConstants.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                          |
-| AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter one time authorization code (OTAC) which can be obtained after Google login. |                                          |
+| AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter one time authorization code (OTAC) which can be obtained after Google login. |      
+| AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | Display loading animation until the API call ends | **boolean**<br>**default**: true |                                    |
 | AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Set LINE Service Region | [See Login with IdP](./aos-authentication/#login-with-idp) |
 
 > [Note]
