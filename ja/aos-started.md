@@ -53,12 +53,12 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 * 認証するためにIdPコンソールでclient idを発行し、Gamebaseコンソールに入力します。
     * [Game > Gamebase > コンソール使用ガイド > アプリ > Authentication Information](./oper-app/#authentication-information)
 * アイテムを購入するためにStoreコンソールでアプリ情報を登録してGamebase > 購入(IAP)コンソールに入力します。
-	* [Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド](./console-google-guide)
-	* [Game > Gamebase > ストアコンソールガイド > ONE Storeコンソールガイド](./console-onestore-guide)
-	* [Game > Gamebase > ストアコンソールガイド > GALAXYコンソールガイド](./console-galaxy-guide)
-	* [Game > Gamebase > ストアコンソールガイド > Amazon Appstoreコンソールガイド](./console-amazon-guide)
-	* [Game > Gamebase > ストアコンソールガイド > Huawei App Galleryコンソールガイド](./console-huawei-guide)
-	* [Game > Gamebase > ストアコンソールガイド > MyCardコンソールガイド](./console-mycard-guide)
+    * [Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド](./console-google-guide)
+    * [Game > Gamebase > ストアコンソールガイド > ONE Storeコンソールガイド](./console-onestore-guide)
+    * [Game > Gamebase > ストアコンソールガイド > GALAXYコンソールガイド](./console-galaxy-guide)
+    * [Game > Gamebase > ストアコンソールガイド > Amazon Appstoreコンソールガイド](./console-amazon-guide)
+    * [Game > Gamebase > ストアコンソールガイド > Huawei App Galleryコンソールガイド](./console-huawei-guide)
+    * [Game > Gamebase > ストアコンソールガイド > MyCardコンソールガイド](./console-mycard-guide)
     * 以下のガイドを参考にしてアイテムを登録します。
         * [Game > Gamebase > コンソール使用ガイド > 決済 > Register](./oper-purchase/#register_1)
 * プッシュ通知を行うためにプッシュ通知サービス証明書をGamebase > Push > 証明書コンソールに入力します。
@@ -174,8 +174,8 @@ buildscript {
 #### Define Adapters
 
 * 使用するGamebaseバージョン、使用する認証、決済、プッシュモジュールをbuild.gradleファイルで宣言してください。
-	* Gamebaseの最新バージョンは[Maven Central(LINK)](https://repo1.maven.org/maven2/com/toast/android/gamebase/gamebase-sdk/)で確認できます。
-	* `mavenCentral()`保存場所を追加してください。
+    * Gamebaseの最新バージョンは[Maven Central(LINK)](https://repo1.maven.org/maven2/com/toast/android/gamebase/gamebase-sdk/)で確認できます。
+    * `mavenCentral()`保存場所を追加してください。
 
 ```groovy
 // >>> [Huawei App Gallery] agconnect plugin for huawei - when Native Android build
@@ -284,7 +284,7 @@ android {
 
 * Android Studioビルドの場合
     * Firebaseプッシュを使用するには、以下のガイドに従ってFirebaseの設定を完了した後、google-services.jsonファイルをプロジェクトに含める必要があります。
-		* [NHN Cloud > SDK使用ガイド > Push > Android > Firebase Cloud Messaging設定](https://docs.toast.com/ja/TOAST/ja/toast-sdk/push-android/#firebase-cloud-messaging)
+        * [NHN Cloud > SDK使用ガイド > Push > Android > Firebase Cloud Messaging設定](https://docs.toast.com/ja/TOAST/ja/toast-sdk/push-android/#firebase-cloud-messaging)
 * Unityビルドの場合
     * Firebase Unity SDK Packageをインストールした場合は、以下のコマンドで**generate_xml_from_google_services_json.exe**ファイルを実行してjsonファイルをxmlファイルに変換できます。
             
@@ -674,8 +674,8 @@ GamebaseでサポートしないAPIは、使用していないもの(deprecate)�
 使用していない(deprecated) APIは、次の条件を満たす場合、事前告知を行わずに削除されることがあります。
 
 * 5回以上のマイナーバージョンアップデート
-	* Gamebaseバージョン形式 - XX.YY.ZZ
-		* XX：Major
-		* YY：Minor
-		* ZZ：Hotfix
+    * Gamebaseバージョン形式 - XX.YY.ZZ
+        * XX：Major
+        * YY：Minor
+        * ZZ：Hotfix
 * 最低5ヶ月経過

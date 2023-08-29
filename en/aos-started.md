@@ -54,11 +54,11 @@ To execute Gamebase in Android, the following system environment is required.
 * For authentication, get the Client ID from the IdP and enter it in the Gamebase console.
     * [Game > Gamebase > Console User Guide > App > Authentication Information](./oper-app/#authentication-information)
 * To enable item purchase, register the app info in the Store console and enter it in Gamebase > Purchase(IAP) console.
-	* [Game > Gamebase > Store Console Guide > Google Console Guide](./console-google-guide)
-	* [Game > Gamebase > Store Console Guide > ONE store Console Guide](./console-onestore-guide)
-	* [Game > Gamebase > Store Console Guide > GALAXY Store Console Guide](./console-galaxy-guide)
-	* [Game > Gamebase > Store Console Guide > Amazon Appstore Console Guide](./console-amazon-guide)
-	* [Game > Gamebase > Store Console Guide > Huawei App Gallery Console Guide](./console-huawei-guide)
+    * [Game > Gamebase > Store Console Guide > Google Console Guide](./console-google-guide)
+    * [Game > Gamebase > Store Console Guide > ONE store Console Guide](./console-onestore-guide)
+    * [Game > Gamebase > Store Console Guide > GALAXY Store Console Guide](./console-galaxy-guide)
+    * [Game > Gamebase > Store Console Guide > Amazon Appstore Console Guide](./console-amazon-guide)
+    * [Game > Gamebase > Store Console Guide > Huawei App Gallery Console Guide](./console-huawei-guide)
     * [Game > Gamebase > Store Console Guide > MyCard Console Guide](./console-mycard-guide)
     * See the following guide to register items.
         * [Game > Gamebase > Console User Guide > Payment > Register](./oper-purchase/#register_1)
@@ -176,8 +176,8 @@ buildscript {
 #### Define Adapters
 
 * Declare Gamebase version and authentication to use, and the payment and the push modules in the build.gradle file.
-	* Find the latest Gamebase version at [Maven Central(LINK)](https://repo1.maven.org/maven2/com/toast/android/gamebase/gamebase-sdk/).
-	* Add the  `mavenCentral()`  storage. 
+    * Find the latest Gamebase version at [Maven Central(LINK)](https://repo1.maven.org/maven2/com/toast/android/gamebase/gamebase-sdk/).
+    * Add the  `mavenCentral()`  storage. 
 
 ```groovy
 // >>> [Huawei App Gallery] agconnect plugin for huawei - when Native Android build
@@ -285,7 +285,7 @@ android {
 
 * For Android Studio build
     * To use the Firebase push, you need to follow the guide below to complete the Firebase settings, and then include the google-services.json file in the project.
-		* [NHN Cloud > SDK User Guide> Push > Android > Firebase Cloud Messaging Settings](/TOAST/en/toast-sdk/push-android/#firebase-cloud-messaging)
+        * [NHN Cloud > SDK User Guide> Push > Android > Firebase Cloud Messaging Settings](/TOAST/en/toast-sdk/push-android/#firebase-cloud-messaging)
 * For a Unity build
     * **Caution**: It is not necessary to install the Firebase Unity SDK Package, and even if you do not, push works properly.
     * If the Firebase Unity SDK Package has been installed, you can use the following command to execute **generate_xml_from_google_services_json.exe** file to convert json files into xml files.
@@ -676,9 +676,9 @@ The API which is not supported by Gamebase anymore is processed as deprecated (d
 A deprecated API can be deleted without any prior notice when the following conditions are met:
 
 * Minor version updates of five or more times.
-	* Gamebase version format - XX.YY.ZZ
-		* XX: Major
-		* YY: Minor
-		* ZZ: Hotfix
+    * Gamebase version format - XX.YY.ZZ
+        * XX: Major
+        * YY: Minor
+        * ZZ: Hotfix
 * Time elapse of at least five months
 

@@ -54,12 +54,12 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 * 인증을 위해 IdP 콘솔에서 Client ID를 발급받아 Gamebase 콘솔에 입력합니다.
     * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
 * 아이템 구매를 위해 Store 콘솔에서 앱 정보를 등록하여 Gamebase > 구매(IAP) 콘솔에 입력합니다.
-	* [Game > Gamebase > 스토어 콘솔 가이드 > Google 콘솔 가이드](./console-google-guide)
-	* [Game > Gamebase > 스토어 콘솔 가이드 > ONE Store 콘솔 가이드](./console-onestore-guide)
-	* [Game > Gamebase > 스토어 콘솔 가이드 > GALAXY 콘솔 가이드](./console-galaxy-guide)
-	* [Game > Gamebase > 스토어 콘솔 가이드 > Amazon 콘솔 가이드](./console-amazon-guide)
-	* [Game > Gamebase > 스토어 콘솔 가이드 > Huawei 콘솔 가이드](./console-huawei-guide)
-	* [Game > Gamebase > 스토어 콘솔 가이드 > MyCard 콘솔 가이드](./console-mycard-guide)
+    * [Game > Gamebase > 스토어 콘솔 가이드 > Google 콘솔 가이드](./console-google-guide)
+    * [Game > Gamebase > 스토어 콘솔 가이드 > ONE Store 콘솔 가이드](./console-onestore-guide)
+    * [Game > Gamebase > 스토어 콘솔 가이드 > GALAXY 콘솔 가이드](./console-galaxy-guide)
+    * [Game > Gamebase > 스토어 콘솔 가이드 > Amazon 콘솔 가이드](./console-amazon-guide)
+    * [Game > Gamebase > 스토어 콘솔 가이드 > Huawei 콘솔 가이드](./console-huawei-guide)
+    * [Game > Gamebase > 스토어 콘솔 가이드 > MyCard 콘솔 가이드](./console-mycard-guide)
     * 아래 가이드를 참고하여 아이템을 등록합니다.
         * [Game > Gamebase > 콘솔 사용 가이드 > 결제 > Register](./oper-purchase/#register_1)
 * 푸시 알림을 위해 푸시 알림 서비스 인증서를 Gamebase > 푸시 > 인증서 콘솔에 입력합니다.
@@ -176,8 +176,8 @@ buildscript {
 #### Define Adapters
 
 * 사용할 Gamebase 버전, 사용할 인증, 결제, 푸시 모듈을 build.gradle 파일에 선언하세요.
-	* Gamebase 최신 버전은 [Maven Central(LINK)](https://repo1.maven.org/maven2/com/toast/android/gamebase/gamebase-sdk/) 에서 확인할 수 있습니다.
-	* **mavenCentral()** 저장소를 추가하세요.
+    * Gamebase 최신 버전은 [Maven Central(LINK)](https://repo1.maven.org/maven2/com/toast/android/gamebase/gamebase-sdk/) 에서 확인할 수 있습니다.
+    * **mavenCentral()** 저장소를 추가하세요.
 
 ```groovy
 // >>> [Huawei App Gallery] agconnect plugin for huawei - when Native Android build
@@ -285,7 +285,7 @@ android {
 
 * Android Studio 빌드인 경우
     * Firebase 푸시를 사용하려면 아래 가이드에 따라 Firebase 설정을 완료한 후 google-services.json 파일을 프로젝트에 포함시켜야 합니다.
-		* [NHN Cloud > SDK 사용 가이드 > Push > Android > Firebase Cloud Messaging 설정](/TOAST/ko/toast-sdk/push-android/#firebase-cloud-messaging)
+        * [NHN Cloud > SDK 사용 가이드 > Push > Android > Firebase Cloud Messaging 설정](/TOAST/ko/toast-sdk/push-android/#firebase-cloud-messaging)
 * Unity 빌드인 경우
     * **주의**: 반드시 Firebase Unity SDK Package를 설치해야 하는 것은 아니며, 설치하지 않아도 푸시는 정상적으로 동작합니다.
     * 만일 Firebase Unity SDK Package 를 설치했다면 아래 명령어로 **generate_xml_from_google_services_json.exe** 파일을 실행하여 json 파일을 xml 파일로 변환시킬 수 있습니다.
@@ -676,9 +676,9 @@ Gamebase에서 더 이상 지원하지 않는 API는 Deprecate 처리합니다.
 Deprecated 된 API는 다음 조건 충족 시 사전 공지 없이 삭제될 수 있습니다.
 
 * 5회 이상의 마이너 버전 업데이트
-	* Gamebase Version Format - XX.YY.ZZ
-		* XX : Major
-		* YY : Minor
-		* ZZ : Hotfix
+    * Gamebase Version Format - XX.YY.ZZ
+        * XX : Major
+        * YY : Minor
+        * ZZ : Hotfix
 * 최소 5개월 경과
 
