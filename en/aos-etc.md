@@ -861,7 +861,6 @@ Gamebase provides features to respond to customer inquiries.
 > For more details on NHN Cloud Contact, see the guide as below:
 > [NHN Cloud Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
 
-
 > <font color="red">[Caution]</font><br/>
 >
 > * For Gamebase Android SDK 2.53.0 and later versions, you only need to add permission declaration to the AndroidManifest.xml by following the guide below, and Gamebase Android SDK will automatically request permissions when attaching files to the Customer Center.
@@ -869,7 +868,6 @@ Gamebase provides features to respond to customer inquiries.
 > * For Gamebase Android SDK 2.52.0 and earlier versions, you must implement permission handling according to the relevant platform guide.
 >     * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
 >     * [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
-
 
 #### Customer Service Type
 
@@ -949,7 +947,6 @@ Gamebase.Contact.openContact(activity, new GamebaseCallback() {
     }
 });
 ```
-
 
 
 #### Request Contact URL

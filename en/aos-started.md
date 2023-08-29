@@ -269,7 +269,6 @@ android {
     * Copy the so and foler under the Assets/Plugins/Android/libs.
     * ![Add so file to Unity project](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-started-resources-weibo-so-unity-2.53.0.png)
 
-
 #### Huawei Store
 
 * You must add the AppGallery Connection configuration file (agconnect-services.json) to the assets folder.
@@ -320,7 +319,7 @@ android {
 
 #### Contact
 
-* To make an inquiry in [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Contact](./aos-etc/#contact) with photos and media, you need permission to read storage.
+* To make an inquiry in [Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Contact](./aos-etc/#contact) with photos and media, you need permission to read storage.
         
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         
@@ -364,7 +363,6 @@ android {
     <string name="facebook_client_token">a01234bc56de7fg89012hi3j45k67890</string>
 </resources>
 ```
-
 
 #### Weibo IdP
 
@@ -580,7 +578,6 @@ class MyApplication: GamebaseMyCardApplication() {
         <package android:name="kvp.jjy.MispAndroid320" />
         <package android:name="nh.smart.nhallonepay" />
         <!-- [Hangame] Configurations end -->
-
 
         <!-- [NAVER] Configurations begin -->
         <package android:name="com.nhn.android.search" />
