@@ -78,7 +78,7 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 
 ### Xcode Settings
 
-압축을 풀면, 다음과 같이 Gamebase.xcframework 등의 SDK를 볼 수 있습니다.
+압축을 풀면 다음과 같이 Gamebase.xcframework 등의 SDK를 볼 수 있습니다.
 
 ![unzip gamebase](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-002_2.54.0.png)
 
