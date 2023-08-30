@@ -74,7 +74,7 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 
 | keyname                                  | a use                                    | 값 종류                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API 호출이 끝날때까지 로딩 애니메이션을 표시<br>**Android에 한함** | **bool**<br>**default**: true |
+| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API 호출이 끝날 때까지 로딩 애니메이션을 표시<br>**Android에 한함** | **bool**<br>**default**: true |
 
 **API**
 
@@ -204,7 +204,7 @@ public void Login()
 
 | keyname                                  | a use                                    | 값 종류                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API 호출이 끝날때까지 로딩 애니메이션을 표시<br>**Android에 한함** | **bool**<br>**default**: true |
+| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API 호출이 끝날 때까지 로딩 애니메이션을 표시<br>**Android에 한함** | **bool**<br>**default**: true |
 | GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINE 서비스 제공 지역 설정 | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
 
 **API**
@@ -307,7 +307,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
 | GamebaseAuthProviderCredential.GAMEBASE_ACCESS_TOKEN | IdP 인증 정보가 아닌 Gamebase Access Token으로 로그인하는 경우 사용 |  |
 | GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | Gamebase에 로그인한 상태에서 로그아웃을 하지 않고 다른 계정을 이용해 로그인을 시도하는 것을 허용 | **bool** |
-| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API 호출이 끝날때까지 로딩 애니메이션을 표시<br>**Android에 한함** | **bool**<br>**default**: true |
+| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API 호출이 끝날 때까지 로딩 애니메이션을 표시<br>**Android에 한함** | **bool**<br>**default**: true |
 | GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINE 서비스 제공 지역 설정 | [Login with IdP 참고](./unity-authentication/#login-with-idp) |
 | GamebaseAuthProviderCredential.REDIRECT_URI | **Google Cloud Console > 승인된 리디렉션 URI**에 등록된 redirect_uri를 추가<br>**Standalone default**: http://localhost:8080/<br>**WebGL default**: http://localhost/<br/>**Standalone, WebGL 플랫폼에서 Google 로그인 시에 한함** |  |
 
@@ -533,7 +533,7 @@ Mapping은 단순히 IdP 연동만 추가 해줍니다.
 
 | keyname                                  | a use                                    | 값 종류                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API 호출이 끝날때까지 로딩 애니메이션을 표시<br>**Android에 한함** | **bool**<br>**default**: true |
+| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API 호출이 끝날 때까지 로딩 애니메이션을 표시<br>**Android에 한함** | **bool**<br>**default**: true |
 | GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINE 서비스 제공 지역 설정 | [Login with IdP 참고](./unity-authentication/#login-with-idp) |
 
 **API**
@@ -576,7 +576,7 @@ public void AddMapping(string providerName)
 | GamebaseAuthProviderCredential.PROVIDER_NAME | IdP 유형 설정                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | IdP 로그인 이후 받은 인증 정보(Access Token) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
-| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API 호출이 끝날때까지 로딩 애니메이션을 표시<br>**Android에 한함** | **bool**<br>**default**: true |
+| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API 호출이 끝날 때까지 로딩 애니메이션을 표시<br>**Android에 한함** | **bool**<br>**default**: true |
 | GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINE 서비스 제공 지역 설정 | [Login with IdP 참고](./unity-authentication/#login-with-idp) |
 
 > [TIP]
