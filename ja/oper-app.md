@@ -210,7 +210,8 @@ Facebookの開発サイトに登録したアプリの{アプリID}と{アプリ�
 ##### Android
 * [Gamebase > Android SDK使用ガイド > 始める > Setting > AndroidManifest.xml > Facebook IdP](./aos-started/#facebook-idp)
 
-
+##### iOS
+* [Gamebase > iOS SDK使用ガイド > はじめる > IdP Settings > Facebook](./ios-started/#facebook)
 
 #### 2. Google
 
