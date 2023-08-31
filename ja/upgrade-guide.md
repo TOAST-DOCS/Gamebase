@@ -1,5 +1,11 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.54.0
+
+### iOS
+
+* SDKがxcframeworkに変更されました。
+
 ## 2.53.0
 
 ### Android
