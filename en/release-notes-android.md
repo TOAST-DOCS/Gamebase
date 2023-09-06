@@ -1,5 +1,16 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.55.0 (2023. 09. 12.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: Naver Login Android SDK(5.7.0), NHN Cloud Android SDK(1.7.1)
+* Naver IdP 사용 시 Naver IdP에서 지원하지 않는 API 21 미만 단말기에서도 크래시가 발생하지 않도록 방어 로직을 추가했습니다.
+
+#### 버그 수정
+* idP Login 시 로딩 애니메이션 off가 적용되지 않는 현상이 수정되었습니다.
+* API Level 28,29 전체화면 웹뷰에서 windowFocus가 변경되면 네비게이션 바가 다시 생겨나는 이슈가 수정되었습니다.
+
 ### 2.53.0 (2023. 08. 17.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.53.0/GamebaseSDK-Android.zip)
 
