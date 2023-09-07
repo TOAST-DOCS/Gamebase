@@ -37,7 +37,7 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 용도  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.4.0 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS 11 or later |
+| Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.6.2 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS 11 or later |
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 14.1.0 | Facebook 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.8 | PAYCO 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.1.1 | NAVER 로그인을 지원 | iOS 11 or later |
@@ -49,8 +49,8 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 |  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.8.6 | Hangame 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.3 | Weibo 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.14.14 | Kakao 로그인을 지원 | iOS 11 or later |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit.framework<br/>NHNCloudIAP 1.4.0 | 게임 내 결제 지원 | iOS 11 or later |
-| Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.4.0 | Push를 지원 | iOS 11 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit.framework<br/>NHNCloudIAP 1.6.2 | 게임 내 결제 지원 | iOS 11 or later |
+| Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.6.2 | Push를 지원 | iOS 11 or later |
 
 
 > <font color="red">[주의]</font><br/>
