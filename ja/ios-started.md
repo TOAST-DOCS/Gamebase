@@ -29,7 +29,7 @@ Gamebaseは、次のような方法で設定できます。
 
 * [Download Gamebase iOS SDK](/Download/#game-gamebase)
 
-Gamebase.framework.zip及び必要なadapterをダウンロードします。<br/>
+Gamebase.xcframework及び必要なadapterをダウンロードします。<br/>
 また、各IdPの認証をするためのSDKファイルをダウンロードする必要があります。該当するIdPのログインを使用するときにだけ含めれば問題ありません。<br/>
 ダウンロードした後、該当するSDKファイルをプロジェクトのtargetに含めなければなりません。
 
@@ -37,20 +37,20 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 
 | Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.4.0 | GamebaseのInterfaceおよびコアロジックを含む | iOS 11 or later |
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Facebookログインをサポート | iOS 11 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.6 | PAYCOログインをサポート | iOS 11 or later |
-|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | NAVERログインをサポート | iOS 11 or later |
-|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Gamecenterログインをサポート | iOS 11 or later |
-|  | GamebaseAuthGoogleAdapter.framework | GoogleSignIn 5.0.2 | Googleログインをサポート | iOS 11 or later |
-|  | GamebaseAuthTwitterAdapter.framework | | Twitterログインをサポート | iOS 11 or later |
-|  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | LINEログインをサポート | iOS 11 or later |
-|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 11 or later<br/>arm64サポート<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.6 | Hangameログインをサポート | iOS 11 or later |
-|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.3.3 | Weiboログインをサポート | iOS 11 or later |
-|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.14 | Kakaoログインをサポート | iOS 11 or later |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.4.0 | ゲーム内決済をサポート | iOS 11 or later |
-| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.4.0 | Pushをサポート | iOS 11 or later |
+| Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.4.0 | GamebaseのInterfaceおよびコアロジックを含む | iOS 11 or later |
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 14.1.0 | Facebookログインをサポート | iOS 11 or later |
+|  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.6 | PAYCOログインをサポート | iOS 11 or later |
+|  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.1.1 | NAVERログインをサポート | iOS 11 or later |
+|  | GamebaseAuthGamecenterAdapter.xcframework | GameKit.xcframework | Gamecenterログインをサポート | iOS 11 or later |
+|  | GamebaseAuthGoogleAdapter.xcframework | GoogleSignIn 7.0.0 | Googleログインをサポート | iOS 11 or later |
+|  | GamebaseAuthTwitterAdapter.xcframework | | Twitterログインをサポート | iOS 11 or later |
+|  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.8.2 | LINEログインをサポート | iOS 11 or later |
+|  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 11 or later<br/>arm64サポート<br/> |
+|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.8.6 | Hangameログインをサポート | iOS 11 or later |
+|  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.3 | Weiboログインをサポート | iOS 11 or later |
+|  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.14.14 | Kakaoログインをサポート | iOS 11 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit.xcframework<br/>NHNCloudIAP 1.4.0 | ゲーム内決済をサポート | iOS 11 or later |
+| Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.4.0 | Pushをサポート | iOS 11 or later |
 
 
 > <font color="red">[注意]</font><br/>
@@ -78,14 +78,14 @@ Gamebase.framework.zip及び必要なadapterをダウンロードします。<br
 
 ### Xcode Settings
 
-解凍すると、次のようにGamebase.frameworkなどのSDKを確認することができます。
+解凍すると、次のようにGamebase.xcframeworkなどのSDKを確認することができます。
 
-![unzip gamebase](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-002_1.0.0.png)
+![unzip gamebase](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-002_1.0.0.png)
 
 
 * 1) FrameworkファイルをProjectのProject Navigatorにドラッグ・アンド・ドロップでimportします。このときに追加されたFrameworkファイルは、プロジェクトtargetに追加されなければなりません。
 * 2) **Gamebase.bundle**ファイルも**Copy Bundle Resources**に追加します。
-![Gamebase.bundle Bundle Resources](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-003_1.0.0.png)
+![Gamebase.bundle Bundle Resources](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-003_1.0.0.png)
 * 3) Gamebaseを使用するには、Gamebaseのframeworkの他に、Gamebaseで使用している外部SDKの機能を含めるために、複数のframeworkとlibraryファイルをlinkerから参照できるように追加する必要があります。以下の項目を追加する必要があります。
     * libicucore.tbd
     * libz.tbd
@@ -165,7 +165,7 @@ end
 > 特定Adapterのみを任意で適用できます。
 >
 
-
+<br/>
 
 > <font color="red">[注意]</font><br/>
 >
@@ -192,6 +192,19 @@ end
 * 認証のためにIdPコンソールでClient IDを発行してGamebaseコンソールに入力します。
     * [Game > Gamebase > コンソール使用ガイド > アプリ > Authentication Information](./oper-app/#authentication-information)
 * Gamebase iOS SDKは、IdPごとに追加設定を行う必要があります。
+
+#### Facebook
+
+* URL Schemeを設定する必要があります。
+    * **Xcode > Target > Info > URL Types**に**fb{Facebook開発者サイトに登録したアプリのApp ID}**を追加する必要があります。
+* Info.plistファイルにSchemeを登録します。
+```
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>fbapi</string>
+    <string>fb-messenger-share-api</string>
+</array>
+```
 
 #### Google
 
@@ -233,7 +246,7 @@ end
 #### LINE
 
 * URL Schemeを設定する必要があります。
-	* **Xcode > Target > Info > URL Types**に**line3rdp.{App Bundle ID}**を追加する必要があります。
+	* **Xcode > Target > Info > URL Types**に**line3rdp.{Bundle ID}**を追加する必要があります。
 
 * ATS設定を行うためにInfo.plistファイルにSchemeを登録します。
 ```

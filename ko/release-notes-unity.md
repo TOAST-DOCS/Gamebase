@@ -11,7 +11,7 @@
         * [Game > Gamebase > Unity SDK 사용 가이드 > 인증 > Login > Login Flow > Login as the Latest Login IdP](./unity-authentication/#login-as-the-latest-login-idp)
 
 #### 버그 수정
-* (Standalone) Gamebase 고객센터 호출 시 서비스 오류 페이지가 출력되지 않도록 수정되었습니다.
+* (Standalone) Gamebase 고객 센터 호출 시 서비스 오류 페이지가 출력되지 않도록 수정되었습니다.
 
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.53.0](./release-notes-android/#2530-2023-08-17)

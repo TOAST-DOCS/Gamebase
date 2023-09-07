@@ -70,6 +70,12 @@ Gamebaseでは基本的にゲストログインに対応しています。<br/>
 該当するログイントークンの期限が切れていたり、トークン検証などに失敗した場合、失敗を返します。
 この場合、[該当するIdPに対するログイン](#login-with-idp)を設計する必要があります。
 
+* AdditionalInfoパラメータ設定方法
+
+| keyname                                  | a use                                    | 値種類                                   |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API呼び出しが終了するまでローディングアニメーションを表示<br>**Androidのみ** | **bool**<br>**default**: true |
+
 **API**
 
 Supported Platforms
@@ -78,6 +84,7 @@ Supported Platforms
 
 ```cs
 static void LoginForLastLoggedInProvider(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+static void LoginForLastLoggedInProvider(Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 ```
 
 **Example**
@@ -197,6 +204,7 @@ public void Login()
 
 | keyname                                  | a use                                    | 値種類                                   |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API呼び出しが終了するまでローディングアニメーションを表示<br>**Androidのみ** | **bool**<br>**default**: true |
 | GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | Lineサービス提供地域設定 | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
 
 **API**
@@ -299,7 +307,8 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Googleログイン後に取得できるOTAC(one time authorization code)の入力 |                                          |
 | GamebaseAuthProviderCredential.GAMEBASE_ACCESS_TOKEN | IdP認証情報ではなくGamebase Access Tokenでログインを行いたい場合に使用 |  |
 | GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | Gamebaseログイン状態からログアウトを行わずに別のアカウントへのログイン試行を許可する | **bool** |
-| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | Lineサービス提供地域設定 | [Login with IdP参考](./unity-authentication/#login-with-idp) |
+| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API呼び出しが終了するまでローディングアニメーションを表示<br>**Androidのみ** | **bool**<br>**default**: true |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINEサービス提供地域設定 | [Login with IdP参考](./unity-authentication/#login-with-idp) |
 | GamebaseAuthProviderCredential.REDIRECT_URI | **Google Cloud Console > 承認されたリダイレクションURI**に登録されたredirect_uriを追加<br>**Standalone default**: http://localhost:8080/<br>**WebGL default**: http://localhost/<br/>**Standalone, WebGLプラットフォームでGoogleログイン時に限る** |  |
 
 > [参考]
@@ -512,7 +521,6 @@ Mappingには、Mapping追加APIと解除APIの2つがあります。
 * その他のエラー
     * マッピングに失敗しました。
 
-
 ### Add Mapping
 
 特定のIdPにログインされた状態で他のIdPへのMappingを試みます。
@@ -521,6 +529,13 @@ MappingしようとしているIdPのアカウントが既に他のアカウン�
 
 Mappingに成功しても、「現在ログイン中のIdP」は変わりません。つまり、Googleアカウントでログインした後、FacebookアカウントのMappingを試み、それが成功したからといって「現在ログイン中のIdP」がGoogleからFacebookに変更されるわけではありません。Googleのままで維持されます。
 Mappingは、 単にIdP連携だけを追加する機能です。
+
+* additionalInfoパラメータの設定方法
+
+| keyname                                  | a use                                    | 値種類                                   |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API呼び出しが終了するまでローディングアニメーションを表示<br>**Androidのみ** | **bool**<br>**default**: true |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINEサービス提供地域設定 | [Login with IdP参考](./unity-authentication/#login-with-idp) |
 
 **API**
 
@@ -563,6 +578,8 @@ public void AddMapping(string providerName)
 | GamebaseAuthProviderCredential.PROVIDER_NAME | IdPタイプの設定                            | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)設定<br/>Google認証の場合は使用しない |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Googleログイン後に取得できるOTAC(one time authorization code)を入力 |                                          |
+| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API呼び出しが終了するまでローディングアニメーションを表示<br>**Androidのみ** | **bool**<br>**default**: true |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINEサービス提供地域設定 | [Login with IdP参考](./unity-authentication/#login-with-idp) |
 
 > [TIP]
 >

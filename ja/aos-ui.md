@@ -416,7 +416,7 @@ WebViewを表示します。
 **Example**
 
 ```java
-Gamebase.WebView.showWebView(activity, "http://www.toast.com");
+Gamebase.WebView.showWebView(activity, "https://www.toast.com");
 ```
 
 ![Webview Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
@@ -437,7 +437,7 @@ GamebaseWebViewConfiguration configuration
             .setBackButtonImageResource(R.id.back_button)       // 戻るボタンの画像を設定
             .setCloseButtonImageResource(R.id.close_button)     // 閉じるボタンの画像を設定
             .build();
-GamebaseWebView.showWebView(activity, "http://www.toast.com", configuration);
+GamebaseWebView.showWebView(activity, "https://www.toast.com", configuration);
 ```
 
 #### Custom Scheme

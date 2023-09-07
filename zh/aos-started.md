@@ -54,12 +54,12 @@
 * 验证时从IdP控制台获取client id，在Gamebase控制台中输入。 
     * [Game > Gamebase > 控制台使用指南 > App > Authentication Information](./oper-app/#authentication-information)
 * 如果想购买道具，在Store控制台中注册App信息，在Gamebase > 购买(IAP)控制台中输入相关信息。
-	* [Game > Gamebase > Store控制台指南 > Google控制台指南](./console-google-guide) 
-	* [Game > Gamebase > Store控制台指南 > ONE store控制台指南](./console-onestore-guide) 
-	* [Game > Gamebase > Store控制台指南 > GALAXY控制台指南](./console-galaxy-guide)
-	* [Game > Gamebase > Store控制台指南 > Amazon控制台指南](./console-amazon-guide)
-	* [Game > Gamebase > Store控制台指南 > Huawei控制台指南](./console-huawei-guide)
-	* [Game > Gamebase > Store控制台指南 > MyCard控制台指南](./console-mycard-guide)
+    * [Game > Gamebase > Store控制台指南 > Google控制台指南](./console-google-guide) 
+    * [Game > Gamebase > Store控制台指南 > ONE store控制台指南](./console-onestore-guide) 
+    * [Game > Gamebase > Store控制台指南 > GALAXY控制台指南](./console-galaxy-guide)
+    * [Game > Gamebase > Store控制台指南 > Amazon控制台指南](./console-amazon-guide)
+    * [Game > Gamebase > Store控制台指南 > Huawei控制台指南](./console-huawei-guide)
+    * [Game > Gamebase > Store控制台指南 > MyCard控制台指南](./console-mycard-guide)
     * 注册道具时，请参考以下指南。
         * [Game > Gamebase > 控制台使用指南 > 结算 > Register](./oper-purchase/#register_1)
 * 为了推送通知，要将推送通知服务认证书在Gamebase > 推送 > 认证书控制台中输入。
@@ -175,8 +175,8 @@ buildscript {
 #### Define Adapters
 
 * 请在build.gradle文件中声明要使用的Gamebase版本和需要使用的验证、支付及推送模块。
-	* Gamebase的最新版本可在[Maven Central(LINK)](https://repo1.maven.org/maven2/com/toast/android/gamebase/gamebase-sdk/)上确认。
-	* 请添加**mavenCentral()**仓库。
+    * Gamebase的最新版本可在[Maven Central(LINK)](https://repo1.maven.org/maven2/com/toast/android/gamebase/gamebase-sdk/)上确认。
+    * 请添加**mavenCentral()**仓库。
 
 ```groovy
 // >>> [Huawei App Gallery] agconnect plugin for huawei - when Native Android build
@@ -676,8 +676,8 @@ class MyApplication: GamebaseMyCardApplication() {
 满足以下条件时，可以删除Deprecated的API，不另行通知。
 
 * 超过5次小更新
-	* Gamebase Version Format - XX.YY.ZZ
-		* XX : Major
-		* YY : Minor
-		* ZZ : Hotfix
+    * Gamebase Version Format - XX.YY.ZZ
+        * XX : Major
+        * YY : Minor
+        * ZZ : Hotfix
 * 至少5个月
